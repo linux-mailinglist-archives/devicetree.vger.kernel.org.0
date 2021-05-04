@@ -2,180 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ADC63727E3
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 11:12:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F83E3727EB
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 11:15:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229911AbhEDJNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 05:13:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44540 "EHLO
+        id S230004AbhEDJP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 05:15:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229905AbhEDJN3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 05:13:29 -0400
-Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC76EC061761
-        for <devicetree@vger.kernel.org>; Tue,  4 May 2021 02:12:34 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:1ca1:e52f:3ec5:3ac5])
-        by baptiste.telenet-ops.be with bizsmtp
-        id 0ZCZ2500E3aEpPb01ZCZAi; Tue, 04 May 2021 11:12:33 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1ldr6W-002j8z-QU; Tue, 04 May 2021 11:12:32 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1ldr6W-00H7BZ-A9; Tue, 04 May 2021 11:12:32 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Gareth Williams <gareth.williams.jx@renesas.com>
-Cc:     linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: clock: renesas,r9a06g032-sysctrl: Convert to json-schema
-Date:   Tue,  4 May 2021 11:12:31 +0200
-Message-Id: <24d1bd7c4c46747f4e2828974c2e2e48e778bff8.1620119439.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229814AbhEDJP5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 05:15:57 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8445CC061574
+        for <devicetree@vger.kernel.org>; Tue,  4 May 2021 02:15:02 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1ldr8v-0008Mo-2Q; Tue, 04 May 2021 11:15:01 +0200
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1ldr8t-00074Q-HS; Tue, 04 May 2021 11:14:59 +0200
+Date:   Tue, 4 May 2021 11:14:59 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Kent Gibson <warthog618@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de
+Subject: Re: [PATCH 1/2] dt-bindings: gpio: introduce hog properties with
+ less ambiguity
+Message-ID: <20210504091459.clb5nkwgrgg43ixq@pengutronix.de>
+References: <20210503210526.43455-1-u.kleine-koenig@pengutronix.de>
+ <20210504025546.GA13356@sol>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="iozk6663kquxk4ye"
+Content-Disposition: inline
+In-Reply-To: <20210504025546.GA13356@sol>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Renesas RZ/N1D (R9A06G032) System Controller (SYSCTRL)
-Device Tree binding documentation to json-schema.
 
-Drop the consumer example, as it doesn't belong here.
+--iozk6663kquxk4ye
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- .../clock/renesas,r9a06g032-sysctrl.txt       | 46 --------------
- .../clock/renesas,r9a06g032-sysctrl.yaml      | 62 +++++++++++++++++++
- 2 files changed, 62 insertions(+), 46 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.txt
- create mode 100644 Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml
+Hello,
 
-diff --git a/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.txt b/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.txt
-deleted file mode 100644
-index aed713cf083128fa..0000000000000000
---- a/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.txt
-+++ /dev/null
-@@ -1,46 +0,0 @@
--* Renesas R9A06G032 SYSCTRL
--
--Required Properties:
--
--  - compatible: Must be:
--    - "renesas,r9a06g032-sysctrl"
--  - reg: Base address and length of the SYSCTRL IO block.
--  - #clock-cells: Must be 1
--  - clocks: References to the parent clocks:
--	- external 40mhz crystal.
--	- external (optional) 32.768khz
--	- external (optional) jtag input
--	- external (optional) RGMII_REFCLK
--  - clock-names: Must be:
--        clock-names = "mclk", "rtc", "jtag", "rgmii_ref_ext";
--  - #power-domain-cells: Must be 0
--
--Examples
----------
--
--  - SYSCTRL node:
--
--	sysctrl: system-controller@4000c000 {
--		compatible = "renesas,r9a06g032-sysctrl";
--		reg = <0x4000c000 0x1000>;
--		#clock-cells = <1>;
--
--		clocks = <&ext_mclk>, <&ext_rtc_clk>,
--				<&ext_jtag_clk>, <&ext_rgmii_ref>;
--		clock-names = "mclk", "rtc", "jtag", "rgmii_ref_ext";
--		#power-domain-cells = <0>;
--	};
--
--  - Other nodes can use the clocks provided by SYSCTRL as in:
--
--	#include <dt-bindings/clock/r9a06g032-sysctrl.h>
--	uart0: serial@40060000 {
--		compatible = "snps,dw-apb-uart";
--		reg = <0x40060000 0x400>;
--		interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
--		reg-shift = <2>;
--		reg-io-width = <4>;
--		clocks = <&sysctrl R9A06G032_CLK_UART0>, <&sysctrl R9A06G032_HCLK_UART0>;
--		clock-names = "baudclk", "apb_pclk";
--		power-domains = <&sysctrl>;
--	};
-diff --git a/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml b/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml
-new file mode 100644
-index 0000000000000000..25dbb0fac0656460
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml
-@@ -0,0 +1,62 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/renesas,r9a06g032-sysctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/N1D (R9A06G032) System Controller
-+
-+maintainers:
-+  - Gareth Williams <gareth.williams.jx@renesas.com>
-+  - Geert Uytterhoeven <geert+renesas@glider.be>
-+
-+properties:
-+  compatible:
-+    const: renesas,r9a06g032-sysctrl
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    items:
-+      - description: External 40 MHz crystal
-+      - description: Optional external 32.768 kHz crystal
-+      - description: Optional external JTAG input
-+      - description: Optional external RGMII_REFCLK
-+
-+  clock-names:
-+    minItems: 1
-+    items:
-+      - const: mclk
-+      - const: rtc
-+      - const: jtag
-+      - const: rgmii_ref_ext
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  '#power-domain-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - '#clock-cells'
-+  - '#power-domain-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    sysctrl: system-controller@4000c000 {
-+            compatible = "renesas,r9a06g032-sysctrl";
-+            reg = <0x4000c000 0x1000>;
-+            clocks = <&ext_mclk>, <&ext_rtc_clk>, <&ext_jtag_clk>,
-+                     <&ext_rgmii_ref>;
-+            clock-names = "mclk", "rtc", "jtag", "rgmii_ref_ext";
-+            #clock-cells = <1>;
-+            #power-domain-cells = <0>;
-+    };
--- 
-2.25.1
+On Tue, May 04, 2021 at 10:55:46AM +0800, Kent Gibson wrote:
+> On Mon, May 03, 2021 at 11:05:26PM +0200, Uwe Kleine-K=F6nig wrote:
+> > For active low lines the semantic of output-low and output-high is hard
+> > to grasp because there is a double negation involved and so output-low
+> > is actually a request to drive the line high (aka inactive).
+>=20
+> +1 on clarifying the naming.
+>=20
+> > So introduce output-inactive and output-active with the same semantic as
+> > output-low and output-high respectively have today, but with a more
+> > sensible name.
+> >=20
+>=20
+> You use active/inactive here, but then asserted/deasserted in the patch.
 
+oops, this is an oversight.
+
+> My preference would be the active/inactive, which has more of a level
+> feel, over the asserted/deasserted which feels more like an edge.
+>=20
+> And you still use active/inactive in the descriptions, so now we have all
+> three naming schemes in the mix. =20
+>=20
+> What made you change?
+
+I had active/inactive first, but Linux Walleij requested
+asserted/deasserted:
+
+https://lore.kernel.org/r/CACRpkdbccHbhYcCyPiSoA7+zGXBtbL_LwLkPB3vQDyOqkTA7=
+EQ@mail.gmail.com
+
+While I like active/inactive better than asserted/deasserted, the latter
+is still way better than high/low, so I didn't discuss.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--iozk6663kquxk4ye
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmCREJAACgkQwfwUeK3K
+7AkrfwgAkNBsGyYU0q3vyW1bIkQhuFEKOvbVybJFe4mmd0hp8LhRWJQ9ZsyGTjmj
+5XAbdwMFerh1LImzb1kevXQI+ohQWGN7gL/ZTY9TRH/2q1MmPB9/G2mORlBFFddY
+mDflVdzcB1Hd7vh7tX378HZDeD/2e24rSI9FN4kvrgyseFBvWQpSe8uP3HGEg3w8
+2BxSNke1O/t8PY0D2Hg54xLKZEDf/LHqH9TwAjbi2Pe4fW+Kz0u0694qq9aqPNCU
+nvahhBYxqk6KsOdyPkcCsfoAUlh2KfBFsonApfgFTExLFmjeSRkfW1BOln0Vjn+P
+uqF7drJXkTHqZ5Oz5PD35hmzlPjy+Q==
+=yUDN
+-----END PGP SIGNATURE-----
+
+--iozk6663kquxk4ye--
