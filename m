@@ -2,112 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F26E13731A5
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 22:52:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF70A373262
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 00:34:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230425AbhEDUxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 16:53:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59736 "EHLO
+        id S233203AbhEDWap (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 18:30:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229868AbhEDUxn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 16:53:43 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16AE0C061574;
-        Tue,  4 May 2021 13:52:47 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id u13so9353314edd.3;
-        Tue, 04 May 2021 13:52:47 -0700 (PDT)
+        with ESMTP id S233165AbhEDWal (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 18:30:41 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A238C061761;
+        Tue,  4 May 2021 15:29:44 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id i24so12268571edy.8;
+        Tue, 04 May 2021 15:29:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4mJQuD4mnuaCWq1D6gvIPhHTbCcwKAIz+YjfBqx3dCo=;
-        b=Hp1iYyOCcnpf53Q1fCKgIKV0WwgkMh/C8tJm6nrj5JrJd4ArrkpI6L4K5U+9Vtzu2K
-         EjF2TbArco3pxszZBXr/devJ2be1uD77rt3WhsHyoq87GjaVNA+7uE7eMAafTlfQaY9H
-         ZvOGc6en96CqXAzVUfPLUIPXpf7xYlTta0bvS3arvXs96ya/Xmdkax8tpimr443PcMTV
-         BfP8PyrgBTPkkNUnasJ9pE1XB7TL+lZRdg6auJ4lPGmcRsViKRWoEZ1qg8CRcOmP7Vxp
-         hayRpjMAM//E+In7pYXvBy077jf+yo5CKs4TSp+ln6DCMhFRAgHHs2Qa7UTH720VebLc
-         wzUQ==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=ffA750f2MevOaBc6ScKeZYtWjDObG1Cn21hSXSP5XoE=;
+        b=LP4Qu59OMAK4oko/pxoEEF7o2BUnML4j3WODAnv1SJ9hikLWsB/3g14f0kOcZDjwLt
+         +ZwtS7YPBX637bcIzenB1BFcaQujLsh3p3D2OVySx8Bpm/r1ESRuTXA70Fne7Ipbal0W
+         FKZBO+KmrLZiYCTo9YqBo22ZvVWPBVf/bFY2jMZQ4DDtWNn9esBUM1II7TJ8C0/cwGTY
+         XGlEQ5U0NKOkl5T43BYZuPmDmLpOM08l78eLwGIHV1loMjE/8goD3g6llBHJabteldhb
+         Ac/IEyv4dYTiij6gd+xS/AxO+dOYAfJu1+ne9dY78vGp4aXTcRhwkyZHLzpaHhrrQuS3
+         b/3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4mJQuD4mnuaCWq1D6gvIPhHTbCcwKAIz+YjfBqx3dCo=;
-        b=dyI0yWzLAXNe9GP073W2dLfzH2aTrxMTXsQ17QsbVxjlK1nVDyKOaTwwm5QKGKRSfl
-         MTV0xbBvl4w+ACLknF5zTaFHXa2UGJ/8Pb5twbAgLz1i0TCs0AA4W/zvcOnrOxE4G5M4
-         8T1xlK6mA+QwlffewtUeNYyL0J4GiUfD7TXxfwbrNhdMlj5tIAxs63UMLMcao/4ryKFy
-         4FAcwjvjiKy3cZKAWc6PI0SiDxHYEgKUVjsrf3I0Qh7Sf4y+AfoN7mAB42QDeueAL3ql
-         tOrOWiLuzFa3/NcHY98up9jg+aZsFsp8UZoi6p7eFRhwlPaOWErQZiyyI9SqNKIyzVly
-         Skkw==
-X-Gm-Message-State: AOAM532qHs0wp8elewpCE/qxPLUuAhPGxG/5G1fhCmAaor/70ofTaDc3
-        kP92DcCLy4j/T/qXGCQE9UyEyGBP1baPiaiRG8w=
-X-Google-Smtp-Source: ABdhPJxNH8mE/dJ2Lo61gkk7613QibMuhjIUwzyR5nTasiUbR3oRDUNK6TMQx2gz45mqNhi/7ZSLwLIrEq0z9JI1Dm4=
-X-Received: by 2002:a05:6402:36e:: with SMTP id s14mr15914973edw.338.1620161565812;
- Tue, 04 May 2021 13:52:45 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=ffA750f2MevOaBc6ScKeZYtWjDObG1Cn21hSXSP5XoE=;
+        b=Ytdf3ki3Z893sVz00uaP2BrfscL81sFEFgnf39RgX74GYGUf5tlxdiWsJ8doOrHCv9
+         OCm7a+9hgp6+jqhPF2TwzkrgnCRF9j1mfR5LMyo5XYAr+HsAWeNQBZe6rvKYmOHVSCKG
+         gCew/P/TG8xfkoTSxD+dUb/0y8hmNJ/SOy2RA+ITz3/cdZnUyKnT+K/l84YKrybpVNae
+         Yx0HF6yDYqiH9846kjILYiXVS2iU0/57gHf0hcrY1u/smLwopM4YS2BO3LG7IjOGv23S
+         QTs8kgeqig4RYv1x0TW4hNmrQ5+1xm9bRjDoS7+YYSWwzu2xmXRUu/17tCLSAfqOfQ7M
+         OoPQ==
+X-Gm-Message-State: AOAM5333yUrj6+OfUGuxjSv6bVTeGAfGKXGJ6zXhAsPjJDvBZX0Ya+HR
+        y9z7Hv8FaWekGZL2ohxsTVY=
+X-Google-Smtp-Source: ABdhPJyuk5osEZmL0qIvAB4XzQPl+ojOKSgJFh86CP+0OugFsSrTixLr5AqS18qi3zGbvyO09nYOsg==
+X-Received: by 2002:aa7:c2d2:: with SMTP id m18mr27785539edp.96.1620167383174;
+        Tue, 04 May 2021 15:29:43 -0700 (PDT)
+Received: from Ansuel-xps.localdomain (93-35-189-2.ip56.fastwebnet.it. [93.35.189.2])
+        by smtp.googlemail.com with ESMTPSA id q12sm2052946ejy.91.2021.05.04.15.29.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 May 2021 15:29:42 -0700 (PDT)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [RFC PATCH net-next v3 09/20] devicetree: net: dsa: qca8k: Document new compatible qca8327
+Date:   Wed,  5 May 2021 00:29:03 +0200
+Message-Id: <20210504222915.17206-9-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210504222915.17206-1-ansuelsmth@gmail.com>
+References: <20210504222915.17206-1-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-References: <20210504041659.22495-1-wens@kernel.org>
-In-Reply-To: <20210504041659.22495-1-wens@kernel.org>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 4 May 2021 22:52:35 +0200
-Message-ID: <CAFBinCBZa-OjjLE0oaNQzAL+tGTkiC_Kf+iHR1H3K5-b+uFK0w@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: meson-gxbb: nanopi-k2: Enable Bluetooth
-To:     Chen-Yu Tsai <wens@kernel.org>
-Cc:     Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add support for qca8327 in the compatible list.
 
-On Tue, May 4, 2021 at 6:17 AM Chen-Yu Tsai <wens@kernel.org> wrote:
->
-> From: Chen-Yu Tsai <wens@csie.org>
->
-> The NanoPi K2 has a AP6212 WiFi+BT combo module. The WiFi portion is
-> already enabled. The BT part is connected via UART and I2S.
->
-> Enable the UART and add a device node describing the Bluetooth portion
-> of the module.
->
-> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
-> ---
-> Changes since v1:
->   - added uart-has-rtscts property
->   - added alias for uart_A
->
-> Hi Neil, Martin,
->
-> I dropped your review-bys since I added the UART alias and I'm not sure
-> what the policy for those are.
->
-> ChenYu
-> ---
->  .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts      | 14 +++++++++++++-
->  1 file changed, 13 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-> index 7273eed5292c..f017a263784f 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-> @@ -15,6 +15,7 @@ / {
->
->         aliases {
->                 serial0 = &uart_AO;
-> +               serial1 = &uart_A;
-this should not be needed anymore since
-a26988e8fef4b258d1b771e0f4b2e3b67cb2e044 ("tty: serial: meson: if no
-alias specified use an available id")
+Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+---
+ Documentation/devicetree/bindings/net/dsa/qca8k.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-IIRC for "newly added" .dts we are only adding the alias for anything
-that shows up in /dev/ for the user
-meson-khadas-vim3.dtsi for example is not adding an alias for uart_A
-(also used for Bluetooth)
+diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.txt b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
+index ccbc6d89325d..1daf68e7ae19 100644
+--- a/Documentation/devicetree/bindings/net/dsa/qca8k.txt
++++ b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
+@@ -3,6 +3,7 @@
+ Required properties:
+ 
+ - compatible: should be one of:
++    "qca,qca8327"
+     "qca,qca8334"
+     "qca,qca8337"
+ 
+-- 
+2.30.2
 
-
-Best regards,
-Martin
