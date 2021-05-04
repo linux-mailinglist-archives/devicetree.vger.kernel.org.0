@@ -2,204 +2,534 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15C40372D6F
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 17:57:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC0AE372D73
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 18:00:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231446AbhEDP6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 11:58:24 -0400
-Received: from mail-eopbgr70043.outbound.protection.outlook.com ([40.107.7.43]:54866
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230512AbhEDP6Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 May 2021 11:58:24 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cnk6smTf+XCc/4VDGwauy4S9bzinaN4OXc/zuw2QiBD4p6MtPJNX+ch+8I39eW0KfenFBMUhi5t0h17caxJ5S0qARXpHd7TTE/dTpRGYZL6N/Wh8pSwXbBYgE2WXiDA2jBv/1Y6S1g5nauAXR70gSCx6eWXVT95enRh0HsPdwR+oRbtGCVHpPX1C8riBN9orHUzi+Z+2MaJWM/rhVbtXYzEDQmEgn8vm1S5RKSPf5chKAlJUcsXXDr2pGxIy/5YGTF0RUa8JML1iPfD7ucFuKze4huzNc1YfyHHo9n2M70/kI0ADujc4go45untGDLZYC55wEq4HwzWfH9R70pAyhw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RF0af6UEDJ3hbAYP6eEO99fzC3ldtJvNlg/rDvhf1HE=;
- b=nFam0K78nqtc79WtGG0kbr7YQlr5Z8leQmxKCgsXKVOdzLgoBrPDKZ5C5Y9LG2lSiYhrgJPMjNXQCQxqHcVXzOQ7tzs889YMj/DZU6+91bgrYhng0W3pQIzPT5ahD4tBa5chWiaWujpNxxLyVy45jVvXqbsBIX+cAp8lfjGXm2GmQ0dkOVyteiFyOE8yYSqobjuI7o+/k02/02vSmeoSd9LbDKsgWSQMTOsYrSfn4zZCrqXGmqepDuTDWZtI5+NimITLNSwttx6/MvILrscxmAWCpNElM0JXJHx707Xjy8k8X7mP9Pg1aY2xrappS6KN3LfePLLBr0aZ84JE/sf4Ow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RF0af6UEDJ3hbAYP6eEO99fzC3ldtJvNlg/rDvhf1HE=;
- b=eaoUF5BG8pmJaeak8vOcsFmldMHAbGSCX/gxIX8TXQIbqNzGEjO8LsnQQDb1kDOVFRnfC40bnjEDp3mszdWzT0wTnFzaMBNrJ7ZLUXkxvgK78hRxO/d3aAoYQQHEXox0e8/5hrF+XliVYrZXp6W+8B89AyVtFBqoP4LYAMsx7E8=
-Authentication-Results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=seco.com;
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
- by DBBPR03MB5141.eurprd03.prod.outlook.com (2603:10a6:10:f4::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.38; Tue, 4 May
- 2021 15:57:25 +0000
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::40d5:3554:c709:6b1b]) by DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::40d5:3554:c709:6b1b%5]) with mapi id 15.20.4087.044; Tue, 4 May 2021
- 15:57:25 +0000
-Subject: Re: [PATCH 2/2] pwm: Add support for Xilinx AXI Timer
-To:     Michal Simek <michal.simek@xilinx.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-References: <20210503214413.3145015-1-sean.anderson@seco.com>
- <20210503214413.3145015-2-sean.anderson@seco.com>
- <20210504085112.edyy6loprfzejrjl@pengutronix.de>
- <dc6d9f40-a913-90c4-9675-0f84f789ab61@xilinx.com>
-From:   Sean Anderson <sean.anderson@seco.com>
-Message-ID: <71694d6a-21d8-2b31-0e66-2dfea52a6390@seco.com>
-Date:   Tue, 4 May 2021 11:57:20 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <dc6d9f40-a913-90c4-9675-0f84f789ab61@xilinx.com>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
+        id S230512AbhEDQA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 12:00:59 -0400
+Received: from comms.puri.sm ([159.203.221.185]:53134 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230501AbhEDQA6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 May 2021 12:00:58 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 6ABA7E0399;
+        Tue,  4 May 2021 09:00:03 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 8aJ2Ep0c7f6v; Tue,  4 May 2021 09:00:00 -0700 (PDT)
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     laurent.pinchart@ideasonboard.com
+Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, marex@denx.de, p.zabel@pengutronix.de,
+        rmfrfs@gmail.com, robh@kernel.org, slongerbeam@gmail.com,
+        Martin Kepplinger <martin.kepplinger@puri.sm>
+Subject: Re: [PATCH 00/23] media: imx: imx7-mipi-csis: Add i.MX8MM support / imx8mq support
+Date:   Tue,  4 May 2021 17:59:39 +0200
+Message-Id: <20210504155939.1194369-1-martin.kepplinger@puri.sm>
+In-Reply-To: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
+References: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [50.195.82.171]
-X-ClientProxiedBy: BL1PR13CA0256.namprd13.prod.outlook.com
- (2603:10b6:208:2ba::21) To DB7PR03MB4523.eurprd03.prod.outlook.com
- (2603:10a6:10:19::27)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.27.1.65] (50.195.82.171) by BL1PR13CA0256.namprd13.prod.outlook.com (2603:10b6:208:2ba::21) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.8 via Frontend Transport; Tue, 4 May 2021 15:57:24 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 47553343-6346-4fb9-c580-08d90f154f60
-X-MS-TrafficTypeDiagnostic: DBBPR03MB5141:
-X-Microsoft-Antispam-PRVS: <DBBPR03MB51412CE44FC9CB95EA088346965A9@DBBPR03MB5141.eurprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MfhCnv5dYl6jvMU7tgbWI/6XDjc0XPGJ0GNOnbhWsAsE2VIOzGYZe1X5RhTGw5aG8jAn7Fj7dVa6jCYwDsNII3BVYHUDL5Uv5Vjsm6NuCTrgq4VCuykxcZrpxfD4P3brMVPtqkrLBmdQYCNsCHtuVCn4bvTjMSBeu7opbhnt0x+p2pmkS13cxen97rcWagmIUMM+ySqyHA0DwwsN53UrSIOKMoVQ92MWgsQ2DTc1OzXp9JUiYRpGx0or/ThZjdryZGOS8k6u1I1sNdaX8c34RwSLhQeVa7K58QwO2E0FoH2abLVcPc99WLCX4gmtMGnLsU41Pbq0vwV48/Iq7GjLbO8FEvhv/UnyS4wm7Vgej2Yej+WRCO0oed84zY5swZUlTQFRSIH2+l/ybh9mCk4DYLL5IlBACNKB5WCI4gS+LdsFNYQqR34Y4HLnMAAZe3jh1CpH5IvgmJvfLDOzv/KaA2vFaCL0l/uXK++Z2ONP/lK4jbzVoIQEyQEJGWStE490xCa1IyO/W/aBko8UEE4yTNTjgtnjNfZrOl6OyZn+OlKJr/LGEbavhqfY1sO//ZU3HHkFxGAB3PGkxh0BKvzsWPWuA1Q+CaYpsOSfS45P+DWUk7InfonM2PQKhjX+E2zP4Wu0kM5L2CB9Xej+7ZdOdZ2PQDnKfG8T1UkEN+Pro5/GlTKIbrICOupJy9sNFKEoOcA4d6l19MtHNBQTOYl1Yf6yCnemI6LpJ3M6cmIvmZpifazB8rWebEwxcMdAWTBpKqrm+DJfZujXYnpMuajT6afl6DSEo5pKFfIeSdWXBRU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(6486002)(38350700002)(956004)(54906003)(16526019)(2906002)(38100700002)(2616005)(52116002)(86362001)(44832011)(16576012)(83380400001)(31696002)(66946007)(36756003)(8936002)(110136005)(66574015)(5660300002)(8676002)(31686004)(4326008)(966005)(6666004)(53546011)(26005)(498600001)(66556008)(186003)(66476007)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?Windows-1252?Q?tjI80OAsOVTHByhDgpw7IVbt2NuO8Hapc81gaC8raodyc+LWlY27Cvik?=
- =?Windows-1252?Q?o8VfVrmqWJDZ1jJkfsGsOsqY7N4+tqoPXjXofu0KWpU13ty8dWvD5oCz?=
- =?Windows-1252?Q?uW99D6F6TlMmCPRs5YGsPEB+kZ7V2oZp0d2OSGjY2wBYg6ePeOml2AIg?=
- =?Windows-1252?Q?Gk0K08qGcnSaT6uDxpdioZ1XE5qjib1OpZtgWRrxzBaLUPmz0gbp/ObH?=
- =?Windows-1252?Q?A8JS0CKnIBdulA7c8SiXkq03GxBfKJdA1FVDF388kUk7DdpuP8nKMa2o?=
- =?Windows-1252?Q?odrS7pybGMsBc/ZzypsEyur+ZzOWUhAme8s/4azeLGvf1MBkxsqsyCYC?=
- =?Windows-1252?Q?8BABh6/EuNJQj8Ry310EWtdQ9VVT5XboFJthUhDuZA5/IMaNIq7Iok8U?=
- =?Windows-1252?Q?BFxJ6cYndVca6p7qOyzGdkzFM/XqQaTGL3HNnGpYx9UB5M1s5qTvzF4w?=
- =?Windows-1252?Q?mGHfWNch2BerCS1GJu+kN3IgQARD3BWJBMsqPAkHnu1NpqLFjwRjPBnk?=
- =?Windows-1252?Q?GBwTwY2h1n8ukCUdBoJ2rrFvwO3q14uQKcF0YKgiGp/3uhW91tCVxVCf?=
- =?Windows-1252?Q?yhQntotqAjRMdIxS1E3z0bkE3SY3BGyGTG3WDsTEeeSeSZXKmhnRuVLR?=
- =?Windows-1252?Q?wf8nfPnLO8OmqWyKe3jipvozDTdJ3Ozb3KE36RRu9XglfJXmneeoJM4O?=
- =?Windows-1252?Q?GmQ1EhcQ/Xy2FFi9nsE4huKBkd2tksy4IhQIZS7EcAPRv/0QyIGQwiKx?=
- =?Windows-1252?Q?yaBB+5FJQsfCSbi/PpPXPbdvc+wg9YMI2YuSBKl6caHEa532xoVoPPkB?=
- =?Windows-1252?Q?v3PIGCPMfejMdoqSpdOqmI8Vy074E2WXKrYI5dV0T8tGViFjXSf3657o?=
- =?Windows-1252?Q?x5DgT+TY0+04jn4glLIcl7GZEtCNVcc6qkldvqNfsXEeieX/+mqWttR2?=
- =?Windows-1252?Q?2pOeXF32zMpcC7xhsBdH8gCpcNU7ugaohPDZgfVr3eOeohO36CpazIon?=
- =?Windows-1252?Q?rgia2lq/YGIfU2sVd3EUMEWSbpQtb77ffz/G2wfrk888QnvBWGqaYeJV?=
- =?Windows-1252?Q?NM9zYyZUFdkOPkHTpK4jusFewcBLh/pvSf+oCgWctybnQAt8z58iujSZ?=
- =?Windows-1252?Q?70e+Xb591YemlN9iP3YCDUFVRTlomcwoX0a/C6lGyEBuDaTclGrxMv37?=
- =?Windows-1252?Q?wgJzhwMdzLseAX0nt2sYzIJhJMMZthKFrv6WTJnyGCiRHyVPK8kKMex6?=
- =?Windows-1252?Q?vzQ+jpZzIrdu3fOF48CD8Kktoma/HiE/tElaLh3R3/uRgVsSXMtA/D0h?=
- =?Windows-1252?Q?u5qAdLBAY4z6rl1LQ45pbB8B+Ps7Q0xBpddcSZmIWJeldaF7Jo6okJp7?=
- =?Windows-1252?Q?EHkbkZYrvMlFwlBNaFtMt/MrJ3PhLqwZeGctoiiK2ocTlnjChlHzkp61?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 47553343-6346-4fb9-c580-08d90f154f60
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2021 15:57:25.1836
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mvvTpxYj3wqHKo8fYLc5cTy4/icfO2leIZf9kGVCl37Ui8EvRdf6i3685cLptXFb0478OPuuy6mYqmKFW01Zyw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR03MB5141
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+hi Laurent, again thanks a lot for posting this series! I can't fully test
+it, but base my work for imx8mq on it now. imx8mq includes
+yet another mipi phy version than this and below is some very rough testing
+code. it's not at all something I sign-off on but my following problem is based on it.
+
+ * configured to use both staging csi drivers
+ * the csi bridge driver at least streams frames together with the nxp "yav" mipi driver
+
+media-ctl -p now says the output below, so one link from mipi to csi is missing.
+
+Note that
+
+media-ctl --set-v4l2 "'csi':0 [fmt:SBGGR10/640x480]"
+works in that it changes the configured format below, but
+
+media-ctl -l "'imx7-mipi-csis.0':1" -> "'csi':0[1]"
+doesn't create said missing link.
+
+Do I maybe use that wrongly? If now, does anything come to mind that would
+be missing specifically?
+
+When trying to stream anyway (if that makes sense), I get the following:
+
+[ 2008.377470] capture_start_streaming: starting
+[ 2008.381883] capture_find_format: calling imx_media_find_mbus_format with code 0x2006
+[ 2008.389671] imx7-csi 30a90000.csi1_bridge: capture_validate_fmt: capture_find_format err
+[ 2008.397794] imx7-csi 30a90000.csi1_bridge: capture_validate_fmt: capture_find_format found colorspace 0x1 != 0x0
+[ 2008.407999] imx7-csi 30a90000.csi1_bridge: capture format not valid: -32
+
+and if I ignore that (because I'm not yet sure whether that is specific to
+platforms including an IPU), I get a WARN_ON from vb2_start_streaming()
+
+again, it's great to see your updates!
 
 
-On 5/4/21 8:32 AM, Michal Simek wrote:
- >
- >
- > On 5/4/21 10:51 AM, Uwe Kleine-König wrote:
- >> Hello,
- >>
- >> On Mon, May 03, 2021 at 05:44:13PM -0400, Sean Anderson wrote:
- >>> This adds PWM support for Xilinx LogiCORE IP AXI soft timers commonly
- >>> found on Xilinx FPGAs. There is another driver for this device located
- >>> at arch/microblaze/kernel/timer.c, but it is only used for timekeeping.
- >>> This driver was written with reference to Xilinx DS764 for v1.03.a [1].
- >>>
- >>> [1] https://www.xilinx.com/support/documentation/ip_documentation/axi_timer/v1_03_a/axi_timer_ds764.pdf
- >>>
- >>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
- >>> ---
- >>>
- >>>   arch/arm64/configs/defconfig |   1 +
- >>>   drivers/pwm/Kconfig          |  11 ++
- >>>   drivers/pwm/Makefile         |   1 +
- >>>   drivers/pwm/pwm-xilinx.c     | 322 +++++++++++++++++++++++++++++++++++
- >>>   4 files changed, 335 insertions(+)
- >>>   create mode 100644 drivers/pwm/pwm-xilinx.c
- >>>
- >>> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
- >>> index 08c6f769df9a..81794209f287 100644
- >>> --- a/arch/arm64/configs/defconfig
- >>> +++ b/arch/arm64/configs/defconfig
- >>> @@ -1083,6 +1083,7 @@ CONFIG_PWM_SAMSUNG=y
- >>>   CONFIG_PWM_SL28CPLD=m
- >>>   CONFIG_PWM_SUN4I=m
- >>>   CONFIG_PWM_TEGRA=m
- >>> +CONFIG_PWM_XILINX=m
- >>>   CONFIG_SL28CPLD_INTC=y
- >>>   CONFIG_QCOM_PDC=y
- >>>   CONFIG_RESET_IMX7=y
- >>
- >> I think this should go into a separate patch once this driver is
- >> accepted. This can then go via the ARM people.
- >>
- >>> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
- >>> index d3371ac7b871..01e62928f4bf 100644
- >>> --- a/drivers/pwm/Kconfig
- >>> +++ b/drivers/pwm/Kconfig
- >>> @@ -628,4 +628,15 @@ config PWM_VT8500
- >>>   	  To compile this driver as a module, choose M here: the module
- >>>   	  will be called pwm-vt8500.
- >>>
- >>> +config PWM_XILINX
- >>> +	tristate "Xilinx AXI Timer PWM support"
- >>> +	depends on !MICROBLAZE
- >>
- >> I don't understand this dependency.
- >
- > The dependency is clear here because microblaze has already driver for
- > this timer here arch/microblaze/kernel/timer.c.
- >
- > And that's exactly pointing to the way how this should be done.
- > IP itself is single or dual timer and in case of dual timer you can
- > select if there is pwm output and use it for PWM generation.
- >
- > It means it is timer with PMW together.
- > I didn't have a time but Uwe likely knows this better how to design it.
- >
- > I see that gpio-mvebu driver instantiate pwm driver. Maybe that's the
- > way to go.
 
-I think drivers/clocksource/samsung_pwm_timer.c and
-drivers/pwm/pwm-samsung.c provide another example for how to go about
-this.
+Media device information
+------------------------
+driver          imx7-csi
+model           imx-media
+serial          
+bus info        
+hw revision     0x0
+driver version  5.12.1
 
- > Step first is move axi timer driver from microblaze to generic location.
+Device topology
+- entity 1: csi (2 pads, 1 link)
+            type V4L2 subdev subtype Unknown flags 0
+            device node name /dev/v4l-subdev0
+	pad0: Sink
+		[fmt:UYVY8_2X8/640x480 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:lim-range]
+	pad1: Source
+		[fmt:UYVY8_2X8/640x480 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:lim-range]
+		-> "csi capture":0 [ENABLED,IMMUTABLE]
 
-Yes. However, I don't have a microblaze setup, so I have just added the
-PWM driver.
+- entity 4: csi capture (1 pad, 1 link)
+            type Node subtype V4L flags 0
+            device node name /dev/video1
+	pad0: Sink
+		<- "csi":1 [ENABLED,IMMUTABLE]
 
- > Figured it out how to add PWM (with DT flag) and then write support for it.
+- entity 10: imx7-mipi-csis.0 (2 pads, 1 link)
+             type V4L2 subdev subtype Unknown flags 0
+             device node name /dev/v4l-subdev1
+	pad0: Sink
+		[fmt:UYVY8_1X16/640x480 field:none colorspace:smpte170m xfer:709 ycbcr:601 quantization:lim-range]
+		<- "hi846 2-0020":0 []
+	pad1: Source
+		[fmt:UYVY8_1X16/640x480 field:none colorspace:smpte170m xfer:709 ycbcr:601 quantization:lim-range]
 
-I would really like to see a standard way of doing this. Many timers
-also have PWM support (e.g. samsung, and also DW). I think it's unusual
-that this problem has not already been addressed.
+- entity 13: hi846 2-0020 (1 pad, 1 link)
+             type V4L2 subdev subtype Sensor flags 0
+             device node name /dev/v4l-subdev2
+	pad0: Source
+		[fmt:SGBRG10_1X10/640x480@1/120 field:none colorspace:unknown]
+		-> "imx7-mipi-csis.0":0 []
 
---Sean
 
- >
- > Thanks,
- > Michal
- >
+
+
+---
+ drivers/staging/media/imx/imx7-mipi-csis.c | 265 ++++++++++++++++++++-
+ 1 file changed, 252 insertions(+), 13 deletions(-)
+
+diff --git a/drivers/staging/media/imx/imx7-mipi-csis.c b/drivers/staging/media/imx/imx7-mipi-csis.c
+index 0444b784c1ec..18e777d5a696 100644
+--- a/drivers/staging/media/imx/imx7-mipi-csis.c
++++ b/drivers/staging/media/imx/imx7-mipi-csis.c
+@@ -1,8 +1,11 @@
+ // SPDX-License-Identifier: GPL-2.0
+ /*
+- * Freescale i.MX7 SoC series MIPI-CSI V3.3 receiver driver
++ * Freescale i.MX SoC series MIPI-CSI V3.3 and V3.6 receiver driver
+  *
++ * Copyright (C) 2021 Purism SPC
++ * Copyright (C) 2021 Laurent Pinchard
+  * Copyright (C) 2019 Linaro Ltd
++ * Copyright (C) 2017 NXP
+  * Copyright (C) 2015-2016 Freescale Semiconductor, Inc. All Rights Reserved.
+  * Copyright (C) 2011 - 2013 Samsung Electronics Co., Ltd.
+  *
+@@ -21,6 +24,8 @@
+ #include <linux/of_device.h>
+ #include <linux/platform_device.h>
+ #include <linux/pm_runtime.h>
++#include <linux/regmap.h>
++#include <linux/mfd/syscon.h>
+ #include <linux/regulator/consumer.h>
+ #include <linux/reset.h>
+ #include <linux/spinlock.h>
+@@ -237,12 +242,51 @@
+ #define MIPI_CSI2_DATA_TYPE_RAW14		0x2d
+ #define MIPI_CSI2_DATA_TYPE_USER(x)		(0x30 + (x))
+ 
++/* i.MX8MQ CSI-2 controller CSR */
++/* TODO 0x100, to dts? */
++#define CSI2RX_CFG_NUM_LANES			0x100
++#define CSI2RX_CFG_DISABLE_DATA_LANES		0x104
++#define CSI2RX_BIT_ERR				0x108
++#define CSI2RX_IRQ_STATUS			0x10C
++#define CSI2RX_IRQ_MASK				0x110
++#define CSI2RX_ULPS_STATUS			0x114
++#define CSI2RX_PPI_ERRSOT_HS			0x118
++#define CSI2RX_PPI_ERRSOTSYNC_HS		0x11C
++#define CSI2RX_PPI_ERRESC	 		0x120
++#define CSI2RX_PPI_ERRSYNCESC			0x124
++#define CSI2RX_PPI_ERRCONTROL			0x128
++#define CSI2RX_CFG_DISABLE_PAYLOAD_0		0x12C
++#define CSI2RX_CFG_DISABLE_PAYLOAD_1		0x130
++
++#if 0
++/* TODO leftover from yav. not used */
++struct mxc_mipi_csi2_dev {
++	struct v4l2_device		v4l2_dev;
++
++	struct v4l2_ctrl_handler ctrl_handler;
++
++	struct v4l2_async_subdev	asd;
++	struct v4l2_async_subdev	*async_subdevs[2];
++
++
++};
++#endif
++
+ enum {
+ 	ST_POWERED	= 1,
+ 	ST_STREAMING	= 2,
+ 	ST_SUSPENDED	= 4,
+ };
+ 
++#if 0
++imx8mq yav enum names:
++enum mxc_mipi_csi2_pm_state {
++	MXC_MIPI_CSI2_PM_POWERED	= 0x1,
++	MXC_MIPI_CSI2_PM_SUSPENDED	= 0x2,
++	MXC_MIPI_CSI2_RUNTIME_SUSPENDED	= 0x4,
++};
++#endif
++
+ struct mipi_csis_event {
+ 	bool debug;
+ 	u32 mask;
+@@ -297,15 +341,42 @@ static const char * const mipi_csis_clk_id[] = {
+ enum mipi_csis_version {
+ 	MIPI_CSIS_V3_3,
+ 	MIPI_CSIS_V3_6_3,
++	MIPI_CSIS_V3_6_6, /* NXPs' "yet another version" */
+ };
+ 
+ struct mipi_csis_info {
+ 	enum mipi_csis_version version;
+ };
+ 
++/* start imx8mq only */
++struct csis_imx8mq_hw_reset {
++	struct regmap *src;
++	u8 req_src;
++	u8 rst_val;
++};
++
++struct csis_imx8mq_phy_gpr {
++	struct regmap *gpr;
++	u8 req_src;
++};
++
++#define	GPR_CSI2_1_RX_ENABLE		BIT(13)
++#define	GPR_CSI2_1_VID_INTFC_ENB	BIT(12)
++#define	GPR_CSI2_1_HSEL			BIT(10)
++#define	GPR_CSI2_1_CONT_CLK_MODE 	BIT(8)
++#define	GPR_CSI2_1_S_PRG_RXHS_SETTLE(x)	(((x) & 0x3F) << 2)
++/*
++ * rxhs_settle[0] ... <720x480
++ * rxhs_settle[1] ... >720*480
++ *
++ * https://community.nxp.com/t5/i-MX-Processors/Explenation-for-HS-SETTLE-parameter-in-MIPI-CSI-D-PHY-registers/m-p/764275/highlight/true#M118744
++ */
++static u8 rxhs_settle[2] = { 0x14, 0x9 };
++/* end imx8mq only */
++
+ struct csi_state {
+ 	struct device *dev;
+-	void __iomem *regs;
++	void __iomem *regs; /* TODO yav name: base_regs */
+ 	unsigned int num_clks;
+ 	struct clk_bulk_data *clks;
+ 	struct reset_control *mrst;
+@@ -315,23 +386,27 @@ struct csi_state {
+ 
+ 	struct v4l2_subdev sd;
+ 	struct media_pad pads[CSIS_PADS_NUM];
+-	struct v4l2_async_notifier notifier;
+-	struct v4l2_subdev *src_sd;
++	struct v4l2_async_notifier notifier; /* TODO yav name: subdev_notifier */
++	struct v4l2_subdev *src_sd; /* TODO yav name: sensor_sd */
+ 
+-	struct v4l2_fwnode_bus_mipi_csi2 bus;
++	struct v4l2_fwnode_bus_mipi_csi2 bus; /* TODO yav name: int num_lanes */
+ 	u32 clk_frequency;
+ 	u32 hs_settle;
+ 	u32 clk_settle;
+ 
+ 	struct mutex lock;	/* Protect csis_fmt, format_mbus and state */
+ 	const struct csis_pix_format *csis_fmt;
+-	struct v4l2_mbus_framefmt format_mbus;
++	struct v4l2_mbus_framefmt format_mbus; /* TODO imx8mq yav name: format */
+ 	u32 state;
+ 
+ 	spinlock_t slock;	/* Protect events */
+ 	struct mipi_csis_event events[MIPI_CSIS_NUM_EVENTS];
+ 	struct dentry *debugfs_root;
+ 	bool debug;
++
++	struct csis_imx8mq_hw_reset hw_reset;
++	struct csis_imx8mq_phy_gpr phy_gpr;
++	u32 send_level;
+ };
+ 
+ /* -----------------------------------------------------------------------------
+@@ -457,13 +532,21 @@ static inline void mipi_csis_write(struct csi_state *state, u32 reg, u32 val)
+ 
+ static void mipi_csis_enable_interrupts(struct csi_state *state, bool on)
+ {
++	if (state->info->version == MIPI_CSIS_V3_6_6)
++		return;
++
+ 	mipi_csis_write(state, MIPI_CSIS_INT_MSK, on ? 0xffffffff : 0);
+ 	mipi_csis_write(state, MIPI_CSIS_DBG_INTR_MSK, on ? 0xffffffff : 0);
+ }
+ 
+ static void mipi_csis_sw_reset(struct csi_state *state)
+ {
+-	u32 val = mipi_csis_read(state, MIPI_CSIS_CMN_CTRL);
++	u32 val;
++
++	if (state->info->version == MIPI_CSIS_V3_6_6)
++		return;
++
++	val = mipi_csis_read(state, MIPI_CSIS_CMN_CTRL);
+ 
+ 	mipi_csis_write(state, MIPI_CSIS_CMN_CTRL,
+ 			val | MIPI_CSIS_CMN_CTRL_RESET);
+@@ -485,17 +568,116 @@ static int mipi_csis_phy_init(struct csi_state *state)
+ 
+ static void mipi_csis_phy_reset(struct csi_state *state)
+ {
++	struct device *dev = state->dev;
++	struct device_node *np = dev->of_node;
++	struct device_node *node;
++	phandle phandle;
++	u32 out_val[3];
++	int ret;
++
+ 	if (state->info->version == MIPI_CSIS_V3_3) {
+ 		reset_control_assert(state->mrst);
+ 		msleep(20);
+ 		reset_control_deassert(state->mrst);
+ 	}
++
++	if (state->info->version != MIPI_CSIS_V3_6_6)
++		return;
++
++	ret = of_property_read_u32_array(np, "csis-phy-reset", out_val, 3);
++	if (ret) {
++		dev_info(dev, "no csis-hw-reset property found: %d\n", ret);
++		return;
++	}
++
++	phandle = *out_val;
++
++	node = of_find_node_by_phandle(phandle);
++	if (!node) {
++		ret = PTR_ERR(node);
++		dev_dbg(dev, "not find src node by phandle: %d\n", ret);
++	}
++	state->hw_reset.src = syscon_node_to_regmap(node);
++	if (IS_ERR(state->hw_reset.src)) {
++		ret = PTR_ERR(state->hw_reset.src);
++		dev_err(dev, "failed to get src regmap: %d\n", ret);
++	}
++	of_node_put(node);
++	if (ret < 0)
++		return;
++
++	state->hw_reset.req_src = out_val[1];
++	state->hw_reset.rst_val = out_val[2];
++
++	/* reset imx8mq mipi phy */
++	regmap_update_bits(state->hw_reset.src,
++			   state->hw_reset.req_src,
++			   state->hw_reset.rst_val,
++			   state->hw_reset.rst_val);
++	msleep(20);
++}
++
++static int mipi_csis_phy_gpr(struct csi_state *state)
++{
++	struct device *dev = state->dev;
++	struct device_node *np = dev->of_node;
++	struct device_node *node;
++	phandle phandle;
++	u32 out_val[2];
++	int ret;
++
++	ret = of_property_read_u32_array(np, "phy-gpr", out_val, 2);
++	if (ret) {
++		dev_dbg(dev, "no phy-gpr property found\n");
++	} else {
++		phandle = *out_val;
++
++		node = of_find_node_by_phandle(phandle);
++		if (!node) {
++			dev_dbg(dev, "not find gpr node by phandle\n");
++			ret = PTR_ERR(node);
++		}
++		state->phy_gpr.gpr = syscon_node_to_regmap(node);
++		if (IS_ERR(state->phy_gpr.gpr)) {
++			dev_err(dev, "failed to get gpr regmap\n");
++			ret = PTR_ERR(state->phy_gpr.gpr);
++		}
++		of_node_put(node);
++		if (ret < 0)
++			return ret;
++
++		state->phy_gpr.req_src = out_val[1];
++
++		regmap_update_bits(state->phy_gpr.gpr,
++				   state->phy_gpr.req_src,
++				   0x3FFF,
++				   GPR_CSI2_1_RX_ENABLE |
++				   GPR_CSI2_1_VID_INTFC_ENB |
++				   GPR_CSI2_1_HSEL |
++				   GPR_CSI2_1_CONT_CLK_MODE |
++				   GPR_CSI2_1_S_PRG_RXHS_SETTLE(state->
++								hs_settle));
++	}
++
++	dev_dbg(dev, "%s: hs_settle: 0x%X\n", __func__, state->hs_settle);
++
++	return ret;
+ }
+ 
+ static void mipi_csis_system_enable(struct csi_state *state, int on)
+ {
+ 	u32 val, mask;
+ 
++	if (state->info->version == MIPI_CSIS_V3_6_6) {
++		if (on) {
++			mipi_csis_phy_gpr(state);
++		} else {
++			mipi_csis_write(state, CSI2RX_CFG_DISABLE_DATA_LANES, 0xf);
++		}
++
++		return;
++	}
++
+ 	val = mipi_csis_read(state, MIPI_CSIS_CMN_CTRL);
+ 	if (on)
+ 		val |= MIPI_CSIS_CMN_CTRL_ENABLE;
+@@ -534,6 +716,12 @@ static int mipi_csis_calculate_params(struct csi_state *state)
+ 	s64 link_freq;
+ 	u32 lane_rate;
+ 
++	if (state->info->version == MIPI_CSIS_V3_6_6) {
++		state->hs_settle = rxhs_settle[0];
++
++		return 0;
++	}
++
+ 	/* Calculate the line rate from the pixel rate. */
+ 	link_freq = v4l2_get_link_freq(state->src_sd->ctrl_handler,
+ 				       state->csis_fmt->width,
+@@ -570,6 +758,31 @@ static void mipi_csis_set_params(struct csi_state *state)
+ {
+ 	int lanes = state->bus.num_data_lanes;
+ 	u32 val;
++	int i;
++
++	if (state->info->version == MIPI_CSIS_V3_6_6) {
++		/* Lanes */
++		mipi_csis_write(state, CSI2RX_CFG_NUM_LANES, lanes - 1);
++		dev_err(state->dev, "imx8mq: %d lanes\n", lanes);
++
++		for (i = 0; i < lanes; i++)
++			val |= (1 << i);
++
++		val = 0xF & ~val;
++		mipi_csis_write(state, CSI2RX_CFG_DISABLE_DATA_LANES, val);
++		dev_err(state->dev, "imx8mq: CSI2RX_CFG_DISABLE_DATA_LANES: 0x%X\n", val);
++
++		/* Mask interrupt */
++		// Don't let ULPS (ultra-low power status) interrupts flood
++		mipi_csis_write(state, CSI2RX_IRQ_MASK, 0x1ff);
++
++		mipi_csis_write(state, 0x180, 1);
++		/* vid_vc */
++		mipi_csis_write(state, 0x184, 1);
++		mipi_csis_write(state, 0x188, state->send_level);
++
++		return;
++	}
+ 
+ 	val = mipi_csis_read(state, MIPI_CSIS_CMN_CTRL);
+ 	val &= ~MIPI_CSIS_CMN_CTRL_LANE_NR_MASK;
+@@ -799,6 +1012,9 @@ static int mipi_csis_s_stream(struct v4l2_subdev *sd, int enable)
+ 	struct csi_state *state = mipi_sd_to_csis_state(sd);
+ 	int ret;
+ 
++	if (state->info->version == MIPI_CSIS_V3_6_6)
++		mipi_csis_write(state, CSI2RX_IRQ_MASK, 0x008);
++
+ 	if (enable) {
+ 		ret = mipi_csis_calculate_params(state);
+ 		if (ret < 0)
+@@ -814,6 +1030,9 @@ static int mipi_csis_s_stream(struct v4l2_subdev *sd, int enable)
+ 		ret = v4l2_subdev_call(state->src_sd, core, s_power, 1);
+ 		if (ret < 0 && ret != -ENOIOCTLCMD)
+ 			goto done;
++
++		if (state->info->version == MIPI_CSIS_V3_6_6)
++			mipi_csis_phy_reset(state);
+ 	}
+ 
+ 	mutex_lock(&state->lock);
+@@ -1014,6 +1233,19 @@ static int mipi_csis_set_fmt(struct v4l2_subdev *sd,
+ 
+ 	sdformat->format = *fmt;
+ 
++	if (state->info->version == MIPI_CSIS_V3_6_6) {
++		if (sdformat->format.width * sdformat->format.height > 720 * 480) {
++			state->hs_settle = rxhs_settle[1];
++		} else {
++			state->hs_settle = rxhs_settle[0];
++		}
++		state->send_level = 64;
++
++		dev_dbg(state->dev,
++			"%s: set send_level %d hs_settle 0x%X\n", __func__,
++			state->send_level, state->hs_settle);
++	}
++
+ 	/* Propagate the format from sink to source. */
+ 	fmt = mipi_csis_get_format(state, cfg, sdformat->which,
+ 				   CSIS_PAD_SOURCE);
+@@ -1371,12 +1603,14 @@ static int mipi_csis_probe(struct platform_device *pdev)
+ 		return ret;
+ 	}
+ 
+-	/* Now that the hardware is initialized, request the interrupt. */
+-	ret = devm_request_irq(dev, irq, mipi_csis_irq_handler, 0,
+-			       dev_name(dev), state);
+-	if (ret) {
+-		dev_err(dev, "Interrupt request failed\n");
+-		goto disable_clock;
++	if (state->info->version != MIPI_CSIS_V3_6_6) {
++		/* Now that the hardware is initialized, request the interrupt. */
++		ret = devm_request_irq(dev, irq, mipi_csis_irq_handler, 0,
++				       dev_name(dev), state);
++		if (ret) {
++			dev_err(dev, "Interrupt request failed\n");
++			goto disable_clock;
++		}
+ 	}
+ 
+ 	/* Initialize and register the subdev. */
+@@ -1453,6 +1687,11 @@ static const struct of_device_id mipi_csis_of_match[] = {
+ 		.data = &(const struct mipi_csis_info){
+ 			.version = MIPI_CSIS_V3_6_3,
+ 		},
++	}, {
++		.compatible = "fsl,imx8mq-mipi-csi2",
++		.data = &(const struct mipi_csis_info){
++			.version = MIPI_CSIS_V3_6_6,
++		},
+ 	},
+ 	{ /* sentinel */ },
+ };
+-- 
+2.30.2
+
