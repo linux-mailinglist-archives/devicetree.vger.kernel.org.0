@@ -2,166 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BBB437266E
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 09:18:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 637B3372676
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 09:20:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229848AbhEDHTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 03:19:04 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:41151 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229831AbhEDHTC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 03:19:02 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1620112688; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=TsMhsAMBfekY2yWXOVe1AQY3Oqamcr2Lta84s5f3TX8=; b=O4CYnrr1ZKiLClbxBw+0azBr21Wg65K4p4EjrSqLIeJx+1BVZkxNtT08mAO/e2PafrkokqFL
- I2r4g2ZeAOZmJJcT/zm50fcsQLpeue2dsKvKzHd07PQFdmmqLclGpoXFN21llLaVdOubr2oj
- CVef8alkAkaesR9ts7ssi3P3cUw=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 6090f53055b14811b4217fcf (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 04 May 2021 07:18:08
- GMT
-Sender: rnayak=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id F0743C433F1; Tue,  4 May 2021 07:18:07 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [10.50.40.171] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 66BB7C433F1;
-        Tue,  4 May 2021 07:18:01 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 66BB7C433F1
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
-Subject: Re: [PATCH 3/3] i2c: i2c-qcom-geni: Add support for
- 'assigned-performance-states'
-To:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Roja Rani Yarubandi <rojay@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Matthias Kaehlcke <mka@chromium.org>, akashast@codeaurora.org,
-        msavaliy@qti.qualcomm.com, parashar@codeaurora.org,
-        Linux PM <linux-pm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-i2c@vger.kernel.org
-References: <20201224111210.1214-1-rojay@codeaurora.org>
- <20201224111210.1214-4-rojay@codeaurora.org> <YAGqKfDfB7EEuZVn@builder.lan>
- <6bfec3e6-3d26-7ade-d836-032273856ce2@codeaurora.org>
- <CAPDyKFqF0NE3QRAEfiqj5QOXXH2om4CpyyeudeqoovANfvjsaQ@mail.gmail.com>
- <20210429075054.vrotcbldbaivfh2d@vireshk-i7>
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-Message-ID: <3743d729-4287-a389-72e2-2201ee59601d@codeaurora.org>
-Date:   Tue, 4 May 2021 12:47:58 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        id S230007AbhEDHVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 03:21:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48090 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229977AbhEDHVI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 03:21:08 -0400
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62188C061763
+        for <devicetree@vger.kernel.org>; Tue,  4 May 2021 00:20:13 -0700 (PDT)
+Received: by mail-qk1-x72a.google.com with SMTP id v20so7643070qkv.5
+        for <devicetree@vger.kernel.org>; Tue, 04 May 2021 00:20:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=JggnRH2z+C5c6q5fwkNF9u7IZivIlxcnTgChvJQFvSA=;
+        b=csBKU8aJUh6TfQKqWkRRJuwzqfCx/gxbV1DQ6d4id1eoGXBhg76xsbhY2fA34UDX22
+         sZhPa7vaekhSABqSq3q7znGNkTGTxRXlf8Kiac//bM/Z3oVYKoZXXB9zyWWTH7tsAue2
+         1B3yweWVmqGH2oSfzokpJ9flNMRRfs9Ch/TZUvIWlFbtChX6zJmSSKrgWOdoAyamxI4t
+         MWCSaYfX4b6HMUDdhbJ98JhjtDEInNQGjQWG3kd5N5U5xZzC2NZbKSwi8I2ED9rQfmrz
+         7UAGrCn8PAB1iTBuS+TzkQAplICSN9l3apNNyz3X/NdhP+azrqtYr3WMCOS/YtBXCUbQ
+         fB6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=JggnRH2z+C5c6q5fwkNF9u7IZivIlxcnTgChvJQFvSA=;
+        b=LVn4ZU0LGxIQKKTlKIrouEVvxr0LxCrArmu0cx2IuU7ohhveE3+QT3vwp1U6Ir9BVi
+         qhXefkc9ncCslJXyQ8UBu/745BPdY7oeG1WbeI0Fj+9dZNkAJ27TmadTbrXl1KkZJwXJ
+         lbwujaCuPQeQr+74PeTsXDSrwXpyno5/qsWj3CLJr80ts1jm41ZyisMgVuJklU9RmJH2
+         2swDqOKYEpVx9oKrABw1qwUV1V2rrHv6v4LjuYeQz0Eph8ikJl0hhxgG5LUjbFSyvaD5
+         hD67d//ui8vvlt4srT3+3dZi630bKyRh6DICLPeXrPSabnW1EO7qn/U1Pl2rvCLTQX2p
+         Zt3A==
+X-Gm-Message-State: AOAM531eWodFbgSj9+IuKT23nS7EOSJfvhgCeaLYuB7F68ppwPex6akz
+        LSiaL2WJp2JIN7c5AjyPkkjYdjXqWLBKvNUQPE6gom9Ldz4IKw==
+X-Google-Smtp-Source: ABdhPJwSV0cJLUMNNy0lL94PwJnsWKOoPmVIkjaGTOqFfwKqrXom5YgkvcZWXnSt5nztkk0zIFsVQOCkdjO4/mVSk1Q=
+X-Received: by 2002:a05:620a:29c4:: with SMTP id s4mr20672337qkp.401.1620112812489;
+ Tue, 04 May 2021 00:20:12 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210429075054.vrotcbldbaivfh2d@vireshk-i7>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210406092634.50465-1-greentime.hu@sifive.com> <20210503164023.GA919777@bjorn-Precision-5520>
+In-Reply-To: <20210503164023.GA919777@bjorn-Precision-5520>
+From:   Greentime Hu <greentime.hu@sifive.com>
+Date:   Tue, 4 May 2021 15:20:00 +0800
+Message-ID: <CAHCEeh+cMrEnHNG3W3ZNzdgT-m7BMorDawF6D8qkFYGg=RJMOw@mail.gmail.com>
+Subject: Re: [PATCH v5 0/6] Add SiFive FU740 PCIe host controller driver support
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>, hes@sifive.com,
+        Erik Danie <erik.danie@sifive.com>,
+        Zong Li <zong.li@sifive.com>,
+        Bjorn Helgaas <bhelgaas@google.com>, robh+dt@kernel.org,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>, alex.dewar90@gmail.com,
+        khilman@baylibre.com, hayashi.kunihiko@socionext.com,
+        vidyas@nvidia.com, jh80.chung@samsung.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Bjorn Helgaas <helgaas@kernel.org> =E6=96=BC 2021=E5=B9=B45=E6=9C=884=E6=97=
+=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=8812:40=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Tue, Apr 06, 2021 at 05:26:28PM +0800, Greentime Hu wrote:
+> > This patchset includes SiFive FU740 PCIe host controller driver. We als=
+o
+> > add pcie_aux clock and pcie_power_on_reset controller to prci driver fo=
+r
+> > PCIe driver to use it.
+>
+> I dropped this series because of the build problem I mentioned [1].
+> It will not be included in v5.13 unless the build problem is fixed
+> ASAP.
+>
+> [1] https://lore.kernel.org/r/20210428194713.GA314975@bjorn-Precision-552=
+0
+>
 
-[]...
->>>>
->>>> Ulf, Viresh, I think we discussed this at the time of introducing the
->>>> performance states.
->>>>
->>>> The client's state does not affect if its performance_state should
->>>> be included in the calculation of the aggregated performance_state, so
->>>> each driver that needs to keep some minimum performance state needs to
->>>> have these two snippets.
->>>>
->>>> Would it not make sense to on enable/disable re-evaluate the
->>>> performance_state and potentially reconfigure the hardware
->>>> automatically?
->>>
->>> I agree, this will be repeated across multiple drivers which would
->>> need some minimal vote while they are active, handling this during
->>> genpd enable/disable in genpd core makes sense.
->>
->> Initially that's what we tried out, but we realized that it was
->> difficult to deal with this internally in genpd, but more importantly
->> it also removed some flexibility from consumers and providers. See
->> commit 68de2fe57a8f ("PM / Domains: Make genpd performance states
->> orthogonal to the idlestates").
->>
->> As a matter of fact this was quite recently discussed [1], which also
->> pointed out some issues when using the "required-opps" in combination,
->> but perhaps that got resolved? Viresh?
-> 
-> So I looked again at that thread in detail today. The basic idea was
-> to enable/disable the genpd from within the OPP core and there were
-> doubts on how to do that efficiently as there are cases where domains
-> may be enabled for an OPP, but not for others.. etc. etc.
-> 
-> I am not sure if I consider that thread as part of the discussion we
-> are having here, they may be related, but that thread doesn't block
-> anything to be done in the genpd core.
+Hi all,
 
-That's true, the 2 threads are different in the sense that one talks
-about having OPP core managing power on/off along with setting perf state,
-while the other talks about genpd core managing a default perf state
-along with power on/off, but they are similar in the sense that both
-are related to the discussion whether we should treat powering on and off
-a domain related to setting its performance state or if it should be
-considered completely orthogonal.
+This build failed in x86_64 is because CONFIG_GPIOLIB is disabled in
+the testing config.
 
-I think the clock framework treats setting clock rates and turning
-on/off a clock orthogonal because there is an inherent assumption that
-once the clock is turned off, what rate it was set to should not matter,
-and it can be running at the same rate when we turn the clock back on.
+diff --git a/drivers/pci/controller/dwc/Kconfig
+b/drivers/pci/controller/dwc/Kconfig
+index 0a37d21ed64e..56b66e1fed53 100644
+--- a/drivers/pci/controller/dwc/Kconfig
++++ b/drivers/pci/controller/dwc/Kconfig
+@@ -323,6 +323,7 @@ config PCIE_FU740
+        depends on PCI_MSI_IRQ_DOMAIN
+        depends on SOC_SIFIVE || COMPILE_TEST
+        select PCIE_DW_HOST
++       select GPIOLIB
+        help
+          Say Y here if you want PCIe controller support for the SiFive
+          FU740.
 
-I guess we can have the same assumption here that a perf state of a
-power domain should not matter if the power domain is turned off
-and hence the perf state need not be dropped explicitly during power off,
-atleast that should be true for the qcom power domains supporting perf
-state upstream.
+After applying this change, it can build pass.
 
-Should that be the approach taken here? I guess that would mean the patch
-I had proposed earlier [1] to manage this in the genpd core would have to set the default
-perf state at attach and remove it only during a detach of the device to
-the pm_domain, and not manage it during the runtime_suspend/resume of the device.
-
->> A consumer driver
->> can no longer make its vote for its device to stick around, when the
->> device becomes runtime suspended - and how do we know that we never
->> need to support such a case?
-
-The above approach should take care of this but the down side of it would be,
-unlike in the case of clocks where the devices assigning a default clock rate
-might be doing so on a device specific clock (rarely shared with other devices)
-in case of power domain, and especially in the qcom implementation of these
-power domains which support perf state, these can be large domains with lots of devices,
-and any device being active (not necessarily wanting any default perf state) will keep
-the domain at the default perf state, requested by a device which isn't really active.
-
-> What about doing this just for the assigned-performance-state case as
-> the clients don't want to play with it at all.
-
-well, thats possible too, but you obviously can't reuse the same bindings
-in such cases
-
-[1] https://lore.kernel.org/patchwork/patch/1284042/
-
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+> > This is tested with e1000e: Intel(R) PRO/1000 Network Card, AMD Radeon =
+R5
+> > 230 graphics card and SP M.2 PCIe Gen 3 SSD in SiFive Unmatched based o=
+n
+> > v5.11 Linux kernel.
+> >
+> > Changes in v5:
+> >  - Fix typo in comments
+> >  - Keep comments style consistent
+> >  - Refine some error handling codes
+> >  - Remove unneeded header file including
+> >  - Merge fu740_pcie_ltssm_enable implementation to fu740_pcie_start_lin=
+k
+> >
+> > Changes in v4:
+> >  - Fix Wunused-but-set-variable warning in prci driver
+> >
+> > Changes in v3:
+> >  - Remove items that has been defined
+> >  - Refine format of sifive,fu740-pcie.yaml
+> >  - Replace perstn-gpios with the common one
+> >  - Change DBI mapping space to 2GB from 4GB
+> >  - Refine drivers/reset/Kconfig
+> >
+> > Changes in v2:
+> >  - Refine codes based on reviewers' feedback
+> >  - Remove define and use the common one
+> >  - Replace __raw_writel with writel_relaxed
+> >  - Split fu740_phyregreadwrite to write function
+> >  - Use readl_poll_timeout in stead of while loop checking
+> >  - Use dwc common codes
+> >  - Use gpio descriptors and the gpiod_* api.
+> >  - Replace devm_ioremap_resource with devm_platform_ioremap_resource_by=
+name
+> >  - Replace devm_reset_control_get with devm_reset_control_get_exclusive
+> >  - Add more comments for delay and sleep
+> >  - Remove "phy ? x : y" expressions
+> >  - Refine code logic to remove possible infinite loop
+> >  - Replace magic number with meaningful define
+> >  - Remove fu740_pcie_pm_ops
+> >  - Use builtin_platform_driver
+> >
+> > Greentime Hu (5):
+> >   clk: sifive: Add pcie_aux clock in prci driver for PCIe driver
+> >   clk: sifive: Use reset-simple in prci driver for PCIe driver
+> >   MAINTAINERS: Add maintainers for SiFive FU740 PCIe driver
+> >   dt-bindings: PCI: Add SiFive FU740 PCIe host controller
+> >   riscv: dts: Add PCIe support for the SiFive FU740-C000 SoC
+> >
+> > Paul Walmsley (1):
+> >   PCI: fu740: Add SiFive FU740 PCIe host controller driver
+> >
+> >  .../bindings/pci/sifive,fu740-pcie.yaml       | 113 +++++++
+> >  MAINTAINERS                                   |   8 +
+> >  arch/riscv/boot/dts/sifive/fu740-c000.dtsi    |  33 ++
+> >  drivers/clk/sifive/Kconfig                    |   2 +
+> >  drivers/clk/sifive/fu740-prci.c               |  11 +
+> >  drivers/clk/sifive/fu740-prci.h               |   2 +-
+> >  drivers/clk/sifive/sifive-prci.c              |  54 +++
+> >  drivers/clk/sifive/sifive-prci.h              |  13 +
+> >  drivers/pci/controller/dwc/Kconfig            |   9 +
+> >  drivers/pci/controller/dwc/Makefile           |   1 +
+> >  drivers/pci/controller/dwc/pcie-fu740.c       | 308 ++++++++++++++++++
+> >  drivers/reset/Kconfig                         |   1 +
+> >  include/dt-bindings/clock/sifive-fu740-prci.h |   1 +
+> >  13 files changed, 555 insertions(+), 1 deletion(-)
+> >  create mode 100644 Documentation/devicetree/bindings/pci/sifive,fu740-=
+pcie.yaml
+> >  create mode 100644 drivers/pci/controller/dwc/pcie-fu740.c
+> >
+> > --
+> > 2.30.2
+> >
