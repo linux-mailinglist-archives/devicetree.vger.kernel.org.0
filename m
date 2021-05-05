@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 800BD3737AE
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 11:38:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEC493737AF
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 11:39:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232109AbhEEJjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 05:39:53 -0400
-Received: from foss.arm.com ([217.140.110.172]:41208 "EHLO foss.arm.com"
+        id S232388AbhEEJj4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 05:39:56 -0400
+Received: from foss.arm.com ([217.140.110.172]:41224 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232073AbhEEJjx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 May 2021 05:39:53 -0400
+        id S232073AbhEEJjz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 May 2021 05:39:55 -0400
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5BD9E1063;
-        Wed,  5 May 2021 02:38:57 -0700 (PDT)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E264311FB;
+        Wed,  5 May 2021 02:38:58 -0700 (PDT)
 Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id AF1E23F70D;
-        Wed,  5 May 2021 02:38:55 -0700 (PDT)
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 8E9223F70D;
+        Wed,  5 May 2021 02:38:57 -0700 (PDT)
 From:   Sudeep Holla <sudeep.holla@arm.com>
 To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 Cc:     Sudeep Holla <sudeep.holla@arm.com>, arve@google.com,
@@ -25,196 +25,428 @@ Cc:     Sudeep Holla <sudeep.holla@arm.com>, arve@google.com,
         Achin Gupta <Achin.Gupta@arm.com>,
         Jens Wiklander <jens.wiklander@linaro.org>,
         Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
-        Marc Bonnici <marc.bonnici@arm.com>,
-        Michael Kelley <mikelley@microsoft.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Subject: [PATCH v6 1/6] arm64: smccc: Add support for SMCCCv1.2 extended input/output registers
-Date:   Wed,  5 May 2021 10:38:38 +0100
-Message-Id: <20210505093843.3308691-2-sudeep.holla@arm.com>
+        Marc Bonnici <marc.bonnici@arm.com>
+Subject: [PATCH v6 2/6] firmware: arm_ffa: Add initial FFA bus support for device enumeration
+Date:   Wed,  5 May 2021 10:38:39 +0100
+Message-Id: <20210505093843.3308691-3-sudeep.holla@arm.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210505093843.3308691-1-sudeep.holla@arm.com>
 References: <20210505093843.3308691-1-sudeep.holla@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SMCCC v1.2 allows x8-x17 to be used as parameter registers and x4—x17
-to be used as result registers in SMC64/HVC64. Arm Firmware Framework
-for Armv8-A specification makes use of x0-x7 as parameter and result
-registers. There are other users like Hyper-V who intend to use beyond
-x0-x7 as well.
+The Arm FF for Armv8-A specification has concept of endpoints or
+partitions. In the Normal world, a partition could be a VM when
+the Virtualization extension is enabled or the kernel itself.
 
-Current SMCCC interface in the kernel just use x0-x7 as parameter and
-x0-x3 as result registers as required by SMCCCv1.0. Let us add new
-interface to support this extended set of input/output registers namely
-x0-x17 as both parameter and result registers.
+In order to handle multiple partitions, we can create a FFA device for
+each such partition on a dedicated FFA bus. Similarly, different drivers
+requiring FFA transport can be registered on the same bus. We can match
+the device and drivers using UUID. This is mostly for the in-kernel
+users with FFA drivers.
 
-Cc: Michael Kelley <mikelley@microsoft.com>
-Cc: Will Deacon <will@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc:Catalin Marinas <catalin.marinas@arm.com>
 Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
 ---
- arch/arm64/kernel/asm-offsets.c |  9 ++++++
- arch/arm64/kernel/smccc-call.S  | 57 +++++++++++++++++++++++++++++++++
- include/linux/arm-smccc.h       | 55 +++++++++++++++++++++++++++++++
- 3 files changed, 121 insertions(+)
+ MAINTAINERS                       |   7 +
+ drivers/firmware/Kconfig          |   1 +
+ drivers/firmware/Makefile         |   1 +
+ drivers/firmware/arm_ffa/Kconfig  |  16 +++
+ drivers/firmware/arm_ffa/Makefile |   4 +
+ drivers/firmware/arm_ffa/bus.c    | 207 ++++++++++++++++++++++++++++++
+ include/linux/arm_ffa.h           |  91 +++++++++++++
+ 7 files changed, 327 insertions(+)
+ create mode 100644 drivers/firmware/arm_ffa/Kconfig
+ create mode 100644 drivers/firmware/arm_ffa/Makefile
+ create mode 100644 drivers/firmware/arm_ffa/bus.c
+ create mode 100644 include/linux/arm_ffa.h
 
-diff --git a/arch/arm64/kernel/asm-offsets.c b/arch/arm64/kernel/asm-offsets.c
-index 0cb34ccb6e73..74321bc9a459 100644
---- a/arch/arm64/kernel/asm-offsets.c
-+++ b/arch/arm64/kernel/asm-offsets.c
-@@ -138,6 +138,15 @@ int main(void)
-   DEFINE(ARM_SMCCC_RES_X2_OFFS,		offsetof(struct arm_smccc_res, a2));
-   DEFINE(ARM_SMCCC_QUIRK_ID_OFFS,	offsetof(struct arm_smccc_quirk, id));
-   DEFINE(ARM_SMCCC_QUIRK_STATE_OFFS,	offsetof(struct arm_smccc_quirk, state));
-+  DEFINE(ARM_SMCCC_1_2_REGS_X0_OFFS,	offsetof(struct arm_smccc_1_2_regs, a0));
-+  DEFINE(ARM_SMCCC_1_2_REGS_X2_OFFS,	offsetof(struct arm_smccc_1_2_regs, a2));
-+  DEFINE(ARM_SMCCC_1_2_REGS_X4_OFFS,	offsetof(struct arm_smccc_1_2_regs, a4));
-+  DEFINE(ARM_SMCCC_1_2_REGS_X6_OFFS,	offsetof(struct arm_smccc_1_2_regs, a6));
-+  DEFINE(ARM_SMCCC_1_2_REGS_X8_OFFS,	offsetof(struct arm_smccc_1_2_regs, a8));
-+  DEFINE(ARM_SMCCC_1_2_REGS_X10_OFFS,	offsetof(struct arm_smccc_1_2_regs, a10));
-+  DEFINE(ARM_SMCCC_1_2_REGS_X12_OFFS,	offsetof(struct arm_smccc_1_2_regs, a12));
-+  DEFINE(ARM_SMCCC_1_2_REGS_X14_OFFS,	offsetof(struct arm_smccc_1_2_regs, a14));
-+  DEFINE(ARM_SMCCC_1_2_REGS_X16_OFFS,	offsetof(struct arm_smccc_1_2_regs, a16));
-   BLANK();
-   DEFINE(HIBERN_PBE_ORIG,	offsetof(struct pbe, orig_address));
-   DEFINE(HIBERN_PBE_ADDR,	offsetof(struct pbe, address));
-diff --git a/arch/arm64/kernel/smccc-call.S b/arch/arm64/kernel/smccc-call.S
-index d62447964ed9..7d79c5062c5d 100644
---- a/arch/arm64/kernel/smccc-call.S
-+++ b/arch/arm64/kernel/smccc-call.S
-@@ -43,3 +43,60 @@ SYM_FUNC_START(__arm_smccc_hvc)
- 	SMCCC	hvc
- SYM_FUNC_END(__arm_smccc_hvc)
- EXPORT_SYMBOL(__arm_smccc_hvc)
-+
-+	.macro SMCCC_1_2 instr
-+	/* Save `res` and free a GPR that won't be clobbered */
-+	stp     x1, x19, [sp, #-16]!
-+
-+	/* Ensure `args` won't be clobbered while loading regs in next step */
-+	mov	x19, x0
-+
-+	/* Load the registers x0 - x17 from the struct arm_smccc_1_2_regs */
-+	ldp	x0, x1, [x19, #ARM_SMCCC_1_2_REGS_X0_OFFS]
-+	ldp	x2, x3, [x19, #ARM_SMCCC_1_2_REGS_X2_OFFS]
-+	ldp	x4, x5, [x19, #ARM_SMCCC_1_2_REGS_X4_OFFS]
-+	ldp	x6, x7, [x19, #ARM_SMCCC_1_2_REGS_X6_OFFS]
-+	ldp	x8, x9, [x19, #ARM_SMCCC_1_2_REGS_X8_OFFS]
-+	ldp	x10, x11, [x19, #ARM_SMCCC_1_2_REGS_X10_OFFS]
-+	ldp	x12, x13, [x19, #ARM_SMCCC_1_2_REGS_X12_OFFS]
-+	ldp	x14, x15, [x19, #ARM_SMCCC_1_2_REGS_X14_OFFS]
-+	ldp	x16, x17, [x19, #ARM_SMCCC_1_2_REGS_X16_OFFS]
-+
-+	\instr #0
-+
-+	/* Load the `res` from the stack */
-+	ldr	x19, [sp]
-+
-+	/* Store the registers x0 - x17 into the result structure */
-+	stp	x0, x1, [x19, #ARM_SMCCC_1_2_REGS_X0_OFFS]
-+	stp	x2, x3, [x19, #ARM_SMCCC_1_2_REGS_X2_OFFS]
-+	stp	x4, x5, [x19, #ARM_SMCCC_1_2_REGS_X4_OFFS]
-+	stp	x6, x7, [x19, #ARM_SMCCC_1_2_REGS_X6_OFFS]
-+	stp	x8, x9, [x19, #ARM_SMCCC_1_2_REGS_X8_OFFS]
-+	stp	x10, x11, [x19, #ARM_SMCCC_1_2_REGS_X10_OFFS]
-+	stp	x12, x13, [x19, #ARM_SMCCC_1_2_REGS_X12_OFFS]
-+	stp	x14, x15, [x19, #ARM_SMCCC_1_2_REGS_X14_OFFS]
-+	stp	x16, x17, [x19, #ARM_SMCCC_1_2_REGS_X16_OFFS]
-+
-+	/* Restore original x19 */
-+	ldp     xzr, x19, [sp], #16
-+	ret
-+.endm
-+
-+/*
-+ * void arm_smccc_1_2_hvc(struct arm_smccc_1_2_regs *args,
-+ *			  struct arm_smccc_1_2_regs *res);
-+ */
-+SYM_FUNC_START(arm_smccc_1_2_hvc)
-+	SMCCC_1_2 hvc
-+SYM_FUNC_END(arm_smccc_1_2_hvc)
-+EXPORT_SYMBOL(arm_smccc_1_2_hvc)
-+
-+/*
-+ * void arm_smccc_1_2_smc(struct arm_smccc_1_2_regs *args,
-+ *			  struct arm_smccc_1_2_regs *res);
-+ */
-+SYM_FUNC_START(arm_smccc_1_2_smc)
-+	SMCCC_1_2 smc
-+SYM_FUNC_END(arm_smccc_1_2_smc)
-+EXPORT_SYMBOL(arm_smccc_1_2_smc)
-diff --git a/include/linux/arm-smccc.h b/include/linux/arm-smccc.h
-index 6861489a1890..a9e0a6d68754 100644
---- a/include/linux/arm-smccc.h
-+++ b/include/linux/arm-smccc.h
-@@ -227,6 +227,61 @@ struct arm_smccc_res {
- 	unsigned long a3;
- };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 121b1a12384a..88a988e08d11 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -7052,6 +7052,13 @@ F:	include/linux/firewire.h
+ F:	include/uapi/linux/firewire*.h
+ F:	tools/firewire/
  
-+#ifdef CONFIG_ARM64
-+/**
-+ * struct arm_smccc_1_2_regs - Arguments for or Results from SMC/HVC call
-+ * @a0-a17 argument values from registers 0 to 17
++FIRMWARE FRAMEWORK FOR ARMV8-A
++M:	Sudeep Holla <sudeep.holla@arm.com>
++L:	linux-arm-kernel@lists.infradead.org
++S:	Maintained
++F:	drivers/firmware/arm_ffa/
++F:	include/linux/arm_ffa.h
++
+ FIRMWARE LOADER (request_firmware)
+ M:	Luis Chamberlain <mcgrof@kernel.org>
+ L:	linux-kernel@vger.kernel.org
+diff --git a/drivers/firmware/Kconfig b/drivers/firmware/Kconfig
+index db0ea2d2d75a..b53ac9fc7704 100644
+--- a/drivers/firmware/Kconfig
++++ b/drivers/firmware/Kconfig
+@@ -296,6 +296,7 @@ config TURRIS_MOX_RWTM
+ 	  other manufacturing data and also utilize the Entropy Bit Generator
+ 	  for hardware random number generation.
+ 
++source "drivers/firmware/arm_ffa/Kconfig"
+ source "drivers/firmware/broadcom/Kconfig"
+ source "drivers/firmware/google/Kconfig"
+ source "drivers/firmware/efi/Kconfig"
+diff --git a/drivers/firmware/Makefile b/drivers/firmware/Makefile
+index 5e013b6a3692..546ac8e7f6d0 100644
+--- a/drivers/firmware/Makefile
++++ b/drivers/firmware/Makefile
+@@ -22,6 +22,7 @@ obj-$(CONFIG_TI_SCI_PROTOCOL)	+= ti_sci.o
+ obj-$(CONFIG_TRUSTED_FOUNDATIONS) += trusted_foundations.o
+ obj-$(CONFIG_TURRIS_MOX_RWTM)	+= turris-mox-rwtm.o
+ 
++obj-y				+= arm_ffa/
+ obj-y				+= arm_scmi/
+ obj-y				+= broadcom/
+ obj-y				+= meson/
+diff --git a/drivers/firmware/arm_ffa/Kconfig b/drivers/firmware/arm_ffa/Kconfig
+new file mode 100644
+index 000000000000..261a3660650a
+--- /dev/null
++++ b/drivers/firmware/arm_ffa/Kconfig
+@@ -0,0 +1,16 @@
++# SPDX-License-Identifier: GPL-2.0-only
++config ARM_FFA_TRANSPORT
++	tristate "Arm Firmware Framework for Armv8-A"
++	depends on OF
++	depends on ARM64
++	default n
++	help
++	  This Firmware Framework(FF) for Arm A-profile processors describes
++	  interfaces that standardize communication between the various
++	  software images which includes communication between images in
++	  the Secure world and Normal world. It also leverages the
++	  virtualization extension to isolate software images provided
++	  by an ecosystem of vendors from each other.
++
++	  This driver provides interface for all the client drivers making
++	  use of the features offered by ARM FF-A.
+diff --git a/drivers/firmware/arm_ffa/Makefile b/drivers/firmware/arm_ffa/Makefile
+new file mode 100644
+index 000000000000..bfe4323a8784
+--- /dev/null
++++ b/drivers/firmware/arm_ffa/Makefile
+@@ -0,0 +1,4 @@
++# SPDX-License-Identifier: GPL-2.0-only
++ffa-bus-y = bus.o
++ffa-module-objs := $(ffa-bus-y)
++obj-$(CONFIG_ARM_FFA_TRANSPORT) = ffa-module.o
+diff --git a/drivers/firmware/arm_ffa/bus.c b/drivers/firmware/arm_ffa/bus.c
+new file mode 100644
+index 000000000000..b743fb2256e9
+--- /dev/null
++++ b/drivers/firmware/arm_ffa/bus.c
+@@ -0,0 +1,207 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) 2020 ARM Ltd.
 + */
-+struct arm_smccc_1_2_regs {
-+	unsigned long a0;
-+	unsigned long a1;
-+	unsigned long a2;
-+	unsigned long a3;
-+	unsigned long a4;
-+	unsigned long a5;
-+	unsigned long a6;
-+	unsigned long a7;
-+	unsigned long a8;
-+	unsigned long a9;
-+	unsigned long a10;
-+	unsigned long a11;
-+	unsigned long a12;
-+	unsigned long a13;
-+	unsigned long a14;
-+	unsigned long a15;
-+	unsigned long a16;
-+	unsigned long a17;
++
++#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
++
++#include <linux/arm_ffa.h>
++#include <linux/device.h>
++#include <linux/fs.h>
++#include <linux/kernel.h>
++#include <linux/module.h>
++#include <linux/slab.h>
++#include <linux/types.h>
++
++static int ffa_device_match(struct device *dev, struct device_driver *drv)
++{
++	const struct ffa_device_id *id_table;
++	struct ffa_device *ffa_dev;
++
++	id_table = to_ffa_driver(drv)->id_table;
++	ffa_dev = to_ffa_dev(dev);
++
++	while (!uuid_is_null(&id_table->uuid)) {
++		if (uuid_equal(&ffa_dev->uuid, &id_table->uuid))
++			return 1;
++		id_table++;
++	}
++
++	return 0;
++}
++
++static int ffa_device_probe(struct device *dev)
++{
++	struct ffa_driver *ffa_drv = to_ffa_driver(dev->driver);
++	struct ffa_device *ffa_dev = to_ffa_dev(dev);
++
++	if (!ffa_device_match(dev, dev->driver))
++		return -ENODEV;
++
++	return ffa_drv->probe(ffa_dev);
++}
++
++static int ffa_device_uevent(struct device *dev, struct kobj_uevent_env *env)
++{
++	struct ffa_device *ffa_dev = to_ffa_dev(dev);
++
++	return add_uevent_var(env, "MODALIAS=arm_ffa:%04x:%pUb",
++			      ffa_dev->vm_id, &ffa_dev->uuid);
++}
++
++static ssize_t partition_id_show(struct device *dev,
++				 struct device_attribute *attr, char *buf)
++{
++	struct ffa_device *ffa_dev = to_ffa_dev(dev);
++
++	return sprintf(buf, "0x%04x\n", ffa_dev->vm_id);
++}
++static DEVICE_ATTR_RO(partition_id);
++
++static ssize_t uuid_show(struct device *dev, struct device_attribute *attr,
++			 char *buf)
++{
++	struct ffa_device *ffa_dev = to_ffa_dev(dev);
++
++	return sprintf(buf, "%pUb\n", &ffa_dev->uuid);
++}
++static DEVICE_ATTR_RO(uuid);
++
++static struct attribute *ffa_device_attributes_attrs[] = {
++	&dev_attr_partition_id.attr,
++	&dev_attr_uuid.attr,
++	NULL,
++};
++ATTRIBUTE_GROUPS(ffa_device_attributes);
++
++struct bus_type ffa_bus_type = {
++	.name		= "arm_ffa",
++	.match		= ffa_device_match,
++	.probe		= ffa_device_probe,
++	.uevent		= ffa_device_uevent,
++	.dev_groups	= ffa_device_attributes_groups,
++};
++EXPORT_SYMBOL_GPL(ffa_bus_type);
++
++int ffa_driver_register(struct ffa_driver *driver, struct module *owner,
++			const char *mod_name)
++{
++	int ret;
++
++	driver->driver.bus = &ffa_bus_type;
++	driver->driver.name = driver->name;
++	driver->driver.owner = owner;
++	driver->driver.mod_name = mod_name;
++
++	ret = driver_register(&driver->driver);
++	if (!ret)
++		pr_debug("registered new ffa driver %s\n", driver->name);
++
++	return ret;
++}
++EXPORT_SYMBOL_GPL(ffa_driver_register);
++
++void ffa_driver_unregister(struct ffa_driver *driver)
++{
++	driver_unregister(&driver->driver);
++}
++EXPORT_SYMBOL_GPL(ffa_driver_unregister);
++
++static void ffa_release_device(struct device *dev)
++{
++	struct ffa_device *ffa_dev = to_ffa_dev(dev);
++
++	kfree(ffa_dev);
++}
++
++static int __ffa_devices_unregister(struct device *dev, void *data)
++{
++	ffa_release_device(dev);
++
++	return 0;
++}
++
++static void ffa_devices_unregister(void)
++{
++	bus_for_each_dev(&ffa_bus_type, NULL, NULL,
++			 __ffa_devices_unregister);
++}
++
++bool ffa_device_is_valid(struct ffa_device *ffa_dev)
++{
++	bool valid = false;
++	struct device *dev = NULL;
++	struct ffa_device *tmp_dev;
++
++	do {
++		dev = bus_find_next_device(&ffa_bus_type, dev);
++		tmp_dev = to_ffa_dev(dev);
++		if (tmp_dev == ffa_dev) {
++			valid = true;
++			break;
++		}
++		put_device(dev);
++	} while (dev);
++
++	put_device(dev);
++
++	return valid;
++}
++
++struct ffa_device *ffa_device_register(const uuid_t *uuid, int vm_id)
++{
++	int ret;
++	struct device *dev;
++	struct ffa_device *ffa_dev;
++
++	ffa_dev = kzalloc(sizeof(*ffa_dev), GFP_KERNEL);
++	if (!ffa_dev)
++		return NULL;
++
++	dev = &ffa_dev->dev;
++	dev->bus = &ffa_bus_type;
++	dev->release = ffa_release_device;
++	dev_set_name(&ffa_dev->dev, "arm-ffa-%04x", vm_id);
++
++	ffa_dev->vm_id = vm_id;
++	uuid_copy(&ffa_dev->uuid, uuid);
++
++	ret = device_register(&ffa_dev->dev);
++	if (ret) {
++		dev_err(dev, "unable to register device %s err=%d\n",
++			dev_name(dev), ret);
++		put_device(dev);
++		return NULL;
++	}
++
++	return ffa_dev;
++}
++EXPORT_SYMBOL_GPL(ffa_device_register);
++
++void ffa_device_unregister(struct ffa_device *ffa_dev)
++{
++	if (!ffa_dev)
++		return;
++
++	device_unregister(&ffa_dev->dev);
++}
++EXPORT_SYMBOL_GPL(ffa_device_unregister);
++
++static int __init arm_ffa_bus_init(void)
++{
++	return bus_register(&ffa_bus_type);
++}
++module_init(arm_ffa_bus_init);
++
++static void __exit arm_ffa_bus_exit(void)
++{
++	ffa_devices_unregister();
++	bus_unregister(&ffa_bus_type);
++}
++
++module_exit(arm_ffa_bus_exit);
++
++MODULE_ALIAS("arm-ffa-bus");
++MODULE_AUTHOR("Sudeep Holla <sudeep.holla@arm.com>");
++MODULE_DESCRIPTION("Arm FF-A bus driver");
++MODULE_LICENSE("GPL v2");
+diff --git a/include/linux/arm_ffa.h b/include/linux/arm_ffa.h
+new file mode 100644
+index 000000000000..aaff89364541
+--- /dev/null
++++ b/include/linux/arm_ffa.h
+@@ -0,0 +1,91 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright (C) 2020 ARM Ltd.
++ */
++
++#ifndef _LINUX_ARM_FFA_H
++#define _LINUX_ARM_FFA_H
++
++#include <linux/cdev.h>
++#include <linux/device.h>
++#include <linux/module.h>
++#include <linux/types.h>
++#include <linux/uuid.h>
++
++/* FFA Bus/Device/Driver related */
++struct ffa_device {
++	int vm_id;
++	uuid_t uuid;
++	struct device dev;
 +};
 +
-+/**
-+ * arm_smccc_1_2_hvc() - make HVC calls
-+ * @args: arguments passed via struct arm_smccc_1_2_regs
-+ * @res: result values via struct arm_smccc_1_2_regs
-+ *
-+ * This function is used to make HVC calls following SMC Calling Convention
-+ * v1.2 or above. The content of the supplied param are copied from the
-+ * structure to registers prior to the HVC instruction. The return values
-+ * are updated with the content from registers on return from the HVC
-+ * instruction.
-+ */
-+asmlinkage void arm_smccc_1_2_hvc(struct arm_smccc_1_2_regs *args,
-+				  struct arm_smccc_1_2_regs *res);
++#define to_ffa_dev(d) container_of(d, struct ffa_device, dev)
++
++struct ffa_device_id {
++	uuid_t uuid;
++};
++
++struct ffa_driver {
++	const char *name;
++	int (*probe)(struct ffa_device *sdev);
++	void (*remove)(struct ffa_device *sdev);
++	const struct ffa_device_id *id_table;
++
++	struct device_driver driver;
++};
++
++#define to_ffa_driver(d) container_of(d, struct ffa_driver, driver)
++
++static inline void ffa_dev_set_drvdata(struct ffa_device *fdev, void *data)
++{
++	fdev->dev.driver_data = data;
++}
++
++#if IS_REACHABLE(CONFIG_ARM_FFA_TRANSPORT)
++struct ffa_device *ffa_device_register(const uuid_t *uuid, int vm_id);
++void ffa_device_unregister(struct ffa_device *ffa_dev);
++int ffa_driver_register(struct ffa_driver *driver, struct module *owner,
++			const char *mod_name);
++void ffa_driver_unregister(struct ffa_driver *driver);
++bool ffa_device_is_valid(struct ffa_device *ffa_dev);
++
++#else
++static inline
++struct ffa_device *ffa_device_register(const uuid_t *uuid, int vm_id)
++{
++	return NULL;
++}
++
++static inline void ffa_device_unregister(struct ffa_device *dev) {}
++
++static inline int
++ffa_driver_register(struct ffa_driver *driver, struct module *owner,
++		    const char *mod_name)
++{
++	return -EINVAL;
++}
++
++static inline void ffa_driver_unregister(struct ffa_driver *driver) {}
++
++static inline
++bool ffa_device_is_valid(struct ffa_device *ffa_dev) { return false; }
++
++#endif /* CONFIG_ARM_FFA_TRANSPORT */
++
++#define ffa_register(driver) \
++	ffa_driver_register(driver, THIS_MODULE, KBUILD_MODNAME)
++#define ffa_unregister(driver) \
++	ffa_driver_unregister(driver)
 +
 +/**
-+ * arm_smccc_1_2_smc() - make SMC calls
-+ * @args: arguments passed via struct arm_smccc_1_2_regs
-+ * @res: result values via struct arm_smccc_1_2_regs
++ * module_ffa_driver() - Helper macro for registering a psa_ffa driver
++ * @__ffa_driver: ffa_driver structure
 + *
-+ * This function is used to make SMC calls following SMC Calling Convention
-+ * v1.2 or above. The content of the supplied param are copied from the
-+ * structure to registers prior to the SMC instruction. The return values
-+ * are updated with the content from registers on return from the SMC
-+ * instruction.
++ * Helper macro for psa_ffa drivers to set up proper module init / exit
++ * functions.  Replaces module_init() and module_exit() and keeps people from
++ * printing pointless things to the kernel log when their driver is loaded.
 + */
-+asmlinkage void arm_smccc_1_2_smc(struct arm_smccc_1_2_regs *args,
-+				  struct arm_smccc_1_2_regs *res);
-+#endif
++#define module_ffa_driver(__ffa_driver)	\
++	module_driver(__ffa_driver, ffa_register, ffa_unregister)
 +
- /**
-  * struct arm_smccc_quirk - Contains quirk information
-  * @id: quirk identification
++#endif /* _LINUX_ARM_FFA_H */
 -- 
 2.25.1
 
