@@ -2,133 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D3C2373DC2
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 16:37:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B6DF373DD7
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 16:42:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233149AbhEEOiF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 10:38:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54696 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229707AbhEEOiC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 May 2021 10:38:02 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7075961157;
-        Wed,  5 May 2021 14:37:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620225425;
-        bh=Ehq7zR5EL010xOPMeZxXULfS9dLTcxOv/Y8XH3TPNrg=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=AzPXRTqmdq8Gz1ySQkPfIP+VwZ8kSkK6//JYOAbDkcwfoDIkqxchIywlAiyKINUW/
-         swIh3U5xJndPjHMTVXtNVGmEbpZURJADcYop7RZYbbCzqs8UUzopXq0gggYYsoyUEf
-         LwHXJDv/SjP21Y7DWJAHJvySXeRqlMJDIL8jnoWwhC87n5FdymnbKGtLLZUhtlJx2V
-         vTvyFjkVO4dZGm2fI9HuFRr0eaFdSLvEvH4LA0o+RHPFCCFg2HjNHLqzuU6/d2Co+h
-         vbAOkNH4d/Daab1BGohc7xqjj9AdhcCUblGAB/UuScxBK9Q9/asI7LG1ZBTPQlyUu+
-         5jqeISgj6Of1g==
-Date:   Wed, 5 May 2021 09:37:04 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Greentime Hu <greentime.hu@sifive.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>, hes@sifive.com,
-        Erik Danie <erik.danie@sifive.com>,
-        Zong Li <zong.li@sifive.com>,
-        Bjorn Helgaas <bhelgaas@google.com>, robh+dt@kernel.org,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>, alex.dewar90@gmail.com,
-        khilman@baylibre.com, hayashi.kunihiko@socionext.com,
-        vidyas@nvidia.com, jh80.chung@samsung.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH v6 5/6] PCI: fu740: Add SiFive FU740 PCIe host controller
- driver
-Message-ID: <20210505143704.GA1298791@bjorn-Precision-5520>
+        id S233236AbhEEOnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 10:43:46 -0400
+Received: from lb1-smtp-cloud9.xs4all.net ([194.109.24.22]:47723 "EHLO
+        lb1-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233112AbhEEOnq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 10:43:46 -0400
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud9.xs4all.net with ESMTPA
+        id eIjalNZWvWztCeIjdlLk0I; Wed, 05 May 2021 16:42:48 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
+        t=1620225768; bh=Av024PgQCGoQzBKEgJiqT3Qmm3Jj8dv5DOFxbUBHbUU=;
+        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=TtTvHAwCOBdXfYzb/VCYG+SZ9TdOVUHaGThOIQud5Ho8RqTZE+5fJ0bdFt8gscW4K
+         JNQQRomYfZ1OdUGi5PNaE7BaOZKbLoWgRnaeCeNRdnXoMyzi6nmpq4k8h/C0sqBGat
+         cAZm+wgn0BrfNPZPoa6y4/DFHq5lC98GcNDMB+OGIn7zXN0Rd5lw1GrLKnBIqpUmwM
+         KWHVj8mgzqiXpAk25pcxnfhKayHwNZfelkOU6Uzom/WbLQ14WXtKud6k7wT/0u8dT7
+         qtiQs9js9bcU5CMHIGUcC20W0Op3OwhpLjOajV05Gcq9zpWfXBMTP3F1lyJm3gHb1F
+         0qxVsGRlOxS9g==
+Subject: Re: [PATCH v10 0/9] Add HANTRO G2/HEVC decoder support for IMX8MQ
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        festevam@gmail.com, lee.jones@linaro.org,
+        gregkh@linuxfoundation.org, mripard@kernel.org,
+        paul.kocialkowski@bootlin.com, wens@csie.org,
+        jernej.skrabec@siol.net, emil.l.velikov@gmail.com
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
+        kernel@collabora.com, cphealy@gmail.com
+References: <20210420121046.181889-1-benjamin.gaignard@collabora.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Message-ID: <57dd758d-07b6-abbe-ab0d-2cc165b650db@xs4all.nl>
+Date:   Wed, 5 May 2021 16:42:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.9.0
 MIME-Version: 1.0
+In-Reply-To: <20210420121046.181889-1-benjamin.gaignard@collabora.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHCEehL21cFLp+JWMhKP8rAVtGunMv2fmfo6C6tbTGpgL9q2RA@mail.gmail.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4xfB4xz84t/9tJk8Tsh/SHVh+F0gHNN/2hzLMgvPRnsZgWg9cigkHp23SpfIv5EOdIN/yMbL89V4s59xpPZ/wWPxrM9vGxHd5aIHSQxy4PKciu/3fogBgX
+ fuBsPFvSEK8/rkzvxVee/IXpvPHVM8hs91BJmLIVR2slEN30lh+At2QjCWeQ2PvVrGL8wuQpW93357c1iq+erPLg+1If30hxDafSuqR1VE4Ilt8nRKqzITFa
+ DmWJrAUzwIoExjcYZ7zt0ROb/CzrnyxpLEc/C2SMM1o7JZDjbt0i2KD/PyZ/OQgWLXVIDgnWTSaoRCYlL6HsTdggUs1ieb1qy00XQ3eCH+lVTIHy2wROlfPp
+ N17PLlTWcUG4v/yLzTrizqYFMYJLljYVIQEIjuhfnuqnqko0cAhYFnx/GOmvQBxn7xO3YFo7MQX+kw3jciWJ97WXbmidNoomK8S9vnqNhorqwZk0ze+9T5J4
+ //nHlCxr/pIuL/YYmoROWposjCM5bRTvbqTr30fB1JGcS9NJ8j0auP7S+IBOqlg5XyxOE90t6lzSjtQYBYOKp3B2D49F9mU5F9XMO161Si8qzzmiIBXI7att
+ h+L2pKrGQmJuoiAo6AGrjTaa+uqAUkRiz16+00zWxiX83CbgoEYuGbaW7jBUGFS8eXAO1y2Rcp5veo+5yDsctpTcCEBFqRR5QVZhVYJkZ7VcaaDs9rdzQXAx
+ SrHGWyitHtWTsbyEgDIPmMMg0bAR9Tv3ZkMr/YhDxBHsFwWWv7zhy8jcAD/STjQKw/sh6t51G3jXj18BylIshyZuzeolozPih3ylR3lNFm2auUdR4EEfvnp7
+ vrAs9yc9w7ffcqTM9FE+EOdklQdfFawdg1edG8hbwLlW9635P8zIqCWnXRyOjE6SNQbIuUd48GZ77avb+JHJ7TnDuyZUXfTbtzmHik9mMnx1EXCc9gZc6p1t
+ 3uISmyZyEs/9CaV21lCaLCEHi5DMBhvdqYI97ue9idK1ZRC9pO11iiTfRHFHwPazWaoeUR5rFG/vO6pYHehKgfg9LZ9j5JeYQv7N1FkAN+QlIT2u
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 05, 2021 at 12:26:31PM +0800, Greentime Hu wrote:
-> Bjorn Helgaas <helgaas@kernel.org> 於 2021年5月4日 週二 下午9:46寫道：
-> > On Tue, May 04, 2021 at 06:59:39PM +0800, Greentime Hu wrote:
-> > > From: Paul Walmsley <paul.walmsley@sifive.com>
-> > >
-> > > Add driver for the SiFive FU740 PCIe host controller.
-> > > This controller is based on the DesignWare PCIe core.
-> > >
-> > > Signed-off-by: Paul Walmsley <paul.walmsley@sifive.com>
-> > > Co-developed-by: Henry Styles <hes@sifive.com>
-> > > Signed-off-by: Henry Styles <hes@sifive.com>
-> > > Co-developed-by: Erik Danie <erik.danie@sifive.com>
-> > > Signed-off-by: Erik Danie <erik.danie@sifive.com>
-> > > Co-developed-by: Greentime Hu <greentime.hu@sifive.com>
-> > > Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
-> > > ---
-> > >  drivers/pci/controller/dwc/Kconfig      |  10 +
-> > >  drivers/pci/controller/dwc/Makefile     |   1 +
-> > >  drivers/pci/controller/dwc/pcie-fu740.c | 309 ++++++++++++++++++++++++
-> > >  3 files changed, 320 insertions(+)
-> > >  create mode 100644 drivers/pci/controller/dwc/pcie-fu740.c
-> > >
-> > > diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> > > index 22c5529e9a65..255d43b1661b 100644
-> > > --- a/drivers/pci/controller/dwc/Kconfig
-> > > +++ b/drivers/pci/controller/dwc/Kconfig
-> > > @@ -318,4 +318,14 @@ config PCIE_AL
-> > >         required only for DT-based platforms. ACPI platforms with the
-> > >         Annapurna Labs PCIe controller don't need to enable this.
-> > >
-> > > +config PCIE_FU740
-> > > +     bool "SiFive FU740 PCIe host controller"
-> > > +     depends on PCI_MSI_IRQ_DOMAIN
-> > > +     depends on SOC_SIFIVE || COMPILE_TEST
-> > > +     depends on GPIOLIB
-> > ...
-> > 2) I would prefer not to depend on GPIOLIB because it reduces
-> >    compile-test coverage.  For example, the x86_64 defconfig does not
-> >    enable GPIOLIB, so one must manually enable it to even be able to
-> >    enable PCIE_FU740.
-> > ...
+Hi Benjamin,
 
-> Sorry for late to debug this case. I was working on other works and
-> just missed the email.
-> How about this?
-
-We already dropped the "depends on GPIOLIB" for v5.13.
-
-You can add a select later, for v5.14.  Of course, you should post a
-complete patch including commit log and signed-off-by.
-
-And please take a look at how other drivers handle this so you do it
-the same way.
-
-> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-> index e1b2690b6e45..66f57f2db49d 100644
-> --- a/arch/riscv/Kconfig.socs
-> +++ b/arch/riscv/Kconfig.socs
-> @@ -7,6 +7,7 @@ config SOC_SIFIVE
->         select CLK_SIFIVE
->         select CLK_SIFIVE_PRCI
->         select SIFIVE_PLIC
-> +       select GPIOLIB if PCIE_FU740
->         help
->           This enables support for SiFive SoC platform hardware.
+On 20/04/2021 14:10, Benjamin Gaignard wrote:
+> The IMX8MQ got two VPUs but until now only G1 has been enabled.
+> This series aim to add the second VPU (aka G2) and provide basic 
+> HEVC decoding support.
 > 
-> diff --git a/drivers/pci/controller/dwc/Kconfig
-> b/drivers/pci/controller/dwc/Kconfig
-> index 255d43b1661b..0a37d21ed64e 100644
-> --- a/drivers/pci/controller/dwc/Kconfig
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -322,7 +322,6 @@ config PCIE_FU740
->         bool "SiFive FU740 PCIe host controller"
->         depends on PCI_MSI_IRQ_DOMAIN
->         depends on SOC_SIFIVE || COMPILE_TEST
-> -       depends on GPIOLIB
->         select PCIE_DW_HOST
->         help
->           Say Y here if you want PCIe controller support for the SiFive
+> To be able to decode HEVC it is needed to add/update some of the
+> structures in the uapi. In addition of them one HANTRO dedicated
+> control is required to inform the driver of the number of bits to skip
+> at the beginning of the slice header.
+> The hardware require to allocate few auxiliary buffers to store the
+> references frame or tile size data.
+
+This series clashes with this patch:
+
+https://patchwork.linuxtv.org/project/linux-media/patch/20210427071554.2222625-1-jernej.skrabec@siol.net/
+
+and this patch series:
+
+https://patchwork.linuxtv.org/project/linux-media/cover/20210401144336.2495479-1-emil.l.velikov@gmail.com/
+
+For both PRs are pending.
+
+It's probably better to wait until this is merged before rebasing this series.
+
+And if drivers are going to be moved out of staging, leaving only HEVC support
+in staging, then I'd wait until that is done as well.
+
+Regards,
+
+	Hans
+
+> 
+> The driver has been tested with fluster test suite stream.
+> For example with this command: ./fluster.py run -ts JCT-VC-HEVC_V1 -d GStreamer-H.265-V4L2SL-Gst1.0
+> 
+> version 10:
+>  - Shorter version of the previous series without ctrl block patches
+>    and no DT modifications.
+>    The scope of this series is limited to HEVC support.
+> 
+> version 9:
+>  - Corrections in commits messages.
+>  - Define the dedicated control in hevc-controls.h
+>  - Add note in documentation.
+>  - Change max value of the dedicated control.
+>  - Rebased on media_tree/master branch.
+> 
+> version 8:
+>  - Add reviewed-by and ack-by tags 
+>  - Fix the warnings reported by kernel test robot
+>  - Only patch 9 (adding dedicated control), patch 11 (HEVC support) and
+>    patch 13 (DT changes) are still missing of review/ack tag.
+> 
+> version 7:
+>  - Remove 'q' from syscon phandle name to make usable for iMX8MM too.
+>    Update the bindings documentation.
+>  - Add review/ack tags.
+>  - Rebase on top of media_tree/master
+>  - Be more accurate when computing the size of the memory needed motion
+>    vectors.
+>  - Explain why the all clocks need to set in the both DT node.
+> 
+> version 6:
+>  - fix the errors reported by kernel test robot
+> 
+> version 5:
+>  - use syscon instead of VPU reset driver.
+>  - Do not break kernel/DT backward compatibility.
+>  - Add documentation for dedicated Hantro control.
+>  - Fix the remarks done by Ezequeil (typo, comments, unused function)
+>  - Run v4l2-compliance without errors (see below).
+>  - Do not add field to distinguish version, check postproc reg instead
+> 
+> version 4:
+> - Split the changes in hevc controls in 2 commits to make them easier to
+>   review.
+> - Change hantro_codec_ops run() prototype to return errors   
+> - Hantro v4l2 dedicated control is now only an integer
+> - rebase on top of VPU reset changes posted here:
+>   https://www.spinics.net/lists/arm-kernel/msg878440.html
+> - Various fix from previous remarks
+> - Limit the modifications in API to what the driver needs
+> 
+> version 3:
+> - Fix typo in Hantro v4l2 dedicated control
+> - Add documentation for the new structures and fields
+> - Rebased on top of media_tree for-linus-5.12-rc1 tag
+> 
+> version 2:
+> - remove all change related to scaling
+> - squash commits to a coherent split
+> - be more verbose about the added fields
+> - fix the comments done by Ezequiel about dma_alloc_coherent usage
+> - fix Dan's comments about control copy, reverse the test logic
+> in tile_buffer_reallocate, rework some goto and return cases.
+> - be more verbose about why I change the bindings
+> - remove all sign-off expect mime since it is confusing
+> - remove useless clocks in VPUs nodes
+> 
+> Benjamin Gaignard (9):
+>   media: hevc: Add fields and flags for hevc PPS
+>   media: hevc: Add decode params control
+>   media: hantro: change hantro_codec_ops run prototype to return errors
+>   media: hantro: Define HEVC codec profiles and supported features
+>   media: hantro: Only use postproc when post processed formats are
+>     defined
+>   media: uapi: Add a control for HANTRO driver
+>   media: hantro: handle V4L2_PIX_FMT_HEVC_SLICE control
+>   media: hantro: Introduce G2/HEVC decoder
+>   media: hantro: IMX8M: add variant for G2/HEVC codec
+> 
+>  .../userspace-api/media/drivers/hantro.rst    |  19 +
+>  .../userspace-api/media/drivers/index.rst     |   1 +
+>  .../media/v4l/ext-ctrls-codec.rst             | 108 +++-
+>  .../media/v4l/vidioc-queryctrl.rst            |   6 +
+>  drivers/media/v4l2-core/v4l2-ctrls.c          |  28 +-
+>  drivers/staging/media/hantro/Makefile         |   2 +
+>  drivers/staging/media/hantro/hantro.h         |  13 +-
+>  drivers/staging/media/hantro/hantro_drv.c     |  99 ++-
+>  .../staging/media/hantro/hantro_g1_h264_dec.c |  10 +-
+>  .../media/hantro/hantro_g1_mpeg2_dec.c        |   4 +-
+>  .../staging/media/hantro/hantro_g1_vp8_dec.c  |   6 +-
+>  .../staging/media/hantro/hantro_g2_hevc_dec.c | 587 ++++++++++++++++++
+>  drivers/staging/media/hantro/hantro_g2_regs.h | 198 ++++++
+>  .../staging/media/hantro/hantro_h1_jpeg_enc.c |   4 +-
+>  drivers/staging/media/hantro/hantro_hevc.c    | 327 ++++++++++
+>  drivers/staging/media/hantro/hantro_hw.h      |  69 +-
+>  .../staging/media/hantro/hantro_postproc.c    |  14 +
+>  drivers/staging/media/hantro/hantro_v4l2.c    |   5 +-
+>  drivers/staging/media/hantro/imx8m_vpu_hw.c   |  74 ++-
+>  .../media/hantro/rk3399_vpu_hw_jpeg_enc.c     |   4 +-
+>  .../media/hantro/rk3399_vpu_hw_mpeg2_dec.c    |   4 +-
+>  .../media/hantro/rk3399_vpu_hw_vp8_dec.c      |   6 +-
+>  drivers/staging/media/sunxi/cedrus/cedrus.c   |   6 +
+>  drivers/staging/media/sunxi/cedrus/cedrus.h   |   1 +
+>  .../staging/media/sunxi/cedrus/cedrus_dec.c   |   2 +
+>  .../staging/media/sunxi/cedrus/cedrus_h265.c  |  12 +-
+>  include/media/hevc-ctrls.h                    |  46 +-
+>  27 files changed, 1586 insertions(+), 69 deletions(-)
+>  create mode 100644 Documentation/userspace-api/media/drivers/hantro.rst
+>  create mode 100644 drivers/staging/media/hantro/hantro_g2_hevc_dec.c
+>  create mode 100644 drivers/staging/media/hantro/hantro_g2_regs.h
+>  create mode 100644 drivers/staging/media/hantro/hantro_hevc.c
+> 
+
