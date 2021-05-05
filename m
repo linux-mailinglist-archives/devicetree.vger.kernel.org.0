@@ -2,105 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CE33373CAB
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 15:49:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56587373CDE
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 16:01:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230170AbhEENuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 09:50:17 -0400
-Received: from foss.arm.com ([217.140.110.172]:44986 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230159AbhEENuQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 May 2021 09:50:16 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 03826ED1;
-        Wed,  5 May 2021 06:49:20 -0700 (PDT)
-Received: from C02TD0UTHF1T.local (unknown [10.57.28.242])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 506013F718;
-        Wed,  5 May 2021 06:49:17 -0700 (PDT)
-Date:   Wed, 5 May 2021 14:49:14 +0100
-From:   Mark Rutland <mark.rutland@arm.com>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        arve@google.com, Andrew Walbran <qwandor@google.com>,
-        David Hartley <dhh@qti.qualcomm.com>,
-        Achin Gupta <Achin.Gupta@arm.com>,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
-        Marc Bonnici <marc.bonnici@arm.com>,
-        Michael Kelley <mikelley@microsoft.com>,
-        Will Deacon <will@kernel.org>
-Subject: Re: [PATCH v6 1/6] arm64: smccc: Add support for SMCCCv1.2 extended
- input/output registers
-Message-ID: <20210505134914.GB5605@C02TD0UTHF1T.local>
-References: <20210505093843.3308691-1-sudeep.holla@arm.com>
- <20210505093843.3308691-2-sudeep.holla@arm.com>
+        id S233641AbhEEOCx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 10:02:53 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:54816 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233639AbhEEOCx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 10:02:53 -0400
+Received: from mail-qk1-f199.google.com ([209.85.222.199])
+        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1leI67-0008Pp-Gf
+        for devicetree@vger.kernel.org; Wed, 05 May 2021 14:01:55 +0000
+Received: by mail-qk1-f199.google.com with SMTP id d15-20020a05620a136fb02902e9e93c69c8so1161749qkl.23
+        for <devicetree@vger.kernel.org>; Wed, 05 May 2021 07:01:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=oHaAGMQCQ1pAj//qWoQI8DKNyR6P/lkpmRo6s3ewDIo=;
+        b=XNO3cBMHgiQF8oiueuolJL9Svodf5rTFWo2qZ9Gu5cZWh792BSk5g8fSdJOMSyH8xq
+         sCFOZDAhOLopVqOnJ2AqfNWPHu/i42lhoN8GszPVctuzXOejAsgEA/bgLjYR2Rk/yz+q
+         uIh7ckniBligoXNDdLE2Ar8w/Hh8OayzEGov4sjWKummLeT2R7I2IhntNE7L6fyPEdw1
+         ITqN5r0J7Vf2aWsHOk4Tke+fQXWYptzpYGNXFrE7n6qivK1SXstR5TBl7bxTb16hKB8U
+         lYLXWA0tXG9Wn4YIb6l8WBjTpl3+D+fqRfmdEKVvUKY1PxBhTWvGhJRjlfiWGWrzd7Z/
+         OCsA==
+X-Gm-Message-State: AOAM531LURhG4MYYHFQsrIEtnreUtTKvbAxrR9npW6NYwrtYstc5g5D3
+        KTPvXlytsltQUINSFIxokYlOybmq1Wb+1781Zp1k3uNafax4ZPzHrEjOH9Dbgbn38Ak1u8aR5ID
+        BCVpIo8LXKqiST0ywbnx6n2t+Yl3ogt0sPkNZ1WA=
+X-Received: by 2002:a37:a6c6:: with SMTP id p189mr22057992qke.161.1620223314629;
+        Wed, 05 May 2021 07:01:54 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzU763cPQ1xdHbff6dt62YRnHTN6UDqkMUU+zw0J+G/5UkccrdKaat1ubNv8PZ2xanVeRFnkw==
+X-Received: by 2002:a37:a6c6:: with SMTP id p189mr22057979qke.161.1620223314451;
+        Wed, 05 May 2021 07:01:54 -0700 (PDT)
+Received: from localhost.localdomain ([45.237.49.2])
+        by smtp.gmail.com with ESMTPSA id 97sm5016632qte.20.2021.05.05.07.01.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 May 2021 07:01:53 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/5] ARM: dts: exynos: align Broadcom WiFi with dtschema
+Date:   Wed,  5 May 2021 09:59:37 -0400
+Message-Id: <20210505135941.59898-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210505093843.3308691-2-sudeep.holla@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sudeep,
+The Broadcom BCM4329 family dtschema expects devices to be compatible
+also with brcm,bcm4329-fmac:
 
-On Wed, May 05, 2021 at 10:38:38AM +0100, Sudeep Holla wrote:
-> SMCCC v1.2 allows x8-x17 to be used as parameter registers and x4—x17
-> to be used as result registers in SMC64/HVC64. Arm Firmware Framework
-> for Armv8-A specification makes use of x0-x7 as parameter and result
-> registers. There are other users like Hyper-V who intend to use beyond
-> x0-x7 as well.
-> 
-> Current SMCCC interface in the kernel just use x0-x7 as parameter and
-> x0-x3 as result registers as required by SMCCCv1.0. Let us add new
-> interface to support this extended set of input/output registers namely
-> x0-x17 as both parameter and result registers.
-> 
-> Cc: Michael Kelley <mikelley@microsoft.com>
-> Cc: Will Deacon <will@kernel.org>
-> Cc: Mark Rutland <mark.rutland@arm.com>
-> Cc:Catalin Marinas <catalin.marinas@arm.com>
-> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+  arch/arm/boot/dts/exynos3250-rinato.dt.yaml: wifi@1: compatible: 'oneOf' conditional failed, one must be fixed:
+    ['brcm,bcm4334-fmac'] is too short
+    'brcm,bcm4329-fmac' was expected
 
-I have one minor comment below, otherwise this looks good to me, and
-regardless:
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+---
+ arch/arm/boot/dts/exynos3250-rinato.dts         | 2 +-
+ arch/arm/boot/dts/exynos4210-i9100.dts          | 2 +-
+ arch/arm/boot/dts/exynos4210-trats.dts          | 2 +-
+ arch/arm/boot/dts/exynos4210-universal_c210.dts | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-Acked-by: Mark Rutland <mark.rutland@arm.com>
+diff --git a/arch/arm/boot/dts/exynos3250-rinato.dts b/arch/arm/boot/dts/exynos3250-rinato.dts
+index c52b9cf4f74c..f6ba5e426040 100644
+--- a/arch/arm/boot/dts/exynos3250-rinato.dts
++++ b/arch/arm/boot/dts/exynos3250-rinato.dts
+@@ -653,7 +653,7 @@ &mshc_1 {
+ 	mmc-pwrseq = <&wlan_pwrseq>;
+ 
+ 	brcmf: wifi@1 {
+-		compatible = "brcm,bcm4334-fmac";
++		compatible = "brcm,bcm4334-fmac", "brcm,bcm4329-fmac";
+ 		reg = <1>;
+ 
+ 		interrupt-parent = <&gpx1>;
+diff --git a/arch/arm/boot/dts/exynos4210-i9100.dts b/arch/arm/boot/dts/exynos4210-i9100.dts
+index 525ff3d2fac3..db70f62cc08f 100644
+--- a/arch/arm/boot/dts/exynos4210-i9100.dts
++++ b/arch/arm/boot/dts/exynos4210-i9100.dts
+@@ -806,7 +806,7 @@ &sdhci_3 {
+ 	pinctrl-0 = <&sd3_clk>, <&sd3_cmd>, <&sd3_bus4>;
+ 
+ 	brcmf: wifi@1 {
+-		compatible = "brcm,bcm4330-fmac";
++		compatible = "brcm,bcm4330-fmac", "brcm,bcm4329-fmac";
+ 		reg = <1>;
+ 
+ 		interrupt-parent = <&gpx2>;
+diff --git a/arch/arm/boot/dts/exynos4210-trats.dts b/arch/arm/boot/dts/exynos4210-trats.dts
+index d2406c9146b8..3eb8df319246 100644
+--- a/arch/arm/boot/dts/exynos4210-trats.dts
++++ b/arch/arm/boot/dts/exynos4210-trats.dts
+@@ -521,7 +521,7 @@ &sdhci_3 {
+ 	pinctrl-0 = <&sd3_clk>, <&sd3_cmd>, <&sd3_bus4>;
+ 
+ 	brcmf: wifi@1 {
+-		compatible = "brcm,bcm4330-fmac";
++		compatible = "brcm,bcm4330-fmac", "brcm,bcm4329-fmac";
+ 		reg = <1>;
+ 
+ 		interrupt-parent = <&gpx2>;
+diff --git a/arch/arm/boot/dts/exynos4210-universal_c210.dts b/arch/arm/boot/dts/exynos4210-universal_c210.dts
+index dd44ad2c6ad6..f052853244a4 100644
+--- a/arch/arm/boot/dts/exynos4210-universal_c210.dts
++++ b/arch/arm/boot/dts/exynos4210-universal_c210.dts
+@@ -614,7 +614,7 @@ &sdhci_3 {
+ 	pinctrl-0 = <&sd3_clk>, <&sd3_cmd>, <&sd3_bus4>;
+ 
+ 	brcmf: wifi@1 {
+-		compatible = "brcm,bcm4330-fmac";
++		compatible = "brcm,bcm4330-fmac", "brcm,bcm4329-fmac";
+ 		reg = <1>;
+ 		interrupt-parent = <&gpx2>;
+ 		interrupts = <5 IRQ_TYPE_LEVEL_HIGH>;
+-- 
+2.25.1
 
-[...]
-
-> +/**
-> + * arm_smccc_1_2_hvc() - make HVC calls
-> + * @args: arguments passed via struct arm_smccc_1_2_regs
-> + * @res: result values via struct arm_smccc_1_2_regs
-> + *
-> + * This function is used to make HVC calls following SMC Calling Convention
-> + * v1.2 or above. The content of the supplied param are copied from the
-> + * structure to registers prior to the HVC instruction. The return values
-> + * are updated with the content from registers on return from the HVC
-> + * instruction.
-> + */
-> +asmlinkage void arm_smccc_1_2_hvc(struct arm_smccc_1_2_regs *args,
-> +				  struct arm_smccc_1_2_regs *res);
-> +
-> +/**
-> + * arm_smccc_1_2_smc() - make SMC calls
-> + * @args: arguments passed via struct arm_smccc_1_2_regs
-> + * @res: result values via struct arm_smccc_1_2_regs
-> + *
-> + * This function is used to make SMC calls following SMC Calling Convention
-> + * v1.2 or above. The content of the supplied param are copied from the
-> + * structure to registers prior to the SMC instruction. The return values
-> + * are updated with the content from registers on return from the SMC
-> + * instruction.
-> + */
-> +asmlinkage void arm_smccc_1_2_smc(struct arm_smccc_1_2_regs *args,
-> +				  struct arm_smccc_1_2_regs *res);
-> +#endif
-
-It might be worth making the args parameter to these const, since we
-never write to it in the asm.
-
-Thanks,
-Mark.
