@@ -2,93 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA51D3737A3
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 11:36:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3AA43737AD
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 11:38:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231959AbhEEJhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 05:37:46 -0400
-Received: from mailgw02.mediatek.com ([216.200.240.185]:52258 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231494AbhEEJhq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 05:37:46 -0400
-X-Greylist: delayed 301 seconds by postgrey-1.27 at vger.kernel.org; Wed, 05 May 2021 05:37:46 EDT
-X-UUID: f8b40e87745347dd948baa84fdc9793e-20210505
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=wGIu9D0K3g9b5WCqbKTXiSpOw9BUQsnxsil9kutRcfg=;
-        b=X9nDReORDPz35r0ccML3pdh8YdbJ+qSLYPjvgG2nLM2OpyOgokoqyxhqsm8mZhHeoHqgwOJkjNjDMVQgiDR8RFQHdsRVGZYtVwbeQKDmmtAlwIKfhG9bvI5HPLyO4mzIrEUhERJOz0FYLaz779c4/O4jk1OYtALNdirtUC+ZuRw=;
-X-UUID: f8b40e87745347dd948baa84fdc9793e-20210505
-Received: from mtkcas66.mediatek.inc [(172.29.193.44)] by mailgw02.mediatek.com
-        (envelope-from <landen.chao@mediatek.com>)
-        (musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1997269144; Wed, 05 May 2021 02:31:45 -0700
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- MTKMBS62N1.mediatek.inc (172.29.193.41) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 5 May 2021 02:31:43 -0700
-Received: from mtksdccf07 (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 5 May 2021 17:31:42 +0800
-Message-ID: <fc962daf8b7babc22b043b2b0878a206780b55f3.camel@mediatek.com>
-Subject: Re: Re: Re: Re: [PATCH net-next 0/4] MT7530 interrupt support
-From:   Landen Chao <landen.chao@mediatek.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Frank Wunderlich <frank-w@public-files.de>
-CC:     DENG Qingfang <dqfext@gmail.com>,
-        David Miller <davem@davemloft.net>, <f.fainelli@gmail.com>,
-        <hkallweit1@gmail.com>, <kuba@kernel.org>,
-        <matthias.bgg@gmail.com>, <linux@armlinux.org.uk>,
-        <sean.wang@mediatek.com>, <vivien.didelot@gmail.com>,
-        <olteanv@gmail.com>, <robh+dt@kernel.org>,
-        <linus.walleij@linaro.org>, <gregkh@linuxfoundation.org>,
-        <sergio.paracuellos@gmail.com>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-staging@lists.linux.dev>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <weijie.gao@mediatek.com>,
-        <gch981213@gmail.com>, <opensource@vdorst.com>,
-        <tglx@linutronix.de>, <maz@kernel.org>
-Date:   Wed, 5 May 2021 17:31:43 +0800
-In-Reply-To: <YIwxpYD1jnFMPQz+@lunn.ch>
-References: <20210429062130.29403-1-dqfext@gmail.com>
-         <20210429.170815.956010543291313915.davem@davemloft.net>
-         <20210430023839.246447-1-dqfext@gmail.com> <YIv28APpOP9tnuO+@lunn.ch>
-         <trinity-843c99ce-952a-434e-95e4-4ece3ba6b9bd-1619786236765@3c-app-gmx-bap03>
-         <YIv7w8Wy81fmU5A+@lunn.ch>
-         <trinity-611ff023-c337-4148-a215-98fd5604eac2-1619787382934@3c-app-gmx-bap03>
-         <YIwCliT5NZT713WD@lunn.ch>
-         <trinity-c45bbeec-5b7c-43a2-8e86-7cb22ad61558-1619794787680@3c-app-gmx-bap03>
-         <YIwxpYD1jnFMPQz+@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S232036AbhEEJjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 05:39:52 -0400
+Received: from foss.arm.com ([217.140.110.172]:41198 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232073AbhEEJjv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 May 2021 05:39:51 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7CE6BD6E;
+        Wed,  5 May 2021 02:38:55 -0700 (PDT)
+Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 2A3EA3F70D;
+        Wed,  5 May 2021 02:38:54 -0700 (PDT)
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Sudeep Holla <sudeep.holla@arm.com>, arve@google.com,
+        Andrew Walbran <qwandor@google.com>,
+        David Hartley <dhh@qti.qualcomm.com>,
+        Achin Gupta <Achin.Gupta@arm.com>,
+        Jens Wiklander <jens.wiklander@linaro.org>,
+        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
+        Marc Bonnici <marc.bonnici@arm.com>
+Subject: [PATCH v6 0/6] firmware: Add initial support for Arm FF-A
+Date:   Wed,  5 May 2021 10:38:37 +0100
+Message-Id: <20210505093843.3308691-1-sudeep.holla@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDIxLTA0LTMwIGF0IDE4OjM0ICswMjAwLCBBbmRyZXcgTHVubiB3cm90ZToNCj4g
-PiBtaG0sIG1heWJlIHRoZSBuYW1pbmcgc2hvdWxkIGRpZmZlciBpZiBnZW5lcmljIHBoeSBhbmQg
-bmV0LXBoeSBhcmUNCj4gPiB0aGF0IGRpZmZlcmVudC4gaSBndWVzcyB0aGVyZSBpcyBubyB3YXkg
-dG8gbWVyZ2UgdGhlIG5ldCBwaHlzIHRvDQo+ID4gdGhlDQo+ID4gZ2VuZXJpYyBwaHlzIChkdWUg
-dG8gbGlua2luZyB0byB0aGUgbmV0IGRldmljZSBkcml2ZXJzKSB0byBoYXZlDQo+ID4gb25seQ0K
-PiA+IDEgcGh5IHNlY3Rpb24sIHJpZ2h0Pw0KPiANCj4gcGh5cyBhbmQgZ2VuZXJpYyBQSFlzIGFy
-ZSB2ZXJ5IGRpZmZlcmVudCB0aGluZ3MsIGNvbXBsZXRlbHkgZGlmZmVyZW50DQo+IEFQSSBldGMu
-IFRoZXkgY2Fubm90IGJlIG1lcmdlZC4NCj4gDQo+ID4gYnV0IGlmIHBoeS0gcHJlZml4IGlzIHVz
-ZWQgYnkgZ2VuZXJpYyBwaHlzLCBtYXliZSBldGgtIG9yIG5ldC0gY2FuDQo+ID4gYmUgdXNlZCBo
-ZXJlIChtYXliZSB3aXRoICJwaHkiIGFkZGVkKQ0KPiA+IA0KPiA+IHNvbWV0aGluZyBsaWtlDQo+
-ID4gDQo+ID4gZXRoLXBoeS1tdDc1M3gua28NCkhvdyBhYm91dCB1c2luZyBtZWRpYXRlay1nZS5r
-by4gJ2dlJyBpcyB0aGUgYWJicmV2aWF0aW9uIG9mIGdpZ2FiaXQNCkV0aGVybmV0LiBNb3N0IG1l
-ZGlhdGVrIHByb2R1Y3RzIHVzZSB0aGUgc2FtZSBnaWdhYml0IEV0aGVybmV0IHBoeS4NCg0KTGFu
-ZGVuDQo+ID4gDQo+ID4gZWxzZSBpIGhhdmUgbm8gaWRlYSBub3cuLi5teSBwYXRjaCByZW5hbWlu
-ZyB0aGUgbXVzYi1tb2R1bGUgc2VlbXMNCj4gPiBub3QNCj4gPiB0byBiZSBhY2NlcHRlZCBkdWUg
-dG8gcG9zc2libGUgYnJlYWthZ2UNCj4gDQo+IFRoZSB1c2IgbW9kdWxlIGhhcyBiZWVuIGFyb3Vu
-ZCBmb3IgYSBsb25nIHRpbWUsIHNvIGl0IGNhbm5vdCBiZQ0KPiBjaGFuZ2VkLiBUaGUgcGh5IGRy
-aXZlciBpcyBuZXcsIG5vdCBpbiBhIHJlbGVhc2VkIGtlcm5lbC4gU28gd2UgY2FuDQo+IHN0aWxs
-IHJlbmFtZSBpdCB3aXRob3V0IGNhdXNpbmcgcHJvYmxlbXMuDQo+IA0KPiBJIHN0aWxsIHdhbnQg
-dG8gdW5kZXJzdGFuZCB0aGUgbmFtaW5nIGhlcmUuIElmIHlvdSBsb29rIGF0IG1vc3QNCj4gRXRo
-ZXJuZXQgc3dpdGNoZXMgd2l0aCBpbnRlZ3JhdGVkIFBIWXMsIHRoZSBQSFlzIGhhdmUgdGhlaXIg
-b3duDQo+IG5hbWluZw0KPiBzY2hlbWUsIHNlcGFyYXRlIGZyb20gdGhlIHN3aXRjaCwgYmVjYXVz
-ZSB0aGV5IGFyZSBpbmRlcGVuZGVudCBJUC4gU28NCj4gaSB3b3VsZCBwcmVmZXIgdGhpcyBkcml2
-ZXIgYnkgbmFtZWQgYWZ0ZXIgdGhlIFBIWSBuYW1lLCBub3QgdGhlDQo+IHN3aXRjaA0KPiBuYW1l
-LiBUaGF0IG1pZ2h0IHNvbHZlIHRoZSBuYW1pbmcgY29uZmxpY3QsIG10MTIzeCBmb3IgdGhlIFBI
-WSwNCj4gbXQ3NTMwDQo+IGZvciB0aGUgc3dpdGNoIGRyaXZlci4NCj4gDQo+IAlBbmRyZXcNCg==
+Hi all,
+
+This is very basic implementation for in-kernel support for Arm FF-A
+specification.
+
+Arm Firmware Framework for Armv8-A specification[1] describes a software
+architecture that provides mechanism to utilise the virtualization
+extension to isolate software images and describes interfaces that
+standardize communication between the various software images. This
+includes communication between images in the Secure and Normal world.
+
+The main idea here is to create FFA device to establish any communication
+with a secure partition. This is currently tested with OPTEE(with changes
+to OPTEE driver adding FFA as transport)
+
+The series can be fetched from [2]
+
+--
+Regards,
+Sudeep
+
+[1] https://developer.arm.com/documentation/den0077/latest
+[2] git://git.kerniel.org/pub/scm/linux/kernel/git/sudeep.holla/linux.git v5.13/ffa
+
+
+v5->v6:
+	- Dropped DT dependecy completely and use the discovery APIs for
+	  adding FFA partitions on the bus. They is some workaround added
+	  as v1.0 doesn't provide UUID as part of the discovery APIs which
+	  is used to match the devices and driver on FFA bus.
+	- Extended SMCCC v1.2 API to support full set of input and output
+	  registers.
+	- Couple of minor bug fixes found as part of testing
+
+v4->v5:
+	- Fixed couple of comments in DT bindings
+	- Moved to use native version of RXTX_MAP call, fixed vm_id param
+	  to RXTX_UNMAP, dropped couple of unused confusingly named macros
+	  (can be added back with correct name when we need to use them)
+
+v3->v4:
+	- Added support to allow partitions to set 32bit only mode
+	- Addressed all the comments from Jens Wiklander
+
+v2->v3:
+	- Dropped hypervisor partitions and userspace support as it is
+	  no longer in the list of requirements
+	- Moved away from ioctl style interface for in-kernel users as
+	  there is no need to keep in sync with userspace anymore
+	- Some kerneldoc fixes as pointed out in earlier reviews
+
+v1->v2:
+	- Moved userspace code to a separate unit, will move to separate
+	  module. Still working on minimizing initcall dependencies and
+	  exported functions to reuse some of the code.
+	- Fixed couple of minor issues pointed out
+	- Dropped ASYNC send message as I haven't been able to test
+
+Sudeep Holla (6):
+  arm64: smccc: Add support for SMCCCv1.2 extended input/output registers
+  firmware: arm_ffa: Add initial FFA bus support for device enumeration
+  firmware: arm_ffa: Add initial Arm FFA driver support
+  firmware: arm_ffa: Add support for SMCCC as transport to FFA driver
+  firmware: arm_ffa: Setup in-kernel users of FFA partitions
+  firmware: arm_ffa: Add support for MEM_* interfaces
+
+ MAINTAINERS                       |   7 +
+ arch/arm64/kernel/asm-offsets.c   |   9 +
+ arch/arm64/kernel/smccc-call.S    |  57 +++
+ drivers/firmware/Kconfig          |   1 +
+ drivers/firmware/Makefile         |   1 +
+ drivers/firmware/arm_ffa/Kconfig  |  21 +
+ drivers/firmware/arm_ffa/Makefile |   6 +
+ drivers/firmware/arm_ffa/bus.c    | 210 +++++++++
+ drivers/firmware/arm_ffa/common.h |  31 ++
+ drivers/firmware/arm_ffa/driver.c | 719 ++++++++++++++++++++++++++++++
+ drivers/firmware/arm_ffa/smccc.c  |  39 ++
+ include/linux/arm-smccc.h         |  55 +++
+ include/linux/arm_ffa.h           | 266 +++++++++++
+ 13 files changed, 1422 insertions(+)
+ create mode 100644 drivers/firmware/arm_ffa/Kconfig
+ create mode 100644 drivers/firmware/arm_ffa/Makefile
+ create mode 100644 drivers/firmware/arm_ffa/bus.c
+ create mode 100644 drivers/firmware/arm_ffa/common.h
+ create mode 100644 drivers/firmware/arm_ffa/driver.c
+ create mode 100644 drivers/firmware/arm_ffa/smccc.c
+ create mode 100644 include/linux/arm_ffa.h
+
+-- 
+2.25.1
 
