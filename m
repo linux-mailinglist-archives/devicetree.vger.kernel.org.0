@@ -2,133 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 045B5373D91
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 16:22:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1772E373DB3
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 16:31:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233040AbhEEOXj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 10:23:39 -0400
-Received: from youngberry.canonical.com ([91.189.89.112]:55680 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232383AbhEEOXi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 10:23:38 -0400
-Received: from mail-qk1-f199.google.com ([209.85.222.199])
-        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1leIQD-00027V-7d
-        for devicetree@vger.kernel.org; Wed, 05 May 2021 14:22:41 +0000
-Received: by mail-qk1-f199.google.com with SMTP id p17-20020a05620a1131b02902e45c6e4d33so1264586qkk.0
-        for <devicetree@vger.kernel.org>; Wed, 05 May 2021 07:22:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=p2p0gJ55l2BrIuGW3fGJbblLcGMFAVclXvZPsg/9734=;
-        b=hlXLtIW2Crsb2VH3Fh681nwCHqbMWimHZ6Ncekc0cRI406iMMNW0+mwqRfS55Oba4l
-         hWrlpShzOUIgxy8NAnk455UuvVFmlP6CIpaa6tJqxAD5yNqoUkyz8Y0HPgKjOOopI6U8
-         aICeOMGPvbipYJfsE5Cg1Jn0d9V2/dBLDWSPUX6QIYdPl8OQ5jhXsIeJANQWJF0xqYFk
-         OgSrLnMcqGzDHrg/6o0X033k0tGVkVuoGDXeWS9HAVkHg9caQ2mSByeazglYBZ58dQDd
-         Nf9a/IBtOseAYN7KlzjGc17VGA8cOkVqcGtQtwi5G4hhDIZKPApPUVPKBMFPUXIDFujy
-         dcng==
-X-Gm-Message-State: AOAM532NMkB+AflEny+GuPEev3mEDik+arKHtQ5TC1WvG2idzBWcCYCf
-        34m0zhG38Yzy0fMlJu+ruW4/jnnow1c2/EVMireqg3SSA3ss3GmiMbA8vtjniFRJem57txh/C6L
-        rk3kv9t38eQhFESfDo+JLF/Fykgj2LqTXHg00ON0=
-X-Received: by 2002:a37:e11:: with SMTP id 17mr24576838qko.499.1620224560354;
-        Wed, 05 May 2021 07:22:40 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxpQ3TLPSdk4w5AAovg0o+kr9jYYchgdMLem+pb6Sh/mSEWGzgGWWL46ISf/llPTJXMza6lWw==
-X-Received: by 2002:a37:e11:: with SMTP id 17mr24576805qko.499.1620224560113;
-        Wed, 05 May 2021 07:22:40 -0700 (PDT)
-Received: from [192.168.1.4] ([45.237.49.1])
-        by smtp.gmail.com with ESMTPSA id r16sm1041922qtx.36.2021.05.05.07.22.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 May 2021 07:22:39 -0700 (PDT)
-Subject: Re: [PATCH] ARM: dts: am5729-beagleboneai: drop unused Broadcom WiFi
- properties
-To:     Robert Nelson <robertcnelson@gmail.com>,
-        alexey.roslyakov@gmail.com, Drew Fustini <drew@beagleboard.org>,
-        Jason Kridner <jkridner@beagleboard.org>
-Cc:     =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux kernel <linux-kernel@vger.kernel.org>,
-        linux-wireless@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com
-References: <20210505140015.60013-1-krzysztof.kozlowski@canonical.com>
- <CAOCHtYiicw5bqaZU5g2QGJHG3DZKRQUwAr08NZHw81S9=hmrgw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <7ced6d2f-7107-e612-6787-63e38e5e3edd@canonical.com>
-Date:   Wed, 5 May 2021 10:22:37 -0400
+        id S232079AbhEEOcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 10:32:09 -0400
+Received: from lb3-smtp-cloud9.xs4all.net ([194.109.24.30]:37579 "EHLO
+        lb3-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229763AbhEEOcI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 10:32:08 -0400
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud9.xs4all.net with ESMTPA
+        id eIYJlNRG3WztCeIYNlLhsM; Wed, 05 May 2021 16:31:09 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
+        t=1620225069; bh=D07Ph/1+3Jw7Ax3sYGGJcJQ4Mxn9lO9/WLAxt78euEA=;
+        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=Pvl+/ujxsh6aWY8YO/eIZ4y3E4tEjR5Q+Q+zb+4Cil9LLX2Fq9A0Lj98AHtIPLEDT
+         KkD1ujkgG+dfkCzylN0x5rt6u2vvNpDX+94NTX2JEDxNXWeFKrk8nTKwkvjfe7TwM8
+         uXvfs28Zq7su20Q0jqtex0foDT5EaCwIh/TPdsU8sg/vlE6H6s00/Wb2DYbK8CONhw
+         EiDpZEUUNQMCPDLogYF1Eq/KsRhMXzmpIGgzWlhzRD+MHnbhW78QD0AqP4iPL8ctwN
+         GftcSbZl+ni8b69f5Hw0f0zya+hGl/YfWdB87ILyvF7y1INED8BE+aDPRkisRL5GMZ
+         6/82HFD1stxqg==
+Subject: Re: [PATCH v4 9/9] ARM: dts: sama5d4: enable Hantro G1 VDEC
+To:     Emil Velikov <emil.l.velikov@gmail.com>, kernel@collabora.com,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org
+Cc:     Frank Rowand <frowand.list@gmail.com>
+References: <20210401144336.2495479-1-emil.l.velikov@gmail.com>
+ <20210401144336.2495479-10-emil.l.velikov@gmail.com>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <a9829af1-f4e9-5835-9a74-15a0fce6b1eb@xs4all.nl>
+Date:   Wed, 5 May 2021 16:31:03 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+ Firefox/78.0 Thunderbird/78.9.0
 MIME-Version: 1.0
-In-Reply-To: <CAOCHtYiicw5bqaZU5g2QGJHG3DZKRQUwAr08NZHw81S9=hmrgw@mail.gmail.com>
+In-Reply-To: <20210401144336.2495479-10-emil.l.velikov@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4xfDtpP6vDd+QapLbKREIFOqoqr/sFJRlPamXLjLx9it1P0F65R2qEObdLMb/cvpjdwbwMInZNSs46V1xjXOGab0chRWK6Jj+p6Mywl65TjIV2lerEJPza
+ mxVR3P9WMu/wogcSbCb5uORxg9uL0JGOcxFfvxaOFM8Ah0xkaGp4Zy8zM5cJ8a1BM+VXHDv+/3o/hvFGko4vPIElKk+rpwWk3+uy9R3shwaDWfHbVW7uE3c+
+ N51jchrun383dk91fgYEkFK7q+3W22URvWe7gXicrw9gA7GCvy5gQ7JU0X67ZUVAOE4y2G/RsBRmJmJqHlg9Qqum7A1aOtpHzJHDcGEwtL838yd3h38OEVzz
+ 2DFNtjIfe81FskSACDujkXC2ssZbAhnTb+f1LaMFZLpMRoR2bQg8vtiWC6SVcoG4p2ESxhSTGbBo1dvxfikAh87riJjL7aRjzLmaOA4War1DD1XqF6x5eZrO
+ skR6lKUNrTcbMqai
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/05/2021 10:15, Robert Nelson wrote:
-> On Wed, May 5, 2021 at 9:04 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
->>
->> The brcm,sd-head-align, brcm,sd_head_align and brcm,sd_sgentry_align are
->> not used by the driver and not present in dtschema:
->>
->>   arch/arm/boot/dts/am5729-beagleboneai.dt.yaml: wifi@1:
->>     'brcm,sd-head-align', 'brcm,sd_head_align', 'brcm,sd_sgentry_align' do not match any of the regexes: 'pinctrl-[0-9]+'
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->> ---
->>  arch/arm/boot/dts/am5729-beagleboneai.dts | 4 ----
->>  1 file changed, 4 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/am5729-beagleboneai.dts b/arch/arm/boot/dts/am5729-beagleboneai.dts
->> index 149cfafb90bf..d3b2e87a6266 100644
->> --- a/arch/arm/boot/dts/am5729-beagleboneai.dts
->> +++ b/arch/arm/boot/dts/am5729-beagleboneai.dts
->> @@ -582,10 +582,6 @@ brcmf: wifi@1 {
->>                 reg = <1>;
->>                 compatible = "brcm,bcm4329-fmac";
->>
->> -               brcm,sd-head-align = <4>;
->> -               brcm,sd_head_align = <4>;
->> -               brcm,sd_sgentry_align = <512>;
->> -
->>                 interrupt-parent = <&gpio3>;
->>                 interrupts = <23 IRQ_TYPE_LEVEL_LOW>;
->>                 interrupt-names = "host-wake";
->> --
->> 2.25.1
->>
+On 01/04/2021 16:43, Emil Velikov wrote:
+> From: Emil Velikov <emil.velikov@collabora.com>
 > 
-> NAK, for what it is worth..
-> 
-> This is a plain old shitty situation, that everyone that mistakenly
-> chooses a BRCM based chipset in a design faces, then learns to NEVER
-> touch that chipset again..
-> 
-> These nodes have been posted before for mainline inclusion but always
-> get killed off:
-> 
-> https://lkml.org/lkml/2018/3/18/356
-> 
-> The TI AM57xx SDIO needs these flags for the brcmfmac driver to actually work.
-> 
-> I don't see the brcmfmac developers actually fixing it, as "out of
-> tree" work for brcmfmac is 100+ patches long:
+> Add the SAMA5D4 VDEC module which comprises Hantro G1 video decoder
+> core.
 
+I've accepted parts 1-8 of this series for 5.14, so this remaining patch
+can be merged by whoever handles such dts patches.
 
-Thanks for explanation. I understand these are actually used by
-out-of-tree driver? That's a valid reason to add them to the binding then...
+Regards,
+
+	Hans
 
 > 
-> https://www.cypress.com/documentation/software-and-drivers-archive/wifi-bt-linux-archive?source=search&cat=other
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: devicetree@vger.kernel.org
+> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+> Signed-off-by: Emil Velikov <emil.velikov@collabora.com>
+> ---
+> v2
+>  - Split out of larger patch (Eze)
+>  - s/Atmel/Microchip/ (Nicolas)
+>  - Drop leading 0 in node name/address
+> 
+> v3
+>  - Drop the clk/irq names (RobH)
+> ---
+>  arch/arm/boot/dts/sama5d4.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/sama5d4.dtsi b/arch/arm/boot/dts/sama5d4.dtsi
+> index 05c55875835d..e47e1ca63043 100644
+> --- a/arch/arm/boot/dts/sama5d4.dtsi
+> +++ b/arch/arm/boot/dts/sama5d4.dtsi
+> @@ -101,6 +101,13 @@ nfc_sram: sram@100000 {
+>  			ranges = <0 0x100000 0x2400>;
+>  		};
+>  
+> +		vdec0: vdec@300000 {
+> +			compatible = "microchip,sama5d4-vdec";
+> +			reg = <0x00300000 0x100000>;
+> +			interrupts = <19 IRQ_TYPE_LEVEL_HIGH 4>;
+> +			clocks = <&pmc PMC_TYPE_PERIPHERAL 19>;
+> +		};
+> +
+>  		usb0: gadget@400000 {
+>  			compatible = "atmel,sama5d3-udc";
+>  			reg = <0x00400000 0x100000
+> 
 
-Requires login - I am not able to get the sources.
-
-Best regards,
-Krzysztof
