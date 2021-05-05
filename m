@@ -2,96 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B894C373802
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 11:43:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74272373811
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 11:49:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233088AbhEEJor (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 05:44:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58824 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233191AbhEEJoh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 05:44:37 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7304CC06134B;
-        Wed,  5 May 2021 02:43:34 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id c11so1650536lfi.9;
-        Wed, 05 May 2021 02:43:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6c3Xgmn5T37TIiY6YlqNonCt6qbYnwH+SLVXsWNUIl0=;
-        b=tlTyUi3kNACJZhVQLNA0q8gUswN+/IMa21mbaLzlaLXmWzl7Wu/8y3gc7AI4RJ7gp5
-         hkz1WvvJr4s16xg4aIGzXIiaFq++4fidadR9bsQtZVGviOdXVS5+sCckZ/S8tZB7OF7i
-         mN+OyC3oW7V0DgYb7z4XiON9PrXOB6FqDvFbeZVyOpSGqydB78TCyIk1nYnrCmMy4YCr
-         Tpu3gWJsG36gx1d3SQi6bArBRjmJQBi16tJQ0dBTJOjxi+dR/7zn/s30V9BovD0g2HbN
-         13nAhm0Wmx65jEDp0PeKMWOU+RWpsh834jaNzxv91k/ORKN5U0m/BcIlQfSqyPOYO4FQ
-         kg8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6c3Xgmn5T37TIiY6YlqNonCt6qbYnwH+SLVXsWNUIl0=;
-        b=YMsSbxF1ZkQ5xOzW3drQVlIe/3h3hgIJVhZf/MJBO7qLNrkcmyEmeZE4+y2gxT6zYE
-         srBJJQj0ihS8Z+0CGdsepHNA736HXcr1USUFW/AdrLEudP3Vk8v37dOCs1IfIZZmJ49G
-         4r++auyT1fuOKEZ1RlrSwJMSeOlzb7tTYNPlqL1attiutebNqVXqDU3dXPh/Ul4hL1aS
-         dlJg8blhlPm0pm+w2Plguq1DAayL1LTlO3k0zfUk7ESWmtwWqEFuhD3OT3RI//C2XoX4
-         44PTkI30HvbAXg4k0him2J+evoLBhZWfqCFtC4DV2Q3wXgVJ6g8xy11YSqzWqx1xAJuD
-         Z/Aw==
-X-Gm-Message-State: AOAM531yy/gtNYc1TlPqKjPRP+nc4m6+f/jKH+cZhg99eDRIuAKa2Keg
-        q4OTYKMHnzxjFBgeDrebIqxzxUj5nRf979Z3ZiQ=
-X-Google-Smtp-Source: ABdhPJw6OWZKpcheUIXN4U6xqnJjupiMHWXCfxCTfUuc3HFjNvUcQ9YcgrDewl5kohtJyeEZNwEigc4i9Z3u2NQfWlY=
-X-Received: by 2002:ac2:44b1:: with SMTP id c17mr1737771lfm.527.1620207812971;
- Wed, 05 May 2021 02:43:32 -0700 (PDT)
+        id S232397AbhEEJui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 05:50:38 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:51879 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232265AbhEEJui (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 05:50:38 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 1459hJda011331;
+        Wed, 5 May 2021 11:49:24 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=date : from : to :
+ subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=selector1; bh=U1j+kkMEVDtIpXFolKJBxuRWb0u7O4P5oXrM2MRHZkY=;
+ b=6P846THNTdNrs3vLTVDlCsfdrFCHEP1i6pdMBz1Rre5lvSFdfSMss/sTLosSLtf1LF4L
+ yZ/Px3dmz19RCwhw4ucxDkFMR6kNA2qzdEYeX3jPE/tXWbccABFzXnALHjl6oQsdcqkS
+ LF9jTLzk4MtYKjz+Sp6HnpONNmKgv4pV3QPP3H/6uHvdFjoHKz258/+MRsDsUJn8SV2V
+ WkJUdVz2u5Ry/KQ2YcsezEpvTSsB1msBIXr/jwkO6Ei/HUipy9/R9FbiKjgJnZjpp/TK
+ QlgrKacRR1P1Z1BybImQnBxSdC5LFTsUlmt7MTv++MAZIOnIRAfWXfAccjcl1NmlxoPf Uw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 38bea3u91e-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 05 May 2021 11:49:24 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 49317100034;
+        Wed,  5 May 2021 11:49:22 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 28B442199A9;
+        Wed,  5 May 2021 11:49:22 +0200 (CEST)
+Received: from gnbcxd0016.gnb.st.com (10.75.127.51) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 5 May
+ 2021 11:49:21 +0200
+Date:   Wed, 5 May 2021 11:49:16 +0200
+From:   Alain Volmat <alain.volmat@foss.st.com>
+To:     Wolfram Sang <wsa@kernel.org>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <pierre-yves.mordret@foss.st.com>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <fabrice.gasnier@foss.st.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: i2c: stm32f7: add st,smbus-alert
+ binding for SMBus Alert
+Message-ID: <20210505094916.GA27818@gnbcxd0016.gnb.st.com>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>, robh+dt@kernel.org,
+        mark.rutland@arm.com, pierre-yves.mordret@foss.st.com,
+        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        fabrice.gasnier@foss.st.com
+References: <1616998145-28278-1-git-send-email-alain.volmat@foss.st.com>
+ <1616998145-28278-2-git-send-email-alain.volmat@foss.st.com>
+ <20210504195348.GB1783@kunai>
 MIME-Version: 1.0
-References: <20210429062130.29403-1-dqfext@gmail.com> <20210429.170815.956010543291313915.davem@davemloft.net>
- <20210430023839.246447-1-dqfext@gmail.com> <YIv28APpOP9tnuO+@lunn.ch>
- <trinity-843c99ce-952a-434e-95e4-4ece3ba6b9bd-1619786236765@3c-app-gmx-bap03>
- <YIv7w8Wy81fmU5A+@lunn.ch> <trinity-611ff023-c337-4148-a215-98fd5604eac2-1619787382934@3c-app-gmx-bap03>
- <YIwCliT5NZT713WD@lunn.ch> <trinity-c45bbeec-5b7c-43a2-8e86-7cb22ad61558-1619794787680@3c-app-gmx-bap03>
- <YIwxpYD1jnFMPQz+@lunn.ch> <fc962daf8b7babc22b043b2b0878a206780b55f3.camel@mediatek.com>
-In-Reply-To: <fc962daf8b7babc22b043b2b0878a206780b55f3.camel@mediatek.com>
-From:   DENG Qingfang <dqfext@gmail.com>
-Date:   Wed, 5 May 2021 17:43:21 +0800
-Message-ID: <CALW65ja5mRPoNM2EZsONMh8Kda5OgQg79R=Xp71CaQcp4cprnQ@mail.gmail.com>
-Subject: Re: Re: Re: Re: [PATCH net-next 0/4] MT7530 interrupt support
-To:     Landen Chao <landen.chao@mediatek.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        David Miller <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Russell King - ARM Linux admin <linux@armlinux.org.uk>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-staging@lists.linux.dev,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, netdev <netdev@vger.kernel.org>,
-        Weijie Gao <weijie.gao@mediatek.com>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20210504195348.GB1783@kunai>
+X-Disclaimer: ce message est personnel / this message is private
+X-Originating-IP: [10.75.127.51]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-05-05_03:2021-05-05,2021-05-05 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 5, 2021 at 5:31 PM Landen Chao <landen.chao@mediatek.com> wrote:
-> How about using mediatek-ge.ko. 'ge' is the abbreviation of gigabit
-> Ethernet. Most mediatek products use the same gigabit Ethernet phy.
+Hi Wolfram,
 
-Well, MT7620's PHY is FE..
+On Tue, May 04, 2021 at 09:53:48PM +0200, Wolfram Sang wrote:
+> 
+> > +        st,smbus-alert:
+> 
+> After reading the specs again, I think we can make this a generic
+> binding. SMBusAlert is optional. So, we can say it is not covered by the
+> "smbus" binding and needs a seperate one. Makes sense?
 
->
-> Landen
+Indeed, SMBus Spec [1] mentions about SMBALERT#:
+An optional signal that a slave device can use to notify the system
+master that it has information for the master
+
+Hence it does make sense to separate it from the smbus binding. I will
+post a v4 of this serie with the addition of a generic binding 'smbus-alert'.
+
+Alain
+
+[1] http://www.smbus.org/specs/SMBus_3_1_20180319.pdf
+
