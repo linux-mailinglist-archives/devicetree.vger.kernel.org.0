@@ -2,172 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C9FC37487F
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 21:11:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60423374977
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 22:28:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235331AbhEETMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 15:12:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45090 "EHLO
+        id S234440AbhEEU3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 16:29:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235192AbhEETMf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 15:12:35 -0400
-Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D48D2C061761;
-        Wed,  5 May 2021 12:11:37 -0700 (PDT)
-Received: by mail-il1-x131.google.com with SMTP id y10so2719820ilv.0;
-        Wed, 05 May 2021 12:11:37 -0700 (PDT)
+        with ESMTP id S234084AbhEEU3V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 16:29:21 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3A57C061761
+        for <devicetree@vger.kernel.org>; Wed,  5 May 2021 13:28:23 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id l24-20020a7bc4580000b029014ac3b80020so4129940wmi.1
+        for <devicetree@vger.kernel.org>; Wed, 05 May 2021 13:28:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=vZeEXRCd24seoFH7GRFkufDJ4YkQs9v5c3UPLyEGxAo=;
-        b=HMyA15emhA9kvzs6t5n2eHmMr7C1OdaGSA5Am2dCKb8XBeoCB4gi7wkd4d1I+uuWRT
-         lluqGqRc9LJK6nxZNnO8k38P//gAS3PgSSf+SCXyY3+0MraX07A3l3vHx4mOE1qHFz++
-         MLSS4sBgB2fm968szDXV2LvEQxmBVF3nzFbtNA5x8E7Fwoyzui0VPcSACLe+DEVtk61R
-         9HltsY8TzPA61MaelYYORYOYevFJvQpe80wxn07YFXYyh7JX/sC+xt6cIsYSLYd0DtPK
-         VcvxsBCi/E/u/7beL7n0QWrQ+Ns+rqMRKihpj1Bpbiy8yNRVr2oDeZ8h7sC8P6ZtYyvB
-         s5fA==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Yx57mU4aQc2ITOlbPXwjrloHYYT8kysHbI0JwKKxnZY=;
+        b=AUzbJDgtPrlzxA7QPdXC27JKGKfhevz4Jhux8iYpvWnmAlQ6qIEXxoJ4xJ30cgHDTt
+         Uc/888YOgW43DHWzxl1rdVdoiBzP6vdalF550RHG1QRXKjAANYqM/Xt7wo9ma/T4kwPU
+         6kNdPs8z5iabEtHJxQDb8YCil7ip8tq7YV5PxgpjaU6Xw6opTaA1v99BoB4Qz3twVJ9f
+         TpjHwFtZrkZ1vabTYJBZV+w5PDZI6jYU72zxSVis6n7DmXFXxRkNYgjPbKd7YbrG/Fiu
+         GbHouzmxcn4FMtYrtLqf87JiNz3HhMQjHniYZ5W/SvoBEH60Nd9JDtB9dgc7e7+txJBB
+         WfHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=vZeEXRCd24seoFH7GRFkufDJ4YkQs9v5c3UPLyEGxAo=;
-        b=ZAD0UfNVdLKApiCCMB3ComV0lWBj+gv7M8yPCy6OS/Zpi3ZvBTLnbBwnGcRrV6Q9Pk
-         MDMG8v8aYBpeFIp+pPdLEsVxX0134mpP/WbfgnOWEQhhyKMLLHZ1EbwKhFOqQUsah0c4
-         mCLUhCYLfAbK1NYGxe7+F0dJIh7ZLtPAnEkr36Q5hHLKtjHMgTXBan4NhCorRwqKqV1+
-         JR31VMonibLYrqCuxdO4e5/7cKug43Sj2WYMDObs7U4XWtRhjx8rZBgYs24144Wl8bLe
-         BykmiOQZjb8Jx3QpOLTNYG3C7l+eW60UiNI7pR2DQ7HK051fDs2sX9xX2Fc8U8tlaMSl
-         ArWQ==
-X-Gm-Message-State: AOAM530A4i09sFqEQg0VluZ3tHmYU9e/ffac4UC36xkp2ZoJ41U+baYw
-        nQE2rRiMCXnVttb7/DtNX6Y=
-X-Google-Smtp-Source: ABdhPJyQhdUZ1ymtZ1XredlqSqWvf2hevJrzKx8j9JQpzkIUnde16I8WrwmXDbM+tTvXyYoNbz/+zQ==
-X-Received: by 2002:a92:d242:: with SMTP id v2mr422947ilg.135.1620241897076;
-        Wed, 05 May 2021 12:11:37 -0700 (PDT)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:c971:6623:b9e9:f40d])
-        by smtp.gmail.com with ESMTPSA id q11sm140037ile.56.2021.05.05.12.11.36
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Yx57mU4aQc2ITOlbPXwjrloHYYT8kysHbI0JwKKxnZY=;
+        b=Ow4o7YXkHy/B/SIZ8LDpItA7MDNHxR3vYyhIxyx/RP/kdGSjvI92JwVlqrWj9tQBlK
+         yrUjCIqbCUes3Tn5swNEGbssk56eJfHCdhKbq2sKMpXy9SqJt/8DFt/+gVXf0fXaPSOM
+         X+gn2QhMCVZpWKyY4xADQzGfcVJp8wf+Ug0PWEHSTFU3F7L6enkoqGwKejWFUlQvUirf
+         vDMjOiFM77/PKLF2X9OIlC0P33BDwKArvynDb9lUFVT1NX/g8C8i7OH4Nf2d7n1sMTMC
+         7Q0c096dftvTFBr5K4vRzNX6rypP1sNstLV1M98ESUeleB2oFZkca+u4XMFKFSR/M/dM
+         Gjuw==
+X-Gm-Message-State: AOAM533xiwC8M1Y/8z7B9gYXcgl6HetMdrarvOV5WJiB38IKWW2ZTpzS
+        ImL60ZpNNn00h67ey+BkSJPYng==
+X-Google-Smtp-Source: ABdhPJzd9O9OZv0JGCmTqFcm74RTrrRCeFAHixyv7Gv+80vKt5uI49Ph8bX6vnJNdFFd93xoKs6F6A==
+X-Received: by 2002:a1c:e345:: with SMTP id a66mr11648751wmh.109.1620246502622;
+        Wed, 05 May 2021 13:28:22 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id q20sm8713972wmq.2.2021.05.05.13.28.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 May 2021 12:11:36 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: imx8mn-beacon: Enable more audio
-Date:   Wed,  5 May 2021 14:11:25 -0500
-Message-Id: <20210505191126.1239309-2-aford173@gmail.com>
+        Wed, 05 May 2021 13:28:22 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH v5] dt-bindings: net: Convert mdio-gpio to yaml
+Date:   Wed,  5 May 2021 20:28:15 +0000
+Message-Id: <20210505202815.2665920-1-clabbe@baylibre.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210505191126.1239309-1-aford173@gmail.com>
-References: <20210505191126.1239309-1-aford173@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are audio ports for SPDIF and MICFIL on the baseboard.
-Enable them.
+Converts net/mdio-gpio.txt to yaml
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+Changes since v1:
+- fixes yamllint warning about indent
+- added maxItems 3
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi
-index 376ca8ff7213..cc31f2c5b4bf 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi
-@@ -76,6 +76,20 @@ sound {
- 			"AMIC", "MICBIAS",
- 			"IN3R", "AMIC";
- 	};
+Changes since v2:
+- fixed example (gpios need 2 entries)
+
+Changes since v3:
+- fixed gpios description
+- added additionalProperties/type: object
+
+Changes since v4:
+- fixed maintainers list
+
+ .../devicetree/bindings/net/mdio-gpio.txt     | 27 ---------
+ .../devicetree/bindings/net/mdio-gpio.yaml    | 58 +++++++++++++++++++
+ 2 files changed, 58 insertions(+), 27 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/mdio-gpio.txt
+ create mode 100644 Documentation/devicetree/bindings/net/mdio-gpio.yaml
+
+diff --git a/Documentation/devicetree/bindings/net/mdio-gpio.txt b/Documentation/devicetree/bindings/net/mdio-gpio.txt
+deleted file mode 100644
+index 4d91a36c5cf5..000000000000
+--- a/Documentation/devicetree/bindings/net/mdio-gpio.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-MDIO on GPIOs
+-
+-Currently defined compatibles:
+-- virtual,gpio-mdio
+-- microchip,mdio-smi0
+-
+-MDC and MDIO lines connected to GPIO controllers are listed in the
+-gpios property as described in section VIII.1 in the following order:
+-
+-MDC, MDIO.
+-
+-Note: Each gpio-mdio bus should have an alias correctly numbered in "aliases"
+-node.
+-
+-Example:
+-
+-aliases {
+-	mdio-gpio0 = &mdio0;
+-};
+-
+-mdio0: mdio {
+-	compatible = "virtual,mdio-gpio";
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	gpios = <&qe_pio_a 11
+-		 &qe_pio_c 6>;
+-};
+diff --git a/Documentation/devicetree/bindings/net/mdio-gpio.yaml b/Documentation/devicetree/bindings/net/mdio-gpio.yaml
+new file mode 100644
+index 000000000000..7c15a508af5b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/mdio-gpio.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/mdio-gpio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	sound-micfil {
-+		compatible = "fsl,imx-audio-micfil";
-+		model = "imx-audio-micfil";
-+		cpu-dai = <&micfil>;
-+	};
++title: MDIO on GPIOs
 +
-+	sound-spdif {
-+		compatible = "fsl,imx-audio-spdif";
-+		model = "imx-spdif";
-+		spdif-controller = <&spdif1>;
-+		spdif-out;
-+		spdif-in;
-+	};
- };
- 
- &ecspi2 {
-@@ -151,6 +165,15 @@ &easrc {
- 	status = "okay";
- };
- 
-+&micfil {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_micfil>;
-+	assigned-clocks = <&clk IMX8MN_CLK_PDM>;
-+	assigned-clock-parents = <&clk IMX8MN_AUDIO_PLL1_OUT>;
-+	assigned-clock-rates = <196608000>;
-+	status = "okay";
-+};
++maintainers:
++  - Andrew Lunn <andrew@lunn.ch>
++  - Heiner Kallweit <hkallweit1@gmail.com>
++  - Russell King <linux@armlinux.org.uk>
 +
- &sai3 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_sai3>;
-@@ -165,6 +188,23 @@ &snvs_pwrkey {
- 	status = "okay";
- };
- 
-+&spdif1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spdif1>;
-+	assigned-clocks = <&clk IMX8MN_CLK_SPDIF1>;
-+	assigned-clock-parents = <&clk IMX8MN_AUDIO_PLL1_OUT>;
-+	assigned-clock-rates = <24576000>;
-+	clocks = <&clk IMX8MN_CLK_AUDIO_AHB>, <&clk IMX8MN_CLK_24M>,
-+		<&clk IMX8MN_CLK_SPDIF1>, <&clk IMX8MN_CLK_DUMMY>,
-+		<&clk IMX8MN_CLK_DUMMY>, <&clk IMX8MN_CLK_DUMMY>,
-+		<&clk IMX8MN_CLK_AUDIO_AHB>, <&clk IMX8MN_CLK_DUMMY>,
-+		<&clk IMX8MN_CLK_DUMMY>, <&clk IMX8MN_CLK_DUMMY>,
-+		<&clk IMX8MN_AUDIO_PLL1_OUT>, <&clk IMX8MN_AUDIO_PLL2_OUT>;
-+	clock-names = "core", "rxtx0", "rxtx1", "rxtx2", "rxtx3",
-+		"rxtx4", "rxtx5", "rxtx6", "rxtx7", "spba", "pll8k", "pll11k";
-+	status = "okay";
-+};
++allOf:
++  - $ref: "mdio.yaml#"
 +
- &uart2 { /* console */
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart2>;
-@@ -226,6 +266,13 @@ MX8MN_IOMUXC_SAI3_RXFS_GPIO4_IO28	0x41
- 		>;
- 	};
- 
-+	pinctrl_micfil: micfilgrp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_SAI5_RXC_PDM_CLK		0xd6
-+			MX8MN_IOMUXC_SAI5_RXD0_PDM_BIT_STREAM0	0xd6
-+		>;
-+	};
++properties:
++  compatible:
++    enum:
++      - virtual,mdio-gpio
++      - microchip,mdio-smi0
 +
- 	pinctrl_pcal6414: pcal6414-gpiogrp {
- 		fsl,pins = <
- 			MX8MN_IOMUXC_SAI2_MCLK_GPIO4_IO27		0x19
-@@ -248,6 +295,14 @@ MX8MN_IOMUXC_SAI3_RXD_SAI3_RX_DATA0	0xd6
- 		>;
- 	};
- 
-+	pinctrl_spdif1: spdif1grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_SPDIF_TX_SPDIF1_OUT	0xd6
-+			MX8MN_IOMUXC_SPDIF_RX_SPDIF1_IN		0xd6
-+			MX8MN_IOMUXC_SPDIF_EXT_CLK_SPDIF1_EXT_CLK	0xd6
-+		>;
-+	};
++  "#address-cells":
++    const: 1
 +
- 	pinctrl_uart2: uart2grp {
- 		fsl,pins = <
- 			MX8MN_IOMUXC_UART2_RXD_UART2_DCE_RX	0x140
++  "#size-cells":
++    const: 0
++
++  gpios:
++    minItems: 2
++    maxItems: 3
++    items:
++      - description: MDC
++      - description: MDIO
++      - description: MDO
++
++#Note: Each gpio-mdio bus should have an alias correctly numbered in "aliases"
++#node.
++additionalProperties:
++  type: object
++
++examples:
++  - |
++    aliases {
++        mdio-gpio0 = &mdio0;
++    };
++
++    mdio0: mdio {
++      compatible = "virtual,mdio-gpio";
++      #address-cells = <1>;
++      #size-cells = <0>;
++      gpios = <&qe_pio_a 11>,
++              <&qe_pio_c 6>;
++      ethphy0: ethernet-phy@0 {
++        reg = <0>;
++      };
++    };
++...
 -- 
-2.25.1
+2.26.3
 
