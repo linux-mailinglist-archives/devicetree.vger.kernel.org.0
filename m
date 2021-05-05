@@ -2,259 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88B5837384B
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 12:03:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 333E737385B
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 12:09:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232397AbhEEKER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 06:04:17 -0400
-Received: from phobos.denx.de ([85.214.62.61]:52940 "EHLO phobos.denx.de"
+        id S232013AbhEEKKd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 06:10:33 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:13771 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231750AbhEEKEQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 May 2021 06:04:16 -0400
-Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        id S231750AbhEEKKc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 May 2021 06:10:32 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1620209376; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=/pFeOOQka32uiKGUO61/tAA85g3Y2JLsNoKpfoqaSaM=;
+ b=ev4kXKkxDEXxGwcb+6aWp7Rig6L5p/g7FR9BPmB0DFIL1Pz6rqHqqWzT3oo+U0/fYHRM7A1C
+ VS4WUwQb9lqIdAFVNUljIa0+vuWtdu/xzWfe8ilbo6QYcFhJHRglc0a4jFR3ko/3hqdlmjYh
+ 5tmsntAH16Jz+cEof4HcTOnkr50=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 60926ece79b6f9e57b0223d0 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 05 May 2021 10:09:18
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 3F97DC43460; Wed,  5 May 2021 10:09:18 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 5C9EA82A89;
-        Wed,  5 May 2021 12:03:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1620208997;
-        bh=3zRlsEWjrcNIuCNfYrV3hRYLZJizMi4v1CIgzLcRvCQ=;
-        h=From:To:Cc:Subject:Date:From;
-        b=zsjcHleDFWwFOT86cpA1b8sWDgwW5IFRvUISxe+2xWSJQ5qq2ceJGXdc8ovg0WhA6
-         Lqx2rwll+mzdH2srWpDFtJs/L9+xssscBzh1umo7ZdKPnZvSkoILzqC+fXb6SC8WxE
-         iRqFXX3mGgRvIDzcTTejIProVxz8aO58fNezvZVE5ljxgaGiVJybMjURBglyF9xRV/
-         Mre0r3WRaNsV0BWHhYzw4/uOPlHx/Q5NPHhia8fN805CLWNg5tDZqAvLNnM5BOAQ93
-         aMAtH0mSFUB3VucPhdJwVcSGQvRgxOyrfkJ9J46hYSmHy3i8QP4rWd4Fs/blH8F1C4
-         +ZWAC8mRj0NMA==
-From:   Marek Vasut <marex@denx.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     ch@denx.de, Marek Vasut <marex@denx.de>,
-        Douglas Anderson <dianders@chromium.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Stephen Boyd <swboyd@chromium.org>, devicetree@vger.kernel.org
-Subject: [PATCH V3 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add TI SN65DSI83 and SN65DSI84 bindings
-Date:   Wed,  5 May 2021 12:02:17 +0200
-Message-Id: <20210505100218.108024-1-marex@denx.de>
-X-Mailer: git-send-email 2.30.2
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 66FFDC433F1;
+        Wed,  5 May 2021 10:09:17 +0000 (UTC)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.102.4 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 05 May 2021 15:39:17 +0530
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     bjorn.andersson@linaro.org, viresh.kumar@linaro.org,
+        swboyd@chromium.org, agross@kernel.org, robh+dt@kernel.org,
+        rjw@rjwysocki.net, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, dianders@chromium.org, mka@chromium.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc7280: Add cpu OPP tables
+In-Reply-To: <20210505084908.3lynedmblmqagr72@bogus>
+References: <1619792901-32701-1-git-send-email-sibis@codeaurora.org>
+ <1619792901-32701-3-git-send-email-sibis@codeaurora.org>
+ <20210504144215.svmrmmsy4jtoixzv@bogus>
+ <1fc9fb8d9a94909ff9b7b76d598bd266@codeaurora.org>
+ <20210505084908.3lynedmblmqagr72@bogus>
+Message-ID: <5cc53032c1f9f4e0170559c006133f47@codeaurora.org>
+X-Sender: sibis@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DT binding document for TI SN65DSI83 and SN65DSI84 DSI to LVDS bridge.
+On 2021-05-05 14:19, Sudeep Holla wrote:
+> Hi Sibi,
+> 
+> On Tue, May 04, 2021 at 11:55:10PM +0530, Sibi Sankar wrote:
+>> Hey Sudeep,
+>> 
+>> Thanks for the review!
+>> 
+>> On 2021-05-04 20:12, Sudeep Holla wrote:
+> 
+> [...]
+> 
+>> >
+>> > NACK, this breaks if there is a mismatch from what is read from the
+>> > hardware and what is presented in this table above. Either add it from the
+>> > some bootloader or other boot code to this table reading from the
+>> > hardware/firmware or find a way to link them without this.
+>> >
+>> > Sorry I had warned long back about this when such links were discussed
+>> > as part of interconnect binding.
+>> 
+>> Not sure why this warrants a NACK, as this was consensus for mapping 
+>> cpu
+>> freq to DDR/L3 bandwidth votes. (We use the same solution on SDM845 
+>> and
+>> SC7180). The opp tables are optional and when specified puts in votes 
+>> for
+>> DDR/L3. In the future the table can be safely dropped when more useful
+>> devfreq governors are upstreamed.
+>> cpufreq: qcom: Don't add frequencies without an OPP
+> 
+> (You can always add commit sha to make it easy to search)
+> 
+> But I am not sure how this is related to the above commit anyways.
+> 
+>> 
+>> I guess your main concern for breakage is ^^ commit? The original 
+>> design is
+>> to list a super set of frequencies supported by all variants of the 
+>> SoC
+>> along with the required DDR/L3 bandwidth values. When we run into
+>> non-documented frequency we just wouldn't put in bw votes for it which
+>> should be fine since the entire opp_table is optional. If this is the 
+>> reason
+>> for the NACK I can try get it reverted with Matthias's ack.
+> 
+> No my main concern is this platform uses "qcom-cpufreq-hw" driver and 
+> the
+> fact that the OPPs are retrieved from the hardware lookup table 
+> invalidates
+> whatever we have in DT. In short it will be junk and becomes obsolete.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Douglas Anderson <dianders@chromium.org>
-Cc: Jagan Teki <jagan@amarulasolutions.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: Stephen Boyd <swboyd@chromium.org>
-Cc: devicetree@vger.kernel.org
-To: dri-devel@lists.freedesktop.org
----
-V2: Add compatible string for SN65DSI84, since this is now tested on it
-V3: - Add 0x2c as valid i2c address
-    - Switch to schemas/graph.yaml
-    - Constraint data-lanes to <1>, <1 2>, <1 2 3>, <1 2 3 4> only
-    - Indent example by 4 spaces
-    - Handle dual-link LVDS with two ports and describe the second DSI
-      channel-B port as well. Based on the register defaults of DSI83
-      and DSI84, it is likely that the LVDS-channel-B and DSI-channel-B
-      hardware is present in all the chips, so just reuse port@0 and 2
-      for DSI83, port@0,2,3 for DSI84 and all of 0,1,2,3 for DSI85 when
-      that is supported
----
- .../bindings/display/bridge/ti,sn65dsi83.yaml | 171 ++++++++++++++++++
- 1 file changed, 171 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+The table provides mapping to bandwidths
+which aren't available in the firmware
+though. In short we do have to store the
+mapping somewhere i.e. a mapping that
+lists all possible frequencies to its
+bandwidth requirements needs to be present
+and using a opp table with the interconnect
+bw bindings was the consensus reached.
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-new file mode 100644
-index 000000000000..4e7df92446a9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-@@ -0,0 +1,171 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/ti,sn65dsi83.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: SN65DSI83 and SN65DSI84 DSI to LVDS bridge chip
-+
-+maintainers:
-+  - Marek Vasut <marex@denx.de>
-+
-+description: |
-+  Texas Instruments SN65DSI83 1x Single-link MIPI DSI
-+  to 1x Single-link LVDS
-+  https://www.ti.com/lit/gpn/sn65dsi83
-+  Texas Instruments SN65DSI84 1x Single-link MIPI DSI
-+  to 1x Dual-link or 2x Single-link LVDS
-+  https://www.ti.com/lit/gpn/sn65dsi84
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: ti,sn65dsi83
-+      - const: ti,sn65dsi84
-+
-+  reg:
-+    oneOf:
-+      - const: 0x2c
-+      - const: 0x2d
-+
-+  enable-gpios:
-+    maxItems: 1
-+    description: GPIO specifier for bridge_en pin (active high).
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Video port for MIPI DSI Channel-A input
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/graph.yaml#/$defs/endpoint-base
-+            unevaluatedProperties: false
-+
-+            properties:
-+              data-lanes:
-+                description: array of physical DSI data lane indexes.
-+                minItems: 1
-+                maxItems: 4
-+                items:
-+                  - const: 1
-+                  - const: 2
-+                  - const: 3
-+                  - const: 4
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Video port for MIPI DSI Channel-B input
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/graph.yaml#/$defs/endpoint-base
-+            unevaluatedProperties: false
-+
-+            properties:
-+              data-lanes:
-+                description: array of physical DSI data lane indexes.
-+                minItems: 1
-+                maxItems: 4
-+                items:
-+                  - const: 1
-+                  - const: 2
-+                  - const: 3
-+                  - const: 4
-+
-+      port@2:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Video port for LVDS Channel-A output (panel or bridge).
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/graph.yaml#/$defs/endpoint-base
-+            description: LVDS Channel-A output endpoint
-+            unevaluatedProperties: false
-+
-+      port@3:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Video port for LVDS Channel-A output (panel or bridge).
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/graph.yaml#/$defs/endpoint-base
-+            description: LVDS Channel-B output endpoint
-+            unevaluatedProperties: false
-+
-+    required:
-+      - port@0
-+      - port@2
-+
-+required:
-+  - compatible
-+  - reg
-+  - enable-gpios
-+  - ports
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: ti,sn65dsi83
-+    then:
-+      properties:
-+        ports:
-+          properties:
-+            port@1: false
-+            port@3: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: ti,sn65dsi84
-+    then:
-+      properties:
-+        ports:
-+          properties:
-+            port@1: false
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        bridge@2d {
-+            compatible = "ti,sn65dsi83";
-+            reg = <0x2d>;
-+
-+            enable-gpios = <&gpio2 1 GPIO_ACTIVE_HIGH>;
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    reg = <0>;
-+
-+                    endpoint {
-+                        remote-endpoint = <&dsi0_out>;
-+                        data-lanes = <1 2 3 4>;
-+                    };
-+                };
-+
-+                port@2 {
-+                    reg = <2>;
-+
-+                    endpoint {
-+                        remote-endpoint = <&panel_in_lvds>;
-+                    };
-+                };
-+            };
-+        };
-+    };
+Given that a duplicate mapping that lists
+all possible frequencies to bw is inevitable
+and Qualcomm has a way of listing all the
+supported frequencies for the SoC, I feel
+that dt breakage in the future should be
+a non-concern. Not sure why you call it
+junk since it solves the perf/power
+requirements on SDM845/SC7180 SoCs. When
+it becomes obsolete it would mean that
+they are better devfreq governors available
+upstream and that's a good reason for the
+opp tables to go away.
+
+> So what I suggested before is still valid. You simply can't have static
+> OPP tables in the DT for this platform. Do get some boot code to fetch 
+> the
+> same from the h/w LUT and patch to the DT or figure out any other way 
+> to
+> manage dynamically.
+
+moving the logic to boot loader doesn't
+magically fix your concerns though (since
+it would also need a superset of available
+frequencies). It will suffer from the same
+problems with an additional dependency on
+firmware propagation in case of breakages
+which is something you can avoid for the
+simple cpu based scaling solution.
+
+> 
+> So NACK still stands for static addition of OPPs to the DT as in this 
+> patch.
+
+I'll let Viresh take the call since this
+solution is already used on older SoCs.
+
+> 
+> --
+> Regards,
+> Sudeep
+
 -- 
-2.30.2
-
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project.
