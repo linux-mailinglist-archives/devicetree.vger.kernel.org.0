@@ -2,110 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22AA33733B7
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 04:14:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D66E2373467
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 06:27:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231479AbhEECOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 22:14:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38726 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231151AbhEECOu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 May 2021 22:14:50 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2370E613CB;
-        Wed,  5 May 2021 02:13:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620180835;
-        bh=MS/d4ZN0JnYDku5sm2cm+kvbugSMciKF/8ZcDFMH82Y=;
-        h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-        b=ZTnAKba9HzNnwk/31MfKNoaJVhv9kXxI+4ipPLwhN65rWvH7x8Tbb3SOk1Q6wSvn5
-         ApTZEuZ2feffM3TKjYyjSQxuf/cXBDTHvnCMO5XxLfVhgxRM1yBN1Dp+XbIXdkMlMW
-         l+Re2zb8TtcfIks0DxhmwlGvBYHpmI8rBVhDa4I24kXTRX1vZTHEXJUcnK3+AEbUb3
-         bk5PW/PZfnc7moTPKZz8ePuR4jGV5gBf2yN2GvUbqaea92sNfDc9LaDI1C8dIyWOs2
-         G5w+cdq0CGEbxGwUlN10Fmtxzgx/1sB9bmnAfaIemts00rhcBh5/NVkmsxyjVOf3/Z
-         4ShMLcH6t2olA==
-Received: by mail-lf1-f51.google.com with SMTP id 124so369250lff.5;
-        Tue, 04 May 2021 19:13:55 -0700 (PDT)
-X-Gm-Message-State: AOAM531iZJ45udqw+dce+kVu7ImvFt/cZBW80hSgbpslfKbeQ9/coUPP
-        zAuLrtvB+QrzNpjKIC986uV8QZZIccYW9jR5EIw=
-X-Google-Smtp-Source: ABdhPJw70gAAhcuwtjzZMCSy1Meu3USnDN3fd80aidrCUZR9Mm/KKzuSfSLYwDIbq80gQA55kyu++poc26ICP6AbXD8=
-X-Received: by 2002:ac2:5f72:: with SMTP id c18mr66079lfc.233.1620180833466;
- Tue, 04 May 2021 19:13:53 -0700 (PDT)
+        id S230515AbhEEE2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 00:28:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45916 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231245AbhEEE22 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 00:28:28 -0400
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AC3DC061761
+        for <devicetree@vger.kernel.org>; Tue,  4 May 2021 21:26:44 -0700 (PDT)
+Received: by mail-qk1-x731.google.com with SMTP id l129so407448qke.8
+        for <devicetree@vger.kernel.org>; Tue, 04 May 2021 21:26:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=MWSpjxBHV1vRQCEcIIgUFYsW0arewhxrx2qqTW/rPlY=;
+        b=eG4DO5aZCjdAptZWJyANSIWrnjQfoI+YnXphlXLmQkVHW2OlYy15msNEav3uhLMHv+
+         9MC/49Ilp4ZUGHTZ91k1Ztq8VXZ2uQSVkHGeyblBNhtAfJ/YyYKFdWPXBjBocTAWnRIM
+         xNsyfLfBo83J+sPbjEojQCHGGi8NYXE4aDpKBLoaqOjgQDifZaLk5OyDBgE2i0d3vGh8
+         SK9AnSO5usHR4SWn950rRy8EzLZraCq90VeDCdzstYUKx4Yh0W1qka2UuaQlmaLu7agB
+         IvNIuhwuWm/QYlxp+BzrW6JNQs30u2smfSWsYf4m6c8GnnrGfiAFwEHjRcHArXFI6tsu
+         XDTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=MWSpjxBHV1vRQCEcIIgUFYsW0arewhxrx2qqTW/rPlY=;
+        b=s+xmPwfmzHQrqqfoqKsIBffIl+T+JDPjNUtYotr2E092ZpbI+v0BI0zrr7ejdimO3s
+         nENaUFwQ8YXTqZUmT6o6o5NG1sdNr3STGptg0irMl/WZwn2Jby3SQSTjH1zMRG7kcwji
+         raivzonI2SLWQiI1jReMPTr+HwTX2JthZRH4kOBjYpWs91cszukKgaTNHKwOjURUpHcT
+         ziDRNL5RICXPq306u6l4au9n3ZiGAaO59IPimzNuoLtU/xWHTO2RjsaBJWiNzJiHb8fN
+         AZ5kCWgRiK8ixdbYjut2KhvLdGksuPV4eBMDclem5n509eWqgM6CSveMbOG8dB3JyCPe
+         10Hw==
+X-Gm-Message-State: AOAM531+OlHhV83iH/HjHXcm0bzja4zBkFvWXSlp2CXl+IvCeWXVk0ca
+        n7kPGJAjw/VUON1nq73Hwff5pEQ6g/heCyvuDBRLBg==
+X-Google-Smtp-Source: ABdhPJyyjim3sI4ReEhGXSHiHPSliwht/DIqCZWGZeFpAExlyKtWwB5fVEGkkFBLw60H7cFK5hOmWGBArsLX6P7qFAk=
+X-Received: by 2002:a05:620a:29c4:: with SMTP id s4mr25568588qkp.401.1620188803215;
+ Tue, 04 May 2021 21:26:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210504041659.22495-1-wens@kernel.org> <CAFBinCBZa-OjjLE0oaNQzAL+tGTkiC_Kf+iHR1H3K5-b+uFK0w@mail.gmail.com>
-In-Reply-To: <CAFBinCBZa-OjjLE0oaNQzAL+tGTkiC_Kf+iHR1H3K5-b+uFK0w@mail.gmail.com>
-Reply-To: wens@kernel.org
-From:   Chen-Yu Tsai <wens@kernel.org>
-Date:   Wed, 5 May 2021 10:13:39 +0800
-X-Gmail-Original-Message-ID: <CAGb2v670njcGHvcYCVARgVMrvK5gx=Ua-eew=Gvhxo4bYk8zjg@mail.gmail.com>
-Message-ID: <CAGb2v670njcGHvcYCVARgVMrvK5gx=Ua-eew=Gvhxo4bYk8zjg@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: meson-gxbb: nanopi-k2: Enable Bluetooth
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20210504105940.100004-6-greentime.hu@sifive.com> <20210504134632.GA1088165@bjorn-Precision-5520>
+In-Reply-To: <20210504134632.GA1088165@bjorn-Precision-5520>
+From:   Greentime Hu <greentime.hu@sifive.com>
+Date:   Wed, 5 May 2021 12:26:31 +0800
+Message-ID: <CAHCEehL21cFLp+JWMhKP8rAVtGunMv2fmfo6C6tbTGpgL9q2RA@mail.gmail.com>
+Subject: Re: [PATCH v6 5/6] PCI: fu740: Add SiFive FU740 PCIe host controller driver
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>, hes@sifive.com,
+        Erik Danie <erik.danie@sifive.com>,
+        Zong Li <zong.li@sifive.com>,
+        Bjorn Helgaas <bhelgaas@google.com>, robh+dt@kernel.org,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>, alex.dewar90@gmail.com,
+        khilman@baylibre.com, hayashi.kunihiko@socionext.com,
+        vidyas@nvidia.com, jh80.chung@samsung.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 5, 2021 at 4:52 AM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
+Bjorn Helgaas <helgaas@kernel.org> =E6=96=BC 2021=E5=B9=B45=E6=9C=884=E6=97=
+=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=889:46=E5=AF=AB=E9=81=93=EF=BC=9A
 >
-> Hi,
->
-> On Tue, May 4, 2021 at 6:17 AM Chen-Yu Tsai <wens@kernel.org> wrote:
+> On Tue, May 04, 2021 at 06:59:39PM +0800, Greentime Hu wrote:
+> > From: Paul Walmsley <paul.walmsley@sifive.com>
 > >
-> > From: Chen-Yu Tsai <wens@csie.org>
+> > Add driver for the SiFive FU740 PCIe host controller.
+> > This controller is based on the DesignWare PCIe core.
 > >
-> > The NanoPi K2 has a AP6212 WiFi+BT combo module. The WiFi portion is
-> > already enabled. The BT part is connected via UART and I2S.
-> >
-> > Enable the UART and add a device node describing the Bluetooth portion
-> > of the module.
-> >
-> > Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+> > Signed-off-by: Paul Walmsley <paul.walmsley@sifive.com>
+> > Co-developed-by: Henry Styles <hes@sifive.com>
+> > Signed-off-by: Henry Styles <hes@sifive.com>
+> > Co-developed-by: Erik Danie <erik.danie@sifive.com>
+> > Signed-off-by: Erik Danie <erik.danie@sifive.com>
+> > Co-developed-by: Greentime Hu <greentime.hu@sifive.com>
+> > Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
 > > ---
-> > Changes since v1:
-> >   - added uart-has-rtscts property
-> >   - added alias for uart_A
+> >  drivers/pci/controller/dwc/Kconfig      |  10 +
+> >  drivers/pci/controller/dwc/Makefile     |   1 +
+> >  drivers/pci/controller/dwc/pcie-fu740.c | 309 ++++++++++++++++++++++++
+> >  3 files changed, 320 insertions(+)
+> >  create mode 100644 drivers/pci/controller/dwc/pcie-fu740.c
 > >
-> > Hi Neil, Martin,
+> > diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controlle=
+r/dwc/Kconfig
+> > index 22c5529e9a65..255d43b1661b 100644
+> > --- a/drivers/pci/controller/dwc/Kconfig
+> > +++ b/drivers/pci/controller/dwc/Kconfig
+> > @@ -318,4 +318,14 @@ config PCIE_AL
+> >         required only for DT-based platforms. ACPI platforms with the
+> >         Annapurna Labs PCIe controller don't need to enable this.
 > >
-> > I dropped your review-bys since I added the UART alias and I'm not sure
-> > what the policy for those are.
-> >
-> > ChenYu
-> > ---
-> >  .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts      | 14 +++++++++++++-
-> >  1 file changed, 13 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-> > index 7273eed5292c..f017a263784f 100644
-> > --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-> > +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-> > @@ -15,6 +15,7 @@ / {
-> >
-> >         aliases {
-> >                 serial0 = &uart_AO;
-> > +               serial1 = &uart_A;
-> this should not be needed anymore since
-> a26988e8fef4b258d1b771e0f4b2e3b67cb2e044 ("tty: serial: meson: if no
-> alias specified use an available id")
+> > +config PCIE_FU740
+> > +     bool "SiFive FU740 PCIe host controller"
+> > +     depends on PCI_MSI_IRQ_DOMAIN
+> > +     depends on SOC_SIFIVE || COMPILE_TEST
+> > +     depends on GPIOLIB
 >
-> IIRC for "newly added" .dts we are only adding the alias for anything
-> that shows up in /dev/ for the user
-> meson-khadas-vim3.dtsi for example is not adding an alias for uart_A
-> (also used for Bluetooth)
+> 1) I'm a little disappointed that I reported the build issue 6 days
+>    ago when we were already in the merge window, and it's taken until
+>    now to make some progress.
+>
+> 2) I would prefer not to depend on GPIOLIB because it reduces
+>    compile-test coverage.  For example, the x86_64 defconfig does not
+>    enable GPIOLIB, so one must manually enable it to even be able to
+>    enable PCIE_FU740.
+>
+>    Many other PCI controller drivers use GPIO, but no others depend on
+>    GPIOLIB, so I infer that in the !GPIOLIB case, gpio/consumer.h
+>    provides the stubs required for compile testing.
+>
+>    We could have a conversation about whether it's better to
+>    explicitly depend on GPIOLIB here, or whether building a working
+>    FU740 driver implicitly depends on GPIOLIB being selected
+>    elsewhere.  That implicit dependency *is* a little obscure, but I
+>    think that's what other drivers currently do, and I'd like to do
+>    this consistently unless there's a good reason otherwise.
+>
+>    Here are some examples of other drivers:
+>
+>    dwc/pci-dra7xx.c:
+>      config PCI_DRA7XX_HOST
+>        depends on SOC_DRA7XX || COMPILE_TEST
+>
+>      config SOC_DRA7XX
+>        select ARCH_OMAP2PLUS
+>
+>      config ARCH_OMAP2PLUS
+>        select GPIOLIB
+>
+>    dwc/pci-meson.c:
+>      config PCI_MESON
+>        # doesn't, but probably *should* depend on "ARCH_MESON || COMPILE_=
+TEST"
+>
+>      menuconfig ARCH_MESON
+>        select GPIOLIB
+>
+>    dwc/pcie-qcom.c:
+>      config PCIE_QCOM
+>        depends on OF && (ARCH_QCOM || COMPILE_TEST)
+>
+>      config ARCH_QCOM
+>        select GPIOLIB
+>
+>    pcie-rockchip.c:
+>      config PCIE_ROCKCHIP_HOST
+>        depends on ARCH_ROCKCHIP || COMPILE_TEST
+>
+>      config ARCH_ROCKCHIP
+>        select GPIOLIB
+>
+> > +     select PCIE_DW_HOST
+> > +     help
+> > +       Say Y here if you want PCIe controller support for the SiFive
+> > +       FU740.
+> > +
+> >  endmenu
 
-I see. So if some user had a customized .dts enabling more UARTs, they
-would probably have the user visible ones aliased, and the Bluetooth
-one would be in the reserved range regardless.
+Hi,
 
-I'll drop the extra alias then.
+Sorry for late to debug this case. I was working on other works and
+just missed the email.
+How about this?
 
-Thanks
-ChenYu
+diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+index e1b2690b6e45..66f57f2db49d 100644
+--- a/arch/riscv/Kconfig.socs
++++ b/arch/riscv/Kconfig.socs
+@@ -7,6 +7,7 @@ config SOC_SIFIVE
+        select CLK_SIFIVE
+        select CLK_SIFIVE_PRCI
+        select SIFIVE_PLIC
++       select GPIOLIB if PCIE_FU740
+        help
+          This enables support for SiFive SoC platform hardware.
+
+diff --git a/drivers/pci/controller/dwc/Kconfig
+b/drivers/pci/controller/dwc/Kconfig
+index 255d43b1661b..0a37d21ed64e 100644
+--- a/drivers/pci/controller/dwc/Kconfig
++++ b/drivers/pci/controller/dwc/Kconfig
+@@ -322,7 +322,6 @@ config PCIE_FU740
+        bool "SiFive FU740 PCIe host controller"
+        depends on PCI_MSI_IRQ_DOMAIN
+        depends on SOC_SIFIVE || COMPILE_TEST
+-       depends on GPIOLIB
+        select PCIE_DW_HOST
+        help
+          Say Y here if you want PCIe controller support for the SiFive
