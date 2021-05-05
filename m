@@ -2,72 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 079FD373C74
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 15:33:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6366F373C86
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 15:40:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233332AbhEENen (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 09:34:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53674 "EHLO
+        id S233305AbhEENlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 09:41:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232410AbhEENem (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 09:34:42 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90CB1C061574
-        for <devicetree@vger.kernel.org>; Wed,  5 May 2021 06:33:44 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id lj11-20020a17090b344bb029015bc3073608so837151pjb.3
-        for <devicetree@vger.kernel.org>; Wed, 05 May 2021 06:33:44 -0700 (PDT)
+        with ESMTP id S230047AbhEENle (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 09:41:34 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3B31C061574;
+        Wed,  5 May 2021 06:40:37 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a4so2955105ejk.1;
+        Wed, 05 May 2021 06:40:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=EEAwP2DTcDHFZQ8vrq3ZegmCl+DiPTDQ1Kerz5xxbXs=;
-        b=kjwYrh+pW6qZGMIxZ0oVfQhnh73KD9oz4zhtbSpuGxQMJozmKEzk/jHx+9q71TRThB
-         E1xDUFFCM2eU6e+N0loEobFeYpH1vsxPo3W69Q3TGs60eV5U+6aPLLOXaN8v8rqYfxKN
-         mP7DPLIrgxHZSZ31SyMJBODqfL4z0x05sHdVY=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=8DE9fNr9EuacMp+VfxXdaYtUegetqhQ1PCtV40q/ryA=;
+        b=oa0M/vbKpWcQQuzRtJS243ok+9cbAB8dUGDZbI73dZZ4gJzRX8bUuO8fw4DnLgS/jM
+         srsju6tx8pR6VXpNVF98+5RcrVB+3rmToGSQ75Yb0SqEguGf3GMBQub1rJmc5E5pJZgA
+         898a3k1S1GpxqkJiAFK738ctwc45f4G5ldzyy4ckQbONGv9faGlpSqmBhmeVDFULNte7
+         7C1g/wUqUIiOzfYVExgnZM5kbhwILN8gpR9jDnWsbyx3PGfZfe21YlHgl9/bGuJih/tD
+         E2pjmcO+7l231DP1aoInrJmkTCbFo7d/lCa2ntyOY8sAGFqE5Pq0WKGrYvbD3Li2GeJ8
+         NhxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=EEAwP2DTcDHFZQ8vrq3ZegmCl+DiPTDQ1Kerz5xxbXs=;
-        b=bzmH6xSZeCMhnmuMB0xY6sxKsw+2hS5YcHG+vn9KTssJukrSqVIP/8KdEuztaS7zps
-         iD6vg7X0OHWZkWrEPMfT3JKCP+NbpN4gG1MNL/btiJjGyKAp2baJyd8IKAS8LzwfUYhu
-         DGuvGK05uHArO6vAkJEVDrhkCR/4PtXwVCKTvgmzOCA+Zq1TLAEnubPiqxwGQR7wJXzj
-         bBqQcJJnlbS5cwZ6LMA45xdTTG38HEvaI0iITnveEvXWz5t1QRJjSOkJBwiLEXXCf91Y
-         Nk1jE7J/mPlBgg3b8F7fTfm5zovCACze7f++raY2fMIaM9rsMmzLHaAftjxsUN+WzZVd
-         Xo9A==
-X-Gm-Message-State: AOAM531LXi6l4iim4Foy0fRKXI2HXTFGI6nLfEVPuoRE/2PKJCIL4okc
-        Siyu0ovrmK6e7M8nfWe51vh7jg==
-X-Google-Smtp-Source: ABdhPJz5t8isT58EhFTjSFQgkq1S2GMFXUTKHMXtwD1sB54Qj96vnAv1XYXxB+LEGz/4Y/N6GLN3Ww==
-X-Received: by 2002:a17:90a:e645:: with SMTP id ep5mr11598953pjb.143.1620221624133;
-        Wed, 05 May 2021 06:33:44 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:8770:f856:b2ff:e5e4])
-        by smtp.gmail.com with UTF8SMTPSA id lx15sm7013890pjb.56.2021.05.05.06.33.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 May 2021 06:33:43 -0700 (PDT)
-Date:   Wed, 5 May 2021 06:33:41 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org
-Subject: Re: [PATCH V4 1/8] arm64: dts: qcom: sm8350: Add label for
- thermal-zones node
-Message-ID: <YJKetV0HRgyxL0ip@google.com>
-References: <1620197726-23802-1-git-send-email-skakit@codeaurora.org>
- <1620197726-23802-2-git-send-email-skakit@codeaurora.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1620197726-23802-2-git-send-email-skakit@codeaurora.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=8DE9fNr9EuacMp+VfxXdaYtUegetqhQ1PCtV40q/ryA=;
+        b=oS2qMxyNb8QN5ROC2l9vFxUCWfrjWiR1VgR9pA5L7gbsZpIyORKPN1898XXU7O80HI
+         FdOIgKXAETwpvEL8ybO1HyXHTN585uZ/bQ5ADbwzLgt5Tw9FLF0ySYlEkvuwKa4xTsFC
+         oY1SLdfF0Jc+drit6lqHTBgRzTP7UpfCk9LHhvE37t8CY826NEgjIH3AUfhVfhj+cmcS
+         yf/cIpM/siIEnF5RcO43OqLgRp/edANRsbFK64JSdv4DGV3DgciHBtG9MWhYi5vx1Th2
+         4ZonsjfoNAxwAHT0QrE+qxw8LqgQCtiAealRziP1cJz8CuwFWD1pZcjdP1+Oal4FEX9o
+         PHqg==
+X-Gm-Message-State: AOAM530jtM1ts7x5LLyoBRpCpIFtH+xVaR1Ch32SY8oySZsUa5R6V7KY
+        TzD8TEln/4gX5VZz8cHRyWA=
+X-Google-Smtp-Source: ABdhPJyWi/HIdyv4/qKEbV/r1BvCiys4IUqt6dqmOCQV5S/EJEKw1Fn1i/4ga8P8ag18sDXG3OiLpQ==
+X-Received: by 2002:a17:906:4486:: with SMTP id y6mr27141527ejo.466.1620222036731;
+        Wed, 05 May 2021 06:40:36 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id t7sm15397264eds.26.2021.05.05.06.40.34
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 05 May 2021 06:40:36 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, linus.walleij@linaro.org,
+        bgolaszewski@baylibre.com, jay.xu@rock-chips.com,
+        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
+        zhangqing@rock-chips.com, huangtao@rock-chips.com,
+        cl@rock-chips.com, linux-gpio@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/4] convert grf.txt to YAML
+Date:   Wed,  5 May 2021 15:40:24 +0200
+Message-Id: <20210505134028.13431-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 05, 2021 at 12:25:19PM +0530, satya priya wrote:
-> Add label "thermal_zones" for thermal-zones node.
-> 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
+Changed V2:
+  add rockchip,rk3328-grf-gpio.yaml
+  rename grf-gpio nodename
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Johan Jonker (4):
+  dt-bindings: gpio: convert rk3328-grf-gpio.txt to YAML
+  dt-bindings: soc: rockchip: convert grf.txt to YAML
+  ARM: dts: rockchip: add grf register compatible for rk3066/rk3188
+  arm64: dts: rename grf-gpio nodename in rk3328.dtsi
+
+ .../bindings/gpio/rockchip,rk3328-grf-gpio.txt     |  32 ---
+ .../bindings/gpio/rockchip,rk3328-grf-gpio.yaml    |  51 ++++
+ .../devicetree/bindings/soc/rockchip/grf.txt       |  61 -----
+ .../devicetree/bindings/soc/rockchip/grf.yaml      | 280 +++++++++++++++++++++
+ arch/arm/boot/dts/rk3xxx.dtsi                      |   2 +-
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi           |   2 +-
+ 6 files changed, 333 insertions(+), 95 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpio/rockchip,rk3328-grf-gpio.txt
+ create mode 100644 Documentation/devicetree/bindings/gpio/rockchip,rk3328-grf-gpio.yaml
+ delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/grf.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+
+-- 
+2.11.0
+
