@@ -2,55 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5204373CF7
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 16:03:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 769AF373D08
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 16:09:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232569AbhEEOEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 10:04:12 -0400
-Received: from youngberry.canonical.com ([91.189.89.112]:54880 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233700AbhEEOEM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 10:04:12 -0400
-Received: from mail-qv1-f71.google.com ([209.85.219.71])
-        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1leI7O-000082-Te
-        for devicetree@vger.kernel.org; Wed, 05 May 2021 14:03:15 +0000
-Received: by mail-qv1-f71.google.com with SMTP id c5-20020a0ca9c50000b02901aede9b5061so1707319qvb.14
-        for <devicetree@vger.kernel.org>; Wed, 05 May 2021 07:03:14 -0700 (PDT)
+        id S233505AbhEEOKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 10:10:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33496 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232569AbhEEOKD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 10:10:03 -0400
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42421C061574
+        for <devicetree@vger.kernel.org>; Wed,  5 May 2021 07:09:06 -0700 (PDT)
+Received: by mail-ot1-x32f.google.com with SMTP id g15-20020a9d128f0000b02902a7d7a7bb6eso1770721otg.9
+        for <devicetree@vger.kernel.org>; Wed, 05 May 2021 07:09:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=poYtoBQ28iFBlsMtYMW7HQWFnHpillGEdoSkendtk9o=;
+        b=Tca7V89Ry/y/4wYnVFBSFUuf0/C1C9YCRcy8/g9VqYowQPyblDEf2+7yjM99NPKpBG
+         4sgSXJkzjhtwVPmJ2uALZPUe463jfYCzB82UfRlFF4zlyg6/UO3VqC/KjhywW/WxIvaN
+         nh21aas9W89mAFinvip0VZCFPuKkDH1LtePmegCCsJsuzMoo3bwAdtXIbV2xBm3+MpfQ
+         TpiFVpgI33CkW4ofJ6lh4tcsp+0MzHNz0VX7suZ+qyozSeXX/HJqDIKP+UM8W3kH2q8w
+         gAji0XqgMULGHkUNruVwModfKfiJZevNvLZI0xaQPwA8I7FaYdEuJiJlih3gnQLldKOM
+         cdUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=gHlNQxBMJJJPApy8J9ScRibX6GAiaOm1NP7zfEL0aKw=;
-        b=pip5I15tr69ddEWauHbUJ27BMcgcN6WlsQmbBwBUm6wOo5jNe2CmwvYhqCXdM03qQF
-         a4Ed4tN5aPKw+BkMTLrsq88JQVdUUokONZqF640Oi5v34VA+8eN5vrgSd2/swotPgXBd
-         t0IK31LwZ/cMWTZtcGnwhwtYaZUZhRJSAom5eqMvlMgHEkaIOcyMz7uFKVJ+20NjxRiA
-         jZICujjQ9pe4KyM8L8Whv4bfxidhGv8VTCnsZYgGzn8zR4i3mQzN9X5XBzh02Y0/ikUK
-         p4WrzrHWoQJ4M8A/MxtFuRTKdIEIGoLZoO25wxkRlXw+qdcCjGxCH3hxmZA4Q8lLFSt2
-         HwQQ==
-X-Gm-Message-State: AOAM533KYMYeeaJtQ0ej4nYt4v2fFKz4wDUk63GuGWAD3YK1tZ0oEWB9
-        JD5/9WpuKct8o3+38+M1xlB1nIDZxE2kzmT817V0BK06UgQyCV1sTiBbhTfHeAo8sCCMuvk5sAn
-        E4zO4r+OMUYLp3PQDpq2trhUIUttSowWNlmBf6uc=
-X-Received: by 2002:ac8:118d:: with SMTP id d13mr26914118qtj.294.1620223394012;
-        Wed, 05 May 2021 07:03:14 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxx77jKyRL1IlHqhDJ4GD0HwdRxVnhzwQKiw5Ri5Ut4bvfEkDj1ezNgIO6TQsyv10c+hqq6OQ==
-X-Received: by 2002:ac8:118d:: with SMTP id d13mr26914106qtj.294.1620223393830;
-        Wed, 05 May 2021 07:03:13 -0700 (PDT)
-Received: from localhost.localdomain ([45.237.49.2])
-        by smtp.gmail.com with ESMTPSA id l8sm4956754qtv.18.2021.05.05.07.03.12
+        bh=poYtoBQ28iFBlsMtYMW7HQWFnHpillGEdoSkendtk9o=;
+        b=fFS+2yecddJMwJu+xxWRxWhxkL9BpT8K0BE6D3DtE+IqPBhUmNE5NWFK+FM1R4eV1x
+         kyAfTaqMdt7Pr0/y2g/b22YWKy1GQtu5CtWb0uN2rq79JZilz/xV93adPPN7j83Le+GI
+         1aGBaKv6a/s2/hW+NAmu7vnKcHN2pQzXEQPNrPoVP/mqFL9gSGRnQEo6blVZck/Ewo1w
+         WQVVFHx41eZIuOEp9hX+j+ArN+J62zttzVh3yXixcfjWHCzAoqRKUHhEbgrzYkACciIN
+         LYqiWXqUeVUHBy8G2P/tJPw3yRyvhg05LG88Ns767qqPyeP5hAfnNscJFJmXeRC1DTsO
+         Z+8Q==
+X-Gm-Message-State: AOAM532qTDbZCkTjU97UVBPeyq5mPFGkzC8a3SuU0g85KixVUzSuE0Pk
+        GTVSR+nUIkILWEx5yrJxnkA=
+X-Google-Smtp-Source: ABdhPJxMy8wTe1oizpsT9wETaixL/t9MkgcgAxAs7a6hSm9qjcaGmQkTCGlBpmkbJm5WfAsVNnBb3Q==
+X-Received: by 2002:a9d:6c95:: with SMTP id c21mr23128676otr.85.1620223745680;
+        Wed, 05 May 2021 07:09:05 -0700 (PDT)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id k20sm621707otb.15.2021.05.05.07.09.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 May 2021 07:03:13 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: [PATCH] ARM: dts: am5729-beagleboneai: drop unused Broadcom WiFi properties
-Date:   Wed,  5 May 2021 10:00:15 -0400
-Message-Id: <20210505140015.60013-1-krzysztof.kozlowski@canonical.com>
+        Wed, 05 May 2021 07:09:05 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     alsa-devel@alsa-project.org
+Cc:     broonie@kernel.org, lgirdwood@gmail.com,
+        pierre-louis.bossart@linux.intel.com, tiwai@suse.com,
+        heiko@sntech.de, lee.jones@linaro.org, robh+dt@kernel.org,
+        perex@perex.cz, jbx6244@gmail.com, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, maccraft123mc@gmail.com,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH v9 0/4] ASoC: codecs: add rk817 support
+Date:   Wed,  5 May 2021 09:08:50 -0500
+Message-Id: <20210505140854.15929-1-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -58,32 +65,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The brcm,sd-head-align, brcm,sd_head_align and brcm,sd_sgentry_align are
-not used by the driver and not present in dtschema:
+From: Chris Morgan <macromorgan@hotmail.com>
 
-  arch/arm/boot/dts/am5729-beagleboneai.dt.yaml: wifi@1:
-    'brcm,sd-head-align', 'brcm,sd_head_align', 'brcm,sd_sgentry_align' do not match any of the regexes: 'pinctrl-[0-9]+'
+This series is to add support for the Rockchip rk817 audio codec which
+is present in all Rockchip rk817 MFD chips.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- arch/arm/boot/dts/am5729-beagleboneai.dts | 4 ----
- 1 file changed, 4 deletions(-)
+Changes in v9:
+ - Add cover letter.
+ - Remove documentation for interrupt parent per Rob Herring's request.
+ - Remove unused MODULE_DEVICE_TABLE to fix a bug identified by kernel test
+   robot.
+Changes in v8:
+ - Added additional documentation for missing properties of
+   #sound-dai-cells, interrupt-parent, and wakeup-source for mfd
+   documentation.
+ - Corrected order of elements descriptions in device tree documentation.
+ - Changed name of "mic-in-differential" to
+   "rockchip,mic-in-differential".
+ - Changed name of sound card from "rockchip,rk817-codec" to "Analog".
+ - Removed unused resets and reset-names from the i2s1_2ch node.
+Changes in v7:
+ - Removed ifdef around register definitions for MFD.
+ - Replaced codec documentation with updates to MFD documentation.
+ - Reordered elements in example to comply with upstream rules.
+ - Added binding update back for Odroid Go Advance as requested.
+ - Submitting patches from gmail now.
+Changes in v6:
+ - Included additional project maintainers for correct subsystems.
+ - Removed unneeded compatible from DT documentation.
+ - Removed binding update for Odroid Go Advance (will do in separate
+   series).
+Changes in v5:
+ - Move register definitions from rk817_codec.h to main rk808.h register
+   definitions.
+ - Add volatile register for codec bits.
+ - Add default values for codec bits.
+ - Removed of_compatible from mtd driver (not necessary).
+ - Switched to using parent regmap instead of private regmap for codec.
+Changes in v4:
+ - Created set_pll() call.
+ - Created user visible gain control in mic.
+ - Check for return value of clk_prepare_enable().
+ - Removed duplicate clk_prepare_enable().
+ - Split DT documentation to separate commit.
+Changes in v3:
+ - Use DAPM macros to set audio path.
+ - Updated devicetree binding (as every rk817 has this codec chip).
+ - Changed documentation to yaml format.
+ - Split MFD changes to separate commit.
+Changes in v2:
+ - Fixed audio path registers to solve some bugs.
 
-diff --git a/arch/arm/boot/dts/am5729-beagleboneai.dts b/arch/arm/boot/dts/am5729-beagleboneai.dts
-index 149cfafb90bf..d3b2e87a6266 100644
---- a/arch/arm/boot/dts/am5729-beagleboneai.dts
-+++ b/arch/arm/boot/dts/am5729-beagleboneai.dts
-@@ -582,10 +582,6 @@ brcmf: wifi@1 {
- 		reg = <1>;
- 		compatible = "brcm,bcm4329-fmac";
- 
--		brcm,sd-head-align = <4>;
--		brcm,sd_head_align = <4>;
--		brcm,sd_sgentry_align = <512>;
--
- 		interrupt-parent = <&gpio3>;
- 		interrupts = <23 IRQ_TYPE_LEVEL_LOW>;
- 		interrupt-names = "host-wake";
+Chris Morgan (4):
+  mfd: Add Rockchip rk817 audio CODEC support
+  ASoC: Add Rockchip rk817 audio CODEC support
+  dt-bindings: Add Rockchip rk817 audio CODEC support
+  arm64: dts: rockchip: add rk817 codec to Odroid Go
+
+ .../devicetree/bindings/mfd/rk808.txt         | 186 ++++++
+ .../boot/dts/rockchip/rk3326-odroid-go2.dts   |  36 +-
+ drivers/mfd/rk808.c                           |  85 +++
+ include/linux/mfd/rk808.h                     |  81 +++
+ sound/soc/codecs/Kconfig                      |   6 +
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/rk817_codec.c                | 558 ++++++++++++++++++
+ 7 files changed, 952 insertions(+), 2 deletions(-)
+ create mode 100644 sound/soc/codecs/rk817_codec.c
+
 -- 
 2.25.1
 
