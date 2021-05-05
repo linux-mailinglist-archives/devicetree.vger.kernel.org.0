@@ -2,102 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9A933749C6
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 23:01:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B18C0374A41
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 23:38:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235092AbhEEVCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 17:02:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41418 "EHLO
+        id S230423AbhEEVi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 17:38:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235097AbhEEVCi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 17:02:38 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63799C061574;
-        Wed,  5 May 2021 14:01:41 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id D21551F4322A
-Message-ID: <f5d194db2bb70237c8b3b5072daac2d7ad404b84.camel@collabora.com>
-Subject: Re: [PATCH v10 6/9] media: uapi: Add a control for HANTRO driver
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        lee.jones@linaro.org, gregkh@linuxfoundation.org,
-        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, emil.l.velikov@gmail.com
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
-        kernel@collabora.com, cphealy@gmail.com
-Date:   Wed, 05 May 2021 18:01:25 -0300
-In-Reply-To: <a7c9fe23-2900-ac90-7131-21380fbfc793@xs4all.nl>
-References: <20210420121046.181889-1-benjamin.gaignard@collabora.com>
-         <20210420121046.181889-7-benjamin.gaignard@collabora.com>
-         <a7c9fe23-2900-ac90-7131-21380fbfc793@xs4all.nl>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.2-1 
+        with ESMTP id S230073AbhEEViz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 17:38:55 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91590C061574
+        for <devicetree@vger.kernel.org>; Wed,  5 May 2021 14:37:58 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id a11so1926527plh.3
+        for <devicetree@vger.kernel.org>; Wed, 05 May 2021 14:37:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AOMS6IBtYK4GCN5aJilBpg+eMXlWTT02T7otyBl8KZQ=;
+        b=BalkvDf/iWZ8GIiso1q899MkyIwtB95yvg1XqjJBOi96J7wbZX+oW4M99Nu+wtpvyy
+         V74hSLshsDNSXs+Z+1p8bNakZfJs4rui0Koy1OlDpWM83C130eBfD6Dyu11FNBE31V0D
+         D/z3r8M/ASQitInRU9TZcCcMDDWePbLht8hS2BNUZtoNolqiWmS7OAM0vyUhbhpj07xt
+         MEkO6zxhcOKFWstRQdoN4Wr38E3W00Ju+E4zu+feZXwn0+iM79Dc7yiq0GntvSVVXtYm
+         qTxfh/k/qSvODO3QmpWvUuzqEZQ+6bKBSne5JMPAriq/o2ESRss4eQBabPOhhVrcP2mY
+         zTMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AOMS6IBtYK4GCN5aJilBpg+eMXlWTT02T7otyBl8KZQ=;
+        b=t1qRx6dF5ygxWC4u9u0TBFw0JH33Rwt4lTVsfDpU09dZcv3SEINadakLzIhD74MgbK
+         Uh48CjCgi3MqSKkHJWdwD6awiH/gBCguDzVhSqLwjTZbwoEfdJ7MrN/WCUKTx88o62FJ
+         vFXPQCtm/lgKod7x1xBPiP6scWaasQZYKl223Yn4VBYXczf5WD/KOChr86fenH1g2RNV
+         /gMp0udl9f0/wvQEgotFw7hCf3dFHaTJPYa5PH4rPQfr54kLSKAQr6n+5iIKiA2HIbQf
+         FCYQ5z1RQDVjwDP9EcmEEfuio5T2iphOHVvSS4OohmQ+xEHofgtJMXcDFyzUEwHuYStv
+         TqQw==
+X-Gm-Message-State: AOAM531LYOE2n5KPYmRqdUucm3Smp8q5cHWJNKDt9z8ikBX36SDLc5LM
+        yrwbw+Rf5t0UNSPKTKUq66xNUw==
+X-Google-Smtp-Source: ABdhPJyt54U3YHt0F3NblKI+1f7T3ZFxciXTCgBY1YK1kClLxIxZrxFpyE13KTATCquAqS6C+oK9qg==
+X-Received: by 2002:a17:90a:a081:: with SMTP id r1mr685582pjp.101.1620250678082;
+        Wed, 05 May 2021 14:37:58 -0700 (PDT)
+Received: from localhost.localdomain.name ([223.235.141.68])
+        by smtp.gmail.com with ESMTPSA id z26sm167031pfq.86.2021.05.05.14.37.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 May 2021 14:37:57 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     bhupesh.sharma@linaro.org,
+        Thara Gopinath <thara.gopinath@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bhupesh.linux@gmail.com
+Subject: [PATCH v2 00/17]  Enable Qualcomm Crypto Engine on sm8250
+Date:   Thu,  6 May 2021 03:07:14 +0530
+Message-Id: <20210505213731.538612-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2021-05-05 at 16:55 +0200, Hans Verkuil wrote:
-> On 20/04/2021 14:10, Benjamin Gaignard wrote:
-> > The HEVC HANTRO driver needs to know the number of bits to skip at
-> > the beginning of the slice header.
-> > That is a hardware specific requirement so create a dedicated control
-> > for this purpose.
-> > 
-> > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> > ---
-> >  .../userspace-api/media/drivers/hantro.rst    | 19 +++++++++++++++++++
-> >  .../userspace-api/media/drivers/index.rst     |  1 +
-> >  include/media/hevc-ctrls.h                    | 13 +++++++++++++
-> >  3 files changed, 33 insertions(+)
-> >  create mode 100644 Documentation/userspace-api/media/drivers/hantro.rst
-> > 
-> > diff --git a/Documentation/userspace-api/media/drivers/hantro.rst b/Documentation/userspace-api/media/drivers/hantro.rst
-> > new file mode 100644
-> > index 000000000000..cd9754b4e005
-> > --- /dev/null
-> > +++ b/Documentation/userspace-api/media/drivers/hantro.rst
-> > @@ -0,0 +1,19 @@
-> > +.. SPDX-License-Identifier: GPL-2.0
-> > +
-> > +Hantro video decoder driver
-> > +===========================
-> > +
-> > +The Hantro video decoder driver implements the following driver-specific controls:
-> > +
-> > +``V4L2_CID_HANTRO_HEVC_SLICE_HEADER_SKIP (integer)``
-> > +    Specifies to Hantro HEVC video decoder driver the number of data (in bits) to
-> > +    skip in the slice segment header.
-> > +    If non-IDR, the bits to be skipped go from syntax element "pic_output_flag"
-> > +    to before syntax element "slice_temporal_mvp_enabled_flag".
-> > +    If IDR, the skipped bits are just "pic_output_flag"
-> > +    (separate_colour_plane_flag is not supported).
-> 
-> I'm not very keen on this. Without this information the video data cannot be
-> decoded, or will it just be suboptimal?
-> 
-> The problem is that a generic decoder would have to know that the HW is a hantro,
+Changes since v1:
+=================
+- v1 can be seen here: https://lore.kernel.org/linux-arm-msm/20210310052503.3618486-1-bhupesh.sharma@linaro.org/ 
+- v1 did not work well as reported earlier by Dmitry, so v2 contains the following
+  changes/fixes:
+  ~ Enable the interconnect path b/w BAM DMA and main memory first
+    before trying to access the BAM DMA registers.
+  ~ Enable the interconnect path b/w qce crytpo and main memory first
+    before trying to access the qce crypto registers.
+  ~ Make sure to document the required and optional properties for both
+    BAM DMA and qce crypto drivers.
+  ~ Add a few debug related print messages in case the qce crypto driver
+    passes or fails to probe.
+  ~ Convert the qce crypto driver probe to a defered one in case the BAM DMA
+    or the interconnect driver(s) (needed on specific Qualcomm parts) are not
+    yet probed.
 
-Applications can just query which controls are exposed by a video device,
-and if this control is found, then it means it needs to be set.
+Qualcomm crypto engine is also available on sm8250 SoC.
+It supports hardware accelerated algorithms for encryption
+and authentication. It also provides support for aes, des, 3des
+encryption algorithms and sha1, sha256, hmac(sha1), hmac(sha256)
+authentication algorithms.
 
-> and then call this control. If they don't (and are testing on non-hantro HW), then
-> it won't work, thus defeating the purpose of the HW independent decoder API.
-> 
-> Since hantro is widely used, and if there is no other way to do this beside explitely
-> setting this control, then perhaps this should be part of the standard HEVC API.
-> Non-hantro drivers that do not need this can just skip it.
-> 
+Tested the enabled crypto algorithms with cryptsetup test utilities
+on sm8250-mtp and RB5 board (see [1]).
 
-The decision to move it out of the HEVC API is not really to avoid setting it.
-In the end, most/all applications will end up required to set this 
+While at it, also make a minor fix in 'sdm845.dtsi', to make
+sure it confirms with the other .dtsi files which expose
+crypto nodes on qcom SoCs.
+
+Cc: Thara Gopinath <thara.gopinath@linaro.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Andy Gross <agross@kernel.org>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>
+Cc: David S. Miller <davem@davemloft.net>
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>
+Cc: Vinod Koul <vkoul@kernel.org>
+Cc: dmaengine@vger.kernel.org
+Cc: linux-clk@vger.kernel.org
+Cc: linux-crypto@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: bhupesh.linux@gmail.com
+ 
+Bhupesh Sharma (14):
+  dt-bindings: qcom-bam: Add 'interconnects' & 'interconnect-names' to
+    optional properties
+  dt-bindings: qcom-bam: Add 'iommus' to required properties
+  dt-bindings: qcom-qce: Add 'iommus' to required properties
+  dt-bindings: qcom-qce: Add 'interconnects' and move 'clocks' to
+    optional properties
+  arm64/dts: qcom: sdm845: Use RPMH_CE_CLK macro directly
+  dt-bindings: crypto : Add new compatible strings for qcom-qce
+  arm64/dts: qcom: Use new compatibles for crypto nodes
+  crypto: qce: Add new compatibles for qce crypto driver
+  crypto: qce: Print a failure msg in case probe() fails
+  crypto: qce: Convert the device found dev_dbg() to dev_info()
+  dma: qcom: bam_dma: Create a new header file for BAM DMA driver
+  crypto: qce: Defer probing if BAM dma is not yet initialized
+  crypto: qce: Defer probe in case interconnect is not yet initialized
+  arm64/dts: qcom: sm8250: Add dt entries to support crypto engine.
+
+Thara Gopinath (3):
+  dma: qcom: bam_dma: Add support to initialize interconnect path
+  crypto: qce: core: Add support to initialize interconnect path
+  crypto: qce: core: Make clocks optional
+
+ .../devicetree/bindings/crypto/qcom-qce.txt   |  22 +-
+ .../devicetree/bindings/dma/qcom_bam_dma.txt  |   5 +
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi         |   2 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |   6 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  28 ++
+ drivers/crypto/qce/core.c                     | 112 +++++--
+ drivers/crypto/qce/core.h                     |   3 +
+ drivers/dma/qcom/bam_dma.c                    | 306 ++----------------
+ include/soc/qcom/bam_dma.h                    | 290 +++++++++++++++++
+ 9 files changed, 457 insertions(+), 317 deletions(-)
+ create mode 100644 include/soc/qcom/bam_dma.h
+
+-- 
+2.30.2
 
