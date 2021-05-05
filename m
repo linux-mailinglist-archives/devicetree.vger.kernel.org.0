@@ -2,246 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 827E637350A
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 08:46:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0039437351C
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 08:55:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230328AbhEEGrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 02:47:25 -0400
-Received: from mail-mw2nam10on2067.outbound.protection.outlook.com ([40.107.94.67]:40801
-        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229611AbhEEGrZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 May 2021 02:47:25 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mlCm5wwtkXsFBlJHB+2ZcW3IJp5KYd8x0PLm67glfnHJ0F2ZTxYi7VmKcZBeEymywIu9/Hdd1ozgBELlcQ1JoXNYVlekFNpaYKa3OJC/NWyXB2X4vVtTQcWtogDF2BetJmd/ADXphG1tae1YYtkVmI5h1hQ9Zs/8CPTBXBLjC1WRMxOveZAl2M1NMCvwjzAdMyvOdaXix5HIF60WIsnIpgiMTdw6nj1r+ZwUE+lXcAoxe7T8UAh2v+dThz5Au1QKLereb4BeT18Yz3V/mzcKb4FSKYVxPAViIzOfnAD3HR1PNXNijurgMBErxyl2Q+OcYKhT6m3H/Fu5Fb9H9X5CCA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NTVNLfdZLyfKh27NN8YwvyZy2KhOpTfeS0QXOcQ8IYg=;
- b=Kqzqkkxj0UQ3NgPEek+KF36paJztPEk+9IgWTOsc/b5Q7YRHUdfhmYu9jGKY8LugUsfVmMGDezKXUnYjce+7kC1F0deMwUHu/xweoeGsCMM3dCJXv+TCjBdeRSTsyOjJnVc+xuElP6fFiYT+hRu+Lo7/ox7S9gG1bJZlK7vXYyZjXvYF7wM+nkiNkZNxDBMltblBVijMJe/ceOuYYu0sXflMn5AthJOWmA3z69FEyvqCKxpqKNdoRULwr9dJNg48WgaohGjYJlRN0bLA2WDMj76za0fxtYlf6TddeHngZBZRu6WzCPXTWoa2oVVYdyQrBJayBdE01lt3mXN8i+BNlQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NTVNLfdZLyfKh27NN8YwvyZy2KhOpTfeS0QXOcQ8IYg=;
- b=N7XdBP7LfRchBYuEleFBB8UIobcBJ8aFQfsPuYFOZW4DdP0HueYUngi4dP11P72gvEmmzyWY55vGNpCwKvnX/eLOwU0aSJl+ZogNa7Tum04BqspTqp/j+w496QEHgPbIjiftPnzb3QDPlOR0dWcxaEBHKJgsAQeiGpMHA+/WeSM=
-Received: from SA0PR11CA0079.namprd11.prod.outlook.com (2603:10b6:806:d2::24)
- by SA0PR02MB7242.namprd02.prod.outlook.com (2603:10b6:806:d8::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.41; Wed, 5 May
- 2021 06:46:25 +0000
-Received: from SN1NAM02FT016.eop-nam02.prod.protection.outlook.com
- (2603:10b6:806:d2:cafe::82) by SA0PR11CA0079.outlook.office365.com
- (2603:10b6:806:d2::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.24 via Frontend
- Transport; Wed, 5 May 2021 06:46:25 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- SN1NAM02FT016.mail.protection.outlook.com (10.152.72.113) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4065.21 via Frontend Transport; Wed, 5 May 2021 06:46:25 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Tue, 4 May 2021 23:46:25 -0700
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Tue, 4 May 2021 23:46:25 -0700
-Envelope-to: robh@kernel.org,
- alvaro.gamez@hazent.com,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org,
- linux-pwm@vger.kernel.org,
- sean.anderson@seco.com
-Received: from [172.30.17.109] (port=47298)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1leBIf-0000mM-1m; Tue, 04 May 2021 23:46:25 -0700
-To:     Sean Anderson <sean.anderson@seco.com>,
-        <linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <michal.simek@xilinx.com>,
-        Alvaro Gamez <alvaro.gamez@hazent.com>,
-        Rob Herring <robh@kernel.org>
-References: <20210504184925.3399934-1-sean.anderson@seco.com>
-From:   Michal Simek <michal.simek@xilinx.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: Add Xilinx AXI Timer
-Message-ID: <0326a217-e6cd-d2b3-65a2-4285e9342418@xilinx.com>
-Date:   Wed, 5 May 2021 08:46:22 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        id S231365AbhEEG4Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 02:56:16 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:58842 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229482AbhEEG4P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 02:56:15 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1456tIeJ057059;
+        Wed, 5 May 2021 01:55:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1620197718;
+        bh=Y5UWzWg7x0wMfAnQMe8QYtS0K1vtF29Yvy6lzPK7r0o=;
+        h=From:To:CC:Subject:Date;
+        b=ZL9EqW0jlRkn8ieNsym2eHBvGft0Ui7ulxi8tZwCcfIRNFszWo4FLM8XHyYPgGLM0
+         bw50C6zwX2wxx5LIy0xk6Ii+itpg4TGm96rEjunD2WqRfGUSzcQq2fXotiftGCkhnL
+         s6tKmtUz5kd2Q+Jcy2riaPhy3V6xRPSUA4OowgKo=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1456tIZh035151
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 5 May 2021 01:55:18 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 5 May
+ 2021 01:55:18 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 5 May 2021 01:55:18 -0500
+Received: from ula0132425.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1456tDFT066833;
+        Wed, 5 May 2021 01:55:15 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     <linux-omap@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Nishanth Menon <nm@ti.com>
+Subject: [PATCH] dt-bindings: i2c: Move i2c-omap.txt to YAML format
+Date:   Wed, 5 May 2021 12:25:11 +0530
+Message-ID: <20210505065511.918-1-vigneshr@ti.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210504184925.3399934-1-sean.anderson@seco.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 873e3989-4f1a-40bd-dddc-08d90f9180f5
-X-MS-TrafficTypeDiagnostic: SA0PR02MB7242:
-X-Microsoft-Antispam-PRVS: <SA0PR02MB724209AD8B8616CCC16B81D6C6599@SA0PR02MB7242.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: VfI0lWYUimHtKiVczDCefmScbzPYLY8mnRJhqOI9WT4wy7Tmf1f2KYAwbJauqck5bs1gsUFCWf2hLwJRiV/FEuEqdERyG+PwLLOKoWxXUMM2DuFN+gcmEp8Q9n03t2FrnEpS9YPbMDa8+WrgAAjUEks0QQqlC7dTlu+taaljdTmU9gcGPncy5wDj4RqxckIJIemtfCf2R2opRchF5avlry+Sm9kTZwBTPLgW659ISHq3DlVVmjbHsrx1kd9gDj+3DDYLsE1A41gLklfQtKTAopr3sujqq2veX5NF7RDt/qPYH4o7fNfuOY/L2EfX8xYRDITyFtPm2gEk0WJCUO+rrCxK+W33jmFrCkLb26bcz7o1daUBAbZDS1aEq6ujYQIdupmyktSbkqxJg1nxowCNBlZ5u2R3MXgTllcJUEYpEwKVJZ5uvyV6sBbgNMuQGupQp4Oe2wGCyzI/UXpQ+tK9dK/KzcWQjm8uIvkBGFwHTm6v8pE3cy1eiyvnJ2CkzO6oLa6crzckgCgBcNaB2IpZRsAMsEG6DanYHHH6e4KCNmnjFdJUrn+DW3KGEGzBiawGwgssIXa5AlWF2/NhT2MhkVm4LKuROKVGwe5KzTRsObTX2QD+bT4UT50xru3BxO0u5NEVWXwYxV0IbM7IGhJwfksJl+eX2WmqL3mGLhJ7DDcEZiiKSv8a2OHDt4uzTikdJt4zlHclJec0i4PTYuh1HYZTVcOdeabpLQw7k37vKbT7BvDb6LywwPi07HRvIYdtT+aTRqrCLs7lhnDl0jEnplr8WAbb3I+G9cpuNejtKHc=
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(346002)(376002)(39860400002)(136003)(396003)(36840700001)(46966006)(426003)(54906003)(8676002)(36906005)(110136005)(2906002)(478600001)(44832011)(7636003)(82740400003)(356005)(8936002)(336012)(316002)(82310400003)(26005)(36860700001)(2616005)(9786002)(186003)(31696002)(966005)(6666004)(70586007)(31686004)(4326008)(47076005)(53546011)(70206006)(83380400001)(36756003)(5660300002)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2021 06:46:25.7097
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 873e3989-4f1a-40bd-dddc-08d90f9180f5
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT016.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR02MB7242
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert i2c-omap.txt to YAML schema for better checks and documentation.
 
+Following properties were used in DT but were not documented in txt
+bindings and has been included in YAML schema:
+1. Include ti,am4372-i2c compatible
+2. Include dmas property used in few OMAP dts files
+3. Document clocks property
 
-On 5/4/21 8:49 PM, Sean Anderson wrote:
-> This adds a binding for the Xilinx LogiCORE IP AXI Timer. This device is
-> a "soft" block, so it has many parameters which would not be
-> configurable in most hardware. This binding is usually automatically
-> generated by Xilinx's tools, so the names and values of properties
-> must be kept as they are.
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> ---
-> 
-> Changes in v2:
-> - Use 32-bit addresses for example binding
-> 
->  .../bindings/pwm/xlnx,axi-timer.yaml          | 91 +++++++++++++++++++
->  1 file changed, 91 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml b/Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml
-> new file mode 100644
-> index 000000000000..bd014134c322
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml
-> @@ -0,0 +1,91 @@
-> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/xlnx,axi-timer.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xilinx LogiCORE IP AXI Timer Device Tree Binding
-> +
-> +maintainers:
-> +  - Sean Anderson <sean.anderson@seco.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: xlnx,axi-timer-2.0
-> +      - const: xlnx,xps-timer-1.00.a
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: s_axi_aclk
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  xlnx,count-width:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 8
-> +    maximum: 32
-> +    description:
-> +      The width of the counters, in bits.
-> +
-> +  xlnx,gen0-assert:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 0, 1 ]
-> +    description:
-> +      The polarity of the generateout0 signal. 0 for active-low, 1 for active-high.
-> +
-> +  xlnx,gen1-assert:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 0, 1 ]
-> +    description:
-> +      The polarity of the generateout1 signal. 0 for active-low, 1 for active-high.
-> +
-> +  xlnx,one-timer-only:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 0, 1 ]
-> +    description:
-> +      Whether only one timer is present in this block.
-> +
-> +  xlnx,trig0-assert:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 0, 1 ]
-> +    description:
-> +      The polarity of the capturetrig0 signal. 0 for active-low, 1 for active-high.
-> +
-> +  xlnx,trig1-assert:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 0, 1 ]
-> +    description:
-> +      The polarity of the capturetrig1 signal. 0 for active-low, 1 for active-high.
-> +
+Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+---
+ .../devicetree/bindings/i2c/i2c-omap.txt      | 37 ---------
+ .../devicetree/bindings/i2c/ti,omap4-i2c.yaml | 75 +++++++++++++++++++
+ 2 files changed, 75 insertions(+), 37 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-omap.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/ti,omap4-i2c.yaml
 
-Based on xilinx design tool selection there is also mode_64bit option
-which I expect will be translate to xlnx,mode-64bit [0, 1].
-But any coverage of this as bool property should be fine.
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-omap.txt b/Documentation/devicetree/bindings/i2c/i2c-omap.txt
+deleted file mode 100644
+index a425b91af48f..000000000000
+--- a/Documentation/devicetree/bindings/i2c/i2c-omap.txt
++++ /dev/null
+@@ -1,37 +0,0 @@
+-I2C for OMAP platforms
+-
+-Required properties :
+-- compatible : Must be
+-	"ti,omap2420-i2c" for OMAP2420 SoCs
+-	"ti,omap2430-i2c" for OMAP2430 SoCs
+-	"ti,omap3-i2c" for OMAP3 SoCs
+-	"ti,omap4-i2c" for OMAP4+ SoCs
+-	"ti,am654-i2c", "ti,omap4-i2c" for AM654 SoCs
+-	"ti,j721e-i2c", "ti,omap4-i2c" for J721E SoCs
+-	"ti,am64-i2c", "ti,omap4-i2c" for AM64 SoCs
+-- ti,hwmods : Must be "i2c<n>", n being the instance number (1-based)
+-- #address-cells = <1>;
+-- #size-cells = <0>;
+-
+-Recommended properties :
+-- clock-frequency : Desired I2C bus clock frequency in Hz. Otherwise
+-  the default 100 kHz frequency will be used.
+-
+-Optional properties:
+-- Child nodes conforming to i2c bus binding
+-
+-Note: Current implementation will fetch base address, irq and dma
+-from omap hwmod data base during device registration.
+-Future plan is to migrate hwmod data base contents into device tree
+-blob so that, all the required data will be used from device tree dts
+-file.
+-
+-Examples :
+-
+-i2c1: i2c@0 {
+-    compatible = "ti,omap3-i2c";
+-    #address-cells = <1>;
+-    #size-cells = <0>;
+-    ti,hwmods = "i2c1";
+-    clock-frequency = <400000>;
+-};
+diff --git a/Documentation/devicetree/bindings/i2c/ti,omap4-i2c.yaml b/Documentation/devicetree/bindings/i2c/ti,omap4-i2c.yaml
+new file mode 100644
+index 000000000000..acf8872a7a7d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i2c/ti,omap4-i2c.yaml
+@@ -0,0 +1,75 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/i2c/ti,omap4-i2c.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Bindings for I2C controllers on TI's OMAP and K3 SoCs
++
++maintainers:
++  - Vignesh Raghavendra <vigneshr@ti.com>
++
++allOf:
++  - $ref: /schemas/i2c/i2c-controller.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - const: ti,omap2420-i2c
++      - const: ti,omap2430-i2c
++      - const: ti,omap3-i2c
++      - const: ti,omap4-i2c
++      - items:
++          - enum:
++              - ti,am4372-i2c
++              - ti,am64-i2c
++              - ti,am654-i2c
++              - ti,j721e-i2c
++          - const: ti,omap4-i2c
++
++  ti,hwmods:
++    description:
++      Must be "i2c<n>", n being the instance number (1-based)
++    $ref: /schemas/types.yaml#/definitions/string
++    items:
++      - pattern: "^i2c([1-9])$"
++
++  dmas:
++    minItems: 1
++    maxItems: 2
++
++  dma-names:
++    items:
++      - const: tx
++      - const: rx
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: fck
++
++  clock-frequency: true
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++     main_i2c0: i2c@2000000 {
++             compatible = "ti,j721e-i2c", "ti,omap4-i2c";
++             reg = <0x00 0x2000000 0x00 0x100>;
++             interrupts = <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>;
++             #address-cells = <1>;
++             #size-cells = <0>;
++       };
+-- 
+2.31.1
 
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - reg
-> +  - xlnx,count-width
-> +  - xlnx,gen0-assert
-> +  - xlnx,gen1-assert
-
-these 3 shouldn't be required.
-
-> +  - xlnx,one-timer-only
-> +  - xlnx,trig0-assert
-> +  - xlnx,trig1-assert
-
-these 2 are also not required.
-
-
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    axi_timer_0: timer@800e0000 {
-> +        clock-frequency = <99999001>;
-
-I can't see this listed above. It is allowed to have additional
-properties but I don't think it is good to list it here.
-
-> +        clock-names = "s_axi_aclk";
-> +        clocks = <&zynqmp_clk 71>;
-> +        compatible = "xlnx,axi-timer-2.0", "xlnx,xps-timer-1.00.a";
-> +        reg = <0x800e0000 0x10000>;
-> +        xlnx,count-width = <0x20>;
-> +        xlnx,gen0-assert = <0x1>;
-> +        xlnx,gen1-assert = <0x1>;
-> +        xlnx,one-timer-only = <0x0>;
-> +        xlnx,trig0-assert = <0x1>;
-> +        xlnx,trig1-assert = <0x1>;
-> +    };
-> 
-
-Thanks,
-Michal
