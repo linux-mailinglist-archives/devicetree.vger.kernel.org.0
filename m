@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 504023737B1
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 11:39:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B543E3737B2
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 11:39:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232073AbhEEJj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 05:39:59 -0400
-Received: from foss.arm.com ([217.140.110.172]:41250 "EHLO foss.arm.com"
+        id S232229AbhEEJkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 05:40:00 -0400
+Received: from foss.arm.com ([217.140.110.172]:41260 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232235AbhEEJj6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 May 2021 05:39:58 -0400
+        id S232373AbhEEJj7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 May 2021 05:39:59 -0400
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F3067D6E;
-        Wed,  5 May 2021 02:39:01 -0700 (PDT)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 82B8E1063;
+        Wed,  5 May 2021 02:39:03 -0700 (PDT)
 Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id A2B503F70D;
-        Wed,  5 May 2021 02:39:00 -0700 (PDT)
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 322BF3F70D;
+        Wed,  5 May 2021 02:39:02 -0700 (PDT)
 From:   Sudeep Holla <sudeep.holla@arm.com>
 To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 Cc:     Sudeep Holla <sudeep.holla@arm.com>, arve@google.com,
@@ -26,9 +26,9 @@ Cc:     Sudeep Holla <sudeep.holla@arm.com>, arve@google.com,
         Jens Wiklander <jens.wiklander@linaro.org>,
         Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
         Marc Bonnici <marc.bonnici@arm.com>
-Subject: [PATCH v6 4/6] firmware: arm_ffa: Add support for SMCCC as transport to FFA driver
-Date:   Wed,  5 May 2021 10:38:41 +0100
-Message-Id: <20210505093843.3308691-5-sudeep.holla@arm.com>
+Subject: [PATCH v6 5/6] firmware: arm_ffa: Setup in-kernel users of FFA partitions
+Date:   Wed,  5 May 2021 10:38:42 +0100
+Message-Id: <20210505093843.3308691-6-sudeep.holla@arm.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210505093843.3308691-1-sudeep.holla@arm.com>
 References: <20210505093843.3308691-1-sudeep.holla@arm.com>
@@ -38,110 +38,393 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are requests to keep the transport separate in order to allow
-other possible transports like virtio. So let us keep the SMCCC transport
-specific routines abstracted.
+Parse the FFA nodes from the device-tree and register all the partitions
+whose services will be used in the kernel.
 
-It is kept simple for now. Once we add another transport, we can develop
-better abstraction.
+In order to also enable in-kernel users of FFA interface, let us add
+simple set of operations for such devices.
+
+The in-kernel users are registered without the character device interface.
 
 Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
 ---
- drivers/firmware/arm_ffa/Kconfig  |  5 ++++
- drivers/firmware/arm_ffa/Makefile |  3 ++-
- drivers/firmware/arm_ffa/common.h |  4 ++++
- drivers/firmware/arm_ffa/smccc.c  | 39 +++++++++++++++++++++++++++++++
- 4 files changed, 50 insertions(+), 1 deletion(-)
- create mode 100644 drivers/firmware/arm_ffa/smccc.c
+ drivers/firmware/arm_ffa/bus.c    |   9 ++
+ drivers/firmware/arm_ffa/common.h |   3 +
+ drivers/firmware/arm_ffa/driver.c | 213 ++++++++++++++++++++++++++++++
+ include/linux/arm_ffa.h           |  38 +++++-
+ 4 files changed, 262 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/firmware/arm_ffa/Kconfig b/drivers/firmware/arm_ffa/Kconfig
-index 261a3660650a..5e3ae5cf82e8 100644
---- a/drivers/firmware/arm_ffa/Kconfig
-+++ b/drivers/firmware/arm_ffa/Kconfig
-@@ -14,3 +14,8 @@ config ARM_FFA_TRANSPORT
+diff --git a/drivers/firmware/arm_ffa/bus.c b/drivers/firmware/arm_ffa/bus.c
+index 58441266e60d..da23100c2e39 100644
+--- a/drivers/firmware/arm_ffa/bus.c
++++ b/drivers/firmware/arm_ffa/bus.c
+@@ -24,6 +24,15 @@ static int ffa_device_match(struct device *dev, struct device_driver *drv)
+ 	ffa_dev = to_ffa_dev(dev);
  
- 	  This driver provides interface for all the client drivers making
- 	  use of the features offered by ARM FF-A.
+ 	while (!uuid_is_null(&id_table->uuid)) {
++		/*
++		 * FF-A v1.0 doesn't provide discovery of UUIDs, just the
++		 * partition IDs, so fetch the partitions IDs for this
++		 * id_table UUID and assign the UUID to the device if the
++		 * partition ID matches
++		 */
++		if (uuid_is_null(&ffa_dev->uuid))
++			ffa_device_match_uuid(ffa_dev, &id_table->uuid);
 +
-+config ARM_FFA_SMCCC
-+	bool
-+	default ARM_FFA_TRANSPORT
-+	depends on ARM64 && HAVE_ARM_SMCCC_DISCOVERY
-diff --git a/drivers/firmware/arm_ffa/Makefile b/drivers/firmware/arm_ffa/Makefile
-index 82d0d35c5324..9d9f37523200 100644
---- a/drivers/firmware/arm_ffa/Makefile
-+++ b/drivers/firmware/arm_ffa/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0-only
- ffa-bus-y = bus.o
- ffa-driver-y = driver.o
--ffa-module-objs := $(ffa-bus-y) $(ffa-driver-y)
-+ffa-transport-$(CONFIG_ARM_FFA_SMCCC) += smccc.o
-+ffa-module-objs := $(ffa-bus-y) $(ffa-driver-y) $(ffa-transport-y)
- obj-$(CONFIG_ARM_FFA_TRANSPORT) = ffa-module.o
+ 		if (uuid_equal(&ffa_dev->uuid, &id_table->uuid))
+ 			return 1;
+ 		id_table++;
 diff --git a/drivers/firmware/arm_ffa/common.h b/drivers/firmware/arm_ffa/common.h
-index 9195f66f826c..842451666827 100644
+index 842451666827..80ad71f02235 100644
 --- a/drivers/firmware/arm_ffa/common.h
 +++ b/drivers/firmware/arm_ffa/common.h
-@@ -16,9 +16,13 @@ typedef void (ffa_fn)(ffa_value_t, ffa_value_t *);
+@@ -6,6 +6,7 @@
+ #ifndef _FFA_COMMON_H
+ #define _FFA_COMMON_H
+ 
++#include <linux/arm_ffa.h>
+ #include <linux/arm-smccc.h>
+ #include <linux/err.h>
+ 
+@@ -15,6 +16,8 @@ typedef void (ffa_fn)(ffa_value_t, ffa_value_t *);
+ 
  int __init arm_ffa_bus_init(void);
  void __exit arm_ffa_bus_exit(void);
++bool ffa_device_is_valid(struct ffa_device *ffa_dev);
++void ffa_device_match_uuid(struct ffa_device *ffa_dev, const uuid_t *uuid);
  
-+#ifdef CONFIG_ARM_FFA_SMCCC
-+int __init ffa_transport_init(ffa_fn **invoke_ffa_fn);
-+#else
- static inline int __init ffa_transport_init(ffa_fn **invoke_ffa_fn)
- {
- 	return -EOPNOTSUPP;
+ #ifdef CONFIG_ARM_FFA_SMCCC
+ int __init ffa_transport_init(ffa_fn **invoke_ffa_fn);
+diff --git a/drivers/firmware/arm_ffa/driver.c b/drivers/firmware/arm_ffa/driver.c
+index d74f03b773d2..cefbb3edf142 100644
+--- a/drivers/firmware/arm_ffa/driver.c
++++ b/drivers/firmware/arm_ffa/driver.c
+@@ -24,9 +24,12 @@
+ 
+ #include <linux/arm_ffa.h>
+ #include <linux/bitfield.h>
++#include <linux/device.h>
+ #include <linux/io.h>
++#include <linux/kernel.h>
+ #include <linux/module.h>
+ #include <linux/slab.h>
++#include <linux/uuid.h>
+ 
+ #include "common.h"
+ 
+@@ -185,6 +188,22 @@ static int ffa_version_check(u32 *version)
+ 	return 0;
  }
-+#endif
  
- #endif /* _FFA_COMMON_H */
-diff --git a/drivers/firmware/arm_ffa/smccc.c b/drivers/firmware/arm_ffa/smccc.c
-new file mode 100644
-index 000000000000..22c34b788769
---- /dev/null
-+++ b/drivers/firmware/arm_ffa/smccc.c
-@@ -0,0 +1,39 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2020 ARM Ltd.
-+ */
-+
-+#include <linux/printk.h>
-+
-+#include "common.h"
-+
-+static void __arm_ffa_fn_smc(ffa_value_t args, ffa_value_t *res)
++static int ffa_rx_release(void)
 +{
-+	arm_smccc_1_2_smc(&args, res);
-+}
++	ffa_value_t ret;
 +
-+static void __arm_ffa_fn_hvc(ffa_value_t args, ffa_value_t *res)
-+{
-+	arm_smccc_1_2_hvc(&args, res);
-+}
++	invoke_ffa_fn((ffa_value_t){
++		      .a0 = FFA_RX_RELEASE,
++		      }, &ret);
 +
-+int __init ffa_transport_init(ffa_fn **invoke_ffa_fn)
-+{
-+	enum arm_smccc_conduit conduit;
++	if (ret.a0 == FFA_ERROR)
++		return ffa_to_linux_errno((int)ret.a2);
 +
-+	if (arm_smccc_get_version() < ARM_SMCCC_VERSION_1_2)
-+		return -EOPNOTSUPP;
-+
-+	conduit = arm_smccc_1_1_get_conduit();
-+	if (conduit == SMCCC_CONDUIT_NONE) {
-+		pr_err("%s: invalid SMCCC conduit\n", __func__);
-+		return -EOPNOTSUPP;
-+	}
-+
-+	if (conduit == SMCCC_CONDUIT_SMC)
-+		*invoke_ffa_fn = __arm_ffa_fn_smc;
-+	else
-+		*invoke_ffa_fn = __arm_ffa_fn_hvc;
++	/* check for ret.a0 == FFA_RX_RELEASE ? */
 +
 +	return 0;
 +}
++
+ static int ffa_rxtx_map(phys_addr_t tx_buf, phys_addr_t rx_buf, u32 pg_cnt)
+ {
+ 	ffa_value_t ret;
+@@ -214,6 +233,64 @@ static int ffa_rxtx_unmap(u16 vm_id)
+ 	return 0;
+ }
+ 
++/* buffer must be sizeof(struct ffa_partition_info) * num_partitions */
++static int
++__ffa_partition_info_get(u32 uuid0, u32 uuid1, u32 uuid2, u32 uuid3,
++			 struct ffa_partition_info *buffer, int num_partitions)
++{
++	int count;
++	ffa_value_t partition_info;
++
++	mutex_lock(&drv_info->rx_lock);
++	invoke_ffa_fn((ffa_value_t){
++		      .a0 = FFA_PARTITION_INFO_GET,
++		      .a1 = uuid0, .a2 = uuid1, .a3 = uuid2, .a4 = uuid3,
++		      }, &partition_info);
++
++	if (partition_info.a0 == FFA_ERROR) {
++		mutex_unlock(&drv_info->rx_lock);
++		return ffa_to_linux_errno((int)partition_info.a2);
++	}
++
++	count = partition_info.a2;
++
++	if (buffer && count <= num_partitions)
++		memcpy(buffer, drv_info->rx_buffer, sizeof(*buffer) * count);
++
++	ffa_rx_release();
++
++	mutex_unlock(&drv_info->rx_lock);
++
++	return count;
++}
++
++/* buffer is allocated and caller must free the same if returned count > 0 */
++static int
++ffa_partition_probe(const uuid_t *uuid, struct ffa_partition_info **buffer)
++{
++	int count;
++	u32 uuid0_4[4];
++	struct ffa_partition_info *pbuf;
++
++	export_uuid((u8 *)uuid0_4, uuid);
++	count = __ffa_partition_info_get(uuid0_4[0], uuid0_4[1], uuid0_4[2],
++					 uuid0_4[3], NULL, 0);
++	if (count <= 0)
++		return count;
++
++	pbuf = kcalloc(count, sizeof(*pbuf), GFP_KERNEL);
++	if (!pbuf)
++		return -ENOMEM;
++
++	count = __ffa_partition_info_get(uuid0_4[0], uuid0_4[1], uuid0_4[2],
++					 uuid0_4[3], pbuf, count);
++	if (count <= 0)
++		kfree(pbuf);
++
++	*buffer = pbuf;
++	return count;
++}
++
+ #define VM_ID_MASK	GENMASK(15, 0)
+ static int ffa_id_get(u16 *vm_id)
+ {
+@@ -231,6 +308,140 @@ static int ffa_id_get(u16 *vm_id)
+ 	return 0;
+ }
+ 
++static int ffa_msg_send_direct_req(u16 src_id, u16 dst_id, bool mode_32bit,
++				   struct ffa_send_direct_data *data)
++{
++	u32 req_id, resp_id, src_dst_ids = PACK_TARGET_INFO(src_id, dst_id);
++	ffa_value_t ret;
++
++	if (mode_32bit) {
++		req_id = FFA_MSG_SEND_DIRECT_REQ;
++		resp_id = FFA_MSG_SEND_DIRECT_RESP;
++	} else {
++		req_id = FFA_FN_NATIVE(MSG_SEND_DIRECT_REQ);
++		resp_id = FFA_FN_NATIVE(MSG_SEND_DIRECT_RESP);
++	}
++
++	invoke_ffa_fn((ffa_value_t){
++		      .a0 = req_id, .a1 = src_dst_ids, .a2 = 0,
++		      .a3 = data->data0, .a4 = data->data1, .a5 = data->data2,
++		      .a6 = data->data3, .a7 = data->data4,
++		      }, &ret);
++
++	while (ret.a0 == FFA_INTERRUPT)
++		invoke_ffa_fn((ffa_value_t){
++			      .a0 = FFA_RUN, .a1 = ret.a1,
++			      }, &ret);
++
++	if (ret.a0 == FFA_ERROR)
++		return ffa_to_linux_errno((int)ret.a2);
++
++	if (ret.a0 == resp_id) {
++		data->data0 = ret.a3;
++		data->data1 = ret.a4;
++		data->data2 = ret.a5;
++		data->data3 = ret.a6;
++		data->data4 = ret.a7;
++		return 0;
++	}
++
++	return -EINVAL;
++}
++
++static u32 ffa_api_version_get(void)
++{
++	return drv_info->version;
++}
++
++static int ffa_partition_info_get(const char *uuid_str,
++				  struct ffa_partition_info *buffer)
++{
++	int count;
++	uuid_t uuid;
++	struct ffa_partition_info *pbuf;
++
++	if (uuid_parse(uuid_str, &uuid)) {
++		pr_err("invalid uuid (%s)\n", uuid_str);
++		return -ENODEV;
++	}
++
++	count = ffa_partition_probe(&uuid_null, &pbuf);
++	if (count <= 0)
++		return -ENOENT;
++
++	memcpy(buffer, pbuf, sizeof(*pbuf) * count);
++	kfree(pbuf);
++	return 0;
++}
++
++static void ffa_mode_32bit_set(struct ffa_device *dev)
++{
++	dev->mode_32bit = true;
++}
++
++static int ffa_sync_send_receive(struct ffa_device *dev,
++				 struct ffa_send_direct_data *data)
++{
++	return ffa_msg_send_direct_req(drv_info->vm_id, dev->vm_id,
++				       dev->mode_32bit, data);
++}
++
++static const struct ffa_dev_ops ffa_ops = {
++	.api_version_get = ffa_api_version_get,
++	.partition_info_get = ffa_partition_info_get,
++	.mode_32bit_set = ffa_mode_32bit_set,
++	.sync_send_receive = ffa_sync_send_receive,
++};
++
++const struct ffa_dev_ops *ffa_dev_ops_get(struct ffa_device *dev)
++{
++	if (ffa_device_is_valid(dev))
++		return &ffa_ops;
++
++	return NULL;
++}
++EXPORT_SYMBOL_GPL(ffa_dev_ops_get);
++
++void ffa_device_match_uuid(struct ffa_device *ffa_dev, const uuid_t *uuid)
++{
++	int count, idx;
++	struct ffa_partition_info *pbuf, *tpbuf;
++
++	count = ffa_partition_probe(uuid, &pbuf);
++	if (count <= 0)
++		return;
++
++	for (idx = 0, tpbuf = pbuf; idx < count; idx++, tpbuf++)
++		if (tpbuf->id == ffa_dev->vm_id)
++			uuid_copy(&ffa_dev->uuid, uuid);
++	kfree(pbuf);
++}
++
++static void ffa_setup_partitions(void)
++{
++	int count, idx;
++	struct ffa_device *ffa_dev;
++	struct ffa_partition_info *pbuf, *tpbuf;
++
++	count = ffa_partition_probe(&uuid_null, &pbuf);
++	if (count <= 0) {
++		pr_info("%s: No partitions found, error %d\n", __func__, count);
++		return;
++	}
++
++	for (idx = 0, tpbuf = pbuf; idx < count; idx++, tpbuf++) {
++		ffa_dev = ffa_device_register(&uuid_null, tpbuf->id);
++		if (!ffa_dev) {
++			pr_err("%s: failed to register partition ID 0x%x\n",
++			       __func__, tpbuf->id);
++			continue;
++		}
++
++		ffa_dev_set_drvdata(ffa_dev, drv_info);
++	}
++	kfree(pbuf);
++}
++
+ static int __init ffa_init(void)
+ {
+ 	int ret;
+@@ -280,6 +491,8 @@ static int __init ffa_init(void)
+ 	mutex_init(&drv_info->rx_lock);
+ 	mutex_init(&drv_info->tx_lock);
+ 
++	ffa_setup_partitions();
++
+ 	return 0;
+ free_pages:
+ 	if (drv_info->tx_buffer)
+diff --git a/include/linux/arm_ffa.h b/include/linux/arm_ffa.h
+index aaff89364541..b242fbbce4f0 100644
+--- a/include/linux/arm_ffa.h
++++ b/include/linux/arm_ffa.h
+@@ -6,7 +6,6 @@
+ #ifndef _LINUX_ARM_FFA_H
+ #define _LINUX_ARM_FFA_H
+ 
+-#include <linux/cdev.h>
+ #include <linux/device.h>
+ #include <linux/module.h>
+ #include <linux/types.h>
+@@ -15,6 +14,7 @@
+ /* FFA Bus/Device/Driver related */
+ struct ffa_device {
+ 	int vm_id;
++	bool mode_32bit;
+ 	uuid_t uuid;
+ 	struct device dev;
+ };
+@@ -48,6 +48,7 @@ int ffa_driver_register(struct ffa_driver *driver, struct module *owner,
+ 			const char *mod_name);
+ void ffa_driver_unregister(struct ffa_driver *driver);
+ bool ffa_device_is_valid(struct ffa_device *ffa_dev);
++const struct ffa_dev_ops *ffa_dev_ops_get(struct ffa_device *dev);
+ 
+ #else
+ static inline
+@@ -70,6 +71,10 @@ static inline void ffa_driver_unregister(struct ffa_driver *driver) {}
+ static inline
+ bool ffa_device_is_valid(struct ffa_device *ffa_dev) { return false; }
+ 
++const struct ffa_dev_ops *ffa_dev_ops_get(struct ffa_device *dev)
++{
++	return NULL;
++}
+ #endif /* CONFIG_ARM_FFA_TRANSPORT */
+ 
+ #define ffa_register(driver) \
+@@ -88,4 +93,35 @@ bool ffa_device_is_valid(struct ffa_device *ffa_dev) { return false; }
+ #define module_ffa_driver(__ffa_driver)	\
+ 	module_driver(__ffa_driver, ffa_register, ffa_unregister)
+ 
++/* FFA transport related */
++struct ffa_partition_info {
++	u16 id;
++	u16 exec_ctxt;
++/* partition supports receipt of direct requests */
++#define FFA_PARTITION_DIRECT_RECV	BIT(0)
++/* partition can send direct requests. */
++#define FFA_PARTITION_DIRECT_SEND	BIT(1)
++/* partition can send and receive indirect messages. */
++#define FFA_PARTITION_INDIRECT_MSG	BIT(2)
++	u32 properties;
++};
++
++/* For use with FFA_MSG_SEND_DIRECT_{REQ,RESP} which pass data via registers */
++struct ffa_send_direct_data {
++	unsigned long data0; /* w3/x3 */
++	unsigned long data1; /* w4/x4 */
++	unsigned long data2; /* w5/x5 */
++	unsigned long data3; /* w6/x6 */
++	unsigned long data4; /* w7/x7 */
++};
++
++struct ffa_dev_ops {
++	u32 (*api_version_get)(void);
++	int (*partition_info_get)(const char *uuid_str,
++				  struct ffa_partition_info *buffer);
++	void (*mode_32bit_set)(struct ffa_device *dev);
++	int (*sync_send_receive)(struct ffa_device *dev,
++				 struct ffa_send_direct_data *data);
++};
++
+ #endif /* _LINUX_ARM_FFA_H */
 -- 
 2.25.1
 
