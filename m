@@ -2,851 +2,357 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C63937362B
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 10:22:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF9A037368A
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 10:44:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230491AbhEEIXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 04:23:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40664 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229780AbhEEIXJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 04:23:09 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ABEBC061761
-        for <devicetree@vger.kernel.org>; Wed,  5 May 2021 01:22:13 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id t4so718417plc.6
-        for <devicetree@vger.kernel.org>; Wed, 05 May 2021 01:22:13 -0700 (PDT)
+        id S232153AbhEEIpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 04:45:31 -0400
+Received: from mail-dm6nam12on2091.outbound.protection.outlook.com ([40.107.243.91]:42272
+        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232286AbhEEIpZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 May 2021 04:45:25 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PNE/8zbpO75i/Jg1zLzdjOv9XkWXuxzmxpbwqQs7iyJUawT3oHjFqNZoo/LnIgo6MGaspUqSE02Sy82XUiU7i/xU1IJ2ILvz5j7oTSHpZyryjwO84XOARmoPgmgvPO+vXFaVoQpIue9ya0RFezud5V6p29pGBfrLD/RWOBsKO4lhszkXBcHGaYGV0RnIVT6dd90crJ9dnCiWgxLgCnxcEV6kMI46mByVocVb5BPNQ0P/Q2fEoBMdwW/Y1bDL/7/l2q3yqn7ZCceZyC1Ukoqvf8im5BhYYF8E8CHh77ZP9UiJFa6fxiHgP0M4i7FGoVWZilo/wPYCVm06DglPaFqrrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TQZqyqmRwVdJ97RVHf2k+XA5eGJWwQmpvSjJtW2VGnY=;
+ b=aqiMiYsbq93MQa+T52CPt083DsDTiEz08ncYJRThqyX5f/Kry3dfn3j+CRzCfeHZ/MH3erHcbort7FTmZAsOPao/o9f38hH0djDk+st+KaEdz2jlTDHNSedDRJzhulA9G61XVrAP3y+gRT+zM3OYTrrdyBL58PhVX5v0YwYWB/ZYbnLWH2+6Ld+pSgGJbsBCu/hNNeskJCQe+qgKL9OOglp6Z2FhUv6Us+mCE3AJMQqgbPmAjUq2OQacL+QXy4PTmgKqroknELQc+oFVYA5Zm5wr33DYeKeRdFF3snDFamSqyN6rPvKoq1nNyn01nF18CV63iznveLpuYJf4Zo+44Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ZvvR1l5zWhnCiSFTVSLKMPmtP+aPqUsrdD9rV7fyGQk=;
-        b=lZpIaU18GoMD7xIbLu26GW0eja1C7rv3ubVocBG2UtQ+BpuYWNqt57Aocs1O7fAFpN
-         HxwM0HOQ1nh2FLTZSBhHXBDkjNSUva1ld410WSuXwkshblzE/DRWHfxN3xITr9zExvpz
-         iOdY25+m4rjtNDJ3VBDRIr3o0lak4lxdyQFJFQOuxZOd626I7Ub+ISJo58U9DcdRZezC
-         OSrZuuCT/qYxhNBjlKWwIY9MjsKzcDWADmxDbI8yJLalStICvuLfifcqz6sfHHjk/gmr
-         y8R9ECiYRl7yi8EVMaMl/pptmn3cRMNw8C7UYfpmsm5XMhMx0s1FXdlAHiZreltZh9tr
-         rDhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ZvvR1l5zWhnCiSFTVSLKMPmtP+aPqUsrdD9rV7fyGQk=;
-        b=AXgUYHTQMJj9dFs/HkJOnfyBhuhqc/VMkyI9UL1CrhS8pNZwHa4B0ndi50t39UzIJG
-         iJrurHoQrEyc2vCT+SagGzRFQKOefWtxcla4Exe/l5CL9xqAACsR0bduU2/rQEPbKjaB
-         cfo1aSm26PAdYEu5fO0YdobVDOmavwJRUisA0xTi1/4HFVx7xlVHKbCWnIge73Ol+TKd
-         YWUytOcXeftst6+iHoY/TDPQbyVQCxHKBojIvfYnNOTby0ejS0KDO1YWokSmwpx65IUi
-         kfHOouVvDipUEPix5Uov2FhoqwDAJuulqvj2EigLo4rSNJvPg8Z6KBs8Bn2yWdryrdsu
-         Kubg==
-X-Gm-Message-State: AOAM532JbOp/n+8FTsh3L+KL6TBH8de7giI6b6khhDBq0cn667cxOgzp
-        k0gzHJiHlgDigofpMBvBUyplYfMPS0DOtns=
-X-Google-Smtp-Source: ABdhPJzL53zlnB5h2dfceV2M8LTTkKaz0hLTQHjBZQ+eIfg9dDQmyY/rhZcMa6rRIMSO1CjsEZl4/Q==
-X-Received: by 2002:a17:903:230a:b029:ee:a909:4f92 with SMTP id d10-20020a170903230ab02900eea9094f92mr26648581plh.44.1620202932560;
-        Wed, 05 May 2021 01:22:12 -0700 (PDT)
-Received: from localhost.localdomain ([2409:4072:6d18:2fef:221f:3158:8c4c:ea90])
-        by smtp.gmail.com with ESMTPSA id j27sm6417471pgb.54.2021.05.05.01.22.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 May 2021 01:22:12 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     bjorn.andersson@linaro.org, robh+dt@kernel.org
-Cc:     ohad@wizery.com, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, pillair@codeaurora.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH] dt-bindings: remoteproc: qcom: pas: Convert binding to YAML
-Date:   Wed,  5 May 2021 13:52:00 +0530
-Message-Id: <20210505082200.32635-1-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
+ d=os.amperecomputing.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TQZqyqmRwVdJ97RVHf2k+XA5eGJWwQmpvSjJtW2VGnY=;
+ b=ua6hiWcIeavVO4390DymFNgbQJSHM2JusNbKYaHla2ewpnQTsErlgIlv8KCQtVMLBbS6UCy2IQryAxY8H33OcKCa+FMQM749b+4uRuOVQrQWWGM8vytnNctxMCeQ1x4daIkYcCi5hggg3g9XnKcXZmW3WbbAd/XxDVrbLGt/H3E=
+Authentication-Results: os.amperecomputing.com; dkim=none (message not signed)
+ header.d=none;os.amperecomputing.com; dmarc=none action=none
+ header.from=os.amperecomputing.com;
+Received: from MW2PR0102MB3482.prod.exchangelabs.com (2603:10b6:302:c::32) by
+ MWHPR01MB2381.prod.exchangelabs.com (2603:10b6:300:46::10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4087.25; Wed, 5 May 2021 08:44:23 +0000
+Received: from MW2PR0102MB3482.prod.exchangelabs.com
+ ([fe80::d840:7aa7:58d4:b503]) by MW2PR0102MB3482.prod.exchangelabs.com
+ ([fe80::d840:7aa7:58d4:b503%5]) with mapi id 15.20.4087.044; Wed, 5 May 2021
+ 08:44:23 +0000
+Subject: Re: [PATCH v4 1/4] dt-bindings: mfd: Add bindings for Ampere Altra
+ SMPro drivers
+To:     Rob Herring <robh@kernel.org>
+Cc:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        openbmc@lists.ozlabs.org,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+References: <20210422090843.4614-1-quan@os.amperecomputing.com>
+ <20210422090843.4614-2-quan@os.amperecomputing.com>
+ <20210430201918.GA3806853@robh.at.kernel.org>
+From:   Quan Nguyen <quan@os.amperecomputing.com>
+Message-ID: <52550615-ae38-d88e-a597-29dc9c71755a@os.amperecomputing.com>
+Date:   Wed, 5 May 2021 15:44:04 +0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
+ Gecko/20100101 Thunderbird/78.10.0
+In-Reply-To: <20210430201918.GA3806853@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [27.74.205.135]
+X-ClientProxiedBy: CH2PR03CA0007.namprd03.prod.outlook.com
+ (2603:10b6:610:59::17) To MW2PR0102MB3482.prod.exchangelabs.com
+ (2603:10b6:302:c::32)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.10.85] (27.74.205.135) by CH2PR03CA0007.namprd03.prod.outlook.com (2603:10b6:610:59::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.24 via Frontend Transport; Wed, 5 May 2021 08:44:17 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 6fca1013-d671-4073-1d84-08d90fa1fb46
+X-MS-TrafficTypeDiagnostic: MWHPR01MB2381:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MWHPR01MB238173B790B7FE6A5A23C101F2599@MWHPR01MB2381.prod.exchangelabs.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 3D73IgSjmeX9PQsbOmE9xUpEiNXIxYuDEADtCep9OmqLjGrj+iudb2PlGrnZ3fz06sEGTmYAdQ5hCpWpx3LkOJ5rR+F82Vu37A7rta6y+uWiMx4hZ+VKFXrnG62zvucGVaAUzkbxa3TUD7NmvpwkqvcJg43TbiTFuveK/ZQDbxoNGyBS4KvLPoEI4kf7rMCkAzpTHiPNmLn4DpIcmerwfFdnrZ2Uxr7hDQAV96r58GB2aqmdhZnoYOAhFToctoFCORdkHi+3IJ05HA0Zo3T5iHW1MHKcwr7PR3anz8nLW7RT3mJB1kGTwClH6GxDJ3TYJ6gnCvqrohBOzeIyTfyt1fObxw9/RSJltCex9Z+K9XO0du1NX5mpNWV+fiw/E7eBwYG11zyitVmY3fDxOKy2ENPkEC6y+WH/GUTcwYdr8PfJr3gTA1erEiffwdUeB/oKNwcHITBTXtkCAE8ccNdnVB0LWPvtwCyUHZ+IgkyKhpndOD7WyP0affRabboHzvPl8FdUHKS8h8z1ZXwZjYzR1SWk8MONRfS96hjYFGom3sTsMuqhWJpAQujBLuaFBG9H3UbbXMJbFwcLM+N3Mg6g9pbCZML9v+Jkq3z4lx25gt9UGvxpNJC+jqiCR5L67RZiF8BtcEbsrXIcT8sLWOa+lmdT1GD12haQWfJZDQftMSOAotaxz3IUzwGVZobHMv45O8dqvMtbt3sm2+Jj8/f8ZZ94+FNy/hh0yvdSzzJj2e+jqFpcXU8bNHZFAhXPYwNUtkGBSv9GS1P2TT9yVLtyd8/Mu7n+RpBHHh+Fs6ET6nk=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW2PR0102MB3482.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39850400004)(396003)(376002)(346002)(366004)(66476007)(966005)(8936002)(31696002)(66946007)(26005)(186003)(5660300002)(66556008)(6486002)(53546011)(54906003)(478600001)(16576012)(6666004)(8676002)(107886003)(31686004)(316002)(2616005)(52116002)(83380400001)(4326008)(38100700002)(86362001)(956004)(7416002)(16526019)(6916009)(38350700002)(2906002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?SGg0a1lWM0lCUi9CRTRWakVhYjNMUFNid1dWT3g5Zk5yRDRvMktMdGpHdkQx?=
+ =?utf-8?B?Ny9Pc1kvaVp2RktPSTBncFpnNlpXMUZadDZSRTBIMW80V21UbFRpaU1ZY25r?=
+ =?utf-8?B?Z2hLcXIxRFkyL0g1RytuY1g0cEJ2MUhsMVp0dnllN1I0R1pzU0FsQXFYS3Ix?=
+ =?utf-8?B?N1hDNVdTMTRkUVFLcmZyQXJlUGR3NXlmaDF3cU9NdURsTjRlR2NTUmRqd29O?=
+ =?utf-8?B?U0tJdlB6MUF3R2t4Q2FROEdKSzM0VnJ5RCtlVWE3Qit3TXNrcHRNRUp5aWJC?=
+ =?utf-8?B?aEdwNFNMSk9hdXV1Y2NCWW43QUZNY3FLTmFBTkhmN0UvWTBOK3V5a1RMTzRn?=
+ =?utf-8?B?Zmwyc0h5MFFBaUNvT2NxVFU0b3E4WTlFZS9xOHhjUUFqSHJnOXl3K1F3eVla?=
+ =?utf-8?B?UjR5amd6d0pHbFRRd1NzbFZHYnU3L2JQamZIbE50aDNVNC9nemNnWFJHU0Zy?=
+ =?utf-8?B?bjNIbmt5K2ZZL01pd3JDVm1nZ0RrZTkvb0xpdW1lbjlsSEFvVWEyN05BTWoz?=
+ =?utf-8?B?VXc4ZlhCT290d2NQWFBVaDI1S0hpQzhFR1JwRVZaZ09LVFlsUjU2UmIya0dr?=
+ =?utf-8?B?dTBTMkxwbFk1VE9CSUdqaFYvNm5TaWxvUVR0bFF0cnVFaklsN3lhSWphZ1c0?=
+ =?utf-8?B?TFJUamdoelpvZkUzanczT0k0WnhjS3lFWnB2Y0tGT0pqM1gxZzFnTFUraFJ3?=
+ =?utf-8?B?TXlFdmJyeFNIekZJTDlvUkc2ZUV2QktsOXljU2xRbnVyN2IrVXNNRkgvVVlT?=
+ =?utf-8?B?Y0dEUUs1NjVMc1lxei9hdGRVcjVmQndsS0tLYk9wR0NRT2U0SmRSdFlac3ZR?=
+ =?utf-8?B?NGMrRUVRNUNORDRZeS8wZ1BaZTJPZXNjTGVTcE1xZ2Q4WXFJRWE5cFlwR1dr?=
+ =?utf-8?B?Q3R2VDk2eE54eXdRRzBsSDJiNlhYWkdWNmIyUWZTTkhiL1lkQUx5UUtZYXdy?=
+ =?utf-8?B?Tk5QZXVaUVc5bFFxL1NCZ2FCV1JOOWo2VXNyRGFJU0x2ODZFMHhEQ2JTdzQr?=
+ =?utf-8?B?eE1QclZsWXIzT2tEWkRyaWtxd3FKUmgva0NYK1FzT3hXOGNCeVVqUXVZT2I4?=
+ =?utf-8?B?SVQxVmFBT1RkQzQyRkFRaGo4UnNaYklPSUxhUVkxcHJwTFpTWWtyaXp3WVVW?=
+ =?utf-8?B?dGJmVDh2eTlKaVFqQXNIbVpVN29NMEJiMGprM3JFWExjbkNqdlN6ZlIyU3Q1?=
+ =?utf-8?B?dzBPOW9aZjB4L1hFUVlSNmtrdzZ3UTlWRGFhN2w5cnBSWG9iMzVrSlZyVjFD?=
+ =?utf-8?B?YTBEZ3JSM2xTTDZhWlNtQUJNSDd2YjNJOEllZjVhcDhRMzhWQURBNVBRd2hL?=
+ =?utf-8?B?aytxODR0YjJya3Bid2RKbnpadFY0Q3M5Lzd0QVc0U3NkbjJ6VEllZk91MkFV?=
+ =?utf-8?B?eFVhWmxPRUtGRk1oci8zNXp3OXFyZUpZbFVranpEUmVNREhFSkJvdzFGR0Ns?=
+ =?utf-8?B?MC9lTDRKNEdhQ0pkeVhiWWgvd21DSjNQelpXbVZ5SlE2cmFuRDRQcUczMGNF?=
+ =?utf-8?B?ZTJOZXliK091MWNvdzEvbGZJbmppcFE5UUdvYzJHNHRIQ1d0cG9IT0RmdEZX?=
+ =?utf-8?B?QUFyYk9JMS9JakY1SlBaL0RqdG1ScnMva2ZvcFZQSXV2ZDB2bXlVdmQ1azY2?=
+ =?utf-8?B?NFM1YkdQcGNSY1h5dTFHeGJYOFcvMlhqRUtLbkxpbkNGK0t5WFBKU3NENDdG?=
+ =?utf-8?B?bnV2NlRGeG4waVNRSzRaOEloTkkrSWhGdWNsb01TS3YyN2Rwd01pZHFYODBk?=
+ =?utf-8?Q?+qIUHaMreBKsxJoY2Z8pw+aQcsnDbcmfMeTVxqA?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6fca1013-d671-4073-1d84-08d90fa1fb46
+X-MS-Exchange-CrossTenant-AuthSource: MW2PR0102MB3482.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2021 08:44:23.3491
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1TCgcZ2Q9YUXsFkN0K+YKcgvr+u6FrKBHyVTUqD8CXfSqmOJo7Z5YQ1s/pMmDdUU8f1DUF59xdaWYLJz9yN3mlu4jdv1+b71tEZ4hewbqzo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR01MB2381
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Qualcomm ADSP Remoteproc devicetree binding to YAML.
+On 01/05/2021 03:19, Rob Herring wrote:
+> On Thu, Apr 22, 2021 at 04:08:40PM +0700, Quan Nguyen wrote:
+>> Adds device tree bindings for SMPro driver found on the Mt.Jade hardware
+>> reference platform with Ampere's Altra Processor family.
+>>
+>> The SMpro co-processor on Ampere Altra processor family is to monitor
+>> and report various data included hwmon-related info, RAS errors, and
+>> other miscellaneous information. This parent SMPro MFD driver creates
+>> a single simple register map to be shared by all sub-devices and leave
+>> all the specific to be handled by the child drivers.
+> 
+> Again, just because you have multiple functions aka MFD, that doesn't
+> mean you need child nodes for each function. The only thing you have
+> in DT is a register address. Does this vary? If so, how often? How many
+> different versions of a DT do you currently or expect to have?
+> 
+Hi Rob,
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- .../bindings/remoteproc/qcom,adsp.txt         | 228 --------
- .../bindings/remoteproc/qcom,adsp.yaml        | 534 ++++++++++++++++++
- 2 files changed, 534 insertions(+), 228 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,adsp.txt
- create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+Thank you for your review.
+I will try to explain what I think below and expect to receive more 
+comments to improve these patches. And if any misundertood, please help 
+correct me.
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.txt b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.txt
-deleted file mode 100644
-index 229f908fd831..000000000000
---- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.txt
-+++ /dev/null
-@@ -1,228 +0,0 @@
--Qualcomm ADSP Peripheral Image Loader
--
--This document defines the binding for a component that loads and boots firmware
--on the Qualcomm ADSP Hexagon core.
--
--- compatible:
--	Usage: required
--	Value type: <string>
--	Definition: must be one of:
--		    "qcom,msm8974-adsp-pil"
--		    "qcom,msm8996-adsp-pil"
--		    "qcom,msm8996-slpi-pil"
--		    "qcom,msm8998-adsp-pas"
--		    "qcom,msm8998-slpi-pas"
--		    "qcom,qcs404-adsp-pas"
--		    "qcom,qcs404-cdsp-pas"
--		    "qcom,qcs404-wcss-pas"
--		    "qcom,sc7180-mpss-pas"
--		    "qcom,sdm845-adsp-pas"
--		    "qcom,sdm845-cdsp-pas"
--                    "qcom,sdx55-mpss-pas"
--		    "qcom,sm8150-adsp-pas"
--		    "qcom,sm8150-cdsp-pas"
--		    "qcom,sm8150-mpss-pas"
--		    "qcom,sm8150-slpi-pas"
--		    "qcom,sm8250-adsp-pas"
--		    "qcom,sm8250-cdsp-pas"
--		    "qcom,sm8250-slpi-pas"
--		    "qcom,sm8350-adsp-pas"
--		    "qcom,sm8350-cdsp-pas"
--		    "qcom,sm8350-slpi-pas"
--		    "qcom,sm8350-mpss-pas"
--
--- interrupts-extended:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: reference to the interrupts that match interrupt-names
--
--- interrupt-names:
--	Usage: required
--	Value type: <stringlist>
--	Definition: The interrupts needed depends on the compatible
--		    string:
--	qcom,msm8974-adsp-pil:
--	qcom,msm8996-adsp-pil:
--	qcom,msm8996-slpi-pil:
--	qcom,msm8998-adsp-pas:
--	qcom,msm8998-slpi-pas:
--	qcom,qcs404-adsp-pas:
--	qcom,qcs404-cdsp-pas:
--	qcom,sdm845-adsp-pas:
--	qcom,sdm845-cdsp-pas:
--	qcom,sm8150-adsp-pas:
--	qcom,sm8150-cdsp-pas:
--	qcom,sm8150-slpi-pas:
--	qcom,sm8250-adsp-pas:
--	qcom,sm8250-cdsp-pas:
--	qcom,sm8250-slpi-pas:
--	qcom,sm8350-adsp-pas:
--	qcom,sm8350-cdsp-pas:
--	qcom,sm8350-slpi-pas:
--		    must be "wdog", "fatal", "ready", "handover", "stop-ack"
--	qcom,qcs404-wcss-pas:
--	qcom,sc7180-mpss-pas:
--        qcom,sdx55-mpss-pas:
--	qcom,sm8150-mpss-pas:
--	qcom,sm8350-mpss-pas:
--		    must be "wdog", "fatal", "ready", "handover", "stop-ack",
--		    "shutdown-ack"
--
--- firmware-name:
--	Usage: optional
--	Value type: <string>
--	Definition: must list the relative firmware image path for the
--		    Hexagon Core.
--
--- clocks:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: reference to the xo clock and optionally aggre2 clock to be
--		    held on behalf of the booting Hexagon core
--
--- clock-names:
--	Usage: required
--	Value type: <stringlist>
--	Definition: must be "xo" and optionally include "aggre2"
--
--- cx-supply:
--	Usage: required
--	Value type: <phandle>
--	Definition: reference to the regulator to be held on behalf of the
--		    booting Hexagon core
--
--- px-supply:
--	Usage: required
--	Value type: <phandle>
--	Definition: reference to the px regulator to be held on behalf of the
--		    booting Hexagon core
--
--- power-domains:
--	Usage: required
--	Value type: <phandle>
--	Definition: reference to power-domains that match the power-domain-names
--
--- power-domain-names:
--	Usage: required
--	Value type: <stringlist>
--	Definition: The power-domains needed depend on the compatible string:
--	qcom,msm8974-adsp-pil:
--	qcom,msm8996-adsp-pil:
--	qcom,msm8998-adsp-pas:
--		    must be "cx"
--	qcom,msm8996-slpi-pil:
--		    must be "ss_cx"
--	qcom,msm8998-slpi-pas:
--		    must be "ssc_cx"
--	qcom,qcs404-adsp-pas:
--		    must be "lpi_cx"
--	qcom,qcs404-cdsp-pas:
--	qcom,qcs404-wcss-pas:
--		    must be "mx"
--	qcom,sdm845-adsp-pas:
--	qcom,sdm845-cdsp-pas:
--	qcom,sm8150-adsp-pas:
--	qcom,sm8150-cdsp-pas:
--	qcom,sm8250-cdsp-pas:
--	qcom,sm8350-cdsp-pas:
--		    must be "cx", "load_state"
--	qcom,sc7180-mpss-pas:
--	qcom,sm8150-mpss-pas:
--	qcom,sm8350-mpss-pas:
--		    must be "cx", "load_state", "mss"
--        qcom,sdx55-mpss-pas:
--                    must be "cx", "mss"
--	qcom,sm8250-adsp-pas:
--	qcom,sm8350-adsp-pas:
--	qcom,sm8150-slpi-pas:
--	qcom,sm8250-slpi-pas:
--	qcom,sm8350-slpi-pas:
--		    must be "lcx", "lmx", "load_state"
--
--- memory-region:
--	Usage: required
--	Value type: <phandle>
--	Definition: reference to the reserved-memory for the ADSP
--
--- qcom,smem-states:
--	Usage: required
--	Value type: <phandle>
--	Definition: reference to the smem state for requesting the ADSP to
--		    shut down
--
--- qcom,smem-state-names:
--	Usage: required
--	Value type: <stringlist>
--	Definition: must be "stop"
--
--
--= SUBNODES
--The adsp node may have an subnode named either "smd-edge" or "glink-edge" that
--describes the communication edge, channels and devices related to the ADSP.
--See ../soc/qcom/qcom,smd.txt and ../soc/qcom/qcom,glink.txt for details on how
--to describe these.
--
--
--= EXAMPLE
--The following example describes the resources needed to boot control the
--ADSP, as it is found on MSM8974 boards.
--
--	adsp {
--		compatible = "qcom,msm8974-adsp-pil";
--
--		interrupts-extended = <&intc 0 162 IRQ_TYPE_EDGE_RISING>,
--				      <&adsp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
--				      <&adsp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
--				      <&adsp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
--				      <&adsp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
--		interrupt-names = "wdog",
--				  "fatal",
--				  "ready",
--				  "handover",
--				  "stop-ack";
--
--		clocks = <&rpmcc RPM_CXO_CLK>;
--		clock-names = "xo";
--
--		cx-supply = <&pm8841_s2>;
--
--		memory-region = <&adsp_region>;
--
--		qcom,smem-states = <&adsp_smp2p_out 0>;
--		qcom,smem-state-names = "stop";
--
--		smd-edge {
--			interrupts = <0 156 IRQ_TYPE_EDGE_RISING>;
--
--			qcom,ipc = <&apcs 8 8>;
--			qcom,smd-edge = <1>;
--		};
--	};
--
--The following example describes the resources needed to boot control the
--SLPI, as it is found on MSM8996 boards.
--
--	slpi {
--		compatible = "qcom,msm8996-slpi-pil";
--		interrupts-extended = <&intc 0 390 IRQ_TYPE_EDGE_RISING>,
--				      <&slpi_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
--				      <&slpi_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
--				      <&slpi_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
--				      <&slpi_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
--		interrupt-names = "wdog",
--				  "fatal",
--				  "ready",
--				  "handover",
--				  "stop-ack";
--
--		clocks = <&rpmcc MSM8996_RPM_SMD_XO_CLK_SRC>,
--		         <&rpmcc MSM8996_RPM_SMD_AGGR2_NOC_CLK>;
--		clock-names = "xo", "aggre2";
--
--		cx-supply = <&pm8994_l26>;
--		px-supply = <&pm8994_lvs2>;
--
--		memory-region = <&slpi_region>;
--		qcom,smem-states = <&slpi_smp2p_out 0>;
--		qcom,smem-state-names = "stop";
--        };
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-new file mode 100644
-index 000000000000..9c07cfce0383
---- /dev/null
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-@@ -0,0 +1,534 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/remoteproc/qcom,adsp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm ADSP Peripheral Image Loader binding
-+
-+maintainers:
-+  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+
-+description:
-+  This document defines the binding for a component that loads and boots
-+  firmware on the Qualcomm ADSP Hexagon core.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - qcom,msm8974-adsp-pil
-+      - qcom,msm8996-adsp-pil
-+      - qcom,msm8996-slpi-pil
-+      - qcom,msm8998-adsp-pas
-+      - qcom,msm8998-slpi-pas
-+      - qcom,qcs404-adsp-pas
-+      - qcom,qcs404-cdsp-pas
-+      - qcom,qcs404-wcss-pas
-+      - qcom,sc7180-mpss-pas
-+      - qcom,sdm845-adsp-pas
-+      - qcom,sdm845-cdsp-pas
-+      - qcom,sdx55-mpss-pas
-+      - qcom,sm8150-adsp-pas
-+      - qcom,sm8150-cdsp-pas
-+      - qcom,sm8150-mpss-pas
-+      - qcom,sm8150-slpi-pas
-+      - qcom,sm8250-adsp-pas
-+      - qcom,sm8250-cdsp-pas
-+      - qcom,sm8250-slpi-pas
-+      - qcom,sm8350-adsp-pas
-+      - qcom,sm8350-cdsp-pas
-+      - qcom,sm8350-slpi-pas
-+      - qcom,sm8350-mpss-pas
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 8
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 8
-+
-+  interrupts:
-+    minItems: 5
-+    maxItems: 6
-+
-+  interrupt-names:
-+    minItems: 5
-+    maxItems: 6
-+
-+  resets:
-+    minItems: 1
-+    maxItems: 3
-+
-+  reset-names:
-+    minItems: 1
-+    maxItems: 3
-+
-+  cx-supply:
-+    description: Phandle to the CX regulator
-+
-+  px-supply:
-+    description: Phandle to the PX regulator
-+
-+  power-domains:
-+    minItems: 1
-+    maxItems: 3
-+
-+  power-domain-names:
-+    minItems: 1
-+    maxItems: 3
-+
-+  firmware-name:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: Firmware name for the Hexagon core
-+
-+  memory-region:
-+    maxItems: 1
-+    description: Reference to the reserved-memory for the Hexagon core
-+
-+  qcom,smem-states:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description: States used by the AP to signal the Hexagon core
-+    items:
-+      - description: Stop the modem
-+
-+  qcom,smem-state-names:
-+    $ref: /schemas/types.yaml#/definitions/string-array
-+    description: The names of the state bits used for SMP2P output
-+    items:
-+      - const: stop
-+
-+  qcom,halt-regs:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description:
-+      Phandle reference to a syscon representing TCSR followed by the
-+      three offsets within syscon for q6, modem and nc halt registers.
-+
-+  smd-edge:
-+    type: object
-+    description:
-+      Qualcomm Shared Memory subnode which represents communication edge,
-+      channels and devices related to the ADSP.
-+
-+  glink-edge:
-+    type: object
-+    description:
-+      Qualcomm G-Link subnode which represents communication edge, channels
-+      and devices related to the ADSP.
-+
-+required:
-+  - compatible
-+  - clocks
-+  - clock-names
-+  - interrupts
-+  - interrupt-names
-+  - memory-region
-+  - qcom,smem-states
-+  - qcom,smem-state-names
-+
-+additionalProperties: false
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,msm8974-adsp-pil
-+              - qcom,msm8996-adsp-pil
-+              - qcom,msm8996-slpi-pil
-+              - qcom,msm8998-adsp-pas
-+              - qcom,qcs404-adsp-pas
-+              - qcom,qcs404-wcss-pas
-+              - qcom,sdm845-adsp-pas
-+              - qcom,sdm845-cdsp-pas
-+              - qcom,sm8150-adsp-pas
-+              - qcom,sm8150-cdsp-pas
-+              - qcom,sm8150-mpss-pas
-+              - qcom,sm8150-slpi-pas
-+              - qcom,sm8250-adsp-pas
-+              - qcom,sm8250-cdsp-pas
-+              - qcom,sm8250-slpi-pas
-+              - qcom,sm8350-adsp-pas
-+              - qcom,sm8350-cdsp-pas
-+              - qcom,sm8350-slpi-pas
-+              - qcom,sm8350-mpss-pas
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: XO clock
-+        clock-names:
-+          items:
-+            - const: xo
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,msm8998-slpi-pas
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: XO clock
-+            - description: AGGRE2 clock
-+        clock-names:
-+          items:
-+            - const: xo
-+            - const: aggre2
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,qcs404-cdsp-pas
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: XO clock
-+            - description: SWAY clock
-+            - description: TBU clock
-+            - description: BIMC clock
-+            - description: AHB AON clock
-+            - description: Q6SS SLAVE clock
-+            - description: Q6SS MASTER clock
-+            - description: Q6 AXIM clock
-+        clock-names:
-+          items:
-+            - const: xo
-+            - const: sway
-+            - const: tbu
-+            - const: bimc
-+            - const: ahb_aon
-+            - const: q6ss_slave
-+            - const: q6ss_master
-+            - const: q6_axim
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sc7180-mpss-pas
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: XO clock
-+            - description: IFACE clock
-+            - description: BUS clock
-+            - description: NAC clock
-+            - description: SNOC AXI clock
-+            - description: MNOC AXI clock
-+        clock-names:
-+          items:
-+            - const: xo
-+            - const: iface
-+            - const: bus
-+            - const: nav
-+            - const: snoc_axi
-+            - const: mnoc_axi
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,msm8974-adsp-pil
-+              - qcom,msm8996-adsp-pil
-+              - qcom,msm8996-slpi-pil
-+              - qcom,msm8998-adsp-pas
-+              - qcom,msm8998-slpi-pas
-+              - qcom,qcs404-adsp-pas
-+              - qcom,qcs404-cdsp-pas
-+              - qcom,qcs404-wcss-pas
-+              - qcom,sdm845-adsp-pas
-+              - qcom,sdm845-cdsp-pas
-+              - qcom,sm8150-adsp-pas
-+              - qcom,sm8150-cdsp-pas
-+              - qcom,sm8150-slpi-pas
-+              - qcom,sm8250-adsp-pas
-+              - qcom,sm8250-cdsp-pas
-+              - qcom,sm8250-slpi-pas
-+              - qcom,sm8350-adsp-pas
-+              - qcom,sm8350-cdsp-pas
-+              - qcom,sm8350-slpi-pas
-+    then:
-+      properties:
-+        interrupts:
-+          items:
-+            - description: Watchdog interrupt
-+            - description: Fatal interrupt
-+            - description: Ready interrupt
-+            - description: Handover interrupt
-+            - description: Stop acknowledge interrupt
-+        interrupt-names:
-+          items:
-+            - const: wdog
-+            - const: fatal
-+            - const: ready
-+            - const: handover
-+            - const: stop-ack
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sc7180-mpss-pas
-+              - qcom,sdx55-mpss-pas
-+              - qcom,sm8150-mpss-pas
-+              - qcom,sm8350-mpss-pas
-+    then:
-+      properties:
-+        interrupts:
-+          items:
-+            - description: Watchdog interrupt
-+            - description: Fatal interrupt
-+            - description: Ready interrupt
-+            - description: Handover interrupt
-+            - description: Stop acknowledge interrupt
-+            - description: Shutdown acknowledge interrupt
-+        interrupt-names:
-+          items:
-+            - const: wdog
-+            - const: fatal
-+            - const: ready
-+            - const: handover
-+            - const: stop-ack
-+            - const: shutdown-ack
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,msm8974-adsp-pil
-+    then:
-+      required:
-+        - cx-supply
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,msm8998-adsp-pas
-+    then:
-+      properties:
-+        power-domains:
-+          items:
-+            - description: CX power domain
-+        power-domain-names:
-+          items:
-+           - const: cx
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,msm8998-slpi-pas
-+    then:
-+      properties:
-+        power-domains:
-+          items:
-+            - description: SSC-CX power domain
-+        power-domain-names:
-+          items:
-+           - const: ssc_cx
-+      required:
-+        - px-supply
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sc7180-mpss-pas
-+    then:
-+      properties:
-+        power-domains:
-+          items:
-+            - description: Load State power domain
-+            - description: CX power domain
-+            - description: MX power domain
-+            - description: MSS power domain
-+        power-domain-names:
-+          items:
-+           - const: load_state
-+           - const: cx
-+           - const: mx
-+           - const: mss
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sm8150-adsp-pas
-+              - qcom,sm8150-cdsp-pas
-+    then:
-+      properties:
-+        power-domains:
-+          items:
-+            - description: Load State power domain
-+            - description: CX power domain
-+        power-domain-names:
-+          items:
-+           - const: load_state
-+           - const: cx
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sm8150-mpss-pas
-+              - qcom,sm8350-mpss-pas
-+    then:
-+      properties:
-+        power-domains:
-+          items:
-+            - description: Load State power domain
-+            - description: CX power domain
-+            - description: MSS power domain
-+        power-domain-names:
-+          items:
-+           - const: load_state
-+           - const: cx
-+           - const: mss
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sdx55-mpss-pas
-+    then:
-+      properties:
-+        power-domains:
-+          items:
-+            - description: CX power domain
-+            - description: MSS power domain
-+        power-domain-names:
-+          items:
-+           - const: cx
-+           - const: mss
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sm8150-slpi-pas
-+              - qcom,sm8250-adsp-pas
-+              - qcom,sm8250-slpi-pas
-+              - qcom,sm8350-adsp-pas
-+              - qcom,sm8350-slpi-pas
-+    then:
-+      properties:
-+        power-domains:
-+          items:
-+            - description: Load State power domain
-+            - description: LCX power domain
-+            - description: LMX power domain
-+        power-domain-names:
-+          items:
-+           - const: load_state
-+           - const: lcx
-+           - const: lmx
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sm8350-cdsp-pas
-+    then:
-+      properties:
-+        power-domains:
-+          items:
-+            - description: Load State power domain
-+            - description: CX power domain
-+            - description: MXC power domain
-+        power-domain-names:
-+          items:
-+           - const: load_state
-+           - const: cx
-+           - const: mxc
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,qcs404-cdsp-pas
-+    then:
-+      properties:
-+        resets:
-+          items:
-+            - description: CDSP restart
-+        reset-names:
-+          items:
-+            - const: restart
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sc7180-mpss-pas
-+    then:
-+      properties:
-+        resets:
-+          items:
-+            - description: MSS restart
-+            - description: PDC reset
-+        reset-names:
-+          items:
-+            - const: mss_restart
-+            - const: pdc_reset
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,rpmcc.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    adsp {
-+        compatible = "qcom,msm8974-adsp-pil";
-+
-+        interrupts-extended = <&intc 0 162 IRQ_TYPE_EDGE_RISING>,
-+                      <&adsp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-+                      <&adsp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
-+                      <&adsp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
-+                      <&adsp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
-+        interrupt-names = "wdog",
-+                  "fatal",
-+                  "ready",
-+                  "handover",
-+                  "stop-ack";
-+
-+        clocks = <&rpmcc RPM_CXO_CLK>;
-+        clock-names = "xo";
-+
-+        cx-supply = <&pm8841_s2>;
-+
-+        memory-region = <&adsp_region>;
-+
-+        qcom,smem-states = <&adsp_smp2p_out 0>;
-+        qcom,smem-state-names = "stop";
-+
-+        smd-edge {
-+            interrupts = <0 156 IRQ_TYPE_EDGE_RISING>;
-+
-+            qcom,ipc = <&apcs 8 8>;
-+            qcom,smd-edge = <1>;
-+        };
-+    };
--- 
-2.25.1
+The idea is to keep the SMPro MFD as a simple generic register map and 
+expect not to change or to handle any specific in this parent device 
+driver. This is why we see the simple_mfd_i2c fit in this case.
+
+And so, all the specific details will be handled in child devices driver 
+and we expect to have child nodes for these child devices. If the child 
+node exist we can then add any specific if necessary later.
+
+One case is that, each socket (ie: the Ampere Altra processor) has it 
+own SMPro co-processor instance in form of register map and each socket 
+could be either slave or master. Some function may not available in 
+slave socket but exist in master socket and we simply choose not to 
+define the child node if that function not existed.
+
+The other case is that if there are multi instances of the same function 
+in one SMPro MFD register map, then each instance might need to be 
+differentiated by using is own register address or maybe a DT property. 
+Then we can simply add them to the node of these instance.
+
+For your specific questions:
+
++ Does this vary ?
+yes, I think so. The register address in each child nodes may vary if 
+the SMPro co-processor firmware change its register map layout or maybe 
+other instances of a function added. Child device drivers are expected 
+to handle these changes if necessary.
+
++ About how often ?
+I actually can't say how often but the purpose of this SMPro register 
+map is to provide the info to the BMC. The BMC will need more info from 
+the host so I think changes will be unavoidable.
+
+Please help with your comments
+Thank you,
+- Quan
+
+>>
+>> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
+>> ---
+>> Changes in v4:
+>>    + Revised the commit message to clarify how the specific info will
+>>      be handled commented by Rob.
+>>
+>> Changes in v3:
+>>    + Supported list of compatible string [Rob]
+>>    + Introduced reg property in DT to specify reg offset [Rob]
+>>    + Updated description and other minor changes in yaml file [Rob]
+>>
+>> Changes in v2:
+>>    + Changed "ampere,ac01-smpro" to "ampere,smpro" [Quan]
+>>
+>>   .../bindings/hwmon/ampere,ac01-hwmon.yaml     |  28 +++++
+>>   .../devicetree/bindings/mfd/ampere,smpro.yaml | 105 ++++++++++++++++++
+>>   2 files changed, 133 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/hwmon/ampere,ac01-hwmon.yaml
+>>   create mode 100644 Documentation/devicetree/bindings/mfd/ampere,smpro.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/hwmon/ampere,ac01-hwmon.yaml b/Documentation/devicetree/bindings/hwmon/ampere,ac01-hwmon.yaml
+>> new file mode 100644
+>> index 000000000000..fbf7ec754160
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/hwmon/ampere,ac01-hwmon.yaml
+>> @@ -0,0 +1,28 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/hwmon/ampere,ac01-hwmon.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Hardware monitoring driver for the Ampere Altra SMPro
+>> +
+>> +maintainers:
+>> +  - Quan Nguyen <quan@os.amperecomputing.com>
+>> +
+>> +description: |
+>> +  This module is part of the Ampere Altra SMPro multi-function device. For more
+>> +  details see ../mfd/ampere,smpro.yaml.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - ampere,ac01-hwmon
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> diff --git a/Documentation/devicetree/bindings/mfd/ampere,smpro.yaml b/Documentation/devicetree/bindings/mfd/ampere,smpro.yaml
+>> new file mode 100644
+>> index 000000000000..5613c420869e
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mfd/ampere,smpro.yaml
+>> @@ -0,0 +1,105 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mfd/ampere,smpro.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Ampere Altra SMPro firmware driver
+>> +
+>> +maintainers:
+>> +  - Quan Nguyen <quan@os.amperecomputing.com>
+>> +
+>> +description: |
+>> +  Ampere Altra SMPro firmware may contain different blocks like hardware
+>> +  monitoring, error monitoring and other miscellaneous features.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - ampere,smpro
+>> +
+>> +  reg:
+>> +    description:
+>> +      I2C device address.
+>> +    maxItems: 1
+>> +
+>> +  "#address-cells":
+>> +    const: 1
+>> +
+>> +  "#size-cells":
+>> +    const: 0
+>> +
+>> +patternProperties:
+>> +  "^hwmon(@[0-9a-f]+)?$":
+>> +    $ref: ../hwmon/ampere,ac01-hwmon.yaml
+>> +
+>> +  "^misc(@[0-9a-f]+)?$":
+>> +    type: object
+>> +    description: |
+>> +      This module is part of the Ampere Altra SMPro multi-function device
+>> +      to support miscellaneous features
+>> +    properties:
+>> +      compatible:
+>> +        enum:
+>> +          - ampere,ac01-misc
+>> +      reg:
+>> +        maxItems: 1
+>> +
+>> +    required:
+>> +      - compatible
+>> +      - reg
+>> +
+>> +  "^errmon(@[0-9a-f]+)?$":
+>> +    type: object
+>> +    description: |
+>> +      This module is part of the Ampere Altra SMPro multi-function device
+>> +      that supports error monitoring feature.
+>> +
+>> +    properties:
+>> +      compatible:
+>> +        enum:
+>> +          - ampere,ac01-errmon
+>> +      reg:
+>> +        maxItems: 1
+>> +
+>> +    required:
+>> +      - compatible
+>> +      - reg
+>> +
+>> +required:
+>> +  - "#address-cells"
+>> +  - "#size-cells"
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    i2c {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        smpro@4f {
+>> +            compatible = "ampere,smpro";
+>> +            reg = <0x4f>;
+>> +            #address-cells = <1>;
+>> +            #size-cells = <0>;
+>> +
+>> +            hwmon@10 {
+>> +                compatible = "ampere,ac01-hwmon";
+>> +                reg = <0x10>;
+>> +            };
+>> +
+>> +            misc@b0 {
+>> +                compatible = "ampere,ac01-misc";
+>> +                reg = <0xb0>;
+>> +            };
+>> +
+>> +            errmon@80 {
+>> +                compatible = "ampere,ac01-errmon";
+>> +                reg = <0x80>;
+>> +            };
+>> +
+>> +        };
+>> +    };
+>> -- 
+>> 2.28.0
+>>
 
