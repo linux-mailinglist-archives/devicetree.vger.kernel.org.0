@@ -2,104 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1772E373DB3
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 16:31:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3F0C373DBA
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 16:35:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232079AbhEEOcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 10:32:09 -0400
-Received: from lb3-smtp-cloud9.xs4all.net ([194.109.24.30]:37579 "EHLO
-        lb3-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229763AbhEEOcI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 10:32:08 -0400
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
-        by smtp-cloud9.xs4all.net with ESMTPA
-        id eIYJlNRG3WztCeIYNlLhsM; Wed, 05 May 2021 16:31:09 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
-        t=1620225069; bh=D07Ph/1+3Jw7Ax3sYGGJcJQ4Mxn9lO9/WLAxt78euEA=;
-        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
-         Subject;
-        b=Pvl+/ujxsh6aWY8YO/eIZ4y3E4tEjR5Q+Q+zb+4Cil9LLX2Fq9A0Lj98AHtIPLEDT
-         KkD1ujkgG+dfkCzylN0x5rt6u2vvNpDX+94NTX2JEDxNXWeFKrk8nTKwkvjfe7TwM8
-         uXvfs28Zq7su20Q0jqtex0foDT5EaCwIh/TPdsU8sg/vlE6H6s00/Wb2DYbK8CONhw
-         EiDpZEUUNQMCPDLogYF1Eq/KsRhMXzmpIGgzWlhzRD+MHnbhW78QD0AqP4iPL8ctwN
-         GftcSbZl+ni8b69f5Hw0f0zya+hGl/YfWdB87ILyvF7y1INED8BE+aDPRkisRL5GMZ
-         6/82HFD1stxqg==
-Subject: Re: [PATCH v4 9/9] ARM: dts: sama5d4: enable Hantro G1 VDEC
-To:     Emil Velikov <emil.l.velikov@gmail.com>, kernel@collabora.com,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org
-Cc:     Frank Rowand <frowand.list@gmail.com>
-References: <20210401144336.2495479-1-emil.l.velikov@gmail.com>
- <20210401144336.2495479-10-emil.l.velikov@gmail.com>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <a9829af1-f4e9-5835-9a74-15a0fce6b1eb@xs4all.nl>
-Date:   Wed, 5 May 2021 16:31:03 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.9.0
+        id S232262AbhEEOgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 10:36:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39502 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232122AbhEEOgS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 10:36:18 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50625C061761
+        for <devicetree@vger.kernel.org>; Wed,  5 May 2021 07:35:22 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id n16so1196336plf.7
+        for <devicetree@vger.kernel.org>; Wed, 05 May 2021 07:35:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=9ht/S/4bHufHsk5TYe/goP/DfNRSeLIzApauTghVLjU=;
+        b=NHMNApbfQMqAMjgQnAfqikXwDmVntfWlQpNxguHRG/5MkTUl9RIc/dLT9hqU1TKAB6
+         4VepYlLglfTovFxaMG0UNCFjZu/lqAEjAAqySGh0JrQVbgQ+80xUf7LfxnD/4IqFGfcE
+         MRDrBFXvS061Uj9icHYoKBop/T5dfsJJdVzcQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9ht/S/4bHufHsk5TYe/goP/DfNRSeLIzApauTghVLjU=;
+        b=MfXPtrZ4+QfNUWqC01UwkPetQvcaprS/SFiNP1KIAv1h48CDwZW3UWO4fWagO/2Rcj
+         LiSY2n/V5yNAGhajuR2N51YMO7TXUYzNF1+6jBrxxfe49+3x88c18hUtcMXezce2guKz
+         CWBNT2ihL5jV+Ioz/vi7+N43QhFV+XMps/+WUEXUenHBaWnNKbLbvwyUMNyuuXexaeT5
+         BE6SwJ/7iZrJWGhjEXfvwdGtIL9rkBEzXjQjisjtdmTONuTsVeuJW1hc4220PszvNKV1
+         XHLmIwf2fFH9kBsbid9p4Ol03TO8Tu0ei6ygyoo/16fHw6RbzAAKr2l9srbRDOTN4T4/
+         HYJw==
+X-Gm-Message-State: AOAM531/AmyU9yfQ8vW3V+CFq+eoH6A3yHCZ7ZiLy8DMglcu/Zz80QII
+        irTQcIbvDTjCONeNUiaBC/qKUA==
+X-Google-Smtp-Source: ABdhPJxqWisVwlsjb7Et1yTG28e4vIIm96b4ePbk3vykqLGGRyN9z6X7TtDPg7rVkYY4BFJE5WOGYA==
+X-Received: by 2002:a17:90b:46d3:: with SMTP id jx19mr11756154pjb.31.1620225321784;
+        Wed, 05 May 2021 07:35:21 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:8770:f856:b2ff:e5e4])
+        by smtp.gmail.com with UTF8SMTPSA id c195sm5049270pfb.5.2021.05.05.07.35.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 May 2021 07:35:21 -0700 (PDT)
+Date:   Wed, 5 May 2021 07:35:19 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org
+Subject: Re: [PATCH V4 6/8] arm64: dts: qcom: pmk8350: Add peripherals for
+ pmk8350
+Message-ID: <YJKtJ1pTjjP91sGd@google.com>
+References: <1620197726-23802-1-git-send-email-skakit@codeaurora.org>
+ <1620197726-23802-7-git-send-email-skakit@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <20210401144336.2495479-10-emil.l.velikov@gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4xfDtpP6vDd+QapLbKREIFOqoqr/sFJRlPamXLjLx9it1P0F65R2qEObdLMb/cvpjdwbwMInZNSs46V1xjXOGab0chRWK6Jj+p6Mywl65TjIV2lerEJPza
- mxVR3P9WMu/wogcSbCb5uORxg9uL0JGOcxFfvxaOFM8Ah0xkaGp4Zy8zM5cJ8a1BM+VXHDv+/3o/hvFGko4vPIElKk+rpwWk3+uy9R3shwaDWfHbVW7uE3c+
- N51jchrun383dk91fgYEkFK7q+3W22URvWe7gXicrw9gA7GCvy5gQ7JU0X67ZUVAOE4y2G/RsBRmJmJqHlg9Qqum7A1aOtpHzJHDcGEwtL838yd3h38OEVzz
- 2DFNtjIfe81FskSACDujkXC2ssZbAhnTb+f1LaMFZLpMRoR2bQg8vtiWC6SVcoG4p2ESxhSTGbBo1dvxfikAh87riJjL7aRjzLmaOA4War1DD1XqF6x5eZrO
- skR6lKUNrTcbMqai
+Content-Disposition: inline
+In-Reply-To: <1620197726-23802-7-git-send-email-skakit@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/04/2021 16:43, Emil Velikov wrote:
-> From: Emil Velikov <emil.velikov@collabora.com>
+On Wed, May 05, 2021 at 12:25:24PM +0530, satya priya wrote:
+> Add PON, RTC, VADC and ACD_TM support for PMK8350.
 > 
-> Add the SAMA5D4 VDEC module which comprises Hantro G1 video decoder
-> core.
+> Signed-off-by: satya priya <skakit@codeaurora.org>
 
-I've accepted parts 1-8 of this series for 5.14, so this remaining patch
-can be merged by whoever handles such dts patches.
+Please make sure to include per patch change logs for v > 1. It's
+generally useful for following the evolution of a patch and can
+save reviewers time by focussing their attention on the parts that
+have changed with respect to the previous version, rather than
+having to review the entire patch with possibly only minor (or no)
+changes over and over again (though multiple passes are often
+useful).
 
-Regards,
-
-	Hans
-
-> 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: devicetree@vger.kernel.org
-> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-> Signed-off-by: Emil Velikov <emil.velikov@collabora.com>
-> ---
-> v2
->  - Split out of larger patch (Eze)
->  - s/Atmel/Microchip/ (Nicolas)
->  - Drop leading 0 in node name/address
-> 
-> v3
->  - Drop the clk/irq names (RobH)
-> ---
->  arch/arm/boot/dts/sama5d4.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/sama5d4.dtsi b/arch/arm/boot/dts/sama5d4.dtsi
-> index 05c55875835d..e47e1ca63043 100644
-> --- a/arch/arm/boot/dts/sama5d4.dtsi
-> +++ b/arch/arm/boot/dts/sama5d4.dtsi
-> @@ -101,6 +101,13 @@ nfc_sram: sram@100000 {
->  			ranges = <0 0x100000 0x2400>;
->  		};
->  
-> +		vdec0: vdec@300000 {
-> +			compatible = "microchip,sama5d4-vdec";
-> +			reg = <0x00300000 0x100000>;
-> +			interrupts = <19 IRQ_TYPE_LEVEL_HIGH 4>;
-> +			clocks = <&pmc PMC_TYPE_PERIPHERAL 19>;
-> +		};
-> +
->  		usb0: gadget@400000 {
->  			compatible = "atmel,sama5d3-udc";
->  			reg = <0x00400000 0x100000
-> 
-
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
