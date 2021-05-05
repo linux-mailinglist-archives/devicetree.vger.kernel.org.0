@@ -2,438 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CAAC3737B3
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 11:39:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B894C373802
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 11:43:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232400AbhEEJkC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 05:40:02 -0400
-Received: from foss.arm.com ([217.140.110.172]:41272 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232235AbhEEJkB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 May 2021 05:40:01 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 140A311FB;
-        Wed,  5 May 2021 02:39:05 -0700 (PDT)
-Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id B63353F70D;
-        Wed,  5 May 2021 02:39:03 -0700 (PDT)
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Sudeep Holla <sudeep.holla@arm.com>, arve@google.com,
-        Andrew Walbran <qwandor@google.com>,
-        David Hartley <dhh@qti.qualcomm.com>,
-        Achin Gupta <Achin.Gupta@arm.com>,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
-        Marc Bonnici <marc.bonnici@arm.com>
-Subject: [PATCH v6 6/6] firmware: arm_ffa: Add support for MEM_* interfaces
-Date:   Wed,  5 May 2021 10:38:43 +0100
-Message-Id: <20210505093843.3308691-7-sudeep.holla@arm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210505093843.3308691-1-sudeep.holla@arm.com>
-References: <20210505093843.3308691-1-sudeep.holla@arm.com>
+        id S233088AbhEEJor (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 05:44:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58824 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233191AbhEEJoh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 05:44:37 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7304CC06134B;
+        Wed,  5 May 2021 02:43:34 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id c11so1650536lfi.9;
+        Wed, 05 May 2021 02:43:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6c3Xgmn5T37TIiY6YlqNonCt6qbYnwH+SLVXsWNUIl0=;
+        b=tlTyUi3kNACJZhVQLNA0q8gUswN+/IMa21mbaLzlaLXmWzl7Wu/8y3gc7AI4RJ7gp5
+         hkz1WvvJr4s16xg4aIGzXIiaFq++4fidadR9bsQtZVGviOdXVS5+sCckZ/S8tZB7OF7i
+         mN+OyC3oW7V0DgYb7z4XiON9PrXOB6FqDvFbeZVyOpSGqydB78TCyIk1nYnrCmMy4YCr
+         Tpu3gWJsG36gx1d3SQi6bArBRjmJQBi16tJQ0dBTJOjxi+dR/7zn/s30V9BovD0g2HbN
+         13nAhm0Wmx65jEDp0PeKMWOU+RWpsh834jaNzxv91k/ORKN5U0m/BcIlQfSqyPOYO4FQ
+         kg8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6c3Xgmn5T37TIiY6YlqNonCt6qbYnwH+SLVXsWNUIl0=;
+        b=YMsSbxF1ZkQ5xOzW3drQVlIe/3h3hgIJVhZf/MJBO7qLNrkcmyEmeZE4+y2gxT6zYE
+         srBJJQj0ihS8Z+0CGdsepHNA736HXcr1USUFW/AdrLEudP3Vk8v37dOCs1IfIZZmJ49G
+         4r++auyT1fuOKEZ1RlrSwJMSeOlzb7tTYNPlqL1attiutebNqVXqDU3dXPh/Ul4hL1aS
+         dlJg8blhlPm0pm+w2Plguq1DAayL1LTlO3k0zfUk7ESWmtwWqEFuhD3OT3RI//C2XoX4
+         44PTkI30HvbAXg4k0him2J+evoLBhZWfqCFtC4DV2Q3wXgVJ6g8xy11YSqzWqx1xAJuD
+         Z/Aw==
+X-Gm-Message-State: AOAM531yy/gtNYc1TlPqKjPRP+nc4m6+f/jKH+cZhg99eDRIuAKa2Keg
+        q4OTYKMHnzxjFBgeDrebIqxzxUj5nRf979Z3ZiQ=
+X-Google-Smtp-Source: ABdhPJw6OWZKpcheUIXN4U6xqnJjupiMHWXCfxCTfUuc3HFjNvUcQ9YcgrDewl5kohtJyeEZNwEigc4i9Z3u2NQfWlY=
+X-Received: by 2002:ac2:44b1:: with SMTP id c17mr1737771lfm.527.1620207812971;
+ Wed, 05 May 2021 02:43:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210429062130.29403-1-dqfext@gmail.com> <20210429.170815.956010543291313915.davem@davemloft.net>
+ <20210430023839.246447-1-dqfext@gmail.com> <YIv28APpOP9tnuO+@lunn.ch>
+ <trinity-843c99ce-952a-434e-95e4-4ece3ba6b9bd-1619786236765@3c-app-gmx-bap03>
+ <YIv7w8Wy81fmU5A+@lunn.ch> <trinity-611ff023-c337-4148-a215-98fd5604eac2-1619787382934@3c-app-gmx-bap03>
+ <YIwCliT5NZT713WD@lunn.ch> <trinity-c45bbeec-5b7c-43a2-8e86-7cb22ad61558-1619794787680@3c-app-gmx-bap03>
+ <YIwxpYD1jnFMPQz+@lunn.ch> <fc962daf8b7babc22b043b2b0878a206780b55f3.camel@mediatek.com>
+In-Reply-To: <fc962daf8b7babc22b043b2b0878a206780b55f3.camel@mediatek.com>
+From:   DENG Qingfang <dqfext@gmail.com>
+Date:   Wed, 5 May 2021 17:43:21 +0800
+Message-ID: <CALW65ja5mRPoNM2EZsONMh8Kda5OgQg79R=Xp71CaQcp4cprnQ@mail.gmail.com>
+Subject: Re: Re: Re: Re: [PATCH net-next 0/4] MT7530 interrupt support
+To:     Landen Chao <landen.chao@mediatek.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        David Miller <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Russell King - ARM Linux admin <linux@armlinux.org.uk>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-staging@lists.linux.dev,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, netdev <netdev@vger.kernel.org>,
+        Weijie Gao <weijie.gao@mediatek.com>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Most of the MEM_* APIs share the same parameters, so they can be
-generalised. Currently only MEM_SHARE is implemented and the user space
-interface for that is not added yet.
+On Wed, May 5, 2021 at 5:31 PM Landen Chao <landen.chao@mediatek.com> wrote:
+> How about using mediatek-ge.ko. 'ge' is the abbreviation of gigabit
+> Ethernet. Most mediatek products use the same gigabit Ethernet phy.
 
-Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
----
- drivers/firmware/arm_ffa/driver.c | 199 ++++++++++++++++++++++++++++++
- include/linux/arm_ffa.h           | 139 +++++++++++++++++++++
- 2 files changed, 338 insertions(+)
+Well, MT7620's PHY is FE..
 
-diff --git a/drivers/firmware/arm_ffa/driver.c b/drivers/firmware/arm_ffa/driver.c
-index cefbb3edf142..056a3fca14d1 100644
---- a/drivers/firmware/arm_ffa/driver.c
-+++ b/drivers/firmware/arm_ffa/driver.c
-@@ -28,6 +28,8 @@
- #include <linux/io.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
-+#include <linux/mm.h>
-+#include <linux/scatterlist.h>
- #include <linux/slab.h>
- #include <linux/uuid.h>
- 
-@@ -348,6 +350,192 @@ static int ffa_msg_send_direct_req(u16 src_id, u16 dst_id, bool mode_32bit,
- 	return -EINVAL;
- }
- 
-+static int ffa_mem_first_frag(u32 func_id, phys_addr_t buf, u32 buf_sz,
-+			      u32 frag_len, u32 len, u64 *handle)
-+{
-+	ffa_value_t ret;
-+
-+	invoke_ffa_fn((ffa_value_t){
-+		      .a0 = func_id, .a1 = len, .a2 = frag_len,
-+		      .a3 = buf, .a4 = buf_sz,
-+		      }, &ret);
-+
-+	while (ret.a0 == FFA_MEM_OP_PAUSE)
-+		invoke_ffa_fn((ffa_value_t){
-+			      .a0 = FFA_MEM_OP_RESUME,
-+			      .a1 = ret.a1, .a2 = ret.a2,
-+			      }, &ret);
-+
-+	if (ret.a0 == FFA_ERROR)
-+		return ffa_to_linux_errno((int)ret.a2);
-+
-+	if (ret.a0 != FFA_SUCCESS)
-+		return -EOPNOTSUPP;
-+
-+	if (handle)
-+		*handle = PACK_HANDLE(ret.a2, ret.a3);
-+
-+	return frag_len;
-+}
-+
-+static int ffa_mem_next_frag(u64 handle, u32 frag_len)
-+{
-+	ffa_value_t ret;
-+
-+	invoke_ffa_fn((ffa_value_t){
-+		      .a0 = FFA_MEM_FRAG_TX,
-+		      .a1 = HANDLE_LOW(handle), .a2 = HANDLE_HIGH(handle),
-+		      .a3 = frag_len,
-+		      }, &ret);
-+
-+	while (ret.a0 == FFA_MEM_OP_PAUSE)
-+		invoke_ffa_fn((ffa_value_t){
-+			      .a0 = FFA_MEM_OP_RESUME,
-+			      .a1 = ret.a1, .a2 = ret.a2,
-+			      }, &ret);
-+
-+	if (ret.a0 == FFA_ERROR)
-+		return ffa_to_linux_errno((int)ret.a2);
-+
-+	if (ret.a0 != FFA_MEM_FRAG_RX)
-+		return -EOPNOTSUPP;
-+
-+	return ret.a3;
-+}
-+
-+static int
-+ffa_transmit_fragment(u32 func_id, phys_addr_t buf, u32 buf_sz, u32 frag_len,
-+		      u32 len, u64 *handle, bool first)
-+{
-+	if (!first)
-+		return ffa_mem_next_frag(*handle, frag_len);
-+
-+	return ffa_mem_first_frag(func_id, buf, buf_sz, frag_len, len, handle);
-+}
-+
-+static u32 ffa_get_num_pages_sg(struct scatterlist *sg)
-+{
-+	u32 num_pages = 0;
-+
-+	do {
-+		num_pages += sg->length / FFA_PAGE_SIZE;
-+	} while ((sg = sg_next(sg)));
-+
-+	return num_pages;
-+}
-+
-+static int
-+ffa_setup_and_transmit(u32 func_id, void *buffer, u32 max_fragsize,
-+		       struct ffa_mem_ops_args *args)
-+{
-+	int rc = 0;
-+	bool first = true;
-+	phys_addr_t addr = 0;
-+	struct ffa_composite_mem_region *composite;
-+	struct ffa_mem_region_addr_range *constituents;
-+	struct ffa_mem_region_attributes *ep_mem_access;
-+	struct ffa_mem_region *mem_region = buffer;
-+	u32 idx, frag_len, length, buf_sz = 0, num_entries = sg_nents(args->sg);
-+
-+	mem_region->tag = args->tag;
-+	mem_region->flags = args->flags;
-+	mem_region->sender_id = drv_info->vm_id;
-+	mem_region->attributes = FFA_MEM_NORMAL | FFA_MEM_WRITE_BACK |
-+				 FFA_MEM_INNER_SHAREABLE;
-+	ep_mem_access = &mem_region->ep_mem_access[0];
-+
-+	for (idx = 0; idx < args->nattrs; idx++, ep_mem_access++) {
-+		ep_mem_access->receiver = args->attrs[idx].receiver;
-+		ep_mem_access->attrs = args->attrs[idx].attrs;
-+		ep_mem_access->composite_off = COMPOSITE_OFFSET(args->nattrs);
-+	}
-+	mem_region->ep_count = args->nattrs;
-+
-+	composite = buffer + COMPOSITE_OFFSET(args->nattrs);
-+	composite->total_pg_cnt = ffa_get_num_pages_sg(args->sg);
-+	composite->addr_range_cnt = num_entries;
-+
-+	length = COMPOSITE_CONSTITUENTS_OFFSET(args->nattrs, num_entries);
-+	frag_len = COMPOSITE_CONSTITUENTS_OFFSET(args->nattrs, 0);
-+	if (frag_len > max_fragsize)
-+		return -ENXIO;
-+
-+	if (!args->use_txbuf) {
-+		addr = virt_to_phys(buffer);
-+		buf_sz = max_fragsize / FFA_PAGE_SIZE;
-+	}
-+
-+	constituents = buffer + frag_len;
-+	idx = 0;
-+	do {
-+		if (frag_len == max_fragsize) {
-+			rc = ffa_transmit_fragment(func_id, addr, buf_sz,
-+						   frag_len, length,
-+						   &args->g_handle, first);
-+			if (rc < 0)
-+				return -ENXIO;
-+
-+			first = false;
-+			idx = 0;
-+			frag_len = 0;
-+			constituents = buffer;
-+		}
-+
-+		if ((void *)constituents - buffer > max_fragsize) {
-+			pr_err("Memory Region Fragment > Tx Buffer size\n");
-+			return -EFAULT;
-+		}
-+
-+		constituents->address = sg_phys(args->sg);
-+		constituents->pg_cnt = args->sg->length / FFA_PAGE_SIZE;
-+		constituents++;
-+		frag_len += sizeof(struct ffa_mem_region_addr_range);
-+	} while ((args->sg = sg_next(args->sg)));
-+
-+	return ffa_transmit_fragment(func_id, addr, buf_sz, frag_len,
-+				     length, &args->g_handle, first);
-+}
-+
-+static int ffa_memory_ops(u32 func_id, struct ffa_mem_ops_args *args)
-+{
-+	int ret;
-+	void *buffer;
-+
-+	if (!args->use_txbuf) {
-+		buffer = alloc_pages_exact(RXTX_BUFFER_SIZE, GFP_KERNEL);
-+		if (!buffer)
-+			return -ENOMEM;
-+	} else {
-+		buffer = drv_info->tx_buffer;
-+		mutex_lock(&drv_info->tx_lock);
-+	}
-+
-+	ret = ffa_setup_and_transmit(func_id, buffer, RXTX_BUFFER_SIZE, args);
-+
-+	if (args->use_txbuf)
-+		mutex_unlock(&drv_info->tx_lock);
-+	else
-+		free_pages_exact(buffer, RXTX_BUFFER_SIZE);
-+
-+	return ret < 0 ? ret : 0;
-+}
-+
-+static int ffa_memory_reclaim(u64 g_handle, u32 flags)
-+{
-+	ffa_value_t ret;
-+
-+	invoke_ffa_fn((ffa_value_t){
-+		      .a0 = FFA_MEM_RECLAIM,
-+		      .a1 = HANDLE_LOW(g_handle), .a2 = HANDLE_HIGH(g_handle),
-+		      .a3 = flags,
-+		      }, &ret);
-+
-+	if (ret.a0 == FFA_ERROR)
-+		return ffa_to_linux_errno((int)ret.a2);
-+
-+	return 0;
-+}
-+
- static u32 ffa_api_version_get(void)
- {
- 	return drv_info->version;
-@@ -386,11 +574,22 @@ static int ffa_sync_send_receive(struct ffa_device *dev,
- 				       dev->mode_32bit, data);
- }
- 
-+static int
-+ffa_memory_share(struct ffa_device *dev, struct ffa_mem_ops_args *args)
-+{
-+	if (dev->mode_32bit)
-+		return ffa_memory_ops(FFA_MEM_SHARE, args);
-+
-+	return ffa_memory_ops(FFA_FN_NATIVE(MEM_SHARE), args);
-+}
-+
- static const struct ffa_dev_ops ffa_ops = {
- 	.api_version_get = ffa_api_version_get,
- 	.partition_info_get = ffa_partition_info_get,
- 	.mode_32bit_set = ffa_mode_32bit_set,
- 	.sync_send_receive = ffa_sync_send_receive,
-+	.memory_reclaim = ffa_memory_reclaim,
-+	.memory_share = ffa_memory_share,
- };
- 
- const struct ffa_dev_ops *ffa_dev_ops_get(struct ffa_device *dev)
-diff --git a/include/linux/arm_ffa.h b/include/linux/arm_ffa.h
-index b242fbbce4f0..6dc0f4e425b9 100644
---- a/include/linux/arm_ffa.h
-+++ b/include/linux/arm_ffa.h
-@@ -115,6 +115,142 @@ struct ffa_send_direct_data {
- 	unsigned long data4; /* w7/x7 */
- };
- 
-+struct ffa_mem_region_addr_range {
-+	/* The base IPA of the constituent memory region, aligned to 4 kiB */
-+	u64 address;
-+	/* The number of 4 kiB pages in the constituent memory region. */
-+	u32 pg_cnt;
-+	u32 reserved;
-+};
-+
-+struct ffa_composite_mem_region {
-+	/*
-+	 * The total number of 4 kiB pages included in this memory region. This
-+	 * must be equal to the sum of page counts specified in each
-+	 * `struct ffa_mem_region_addr_range`.
-+	 */
-+	u32 total_pg_cnt;
-+	/* The number of constituents included in this memory region range */
-+	u32 addr_range_cnt;
-+	u64 reserved;
-+	/** An array of `addr_range_cnt` memory region constituents. */
-+	struct ffa_mem_region_addr_range constituents[];
-+};
-+
-+struct ffa_mem_region_attributes {
-+	/* The ID of the VM to which the memory is being given or shared. */
-+	u16 receiver;
-+	/*
-+	 * The permissions with which the memory region should be mapped in the
-+	 * receiver's page table.
-+	 */
-+#define FFA_MEM_EXEC		BIT(3)
-+#define FFA_MEM_NO_EXEC		BIT(2)
-+#define FFA_MEM_RW		BIT(1)
-+#define FFA_MEM_RO		BIT(0)
-+	u8 attrs;
-+	/*
-+	 * Flags used during FFA_MEM_RETRIEVE_REQ and FFA_MEM_RETRIEVE_RESP
-+	 * for memory regions with multiple borrowers.
-+	 */
-+#define FFA_MEM_RETRIEVE_SELF_BORROWER	BIT(0)
-+	u8 flag;
-+	u32 composite_off;
-+	/*
-+	 * Offset in bytes from the start of the outer `ffa_memory_region` to
-+	 * an `struct ffa_mem_region_addr_range`.
-+	 */
-+	u64 reserved;
-+};
-+
-+struct ffa_mem_region {
-+	/* The ID of the VM/owner which originally sent the memory region */
-+	u16 sender_id;
-+#define FFA_MEM_NORMAL		BIT(5)
-+#define FFA_MEM_DEVICE		BIT(4)
-+
-+#define FFA_MEM_WRITE_BACK	(3 << 2)
-+#define FFA_MEM_NON_CACHEABLE	(1 << 2)
-+
-+#define FFA_DEV_nGnRnE		(0 << 2)
-+#define FFA_DEV_nGnRE		(1 << 2)
-+#define FFA_DEV_nGRE		(2 << 2)
-+#define FFA_DEV_GRE		(3 << 2)
-+
-+#define FFA_MEM_NON_SHAREABLE	(0)
-+#define FFA_MEM_OUTER_SHAREABLE	(2)
-+#define FFA_MEM_INNER_SHAREABLE	(3)
-+	u8 attributes;
-+	u8 reserved_0;
-+/*
-+ * Clear memory region contents after unmapping it from the sender and
-+ * before mapping it for any receiver.
-+ */
-+#define FFA_MEM_CLEAR			BIT(0)
-+/*
-+ * Whether the hypervisor may time slice the memory sharing or retrieval
-+ * operation.
-+ */
-+#define FFA_TIME_SLICE_ENABLE		BIT(1)
-+
-+#define FFA_MEM_RETRIEVE_TYPE_IN_RESP	(0 << 3)
-+#define FFA_MEM_RETRIEVE_TYPE_SHARE	(1 << 3)
-+#define FFA_MEM_RETRIEVE_TYPE_LEND	(2 << 3)
-+#define FFA_MEM_RETRIEVE_TYPE_DONATE	(3 << 3)
-+
-+#define FFA_MEM_RETRIEVE_ADDR_ALIGN_HINT	BIT(9)
-+#define FFA_MEM_RETRIEVE_ADDR_ALIGN(x)		((x) << 5)
-+	/* Flags to control behaviour of the transaction. */
-+	u32 flags;
-+#define HANDLE_LOW_MASK		GENMASK_ULL(31, 0)
-+#define HANDLE_HIGH_MASK	GENMASK_ULL(63, 32)
-+#define HANDLE_LOW(x)		((u32)(FIELD_GET(HANDLE_LOW_MASK, (x))))
-+#define	HANDLE_HIGH(x)		((u32)(FIELD_GET(HANDLE_HIGH_MASK, (x))))
-+
-+#define PACK_HANDLE(l, h)		\
-+	(FIELD_PREP(HANDLE_LOW_MASK, (l)) | FIELD_PREP(HANDLE_HIGH_MASK, (h)))
-+	/*
-+	 * A globally-unique ID assigned by the hypervisor for a region
-+	 * of memory being sent between VMs.
-+	 */
-+	u64 handle;
-+	/*
-+	 * An implementation defined value associated with the receiver and the
-+	 * memory region.
-+	 */
-+	u64 tag;
-+	u32 reserved_1;
-+	/*
-+	 * The number of `ffa_mem_region_attributes` entries included in this
-+	 * transaction.
-+	 */
-+	u32 ep_count;
-+	/*
-+	 * An array of endpoint memory access descriptors.
-+	 * Each one specifies a memory region offset, an endpoint and the
-+	 * attributes with which this memory region should be mapped in that
-+	 * endpoint's page table.
-+	 */
-+	struct ffa_mem_region_attributes ep_mem_access[];
-+};
-+
-+#define	COMPOSITE_OFFSET(x)	\
-+	(offsetof(struct ffa_mem_region, ep_mem_access[x]))
-+#define CONSTITUENTS_OFFSET(x)	\
-+	(offsetof(struct ffa_composite_mem_region, constituents[x]))
-+#define COMPOSITE_CONSTITUENTS_OFFSET(x, y)	\
-+	(COMPOSITE_OFFSET(x) + CONSTITUENTS_OFFSET(y))
-+
-+struct ffa_mem_ops_args {
-+	bool use_txbuf;
-+	u32 nattrs;
-+	u32 flags;
-+	u64 tag;
-+	u64 g_handle;
-+	struct scatterlist *sg;
-+	struct ffa_mem_region_attributes *attrs;
-+};
-+
- struct ffa_dev_ops {
- 	u32 (*api_version_get)(void);
- 	int (*partition_info_get)(const char *uuid_str,
-@@ -122,6 +258,9 @@ struct ffa_dev_ops {
- 	void (*mode_32bit_set)(struct ffa_device *dev);
- 	int (*sync_send_receive)(struct ffa_device *dev,
- 				 struct ffa_send_direct_data *data);
-+	int (*memory_reclaim)(u64 g_handle, u32 flags);
-+	int (*memory_share)(struct ffa_device *dev,
-+			    struct ffa_mem_ops_args *args);
- };
- 
- #endif /* _LINUX_ARM_FFA_H */
--- 
-2.25.1
-
+>
+> Landen
