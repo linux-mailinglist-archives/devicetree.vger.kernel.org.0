@@ -2,109 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23E983747D2
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 20:06:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A87137487D
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 21:11:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234302AbhEESHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 14:07:07 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:51260 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234699AbhEESFt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 14:05:49 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 145I4oiF022670;
-        Wed, 5 May 2021 13:04:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1620237890;
-        bh=voglt/7KPPYLxmIoYxRRKgvVDOk+aVkXcY+27aQZalQ=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=K1iQ0xebp3qm7TvCAVKd4h2bd7QUm3B+P/aE6OyfSMV1bgtjIvaLoGOrm6z6f+UAG
-         D4Y6gtXy7laHD2fK3vlA5U27qaQQLzmuy51Lv5z8Txu/iIu1Xz3Ssv79WC6MWEsoYj
-         8v0hgM2utrh1yKGS32z1B9spDaRtn97SFbmoe1Co=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 145I4oJL062506
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 5 May 2021 13:04:50 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 5 May
- 2021 13:04:49 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 5 May 2021 13:04:49 -0500
-Received: from [10.250.234.148] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 145I4ksL068808;
-        Wed, 5 May 2021 13:04:47 -0500
-Subject: Re: [PATCH] dt-bindings: i2c: Move i2c-omap.txt to YAML format
-To:     Tony Lindgren <tony@atomide.com>
-CC:     Rob Herring <robh+dt@kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Nishanth Menon <nm@ti.com>
-References: <20210505065511.918-1-vigneshr@ti.com>
- <YJJGsGXBz56Nhe8z@atomide.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-Message-ID: <ade03294-6c1a-ce10-1ac9-c67c8e51b137@ti.com>
-Date:   Wed, 5 May 2021 23:34:46 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S234254AbhEETMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 15:12:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45080 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231422AbhEETMe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 15:12:34 -0400
+Received: from mail-il1-x134.google.com (mail-il1-x134.google.com [IPv6:2607:f8b0:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C931C061574;
+        Wed,  5 May 2021 12:11:36 -0700 (PDT)
+Received: by mail-il1-x134.google.com with SMTP id j20so2644597ilo.10;
+        Wed, 05 May 2021 12:11:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iqYLEWNmfMZU8omZo87Grp7RzQjr7r2bX7XQx2q4gTo=;
+        b=H8rjHtvrnXak1UZPVJnc/sNqqnu3LjhcZSnGJy6Zd0PocowYBlS/GkFC+BRWB9VlEK
+         gzO080wpr3Fsirq3NULZiWo6jYUaAJHYc/qf7xClDCUL5B8HJbjvkvPUCB6E1VIHamg9
+         mOFywkogMb+fmYOjh5r7/5XO/sRquoS/xkabLJKD8WHtuTrTJArvvX2TLg4UtdhmQMka
+         TCH/DMf685kzRZOel7AnYQftUmTxP6s+nPcaKG6dj73rnyphA8bmqQoW7Z95UoylBHsM
+         Tigqf8vjjdowPW5/dABJjtS4d9K2fBCgfCqmUUhjAIyN6xVsaH+4VlLOLr0xW0UKHH3Z
+         sEdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iqYLEWNmfMZU8omZo87Grp7RzQjr7r2bX7XQx2q4gTo=;
+        b=f8XJKTSIpiRT0CXq5mMadwvj5Q68Fnx5uOJWR7aaXLGazKL5hekvAWo5bXv+6mlJaQ
+         FIgZYpx76UGz6+Pt/DoV/269Vg02poLiiM3bxJJx7u12HgvRSaBSqqEQ0cKilCZE/+4Q
+         +uuje0Vwrhhrj4IeZtDqI1as5OFSF4+ElboFjhqu2lU5GSH5JEKioFtNrJOWzLpuap/t
+         5JmKNMQ2r+GSdmuFGZrcb/E01h4dIX8wFw5fiLylNd6gSSiF0oB5YSukxdjNLGoD4iiH
+         wiPyJU+qEIwtdFqJNCNyOg+9NeelQ+uKHIOgZdlPgJbMJN3MZGmQwu4ngYQFErEm076Q
+         mISA==
+X-Gm-Message-State: AOAM533fXrmKcPXrxpvB0maOCoBl6YfEREKGDw2PBhZQin4MqQ8v/H5h
+        PD/JS/VTWmCUxtTXz7Pl+3s=
+X-Google-Smtp-Source: ABdhPJw93A8fHpSNE6Y2Mu4u3vP8T2gjTo557TsCSwpUW4fugVXt/BE9EiKhhSCrHXHhrLBUc+QP3g==
+X-Received: by 2002:a92:ca0a:: with SMTP id j10mr452413ils.73.1620241895730;
+        Wed, 05 May 2021 12:11:35 -0700 (PDT)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:c971:6623:b9e9:f40d])
+        by smtp.gmail.com with ESMTPSA id q11sm140037ile.56.2021.05.05.12.11.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 May 2021 12:11:35 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: imx8mm-beacon: Enable more audio
+Date:   Wed,  5 May 2021 14:11:24 -0500
+Message-Id: <20210505191126.1239309-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <YJJGsGXBz56Nhe8z@atomide.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+There are audio ports for SPDIF and MICFIL on the baseboard.
+Enable them.
 
-On 5/5/21 12:48 PM, Tony Lindgren wrote:
-> Hi,
-> 
-> * Vignesh Raghavendra <vigneshr@ti.com> [210505 06:55]:
->> Convert i2c-omap.txt to YAML schema for better checks and documentation.
-> 
-> Nice to see this happening, few minor comments below on handling the
-> legacy devices.
-> 
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - const: ti,omap2420-i2c
->> +      - const: ti,omap2430-i2c
->> +      - const: ti,omap3-i2c
->> +      - const: ti,omap4-i2c
->> +      - items:
->> +          - enum:
->> +              - ti,am4372-i2c
->> +              - ti,am64-i2c
->> +              - ti,am654-i2c
->> +              - ti,j721e-i2c
->> +          - const: ti,omap4-i2c
-> 
-> I wonder if we should just add all the compatible options to the
-> driver, and have all these as oneOf?
-> 
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-This would also need updates to dts files too. Also not a fan of adding
-all compatibles to driver code unless required.
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
+index 6f5e63696ec0..3039a030f3d8 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
+@@ -65,6 +65,20 @@ sound {
+ 			"AMIC", "MICBIAS",
+ 			"IN3R", "AMIC";
+ 	};
++
++	sound-micfil {
++		compatible = "fsl,imx-audio-micfil";
++		model = "imx-audio-micfil";
++		cpu-dai = <&micfil>;
++	};
++
++	sound-spdif {
++		compatible = "fsl,imx-audio-spdif";
++		model = "imx-spdif";
++		spdif-controller = <&spdif1>;
++		spdif-out;
++		spdif-in;
++	};
+ };
+ 
+ &ecspi2 {
+@@ -141,6 +155,15 @@ pca6416_1: gpio@21 {
+ 	};
+ };
+ 
++&micfil {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_micfil>;
++	assigned-clocks = <&clk IMX8MM_CLK_PDM>;
++	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
++	assigned-clock-rates = <196608000>;
++	status = "okay";
++};
++
+ &sai3 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_sai3>;
+@@ -155,6 +178,23 @@ &snvs_pwrkey {
+ 	status = "okay";
+ };
+ 
++&spdif1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_spdif1>;
++	assigned-clocks = <&clk IMX8MM_CLK_SPDIF1>;
++	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
++	assigned-clock-rates = <24576000>;
++	clocks = <&clk IMX8MM_CLK_AUDIO_AHB>, <&clk IMX8MM_CLK_24M>,
++		<&clk IMX8MM_CLK_SPDIF1>, <&clk IMX8MM_CLK_DUMMY>,
++		<&clk IMX8MM_CLK_DUMMY>, <&clk IMX8MM_CLK_DUMMY>,
++		<&clk IMX8MM_CLK_AUDIO_AHB>, <&clk IMX8MM_CLK_DUMMY>,
++		<&clk IMX8MM_CLK_DUMMY>, <&clk IMX8MM_CLK_DUMMY>,
++		<&clk IMX8MM_AUDIO_PLL1_OUT>, <&clk IMX8MM_AUDIO_PLL2_OUT>;
++	clock-names = "core", "rxtx0", "rxtx1", "rxtx2", "rxtx3",
++		"rxtx4", "rxtx5", "rxtx6", "rxtx7", "spba", "pll8k", "pll11k";
++	status = "okay";
++};
++
+ &uart2 { /* console */
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_uart2>;
+@@ -209,6 +249,13 @@ MX8MM_IOMUXC_SAI3_RXFS_GPIO4_IO28	0x41
+ 		>;
+ 	};
+ 
++	pinctrl_micfil: micfilgrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SAI5_RXC_PDM_CLK		0xd6
++			MX8MM_IOMUXC_SAI5_RXD0_PDM_DATA0	0xd6
++		>;
++	};
++
+ 	pinctrl_pcal6414: pcal6414-gpiogrp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_SAI2_MCLK_GPIO4_IO27		0x19
+@@ -225,6 +272,14 @@ MX8MM_IOMUXC_SAI3_RXD_SAI3_RX_DATA0	0xd6
+ 		>;
+ 	};
+ 
++	pinctrl_spdif1: spdif1grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SPDIF_TX_SPDIF1_OUT	0xd6
++			MX8MM_IOMUXC_SPDIF_RX_SPDIF1_IN		0xd6
++			MX8MM_IOMUXC_SPDIF_EXT_CLK_SPDIF1_EXT_CLK	0xd6
++		>;
++	};
++
+ 	pinctrl_uart2: uart2grp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX	0x140
+-- 
+2.25.1
 
->> +  ti,hwmods:
->> +    description:
->> +      Must be "i2c<n>", n being the instance number (1-based)
->> +    $ref: /schemas/types.yaml#/definitions/string
->> +    items:
->> +      - pattern: "^i2c([1-9])$"
-> 
-> The ti,hwmods is a legacy property that is only needed for omap2/3 and
-> ti81xx. At least the description should mention that to avoid folks
-> adding it accidentally.
-> 
-
-Sure, will do in v2. Thanks for the review!
-
-
-Regards
-Vignesh
