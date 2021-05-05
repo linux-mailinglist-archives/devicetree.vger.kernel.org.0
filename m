@@ -2,261 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85C453738FC
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 13:06:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1163373992
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 13:37:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232400AbhEELG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 07:06:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48676 "EHLO
+        id S233143AbhEELi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 07:38:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232403AbhEELG4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 07:06:56 -0400
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C753C061574
-        for <devicetree@vger.kernel.org>; Wed,  5 May 2021 04:05:58 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:ec82:c7ff:285a:d05c])
-        by laurent.telenet-ops.be with bizsmtp
-        id 0z5s2500R5G7XuW01z5smY; Wed, 05 May 2021 13:05:53 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1leFLj-002z5N-L6; Wed, 05 May 2021 13:05:51 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1leDpP-005XRS-3g; Wed, 05 May 2021 11:28:23 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: mmc: renesas,mmcif: Convert to json-schema
-Date:   Wed,  5 May 2021 11:28:22 +0200
-Message-Id: <1207254b45a0efa65d9d9e3d951fdabfe5b48101.1620206845.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S233113AbhEELi0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 07:38:26 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FDA3C06174A
+        for <devicetree@vger.kernel.org>; Wed,  5 May 2021 04:37:27 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id m190so1626090pga.2
+        for <devicetree@vger.kernel.org>; Wed, 05 May 2021 04:37:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=jwzu12d+QscnqOFQLhy4vh097a70ZnMp+hWw5krWrIk=;
+        b=ZxbA1tfyfKPGdWBAOR+Y7RlXNKo0jtDwpuDRVr1usMxGZoBv82lY5nRNfltNjKO1hH
+         Q7y7FDb6LgIpvZMvCb7aqc+Xve+lVh9zkUaSTlQzCBPHlpwpwcZtrEnarO5Lc5WDNp0a
+         ug8JjqltbYlpsOLL2jMLtIfag5oYlt9qghVOy/7eC6FZhjz5YERIwOAuHHdzqHj7WESp
+         GHgXxzeLXt3pIm1ioOJenBBeRsDagR/fc+XiEzSImMUkgoAX1tbV5vPWKN21/w36v4bG
+         9WW1ksviqEZBHvq9FUbzJrqKeFQ0eOf9EDv5mYbjpmIryj4TESREdyKnD9I8QGacUcAQ
+         iTXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=jwzu12d+QscnqOFQLhy4vh097a70ZnMp+hWw5krWrIk=;
+        b=LR1Nol8RBP9xFjl5xxpeAF6PRxXt5QiY4HNBNZn9ydX0PI/YFVjn09gi6+t3GqAoDQ
+         hdxNoflv+w6J2FB807PlUxBMNR3w8afydXbGllV0vfd9NT06wwpLhZsZKZ/j9UoeZ7Sk
+         tOkLrVPkHNEVqvNewqX9s4nyUNLiGB7dStEmzMRNx7CQkYhDe80AnXqKUXz+uzsRjuI2
+         JICyW9tCrS5sbhmlV2h5/4wuHpfhbTRpxvdtPKiyV9Zi+xAcGP9NHwTM4Y8IcnreZMFJ
+         oYvbA87MGj+nWz5yMopTR+xVUU/KUIDeA3KQfyYKSZ98fKU5AHqC/Grt8OvNlYPkKSDc
+         7Bcg==
+X-Gm-Message-State: AOAM533ITclw4R97ieVo2nIELOp84SFm7ZBDBt2Ta0an5Iq8YzzhiGSf
+        wl+hVN7WCHggM+iKlTkeoiQ2gA==
+X-Google-Smtp-Source: ABdhPJwCPq/LSEqazkj7mS6+zQB5ApPaTWOLcZzzlV2ZlvhakMrgpY4gelMW0KBKN7Xw7oLx2vKNbw==
+X-Received: by 2002:a62:5209:0:b029:278:648f:99b6 with SMTP id g9-20020a6252090000b0290278648f99b6mr28004842pfb.9.1620214646574;
+        Wed, 05 May 2021 04:37:26 -0700 (PDT)
+Received: from localhost ([136.185.154.93])
+        by smtp.gmail.com with ESMTPSA id a18sm14989138pfo.64.2021.05.05.04.37.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 May 2021 04:37:26 -0700 (PDT)
+Date:   Wed, 5 May 2021 17:07:24 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Sibi Sankar <sibis@codeaurora.org>, bjorn.andersson@linaro.org,
+        swboyd@chromium.org, agross@kernel.org, robh+dt@kernel.org,
+        rjw@rjwysocki.net, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, dianders@chromium.org, mka@chromium.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc7280: Add cpu OPP tables
+Message-ID: <20210505113724.fpzcizgytf55msfa@vireshk-i7>
+References: <1619792901-32701-1-git-send-email-sibis@codeaurora.org>
+ <1619792901-32701-3-git-send-email-sibis@codeaurora.org>
+ <20210504144215.svmrmmsy4jtoixzv@bogus>
+ <1fc9fb8d9a94909ff9b7b76d598bd266@codeaurora.org>
+ <20210505084908.3lynedmblmqagr72@bogus>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210505084908.3lynedmblmqagr72@bogus>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Renesas Multi Media Card Interface (MMCIF) Device Tree
-binding documentation to json-schema.
+On 05-05-21, 09:49, Sudeep Holla wrote:
+> No my main concern is this platform uses "qcom-cpufreq-hw" driver and the
+> fact that the OPPs are retrieved from the hardware lookup table invalidates
+> whatever we have in DT.
 
-Document missing properties.
-Update the example to match reality.
+Not exactly.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- .../devicetree/bindings/mmc/renesas,mmcif.txt |  53 -------
- .../bindings/mmc/renesas,mmcif.yaml           | 136 ++++++++++++++++++
- 2 files changed, 136 insertions(+), 53 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mmc/renesas,mmcif.txt
- create mode 100644 Documentation/devicetree/bindings/mmc/renesas,mmcif.yaml
+It disables them all, and then call dev_pm_opp_adjust_voltage() and
+enable them again. This is how it started initially. Though the driver
+also works if the DT doesn't have the table, in that case it calls
+dev_pm_opp_add() for all the OPPs.
 
-diff --git a/Documentation/devicetree/bindings/mmc/renesas,mmcif.txt b/Documentation/devicetree/bindings/mmc/renesas,mmcif.txt
-deleted file mode 100644
-index 291532ac0446fc71..0000000000000000
---- a/Documentation/devicetree/bindings/mmc/renesas,mmcif.txt
-+++ /dev/null
-@@ -1,53 +0,0 @@
--* Renesas Multi Media Card Interface (MMCIF) Controller
--
--This file documents differences between the core properties in mmc.txt
--and the properties used by the MMCIF device.
--
--
--Required properties:
--
--- compatible: should be "renesas,mmcif-<soctype>", "renesas,sh-mmcif" as a
--  fallback. Examples with <soctype> are:
--	- "renesas,mmcif-r7s72100" for the MMCIF found in r7s72100 SoCs
--	- "renesas,mmcif-r8a73a4" for the MMCIF found in r8a73a4 SoCs
--	- "renesas,mmcif-r8a7740" for the MMCIF found in r8a7740 SoCs
--	- "renesas,mmcif-r8a7742" for the MMCIF found in r8a7742 SoCs
--	- "renesas,mmcif-r8a7743" for the MMCIF found in r8a7743 SoCs
--	- "renesas,mmcif-r8a7744" for the MMCIF found in r8a7744 SoCs
--	- "renesas,mmcif-r8a7745" for the MMCIF found in r8a7745 SoCs
--	- "renesas,mmcif-r8a7778" for the MMCIF found in r8a7778 SoCs
--	- "renesas,mmcif-r8a7790" for the MMCIF found in r8a7790 SoCs
--	- "renesas,mmcif-r8a7791" for the MMCIF found in r8a7791 SoCs
--	- "renesas,mmcif-r8a7793" for the MMCIF found in r8a7793 SoCs
--	- "renesas,mmcif-r8a7794" for the MMCIF found in r8a7794 SoCs
--	- "renesas,mmcif-sh73a0" for the MMCIF found in sh73a0 SoCs
--
--- interrupts: Some SoCs have only 1 shared interrupt, while others have either
--  2 or 3 individual interrupts (error, int, card detect). Below is the number
--  of interrupts for each SoC:
--    1: r8a73a4, r8a7742, r8a7743, r8a7744, r8a7745, r8a7778, r8a7790, r8a7791,
--       r8a7793, r8a7794
--    2: r8a7740, sh73a0
--    3: r7s72100
--
--- clocks: reference to the functional clock
--
--- dmas: reference to the DMA channels, one per channel name listed in the
--  dma-names property.
--- dma-names: must contain "tx" for the transmit DMA channel and "rx" for the
--  receive DMA channel.
--- max-frequency: Maximum operating clock frequency, driver uses default clock
--  frequency if it is not set.
--
--
--Example: R8A7790 (R-Car H2) MMCIF0
--
--	mmcif0: mmc@ee200000 {
--		compatible = "renesas,mmcif-r8a7790", "renesas,sh-mmcif";
--		reg = <0 0xee200000 0 0x80>;
--		interrupts = <0 169 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&mstp3_clks R8A7790_CLK_MMCIF0>;
--		dmas = <&dmac0 0xd1>, <&dmac0 0xd2>;
--		dma-names = "tx", "rx";
--		max-frequency = <97500000>;
--	};
-diff --git a/Documentation/devicetree/bindings/mmc/renesas,mmcif.yaml b/Documentation/devicetree/bindings/mmc/renesas,mmcif.yaml
-new file mode 100644
-index 0000000000000000..a0eb819ccdf5d684
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/renesas,mmcif.yaml
-@@ -0,0 +1,136 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/renesas,mmcif.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas Multi Media Card Interface (MMCIF) Controller
-+
-+maintainers:
-+  - Wolfram Sang <wsa+renesas@sang-engineering.com>
-+
-+allOf:
-+  - $ref: "mmc-controller.yaml"
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - renesas,mmcif-r7s72100 # RZ/A1H
-+              - renesas,mmcif-r8a73a4  # R-Mobile APE6
-+              - renesas,mmcif-r8a7740  # R-Mobile A1
-+              - renesas,mmcif-r8a7742  # RZ/G1H
-+              - renesas,mmcif-r8a7743  # RZ/G1M
-+              - renesas,mmcif-r8a7744  # RZ/G1N
-+              - renesas,mmcif-r8a7745  # RZ/G1E
-+              - renesas,mmcif-r8a7778  # R-Car M1A
-+              - renesas,mmcif-r8a7790  # R-Car H2
-+              - renesas,mmcif-r8a7791  # R-Car M2-W
-+              - renesas,mmcif-r8a7793  # R-Car M2-N
-+              - renesas,mmcif-r8a7794  # R-Car E2
-+              - renesas,mmcif-sh73a0   # SH-Mobile AG5
-+          - const: renesas,sh-mmcif
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts: true
-+
-+  clocks:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  dmas:
-+    minItems: 2
-+    maxItems: 4
-+    description:
-+      Must contain a list of pairs of references to DMA specifiers, one for
-+      transmission, and one for reception.
-+
-+  dma-names:
-+    minItems: 2
-+    maxItems: 4
-+    items:
-+      enum:
-+        - tx
-+        - rx
-+
-+  max-frequency: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - power-domains
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: renesas,mmcif-r7s72100
-+then:
-+  properties:
-+    interrupts:
-+      items:
-+        - description: Error interrupt
-+        - description: Normal operation interrupt
-+        - description: Card detection interrupt
-+else:
-+  if:
-+    properties:
-+      compatible:
-+        contains:
-+          enum:
-+            - renesas,mmcif-r8a7740
-+            - renesas,mmcif-sh73a0
-+  then:
-+    properties:
-+      interrupts:
-+        items:
-+          - description: Error interrupt
-+          - description: Normal operation interrupt
-+  else:
-+    if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,mmcif-r8a73a4
-+              - renesas,mmcif-r8a7778
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 1
-+    else:
-+      properties:
-+        interrupts:
-+          maxItems: 1
-+      required:
-+        - resets
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r8a7790-cpg-mssr.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/power/r8a7790-sysc.h>
-+
-+    mmcif0: mmc@ee200000 {
-+            compatible = "renesas,mmcif-r8a7790", "renesas,sh-mmcif";
-+            reg = <0xee200000 0x80>;
-+            interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
-+            clocks = <&cpg CPG_MOD 315>;
-+            power-domains = <&sysc R8A7790_PD_ALWAYS_ON>;
-+            resets = <&cpg 315>;
-+            dmas = <&dmac0 0xd1>, <&dmac0 0xd2>, <&dmac1 0xd1>, <&dmac1 0xd2>;
-+            dma-names = "tx", "rx", "tx", "rx";
-+            max-frequency = <97500000>;
-+    };
+> In short it will be junk and becomes obsolete.
+> So what I suggested before is still valid. You simply can't have static
+> OPP tables in the DT for this platform. Do get some boot code to fetch the
+> same from the h/w LUT and patch to the DT or figure out any other way to
+> manage dynamically.
+> 
+> So NACK still stands for static addition of OPPs to the DT as in this patch.
+
 -- 
-2.25.1
-
+viresh
