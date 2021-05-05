@@ -2,93 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74272373811
-	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 11:49:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38EA7373823
+	for <lists+devicetree@lfdr.de>; Wed,  5 May 2021 11:51:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232397AbhEEJui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 05:50:38 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:51879 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232265AbhEEJui (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 05:50:38 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 1459hJda011331;
-        Wed, 5 May 2021 11:49:24 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=date : from : to :
- subject : message-id : references : mime-version : content-type :
- in-reply-to; s=selector1; bh=U1j+kkMEVDtIpXFolKJBxuRWb0u7O4P5oXrM2MRHZkY=;
- b=6P846THNTdNrs3vLTVDlCsfdrFCHEP1i6pdMBz1Rre5lvSFdfSMss/sTLosSLtf1LF4L
- yZ/Px3dmz19RCwhw4ucxDkFMR6kNA2qzdEYeX3jPE/tXWbccABFzXnALHjl6oQsdcqkS
- LF9jTLzk4MtYKjz+Sp6HnpONNmKgv4pV3QPP3H/6uHvdFjoHKz258/+MRsDsUJn8SV2V
- WkJUdVz2u5Ry/KQ2YcsezEpvTSsB1msBIXr/jwkO6Ei/HUipy9/R9FbiKjgJnZjpp/TK
- QlgrKacRR1P1Z1BybImQnBxSdC5LFTsUlmt7MTv++MAZIOnIRAfWXfAccjcl1NmlxoPf Uw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 38bea3u91e-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 05 May 2021 11:49:24 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 49317100034;
-        Wed,  5 May 2021 11:49:22 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 28B442199A9;
-        Wed,  5 May 2021 11:49:22 +0200 (CEST)
-Received: from gnbcxd0016.gnb.st.com (10.75.127.51) by SFHDAG2NODE3.st.com
- (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 5 May
- 2021 11:49:21 +0200
-Date:   Wed, 5 May 2021 11:49:16 +0200
-From:   Alain Volmat <alain.volmat@foss.st.com>
-To:     Wolfram Sang <wsa@kernel.org>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <pierre-yves.mordret@foss.st.com>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <fabrice.gasnier@foss.st.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: i2c: stm32f7: add st,smbus-alert
- binding for SMBus Alert
-Message-ID: <20210505094916.GA27818@gnbcxd0016.gnb.st.com>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>, robh+dt@kernel.org,
-        mark.rutland@arm.com, pierre-yves.mordret@foss.st.com,
-        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        fabrice.gasnier@foss.st.com
-References: <1616998145-28278-1-git-send-email-alain.volmat@foss.st.com>
- <1616998145-28278-2-git-send-email-alain.volmat@foss.st.com>
- <20210504195348.GB1783@kunai>
+        id S232402AbhEEJwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 05:52:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60728 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232256AbhEEJwi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 05:52:38 -0400
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1F9DC06174A
+        for <devicetree@vger.kernel.org>; Wed,  5 May 2021 02:51:42 -0700 (PDT)
+Received: by mail-pl1-x630.google.com with SMTP id p17so809478plf.12
+        for <devicetree@vger.kernel.org>; Wed, 05 May 2021 02:51:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bNDJPGwrquZJ+gjSDnL9VcoDb165ZhWuJrSq+RVYVfk=;
+        b=ctYNEZWB1el/6E/2d5ygQncwiOHKXrTDL1j8NwOTBP8osLWB8VXPmMCr7VViju1jTg
+         8VPv3/HnAG7TyVkTXuIAGdGPsS+3Yd8k3oyzw7AZK+3QQSq8U+WXbf+knqOSKd1h3Y7l
+         cQLfyAUVp6h6u19r7Z9AY4hg40/SLeSuQcoyY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bNDJPGwrquZJ+gjSDnL9VcoDb165ZhWuJrSq+RVYVfk=;
+        b=gnTWtwZmmwUxzCYjU+54OohVBmf0XkxBGD+dK/9KNvFLjEU2e/z6tw/lm2sPcu+nKc
+         h1Fo2RtwKdtT9awmVadw5qIcY8+e2jKW06dEBhX3ytOy0r9R6zxqJJ13NMBZOPAyrZ90
+         lcp0xS3THomjR63f3iiwsyr4gCvRNQL2X8P7uhSwrX7+7xuBgA7co5sUVOS7+RrrqJuh
+         3MwAohxh/AAIaPjhcxUHGGNZ+5+DlGDpNlJ/EG+BETqJIp8LRNQUP12FjHP+J4jXq0iV
+         1Ut1sa3OA8gllUYtcN5ykfbXk47uQDMIXZCSmoaaJuDxuHkwkLU2GTPx12tfRKBhPUqR
+         3aMg==
+X-Gm-Message-State: AOAM532vJjcKlenpS0p692RrYowU0UnJKstVZ6WmOM0LkT32cuRn6jgg
+        tQBd8i1PXduDTd5lP6lo3W+cfYcLpAl18T9CVH01kw==
+X-Google-Smtp-Source: ABdhPJytAVBDYKsW07DVIG1RkxBtcNqsprJkbKLW6RGyTiSonhBpHmC5MH6QSv/ICRd4ybE5enTFCE5sXuHIWc18FKM=
+X-Received: by 2002:a17:90a:be10:: with SMTP id a16mr9989671pjs.112.1620208302210;
+ Wed, 05 May 2021 02:51:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210504195348.GB1783@kunai>
-X-Disclaimer: ce message est personnel / this message is private
-X-Originating-IP: [10.75.127.51]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
- definitions=2021-05-05_03:2021-05-05,2021-05-05 signatures=0
+References: <20210415032958.740233-1-ikjn@chromium.org>
+In-Reply-To: <20210415032958.740233-1-ikjn@chromium.org>
+From:   Ikjoon Jang <ikjn@chromium.org>
+Date:   Wed, 5 May 2021 17:51:31 +0800
+Message-ID: <CAATdQgDr0N-ewRrt4V14R72G4VTufmBzqzKka+xwSwkeodx=zQ@mail.gmail.com>
+Subject: Re: [PATCH v5 0/2] HID: google: add device tree bindings for Whiskers
+ switch device
+To:     linux-input@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Cc:     Dmitry Torokhov <dtor@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Benson Leung <bleung@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Guenter Roeck <groeck@chromium.org>,
+        Jiri Kosina <jikos@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
+Hi Jiri,
 
-On Tue, May 04, 2021 at 09:53:48PM +0200, Wolfram Sang wrote:
-> 
-> > +        st,smbus-alert:
-> 
-> After reading the specs again, I think we can make this a generic
-> binding. SMBusAlert is optional. So, we can say it is not covered by the
-> "smbus" binding and needs a seperate one. Makes sense?
+Genting ping on this series.
 
-Indeed, SMBus Spec [1] mentions about SMBALERT#:
-An optional signal that a slave device can use to notify the system
-master that it has information for the master
+On Thu, Apr 15, 2021 at 11:30 AM Ikjoon Jang <ikjn@chromium.org> wrote:
+>
+> Add device a tree binding for a "cros-cbas" switch device of
+> ChromeOS tablets with Whiskers base board.
+>
+> Changes in v5:
+>  - Add missing blank lines and change the description property's position.
+>  - Add a note to description: "this device cannot be detected at runtime."
+>
+> Changes in v4:
+> Define cros-cbase bindings inside google,cros-ec.yaml instead of
+> a separated binding document.
+>
+> Ikjoon Jang (2):
+>   mfd: google,cros-ec: add DT bindings for a baseboard's switch device
+>   HID: google: Add of_match table to Whiskers switch device.
+>
+>  .../bindings/mfd/google,cros-ec.yaml          | 20 +++++++++++++++++++
+>  drivers/hid/hid-google-hammer.c               | 10 ++++++++++
+>  2 files changed, 30 insertions(+)
+>
 
-Hence it does make sense to separate it from the smbus binding. I will
-post a v4 of this serie with the addition of a generic binding 'smbus-alert'.
+Can this be queued up to hid.git?
 
-Alain
+Thanks!
 
-[1] http://www.smbus.org/specs/SMBus_3_1_20180319.pdf
 
+
+> --
+> 2.31.1.295.g9ea45b61b8-goog
+>
