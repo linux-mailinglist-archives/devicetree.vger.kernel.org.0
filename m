@@ -2,466 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95F53374F32
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 08:10:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1017374F5B
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 08:30:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230225AbhEFGLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 02:11:52 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:27495 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229769AbhEFGLv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 02:11:51 -0400
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 1465vjqG003653;
-        Thu, 6 May 2021 13:57:45 +0800 (GMT-8)
-        (envelope-from billy_tsai@aspeedtech.com)
-Received: from BillyTsai-pc.aspeed.com (192.168.2.149) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 6 May
- 2021 14:09:32 +0800
-From:   Billy Tsai <billy_tsai@aspeedtech.com>
-To:     <lee.jones@linaro.org>, <robh+dt@kernel.org>, <joel@jms.id.au>,
-        <andrew@aj.id.au>, <thierry.reding@gmail.com>,
-        <u.kleine-koenig@pengutronix.de>, <p.zabel@pengutronix.de>,
-        <billy_tsai@aspeedtech.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pwm@vger.kernel.org>
-CC:     <BMC-SW@aspeedtech.com>
-Subject: [v3 2/2] pwm: Add Aspeed ast2600 PWM support
-Date:   Thu, 6 May 2021 14:10:50 +0800
-Message-ID: <20210506061050.8001-3-billy_tsai@aspeedtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210506061050.8001-1-billy_tsai@aspeedtech.com>
-References: <20210506061050.8001-1-billy_tsai@aspeedtech.com>
+        id S229844AbhEFGbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 02:31:15 -0400
+Received: from mail-eopbgr130125.outbound.protection.outlook.com ([40.107.13.125]:36974
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229622AbhEFGbP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 May 2021 02:31:15 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Eu9ZIrZASsCAg7XMg+Zf+vt02477tEWXYW9khRWHhCDrPqfixIikD6aTTcRmvE+Xqzsy+bfT/audUN8IOCgCwi2/xNjaGg3oXkgruvqd2+3hOhuonklA2/z0c5KeVzlXypQELVkwH1MDvS8Rgyw0zO8AsasJCoDTRFIgoqM124Y4SFKO7hTtJEN+BlY/bsmsgeUX31KO/PqbqoAsOmkHp/7GgmodGGFgK/yxmYvYzXdKwU3uH1Ejqsf2DQTm2EPu4dNhAmYLpzvoxXIRLzKdTdOQ4tagO4qFpuN+u6IexQ+D2w5J5ilVohzxAy8zIKzVHghW/gK5hYr0mTjKlF3wmg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kxAvLBVK7zWtMeWMOBRbxva3zcKR4ynQDBQIXgadRVk=;
+ b=W31Yqdw5Uy+WQc+X5IQz5wsWD0GyjT49oyaifyMILvs+wQuV9xbQGjT96X9I/O5ASwRdxR0kUzHQoJ076r/l72UMV4s1HbwmooaFJyZjUJ5WHIklyTMw0Zt4c0gFJ5KF3T2rIcg8apNORQAaZOBZZMTtLEG/+giuytT2sRkpz9Tlf6AtupO57TZGelFQ/JuHHDKFYBX48kn37imL8GzBn/uPRRu65YKqstfBCfLk4n/zAT40WCkvqbh2IcPMJZh1vPGSENbDmc6bBmDYyDqL0vEXZaAszNucKFhaI05VliZ9g7AR/Dn0RNWXVUKaFBS+70d92VrNT1luzERTnIERAQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
+ dkim=pass header.d=kontron.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
+ s=selector2-mysnt-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kxAvLBVK7zWtMeWMOBRbxva3zcKR4ynQDBQIXgadRVk=;
+ b=gKjw1xaHXUERvkr2TzFjnsaFmlciyB2F5yFDx8XoTEqKUdRz9QRnXRsZP6DFrnXGXbi0KVmLJEpeNJ71aa71zqFr73ACe87KMzOKdoBWwPGOnSyPq07/VNhBZgO1376qjJlvFCdmCbLKLiLWzBRf2XhEoY9cywMPtENcNesw23E=
+Authentication-Results: nxp.com; dkim=none (message not signed)
+ header.d=none;nxp.com; dmarc=none action=none header.from=kontron.de;
+Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:157::14)
+ by AM0PR10MB2114.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:42::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25; Thu, 6 May
+ 2021 06:30:13 +0000
+Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::3d8a:f56b:3a0c:8a87]) by AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::3d8a:f56b:3a0c:8a87%7]) with mapi id 15.20.4108.026; Thu, 6 May 2021
+ 06:30:13 +0000
+Subject: Re: [PATCH V2 03/13] soc: imx: gpcv2: switch to clk_bulk_* API
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        p.zabel@pengutronix.de, l.stach@pengutronix.de, krzk@kernel.org,
+        agx@sigxcpu.org, marex@denx.de, andrew.smirnov@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, ping.bai@nxp.com, aford173@gmail.com,
+        abel.vesa@nxp.com, Peng Fan <peng.fan@nxp.com>
+References: <20210506010440.7016-1-peng.fan@oss.nxp.com>
+ <20210506010440.7016-4-peng.fan@oss.nxp.com>
+From:   Frieder Schrempf <frieder.schrempf@kontron.de>
+Message-ID: <4e810413-84c8-f04d-45c4-9eabcca2dab0@kontron.de>
+Date:   Thu, 6 May 2021 08:30:10 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
+In-Reply-To: <20210506010440.7016-4-peng.fan@oss.nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [89.244.180.42]
+X-ClientProxiedBy: FR3P281CA0041.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:4a::17) To AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:157::14)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.2.149]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 1465vjqG003653
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.10.27] (89.244.180.42) by FR3P281CA0041.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:4a::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.11 via Frontend Transport; Thu, 6 May 2021 06:30:12 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 548735d7-f627-499f-580f-08d910586785
+X-MS-TrafficTypeDiagnostic: AM0PR10MB2114:
+X-Microsoft-Antispam-PRVS: <AM0PR10MB2114B946C18DEC7E4CFB449CE9589@AM0PR10MB2114.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3276;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: w2TtyI0TjGB9RgeEjoIRoIBRj6Mcm6RjKqc6u1zqSc3cj44Kr92rsJSUczZie46gXu12LL6i/3ZkeArzodAOE1UMs1wqpIp+zYb04roeIpmo6kEdAxSz1mSll0SrOu64KmJiXd9ONhTLez0kieYFOy5VZXoH50i6bkWh2XwwVqw35qHe8WFP5D5SFQ1RzHC4gkLCUkIqeZpo7N7Nfp87pHlFCtZ9TR5oUUZMijQPGcLDnQEZVlwLi1Ds+tISf7UAk67HQL9py9vr1JpueGeSB94zTTxnSdkpbTliWgdwqSb0j6U0XsJJ53Mw45fKlhmttvoIIYGMi0u8Wd72oAjJZZ1U4YL0Rdnw0bPDaa0av7pUeIKu0DbkCQHevq/mcPJA4nehuG66lHH6vLH+QesK06T4q8mACbpXDcKBf6LuIB7kk1FfChuUf56QSOISgKPDfAtz+ExwqhoJfnxkG9RSFHdxK/PuSlb8dv78TwvLzAyAaiGMbm1iOEd7vRmHNM4Vkn3TerdFhhdh3uA4ZZoIj+lUH63i60GGdDSkdKfgcIfXZuf28DEeh8N3dUWjhALYRb24NOxAMcuWZSwba6Al4EqF0VJ+gdMKk8jZ512PTTi646akMLg7OPbd8uwK25Le0O1BWzlFoCg93V/8GJLuD4uS9E2zSC5+Nr1r0i9MQWigdV9gwPmgyuMay7TMDIzc
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(366004)(346002)(376002)(396003)(136003)(39850400004)(31686004)(186003)(66476007)(38100700002)(8676002)(66946007)(26005)(66556008)(16576012)(16526019)(8936002)(5660300002)(36756003)(83380400001)(86362001)(2616005)(44832011)(4326008)(31696002)(2906002)(478600001)(316002)(7416002)(6486002)(53546011)(956004)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?L0FuV0ZnNGFLT0V1VTAzM3IyTTk4d3N5eTR5enhSSXZ4cHNRbWZvNG5yUEkv?=
+ =?utf-8?B?SlBBUjNIS2lVUEtaOWtBVnRIN1NjSVhRNUc0d1hMNmduRFFkYTN2L0xBNnBN?=
+ =?utf-8?B?UDhCQ1JNYklpd1c4YUsvTE0yTDhFOFo4T3ZmbUpvb3ZpY1hiZUVDc2pwQ3hM?=
+ =?utf-8?B?UldraVUxemU5aFJvVXI0WUtBWHloUmkyc1NSNWFpRTA3Q0dqN29vSjJGNWtz?=
+ =?utf-8?B?WHpkV3dZNkpNNmpJYXM4cnFDN1g2SU5rYTRMU2VQQmlqMXFvUjhkdjhDMmUy?=
+ =?utf-8?B?M0ZvSnhoSG1id0RkMnd2bWpGd09Oei8yYnRwaUdrTkhSMEs3UnZTcFRWQWFQ?=
+ =?utf-8?B?ZStjcm5jWXpMelRFZWxHdTBXRGZnZjluYk5SWXJxbGtCM0VvVG5hSUlwOGt4?=
+ =?utf-8?B?S3BHSDJ6clhLbmxRaGpqQ0ZaRnp1UFU1N05mc0RpNUI3djZENVBhd0NmejFB?=
+ =?utf-8?B?dmV3blQxaGMzN05xQkxYVGJQYUY0aTAwMGp5Q0poRGlqMTZDNVVMUDJRY3NH?=
+ =?utf-8?B?YnNJS3ExVWVsZUZvcFpTUkRNN0xuempMZmJJRkYzSUFCZ1NrZE5nUEE3THRz?=
+ =?utf-8?B?SVE2bG9obkFBc0N5cnVIUWVCZTBELzNnNW1aUnc2WW5PZ3JXNTd2MmU3Z3Nh?=
+ =?utf-8?B?Y2tUbFVFdDJEZDZUUWFhRzJBRnFod281Z1ZMSDR4Vk1zRGlUN1FUQlFDakNr?=
+ =?utf-8?B?YktYYTFGeXNCSGZsaExaa0pqSWw2M2ZqaWwxM3Z2b2srMUhCV2dZTUlCcUhl?=
+ =?utf-8?B?ekVKdkJEaERHZ21UWTdjTGdrSWphYmYrUzgvZ1FYSFg2TExTSjdXZWZlNGNz?=
+ =?utf-8?B?aDVnbi9VdkdlSHJ5WEJpanBpcG1qWGVqbzFjNm5YQjJoTDZLU2paYzRFNEU3?=
+ =?utf-8?B?d1JEZStENFhDSlB3djA5R3dTRFFFdC9HZVk2R0dhbG8vZVNITEFiRkJZNStl?=
+ =?utf-8?B?ZmFnUzlhQVcrNFQ5MEJTQXptTjhmM0pRYkRKdE9JU3IxZmxxNE00dlllVkFZ?=
+ =?utf-8?B?TlBYOGUzd2U5VkYzc3NRNmpQRHBDUG1rclVJUzBQMUNIZUZ5aDduRVBFL1lR?=
+ =?utf-8?B?dzNrRlhTRmdXQytPRlhpWmZLbUttNjkzR3NvS0lxNmhLNEpuOEhZTldGYTdR?=
+ =?utf-8?B?MDlSeG1xWTBpdENtNFVMYmJ2MGwwaHJSamZNQlNWTW5UNFFrcXNRajkwT1hT?=
+ =?utf-8?B?RkZoUEpPcjM0T0xkZG5sSWxSVHYrWnJ3UmNsWXp6MVE0UWJMMUpSSXpSS1Ro?=
+ =?utf-8?B?RDNNd3lUUjQ2TFhFelFDZW9MVExYK3NGRnNCK1VJWEpnMkZYd0RIN0pzUmV2?=
+ =?utf-8?B?cXR4QzV0TUNEQ1hjVUFqN1VtR0pOUDU3b3VWYW5KWnI2TkVUZGJVcitiaWlh?=
+ =?utf-8?B?b0Y1d1lyQjZlV0p4R3RVcW9jaWYwTzVvbHJvSFhhQWF0TmVwbmd4U1ZaOTh2?=
+ =?utf-8?B?OGtsUGxwM1dDMiswRUdlQnpwYnhxMGNKQndVSmtvSmJoZFhvejVOTEVUUURE?=
+ =?utf-8?B?L3pzOEtjREFMblNDV1kzV3NSZlZzc3RWVWszdGFxRmlSSWNvRExiRDVBclJM?=
+ =?utf-8?B?YVFGc1hJbXZRSDhCU3kzMi9QTjRRU29JSG40MkN4TEd5VHduN204VzRtcGF5?=
+ =?utf-8?B?bEl4eFowUGdCY0J6QUtaeGk0ZjRHdjNwU3prc2czL29DWDZnOXZaUmsyTitx?=
+ =?utf-8?B?TDYvV3l4OXYvcXo5R2wyTHdid090MmxTRVZSL3BzK0wveENIZld1MmJNRy9h?=
+ =?utf-8?Q?fkdnjKy3UW0VQlfvQ2wIV16xJYQbYTsx4P1oq1n?=
+X-OriginatorOrg: kontron.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 548735d7-f627-499f-580f-08d910586785
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2021 06:30:13.1853
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xz61oLyrS3oXAIcyv7+YuQoiaoLokv7HUmUs7qS6V85PBVKb5E1yCis+P9amCt9OBxeJabPeI89fPfIIy9WOT3Xe2RCS36BX1590TL+FNEg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB2114
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add the support of PWM controller which can be found at aspeed
-ast2600 soc. The pwm supoorts up to 16 channels and it's part function
-of multi-function device "pwm-tach controller".
+On 06.05.21 03:04, Peng Fan (OSS) wrote:
+> From: Lucas Stach <l.stach@pengutronix.de>
+> 
+> Use clk_bulk API to simplify the code a bit. Also add some error
+> checking to the clk_prepare_enable calls.
+> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
----
- drivers/pwm/Kconfig         |   8 +
- drivers/pwm/Makefile        |   1 +
- drivers/pwm/pwm-aspeed-g6.c | 368 ++++++++++++++++++++++++++++++++++++
- 3 files changed, 377 insertions(+)
- create mode 100644 drivers/pwm/pwm-aspeed-g6.c
+Reviewed-by: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 63be5362fd3a..b0964b9a3273 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -51,6 +51,14 @@ config PWM_AB8500
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-ab8500.
- 
-+config PWM_ASPEED_G6
-+	tristate "ASPEEDG6 PWM support"
-+	depends on ARCH_ASPEED || COMPILE_TEST
-+	help
-+	  Generic PWM framework driver for ASPEED G6 SoC.
-+
-+	  This driver provides support for ASPEED G6 PWM controllers.
-+
- config PWM_ATMEL
- 	tristate "Atmel PWM support"
- 	depends on OF
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index cbdcd55d69ee..29d22d806e68 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -2,6 +2,7 @@
- obj-$(CONFIG_PWM)		+= core.o
- obj-$(CONFIG_PWM_SYSFS)		+= sysfs.o
- obj-$(CONFIG_PWM_AB8500)	+= pwm-ab8500.o
-+obj-$(CONFIG_PWM_ASPEED_G6)	+= pwm-aspeed-g6.o
- obj-$(CONFIG_PWM_ATMEL)		+= pwm-atmel.o
- obj-$(CONFIG_PWM_ATMEL_HLCDC_PWM)	+= pwm-atmel-hlcdc.o
- obj-$(CONFIG_PWM_ATMEL_TCB)	+= pwm-atmel-tcb.o
-diff --git a/drivers/pwm/pwm-aspeed-g6.c b/drivers/pwm/pwm-aspeed-g6.c
-new file mode 100644
-index 000000000000..f5bb982c21e6
---- /dev/null
-+++ b/drivers/pwm/pwm-aspeed-g6.c
-@@ -0,0 +1,368 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (C) 2021 ASPEED Technology Inc.
-+ *
-+ * PWM controller driver for Aspeed ast26xx SoCs.
-+ * This drivers doesn't rollback to previous version of aspeed SoCs.
-+ *
-+ * The formula of pwm frequency:
-+ * PWM frequency = CLK Source / ((DIV_L + 1) * BIT(DIV_H) * (PERIOD + 1))
-+ *
-+ * The software driver fixes the period to 256, which causes the high-frequency
-+ * precision of the PWM to be coarse, in exchange for the fineness of the duty cycle.
-+ *
-+ * Register usage:
-+ * PIN_ENABLE: When it is unset the pwm controller will always output low to the extern.
-+ * Use to determin PWM channel enable/disable.
-+ * CLK_ENABLE: When it is unset the pwm controller will reset the duty counter to 0 and
-+ * output low to the PIN_ENABLE mux after that the driver can still change the pwm period
-+ * and duty and the value will apply when CLK_ENABLE be set again.
-+ * Use to determin whether duty_cycle bigger than 0.
-+ * PWM_ASPEED_INVERSE: When it is toggled the output value will inverse immediately.
-+ *
-+ * Limitations:
-+ * - When changing both duty cycle and period, we cannot prevent in
-+ *   software that the output might produce a period with mixed
-+ *   settings.
-+ *
-+ * Improvements:
-+ * - When changing the duty cycle or period, our pwm controller will not
-+ *   generate the glitch, the configure will change at next cycle of pwm.
-+ *   This improvement can disable/enable through PWM_ASPEED_DUTY_SYNC_DISABLE.
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/errno.h>
-+#include <linux/delay.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of_platform.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/sysfs.h>
-+#include <linux/reset.h>
-+#include <linux/regmap.h>
-+#include <linux/bitfield.h>
-+#include <linux/slab.h>
-+#include <linux/pwm.h>
-+
-+/* The channel number of Aspeed pwm controller */
-+#define PWM_ASPEED_NR_PWMS 16
-+
-+/* PWM Control Register */
-+#define PWM_ASPEED_CTRL_CH(ch) (((ch * 0x10) + 0x00))
-+#define PWM_ASPEED_LOAD_SEL_RISING_AS_WDT BIT(19)
-+#define PWM_ASPEED_DUTY_LOAD_AS_WDT_ENABLE BIT(18)
-+#define PWM_ASPEED_DUTY_SYNC_DISABLE BIT(17)
-+#define PWM_ASPEED_CLK_ENABLE BIT(16)
-+#define PWM_ASPEED_LEVEL_OUTPUT BIT(15)
-+#define PWM_ASPEED_INVERSE BIT(14)
-+#define PWM_ASPEED_OPEN_DRAIN_ENABLE BIT(13)
-+#define PWM_ASPEED_PIN_ENABLE BIT(12)
-+#define PWM_ASPEED_CLK_DIV_H GENMASK(11, 8)
-+#define PWM_ASPEED_CLK_DIV_L GENMASK(7, 0)
-+
-+/* PWM Duty Cycle Register */
-+#define PWM_ASPEED_DUTY_CYCLE_CH(ch) (((ch * 0x10) + 0x04))
-+#define PWM_ASPEED_PERIOD GENMASK(31, 24)
-+#define PWM_ASPEED_POINT_AS_WDT GENMASK(23, 16)
-+#define PWM_ASPEED_FALLING_POINT GENMASK(15, 8)
-+#define PWM_ASPEED_RISING_POINT GENMASK(7, 0)
-+
-+/* PWM fixed value */
-+#define PWM_ASPEED_FIXED_PERIOD 0xff
-+
-+struct aspeed_pwm_data {
-+	struct pwm_chip chip;
-+	struct clk *clk;
-+	struct regmap *regmap;
-+	struct reset_control *reset;
-+};
-+
-+static inline struct aspeed_pwm_data *
-+aspeed_pwm_chip_to_data(struct pwm_chip *c)
-+{
-+	return container_of(c, struct aspeed_pwm_data, chip);
-+}
-+
-+static void aspeed_set_pwm_clk_enable(struct regmap *regmap, u8 pwm_channel,
-+					  bool enable)
-+{
-+	regmap_update_bits(regmap, PWM_ASPEED_CTRL_CH(pwm_channel),
-+			   PWM_ASPEED_CLK_ENABLE,
-+			   enable ? PWM_ASPEED_CLK_ENABLE : 0);
-+}
-+
-+static u32 apseed_get_pwm_freq(struct pwm_chip *chip, struct pwm_device *pwm)
-+{
-+	struct aspeed_pwm_data *priv = aspeed_pwm_chip_to_data(chip);
-+	unsigned long rate;
-+	u32 index = pwm->hwpwm;
-+	u32 div_h, div_l, cur_freq, val;
-+
-+	rate = clk_get_rate(priv->clk);
-+	regmap_read(priv->regmap, PWM_ASPEED_CTRL_CH(index), &val);
-+	div_h = FIELD_GET(PWM_ASPEED_CLK_DIV_H, val);
-+	div_l = FIELD_GET(PWM_ASPEED_CLK_DIV_L, val);
-+
-+	cur_freq = DIV_ROUND_DOWN_ULL(rate, (BIT(div_h) * (div_l + 1) *
-+					     (PWM_ASPEED_FIXED_PERIOD + 1)));
-+	return cur_freq;
-+}
-+
-+static int aspeed_set_pwm_freq(struct pwm_chip *chip, struct pwm_device *pwm,
-+			       const struct pwm_state *state)
-+{
-+	struct device *dev = chip->dev;
-+	struct aspeed_pwm_data *priv = aspeed_pwm_chip_to_data(chip);
-+	unsigned long rate;
-+	u32 div_h, div_l, freq;
-+	u32 index = pwm->hwpwm;
-+	/* Get the smallest value for div_h  */
-+	freq = DIV_ROUND_UP_ULL(NSEC_PER_SEC, state->period);
-+	rate = clk_get_rate(priv->clk);
-+	div_h = DIV_ROUND_DOWN_ULL(rate,
-+				   ((FIELD_MAX(PWM_ASPEED_CLK_DIV_L) + 1) *
-+				    freq * (PWM_ASPEED_FIXED_PERIOD + 1)));
-+	div_h = order_base_2(div_h);
-+	if (div_h > 0xf)
-+		div_h = 0xf;
-+
-+	div_l = DIV_ROUND_DOWN_ULL(rate >> div_h,
-+				   (freq * (PWM_ASPEED_FIXED_PERIOD + 1)));
-+	if (div_l == 0) {
-+		dev_err(dev, "Period too small, cannot implement it");
-+		return -ERANGE;
-+	}
-+
-+	div_l -= 1;
-+
-+	if (div_l > 255)
-+		div_l = 255;
-+
-+	dev_dbg(dev, "clk source: %ld div h %x, l : %x\n", rate, div_h, div_l);
-+
-+	regmap_update_bits(priv->regmap, PWM_ASPEED_CTRL_CH(index),
-+			   (PWM_ASPEED_CLK_DIV_H | PWM_ASPEED_CLK_DIV_L),
-+			   FIELD_PREP(PWM_ASPEED_CLK_DIV_H, div_h) |
-+				   FIELD_PREP(PWM_ASPEED_CLK_DIV_L, div_l));
-+	return 0;
-+}
-+
-+static void aspeed_set_pwm_duty(struct pwm_chip *chip, struct pwm_device *pwm,
-+				const struct pwm_state *state)
-+{
-+	struct aspeed_pwm_data *priv = aspeed_pwm_chip_to_data(chip);
-+	u32 duty_pt;
-+	u32 index = pwm->hwpwm;
-+	u32 cur_freq;
-+	u64 cur_period;
-+
-+	cur_freq = apseed_get_pwm_freq(chip, pwm);
-+	cur_period = DIV_ROUND_DOWN_ULL(NSEC_PER_SEC, cur_freq);
-+	duty_pt = DIV_ROUND_DOWN_ULL(
-+		state->duty_cycle * (PWM_ASPEED_FIXED_PERIOD + 1), cur_period);
-+	if (duty_pt == 0) {
-+		aspeed_set_pwm_clk_enable(priv->regmap, index, false);
-+	} else {
-+		if (duty_pt >= (PWM_ASPEED_FIXED_PERIOD + 1))
-+			duty_pt = 0;
-+		/* When duty_pt = 0 it mean our duty cycle = 100% */
-+		regmap_update_bits(
-+			priv->regmap, PWM_ASPEED_DUTY_CYCLE_CH(index),
-+			PWM_ASPEED_FALLING_POINT,
-+			FIELD_PREP(PWM_ASPEED_FALLING_POINT, duty_pt));
-+		aspeed_set_pwm_clk_enable(priv->regmap, index, true);
-+	}
-+}
-+
-+static void aspeed_set_pwm_polarity(struct pwm_chip *chip,
-+				    struct pwm_device *pwm,
-+				    const struct pwm_state *state)
-+{
-+	struct aspeed_pwm_data *priv = aspeed_pwm_chip_to_data(chip);
-+	u32 index = pwm->hwpwm;
-+
-+	regmap_update_bits(priv->regmap, PWM_ASPEED_CTRL_CH(index),
-+			   PWM_ASPEED_INVERSE,
-+			   FIELD_PREP(PWM_ASPEED_INVERSE, state->polarity));
-+}
-+
-+static void aspeed_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-+				 struct pwm_state *state)
-+{
-+	struct device *dev = chip->dev;
-+	struct aspeed_pwm_data *priv = aspeed_pwm_chip_to_data(chip);
-+	u32 index = pwm->hwpwm;
-+	bool polarity, ch_en, clk_en;
-+	u32 duty_pt, val;
-+	u32 cur_freq;
-+
-+	regmap_read(priv->regmap, PWM_ASPEED_CTRL_CH(index), &val);
-+	polarity = FIELD_GET(PWM_ASPEED_INVERSE, val);
-+	ch_en = FIELD_GET(PWM_ASPEED_PIN_ENABLE, val);
-+	clk_en = FIELD_GET(PWM_ASPEED_CLK_ENABLE, val);
-+	regmap_read(priv->regmap, PWM_ASPEED_DUTY_CYCLE_CH(index), &val);
-+	duty_pt = FIELD_GET(PWM_ASPEED_FALLING_POINT, val);
-+
-+	cur_freq = apseed_get_pwm_freq(chip, pwm);
-+
-+	state->period = DIV_ROUND_DOWN_ULL(NSEC_PER_SEC, cur_freq);
-+	if (clk_en && duty_pt)
-+		state->duty_cycle = DIV_ROUND_DOWN_ULL(
-+			state->period * duty_pt, PWM_ASPEED_FIXED_PERIOD + 1);
-+	else
-+		state->duty_cycle = clk_en ? state->period : 0;
-+	state->polarity = polarity;
-+	state->enabled = ch_en;
-+	dev_dbg(dev, "get period: %lldns, duty_cycle: %lldns", state->period,
-+		state->duty_cycle);
-+}
-+
-+static int aspeed_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-+			    const struct pwm_state *state)
-+{
-+	struct device *dev = chip->dev;
-+	struct aspeed_pwm_data *priv = aspeed_pwm_chip_to_data(chip);
-+	u32 index = pwm->hwpwm;
-+	struct pwm_state cur_state;
-+	int ret;
-+
-+	aspeed_pwm_get_state(chip, pwm, &cur_state);
-+	dev_dbg(dev, "cur period: %lldns, cur duty_cycle: %lldns",
-+		cur_state.period, cur_state.duty_cycle);
-+	dev_dbg(dev, "apply period: %lldns, duty_cycle: %lldns", state->period,
-+		state->duty_cycle);
-+	regmap_update_bits(priv->regmap, PWM_ASPEED_CTRL_CH(index),
-+			   PWM_ASPEED_PIN_ENABLE,
-+			   state->enabled ? PWM_ASPEED_PIN_ENABLE : 0);
-+	if (cur_state.period != state->period) {
-+		ret = aspeed_set_pwm_freq(chip, pwm, state);
-+		if (ret)
-+			return ret;
-+		aspeed_set_pwm_duty(chip, pwm, state);
-+	} else if (cur_state.duty_cycle != state->duty_cycle)
-+		aspeed_set_pwm_duty(chip, pwm, state);
-+	aspeed_set_pwm_polarity(chip, pwm, state);
-+	return 0;
-+}
-+
-+static const struct pwm_ops aspeed_pwm_ops = {
-+	.apply = aspeed_pwm_apply,
-+	.get_state = aspeed_pwm_get_state,
-+	.owner = THIS_MODULE,
-+};
-+
-+static int aspeed_pwm_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	int ret, index;
-+	struct aspeed_pwm_data *priv;
-+	struct device_node *np;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	np = pdev->dev.parent->of_node;
-+	if (!of_device_is_compatible(np, "aspeed,ast2600-pwm-tach")) {
-+		dev_err(dev, "unsupported pwm device binding\n");
-+		return -ENODEV;
-+	}
-+
-+	priv->regmap = syscon_node_to_regmap(np);
-+	if (IS_ERR(priv->regmap)) {
-+		dev_err(dev, "Couldn't get regmap\n");
-+		return -ENODEV;
-+	}
-+
-+	priv->clk = of_clk_get(np, 0);
-+	if (IS_ERR(priv->clk))
-+		return dev_err_probe(dev, PTR_ERR(priv->clk),
-+				     "get clock failed\n");
-+
-+	ret = clk_prepare_enable(priv->clk);
-+	if (ret) {
-+		dev_err(dev, "couldn't enable clock\n");
-+		return ret;
-+	}
-+
-+	priv->reset = of_reset_control_get_shared(np, NULL);
-+	if (IS_ERR(priv->reset))
-+		return dev_err_probe(dev, PTR_ERR(priv->reset),
-+				     "get reset failed\n");
-+
-+	ret = reset_control_deassert(priv->reset);
-+	if (ret) {
-+		dev_err(dev, "cannot deassert reset control: %pe\n",
-+			ERR_PTR(ret));
-+		clk_disable_unprepare(priv->clk);
-+		return ret;
-+	}
-+
-+	priv->chip.dev = dev;
-+	priv->chip.ops = &aspeed_pwm_ops;
-+	priv->chip.npwm = PWM_ASPEED_NR_PWMS;
-+	priv->chip.of_xlate = of_pwm_xlate_with_flags;
-+	priv->chip.of_pwm_n_cells = 3;
-+
-+	/*
-+	 * Fixed the period to the max value and rising point to 0
-+	 * for high resolution and simplified frequency calculation.
-+	 */
-+	for (index = 0; index < PWM_ASPEED_NR_PWMS; index++) {
-+		regmap_update_bits(
-+			priv->regmap, PWM_ASPEED_DUTY_CYCLE_CH(index),
-+			PWM_ASPEED_PERIOD,
-+			FIELD_PREP(PWM_ASPEED_PERIOD, PWM_ASPEED_FIXED_PERIOD));
-+		regmap_update_bits(priv->regmap,
-+				   PWM_ASPEED_DUTY_CYCLE_CH(index),
-+				   PWM_ASPEED_RISING_POINT, 0);
-+	}
-+
-+	ret = pwmchip_add(&priv->chip);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to add PWM chip: %pe\n", ERR_PTR(ret));
-+		reset_control_assert(priv->reset);
-+		clk_disable_unprepare(priv->clk);
-+		return ret;
-+	}
-+	dev_set_drvdata(dev, priv);
-+	return ret;
-+}
-+
-+static int aspeed_pwm_remove(struct platform_device *dev)
-+{
-+	struct aspeed_pwm_data *priv = platform_get_drvdata(dev);
-+
-+	pwmchip_remove(&priv->chip);
-+	reset_control_assert(priv->reset);
-+	clk_disable_unprepare(priv->clk);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id of_pwm_match_table[] = {
-+	{
-+		.compatible = "aspeed,ast2600-pwm",
-+	},
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, of_pwm_match_table);
-+
-+static struct platform_driver aspeed_pwm_driver = {
-+	.probe		= aspeed_pwm_probe,
-+	.remove		= aspeed_pwm_remove,
-+	.driver		= {
-+		.name	= "aspeed_pwm",
-+		.of_match_table = of_pwm_match_table,
-+	},
-+};
-+
-+module_platform_driver(aspeed_pwm_driver);
-+
-+MODULE_AUTHOR("Billy Tsai <billy_tsai@aspeedtech.com>");
-+MODULE_DESCRIPTION("ASPEED PWM device driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.25.1
-
+> ---
+>  drivers/soc/imx/gpcv2.c | 60 +++++++++--------------------------------
+>  1 file changed, 12 insertions(+), 48 deletions(-)
+> 
+> diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
+> index 552d3e6bee52..4222b6e87e7c 100644
+> --- a/drivers/soc/imx/gpcv2.c
+> +++ b/drivers/soc/imx/gpcv2.c
+> @@ -100,13 +100,11 @@
+>  
+>  #define GPC_PGC_CTRL_PCR		BIT(0)
+>  
+> -#define GPC_CLK_MAX		6
+> -
+>  struct imx_pgc_domain {
+>  	struct generic_pm_domain genpd;
+>  	struct regmap *regmap;
+>  	struct regulator *regulator;
+> -	struct clk *clk[GPC_CLK_MAX];
+> +	struct clk_bulk_data *clks;
+>  	int num_clks;
+>  
+>  	unsigned int pgc;
+> @@ -149,8 +147,12 @@ static int imx_gpc_pu_pgc_sw_pxx_req(struct generic_pm_domain *genpd,
+>  	}
+>  
+>  	/* Enable reset clocks for all devices in the domain */
+> -	for (i = 0; i < domain->num_clks; i++)
+> -		clk_prepare_enable(domain->clk[i]);
+> +	ret = clk_bulk_prepare_enable(domain->num_clks, domain->clks);
+> +	if (ret) {
+> +		dev_err(domain->dev, "failed to enable reset clocks\n");
+> +		regulator_disable(domain->regulator);
+> +		return ret;
+> +	}
+>  
+>  	if (enable_power_control)
+>  		regmap_update_bits(domain->regmap, GPC_PGC_CTRL(domain->pgc),
+> @@ -187,8 +189,7 @@ static int imx_gpc_pu_pgc_sw_pxx_req(struct generic_pm_domain *genpd,
+>  				   GPC_PGC_CTRL_PCR, 0);
+>  
+>  	/* Disable reset clocks for all devices in the domain */
+> -	for (i = 0; i < domain->num_clks; i++)
+> -		clk_disable_unprepare(domain->clk[i]);
+> +	clk_bulk_disable_unprepare(domain->num_clks, domain->clks);
+>  
+>  	if (has_regulator && !on) {
+>  		int err;
+> @@ -438,41 +439,6 @@ static const struct imx_pgc_domain_data imx8m_pgc_domain_data = {
+>  	.reg_access_table = &imx8m_access_table,
+>  };
+>  
+> -static int imx_pgc_get_clocks(struct imx_pgc_domain *domain)
+> -{
+> -	int i, ret;
+> -
+> -	for (i = 0; ; i++) {
+> -		struct clk *clk = of_clk_get(domain->dev->of_node, i);
+> -		if (IS_ERR(clk))
+> -			break;
+> -		if (i >= GPC_CLK_MAX) {
+> -			dev_err(domain->dev, "more than %d clocks\n",
+> -				GPC_CLK_MAX);
+> -			ret = -EINVAL;
+> -			goto clk_err;
+> -		}
+> -		domain->clk[i] = clk;
+> -	}
+> -	domain->num_clks = i;
+> -
+> -	return 0;
+> -
+> -clk_err:
+> -	while (i--)
+> -		clk_put(domain->clk[i]);
+> -
+> -	return ret;
+> -}
+> -
+> -static void imx_pgc_put_clocks(struct imx_pgc_domain *domain)
+> -{
+> -	int i;
+> -
+> -	for (i = domain->num_clks - 1; i >= 0; i--)
+> -		clk_put(domain->clk[i]);
+> -}
+> -
+>  static int imx_pgc_domain_probe(struct platform_device *pdev)
+>  {
+>  	struct imx_pgc_domain *domain = pdev->dev.platform_data;
+> @@ -490,9 +456,10 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
+>  				      domain->voltage, domain->voltage);
+>  	}
+>  
+> -	ret = imx_pgc_get_clocks(domain);
+> -	if (ret)
+> -		return dev_err_probe(domain->dev, ret, "Failed to get domain's clocks\n");
+> +	domain->num_clks = devm_clk_bulk_get_all(domain->dev, &domain->clks);
+> +	if (domain->num_clks < 0)
+> +		return dev_err_probe(domain->dev, domain->num_clks,
+> +				     "Failed to get domain's clocks\n");
+>  
+>  	regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
+>  			   domain->bits.map, domain->bits.map);
+> @@ -517,7 +484,6 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
+>  out_domain_unmap:
+>  	regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
+>  			   domain->bits.map, 0);
+> -	imx_pgc_put_clocks(domain);
+>  
+>  	return ret;
+>  }
+> @@ -532,8 +498,6 @@ static int imx_pgc_domain_remove(struct platform_device *pdev)
+>  	regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
+>  			   domain->bits.map, 0);
+>  
+> -	imx_pgc_put_clocks(domain);
+> -
+>  	return 0;
+>  }
+>  
+> 
