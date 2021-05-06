@@ -2,130 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B777375C2E
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 22:27:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D630D375C41
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 22:31:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233975AbhEFU2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 16:28:30 -0400
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:33711 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229954AbhEFU23 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 16:28:29 -0400
-Received: by mail-ot1-f49.google.com with SMTP id i23-20020a9d68d70000b02902dc19ed4c15so2039182oto.0;
-        Thu, 06 May 2021 13:27:30 -0700 (PDT)
+        id S231335AbhEFUc0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 16:32:26 -0400
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:40657 "EHLO
+        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229965AbhEFUc0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 16:32:26 -0400
+Received: by mail-ot1-f50.google.com with SMTP id c28-20020a9d615c0000b02902dde7c8833eso1093315otk.7;
+        Thu, 06 May 2021 13:31:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=itqPIgMSRUm7mjLuAMIStPX3IirpKll5U1amEMt59hU=;
-        b=NId6L8dlVh0j874adHL5WWBbV2/xQX9ssnc4pmWkxC2MJ+PKdmXxFUdheVQIf6oqbi
-         0OvvvsVWhpvNZdUXvIwgPHKGmk+9TMpjuk/GA5lxgYsl/0CDpwEZwY/zQHIjMghC0FU+
-         nMPcKygNc6a01SQvFb4nETaf3OtKV+oeBVSCElR/H41R3NpWqX3aXX9ZiYsLQMp4HK45
-         50J34/zcvRRZLhwIftAziDn6RMfyvbkgy5xst73NVspAoi433BxZJDmQRdPwtysYjufK
-         EEtJVwn7AhLHtYt/3CM6EFDjScSrFQoHnjTpLSwygIUgpw7c+tTpwuv1A0qRqOxExHkG
-         30/w==
-X-Gm-Message-State: AOAM531yME04fH0oV6YdBuhfgYquD6nsZYxyJhascRgrzpCSiyp38o8/
-        KYn8Yc76RIFC9JpW+QCuwbMPJkZXVA==
-X-Google-Smtp-Source: ABdhPJylItoM595UGV/4yqDvwNAmHRcH3hYhsGZVyPxxAwPv63lCNxd5mL71+50GRRhJp8CY6zqWYA==
-X-Received: by 2002:a05:6830:33ea:: with SMTP id i10mr5157809otu.212.1620332849774;
-        Thu, 06 May 2021 13:27:29 -0700 (PDT)
+        bh=ZUvqv8wXTvOxaH/qGGyIwECUCA5kcL3mhfS8xu2uPHk=;
+        b=ru+UgilFUd4jf5JILoRlHiotfpuVbcR83SHvsZUuMJL5M4mb+Ak+jN9eUyH7Spqw8f
+         Y4R8Z4JwpXw6S4EakE+mKbRXLe8o9RbS5c3cKJYpT4pGcFTNp9qo7UHm066fwKRuSUcl
+         3ozfuqXT3yotaCSKcHyB39HOH1aMIDpYHwHhMNJ9po8psTW0rVtes1fl/HFugxBJlnTZ
+         HDzXCYRs90i9xP+elHPnRwiXoDUVXM4tt9dwH2g3n7eHI0fiPaDMYuK6/ypcxOi/cedO
+         hqL5ABVCvfi5xvrWAQWvv7dTYJIFjDI+eqIOOpUo9e6GtgenJdWgyKzeg2pPayQwUj+u
+         hRhA==
+X-Gm-Message-State: AOAM532AXbqjnLSdm/fAd0pqJ1DuYr1iUTBfw9hjZwX9ssr/JS4Tqa3K
+        DlIPC6S86hiZFnaDyGVvEw==
+X-Google-Smtp-Source: ABdhPJz8lMGGpHHpxe8oPwoIyPVl8lU7WK/RGmlZ6n9ATJy0QvSseGQje+V/PuhA52UcWZiIbXhI8g==
+X-Received: by 2002:a9d:6ad6:: with SMTP id m22mr5272913otq.146.1620333087184;
+        Thu, 06 May 2021 13:31:27 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l131sm592786oia.0.2021.05.06.13.27.27
+        by smtp.gmail.com with ESMTPSA id i9sm771288otr.19.2021.05.06.13.31.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 May 2021 13:27:28 -0700 (PDT)
-Received: (nullmailer pid 748504 invoked by uid 1000);
-        Thu, 06 May 2021 20:27:26 -0000
-Date:   Thu, 6 May 2021 15:27:26 -0500
+        Thu, 06 May 2021 13:31:25 -0700 (PDT)
+Received: (nullmailer pid 753794 invoked by uid 1000);
+        Thu, 06 May 2021 20:31:24 -0000
+Date:   Thu, 6 May 2021 15:31:24 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Shawn Guo <shawn.guo@linaro.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        Benjamin Li <benl@squareup.com>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 2/5] dt-bindings: clock: update qcom,a53pll bindings for
- MSM8939 support
-Message-ID: <20210506202726.GA744866@robh.at.kernel.org>
-References: <20210504052844.21096-1-shawn.guo@linaro.org>
- <20210504052844.21096-3-shawn.guo@linaro.org>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     devicetree@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Subject: Re: [PATCH v3 2/2] dt-bindings: mediatek: Add optional mediatek,
+ gce-events property
+Message-ID: <20210506203124.GA753747@robh.at.kernel.org>
+References: <20210504054612.3585017-1-hsinyi@chromium.org>
+ <20210504054612.3585017-2-hsinyi@chromium.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210504052844.21096-3-shawn.guo@linaro.org>
+In-Reply-To: <20210504054612.3585017-2-hsinyi@chromium.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 04, 2021 at 01:28:41PM +0800, Shawn Guo wrote:
-> Update qcom,a53pll bindings for MSM8939 support:
+On Tue, 04 May 2021 13:46:12 +0800, Hsin-Yi Wang wrote:
+> This property is used by gce clients.
 > 
->  - Add optional clock-output-names property.
->  - Add MSM8939 specific compatibles.
->  - Add MSM8939 examples.
-> 
-> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 > ---
->  .../bindings/clock/qcom,a53pll.yaml           | 34 +++++++++++++++++++
->  1 file changed, 34 insertions(+)
+> v2->v3: move definition to Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+> ---
+>  .../devicetree/bindings/mailbox/mtk-gce.txt       | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,a53pll.yaml b/Documentation/devicetree/bindings/clock/qcom,a53pll.yaml
-> index db3d0ea6bc7a..7a410a76be2f 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,a53pll.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,a53pll.yaml
-> @@ -18,6 +18,9 @@ properties:
->      enum:
->        - qcom,ipq6018-a53pll
->        - qcom,msm8916-a53pll
-> +      - qcom,msm8939-a53pll-c0
-> +      - qcom,msm8939-a53pll-c1
-> +      - qcom,msm8939-a53pll-cci
 
-These 3 have differences?
-
->  
->    reg:
->      maxItems: 1
-> @@ -33,6 +36,9 @@ properties:
->      items:
->        - const: xo
->  
-> +  clock-output-names:
-> +    maxItems: 1
-> +
->  required:
->    - compatible
->    - reg
-> @@ -57,3 +63,31 @@ examples:
->          clocks = <&xo>;
->          clock-names = "xo";
->      };
-> +  #Example 3 - A53 PLLs found on MSM8939 devices
-> +  - |
-> +    a53pll_c1: clock-controller@b016000 {
-> +        compatible = "qcom,msm8939-a53pll-c1";
-> +        reg = <0xb016000 0x40>;
-> +        #clock-cells = <0>;
-> +        clocks = <&xo_board>;
-> +        clock-names = "xo";
-> +        clock-output-names = "a53pll_c1";
-> +    };
-> +
-> +    a53pll_c0: clock-controller@b116000 {
-> +        compatible = "qcom,msm8939-a53pll-c0";
-> +        reg = <0xb116000 0x40>;
-> +        #clock-cells = <0>;
-> +        clocks = <&xo_board>;
-> +        clock-names = "xo";
-> +        clock-output-names = "a53pll_c0";
-> +    };
-> +
-> +    a53pll_cci: clock-controller@b1d0000 {
-> +        compatible = "qcom,msm8939-a53pll-cci";
-> +        reg = <0xb1d0000 0x40>;
-> +        #clock-cells = <0>;
-> +        clocks = <&xo_board>;
-> +        clock-names = "xo";
-> +        clock-output-names = "a53pll_cci";
-> +    };
-
-Do these examples really add anything?
+Acked-by: Rob Herring <robh@kernel.org>
