@@ -2,160 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB438375243
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 12:25:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42F4C375249
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 12:26:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234189AbhEFK01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 06:26:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48756 "EHLO
+        id S234400AbhEFK1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 06:27:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231863AbhEFK01 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 06:26:27 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98B74C061574
-        for <devicetree@vger.kernel.org>; Thu,  6 May 2021 03:25:29 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <pza@pengutronix.de>)
-        id 1lebBr-0007Y4-Hd; Thu, 06 May 2021 12:25:07 +0200
-Received: from pza by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <pza@pengutronix.de>)
-        id 1lebBi-0006VF-Tg; Thu, 06 May 2021 12:24:58 +0200
-Date:   Thu, 6 May 2021 12:24:58 +0200
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Steven Lee <steven_lee@aspeedtech.com>
-Cc:     Andrew Jeffery <andrew@aj.id.au>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ryan Chen <ryanchen.aspeed@gmail.com>,
-        "moderated list:ASPEED SD/MMC DRIVER" <linux-aspeed@lists.ozlabs.org>,
-        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
-        "open list:ASPEED SD/MMC DRIVER" <linux-mmc@vger.kernel.org>,
+        with ESMTP id S234375AbhEFK1n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 06:27:43 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDEA1C061574
+        for <devicetree@vger.kernel.org>; Thu,  6 May 2021 03:26:44 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id w4so6375123ljw.9
+        for <devicetree@vger.kernel.org>; Thu, 06 May 2021 03:26:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=q7Lt8jBe6wv03L7Ev9R6s3zonVps5OT2POfrWhLS1O0=;
+        b=NFJsPlS4lkvyLn3LRx72UHEDMNshTOZzxwz0yMZzQM6RudpaF5F5pOomw4noNlH8dy
+         reociugEQom2ZHSOMYToiAPYZdzIJO/p8iL9V5JcvEJH9qsqf/wq7jrSTNKNIMD3T7Ld
+         Uf6ZntZVT3+DdZ4u5NHcPdG/4UmvQWRE12E5GxaYNuVob8DwmjsDnbyrGsa69KccIcKT
+         WWJ6pFdJtiJjnqHni4xcUxmZ4pQnJPX4UvBwrFvh5npNzgcNKa2lnh+DgpP/1S9x3EdP
+         vinGZfVu/Dm2a6PBStO/6vI4c4a8O7ijr0qWEy65WJnaGUpeYh0oue0/LPAUxPNS70pA
+         egFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=q7Lt8jBe6wv03L7Ev9R6s3zonVps5OT2POfrWhLS1O0=;
+        b=QiV7zuZt3bUvs02Vx9Eu9xXuIeIBPvgSCKuMdczth1AmJ4W5iJCiiLhE/u9UbKK+L3
+         VaBNIpkjFc0UlN8BO7fCIhnL39JMW+YWgbqNEdVgsN4wtvvnJ2lpB0D+ZvOVT3Kf4Ro9
+         nGe2gKKqzN0yIeFu0MmrtbX8jXi8J+WVRNVt2gm31yOYiIh33iX9tssbVU2wqRgVvjE6
+         xvfjIyw+9X/bMeB2SSiUAQr00roNaqBsa0G3VKRYSsCFdJ4OtKPSTMQ8MA3ZBR45oZxm
+         hF/6aT0r2nn/Wzp3ViCfYjT28z0tOftzD747eIolqBg12xL6PNnRMkVjJM2QkqcDYQxC
+         1g1g==
+X-Gm-Message-State: AOAM531viDKrO7rohtXs1T0YfQuTkJf0f6vGzgA+t/Doh82bfbUezVSj
+        uNAJ99q6i8HVl92bOqEsfKRMLKMaecRkMlLQMOkzKw==
+X-Google-Smtp-Source: ABdhPJxci8zA6ho0aB6xDVxMD+TN9K2noCf9jKls117BIuDpVHkP+exwEZFomfQiAE5eaq4sUwzXLRUcJth0e2ZqDP8=
+X-Received: by 2002:a2e:81d0:: with SMTP id s16mr2938854ljg.74.1620296803490;
+ Thu, 06 May 2021 03:26:43 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210428175503.3692090-1-clabbe@baylibre.com>
+In-Reply-To: <20210428175503.3692090-1-clabbe@baylibre.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 6 May 2021 12:26:32 +0200
+Message-ID: <CACRpkdY43=Uh+EVSOPHqNgrhVfgpubZNtXRzO5nW335R6aJGbg@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: gemini: rename to nand-controller
+To:     Corentin Labbe <clabbe@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>, Hongweiz@ami.com,
-        ryan_chen@aspeedtech.com, chin-ting_kuo@aspeedtech.com
-Subject: Re: [PATCH v3 5/5] mmc: sdhci-of-aspeed: Assert/Deassert reset
- signal before probing eMMC
-Message-ID: <20210506102458.GA20777@pengutronix.de>
-References: <20210506100312.1638-1-steven_lee@aspeedtech.com>
- <20210506100312.1638-6-steven_lee@aspeedtech.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210506100312.1638-6-steven_lee@aspeedtech.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 12:10:55 up 77 days, 13:34, 104 users,  load average: 0.57, 0.39,
- 0.37
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: pza@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Steven,
+On Wed, Apr 28, 2021 at 7:55 PM Corentin Labbe <clabbe@baylibre.com> wrote:
 
-On Thu, May 06, 2021 at 06:03:12PM +0800, Steven Lee wrote:
-> For cleaning up the AST2600 eMMC controller, the reset signal should be
-> asserted and deasserted before it is probed.
-> 
-> Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
-> ---
->  drivers/mmc/host/sdhci-of-aspeed.c | 49 ++++++++++++++++++++++++------
->  1 file changed, 40 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/mmc/host/sdhci-of-aspeed.c b/drivers/mmc/host/sdhci-of-aspeed.c
-> index 4979f98ffb52..8ef06f32abff 100644
-> --- a/drivers/mmc/host/sdhci-of-aspeed.c
-> +++ b/drivers/mmc/host/sdhci-of-aspeed.c
-[...]
-> @@ -533,11 +545,22 @@ static struct platform_driver aspeed_sdhci_driver = {
->  	.remove		= aspeed_sdhci_remove,
->  };
->  
-> +static const struct of_device_id aspeed_sdc_of_match[] = {
-> +	{ .compatible = "aspeed,ast2400-sd-controller", },
-> +	{ .compatible = "aspeed,ast2500-sd-controller", },
-> +	{ .compatible = "aspeed,ast2600-sd-controller", .data = &ast2600_sdc_info},
-> +	{ }
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, aspeed_sdc_of_match);
-> +
->  static int aspeed_sdc_probe(struct platform_device *pdev)
->  
->  {
->  	struct device_node *parent, *child;
->  	struct aspeed_sdc *sdc;
-> +	const struct of_device_id *match = NULL;
-> +	const struct aspeed_sdc_info *info = NULL;
+> We must use nand-controller instead of flash.
+>
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 
-There is no need to initialize these variables to NULL, see below:
+Hm, this flash memory isn't NAND, it is just memory-mapped
+NOR flash.
 
->  	int ret;
->  
->  	sdc = devm_kzalloc(&pdev->dev, sizeof(*sdc), GFP_KERNEL);
-> @@ -546,6 +569,23 @@ static int aspeed_sdc_probe(struct platform_device *pdev)
->  
->  	spin_lock_init(&sdc->lock);
->  
-> +	match = of_match_device(aspeed_sdc_of_match, &pdev->dev);
+The example for CFI NOR flash in
+Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+clearly uses the node name "flash@"
 
-match is set unconditionally before it is used,
+There is however a real NAND and serial flash memory
+controller at 0x65000000, but I haven't seen a platform
+that uses it.
 
-> +	if (!match)
-> +		return -ENODEV;
-> +
-> +	if (match->data)
-> +		info = match->data;
+The extra compatible string "cortina,gemini-flash"
+turns on some Gemini-specific checks, but it
+goes into the global system controller, not the NAND
+controller, as the system controller confusingly have
+some registers for detecting NOR memory config.
+drivers/mtd/maps/physmap-gemini.c
 
-and info could be set unconditionally as well:
-
-	info = match->data;
-
-> +	if (info) {
-> +		if (info->flag & PROBE_AFTER_ASSET_DEASSERT) {
-> +			sdc->rst = devm_reset_control_get(&pdev->dev, NULL);
-
-Please use devm_reset_control_get_exclusive() or
-devm_reset_control_get_optional_exclusive().
-
-> +			if (!IS_ERR(sdc->rst)) {
-
-Please just return errors here instead of ignoring them.
-The reset_control_get_optional variants return NULL in case the
-device node doesn't contain a resets phandle, in case you really
-consider this reset to be optional even though the flag is set?
-
-> +				reset_control_assert(sdc->rst);
-> +				reset_control_deassert(sdc->rst);
-
-Is there no need for delays between assertion and deassertion or after
-the reset is deasserted?
-
-> +			}
-> +		}
-> +	}
-> +
->  	sdc->clk = devm_clk_get(&pdev->dev, NULL);
->  	if (IS_ERR(sdc->clk))
->  		return PTR_ERR(sdc->clk);
-
-In general, I would assert/deassert the reset only after all resources
-are successfully acquired. This might avoid unnecessary resets in case
-of probe deferrals.
-
-regards
-Philipp
+Yours,
+Linus Walleij
