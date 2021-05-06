@@ -2,82 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF8EB3753EF
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 14:37:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5B543753F9
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 14:43:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231327AbhEFMi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 08:38:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50102 "EHLO
+        id S231653AbhEFMoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 08:44:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231190AbhEFMi0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 08:38:26 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C208DC061761
-        for <devicetree@vger.kernel.org>; Thu,  6 May 2021 05:37:27 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id a36so6823455ljq.8
-        for <devicetree@vger.kernel.org>; Thu, 06 May 2021 05:37:27 -0700 (PDT)
+        with ESMTP id S231327AbhEFMoh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 08:44:37 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0EC0C061574
+        for <devicetree@vger.kernel.org>; Thu,  6 May 2021 05:43:38 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id o16so6876431ljp.3
+        for <devicetree@vger.kernel.org>; Thu, 06 May 2021 05:43:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=fabHOBF/FKRMCsbocyQpihWbW6A2j8AFwdwyyqGtJ+4=;
-        b=ccUzsZuxbe0+1KILFT74bJTOt8/jfyNkOFdmvLWaGDA2/LevE/x9dtV7MEVTFVFX2D
-         Phx9+OxRRhaQDCPFAcxhIYz2KaKCqbl0lcbdw6MYnu2yOKhDgd0teWXIn3Q7mzNLxVaX
-         FlDDn0I8RtxtWhUxdkydKqQBlJPle97FnB4qdYHuRGLzmQG6g/JluGoT8L7F9iS2MPa6
-         HVHp3q8wO+h7TLh/Ajojd9W24mVIvMsuHhb2r+4xF84UwZYs46iip++6F038Gg0sOKme
-         +v4UZMotTIO7NW6fNNsD2YIy19FKZe71Tsh16yLdsIIKJKP3fhnYRYiY5388mP6Y1NlG
-         EyBA==
+         :cc;
+        bh=fbHWIIjNsb9wei3xXx6Otqpzu53zaXTIXIFKBmpNOgo=;
+        b=Bgqg7sh9bCd5nshaNaWvRHui08dl/ZbqDnFZ0IJ97hliP13z/2GcIBrux/SLdwV0/i
+         Km45HFsHhgWctbcGuGF6Ai0HvMZqIj6POZRSs6/PpSRACJl2PlFmLQU4hlC1yDovIWBg
+         aoQtkENq3gxHz6laQ2nmHkKeFF5HDzsMB1hneI4Ds46GeucQ1zmRGYA3wLsnyxnSTV+p
+         Db5TgOzJNR01i8q8ZcC7fzaKnTvJPicRUV9tY8zTJ3Fn3kGnBEhC16d3shmCkOArTBkz
+         lLFzcth3mqWw7rRMzs4kvzsjIlgL1hnv1j22fv57T54QODE0L88yQ2jCksh+4ITE6+wH
+         5VGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=fabHOBF/FKRMCsbocyQpihWbW6A2j8AFwdwyyqGtJ+4=;
-        b=WufXJb4TW6Z8Pu5svUCu9LRjyvPvby7HzDz+Rgg6jTCCZIQYxr7BfqtGM/jb+guuWu
-         obTP6RkZ77HP03lW+WQxJsF4fCaqcfl6NR1a+hkwiFVJK7ZUW6C1RRsi1un6Yuyk0/Zw
-         MOMrs5SBCXzgiKtdiP8But8QEJuABbJNT9u9UV04Obp2QZI1uSlPz31JwLpirSbgeBSH
-         LFQGFk8yGlCdddKMzCsLrAB1JFPqonTcwSz4IroLtV/OOgkiMYnuTSaeutFmh3ml4j5l
-         HpmD7GgbQRXha3dW09vU3yKF0IigMsiPhQqKM/BbTAQ5sgE9B8Ty17DfsHQ4/CbCC7O/
-         fWYw==
-X-Gm-Message-State: AOAM531X3qtqoMRezfvpmEoZu3lPnPwAeb3ajeAsemCnsVbw6GkfkSoH
-        o/7Fsw+0zi+OTxcql0w9pmo+SFF/uvpW5t7MHzmVWw==
-X-Google-Smtp-Source: ABdhPJzc/sEEaxPFnTNaCN9N8aRbxxrgM4FR4KufYamR7sX63C3IKMoMZo1YtQRmN1lMjxxV8V5P19IYB/xetoF6zmA=
-X-Received: by 2002:a05:651c:503:: with SMTP id o3mr3154490ljp.368.1620304646273;
- Thu, 06 May 2021 05:37:26 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=fbHWIIjNsb9wei3xXx6Otqpzu53zaXTIXIFKBmpNOgo=;
+        b=HgCbwjGxs2yk/WelOY2dnALcrI+CFB75kT+hz9hvniI5B2HlihDI/nDW5WGqnRD44z
+         AOYTbQnYZW9cjElRE5LsSSpypuTkyF4CdmXWd2G1+6jxoTwOn4ue63nKItlgkymEAu2m
+         sbNvn1+Us2oX2F1yzAgFZGvc1j4y+1ppjHaOF58ELDQvSiCGOImJepbmaYEya5WuE1US
+         KHjDkc3ITVI2JeMlAvSrkB2ADNhfTuROxCybhgnBMJsESlA24RF83+EbPKwRKUt2V2o3
+         VIjeBiHs4YM5uczEeYW2SddILiXZMd0qLW2T2YdlFzt6VYNc0oHr36knADwG4+Ij1Clm
+         4XhA==
+X-Gm-Message-State: AOAM530WPb6+ozmgviGmeidATzhTrVHpfey/1knITnHDT5c15NTQdJzA
+        nsuEPMjerxsxaggT3Nw0qk3GBp+BNlBKf8Rb7a/Ztg==
+X-Google-Smtp-Source: ABdhPJz4optDOZiBZ3vSZcVI8Py60XPMQCZzXNInCGDBXfYIu467P3Ej4pt6DNl0kP7Ihy/ZCeYrBXG2yJQ/QYMK8Ng=
+X-Received: by 2002:a05:651c:503:: with SMTP id o3mr3172636ljp.368.1620305017299;
+ Thu, 06 May 2021 05:43:37 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210503210526.43455-1-u.kleine-koenig@pengutronix.de>
-In-Reply-To: <20210503210526.43455-1-u.kleine-koenig@pengutronix.de>
+References: <20210317113130.2554368-1-geert+renesas@glider.be>
+In-Reply-To: <20210317113130.2554368-1-geert+renesas@glider.be>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 6 May 2021 14:37:15 +0200
-Message-ID: <CACRpkdbBa6z7M9Vnsw9E-peuqKsvC4s9f9Qi6ezWX0J2QR57xQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: gpio: introduce hog properties with less ambiguity
-To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+Date:   Thu, 6 May 2021 14:43:26 +0200
+Message-ID: <CACRpkdb47SZ1npdp+MNiAz4WZZvfVZOeHcV3Scv5pK1QurT06A@mail.gmail.com>
+Subject: Re: [PATCH v3] ARM: Parse kdump DT properties
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Russell King <linux@armlinux.org.uk>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Nicolas Pitre <nico@fluxnic.net>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
+        Simon Horman <horms@verge.net.au>,
+        Arnd Bergmann <arnd@arndb.de>, Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Lukasz Stelmach <l.stelmach@samsung.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        kexec@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 3, 2021 at 11:06 PM Uwe Kleine-K=C3=B6nig
-<u.kleine-koenig@pengutronix.de> wrote:
+On Wed, Mar 17, 2021 at 12:31 PM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
 
-> For active low lines the semantic of output-low and output-high is hard
-> to grasp because there is a double negation involved and so output-low
-> is actually a request to drive the line high (aka inactive).
+> Parse the following DT properties in the crash dump kernel, to provide a
+> modern interface between kexec and the crash dump kernel:
+>   - linux,elfcorehdr: ELF core header segment, similar to the
+>     "elfcorehdr=" kernel parameter.
+>   - linux,usable-memory-range: Usable memory reserved for the crash dump
+>     kernel.
+>     This makes the memory reservation explicit.  If present, Linux no
+>     longer needs to mask the program counter, and rely on the "mem="
+>     kernel parameter to obtain the start and size of usable memory.
 >
-> So introduce output-inactive and output-active with the same semantic as
-> output-low and output-high respectively have today, but with a more
-> sensible name.
+> For backwards compatibility, the traditional method to derive the start
+> of memory is still used if "linux,usable-memory-range" is absent, and
+> the "elfcorehdr=" and "mem=" kernel parameters are still parsed.
 >
-> Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
+> Loosely based on the ARM64 version by Akashi Takahiro.
+>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+I like the approach overall.
+
+I see Rob has some comments that need adressing.
+
+The chosen.txt file needs an example of how to use this so people
+can intuitively get it right if they want to play with it, it was at least
+the first question in my head: how does that look in practice?
 
 Yours,
 Linus Walleij
