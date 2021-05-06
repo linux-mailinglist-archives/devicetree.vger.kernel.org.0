@@ -2,101 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56BC7375CC7
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 23:19:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB133375CF4
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 23:45:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229796AbhEFVUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 17:20:05 -0400
-Received: from mail-0201.mail-europe.com ([51.77.79.158]:47562 "EHLO
-        mail-02.mail-europe.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230311AbhEFVUE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 17:20:04 -0400
-Date:   Thu, 06 May 2021 21:18:52 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1620335940;
-        bh=hOrbqVj5R3JVLRiDgquRCxHlYsob+D3PH8ZLMkNz0DQ=;
-        h=Date:To:From:Cc:Reply-To:Subject:From;
-        b=vEUlZx9BpIVLYi+i8KmAnglGAhY0Lm+PIWgY+jzs7hfCLrg2nNt+6cGhKjfk+jh+t
-         MW/USfsin/HVSWU0gRSSR3DqrLvTlTXA8hNDtHUcNzmek7ypLAcoBu346h8ed+gu0G
-         +qOE5bKEtiOU5gdivGNSoTUgxnzYSx0iCMl+hGNA=
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org
-From:   Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
-Subject: [PATCH 3/3] arm64: dts: qcom: msm8996: Disable ADSP and add power domains
-Message-ID: <Epn1vFjJb0oQhqMYxspzL6X1N6MPcDT1f9oVVOjXc@cp3-web-020.plabs.ch>
+        id S230085AbhEFVqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 17:46:01 -0400
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:46034 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229572AbhEFVqB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 17:46:01 -0400
+Received: by mail-ot1-f46.google.com with SMTP id f75-20020a9d03d10000b0290280def9ab76so6197886otf.12;
+        Thu, 06 May 2021 14:45:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=XyAhogY5RKWxU8HPoNpJMjz+kQU5BtxI2lVbOAWbTl0=;
+        b=iGPFwiCHasoVgUvFgK7m36MsCr4aVprgNQj+5F7X5eQAfC0zZOc0ONTdcmxFrlY9qd
+         42sbXUlNTHOdH2DqbgDReYs6WvzR2hUIn4XnlNGNox7Efb0NwPAZ7AvBMbPH/O4gnRS3
+         IZjA7sFBzqEj9BuS9+las+EgcZxo+TVYt8BhIH1iBMx7U6KATUGDvqTAsxOCKvUW5c0b
+         eMsxvRgPpwTUlkSCN/XilrP651cRj5FDISv2jXnSVUnRltpzgL8p4YSMJFi2TUY4ZK7f
+         mH+EpVGqJPGWVFCIH9RWJlyFVI9IEXx/yQDmXOBlYz5AwNQc9haztE7ucB6I+eBwFHQY
+         Z9tA==
+X-Gm-Message-State: AOAM53376OfSAXif5RgcNTwEj7CBUoNAZEz0aw3aNF75Y3wfLwgXrZ5r
+        a+XgLaOekGE/etUFRsn7TQ==
+X-Google-Smtp-Source: ABdhPJxHDr6Hds/Md7b57bDuLoP4gBNh8QTwF4qOLe9F2hOfCEB2PQePbXkcuiLLRFbMO4FW4wcJLA==
+X-Received: by 2002:a05:6830:208e:: with SMTP id y14mr5322270otq.15.1620337502071;
+        Thu, 06 May 2021 14:45:02 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id q130sm629601oif.40.2021.05.06.14.44.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 May 2021 14:44:54 -0700 (PDT)
+Received: (nullmailer pid 853927 invoked by uid 1000);
+        Thu, 06 May 2021 21:44:52 -0000
+Date:   Thu, 6 May 2021 16:44:52 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Ezequiel Garcia <ezequiel@collabora.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        kernel@collabora.com, linux-pm@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Finley Xiao <finley.xiao@rock-chips.com>,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 3/4] dt-bindings: rockchip-thermal: Support the RK3568
+ SoC compatible
+Message-ID: <20210506214452.GA853809@robh.at.kernel.org>
+References: <20210506175514.168365-1-ezequiel@collabora.com>
+ <20210506175514.168365-4-ezequiel@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210506175514.168365-4-ezequiel@collabora.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Disable ADSP by default and enable it in devices that use it.
-Also add CX power domain.
+On Thu, 06 May 2021 14:55:13 -0300, Ezequiel Garcia wrote:
+> Add a new compatible for the thermal sensor device on RK3568 SoCs.
+> 
+> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+> ---
+>  Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
----
- arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi | 4 ++++
- arch/arm64/boot/dts/qcom/msm8996.dtsi        | 6 ++++++
- 2 files changed, 10 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi b/arch/arm64/boot=
-/dts/qcom/apq8096-db820c.dtsi
-index defcbd15edf9..409a5dec2615 100644
---- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
-+++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
-@@ -162,6 +162,10 @@ bluetooth {
- =09};
- };
-=20
-+&adsp_pil {
-+=09status =3D "okay";
-+};
-+
- &blsp2_i2c0 {
- =09/* On High speed expansion */
- =09label =3D "HS-I2C2";
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qc=
-om/msm8996.dtsi
-index ce430ba9c118..7e647843f7c7 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -6,6 +6,7 @@
- #include <dt-bindings/clock/qcom,gcc-msm8996.h>
- #include <dt-bindings/clock/qcom,mmcc-msm8996.h>
- #include <dt-bindings/clock/qcom,rpmcc.h>
-+#include <dt-bindings/power/qcom-rpmpd.h>
- #include <dt-bindings/soc/qcom,apr.h>
-=20
- / {
-@@ -2067,6 +2068,11 @@ adsp_pil: remoteproc@9300000 {
- =09=09=09qcom,smem-states =3D <&smp2p_adsp_out 0>;
- =09=09=09qcom,smem-state-names =3D "stop";
-=20
-+=09=09=09power-domains =3D <&rpmpd MSM8996_VDDCX>;
-+=09=09=09power-domain-names =3D "cx";
-+
-+=09=09=09status =3D "disabled";
-+
- =09=09=09smd-edge {
- =09=09=09=09interrupts =3D <GIC_SPI 156 IRQ_TYPE_EDGE_RISING>;
-=20
---=20
-2.31.1
-
-
+Acked-by: Rob Herring <robh@kernel.org>
