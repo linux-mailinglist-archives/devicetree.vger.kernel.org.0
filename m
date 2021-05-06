@@ -2,105 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5B543753F9
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 14:43:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C0C9375416
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 14:50:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231653AbhEFMoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 08:44:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51452 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231327AbhEFMoh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 08:44:37 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0EC0C061574
-        for <devicetree@vger.kernel.org>; Thu,  6 May 2021 05:43:38 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id o16so6876431ljp.3
-        for <devicetree@vger.kernel.org>; Thu, 06 May 2021 05:43:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=fbHWIIjNsb9wei3xXx6Otqpzu53zaXTIXIFKBmpNOgo=;
-        b=Bgqg7sh9bCd5nshaNaWvRHui08dl/ZbqDnFZ0IJ97hliP13z/2GcIBrux/SLdwV0/i
-         Km45HFsHhgWctbcGuGF6Ai0HvMZqIj6POZRSs6/PpSRACJl2PlFmLQU4hlC1yDovIWBg
-         aoQtkENq3gxHz6laQ2nmHkKeFF5HDzsMB1hneI4Ds46GeucQ1zmRGYA3wLsnyxnSTV+p
-         Db5TgOzJNR01i8q8ZcC7fzaKnTvJPicRUV9tY8zTJ3Fn3kGnBEhC16d3shmCkOArTBkz
-         lLFzcth3mqWw7rRMzs4kvzsjIlgL1hnv1j22fv57T54QODE0L88yQ2jCksh+4ITE6+wH
-         5VGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fbHWIIjNsb9wei3xXx6Otqpzu53zaXTIXIFKBmpNOgo=;
-        b=HgCbwjGxs2yk/WelOY2dnALcrI+CFB75kT+hz9hvniI5B2HlihDI/nDW5WGqnRD44z
-         AOYTbQnYZW9cjElRE5LsSSpypuTkyF4CdmXWd2G1+6jxoTwOn4ue63nKItlgkymEAu2m
-         sbNvn1+Us2oX2F1yzAgFZGvc1j4y+1ppjHaOF58ELDQvSiCGOImJepbmaYEya5WuE1US
-         KHjDkc3ITVI2JeMlAvSrkB2ADNhfTuROxCybhgnBMJsESlA24RF83+EbPKwRKUt2V2o3
-         VIjeBiHs4YM5uczEeYW2SddILiXZMd0qLW2T2YdlFzt6VYNc0oHr36knADwG4+Ij1Clm
-         4XhA==
-X-Gm-Message-State: AOAM530WPb6+ozmgviGmeidATzhTrVHpfey/1knITnHDT5c15NTQdJzA
-        nsuEPMjerxsxaggT3Nw0qk3GBp+BNlBKf8Rb7a/Ztg==
-X-Google-Smtp-Source: ABdhPJz4optDOZiBZ3vSZcVI8Py60XPMQCZzXNInCGDBXfYIu467P3Ej4pt6DNl0kP7Ihy/ZCeYrBXG2yJQ/QYMK8Ng=
-X-Received: by 2002:a05:651c:503:: with SMTP id o3mr3172636ljp.368.1620305017299;
- Thu, 06 May 2021 05:43:37 -0700 (PDT)
+        id S229663AbhEFMvY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 08:51:24 -0400
+Received: from lb2-smtp-cloud7.xs4all.net ([194.109.24.28]:51061 "EHLO
+        lb2-smtp-cloud7.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229584AbhEFMvW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 08:51:22 -0400
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud7.xs4all.net with ESMTPA
+        id edSMlv6XlyEWwedSPl13Vh; Thu, 06 May 2021 14:50:23 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
+        t=1620305423; bh=K3TQ5Oicz5+r8i9gQQfd6zKGle8y9tYgH8kJCMW3wQA=;
+        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=upNhIkExWaYt/ZamhrevHvQuMgs1byprylVgRr/tpAjFlnWoMd/AUlWiumNKVyvnR
+         e/0U+1ITfU8dgewhUOB1d2PLI8a10stFl40PVAIVInApepr3fkPtl83nE66oOW7Hog
+         WktGd6eSQT2OyNwCdMrKf8Xt7BMbpa03sK8XqtQSqaLo/WpBsuFRGlWalFX2NFCwfM
+         1aqAAKG+fJ4aZiKgJdXP9+V4CS4lItqpCP3V64dDIpMmLI7BZ+i0ED1JpMvYMfIGM5
+         dL3K593JiMe3UTT2RgVpeOZxvv4TzqpSRD9BvVggbVPiI3PNlcVeSgI4fxc6DPgDm0
+         1/D/S3UBgeGCg==
+Subject: Re: [PATCH v10 6/9] media: uapi: Add a control for HANTRO driver
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        festevam@gmail.com, lee.jones@linaro.org,
+        gregkh@linuxfoundation.org, mripard@kernel.org,
+        paul.kocialkowski@bootlin.com, wens@csie.org,
+        jernej.skrabec@siol.net, emil.l.velikov@gmail.com
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
+        kernel@collabora.com, cphealy@gmail.com
+References: <20210420121046.181889-1-benjamin.gaignard@collabora.com>
+ <20210420121046.181889-7-benjamin.gaignard@collabora.com>
+ <a7c9fe23-2900-ac90-7131-21380fbfc793@xs4all.nl>
+ <1cf94540-7f4d-0179-dd1e-0b82ee30f6d2@collabora.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Message-ID: <815a4bd6-599b-cfb8-9ddc-efa4b7092c23@xs4all.nl>
+Date:   Thu, 6 May 2021 14:50:18 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.9.0
 MIME-Version: 1.0
-References: <20210317113130.2554368-1-geert+renesas@glider.be>
-In-Reply-To: <20210317113130.2554368-1-geert+renesas@glider.be>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 6 May 2021 14:43:26 +0200
-Message-ID: <CACRpkdb47SZ1npdp+MNiAz4WZZvfVZOeHcV3Scv5pK1QurT06A@mail.gmail.com>
-Subject: Re: [PATCH v3] ARM: Parse kdump DT properties
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Russell King <linux@armlinux.org.uk>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Nicolas Pitre <nico@fluxnic.net>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Simon Horman <horms@verge.net.au>,
-        Arnd Bergmann <arnd@arndb.de>, Stephen Boyd <sboyd@kernel.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Lukasz Stelmach <l.stelmach@samsung.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        kexec@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <1cf94540-7f4d-0179-dd1e-0b82ee30f6d2@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4xfA5gObUZRMJwL5EnKYVFy/jiVJqnngBoF/9iy18Nv4sm6KyMRzVLHtlecWB6vedDmmkD3Hr/vNGWrhY35jPviUP/UOOQ3CTEQc9eiXjLz87VRCfw3XYS
+ aisdRTuwTDonFmIVnD8MDEqTEAMRefT0fMVvjWfTXQCMM/s/ups6+CuHvRznpoT1CYHWlo4BtF2OgRufynbJke4G6FbtBZJ35V1wVHaB0x7EwkX3h7v7qIkJ
+ OXAa7bTbcmfEM4XwYKOyiGCpVrIbRK4J5EPlf3VKpg5ifNNRLKT8SFey8J7TV+YqTOTKApEFc98vS64sQW9XPiMSNf/JEVu3qP5ZksSMXHAYTDmx5sc9JEkK
+ U2CMVkK3cdx04U8881cyMiFyHf5azKxXem1fTfzrcf3Kf59A5CdVmLJbp+JwaXdEJv+KKk7GzNPMT3MUKBqbewHNP8SKopS7DPB6bPGC+6VNFKlu29W+mEMb
+ JIg57vF1qWcb09EHvwgPuoope1dqi4F15/W+hRLUklkPi7xF3xlo9+wBJ06LrTC4LmkqGxd9UC7XQiROP+EI92KXJDCkLTMlwjqqtD80XzdN+QtIB1Fe+mqh
+ N7+JRS8nD2BUpqY3mOiK+jiRCeNP2LpECcRan2Twt2rvt7ISlglW2Y5WPda0Dl29nAmJXqGHbHM/2wr0geSxUIOB3BL7RcRJ6reeNYKowgLDW+shUpBqSMMP
+ KhAluwQ88AJGoRmx4/P0T9Iiuny8T8tMtBeC0c9ZAlz23COKxM8jUaj/dfNYK7q/eNUrHWlbzaMJQygDb4/0aoQBTMqkzrmf/TR5glBRjGN0J/1p3zUz/ytp
+ WrrU/WPemDB7AtqmR0wWyPl9zv8S5vHB9EH6cXrZ+tILSvCLYTn8htfJha43b9UmyPUEkgPUDfoEQHgOirXel62JfV7tLYzhBx/FtghjuCKWcX6oq+pp7R44
+ zIMcdKwO2/aPI98nfCG3r16uXELuczGuaew4ogdZ+Ls05h6xy3KWsjbO+uQSSQcWCOQO1DUFCum8i3ytDtJZAvkPG+5t2Ybped0+urU0i+M4UdqN
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 17, 2021 at 12:31 PM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
+On 05/05/2021 17:20, Benjamin Gaignard wrote:
+> 
+> Le 05/05/2021 à 16:55, Hans Verkuil a écrit :
+>> On 20/04/2021 14:10, Benjamin Gaignard wrote:
+>>> The HEVC HANTRO driver needs to know the number of bits to skip at
+>>> the beginning of the slice header.
+>>> That is a hardware specific requirement so create a dedicated control
+>>> for this purpose.
+>>>
+>>> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+>>> ---
+>>>   .../userspace-api/media/drivers/hantro.rst    | 19 +++++++++++++++++++
+>>>   .../userspace-api/media/drivers/index.rst     |  1 +
+>>>   include/media/hevc-ctrls.h                    | 13 +++++++++++++
+>>>   3 files changed, 33 insertions(+)
+>>>   create mode 100644 Documentation/userspace-api/media/drivers/hantro.rst
+>>>
+>>> diff --git a/Documentation/userspace-api/media/drivers/hantro.rst b/Documentation/userspace-api/media/drivers/hantro.rst
+>>> new file mode 100644
+>>> index 000000000000..cd9754b4e005
+>>> --- /dev/null
+>>> +++ b/Documentation/userspace-api/media/drivers/hantro.rst
+>>> @@ -0,0 +1,19 @@
+>>> +.. SPDX-License-Identifier: GPL-2.0
+>>> +
+>>> +Hantro video decoder driver
+>>> +===========================
+>>> +
+>>> +The Hantro video decoder driver implements the following driver-specific controls:
+>>> +
+>>> +``V4L2_CID_HANTRO_HEVC_SLICE_HEADER_SKIP (integer)``
+>>> +    Specifies to Hantro HEVC video decoder driver the number of data (in bits) to
+>>> +    skip in the slice segment header.
+>>> +    If non-IDR, the bits to be skipped go from syntax element "pic_output_flag"
+>>> +    to before syntax element "slice_temporal_mvp_enabled_flag".
+>>> +    If IDR, the skipped bits are just "pic_output_flag"
+>>> +    (separate_colour_plane_flag is not supported).
+>> I'm not very keen on this. Without this information the video data cannot be
+>> decoded, or will it just be suboptimal?
+> 
+> Without that information the video can't be decoded.
+> 
+>>
+>> The problem is that a generic decoder would have to know that the HW is a hantro,
+>> and then call this control. If they don't (and are testing on non-hantro HW), then
+>> it won't work, thus defeating the purpose of the HW independent decoder API.
+>>
+>> Since hantro is widely used, and if there is no other way to do this beside explitely
+>> setting this control, then perhaps this should be part of the standard HEVC API.
+>> Non-hantro drivers that do not need this can just skip it.
+> 
+> Even if I put this parameter in decode_params structure that would means that a generic
+> userland decoder will have to know how the compute this value for hantro HW since it
+> isn't something that could be done on kernel side.
 
-> Parse the following DT properties in the crash dump kernel, to provide a
-> modern interface between kexec and the crash dump kernel:
->   - linux,elfcorehdr: ELF core header segment, similar to the
->     "elfcorehdr=" kernel parameter.
->   - linux,usable-memory-range: Usable memory reserved for the crash dump
->     kernel.
->     This makes the memory reservation explicit.  If present, Linux no
->     longer needs to mask the program counter, and rely on the "mem="
->     kernel parameter to obtain the start and size of usable memory.
->
-> For backwards compatibility, the traditional method to derive the start
-> of memory is still used if "linux,usable-memory-range" is absent, and
-> the "elfcorehdr=" and "mem=" kernel parameters are still parsed.
->
-> Loosely based on the ARM64 version by Akashi Takahiro.
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+But since hantro is very common, any userland decoder will need to calculate this anyway.
+So perhaps it is better to have this as part of the decode_params?
 
-I like the approach overall.
+I'd like to know what others think about this.
 
-I see Rob has some comments that need adressing.
+Regards,
 
-The chosen.txt file needs an example of how to use this so people
-can intuitively get it right if they want to play with it, it was at least
-the first question in my head: how does that look in practice?
+	Hans
 
-Yours,
-Linus Walleij
+> 
+> 
+> Regards,
+> Benjamin
+> 
+>>
+>> Regards,
+>>
+>> 	Hans
+>>
+>>> +
+>>> +.. note::
+>>> +
+>>> +        This control is not yet part of the public kernel API and
+>>> +        it is expected to change.
+>>> diff --git a/Documentation/userspace-api/media/drivers/index.rst b/Documentation/userspace-api/media/drivers/index.rst
+>>> index 1a9038f5f9fa..12e3c512d718 100644
+>>> --- a/Documentation/userspace-api/media/drivers/index.rst
+>>> +++ b/Documentation/userspace-api/media/drivers/index.rst
+>>> @@ -33,6 +33,7 @@ For more details see the file COPYING in the source distribution of Linux.
+>>>   
+>>>   	ccs
+>>>   	cx2341x-uapi
+>>> +        hantro
+>>>   	imx-uapi
+>>>   	max2175
+>>>   	meye-uapi
+>>> diff --git a/include/media/hevc-ctrls.h b/include/media/hevc-ctrls.h
+>>> index 8e0109eea454..b713eeed1915 100644
+>>> --- a/include/media/hevc-ctrls.h
+>>> +++ b/include/media/hevc-ctrls.h
+>>> @@ -224,4 +224,17 @@ struct v4l2_ctrl_hevc_decode_params {
+>>>   	__u64	flags;
+>>>   };
+>>>   
+>>> +/*  MPEG-class control IDs specific to the Hantro driver as defined by V4L2 */
+>>> +#define V4L2_CID_CODEC_HANTRO_BASE				(V4L2_CTRL_CLASS_CODEC | 0x1200)
+>>> +/*
+>>> + * V4L2_CID_HANTRO_HEVC_SLICE_HEADER_SKIP -
+>>> + * the number of data (in bits) to skip in the
+>>> + * slice segment header.
+>>> + * If non-IDR, the bits to be skipped go from syntax element "pic_output_flag"
+>>> + * to before syntax element "slice_temporal_mvp_enabled_flag".
+>>> + * If IDR, the skipped bits are just "pic_output_flag"
+>>> + * (separate_colour_plane_flag is not supported).
+>>> + */
+>>> +#define V4L2_CID_HANTRO_HEVC_SLICE_HEADER_SKIP	(V4L2_CID_CODEC_HANTRO_BASE + 0)
+>>> +
+>>>   #endif
+>>>
+>>
+
