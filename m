@@ -2,113 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 386753754D4
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 15:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B81E33754EB
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 15:38:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234136AbhEFNg6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 09:36:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35140 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234121AbhEFNgz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 09:36:55 -0400
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52676C061763
-        for <devicetree@vger.kernel.org>; Thu,  6 May 2021 06:35:56 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:f434:20f9:aa9e:b80c])
-        by laurent.telenet-ops.be with bizsmtp
-        id 1Rbs250020ZPnBx01RbsF0; Thu, 06 May 2021 15:35:55 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1leeAR-003HD6-K4; Thu, 06 May 2021 15:35:51 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1lecYu-00GzOY-JF; Thu, 06 May 2021 13:53:00 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: spi: dw-apb-ssi: Integrate Renesas RZ/N1 SPI controller
-Date:   Thu,  6 May 2021 13:52:59 +0200
-Message-Id: <aef15aa119ed02487ded4691141678bc1040c3b4.1620301936.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        id S234120AbhEFNjs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 09:39:48 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:54126 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234397AbhEFNjs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 09:39:48 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 64E0489D;
+        Thu,  6 May 2021 15:38:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1620308328;
+        bh=roGvWAWoVT76ObVAAMmlenqKBKray4yS6l4tPGsH6Ao=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=UD79tKTluA/3gAd35wjtjflTkbv5Hn7WtihNvdlMpjkupYko86tepnxHcOrteyoWE
+         rET/tuDjY9sUGKhQ+2AtdVj7Rvj2eTeLsoeiT/8G1GAe05nxqyrJ5XbJ3/PAigSnMh
+         C5FeGDHH++Oz6X3qCXrj1SI+T9CT9dqNhYX5Z6xE=
+Date:   Thu, 6 May 2021 16:38:43 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Rui Miguel Silva <rui.silva@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sebastian Siewior <bigeasy@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/7] usb: isp1760: extend support for isp1763
+Message-ID: <YJPxY55h8c4bBsBQ@pendragon.ideasonboard.com>
+References: <20210504101910.18619-1-rui.silva@linaro.org>
+ <YJPJ3aKf9BdQ8UKx@kroah.com>
+ <CB675UH9U35P.3SQ8NI93618E5@arch-thunder>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CB675UH9U35P.3SQ8NI93618E5@arch-thunder>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Originally, the Renesas RZ/N1 SPI Controller DT bindings were not
-integrated in the main DT bindings for the Synopsys DesignWare
-Synchronous Serial Interface, but in its own file, as the RZ/N1
-controller has additional registers for software CS control and DMA.
+On Thu, May 06, 2021 at 02:29:14PM +0100, Rui Miguel Silva wrote:
+> On Thu May 6, 2021 at 11:50 AM WEST, Greg Kroah-Hartman wrote:
+> > On Tue, May 04, 2021 at 11:19:03AM +0100, Rui Miguel Silva wrote:
+> > > The Arm MPS3 FPGA prototyping board [0] have an isp1763 [1] as USB controller.
+> > > There is already support for the isp1760 and isp1761 in tree, this series extend
+> > > the support also for the isp1763.
+> > > 
+> > > Move register access using regmap, remove some platform data and code, refactor
+> > > the mempool, use dr_mode to align to existing bindings, then add the support for
+> > > isp1763 host mode, add bindings files that did not existed and at the end
+> > > add also support for peripheral mode for isp1763.
+> > > 
+> > > @Laurent and @Sebastian, I add both of you in the bindings files as maintainers
+> > > (it is a mandatory field)since you were the ones which contributed with the
+> > > initial code and peripheral code, let me know if you are ok with it.
+> > > If yes I may send a follow up to add also entries in MAINTAINERS file that it is
+> > > also missing.
+> >
+> > First 3 patches now applied, feel free to rebase and resend the rest
+> > based on the review comments.
+> 
+> Thanks, yeah, I was taking the chance to clean all the pre-existing
+> sparse warnings in that driver, since this was triggering some new
+> ones.
+> 
+> And I knew that you merging this first ones would make Laurent jump
+> from his chair and review this, eheh. Thanks for that also.
 
-As so far DMA is not supported on RZ/N1, and json-schema can handle any
-possible differences fine, integrate the RZ/N1 compatible values in the
-main DT bindings for the Synopsys DW SSI.
+You've planned it together, haven't you, you naughty scoundrels :-D
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-There are no upstream users of this binding, but it validates the
-following (modified) example taken from the RZ/N1 BSP[1] fine:
+> I will rebase and send follow up series that will address all
+> that sparse warnings.
 
-    spi0: spi@50005000 {
-	    compatible = "renesas,r9a06g032-spi", "renesas,rzn1-spi";
-	    reg = <0x50005000 0x400>;
-	    interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
-	    clock-names = "ssi_clk", "pclk";
-	    clocks = <&sysctrl R9A06G032_CLK_SPI0>, <&sysctrl R9A06G032_HCLK_SPI0>;
-	    #address-cells = <1>;
-	    #size-cells = <0>;
-	    spi-max-frequency = <12500000>;
-	    num-cs = <4>;
-    };
-
-[1] https://github.com/renesas-rz/rzn1_linux/blob/rzn1-stable-v4.19/arch/arm/boot/dts/rzn1.dtsi
----
- .../devicetree/bindings/spi/renesas,rzn1-spi.txt      | 11 -----------
- .../devicetree/bindings/spi/snps,dw-apb-ssi.yaml      |  6 ++++++
- 2 files changed, 6 insertions(+), 11 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/spi/renesas,rzn1-spi.txt
-
-diff --git a/Documentation/devicetree/bindings/spi/renesas,rzn1-spi.txt b/Documentation/devicetree/bindings/spi/renesas,rzn1-spi.txt
-deleted file mode 100644
-index fb1a6728638d3e2f..0000000000000000
---- a/Documentation/devicetree/bindings/spi/renesas,rzn1-spi.txt
-+++ /dev/null
-@@ -1,11 +0,0 @@
--Renesas RZ/N1 SPI Controller
--
--This controller is based on the Synopsys DW Synchronous Serial Interface and
--inherits all properties defined in snps,dw-apb-ssi.txt except for the
--compatible property.
--
--Required properties:
--- compatible : The device specific string followed by the generic RZ/N1 string.
--   Therefore it must be one of:
--   "renesas,r9a06g032-spi", "renesas,rzn1-spi"
--   "renesas,r9a06g033-spi", "renesas,rzn1-spi"
-diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-index 4825157cd92e8262..ca91201a99269750 100644
---- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-+++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-@@ -67,6 +67,12 @@ properties:
-         const: baikal,bt1-sys-ssi
-       - description: Canaan Kendryte K210 SoS SPI Controller
-         const: canaan,k210-spi
-+      - description: Renesas RZ/N1 SPI Controller
-+        items:
-+          - enum:
-+              - renesas,r9a06g032-spi # RZ/N1D
-+              - renesas,r9a06g033-spi # RZ/N1S
-+          - const: renesas,rzn1-spi   # RZ/N1
- 
-   reg:
-     minItems: 1
 -- 
-2.25.1
+Regards,
 
+Laurent Pinchart
