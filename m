@@ -2,72 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D3223753C9
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 14:25:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 438A83753E4
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 14:32:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230372AbhEFM0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 08:26:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47442 "EHLO
+        id S231441AbhEFMdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 08:33:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229777AbhEFM0h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 08:26:37 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9D84C061574;
-        Thu,  6 May 2021 05:25:39 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 11D6D4A5;
-        Thu,  6 May 2021 14:25:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1620303936;
-        bh=mTtfC2qPQLCL+oWLqMLa3aBPTZNOAaQfQRilk4nVRBA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iwC/s+cKBJLJm4GhI4vYp9gWcjpiZUPy3WplVG2mvyZGSDGaV7LAaFSq09sLBI6QP
-         0SKjcRoaCarLo4tN+2mvTJd7gM5lEG6Adik8nXRuwhX5fZymIMLOV5BpWkR6yV4HGv
-         h1KeQ3aHdSMSHha5EZ+Xng8cXNX3yr9EDoC+UVkU=
-Date:   Thu, 6 May 2021 15:25:31 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Rui Miguel Silva <rui.silva@linaro.org>,
-        Sebastian Siewior <bigeasy@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/7] usb: isp1760: extend support for isp1763
-Message-ID: <YJPgO6TPyuY0w0EH@pendragon.ideasonboard.com>
-References: <20210504101910.18619-1-rui.silva@linaro.org>
- <YJPJ3aKf9BdQ8UKx@kroah.com>
+        with ESMTP id S229777AbhEFMdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 08:33:09 -0400
+Received: from mail-vk1-xa2e.google.com (mail-vk1-xa2e.google.com [IPv6:2607:f8b0:4864:20::a2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD7FFC061574;
+        Thu,  6 May 2021 05:32:11 -0700 (PDT)
+Received: by mail-vk1-xa2e.google.com with SMTP id s131so1166664vka.11;
+        Thu, 06 May 2021 05:32:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=b9TWHmwsdK1dTcbAv8pBSTziUy5ZrYIjx0ljVbLmuWY=;
+        b=r34+qEJJIN1KBbooFY18JIM+bUhGQAPzvx+asQRAeJokx4to4DWOEbDTiloyh0kMRn
+         v5bFp7hHB2OMKCWsyGMPBTlJW42QcR0W4/pmYTzkzPbS6vhNihDuKyWMTtvSjm4l8nu/
+         f16zpAgAMcuYkegwt3XPqzDelIGWMbOoog1sJdyLQhjJyRO3A3bSoy8FWBax0Y5eJZf0
+         3bI6uNEMw8rv33AZq4JFejeY5XC1j+7EkpvTRJPA0mUQPSvbYKEuRlKeL1KCDVl5nmRG
+         +EnDLJrHqg1V+REGkhgnIqECV6oEXQGvjX8+OKRRM456VRHJ0J1OFHTNjRXQ6y+pHL2j
+         CvNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=b9TWHmwsdK1dTcbAv8pBSTziUy5ZrYIjx0ljVbLmuWY=;
+        b=R+KSevwZdDzbpJ5/tkRuw9Bc4Z4ll5IfVcCMta9GyuPET95fVhEtaLAh+aXY9y2gY+
+         kszPcdv3bA+tJVrOhXGG7/yP1B5GL1rcyfXaf6RMk9nGaL5XmHS5plRIfgB7+WmeTIbh
+         j3674d62zteUsioaSZ7t7jI+Xg7SP5Q4VGO3Ph8cPk3x+CDQzsl4DqCXGh23yd3Dv2qB
+         GHK3B37LmKmgquNrfhauZSkMTlDVcP+Qgi9H/c99ripWlucpuDuyV8W/go1eZvz5Ajfr
+         ltscQasTLrEtOEIiNk3E+7WvXbZLBaRD/c09LBQP2Sa76ThDDUQ89lpd0Q0zM4dBhGYZ
+         M5xw==
+X-Gm-Message-State: AOAM532uYRvfbz8grbe8SbWWKxea078fkt1/ZWsqOkG25FFd6pLeboNR
+        kOAXF1D7d9Hs47/uewZkF0zJCpBRSYdT9yKukZQ=
+X-Google-Smtp-Source: ABdhPJwiwHBkyzi5cwGSnzZQ0ZNAudi35hC4dNj4uWMTJhdZ04jb/LYlsElFp6RjuFqjXz0Ts/Ms/DA1mCwn1jQGHZ4=
+X-Received: by 2002:a1f:978e:: with SMTP id z136mr2438936vkd.17.1620304330868;
+ Thu, 06 May 2021 05:32:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YJPJ3aKf9BdQ8UKx@kroah.com>
+References: <20210401144336.2495479-1-emil.l.velikov@gmail.com>
+ <20210401144336.2495479-10-emil.l.velikov@gmail.com> <a9829af1-f4e9-5835-9a74-15a0fce6b1eb@xs4all.nl>
+In-Reply-To: <a9829af1-f4e9-5835-9a74-15a0fce6b1eb@xs4all.nl>
+From:   Emil Velikov <emil.l.velikov@gmail.com>
+Date:   Thu, 6 May 2021 13:31:59 +0100
+Message-ID: <CACvgo53L-3kN6WGn6VqkpZTRcVnrnLeCxRPxcGks0TR+VQuXbQ@mail.gmail.com>
+Subject: Re: [PATCH v4 9/9] ARM: dts: sama5d4: enable Hantro G1 VDEC
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     kernel@collabora.com, Ezequiel Garcia <ezequiel@collabora.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-media@vger.kernel.org,
+        linux-rockchip <linux-rockchip@lists.infradead.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Greg,
+Hi Hans,
 
-On Thu, May 06, 2021 at 12:50:05PM +0200, Greg Kroah-Hartman wrote:
-> On Tue, May 04, 2021 at 11:19:03AM +0100, Rui Miguel Silva wrote:
-> > The Arm MPS3 FPGA prototyping board [0] have an isp1763 [1] as USB controller.
-> > There is already support for the isp1760 and isp1761 in tree, this series extend
-> > the support also for the isp1763.
-> > 
-> > Move register access using regmap, remove some platform data and code, refactor
-> > the mempool, use dr_mode to align to existing bindings, then add the support for
-> > isp1763 host mode, add bindings files that did not existed and at the end
-> > add also support for peripheral mode for isp1763.
-> > 
-> > @Laurent and @Sebastian, I add both of you in the bindings files as maintainers
-> > (it is a mandatory field)since you were the ones which contributed with the
-> > initial code and peripheral code, let me know if you are ok with it.
-> > If yes I may send a follow up to add also entries in MAINTAINERS file that it is
-> > also missing.
-> 
-> First 3 patches now applied, feel free to rebase and resend the rest
-> based on the review comments.
+On Wed, 5 May 2021 at 15:31, Hans Verkuil <hverkuil@xs4all.nl> wrote:
+>
+> On 01/04/2021 16:43, Emil Velikov wrote:
+> > From: Emil Velikov <emil.velikov@collabora.com>
+> >
+> > Add the SAMA5D4 VDEC module which comprises Hantro G1 video decoder
+> > core.
+>
+> I've accepted parts 1-8 of this series for 5.14, so this remaining patch
+> can be merged by whoever handles such dts patches.
+>
+Can you please include this patch as well. As you can see it has been
+Acked by Nicolas, one of the AT91 maintainers so it can go with the
+media tree.
 
-That's a bit fast, I've just review 1/7.
+> Regards,
+>
+>         Hans
+>
+> >
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Frank Rowand <frowand.list@gmail.com>
+> > Cc: devicetree@vger.kernel.org
+> > Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+> > Signed-off-by: Emil Velikov <emil.velikov@collabora.com>
 
--- 
-Regards,
-
-Laurent Pinchart
+Thanks
+Emil
