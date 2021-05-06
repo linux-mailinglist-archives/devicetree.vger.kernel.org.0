@@ -2,280 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30A4B374E09
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 05:44:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA30A374E4E
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 06:24:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232240AbhEFDpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 23:45:05 -0400
-Received: from mail-eopbgr80049.outbound.protection.outlook.com ([40.107.8.49]:59780
+        id S230246AbhEFEZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 00:25:53 -0400
+Received: from mail-eopbgr80082.outbound.protection.outlook.com ([40.107.8.82]:9806
         "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232222AbhEFDpF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 May 2021 23:45:05 -0400
+        id S229622AbhEFEZx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 May 2021 00:25:53 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fpmrmEhme7adTCFuyUS2Kt5CQMkJd0QS7SFnvazzhFJZl3WFfwhFFpEMqh/+VoisCpgg2EsrKT7w5Wc+SU7EC0lhJDbMHR7LEQPp64nj2N2MWaKvGdtaXAPI8xC9fogdiP6ovEkOy4MAtHLtE08X/NdyZJ0kBNTnDO/E9V/3cz6I7DRzee2YAofHUf7Ta1YuEzBhfpmMsfWolzipKerN9iEmhEfw3xRanIM+MsRC4rRumCc4l5pelFoI/mkwGI2DhV727aJeW//ECnt6iLXfQ2h055E7LVMdLZxgFGYolPgidmyZ9qsexQFxCLq7i4uRbmVvi/lYYVstBfe3i/fRng==
+ b=QUgJqFzXIttvtFZllCAiNF522T1O1eZOvVnUt6iOI6DXzMNq/f9HGKQ2QvZdFuD61NHa7S+fIjnYUr6SPrB3NWzKjFuVyXQKPZqYzYZ4RaTX3XeHi+eo5dZlrrYvMps18EWYoVJ2FvUiB05bIs77XkIC9eH6kx9seXR4QxbJSgrcgDuUKJyHR7N1gsjDilTVi94PBRg+zUAmNkemD/parD8lGCXkChSJFwU9duAKVrFuYxeOx8LEVxZvE6v2HiEL477DHYKmSozDg2cP1BkxJjtZ3uSIYoSum0trUciu0rGZlHgbhQFRk6I0XRH0one3M5M/rhyyoT/VXCQY5UpQlg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dCQ5Sd1nv5vZmeSxuRnTU57SaJ+TwJlP459KmG6vmBI=;
- b=aW66mhqFM8k5dQFDO5KV8KCzTE6N6hSEpQXhv9k/B1LvRAHuGJ7lmIecTlz+ZCLFD5vVtOsCioOU82PVvXgtyrFoUxQIh7gzee4U8m84xX+20M3goKFwVSSLDhHVMVG3sv0rC9G+HsI1oSq7K6ya1z+1RzhdghUc2v5bT1EmtwZA8k/VXAYIwOvhv+ILYOH9usuT/3J6Ni+cDRl547EbInX0ewo9bb/GDfAjbQ1KjJICTQzFIJ7Hnh2ZeM0nu6hDdularL6h2hQwM2+UoAZnGb0aIyq728r6jnizgSVr+QB4962B+hfjX515E1WHQvXipR0YgCYY/4qpoliWmBhdzQ==
+ bh=KdgVcs4rOB/8ql6CSDDLwSkqxj2vSEa/x+8Ul1ZGOk0=;
+ b=gpBLcYpycqOR1SEzryoS8K7Blt9we/ab0r9hp+RjRcuhCHiKiwLwCUZozYJeiuskKg8fOeclMA/790HwKTZ9k18XgOXjNjzlJyb1MnKTNLDkNemdTiYNhaUtEOFQgL25TUYO/8+P1S7XNdD09lz9xZtSY8N/TXDzJxa/79NAF1m+MCIFP5n/LD07QQHoYFcPf/zK3nppyag03+euFcR46xRV/gD+3kjCSlz/48phrvW0asxHOFNLUeukz4coSeQ6Kg4GKffktuqRkq9Z6nFXzxNQ2c1LLrdtrDhtC5jZUDx+yN0ZXjKZmoOpuF5GdVgZpzDms0HThBA7CR+Wj+GPew==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
  dkim=pass header.d=oss.nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
  s=selector2-NXP1-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dCQ5Sd1nv5vZmeSxuRnTU57SaJ+TwJlP459KmG6vmBI=;
- b=I7kp2AN30TzD7r9K94Ft520VYecoliCugvJWHCkPM4CSuPB1zTAbB6nL0QDrZNHYwW8gFLyFh5w7GzZ4gfG3cqWEcE/AMUN5fPQ8IGquABINQ3tXboq0D+bNwi8lqY2oRqceP9de8n76lN/o4pFJ4zowxhKEd9vp7rGymbs1A5Y=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=oss.nxp.com;
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (10.172.251.142) by
- DBBPR04MB7979.eurprd04.prod.outlook.com (20.182.191.9) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4108.25; Thu, 6 May 2021 03:44:05 +0000
+ bh=KdgVcs4rOB/8ql6CSDDLwSkqxj2vSEa/x+8Ul1ZGOk0=;
+ b=idKKhfEAj0Rv6mjib9ef9nCncuO+5DmuQeDc2kGp1BoGiCTqB1zVKKVNut1khZRyB11Xj7nEpDB9K/fN6pHkH8/fkoopNNwVvuJh8GH+u83lR00EK1CyhNNWim7nNBp3ghVQFnEdXMZ/cgF2JsVUZcneDvzAkbAUBAeTz3p7PIc=
+Authentication-Results: wizery.com; dkim=none (message not signed)
+ header.d=none;wizery.com; dmarc=none action=none header.from=oss.nxp.com;
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
+ by DB7PR04MB4940.eurprd04.prod.outlook.com (2603:10a6:10:22::26) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25; Thu, 6 May
+ 2021 04:24:52 +0000
 Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
  ([fe80::45b9:c993:87ec:9a64]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
  ([fe80::45b9:c993:87ec:9a64%8]) with mapi id 15.20.4065.039; Thu, 6 May 2021
- 03:44:05 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        p.zabel@pengutronix.de, l.stach@pengutronix.de, krzk@kernel.org,
-        agx@sigxcpu.org, marex@denx.de, andrew.smirnov@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, ping.bai@nxp.com,
-        frieder.schrempf@kontron.de, aford173@gmail.com, abel.vesa@nxp.com,
+ 04:24:52 +0000
+From:   peng.fan@oss.nxp.com
+To:     ohad@wizery.com, bjorn.andersson@linaro.org,
+        mathieu.poirier@linaro.org, o.rempel@pengutronix.de,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH V3 4/4] soc: imx: Add blk-ctl driver for i.MX8MM
-Date:   Thu,  6 May 2021 12:15:55 +0800
-Message-Id: <20210506041555.10719-5-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210506041555.10719-1-peng.fan@oss.nxp.com>
-References: <20210506041555.10719-1-peng.fan@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
+Subject: [PATCH V6 0/8] remoteproc: imx_rproc: support i.MX7ULP/8MN/8MP
+Date:   Thu,  6 May 2021 12:08:35 +0800
+Message-Id: <1620274123-1461-1-git-send-email-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.7.4
 Content-Type: text/plain
-X-Originating-IP: [119.31.174.71]
-X-ClientProxiedBy: SG2PR06CA0115.apcprd06.prod.outlook.com
- (2603:1096:1:1d::17) To DB6PR0402MB2760.eurprd04.prod.outlook.com
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: SG2PR02CA0055.apcprd02.prod.outlook.com
+ (2603:1096:4:54::19) To DB6PR0402MB2760.eurprd04.prod.outlook.com
  (2603:10a6:4:a1::14)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from linux-1xn6.ap.freescale.net (119.31.174.71) by SG2PR06CA0115.apcprd06.prod.outlook.com (2603:1096:1:1d::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25 via Frontend Transport; Thu, 6 May 2021 03:43:59 +0000
+Received: from localhost.localdomain (119.31.174.66) by SG2PR02CA0055.apcprd02.prod.outlook.com (2603:1096:4:54::19) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.4108.25 via Frontend Transport; Thu, 6 May 2021 04:24:48 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 975784d1-1188-49d4-79e6-08d9104131ff
-X-MS-TrafficTypeDiagnostic: DBBPR04MB7979:
+X-MS-Office365-Filtering-Correlation-Id: 01e1a697-2c03-41f2-e85c-08d91046e4a3
+X-MS-TrafficTypeDiagnostic: DB7PR04MB4940:
 X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DBBPR04MB7979F32898C45E50A8775DF0C9589@DBBPR04MB7979.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:366;
+X-Microsoft-Antispam-PRVS: <DB7PR04MB4940253AFC041C8EAA2DD305C9589@DB7PR04MB4940.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UM7Eo8tcNBRIxDn0EVoAx/9OTc8mcKdgDI8xT9DkkrhAYDl8AuGeipdOnu5Id+dTbFiMLFKpDkKoOZM2SOL51Wk1YHZddAXei4+UYNOEEIf6IgCW8rK9ABI44RxfykHziv2WjdVjqkDAIiDijXV8TV/kO2PbtEYHWy/75wwimlxKiiESPYW4CL+HPD0VVhmqDl85dxHx6yfI1KxBn4s3M2CSb47x0ThO8w/a0tG66m657+iXsg4oWfIrdX6rKsEWl2npK2jM3PeoiG6EdW9ZI3smG9t65opIk5bVTf2EeBM5CSTpYHihWSl2ElDwQP0sMf9rmMtJ9a0svlCq8b1Rw0umeDQZfFC88gFVWa9jideHnWGaeL6bHQuJ6sf758EA3xWstyMMxj9BNYOvHBbsx/Ncet3tjswuqTxrLSQDkyWo+lHDvInJ50H8ZlBfkdK6oaTzdf6Cn9RFBA88pcwNufu71lu98uj+Ws/NAHmMeVdypHblK95uFKEaO1q13mjyPgT24O81SbDGHjjmZOQvVnt2FCiir3SetanAYVgaBDxAojr3xQob+Yvpkm4Xyb2xFZhqeMNQwz319eIggQ9+6z21UrcZhYa7e9WIVti/TQJVMH4z936jytwL5DcZur3KYcz/mbIUo5Qtb+1ulQPFDc/wHqMUrcEEifJU0xSP4uE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(136003)(396003)(366004)(376002)(39850400004)(4326008)(2906002)(316002)(8676002)(6512007)(956004)(2616005)(5660300002)(6506007)(6666004)(66946007)(8936002)(66476007)(66556008)(83380400001)(52116002)(7416002)(478600001)(26005)(186003)(16526019)(1076003)(6486002)(86362001)(38100700002)(38350700002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?O7nEcqDhAT8OvYi+Co1cZwHR1jL5W5k3mJHljLeGUj+b4Tq7gxvLnrrVEpkJ?=
- =?us-ascii?Q?cDg+XMvVWuUlqejSoNFVMdQc+cYIgvP2O1Fbw9z27Cw7jCf8UOucilVoWNvs?=
- =?us-ascii?Q?UUPHlut2Bx2v8tytA53ENxwwg/D3vgIOsDL5CILRqri8bKoVg6ETEQkRe4OP?=
- =?us-ascii?Q?ODM8utQl737/8ZZRk7IxrX+vJJodr4ux8GoN/L5hXrOuhnLeieE/zLKX5GSZ?=
- =?us-ascii?Q?/o9Wq3IHPKCSspkHtEIDtI6y2ChV0GQVSsXEn7mfx7kV6Hxg+Qy+751gxbyA?=
- =?us-ascii?Q?ZqqrSZlCxvihH6Iv28vcdOZTmkkkwA6uXpmGWwzAmAq5igMjfKLOaxIp0PKP?=
- =?us-ascii?Q?UA5cAaegWektCnx5bc9WC2ZWn1SBI/wJv7IoRftytyZ2RboYMYeRz/uLozis?=
- =?us-ascii?Q?fOJ3xbm0JexySBj3CJroBtJNfCwcxCX3PYFcQyHek+/G+UpUCUIzZMZ3RoDF?=
- =?us-ascii?Q?fxG1HoxkAl7HayplQi619ZUaZTO8EERYfQd8pS8SQG0wNc7Kq1vqRvVNuwx0?=
- =?us-ascii?Q?5h8j2XPOaWuRm4GpkGLYzGzjPky+vU9od20TPN9mMLwtMsoKrYRJ1Df2xfQX?=
- =?us-ascii?Q?CpYkeNyCuLKfzgKzJQMnXgmdIUxk8lReOkcXxBrxVbOd+ku0YephJrFpDeR4?=
- =?us-ascii?Q?f9HtCOCifduYLTozjHX3rMFl/DQ4KQpptYewyX5Ufa9gLZCtBT73Thv7AXR9?=
- =?us-ascii?Q?xBE8lCpBUK/FEeh8nyFTLjemGcmCivB0r/TG0nbrQCyP9zlzav4ZjTtxV6aR?=
- =?us-ascii?Q?7DsFTnbgGJ/8mqw4k4hfU8FfkHc8CdnP4JVbC9w4x6Cri1saTYOeuXzYrlW4?=
- =?us-ascii?Q?0qKDBlCzpvAgwmKa9XhQWBf2amGCflH5+Ql8bhubwAyjgBA0do9s81ennx4m?=
- =?us-ascii?Q?ATcek5XA0XTI+pDM0+6xztDUbIyXB9Yt2O8V1sgNeDFrT2L+lRiIWBqHcKwC?=
- =?us-ascii?Q?36Bc/fkYi8wJ/NJ2Ha//g/SDC2TZ8N/zJLcJ8rXs0nZIJvhedntxBu2zgpZy?=
- =?us-ascii?Q?EzmbbIshrM2cSh+2H5OoRvZvmQdILDh5YxkrwMx3sjJOpMxi0KVOMLv+YxDp?=
- =?us-ascii?Q?MQWd6SgE46chHwjbLo0xbU+UEx2GXZMJOj4KmmBRll3MIceg1lM9Df2i1R/1?=
- =?us-ascii?Q?voKXsSVeQQBEDM1Pb1hMeDhUX4QZFNoCUhtGeeYBPwvyDj4L/6bUnVejKysV?=
- =?us-ascii?Q?OnTE6gbslziLMY+2D0pK9rXex/s0Lrsk0e5oi8JghqWgBYUpYrBiyeP175tS?=
- =?us-ascii?Q?SwzfZJnLnXfdos5z9Hl5EEBQXSWIC9qOm+V6ItaNhErMXFddc7db2k1tD6lL?=
- =?us-ascii?Q?VQUwhayF8gdv+UWEAyfRJH0l?=
+X-Microsoft-Antispam-Message-Info: ttgKuM4javyv2I28duvJ915cviTubeYrUucZNOVo7UhUovYf7FSv1WjlGCiTbsH0chBHJeUVyAbxmg43AdeLV8TtNjXzZZFU4CgJTukqv5ZvMR1IBZQjBN4z8NAGLGNNaEdGi36mYhc2gjZIqXXv1OxLLhYSuQE3qPSMIf4HOJTqBiq4JFSI2uSHUB92o0iyL8JJMJt7P7jxWB8s1UtSkD0VB+egJQCCEs5T4GybdxDjcP9diJzz5sMLDeIoCwMuO5FtdCoS056yU/6/gZiI+xOmnWjaF5YpgdsY12WLcTBuKYjay71EbU+pWh+LQN+sdkAfBokY+04izUxlX2AAPPq85fBXju50Cx3w+7VcVca8UgF8bQw9IFLjshOMf0IEkIIbnc+BtsKQUo7fcN9M2rh+O6TL4d6jNLAKPSojAQ4h8/SjQwyAr1P3xmEYqvASudZfnOv4h05NZv/0B24acrpKXWnMtnHsWBUAz0u58jxUvPx/i8gZ6db3rEHjdnukkIq9kdtuF4yfGHH2sCnga0hcrQNyet4C9GpYz3E+DCEHbo++p8JVCZ/EtRDigOmD6CVs12XKxRTKg5I6oLUb5Wj17guW8LPIVpMLyITxtNhBmBXnxFxYp3tF4znyo3IRYMCxAY6YzaC7F4pMid0OumrXZrjvAxdYelU/I+WzXfw2K4XK5u4U8JUZJKORZZB/
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(376002)(366004)(396003)(346002)(39850400004)(6666004)(38100700002)(38350700002)(6486002)(7416002)(66556008)(16526019)(316002)(478600001)(9686003)(2616005)(83380400001)(2906002)(186003)(8936002)(26005)(52116002)(66946007)(6512007)(5660300002)(8676002)(6506007)(956004)(66476007)(4326008)(86362001)(69590400013);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?5dHc06JVXTCHYxCK8vaz2ttQN0urFVmyIIWUnkRUIvOSkn3gcm4ftG566fiz?=
+ =?us-ascii?Q?ZEUDEpkMyeBRXWPVQU5v0EuWTrDFHj2JL93LdrRP1f+MEkkVCVXNFJi0+bB3?=
+ =?us-ascii?Q?y7ZApge2PMZqIeB7bi0GqsPECIUjCmjfW9o+TsUIYSibhfLDZQVWWbr2aMFQ?=
+ =?us-ascii?Q?FToXNN/hsiwBE25nFGcz2EjPcpjQVQNxTDJUhNwB6eOl+CWf0RR4dnXswlsQ?=
+ =?us-ascii?Q?BIJ3FCngSHLsZBt+0RJ5Xilrgwlo/ctudrESOhzfTmrH3mcuhUOl7nFhneW9?=
+ =?us-ascii?Q?uSB1YCgAhzjxCWHd/A9r1Grx439PSBqfYZJ+CpwapM9KqGNjNVLh6Qj8Zg6z?=
+ =?us-ascii?Q?ax0Adu47rLRwTOh+knhxj6i0fhCGMwQNt671WjSEKjyUeHmkHJZf5wPJEgDS?=
+ =?us-ascii?Q?+SmnkmP7U+51FAD5RyIftUqEdVZvILfgSR24k8Tgss1PBKazqf2B/SkPB5Hf?=
+ =?us-ascii?Q?C842dV/i3+Y9WX/4LlDhLXvsD7aq4D9AUyuy4QOWlCpwQhJ1l0RYicfSJ3QE?=
+ =?us-ascii?Q?TPyQBxFvBHeRAhI1vEK9M0dLJHKxmBpoCypqAcGbmEPZ4s+kR/Y8jUz/8n+s?=
+ =?us-ascii?Q?ljErO02PWeXULnZXfI0suOZIvFqd/drPKnYgMaSmfICvoebMIN6cH8anXNCP?=
+ =?us-ascii?Q?z77rgXPVAh5PnsWyRCG/GjD1j5ympjEO9R23IYmmWfkPSxHkXqCUD6R8Jxte?=
+ =?us-ascii?Q?W5Fh7x4cdkLMzbcx2IP4yIDkwcsQRL6q/H43i91yjZU4PrecQ4suMens3OY+?=
+ =?us-ascii?Q?X4fA8L9z0Bjy+Fk7jSuKICZyu+L1/+RxfMh+0tuBmLpXqhEp9/qYZcMohV0P?=
+ =?us-ascii?Q?7LryotPCJ9RYIV9+/r9tVdKGpQwW6SHqD7eJ+4IFEzr46+HOufdZRHe8ji/i?=
+ =?us-ascii?Q?K180xKmSPuvDcbaovpORoFdOjfok/LPXPOIcGmVFV9EfPXWkjyCeCb8pLYTc?=
+ =?us-ascii?Q?unM+FC0eJbDGkmaRIYw6xAtwRYj4utJMIzKGrVXRer+wGl4Rkd+WgTjN2Muh?=
+ =?us-ascii?Q?ml+SwcyerfUVRb1mSAzGTkdspkdtSk0H6dmYBFG8kEYJ0yspf9rjPSeSElxR?=
+ =?us-ascii?Q?ARJQTYZcu/bRIK0PR4BIL8QOBYnFA0vn1GOZYdMTw87QzY2tFYgHYQLTqKqu?=
+ =?us-ascii?Q?PSDlFjdjB0vlgagFpBHqbXanhuC9GwPrxi9hH1GsruvsuFT0whM6+yY7mkIB?=
+ =?us-ascii?Q?CH4/63HY/lRDnU6uAVbva1v5Oav6nqxHfrLZkl62OGKenhz+83vvkGTA5Y4M?=
+ =?us-ascii?Q?wgkKh39b60stO6W5lvbtrE7+YjdLnzYdjdX5R8/1XlaAvPD3vfV3Lfm0sJVc?=
+ =?us-ascii?Q?HCd52i1j2i2mGnVnObOjHyya7Ucf4KQgwlNbToLaZC8gpw=3D=3D?=
 X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 975784d1-1188-49d4-79e6-08d9104131ff
+X-MS-Exchange-CrossTenant-Network-Message-Id: 01e1a697-2c03-41f2-e85c-08d91046e4a3
 X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2021 03:44:04.9360
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2021 04:24:52.1826
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MH7j6Tila/BS5mhup61wh00+K6wiHArAz2HbJ1SixJEwuxlRlEWSQM7UHcFeuwrxPe1lltnZ4rh4NqFkjNgOng==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7979
+X-MS-Exchange-CrossTenant-UserPrincipalName: W5YnMl57qe57TORmn3ZyAfS66AhGHerldOyQZuxCGs5cPvCMYE6LxwpeumN0MtN9FdyWyKIZHVvvAx7cifD6Rw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4940
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 From: Peng Fan <peng.fan@nxp.com>
 
-The i.MX8MM SoC has dispmix BLK-CTL and vpumix BLK-CTL, so we add
-that support in this driver.
+V6:
+ Addressed the comments and add R-b tag for patch [5,7,8] from Mathieu, now
+ all patches has got R-b or A-b tag. Thanks.
+ The patchset could be directly applied to linux-next/master of 20210506
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- drivers/soc/imx/Makefile         |   2 +-
- drivers/soc/imx/blk-ctl-imx8mm.c | 138 +++++++++++++++++++++++++++++++
- 2 files changed, 139 insertions(+), 1 deletion(-)
- create mode 100644 drivers/soc/imx/blk-ctl-imx8mm.c
+V5:
+ Add R-b tag
+ Move the change in detect mode of patch 5 to patch 7 Per Mathieu's
+ comments
 
-diff --git a/drivers/soc/imx/Makefile b/drivers/soc/imx/Makefile
-index d3d2b49a386c..c260b962f495 100644
---- a/drivers/soc/imx/Makefile
-+++ b/drivers/soc/imx/Makefile
-@@ -4,4 +4,4 @@ obj-$(CONFIG_ARCH_MXC) += soc-imx.o
- endif
- obj-$(CONFIG_HAVE_IMX_GPC) += gpc.o
- obj-$(CONFIG_IMX_GPCV2_PM_DOMAINS) += gpcv2.o
--obj-$(CONFIG_SOC_IMX8M) += soc-imx8m.o blk-ctl.o
-+obj-$(CONFIG_SOC_IMX8M) += soc-imx8m.o blk-ctl.o blk-ctl-imx8mm.o
-diff --git a/drivers/soc/imx/blk-ctl-imx8mm.c b/drivers/soc/imx/blk-ctl-imx8mm.c
-new file mode 100644
-index 000000000000..cc6e6705f755
---- /dev/null
-+++ b/drivers/soc/imx/blk-ctl-imx8mm.c
-@@ -0,0 +1,138 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2021 NXP
-+ */
-+
-+#include <dt-bindings/clock/imx8mm-clock.h>
-+#include <dt-bindings/power/imx8mm-power.h>
-+#include <linux/clk.h>
-+#include <linux/err.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/of_address.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+#include <linux/types.h>
-+#include <linux/pm_domain.h>
-+#include <linux/regmap.h>
-+
-+#include "blk-ctl.h"
-+
-+#define MEDIA_BLK_BUS_RSTN_BLK_SYNC_SFT_EN			BIT(6)
-+#define MEDIA_BLK_MIPI_DSI_I_PRESETN_SFT_EN			BIT(5)
-+#define MEDIA_BLK_MIPI_CSI_I_PRESETN_SFT_EN			BIT(4)
-+#define MEDIA_BLK_CAMERA_PIXEL_RESET_N_SFT_EN			BIT(3)
-+#define MEDIA_BLK_CSI_BRIDGE_SFT_EN				GENMASK(2, 0)
-+
-+#define MEDIA_BLK_BUS_PD_MASK					BIT(12)
-+#define MEDIA_BLK_MIPI_CSI_PD_MASK				GENMASK(11, 10)
-+#define MEDIA_BLK_MIPI_DSI_PD_MASK				GENMASK(9, 8)
-+#define MEDIA_BLK_LCDIF_PD_MASK					GENMASK(7, 6)
-+#define MEDIA_BLK_CSI_BRIDGE_PD_MASK				GENMASK(5, 0)
-+
-+static struct imx_blk_ctl_hw imx8mm_dispmix_blk_ctl_pds[] = {
-+	IMX_BLK_CTL_PD("CSI_BRIDGE", "dispmix", IMX8MM_BLK_CTL_DISPMIX_CSI_BRIDGE, 0x4,
-+		       MEDIA_BLK_CSI_BRIDGE_PD_MASK, 0, MEDIA_BLK_CSI_BRIDGE_SFT_EN,
-+		       IMX_BLK_CTL_PD_RESET),
-+	IMX_BLK_CTL_PD("LCDIF", "dispmix", IMX8MM_BLK_CTL_DISPMIX_LCDIF, 0x4,
-+		       MEDIA_BLK_LCDIF_PD_MASK, -1, -1, 0),
-+	IMX_BLK_CTL_PD("MIPI_DSI", "mipi", IMX8MM_BLK_CTL_DISPMIX_MIPI_DSI, 0x4,
-+		       MEDIA_BLK_MIPI_DSI_PD_MASK, 0, MEDIA_BLK_MIPI_DSI_I_PRESETN_SFT_EN,
-+		       IMX_BLK_CTL_PD_RESET),
-+	IMX_BLK_CTL_PD("MIPI_CSI", "mipi", IMX8MM_BLK_CTL_DISPMIX_MIPI_CSI, 0x4,
-+		       MEDIA_BLK_MIPI_CSI_PD_MASK, 0,
-+		       MEDIA_BLK_MIPI_CSI_I_PRESETN_SFT_EN | MEDIA_BLK_CAMERA_PIXEL_RESET_N_SFT_EN,
-+		       IMX_BLK_CTL_PD_RESET)
-+};
-+
-+static struct imx_blk_ctl_hw imx8mm_vpumix_blk_ctl_pds[] = {
-+	IMX_BLK_CTL_PD("VPU_BLK_CTL_G2", "vpu-g2", IMX8MM_BLK_CTL_G2_PD, 0x4,
-+		       BIT(0), 0, BIT(0), IMX_BLK_CTL_PD_RESET),
-+	IMX_BLK_CTL_PD("VPU_BLK_CTL_G1", "vpu-g1", IMX8MM_BLK_CTL_G1_PD, 0x4,
-+		       BIT(1), 0, BIT(1), IMX_BLK_CTL_PD_RESET),
-+	IMX_BLK_CTL_PD("VPU_BLK_CTL_H1", "vpu-h1", IMX8MM_BLK_CTL_H1_PD, 0x4,
-+		       BIT(2), 0, BIT(2), IMX_BLK_CTL_PD_HANDSHAKE | IMX_BLK_CTL_PD_RESET),
-+};
-+
-+static const struct regmap_config imx8mm_blk_ctl_regmap_config = {
-+	.reg_bits		= 32,
-+	.reg_stride		= 4,
-+	.val_bits		= 32,
-+	.max_register		= 0x30,
-+	.fast_io		= true,
-+};
-+
-+static const struct imx_blk_ctl_dev_data imx8mm_vpumix_blk_ctl_dev_data = {
-+	.pds = imx8mm_vpumix_blk_ctl_pds,
-+	.pds_num = ARRAY_SIZE(imx8mm_vpumix_blk_ctl_pds),
-+	.hw_hsk = IMX_BLK_CTL_PD(NULL, NULL, IMX8MM_BLK_CTL_H1_PD, 0x4, BIT(2), 0, BIT(2),
-+				 IMX_BLK_CTL_PD_HANDSHAKE),
-+	.config = imx8mm_blk_ctl_regmap_config,
-+	.active_pd_names = (char*[]){"vpumix", "g1", "g2", "h1"},
-+	.num_active_pd = 4,
-+};
-+
-+static const struct imx_blk_ctl_dev_data imx8mm_dispmix_blk_ctl_dev_data = {
-+	.pds = imx8mm_dispmix_blk_ctl_pds,
-+	.pds_num = ARRAY_SIZE(imx8mm_dispmix_blk_ctl_pds),
-+	.hw_hsk = IMX_BLK_CTL_PD(NULL, NULL, -1, 0x4, MEDIA_BLK_BUS_PD_MASK, 0,
-+				 MEDIA_BLK_BUS_RSTN_BLK_SYNC_SFT_EN,
-+				 IMX_BLK_CTL_PD_HANDSHAKE | IMX_BLK_CTL_PD_RESET),
-+	.config = imx8mm_blk_ctl_regmap_config,
-+	.active_pd_names = (char*[]){"dispmix", "mipi"},
-+	.num_active_pd = 2,
-+};
-+
-+static int imx8mm_blk_ctl_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	const struct imx_blk_ctl_dev_data *dev_data = of_device_get_match_data(dev);
-+	struct regmap *regmap;
-+	struct imx_blk_ctl *ctl;
-+	void __iomem *base;
-+
-+	ctl = devm_kzalloc(dev, sizeof(*ctl), GFP_KERNEL);
-+	if (!ctl)
-+		return -ENOMEM;
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	regmap = devm_regmap_init_mmio(dev, base, &dev_data->config);
-+	if (IS_ERR(regmap))
-+		return PTR_ERR(regmap);
-+
-+	ctl->regmap = regmap;
-+	ctl->dev = dev;
-+	ctl->power_count = 0;
-+	mutex_init(&ctl->lock);
-+
-+	ctl->num_clks = devm_clk_bulk_get_all(dev, &ctl->clks);
-+	if (ctl->num_clks < 0)
-+		return ctl->num_clks;
-+
-+	dev_set_drvdata(dev, ctl);
-+	ctl->dev_data = dev_data;
-+
-+	return imx_blk_ctl_register(dev);
-+}
-+
-+static const struct of_device_id imx_blk_ctl_of_match[] = {
-+	{ .compatible = "fsl,imx8mm-vpumix-blk-ctl", .data = &imx8mm_vpumix_blk_ctl_dev_data },
-+	{ .compatible = "fsl,imx8mm-dispmix-blk-ctl", .data = &imx8mm_dispmix_blk_ctl_dev_data },
-+	{ /* Sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, imx_blk_ctl_of_match);
-+
-+static struct platform_driver imx_blk_ctl_driver = {
-+	.probe = imx8mm_blk_ctl_probe,
-+	.driver = {
-+		.name = "imx8mm-blk-ctl",
-+		.of_match_table = of_match_ptr(imx_blk_ctl_of_match),
-+		.pm = &imx_blk_ctl_pm_ops,
-+	},
-+};
-+module_platform_driver(imx_blk_ctl_driver);
+V4:
+ Typo fix
+ patch 4: take state as a check condition
+ patch 5: move regmap lookup/attach to imx_rproc_detect_mode
+ patch 6: add imx_rproc_clk_enable for optional clk
+ patch 8: use switch/case in imx_rproc_detect_mode
+V3:
+ Add A-b tag for Patch 1/2
+ Fix the checkpatch warning for Patch 6,8
+
+V2:
+ Patch 1/8, use fsl as vendor, typo fix
+ Because patchset [1] has v2 version, patch 5,6,7,8 are adapted that
+ change.
+
+This patchset is to support i.MX7ULP/8MN/8MP, also includes a patch to
+parse fsl,auto-boot
+
+The dependency patchset has already merged in linux/master,
+so no dependency now.
+
+Peng Fan (8):
+  dt-bindings: remoteproc: imx_rproc: add fsl,auto-boot property
+  dt-bindings: remoteproc: imx_rproc: add i.MX7ULP support
+  dt-bindings: remoteproc: imx_rproc: support i.MX8MN/P
+  remoteproc: imx_rproc: parse fsl,auto-boot
+  remoteproc: imx_rproc: initial support for mutilple start/stop method
+  remoteproc: imx_rproc: make clk optional
+  remoteproc: imx_rproc: support i.MX7ULP
+  remoteproc: imx_rproc: support i.MX8MN/P
+
+ .../bindings/remoteproc/fsl,imx-rproc.yaml    |  11 +-
+ drivers/remoteproc/imx_rproc.c                | 196 +++++++++++++++---
+ 2 files changed, 173 insertions(+), 34 deletions(-)
+
 -- 
 2.30.0
 
