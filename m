@@ -2,313 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C10B374EAF
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 06:49:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BB53374EB7
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 06:51:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232712AbhEFEuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 00:50:11 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:28887 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232796AbhEFEuK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 May 2021 00:50:10 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1620276546; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=EF0TOuRSJCjcaPMt36f2OYHB05yNMuY0ZEdArRASdEk=;
- b=ZKtMYV9csDXXaJ5jol7ZHeWarfM9NBhB3SSep8ExMCGwF8CFSxM+08L8PDy36N7ZHKMxgU70
- ipyV0fIMgzYKBDODxSjYGZwdKGi/2Co8BpJMg5WMonz5WQEO/cLwFVtGP989Wp1bWBj0fMp6
- WaEVfxUTEu56yxMT2Y3GIVLMhWA=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 6093752703cfff34522cd57b (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 06 May 2021 04:48:39
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 18384C43460; Thu,  6 May 2021 04:48:39 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id E7AF3C433F1;
-        Thu,  6 May 2021 04:48:37 +0000 (UTC)
+        id S229956AbhEFEwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 00:52:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59836 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231232AbhEFEwP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 00:52:15 -0400
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A50DC061574;
+        Wed,  5 May 2021 21:51:17 -0700 (PDT)
+Received: by mail-ot1-x334.google.com with SMTP id r26-20020a056830121ab02902a5ff1c9b81so3806584otp.11;
+        Wed, 05 May 2021 21:51:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=BkR8EzMQJSRdUTCzoWgn3x8ok1vavL42w7HcwP25SNc=;
+        b=AKS72qspds8ZGn6uyQ758fmEadTumeLpLvpwTPI2aGoyZViv4xqGFRghS9ylyVbYZh
+         stktQwWC2RvQY1cde0m5Fas2rdCCT0MXQ39vHFrgWqyOaU3y8pPQUZTed31DOIBy0I6l
+         cdOxXjNjWyd58FF/mk6WKVLbE82dnn5t4YTwX4moqntGyUJ2eyRjnJe/bOF1lmuOOWiZ
+         zzOK65+PCOQMLYL0lOM/D8PoqmGOslwyEjnmiHMlKLpt5u1TtipMimZEbDgzwdO6EIi8
+         AqmXvQm2gjgXTHhg84OhGtDfhKJFNhJjN4cVt1PV3HhPM85Yyv0aBujyShD1cfEI+k2t
+         rC4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=BkR8EzMQJSRdUTCzoWgn3x8ok1vavL42w7HcwP25SNc=;
+        b=enkP7Fg20TxbGw2PoLB1R+lXrJ3TnTLzf5uA6+0VAgJgsZImjjML2liuD+A7d/cjg7
+         dmS1lqOLyVWlk/VsViAuFS+9wiI8oUe03+p25AHfMsUobCeZktG3rpJ1jIYyZ6OtdmbU
+         lVNel00WpMgNFivok550l17uYkV2Z6412IcEkvsc9CXFlU2kbgpWAjYs205ZSyspDOzw
+         hb2ZdBAPbUJnBZ5AeagjEWFjTYpIM/p9UAMas3PIADEQnuMv1X/USzSIVU883Nnd1h8M
+         9GPrnkALa+fphiLf9rEng8XRhemE5+9Fg3JnWypCYTR6d64UNUamBLtWkLDu8Ksf3tPj
+         LuWQ==
+X-Gm-Message-State: AOAM530wlL4UGdMf3hyoGU4oGqhvkXbmmafTjrP4iJ8EZASH2nqd8U5g
+        Sm0jSn0k9UvZFuHDU1ezxTU=
+X-Google-Smtp-Source: ABdhPJy9PNmpSVm6f5o/j9WfXm1EkTWXxyRg3ZZdfU7fedQjxTyCpUl8W0IJgannFMMAVJWw4xbH2A==
+X-Received: by 2002:a05:6830:1150:: with SMTP id x16mr1965608otq.294.1620276676992;
+        Wed, 05 May 2021 21:51:16 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id p1sm366549otk.58.2021.05.05.21.51.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 May 2021 21:51:16 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Wed, 5 May 2021 21:51:15 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Roger Lu <roger.lu@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Kevin Hilman <khilman@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Fan Chen <fan.chen@mediatek.com>,
+        HenryC Chen <HenryC.Chen@mediatek.com>,
+        YT Lee <yt.lee@mediatek.com>,
+        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v16 3/7] soc: mediatek: SVS: introduce MTK SVS engine
+Message-ID: <20210506045115.GA767398@roeck-us.net>
+References: <20210428065440.3704-1-roger.lu@mediatek.com>
+ <20210428065440.3704-4-roger.lu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 06 May 2021 10:18:37 +0530
-From:   skakit@codeaurora.org
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        kgunda@codeaurora.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH V2 3/3] dt-bindings: pinctrl: qcom-pmic-gpio: Convert qcom
- pmic gpio bindings to YAML
-In-Reply-To: <20210408205304.GA1929460@robh.at.kernel.org>
-References: <1617280546-9583-1-git-send-email-skakit@codeaurora.org>
- <1617280546-9583-4-git-send-email-skakit@codeaurora.org>
- <20210408205304.GA1929460@robh.at.kernel.org>
-Message-ID: <3697ddda1bba9179aa669e444b37f134@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210428065440.3704-4-roger.lu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Wed, Apr 28, 2021 at 02:54:36PM +0800, Roger Lu wrote:
+> The Smart Voltage Scaling(SVS) engine is a piece of hardware
+> which calculates suitable SVS bank voltages to OPP voltage table.
+> Then, DVFS driver could apply those SVS bank voltages to PMIC/Buck
+> when receiving OPP_EVENT_ADJUST_VOLTAGE.
+> 
+> Signed-off-by: Roger Lu <roger.lu@mediatek.com>
+> ---
+>  drivers/soc/mediatek/Kconfig   |   10 +
+>  drivers/soc/mediatek/Makefile  |    1 +
+>  drivers/soc/mediatek/mtk-svs.c | 1723 ++++++++++++++++++++++++++++++++
+>  3 files changed, 1734 insertions(+)
+>  create mode 100644 drivers/soc/mediatek/mtk-svs.c
+> 
+[ ... ]
 
-On 2021-04-09 02:23, Rob Herring wrote:
-> On Thu, Apr 01, 2021 at 06:05:45PM +0530, satya priya wrote:
->> Convert Qualcomm PMIC GPIO bindings from .txt to .yaml format.
->> 
->> Signed-off-by: satya priya <skakit@codeaurora.org>
->> ---
->> Changes in V3:
->>  - As per Rob's comments fixed bot erros.
->>  - Moved this patch to end of the series so that other patches are not
->>    blocked on this.
->> 
->>  .../devicetree/bindings/pinctrl/qcom,pmic-gpio.txt | 280 
->> --------------------
->>  .../bindings/pinctrl/qcom,pmic-gpio.yaml           | 281 
->> +++++++++++++++++++++
->>  2 files changed, 281 insertions(+), 280 deletions(-)
->>  delete mode 100644 
->> Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
->>  create mode 100644 
->> Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> 
-> 
->> diff --git 
->> a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml 
->> b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
->> new file mode 100644
->> index 0000000..e7e7027
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
->> @@ -0,0 +1,281 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/pinctrl/qcom,pmic-gpio.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm PMIC GPIO block
->> +
->> +maintainers:
->> +  - Bjorn Andersson <bjorn.andersson@sonymobile.com>
->> +
->> +description: |
->> +  This binding describes the GPIO block(s) found in the 8xxx series 
->> of
->> +  PMIC's from Qualcomm.
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - enum:
->> +          - qcom,pm8005-gpio
->> +          - qcom,pm8018-gpio
->> +          - qcom,pm8038-gpio
->> +          - qcom,pm8058-gpio
->> +          - qcom,pm8916-gpio
->> +          - qcom,pm8917-gpio
->> +          - qcom,pm8921-gpio
->> +          - qcom,pm8941-gpio
->> +          - qcom,pm8950-gpio
->> +          - qcom,pm8994-gpio
->> +          - qcom,pm8998-gpio
->> +          - qcom,pma8084-gpio
->> +          - qcom,pmi8950-gpio
->> +          - qcom,pmi8994-gpio
->> +          - qcom,pmi8998-gpio
->> +          - qcom,pms405-gpio
->> +          - qcom,pm660-gpio
->> +          - qcom,pm660l-gpio
->> +          - qcom,pm8150-gpio
->> +          - qcom,pm8150b-gpio
->> +          - qcom,pm6150-gpio
->> +          - qcom,pm6150l-gpio
->> +          - qcom,pmx55-gpio
->> +          - qcom,pm7325-gpio
->> +          - qcom,pm8350c-gpio
->> +          - qcom,pmk8350-gpio
->> +          - qcom,pmr735a-gpio
->> +
->> +      - enum:
->> +          - qcom,spmi-gpio
->> +          - qcom,ssbi-gpio
-> 
-> Any combination of the 1st and 2nd entry is valid?
-> 
+> +
+> +	svsp_irq = irq_of_parse_and_map(svsp->dev->of_node, 0);
+> +	ret = devm_request_threaded_irq(svsp->dev, svsp_irq, NULL, svs_isr,
+> +					svsp->irqflags, svsp->name, svsp);
 
-No, for pmics which use spmi and ssbi buses, "qcom,spmi-gpio" and 
-"qcom,ssbi-gpio" compatibles should be used respectively.
+0-day reports:
 
->> +
->> +  reg:
->> +    description: Register base of the GPIO block and length.
-> 
-> Just:
-> 
-> maxItems: 1
-> 
+drivers/soc/mediatek/mtk-svs.c:1663:7-32: ERROR:
+	Threaded IRQ with no primary handler requested without IRQF_ONESHOT
 
-ok.
+I would be a bit concerned about this. There is no primary (hard)
+interrupt handler, meaning the hard interrupt may be re-enabled after
+the default hard interrupt handler runs. This might result in endless
+interrupts.
 
->> +
->> +  interrupts:
->> +    description: |
->> +        Must contain an array of encoded interrupt specifiers for
->> +        each available GPIO
-> 
-> Need to define how many interrupts. I assume there's some max.
-> 
-
-ok will add maxItems.
-
->> +
->> +  '#interrupt-cells':
->> +    const: 2
->> +
->> +  interrupt-controller: true
->> +
->> +  gpio-controller: true
->> +
->> +  gpio-ranges:
->> +    maxItems: 1
->> +
->> +  '#gpio-cells':
->> +    const: 2
->> +    description: |
->> +        The first cell will be used to define gpio number and the
->> +        second denotes the flags for this gpio
->> +
->> +  gpio-keys:
->> +    type: object
->> +    properties:
->> +      volume-keys:
->> +        type: object
-> 
-> Needs a $ref to pinmux-node.yaml and pincfg-node.yaml.
-> 
-
-can I add like below?
-
-        volume-keys:
-          type: object
-+        anyOf:
-+          - $ref: "pinmux-node.yaml"
-+          - $ref: "pincfg-node.yaml"
-
->> +        properties:
->> +          pins:
->> +            description: |
->> +                List of gpio pins affected by the properties 
->> specified in
->> +                this subnode.  Valid pins are
->> +                     - gpio1-gpio4 for pm8005
->> +                     - gpio1-gpio6 for pm8018
->> +                     - gpio1-gpio12 for pm8038
->> +                     - gpio1-gpio40 for pm8058
->> +                     - gpio1-gpio4 for pm8916
->> +                     - gpio1-gpio38 for pm8917
->> +                     - gpio1-gpio44 for pm8921
->> +                     - gpio1-gpio36 for pm8941
->> +                     - gpio1-gpio8 for pm8950 (hole on gpio3)
->> +                     - gpio1-gpio22 for pm8994
->> +                     - gpio1-gpio26 for pm8998
->> +                     - gpio1-gpio22 for pma8084
->> +                     - gpio1-gpio2 for pmi8950
->> +                     - gpio1-gpio10 for pmi8994
->> +                     - gpio1-gpio12 for pms405 (holes on gpio1, gpio9
->> +                                                and gpio10)
->> +                     - gpio1-gpio10 for pm8150 (holes on gpio2, 
->> gpio5,
->> +                                                gpio7 and gpio8)
->> +                     - gpio1-gpio12 for pm8150b (holes on gpio3, 
->> gpio4
->> +                                                 and gpio7)
->> +                     - gpio1-gpio12 for pm8150l (hole on gpio7)
->> +                     - gpio1-gpio10 for pm6150
->> +                     - gpio1-gpio12 for pm6150l
->> +                     - gpio1-gpio10 for pm7325
->> +                     - gpio1-gpio9 for pm8350c
->> +                     - gpio1-gpio4 for pmk8350
->> +                     - gpio1-gpio4 for pmr735a
->> +
->> +            $ref: /schemas/types.yaml#/definitions/string-array
-> 
-> Already has a type in pinmux-node.yaml.
-> 
-
-Okay, will add above and remove here.
-
->> +            items:
->> +              pattern: "^gpio([0-9]+)$"
->> +
->> +          function:
->> +            $ref: /schemas/types.yaml#/definitions/string
-> 
-> ditto
-> 
-
-Okay, will add above and remove here.
-
->> +            description: |
->> +                Specify the alternative function to be configured for 
->> the
->> +                specified pins.
->> +            items:
->> +              - enum:
->> +                  - normal
->> +                  - paired
->> +                  - func1
->> +                  - func2
->> +                  - dtest1
->> +                  - dtest2
->> +                  - dtest3
->> +                  - dtest4
->> +                  - func3  # supported by LV/MV GPIO subtypes
->> +                  - func4  # supported by LV/MV GPIO subtypes
->> +
->> +          bias-disable:
->> +            $ref: /schemas/types.yaml#/definitions/flag
-> 
-> And all these have a type and description. Just:
-> 
-> bias-disable: true
-> 
-> If no further constraints.
-> 
-
-Okay.
-
->> +            description:
->> +              The specified pins should be configured as no pull.
->> +
->> +          bias-pull-down:
->> +            $ref: /schemas/types.yaml#/definitions/flag
-[...]
->> +        additionalProperties: true
->> +
->> +additionalProperties: true
-> 
-> Should be 'false'.
-> 
-
-Okay.
-
-Thanks,
-Satya Priya
+Guenter
