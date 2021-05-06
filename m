@@ -2,290 +2,269 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 666B03755A7
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 16:29:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C7453755F3
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 16:51:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234812AbhEFOaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 10:30:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47296 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234848AbhEFOaN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 10:30:13 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB92FC061763
-        for <devicetree@vger.kernel.org>; Thu,  6 May 2021 07:29:13 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id k127so5061448qkc.6
-        for <devicetree@vger.kernel.org>; Thu, 06 May 2021 07:29:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20150623.gappssmtp.com; s=20150623;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=GW95dzInD2TKzR0jdVkWnUZGwBXxcKhZ1/8vg5w2zVE=;
-        b=0u96e57Z+1xVtYpsdQo9L1gyUGGB/AdDb46/CNeCtQ1aivWcYlLssYV+UVDb2UtD5W
-         wJ7aW5jYyVAtsxe9bwsZ6SXMC7AXzW1Rz3VkMZUhah3G4NucVM+253gX+w4o+a6Z4Say
-         hRA9NV69eYJDUQzhQbp8A1ha2PiIqDjJqT8b2jARnGRGh42FoeIy+Qus7g534T0Gswhn
-         OzFnI/4JOcA2UPema641K+sOCPWv0KdYlXxGmElG4VZZcxZ/zXg1GDCEMvM75nfr2GmC
-         7ktrMxnU8BaSoUq3H2sDXb9ZJCvggHl70bcfut4Hm8S74xMtuHjlT65I+aUF0g1Mqiaf
-         BLWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=GW95dzInD2TKzR0jdVkWnUZGwBXxcKhZ1/8vg5w2zVE=;
-        b=n2XngWwgIyA25pHY53s6cFtUAIyhAg8MiMM2ks6DKV7P7Cn/pbV7ZRBqGlofKntcus
-         5nJYgXAeMgBvM95R8zdqqU9W1MygkeMERrzo7Zx6S0NPijhVRNBuzXMbrp3UBmBBwJYh
-         HYYZUwR0qd4aXsxIg1t0ix2KKjkoQislSJCZ9qV8rY6UsdyiYjE65JRrWgktSKH+BYkj
-         VZFmBbxI+07UXOQM1UNXUlA/mt8Agvwn44TS4BbMmbVLi77t/uOF2YyklNu952bRBhzl
-         U/TGWSuG/0OTjo463K/xzNEaNRaHVTue8Dd7r4KBcjbqDiLvkH5nt6oJR96PcehztWKq
-         lCWg==
-X-Gm-Message-State: AOAM530HBIOaTCTWQj3DABmqKnG4z4vX4Jco1oAnhIlBLYf7QmaW5Ecg
-        fl/smn5dWQNRgJ/u3fxV6LNK4Q==
-X-Google-Smtp-Source: ABdhPJwBLjKNP6aEe8hFOPRHRhSRkv5wP+9YODtFwFW5GW5DmRxNW2uhWkdMbMheliE8NhBkXiyRyQ==
-X-Received: by 2002:a05:620a:a5a:: with SMTP id j26mr4167891qka.156.1620311352924;
-        Thu, 06 May 2021 07:29:12 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain (173-246-12-168.qc.cable.ebox.net. [173.246.12.168])
-        by smtp.gmail.com with ESMTPSA id h62sm2005578qkf.116.2021.05.06.07.29.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 May 2021 07:29:11 -0700 (PDT)
-Message-ID: <15e2b577e84ef19bfcfcbb23a7ea2bf63abefdb3.camel@ndufresne.ca>
-Subject: Re: [PATCH v10 6/9] media: uapi: Add a control for HANTRO driver
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     John Cox <jc@kynesim.co.uk>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
-        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com, lee.jones@linaro.org,
-        gregkh@linuxfoundation.org, mripard@kernel.org,
-        paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, emil.l.velikov@gmail.com,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
-        kernel@collabora.com, cphealy@gmail.com
-Date:   Thu, 06 May 2021 10:29:09 -0400
-In-Reply-To: <n7q79gl86gvdo00sgsg1r5beittohsu4ta@4ax.com>
-References: <20210420121046.181889-1-benjamin.gaignard@collabora.com>
-         <20210420121046.181889-7-benjamin.gaignard@collabora.com>
-         <a7c9fe23-2900-ac90-7131-21380fbfc793@xs4all.nl>
-         <1cf94540-7f4d-0179-dd1e-0b82ee30f6d2@collabora.com>
-         <815a4bd6-599b-cfb8-9ddc-efa4b7092c23@xs4all.nl>
-         <n7q79gl86gvdo00sgsg1r5beittohsu4ta@4ax.com>
+        id S234888AbhEFOwl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 10:52:41 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:56627 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234759AbhEFOwk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 10:52:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1620312703; x=1651848703;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=7xfUVt67baauwCjjZDw8mvwRHXCq289bgSvRukAo4yQ=;
+  b=2tgP5BbFbJh1d31GlrSbtUqEVZDlN9nmB1DzuXCC50wMh1D6u3pEvf0N
+   +BLnTbGNcX+WWFCpxJF/Z0ROvy+hTYLu7/OidvIhQJEfv0lNkq45Zin3H
+   BqpgNvE20jHeIZV+gAkR0OF1ndImgAnfmO0DysBlhjyLUcv+QedVzYsW6
+   4aY83kUm72cBWsIRhbRSwGCw5sCk3dX6IXcDj3+zjk1h2giQdZ/lQ1jzX
+   HRiKAFZQC9jH5cMJuHEN/DtconyD17cQNdGlQWyN872Tn6WWKEuOS1H6m
+   XWTDvk7LvQw7P6yeGYVPi4s6aRmWd6O7W4GN5Ry8a5HqS0/R6KPZOkdyt
+   w==;
+IronPort-SDR: Ub1fvDXej12gwIhShN4HUC/i9DjD/k+wpdd5YFLcF0RkwYsZnVhDSWlRLnoYJhPV+4d2lwkgcA
+ Q8sxFviFL4UG6SO3co2/NwJpNYHuI7iAH+HsCzWIOH9ZzdzsPLtEhlNUlcNEac3WwcOcHXTSmU
+ 4It1Ag3+uavymTF61iep0+xen4wIq7+84NEueqnhmVPeM9Kp+qfrDxf/1KcoO6L1ojOm2Nf0vr
+ spBj5CaWObkwCyVFPNqmL+Lw9ZL1jb8v++ZwSaSLeq6glUFN/QwZ7RCanNGO5WxqbgfSNQkILy
+ E+E=
+X-IronPort-AV: E=Sophos;i="5.82,277,1613458800"; 
+   d="scan'208";a="119193429"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 06 May 2021 07:51:42 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Thu, 6 May 2021 07:51:41 -0700
+Received: from W1064L-TARAKESH.mchp-main.com (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Thu, 6 May 2021 07:51:37 -0700
+Message-ID: <ab9da4b759dec9ab69bac791300a6a8977ee7cc2.camel@microchip.com>
+Subject: Re: [PATCH v2 net-next 9/9] net: dsa: microchip: add support for
+ vlan operations
+From:   Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+To:     Vladimir Oltean <olteanv@gmail.com>
+CC:     <andrew@lunn.ch>, <netdev@vger.kernel.org>, <robh+dt@kernel.org>,
+        <UNGLinuxDriver@microchip.com>, <hkallweit1@gmail.com>,
+        <linux@armlinux.org.uk>, <davem@davemloft.net>, <kuba@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <vivien.didelot@gmail.com>,
+        <f.fainelli@gmail.com>, <devicetree@vger.kernel.org>
+Date:   Thu, 6 May 2021 20:21:35 +0530
+In-Reply-To: <20210422190351.qdv2xlnxghmfpjqj@skbuf>
+References: <20210422094257.1641396-1-prasanna.vengateshan@microchip.com>
+         <20210422094257.1641396-10-prasanna.vengateshan@microchip.com>
+         <20210422190351.qdv2xlnxghmfpjqj@skbuf>
 Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.0 (3.40.0-1.fc34) 
+User-Agent: Evolution 3.38.1-1 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le jeudi 06 mai 2021 à 14:11 +0100, John Cox a écrit :
-> > On 05/05/2021 17:20, Benjamin Gaignard wrote:
-> > > 
-> > > Le 05/05/2021 à 16:55, Hans Verkuil a écrit :
-> > > > On 20/04/2021 14:10, Benjamin Gaignard wrote:
-> > > > > The HEVC HANTRO driver needs to know the number of bits to skip at
-> > > > > the beginning of the slice header.
-> > > > > That is a hardware specific requirement so create a dedicated control
-> > > > > for this purpose.
-> > > > > 
-> > > > > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> > > > > ---
-> > > > >   .../userspace-api/media/drivers/hantro.rst    | 19
-> > > > > +++++++++++++++++++
-> > > > >   .../userspace-api/media/drivers/index.rst     |  1 +
-> > > > >   include/media/hevc-ctrls.h                    | 13 +++++++++++++
-> > > > >   3 files changed, 33 insertions(+)
-> > > > >   create mode 100644 Documentation/userspace-
-> > > > > api/media/drivers/hantro.rst
-> > > > > 
-> > > > > diff --git a/Documentation/userspace-api/media/drivers/hantro.rst
-> > > > > b/Documentation/userspace-api/media/drivers/hantro.rst
-> > > > > new file mode 100644
-> > > > > index 000000000000..cd9754b4e005
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/userspace-api/media/drivers/hantro.rst
-> > > > > @@ -0,0 +1,19 @@
-> > > > > +.. SPDX-License-Identifier: GPL-2.0
-> > > > > +
-> > > > > +Hantro video decoder driver
-> > > > > +===========================
-> > > > > +
-> > > > > +The Hantro video decoder driver implements the following driver-
-> > > > > specific controls:
-> > > > > +
-> > > > > +``V4L2_CID_HANTRO_HEVC_SLICE_HEADER_SKIP (integer)``
-> > > > > +    Specifies to Hantro HEVC video decoder driver the number of data
-> > > > > (in bits) to
-> > > > > +    skip in the slice segment header.
-> > > > > +    If non-IDR, the bits to be skipped go from syntax element
-> > > > > "pic_output_flag"
-> > > > > +    to before syntax element "slice_temporal_mvp_enabled_flag".
-> > > > > +    If IDR, the skipped bits are just "pic_output_flag"
-> > > > > +    (separate_colour_plane_flag is not supported).
-> > > > I'm not very keen on this. Without this information the video data
-> > > > cannot be
-> > > > decoded, or will it just be suboptimal?
-> > > 
-> > > Without that information the video can't be decoded.
-> > > 
-> > > > 
-> > > > The problem is that a generic decoder would have to know that the HW is
-> > > > a hantro,
-> > > > and then call this control. If they don't (and are testing on non-hantro
-> > > > HW), then
-> > > > it won't work, thus defeating the purpose of the HW independent decoder
-> > > > API.
-> > > > 
-> > > > Since hantro is widely used, and if there is no other way to do this
-> > > > beside explitely
-> > > > setting this control, then perhaps this should be part of the standard
-> > > > HEVC API.
-> > > > Non-hantro drivers that do not need this can just skip it.
-> > > 
-> > > Even if I put this parameter in decode_params structure that would means
-> > > that a generic
-> > > userland decoder will have to know how the compute this value for hantro
-> > > HW since it
-> > > isn't something that could be done on kernel side.
-> > 
-> > But since hantro is very common, any userland decoder will need to calculate
-> > this anyway.
-> > So perhaps it is better to have this as part of the decode_params?
-> > 
-> > I'd like to know what others think about this.
+Hi Vladimir,
+
+On Thu, 2021-04-22 at 22:03 +0300, Vladimir Oltean wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know the
+> content is safe
 > 
-> I don't know exactly what I think on this - its all a bit of a mess. I
-
-There is no better way to describe the state of my own opinion about this.
-
-> don't think this is going to be the last HEVC decoder that needs some
-> non-standard setup that can't be trivially extracted from a standard
-> slice header parse. So if future decoders are going to have to generate
-> custom attributes to cope with their quirks then Hantro probably should
-> too. And if Hantro is common then the userspace progs will at least have
-> a framework for dealing with this sort of thing so when the next oddity
-> comes along.
-
-To add to this, when we moved it out of the decode_params, we were actually
-making it an example. We use large structure for the common stuff because is
-convenient, but with the current infrastructure, the cost of adding controls is
-rather low.
-
-So we need to think if we want to hide or highlight what looks like hardware
-design specific needs. There is nothing particularly wrong in the hardware, as
-Hantro traditionally parse a lot of the headers, but I suppose they don't really
-want to implement skip parsers because at some point the hardware becomes quite
-big and complex, skipping bits is just trivial.
-
-One thing I've been discussing with Benjamin yesterday is that while splitting,
-we also made the data exactly what the HW wants, which is a skip. A more
-reusable representation would have been to provide two offsets in the header.
-This way if another HW need a different skip, but with a different stop
-position, you can share the start position. Though, it's no longer a 1:1 match
-with how the HW is programmed, so not an easy call.
-
-As for having more quirks in more HW, the newer chips are designed with a
-constraints these days. As an example, you will notice that inside mpp (rockchip
-library) they use Microsoft DXVA parameters and use that as a contraint during
-the design. From comment Alex made around Mediatek, they actually used Google
-downstream Linux API as a constraint. As we do cover existing API like DXVA,
-NVDEC and VA as far as my review went. I don't really expect in fact newer
-design to require quirks/extensions so often, but making this one a split
-control would serve as an example how to keep things clear.
-
-Now, what I believe is missing in the story is a way for userspace to detect
-that extra (non standard) controls are needed. There might be other support
-decoder on the platform, or even a software decoder may be more suitable for the
-use cas then a corrupted output (which is what happens if you ignore the hantro
-control). So perhaps we should think of way to flag the requirement for some
-extra controls. Perhaps in the form of a bitmask of quirks, so the userspace can
-check early if it has the required implementation and fallback to something else
-if not.
-
-This is the type of API missing we have had in many other places in the fast, we
-did fix it after that fact, which was not ideal, but still acceptable. So I'm
-not like oh no, we screwed up the other stable API. But we have a use case here,
-perhaps we can learn from it ?
-
-p.s. I try to avoid extensions as this makes me think of the extra paremeters
-associates with the bitstream profile we may not support. We already provide
-list of support profiles, and have a good story, tested with stateful decoder on
-how to introduce new paremters along with new profiles.
-
-p.s. Notice that if we want to revive the VA driver (VA does not have this
-skip), we need to stop modifying the VA API, and just re-parse whatever is
-missing. Having a separate control can be used as a clear indication that double
-parsing is not needed for the specific implementation. Same would apply if some
-Wine folks want to emulate DXVA over V4L2 API (though unlikely as this is rarely
-seen on desktop).
+> On Thu, Apr 22, 2021 at 03:12:57PM +0530, Prasanna Vengateshan wrote:
+> > Support for VLAN add, del, prepare and filtering operations.
+> > 
+> > It aligns with latest update of removing switchdev
+> > transactional logic from VLAN objects
+> 
+> Maybe more in the commit message about what the patch does, as opposed
+> to mentioning that you had to rebase it, would be helpful.
+Sure.
 
 > 
-> Regards
-> 
-> John Cox
-> 
-> > Regards,
 > > 
-> > 	Hans
+> > Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+> > ---
+> >  drivers/net/dsa/microchip/lan937x_main.c | 214 +++++++++++++++++++++++
+> >  1 file changed, 214 insertions(+)
 > > 
-> > > 
-> > > 
-> > > Regards,
-> > > Benjamin
-> > > 
-> > > > 
-> > > > Regards,
-> > > > 
-> > > > 	Hans
-> > > > 
-> > > > > +
-> > > > > +.. note::
-> > > > > +
-> > > > > +        This control is not yet part of the public kernel API and
-> > > > > +        it is expected to change.
-> > > > > diff --git a/Documentation/userspace-api/media/drivers/index.rst
-> > > > > b/Documentation/userspace-api/media/drivers/index.rst
-> > > > > index 1a9038f5f9fa..12e3c512d718 100644
-> > > > > --- a/Documentation/userspace-api/media/drivers/index.rst
-> > > > > +++ b/Documentation/userspace-api/media/drivers/index.rst
-> > > > > @@ -33,6 +33,7 @@ For more details see the file COPYING in the source
-> > > > > distribution of Linux.
-> > > > >   
-> > > > >   	ccs
-> > > > >   	cx2341x-uapi
-> > > > > +        hantro
-> > > > >   	imx-uapi
-> > > > >   	max2175
-> > > > >   	meye-uapi
-> > > > > diff --git a/include/media/hevc-ctrls.h b/include/media/hevc-ctrls.h
-> > > > > index 8e0109eea454..b713eeed1915 100644
-> > > > > --- a/include/media/hevc-ctrls.h
-> > > > > +++ b/include/media/hevc-ctrls.h
-> > > > > @@ -224,4 +224,17 @@ struct v4l2_ctrl_hevc_decode_params {
-> > > > >   	__u64	flags;
-> > > > >   };
-> > > > >   
-> > > > > +/*  MPEG-class control IDs specific to the Hantro driver as defined
-> > > > > by V4L2 */
-> > > > > +#define
-> > > > > V4L2_CID_CODEC_HANTRO_BASE				(V4L2_CTRL_CLASS_CODEC | 0x1200)
-> > > > > +/*
-> > > > > + * V4L2_CID_HANTRO_HEVC_SLICE_HEADER_SKIP -
-> > > > > + * the number of data (in bits) to skip in the
-> > > > > + * slice segment header.
-> > > > > + * If non-IDR, the bits to be skipped go from syntax element
-> > > > > "pic_output_flag"
-> > > > > + * to before syntax element "slice_temporal_mvp_enabled_flag".
-> > > > > + * If IDR, the skipped bits are just "pic_output_flag"
-> > > > > + * (separate_colour_plane_flag is not supported).
-> > > > > + */
-> > > > > +#define
-> > > > > V4L2_CID_HANTRO_HEVC_SLICE_HEADER_SKIP	(V4L2_CID_CODEC_HANTRO_BASE + 0)
-> > > > > +
-> > > > >   #endif
-> > > > > 
-> > > > 
+> > diff --git a/drivers/net/dsa/microchip/lan937x_main.c
+> > b/drivers/net/dsa/microchip/lan937x_main.c
+> > index 7f6183dc0e31..35f3456c3506 100644
+> 
+> > +
+> > +             rc = lan937x_cfg(dev, REG_SW_LUE_CTRL_0, SW_VLAN_ENABLE,
+> > true);
+> 
+> How about this bit?
+
+> 
+> I see one bit is per port and the other is global.
+> Just FYI, you can have this configuration:
+> 
+> ip link add br0 type bridge vlan_filtering 0
+> ip link add br1 type bridge vlan_filtering 1
+> ip link set swp0 master br0
+> ip link set swp1 master br0
+> ip link set swp2 master br1
+> ip link set swp3 master br1
+> 
+> Do the swp0 and swp1 ports remain VLAN-unaware after you touch this
+> REG_SW_LUE_CTRL_0 bit?
+vlan aware is global, so ds->vlan_filtering_is_global needs to be true if VLAN
+aware is global, will fix this in the next version
+
+> 
+> > +     } else {
+> > +             rc = lan937x_cfg(dev, REG_SW_LUE_CTRL_0, SW_VLAN_ENABLE,
+> > false);
+> > +             if (rc < 0)
+> > +                     return rc;
+> > +
+> > +             rc = lan937x_port_cfg(dev, port, REG_PORT_LUE_CTRL,
+> > +                                   PORT_VLAN_LOOKUP_VID_0, false);
+> > +     }
+> > +
+> > +     return rc;
+> > +}
+> > +
+> > +static int lan937x_port_vlan_add(struct dsa_switch *ds, int port,
+> > +                              const struct switchdev_obj_port_vlan *vlan,
+> > +                              struct netlink_ext_ack *extack)
+> > +{
+> > +     bool untagged = vlan->flags & BRIDGE_VLAN_INFO_UNTAGGED;
+> > +     struct ksz_device *dev = ds->priv;
+> > +     u32 vlan_table[3];
+> 
+> Maybe a structure would be nicer to read than an u32 array?
+Okay, will make a structure.
+
+> 
+> > +     int rc;
+> > +
+> > +     rc = lan937x_get_vlan_table(dev, vlan->vid, vlan_table);
+> > +     if (rc < 0) {
+> > +             dev_err(dev->dev, "Failed to get vlan table\n");
+> 
+> One of the reasons for which the extack exists is so that you can report
+> errors to user space and not to the console.
+Sure, will add it for port_vlan_del() as well
+
+> 
+>                 NL_SET_ERR_MSG_MOD(extack, "Failed to get vlan table");
+> 
+> > +             return rc;
+> > +     }
+> > +
+> > +     vlan_table[0] = VLAN_VALID | (vlan->vid & VLAN_FID_M);
+> > +
+> > +     /* set/clear switch port when updating vlan table registers */
+> > +     if (untagged)
+> > +             vlan_table[1] |= BIT(port);
+> > +     else
+> > +             vlan_table[1] &= ~BIT(port);
+> > +     vlan_table[1] &= ~(BIT(dev->cpu_port));
+> > +
+> > +     vlan_table[2] |= BIT(port) | BIT(dev->cpu_port);
+> 
+> What's the business with the CPU port here? Does DSA not call
+> .port_vlan_add for the CPU port separately?
+Calls for CPU port as well. This is to be removed.
+
+> 
+> > +
+> > +     rc = lan937x_set_vlan_table(dev, vlan->vid, vlan_table);
+> > +     if (rc < 0) {
+> > +             dev_err(dev->dev, "Failed to set vlan table\n");
+> > +             return rc;
+> > +     }
+> > +
+> > +     /* change PVID */
+> > +     if (vlan->flags & BRIDGE_VLAN_INFO_PVID) {
+> > +             rc = lan937x_pwrite16(dev, port, REG_PORT_DEFAULT_VID, vlan-
+> > >vid);
+> > +
+> > +             if (rc < 0) {
+> > +                     dev_err(dev->dev, "Failed to set pvid\n");
+> > +                     return rc;
+> > +             }
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int lan937x_port_vlan_del(struct dsa_switch *ds, int port,
+> > +                              const struct switchdev_obj_port_vlan *vlan)
+> > +{
+> > +     bool untagged = vlan->flags & BRIDGE_VLAN_INFO_UNTAGGED;
+> > +     struct ksz_device *dev = ds->priv;
+> > +     u32 vlan_table[3];
+> > +     u16 pvid;
+> > +     int rc;
+> > +
+> > +     lan937x_pread16(dev, port, REG_PORT_DEFAULT_VID, &pvid);
+> > +     pvid &= 0xFFF;
+> > +
+> > +     rc = lan937x_get_vlan_table(dev, vlan->vid, vlan_table);
+> > +
+> > +     if (rc < 0) {
+> > +             dev_err(dev->dev, "Failed to get vlan table\n");
+> > +             return rc;
+> > +     }
+> > +     /* clear switch port number */
+> > +     vlan_table[2] &= ~BIT(port);
+> > +
+> > +     if (pvid == vlan->vid)
+> > +             pvid = 1;
+> 
+> According to Documentation/networking/switchdev.rst:
+> 
+> When the bridge has VLAN filtering enabled and a PVID is not configured on the
+> ingress port, untagged and 802.1p tagged packets must be dropped. When the
+> bridge
+> has VLAN filtering enabled and a PVID exists on the ingress port, untagged and
+> priority-tagged packets must be accepted and forwarded according to the
+> bridge's port membership of the PVID VLAN. When the bridge has VLAN filtering
+> disabled, the presence/lack of a PVID should not influence the packet
+> forwarding decision.
+> 
+> So please don't reset the pvid.
+Will remove it in the next rev.
+
+> 
+> > +
+> > +     if (untagged)
+> > +             vlan_table[1] &= ~BIT(port);
+> > +
+> > +     rc = lan937x_set_vlan_table(dev, vlan->vid, vlan_table);
+> > +     if (rc < 0) {
+> > +             dev_err(dev->dev, "Failed to set vlan table\n");
+> > +             return rc;
+> > +     }
+> > +
+> > +     rc = lan937x_pwrite16(dev, port, REG_PORT_DEFAULT_VID, pvid);
+> > +
+> > +     if (rc < 0) {
+> > +             dev_err(dev->dev, "Failed to set pvid\n");
+> > +             return rc;
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +
+> >  static u8 lan937x_get_fid(u16 vid)
+> >  {
+> >       if (vid > ALU_FID_SIZE)
+> > @@ -955,6 +1166,9 @@ const struct dsa_switch_ops lan937x_switch_ops = {
+> >       .port_bridge_flags      = lan937x_port_bridge_flags,
+> >       .port_stp_state_set     = lan937x_port_stp_state_set,
+> >       .port_fast_age          = ksz_port_fast_age,
+> > +     .port_vlan_filtering    = lan937x_port_vlan_filtering,
+> > +     .port_vlan_add          = lan937x_port_vlan_add,
+> > +     .port_vlan_del          = lan937x_port_vlan_del,
+> >       .port_fdb_dump          = lan937x_port_fdb_dump,
+> >       .port_fdb_add           = lan937x_port_fdb_add,
+> >       .port_fdb_del           = lan937x_port_fdb_del,
+> > --
+> > 2.27.0
+> > 
 
 
