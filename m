@@ -2,1029 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FCCF37545C
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 15:04:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7B57375479
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 15:11:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233273AbhEFNFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 09:05:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56266 "EHLO
+        id S229946AbhEFNMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 09:12:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233115AbhEFNFb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 09:05:31 -0400
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36E88C061574;
-        Thu,  6 May 2021 06:04:33 -0700 (PDT)
-Received: by mail-ot1-x329.google.com with SMTP id 65-20020a9d03470000b02902808b4aec6dso4780547otv.6;
-        Thu, 06 May 2021 06:04:33 -0700 (PDT)
+        with ESMTP id S231265AbhEFNM3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 09:12:29 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54792C061763
+        for <devicetree@vger.kernel.org>; Thu,  6 May 2021 06:11:31 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id l2so5556507wrm.9
+        for <devicetree@vger.kernel.org>; Thu, 06 May 2021 06:11:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=WEGH4MTbzyjlnbO2q1wmMyx1YnhDS2foSBOanTgWnnw=;
-        b=mBY9ox/WDA92PUToZyuFX54UQ/srx/8VgFdqKEbOo17aqC7u9BWpXw+SdG9B+se7H5
-         jDnJBOam8Ub2g8ObV+3y0nCnsQkYLnSTfLGKfTJ1SR/jXBM2s1JBE5urnxlbSmwfWBw0
-         59NfHJIYK/sTo6GK2k7JCdoP0F6VeDRq7zlPn/79JmQKACYm55tHXb2nsUlzKWyG7q8j
-         sncCX8YPH06usNdKlNWs7pGlSIVCMW0zaOKELw4RnQC27ylvSAKJe5CtYvcQYfnz0Nly
-         MQ4RH90Mn4eZS52K0oSS8I6L2W/Z2Eve8QXwaxnIaM9eNsPwiQDM09Z8/zNp13ZWrBNW
-         7S2Q==
+        d=kynesim-co-uk.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:references:in-reply-to
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=zLVLoCTZSwdGtIWCx1oxuHJ77KyosnHNt8+6TJIcliM=;
+        b=mwcIAoYD9bw60tZhtCdcXNldYBx2EearFFTehyAs9iqn222cg8NMecuNxW0fPkCh4f
+         5vItp1Rr75DpnXnO7H7tZcnrnWKua0e/wjVZD17WTc37h+vKMH2rICEDZkrzH6aBdRO/
+         tI6A70RsA9biUwMn5TLQNlPdPyIobZ/u5GciHqAblW9ly9CIow1Ie9sF8K2iruSkSXTX
+         CYij1rlm69oVBMeTn5LB7tKJAVVhwgyffHVaG8wXPLSJCpDbX2H9QGuZEDWHzbF2BsHi
+         ywcMrlGFk1CW/fMA2G1cwJYOSJ9nhtPqgn99ih8scAmYp80KM2+biCGzISJb3bEW4zyl
+         aqjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=WEGH4MTbzyjlnbO2q1wmMyx1YnhDS2foSBOanTgWnnw=;
-        b=QfWhJDcjUwb7qovOcN4gK4Ezi+X4rYn1NWX24hTV5ugENkxqIxrV6uAL2mznaXjNdY
-         rSelVbmSK+ZUFbo3L/pa3nA5vELaccmPkPeEGIo9b+RU2mlFIAJCiWxdwNLdd7jR85wY
-         bMwgWjjB8u+jX6FB1WVyqEqwlhm5SRR4BQjnYuy5OdrQWbAXhi3IgKYW2tPzN92YRR/H
-         4VueuALwU5lVm+aKYsSv6feTV0Xhp468/PQTzguv5qA29tTFUIhZx0zphvJTZJafgBbe
-         DGkvNLACegJzDSUXPF8wtEyIWefMSFOUpSi5oqVI84R2k6kR1cUFTOPTTgw0Td/rLQkw
-         GurQ==
-X-Gm-Message-State: AOAM5310JwDGQQenGIn1LTYLHx8qC55YTWuP/1XcwWlaGiYSoI9I+IPH
-        ZZlTupGffXhEpl/YcctDWvE=
-X-Google-Smtp-Source: ABdhPJyiU48WIe/LGp44tWUuCVFNRBhuWyYWoDbXrGeOyoVKVKpW9mHc80LpHNuIvAKEPJHzSImG0A==
-X-Received: by 2002:a05:6830:2086:: with SMTP id y6mr3472231otq.356.1620306272260;
-        Thu, 06 May 2021 06:04:32 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id c7sm483978oot.42.2021.05.06.06.04.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 May 2021 06:04:29 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Thu, 6 May 2021 06:04:27 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Campion Kang <campion.kang@advantech.com.tw>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Mark Gross <mgross@linux.intel.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
-        platform-driver-x86@vger.kernel.org,
-        AceLan Kao <chia-lin.kao@canonical.com>
-Subject: Re: [PATCH v7 7/7] hwmon: ahc1ec0-hwmon: Add sub-device HWMON for
- Advantech embedded controller
-Message-ID: <20210506130427.GA2252703@roeck-us.net>
-References: <20210506081619.2443-1-campion.kang@advantech.com.tw>
- <20210506081619.2443-7-campion.kang@advantech.com.tw>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:references
+         :in-reply-to:user-agent:mime-version:content-transfer-encoding;
+        bh=zLVLoCTZSwdGtIWCx1oxuHJ77KyosnHNt8+6TJIcliM=;
+        b=jKlLEdwhswjQrUkTOr+IMZJkoZ3mG5Bd3IFb39usPacKzcM5SECT+GWwYhoOTV50GN
+         ZWteOFIF2Ys7zbCWCdvj8bSdsnBem+YZm6rgqJv7zR0z5HHX9MhHNuigM31G6yeIDNLZ
+         V+miPN6zFDtqO91ViuoMNf4LifjxVQ4T2VdCth5fLEAJKHrpMfaFYjNEwET2XV6GhCjq
+         /Fzs+nOYrrm2wrJ3p/j8Kdfa2GbJD2jaSNnuk/8mZmn4wTDMXNcFXtNL5pNJT8p2y63R
+         b1797KfLeTYnYcRNd35HzSqnVIrVqIfGKVofFGyZVrJBIFmMxw863+sdnrian9B+QLSc
+         xvJQ==
+X-Gm-Message-State: AOAM531iWfTffhZx3NDZ5anrMOyyBQKvzobN0SloQ+tYz/Bu+yMCBvcq
+        jBA7QgQ4M6tll8To8iNwazjgmw==
+X-Google-Smtp-Source: ABdhPJy08fvoyofymLrgTx2HJxauv5qh8y5Pod7Fm4yzLYyhRzL+8NBXfEaygWMS1PPMEEwnRLiNCA==
+X-Received: by 2002:adf:fa50:: with SMTP id y16mr5231928wrr.63.1620306689920;
+        Thu, 06 May 2021 06:11:29 -0700 (PDT)
+Received: from CTHALPA.outer.uphall.net (cpc1-cmbg20-2-0-cust759.5-4.cable.virginm.net. [86.21.218.248])
+        by smtp.gmail.com with ESMTPSA id q12sm8757823wmj.7.2021.05.06.06.11.28
+        (version=TLS1 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
+        Thu, 06 May 2021 06:11:29 -0700 (PDT)
+From:   John Cox <jc@kynesim.co.uk>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        festevam@gmail.com, lee.jones@linaro.org,
+        gregkh@linuxfoundation.org, mripard@kernel.org,
+        paul.kocialkowski@bootlin.com, wens@csie.org,
+        jernej.skrabec@siol.net, emil.l.velikov@gmail.com,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
+        kernel@collabora.com, cphealy@gmail.com
+Subject: Re: [PATCH v10 6/9] media: uapi: Add a control for HANTRO driver
+Date:   Thu, 06 May 2021 14:11:28 +0100
+Message-ID: <n7q79gl86gvdo00sgsg1r5beittohsu4ta@4ax.com>
+References: <20210420121046.181889-1-benjamin.gaignard@collabora.com> <20210420121046.181889-7-benjamin.gaignard@collabora.com> <a7c9fe23-2900-ac90-7131-21380fbfc793@xs4all.nl> <1cf94540-7f4d-0179-dd1e-0b82ee30f6d2@collabora.com> <815a4bd6-599b-cfb8-9ddc-efa4b7092c23@xs4all.nl>
+In-Reply-To: <815a4bd6-599b-cfb8-9ddc-efa4b7092c23@xs4all.nl>
+User-Agent: ForteAgent/8.00.32.1272
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210506081619.2443-7-campion.kang@advantech.com.tw>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 06, 2021 at 04:16:19PM +0800, Campion Kang wrote:
-> This is one of sub-device driver for Advantech embedded controller
-> AHC1EC0. This driver provides sysfs ABI for Advantech related
-> applications to monitor the system status.
-> 
-> Changed in V7:
-> 	Fix the patch according to reviewer's comment:
-> 	- add new document Documentation/hwmon/ahc1ec0-hwmon.rst to describe
-> 	  the sensors attributes
-> 	- pass the checking by checkpatch --strict command
-> 	- remove unnecessary error checks
-> 	- check channel account, return 0 if the second sensor is not
-> 	  supported
-> 	- make current sensor alone, not in hwmon sensors array
-> 
-> Changed in V6:
-> 	- remove unnecessary header files
-> 	- Using [devm_]hwmon_device_register_with_info() to register
-> 	  HWMON driver based on reviewer's suggestion
-> 
-> Signed-off-by: Campion Kang <campion.kang@advantech.com.tw>
-> ---
->  Documentation/hwmon/ahc1ec0-hwmon.rst |  73 +++
->  drivers/hwmon/Kconfig                 |  10 +
->  drivers/hwmon/Makefile                |   1 +
->  drivers/hwmon/ahc1ec0-hwmon.c         | 701 ++++++++++++++++++++++++++
->  4 files changed, 785 insertions(+)
->  create mode 100644 Documentation/hwmon/ahc1ec0-hwmon.rst
->  create mode 100644 drivers/hwmon/ahc1ec0-hwmon.c
-> 
-> diff --git a/Documentation/hwmon/ahc1ec0-hwmon.rst b/Documentation/hwmon/ahc1ec0-hwmon.rst
-> new file mode 100644
-> index 000000000000..7fcfb8b025d9
-> --- /dev/null
-> +++ b/Documentation/hwmon/ahc1ec0-hwmon.rst
-> @@ -0,0 +1,73 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +Kernel driver ahc1ec0-hwmon
-> +=================================
-> +
-> +Supported chips:
-> +
-> + * Advantech AHC1 Embedded Controller Chip for Advantech Devices
-> +
-> +   Prefix: 'ahc1ec0-hwmon'
-> +
-> +   Datasheet: Datasheet is not publicly available.
-> +
-> +Author: Campion Kang <campion.kang@advantech.com.tw>
-> +
-> +
-> +Description
-> +-----------
-> +
-> +This driver adds the temperature, voltage, current support for the Advantech
-> +Devices with AHC1 Embedded Controller in Advantech IIoT Group.
-> +The AHC1EC0 firmware is responsible for sensor data sampling and recording in
-> +shared registers. The firmware is impleted by Advantech firmware team, it is
-> +a common design suitable for different hardware pins of Advantech devices.
-> +The host driver according to its hardware dynamic table and profile access its
-> +registers and exposes them to users as hwmon interfaces.
-> +
-> +The driver now is supports the AHC1EC0 for Advantech UNO, TPC series
-> +devices.
-> +
-> +Usage Notes
-> +-----------
-> +
-> +This driver will automatically probe and start via ahc1ec0 mfd driver
-> +according to the attributes in ACPI table or device tree. More detail settings
-> +you can refer the Documentation\devicetree\bindings\mfd\ahc1ec0.yaml.
-> +
-> +The ahc1ec0 driver will not probe automatic. You will have to instantiate
-> +devices explicitly. You can add it to /etc/modules.conf or insert module by
-> +the following command:
-> +
-> +	# insmod ahc1ec0
-> +
-> +
-> +Sysfs attributes
-> +----------------
-> +
-> +The following attributes are supported:
-> +
-> +- Advantech AHC1 Embedded Controller for Advantech UNO, TPC series:
-> +
-> +======================= =======================================================
-> +tempX_input             Temperature of the component (specified by tempX_label)
-> +tempX_crit              Temperature critical setpoint of the component
-> +temp1_label             "CPU Temp"
-> +temp2_label             "System Temp"
-> +
-> +inX_input               Measured voltage of the component (specified by
-> +                        inX_label and may different with devices)
-> +in0_label               "VBAT"
-> +in1_label               "5VSB"
-> +in2_label               "Vin"
-> +in3_label               "VCore"
-> +in4_label               "Vin1"
-> +in5_label               "Vin2"
-> +in6_label               "System Voltage"
-> +
-> +curr1_input             Measured current of Vin
-> +curr1_label             "Current"
-> +
-> +======================= =======================================================
-> +
-> +All the attributes are read-only.
-> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-> index 87624902ea80..242ea59e994b 100644
-> --- a/drivers/hwmon/Kconfig
-> +++ b/drivers/hwmon/Kconfig
-> @@ -2147,6 +2147,16 @@ config SENSORS_INTEL_M10_BMC_HWMON
->  	  sensors monitor various telemetry data of different components on the
->  	  card, e.g. board temperature, FPGA core temperature/voltage/current.
->  
-> +config SENSORS_AHC1EC0_HWMON
-> +	tristate "Advantech AHC1EC0 Hardware Monitor Function"
-> +	depends on MFD_AHC1EC0
-> +	help
-> +	  This driver provide support for the hardware monitoring functionality
-> +	  for Advantech AHC1EC0 embedded controller on the board.
-> +
-> +	  This driver provides the sysfs attributes for applications to monitor
-> +	  the system status, including system temperatures, voltages, current.
-> +
->  if ACPI
->  
->  comment "ACPI drivers"
-> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-> index 59e78bc212cf..2df3381bf124 100644
-> --- a/drivers/hwmon/Makefile
-> +++ b/drivers/hwmon/Makefile
-> @@ -44,6 +44,7 @@ obj-$(CONFIG_SENSORS_ADT7411)	+= adt7411.o
->  obj-$(CONFIG_SENSORS_ADT7462)	+= adt7462.o
->  obj-$(CONFIG_SENSORS_ADT7470)	+= adt7470.o
->  obj-$(CONFIG_SENSORS_ADT7475)	+= adt7475.o
-> +obj-$(CONFIG_SENSORS_AHC1EC0_HWMON) += ahc1ec0-hwmon.o
->  obj-$(CONFIG_SENSORS_AHT10)	+= aht10.o
->  obj-$(CONFIG_SENSORS_AMD_ENERGY) += amd_energy.o
->  obj-$(CONFIG_SENSORS_APPLESMC)	+= applesmc.o
-> diff --git a/drivers/hwmon/ahc1ec0-hwmon.c b/drivers/hwmon/ahc1ec0-hwmon.c
-> new file mode 100644
-> index 000000000000..5502e645048b
-> --- /dev/null
-> +++ b/drivers/hwmon/ahc1ec0-hwmon.c
-> @@ -0,0 +1,701 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
+>On 05/05/2021 17:20, Benjamin Gaignard wrote:
+>>=20
+>> Le 05/05/2021 =C3=A0 16:55, Hans Verkuil a =C3=A9crit=C2=A0:
+>>> On 20/04/2021 14:10, Benjamin Gaignard wrote:
+>>>> The HEVC HANTRO driver needs to know the number of bits to skip at
+>>>> the beginning of the slice header.
+>>>> That is a hardware specific requirement so create a dedicated =
+control
+>>>> for this purpose.
+>>>>
+>>>> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+>>>> ---
+>>>>   .../userspace-api/media/drivers/hantro.rst    | 19 =
++++++++++++++++++++
+>>>>   .../userspace-api/media/drivers/index.rst     |  1 +
+>>>>   include/media/hevc-ctrls.h                    | 13 +++++++++++++
+>>>>   3 files changed, 33 insertions(+)
+>>>>   create mode 100644 =
+Documentation/userspace-api/media/drivers/hantro.rst
+>>>>
+>>>> diff --git a/Documentation/userspace-api/media/drivers/hantro.rst =
+b/Documentation/userspace-api/media/drivers/hantro.rst
+>>>> new file mode 100644
+>>>> index 000000000000..cd9754b4e005
+>>>> --- /dev/null
+>>>> +++ b/Documentation/userspace-api/media/drivers/hantro.rst
+>>>> @@ -0,0 +1,19 @@
+>>>> +.. SPDX-License-Identifier: GPL-2.0
+>>>> +
+>>>> +Hantro video decoder driver
+>>>> =
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D
+>>>> +
+>>>> +The Hantro video decoder driver implements the following =
+driver-specific controls:
+>>>> +
+>>>> +``V4L2_CID_HANTRO_HEVC_SLICE_HEADER_SKIP (integer)``
+>>>> +    Specifies to Hantro HEVC video decoder driver the number of =
+data (in bits) to
+>>>> +    skip in the slice segment header.
+>>>> +    If non-IDR, the bits to be skipped go from syntax element =
+"pic_output_flag"
+>>>> +    to before syntax element "slice_temporal_mvp_enabled_flag".
+>>>> +    If IDR, the skipped bits are just "pic_output_flag"
+>>>> +    (separate_colour_plane_flag is not supported).
+>>> I'm not very keen on this. Without this information the video data =
+cannot be
+>>> decoded, or will it just be suboptimal?
+>>=20
+>> Without that information the video can't be decoded.
+>>=20
+>>>
+>>> The problem is that a generic decoder would have to know that the HW =
+is a hantro,
+>>> and then call this control. If they don't (and are testing on =
+non-hantro HW), then
+>>> it won't work, thus defeating the purpose of the HW independent =
+decoder API.
+>>>
+>>> Since hantro is widely used, and if there is no other way to do this =
+beside explitely
+>>> setting this control, then perhaps this should be part of the =
+standard HEVC API.
+>>> Non-hantro drivers that do not need this can just skip it.
+>>=20
+>> Even if I put this parameter in decode_params structure that would =
+means that a generic
+>> userland decoder will have to know how the compute this value for =
+hantro HW since it
+>> isn't something that could be done on kernel side.
+>
+>But since hantro is very common, any userland decoder will need to =
+calculate this anyway.
+>So perhaps it is better to have this as part of the decode_params?
+>
+>I'd like to know what others think about this.
 
-This does not match MODULE_LICENSE below.
+I don't know exactly what I think on this - its all a bit of a mess. I
+don't think this is going to be the last HEVC decoder that needs some
+non-standard setup that can't be trivially extracted from a standard
+slice header parse. So if future decoders are going to have to generate
+custom attributes to cope with their quirks then Hantro probably should
+too. And if Hantro is common then the userspace progs will at least have
+a framework for dealing with this sort of thing so when the next oddity
+comes along.
 
-> +/*
-> + * HWMON Driver for Advantech AHC1EC0 Embedded Controller
-> + *
-> + * Copyright 2021, Advantech IIoT Group
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/errno.h>
-> +#include <linux/hwmon-sysfs.h>
+Regards
 
-Unnecessary include.
+John Cox
 
-> +#include <linux/hwmon.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_data/ahc1ec0.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +#include <linux/string.h>
-> +#include <linux/types.h>
-> +
-> +#define EC_ACPI_THERMAL1_LOCAL_TEMP	0x60
-> +#define EC_ACPI_THERMAL1_REMOTE_TEMP	0x61
-> +
-> +struct ec_hwmon_attrs {
-> +	const char		*name;
-> +	umode_t			mode;
-> +	int (*read)(struct device *dev, long *val);
-> +};
-> +
-> +struct adv_hwmon_profile {
-> +	int offset;
-> +	unsigned long resolution, resolution_vin, resolution_sys, resolution_curr, resolution_power;
-> +	unsigned long r1, r1_vin, r1_sys, r1_curr, r1_power;
-> +	unsigned long r2, r2_vin, r2_sys, r2_curr, r2_power;
-> +	int hwmon_in_list_cnt;
-> +	int curr_list_cnt;
-> +	int temp_list_cnt;
-> +	int *hwmon_in_list;
-> +	int *curr_list;
-> +	int *temp_list;
-> +};
-> +
-> +struct ec_hwmon_data {
-> +	struct device *dev;
-
-Unnecessary.
-
-> +	struct device *hwmon_dev;
-
-Unnecessary.
-
-> +	struct adv_ec_ddata *ddata;
-> +	unsigned long temperature[3];
-
-Unused.
-
-> +	unsigned long ec_current[5];
-
-ec_current[0] and ec_current[1] are profile variables, ec_current[3]
-is written to but never read, the others are unused.
-
-> +	unsigned long power[5];
-
-Not used at all.
-
-> +	unsigned long voltage[7];
-
-Unnecessary array.
-
-> +
-> +	struct ec_hw_pin_table pin_tbl;
-
-I don't see this structure used in any other driver but here.
-Please declare it here.
-
-> +	struct ec_smbuso_em0 ec_smboem0;
-
-This is only written to and does not appear to be used.
-
-> +	struct adv_hwmon_profile *profile;
-> +};
-> +
-> +enum ec_hwmon_in_type {
-> +	EC_HWMON_IN_VBAT,
-> +	EC_HWMON_IN_5VSB,
-> +	EC_HWMON_IN_12V,
-> +	EC_HWMON_IN_VCORE,
-> +	EC_HWMON_IN_VIN1,
-> +	EC_HWMON_IN_VIN2,
-> +	EC_HWMON_IN_SYS_VOL,
-> +};
-
-Some of the above values do not appear to be used anywhere.
-
-> +
-> +enum ec_curr_type {
-> +	EC_VIN_CURRENT,
-> +};
-> +
-> +enum ec_temp_type {
-> +	EC_TEMP_CPU,
-> +	EC_TEMP_SYS,
-> +};
-> +
-> +static int hwmon_in_list_0[] = {
-> +	EC_HWMON_IN_VBAT,
-> +	EC_HWMON_IN_5VSB,
-> +	EC_HWMON_IN_12V,
-> +	EC_HWMON_IN_VCORE,
-> +};
-> +
-> +static int hwmon_in_list_1[] = {
-> +	EC_HWMON_IN_VBAT,
-> +	EC_HWMON_IN_5VSB,
-> +	EC_HWMON_IN_12V,
-> +	EC_HWMON_IN_VCORE,
-> +};
-> +
-> +static int curr_list_0[] = {
-> +	EC_VIN_CURRENT,
-> +};
-> +
-> +static int temp_list_0[] = {
-> +	EC_TEMP_CPU,
-> +};
-> +
-> +static int temp_list_1[] = {
-> +	EC_TEMP_CPU,
-> +	EC_TEMP_SYS,
-> +};
-> +
-> +static struct adv_hwmon_profile advec_profile[] = {
-> +	/* [0] AHC1EC0_HWMON_PRO_TEMPLATE
-> +	 * The following Advantech hardware devices are for this configuration:
-> +	 *		TPC-8100TR, TPC-651T-E3AE, TPC-1251T-E3AE, TPC-1551T-E3AE,
-> +	 *		TPC-1751T-E3AE, TPC-1051WP-E3AE, TPC-1551WP-E3AE, TPC-1581WP-433AE,
-> +	 *		TPC-1782H-433AE, UNO-1483G-434AE, UNO-2483G-434AE, UNO-3483G-374AE,
-> +	 *		UNO-2473G, UNO-2484G-6???AE, UNO-2484G-7???AE, UNO-3283G-674AE,
-> +	 *		UNO-3285G-674AE
-> +	 */
-
-/*
- * This is not the networking subsystem.
- * Please use standfard multi-line comments.
- */
-
-> +	{
-> +		.resolution = 2929,
-> +		.r1 = 1912,
-> +		.r2 = 1000,
-> +		.offset = 0,
-> +		.hwmon_in_list_cnt = ARRAY_SIZE(hwmon_in_list_0),
-> +		.hwmon_in_list = hwmon_in_list_0,
-> +		.temp_list_cnt = ARRAY_SIZE(temp_list_0),
-> +		.temp_list = temp_list_0,
-> +		.curr_list_cnt = ARRAY_SIZE(curr_list_0),
-> +		.curr_list = curr_list_0,
-> +	},
-> +	/* [1] AHC1EC0_HWMON_PRO_TPC5XXX
-> +	 * The following Advantech hardware devices are for 2nd configuration:
-> +	 *		TPC-B500-6??AE, TPC-5???T-6??AE, TPC-5???W-6??AE, TPC-B200-???AE,
-> +	 *		TPC-2???T-???AE, TPC-2???W-???AE
-> +	 */
-> +	{
-> +		.resolution = 2929,
-> +		.r1 = 1912,
-> +		.r2 = 1000,
-> +		.offset = 0,
-> +		.hwmon_in_list_cnt = ARRAY_SIZE(hwmon_in_list_1),
-> +		.hwmon_in_list = hwmon_in_list_1,
-> +		.temp_list_cnt = ARRAY_SIZE(temp_list_0),
-> +		.temp_list = temp_list_0,
-> +		.curr_list_cnt = 0,
-> +	},
-> +	/* [2] AHC1EC0_HWMON_PRO_PRVR4
-> +	 * The PR/VR4 devices are this configuration.
-> +	 */
-> +	{
-> +		.resolution = 2929,
-> +		.r1 = 1912,
-> +		.r2 = 1000,
-> +		.offset = 0,
-> +		.hwmon_in_list_cnt = ARRAY_SIZE(hwmon_in_list_1),
-> +		.hwmon_in_list = hwmon_in_list_1,
-> +		.temp_list_cnt = ARRAY_SIZE(temp_list_1),
-> +		.temp_list = temp_list_1,
-> +		.curr_list_cnt = 0,
-> +	},
-> +	/* [3] AHC1EC0_HWMON_PRO_UNO2271G
-> +	 * The following Advantech hardware devices are using this configuration:
-> +	 *     UNO-2271G-E22AE/E23AE/E022AE/E023AE series and UNO-420 devices
-> +	 */
-> +	{
-> +		.resolution = 2929,
-> +		.r1 = 1912,
-> +		.r2 = 1000,
-> +		.offset = 0,
-> +		.hwmon_in_list_cnt = ARRAY_SIZE(hwmon_in_list_1),
-> +		.hwmon_in_list = hwmon_in_list_1,
-> +		.temp_list_cnt = ARRAY_SIZE(temp_list_0),
-> +		.temp_list = temp_list_0,
-> +		.curr_list_cnt = 0,
-
-0 initializers are unnecessary.
-
-> +	},
-> +};
-> +
-> +static void adv_ec_init_hwmon_profile(u32 profile, struct ec_hwmon_data *lmsensor_data)
-> +{
-> +	int i;
-> +	struct ec_hw_pin_table *ptbl = &lmsensor_data->pin_tbl;
-> +	struct adv_ec_ddata *ddata = lmsensor_data->ddata;
-> +	struct ec_dynamic_table *dym_tbl = ddata->dym_tbl;
-> +
-> +	lmsensor_data->profile = &advec_profile[profile];
-> +
-> +	for (i = 0; i < EC_MAX_TBL_NUM ; i++) {
-> +		switch (dym_tbl[i].device_id) {
-> +		case EC_DID_CMOSBAT:
-> +			ptbl->vbat[0] = dym_tbl[i].hw_pin_num;
-> +			ptbl->vbat[1] = 1;
-> +			break;
-> +		case EC_DID_CMOSBAT_X2:
-> +			ptbl->vbat[0] = dym_tbl[i].hw_pin_num;
-> +			ptbl->vbat[1] = 2;
-> +			break;
-> +		case EC_DID_CMOSBAT_X10:
-> +			ptbl->vbat[0] = dym_tbl[i].hw_pin_num;
-> +			ptbl->vbat[1] = 10;
-> +			break;
-> +		case EC_DID_5VS0:
-> +		case EC_DID_5VS5:
-> +			ptbl->v5[0] = dym_tbl[i].hw_pin_num;
-> +			ptbl->v5[1] = 1;
-> +			break;
-> +		case EC_DID_5VS0_X2:
-> +		case EC_DID_5VS5_X2:
-> +			ptbl->v5[0] = dym_tbl[i].hw_pin_num;
-> +			ptbl->v5[1] = 2;
-> +			break;
-> +		case EC_DID_5VS0_X10:
-> +		case EC_DID_5VS5_X10:
-> +			ptbl->v5[0] = dym_tbl[i].hw_pin_num;
-> +			ptbl->v5[1] = 10;
-> +			break;
-> +		case EC_DID_12VS0:
-> +			ptbl->v12[0] = dym_tbl[i].hw_pin_num;
-> +			ptbl->v12[1] = 1;
-> +			break;
-> +		case EC_DID_12VS0_X2:
-> +			ptbl->v12[0] = dym_tbl[i].hw_pin_num;
-> +			ptbl->v12[1] = 2;
-> +			break;
-> +		case EC_DID_12VS0_X10:
-> +			ptbl->v12[0] = dym_tbl[i].hw_pin_num;
-> +			ptbl->v12[1] = 10;
-> +			break;
-> +		case EC_DID_VCOREA:
-> +		case EC_DID_VCOREB:
-> +			ptbl->vcore[0] = dym_tbl[i].hw_pin_num;
-> +			ptbl->vcore[1] = 1;
-> +			break;
-> +		case EC_DID_VCOREA_X2:
-> +		case EC_DID_VCOREB_X2:
-> +			ptbl->vcore[0] = dym_tbl[i].hw_pin_num;
-> +			ptbl->vcore[1] = 2;
-> +			break;
-> +		case EC_DID_VCOREA_X10:
-> +		case EC_DID_VCOREB_X10:
-> +			ptbl->vcore[0] = dym_tbl[i].hw_pin_num;
-> +			ptbl->vcore[1] = 10;
-> +			break;
-> +		case EC_DID_DC:
-> +			ptbl->vdc[0] = dym_tbl[i].hw_pin_num;
-> +			ptbl->vdc[1] = 1;
-> +			break;
-> +		case EC_DID_DC_X2:
-> +			ptbl->vdc[0] = dym_tbl[i].hw_pin_num;
-> +			ptbl->vdc[1] = 2;
-> +			break;
-> +		case EC_DID_DC_X10:
-> +			ptbl->vdc[0] = dym_tbl[i].hw_pin_num;
-> +			ptbl->vdc[1] = 10;
-> +			break;
-> +		case EC_DID_CURRENT:
-> +			ptbl->ec_current[0] = dym_tbl[i].hw_pin_num;
-> +			ptbl->ec_current[1] = 1;
-> +			break;
-> +		case EC_DID_SMBOEM0:
-> +			lmsensor_data->ec_smboem0.hw_pin_num = dym_tbl[i].hw_pin_num;
-> +			break;
-> +		default:
-> +			break;
-> +		}
-> +	}
-> +}
-> +
-> +static int get_ec_in_vbat_input(struct device *dev, long *val)
-> +{
-> +	unsigned int temp = 0;
-
-Unnecessary initialization.
-
-> +	unsigned long voltage = 0;
-> +	struct ec_hwmon_data *lmsensor_data = dev_get_drvdata(dev);
-> +	struct ec_hw_pin_table *ptbl = &lmsensor_data->pin_tbl;
-> +	struct adv_hwmon_profile *profile = lmsensor_data->profile;
-> +	struct adv_ec_ddata *ddata = lmsensor_data->ddata;
-> +
-> +	temp = ahc1ec_read_adc_value(ddata, ptbl->vbat[0], ptbl->vbat[1]);
-> +
-> +	if (profile->r2 != 0)
-> +		voltage = temp * (profile->r1 + profile->r2) / profile->r2;
-
-r2 is always != 0.
-
-> +
-> +	if (profile->resolution != 0)
-> +		voltage =  temp * profile->resolution / 1000 / 1000;
-> +
-> +	if (profile->offset != 0)
-> +		voltage += (int)profile->offset * 100;
-> +
-> +	lmsensor_data->voltage[0] = 10 * voltage;
-
-This results in unnecessary loss of resolution. Please fix the calculations
-to avoid it.
-
-> +
-> +	*val = lmsensor_data->voltage[0];
-> +	return 0;
-> +}
-> +
-> +static int get_ec_in_v5_input(struct device *dev, long *val)
-> +{
-> +	unsigned int temp;
-> +	unsigned long voltage = 0;
-> +	struct ec_hwmon_data *lmsensor_data = dev_get_drvdata(dev);
-> +	struct ec_hw_pin_table *ptbl = &lmsensor_data->pin_tbl;
-> +	struct adv_hwmon_profile *profile = lmsensor_data->profile;
-> +	struct adv_ec_ddata *ddata = lmsensor_data->ddata;
-> +
-> +	temp = ahc1ec_read_adc_value(ddata, ptbl->v5[0], ptbl->v5[1]);
-> +
-> +	if (profile->r2 != 0)
-> +		voltage = temp * (profile->r1 + profile->r2) / profile->r2;
-
-r2 is always != 0.
-
-> +
-> +	if (profile->resolution != 0)
-> +		voltage =  temp * profile->resolution / 1000 / 1000;
-> +
-> +	if (profile->offset != 0)
-> +		voltage += (int)profile->offset * 100;
-> +
-> +	lmsensor_data->voltage[1] = 10 * voltage;
-> +
-> +	*val = lmsensor_data->voltage[1];
-> +	return 0;
-> +}
-
-All those read functions pretty much repeat the same code.
-Please add a helper function which does all the common stuff.
-
-> +
-> +static int get_ec_in_v12_input(struct device *dev, long *val)
-> +{
-> +	int temp;
-> +	unsigned long voltage = 0;
-> +	struct ec_hwmon_data *lmsensor_data = dev_get_drvdata(dev);
-> +	struct ec_hw_pin_table *ptbl = &lmsensor_data->pin_tbl;
-> +	struct adv_hwmon_profile *profile = lmsensor_data->profile;
-> +	struct adv_ec_ddata *ddata = lmsensor_data->ddata;
-> +
-> +	temp = ahc1ec_read_adc_value(ddata, ptbl->v12[0], ptbl->v12[1]);
-> +	if (temp == -1)
-> +		temp = ahc1ec_read_adc_value(ddata, ptbl->vdc[0], ptbl->vdc[1]);
-> +
-> +	if (profile->r2 != 0)
-> +		voltage = temp * (profile->r1 + profile->r2) / profile->r2;
-> +
-Same everywhere.
-
-> +	if (profile->resolution != 0)
-> +		voltage =  temp * profile->resolution / 1000 / 1000;
-> +
-> +	if (profile->offset != 0)
-> +		voltage += profile->offset * 100;
-> +
-> +	lmsensor_data->voltage[2] = 10 * voltage;
-> +
-> +	*val = lmsensor_data->voltage[2];
-> +	return 0;
-> +}
-> +
-> +static int get_ec_in_vcore_input(struct device *dev, long *val)
-> +{
-> +	int temp;
-> +	unsigned int voltage = 0;
-> +	struct ec_hwmon_data *lmsensor_data = dev_get_drvdata(dev);
-> +	struct ec_hw_pin_table *ptbl = &lmsensor_data->pin_tbl;
-> +	struct adv_hwmon_profile *profile = lmsensor_data->profile;
-> +	struct adv_ec_ddata *ddata = lmsensor_data->ddata;
-> +
-> +	temp = ahc1ec_read_adc_value(ddata, ptbl->vcore[0], ptbl->vcore[1]);
-> +
-> +	if (profile->r2 != 0)
-> +		voltage = temp * (profile->r1 + profile->r2) / profile->r2;
-> +
-> +	if (profile->resolution != 0)
-> +		voltage = temp * profile->resolution / 1000 / 1000;
-> +
-> +	if (profile->offset != 0)
-> +		voltage += profile->offset * 100;
-> +
-> +	lmsensor_data->voltage[3] = 10 * voltage;
-> +
-> +	*val = lmsensor_data->voltage[3];
-> +	return 0;
-> +}
-> +
-> +static int get_ec_current1_input(struct device *dev, long *val)
-> +{
-> +	int temp;
-> +	struct ec_hwmon_data *lmsensor_data = dev_get_drvdata(dev);
-> +	struct ec_hw_pin_table *ptbl = &lmsensor_data->pin_tbl;
-> +	struct adv_hwmon_profile *profile = lmsensor_data->profile;
-> +	struct adv_ec_ddata *ddata = lmsensor_data->ddata;
-> +
-> +	temp = ahc1ec_read_adc_value(ddata, ptbl->ec_current[0], ptbl->ec_current[1]);
-
-This function returns a negative error code which needs to be checked.
-
-> +
-> +	if (profile->r2 != 0)
-> +		temp = temp * (profile->r1 + profile->r2) / profile->r2;
-> +
-> +	if (profile->resolution != 0)
-> +		temp = temp * profile->resolution / 1000 / 1000;
-> +
-> +	if (profile->offset != 0)
-> +		temp += profile->offset * 100;
-> +
-> +	lmsensor_data->ec_current[3] = 10 * temp;
-> +
-> +	*val = lmsensor_data->ec_current[3];
-> +	return 0;
-> +}
-> +
-> +static int get_ec_cpu_temp(struct device *dev, long *val)
-> +{
-> +	int ret;
-> +	unsigned char value;
-> +	struct ec_hwmon_data *lmsensor_data = dev_get_drvdata(dev);
-> +	struct adv_ec_ddata *ddata = lmsensor_data->ddata;
-> +
-> +	ret = ahc1ec_read_acpi_value(ddata, EC_ACPI_THERMAL1_REMOTE_TEMP, &value);
-> +	if (!ret)
-> +		*val = 1000 * value;
-> +	return ret;
-> +}
-> +
-> +static int get_ec_sys_temp(struct device *dev, long *val)
-> +{
-> +	int ret;
-> +	unsigned char value;
-> +	struct ec_hwmon_data *lmsensor_data = dev_get_drvdata(dev);
-> +	struct adv_ec_ddata *ddata = lmsensor_data->ddata;
-> +
-> +	ret = ahc1ec_read_acpi_value(ddata, EC_ACPI_THERMAL1_LOCAL_TEMP, &value);
-
-This function could return both the error code and the value without extra
-pointer to the result.
-
-> +	if (!ret)
-> +		*val = 1000 * value;
-> +	return ret;
-
-This should be
-	if (ret)
-		return ret;
-	*val = ...
-	return 0;
-
-> +}
-
-Those two functions can be simplified into one with the sensor
-as additional parameter.
-
-> +
-> +const struct ec_hwmon_attrs ec_hwmon_in_attr_template[] = {
-> +	{"VBAT",	0444, get_ec_in_vbat_input},
-> +	{"5VSB",	0444, get_ec_in_v5_input},
-> +	{"Vin",		0444, get_ec_in_v12_input},
-> +	{"VCORE",	0444, get_ec_in_vcore_input},
-> +	{"Vin1",	0444, NULL},
-> +	{"Vin2",	0444, NULL},
-> +	{"System Voltage", 0444, NULL},
-
-What is the point of above three entries ?
-
-> +	{"Current",	0444, get_ec_current1_input},
-> +};
-> +
-> +const struct ec_hwmon_attrs ec_curr_attr_template[] = {
-> +	{"Current",	0444, get_ec_current1_input},
-> +};
-> +
-> +const struct ec_hwmon_attrs ec_temp_attrs_template[] = {
-> +	{"CPU Temp",	0444, get_ec_cpu_temp},
-> +	{"System Temp",	0444, get_ec_sys_temp},
-> +};
-> +
-> +static int ahc1ec0_read_in(struct device *dev, u32 attr, int channel, long *val)
-> +{
-> +	struct ec_hwmon_data *lmsensor_data = dev_get_drvdata(dev);
-> +
-> +	if (attr == hwmon_in_input) {
-> +		int index = lmsensor_data->profile->hwmon_in_list[channel];
-> +		const struct ec_hwmon_attrs *ec_hwmon_attr = &ec_hwmon_in_attr_template[index];
-> +
-> +		return ec_hwmon_attr->read(dev, val);
-> +	}
-
-There is only one attribute, so the if check is really unnecessary.
-
-This entire code could be rearranged to not require the additional
-indirect read function, by providing appropriate parameters to a single
-function. This would reduce code size significantly. Please do that.
-
-> +
-> +	return -EOPNOTSUPP;
-> +}
-> +
-> +static int ahc1ec0_read_curr(struct device *dev, u32 attr, int channel, long *val)
-> +{
-> +	struct ec_hwmon_data *lmsensor_data = dev_get_drvdata(dev);
-> +
-> +	if (attr == hwmon_curr_input) {
-> +		int index = lmsensor_data->profile->curr_list[channel];
-> +		const struct ec_hwmon_attrs *ec_hwmon_attr = &ec_curr_attr_template[index];
-> +
-> +		return ec_hwmon_attr->read(dev, val);
-> +	}
-> +
-> +	return -EOPNOTSUPP;
-> +}
-> +
-> +static int ahc1ec0_read_temp(struct device *dev, u32 attr, int channel, long *val)
-> +{
-> +	struct ec_hwmon_data *lmsensor_data = dev_get_drvdata(dev);
-> +
-> +	switch (attr) {
-> +	case hwmon_temp_input: {
-> +		int index = lmsensor_data->profile->temp_list[channel];
-> +		const struct ec_hwmon_attrs *devec_hwmon_attr =
-> +			&ec_temp_attrs_template[index];
-> +
-> +		return devec_hwmon_attr->read(dev, val);
-> +	}
-> +	case hwmon_temp_crit:
-> +		/* both CPU temp and System temp are all this value */
-> +		*val = 100000;
-> +		return 0;
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
-> +static int ahc1ec0_read_string(struct device *dev, enum hwmon_sensor_types type,
-> +			       u32 attr, int channel, const char **str)
-> +{
-> +	struct ec_hwmon_data *lmsensor_data = dev_get_drvdata(dev);
-> +
-> +	if (type == hwmon_in && attr == hwmon_in_label) {
-> +		int index = lmsensor_data->profile->hwmon_in_list[channel];
-> +		const struct ec_hwmon_attrs *ec_hwmon_attr = &ec_hwmon_in_attr_template[index];
-> +
-> +		*str = ec_hwmon_attr->name;
-> +		return 0;
-> +	}
-> +
-> +	if (type == hwmon_curr && attr == hwmon_curr_label) {
-> +		int index = lmsensor_data->profile->curr_list[channel];
-> +		const struct ec_hwmon_attrs *ec_hwmon_attr = &ec_curr_attr_template[index];
-> +
-> +		*str = ec_hwmon_attr->name;
-> +		return 0;
-> +	}
-> +
-> +	if (type == hwmon_temp && attr == hwmon_temp_label) {
-> +		int index = lmsensor_data->profile->temp_list[channel];
-> +		const struct ec_hwmon_attrs *ec_hwmon_attr = &ec_temp_attrs_template[index];
-> +
-> +		*str = ec_hwmon_attr->name;
-> +		return 0;
-> +	}
-> +
-> +	return -EOPNOTSUPP;
-> +}
-> +
-> +static int ahc1ec0_read(struct device *dev, enum hwmon_sensor_types type,
-> +			u32 attr, int channel, long *val)
-> +{
-> +	switch (type) {
-> +	case hwmon_in:
-> +		return ahc1ec0_read_in(dev, attr, channel, val);
-> +	case hwmon_curr:
-> +		return ahc1ec0_read_curr(dev, attr, channel, val);
-> +	case hwmon_temp:
-> +		return ahc1ec0_read_temp(dev, attr, channel, val);
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
-> +static umode_t ec_hwmon_in_visible(const void *data, u32 attr, int channel)
-> +{
-> +	struct ec_hwmon_data *lmsensor_data = (struct ec_hwmon_data *)data;
-> +
-> +	switch (attr) {
-> +	case hwmon_in_input:
-> +	case hwmon_in_label:
-> +		if (lmsensor_data->profile->hwmon_in_list_cnt > channel)
-
-This is confusing. Please use
-		if (channel < ...)
-
-> +			return 0444;
-> +		else
-> +			return 0;
-> +	default:
-> +		return 0;
-> +	}
-> +}
-> +
-> +static umode_t ec_curr_visible(const void *data, u32 attr, int channel)
-> +{
-> +	struct ec_hwmon_data *lmsensor_data = (struct ec_hwmon_data *)data;
-> +
-> +	switch (attr) {
-> +	case hwmon_curr_input:
-> +	case hwmon_curr_label:
-> +		if (lmsensor_data->profile->curr_list_cnt > channel)
-> +			return 0444;
-> +		else
-> +			return 0;
-> +	default:
-> +		return 0;
-> +	}
-> +}
-> +
-> +static umode_t ec_temp_visible(const void *data, u32 attr, int channel)
-> +{
-> +	struct ec_hwmon_data *lmsensor_data = (struct ec_hwmon_data *)data;
-> +
-> +	switch (attr) {
-> +	case hwmon_temp_input:
-> +	case hwmon_temp_crit:
-> +	case hwmon_temp_label:
-> +		if (lmsensor_data->profile->temp_list_cnt > channel)
-> +			return 0444;
-> +		else
-> +			return 0;
-> +	default:
-> +		return 0;
-> +	}
-> +}
-> +
-> +static umode_t ahc1ec0_is_visible(const void *data, enum hwmon_sensor_types type,
-> +				  u32 attr, int channel)
-> +{
-> +	switch (type) {
-> +	case hwmon_in:
-> +		return ec_hwmon_in_visible(data, attr, channel);
-> +	case hwmon_curr:
-> +		return ec_curr_visible(data, attr, channel);
-> +	case hwmon_temp:
-> +		return ec_temp_visible(data, attr, channel);
-> +	default:
-> +		return 0;
-> +	}
-> +}
-> +
-> +static const u32 ahc1ec0_in_config[] = {
-> +	HWMON_I_INPUT | HWMON_I_LABEL,
-> +	HWMON_I_INPUT | HWMON_I_LABEL,
-> +	HWMON_I_INPUT | HWMON_I_LABEL,
-> +	HWMON_I_INPUT | HWMON_I_LABEL,
-> +	0
-> +};
-> +
-> +static const struct hwmon_channel_info ahc1ec0_in = {
-> +	.type = hwmon_in,
-> +	.config = ahc1ec0_in_config,
-> +};
-> +
-> +static const u32 ahc1ec0_curr_config[] = {
-> +	HWMON_C_INPUT | HWMON_C_LABEL,
-> +	0
-> +};
-> +
-> +static const struct hwmon_channel_info ahc1ec0_curr = {
-> +	.type = hwmon_curr,
-> +	.config = ahc1ec0_curr_config,
-> +};
-> +
-> +static const u32 ahc1ec0_temp_config[] = {
-> +	HWMON_T_INPUT | HWMON_T_CRIT | HWMON_T_LABEL,
-> +	HWMON_T_INPUT | HWMON_T_CRIT | HWMON_T_LABEL,
-> +	0
-> +};
-> +
-> +static const struct hwmon_channel_info ahc1ec0_temp = {
-> +	.type = hwmon_temp,
-> +	.config = ahc1ec0_temp_config,
-> +};
-> +
-> +static const struct hwmon_channel_info *ahc1ec0_info[] = {
-> +	&ahc1ec0_in,
-> +	&ahc1ec0_curr,
-> +	&ahc1ec0_temp,
-> +	NULL
-> +};
-
-All the above can be simplified by using the HWMON_CHANNEL_INFO()
-macro.
-
-> +
-> +static const struct hwmon_ops ahc1ec0_hwmon_ops = {
-> +	.is_visible = ahc1ec0_is_visible,
-> +	.read = ahc1ec0_read,
-> +	.read_string = ahc1ec0_read_string,
-> +};
-> +
-> +static const struct hwmon_chip_info ahc1ec0_chip_info = {
-> +	.ops = &ahc1ec0_hwmon_ops,
-> +	.info = ahc1ec0_info,
-> +};
-> +
-> +static int adv_ec_hwmon_probe(struct platform_device *pdev)
-> +{
-> +	int ret;
-> +	u32 profile;
-> +	struct device *dev = &pdev->dev;
-> +	struct adv_ec_ddata *ddata;
-> +	struct ec_hwmon_data *lmsensor_data;
-> +
-> +	ddata = dev_get_drvdata(dev->parent);
-> +	if (!ddata)
-> +		return -EINVAL;
-> +
-> +	ret = device_property_read_u32(dev->parent, "advantech,hwmon-profile", &profile);
-> +	if (ret < 0) {
-> +		dev_dbg(dev, "get hwmon-profile failed! (%d)", ret);
-> +		return ret;
-> +	}
-> +
-> +	if (profile >= ARRAY_SIZE(advec_profile)) {
-> +		dev_dbg(dev, "not support hwmon profile(%d)!\n", profile);
-
-s/not support/unsupported/
-
-> +		return -EINVAL;
-> +	}
-> +
-> +	lmsensor_data = devm_kzalloc(dev, sizeof(*lmsensor_data), GFP_KERNEL);
-> +	if (!lmsensor_data)
-> +		return -ENOMEM;
-> +
-> +	lmsensor_data->ddata = ddata;
-> +	lmsensor_data->dev = dev;
-> +	dev_set_drvdata(dev, lmsensor_data);
-> +
-> +	adv_ec_init_hwmon_profile(profile, lmsensor_data);
-> +
-> +	lmsensor_data->hwmon_dev  =
-> +		devm_hwmon_device_register_with_info(dev, "ahc1ec0.hwmon", lmsensor_data,
-> +						     &ahc1ec0_chip_info, NULL);
-> +
-> +	return PTR_ERR_OR_ZERO(lmsensor_data->hwmon_dev);
-> +}
-> +
-> +static struct platform_driver adv_hwmon_drv = {
-> +	.driver = {
-> +		.name = "ahc1ec0-hwmon",
-> +	},
-> +	.probe = adv_ec_hwmon_probe,
-> +};
-> +module_platform_driver(adv_hwmon_drv);
-> +
-> +MODULE_LICENSE("Dual BSD/GPL");
-> +MODULE_ALIAS("platform:ahc1ec0-hwmon");
-> +MODULE_DESCRIPTION("Advantech Embedded Controller HWMON Driver.");
-> +MODULE_AUTHOR("Campion Kang <campion.kang@advantech.com.tw>");
-> +MODULE_AUTHOR("Jianfeng Dai <jianfeng.dai@advantech.com.cn>");
-> +MODULE_VERSION("1.0");
-> -- 
-> 2.17.1
-> 
+>Regards,
+>
+>	Hans
+>
+>>=20
+>>=20
+>> Regards,
+>> Benjamin
+>>=20
+>>>
+>>> Regards,
+>>>
+>>> 	Hans
+>>>
+>>>> +
+>>>> +.. note::
+>>>> +
+>>>> +        This control is not yet part of the public kernel API and
+>>>> +        it is expected to change.
+>>>> diff --git a/Documentation/userspace-api/media/drivers/index.rst =
+b/Documentation/userspace-api/media/drivers/index.rst
+>>>> index 1a9038f5f9fa..12e3c512d718 100644
+>>>> --- a/Documentation/userspace-api/media/drivers/index.rst
+>>>> +++ b/Documentation/userspace-api/media/drivers/index.rst
+>>>> @@ -33,6 +33,7 @@ For more details see the file COPYING in the =
+source distribution of Linux.
+>>>>  =20
+>>>>   	ccs
+>>>>   	cx2341x-uapi
+>>>> +        hantro
+>>>>   	imx-uapi
+>>>>   	max2175
+>>>>   	meye-uapi
+>>>> diff --git a/include/media/hevc-ctrls.h b/include/media/hevc-ctrls.h
+>>>> index 8e0109eea454..b713eeed1915 100644
+>>>> --- a/include/media/hevc-ctrls.h
+>>>> +++ b/include/media/hevc-ctrls.h
+>>>> @@ -224,4 +224,17 @@ struct v4l2_ctrl_hevc_decode_params {
+>>>>   	__u64	flags;
+>>>>   };
+>>>>  =20
+>>>> +/*  MPEG-class control IDs specific to the Hantro driver as defined=
+ by V4L2 */
+>>>> +#define V4L2_CID_CODEC_HANTRO_BASE				(V4L2_CTRL_CLASS_CODEC | =
+0x1200)
+>>>> +/*
+>>>> + * V4L2_CID_HANTRO_HEVC_SLICE_HEADER_SKIP -
+>>>> + * the number of data (in bits) to skip in the
+>>>> + * slice segment header.
+>>>> + * If non-IDR, the bits to be skipped go from syntax element =
+"pic_output_flag"
+>>>> + * to before syntax element "slice_temporal_mvp_enabled_flag".
+>>>> + * If IDR, the skipped bits are just "pic_output_flag"
+>>>> + * (separate_colour_plane_flag is not supported).
+>>>> + */
+>>>> +#define V4L2_CID_HANTRO_HEVC_SLICE_HEADER_SKIP	=
+(V4L2_CID_CODEC_HANTRO_BASE + 0)
+>>>> +
+>>>>   #endif
+>>>>
+>>>
