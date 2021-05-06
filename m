@@ -2,176 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B32F374ECF
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 07:14:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4995F374F30
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 08:10:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231336AbhEFFPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 01:15:35 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:35252 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229622AbhEFFPf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 01:15:35 -0400
-X-UUID: 6b5109bf0eff49f38d4bc26565055b5b-20210506
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=17Jnw/ww2KDeqO9BQ4PypTwrYjq+s7T1OWaDGZZDDMw=;
-        b=hsC7GXeTKHxAUgTVLfdILOt0zQ/GJ7w1A0heQB5hnxv3LjOb/hGeOPuIefHZ5ZIqOb+G1DGFfBaZBFNp5st7LXSLM9atYbQwLv0V11iKkdsVuICWsziahqkSJ54G6MzLRmM5AgAMWmI+jAEPtGGeY2u6scj7AoH+xOWfiTE2j/A=;
-X-UUID: 6b5109bf0eff49f38d4bc26565055b5b-20210506
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <michael.kao@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 481262748; Thu, 06 May 2021 13:14:33 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 6 May 2021 13:14:32 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 6 May 2021 13:14:32 +0800
-Message-ID: <729667920f755d073217a5c52bfe4e20166cce80.camel@mediatek.com>
-Subject: Re: [v7,3/3] thermal: mediatek: add another get_temp ops for
- thermal sensors
-From:   Michael Kao <michael.kao@mediatek.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        <fan.chen@mediatek.com>, "Zhang Rui" <rui.zhang@intel.com>,
-        <linux-pm@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        <Ben.Tseng@mediatek.com>
-CC:     Eduardo Valentin <edubezval@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>, <hsinyi@chromium.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        id S229929AbhEFGLv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 02:11:51 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:27493 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229560AbhEFGLv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 02:11:51 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 1465vje5003652;
+        Thu, 6 May 2021 13:57:45 +0800 (GMT-8)
+        (envelope-from billy_tsai@aspeedtech.com)
+Received: from BillyTsai-pc.aspeed.com (192.168.2.149) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 6 May
+ 2021 14:09:32 +0800
+From:   Billy Tsai <billy_tsai@aspeedtech.com>
+To:     <lee.jones@linaro.org>, <robh+dt@kernel.org>, <joel@jms.id.au>,
+        <andrew@aj.id.au>, <thierry.reding@gmail.com>,
+        <u.kleine-koenig@pengutronix.de>, <p.zabel@pengutronix.de>,
+        <billy_tsai@aspeedtech.com>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Thu, 6 May 2021 13:14:31 +0800
-In-Reply-To: <dac1f9bc-6caa-9cb7-97d6-882a8bd20fea@linaro.org>
-References: <20210316070144.28440-1-michael.kao@mediatek.com>
-         <20210316070144.28440-4-michael.kao@mediatek.com>
-         <dac1f9bc-6caa-9cb7-97d6-882a8bd20fea@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pwm@vger.kernel.org>
+CC:     <BMC-SW@aspeedtech.com>
+Subject: [v3 0/2] Support pwm driver for aspeed ast26xx
+Date:   Thu, 6 May 2021 14:10:48 +0800
+Message-ID: <20210506061050.8001-1-billy_tsai@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 2F4DE87A9348A7639CFC7C76826AEE09D7E2C7CE38A45FDE8414C866EA4E0B3B2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [192.168.2.149]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 1465vje5003652
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgTWFpbnRhaW5lcnMsDQoNCkdlbnRsZSBwaW4gZm9yIHRoaXMgcGF0Y2guDQoNClRoYW5rcw0K
-DQpPbiBGcmksIDIwMjEtMDQtMDkgYXQgMTA6MTYgKzAyMDAsIERhbmllbCBMZXpjYW5vIHdyb3Rl
-Og0KPiBPbiAxNi8wMy8yMDIxIDA4OjAxLCBNaWNoYWVsIEthbyB3cm90ZToNCj4gPiBQcm92aWRl
-IHRoZXJtYWwgem9uZSB0byByZWFkIHRoZXJtYWwgc2Vuc29yDQo+ID4gaW4gdGhlIFNvQy4gV2Ug
-Y2FuIHJlYWQgYWxsIHRoZSB0aGVybWFsIHNlbnNvcnMNCj4gPiB2YWx1ZSBpbiB0aGUgU29DIGJ5
-IHRoZSBub2RlIC9zeXMvY2xhc3MvdGhlcm1hbC8NCj4gPiANCj4gPiBJbiBtdGtfdGhlcm1hbF9i
-YW5rX3RlbXBlcmF0dXJlLCByZXR1cm4gLUVBR0FJTiBpbnN0ZWFkIG9mIC1FQUNDRVNTDQo+ID4g
-b24gdGhlIGZpcnN0IHJlYWQgb2Ygc2Vuc29yIHRoYXQgb2Z0ZW4gYXJlIGJvZ3VzIHZhbHVlcy4N
-Cj4gPiBUaGlzIGNhbiBhdm9pZCBmb2xsb3dpbmcgd2FybmluZyBvbiBib290Og0KPiA+IA0KPiA+
-ICAgdGhlcm1hbCB0aGVybWFsX3pvbmU2OiBmYWlsZWQgdG8gcmVhZCBvdXQgdGhlcm1hbCB6b25l
-ICgtMTMpDQo+IA0KPiBUaGlzIHBhdGNoIGlzIGNoYW5naW5nIG1vcmUgdGhpbmdzIHRoYW4gZGVz
-Y3JpYmVkIGluIHRoZSBjaGFuZ2Vsb2cuDQo+IA0KPiBJcyBpdCBwb3NzaWJsZSB0byBzaGFyZSBz
-b21lIHRlY2huaWNhbCBkZXRhaWxzIGFib3V0IGhvdyB0aGUNCj4gc2Vuc29yKHMpDQo+IGFyZSB3
-b3JraW5nIG9yIHBvaW50IHRvIHNvbWUgZG9jdW1lbnRhdGlvbiBpZiBhbnkgPyBhbmQgcG9zc2li
-bHkgdGhlDQo+IGxheW91dCA/DQo+IA0KPiBJSVVDIHRoZXJlIGlzIGEgZmFrZSB0aGVybWFsIHpv
-bmUgemVybyB3aXRoIHRoZSBwdXJwb3NlIG9mDQo+IGFnZ3JlZ2F0aW5nDQo+IGFsbCB0aGUgb3Ro
-ZXIgc2Vuc29ycyBieSB0YWtpbmcgdGhlIG1heCB0ZW1wZXJhdHVyZSBvZiBhbGwgdGhlDQo+IHNl
-bnNvcnMuDQo+IA0KPiBUaGlzIHBhdGNoIGFkZHMgYSB0aGVybWFsIHpvbmUgcGVyIHNlbnNvciwg
-YW5kIGVhY2ggc2Vuc29yIGlzIHBlcg0KPiBDUFUuDQo+IENQVTAgYmVpbmcgYWN0dWFsbHkgdGhl
-IG1heCBvZiBhbGwgdGhlIG90aGVyIHNlbnNvcnMsIHJpZ2h0ID8NCj4gDQo+IA0KPiA+IFNpZ25l
-ZC1vZmYtYnk6IE1pY2hhZWwgS2FvIDxtaWNoYWVsLmthb0BtZWRpYXRlay5jb20+DQo+ID4gU2ln
-bmVkLW9mZi1ieTogSHNpbi1ZaSBXYW5nIDxoc2lueWlAY2hyb21pdW0ub3JnPg0KPiA+IC0tLQ0K
-PiA+ICBkcml2ZXJzL3RoZXJtYWwvbXRrX3RoZXJtYWwuYyB8IDEwMCArKysrKysrKysrKysrKysr
-KysrKysrKysrLS0tLS0NCj4gPiAtLS0tDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCA3NSBpbnNlcnRp
-b25zKCspLCAyNSBkZWxldGlvbnMoLSkNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy90
-aGVybWFsL210a190aGVybWFsLmMNCj4gPiBiL2RyaXZlcnMvdGhlcm1hbC9tdGtfdGhlcm1hbC5j
-DQo+ID4gaW5kZXggMTQ5YzZkN2ZkNWEwLi41N2U0ZjA4YTk0N2UgMTAwNjQ0DQo+ID4gLS0tIGEv
-ZHJpdmVycy90aGVybWFsL210a190aGVybWFsLmMNCj4gPiArKysgYi9kcml2ZXJzL3RoZXJtYWwv
-bXRrX3RoZXJtYWwuYw0KPiA+IEBAIC0yNDUsNiArMjQ1LDExIEBAIGVudW0gbXRrX3RoZXJtYWxf
-dmVyc2lvbiB7DQo+ID4gIA0KPiA+ICBzdHJ1Y3QgbXRrX3RoZXJtYWw7DQo+ID4gIA0KPiA+ICtz
-dHJ1Y3QgbXRrX3RoZXJtYWxfem9uZSB7DQo+ID4gKwlzdHJ1Y3QgbXRrX3RoZXJtYWwgKm10Ow0K
-PiA+ICsJaW50IGlkOw0KPiA+ICt9Ow0KPiA+ICsNCj4gPiAgc3RydWN0IHRoZXJtYWxfYmFua19j
-Zmcgew0KPiA+ICAJdW5zaWduZWQgaW50IG51bV9zZW5zb3JzOw0KPiA+ICAJY29uc3QgaW50ICpz
-ZW5zb3JzOw0KPiA+IEBAIC02MzcsNiArNjQyLDMwIEBAIHN0YXRpYyB2b2lkIG10a190aGVybWFs
-X3B1dF9iYW5rKHN0cnVjdA0KPiA+IG10a190aGVybWFsX2JhbmsgKmJhbmspDQo+ID4gIAkJbXV0
-ZXhfdW5sb2NrKCZtdC0+bG9jayk7DQo+ID4gIH0NCj4gPiAgDQo+ID4gK3N0YXRpYyB1MzIgX2dl
-dF9zZW5zb3JfdGVtcChzdHJ1Y3QgbXRrX3RoZXJtYWwgKm10LCBpbnQgaWQpDQo+ID4gK3sNCj4g
-PiArCXUzMiByYXc7DQo+ID4gKwlpbnQgdGVtcDsNCj4gPiArDQo+ID4gKwlyYXcgPSByZWFkbCht
-dC0+dGhlcm1hbF9iYXNlICsgbXQtPmNvbmYtPm1zcltpZF0pOw0KPiA+ICsNCj4gPiArCWlmICht
-dC0+Y29uZi0+dmVyc2lvbiA9PSBNVEtfVEhFUk1BTF9WMSkNCj4gPiArCQl0ZW1wID0gcmF3X3Rv
-X21jZWxzaXVzX3YxKG10LCBpZCwgcmF3KTsNCj4gPiArCWVsc2UNCj4gPiArCQl0ZW1wID0gcmF3
-X3RvX21jZWxzaXVzX3YyKG10LCBpZCwgcmF3KTsNCj4gPiArDQo+ID4gKwkvKg0KPiA+ICsJICog
-VGhlIGZpcnN0IHJlYWQgb2YgYSBzZW5zb3Igb2Z0ZW4gY29udGFpbnMgdmVyeSBoaWdoIGJvZ3Vz
-DQo+ID4gKwkgKiB0ZW1wZXJhdHVyZSB2YWx1ZS4gRmlsdGVyIHRoZXNlIG91dCBzbyB0aGF0IHRo
-ZSBzeXN0ZW0gZG9lcw0KPiA+ICsJICogbm90IGltbWVkaWF0ZWx5IHNodXQgZG93bi4NCj4gPiAr
-CSAqLw0KPiA+ICsNCj4gPiArCWlmICh0ZW1wID4gMjAwMDAwKQ0KPiA+ICsJCXJldHVybiAtRUFH
-QUlOOw0KPiA+ICsJZWxzZQ0KPiA+ICsJCXJldHVybiB0ZW1wOw0KPiA+ICt9DQo+ID4gKw0KPiA+
-ICAvKioNCj4gPiAgICogbXRrX3RoZXJtYWxfYmFua190ZW1wZXJhdHVyZSAtIGdldCB0aGUgdGVt
-cGVyYXR1cmUgb2YgYSBiYW5rDQo+ID4gICAqIEBiYW5rOglUaGUgYmFuaw0KPiA+IEBAIC02NDcs
-MjggKzY3NiwxMSBAQCBzdGF0aWMgdm9pZCBtdGtfdGhlcm1hbF9wdXRfYmFuayhzdHJ1Y3QNCj4g
-PiBtdGtfdGhlcm1hbF9iYW5rICpiYW5rKQ0KPiA+ICBzdGF0aWMgaW50IG10a190aGVybWFsX2Jh
-bmtfdGVtcGVyYXR1cmUoc3RydWN0IG10a190aGVybWFsX2JhbmsNCj4gPiAqYmFuaykNCj4gPiAg
-ew0KPiA+ICAJc3RydWN0IG10a190aGVybWFsICptdCA9IGJhbmstPm10Ow0KPiA+IC0JY29uc3Qg
-c3RydWN0IG10a190aGVybWFsX2RhdGEgKmNvbmYgPSBtdC0+Y29uZjsNCj4gPiAgCWludCBpLCB0
-ZW1wID0gSU5UX01JTiwgbWF4ID0gSU5UX01JTjsNCj4gPiAtCXUzMiByYXc7DQo+ID4gLQ0KPiA+
-IC0JZm9yIChpID0gMDsgaSA8IGNvbmYtPmJhbmtfZGF0YVtiYW5rLT5pZF0ubnVtX3NlbnNvcnM7
-IGkrKykgew0KPiA+IC0JCXJhdyA9IHJlYWRsKG10LT50aGVybWFsX2Jhc2UgKyBjb25mLT5tc3Jb
-aV0pOw0KPiA+ICANCj4gPiAtCQlpZiAobXQtPmNvbmYtPnZlcnNpb24gPT0gTVRLX1RIRVJNQUxf
-VjEpIHsNCj4gPiAtCQkJdGVtcCA9IHJhd190b19tY2Vsc2l1c192MSgNCj4gPiAtCQkJCW10LCBj
-b25mLT5iYW5rX2RhdGFbYmFuay0NCj4gPiA+aWRdLnNlbnNvcnNbaV0sIHJhdyk7DQo+ID4gLQkJ
-fSBlbHNlIHsNCj4gPiAtCQkJdGVtcCA9IHJhd190b19tY2Vsc2l1c192MigNCj4gPiAtCQkJCW10
-LCBjb25mLT5iYW5rX2RhdGFbYmFuay0NCj4gPiA+aWRdLnNlbnNvcnNbaV0sIHJhdyk7DQo+ID4g
-LQkJfQ0KPiA+ICsJZm9yIChpID0gMDsgaSA8IG10LT5jb25mLT5iYW5rX2RhdGFbYmFuay0+aWRd
-Lm51bV9zZW5zb3JzOyBpKyspDQo+ID4gew0KPiA+ICANCj4gPiAtCQkvKg0KPiA+IC0JCSAqIFRo
-ZSBmaXJzdCByZWFkIG9mIGEgc2Vuc29yIG9mdGVuIGNvbnRhaW5zIHZlcnkgaGlnaA0KPiA+IGJv
-Z3VzDQo+ID4gLQkJICogdGVtcGVyYXR1cmUgdmFsdWUuIEZpbHRlciB0aGVzZSBvdXQgc28gdGhh
-dCB0aGUNCj4gPiBzeXN0ZW0gZG9lcw0KPiA+IC0JCSAqIG5vdCBpbW1lZGlhdGVseSBzaHV0IGRv
-d24uDQo+ID4gLQkJICovDQo+ID4gLQkJaWYgKHRlbXAgPiAyMDAwMDApDQo+ID4gLQkJCXRlbXAg
-PSAwOw0KPiA+ICsJCXRlbXAgPSBfZ2V0X3NlbnNvcl90ZW1wKG10LCBpKTsNCj4gPiAgDQo+ID4g
-IAkJaWYgKHRlbXAgPiBtYXgpDQo+ID4gIAkJCW1heCA9IHRlbXA7DQo+ID4gQEAgLTY3OSw3ICs2
-OTEsOCBAQCBzdGF0aWMgaW50IG10a190aGVybWFsX2JhbmtfdGVtcGVyYXR1cmUoc3RydWN0DQo+
-ID4gbXRrX3RoZXJtYWxfYmFuayAqYmFuaykNCj4gPiAgDQo+ID4gIHN0YXRpYyBpbnQgbXRrX3Jl
-YWRfdGVtcCh2b2lkICpkYXRhLCBpbnQgKnRlbXBlcmF0dXJlKQ0KPiA+ICB7DQo+ID4gLQlzdHJ1
-Y3QgbXRrX3RoZXJtYWwgKm10ID0gZGF0YTsNCj4gPiArCXN0cnVjdCBtdGtfdGhlcm1hbF96b25l
-ICp0eiA9IGRhdGE7DQo+ID4gKwlzdHJ1Y3QgbXRrX3RoZXJtYWwgKm10ID0gdHotPm10Ow0KPiA+
-ICAJaW50IGk7DQo+ID4gIAlpbnQgdGVtcG1heCA9IElOVF9NSU47DQo+ID4gIA0KPiA+IEBAIC02
-OTgsMTAgKzcxMSwyOCBAQCBzdGF0aWMgaW50IG10a19yZWFkX3RlbXAodm9pZCAqZGF0YSwgaW50
-DQo+ID4gKnRlbXBlcmF0dXJlKQ0KPiA+ICAJcmV0dXJuIDA7DQo+ID4gIH0NCj4gPiAgDQo+ID4g
-K3N0YXRpYyBpbnQgbXRrX3JlYWRfc2Vuc29yX3RlbXAodm9pZCAqZGF0YSwgaW50ICp0ZW1wZXJh
-dHVyZSkNCj4gPiArew0KPiA+ICsJc3RydWN0IG10a190aGVybWFsX3pvbmUgKnR6ID0gZGF0YTsN
-Cj4gPiArCXN0cnVjdCBtdGtfdGhlcm1hbCAqbXQgPSB0ei0+bXQ7DQo+ID4gKwlpbnQgaWQgPSB0
-ei0+aWQgLSAxOw0KPiA+ICsNCj4gPiArCWlmIChpZCA8IDApDQo+ID4gKwkJcmV0dXJuIC1FQUND
-RVM7DQo+ID4gKw0KPiA+ICsJKnRlbXBlcmF0dXJlID0gX2dldF9zZW5zb3JfdGVtcChtdCwgaWQp
-Ow0KPiA+ICsNCj4gPiArCXJldHVybiAwOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICBzdGF0aWMgY29u
-c3Qgc3RydWN0IHRoZXJtYWxfem9uZV9vZl9kZXZpY2Vfb3BzIG10a190aGVybWFsX29wcyA9IHsN
-Cj4gPiAgCS5nZXRfdGVtcCA9IG10a19yZWFkX3RlbXAsDQo+ID4gIH07DQo+ID4gIA0KPiA+ICtz
-dGF0aWMgY29uc3Qgc3RydWN0IHRoZXJtYWxfem9uZV9vZl9kZXZpY2Vfb3BzDQo+ID4gbXRrX3Ro
-ZXJtYWxfc2Vuc29yX29wcyA9IHsNCj4gPiArCS5nZXRfdGVtcCA9IG10a19yZWFkX3NlbnNvcl90
-ZW1wLA0KPiA+ICt9Ow0KPiA+ICsNCj4gPiAgc3RhdGljIHZvaWQgbXRrX3RoZXJtYWxfaW5pdF9i
-YW5rKHN0cnVjdCBtdGtfdGhlcm1hbCAqbXQsIGludCBudW0sDQo+ID4gIAkJCQkgIHUzMiBhcG1p
-eGVkX3BoeXNfYmFzZSwgdTMyDQo+ID4gYXV4YWRjX3BoeXNfYmFzZSwNCj4gPiAgCQkJCSAgaW50
-IGN0cmxfaWQpDQo+ID4gQEAgLTk5Miw2ICsxMDIzLDcgQEAgc3RhdGljIGludCBtdGtfdGhlcm1h
-bF9wcm9iZShzdHJ1Y3QNCj4gPiBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpDQo+ID4gIAl1NjQgYXV4
-YWRjX3BoeXNfYmFzZSwgYXBtaXhlZF9waHlzX2Jhc2U7DQo+ID4gIAlzdHJ1Y3QgdGhlcm1hbF96
-b25lX2RldmljZSAqdHpkZXY7DQo+ID4gIAl2b2lkIF9faW9tZW0gKmFwbWl4ZWRfYmFzZSwgKmF1
-eGFkY19iYXNlOw0KPiA+ICsJc3RydWN0IG10a190aGVybWFsX3pvbmUgKnR6Ow0KPiA+ICANCj4g
-PiAgCW10ID0gZGV2bV9remFsbG9jKCZwZGV2LT5kZXYsIHNpemVvZigqbXQpLCBHRlBfS0VSTkVM
-KTsNCj4gPiAgCWlmICghbXQpDQo+ID4gQEAgLTEwODAsMTEgKzExMTIsMjkgQEAgc3RhdGljIGlu
-dCBtdGtfdGhlcm1hbF9wcm9iZShzdHJ1Y3QNCj4gPiBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpDQo+
-ID4gIA0KPiA+ICAJcGxhdGZvcm1fc2V0X2RydmRhdGEocGRldiwgbXQpOw0KPiA+ICANCj4gPiAt
-CXR6ZGV2ID0gZGV2bV90aGVybWFsX3pvbmVfb2Zfc2Vuc29yX3JlZ2lzdGVyKCZwZGV2LT5kZXYs
-IDAsIG10LA0KPiA+IC0JCQkJCQkgICAgICZtdGtfdGhlcm1hbF9vcHMpOw0KPiA+IC0JaWYgKElT
-X0VSUih0emRldikpIHsNCj4gPiAtCQlyZXQgPSBQVFJfRVJSKHR6ZGV2KTsNCj4gPiAtCQlnb3Rv
-IGVycl9kaXNhYmxlX2Nsa19wZXJpX3RoZXJtOw0KPiA+ICsJZm9yIChpID0gMDsgaSA8IG10LT5j
-b25mLT5udW1fc2Vuc29ycyArIDE7IGkrKykgew0KPiA+ICsJCXR6ID0gZGV2bV9rbWFsbG9jKCZw
-ZGV2LT5kZXYsIHNpemVvZigqdHopLCBHRlBfS0VSTkVMKTsNCj4gPiArCQlpZiAoIXR6KQ0KPiA+
-ICsJCQlyZXR1cm4gLUVOT01FTTsNCj4gPiArDQo+ID4gKwkJdHotPm10ID0gbXQ7DQo+ID4gKwkJ
-dHotPmlkID0gaTsNCj4gPiArDQo+ID4gKwkJdHpkZXYgPSBkZXZtX3RoZXJtYWxfem9uZV9vZl9z
-ZW5zb3JfcmVnaXN0ZXIoJnBkZXYtDQo+ID4gPmRldiwgaSwgdHosIChpID09IDApID8NCj4gPiAr
-CQkJCQkJCSAgICAgJm10a190aGVybQ0KPiA+IGFsX29wcyA6DQo+ID4gKwkJCQkJCQkgICAgICZt
-dGtfdGhlcm0NCj4gPiBhbF9zZW5zb3Jfb3BzKTsNCj4gPiArDQo+ID4gKwkJaWYgKElTX0VSUih0
-emRldikpIHsNCj4gPiArCQkJaWYgKFBUUl9FUlIodHpkZXYpID09IC1FTk9ERVYpIHsNCj4gPiAr
-CQkJCWRldl93YXJuKCZwZGV2LT5kZXYsDQo+ID4gKwkJCQkJICJzZW5zb3IgJWQgbm90IHJlZ2lz
-dGVyZWQgaW4NCj4gPiB0aGVybWFsIHpvbmUgaW4gZHRcbiIsIGkpOw0KPiA+ICsJCQkJY29udGlu
-dWU7DQo+ID4gKwkJCX0NCj4gPiArCQkJaWYgKFBUUl9FUlIodHpkZXYpID09IC1FQUNDRVMpIHsN
-Cj4gPiArCQkJCXJldCA9IFBUUl9FUlIodHpkZXYpOw0KPiA+ICsJCQkJZ290byBlcnJfZGlzYWJs
-ZV9jbGtfcGVyaV90aGVybTsNCj4gPiArCQkJfQ0KPiA+ICsJCX0NCj4gPiAgCX0NCj4gPiAgDQo+
-ID4gIAlyZXR1cm4gMDsNCj4gPiANCj4gDQo+IA0K
+The legacy driver of aspeed pwm is binding with tach controller and it
+doesn't follow the pwm framworks usage. In addition, the pwm register
+usage of the 6th generation of ast26xx has drastic change. So these
+patch serials add the new aspeed pwm driver to fix up the problem above.
+
+Changes since v2:
+- Remove the tach node, #address-cells and #size-cells from pwm-tach.yaml
+- Add clocks and reset properties to pwm-tach.yaml
+- Kconfig/Makfile sorted alphabetically
+- pwm-aspeed-g6.c suggested by Uwe Kleine-König
+  - Add more hardware descriptions at top of the driver.
+  - Remove unused api request and free
+  - Move the initialize settings of all pwm channel to probe.
+  - Change the method of getting the approximate period.
+  - Read the hardware register values to fill the state for .get_state()
+
+Changes since v1:
+- Fix the dt_binding_check fail suggested by Rob Herring
+- Add depends to PWM_ASPEED_G6 configure suggested by Uwe Kleine-Konig
+- pwm-aspeed-g6.c suggested by Uwe Kleine-König
+  - Fix license header
+  - Use bitfiled.h macro to define register fields
+  - Implement .remove device function
+  - Implement .get_state pwm api
+
+
+Billy Tsai (2):
+  dt-bindings: Add bindings for aspeed pwm-tach and pwm.
+  pwm: Add Aspeed ast2600 PWM support
+
+ .../bindings/mfd/aspeed,ast2600-pwm-tach.yaml |  55 +++
+ .../bindings/pwm/aspeed,ast2600-pwm.yaml      |  41 ++
+ drivers/pwm/Kconfig                           |   8 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-aspeed-g6.c                   | 368 ++++++++++++++++++
+ 5 files changed, 473 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
+ create mode 100644 Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-aspeed-g6.c
+
+-- 
+2.25.1
 
