@@ -2,78 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8D60375100
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 10:41:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 022C037510E
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 10:47:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233770AbhEFImp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 04:42:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53994 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233765AbhEFImp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 04:42:45 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A98B0C06174A
-        for <devicetree@vger.kernel.org>; Thu,  6 May 2021 01:41:46 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id x20so6666079lfu.6
-        for <devicetree@vger.kernel.org>; Thu, 06 May 2021 01:41:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vqoqqwG/Sm/7StgZJFZzPWzpMUimMU/fZ4yBiGhx1bU=;
-        b=lyzebzklAgUpuJEr2Z4nZzaqEiO3LAfi5JsJfB0R6bBQLR35qmIDQh9zSxuSnHbyCp
-         eLkefy3UQF+/VZbkyyv5cx7gRtBB/m8iVbu/hBBlneq4fcJGzoPAbumxhR1EKrUUYK2A
-         LfNCwDeG+0Gt8ULhLKh6O5Oe1+/zaa7pbmUIGyefaVBePre/XWKma88cqYzw+5s77aDC
-         y7caWjLCUPfPrHPj78cHXdXoSU0a41LbqSUWt/nUPc4RbcxqdynW6k0nbJTSigcLtpzq
-         bd2gPOf3bseZfwm0wYAcyD5gCv/ByJpRBAmT+SIG5h1Lq4lSc1XwpSrsH+lpYe/Beg4o
-         XBaQ==
+        id S233832AbhEFIs3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 04:48:29 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:41333 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233852AbhEFIs1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 04:48:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1620290848;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=KRIn6MQisNyLZZ3un1MN0Pyrf/x2u4ROIjZCBtc/1Es=;
+        b=AOTiAvwNBzmQZ5U2LepiFh7vs0tclE6bEWOLzk6gS7iP+oDMl135VzzQ/rLixT/y3AtoLi
+        7kRvcaMCBHA2HW/zu1VI6xc3Z90mkaU/UwIfMddZjH9Cir/rd7cNlV9/iuPzMXSIzX2Zg6
+        gumu96HVwMeR7GqScmX/xgZx8/OM/4Y=
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
+ [209.85.208.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-270-ooOQAOUjPYWE-izjnsA7zg-1; Thu, 06 May 2021 04:47:24 -0400
+X-MC-Unique: ooOQAOUjPYWE-izjnsA7zg-1
+Received: by mail-ed1-f69.google.com with SMTP id d8-20020a0564020008b0290387d38e3ce0so2277369edu.1
+        for <devicetree@vger.kernel.org>; Thu, 06 May 2021 01:47:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vqoqqwG/Sm/7StgZJFZzPWzpMUimMU/fZ4yBiGhx1bU=;
-        b=DRRGt5JHkJRPcBHtwidddYZkX+auNh95uR10sG65jmN7OE85rzz2eL5wQ2DtbTUCr8
-         j+UojcLE2zNPCfA1v+R5fPlM/ns0Cj5cA0F5HvyZWaj1VYAXT5wIGVNNMxFQUG78DwpI
-         7Jx6+bpdm0O+C3idwoOVtCIWsqnKiT1cmAJEA71xzmOb0uvBwTshXaGryLwOPac2oUfM
-         ZQQXAMxaA7FD8vhxpXCAdh4Pq34QKJWH0cGWatRwcuL9iZiDeLmSwn5cnoWQcOJRdqVB
-         c+9yPG4gmlow+kI5fWXr+hUnddh+81lCoQI0UGVOfbFXL+ubMOpmRhkQybasF7XBNoVA
-         470A==
-X-Gm-Message-State: AOAM530qXJd3vI6oY5/1e0cDi9t6rx8kCjTSgx601u9W3maCW9o+9Jff
-        Nhwzkz/gDI/gN5J0rOkQ2gvpFA+otYN9QbptStT7/Q==
-X-Google-Smtp-Source: ABdhPJwpbPqssKuUoKhLJ2Oxg5Y9MSO0cU6Ssng9STHq/8W/zGsIgP+MVZxC4Aj8oKr6eiPaX8kqmim4zEJkNJNvy+0=
-X-Received: by 2002:a05:6512:149:: with SMTP id m9mr2045704lfo.157.1620290505124;
- Thu, 06 May 2021 01:41:45 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210429192326.1148440-1-clabbe@baylibre.com>
-In-Reply-To: <20210429192326.1148440-1-clabbe@baylibre.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 6 May 2021 10:41:34 +0200
-Message-ID: <CACRpkdY7dC=QXdnshHK7ByTE8NkThiDm7sZSZrH07F7GBiMM5w@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: net: Convert mdio-gpio to yaml
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=KRIn6MQisNyLZZ3un1MN0Pyrf/x2u4ROIjZCBtc/1Es=;
+        b=PPRHbqr0RtT5fF1oT9AFAqr2jaiEx7NwxAxjcPDOLP4q/j3g4K3Rfjnga9hPGdiQ8S
+         kdnPTPXrZXb2Ze4PqJN5U3R2kIBDW+owBkF3uVK26ff5WiB4eYlBQtHO9TKpKETr32Jo
+         blbC3EwOiBOoxM1Tx4lYpMZHPbkEB3pnSrcX/Kkcp06xJFo4j2O1xBfkqaQ+gQW11DtG
+         9AbQjiu6teP5Yi/0cJVjhSch9vL6Xy03S857Wz0k+BYEYxq5qZVARfLzEv9kpOaO7A3T
+         PrwnOgInxSn9UjfXGFqXQHtpFACqJ5T4CM8aBJVBZfNCkZQrwysyGoOhsXh0BPuvk05l
+         EYIg==
+X-Gm-Message-State: AOAM530PBIBnKgWKzDNRRTVWf/U3LJRx+oCrGLIBdnRTtqyzR095jZsf
+        Uvb+WC0JpQpNWKNsposWUduGgQqtejmY0MYWnkiXWBAySF857xd4tz02dghPfSDWB2oM52RNEOv
+        M91GMz0Bg8mAZMN3d7t7PNg==
+X-Received: by 2002:a17:906:b1cc:: with SMTP id bv12mr3139438ejb.407.1620290843609;
+        Thu, 06 May 2021 01:47:23 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy5WRJKGPMKVmDFF5BwJVdGJUqxr4ZQ+H+x9+d7+GGOMWKY0RO66B9rNI18XTyDb9a6RlsqdQ==
+X-Received: by 2002:a17:906:b1cc:: with SMTP id bv12mr3139419ejb.407.1620290843387;
+        Thu, 06 May 2021 01:47:23 -0700 (PDT)
+Received: from x1.localdomain (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl. [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
+        by smtp.gmail.com with ESMTPSA id v16sm1092562edt.53.2021.05.06.01.47.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 May 2021 01:47:23 -0700 (PDT)
+Subject: Re: [PATCH v7 1/7] MAINTAINERS: Add Advantech AHC1EC0 embedded
+ controller entry
+To:     Campion Kang <campion.kang@advantech.com.tw>,
+        Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Mark Gross <mgross@linux.intel.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+        platform-driver-x86@vger.kernel.org,
+        AceLan Kao <chia-lin.kao@canonical.com>
+References: <20210506081619.2443-1-campion.kang@advantech.com.tw>
+From:   Hans de Goede <hdegoede@redhat.com>
+Message-ID: <6b86bd36-b934-c204-9e56-079ab8cd4b54@redhat.com>
+Date:   Thu, 6 May 2021 10:47:22 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
+MIME-Version: 1.0
+In-Reply-To: <20210506081619.2443-1-campion.kang@advantech.com.tw>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 29, 2021 at 9:24 PM Corentin Labbe <clabbe@baylibre.com> wrote:
+Hi,
 
-> Converts net/mdio-gpio.txt to yaml
->
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+I'm replying here since this series has no cover-letter, for
+the next version for a series touching so many different
+sub-systems it would be good to start with a cover-letter
+providing some background info on the series.
 
-This v2 looks good to me, I suppose you will need to wait for
-net-next to open and resend it with "net-next" in the subject
-though.
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+I see this is binding to an ACPI device, yet it is also using
+devicetree bindings and properties.
 
-Yours,
-Linus Walleij
+So I take it this means that your ACPI tables are using the
+optional capability of embedded device-tree blobs inside the
+ACPI tables ?
+
+That is an unusual combination on a x86 device, note it is
+not wrong but AFAIK you are the first to do this on x86.
+
+Other then that question, for the next version please give
+all commits a proper commit message and not just a short
+1 line Subject and put the changelog after a scissors line
+after your Signed-off-by like this:
+
+Signed-off-by: Campion Kang <campion.kang@advantech.com.tw>
+---
+Changed in V7:
+1. According to the reviewer's comment, add two files:
+   Documentation/hwmon/ahc1ec0-hwmon.rst and
+   drivers/platform/x86/ahc1ec0-core.c
+
+And please also include older changelog entries.
+
+Regards,
+
+Hans
+ 
+
+
+
+
+On 5/6/21 10:16 AM, Campion Kang wrote:
+> Changed in V7:
+> 	1. According to the reviewer's comment, add two files:
+> 	   Documentation/hwmon/ahc1ec0-hwmon.rst and
+> 	   drivers/platform/x86/ahc1ec0-core.c
+> 
+> Signed-off-by: Campion Kang <campion.kang@advantech.com.tw>
+> ---
+>  MAINTAINERS | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 83c2b1867586..984795eb6b5d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -572,6 +572,19 @@ S:	Maintained
+>  F:	Documentation/scsi/advansys.rst
+>  F:	drivers/scsi/advansys.c
+>  
+> +ADVANTECH AHC1EC0 EMBEDDED CONTROLLER DRIVER
+> +M:	Campion Kang <campion.kang@advantech.com.tw>
+> +L:	linux-kernel@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/mfd/ahc1ec0.yaml
+> +F:	Documentation/hwmon/ahc1ec0-hwmon.rst
+> +F:	drivers/hwmon/ahc1ec0-hwmon.c
+> +F:	drivers/mfd/ahc1ec0.c
+> +F:	drivers/platform/x86/ahc1ec0-core.c
+> +F:	drivers/watchdog/ahc1ec0-wdt.c
+> +F:	include/dt-bindings/mfd/ahc1ec0-dt.h
+> +F:	include/linux/platform_data/ahc1ec0.h
+> +
+>  ADVANTECH SWBTN DRIVER
+>  M:	Andrea Ho <Andrea.Ho@advantech.com.tw>
+>  L:	platform-driver-x86@vger.kernel.org
+> 
+
