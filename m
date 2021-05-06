@@ -2,60 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A05ED3759DB
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 19:57:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0C84375A35
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 20:31:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236415AbhEFR6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 13:58:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40538 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236338AbhEFR6l (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 May 2021 13:58:41 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPS id C651961107;
-        Thu,  6 May 2021 17:57:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620323862;
-        bh=7hq6JRPExv14wrJEV4oEAqMY4ywekwltCgszlztOM/I=;
-        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-        b=MRcfx0lWCLyZmGJbGw4bstIPVZ/buuQqMRE9zivHH7DX9IVKTLC8/Rhj/jarzU3Jv
-         +OYX3OjDnApfXkANUzFFfdMSdjnqIzGLEkamcIt2CI42fx1QxsAgLa3iB/2AARuKrk
-         B8SW2D3DFefM/MTMIp3iessi05vLPwT5iYxVM8d/e+x73cgQSHMTqXI3a1wSIoIsJQ
-         Y0l1iHHfGvFI70Z7UNFM+1G94+IvEP6QkYZM5Hj5Bl4judqKrRytN+urjnxlDiydGA
-         Fw6jQUguZY/txRLPCPwcw9Bxw2VSny8nB3/eSyEQ8NYDhLAzLfGN7aOhTiht7bKl3O
-         TIW+CcjCW7CDg==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id C004660A0C;
-        Thu,  6 May 2021 17:57:42 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree fixes for v5.13, take 1
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <20210505224242.GA2953573@robh.at.kernel.org>
-References: <20210505224242.GA2953573@robh.at.kernel.org>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20210505224242.GA2953573@robh.at.kernel.org>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.13-1
-X-PR-Tracked-Commit-Id: 6799e3f281e962628be531e8331bacd05b866134
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 2423e142b37e2fcce61ea6d3c2f103384ae05f92
-Message-Id: <162032386277.1989.15293221254226311127.pr-tracker-bot@kernel.org>
-Date:   Thu, 06 May 2021 17:57:42 +0000
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
+        id S234496AbhEFScq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 14:32:46 -0400
+Received: from mail-oo1-f50.google.com ([209.85.161.50]:38512 "EHLO
+        mail-oo1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231839AbhEFScp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 14:32:45 -0400
+Received: by mail-oo1-f50.google.com with SMTP id h9-20020a4a94090000b02901f9d4f64172so1452491ooi.5;
+        Thu, 06 May 2021 11:31:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=oGGa0szYJtn5EJ7bBQYGJtU6zY5PCRxd8R546Llej+w=;
+        b=ed51Q1FbRcf7RX0Fid51UU5Q3mAdS+OJJ57gs7tYP409K88ubsvLH8tknxiNIsvjEz
+         DLdAKW7l4qp39ZWf7jecbM6Mcgs5BErRD6IbNc+aG5oQzc8ACDVUS/enV95Akk2PB6yk
+         xyqGKlCYR9ZUzbp0z+J54yZVmTf2B7BMyPXr86FLtFB+teoKhMPKg5AnqsSFWclKZKKu
+         lBbxwLhtazEwDzYrEhvzkdDHi4N3JvN392hq8N6hGAag4JV+0zkxQAA7b9Vq1wBfcAP/
+         oJhXQi3u+6d10dIm9kSPXkX6NobQog2hmmlMf3yuMXuVtiM33oGM8m6MGoWS32NPgGo9
+         tTcA==
+X-Gm-Message-State: AOAM5323gkSWStmIe/0GF6zFbzbeEyPItAujtpUru2oKsOMRx+15GJUl
+        32FGCkwtoAWA/0EA19qCH3t+b98A3A==
+X-Google-Smtp-Source: ABdhPJxZFR7SUvRUOxoQAMwpxS8RVEp+c82SIST6moTYVnQTEXDtjOvNWpS+gRu2Gdl1Eh7bdbaFcQ==
+X-Received: by 2002:a4a:a4d2:: with SMTP id c18mr4594306oom.4.1620325907152;
+        Thu, 06 May 2021 11:31:47 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id x24sm718944otk.16.2021.05.06.11.31.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 May 2021 11:31:46 -0700 (PDT)
+Received: (nullmailer pid 599287 invoked by uid 1000);
+        Thu, 06 May 2021 18:31:45 -0000
+Date:   Thu, 6 May 2021 13:31:45 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-gpio@vger.kernel.org, kernel@pengutronix.de,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: gpio: introduce hog properties with
+ less ambiguity
+Message-ID: <20210506183145.GA594619@robh.at.kernel.org>
+References: <20210503210526.43455-1-u.kleine-koenig@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210503210526.43455-1-u.kleine-koenig@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pull request you sent on Wed, 5 May 2021 17:42:42 -0500:
+On Mon, May 03, 2021 at 11:05:26PM +0200, Uwe Kleine-König wrote:
+> For active low lines the semantic of output-low and output-high is hard
+> to grasp because there is a double negation involved and so output-low
+> is actually a request to drive the line high (aka inactive).
+> 
+> So introduce output-inactive and output-active with the same semantic as
+> output-low and output-high respectively have today, but with a more
+> sensible name.
+> 
+> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> ---
+> Hello,
+> 
+> I already sent this patch back in July and Linus (Walleij) liked the
+> patch but asked for an implementation. For that I added the second patch
+> now.
+> 
+> Best regards
+> Uwe
+> 
+>  Documentation/devicetree/bindings/gpio/gpio.txt | 15 ++++++++++-----
+>  1 file changed, 10 insertions(+), 5 deletions(-)
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.13-1
+The schema in dtschema will need to be updated too. Really, probably all 
+or most of gpio.txt needs to be moved there if not already. But for now,
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/2423e142b37e2fcce61ea6d3c2f103384ae05f92
+Acked-by: Rob Herring <robh@kernel.org>
 
-Thank you!
-
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio.txt b/Documentation/devicetree/bindings/gpio/gpio.txt
+> index a8895d339bfe..1061c346a619 100644
+> --- a/Documentation/devicetree/bindings/gpio/gpio.txt
+> +++ b/Documentation/devicetree/bindings/gpio/gpio.txt
+> @@ -196,11 +196,16 @@ Only one of the following properties scanned in the order shown below.
+>  This means that when multiple properties are present they will be searched
+>  in the order presented below and the first match is taken as the intended
+>  configuration.
+> -- input:      A property specifying to set the GPIO direction as input.
+> -- output-low  A property specifying to set the GPIO direction as output with
+> -	      the value low.
+> -- output-high A property specifying to set the GPIO direction as output with
+> -	      the value high.
+> +- input:             A property specifying to set the GPIO direction as input.
+> +- output-deasserted: A property specifying to set the GPIO direction as output
+> +		     with the inactive value (depending on the line's polarity,
+> +		     which is active-high by default)
+> +- output-asserted:   A property specifying to set the GPIO direction as output
+> +		     with the active value.
+> +
+> +For backwards compatibility "output-low" and "output-high" should be supported
+> +as aliases for "output-deasserted" and "output-asserted" respectively. Their
+> +usage is misleading for active-low outputs, so their use is discouraged.
+>  
+>  Optional properties:
+>  - line-name:  The GPIO label name. If not present the node name is used.
+> -- 
+> 2.30.2
+> 
