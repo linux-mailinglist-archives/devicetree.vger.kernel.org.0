@@ -2,173 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A3B33755A2
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 16:28:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 666B03755A7
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 16:29:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234485AbhEFO3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 10:29:23 -0400
-Received: from mail-eopbgr20072.outbound.protection.outlook.com ([40.107.2.72]:45779
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234002AbhEFO3S (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 May 2021 10:29:18 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FWn4sIoNsWS0QAgsiXDQ/NcwiYPxJKhxwpIEWL3itt1dGlIvE4NT5bzoxMtDJG02xcO9dFhqKnOphpTo4+zAO+7tFe7C6+ZFYiBULFM6ZUqpOwAZKZ1ZitBVr0LEv6PLMEWg29AAOWx3+fY/GUJFjjeB0BZGe4IGbVd8HA4ePpPP7HJATHY3MHTAncyk0pZdSz+ib++scTX3JA6MbSEeWSpBqsvgRHTC4tPxvkyo4pGlPr7LGBpBZw18RwHPe5jm8ZQXgulhlXUyOblrzvyONDxHbpZHf7pFqva9e7CM1NbuyUrHcAQqG92NoigkD9NpkibFpcOcUjLyh21+Fy6WxQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wbI7F/kVtQSSLlS1Ir3sTp6Ao/lI2J2Zv8KPXE3BY+w=;
- b=b6b6zMycX37eQ4KBZyIaPliMKIGPhypLPTo4prA5hux6tzJ7o19GM+6cgNg7U+AQg/jDnueUmNmSS2kZHdZY6W9/TRVb4g27HXLF4Wd4l1GOPh+PhpC5FbW0Yusc5yIZ47+yXtY2+CPnANTTeXlcyUcocG7z9Gzej+kTZhnI/5vTkSG1sOAUPVV5y4TLA2pBHqA5ygJxjHB0THhXE22woTnKvcrAiETT1OOfm3KF7p15V4Yu5asxLMePVduJtj7JCD2Ksn0GtHbdcp3OEeNVSA/AAOjwxzgXI0KY+Y97yel0pFoXuHUWUtiANLzaAX2ETVhUPM37uxfU/J3Z+bKvrw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
+        id S234812AbhEFOaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 10:30:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47296 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234848AbhEFOaN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 10:30:13 -0400
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB92FC061763
+        for <devicetree@vger.kernel.org>; Thu,  6 May 2021 07:29:13 -0700 (PDT)
+Received: by mail-qk1-x734.google.com with SMTP id k127so5061448qkc.6
+        for <devicetree@vger.kernel.org>; Thu, 06 May 2021 07:29:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wbI7F/kVtQSSLlS1Ir3sTp6Ao/lI2J2Zv8KPXE3BY+w=;
- b=j+gj5YS+gcQbt85wktnUilMFvaHlixOjfMveMaFxxq1IPM8f5cprMYsJ4jlnE78wkMrh3puOL9KKGJSB/9qc6874tD0S2eEMqsvv6BZPo4ceQyQm4//NTfNhVPpYiFDnGU+JbvObGwor4jnKHlGakOcJAaDGbdXdtZA4mzykR+k=
-Authentication-Results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none header.from=seco.com;
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
- by DB9PR03MB7196.eurprd03.prod.outlook.com (2603:10a6:10:223::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.41; Thu, 6 May
- 2021 14:28:18 +0000
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::40d5:3554:c709:6b1b]) by DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::40d5:3554:c709:6b1b%5]) with mapi id 15.20.4108.026; Thu, 6 May 2021
- 14:28:18 +0000
-Subject: Re: [PATCH v2 2/2] pwm: Add support for Xilinx AXI Timer
-To:     Michal Simek <michal.simek@xilinx.com>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Alvaro Gamez <alvaro.gamez@hazent.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
-References: <20210504184925.3399934-1-sean.anderson@seco.com>
- <20210504184925.3399934-2-sean.anderson@seco.com>
- <e3782bc5-bcd9-5eb8-e89b-e4e52ed2e3cb@xilinx.com>
-From:   Sean Anderson <sean.anderson@seco.com>
-Message-ID: <1bfde199-617a-343c-10ed-4c436bfd908f@seco.com>
-Date:   Thu, 6 May 2021 10:28:13 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <e3782bc5-bcd9-5eb8-e89b-e4e52ed2e3cb@xilinx.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [50.195.82.171]
-X-ClientProxiedBy: MN2PR22CA0003.namprd22.prod.outlook.com
- (2603:10b6:208:238::8) To DB7PR03MB4523.eurprd03.prod.outlook.com
- (2603:10a6:10:19::27)
+        d=ndufresne-ca.20150623.gappssmtp.com; s=20150623;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=GW95dzInD2TKzR0jdVkWnUZGwBXxcKhZ1/8vg5w2zVE=;
+        b=0u96e57Z+1xVtYpsdQo9L1gyUGGB/AdDb46/CNeCtQ1aivWcYlLssYV+UVDb2UtD5W
+         wJ7aW5jYyVAtsxe9bwsZ6SXMC7AXzW1Rz3VkMZUhah3G4NucVM+253gX+w4o+a6Z4Say
+         hRA9NV69eYJDUQzhQbp8A1ha2PiIqDjJqT8b2jARnGRGh42FoeIy+Qus7g534T0Gswhn
+         OzFnI/4JOcA2UPema641K+sOCPWv0KdYlXxGmElG4VZZcxZ/zXg1GDCEMvM75nfr2GmC
+         7ktrMxnU8BaSoUq3H2sDXb9ZJCvggHl70bcfut4Hm8S74xMtuHjlT65I+aUF0g1Mqiaf
+         BLWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=GW95dzInD2TKzR0jdVkWnUZGwBXxcKhZ1/8vg5w2zVE=;
+        b=n2XngWwgIyA25pHY53s6cFtUAIyhAg8MiMM2ks6DKV7P7Cn/pbV7ZRBqGlofKntcus
+         5nJYgXAeMgBvM95R8zdqqU9W1MygkeMERrzo7Zx6S0NPijhVRNBuzXMbrp3UBmBBwJYh
+         HYYZUwR0qd4aXsxIg1t0ix2KKjkoQislSJCZ9qV8rY6UsdyiYjE65JRrWgktSKH+BYkj
+         VZFmBbxI+07UXOQM1UNXUlA/mt8Agvwn44TS4BbMmbVLi77t/uOF2YyklNu952bRBhzl
+         U/TGWSuG/0OTjo463K/xzNEaNRaHVTue8Dd7r4KBcjbqDiLvkH5nt6oJR96PcehztWKq
+         lCWg==
+X-Gm-Message-State: AOAM530HBIOaTCTWQj3DABmqKnG4z4vX4Jco1oAnhIlBLYf7QmaW5Ecg
+        fl/smn5dWQNRgJ/u3fxV6LNK4Q==
+X-Google-Smtp-Source: ABdhPJwBLjKNP6aEe8hFOPRHRhSRkv5wP+9YODtFwFW5GW5DmRxNW2uhWkdMbMheliE8NhBkXiyRyQ==
+X-Received: by 2002:a05:620a:a5a:: with SMTP id j26mr4167891qka.156.1620311352924;
+        Thu, 06 May 2021 07:29:12 -0700 (PDT)
+Received: from nicolas-tpx395.localdomain (173-246-12-168.qc.cable.ebox.net. [173.246.12.168])
+        by smtp.gmail.com with ESMTPSA id h62sm2005578qkf.116.2021.05.06.07.29.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 May 2021 07:29:11 -0700 (PDT)
+Message-ID: <15e2b577e84ef19bfcfcbb23a7ea2bf63abefdb3.camel@ndufresne.ca>
+Subject: Re: [PATCH v10 6/9] media: uapi: Add a control for HANTRO driver
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     John Cox <jc@kynesim.co.uk>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        festevam@gmail.com, lee.jones@linaro.org,
+        gregkh@linuxfoundation.org, mripard@kernel.org,
+        paul.kocialkowski@bootlin.com, wens@csie.org,
+        jernej.skrabec@siol.net, emil.l.velikov@gmail.com,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
+        kernel@collabora.com, cphealy@gmail.com
+Date:   Thu, 06 May 2021 10:29:09 -0400
+In-Reply-To: <n7q79gl86gvdo00sgsg1r5beittohsu4ta@4ax.com>
+References: <20210420121046.181889-1-benjamin.gaignard@collabora.com>
+         <20210420121046.181889-7-benjamin.gaignard@collabora.com>
+         <a7c9fe23-2900-ac90-7131-21380fbfc793@xs4all.nl>
+         <1cf94540-7f4d-0179-dd1e-0b82ee30f6d2@collabora.com>
+         <815a4bd6-599b-cfb8-9ddc-efa4b7092c23@xs4all.nl>
+         <n7q79gl86gvdo00sgsg1r5beittohsu4ta@4ax.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.0 (3.40.0-1.fc34) 
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.27.1.65] (50.195.82.171) by MN2PR22CA0003.namprd22.prod.outlook.com (2603:10b6:208:238::8) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.24 via Frontend Transport; Thu, 6 May 2021 14:28:16 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3a64e0a9-2222-413a-0906-08d9109b3107
-X-MS-TrafficTypeDiagnostic: DB9PR03MB7196:
-X-Microsoft-Antispam-PRVS: <DB9PR03MB71963CFEE37D85BD4F32A6B096589@DB9PR03MB7196.eurprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: N9+hZUMEutds81SEhP87DocUdSAQg5PXmRkajI+NB/ldeD07OMGbCmWeJBMaEuffenBGh9WRs7scHBEG266J+NqL3vkbuGnBvE43bgaWFXqGkEDGQQWn9X324obry3T88DzGTfQlppxuat7l1agMmY8mlBeghJHM0jZIRspKovm5sF8CHbcbYZxA3zRrZL5jzSPyi3omd+LgSaD5oYdD7Y4rRu/pRNRiIJY99sDX511OImDInOnvLOZ8L+OFAUPtJZWlFv34/RC1GZ/u+a7pSaFlKdhSGenPBDGOan4BKbq112DX/UAp2IRv4GgfGUjggicTK54/nFalhjHoOdXgRUKKXig93WdVWhaQUOjFai6m9d2LLgY0jfpGz3slmpA+l5KZ2Jwr4NBgmvXryvXXU13IcCzHA8VxrCplwmHo4sWc9WBgX+R6IiCgwgk5kkpHDOHXlyZFEjB7Kp1b+ETRSgxfHIqFnBFjxKBwe0bXoxj6gbZhq0mX1mZIFnZMvtJGVcHWEyebrhymyJTe6o4W8q8FQjIZGtxM9vqULmMjiVxp4ZeFIUI6gmJA973x0+thqgsbJqVocHv9Q8GGJZl2m/SkyVOd5LdreQZRal6C3fzetAbcathz88IL9agVKcrq6asmWyKH96NSgLtc0bmo/Qp9FIpiP6RtLnh089VDQGVcJYZeOqPRWg9zwIgx/lhhgG+eQF7zrCkV0R4zymF31cAj2CrRerkJyC/hNgAZoiwMc6UR+bsyIDGeB0XDldIwbhouTVPCzQythDXs7cb9hyLnsgAy0inc4sJ7KpjvDOc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(4326008)(6486002)(966005)(2906002)(5660300002)(498600001)(66556008)(83380400001)(26005)(36756003)(186003)(44832011)(8676002)(66476007)(53546011)(16526019)(6666004)(31686004)(52116002)(66946007)(38100700002)(54906003)(956004)(16576012)(2616005)(86362001)(31696002)(8936002)(38350700002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?dVQySlBtUi9wcURvZDlvczZ4OWY2c2VJNEtQN0FGVGh5dmx5bUFISVBnc0NV?=
- =?utf-8?B?UzNianM1czdZWGxRU25JdjNycUJIaEp6ZlRqbmNtempDeE1lU0cwdDJ5NVFL?=
- =?utf-8?B?cHJGTzRpYSsrayttY1VDMlBZMmNLK0JqZlJ2Wmt2WXNUR2lrQ2J5UFJoYlR6?=
- =?utf-8?B?cnRHTFNuakxFd3hnTHlqRkYzODZ3VWJyb21NZmhEV01MMzZWR1JpSjQ0a2lC?=
- =?utf-8?B?VHlYei9vc2FQQ21zREh4cHNBQUJHSTRPVUd6bUJuRGFjLzU0NWNtV2V0ZnM2?=
- =?utf-8?B?QmJ3cmhJN1BQVjEzeEFoMXhWMWR6VWJYQjd6eUR6ejBKVytMZE93eVZVVWwr?=
- =?utf-8?B?WGo4NXE5R0Z0LzJBNWlXcVd4N04waEVhTldpam5FSVpiK2FtUkVVM3BTcW1k?=
- =?utf-8?B?K0xvY2kvY242STN6allyRUdCd1J0bFkwTkNuN01tUmpnNy8ydDJuZUJqK01i?=
- =?utf-8?B?YTVYUUdVeTlDSExlOS9YVzVlcXZ4YUM2UkhZdVNXei9UVWt1OUJKS0kycWxF?=
- =?utf-8?B?R1h5aExsWCtaMmNucEVKdy9yWW9kN0FLdFV1UHZ1Yk9kV1FqQmxmVzA4YmJJ?=
- =?utf-8?B?T3NYcnRtdXJVaFB6MDBOaDBXVHpBZ0dPc3lNb0crR1FpVVJUVDdSQkx6QVNz?=
- =?utf-8?B?MEpsL3RTM09DZEZFaU4zdDFZMWU0Qi80S2JDbGd1TlluRUdsTmgzWkswdkJJ?=
- =?utf-8?B?VEVSdC9xSDE0aTFJOVV1ZnRBWTVhYy9YU3ZUMUtBTUFEN0dDZ3liaDBCWlZC?=
- =?utf-8?B?eUdGMjFZU1dKOW1BV0ZIQ2R1T3pseUp0Q0FzZ0RhWjdybldueVErV2VUdmtL?=
- =?utf-8?B?UmVhODk0WUpvYmtrVSt1YlRod0JYbWQrK0VldlZQZ3BGN2Mvb0JtS2JHVGdP?=
- =?utf-8?B?aGMrM1ZpcXBrR1JuUHJ0eHppdklCaTFkaWF1WU5zM01ZSUVYaHZsbVpPcTZB?=
- =?utf-8?B?V1l3UzlHVEl0dTdzcWhUZ3FMamNQczB0QnJOclBSNkgwVUwrUjJUTzlCSFVJ?=
- =?utf-8?B?S2ZSejhCVFhMS1BxVzRvZEt1ekxkM3plMWR5Z1RqWXMzODdOclpaSHBjVFlw?=
- =?utf-8?B?TlZhb2ZlNUZIeU5GdUhqMXFUOExPZTJUTzhvS2htb1ZCS1poU0VFZWgrR1JL?=
- =?utf-8?B?bXFWNWQzVXovREVXcEgreTlrb3doOWY4Zk9TcGNyejFRSzlGZjRMbENKMmhC?=
- =?utf-8?B?aW1QRUQ1UzZIM0FwaWlhWDJxOFNCSTBaZWRYYzlSRDJ2Umd6TW5QUnQ5V2tz?=
- =?utf-8?B?R2dKSWN6RnBBQ2pzSmF3SXdnZ3JNaHZrcFFhUXlkSXpTaG5LZDJpd2oyK2da?=
- =?utf-8?B?dW05ZEg5Ym1OZC9rWWxTMWMvS0dRUEZESXlWR0RMcXBZTUNPQjBQb3dhcEhh?=
- =?utf-8?B?R1lrTFVXcEtqaTNpMXVoMEExM2R1RndYaDArU2RtRHorbWkzeFVNWUNoZnVt?=
- =?utf-8?B?Nmw0dUdGMU80K3NCNlpOYnJKbXk1d09zaDdkWVFpRUVXN1B6YWVWR21yRlRr?=
- =?utf-8?B?c01ubTltWE01ZVlHRWJ0OURFU3BGZmoxNE5YaUE5cDRyQXhiUVNqR3JzMk9C?=
- =?utf-8?B?bFpDR3M3bjBWYWY3Z0lKTFFSTkhqQjNrWHp3MkZyN3lEanErOUhaNjU0UmxZ?=
- =?utf-8?B?c0dXL3ZDbTBlR0huRGllbldYbG14eXBQaS81cStNdHhLTi94dGRjdktHN3Jr?=
- =?utf-8?B?b3dYZGpjY3gza25oRDlWY1JTN216YXhsamxZSHRYbS9rREU1QnhWbTg4aW1j?=
- =?utf-8?Q?EcFQYN0i+MZD5qDJ8KYg5Sg46D0bpnMPnmV5U3c?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3a64e0a9-2222-413a-0906-08d9109b3107
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2021 14:28:17.9405
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jlq+An0lTMF+tcmjl1/sSHcDuoUrgZn84P46n1nraR6O3e6Vd8zA4Q0HhkaIcu/R9VuJgCENb+e5qFZzN79zww==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR03MB7196
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Le jeudi 06 mai 2021 à 14:11 +0100, John Cox a écrit :
+> > On 05/05/2021 17:20, Benjamin Gaignard wrote:
+> > > 
+> > > Le 05/05/2021 à 16:55, Hans Verkuil a écrit :
+> > > > On 20/04/2021 14:10, Benjamin Gaignard wrote:
+> > > > > The HEVC HANTRO driver needs to know the number of bits to skip at
+> > > > > the beginning of the slice header.
+> > > > > That is a hardware specific requirement so create a dedicated control
+> > > > > for this purpose.
+> > > > > 
+> > > > > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> > > > > ---
+> > > > >   .../userspace-api/media/drivers/hantro.rst    | 19
+> > > > > +++++++++++++++++++
+> > > > >   .../userspace-api/media/drivers/index.rst     |  1 +
+> > > > >   include/media/hevc-ctrls.h                    | 13 +++++++++++++
+> > > > >   3 files changed, 33 insertions(+)
+> > > > >   create mode 100644 Documentation/userspace-
+> > > > > api/media/drivers/hantro.rst
+> > > > > 
+> > > > > diff --git a/Documentation/userspace-api/media/drivers/hantro.rst
+> > > > > b/Documentation/userspace-api/media/drivers/hantro.rst
+> > > > > new file mode 100644
+> > > > > index 000000000000..cd9754b4e005
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/userspace-api/media/drivers/hantro.rst
+> > > > > @@ -0,0 +1,19 @@
+> > > > > +.. SPDX-License-Identifier: GPL-2.0
+> > > > > +
+> > > > > +Hantro video decoder driver
+> > > > > +===========================
+> > > > > +
+> > > > > +The Hantro video decoder driver implements the following driver-
+> > > > > specific controls:
+> > > > > +
+> > > > > +``V4L2_CID_HANTRO_HEVC_SLICE_HEADER_SKIP (integer)``
+> > > > > +    Specifies to Hantro HEVC video decoder driver the number of data
+> > > > > (in bits) to
+> > > > > +    skip in the slice segment header.
+> > > > > +    If non-IDR, the bits to be skipped go from syntax element
+> > > > > "pic_output_flag"
+> > > > > +    to before syntax element "slice_temporal_mvp_enabled_flag".
+> > > > > +    If IDR, the skipped bits are just "pic_output_flag"
+> > > > > +    (separate_colour_plane_flag is not supported).
+> > > > I'm not very keen on this. Without this information the video data
+> > > > cannot be
+> > > > decoded, or will it just be suboptimal?
+> > > 
+> > > Without that information the video can't be decoded.
+> > > 
+> > > > 
+> > > > The problem is that a generic decoder would have to know that the HW is
+> > > > a hantro,
+> > > > and then call this control. If they don't (and are testing on non-hantro
+> > > > HW), then
+> > > > it won't work, thus defeating the purpose of the HW independent decoder
+> > > > API.
+> > > > 
+> > > > Since hantro is widely used, and if there is no other way to do this
+> > > > beside explitely
+> > > > setting this control, then perhaps this should be part of the standard
+> > > > HEVC API.
+> > > > Non-hantro drivers that do not need this can just skip it.
+> > > 
+> > > Even if I put this parameter in decode_params structure that would means
+> > > that a generic
+> > > userland decoder will have to know how the compute this value for hantro
+> > > HW since it
+> > > isn't something that could be done on kernel side.
+> > 
+> > But since hantro is very common, any userland decoder will need to calculate
+> > this anyway.
+> > So perhaps it is better to have this as part of the decode_params?
+> > 
+> > I'd like to know what others think about this.
+> 
+> I don't know exactly what I think on this - its all a bit of a mess. I
+
+There is no better way to describe the state of my own opinion about this.
+
+> don't think this is going to be the last HEVC decoder that needs some
+> non-standard setup that can't be trivially extracted from a standard
+> slice header parse. So if future decoders are going to have to generate
+> custom attributes to cope with their quirks then Hantro probably should
+> too. And if Hantro is common then the userspace progs will at least have
+> a framework for dealing with this sort of thing so when the next oddity
+> comes along.
+
+To add to this, when we moved it out of the decode_params, we were actually
+making it an example. We use large structure for the common stuff because is
+convenient, but with the current infrastructure, the cost of adding controls is
+rather low.
+
+So we need to think if we want to hide or highlight what looks like hardware
+design specific needs. There is nothing particularly wrong in the hardware, as
+Hantro traditionally parse a lot of the headers, but I suppose they don't really
+want to implement skip parsers because at some point the hardware becomes quite
+big and complex, skipping bits is just trivial.
+
+One thing I've been discussing with Benjamin yesterday is that while splitting,
+we also made the data exactly what the HW wants, which is a skip. A more
+reusable representation would have been to provide two offsets in the header.
+This way if another HW need a different skip, but with a different stop
+position, you can share the start position. Though, it's no longer a 1:1 match
+with how the HW is programmed, so not an easy call.
+
+As for having more quirks in more HW, the newer chips are designed with a
+constraints these days. As an example, you will notice that inside mpp (rockchip
+library) they use Microsoft DXVA parameters and use that as a contraint during
+the design. From comment Alex made around Mediatek, they actually used Google
+downstream Linux API as a constraint. As we do cover existing API like DXVA,
+NVDEC and VA as far as my review went. I don't really expect in fact newer
+design to require quirks/extensions so often, but making this one a split
+control would serve as an example how to keep things clear.
+
+Now, what I believe is missing in the story is a way for userspace to detect
+that extra (non standard) controls are needed. There might be other support
+decoder on the platform, or even a software decoder may be more suitable for the
+use cas then a corrupted output (which is what happens if you ignore the hantro
+control). So perhaps we should think of way to flag the requirement for some
+extra controls. Perhaps in the form of a bitmask of quirks, so the userspace can
+check early if it has the required implementation and fallback to something else
+if not.
+
+This is the type of API missing we have had in many other places in the fast, we
+did fix it after that fact, which was not ideal, but still acceptable. So I'm
+not like oh no, we screwed up the other stable API. But we have a use case here,
+perhaps we can learn from it ?
+
+p.s. I try to avoid extensions as this makes me think of the extra paremeters
+associates with the bitstream profile we may not support. We already provide
+list of support profiles, and have a good story, tested with stateful decoder on
+how to introduce new paremters along with new profiles.
+
+p.s. Notice that if we want to revive the VA driver (VA does not have this
+skip), we need to stop modifying the VA API, and just re-parse whatever is
+missing. Having a separate control can be used as a clear indication that double
+parsing is not needed for the specific implementation. Same would apply if some
+Wine folks want to emulate DXVA over V4L2 API (though unlikely as this is rarely
+seen on desktop).
+
+> 
+> Regards
+> 
+> John Cox
+> 
+> > Regards,
+> > 
+> > 	Hans
+> > 
+> > > 
+> > > 
+> > > Regards,
+> > > Benjamin
+> > > 
+> > > > 
+> > > > Regards,
+> > > > 
+> > > > 	Hans
+> > > > 
+> > > > > +
+> > > > > +.. note::
+> > > > > +
+> > > > > +        This control is not yet part of the public kernel API and
+> > > > > +        it is expected to change.
+> > > > > diff --git a/Documentation/userspace-api/media/drivers/index.rst
+> > > > > b/Documentation/userspace-api/media/drivers/index.rst
+> > > > > index 1a9038f5f9fa..12e3c512d718 100644
+> > > > > --- a/Documentation/userspace-api/media/drivers/index.rst
+> > > > > +++ b/Documentation/userspace-api/media/drivers/index.rst
+> > > > > @@ -33,6 +33,7 @@ For more details see the file COPYING in the source
+> > > > > distribution of Linux.
+> > > > >   
+> > > > >   	ccs
+> > > > >   	cx2341x-uapi
+> > > > > +        hantro
+> > > > >   	imx-uapi
+> > > > >   	max2175
+> > > > >   	meye-uapi
+> > > > > diff --git a/include/media/hevc-ctrls.h b/include/media/hevc-ctrls.h
+> > > > > index 8e0109eea454..b713eeed1915 100644
+> > > > > --- a/include/media/hevc-ctrls.h
+> > > > > +++ b/include/media/hevc-ctrls.h
+> > > > > @@ -224,4 +224,17 @@ struct v4l2_ctrl_hevc_decode_params {
+> > > > >   	__u64	flags;
+> > > > >   };
+> > > > >   
+> > > > > +/*  MPEG-class control IDs specific to the Hantro driver as defined
+> > > > > by V4L2 */
+> > > > > +#define
+> > > > > V4L2_CID_CODEC_HANTRO_BASE				(V4L2_CTRL_CLASS_CODEC | 0x1200)
+> > > > > +/*
+> > > > > + * V4L2_CID_HANTRO_HEVC_SLICE_HEADER_SKIP -
+> > > > > + * the number of data (in bits) to skip in the
+> > > > > + * slice segment header.
+> > > > > + * If non-IDR, the bits to be skipped go from syntax element
+> > > > > "pic_output_flag"
+> > > > > + * to before syntax element "slice_temporal_mvp_enabled_flag".
+> > > > > + * If IDR, the skipped bits are just "pic_output_flag"
+> > > > > + * (separate_colour_plane_flag is not supported).
+> > > > > + */
+> > > > > +#define
+> > > > > V4L2_CID_HANTRO_HEVC_SLICE_HEADER_SKIP	(V4L2_CID_CODEC_HANTRO_BASE + 0)
+> > > > > +
+> > > > >   #endif
+> > > > > 
+> > > > 
 
 
-On 5/5/21 2:37 AM, Michal Simek wrote:
- >
- >
- > On 5/4/21 8:49 PM, Sean Anderson wrote:
- >> This adds PWM support for Xilinx LogiCORE IP AXI soft timers commonly
- >> found on Xilinx FPGAs. There is another driver for this device located
- >> at arch/microblaze/kernel/timer.c, but it is only used for timekeeping.
- >> This driver was written with reference to Xilinx DS764 for v1.03.a [1].
- >>
- >> [1] https://www.xilinx.com/support/documentation/ip_documentation/axi_timer/v1_03_a/axi_timer_ds764.pdf
- >>
- >> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
- >> ---
- >> I tried adding a XILINX_PWM_ prefix to all the defines, but IMO it
- >> really hurt readability. That prefix almost doubles the size the
- >> defines, and is particularly excessive in something like
- >> XILINX_PWM_TCSR_RUN_MASK.
- >>
- >> Changes in v2:
- >> - Don't compile this module by default for arm64
- >> - Add dependencies on COMMON_CLK and HAS_IOMEM
- >> - Add comment explaining why we depend on !MICROBLAZE
- >> - Add comment describing device
- >> - Rename TCSR_(SET|CLEAR) to TCSR_RUN_(SET|CLEAR)
- >> - Use NSEC_TO_SEC instead of defining our own
- >> - Use TCSR_RUN_MASK to check if the PWM is enabled, as suggested by Uwe
- >> - Cast dividends to u64 to avoid overflow
- >> - Check for over- and underflow when calculating TLR
- >> - Set xilinx_pwm_ops.owner
- >> - Don't set pwmchip.base to -1
- >> - Check range of xlnx,count-width
- >> - Ensure the clock is always running when the pwm is registered
- >> - Remove debugfs file :l
- >> - Report errors with dev_error_probe
- >>
- >>   drivers/pwm/Kconfig      |  13 ++
- >>   drivers/pwm/Makefile     |   1 +
- >>   drivers/pwm/pwm-xilinx.c | 301 +++++++++++++++++++++++++++++++++++++++
- >>   3 files changed, 315 insertions(+)
- >>   create mode 100644 drivers/pwm/pwm-xilinx.c
- >
- > Without looking below another driver which target the same IP is just
- > wrong that's why NACK from me.
-
-Can you elaborate on this position a bit more? I don't think a rework of
-the microblaze driver should hold back this one. They cannot be enabled
-at the same time. I think it is OK to leave the work of making them
-coexist for a future series (written by someone with microblaze hardware
-to test on).
-
---Sean
