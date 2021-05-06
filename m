@@ -2,111 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9005337552B
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 15:53:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 126C8375534
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 15:57:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234326AbhEFNyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 09:54:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39132 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234303AbhEFNyF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 09:54:05 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 813C8C061761
-        for <devicetree@vger.kernel.org>; Thu,  6 May 2021 06:53:07 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id 4-20020a05600c26c4b0290146e1feccd8so3096139wmv.1
-        for <devicetree@vger.kernel.org>; Thu, 06 May 2021 06:53:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
-         :from:to:references:in-reply-to;
-        bh=XPfYrKMQzfrqBh3ClWqpir12WfBhVdLSsTptX2KRfKA=;
-        b=Nl1s4Jy6G1l6eWkrP5jHcmjBfSCyqrVBP7vSIQDDHxRAbuE0ptfiVDWchf3jitiGNw
-         RsRjRH8efe4RvRweyk2pE6/ZB1252Qqqwtj8EZfpYVZpRi9lRf+qhwMIbPoexlqndjhH
-         lbu9VZ7kraUdh/4x6O7INC7QT3nW7KMNWFCw6p9fGb6puQRGS72XFDkBgyLC5Bq+lfDB
-         8K6+tDk4O6FdqtLnnKYgtuM2KzGQ/n4ybAvCNPhHNUQ6hw+P3i8bFVst4H4FFelp2X3r
-         UoUu3stZBckFKT/8dTd2OjEMDqESLIZIPao7IU0ocnCln5U9UGQGllZBtrnSHCRpZcW1
-         QaPg==
+        id S233982AbhEFN6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 09:58:06 -0400
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:42940 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233918AbhEFN6G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 09:58:06 -0400
+Received: by mail-oi1-f177.google.com with SMTP id v24so5549219oiv.9;
+        Thu, 06 May 2021 06:57:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding:date
-         :message-id:cc:subject:from:to:references:in-reply-to;
-        bh=XPfYrKMQzfrqBh3ClWqpir12WfBhVdLSsTptX2KRfKA=;
-        b=stNT47mt73LUtc65Wb3Rf1lpPDMkXXB7SvWD3mCTQejZzD/vMtc+eQJWKKGqXKMfuo
-         99l+qUsWl1Oj3/jG8NVOyjrfznuBQfKGXm/qJ3R1Kp+tMBd1+peRfr3ZTnDSm0laispo
-         pvQCI8qhgZlIuut60QpWOjN1scBYuqzcM9MJ+9BdF842ZFxeybcNRjmNaN5WlcgsAyM6
-         Q/wiYTBSN3nBX0Kbs3mjfraixml41bgoE38x1VdxpMaa2LkUEPEAMUljgKgraQARG+25
-         UjXtTaTznBy+Mlq7rNRTjYPICRDImTXBqyXRo7J31RAuc23L1xBJ7PgTRpAoHCCFaU4g
-         xmow==
-X-Gm-Message-State: AOAM533uHG7K7s+FE7cOZ00KamzJjTrn7S60Hm4Q6NrhfFJCOW+yLkgt
-        xvrYdHy1wpqzQhbB8IieiLW5By8ZZqAnGA==
-X-Google-Smtp-Source: ABdhPJzgsmm1KnMRFds1I4M+GELKeKBu+8XXlkkF1IOyOb5CB5WEJZxYaNjW/k4IXoqFeu2s4oWevQ==
-X-Received: by 2002:a7b:cbc1:: with SMTP id n1mr15566069wmi.50.1620309186194;
-        Thu, 06 May 2021 06:53:06 -0700 (PDT)
-Received: from localhost (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
-        by smtp.gmail.com with ESMTPSA id g11sm4613159wri.59.2021.05.06.06.53.05
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=HqeKgXTKXZa+6B/eVofQGB4SPGukIqRcTwXruDFPnc0=;
+        b=WM4vDGpO0TCSnF9B1dzZqA0aGMBRAYnceCrwdoLD6frqCJTa7GT1DUsedPl9Fb51FO
+         p9B2O4LN/fHu9Gq45dLquQyA6n8d23+a8DJu71k2zdP1njfivEWUMMmuTn5yaaFvbddW
+         cgPowUsVfiXMDuWKF5jEBn492D1YHiXnjoU6pwCyxyJMU1zZApob+k421+pBLPDEqTQt
+         eJrokOMzotEvga8DEyji+UjUIhZmy+z/DEcQBqcZaTVJ/YnaXllx5mMu8yqZkJCCy8Re
+         wqALqHLpwMp+7A/MLlj0abCHgcQDCrEpucjBYp/kzyAacZkmIQjNTJzaJaoKA1Ysd3ui
+         AmTQ==
+X-Gm-Message-State: AOAM531aPsxW+6iESbcXDEyMdp6mZBRvk21gONyOOZiybxmxMXsW9CbP
+        0gtA2CpkghYcBFYyT7Do1DfikKXmgw==
+X-Google-Smtp-Source: ABdhPJzuyAAscLHlNDjyxPpZgIddNw7Hd0CRGlweA76ymj8ZYxCpPUqd+jN9WAA0Pn5WHOAiLiNcjA==
+X-Received: by 2002:aca:eac2:: with SMTP id i185mr10406150oih.171.1620309426564;
+        Thu, 06 May 2021 06:57:06 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id j5sm535678oou.9.2021.05.06.06.57.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 May 2021 06:53:05 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Thu, 06 May 2021 14:53:05 +0100
-Message-Id: <CB67O3M2S853.22F89BB6QKMRU@arch-thunder>
-Cc:     "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        "Sebastian Siewior" <bigeasy@linutronix.de>,
-        "Rob Herring" <robh+dt@kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 0/7] usb: isp1760: extend support for isp1763
-From:   "Rui Miguel Silva" <rui.silva@linaro.org>
-To:     "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>
-References: <20210504101910.18619-1-rui.silva@linaro.org>
- <YJPJ3aKf9BdQ8UKx@kroah.com> <CB675UH9U35P.3SQ8NI93618E5@arch-thunder>
- <YJPxY55h8c4bBsBQ@pendragon.ideasonboard.com>
-In-Reply-To: <YJPxY55h8c4bBsBQ@pendragon.ideasonboard.com>
+        Thu, 06 May 2021 06:57:05 -0700 (PDT)
+Received: (nullmailer pid 240433 invoked by uid 1000);
+        Thu, 06 May 2021 13:57:04 -0000
+Date:   Thu, 6 May 2021 08:57:04 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Robert Marko <robert.marko@sartura.hr>
+Cc:     lee.jones@linaro.org, linus.walleij@linaro.org,
+        bgolaszewski@baylibre.com, jdelvare@suse.com, linux@roeck-us.net,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        luka.perkov@sartura.hr, jmp@epiphyte.org, pmenzel@molgen.mpg.de,
+        buczek@molgen.mpg.de
+Subject: Re: [PATCH 2/6] dt-bindings: gpio: Add Delta TN48M CPLD GPIO bindings
+Message-ID: <20210506135704.GA3340759@robh.at.kernel.org>
+References: <20210430123511.116057-1-robert.marko@sartura.hr>
+ <20210430123511.116057-2-robert.marko@sartura.hr>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210430123511.116057-2-robert.marko@sartura.hr>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu May 6, 2021 at 2:38 PM WEST, Laurent Pinchart wrote:
+On Fri, Apr 30, 2021 at 02:35:07PM +0200, Robert Marko wrote:
+> CPLD inside of the Delta TN48M does not number GPIOs
+> at all, so in order to ensure numbering lets use bindigs.
 
-> On Thu, May 06, 2021 at 02:29:14PM +0100, Rui Miguel Silva wrote:
-> > On Thu May 6, 2021 at 11:50 AM WEST, Greg Kroah-Hartman wrote:
-> > > On Tue, May 04, 2021 at 11:19:03AM +0100, Rui Miguel Silva wrote:
-> > > > The Arm MPS3 FPGA prototyping board [0] have an isp1763 [1] as USB =
-controller.
-> > > > There is already support for the isp1760 and isp1761 in tree, this =
-series extend
-> > > > the support also for the isp1763.
-> > > >=20
-> > > > Move register access using regmap, remove some platform data and co=
-de, refactor
-> > > > the mempool, use dr_mode to align to existing bindings, then add th=
-e support for
-> > > > isp1763 host mode, add bindings files that did not existed and at t=
-he end
-> > > > add also support for peripheral mode for isp1763.
-> > > >=20
-> > > > @Laurent and @Sebastian, I add both of you in the bindings files as=
- maintainers
-> > > > (it is a mandatory field)since you were the ones which contributed =
-with the
-> > > > initial code and peripheral code, let me know if you are ok with it=
-.
-> > > > If yes I may send a follow up to add also entries in MAINTAINERS fi=
-le that it is
-> > > > also missing.
-> > >
-> > > First 3 patches now applied, feel free to rebase and resend the rest
-> > > based on the review comments.
-> >=20
-> > Thanks, yeah, I was taking the chance to clean all the pre-existing
-> > sparse warnings in that driver, since this was triggering some new
-> > ones.
-> >=20
-> > And I knew that you merging this first ones would make Laurent jump
-> > from his chair and review this, eheh. Thanks for that also.
->
-> You've planned it together, haven't you, you naughty scoundrels :-D
+Looking at the code, I'd make the gpio number something like '(offset << 
+8) | bit' rather than just making up an index.
 
-No, but I wish :)
+We don't normally have defines for GPIO numbers either.
 
+> 
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> ---
+>  include/dt-bindings/gpio/tn48m-gpio.h | 26 ++++++++++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+>  create mode 100644 include/dt-bindings/gpio/tn48m-gpio.h
+> 
+> diff --git a/include/dt-bindings/gpio/tn48m-gpio.h b/include/dt-bindings/gpio/tn48m-gpio.h
+> new file mode 100644
+> index 000000000000..4ece4826d746
+> --- /dev/null
+> +++ b/include/dt-bindings/gpio/tn48m-gpio.h
+> @@ -0,0 +1,26 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * GPIO definitions for Delta TN48M CPLD GPIO driver
+> + *
+> + * Copyright 2020 Sartura Ltd
+> + *
+> + * Author: Robert Marko <robert.marko@sartura.hr>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_TN48M_GPIO_H
+> +#define _DT_BINDINGS_TN48M_GPIO_H
+> +
+> +#define SFP_TX_DISABLE_52	0
+> +#define SFP_TX_DISABLE_51	1
+> +#define SFP_TX_DISABLE_50	2
+> +#define SFP_TX_DISABLE_49	3
+> +#define SFP_PRESENT_52		4
+> +#define SFP_PRESENT_51		5
+> +#define SFP_PRESENT_50		6
+> +#define SFP_PRESENT_49		7
+> +#define SFP_LOS_52		8
+> +#define SFP_LOS_51		9
+> +#define SFP_LOS_50		10
+> +#define SFP_LOS_49		11
+> +
+> +#endif /* _DT_BINDINGS_TN48M_GPIO_H */
+> -- 
+> 2.31.1
+> 
