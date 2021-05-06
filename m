@@ -2,195 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD4EC374CBC
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 03:10:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68D20374D20
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 03:57:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229872AbhEFBLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 21:11:24 -0400
-Received: from gate2.alliedtelesis.co.nz ([202.36.163.20]:40377 "EHLO
-        gate2.alliedtelesis.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229866AbhEFBLW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 21:11:22 -0400
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 69F1D891B0;
-        Thu,  6 May 2021 13:10:21 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1620263421;
-        bh=gBEcofK4p1A630R6Q3AHSfqkVuQENtsMTmONpfzCBKk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=CJO2vyhY5WhFQWa9eulWExgthvqn/SFzPyx5lj3yZZS+vH0W9rwZVD+0MWQ3tt/a+
-         2H/qPPw+Bt7ITXNTU2p7DzjAVhJn+KCH9Y1IY+tuCVtOnXy5wRiiEBPDDPVmbTuzbE
-         YcFjo97n4Eovkyv6OiMdXoFjc/qn/ruCRUzf9e+XHu89rzuikPfb6qeNhTneKAl+HU
-         jppaQYsJ2V7IM+mqlkZFGcoY54EA1nlGofza8wRgDtu6nRN5qi4jHru5RhwVM2H5SS
-         IZ/BnSG8Ub5x17Jq/KwuXbGkT//KOPzkdO1Qkd2hQB7aD70DZQxkPG0grz8ysNBCCS
-         4AWpVgqB7d2hw==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B609341fd0000>; Thu, 06 May 2021 13:10:21 +1200
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.20])
-        by pat.atlnz.lc (Postfix) with ESMTP id 0986413ECA6;
-        Thu,  6 May 2021 13:10:21 +1200 (NZST)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-        id 051E3283A60; Thu,  6 May 2021 13:10:21 +1200 (NZST)
-From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
-To:     wsa@kernel.org, andriy.shevchenko@linux.intel.com,
-        andy.shevchenko@gmail.com, robh+dt@kernel.org, mpe@ellerman.id.au
-Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH 3/3] i2c: mpc: implement erratum A-004447 workaround
-Date:   Thu,  6 May 2021 13:10:14 +1200
-Message-Id: <20210506011015.17347-4-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210506011015.17347-1-chris.packham@alliedtelesis.co.nz>
-References: <20210506011015.17347-1-chris.packham@alliedtelesis.co.nz>
+        id S229603AbhEFB6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 21:58:08 -0400
+Received: from mail-m176231.qiye.163.com ([59.111.176.231]:15368 "EHLO
+        mail-m176231.qiye.163.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229488AbhEFB6I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 21:58:08 -0400
+X-Greylist: delayed 338 seconds by postgrey-1.27 at vger.kernel.org; Wed, 05 May 2021 21:58:07 EDT
+Received: from vivo.com (localhost [127.0.0.1])
+        by mail-m176231.qiye.163.com (Hmail) with ESMTP id 3D56A6C00CF;
+        Thu,  6 May 2021 09:51:30 +0800 (CST)
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+Message-ID: <APgAqgAuDm48oWX*tq6AkKqd.3.1620265890239.Hmail.wangqing@vivo.com>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: =?UTF-8?B?UmU6UmU6IFtQQVRDSCBWOSAxLzJdIHdhdGNoZG9nOiBtdGs6IHN1cHBvcnQgcHJlLXRpbWVvdXQgd2hlbiB0aGUgYmFyayBpcnEgaXMgYXZhaWxhYmxl?=
+X-Priority: 3
+X-Mailer: HMail Webmail Server V2.0 Copyright (c) 2016-163.com
+X-Originating-IP: 36.152.145.182
+In-Reply-To: <45ff044d-80ff-9001-1d4f-d39d0ae63060@roeck-us.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=B+jHL9lM c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=5FLXtPjwQuUA:10 a=w4j1xu5M8ypyE8uBZIYA:9
-X-SEG-SpamProfiler-Score: 0
+Received: from wangqing@vivo.com( [36.152.145.182) ] by ajax-webmail ( [127.0.0.1] ) ; Thu, 6 May 2021 09:51:30 +0800 (GMT+08:00)
+From:   =?UTF-8?B?546L5pOO?= <wangqing@vivo.com>
+Date:   Thu, 6 May 2021 09:51:30 +0800 (GMT+08:00)
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgYFAkeWUFZS1VLWVdZKFlBSE83V1ktWUFJV1kPCR
+        oVCBIfWUFZQh0aQlYaGUhPTh5OHkJCHUJVEwETFhoSFyQUDg9ZV1kWGg8SFR0UWUFZT0tIVUpKS0
+        hKQ1VLWQY+
+X-HM-Sender-Digest: e1kJHlYWEh9ZQU1ISU9KTUlPQ0JON1dZDB4ZWUEPCQ4eV1kSHx4VD1lB
+        WUc6Kxw6Chw6Dj8WT0MULCNRDwpNOhAwCh9VSFVKTUlLSU1OQ0JLTkpLVTMWGhIXVQwaFRwKEhUc
+        Ow0SDRRVGBQWRVlXWRILWUFZSE1VSk5JVUpPTlVKQ0lZV1kIAVlBSExOTDcG
+X-HM-Tid: 0a793f5f71d1d9a9kuws3d56a6c00cf
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The P2040/P2041 has an erratum where the normal i2c recovery mechanism
-does not work. Implement the alternative recovery mechanism documented
-in the P2040 Chip Errata Rev Q.
-
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
- drivers/i2c/busses/i2c-mpc.c | 88 +++++++++++++++++++++++++++++++++++-
- 1 file changed, 86 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/i2c/busses/i2c-mpc.c b/drivers/i2c/busses/i2c-mpc.c
-index 30d9e89a3db2..052e37718771 100644
---- a/drivers/i2c/busses/i2c-mpc.c
-+++ b/drivers/i2c/busses/i2c-mpc.c
-@@ -45,6 +45,7 @@
- #define CCR_MTX  0x10
- #define CCR_TXAK 0x08
- #define CCR_RSTA 0x04
-+#define CCR_RSVD 0x02
-=20
- #define CSR_MCF  0x80
- #define CSR_MAAS 0x40
-@@ -97,7 +98,7 @@ struct mpc_i2c {
- 	u32 block;
- 	int rc;
- 	int expect_rxack;
--
-+	bool has_errata_A004447;
- };
-=20
- struct mpc_i2c_divider {
-@@ -136,6 +137,83 @@ static void mpc_i2c_fixup(struct mpc_i2c *i2c)
- 	}
- }
-=20
-+static int i2c_mpc_wait_sr(struct mpc_i2c *i2c, int mask)
-+{
-+	unsigned long timeout =3D jiffies + usecs_to_jiffies(100);
-+	int ret =3D 0;
-+
-+	while ((readb(i2c->base + MPC_I2C_SR) & mask) =3D=3D 0) {
-+		if (time_after(jiffies, timeout)) {
-+			ret =3D -ETIMEDOUT;
-+			break;
-+		}
-+		cond_resched();
-+	}
-+
-+	return ret;
-+}
-+
-+/*
-+ * Workaround for Erratum A004447. From the P2040CE Rev Q
-+ *
-+ * 1.  Set up the frequency divider and sampling rate.
-+ * 2.  I2CCR - a0h
-+ * 3.  Poll for I2CSR[MBB] to get set.
-+ * 4.  If I2CSR[MAL] is set (an indication that SDA is stuck low), then =
-go to
-+ *     step 5. If MAL is not set, then go to step 13.
-+ * 5.  I2CCR - 00h
-+ * 6.  I2CCR - 22h
-+ * 7.  I2CCR - a2h
-+ * 8.  Poll for I2CSR[MBB] to get set.
-+ * 9.  Issue read to I2CDR.
-+ * 10. Poll for I2CSR[MIF] to be set.
-+ * 11. I2CCR - 82h
-+ * 12. Workaround complete. Skip the next steps.
-+ * 13. Issue read to I2CDR.
-+ * 14. Poll for I2CSR[MIF] to be set.
-+ * 15. I2CCR - 80h
-+ */
-+static void mpc_i2c_fixup_A004447(struct mpc_i2c *i2c)
-+{
-+	int ret;
-+	u32 val;
-+
-+	writeccr(i2c, CCR_MEN | CCR_MSTA);
-+	ret =3D i2c_mpc_wait_sr(i2c, CSR_MBB);
-+	if (ret) {
-+		dev_err(i2c->dev, "timeout waiting for CSR_MBB\n");
-+		return;
-+	}
-+
-+	val =3D readb(i2c->base + MPC_I2C_SR);
-+
-+	if (val & CSR_MAL) {
-+		writeccr(i2c, 0x00);
-+		writeccr(i2c, CCR_MSTA | CCR_RSVD);
-+		writeccr(i2c, CCR_MEN | CCR_MSTA | CCR_RSVD);
-+		ret =3D i2c_mpc_wait_sr(i2c, CSR_MBB);
-+		if (ret) {
-+			dev_err(i2c->dev, "timeout waiting for CSR_MBB\n");
-+			return;
-+		}
-+		val =3D readb(i2c->base + MPC_I2C_DR);
-+		ret =3D i2c_mpc_wait_sr(i2c, CSR_MIF);
-+		if (ret) {
-+			dev_err(i2c->dev, "timeout waiting for CSR_MIF\n");
-+			return;
-+		}
-+		writeccr(i2c, CCR_MEN | CCR_RSVD);
-+	} else {
-+		val =3D readb(i2c->base + MPC_I2C_DR);
-+		ret =3D i2c_mpc_wait_sr(i2c, CSR_MIF);
-+		if (ret) {
-+			dev_err(i2c->dev, "timeout waiting for CSR_MIF\n");
-+			return;
-+		}
-+		writeccr(i2c, CCR_MEN);
-+	}
-+}
-+
- #if defined(CONFIG_PPC_MPC52xx) || defined(CONFIG_PPC_MPC512x)
- static const struct mpc_i2c_divider mpc_i2c_dividers_52xx[] =3D {
- 	{20, 0x20}, {22, 0x21}, {24, 0x22}, {26, 0x23},
-@@ -670,7 +748,10 @@ static int fsl_i2c_bus_recovery(struct i2c_adapter *=
-adap)
- {
- 	struct mpc_i2c *i2c =3D i2c_get_adapdata(adap);
-=20
--	mpc_i2c_fixup(i2c);
-+	if (i2c->has_errata_A004447)
-+		mpc_i2c_fixup_A004447(i2c);
-+	else
-+		mpc_i2c_fixup(i2c);
-=20
- 	return 0;
- }
-@@ -767,6 +848,9 @@ static int fsl_i2c_probe(struct platform_device *op)
- 	}
- 	dev_info(i2c->dev, "timeout %u us\n", mpc_ops.timeout * 1000000 / HZ);
-=20
-+	if (of_property_read_bool(op->dev.of_node, "fsl,i2c-erratum-a004447"))
-+		i2c->has_errata_A004447 =3D true;
-+
- 	i2c->adap =3D mpc_ops;
- 	scnprintf(i2c->adap.name, sizeof(i2c->adap.name),
- 		  "MPC adapter (%s)", of_node_full_name(op->dev.of_node));
---=20
-2.31.1
-
+Cj5PbiA0LzI0LzIxIDY6NTIgUE0sIFdhbmcgUWluZyB3cm90ZToKPj4gVXNlIHRoZSBiYXJrIGlu
+dGVycnVwdCBhcyB0aGUgcHJldGltZW91dCBub3RpZmllciBpZiBhdmFpbGFibGUuCj4+IAo+PiBX
+aGVuIHRoZSB3YXRjaGRvZyB0aW1lciBleHBpcmVzIGluIGR1YWwgbW9kZSwgYW4gaW50ZXJydXB0
+IHdpbGwgYmUKPj4gdHJpZ2dlcmVkIGZpcnN0LCB0aGVuIHRoZSB0aW1pbmcgcmVzdGFydHMuIFRo
+ZSByZXNldCBzaWduYWwgd2lsbCBiZQo+PiBpbml0aWF0ZWQgd2hlbiB0aGUgdGltZXIgZXhwaXJl
+cyBhZ2Fpbi4KPj4gCj4+IFRoZSBwcmV0aW1lb3V0IG5vdGlmaWNhdGlvbiBzaGFsbCBvY2N1ciBh
+dCB0aW1lb3V0LXNlYy8yLgo+PiAKPj4gVjI6Cj4+IC0gcGFuaWMoKSBieSBkZWZhdWx0IGlmIFdB
+VENIRE9HX1BSRVRJTUVPVVRfR09WIGlzIG5vdCBlbmFibGVkLgo+PiAKPj4gVjM6Cj4+IC0gTW9k
+aWZ5IHRoZSBwcmV0aW1lb3V0IGJlaGF2aW9yLCBtYW51YWxseSByZXNldCBhZnRlciB0aGUgcHJl
+dGltZW91dAo+PiAtIGlzIHByb2Nlc3NlZCBhbmQgd2FpdCB1bnRpbCB0aW1lb3V0Lgo+PiAKPj4g
+VjQ6Cj4+IC0gUmVtb3ZlIHByZXRpbWVvdXQgcmVsYXRlZCBwcm9jZXNzaW5nLiAKPj4gLSBBZGQg
+ZHVhbCBtb2RlIGNvbnRyb2wgc2VwYXJhdGVseS4KPj4gCj4+IFY1Ogo+PiAtIEZpeCBzb21lIGZv
+cm1hdHRpbmcgYW5kIHByaW50aW5nIHByb2JsZW1zLgo+PiAKPj4gVjY6Cj4+IC0gUmVhbGl6ZSBw
+cmV0aW1lb3V0IHByb2Nlc3NpbmcgdGhyb3VnaCBkdWFsbW9kZS4KPj4gCj4+IFY3Ogo+PiAtIEFk
+ZCBzZXRfcHJldGltZW91dCgpLgo+PiAKPj4gVjgvVjk6Cj4+IC0gRml4IHNvbWUgZm9ybWF0dGlu
+ZyBwcm9ibGVtcy4KPj4gCj4+IFNpZ25lZC1vZmYtYnk6IFdhbmcgUWluZyA8d2FuZ3FpbmdAdml2
+by5jb20+Cj4KPlJldmlld2VkLWJ5OiBHdWVudGVyIFJvZWNrIDxsaW51eEByb2Vjay11cy5uZXQ+
+Cj4KPk5vdGUgdGhhdCB0aGUgdmVyc2lvbiBoaXN0b3J5IHNob3VsZCBiZSBhZnRlciAiLS0tIi4K
+Pgo+R3VlbnRlcgo+CgpUaGFua3MsIEd1ZW50ZXIuCkFuZCB3aGF0IGRvIEkgbmVlZCB0byBkbyBp
+ZiBJIHdhbnQgbWVyZ2UgaW50byB0aGUgbmV4dC10cmVlPwoKUWluZwoNCg0K
