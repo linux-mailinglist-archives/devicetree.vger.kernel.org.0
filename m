@@ -2,68 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B545937568B
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 17:23:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5BEF375712
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 17:28:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235245AbhEFPYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 11:24:42 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:39793 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235204AbhEFPYd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 11:24:33 -0400
-Received: by mail-ot1-f42.google.com with SMTP id 65-20020a9d03470000b02902808b4aec6dso5188659otv.6;
-        Thu, 06 May 2021 08:23:33 -0700 (PDT)
+        id S235591AbhEFP3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 11:29:07 -0400
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:34638 "EHLO
+        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235578AbhEFP2c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 11:28:32 -0400
+Received: by mail-ot1-f52.google.com with SMTP id u25-20020a0568302319b02902ac3d54c25eso5224494ote.1;
+        Thu, 06 May 2021 08:27:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=3gd59Q00UsIN3VmjUeIhTthZ0QDrMCmfvT1a++zDiFI=;
-        b=LYmZ0VKe1SL3XvHsoeiLxiYfM/Sf0pkCHi4ADNNnALkQhDr6nv2jGzFSwnsQssif9W
-         ZXamHHCwmB9jq1XEMA4a7+p2zffSBQgPyivrAHH+RICl2rGjF0fV9BLoEOILTO24Cac9
-         KlRCK9+dGcTZKqKsQ5ENvSyXlh0w/OcQkrpu8k9fZDMxH2B6xlbxactTztqPPnafi/gE
-         gCygyw+DlG3RMVO1n7QgEpMzdv6fkjrVM6Ourr8ufpX23So1bMNhZfiyx/781L2lbEQm
-         rEArpvrBbFRdBNAN3ASt7hgNH8PCRh4mO4kVO9a4cJCQG1MOTL4IDHoPMdQ3QmkAkdZ4
-         ANNQ==
-X-Gm-Message-State: AOAM533DUrTJdTfPl7t8fY+cKgLZzFJT88tKA05jgP6mhVZFTjGQ2rMM
-        2hqpCe69IE3jeQSEOQvpUA==
-X-Google-Smtp-Source: ABdhPJwvsQN2eK/NTlHbSE6SVGfw3ggGDQ0VkuZPxGExJK60BByW3DR4TypPYBPg6/iuBNu8VmJvIQ==
-X-Received: by 2002:a9d:7f96:: with SMTP id t22mr4169872otp.152.1620314612632;
-        Thu, 06 May 2021 08:23:32 -0700 (PDT)
+        bh=KfFwaizpNkSOSpLy+JW7Fy7Dspgzcz2CioU6Zd7EVAk=;
+        b=e0EXL82HEl1qbBIIvzlgDEhEU3xjt2ODbNxw+ybCnY6fGZZP9Yrc31Q7zlq00Op6Ox
+         plSnWqpnPrJh1ERgGG/rfVWO3m5O30fsLRjduCbU5cdpBQL3JOYyeG1qQAU2XrMtsvHy
+         YJP8bwYgGI7MZzVWjiWtl2S5h5E7XBKepkQyF5yltDLbkAMvTkcD6DpbXVGm3pKTx8fe
+         MGxvdQoR2hDp1o6lC4QSJLJiddTUsl1vY8dG1ex47T+9cez2aRhcFTGchwTMuRQVEOPt
+         CzTENtidsteiOHWHFb5XZd3pfSJTNL/VcsUOviPB4lpYhLHyQ9E2s4qJTD9pthXJwX2z
+         qdKQ==
+X-Gm-Message-State: AOAM532vux2HvvxJjNmRk78pGZfzssydTYnZzJKBuWLPUJFiAl6VTywp
+        x8x+0oij9CKaPsphRJ4X/Q==
+X-Google-Smtp-Source: ABdhPJyCLkQhPP5rdxxEieDcOSIiGM6kzGFCroiumy3wPbDHuAA8EbZClvAdIFe0pFhQONw0viGWYw==
+X-Received: by 2002:a05:6830:248d:: with SMTP id u13mr4105799ots.121.1620314853204;
+        Thu, 06 May 2021 08:27:33 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id f13sm639959ote.46.2021.05.06.08.23.30
+        by smtp.gmail.com with ESMTPSA id e67sm480839oia.5.2021.05.06.08.27.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 May 2021 08:23:31 -0700 (PDT)
-Received: (nullmailer pid 351881 invoked by uid 1000);
-        Thu, 06 May 2021 15:23:30 -0000
-Date:   Thu, 6 May 2021 10:23:30 -0500
+        Thu, 06 May 2021 08:27:32 -0700 (PDT)
+Received: (nullmailer pid 357250 invoked by uid 1000);
+        Thu, 06 May 2021 15:27:31 -0000
+Date:   Thu, 6 May 2021 10:27:31 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Shawn Guo <shawn.guo@linaro.org>
-Cc:     Benjamin Li <benl@squareup.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Jassi Brar <jassisinghbrar@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: mailbox: qcom: Add MSM8939 APCS
- compatible
-Message-ID: <20210506152330.GA351835@robh.at.kernel.org>
-References: <20210503081334.17143-1-shawn.guo@linaro.org>
- <20210503081334.17143-2-shawn.guo@linaro.org>
+To:     cy_huang <u0084500@gmail.com>
+Cc:     lgirdwood@gmail.com, broonie@kernel.org,
+        linux-kernel@vger.kernel.org, cy_huang@richtek.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] regulator: rt6160: Add DT binding documet for
+ Richtek RT6160
+Message-ID: <20210506152731.GA352070@robh.at.kernel.org>
+References: <1620036917-19040-1-git-send-email-u0084500@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210503081334.17143-2-shawn.guo@linaro.org>
+In-Reply-To: <1620036917-19040-1-git-send-email-u0084500@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 03 May 2021 16:13:33 +0800, Shawn Guo wrote:
-> Add compatible for the Qualcomm MSM8939 APCS block to the Qualcomm APCS
-> bindings.
-> 
-> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> ---
->  .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml       | 1 +
->  1 file changed, 1 insertion(+)
-> 
+On Mon, May 03, 2021 at 06:15:16PM +0800, cy_huang wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
 
-Acked-by: Rob Herring <robh@kernel.org>
+Typo in the subject.
+
+> 
+> Add the DT binding document for Richtek RT6160 voltage regulator.
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> ---
+>  .../regulator/richtek,rt6160-regulator.yaml        | 68 ++++++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt6160-regulator.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt6160-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt6160-regulator.yaml
+> new file mode 100644
+> index 00000000..fe7b168
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/richtek,rt6160-regulator.yaml
+> @@ -0,0 +1,68 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/richtek,rt6160-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Richtek RT6160 BuckBoost converter
+> +
+> +maintainers:
+> +  - ChiYuan Huang <cy_huang@richtek.com>
+> +
+> +description: |
+> +  The RT6160 is a high-efficiency buck-boost converter that can provide
+> +  up to 3A output current from 2025mV to 5200mV. And it support the wide
+> +  input voltage range from 2200mV to 5500mV.
+> +
+> +  Datasheet is available at
+> +  https://www.richtek.com/assets/product_file/RT6160A/DS6160A-00.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - richtek,rt6160
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  enable-gpios:
+> +    description: A connection of the 'enable' gpio line.
+> +    maxItems: 1
+> +
+> +  richtek,vsel_active_low:
+> +    description: |
+> +      Used to indicate the 'vsel' pin active level. if not specified, use
+> +      high active level as the default.
+> +    type: boolean
+> +
+> +patternProperties:
+> +  buckboost:
+
+foo-buckboost-bar is valid name?
+
+It's not a pattern, so move to 'properties'.
+
+> +    description: BuckBoost converter regulator description.
+> +    type: object
+> +    $ref: regulator.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      rt6160@75 {
+> +        compatible = "richtek,rt6160";
+> +        reg = <0x75>;
+> +        enable-gpios = <&gpio26 2 0>;
+> +
+> +        buckboost {
+> +          regulator-name = "rt6160-buckboost";
+> +          regulator-min-microvolt = <2025000>;
+> +          regulator-max-microvolt = <5200000>;
+> +          regulator-allowed-modes = <0 1>;
+> +        };
+> +      };
+> +    };
+> -- 
+> 2.7.4
+> 
