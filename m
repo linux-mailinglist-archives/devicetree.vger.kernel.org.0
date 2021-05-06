@@ -2,192 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 403753758CC
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 18:55:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D0F6375923
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 19:21:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236065AbhEFQ4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 12:56:02 -0400
-Received: from mail-bn1nam07on2058.outbound.protection.outlook.com ([40.107.212.58]:24197
-        "EHLO NAM02-BN1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S236075AbhEFQ4B (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 May 2021 12:56:01 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oJd3ACrL+0RS0MGV1rs+GDApDlIHinwujOzsCTCG+VX4Mn3H45pPUpP1FJSmwAiFxeRhMmTu9jmnt/Tb867DA6y/vvOdEg33SnhJpn5LlPCvV7yO+qW0qPrE18zUQ7SCifJlu6oLuyQWACdAgHMmgcmhjx0ZO5CJfVEHl1WqBVW38HTx7u3LTofFwPqOVYlQ0fDaU1EXXhIT+jeqa0RhihgHcOlIiSN8GDWeNMxme1E9uxvIVdtOAV+QOPhJ+BDbjRWCkonnUHsvr/WMk0HFgqN1V63ttlwqDdMakAcfYbVI5r8rt55Q9ICXiWXe0iUZPV+dnVhV/vrO7BA0RPGN/g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=am6P0oxgMk2raBe2Oyu8fWeBRFHJlJvyd02nP1c7lho=;
- b=CrhJZeeZsEkKi4+MDIlyjWFlbO6NZ+GvxwMXtPhjEVnEradxGMbYQPahbaCdU8+x7x/ALWZSCRhy4Z+qiYrKuOrGw91S1EoxYtcWsVe6EJFHuqsz4K39Ad/17CxCYScfDDCSa7epMRVmAuJ0EVsp2FMx6/r04aIdD+slIBA0/uU0YemYKc7JZ7GVKNxVrWIgT2aLIMzG0o1FxUhkN5OM4bFl221Ly5GGBUDV4ztoemTS16flqTNWmISwIvxIV+myv4I2dnbPl/XlR/TvSfyCFqrFckcQn9q9Dhh5ZWVHjclQdhwBpXx6pV/8EWPXUVNb2/0HmO3bBu0qkhlshS8IsQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=pengutronix.de smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
+        id S236240AbhEFRW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 13:22:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57998 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235881AbhEFRW1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 13:22:27 -0400
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46F6EC061763
+        for <devicetree@vger.kernel.org>; Thu,  6 May 2021 10:21:29 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id z1so8358833ybf.6
+        for <devicetree@vger.kernel.org>; Thu, 06 May 2021 10:21:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=am6P0oxgMk2raBe2Oyu8fWeBRFHJlJvyd02nP1c7lho=;
- b=dbjPF/mbaM7hwF4uoyW6lERFuoXQuVuTcXo7ErW0PrNzcmPMzOtAbN0st3EmtV5oXg27jZbdtUUYJV4duizUI8+ZQ6J2iHk4MbdHQepk0LQ8JTEsXQ3hThJUgEM55HK2qrxnIPmffopijqXEsKOKN1gVd9SCnuV5WcICriJM2As=
-Received: from SN4PR0501CA0135.namprd05.prod.outlook.com
- (2603:10b6:803:2c::13) by BYAPR02MB4741.namprd02.prod.outlook.com
- (2603:10b6:a03:52::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.38; Thu, 6 May
- 2021 16:55:00 +0000
-Received: from SN1NAM02FT0053.eop-nam02.prod.protection.outlook.com
- (2603:10b6:803:2c:cafe::39) by SN4PR0501CA0135.outlook.office365.com
- (2603:10b6:803:2c::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.11 via Frontend
- Transport; Thu, 6 May 2021 16:55:00 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- SN1NAM02FT0053.mail.protection.outlook.com (10.97.4.115) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4065.21 via Frontend Transport; Thu, 6 May 2021 16:54:59 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Thu, 6 May 2021 09:54:58 -0700
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Thu, 6 May 2021 09:54:58 -0700
-Envelope-to: u.kleine-koenig@pengutronix.de,
- thierry.reding@gmail.com,
- lee.jones@linaro.org,
- alvaro.gamez@hazent.com,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org,
- linux-pwm@vger.kernel.org,
- sean.anderson@seco.com
-Received: from [172.30.17.109] (port=37840)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1lehH8-00027y-3H; Thu, 06 May 2021 09:54:58 -0700
-To:     Sean Anderson <sean.anderson@seco.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        <linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Alvaro Gamez <alvaro.gamez@hazent.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
-References: <20210504184925.3399934-1-sean.anderson@seco.com>
- <20210504184925.3399934-2-sean.anderson@seco.com>
- <e3782bc5-bcd9-5eb8-e89b-e4e52ed2e3cb@xilinx.com>
- <1bfde199-617a-343c-10ed-4c436bfd908f@seco.com>
-From:   Michal Simek <michal.simek@xilinx.com>
-Subject: Re: [PATCH v2 2/2] pwm: Add support for Xilinx AXI Timer
-Message-ID: <ff8eb398-fd49-fdb8-447e-2f6270cb006d@xilinx.com>
-Date:   Thu, 6 May 2021 18:54:55 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WFWC5fpqRaGTrdHip1X5fLtWHN0bHh1jKIs9xXOqvCo=;
+        b=gIZdu0zr3ZpqagrNEPWKcIoKlDQ3CN3N4AfPVFDzDwIzpjXbYoPYUXkop+y/aLEtfz
+         3ettPFVeGcLlr4fq/lsEw/tIMWiYKroW2ITLgrbICh3bDGmgLCVh6HAKLS5dpdQCbaVy
+         TCIFNQayODjdnB/b9uuRoOQgHzdMgPjVIV28h1P3VJF4tAUmlXEa2xB98R9EEl31VcO1
+         lOmjoaGvnJE9sbfUTDEQ/2zk2O/nnntaNJHqYHPyuQXesjFftBABGdTFcO1IzothY6X2
+         OVwnFlQeHYu6d67xD5WlSGxktHzDZw59uV4aqO6sldVr0vaeBBTGfaDNPmcTqipGzS7+
+         dJ2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WFWC5fpqRaGTrdHip1X5fLtWHN0bHh1jKIs9xXOqvCo=;
+        b=rFGg19DXKYnRFEhsLIdPjU4rDjqi4kJA6AISTZiQ9nb9O5vKp2bW3yG35gw7gUiiOY
+         Gub2RiLutjq8CiOZbbSy35FhKMTKoDoQGl4f7KlMBvtnjRzAcwA9tYg6/0vvs+30JxH1
+         cOMddQLhtPnGwbOHCIQLXTE4tI7k1/lPYY3tALtca9TJYwzXf5H+TN8BwaGNmjcAFCRW
+         4GejNVAeQwT9SCl0CEsBUGFly8c8RTNHsjC/2lUir/C+6qhoEoUHLShdZhDOnhnBUROL
+         8aNeOkwarQ0Gul9xDgkxo/iOeIH9c1Bb10cAyw6dCBHrThkXGuW0/kp8ps/l0C5FWrOS
+         QZDQ==
+X-Gm-Message-State: AOAM532O3EtLurnhr4qyXFMv/gCGV45zGFCAOqxXOrEXlKHS3ZBHTKnT
+        0BeWzRmSZw97iIGAsfUFRGOs1vY9FKwRpJt1IRsA1w==
+X-Google-Smtp-Source: ABdhPJxLhId8udASljWKtWTJzDPUFg816nivtvIYhzWVhtN58/ebBXiVacPTAsp7k3xt4DZI1GvNbhhx7lELMqrLl6k=
+X-Received: by 2002:a05:6902:102d:: with SMTP id x13mr7583894ybt.40.1620321688463;
+ Thu, 06 May 2021 10:21:28 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1bfde199-617a-343c-10ed-4c436bfd908f@seco.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4e75f63a-adb4-4d07-bdb1-08d910afaf57
-X-MS-TrafficTypeDiagnostic: BYAPR02MB4741:
-X-Microsoft-Antispam-PRVS: <BYAPR02MB4741C4C037229F9BA538E425C6589@BYAPR02MB4741.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 91Inww1iiPbP6P2KsmfsuyVjBjr0Ql1eSMwifPUf3mqyycGTQBFXbHN/6wFiKBYo1pYby8OFC5/PiYmUlIm15aJV95MQwclX8Ww3CdDtzqifDzwwtONS2NXap4XTdtYBEwc0sl+D68YsIRxlvh0BH8bakYjj5RyUULo/OmBKpVun7PxIsxprWV4T/MRKF0sbSfMw94raB9MjCkExd01mTffA73jevDNOQvG66Tc7OZlUL7iE3A2QzkdEda4d3ESIIqIPndlzNeNyi8Yfc1x3UE3ot1CCom9GC+dzm/3rLrTI4GVKPw6/1OqhLQz712phEw9V/ikM5EYq17rphapohDgN6K0rHtj1egQwbpcnntUn479wP0vAvX+UfG2fKTzvIk+LxQbmEq7iXYszxpfJY+U5w00cL/lc70SjaSpA7tk2ZJCGHBSi7oddbzI8XXXRT0M8LCz0nlyTgw0DTdU7AoKxq49hDnIyD+mhOM4OWZkELWHW9Jda+S2N4p9J2kk/TXJVhtxmTqQI19HcwPL9eI2HYfBObOhESEh6iCa40MZkR6is+no3uZ6lxk64JXeb8w784EpEmLyWSuH/NLMHXAwFfoqae8orsJRa+20hixXhkfuQmDO1IEayY1cY6J699KqZz3y7f7dsJ9vXY7LifvIbb0lI4H3gRBzNXtEeMXreCSWzl6tk7wvghfabmygEzH4SbWXoTfR+UbQmEtW6XXSE6xS3eAlzAsyt+yUKlVzXmgyWF7ff4ZrgHwJMv81z900bfldp5lzqHS/jrRRUFpV1x0lA9LJxOvs3uKytNaQ=
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(396003)(376002)(136003)(346002)(39850400004)(36840700001)(46966006)(8676002)(966005)(6666004)(70206006)(44832011)(47076005)(82310400003)(426003)(336012)(31696002)(110136005)(316002)(36860700001)(54906003)(53546011)(478600001)(186003)(31686004)(4326008)(2616005)(356005)(82740400003)(36906005)(26005)(36756003)(8936002)(83380400001)(7636003)(5660300002)(70586007)(9786002)(2906002)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2021 16:54:59.5920
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e75f63a-adb4-4d07-bdb1-08d910afaf57
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0053.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB4741
+References: <20210430123511.116057-1-robert.marko@sartura.hr>
+ <20210430123511.116057-3-robert.marko@sartura.hr> <20210506140024.GB3340759@robh.at.kernel.org>
+ <3905879e67d50d6a7f73fcd83982c052@walle.cc>
+In-Reply-To: <3905879e67d50d6a7f73fcd83982c052@walle.cc>
+From:   Luka Perkov <luka.perkov@sartura.hr>
+Date:   Thu, 6 May 2021 19:21:17 +0200
+Message-ID: <CAKQ-cribKLfiZqTyBe_OtPzKGk5M2_8+0ov-D4-hTei5aouDtw@mail.gmail.com>
+Subject: Re: [PATCH 3/6] gpio: Add Delta TN48M CPLD GPIO driver
+To:     Michael Walle <michael@walle.cc>
+Cc:     Rob Herring <robh@kernel.org>,
+        Robert Marko <robert.marko@sartura.hr>, lee.jones@linaro.org,
+        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        jdelvare@suse.com, linux@roeck-us.net, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, Jonathan Polom <jmp@epiphyte.org>,
+        Paul Menzel <pmenzel@molgen.mpg.de>,
+        Donald Buczek <buczek@molgen.mpg.de>,
+        =?UTF-8?B?Q0xFTUVOVC5DSEFORyDlvLXlvJjmhbY=?= 
+        <CLEMENT.CHANG@deltaww.com>, upstream-wg@lists.dent.dev
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello Michael,
 
-On 5/6/21 4:28 PM, Sean Anderson wrote:
-> 
-> 
-> On 5/5/21 2:37 AM, Michal Simek wrote:
->>
->>
->> On 5/4/21 8:49 PM, Sean Anderson wrote:
->>> This adds PWM support for Xilinx LogiCORE IP AXI soft timers commonly
->>> found on Xilinx FPGAs. There is another driver for this device located
->>> at arch/microblaze/kernel/timer.c, but it is only used for timekeeping.
->>> This driver was written with reference to Xilinx DS764 for v1.03.a [1].
->>>
->>> [1]
-> https://www.xilinx.com/support/documentation/ip_documentation/axi_timer/v1_03_a/axi_timer_ds764.pdf
-> 
->>>
->>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
->>> ---
->>> I tried adding a XILINX_PWM_ prefix to all the defines, but IMO it
->>> really hurt readability. That prefix almost doubles the size the
->>> defines, and is particularly excessive in something like
->>> XILINX_PWM_TCSR_RUN_MASK.
->>>
->>> Changes in v2:
->>> - Don't compile this module by default for arm64
->>> - Add dependencies on COMMON_CLK and HAS_IOMEM
->>> - Add comment explaining why we depend on !MICROBLAZE
->>> - Add comment describing device
->>> - Rename TCSR_(SET|CLEAR) to TCSR_RUN_(SET|CLEAR)
->>> - Use NSEC_TO_SEC instead of defining our own
->>> - Use TCSR_RUN_MASK to check if the PWM is enabled, as suggested by Uwe
->>> - Cast dividends to u64 to avoid overflow
->>> - Check for over- and underflow when calculating TLR
->>> - Set xilinx_pwm_ops.owner
->>> - Don't set pwmchip.base to -1
->>> - Check range of xlnx,count-width
->>> - Ensure the clock is always running when the pwm is registered
->>> - Remove debugfs file :l
->>> - Report errors with dev_error_probe
->>>
->>>   drivers/pwm/Kconfig      |  13 ++
->>>   drivers/pwm/Makefile     |   1 +
->>>   drivers/pwm/pwm-xilinx.c | 301 +++++++++++++++++++++++++++++++++++++++
->>>   3 files changed, 315 insertions(+)
->>>   create mode 100644 drivers/pwm/pwm-xilinx.c
->>
->> Without looking below another driver which target the same IP is just
->> wrong that's why NACK from me.
-> 
-> Can you elaborate on this position a bit more? I don't think a rework of
-> the microblaze driver should hold back this one. They cannot be enabled
-> at the same time. I think it is OK to leave the work of making them
-> coexist for a future series (written by someone with microblaze hardware
-> to test on).
+On Thu, May 6, 2021 at 6:40 PM Michael Walle <michael@walle.cc> wrote:
+>
+> Am 2021-05-06 16:00, schrieb Rob Herring:
+> > On Fri, Apr 30, 2021 at 02:35:08PM +0200, Robert Marko wrote:
+> >> Delta TN48M CPLD is used as a GPIO expander for the SFP GPIOs.
+> >>
+> >> It is a mix of input only and output only pins.
+> >>
+> >> Since there is no logical GPIO numbering arbitrary one is used
+> >> along dt-bindings to make it humanly readable.
+> >>
+> >> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> >> ---
+> >>  drivers/gpio/Kconfig      |  12 +++
+> >>  drivers/gpio/Makefile     |   1 +
+> >>  drivers/gpio/gpio-tn48m.c | 191
+> >> ++++++++++++++++++++++++++++++++++++++
+> >>  drivers/mfd/tn48m-cpld.c  |   6 +-
+> >>  include/linux/mfd/tn48m.h |   3 +
+> >>  5 files changed, 212 insertions(+), 1 deletion(-)
+> >>  create mode 100644 drivers/gpio/gpio-tn48m.c
+> >
+> >
+> >> +static const struct platform_device_id tn48m_gpio_id_table[] = {
+> >> +    { "delta,tn48m-gpio", },
+> >
+> > Looks like a compatible, but is not. I think you can drop this and just
+> > use 'tm48m-gpio' (the driver name).
+>
+> I'm just curious, why isn't the vendor included here (as there
+> might be a chance for name clashes in the future).
 
-I am here to test it on Microblaze. In a lot of cases you don't have
-access to all HW you should test things on but that's why others can
-help with this.
-As I said in previous thread driver duplication is not good way to go
-and never was.
-
-This patch targets axi timer IP which is already in the tree just for
-Microblaze. You want to use it on other HW which is good but it needs to
-be done properly which is not create another copy.
-The right way is to get axi timer out of arch/microblaze to
-drivers/clocksource (or any other driver folder) and add PMW
-functionality on the top of it.
-I would expect that PWM guys will say how to add PWM support to timer
-driver which is not unique configuration.
+I'm looping in Clement from Delta as well as the Upstream Working
+Group from DENT [0].
 
 Thanks,
-Michal
+
+Luka
+
+[0] https://dent.dev/
