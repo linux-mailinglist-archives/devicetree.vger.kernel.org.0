@@ -2,90 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E20CF3751B8
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 11:42:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB1283751E8
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 12:03:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234123AbhEFJnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 05:43:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39198 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231976AbhEFJnV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 05:43:21 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2542C061574;
-        Thu,  6 May 2021 02:42:23 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id p4so4761757pfo.3;
-        Thu, 06 May 2021 02:42:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bUlPp5SynFPom5XXOITni8FWTn622aMLK3463Wdyieo=;
-        b=ijmdNX0FsLfhK21Fcv5g5ofIW/F03ccxpS8PrDoUAJmUmAdnYu5euqL/xsnAcyxPj4
-         3ETQTfimcwd9abPbSmxmt/oUjwW8l24JZmm3Mc4kSqOfbYpYJtLDt/2ovdq5DRgcNVRH
-         GuLjHAHQoaV4l0282PfZa9JVgLOiCcSDTPiGM4BrwRyfkP5aYgBf3yMPC3eELJEALGWs
-         qXjsDfcJVg/Kb9R51NxF0c7ANkfcOwpJnex/ItnQcwm0115SxojGLWrScHOO+FeaG2+l
-         RChp1UWr3Q5HNLEx6cja8ZTZOk0VPMFqs2uEuPUuy0W4sBiR9Ib7uPpOwZevRAEuJDeq
-         yB2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bUlPp5SynFPom5XXOITni8FWTn622aMLK3463Wdyieo=;
-        b=jH/ABWd51pDuLwg13xc3QAwMtyfrs7K1mHPoxt1xk3+ChCgXiyRhJgxUO/aTkTlh/l
-         qpTPC6Mopdo/+PJdlfGD3HSNyWkNz20eb2ihm6BX7u/uUvamDj2GKdnThgY+0R5iOqa4
-         tjafik/DMlx+wYxdfVdTfreHEBwLb7aqlar6uQEAzCMyKf8UuXk+IOCkatBXpkbUKuhS
-         zM2zIxGIcOqKAxYMaQa3dPcNLcF9c3tAvOJaA1rUHQco8Zh7jmeaiShXyk5SoB2FN0bb
-         qGbAZszje+isOMdidwzChyNoDtl2fnAWVGqR3fWdXpCMBR3qLm0paHfuxkDd+seCfq6/
-         tsmw==
-X-Gm-Message-State: AOAM5322TBkXir1q7qnD26Xi3/kGp4fG4+GvOA5QmZWMRaHoqKbvNr5E
-        z3YaI2cDYBlIc6npUfVf8RnHaq5EHpla8jv3bls=
-X-Google-Smtp-Source: ABdhPJzBD3IFOSBUCUecA7JzQGF30gPDp2YPYJgwyOPwM2UQgVbgykMZvn279vPfGhAtFBMwKBpQxb6BzBirE4HIwR0=
-X-Received: by 2002:a62:528e:0:b029:1f5:c5ee:a487 with SMTP id
- g136-20020a62528e0000b02901f5c5eea487mr3496419pfb.7.1620294143344; Thu, 06
- May 2021 02:42:23 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210506081619.2443-1-campion.kang@advantech.com.tw>
- <6b86bd36-b934-c204-9e56-079ab8cd4b54@redhat.com> <CAHp75VdPmkKTf_fbjAjrD3GC1ZZLuYsTJa0QtA3tuYtWwCgPMQ@mail.gmail.com>
- <cf181436-152c-7cd8-76cf-350705cd2bcb@redhat.com>
-In-Reply-To: <cf181436-152c-7cd8-76cf-350705cd2bcb@redhat.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 6 May 2021 12:42:07 +0300
-Message-ID: <CAHp75VfDGd3+fC3y6rxpqddFndBD974Q3hB2sEfdhpiccA6WxQ@mail.gmail.com>
-Subject: Re: [PATCH v7 1/7] MAINTAINERS: Add Advantech AHC1EC0 embedded
- controller entry
-To:     Hans de Goede <hdegoede@redhat.com>
-Cc:     Campion Kang <campion.kang@advantech.com.tw>,
-        Lee Jones <lee.jones@linaro.org>,
+        id S234260AbhEFKEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 06:04:15 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:61554 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231194AbhEFKEP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 06:04:15 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 1469pPg0024628;
+        Thu, 6 May 2021 17:51:25 +0800 (GMT-8)
+        (envelope-from steven_lee@aspeedtech.com)
+Received: from localhost.localdomain (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 6 May
+ 2021 18:03:12 +0800
+From:   Steven Lee <steven_lee@aspeedtech.com>
+To:     Andrew Jeffery <andrew@aj.id.au>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Gross <mgross@linux.intel.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-watchdog@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Linux Documentation List <linux-doc@vger.kernel.org>,
-        Platform Driver <platform-driver-x86@vger.kernel.org>,
-        AceLan Kao <chia-lin.kao@canonical.com>
-Content-Type: text/plain; charset="UTF-8"
+        Joel Stanley <joel@jms.id.au>,
+        "Adrian Hunter" <adrian.hunter@intel.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Ryan Chen <ryanchen.aspeed@gmail.com>,
+        "moderated list:ASPEED SD/MMC DRIVER" <linux-aspeed@lists.ozlabs.org>,
+        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
+        "open list:ASPEED SD/MMC DRIVER" <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+CC:     <steven_lee@aspeedtech.com>, <Hongweiz@ami.com>,
+        <ryan_chen@aspeedtech.com>, <chin-ting_kuo@aspeedtech.com>
+Subject: [PATCH v3 0/5] mmc: sdhci-of-aspeed: Support toggling SD bus signal
+Date:   Thu, 6 May 2021 18:03:07 +0800
+Message-ID: <20210506100312.1638-1-steven_lee@aspeedtech.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 1469pPg0024628
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 6, 2021 at 12:38 PM Hans de Goede <hdegoede@redhat.com> wrote:
-> On 5/6/21 11:23 AM, Andy Shevchenko wrote:
+AST2600-A2 EVB has the reference design for enabling SD bus
+power and toggling SD bus signal voltage between 3.3v and 1.8v by
+GPIO regulators.
+This patch series provides the example for enabling regulators and
+supporting SDR104 mode on AST2600-A2 EVB.
+The description of the reference design of AST2600-A2 EVB is added
+in the dts file.
 
-...
+This patch also include a helper for updating AST2600 sdhci capability
+registers, and assert/deassert the reset signal for cleaning up AST2600
+eMMC controller before eMMC is probed.
 
-> Campion, any reason why you went this route; and can the ACPI tables
-> still be changed?
+Changes from v2:
+* Move the comment of the reference design from dt-bindings to device tree.
+* Add clk-phase binding for eMMC controller.
+* Reimplement aspeed_sdc_set_slot_capability().
+* Separate the implementation of eMMC reset to another patch file.
+* Fix yaml document error per the report of dt_binding_check and
+  dtbs_check.
 
-Yes, the main problem with the series is the absence of a cover letter
-that should basically answer the (obvious) questions and give a
-justification.
+Changes from v1:
+* Add the device tree example for AST2600 A2 EVB in dt-bindings
+  document
+* Add timing-phase for eMMC controller.
+* Remove power-gpio and power-switch-gpio from sdhci driver, they should
+  be handled by regulator.
+* Add a helper to update capability registers in the driver.
+* Sync sdhci settings from device tree to SoC capability registers.
+* Sync timing-phase from device tree to SoC Clock Phase Control
+  register
+
+Please help to review.
+
+Regards,
+Steven
+
+Steven Lee (5):
+  dt-bindings: mmc: sdhci-of-aspeed: Add an example for AST2600-A2 EVB
+  ARM: dts: aspeed: ast2600evb: Add comment for gpio regulator of sdhci
+  ARM: dts: aspeed: ast2600evb: Add phase correction for emmc
+    controller.
+  mmc: sdhci-of-aspeed: Add a helper for updating capability register.
+  mmc: sdhci-of-aspeed: Assert/Deassert reset signal before probing eMMC
+
+ .../devicetree/bindings/mmc/aspeed,sdhci.yaml | 101 ++++++++++++++++-
+ arch/arm/boot/dts/aspeed-ast2600-evb.dts      |  18 ++-
+ drivers/mmc/host/sdhci-of-aspeed.c            | 106 ++++++++++++++++--
+ 3 files changed, 211 insertions(+), 14 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
+2.17.1
+
