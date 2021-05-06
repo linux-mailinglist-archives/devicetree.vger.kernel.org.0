@@ -2,165 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3417375C28
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 22:24:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B777375C2E
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 22:27:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230104AbhEFUZb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 16:25:31 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:45026 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229775AbhEFUZb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 16:25:31 -0400
-Received: by mail-ot1-f51.google.com with SMTP id r26-20020a056830121ab02902a5ff1c9b81so6021065otp.11;
-        Thu, 06 May 2021 13:24:32 -0700 (PDT)
+        id S233975AbhEFU2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 16:28:30 -0400
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:33711 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229954AbhEFU23 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 16:28:29 -0400
+Received: by mail-ot1-f49.google.com with SMTP id i23-20020a9d68d70000b02902dc19ed4c15so2039182oto.0;
+        Thu, 06 May 2021 13:27:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=qRSy5HJ4wKKzzcIAmm8bwn1eA/q239E4iV9NKspBMgQ=;
-        b=KGv0/h/tAE1w1C9kdX+EgFdBtj2LMGMmww1ZtOhUEn+MI2xw5B+zRcZFdtbxZnlZNr
-         A1AjdIxtAtyM5b0jwCRLgop3kc2rHDSPtynk/RqxfvZEo2hN/nc1xohw5ajWOvBmDVHL
-         U+DJcKFETNh3cTsBDWdstyWVyLrgEKOgu9hLXBM2mpQ0ujIVnnOwXANXAayrcJF0BbIz
-         C6HGnrkLsJh33F3iIzn0nVLewXBIQjMB16AugQMdg6rPBLXcpr8yLoQaXCldoBFwu8is
-         0zh0ajE4rNSDXW4jugDKxWRG4sl5Is6TX67SCIxHaGMsbq1xVWchCszb8IIdkPEKn0lS
-         6iwg==
-X-Gm-Message-State: AOAM532cUhnKvgroiRJHhXl+iDSnLO5vgY0lokHOJoop/D0XunVVt8ml
-        CWSViqVoJOVVAa7z99mwJux4mxX+oA==
-X-Google-Smtp-Source: ABdhPJyHdQpgdWvIqGzC91XpsF2u/FFaWKm8P8CKZ+v8DqkKxTmKAuIl8NvguPGgI4RlIbsfQXJRcg==
-X-Received: by 2002:a9d:5a5:: with SMTP id 34mr5303714otd.353.1620332672219;
-        Thu, 06 May 2021 13:24:32 -0700 (PDT)
+        bh=itqPIgMSRUm7mjLuAMIStPX3IirpKll5U1amEMt59hU=;
+        b=NId6L8dlVh0j874adHL5WWBbV2/xQX9ssnc4pmWkxC2MJ+PKdmXxFUdheVQIf6oqbi
+         0OvvvsVWhpvNZdUXvIwgPHKGmk+9TMpjuk/GA5lxgYsl/0CDpwEZwY/zQHIjMghC0FU+
+         nMPcKygNc6a01SQvFb4nETaf3OtKV+oeBVSCElR/H41R3NpWqX3aXX9ZiYsLQMp4HK45
+         50J34/zcvRRZLhwIftAziDn6RMfyvbkgy5xst73NVspAoi433BxZJDmQRdPwtysYjufK
+         EEtJVwn7AhLHtYt/3CM6EFDjScSrFQoHnjTpLSwygIUgpw7c+tTpwuv1A0qRqOxExHkG
+         30/w==
+X-Gm-Message-State: AOAM531yME04fH0oV6YdBuhfgYquD6nsZYxyJhascRgrzpCSiyp38o8/
+        KYn8Yc76RIFC9JpW+QCuwbMPJkZXVA==
+X-Google-Smtp-Source: ABdhPJylItoM595UGV/4yqDvwNAmHRcH3hYhsGZVyPxxAwPv63lCNxd5mL71+50GRRhJp8CY6zqWYA==
+X-Received: by 2002:a05:6830:33ea:: with SMTP id i10mr5157809otu.212.1620332849774;
+        Thu, 06 May 2021 13:27:29 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y11sm700130ooq.2.2021.05.06.13.24.29
+        by smtp.gmail.com with ESMTPSA id l131sm592786oia.0.2021.05.06.13.27.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 May 2021 13:24:30 -0700 (PDT)
-Received: (nullmailer pid 744662 invoked by uid 1000);
-        Thu, 06 May 2021 20:24:29 -0000
-Date:   Thu, 6 May 2021 15:24:29 -0500
+        Thu, 06 May 2021 13:27:28 -0700 (PDT)
+Received: (nullmailer pid 748504 invoked by uid 1000);
+        Thu, 06 May 2021 20:27:26 -0000
+Date:   Thu, 6 May 2021 15:27:26 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>, Imre Kaloz <kaloz@openwrt.org>,
-        Krzysztof Halasa <khalasa@piap.pl>,
-        Zoltan HERPAI <wigyori@uid0.hu>,
-        Raylynn Knight <rayknight@me.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/4] PCI: ixp4xx: Add device tree bindings for IXP4xx
-Message-ID: <20210506202429.GA740891@robh.at.kernel.org>
-References: <20210503211649.4109334-1-linus.walleij@linaro.org>
- <20210503211649.4109334-4-linus.walleij@linaro.org>
+To:     Shawn Guo <shawn.guo@linaro.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
+        Benjamin Li <benl@squareup.com>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 2/5] dt-bindings: clock: update qcom,a53pll bindings for
+ MSM8939 support
+Message-ID: <20210506202726.GA744866@robh.at.kernel.org>
+References: <20210504052844.21096-1-shawn.guo@linaro.org>
+ <20210504052844.21096-3-shawn.guo@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210503211649.4109334-4-linus.walleij@linaro.org>
+In-Reply-To: <20210504052844.21096-3-shawn.guo@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 03, 2021 at 11:16:48PM +0200, Linus Walleij wrote:
-> This adds device tree bindings for the Intel IXP4xx
-> PCI controller which can be used as both host and
-> option.
+On Tue, May 04, 2021 at 01:28:41PM +0800, Shawn Guo wrote:
+> Update qcom,a53pll bindings for MSM8939 support:
 > 
-> Cc: devicetree@vger.kernel.org
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Imre Kaloz <kaloz@openwrt.org>
-> Cc: Krzysztof Halasa <khalasa@piap.pl>
-> Cc: Zoltan HERPAI <wigyori@uid0.hu>
-> Cc: Raylynn Knight <rayknight@me.com>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> PCI maintainers: mainly looking for a review and ACK (if
-> you care about DT bindings) the patch will be merged
-> through ARM SoC.
-> ---
->  .../bindings/pci/intel,ixp4xx-pci.yaml        | 96 +++++++++++++++++++
->  1 file changed, 96 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml
+>  - Add optional clock-output-names property.
+>  - Add MSM8939 specific compatibles.
+>  - Add MSM8939 examples.
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml b/Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml
-> new file mode 100644
-> index 000000000000..5b6af2f5c2a5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml
-> @@ -0,0 +1,96 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/intel,ixp4xx-pci.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Intel IXP4xx PCI controller
-> +
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +
-> +description: PCI host controller found in the Intel IXP4xx SoC series.
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-bus.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - intel,ixp42x-pci
-> +          - intel,ixp43x-pci
-> +    description: The two supported variants are ixp42x and ixp43x,
-> +      though more variants may exist.
-> +
-> +  reg:
-> +    items:
-> +      - description: IXP4xx-specific registers
-> +
-> +  ranges:
-> +    maxItems: 2
-> +    description: Typically one memory range of 64MB and one IO
-> +      space range of 64KB.
-> +
-> +  dma-ranges:
+> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+> ---
+>  .../bindings/clock/qcom,a53pll.yaml           | 34 +++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,a53pll.yaml b/Documentation/devicetree/bindings/clock/qcom,a53pll.yaml
+> index db3d0ea6bc7a..7a410a76be2f 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,a53pll.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,a53pll.yaml
+> @@ -18,6 +18,9 @@ properties:
+>      enum:
+>        - qcom,ipq6018-a53pll
+>        - qcom,msm8916-a53pll
+> +      - qcom,msm8939-a53pll-c0
+> +      - qcom,msm8939-a53pll-c1
+> +      - qcom,msm8939-a53pll-cci
+
+These 3 have differences?
+
+>  
+>    reg:
+>      maxItems: 1
+> @@ -33,6 +36,9 @@ properties:
+>      items:
+>        - const: xo
+>  
+> +  clock-output-names:
 > +    maxItems: 1
-> +    description: The DMA range tells the PCI host which addresses
-> +      the RAM is at. It can map only 64MB so if the RAM is bigger
-> +      than 64MB the DMA access has to be restricted to these
-> +      addresses.
 > +
-> +  "#interrupt-cells": true
-> +
-> +  interrupt-map: true
-> +
-> +  interrupt-map-mask:
-> +    items:
-> +      - const: 0xf800
-> +      - const: 0
-> +      - const: 0
-> +      - const: 7
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - ranges
-
-Already required by pci-bus.yaml I think.
-
-> +  - dma-ranges
-> +  - "#interrupt-cells"
-> +  - interrupt-map
-> +  - interrupt-map-mask
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
+>  required:
+>    - compatible
+>    - reg
+> @@ -57,3 +63,31 @@ examples:
+>          clocks = <&xo>;
+>          clock-names = "xo";
+>      };
+> +  #Example 3 - A53 PLLs found on MSM8939 devices
 > +  - |
-> +    pci@c0000000 {
-> +      compatible = "intel,ixp43x-pci";
-> +      reg = <0xc0000000 0x1000>;
-> +      #address-cells = <3>;
-> +      #size-cells = <2>;
-> +      device_type = "pci";
-> +      bus-range = <0x00 0xff>;
-> +      status = "disabled";
+> +    a53pll_c1: clock-controller@b016000 {
+> +        compatible = "qcom,msm8939-a53pll-c1";
+> +        reg = <0xb016000 0x40>;
+> +        #clock-cells = <0>;
+> +        clocks = <&xo_board>;
+> +        clock-names = "xo";
+> +        clock-output-names = "a53pll_c1";
+> +    };
+> +
+> +    a53pll_c0: clock-controller@b116000 {
+> +        compatible = "qcom,msm8939-a53pll-c0";
+> +        reg = <0xb116000 0x40>;
+> +        #clock-cells = <0>;
+> +        clocks = <&xo_board>;
+> +        clock-names = "xo";
+> +        clock-output-names = "a53pll_c0";
+> +    };
+> +
+> +    a53pll_cci: clock-controller@b1d0000 {
+> +        compatible = "qcom,msm8939-a53pll-cci";
+> +        reg = <0xb1d0000 0x40>;
+> +        #clock-cells = <0>;
+> +        clocks = <&xo_board>;
+> +        clock-names = "xo";
+> +        clock-output-names = "a53pll_cci";
+> +    };
 
-Don't show status in examples. 
-
-I've really got to come up with an examples only schema to check this.
-
-Rob
+Do these examples really add anything?
