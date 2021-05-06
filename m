@@ -2,95 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 438A83753E4
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 14:32:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A08183753EC
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 14:35:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231441AbhEFMdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 08:33:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48936 "EHLO
+        id S231719AbhEFMgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 08:36:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229777AbhEFMdJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 08:33:09 -0400
-Received: from mail-vk1-xa2e.google.com (mail-vk1-xa2e.google.com [IPv6:2607:f8b0:4864:20::a2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD7FFC061574;
-        Thu,  6 May 2021 05:32:11 -0700 (PDT)
-Received: by mail-vk1-xa2e.google.com with SMTP id s131so1166664vka.11;
-        Thu, 06 May 2021 05:32:11 -0700 (PDT)
+        with ESMTP id S229777AbhEFMgx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 08:36:53 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25A6FC061761
+        for <devicetree@vger.kernel.org>; Thu,  6 May 2021 05:35:54 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id i9so982348lfe.13
+        for <devicetree@vger.kernel.org>; Thu, 06 May 2021 05:35:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=b9TWHmwsdK1dTcbAv8pBSTziUy5ZrYIjx0ljVbLmuWY=;
-        b=r34+qEJJIN1KBbooFY18JIM+bUhGQAPzvx+asQRAeJokx4to4DWOEbDTiloyh0kMRn
-         v5bFp7hHB2OMKCWsyGMPBTlJW42QcR0W4/pmYTzkzPbS6vhNihDuKyWMTtvSjm4l8nu/
-         f16zpAgAMcuYkegwt3XPqzDelIGWMbOoog1sJdyLQhjJyRO3A3bSoy8FWBax0Y5eJZf0
-         3bI6uNEMw8rv33AZq4JFejeY5XC1j+7EkpvTRJPA0mUQPSvbYKEuRlKeL1KCDVl5nmRG
-         +EnDLJrHqg1V+REGkhgnIqECV6oEXQGvjX8+OKRRM456VRHJ0J1OFHTNjRXQ6y+pHL2j
-         CvNw==
+         :cc:content-transfer-encoding;
+        bh=2/ZmLbtrYVGn+DSAZJpx6aR2WIjOEoDo2T5mjjYPzTs=;
+        b=mRjXV2LTKDkUHdBoHDPBOo0SIk1NqnE8T4eNXjd80NFYKUcSi8w0+5CGLa/ewy/HLR
+         B5UceZ7jPLNnMte5P/bakSnDGw0AAdTWxnKMu7OGINKHfIa88jaBIZmt1Ygumu/9Az4r
+         wSYsXMXFQSSe+x5TwljS6YpUtRjxh5awk91LAO/1tsUzo361MplCr6r/w7StDzgqGgjF
+         0DlmHHXMZZ02dwN1xc+CY/E+8hkqPRzVmhKTABKyJ3BZQczo63rywBFs9MiR/4H5f7H1
+         t1W+I7RQ5NO3Fq9SUUO4TsYagecqD4eIlOrokYSkdqG7Pot27GsDX5ebGnsGjIHY2r4B
+         D6DA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=b9TWHmwsdK1dTcbAv8pBSTziUy5ZrYIjx0ljVbLmuWY=;
-        b=R+KSevwZdDzbpJ5/tkRuw9Bc4Z4ll5IfVcCMta9GyuPET95fVhEtaLAh+aXY9y2gY+
-         kszPcdv3bA+tJVrOhXGG7/yP1B5GL1rcyfXaf6RMk9nGaL5XmHS5plRIfgB7+WmeTIbh
-         j3674d62zteUsioaSZ7t7jI+Xg7SP5Q4VGO3Ph8cPk3x+CDQzsl4DqCXGh23yd3Dv2qB
-         GHK3B37LmKmgquNrfhauZSkMTlDVcP+Qgi9H/c99ripWlucpuDuyV8W/go1eZvz5Ajfr
-         ltscQasTLrEtOEIiNk3E+7WvXbZLBaRD/c09LBQP2Sa76ThDDUQ89lpd0Q0zM4dBhGYZ
-         M5xw==
-X-Gm-Message-State: AOAM532uYRvfbz8grbe8SbWWKxea078fkt1/ZWsqOkG25FFd6pLeboNR
-        kOAXF1D7d9Hs47/uewZkF0zJCpBRSYdT9yKukZQ=
-X-Google-Smtp-Source: ABdhPJwiwHBkyzi5cwGSnzZQ0ZNAudi35hC4dNj4uWMTJhdZ04jb/LYlsElFp6RjuFqjXz0Ts/Ms/DA1mCwn1jQGHZ4=
-X-Received: by 2002:a1f:978e:: with SMTP id z136mr2438936vkd.17.1620304330868;
- Thu, 06 May 2021 05:32:10 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=2/ZmLbtrYVGn+DSAZJpx6aR2WIjOEoDo2T5mjjYPzTs=;
+        b=Ar4VmMvwc6vY390NUcvpP25XqvhCc5VUxd6ttZRLCNclQ5w90Rj4HKWCZWYabdp1CU
+         7KsbZhqq8CC133h2jan0D8suQLZOxos7U5Z/pnDfdISGq4isgGuNoD8f1G4XQP1V0+fT
+         Ss1f98Ef4ZP0mBdbGEDlfHThEF7LVLccJnZCvYcgXIo3eZioRLh7JWNDRv6A13pba/kN
+         MjV4YcuOS+qvHsKrtQ7QLO6QBNCIBqdkMYYDidSdsKmAxa+uqt8ef/9JqjwrEPsUdlEN
+         ZfR2IZlAQIcdXyvNERcmRXDlbVzWllLTg1YWrTEm9MYkh4/49AmTsDsGtyacJdb0l6Xx
+         fw+Q==
+X-Gm-Message-State: AOAM5319XA0nirMh0cPiLeZWu66FyfHLoNT8Ysmeuv5FiMiFTU0Be3ip
+        iADHhVIEyRlUtFkIYDg8yeFcittVdwFNIkyZZh7NJw==
+X-Google-Smtp-Source: ABdhPJwjEiT3esgblNl5oL8PYhIDR+bfD6j0Y8+/+akNo7N2Tsc8Fq2BFSNap3ZLzp3tCQ/FCTsiBkzaFSI05AQ33EU=
+X-Received: by 2002:ac2:5e36:: with SMTP id o22mr2807016lfg.529.1620304552671;
+ Thu, 06 May 2021 05:35:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210401144336.2495479-1-emil.l.velikov@gmail.com>
- <20210401144336.2495479-10-emil.l.velikov@gmail.com> <a9829af1-f4e9-5835-9a74-15a0fce6b1eb@xs4all.nl>
-In-Reply-To: <a9829af1-f4e9-5835-9a74-15a0fce6b1eb@xs4all.nl>
-From:   Emil Velikov <emil.l.velikov@gmail.com>
-Date:   Thu, 6 May 2021 13:31:59 +0100
-Message-ID: <CACvgo53L-3kN6WGn6VqkpZTRcVnrnLeCxRPxcGks0TR+VQuXbQ@mail.gmail.com>
-Subject: Re: [PATCH v4 9/9] ARM: dts: sama5d4: enable Hantro G1 VDEC
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     kernel@collabora.com, Ezequiel Garcia <ezequiel@collabora.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+References: <20210503210526.43455-1-u.kleine-koenig@pengutronix.de>
+ <20210504025546.GA13356@sol> <20210504091459.clb5nkwgrgg43ixq@pengutronix.de>
+ <20210504102454.GA21266@sol> <20210504105653.bfhtqd7ildoipcqu@pengutronix.de>
+In-Reply-To: <20210504105653.bfhtqd7ildoipcqu@pengutronix.de>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 6 May 2021 14:35:41 +0200
+Message-ID: <CACRpkdZvZKR5g-=YRHWEgtEJyzd9NUoMsV-VH6dvPxACTXNGJQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: gpio: introduce hog properties with less ambiguity
+To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Kent Gibson <warthog618@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-media@vger.kernel.org,
-        linux-rockchip <linux-rockchip@lists.infradead.org>,
-        Frank Rowand <frowand.list@gmail.com>
+        Sascha Hauer <kernel@pengutronix.de>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans,
+On Tue, May 4, 2021 at 12:56 PM Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@pengutronix.de> wrote:
+but not active
+> > know if there is a good reason not to go with active/inactive.
+>
+> Linus: So we're already 3 out of 3 who would like active/inactive better
+> than asserted/deasserted. I'm curious about your preference, too.
 
-On Wed, 5 May 2021 at 15:31, Hans Verkuil <hverkuil@xs4all.nl> wrote:
->
-> On 01/04/2021 16:43, Emil Velikov wrote:
-> > From: Emil Velikov <emil.velikov@collabora.com>
-> >
-> > Add the SAMA5D4 VDEC module which comprises Hantro G1 video decoder
-> > core.
->
-> I've accepted parts 1-8 of this series for 5.14, so this remaining patch
-> can be merged by whoever handles such dts patches.
->
-Can you please include this patch as well. As you can see it has been
-Acked by Nicolas, one of the AT91 maintainers so it can go with the
-media tree.
+I suppose it depends on where you come from. In electronics
+the terms asserted/deasserted is commonly used and
+that is where I'm coming from. Maybe just the materials
+I've been subjected to, who knows.
 
-> Regards,
->
->         Hans
->
-> >
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Frank Rowand <frowand.list@gmail.com>
-> > Cc: devicetree@vger.kernel.org
-> > Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-> > Signed-off-by: Emil Velikov <emil.velikov@collabora.com>
-
-Thanks
-Emil
+Yours,
+Linus Walleij
