@@ -2,124 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B28B374D4C
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 04:10:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6DA9374D9A
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 04:35:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230506AbhEFCLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 22:11:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52990 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229488AbhEFCLX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 22:11:23 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E797C061574;
-        Wed,  5 May 2021 19:10:25 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id u25-20020a0568302319b02902ac3d54c25eso3604288ote.1;
-        Wed, 05 May 2021 19:10:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ze8nHKCTJVPZAxcqvpeEarc+m37v3jnk/1brv6JR/yY=;
-        b=Gh02vDtS3vVZBZrxQ2uZZWT9rXIwcfGmEiDhAXNKbS+6OH7HHljuhLFCb+8ldMvtme
-         bypprO29OhPi12CKA8ueXpH1LxUgnLpv/kY5p5udC7x+VWBKsAKV4egY9iix6sLA7rcu
-         ohgurC4HoMCZZiCLJKPE/WiETqKpVNSfxSPKYVIJERSxz7HaunNfIVp3Iaaco/2UVP6F
-         jek7vBZPuhEc1SO2xBYG0SyitOkAywkdUBA2aU8Rg5+kF52GdH5z5/ps//Iu0oOI53Fw
-         Ri8M07RORs0i3Buk2SDVXvQ3RgxPkJk0z415ws73Q8CnQD1wmNV/Fw3mwEfizLMrC1m4
-         hC9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ze8nHKCTJVPZAxcqvpeEarc+m37v3jnk/1brv6JR/yY=;
-        b=dS7TPrqJ1VxTFAjog0t3Hm7GBVWESKmbwkgk9xTG2Ue0qm87FufTgRS+WmzzOQ0UnA
-         r8QLCLc2P6SnvdlJWwqNjOuMRjD/fJQ1YhWo5+ROHc1XAVqEr5vEUKvYT8JeCTCtln+k
-         o3SYC+YP1UmpMaIBuUDL8ifAeEG5EkJDeYIepBe3QXiEgN1Q5rCL9OgrWyBhAhktQMky
-         aqCtpMB9wzAuKIECDZJkDsjA/C1holvTdL8mOrqPJIL/FgmqzEYR/42QinAPMJlz0wku
-         8tkYvzBcMx52ee/NhU+jbxayvlx/dFF+B3+G7qDlvgpBMRj+BfE+fuHTBCiQDanBjF0y
-         VX0g==
-X-Gm-Message-State: AOAM530eVQpQno4OnkeDmZT7694UZfYfFU6qc0xqHn0MXJYEnZtYZxk9
-        pKBb4+z98HB2wDzcHkPyzRx3nD1I4jw=
-X-Google-Smtp-Source: ABdhPJyDfe/Vr0bIlEEgW1QLVfnkxK0Q+Ez92Z9YkHkRYyp/EYkR5hYMfsCyXLmT+HGErWJNF6gEGQ==
-X-Received: by 2002:a05:6830:411b:: with SMTP id w27mr1398308ott.80.1620267024455;
-        Wed, 05 May 2021 19:10:24 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id x18sm199395oix.28.2021.05.05.19.10.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 May 2021 19:10:23 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH V9 1/2] watchdog: mtk: support pre-timeout when the bark
- irq is available
-To:     =?UTF-8?B?546L5pOO?= <wangqing@vivo.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <APgAqgAuDm48oWX*tq6AkKqd.3.1620265890239.Hmail.wangqing@vivo.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <ac2a3762-0b5d-a406-33e0-fca3073cd5ac@roeck-us.net>
-Date:   Wed, 5 May 2021 19:10:21 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        id S232144AbhEFCga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 22:36:30 -0400
+Received: from lucky1.263xmail.com ([211.157.147.134]:36370 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231370AbhEFCga (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 22:36:30 -0400
+Received: from localhost (unknown [192.168.167.13])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 5B154C8509;
+        Thu,  6 May 2021 10:35:17 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from xxm-vm.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P1748T140588877858560S1620268508813762_;
+        Thu, 06 May 2021 10:35:12 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <47f6b110dbf9d5eff25f50d57dd5deb1>
+X-RL-SENDER: xxm@rock-chips.com
+X-SENDER: xxm@rock-chips.com
+X-LOGIN-NAME: xxm@rock-chips.com
+X-FST-TO: bhelgaas@google.com
+X-RCPT-COUNT: 11
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   Simon Xue <xxm@rock-chips.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        Johan Jonker <jbx6244@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Simon Xue <xxm@rock-chips.com>, Rob Herring <robh@kernel.org>,
+        Kever Yang <kever.yang@rock-chips.com>
+Subject: [PATCH v9 1/2] dt-bindings: rockchip: Add DesignWare based PCIe controller
+Date:   Thu,  6 May 2021 10:34:48 +0800
+Message-Id: <20210506023448.169146-1-xxm@rock-chips.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <APgAqgAuDm48oWX*tq6AkKqd.3.1620265890239.Hmail.wangqing@vivo.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/5/21 6:51 PM, 王擎 wrote:
-> 
->> On 4/24/21 6:52 PM, Wang Qing wrote:
->>> Use the bark interrupt as the pretimeout notifier if available.
->>>
->>> When the watchdog timer expires in dual mode, an interrupt will be
->>> triggered first, then the timing restarts. The reset signal will be
->>> initiated when the timer expires again.
->>>
->>> The pretimeout notification shall occur at timeout-sec/2.
->>>
->>> V2:
->>> - panic() by default if WATCHDOG_PRETIMEOUT_GOV is not enabled.
->>>
->>> V3:
->>> - Modify the pretimeout behavior, manually reset after the pretimeout
->>> - is processed and wait until timeout.
->>>
->>> V4:
->>> - Remove pretimeout related processing. 
->>> - Add dual mode control separately.
->>>
->>> V5:
->>> - Fix some formatting and printing problems.
->>>
->>> V6:
->>> - Realize pretimeout processing through dualmode.
->>>
->>> V7:
->>> - Add set_pretimeout().
->>>
->>> V8/V9:
->>> - Fix some formatting problems.
->>>
->>> Signed-off-by: Wang Qing <wangqing@vivo.com>
->>
->> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
->>
->> Note that the version history should be after "---".
->>
->> Guenter
->>
-> 
-> Thanks, Guenter.
-> And what do I need to do if I want merge into the next-tree?
-> 
-Wim should take care of that.
+Document DT bindings for PCIe controller found on Rockchip SoC.
 
-Guenter
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Kever Yang <kever.yang@rock-chips.com>
+Signed-off-by: Simon Xue <xxm@rock-chips.com>
+---
+ .../bindings/pci/rockchip-dw-pcie.yaml        | 141 ++++++++++++++++++
+ 1 file changed, 141 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+
+diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+new file mode 100644
+index 000000000000..142bbe577763
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+@@ -0,0 +1,141 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pci/rockchip-dw-pcie.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: DesignWare based PCIe controller on Rockchip SoCs
++
++maintainers:
++  - Shawn Lin <shawn.lin@rock-chips.com>
++  - Simon Xue <xxm@rock-chips.com>
++  - Heiko Stuebner <heiko@sntech.de>
++
++description: |+
++  RK3568 SoC PCIe host controller is based on the Synopsys DesignWare
++  PCIe IP and thus inherits all the common properties defined in
++  designware-pcie.txt.
++
++allOf:
++  - $ref: /schemas/pci/pci-bus.yaml#
++
++# We need a select here so we don't match all nodes with 'snps,dw-pcie'
++select:
++  properties:
++    compatible:
++      contains:
++        const: rockchip,rk3568-pcie
++  required:
++    - compatible
++
++properties:
++  compatible:
++    items:
++      - const: rockchip,rk3568-pcie
++      - const: snps,dw-pcie
++
++  reg:
++    items:
++      - description: Data Bus Interface (DBI) registers
++      - description: Rockchip designed configuration registers
++      - description: Config registers
++
++  reg-names:
++    items:
++      - const: dbi
++      - const: apb
++      - const: config
++
++  clocks:
++    items:
++      - description: AHB clock for PCIe master
++      - description: AHB clock for PCIe slave
++      - description: AHB clock for PCIe dbi
++      - description: APB clock for PCIe
++      - description: Auxiliary clock for PCIe
++
++  clock-names:
++    items:
++      - const: aclk_mst
++      - const: aclk_slv
++      - const: aclk_dbi
++      - const: pclk
++      - const: aux
++
++  msi-map: true
++
++  num-lanes: true
++
++  phys:
++    maxItems: 1
++
++  phy-names:
++    const: pcie-phy
++
++  power-domains:
++    maxItems: 1
++
++  ranges:
++    maxItems: 2
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    const: pipe
++
++  vpcie3v3-supply: true
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - clocks
++  - clock-names
++  - msi-map
++  - num-lanes
++  - phys
++  - phy-names
++  - power-domains
++  - resets
++  - reset-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++
++    bus {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        pcie3x2: pcie@fe280000 {
++            compatible = "rockchip,rk3568-pcie", "snps,dw-pcie";
++            reg = <0x3 0xc0800000 0x0 0x390000>,
++                  <0x0 0xfe280000 0x0 0x10000>,
++                  <0x3 0x80000000 0x0 0x100000>;
++            reg-names = "dbi", "apb", "config";
++            bus-range = <0x20 0x2f>;
++            clocks = <&cru 143>, <&cru 144>,
++                     <&cru 145>, <&cru 146>,
++                     <&cru 147>;
++            clock-names = "aclk_mst", "aclk_slv",
++                          "aclk_dbi", "pclk",
++                          "aux";
++            device_type = "pci";
++            linux,pci-domain = <2>;
++            max-link-speed = <2>;
++            msi-map = <0x2000 &its 0x2000 0x1000>;
++            num-lanes = <2>;
++            phys = <&pcie30phy>;
++            phy-names = "pcie-phy";
++            power-domains = <&power 15>;
++            ranges = <0x81000000 0x0 0x80800000 0x3 0x80800000 0x0 0x100000>,
++                     <0x83000000 0x0 0x80900000 0x3 0x80900000 0x0 0x3f700000>;
++            resets = <&cru 193>;
++            reset-names = "pipe";
++            #address-cells = <3>;
++            #size-cells = <2>;
++        };
++    };
++...
+-- 
+2.25.1
+
+
 
