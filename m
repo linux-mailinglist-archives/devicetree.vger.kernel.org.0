@@ -2,78 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AA66374D46
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 04:09:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B28B374D4C
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 04:10:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229603AbhEFCJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 May 2021 22:09:59 -0400
-Received: from szxga04-in.huawei.com ([45.249.212.190]:17589 "EHLO
-        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229488AbhEFCJ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 22:09:59 -0400
-Received: from DGGEMS407-HUB.china.huawei.com (unknown [172.30.72.60])
-        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4FbH4d4KqQz1BHys;
-        Thu,  6 May 2021 10:06:25 +0800 (CST)
-Received: from [127.0.0.1] (10.174.177.72) by DGGEMS407-HUB.china.huawei.com
- (10.3.19.207) with Microsoft SMTP Server id 14.3.498.0; Thu, 6 May 2021
- 10:08:59 +0800
-Subject: Re: [PATCH v2 1/3] dt-bindings: serial: Normalize the node name of
- the serial port
-To:     Rob Herring <robh@kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-serial <linux-serial@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-References: <20210422085837.513-1-thunder.leizhen@huawei.com>
- <20210422085837.513-2-thunder.leizhen@huawei.com>
- <20210430151825.GA3339934@robh.at.kernel.org>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <f50b1b84-cac1-0f2e-4821-5e1c76af5e31@huawei.com>
-Date:   Thu, 6 May 2021 10:08:58 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S230506AbhEFCLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 May 2021 22:11:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52990 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229488AbhEFCLX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 May 2021 22:11:23 -0400
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E797C061574;
+        Wed,  5 May 2021 19:10:25 -0700 (PDT)
+Received: by mail-ot1-x332.google.com with SMTP id u25-20020a0568302319b02902ac3d54c25eso3604288ote.1;
+        Wed, 05 May 2021 19:10:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ze8nHKCTJVPZAxcqvpeEarc+m37v3jnk/1brv6JR/yY=;
+        b=Gh02vDtS3vVZBZrxQ2uZZWT9rXIwcfGmEiDhAXNKbS+6OH7HHljuhLFCb+8ldMvtme
+         bypprO29OhPi12CKA8ueXpH1LxUgnLpv/kY5p5udC7x+VWBKsAKV4egY9iix6sLA7rcu
+         ohgurC4HoMCZZiCLJKPE/WiETqKpVNSfxSPKYVIJERSxz7HaunNfIVp3Iaaco/2UVP6F
+         jek7vBZPuhEc1SO2xBYG0SyitOkAywkdUBA2aU8Rg5+kF52GdH5z5/ps//Iu0oOI53Fw
+         Ri8M07RORs0i3Buk2SDVXvQ3RgxPkJk0z415ws73Q8CnQD1wmNV/Fw3mwEfizLMrC1m4
+         hC9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ze8nHKCTJVPZAxcqvpeEarc+m37v3jnk/1brv6JR/yY=;
+        b=dS7TPrqJ1VxTFAjog0t3Hm7GBVWESKmbwkgk9xTG2Ue0qm87FufTgRS+WmzzOQ0UnA
+         r8QLCLc2P6SnvdlJWwqNjOuMRjD/fJQ1YhWo5+ROHc1XAVqEr5vEUKvYT8JeCTCtln+k
+         o3SYC+YP1UmpMaIBuUDL8ifAeEG5EkJDeYIepBe3QXiEgN1Q5rCL9OgrWyBhAhktQMky
+         aqCtpMB9wzAuKIECDZJkDsjA/C1holvTdL8mOrqPJIL/FgmqzEYR/42QinAPMJlz0wku
+         8tkYvzBcMx52ee/NhU+jbxayvlx/dFF+B3+G7qDlvgpBMRj+BfE+fuHTBCiQDanBjF0y
+         VX0g==
+X-Gm-Message-State: AOAM530eVQpQno4OnkeDmZT7694UZfYfFU6qc0xqHn0MXJYEnZtYZxk9
+        pKBb4+z98HB2wDzcHkPyzRx3nD1I4jw=
+X-Google-Smtp-Source: ABdhPJyDfe/Vr0bIlEEgW1QLVfnkxK0Q+Ez92Z9YkHkRYyp/EYkR5hYMfsCyXLmT+HGErWJNF6gEGQ==
+X-Received: by 2002:a05:6830:411b:: with SMTP id w27mr1398308ott.80.1620267024455;
+        Wed, 05 May 2021 19:10:24 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id x18sm199395oix.28.2021.05.05.19.10.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 May 2021 19:10:23 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH V9 1/2] watchdog: mtk: support pre-timeout when the bark
+ irq is available
+To:     =?UTF-8?B?546L5pOO?= <wangqing@vivo.com>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <APgAqgAuDm48oWX*tq6AkKqd.3.1620265890239.Hmail.wangqing@vivo.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <ac2a3762-0b5d-a406-33e0-fca3073cd5ac@roeck-us.net>
+Date:   Wed, 5 May 2021 19:10:21 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-In-Reply-To: <20210430151825.GA3339934@robh.at.kernel.org>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <APgAqgAuDm48oWX*tq6AkKqd.3.1620265890239.Hmail.wangqing@vivo.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.177.72]
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2021/4/30 23:18, Rob Herring wrote:
-> On Thu, Apr 22, 2021 at 04:58:35PM +0800, Zhen Lei wrote:
->> Only letters, digits, and commas that describe the base address of the
->> serial port in hexadecimal format are allowed.
+On 5/5/21 6:51 PM, 王擎 wrote:
+> 
+>> On 4/24/21 6:52 PM, Wang Qing wrote:
+>>> Use the bark interrupt as the pretimeout notifier if available.
+>>>
+>>> When the watchdog timer expires in dual mode, an interrupt will be
+>>> triggered first, then the timing restarts. The reset signal will be
+>>> initiated when the timer expires again.
+>>>
+>>> The pretimeout notification shall occur at timeout-sec/2.
+>>>
+>>> V2:
+>>> - panic() by default if WATCHDOG_PRETIMEOUT_GOV is not enabled.
+>>>
+>>> V3:
+>>> - Modify the pretimeout behavior, manually reset after the pretimeout
+>>> - is processed and wait until timeout.
+>>>
+>>> V4:
+>>> - Remove pretimeout related processing. 
+>>> - Add dual mode control separately.
+>>>
+>>> V5:
+>>> - Fix some formatting and printing problems.
+>>>
+>>> V6:
+>>> - Realize pretimeout processing through dualmode.
+>>>
+>>> V7:
+>>> - Add set_pretimeout().
+>>>
+>>> V8/V9:
+>>> - Fix some formatting problems.
+>>>
+>>> Signed-off-by: Wang Qing <wangqing@vivo.com>
 >>
->> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->> ---
->>  Documentation/devicetree/bindings/serial/serial.yaml | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
+>> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 >>
->> diff --git a/Documentation/devicetree/bindings/serial/serial.yaml b/Documentation/devicetree/bindings/serial/serial.yaml
->> index 65e75d040521..71aec7fda07d 100644
->> --- a/Documentation/devicetree/bindings/serial/serial.yaml
->> +++ b/Documentation/devicetree/bindings/serial/serial.yaml
->> @@ -21,7 +21,7 @@ description:
->>  
->>  properties:
->>    $nodename:
->> -    pattern: "^serial(@.*)?$"
->> +    pattern: "^serial(@[0-9a-f,]+)?$"
+>> Note that the version history should be after "---".
+>>
+>> Guenter
+>>
 > 
-> The format of unit-addresses is dictated by the bus (parent), so this is 
-> the wrong place to enforce this. 
+> Thanks, Guenter.
+> And what do I need to do if I want merge into the next-tree?
+> 
+Wim should take care of that.
 
-Okay, so I'll leave this place unchanged.
-
-> 
-> Rob
-> 
-> .
-> 
+Guenter
 
