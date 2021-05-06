@@ -2,221 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A8F02375071
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 09:56:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C22773750B4
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 10:26:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233541AbhEFH5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 03:57:16 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:37756 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233647AbhEFH5Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 May 2021 03:57:16 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 8B5072031F1;
-        Thu,  6 May 2021 09:56:17 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 7C61D2031E8;
-        Thu,  6 May 2021 09:56:17 +0200 (CEST)
-Received: from localhost (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 6704F202F7;
-        Thu,  6 May 2021 09:56:17 +0200 (CEST)
-Date:   Thu, 6 May 2021 10:56:17 +0300
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        p.zabel@pengutronix.de, l.stach@pengutronix.de, krzk@kernel.org,
-        agx@sigxcpu.org, marex@denx.de, andrew.smirnov@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, ping.bai@nxp.com,
-        frieder.schrempf@kontron.de, aford173@gmail.com,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V3 4/4] soc: imx: Add blk-ctl driver for i.MX8MM
-Message-ID: <20210506075617.wl64kmxvtr7lomx7@fsr-ub1664-175>
-References: <20210506041555.10719-1-peng.fan@oss.nxp.com>
- <20210506041555.10719-5-peng.fan@oss.nxp.com>
+        id S233773AbhEFI1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 04:27:39 -0400
+Received: from aclms3.advantech.com.tw ([125.252.70.86]:61945 "EHLO
+        aclms3.advantech.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233767AbhEFI1i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 04:27:38 -0400
+X-Greylist: delayed 603 seconds by postgrey-1.27 at vger.kernel.org; Thu, 06 May 2021 04:27:37 EDT
+Received: from taipei09.ADVANTECH.CORP (unverified [172.20.0.236]) by ACLMS4.ADVANTECH.CORP
+ (Clearswift SMTPRS 5.6.0) with ESMTP id <Te64ee006b6ac14110e2c04@ACLMS4.ADVANTECH.CORP>;
+ Thu, 6 May 2021 16:16:22 +0800
+Received: from localhost (172.16.13.205) by taipei09.ADVANTECH.CORP
+ (172.20.0.236) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 6 May
+ 2021 16:16:21 +0800
+From:   Campion Kang <campion.kang@advantech.com.tw>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Mark Gross <mgross@linux.intel.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Jonathan Corbet <corbet@lwn.net>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
+        <linux-hwmon@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <platform-driver-x86@vger.kernel.org>,
+        AceLan Kao <chia-lin.kao@canonical.com>,
+        Campion Kang <campion.kang@advantech.com.tw>
+Subject: [PATCH v7 1/7] MAINTAINERS: Add Advantech AHC1EC0 embedded controller entry
+Date:   Thu, 6 May 2021 16:16:13 +0800
+Message-ID: <20210506081619.2443-1-campion.kang@advantech.com.tw>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210506041555.10719-5-peng.fan@oss.nxp.com>
-User-Agent: NeoMutt/20180622
-X-Virus-Scanned: ClamAV using ClamSMTP
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [172.16.13.205]
+X-ClientProxiedBy: aclcas3.ADVANTECH.CORP (172.20.1.12) To
+ taipei09.ADVANTECH.CORP (172.20.0.236)
+X-TM-SNTS-SMTP: 7876205C7FEC843B581A29769A73260EFC38050E181FB3FE9EB1A7062F0750B12000:8
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-05-06 12:15:55, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> The i.MX8MM SoC has dispmix BLK-CTL and vpumix BLK-CTL, so we add
-> that support in this driver.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+Changed in V7:
+	1. According to the reviewer's comment, add two files:
+	   Documentation/hwmon/ahc1ec0-hwmon.rst and
+	   drivers/platform/x86/ahc1ec0-core.c
 
-I'm fine with this.
+Signed-off-by: Campion Kang <campion.kang@advantech.com.tw>
+---
+ MAINTAINERS | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-Reviewed-by: Abel Vesa <abel.vesa@nxp.com>
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 83c2b1867586..984795eb6b5d 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -572,6 +572,19 @@ S:	Maintained
+ F:	Documentation/scsi/advansys.rst
+ F:	drivers/scsi/advansys.c
+ 
++ADVANTECH AHC1EC0 EMBEDDED CONTROLLER DRIVER
++M:	Campion Kang <campion.kang@advantech.com.tw>
++L:	linux-kernel@vger.kernel.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/mfd/ahc1ec0.yaml
++F:	Documentation/hwmon/ahc1ec0-hwmon.rst
++F:	drivers/hwmon/ahc1ec0-hwmon.c
++F:	drivers/mfd/ahc1ec0.c
++F:	drivers/platform/x86/ahc1ec0-core.c
++F:	drivers/watchdog/ahc1ec0-wdt.c
++F:	include/dt-bindings/mfd/ahc1ec0-dt.h
++F:	include/linux/platform_data/ahc1ec0.h
++
+ ADVANTECH SWBTN DRIVER
+ M:	Andrea Ho <Andrea.Ho@advantech.com.tw>
+ L:	platform-driver-x86@vger.kernel.org
+-- 
+2.17.1
 
-> ---
->  drivers/soc/imx/Makefile         |   2 +-
->  drivers/soc/imx/blk-ctl-imx8mm.c | 138 +++++++++++++++++++++++++++++++
->  2 files changed, 139 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/soc/imx/blk-ctl-imx8mm.c
-> 
-> diff --git a/drivers/soc/imx/Makefile b/drivers/soc/imx/Makefile
-> index d3d2b49a386c..c260b962f495 100644
-> --- a/drivers/soc/imx/Makefile
-> +++ b/drivers/soc/imx/Makefile
-> @@ -4,4 +4,4 @@ obj-$(CONFIG_ARCH_MXC) += soc-imx.o
->  endif
->  obj-$(CONFIG_HAVE_IMX_GPC) += gpc.o
->  obj-$(CONFIG_IMX_GPCV2_PM_DOMAINS) += gpcv2.o
-> -obj-$(CONFIG_SOC_IMX8M) += soc-imx8m.o blk-ctl.o
-> +obj-$(CONFIG_SOC_IMX8M) += soc-imx8m.o blk-ctl.o blk-ctl-imx8mm.o
-> diff --git a/drivers/soc/imx/blk-ctl-imx8mm.c b/drivers/soc/imx/blk-ctl-imx8mm.c
-> new file mode 100644
-> index 000000000000..cc6e6705f755
-> --- /dev/null
-> +++ b/drivers/soc/imx/blk-ctl-imx8mm.c
-> @@ -0,0 +1,138 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright 2021 NXP
-> + */
-> +
-> +#include <dt-bindings/clock/imx8mm-clock.h>
-> +#include <dt-bindings/power/imx8mm-power.h>
-> +#include <linux/clk.h>
-> +#include <linux/err.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-> +#include <linux/types.h>
-> +#include <linux/pm_domain.h>
-> +#include <linux/regmap.h>
-> +
-> +#include "blk-ctl.h"
-> +
-> +#define MEDIA_BLK_BUS_RSTN_BLK_SYNC_SFT_EN			BIT(6)
-> +#define MEDIA_BLK_MIPI_DSI_I_PRESETN_SFT_EN			BIT(5)
-> +#define MEDIA_BLK_MIPI_CSI_I_PRESETN_SFT_EN			BIT(4)
-> +#define MEDIA_BLK_CAMERA_PIXEL_RESET_N_SFT_EN			BIT(3)
-> +#define MEDIA_BLK_CSI_BRIDGE_SFT_EN				GENMASK(2, 0)
-> +
-> +#define MEDIA_BLK_BUS_PD_MASK					BIT(12)
-> +#define MEDIA_BLK_MIPI_CSI_PD_MASK				GENMASK(11, 10)
-> +#define MEDIA_BLK_MIPI_DSI_PD_MASK				GENMASK(9, 8)
-> +#define MEDIA_BLK_LCDIF_PD_MASK					GENMASK(7, 6)
-> +#define MEDIA_BLK_CSI_BRIDGE_PD_MASK				GENMASK(5, 0)
-> +
-> +static struct imx_blk_ctl_hw imx8mm_dispmix_blk_ctl_pds[] = {
-> +	IMX_BLK_CTL_PD("CSI_BRIDGE", "dispmix", IMX8MM_BLK_CTL_DISPMIX_CSI_BRIDGE, 0x4,
-> +		       MEDIA_BLK_CSI_BRIDGE_PD_MASK, 0, MEDIA_BLK_CSI_BRIDGE_SFT_EN,
-> +		       IMX_BLK_CTL_PD_RESET),
-> +	IMX_BLK_CTL_PD("LCDIF", "dispmix", IMX8MM_BLK_CTL_DISPMIX_LCDIF, 0x4,
-> +		       MEDIA_BLK_LCDIF_PD_MASK, -1, -1, 0),
-> +	IMX_BLK_CTL_PD("MIPI_DSI", "mipi", IMX8MM_BLK_CTL_DISPMIX_MIPI_DSI, 0x4,
-> +		       MEDIA_BLK_MIPI_DSI_PD_MASK, 0, MEDIA_BLK_MIPI_DSI_I_PRESETN_SFT_EN,
-> +		       IMX_BLK_CTL_PD_RESET),
-> +	IMX_BLK_CTL_PD("MIPI_CSI", "mipi", IMX8MM_BLK_CTL_DISPMIX_MIPI_CSI, 0x4,
-> +		       MEDIA_BLK_MIPI_CSI_PD_MASK, 0,
-> +		       MEDIA_BLK_MIPI_CSI_I_PRESETN_SFT_EN | MEDIA_BLK_CAMERA_PIXEL_RESET_N_SFT_EN,
-> +		       IMX_BLK_CTL_PD_RESET)
-> +};
-> +
-> +static struct imx_blk_ctl_hw imx8mm_vpumix_blk_ctl_pds[] = {
-> +	IMX_BLK_CTL_PD("VPU_BLK_CTL_G2", "vpu-g2", IMX8MM_BLK_CTL_G2_PD, 0x4,
-> +		       BIT(0), 0, BIT(0), IMX_BLK_CTL_PD_RESET),
-> +	IMX_BLK_CTL_PD("VPU_BLK_CTL_G1", "vpu-g1", IMX8MM_BLK_CTL_G1_PD, 0x4,
-> +		       BIT(1), 0, BIT(1), IMX_BLK_CTL_PD_RESET),
-> +	IMX_BLK_CTL_PD("VPU_BLK_CTL_H1", "vpu-h1", IMX8MM_BLK_CTL_H1_PD, 0x4,
-> +		       BIT(2), 0, BIT(2), IMX_BLK_CTL_PD_HANDSHAKE | IMX_BLK_CTL_PD_RESET),
-> +};
-> +
-> +static const struct regmap_config imx8mm_blk_ctl_regmap_config = {
-> +	.reg_bits		= 32,
-> +	.reg_stride		= 4,
-> +	.val_bits		= 32,
-> +	.max_register		= 0x30,
-> +	.fast_io		= true,
-> +};
-> +
-> +static const struct imx_blk_ctl_dev_data imx8mm_vpumix_blk_ctl_dev_data = {
-> +	.pds = imx8mm_vpumix_blk_ctl_pds,
-> +	.pds_num = ARRAY_SIZE(imx8mm_vpumix_blk_ctl_pds),
-> +	.hw_hsk = IMX_BLK_CTL_PD(NULL, NULL, IMX8MM_BLK_CTL_H1_PD, 0x4, BIT(2), 0, BIT(2),
-> +				 IMX_BLK_CTL_PD_HANDSHAKE),
-> +	.config = imx8mm_blk_ctl_regmap_config,
-> +	.active_pd_names = (char*[]){"vpumix", "g1", "g2", "h1"},
-> +	.num_active_pd = 4,
-> +};
-> +
-> +static const struct imx_blk_ctl_dev_data imx8mm_dispmix_blk_ctl_dev_data = {
-> +	.pds = imx8mm_dispmix_blk_ctl_pds,
-> +	.pds_num = ARRAY_SIZE(imx8mm_dispmix_blk_ctl_pds),
-> +	.hw_hsk = IMX_BLK_CTL_PD(NULL, NULL, -1, 0x4, MEDIA_BLK_BUS_PD_MASK, 0,
-> +				 MEDIA_BLK_BUS_RSTN_BLK_SYNC_SFT_EN,
-> +				 IMX_BLK_CTL_PD_HANDSHAKE | IMX_BLK_CTL_PD_RESET),
-> +	.config = imx8mm_blk_ctl_regmap_config,
-> +	.active_pd_names = (char*[]){"dispmix", "mipi"},
-> +	.num_active_pd = 2,
-> +};
-> +
-> +static int imx8mm_blk_ctl_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	const struct imx_blk_ctl_dev_data *dev_data = of_device_get_match_data(dev);
-> +	struct regmap *regmap;
-> +	struct imx_blk_ctl *ctl;
-> +	void __iomem *base;
-> +
-> +	ctl = devm_kzalloc(dev, sizeof(*ctl), GFP_KERNEL);
-> +	if (!ctl)
-> +		return -ENOMEM;
-> +
-> +	base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	regmap = devm_regmap_init_mmio(dev, base, &dev_data->config);
-> +	if (IS_ERR(regmap))
-> +		return PTR_ERR(regmap);
-> +
-> +	ctl->regmap = regmap;
-> +	ctl->dev = dev;
-> +	ctl->power_count = 0;
-> +	mutex_init(&ctl->lock);
-> +
-> +	ctl->num_clks = devm_clk_bulk_get_all(dev, &ctl->clks);
-> +	if (ctl->num_clks < 0)
-> +		return ctl->num_clks;
-> +
-> +	dev_set_drvdata(dev, ctl);
-> +	ctl->dev_data = dev_data;
-> +
-> +	return imx_blk_ctl_register(dev);
-> +}
-> +
-> +static const struct of_device_id imx_blk_ctl_of_match[] = {
-> +	{ .compatible = "fsl,imx8mm-vpumix-blk-ctl", .data = &imx8mm_vpumix_blk_ctl_dev_data },
-> +	{ .compatible = "fsl,imx8mm-dispmix-blk-ctl", .data = &imx8mm_dispmix_blk_ctl_dev_data },
-> +	{ /* Sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, imx_blk_ctl_of_match);
-> +
-> +static struct platform_driver imx_blk_ctl_driver = {
-> +	.probe = imx8mm_blk_ctl_probe,
-> +	.driver = {
-> +		.name = "imx8mm-blk-ctl",
-> +		.of_match_table = of_match_ptr(imx_blk_ctl_of_match),
-> +		.pm = &imx_blk_ctl_pm_ops,
-> +	},
-> +};
-> +module_platform_driver(imx_blk_ctl_driver);
-> -- 
-> 2.30.0
-> 
