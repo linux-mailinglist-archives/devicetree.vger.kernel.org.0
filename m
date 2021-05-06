@@ -2,148 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 511183752B9
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 13:00:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A14113752CA
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 13:11:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234637AbhEFLBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 07:01:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56766 "EHLO
+        id S234671AbhEFLMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 07:12:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234508AbhEFLBt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 07:01:49 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96BDAC061761
-        for <devicetree@vger.kernel.org>; Thu,  6 May 2021 04:00:50 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id n25so5655987edr.5
-        for <devicetree@vger.kernel.org>; Thu, 06 May 2021 04:00:50 -0700 (PDT)
+        with ESMTP id S234672AbhEFLMS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 07:12:18 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B58FC061574
+        for <devicetree@vger.kernel.org>; Thu,  6 May 2021 04:11:19 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id z13so7245339lft.1
+        for <devicetree@vger.kernel.org>; Thu, 06 May 2021 04:11:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:from:date:message-id:subject:to:cc;
-        bh=AdJUhkXJ0RE0gA8rQiRatnY1RC7xIq+gLRVNuKyv4zk=;
-        b=yXjsWw1RP+V7P8yFV+MEP4lidWXgt92J0/EgUmwODNiDWT5hNfkKXlaz7BDy82Femm
-         q7oPTyidG6yskxN7dWTknGA+EoV9kqqlTpEPBaFY08ipld2nllpUlurIroxUUIUr/myE
-         OoDl2EbLkwXGuhcQIIDrUD9ImV/TbYq5RaRbjJlZoRfOfZ+VdH+X4UwZ0dRAJ17/wH5I
-         PVKsPTQeMEoChpQtVFkuxqKd8mHkUk48K0FmmaLUmD/Q8NDjleJ8tEuRJm3Yxd5DmHp4
-         H3YWLWzK+SDqjZEFL1m54h5uxGeZFier1anJL+dlNokMzwCDecPGpg5HIHu8VFxTWxIe
-         DwTA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=wMFathXdbsaDkowJoU81vrWO0kU+VvQ+Tmhu/CZVPVI=;
+        b=bgCNsJYhW0+tuUuY3mc+Rp83PxkwaudgTpOEyZ7upVhDySB2D+rc0FjXEhxn2DdYy/
+         CIHPZc1OG++JyD0ctna/+pypf3gxLlTy1g36xtiduhIJPcyQO+8Zrv7FFmw5/9laIfb0
+         23F180/6IUwOMm8T+mR02+NBnKmPpS8hhqappwFgu+CXBQTiup0B2I3iKnrk7GVcOlOL
+         OeNIyeW/43hcqYCVCWFKV6iq0xDT/ww+n1y279tcnLP7qY6uZiUOCeS82HfxM3YCrbOC
+         vgXdLbW1f3qju1XR38L1nYKCv8TFZsVLcZVlbD5MedkNm3r9Oig9N2txhap5M6a2up2L
+         U6UA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-        bh=AdJUhkXJ0RE0gA8rQiRatnY1RC7xIq+gLRVNuKyv4zk=;
-        b=pJcPJ0RCgzmwqnY3ilcTNT9BB7V8+9uOPKoLAv9aiUCCSEwzOqzzYxkaeAN/hqtF56
-         KS/KiJAeSTG0X6GHOXux0qjF398N4LFUlfVk60daJoG2ruOdik9z7NC2O5Qkh+J6Wlof
-         9BKJPULKb0BVB2sc64IzqHCxDGDkgl4Gay7FPAH2ET7gowgEdOaRgkd5W+4Gcc66CX7F
-         qjm0983guZHJiIzRr7XXwtojqGE7DflV05SRJYFhRAU+aVoRKooQlwNGOhnSE/rqKPUc
-         lUY7UTzgxDEMJKdRHeyAZfjh+pWDIGFx1KdY8OFWg8IN2T0po58bVMf7G0mwi0JWzpQL
-         kR/Q==
-X-Gm-Message-State: AOAM5309JKwKETxgP8fB3v+gFnjFjykl2byay0Xgx+/7uIuThuEfUfuc
-        RcJznkFpclEN4D9A4pfmrfLR3ivpB717aAsGpiRHADIutcsUTVUh
-X-Google-Smtp-Source: ABdhPJzzg1f47/TCh4naYuf/+uyutWrGXzwqvmRLBN7VgJa8XfcE9nK2c7vpAmPWbkrDepZWGynD3NM+DXnxO/NUm/Y=
-X-Received: by 2002:a05:6402:145:: with SMTP id s5mr4338384edu.221.1620298848045;
- Thu, 06 May 2021 04:00:48 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wMFathXdbsaDkowJoU81vrWO0kU+VvQ+Tmhu/CZVPVI=;
+        b=bW3bNdv6wRrwEOi9TmNksW/oIPeIPH9WYtO+VTdBgOlgNzgtwmI3pbQnez6m5eJ1p/
+         JgRcy2bYlw3zls/Dx1/A6eYciGavvGIihK3wBt1IZ6J8JAN+mfE752ahGmr3TSbtweWB
+         Z/Nym7A6XgH8Gs3B3eMYWKAxLtheS9wN+s+CmG3yd/ROO4WmH2eXcDb0jlK0Y/DtnKIW
+         4knMB7IaRkKF2GKNMGSUxQ23rvym4BF/2nDVw3gT6TZVhP8XyisO5eK/6JW905PkMO18
+         NjoqOPWi8KgzpQFT0NFKr/gHCYCghdGBtFnlCD37ulXZm+0qcppEHwdC4NqSnbXN/rg1
+         IMwA==
+X-Gm-Message-State: AOAM530N3ZJdLoDlluoHm2FnCJoGW9jPrydTQ/MzSW8onqUuxhPU8ox4
+        k/h7mveBmqEPhVB/fEZwwnDl30PcKH3Na0N/2L5Alw==
+X-Google-Smtp-Source: ABdhPJzsuJP2WMZqZGx1KzuR34RFZ6qLuUWvvsfN2huPdEnPjyrItMtfHwqU/4mFSa/5hfhmJLQ+2fWn1Peuqhxn52A=
+X-Received: by 2002:ac2:544f:: with SMTP id d15mr2482110lfn.465.1620299478030;
+ Thu, 06 May 2021 04:11:18 -0700 (PDT)
 MIME-Version: 1.0
-From:   Naresh Kamboju <naresh.kamboju@linaro.org>
-Date:   Thu, 6 May 2021 16:30:36 +0530
-Message-ID: <CA+G9fYtTN6ug3eBAW3wMcDeESUo+ebj7L5HBe5_fj4uqDExFQg@mail.gmail.com>
-Subject: #regzb introduced: 98feab31ac49 ("ARM: OMAP2+: Drop legacy platform
- data for dra7 sata")
-To:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Tony Lindgren <tony@atomide.com>,
-        lkft-triage@lists.linaro.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        regressions@lists.linux.dev
-Cc:     Benoit Cousson <bcousson@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
+References: <20210426095426.118356-1-tsbogend@alpha.franken.de>
+ <20210426095426.118356-2-tsbogend@alpha.franken.de> <CACRpkda7n3VL-EpwdXDxt47azFo8Wkp67-urUy7--3D6TJs7iA@mail.gmail.com>
+ <CAL_Jsq+48xVScx87WYD85Ty5CxqO3L8taMeQ7S9QwHew1+TjKA@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+48xVScx87WYD85Ty5CxqO3L8taMeQ7S9QwHew1+TjKA@mail.gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 6 May 2021 13:11:07 +0200
+Message-ID: <CACRpkdaftBRUw_m9GjrqMreAF98iNTF4807LwkY9Mt7Ceh6k=w@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] dt-bindings: gpio: Add devicetree binding for IDT
+ 79RC32434 GPIO controller
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[If it is already reported please ignore]
+On Tue, May 4, 2021 at 3:44 PM Rob Herring <robh+dt@kernel.org> wrote:
+> On Sat, May 1, 2021 at 7:13 AM Linus Walleij <linus.walleij@linaro.org> wrote:
 
-LKFT test reported regression on TI BeagleBoard-X15 arm32 bit platform as
-The device was not able to detect SATA drive.
+> > Why can't interrupt support be made optional?
+(...)
+>
+> If the hardware has interrupts, then we should describe that. It's the
+> OS driver that may or may not support interrupts.
 
-dmesg short log:
-----------------------
-jitterentropy: Initialization failed with host not compliant with
-requirements: 2
-ata1: SATA max UDMA/133 mmio [mem 0x4a140000-0x4a1410ff] port 0x100 irq 101
-wkupaon-clkctrl:0068:0: failed to disable
-ata1: SATA link down (SStatus 0 SControl 300)
-ata1: softreset failed (1st FIS failed)
+You're right of course. What was I thinking.
 
-Our bisect script pointed this as the first bad commit on linux
-mainline master branch.
-
-Full test log:
-----------------
-SATA detection failed log link,
-https://lkft.validation.linaro.org/scheduler/job/2580998#L1973
-
---
-commit 98feab31ac491400f28b76a04dabd18ce21e91ba
-Author: Tony Lindgren <tony@atomide.com>
-Date:   Wed Mar 10 14:03:51 2021 +0200
-
-    ARM: OMAP2+: Drop legacy platform data for dra7 sata
-
-    We can now probe devices with ti-sysc interconnect driver and dts data.
-    Let's drop the related platform data and custom ti,hwmods dts property.
-
-    As we're just dropping data, and the early platform data init is based on
-    the custom ti,hwmods property, we want to drop both the platform data and
-    ti,hwmods property in a single patch.
-
-    Signed-off-by: Tony Lindgren <tony@atomide.com>
--- 
-
-steps to reproduce:
--------------------------
-- Build arm zImage/dtb/modules on mainline tree and configs
-- connect SATA drive and boot x15 device
-- check the dmesg for failed logs
- - check to find /dev/sda
-
-metadata:
-  git branch: master
-  git repo: https://gitlab.com/Linaro/lkft/mirrors/torvalds/linux-mainline
-  git commit: f0728bfeb21a24bbb7d5ad1828b67a359550fa17
-  kernel-config: https://builds.tuxbuild.com/1rjBx0LdvYwlWdINXaDPvIigvcC/config
-  build-url: https://gitlab.com/Linaro/lkft/mirrors/torvalds/linux-mainline/-/pipelines/292686420
-
-Steps to build:
---------------------
-# TuxMake is a command line tool and Python library that provides
-# portable and repeatable Linux kernel builds across a variety of
-# architectures, toolchains, kernel configurations, and make targets.
-#
-# TuxMake supports the concept of runtimes.
-# See https://docs.tuxmake.org/runtimes/, for that to work it requires
-# that you install podman or docker on your system.
-#
-# To install tuxmake on your system globally:
-# sudo pip3 install -U tuxmake
-#
-# See https://docs.tuxmake.org/ for complete documentation.
-
-
-tuxmake --runtime podman --target-arch arm --toolchain gcc-9 --kconfig
-defconfig --kconfig-add
-https://raw.githubusercontent.com/Linaro/meta-lkft/sumo/recipes-kernel/linux/files/lkft.config
---kconfig-add https://raw.githubusercontent.com/Linaro/meta-lkft/sumo/recipes-kernel/linux/files/lkft-crypto.config
---kconfig-add https://raw.githubusercontent.com/Linaro/meta-lkft/sumo/recipes-kernel/linux/files/distro-overrides.config
---kconfig-add https://raw.githubusercontent.com/Linaro/meta-lkft/sumo/recipes-kernel/linux/files/systemd.config
---kconfig-add https://raw.githubusercontent.com/Linaro/meta-lkft/sumo/recipes-kernel/linux/files/virtio.config
---kconfig-add CONFIG_ARM_TI_CPUFREQ=y --kconfig-add
-CONFIG_SERIAL_8250_OMAP=y --kconfig-add CONFIG_POSIX_MQUEUE=y
---kconfig-add CONFIG_OF=y --kconfig-add CONFIG_SYN_COOKIES=y
-
-
---
-Linaro LKFT
-https://lkft.linaro.org
+Yours,
+Linus Walleij
