@@ -2,83 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A08183753EC
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 14:35:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27B6A3753E9
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 14:35:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231719AbhEFMgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 08:36:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49748 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229777AbhEFMgx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 08:36:53 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25A6FC061761
-        for <devicetree@vger.kernel.org>; Thu,  6 May 2021 05:35:54 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id i9so982348lfe.13
-        for <devicetree@vger.kernel.org>; Thu, 06 May 2021 05:35:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=2/ZmLbtrYVGn+DSAZJpx6aR2WIjOEoDo2T5mjjYPzTs=;
-        b=mRjXV2LTKDkUHdBoHDPBOo0SIk1NqnE8T4eNXjd80NFYKUcSi8w0+5CGLa/ewy/HLR
-         B5UceZ7jPLNnMte5P/bakSnDGw0AAdTWxnKMu7OGINKHfIa88jaBIZmt1Ygumu/9Az4r
-         wSYsXMXFQSSe+x5TwljS6YpUtRjxh5awk91LAO/1tsUzo361MplCr6r/w7StDzgqGgjF
-         0DlmHHXMZZ02dwN1xc+CY/E+8hkqPRzVmhKTABKyJ3BZQczo63rywBFs9MiR/4H5f7H1
-         t1W+I7RQ5NO3Fq9SUUO4TsYagecqD4eIlOrokYSkdqG7Pot27GsDX5ebGnsGjIHY2r4B
-         D6DA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=2/ZmLbtrYVGn+DSAZJpx6aR2WIjOEoDo2T5mjjYPzTs=;
-        b=Ar4VmMvwc6vY390NUcvpP25XqvhCc5VUxd6ttZRLCNclQ5w90Rj4HKWCZWYabdp1CU
-         7KsbZhqq8CC133h2jan0D8suQLZOxos7U5Z/pnDfdISGq4isgGuNoD8f1G4XQP1V0+fT
-         Ss1f98Ef4ZP0mBdbGEDlfHThEF7LVLccJnZCvYcgXIo3eZioRLh7JWNDRv6A13pba/kN
-         MjV4YcuOS+qvHsKrtQ7QLO6QBNCIBqdkMYYDidSdsKmAxa+uqt8ef/9JqjwrEPsUdlEN
-         ZfR2IZlAQIcdXyvNERcmRXDlbVzWllLTg1YWrTEm9MYkh4/49AmTsDsGtyacJdb0l6Xx
-         fw+Q==
-X-Gm-Message-State: AOAM5319XA0nirMh0cPiLeZWu66FyfHLoNT8Ysmeuv5FiMiFTU0Be3ip
-        iADHhVIEyRlUtFkIYDg8yeFcittVdwFNIkyZZh7NJw==
-X-Google-Smtp-Source: ABdhPJwjEiT3esgblNl5oL8PYhIDR+bfD6j0Y8+/+akNo7N2Tsc8Fq2BFSNap3ZLzp3tCQ/FCTsiBkzaFSI05AQ33EU=
-X-Received: by 2002:ac2:5e36:: with SMTP id o22mr2807016lfg.529.1620304552671;
- Thu, 06 May 2021 05:35:52 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210503210526.43455-1-u.kleine-koenig@pengutronix.de>
- <20210504025546.GA13356@sol> <20210504091459.clb5nkwgrgg43ixq@pengutronix.de>
- <20210504102454.GA21266@sol> <20210504105653.bfhtqd7ildoipcqu@pengutronix.de>
-In-Reply-To: <20210504105653.bfhtqd7ildoipcqu@pengutronix.de>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 6 May 2021 14:35:41 +0200
-Message-ID: <CACRpkdZvZKR5g-=YRHWEgtEJyzd9NUoMsV-VH6dvPxACTXNGJQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: gpio: introduce hog properties with less ambiguity
-To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Kent Gibson <warthog618@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        id S231501AbhEFMgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 08:36:50 -0400
+Received: from lb1-smtp-cloud7.xs4all.net ([194.109.24.24]:60061 "EHLO
+        lb1-smtp-cloud7.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229777AbhEFMgt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 08:36:49 -0400
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud7.xs4all.net with ESMTPA
+        id edEFlv0CwyEWwedEIl0zd8; Thu, 06 May 2021 14:35:49 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
+        t=1620304549; bh=WOR19envAlRRRl8TIK3qpcWJWZjCtwsC2mEH2Fdqy/I=;
+        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=GlViP6PDykjVIhbawEFdOMy0C4z3wXUEfsM7pAn3f+HNIW7lq/shfDgvZHMc75WE9
+         +EeRlLeOaAJPAFxziFYufCGeRXI7NnHVMEIsdokhyJaHbtmCazBIVfzReDTZUQMA6E
+         LNTChQm0NMDiEVF9ZNxOB3m67IPK+6iTfqYLd9SQ3+qulJt71gvqC9Z8TQD0ULc2Ic
+         MiBDWNY9ch7v3QheM2VOiL27/lvbpJcL160VjJnR0zjGyI2SGLSlf+gTH4ftfIK6om
+         C8kZ2B3M4dZTJxr7FGApY1qipJRmoovkB5gwHjOusiH9j3Xd+4fbSrS49pMLi55m38
+         +2S/Ed1to38Yg==
+Subject: Re: [PATCH v4 9/9] ARM: dts: sama5d4: enable Hantro G1 VDEC
+To:     Emil Velikov <emil.l.velikov@gmail.com>
+Cc:     kernel@collabora.com, Ezequiel Garcia <ezequiel@collabora.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        devicetree <devicetree@vger.kernel.org>,
+        linux-media@vger.kernel.org,
+        linux-rockchip <linux-rockchip@lists.infradead.org>,
+        Frank Rowand <frowand.list@gmail.com>
+References: <20210401144336.2495479-1-emil.l.velikov@gmail.com>
+ <20210401144336.2495479-10-emil.l.velikov@gmail.com>
+ <a9829af1-f4e9-5835-9a74-15a0fce6b1eb@xs4all.nl>
+ <CACvgo53L-3kN6WGn6VqkpZTRcVnrnLeCxRPxcGks0TR+VQuXbQ@mail.gmail.com>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <4b22a35f-5599-799e-9887-8ccd5a550af3@xs4all.nl>
+Date:   Thu, 6 May 2021 14:35:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.9.0
+MIME-Version: 1.0
+In-Reply-To: <CACvgo53L-3kN6WGn6VqkpZTRcVnrnLeCxRPxcGks0TR+VQuXbQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4xfPQLXgmw3TGPOc4mJIm5s24EQtla8xjWuiul4+Zab4VWAYHBR33TdRxTpxrlo3azmc23Fo/ROG1fEr1jIhNkPA0jYb82UU3L6n5YmwjAPCxF7LPOj5Ts
+ +LzNcwGfm+M2UhreTZTObltyByiJvGVEDFBxhhsX3C2TaUTgewariZhudBc8mt73oPSlTypRbUBQtBclgTZmTBX47yWQd3Sx/ySbd/qUqViM+V3GbQGvdwI3
+ SLmRK/SyO3PmxgPSlvZYVKXAEzWm+2GsIAPTCws4H1C3VheZr/LptI5AniZJxGTOujhJLhw8mGAh472POLl0k2lSpNcN2IetFx6O0WCoei1phTP3i7kqBR0y
+ 8cqyy5RTXaiPCsrWYxmATpCntsrH7tXIt5FvPOPeSbbHUOVpBfw7/IOf6RRhWiydIuVI6xJOEjmXgw50POZD1qOm7TUpRiyS7vq6wUgYRCmIrmfAtB/oSScd
+ qWaEyvSvba08qrM7
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 4, 2021 at 12:56 PM Uwe Kleine-K=C3=B6nig
-<u.kleine-koenig@pengutronix.de> wrote:
-but not active
-> > know if there is a good reason not to go with active/inactive.
->
-> Linus: So we're already 3 out of 3 who would like active/inactive better
-> than asserted/deasserted. I'm curious about your preference, too.
+On 06/05/2021 14:31, Emil Velikov wrote:
+> Hi Hans,
+> 
+> On Wed, 5 May 2021 at 15:31, Hans Verkuil <hverkuil@xs4all.nl> wrote:
+>>
+>> On 01/04/2021 16:43, Emil Velikov wrote:
+>>> From: Emil Velikov <emil.velikov@collabora.com>
+>>>
+>>> Add the SAMA5D4 VDEC module which comprises Hantro G1 video decoder
+>>> core.
+>>
+>> I've accepted parts 1-8 of this series for 5.14, so this remaining patch
+>> can be merged by whoever handles such dts patches.
+>>
+> Can you please include this patch as well. As you can see it has been
+> Acked by Nicolas, one of the AT91 maintainers so it can go with the
+> media tree.
 
-I suppose it depends on where you come from. In electronics
-the terms asserted/deasserted is commonly used and
-that is where I'm coming from. Maybe just the materials
-I've been subjected to, who knows.
+OK, I'll do that. Usually these dts patches go through a different
+subsystem...
 
-Yours,
-Linus Walleij
+Regards,
+
+	Hans
+
+> 
+>> Regards,
+>>
+>>         Hans
+>>
+>>>
+>>> Cc: Rob Herring <robh+dt@kernel.org>
+>>> Cc: Frank Rowand <frowand.list@gmail.com>
+>>> Cc: devicetree@vger.kernel.org
+>>> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+>>> Signed-off-by: Emil Velikov <emil.velikov@collabora.com>
+> 
+> Thanks
+> Emil
+> 
+
