@@ -2,168 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 276253751ED
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 12:03:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DC5F375213
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 12:13:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234313AbhEFKEl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 06:04:41 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:61600 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231194AbhEFKEj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 06:04:39 -0400
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 1469pTG0024645;
-        Thu, 6 May 2021 17:51:29 +0800 (GMT-8)
-        (envelope-from steven_lee@aspeedtech.com)
-Received: from localhost.localdomain (192.168.100.253) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 6 May
- 2021 18:03:17 +0800
-From:   Steven Lee <steven_lee@aspeedtech.com>
-To:     Andrew Jeffery <andrew@aj.id.au>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        "Adrian Hunter" <adrian.hunter@intel.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ryan Chen <ryanchen.aspeed@gmail.com>,
-        "moderated list:ASPEED SD/MMC DRIVER" <linux-aspeed@lists.ozlabs.org>,
-        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
-        "open list:ASPEED SD/MMC DRIVER" <linux-mmc@vger.kernel.org>,
+        id S233816AbhEFKOB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 06:14:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45962 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233736AbhEFKOA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 06:14:00 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB4D8C06174A
+        for <devicetree@vger.kernel.org>; Thu,  6 May 2021 03:13:01 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id w4so6330911ljw.9
+        for <devicetree@vger.kernel.org>; Thu, 06 May 2021 03:13:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=l1ggbKpwyEzj1rEh/XxYET4MGXcIm3LWjUGGwG6CSpk=;
+        b=gp7jZdcKCXTMbw8gIV6QPVSzQjbCzr0nQ/Mlpn76q0uJTzWUqGv/GSx0MoIOzm0zHr
+         Tu7r5b4HmciBMvnIle7GR58kfgOb0lbVgrl3Rf2uBQR5T8QUmmvXJiyDqB/tQIvKgJXf
+         jV7WqRW5oIDms3lb9VdnVJNxi3mP7qpoyXp2gAcBeOrUGSQnozEr8/2loX1Z3KP3xxJw
+         wWV0t0/WTvMMMrQFdjS2mwyYn74SxNhhN8LCpah+IeSrOQZ8Y2+ukHJ5ZNyHupYr+/tS
+         s9hRxZI9OXOa+aeNabKihD5RhohwauPhGACSHynCj3BIsNTkIXUkXYRd4EVHZTcyDBe5
+         QebA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=l1ggbKpwyEzj1rEh/XxYET4MGXcIm3LWjUGGwG6CSpk=;
+        b=GbPdtytDKuTWexqM8pN/rpGoZ7b4N7ClaOgYC+8/lIppY7lwE/+TC53kh/1tNX/gu8
+         yMvuAxABcUoGX2PXlzXpei8cYqcKQ9WL5308v3GxL9pzDJtTwq6uar4hYCfEKaP2rAW6
+         GqLTMysVrJfBH6IfKkGfdM/adEpkJMntJRUZjk+bTCNQs127RLIsHyTkcYJEIJtTr1AL
+         gY0J1csv3jdsEkUsajfI5jsolNG1Nmjx4shd4ZulSmr+dPBkBHowpjnOKtBFyP0z45zg
+         Xuy5fP+4NtOJoYrs9ONnrCMMKjLrdML9ZBOmCWfZNnaF6C60fb8IloXQtHEdBKUwW5ss
+         NYFA==
+X-Gm-Message-State: AOAM531xTOKYx8+lXq8kOStB2X5w0jY96+81Rb5XIJScCziQqUMQwTZ9
+        lwrpshx/+pEP1zjMDm7F00GPog39wNIm0EXkn299Hg==
+X-Google-Smtp-Source: ABdhPJxfW5Qw4qptyfdPIbMEturmOMzGgfkC2WHp/K0ru1xbqQy5PMRz56ryAth0AyOFT3K2oGH11kmD8mX8oeDgz94=
+X-Received: by 2002:a2e:2e12:: with SMTP id u18mr2694286lju.200.1620295979500;
+ Thu, 06 May 2021 03:12:59 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210428174830.3691034-1-clabbe@baylibre.com>
+In-Reply-To: <20210428174830.3691034-1-clabbe@baylibre.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 6 May 2021 12:12:48 +0200
+Message-ID: <CACRpkdbTOmCUy0cX0cD1tLLo94UAaGGOFaOL5hBQ0k5NVewOnA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: gemini: rename mdio to the right name
+To:     Corentin Labbe <clabbe@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-CC:     <steven_lee@aspeedtech.com>, <Hongweiz@ami.com>,
-        <ryan_chen@aspeedtech.com>, <chin-ting_kuo@aspeedtech.com>
-Subject: [PATCH v3 5/5] mmc: sdhci-of-aspeed: Assert/Deassert reset signal before probing eMMC
-Date:   Thu, 6 May 2021 18:03:12 +0800
-Message-ID: <20210506100312.1638-6-steven_lee@aspeedtech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210506100312.1638-1-steven_lee@aspeedtech.com>
-References: <20210506100312.1638-1-steven_lee@aspeedtech.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [192.168.100.253]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 1469pTG0024645
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For cleaning up the AST2600 eMMC controller, the reset signal should be
-asserted and deasserted before it is probed.
+On Wed, Apr 28, 2021 at 7:48 PM Corentin Labbe <clabbe@baylibre.com> wrote:
 
-Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
----
- drivers/mmc/host/sdhci-of-aspeed.c | 49 ++++++++++++++++++++++++------
- 1 file changed, 40 insertions(+), 9 deletions(-)
+> ethernet-phy is not the right name for mdio, fix it.
+>
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 
-diff --git a/drivers/mmc/host/sdhci-of-aspeed.c b/drivers/mmc/host/sdhci-of-aspeed.c
-index 4979f98ffb52..8ef06f32abff 100644
---- a/drivers/mmc/host/sdhci-of-aspeed.c
-+++ b/drivers/mmc/host/sdhci-of-aspeed.c
-@@ -13,6 +13,7 @@
- #include <linux/of.h>
- #include <linux/of_platform.h>
- #include <linux/platform_device.h>
-+#include <linux/reset.h>
- #include <linux/spinlock.h>
- 
- #include "sdhci-pltfm.h"
-@@ -36,9 +37,16 @@
- /* SDIO{14,24} */
- #define ASPEED_SDC_CAP2_SDR104         (1 * 32 + 1)
- 
-+#define PROBE_AFTER_ASSET_DEASSERT	0x1
-+
-+struct aspeed_sdc_info {
-+	u32 flag;
-+};
-+
- struct aspeed_sdc {
- 	struct clk *clk;
- 	struct resource *res;
-+	struct reset_control *rst;
- 
- 	spinlock_t lock;
- 	void __iomem *regs;
-@@ -78,6 +86,10 @@ struct aspeed_sdhci {
- 
- };
- 
-+struct aspeed_sdc_info ast2600_sdc_info = {
-+	.flag = PROBE_AFTER_ASSET_DEASSERT
-+};
-+
- /*
-  * The function sets the mirror register for updating
-  * capbilities of the current slot.
-@@ -533,11 +545,22 @@ static struct platform_driver aspeed_sdhci_driver = {
- 	.remove		= aspeed_sdhci_remove,
- };
- 
-+static const struct of_device_id aspeed_sdc_of_match[] = {
-+	{ .compatible = "aspeed,ast2400-sd-controller", },
-+	{ .compatible = "aspeed,ast2500-sd-controller", },
-+	{ .compatible = "aspeed,ast2600-sd-controller", .data = &ast2600_sdc_info},
-+	{ }
-+};
-+
-+MODULE_DEVICE_TABLE(of, aspeed_sdc_of_match);
-+
- static int aspeed_sdc_probe(struct platform_device *pdev)
- 
- {
- 	struct device_node *parent, *child;
- 	struct aspeed_sdc *sdc;
-+	const struct of_device_id *match = NULL;
-+	const struct aspeed_sdc_info *info = NULL;
- 	int ret;
- 
- 	sdc = devm_kzalloc(&pdev->dev, sizeof(*sdc), GFP_KERNEL);
-@@ -546,6 +569,23 @@ static int aspeed_sdc_probe(struct platform_device *pdev)
- 
- 	spin_lock_init(&sdc->lock);
- 
-+	match = of_match_device(aspeed_sdc_of_match, &pdev->dev);
-+	if (!match)
-+		return -ENODEV;
-+
-+	if (match->data)
-+		info = match->data;
-+
-+	if (info) {
-+		if (info->flag & PROBE_AFTER_ASSET_DEASSERT) {
-+			sdc->rst = devm_reset_control_get(&pdev->dev, NULL);
-+			if (!IS_ERR(sdc->rst)) {
-+				reset_control_assert(sdc->rst);
-+				reset_control_deassert(sdc->rst);
-+			}
-+		}
-+	}
-+
- 	sdc->clk = devm_clk_get(&pdev->dev, NULL);
- 	if (IS_ERR(sdc->clk))
- 		return PTR_ERR(sdc->clk);
-@@ -593,15 +633,6 @@ static int aspeed_sdc_remove(struct platform_device *pdev)
- 	return 0;
- }
- 
--static const struct of_device_id aspeed_sdc_of_match[] = {
--	{ .compatible = "aspeed,ast2400-sd-controller", },
--	{ .compatible = "aspeed,ast2500-sd-controller", },
--	{ .compatible = "aspeed,ast2600-sd-controller", },
--	{ }
--};
--
--MODULE_DEVICE_TABLE(of, aspeed_sdc_of_match);
--
- static struct platform_driver aspeed_sdc_driver = {
- 	.driver		= {
- 		.name	= "sd-controller-aspeed",
--- 
-2.17.1
+Patch applied!
 
+Yours,
+Linus Walleij
