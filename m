@@ -2,74 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 900D8375C7F
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 22:57:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41F91375C8C
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 23:05:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230019AbhEFU6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 16:58:22 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:42538 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229960AbhEFU6V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 16:58:21 -0400
-Received: by mail-ot1-f51.google.com with SMTP id g15-20020a9d128f0000b02902a7d7a7bb6eso6101118otg.9;
-        Thu, 06 May 2021 13:57:20 -0700 (PDT)
+        id S229544AbhEFVG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 17:06:27 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:33405 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229672AbhEFVG1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 17:06:27 -0400
+Received: by mail-ot1-f41.google.com with SMTP id i23-20020a9d68d70000b02902dc19ed4c15so2130384oto.0;
+        Thu, 06 May 2021 14:05:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Bp5RtdBBe2ku1w14VHF5wWt/pMonE6P5FU8yha9Qjiw=;
-        b=PNl0NpCB5vT5w9EnGu3sLyDabryPmReu9O2f/Cuk7C/fgPWVlVArVUvaJUnYAiSAPC
-         dIBv4G+bj2aJQsOtA3XbbzwaOOfPkhql8UVFQw+z/q+Gysk7CMD5mNVT+A+6+so66W0j
-         F6vjqWKfPHLxegiVLCYUrG0dBUTlN/aKiasCPVSbHgG7n5CM1kErx+JwcgQqAdJ6rmg7
-         6jjNngPl/p/iuif9/2CQvppDjWjwulUamV4d7zxFWvxxMTvD2E/7MwAXZYOwE2XjFfK8
-         StVLAleWRYQ7d1COYXC9I+62Y63pUCStS0CDTwagIpzB1LBSzuiDQEcdciX1YN/o0kML
-         dAwg==
-X-Gm-Message-State: AOAM533YTuxUMXttF912o0o1glr2mu1lF4QVR0rcyAsDRWyPzwMCIoyV
-        zQsVM2mMVt86OzeB9rxNQg==
-X-Google-Smtp-Source: ABdhPJxGWV9UXRuzfIx+dZRZ51NNQHx3iD/Z5WX9PfNcGr1bWcFyXenYzfJcadHL3ofARshMGMHmQw==
-X-Received: by 2002:a9d:6a18:: with SMTP id g24mr5166911otn.368.1620334640613;
-        Thu, 06 May 2021 13:57:20 -0700 (PDT)
+        bh=bKeryIHrEzJrWyO+r99fo0J5qhxhhnLfQ516dxutmXs=;
+        b=Eedg63MwFxFxLCXYfGLDhQakpS/4c996MerKEH1ikJYdPB4Bue4Y75jvvMkYI7lJ18
+         OTft7QpZKBbR4UR2gEK8OS9NbMWBdisR4hRHtJHNirdUeAKmOk1GtialVgB65t4gW7B/
+         DIxFk6R0lZ4Rl3Myh1e+9DxY/QQCDqT7WrDZPOlMq67uPcUCOF+zTGTk9sQQqW0q3mk0
+         Zc8G4HfP4SHwU9H+QPfpfMWmOMb7L5axyS5tJIn835gL2lywcQ0tf/Tm0bm5OGX3bxSQ
+         YfId5Ehi4UhJdqgAZgmxdoYt5pdVd0Y7eLIW2PqVNxjOGCq8Kb4+gSAErvCQjAshTbY9
+         ztgg==
+X-Gm-Message-State: AOAM533/gHjKONtmWE4j2udZhCJN/GJubAeZFybCsvFrbz/NDZ+UB83q
+        nThABLIxhFg3vglk35uSQw==
+X-Google-Smtp-Source: ABdhPJxS+hi8/dkxulvYqF7PxTofXU6XPdnpBsVIPNchAm9VdqcSjuluRoBpfJrPza7tru4o2I7o2A==
+X-Received: by 2002:a9d:2de3:: with SMTP id g90mr5284461otb.274.1620335128276;
+        Thu, 06 May 2021 14:05:28 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z9sm818582otj.44.2021.05.06.13.57.19
+        by smtp.gmail.com with ESMTPSA id a14sm789863otl.52.2021.05.06.14.05.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 May 2021 13:57:20 -0700 (PDT)
-Received: (nullmailer pid 789013 invoked by uid 1000);
-        Thu, 06 May 2021 20:57:19 -0000
-Date:   Thu, 6 May 2021 15:57:19 -0500
+        Thu, 06 May 2021 14:05:27 -0700 (PDT)
+Received: (nullmailer pid 799624 invoked by uid 1000);
+        Thu, 06 May 2021 21:05:27 -0000
+Date:   Thu, 6 May 2021 16:05:27 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 6/6] dt-bindings: i2c: renesas,iic-emev2: Convert to
- json-schema
-Message-ID: <20210506205719.GA788962@robh.at.kernel.org>
-References: <cover.1620138454.git.geert+renesas@glider.be>
- <3a72f4353b24c4d790a216bfde1b284800b3029a.1620138454.git.geert+renesas@glider.be>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        michal.simek@xilinx.com, Alvaro Gamez <alvaro.gamez@hazent.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: Add Xilinx AXI Timer
+Message-ID: <20210506210527.GA789155@robh.at.kernel.org>
+References: <20210504184925.3399934-1-sean.anderson@seco.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3a72f4353b24c4d790a216bfde1b284800b3029a.1620138454.git.geert+renesas@glider.be>
+In-Reply-To: <20210504184925.3399934-1-sean.anderson@seco.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 04 May 2021 16:51:13 +0200, Geert Uytterhoeven wrote:
-> Convert the Renesas EMMA Mobile EV2 IIC Interface (IIC) Device Tree
-> binding documentation to json-schema.
+On Tue, May 04, 2021 at 02:49:24PM -0400, Sean Anderson wrote:
+> This adds a binding for the Xilinx LogiCORE IP AXI Timer. This device is
+> a "soft" block, so it has many parameters which would not be
+> configurable in most hardware. This binding is usually automatically
+> generated by Xilinx's tools, so the names and values of properties
+> must be kept as they are.
 > 
-> Document missing properties.
-> Update the example to match reality.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
 > ---
->  .../bindings/i2c/renesas,iic-emev2.txt        | 22 --------
->  .../bindings/i2c/renesas,iic-emev2.yaml       | 54 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 55 insertions(+), 23 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/i2c/renesas,iic-emev2.txt
->  create mode 100644 Documentation/devicetree/bindings/i2c/renesas,iic-emev2.yaml
 > 
+> Changes in v2:
+> - Use 32-bit addresses for example binding
+> 
+>  .../bindings/pwm/xlnx,axi-timer.yaml          | 91 +++++++++++++++++++
+>  1 file changed, 91 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml b/Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml
+> new file mode 100644
+> index 000000000000..bd014134c322
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml
+> @@ -0,0 +1,91 @@
+> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/xlnx,axi-timer.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx LogiCORE IP AXI Timer Device Tree Binding
+> +
+> +maintainers:
+> +  - Sean Anderson <sean.anderson@seco.com>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: xlnx,axi-timer-2.0
+> +      - const: xlnx,xps-timer-1.00.a
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: s_axi_aclk
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  xlnx,count-width:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 8
+> +    maximum: 32
+> +    description:
+> +      The width of the counters, in bits.
+> +
+> +  xlnx,gen0-assert:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1 ]
+> +    description:
+> +      The polarity of the generateout0 signal. 0 for active-low, 1 for active-high.
+> +
+> +  xlnx,gen1-assert:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1 ]
+> +    description:
+> +      The polarity of the generateout1 signal. 0 for active-low, 1 for active-high.
+> +
+> +  xlnx,one-timer-only:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1 ]
+> +    description:
+> +      Whether only one timer is present in this block.
+> +
+> +  xlnx,trig0-assert:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1 ]
+> +    description:
+> +      The polarity of the capturetrig0 signal. 0 for active-low, 1 for active-high.
+> +
+> +  xlnx,trig1-assert:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1 ]
+> +    description:
+> +      The polarity of the capturetrig1 signal. 0 for active-low, 1 for active-high.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Can't all these be boolean?
+
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - reg
+> +  - xlnx,count-width
+> +  - xlnx,gen0-assert
+> +  - xlnx,gen1-assert
+> +  - xlnx,one-timer-only
+> +  - xlnx,trig0-assert
+> +  - xlnx,trig1-assert
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +    axi_timer_0: timer@800e0000 {
+> +        clock-frequency = <99999001>;
+> +        clock-names = "s_axi_aclk";
+> +        clocks = <&zynqmp_clk 71>;
+> +        compatible = "xlnx,axi-timer-2.0", "xlnx,xps-timer-1.00.a";
+> +        reg = <0x800e0000 0x10000>;
+> +        xlnx,count-width = <0x20>;
+> +        xlnx,gen0-assert = <0x1>;
+> +        xlnx,gen1-assert = <0x1>;
+> +        xlnx,one-timer-only = <0x0>;
+> +        xlnx,trig0-assert = <0x1>;
+> +        xlnx,trig1-assert = <0x1>;
+> +    };
+> -- 
+> 2.25.1
+> 
