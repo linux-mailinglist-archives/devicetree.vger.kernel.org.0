@@ -2,135 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07C77375665
-	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 17:19:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13A3C37566D
+	for <lists+devicetree@lfdr.de>; Thu,  6 May 2021 17:20:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235054AbhEFPT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 11:19:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58634 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231673AbhEFPT6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 11:19:58 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2B17C061574
-        for <devicetree@vger.kernel.org>; Thu,  6 May 2021 08:18:59 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id t4so8912486ejo.0
-        for <devicetree@vger.kernel.org>; Thu, 06 May 2021 08:18:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YP24ik0YFY+2RKJGevsfG1nOnOK5im66pfhuvAoWUhs=;
-        b=tTFWv9t5g8z2bUpnTXSzgd4oMQ5rDcHfANsGbH2l/KJ12fZaxC562MlPcakkOelJKE
-         qkQqlKZy0fmmxgU6Cmz/v28R9oxYZTUuy15uAUPkLuFgDuXwcVJjdC0Pc7evTOJdHO4w
-         hdUBuqe8LhNqY1t34yN54kkLIHhukOFpaD5/xup2VIfLJ7pxwhtIyLQpJYVD8iM9a+fk
-         iJFqCJ4L9R/at6eGqdFnhvBJXQP2X6OZCq7A0iU3G4II5jP3E7VGbFFS1Pbecvsblo7j
-         8xqUa1ucUEf7hAd2u4jrDGdJj0s+28wwYHXg7xhSZGF2IEVP+L35prpsLf/HkG9tApWn
-         0btQ==
+        id S235128AbhEFPVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 11:21:39 -0400
+Received: from mail-oo1-f45.google.com ([209.85.161.45]:36726 "EHLO
+        mail-oo1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235036AbhEFPVj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 11:21:39 -0400
+Received: by mail-oo1-f45.google.com with SMTP id c6-20020a4aacc60000b02901e6260b12e2so1317576oon.3;
+        Thu, 06 May 2021 08:20:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YP24ik0YFY+2RKJGevsfG1nOnOK5im66pfhuvAoWUhs=;
-        b=RDIiAQ21jiNeE0qHwVgKDEnsMF6mOUkHkqSFiMP+XXSV4hhrEgKzNJBj93hoE9GAoQ
-         a2daFRYqh/+fIoPuEPQzutgyWN6zTeOG+skwahSXE/elj+XgzUlK8ax+ulHBeU+APmKf
-         DypcqXk4cc+AQQZ5KrSiytyb0ETTP11Uy/MlGxCbYndBHBhxM1zTJEch90/2WAslFv02
-         pYo9mrwUmVcUsuS87OdTvduLWFs1/M6pApGugWJeIJz+t8lp52JvzIAdjlLzT10BaPZS
-         i+VYzle44XVS9KAxZ6XHk5hnvNwh22dFXzvVdlHfX93szjc+kr95vErTOQ2Y+Y6dAGZ2
-         sodg==
-X-Gm-Message-State: AOAM531n5v8OGAFjfrzzyZOTt6pqYokrB1aNbZ4IsF53vV3xt5dNyMmx
-        Z8ZOz+FX826abA2b5o9w+E5148LTINjF2Z6cPcrM5w==
-X-Google-Smtp-Source: ABdhPJxJRLbaNyR1550tOnih64Mj/K5bU7JfR6N4gmFUaxx/UgY/dqtwMx5DdgAPz5/iy5AzL3dAbCAC/WJxw2zyaMg=
-X-Received: by 2002:a17:906:4f91:: with SMTP id o17mr4909703eju.503.1620314338343;
- Thu, 06 May 2021 08:18:58 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=whsr6U50KYm9D8L6FmJ2OAyclexbSVjplvjpW1E11vw=;
+        b=dMwEn+zu7UPL9dqLN1GDg6VlPhQEEX6QsL7sojI/bxcBJTQSdn30weaxFG1DOBM1Bc
+         uMmZy9y6jUGlPCvbgKIY1gq98DryNZXqsT4WS4YGnwX1bii0xoomnJev8hLv1higwxnC
+         Agv5NlXBw3XMtO7a3a+uEKA+wwHN2FklJP3Bh42TOV38QHA2qiI/hWVty9NhXvCoT6GF
+         mYiQ9TwkbBVK07MNcWmxUCnyKFW685QsgQkyvsivaKepDtEioGrQKQYeiZQxnzdr73J7
+         nZ9ZNMTJcx+oyk1ejKkWG8BSsbcHs0Fez7sc+QSoLWUfnc5NFKPA9sqFCn8e4HPCc5pG
+         SM4w==
+X-Gm-Message-State: AOAM531ekSp+pTJX8kvwUfOO/TYkaD+r4UqLlF7V7pAV9d/01AjGUZpH
+        q5WQ1lYeetk6ATGaJnDn0GTwFbobJA==
+X-Google-Smtp-Source: ABdhPJw16sVpGPNgz7HqYvCPwzzgvWhVKxjCZmI5H5DOosESfBXIBGTFr34MVbIbmTi40r5y5+KmHw==
+X-Received: by 2002:a4a:1d85:: with SMTP id 127mr3947759oog.18.1620314440638;
+        Thu, 06 May 2021 08:20:40 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id f13sm638536ote.46.2021.05.06.08.20.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 May 2021 08:20:39 -0700 (PDT)
+Received: (nullmailer pid 347795 invoked by uid 1000);
+        Thu, 06 May 2021 15:20:38 -0000
+Date:   Thu, 6 May 2021 10:20:38 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Bartosz Dudziak <bartosz.dudziak@snejp.pl>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Kathiravan T <kathirav@codeaurora.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Andy Gross <agross@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: regulator: qcom: Document PM8226 smd
+ regulator
+Message-ID: <20210506152038.GA347737@robh.at.kernel.org>
+References: <20210502115304.8570-1-bartosz.dudziak@snejp.pl>
 MIME-Version: 1.0
-References: <CA+G9fYtTN6ug3eBAW3wMcDeESUo+ebj7L5HBe5_fj4uqDExFQg@mail.gmail.com>
- <YJPYvsdkfx4JD4vT@atomide.com>
-In-Reply-To: <YJPYvsdkfx4JD4vT@atomide.com>
-From:   Naresh Kamboju <naresh.kamboju@linaro.org>
-Date:   Thu, 6 May 2021 20:48:46 +0530
-Message-ID: <CA+G9fYv48aJ6tmSaf_HtRKHse4yN40hEYSPR5=A3W6HRoJ8p_g@mail.gmail.com>
-Subject: Re: #regzb introduced: 98feab31ac49 ("ARM: OMAP2+: Drop legacy
- platform data for dra7 sata")
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkft-triage@lists.linaro.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        regressions@lists.linux.dev,
-        Benoit Cousson <bcousson@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210502115304.8570-1-bartosz.dudziak@snejp.pl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 6 May 2021 at 17:23, Tony Lindgren <tony@atomide.com> wrote:
->
-> Hi,
->
-> * Naresh Kamboju <naresh.kamboju@linaro.org> [210506 11:00]:
-> > Our bisect script pointed this as the first bad commit on linux
-> > mainline master branch.
-> >
-> > Full test log:
-> > ----------------
-> > SATA detection failed log link,
-> > https://lkft.validation.linaro.org/scheduler/job/2580998#L1973
-> >
-> > --
-> > commit 98feab31ac491400f28b76a04dabd18ce21e91ba
-> > Author: Tony Lindgren <tony@atomide.com>
-> > Date:   Wed Mar 10 14:03:51 2021 +0200
-> >
-> >     ARM: OMAP2+: Drop legacy platform data for dra7 sata
->
-> Thanks for the report, looks like we are now missing the sata related
-> quirk flags compared to the patch above.
->
-> Below is a quick patch to add the missing quirk flags that might help
-> if you can give it a try.
+On Sun, 02 May 2021 13:53:03 +0200, Bartosz Dudziak wrote:
+> Document the PM8226 SMD-RPM regulator entry.
+> 
+> Signed-off-by: Bartosz Dudziak <bartosz.dudziak@snejp.pl>
+> ---
+>  .../bindings/regulator/qcom,smd-rpm-regulator.yaml           | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
 
-The reported problem was solved by this patch. Thank you.
-Please add reported and tested by tags.
-
-Reported-by: Naresh Kamboju <naresh.kamboju@linaro.org>
-Tested-by: Naresh Kamboju <naresh.kamboju@linaro.org>
-
->
-> Regards,
->
-> Tony
->
-> 8< --------------------------
-> diff --git a/drivers/bus/ti-sysc.c b/drivers/bus/ti-sysc.c
-> --- a/drivers/bus/ti-sysc.c
-> +++ b/drivers/bus/ti-sysc.c
-> @@ -1459,6 +1459,8 @@ static const struct sysc_revision_quirk sysc_revision_quirks[] = {
->                    SYSC_QUIRK_SWSUP_SIDLE | SYSC_QUIRK_SWSUP_MSTANDBY),
->         SYSC_QUIRK("tptc", 0, 0, -ENODEV, -ENODEV, 0x40007c00, 0xffffffff,
->                    SYSC_QUIRK_SWSUP_SIDLE | SYSC_QUIRK_SWSUP_MSTANDBY),
-> +       SYSC_QUIRK("sata", 0, 0xfc, 0x1100, -ENODEV, 0x5e412000, 0xffffffff,
-> +                  SYSC_QUIRK_SWSUP_SIDLE | SYSC_QUIRK_SWSUP_MSTANDBY),
->         SYSC_QUIRK("usb_host_hs", 0, 0, 0x10, 0x14, 0x50700100, 0xffffffff,
->                    SYSC_QUIRK_SWSUP_SIDLE | SYSC_QUIRK_SWSUP_MSTANDBY),
->         SYSC_QUIRK("usb_host_hs", 0, 0, 0x10, -ENODEV, 0x50700101, 0xffffffff,
-> @@ -1524,7 +1526,6 @@ static const struct sysc_revision_quirk sysc_revision_quirks[] = {
->         SYSC_QUIRK("prcm", 0, 0, -ENODEV, -ENODEV, 0x40000400, 0xffffffff, 0),
->         SYSC_QUIRK("rfbi", 0x4832a800, 0, 0x10, 0x14, 0x00000010, 0xffffffff, 0),
->         SYSC_QUIRK("rfbi", 0x58002000, 0, 0x10, 0x14, 0x00000010, 0xffffffff, 0),
-> -       SYSC_QUIRK("sata", 0, 0xfc, 0x1100, -ENODEV, 0x5e412000, 0xffffffff, 0),
->         SYSC_QUIRK("scm", 0, 0, 0x10, -ENODEV, 0x40000900, 0xffffffff, 0),
->         SYSC_QUIRK("scm", 0, 0, -ENODEV, -ENODEV, 0x4e8b0100, 0xffffffff, 0),
->         SYSC_QUIRK("scm", 0, 0, -ENODEV, -ENODEV, 0x4f000100, 0xffffffff, 0),
-> --
-> 2.31.1
-
-
-Tested full log,
-https://lkft.validation.linaro.org/scheduler/job/2641881#L1940
-
-- Naresh
+Acked-by: Rob Herring <robh@kernel.org>
