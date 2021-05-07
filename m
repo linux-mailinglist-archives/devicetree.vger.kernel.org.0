@@ -2,82 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62AE3375E0D
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 02:51:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B7CC375E11
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 02:52:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230019AbhEGAww (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 20:52:52 -0400
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:34754 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229650AbhEGAwv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 20:52:51 -0400
-Received: by mail-ot1-f41.google.com with SMTP id u25-20020a0568302319b02902ac3d54c25eso6594516ote.1;
-        Thu, 06 May 2021 17:51:52 -0700 (PDT)
+        id S233051AbhEGAxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 20:53:49 -0400
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:43721 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229650AbhEGAxr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 20:53:47 -0400
+Received: by mail-oi1-f180.google.com with SMTP id j75so7227789oih.10;
+        Thu, 06 May 2021 17:52:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=1oMvkH7lap0BqARISWBdTYXD6qDV6VvBmCGhELos5RA=;
-        b=LeVdO+1vythN/hMsLuJuDQgYZSsZTqR0LyoZtvVvDltmUuJJ55PoLbxm1lvZ+bkbb0
-         iZ0JGjYwN+3HuWrzlvJGTh9njWUmTRnzBGuWeZ5hoSgEW5pVQfGnViNEf6FU7xRUH9ws
-         9aQ7rvd8tRItR1k69+Wsj+F00seP46aHS7uKDxgZ/aAXUdtVkPoxQVSPZ+HWFNZj3q9e
-         oOjSMhQQ37uTYHxVh4rjTscfXOq627YT7sOl0ZvWTAGyDzqnAK++ADZPz4kIaQ91bi6o
-         WjaAU5K8bGfX7h7uZO8FQQKsGHDyDMDtGeHNKvu1V/w220pEOZhS40DPGbWXJ84SSqDJ
-         bw3A==
-X-Gm-Message-State: AOAM530wQvWrSYo5T91e2hYCT/cpYLlMlxFLmI9uKXMskIQZUx13xHkn
-        s4Tuq/lEF7D2O3k8T16stg==
-X-Google-Smtp-Source: ABdhPJxJslynABDD4IZSwF0YWJ1VdRqG6Gcl3L0tfHmjUr8H5+oGA09wMWF2ZkTEKw6cHpqwOnK2bg==
-X-Received: by 2002:a05:6830:4111:: with SMTP id w17mr6095717ott.99.1620348712375;
-        Thu, 06 May 2021 17:51:52 -0700 (PDT)
+        bh=730yCidVaF7UqEn0Z+nYrT2OtebyefuFsPE1idfkvVA=;
+        b=kqCmyKyX6Obkg5czjxh6L9ZMNLJzMFNTzhnAHrIIL0UUFYTZmANsVyMkCoyx+j+1bN
+         yoYw4i1EUi20EM/qIVbClQ0toCEXetQ6JaAEr27U8Hkz26jr53wvCzpV7F187N3kMC3r
+         DHHCo11gIXbsUOIecdeyxOAfnfspHvoIgauGaEXhmCPAvz3rvA9NEXDzFFm6ZPeCAMXh
+         8LX1726H2Nkv1I+lw1TsvgI4NxWU3zwGlU27i2bfzvTG8CTTokK8Fj2cC2pOZ3ucFUwI
+         4ogb0wVjX4g64HbHw/iZUt6HPLSS52Is5v0+mdn/Axqwji0/cxX91csYIwpdKLCqWAGl
+         jFhg==
+X-Gm-Message-State: AOAM533HyU8MzVusJA2CNH/U9W3C6FqJzqcpjNxobCuj2cVeE8W2BmEn
+        kWiaehk4vQX4cT15KEz8mF2BD/TUQQ==
+X-Google-Smtp-Source: ABdhPJyhLUj36MZKsD1jJNAgYPQimK7lpn9GeTIUVUyfj0Rs71lpL9XQpQZMYWsZGIOw4na34pJMvQ==
+X-Received: by 2002:aca:3c09:: with SMTP id j9mr12629423oia.28.1620348768736;
+        Thu, 06 May 2021 17:52:48 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r124sm720449oig.38.2021.05.06.17.51.51
+        by smtp.gmail.com with ESMTPSA id k35sm896772otc.13.2021.05.06.17.52.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 May 2021 17:51:51 -0700 (PDT)
-Received: (nullmailer pid 1096458 invoked by uid 1000);
-        Fri, 07 May 2021 00:51:50 -0000
-Date:   Thu, 6 May 2021 19:51:50 -0500
+        Thu, 06 May 2021 17:52:48 -0700 (PDT)
+Received: (nullmailer pid 1097796 invoked by uid 1000);
+        Fri, 07 May 2021 00:52:47 -0000
+Date:   Thu, 6 May 2021 19:52:47 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     andrew@lunn.ch, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, hkallweit1@gmail.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux@armlinux.org.uk
-Subject: Re: [PATCH v5] dt-bindings: net: Convert mdio-gpio to yaml
-Message-ID: <20210507005150.GA1096383@robh.at.kernel.org>
-References: <20210505202815.2665920-1-clabbe@baylibre.com>
+To:     Sean Nyekjaer <sean@geanix.com>
+Cc:     robh+dt@kernel.org, tomas.melin@vaisala.com,
+        linux-iio@vger.kernel.org, lars@metafoo.de, Nuno.Sa@analog.com,
+        devicetree@vger.kernel.org, jic23@kernel.org,
+        andy.shevchenko@gmail.com
+Subject: Re: [PATCH v5 2/6] dt-bindings: iio: accel: fxls8962af: add bindings
+Message-ID: <20210507005247.GA1097749@robh.at.kernel.org>
+References: <20210506070940.312959-1-sean@geanix.com>
+ <20210506070940.312959-2-sean@geanix.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210505202815.2665920-1-clabbe@baylibre.com>
+In-Reply-To: <20210506070940.312959-2-sean@geanix.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 05 May 2021 20:28:15 +0000, Corentin Labbe wrote:
-> Converts net/mdio-gpio.txt to yaml
+On Thu, 06 May 2021 09:09:36 +0200, Sean Nyekjaer wrote:
+> Add devicetree binding for the NXP FXLS8962AF/FXLS8964AF
+> accelerometer sensor.
 > 
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
 > ---
-> Changes since v1:
-> - fixes yamllint warning about indent
-> - added maxItems 3
+> Changes for v2:
+>  - removed requirement for interrupt
 > 
-> Changes since v2:
-> - fixed example (gpios need 2 entries)
+> Changes for v3:
+>  - None
 > 
-> Changes since v3:
-> - fixed gpios description
-> - added additionalProperties/type: object
+> Changes for v4:
+>  - Included the dt patch from the RFC
 > 
-> Changes since v4:
-> - fixed maintainers list
+> Changes for v5:
+>  - fixed interrupt enum
 > 
->  .../devicetree/bindings/net/mdio-gpio.txt     | 27 ---------
->  .../devicetree/bindings/net/mdio-gpio.yaml    | 58 +++++++++++++++++++
->  2 files changed, 58 insertions(+), 27 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/net/mdio-gpio.txt
->  create mode 100644 Documentation/devicetree/bindings/net/mdio-gpio.yaml
+>  .../bindings/iio/accel/nxp,fxls8962af.yaml    | 80 +++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring <robh@kernel.org>
