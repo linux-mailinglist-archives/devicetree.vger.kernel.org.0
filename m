@@ -2,86 +2,349 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55DB9375F4C
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 06:12:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76697375FB8
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 07:35:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229758AbhEGENv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 00:13:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60538 "EHLO
+        id S229650AbhEGFgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 01:36:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229666AbhEGENt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 00:13:49 -0400
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2809C061574;
-        Thu,  6 May 2021 21:12:11 -0700 (PDT)
-Received: by mail-pg1-x534.google.com with SMTP id i5so1500366pgm.0;
-        Thu, 06 May 2021 21:12:11 -0700 (PDT)
+        with ESMTP id S229666AbhEGFgR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 01:36:17 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACF25C061574;
+        Thu,  6 May 2021 22:35:05 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id t18so7829695wry.1;
+        Thu, 06 May 2021 22:35:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jKXpROrWgWlEivORY7EFO4NOPoNT5M4YLfO6F2RXJjo=;
-        b=ct+wyDVScCMqc5kOU8ZJHAfh5SK1xtulVqhn7aHoBqPPul1olYjuQc/okk/8uDBdDG
-         Z38tAh7l5WaeTzOhv7dszXlg0HlCahyyHAl+ab1+eiR7Y0+blLtn2QRDz+QU/f0bqZxG
-         WTOQ3FxeO0RHsnYSWsvf1nQhvYrl2WRxhXng3Y3A6xkRszhw6Q1/CS0d1b5HJcJXV2OQ
-         TgRtpDYd/RtS5ve2CHMW9AWijlBK0JBnhaTXMtMFgVZxwLNXK/ZJEt6ws1+F779lnuyP
-         sQXFWVGpahJMKrOjrxnoSxDX8ndHrgfsC7jV+db+pB5SnoEN2+OzvCxPZTWtk4BpfpJP
-         IWnA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Jz/TlbprL0h8nikAm0l4AeI/5/NdOVeovwtsF+UVjsg=;
+        b=R1VByBYby8ZhBt1AjzhA8YgIb4mM1bP0i/0qJy0c2GtwaYjYIRVAipP8fI+oM+WEff
+         vvMXHeMlSzgTo8oXdWpwB2GkbEpa19goWoXEbxG4K+wspdQojIqzk3aYAiT5aiTCHxnB
+         ZyZitlDtwu6GgPLjS+bURYjH/OhrJy+CVmqQHKPhjlqLNIXYt8X9LXZiJCyEDV/QZbPg
+         csZrAxmI8MRpqDm9sNySUA6axwt+AU8N22/18x69VttKlHVbsnO7Ov8d860tH62awkez
+         VqLb0Woaid3l4Irg2GmnrjS6ySF8W0bCFt0/1FAP7kbMtUMtGnmYblSXgGR+FHB7jiqU
+         jxJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jKXpROrWgWlEivORY7EFO4NOPoNT5M4YLfO6F2RXJjo=;
-        b=lod+U8c5QlNUfaKHJVEAHTRqtTNz1KO/GiUxepcSfhqa0J67KdQ0vZt6afJ8Uf4TXJ
-         mZ+LjWJiBsyj4VKsHrFcrhFY9pwJWViX1PIhj8OtPdeqrUY4ETouDRorBNxRSAaS/s12
-         gQkDu9c4HZde0hU38QaJgAsGFCi87U2Mp8MDo4fuJ0wThcLVL8ScdN/+7YEPy5ChC5rw
-         ShCAFDy1rM3lttbLj4GyTSPfKD//YQbZ3hAW0Y+kvlRk+ANARglcq4GBD+Lz0sgYP6Ty
-         KPp1NKf46CqIiH9hHJDxbcssvrG8+MOGnYrp/ORmxML9t5oCDPlyC9CwV5TT3CzQZjTf
-         FaNw==
-X-Gm-Message-State: AOAM531p5tPRPO0w8Cl889kLaD/XI+xV8Lowh4LX1BzI1Ewvr6fyDbEs
-        +nFzFGYZxL8pwLTm+hCzwUxWbCJXrkA=
-X-Google-Smtp-Source: ABdhPJwvgVmBkIXySyhZdYbkznw7Nlpr4QkhgClxJh0I4NKBcQEVsEL0xeKhDW3COENp8K46nH3R6g==
-X-Received: by 2002:a63:34c:: with SMTP id 73mr7730683pgd.431.1620360731234;
-        Thu, 06 May 2021 21:12:11 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id x133sm3633477pfc.19.2021.05.06.21.12.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 May 2021 21:12:10 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        =?iso-8859-1?q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH V3] dt-bindings: clock: brcm,iproc-clocks: convert to the json-schema
-Date:   Thu,  6 May 2021 21:12:01 -0700
-Message-Id: <20210507041201.1356429-1-f.fainelli@gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Jz/TlbprL0h8nikAm0l4AeI/5/NdOVeovwtsF+UVjsg=;
+        b=nCM0wyCm7SfCujBClcsWn5mtSdmo4m0PIT0ng/nJ1+1wWLJ3fzbkD5m3G6nR2PxxT5
+         cEpI/tMNr1LXvnl9qf10eN7w9YheXlmnQDTc3wokNckr5gZ1Ew6BBVcuu8ba0HQMUijM
+         AbTIYbgeQBDCuahPuKbsr7q/T70DFeAqaBpiSfr3ZmxgnJN5PlEHyULWQTzrjYoQmw35
+         1so6EEGsSyGgNSLif3T8vf0HvIRSxIFqm/lIF9XPvwjk7dEl75+VO/uFQIOXjK/1vUJ6
+         9esqKlhBWrtoVTzOwpJk9JqntAPe1oDfSFNLbVr4iAwJL9k4GHh1qpyIdD+Uf1EbFAj/
+         pxPQ==
+X-Gm-Message-State: AOAM5306IuGowOtr34Z5Ph0aHPeuVtJn+vg4StmLk7CZdhd+WLOjmF9t
+        3MHjMTWIfL4+XEzXHuuoZZtZItpwxGZT4g==
+X-Google-Smtp-Source: ABdhPJxNxV1DHn3HIxZydfofC32SRqSmyJkrSc0/jdc/4t7zbT667zB+yR8qb8A+RnfZUwnxXopDjg==
+X-Received: by 2002:a05:6000:18a:: with SMTP id p10mr9948479wrx.345.1620365703981;
+        Thu, 06 May 2021 22:35:03 -0700 (PDT)
+Received: from localhost.localdomain (231.red-83-51-243.dynamicip.rima-tde.net. [83.51.243.231])
+        by smtp.gmail.com with ESMTPSA id p5sm5807727wma.45.2021.05.06.22.35.02
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 06 May 2021 22:35:03 -0700 (PDT)
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     robh+dt@kernel.org, linux-staging@lists.linux.dev,
+        gregkh@linuxfoundation.org, neil@brown.name,
+        ilya.lipnitskiy@gmail.com, linux-kernel@vger.kernel.org
+Subject: [PATCH v3] dt-bindings: staging: mt7621-pci: PCIe binding documentation for MT76721 SoCs
+Date:   Fri,  7 May 2021 07:35:01 +0200
+Message-Id: <20210507053501.24180-1-sergio.paracuellos@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210424202341.30347-1-zajec5@gmail.com>
-References: <20210421165633.13299-1-zajec5@gmail.com> <20210424202341.30347-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 24 Apr 2021 22:23:41 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> This helps validating DTS files.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
+Add device tree binding documentation for PCIe in MT7621 SoCs.
 
-Applied to devicetree/next, thanks!
---
-Florian
+Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+---
+
+Changes in v3:
+    - Make use of 'interrupt-map' and 'interrupt-map-mask'
+    - Remove bus-range from parent and child nodes
+
+Changes in v2:
+    - fix SoC name from subject line
+
+ .../bindings/pci/mediatek,mt7621-pci.yaml     | 149 ++++++++++++++++++
+ .../mt7621-pci/mediatek,mt7621-pci.txt        | 104 ------------
+ 2 files changed, 149 insertions(+), 104 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml
+ delete mode 100644 drivers/staging/mt7621-pci/mediatek,mt7621-pci.txt
+
+diff --git a/Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml b/Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml
+new file mode 100644
+index 000000000000..7f5f9d583032
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml
+@@ -0,0 +1,149 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pci/mediatek,mt7621-pci.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek MT7621 PCIe controller
++
++maintainers:
++  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
++
++description: |+
++  MediaTek MT7621 PCIe subsys supports single Root complex (RC)
++  with 3 Root Ports. Each Root Ports supports a Gen1 1-lane Link
++
++allOf:
++  - $ref: /schemas/pci/pci-bus.yaml#
++
++properties:
++  compatible:
++    const: mediatek,mt7621-pci
++
++  reg:
++    items:
++      - description: host-pci bridge registers
++      - description: pcie port 0 RC control registers
++      - description: pcie port 1 RC control registers
++      - description: pcie port 2 RC control registers
++
++  ranges:
++    maxItems: 2
++
++  resets:
++    items:
++      - description: pcie port 0 reset.
++      - description: pcie port 1 reset.
++      - description: pcie port 2 reset.
++
++  reset-names:
++    items:
++      - const: pcie0
++      - const: pcie1
++      - const: pcie2
++
++  clocks:
++    items:
++      - description: pcie port 0 clock.
++      - description: pcie port 1 clock.
++      - description: pcie port 2 clock.
++
++  clock-names:
++    items:
++      - const: pcie0
++      - const: pcie1
++      - const: pcie2
++
++  phys:
++    items:
++      - description: Dual-ported phy for pcie port 0 and 1.
++      - description: Phy for pcie port 2.
++
++  phy-names:
++    items:
++      - const: pcie-phy0
++      - const: pcie-phy2
++
++required:
++  - compatible
++  - reg
++  - ranges
++  - "#interrupt-cells"
++  - interrupt-map-mask
++  - interrupt-map
++  - resets
++  - reset-names
++  - clocks
++  - clock-names
++  - phys
++  - phy-names
++  - reset-gpios
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/mips-gic.h>
++
++    pcie: pcie@1e140000 {
++        compatible = "mediatek,mt7621-pci";
++        reg = <0x1e140000 0x100>,
++              <0x1e142000 0x100>,
++              <0x1e143000 0x100>,
++              <0x1e144000 0x100>;
++
++        #address-cells = <3>;
++        #size-cells = <2>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&pcie_pins>;
++        device_type = "pci";
++        ranges = <0x02000000 0 0x00000000 0x60000000 0 0x10000000>,  /* pci memory */
++                 <0x01000000 0 0x00000000 0x1e160000 0 0x00010000>;  /* io space */
++        #interrupt-cells = <1>;
++        interrupt-map-mask = <0xF800 0 0 0>;
++        interrupt-map = <0x0000 0 0 0 &gic GIC_SHARED 4 IRQ_TYPE_LEVEL_HIGH>,
++                        <0x0800 0 0 0 &gic GIC_SHARED 24 IRQ_TYPE_LEVEL_HIGH>,
++                        <0x1000 0 0 0 &gic GIC_SHARED 25 IRQ_TYPE_LEVEL_HIGH>;
++        resets = <&rstctrl 24>, <&rstctrl 25>, <&rstctrl 26>;
++        reset-names = "pcie0", "pcie1", "pcie2";
++        clocks = <&clkctrl 24>, <&clkctrl 25>, <&clkctrl 26>;
++        clock-names = "pcie0", "pcie1", "pcie2";
++        phys = <&pcie0_phy 1>, <&pcie2_phy 0>;
++        phy-names = "pcie-phy0", "pcie-phy2";
++        reset-gpios = <&gpio 19 GPIO_ACTIVE_LOW>;
++
++        pcie@0,0 {
++            reg = <0x0000 0 0 0 0>;
++            #address-cells = <3>;
++            #size-cells = <2>;
++            device_type = "pci";
++            #interrupt-cells = <1>;
++            interrupt-map-mask = <0 0 0 0>;
++            interrupt-map = <0 0 0 0 &gic GIC_SHARED 4 IRQ_TYPE_LEVEL_HIGH>;
++            ranges;
++        };
++
++        pcie@1,0 {
++            reg = <0x0800 0 0 0 0>;
++            #address-cells = <3>;
++            #size-cells = <2>;
++            device_type = "pci";
++            #interrupt-cells = <1>;
++            interrupt-map-mask = <0 0 0 0>;
++            interrupt-map = <0 0 0 0 &gic GIC_SHARED 24 IRQ_TYPE_LEVEL_HIGH>;
++            ranges;
++        };
++
++        pcie@2,0 {
++            reg = <0x1000 0 0 0 0>;
++            #address-cells = <3>;
++            #size-cells = <2>;
++            device_type = "pci";
++            #interrupt-cells = <1>;
++            interrupt-map-mask = <0 0 0 0>;
++            interrupt-map = <0 0 0 0 &gic GIC_SHARED 25 IRQ_TYPE_LEVEL_HIGH>;
++            ranges;
++        };
++    };
++...
+diff --git a/drivers/staging/mt7621-pci/mediatek,mt7621-pci.txt b/drivers/staging/mt7621-pci/mediatek,mt7621-pci.txt
+deleted file mode 100644
+index 327a68267309..000000000000
+--- a/drivers/staging/mt7621-pci/mediatek,mt7621-pci.txt
++++ /dev/null
+@@ -1,104 +0,0 @@
+-MediaTek MT7621 PCIe controller
+-
+-Required properties:
+-- compatible: "mediatek,mt7621-pci"
+-- device_type: Must be "pci"
+-- reg: Base addresses and lengths of the PCIe subsys and root ports.
+-- bus-range: Range of bus numbers associated with this controller.
+-- #address-cells: Address representation for root ports (must be 3)
+-- pinctrl-names : The pin control state names.
+-- pinctrl-0: The "default" pinctrl state.
+-- #size-cells: Size representation for root ports (must be 2)
+-- ranges: Ranges for the PCI memory and I/O regions.
+-- #interrupt-cells: Must be 1
+-- interrupt-map-mask and interrupt-map: Standard PCI IRQ mapping properties.
+-  Please refer to the standard PCI bus binding document for a more detailed
+-  explanation.
+-- status: either "disabled" or "okay".
+-- resets: Must contain an entry for each entry in reset-names.
+-  See ../reset/reset.txt for details.
+-- reset-names: Must be "pcie0", "pcie1", "pcieN"... based on the number of
+-  root ports.
+-- clocks: Must contain an entry for each entry in clock-names.
+-  See ../clocks/clock-bindings.txt for details.
+-- clock-names: Must be "pcie0", "pcie1", "pcieN"... based on the number of
+-  root ports.
+-- reset-gpios: GPIO specs for the reset pins.
+-
+-In addition, the device tree node must have sub-nodes describing each PCIe port
+-interface, having the following mandatory properties:
+-
+-Required properties:
+-- reg: Only the first four bytes are used to refer to the correct bus number
+-      and device number.
+-- #address-cells: Must be 3
+-- #size-cells: Must be 2
+-- ranges: Sub-ranges distributed from the PCIe controller node. An empty
+-  property is sufficient.
+-- bus-range: Range of bus numbers associated with this port.
+-
+-Example for MT7621:
+-
+-	pcie: pcie@1e140000 {
+-		compatible = "mediatek,mt7621-pci";
+-        reg = <0x1e140000 0x100    /* host-pci bridge registers */
+-               0x1e142000 0x100    /* pcie port 0 RC control registers */
+-               0x1e143000 0x100    /* pcie port 1 RC control registers */
+-               0x1e144000 0x100>;  /* pcie port 2 RC control registers */
+-
+-		#address-cells = <3>;
+-		#size-cells = <2>;
+-
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&pcie_pins>;
+-
+-		device_type = "pci";
+-
+-		bus-range = <0 255>;
+-		ranges = <
+-			0x02000000 0 0x00000000 0x60000000 0 0x10000000 /* pci memory */
+-			0x01000000 0 0x00000000 0x1e160000 0 0x00010000 /* io space */
+-		>;
+-
+-		#interrupt-cells = <1>;
+-		interrupt-map-mask = <0xF0000 0 0 1>;
+-		interrupt-map = <0x10000 0 0 1 &gic GIC_SHARED 4 IRQ_TYPE_LEVEL_HIGH>,
+-				<0x20000 0 0 1 &gic GIC_SHARED 24 IRQ_TYPE_LEVEL_HIGH>,
+-				<0x30000 0 0 1 &gic GIC_SHARED 25 IRQ_TYPE_LEVEL_HIGH>;
+-
+-		status = "disabled";
+-
+-		resets = <&rstctrl 24 &rstctrl 25 &rstctrl 26>;
+-		reset-names = "pcie0", "pcie1", "pcie2";
+-		clocks = <&clkctrl 24 &clkctrl 25 &clkctrl 26>;
+-		clock-names = "pcie0", "pcie1", "pcie2";
+-
+-		reset-gpios = <&gpio 19 GPIO_ACTIVE_LOW>,
+-				<&gpio 8 GPIO_ACTIVE_LOW>,
+-				<&gpio 7 GPIO_ACTIVE_LOW>;
+-
+-		pcie@0,0 {
+-			reg = <0x0000 0 0 0 0>;
+-			#address-cells = <3>;
+-			#size-cells = <2>;
+-			ranges;
+-			bus-range = <0x00 0xff>;
+-		};
+-
+-		pcie@1,0 {
+-			reg = <0x0800 0 0 0 0>;
+-			#address-cells = <3>;
+-			#size-cells = <2>;
+-			ranges;
+-			bus-range = <0x00 0xff>;
+-		};
+-
+-		pcie@2,0 {
+-			reg = <0x1000 0 0 0 0>;
+-			#address-cells = <3>;
+-			#size-cells = <2>;
+-			ranges;
+-			bus-range = <0x00 0xff>;
+-		};
+-	};
+-
+-- 
+2.25.1
+
