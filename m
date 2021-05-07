@@ -2,128 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 636D93766C2
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 16:06:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E98233766ED
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 16:15:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237439AbhEGOGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 10:06:52 -0400
-Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:60957 "EHLO
-        wnew4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237434AbhEGOGu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 10:06:50 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.west.internal (Postfix) with ESMTP id D8D07FE2;
-        Fri,  7 May 2021 10:05:48 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute2.internal (MEProxy); Fri, 07 May 2021 10:05:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm2; bh=1Y/6ibLlSr8pw
-        II8mTAg1YDwMKwUM98nwretj7QAvbA=; b=SCJjwuJAiFT3COu62reNPC6HBe6NG
-        2pQmxeyQ3cslLYKSi+YN4uvGJN2lxgJtR3dGgzcfHhGhH2QXfgzy4B9C4+UiYyDP
-        RRytUs/zyTEWUzjEp9oraOY7bu+8FkouHSwXXXGCLiUWgJqtxalyy6+dPOoV3R+i
-        YUesci7Ob5/pese7lICDtpUheWbUuo57u/akV1hTH43oVha0KDPtnbSmYz55sPkp
-        hGaWCc+83hWJjh8OVYBvWUoWNg6hGqDjV3epsRYrpNV9FdAvojL+R6GNSqYhQHZN
-        SW/lQme0KrkUY80em9Ou6RsDzfBkOkdvGF47YySCS0r9945BIau4UcmSg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; bh=1Y/6ibLlSr8pwII8mTAg1YDwMKwUM98nwretj7QAvbA=; b=AyEv4al1
-        k/00FANxirR6KuKDveL1t2xTS2v9DdbGZ+r3opG1NJ6pAdF12y6i1Ad25PWh8zZ3
-        zNO1Uct17Q8AAYMSbYJ5AfqHWEj5QuUWu2QNbcob11Bwuy7O3IWo/YrI3VSn/poM
-        rfqHWY7UwHyeeJ+EDIRhR3rHnyNHfOY5SYgPOQIXOCKfkXmLC0VKJ5VT17ymUTtS
-        7Jcp0BmQF/nrqqOAS5QWlsg51ctBSTkvpR1VeGP02sFz/bACBI1n98Wqt2/1sgzA
-        +OF/zIUwoOxT582kK4YetsM6CmJks/qloHa7XGs1i3qsM5xrlVip21gCh9/X4XGx
-        QjED8BwlMDSqnQ==
-X-ME-Sender: <xms:OkmVYGQ6_YQFvg2OQMwGZmZtOOUSBcHrdsrrwIiBdvW1nmrxm1mr-w>
-    <xme:OkmVYLzQbfY2stP1piv0sWrpyM-rkYZMjmLDYs4qT8WqzmFpeTU-Igzkr-YTEQZmp
-    1mG9B5YQG9QVI-I_ds>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdegvddgjedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepvdekleevfeffkeejhfffueelteelfeduieefheduudfggffhhfffheevveeh
-    hedvnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:OkmVYD0g-wLcT-LOqVIa1dF2VpJYomCTN6eErnZfm8pufkBcdOhTGw>
-    <xmx:OkmVYCD0AscbqTWgXaOmWaW1SOkLjmGYrIBYQwvP6Y3C63ahSR-R4w>
-    <xmx:OkmVYPh1Wm1ShEqHYfmZ7V4f2nJbvegfG2ImJM7f4pgbNhGLnt-WeQ>
-    <xmx:PEmVYLTOdVxETl46RmjLubofxfb24KSmyzbfzjO0YNJLqLmAXJQQGBuXZSo>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA;
-        Fri,  7 May 2021 10:05:46 -0400 (EDT)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        dri-devel@lists.freedesktop.org,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Maxime Ripard <maxime@cerno.tech>
-Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org,
-        Maxime Ripard <mripard@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dom Cobley <dom@raspberrypi.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        linux-rpi-kernel@lists.infradead.org,
-        Eric Anholt <eric@anholt.net>,
-        Dom Cobley <popcornmix@gmail.com>
-Subject: [PATCH 11/11] ARM: dts: bcm2711: Tune DMA parameters for HDMI audio
-Date:   Fri,  7 May 2021 16:03:34 +0200
-Message-Id: <20210507140334.204865-12-maxime@cerno.tech>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210507140334.204865-1-maxime@cerno.tech>
-References: <20210507140334.204865-1-maxime@cerno.tech>
+        id S233102AbhEGOQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 10:16:57 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:48898 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232425AbhEGOQ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 10:16:57 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 147EFnSf005121;
+        Fri, 7 May 2021 09:15:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1620396949;
+        bh=4D2+cJcfYR+9E1VxlwKJN1FU3lCcQC3cZ5PS/TtHCdU=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=ohnf/5FlNU2m4pxCslicxnGFrWwEe0vONbVx6G2MWhTq1GS+40/6KVJH2Hg13ounR
+         DVn0uVXJMppfw9GrSWlMTrxXIiO4NdiPyjE05BXJJ2z8vBA+QCTHdWOJKpGwVbpTIQ
+         xRlINoQCo21vyi6NgSEDmANDCIU8Ii+gKipms9LU=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 147EFnCL044215
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 7 May 2021 09:15:49 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 7 May
+ 2021 09:15:49 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Fri, 7 May 2021 09:15:49 -0500
+Received: from [10.250.234.148] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 147EFkKP009850;
+        Fri, 7 May 2021 09:15:47 -0500
+Subject: Re: [PATCH v2] dt-bindings: i2c: Move i2c-omap.txt to YAML format
+To:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-omap@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>
+References: <20210506140026.31254-1-vigneshr@ti.com>
+ <f7570cb4-8c21-2fa5-bd26-1388f2a4bd6b@ti.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <429a740a-c2b9-1cf8-ed2b-0fb7b1bea422@ti.com>
+Date:   Fri, 7 May 2021 19:45:45 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <f7570cb4-8c21-2fa5-bd26-1388f2a4bd6b@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dom Cobley <popcornmix@gmail.com>
 
-Enable NO_WAIT_RESP, DMA_WIDE_SOURCE, DMA_WIDE_DEST, and bump the DMA
-panic and AXI priorities to avoid any DMA transfer error with HBR audio
-(8 channel, 192Hz).
 
-Signed-off-by: Dom Cobley <popcornmix@gmail.com>
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>
----
- arch/arm/boot/dts/bcm2711.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On 5/7/21 12:24 PM, Grygorii Strashko wrote:
+> 
+> 
+> On 06/05/2021 17:00, Vignesh Raghavendra wrote:
+>> Convert i2c-omap.txt to YAML schema for better checks and documentation.
+>>
+>> Following properties were used in DT but were not documented in txt
+>> bindings and has been included in YAML schema:
+>> 1. Include ti,am4372-i2c compatible
+>> 2. Include dmas property used in few OMAP dts files
+> 
+> The DMA is not supported by i2c-omap driver, so wouldn't be better to
+> just drop dmas from DTBs to avoid confusions?
+> It can be added later.
+> 
 
-diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
-index 462b1dfb0385..8a7350cfcd9c 100644
---- a/arch/arm/boot/dts/bcm2711.dtsi
-+++ b/arch/arm/boot/dts/bcm2711.dtsi
-@@ -352,7 +352,7 @@ hdmi0: hdmi@7ef00700 {
- 			interrupt-names = "cec-tx", "cec-rx", "cec-low",
- 					  "wakeup", "hpd-connected", "hpd-removed";
- 			ddc = <&ddc0>;
--			dmas = <&dma 10>;
-+			dmas = <&dma (10 | (1 << 27) | (1 << 24)| (15 << 20) | (10 << 16))>;
- 			dma-names = "audio-rx";
- 			status = "disabled";
- 		};
-@@ -395,7 +395,7 @@ hdmi1: hdmi@7ef05700 {
- 				     <9>, <10>, <11>;
- 			interrupt-names = "cec-tx", "cec-rx", "cec-low",
- 					  "wakeup", "hpd-connected", "hpd-removed";
--			dmas = <&dma 17>;
-+			dmas = <&dma (17 | (1 << 27) | (1 << 24)| (15 << 20) | (10 << 16))>;
- 			dma-names = "audio-rx";
- 			status = "disabled";
- 		};
--- 
-2.31.1
+Will do.. I will also send patches dropping dmas from dts that currently
+have them populated.
 
+Regards
+Vignesh
