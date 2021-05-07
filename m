@@ -2,85 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83CED376BB8
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 23:26:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C5A3376BDE
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 23:43:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229806AbhEGV1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 17:27:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35580 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229779AbhEGV1X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 17:27:23 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4F74C061763
-        for <devicetree@vger.kernel.org>; Fri,  7 May 2021 14:26:22 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id w4so13308619ljw.9
-        for <devicetree@vger.kernel.org>; Fri, 07 May 2021 14:26:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XG0TLyszi1cmh23fmH0mhN2WgCliBgRLG2x6Fui/g3w=;
-        b=hodjiOCfhaug0X3p4IQrL+WcbBvdiThSPchin6eJxMJ2dt0+Me5jQvoBuO67weHHYO
-         fBwbLAHWSc9YUyFTQBloGw9B711VjCdTmpXZuh+/yia7xVM6xvl3x2mDefdrS3xYtcO1
-         oIetrSG0llXe8YfcymcicYd6DR4droaELRHIVQbG6772pm9JUeoevm+ZO0H1yUzrt5HW
-         rnOFfBTK72QJF83XqkEEv2/X8bCQzubEAFkLHQwwbVWpETkA3QYN3MmHGCN2KEYdhjBT
-         AfAbjC9daNgoeNwLXGtKfJOeza28WvCd2mk4UQ+0d2i6U3BNsJ7zrcX5TmU3Tl+hAWUi
-         nyRA==
+        id S229707AbhEGVo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 17:44:27 -0400
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:38579 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229482AbhEGVo1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 17:44:27 -0400
+Received: by mail-ot1-f45.google.com with SMTP id q7-20020a9d57870000b02902a5c2bd8c17so9151555oth.5;
+        Fri, 07 May 2021 14:43:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XG0TLyszi1cmh23fmH0mhN2WgCliBgRLG2x6Fui/g3w=;
-        b=mmRxFEAJV5HgHERrEzMVr1tU578w+tJS56cRTDUydPwzfD1VcL7jKoHOxst9UYDztL
-         YF7dViiu2uz/aG/luqUrgrBnJA0ynpIz9/9l0acVSOHrbfx4ZjXh2jKesbful9qARoJb
-         iLpCjvw/usRDTQbwzizaattHrG4mhYoArziUnsI7H/nGmguOwNQFyeiK6gLJi6Ki2iZa
-         7d23BRf16ClHgrKeAGPQa5mdMkKYvfL6iKPH4w4UPEiWOFtJaUSUY3J/zmEU9+WvB429
-         XvCQ88xz4QO2cl9k2ML/jlTeU3JfHtRjF2L/NuHvaL1U9bOy1Nimx5e+8XNWO0V7rF4U
-         Im9g==
-X-Gm-Message-State: AOAM533BnRXjRjOtelB5vsWbplicO1sRVEvII8/GgLdPPgTHYOA/qGol
-        UhjtF5m0gt3ioyv9KSTnaKKFS8t9+EsXp1HhHAx7zg==
-X-Google-Smtp-Source: ABdhPJy3z0qWS5Sneh44i6pk2oO3OOciepj+d38iIgI70000KRkNiArXJwFb6hKxgj5G3aVCUF/o8itqFyKwsM+AULo=
-X-Received: by 2002:a2e:2e12:: with SMTP id u18mr9286103lju.200.1620422781142;
- Fri, 07 May 2021 14:26:21 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1jPYaiJ3mpOsE5i/q/eUuwCFtgMQJcQzg5PuBr/sjHs=;
+        b=HfIj4r8ONjBXYl30I1cj8QvuoHjTvW5VbZTCSml/fskrofCabVCmzBJD1EHEZU+x+6
+         kMZqkC9NDbFsNVnAgiytMlp1VJ7a+CkGsC+4lapjJFkfhVq6wmaafqLo1QUwQpOTGxmV
+         uvR4rc2mwI1pQWQ4mCucArGjgxYif6E+HGcldA1qCq24CB+J5X1RRV0D6fhIi3CmHwb7
+         a5mAVbsg+uinkbMYMY/29I5SGmqVAEUOW5fUzQHE3kYtJehXqtKUw5w+wTZR7g9YvvkA
+         8ZJF7qE1UnYnXLGy9bJMkeXSP9O5AftrXFkAwqRe5HdUnEihOhH66UWihiDkogvSjMlo
+         7G9A==
+X-Gm-Message-State: AOAM532ZOQh/fbLmp6cDYTYQfvK6ZZAUFli1RHVrfgXKLVWThmZwtDIy
+        lWGDC8d00ViizBTdZqss7Vx36OLGvQ==
+X-Google-Smtp-Source: ABdhPJyTQdRZg+46DJaHovSc+DGA9RXAMHaPE7FDnBU2Ww/Sph47kxo0hyCvh1ofVKV3FbagEmTENQ==
+X-Received: by 2002:a05:6830:1450:: with SMTP id w16mr9903118otp.305.1620423805659;
+        Fri, 07 May 2021 14:43:25 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id c65sm1202316oia.47.2021.05.07.14.43.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 May 2021 14:43:24 -0700 (PDT)
+Received: (nullmailer pid 2942658 invoked by uid 1000);
+        Fri, 07 May 2021 21:43:23 -0000
+Date:   Fri, 7 May 2021 16:43:23 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Grygorii Strashko <grygorii.strashko@ti.com>
+Cc:     Andreas Kemnade <andreas@kemnade.info>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>
+Subject: Re: [PATCH v2] dt-bindings: i2c: Move i2c-omap.txt to YAML format
+Message-ID: <20210507214323.GB2902038@robh.at.kernel.org>
+References: <20210506140026.31254-1-vigneshr@ti.com>
+ <f7570cb4-8c21-2fa5-bd26-1388f2a4bd6b@ti.com>
+ <429a740a-c2b9-1cf8-ed2b-0fb7b1bea422@ti.com>
+ <20210507163602.219894f4@aktux>
+ <1ef076ac-e0de-a0df-a918-aeb8ed6c5956@ti.com>
 MIME-Version: 1.0
-References: <20210505134028.13431-1-jbx6244@gmail.com> <20210505134028.13431-2-jbx6244@gmail.com>
-In-Reply-To: <20210505134028.13431-2-jbx6244@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 7 May 2021 23:26:09 +0200
-Message-ID: <CACRpkdZZ-FZn6Q3w6g=FayOzpUW4ZfenQ9Oxe0+Co2RyYpTZLA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: gpio: convert rk3328-grf-gpio.txt to YAML
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Jianqun Xu <jay.xu@rock-chips.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        David Wu <david.wu@rock-chips.com>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Tao Huang <huangtao@rock-chips.com>, cl@rock-chips.com,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1ef076ac-e0de-a0df-a918-aeb8ed6c5956@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 5, 2021 at 3:40 PM Johan Jonker <jbx6244@gmail.com> wrote:
+On Fri, May 07, 2021 at 08:24:59PM +0300, Grygorii Strashko wrote:
+> 
+> 
+> On 07/05/2021 17:36, Andreas Kemnade wrote:
+> > On Fri, 7 May 2021 19:45:45 +0530
+> > Vignesh Raghavendra <vigneshr@ti.com> wrote:
+> > 
+> > > On 5/7/21 12:24 PM, Grygorii Strashko wrote:
+> > > > 
+> > > > 
+> > > > On 06/05/2021 17:00, Vignesh Raghavendra wrote:
+> > > > > Convert i2c-omap.txt to YAML schema for better checks and documentation.
+> > > > > 
+> > > > > Following properties were used in DT but were not documented in txt
+> > > > > bindings and has been included in YAML schema:
+> > > > > 1. Include ti,am4372-i2c compatible
+> > > > > 2. Include dmas property used in few OMAP dts files
+> > > > 
+> > > > The DMA is not supported by i2c-omap driver, so wouldn't be better to
+> > > > just drop dmas from DTBs to avoid confusions?
+> > > > It can be added later.
+> > > 
+> > > Will do.. I will also send patches dropping dmas from dts that currently
+> > > have them populated.
+> > > 
+> > hmm, we have
+> > - DO attempt to make bindings complete even if a driver doesn't support some
+> >    features. For example, if a device has an interrupt, then include the
+> >    'interrupts' property even if the driver is only polled mode.
+> > 
+> > in Documentation/devicetree/bindings/writing-bindings.rst
+> > Shouln't the dma stay there if the hardware supports it? Devicetree
+> > should describe the hardware not the driver if I understood things
+> > right.
+> 
+> True.  But my above statement is also valid - it introduces confusion from user point of view.
 
-> Current dts files with RK3328 GRF 'gpio' nodes are manually verified.
-> In order to automate this process rk3328-grf-gpio.txt has to be
-> converted to YAML.
->
-> Rename 'grf-gpio' nodename to 'gpio'.
->
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+In my OS, 'robOS', the driver supports DMA.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> More over, 'dmas' is not part of original binding and were randomly added to some SoCs.
+> And it's much more easy to extend binding (in the future) then remove something after.
 
-Yours,
-Linus Walleij
+In this case, probably given that how it would be extended is already 
+known, but it depends how you extend a binding. My above statement was 
+born out of incomplete MFD and system controller bindings for the most 
+part.
+
+> I leave it to Vignesh, Tony to decide.
+
+Fine with me.
+
+Actually, for DMA with I2C I'd like to see someone show a usecase 
+and data where it's actually beneficial. 
+
+Rob
