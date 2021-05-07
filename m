@@ -2,215 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37B12375D37
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 00:36:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9166C375DC2
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 02:02:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230486AbhEFWhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 18:37:41 -0400
-Received: from mail-vi1eur05on2068.outbound.protection.outlook.com ([40.107.21.68]:31393
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230231AbhEFWhk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 May 2021 18:37:40 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JpNpehDTLdDDmW/sMqb50/96C5PDXvvW7vvPBYvE6aBX+K1ZFhMYVrDgLzaV8I1gaqOTatqCsUeKurg/6zkFYL3M9TTH4h9nwvZEaS3zILdRsc9PWfUhHzW0fopIoUPZDoIcJdXbJLFhwYJ2T48XcT8ZO4nScfqMqxAYmPixj1XHtBXnWAsOL5N7kXxaYHtf3d++MDNCxzWz0d7MemgfXJTnYRvyt0/iSU6K/3eRb4qktPAuMLIYlWuSAk3PtRrY2opWT92Gk/X7Uy9rwh11Y8vttBgX/e9QX6uuOGdOYMtRAzSuM2GZwEJWV55xXzUeKUZxNZYZyECTqfyRyv4TRA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=das7oRhlNnp01f10RzWhUIuX6WpGFOKjL/sPFCNg0Hk=;
- b=NDs2PxnPbq2IjxoUQHTERriohMnMQPqBXlQ80YdEDL9zn94UNMHc87fwZ7dTbg/z9htsL5yVse4+SaR3ST40qOIuXpDZMmWism3AWfDj6Zrl+7qqGX5QubfihAqwQ1sTOddRH97TdRqxsEOI8XqLS8Q1V8v3TRiYEHlxYs8eS5xTfvtT0HwSym2yTFhOND/IEvh0irE8Yum6M64p3Um3Q+QvsrCMCtSP/tgI8kFYgy/EwaKKnDQM1fltMemmIpuM7nlbz2dpPsrTXZTGKd9naRT/evzFWVbEs2jQtRN1pv2Nj7uz2BejIkM6gk74eViNINt+pRvh9AeJx2vYvr1Z1Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=das7oRhlNnp01f10RzWhUIuX6WpGFOKjL/sPFCNg0Hk=;
- b=TtzWost/oU1xqREGPwRVmayon9y1htQ3xxbH/f67s9uXVIymX/I8BCUyGdVJq8Lm8+aCOg8WzB14pT0yb798xNbeDAS4UpK0PI8i7+5lQiyZEXmli0h2ac5qgB4xzMSBwpWqfzB8j7zmRJrfxt9voRbMc7FxHL+lTfqepMJ+vSo=
-Authentication-Results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none header.from=seco.com;
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
- by DB6PR0302MB2631.eurprd03.prod.outlook.com (2603:10a6:4:b0::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25; Thu, 6 May
- 2021 22:36:37 +0000
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::40d5:3554:c709:6b1b]) by DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::40d5:3554:c709:6b1b%5]) with mapi id 15.20.4108.029; Thu, 6 May 2021
- 22:36:37 +0000
-Subject: Re: [PATCH v2 2/2] pwm: Add support for Xilinx AXI Timer
-To:     Michal Simek <michal.simek@xilinx.com>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Alvaro Gamez <alvaro.gamez@hazent.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
-References: <20210504184925.3399934-1-sean.anderson@seco.com>
- <20210504184925.3399934-2-sean.anderson@seco.com>
- <e3782bc5-bcd9-5eb8-e89b-e4e52ed2e3cb@xilinx.com>
- <1bfde199-617a-343c-10ed-4c436bfd908f@seco.com>
- <ff8eb398-fd49-fdb8-447e-2f6270cb006d@xilinx.com>
-From:   Sean Anderson <sean.anderson@seco.com>
-Message-ID: <448097ba-7616-ccca-7219-6532dac04dbd@seco.com>
-Date:   Thu, 6 May 2021 18:36:26 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <ff8eb398-fd49-fdb8-447e-2f6270cb006d@xilinx.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [50.195.82.171]
-X-ClientProxiedBy: MN2PR17CA0032.namprd17.prod.outlook.com
- (2603:10b6:208:15e::45) To DB7PR03MB4523.eurprd03.prod.outlook.com
- (2603:10a6:10:19::27)
+        id S232428AbhEGAC6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 20:02:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44852 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232375AbhEGAC6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 May 2021 20:02:58 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 98D0F61164;
+        Fri,  7 May 2021 00:01:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1620345719;
+        bh=OnZ8E8ucGobRrYWP6K56v9dvJ/+sAsK5BzaPSU1d9Hw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=qrq87rGu4EWRk54rAiG8OLLqbwFB/dWuNDBn62M5RZNh3UJCJI1Q59HJ3pkcVgyXD
+         cDFRZ1qM3AMzx6C7gNZa8L4/eBy3KNBeTxsbZbUABpmWrelr8bK+YfdKtpE8va3Zbr
+         cpdtOpVPLGHsQp3UXfts6yiYW2e1DCGSoe3cK+o800KztRvgb4X3ReGtU3+iXepEfD
+         XCxKkXLFNUXYEO2+X0vhgLvgPmBSQBvWItsnmtwQal2imL5tWAEnO6dt7tdLB1bjgb
+         gdOJqRCShFO9vsirw1I0nFHO8bFeXO2DhArIaCQFclNfxiV9i8LstLgk0jVdlMIYoo
+         mAG1OpKJMfGnw==
+Date:   Thu, 6 May 2021 17:01:57 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     =?UTF-8?B?xYF1a2Fzeg==?= Stelmach <l.stelmach@samsung.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        =?UTF-8?B?QmFydMWCb21pZWogxbtvbG5pZXJr?= =?UTF-8?B?aWV3aWN6?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [RESEND PATCH v11 0/3] AX88796C SPI Ethernet Adapter
+Message-ID: <20210506170157.6deb1b6d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <dleftjim3x2jhw.fsf%l.stelmach@samsung.com>
+References: <20210302152250.27113-1-l.stelmach@samsung.com>
+        <CGME20210505171151eucas1p15785129622c00205d1d071a2fcaa30e8@eucas1p1.samsung.com>
+        <dleftjim3x2jhw.fsf%l.stelmach@samsung.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.27.1.65] (50.195.82.171) by MN2PR17CA0032.namprd17.prod.outlook.com (2603:10b6:208:15e::45) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.24 via Frontend Transport; Thu, 6 May 2021 22:36:35 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 91e3b859-0a01-471f-a74d-08d910df68d9
-X-MS-TrafficTypeDiagnostic: DB6PR0302MB2631:
-X-Microsoft-Antispam-PRVS: <DB6PR0302MB2631FB8AB76C222397D891EE96589@DB6PR0302MB2631.eurprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uXRC4uYesBgYWiz+Bpew5nIqkYKrt8eyiiD3VWf1/jw6C+yfyLzpOMwpRhadk+RCZKFOskE0Kvokj/ixOpae5l+8ddvEryZjuAg04UuibsaWaENjwvxIX8IC4/ru/1nhrNcr6nD3MbQKlT0ebXJVayb8gJdGlL+72v2WVuHG14g39Prqa8Ziwshjb8aUFK6YHFoEWJ3HCtlm66Mmzh6Jrql1yt5gVOupkiEf0fK18KZVRwNY0Y5Tx4wSmybM08EZAs9YMzu+GL1kOAV4dDotjmOsbGXvvUPSnj/kUixNFrDfacPgQNN3KI/80DMaDhpPZcaC2poM2Ho30edVYsvK6IDzmRxmWfpnfTD4WKSv8CB3XqZLpx741wREruvZRNDA+5ncb5BaqY2x9+rNKN6GUJIKDQ7oY/aoHbbYM0rcMzkUCNwt+l1meVhrRXulIG0p0ulD6JroCXmd01HqDqsRxjOHxf7ZFH+KU2XNXI00LIwvCgqUgXlTRVlttcl/wsw9QBc2+dD8LLV/ea3agpUsYDi7RYJPXSPXblDQrWyxMR8Qj9n+G/N6uQeBIDutqT9jt2/S/dyc9vw3awkf4okV7EdZ6FMuyVORZFGgcwWU51JkjYXcydJgrNDTDGWJD1CS/WS4OXZTcXDjbW094mZHlT7yebI9iGkmk0QdMQ/gAed4vRP/DRQtFmIt7snVTaQQSdhNdIEKqzEoL+X0lWQucd4nQnheV6ZUktzMJhMK/PYROFsucwZ9GswgJhx9EhLh0tHjEf4HZl2eGdsrOJgaTWdUuHKZTIRsmsPjuGEPd14=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(346002)(366004)(39830400003)(136003)(376002)(4326008)(44832011)(54906003)(2906002)(6486002)(53546011)(8936002)(2616005)(966005)(956004)(26005)(6666004)(31686004)(38350700002)(316002)(83380400001)(5660300002)(38100700002)(16576012)(8676002)(66476007)(66556008)(66946007)(86362001)(186003)(16526019)(36756003)(31696002)(478600001)(16799955002)(52116002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?aVRhZ0c4Y3FXazJXT2hGVjFrRTd1K1dqUmFVMkhvVUUrWjBxWldkd2hKL2tP?=
- =?utf-8?B?bzZxM2laYVRSZXBXekFHN3pwTkNVdGdOU2NKMFRDVUFxbHVBZE93Qks1bnA5?=
- =?utf-8?B?SEw4OVUvem0xSWphMHQ5ek9XSmFiOHA1Q3dGbEJ1SkRPR0dHUDAxUGhYcXp1?=
- =?utf-8?B?blF5SVNLakk1d25BcjN5Q0N1UVdmUko2KzIwSjljNWRqUHlwSWNqeEt1V3Q4?=
- =?utf-8?B?YTd5VnF2YVpleGR3c0FVUUZ3MzBHejV5dWM0ZEVkK2RrT01IZFVyOU8xaTZB?=
- =?utf-8?B?VE4vNU11OHhYYlM3VFg4NUxUK0htT3oyYkh0SjU0YUo4bWQ3MWd0YUo5aVV5?=
- =?utf-8?B?VkI1WHl3dU5ZMXhXTy9hMDFrQ0FiVUE0MFZqSzlxeVVtTnJ6M3pmYTdGZGhR?=
- =?utf-8?B?K1pabFk2MTJENk9qTjZhaHp3bzB4QjZkc3Z2VTM4Mm1zcnZGRVhPNDB1ZVBF?=
- =?utf-8?B?MUFjSGtwamZ1SDNGNG1wY0J6aEpKdXMwS3pEVGlNV2l6ZXJZOGQ0b2dLU3Vp?=
- =?utf-8?B?ZFduRXAyQjVKc0ZpQkorT3QwL214L3VUbGozVS9QcDdMUnNPaFlzRlR2aTdP?=
- =?utf-8?B?OXNGMWJMdHpRcmtzY3JHWDZSUks4WlVUK1NybHJKN0pSb2VRTTZwL1R2VWhx?=
- =?utf-8?B?MEkvaXJHaCtEUFpyWXJpSEdDZ2pua0M1bXVTcDJGSTJ4aE93SGMwN3VkL2J2?=
- =?utf-8?B?NDVvYkRoTmN3QzZ0eExSbk5VWjl6OFRXeEVGeXRxUmw4RE02ZEFyVU5sTXhK?=
- =?utf-8?B?dWsyOVhubUlxN2g4RkFmZXZ2dVV0Vkt2ZUV6djVZL2J3VldhWjhUM3lBeUtV?=
- =?utf-8?B?NjNVaWlxREdISk00NDh2dGJNRDMzTDVMR1Z2WnljNzExZUsyWk5yQnV6bDY3?=
- =?utf-8?B?RHUwQy9EdXJlUXBFeHpmbzA5YzBBZldMakFzbjQ2WDlZdmVkN21nRHlzem9I?=
- =?utf-8?B?ZVV2TlFKcFNzelNSeWk2Z0k1QURoTWthMUdLa041bU9PVlJDRU9EVjRmTThP?=
- =?utf-8?B?RmlGVzlOcE85RGNDYVg5Z1VEZXA3N0xDR0Q1aUVFNHlSdUxYVVQ5VkxONHJu?=
- =?utf-8?B?dGpBTUNZd04yc05CY2dsWnd5TjJ4cnhjR25RNWVlUHdCUnE5aml2UWd6WndM?=
- =?utf-8?B?MDVpb2hjTm8vVUpPUzBZSkxiVmVSRVNVUEtsUjAweVlBWGFoMEZKaGdEMjJt?=
- =?utf-8?B?anZkZlRoQWpOOUUwUzVIQlJXa2JSdzE1TDBhbnozWm81VEtDZkZaNmJRWWdC?=
- =?utf-8?B?b1RwS3hpcUJDS0dmellNazgwc2ZTTHh4VThwNU5LVkNKRm05NElTejd0S0hT?=
- =?utf-8?B?YjZUOThVdmh4L29XanBVQXEvQ2pzbWJLYXhQanFFWWxFWkpxdzBmRGNXd0Zk?=
- =?utf-8?B?YVZtc2JkVmxZbWRhd0tkQ2xYdFpEQXFuMERrc1MxSEd2NzlCK21FOXRnWmR5?=
- =?utf-8?B?R2VYT2dLY2Jua1RaREQxb3p0UlEvWHNBV2k0YVYvaitWRnluVDZIR29qZjVE?=
- =?utf-8?B?dll0dUh1ODBjSXVUWDIxb25IVnlxaWlkMkh0c1h2ZGxJaU1UcHl3a2hMcTZI?=
- =?utf-8?B?d2tMN0tyV0Z1Y2ZrZHcweVV4ck1pRDZzQ2w1UVRDN0R2eGJ4WUhVSTVCMFpR?=
- =?utf-8?B?blo3Tk5WbFpnN0Z2R0ZZY1M0Y1ZuN3Y1L3pleUFkaXFkSGhpM2V2aUlpREdP?=
- =?utf-8?B?WXY0VXhMblBXQWVrSzJhWnlTMWNQMVlGWUI3QW1ib2NkK3NiMTRMM3NxYm43?=
- =?utf-8?Q?wNlkZxXfmY1YCyYRWn6q3/G/N8zKtzNMS2KFPSZ?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 91e3b859-0a01-471f-a74d-08d910df68d9
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2021 22:36:37.3711
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YRrCa80uqhCkWUzD3Vy3RvyTrwMkLYC2nmy175fhL+HU7S1Musro9tE206j8JC+DZ0NGW7LdLq+tHb4OA3mOfw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0302MB2631
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 05 May 2021 19:11:39 +0200 =C5=81ukasz Stelmach wrote:
+> It was <2021-03-02 wto 16:22>, when =C5=81ukasz Stelmach wrote:
+> > This is a driver for AX88796C Ethernet Adapter connected in SPI mode as
+> > found on ARTIK5 evaluation board. The driver has been ported from a
+> > v3.10.9 vendor kernel for ARTIK5 board.
+> >
+> > Changes in v11:
+> >   - changed stat counters to 64-bit
+> >   - replaced WARN_ON(!mutex_is_locked()) with lockdep_assert_held()
+> >   - replaced ax88796c_free_skb_queue() with __skb_queue_purge()
+> >   - added cancel_work_sync() for ax_work
+> >   - removed unused fields of struct skb_data
+> >   - replaced MAX() with max() from minmax.h
+> >   - rebased to net-next (resend) =20
+>=20
+> Hi,
+>=20
+> What is current status? Should I rebase once more?
 
+Unfortunately it seems so :( The patches got marked as Not Applicable
+in patchwork. And now we are once again in the merge window period.
+Please repost late next week, and make sure to prefix the subjects with
+[PATCH net-next v12], this will hopefully prevent mis-categorization.
 
-On 5/6/21 12:54 PM, Michal Simek wrote:
- > Hi,
- >
- > On 5/6/21 4:28 PM, Sean Anderson wrote:
- >>
- >>
- >> On 5/5/21 2:37 AM, Michal Simek wrote:
- >>>
- >>>
- >>> On 5/4/21 8:49 PM, Sean Anderson wrote:
- >>>> This adds PWM support for Xilinx LogiCORE IP AXI soft timers commonly
- >>>> found on Xilinx FPGAs. There is another driver for this device located
- >>>> at arch/microblaze/kernel/timer.c, but it is only used for timekeeping.
- >>>> This driver was written with reference to Xilinx DS764 for v1.03.a [1].
- >>>>
- >>>> [1]
- >> https://www.xilinx.com/support/documentation/ip_documentation/axi_timer/v1_03_a/axi_timer_ds764.pdf
- >>
- >>>>
- >>>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
- >>>> ---
- >>>> I tried adding a XILINX_PWM_ prefix to all the defines, but IMO it
- >>>> really hurt readability. That prefix almost doubles the size the
- >>>> defines, and is particularly excessive in something like
- >>>> XILINX_PWM_TCSR_RUN_MASK.
- >>>>
- >>>> Changes in v2:
- >>>> - Don't compile this module by default for arm64
- >>>> - Add dependencies on COMMON_CLK and HAS_IOMEM
- >>>> - Add comment explaining why we depend on !MICROBLAZE
- >>>> - Add comment describing device
- >>>> - Rename TCSR_(SET|CLEAR) to TCSR_RUN_(SET|CLEAR)
- >>>> - Use NSEC_TO_SEC instead of defining our own
- >>>> - Use TCSR_RUN_MASK to check if the PWM is enabled, as suggested by Uwe
- >>>> - Cast dividends to u64 to avoid overflow
- >>>> - Check for over- and underflow when calculating TLR
- >>>> - Set xilinx_pwm_ops.owner
- >>>> - Don't set pwmchip.base to -1
- >>>> - Check range of xlnx,count-width
- >>>> - Ensure the clock is always running when the pwm is registered
- >>>> - Remove debugfs file :l
- >>>> - Report errors with dev_error_probe
- >>>>
- >>>>     drivers/pwm/Kconfig      |  13 ++
- >>>>     drivers/pwm/Makefile     |   1 +
- >>>>     drivers/pwm/pwm-xilinx.c | 301 +++++++++++++++++++++++++++++++++++++++
- >>>>     3 files changed, 315 insertions(+)
- >>>>     create mode 100644 drivers/pwm/pwm-xilinx.c
- >>>
- >>> Without looking below another driver which target the same IP is just
- >>> wrong that's why NACK from me.
- >>
- >> Can you elaborate on this position a bit more? I don't think a rework of
- >> the microblaze driver should hold back this one. They cannot be enabled
- >> at the same time. I think it is OK to leave the work of making them
- >> coexist for a future series (written by someone with microblaze hardware
- >> to test on).
- >
- > I am here to test it on Microblaze. In a lot of cases you don't have
- > access to all HW you should test things on but that's why others can
- > help with this.
-
-Ok, can you convert the microblaze driver then? I'm afraid I can't work
-on a driver if I don't have a system to test it on. There are too many
-small bugs which can creep in without anything to work with. If you are
-insistant that there must be no driver duplication (even temporarily),
-then you should help with the deduplication :)
-
-I would also be willing to try and get a microblaze qemu setup working,
-but I have found no good instructions for doing so with mainline linux.
-The best I found was [1]. Do you have a working setup for this?
-
---Sean
-
-[1] https://blog.waldemar-brodkorb.de/index.php?/archives/10-qemu-microblaze-system-emulation-tipps.html
-
- > As I said in previous thread driver duplication is not good way to go
- > and never was.
- >
- > This patch targets axi timer IP which is already in the tree just for
- > Microblaze. You want to use it on other HW which is good but it needs to
- > be done properly which is not create another copy.
- > The right way is to get axi timer out of arch/microblaze to
- > drivers/clocksource (or any other driver folder) and add PMW
- > functionality on the top of it.
- > I would expect that PWM guys will say how to add PWM support to timer
- > driver which is not unique configuration.
- >
- > Thanks,
- > Michal
- >
+Looking at the code again is the use of netif_stop_queue(ndev) in
+ax88796c_close() not a little racy? The work may be running in parallel=20
+and immediately re-enable the queue.
