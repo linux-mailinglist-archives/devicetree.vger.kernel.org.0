@@ -2,147 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E357375EDB
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 04:43:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88CBE375EEB
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 04:55:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233523AbhEGCn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 22:43:56 -0400
-Received: from out2-smtp.messagingengine.com ([66.111.4.26]:51205 "EHLO
-        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231334AbhEGCn4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 22:43:56 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 2A1775C00DB;
-        Thu,  6 May 2021 22:42:57 -0400 (EDT)
-Received: from imap1 ([10.202.2.51])
-  by compute6.internal (MEProxy); Thu, 06 May 2021 22:42:57 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm2; bh=250IqGvz6u58BFoPT4ncZ3T/BSW+bwX
-        b69ZJGgm1m6Y=; b=DmnR23jccaLHmGz8kQCwEW30ZRoW37dSJE0BTW4X+qAV4wG
-        XLgmaD41kGD5CrwPvLqmerpmQssu/PEkqd98oYKGH+0gollmsdyVxlydC03tJHoU
-        ko0SAN0fXFPbkXerETerKSFHp8mOGhCD/OW6yPM1Je6MxtFoVwoh4HJqlE0Q51D5
-        EghG3GKHy4K/zBZa86i6/31n0DZtTSGMLaucqmXInqNL022wt8WQeo5VeXcyGKXW
-        mt7WLt6FcwiwtAcED/54a08WathJuO9/7VEAr1wWdwe8sWP68toe9H5K85gPNLSJ
-        PSx1AwnDI1EVCRFHBlSveQkP6oHQdpp92FxGFFg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=250IqG
-        vz6u58BFoPT4ncZ3T/BSW+bwXb69ZJGgm1m6Y=; b=QVOH2pa6EYn8CQRf6Q/fH4
-        cEt8t7OzmyQ7S+RhDWEdw4kpD+AaSGgbTLnxrhwrZh5yrAnbCXjWyebjr63MDM1f
-        OyWFSE7tNJRsuRgiv3pmcRFuuSHBW6BktF1ZbPO6R5LroUnnqeBtaarcfbfIxx4K
-        irqb001J0WWwNZ0XIAtOpov6xHYQYipM/35Ti1rr6+9DvyM/2uCetjtVH2Xjetf1
-        tixt1wTG26zi6NuyDSqgd4D2izsdCmgqqh4Xnrj2RBG7Hoys7dutrLe0nGmqvqLu
-        cAkOvcZ4O8fPgaCnuyEUwmp0qFzJgestsH/NBV0OVt4UO42P1xqJVl/3dljPXKgg
-        ==
-X-ME-Sender: <xms:MKmUYEEuPU-Fk-nIv0D-w9Kab-NVorJjtEdqAxs9Vw9Qq8qG0ynH9w>
-    <xme:MKmUYNUzff48h_TobGwswu1Kh2K57soazzgWrhgx1kSb4L1vxFBApi4brZsYUh9kn
-    i-uew4L1bRJwGw2mig>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdeguddgheeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefofgggkfgjfhffhffvufgtsehttd
-    ertderreejnecuhfhrohhmpedflfhirgiguhhnucgjrghnghdfuceojhhirgiguhhnrdih
-    rghnghesfhhlhihgohgrthdrtghomheqnecuggftrfgrthhtvghrnhepieetvdefleejud
-    elffegudetiedvgeegieehjeeiieduleehuddvlefgueefgedvnecuffhomhgrihhnpehk
-    vghrnhgvlhdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrih
-    hlfhhrohhmpehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhm
-X-ME-Proxy: <xmx:MKmUYOLHnE2-RhEY_I1AD19gqdXbt5I8xAgLUqsJae9b2LoL8EPWaA>
-    <xmx:MKmUYGGTkWxVZMiZj-3ixlLxHlS11A4zP8kxiAsnfvSf-YZVa4YyhQ>
-    <xmx:MKmUYKWqFDzO0B1TCjwYi2uvygWEDPUod2Zel5e__7QWMLq0tBYEqg>
-    <xmx:MamUYNdJqRC_8-WcmM9Ip2iP1gqG3_yKX0gyaI70jZPw-a1r00GfZw>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 4C59C1300504; Thu,  6 May 2021 22:42:56 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-448-gae190416c7-fm-20210505.004-gae190416
-Mime-Version: 1.0
-Message-Id: <1463598d-8248-4b11-aab6-45bf2f997cd7@www.fastmail.com>
-In-Reply-To: <20210506010435.1333647-1-git@xen0n.name>
-References: <20210506010435.1333647-1-git@xen0n.name>
-Date:   Fri, 07 May 2021 10:42:36 +0800
-From:   "Jiaxun Yang" <jiaxun.yang@flygoat.com>
-To:     "WANG Xuerui" <git@xen0n.name>, linux-rtc@vger.kernel.org
-Cc:     "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Subject: =?UTF-8?Q?Re:_[PATCH_v3_0/6]_rtc:_ls2x:_Add_support_for_the_Loongson-2K/?=
- =?UTF-8?Q?LS7A_RTC?=
-Content-Type: text/plain
+        id S230004AbhEGC4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 22:56:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43902 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229942AbhEGC4Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 22:56:24 -0400
+Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DBEDC061574;
+        Thu,  6 May 2021 19:55:24 -0700 (PDT)
+Received: by mail-il1-x12f.google.com with SMTP id c3so6538095ils.5;
+        Thu, 06 May 2021 19:55:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8cTSVQulBeITLa2/m1dmitAiZk9XtTtJnEzh3hUGeoU=;
+        b=cT2ueQbZYQ5FJAitvJOWcefEXBE/+kkX/R4/Kq67RZRWnT/5Uww8mZr34d6Tp9V7oR
+         IZtosX+BEeg7jtZg8NZUeSj13AoRPf9hZZjreEJ2q3niNvpcjOQ9HYP8xvf87w6dynH+
+         1tgraxqqCO8fZSn8m2y7m1mHoWWTurzSyvUJuWftsFrnIckGyWw4wAY1/DppiCOGnT2s
+         P4s1EJgQIoYUCpxIZSB5QuU0rpv7xCfl/+916ySp9TcPw3Uy61U7fUA6Cw3pAy34FYOV
+         DN2PgcGtJTQrQmi3V0IL7MVr9QuZJ1ZyhetBAScR2IC8FeSPc9m3j1RR2FS7ZOKm6yTQ
+         HMNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8cTSVQulBeITLa2/m1dmitAiZk9XtTtJnEzh3hUGeoU=;
+        b=P7QfdETbsjC5xE8eqizvyzSuylmN35awYOFLVf69GC0HmMIbm8ipJksJfdOo41mIMp
+         vWAWEyXLdR6aZsTfeHZYqqLlAgU4+Y3pC8gYdg4z2F8BL62yr1bYH+nwLZv8T9Hqo88U
+         ZnbxVFX+0h7MMF2IaLUYbAzOzMZhLOnrIPRoRiu59C4rEmG3uEuRCUgM61+L9tZrzhyP
+         jCOeqGZ+WMX4YzlQfcgmevUAhNKm4VF0RvUMPW5kAv2wBSEOQ+11kUPvV1JeWd7YNxJh
+         KrGhP5puP1GrbFcilZhlK0vttLBtmkF3jQ7XT2Qcrt7s6AIvOT1f5bwpXG1YHmTeF3Mv
+         AHLw==
+X-Gm-Message-State: AOAM532a1wKGZDctd6h0uQ517s0ymWZvZDnoh0X+/EjWCAcJEcbf1upr
+        r+XVQSC6hJTBVU1uvX/2yulSb8FRepdhxf+EatU=
+X-Google-Smtp-Source: ABdhPJw2RBOr2b1dAal8DBdHKDFJPjaMT1E1faSTNgTk5hI83mVNs5XiUZDhlNQbktQ/l4JJRdV37hjRqUN1IaKqYAU=
+X-Received: by 2002:a05:6e02:e0d:: with SMTP id a13mr7322226ilk.270.1620356123603;
+ Thu, 06 May 2021 19:55:23 -0700 (PDT)
+MIME-Version: 1.0
+References: <1591709203-12106-1-git-send-email-dillon.minfei@gmail.com>
+ <1591709203-12106-5-git-send-email-dillon.minfei@gmail.com>
+ <CAL9mu0LJPnxA0JSmV3mogvPA5xRRYCO_4=P7pqpAO7R=YaJX5g@mail.gmail.com> <20210315130050.GD1182@ninjato>
+In-Reply-To: <20210315130050.GD1182@ninjato>
+From:   dillon min <dillon.minfei@gmail.com>
+Date:   Fri, 7 May 2021 10:54:47 +0800
+Message-ID: <CAL9mu0LnHAUSMXmQpZK78QAccqrc58cyFC2GD4cBkTNW41rvKA@mail.gmail.com>
+Subject: Re: [PATCH v4 4/4] i2c: stm32f4: Fix stmpe811 get xyz data timeout issue
+To:     Wolfram Sang <wsa@kernel.org>, pierre-yves.mordret@foss.st.com,
+        alain.volmat@foss.st.com
+Cc:     pierre-yves.mordret@st.com, Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        p.zabel@pengutronix.de,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Alexandre TORGUE <Alexandre.torgue@foss.st.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-i2c@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Pierre-Yves, Alain
 
+Could you help to take a look?
+i really appreciate it.
 
-On Thu, May 6, 2021, at 9:04 AM, WANG Xuerui wrote:
-> It has been a while since v1 of this series was sent (2020-09);
-> apparently, I did not have enough time or resource figuring out the exact
-> difference between rtc-ls1x and rtc-ls2x to see if the two can in fact be
-> merged, even today. Sorry for the long delay!
-> 
-> According to the manuals, though, the initialization sequence and
-> bitfield descriptions look certainly different, so I'm a bit wary about
-> just going ahead and merging these. Per Tiezhu's suggestion in the
-> previous thread, I'm just re-submitting this series with tags collected
-> and Huacai's e-mail address updated. If anyone (probably Loongson guys?)
-> could provide more information regarding the possible merger of rtc-ls1x
-> and rtc-ls2x, that would be great.
-> 
-> This patch series adds support for the RTC module found on various
-> Loongson systems with the Loongson-2K SoC or the LS7A bridge chip.
-> The driver is rewritten from an out-of-tree version to meet mainline
-> standards. I write kernel code as a hobby, though, so there might still
-> be overlooked issues. Any suggestions are welcome.
-> 
-> Note that, the Loongson-2K platform was upstreamed after v1 of this
-> series, so v2 additionally contains enablement for it. I'm unable to
-> test with my 2K board now, however, so Loongson guys, please test this
-> series again on your collection of LS7A and 2K systems, thanks!
-> 
-> This patch is based on next-20210505, since we're in the middle of merge
-> window. Should apply cleanly after the merge window closes, though.
+Thanks,
 
-For whole series,
-Tested-by: Jiaxun Yang <jiaxun.yang@flygoat.com> # loongson2k
+Best Regards
+Dillon
 
-
-> 
-> v3:
-> - Fixed compile error not discovered after rebase (blame sleep
->   deprivation)
-> - Tested on Loongson-3A4000 (still need testing on Loongson-2K)
-> 
-> v2:
-> - Rebased on top of latest linux-next
-> - Updated Huacai's e-mail address to the kernel.org one
-> - Added collected tags
-> - Added adaptation for newly upstreamed Loongson-2K platforms
-> 
-> WANG Xuerui (6):
->   rtc: ls2x: Add support for the Loongson-2K/LS7A RTC
->   dt-bindings: rtc: Add bindings for LS2X RTC
->   MIPS: Loongson64: DTS: Add RTC support to LS7A
->   MIPS: Loongson: Enable LS2X RTC in loongson3_defconfig
->   MIPS: Loongson64: DTS: Add RTC support to Loongson-2K
->   MIPS: Loongson: Enable LS2X RTC in loongson2k_defconfig
-> 
->  .../devicetree/bindings/rtc/trivial-rtc.yaml  |   2 +
->  .../boot/dts/loongson/loongson64-2k1000.dtsi  |   5 +
->  arch/mips/boot/dts/loongson/ls7a-pch.dtsi     |   5 +
->  arch/mips/configs/loongson2k_defconfig        |   1 +
->  arch/mips/configs/loongson3_defconfig         |   1 +
->  drivers/rtc/Kconfig                           |  11 +
->  drivers/rtc/Makefile                          |   1 +
->  drivers/rtc/rtc-ls2x.c                        | 225 ++++++++++++++++++
->  8 files changed, 251 insertions(+)
->  create mode 100644 drivers/rtc/rtc-ls2x.c
-> 
-> 
-> base-commit: 29955e0289b3255c5f609a7564a0f0bb4ae35c7a
-> -- 
-> 2.30.1
-> 
-> 
-
-
--- 
-- Jiaxun
+On Mon, Mar 15, 2021 at 9:00 PM Wolfram Sang <wsa@kernel.org> wrote:
+>
+> On Mon, Mar 15, 2021 at 08:43:54PM +0800, dillon min wrote:
+> > Hi All,
+> >
+> > Just a gentle ping.
+>
+> Pierre-Yves?
+>
+> >
+> > Regards.
+> >
+> > On Tue, Jun 9, 2020 at 9:27 PM <dillon.minfei@gmail.com> wrote:
+> > >
+> > > From: dillon min <dillon.minfei@gmail.com>
+> > >
+> > > as stm32f429's internal flash is 2Mbytes and compiled kernel
+> > > image bigger than 2Mbytes, so we have to load kernel image
+> > > to sdram on stm32f429-disco board which has 8Mbytes sdram space.
+> > >
+> > > based on above context, as you knows kernel running on external
+> > > sdram is more slower than internal flash. besides, we need read 4
+> > > bytes to get touch screen xyz(x, y, pressure) coordinate data in
+> > > stmpe811 interrupt.
+> > >
+> > > so, in stm32f4_i2c_handle_rx_done, as i2c read slower than running
+> > > in xip mode, have to adjust 'STOP/START bit set position' from last
+> > > two bytes to last one bytes. else, will get i2c timeout in reading
+> > > touch screen coordinate.
+> > >
+> > > to not take side effect, introduce IIC_LAST_BYTE_POS to support xip
+> > > kernel or has mmu platform.
+> > >
+> > > Signed-off-by: dillon min <dillon.minfei@gmail.com>
+> > > ---
+> > >
+> > > V4: indroduce 'IIC_LAST_BYTE_POS' to compatible with xipkernel boot
+> > >
+> > >  drivers/i2c/busses/i2c-stm32f4.c | 12 +++++++++---
+> > >  1 file changed, 9 insertions(+), 3 deletions(-)
+> > >
+> > > diff --git a/drivers/i2c/busses/i2c-stm32f4.c b/drivers/i2c/busses/i2c-stm32f4.c
+> > > index d6a69dfcac3f..97cf42ae7fa0 100644
+> > > --- a/drivers/i2c/busses/i2c-stm32f4.c
+> > > +++ b/drivers/i2c/busses/i2c-stm32f4.c
+> > > @@ -93,6 +93,12 @@
+> > >  #define STM32F4_I2C_MAX_FREQ           46U
+> > >  #define HZ_TO_MHZ                      1000000
+> > >
+> > > +#if !defined(CONFIG_MMU) && !defined(CONFIG_XIP_KERNEL)
+> > > +#define IIC_LAST_BYTE_POS 1
+> > > +#else
+> > > +#define IIC_LAST_BYTE_POS 2
+> > > +#endif
+> > > +
+> > >  /**
+> > >   * struct stm32f4_i2c_msg - client specific data
+> > >   * @addr: 8-bit slave addr, including r/w bit
+> > > @@ -439,7 +445,7 @@ static void stm32f4_i2c_handle_rx_done(struct stm32f4_i2c_dev *i2c_dev)
+> > >         int i;
+> > >
+> > >         switch (msg->count) {
+> > > -       case 2:
+> > > +       case IIC_LAST_BYTE_POS:
+> > >                 /*
+> > >                  * In order to correctly send the Stop or Repeated Start
+> > >                  * condition on the I2C bus, the STOP/START bit has to be set
+> > > @@ -454,7 +460,7 @@ static void stm32f4_i2c_handle_rx_done(struct stm32f4_i2c_dev *i2c_dev)
+> > >                 else
+> > >                         stm32f4_i2c_set_bits(reg, STM32F4_I2C_CR1_START);
+> > >
+> > > -               for (i = 2; i > 0; i--)
+> > > +               for (i = IIC_LAST_BYTE_POS; i > 0; i--)
+> > >                         stm32f4_i2c_read_msg(i2c_dev);
+> > >
+> > >                 reg = i2c_dev->base + STM32F4_I2C_CR2;
+> > > @@ -463,7 +469,7 @@ static void stm32f4_i2c_handle_rx_done(struct stm32f4_i2c_dev *i2c_dev)
+> > >
+> > >                 complete(&i2c_dev->complete);
+> > >                 break;
+> > > -       case 3:
+> > > +       case (IIC_LAST_BYTE_POS+1):
+> > >                 /*
+> > >                  * In order to correctly generate the NACK pulse after the last
+> > >                  * received data byte, we have to enable NACK before reading N-2
+> > > --
+> > > 2.7.4
+> > >
