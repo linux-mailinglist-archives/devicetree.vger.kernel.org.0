@@ -2,170 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD1B0376002
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 08:02:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37DD937600B
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 08:08:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233910AbhEGGDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 02:03:40 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:23835 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229637AbhEGGDj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 02:03:39 -0400
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 1475oj5n034484;
-        Fri, 7 May 2021 13:50:45 +0800 (GMT-8)
-        (envelope-from steven_lee@aspeedtech.com)
-Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 7 May
- 2021 14:02:35 +0800
-Date:   Fri, 7 May 2021 14:02:29 +0800
-From:   Steven Lee <steven_lee@aspeedtech.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-CC:     Andrew Jeffery <andrew@aj.id.au>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        "Adrian Hunter" <adrian.hunter@intel.com>,
-        Ryan Chen <ryanchen.aspeed@gmail.com>,
-        "moderated list:ASPEED SD/MMC DRIVER" <linux-aspeed@lists.ozlabs.org>,
-        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
-        "open list:ASPEED SD/MMC DRIVER" <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "Hongweiz@ami.com" <Hongweiz@ami.com>,
-        "Ryan Chen" <ryan_chen@aspeedtech.com>,
-        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-Subject: Re: [PATCH v3 5/5] mmc: sdhci-of-aspeed: Assert/Deassert reset
- signal before probing eMMC
-Message-ID: <20210507060228.GC23749@aspeedtech.com>
-References: <20210506100312.1638-1-steven_lee@aspeedtech.com>
- <20210506100312.1638-6-steven_lee@aspeedtech.com>
- <20210506102458.GA20777@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20210506102458.GA20777@pengutronix.de>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [192.168.100.253]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 1475oj5n034484
+        id S234439AbhEGGJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 02:09:14 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:26424 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229637AbhEGGJN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 02:09:13 -0400
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 06 May 2021 23:08:14 -0700
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 06 May 2021 23:08:11 -0700
+X-QCInternal: smtphost
+Received: from c-rkambl-linux1.ap.qualcomm.com (HELO c-rkambl-linux1.qualcomm.com) ([10.242.50.221])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 07 May 2021 11:37:36 +0530
+Received: by c-rkambl-linux1.qualcomm.com (Postfix, from userid 2344811)
+        id 418E448DF; Fri,  7 May 2021 11:37:35 +0530 (IST)
+From:   Rajeshwari Ravindra Kamble <rkambl@codeaurora.org>
+To:     amitk@kernel.org, thara.gopinath@linaro.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org, robh+dt@kernel.org
+Cc:     linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sanm@codeaurora.org, manafm@codeaurora.org,
+        Rajeshwari Ravindra Kamble <rkambl@codeaurora.org>
+Subject: [PATCH V4 0/3] Add DT bindings and device tree nodes for TSENS in SC7280
+Date:   Fri,  7 May 2021 11:37:18 +0530
+Message-Id: <1620367641-23383-1-git-send-email-rkambl@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 05/06/2021 18:24, Philipp Zabel wrote:
-> Hi Steven,
-> 
-> On Thu, May 06, 2021 at 06:03:12PM +0800, Steven Lee wrote:
-> > For cleaning up the AST2600 eMMC controller, the reset signal should be
-> > asserted and deasserted before it is probed.
-> > 
-> > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
-> > ---
-> >  drivers/mmc/host/sdhci-of-aspeed.c | 49 ++++++++++++++++++++++++------
-> >  1 file changed, 40 insertions(+), 9 deletions(-)
-> > 
-> > diff --git a/drivers/mmc/host/sdhci-of-aspeed.c b/drivers/mmc/host/sdhci-of-aspeed.c
-> > index 4979f98ffb52..8ef06f32abff 100644
-> > --- a/drivers/mmc/host/sdhci-of-aspeed.c
-> > +++ b/drivers/mmc/host/sdhci-of-aspeed.c
-> [...]
-> > @@ -533,11 +545,22 @@ static struct platform_driver aspeed_sdhci_driver = {
-> >  	.remove		= aspeed_sdhci_remove,
-> >  };
-> >  
-> > +static const struct of_device_id aspeed_sdc_of_match[] = {
-> > +	{ .compatible = "aspeed,ast2400-sd-controller", },
-> > +	{ .compatible = "aspeed,ast2500-sd-controller", },
-> > +	{ .compatible = "aspeed,ast2600-sd-controller", .data = &ast2600_sdc_info},
-> > +	{ }
-> > +};
-> > +
-> > +MODULE_DEVICE_TABLE(of, aspeed_sdc_of_match);
-> > +
-> >  static int aspeed_sdc_probe(struct platform_device *pdev)
-> >  
-> >  {
-> >  	struct device_node *parent, *child;
-> >  	struct aspeed_sdc *sdc;
-> > +	const struct of_device_id *match = NULL;
-> > +	const struct aspeed_sdc_info *info = NULL;
-> 
-> There is no need to initialize these variables to NULL, see below:
-> 
+Adding compatible string in TSENS dt-bindings, device node for TSENS controller and 
+critical interrupt support, Thermal zone support and cooling maps.
 
-Will modify it.
+Changes:- 
 
-> >  	int ret;
-> >  
-> >  	sdc = devm_kzalloc(&pdev->dev, sizeof(*sdc), GFP_KERNEL);
-> > @@ -546,6 +569,23 @@ static int aspeed_sdc_probe(struct platform_device *pdev)
-> >  
-> >  	spin_lock_init(&sdc->lock);
-> >  
-> > +	match = of_match_device(aspeed_sdc_of_match, &pdev->dev);
-> 
-> match is set unconditionally before it is used,
-> 
-> > +	if (!match)
-> > +		return -ENODEV;
-> > +
-> > +	if (match->data)
-> > +		info = match->data;
-> 
-> and info could be set unconditionally as well:
-> 
-> 	info = match->data;
-> 
-> > +	if (info) {
-> > +		if (info->flag & PROBE_AFTER_ASSET_DEASSERT) {
-> > +			sdc->rst = devm_reset_control_get(&pdev->dev, NULL);
-> 
-> Please use devm_reset_control_get_exclusive() or
-> devm_reset_control_get_optional_exclusive().
-> 
+[PATCH V4 1/3]:- no changes.
+[PATCH V4 2/3]:- no changes.
+[PATCH V4 3/3]:- Changed node name from cpu_crit to cpu-crit under thermal-zones.
 
-Will modify as you suggest.
+Dependencies:
+https://lore.kernel.org/patchwork/project/lkml/list/?series=487403
+https://lore.kernel.org/patchwork/patch/1410952/
 
-> > +			if (!IS_ERR(sdc->rst)) {
-> 
-> Please just return errors here instead of ignoring them.
-> The reset_control_get_optional variants return NULL in case the
-> device node doesn't contain a resets phandle, in case you really
-> consider this reset to be optional even though the flag is set?
-> 
+Rajeshwari Ravindra Kamble (3):
+  dt-bindings: thermal: tsens: Add compatible string to TSENS binding
+    for SC7280
+  arm64: dts: qcom: SC7280: Add device node support for TSENS
+  arm64: dts: qcom: SC7280: Add thermal zone support
 
-Will return error here.
+ .../devicetree/bindings/thermal/qcom-tsens.yaml    |   1 +
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 874 +++++++++++++++++++++
+ 2 files changed, 875 insertions(+)
 
-> > +				reset_control_assert(sdc->rst);
-> > +				reset_control_deassert(sdc->rst);
-> 
-> Is there no need for delays between assertion and deassertion or after
-> the reset is deasserted?
-> 
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
 
-Per the internal discussion, I Will add udelay(1).
-
-> > +			}
-> > +		}
-> > +	}
-> > +
-> >  	sdc->clk = devm_clk_get(&pdev->dev, NULL);
-> >  	if (IS_ERR(sdc->clk))
-> >  		return PTR_ERR(sdc->clk);
-> 
-> In general, I would assert/deassert the reset only after all resources
-> are successfully acquired. This might avoid unnecessary resets in case
-> of probe deferrals.
-> 
-
-Thanks for the suggestion. I will try to move the implementation of
-reset after devm_ioremap_resource().
-
-> regards
-> Philipp
