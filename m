@@ -2,74 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A57F37617F
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 09:53:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEA08376186
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 09:55:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235899AbhEGHyo convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 7 May 2021 03:54:44 -0400
-Received: from coyote.holtmann.net ([212.227.132.17]:48433 "EHLO
-        mail.holtmann.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234951AbhEGHym (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 03:54:42 -0400
-Received: from smtpclient.apple (p4fefc624.dip0.t-ipconnect.de [79.239.198.36])
-        by mail.holtmann.org (Postfix) with ESMTPSA id 8CB8BCECD9;
-        Fri,  7 May 2021 10:01:26 +0200 (CEST)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.80.0.2.43\))
-Subject: Re: [PATCH v3 3/5] Bluetooth: btqca: Moved extracting rom version
- info to common place
-From:   Marcel Holtmann <marcel@holtmann.org>
-In-Reply-To: <1620322392-27148-4-git-send-email-gubbaven@codeaurora.org>
-Date:   Fri, 7 May 2021 09:53:35 +0200
-Cc:     Johan Hedberg <johan.hedberg@gmail.com>,
-        devicetree@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Bluetooth Kernel Mailing List 
-        <linux-bluetooth@vger.kernel.org>,
-        Hemantg <hemantg@codeaurora.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        Balakrishna Godavarthi <bgodavar@codeaurora.org>,
-        Rocky Liao <rjliao@codeaurora.org>, hbandi@codeaurora.org,
-        abhishekpandit@chromium.org
-Content-Transfer-Encoding: 8BIT
-Message-Id: <A9592AB3-EE71-4A1A-8CE4-AC209A98BDE5@holtmann.org>
-References: <1620322392-27148-1-git-send-email-gubbaven@codeaurora.org>
- <1620322392-27148-4-git-send-email-gubbaven@codeaurora.org>
-To:     Venkata Lakshmi Narayana Gubba <gubbaven@codeaurora.org>
-X-Mailer: Apple Mail (2.3654.80.0.2.43)
+        id S231165AbhEGH4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 03:56:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53654 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232997AbhEGH4n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 03:56:43 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6509C061574;
+        Fri,  7 May 2021 00:55:43 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id x20so11545127lfu.6;
+        Fri, 07 May 2021 00:55:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=d1FrNuovi6qchn9VoSrH/ZZcEV9n4ZW2UXgmvYmjE+g=;
+        b=u/fBwS9p8+ZJ1uzUyj9xWfncK+l0n+O3W0A4tJwhN9+RVhbt/VxvDgu1xrwj2TQchS
+         T/WPQv24Xe7/GAMWEocVZZ+VeKuAueYMPejrAQ4dHHkQAaQ0f9lWCavmcbn4ZeuMHtyd
+         G0q3a5q2xnS7zV2HZgTnSwnhjlmYBHQujJe9LsIZ5vndhGoSOKiL7mXJZ78Qr6SDkgkk
+         I2yUR6lRzrz7o/PcVSpNT+6WPcHUdg3M6VcLyoKjuCE8zy3empFn+fAyPxxgJbGbFFzG
+         gedCmZnjFIIrU9ayPlv9omPusy40prB3L31vMgUr0/mQKWtGrPNBiYiQJ67pkAMJZj0h
+         Oj5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=d1FrNuovi6qchn9VoSrH/ZZcEV9n4ZW2UXgmvYmjE+g=;
+        b=S4jjChb7VfoOXGWuSGGLjN0ctrXjdmQsi2c3RpxgOJ9DnpFSGdR5csKQIWnt7HHacm
+         j53FQJy7qwDcrSbQQGArPEtsLT2tXBZsuY77UcwTR0lXkkUaD2HJsvouzCzPuNMlUDRH
+         M2POHPHdhlrTJJbq/sR69YCCj0NGdkRc0iW9jnOZKTEHFjwFaan0RmJO+uKxfqwrerhc
+         p+75yGl7vqt71cH/B7B9Tjd6/t7+zihcBwkaI2VqIBLESkZHR72tAypzSyhZ2Oer4uKR
+         atv+zqOAW99oYHJFwiLv4IwUYHa2tiB0nii/5rnSTVdqUSiPFDY/5vY3lLzX3lMa5t24
+         83sQ==
+X-Gm-Message-State: AOAM531OqDFSmh5KvB81OKTcewmtrGJLjalhqx+pIwhka0jUTtBKepXn
+        5EUl6qh9AGrR8XHnRKj/9q8CBncOzlB1Qjh63M0=
+X-Google-Smtp-Source: ABdhPJxmOfmHUfXXyaTbU88iBMHRGJL5QKoxgPRItgy6u662XlJ1CgzE8LYRu4JF7W41BVjOUogeB1Zoj1BFMzNjYeM=
+X-Received: by 2002:a05:6512:3f27:: with SMTP id y39mr5490221lfa.166.1620374142511;
+ Fri, 07 May 2021 00:55:42 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210429062130.29403-1-dqfext@gmail.com> <20210429.170815.956010543291313915.davem@davemloft.net>
+ <20210430023839.246447-1-dqfext@gmail.com> <YIv28APpOP9tnuO+@lunn.ch>
+ <trinity-843c99ce-952a-434e-95e4-4ece3ba6b9bd-1619786236765@3c-app-gmx-bap03>
+ <YIv7w8Wy81fmU5A+@lunn.ch> <trinity-611ff023-c337-4148-a215-98fd5604eac2-1619787382934@3c-app-gmx-bap03>
+ <YIwCliT5NZT713WD@lunn.ch> <trinity-c45bbeec-5b7c-43a2-8e86-7cb22ad61558-1619794787680@3c-app-gmx-bap03>
+ <YIwxpYD1jnFMPQz+@lunn.ch> <fc962daf8b7babc22b043b2b0878a206780b55f3.camel@mediatek.com>
+ <CALW65ja5mRPoNM2EZsONMh8Kda5OgQg79R=Xp71CaQcp4cprnQ@mail.gmail.com> <f3f5167f60b7897b952f5fff7bcaef976c3c6531.camel@mediatek.com>
+In-Reply-To: <f3f5167f60b7897b952f5fff7bcaef976c3c6531.camel@mediatek.com>
+From:   DENG Qingfang <dqfext@gmail.com>
+Date:   Fri, 7 May 2021 15:55:31 +0800
+Message-ID: <CALW65jaPO52vX02KGqEooE2LRUMNMgFoHYMfyXUtOa7SPS-jqg@mail.gmail.com>
+Subject: Re: Re: Re: Re: [PATCH net-next 0/4] MT7530 interrupt support
+To:     Landen Chao <landen.chao@mediatek.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        David Miller <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Russell King - ARM Linux admin <linux@armlinux.org.uk>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-staging@lists.linux.dev,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, netdev <netdev@vger.kernel.org>,
+        Weijie Gao <weijie.gao@mediatek.com>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Venkata,
+On Thu, May 6, 2021 at 8:54 PM Landen Chao <landen.chao@mediatek.com> wrote:
+> MT7620's FE PHY HW is different from MT753x's GE PHY. Vendor registers
+> of these two PHY are totally different.
 
-> Moved extracting rom version info to common place as this code is
-> common in all if else ladder in qca_uart_setup.
-> 
-> Signed-off-by: Venkata Lakshmi Narayana Gubba <gubbaven@codeaurora.org>
-> ---
-> drivers/bluetooth/btqca.c | 15 ++++++---------
-> 1 file changed, 6 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/bluetooth/btqca.c b/drivers/bluetooth/btqca.c
-> index 320c555..658fd8e4 100644
-> --- a/drivers/bluetooth/btqca.c
-> +++ b/drivers/bluetooth/btqca.c
-> @@ -533,24 +533,21 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
-> 
-> 	config.user_baud_rate = baudrate;
-> 
-> +	/* Firmware files to download are based on ROM version.
-> +	 * ROM version is derived from last two bytes of soc_ver.
-> +	 */
-> +	rom_ver = ((soc_ver & 0x00000f00) >> 0x04) |
-> +		    (soc_ver & 0x0000000f);
-> +
-
-please try to align this properly.
-
-Regards
-
-Marcel
-
+Okay. So if the FE PHY is added later, it can be named mediatek-fe.c.
