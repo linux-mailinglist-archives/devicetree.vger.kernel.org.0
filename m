@@ -2,218 +2,389 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DDD08376B34
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 22:38:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D496A376B45
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 22:47:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229986AbhEGUjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 16:39:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51118 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229675AbhEGUjW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 7 May 2021 16:39:22 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E02B16145D;
-        Fri,  7 May 2021 20:38:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620419901;
-        bh=hrASAZVkDIioAhyyZHzYMy82DUnmzBHVMSMsTq9DZDI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Qhu8eOmlNMPNt0j8M+fceDp3tnr4Igi6V3mz/8EXDE9KP0T0XLWVpsr6AsoYcNjI8
-         /2h8QlI2iYgU4T3g059W5l7F/8apnG9FB/liShmdepuuLcYgENyq1h5XL4FHdZKOmD
-         TzraDNO8XrZjHq3nSLwLUvOHU8mW2kCT/N0RIdcLQh7yl1OIOU4wRexyKJscBDOI+r
-         MRfthXYOE70qXJDiar0/cQGP8A78w1O03WfYjzmi4bdK/FOWzQdB7iQ4z3Ir+uYza6
-         EztulOAVBYrarWAxczRp5UxLjt7d74LlIQT8snxspiK6b2kPl9DDJfrdL155rt+34P
-         LbTQVl0kFy6sA==
-Received: by mail-ed1-f53.google.com with SMTP id c22so11662110edn.7;
-        Fri, 07 May 2021 13:38:21 -0700 (PDT)
-X-Gm-Message-State: AOAM530vd5EskaALiVjGK0co8E3ge0gwQrr/O65NFFWTTr2uy3oA1cUW
-        OLxMb1iHRgLOgUlH/hrAytsdblFJGDu0aaI7eg==
-X-Google-Smtp-Source: ABdhPJyu5zyoW++LFChadj09PU067WEsO1tO6y0xSQtqkyLhEyRkrOv9bZmfaSKjm168r7xXYWnk8Y5pCt8CLvaXiaY=
-X-Received: by 2002:a05:6402:c7:: with SMTP id i7mr14008405edu.194.1620419900275;
- Fri, 07 May 2021 13:38:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210501133647.14350-1-sergio.paracuellos@gmail.com>
- <20210506151839.GA322729@robh.at.kernel.org> <CAMhs-H_Ae4Erx06j2fGSiZXpGo9UWRAkSPPQhFGnZ1D8=NM8cg@mail.gmail.com>
-In-Reply-To: <CAMhs-H_Ae4Erx06j2fGSiZXpGo9UWRAkSPPQhFGnZ1D8=NM8cg@mail.gmail.com>
+        id S230163AbhEGUsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 16:48:46 -0400
+Received: from mail-oo1-f42.google.com ([209.85.161.42]:39934 "EHLO
+        mail-oo1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229675AbhEGUsq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 16:48:46 -0400
+Received: by mail-oo1-f42.google.com with SMTP id t17-20020a4a3e110000b02901fab2f46a48so2239734oot.6;
+        Fri, 07 May 2021 13:47:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ItyeI4oA0lCjgmNOSmQd55OCetN3+iDGkX/UtCXQN2I=;
+        b=jwy2xX5iWGI1XmWqUnpMG5ktTKx4QGaVdlF6US0vLUwq0EyUwA9k0F5rNeATjayMuM
+         OE8r81fDebHxmPaG6M5tFf+VdRWy8461bKf20JcdiZ6VkvXyWMPY3qMNYmuDvbp5LkEH
+         YivLkxL4Ez0W158yBuBW6xwj3w6OPGyh09MnH6DQd9I0i7lJML3UrgR3awpJsP2zYo5a
+         su0bdpmgJkFgtUZJWttZyL8+7kpYNaw57r/7f+Dnpfz2OgEEGE6ztyJ3fAQXyLa6SD6Z
+         NUI+pOUDojqWEGZ4MU4+we7ECyaenvZkmGWCbsLqiEuh8FR45LV/raO9zAeSUtOQxS21
+         zNFg==
+X-Gm-Message-State: AOAM532a4xMbPADI/HM9NGbMAHh9LVAeJVQap7S/BRAjfEn2KzzZOFcO
+        3XVaGnTGx6h2qDtPBXO77Fbkc9ZA9Q==
+X-Google-Smtp-Source: ABdhPJyV6f2KSOJGMZheEOrH5nN5E3Ns/i1wFHqioqk26FOeWj2dpLJ5bggrMZfKHAbI0UVzJsm+Ow==
+X-Received: by 2002:a4a:ae47:: with SMTP id a7mr6712078oon.23.1620420464568;
+        Fri, 07 May 2021 13:47:44 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id h184sm1203084oia.1.2021.05.07.13.47.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 May 2021 13:47:43 -0700 (PDT)
+Received: (nullmailer pid 2855625 invoked by uid 1000);
+        Fri, 07 May 2021 20:47:41 -0000
+Date:   Fri, 7 May 2021 15:47:41 -0500
 From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 7 May 2021 15:38:08 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKBH=QK8V+fv-ehQZ_+cL1+Da-9PLEbwPzqR4LodKw3aw@mail.gmail.com>
-Message-ID: <CAL_JsqKBH=QK8V+fv-ehQZ_+cL1+Da-9PLEbwPzqR4LodKw3aw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: staging: mt7621-pci: PCIe binding
- documentation for MT76721 SoCs
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-staging@lists.linux.dev,
-        Greg KH <gregkh@linuxfoundation.org>,
-        NeilBrown <neil@brown.name>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     heiko@sntech.de, linus.walleij@linaro.org,
+        bgolaszewski@baylibre.com, jay.xu@rock-chips.com,
+        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
+        zhangqing@rock-chips.com, huangtao@rock-chips.com,
+        cl@rock-chips.com, linux-gpio@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] dt-bindings: soc: rockchip: convert grf.txt to
+ YAML
+Message-ID: <20210507204741.GA2842589@robh.at.kernel.org>
+References: <20210505134028.13431-1-jbx6244@gmail.com>
+ <20210505134028.13431-3-jbx6244@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210505134028.13431-3-jbx6244@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 6, 2021 at 11:41 AM Sergio Paracuellos
-<sergio.paracuellos@gmail.com> wrote:
->
-> Hi Rob,
->
-> Thanks for the review.
->
-> On Thu, May 6, 2021 at 5:18 PM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Sat, May 01, 2021 at 03:36:46PM +0200, Sergio Paracuellos wrote:
-> > > Add device tree binding documentation for PCIe in MT7621 SoCs.
-> > >
-> > > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > > ---
-> > >
-> > > Hi Rob,
-> > >
-> > > Some concerns here. I was not be able to found any case similar to
-> > > this binding where sub-nodes describing each pcie port interface
-> > > are needed. I added them to the 'examples' directly without saying
-> > > anything about properties in any other place since its properties
-> > > seems to be covered in 'pci-bus.yaml' schema definition. I don't
-> > > know if this is the way, I have checked against schema and I noticed
-> > > I am forced to add 'device_type' property in each subnode because
-> > > schema checker complains that this is mandatory. So I have added
-> > > it and schema is properly being validated:
-> > >
-> > > Before add the 'device_type' in each subnode:
-> > > /home/sergio/staging/Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.example.dt.yaml: pcie@0,0: 'device_type' is a required property
-> > > >From schema: /home/sergio/.local/lib/python3.9/site-packages/dtschema/schemas/pci/pci-bus.yaml
-> > > /home/sergio/staging/Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.example.dt.yaml: pcie@1,0: 'device_type' is a required property
-> > > >From schema: /home/sergio/.local/lib/python3.9/site-packages/dtschema/schemas/pci/pci-bus.yaml
-> > > /home/sergio/staging/Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.example.dt.yaml: pcie@2,0: 'device_type' is a required property
-> > > >From schema: /home/sergio/.local/lib/python3.9/site-packages/dtschema/schemas/pci/pci-bus.yaml
-> >
-> > Each port is a PCI bridge, right? If so, then 'pcie' for the node name
-> > and 'device_type = "pci";' are correct.
->
-> Yes it is, thanks for clarification.
->
-> >
-> > >
-> > > After adding it:
-> > > CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
-> >
-> > Validates all the schema
-> >
-> > > SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
-> >
-> > Preprocesses all the schema
-> >
-> > > DTEX    Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.example.dts
-> >
-> > Extracts the example to dts file
-> >
-> > > DTC     Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.example.dt.yaml
-> >
-> > Converts the example to yaml
-> >
-> > > CHECK   Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.example.dt.yaml
-> >
-> > Runs the checks.
-> >
-> > >
-> > > Looks a bit redundant and maybe I am doing something wrong...
->
-> I meant redundant the 'device_type=pci' in all of the child nodes, not
-> the messages I got when check against the schema but thanks also for
-> explanation :).
->
-> > >
-> > > Thanks in advance for clarification.
-> > >
-> > > Best regards,
-> > >     Sergio Paracuellos
-> > >
-> > >
-> > >  .../bindings/pci/mediatek,mt7621-pci.yaml     | 144 ++++++++++++++++++
-> > >  .../mt7621-pci/mediatek,mt7621-pci.txt        | 104 -------------
-> > >  2 files changed, 144 insertions(+), 104 deletions(-)
-> > >  create mode 100644 Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml
-> > >  delete mode 100644 drivers/staging/mt7621-pci/mediatek,mt7621-pci.txt
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml b/Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml
-> > > new file mode 100644
-> > > index 000000000000..9c1d05d929a2
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml
-> > > @@ -0,0 +1,144 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/pci/mediatek,mt7621-pci.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: MediaTek MT7621 PCIe controller
-> > > +
-> > > +maintainers:
-> > > +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > > +
-> > > +description: |+
-> > > +  MediaTek MT7621 PCIe subsys supports single Root complex (RC)
-> > > +  with 3 Root Ports. Each Root Ports supports a Gen1 1-lane Link
-> > > +
-> > > +allOf:
-> > > +  - $ref: /schemas/pci/pci-bus.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: mediatek,mt7621-pci
-> > > +
-> > > +  reg:
-> > > +    items:
-> > > +      - description: host-pci bridge registers
-> > > +      - description: pcie port 0 RC control registers
-> > > +      - description: pcie port 1 RC control registers
-> > > +      - description: pcie port 2 RC control registers
-> >
-> > Are these config space registers or MT7621 specific?
->
-> All of them are MT7621 specific.
->
-> >
-> > > +
-> > > +  ranges:
-> > > +    maxItems: 2
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 3
-> >
-> > What are the 3 interrupts?
->
-> These are one interrupt per root port. In next version this will
-> change in favour of using interrupt-map and interrupt-map-mask instead
-> of use interrupts and a custom 'map_irq' callback in driver code.
-> Please see:
->
-> https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git/commit/?h=staging-testing&id=aed0b711cc791d075e716c397ff6b26bf50345a6
-> https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git/commit/?h=staging-testing&id=3e278e3064511b1606d406db0e26b2fee593fb55
->
-> This is the way used in mt7623 already mainlined binding.
->
-> > > +
-> > > +  resets:
-> > > +    items:
-> > > +      - description: pcie port 0 reset.
-> > > +      - description: pcie port 1 reset.
-> > > +      - description: pcie port 2 reset.
-> >
-> > This and clocks should perhaps be in each child node.
->
-> I followed here style in mt7623 already mainlined bindings which are
-> in the main node. Is there a strong reason to be changed into child
-> nodes or can I maintain this as it is?
+On Wed, May 05, 2021 at 03:40:26PM +0200, Johan Jonker wrote:
+> Current dts files with 'grf' nodes are manually verified.
+> In order to automate this process grf.txt has to be
+> converted to YAML.
+> 
+> Most compatibility strings are in use with "simple-mfd" added.
+> 
+> Add description already in use:
+> "rockchip,rv1108-pmugrf", "syscon"
+> 
+> Add new descriptions for:
+> "rockchip,rk3568-grf", "syscon", "simple-mfd"
+> "rockchip,rk3568-pmugrf", "syscon", "simple-mfd"
+> 
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> ---
+> Changed V2:
+>   add rockchip,rk3328-grf-gpio.yaml
+>   rename grf-gpio nodename
+> ---
+>  .../devicetree/bindings/soc/rockchip/grf.txt       |  61 -----
+>  .../devicetree/bindings/soc/rockchip/grf.yaml      | 280 +++++++++++++++++++++
+>  2 files changed, 280 insertions(+), 61 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/grf.txt
+>  create mode 100644 Documentation/devicetree/bindings/soc/rockchip/grf.yaml
 
-Okay, I had no idea because you didn't mention it. Why are you
-creating a new binding then? Looks like they are pretty similar. At
-least don't invent new *-names.
 
-However, you should be aware of this pending change:
+> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+> new file mode 100644
+> index 000000000..c7916beb4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+> @@ -0,0 +1,280 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/rockchip/grf.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip General Register Files (GRF)
+> +
+> +maintainers:
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - rockchip,px30-grf
+> +          - rockchip,px30-pmugrf
+> +          - rockchip,px30-usb2phy-grf
+> +          - rockchip,rk3036-grf
+> +          - rockchip,rk3066-grf
+> +          - rockchip,rk3188-grf
+> +          - rockchip,rk3228-grf
+> +          - rockchip,rk3288-grf
+> +          - rockchip,rk3288-sgrf
+> +          - rockchip,rk3308-core-grf
+> +          - rockchip,rk3308-detect-grf
+> +          - rockchip,rk3308-grf
+> +          - rockchip,rk3328-grf
+> +          - rockchip,rk3328-usb2phy-grf
+> +          - rockchip,rk3368-grf
+> +          - rockchip,rk3368-pmugrf
+> +          - rockchip,rk3399-grf
+> +          - rockchip,rk3399-pmugrf
+> +          - rockchip,rk3568-grf
+> +          - rockchip,rk3568-pmugrf
+> +          - rockchip,rv1108-grf
+> +          - rockchip,rv1108-pmugrf
+> +          - rockchip,rv1108-usbgrf
+> +
+> +  required:
+> +    - compatible
 
-https://lore.kernel.org/linux-pci/20210406034410.24381-1-chuanjia.liu@mediatek.com/
+You shouldn't need 'select' here. The tools handle not matching every 
+syscon or simple-mfd.
 
-So perhaps mt7621 should follow that?
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - rockchip,rk3066-grf
+> +              - rockchip,rk3188-grf
+> +              - rockchip,rk3288-sgrf
+> +              - rockchip,rv1108-pmugrf
+> +              - rockchip,rv1108-usbgrf
+> +          - const: syscon
+> +      - items:
+> +          - enum:
+> +              - rockchip,px30-grf
+> +              - rockchip,px30-pmugrf
+> +              - rockchip,px30-usb2phy-grf
+> +              - rockchip,rk3036-grf
+> +              - rockchip,rk3228-grf
+> +              - rockchip,rk3288-grf
+> +              - rockchip,rk3308-core-grf
+> +              - rockchip,rk3308-detect-grf
+> +              - rockchip,rk3308-grf
+> +              - rockchip,rk3328-grf
+> +              - rockchip,rk3328-usb2phy-grf
+> +              - rockchip,rk3368-grf
+> +              - rockchip,rk3368-pmugrf
+> +              - rockchip,rk3399-grf
+> +              - rockchip,rk3399-pmugrf
+> +              - rockchip,rk3568-grf
+> +              - rockchip,rk3568-pmugrf
+> +              - rockchip,rv1108-grf
+> +          - const: syscon
+> +          - const: simple-mfd
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: true
 
-Rob
+Never correct for a schema defining a whole node (IOW, only correct for 
+collections of shared properties).
+
+unevaluatedProperties: false
+
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: rockchip,px30-grf
+> +
+> +    then:
+> +      properties:
+> +        lvds:
+> +          description:
+> +            Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.txt
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: rockchip,rk3288-grf
+> +
+> +    then:
+> +      properties:
+> +        edp-phy:
+> +          description:
+> +            Documentation/devicetree/bindings/phy/rockchip-dp-phy.txt
+> +
+> +        usbphy:
+> +          description:
+> +            Documentation/devicetree/bindings/phy/rockchip-usb-phy.txt
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: rockchip,rk3328-grf
+> +
+> +    then:
+> +      properties:
+> +        gpio:
+> +          type: object
+> +
+> +          $ref: "/schemas/gpio/rockchip,rk3328-grf-gpio.yaml#"
+> +
+> +          unevaluatedProperties: false
+> +
+> +        power-controller:
+> +          type: object
+> +
+> +          $ref: "/schemas/power/rockchip,power-controller.yaml#"
+> +
+> +          unevaluatedProperties: false
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: rockchip,rk3399-grf
+> +
+> +    then:
+> +      properties:
+> +        mipi-dphy-rx0:
+> +          type: object
+> +
+> +          $ref: "/schemas/phy/rockchip-mipi-dphy-rx0.yaml#"
+> +
+> +          unevaluatedProperties: false
+> +
+> +        pcie-phy:
+> +          description:
+> +            Documentation/devicetree/bindings/phy/rockchip-pcie-phy.txt
+> +
+> +      patternProperties:
+> +        "phy@[0-9a-f]+$":
+> +          description:
+> +            Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - rockchip,px30-pmugrf
+> +              - rockchip,rk3036-grf
+> +              - rockchip,rk3308-grf
+> +              - rockchip,rk3368-pmugrf
+> +
+> +    then:
+> +      properties:
+> +        reboot-mode:
+> +          type: object
+> +
+> +          $ref: "/schemas/power/reset/syscon-reboot-mode.yaml#"
+> +
+> +          unevaluatedProperties: false
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - rockchip,px30-usb2phy-grf
+> +              - rockchip,rk3228-grf
+> +              - rockchip,rk3328-usb2phy-grf
+> +              - rockchip,rk3399-grf
+> +              - rockchip,rv1108-grf
+> +
+> +    then:
+> +      properties:
+> +        "#address-cells":
+> +          const: 1
+> +
+> +        "#size-cells":
+> +          const: 1
+> +
+> +      required:
+> +        - "#address-cells"
+> +        - "#size-cells"
+> +
+> +      patternProperties:
+> +        "usb2-phy@[0-9a-f]+$":
+> +          type: object
+> +
+> +          $ref: "/schemas/phy/phy-rockchip-inno-usb2.yaml#"
+> +
+> +          unevaluatedProperties: false
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - rockchip,px30-pmugrf
+> +              - rockchip,px30-grf
+> +              - rockchip,rk3228-grf
+> +              - rockchip,rk3288-grf
+> +              - rockchip,rk3328-grf
+> +              - rockchip,rk3368-pmugrf
+> +              - rockchip,rk3368-grf
+> +              - rockchip,rk3399-pmugrf
+> +              - rockchip,rk3399-grf
+> +
+> +    then:
+> +      properties:
+> +        io-domains:
+> +          description:
+> +            Documentation/devicetree/bindings/power/rockchip-io-domain.txt
+> +
+> +          unevaluatedProperties: false
+
+These 'if' sections are probably a sign that this should be separate 
+schemas for each 'if' subset. But fine to leave as-is.
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rk3399-cru.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/power/rk3399-power.h>
+> +    grf: syscon@ff770000 {
+> +      compatible = "rockchip,rk3399-grf", "syscon", "simple-mfd";
+> +      reg = <0xff770000 0x10000>;
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +
+> +      mipi_dphy_rx0: mipi-dphy-rx0 {
+> +        compatible = "rockchip,rk3399-mipi-dphy-rx0";
+> +        clocks = <&cru SCLK_MIPIDPHY_REF>,
+> +                 <&cru SCLK_DPHY_RX0_CFG>,
+> +                 <&cru PCLK_VIO_GRF>;
+> +        clock-names = "dphy-ref", "dphy-cfg", "grf";
+> +        power-domains = <&power RK3399_PD_VIO>;
+> +        #phy-cells = <0>;
+> +      };
+> +
+> +      u2phy0: usb2-phy@e450 {
+> +        compatible = "rockchip,rk3399-usb2phy";
+> +        reg = <0xe450 0x10>;
+> +        clocks = <&cru SCLK_USB2PHY0_REF>;
+> +        clock-names = "phyclk";
+> +        #clock-cells = <0>;
+> +        clock-output-names = "clk_usbphy0_480m";
+> +        #phy-cells = <0>;
+> +
+> +        u2phy0_host: host-port {
+> +          #phy-cells = <0>;
+> +          interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH 0>;
+> +          interrupt-names = "linestate";
+> +         };
+> +
+> +        u2phy0_otg: otg-port {
+> +          #phy-cells = <0>;
+> +          interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                       <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                       <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH 0>;
+> +          interrupt-names = "otg-bvalid", "otg-id",
+> +                            "linestate";
+> +        };
+> +      };
+> +    };
+> -- 
+> 2.11.0
+> 
