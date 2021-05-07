@@ -2,69 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B386375E51
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 03:19:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 514F5375E66
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 03:33:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233222AbhEGBUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 21:20:15 -0400
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:44005 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233027AbhEGBUO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 21:20:14 -0400
-Received: by mail-ot1-f45.google.com with SMTP id u19-20020a0568302493b02902d61b0d29adso5830700ots.10;
-        Thu, 06 May 2021 18:19:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iTRiEv/+c31w1knsIgiLTIV+1F0Vw0ef9aNvXKYG0/M=;
-        b=pkouxRVbkiG9cirC0aqotu3NAIOlNAoqaUscfy2FXBEwDnq8HOzoCFl429IoTxDA4e
-         oNk+oETH9N3Un+7Kw27TNWuMK5XBVBHfiE7bJ8XcMiogaNfQ7a4j+Uk+i6VUXJHVWUDN
-         4qkwEN2TS1T6dEWbAcbVrNe7HFbSA+BT4r+L825t5Vow2B4aAkPHDRa7w5FpAI0LEMfR
-         M6w/PO/fFgbB00lwQZft5OsPh9V4uo4O/BzgwuUeunfYLKYmJhKnQg47nvzkyn+Mgm8F
-         S3RsVlfSw9DrPt4UIZ/NogV0EReyu3n3xgYqyvPIGi98/0Srs4sA9tZ3VltssiJo5sGz
-         ttcg==
-X-Gm-Message-State: AOAM532oBnOE5K5/vK1MSz5DmlNREn/rG/NYmAFlYRrxcsbCLXgWHl3N
-        nTnP+gQ0ufA2gzDX+Tag3g==
-X-Google-Smtp-Source: ABdhPJwPMNVgkYoUMeIdVLdofJLqZe2HJ2aWT28cmU2/jeNKZAqSuKtsNJ/sYxzF5visBCFJ01x8lg==
-X-Received: by 2002:a9d:543:: with SMTP id 61mr2637297otw.287.1620350354494;
-        Thu, 06 May 2021 18:19:14 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o6sm731687oih.44.2021.05.06.18.19.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 May 2021 18:19:13 -0700 (PDT)
-Received: (nullmailer pid 1133400 invoked by uid 1000);
-        Fri, 07 May 2021 01:19:12 -0000
-Date:   Thu, 6 May 2021 20:19:12 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Venkata Lakshmi Narayana Gubba <gubbaven@codeaurora.org>
-Cc:     rjliao@codeaurora.org, abhishekpandit@chromium.org,
-        hbandi@codeaurora.org, bgodavar@codeaurora.org,
-        devicetree@vger.kernel.org, johan.hedberg@gmail.com,
-        linux-bluetooth@vger.kernel.org, marcel@holtmann.org,
-        mka@chromium.org, hemantg@codeaurora.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 5/5] dt-bindings: net: bluetooth: Add device tree
- bindings for QTI chip wcn6750
-Message-ID: <20210507011912.GA1133328@robh.at.kernel.org>
-References: <1620322392-27148-1-git-send-email-gubbaven@codeaurora.org>
- <1620322392-27148-6-git-send-email-gubbaven@codeaurora.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1620322392-27148-6-git-send-email-gubbaven@codeaurora.org>
+        id S234310AbhEGBeJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 21:34:09 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:59641 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233689AbhEGBeF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 21:34:05 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id F0D01580961;
+        Thu,  6 May 2021 21:33:05 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute3.internal (MEProxy); Thu, 06 May 2021 21:33:05 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm2; bh=+6WcnuLbg5MQPQ1CNTZXV3RZb2wmRjj
+        rGjFSoRIlm5c=; b=mM4BlZeQY4pW7UnBanVkm1/3Xe2AMYufr/nsRKlSNNB5fxB
+        Mxl1jABk8kV4jz6Ch8PZbQbF8qnTiv+4l01e10azRU6JchcfFpEwUu6LNXwfTZ9b
+        PM1H+Q8IshrfYR1LZpAhD9LlCHUPSHx+SNzk1iklCZMUS/Hc8ujdS6uiXRryf7bP
+        CIz3o4X0HbmTUTNSkPTdDeZtwJYy2DQVvVbaWg2ZKE86td8uHa0iWIUz8brta8jE
+        FUd+YYXJSa1Q52SKI45Q+7ZyWhntc4aT4F/yS4rT+jimtQO6cTLl2NJNmBJEu4Ph
+        bd42sSFZCdwyIl/D2exko6hdv/NXVv16FUTZvMg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=+6Wcnu
+        Lbg5MQPQ1CNTZXV3RZb2wmRjjrGjFSoRIlm5c=; b=r63mby3ej96oPK2tiYm30r
+        H1fbdvfDfbGWMYsUZY0+gxQkqtHizU//VMkAR8UGgnDDBf72aLJHDULp+4FRqZr9
+        jqKmMRyHqA3t3KJNEVExb5Azir2YT4ZrtbjuLD2rZabOeg8ro9akHWxKaQgb2gYM
+        aNWwaaU7xeAJXF8S4MV/DIM4sgrU/fQAl2injk09sl6FpIU+pcGJii06zqjDj92D
+        kpVmKvvRzUpXLWMGJezr7EvnPZ5DYTEp6Ustq/ulP5IqPZHNjsORf0vtSpgC133X
+        QtMNnDdAhn3gWbdUHWMoPHGDSTZlZKlfIlEKT7t99Ki1YncrBMWJSsSECayPH/dQ
+        ==
+X-ME-Sender: <xms:0JiUYIFeurJrldOK9-gkyfafALFwxPXmaVEFigOZudHNr10BNd4ZOw>
+    <xme:0JiUYBU_JM8RKbRcQWZeq5tHMaDmLtRf8vOc6ZagCpG2XtssbcJJRvn609wEvEF0e
+    WSnOTUR9YFYb_gIqA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdeguddggedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
+    grthhtvghrnhepuddttdekueeggedvtddtueekiedutdfguedutdefieeuteefieelteet
+    vddthfeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    eprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:0JiUYCIS2BczSyOWvzBOUJfyk-StWxzjfNOAzeJeP-wL0BZ3y1Bsag>
+    <xmx:0JiUYKGwhb_Wqtz3AMTqm9tpgnNGgM_hTYy8bQS-pAVStsBJar_9kQ>
+    <xmx:0JiUYOWeTFf5r1-41QbQsCWdEwnzjq-XcZGVaYbc4fPxNU4J_a7BFQ>
+    <xmx:0ZiUYHWHR-2kxUbILwlv0cye8yPC8PgZhj-sR64-i60BEqFrN6RpEA>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id F415FA00079; Thu,  6 May 2021 21:33:03 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-448-gae190416c7-fm-20210505.004-gae190416
+Mime-Version: 1.0
+Message-Id: <19a81e25-dfa1-4ad3-9628-19f43f4230d2@www.fastmail.com>
+In-Reply-To: <20210506102458.GA20777@pengutronix.de>
+References: <20210506100312.1638-1-steven_lee@aspeedtech.com>
+ <20210506100312.1638-6-steven_lee@aspeedtech.com>
+ <20210506102458.GA20777@pengutronix.de>
+Date:   Fri, 07 May 2021 11:02:29 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Philipp Zabel" <p.zabel@pengutronix.de>,
+        "Steven Lee" <steven_lee@aspeedtech.com>
+Cc:     "Ulf Hansson" <ulf.hansson@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Joel Stanley" <joel@jms.id.au>,
+        "Adrian Hunter" <adrian.hunter@intel.com>,
+        "Ryan Chen" <ryanchen.aspeed@gmail.com>,
+        "moderated list:ASPEED SD/MMC DRIVER" <linux-aspeed@lists.ozlabs.org>,
+        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list" <linux-kernel@vger.kernel.org>,
+        "Hongwei Zhang" <Hongweiz@ami.com>,
+        "Ryan Chen" <ryan_chen@aspeedtech.com>,
+        "Chin-Ting Kuo" <chin-ting_kuo@aspeedtech.com>
+Subject: =?UTF-8?Q?Re:_[PATCH_v3_5/5]_mmc:_sdhci-of-aspeed:_Assert/Deassert_reset?=
+ =?UTF-8?Q?_signal_before_probing_eMMC?=
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 06 May 2021 23:03:12 +0530, Venkata Lakshmi Narayana Gubba wrote:
-> This patch enables regulators and gpios for the Qualcomm Bluetooth wcn6750
-> controller.
-> 
-> Signed-off-by: Venkata Lakshmi Narayana Gubba <gubbaven@codeaurora.org>
-> ---
->  .../bindings/net/qualcomm-bluetooth.yaml           | 71 ++++++++++++++++++++++
->  1 file changed, 71 insertions(+)
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+
+On Thu, 6 May 2021, at 19:54, Philipp Zabel wrote:
+> Hi Steven,
+> 
+> On Thu, May 06, 2021 at 06:03:12PM +0800, Steven Lee wrote:
+> > +	if (info) {
+> > +		if (info->flag & PROBE_AFTER_ASSET_DEASSERT) {
+> > +			sdc->rst = devm_reset_control_get(&pdev->dev, NULL);
+> 
+> Please use devm_reset_control_get_exclusive() or
+> devm_reset_control_get_optional_exclusive().
+> 
+> > +			if (!IS_ERR(sdc->rst)) {
+> 
+> Please just return errors here instead of ignoring them.
+> The reset_control_get_optional variants return NULL in case the
+> device node doesn't contain a resets phandle, in case you really
+> consider this reset to be optional even though the flag is set?
+
+It feels like we should get rid of the flag and leave it to the 
+devicetree.
+
+I'm still kind of surprised it's not something we want to do for the 
+2400 and 2500 as well.
+
+Andrew
