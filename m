@@ -2,96 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2793E376945
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 19:07:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E96CC376957
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 19:15:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238507AbhEGRId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 13:08:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35352 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235840AbhEGRIc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 13:08:32 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 587F2C061761
-        for <devicetree@vger.kernel.org>; Fri,  7 May 2021 10:07:31 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id gj14so5414194pjb.5
-        for <devicetree@vger.kernel.org>; Fri, 07 May 2021 10:07:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=RiGyUlYAW1u/8xTEb2M57YXe98Wsy6SGD0Ef+9dzg2k=;
-        b=zXQbNUSKr6WntaFyoibLr+KI6HA/xr8Y8FL4frv3mk1pziMaor2RgvdJxyXYG+V2u+
-         0o37nxLDo6ReRvnYGpdFzA4iSIAYvvzPHXqqbs6ahWb1WVMgDPHfaFI304x2txId9w1m
-         1n+cimEpErDy+cXQ6MBj2W7m3VLC9nxKcHSBiBVPsmj3ZuLbjHASw7tiCO2IWzBJhCFc
-         fT5sEFMPT3buMA4fyMIv0YO3lgPXVR8Q1G86XU4oGhS3ElYr3rnjGuEcoBs7+Xsf6WGL
-         bBbH60nl7ziBQbnBdhIO7opxW1beGWPhOahXcKrgDRQUHpmFjteuHbEskM+vYsg5s+6F
-         XPKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=RiGyUlYAW1u/8xTEb2M57YXe98Wsy6SGD0Ef+9dzg2k=;
-        b=msRPUTAX3lEHXmm92WjLRnQnajIhRjjeb9roAFMTAlpJlUZFrBmkKDXayP2X+Qg8zr
-         m06VwFShW6xoffo/L1MFoYiZdzcrqxTdLBaCFRW0CF0IjQDGG8jHT9f1ZcrpJxQFyPlt
-         a+uiLs8rKmjiEQaSn2iv67zu7TXat418D/eNcWO8bK9P/pca13V9HOyErZLdtWZAXD6D
-         fYv/+ygQ2YqIle3gB4TRRZFxzOnpb5wSdM46z/+oKQkxAfzccUZcB5EqN+J3o//VOhT4
-         i4ZhcFL6SQaXbVxY0NR0vJeAPZ+WGEWugBzLr6MPpBclrJpxc/9SVI+OuLbhZFhn8rwT
-         F/KQ==
-X-Gm-Message-State: AOAM533akTAT0/BtUedWjsrNtXeXYKyt08hZQ20P6IP71sRYcnaXm7Qj
-        GWHz6ZxZu8+dp0XGUVNU174u
-X-Google-Smtp-Source: ABdhPJyuPKTcZCWMAOt39RYL09MRviRjAJXantrTkcrhT5nEDL3ejQXsOJOUnbZ/LZQFdAgX5bckWg==
-X-Received: by 2002:a17:90b:3615:: with SMTP id ml21mr24188974pjb.28.1620407250646;
-        Fri, 07 May 2021 10:07:30 -0700 (PDT)
-Received: from thinkpad ([2409:4072:e94:6cb6:4728:f123:8d88:45e9])
-        by smtp.gmail.com with ESMTPSA id n189sm3415486pfn.10.2021.05.07.10.07.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 May 2021 10:07:30 -0700 (PDT)
-Date:   Fri, 7 May 2021 22:37:22 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 1/3] remoteproc: qcom: pas: Use the same init resources
- for MSM8996 and MSM8998
-Message-ID: <20210507170722.GB3919@thinkpad>
-References: <zbAB2sceYHmsYeraZUi4YUKL7lgFMu13w3vHQQYUQ4@cp3-web-020.plabs.ch>
- <20210507164045.GA3622@thinkpad>
- <22accfef-a629-b483-f93f-820030ff5189@somainline.org>
+        id S234951AbhEGRQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 13:16:38 -0400
+Received: from mail-mw2nam12on2054.outbound.protection.outlook.com ([40.107.244.54]:32993
+        "EHLO NAM12-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230499AbhEGRQf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 7 May 2021 13:16:35 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OWjIn01Fq95du4P1gk0uzBprQsiOvmfvC2akpi11rFdN+Rp3nTvqM+xJBgIhWUgf9uMn9nIqA+vB8IHr6By27G0uYRlFdYPWSxchLHHTMxZ4svFRNzNjTLFT5+CVRzXNYYsyhFCw3miSGN1N2WGURJnodjvA55Sxyjo3C3aVDOf5ofXOfHMiy31rcLRPiwLNROlbN1UiTgGo19pg1YassVWxnq/2iwt1BzNDpj7IDn/Bej+6Oiv8/KNHduWEIw3L4U0GzRw7YccLi2imDOmqgvzsBKA53euinnFfevFjEJ40/BLF9+aBiX2EqAVjbrJ0VaO0aWxiuzaEteEBcR1Ong==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ygzb4f5ozfFYQ5KccIjOqEjlq2ecr5N9Gmr57aBh2Zk=;
+ b=VTV0aFkHMtbC0VTa7mwlY+o1zox29KGkB32mQ0cH8+1t2vt/bJb0Ton/sm9mNSKGGvjoYzk6cIna2o9gMhz6SqLYyrnp9+qrM0gvkuQUa0l8zORewHzwvXNLS6mGHirZ6TNgjTJrkdDIOuAIMkCSTnTyNpJ/VRAi0NRAYdi9Nrpeju34A0V7NyJ7iksSiCwFcWXLcWDJetavrJEQlX3kpZwM86DMRHDYlTwZQgOIOzJsLlS3yEQ+N/WF26FNociM6e2BwXZGgNHMcIN7flzfAsrHe9oD2uHWczlMw42zQ/aMF7jIfg6PDy5M7/VNCfGkqm+C+z8q4oDVZsVPoQOC5g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.112.34) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ygzb4f5ozfFYQ5KccIjOqEjlq2ecr5N9Gmr57aBh2Zk=;
+ b=ZO2VgNWwd2yPK41Lsz3CXSYRlF9MxGTIhVfn5KNV4wRaHVq7ZnZ6L0v4HfvGUlP0kt65tD7vJizs8W52BDSGPB6Ow0N6IUaPRXKuM+p/lIJfkfuhzGRW1YtSXa6HRYRIVepieF+KfzGocaAv/fgsdqbtoLEPVWJoOwrSgyowjqttRfC/DZ+knhmMoDZAY0CuN+XDQW3f05UyP9c+zVM3rfmU99DKC6Vlst8BwiDXg5iMPPr7SmYcxFdqkHe1lLwgso2cTdCF0nw+y6l6s0n2vBqP69wfm+wBlQm2Eprd9nvfM+x1p8gmGbijQF8yRy/ng2bMZNr0LGH5V3NVq+Zkgg==
+Received: from MWHPR13CA0013.namprd13.prod.outlook.com (2603:10b6:300:16::23)
+ by BYAPR12MB2838.namprd12.prod.outlook.com (2603:10b6:a03:6f::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.44; Fri, 7 May
+ 2021 17:15:32 +0000
+Received: from CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:16:cafe::eb) by MWHPR13CA0013.outlook.office365.com
+ (2603:10b6:300:16::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.12 via Frontend
+ Transport; Fri, 7 May 2021 17:15:32 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
+ smtp.mailfrom=nvidia.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.112.34; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (216.228.112.34) by
+ CO1NAM11FT037.mail.protection.outlook.com (10.13.174.91) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4108.25 via Frontend Transport; Fri, 7 May 2021 17:15:32 +0000
+Received: from dev-r-vrt-156.mtr.labs.mlnx (172.20.145.6) by
+ HQMAIL107.nvidia.com (172.20.187.13) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 7 May 2021 17:15:30 +0000
+From:   Vadim Pasternak <vadimp@nvidia.com>
+To:     <linux@roeck-us.net>, <robh+dt@kernel.org>
+CC:     <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        "Vadim Pasternak" <vadimp@nvidia.com>
+Subject: [PATCH hwmon-next v6 0/3] Add support for MPS Multi-phase mp2888 controller
+Date:   Fri, 7 May 2021 20:14:18 +0300
+Message-ID: <20210507171421.425817-1-vadimp@nvidia.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <22accfef-a629-b483-f93f-820030ff5189@somainline.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [172.20.145.6]
+X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: eda839ca-31b3-454e-23fd-08d9117bb86c
+X-MS-TrafficTypeDiagnostic: BYAPR12MB2838:
+X-Microsoft-Antispam-PRVS: <BYAPR12MB2838DC409CBD415703319C34AF579@BYAPR12MB2838.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2399;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: CN4nSuCVL2DR+qmNV+2CvHnE/+1uBh6bXQAm8OF+i8EvZo8f0/zCyuYoniF5yWs5B/vDyCmBHknLCVw1NYysAMB8Uxb8lSuVwvzjAijpAsK5ujomJ4UvA8w06guNwf/U8CMED5I9m1bGhvKCmbRWqqYVGjLwldyXmRdcY9NNPwPv4FOEUheQTWO6+RNpBSE8RpvnZfJ35aLSkPyWmWamjeU6ViN3B7q6ygLAkmhoBhch7hhzlpngh+bOMSm9Ca9w4m+fBinhJ/vVH0CMImdKu3BelSQlde+qHaAr7dCgBbsP8J4JcacnwySDuEIzYU9wMnXMwWNLObfVJmKA8jt9RG4npoLYGtKizj8I1t090L9MAz6kCJPHzAecD0sw4PSIVsvxCStIIZ11SrGFBnHGrZN5lFxWwosFMvAYgKOgi3pgWR5ZhDt3YN+N5TtqZ7GauX8yQK+i2L+BpgneMJGwtzHpoxmv/pv2A5cm9o9rFMz0qAXHd1oJihFpfCN30TaJFDpjRpYG+UxBwNvwEfzIP+m9SkSfXM74qLdhzsjt3jooG0xoNLIkzZX4IqZ/1RWgVHhDE9pfI2udY7IpV/cyzG6R/RbTNA+mxB57+O4fidbh2U2zm1cPza3ePBMre+FjmRZrE+ib52RrAuWOUhO/q9ryPMQwtTmPba9ct3NW6DE=
+X-Forefront-Antispam-Report: CIP:216.228.112.34;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid03.nvidia.com;CAT:NONE;SFS:(4636009)(346002)(376002)(136003)(39860400002)(396003)(46966006)(36840700001)(7636003)(47076005)(336012)(2906002)(4326008)(26005)(36860700001)(82740400003)(6666004)(83380400001)(8676002)(107886003)(356005)(36756003)(2616005)(426003)(82310400003)(1076003)(316002)(36906005)(110136005)(8936002)(86362001)(5660300002)(70206006)(70586007)(478600001)(4744005)(16526019)(186003)(54906003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2021 17:15:32.1291
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: eda839ca-31b3-454e-23fd-08d9117bb86c
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.34];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2838
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 07, 2021 at 06:56:22PM +0200, Konrad Dybcio wrote:
-> Hi,
-> 
-> 
-> > NACK.
-> >
-> > I see that the "slpi_resource_init" and "msm8998_{slpi/adsp}_resource" are
-> > completely different, even the firmware name. How can you get it to work?
-> 
-> one of us must be looking at some knock-off source code, as they are identical say for the presence or absence of proxy_pd_names, which are required for 8996 and weren't really an exposed thing on old SoCs like 8974.
-> 
+Add driver and documentation for mp2888 device from Monolithic Power
+Systems, Inc. (MPS) vendor. This is a digital, multi-phase, pulse-width
+modulation controller.
 
-Actually "msm8998_adsp_resource" is what different from "slpi_resource_init" and
-"msm8998_slpi_resource" looks good. So you can just add the proxy votes to
-"slpi_resource_init".
+Patch set includes:
+Patch #1 - increases maximum number of phases.
+Patch #2 - provides mp2888 driver and documentation.
+Patch #3 - providesy binding documentation.
 
-Thanks,
-Mani
+Vadim Pasternak (3):
+  hwmon: (pmbus) Increase maximum number of phases per page
+  hwmon: (pmbus) Add support for MPS Multi-phase mp2888 controller
+  dt-bindings: Add MP2888 voltage regulator device
 
-> 
-> Konrad
-> 
+ .../devicetree/bindings/trivial-devices.yaml       |   2 +
+ Documentation/hwmon/mp2888.rst                     | 113 ++++++
+ drivers/hwmon/pmbus/Kconfig                        |   9 +
+ drivers/hwmon/pmbus/Makefile                       |   1 +
+ drivers/hwmon/pmbus/mp2888.c                       | 411 +++++++++++++++++++++
+ drivers/hwmon/pmbus/pmbus.h                        |   2 +-
+ 6 files changed, 537 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/hwmon/mp2888.rst
+ create mode 100644 drivers/hwmon/pmbus/mp2888.c
+
+-- 
+2.11.0
+
