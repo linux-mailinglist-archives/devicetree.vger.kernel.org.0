@@ -2,131 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8D7137696E
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 19:22:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD1BD37697D
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 19:25:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230306AbhEGRW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 13:22:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50750 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230046AbhEGRW7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 7 May 2021 13:22:59 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1D44C61468;
-        Fri,  7 May 2021 17:21:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620408119;
-        bh=tAp8HMPCWwh+NHuRDeCEmS0cp+aQxiTRacpv+7HZQaA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=jMWuPbnOx6U5JZ6lRhEBYIFqNUnKAwzdc5WQfVuFRGqAC2rekeI9FxYRtfcVBjKuM
-         97WoLmGZ1f1xezdG2Mm7GDXQkdgtPie37cHlyxL9E/d3wzas81leEO2jGQJfrcrRhb
-         KMnBTLrq4TULos6RHk2OFJ8hDdyR7n71XyrFno4m3EGZkyLY2UtBu6XtEZYVn/YFIs
-         qSdkZX5JN5kVDZCJS+nczGgDSWspBE1R0IFRCuHst3zdUpb/WuylLIZmfWww8BVmvf
-         gZmhsm6y0H/21HbZdM+/lpZu4oq+aFbW0Neda4grx0UZ4qNgcsshKrMsuDKlwCUkqe
-         3dlNkERzA9Iww==
-Received: by mail-ej1-f54.google.com with SMTP id zg3so14734578ejb.8;
-        Fri, 07 May 2021 10:21:59 -0700 (PDT)
-X-Gm-Message-State: AOAM530dUcU8tJvGu6A6BR8DKMZbvx6yS9b7b8DE4zNzjlpO77kd/M8q
-        2b+oTGn9SCLkXhoY+XUMadMlALZx5iBxHvPcpw==
-X-Google-Smtp-Source: ABdhPJxlHzBX1kiOwdryT4JxLp1ZW5TdkQ+pgCxGNOoI/UqgbP1iECA3RgBAMWk0XjgD5TeZd/KBEkXxO5L1SMOtnxE=
-X-Received: by 2002:a17:906:a0c6:: with SMTP id bh6mr11119997ejb.359.1620408117401;
- Fri, 07 May 2021 10:21:57 -0700 (PDT)
+        id S233545AbhEGR0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 13:26:20 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:45282 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232915AbhEGR0T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 13:26:19 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 147HPA4M066732;
+        Fri, 7 May 2021 12:25:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1620408310;
+        bh=Mfe3VzxO5eVTgpcrjkbuWFbFY3AOvc+A6TkDDBQODfw=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=wxkOJ9i3ToJ/P/tUmQgTIBndTsX7BGuoRHm4aSOLU+yK2W8nJ4qHCB3Z4w3SHGjFB
+         0QSBLPalZP6KnIZyQ/qHWY/8vl2ZPezMEGJ65dJtpqQuwphIBOQrWcTbk6VqXqSRc2
+         rWc8kFZ+sULQooEDGjtm3FepemCYpNf7wVlRKckU=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 147HPAlJ042114
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 7 May 2021 12:25:10 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 7 May
+ 2021 12:25:10 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Fri, 7 May 2021 12:25:09 -0500
+Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 147HP62T106353;
+        Fri, 7 May 2021 12:25:06 -0500
+Subject: Re: [PATCH v2] dt-bindings: i2c: Move i2c-omap.txt to YAML format
+To:     Andreas Kemnade <andreas@kemnade.info>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>
+References: <20210506140026.31254-1-vigneshr@ti.com>
+ <f7570cb4-8c21-2fa5-bd26-1388f2a4bd6b@ti.com>
+ <429a740a-c2b9-1cf8-ed2b-0fb7b1bea422@ti.com> <20210507163602.219894f4@aktux>
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+Message-ID: <1ef076ac-e0de-a0df-a918-aeb8ed6c5956@ti.com>
+Date:   Fri, 7 May 2021 20:24:59 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210506100312.1638-1-steven_lee@aspeedtech.com>
- <20210506100312.1638-2-steven_lee@aspeedtech.com> <20210507011324.GA1119409@robh.at.kernel.org>
- <20210507031348.GA23749@aspeedtech.com>
-In-Reply-To: <20210507031348.GA23749@aspeedtech.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 7 May 2021 12:21:45 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLywL6J_uVVquhOMevb6Geed-A2o7fzHQPKvVQxe4gscA@mail.gmail.com>
-Message-ID: <CAL_JsqLywL6J_uVVquhOMevb6Geed-A2o7fzHQPKvVQxe4gscA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/5] dt-bindings: mmc: sdhci-of-aspeed: Add an example
- for AST2600-A2 EVB
-To:     Steven Lee <steven_lee@aspeedtech.com>
-Cc:     Andrew Jeffery <andrew@aj.id.au>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ryan Chen <ryanchen.aspeed@gmail.com>,
-        "moderated list:ASPEED SD/MMC DRIVER" <linux-aspeed@lists.ozlabs.org>,
-        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
-        "open list:ASPEED SD/MMC DRIVER" <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "Hongweiz@ami.com" <Hongweiz@ami.com>,
-        Ryan Chen <ryan_chen@aspeedtech.com>,
-        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210507163602.219894f4@aktux>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 6, 2021 at 10:14 PM Steven Lee <steven_lee@aspeedtech.com> wrote:
->
-> The 05/07/2021 09:13, Rob Herring wrote:
-> > On Thu, May 06, 2021 at 06:03:08PM +0800, Steven Lee wrote:
-> > > AST2600-A2 EVB has the reference design for enabling SD bus
-> > > power and toggling SD bus signal voltage by GPIO pins.
-> > >
-> > > In the reference design, GPIOV0 of AST2600-A2 EVB is connected to
-> > > power load switch that providing 3.3v to SD1 bus vdd. GPIOV1 is
-> > > connected to a 1.8v and a 3.3v power load switch that providing
-> > > signal voltage to
-> > > SD1 bus.
-> > >
-> > > If GPIOV0 is active high, SD1 bus is enabled. Otherwise, SD1 bus is
-> > > disabled.
-> > > If GPIOV1 is active high, 3.3v power load switch is enabled, SD1
-> > > signal voltage is 3.3v. Otherwise, 1.8v power load switch will be
-> > > enabled, SD1 signal voltage becomes 1.8v.
-> > >
-> > > AST2600-A2 EVB also support toggling signal voltage for SD2 bus.
-> > > The design is the same as SD1 bus. It uses GPIOV2 as power-gpio and
-> > > GPIOV3 as power-switch-gpio.
-> > >
-> > > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
-> > > ---
-> > >  .../devicetree/bindings/mmc/aspeed,sdhci.yaml | 101 +++++++++++++++++-
-> > >  1 file changed, 97 insertions(+), 4 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> > > index 987b287f3bff..de7e61b3d37a 100644
-> > > --- a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> > > +++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> > > @@ -45,10 +45,16 @@ patternProperties:
-> > >
-> > >      properties:
-> > >        compatible:
-> > > -        enum:
-> > > -          - aspeed,ast2400-sdhci
-> > > -          - aspeed,ast2500-sdhci
-> > > -          - aspeed,ast2600-sdhci
-> > > +        oneOf:
-> > > +          - items:
-> > > +              - enum:
-> > > +                  - aspeed,ast2400-sdhci
-> > > +                  - aspeed,ast2500-sdhci
-> > > +                  - aspeed,ast2600-sdhci
-> > > +          - items:
-> > > +              - enum:
-> > > +                  - aspeed,ast2600-sdhci
-> > > +              - const: sdhci
-> >
-> > Why are you adding 'sdhci'. That's not useful as a compatible given how
-> > many quirks different implementations have.
-> >
-> >
->
-> It is for passing the dtbs_check of the second example.
-> Without this definition, many device trees have the following
-> error:
->
-> ['aspeed,ast2600-sdhci', 'sdhci'] is too long
-> Additional items are not allowed ('sdhci' was unexpected)
 
-I would probably fix the dts files then. Does anything depend on 'sdhci'?
 
-Rob
+On 07/05/2021 17:36, Andreas Kemnade wrote:
+> On Fri, 7 May 2021 19:45:45 +0530
+> Vignesh Raghavendra <vigneshr@ti.com> wrote:
+> 
+>> On 5/7/21 12:24 PM, Grygorii Strashko wrote:
+>>>
+>>>
+>>> On 06/05/2021 17:00, Vignesh Raghavendra wrote:
+>>>> Convert i2c-omap.txt to YAML schema for better checks and documentation.
+>>>>
+>>>> Following properties were used in DT but were not documented in txt
+>>>> bindings and has been included in YAML schema:
+>>>> 1. Include ti,am4372-i2c compatible
+>>>> 2. Include dmas property used in few OMAP dts files
+>>>
+>>> The DMA is not supported by i2c-omap driver, so wouldn't be better to
+>>> just drop dmas from DTBs to avoid confusions?
+>>> It can be added later.
+>>>    
+>>
+>> Will do.. I will also send patches dropping dmas from dts that currently
+>> have them populated.
+>>
+> hmm, we have
+> - DO attempt to make bindings complete even if a driver doesn't support some
+>    features. For example, if a device has an interrupt, then include the
+>    'interrupts' property even if the driver is only polled mode.
+> 
+> in Documentation/devicetree/bindings/writing-bindings.rst
+> Shouln't the dma stay there if the hardware supports it? Devicetree
+> should describe the hardware not the driver if I understood things
+> right.
+
+True.  But my above statement is also valid - it introduces confusion from user point of view.
+More over, 'dmas' is not part of original binding and were randomly added to some SoCs.
+And it's much more easy to extend binding (in the future) then remove something after.
+
+I leave it to Vignesh, Tony to decide.
+
+-- 
+Best regards,
+grygorii
