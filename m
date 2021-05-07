@@ -2,67 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12332376B6C
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 23:06:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 509EC376B7B
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 23:12:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230212AbhEGVHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 17:07:41 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:42608 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230093AbhEGVHk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 7 May 2021 17:07:40 -0400
-Received: from p5b127e83.dip0.t-ipconnect.de ([91.18.126.131] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1lf7gA-00054f-Rs; Fri, 07 May 2021 23:06:34 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Johan Jonker <jbx6244@gmail.com>, linus.walleij@linaro.org,
-        bgolaszewski@baylibre.com, jay.xu@rock-chips.com,
-        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
-        zhangqing@rock-chips.com, huangtao@rock-chips.com,
-        cl@rock-chips.com, linux-gpio@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: gpio: convert rk3328-grf-gpio.txt to YAML
-Date:   Fri, 07 May 2021 23:06:33 +0200
-Message-ID: <3540274.MHq7AAxBmi@phil>
-In-Reply-To: <20210507210239.GA2875797@robh.at.kernel.org>
-References: <20210505134028.13431-1-jbx6244@gmail.com> <4104568.ejJDZkT8p0@phil> <20210507210239.GA2875797@robh.at.kernel.org>
+        id S230215AbhEGVNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 17:13:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60800 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230093AbhEGVNv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 17:13:51 -0400
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D39EC061761
+        for <devicetree@vger.kernel.org>; Fri,  7 May 2021 14:12:51 -0700 (PDT)
+Received: by mail-ot1-x329.google.com with SMTP id r26-20020a056830121ab02902a5ff1c9b81so9070077otp.11
+        for <devicetree@vger.kernel.org>; Fri, 07 May 2021 14:12:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MsiX0491JH5IOV8h/Q3djHE853ReiHtmamJNPaM0VTw=;
+        b=bM0IPTD6Uhow8CEABbb6NWIteuWPIHYv+WcypqnfaZUkylgsH17rxpX9bnnsIvIXjc
+         j/3bKL+SBDonzgdNYT9lnDKViiKQwvk7lSVW+fyiCJDI9vl+YBpLezXlhGu1GwmdorXB
+         ofIq6Emv3PTXPNh8CL/Hhq1l3bs5Ua9wjnZONMZLgcdhIQnKs/3GRLU66CRLQo2n0tLR
+         8qqJttbvSPulNsXgsILacd30QNcHTLnfbzkPi/b6+Qpl1dhhhN9u7F2MNXcMvHqrwZHL
+         qENyaYEH2B/hjJyqP5fl1nZT2tBmLG6DFxN97liTzUmYfAHCacXIDhvVbBoKmQkRiV5T
+         fvqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MsiX0491JH5IOV8h/Q3djHE853ReiHtmamJNPaM0VTw=;
+        b=i2gBArAUfhySeOXO6Wv5AMO5P3Jar9N5D6LeL4WXYVH0CdCPGYVj7MlQ9ep50jbtrK
+         ivlZO85bgT6VQxsei8qoueklpEYM7iuDoIQOWf2Kt0e0sEdYYNPZRSiHeFxpcMr1bCUC
+         MROAn1znaJ+sb8Lu1D3oqEZSDikjuXfMrrL0aHPsCWfFZn93fl7eUSPMpOmeY02GvL/I
+         ae194ogqvJGWaDP2UTt6ZJYRKytS8GQeXlwr60dM1YVnec0N5Scn8m6g2rPR/Eyw1gXc
+         xDGKOeYUW+afaXIrmy5XsKn1lJTpnPBv8Mof14jsKj9TpCAjyMqRHP5Eoa4K6gSEdP++
+         u4Rg==
+X-Gm-Message-State: AOAM531xascfC40fBvLmKwwQUp++BaRsA2k9r3sZXdPu/jPS5PvQ1My2
+        Br0F8r7MGpdpXRMY0fySIy29QSCab1GI1bfoRJnf9A==
+X-Google-Smtp-Source: ABdhPJxZbupy4cCJYrSiAUuciDj3HUdW/Zx4At+9BWzirsCJnGat2A0wTgEZlYtdVRYqdsIK8FwuT/t42w3ZeAMRJ8I=
+X-Received: by 2002:a9d:1d01:: with SMTP id m1mr10113074otm.155.1620421970694;
+ Fri, 07 May 2021 14:12:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20210505213731.538612-1-bhupesh.sharma@linaro.org> <YJMXpi1V/2vTdJKD@gmail.com>
+In-Reply-To: <YJMXpi1V/2vTdJKD@gmail.com>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Sat, 8 May 2021 02:42:39 +0530
+Message-ID: <CAH=2NtzufupReL_cKFVCX8NY8syRdQTy9VJfU9B9Uxr_uTv50g@mail.gmail.com>
+Subject: Re: [PATCH v2 00/17] Enable Qualcomm Crypto Engine on sm8250
+To:     Eric Biggers <ebiggers@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Thara Gopinath <thara.gopinath@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bhupesh.linux@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, 7. Mai 2021, 23:02:39 CEST schrieb Rob Herring:
-> On Fri, May 07, 2021 at 10:59:09PM +0200, Heiko Stuebner wrote:
-> > Hi Bartosz,
-> > 
-> > Am Mittwoch, 5. Mai 2021, 15:40:25 CEST schrieb Johan Jonker:
-> > > Current dts files with RK3328 GRF 'gpio' nodes are manually verified.
-> > > In order to automate this process rk3328-grf-gpio.txt has to be
-> > > converted to YAML.
-> > > 
-> > > Rename 'grf-gpio' nodename to 'gpio'.
-> > > 
-> > > Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> > 
-> > just to not step on any toes, do you plan to apply this patch1 later on?
-> > Patches 2-4 are in my domain so I'll get them after -rc1, but in theory
-> > the gpio binding should go through the gpio tree.
-> 
-> Different trees will break the schema checks because the grf schema 
-> refers to the gpio schema.
+Hello Eric,
 
-Ah, thanks for the heads up.
-I guess we need to agree on one then.
+On Thu, 6 May 2021 at 03:39, Eric Biggers <ebiggers@kernel.org> wrote:
+>
+> On Thu, May 06, 2021 at 03:07:14AM +0530, Bhupesh Sharma wrote:
+> >
+> > Tested the enabled crypto algorithms with cryptsetup test utilities
+> > on sm8250-mtp and RB5 board (see [1]).
+> >
+>
+> Does this driver also pass the crypto self-tests, including the fuzz tests
+> (CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y)?
 
-Bartosz, gpio tree or the rockchip tree for patches 1+2? ;-)
+I did try running these self-tests and they pass with
+'CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y' as well. Do note that we need
+the AEAD fixes from Thara (see[1]) for all of the fuzz tests to work
+(so my patches are actually rebased on this series).
 
+[1]. https://lore.kernel.org/linux-crypto/20210429150707.3168383-5-thara.gopinath@linaro.org/T/
 
-Heiko
-
-
+Thanks,
+Bhupesh
