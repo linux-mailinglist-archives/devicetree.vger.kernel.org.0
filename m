@@ -2,203 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87A383763C9
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 12:30:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8A793763E9
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 12:36:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236913AbhEGKby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 06:31:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60262 "EHLO
+        id S234023AbhEGKhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 06:37:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234674AbhEGKbx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 06:31:53 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06463C061763
-        for <devicetree@vger.kernel.org>; Fri,  7 May 2021 03:30:53 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id j10so12033853lfb.12
-        for <devicetree@vger.kernel.org>; Fri, 07 May 2021 03:30:52 -0700 (PDT)
+        with ESMTP id S234057AbhEGKhI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 06:37:08 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC6C2C061761
+        for <devicetree@vger.kernel.org>; Fri,  7 May 2021 03:36:08 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id z13so12138903lft.1
+        for <devicetree@vger.kernel.org>; Fri, 07 May 2021 03:36:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=beBOO2e9LBlqWNSPs81mS1QwysR1XMwYJL5ldmakWMs=;
-        b=PEmhT5Tkxv0eG+GMGVbBbXkRsRqXoYrMomfqdRUXs/KIg+R8vK4ic7o67o9NTbz71M
-         viPhB8pMffqmc2dLVHH8WtgAZIh4eTm7X3EM0d6p6VzXN2TvrGkWjRJ/CoXZFCqKx6ba
-         JmK1vpchZvPugJ4Uz2nBfkCHUF/nAoHxhq/vxNziYJvrLgi3JGA8Xm8NNeZlkVePeyDq
-         XhdzcIepzuWQTGzAgZC2MImPDniZ9ZBpPqaFhiI86AwIAlBH5oZ4nKOoxY5OTdh9YWsC
-         lEKCCPSNXfj3MyJox6gbqFOvLox+8XvrjOP/hy5bWS+uKyf3xOD/w0wDj6/OhyHEQvAW
-         LrSg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=S4ThqpCDApZFuKAxB9K1Ka8qEg9mB3V4qA9vC26YVkk=;
+        b=MzBtlSZzpJAr8tnd/5RIekuBw6l7vSZhO7ebB0heZLPlmkGV24vqwNOwHxJUG4uD1f
+         6iBrnIqOoL762HGPJJhI4a9V4bbf/fWM8+2GUZ61ack7UtkNvUhQ3SntvC6/1htbrkMU
+         eSQ3yuCa5R3VSLwgJZbKiw+yx8hyvaNLSeX/p5qCV38hh/6ibjxEaGoUGhdVZ66wsbt+
+         mpZ4PTCWBvIU37spzVs/kK1pr9/phRVM/CcXDDbOvSBB3mKb8o7vq9jv3hlQIiWIvRZ0
+         DCqCwph8yg77C3Ctt6jSsLSeeLQJJhSoaNsG9xcLadrW0I2N6KxY8DkLV4H0gAiIY/+I
+         UbJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=beBOO2e9LBlqWNSPs81mS1QwysR1XMwYJL5ldmakWMs=;
-        b=tORqU0qjXYohuyUf/vnSkpYVBuJfZobH+4Y26IhBlsqz2vCKYt0DEtV6f3Tf93V05A
-         1p7uP+j2oh0RrbDBT88X4ihGjQwig48hZfwukrUevYAN3iAofsIuQSxzNTgOS/+n7Q1k
-         WBZgjaA7cOU8ceDcR0YSkJhQ0/5qS4m75deecZs+EOrG967k3Tn8y84b946LorGtjCsx
-         3dLg5Xkq+dTLhkKChwI/7sKJDMs/49BAky/IiwGleRQBYSNuGLBNTsObZbld6cjWRGx3
-         6si1Y4JRiGC7VsPIoaEV185cOcwgxXK0u2yjrZLK4hTjdvuhJbYCeolivuEDjhR4txzn
-         HN8g==
-X-Gm-Message-State: AOAM531gj7gSFZM+sFe2e4v1VTvelM2UrOkkaCrELal10gkWepgN/j6Q
-        hpuMhpFKm7yFVKrLDVbphh1b1g==
-X-Google-Smtp-Source: ABdhPJzMXVr8DWSF49SHfZIKi921rzt1EEUZaPyY1nRRkewBrLnNBJeYvBkJ4pYhNgL4SygU3p6ztA==
-X-Received: by 2002:ac2:58e7:: with SMTP id v7mr6167405lfo.505.1620383451518;
-        Fri, 07 May 2021 03:30:51 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id y7sm1314218lfb.62.2021.05.07.03.30.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 May 2021 03:30:51 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=S4ThqpCDApZFuKAxB9K1Ka8qEg9mB3V4qA9vC26YVkk=;
+        b=J0GbTCUy+SL5fAHM0UVMAl3vULWPd6a1Emc/3P9Wly5fQQW9u5Pk5FvZZdoaikVtHk
+         LJ4j6mh7iRfqV1JVJiKMwnm3I6pYUj27fUAK6vHrDKpPKqfDJSgOMNlmK9wDVTCCz/a8
+         uUvzXYLTQ+tFvpGhM4fb3lgZT4SljyMI1OsoAbnujKL00Ooqb72n2h64iB8yWA40o9o2
+         V+qmKdlX9oyEm4i2bqCCPSbK6oBU7It+Bf1hjQabSFQnPT83ULbx+1iZYnNSdQ8aTvvC
+         B8meDKgWgIOqtw699c85GW4RagqKTXw9H4D76Fan1iTbC/nlHBGU8NjmYlaTX0kZV38J
+         PpDA==
+X-Gm-Message-State: AOAM533zy5LDBJ9MRWLbJi4Pc3KRkx1IwN+rUqlt96qJSS7mXm3QEDi6
+        7tSJAE9jNpBuD7cdJsKhx8NDwiIrgusbPVmnlZ4SVQ==
+X-Google-Smtp-Source: ABdhPJwGVrIFfrGyONppHY8teuB2o77I8NbBL50oT/QlnGc0e3NLmIlNMMRGerTGeyuxvd3Sqtw8r/iA8CTP7iSiP8g=
+X-Received: by 2002:a05:6512:6d5:: with SMTP id u21mr6084637lff.586.1620383767209;
+ Fri, 07 May 2021 03:36:07 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210507103040.132562-1-linus.walleij@linaro.org> <20210507103040.132562-4-linus.walleij@linaro.org>
+In-Reply-To: <20210507103040.132562-4-linus.walleij@linaro.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 7 May 2021 12:35:56 +0200
+Message-ID: <CACRpkdbposbGrihN2S6Vo7czmkhMrKRMbdumdG4M3xJ+=FwX_Q@mail.gmail.com>
+Subject: Re: [PATCH 3/4 v2] PCI: ixp4xx: Add device tree bindings for IXP4xx
 To:     Bjorn Helgaas <bhelgaas@google.com>
-Cc:     linux-pci@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Imre Kaloz <kaloz@openwrt.org>,
+Cc:     linux-pci <linux-pci@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Imre Kaloz <kaloz@openwrt.org>,
         Krzysztof Halasa <khalasa@piap.pl>,
         Zoltan HERPAI <wigyori@uid0.hu>,
         Raylynn Knight <rayknight@me.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 3/4 v2] PCI: ixp4xx: Add device tree bindings for IXP4xx
-Date:   Fri,  7 May 2021 12:30:39 +0200
-Message-Id: <20210507103040.132562-4-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210507103040.132562-1-linus.walleij@linaro.org>
-References: <20210507103040.132562-1-linus.walleij@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the Intel IXP4xx
-PCI controller which can be used as both host and
-option.
+On Fri, May 7, 2021 at 12:30 PM Linus Walleij <linus.walleij@linaro.org> wrote:
 
-Cc: devicetree@vger.kernel.org
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: Imre Kaloz <kaloz@openwrt.org>
-Cc: Krzysztof Halasa <khalasa@piap.pl>
-Cc: Zoltan HERPAI <wigyori@uid0.hu>
-Cc: Raylynn Knight <rayknight@me.com>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v1->v2:
-- Add the three controller interrupts to the binding.
+> This adds device tree bindings for the Intel IXP4xx
+> PCI controller which can be used as both host and
+> option.
 
-PCI maintainers: mainly looking for a review and ACK (if
-you care about DT bindings) the patch will be merged
-through ARM SoC.
----
- .../bindings/pci/intel,ixp4xx-pci.yaml        | 102 ++++++++++++++++++
- 1 file changed, 102 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml
+Ooops I see I missed some review comments on the bindings,
+ignore this v2 for the bindings and I'll fix and send a v3.
 
-diff --git a/Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml b/Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml
-new file mode 100644
-index 000000000000..12c9be2ac118
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml
-@@ -0,0 +1,102 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/intel,ixp4xx-pci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Intel IXP4xx PCI controller
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: PCI host controller found in the Intel IXP4xx SoC series.
-+
-+allOf:
-+  - $ref: /schemas/pci/pci-bus.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - intel,ixp42x-pci
-+          - intel,ixp43x-pci
-+    description: The two supported variants are ixp42x and ixp43x,
-+      though more variants may exist.
-+
-+  reg:
-+    items:
-+      - description: IXP4xx-specific registers
-+
-+  interrupts:
-+    items:
-+      - description: Main PCI interrupt
-+      - description: PCI DMA interrupt 1
-+      - description: PCI DMA interrupt 2
-+
-+  ranges:
-+    maxItems: 2
-+    description: Typically one memory range of 64MB and one IO
-+      space range of 64KB.
-+
-+  dma-ranges:
-+    maxItems: 1
-+    description: The DMA range tells the PCI host which addresses
-+      the RAM is at. It can map only 64MB so if the RAM is bigger
-+      than 64MB the DMA access has to be restricted to these
-+      addresses.
-+
-+  "#interrupt-cells": true
-+
-+  interrupt-map: true
-+
-+  interrupt-map-mask:
-+    items:
-+      - const: 0xf800
-+      - const: 0
-+      - const: 0
-+      - const: 7
-+
-+required:
-+  - compatible
-+  - reg
-+  - ranges
-+  - dma-ranges
-+  - "#interrupt-cells"
-+  - interrupt-map
-+  - interrupt-map-mask
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    pci@c0000000 {
-+      compatible = "intel,ixp43x-pci";
-+      reg = <0xc0000000 0x1000>;
-+      #address-cells = <3>;
-+      #size-cells = <2>;
-+      device_type = "pci";
-+      bus-range = <0x00 0xff>;
-+      status = "disabled";
-+
-+      ranges =
-+        <0x02000000 0 0x48000000 0x48000000 0 0x04000000>,
-+        <0x01000000 0 0x00000000 0x4c000000 0 0x00010000>;
-+      dma-ranges =
-+        <0x02000000 0 0x00000000 0x00000000 0 0x04000000>;
-+
-+      #interrupt-cells = <1>;
-+      interrupt-map-mask = <0xf800 0 0 7>;
-+      interrupt-map =
-+        <0x0800 0 0 1 &gpio0 11 3>, /* INT A on slot 1 is irq 11 */
-+        <0x0800 0 0 2 &gpio0 10 3>, /* INT B on slot 1 is irq 10 */
-+        <0x0800 0 0 3 &gpio0 9  3>, /* INT C on slot 1 is irq 9 */
-+        <0x0800 0 0 4 &gpio0 8  3>, /* INT D on slot 1 is irq 8 */
-+        <0x1000 0 0 1 &gpio0 10 3>, /* INT A on slot 2 is irq 10 */
-+        <0x1000 0 0 2 &gpio0 9  3>, /* INT B on slot 2 is irq 9 */
-+        <0x1000 0 0 3 &gpio0 8  3>, /* INT C on slot 2 is irq 8 */
-+        <0x1000 0 0 4 &gpio0 11 3>, /* INT D on slot 2 is irq 11 */
-+        <0x1800 0 0 1 &gpio0 9  3>, /* INT A on slot 3 is irq 9 */
-+        <0x1800 0 0 2 &gpio0 8  3>, /* INT B on slot 3 is irq 8 */
-+        <0x1800 0 0 3 &gpio0 11 3>, /* INT C on slot 3 is irq 11 */
-+        <0x1800 0 0 4 &gpio0 10 3>; /* INT D on slot 3 is irq 10 */
-+    };
--- 
-2.30.2
-
+Yours,
+Linus Walleij
