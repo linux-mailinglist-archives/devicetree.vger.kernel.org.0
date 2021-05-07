@@ -2,107 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD1BD37697D
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 19:25:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA101376AF0
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 21:59:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233545AbhEGR0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 13:26:20 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:45282 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232915AbhEGR0T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 13:26:19 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 147HPA4M066732;
-        Fri, 7 May 2021 12:25:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1620408310;
-        bh=Mfe3VzxO5eVTgpcrjkbuWFbFY3AOvc+A6TkDDBQODfw=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=wxkOJ9i3ToJ/P/tUmQgTIBndTsX7BGuoRHm4aSOLU+yK2W8nJ4qHCB3Z4w3SHGjFB
-         0QSBLPalZP6KnIZyQ/qHWY/8vl2ZPezMEGJ65dJtpqQuwphIBOQrWcTbk6VqXqSRc2
-         rWc8kFZ+sULQooEDGjtm3FepemCYpNf7wVlRKckU=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 147HPAlJ042114
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 7 May 2021 12:25:10 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 7 May
- 2021 12:25:10 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Fri, 7 May 2021 12:25:09 -0500
-Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 147HP62T106353;
-        Fri, 7 May 2021 12:25:06 -0500
-Subject: Re: [PATCH v2] dt-bindings: i2c: Move i2c-omap.txt to YAML format
-To:     Andreas Kemnade <andreas@kemnade.info>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC:     Rob Herring <robh+dt@kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>
-References: <20210506140026.31254-1-vigneshr@ti.com>
- <f7570cb4-8c21-2fa5-bd26-1388f2a4bd6b@ti.com>
- <429a740a-c2b9-1cf8-ed2b-0fb7b1bea422@ti.com> <20210507163602.219894f4@aktux>
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-Message-ID: <1ef076ac-e0de-a0df-a918-aeb8ed6c5956@ti.com>
-Date:   Fri, 7 May 2021 20:24:59 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S230083AbhEGUAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 16:00:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44554 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230087AbhEGUAC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 16:00:02 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 268C9C0613ED
+        for <devicetree@vger.kernel.org>; Fri,  7 May 2021 12:59:02 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id b25so4532085oic.0
+        for <devicetree@vger.kernel.org>; Fri, 07 May 2021 12:59:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=1Ev/AqlCuAuxmBP5/qpJD12HiDRJtO97+BpGUTNb6rM=;
+        b=RM1pf/f5OHyMOspoU/mxDuhXfnGnk3N8Yt8iAD4/3qGiKa4Fpl6bFuqYYK685F0Qra
+         j8l4Cdm6WePTc6xFMcFqIo7HauGjPoWbTmrp6GAgwIoLWlji8gU0eIySUu6XUkEWj9lx
+         +6yw0GzV2Jzll+k5Jsa9Mvf6StSpabvsVYU0E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=1Ev/AqlCuAuxmBP5/qpJD12HiDRJtO97+BpGUTNb6rM=;
+        b=B11VfzObpeRZrASqEDKB7HlayOEIcJO0FMk3pRGOtvlMVutFnXmq0ssuipyvkWxCz2
+         H+xeJ6Yq4WPuSxfsR0lk0015YGLhE7l/fk8z7gJMGi0rQW4jNmeKRY6uigBIaV3wx731
+         59P9PKpE9bS5JKQfno1IGHE3IZPk1YyZAda3j5Caj6lWBck3+PhacuEzZTzbbIX1mT/O
+         MumLylFyCfKJpHICmN8OcAkpOD2gheqhDUQaMFeRAVu4EU18gSY7LGO0UE0AgCAqVQiQ
+         M85mAhWOgydk/WCUOg8IE4fL41dWL1imbu+ZLucOihu3Hpuwq3zaTAJzc2ohueBvFseZ
+         1M5A==
+X-Gm-Message-State: AOAM532Ky//+yLRg6wMGgrPht07F+gFwjgkjNTMtxkl1RRfOE9K5S5yi
+        aiz3IEZaz+TXm78DP/0pXn/vWpg3Td4mvFi0VUcGjw==
+X-Google-Smtp-Source: ABdhPJwYQ0v6l65w9JuRCI64AGgQD1xZrXIhLQyHL/uOFiEknxIY9lk8wZUueo2xEF0siVW3cor1TnMZGmvB6RmCAog=
+X-Received: by 2002:aca:211a:: with SMTP id 26mr8203109oiz.19.1620417541429;
+ Fri, 07 May 2021 12:59:01 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 7 May 2021 12:59:00 -0700
 MIME-Version: 1.0
-In-Reply-To: <20210507163602.219894f4@aktux>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <1620382648-17395-2-git-send-email-pmaliset@codeaurora.org>
+References: <1620382648-17395-1-git-send-email-pmaliset@codeaurora.org> <1620382648-17395-2-git-send-email-pmaliset@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Fri, 7 May 2021 12:59:00 -0700
+Message-ID: <CAE-0n53KTeF9NOrb+x7P1AG53FENRBGtCEcSxronBpJoww3jew@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: pci: qcom: Document PCIe bindings for SC720
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Prasad Malisetty <pmaliset@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        mgautam@codeaurora.org, dianders@chromium.org, mka@chromium.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Prasad Malisetty (2021-05-07 03:17:26)
+> Document the PCIe DT bindings for SC7280 SoC.The PCIe IP is similar
+> to the one used on SM8250. Add the compatible for SC7280.
+>
+> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+> ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie.txt | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.txt b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
+> index 0da458a..e5245ed 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.txt
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
+> @@ -12,6 +12,7 @@
+>                         - "qcom,pcie-ipq4019" for ipq4019
+>                         - "qcom,pcie-ipq8074" for ipq8074
+>                         - "qcom,pcie-qcs404" for qcs404
+> +                       - "qcom,pcie-sc7280" for sc7280
+>                         - "qcom,pcie-sdm845" for sdm845
+>                         - "qcom,pcie-sm8250" for sm8250
+>
+> @@ -133,6 +134,22 @@
+>                         - "slave_bus"   AXI Slave clock
+>
+>  - clock-names:
+> +       Usage: required for sc7280
+> +       Value type: <stringlist>
+> +       Definition: Should contain the following entries
+> +                       - "aux"         Auxiliary clock
+> +                       - "cfg"         Configuration clock
+> +                       - "bus_master"  Master AXI clock
+> +                       - "bus_slave"   Slave AXI clock
+> +                       - "slave_q2a"   Slave Q2A clock
+> +                       - "tbu"         PCIe TBU clock
+> +                       - "ddrss_sf_tbu" PCIe SF TBU clock
+> +                       - "pipe"        PIPE clock
+> +                       - "pipe_src"    PIPE MUX
 
+Is pipe_src necessary? Is it the parent of the pipe clk? If so, please
+remove it and do whatever is necessary on the pipe clk instead of the
+parent of the clk.
 
-On 07/05/2021 17:36, Andreas Kemnade wrote:
-> On Fri, 7 May 2021 19:45:45 +0530
-> Vignesh Raghavendra <vigneshr@ti.com> wrote:
-> 
->> On 5/7/21 12:24 PM, Grygorii Strashko wrote:
->>>
->>>
->>> On 06/05/2021 17:00, Vignesh Raghavendra wrote:
->>>> Convert i2c-omap.txt to YAML schema for better checks and documentation.
->>>>
->>>> Following properties were used in DT but were not documented in txt
->>>> bindings and has been included in YAML schema:
->>>> 1. Include ti,am4372-i2c compatible
->>>> 2. Include dmas property used in few OMAP dts files
->>>
->>> The DMA is not supported by i2c-omap driver, so wouldn't be better to
->>> just drop dmas from DTBs to avoid confusions?
->>> It can be added later.
->>>    
->>
->> Will do.. I will also send patches dropping dmas from dts that currently
->> have them populated.
->>
-> hmm, we have
-> - DO attempt to make bindings complete even if a driver doesn't support some
->    features. For example, if a device has an interrupt, then include the
->    'interrupts' property even if the driver is only polled mode.
-> 
-> in Documentation/devicetree/bindings/writing-bindings.rst
-> Shouln't the dma stay there if the hardware supports it? Devicetree
-> should describe the hardware not the driver if I understood things
-> right.
+> +                       - "pipe_ext"    PIPE output clock
 
-True.  But my above statement is also valid - it introduces confusion from user point of view.
-More over, 'dmas' is not part of original binding and were randomly added to some SoCs.
-And it's much more easy to extend binding (in the future) then remove something after.
+Is pipe output different from pipe?
 
-I leave it to Vignesh, Tony to decide.
-
--- 
-Best regards,
-grygorii
+> +                       - "ref"         REFERENCE clock
+> +
+>
