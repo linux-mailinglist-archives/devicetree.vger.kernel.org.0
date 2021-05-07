@@ -2,408 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F86E376376
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 12:18:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87A383763C9
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 12:30:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236188AbhEGKTM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 06:19:12 -0400
-Received: from phobos.denx.de ([85.214.62.61]:49402 "EHLO phobos.denx.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235971AbhEGKTA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 7 May 2021 06:19:00 -0400
-Received: from jawa (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: lukma@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 4641282D66;
-        Fri,  7 May 2021 12:17:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1620382677;
-        bh=fy5fNQHAyrbhRaml4EggzfvWF0fZO1SHJZeqiw5nlOM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=jlDwRaH3Ulgxcq+SbUm4OUL026xNCkI6lF9tCwzKqJwoobIRNb29YPUp8zteewDZa
-         3tSgFriHFgUWueb8flU0tnCSQqgTEVuVz1H88tOa3iYLIviuzgbxP1d/lgfGmY4wq6
-         lEARrfCDqz/vmV9+FAjp72lhsd8gHfZgwejbkplZdmaXuvbgL329m4UquXcedVWkZ1
-         pG5HyhV52YIbS3m1y5x2JwwV80ZnwBOmHX3JsBtgNwXwVblwASL1nGFdXCrtPYgbz/
-         uKvEWWpLK+in6DzGMlsnDYgr8S7but17ZVFWP6rhvscFl3i5XGgnRpEhYSin1HK2R0
-         dll18W/wfUOxg==
-Date:   Fri, 7 May 2021 12:17:56 +0200
-From:   Lukasz Majewski <lukma@denx.de>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     devicetree@vger.kernel.org, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Lukasz Majewski <l.majewski@majess.pl>
-Subject: Re: [PATCH 2/2] ARM: dts: imx28: Add DTS description of imx28 based
- XEA board
-Message-ID: <20210507121756.0c82c958@jawa>
-In-Reply-To: <20210426121605.31651-1-lukma@denx.de>
-References: <20210426121605.31651-1-lukma@denx.de>
-Organization: denx.de
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S236913AbhEGKby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 06:31:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60262 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234674AbhEGKbx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 06:31:53 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06463C061763
+        for <devicetree@vger.kernel.org>; Fri,  7 May 2021 03:30:53 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id j10so12033853lfb.12
+        for <devicetree@vger.kernel.org>; Fri, 07 May 2021 03:30:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=beBOO2e9LBlqWNSPs81mS1QwysR1XMwYJL5ldmakWMs=;
+        b=PEmhT5Tkxv0eG+GMGVbBbXkRsRqXoYrMomfqdRUXs/KIg+R8vK4ic7o67o9NTbz71M
+         viPhB8pMffqmc2dLVHH8WtgAZIh4eTm7X3EM0d6p6VzXN2TvrGkWjRJ/CoXZFCqKx6ba
+         JmK1vpchZvPugJ4Uz2nBfkCHUF/nAoHxhq/vxNziYJvrLgi3JGA8Xm8NNeZlkVePeyDq
+         XhdzcIepzuWQTGzAgZC2MImPDniZ9ZBpPqaFhiI86AwIAlBH5oZ4nKOoxY5OTdh9YWsC
+         lEKCCPSNXfj3MyJox6gbqFOvLox+8XvrjOP/hy5bWS+uKyf3xOD/w0wDj6/OhyHEQvAW
+         LrSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=beBOO2e9LBlqWNSPs81mS1QwysR1XMwYJL5ldmakWMs=;
+        b=tORqU0qjXYohuyUf/vnSkpYVBuJfZobH+4Y26IhBlsqz2vCKYt0DEtV6f3Tf93V05A
+         1p7uP+j2oh0RrbDBT88X4ihGjQwig48hZfwukrUevYAN3iAofsIuQSxzNTgOS/+n7Q1k
+         WBZgjaA7cOU8ceDcR0YSkJhQ0/5qS4m75deecZs+EOrG967k3Tn8y84b946LorGtjCsx
+         3dLg5Xkq+dTLhkKChwI/7sKJDMs/49BAky/IiwGleRQBYSNuGLBNTsObZbld6cjWRGx3
+         6si1Y4JRiGC7VsPIoaEV185cOcwgxXK0u2yjrZLK4hTjdvuhJbYCeolivuEDjhR4txzn
+         HN8g==
+X-Gm-Message-State: AOAM531gj7gSFZM+sFe2e4v1VTvelM2UrOkkaCrELal10gkWepgN/j6Q
+        hpuMhpFKm7yFVKrLDVbphh1b1g==
+X-Google-Smtp-Source: ABdhPJzMXVr8DWSF49SHfZIKi921rzt1EEUZaPyY1nRRkewBrLnNBJeYvBkJ4pYhNgL4SygU3p6ztA==
+X-Received: by 2002:ac2:58e7:: with SMTP id v7mr6167405lfo.505.1620383451518;
+        Fri, 07 May 2021 03:30:51 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id y7sm1314218lfb.62.2021.05.07.03.30.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 May 2021 03:30:51 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Bjorn Helgaas <bhelgaas@google.com>
+Cc:     linux-pci@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Imre Kaloz <kaloz@openwrt.org>,
+        Krzysztof Halasa <khalasa@piap.pl>,
+        Zoltan HERPAI <wigyori@uid0.hu>,
+        Raylynn Knight <rayknight@me.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 3/4 v2] PCI: ixp4xx: Add device tree bindings for IXP4xx
+Date:   Fri,  7 May 2021 12:30:39 +0200
+Message-Id: <20210507103040.132562-4-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210507103040.132562-1-linus.walleij@linaro.org>
+References: <20210507103040.132562-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- boundary="Sig_/qm3muKl1joiZUf=i_2T2KM="; protocol="application/pgp-signature"
-X-Virus-Scanned: clamav-milter 0.102.4 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---Sig_/qm3muKl1joiZUf=i_2T2KM=
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+This adds device tree bindings for the Intel IXP4xx
+PCI controller which can be used as both host and
+option.
 
-On Mon, 26 Apr 2021 14:16:05 +0200
-Lukasz Majewski <lukma@denx.de> wrote:
+Cc: devicetree@vger.kernel.org
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Imre Kaloz <kaloz@openwrt.org>
+Cc: Krzysztof Halasa <khalasa@piap.pl>
+Cc: Zoltan HERPAI <wigyori@uid0.hu>
+Cc: Raylynn Knight <rayknight@me.com>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v1->v2:
+- Add the three controller interrupts to the binding.
 
-> This patch adds DTS definition of the imx278 based XEA board.
->=20
-> Signed-off-by: Lukasz Majewski <lukma@denx.de>
->=20
-> ---
-> Changes for v2:
-> - Fix 'memory' node and remove regulators subnode
-> - Rename 'flash0: s25fl256s0@0' to flash@0
-> - Add proper compatible for XEA board
-> ---
->  arch/arm/boot/dts/Makefile       |   3 +-
->  arch/arm/boot/dts/imx28-lwe.dtsi | 174
-> +++++++++++++++++++++++++++++++ arch/arm/boot/dts/imx28-xea.dts  |
-> 99 ++++++++++++++++++ 3 files changed, 275 insertions(+), 1
-> deletion(-) create mode 100644 arch/arm/boot/dts/imx28-lwe.dtsi
->  create mode 100644 arch/arm/boot/dts/imx28-xea.dts
->=20
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 8e5d4ab4e75e..d2398a090e4d 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -721,7 +721,8 @@ dtb-$(CONFIG_ARCH_MXS) +=3D \
->  	imx28-m28evk.dtb \
->  	imx28-sps1.dtb \
->  	imx28-ts4600.dtb \
-> -	imx28-tx28.dtb
-> +	imx28-tx28.dtb \
-> +	imx28-xea.dtb
->  dtb-$(CONFIG_ARCH_NOMADIK) +=3D \
->  	ste-nomadik-s8815.dtb \
->  	ste-nomadik-nhk15.dtb
-> diff --git a/arch/arm/boot/dts/imx28-lwe.dtsi
-> b/arch/arm/boot/dts/imx28-lwe.dtsi new file mode 100644
-> index 000000000000..2d14a8ae91f8
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/imx28-lwe.dtsi
-> @@ -0,0 +1,174 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-> +/*
-> + * Copyright 2021
-> + * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
-> + */
-> +
-> +/dts-v1/;
-> +#include "imx28.dtsi"
-> +
-> +/ {
-> +	aliases {
-> +		spi2 =3D &ssp3;
-> +	};
-> +
-> +	chosen {
-> +		bootargs =3D "root=3D/dev/mmcblk0p2 rootfstype=3Dext4 ro
-> rootwait console=3DttyAMA0,115200 panic=3D1";
-> +	};
-> +
-> +	memory@0x40000000 {
-> +		reg =3D <0x40000000 0x08000000>;
-> +	};
-> +
-> +	reg_3v3: regulator-reg-3v3 {
-> +		compatible =3D "regulator-fixed";
-> +		regulator-name =3D "3V3";
-> +		regulator-min-microvolt =3D <3300000>;
-> +		regulator-max-microvolt =3D <3300000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reg_usb_5v: regulator-reg-usb-5v {
-> +		compatible =3D "regulator-fixed";
-> +		regulator-name =3D "usb_vbus";
-> +		regulator-min-microvolt =3D <5000000>;
-> +		regulator-max-microvolt =3D <5000000>;
-> +		enable-active-high;
-> +	};
-> +
-> +	reg_fec_3v3: regulator-reg-fec-3v3 {
-> +		compatible =3D "regulator-fixed";
-> +		regulator-name =3D "fec-phy";
-> +		regulator-min-microvolt =3D <3300000>;
-> +		regulator-max-microvolt =3D <3300000>;
-> +		enable-active-high;
-> +		regulator-boot-on;
-> +	};
-> +};
-> +
-> +&duart {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&duart_pins_a>;
-> +	status =3D "okay";
-> +};
-> +
-> +&i2c0 {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&i2c0_pins_a>;
-> +	status =3D "okay";
-> +};
-> +
-> +&saif0 {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&saif0_pins_a>;
-> +	#sound-dai-cells =3D <0>;
-> +	assigned-clocks =3D <&clks 53>;
-> +	assigned-clock-rates =3D <12000000>;
-> +	status =3D "okay";
-> +};
-> +
-> +&saif1 {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&saif1_pins_a>;
-> +	fsl,saif-master =3D <&saif0>;
-> +	#sound-dai-cells =3D <0>;
-> +	status =3D "okay";
-> +};
-> +
-> +&spi3_pins_a {
-> +	fsl,pinmux-ids =3D <
-> +		MX28_PAD_AUART2_RX__SSP3_D4
-> +		MX28_PAD_AUART2_TX__SSP3_D5
-> +		MX28_PAD_SSP3_SCK__SSP3_SCK
-> +		MX28_PAD_SSP3_MOSI__SSP3_CMD
-> +		MX28_PAD_SSP3_MISO__SSP3_D0
-> +		MX28_PAD_SSP3_SS0__SSP3_D3
-> +		MX28_PAD_AUART2_TX__GPIO_3_9
-> +	>;
-> +};
-> +
-> +&ssp3 {
-> +	compatible =3D "fsl,imx28-spi";
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&spi3_pins_a>;
-> +	status =3D "okay";
-> +
-> +	flash@0 {
-> +		compatible =3D "jedec,spi-nor";
-> +		spi-max-frequency =3D <40000000>;
-> +		reg =3D <0>;
-> +
-> +		partitions {
-> +			compatible =3D "fixed-partitions";
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <1>;
-> +
-> +			partition@0 {
-> +				label =3D "u-boot";
-> +				reg =3D <0 0x80000>;
-> +				read-only;
-> +			};
-> +
-> +			partition@80000 {
-> +				label =3D "env0";
-> +				reg =3D <0x80000 0x10000>;
-> +			};
-> +
-> +			partition@90000 {
-> +				label =3D "env1";
-> +				reg =3D <0x90000 0x10000>;
-> +			};
-> +
-> +			partition@100000 {
-> +				label =3D "kernel";
-> +				reg =3D <0x100000 0x400000>;
-> +			};
-> +
-> +			partition@500000 {
-> +				label =3D "swupdate";
-> +				reg =3D <0x500000 0x800000>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&ssp2 {
-> +	compatible =3D "fsl,imx28-spi";
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&spi2_pins_a>;
-> +	status =3D "okay";
-> +};
-> +
-> +&ssp0 {
-> +	compatible =3D "fsl,imx28-mmc";
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&mmc0_8bit_pins_a>;
-> +	bus-width =3D <8>;
-> +	vmmc-supply =3D <&reg_3v3>;
-> +	non-removable;
-> +	status =3D "okay";
-> +};
-> +
-> +&usb0 {
-> +	vbus-supply =3D <&reg_usb_5v>;
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&usb0_pins_b>, <&usb0_id_pins_a>;
-> +	dr_mode =3D "host";
-> +	status =3D "okay";
-> +};
-> +
-> +&usbphy0 {
-> +	status =3D "okay";
-> +};
-> +
-> +&usb1 {
-> +	vbus-supply =3D <&reg_usb_5v>;
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&usb1_pins_b>;
-> +	dr_mode =3D "host";
-> +	status =3D "okay";
-> +};
-> +
-> +&usbphy1 {
-> +	status =3D "okay";
-> +};
-> diff --git a/arch/arm/boot/dts/imx28-xea.dts
-> b/arch/arm/boot/dts/imx28-xea.dts new file mode 100644
-> index 000000000000..a400c108f66a
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/imx28-xea.dts
-> @@ -0,0 +1,99 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-> +/*
-> + * Copyright 2021
-> + * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
-> + */
-> +
-> +/dts-v1/;
-> +#include "imx28-lwe.dtsi"
-> +
-> +/ {
-> +	compatible =3D "lwn,imx28-xea", "fsl,imx28";
-> +};
-> +
-> +&can0 {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&can1_pins_a>;
-> +	status =3D "okay";
-> +};
-> +
-> +&i2c1 {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&i2c1_pins_b>;
-> +	status =3D "okay";
-> +};
-> +
-> +&pinctrl {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&hog_pins_a &hog_pins_tiva>;
-> +
-> +	hog_pins_a: hog@0 {
-> +		reg =3D <0>;
-> +		fsl,pinmux-ids =3D <
-> +			MX28_PAD_GPMI_D00__GPIO_0_0
-> +			MX28_PAD_GPMI_D02__GPIO_0_2
-> +			MX28_PAD_GPMI_D05__GPIO_0_5
-> +			MX28_PAD_GPMI_CE1N__GPIO_0_17
-> +			MX28_PAD_GPMI_RDY0__GPIO_0_20
-> +			MX28_PAD_GPMI_RDY1__GPIO_0_21
-> +			MX28_PAD_GPMI_RDY2__GPIO_0_22
-> +			MX28_PAD_GPMI_RDN__GPIO_0_24
-> +			MX28_PAD_GPMI_CLE__GPIO_0_27
-> +			MX28_PAD_LCD_VSYNC__GPIO_1_28
-> +			MX28_PAD_SSP1_SCK__GPIO_2_12
-> +			MX28_PAD_SSP1_CMD__GPIO_2_13
-> +			MX28_PAD_SSP2_SS1__GPIO_2_20
-> +			MX28_PAD_SSP2_SS2__GPIO_2_21
-> +			MX28_PAD_LCD_D00__GPIO_1_0
-> +			MX28_PAD_LCD_D01__GPIO_1_1
-> +			MX28_PAD_LCD_D02__GPIO_1_2
-> +			MX28_PAD_LCD_D03__GPIO_1_3
-> +			MX28_PAD_LCD_D04__GPIO_1_4
-> +			MX28_PAD_LCD_D05__GPIO_1_5
-> +			MX28_PAD_LCD_D06__GPIO_1_6
-> +		>;
-> +		fsl,drive-strength =3D <MXS_DRIVE_4mA>;
-> +		fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
-> +		fsl,pull-up =3D <MXS_PULL_DISABLE>;
-> +	};
-> +
-> +	hog_pins_tiva: hog@1 {
-> +		reg =3D <1>;
-> +		fsl,pinmux-ids =3D <
-> +			MX28_PAD_GPMI_RDY3__GPIO_0_23
-> +			MX28_PAD_GPMI_WRN__GPIO_0_25
-> +		>;
-> +		fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
-> +		fsl,pull-up =3D <MXS_PULL_DISABLE>;
-> +	};
-> +
-> +	hog_pins_coding: hog@2 {
-> +		reg =3D <2>;
-> +		fsl,pinmux-ids =3D <
-> +			MX28_PAD_GPMI_D01__GPIO_0_1
-> +			MX28_PAD_GPMI_D03__GPIO_0_3
-> +			MX28_PAD_GPMI_D04__GPIO_0_4
-> +			MX28_PAD_GPMI_D06__GPIO_0_6
-> +			MX28_PAD_GPMI_D07__GPIO_0_7
-> +		>;
-> +		fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
-> +		fsl,pull-up =3D <MXS_PULL_DISABLE>;
-> +	};
-> +};
-> +
-> +&reg_fec_3v3 {
-> +	gpio =3D <&gpio0 0 0>;
-> +};
-> +
-> +&reg_usb_5v {
-> +	gpio =3D <&gpio0 2 0>;
-> +};
-> +
-> +&spi2_pins_a {
-> +	fsl,pinmux-ids =3D <
-> +		MX28_PAD_SSP2_SCK__SSP2_SCK
-> +		MX28_PAD_SSP2_MOSI__SSP2_CMD
-> +		MX28_PAD_SSP2_MISO__SSP2_D0
-> +		MX28_PAD_SSP2_SS0__GPIO_2_19
-> +	>;
-> +};
+PCI maintainers: mainly looking for a review and ACK (if
+you care about DT bindings) the patch will be merged
+through ARM SoC.
+---
+ .../bindings/pci/intel,ixp4xx-pci.yaml        | 102 ++++++++++++++++++
+ 1 file changed, 102 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml
 
-Gentle ping on this patch.
+diff --git a/Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml b/Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml
+new file mode 100644
+index 000000000000..12c9be2ac118
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml
+@@ -0,0 +1,102 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pci/intel,ixp4xx-pci.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Intel IXP4xx PCI controller
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: PCI host controller found in the Intel IXP4xx SoC series.
++
++allOf:
++  - $ref: /schemas/pci/pci-bus.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - intel,ixp42x-pci
++          - intel,ixp43x-pci
++    description: The two supported variants are ixp42x and ixp43x,
++      though more variants may exist.
++
++  reg:
++    items:
++      - description: IXP4xx-specific registers
++
++  interrupts:
++    items:
++      - description: Main PCI interrupt
++      - description: PCI DMA interrupt 1
++      - description: PCI DMA interrupt 2
++
++  ranges:
++    maxItems: 2
++    description: Typically one memory range of 64MB and one IO
++      space range of 64KB.
++
++  dma-ranges:
++    maxItems: 1
++    description: The DMA range tells the PCI host which addresses
++      the RAM is at. It can map only 64MB so if the RAM is bigger
++      than 64MB the DMA access has to be restricted to these
++      addresses.
++
++  "#interrupt-cells": true
++
++  interrupt-map: true
++
++  interrupt-map-mask:
++    items:
++      - const: 0xf800
++      - const: 0
++      - const: 0
++      - const: 7
++
++required:
++  - compatible
++  - reg
++  - ranges
++  - dma-ranges
++  - "#interrupt-cells"
++  - interrupt-map
++  - interrupt-map-mask
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    pci@c0000000 {
++      compatible = "intel,ixp43x-pci";
++      reg = <0xc0000000 0x1000>;
++      #address-cells = <3>;
++      #size-cells = <2>;
++      device_type = "pci";
++      bus-range = <0x00 0xff>;
++      status = "disabled";
++
++      ranges =
++        <0x02000000 0 0x48000000 0x48000000 0 0x04000000>,
++        <0x01000000 0 0x00000000 0x4c000000 0 0x00010000>;
++      dma-ranges =
++        <0x02000000 0 0x00000000 0x00000000 0 0x04000000>;
++
++      #interrupt-cells = <1>;
++      interrupt-map-mask = <0xf800 0 0 7>;
++      interrupt-map =
++        <0x0800 0 0 1 &gpio0 11 3>, /* INT A on slot 1 is irq 11 */
++        <0x0800 0 0 2 &gpio0 10 3>, /* INT B on slot 1 is irq 10 */
++        <0x0800 0 0 3 &gpio0 9  3>, /* INT C on slot 1 is irq 9 */
++        <0x0800 0 0 4 &gpio0 8  3>, /* INT D on slot 1 is irq 8 */
++        <0x1000 0 0 1 &gpio0 10 3>, /* INT A on slot 2 is irq 10 */
++        <0x1000 0 0 2 &gpio0 9  3>, /* INT B on slot 2 is irq 9 */
++        <0x1000 0 0 3 &gpio0 8  3>, /* INT C on slot 2 is irq 8 */
++        <0x1000 0 0 4 &gpio0 11 3>, /* INT D on slot 2 is irq 11 */
++        <0x1800 0 0 1 &gpio0 9  3>, /* INT A on slot 3 is irq 9 */
++        <0x1800 0 0 2 &gpio0 8  3>, /* INT B on slot 3 is irq 8 */
++        <0x1800 0 0 3 &gpio0 11 3>, /* INT C on slot 3 is irq 11 */
++        <0x1800 0 0 4 &gpio0 10 3>; /* INT D on slot 3 is irq 10 */
++    };
+-- 
+2.30.2
 
-Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/qm3muKl1joiZUf=i_2T2KM=
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmCVE9QACgkQAR8vZIA0
-zr301wf+KIXOhwk3feyIdIncj2gb6KzY4kUCjiaVlaJZzYQ+PTCmMdYAQfQ86Y8O
-cEpMTSJIpB4uRBtvaOXQ9qd68hi4yQ7Px5aML/oSGAQ4Qa8kOFurvCh+s+JoP4ND
-ExOcVnVMi1HmIJheEwEJdKPeEL8x0GZjQzis/e4CvQdTFDbAhAVIncZb1IKAAT2y
-7XMci/l0Ljq8DWTcAw39SlSCuH930xc8Hwqa/qEEvk7rjOYJPjSNBPKgHyPCEdbw
-t2PVWehZX8DghKU/iw6tI+/nv/gWJ9Ob6doa6h32AtNR+9VFU3RVVkdeiid9FzKR
-QIZff8ulbl/XTGzLrIzGeLaUqgiW9Q==
-=MNvs
------END PGP SIGNATURE-----
-
---Sig_/qm3muKl1joiZUf=i_2T2KM=--
