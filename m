@@ -2,100 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0735C376415
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 12:52:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15AAC37647C
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 13:30:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235720AbhEGKxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 06:53:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36664 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235626AbhEGKxA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 06:53:00 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A4A8C061761
-        for <devicetree@vger.kernel.org>; Fri,  7 May 2021 03:51:51 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id i9so5583554lfe.13
-        for <devicetree@vger.kernel.org>; Fri, 07 May 2021 03:51:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=F33BGz4iH8dPjpEmF0N7tnuxayq0qldcPL97YnVagyw=;
-        b=RW/8+dN/lpgFSZ0df5MNc6Ki5DdxPUebMDu4kK08MUuv4ZBMgn5O8CE/YrnA80N/8s
-         45V4fPucN7eRvI+L50Th5xeDl+tyFXdyOnolupEH5Dm3j6KN2E0T/YbhCbFmf3ggqnJc
-         uFkGqxpYaDIbIvmOmaUzIDHY/QVK0BX/qEbFIr3KtWFSt4JTzpdyOKSRFozudL1LIxhv
-         wDULJGZVK9BEkc3y5wVQawO6Dl1IN1sxHz8xk8YjrplLAkzhkUig4p2M79yY8OZNz54X
-         OrSffwbh4RRupTQnpWIAc65q2iK2wIxfXIV45cV7/OW/VgvqrZ0GxYp+tJ+srqSg6UDA
-         tq8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=F33BGz4iH8dPjpEmF0N7tnuxayq0qldcPL97YnVagyw=;
-        b=uOYboA28iDa7RXwVQvsV508hCKoFGbRysNYS3mh0/lh24R+uQcMET0NtaaWTWh+8hu
-         r0KDUMBqNrvwuyxjD/T0EioCM3QJJiL5BdTD7g0LjpTMfjgneLJfqEOONPmpV4j2tsIF
-         azVgwHIZ7DvD0N9mOMkn4eMO/WmJU3C2AOEi+V3OAGqFfjObE++ZEwrruH/KdaYwaf3g
-         7tBJJcftR/VSU4aw5BtJN8PDsUxgRscaESIUE1xa6MrtXdvrBVzTq/uSwkpBcBWpbcDI
-         TX4sClk+zJqxHsjeLmTbNQdhyk1tFFHCdJO+JHgm8PuCwOYiSyrXeJcly2j8sNoZKlNq
-         zoBQ==
-X-Gm-Message-State: AOAM531RRqch0ZQNmDRqfpU+x4piB30Fsi654faQB1/Bu1zglDgzZm8X
-        z9JwdYiS8L4kupw3DFZlecdgAHh2WBX2G8sPkLEF1Q==
-X-Google-Smtp-Source: ABdhPJzx7ls/vpMj3eUwiEfOSMkqTyuxko9P8MpdbiNR+6cpzIryOVSHbQTMGPND9R4/vV0DqWX1U8fhYfBfJ4XpTqg=
-X-Received: by 2002:a19:a418:: with SMTP id q24mr5846648lfc.649.1620384709817;
- Fri, 07 May 2021 03:51:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210503185228.1518131-1-clabbe@baylibre.com> <20210506203435.GA1432800@bjorn-Precision-5520>
-In-Reply-To: <20210506203435.GA1432800@bjorn-Precision-5520>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 7 May 2021 12:51:39 +0200
-Message-ID: <CACRpkdbQvvcyrXP9fFwvppDRiJOxxESRVkodqSKc7CoO3Bm00Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pci: convert faraday,ftpci100 to yaml
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     Corentin Labbe <clabbe@baylibre.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        id S233369AbhEGLa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 07:30:59 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:52890 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229612AbhEGLa7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 07:30:59 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id 11BD61F43F80
+Received: by earth.universe (Postfix, from userid 1000)
+        id 44EFD3C0C96; Fri,  7 May 2021 13:29:56 +0200 (CEST)
+Date:   Fri, 7 May 2021 13:29:56 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     skakit@codeaurora.org
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        David Collins <collinsd@codeaurora.org>, kgunda@codeaurora.org,
+        Vinod Koul <vkoul@kernel.org>,
+        Courtney Cavin <courtney.cavin@sonymobile.com>,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH V2 3/4] dt-bindings: power: reset: qcom-pon: Convert qcom
+ PON binding to yaml
+Message-ID: <20210507112956.3ibzuinvzd6d5rku@earth.universe>
+References: <1617881469-31965-1-git-send-email-skakit@codeaurora.org>
+ <1617881469-31965-4-git-send-email-skakit@codeaurora.org>
+ <20210408130001.k3qbq3vvwkiyykzv@earth.universe>
+ <0cb9b3503000ac7206f4a3ef5fd16c17@codeaurora.org>
+ <322cbdbb022fec3f43c1cbe13c532dd3@codeaurora.org>
+ <20210427083721.heavcdadeb4ajkk2@earth.universe>
+ <a190e414c53af3ea094548f5011c3a04@codeaurora.org>
+ <be3573974d76d7e464048b34854416ad@codeaurora.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ix4wlrl34amaeftv"
+Content-Disposition: inline
+In-Reply-To: <be3573974d76d7e464048b34854416ad@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 6, 2021 at 10:34 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
 
-> I think it's nicer when content changes are in a separate patch from
-> format conversion patches.  Otherwise it's really hard to see the
-> content changes in the patch.
->
-> Maybe a preliminary patch could fix whatever is actually broken?
->
-> Rob suggested a bunch of things that could be dropped.  Maybe those
-> could be removed in a second preliminary patch before the conversion?
-> Or maybe the removals are only possible *because* of the conversion?
-> I'm not a yaml expert.
+--ix4wlrl34amaeftv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-A bit of taste is involved. The old .txt bindings are for processing
-by human brain power. Those lack regular syntax and strictness
-because brains are designed for evolved natural languages.
+Hi,
 
-The YAML on the other hand is a chomsky type-3 strict regular
-language and the .yaml file (and includes) defines this strict regular
-grammar and as such admits less mistakes. The upside is that
-it enforces some order.
+On Fri, May 07, 2021 at 03:15:55PM +0530, skakit@codeaurora.org wrote:
+> Seems like I have to make 'additionalProperties' as true in reboot-mode.yaml
+> I have checked other yaml binding docs where allOf is used, and they have
+> 'additionalProperties' as true in the file which is being referred. Please
+> let me know if this is not correct way to do it.
 
-In the process of moving to YAML we often discover a slew of
-mistakes and the initiative often comes with the ambition to add
-or modernize something.
+Yes, reboot-mode.yaml should have additionalProperties = true. I
+think Rob missed, that the binding is a generic one when he added
+it in f84e2c5c528d.
 
-In this case I wouldn't care with stepwise fixing because the
-platform is modernized by a handful of people who all know
-what is going on, so there is noone to confuse other than the
-subsystem maintainer and the result will end up in the same
-kernel release anyway.
+-- Sebastian
 
-Yours,
-Linus Walleij
+--ix4wlrl34amaeftv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmCVJKoACgkQ2O7X88g7
++pqZqg//bAl15lpGbh5wgVjf5oRwoIJT0FsA2CjTDNeaNO9xiVJhMfQBPWzqmAhB
+hKN6XC4DSemLD7BKsPgIWYTsJvNyQi7wEZKLO6G3+R6Q+bEp4Ry30Cf/heTXw76y
+41udUW+UvPXY1p/v36Xyhidirt4gPfIHTTKEyQ9WEHlDI+J4TjPrH9CaU3a8FwAc
+a5/73gv5OZn4tSLEfbK/VLC7OOMkGrv4zzm+GZeDfeAhv51psVGXUTp1g2UtI70j
+1IlxeMNUus/dSNHqPVUmUndKWhFRAcm4xpjzz3ArGOGYcAXjG5uZzc7hdl5x3APf
+Fj56H//aEn/ERAt0zVJMY+tmenq/XA3hBFZZ7Y9qewz96ep7QUkOSeYe2m5xm8pr
+5ChL1RuwsXdVomwpLKx6q975+9RZi7d+HtM4GymzBQ0CJaWekE2nDPhZKnZL6aoF
+/BS0Il/mVhHLVzhHel9tUGOU0JiyqvcaoZI/nKTqs7mLAFk+J0v1ya3djKo5/yFT
+/VlW892Rie5Prj+c8PUpCgNDBLzrBhdlsrfQZDCob81OaC6sn5KJiNnsZGXuux3n
+ZzIVQXWvsoBSU8vCKwh3hIfmfnKQfR02WdAP6TDac0TB6dOKgzz05oQ56sQ8+CSM
+rCE6/07o9NePc9lvoYdS6IFWLnIwLoix125kXkmVLYfOgQX4c8E=
+=szSx
+-----END PGP SIGNATURE-----
+
+--ix4wlrl34amaeftv--
