@@ -2,154 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6640376304
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 11:46:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0B0D376318
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 11:49:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236800AbhEGJri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 05:47:38 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:51588 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236798AbhEGJrh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 7 May 2021 05:47:37 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1620380798; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=NDnAzeydRGMYjrqIWykUo4zSO+l0CqzR1v62gJWLZJQ=;
- b=pPrU0aetmFY+anjuVOtWRuTG8V3k6KVkLkXnmjXqT5jjPXrrB3ycGEfTny1qacsnqE3+1QxS
- 07NiRNOWjrG5XTYwsJDCfjETkUE9OG0/kgxlm0M9DIfk2Yow6dgUTDEHq71L59MOFky5EC3F
- WXFVTLOy198B6oEjP43a1wGr/AE=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 60950c5455b14811b4ef03fc (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 07 May 2021 09:45:56
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 03C67C43147; Fri,  7 May 2021 09:45:56 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 48001C4338A;
-        Fri,  7 May 2021 09:45:55 +0000 (UTC)
+        id S235472AbhEGJug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 05:50:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50978 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235284AbhEGJug (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 05:50:36 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71951C061574
+        for <devicetree@vger.kernel.org>; Fri,  7 May 2021 02:49:36 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lex70-0004vV-9R; Fri, 07 May 2021 11:49:34 +0200
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lex6z-00086j-BS; Fri, 07 May 2021 11:49:33 +0200
+Date:   Fri, 7 May 2021 11:49:33 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: imx25-pinfunc: Fix gpio function name for pads
+ GPIO_[A-F]
+Message-ID: <20210507094933.dxtwm7vnr6ijqtup@pengutronix.de>
+References: <20200810084725.16112-1-u.kleine-koenig@pengutronix.de>
+ <20200822125611.GB30094@dragon>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 07 May 2021 15:15:55 +0530
-From:   skakit@codeaurora.org
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Collins <collinsd@codeaurora.org>, kgunda@codeaurora.org,
-        Vinod Koul <vkoul@kernel.org>,
-        Courtney Cavin <courtney.cavin@sonymobile.com>,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH V2 3/4] dt-bindings: power: reset: qcom-pon: Convert qcom
- PON binding to yaml
-In-Reply-To: <a190e414c53af3ea094548f5011c3a04@codeaurora.org>
-References: <1617881469-31965-1-git-send-email-skakit@codeaurora.org>
- <1617881469-31965-4-git-send-email-skakit@codeaurora.org>
- <20210408130001.k3qbq3vvwkiyykzv@earth.universe>
- <0cb9b3503000ac7206f4a3ef5fd16c17@codeaurora.org>
- <322cbdbb022fec3f43c1cbe13c532dd3@codeaurora.org>
- <20210427083721.heavcdadeb4ajkk2@earth.universe>
- <a190e414c53af3ea094548f5011c3a04@codeaurora.org>
-Message-ID: <be3573974d76d7e464048b34854416ad@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="zbspnzgd6pmnh75a"
+Content-Disposition: inline
+In-Reply-To: <20200822125611.GB30094@dragon>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-[...]
->>> > > > +
->>> > > > +required:
->>> > > > +  - compatible
->>> > > > +  - reg
->>> > > > +
->>> > > > +additionalProperties: true
->>> > >
->>> > > Instead of allowing arbitrary properties, only valid modes
->>> > > should be allowed. So drop additionalProperties and do this
->>> > > instead:
->>> > >
->>> > > allOf:
->>> > >   - $ref: reboot-mode.yaml#
->>> > >
->>> > > unevaluatedProperties: false
->>> > >
->>> >
->>> > Okay.
->>> 
->>> I am not able to use 'allOf' to refer reboot-mode.yaml as some of the
->>> properties do not match with reboot-mode.yaml properties. Can we use 
->>> oneOf
->>> like below?
->>> 
->>> oneOf:
->>>   - $ref: "reboot-mode.yaml#"
->>>   - $ref: "../../input/qcom,pm8941-pwrkey.yaml#"
->> 
->> That does not make sense.
->> 
->> The reference to reboot-mode.yaml is needed because it adds valid
->> mode properties, so that you can set unevaluatedProperties to false.
->> You need it at the root of the PON binding. They are not added to
->> the required list, so it's fine if not all of them are used. Also
->> there can (and usually is) more than one mode, so using oneOf is not
->> ok.
->> 
-> 
-> Okay, but I am getting errors like below during make dtbs_check.
-> 
-> kernel/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges-kirin.dt.yaml:
-> pon@800: 'compatible', 'pwrkey', 'reg' do not match any of the
-> regexes: '^mode-.*$', 'pinctrl-[0-9]+'
-> 
 
-Seems like I have to make 'additionalProperties' as true in 
-reboot-mode.yaml
-I have checked other yaml binding docs where allOf is used, and they 
-have 'additionalProperties' as true in the file which is being referred. 
-Please let me know if this is not correct way to do it.
+--zbspnzgd6pmnh75a
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> As suggested I have added
-> 
-> allOf:
->  - $ref: reboot-mode.yaml#
-> 
-> at the root of binding and also added unevaluatedProperties: false
-> 
->> Last but not least the pwrkey reference is needed to describe
->> specific nodes (resin, pwrkey) and should not appear at the root
->> of the PON binding.
->> 
->>> Also, If I drop additionalProperties I am getting below error.
->>> 
->>> kernel/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml:
->>> 'additionalProperties' is a required property
->> 
->> You need to add 'unevaluatedProperties: false'. It is basically
->> the same as 'additionalProperties: false', but also accepts
->> properties from the referenced bindings.
->> 
->> Thanks,
->> 
->> -- Sebastian
+Hello Shawn,
 
-Thanks,
-Satya Priya
+digging through my mailbox of unarchived mails I found this patch.
+
+On Sat, Aug 22, 2020 at 08:56:12PM +0800, Shawn Guo wrote:
+> On Mon, Aug 10, 2020 at 10:47:25AM +0200, Uwe Kleine-K=F6nig wrote:
+> > The pinfunc definitions used GPIO_A as function instead of GPIO_1_0 as
+>=20
+> Is this how i.MX25 RM names the function?
+
+The reference manual (Rev. 2; 01/2011) doesn't give a name. The relevant
+description for the GPIO_A pad reads:
+
+	MUX Mode Select Field. Select 1 of 7 iomux modes to be used for pad: GPIO_=
+A.
+
+	000: Select mux mode: ALT0 mux port: GPIO[0] of instance: gpio1.
+	...
+
+So I'd say: GPIO_A is the pad name (only) and the function is better
+named GPIO_1_0.
+
+Best regards
+Uwe
+=20
+> > done for all the other pins with GPIO functionality. Fix for consistenc=
+y.
+> >=20
+> > There are no mainline users that needs adaption.
+> >=20
+> > Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+> > ---
+> >  arch/arm/boot/dts/imx25-pinfunc.h | 12 ++++++------
+> >  1 file changed, 6 insertions(+), 6 deletions(-)
+> >=20
+> > diff --git a/arch/arm/boot/dts/imx25-pinfunc.h b/arch/arm/boot/dts/imx2=
+5-pinfunc.h
+> > index e14140e62b9b..55948e668410 100644
+> > --- a/arch/arm/boot/dts/imx25-pinfunc.h
+> > +++ b/arch/arm/boot/dts/imx25-pinfunc.h
+> > @@ -563,15 +563,15 @@
+> >  #define MX25_PAD_DE_B__DE_B			0x1f0 0x3ec 0x000 0x00 0x000
+> >  #define MX25_PAD_DE_B__GPIO_2_20		0x1f0 0x3ec 0x000 0x05 0x000
+> > =20
+> > -#define MX25_PAD_GPIO_A__GPIO_A			0x1f4 0x3f0 0x000 0x00 0x000
+> > +#define MX25_PAD_GPIO_A__GPIO_1_0		0x1f4 0x3f0 0x000 0x00 0x000
+> >  #define MX25_PAD_GPIO_A__CAN1_TX		0x1f4 0x3f0 0x000 0x06 0x000
+> >  #define MX25_PAD_GPIO_A__USBOTG_PWR		0x1f4 0x3f0 0x000 0x02 0x000
+> > [...]
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--zbspnzgd6pmnh75a
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmCVDSoACgkQwfwUeK3K
+7AkApwgAn12g8QeRMddUkSPCxBVJehN5K7AL4QSF174HdZQi/9QCMoyHe/ymylSt
+bJo1MRCpaH3/Y997Ryu7d8Y17974vQ6X16sF02c7tA17gOdJrnUTzawn1fg4xM35
+Y3HMZuNBPNWMfGeiEqgFnqiusIMtTEshOcPmx+nV9E+1xZLoLGqylWEu0cXDKMkp
+hVO6e8xtq0M9XiVVuZwXkNDNzxXpXgJsoqeMk24TkA4q6rLQCTcIJ9kzXqfOi4+V
+/S15rd1h/xAbZv29w0r0IGg3z5IUOc2TX3rZiEL21QvC2x5p8cf1Dhr8kuIncQxI
+V/2DP//rhCvh+KgzEgTOnitdKcVI3A==
+=d9GS
+-----END PGP SIGNATURE-----
+
+--zbspnzgd6pmnh75a--
