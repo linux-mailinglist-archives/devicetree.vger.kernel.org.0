@@ -2,82 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6F8E376C6D
-	for <lists+devicetree@lfdr.de>; Sat,  8 May 2021 00:19:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79694376C71
+	for <lists+devicetree@lfdr.de>; Sat,  8 May 2021 00:19:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229827AbhEGWUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 18:20:08 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:44970 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbhEGWUG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 18:20:06 -0400
-Received: by mail-ot1-f42.google.com with SMTP id r26-20020a056830121ab02902a5ff1c9b81so9197445otp.11;
-        Fri, 07 May 2021 15:19:05 -0700 (PDT)
+        id S229542AbhEGWUV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 18:20:21 -0400
+Received: from mail-oo1-f48.google.com ([209.85.161.48]:41896 "EHLO
+        mail-oo1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229470AbhEGWUV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 18:20:21 -0400
+Received: by mail-oo1-f48.google.com with SMTP id u48-20020a4a97330000b02901fa060b8066so2276731ooi.8;
+        Fri, 07 May 2021 15:19:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=fwadNbV8+KkUs8qFmkpXR6d10ttjnqJmvX8UqFQkIKY=;
-        b=MEF1wbeEDG5NtiFRz01zBckm4QDsjY8KUdbZXQ8w3glwb0OO6u43YHZRJKjBz0A18d
-         T6cQ7Qli5GfZMRt3Jg6ABj89X2qYadLFb2xh66b8raIEHQkrYj1z2RFVaqsZRWRNJTVR
-         d1oksobaHo9qxtV2z09w0DsxzCfIR2m0hQZQmf/ptHWKyQuuhnmc9+ePgPdkdYNYlmBY
-         dXHYLEzBETXDuT6mu6Ay86SxqX+vok3Yo1/eA6SqPgwhlBVgc/o/Rq0LBU8MwFZn/TfE
-         xYQANrqLLP8GalH4be9NoJJ88/UbF1QTGunZ7/RIbbwxa5GGPXODAcoeU2tMp97G3mIN
-         /KtQ==
-X-Gm-Message-State: AOAM531xGUmEIFofXUSsRZFJ5zX4sInK/vLs5EmH4fNhX+gd9uLeItkb
-        1H5j7/R+8o8BIJJ9rJsN/Q==
-X-Google-Smtp-Source: ABdhPJyCcbQmiRpJd2CqQnKjgYiRFopMfH1qEjpjVeMf60tjrz3OfcABPWEyfBk+W1ThZPQ79aHO6g==
-X-Received: by 2002:a9d:5c11:: with SMTP id o17mr10079687otk.178.1620425944844;
-        Fri, 07 May 2021 15:19:04 -0700 (PDT)
+        bh=m+Fa80kPuv08thHywW5q/sPvIDsbmQsI+c8g68W0K4w=;
+        b=DrkWbXNsjB1Y4tEonBudKZEhZHmn0uAsxjP/gkWWKW561oinurFGiT4dLLm/hfXqnI
+         i6wZt7gMljcXYJgH8wf/DYTF4WsUdIRCLAgfH8leVf9O1JhermXQolurdbFwKEAgOCXX
+         5lQFoxgY0AjyAWGyHoCCCVqO3vC2uxKIHfo/OlUk0BbG0GdO7i8nxpXFqh/919nME738
+         YP8HsaXWdTIw+J/OLLV0S5mikocEKaOJ02LsVrxrHvuNitXr6Hw5/F+1GOwGlB2udX4k
+         lHnB5p6ak3Pfq6I1GVfkM4Y7IuIKaIne81M18Vadr/rY9e8AAbApN1q0jYISEZxOuYIb
+         Hzag==
+X-Gm-Message-State: AOAM530FrchQ4hoTfKoCsJIGqwoeLsYspFxd7KvEsnXB+CgCjQumsH0G
+        TGpT5Fjk0uSUdqgOYuEqzsRmfOxWxQ==
+X-Google-Smtp-Source: ABdhPJyAjjAvm3vQ7DRCv2WJcUPznBLSvIKljuefgTKHxfMlOw5LENbClezJhS9JkdtNgwXLZoippg==
+X-Received: by 2002:a4a:55c9:: with SMTP id e192mr1475395oob.37.1620425960580;
+        Fri, 07 May 2021 15:19:20 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 186sm1322592oof.14.2021.05.07.15.19.03
+        by smtp.gmail.com with ESMTPSA id g16sm1317938oof.43.2021.05.07.15.19.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 May 2021 15:19:04 -0700 (PDT)
-Received: (nullmailer pid 2999408 invoked by uid 1000);
-        Fri, 07 May 2021 22:19:03 -0000
-Date:   Fri, 7 May 2021 17:19:03 -0500
+        Fri, 07 May 2021 15:19:19 -0700 (PDT)
+Received: (nullmailer pid 2999929 invoked by uid 1000);
+        Fri, 07 May 2021 22:19:18 -0000
+Date:   Fri, 7 May 2021 17:19:18 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>,
-        Ulrich Hecht <uli+renesas@fpond.eu>, netdev@vger.kernel.org,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        linux-can@vger.kernel.org, Marc Kleine-Budde <mkl@pengutronix.de>,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: can: rcar_canfd: Convert to json-schema
-Message-ID: <20210507221903.GA2999378@robh.at.kernel.org>
-References: <cover.1620323639.git.geert+renesas@glider.be>
- <905134c87f72e2d8e37c309e0ce28ecd7d4f3992.1620323639.git.geert+renesas@glider.be>
+To:     Yassine Oudjana <y.oudjana@protonmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-remoteproc@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: Re: [PATCH 2/3] dt-bindings: remoteproc: qcom: pas: Add power
+ domains for MSM8996
+Message-ID: <20210507221918.GA2999879@robh.at.kernel.org>
+References: <lRf8M7F6Qo9s7tlx6vuAWHThg26ls3u6SvQn1PLrAdI@cp4-web-038.plabs.ch>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <905134c87f72e2d8e37c309e0ce28ecd7d4f3992.1620323639.git.geert+renesas@glider.be>
+In-Reply-To: <lRf8M7F6Qo9s7tlx6vuAWHThg26ls3u6SvQn1PLrAdI@cp4-web-038.plabs.ch>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 06 May 2021 19:55:54 +0200, Geert Uytterhoeven wrote:
-> Convert the Renesas R-Car CAN FD Controller Device Tree binding
-> documentation to json-schema.
+On Thu, 06 May 2021 21:18:31 +0000, Yassine Oudjana wrote:
+> Add MSM8996 compatible strings to CX and SSC-CX power domains.
 > 
-> Document missing properties.
-> The CANFD clock needs to be configured for the maximum frequency on
-> R-Car V3M and V3H, too.
-> Update the example to match reality.
+> This depends on: "dt-bindings: remoteproc: qcom: pas: Convert binding to YAML"
+> https://lore.kernel.org/linux-arm-msm/20210505082200.32635-1-manivannan.sadhasivam@linaro.org/T/#u
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
 > ---
-> I have listed Fabrizio as the maintainer, as Ramesh is no longer
-> available.  Fabrizio: Please scream if this is inappropriate ;-)
-> ---
->  .../bindings/net/can/rcar_canfd.txt           | 107 ---------------
->  .../bindings/net/can/renesas,rcar-canfd.yaml  | 122 ++++++++++++++++++
->  2 files changed, 122 insertions(+), 107 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/net/can/rcar_canfd.txt
->  create mode 100644 Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+>  Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
