@@ -2,184 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36A87376B05
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 22:07:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3803376B14
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 22:14:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230040AbhEGUHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 16:07:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46254 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229925AbhEGUHd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 16:07:33 -0400
-Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA629C061574
-        for <devicetree@vger.kernel.org>; Fri,  7 May 2021 13:06:32 -0700 (PDT)
-Received: by mail-ot1-x32d.google.com with SMTP id 36-20020a9d0ba70000b02902e0a0a8fe36so2619191oth.8
-        for <devicetree@vger.kernel.org>; Fri, 07 May 2021 13:06:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=3WDj5ByVzdBRKZ0K+GqLVQS/4o6OnrEylJSHdlEZ+hM=;
-        b=mp4xUFLSixbyfl+Qu1nsppkLvWWnJ7zGe/JkzCWNj7B4l+wzPO6GlbBXQPEIUugYAq
-         7AFiF2v83Iv4sxboZBOaxsA3AuCTFQwXP2+2jUEgqnGXqAqlJ5BEDusKsWKtZeIBIKLb
-         UPgwaYD/JnaDCbieW2t14TnSL0lOPRSaYIrVU=
+        id S229956AbhEGUPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 16:15:15 -0400
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:41809 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229905AbhEGUPO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 16:15:14 -0400
+Received: by mail-oi1-f177.google.com with SMTP id c3so9744230oic.8;
+        Fri, 07 May 2021 13:14:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=3WDj5ByVzdBRKZ0K+GqLVQS/4o6OnrEylJSHdlEZ+hM=;
-        b=hmjB9A9f5hrQIcHJbdV4nyjvcL9O1y+763A9kee2d431dnLjcCj+aVs6N98S7D/uNg
-         hA3qfSjGsxLmSaXWisokCWEILHokZPYq7cppefUqvHbRik4iSf4PdjH47wGLHqG+SteZ
-         cAmA1mmTo1M1Q+btbFCOkWyhvHPon3tTMK21rcyucXI799G158ARWUlcTA01F061eQz7
-         uBinMcNtECIlQ2ZynmevglBwBoffwJeIjBoR7pHLqv/gvLVQ3zQB/hHf+FOz9pTFD54u
-         MARJSoM0C3WIHA6UH03RpCtSgrCWjhzmGOcgkT1MPcJAI+ubVtnUaOc1YrV/hNtfzsGW
-         2SCw==
-X-Gm-Message-State: AOAM533HTV1rsHuVnrE3IBcMmgtyQdG8w9rGQnRTH99L5Tpc+Gh5vSqE
-        0kcGEeIU5cZ8goNBs8t5CTATvc95EFqin6mBA4cdng==
-X-Google-Smtp-Source: ABdhPJzBoH4ZO59EfoG2eOJx+S58pk5bWUbPkAYehwWXAFkrILAtchBdOqaZJDQMbz4Lxtbw4xEwQHFXlTAY+ZOqXT8=
-X-Received: by 2002:a9d:425:: with SMTP id 34mr9741568otc.25.1620417992319;
- Fri, 07 May 2021 13:06:32 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 7 May 2021 13:06:31 -0700
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=RuKRz5YipTA+qaXZzryIVd/iPD3bqqhQhrBcu/BKRWU=;
+        b=Gt3NTRX+NWPITxUHCTju9RDx7xUuVa2eY2clmKmglqyIobhWtf0OWnBTsT3VJj/liz
+         pxkz5i7cLgclwBOkMiqyiYB/a/iP817it95ZABV3A6pTySH3y2HSz5mvQ3srQBLnoR1k
+         sd5ZNAYsxn1t5JKIaI/BRccHU+z92aMTC3B2J1avD/bhJt+wGuyR42nenaMJOYjyN5sd
+         IH8X7EPb9oekUTK5BgfoGJWeSSSlhkgiGntDVOe3mwZNN3MdSzpRoBC71NnAh/qTOYvF
+         zO/Dr/MJVO/5zEIVudzHK7h74ORaxKSW+Mu5zU00+wFKg2SlvfMerLAnJPTvy7EfRgdi
+         FdCg==
+X-Gm-Message-State: AOAM532ftdldsSrhoy5ag8vyOmhlaZ3RrYe2dY6twddBi/WMoSAZESfF
+        UTpjfgpwFLv38hShrD9DMQ==
+X-Google-Smtp-Source: ABdhPJxo7he1CKGZ6WzCSrlIAfGi8UIaFNh7zQASI1eJA/uVgN+OBMcKm8UJW1RXjhpn41z6Hes/ww==
+X-Received: by 2002:aca:cf82:: with SMTP id f124mr8538417oig.4.1620418452523;
+        Fri, 07 May 2021 13:14:12 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id z6sm229513oiz.39.2021.05.07.13.14.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 May 2021 13:14:11 -0700 (PDT)
+Received: (nullmailer pid 2803881 invoked by uid 1000);
+        Fri, 07 May 2021 20:14:10 -0000
+Date:   Fri, 7 May 2021 15:14:10 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Rajeshwari Ravindra Kamble <rkambl@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, sanm@codeaurora.org,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        amitk@kernel.org, devicetree@vger.kernel.org,
+        manafm@codeaurora.org, thara.gopinath@linaro.org,
+        daniel.lezcano@linaro.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, rui.zhang@intel.com
+Subject: Re: [PATCH V4 1/3] dt-bindings: thermal: tsens: Add compatible
+ string to TSENS binding for SC7280
+Message-ID: <20210507201410.GA2803830@robh.at.kernel.org>
+References: <1620367641-23383-1-git-send-email-rkambl@codeaurora.org>
+ <1620367641-23383-2-git-send-email-rkambl@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <1620382648-17395-3-git-send-email-pmaliset@codeaurora.org>
-References: <1620382648-17395-1-git-send-email-pmaliset@codeaurora.org> <1620382648-17395-3-git-send-email-pmaliset@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Fri, 7 May 2021 13:06:31 -0700
-Message-ID: <CAE-0n530bSPupOHVDzwpd_JVVN0tOfrAOm9dAt1ZGj7zaXOZ6A@mail.gmail.com>
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sc7280: Add PCIe and PHY related nodes
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Prasad Malisetty <pmaliset@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        mgautam@codeaurora.org, dianders@chromium.org, mka@chromium.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1620367641-23383-2-git-send-email-rkambl@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Prasad Malisetty (2021-05-07 03:17:27)
-> Add PCIe controller and PHY nodes for sc7280 SOC.
->
-> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+On Fri, 07 May 2021 11:37:19 +0530, Rajeshwari Ravindra Kamble wrote:
+> Adding compatible string in TSENS dt-bindings for SC7280.
+> 
+> Signed-off-by: Rajeshwari Ravindra Kamble <rkambl@codeaurora.org>
+> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
 > ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 138 +++++++++++++++++++++++++++++++++++
->  1 file changed, 138 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 2cc4785..a9f25fc1 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -12,6 +12,7 @@
->  #include <dt-bindings/power/qcom-aoss-qmp.h>
->  #include <dt-bindings/power/qcom-rpmpd.h>
->  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-> +#include <dt-bindings/gpio/gpio.h>
->
->  / {
->         interrupt-parent = <&intc>;
-> @@ -316,6 +317,118 @@
->                         };
->                 };
->
-[...]
-> +
-> +               pcie1_phy: phy@1c0e000 {
-> +                       compatible = "qcom,sm8250-qmp-gen3x2-pcie-phy";
-> +                       reg = <0 0x01c0e000 0 0x1c0>;
-> +                       #address-cells = <2>;
-> +                       #size-cells = <2>;
-> +                       ranges;
-> +                       clocks = <&gcc GCC_PCIE_1_AUX_CLK>,
-> +                                <&gcc GCC_PCIE_1_CFG_AHB_CLK>,
-> +                                <&gcc GCC_PCIE_CLKREF_EN>,
-> +                                <&gcc GCC_PCIE1_PHY_RCHNG_CLK>;
-> +                       clock-names = "aux", "cfg_ahb", "ref", "refgen";
-> +
-> +                       resets = <&gcc GCC_PCIE_1_PHY_BCR>;
-> +                       reset-names = "phy";
-> +
-> +                       assigned-clocks = <&gcc GCC_PCIE1_PHY_RCHNG_CLK>;
-> +                       assigned-clock-rates = <100000000>;
-> +
-> +                       status = "disabled";
+>  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-I think the style is to put status disabled close to the compatible?
-
-> +
-> +                       pcie1_lane: lanes@1c0e200 {
-> +                               reg = <0 0x1c0e200 0 0x170>, /* tx0 */
-
-Please pad reg addresses to 8 characters.
-
-> +                                     <0 0x1c0e400 0 0x200>, /* rx0 */
-> +                                     <0 0x1c0ea00 0 0x1f0>, /* pcs */
-> +                                     <0 0x1c0e600 0 0x170>, /* tx1 */
-> +                                     <0 0x1c0e800 0 0x200>, /* rx1 */
-> +                                     <0 0x1c0ee00 0 0xf4>; /* "pcs_com" same as pcs_misc? */
-
-Is this a TODO? I'd prefer all the comments on the reg properties to be
-removed.
-
-> +                               clocks = <&rpmhcc RPMH_CXO_CLK>;
-> +                               clock-names = "pipe0";
-> +
-> +                               #phy-cells = <0>;
-> +                               #clock-cells = <1>;
-> +                               clock-output-names = "pcie_1_pipe_clk";
-> +                       };
-> +               };
-> +
->                 stm@6002000 {
->                         compatible = "arm,coresight-stm", "arm,primecell";
->                         reg = <0 0x06002000 0 0x1000>,
-> @@ -871,6 +984,31 @@
->                                 pins = "gpio46", "gpio47";
->                                 function = "qup13";
->                         };
-> +
-> +                       pcie1_default_state: pcie1-default {
-> +                               clkreq {
-> +                                       pins = "gpio79";
-> +                                       function = "pcie1_clkreqn";
-> +                                       bias-pull-up;
-
-Move this bias-pull-up to the idp file?
-
-> +                               };
-> +
-> +                               reset-n {
-> +                                       pins = "gpio2";
-> +                                       function = "gpio";
-> +
-> +                                       drive-strength = <16>;
-> +                                       output-low;
-> +                                       bias-disable;
-> +                               };
-> +
-> +                               wake-n {
-> +                                       pins = "gpio3";
-> +                                       function = "gpio";
-> +
-> +                                       drive-strength = <2>;
-> +                                       bias-pull-up;
-> +                               };
-
-These last two nodes with the pull-up and drive-strength settings should
-be in the board files, like the idp one, instead of here in the SoC
-file. That way board designers can take the SoC and connect the pcie to
-an external device using these pins and set the configuration they want
-on these pins, or choose not to connect them to the SoC at all and use
-those pins for something else.
-
-In addition, it looks like the reset could be a reset-gpios property
-instead of an output-low config.
-
-> +                       };
->                 };
->
+Acked-by: Rob Herring <robh@kernel.org>
