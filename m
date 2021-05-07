@@ -2,349 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76697375FB8
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 07:35:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD1B0376002
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 08:02:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229650AbhEGFgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 01:36:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50214 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229666AbhEGFgR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 01:36:17 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACF25C061574;
-        Thu,  6 May 2021 22:35:05 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id t18so7829695wry.1;
-        Thu, 06 May 2021 22:35:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Jz/TlbprL0h8nikAm0l4AeI/5/NdOVeovwtsF+UVjsg=;
-        b=R1VByBYby8ZhBt1AjzhA8YgIb4mM1bP0i/0qJy0c2GtwaYjYIRVAipP8fI+oM+WEff
-         vvMXHeMlSzgTo8oXdWpwB2GkbEpa19goWoXEbxG4K+wspdQojIqzk3aYAiT5aiTCHxnB
-         ZyZitlDtwu6GgPLjS+bURYjH/OhrJy+CVmqQHKPhjlqLNIXYt8X9LXZiJCyEDV/QZbPg
-         csZrAxmI8MRpqDm9sNySUA6axwt+AU8N22/18x69VttKlHVbsnO7Ov8d860tH62awkez
-         VqLb0Woaid3l4Irg2GmnrjS6ySF8W0bCFt0/1FAP7kbMtUMtGnmYblSXgGR+FHB7jiqU
-         jxJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Jz/TlbprL0h8nikAm0l4AeI/5/NdOVeovwtsF+UVjsg=;
-        b=nCM0wyCm7SfCujBClcsWn5mtSdmo4m0PIT0ng/nJ1+1wWLJ3fzbkD5m3G6nR2PxxT5
-         cEpI/tMNr1LXvnl9qf10eN7w9YheXlmnQDTc3wokNckr5gZ1Ew6BBVcuu8ba0HQMUijM
-         AbTIYbgeQBDCuahPuKbsr7q/T70DFeAqaBpiSfr3ZmxgnJN5PlEHyULWQTzrjYoQmw35
-         1so6EEGsSyGgNSLif3T8vf0HvIRSxIFqm/lIF9XPvwjk7dEl75+VO/uFQIOXjK/1vUJ6
-         9esqKlhBWrtoVTzOwpJk9JqntAPe1oDfSFNLbVr4iAwJL9k4GHh1qpyIdD+Uf1EbFAj/
-         pxPQ==
-X-Gm-Message-State: AOAM5306IuGowOtr34Z5Ph0aHPeuVtJn+vg4StmLk7CZdhd+WLOjmF9t
-        3MHjMTWIfL4+XEzXHuuoZZtZItpwxGZT4g==
-X-Google-Smtp-Source: ABdhPJxNxV1DHn3HIxZydfofC32SRqSmyJkrSc0/jdc/4t7zbT667zB+yR8qb8A+RnfZUwnxXopDjg==
-X-Received: by 2002:a05:6000:18a:: with SMTP id p10mr9948479wrx.345.1620365703981;
-        Thu, 06 May 2021 22:35:03 -0700 (PDT)
-Received: from localhost.localdomain (231.red-83-51-243.dynamicip.rima-tde.net. [83.51.243.231])
-        by smtp.gmail.com with ESMTPSA id p5sm5807727wma.45.2021.05.06.22.35.02
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 06 May 2021 22:35:03 -0700 (PDT)
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     robh+dt@kernel.org, linux-staging@lists.linux.dev,
-        gregkh@linuxfoundation.org, neil@brown.name,
-        ilya.lipnitskiy@gmail.com, linux-kernel@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: staging: mt7621-pci: PCIe binding documentation for MT76721 SoCs
-Date:   Fri,  7 May 2021 07:35:01 +0200
-Message-Id: <20210507053501.24180-1-sergio.paracuellos@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        id S233910AbhEGGDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 02:03:40 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:23835 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229637AbhEGGDj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 02:03:39 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 1475oj5n034484;
+        Fri, 7 May 2021 13:50:45 +0800 (GMT-8)
+        (envelope-from steven_lee@aspeedtech.com)
+Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 7 May
+ 2021 14:02:35 +0800
+Date:   Fri, 7 May 2021 14:02:29 +0800
+From:   Steven Lee <steven_lee@aspeedtech.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>
+CC:     Andrew Jeffery <andrew@aj.id.au>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        "Adrian Hunter" <adrian.hunter@intel.com>,
+        Ryan Chen <ryanchen.aspeed@gmail.com>,
+        "moderated list:ASPEED SD/MMC DRIVER" <linux-aspeed@lists.ozlabs.org>,
+        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
+        "open list:ASPEED SD/MMC DRIVER" <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "Hongweiz@ami.com" <Hongweiz@ami.com>,
+        "Ryan Chen" <ryan_chen@aspeedtech.com>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+Subject: Re: [PATCH v3 5/5] mmc: sdhci-of-aspeed: Assert/Deassert reset
+ signal before probing eMMC
+Message-ID: <20210507060228.GC23749@aspeedtech.com>
+References: <20210506100312.1638-1-steven_lee@aspeedtech.com>
+ <20210506100312.1638-6-steven_lee@aspeedtech.com>
+ <20210506102458.GA20777@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20210506102458.GA20777@pengutronix.de>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 1475oj5n034484
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree binding documentation for PCIe in MT7621 SoCs.
+The 05/06/2021 18:24, Philipp Zabel wrote:
+> Hi Steven,
+> 
+> On Thu, May 06, 2021 at 06:03:12PM +0800, Steven Lee wrote:
+> > For cleaning up the AST2600 eMMC controller, the reset signal should be
+> > asserted and deasserted before it is probed.
+> > 
+> > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+> > ---
+> >  drivers/mmc/host/sdhci-of-aspeed.c | 49 ++++++++++++++++++++++++------
+> >  1 file changed, 40 insertions(+), 9 deletions(-)
+> > 
+> > diff --git a/drivers/mmc/host/sdhci-of-aspeed.c b/drivers/mmc/host/sdhci-of-aspeed.c
+> > index 4979f98ffb52..8ef06f32abff 100644
+> > --- a/drivers/mmc/host/sdhci-of-aspeed.c
+> > +++ b/drivers/mmc/host/sdhci-of-aspeed.c
+> [...]
+> > @@ -533,11 +545,22 @@ static struct platform_driver aspeed_sdhci_driver = {
+> >  	.remove		= aspeed_sdhci_remove,
+> >  };
+> >  
+> > +static const struct of_device_id aspeed_sdc_of_match[] = {
+> > +	{ .compatible = "aspeed,ast2400-sd-controller", },
+> > +	{ .compatible = "aspeed,ast2500-sd-controller", },
+> > +	{ .compatible = "aspeed,ast2600-sd-controller", .data = &ast2600_sdc_info},
+> > +	{ }
+> > +};
+> > +
+> > +MODULE_DEVICE_TABLE(of, aspeed_sdc_of_match);
+> > +
+> >  static int aspeed_sdc_probe(struct platform_device *pdev)
+> >  
+> >  {
+> >  	struct device_node *parent, *child;
+> >  	struct aspeed_sdc *sdc;
+> > +	const struct of_device_id *match = NULL;
+> > +	const struct aspeed_sdc_info *info = NULL;
+> 
+> There is no need to initialize these variables to NULL, see below:
+> 
 
-Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
----
+Will modify it.
 
-Changes in v3:
-    - Make use of 'interrupt-map' and 'interrupt-map-mask'
-    - Remove bus-range from parent and child nodes
+> >  	int ret;
+> >  
+> >  	sdc = devm_kzalloc(&pdev->dev, sizeof(*sdc), GFP_KERNEL);
+> > @@ -546,6 +569,23 @@ static int aspeed_sdc_probe(struct platform_device *pdev)
+> >  
+> >  	spin_lock_init(&sdc->lock);
+> >  
+> > +	match = of_match_device(aspeed_sdc_of_match, &pdev->dev);
+> 
+> match is set unconditionally before it is used,
+> 
+> > +	if (!match)
+> > +		return -ENODEV;
+> > +
+> > +	if (match->data)
+> > +		info = match->data;
+> 
+> and info could be set unconditionally as well:
+> 
+> 	info = match->data;
+> 
+> > +	if (info) {
+> > +		if (info->flag & PROBE_AFTER_ASSET_DEASSERT) {
+> > +			sdc->rst = devm_reset_control_get(&pdev->dev, NULL);
+> 
+> Please use devm_reset_control_get_exclusive() or
+> devm_reset_control_get_optional_exclusive().
+> 
 
-Changes in v2:
-    - fix SoC name from subject line
+Will modify as you suggest.
 
- .../bindings/pci/mediatek,mt7621-pci.yaml     | 149 ++++++++++++++++++
- .../mt7621-pci/mediatek,mt7621-pci.txt        | 104 ------------
- 2 files changed, 149 insertions(+), 104 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml
- delete mode 100644 drivers/staging/mt7621-pci/mediatek,mt7621-pci.txt
+> > +			if (!IS_ERR(sdc->rst)) {
+> 
+> Please just return errors here instead of ignoring them.
+> The reset_control_get_optional variants return NULL in case the
+> device node doesn't contain a resets phandle, in case you really
+> consider this reset to be optional even though the flag is set?
+> 
 
-diff --git a/Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml b/Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml
-new file mode 100644
-index 000000000000..7f5f9d583032
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml
-@@ -0,0 +1,149 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/mediatek,mt7621-pci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek MT7621 PCIe controller
-+
-+maintainers:
-+  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-+
-+description: |+
-+  MediaTek MT7621 PCIe subsys supports single Root complex (RC)
-+  with 3 Root Ports. Each Root Ports supports a Gen1 1-lane Link
-+
-+allOf:
-+  - $ref: /schemas/pci/pci-bus.yaml#
-+
-+properties:
-+  compatible:
-+    const: mediatek,mt7621-pci
-+
-+  reg:
-+    items:
-+      - description: host-pci bridge registers
-+      - description: pcie port 0 RC control registers
-+      - description: pcie port 1 RC control registers
-+      - description: pcie port 2 RC control registers
-+
-+  ranges:
-+    maxItems: 2
-+
-+  resets:
-+    items:
-+      - description: pcie port 0 reset.
-+      - description: pcie port 1 reset.
-+      - description: pcie port 2 reset.
-+
-+  reset-names:
-+    items:
-+      - const: pcie0
-+      - const: pcie1
-+      - const: pcie2
-+
-+  clocks:
-+    items:
-+      - description: pcie port 0 clock.
-+      - description: pcie port 1 clock.
-+      - description: pcie port 2 clock.
-+
-+  clock-names:
-+    items:
-+      - const: pcie0
-+      - const: pcie1
-+      - const: pcie2
-+
-+  phys:
-+    items:
-+      - description: Dual-ported phy for pcie port 0 and 1.
-+      - description: Phy for pcie port 2.
-+
-+  phy-names:
-+    items:
-+      - const: pcie-phy0
-+      - const: pcie-phy2
-+
-+required:
-+  - compatible
-+  - reg
-+  - ranges
-+  - "#interrupt-cells"
-+  - interrupt-map-mask
-+  - interrupt-map
-+  - resets
-+  - reset-names
-+  - clocks
-+  - clock-names
-+  - phys
-+  - phy-names
-+  - reset-gpios
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/mips-gic.h>
-+
-+    pcie: pcie@1e140000 {
-+        compatible = "mediatek,mt7621-pci";
-+        reg = <0x1e140000 0x100>,
-+              <0x1e142000 0x100>,
-+              <0x1e143000 0x100>,
-+              <0x1e144000 0x100>;
-+
-+        #address-cells = <3>;
-+        #size-cells = <2>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pcie_pins>;
-+        device_type = "pci";
-+        ranges = <0x02000000 0 0x00000000 0x60000000 0 0x10000000>,  /* pci memory */
-+                 <0x01000000 0 0x00000000 0x1e160000 0 0x00010000>;  /* io space */
-+        #interrupt-cells = <1>;
-+        interrupt-map-mask = <0xF800 0 0 0>;
-+        interrupt-map = <0x0000 0 0 0 &gic GIC_SHARED 4 IRQ_TYPE_LEVEL_HIGH>,
-+                        <0x0800 0 0 0 &gic GIC_SHARED 24 IRQ_TYPE_LEVEL_HIGH>,
-+                        <0x1000 0 0 0 &gic GIC_SHARED 25 IRQ_TYPE_LEVEL_HIGH>;
-+        resets = <&rstctrl 24>, <&rstctrl 25>, <&rstctrl 26>;
-+        reset-names = "pcie0", "pcie1", "pcie2";
-+        clocks = <&clkctrl 24>, <&clkctrl 25>, <&clkctrl 26>;
-+        clock-names = "pcie0", "pcie1", "pcie2";
-+        phys = <&pcie0_phy 1>, <&pcie2_phy 0>;
-+        phy-names = "pcie-phy0", "pcie-phy2";
-+        reset-gpios = <&gpio 19 GPIO_ACTIVE_LOW>;
-+
-+        pcie@0,0 {
-+            reg = <0x0000 0 0 0 0>;
-+            #address-cells = <3>;
-+            #size-cells = <2>;
-+            device_type = "pci";
-+            #interrupt-cells = <1>;
-+            interrupt-map-mask = <0 0 0 0>;
-+            interrupt-map = <0 0 0 0 &gic GIC_SHARED 4 IRQ_TYPE_LEVEL_HIGH>;
-+            ranges;
-+        };
-+
-+        pcie@1,0 {
-+            reg = <0x0800 0 0 0 0>;
-+            #address-cells = <3>;
-+            #size-cells = <2>;
-+            device_type = "pci";
-+            #interrupt-cells = <1>;
-+            interrupt-map-mask = <0 0 0 0>;
-+            interrupt-map = <0 0 0 0 &gic GIC_SHARED 24 IRQ_TYPE_LEVEL_HIGH>;
-+            ranges;
-+        };
-+
-+        pcie@2,0 {
-+            reg = <0x1000 0 0 0 0>;
-+            #address-cells = <3>;
-+            #size-cells = <2>;
-+            device_type = "pci";
-+            #interrupt-cells = <1>;
-+            interrupt-map-mask = <0 0 0 0>;
-+            interrupt-map = <0 0 0 0 &gic GIC_SHARED 25 IRQ_TYPE_LEVEL_HIGH>;
-+            ranges;
-+        };
-+    };
-+...
-diff --git a/drivers/staging/mt7621-pci/mediatek,mt7621-pci.txt b/drivers/staging/mt7621-pci/mediatek,mt7621-pci.txt
-deleted file mode 100644
-index 327a68267309..000000000000
---- a/drivers/staging/mt7621-pci/mediatek,mt7621-pci.txt
-+++ /dev/null
-@@ -1,104 +0,0 @@
--MediaTek MT7621 PCIe controller
--
--Required properties:
--- compatible: "mediatek,mt7621-pci"
--- device_type: Must be "pci"
--- reg: Base addresses and lengths of the PCIe subsys and root ports.
--- bus-range: Range of bus numbers associated with this controller.
--- #address-cells: Address representation for root ports (must be 3)
--- pinctrl-names : The pin control state names.
--- pinctrl-0: The "default" pinctrl state.
--- #size-cells: Size representation for root ports (must be 2)
--- ranges: Ranges for the PCI memory and I/O regions.
--- #interrupt-cells: Must be 1
--- interrupt-map-mask and interrupt-map: Standard PCI IRQ mapping properties.
--  Please refer to the standard PCI bus binding document for a more detailed
--  explanation.
--- status: either "disabled" or "okay".
--- resets: Must contain an entry for each entry in reset-names.
--  See ../reset/reset.txt for details.
--- reset-names: Must be "pcie0", "pcie1", "pcieN"... based on the number of
--  root ports.
--- clocks: Must contain an entry for each entry in clock-names.
--  See ../clocks/clock-bindings.txt for details.
--- clock-names: Must be "pcie0", "pcie1", "pcieN"... based on the number of
--  root ports.
--- reset-gpios: GPIO specs for the reset pins.
--
--In addition, the device tree node must have sub-nodes describing each PCIe port
--interface, having the following mandatory properties:
--
--Required properties:
--- reg: Only the first four bytes are used to refer to the correct bus number
--      and device number.
--- #address-cells: Must be 3
--- #size-cells: Must be 2
--- ranges: Sub-ranges distributed from the PCIe controller node. An empty
--  property is sufficient.
--- bus-range: Range of bus numbers associated with this port.
--
--Example for MT7621:
--
--	pcie: pcie@1e140000 {
--		compatible = "mediatek,mt7621-pci";
--        reg = <0x1e140000 0x100    /* host-pci bridge registers */
--               0x1e142000 0x100    /* pcie port 0 RC control registers */
--               0x1e143000 0x100    /* pcie port 1 RC control registers */
--               0x1e144000 0x100>;  /* pcie port 2 RC control registers */
--
--		#address-cells = <3>;
--		#size-cells = <2>;
--
--		pinctrl-names = "default";
--		pinctrl-0 = <&pcie_pins>;
--
--		device_type = "pci";
--
--		bus-range = <0 255>;
--		ranges = <
--			0x02000000 0 0x00000000 0x60000000 0 0x10000000 /* pci memory */
--			0x01000000 0 0x00000000 0x1e160000 0 0x00010000 /* io space */
--		>;
--
--		#interrupt-cells = <1>;
--		interrupt-map-mask = <0xF0000 0 0 1>;
--		interrupt-map = <0x10000 0 0 1 &gic GIC_SHARED 4 IRQ_TYPE_LEVEL_HIGH>,
--				<0x20000 0 0 1 &gic GIC_SHARED 24 IRQ_TYPE_LEVEL_HIGH>,
--				<0x30000 0 0 1 &gic GIC_SHARED 25 IRQ_TYPE_LEVEL_HIGH>;
--
--		status = "disabled";
--
--		resets = <&rstctrl 24 &rstctrl 25 &rstctrl 26>;
--		reset-names = "pcie0", "pcie1", "pcie2";
--		clocks = <&clkctrl 24 &clkctrl 25 &clkctrl 26>;
--		clock-names = "pcie0", "pcie1", "pcie2";
--
--		reset-gpios = <&gpio 19 GPIO_ACTIVE_LOW>,
--				<&gpio 8 GPIO_ACTIVE_LOW>,
--				<&gpio 7 GPIO_ACTIVE_LOW>;
--
--		pcie@0,0 {
--			reg = <0x0000 0 0 0 0>;
--			#address-cells = <3>;
--			#size-cells = <2>;
--			ranges;
--			bus-range = <0x00 0xff>;
--		};
--
--		pcie@1,0 {
--			reg = <0x0800 0 0 0 0>;
--			#address-cells = <3>;
--			#size-cells = <2>;
--			ranges;
--			bus-range = <0x00 0xff>;
--		};
--
--		pcie@2,0 {
--			reg = <0x1000 0 0 0 0>;
--			#address-cells = <3>;
--			#size-cells = <2>;
--			ranges;
--			bus-range = <0x00 0xff>;
--		};
--	};
--
--- 
-2.25.1
+Will return error here.
 
+> > +				reset_control_assert(sdc->rst);
+> > +				reset_control_deassert(sdc->rst);
+> 
+> Is there no need for delays between assertion and deassertion or after
+> the reset is deasserted?
+> 
+
+Per the internal discussion, I Will add udelay(1).
+
+> > +			}
+> > +		}
+> > +	}
+> > +
+> >  	sdc->clk = devm_clk_get(&pdev->dev, NULL);
+> >  	if (IS_ERR(sdc->clk))
+> >  		return PTR_ERR(sdc->clk);
+> 
+> In general, I would assert/deassert the reset only after all resources
+> are successfully acquired. This might avoid unnecessary resets in case
+> of probe deferrals.
+> 
+
+Thanks for the suggestion. I will try to move the implementation of
+reset after devm_ioremap_resource().
+
+> regards
+> Philipp
