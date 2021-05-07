@@ -2,105 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EEEB376B89
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 23:16:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB4AC376B8D
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 23:17:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229524AbhEGVRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 17:17:24 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:38826 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbhEGVRX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 17:17:23 -0400
-Received: by mail-ot1-f44.google.com with SMTP id q7-20020a9d57870000b02902a5c2bd8c17so9098270oth.5;
-        Fri, 07 May 2021 14:16:22 -0700 (PDT)
+        id S229542AbhEGVSD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 17:18:03 -0400
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:42620 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229524AbhEGVSC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 17:18:02 -0400
+Received: by mail-ot1-f46.google.com with SMTP id g15-20020a9d128f0000b02902a7d7a7bb6eso9075501otg.9
+        for <devicetree@vger.kernel.org>; Fri, 07 May 2021 14:17:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=/5D7ZT5Lu0YStgy8faRmpqxBSv65B/x5VGdmWREBghE=;
-        b=PX9giO3KOMvodoyTZJBTwy5fgJhkr03NIzfb70FKLmGVNlox8WnopeZ4mT+uJFKlnO
-         8+g7O0Enl2bqafT9oZx8aW4V5O10uCyBILj1OVAnPdkCEZb32pAHnMes3luuWopuobuJ
-         76HuWdwAm05mt/b2plx5QkTOvnoztCrttsky0wQ7YcGc1lZ4iulbqwYfJqkWBRYHzLPH
-         bxGjRG8S45qw7TfhFlKl/m1ZsK0j3euLa/hp6nvALRQbOGKx6BhmwQXiE/2TtoKlfBE2
-         b4DVj3VBa1EOv7CG5pZvvLjIX3zEAhyG63U9V/ii79Bl6PgbqRVMo9646Z5Iv1BN+4dz
-         9Zqg==
-X-Gm-Message-State: AOAM531EgepdV2KbUzTYkDVR0pwJxBC6IJemK8uBtqs2ER7vVi+H5zFj
-        TOOBuoljRbH3QJDyOSBzaw==
-X-Google-Smtp-Source: ABdhPJykObAS8JsXFLdzmqv6KmJ1UzMdUyE9FJqsiPOL6ZcDskiGKl/Bhkm8EP1lRu9jT7rBYb42MQ==
-X-Received: by 2002:a9d:728b:: with SMTP id t11mr5710529otj.230.1620422182286;
-        Fri, 07 May 2021 14:16:22 -0700 (PDT)
+        bh=o2wAdh/yfwrDOJ+uh/SIWWS7GKEi+U+Ks6zzB1DcWjc=;
+        b=Zxp+lISem2fYegoNdO0InleFrhL7JAQSDxW0yz4CLsNB5RNJ9AyJu1GihbCuGNtDpA
+         r4MN3pEGtKRpPlFHgGA5y8FgkbbCaJVbHBijBBYR+8w5eHzqwy5OQXpCkoVOtt0w9Fdx
+         P16Hgk9sjjzKMwozZaHBZMrD1fyVimOmcAy0qLRtHfCTHW+zP7v9JGr9kkXaejyTGUww
+         S1ZwMWg1M5rfSRCJo72pmNF0cugNpiKEPyqxOXWDuLtuW1A460oo3LdR59atmpFF7/yU
+         +IfTVA6U96ldvQ0Vv+oknOMLV0uxK4Dx+dq75tFUVAtYd7CkkJ1H+MuDZvtMOUMG4pPT
+         ZArw==
+X-Gm-Message-State: AOAM530QS4TyhrtDCJOKg8Exf/Y4Tc7jcr6c+0TlFNEXwCCx/j2b8Swq
+        IZrcxamLYL80fBuxk7+5enAqcgrT9w==
+X-Google-Smtp-Source: ABdhPJwzEATdhPR+vD7sjpKJoXXORNslSDBZ6/Si2SZhvodV63TuOuNce1xUeC0XmmmGIHyC/mGs9Q==
+X-Received: by 2002:a05:6830:1042:: with SMTP id b2mr1488498otp.120.1620422222303;
+        Fri, 07 May 2021 14:17:02 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s85sm1312704oos.4.2021.05.07.14.16.19
+        by smtp.gmail.com with ESMTPSA id w3sm1408353otg.78.2021.05.07.14.17.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 May 2021 14:16:21 -0700 (PDT)
-Received: (nullmailer pid 2900641 invoked by uid 1000);
-        Fri, 07 May 2021 21:16:19 -0000
-Date:   Fri, 7 May 2021 16:16:19 -0500
+        Fri, 07 May 2021 14:17:00 -0700 (PDT)
+Received: (nullmailer pid 2901821 invoked by uid 1000);
+        Fri, 07 May 2021 21:16:59 -0000
+Date:   Fri, 7 May 2021 16:16:59 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Frieder Schrempf <frieder.schrempf@kontron.de>
-Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, p.zabel@pengutronix.de, l.stach@pengutronix.de,
-        krzk@kernel.org, agx@sigxcpu.org, marex@denx.de,
-        andrew.smirnov@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        ping.bai@nxp.com, aford173@gmail.com, abel.vesa@nxp.com,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V2 08/13] dt-bindings: imx: gpcv2: add support for
- optional resets
-Message-ID: <20210507211619.GA2899069@robh.at.kernel.org>
-References: <20210506010440.7016-1-peng.fan@oss.nxp.com>
- <20210506010440.7016-9-peng.fan@oss.nxp.com>
- <a6554ae1-75d4-e471-6371-d9ad2246599f@kontron.de>
+To:     Ezequiel Garcia <ezequiel@collabora.com>
+Cc:     linux-rockchip@lists.infradead.org, kernel@collabora.com,
+        Heiko Stuebner <heiko@sntech.de>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        devicetree@vger.kernel.org, Kever Yang <kever.yang@rock-chips.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 3/3] dt-bindings: timer: convert rockchip,rk-timer.txt
+ to YAML
+Message-ID: <20210507211659.GA2901791@robh.at.kernel.org>
+References: <20210506111136.3941-1-ezequiel@collabora.com>
+ <20210506111136.3941-4-ezequiel@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <a6554ae1-75d4-e471-6371-d9ad2246599f@kontron.de>
+In-Reply-To: <20210506111136.3941-4-ezequiel@collabora.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 06, 2021 at 08:43:17AM +0200, Frieder Schrempf wrote:
-> On 06.05.21 03:04, Peng Fan (OSS) wrote:
-> > From: Lucas Stach <l.stach@pengutronix.de>
-> > 
-> > For some domains the resets of the devices in the domain are not
-> > automatically triggered. Add an optional resets property to allow
-> > the GPC driver to trigger those resets explicitly.
-> > 
-> > The resets belong to devices located inside the power domain,
-> > which need to be held in reset across the power-up sequence. So we
-> > have no means to specify what each reset is in a generic power-domain
-> > binding. Same situation as with the clocks in this binding actually.
+On Thu, 06 May 2021 08:11:36 -0300, Ezequiel Garcia wrote:
+> Convert Rockchip Timer dt-bindings to YAML.
 > 
-> My understanding was that Rob wanted this explanation to be contained in the binding docs itself and not only in the commit message, but I might be wrong.
-
-Yes, that would be better.
-
+> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+> ---
+>  .../bindings/timer/rockchip,rk-timer.txt      | 27 --------
+>  .../bindings/timer/rockchip,rk-timer.yaml     | 64 +++++++++++++++++++
+>  2 files changed, 64 insertions(+), 27 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/timer/rockchip,rk-timer.txt
+>  create mode 100644 Documentation/devicetree/bindings/timer/rockchip,rk-timer.yaml
 > 
-> > 
-> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > ---
-> >  Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
-> > index a96e6dbf1858..4330c73a2c30 100644
-> > --- a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
-> > +++ b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
-> > @@ -66,6 +66,13 @@ properties:
-> >  
-> >            power-supply: true
-> >  
-> > +          resets:
-> > +            description: |
-> > +              A number of phandles to resets that need to be asserted during
-> > +              power-up sequencing of the domain.
-> > +            minItems: 1
-> > +            maxItems: 4
-> > +
-> >          required:
-> >            - '#power-domain-cells'
-> >            - reg
-> > 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
