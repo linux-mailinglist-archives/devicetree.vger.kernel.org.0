@@ -2,115 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C5A3376BDE
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 23:43:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8F42376BE3
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 23:44:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229707AbhEGVo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 17:44:27 -0400
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:38579 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbhEGVo1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 17:44:27 -0400
-Received: by mail-ot1-f45.google.com with SMTP id q7-20020a9d57870000b02902a5c2bd8c17so9151555oth.5;
-        Fri, 07 May 2021 14:43:26 -0700 (PDT)
+        id S229482AbhEGVpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 17:45:35 -0400
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:38676 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229470AbhEGVpe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 17:45:34 -0400
+Received: by mail-ot1-f44.google.com with SMTP id q7-20020a9d57870000b02902a5c2bd8c17so9153770oth.5;
+        Fri, 07 May 2021 14:44:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=1jPYaiJ3mpOsE5i/q/eUuwCFtgMQJcQzg5PuBr/sjHs=;
-        b=HfIj4r8ONjBXYl30I1cj8QvuoHjTvW5VbZTCSml/fskrofCabVCmzBJD1EHEZU+x+6
-         kMZqkC9NDbFsNVnAgiytMlp1VJ7a+CkGsC+4lapjJFkfhVq6wmaafqLo1QUwQpOTGxmV
-         uvR4rc2mwI1pQWQ4mCucArGjgxYif6E+HGcldA1qCq24CB+J5X1RRV0D6fhIi3CmHwb7
-         a5mAVbsg+uinkbMYMY/29I5SGmqVAEUOW5fUzQHE3kYtJehXqtKUw5w+wTZR7g9YvvkA
-         8ZJF7qE1UnYnXLGy9bJMkeXSP9O5AftrXFkAwqRe5HdUnEihOhH66UWihiDkogvSjMlo
-         7G9A==
-X-Gm-Message-State: AOAM532ZOQh/fbLmp6cDYTYQfvK6ZZAUFli1RHVrfgXKLVWThmZwtDIy
-        lWGDC8d00ViizBTdZqss7Vx36OLGvQ==
-X-Google-Smtp-Source: ABdhPJyTQdRZg+46DJaHovSc+DGA9RXAMHaPE7FDnBU2Ww/Sph47kxo0hyCvh1ofVKV3FbagEmTENQ==
-X-Received: by 2002:a05:6830:1450:: with SMTP id w16mr9903118otp.305.1620423805659;
-        Fri, 07 May 2021 14:43:25 -0700 (PDT)
+        bh=hiITqmR3MkOf1yfwBYllv9mUhx0O2m9hc1IxfJCX5I0=;
+        b=fRTFT313Tu1N4FZAfGR7Jp4WyvBmkBA7PeGwW0ZgvXNNA7i2tdxuQ7pKGKTeKjRYGa
+         bo1tKW8bEzBrXtK6s8N6/dZ1zBAgaZV/QUSOuYlFwRTNHDzahLJf6Bpu0VGhbyhPCx9c
+         HzuX+L8iJdKaClhMxfF7V1y7l+7WG3qE3spv+r8DfHfaxUi8DQXBKY2RWNi2LN1+NnxV
+         qKrDLYIYeBiy7Y8wuY2RfsVjGd9xcjmIAYLhCIYZXDaHpnBRZuLjiNrsrfIC5g/dbvTx
+         OrqsE4pNRXNHFhPNr1eqLMk3aqoW5M46zZvOLi3Zvw/cpt4qDdj5kPOPCp0mmJC/LHR+
+         to3w==
+X-Gm-Message-State: AOAM531YVJLe34bv/SJkdA5YW8mbeqNeJoKbxhOrrYmX3FPpdAT/5u5k
+        /OPAirAAQL7AGXPlSNskeOe8MRBJpQ==
+X-Google-Smtp-Source: ABdhPJwocDZDc+NSwRU7v73INFImOWfRP0IFFfEgqXzZHnfl39v6PHwY49UNRM65+yeqFYJV/U6gBA==
+X-Received: by 2002:a05:6830:2117:: with SMTP id i23mr9655209otc.331.1620423873421;
+        Fri, 07 May 2021 14:44:33 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id c65sm1202316oia.47.2021.05.07.14.43.24
+        by smtp.gmail.com with ESMTPSA id i18sm1320233oot.48.2021.05.07.14.44.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 May 2021 14:43:24 -0700 (PDT)
-Received: (nullmailer pid 2942658 invoked by uid 1000);
-        Fri, 07 May 2021 21:43:23 -0000
-Date:   Fri, 7 May 2021 16:43:23 -0500
+        Fri, 07 May 2021 14:44:32 -0700 (PDT)
+Received: (nullmailer pid 2944565 invoked by uid 1000);
+        Fri, 07 May 2021 21:44:31 -0000
+Date:   Fri, 7 May 2021 16:44:31 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Grygorii Strashko <grygorii.strashko@ti.com>
-Cc:     Andreas Kemnade <andreas@kemnade.info>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>
-Subject: Re: [PATCH v2] dt-bindings: i2c: Move i2c-omap.txt to YAML format
-Message-ID: <20210507214323.GB2902038@robh.at.kernel.org>
-References: <20210506140026.31254-1-vigneshr@ti.com>
- <f7570cb4-8c21-2fa5-bd26-1388f2a4bd6b@ti.com>
- <429a740a-c2b9-1cf8-ed2b-0fb7b1bea422@ti.com>
- <20210507163602.219894f4@aktux>
- <1ef076ac-e0de-a0df-a918-aeb8ed6c5956@ti.com>
+To:     Ezequiel Garcia <ezequiel@collabora.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Finley Xiao <finley.xiao@rock-chips.com>,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-pm@vger.kernel.org, Zhang Rui <rui.zhang@intel.com>,
+        kernel@collabora.com, Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 2/4] dt-bindings: thermal: convert rockchip-thermal to
+ json-schema
+Message-ID: <20210507214431.GA2944513@robh.at.kernel.org>
+References: <20210506175514.168365-1-ezequiel@collabora.com>
+ <20210506175514.168365-3-ezequiel@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1ef076ac-e0de-a0df-a918-aeb8ed6c5956@ti.com>
+In-Reply-To: <20210506175514.168365-3-ezequiel@collabora.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 07, 2021 at 08:24:59PM +0300, Grygorii Strashko wrote:
+On Thu, 06 May 2021 14:55:12 -0300, Ezequiel Garcia wrote:
+> Convert Rockchip Thermal sensor dt-bindings to YAML.
 > 
+> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+> ---
+>  .../bindings/thermal/rockchip-thermal.txt     | 85 -----------------
+>  .../bindings/thermal/rockchip-thermal.yaml    | 95 +++++++++++++++++++
+>  2 files changed, 95 insertions(+), 85 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/thermal/rockchip-thermal.txt
+>  create mode 100644 Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
 > 
-> On 07/05/2021 17:36, Andreas Kemnade wrote:
-> > On Fri, 7 May 2021 19:45:45 +0530
-> > Vignesh Raghavendra <vigneshr@ti.com> wrote:
-> > 
-> > > On 5/7/21 12:24 PM, Grygorii Strashko wrote:
-> > > > 
-> > > > 
-> > > > On 06/05/2021 17:00, Vignesh Raghavendra wrote:
-> > > > > Convert i2c-omap.txt to YAML schema for better checks and documentation.
-> > > > > 
-> > > > > Following properties were used in DT but were not documented in txt
-> > > > > bindings and has been included in YAML schema:
-> > > > > 1. Include ti,am4372-i2c compatible
-> > > > > 2. Include dmas property used in few OMAP dts files
-> > > > 
-> > > > The DMA is not supported by i2c-omap driver, so wouldn't be better to
-> > > > just drop dmas from DTBs to avoid confusions?
-> > > > It can be added later.
-> > > 
-> > > Will do.. I will also send patches dropping dmas from dts that currently
-> > > have them populated.
-> > > 
-> > hmm, we have
-> > - DO attempt to make bindings complete even if a driver doesn't support some
-> >    features. For example, if a device has an interrupt, then include the
-> >    'interrupts' property even if the driver is only polled mode.
-> > 
-> > in Documentation/devicetree/bindings/writing-bindings.rst
-> > Shouln't the dma stay there if the hardware supports it? Devicetree
-> > should describe the hardware not the driver if I understood things
-> > right.
-> 
-> True.  But my above statement is also valid - it introduces confusion from user point of view.
 
-In my OS, 'robOS', the driver supports DMA.
-
-> More over, 'dmas' is not part of original binding and were randomly added to some SoCs.
-> And it's much more easy to extend binding (in the future) then remove something after.
-
-In this case, probably given that how it would be extended is already 
-known, but it depends how you extend a binding. My above statement was 
-born out of incomplete MFD and system controller bindings for the most 
-part.
-
-> I leave it to Vignesh, Tony to decide.
-
-Fine with me.
-
-Actually, for DMA with I2C I'd like to see someone show a usecase 
-and data where it's actually beneficial. 
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
