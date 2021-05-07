@@ -2,170 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88CBE375EEB
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 04:55:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 352AC375F0C
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 05:14:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230004AbhEGC4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 May 2021 22:56:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43902 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229942AbhEGC4Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 22:56:24 -0400
-Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DBEDC061574;
-        Thu,  6 May 2021 19:55:24 -0700 (PDT)
-Received: by mail-il1-x12f.google.com with SMTP id c3so6538095ils.5;
-        Thu, 06 May 2021 19:55:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8cTSVQulBeITLa2/m1dmitAiZk9XtTtJnEzh3hUGeoU=;
-        b=cT2ueQbZYQ5FJAitvJOWcefEXBE/+kkX/R4/Kq67RZRWnT/5Uww8mZr34d6Tp9V7oR
-         IZtosX+BEeg7jtZg8NZUeSj13AoRPf9hZZjreEJ2q3niNvpcjOQ9HYP8xvf87w6dynH+
-         1tgraxqqCO8fZSn8m2y7m1mHoWWTurzSyvUJuWftsFrnIckGyWw4wAY1/DppiCOGnT2s
-         P4s1EJgQIoYUCpxIZSB5QuU0rpv7xCfl/+916ySp9TcPw3Uy61U7fUA6Cw3pAy34FYOV
-         DN2PgcGtJTQrQmi3V0IL7MVr9QuZJ1ZyhetBAScR2IC8FeSPc9m3j1RR2FS7ZOKm6yTQ
-         HMNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8cTSVQulBeITLa2/m1dmitAiZk9XtTtJnEzh3hUGeoU=;
-        b=P7QfdETbsjC5xE8eqizvyzSuylmN35awYOFLVf69GC0HmMIbm8ipJksJfdOo41mIMp
-         vWAWEyXLdR6aZsTfeHZYqqLlAgU4+Y3pC8gYdg4z2F8BL62yr1bYH+nwLZv8T9Hqo88U
-         ZnbxVFX+0h7MMF2IaLUYbAzOzMZhLOnrIPRoRiu59C4rEmG3uEuRCUgM61+L9tZrzhyP
-         jCOeqGZ+WMX4YzlQfcgmevUAhNKm4VF0RvUMPW5kAv2wBSEOQ+11kUPvV1JeWd7YNxJh
-         KrGhP5puP1GrbFcilZhlK0vttLBtmkF3jQ7XT2Qcrt7s6AIvOT1f5bwpXG1YHmTeF3Mv
-         AHLw==
-X-Gm-Message-State: AOAM532a1wKGZDctd6h0uQ517s0ymWZvZDnoh0X+/EjWCAcJEcbf1upr
-        r+XVQSC6hJTBVU1uvX/2yulSb8FRepdhxf+EatU=
-X-Google-Smtp-Source: ABdhPJw2RBOr2b1dAal8DBdHKDFJPjaMT1E1faSTNgTk5hI83mVNs5XiUZDhlNQbktQ/l4JJRdV37hjRqUN1IaKqYAU=
-X-Received: by 2002:a05:6e02:e0d:: with SMTP id a13mr7322226ilk.270.1620356123603;
- Thu, 06 May 2021 19:55:23 -0700 (PDT)
-MIME-Version: 1.0
-References: <1591709203-12106-1-git-send-email-dillon.minfei@gmail.com>
- <1591709203-12106-5-git-send-email-dillon.minfei@gmail.com>
- <CAL9mu0LJPnxA0JSmV3mogvPA5xRRYCO_4=P7pqpAO7R=YaJX5g@mail.gmail.com> <20210315130050.GD1182@ninjato>
-In-Reply-To: <20210315130050.GD1182@ninjato>
-From:   dillon min <dillon.minfei@gmail.com>
-Date:   Fri, 7 May 2021 10:54:47 +0800
-Message-ID: <CAL9mu0LnHAUSMXmQpZK78QAccqrc58cyFC2GD4cBkTNW41rvKA@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] i2c: stm32f4: Fix stmpe811 get xyz data timeout issue
-To:     Wolfram Sang <wsa@kernel.org>, pierre-yves.mordret@foss.st.com,
-        alain.volmat@foss.st.com
-Cc:     pierre-yves.mordret@st.com, Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        p.zabel@pengutronix.de,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Alexandre TORGUE <Alexandre.torgue@foss.st.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-i2c@vger.kernel.org,
+        id S230311AbhEGDPB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 May 2021 23:15:01 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:60294 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229942AbhEGDPA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 May 2021 23:15:00 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 14731xV2019977;
+        Fri, 7 May 2021 11:01:59 +0800 (GMT-8)
+        (envelope-from steven_lee@aspeedtech.com)
+Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 7 May
+ 2021 11:13:50 +0800
+Date:   Fri, 7 May 2021 11:13:48 +0800
+From:   Steven Lee <steven_lee@aspeedtech.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Andrew Jeffery <andrew@aj.id.au>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Ryan Chen <ryanchen.aspeed@gmail.com>,
+        "moderated list:ASPEED SD/MMC DRIVER" <linux-aspeed@lists.ozlabs.org>,
+        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
+        "open list:ASPEED SD/MMC DRIVER" <linux-mmc@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "Hongweiz@ami.com" <Hongweiz@ami.com>,
+        "Ryan Chen" <ryan_chen@aspeedtech.com>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+Subject: Re: [PATCH v3 1/5] dt-bindings: mmc: sdhci-of-aspeed: Add an example
+ for AST2600-A2 EVB
+Message-ID: <20210507031348.GA23749@aspeedtech.com>
+References: <20210506100312.1638-1-steven_lee@aspeedtech.com>
+ <20210506100312.1638-2-steven_lee@aspeedtech.com>
+ <20210507011324.GA1119409@robh.at.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20210507011324.GA1119409@robh.at.kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 14731xV2019977
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pierre-Yves, Alain
+The 05/07/2021 09:13, Rob Herring wrote:
+> On Thu, May 06, 2021 at 06:03:08PM +0800, Steven Lee wrote:
+> > AST2600-A2 EVB has the reference design for enabling SD bus
+> > power and toggling SD bus signal voltage by GPIO pins.
+> > 
+> > In the reference design, GPIOV0 of AST2600-A2 EVB is connected to
+> > power load switch that providing 3.3v to SD1 bus vdd. GPIOV1 is
+> > connected to a 1.8v and a 3.3v power load switch that providing
+> > signal voltage to
+> > SD1 bus.
+> > 
+> > If GPIOV0 is active high, SD1 bus is enabled. Otherwise, SD1 bus is
+> > disabled.
+> > If GPIOV1 is active high, 3.3v power load switch is enabled, SD1
+> > signal voltage is 3.3v. Otherwise, 1.8v power load switch will be
+> > enabled, SD1 signal voltage becomes 1.8v.
+> > 
+> > AST2600-A2 EVB also support toggling signal voltage for SD2 bus.
+> > The design is the same as SD1 bus. It uses GPIOV2 as power-gpio and
+> > GPIOV3 as power-switch-gpio.
+> > 
+> > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+> > ---
+> >  .../devicetree/bindings/mmc/aspeed,sdhci.yaml | 101 +++++++++++++++++-
+> >  1 file changed, 97 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> > index 987b287f3bff..de7e61b3d37a 100644
+> > --- a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> > @@ -45,10 +45,16 @@ patternProperties:
+> >  
+> >      properties:
+> >        compatible:
+> > -        enum:
+> > -          - aspeed,ast2400-sdhci
+> > -          - aspeed,ast2500-sdhci
+> > -          - aspeed,ast2600-sdhci
+> > +        oneOf:
+> > +          - items:
+> > +              - enum:
+> > +                  - aspeed,ast2400-sdhci
+> > +                  - aspeed,ast2500-sdhci
+> > +                  - aspeed,ast2600-sdhci
+> > +          - items:
+> > +              - enum:
+> > +                  - aspeed,ast2600-sdhci
+> > +              - const: sdhci
+> 
+> Why are you adding 'sdhci'. That's not useful as a compatible given how 
+> many quirks different implementations have.
+> 
+> 
 
-Could you help to take a look?
-i really appreciate it.
+It is for passing the dtbs_check of the second example.
+Without this definition, many device trees have the following
+error:
 
-Thanks,
+['aspeed,ast2600-sdhci', 'sdhci'] is too long
+Additional items are not allowed ('sdhci' was unexpected)
 
-Best Regards
-Dillon
+Regardless, I will remove it, and move the new example to device
+tree.
 
-On Mon, Mar 15, 2021 at 9:00 PM Wolfram Sang <wsa@kernel.org> wrote:
->
-> On Mon, Mar 15, 2021 at 08:43:54PM +0800, dillon min wrote:
-> > Hi All,
-> >
-> > Just a gentle ping.
->
-> Pierre-Yves?
->
-> >
-> > Regards.
-> >
-> > On Tue, Jun 9, 2020 at 9:27 PM <dillon.minfei@gmail.com> wrote:
-> > >
-> > > From: dillon min <dillon.minfei@gmail.com>
-> > >
-> > > as stm32f429's internal flash is 2Mbytes and compiled kernel
-> > > image bigger than 2Mbytes, so we have to load kernel image
-> > > to sdram on stm32f429-disco board which has 8Mbytes sdram space.
-> > >
-> > > based on above context, as you knows kernel running on external
-> > > sdram is more slower than internal flash. besides, we need read 4
-> > > bytes to get touch screen xyz(x, y, pressure) coordinate data in
-> > > stmpe811 interrupt.
-> > >
-> > > so, in stm32f4_i2c_handle_rx_done, as i2c read slower than running
-> > > in xip mode, have to adjust 'STOP/START bit set position' from last
-> > > two bytes to last one bytes. else, will get i2c timeout in reading
-> > > touch screen coordinate.
-> > >
-> > > to not take side effect, introduce IIC_LAST_BYTE_POS to support xip
-> > > kernel or has mmu platform.
-> > >
-> > > Signed-off-by: dillon min <dillon.minfei@gmail.com>
-> > > ---
-> > >
-> > > V4: indroduce 'IIC_LAST_BYTE_POS' to compatible with xipkernel boot
-> > >
-> > >  drivers/i2c/busses/i2c-stm32f4.c | 12 +++++++++---
-> > >  1 file changed, 9 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/drivers/i2c/busses/i2c-stm32f4.c b/drivers/i2c/busses/i2c-stm32f4.c
-> > > index d6a69dfcac3f..97cf42ae7fa0 100644
-> > > --- a/drivers/i2c/busses/i2c-stm32f4.c
-> > > +++ b/drivers/i2c/busses/i2c-stm32f4.c
-> > > @@ -93,6 +93,12 @@
-> > >  #define STM32F4_I2C_MAX_FREQ           46U
-> > >  #define HZ_TO_MHZ                      1000000
-> > >
-> > > +#if !defined(CONFIG_MMU) && !defined(CONFIG_XIP_KERNEL)
-> > > +#define IIC_LAST_BYTE_POS 1
-> > > +#else
-> > > +#define IIC_LAST_BYTE_POS 2
-> > > +#endif
-> > > +
-> > >  /**
-> > >   * struct stm32f4_i2c_msg - client specific data
-> > >   * @addr: 8-bit slave addr, including r/w bit
-> > > @@ -439,7 +445,7 @@ static void stm32f4_i2c_handle_rx_done(struct stm32f4_i2c_dev *i2c_dev)
-> > >         int i;
-> > >
-> > >         switch (msg->count) {
-> > > -       case 2:
-> > > +       case IIC_LAST_BYTE_POS:
-> > >                 /*
-> > >                  * In order to correctly send the Stop or Repeated Start
-> > >                  * condition on the I2C bus, the STOP/START bit has to be set
-> > > @@ -454,7 +460,7 @@ static void stm32f4_i2c_handle_rx_done(struct stm32f4_i2c_dev *i2c_dev)
-> > >                 else
-> > >                         stm32f4_i2c_set_bits(reg, STM32F4_I2C_CR1_START);
-> > >
-> > > -               for (i = 2; i > 0; i--)
-> > > +               for (i = IIC_LAST_BYTE_POS; i > 0; i--)
-> > >                         stm32f4_i2c_read_msg(i2c_dev);
-> > >
-> > >                 reg = i2c_dev->base + STM32F4_I2C_CR2;
-> > > @@ -463,7 +469,7 @@ static void stm32f4_i2c_handle_rx_done(struct stm32f4_i2c_dev *i2c_dev)
-> > >
-> > >                 complete(&i2c_dev->complete);
-> > >                 break;
-> > > -       case 3:
-> > > +       case (IIC_LAST_BYTE_POS+1):
-> > >                 /*
-> > >                  * In order to correctly generate the NACK pulse after the last
-> > >                  * received data byte, we have to enable NACK before reading N-2
-> > > --
-> > > 2.7.4
-> > >
+Thanks.
+
+> >        reg:
+> >          maxItems: 1
+> >          description: The SDHCI registers
+> > @@ -104,3 +110,90 @@ examples:
+> >                      clocks = <&syscon ASPEED_CLK_SDIO>;
+> >              };
+> >      };
+> > +
+> > +  - |
+> 
+> Why do we need another example?
+> 
+
+The original example is for AST2500 which doesn't support UHS mode.
+The new example teaches users how to enable sdhci with UHS mode, add
+gpio regulators, and adjust clock phase for AST2600-A2.
+
+I will move the new example to ast2600 device tree per the
+review comment.
+https://lkml.org/lkml/2021/5/6/968
+
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +    #include <dt-bindings/clock/aspeed-clock.h>
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    vcc_sdhci0: regulator-vcc-sdhci0 {
+> > +            compatible = "regulator-fixed";
+> > +            regulator-name = "SDHCI0 Vcc";
+> > +            regulator-min-microvolt = <3300000>;
+> > +            regulator-max-microvolt = <3300000>;
+> > +            gpios = <&gpio0 168
+> > +                            GPIO_ACTIVE_HIGH>;
+> > +            enable-active-high;
+> > +    };
+> > +
+> > +    vccq_sdhci0: regulator-vccq-sdhci0 {
+> > +            compatible = "regulator-gpio";
+> > +
+> > +            regulator-name = "SDHCI0 VccQ";
+> > +            regulator-min-microvolt = <1800000>;
+> > +            regulator-max-microvolt = <3300000>;
+> > +            gpios = <&gpio0 169
+> > +                            GPIO_ACTIVE_HIGH>;
+> > +            gpios-states = <1>;
+> > +            states = <3300000 1>,
+> > +                     <1800000 0>;
+> > +    };
+> > +
+> > +    vcc_sdhci1: regulator-vcc-sdhci1 {
+> > +            compatible = "regulator-fixed";
+> > +
+> > +            regulator-name = "SDHCI1 Vcc";
+> > +            regulator-min-microvolt = <3300000>;
+> > +            regulator-max-microvolt = <3300000>;
+> > +            gpios = <&gpio0 170
+> > +                            GPIO_ACTIVE_HIGH>;
+> > +            enable-active-high;
+> > +    };
+> > +
+> > +    vccq_sdhci1: regulator-vccq-sdhci1 {
+> > +            compatible = "regulator-gpio";
+> > +
+> > +            regulator-name = "SDHCI1 VccQ";
+> > +            regulator-min-microvolt = <1800000>;
+> > +            regulator-max-microvolt = <3300000>;
+> > +            gpios = <&gpio0 171
+> > +                            GPIO_ACTIVE_HIGH>;
+> > +            gpios-states = <1>;
+> > +            states = <3300000 1>,
+> > +                     <1800000 0>;
+> > +    };
+> > +
+> > +    sdc@1e740000 {
+> > +            compatible = "aspeed,ast2600-sd-controller";
+> > +            reg = <0x1e740000 0x100>;
+> > +            #address-cells = <1>;
+> > +            #size-cells = <1>;
+> > +            ranges = <0 0x1e740000 0x20000>;
+> > +            clocks = <&syscon ASPEED_CLK_GATE_SDCLK>;
+> > +
+> > +            sdhci@1e740100 {
+> > +                    compatible = "aspeed,ast2600-sdhci","sdhci";
+> > +                    reg = <0x100 0x100>;
+> > +                    interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+> > +                    sdhci,auto-cmd12;
+> > +                    clocks = <&syscon ASPEED_CLK_SDIO>;
+> > +                    vmmc-supply = <&vcc_sdhci0>;
+> > +                    vqmmc-supply = <&vccq_sdhci0>;
+> > +                    sd-uhs-sdr104;
+> > +                    clk-phase-uhs-sdr104 = <180>, <180>;
+> > +            };
+> > +
+> > +            sdhci@1e740200 {
+> > +                    compatible = "aspeed,ast2600-sdhci","sdhci";
+> > +                    reg = <0x200 0x100>;
+> > +                    interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+> > +                    sdhci,auto-cmd12;
+> > +                    clocks = <&syscon ASPEED_CLK_SDIO>;
+> > +                    vmmc-supply = <&vcc_sdhci1>;
+> > +                    vqmmc-supply = <&vccq_sdhci1>;
+> > +                    sd-uhs-sdr104;
+> > +                    clk-phase-uhs-sdr104 = <0>, <0>;
+> > +            };
+> > +    };
+> > +
+> > +...
+> > -- 
+> > 2.17.1
+> > 
