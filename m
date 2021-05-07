@@ -2,155 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B402376144
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 09:39:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96B4537614D
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 09:40:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233618AbhEGHkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 03:40:01 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:58445 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234520AbhEGHjF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 03:39:05 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id D34245808CD;
-        Fri,  7 May 2021 03:38:05 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute3.internal (MEProxy); Fri, 07 May 2021 03:38:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm2; bh=dQDOTzcqfOQiIceNESDpDeh6eU3HFDK
-        OGe/G/Fvd6ss=; b=G0CwoqHvNi6AqWjcFA79Hiy0clV7wq2v+N4xhwwBCgQAOSH
-        15qhvR1wEzXsEUv9gOGoP0ARWg+0Pgusa/R/f+i1hAq26LYr5XOXQ/zAAmU0Pgz7
-        XOgEUg0gByOgeTiKyRYuMcLphcm1b6hrjzxgJvqYrlXZ9FJPu8YwPSYz7v2K8Y/v
-        aIfmfxXqBsNozUZCyylXIOEkR5Rw9GgAMQh0szpbmoqZU/p4lBP4MuB0VZDzs/cE
-        wSDJGS8VmXbn88kAzhMJ98uI2dqcXq4iO+ZyAlnUcVViqOxhF99pfpig7AGpbeX7
-        5sNkk5yZHiV/5NPJ4IQE4Nl9nilH2cydovlw1Ew==
+        id S235515AbhEGHlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 03:41:10 -0400
+Received: from out5-smtp.messagingengine.com ([66.111.4.29]:46633 "EHLO
+        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231179AbhEGHlK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 03:41:10 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id 6E6275C0152;
+        Fri,  7 May 2021 03:40:10 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Fri, 07 May 2021 03:40:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=vxtgl2McAVV4Jw7lpe9Bngye+Ah
+        xY0xlZbs/obgITSg=; b=El0NYRpJvovz0M9RiRT0k1edhyFQYetbKH3ck9vKvp5
+        PXhJT1RRFJ7VrtteF8FmUAMeog07mmet+i1Kovv2qZ2ONgjdFC2LiI2wBlqAIKKX
+        yrjTEhj8sDeh39arEcZlObzed2RpOclikFBSSl3N68HnfIVMABiVECXWpFdE0ved
+        VJzRg7+nPjjbi1S5PPMwTZckUXv8k4o6J6EmAKgnC8BJKlZJ0AJ+ZDHBIY4K0pPS
+        LOTKu/4DHWBHYVfmiLyaZctqDZOV0JFj3Yg2SExEoUF65tCEnD+OqgbBuK9KPUeC
+        xhdcl6/P99iSH/a9e4w5VafYQXTNdSlFS1d9JVjpEAQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=dQDOTz
-        cqfOQiIceNESDpDeh6eU3HFDKOGe/G/Fvd6ss=; b=eScBRXAxM+mJSzqH2fGjez
-        5hfDRIafMYhgx9aIB94L0gsYXDbY9Nsxl1ABKcSFdkkOPi4eot4Aj4//BGv1TxZB
-        HuLfRYJLPKi2UobdoOR6A6xawAYPhbwa2sjmoB6mCx75xMIbCE4MoSRj5ahM5f6B
-        jWrB6Rz5OlV/RHlu3Svikp/Y8QmjhjEGsPMM3nTFb7bP1WTY/m84L19AHiXMqioT
-        s6CF2YkVAFqDn7lcTn5yAlOAO6V5GXnD5jEHJbsZGfGqmLM76I/VUfRtg+wd1iot
-        5X3OgFP26BO5CmUApZB/U1M3oH0/j5B52H5/CFYTElqR1TP20pJ6wCTokGRdFRtw
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=vxtgl2
+        McAVV4Jw7lpe9Bngye+AhxY0xlZbs/obgITSg=; b=CQYVX4z7e+Tf3JnrdZCu6A
+        hx/xik+iWENDo3LdsIBs9GnxavQmqnaO2B04suaoHYo4Vt5+qeGnq7citw0TZ1eS
+        i5bwUr5Fd5HDSlMR13/34NYY9BJcFfThHkDd0U30l7fKfHEOE/lQ3ay/NJZguPp2
+        /djQCTUQOxFrH5kgff1XRiLEbefyn97Cjq9XLUVluc3NePoI42kzJwkzLRNVJUS6
+        eh5JjAwBEA2xzwdz9zHJ2EJngbf3gdQa8b6uFEppa/jSZMluoIrwImapF0KlxNUE
+        HwRxc8S7cLGCkmAkoB50VgU44RKFEt46qgglTLBtjkIw+/aUAbm398IuJUvV4L9w
         ==
-X-ME-Sender: <xms:XO6UYK6LHVKbEDBv-YocshXGJOuPe4ZpfKyU5D5gDmWNmtqb6CXN-g>
-    <xme:XO6UYD7pcHK1WSfnSwwFIThFallfPLa1u4o_POD4b3mikhvwro8F4w78St58nTzAj
-    6fOEPaGok6rRj_XOA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdeguddgudduhecutefuodetggdotefrod
+X-ME-Sender: <xms:2O6UYJj7DBFgHbr9q1awWOedcks6me9PoxAIVnDunIAU2PxFdzqXGg>
+    <xme:2O6UYODLp_QipCJwUWPDKcbBJYvEyogYBeq545SbZs1GpJ_nNIjKgkfD1RhGwflwo
+    OJGhCxSQX9xuY-HlSs>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdeguddgudduiecutefuodetggdotefrod
     ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
     necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderreejnecuhfhrohhmpedftehn
-    ughrvgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtf
-    frrghtthgvrhhnpeduhedttdelkeetvdefiedtleejkeevleekgedvhfdtjeehgfeftdef
-    vdejjeeltdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgr
-    uh
-X-ME-Proxy: <xmx:XO6UYJdbKexbk8yCVKvO8lr41gDyZXItCml2Xdr0j8tc_cWU5V8IGg>
-    <xmx:XO6UYHIV_VtlEfoyS5cclBKnlCnQEMLfge2lMs1ktdUOJI9tNFfdEg>
-    <xmx:XO6UYOJRYmluXW-HZXIktMZnAR9kxngwoyJy6SfKHn7rVSc1IVxYsA>
-    <xmx:Xe6UYJbC0Ld-red-CUnEujuNIVraR3RiJMOPHPxfaU7l4y83cXsbuA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id BBCA1A00079; Fri,  7 May 2021 03:38:04 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-448-gae190416c7-fm-20210505.004-gae190416
-Mime-Version: 1.0
-Message-Id: <2a339218-19d7-4eea-a734-8053dd553dbb@www.fastmail.com>
-In-Reply-To: <20210507062416.GD23749@aspeedtech.com>
-References: <20210506100312.1638-1-steven_lee@aspeedtech.com>
- <20210506100312.1638-6-steven_lee@aspeedtech.com>
- <20210506102458.GA20777@pengutronix.de>
- <19a81e25-dfa1-4ad3-9628-19f43f4230d2@www.fastmail.com>
- <20210507062416.GD23749@aspeedtech.com>
-Date:   Fri, 07 May 2021 17:06:19 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Steven Lee" <steven_lee@aspeedtech.com>
-Cc:     "Philipp Zabel" <p.zabel@pengutronix.de>,
-        "Ulf Hansson" <ulf.hansson@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Joel Stanley" <joel@jms.id.au>,
-        "Adrian Hunter" <adrian.hunter@intel.com>,
-        "Ryan Chen" <ryanchen.aspeed@gmail.com>,
-        "moderated list:ASPEED SD/MMC DRIVER" <linux-aspeed@lists.ozlabs.org>,
-        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list" <linux-kernel@vger.kernel.org>,
-        "Hongwei Zhang" <Hongweiz@ami.com>,
-        "Ryan Chen" <ryan_chen@aspeedtech.com>,
-        "Chin-Ting Kuo" <chin-ting_kuo@aspeedtech.com>
-Subject: =?UTF-8?Q?Re:_[PATCH_v3_5/5]_mmc:_sdhci-of-aspeed:_Assert/Deassert_reset?=
- =?UTF-8?Q?_signal_before_probing_eMMC?=
-Content-Type: text/plain
+    enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheei
+    heegudenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtne
+    curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:2O6UYJFmfRYze-CWtiH5YWLv4nIsr7-hLU35R8NApW23N5zGRAh5aw>
+    <xmx:2O6UYORdGs5zYHEHgeZExHf_rZ7UEEydju48akN6f8nZJrif4k8Tjw>
+    <xmx:2O6UYGyWCPQ2pHCPbuEqk5InyOP204SXKKYUlmeQkz5kVdqDCTHNjQ>
+    <xmx:2u6UYNqpzEL057eT3nnNty6CWv-Sxi8mtMTuWOAq56i4fibxsGgsDw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA;
+        Fri,  7 May 2021 03:40:08 -0400 (EDT)
+Date:   Fri, 7 May 2021 09:40:05 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Chukun Pan <amadeus@jmu.edu.cn>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: arm: Add NanoPi R1S H5
+Message-ID: <20210507074005.5ketudguwwotb565@gilmour>
+References: <20210503143202.21795-1-amadeus@jmu.edu.cn>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="bqg4xlznz6dubgdk"
+Content-Disposition: inline
+In-Reply-To: <20210503143202.21795-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--bqg4xlznz6dubgdk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 7 May 2021, at 15:54, Steven Lee wrote:
-> The 05/07/2021 09:32, Andrew Jeffery wrote:
-> > 
-> > 
-> > On Thu, 6 May 2021, at 19:54, Philipp Zabel wrote:
-> > > Hi Steven,
-> > > 
-> > > On Thu, May 06, 2021 at 06:03:12PM +0800, Steven Lee wrote:
-> > > > +	if (info) {
-> > > > +		if (info->flag & PROBE_AFTER_ASSET_DEASSERT) {
-> > > > +			sdc->rst = devm_reset_control_get(&pdev->dev, NULL);
-> > > 
-> > > Please use devm_reset_control_get_exclusive() or
-> > > devm_reset_control_get_optional_exclusive().
-> > > 
-> > > > +			if (!IS_ERR(sdc->rst)) {
-> > > 
-> > > Please just return errors here instead of ignoring them.
-> > > The reset_control_get_optional variants return NULL in case the
-> > > device node doesn't contain a resets phandle, in case you really
-> > > consider this reset to be optional even though the flag is set?
-> > 
-> > It feels like we should get rid of the flag and leave it to the 
-> > devicetree.
-> > 
-> 
-> Do you mean adding a flag, for instance, "mmc-reset" in the
-> device tree and call of_property_read_bool() in aspeed_sdc_probe()?
-> 
-> > I'm still kind of surprised it's not something we want to do for the 
-> > 2400 and 2500 as well.
-> > 
-> 
-> Per discussion with the chip designer, AST2400 and AST2500 doesn't need
-> this implementation since the chip design is different to AST2600.
+On Mon, May 03, 2021 at 10:32:02PM +0800, Chukun Pan wrote:
+> Add the bindings for NanoPi R1S H5 board.
+>=20
+> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
 
-So digging a bit more deeply on this, it looks like the reset is 
-already taken care of by drivers/clk/clk-ast2600.c in the 
-clk_prepare_enable() path.
+Queued both for 5.14, thanks!
+Maxime
 
-clk-ast2600 handles resets when enabling the clock for most peripherals:
+--bqg4xlznz6dubgdk
+Content-Type: application/pgp-signature; name="signature.asc"
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/clk-ast2600.c?h=v5.12#n276
+-----BEGIN PGP SIGNATURE-----
 
-and this is true for both the SD controller and the eMMC controller:
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYJTu1QAKCRDj7w1vZxhR
+xQU8AQC5vNRplJCV9ITr25E1YS+GAOC9mHQlf3Qym2xPcDm5VwD/bGE8CxUnXyUJ
+xC7PCminS+6oMkRvtqVKP+YTz7TTgAY=
+=95jW
+-----END PGP SIGNATURE-----
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/clk-ast2600.c?h=v5.12#n94
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/clk-ast2600.c?h=v5.12#n88
-
-If this weren't the case you'd specify a reset property in the SD/eMMC 
-devicetree nodes for the 2600 and then use 
-devm_reset_control_get_optional_exclusive() as Philipp suggested. See 
-the reset binding here:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/reset/reset.txt?h=v5.12
-
-So on the surface it seems the reset handling in this patch is 
-unnecessary. Have you observed an issue with the SoC that means it's 
-required?
-
-Andrew
+--bqg4xlznz6dubgdk--
