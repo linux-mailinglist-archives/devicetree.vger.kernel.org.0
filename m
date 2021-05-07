@@ -2,171 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0485F376B94
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 23:19:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83CED376BB8
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 23:26:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229635AbhEGVUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 17:20:39 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:33499 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbhEGVUi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 17:20:38 -0400
-Received: by mail-ot1-f44.google.com with SMTP id i23-20020a9d68d70000b02902dc19ed4c15so5100372oto.0;
-        Fri, 07 May 2021 14:19:38 -0700 (PDT)
+        id S229806AbhEGV1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 17:27:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35580 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229779AbhEGV1X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 17:27:23 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4F74C061763
+        for <devicetree@vger.kernel.org>; Fri,  7 May 2021 14:26:22 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id w4so13308619ljw.9
+        for <devicetree@vger.kernel.org>; Fri, 07 May 2021 14:26:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=XG0TLyszi1cmh23fmH0mhN2WgCliBgRLG2x6Fui/g3w=;
+        b=hodjiOCfhaug0X3p4IQrL+WcbBvdiThSPchin6eJxMJ2dt0+Me5jQvoBuO67weHHYO
+         fBwbLAHWSc9YUyFTQBloGw9B711VjCdTmpXZuh+/yia7xVM6xvl3x2mDefdrS3xYtcO1
+         oIetrSG0llXe8YfcymcicYd6DR4droaELRHIVQbG6772pm9JUeoevm+ZO0H1yUzrt5HW
+         rnOFfBTK72QJF83XqkEEv2/X8bCQzubEAFkLHQwwbVWpETkA3QYN3MmHGCN2KEYdhjBT
+         AfAbjC9daNgoeNwLXGtKfJOeza28WvCd2mk4UQ+0d2i6U3BNsJ7zrcX5TmU3Tl+hAWUi
+         nyRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=YpC5Y9ntxdycovl95eo8Nefxaj8tIQRjfe1QWhL3IJc=;
-        b=fRU1JIkTH7bTEaTOpb+wxNqJYHkJXF0RUEAiDHEae53E0CcXEW+vV2aWsB5Mc49O1t
-         tIJF2UV5AiUJrU3l+pFq9L72zGErKy2rNQX8Pi8k4pbatFZEVnS1XwWxX82fEZzJMDqQ
-         3Lhp2M0omJWaokWKtZkC1WHOF7rPwcrs9ZcncS/A7Fvnwkc8lyXrwikae1oVuOtSiuyR
-         IwVDtEUp9LXsONzTZjAURvMfIBQhCfCUFlQdIgt8TVSPUOy8PYesnUoCOXBivXq692++
-         S7fCsVKkvL9GxFPsNYCp2kfQ2uFM5h6291FBrlyt6D0xVCoxfcNEDogGWktkvK33aBEJ
-         IWwA==
-X-Gm-Message-State: AOAM531sL4U7Vms9n7GH/KwCCELdW3JCcB/9hj7Rn3Lzgt6ujubOCuN8
-        3rMV1lGFoqP3b0uBQmKD6sckozp50g==
-X-Google-Smtp-Source: ABdhPJz2LvKwbUN4rajPoBOXWPa2bMhCzQXXERdDf6QsPEKAdmFldkzsjUS1VU0IEA26gQqUrb61Dg==
-X-Received: by 2002:a9d:491:: with SMTP id 17mr10053622otm.184.1620422377966;
-        Fri, 07 May 2021 14:19:37 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m67sm1396432otm.69.2021.05.07.14.19.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 May 2021 14:19:36 -0700 (PDT)
-Received: (nullmailer pid 2905952 invoked by uid 1000);
-        Fri, 07 May 2021 21:19:36 -0000
-Date:   Fri, 7 May 2021 16:19:36 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>
-Subject: Re: [PATCH v2] dt-bindings: i2c: Move i2c-omap.txt to YAML format
-Message-ID: <20210507211936.GA2902038@robh.at.kernel.org>
-References: <20210506140026.31254-1-vigneshr@ti.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XG0TLyszi1cmh23fmH0mhN2WgCliBgRLG2x6Fui/g3w=;
+        b=mmRxFEAJV5HgHERrEzMVr1tU578w+tJS56cRTDUydPwzfD1VcL7jKoHOxst9UYDztL
+         YF7dViiu2uz/aG/luqUrgrBnJA0ynpIz9/9l0acVSOHrbfx4ZjXh2jKesbful9qARoJb
+         iLpCjvw/usRDTQbwzizaattHrG4mhYoArziUnsI7H/nGmguOwNQFyeiK6gLJi6Ki2iZa
+         7d23BRf16ClHgrKeAGPQa5mdMkKYvfL6iKPH4w4UPEiWOFtJaUSUY3J/zmEU9+WvB429
+         XvCQ88xz4QO2cl9k2ML/jlTeU3JfHtRjF2L/NuHvaL1U9bOy1Nimx5e+8XNWO0V7rF4U
+         Im9g==
+X-Gm-Message-State: AOAM533BnRXjRjOtelB5vsWbplicO1sRVEvII8/GgLdPPgTHYOA/qGol
+        UhjtF5m0gt3ioyv9KSTnaKKFS8t9+EsXp1HhHAx7zg==
+X-Google-Smtp-Source: ABdhPJy3z0qWS5Sneh44i6pk2oO3OOciepj+d38iIgI70000KRkNiArXJwFb6hKxgj5G3aVCUF/o8itqFyKwsM+AULo=
+X-Received: by 2002:a2e:2e12:: with SMTP id u18mr9286103lju.200.1620422781142;
+ Fri, 07 May 2021 14:26:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210506140026.31254-1-vigneshr@ti.com>
+References: <20210505134028.13431-1-jbx6244@gmail.com> <20210505134028.13431-2-jbx6244@gmail.com>
+In-Reply-To: <20210505134028.13431-2-jbx6244@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 7 May 2021 23:26:09 +0200
+Message-ID: <CACRpkdZZ-FZn6Q3w6g=FayOzpUW4ZfenQ9Oxe0+Co2RyYpTZLA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: gpio: convert rk3328-grf-gpio.txt to YAML
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Jianqun Xu <jay.xu@rock-chips.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        David Wu <david.wu@rock-chips.com>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        Tao Huang <huangtao@rock-chips.com>, cl@rock-chips.com,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 06, 2021 at 07:30:26PM +0530, Vignesh Raghavendra wrote:
-> Convert i2c-omap.txt to YAML schema for better checks and documentation.
-> 
-> Following properties were used in DT but were not documented in txt
-> bindings and has been included in YAML schema:
-> 1. Include ti,am4372-i2c compatible
-> 2. Include dmas property used in few OMAP dts files
-> 3. Document clocks property
-> 
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> ---
-> v2:
-> Fix issues with make dt_bindings_check
-> Add description on usage of ti,hwmods
-> 
->  .../devicetree/bindings/i2c/i2c-omap.txt      | 37 ---------
->  .../devicetree/bindings/i2c/ti,omap4-i2c.yaml | 80 +++++++++++++++++++
->  2 files changed, 80 insertions(+), 37 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-omap.txt
->  create mode 100644 Documentation/devicetree/bindings/i2c/ti,omap4-i2c.yaml
+On Wed, May 5, 2021 at 3:40 PM Johan Jonker <jbx6244@gmail.com> wrote:
 
+> Current dts files with RK3328 GRF 'gpio' nodes are manually verified.
+> In order to automate this process rk3328-grf-gpio.txt has to be
+> converted to YAML.
+>
+> Rename 'grf-gpio' nodename to 'gpio'.
+>
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 
-> diff --git a/Documentation/devicetree/bindings/i2c/ti,omap4-i2c.yaml b/Documentation/devicetree/bindings/i2c/ti,omap4-i2c.yaml
-> new file mode 100644
-> index 000000000000..eb11e3025b37
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/ti,omap4-i2c.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i2c/ti,omap4-i2c.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bindings for I2C controllers on TI's OMAP and K3 SoCs
-> +
-> +maintainers:
-> +  - Vignesh Raghavendra <vigneshr@ti.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/i2c/i2c-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: ti,omap2420-i2c
-> +      - const: ti,omap2430-i2c
-> +      - const: ti,omap3-i2c
-> +      - const: ti,omap4-i2c
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-These 4 can be a single 'enum'.
-
-> +      - items:
-> +          - enum:
-> +              - ti,am4372-i2c
-> +              - ti,am64-i2c
-> +              - ti,am654-i2c
-> +              - ti,j721e-i2c
-> +          - const: ti,omap4-i2c
-> +
-> +  ti,hwmods:
-> +    description:
-> +      (DEPRECATED) Must be "i2c<n>", n being the instance number (1-based).
-
-There's a keyword to mark things deprecated. It's 'deprecated'.
-
-> +      This property is applicable only on legacy platforms mainly omap2/3
-> +      and ti81xx and should not be used on other platforms.
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    items:
-> +      - pattern: "^i2c([1-9])$"
-> +
-> +  dmas:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  dma-names:
-> +    items:
-> +      - const: tx
-> +      - const: rx
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: fck
-> +
-> +  clock-frequency: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    main_i2c0: i2c@2000000 {
-> +            compatible = "ti,j721e-i2c", "ti,omap4-i2c";
-> +            reg = <0x2000000 0x100>;
-> +            interrupts = <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +         };
-> -- 
-> 2.31.1
-> 
+Yours,
+Linus Walleij
