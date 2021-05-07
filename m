@@ -2,90 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15AAC37647C
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 13:30:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 881593764A8
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 13:46:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233369AbhEGLa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 07:30:59 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:52890 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229612AbhEGLa7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 07:30:59 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 11BD61F43F80
-Received: by earth.universe (Postfix, from userid 1000)
-        id 44EFD3C0C96; Fri,  7 May 2021 13:29:56 +0200 (CEST)
-Date:   Fri, 7 May 2021 13:29:56 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     skakit@codeaurora.org
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Collins <collinsd@codeaurora.org>, kgunda@codeaurora.org,
-        Vinod Koul <vkoul@kernel.org>,
-        Courtney Cavin <courtney.cavin@sonymobile.com>,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH V2 3/4] dt-bindings: power: reset: qcom-pon: Convert qcom
- PON binding to yaml
-Message-ID: <20210507112956.3ibzuinvzd6d5rku@earth.universe>
-References: <1617881469-31965-1-git-send-email-skakit@codeaurora.org>
- <1617881469-31965-4-git-send-email-skakit@codeaurora.org>
- <20210408130001.k3qbq3vvwkiyykzv@earth.universe>
- <0cb9b3503000ac7206f4a3ef5fd16c17@codeaurora.org>
- <322cbdbb022fec3f43c1cbe13c532dd3@codeaurora.org>
- <20210427083721.heavcdadeb4ajkk2@earth.universe>
- <a190e414c53af3ea094548f5011c3a04@codeaurora.org>
- <be3573974d76d7e464048b34854416ad@codeaurora.org>
+        id S234897AbhEGLro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 07:47:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48698 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234729AbhEGLrn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 07:47:43 -0400
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 235C6C061574;
+        Fri,  7 May 2021 04:46:43 -0700 (PDT)
+Received: by mail-pg1-x529.google.com with SMTP id i5so2219804pgm.0;
+        Fri, 07 May 2021 04:46:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uR1cJZI3x3ph+ewlJwOwS07YkruOTk4an/PdVhtMkr8=;
+        b=N/lqcnc7KQMPu+KrJo3SjocMaNEwCApyjgxnyQLW873BudWttiMLSpO4CUBq681LQL
+         XBfOq5qyPexcbixQ6C3LY8k/dekbWv61aTSda52k3Jss+rBrxKEPxGKiiu0oci8iS+I3
+         GfZ9D/GFQP157QsHBB7aYo1uT6L+ieQ09Iz5YldWpSOK4U3kRz39eqAaq56woDaBzEwW
+         b22Lka5d7x5/A4PXygCls6CxhDGUo22iUBxMdctxDw2rszPIUw2bHJx56F4H7roRFrBS
+         ULEr5IlntuCT5oNvY3yS4WlONi1CkH2oZO/boJi3YE+AvhgS4cITmZgJdFmTij450yCJ
+         LjuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uR1cJZI3x3ph+ewlJwOwS07YkruOTk4an/PdVhtMkr8=;
+        b=ktw3PM9Nm31F2d8lVtVS3HbRHNH3y2wKlCymIYGInX6rWIxh54SiijnsCoCo7e1DJH
+         lV9jMYy6a7X8qMQkLNePzOHuYfVVvDfdiRiCpMsszZypXccAb8BZlJcanmiKeeCHH747
+         snHwMAsb28Sa0hxlSzQMdeHqDfyAkIb6cPRvfdytcDTB6GtMxU4En26piPqnRCfXlCef
+         TJSICQ2doKa3F6SkuIfVuAgOMhmqwzZgyUzu29MxBFj9uDeLRkiK/5R5FuupVAP0Z6nX
+         nVKIr+MkbodJn65yo9WE4pmIiogBjtc56WfTwYZAdOvKbt4DzNsS7auRaFY5UPpRFDQQ
+         hUqA==
+X-Gm-Message-State: AOAM532abKaN68Vr2t50EYAmu91dQdU+AP00K23fWK2LzXkWeOaJdNWf
+        bKYPJK0ULtp+tiws0Yt9DJaDHbdo+jPhz7KmTKolU46rUrdAOA==
+X-Google-Smtp-Source: ABdhPJyz37HmRfpOxF5mQuByQ13JMKLXTuCkq3L0IM/6cmbTE6aB/KmPmgneubUc0gs1GQQ1xr8QHMWXkkWhAUYArAo=
+X-Received: by 2002:a63:cd11:: with SMTP id i17mr9429849pgg.74.1620388002532;
+ Fri, 07 May 2021 04:46:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ix4wlrl34amaeftv"
-Content-Disposition: inline
-In-Reply-To: <be3573974d76d7e464048b34854416ad@codeaurora.org>
+References: <20210507004047.4454-1-chris.packham@alliedtelesis.co.nz> <20210507004047.4454-4-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20210507004047.4454-4-chris.packham@alliedtelesis.co.nz>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 7 May 2021 14:46:26 +0300
+Message-ID: <CAHp75VcEzgKjOD6WQ1=YAwK_hhZr=XtcmXZL8rK78gb7iXDbDg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] i2c: mpc: implement erratum A-004447 workaround
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     Wolfram Sang <wsa@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        linux-i2c <linux-i2c@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:LINUX FOR POWERPC PA SEMI PWRFICIENT" 
+        <linuxppc-dev@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, May 7, 2021 at 3:40 AM Chris Packham
+<chris.packham@alliedtelesis.co.nz> wrote:
+>
+> The P2040/P2041 has an erratum where the normal i2c recovery mechanism
+> does not work. Implement the alternative recovery mechanism documented
+> in the P2040 Chip Errata Rev Q.
 
---ix4wlrl34amaeftv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Thanks.
 
-Hi,
+> +static int i2c_mpc_wait_sr(struct mpc_i2c *i2c, int mask)
+> +{
+> +       int ret;
+> +       u8 val;
+> +
+> +       ret = readb_poll_timeout(i2c->base + MPC_I2C_SR, val,
+> +                                val & mask, 0, 100);
+> +
+> +       return ret;
+> +}
 
-On Fri, May 07, 2021 at 03:15:55PM +0530, skakit@codeaurora.org wrote:
-> Seems like I have to make 'additionalProperties' as true in reboot-mode.yaml
-> I have checked other yaml binding docs where allOf is used, and they have
-> 'additionalProperties' as true in the file which is being referred. Please
-> let me know if this is not correct way to do it.
+So, now you may shrink it even further, i.e.
 
-Yes, reboot-mode.yaml should have additionalProperties = true. I
-think Rob missed, that the binding is a generic one when he added
-it in f84e2c5c528d.
+       void __iomem *sr = i2c->base + MPC_I2C_SR;
+       u8 val;
 
--- Sebastian
+       return readb_poll_timeout(sr, val, val & mask, 0, 100);
 
---ix4wlrl34amaeftv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmCVJKoACgkQ2O7X88g7
-+pqZqg//bAl15lpGbh5wgVjf5oRwoIJT0FsA2CjTDNeaNO9xiVJhMfQBPWzqmAhB
-hKN6XC4DSemLD7BKsPgIWYTsJvNyQi7wEZKLO6G3+R6Q+bEp4Ry30Cf/heTXw76y
-41udUW+UvPXY1p/v36Xyhidirt4gPfIHTTKEyQ9WEHlDI+J4TjPrH9CaU3a8FwAc
-a5/73gv5OZn4tSLEfbK/VLC7OOMkGrv4zzm+GZeDfeAhv51psVGXUTp1g2UtI70j
-1IlxeMNUus/dSNHqPVUmUndKWhFRAcm4xpjzz3ArGOGYcAXjG5uZzc7hdl5x3APf
-Fj56H//aEn/ERAt0zVJMY+tmenq/XA3hBFZZ7Y9qewz96ep7QUkOSeYe2m5xm8pr
-5ChL1RuwsXdVomwpLKx6q975+9RZi7d+HtM4GymzBQ0CJaWekE2nDPhZKnZL6aoF
-/BS0Il/mVhHLVzhHel9tUGOU0JiyqvcaoZI/nKTqs7mLAFk+J0v1ya3djKo5/yFT
-/VlW892Rie5Prj+c8PUpCgNDBLzrBhdlsrfQZDCob81OaC6sn5KJiNnsZGXuux3n
-ZzIVQXWvsoBSU8vCKwh3hIfmfnKQfR02WdAP6TDac0TB6dOKgzz05oQ56sQ8+CSM
-rCE6/07o9NePc9lvoYdS6IFWLnIwLoix125kXkmVLYfOgQX4c8E=
-=szSx
------END PGP SIGNATURE-----
-
---ix4wlrl34amaeftv--
+-- 
+With Best Regards,
+Andy Shevchenko
