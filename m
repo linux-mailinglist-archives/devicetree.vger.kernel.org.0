@@ -2,117 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6477837695F
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 19:15:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27B30376967
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 19:19:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237208AbhEGRQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 13:16:44 -0400
-Received: from mail-dm6nam11on2041.outbound.protection.outlook.com ([40.107.223.41]:27616
-        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234482AbhEGRQm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 7 May 2021 13:16:42 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=M7UTFOZfdMw7xhVXGML4dRSJ5BM2xCSjkG/MCLdTJ++nfN9yh7X7RjTdDzZV5Ls27BsoJEw8fcz5jyuwRhcesxy/172e6YLVls/l/ILq/BoRzqZTSLLc/YJNcjTzerrIIKGaDR0Mo9gJHFdrnMmsihawIAyj1UU5wYCiCprXG3g8x4WoLRcF7yh8mbaOt2oNqKkKnVYZNQ3j1vs/6kTr1ybEAec4SPasfbAWmZ8hQx/oM80CcTHclA4mn595e2PG5/wztowIZN9f9IiJLYZ08ZSRos6y6W2jddKXBh9I3kpIyWJe1AIdH812d5lKyY/CsXXcr0wqR1PiWw0c5epHcw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0aE7IM7iYKt/W+SKrgxBrHNiE4sXG7cvlarVT7b+AP8=;
- b=Tr0Efr9EbQPZYlNdJw9tNEuhpX+qL9RQEUpK/I1XYTKPF/eX0/QmIloJSYSvAQDFOJKKdBp0Kp57guTJBam0Q1r+CQSOFnc8hCG8AVmf5vaNJj6F8a8/uHK5isR11jPOv0LRD+V0L96wiCIRhqBtHsKrZTmMg8F83H/6YlF/lfZ4fyzdx7OTtbG7LDIofECKviwg3r+Y+c+iCLYaMZvl1y7vdxv0Gx5UTvFsUlQtwpjpy6rzZE7zAjVmWkXPpfbR2KsFsVz1xpqP/2vzdd2W6NOWAzPysTsMhXKhh8vFRSxJ2w2MBB8WM6QPq/BoeQ788Teyfrzxq05Cubxf/acZTg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.34) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0aE7IM7iYKt/W+SKrgxBrHNiE4sXG7cvlarVT7b+AP8=;
- b=pYq2mw8uOxjWq1qgcifaeBNqrNNVpNXx3BLIN8YJ5g7dDafItFFHNf8P2BKyZRle3qeCvNysH2yhW+JgUG8zxYf+0GehB4EocCqbVboO8k+NghqoECoLszJXz1l3Gl6kJTsTKznKFCdz1AyErDUKIP/yDdNXheda3vWx2uWgEERf+Gkfp3Q2XSHmyGY9/yQrtEvdZFLhBrpz8FrT9rwY54519xBEMuwEVj3M8VqSjiN9f7g7jI3w5yFxLobChcJdQ9PyAKfTiOzvZ+1N6W2rk/bsOz5pR+d9rQklbnE/YUzeQ311H4j/RVMCDrkOcu2LxZOTs3hj/PngL2beH3AZdQ==
-Received: from MWHPR19CA0070.namprd19.prod.outlook.com (2603:10b6:300:94::32)
- by BL0PR12MB2564.namprd12.prod.outlook.com (2603:10b6:207:49::28) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.26; Fri, 7 May
- 2021 17:15:41 +0000
-Received: from CO1NAM11FT005.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:94:cafe::91) by MWHPR19CA0070.outlook.office365.com
- (2603:10b6:300:94::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.24 via Frontend
- Transport; Fri, 7 May 2021 17:15:41 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
- smtp.mailfrom=nvidia.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.112.34; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (216.228.112.34) by
- CO1NAM11FT005.mail.protection.outlook.com (10.13.174.147) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4108.25 via Frontend Transport; Fri, 7 May 2021 17:15:41 +0000
-Received: from dev-r-vrt-156.mtr.labs.mlnx (172.20.145.6) by
- HQMAIL107.nvidia.com (172.20.187.13) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 7 May 2021 17:15:39 +0000
-From:   Vadim Pasternak <vadimp@nvidia.com>
-To:     <linux@roeck-us.net>, <robh+dt@kernel.org>
-CC:     <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        "Vadim Pasternak" <vadimp@nvidia.com>
-Subject: [PATCH hwmon-next v6 3/3] dt-bindings: Add MP2888 voltage regulator device
-Date:   Fri, 7 May 2021 20:14:21 +0300
-Message-ID: <20210507171421.425817-4-vadimp@nvidia.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210507171421.425817-1-vadimp@nvidia.com>
-References: <20210507171421.425817-1-vadimp@nvidia.com>
+        id S234557AbhEGRU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 13:20:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48620 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232056AbhEGRUz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 7 May 2021 13:20:55 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8283761466;
+        Fri,  7 May 2021 17:19:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1620407995;
+        bh=81FG1WxptVxgsMjB+7/uSNRBIS/lhGXvBOay2PMOYx8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=B6kjP+OA6U8cPRrcMBxSmt1Oqi1xX4uTJi2B12Vls9bmKDb+0W0ZkwhH/IpGXKs59
+         nsS+baNLI+ITx0T9uyGZnmINFyv/57chV82JKmQB4v//Ea6fYn5ZS/cFhDgndlaKqX
+         tGJ5LU5PNBa0dl64LOMi9Me+Xfs3ndjPtoh0Ig+b9C6bjmdkkeZpZRociM+nnesl1H
+         0BKQ3yCeD4G3N74jicVQtiYsnmEzJpcXOpcNnYxk+aGV4NFxnpY6u707G8MJK/dsLb
+         +umwswDs8EmsT896o9nojGTGrapWtVWQOfTxDiNJPCGOQuxMf8CS8Y+ZDbbWIVFgYb
+         xA3b0aELqFUGw==
+Received: by mail-ed1-f48.google.com with SMTP id y26so11085878eds.4;
+        Fri, 07 May 2021 10:19:55 -0700 (PDT)
+X-Gm-Message-State: AOAM530ADS5+UZYsUlja9Jq7nKWJow7Y3UOuvwzIg8LDWDMXt7PIPB2y
+        1nP/3qwIWTg0rFN6TCKFYlJs7pRuHWhu2c79Dg==
+X-Google-Smtp-Source: ABdhPJyAy/IFFuj/LBLDoUPBqD97fCZdacKeeOIzjeWoa20BB43dij5t1kT0f5V1KD4L/EszHb502I48/FMaQ8d11a0=
+X-Received: by 2002:a05:6402:84b:: with SMTP id b11mr12690887edz.289.1620407993904;
+ Fri, 07 May 2021 10:19:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [172.20.145.6]
-X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
- HQMAIL107.nvidia.com (172.20.187.13)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 08508781-01ea-46ae-d2df-08d9117bbdbf
-X-MS-TrafficTypeDiagnostic: BL0PR12MB2564:
-X-Microsoft-Antispam-PRVS: <BL0PR12MB256490FBA3246BCA0D56FFA4AF579@BL0PR12MB2564.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:296;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3zzegUaYkAezrSkdR1zNEdWBvMnoKGqR0OcS9iNHL651tOBfmklpw0zlHG7yGi25uSK20UIxHjY6KqTHW14hyU0qnBSjAG3qz7zy6BGUtJkE0qXKv152hOTp+KzzfVMdKyhAkkF2ySqw0XEw/w1AgXCm+Kl4prIDXBK10wawukiFH4UKz0sbyckpDtux/LSGia2FzBajcHvLQ/uaUB1DYSEW1fKoA5dG51V1UWRXuwoTrcuFbdxdMIWELAuRlfLi4G4aLbsA7nraWWb7ssyGXirQdEiwPUX2iNsz20UAw4aKIT7qC4AXRTFei6hZZ6JT8o/obVSTsW8kupTpSfiSRrjCF5txwsL1CQmzn9I94CSRSFSrjrgV/sVfYFhA7sUGAO9u+GP6qtpwFXl4H/Mynu4aq4G8eu1aa65HXREHAV/1Vgm7+74B7BzbtIo5agyy924vWjeqF345N/raVM4GgM1owKokAh3HwpSt1kb405v4mUgY7Xoo0jYpC5tkoSGVKilF2NuNJ2iEMjEMBG92l4G4eh5G/0khNnjRF+ZmxTao4lTIIg6pVeongEJFXBvsypgyGffEYE4aNcLse0ptSM4qQ1nt5nVfYHdXfO7tg94s6CKkwEfemQnYAxm0/uWzYQRAC+K+Lh9djox6JtSUOaSoKbaB9/6VCJpSv3Jiqyw=
-X-Forefront-Antispam-Report: CIP:216.228.112.34;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid03.nvidia.com;CAT:NONE;SFS:(4636009)(376002)(396003)(136003)(39860400002)(346002)(46966006)(36840700001)(5660300002)(8676002)(36860700001)(36906005)(47076005)(2906002)(70586007)(336012)(2616005)(54906003)(110136005)(6666004)(426003)(316002)(8936002)(70206006)(4744005)(36756003)(82310400003)(478600001)(86362001)(82740400003)(7636003)(356005)(107886003)(26005)(1076003)(186003)(16526019)(4326008);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2021 17:15:41.0611
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08508781-01ea-46ae-d2df-08d9117bbdbf
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.34];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT005.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2564
+References: <1620322392-27148-1-git-send-email-gubbaven@codeaurora.org>
+ <1620322392-27148-5-git-send-email-gubbaven@codeaurora.org>
+ <20210507011753.GB1126886@robh.at.kernel.org> <C81968AD-1C0B-4764-9631-FF227D026ED7@holtmann.org>
+In-Reply-To: <C81968AD-1C0B-4764-9631-FF227D026ED7@holtmann.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 7 May 2021 12:19:42 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKy-wyrG8hvg2yTBdB44BgPa11hcTPwKTD-WgVykvpLaw@mail.gmail.com>
+Message-ID: <CAL_JsqKy-wyrG8hvg2yTBdB44BgPa11hcTPwKTD-WgVykvpLaw@mail.gmail.com>
+Subject: Re: [PATCH v3 4/5] dt-bindings: net: bluetooth: Convert Qualcomm BT
+ binding to DT schema
+To:     Marcel Holtmann <marcel@holtmann.org>
+Cc:     Venkata Lakshmi Narayana Gubba <gubbaven@codeaurora.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        devicetree@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Bluetooth Kernel Mailing List 
+        <linux-bluetooth@vger.kernel.org>,
+        Hemantg <hemantg@codeaurora.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Balakrishna Godavarthi <bgodavar@codeaurora.org>,
+        Rocky Liao <rjliao@codeaurora.org>, hbandi@codeaurora.org,
+        Abhishek Pandit-Subedi <abhishekpandit@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Monolithic Power Systems, Inc. (MPS) dual-loop, digital, multi-phase
-controller.
+On Fri, May 7, 2021 at 1:55 AM Marcel Holtmann <marcel@holtmann.org> wrote:
+>
+> Hi Venkata,
+>
+> >> Converted Qualcomm Bluetooth binidings to DT schema.
+> >>
+> >> Signed-off-by: Venkata Lakshmi Narayana Gubba <gubbaven@codeaurora.org>
+> >> ---
+> >> .../devicetree/bindings/net/qualcomm-bluetooth.txt |  69 -------------
+> >> .../bindings/net/qualcomm-bluetooth.yaml           | 111 +++++++++++++++++++++
+> >> 2 files changed, 111 insertions(+), 69 deletions(-)
+> >> delete mode 100644 Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
+> >> create mode 100644 Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml
+> >
+> >
+> >> diff --git a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml
+> >> new file mode 100644
+> >> index 0000000..3f3ec4d
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml
+> >> @@ -0,0 +1,111 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/net/qualcomm-bluetooth.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Qualcomm Bluetooth Chips
+> >> +
+> >> +maintainers:
+> >> +  - Marcel Holtmann <marcel@holtmann.org>
+> >
+> > This should be someone who cares about Qcom BT.
+>
+> yes, please, assign this to someone that knows the hardware.
+>
+> Rob, can we leave this out for now if there is no dedicated person?
 
-Signed-off-by: Vadim Pasternak <vadimp@nvidia.com>
-Acked-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+No, it's required. It can be me if it comes to that. However, if no
+one can be bothered to step up, then we should just remove it perhaps.
+QCom is a big company, I'm sure they can find some name.
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index a327130d1faa..4f6d149bfb3f 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -98,6 +98,8 @@ properties:
-           - fsl,mpl3115
-             # MPR121: Proximity Capacitive Touch Sensor Controller
-           - fsl,mpr121
-+            # Monolithic Power Systems Inc. multi-phase controller mp2888
-+          - mps,mp2888
-             # Monolithic Power Systems Inc. multi-phase controller mp2975
-           - mps,mp2975
-             # G751: Digital Temperature Sensor and Thermal Watchdog with Two-Wire Interface
--- 
-2.11.0
-
+Rob
