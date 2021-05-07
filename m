@@ -2,98 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C65D7376295
-	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 11:03:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ADFE37627F
+	for <lists+devicetree@lfdr.de>; Fri,  7 May 2021 11:02:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236645AbhEGJEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 05:04:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40680 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236690AbhEGJEI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 05:04:08 -0400
-X-Greylist: delayed 2161 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 07 May 2021 02:03:09 PDT
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de [IPv6:2a01:488:42:1000:50ed:8234::])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46272C061574;
-        Fri,  7 May 2021 02:03:09 -0700 (PDT)
-Received: from ip4d14bd53.dynamic.kabel-deutschland.de ([77.20.189.83] helo=[192.168.66.200]); authenticated
-        by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        id 1levp9-0004o6-Bo; Fri, 07 May 2021 10:27:03 +0200
-To:     Tony Lindgren <tony@atomide.com>,
-        Naresh Kamboju <naresh.kamboju@linaro.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkft-triage@lists.linaro.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        regressions@lists.linux.dev,
-        Benoit Cousson <bcousson@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-References: <CA+G9fYtTN6ug3eBAW3wMcDeESUo+ebj7L5HBe5_fj4uqDExFQg@mail.gmail.com>
- <YJPYvsdkfx4JD4vT@atomide.com>
- <CA+G9fYv48aJ6tmSaf_HtRKHse4yN40hEYSPR5=A3W6HRoJ8p_g@mail.gmail.com>
- <YJTz+D9Sp8Eyp+iw@atomide.com>
-From:   Thorsten Leemhuis <linux@leemhuis.info>
-Subject: Re: #regzb introduced: 98feab31ac49 ("ARM: OMAP2+: Drop legacy
- platform data for dra7 sata")
-Message-ID: <e896704c-c13a-739d-0723-22fec35406ed@leemhuis.info>
-Date:   Fri, 7 May 2021 10:27:02 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S236543AbhEGJDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 05:03:43 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:50372 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233500AbhEGJDm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 05:03:42 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: benjamin.gaignard)
+        with ESMTPSA id 5E1021F43295
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+To:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
+        heiko@sntech.de, xxm@rock-chips.com
+Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Subject: [PATCH v4 0/6] Add IOMMU driver for rk356x
+Date:   Fri,  7 May 2021 11:02:26 +0200
+Message-Id: <20210507090232.233049-1-benjamin.gaignard@collabora.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <YJTz+D9Sp8Eyp+iw@atomide.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-BZ
 Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de;linux@leemhuis.info;1620378189;540b3e67;
-X-HE-SMSGID: 1levp9-0004o6-Bo
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07.05.21 10:02, Tony Lindgren wrote:
-> * Naresh Kamboju <naresh.kamboju@linaro.org> [210506 15:19]:
->> On Thu, 6 May 2021 at 17:23, Tony Lindgren <tony@atomide.com> wrote:
->>> * Naresh Kamboju <naresh.kamboju@linaro.org> [210506 11:00]:
->>>> Our bisect script pointed this as the first bad commit on linux
->>>> mainline master branch.
->>>> commit 98feab31ac491400f28b76a04dabd18ce21e91ba
->>>> Author: Tony Lindgren <tony@atomide.com>
->>>> Date:   Wed Mar 10 14:03:51 2021 +0200
->>>>     ARM: OMAP2+: Drop legacy platform data for dra7 sata
->>> Thanks for the report, looks like we are now missing the sata related
->>> quirk flags compared to the patch above.
->>> Below is a quick patch to add the missing quirk flags that might help
->>> if you can give it a try.
->> The reported problem was solved by this patch. Thank you.
->> Please add reported and tested by tags.
->> Reported-by: Naresh Kamboju <naresh.kamboju@linaro.org>
->> Tested-by: Naresh Kamboju <naresh.kamboju@linaro.org>
-> OK good to hear and thanks for testing. Will send out a proper patch.
+This series adds the IOMMU driver for rk356x SoC.
+Since a new compatible is needed to distinguish this second version of 
+IOMMU hardware block from the first one, it is an opportunity to convert
+the binding to DT schema.
 
-Great to see that this is about to be fixed. And Naresh, many thx for
-giving the #regzb tag a try, even if regzbot (shameless plug for the
-unaware: https://linux-regtracking.leemhuis.info/post/regzbot-approach/
-) is not up and running already, much appreciated!
+version 4:
+ - Add description for reg items
+ - Remove useless interrupt-names properties
+ - Add description for interrupts items
+ - Remove interrupt-names properties from DST files
 
-But FWIW, you don't need to add the tag to the subject; in fact, better
-use it for it's intended purpose. Instead add the tag to the mail's
-body, like this:
+version 3:
+ - Rename compatible with soc prefix
+ - Rebase on v5.12 tag
 
-#regzb introduced: 98feab31ac49 ("ARM: OMAP2+: Drop legacy platform data
-for dra7 sata")
+version 2:
+ - Fix iommu-cells typo in rk322x.dtsi
+ - Change maintainer
+ - Change reg maxItems
+ - Add power-domains property
+ 
+Benjamin Gaignard (5):
+  dt-bindings: iommu: rockchip: Convert IOMMU to DT schema
+  dt-bindings: iommu: rockchip: Add compatible for v2
+  ARM: dts: rockchip: rk322x: Fix IOMMU nodes properties
+  ARM: dts: rockchip: rk3036: Remove useless interrupt-names on IOMMU
+    node
+  ARM64: dts: rockchip: rk3036: Remove useless interrupt-names
+    properties
 
-Just ensure there is a blank line after that, as regzbot will have to
-deal with line breaks (as can be seen above) and somehow needs to decide
-where to stop. ;-)
+Simon Xue (1):
+  iommu: rockchip: Add support iommu v2
 
-Ohh, and Tony, if you want to do me a favour please include
+ .../bindings/iommu/rockchip,iommu.txt         |  38 --
+ .../bindings/iommu/rockchip,iommu.yaml        |  85 ++++
+ arch/arm/boot/dts/rk3036.dtsi                 |   1 -
+ arch/arm/boot/dts/rk322x.dtsi                 |  10 +-
+ arch/arm64/boot/dts/rockchip/px30.dtsi        |   2 -
+ drivers/iommu/rockchip-iommu.c                | 422 +++++++++++++++++-
+ 6 files changed, 494 insertions(+), 64 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iommu/rockchip,iommu.txt
+ create mode 100644 Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
 
-Link:
-https://lore.kernel.org/regressions/CA+G9fYtTN6ug3eBAW3wMcDeESUo+ebj7L5HBe5_fj4uqDExFQg@mail.gmail.com/
+-- 
+2.25.1
 
-in the commit message of the fix, then I have some real data already at
-hand to test regzbot in practice. :-D
-
-Ciao, Thorsten
