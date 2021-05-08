@@ -2,88 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE5193772C0
-	for <lists+devicetree@lfdr.de>; Sat,  8 May 2021 17:48:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDBE63772D9
+	for <lists+devicetree@lfdr.de>; Sat,  8 May 2021 17:58:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229741AbhEHPsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 May 2021 11:48:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48268 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229738AbhEHPsu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 May 2021 11:48:50 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 705CCC061574;
-        Sat,  8 May 2021 08:47:49 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id q15so5322688pgg.12;
-        Sat, 08 May 2021 08:47:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Hl6GPdnktUsPtgmMwG3aTCuQF5GcVx+5iL+jkQalr64=;
-        b=Ifby7yjOkHxCs6R0IvKjcJOzuV+KLcYpFasOIFKXXB9H5eSkRW6khFLa4gYlVrueot
-         QeFIDbpE3nRNlmQK8Pf+qvtlrVHczkOn16MBvGkxzZJZfRMoScv6fkWzIpuFDXP+qduK
-         7PHar/J++2YyyMy7jpD82lcD/DY4YQooqQrFH9Lk4ixBTUyLlT4KsK17mCisPP+5N22e
-         d1Kv8+96GpyijycyeZnx4S9TEXWhM3it6K/m3wamg5vdvGsZX6PcoTKUju+szqj6P5db
-         9H2kSZGxhISMLavm41xnsdC/4qvH1SPNVP4pmFLggI+mlvlrRQQyju+P7YJRdocgx3xW
-         81Og==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Hl6GPdnktUsPtgmMwG3aTCuQF5GcVx+5iL+jkQalr64=;
-        b=SPYHawZ5XCJFffro+3+G8XFcllciY0s/ivCj1GEo8DRjvXoA+AaTY1ORkfhn4H53gY
-         +zgRWPVY81ZVf5mB5zga+9N0FOJbTQHPAE62t2TM9bIyRUq9hi8L0doCC3mX0HCedl8J
-         0jAr2Ts6l29BaMWitG2QFZZgXEHSYc0V+/yI5nV90pxqwMG4d1EoXshRg/d53HAd//Jw
-         xp/S1LrHi10uphv3669DtcTPEjYGctM1MEMX2Q+qZxX/dHHHJm5bxNy4bQqULhQ1dI3m
-         c5jw54MaybEJMghgfgNziv9ooninCegJX11sxIZ1H8ZGeeIsZ2Y85b152SpJAi8IhEHq
-         qG8A==
-X-Gm-Message-State: AOAM533qXJ7pd60qjIl6XtUR4Vc65ZqmKH5mxAvkxS2KMBovwmXMdrN/
-        JhAoCHRx0DMnRYVIRPZ8mji01k0BMBE=
-X-Google-Smtp-Source: ABdhPJwXwzdFQtlTgv6OG95KH+1calQ+XuKvaXiKJXT9npi6DYCS6pSSRu01tuSMnnEao/lwQXtepw==
-X-Received: by 2002:a62:140f:0:b029:2b5:7c49:45ae with SMTP id 15-20020a62140f0000b02902b57c4945aemr1756558pfu.61.1620488868644;
-        Sat, 08 May 2021 08:47:48 -0700 (PDT)
-Received: from [192.168.1.67] (99-44-17-11.lightspeed.irvnca.sbcglobal.net. [99.44.17.11])
-        by smtp.gmail.com with ESMTPSA id q8sm7168472pgn.22.2021.05.08.08.47.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 08 May 2021 08:47:48 -0700 (PDT)
-Subject: Re: [RFC PATCH net-next v4 13/28] devicetree: net: dsa: qca8k:
- Document new compatible qca8327
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        id S229579AbhEHP7t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 May 2021 11:59:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47010 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229500AbhEHP7t (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 8 May 2021 11:59:49 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DE5C660FE9;
+        Sat,  8 May 2021 15:58:45 +0000 (UTC)
+Date:   Sat, 8 May 2021 16:59:44 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Peter Rosin <peda@axentia.se>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210508002920.19945-1-ansuelsmth@gmail.com>
- <20210508002920.19945-13-ansuelsmth@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <793ab298-1310-bbc6-9ef5-f48eeee347a8@gmail.com>
-Date:   Sat, 8 May 2021 08:47:45 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.10.1
+Subject: Re: [PATCH] dt-bindings: iio: afe: current-sense-shunt: add
+ io-channel-cells
+Message-ID: <20210508165944.2e3d8d91@jic23-huawei>
+In-Reply-To: <0e68ca18-7d8c-12ab-59b1-56404b29be77@axentia.se>
+References: <20210506150637.35288-1-krzysztof.kozlowski@canonical.com>
+        <0e68ca18-7d8c-12ab-59b1-56404b29be77@axentia.se>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20210508002920.19945-13-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, 8 May 2021 00:44:58 +0200
+Peter Rosin <peda@axentia.se> wrote:
 
-
-On 5/7/2021 5:29 PM, Ansuel Smith wrote:
-> Add support for qca8327 in the compatible list.
+> Hi!
 > 
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> Acked-by: Rob Herring <robh@kernel.org>
+> On 2021-05-06 17:06, Krzysztof Kozlowski wrote:
+> > The current-sense-shunt is an IIO provider thus can be referenced by IIO
+> > consumers (via "io-channels" property in consumer device node).
+> > Such provider is required to describe number of cells used in phandle
+> > lookup with "io-channel-cells" property.  This also fixes dtbs_check
+> > warnings like:
+> > 
+> >   arch/arm/boot/dts/s5pv210-fascinate4g.dt.yaml: current-sense-shunt:
+> >     '#io-channel-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
+> > 
+> > Fixes: ce66e52b6c16 ("dt-bindings:iio:afe:current-sense-shunt: txt to yaml conversion.")
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> > ---
+> >  .../devicetree/bindings/iio/afe/current-sense-shunt.yaml     | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/afe/current-sense-shunt.yaml b/Documentation/devicetree/bindings/iio/afe/current-sense-shunt.yaml
+> > index 90439a8dc785..05166d8a3124 100644
+> > --- a/Documentation/devicetree/bindings/iio/afe/current-sense-shunt.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/afe/current-sense-shunt.yaml
+> > @@ -24,12 +24,16 @@ properties:
+> >      description: |
+> >        Channel node of a voltage io-channel.
+> >  
+> > +  "#io-channel-cells":
+> > +    const: 0
+> > +
+> >    shunt-resistor-micro-ohms:
+> >      description: The shunt resistance.
+> >  
+> >  required:
+> >    - compatible
+> >    - io-channels
+> > +  - "#io-channel-cells"
+> >    - shunt-resistor-micro-ohms  
+> 
+> I know I'm listed as maintainer and all, but I have not kept up with the yaml
+> conversion. Sorry. So, given that I might very well fundamentally misunderstand
+> something, it does not sound correct that #io-channel-cells is now "required".
+> I regard it as optional, and only needed if some other in-kernel driver is
+> consuming the sensed current. What am I missing?
+> 
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+Agreed. This should be optional and I have deliberately not introduced it
+into all the bindings that could in theory support being used as providers.
+
+So far I've not pushed it out in a blanket fashion into existing bindings
+even as optional.
+
+> Also, whatever is done in this binding should preferably also be done in the
+> two "sister" afe bindings, i.e. current-sense-amplifier and voltage-divider.
+
+This particular case is squashing an error, so whilst I'm happy to have those
+gain the binding addition, I would like to see them in a separate patch as
+less likely they'd get back ported.
+
+If Kryysztof is fine with me just dropping the required I can pick up this patch.
+
+Thanks,
+
+Jonathan
+
+> 
+> Cheers,
+> Peter
+> 
+> >  additionalProperties: false
+> > @@ -57,6 +61,7 @@ examples:
+> >      sysi {
+> >          compatible = "current-sense-shunt";
+> >          io-channels = <&tiadc 0>;
+> > +        #io-channel-cells = <0>;
+> >  
+> >          /* Divide the voltage by 3300000/1000000 (or 3.3) for the current. */
+> >          shunt-resistor-micro-ohms = <3300000>;
+> >   
+
