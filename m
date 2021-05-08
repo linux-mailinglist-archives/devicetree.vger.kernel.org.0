@@ -2,259 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 618E63771B2
-	for <lists+devicetree@lfdr.de>; Sat,  8 May 2021 14:26:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D526B3771CF
+	for <lists+devicetree@lfdr.de>; Sat,  8 May 2021 14:38:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230508AbhEHM1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 May 2021 08:27:40 -0400
-Received: from ns.lynxeye.de ([87.118.118.114]:59873 "EHLO lynxeye.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230419AbhEHM1k (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 8 May 2021 08:27:40 -0400
-Received: by lynxeye.de (Postfix, from userid 501)
-        id 56DDEE74251; Sat,  8 May 2021 14:17:05 +0200 (CEST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on lynxeye.de
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=3.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=ham version=3.3.1
-Received: from astat.fritz.box (a89-183-71-68.net-htp.de [89.183.71.68])
-        by lynxeye.de (Postfix) with ESMTPA id 78830E74251;
-        Sat,  8 May 2021 14:17:01 +0200 (CEST)
-From:   Lucas Stach <dev@lynxeye.de>
-To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Lukas F . Hartmann" <lukas@mntre.com>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 3/3] arm64: dts: imx8mq: add support for MNT Reform2
-Date:   Sat,  8 May 2021 14:16:50 +0200
-Message-Id: <20210508121650.105864-3-dev@lynxeye.de>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210508121650.105864-1-dev@lynxeye.de>
-References: <20210508121650.105864-1-dev@lynxeye.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S231246AbhEHMjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 May 2021 08:39:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35464 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231211AbhEHMiz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 May 2021 08:38:55 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52299C061756;
+        Sat,  8 May 2021 05:37:54 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id n25so13397656edr.5;
+        Sat, 08 May 2021 05:37:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=V6aLRfOO1B1ohRWCDcHhmocgBoD4D8Oa0X2F/UWU3rg=;
+        b=e6vYdC/0tscyHByuE3PCugLPodyufEVoohEe8tWabjuvxLsrJOlZJsdxxstc8Fgx3p
+         5GGkqGNvbtwI18/vU7HcmnX8+aQa8phYb7zLsD0e9CNZzhGdTm7jnJkAdm+7d/+Kbkm7
+         XtObigQmeel0O1v23gc7yfmM0nkJXV63U0XNdQeW8z6c0Gt20haFrbgjGDH/xDQO9oN6
+         u7J5QD4JWa2iqVdziUsTfyI6031Mq90RNt6cxudV4sSOqi7TSSIYTeMcveq+E7KX+qsz
+         3uYOkFS2nPWrzluwDaYz4xSOEj2fhsKahB3jV/cTBT5a5c+rFA3QqoGWMPj91eYGO2qV
+         4COg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=V6aLRfOO1B1ohRWCDcHhmocgBoD4D8Oa0X2F/UWU3rg=;
+        b=F+fgIhokiwvfVZJi3hmuUmaXkbGUoyQwhcMx92JpkryTP1CoHi6CtbMWMW1KHXvTGu
+         WFX3ojYRF2LKTXpYyjMDhTmKmHNJFRCqHT7SO+9miwI0GPON8lqjLiSO2GbIEBZDcQv4
+         ljAVmwF+44R9JSdjRUsxfYx5M1atz0OHe4zMr8BSS9gJlituoh0FMDAnHeuVOSHXY/8/
+         r1CAsYhQR2H11oYSzoKowb0exNLNKA2zlnL6f83yW69bdgp9MAO44GAuXJiJkTCg8QLJ
+         pZwOkzMNpdZoLrSbvrpbt/UD8CXEuxPLY9fHiuQ7+hte4qNxhGeg687/7RduXkSZkfKb
+         fv1g==
+X-Gm-Message-State: AOAM531fDCXllD4Tnj0y5es+qJ9WzbHogbPKPzlheScdTp8EQ6ncicPK
+        Ulcy+44EKKeVPNHIkdierhxbQC4jUqGNlg==
+X-Google-Smtp-Source: ABdhPJyF86hB2/UGwESN0ylhg/ap4N2xW8De3BKKYA3uoVLX4r1aWDcy9BGzrUVY5z+4mnfQmyUndg==
+X-Received: by 2002:a50:9990:: with SMTP id m16mr5042430edb.292.1620477472996;
+        Sat, 08 May 2021 05:37:52 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id q25sm6262618edt.51.2021.05.08.05.37.51
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 08 May 2021 05:37:52 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, linus.walleij@linaro.org,
+        bgolaszewski@baylibre.com, jay.xu@rock-chips.com,
+        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
+        zhangqing@rock-chips.com, huangtao@rock-chips.com,
+        cl@rock-chips.com, linux-gpio@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/4] convert grf.txt to YAML
+Date:   Sat,  8 May 2021 14:37:39 +0200
+Message-Id: <20210508123743.18128-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds a basic devicetree for the MNT Reform2 DIY laptop. Not all
-of the board periperals are enabled yet, as some of them still require
-kernel patches to work properly. The nodes for those peripherals will
-be added as soon as the required patches are upstream.
+Changed V3:
+  remove select
+  change unevaluatedProperties
+  add separate schemas for each 'if' subset
 
-The following has been tested to work:
-- UART console
-- SD card
-- eMMC
-- Gigabit Ethernet
-- USB (internal Keyboard, Mouse, external ports)
-- M.2 PCIe port
+Changed V2:
+  add rockchip,rk3328-grf-gpio.yaml
+  rename grf-gpio nodename
 
-Co-developed-by: Lukas F. Hartmann <lukas@mntre.com>
-Signed-off-by: Lucas Stach <dev@lynxeye.de>
----
- .../devicetree/bindings/arm/fsl.yaml          |   1 +
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../boot/dts/freescale/imx8mq-mnt-reform2.dts | 164 ++++++++++++++++++
- 3 files changed, 166 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts
+Johan Jonker (4):
+  dt-bindings: gpio: convert rk3328-grf-gpio.txt to YAML
+  dt-bindings: soc: rockchip: convert grf.txt to YAML
+  ARM: dts: rockchip: add grf register compatible for rk3066/rk3188
+  arm64: dts: rename grf-gpio nodename in rk3328.dtsi
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 15519cc2d2c0..fd208c7e49ae 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -737,6 +737,7 @@ properties:
-               - purism,librem5-devkit     # Purism Librem5 devkit
-               - solidrun,hummingboard-pulse # SolidRun Hummingboard Pulse
-               - technexion,pico-pi-imx8m  # TechNexion PICO-PI-8M evk
-+              - mntre,reform2             # MNT Reform2 Laptop
-           - const: fsl,imx8mq
- 
-       - description: Purism Librem5 phones
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 44890d56c194..e45c8f9c8912 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -54,6 +54,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-devkit.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-r2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-r3.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-r4.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mq-mnt-reform2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-nitrogen.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-phanbell.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-pico-pi.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts b/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts
-new file mode 100644
-index 000000000000..8a7a483fa4d1
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts
-@@ -0,0 +1,164 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/*
-+ * Copyright 2019-2021 MNT Research GmbH
-+ * Copyright 2021 Lucas Stach <dev@lynxeye.de>
-+*/
-+
-+/dts-v1/;
-+
-+#include "imx8mq-nitrogen-som.dtsi"
-+
-+/ {
-+	model = "MNT Reform 2";
-+	compatible = "mntre,reform2", "boundary,imx8mq-nitrogen8m-som", "fsl,imx8mq";
-+
-+	pcie1_refclk: clock-pcie1-refclk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <100000000>;
-+	};
-+
-+	reg_main_5v: regulator-main-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	reg_main_3v3: regulator-main-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	reg_main_usb: regulator-main-usb {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB_PWR";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&reg_main_5v>;
-+	};
-+};
-+
-+&fec1 {
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	status = "okay";
-+
-+	pcf8523: pcf8523@68 {
-+		compatible = "nxp,pcf8523";
-+		reg = <0x68>;
-+	};
-+};
-+
-+&pcie1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pcie1>;
-+	reset-gpio = <&gpio3 23 GPIO_ACTIVE_LOW>;
-+	clocks = <&clk IMX8MQ_CLK_PCIE2_ROOT>,
-+	         <&clk IMX8MQ_CLK_PCIE2_AUX>,
-+	         <&clk IMX8MQ_CLK_PCIE2_PHY>,
-+	         <&pcie1_refclk>;
-+	clock-names = "pcie", "pcie_aux", "pcie_phy", "pcie_bus";
-+	status = "okay";
-+};
-+
-+&reg_1p8v {
-+	vin-supply = <&reg_main_5v>;
-+};
-+
-+&reg_snvs {
-+	vin-supply = <&reg_main_5v>;
-+};
-+
-+&reg_arm_dram {
-+	vin-supply = <&reg_main_5v>;
-+};
-+
-+&reg_dram_1p1v {
-+	vin-supply = <&reg_main_5v>;
-+};
-+
-+&reg_soc_gpu_vpu {
-+	vin-supply = <&reg_main_5v>;
-+};
-+
-+&snvs_rtc {
-+	status = "disabled";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	status = "okay";
-+};
-+
-+&usb3_phy0 {
-+	vbus-supply = <&reg_main_usb>;
-+	status = "okay";
-+};
-+
-+&usb3_phy1 {
-+	vbus-supply = <&reg_main_usb>;
-+	status = "okay";
-+};
-+
-+&usb_dwc3_0 {
-+	status = "okay";
-+	dr_mode = "host";
-+};
-+
-+&usb_dwc3_1 {
-+	status = "okay";
-+	dr_mode = "host";
-+};
-+
-+&usdhc2 {
-+	assigned-clocks = <&clk IMX8MQ_CLK_USDHC2>;
-+	assigned-clock-rates = <200000000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc2>;
-+	vqmmc-supply = <&reg_main_3v3>;
-+	vmmc-supply = <&reg_main_3v3>;
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_I2C3_SCL_I2C3_SCL			0x4000007f
-+			MX8MQ_IOMUXC_I2C3_SDA_I2C3_SDA			0x4000007f
-+		>;
-+	};
-+
-+	pinctrl_pcie1: pcie1grp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_SAI5_RXD2_GPIO3_IO23		0x16
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_UART2_RXD_UART2_DCE_RX		0x45
-+			MX8MQ_IOMUXC_UART2_TXD_UART2_DCE_TX		0x45
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_SD2_CLK_USDHC2_CLK			0x83
-+			MX8MQ_IOMUXC_SD2_CMD_USDHC2_CMD			0xc3
-+			MX8MQ_IOMUXC_SD2_DATA0_USDHC2_DATA0		0xc3
-+			MX8MQ_IOMUXC_SD2_DATA1_USDHC2_DATA1		0xc3
-+			MX8MQ_IOMUXC_SD2_DATA2_USDHC2_DATA2		0xc3
-+			MX8MQ_IOMUXC_SD2_DATA3_USDHC2_DATA3		0xc3
-+		>;
-+	};
-+};
+ .../bindings/gpio/rockchip,rk3328-grf-gpio.txt     |  32 ---
+ .../bindings/gpio/rockchip,rk3328-grf-gpio.yaml    |  51 ++++
+ .../devicetree/bindings/soc/rockchip/grf.txt       |  61 -----
+ .../devicetree/bindings/soc/rockchip/grf.yaml      | 262 +++++++++++++++++++++
+ arch/arm/boot/dts/rk3xxx.dtsi                      |   2 +-
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi           |   2 +-
+ 6 files changed, 315 insertions(+), 95 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpio/rockchip,rk3328-grf-gpio.txt
+ create mode 100644 Documentation/devicetree/bindings/gpio/rockchip,rk3328-grf-gpio.yaml
+ delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/grf.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+
 -- 
-2.31.1
+2.11.0
 
