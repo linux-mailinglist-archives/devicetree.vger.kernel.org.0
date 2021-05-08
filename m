@@ -2,194 +2,348 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BEE037715D
-	for <lists+devicetree@lfdr.de>; Sat,  8 May 2021 13:14:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 513F93771B1
+	for <lists+devicetree@lfdr.de>; Sat,  8 May 2021 14:26:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230326AbhEHLPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 May 2021 07:15:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45836 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230234AbhEHLPr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 May 2021 07:15:47 -0400
-Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A83EC061574;
-        Sat,  8 May 2021 04:14:45 -0700 (PDT)
-Received: by mail-qt1-x833.google.com with SMTP id n22so8525050qtk.9;
-        Sat, 08 May 2021 04:14:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pXbSQAyhG6W2ZQ5ums5vjGpNRe3vyzAhG3D2OB6FJtA=;
-        b=MEaQk6XPhXourlRG1ktFxx9flPigPi5AhTwrHElyyTSb6GnddHT2NBqQzAk7pfHBGh
-         bxeC3+pH57tIvA67Zb42zGAcZKXFca8aAOfP6/GgJwC3zsVMuMFVYGKdHUVUh9x9fxRz
-         AuqV344d7kd4prNGA6D5wBzbTIUZfWhDs1A7RiMm+8zxj1b5bv6/VA94Lmp2cEaF8qvP
-         brtOwOdEzI1+3uPAV2G4hmFqWHImm3SpA7dyouODAAP8Mjio6LclJl4ZGBtVrPq4Fi8p
-         0+/pQsi16Tp9y3Q1qRTOfWp4qnx2ADsyVbfSyZmqK613n4bOlpNGMAeYOsMaUVGML0CG
-         kQOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pXbSQAyhG6W2ZQ5ums5vjGpNRe3vyzAhG3D2OB6FJtA=;
-        b=JJHtas3aGMk4TFx1FUTXiJBRW2v4iih10ddOdcUwDMwRRimPBN1ZV4Hk0jObKtdmsq
-         fDBtT7WS8CMJeze04+yrbR11Y4mX9s6yl+o1F6mHSHN9BN/oYXYKIA/6Hb9vqheXwEH9
-         h5XqvMVLvSiEXpUpYIBV2zh2f/TIMqUk5n1FcCsHhSQ2sO0ojdL3ATCTt06ELYc7oBBN
-         Es5nZGaPPwb1FpU4oNA4OYjCFJeddK4uLy71ehYL5wCnrVLjQd8BybsycCU5tU9YMvbT
-         lrdez/DvaiXMY+tH/Pkhl+koH3aspz4H+sqN1xv4lNH2fhprfKviJPe9H47JGLKMisJ+
-         bg2w==
-X-Gm-Message-State: AOAM531fRBa963ZuppC8VORmcWAkm95Dl/OefizmvO+pjFAcE1dnJTxL
-        h50/bCKQrGIZqeigW3y4dXJSvonrZae9uAx3SrY=
-X-Google-Smtp-Source: ABdhPJyRCbYhCpRfDI8+hasLkF4yP7yMUxLuTdvAzoQoMJyQJahYYgoI6qqRk4w4Lw9Mgcet1WmcDyaHhNNKa/rS4Jc=
-X-Received: by 2002:ac8:47da:: with SMTP id d26mr13187735qtr.292.1620472484696;
- Sat, 08 May 2021 04:14:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <1619157107-3734-1-git-send-email-shengjiu.wang@nxp.com>
- <1619157107-3734-2-git-send-email-shengjiu.wang@nxp.com> <20210503170030.GA1987906@robh.at.kernel.org>
-In-Reply-To: <20210503170030.GA1987906@robh.at.kernel.org>
-From:   Shengjiu Wang <shengjiu.wang@gmail.com>
-Date:   Sat, 8 May 2021 19:14:33 +0800
-Message-ID: <CAA+D8ANFmegm2CgOs8u5+FCrR0gGyA_tQHcPCrh3Sikcm_g47Q@mail.gmail.com>
-Subject: Re: [PATCH 2/2] ASoC: dt-bindings: imx-akcodec: Add binding doc for
- akcodec machine driver
-To:     Rob Herring <robh@kernel.org>
-Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, alsa-devel@alsa-project.org,
-        Timur Tabi <timur@kernel.org>, Xiubo Li <Xiubo.Lee@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        Takashi Iwai <tiwai@suse.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        id S230507AbhEHM1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 May 2021 08:27:40 -0400
+Received: from ns.lynxeye.de ([87.118.118.114]:59869 "EHLO lynxeye.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230508AbhEHM1j (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 8 May 2021 08:27:39 -0400
+Received: by lynxeye.de (Postfix, from userid 501)
+        id 3E912E7425C; Sat,  8 May 2021 14:17:04 +0200 (CEST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on lynxeye.de
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=3.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=ham version=3.3.1
+Received: from astat.fritz.box (a89-183-71-68.net-htp.de [89.183.71.68])
+        by lynxeye.de (Postfix) with ESMTPA id 9D51BE74214;
+        Sat,  8 May 2021 14:17:00 +0200 (CEST)
+From:   Lucas Stach <dev@lynxeye.de>
+To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Lukas F . Hartmann" <lukas@mntre.com>
+Cc:     Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/3] arm64: dts: imx8mq: add Nitrogen8 SoM
+Date:   Sat,  8 May 2021 14:16:48 +0200
+Message-Id: <20210508121650.105864-1-dev@lynxeye.de>
+X-Mailer: git-send-email 2.31.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+This adds the description of the Nitrogen8 System on Module. The module
+is quite simple with only a few (almost) fixed regulators and a eMMC
+on-board.
 
-On Tue, May 4, 2021 at 1:01 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Fri, Apr 23, 2021 at 01:51:47PM +0800, Shengjiu Wang wrote:
-> > Imx-akcodec is a new added machine driver for supporting
-> > ak4458/ak5558/ak5552/ak4497 codec on i.MX platforms.
-> >
-> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > ---
-> >  .../bindings/sound/imx-audio-akcodec.yaml     | 60 +++++++++++++++++++
-> >  1 file changed, 60 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/sound/imx-audio-akcodec.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/sound/imx-audio-akcodec.yaml b/Documentation/devicetree/bindings/sound/imx-audio-akcodec.yaml
-> > new file mode 100644
-> > index 000000000000..7419bf7224e9
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/sound/imx-audio-akcodec.yaml
-> > @@ -0,0 +1,60 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/sound/imx-audio-akcodec.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: NXP i.MX audio complex with AK4458/AK5558/AK5552/AK4497 codec
->
-> Looks like the existing fsl-asoc-card.txt? You should convert to schema
-> and use that. Otherwise, my comments are based on this all being 'new'.
+The eMMC is currently limited to 50MHz modes via the pinctrl, as the board
+has not wired up the data strobe line, which prevents HS400 mode from
+working. As both the controller and the eMMC support this mode, it is
+automatically selected when we allow the faster modes, leading to failing
+transfers. Until we have a proper solution to only disable HS400 mode,
+keep the eMMC at the slow bus modes.
 
-Ok, let's treat it as 'new'
+Signed-off-by: Lucas Stach <dev@lynxeye.de>
+---
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ .../dts/freescale/imx8mq-nitrogen-som.dtsi    | 271 ++++++++++++++++++
+ 2 files changed, 272 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-nitrogen-som.dtsi
 
->
-> > +
-> > +maintainers:
-> > +  - Shengjiu Wang <shengjiu.wang@nxp.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - fsl,imx8mq-audio-ak4458
-> > +      - fsl,imx8mq-audio-ak4497
-> > +      - fsl,imx8mq-audio-ak5558
-> > +      - fsl,imx-audio-ak4497
-> > +      - fsl,imx-audio-ak4458
-> > +      - fsl,imx-audio-ak5558
-> > +      - fsl,imx-audio-ak5552
->
-> I continue to not understand why audio bindings need the codec(s) in the
-> compatible strings. Can't you look up the codec thru the audio-codec
-> property?
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 297c87f45db8..15519cc2d2c0 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -730,6 +730,7 @@ properties:
+         items:
+           - enum:
+               - boundary,imx8mq-nitrogen8m # i.MX8MQ NITROGEN Board
++              - boundary,imx8mq-nitrogen8m-som # i.MX8MQ NITROGEN SoM
+               - einfochips,imx8mq-thor96  # i.MX8MQ Thor96 Board
+               - fsl,imx8mq-evk            # i.MX8MQ EVK Board
+               - google,imx8mq-phanbell    # Google Coral Edge TPU
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-nitrogen-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-nitrogen-som.dtsi
+new file mode 100644
+index 000000000000..ef88534c6889
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mq-nitrogen-som.dtsi
+@@ -0,0 +1,271 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright 2018 Boundary Devices
++ * Copyright 2021 Lucas Stach <dev@lynxeye.de>
++ */
++
++#include "imx8mq.dtsi"
++
++/ {
++	model = "Boundary Devices i.MX8MQ Nitrogen8M";
++	compatible = "boundary,imx8mq-nitrogen8m-som", "fsl,imx8mq";
++
++	chosen {
++		stdout-path = &uart1;
++	};
++
++	reg_1p8v: regulator-fixed-1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "1P8V";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
++
++	reg_snvs: regulator-fixed-snvs {
++		compatible = "regulator-fixed";
++		regulator-name = "VDD_SNVS";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++};
++
++&{/opp-table/opp-800000000} {
++	opp-microvolt = <1000000>;
++};
++
++&{/opp-table/opp-1000000000} {
++	opp-microvolt = <1000000>;
++};
++
++&A53_0 {
++	cpu-supply = <&reg_arm_dram>;
++};
++
++&A53_1 {
++	cpu-supply = <&reg_arm_dram>;
++};
++
++&A53_2 {
++	cpu-supply = <&reg_arm_dram>;
++};
++
++&A53_3 {
++	cpu-supply = <&reg_arm_dram>;
++};
++
++&fec1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_fec1>;
++	phy-mode = "rgmii-id";
++	phy-handle = <&ethphy0>;
++	fsl,magic-packet;
++
++	mdio {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		ethphy0: ethernet-phy@4 {
++			compatible = "ethernet-phy-ieee802.3-c22";
++			reg = <4>;
++			interrupts-extended = <&gpio1 11 IRQ_TYPE_LEVEL_LOW>;
++		};
++	};
++};
++
++&i2c1 {
++	clock-frequency = <400000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c1>;
++	status = "okay";
++
++	i2cmux@70 {
++		compatible = "nxp,pca9546";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_i2c1_pca9546>;
++		reg = <0x70>;
++		reset-gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		i2c1a: i2c1@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			reg_arm_dram: regulator@60 {
++				compatible = "fcs,fan53555";
++				reg = <0x60>;
++				regulator-name = "VDD_ARM_DRAM_1V";
++				regulator-min-microvolt = <1000000>;
++				regulator-max-microvolt = <1000000>;
++				regulator-always-on;
++			};
++		};
++
++		i2c1b: i2c1@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			reg_dram_1p1v: regulator@60 {
++				compatible = "fcs,fan53555";
++				reg = <0x60>;
++				regulator-name = "NVCC_DRAM_1P1V";
++				regulator-min-microvolt = <1100000>;
++				regulator-max-microvolt = <1100000>;
++				regulator-always-on;
++			};
++		};
++
++		i2c1c: i2c1@2 {
++			reg = <2>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			reg_soc_gpu_vpu: regulator@60 {
++				compatible = "fcs,fan53555";
++				reg = <0x60>;
++				regulator-name = "VDD_SOC_GPU_VPU";
++				regulator-min-microvolt = <900000>;
++				regulator-max-microvolt = <900000>;
++				regulator-always-on;
++			};
++		};
++
++		i2c1d: i2c1@3 {
++			reg = <3>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
++	};
++};
++
++&pgc_gpu {
++	power-supply = <&reg_soc_gpu_vpu>;
++};
++
++&pgc_vpu {
++	power-supply = <&reg_soc_gpu_vpu>;
++};
++
++&uart1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart1>;
++	status = "okay";
++};
++
++&usdhc1 {
++	assigned-clocks = <&clk IMX8MQ_CLK_USDHC1>;
++	assigned-clock-rates = <400000000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_usdhc1>;
++	vqmmc-supply = <&reg_1p8v>;
++	vmmc-supply = <&reg_snvs>;
++	bus-width = <8>;
++	non-removable;
++	no-sdio;
++	no-sd;
++	status = "okay";
++};
++
++&wdog1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_wdog>;
++	fsl,ext-reset-output;
++	status = "okay";
++};
++
++&iomuxc {
++	pinctrl_fec1: fec1grp {
++		fsl,pins = <
++			MX8MQ_IOMUXC_ENET_MDC_ENET1_MDC			0x3
++			MX8MQ_IOMUXC_ENET_MDIO_ENET1_MDIO		0x23
++			MX8MQ_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
++			MX8MQ_IOMUXC_ENET_TXC_ENET1_RGMII_TXC		0x1f
++			MX8MQ_IOMUXC_ENET_TD0_ENET1_RGMII_TD0		0x1f
++			MX8MQ_IOMUXC_ENET_TD1_ENET1_RGMII_TD1		0x1f
++			MX8MQ_IOMUXC_ENET_TD2_ENET1_RGMII_TD2		0x1f
++			MX8MQ_IOMUXC_ENET_TD3_ENET1_RGMII_TD3		0x1f
++			MX8MQ_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
++			MX8MQ_IOMUXC_ENET_RXC_ENET1_RGMII_RXC		0x91
++			MX8MQ_IOMUXC_ENET_RD0_ENET1_RGMII_RD0		0x91
++			MX8MQ_IOMUXC_ENET_RD1_ENET1_RGMII_RD1		0x91
++			MX8MQ_IOMUXC_ENET_RD2_ENET1_RGMII_RD2		0x91
++			MX8MQ_IOMUXC_ENET_RD3_ENET1_RGMII_RD3		0x91
++			MX8MQ_IOMUXC_GPIO1_IO09_GPIO1_IO9		0x19
++			MX8MQ_IOMUXC_GPIO1_IO11_GPIO1_IO11		0x59
++		>;
++	};
++
++	pinctrl_i2c1: i2c1grp {
++		fsl,pins = <
++			MX8MQ_IOMUXC_I2C1_SCL_I2C1_SCL			0x4000007f
++			MX8MQ_IOMUXC_I2C1_SDA_I2C1_SDA			0x4000007f
++		>;
++	};
++
++	pinctrl_i2c1_pca9546: i2c1-pca9546grp {
++		fsl,pins = <
++			MX8MQ_IOMUXC_GPIO1_IO08_GPIO1_IO8		0x49
++		>;
++	};
++
++	pinctrl_uart1: uart1grp {
++		fsl,pins = <
++			MX8MQ_IOMUXC_UART1_RXD_UART1_DCE_RX		0x45
++			MX8MQ_IOMUXC_UART1_TXD_UART1_DCE_TX		0x45
++		>;
++	};
++
++	pinctrl_usdhc1: usdhc1grp {
++		fsl,pins = <
++			MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK			0x83
++			MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD			0xc3
++			MX8MQ_IOMUXC_SD1_DATA0_USDHC1_DATA0		0xc3
++			MX8MQ_IOMUXC_SD1_DATA1_USDHC1_DATA1		0xc3
++			MX8MQ_IOMUXC_SD1_DATA2_USDHC1_DATA2		0xc3
++			MX8MQ_IOMUXC_SD1_DATA3_USDHC1_DATA3		0xc3
++			MX8MQ_IOMUXC_SD1_DATA4_USDHC1_DATA4		0xc3
++			MX8MQ_IOMUXC_SD1_DATA5_USDHC1_DATA5		0xc3
++			MX8MQ_IOMUXC_SD1_DATA6_USDHC1_DATA6		0xc3
++			MX8MQ_IOMUXC_SD1_DATA7_USDHC1_DATA7		0xc3
++			MX8MQ_IOMUXC_SD1_RESET_B_USDHC1_RESET_B		0xc1
++		>;
++	};
++
++	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
++		fsl,pins = <
++			MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK			0x8d
++			MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD			0xcd
++			MX8MQ_IOMUXC_SD1_DATA0_USDHC1_DATA0		0xcd
++			MX8MQ_IOMUXC_SD1_DATA1_USDHC1_DATA1		0xcd
++			MX8MQ_IOMUXC_SD1_DATA2_USDHC1_DATA2		0xcd
++			MX8MQ_IOMUXC_SD1_DATA3_USDHC1_DATA3		0xcd
++			MX8MQ_IOMUXC_SD1_DATA4_USDHC1_DATA4		0xcd
++			MX8MQ_IOMUXC_SD1_DATA5_USDHC1_DATA5		0xcd
++			MX8MQ_IOMUXC_SD1_DATA6_USDHC1_DATA6		0xcd
++			MX8MQ_IOMUXC_SD1_DATA7_USDHC1_DATA7		0xcd
++		>;
++	};
++
++	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
++		fsl,pins = <
++			MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK			0x9f
++			MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD			0xdf
++			MX8MQ_IOMUXC_SD1_DATA0_USDHC1_DATA0		0xdf
++			MX8MQ_IOMUXC_SD1_DATA1_USDHC1_DATA1		0xdf
++			MX8MQ_IOMUXC_SD1_DATA2_USDHC1_DATA2		0xdf
++			MX8MQ_IOMUXC_SD1_DATA3_USDHC1_DATA3		0xdf
++			MX8MQ_IOMUXC_SD1_DATA4_USDHC1_DATA4		0xdf
++			MX8MQ_IOMUXC_SD1_DATA5_USDHC1_DATA5		0xdf
++			MX8MQ_IOMUXC_SD1_DATA6_USDHC1_DATA6		0xdf
++			MX8MQ_IOMUXC_SD1_DATA7_USDHC1_DATA7		0xdf
++		>;
++	};
++
++	pinctrl_wdog: wdoggrp {
++		fsl,pins = <
++			MX8MQ_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B		0xc6
++		>;
++	};
++};
+-- 
+2.31.1
 
-I will try to remove the codecs type from the compatible string and check
-the codec type in driver.
-
->
-> > +
-> > +  model:
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    description: User specified audio sound card name
-> > +
-> > +  audio-cpu:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: The phandle of a CPU DAI controller
-> > +
-> > +  audio-codec:
-> > +    description: The phandle of Codec DAI controllers, there are two
-> > +                 controllers maximum.
->
-> We have the common 'sound-dai' property. See the simple-card.yaml
-> binding.
-
-ok, will use sound-dai.
-
->
-> > +
-> > +  audio-asrc:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: The phandle of ASRC. It can be absent if there's no
-> > +                 need to add ASRC support via DPCM.
->
-> Needs a vendor prefix.
-
-ok,  can be removed in the next version.
-
->
-> > +
-> > +  fsl,tdm:
-> > +    $ref: /schemas/types.yaml#/definitions/flag
-> > +    description: |
-> > +      This is a boolean property. If present, the TDM mode is enabled.
->
-> But this one seems like something that could or should be common.
-
-Ok, I will use the common one in the next version.
-
->
-> > +
-> > +required:
-> > +  - compatible
-> > +  - model
-> > +  - audio-cpu
-> > +  - audio-codec
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    sound-ak4458 {
-> > +        compatible = "fsl,imx-audio-ak4458";
-> > +        model = "ak4458-audio";
-> > +        audio-cpu = <&sai1>;
-> > +        audio-codec = <&ak4458_1>, <&ak4458_2>;
-> > +    };
-> > --
-> > 2.17.1
-> >
