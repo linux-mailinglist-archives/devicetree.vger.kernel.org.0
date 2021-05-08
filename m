@@ -2,167 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A2743773B8
-	for <lists+devicetree@lfdr.de>; Sat,  8 May 2021 20:56:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C46453773D8
+	for <lists+devicetree@lfdr.de>; Sat,  8 May 2021 21:38:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229669AbhEHS5V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 May 2021 14:57:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32974 "EHLO
+        id S229672AbhEHTiH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 May 2021 15:38:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbhEHS5T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 May 2021 14:57:19 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7365C061574
-        for <devicetree@vger.kernel.org>; Sat,  8 May 2021 11:56:17 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id t4-20020a05683014c4b02902ed26dd7a60so692572otq.7
-        for <devicetree@vger.kernel.org>; Sat, 08 May 2021 11:56:17 -0700 (PDT)
+        with ESMTP id S229667AbhEHTiG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 May 2021 15:38:06 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10A52C06175F
+        for <devicetree@vger.kernel.org>; Sat,  8 May 2021 12:37:04 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id n2so12570481wrm.0
+        for <devicetree@vger.kernel.org>; Sat, 08 May 2021 12:37:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=IF7Fac0YjVDycbq5PH+VvNCEX38AVPA4fKxY5+X2pvM=;
-        b=PUqcaScEb9tsf7vUvHj3CnZsCwzWf3odcLsWYZX9AtdI1hc4sT58bXGsUhazsSPyWI
-         6Q6kBqJcVBJZgaxWMz3M7RZJYw4eqyTkDsILIbnC1E1xxqSzc316q931UtbagBNF20ma
-         156h+ehNaRPmn35EfI/9L4A5U6GjV4KBICyzI1eHarm/92TJyfZ0rREoWPcNWGegyDVv
-         L1yO/eZLul0v1cZ41ndHwaMbCGiPESt4zyISiWKNkIHF5wwVjA84EkC9VkLvHvxF0RRb
-         UzbBBWKZy5vRQlr9iE1nZLtvcescqeEuUx9GHyqoND2oK+jyGr+AZVrK+LrPt6b5XP1H
-         j2CA==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LEo0WAuiIGyJ5CDvk1ac5Tqyo04Cf0hE7j39nrK35ys=;
+        b=fbzelkrk+0TTa3pkBv+dmQukTIsG34G6gIOgLD9fM16pJReJ5509oS/ze0+taLVGHg
+         sr3H6Vof07wXK6xREBCpXvkXzuJXYT5O2c04N6xyxnQemJZO/rWxemo2YMFBJpJemePp
+         dsUOYWCnsgb5Xq7J//kEVTpsZZEY3jUgMUPg7g8gaXoV/szcPMJt9/+70JtBY7hp5JB1
+         6kd62WwQbjnh5AUmaabRRNPNF0kMYFwQcu9sS+FUUmrOQTiZn0nH8Dpu+ICjOWaI7KD2
+         wQOoosqWFSWBe6ybTHL4TgxN7E1kD4mI0D91e7/OWXVM9U+30HXzp1KmsKt4zPTe0th6
+         DOog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IF7Fac0YjVDycbq5PH+VvNCEX38AVPA4fKxY5+X2pvM=;
-        b=VGj8Pifi2mqmOmjSqBM3hckfxJCVMNacY9j9LdvRG8Hx96jar8/bppoDIv6G1fksh9
-         /nuMWvzR1/+7BRnsjC79WdEsAUT13hq6nFvyEKTYZ8Lmkz5S4abbYXwUWdxSkvvjM1DM
-         a6jkNsWZsWllczcm+zrf9KmJyd9D/eEQ7n1nLLE36txJDedJeJ/5WuJVvntBqIV3lW9Y
-         CjuIIKUocVrv0mC6cXEmHpaJvN1IVxcXsDIsq1JrokAJ84d3aHuFasNNFxrtiouQ9YPe
-         NniLpuTNE0rUnr5iWUkCPQXz6h0koVIMVl8iYEnSLgSX9aJ6Wi0za5O036RogtQexeva
-         UX/A==
-X-Gm-Message-State: AOAM533auvBRGcFVhGUeCAdANk0KDAUSvrwvoJ4jQ5FtwumC5MB/Udur
-        wJiFpcUPzTZE6+6mRLj60gU+UXfsBwKPQkLzxsfiwA==
-X-Google-Smtp-Source: ABdhPJwSVaVB5oB3yhUXmvXMdKhgh8GWruFZ82+rfw+bzS/cGv/WjBJnJLO0ry+vEzbyw1Po+3sMwFzSUAbOpuPcAsg=
-X-Received: by 2002:a9d:51c7:: with SMTP id d7mr5449017oth.51.1620500177155;
- Sat, 08 May 2021 11:56:17 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LEo0WAuiIGyJ5CDvk1ac5Tqyo04Cf0hE7j39nrK35ys=;
+        b=n7d3xIrnrZS+AsP+VwCYT2cwdcXZ6LaVjdLBk6M/MT0HloTCi9H780EUW96UtkHZYg
+         0yIHl2XTiSzs7YEwb5mHk6VIB2//Vktr3PeYVDqDqosXZM8dDLyWZZckg9A891npNZsl
+         rasXmcFK2R1HIWYXFPCBm+Ck/Q15UHw+pns7AFyo2/2eN+pdvRJuunq/zSU/RSZYNnbD
+         HNGhjCcSLYEgnXez4i7NkYUPVfeO+WbDfEvaa99Q8LxbvpyiAzyIkRb74NITwZRnMSry
+         ZKwX6/cCIhhB7aA9Tuy8lQYNOyGrphwZt4pb7Z7vo15KGIqE5gMmEVk7/I5XGyIRS8Hs
+         t3Rw==
+X-Gm-Message-State: AOAM530/ZlkBozdzWTh8TiB2njlNomz1IrEptCN1n+dGNAF1YelAa713
+        npEYYvL8X2Y0QQxXeyr26HFxaw==
+X-Google-Smtp-Source: ABdhPJyAy4aO1WA2QMWfEWlZ/iqi7IGUZe4FseS4cZeOyWdfkoVWW1cwchcgObR4s+Jc3sTtDAWWFg==
+X-Received: by 2002:a5d:694c:: with SMTP id r12mr20747795wrw.224.1620502621566;
+        Sat, 08 May 2021 12:37:01 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id k10sm45356028wmf.0.2021.05.08.12.36.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 08 May 2021 12:37:00 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     pavel@ucw.cz, robh+dt@kernel.org, jacek.anaszewski@gmail.com,
+        linus.walleij@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH] dt-bindings: leds: common: add disk write/read and usb-host
+Date:   Sat,  8 May 2021 19:36:54 +0000
+Message-Id: <20210508193654.2596119-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210505213731.538612-1-bhupesh.sharma@linaro.org> <20210507211434.GA2879094@robh.at.kernel.org>
-In-Reply-To: <20210507211434.GA2879094@robh.at.kernel.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Sun, 9 May 2021 00:26:06 +0530
-Message-ID: <CAH=2Ntwwzu5Ftwj=r9RWnKv6xvRdKz0qjyqvJvxFwmoTP1zTqg@mail.gmail.com>
-Subject: Re: [PATCH v2 00/17] Enable Qualcomm Crypto Engine on sm8250
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bhupesh.linux@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+The triggers enum misses 3 cases used by gemini DT.
+usb-host was added via commit 0cfbd328d60f ("usb: Add LED triggers for USB activity")
+so we add also as valid trigger usb-gadget which was added along in this
+commit.
 
-On Sat, 8 May 2021 at 02:44, Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, May 06, 2021 at 03:07:14AM +0530, Bhupesh Sharma wrote:
-> > Changes since v1:
-> > =================
-> > - v1 can be seen here: https://lore.kernel.org/linux-arm-msm/20210310052503.3618486-1-bhupesh.sharma@linaro.org/
-> > - v1 did not work well as reported earlier by Dmitry, so v2 contains the following
-> >   changes/fixes:
-> >   ~ Enable the interconnect path b/w BAM DMA and main memory first
-> >     before trying to access the BAM DMA registers.
-> >   ~ Enable the interconnect path b/w qce crytpo and main memory first
-> >     before trying to access the qce crypto registers.
-> >   ~ Make sure to document the required and optional properties for both
-> >     BAM DMA and qce crypto drivers.
-> >   ~ Add a few debug related print messages in case the qce crypto driver
-> >     passes or fails to probe.
-> >   ~ Convert the qce crypto driver probe to a defered one in case the BAM DMA
-> >     or the interconnect driver(s) (needed on specific Qualcomm parts) are not
-> >     yet probed.
-> >
-> > Qualcomm crypto engine is also available on sm8250 SoC.
-> > It supports hardware accelerated algorithms for encryption
-> > and authentication. It also provides support for aes, des, 3des
-> > encryption algorithms and sha1, sha256, hmac(sha1), hmac(sha256)
-> > authentication algorithms.
-> >
-> > Tested the enabled crypto algorithms with cryptsetup test utilities
-> > on sm8250-mtp and RB5 board (see [1]).
-> >
-> > While at it, also make a minor fix in 'sdm845.dtsi', to make
-> > sure it confirms with the other .dtsi files which expose
-> > crypto nodes on qcom SoCs.
-> >
-> > Cc: Thara Gopinath <thara.gopinath@linaro.org>
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Andy Gross <agross@kernel.org>
-> > Cc: Herbert Xu <herbert@gondor.apana.org.au>
-> > Cc: David S. Miller <davem@davemloft.net>
-> > Cc: Stephen Boyd <sboyd@kernel.org>
-> > Cc: Michael Turquette <mturquette@baylibre.com>
-> > Cc: Vinod Koul <vkoul@kernel.org>
-> > Cc: dmaengine@vger.kernel.org
-> > Cc: linux-clk@vger.kernel.org
-> > Cc: linux-crypto@vger.kernel.org
-> > Cc: devicetree@vger.kernel.org
-> > Cc: linux-kernel@vger.kernel.org
-> > Cc: bhupesh.linux@gmail.com
-> >
-> > Bhupesh Sharma (14):
-> >   dt-bindings: qcom-bam: Add 'interconnects' & 'interconnect-names' to
-> >     optional properties
-> >   dt-bindings: qcom-bam: Add 'iommus' to required properties
-> >   dt-bindings: qcom-qce: Add 'iommus' to required properties
-> >   dt-bindings: qcom-qce: Add 'interconnects' and move 'clocks' to
-> >     optional properties
-> >   arm64/dts: qcom: sdm845: Use RPMH_CE_CLK macro directly
-> >   dt-bindings: crypto : Add new compatible strings for qcom-qce
->
-> Please convert these bindings to schemas.
+disk-read/disk-write were added by commit d1ed7c558612 ("leds: Extends disk trigger for reads and writes")
 
-Ok, will fix it in v3.
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+ Documentation/devicetree/bindings/leds/common.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Thanks,
-Bhupesh
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+index b1f363747a62..a9b8c21779e3 100644
+--- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -89,6 +89,8 @@ properties:
+       - heartbeat
+         # LED indicates disk activity
+       - disk-activity
++      - disk-read
++      - disk-write
+         # LED indicates IDE disk activity (deprecated), in new implementations
+         # use "disk-activity"
+       - ide-disk
+@@ -97,6 +99,8 @@ properties:
+         # LED alters the brightness for the specified duration with one software
+         # timer (requires "led-pattern" property)
+       - pattern
++      - usb-gadget
++      - usb-host
+ 
+   led-pattern:
+     description: |
+-- 
+2.26.3
 
->
-> >   arm64/dts: qcom: Use new compatibles for crypto nodes
-> >   crypto: qce: Add new compatibles for qce crypto driver
-> >   crypto: qce: Print a failure msg in case probe() fails
-> >   crypto: qce: Convert the device found dev_dbg() to dev_info()
-> >   dma: qcom: bam_dma: Create a new header file for BAM DMA driver
-> >   crypto: qce: Defer probing if BAM dma is not yet initialized
-> >   crypto: qce: Defer probe in case interconnect is not yet initialized
-> >   arm64/dts: qcom: sm8250: Add dt entries to support crypto engine.
-> >
-> > Thara Gopinath (3):
-> >   dma: qcom: bam_dma: Add support to initialize interconnect path
-> >   crypto: qce: core: Add support to initialize interconnect path
-> >   crypto: qce: core: Make clocks optional
-> >
-> >  .../devicetree/bindings/crypto/qcom-qce.txt   |  22 +-
-> >  .../devicetree/bindings/dma/qcom_bam_dma.txt  |   5 +
-> >  arch/arm64/boot/dts/qcom/ipq6018.dtsi         |   2 +-
-> >  arch/arm64/boot/dts/qcom/sdm845.dtsi          |   6 +-
-> >  arch/arm64/boot/dts/qcom/sm8250.dtsi          |  28 ++
-> >  drivers/crypto/qce/core.c                     | 112 +++++--
-> >  drivers/crypto/qce/core.h                     |   3 +
-> >  drivers/dma/qcom/bam_dma.c                    | 306 ++----------------
-> >  include/soc/qcom/bam_dma.h                    | 290 +++++++++++++++++
-> >  9 files changed, 457 insertions(+), 317 deletions(-)
-> >  create mode 100644 include/soc/qcom/bam_dma.h
-> >
-> > --
-> > 2.30.2
-> >
