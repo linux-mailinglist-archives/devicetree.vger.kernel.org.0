@@ -2,105 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C88E23771D8
-	for <lists+devicetree@lfdr.de>; Sat,  8 May 2021 14:38:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FAFE377225
+	for <lists+devicetree@lfdr.de>; Sat,  8 May 2021 15:37:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231186AbhEHMjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 May 2021 08:39:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35450 "EHLO
+        id S229494AbhEHNib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 May 2021 09:38:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231225AbhEHMjD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 May 2021 08:39:03 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BFBEC061760;
-        Sat,  8 May 2021 05:38:01 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id f24so17661263ejc.6;
-        Sat, 08 May 2021 05:38:01 -0700 (PDT)
+        with ESMTP id S229493AbhEHNia (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 May 2021 09:38:30 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E886CC061574
+        for <devicetree@vger.kernel.org>; Sat,  8 May 2021 06:37:27 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id w4so15110343ljw.9
+        for <devicetree@vger.kernel.org>; Sat, 08 May 2021 06:37:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=kKYG8ob0N102i49XdsyoJlNpypHz4XdicUmmY8YrBm8=;
-        b=SZXbeqJYH4Rvw5YTLCZ684jtQQ9XkKWV/PLa+f2/6q2APp41GjQCtU3xBrw1ONDjBh
-         +WUQ0y5zObLWZw71SxP3ozGubUgdZGZAmv+TmkhSCwz8BOJgSwjqhNrJRh9dCsa+Lcxa
-         +hfpja3I70Ti5RclTugVGp2qQ5YsyQB9XnGBvrDCsfap8smU3vpT0NnzjIjRqBYouuDt
-         uHBr5UxpxvQfOTL7hXJvOAPJlM7EHxYTZppq16qbRG17cIJHiIy2OGZruKMcymObgMet
-         YAKP7QLlKb9IlPyx3yQg2Z03PQqCGVKYEyeTwQkiYws/7lYLPYbKnfIz0DpChvqPJDWP
-         vatw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ftM0lriMacmVyjTFdywUNrTXZZCxqno3YAZgA1+tZyM=;
+        b=SpDJY7ytjcoqwVVrsHip7c9vdckuTk1kHLPg33T9n0WloY02+59vCmBy08MeQn4xb2
+         8+qPG4eywmytY+AVoWWetOl+pRw9aXaaAH9J5cum7wY1crDyOAXRIgdPfq/nI0iCbwMz
+         Tsj/qazW8AKHeD+uQxWRU7X4Fl8UB6B0dOYhMFjLV8psuL9hEk2ZbMn0GNwbIoP/L1YY
+         kqbAjdj2z3BbcpIvbgIaSszwpibQJ4f1gGP+sVWWImA9C2+TYXXy/prDScXppkdvI2tF
+         1ROpKB+b23AAa6lB8y+FbXf45+zUc28rJKAXWJHH1idHnLKXEVf+OqKFDb66mNjujTfm
+         zOdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=kKYG8ob0N102i49XdsyoJlNpypHz4XdicUmmY8YrBm8=;
-        b=fD/B4Q7Nsu7FVVmiWO6w0xtBk7t7UwBIv1NOCae7IvexAPnBahxzNBlOyZk4KKtXjG
-         BLHl0HNY6iIpPza6dbDPZSzYNvS5Pd/B/2VpTPEtAJ33FDs1xgI6xrv3vYebpQ6Objtr
-         9xLkRchxcPfmmPs6lbtaaDKGY8lPk/KarfZqWWGDiVKZY7Pi39mEAv2Lroy3UE7Bz/4Z
-         U6Z/yAzNflczZhAe8K2nErtiZ5Bm0YEwWfIrNZnKV/qOFQQFJmSB42cknVvg+OGrlzZ1
-         BiVN7QkXtH/GfZZ4zroPfH72GzzufHw7IudSLaUMktv4z7TP9Q6FEa7LVV+725t35Cnp
-         fCIQ==
-X-Gm-Message-State: AOAM533c/+kqnq35fuBK/kJsQpo3ObABwPmRRdddgqzYObZ0wdN3wtsX
-        KJqZ9dvYtBushVbZBIg1Lv4=
-X-Google-Smtp-Source: ABdhPJyribyIKpHanX97X8mGzuRPy4EQuIN3hdClvLQ3RrA1Um+6A/V8iGIVuTzkj9mNHnvOipR5RQ==
-X-Received: by 2002:a17:906:a103:: with SMTP id t3mr15664038ejy.334.1620477480152;
-        Sat, 08 May 2021 05:38:00 -0700 (PDT)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id q25sm6262618edt.51.2021.05.08.05.37.58
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 08 May 2021 05:37:59 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, linus.walleij@linaro.org,
-        bgolaszewski@baylibre.com, jay.xu@rock-chips.com,
-        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
-        zhangqing@rock-chips.com, huangtao@rock-chips.com,
-        cl@rock-chips.com, linux-gpio@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 4/4] arm64: dts: rename grf-gpio nodename in rk3328.dtsi
-Date:   Sat,  8 May 2021 14:37:43 +0200
-Message-Id: <20210508123743.18128-5-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20210508123743.18128-1-jbx6244@gmail.com>
-References: <20210508123743.18128-1-jbx6244@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ftM0lriMacmVyjTFdywUNrTXZZCxqno3YAZgA1+tZyM=;
+        b=PPQW4QeI7Xk6vl6D+0nE8rASRToHNaFkjcuCuwbOIKRh7PIvK7tB8guPefKZeXwN+3
+         KzUaI4q0Dgipsp35Ry5C979zTKlTsCBPkUsza0EfXr2WgcYFwylepFQRuHVHw8HJcqwU
+         V2K8b/L4yB+8qL7sPxQxI8NV5YrYMGjpA0aCibNShEyW806MXtEqF0IoP8zvpTmYHPLB
+         oKqpGpGfFd6XlT6s2e67KDcAqJhXcp0bqFobwR3FUXeSOjVCsO2N9BliKtCuLDfH6Cbq
+         ORNHC2jyjeeZY7jkhJNiVEo/7qKacYJ5QJzuI7nM/nZOJWSGhNrxvr9/J6FVykyX2eWb
+         5gyw==
+X-Gm-Message-State: AOAM531Ehm2Uej6/QT+BpBvyfhH1OSjyH43AUxTZowhRmPlupHqxrg/I
+        H44r5K/l3S6iS1Lpv4dJ0xpsMsMXT8XMrx361Us=
+X-Google-Smtp-Source: ABdhPJzoei07QrcBU0Ejw5f4jc5K8KJeKh5UH//PxDbr+BlwNkbYMrq9q+OxQRONUnhUVm+ZlnKON5siL84EOvOR+aU=
+X-Received: by 2002:a2e:9892:: with SMTP id b18mr12112134ljj.490.1620481046330;
+ Sat, 08 May 2021 06:37:26 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210508121650.105864-1-dev@lynxeye.de>
+In-Reply-To: <20210508121650.105864-1-dev@lynxeye.de>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Sat, 8 May 2021 10:37:16 -0300
+Message-ID: <CAOMZO5B6_UVhAeCt7-AjeB8LR-_J7vQEQqb0yV5gAFUbBj_5VQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] arm64: dts: imx8mq: add Nitrogen8 SoM
+To:     Lucas Stach <dev@lynxeye.de>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Lukas F . Hartmann" <lukas@mntre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A test with the command below gives this error:
+Hi Lucas,
 
-/arch/arm64/boot/dts/rockchip/rk3328-a1.dt.yaml: syscon@ff100000:
-grf-gpio: {'compatible': ['rockchip,rk3328-grf-gpio'],
-'gpio-controller': True, '#gpio-cells': [[2]], 'phandle': [[68]]} is not
-of type 'array'
-From schema:
-~/.local/lib/python3.5/site-packages/dtschema/schemas/gpio/gpio-consumer.yaml
+On Sat, May 8, 2021 at 9:17 AM Lucas Stach <dev@lynxeye.de> wrote:
 
-Due to the regex "(?<!,nr)-gpios?$" anything that ends on
-'-gpio', '-gpios' gives a match.
+> +       pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
+> +               fsl,pins = <
+> +                       MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK                 0x8d
+> +                       MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD                 0xcd
+> +                       MX8MQ_IOMUXC_SD1_DATA0_USDHC1_DATA0             0xcd
+> +                       MX8MQ_IOMUXC_SD1_DATA1_USDHC1_DATA1             0xcd
+> +                       MX8MQ_IOMUXC_SD1_DATA2_USDHC1_DATA2             0xcd
+> +                       MX8MQ_IOMUXC_SD1_DATA3_USDHC1_DATA3             0xcd
+> +                       MX8MQ_IOMUXC_SD1_DATA4_USDHC1_DATA4             0xcd
+> +                       MX8MQ_IOMUXC_SD1_DATA5_USDHC1_DATA5             0xcd
+> +                       MX8MQ_IOMUXC_SD1_DATA6_USDHC1_DATA6             0xcd
+> +                       MX8MQ_IOMUXC_SD1_DATA7_USDHC1_DATA7             0xcd
+> +               >;
+> +       };
+> +
+> +       pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
+> +               fsl,pins = <
+> +                       MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK                 0x9f
+> +                       MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD                 0xdf
+> +                       MX8MQ_IOMUXC_SD1_DATA0_USDHC1_DATA0             0xdf
+> +                       MX8MQ_IOMUXC_SD1_DATA1_USDHC1_DATA1             0xdf
+> +                       MX8MQ_IOMUXC_SD1_DATA2_USDHC1_DATA2             0xdf
+> +                       MX8MQ_IOMUXC_SD1_DATA3_USDHC1_DATA3             0xdf
+> +                       MX8MQ_IOMUXC_SD1_DATA4_USDHC1_DATA4             0xdf
+> +                       MX8MQ_IOMUXC_SD1_DATA5_USDHC1_DATA5             0xdf
+> +                       MX8MQ_IOMUXC_SD1_DATA6_USDHC1_DATA6             0xdf
+> +                       MX8MQ_IOMUXC_SD1_DATA7_USDHC1_DATA7             0xdf
 
-Rename 'grf-gpio' nodename to generic 'gpio'
-
-make ARCH=arm64 dtbs_check
-DT_SCHEMA_FILES=~/.local/lib/python3.5/site-packages/dtschema/
-schemas/gpio/gpio-consumer.yaml
-
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3328.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-index 4ce49aae7..2e458fb87 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-@@ -291,7 +291,7 @@
- 			status = "disabled";
- 		};
- 
--		grf_gpio: grf-gpio {
-+		grf_gpio: gpio {
- 			compatible = "rockchip,rk3328-grf-gpio";
- 			gpio-controller;
- 			#gpio-cells = <2>;
--- 
-2.11.0
-
+The 100 and 200MHz pinctrl entries are unused here, so you could just
+remove them.
