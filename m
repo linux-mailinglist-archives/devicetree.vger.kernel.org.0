@@ -2,383 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B28EA37733B
-	for <lists+devicetree@lfdr.de>; Sat,  8 May 2021 18:38:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A2743773B8
+	for <lists+devicetree@lfdr.de>; Sat,  8 May 2021 20:56:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229647AbhEHQjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 May 2021 12:39:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51418 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229544AbhEHQjx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 8 May 2021 12:39:53 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5B4896140F;
-        Sat,  8 May 2021 16:38:49 +0000 (UTC)
-Date:   Sat, 8 May 2021 17:39:47 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Sean Nyekjaer <sean@geanix.com>
-Cc:     linux-iio@vger.kernel.org, andy.shevchenko@gmail.com,
-        lars@metafoo.de, Nuno.Sa@analog.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, tomas.melin@vaisala.com
-Subject: Re: [PATCH v5 5/6] iio: accel: fxls8962af: add hw buffered sampling
-Message-ID: <20210508173947.47d18328@jic23-huawei>
-In-Reply-To: <20210506070940.312959-5-sean@geanix.com>
-References: <20210506070940.312959-1-sean@geanix.com>
-        <20210506070940.312959-5-sean@geanix.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S229669AbhEHS5V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 May 2021 14:57:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32974 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229489AbhEHS5T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 May 2021 14:57:19 -0400
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7365C061574
+        for <devicetree@vger.kernel.org>; Sat,  8 May 2021 11:56:17 -0700 (PDT)
+Received: by mail-ot1-x336.google.com with SMTP id t4-20020a05683014c4b02902ed26dd7a60so692572otq.7
+        for <devicetree@vger.kernel.org>; Sat, 08 May 2021 11:56:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=IF7Fac0YjVDycbq5PH+VvNCEX38AVPA4fKxY5+X2pvM=;
+        b=PUqcaScEb9tsf7vUvHj3CnZsCwzWf3odcLsWYZX9AtdI1hc4sT58bXGsUhazsSPyWI
+         6Q6kBqJcVBJZgaxWMz3M7RZJYw4eqyTkDsILIbnC1E1xxqSzc316q931UtbagBNF20ma
+         156h+ehNaRPmn35EfI/9L4A5U6GjV4KBICyzI1eHarm/92TJyfZ0rREoWPcNWGegyDVv
+         L1yO/eZLul0v1cZ41ndHwaMbCGiPESt4zyISiWKNkIHF5wwVjA84EkC9VkLvHvxF0RRb
+         UzbBBWKZy5vRQlr9iE1nZLtvcescqeEuUx9GHyqoND2oK+jyGr+AZVrK+LrPt6b5XP1H
+         j2CA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=IF7Fac0YjVDycbq5PH+VvNCEX38AVPA4fKxY5+X2pvM=;
+        b=VGj8Pifi2mqmOmjSqBM3hckfxJCVMNacY9j9LdvRG8Hx96jar8/bppoDIv6G1fksh9
+         /nuMWvzR1/+7BRnsjC79WdEsAUT13hq6nFvyEKTYZ8Lmkz5S4abbYXwUWdxSkvvjM1DM
+         a6jkNsWZsWllczcm+zrf9KmJyd9D/eEQ7n1nLLE36txJDedJeJ/5WuJVvntBqIV3lW9Y
+         CjuIIKUocVrv0mC6cXEmHpaJvN1IVxcXsDIsq1JrokAJ84d3aHuFasNNFxrtiouQ9YPe
+         NniLpuTNE0rUnr5iWUkCPQXz6h0koVIMVl8iYEnSLgSX9aJ6Wi0za5O036RogtQexeva
+         UX/A==
+X-Gm-Message-State: AOAM533auvBRGcFVhGUeCAdANk0KDAUSvrwvoJ4jQ5FtwumC5MB/Udur
+        wJiFpcUPzTZE6+6mRLj60gU+UXfsBwKPQkLzxsfiwA==
+X-Google-Smtp-Source: ABdhPJwSVaVB5oB3yhUXmvXMdKhgh8GWruFZ82+rfw+bzS/cGv/WjBJnJLO0ry+vEzbyw1Po+3sMwFzSUAbOpuPcAsg=
+X-Received: by 2002:a9d:51c7:: with SMTP id d7mr5449017oth.51.1620500177155;
+ Sat, 08 May 2021 11:56:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20210505213731.538612-1-bhupesh.sharma@linaro.org> <20210507211434.GA2879094@robh.at.kernel.org>
+In-Reply-To: <20210507211434.GA2879094@robh.at.kernel.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Sun, 9 May 2021 00:26:06 +0530
+Message-ID: <CAH=2Ntwwzu5Ftwj=r9RWnKv6xvRdKz0qjyqvJvxFwmoTP1zTqg@mail.gmail.com>
+Subject: Re: [PATCH v2 00/17] Enable Qualcomm Crypto Engine on sm8250
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Thara Gopinath <thara.gopinath@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bhupesh.linux@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu,  6 May 2021 09:09:39 +0200
-Sean Nyekjaer <sean@geanix.com> wrote:
+Hi Rob,
 
-> When buffered sampling is enabled, the accelerometer will dump data into
-> the internal fifo and interrupt at watermark. Then the driver flushes
-> all data to the iio buffer.
-> As the accelerometer doesn't have internal timestamps, they are
-> approximated between the current and last interrupt.
-> 
-> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+On Sat, 8 May 2021 at 02:44, Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, May 06, 2021 at 03:07:14AM +0530, Bhupesh Sharma wrote:
+> > Changes since v1:
+> > =================
+> > - v1 can be seen here: https://lore.kernel.org/linux-arm-msm/20210310052503.3618486-1-bhupesh.sharma@linaro.org/
+> > - v1 did not work well as reported earlier by Dmitry, so v2 contains the following
+> >   changes/fixes:
+> >   ~ Enable the interconnect path b/w BAM DMA and main memory first
+> >     before trying to access the BAM DMA registers.
+> >   ~ Enable the interconnect path b/w qce crytpo and main memory first
+> >     before trying to access the qce crypto registers.
+> >   ~ Make sure to document the required and optional properties for both
+> >     BAM DMA and qce crypto drivers.
+> >   ~ Add a few debug related print messages in case the qce crypto driver
+> >     passes or fails to probe.
+> >   ~ Convert the qce crypto driver probe to a defered one in case the BAM DMA
+> >     or the interconnect driver(s) (needed on specific Qualcomm parts) are not
+> >     yet probed.
+> >
+> > Qualcomm crypto engine is also available on sm8250 SoC.
+> > It supports hardware accelerated algorithms for encryption
+> > and authentication. It also provides support for aes, des, 3des
+> > encryption algorithms and sha1, sha256, hmac(sha1), hmac(sha256)
+> > authentication algorithms.
+> >
+> > Tested the enabled crypto algorithms with cryptsetup test utilities
+> > on sm8250-mtp and RB5 board (see [1]).
+> >
+> > While at it, also make a minor fix in 'sdm845.dtsi', to make
+> > sure it confirms with the other .dtsi files which expose
+> > crypto nodes on qcom SoCs.
+> >
+> > Cc: Thara Gopinath <thara.gopinath@linaro.org>
+> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Andy Gross <agross@kernel.org>
+> > Cc: Herbert Xu <herbert@gondor.apana.org.au>
+> > Cc: David S. Miller <davem@davemloft.net>
+> > Cc: Stephen Boyd <sboyd@kernel.org>
+> > Cc: Michael Turquette <mturquette@baylibre.com>
+> > Cc: Vinod Koul <vkoul@kernel.org>
+> > Cc: dmaengine@vger.kernel.org
+> > Cc: linux-clk@vger.kernel.org
+> > Cc: linux-crypto@vger.kernel.org
+> > Cc: devicetree@vger.kernel.org
+> > Cc: linux-kernel@vger.kernel.org
+> > Cc: bhupesh.linux@gmail.com
+> >
+> > Bhupesh Sharma (14):
+> >   dt-bindings: qcom-bam: Add 'interconnects' & 'interconnect-names' to
+> >     optional properties
+> >   dt-bindings: qcom-bam: Add 'iommus' to required properties
+> >   dt-bindings: qcom-qce: Add 'iommus' to required properties
+> >   dt-bindings: qcom-qce: Add 'interconnects' and move 'clocks' to
+> >     optional properties
+> >   arm64/dts: qcom: sdm845: Use RPMH_CE_CLK macro directly
+> >   dt-bindings: crypto : Add new compatible strings for qcom-qce
+>
+> Please convert these bindings to schemas.
 
-Hi Sean,
-
-Couple of things I adjusted whilst applying this.
-1) trigger.h isn't used as no triggers are involved currently in this driver so
-   I dropped it.
-2) kfifo allocation etc has changed in the IIO core whilst this driver was in
-   development. Now we have devm_iio_kfifo_setup() which does everything your
-   locals _setup() function does. 
-
-I've made changes for both of the above whilst applying so please take a look
-at the result which I'll shortly push out as testing for the autobuilders to
-poke at as well.
-
-Other than that I tweaked a bit of whilespace in the id tables in patch 1.
-
-Series applied to the togreg branch of iio.git but initially just pushed out as
-testing to let 0-day work it's magic.
+Ok, will fix it in v3.
 
 Thanks,
+Bhupesh
 
-Jonathan
-
-
-> ---
-> Changes from RFC:
->  - Dropped the claim stuff for read_raw
->  - Added watermark get/set
->  - Consistent use of u16 for buffer size
-> 
-> Changes for v5:
->  - removed redundant blank lines and redundant assignments
-> 
->  drivers/iio/accel/fxls8962af-core.c | 207 ++++++++++++++++++++++++++++
->  1 file changed, 207 insertions(+)
-> 
-> diff --git a/drivers/iio/accel/fxls8962af-core.c b/drivers/iio/accel/fxls8962af-core.c
-> index b909ba23e47c..889e470658b9 100644
-> --- a/drivers/iio/accel/fxls8962af-core.c
-> +++ b/drivers/iio/accel/fxls8962af-core.c
-> @@ -20,13 +20,17 @@
->  #include <linux/regulator/consumer.h>
->  #include <linux/regmap.h>
->  
-> +#include <linux/iio/buffer.h>
->  #include <linux/iio/iio.h>
-> +#include <linux/iio/kfifo_buf.h>
->  #include <linux/iio/sysfs.h>
-> +#include <linux/iio/trigger.h>
->  
->  #include "fxls8962af.h"
->  
->  #define FXLS8962AF_INT_STATUS			0x00
->  #define FXLS8962AF_INT_STATUS_SRC_BOOT		BIT(0)
-> +#define FXLS8962AF_INT_STATUS_SRC_BUF		BIT(5)
->  #define FXLS8962AF_INT_STATUS_SRC_DRDY		BIT(7)
->  #define FXLS8962AF_TEMP_OUT			0x01
->  #define FXLS8962AF_VECM_LSB			0x02
-> @@ -34,6 +38,9 @@
->  #define FXLS8962AF_OUT_Y_LSB			0x06
->  #define FXLS8962AF_OUT_Z_LSB			0x08
->  #define FXLS8962AF_BUF_STATUS			0x0b
-> +#define FXLS8962AF_BUF_STATUS_BUF_CNT		GENMASK(5, 0)
-> +#define FXLS8962AF_BUF_STATUS_BUF_OVF		BIT(6)
-> +#define FXLS8962AF_BUF_STATUS_BUF_WMRK		BIT(7)
->  #define FXLS8962AF_BUF_X_LSB			0x0c
->  #define FXLS8962AF_BUF_Y_LSB			0x0e
->  #define FXLS8962AF_BUF_Z_LSB			0x10
-> @@ -66,6 +73,7 @@
->  #define FXLS8962AF_ASLP_COUNT_LSB		0x1e
->  
->  #define FXLS8962AF_INT_EN			0x20
-> +#define FXLS8962AF_INT_EN_BUF_EN		BIT(6)
->  #define FXLS8962AF_INT_PIN_SEL			0x21
->  #define FXLS8962AF_INT_PIN_SEL_MASK		GENMASK(7, 0)
->  #define FXLS8962AF_INT_PIN_SEL_INT1		0x00
-> @@ -76,7 +84,10 @@
->  #define FXLS8962AF_OFF_Z			0x24
->  
->  #define FXLS8962AF_BUF_CONFIG1			0x26
-> +#define FXLS8962AF_BC1_BUF_MODE_MASK		GENMASK(6, 5)
-> +#define FXLS8962AF_BC1_BUF_MODE_PREP(x)		FIELD_PREP(FXLS8962AF_BC1_BUF_MODE_MASK, (x))
->  #define FXLS8962AF_BUF_CONFIG2			0x27
-> +#define FXLS8962AF_BUF_CONFIG2_BUF_WMRK		GENMASK(5, 0)
->  
->  #define FXLS8962AF_ORIENT_STATUS		0x28
->  #define FXLS8962AF_ORIENT_CONFIG		0x29
-> @@ -106,6 +117,7 @@
->  
->  #define FXLS8962AF_AUTO_SUSPEND_DELAY_MS	2000
->  
-> +#define FXLS8962AF_FIFO_LENGTH			32
->  #define FXLS8962AF_SCALE_TABLE_LEN		4
->  #define FXLS8962AF_SAMP_FREQ_TABLE_LEN		13
->  
-> @@ -133,7 +145,13 @@ struct fxls8962af_data {
->  	struct regmap *regmap;
->  	const struct fxls8962af_chip_info *chip_info;
->  	struct regulator *vdd_reg;
-> +	struct {
-> +		__le16 channels[3];
-> +		s64 ts __aligned(8);
-> +	} scan;
-> +	int64_t timestamp, old_timestamp;	/* Only used in hw fifo mode. */
->  	struct iio_mount_matrix orientation;
-> +	u8 watermark;
->  };
->  
->  const struct regmap_config fxls8962af_regmap_conf = {
-> @@ -433,6 +451,18 @@ static int fxls8962af_write_raw(struct iio_dev *indio_dev,
->  	}
->  }
->  
-> +static int fxls8962af_set_watermark(struct iio_dev *indio_dev, unsigned val)
-> +{
-> +	struct fxls8962af_data *data = iio_priv(indio_dev);
-> +
-> +	if (val > FXLS8962AF_FIFO_LENGTH)
-> +		val = FXLS8962AF_FIFO_LENGTH;
-> +
-> +	data->watermark = val;
-> +
-> +	return 0;
-> +}
-> +
->  #define FXLS8962AF_CHANNEL(axis, reg, idx) { \
->  	.type = IIO_ACCEL, \
->  	.address = reg, \
-> @@ -493,6 +523,7 @@ static const struct iio_info fxls8962af_info = {
->  	.write_raw = &fxls8962af_write_raw,
->  	.write_raw_get_fmt = fxls8962af_write_raw_get_fmt,
->  	.read_avail = fxls8962af_read_avail,
-> +	.hwfifo_set_watermark = fxls8962af_set_watermark,
->  };
->  
->  static int fxls8962af_reset(struct fxls8962af_data *data)
-> @@ -517,6 +548,157 @@ static int fxls8962af_reset(struct fxls8962af_data *data)
->  	return ret;
->  }
->  
-> +static int __fxls8962af_fifo_set_mode(struct fxls8962af_data *data, bool onoff)
-> +{
-> +	int ret;
-> +
-> +	/* Enable watermark at max fifo size */
-> +	ret = regmap_update_bits(data->regmap, FXLS8962AF_BUF_CONFIG2,
-> +				 FXLS8962AF_BUF_CONFIG2_BUF_WMRK,
-> +				 data->watermark);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return regmap_update_bits(data->regmap, FXLS8962AF_BUF_CONFIG1,
-> +				  FXLS8962AF_BC1_BUF_MODE_MASK,
-> +				  FXLS8962AF_BC1_BUF_MODE_PREP(onoff));
-> +}
-> +
-> +static int fxls8962af_buffer_preenable(struct iio_dev *indio_dev)
-> +{
-> +	return fxls8962af_power_on(iio_priv(indio_dev));
-> +}
-> +
-> +static int fxls8962af_buffer_postenable(struct iio_dev *indio_dev)
-> +{
-> +	struct fxls8962af_data *data = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	fxls8962af_standby(data);
-> +
-> +	/* Enable buffer interrupt */
-> +	ret = regmap_update_bits(data->regmap, FXLS8962AF_INT_EN,
-> +				 FXLS8962AF_INT_EN_BUF_EN,
-> +				 FXLS8962AF_INT_EN_BUF_EN);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = __fxls8962af_fifo_set_mode(data, true);
-> +
-> +	fxls8962af_active(data);
-> +
-> +	return ret;
-> +}
-> +
-> +static int fxls8962af_buffer_predisable(struct iio_dev *indio_dev)
-> +{
-> +	struct fxls8962af_data *data = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	fxls8962af_standby(data);
-> +
-> +	/* Disable buffer interrupt */
-> +	ret = regmap_update_bits(data->regmap, FXLS8962AF_INT_EN,
-> +				 FXLS8962AF_INT_EN_BUF_EN, 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = __fxls8962af_fifo_set_mode(data, false);
-> +
-> +	fxls8962af_active(data);
-> +
-> +	return ret;
-> +}
-> +
-> +static int fxls8962af_buffer_postdisable(struct iio_dev *indio_dev)
-> +{
-> +	struct fxls8962af_data *data = iio_priv(indio_dev);
-> +
-> +	return fxls8962af_power_off(data);
-> +}
-> +
-> +static const struct iio_buffer_setup_ops fxls8962af_buffer_ops = {
-> +	.preenable = fxls8962af_buffer_preenable,
-> +	.postenable = fxls8962af_buffer_postenable,
-> +	.predisable = fxls8962af_buffer_predisable,
-> +	.postdisable = fxls8962af_buffer_postdisable,
-> +};
-> +
-> +static int fxls8962af_fifo_transfer(struct fxls8962af_data *data,
-> +				    u16 *buffer, int samples)
-> +{
-> +	struct device *dev = regmap_get_device(data->regmap);
-> +	int sample_length = 3 * sizeof(*buffer);
-> +	int ret;
-> +	int total_length = samples * sample_length;
-> +
-> +	ret = regmap_raw_read(data->regmap, FXLS8962AF_BUF_X_LSB, buffer,
-> +			      total_length);
-> +	if (ret)
-> +		dev_err(dev, "Error transferring data from fifo: %d\n", ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static int fxls8962af_fifo_flush(struct iio_dev *indio_dev)
-> +{
-> +	struct fxls8962af_data *data = iio_priv(indio_dev);
-> +	struct device *dev = regmap_get_device(data->regmap);
-> +	u16 buffer[FXLS8962AF_FIFO_LENGTH * 3];
-> +	uint64_t sample_period;
-> +	unsigned int reg;
-> +	int64_t tstamp;
-> +	int ret, i;
-> +	u8 count;
-> +
-> +	ret = regmap_read(data->regmap, FXLS8962AF_BUF_STATUS, &reg);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (reg & FXLS8962AF_BUF_STATUS_BUF_OVF) {
-> +		dev_err(dev, "Buffer overflow");
-> +		return -EOVERFLOW;
-> +	}
-> +
-> +	count = reg & FXLS8962AF_BUF_STATUS_BUF_CNT;
-> +	if (!count)
-> +		return 0;
-> +
-> +	data->old_timestamp = data->timestamp;
-> +	data->timestamp = iio_get_time_ns(indio_dev);
-> +
-> +	/*
-> +	 * Approximate timestamps for each of the sample based on the sampling,
-> +	 * frequency, timestamp for last sample and number of samples.
-> +	 */
-> +	sample_period = (data->timestamp - data->old_timestamp);
-> +	do_div(sample_period, count);
-> +	tstamp = data->timestamp - (count - 1) * sample_period;
-> +
-> +	ret = fxls8962af_fifo_transfer(data, buffer, count);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Demux hw FIFO into kfifo. */
-> +	for (i = 0; i < count; i++) {
-> +		int j, bit;
-> +
-> +		j = 0;
-> +		for_each_set_bit(bit, indio_dev->active_scan_mask,
-> +				 indio_dev->masklength) {
-> +			memcpy(&data->scan.channels[j++], &buffer[i * 3 + bit],
-> +			       sizeof(data->scan.channels[0]));
-> +		}
-> +
-> +		iio_push_to_buffers_with_timestamp(indio_dev, &data->scan,
-> +						   tstamp);
-> +
-> +		tstamp += sample_period;
-> +	}
-> +
-> +	return count;
-> +}
-> +
->  static irqreturn_t fxls8962af_interrupt(int irq, void *p)
->  {
->  	struct iio_dev *indio_dev = p;
-> @@ -528,9 +710,32 @@ static irqreturn_t fxls8962af_interrupt(int irq, void *p)
->  	if (ret)
->  		return IRQ_NONE;
->  
-> +	if (reg & FXLS8962AF_INT_STATUS_SRC_BUF) {
-> +		ret = fxls8962af_fifo_flush(indio_dev);
-> +		if (ret)
-> +			return IRQ_NONE;
-> +
-> +		return IRQ_HANDLED;
-> +	}
-> +
->  	return IRQ_NONE;
->  }
->  
-> +static int fxls8962af_fifo_setup(struct iio_dev *indio_dev)
-> +{
-> +	struct iio_buffer *buffer;
-> +
-> +	buffer = devm_iio_kfifo_allocate(&indio_dev->dev);
-> +	if (!buffer)
-> +		return -ENOMEM;
-> +
-> +	iio_device_attach_buffer(indio_dev, buffer);
-> +	indio_dev->modes |= INDIO_BUFFER_SOFTWARE;
-> +	indio_dev->setup_ops = &fxls8962af_buffer_ops;
-> +
-> +	return 0;
-> +}
-> +
->  static void fxls8962af_regulator_disable(void *data_ptr)
->  {
->  	struct fxls8962af_data *data = data_ptr;
-> @@ -694,6 +899,8 @@ int fxls8962af_core_probe(struct device *dev, struct regmap *regmap, int irq)
->  		ret = fxls8962af_irq_setup(indio_dev, irq);
->  		if (ret)
->  			return ret;
-> +
-> +		fxls8962af_fifo_setup(indio_dev);
->  	}
->  
->  	ret = pm_runtime_set_active(dev);
-
+>
+> >   arm64/dts: qcom: Use new compatibles for crypto nodes
+> >   crypto: qce: Add new compatibles for qce crypto driver
+> >   crypto: qce: Print a failure msg in case probe() fails
+> >   crypto: qce: Convert the device found dev_dbg() to dev_info()
+> >   dma: qcom: bam_dma: Create a new header file for BAM DMA driver
+> >   crypto: qce: Defer probing if BAM dma is not yet initialized
+> >   crypto: qce: Defer probe in case interconnect is not yet initialized
+> >   arm64/dts: qcom: sm8250: Add dt entries to support crypto engine.
+> >
+> > Thara Gopinath (3):
+> >   dma: qcom: bam_dma: Add support to initialize interconnect path
+> >   crypto: qce: core: Add support to initialize interconnect path
+> >   crypto: qce: core: Make clocks optional
+> >
+> >  .../devicetree/bindings/crypto/qcom-qce.txt   |  22 +-
+> >  .../devicetree/bindings/dma/qcom_bam_dma.txt  |   5 +
+> >  arch/arm64/boot/dts/qcom/ipq6018.dtsi         |   2 +-
+> >  arch/arm64/boot/dts/qcom/sdm845.dtsi          |   6 +-
+> >  arch/arm64/boot/dts/qcom/sm8250.dtsi          |  28 ++
+> >  drivers/crypto/qce/core.c                     | 112 +++++--
+> >  drivers/crypto/qce/core.h                     |   3 +
+> >  drivers/dma/qcom/bam_dma.c                    | 306 ++----------------
+> >  include/soc/qcom/bam_dma.h                    | 290 +++++++++++++++++
+> >  9 files changed, 457 insertions(+), 317 deletions(-)
+> >  create mode 100644 include/soc/qcom/bam_dma.h
+> >
+> > --
+> > 2.30.2
+> >
