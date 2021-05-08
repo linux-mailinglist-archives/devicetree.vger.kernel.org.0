@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DBE7376DBF
-	for <lists+devicetree@lfdr.de>; Sat,  8 May 2021 02:34:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50461376DDA
+	for <lists+devicetree@lfdr.de>; Sat,  8 May 2021 02:34:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231215AbhEHAax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 May 2021 20:30:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47742 "EHLO
+        id S231540AbhEHAcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 May 2021 20:32:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230434AbhEHAag (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 20:30:36 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 290E5C061342;
-        Fri,  7 May 2021 17:29:34 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 4-20020a05600c26c4b0290146e1feccd8so5752391wmv.1;
-        Fri, 07 May 2021 17:29:34 -0700 (PDT)
+        with ESMTP id S230493AbhEHAbJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 May 2021 20:31:09 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 269F7C06135B;
+        Fri,  7 May 2021 17:29:47 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id o127so6102004wmo.4;
+        Fri, 07 May 2021 17:29:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=zDaLmFUYhqX+LyRYiq/joH5mOAsxQ0ZWvgt0bWE9Fa4=;
-        b=XQSbCEolcIxHn5qSNGLACEYdk+CXsGHAJuEuxkbd3LoOVfILHmp11sb90gCJEibkf6
-         eBxYBfFgAyWB8jUJsoad+EaHXG38QCaW4nuTLDs/O9lewTKE3BBSJFLHswxkkIkEw1Bk
-         GiBcDnUiiQg0Izk5iOWijeXVa9Ln7xfwqN/lUyfODtcoDCfI3EA4oj5zY7Ah4GTzGV5g
-         OetDxxAECloxd9DVLjCJFqfVhuy0LPNvHEJGkwBf2UiEHAjzWsC7ojefb1FNUus1iBGs
-         lMAGLPLkkYTTp3XFCM5G3T5vUz4eS+9hUqdkEHGp6x0zwElWLdfLB2FA3D/NdQyQmpur
-         0jVw==
+        bh=MOLPDc8gh067O4OWdNlGUuI5YoNwGjIQBjLg8LQX940=;
+        b=ddI6l62VvWsC0xVGP2mnZXHWMYr2U/4LLN5DWMheBvTAqvN9wuc31ndF/nmut2CPAQ
+         WvKN6yGOWwXk5AegXO8g+zg+2wNoCPSxcaqinTNMOdtLHBleOqpoLQhAE7h3jYkRHEoF
+         4BOpesi8pr4zv9bfrINpP0CIEZUlvniPzzVSBLtBfKXRZv3TeAP282geHZwJRdzg2fWY
+         zXq9wDMk14/+Pdu/tNN1H5ie0uH+PucvQH0TLyS7Nl+yF44aV9SRGwX61kfh9gp35ktd
+         TgI298Naeo/kjdizafz/5xhmt2ei9EIpZhExN7b21K0DbsrNMSBdIqlQrDUuF1l4JZES
+         fuHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=zDaLmFUYhqX+LyRYiq/joH5mOAsxQ0ZWvgt0bWE9Fa4=;
-        b=FMmUVybSWQnErGO1WRO9nmVsQrE0vNapQJkfH+WP5lJilqyviq6qOZt/7hpIegP2Du
-         CIjusjCxqdXd+VkjHRHC1CuuKyid5/DV1neh7XQu4kn3ODx1UsZq8oack5/rlqtGgA81
-         cXNrVBiFEySr0Q9t3X/s0Fh0aQBA/EQVZGP8SSU3XrF0Owh9i7B3MVWx3m9zQ7TzMYaJ
-         X1HMWmPWerTDthFjOBtv46cgmT9pmTMb58c+t1azFE2l/kCWjNBOjuvXgGNi02+Rhjug
-         OMQLxR5mLvb5txGbNoCpFcwHa1leHq8QoLsM3UkNuVeeDwMw6I9Q1iahavbEy7rtM43m
-         im8g==
-X-Gm-Message-State: AOAM530zXMgJP/VaaAZMc8bJbded2FyRglWykA8Lf2S36CNdyVoQz9Oe
-        JMaIEfSzFZYvxPduGMZ0tVI=
-X-Google-Smtp-Source: ABdhPJxs5JpVTAtbE+CWrPSg50KMLjmDid4E26hnyb+e2F09q/1XTIyk3Eu2HGbY+M39xvKmxuTqLQ==
-X-Received: by 2002:a05:600c:4242:: with SMTP id r2mr23800648wmm.140.1620433772800;
-        Fri, 07 May 2021 17:29:32 -0700 (PDT)
+        bh=MOLPDc8gh067O4OWdNlGUuI5YoNwGjIQBjLg8LQX940=;
+        b=fNvz9D0+DUTujNpTZr9eqFSPBgntugzFFTtED97jc+iL5GiDitZmGMb//TXqg4rxAB
+         +zTlB8g/+RmOs/rWjB2tNb2xfG2ldBQsnZPMnyoJmhz+fy2GGFjLM4nQ3vHW7Beib84a
+         C15vTXeG3ayVQ3wqNLwlzauMBzYRqxgZQ+U1EO0CFFT/c46VzL+1EkuSqjYSlyOUIdG5
+         TNqjv0EVOh1pkmnJ45ZU384L6aDJIrXGEazieuVj6VyMLfVQ9IFtCRVOBOJZwvl96eFv
+         TfvZI8iZ4EBNIVePDm3ksGwdgFWpQ9grY9gJdK7wCJRe21nyk3pnz1y5kVjCzESSxDBD
+         iyRQ==
+X-Gm-Message-State: AOAM533NF9HbYxZojf1wkWD1UJVBvr0Ahw1kAPFLpzGqQjNMYZZFqYdP
+        AN++7CnJHG/7s+h/qaQ7Oq8=
+X-Google-Smtp-Source: ABdhPJzz1MNReaK3Lu9L/EXnVOIlddL6utwXLDIG0ibhGbORBzREZg4RxVVQbJDNk8SQr8cRMOrW3w==
+X-Received: by 2002:a1c:1f03:: with SMTP id f3mr22542244wmf.175.1620433785695;
+        Fri, 07 May 2021 17:29:45 -0700 (PDT)
 Received: from Ansuel-xps.localdomain (93-35-189-2.ip56.fastwebnet.it. [93.35.189.2])
-        by smtp.googlemail.com with ESMTPSA id f4sm10967597wrz.33.2021.05.07.17.29.31
+        by smtp.googlemail.com with ESMTPSA id f4sm10967597wrz.33.2021.05.07.17.29.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 May 2021 17:29:32 -0700 (PDT)
+        Fri, 07 May 2021 17:29:45 -0700 (PDT)
 From:   Ansuel Smith <ansuelsmth@gmail.com>
 To:     Florian Fainelli <f.fainelli@gmail.com>
 Cc:     Ansuel Smith <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh@kernel.org>,
         Vivien Didelot <vivien.didelot@gmail.com>,
         Vladimir Oltean <olteanv@gmail.com>,
         "David S. Miller" <davem@davemloft.net>,
@@ -58,9 +57,9 @@ Cc:     Ansuel Smith <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [RFC PATCH net-next v4 13/28] devicetree: net: dsa: qca8k: Document new compatible qca8327
-Date:   Sat,  8 May 2021 02:29:03 +0200
-Message-Id: <20210508002920.19945-13-ansuelsmth@gmail.com>
+Subject: [RFC PATCH net-next v4 24/28] devicetree: net: dsa: Document use of mdio node inside switch node
+Date:   Sat,  8 May 2021 02:29:14 +0200
+Message-Id: <20210508002920.19945-24-ansuelsmth@gmail.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210508002920.19945-1-ansuelsmth@gmail.com>
 References: <20210508002920.19945-1-ansuelsmth@gmail.com>
@@ -70,27 +69,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for qca8327 in the compatible list.
+Switch node can contain mdio node to describe internal mdio and PHYs
+connected to the switch ports.
 
 Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Acked-by: Rob Herring <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/net/dsa/qca8k.txt | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/net/dsa/dsa.yaml      | 28 +++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.txt b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-index ccbc6d89325d..1daf68e7ae19 100644
---- a/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-+++ b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-@@ -3,6 +3,7 @@
- Required properties:
+diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+index 8a3494db4d8d..fbefaca884cc 100644
+--- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+@@ -15,6 +15,9 @@ description:
+   This binding represents Ethernet Switches which have a dedicated CPU
+   port. That port is usually connected to an Ethernet Controller of the
+   SoC. Such setups are typical for embedded devices.
++  Switch can also have PHY port connected to an internal mdio bus by
++  declaring a mdio node inside the switch node and declaring the
++  phy-handle for each required port.
  
- - compatible: should be one of:
-+    "qca,qca8327"
-     "qca,qca8334"
-     "qca,qca8337"
+ select: false
  
+@@ -87,6 +90,31 @@ patternProperties:
+ 
+         additionalProperties: false
+ 
++patternProperties:
++  mdio:
++    description:
++      Describes the internal mdio of the Ethernet switch
++    type: object
++    properties:
++      '#address-cells':
++        const: 1
++      '#size-cells':
++        const: 0
++
++    patternProperties:
++      phy:
++        type: object
++        description: Ethernet switch internal PHY
++
++        properties:
++          reg:
++            description: PHY address
++
++        required:
++            - reg
++
++        additionalProperties: false
++
+ oneOf:
+   - required:
+       - ports
 -- 
 2.30.2
 
