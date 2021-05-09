@@ -2,138 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 311B63774B6
-	for <lists+devicetree@lfdr.de>; Sun,  9 May 2021 02:27:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B49F03774BD
+	for <lists+devicetree@lfdr.de>; Sun,  9 May 2021 02:41:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229620AbhEIA26 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 May 2021 20:28:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47784 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229601AbhEIA25 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 May 2021 20:28:57 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 041BBC061574
-        for <devicetree@vger.kernel.org>; Sat,  8 May 2021 17:27:52 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id s25so16337544lji.0
-        for <devicetree@vger.kernel.org>; Sat, 08 May 2021 17:27:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sOG7GoczpFfze5AyMT4RluOASRTehzGf0LNWttOKk5c=;
-        b=fd/VQghyl1il11WcKIahjTpti38ABPOV+dWJY++N6qi+RgRaK1GW8Sk7C+ltz/7Xga
-         z0doL14X6Ldz+/jney8rR8LcRGt+D2mcXm9tdfOGM6mOugc45rNXotg+pcpI6ZU/Tuex
-         uG4xC2vISLas1g8vYAfDvc/8Vwhd6Rdc/JSw5APFXzlTg+j3aXEKzb2YGGeHPcTbK+Zz
-         qaDpZ7G34rsLW5ylHIuAe5pKPqjvDpmVNXKM8lnDzNkxYjZWOua/S1Cml+oCCo6j343y
-         cKeiz60axq1J9KfnYqCtYJfJxfVXxyJ1JA0Pl6fAzDQdiOBkEMgO3cW4jlJ4Mn16HamA
-         RMng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sOG7GoczpFfze5AyMT4RluOASRTehzGf0LNWttOKk5c=;
-        b=tkJMvPn1P9Q0IWBTiTVvHCzsLwunecUg9KhbcYDcO4GkfFhYfY+I+CTJL1Uz09JieE
-         qx94M3ki9VDWk/Wu5gJS4qeoYRgXd4shVb6vtTfKXDIlWGnLb+1y/sjUqLZ/3i4UnFIt
-         KVLj33f6RKb6C46WjwfHhRorHgzxq44HLWRyLwpRcq/B2QMfYtzECQBS++tAhf12UEtj
-         yTQomDoJRxCXgrRLJGrX9nixfWPB1+u6QgJFmfv5rhAIkXz38wDy8yqvYwTXtyZbnwl7
-         nHT4eUfXZ/n/+xDPMxAZsttYtwFOscE+PKRSrnW4juYmrf24TZa3OkLE4Fht+MRcPwAV
-         p+Kg==
-X-Gm-Message-State: AOAM530/MH3qhn1YFyrCj/NlCHQAUDF/CkW3F2IDJ7gy9uX2vHea4k3J
-        Um4ExFiVKdgu/PThcOFbthWrn41u4tSJjYNiBL3wDg==
-X-Google-Smtp-Source: ABdhPJytxvCNL0+i08ru81BLLE5rAKxOEzAlmjHrXOhOGfZ4saKKLNoNxxgTYNohihYYlBVogll59unffk6oK9h0E/k=
-X-Received: by 2002:a2e:22c3:: with SMTP id i186mr5939134lji.273.1620520071392;
- Sat, 08 May 2021 17:27:51 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210508142000.85116-1-kettenis@openbsd.org> <20210508142000.85116-2-kettenis@openbsd.org>
- <CACRpkdbUNs_FFv9RteWKUrxBdRuiXU2Fkt-oY4=Phke4gNBoaQ@mail.gmail.com> <c1bd678c5dc81db8@bloch.sibelius.xs4all.nl>
-In-Reply-To: <c1bd678c5dc81db8@bloch.sibelius.xs4all.nl>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 9 May 2021 02:27:40 +0200
-Message-ID: <CACRpkdb=0EQN=CJqfjKS-iuAiKCvU38fw5krzEY5LvhNpyFd3w@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: Add DT bindings for apple,pinctrl
-To:     Mark Kettenis <mark.kettenis@xs4all.nl>
-Cc:     kettenis@openbsd.org, Krzysztof Kozlowski <krzk@kernel.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Hector Martin <marcan@marcan.st>,
+        id S229641AbhEIAmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 May 2021 20:42:46 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:33718 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229601AbhEIAmp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 May 2021 20:42:45 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1620520903; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=SD9OLK+Xie/V3bYXwDC9AsFVonphv9bIA6gkq44pVpU=; b=CKikid0O4kBBPj0ntbb1ouUBPeyFkvkRQKBptGmUR4D3MZDlzmM+41MSq6ziWGKW9nFLaUsR
+ nJRpSDoDbM0pyvifd4x0oCpZNSkipNQS3SxCbCsaHpFvxwrP9E8Qy1kEVNX34IwdoNyPZ8H9
+ QwhBTWFdLgtIuRPCCoVfJwuoqO8=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 60972faefebcffa80f04bdc6 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sun, 09 May 2021 00:41:18
+ GMT
+Sender: pmaliset=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id A209EC433D3; Sun,  9 May 2021 00:41:18 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from pmaliset-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: pmaliset)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 71B17C4338A;
+        Sun,  9 May 2021 00:41:13 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 71B17C4338A
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=pmaliset@codeaurora.org
+From:   Prasad Malisetty <pmaliset@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        sven@svenpeter.dev
-Content-Type: text/plain; charset="UTF-8"
+        Bjorn Helgaas <bhelgaas@google.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        mgautam@codeaurora.org, swboyd@chromium.org, dianders@chromium.org,
+        mka@chromium.org, Prasad Malisetty <pmaliset@codeaurora.org>
+Subject: [PATCH] PCIe: qcom: Add support to control pipe clk mux
+Date:   Sun,  9 May 2021 06:11:00 +0530
+Message-Id: <1620520860-8589-1-git-send-email-pmaliset@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 9, 2021 at 1:02 AM Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
-> [Me]
-> > On Sat, May 8, 2021 at 4:20 PM Mark Kettenis <kettenis@openbsd.org> wrote:
+PCIe driver needs to toggle between bi_tcxo and phy pipe
+clock as part of its LPM sequence. This is done by setting
+pipe_clk/ref_clk_src as parent of pipe_clk_src after phy init
 
-> My U-Boot driver is here:
+Dependent on below change:
 
-Thanks! Looks nice.
+	https://lore.kernel.org/patchwork/patch/1422499/
 
-> > > +description: |
-> > > +  The Apple GPIO controller is a simple combined pin and GPIO controller
-> >
-> > spelling
->
-> Not sure I'm seeing a spelling mistake here.  Do you want a comma
-> inserted somewhere?
+Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+---
+ drivers/pci/controller/dwc/pcie-qcom.c | 23 ++++++++++++++++++++++-
+ 1 file changed, 22 insertions(+), 1 deletion(-)
 
-Your original mail says "conroller" but the helpful google mail
-editor autocorrected the mistake when I hit enter after it.
+diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+index 8a7a300..a9f69e8 100644
+--- a/drivers/pci/controller/dwc/pcie-qcom.c
++++ b/drivers/pci/controller/dwc/pcie-qcom.c
+@@ -9,6 +9,7 @@
+  */
+ 
+ #include <linux/clk.h>
++#include <linux/clk-provider.h>
+ #include <linux/crc8.h>
+ #include <linux/delay.h>
+ #include <linux/gpio/consumer.h>
+@@ -166,6 +167,9 @@ struct qcom_pcie_resources_2_7_0 {
+ 	struct regulator_bulk_data supplies[2];
+ 	struct reset_control *pci_reset;
+ 	struct clk *pipe_clk;
++	struct clk *pipe_clk_src;
++	struct clk *pipe_ext_src;
++	struct clk *ref_clk_src;
+ };
+ 
+ union qcom_pcie_resources {
+@@ -1168,7 +1172,19 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
+ 		return ret;
+ 
+ 	res->pipe_clk = devm_clk_get(dev, "pipe");
+-	return PTR_ERR_OR_ZERO(res->pipe_clk);
++	if (IS_ERR(res->pipe_clk))
++		return PTR_ERR(res->pipe_clk);
++
++	res->pipe_clk_src = devm_clk_get(dev, "pipe_src");
++	if (IS_ERR(res->pipe_clk_src))
++		return PTR_ERR(res->pipe_clk_src);
++
++	res->pipe_ext_src = devm_clk_get(dev, "pipe_ext");
++	if (IS_ERR(res->pipe_ext_src))
++		return PTR_ERR(res->pipe_ext_src);
++
++	res->ref_clk_src = devm_clk_get(dev, "ref");
++	return PTR_ERR_OR_ZERO(res->ref_clk_src);
+ }
+ 
+ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
+@@ -1255,6 +1271,11 @@ static void qcom_pcie_deinit_2_7_0(struct qcom_pcie *pcie)
+ static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
+ {
+ 	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
++	struct dw_pcie *pci = pcie->pci;
++	struct device *dev = pci->dev;
++
++	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280"))
++		clk_set_parent(res->pipe_clk_src, res->pipe_ext_src);
+ 
+ 	return clk_prepare_enable(res->pipe_clk);
+ }
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
-> > So is this an entirely Apple thing now, and not based on some Samsung
-> > block from S3C like what we have seen before?
->
-> As far as I can tell, yes.  This Apple controller has a single
-> register per pin that controls the muxing and gpio functions, whereas
-> the S3C controller seems to have 4 registers per pin.
-
-Fair enough.
-
-> > What I am really wondering is if these interrupts are hierarchical,
-> > i.e. that they match 1-to-1 to a GPIO line.
->
-> They don't match 1-1.  The GPIOs can be assigned to one of
-> (apparently) 7 interrupt groups.
-
-Aha so it is a 1-to-1..* thing. How delicate.
-
->  I haven't looked to closely at this
-> yet since U-Boot doesn't need/use the interrupt capability.  But I
-> suspect that pins don't have to be assigned to a interrupt group and
-> that explains why there are only 7 interrupt groups as the 8th state
-> is reserved for "unasigned".  The number of pins per controller
-> varies, but one of them has 212 pins.
-
-Wow.
-
-> Multiple pins can be assigned to the same interrupt group as far as I
-> can tell.  So in that case the driver will have to look at status
-> bits.
-
-OK then this is not hierarchical.
-
-> > Marc Zyngier can probably tell the story of why it is handled
-> > like this,
->
-> Ok, hopefully Marc can say something sensible here, but I'd say the
-> interrupts on this hardware are cascaded.
-
-Yes looks like so, it will be an interesting interrupt driver when
-you get to that.
-
-I have only the question in my second mail (just sent) but in any
-case you are not doing anything out of the ordinary (it looks very
-similar to the STM32) so I'm pleased with this binding.
-
-I wanna give the DT reviewers some time to look at it as well
-but I imagine we can soon merge this.
-
-Yours.
-Linus Walleij
