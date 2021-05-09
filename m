@@ -2,120 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB0E237780B
-	for <lists+devicetree@lfdr.de>; Sun,  9 May 2021 21:20:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7730037789A
+	for <lists+devicetree@lfdr.de>; Sun,  9 May 2021 23:08:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229840AbhEITV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 May 2021 15:21:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36604 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229662AbhEITV6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 May 2021 15:21:58 -0400
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66757C06175F
-        for <devicetree@vger.kernel.org>; Sun,  9 May 2021 12:20:55 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id z3so12672029oib.5
-        for <devicetree@vger.kernel.org>; Sun, 09 May 2021 12:20:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4GPX6YCdFT0eI9OqiRM8BpJFmnkJ48nTNs5bVOXcOto=;
-        b=W3oEm+Oqv8jLV7JX4eRdNWLtaUGnm18j3ZTtBh3ytvRUvWqMMuZkuTsalW6FwJM1O7
-         zUy9IpQYFCCLsR5UA1avToB85nZYis468um1kgBb/SwY5TG/CIlZ1bzK034KroZdFLqS
-         0s2UClL6u5efDdXqywqT3Zh4/b2E4cYf2DJXU/jtyB8Rf0ngt9FJ7sdYfzTz2aBVTgvb
-         vXOD4O0mCV5xLFLNWHc82ZV2MArtTu7PbWHYjBdlnr4rnjLUEkWRtkTVS87WNLE1vnJu
-         9GRBQp9f7nbi32VxANmKrUXkFGiEIxHnDooT79iM5V1J4eh6t4UYcI9Epnt7xanmWzMh
-         wX2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4GPX6YCdFT0eI9OqiRM8BpJFmnkJ48nTNs5bVOXcOto=;
-        b=TEFKLCo07f0aWzTyxJzdzxluhNNAcEzn4qGtDJq3MUjRFvGFY9I1f4N/zjK7IHOG+T
-         nYjR8EzO456Xd6zBhjmDb+tTwWl0MXvB33efNbyyxEg2f7na0LR9vGfUO8uHILgLsiUh
-         Z9IpF1srQjHl76VRXi1G7VHFmzI6GBYQeYQHrTqEZBGX5+GppcYbQFYHIliAh4iRmkmb
-         WGpsMljVZFNRtHAK5tj0COYcPzIPIlCT+sUkGKL3kw3tS15slMl7Pjte86/65/ZT9KCS
-         oWEutdIY1XlfDdZ100TWwDeIMnho8AhW9gxvMH57Pa1GA4NyacyPCYdwkyf1kyc2g5e2
-         ms2A==
-X-Gm-Message-State: AOAM530Hs30BpwhR3bvy9Ct5ZB5wuzDbHJmVMTMBKLL7YY9T+ElcMpce
-        5BWt0oVOEM2/Bnw1idre9D/xN36RBM+Xk8MCvOGdiw==
-X-Google-Smtp-Source: ABdhPJw6+UCBlq3IWslbkvJg6hDx8LHViB9kozY6+DNTnjWO3Xjnwmrth+lDZWe6PVj3aw2O9mJQcyzhFO5f962x7fo=
-X-Received: by 2002:aca:3dc3:: with SMTP id k186mr23871986oia.126.1620588054621;
- Sun, 09 May 2021 12:20:54 -0700 (PDT)
+        id S229950AbhEIVJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 May 2021 17:09:45 -0400
+Received: from gate2.alliedtelesis.co.nz ([202.36.163.20]:43634 "EHLO
+        gate2.alliedtelesis.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229953AbhEIVJp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 May 2021 17:09:45 -0400
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 8D174891B0;
+        Mon, 10 May 2021 09:08:36 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1620594516;
+        bh=gwyWwlOedwTZ6Qk1pSQVLv+Osb7HqVKaJ97ijXxKaUk=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To;
+        b=YlfHPHTZd6J0Owo+q8RJBiCk/EmQuAuXBv5ec1Xh+gv7hjOg/ctIewnqPbjWDLxQa
+         H1qBgwK0CeA7YsSAVsvvYq6tj8K/BrwgN+r5gIS7gFT1Nr5cWOaBbA/iOLakuuehRJ
+         LiXq0v/+y00hKn+wu+FxJr+j2MqdvMLNGMLL5kGIOKMBzKG8MuaEgXTtAiQI2Flf+Z
+         7DdKmaI5qE2NvzO0/Xnjk4yC0qdTUlfmQ6sb/7FQOQv6nZfHa0p2u7QqLXdIwobM/D
+         zLpi28dquCQ43X72qJlGlO0J2F19V0VoIqiALgs+pBJBbSThTy9Q2yqV8Fy5b8sBej
+         RumlAF3/MrqiQ==
+Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B60984f540001>; Mon, 10 May 2021 09:08:36 +1200
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
+ svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
+ (TLS) id 15.0.1497.2; Mon, 10 May 2021 09:08:36 +1200
+Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
+ svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
+ 15.00.1497.015; Mon, 10 May 2021 09:08:36 +1200
+From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To:     Rob Herring <robh@kernel.org>
+CC:     "wsa@kernel.org" <wsa@kernel.org>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
+        "mpe@ellerman.id.au" <mpe@ellerman.id.au>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Joakim Tjernlund" <Joakim.Tjernlund@infinera.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: i2c: mpc: Add fsl,i2c-erratum-a004447
+ flag
+Thread-Topic: [PATCH v2 1/3] dt-bindings: i2c: mpc: Add
+ fsl,i2c-erratum-a004447 flag
+Thread-Index: AQHXQtmffNncPI25V0+wQHr03rbg2qrXxuAAgAMZNIA=
+Date:   Sun, 9 May 2021 21:08:35 +0000
+Message-ID: <c5d6f8d0-9b8a-b3bf-b7c3-884f03f7ecee@alliedtelesis.co.nz>
+References: <20210507004047.4454-1-chris.packham@alliedtelesis.co.nz>
+ <20210507004047.4454-2-chris.packham@alliedtelesis.co.nz>
+ <20210507214936.GA2944698@robh.at.kernel.org>
+In-Reply-To: <20210507214936.GA2944698@robh.at.kernel.org>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.32.1.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <F24E3822AA20C54591FDF2772ABBD145@atlnz.lc>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20210505213731.538612-1-bhupesh.sharma@linaro.org>
- <20210505213731.538612-15-bhupesh.sharma@linaro.org> <YJfqk/0Whr2Qfxjb@vkoul-mobl.Dlink>
-In-Reply-To: <YJfqk/0Whr2Qfxjb@vkoul-mobl.Dlink>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Mon, 10 May 2021 00:50:43 +0530
-Message-ID: <CAH=2Ntw6MfqLvxzx44TqgF21frwkeJnUmkeH2+zx0L+MfLdG=A@mail.gmail.com>
-Subject: Re: [PATCH v2 14/17] dma: qcom: bam_dma: Create a new header file for
- BAM DMA driver
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        dmaengine@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=K6Jc4BeI c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=5FLXtPjwQuUA:10 a=W3TmjN9C7xaUWysyWacA:9 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
-
-Thanks for the review.
-
-On Sun, 9 May 2021 at 19:28, Vinod Koul <vkoul@kernel.org> wrote:
->
-> On 06-05-21, 03:07, Bhupesh Sharma wrote:
-> > Create a new header file for BAM DMA driver to make sure
-> > that it can be included in the follow-up patch to defer probing
-> > drivers which require BAM DMA driver to be first probed successfully.
-> >
-> > Cc: Thara Gopinath <thara.gopinath@linaro.org>
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Andy Gross <agross@kernel.org>
-> > Cc: Herbert Xu <herbert@gondor.apana.org.au>
-> > Cc: David S. Miller <davem@davemloft.net>
-> > Cc: Stephen Boyd <sboyd@kernel.org>
-> > Cc: Michael Turquette <mturquette@baylibre.com>
-> > Cc: Vinod Koul <vkoul@kernel.org>
-> > Cc: dmaengine@vger.kernel.org
-> > Cc: linux-clk@vger.kernel.org
-> > Cc: linux-crypto@vger.kernel.org
-> > Cc: devicetree@vger.kernel.org
-> > Cc: linux-kernel@vger.kernel.org
-> > Cc: bhupesh.linux@gmail.com
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >  drivers/dma/qcom/bam_dma.c | 283 +-----------------------------------
-> >  include/soc/qcom/bam_dma.h | 290 +++++++++++++++++++++++++++++++++++++
->
-> 1. Please use -M with move patches...
-
-Oops, will do.
-
-> 2. susbsytem is dmaengine
->
-> 3. Why move..? These things are internal to the driver and I dont think
-> it is wise for clients to use everything here... If the client needs to
-> know defer probe, it should request a channel and check the status
-> returned for EPROBE_DEFER
-
-Yes, the main intent is to defer the probe of the calling client driver in
-case the BAM DMA is not probed() yet.
-
-Sure, I will make the suggested change in v3,
-
-Regards,
-Bhupesh
+DQpPbiA4LzA1LzIxIDk6NDkgYW0sIFJvYiBIZXJyaW5nIHdyb3RlOg0KPiBPbiBGcmksIE1heSAw
+NywgMjAyMSBhdCAxMjo0MDo0NVBNICsxMjAwLCBDaHJpcyBQYWNraGFtIHdyb3RlOg0KPj4gRG9j
+dW1lbnQgdGhlIGZzbCxpMmMtZXJyYXR1bS1hMDA0NDQ3IGZsYWcgd2hpY2ggaW5kaWNhdGVzIHRo
+ZSBwcmVzZW5jZQ0KPj4gb2YgYW4gaTJjIGVycmF0dW0gb24gc29tZSBRb3JJUSBTb0NzLg0KPj4N
+Cj4+IFNpZ25lZC1vZmYtYnk6IENocmlzIFBhY2toYW0gPGNocmlzLnBhY2toYW1AYWxsaWVkdGVs
+ZXNpcy5jby5uej4NCj4+IC0tLQ0KPj4gICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
+Z3MvaTJjL2kyYy1tcGMueWFtbCB8IDcgKysrKysrKw0KPj4gICAxIGZpbGUgY2hhbmdlZCwgNyBp
+bnNlcnRpb25zKCspDQo+Pg0KPj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
+ZS9iaW5kaW5ncy9pMmMvaTJjLW1wYy55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL2kyYy9pMmMtbXBjLnlhbWwNCj4+IGluZGV4IDdiNTUzZDU1OWM4My4uOThjNmZjZjdi
+ZjI2IDEwMDY0NA0KPj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2ky
+Yy9pMmMtbXBjLnlhbWwNCj4+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
+cy9pMmMvaTJjLW1wYy55YW1sDQo+PiBAQCAtNDYsNiArNDYsMTMgQEAgcHJvcGVydGllczoNCj4+
+ICAgICAgIGRlc2NyaXB0aW9uOiB8DQo+PiAgICAgICAgIEkyQyBidXMgdGltZW91dCBpbiBtaWNy
+b3NlY29uZHMNCj4+ICAgDQo+PiArICBmc2wsaTJjLWVycmF0dW0tYTAwNDQ0NzoNCj4+ICsgICAg
+JHJlZjogL3NjaGVtYXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMvZmxhZw0KPj4gKyAgICBkZXNj
+cmlwdGlvbjogfA0KPj4gKyAgICAgIEluZGljYXRlcyB0aGUgcHJlc2VuY2Ugb2YgUW9ySVEgZXJy
+YXR1bSBBLTAwNDQ0Nywgd2hpY2gNCj4+ICsgICAgICBzYXlzIHRoYXQgdGhlIHN0YW5kYXJkIGky
+YyByZWNvdmVyeSBzY2hlbWUgbWVjaGFuaXNtIGRvZXMNCj4+ICsgICAgICBub3Qgd29yayBhbmQg
+YW4gYWx0ZXJuYXRlIGltcGxlbWVudGF0aW9uIGlzIG5lZWRlZC4NCj4gVGhlIHByb2JsZW0gd2l0
+aCBhZGRpbmcgYSBwcm9wZXJ0eSBmb3IgYW4gZXJyYXRhIGlzIHlvdSBoYXZlIHRvIHVwZGF0ZQ0K
+PiB0aGUgZHRiLiBJZiB5b3UgdXNlIHRoZSBjb21wYXRpYmxlIHN0cmluZywgdGhlbiBvbmx5IGFu
+IE9TIHVwZGF0ZSBpcw0KPiBuZWVkZWQuIFRoYXQgYXNzdW1lcyB5b3UgaGF2ZSBzcGVjaWZpYyBl
+bm91Z2ggY29tcGF0aWJsZSBzdHJpbmdzLg0KDQpJIHdhcyBmb2xsb3dpbmcgdGhlIHN0eWxlIG9m
+IHRoZSBleGlzdGluZyBmc2wsdXNiLWVycmF0dW0tYTAwNzc5MiBvciANCmZzbCxlcnJhdHVtLWEw
+MDg1ODUgcHJvcGVydGllcy4gQnV0IHRoYXQncyBub3QgcmVhbGx5IGEgY29tcGVsbGluZyByZWFz
+b24uDQoNClRoZSBleGlzdGluZyBjb21wYXRpYmxlIHN0cmluZyBpcyAiZnNsLWkyYyIgYW5kIGl0
+J3MgdXNlZCBieSBwcmV0dHkgbXVjaCANCmV2ZXJ5IHBvd2VycGMgUW9ySVEgU29DLiBUaGVyZSBh
+cmUgc29tZSBzcGVjaWZpYyBjb21wYXRpYmxlIHN0cmluZ3MgaW4gDQp0aGUgZHJpdmVyIGZvciBz
+b21lIG9mIHRoZSBvbGRlciBtcGMgU29Dcy4gQSBtb3JlIHNwZWNpZmljIGNvbXBhdGlibGUgDQpz
+dHJpbmcgd2lsbCB3b3JrIGFsdGhvdWdoIGRldGVybWluaW5nIHdoaWNoIG9uZXMgYXJlIGFmZmVj
+dGVkIG1pZ2h0IGJlIGEgDQpiaXQgdHJvdWJsZXNvbWUuIFRoYXQgd2Uga25vdyBvZiB0aGUgUDIw
+NDEgYW5kIFAxMDEwIGFyZSBhZmZlY3RlZCBidXQgSSANCnN1c3BlY3QgdGhlcmUgbWF5IGJlIG1v
+cmUuIE9uZSBkaXNhZHZhbnRhZ2Ugb2YgdXNpbmcgdGhlIGNvbXBhdGlibGUgDQpzdHJpbmcgaXMg
+dGhhdCBhcyBhZmZlY3RlZCBTb0NzIGFyZSBpZGVudGlmaWVkIHdlJ2xsIGhhdmUgdG8gdXBkYXRl
+IHRoZSANCmRyaXZlciB0byBrbm93IHRoYXQgU29DIGlzIGFmZmVjdGVkIGFuZCB1cGRhdGUgdGhl
+IGR0YiB0byB1c2UgaXQuIFdpdGggDQp0aGUgcHJvcGVydHkgd2UnZCBqdXN0IGhhdmUgdG8gdXBk
+YXRlIHRoZSBkdGIuDQoNCkknbSBub3QgdG9vIGZ1c3NlZCBlaXRoZXIgd2F5IHNvIGlmIHRoYXQn
+cyBhIGhhcmQgTkFDSyBvbiB0aGUgcHJvcGVydHkgSSANCmNhbiBzZW5kIGEgdmVyc2lvbiB0aGF0
+IHVzZXMgY29tcGF0aWJsZSBzdHJpbmdzIGluc3RlYWQuDQo=
