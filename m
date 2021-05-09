@@ -2,876 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D61F37758A
-	for <lists+devicetree@lfdr.de>; Sun,  9 May 2021 06:52:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2921A37761A
+	for <lists+devicetree@lfdr.de>; Sun,  9 May 2021 11:46:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229618AbhEIEvM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 May 2021 00:51:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47308 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229616AbhEIEvL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 May 2021 00:51:11 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BB10C061573
-        for <devicetree@vger.kernel.org>; Sat,  8 May 2021 21:49:55 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id n205so7344526wmf.1
-        for <devicetree@vger.kernel.org>; Sat, 08 May 2021 21:49:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=beZ8YP8uYDlT52EOdzk5DOH6h5wX6ySWrV3DNnvGQU0=;
-        b=XXjpOnc2OpMEmdZLiUJhs6GBR6zKQJ/O2jRoSJcMGQj0EOJsy9VsGA129uaKIDQKhh
-         p0fMGLjkCfbtMIxQN9CuUyJ+V2zNaG7SN5q14o1oNM+wudr8CRdqWE7uczdjYo5p6McO
-         L7gnWeDGTRELpvDBkuJph6rvru4V2ew/iUA85X3XHBRIQ7IOt9+5fMfPwW2zUyROumnH
-         mFgSEc+DC2Tk68pSrQUx0tM38FxJQaSwVyZ4lSrCkg3bi286CfbOzC2VjdPweOQ/1U1C
-         fFe2h0CXPKh+TMW6XhDqqhYsSHR49TggdSbyiP8eWstx0aLaiyEfl9b/DIEydZ6EG3Rh
-         XzeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=beZ8YP8uYDlT52EOdzk5DOH6h5wX6ySWrV3DNnvGQU0=;
-        b=pL2NWxkmVHbhaBcat1mccSM1hf8PAWaYeCnel6SjP0JuA6xhp3KvkMPpXrveibwlRK
-         7v+7OHUKSBlrMIspytFQCap5+On/8dLoCRb8AfgZAQLUV7Eqr5rIy+cbk60hEzioeRC9
-         JYuEX8E2rqZbplCQtKm2M+lWpKBmz4zSHyNImPTTLfr3T2OhrpQzPC8SEBuAWZeaaV01
-         EJl2z52f60JR6OyRJEtA4Y4b5H/tLazNWGwT8dBrOzNxp1i9231mlrUnVz/kmLDLRiLQ
-         TwOd1sCRsbQNBO6H/tLMZd4q0P/WoWLnLVks5JLRGQMEIzo0bn7AbKCKZw3BKRsKUGYe
-         u7dw==
-X-Gm-Message-State: AOAM533FJ/KHia0aimL9vxk8kdC7OjDgywNGVyUBHfFfwTgwxFtpNaxO
-        kGbDjbxuWEVKz20mqpObq9b3AHy1W7aQm10lJJUFt3l3o5k=
-X-Google-Smtp-Source: ABdhPJxs1JLlDXha+0y3Gue3CxtQHwKrWNokDdx6sFhS/wHOx5G21uJbUPpffVCfz8Hw8vUlfPa4kVqYurrL6wt39zY=
-X-Received: by 2002:a1c:4e11:: with SMTP id g17mr30649725wmh.185.1620535793319;
- Sat, 08 May 2021 21:49:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210318130512.1025416-1-anup.patel@wdc.com> <20210318130512.1025416-6-anup.patel@wdc.com>
- <CAPDyKFq3JLqFabmay25e6JGX+UD-=yEPRykgYBadFo3y3sGbOw@mail.gmail.com>
-In-Reply-To: <CAPDyKFq3JLqFabmay25e6JGX+UD-=yEPRykgYBadFo3y3sGbOw@mail.gmail.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Sun, 9 May 2021 10:19:41 +0530
-Message-ID: <CAAhSdy2x_VpM4exhD9ybLu8bRVT=a=xqcL94SJ4sg=pHs1RjAg@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 5/8] cpuidle: Factor-out power domain related code
- from PSCI domain driver
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Anup Patel <anup.patel@wdc.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Sandeep Tripathy <milun.tripathy@gmail.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Liush <liush@allwinnertech.com>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S229560AbhEIJrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 May 2021 05:47:23 -0400
+Received: from sibelius.xs4all.nl ([83.163.83.176]:50771 "EHLO
+        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229555AbhEIJrW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 May 2021 05:47:22 -0400
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id 88a9b5b7;
+        Sun, 9 May 2021 11:46:17 +0200 (CEST)
+Date:   Sun, 9 May 2021 11:46:17 +0200 (CEST)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     kettenis@openbsd.org, devicetree@vger.kernel.org, marcan@marcan.st,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <CACRpkdbexpwu9hDWFYe38-+issVw051YfJ-_hatZVmWzkh4M+w@mail.gmail.com>
+        (message from Linus Walleij on Sun, 9 May 2021 02:18:52 +0200)
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: Add DT bindings for apple,pinctrl
+References: <20210508142000.85116-1-kettenis@openbsd.org> <20210508142000.85116-2-kettenis@openbsd.org> <CACRpkdbexpwu9hDWFYe38-+issVw051YfJ-_hatZVmWzkh4M+w@mail.gmail.com>
+Message-ID: <c1bd67fcc0390275@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 15, 2021 at 6:32 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
->
-> Hi Anup,
->
-> First, my apologies for the very long delay.
->
-> On Thu, 18 Mar 2021 at 14:06, Anup Patel <anup.patel@wdc.com> wrote:
-> >
-> > The generic power domain related code in PSCI domain driver is largely
-> > independent of PSCI and can be shared with RISC-V SBI domain driver
-> > hence we factor-out this code into dt_idle_genpd.c and dt_idle_genpd.h.
->
-> I do agree that some parts could be considered as independent of PSCI,
-> perhaps those are rather "cpuidle-dt" specific.
->
-> Although, while I was looking at the changes in $subject patch, it
-> looks like you are adding another layer on top of
-> genpd/cpuidle-psci-domain. For example, you add the struct
-> dt_idle_genpd_ops with a couple of new callbacks. Even if this might
-> reduce open-coding a bit, I think it also introduces complexity. In my
-> opinion, those changes aren't really worth it.
->
-> Perhaps you can find some smaller pieces of code that are really
-> independent, which can be shared!?
+> From: Linus Walleij <linus.walleij@linaro.org>
+> Date: Sun, 9 May 2021 02:18:52 +0200
 
-Sure, let me try to simplify code sharing with PSCI.
+Hi Linus,
 
-My apologies for the slow response, I got busy with other task.
+> here is a second note on pin mux layout:
+> 
+> On Sat, May 8, 2021 at 4:20 PM Mark Kettenis <kettenis@openbsd.org> wrote:
+> 
+> > +        pcie_pins: pcie-pins {
+> > +          pinmux = <APPLE_PINMUX(150, 1)>,
+> > +                   <APPLE_PINMUX(151, 1)>,
+> > +                   <APPLE_PINMUX(32, 1)>;
+> (...)
+> > +#define APPLE_PINMUX(pin, func) ((pin) | ((func) << 16))
+> > +#define APPLE_PIN(pinmux) ((pinmux) & 0xffff)
+> > +#define APPLE_FUNC(pinmux) ((pinmux) >> 16)
+> 
+> Since the word altfunction is used, I suppose that this is
+> one of those pin controllers where each pin can be
+> muxed individually (usually with one register or one group
+> of bits per pin).
 
-Regards,
-Anup
+Right.  So far it seems that there are just two functions: GPIO and a
+peripheral mode.  But there are some unused bits in the register right
+next to the bit that controls the function, so maybe we'll see other
+function numbers in the future.
 
->
-> >
-> > Signed-off-by: Anup Patel <anup.patel@wdc.com>
->
-> Kind regards
-> Uffe
->
-> > ---
-> >  drivers/cpuidle/Kconfig                       |   4 +
-> >  drivers/cpuidle/Kconfig.arm                   |   1 +
-> >  drivers/cpuidle/Makefile                      |   1 +
-> >  drivers/cpuidle/cpuidle-psci-domain.c         | 244 +-----------------
-> >  drivers/cpuidle/cpuidle-psci.h                |  15 +-
-> >  ...{cpuidle-psci-domain.c => dt_idle_genpd.c} | 165 ++++--------
-> >  drivers/cpuidle/dt_idle_genpd.h               |  42 +++
-> >  7 files changed, 121 insertions(+), 351 deletions(-)
-> >  copy drivers/cpuidle/{cpuidle-psci-domain.c => dt_idle_genpd.c} (52%)
-> >  create mode 100644 drivers/cpuidle/dt_idle_genpd.h
-> >
-> > diff --git a/drivers/cpuidle/Kconfig b/drivers/cpuidle/Kconfig
-> > index c0aeedd66f02..f1afe7ab6b54 100644
-> > --- a/drivers/cpuidle/Kconfig
-> > +++ b/drivers/cpuidle/Kconfig
-> > @@ -47,6 +47,10 @@ config CPU_IDLE_GOV_HALTPOLL
-> >  config DT_IDLE_STATES
-> >         bool
-> >
-> > +config DT_IDLE_GENPD
-> > +       depends on PM_GENERIC_DOMAINS_OF
-> > +       bool
-> > +
-> >  menu "ARM CPU Idle Drivers"
-> >  depends on ARM || ARM64
-> >  source "drivers/cpuidle/Kconfig.arm"
-> > diff --git a/drivers/cpuidle/Kconfig.arm b/drivers/cpuidle/Kconfig.arm
-> > index 0844fadc4be8..1007435ae298 100644
-> > --- a/drivers/cpuidle/Kconfig.arm
-> > +++ b/drivers/cpuidle/Kconfig.arm
-> > @@ -27,6 +27,7 @@ config ARM_PSCI_CPUIDLE_DOMAIN
-> >         bool "PSCI CPU idle Domain"
-> >         depends on ARM_PSCI_CPUIDLE
-> >         depends on PM_GENERIC_DOMAINS_OF
-> > +       select DT_IDLE_GENPD
-> >         default y
-> >         help
-> >           Select this to enable the PSCI based CPUidle driver to use PM domains,
-> > diff --git a/drivers/cpuidle/Makefile b/drivers/cpuidle/Makefile
-> > index 26bbc5e74123..11a26cef279f 100644
-> > --- a/drivers/cpuidle/Makefile
-> > +++ b/drivers/cpuidle/Makefile
-> > @@ -6,6 +6,7 @@
-> >  obj-y += cpuidle.o driver.o governor.o sysfs.o governors/
-> >  obj-$(CONFIG_ARCH_NEEDS_CPU_IDLE_COUPLED) += coupled.o
-> >  obj-$(CONFIG_DT_IDLE_STATES)             += dt_idle_states.o
-> > +obj-$(CONFIG_DT_IDLE_GENPD)              += dt_idle_genpd.o
-> >  obj-$(CONFIG_ARCH_HAS_CPU_RELAX)         += poll_state.o
-> >  obj-$(CONFIG_HALTPOLL_CPUIDLE)           += cpuidle-haltpoll.o
-> >
-> > diff --git a/drivers/cpuidle/cpuidle-psci-domain.c b/drivers/cpuidle/cpuidle-psci-domain.c
-> > index ff2c3f8e4668..b0621d890ab7 100644
-> > --- a/drivers/cpuidle/cpuidle-psci-domain.c
-> > +++ b/drivers/cpuidle/cpuidle-psci-domain.c
-> > @@ -16,17 +16,9 @@
-> >  #include <linux/pm_domain.h>
-> >  #include <linux/pm_runtime.h>
-> >  #include <linux/psci.h>
-> > -#include <linux/slab.h>
-> > -#include <linux/string.h>
-> >
-> >  #include "cpuidle-psci.h"
-> >
-> > -struct psci_pd_provider {
-> > -       struct list_head link;
-> > -       struct device_node *node;
-> > -};
-> > -
-> > -static LIST_HEAD(psci_pd_providers);
-> >  static bool psci_pd_allow_domain_state;
-> >
-> >  static int psci_pd_power_off(struct generic_pm_domain *pd)
-> > @@ -47,178 +39,6 @@ static int psci_pd_power_off(struct generic_pm_domain *pd)
-> >         return 0;
-> >  }
-> >
-> > -static int psci_pd_parse_state_nodes(struct genpd_power_state *states,
-> > -                                    int state_count)
-> > -{
-> > -       int i, ret;
-> > -       u32 psci_state, *psci_state_buf;
-> > -
-> > -       for (i = 0; i < state_count; i++) {
-> > -               ret = psci_dt_parse_state_node(to_of_node(states[i].fwnode),
-> > -                                       &psci_state);
-> > -               if (ret)
-> > -                       goto free_state;
-> > -
-> > -               psci_state_buf = kmalloc(sizeof(u32), GFP_KERNEL);
-> > -               if (!psci_state_buf) {
-> > -                       ret = -ENOMEM;
-> > -                       goto free_state;
-> > -               }
-> > -               *psci_state_buf = psci_state;
-> > -               states[i].data = psci_state_buf;
-> > -       }
-> > -
-> > -       return 0;
-> > -
-> > -free_state:
-> > -       i--;
-> > -       for (; i >= 0; i--)
-> > -               kfree(states[i].data);
-> > -       return ret;
-> > -}
-> > -
-> > -static int psci_pd_parse_states(struct device_node *np,
-> > -                       struct genpd_power_state **states, int *state_count)
-> > -{
-> > -       int ret;
-> > -
-> > -       /* Parse the domain idle states. */
-> > -       ret = of_genpd_parse_idle_states(np, states, state_count);
-> > -       if (ret)
-> > -               return ret;
-> > -
-> > -       /* Fill out the PSCI specifics for each found state. */
-> > -       ret = psci_pd_parse_state_nodes(*states, *state_count);
-> > -       if (ret)
-> > -               kfree(*states);
-> > -
-> > -       return ret;
-> > -}
-> > -
-> > -static void psci_pd_free_states(struct genpd_power_state *states,
-> > -                               unsigned int state_count)
-> > -{
-> > -       int i;
-> > -
-> > -       for (i = 0; i < state_count; i++)
-> > -               kfree(states[i].data);
-> > -       kfree(states);
-> > -}
-> > -
-> > -static int psci_pd_init(struct device_node *np, bool use_osi)
-> > -{
-> > -       struct generic_pm_domain *pd;
-> > -       struct psci_pd_provider *pd_provider;
-> > -       struct dev_power_governor *pd_gov;
-> > -       struct genpd_power_state *states = NULL;
-> > -       int ret = -ENOMEM, state_count = 0;
-> > -
-> > -       pd = kzalloc(sizeof(*pd), GFP_KERNEL);
-> > -       if (!pd)
-> > -               goto out;
-> > -
-> > -       pd_provider = kzalloc(sizeof(*pd_provider), GFP_KERNEL);
-> > -       if (!pd_provider)
-> > -               goto free_pd;
-> > -
-> > -       pd->name = kasprintf(GFP_KERNEL, "%pOF", np);
-> > -       if (!pd->name)
-> > -               goto free_pd_prov;
-> > -
-> > -       /*
-> > -        * Parse the domain idle states and let genpd manage the state selection
-> > -        * for those being compatible with "domain-idle-state".
-> > -        */
-> > -       ret = psci_pd_parse_states(np, &states, &state_count);
-> > -       if (ret)
-> > -               goto free_name;
-> > -
-> > -       pd->free_states = psci_pd_free_states;
-> > -       pd->name = kbasename(pd->name);
-> > -       pd->states = states;
-> > -       pd->state_count = state_count;
-> > -       pd->flags |= GENPD_FLAG_IRQ_SAFE | GENPD_FLAG_CPU_DOMAIN;
-> > -
-> > -       /* Allow power off when OSI has been successfully enabled. */
-> > -       if (use_osi)
-> > -               pd->power_off = psci_pd_power_off;
-> > -       else
-> > -               pd->flags |= GENPD_FLAG_ALWAYS_ON;
-> > -
-> > -       /* Use governor for CPU PM domains if it has some states to manage. */
-> > -       pd_gov = state_count > 0 ? &pm_domain_cpu_gov : NULL;
-> > -
-> > -       ret = pm_genpd_init(pd, pd_gov, false);
-> > -       if (ret) {
-> > -               psci_pd_free_states(states, state_count);
-> > -               goto free_name;
-> > -       }
-> > -
-> > -       ret = of_genpd_add_provider_simple(np, pd);
-> > -       if (ret)
-> > -               goto remove_pd;
-> > -
-> > -       pd_provider->node = of_node_get(np);
-> > -       list_add(&pd_provider->link, &psci_pd_providers);
-> > -
-> > -       pr_debug("init PM domain %s\n", pd->name);
-> > -       return 0;
-> > -
-> > -remove_pd:
-> > -       pm_genpd_remove(pd);
-> > -free_name:
-> > -       kfree(pd->name);
-> > -free_pd_prov:
-> > -       kfree(pd_provider);
-> > -free_pd:
-> > -       kfree(pd);
-> > -out:
-> > -       pr_err("failed to init PM domain ret=%d %pOF\n", ret, np);
-> > -       return ret;
-> > -}
-> > -
-> > -static void psci_pd_remove(void)
-> > -{
-> > -       struct psci_pd_provider *pd_provider, *it;
-> > -       struct generic_pm_domain *genpd;
-> > -
-> > -       list_for_each_entry_safe(pd_provider, it, &psci_pd_providers, link) {
-> > -               of_genpd_del_provider(pd_provider->node);
-> > -
-> > -               genpd = of_genpd_remove_last(pd_provider->node);
-> > -               if (!IS_ERR(genpd))
-> > -                       kfree(genpd);
-> > -
-> > -               of_node_put(pd_provider->node);
-> > -               list_del(&pd_provider->link);
-> > -               kfree(pd_provider);
-> > -       }
-> > -}
-> > -
-> > -static int psci_pd_init_topology(struct device_node *np)
-> > -{
-> > -       struct device_node *node;
-> > -       struct of_phandle_args child, parent;
-> > -       int ret;
-> > -
-> > -       for_each_child_of_node(np, node) {
-> > -               if (of_parse_phandle_with_args(node, "power-domains",
-> > -                                       "#power-domain-cells", 0, &parent))
-> > -                       continue;
-> > -
-> > -               child.np = node;
-> > -               child.args_count = 0;
-> > -               ret = of_genpd_add_subdomain(&parent, &child);
-> > -               of_node_put(parent.np);
-> > -               if (ret) {
-> > -                       of_node_put(node);
-> > -                       return ret;
-> > -               }
-> > -       }
-> > -
-> > -       return 0;
-> > -}
-> > -
-> >  static bool psci_pd_try_set_osi_mode(void)
-> >  {
-> >         int ret;
-> > @@ -244,6 +64,10 @@ static void psci_cpuidle_domain_sync_state(struct device *dev)
-> >         psci_pd_allow_domain_state = true;
-> >  }
-> >
-> > +static struct dt_idle_genpd_ops psci_genpd_ops = {
-> > +       .parse_state_node = psci_dt_parse_state_node,
-> > +};
-> > +
-> >  static const struct of_device_id psci_of_match[] = {
-> >         { .compatible = "arm,psci-1.0" },
-> >         {}
-> > @@ -252,48 +76,25 @@ static const struct of_device_id psci_of_match[] = {
-> >  static int psci_cpuidle_domain_probe(struct platform_device *pdev)
-> >  {
-> >         struct device_node *np = pdev->dev.of_node;
-> > -       struct device_node *node;
-> >         bool use_osi;
-> > -       int ret = 0, pd_count = 0;
-> > +       int ret = 0;
-> >
-> >         if (!np)
-> >                 return -ENODEV;
-> >
-> >         /* If OSI mode is supported, let's try to enable it. */
-> >         use_osi = psci_pd_try_set_osi_mode();
-> > +       if (use_osi)
-> > +               psci_genpd_ops.power_off = psci_pd_power_off;
-> >
-> > -       /*
-> > -        * Parse child nodes for the "#power-domain-cells" property and
-> > -        * initialize a genpd/genpd-of-provider pair when it's found.
-> > -        */
-> > -       for_each_child_of_node(np, node) {
-> > -               if (!of_find_property(node, "#power-domain-cells", NULL))
-> > -                       continue;
-> > -
-> > -               ret = psci_pd_init(node, use_osi);
-> > -               if (ret)
-> > -                       goto put_node;
-> > -
-> > -               pd_count++;
-> > -       }
-> > -
-> > -       /* Bail out if not using the hierarchical CPU topology. */
-> > -       if (!pd_count)
-> > -               goto no_pd;
-> > -
-> > -       /* Link genpd masters/subdomains to model the CPU topology. */
-> > -       ret = psci_pd_init_topology(np);
-> > +       /* Generic power domain probing based on DT node. */
-> > +       ret = dt_idle_genpd_probe(&psci_genpd_ops, np);
-> >         if (ret)
-> > -               goto remove_pd;
-> > +               goto no_pd;
-> >
-> >         pr_info("Initialized CPU PM domain topology\n");
-> >         return 0;
-> >
-> > -put_node:
-> > -       of_node_put(node);
-> > -remove_pd:
-> > -       psci_pd_remove();
-> > -       pr_err("failed to create CPU PM domains ret=%d\n", ret);
-> >  no_pd:
-> >         if (use_osi)
-> >                 psci_set_osi_mode(false);
-> > @@ -314,28 +115,3 @@ static int __init psci_idle_init_domains(void)
-> >         return platform_driver_register(&psci_cpuidle_domain_driver);
-> >  }
-> >  subsys_initcall(psci_idle_init_domains);
-> > -
-> > -struct device *psci_dt_attach_cpu(int cpu)
-> > -{
-> > -       struct device *dev;
-> > -
-> > -       dev = dev_pm_domain_attach_by_name(get_cpu_device(cpu), "psci");
-> > -       if (IS_ERR_OR_NULL(dev))
-> > -               return dev;
-> > -
-> > -       pm_runtime_irq_safe(dev);
-> > -       if (cpu_online(cpu))
-> > -               pm_runtime_get_sync(dev);
-> > -
-> > -       dev_pm_syscore_device(dev, true);
-> > -
-> > -       return dev;
-> > -}
-> > -
-> > -void psci_dt_detach_cpu(struct device *dev)
-> > -{
-> > -       if (IS_ERR_OR_NULL(dev))
-> > -               return;
-> > -
-> > -       dev_pm_domain_detach(dev, false);
-> > -}
-> > diff --git a/drivers/cpuidle/cpuidle-psci.h b/drivers/cpuidle/cpuidle-psci.h
-> > index d8e925e84c27..70de1e3c00af 100644
-> > --- a/drivers/cpuidle/cpuidle-psci.h
-> > +++ b/drivers/cpuidle/cpuidle-psci.h
-> > @@ -10,8 +10,19 @@ void psci_set_domain_state(u32 state);
-> >  int psci_dt_parse_state_node(struct device_node *np, u32 *state);
-> >
-> >  #ifdef CONFIG_ARM_PSCI_CPUIDLE_DOMAIN
-> > -struct device *psci_dt_attach_cpu(int cpu);
-> > -void psci_dt_detach_cpu(struct device *dev);
-> > +
-> > +#include "dt_idle_genpd.h"
-> > +
-> > +static inline struct device *psci_dt_attach_cpu(int cpu)
-> > +{
-> > +       return dt_idle_genpd_attach_cpu(cpu, "psci");
-> > +}
-> > +
-> > +static inline void psci_dt_detach_cpu(struct device *dev)
-> > +{
-> > +       dt_idle_genpd_detach_cpu(dev);
-> > +}
-> > +
-> >  #else
-> >  static inline struct device *psci_dt_attach_cpu(int cpu) { return NULL; }
-> >  static inline void psci_dt_detach_cpu(struct device *dev) { }
-> > diff --git a/drivers/cpuidle/cpuidle-psci-domain.c b/drivers/cpuidle/dt_idle_genpd.c
-> > similarity index 52%
-> > copy from drivers/cpuidle/cpuidle-psci-domain.c
-> > copy to drivers/cpuidle/dt_idle_genpd.c
-> > index ff2c3f8e4668..805c4c81d60f 100644
-> > --- a/drivers/cpuidle/cpuidle-psci-domain.c
-> > +++ b/drivers/cpuidle/dt_idle_genpd.c
-> > @@ -1,71 +1,52 @@
-> > -// SPDX-License-Identifier: GPL-2.0
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> >  /*
-> > - * PM domains for CPUs via genpd - managed by cpuidle-psci.
-> > + * PM domains for CPUs via genpd.
-> >   *
-> >   * Copyright (C) 2019 Linaro Ltd.
-> >   * Author: Ulf Hansson <ulf.hansson@linaro.org>
-> >   *
-> > + * Copyright (c) 2021 Western Digital Corporation or its affiliates.
-> >   */
-> >
-> > -#define pr_fmt(fmt) "CPUidle PSCI: " fmt
-> > +#define pr_fmt(fmt) "dt-idle-genpd: " fmt
-> >
-> >  #include <linux/cpu.h>
-> >  #include <linux/device.h>
-> >  #include <linux/kernel.h>
-> > -#include <linux/platform_device.h>
-> >  #include <linux/pm_domain.h>
-> >  #include <linux/pm_runtime.h>
-> > -#include <linux/psci.h>
-> >  #include <linux/slab.h>
-> >  #include <linux/string.h>
-> >
-> > -#include "cpuidle-psci.h"
-> > +#include "dt_idle_genpd.h"
-> >
-> > -struct psci_pd_provider {
-> > +struct dt_pd_provider {
-> >         struct list_head link;
-> >         struct device_node *node;
-> >  };
-> >
-> > -static LIST_HEAD(psci_pd_providers);
-> > -static bool psci_pd_allow_domain_state;
-> > +static LIST_HEAD(dt_pd_providers);
-> >
-> > -static int psci_pd_power_off(struct generic_pm_domain *pd)
-> > -{
-> > -       struct genpd_power_state *state = &pd->states[pd->state_idx];
-> > -       u32 *pd_state;
-> > -
-> > -       if (!state->data)
-> > -               return 0;
-> > -
-> > -       if (!psci_pd_allow_domain_state)
-> > -               return -EBUSY;
-> > -
-> > -       /* OSI mode is enabled, set the corresponding domain state. */
-> > -       pd_state = state->data;
-> > -       psci_set_domain_state(*pd_state);
-> > -
-> > -       return 0;
-> > -}
-> > -
-> > -static int psci_pd_parse_state_nodes(struct genpd_power_state *states,
-> > -                                    int state_count)
-> > +static int dt_pd_parse_state_nodes(const struct dt_idle_genpd_ops *ops,
-> > +                                  struct genpd_power_state *states,
-> > +                                  int state_count)
-> >  {
-> >         int i, ret;
-> > -       u32 psci_state, *psci_state_buf;
-> > +       u32 state, *state_buf;
-> >
-> >         for (i = 0; i < state_count; i++) {
-> > -               ret = psci_dt_parse_state_node(to_of_node(states[i].fwnode),
-> > -                                       &psci_state);
-> > +               ret = ops->parse_state_node(to_of_node(states[i].fwnode),
-> > +                                           &state);
-> >                 if (ret)
-> >                         goto free_state;
-> >
-> > -               psci_state_buf = kmalloc(sizeof(u32), GFP_KERNEL);
-> > -               if (!psci_state_buf) {
-> > +               state_buf = kmalloc(sizeof(u32), GFP_KERNEL);
-> > +               if (!state_buf) {
-> >                         ret = -ENOMEM;
-> >                         goto free_state;
-> >                 }
-> > -               *psci_state_buf = psci_state;
-> > -               states[i].data = psci_state_buf;
-> > +               *state_buf = state;
-> > +               states[i].data = state_buf;
-> >         }
-> >
-> >         return 0;
-> > @@ -77,8 +58,10 @@ static int psci_pd_parse_state_nodes(struct genpd_power_state *states,
-> >         return ret;
-> >  }
-> >
-> > -static int psci_pd_parse_states(struct device_node *np,
-> > -                       struct genpd_power_state **states, int *state_count)
-> > +static int dt_pd_parse_states(const struct dt_idle_genpd_ops *ops,
-> > +                             struct device_node *np,
-> > +                             struct genpd_power_state **states,
-> > +                             int *state_count)
-> >  {
-> >         int ret;
-> >
-> > @@ -87,15 +70,15 @@ static int psci_pd_parse_states(struct device_node *np,
-> >         if (ret)
-> >                 return ret;
-> >
-> > -       /* Fill out the PSCI specifics for each found state. */
-> > -       ret = psci_pd_parse_state_nodes(*states, *state_count);
-> > +       /* Fill out the dt specifics for each found state. */
-> > +       ret = dt_pd_parse_state_nodes(ops, *states, *state_count);
-> >         if (ret)
-> >                 kfree(*states);
-> >
-> >         return ret;
-> >  }
-> >
-> > -static void psci_pd_free_states(struct genpd_power_state *states,
-> > +static void dt_pd_free_states(struct genpd_power_state *states,
-> >                                 unsigned int state_count)
-> >  {
-> >         int i;
-> > @@ -105,10 +88,11 @@ static void psci_pd_free_states(struct genpd_power_state *states,
-> >         kfree(states);
-> >  }
-> >
-> > -static int psci_pd_init(struct device_node *np, bool use_osi)
-> > +static int dt_pd_init(const struct dt_idle_genpd_ops *ops,
-> > +                     struct device_node *np)
-> >  {
-> >         struct generic_pm_domain *pd;
-> > -       struct psci_pd_provider *pd_provider;
-> > +       struct dt_pd_provider *pd_provider;
-> >         struct dev_power_governor *pd_gov;
-> >         struct genpd_power_state *states = NULL;
-> >         int ret = -ENOMEM, state_count = 0;
-> > @@ -129,19 +113,19 @@ static int psci_pd_init(struct device_node *np, bool use_osi)
-> >          * Parse the domain idle states and let genpd manage the state selection
-> >          * for those being compatible with "domain-idle-state".
-> >          */
-> > -       ret = psci_pd_parse_states(np, &states, &state_count);
-> > +       ret = dt_pd_parse_states(ops, np, &states, &state_count);
-> >         if (ret)
-> >                 goto free_name;
-> >
-> > -       pd->free_states = psci_pd_free_states;
-> > +       pd->free_states = dt_pd_free_states;
-> >         pd->name = kbasename(pd->name);
-> >         pd->states = states;
-> >         pd->state_count = state_count;
-> >         pd->flags |= GENPD_FLAG_IRQ_SAFE | GENPD_FLAG_CPU_DOMAIN;
-> >
-> > -       /* Allow power off when OSI has been successfully enabled. */
-> > -       if (use_osi)
-> > -               pd->power_off = psci_pd_power_off;
-> > +       /* Allow power off when available. */
-> > +       if (ops->power_off)
-> > +               pd->power_off = ops->power_off;
-> >         else
-> >                 pd->flags |= GENPD_FLAG_ALWAYS_ON;
-> >
-> > @@ -150,7 +134,7 @@ static int psci_pd_init(struct device_node *np, bool use_osi)
-> >
-> >         ret = pm_genpd_init(pd, pd_gov, false);
-> >         if (ret) {
-> > -               psci_pd_free_states(states, state_count);
-> > +               dt_pd_free_states(states, state_count);
-> >                 goto free_name;
-> >         }
-> >
-> > @@ -159,7 +143,7 @@ static int psci_pd_init(struct device_node *np, bool use_osi)
-> >                 goto remove_pd;
-> >
-> >         pd_provider->node = of_node_get(np);
-> > -       list_add(&pd_provider->link, &psci_pd_providers);
-> > +       list_add(&pd_provider->link, &dt_pd_providers);
-> >
-> >         pr_debug("init PM domain %s\n", pd->name);
-> >         return 0;
-> > @@ -177,12 +161,12 @@ static int psci_pd_init(struct device_node *np, bool use_osi)
-> >         return ret;
-> >  }
-> >
-> > -static void psci_pd_remove(void)
-> > +static void dt_pd_remove(void)
-> >  {
-> > -       struct psci_pd_provider *pd_provider, *it;
-> > +       struct dt_pd_provider *pd_provider, *it;
-> >         struct generic_pm_domain *genpd;
-> >
-> > -       list_for_each_entry_safe(pd_provider, it, &psci_pd_providers, link) {
-> > +       list_for_each_entry_safe(pd_provider, it, &dt_pd_providers, link) {
-> >                 of_genpd_del_provider(pd_provider->node);
-> >
-> >                 genpd = of_genpd_remove_last(pd_provider->node);
-> > @@ -195,7 +179,7 @@ static void psci_pd_remove(void)
-> >         }
-> >  }
-> >
-> > -static int psci_pd_init_topology(struct device_node *np)
-> > +static int dt_pd_init_topology(struct device_node *np)
-> >  {
-> >         struct device_node *node;
-> >         struct of_phandle_args child, parent;
-> > @@ -219,49 +203,15 @@ static int psci_pd_init_topology(struct device_node *np)
-> >         return 0;
-> >  }
-> >
-> > -static bool psci_pd_try_set_osi_mode(void)
-> > -{
-> > -       int ret;
-> > -
-> > -       if (!psci_has_osi_support())
-> > -               return false;
-> > -
-> > -       ret = psci_set_osi_mode(true);
-> > -       if (ret) {
-> > -               pr_warn("failed to enable OSI mode: %d\n", ret);
-> > -               return false;
-> > -       }
-> > -
-> > -       return true;
-> > -}
-> > -
-> > -static void psci_cpuidle_domain_sync_state(struct device *dev)
-> > +int dt_idle_genpd_probe(const struct dt_idle_genpd_ops *ops,
-> > +                       struct device_node *np)
-> >  {
-> > -       /*
-> > -        * All devices have now been attached/probed to the PM domain topology,
-> > -        * hence it's fine to allow domain states to be picked.
-> > -        */
-> > -       psci_pd_allow_domain_state = true;
-> > -}
-> > -
-> > -static const struct of_device_id psci_of_match[] = {
-> > -       { .compatible = "arm,psci-1.0" },
-> > -       {}
-> > -};
-> > -
-> > -static int psci_cpuidle_domain_probe(struct platform_device *pdev)
-> > -{
-> > -       struct device_node *np = pdev->dev.of_node;
-> >         struct device_node *node;
-> > -       bool use_osi;
-> >         int ret = 0, pd_count = 0;
-> >
-> > -       if (!np)
-> > +       if (!np || !ops || !ops->parse_state_node)
-> >                 return -ENODEV;
-> >
-> > -       /* If OSI mode is supported, let's try to enable it. */
-> > -       use_osi = psci_pd_try_set_osi_mode();
-> > -
-> >         /*
-> >          * Parse child nodes for the "#power-domain-cells" property and
-> >          * initialize a genpd/genpd-of-provider pair when it's found.
-> > @@ -270,7 +220,7 @@ static int psci_cpuidle_domain_probe(struct platform_device *pdev)
-> >                 if (!of_find_property(node, "#power-domain-cells", NULL))
-> >                         continue;
-> >
-> > -               ret = psci_pd_init(node, use_osi);
-> > +               ret = dt_pd_init(ops, node);
-> >                 if (ret)
-> >                         goto put_node;
-> >
-> > @@ -282,44 +232,27 @@ static int psci_cpuidle_domain_probe(struct platform_device *pdev)
-> >                 goto no_pd;
-> >
-> >         /* Link genpd masters/subdomains to model the CPU topology. */
-> > -       ret = psci_pd_init_topology(np);
-> > +       ret = dt_pd_init_topology(np);
-> >         if (ret)
-> >                 goto remove_pd;
-> >
-> > -       pr_info("Initialized CPU PM domain topology\n");
-> >         return 0;
-> >
-> >  put_node:
-> >         of_node_put(node);
-> >  remove_pd:
-> > -       psci_pd_remove();
-> > +       dt_pd_remove();
-> >         pr_err("failed to create CPU PM domains ret=%d\n", ret);
-> >  no_pd:
-> > -       if (use_osi)
-> > -               psci_set_osi_mode(false);
-> >         return ret;
-> >  }
-> > +EXPORT_SYMBOL_GPL(dt_idle_genpd_probe);
-> >
-> > -static struct platform_driver psci_cpuidle_domain_driver = {
-> > -       .probe  = psci_cpuidle_domain_probe,
-> > -       .driver = {
-> > -               .name = "psci-cpuidle-domain",
-> > -               .of_match_table = psci_of_match,
-> > -               .sync_state = psci_cpuidle_domain_sync_state,
-> > -       },
-> > -};
-> > -
-> > -static int __init psci_idle_init_domains(void)
-> > -{
-> > -       return platform_driver_register(&psci_cpuidle_domain_driver);
-> > -}
-> > -subsys_initcall(psci_idle_init_domains);
-> > -
-> > -struct device *psci_dt_attach_cpu(int cpu)
-> > +struct device *dt_idle_genpd_attach_cpu(int cpu, const char *name)
-> >  {
-> >         struct device *dev;
-> >
-> > -       dev = dev_pm_domain_attach_by_name(get_cpu_device(cpu), "psci");
-> > +       dev = dev_pm_domain_attach_by_name(get_cpu_device(cpu), name);
-> >         if (IS_ERR_OR_NULL(dev))
-> >                 return dev;
-> >
-> > @@ -331,11 +264,13 @@ struct device *psci_dt_attach_cpu(int cpu)
-> >
-> >         return dev;
-> >  }
-> > +EXPORT_SYMBOL_GPL(dt_idle_genpd_attach_cpu);
-> >
-> > -void psci_dt_detach_cpu(struct device *dev)
-> > +void dt_idle_genpd_detach_cpu(struct device *dev)
-> >  {
-> >         if (IS_ERR_OR_NULL(dev))
-> >                 return;
-> >
-> >         dev_pm_domain_detach(dev, false);
-> >  }
-> > +EXPORT_SYMBOL_GPL(dt_idle_genpd_detach_cpu);
-> > diff --git a/drivers/cpuidle/dt_idle_genpd.h b/drivers/cpuidle/dt_idle_genpd.h
-> > new file mode 100644
-> > index 000000000000..a3d3d2e85871
-> > --- /dev/null
-> > +++ b/drivers/cpuidle/dt_idle_genpd.h
-> > @@ -0,0 +1,42 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +#ifndef __DT_IDLE_GENPD
-> > +#define __DT_IDLE_GENPD
-> > +
-> > +struct device_node;
-> > +struct generic_pm_domain;
-> > +
-> > +struct dt_idle_genpd_ops {
-> > +       int (*parse_state_node)(struct device_node *np, u32 *state);
-> > +       int (*power_off)(struct generic_pm_domain *pd);
-> > +};
-> > +
-> > +#ifdef CONFIG_DT_IDLE_GENPD
-> > +
-> > +int dt_idle_genpd_probe(const struct dt_idle_genpd_ops *ops,
-> > +                       struct device_node *np);
-> > +
-> > +struct device *dt_idle_genpd_attach_cpu(int cpu, const char *name);
-> > +
-> > +void dt_idle_genpd_detach_cpu(struct device *dev);
-> > +
-> > +#else
-> > +
-> > +int dt_idle_genpd_probe(const struct dt_idle_genpd_ops *ops,
-> > +                       struct device_node *np)
-> > +{
-> > +       return 0;
-> > +}
-> > +
-> > +static inline struct device *dt_idle_genpd_attach_cpu(int cpu,
-> > +                                                     const char *name)
-> > +{
-> > +       return NULL;
-> > +}
-> > +
-> > +static inline void dt_idle_genpd_detach_cpu(struct device *dev)
-> > +{
-> > +}
-> > +
-> > +#endif
-> > +
-> > +#endif
-> > --
-> > 2.25.1
-> >
+> So this is one way to do it, which
+> 
+> Another way is what Qualcomm is doing and looks for
+> example like this:
+> 
+> pinctrl@800000 {
+>          /* eMMMC pins, all 8 data lines connected */
+>          dragon_sdcc1_pins: sdcc1 {
+>                  mux {
+>                          pins = "gpio159", "gpio160", "gpio161",
+>                               "gpio162", "gpio163", "gpio164",
+>                               "gpio165", "gpio166", "gpio167",
+>                               "gpio168";
+>                          function = "sdc1";
+>                  };
+> (...)
+> 
+> Here all pins have a name and they get assigned as a group
+> to a function. Each pin is referenced by name.
+
+Since we will probably never have a data sheet or board schematics for
+the Apple devices giving meaningful names to the pins isn't really
+possible.  So you'd end up with generic "gpioNNN" names like in the
+example above.
+
+> Some people don't like this because they like bitstuffing and
+> bitfiddling and are worried that the DTB file strings will take
+> up too much memory, and they have to include all these
+> strings in their operating system driver.
+
+The memory thing is certainly a consideration for U-Boot, although not
+particularly for this platform.  With my OpenBSD hat on I must say
+that we try to avoid string parsing in the kernel as much as possible,
+which is why I would prefer pin numbers over strings.  Interestingly
+enough the pinmux-node.yaml schema allows the use of numbers instead
+of strings for the "pins" property.  But neither U-Boot nor Linux
+seems to implement support for this in its generic pinctrl/pinmux
+code.
+
+However, the main reason for me to pick the "pinmux" scheme used by
+STM32 is to make things a bit more future proof.  We expect Apple to
+come out with new models and new SoCs on a regular basis and there is
+some evidence that Apple tends to re-uses hardware blocks between SoC
+generations.  So we hope that it will be possible to add support for
+new Apple hardware by simply providing new device trees in m1n1 (the
+bootloader developed by Asahi).  Then all we have to do is update m1n1
+with a new device tree and people can simply use an existing distro
+without having to wait until the latest kernel becomes available for
+their distro.  My feeling is that this is a bit easier to achieve
+using the bitstuffing/fiddling approach, although with some wisely
+chosen names for the alternate functions, the string-based approach
+might work as well.
+
+> However there are clear upsides to it, when you later on
+> come to set up the electrical pin config:
+> 
+>                 cmd {
+>                          pins = "gpio168"; /* SDC1 CMD */
+>                          drive-strength = <12>;
+>                          bias-pull-up;
+>                  };
+>                  data {
+>                          /* SDC1 D0 to D7 */
+>                          pins = "gpio159", "gpio160", "gpio161", "gpio162",
+>                                "gpio163", "gpio164", "gpio165", "gpio166";
+>                          drive-strength = <8>;
+>                          bias-pull-none;
+>                   };
+> 
+> As you can see this becomes quite readable. It is clear and
+> crisp which pins are set up for pull-up and not, and what
+> drive strength is used on each pin.
+> 
+> But notice first and foremost this: the muxing is done in
+> one node, and the electrical config is done in two separate
+> nodes, breaking muxing and config into two different
+> categories in the device tree.
+
+I do see the elegance of this approach.
+
+> The problem with the magic number approach to muxing
+> is that the magic numbers will fall through to the
+> electrical pin config later and indeed it looks like in the STM32
+> device trees:
+> 
+> sdmmc1_b4_od_pins_a: sdmmc1-b4-od-0 {
+>         pins1 {
+>                 pinmux = <STM32_PINMUX('C', 8, AF12)>, /* SDMMC1_D0 */
+>                                 <STM32_PINMUX('C', 9, AF12)>, /* SDMMC1_D1 */
+>                                 <STM32_PINMUX('C', 10, AF12)>, /* SDMMC1_D2 */
+>                                 <STM32_PINMUX('C', 11, AF12)>, /* SDMMC1_D3 */
+>                                 <STM32_PINMUX('C', 12, AF12)>; /* SDMMC1_CK */
+>                 slew-rate = <3>;
+>                 drive-push-pull;
+>                 bias-disable;
+>         };
+>         pins2 {
+>                 pinmux = <STM32_PINMUX('D', 2, AF12)>; /* SDMMC1_CMD */
+>                 slew-rate = <3>;
+>                 drive-open-drain;
+>                 bias-disable;
+>          };
+> };
+> 
+> Notice here how the pins need to be separated into two subnodes
+> in order to set different electrical configuration on them, and how
+> muxing and configuration are mixed up. This is a side effect of
+> using the "pinmux" attribute rather than "pins" and "function".
+> 
+> So make sure you really like this rather than the other approach
+> in your device trees.
+
+Right.  So far it seems we don't need to set the electrical config on
+any of the pins and I don't think we've identified any bits in the
+register that change the electrical configuration.  Although there are
+some hints in the Apple device tree that there are pins that need some
+additional configuration.  But I also see some evidence that the Apple
+firmware on these devices already sets up most of the pins for us.
+
+> I will definately insist that you electrical config be done similar
+> to how STM32 does it when you implement that later, for
+> example any magic numbers for electrical config is not
+> acceptable, you will have to find a way to use drive-open-drain;
+> and such flags in the device tree.
+
+Agreed.  The plan was that when we get at the point where we need to
+fiddle with the electrical configuration of pins, we simply add a
+reference to pincfg-node.yaml to the schema.
+
+> Sadly we have something like three different ways to do
+> pin control device tree, as a result of failure to find consensus.
+
+Thank you for giving quite an extensive explanation of the options.  I
+think all things considered, I am still happy with using the "pinmux"
+property, but if Hector or Sven think the "pin"/"function" approach
+with strings is better, I can change it.  Implementing that approach
+in U-Boot isn't a huge burden either.  In fact that was pretty much
+what my initial implementation based on the bindings used by Corellium
+did.
