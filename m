@@ -2,132 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64BB53792DD
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 17:37:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BB52379300
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 17:49:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233020AbhEJPit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 11:38:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50440 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237416AbhEJPhj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 11:37:39 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B67A1C06134E
-        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 08:36:08 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id o127so9439917wmo.4
-        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 08:36:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=DCpPKQQtVHN6Q0vpt3tKbixt7PhCNgy2etbsKBukc1I=;
-        b=ZMkLyMX3rDPOkgqMB9fjeXWZoXQZTa0ifibSohT7pRqUnr5gM6xNdYct19XVX6U5Zh
-         0Hmbck/4PR97bWYuag4XHtYdg7G/oYgATi+JiOkZdyzmIj8/B9G1ukqIedDhuf87BPEj
-         8r4zm8zSEhVEt/C1xFYk3dR2sIrWsOq6FS7osS37N9f6P6iH2vPyFG3Z/FjlX2a0BYZI
-         Kq6lysbfD1zDrc2eO2uBn0zES02brjhsN0J1ebtCz+JHYNu+iBJbXDXZm+FmN/bllgvs
-         4XZQIP6bmxf82M7D0In8Os9+fVHQ14xvUGSFqKEJxqr49EmnetuJq43ozlWJHYyKVzc4
-         oMFA==
+        id S231513AbhEJPuD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 11:50:03 -0400
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:36863 "EHLO
+        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230185AbhEJPuA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 11:50:00 -0400
+Received: by mail-ot1-f50.google.com with SMTP id n32-20020a9d1ea30000b02902a53d6ad4bdso14825391otn.3;
+        Mon, 10 May 2021 08:48:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=DCpPKQQtVHN6Q0vpt3tKbixt7PhCNgy2etbsKBukc1I=;
-        b=YXXTB+FkUcctzEqTpxqI2BP+hNuK9b8zMm5RomOlAY/07D0cRq9AmaIDqGjkloZxDt
-         KIGBh7a9uc6LZ7bvIt8mnE639vxNGv8fPNN+woPMe3wshQabH+mFDqXNoONkUYsKHERh
-         pzKdogc20Zl7wyX+VgRCp02hTuLpo2UFhSrYKIMG98M0Eb5nGsUFvlaEr9RpRJzNufkc
-         D5m1d5af4E9b86Q19rjU7HZNmgkDoX37H+xcLm6g9TFi08SnCo0m90kWhaStGtwgrhHh
-         clBlXkk4yzVmIk2AG25zITAIzTH5tBQcYLBQXhKuiBSHDL7jqpyaNQ8AMhXKDsr/22tu
-         MgsQ==
-X-Gm-Message-State: AOAM5311OxdSF0fv6KtyOd3N0Pv3JGrx9GpR014HcHDCWt9HGhsweLSu
-        yBDmnC3XXm5KUOJ1Gpz2M0g=
-X-Google-Smtp-Source: ABdhPJzSMGmiZQyruI0eV3oQIEAih/1uVxrR2C0KRp8YEToZyRG5D/Phewxe6KUT38eW7WN+QRa11w==
-X-Received: by 2002:a7b:c34a:: with SMTP id l10mr27225340wmj.46.1620660967515;
-        Mon, 10 May 2021 08:36:07 -0700 (PDT)
-Received: from kista.localnet (cpe-86-58-17-133.cable.triera.net. [86.58.17.133])
-        by smtp.gmail.com with ESMTPSA id l14sm24202080wrv.94.2021.05.10.08.36.06
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=0s9YigQUJ/LXiQfPGifCK11/lOC8QzwiEINdkGwd2X4=;
+        b=oAdPb6Y/DzphItXce6znA5q3d3Lf63o3uLhEW9UMY4GSvPy1RWH/prb3c2lU5TLORO
+         U44dNGka+xQQs/VrhRTBBF44jPMvorauUUd79pmC+1zhnpXOy52Juz7mbWZIfKleQiW0
+         rZqa8FQBAuVLtZy3ALWS8CCPsyOKpnOzv3IvB4QmlikvU1xU4UCXz9DEY1SsUB3ith0c
+         MlFbQ+b+QjhAm/+YUpwBMMCt4e2JfLEYOgc8Or80iJmqe/BcMaDoYiFCnjIvJq8pn5Rp
+         ogRa0wxdUTRj1D7l4aqBXMmQMPGD9zDyqGGNWfkP+HwxV9hOC5frdMrbBQcZ05lJgzuS
+         GUfA==
+X-Gm-Message-State: AOAM533UAfCO0VmjvQbe3nFbgVOy1ANmzhsxmZ6ySfsUHZOy+M7w+OQB
+        bQy6ZLidRAb4HqWzKCxUZQ==
+X-Google-Smtp-Source: ABdhPJxnAsMxt2AYbuf0Wn5S6hv3hi6bMg9NcLNa7hEDJKYFK+24dzi7MZHl2PtrRRsPpVxcSqUKJw==
+X-Received: by 2002:a9d:6b84:: with SMTP id b4mr13021392otq.152.1620661735051;
+        Mon, 10 May 2021 08:48:55 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id y191sm1765230oia.50.2021.05.10.08.48.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 May 2021 08:36:07 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Rob Herring <robh@kernel.org>, Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Andre Przywara <andre.przywara@arm.com>
-Cc:     Icenowy Zheng <icenowy@aosc.io>,
-        Samuel Holland <samuel@sholland.org>,
-        Corentin Labbe <clabbe@baylibre.com>,
-        =?ISO-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@googlegroups.com, linux-sunxi@lists.linux.dev
-Subject: Re: Re: [PATCH] arm64: dts: allwinner: Pine H64: Enable USB 3.0 port
-Date:   Mon, 10 May 2021 17:36:05 +0200
-Message-ID: <5404798.YEtBip1y79@kista>
-In-Reply-To: <2288435.7XXmsQVVxE@kista>
-References: <20210510130119.6534-1-andre.przywara@arm.com> <2288435.7XXmsQVVxE@kista>
+        Mon, 10 May 2021 08:48:53 -0700 (PDT)
+Received: (nullmailer pid 185091 invoked by uid 1000);
+        Mon, 10 May 2021 15:48:52 -0000
+Date:   Mon, 10 May 2021 10:48:52 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Prasad Malisetty <pmaliset@codeaurora.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, mka@chromium.org,
+        Bjorn Helgaas <bhelgaas@google.com>, swboyd@chromium.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        linux-pci@vger.kernel.org, mgautam@codeaurora.org,
+        dianders@chromium.org, Bjorn Andersson <bjorn.andersson@linaro.org>
+Subject: Re: [PATCH 1/3] dt-bindings: pci: qcom: Document PCIe bindings for
+ SC720
+Message-ID: <20210510154852.GA185045@robh.at.kernel.org>
+References: <1620382648-17395-1-git-send-email-pmaliset@codeaurora.org>
+ <1620382648-17395-2-git-send-email-pmaliset@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1620382648-17395-2-git-send-email-pmaliset@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne ponedeljek, 10. maj 2021 ob 17:30:44 CEST je Jernej =C5=A0krabec napisa=
-l(a):
-> Hi Andre!
->=20
-> Dne ponedeljek, 10. maj 2021 ob 15:01:19 CEST je Andre Przywara napisal(a=
-):
-> > The Pine H64 board features an USB 3.0 type A port, which works just
-> > fine.
-> >=20
-> > Enable the controller and USB PHY in the .dts to make it usable.
-> >=20
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >  arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts b/arc=
-h/
-> arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-> > index 1ffd68f43f87..9061c9913f4c 100644
-> > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-> > @@ -89,6 +89,10 @@
-> >  	status =3D "okay";
-> >  };
-> > =20
-> > +&dwc3 {
-> > +	status =3D "okay";
-> > +};
-> > +
-> >  &ehci0 {
-> >  	status =3D "okay";
-> >  };
-> > @@ -332,3 +336,8 @@
-> >  	usb3_vbus-supply =3D <&reg_usb_vbus>;
-> >  	status =3D "okay";
-> >  };
-> > +
-> > +&usb3phy {
-> > +	phy-supply =3D <&reg_usb_vbus>;
-> > +	status =3D "okay";
-> > +};
-> > --=20
-> > 2.17.5
-> >=20
->=20
-> Exactly the same patch was already proposed by Icenowy. In short, PHY is=
-=20
-> powered by internal power and doesn't need phy-supply property. It's=20
-connector=20
-> that needs power supply. One of her latest attempts can be found here:=20
-> https://lore.kernel.org/patchwork/cover/1058917/
+On Fri, 07 May 2021 15:47:26 +0530, Prasad Malisetty wrote:
+> Document the PCIe DT bindings for SC7280 SoC.The PCIe IP is similar
+> to the one used on SM8250. Add the compatible for SC7280.
+> 
+> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+> ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie.txt | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
 
-P.S: Maybe wait on outcome of https://lore.kernel.org/linux-sunxi/
-20210430031912.42252-1-samuel@sholland.org/T/#t which may change USB3 node=
-=20
-form.
-=20
- Best regards,
- Jernej
-
-
+Acked-by: Rob Herring <robh@kernel.org>
