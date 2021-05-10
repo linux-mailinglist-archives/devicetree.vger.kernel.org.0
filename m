@@ -2,110 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07A60379830
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 22:15:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1874D379835
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 22:17:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231150AbhEJUQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 16:16:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57232 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230254AbhEJUQv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 16:16:51 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23F7AC061574;
-        Mon, 10 May 2021 13:15:46 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id s22so14121269pgk.6;
-        Mon, 10 May 2021 13:15:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+p9XfQZN9xRLgB1v8BKeqEGzYiPvUKqgY5NPOFg08/g=;
-        b=sCN/upVCTo8HwsQkCNZHSTnnnqjeVDCSqcBmfqtY8K135locm6HipbNHWugeevKnu/
-         yrLFaa+caBNyMOx9aU/vu/7chsuz0SGqOdBpjznAcMeI9D4FD9CkemRNXrkZMSvndbBb
-         B70ePynTRa+bPr6KYcbGg25T5gPY633v66ecPgTNs8w7P5UhwpHxh0gq0Kb6kdXNQvAo
-         CBvd7xmVJyWG87Gd8j7DYs89ygX3H9yL3guPAmRArqvRxhFo9BXc5pz18AHtWY0Eyapg
-         oipdPX/wFQd96EiymSHYXO/rQFJBL1uB/fyNqymEfcRKjmHhHb6jOgy9MPpQOK6st9/v
-         iKVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+p9XfQZN9xRLgB1v8BKeqEGzYiPvUKqgY5NPOFg08/g=;
-        b=Qlgxsl3RglbMtfSQXELg0fYRiczk0Pv7gakB7wXzyUH/uO1GiheDlGYHDoAyExjzPx
-         0AYsUUgMLTnfUQnao/zgBVS0YetMeQ7dqf0zPWqycBuwZrDTz7RsKcRAMUv8qwjgFjlc
-         64llsQg56PB3l/DZv9cCVd9B11WcbfaJYGCzvO5KBq+U7WgCHjEx+M9sTj5+sLdCeC5v
-         WT5Cboe+FE0lyGqYQOx2dViOISBwYWgB2oZBkJjaKCKAK9BVUBPmrJgNdz7RHukslWV3
-         DCgjez066iEq+MZT8XQsVIjTNLAblLSgNT7PpVT1CRZBVr5KupOWp+wmWTUCorFDIRcB
-         Gfdw==
-X-Gm-Message-State: AOAM532+hqGzYSseQhMZits0EXO5uRYbEtlg1nLxSoL+KL368Bs79bec
-        vEtZUSLDkJNQ0wjCA0VEdFualTBLUY9hDFMqSME=
-X-Google-Smtp-Source: ABdhPJyhmuiLlb5avsxYTZCc5YVZalAQw8AdHZRDj9gvkDLOBNQGJ+07d4yuOwkzbH2RSJHdW4gZwQ2pr/pYDElYfBc=
-X-Received: by 2002:a62:528e:0:b029:1f5:c5ee:a487 with SMTP id
- g136-20020a62528e0000b02901f5c5eea487mr26145345pfb.7.1620677745573; Mon, 10
- May 2021 13:15:45 -0700 (PDT)
+        id S231392AbhEJUSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 16:18:13 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.84]:33538 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229566AbhEJUSN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 16:18:13 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1620677812; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=Re/cw8tgUoKs/f6av+PApFiLfNxVfNm/VXzJ9THjYNMSrf/yS5e4Y5pOVRWtPsUl1k
+    M8Ul0XiJyE8wwf6GYo8l0h8UCNGhijJV+VkkFTCKeiV3BlAkXFapJXlDpOgQb+6K/XlW
+    SSNw3AzvqfkwJXDI7AtAlHCzkkERwziLQT0gZLsKSc21LC43DeuGPMO2G0X7wulUd+Bt
+    NJBli9fNlEu9PrnKqgQUGaoYfKIw6F8GtlcGmKlL/0uh513dDkK5y8czw/2aWYKcJUa2
+    zDaG0jATUy90QtqufFbth6lapwa0oJ40NNyqJtCFO80waMLZ7CaP2PUkW8VAmGCyMFAt
+    r7Ew==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1620677812;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=v4CH/t+TevX8Jl7XyE1q3Vi1BBSufL18VS7+Z97a78o=;
+    b=pjaQEe59q/YpED7xWUM8nw2fwdFADgaoPurayFpUXESPk0HWz+JoD12j7Q+g7DqU+d
+    uxa6ppTDN9XevUT7kAKJ/TUUCM+i07nvDn/rIUF54J61EgfWrvIKX6MaDDRB/OYPAjq0
+    x304Mq1w0jjgdVUFb9u9EuGOsIRzV3/jmQIKf+GtN+g0fj1gyP/k5ZRKHrx/MAJTPUS4
+    W4l2HsCiR4TsPGvNrxPXPSqpiOmZXX8jmmQWWjZC8EV3LrIA+Di4v3FG17052r1DMzXF
+    tHFgEyGNNyUw5NxuEFat6ngPTEG6V9XZUDCKnxv1fKB62znQbyZl+2tVe7Pzo/ew1zOq
+    Hl/A==
+ARC-Authentication-Results: i=1; strato.com;
+    dkim=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1620677812;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=v4CH/t+TevX8Jl7XyE1q3Vi1BBSufL18VS7+Z97a78o=;
+    b=aFXgC0I7DydQG6ghypOv8991X+cetsjEfSNoZoYCnQt1QKOdpThXGrk4wU0Y4AzIgn
+    KRd47iGYhpN5EG+A4/XZ0X62+sEmR6y4qVE6P4XrmPc07Eg7A5kBuzTD15ownOglu4mF
+    2Mi/r8IUjYLqDu32B5WL3mK13u1Z0w6T8i7G1QM48Qe6vvSVnhf9QnF3pPqDz0BaE+t6
+    d/dSmN2Ek49I+8bGKM2eHlqR/1pPgm1luT8htGBmbBx8enbNMfHYVeZMPg4dq1D5aa0R
+    LOw7fW/O7k+GjyYcZShhyizns9WDLaOh+DGiiIHg2sRPBQaa9qrj+A6AL2Om0D5Wl93/
+    cDFA==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j8Ic/Da4o="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.25.6 DYNA|AUTH)
+    with ESMTPSA id e01f26x4AKGpYd8
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Mon, 10 May 2021 22:16:51 +0200 (CEST)
+Date:   Mon, 10 May 2021 22:16:41 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Simon Budig <simon.budig@kernelconcepts.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Marco Felsch <m.felsch@pengutronix.de>
+Subject: Re: [PATCH v2 2/2] Input: edt-ft5x06 - add support for iovcc-supply
+Message-ID: <YJmUm/6Vm3d9hp1z@gerhold.net>
+References: <20210510193108.50178-1-stephan@gerhold.net>
+ <20210510193108.50178-2-stephan@gerhold.net>
+ <20210510194848.g7cgty3lirxkht5g@core>
 MIME-Version: 1.0
-References: <a22cf56239512f52ae5927f226e79d890d7a1240.1620645507.git.matti.vaittinen@fi.rohmeurope.com>
- <202105110116.2KVffy45-lkp@intel.com>
-In-Reply-To: <202105110116.2KVffy45-lkp@intel.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 10 May 2021 23:15:29 +0300
-Message-ID: <CAHp75VfS4=X9mW9oM+ySQeq-bd+btxD7c9gjSZCztvkvJTpbXQ@mail.gmail.com>
-Subject: Re: [PATCH v9 05/10] regulator: IRQ based event/error notification helpers
-To:     kernel test robot <lkp@intel.com>
-Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        kbuild-all@lists.01.org,
-        clang-built-linux <clang-built-linux@googlegroups.com>,
-        Mark Brown <broonie@kernel.org>,
-        Kees Cook <keescook@chromium.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "agross@kernel.org" <agross@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210510194848.g7cgty3lirxkht5g@core>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 10, 2021 at 8:35 PM kernel test robot <lkp@intel.com> wrote:
->
-> Hi Matti,
->
-> I love your patch! Yet something to improve:
->
-> [auto build test ERROR on 6efb943b8616ec53a5e444193dccf1af9ad627b5]
->
-> url:    https://github.com/0day-ci/linux/commits/Matti-Vaittinen/Extend-regulator-notification-support/20210510-203125
-> base:   6efb943b8616ec53a5e444193dccf1af9ad627b5
-> config: x86_64-randconfig-a015-20210510 (attached as .config)
-> compiler: clang version 13.0.0 (https://github.com/llvm/llvm-project 492173d42b32cb91d5d0d72d5ed84fcab80d059a)
-> reproduce (this is a W=1 build):
->         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->         chmod +x ~/bin/make.cross
->         # install x86_64 cross compiling tool for clang build
->         # apt-get install binutils-x86-64-linux-gnu
->         # https://github.com/0day-ci/linux/commit/904edb46fa37ac86bc1e7a1629141e037f45ebed
->         git remote add linux-review https://github.com/0day-ci/linux
->         git fetch --no-tags linux-review Matti-Vaittinen/Extend-regulator-notification-support/20210510-203125
->         git checkout 904edb46fa37ac86bc1e7a1629141e037f45ebed
->         # save the attached .config to linux build tree
->         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 ARCH=x86_64
->
-> If you fix the issue, kindly add following tag as appropriate
-> Reported-by: kernel test robot <lkp@intel.com>
->
-> All errors (new ones prefixed by >>):
->
-> >> drivers/regulator/irq_helpers.c:244:4: error: implicit declaration of function 'pr_dbg' [-Werror,-Wimplicit-function-declaration]
->                            pr_dbg("Sending regulator notification EVT 0x%lx\r\n",
->                            ^
->    1 error generated.
+Hi!
 
-I believe it has to be pr_debug()
+On Mon, May 10, 2021 at 09:48:48PM +0200, Ondřej Jirman wrote:
+> Hello Stephan,
+> 
+> On Mon, May 10, 2021 at 09:31:08PM +0200, Stephan Gerhold wrote:
+> > At the moment, the edt-ft5x06 driver can control a single regulator
+> > ("vcc"). However, some FocalTech touch controllers have an additional
+> > IOVCC pin that should be supplied with the digital I/O voltage.
+> > 
+> > The I/O voltage might be provided by another regulator that should also
+> > be kept on. Otherwise, the touchscreen can randomly stop functioning if
+> > the regulator is turned off because no other components still require it.
+> > 
+> > Implement (optional) support for also enabling an "iovcc-supply".
+> > The datasheet specifies a delay of ~ 10us before enabling VDD/VCC
+> > after IOVCC is enabled, so make sure to enable IOVCC first.
+> > 
+> > Cc: Ondrej Jirman <megous@megous.com>
+> > Cc: Marco Felsch <m.felsch@pengutronix.de>
+> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> > ---
+> > Sorry about the long delay, couldn't find the time to test the new changes :)
+> > 
+> > Changes in v2:
+> >   - Respect 10us delay between enabling IOVCC and VDD/VCC line
+> >     (suggested by Marco Felsch)
+> > 
+> > v1: https://lore.kernel.org/linux-input/20210108192337.563679-2-stephan@gerhold.net/
+> > ---
+> >  drivers/input/touchscreen/edt-ft5x06.c | 34 ++++++++++++++++++++++++++
+> >  1 file changed, 34 insertions(+)
+> > 
+> > diff --git a/drivers/input/touchscreen/edt-ft5x06.c b/drivers/input/touchscreen/edt-ft5x06.c
+> > index 2eefbc2485bc..d3271856bb5c 100644
+> > --- a/drivers/input/touchscreen/edt-ft5x06.c
+> > +++ b/drivers/input/touchscreen/edt-ft5x06.c
+> > @@ -104,6 +104,7 @@ struct edt_ft5x06_ts_data {
+> >  	u16 num_x;
+> >  	u16 num_y;
+> >  	struct regulator *vcc;
+> > +	struct regulator *iovcc;
+> >  
+> >  	struct gpio_desc *reset_gpio;
+> >  	struct gpio_desc *wake_gpio;
+> > @@ -1067,6 +1068,7 @@ static void edt_ft5x06_disable_regulator(void *arg)
+> >  	struct edt_ft5x06_ts_data *data = arg;
+> >  
+> >  	regulator_disable(data->vcc);
+> > +	regulator_disable(data->iovcc);
+> >  }
+> >  
+> >  static int edt_ft5x06_ts_probe(struct i2c_client *client,
+> > @@ -1107,9 +1109,28 @@ static int edt_ft5x06_ts_probe(struct i2c_client *client,
+> >  		return error;
+> >  	}
+> >  
+> > +	tsdata->iovcc = devm_regulator_get(&client->dev, "iovcc");
+> > +	if (IS_ERR(tsdata->iovcc)) {
+> > +		error = PTR_ERR(tsdata->iovcc);
+> > +		if (error != -EPROBE_DEFER)
+> > +			dev_err(&client->dev,
+> > +				"failed to request iovcc regulator: %d\n", error);
+> 
+> Please use dev_err_probe instead. If this pattern is used for vcc-supply, maybe
+> change that too. Maybe also consider using a bulk regulator API.
+>
 
--- 
-With Best Regards,
-Andy Shevchenko
+I had both of that in v1 but reverted both of that as discussed.
+I didn't make that very clear in the changelog, sorry about that. :)
+
+The reasons were:
+
+  - Bulk regulator API: AFAICT there is no way to use it while also
+    maintaining the correct enable/disable order plus the 10us delay.
+    See https://lore.kernel.org/linux-input/X%2Fwj+bxe%2FIlznCj6@gerhold.net/
+
+  - dev_err_probe(): For some reason the patch set that converted a lot of
+    input drivers (including edt-ft5x06) to dev_err_probe() was never applied:
+    https://lore.kernel.org/linux-input/20200827185829.30096-12-krzk@kernel.org/
+    I dropped the change from my patch since Andy already mentioned
+    a similar thing back then.
+
+Thanks!
+Stephan
