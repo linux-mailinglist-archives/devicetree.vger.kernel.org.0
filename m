@@ -2,48 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 822B73793BE
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 18:27:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF2543793D3
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 18:31:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230337AbhEJQ2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 12:28:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35936 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230285AbhEJQ2c (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 May 2021 12:28:32 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 790B06115C;
-        Mon, 10 May 2021 16:27:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620664047;
-        bh=o1jyZ+kw6gwlssERlfWpnAj5Bx1Dsf0kt1gLfw9KgJQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FtAltezPdS9dCHXachU669IU5Jfw/MANG1LdRyLyassBX8TueW1qBH3goRBHRAUoZ
-         Y3WZs2S/E17t/XeRIETdIMWnTIkFKYbIF3yBFqt9PRVHrt2rGUwCyaZcwARWmy/Jgi
-         LYYddY+b7j1Ap5gRJ0DzDgXpEZ5lmjG2FU37LPinfPoleZKxV/ui3XzWCIk6FkQh0D
-         ljRI/GkH4NpGGkexmtMFcLuOcbPJZPMZnUTzj7qCywoxi4SWx3eO6t3kFHAbx9NOII
-         9DXiLwNc2r3JI/LJ2EdPecprMFNp0vemWxAzDiUzVRMIxjpqTfxh5txR8PAP810I9u
-         aQsNPWbnE4tPw==
-Date:   Mon, 10 May 2021 21:57:23 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: dma: convert arm-pl08x to yaml
-Message-ID: <YJle6wTwe6ijAmQA@vkoul-mobl.Dlink>
-References: <20210430183651.919317-1-clabbe@baylibre.com>
+        id S231590AbhEJQcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 12:32:25 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:10145 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231561AbhEJQcY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 12:32:24 -0400
+X-Originating-IP: 90.89.138.59
+Received: from xps13.home (lfbn-tou-1-1325-59.w90-89.abo.wanadoo.fr [90.89.138.59])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 1F90C24000C;
+        Mon, 10 May 2021 16:31:14 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        <linux-mtd@lists.infradead.org>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Michal Simek <monstr@monstr.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v2 0/5] Bring GPIO CS support to the Arasan controller driver
+Date:   Mon, 10 May 2021 18:31:09 +0200
+Message-Id: <20210510163114.24965-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210430183651.919317-1-clabbe@baylibre.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30-04-21, 18:36, Corentin Labbe wrote:
-> Converts dma/arm-pl08x.txt to yaml.
-> In the process, I add an example for the faraday variant.
+Hello,
 
-Applied, thanks
+This is a short series bringing a useful feature for drivers which are a
+little bit constrained regarding their number of native CS. As
+manufacturer tend to group chips in arrays to enlarge the overall
+available space, it might be useful to other controller drivers to make
+use of the added DT property (cs-gpios) as well as the core helper which
+is being introduced to parse this DT property and returned a CS array
+with either empty cells (native CS are being used) or a GPIO descriptor
+structure pointer (GPIO CS).
+
+This is applied to the Arasan NAND controller driver which involved a
+little bit more boilerplate than estimated I thought due to its internal
+constraints regarding the bond between CS and RB.
+
+Cheers,
+Miquèl
+
+Changes in v2:
+* Added a missing MODULE_EXPORT() reported by kernel test robot.
+
+Changes in v2:
+* Rebased on top of v5.13-rc1
+* This time I'm CC'ing Rob + DT ML...
+
+Miquel Raynal (5):
+  dt-binding: mtd: nand: Document gpio-cs property
+  mtd: rawnand: Move struct gpio_desc declaration to the top
+  mtd: rawnand: Add a helper to parse the gpio-cs DT property
+  mtd: rawnand: arasan: Ensure proper configuration for the asserted
+    target
+  mtd: rawnand: arasan: Leverage additional GPIO CS
+
+ .../bindings/mtd/nand-controller.yaml         |  16 +-
+ drivers/mtd/nand/raw/arasan-nand-controller.c | 238 +++++++++++++-----
+ drivers/mtd/nand/raw/nand_base.c              |  39 +++
+ include/linux/mtd/rawnand.h                   |   6 +-
+ 4 files changed, 241 insertions(+), 58 deletions(-)
 
 -- 
-~Vinod
+2.27.0
+
