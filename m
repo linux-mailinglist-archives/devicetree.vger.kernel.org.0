@@ -2,210 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D2D737948A
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 18:48:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8464837948F
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 18:51:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230152AbhEJQt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 12:49:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38010 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231706AbhEJQtX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 12:49:23 -0400
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80691C061574;
-        Mon, 10 May 2021 09:48:18 -0700 (PDT)
-Received: by mail-ot1-x32f.google.com with SMTP id r26-20020a056830121ab02902a5ff1c9b81so15002779otp.11;
-        Mon, 10 May 2021 09:48:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=P2HEZ75e+lZ1ispunoMvDeRLz/uth+i6u9sIHIvo2CM=;
-        b=RQxRiIWS6BHQqxDvFPrgw0k60h1rzjjlTJa1WjR8jdfp7V+iN9uABo8Wf2kYvG+aqN
-         5KGPbZoO+te5wt7YYJaMecacxG08SKEbUmlUusZYhgPD8zVXYhQFKhZPG1MbK8Wgg3sX
-         mUq/rWn3ttM/euM9JLetpHqakiPOugl3USlxltddUhpgNpsRYy1wJA9TynQSFUL7fHRo
-         pgRdGoDp2ZJwKpZ2lPiAznXu+No6QAxQof/ESgdzqASUwHh5GXtMuQt1nYNOnyJ7a03g
-         I0OnWBqPTPspWI+ayGYSEe8XMMDm/hHiLcRb6vbDOMWw/rhJoY+HrfrG+6Pu5mXocFT5
-         mxig==
+        id S231789AbhEJQwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 12:52:32 -0400
+Received: from mail-oo1-f54.google.com ([209.85.161.54]:39870 "EHLO
+        mail-oo1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229566AbhEJQwc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 12:52:32 -0400
+Received: by mail-oo1-f54.google.com with SMTP id t17-20020a4a3e110000b02901fab2f46a48so3606740oot.6
+        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 09:51:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=P2HEZ75e+lZ1ispunoMvDeRLz/uth+i6u9sIHIvo2CM=;
-        b=gka7PQ0K6DnNw2322ZTMbmPiXqh0RHku1hLJutLzAhgOY29UO3QtLnUOfHVm2fvkO9
-         IcwATKllbsUnfwJfQH1uZlXs1IkEMSXgXxwRWQGimdNZUAAxVbtOBkB/5R8J3wD+F3+0
-         LK06MJhAYuvyW8spb0hGY87dIjPCq5zWzQteKO4ohAvVfeQwIyPgz+l08L0Ydhz55BW+
-         CW6h3uFcv/N57978m0OTpIvYKBh/M5BX816sT9EbJ192pL5MSQNvlMlIMjarXTATMAZk
-         CJwAK6DOgtCib2lmFW9nhn+X47+bjndhpbWXrggKVwMABHuhis5JuAjj35i74X+LDWrb
-         ga2A==
-X-Gm-Message-State: AOAM531nYhFBsbk1rjbdvLcFd6WeUcjKXYbCTQvoz9vdPlawNwiTRUCA
-        Kf8SYbsqUQTy5EGqRrGywVk/QdQr+1A=
-X-Google-Smtp-Source: ABdhPJwvLaAVlS65cGGsLO2Wr+CSWtbJ/N7ZeelXzj6ujb1hHFy/FDH3IygASnM0yZkGBF13ORircA==
-X-Received: by 2002:a05:6830:1311:: with SMTP id p17mr8166388otq.224.1620665297859;
-        Mon, 10 May 2021 09:48:17 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id y191sm1797399oia.50.2021.05.10.09.48.16
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=P4Gfvc7WvRaDyytGeBudSFp7SANRJPBrI8jAbvrebsY=;
+        b=JYdPGKtpPNI/e3Opa0uEUumCWQVot9c77lkG6gs+Sff830lvqNOFSXNDBV1XUMv6PC
+         xa8LIJRuP5fv6cGC+6RN0QCamdgOy6DHKHb+jEANzHAFfXK1ajKRVI/bFDBOVBqFTp3Q
+         ulFiH1RBwchin5S2RYoMz1nMj4v8J7Y13xjBEFPJUTTFdQIhiZKlfILrBVZjLr+3nrAT
+         qxZbpW2w9mWwo2MWDZty1/WqWuqicD3WcBhKEZ0/nbG4oa37qf3UbElW5yGgbX8QQqnO
+         HHuCUJToddaeDFfFAqCHuZ1FE/zkixBe7irercV6lb/J3Pxaheru5p+gxOBSF7xVWmwj
+         SmHA==
+X-Gm-Message-State: AOAM533PVhlOPHuyP5KTWxT3gVxsVq1Lgovu1bvS8xPAa/x2eS8juMtl
+        aI2Qp/n8bO2PuUPq4o4tfA==
+X-Google-Smtp-Source: ABdhPJxKk/SA1ZPlD9CoXDK1oPSlU/HH61EzZIf0WmYXC+5w+QzKIgk2PqL2gT+rtg6jm9Bvo/+Hqw==
+X-Received: by 2002:a4a:d4c7:: with SMTP id r7mr4290878oos.85.1620665487369;
+        Mon, 10 May 2021 09:51:27 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 88sm3208519ott.51.2021.05.10.09.51.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 May 2021 09:48:17 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Mon, 10 May 2021 09:48:16 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Vadim Pasternak <vadimp@nvidia.com>
-Cc:     robh+dt@kernel.org, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH hwmon-next v6 2/3] hwmon: (pmbus) Add support for MPS
- Multi-phase mp2888 controller
-Message-ID: <20210510164816.GA882936@roeck-us.net>
-References: <20210507171421.425817-1-vadimp@nvidia.com>
- <20210507171421.425817-3-vadimp@nvidia.com>
+        Mon, 10 May 2021 09:51:26 -0700 (PDT)
+Received: (nullmailer pid 268705 invoked by uid 1000);
+        Mon, 10 May 2021 16:51:25 -0000
+Date:   Mon, 10 May 2021 11:51:25 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     devicetree@vger.kernel.org, Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        linux-mtd@lists.infradead.org,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Michal Simek <monstr@monstr.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 1/5] dt-binding: mtd: nand: Document gpio-cs property
+Message-ID: <20210510165125.GA261277@robh.at.kernel.org>
+References: <20210510104051.9701-1-miquel.raynal@bootlin.com>
+ <20210510104051.9701-2-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210507171421.425817-3-vadimp@nvidia.com>
+In-Reply-To: <20210510104051.9701-2-miquel.raynal@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 07, 2021 at 08:14:20PM +0300, Vadim Pasternak wrote:
-> Add support for mp2888 device from Monolithic Power Systems, Inc. (MPS)
-> vendor. This is a digital, multi-phase, pulse-width modulation
-> controller.
+On Mon, May 10, 2021 at 12:40:47PM +0200, Miquel Raynal wrote:
+> To reach higher capacities, arrays of chips are now pretty common.
+> Unfortunately, most of the controllers have been designed a decade ago
+> and did not all anticipate the need for several chip-selects. The new
+> cs-gpios property allows to workaround this limitation by adding as many
+> GPIO chip-select as needed.
+
+Subject and example have wrong property name.
+
 > 
-> This device supports:
-> - One power rail.
-> - Programmable Multi-Phase up to 10 Phases.
-> - PWM-VID Interface
-> - One pages 0 for telemetry.
-> - Programmable pins for PMBus Address.
-> - Built-In EEPROM to Store Custom Configurations.
-> - Can configured VOUT readout in direct or VID format and allows
->   setting of different formats on rails 1 and 2. For VID the following
->   protocols are available: VR13 mode with 5-mV DAC; VR13 mode with
->   10-mV DAC, IMVP9 mode with 5-mV DAC.
-> 
-> Signed-off-by: Vadim Pasternak <vadimp@nvidia.com>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
-> v5->v6
->  Comments pointed out by Guenter:
->  - Fix comments for limits in mp2888_read_word_data().
->  - Remove unnecessary typecasts from mp2888_write_word_data().
+>  .../devicetree/bindings/mtd/nand-controller.yaml | 16 +++++++++++++++-
+>  1 file changed, 15 insertions(+), 1 deletion(-)
 > 
-> v4->v5
->  Comments pointed out by Guenter:
->  - Fix calculation of PMBUS_READ_VIN.
->  - Add mp2888_write_word_data() for limits setting.
->  - Treat PMBUS_POUT_OP_WARN_LIMIT in separate case.
->  - Drop tuning of "m[PSC_POWER]" and "m[PSC_CURRENT_OUT]" from probing
->    routine.
->  Fixes from Vadim:
->  - Treat PMBUS_IOUT_OC_WARN_LIMIT in separate case.
+> diff --git a/Documentation/devicetree/bindings/mtd/nand-controller.yaml b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> index 678b39952502..70a400e385b2 100644
+> --- a/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> @@ -38,6 +38,15 @@ properties:
+>  
+>    ranges: true
+>  
+> +  cs-gpios:
+> +    description:
+> +      Array of chip-select available to the controller. The first
+> +      entries are a 1:1 mapping of the available chip-select on the
+> +      NAND controller (even if they are not used). As many additional
+> +      chip-select as needed may follow and should be phandles of GPIO
+> +      lines. 'reg' entries of the NAND chip subnodes become indexes of
+> +      this array when this property is present.
+
+Can we put some 'maxItems' value here. I want to make the meta-schema 
+enforce that. I realize there's not really one here, but a 'should be 
+enough' value is fine. We can bump it up if needed.
+
+> +
+>  patternProperties:
+>    "^nand@[a-f0-9]$":
+>      type: object
+> @@ -164,14 +173,19 @@ examples:
+>      nand-controller {
+>        #address-cells = <1>;
+>        #size-cells = <0>;
+> +      gpio-cs = <0>, <&gpioA 1>; /* A single native CS is available */
+>  
+>        /* controller specific properties */
+>  
+>        nand@0 {
+> -        reg = <0>;
+> +        reg = <0>; /* Native CS */
+>          nand-use-soft-ecc-engine;
+>          nand-ecc-algo = "bch";
+>  
+>          /* controller specific properties */
+>        };
+> +
+> +      nand@1 {
+> +        reg = <1>; /* GPIO CS */
+> +      };
+>      };
+> -- 
+> 2.27.0
 > 
-> v3->v4
->  Comments pointed out by Guenter:
->   - Fix PMBUS_READ_VIN and limits calculations.
->   - Add comment for PMBUS_OT_WARN_LIMIT scaling.
->   - Fix PMBUS_READ_IOUT, PMBUS_READ_POUT, PMBUS_READ_PIN calculations.
->   - Enable PMBUS_IOUT_OC_WARN_LIMIT and PMBUS_POUT_OP_WARN_LIMIT.
->  Fixes from Vadim:
->   - Disable PMBUS_POUT_MAX. Device uses this register for different
->     purpose.
->   - Disable PMBUS_MFR_VOU_MIN. Device doe not implement this register.
->   - Update documentation file.
-> 
-> v2->v3
->  Comments pointed out by Guenter:
->  - Fix precision for PMBUS_READ_VIN (it requires adding scale for
->    PMBUS_VIN_OV_FAULT_LIMIT and PMBUS_VIN_UV_WARN_LIMIT.
->  - Fix precision for PMBUS_READ_TEMPERATURE_1 (it requires adding
->    scale for PMBUS_OT_WARN_LIMIT).
->  - Use DIV_ROUND_CLOSEST_ULL for scaling PMBUS_READ_POUT,
->    PMBUS_READ_PIN readouts.
->  Notes and fixes from Vadim:
->   - READ_IOUT in linear11 does not give write calculation (tested with
->     external load), while in direct format readouts are correct.
->   - Disable non-configured phases in mp2888_identify_multiphase().
-> 
-> v1->v2:
->  Comments pointed out by Guenter:
->   - Use standard access for getting PMBUS_OT_WARN_LIMIT,
->     PMBUS_VIN_OV_FAULT_LIMIT, PMBUS_VIN_UV_WARN_LIMIT.
->   - Use linear11 conversion for PMBUS_READ_VIN, PMBUS_READ_POUT,
->     PMBUS_READ_PIN, PMBUS_READ_TEMPERATURE_1 and adjust coefficients.
->   - Add reading phases current from the dedicated registers.
->   - Add comment for not implemented or implemented not according to the
-> 	spec registers, for which "ENXIO" code is returned.
->   - Set PMBUS_HAVE_IOUT" statically.
->   Notes from Vadim:
->   - READ_IOUT uses direct format, so I did not adjust it like the below
->     registers.
-> ---
-
-[ ... ]
-
-> +
-> +static int mp2888_write_word_data(struct i2c_client *client, int page, int reg, u16 word)
-> +{
-> +	const struct pmbus_driver_info *info = pmbus_get_driver_info(client);
-> +	struct mp2888_data *data = to_mp2888_data(info);
-> +
-> +	switch (reg) {
-> +	case PMBUS_OT_WARN_LIMIT:
-> +		word = DIV_ROUND_CLOSEST((int)word, MP2888_TEMP_UNIT);
-
-Sorry if I am missing something, but why those typecasts here and below ?
-
-> +		/* Drop unused bits 15:8. */
-> +		word = clamp_val(word, 0, GENMASK(7, 0));
-> +		break;
-> +	case PMBUS_IOUT_OC_WARN_LIMIT:
-> +		/* Fix limit according to total curent resolution. */
-> +		word = data->total_curr_resolution ? DIV_ROUND_CLOSEST((int)word, 8) :
-> +		       DIV_ROUND_CLOSEST((int)word, 4);
-> +		/* Drop unused bits 15:10. */
-> +		word = clamp_val(word, 0, GENMASK(9, 0));
-> +		break;
-> +	case PMBUS_POUT_OP_WARN_LIMIT:
-> +		/* Fix limit according to total curent resolution. */
-> +		word = data->total_curr_resolution ? DIV_ROUND_CLOSEST((int)word, 4) :
-> +		       DIV_ROUND_CLOSEST((int)word, 2);
-> +		/* Drop unused bits 15:10. */
-> +		word = clamp_val(word, 0, GENMASK(9, 0));
-> +		break;
-> +	default:
-> +		return -ENODATA;
-> +	}
-> +	return pmbus_write_word_data(client, page, reg, word);
-> +}
-> +
-> +static int
-> +mp2888_identify_multiphase(struct i2c_client *client, struct mp2888_data *data,
-> +			   struct pmbus_driver_info *info)
-> +{
-> +	int i, ret;
-> +
-> +	ret = i2c_smbus_write_byte_data(client, PMBUS_PAGE, 0);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Identify multiphase number - could be from 1 to 10. */
-> +	ret = i2c_smbus_read_word_data(client, MP2888_MFR_VR_CONFIG1);
-> +	if (ret <= 0)
-> +		return ret;
-> +
-> +	info->phases[0] = ret & GENMASK(3, 0);
-> +
-> +	/*
-> +	 * The device provides a total of 10 PWM pins, and can be configured to different phase
-> +	 * count applications for rail.
-> +	 */
-> +	if (info->phases[0] > MP2888_MAX_PHASE)
-> +		return -EINVAL;
-> +
-> +	/* Disable non-configured phases. */
-> +	for (i = info->phases[0]; i < MP2888_MAX_PHASE; i++)
-> +		info->pfunc[i] = 0;
-
-Not that it matters much, but this is unnecessary since the pmbus core
-won't look at phase data beyond info->phases[].
-
-Guenter
