@@ -2,77 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73075379836
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 22:17:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17581379839
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 22:20:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231187AbhEJUS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 16:18:58 -0400
-Received: from vps.xff.cz ([195.181.215.36]:34848 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229566AbhEJUS6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 May 2021 16:18:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1620677872; bh=/RHu2XVx/BEg2sOi/KftSIMC+UAohdWkDmidWFO62U8=;
-        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-        b=jcAiEAY111Ib0XpA9/l2f5iuK1Mjaa3+xvrrzHCv+LyENokgOSE91KG2y8QqTKcZI
-         TwMy5+U787bDAjMpb4RUJyiDUhrhTsLW9aYZiAzF1mWm8FDUO0MyEo4962+IImVM4o
-         gI/Q05aD5WG+N7Ze9UjUDAqLCePprN4MzYXeLQQE=
-Date:   Mon, 10 May 2021 22:17:51 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Simon Budig <simon.budig@kernelconcepts.de>,
-        Marco Felsch <m.felsch@pengutronix.de>
-Subject: Re: [PATCH v2 2/2] Input: edt-ft5x06 - add support for iovcc-supply
-Message-ID: <20210510201751.xs5lq5a3kcvp5fpq@core>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20210510193108.50178-1-stephan@gerhold.net>
- <20210510193108.50178-2-stephan@gerhold.net>
- <20210510194848.g7cgty3lirxkht5g@core>
- <YJmS9NqGFGem6gxg@smile.fi.intel.com>
+        id S231187AbhEJUVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 16:21:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58286 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229566AbhEJUVj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 16:21:39 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7D06C061574;
+        Mon, 10 May 2021 13:20:33 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id h14-20020a17090aea8eb02901553e1cc649so30026pjz.0;
+        Mon, 10 May 2021 13:20:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8cA/DdZqH+qZ+PTKZmFPD/rztPZWvGEHa5WV/C8rLOQ=;
+        b=Nknx1W3qgZmEYdA7Mll0SVkCRRs9gwIK6UP6dkkDg9hH4qqwKHBylqMsw4aP8SMwZK
+         Rt2+NFqhZmqjyGTGnC5cTfPfqQnGfCE9nGDXYsur9fNwiQa6W4piV8g1MGwXyanp+IDp
+         dKITGGXs8+zBRYJn9ML90gPQLWhbLgpVziRev4r0UjSGNAghsdFfZ/SNGEfUxf+yJqLV
+         +ajHf3JA24Amu7XYFN7gTR6C/ks9tr2B7wJOSPd2pkk4V11TM61GTWLQ7b1KoLmIgLGP
+         d/dhJHDGvwHA2QS3yNXYaoQ5FiCtssKuMfV7bXrLMuMvx/3GE16uemLz2qKqknRcIJKq
+         SCCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8cA/DdZqH+qZ+PTKZmFPD/rztPZWvGEHa5WV/C8rLOQ=;
+        b=Ehjr6FdlDCsiC56tUOmJjUXxqyhlnemq/QVnBqjDj53KlS/iTUSDGQAeYW7RUROxTe
+         J+rEvhRMbacx6iaIq58r6dw4qrdspO361kWskcIZ5m3ti4chWxJ/x2HeXTXmcPKzl5ei
+         9JbXhFIttblR3DJoArtVYmy90zCaKBhE0JYp2I6qKMAAPV+6+nty8EEqoQEvc4tqg6tw
+         IL0LQP8DCt5FcWzjsomqNy9vVt67ocKIqf8ZN8mF/JuG+N8rBqVRO6o6iLT0D/wjUhYu
+         W3tpRc6M7I2ZFVoCiZzL0nBabZIIWiRaPRtN01FfJPCjsBOFXgeDaNX157qk+U5UmkrD
+         Odwg==
+X-Gm-Message-State: AOAM533NID66sgkXjhn1bJEXnlvI+I38WkJSOOeeqaKPK2CEnuYpM+8i
+        8zXbyIzNaeZU0KG1Zqf/AvGYceU+2K50FRLaUgc=
+X-Google-Smtp-Source: ABdhPJwfFrr2vhwfSc2PKYItY8Cl9Uu15yI9i7sgdFH53/GBEfcr140YJMH8XThQ6zb6ntUeu3qQ1UgWxS56tjwg1fI=
+X-Received: by 2002:a17:90a:d90c:: with SMTP id c12mr1009572pjv.129.1620678033371;
+ Mon, 10 May 2021 13:20:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YJmS9NqGFGem6gxg@smile.fi.intel.com>
+References: <a22cf56239512f52ae5927f226e79d890d7a1240.1620645507.git.matti.vaittinen@fi.rohmeurope.com>
+ <202105110342.Oembupaq-lkp@intel.com>
+In-Reply-To: <202105110342.Oembupaq-lkp@intel.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 10 May 2021 23:20:17 +0300
+Message-ID: <CAHp75Vfw+5R-qN+iGC4hYSbL6phOoSZ7nuNsyroQPODxEmMaNA@mail.gmail.com>
+Subject: Re: [PATCH v9 05/10] regulator: IRQ based event/error notification helpers
+To:     kernel test robot <lkp@intel.com>
+Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Matti Vaittinen <mazziesaccount@gmail.com>,
+        kbuild-all@lists.01.org, Mark Brown <broonie@kernel.org>,
+        Kees Cook <keescook@chromium.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "agross@kernel.org" <agross@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 10, 2021 at 11:09:24PM +0300, Andy Shevchenko wrote:
-> On Mon, May 10, 2021 at 09:48:48PM +0200, Ondřej Jirman wrote:
-> > On Mon, May 10, 2021 at 09:31:08PM +0200, Stephan Gerhold wrote:
-> 
-> > > +	tsdata->iovcc = devm_regulator_get(&client->dev, "iovcc");
-> > > +	if (IS_ERR(tsdata->iovcc)) {
-> > > +		error = PTR_ERR(tsdata->iovcc);
-> > > +		if (error != -EPROBE_DEFER)
-> > > +			dev_err(&client->dev,
-> > > +				"failed to request iovcc regulator: %d\n", error);
-> > 
-> > Please use dev_err_probe instead. If this pattern is used for vcc-supply, maybe
-> > change that too. Maybe also consider using a bulk regulator API.
-> 
-> Dmitry seems is having something against it last time I remember it was
-> discussed with him.
+On Mon, May 10, 2021 at 10:46 PM kernel test robot <lkp@intel.com> wrote:
+>
+> Hi Matti,
+>
+> I love your patch! Yet something to improve:
+>
+> [auto build test ERROR on 6efb943b8616ec53a5e444193dccf1af9ad627b5]
+>
+> url:    https://github.com/0day-ci/linux/commits/Matti-Vaittinen/Extend-regulator-notification-support/20210510-203125
+> base:   6efb943b8616ec53a5e444193dccf1af9ad627b5
+> config: i386-randconfig-s002-20210510 (attached as .config)
+> compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
+> reproduce:
+>         # apt-get install sparse
+>         # sparse version: v0.6.3-341-g8af24329-dirty
+>         # https://github.com/0day-ci/linux/commit/904edb46fa37ac86bc1e7a1629141e037f45ebed
+>         git remote add linux-review https://github.com/0day-ci/linux
+>         git fetch --no-tags linux-review Matti-Vaittinen/Extend-regulator-notification-support/20210510-203125
+>         git checkout 904edb46fa37ac86bc1e7a1629141e037f45ebed
+>         # save the attached .config to linux build tree
+>         make W=1 C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' W=1 ARCH=i386
+>
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+>
+> All errors (new ones prefixed by >>):
+>
+>    In file included from include/linux/kernel.h:12,
+>                     from arch/x86/include/asm/percpu.h:27,
+>                     from arch/x86/include/asm/current.h:6,
+>                     from include/linux/sched.h:12,
+>                     from include/linux/ratelimit.h:6,
+>                     from include/linux/dev_printk.h:16,
+>                     from include/linux/device.h:15,
+>                     from drivers/regulator/irq_helpers.c:10:
+>    drivers/regulator/irq_helpers.c: In function 'regulator_notifier_isr':
+>    include/linux/bitops.h:35:2: warning: this 'for' clause does not guard... [-Wmisleading-indentation]
+>       35 |  for ((bit) = find_first_bit((addr), (size));  \
+>          |  ^~~
+>    drivers/regulator/irq_helpers.c:242:3: note: in expansion of macro 'for_each_set_bit'
+>      242 |   for_each_set_bit(j, &stat->notifs, BITS_PER_TYPE(stat->notifs))
+>          |   ^~~~~~~~~~~~~~~~
+>    drivers/regulator/irq_helpers.c:244:4: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'for'
 
-It basically does the same thing this does, except that you can figure out
-the failure later on from sysfs more easily just by looking at:
 
-   /sys/kernel/debug/devices_deferred
+Seems like missed {}
 
-And you'll see the error message there to help you figure out the dependency
-that failed. What's to hate about this? :)
+Matti, there is a serious question: how had you tested this...
+(besides obvious compilation error)
+Perhaps you have to fix your process somewhere to avoid missing important steps?
 
-kind regards,
-	o.
-
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
+-- 
+With Best Regards,
+Andy Shevchenko
