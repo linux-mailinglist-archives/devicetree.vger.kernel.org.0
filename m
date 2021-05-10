@@ -2,32 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB70D377966
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 01:55:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6C9F37797C
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 02:12:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230032AbhEIX4W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 May 2021 19:56:22 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:55670 "EHLO gloria.sntech.de"
+        id S230014AbhEJANd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 May 2021 20:13:33 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:55884 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230004AbhEIX4V (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 9 May 2021 19:56:21 -0400
+        id S229853AbhEJANd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 9 May 2021 20:13:33 -0400
 Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.fritz.box)
         by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <heiko@sntech.de>)
-        id 1lftGV-0007y6-Rg; Mon, 10 May 2021 01:55:15 +0200
+        id 1lftX4-00085c-Uk; Mon, 10 May 2021 02:12:23 +0200
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     Chen-Yu Tsai <wens@kernel.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Chen-Yu Tsai <wens@csie.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: rk3328: rock-pi-e: Drop fephy pinctrl from gmac2phy
-Date:   Mon, 10 May 2021 01:55:10 +0200
-Message-Id: <162060449717.1266480.17694664157569213328.b4-ty@sntech.de>
+To:     xxm@rock-chips.com, robh+dt@kernel.org, will@kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        joro@8bytes.org
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: (subset) [PATCH v4 0/6] Add IOMMU driver for rk356x
+Date:   Mon, 10 May 2021 02:12:20 +0200
+Message-Id: <162060552750.1271206.175954480906958099.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210426095916.14574-1-wens@kernel.org>
-References: <20210426095916.14574-1-wens@kernel.org>
+In-Reply-To: <20210507090232.233049-1-benjamin.gaignard@collabora.com>
+References: <20210507090232.233049-1-benjamin.gaignard@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -35,16 +38,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Apr 2021 17:59:16 +0800, Chen-Yu Tsai wrote:
-> Turns out the fephy pins are already claimed in the phy node, which is
-> rightfully where they should be claimed.
+On Fri, 7 May 2021 11:02:26 +0200, Benjamin Gaignard wrote:
+> This series adds the IOMMU driver for rk356x SoC.
+> Since a new compatible is needed to distinguish this second version of
+> IOMMU hardware block from the first one, it is an opportunity to convert
+> the binding to DT schema.
 > 
-> Drop the pinctrl properties from the gmac2phy node for the ROCK Pi E.
+> version 4:
+>  - Add description for reg items
+>  - Remove useless interrupt-names properties
+>  - Add description for interrupts items
+>  - Remove interrupt-names properties from DST files
+> 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: rockchip: rk3328: rock-pi-e: Drop fephy pinctrl from gmac2phy
-      commit: e6526f90696e6a7d722d04b958f15b97d6fd9ce6
+[3/6] ARM: dts: rockchip: rk322x: Fix IOMMU nodes properties
+      commit: 6b023929666f0be5df75f5e0278d1b70effadf42
+[4/6] ARM: dts: rockchip: rk3036: Remove useless interrupt-names on IOMMU node
+      commit: 304b8fbc950bae102f29ee1e8e8557f2fd08d69a
+[5/6] ARM64: dts: rockchip: rk3036: Remove useless interrupt-names properties
+      commit: 2bf375982f4a58a95e8b5184565b23677900012c
 
 Best regards,
 -- 
