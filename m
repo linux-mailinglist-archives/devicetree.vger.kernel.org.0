@@ -2,167 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8071A379487
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 18:47:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D2D737948A
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 18:48:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232216AbhEJQsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 12:48:08 -0400
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:33432 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232090AbhEJQqo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 12:46:44 -0400
-Received: by mail-oi1-f171.google.com with SMTP id b25so11120848oic.0;
-        Mon, 10 May 2021 09:45:39 -0700 (PDT)
+        id S230152AbhEJQt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 12:49:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38010 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231706AbhEJQtX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 12:49:23 -0400
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80691C061574;
+        Mon, 10 May 2021 09:48:18 -0700 (PDT)
+Received: by mail-ot1-x32f.google.com with SMTP id r26-20020a056830121ab02902a5ff1c9b81so15002779otp.11;
+        Mon, 10 May 2021 09:48:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=P2HEZ75e+lZ1ispunoMvDeRLz/uth+i6u9sIHIvo2CM=;
+        b=RQxRiIWS6BHQqxDvFPrgw0k60h1rzjjlTJa1WjR8jdfp7V+iN9uABo8Wf2kYvG+aqN
+         5KGPbZoO+te5wt7YYJaMecacxG08SKEbUmlUusZYhgPD8zVXYhQFKhZPG1MbK8Wgg3sX
+         mUq/rWn3ttM/euM9JLetpHqakiPOugl3USlxltddUhpgNpsRYy1wJA9TynQSFUL7fHRo
+         pgRdGoDp2ZJwKpZ2lPiAznXu+No6QAxQof/ESgdzqASUwHh5GXtMuQt1nYNOnyJ7a03g
+         I0OnWBqPTPspWI+ayGYSEe8XMMDm/hHiLcRb6vbDOMWw/rhJoY+HrfrG+6Pu5mXocFT5
+         mxig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=9higqPKGrnY1IY6VuqVyaPGF4tW6YAqMC+KWAKz/f2M=;
-        b=rq32SXBXW8fjKHsOr65AFdnn9c3HYKtDb7OrgNkQCsIFZi5OGzyFeGKhwKHZzL3rGq
-         wjlOe0fAubW33SKQ9LGwR5gMZ8Vqc+JQ3tkbhEO85XLmJ0YjKRfXCree9q6rp0Jz7pCU
-         8HPk+qMQXu52aFE9KuGCk7ZlLmDjUntRxj2uM7v/Y6llzigkqDO4r0FOIDql8d7Ruyd3
-         uRG0UEcgg3RmnIS5k5LZBFK0Jibjl/janAAULx9Eq/BD0N7IfV/s5XO1Ba2M4Msq20gZ
-         JE6RvF/QjAGzVDgfTxJ4Vq4JZALawin40VxKZwsh8a4WCn46ALmo1SIl3uwrsEvN1qe+
-         tYdQ==
-X-Gm-Message-State: AOAM530hG4RH+BxCCU5KJckC6xwbB+jORX6KrS2TTETA8xuRJXkUZ/wT
-        ETVKS4DIgdgyZKYLRBkxrA==
-X-Google-Smtp-Source: ABdhPJzrDpekbN2l5TxSPDuiWfP8/sG/3dI4sWv+MXhY2apRC5QC50Nmv8BeU/9jsn21sgB3Fmknfw==
-X-Received: by 2002:a05:6808:13ca:: with SMTP id d10mr10913461oiw.24.1620665139210;
-        Mon, 10 May 2021 09:45:39 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id q130sm2629826oif.40.2021.05.10.09.45.32
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=P2HEZ75e+lZ1ispunoMvDeRLz/uth+i6u9sIHIvo2CM=;
+        b=gka7PQ0K6DnNw2322ZTMbmPiXqh0RHku1hLJutLzAhgOY29UO3QtLnUOfHVm2fvkO9
+         IcwATKllbsUnfwJfQH1uZlXs1IkEMSXgXxwRWQGimdNZUAAxVbtOBkB/5R8J3wD+F3+0
+         LK06MJhAYuvyW8spb0hGY87dIjPCq5zWzQteKO4ohAvVfeQwIyPgz+l08L0Ydhz55BW+
+         CW6h3uFcv/N57978m0OTpIvYKBh/M5BX816sT9EbJ192pL5MSQNvlMlIMjarXTATMAZk
+         CJwAK6DOgtCib2lmFW9nhn+X47+bjndhpbWXrggKVwMABHuhis5JuAjj35i74X+LDWrb
+         ga2A==
+X-Gm-Message-State: AOAM531nYhFBsbk1rjbdvLcFd6WeUcjKXYbCTQvoz9vdPlawNwiTRUCA
+        Kf8SYbsqUQTy5EGqRrGywVk/QdQr+1A=
+X-Google-Smtp-Source: ABdhPJwvLaAVlS65cGGsLO2Wr+CSWtbJ/N7ZeelXzj6ujb1hHFy/FDH3IygASnM0yZkGBF13ORircA==
+X-Received: by 2002:a05:6830:1311:: with SMTP id p17mr8166388otq.224.1620665297859;
+        Mon, 10 May 2021 09:48:17 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id y191sm1797399oia.50.2021.05.10.09.48.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 May 2021 09:45:35 -0700 (PDT)
-Received: (nullmailer pid 260896 invoked by uid 1000);
-        Mon, 10 May 2021 16:45:32 -0000
-Date:   Mon, 10 May 2021 11:45:32 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     broonie@kernel.org, devicetree@vger.kernel.org, perex@perex.cz,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        lgirdwood@gmail.com, lee.jones@linaro.org
-Subject: Re: [PATCH 1/4] ASoC: dt-bindings: wcd934x: add bindings for Headset
- Button detection
-Message-ID: <20210510164532.GA241925@robh.at.kernel.org>
-References: <20210510101201.7281-1-srinivas.kandagatla@linaro.org>
- <20210510101201.7281-2-srinivas.kandagatla@linaro.org>
+        Mon, 10 May 2021 09:48:17 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Mon, 10 May 2021 09:48:16 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Vadim Pasternak <vadimp@nvidia.com>
+Cc:     robh+dt@kernel.org, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH hwmon-next v6 2/3] hwmon: (pmbus) Add support for MPS
+ Multi-phase mp2888 controller
+Message-ID: <20210510164816.GA882936@roeck-us.net>
+References: <20210507171421.425817-1-vadimp@nvidia.com>
+ <20210507171421.425817-3-vadimp@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210510101201.7281-2-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20210507171421.425817-3-vadimp@nvidia.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 10, 2021 at 11:11:58AM +0100, Srinivas Kandagatla wrote:
-> Add bindings required for Multi Button Headset detection.
-> WCD934x support Headsets with upto 8 buttons including, impedance measurement
-> on both L/R Headset speakers and cross connection detection.
+On Fri, May 07, 2021 at 08:14:20PM +0300, Vadim Pasternak wrote:
+> Add support for mp2888 device from Monolithic Power Systems, Inc. (MPS)
+> vendor. This is a digital, multi-phase, pulse-width modulation
+> controller.
 > 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> This device supports:
+> - One power rail.
+> - Programmable Multi-Phase up to 10 Phases.
+> - PWM-VID Interface
+> - One pages 0 for telemetry.
+> - Programmable pins for PMBus Address.
+> - Built-In EEPROM to Store Custom Configurations.
+> - Can configured VOUT readout in direct or VID format and allows
+>   setting of different formats on rails 1 and 2. For VID the following
+>   protocols are available: VR13 mode with 5-mV DAC; VR13 mode with
+>   10-mV DAC, IMVP9 mode with 5-mV DAC.
+> 
+> Signed-off-by: Vadim Pasternak <vadimp@nvidia.com>
 > ---
->  .../bindings/sound/qcom,wcd934x.yaml          | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
-
-A search tells me this is not v1... 
-
+> v5->v6
+>  Comments pointed out by Guenter:
+>  - Fix comments for limits in mp2888_read_word_data().
+>  - Remove unnecessary typecasts from mp2888_write_word_data().
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
-> index e8f716b5f875..b25c6ca4e97c 100644
-> --- a/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
-> +++ b/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
-> @@ -77,6 +77,64 @@ properties:
->      minimum: 1800000
->      maximum: 2850000
->  
-> +  qcom,hphl-jack-type-normally-closed:
-> +    description: Indicates that HPHL jack switch type is normally closed
-> +    type: boolean
-> +
-> +  qcom,ground-jack-type-normally-closed:
-> +    description: Indicates that Headset Ground switch type is normally closed
-> +    type: boolean
-
-I asked before if 'normally closed' was the more common case and you 
-said yes. So I'd expect 'open' here, but now you've changed the 
-polarity of the property. And now not present is not described at all. 
-
-> +
-> +  qcom,mbhc-headset-vthreshold-microvolt:
-> +    description: Voltage threshold value for headset detection
-> +    minimum: 0
-> +    maximum: 2850000
-> +
-> +  qcom,mbhc-headphone-vthreshold-microvolt:
-> +    description: Voltage threshold value for headphone detection
-> +    minimum: 0
-> +    maximum: 2850000
-> +
-> +  qcom,mbhc-button0-vthreshold-microvolt:
-> +    description: Voltage threshold value for headset button0
-> +    minimum: 0
-> +    maximum: 500000
-> +
-> +  qcom,mbhc-button1-vthreshold-microvolt:
-> +    description: Voltage threshold value for headset button1
-> +    minimum: 0
-> +    maximum: 500000
-> +
-> +  qcom,mbhc-button2-vthreshold-microvolt:
-> +    description: Voltage threshold value for headset button2
-> +    minimum: 0
-> +    maximum: 500000
-> +
-> +  qcom,mbhc-button3-vthreshold-microvolt:
-> +    description: Voltage threshold value for headset button3
-> +    minimum: 0
-> +    maximum: 500000
-> +
-> +  qcom,mbhc-button4-vthreshold-microvolt:
-> +    description: Voltage threshold value for headset button4
-> +    minimum: 0
-> +    maximum: 500000
-> +
-> +  qcom,mbhc-button5-vthreshold-microvolt:
-> +    description: Voltage threshold value for headset button5
-> +    minimum: 0
-> +    maximum: 500000
-> +
-> +  qcom,mbhc-button6-vthreshold-microvolt:
-> +    description: Voltage threshold value for headset button6
-> +    minimum: 0
-> +    maximum: 500000
-> +
-> +  qcom,mbhc-button7-vthreshold-microvolt:
-> +    description: Voltage threshold value headset button7
-> +    minimum: 0
-> +    maximum: 500000
-
-These can all be a single pattern property: 
-'^qcom,mbhc-button[0-7]-vthreshold-microvolt$'
-
-Are there inter-dependencies between these properties? Are 0-7 
-meaningful or just an index? For the latter case, why not just make this 
-an array?
-
-> +
->    clock-output-names:
->      const: mclk
->  
-> @@ -159,6 +217,13 @@ examples:
->          qcom,micbias2-microvolt = <1800000>;
->          qcom,micbias3-microvolt = <1800000>;
->          qcom,micbias4-microvolt = <1800000>;
-> +        qcom,hphl-jack-type-normally-closed;
-> +        qcom,ground-jack-type-normally-closed;
-> +        qcom,mbhc-button0-vthreshold-microvolt = <75000>;
-> +        qcom,mbhc-button1-vthreshold-microvolt = <150000>;
-> +        qcom,mbhc-button2-vthreshold-microvolt = <237000>;
-> +        qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
-> +        qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
->          clock-names = "extclk";
->          clocks = <&rpmhcc 2>;
->  
-> -- 
-> 2.21.0
+> v4->v5
+>  Comments pointed out by Guenter:
+>  - Fix calculation of PMBUS_READ_VIN.
+>  - Add mp2888_write_word_data() for limits setting.
+>  - Treat PMBUS_POUT_OP_WARN_LIMIT in separate case.
+>  - Drop tuning of "m[PSC_POWER]" and "m[PSC_CURRENT_OUT]" from probing
+>    routine.
+>  Fixes from Vadim:
+>  - Treat PMBUS_IOUT_OC_WARN_LIMIT in separate case.
 > 
+> v3->v4
+>  Comments pointed out by Guenter:
+>   - Fix PMBUS_READ_VIN and limits calculations.
+>   - Add comment for PMBUS_OT_WARN_LIMIT scaling.
+>   - Fix PMBUS_READ_IOUT, PMBUS_READ_POUT, PMBUS_READ_PIN calculations.
+>   - Enable PMBUS_IOUT_OC_WARN_LIMIT and PMBUS_POUT_OP_WARN_LIMIT.
+>  Fixes from Vadim:
+>   - Disable PMBUS_POUT_MAX. Device uses this register for different
+>     purpose.
+>   - Disable PMBUS_MFR_VOU_MIN. Device doe not implement this register.
+>   - Update documentation file.
+> 
+> v2->v3
+>  Comments pointed out by Guenter:
+>  - Fix precision for PMBUS_READ_VIN (it requires adding scale for
+>    PMBUS_VIN_OV_FAULT_LIMIT and PMBUS_VIN_UV_WARN_LIMIT.
+>  - Fix precision for PMBUS_READ_TEMPERATURE_1 (it requires adding
+>    scale for PMBUS_OT_WARN_LIMIT).
+>  - Use DIV_ROUND_CLOSEST_ULL for scaling PMBUS_READ_POUT,
+>    PMBUS_READ_PIN readouts.
+>  Notes and fixes from Vadim:
+>   - READ_IOUT in linear11 does not give write calculation (tested with
+>     external load), while in direct format readouts are correct.
+>   - Disable non-configured phases in mp2888_identify_multiphase().
+> 
+> v1->v2:
+>  Comments pointed out by Guenter:
+>   - Use standard access for getting PMBUS_OT_WARN_LIMIT,
+>     PMBUS_VIN_OV_FAULT_LIMIT, PMBUS_VIN_UV_WARN_LIMIT.
+>   - Use linear11 conversion for PMBUS_READ_VIN, PMBUS_READ_POUT,
+>     PMBUS_READ_PIN, PMBUS_READ_TEMPERATURE_1 and adjust coefficients.
+>   - Add reading phases current from the dedicated registers.
+>   - Add comment for not implemented or implemented not according to the
+> 	spec registers, for which "ENXIO" code is returned.
+>   - Set PMBUS_HAVE_IOUT" statically.
+>   Notes from Vadim:
+>   - READ_IOUT uses direct format, so I did not adjust it like the below
+>     registers.
+> ---
+
+[ ... ]
+
+> +
+> +static int mp2888_write_word_data(struct i2c_client *client, int page, int reg, u16 word)
+> +{
+> +	const struct pmbus_driver_info *info = pmbus_get_driver_info(client);
+> +	struct mp2888_data *data = to_mp2888_data(info);
+> +
+> +	switch (reg) {
+> +	case PMBUS_OT_WARN_LIMIT:
+> +		word = DIV_ROUND_CLOSEST((int)word, MP2888_TEMP_UNIT);
+
+Sorry if I am missing something, but why those typecasts here and below ?
+
+> +		/* Drop unused bits 15:8. */
+> +		word = clamp_val(word, 0, GENMASK(7, 0));
+> +		break;
+> +	case PMBUS_IOUT_OC_WARN_LIMIT:
+> +		/* Fix limit according to total curent resolution. */
+> +		word = data->total_curr_resolution ? DIV_ROUND_CLOSEST((int)word, 8) :
+> +		       DIV_ROUND_CLOSEST((int)word, 4);
+> +		/* Drop unused bits 15:10. */
+> +		word = clamp_val(word, 0, GENMASK(9, 0));
+> +		break;
+> +	case PMBUS_POUT_OP_WARN_LIMIT:
+> +		/* Fix limit according to total curent resolution. */
+> +		word = data->total_curr_resolution ? DIV_ROUND_CLOSEST((int)word, 4) :
+> +		       DIV_ROUND_CLOSEST((int)word, 2);
+> +		/* Drop unused bits 15:10. */
+> +		word = clamp_val(word, 0, GENMASK(9, 0));
+> +		break;
+> +	default:
+> +		return -ENODATA;
+> +	}
+> +	return pmbus_write_word_data(client, page, reg, word);
+> +}
+> +
+> +static int
+> +mp2888_identify_multiphase(struct i2c_client *client, struct mp2888_data *data,
+> +			   struct pmbus_driver_info *info)
+> +{
+> +	int i, ret;
+> +
+> +	ret = i2c_smbus_write_byte_data(client, PMBUS_PAGE, 0);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Identify multiphase number - could be from 1 to 10. */
+> +	ret = i2c_smbus_read_word_data(client, MP2888_MFR_VR_CONFIG1);
+> +	if (ret <= 0)
+> +		return ret;
+> +
+> +	info->phases[0] = ret & GENMASK(3, 0);
+> +
+> +	/*
+> +	 * The device provides a total of 10 PWM pins, and can be configured to different phase
+> +	 * count applications for rail.
+> +	 */
+> +	if (info->phases[0] > MP2888_MAX_PHASE)
+> +		return -EINVAL;
+> +
+> +	/* Disable non-configured phases. */
+> +	for (i = info->phases[0]; i < MP2888_MAX_PHASE; i++)
+> +		info->pfunc[i] = 0;
+
+Not that it matters much, but this is unnecessary since the pmbus core
+won't look at phase data beyond info->phases[].
+
+Guenter
