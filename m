@@ -2,136 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ADBD377F02
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 11:09:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 697FA377F4C
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 11:26:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230151AbhEJJKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 05:10:40 -0400
-Received: from antares.kleine-koenig.org ([94.130.110.236]:35534 "EHLO
-        antares.kleine-koenig.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230093AbhEJJKj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 05:10:39 -0400
-Received: by antares.kleine-koenig.org (Postfix, from userid 1000)
-        id 64E7FB91E57; Mon, 10 May 2021 11:09:34 +0200 (CEST)
-From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        Aditya Prayoga <aditya@kobol.io>
-Subject: [PATCH] arm64: dts: rockchip: helios64: Add support for PCIe
-Date:   Mon, 10 May 2021 11:09:32 +0200
-Message-Id: <20210510090932.970447-1-uwe@kleine-koenig.org>
-X-Mailer: git-send-email 2.30.2
+        id S230218AbhEJJ1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 05:27:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52258 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230229AbhEJJ1l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 05:27:41 -0400
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B7FCC061574
+        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 02:26:36 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id x188so13192647pfd.7
+        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 02:26:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iuM2qFwJUXSo3sJ0uUDN99Vl7wLqkoUYd3aEZh6X+Fg=;
+        b=ZFPLINz9K5Y2ICiDxQuHLQZPjY+KDhrgcDQITj7nAsKoaCeUvw7yepmVPyZy+zjzlA
+         tnDIxC2wl08YncNdYK9+9uhlsZd4ofUuztqW3IXvTESANrefMFhUs+gTrQOwVkXw+d+p
+         3VwZsmhkIj+KlQfez3qd9328zjCOtjaoJImWE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iuM2qFwJUXSo3sJ0uUDN99Vl7wLqkoUYd3aEZh6X+Fg=;
+        b=iw7lZTDN8eyWeOjOcqReS2KK6mqaS+8Jun55v1fViqCpL1HXIiJGH+L+sh14+Nddkm
+         d+0spUXxvGXdQr2lOUCkShOx3LyOGMvNCM7iLN9iLfYHb7NW27v9SmZEm5BeOj1LINLT
+         geG4RiggD2xEvlF2AHz9U2sh5odUX1G8Z2vS7N5J1099cmIfhYgeYt8kyrMNGjawP6N7
+         xHujM+wI50bRFid4grLCuCD4cHmqxL74EgETwCM3mW4uEaNZY6TWKsPv7WuaAx+cWdWl
+         OA3nv3AFjYk34Sjx6aSlmmGSMrzcDL5YdBX/CTv8d7LnXX1q9UbWaJC3sJMicyBWDJYU
+         /FcA==
+X-Gm-Message-State: AOAM530YfjiJ875AyOVTHHgopW8WJTlfHZsz8mIuTjM42E8DvztHgU0U
+        UvDWkNYh4ijuJNlEKNkPfHr52w==
+X-Google-Smtp-Source: ABdhPJyjbHbTp9INK0YHJwsBYB1iYZU0TdNo61ldaxVdgeUWxk/SS1fexDBLZF8U1jD9dWDvis5I3g==
+X-Received: by 2002:a63:f90d:: with SMTP id h13mr24293046pgi.18.1620638795597;
+        Mon, 10 May 2021 02:26:35 -0700 (PDT)
+Received: from ikjn-p920.tpe.corp.google.com ([2401:fa00:1:b:179a:d92b:9be:4135])
+        by smtp.gmail.com with ESMTPSA id a16sm10671391pfc.37.2021.05.10.02.26.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 May 2021 02:26:35 -0700 (PDT)
+From:   Ikjoon Jang <ikjn@chromium.org>
+To:     linux-mediatek@lists.infradead.org
+Cc:     Jiri Kosina <jikos@kernel.org>, linux-input@vger.kernel.org,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Hsinyi Wang <hsinyi@chromium.org>,
+        Ikjoon Jang <ikjn@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: mt8183: add cbas node under cros_ec
+Date:   Mon, 10 May 2021 17:26:31 +0800
+Message-Id: <20210510092631.3141204-1-ikjn@chromium.org>
+X-Mailer: git-send-email 2.31.1.607.g51e8a6a459-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is enough to make the SATA controller visible:
+Add a 'cbas' device node for supporting table mode switch in
+kukui devices.
 
-# lspci
-00:00.0 PCI bridge: Fuzhou Rockchip Electronics Co., Ltd RK3399 PCI Express Root Port
-01:00.0 SATA controller: JMicron Technology Corp. JMB58x AHCI SATA controller
+Kukui platforms with detacheable base have an additional input
+device under cros-ec, which reports SW_TABLET_MODE regarding
+its base state (e.g. base flipped or detached).
 
-Signed-off-by: Uwe Kleine-König <uwe@kleine-koenig.org>
+Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
 ---
- .../dts/rockchip/rk3399-kobol-helios64.dts    | 53 +++++++++++++++++++
- 1 file changed, 53 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts b/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
-index 1dd9535520b2..3c532c4e1cfe 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
-@@ -23,6 +23,16 @@ aliases {
- 		mmc1 = &sdhci;
- 	};
- 
-+	avdd_0v9_s0: avdd-0v9-s0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "avdd_0v9_s0";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <900000>;
-+		regulator-max-microvolt = <900000>;
-+		vin-supply = <&vcc1v8_sys_s3>;
-+	};
-+
- 	avdd_1v8_s0: avdd-1v8-s0 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "avdd_1v8_s0";
-@@ -72,6 +82,18 @@ fan2 {
- 		cooling-levels = <0 80 170 255>;
- 	};
- 
-+	pcie_power: pcie-power {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio1 RK_PD0 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&pcie_pwr>;
-+		pinctrl-names = "default";
-+		regulator-boot-on;
-+		regulator-name = "pcie_power";
-+		startup-delay-us = <10000>;
-+		vin-supply = <&vcc5v0_perdev>;
-+	};
-+
- 	vcc1v8_sys_s0: vcc1v8-sys-s0 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc1v8_sys_s0";
-@@ -109,6 +131,16 @@ regulator-state-mem {
+ arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+index ff56bcfa3370..40030ed48854 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+@@ -816,6 +816,10 @@ usbc_extcon: extcon0 {
+ 			compatible = "google,extcon-usbc-cros-ec";
+ 			google,usb-port-id = <0>;
  		};
- 	};
- 
-+	vcc5v0_perdev: vcc5v0-perdev {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_perdev";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc12v_dcin_bkup>;
-+	};
 +
- 	vcc5v0_sys: vcc5v0-sys {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc5v0_sys";
-@@ -331,6 +363,20 @@ &io_domains {
- 	status = "okay";
++		base_detection: cbas {
++			compatible = "google,cros-cbas";
++		};
+ 	};
  };
  
-+&pcie_phy {
-+	status = "okay";
-+};
-+
-+&pcie0 {
-+	num-lanes = <2>;
-+	status = "okay";
-+
-+	vpcie12v-supply = <&vcc12v_dcin>;
-+	vpcie3v3-supply = <&pcie_power>;
-+	vpcie1v8-supply = <&avdd_1v8_s0>;
-+	vpcie0v9-supply = <&avdd_0v9_s0>;
-+};
-+
- &pinctrl {
- 	gmac {
- 		gphy_reset: gphy-reset {
-@@ -348,6 +394,13 @@ sys_red_led_on: sys-red-led-on {
- 		};
- 	};
- 
-+	pcie {
-+		pcie_pwr: pcie-pwr {
-+			rockchip,pins =
-+				<1 RK_PD0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	pmic {
- 		pmic_int_l: pmic-int-l {
- 			rockchip,pins = <0 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
 -- 
-2.30.2
+2.31.1.607.g51e8a6a459-goog
 
