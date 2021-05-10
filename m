@@ -2,185 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B9B9378EC1
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 15:52:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBD14378EC3
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 15:52:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230518AbhEJNb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 09:31:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48834 "EHLO
+        id S231771AbhEJNbd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 09:31:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240742AbhEJNXC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 09:23:02 -0400
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69423C0613ED
-        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 06:21:57 -0700 (PDT)
-Received: by mail-oi1-x229.google.com with SMTP id d21so15722957oic.11
-        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 06:21:57 -0700 (PDT)
+        with ESMTP id S233319AbhEJNXO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 09:23:14 -0400
+Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2C3AC06138C
+        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 06:22:07 -0700 (PDT)
+Received: by mail-qt1-x833.google.com with SMTP id h21so8088023qtu.5
+        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 06:22:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:to:cc:references:from:subject:message-id:date:user-agent
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=+jxkwaOUOJ3jFOmcNvz3Tue0IZGQ5BF7JUsr74h1aJw=;
-        b=RDP3aUcQ3kfWJ2qNsoh+IhGWdL0LuMa+Msfecy1hzGlXdu2bJDPgswWy3KCwJZlNsZ
-         bAsc+xlFYhZwQPB5yW9mBLSEkciE60xZIceBINttFLL6brqq7SU/AGT+wFJKoA6c/JV9
-         mNZTwH9/XOl5eYDCTMrTvCXpZJK+SVjYNmpMQTc/g/7iI03K2S7VtAVlD7WSJBLM/rsC
-         FwOlnPwf0RPbxDMZoLq9xaMbSLfHCkZCxGQaXMNBk5D0cU7pdZ99OC+b7Tb+/9ON3Xpe
-         pvWY1uGjSQ3Qrthyl1Ty/1JycRK2CkC5JAptvd5EGCb/CKjGTC32uGe7dgltbqjScrBe
-         Ialg==
+        bh=GpFk/RkXBcsoO0wjPghj5V+HTZlbdeYCbg4hpqoR7F4=;
+        b=Pil67YhbGH4k848YkpNUI7ff0wbhTu1avhC0npp39qUZd2aH6/Hvak9xaun3//Q1zI
+         rppyLJC0n4yY6mid/0pUg/Ev7siK6oJEz/9AVk0n2YULFE292TUXNS30Jb0m7Rj012nu
+         EvU404mZI+HFp2LeysmtuzV/IpDEKMgRdd5r0i7/hufWJQ7p+TK0CYiqcqFL3rYAZSrE
+         V8h+B21x8mR+LKElImsMTmTa4vV3G1y7HzbpIBnt1QLnGNZEf6pLkq2pqlqZ/R9GHmwI
+         QAqom9R8gbz1hMkIk6z8zIBfBW6oDhVVSNNlSHhIF0YdGUYi49sH+7ExsYxJUQJ7rUQS
+         9CWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:to:cc:references:from:subject:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=+jxkwaOUOJ3jFOmcNvz3Tue0IZGQ5BF7JUsr74h1aJw=;
-        b=RVlIxc+0adUDNFyjx4xbxpPKMHCPf/cRIwkDqy0e7+kGC4qYr8cPZGzFLCvttH4b7a
-         D5WFfKOVluAbB0wPDGKzCRuSsnzhtkOCY9x+NEYGUkcY8zJpQesz47k3+MEGJcxOTAs9
-         IJCjZltby2kV8HIcwpDIo5NXtbVKdiZag5BWhSWo4Bbo6KWjdR5iVnHQarcsAOxwobqB
-         uAAYRKqVwYSx2C9njmmvXNPtDi4oA8/y7Djor6wKlclJAe0agAa+LlBvC4aVNcrrg6/+
-         d7PG2pZS95nAEF7oS9Xn0nKrqTgycq1IPYVWbsac9JAPloeVqdgF0T0c5i1X6YGISDMx
-         aM7Q==
-X-Gm-Message-State: AOAM5329Yjq/GP5vv1z028FEAvVuCWD9dSPX/ioXRbzNZFH7gNIqaTdy
-        tTotMCeYwQMFCJwPSSSYhNuLG163D7I=
-X-Google-Smtp-Source: ABdhPJy6MymDO0PEDyxboMgM9f8P8uVZk6fkPf+AT8vff060kvAGClf/HK1lRNlxk11rM2Jjyczt1Q==
-X-Received: by 2002:aca:2402:: with SMTP id n2mr11119448oic.113.1620652916908;
-        Mon, 10 May 2021 06:21:56 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id r2sm3128956otq.28.2021.05.10.06.21.55
+        bh=GpFk/RkXBcsoO0wjPghj5V+HTZlbdeYCbg4hpqoR7F4=;
+        b=jmWMghqXPs0+qeI4L0RZcRXwroujG3tRhcxcKZSptnkNwRZ6Adp/VqABebi3Wi6KDV
+         9iuo2rb48uOq5fTF/SdGRpDRy3OXg/q0Panv5De15jEI3ZBUkY0Vipd02feY+pWug2yZ
+         Dj7AvcQc/QdjaiQEt/amV9448D/OuaKuLQ5TXXCLLtOqPeLka8QXGo56Lp9oYLHt3X+i
+         KSSw0HagHm72vKeZmk7uyRddidXf57La1WKRaTUUvHgUV+mD/2NBATVIPcpAEiLACYGF
+         2Ibw4iQqhr+pxws5fMCz51g2nOyMWJosfnHfXqrV7bsRBusmO3it88aeiD7mtWn6tcrb
+         lCZg==
+X-Gm-Message-State: AOAM532UYrXFdpNkKIrfEnDSu39ZNPFbAnLzfb7kPnfKaEq/0SHzISGL
+        gdwAmqBsXDL5Tt+DwTAFLuMJ7w==
+X-Google-Smtp-Source: ABdhPJzfMtCtpMrBDgKuhauvsJ3pKVof7af9u5XGO1kS0J1bHHqd/zgau+HJQUh5MDDV6kHs27Ag4w==
+X-Received: by 2002:a05:622a:2c9:: with SMTP id a9mr7875046qtx.38.1620652926969;
+        Mon, 10 May 2021 06:22:06 -0700 (PDT)
+Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
+        by smtp.gmail.com with ESMTPSA id m16sm11298430qkm.100.2021.05.10.06.22.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 May 2021 06:21:56 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-To:     Boris Lysov <arzamas-16@mail.ee>, matthias.bgg@gmail.com,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20210131234425.9773-1-arzamas-16@mail.ee>
- <20210509211702.549-1-arzamas-16@mail.ee>
- <20210509211702.549-2-arzamas-16@mail.ee>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v2 1/3] watchdog: mtk_wdt: Refactor code to support more
- SoCs
-Message-ID: <efdce3a5-e5b4-19a8-35f1-8a536220bb3f@roeck-us.net>
-Date:   Mon, 10 May 2021 06:21:54 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        Mon, 10 May 2021 06:22:06 -0700 (PDT)
+Subject: Re: [PATCH v2 15/17] crypto: qce: Defer probing if BAM dma is not yet
+ initialized
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bhupesh.linux@gmail.com
+References: <20210505213731.538612-1-bhupesh.sharma@linaro.org>
+ <20210505213731.538612-16-bhupesh.sharma@linaro.org>
+From:   Thara Gopinath <thara.gopinath@linaro.org>
+Message-ID: <7d8bc623-ef12-c7ae-0d12-16b0b1c48ffe@linaro.org>
+Date:   Mon, 10 May 2021 09:22:05 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210509211702.549-2-arzamas-16@mail.ee>
+In-Reply-To: <20210505213731.538612-16-bhupesh.sharma@linaro.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/9/21 2:17 PM, Boris Lysov wrote:
-> This patch makes some constants SoC-dependent to support more watchdogs
-> in the future. It adds shifts of WDT_MODE_KEY and SWSYSRST_KEY to
-> mtk_wdt_data struct. This is done to bring support for various Mediatek
-> watchdogs which use same register structure but slightly different field
-> offsets in the UNLOCK_KEY registers. For example, mt6577 watchdog has
-> WDT_MODE_KEY and SWSYSRST_KEY at [15:8] instead of currently (and only)
-> supported [31:24].
-> Moreover, this patch adds SWSYSRST_KEY value to mtk_wdt_data because this
-> value also depends on specific SoC watchdog, for example mt6577 uses 0x15
-> instead of 0x88.
+
+
+On 5/5/21 5:37 PM, Bhupesh Sharma wrote:
+> Since the Qualcomm qce crypto driver needs the BAM dma driver to be
+> setup first (to allow crypto operations), it makes sense to defer
+> the qce crypto driver probing in case the BAM dma driver is not yet
+> probed.
 > 
-> Signed-off-by: Boris Lysov <arzamas-16@mail.ee>
+> This fixes the qce probe failure issues when both qce and BMA dma
+> are compiled as static part of the kernel.
+> 
+> Cc: Thara Gopinath <thara.gopinath@linaro.org>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Andy Gross <agross@kernel.org>
+> Cc: Herbert Xu <herbert@gondor.apana.org.au>
+> Cc: David S. Miller <davem@davemloft.net>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Michael Turquette <mturquette@baylibre.com>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: dmaengine@vger.kernel.org
+> Cc: linux-clk@vger.kernel.org
+> Cc: linux-crypto@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: bhupesh.linux@gmail.com
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 > ---
->   drivers/watchdog/mtk_wdt.c | 76 ++++++++++++++++++++++++++++----------
->   1 file changed, 57 insertions(+), 19 deletions(-)
+>   drivers/crypto/qce/core.c  | 4 ++++
+>   drivers/dma/qcom/bam_dma.c | 7 +++++++
+>   2 files changed, 11 insertions(+)
 > 
-> diff --git a/drivers/watchdog/mtk_wdt.c b/drivers/watchdog/mtk_wdt.c
-> index 97ca993bd009..9d3091b12c06 100644
-> --- a/drivers/watchdog/mtk_wdt.c
-> +++ b/drivers/watchdog/mtk_wdt.c
-> @@ -44,13 +44,27 @@
->   #define WDT_MODE_IRQ_EN		(1 << 3)
->   #define WDT_MODE_AUTO_START	(1 << 4)
->   #define WDT_MODE_DUAL_EN	(1 << 6)
-> -#define WDT_MODE_KEY		0x22000000
-> +#define WDT_MODE_KEY		0x22
+> diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
+> index 9a7d7ef94687..3e742e9911fa 100644
+> --- a/drivers/crypto/qce/core.c
+> +++ b/drivers/crypto/qce/core.c
+> @@ -15,6 +15,7 @@
+>   #include <linux/types.h>
+>   #include <crypto/algapi.h>
+>   #include <crypto/internal/hash.h>
+> +#include <soc/qcom/bam_dma.h>
 >   
->   #define WDT_SWRST		0x14
->   #define WDT_SWRST_KEY		0x1209
-> -
->   #define WDT_SWSYSRST		0x18U
-> -#define WDT_SWSYS_RST_KEY	0x88000000
-> +
-> +#define MT2712_WDT_MODE_KEY_SHIFT	24		// unlock_key [31:24]
-> +#define MT2712_SWSYSRST_KEY_SHIFT	24		// unlock_key [31:24]
-> +#define MT2712_SWSYSRST_KEY		0x88
-> +
-> +#define MT6589_WDT_MODE_KEY_SHIFT	24		// unlock_key [31:24]
-> +#define MT6589_SWSYSRST_KEY_SHIFT	24		// unlock_key [31:24]
-> +#define MT6589_SWSYSRST_KEY		0x88
-> +
-> +#define MT8183_WDT_MODE_KEY_SHIFT	24		// unlock_key [31:24]
-> +#define MT8183_SWSYSRST_KEY_SHIFT	24		// unlock_key [31:24]
-> +#define MT8183_SWSYSRST_KEY		0x88
-> +
-> +#define MT8192_WDT_MODE_KEY_SHIFT	24		// unlock_key [31:24]
-> +#define MT8192_SWSYSRST_KEY_SHIFT	24		// unlock_key [31:24]
-> +#define MT8192_SWSYSRST_KEY		0x88
+>   #include "core.h"
+>   #include "cipher.h"
+> @@ -201,6 +202,9 @@ static int qce_crypto_probe(struct platform_device *pdev)
+>   			of_match_device(qce_crypto_of_match, &pdev->dev);
+>   	int ret;
 >   
->   #define DRV_NAME		"mtk-wdt"
->   #define DRV_VERSION		"1.0"
-> @@ -60,6 +74,7 @@ static unsigned int timeout;
->   
->   struct mtk_wdt_dev {
->   	struct watchdog_device wdt_dev;
-> +	const struct mtk_wdt_data *data;
->   	void __iomem *wdt_base;
->   	spinlock_t lock; /* protects WDT_SWSYSRST reg */
->   	struct reset_controller_dev rcdev;
-> @@ -67,18 +82,37 @@ struct mtk_wdt_dev {
->   
->   struct mtk_wdt_data {
->   	int toprgu_sw_rst_num;
-> +	u8 wdt_mode_key_shift;
-> +	u8 wdt_swsys_rst_key;
-> +	u8 wdt_swsys_rst_key_shift;
->   };
->   
->   static const struct mtk_wdt_data mt2712_data = {
-> -	.toprgu_sw_rst_num = MT2712_TOPRGU_SW_RST_NUM,
-> +	.toprgu_sw_rst_num =		MT2712_TOPRGU_SW_RST_NUM,
-> +	.wdt_mode_key_shift =		MT2712_WDT_MODE_KEY_SHIFT,
-> +	.wdt_swsys_rst_key_shift =	MT2712_SWSYSRST_KEY_SHIFT,
-> +	.wdt_swsys_rst_key =		MT2712_SWSYSRST_KEY,
-> +};
-> +
-> +static const struct mtk_wdt_data mt6589_data = {
-> +	.toprgu_sw_rst_num =		-1,
-> +	.wdt_mode_key_shift =		MT6589_WDT_MODE_KEY_SHIFT,
-> +	.wdt_swsys_rst_key_shift =	MT6589_SWSYSRST_KEY_SHIFT,
-> +	.wdt_swsys_rst_key =		MT6589_SWSYSRST_KEY,
->   };
->   
->   static const struct mtk_wdt_data mt8183_data = {
-> -	.toprgu_sw_rst_num = MT8183_TOPRGU_SW_RST_NUM,
-> +	.toprgu_sw_rst_num =		MT8183_TOPRGU_SW_RST_NUM,
-> +	.wdt_mode_key_shift =		MT8183_WDT_MODE_KEY_SHIFT,
-> +	.wdt_swsys_rst_key_shift =	MT8183_SWSYSRST_KEY_SHIFT,
-> +	.wdt_swsys_rst_key =		MT8183_SWSYSRST_KEY,
->   };
->   
->   static const struct mtk_wdt_data mt8192_data = {
-> -	.toprgu_sw_rst_num = MT8192_TOPRGU_SW_RST_NUM,
-> +	.toprgu_sw_rst_num =		MT8192_TOPRGU_SW_RST_NUM,
-> +	.wdt_mode_key_shift =		MT8192_WDT_MODE_KEY_SHIFT,
-> +	.wdt_swsys_rst_key_shift =	MT8192_SWSYSRST_KEY_SHIFT,
-> +	.wdt_swsys_rst_key =		MT8192_SWSYSRST_KEY,
->   };
->   
->   static int toprgu_reset_update(struct reset_controller_dev *rcdev,
-> @@ -86,20 +120,20 @@ static int toprgu_reset_update(struct reset_controller_dev *rcdev,
->   {
->   	unsigned int tmp;
->   	unsigned long flags;
-> -	struct mtk_wdt_dev *data =
-> +	struct mtk_wdt_dev *wdev =
+> +	/* qce driver requires BAM dma driver to be setup first */
+> +	if (!bam_is_probed())
+> +		return -EPROBE_DEFER;
 
-Please do not rename variables. If you dislike that the name matches the name
-of the newly introduced structure element, find a different name for that.
+Hi Bhupesh,
 
-Thanks,
-Guenter
+You don't need this here. qce_dma_request returns -EPROBE_DEFER if the 
+dma controller is not probed yet.
+
+-- 
+Warm Regards
+Thara
+>   
+>   	qce = devm_kzalloc(dev, sizeof(*qce), GFP_KERNEL);
+>   	if (!qce)
+> diff --git a/drivers/dma/qcom/bam_dma.c b/drivers/dma/qcom/bam_dma.c
+> index 2bc3b7c7ee5a..c854fcc82dbf 100644
+> --- a/drivers/dma/qcom/bam_dma.c
+> +++ b/drivers/dma/qcom/bam_dma.c
+> @@ -935,6 +935,12 @@ static void bam_channel_init(struct bam_device *bdev, struct bam_chan *bchan,
+>   	INIT_LIST_HEAD(&bchan->desc_list);
+>   }
+>   
+> +bool bam_is_probed(void)
+> +{
+> +	return bam_probed;
+> +}
+> +EXPORT_SYMBOL_GPL(bam_is_probed);
+> +
+>   static const struct of_device_id bam_of_match[] = {
+>   	{ .compatible = "qcom,bam-v1.3.0", .data = &bam_v1_3_reg_info },
+>   	{ .compatible = "qcom,bam-v1.4.0", .data = &bam_v1_4_reg_info },
+> @@ -1084,6 +1090,7 @@ static int bam_dma_probe(struct platform_device *pdev)
+>   	if (ret)
+>   		goto err_unregister_dma;
+>   
+> +	bam_probed = true;
+>   	if (!bdev->bamclk) {
+>   		pm_runtime_disable(&pdev->dev);
+>   		return 0;
+> 
+
