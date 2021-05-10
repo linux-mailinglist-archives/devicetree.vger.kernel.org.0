@@ -2,673 +2,462 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 340D4379A9E
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 01:18:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46898379AC3
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 01:32:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230218AbhEJXTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 19:19:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41840 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230103AbhEJXS4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 19:18:56 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56B63C061574;
-        Mon, 10 May 2021 16:17:50 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id j10so25809950lfb.12;
-        Mon, 10 May 2021 16:17:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=NBvx3ZRoDgl80K9VVvdFB7JT6nJ28gioNqV0ZRb/4Jk=;
-        b=qlDUonFnPnzB3E8J4ZLEVRPCiEZNLX7eaCFMlS+FLH+LVil71L+l7uUtUTujWPHbVr
-         k4FWK2SeAwb0Hhxaaniwg+tCJbpr18b5xVjK9ZRyWvua6Yx6Uxs/puwIiWf2kJ7s4iLj
-         XLygcXjKwBorcj9yN50mOjZJAslju+fB02UeJNFC9mwkeg3p6dnt2dLMBDGy17irPS2M
-         ahyQHMAqKD60/vgAXqlJS3Rd7ZcUB0SOhUYn8B0TkHpRszrgc13ss/Qz2Fda+01SORxw
-         bisAmg/S5FYbF2IR+ZzV17HuXjY/GkwIAz8CxX1P+D8Rv6DUHoIGhji7O/0l89Q5B0zB
-         lGFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=NBvx3ZRoDgl80K9VVvdFB7JT6nJ28gioNqV0ZRb/4Jk=;
-        b=NOxvsZm5cpJGd9Abnp9regaEAP0glDXJ/ErYX3gFHO8/Uyejn3fEe6W5Hl5bRk3NUP
-         0Hyvo+M4biVTK5EVoijLipjiIT0QRsSUmO4riImUQJnj7WAE/ZP+E1jAx8hlq5xrPnmi
-         64IQcSro8LGxnTRwBoCgxcABk4vS7XEij7j8TrOqCciabmtTdgsj+3FuY4kHrZyx//Ys
-         wmj2MIX59XaOoQyX6iCrvDoNBUP9tghgDZI9g7IGnvl6icOOVxn+o0Fi+SQpX5ty7GF+
-         6aAjaBRwpk5gYBm1rNyjXI+sOTdMNZyuO0graI/TbDqO4DJ+ybADMnK5+S3TjeUcpB6d
-         8CzA==
-X-Gm-Message-State: AOAM531zmZNwVyFD7VHJAbcWr4KI2plXldR9PcXcl4McUsqNSpmkSCYi
-        +XhZMj/GXB2+jdT2NCfD8nI=
-X-Google-Smtp-Source: ABdhPJw8WXWtqsli4SevSADDo0IEd9eqXzGRFHXg2PrnoqXjoM+wM0fNsHFBVDpJdlqyvdNPLf2i4g==
-X-Received: by 2002:ac2:488f:: with SMTP id x15mr18328709lfc.413.1620688668736;
-        Mon, 10 May 2021 16:17:48 -0700 (PDT)
-Received: from localhost.localdomain (109-252-193-91.dynamic.spd-mgts.ru. [109.252.193.91])
-        by smtp.gmail.com with ESMTPSA id k8sm2422254lfo.123.2021.05.10.16.17.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 May 2021 16:17:48 -0700 (PDT)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>
-Cc:     linux-tegra@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v7 8/8] dt-bindings: clock: tegra: Convert to schema
-Date:   Tue, 11 May 2021 02:17:37 +0300
-Message-Id: <20210510231737.30313-9-digetx@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210510231737.30313-1-digetx@gmail.com>
-References: <20210510231737.30313-1-digetx@gmail.com>
+        id S229966AbhEJXdj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 19:33:39 -0400
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:46512 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229561AbhEJXdi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 May 2021 19:33:38 -0400
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 10 May 2021 16:32:32 -0700
+X-QCInternal: smtphost
+Received: from gurus-linux.qualcomm.com ([10.46.162.81])
+  by ironmsg01-sd.qualcomm.com with ESMTP; 10 May 2021 16:32:32 -0700
+Received: by gurus-linux.qualcomm.com (Postfix, from userid 383780)
+        id 7B60D21049; Mon, 10 May 2021 16:32:32 -0700 (PDT)
+Date:   Mon, 10 May 2021 16:32:32 -0700
+From:   Guru Das Srinagesh <gurus@codeaurora.org>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] mfd: pm8008: Add driver for QCOM PM8008 PMIC
+Message-ID: <20210510233232.GA22593@codeaurora.org>
+References: <cover.1618278453.git.gurus@codeaurora.org>
+ <a5d5f532ebd28f03b3236003a519adb68a979506.1618278453.git.gurus@codeaurora.org>
+ <20210510155827.GB751702@dell>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210510155827.GB751702@dell>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert NVIDIA Tegra clock bindings to schema.
+On Mon, May 10, 2021 at 04:58:27PM +0100, Lee Jones wrote:
+> On Mon, 12 Apr 2021, Guru Das Srinagesh wrote:
+> 
+> > Qualcomm Technologies, Inc. PM8008 is a dedicated camera PMIC that
+> > integrates all the necessary power management, housekeeping, and
+> > interface support functions into a single IC. Its key features include
+> > overtemperature protection, low-dropout linear regulators, GPIOs, and an
+> > I2C interface.
+> > 
+> > Add an MFD driver to support it.
+> > 
+> > Signed-off-by: Guru Das Srinagesh <gurus@codeaurora.org>
+> > ---
+> >  drivers/mfd/Kconfig       |  15 +++
+> >  drivers/mfd/Makefile      |   1 +
+> >  drivers/mfd/qcom-pm8008.c | 284 ++++++++++++++++++++++++++++++++++++++++++++++
+> >  3 files changed, 300 insertions(+)
+> >  create mode 100644 drivers/mfd/qcom-pm8008.c
+> > 
+> > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> > index b74efa4..d75f937 100644
+> > --- a/drivers/mfd/Kconfig
+> > +++ b/drivers/mfd/Kconfig
+> > @@ -2087,6 +2087,21 @@ config MFD_ACER_A500_EC
+> >  	  The controller itself is ENE KB930, it is running firmware
+> >  	  customized for the specific needs of the Acer A500 hardware.
+> >  
+> > +config MFD_QCOM_PM8008
+> > +	tristate "QCOM PM8008 Power Management IC"
+> > +	depends on I2C && OF
+> > +	select REGMAP_I2C
+> > +	select REGMAP_IRQ
+> > +	help
+> > +	  Select this option to get support for the Qualcomm Technologies, Inc.
+> > +	  PM8008 PMIC chip. PM8008 is a dedicated camera PMIC that integrates
+> > +	  all the necessary power management, housekeeping, and interface
+> > +	  support functions into a single IC. This driver provides common
+> > +	  support for accessing the device by instantiating all the child nodes
+> > +	  under it in the device tree. Additional drivers must be enabled in
+> > +	  order to use the functionality of the device.
+> > +
+> > +
+> 
+> Nit: No double-line spacings please.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- .../bindings/clock/nvidia,tegra114-car.txt    |  63 ----------
- .../bindings/clock/nvidia,tegra124-car.txt    | 107 ----------------
- .../bindings/clock/nvidia,tegra124-car.yaml   | 115 ++++++++++++++++++
- .../bindings/clock/nvidia,tegra20-car.txt     |  63 ----------
- .../bindings/clock/nvidia,tegra20-car.yaml    |  69 +++++++++++
- .../bindings/clock/nvidia,tegra210-car.txt    |  56 ---------
- .../bindings/clock/nvidia,tegra30-car.txt     |  63 ----------
- 7 files changed, 184 insertions(+), 352 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra114-car.txt
- delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra124-car.txt
- create mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra124-car.yaml
- delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra20-car.txt
- create mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra20-car.yaml
- delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra210-car.txt
- delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra30-car.txt
+Done.
 
-diff --git a/Documentation/devicetree/bindings/clock/nvidia,tegra114-car.txt b/Documentation/devicetree/bindings/clock/nvidia,tegra114-car.txt
-deleted file mode 100644
-index 9acea9d93160..000000000000
---- a/Documentation/devicetree/bindings/clock/nvidia,tegra114-car.txt
-+++ /dev/null
-@@ -1,63 +0,0 @@
--NVIDIA Tegra114 Clock And Reset Controller
--
--This binding uses the common clock binding:
--Documentation/devicetree/bindings/clock/clock-bindings.txt
--
--The CAR (Clock And Reset) Controller on Tegra is the HW module responsible
--for muxing and gating Tegra's clocks, and setting their rates.
--
--Required properties :
--- compatible : Should be "nvidia,tegra114-car"
--- reg : Should contain CAR registers location and length
--- clocks : Should contain phandle and clock specifiers for two clocks:
--  the 32 KHz "32k_in", and the board-specific oscillator "osc".
--- #clock-cells : Should be 1.
--  In clock consumers, this cell represents the clock ID exposed by the
--  CAR. The assignments may be found in header file
--  <dt-bindings/clock/tegra114-car.h>.
--- #reset-cells : Should be 1.
--  In clock consumers, this cell represents the bit number in the CAR's
--  array of CLK_RST_CONTROLLER_RST_DEVICES_* registers.
--
--Example SoC include file:
--
--/ {
--	tegra_car: clock {
--		compatible = "nvidia,tegra114-car";
--		reg = <0x60006000 0x1000>;
--		#clock-cells = <1>;
--		#reset-cells = <1>;
--	};
--
--	usb@c5004000 {
--		clocks = <&tegra_car TEGRA114_CLK_USB2>;
--	};
--};
--
--Example board file:
--
--/ {
--	clocks {
--		compatible = "simple-bus";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		osc: clock@0 {
--			compatible = "fixed-clock";
--			reg = <0>;
--			#clock-cells = <0>;
--			clock-frequency = <12000000>;
--		};
--
--		clk_32k: clock@1 {
--			compatible = "fixed-clock";
--			reg = <1>;
--			#clock-cells = <0>;
--			clock-frequency = <32768>;
--		};
--	};
--
--	&tegra_car {
--		clocks = <&clk_32k> <&osc>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/clock/nvidia,tegra124-car.txt b/Documentation/devicetree/bindings/clock/nvidia,tegra124-car.txt
-deleted file mode 100644
-index 7f02fb4ca4ad..000000000000
---- a/Documentation/devicetree/bindings/clock/nvidia,tegra124-car.txt
-+++ /dev/null
-@@ -1,107 +0,0 @@
--NVIDIA Tegra124 and Tegra132 Clock And Reset Controller
--
--This binding uses the common clock binding:
--Documentation/devicetree/bindings/clock/clock-bindings.txt
--
--The CAR (Clock And Reset) Controller on Tegra is the HW module responsible
--for muxing and gating Tegra's clocks, and setting their rates.
--
--Required properties :
--- compatible : Should be "nvidia,tegra124-car" or "nvidia,tegra132-car"
--- reg : Should contain CAR registers location and length
--- clocks : Should contain phandle and clock specifiers for two clocks:
--  the 32 KHz "32k_in", and the board-specific oscillator "osc".
--- #clock-cells : Should be 1.
--  In clock consumers, this cell represents the clock ID exposed by the
--  CAR. The assignments may be found in the header files
--  <dt-bindings/clock/tegra124-car-common.h> (which covers IDs common
--  to Tegra124 and Tegra132) and <dt-bindings/clock/tegra124-car.h>
--  (for Tegra124-specific clocks).
--- #reset-cells : Should be 1.
--  In clock consumers, this cell represents the bit number in the CAR's
--  array of CLK_RST_CONTROLLER_RST_DEVICES_* registers.
--- nvidia,external-memory-controller : phandle of the EMC driver.
--
--The node should contain a "emc-timings" subnode for each supported RAM type (see
--field RAM_CODE in register PMC_STRAPPING_OPT_A).
--
--Required properties for "emc-timings" nodes :
--- nvidia,ram-code : Should contain the value of RAM_CODE this timing set
--  is used for.
--
--Each "emc-timings" node should contain a "timing" subnode for every supported
--EMC clock rate.
--
--Required properties for "timing" nodes :
--- clock-frequency : Should contain the memory clock rate to which this timing
--relates.
--- nvidia,parent-clock-frequency : Should contain the rate at which the current
--parent of the EMC clock should be running at this timing.
--- clocks : Must contain an entry for each entry in clock-names.
--  See ../clocks/clock-bindings.txt for details.
--- clock-names : Must include the following entries:
--  - emc-parent : the clock that should be the parent of the EMC clock at this
--timing.
--
--Example SoC include file:
--
--/ {
--	tegra_car: clock@60006000 {
--		compatible = "nvidia,tegra124-car";
--		reg = <0x60006000 0x1000>;
--		#clock-cells = <1>;
--		#reset-cells = <1>;
--		nvidia,external-memory-controller = <&emc>;
--	};
--
--	usb@c5004000 {
--		clocks = <&tegra_car TEGRA124_CLK_USB2>;
--	};
--};
--
--Example board file:
--
--/ {
--	clocks {
--		compatible = "simple-bus";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		osc: clock@0 {
--			compatible = "fixed-clock";
--			reg = <0>;
--			#clock-cells = <0>;
--			clock-frequency = <112400000>;
--		};
--
--		clk_32k: clock@1 {
--			compatible = "fixed-clock";
--			reg = <1>;
--			#clock-cells = <0>;
--			clock-frequency = <32768>;
--		};
--	};
--
--	&tegra_car {
--		clocks = <&clk_32k> <&osc>;
--	};
--
--	clock@60006000 {
--		emc-timings-3 {
--			nvidia,ram-code = <3>;
--
--			timing-12750000 {
--				clock-frequency = <12750000>;
--				nvidia,parent-clock-frequency = <408000000>;
--				clocks = <&tegra_car TEGRA124_CLK_PLL_P>;
--				clock-names = "emc-parent";
--			};
--			timing-20400000 {
--				clock-frequency = <20400000>;
--				nvidia,parent-clock-frequency = <408000000>;
--				clocks = <&tegra_car TEGRA124_CLK_PLL_P>;
--				clock-names = "emc-parent";
--			};
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/clock/nvidia,tegra124-car.yaml b/Documentation/devicetree/bindings/clock/nvidia,tegra124-car.yaml
-new file mode 100644
-index 000000000000..ec7ab1483652
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/nvidia,tegra124-car.yaml
-@@ -0,0 +1,115 @@
-+# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/nvidia,tegra124-car.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NVIDIA Tegra Clock and Reset Controller
-+
-+maintainers:
-+  - Jon Hunter <jonathanh@nvidia.com>
-+  - Thierry Reding <thierry.reding@gmail.com>
-+
-+description: |
-+  The Clock and Reset (CAR) is the HW module responsible for muxing and gating
-+  Tegra's clocks, and setting their rates. It comprises CLKGEN and RSTGEN units.
-+
-+  CLKGEN provides the registers to program the PLLs. It controls most of
-+  the clock source programming and most of the clock dividers.
-+
-+  CLKGEN input signals include the external clock for the reference frequency
-+  (12 MHz, 26 MHz) and the external clock for the Real Time Clock (32.768 KHz).
-+
-+  Outputs from CLKGEN are inputs clock of the h/w blocks in the Tegra system.
-+
-+  RSTGEN provides the registers needed to control resetting of each block in
-+  the Tegra system.
-+
-+properties:
-+  compatible:
-+    const: nvidia,tegra124-car
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  "#reset-cells":
-+    const: 1
-+
-+  nvidia,external-memory-controller:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      phandle of the external memory controller node
-+
-+patternProperties:
-+  "^emc-timings-[0-9]+$":
-+    type: object
-+    properties:
-+      nvidia,ram-code:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description:
-+          value of the RAM_CODE field in the PMC_STRAPPING_OPT_A register that
-+          this timing set is used for
-+
-+    patternProperties:
-+      "^timing-[0-9]+$":
-+        type: object
-+        properties:
-+          clock-frequency:
-+            description:
-+              external memory clock rate in Hz
-+            minimum: 1000000
-+            maximum: 1000000000
-+
-+          nvidia,parent-clock-frequency:
-+            $ref: /schemas/types.yaml#/definitions/uint32
-+            description:
-+              rate of parent clock in Hz
-+            minimum: 1000000
-+            maximum: 1000000000
-+
-+          clocks:
-+            items:
-+              - description: parent clock of EMC
-+
-+          clock-names:
-+            items:
-+              - const: emc-parent
-+
-+        required:
-+          - clock-frequency
-+          - nvidia,parent-clock-frequency
-+          - clocks
-+          - clock-names
-+
-+        additionalProperties: false
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#clock-cells'
-+  - "#reset-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/tegra124-car.h>
-+
-+    car: clock-controller@60006000 {
-+        compatible = "nvidia,tegra124-car";
-+        reg = <0x60006000 0x1000>;
-+        #clock-cells = <1>;
-+        #reset-cells = <1>;
-+    };
-+
-+    usb-controller@c5004000 {
-+        compatible = "nvidia,tegra20-ehci";
-+        reg = <0xc5004000 0x4000>;
-+        clocks = <&car TEGRA124_CLK_USB2>;
-+        resets = <&car TEGRA124_CLK_USB2>;
-+    };
-diff --git a/Documentation/devicetree/bindings/clock/nvidia,tegra20-car.txt b/Documentation/devicetree/bindings/clock/nvidia,tegra20-car.txt
-deleted file mode 100644
-index 6c5901b503d0..000000000000
---- a/Documentation/devicetree/bindings/clock/nvidia,tegra20-car.txt
-+++ /dev/null
-@@ -1,63 +0,0 @@
--NVIDIA Tegra20 Clock And Reset Controller
--
--This binding uses the common clock binding:
--Documentation/devicetree/bindings/clock/clock-bindings.txt
--
--The CAR (Clock And Reset) Controller on Tegra is the HW module responsible
--for muxing and gating Tegra's clocks, and setting their rates.
--
--Required properties :
--- compatible : Should be "nvidia,tegra20-car"
--- reg : Should contain CAR registers location and length
--- clocks : Should contain phandle and clock specifiers for two clocks:
--  the 32 KHz "32k_in", and the board-specific oscillator "osc".
--- #clock-cells : Should be 1.
--  In clock consumers, this cell represents the clock ID exposed by the
--  CAR. The assignments may be found in header file
--  <dt-bindings/clock/tegra20-car.h>.
--- #reset-cells : Should be 1.
--  In clock consumers, this cell represents the bit number in the CAR's
--  array of CLK_RST_CONTROLLER_RST_DEVICES_* registers.
--
--Example SoC include file:
--
--/ {
--	tegra_car: clock {
--		compatible = "nvidia,tegra20-car";
--		reg = <0x60006000 0x1000>;
--		#clock-cells = <1>;
--		#reset-cells = <1>;
--	};
--
--	usb@c5004000 {
--		clocks = <&tegra_car TEGRA20_CLK_USB2>;
--	};
--};
--
--Example board file:
--
--/ {
--	clocks {
--		compatible = "simple-bus";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		osc: clock@0 {
--			compatible = "fixed-clock";
--			reg = <0>;
--			#clock-cells = <0>;
--			clock-frequency = <12000000>;
--		};
--
--		clk_32k: clock@1 {
--			compatible = "fixed-clock";
--			reg = <1>;
--			#clock-cells = <0>;
--			clock-frequency = <32768>;
--		};
--	};
--
--	&tegra_car {
--		clocks = <&clk_32k> <&osc>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/clock/nvidia,tegra20-car.yaml b/Documentation/devicetree/bindings/clock/nvidia,tegra20-car.yaml
-new file mode 100644
-index 000000000000..459d2a525393
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/nvidia,tegra20-car.yaml
-@@ -0,0 +1,69 @@
-+# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/nvidia,tegra20-car.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NVIDIA Tegra Clock and Reset Controller
-+
-+maintainers:
-+  - Jon Hunter <jonathanh@nvidia.com>
-+  - Thierry Reding <thierry.reding@gmail.com>
-+
-+description: |
-+  The Clock and Reset (CAR) is the HW module responsible for muxing and gating
-+  Tegra's clocks, and setting their rates. It comprises CLKGEN and RSTGEN units.
-+
-+  CLKGEN provides the registers to program the PLLs. It controls most of
-+  the clock source programming and most of the clock dividers.
-+
-+  CLKGEN input signals include the external clock for the reference frequency
-+  (12 MHz, 26 MHz) and the external clock for the Real Time Clock (32.768 KHz).
-+
-+  Outputs from CLKGEN are inputs clock of the h/w blocks in the Tegra system.
-+
-+  RSTGEN provides the registers needed to control resetting of each block in
-+  the Tegra system.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - nvidia,tegra20-car
-+      - nvidia,tegra30-car
-+      - nvidia,tegra114-car
-+      - nvidia,tegra210-car
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  "#reset-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#clock-cells'
-+  - "#reset-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/tegra20-car.h>
-+
-+    car: clock-controller@60006000 {
-+        compatible = "nvidia,tegra20-car";
-+        reg = <0x60006000 0x1000>;
-+        #clock-cells = <1>;
-+        #reset-cells = <1>;
-+    };
-+
-+    usb-controller@c5004000 {
-+        compatible = "nvidia,tegra20-ehci";
-+        reg = <0xc5004000 0x4000>;
-+        clocks = <&car TEGRA20_CLK_USB2>;
-+        resets = <&car TEGRA20_CLK_USB2>;
-+    };
-diff --git a/Documentation/devicetree/bindings/clock/nvidia,tegra210-car.txt b/Documentation/devicetree/bindings/clock/nvidia,tegra210-car.txt
-deleted file mode 100644
-index 26f237f641b7..000000000000
---- a/Documentation/devicetree/bindings/clock/nvidia,tegra210-car.txt
-+++ /dev/null
-@@ -1,56 +0,0 @@
--NVIDIA Tegra210 Clock And Reset Controller
--
--This binding uses the common clock binding:
--Documentation/devicetree/bindings/clock/clock-bindings.txt
--
--The CAR (Clock And Reset) Controller on Tegra is the HW module responsible
--for muxing and gating Tegra's clocks, and setting their rates.
--
--Required properties :
--- compatible : Should be "nvidia,tegra210-car"
--- reg : Should contain CAR registers location and length
--- clocks : Should contain phandle and clock specifiers for two clocks:
--  the 32 KHz "32k_in".
--- #clock-cells : Should be 1.
--  In clock consumers, this cell represents the clock ID exposed by the
--  CAR. The assignments may be found in header file
--  <dt-bindings/clock/tegra210-car.h>.
--- #reset-cells : Should be 1.
--  In clock consumers, this cell represents the bit number in the CAR's
--  array of CLK_RST_CONTROLLER_RST_DEVICES_* registers.
--
--Example SoC include file:
--
--/ {
--	tegra_car: clock {
--		compatible = "nvidia,tegra210-car";
--		reg = <0x60006000 0x1000>;
--		#clock-cells = <1>;
--		#reset-cells = <1>;
--	};
--
--	usb@c5004000 {
--		clocks = <&tegra_car TEGRA210_CLK_USB2>;
--	};
--};
--
--Example board file:
--
--/ {
--	clocks {
--		compatible = "simple-bus";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		clk_32k: clock@1 {
--			compatible = "fixed-clock";
--			reg = <1>;
--			#clock-cells = <0>;
--			clock-frequency = <32768>;
--		};
--	};
--
--	&tegra_car {
--		clocks = <&clk_32k>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/clock/nvidia,tegra30-car.txt b/Documentation/devicetree/bindings/clock/nvidia,tegra30-car.txt
-deleted file mode 100644
-index 63618cde12df..000000000000
---- a/Documentation/devicetree/bindings/clock/nvidia,tegra30-car.txt
-+++ /dev/null
-@@ -1,63 +0,0 @@
--NVIDIA Tegra30 Clock And Reset Controller
--
--This binding uses the common clock binding:
--Documentation/devicetree/bindings/clock/clock-bindings.txt
--
--The CAR (Clock And Reset) Controller on Tegra is the HW module responsible
--for muxing and gating Tegra's clocks, and setting their rates.
--
--Required properties :
--- compatible : Should be "nvidia,tegra30-car"
--- reg : Should contain CAR registers location and length
--- clocks : Should contain phandle and clock specifiers for two clocks:
--  the 32 KHz "32k_in", and the board-specific oscillator "osc".
--- #clock-cells : Should be 1.
--  In clock consumers, this cell represents the clock ID exposed by the
--  CAR. The assignments may be found in header file
--  <dt-bindings/clock/tegra30-car.h>.
--- #reset-cells : Should be 1.
--  In clock consumers, this cell represents the bit number in the CAR's
--  array of CLK_RST_CONTROLLER_RST_DEVICES_* registers.
--
--Example SoC include file:
--
--/ {
--	tegra_car: clock {
--		compatible = "nvidia,tegra30-car";
--		reg = <0x60006000 0x1000>;
--		#clock-cells = <1>;
--		#reset-cells = <1>;
--	};
--
--	usb@c5004000 {
--		clocks = <&tegra_car TEGRA30_CLK_USB2>;
--	};
--};
--
--Example board file:
--
--/ {
--	clocks {
--		compatible = "simple-bus";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		osc: clock@0 {
--			compatible = "fixed-clock";
--			reg = <0>;
--			#clock-cells = <0>;
--			clock-frequency = <12000000>;
--		};
--
--		clk_32k: clock@1 {
--			compatible = "fixed-clock";
--			reg = <1>;
--			#clock-cells = <0>;
--			clock-frequency = <32768>;
--		};
--	};
--
--	&tegra_car {
--		clocks = <&clk_32k> <&osc>;
--	};
--};
--- 
-2.30.2
+> 
+> >  menu "Multimedia Capabilities Port drivers"
+> >  	depends on ARCH_SA1100
+> >  
+> > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> > index 834f546..a5dda823 100644
+> > --- a/drivers/mfd/Makefile
+> > +++ b/drivers/mfd/Makefile
+> > @@ -264,6 +264,7 @@ obj-$(CONFIG_MFD_ROHM_BD718XX)	+= rohm-bd718x7.o
+> >  obj-$(CONFIG_MFD_STMFX) 	+= stmfx.o
+> >  obj-$(CONFIG_MFD_KHADAS_MCU) 	+= khadas-mcu.o
+> >  obj-$(CONFIG_MFD_ACER_A500_EC)	+= acer-ec-a500.o
+> > +obj-$(CONFIG_MFD_QCOM_PM8008)	+= qcom-pm8008.o
+> >  
+> >  obj-$(CONFIG_SGI_MFD_IOC3)	+= ioc3.o
+> >  obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)	+= simple-mfd-i2c.o
+> > diff --git a/drivers/mfd/qcom-pm8008.c b/drivers/mfd/qcom-pm8008.c
+> > new file mode 100644
+> > index 0000000..9315389
+> > --- /dev/null
+> > +++ b/drivers/mfd/qcom-pm8008.c
+> > @@ -0,0 +1,284 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> > + */
+> > +
+> > +#include <linux/bitops.h>
+> > +#include <linux/i2c.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/irq.h>
+> > +#include <linux/irqdomain.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of_platform.h>
+> > +#include <linux/pinctrl/consumer.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/slab.h>
+> > +#include <linux/of_device.h>
+> 
+> Alphabetical please.
+> 
+> '\n' here.
 
+Done.
+
+> 
+> > +#include <dt-bindings/mfd/qcom-pm8008.h>
+> > +
+> > +#define I2C_INTR_STATUS_BASE	0x0550
+> > +#define INT_RT_STS_OFFSET	0x10
+> > +#define INT_SET_TYPE_OFFSET	0x11
+> > +#define INT_POL_HIGH_OFFSET	0x12
+> > +#define INT_POL_LOW_OFFSET	0x13
+> > +#define INT_LATCHED_CLR_OFFSET	0x14
+> > +#define INT_EN_SET_OFFSET	0x15
+> > +#define INT_EN_CLR_OFFSET	0x16
+> > +#define INT_LATCHED_STS_OFFSET	0x18
+> 
+> Can you tab these out so they all line up?
+
+Done.
+
+> 
+> > +enum {
+> > +	PM8008_MISC,
+> > +	PM8008_TEMP_ALARM,
+> > +	PM8008_GPIO1,
+> > +	PM8008_GPIO2,
+> > +	PM8008_NUM_PERIPHS,
+> > +};
+> > +
+> > +#define PM8008_PERIPH_0_BASE	0x900
+> > +#define PM8008_PERIPH_1_BASE	0x2400
+> > +#define PM8008_PERIPH_2_BASE	0xC000
+> > +#define PM8008_PERIPH_3_BASE	0xC100
+> > +
+> > +#define PM8008_TEMP_ALARM_ADDR	PM8008_PERIPH_1_BASE
+> > +#define PM8008_GPIO1_ADDR	PM8008_PERIPH_2_BASE
+> > +#define PM8008_GPIO2_ADDR	PM8008_PERIPH_3_BASE
+> > +
+> > +#define PM8008_STATUS_BASE	(PM8008_PERIPH_0_BASE | INT_LATCHED_STS_OFFSET)
+> > +#define PM8008_MASK_BASE	(PM8008_PERIPH_0_BASE | INT_EN_SET_OFFSET)
+> > +#define PM8008_UNMASK_BASE	(PM8008_PERIPH_0_BASE | INT_EN_CLR_OFFSET)
+> > +#define PM8008_TYPE_BASE	(PM8008_PERIPH_0_BASE | INT_SET_TYPE_OFFSET)
+> > +#define PM8008_ACK_BASE		(PM8008_PERIPH_0_BASE | INT_LATCHED_CLR_OFFSET)
+> > +#define PM8008_POLARITY_HI_BASE	(PM8008_PERIPH_0_BASE | INT_POL_HIGH_OFFSET)
+> > +#define PM8008_POLARITY_LO_BASE	(PM8008_PERIPH_0_BASE | INT_POL_LOW_OFFSET)
+> > +
+> > +#define ADDRESS_OFFSET(paddr, base)	(paddr - base)
+> 
+> No need for this.
+> 
+> > +#define PM8008_PERIPH_OFFSET(paddr)	\
+> > +	ADDRESS_OFFSET(paddr, PM8008_PERIPH_0_BASE)
+> 
+> #define PM8008_PERIPH_OFFSET(paddr)	paddr - PM8008_PERIPH_0_BASE
+
+Done.
+
+> 
+> > +struct pm8008_data {
+> > +	struct device *dev;
+> > +	struct regmap *regmap;
+> > +	int irq;
+> > +	struct regmap_irq_chip_data *irq_data;
+> > +};
+> > +
+> > +static unsigned int p0_offs[] = {PM8008_PERIPH_OFFSET(PM8008_PERIPH_0_BASE)};
+> > +static unsigned int p1_offs[] = {PM8008_PERIPH_OFFSET(PM8008_PERIPH_1_BASE)};
+> > +static unsigned int p2_offs[] = {PM8008_PERIPH_OFFSET(PM8008_PERIPH_2_BASE)};
+> > +static unsigned int p3_offs[] = {PM8008_PERIPH_OFFSET(PM8008_PERIPH_3_BASE)};
+> > +
+> > +static struct regmap_irq_sub_irq_map pm8008_sub_reg_offsets[] = {
+> > +	REGMAP_IRQ_MAIN_REG_OFFSET(p0_offs),
+> > +	REGMAP_IRQ_MAIN_REG_OFFSET(p1_offs),
+> > +	REGMAP_IRQ_MAIN_REG_OFFSET(p2_offs),
+> > +	REGMAP_IRQ_MAIN_REG_OFFSET(p3_offs),
+> > +};
+> > +
+> > +static unsigned int pm8008_virt_regs[] = {
+> > +	PM8008_POLARITY_HI_BASE,
+> > +	PM8008_POLARITY_LO_BASE,
+> > +};
+> > +
+> > +enum {
+> > +	POLARITY_HI_INDEX,
+> > +	POLARITY_LO_INDEX,
+> > +	PM8008_NUM_VIRT_REGS,
+> > +};
+> > +
+> > +static struct regmap_irq pm8008_irqs[] = {
+> > +	/* MISC IRQs*/
+> 
+> Nit: Missing ' '.
+> 
+> Why are these comments required?  Isn't the nomenclature enough?
+
+Removing comments as nomenclature is enough.
+
+> 
+> > +	REGMAP_IRQ_REG(PM8008_IRQ_MISC_UVLO,	PM8008_MISC,	BIT(0)),
+> > +	REGMAP_IRQ_REG(PM8008_IRQ_MISC_OVLO,	PM8008_MISC,	BIT(1)),
+> > +	REGMAP_IRQ_REG(PM8008_IRQ_MISC_OTST2,	PM8008_MISC,	BIT(2)),
+> > +	REGMAP_IRQ_REG(PM8008_IRQ_MISC_OTST3,	PM8008_MISC,	BIT(3)),
+> > +	REGMAP_IRQ_REG(PM8008_IRQ_MISC_LDO_OCP,	PM8008_MISC,	BIT(4)),
+> > +	/* TEMP_ALARM IRQs */
+> > +	REGMAP_IRQ_REG(PM8008_IRQ_TEMP_ALARM,	PM8008_TEMP_ALARM, BIT(0)),
+> > +	/* GPIO1 IRQs */
+> > +	REGMAP_IRQ_REG(PM8008_IRQ_GPIO1,	PM8008_GPIO1,	BIT(0)),
+> > +	/* GPIO2 IRQs */
+> > +	REGMAP_IRQ_REG(PM8008_IRQ_GPIO2,	PM8008_GPIO2,	BIT(0)),
+> > +};
+> > +
+> > +static int pm8008_set_type_virt(unsigned int **virt_buf,
+> > +				      unsigned int type, unsigned long hwirq,
+> > +				      int reg)
+> > +{
+> > +	switch (type) {
+> > +	case IRQ_TYPE_EDGE_FALLING:
+> > +	case IRQ_TYPE_LEVEL_LOW:
+> > +		virt_buf[POLARITY_HI_INDEX][reg] &= ~pm8008_irqs[hwirq].mask;
+> > +		virt_buf[POLARITY_LO_INDEX][reg] |= pm8008_irqs[hwirq].mask;
+> > +		break;
+> > +
+> 
+> Not sure these '\n's add anything except more LoC.
+
+I'd like to keep these newlines as I feel they improve readability.
+
+> 
+> > +	case IRQ_TYPE_EDGE_RISING:
+> > +	case IRQ_TYPE_LEVEL_HIGH:
+> > +		virt_buf[POLARITY_HI_INDEX][reg] |= pm8008_irqs[hwirq].mask;
+> > +		virt_buf[POLARITY_LO_INDEX][reg] &= ~pm8008_irqs[hwirq].mask;
+> > +		break;
+> > +
+> > +	case IRQ_TYPE_EDGE_BOTH:
+> > +		virt_buf[POLARITY_HI_INDEX][reg] |= pm8008_irqs[hwirq].mask;
+> > +		virt_buf[POLARITY_LO_INDEX][reg] |= pm8008_irqs[hwirq].mask;
+> > +		break;
+> > +
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static struct regmap_irq_chip pm8008_irq_chip = {
+> > +	.name			= "pm8008_irq",
+> > +	.main_status		= I2C_INTR_STATUS_BASE,
+> > +	.num_main_regs		= 1,
+> > +	.num_virt_regs		= PM8008_NUM_VIRT_REGS,
+> > +	.irqs			= pm8008_irqs,
+> > +	.num_irqs		= ARRAY_SIZE(pm8008_irqs),
+> > +	.num_regs		= PM8008_NUM_PERIPHS,
+> > +	.not_fixed_stride	= true,
+> > +	.sub_reg_offsets	= pm8008_sub_reg_offsets,
+> > +	.set_type_virt		= pm8008_set_type_virt,
+> > +	.status_base		= PM8008_STATUS_BASE,
+> > +	.mask_base		= PM8008_MASK_BASE,
+> > +	.unmask_base		= PM8008_UNMASK_BASE,
+> > +	.type_base		= PM8008_TYPE_BASE,
+> > +	.ack_base		= PM8008_ACK_BASE,
+> > +	.virt_reg_base		= pm8008_virt_regs,
+> > +	.num_type_reg		= PM8008_NUM_PERIPHS,
+> > +};
+> > +
+> > +static struct regmap_config qcom_mfd_regmap_cfg = {
+> > +	.reg_bits	= 16,
+> > +	.val_bits	= 8,
+> > +	.max_register	= 0xFFFF,
+> > +};
+> > +
+> > +static int pm8008_init(struct pm8008_data *chip)
+> > +{
+> > +	int rc;
+> > +
+> > +	/*
+> > +	 * Set TEMP_ALARM peripheral's TYPE so that the regmap-irq framework
+> > +	 * reads this as the default value instead of zero, the HW default.
+> > +	 * This is required to enable the writing of TYPE registers in
+> > +	 * regmap_irq_sync_unlock().
+> > +	 */
+> > +	rc = regmap_write(chip->regmap,
+> > +			 (PM8008_TEMP_ALARM_ADDR | INT_SET_TYPE_OFFSET),
+> > +			 BIT(0));
+> > +	if (rc)
+> > +		return rc;
+> > +
+> > +	/* Do the same for GPIO1 and GPIO2 peripherals */
+> > +	rc = regmap_write(chip->regmap,
+> > +			 (PM8008_GPIO1_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
+> > +	if (rc)
+> > +		return rc;
+> > +
+> > +	rc = regmap_write(chip->regmap,
+> > +			 (PM8008_GPIO2_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
+> > +
+> > +	return rc;
+> > +}
+> > +
+> > +static int pm8008_probe_irq_peripherals(struct pm8008_data *chip,
+> > +					int client_irq)
+> > +{
+> > +	int rc, i;
+> > +	struct regmap_irq_type *type;
+> > +	struct regmap_irq_chip_data *irq_data;
+> > +
+> > +	rc = pm8008_init(chip);
+> > +	if (rc) {
+> > +		dev_err(chip->dev, "Init failed: %d\n", rc);
+> > +		return rc;
+> > +	}
+> > +
+> > +	for (i = 0; i < ARRAY_SIZE(pm8008_irqs); i++) {
+> > +		type = &pm8008_irqs[i].type;
+> > +
+> > +		type->type_reg_offset	  = pm8008_irqs[i].reg_offset;
+> > +		type->type_rising_val	  = pm8008_irqs[i].mask;
+> > +		type->type_falling_val	  = pm8008_irqs[i].mask;
+> > +		type->type_level_high_val = 0;
+> > +		type->type_level_low_val  = 0;
+> > +
+> > +		if (type->type_reg_offset == PM8008_MISC)
+> > +			type->types_supported = IRQ_TYPE_EDGE_RISING;
+> > +		else
+> > +			type->types_supported = (IRQ_TYPE_EDGE_BOTH |
+> > +				IRQ_TYPE_LEVEL_HIGH | IRQ_TYPE_LEVEL_LOW);
+> > +	}
+> > +
+> > +	rc = devm_regmap_add_irq_chip(chip->dev, chip->regmap, client_irq,
+> > +			IRQF_SHARED, 0, &pm8008_irq_chip, &irq_data);
+> > +	if (rc) {
+> > +		dev_err(chip->dev, "Failed to add IRQ chip: %d\n", rc);
+> > +		return rc;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int pm8008_probe(struct i2c_client *client,
+> > +			     const struct i2c_device_id *id)
+> > +{
+> > +	int rc;
+> > +	struct pm8008_data *chip;
+> > +
+> > +	chip = devm_kzalloc(&client->dev, sizeof(*chip), GFP_KERNEL);
+> > +	if (!chip)
+> > +		return -ENOMEM;
+> > +
+> > +	chip->dev = &client->dev;
+> > +	chip->regmap = devm_regmap_init_i2c(client, &qcom_mfd_regmap_cfg);
+> > +	if (!chip->regmap)
+> > +		return -ENODEV;
+> > +
+> > +	i2c_set_clientdata(client, chip);
+> > +	if (of_find_property(chip->dev->of_node, "interrupt-controller",
+> > +			     NULL)) {
+> 
+> of_property_read_bool()
+> 
+> No need for this '\n' - place it all one line please.
+
+Done.
+
+> 
+> > +		rc = pm8008_probe_irq_peripherals(chip, client->irq);
+> > +		if (rc)
+> > +			dev_err(chip->dev, "Failed to probe irq periphs: %d\n",
+> > +				rc);
+> 
+> One line please.
+
+Done (forgot that the 80-char limit has been increased now).
+
+> 
+> > +	}
+> > +
+> > +	return devm_of_platform_populate(chip->dev);
+> > +}
+> > +
+> > +static int pm8008_remove(struct i2c_client *client)
+> > +{
+> > +	i2c_set_clientdata(client, NULL);
+> 
+> This should be done for you by the Device Driver core.
+
+Sure, I'll just drop specifying a .remove driver callback then.
+
+> 
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct of_device_id pm8008_match[] = {
+> > +	{ .compatible = "qcom,pm8008", },
+> > +	{ },
+> > +};
+> > +
+> > +static const struct i2c_device_id pm8008_id[] = {
+> > +	{ "pm8008", 0 },
+> > +	{ },
+> > +};
+> > +MODULE_DEVICE_TABLE(i2c, pm8008_id);
+> 
+> Use .probe_new, then you can omit this.
+
+Done.
+
+> 
+> > +static struct i2c_driver pm8008_mfd_driver = {
+> > +	.driver = {
+> > +		.name = "mfd-pm8008",
+> 
+> No such thing as 'mfd', please drop that from the name.
+
+Done; will simply use "pm8008" then.
+
+> 
+> > +		.of_match_table = pm8008_match,
+> > +	},
+> > +	.probe		= pm8008_probe,
+> > +	.remove		= pm8008_remove,
+> > +	.id_table	= pm8008_id,
+> > +};
+> > +module_i2c_driver(pm8008_mfd_driver);
+> > +
+> > +MODULE_LICENSE("GPL v2");
+> > +MODULE_ALIAS("i2c:qcom-pm8008");
+
+Thank you.
+
+Guru Das.
