@@ -2,129 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45EC5379646
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 19:45:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF6313796CC
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 20:06:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231591AbhEJRpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 13:45:12 -0400
-Received: from mail-pg1-f182.google.com ([209.85.215.182]:41842 "EHLO
-        mail-pg1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231187AbhEJRpL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 13:45:11 -0400
-Received: by mail-pg1-f182.google.com with SMTP id m37so13833765pgb.8;
-        Mon, 10 May 2021 10:44:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=s5lmK1+OZLwxBU1OoSI15fp+aIvsLBGSfbw/McbfXvs=;
-        b=WKOtZoH0g4qNrr+g+dFULr6AGm++R4xByY3LKbf3Jo7h1Q+fW3eKNUOOtC6POZYtgL
-         wGZCHJVGebQeOLybqejryRqYpadyM9wq7r0v9ACsGXJHXn7oo4NsVBVO7qKmOXrPLYyn
-         EMME/hFZcYpEMS7kSGDNMkPTxLjgGwhd1VG32h6hc5ARitDIOlLS+xYLv/LjHPwtLMiQ
-         n4tC9La2UoMzAAiZMWaMeY4FtukbfKIl/weoLW1LWcph56k4jyDA55Er9ZIVkGaZSKDO
-         Pdt28z2uo5jr7/zzIs7hDOpZWb9TQ9WWLDw7oI/cTWAC8heV6MGTV2g65j8nuf9J0wA/
-         mV5Q==
-X-Gm-Message-State: AOAM53181N0USQ0v87gveft5sSaEcoyngYeDBjxQaZe3YeAsfsBL0rAX
-        ob66GaFrN0/KvmzvJlhnigRkSsmUX9QWAw==
-X-Google-Smtp-Source: ABdhPJw1Ep+d8PgXoQHvR+7kiCh1SLIFNgftTmuA/rMKH27jgP9UTxB7p8JfQv142Lj38pLDQJ9Xrg==
-X-Received: by 2002:a62:ea10:0:b029:25a:9902:43f3 with SMTP id t16-20020a62ea100000b029025a990243f3mr26075477pfh.68.1620668646731;
-        Mon, 10 May 2021 10:44:06 -0700 (PDT)
-Received: from localhost ([2601:647:5b00:1161:a4cc:eef9:fbc0:2781])
-        by smtp.gmail.com with ESMTPSA id 33sm11538907pgq.21.2021.05.10.10.44.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 May 2021 10:44:06 -0700 (PDT)
-Date:   Mon, 10 May 2021 10:44:05 -0700
-From:   Moritz Fischer <mdf@kernel.org>
-To:     Nava kishore Manne <navam@xilinx.com>
-Cc:     Moritz Fischer <mdf@kernel.org>,
-        "trix@redhat.com" <trix@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Michal Simek <michals@xilinx.com>,
-        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        git <git@xilinx.com>,
-        "chinnikishore369@gmail.com" <chinnikishore369@gmail.com>
-Subject: Re: [PATCH 1/2] fpga: mgr: Adds secure BitStream loading support
-Message-ID: <YJlw5fk0ORhioDb4@epycbox.lan>
-References: <20210118025058.10051-1-nava.manne@xilinx.com>
- <YApf1jlEghbnDFo/@archbook>
- <MWHPR02MB2623B63A5359BB35B89BF086C2BB9@MWHPR02MB2623.namprd02.prod.outlook.com>
- <BN6PR02MB2612733F9D85ED6A36BBF801C2989@BN6PR02MB2612.namprd02.prod.outlook.com>
+        id S230165AbhEJSHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 14:07:21 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:35770 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230357AbhEJSHV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 14:07:21 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14AI6AhD126158;
+        Mon, 10 May 2021 13:06:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1620669970;
+        bh=+ymKHzTttndT+GEoa/+WOh5EyYjEL3llmrmJjo9sJG4=;
+        h=From:To:CC:Subject:Date;
+        b=cFv4+DPMH6WNLBF+4CT0fVK8vALHVHAnWqJWilcv6yTgTWdNOpmC/MUX72woLKaEs
+         K30nRtRIGRj1L8c7EBcVgaOu59PhdEX/cXg+cqvKeFapdu/N65NI3zGTiya6pNwVRY
+         HG8SgfoGxJ2K2D6vVfFPH9bxtF54pZLa2x9mTHYI=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14AI6Aq3066625
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 10 May 2021 13:06:10 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 10
+ May 2021 13:06:09 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 10 May 2021 13:06:09 -0500
+Received: from ula0132425.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14AI66K3001704;
+        Mon, 10 May 2021 13:06:07 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?P=C3=A9ter=20Ujfalusi?= <peter.ujfalusi@gmail.com>,
+        <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: [PATCH v2] arm64: dts: ti: j7200-main: Mark Main NAVSS as dma-coherent
+Date:   Mon, 10 May 2021 23:36:01 +0530
+Message-ID: <20210510180601.19458-1-vigneshr@ti.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BN6PR02MB2612733F9D85ED6A36BBF801C2989@BN6PR02MB2612.namprd02.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 03, 2021 at 10:11:51AM +0000, Nava kishore Manne wrote:
-> Ping!
-> 
-> > -----Original Message-----
-> > From: Nava kishore Manne
-> > Sent: Wednesday, January 27, 2021 2:43 PM
-> > To: Moritz Fischer <mdf@kernel.org>
-> > Cc: trix@redhat.com; robh+dt@kernel.org; Michal Simek
-> > <michals@xilinx.com>; linux-fpga@vger.kernel.org;
-> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
-> > kernel@vger.kernel.org; git <git@xilinx.com>; chinnikishore369@gmail.com
-> > Subject: RE: [PATCH 1/2] fpga: mgr: Adds secure BitStream loading support
-> > 
-> > Hi Moritz,
-> > 
-> > 	Thanks for the review.
-> > Please find my response inline.
-> > 
-> > > -----Original Message-----
-> > > From: Moritz Fischer <mdf@kernel.org>
-> > > Sent: Friday, January 22, 2021 10:47 AM
-> > > To: Nava kishore Manne <navam@xilinx.com>
-> > > Cc: mdf@kernel.org; trix@redhat.com; robh+dt@kernel.org; Michal Simek
-> > > <michals@xilinx.com>; linux-fpga@vger.kernel.org;
-> > > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> > > linux- kernel@vger.kernel.org; git <git@xilinx.com>;
-> > > chinnikishore369@gmail.com
-> > > Subject: Re: [PATCH 1/2] fpga: mgr: Adds secure BitStream loading
-> > > support
-> > >
-> > > On Mon, Jan 18, 2021 at 08:20:57AM +0530, Nava kishore Manne wrote:
-> > > > This commit adds secure flags to the framework to support secure
-> > > > BitStream Loading.
-> > > >
-> > > > Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
-> > > > ---
-> > > >  drivers/fpga/of-fpga-region.c | 10 ++++++++++
-> > > > include/linux/fpga/fpga-mgr.h | 12 ++++++++++++
-> > > >  2 files changed, 22 insertions(+)
-> > > >
-> > > > diff --git a/drivers/fpga/of-fpga-region.c
-> > > > b/drivers/fpga/of-fpga-region.c index e405309baadc..3a5eb4808888
-> > > > 100644
-> > > > --- a/drivers/fpga/of-fpga-region.c
-> > > > +++ b/drivers/fpga/of-fpga-region.c
-> > > > @@ -228,6 +228,16 @@ static struct fpga_image_info
-> > > *of_fpga_region_parse_ov(
-> > > >  	if (of_property_read_bool(overlay, "encrypted-fpga-config"))
-> > > >  		info->flags |= FPGA_MGR_ENCRYPTED_BITSTREAM;
-> > > >
-> > > > +	if (of_property_read_bool(overlay, "userkey-encrypted-fpga-
-> > > config"))
-> > > > +		info->flags |=
-> > > FPGA_MGR_USERKEY_ENCRYPTED_BITSTREAM;
-> > >
-> > > Can this just be encrypted-fpga-config/FPGA_MGR_ENCRYPTED?
-> > 
-> > In Encryption we have two kinds of use case one is Encrypted Bitstream
-> > loading with Device-key and Other one is Encrypted Bitstream loading with
-> > User-key. To differentiate both the use cases this Changes are needed.
-> > 
-> > Regards,
-> > Navakishore.
+Traffic through main NAVSS interconnect is coherent wrt ARM caches on
+J7200 SoC.  Add missing dma-coherent property to main_navss node.
 
-Is this region specific, or could this be a sysfs attribute?
+Also add dma-ranges to be consistent with mcu_navss node
+and with AM65/J721e main_navss and mcu_navss nodes.
 
-- Moritz
+Fixes: d361ed88455fe ("arm64: dts: ti: Add support for J7200 SoC")
+Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+Reviewed-by: Peter Ujfalusi <peter.ujfalusi@gmail.com>
+---
+
+v2:
+Pick up Reviewed-by and update commit msg as suggested by Peter
+v1: https://lore.kernel.org/r/20210427175130.29451-1-vigneshr@ti.com
+
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+index f86c493a44f1..a6826f1888ef 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+@@ -85,6 +85,8 @@ main_navss: bus@30000000 {
+ 		#size-cells = <2>;
+ 		ranges = <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>;
+ 		ti,sci-dev-id = <199>;
++		dma-coherent;
++		dma-ranges;
+ 
+ 		main_navss_intr: interrupt-controller1 {
+ 			compatible = "ti,sci-intr";
+-- 
+2.31.1
+
