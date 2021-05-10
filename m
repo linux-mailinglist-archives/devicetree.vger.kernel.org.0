@@ -2,100 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F83837978C
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 21:21:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F9A03797D4
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 21:41:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231909AbhEJTWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 15:22:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45022 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231735AbhEJTWI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 15:22:08 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2699CC061574;
-        Mon, 10 May 2021 12:21:03 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id g14so20056302edy.6;
-        Mon, 10 May 2021 12:21:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=EFsFb8pMI8UH4jNijLN54heTyN+8V4Uo+MBIc8sUxEk=;
-        b=B3BkgcsmCDDggzaQBqgSezKwkbbqsZfGSGHotgPFSo6MlhFi5AZI+EQJXmxL6ONXIH
-         +XxT3brBTzKMIl2XB5AaK+hb0YNx6DinOhsmfRc/nInm5YEIeiDMltiuAI/bi+dp8yMt
-         zHuHR5wg0IXhjq6MWHo5Xcp+bDr/7B3uOhlAhI6fCyybriz0X6gcBQooJh7NLRl4CXGN
-         GOUXbAg0vOxhKZgOIPf8VsZfG5SSHaqQvy37N8Am7RUAM/0THSJ9jPG16/Rf49WDc4/n
-         PvK3s+s0stZSfOozyYcCckeD1l1NRYuJErP3JiX0MuL368RMCgV7KZK/6RNqoC6j4Jn9
-         5RhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=EFsFb8pMI8UH4jNijLN54heTyN+8V4Uo+MBIc8sUxEk=;
-        b=G/jHuUToc5ADxZnQAFandO8oab/q/3gpxMyHYdZm/iOkyXLG0qAXmRdPLkqM3PaJij
-         F2knkos3Y45/E4qDKpTyEZOl7HiBYOhdggjmCBy+EITLe0yxdpUrBtzSBiK9XvQ7iQDi
-         quTvFJy/ndledJbEaitE12g89WI9DHkCbZ2+xGrpxITkrMabO1Bwq8V/cg3WO5KZeO8V
-         X0lbzRQBRUidnY28leT+mi/KKx+vCknQ2lJKrvVChK0/0Shw75UMlUk7BBll7vgXOJGV
-         iF8GRyRN92TCn2R8Ly42d+dq+u1winHAyM54oxM3n70I1AWMPhpIldzgMuFl/SH8FqE8
-         fsIw==
-X-Gm-Message-State: AOAM533YXELtPbYzu6AkPNElxXb0PGs1UrVTSwquEQwMpwZrkZKpYMBF
-        eG5xYgk5narkbiM13YNWjYdp3Mxs6qY=
-X-Google-Smtp-Source: ABdhPJxsLinSeYfgg7lxOp4j3xHptYRQPXsgIzFgXp1XDQN7tfLYAzTCO0Vru0TAv7NHrcaunEiqIA==
-X-Received: by 2002:a05:6402:4383:: with SMTP id o3mr31312889edc.333.1620674461780;
-        Mon, 10 May 2021 12:21:01 -0700 (PDT)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id da25sm12588723edb.38.2021.05.10.12.21.00
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 10 May 2021 12:21:01 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: rockchip: rename vcc_stdby node name for rk3066a-rayeager.dts
-Date:   Mon, 10 May 2021 21:20:54 +0200
-Message-Id: <20210510192054.8876-1-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
+        id S230342AbhEJTmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 15:42:46 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.53]:24259 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230045AbhEJTmq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 15:42:46 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1620675691; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=E3s379Pcz6m5c2eiCFYn6tEydRwo1kChePN2SK7CLBYxpiqUQ+SPo/XubMdGIEEtG2
+    fKo0facaVgOIq6DasmBGubbdvoQh+npKb5VVBuirbrvo4PqK49LCWLx2hYzn9m+YNayQ
+    lMNK2GNB9dD9LIfKBEjqPRO3gQpkfb1hteCFdcF2fAvAoGPkTtEacPEYuPckrNylZ6sD
+    zCdbnPKTsdWJzJ8FjExYvOH3Nv4YGpnbZ7fLti9s/U7Ya6XfQuvq53v5C1dt6IDkyEq3
+    m0G29UJ2sRu7P4df0YYlIAtTAglU5AUAs6M1xVLX6iE5k1ylE820K04nxJ8GZU/4uis8
+    zZAw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1620675691;
+    s=strato-dkim-0002; d=strato.com;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=TFB/5G3yt0EOH3u0v6krrpts7AKC5aDuRVy+pogaHus=;
+    b=RdgNd6Jn3V2ZivOkVQudSfoH/IgtOAJ9uZZ4jvnE6r7GJAOglwV3OjgS8hY039cC61
+    rkCHeohztSzweqlLQ0C1r94ZjYcSTI4/SZNkB7DVgPnL1tjv1Z7IZeWZQ9dqb4GwPosl
+    PHCuL+rvllVjZN3q3L2QdrKBat0sVN0+jDvtL2/4Mc+jwXE+7q1oE1SPKkiTJaxGjCSl
+    bn/yhFzXWMf3zRtez6vpAqlFFy18oDnU3zPiXWdAo9+TMkML9h2otcvUlbxyNEaL7KGM
+    IzTkm7a/7/gloM62cjZ3qZox4Ho2N3Q9GWtBfn0O+Y3yRjVLk5VVUs1T7InqZTPEM/oB
+    80uQ==
+ARC-Authentication-Results: i=1; strato.com;
+    dkim=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1620675691;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=TFB/5G3yt0EOH3u0v6krrpts7AKC5aDuRVy+pogaHus=;
+    b=RFsAC6sTPN1zdGGwH3v5IWIgBcQ44/UPgqgq+PTPGclYDWGVO7+LKW2zurhHLsxcVW
+    sJoWaiSdCRY5eQ3EFvTpubCP06UP7L9w5q6NLFuQb0Md/r3TNKLas4HwUOtU6o0jA/Th
+    oz2DywczDAiWZyk15lEuoDYqTak8X6dWcdkhIudNHWIRGKB7ZuN3+sLntCJSTQ4gqIgD
+    4mZ6fBYv3qg0yRlX1CexxwNIm8U4nRnR/cgLoT3nO2r47ZsjC7NXSwnISGdErg5tacL1
+    wAA4P0/xL5tfKH1ReyJsd6ObuF3PEfxDUwUe5cb64cOwgpf91JdRo+q3suO77lQh30X5
+    Y0Ow==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxB5m6NCQEo"
+X-RZG-CLASS-ID: mo00
+Received: from droid..
+    by smtp.strato.de (RZmta 47.25.6 DYNA|AUTH)
+    with ESMTPSA id e01f26x4AJfTYUH
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Mon, 10 May 2021 21:41:29 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Simon Budig <simon.budig@kernelconcepts.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Ondrej Jirman <megous@megous.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 1/2] dt-bindings: input: touchscreen: edt-ft5x06: add iovcc-supply
+Date:   Mon, 10 May 2021 21:31:07 +0200
+Message-Id: <20210510193108.50178-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.31.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A test with the command below gives this error:
+At the moment, the edt-ft5x06 driver can control a single regulator
+("vcc"). However, some FocalTech touch controllers have an additional
+IOVCC pin that should be supplied with the digital I/O voltage.
 
-/arch/arm/boot/dts/rk3066a-rayeager.dt.yaml:
-/: '5v-stdby-regulator' does not match any of the regexes:
-'.*-names$',
-'.*-supply$',
-'^#.*-cells$',
-'^#[a-zA-Z0-9,+\\-._]{0,63}$',
-'^[a-zA-Z][a-zA-Z0-9,+\\-._]{0,63}$',
-'^[a-zA-Z][a-zA-Z0-9,+\\-._]{0,63}@[0-9a-fA-F]+(,[0-9a-fA-F]+)*$',
-'^__.*__$',
-'pinctrl-[0-9]+'
+The I/O voltage might be provided by another regulator that should also
+be kept on. Otherwise, the touchscreen can randomly stop functioning if
+the regulator is turned off because no other components still require it.
 
-A node name shouldn't start with a number,
-so change it to 'stdby-regulator'.
+Document (optional) support for controlling the regulator for IOVCC
+using "iovcc-supply".
 
-make ARCH=arm dtbs_check
-DT_SCHEMA_FILES=~/.local/lib/python3.5/site-packages/dtschema
-/schemas/dt-core.yaml
-
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+Cc: Ondrej Jirman <megous@megous.com>
+Cc: Marco Felsch <m.felsch@pengutronix.de>
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 ---
- arch/arm/boot/dts/rk3066a-rayeager.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes in v2: None, added Rob's Acked-by
+v1: https://lore.kernel.org/linux-input/20210108192337.563679-1-stephan@gerhold.net/
+---
+ .../devicetree/bindings/input/touchscreen/edt-ft5x06.yaml        | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/rk3066a-rayeager.dts b/arch/arm/boot/dts/rk3066a-rayeager.dts
-index 309518403..a73e8900c 100644
---- a/arch/arm/boot/dts/rk3066a-rayeager.dts
-+++ b/arch/arm/boot/dts/rk3066a-rayeager.dts
-@@ -58,7 +58,7 @@
- 	};
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
+index bfc3a8b5e118..2e8da7470513 100644
+--- a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
++++ b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
+@@ -56,6 +56,7 @@ properties:
+   wakeup-source: true
  
- 	/* input for 5V_STDBY is VSYS or DC5V, selectable by jumper J4 */
--	vcc_stdby: 5v-stdby-regulator {
-+	vcc_stdby: stdby-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "5v_stdby";
- 		regulator-min-microvolt = <5000000>;
+   vcc-supply: true
++  iovcc-supply: true
+ 
+   gain:
+     description: Allows setting the sensitivity in the range from 0 to 31.
 -- 
-2.11.0
+2.31.1
 
