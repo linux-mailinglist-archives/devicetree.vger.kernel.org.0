@@ -2,49 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8F39379153
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 16:51:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79D2D379159
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 16:51:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239764AbhEJOwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 10:52:44 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:38028 "EHLO
+        id S239746AbhEJOwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 10:52:47 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:38034 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238531AbhEJOvm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 10:51:42 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14AEoYhO061462;
+        with ESMTP id S238982AbhEJOvo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 10:51:44 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14AEoYJO061466;
         Mon, 10 May 2021 09:50:34 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
         s=ti-com-17Q1; t=1620658234;
-        bh=HT9wiHZD8KaX5otvkMOqsHaVxNQBceavAhDafqkcpK8=;
-        h=From:To:CC:Subject:Date;
-        b=otSDTREZCoyY73U2mxAHnohtcTfsLzZcMZ1tdNYJWP2ZV0BjyAkP4IOC2IGP5E2hx
-         S+ZOyQPbhFocb6n9+xAL4qH08cdhTXgTLlXpM2aCjLS8lhHECu4L126rHhCJ+/a4mW
-         J4FPR4s+bcmeZtmc+sDHeDLWvq+TFxzyE2t2DNaI=
+        bh=k3M3vsY+Vv6I4tjLGCiHaQIWbnPSEqzsLpCUZZggwOo=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=ZAkf8FrKXZO+0KkHZGSHr7NR4ZP6uZjdwUyR07ltB6Q7IpDZJ2ARaaWFQtQzkBHiV
+         8gkwguXgv/8KP15PTFmbIaJMs2p1pjJ5ILku3ZCW7uvjrJCdNjfNUraKPA9rw5S4CY
+         k/iUN7rfGMg4yaAJZltqYcMaHqsMUSlMrFMOiCWo=
 Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14AEoYKH062285
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14AEoYAk126516
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
         Mon, 10 May 2021 09:50:34 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE103.ent.ti.com
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE103.ent.ti.com
  (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 10
  May 2021 09:50:34 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
  Frontend Transport; Mon, 10 May 2021 09:50:34 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14AEoYXq111324;
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14AEoYP1008334;
         Mon, 10 May 2021 09:50:34 -0500
 From:   Nishanth Menon <nm@ti.com>
 To:     Tero Kristo <kristo@kernel.org>
 CC:     Rob Herring <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
         <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, Nishanth Menon <nm@ti.com>
-Subject: [PATCH 0/4] arm64: dts: ti: k3-*: Fixup nodes to exposed to be non-compliant with yaml
-Date:   Mon, 10 May 2021 09:50:29 -0500
-Message-ID: <20210510145033.7426-1-nm@ti.com>
+Subject: [PATCH 1/4] arm64: dts: ti: k3-*: Rename the TI-SCI clocks node name
+Date:   Mon, 10 May 2021 09:50:30 -0500
+Message-ID: <20210510145033.7426-2-nm@ti.com>
 X-Mailer: git-send-email 2.31.0
+In-Reply-To: <20210510145033.7426-1-nm@ti.com>
+References: <20210510145033.7426-1-nm@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -53,29 +55,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+We currently use clocks as the node name for the node representing
+TI-SCI clock nodes. This is better renamed to being clock-controller
+as that is a better representative of the system controller function
+as a clock controller for the SoC.
 
-Series of minor fixups for v5.13-rc1 for compliance exposed by yaml
-conversion in the series:
-https://lore.kernel.org/linux-arm-kernel/20210503190824.GA2192378@robh.at.kernel.org/#t
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi        | 2 +-
+ arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi      | 2 +-
+ arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi | 2 +-
+ arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-Minimal testing performed on k3 platforms.
-
-If possible, will be good to get in 5.13 window.
-
-Nishanth Menon (4):
-  arm64: dts: ti: k3-*: Rename the TI-SCI clocks node name
-  arm64: dts: ti: k3-am65-wakeup: Add debug region to TI-SCI node
-  arm64: dts: ti: k3-am65-wakeup: Drop un-necessary properties from dmsc
-    node
-  arm64: dts: ti: k3-*: Rename the TI-SCI node
-
- arch/arm64/boot/dts/ti/k3-am64-main.dtsi        |  4 ++--
- arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi      | 10 +++++-----
- arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi |  4 ++--
- arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi |  4 ++--
- 4 files changed, 11 insertions(+), 11 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+index b2bcbf23eefd..e1216073e3df 100644
+--- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+@@ -148,7 +148,7 @@ k3_pds: power-controller {
+ 			#power-domain-cells = <2>;
+ 		};
+ 
+-		k3_clks: clocks {
++		k3_clks: clock-controller {
+ 			compatible = "ti,k2g-sci-clk";
+ 			#clock-cells = <2>;
+ 		};
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
+index ed42f13e7663..2ae1f9214b8a 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
+@@ -23,7 +23,7 @@ k3_pds: power-controller {
+ 			#power-domain-cells = <2>;
+ 		};
+ 
+-		k3_clks: clocks {
++		k3_clks: clock-controller {
+ 			compatible = "ti,k2g-sci-clk";
+ 			#clock-cells = <2>;
+ 		};
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+index 5e74e43822c3..9dba2df3569f 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+@@ -23,7 +23,7 @@ k3_pds: power-controller {
+ 			#power-domain-cells = <2>;
+ 		};
+ 
+-		k3_clks: clocks {
++		k3_clks: clock-controller {
+ 			compatible = "ti,k2g-sci-clk";
+ 			#clock-cells = <2>;
+ 		};
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+index d56e3475aee7..b83801feeb10 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+@@ -23,7 +23,7 @@ k3_pds: power-controller {
+ 			#power-domain-cells = <2>;
+ 		};
+ 
+-		k3_clks: clocks {
++		k3_clks: clock-controller {
+ 			compatible = "ti,k2g-sci-clk";
+ 			#clock-cells = <2>;
+ 		};
 -- 
 2.31.0
 
