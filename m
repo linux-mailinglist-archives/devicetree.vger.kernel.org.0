@@ -2,675 +2,2312 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F3D037934A
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 18:00:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFD2037934C
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 18:01:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231174AbhEJQBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 12:01:42 -0400
-Received: from mga18.intel.com ([134.134.136.126]:15155 "EHLO mga18.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231195AbhEJQBj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 May 2021 12:01:39 -0400
-IronPort-SDR: SCmoWoHzCHCycC30AeIw+LNMGXJgmVWKwwEQqARmAI3eHPA9o2uOqroYCSZOhGSv0byvot1R8q
- OIxlCAXGZhzg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9980"; a="186670702"
-X-IronPort-AV: E=Sophos;i="5.82,287,1613462400"; 
-   d="gz'50?scan'50,208,50";a="186670702"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2021 09:00:31 -0700
-IronPort-SDR: MEtTp/RCFNFTYziJQAAkG6h8RAkPDAPSYI79NJ3UwkPwYkG06U7S24D2rAfK+ltD/YV8PEDOcv
- 8AMeiZswNLow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,287,1613462400"; 
-   d="gz'50?scan'50,208,50";a="429958851"
-Received: from lkp-server01.sh.intel.com (HELO f375d57c4ed4) ([10.239.97.150])
-  by orsmga007.jf.intel.com with ESMTP; 10 May 2021 09:00:27 -0700
-Received: from kbuild by f375d57c4ed4 with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1lg8KZ-0000GC-8E; Mon, 10 May 2021 16:00:27 +0000
-Date:   Tue, 11 May 2021 00:00:10 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     kbuild-all@lists.01.org, Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        linux-mtd@lists.infradead.org,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>,
-        Michal Simek <monstr@monstr.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH v2 5/5] mtd: rawnand: arasan: Leverage additional GPIO CS
-Message-ID: <202105102312.05LE2GgQ-lkp@intel.com>
-References: <20210510104051.9701-6-miquel.raynal@bootlin.com>
+        id S231164AbhEJQCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 12:02:09 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:37877 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230503AbhEJQCI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 12:02:08 -0400
+Received: by mail-ot1-f41.google.com with SMTP id c8-20020a9d78480000b0290289e9d1b7bcso14873676otm.4;
+        Mon, 10 May 2021 09:01:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=4XYjM7HdM+XKMwVayiKnPs/n8brgKsHiveuq6ni4twM=;
+        b=iY2VBGdtaS9dsHR+jI3mFRx3utb1MC54/GwoLZfvHemmvArp7JRJHiHczNMeUpkfko
+         3PEe+KxsHnrJlwjeAxI/5vTV4lGrYguFOn1FcWWDtO3JMlsIzsI2pfQSz2DXO+u8anz+
+         K9kh5OnAXv1oC74v56IcxMBpIcGFy9jzhZoOpgsIfGwMqvaPa9fmx5k+z8g2uZkFp4wE
+         PUyxAunHYY93AyMLQGaxmBqhIRV2dQntydbUiXclPU0JlLyQDJEzoQ8a6xoa12P8guOC
+         zySECczlrsuVKxxTJxcSNKUHisaHws/qW+XNhWncqL+o6UdmO6AvFen3uNsQZXjBawaz
+         XNSQ==
+X-Gm-Message-State: AOAM530MfdpNajpZx1KGCCUAne7DUaDMAMKSWZhfM1sP3avadexzw396
+        rxphLQYm6eHCJcPbPcz/gg==
+X-Google-Smtp-Source: ABdhPJxxVflZG/0tDGQ45/hp6Z5uI2db93iNmZwnJMmzwRQPNYihC3XWy/sA1JRiPdNpsv6iilWYEw==
+X-Received: by 2002:a9d:7852:: with SMTP id c18mr21353052otm.115.1620662461715;
+        Mon, 10 May 2021 09:01:01 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id e21sm1607887oii.23.2021.05.10.09.00.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 May 2021 09:01:00 -0700 (PDT)
+Received: (nullmailer pid 201362 invoked by uid 1000);
+        Mon, 10 May 2021 16:00:59 -0000
+Date:   Mon, 10 May 2021 11:00:59 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Eugen Hristev <eugen.hristev@microchip.com>
+Cc:     nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        ludovic.desroches@microchip.com, soc@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, claudiu.beznea@microchip.com,
+        codrin.ciubotariu@microchip.com
+Subject: Re: [PATCH 2/4] ARM: dts: at91: add sama7g5 SoC DT and sama7g5-ek
+Message-ID: <20210510160059.GA186502@robh.at.kernel.org>
+References: <20210507152655.182558-1-eugen.hristev@microchip.com>
+ <20210507152655.182558-2-eugen.hristev@microchip.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="PNTmBPCT7hxwcZjr"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210510104051.9701-6-miquel.raynal@bootlin.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210507152655.182558-2-eugen.hristev@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, May 07, 2021 at 06:26:53PM +0300, Eugen Hristev wrote:
+> Add Device Tree for sama7g5 SoC and associated board sama7g5-ek
+> 
+> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+> [claudiu.beznea@microchip.com: add clocks, ethernet, timers, power]
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> [codrin.ciubotariu@microchip.com: add audio]
+> Signed-off-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+> ---
+>  arch/arm/boot/dts/Makefile           |   2 +
+>  arch/arm/boot/dts/at91-sama7g5ek.dts | 707 ++++++++++++++++++++
+>  arch/arm/boot/dts/sama7g5-pinfunc.h  | 924 +++++++++++++++++++++++++++
+>  arch/arm/boot/dts/sama7g5.dtsi       | 543 ++++++++++++++++
+>  4 files changed, 2176 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/at91-sama7g5ek.dts
+>  create mode 100644 arch/arm/boot/dts/sama7g5-pinfunc.h
+>  create mode 100644 arch/arm/boot/dts/sama7g5.dtsi
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 8e5d4ab4e75e..6bd2b1a2189e 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -74,6 +74,8 @@ dtb-$(CONFIG_SOC_SAM_V7) += \
+>  	at91-sama5d4_xplained.dtb \
+>  	at91-sama5d4ek.dtb \
+>  	at91-vinco.dtb
+> +dtb-$(CONFIG_SOC_SAMA7G5) += \
+> +	at91-sama7g5ek.dtb
+>  dtb-$(CONFIG_ARCH_AXXIA) += \
+>  	axm5516-amarillo.dtb
+>  dtb-$(CONFIG_ARCH_BCM2835) += \
+> diff --git a/arch/arm/boot/dts/at91-sama7g5ek.dts b/arch/arm/boot/dts/at91-sama7g5ek.dts
+> new file mode 100644
+> index 000000000000..0ff314abd551
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/at91-sama7g5ek.dts
+> @@ -0,0 +1,707 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 
---PNTmBPCT7hxwcZjr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+GPLv4 is okay?
 
-Hi Miquel,
+> +/*
+> + *  at91-sama7g5ek.dts - Device Tree file for SAMA7G5-EK board
+> + *
+> + *  Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries
+> + *
+> + *  Author: Eugen Hristev <eugen.hristev@microchip.com>
+> + *  Author: Claudiu Beznea <claudiu.beznea@microchip.com>
+> + *
+> + */
+> +/dts-v1/;
+> +#include "sama7g5-pinfunc.h"
+> +#include "sama7g5.dtsi"
+> +#include <dt-bindings/mfd/atmel-flexcom.h>
+> +#include <dt-bindings/input/input.h>
+> +
+> +/ {
+> +	model = "Microchip SAMA7G5-EK";
+> +	compatible = "microchip,sama7g5ek", "microchip,sama7g5", "microchip,sama7";
+> +
+> +	chosen {
+> +		bootargs = "console=ttyS0,115200 rw root=/dev/mmcblk1p2 rootfstype=ext4 rootwait";
 
-I love your patch! Yet something to improve:
+console is redundant with 'stdout-path'.
 
-[auto build test ERROR on mtd/nand/next]
-[also build test ERROR on mtd/mtd/next v5.13-rc1 next-20210510]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	aliases {
+> +		serial0 = &uart3;
+> +		serial1 = &uart4;
+> +		serial2 = &uart7;
+> +		serial3 = &uart0;
+> +		i2c0 = &i2c1;
+> +		i2c1 = &i2c8;
+> +		i2c2 = &i2c9;
+> +	};
+> +
+> +	cpus {
+> +		cpu0: cpu@0 {
 
-url:    https://github.com/0day-ci/linux/commits/Miquel-Raynal/Bring-GPIO-CS-support-to-the-Arasan-controller-driver/20210510-184335
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next
-config: i386-randconfig-a014-20210510 (attached as .config)
-compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/0day-ci/linux/commit/09c3e51f9529c4773d8a5999e34cf241de5a5dda
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Miquel-Raynal/Bring-GPIO-CS-support-to-the-Arasan-controller-driver/20210510-184335
-        git checkout 09c3e51f9529c4773d8a5999e34cf241de5a5dda
-        # save the attached .config to linux build tree
-        make W=1 W=1 ARCH=i386 
+Just use '&cpu0' to reference this node. Or don't define the label 
+(again).
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+> +			cpu-supply = <&vddcpu>;
+> +		};
+> +	};
+> +
+> +	clocks {
+> +		slow_xtal {
+> +			clock-frequency = <32768>;
+> +		};
+> +
+> +		main_xtal {
+> +			clock-frequency = <24000000>;
+> +		};
+> +	};
+> +
+> +	gpio_keys {
+> +		compatible = "gpio-keys";
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_key_gpio_default>;
+> +
+> +		bp1 {
+> +			label = "PB_USER";
+> +			gpios = <&pioA PIN_PA12 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_PROG1>;
+> +			wakeup-source;
+> +		};
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_led_gpio_default>;
+> +		status = "okay"; /* Conflict with pwm. */
+> +
+> +		red_led {
+> +			label = "red";
+> +			gpios = <&pioA PIN_PB8 GPIO_ACTIVE_HIGH>;
+> +		};
+> +
+> +		green_led {
+> +			label = "green";
+> +			gpios = <&pioA PIN_PA13 GPIO_ACTIVE_HIGH>;
+> +		};
+> +
+> +		blue_led {
+> +			label = "blue";
+> +			gpios = <&pioA PIN_PD20 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+> +
+> +	/* 512 M */
+> +	memory@60000000 {
+> +		device_type = "memory";
+> +		reg = <0x60000000 0x20000000>;
+> +	};
+> +
+> +	sound: sound {
+> +		compatible = "simple-audio-card";
+> +		simple-audio-card,name = "sama7g5ek audio";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		simple-audio-card,dai-link@0 {
+> +			reg = <0>;
+> +			cpu {
+> +				sound-dai = <&spdiftx>;
+> +			};
+> +			codec {
+> +				sound-dai = <&spdif_out>;
+> +			};
+> +		};
+> +		simple-audio-card,dai-link@1 {
+> +			reg = <1>;
+> +			cpu {
+> +				sound-dai = <&spdifrx>;
+> +			};
+> +			codec {
+> +				sound-dai = <&spdif_in>;
+> +			};
+> +		};
+> +	};
+> +
+> +	spdif_in: spdif-in {
+> +		#sound-dai-cells = <0>;
+> +		compatible = "linux,spdif-dir";
+> +	};
+> +
+> +	spdif_out: spdif-out {
+> +		#sound-dai-cells = <0>;
+> +		compatible = "linux,spdif-dit";
+> +	};
+> +};
+> +
+> +&dma0 {
+> +	status = "okay";
+> +};
+> +
+> +&dma1 {
+> +	status = "okay";
+> +};
+> +
+> +&dma2 {
+> +	status = "okay";
+> +};
+> +
+> +&flx0 {
+> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
+> +	status = "disabled";
+> +
+> +	uart0: serial@200 {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_flx0_default>;
+> +		status = "disabled";
+> +	};
+> +};
+> +
+> +&flx1 {
+> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
+> +	status = "okay";
+> +
+> +	i2c1: i2c@600 {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_i2c1_default>;
+> +		i2c-analog-filter;
+> +		i2c-digital-filter;
+> +		i2c-digital-filter-width-ns = <35>;
+> +		status = "okay";
+> +
+> +		eeprom0: eeprom@52 {
+> +			compatible = "atmel,24mac02e4";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			reg = <0x52>;
+> +			pagesize = <16>;
+> +			size = <256>;
+> +			status = "okay";
+> +
+> +			eeprom0_eui48: eui48@fa {
+> +				reg = <0xfa 0x6>;
+> +			};
+> +		};
+> +
+> +		eeprom1: eeprom@53 {
+> +			compatible = "atmel,24mac02e4";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			reg = <0x53>;
+> +			pagesize = <16>;
+> +			size = <256>;
+> +			status = "okay";
+> +
+> +			eeprom1_eui48: eui48@fa {
+> +				reg = <0xfa 0x6>;
+> +			};
+> +		};
+> +
+> +		mcp16502@5b {
+> +			compatible = "microchip,mcp16502";
+> +			reg = <0x5b>;
+> +			status = "okay";
+> +
+> +			regulators {
+> +				vdd_3v3: VDD_IO {
+> +					regulator-name = "VDD_IO";
+> +					regulator-min-microvolt = <1200000>;
+> +					regulator-max-microvolt = <3700000>;
+> +					regulator-initial-mode = <2>;
+> +					regulator-allowed-modes = <2>, <4>;
+> +					regulator-always-on;
+> +
+> +					regulator-state-standby {
+> +						regulator-on-in-suspend;
+> +						regulator-mode = <4>;
+> +					};
+> +
+> +					regulator-state-mem {
+> +						regulator-off-in-suspend;
+> +						regulator-mode = <4>;
+> +					};
+> +				};
+> +
+> +				vddioddr: VDD_DDR {
+> +					regulator-name = "VDD_DDR";
+> +					regulator-min-microvolt = <1300000>;
+> +					regulator-max-microvolt = <1450000>;
+> +					regulator-initial-mode = <2>;
+> +					regulator-allowed-modes = <2>, <4>;
+> +					regulator-always-on;
+> +
+> +					regulator-state-standby {
+> +						regulator-on-in-suspend;
+> +						regulator-mode = <4>;
+> +					};
+> +
+> +					regulator-state-mem {
+> +						regulator-on-in-suspend;
+> +						regulator-mode = <4>;
+> +					};
+> +				};
+> +
+> +				vddcore: VDD_CORE {
+> +					regulator-name = "VDD_CORE";
+> +					regulator-min-microvolt = <1100000>;
+> +					regulator-max-microvolt = <1850000>;
+> +					regulator-initial-mode = <2>;
+> +					regulator-allowed-modes = <2>, <4>;
+> +					regulator-always-on;
+> +
+> +					regulator-state-standby {
+> +						regulator-on-in-suspend;
+> +						regulator-mode = <4>;
+> +					};
+> +
+> +					regulator-state-mem {
+> +						regulator-off-in-suspend;
+> +						regulator-mode = <4>;
+> +					};
+> +				};
+> +
+> +				vddcpu: VDD_OTHER {
+> +					regulator-name = "VDD_OTHER";
+> +					regulator-min-microvolt = <1125000>;
+> +					regulator-max-microvolt = <1850000>;
+> +					regulator-initial-mode = <2>;
+> +					regulator-allowed-modes = <2>, <4>;
+> +					regulator-ramp-delay = <3125>;
+> +					regulator-always-on;
+> +
+> +					regulator-state-standby {
+> +						regulator-on-in-suspend;
+> +						regulator-mode = <4>;
+> +					};
+> +
+> +					regulator-state-mem {
+> +						regulator-off-in-suspend;
+> +						regulator-mode = <4>;
+> +					};
+> +				};
+> +
+> +				vldo1: LDO1 {
+> +					regulator-name = "LDO1";
+> +					regulator-min-microvolt = <1200000>;
+> +					regulator-max-microvolt = <3700000>;
+> +					regulator-always-on;
+> +
+> +					regulator-state-standby {
+> +						regulator-on-in-suspend;
+> +					};
+> +
+> +					regulator-state-mem {
+> +						regulator-off-in-suspend;
+> +					};
+> +				};
+> +
+> +				vldo2: LDO2 {
+> +					regulator-name = "LDO2";
+> +					regulator-min-microvolt = <1200000>;
+> +					regulator-max-microvolt = <3700000>;
+> +
+> +					regulator-state-standby {
+> +						regulator-on-in-suspend;
+> +					};
+> +
+> +					regulator-state-mem {
+> +						regulator-off-in-suspend;
+> +					};
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&flx3 {
+> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
+> +	status = "okay";
+> +
+> +	uart3: serial@200 {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_flx3_default>;
+> +		status = "okay";
+> +	};
+> +};
+> +
+> +&flx4 {
+> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
+> +	status = "okay";
+> +
+> +	uart4: serial@200 {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_flx4_default>;
+> +		status = "okay";
+> +	};
+> +};
+> +
+> +&flx7 {
+> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
+> +	status = "okay";
+> +
+> +	uart7: serial@200 {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_flx7_default>;
+> +		status = "okay";
+> +	};
+> +};
+> +
+> +&flx8 {
+> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
+> +	status = "okay";
+> +
+> +	i2c8: i2c@600 {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_i2c8_default>;
+> +		i2c-analog-filter;
+> +		i2c-digital-filter;
+> +		i2c-digital-filter-width-ns = <35>;
+> +		status = "okay";
+> +	};
+> +};
+> +
+> +&flx9 {
+> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
+> +	status = "okay";
+> +
+> +	i2c9: i2c@600 {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_i2c9_default>;
+> +		i2c-analog-filter;
+> +		i2c-digital-filter;
+> +		i2c-digital-filter-width-ns = <35>;
+> +		status = "okay";
+> +	};
+> +};
+> +
+> +&flx11 {
+> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_SPI>;
+> +	status = "okay";
+> +
+> +	spi0: spi@400 {
+> +		compatible = "atmel,at91rm9200-spi";
+> +		reg = <0x400 0x200>;
+> +		interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&pmc PMC_TYPE_PERIPHERAL 49>;
+> +		clock-names = "spi_clk";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_mikrobus1_spi &pinctrl_mikrobus1_spi_cs>;
+> +		atmel,fifo-size = <32>;
+> +		dmas = <&dma0 AT91_XDMAC_DT_PERID(27)>,
+> +			    <&dma0 AT91_XDMAC_DT_PERID(28)>;
+> +		dma-names = "rx", "tx";
+> +		status = "okay";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +	};
+> +};
+> +
+> +&gmac0 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_gmac0_default &pinctrl_gmac0_txck_default &pinctrl_gmac0_phy_irq>;
+> +	phy-mode = "rgmii-id";
+> +	status = "okay";
+> +
+> +	nvmem-cells = <&eeprom0_eui48>;
+> +	nvmem-cell-names = "mac-address";
+> +
+> +	ethernet-phy@7 {
+> +		reg = <0x7>;
+> +		interrupt-parent = <&pioA>;
+> +		interrupts = <PIN_PA31 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +};
+> +
+> +&gmac1 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_gmac1_default &pinctrl_gmac1_phy_irq>;
+> +	phy-mode = "rmii";
+> +	status = "okay";
+> +
+> +	nvmem-cells = <&eeprom1_eui48>;
+> +	nvmem-cell-names = "mac-address";
+> +
+> +	ethernet-phy@0 {
+> +		reg = <0x0>;
+> +		interrupt-parent = <&pioA>;
+> +		interrupts = <PIN_PA21 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +};
+> +
+> +&i2s0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2s0_default>;
+> +};
+> +
+> +&pioA {
+> +	pinctrl_flx0_default: flx0_default {
+> +		pinmux = <PIN_PE3__FLEXCOM0_IO0>,
+> +			 <PIN_PE4__FLEXCOM0_IO1>,
+> +			 <PIN_PE6__FLEXCOM0_IO3>,
+> +			 <PIN_PE7__FLEXCOM0_IO4>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_flx3_default: flx3_default {
+> +		pinmux = <PIN_PD16__FLEXCOM3_IO0>,
+> +			 <PIN_PD17__FLEXCOM3_IO1>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_flx4_default: flx4_default {
+> +		pinmux = <PIN_PD18__FLEXCOM4_IO0>,
+> +			 <PIN_PD19__FLEXCOM4_IO1>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_flx7_default: flx7_default {
+> +		pinmux = <PIN_PC23__FLEXCOM7_IO0>,
+> +			 <PIN_PC24__FLEXCOM7_IO1>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_gmac0_default: gmac0_default {
+> +		pinmux = <PIN_PA16__G0_TX0>,
+> +			 <PIN_PA17__G0_TX1>,
+> +			 <PIN_PA26__G0_TX2>,
+> +			 <PIN_PA27__G0_TX3>,
+> +			 <PIN_PA19__G0_RX0>,
+> +			 <PIN_PA20__G0_RX1>,
+> +			 <PIN_PA28__G0_RX2>,
+> +			 <PIN_PA29__G0_RX3>,
+> +			 <PIN_PA15__G0_TXEN>,
+> +			 <PIN_PA30__G0_RXCK>,
+> +			 <PIN_PA18__G0_RXDV>,
+> +			 <PIN_PA22__G0_MDC>,
+> +			 <PIN_PA23__G0_MDIO>,
+> +			 <PIN_PA25__G0_125CK>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_gmac0_txck_default: gmac0_txck_default {
+> +		pinmux = <PIN_PA24__G0_TXCK>;
+> +		bias-pull-up;
+> +	};
+> +
+> +	pinctrl_gmac0_phy_irq: gmac0_phy_irq {
+> +		pinmux = <PIN_PA31__GPIO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_gmac1_default: gmac1_default {
+> +		pinmux = <PIN_PD30__G1_TXCK>,
+> +			 <PIN_PD22__G1_TX0>,
+> +			 <PIN_PD23__G1_TX1>,
+> +			 <PIN_PD21__G1_TXEN>,
+> +			 <PIN_PD25__G1_RX0>,
+> +			 <PIN_PD26__G1_RX1>,
+> +			 <PIN_PD27__G1_RXER>,
+> +			 <PIN_PD24__G1_RXDV>,
+> +			 <PIN_PD28__G1_MDC>,
+> +			 <PIN_PD29__G1_MDIO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_gmac1_phy_irq: gmac1_phy_irq {
+> +		pinmux = <PIN_PA21__GPIO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_i2c1_default: i2c1_default {
+> +		pinmux = <PIN_PC9__FLEXCOM1_IO0>,
+> +			 <PIN_PC10__FLEXCOM1_IO1>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_i2c8_default: i2c8_default {
+> +		pinmux = <PIN_PC14__FLEXCOM8_IO0>,
+> +			 <PIN_PC13__FLEXCOM8_IO1>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_i2c9_default: i2c9_default {
+> +		pinmux = <PIN_PC18__FLEXCOM9_IO0>,
+> +			 <PIN_PC19__FLEXCOM9_IO1>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_i2s0_default: i2s0_default {
+> +		pinmux = <PIN_PB23__I2SMCC0_CK>,
+> +			 <PIN_PB24__I2SMCC0_WS>,
+> +			 <PIN_PB25__I2SMCC0_DOUT1>,
+> +			 <PIN_PB26__I2SMCC0_DOUT0>,
+> +			 <PIN_PB27__I2SMCC0_MCK>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_key_gpio_default: key_gpio_default {
+> +		pinmux = <PIN_PC17__GPIO>;
+> +		bias-pull-up;
+> +	};
+> +
+> +	pinctrl_led_gpio_default: led_gpio_default {
+> +		pinmux = <PIN_PA13__GPIO>,
+> +			 <PIN_PB8__GPIO>,
+> +			 <PIN_PD20__GPIO>;
+> +		bias-pull-up;
+> +	};
+> +
+> +	pinctrl_mikrobus1_an_default: mikrobus1_an_default {
+> +		pinmux = <PIN_PD0__GPIO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_mikrobus2_an_default: mikrobus2_an_default {
+> +		pinmux = <PIN_PD1__GPIO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_mikrobus1_pwm2_default: mikrobus1_pwm2_default {
+> +		pinmux = <PIN_PA13__PWMH2>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_mikrobus2_pwm3_default: mikrobus2_pwm3_default {
+> +		pinmux = <PIN_PD20__PWMH3>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_mikrobus1_spi_cs: mikrobus1_spi_cs {
+> +		pinmux = <PIN_PB6__FLEXCOM11_IO3>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_mikrobus1_spi: mikrobus1_spi {
+> +		pinmux = <PIN_PB3__FLEXCOM11_IO0>,
+> +			 <PIN_PB4__FLEXCOM11_IO1>,
+> +			 <PIN_PB5__FLEXCOM11_IO2>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_sdmmc0_default: sdmmc0_default {
+> +		cmd_data {
+> +			pinmux = <PIN_PA1__SDMMC0_CMD>,
+> +				 <PIN_PA3__SDMMC0_DAT0>,
+> +				 <PIN_PA4__SDMMC0_DAT1>,
+> +				 <PIN_PA5__SDMMC0_DAT2>,
+> +				 <PIN_PA6__SDMMC0_DAT3>,
+> +				 <PIN_PA7__SDMMC0_DAT4>,
+> +				 <PIN_PA8__SDMMC0_DAT5>,
+> +				 <PIN_PA9__SDMMC0_DAT6>,
+> +				 <PIN_PA10__SDMMC0_DAT7>;
+> +			bias-pull-up;
+> +		};
+> +
+> +		ck_cd_rstn_vddsel {
+> +			pinmux = <PIN_PA0__SDMMC0_CK>,
+> +				 <PIN_PA2__SDMMC0_RSTN>,
+> +				 <PIN_PA11__SDMMC0_DS>;
+> +			bias-pull-up;
+> +		};
+> +	};
+> +
+> +	pinctrl_sdmmc1_default: sdmmc1_default {
+> +		cmd_data {
+> +			pinmux = <PIN_PB29__SDMMC1_CMD>,
+> +				 <PIN_PB31__SDMMC1_DAT0>,
+> +				 <PIN_PC0__SDMMC1_DAT1>,
+> +				 <PIN_PC1__SDMMC1_DAT2>,
+> +				 <PIN_PC2__SDMMC1_DAT3>;
+> +			bias-pull-up;
+> +		};
+> +
+> +		ck_cd_rstn_vddsel {
+> +			pinmux = <PIN_PB30__SDMMC1_CK>,
+> +				 <PIN_PB28__SDMMC1_RSTN>,
+> +				 <PIN_PC5__SDMMC1_1V8SEL>,
+> +				 <PIN_PC4__SDMMC1_CD>;
+> +			bias-pull-up;
+> +		};
+> +	};
+> +
+> +	pinctrl_sdmmc2_default: sdmmc2_default {
+> +		cmd_data {
+> +			pinmux = <PIN_PD3__SDMMC2_CMD>,
+> +				 <PIN_PD5__SDMMC2_DAT0>,
+> +				 <PIN_PD6__SDMMC2_DAT1>,
+> +				 <PIN_PD7__SDMMC2_DAT2>,
+> +				 <PIN_PD8__SDMMC2_DAT3>;
+> +			bias-pull-up;
+> +		};
+> +
+> +		ck {
+> +			pinmux = <PIN_PD4__SDMMC2_CK>;
+> +			bias-pull-up;
+> +		};
+> +	};
+> +
+> +	pinctrl_spdifrx_default: spdifrx_default {
+> +		pinmux = <PIN_PB0__SPDIF_RX>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_spdiftx_default: spdiftx_default {
+> +		pinmux = <PIN_PB1__SPDIF_TX>;
+> +		bias-disable;
+> +	};
+> +};
+> +
+> +&ps_wdt {
+> +	status = "okay";
+> +};
+> +
+> +&pwm {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_mikrobus1_pwm2_default &pinctrl_mikrobus2_pwm3_default>;
+> +	status = "disabled"; /* Conflict with leds. */
+> +};
+> +
+> +&rtt {
+> +	atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
+> +};
+> +
+> +&sdmmc0 {
+> +	bus-width = <8>;
+> +	non-removable;
+> +	no-1-8-v;
+> +	sdhci-caps-mask = <0x0 0x00200000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_sdmmc0_default>;
+> +	status = "okay";
+> +};
+> +
+> +&sdmmc1 {
+> +	bus-width = <4>;
+> +	no-1-8-v;
+> +	sdhci-caps-mask = <0x0 0x00200000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_sdmmc1_default>;
+> +	status = "okay";
+> +};
+> +
+> +&sdmmc2 {
+> +	bus-width = <4>;
+> +	no-1-8-v;
+> +	sdhci-caps-mask = <0x0 0x00200000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_sdmmc2_default>;
+> +};
+> +
+> +&spdifrx {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_spdifrx_default>;
+> +	status = "okay";
+> +};
+> +
+> +&spdiftx {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_spdiftx_default>;
+> +	status = "okay";
+> +};
+> +
+> +&trng {
+> +	status = "okay";
+> +};
+> +
+> +&vddout25 {
+> +	vin-supply = <&vdd_3v3>;
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm/boot/dts/sama7g5-pinfunc.h b/arch/arm/boot/dts/sama7g5-pinfunc.h
+> new file mode 100644
+> index 000000000000..89293e5470b4
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/sama7g5-pinfunc.h
+> @@ -0,0 +1,924 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
 
-All errors (new ones prefixed by >>, old ones prefixed by <<):
+License should match dts files.
 
->> ERROR: modpost: "rawnand_dt_parse_gpio_cs" [drivers/mtd/nand/raw/arasan-nand-controller.ko] undefined!
+> +#define PINMUX_PIN(no, func, ioset) \
+> +(((no) & 0xffff) | (((func) & 0xf) << 16) | (((ioset) & 0xff) << 20))
+> +
+> +#define PIN_PA0				0
+> +#define PIN_PA0__GPIO			PINMUX_PIN(PIN_PA0, 0, 0)
+> +#define PIN_PA0__SDMMC0_CK		PINMUX_PIN(PIN_PA0, 1, 1)
+> +#define PIN_PA0__FLEXCOM0_IO0		PINMUX_PIN(PIN_PA0, 2, 1)
+> +#define PIN_PA0__CANTX3			PINMUX_PIN(PIN_PA0, 3, 1)
+> +#define PIN_PA0__PWML0			PINMUX_PIN(PIN_PA0, 5, 2)
+> +#define PIN_PA1				1
+> +#define PIN_PA1__GPIO			PINMUX_PIN(PIN_PA1, 0, 0)
+> +#define PIN_PA1__SDMMC0_CMD		PINMUX_PIN(PIN_PA1, 1, 1)
+> +#define PIN_PA1__FLEXCOM0_IO1		PINMUX_PIN(PIN_PA1, 2, 1)
+> +#define PIN_PA1__CANRX3			PINMUX_PIN(PIN_PA1, 3, 1)
+> +#define PIN_PA1__D14			PINMUX_PIN(PIN_PA1, 4, 1)
+> +#define PIN_PA1__PWMH0			PINMUX_PIN(PIN_PA1, 5, 3)
+> +#define PIN_PA2				2
+> +#define PIN_PA2__GPIO			PINMUX_PIN(PIN_PA2, 0, 0)
+> +#define PIN_PA2__SDMMC0_RSTN		PINMUX_PIN(PIN_PA2, 1, 1)
+> +#define PIN_PA2__FLEXCOM0_IO2		PINMUX_PIN(PIN_PA2, 2, 1)
+> +#define PIN_PA2__PDMC1_CLK		PINMUX_PIN(PIN_PA2, 3, 1)
+> +#define PIN_PA2__D15			PINMUX_PIN(PIN_PA2, 4, 1)
+> +#define PIN_PA2__PWMH1			PINMUX_PIN(PIN_PA2, 5, 3)
+> +#define PIN_PA2__FLEXCOM1_IO0		PINMUX_PIN(PIN_PA2, 6, 3)
+> +#define PIN_PA3				3
+> +#define PIN_PA3__GPIO			PINMUX_PIN(PIN_PA3, 0, 0)
+> +#define PIN_PA3__SDMMC0_DAT0		PINMUX_PIN(PIN_PA3, 1, 1)
+> +#define PIN_PA3__FLEXCOM0_IO3		PINMUX_PIN(PIN_PA3, 2, 1)
+> +#define PIN_PA3__PDMC1_DS0		PINMUX_PIN(PIN_PA3, 3, 1)
+> +#define PIN_PA3__NWR1_NBS1		PINMUX_PIN(PIN_PA3, 4, 1)
+> +#define PIN_PA3__PWML3			PINMUX_PIN(PIN_PA3, 5, 3)
+> +#define PIN_PA3__FLEXCOM1_IO1		PINMUX_PIN(PIN_PA3, 6, 3)
+> +#define PIN_PA4				4
+> +#define PIN_PA4__GPIO			PINMUX_PIN(PIN_PA4, 0, 0)
+> +#define PIN_PA4__SDMMC0_DAT1		PINMUX_PIN(PIN_PA4, 1, 1)
+> +#define PIN_PA4__FLEXCOM0_IO4		PINMUX_PIN(PIN_PA4, 2, 1)
+> +#define PIN_PA4__PDMC1_DS1		PINMUX_PIN(PIN_PA4, 3, 1)
+> +#define PIN_PA4__NCS2			PINMUX_PIN(PIN_PA4, 4, 1)
+> +#define PIN_PA4__PWMH3			PINMUX_PIN(PIN_PA4, 5, 3)
+> +#define PIN_PA4__FLEXCOM2_IO0		PINMUX_PIN(PIN_PA4, 6, 3)
+> +#define PIN_PA5				5
+> +#define PIN_PA5__GPIO			PINMUX_PIN(PIN_PA5, 0, 0)
+> +#define PIN_PA5__SDMMC0_DAT2		PINMUX_PIN(PIN_PA5, 1, 1)
+> +#define PIN_PA5__FLEXCOM1_IO0		PINMUX_PIN(PIN_PA5, 2, 1)
+> +#define PIN_PA5__CANTX2			PINMUX_PIN(PIN_PA5, 3, 1)
+> +#define PIN_PA5__A23			PINMUX_PIN(PIN_PA5, 4, 1)
+> +#define PIN_PA5__PWMEXTRG0		PINMUX_PIN(PIN_PA5, 5, 3)
+> +#define PIN_PA5__FLEXCOM2_IO1		PINMUX_PIN(PIN_PA5, 6, 3)
+> +#define PIN_PA6				6
+> +#define PIN_PA6__GPIO			PINMUX_PIN(PIN_PA6, 0, 0)
+> +#define PIN_PA6__SDMMC0_DAT3		PINMUX_PIN(PIN_PA6, 1, 1)
+> +#define PIN_PA6__FLEXCOM1_IO1		PINMUX_PIN(PIN_PA6, 2, 1)
+> +#define PIN_PA6__CANRX2			PINMUX_PIN(PIN_PA6, 3, 1)
+> +#define PIN_PA6__A24			PINMUX_PIN(PIN_PA6, 4, 1)
+> +#define PIN_PA6__PWMEXTRG1		PINMUX_PIN(PIN_PA6, 5, 3)
+> +#define PIN_PA6__FLEXCOM3_IO0		PINMUX_PIN(PIN_PA6, 6, 3)
+> +#define PIN_PA7				7
+> +#define PIN_PA7__GPIO			PINMUX_PIN(PIN_PA7, 0, 0)
+> +#define PIN_PA7__SDMMC0_DAT4		PINMUX_PIN(PIN_PA7, 1, 1)
+> +#define PIN_PA7__FLEXCOM2_IO0		PINMUX_PIN(PIN_PA7, 2, 1)
+> +#define PIN_PA7__CANTX1			PINMUX_PIN(PIN_PA7, 3, 1)
+> +#define PIN_PA7__NWAIT			PINMUX_PIN(PIN_PA7, 4, 1)
+> +#define PIN_PA7__PWMFI0			PINMUX_PIN(PIN_PA7, 5, 3)
+> +#define PIN_PA7__FLEXCOM3_IO1		PINMUX_PIN(PIN_PA7, 6, 3)
+> +#define PIN_PA8				8
+> +#define PIN_PA8__GPIO			PINMUX_PIN(PIN_PA8, 0, 0)
+> +#define PIN_PA8__SDMMC0_DAT5		PINMUX_PIN(PIN_PA8, 1, 1)
+> +#define PIN_PA8__FLEXCOM2_IO1		PINMUX_PIN(PIN_PA8, 2, 1)
+> +#define PIN_PA8__CANRX1			PINMUX_PIN(PIN_PA8, 3, 1)
+> +#define PIN_PA8__NCS0			PINMUX_PIN(PIN_PA8, 4, 1)
+> +#define PIN_PA8__PWMIF1			PINMUX_PIN(PIN_PA8, 5, 3)
+> +#define PIN_PA8__FLEXCOM4_IO0		PINMUX_PIN(PIN_PA8, 6, 3)
+> +#define PIN_PA9				9
+> +#define PIN_PA9__GPIO			PINMUX_PIN(PIN_PA9, 0, 0)
+> +#define PIN_PA9__SDMMC0_DAT6		PINMUX_PIN(PIN_PA9, 1, 1)
+> +#define PIN_PA9__FLEXCOM2_IO2		PINMUX_PIN(PIN_PA9, 2, 1)
+> +#define PIN_PA9__CANTX0			PINMUX_PIN(PIN_PA9, 3, 1)
+> +#define PIN_PA9__SMCK			PINMUX_PIN(PIN_PA9, 4, 1)
+> +#define PIN_PA9__SPDIF_RX		PINMUX_PIN(PIN_PA9, 5, 1)
+> +#define PIN_PA9__FLEXCOM4_IO1		PINMUX_PIN(PIN_PA9, 6, 3)
+> +#define PIN_PA10			10
+> +#define PIN_PA10__GPIO			PINMUX_PIN(PIN_PA10, 0, 0)
+> +#define PIN_PA10__SDMMC0_DAT7		PINMUX_PIN(PIN_PA10, 1, 1)
+> +#define PIN_PA10__FLEXCOM2_IO3		PINMUX_PIN(PIN_PA10, 2, 1)
+> +#define PIN_PA10__CANRX0		PINMUX_PIN(PIN_PA10, 3, 1)
+> +#define PIN_PA10__NCS1			PINMUX_PIN(PIN_PA10, 4, 1)
+> +#define PIN_PA10__SPDIF_TX		PINMUX_PIN(PIN_PA10, 5, 1)
+> +#define PIN_PA10__FLEXCOM5_IO0		PINMUX_PIN(PIN_PA10, 6, 3)
+> +#define PIN_PA11			11
+> +#define PIN_PA11__GPIO			PINMUX_PIN(PIN_PA11, 0, 0)
+> +#define PIN_PA11__SDMMC0_DS		PINMUX_PIN(PIN_PA11, 1, 1)
+> +#define PIN_PA11__FLEXCOM2_IO4		PINMUX_PIN(PIN_PA11, 2, 1)
+> +#define PIN_PA11__A0_NBS0		PINMUX_PIN(PIN_PA11, 4, 1)
+> +#define PIN_PA11__TIOA0			PINMUX_PIN(PIN_PA11, 5, 1)
+> +#define PIN_PA11__FLEXCOM5_IO1		PINMUX_PIN(PIN_PA11, 6, 3)
+> +#define PIN_PA12			12
+> +#define PIN_PA12__GPIO			PINMUX_PIN(PIN_PA12, 0, 0)
+> +#define PIN_PA12__SDMMC0_WP		PINMUX_PIN(PIN_PA12, 1, 1)
+> +#define PIN_PA12__FLEXCOM1_IO3		PINMUX_PIN(PIN_PA12, 2, 1)
+> +#define PIN_PA12__FLEXCOM3_IO5		PINMUX_PIN(PIN_PA12, 4, 1)
+> +#define PIN_PA12__PWML2			PINMUX_PIN(PIN_PA12, 5, 3)
+> +#define PIN_PA12__FLEXCOM6_IO0		PINMUX_PIN(PIN_PA12, 6, 3)
+> +#define PIN_PA13			13
+> +#define PIN_PA13__GPIO			PINMUX_PIN(PIN_PA13, 0, 0)
+> +#define PIN_PA13__SDMMC0_1V8SEL		PINMUX_PIN(PIN_PA13, 1, 1)
+> +#define PIN_PA13__FLEXCOM1_IO2		PINMUX_PIN(PIN_PA13, 2, 1)
+> +#define PIN_PA13__FLEXCOM3_IO6		PINMUX_PIN(PIN_PA13, 4, 1)
+> +#define PIN_PA13__PWMH2			PINMUX_PIN(PIN_PA13, 5, 3)
+> +#define PIN_PA13__FLEXCOM6_IO1		PINMUX_PIN(PIN_PA13, 6, 3)
+> +#define PIN_PA14			14
+> +#define PIN_PA14__GPIO			PINMUX_PIN(PIN_PA14, 0, 0)
+> +#define PIN_PA14__SDMMC0_CD		PINMUX_PIN(PIN_PA14, 1, 1)
+> +#define PIN_PA14__FLEXCOM1_IO4		PINMUX_PIN(PIN_PA14, 2, 1)
+> +#define PIN_PA14__A25			PINMUX_PIN(PIN_PA14, 4, 1)
+> +#define PIN_PA14__PWML1			PINMUX_PIN(PIN_PA14, 5, 3)
+> +#define PIN_PA15			15
+> +#define PIN_PA15__GPIO			PINMUX_PIN(PIN_PA15, 0, 0)
+> +#define PIN_PA15__G0_TXEN		PINMUX_PIN(PIN_PA15, 1, 1)
+> +#define PIN_PA15__FLEXCOM3_IO0		PINMUX_PIN(PIN_PA15, 2, 1)
+> +#define PIN_PA15__ISC_MCK		PINMUX_PIN(PIN_PA15, 3, 1)
+> +#define PIN_PA15__A1			PINMUX_PIN(PIN_PA15, 4, 1)
+> +#define PIN_PA15__TIOB0			PINMUX_PIN(PIN_PA15, 5, 1)
+> +#define PIN_PA16			16
+> +#define PIN_PA16__GPIO			PINMUX_PIN(PIN_PA16, 0, 0)
+> +#define PIN_PA16__G0_TX0		PINMUX_PIN(PIN_PA16, 1, 1)
+> +#define PIN_PA16__FLEXCOM3_IO1		PINMUX_PIN(PIN_PA16, 2, 1)
+> +#define PIN_PA16__ISC_D0		PINMUX_PIN(PIN_PA16, 3, 1)
+> +#define PIN_PA16__A2			PINMUX_PIN(PIN_PA16, 4, 1)
+> +#define PIN_PA16__TCLK0			PINMUX_PIN(PIN_PA16, 5, 1)
+> +#define PIN_PA17			17
+> +#define PIN_PA17__GPIO			PINMUX_PIN(PIN_PA17, 0, 0)
+> +#define PIN_PA17__G0_TX1		PINMUX_PIN(PIN_PA17, 1, 1)
+> +#define PIN_PA17__FLEXCOM3_IO2		PINMUX_PIN(PIN_PA17, 2, 1)
+> +#define PIN_PA17__ISC_D1		PINMUX_PIN(PIN_PA17, 3, 1)
+> +#define PIN_PA17__A3			PINMUX_PIN(PIN_PA17, 4, 1)
+> +#define PIN_PA17__TIOA1			PINMUX_PIN(PIN_PA17, 5, 1)
+> +#define PIN_PA18			18
+> +#define PIN_PA18__GPIO			PINMUX_PIN(PIN_PA18, 0, 0)
+> +#define PIN_PA18__G0_RXDV		PINMUX_PIN(PIN_PA18, 1, 1)
+> +#define PIN_PA18__FLEXCOM3_IO3		PINMUX_PIN(PIN_PA18, 2, 1)
+> +#define PIN_PA18__ISC_D2		PINMUX_PIN(PIN_PA18, 3, 1)
+> +#define PIN_PA18__A4			PINMUX_PIN(PIN_PA18, 4, 1)
+> +#define PIN_PA18__TIOB1			PINMUX_PIN(PIN_PA18, 5, 1)
+> +#define PIN_PA19			19
+> +#define PIN_PA19__GPIO			PINMUX_PIN(PIN_PA19, 0, 0)
+> +#define PIN_PA19__G0_RX0		PINMUX_PIN(PIN_PA19, 1, 1)
+> +#define PIN_PA19__FLEXCOM3_IO4		PINMUX_PIN(PIN_PA19, 2, 1)
+> +#define PIN_PA19__ISC_D3		PINMUX_PIN(PIN_PA19, 3, 1)
+> +#define PIN_PA19__A5			PINMUX_PIN(PIN_PA19, 4, 1)
+> +#define PIN_PA19__TCLK1			PINMUX_PIN(PIN_PA19, 5, 1)
+> +#define PIN_PA20			20
+> +#define PIN_PA20__GPIO			PINMUX_PIN(PIN_PA20, 0, 0)
+> +#define PIN_PA20__G0_RX1		PINMUX_PIN(PIN_PA20, 1, 1)
+> +#define PIN_PA20__FLEXCOM4_IO0		PINMUX_PIN(PIN_PA20, 2, 1)
+> +#define PIN_PA20__ISC_D4		PINMUX_PIN(PIN_PA20, 3, 1)
+> +#define PIN_PA20__A6			PINMUX_PIN(PIN_PA20, 4, 1)
+> +#define PIN_PA20__TIOA2			PINMUX_PIN(PIN_PA20, 5, 1)
+> +#define PIN_PA21			21
+> +#define PIN_PA21__GPIO			PINMUX_PIN(PIN_PA21, 0, 0)
+> +#define PIN_PA21__G0_RXER		PINMUX_PIN(PIN_PA21, 1, 1)
+> +#define PIN_PA21__FLEXCOM4_IO1		PINMUX_PIN(PIN_PA21, 2, 1)
+> +#define PIN_PA21__ISC_D5		PINMUX_PIN(PIN_PA21, 3, 1)
+> +#define PIN_PA21__A7			PINMUX_PIN(PIN_PA21, 4, 1)
+> +#define PIN_PA21__TIOB2			PINMUX_PIN(PIN_PA21, 5, 1)
+> +#define PIN_PA22			22
+> +#define PIN_PA22__GPIO			PINMUX_PIN(PIN_PA22, 0, 0)
+> +#define PIN_PA22__G0_MDC		PINMUX_PIN(PIN_PA22, 1, 1)
+> +#define PIN_PA22__FLEXCOM4_IO2		PINMUX_PIN(PIN_PA22, 2, 1)
+> +#define PIN_PA22__ISC_D6		PINMUX_PIN(PIN_PA22, 3, 1)
+> +#define PIN_PA22__A8			PINMUX_PIN(PIN_PA22, 4, 1)
+> +#define PIN_PA22__TCLK2			PINMUX_PIN(PIN_PA22, 5, 1)
+> +#define PIN_PA23			23
+> +#define PIN_PA23__GPIO			PINMUX_PIN(PIN_PA23, 0, 0)
+> +#define PIN_PA23__G0_MDIO		PINMUX_PIN(PIN_PA23, 1, 1)
+> +#define PIN_PA23__FLEXCOM4_IO3		PINMUX_PIN(PIN_PA23, 2, 1)
+> +#define PIN_PA23__ISC_D7		PINMUX_PIN(PIN_PA23, 3, 1)
+> +#define PIN_PA23__A9			PINMUX_PIN(PIN_PA23, 4, 1)
+> +#define PIN_PA24			24
+> +#define PIN_PA24__GPIO			PINMUX_PIN(PIN_PA24, 0, 0)
+> +#define PIN_PA24__G0_TXCK		PINMUX_PIN(PIN_PA24, 1, 1)
+> +#define PIN_PA24__FLEXCOM4_IO4		PINMUX_PIN(PIN_PA24, 2, 1)
+> +#define PIN_PA24__ISC_HSYNC		PINMUX_PIN(PIN_PA24, 3, 1)
+> +#define PIN_PA24__A10			PINMUX_PIN(PIN_PA24, 4, 1)
+> +#define PIN_PA24__FLEXCOM0_IO5		PINMUX_PIN(PIN_PA24, 5, 1)
+> +#define PIN_PA25			25
+> +#define PIN_PA25__GPIO			PINMUX_PIN(PIN_PA25, 0, 0)
+> +#define PIN_PA25__G0_125CK		PINMUX_PIN(PIN_PA25, 1, 1)
+> +#define PIN_PA25__FLEXCOM5_IO4		PINMUX_PIN(PIN_PA25, 2, 1)
+> +#define PIN_PA25__ISC_VSYNC		PINMUX_PIN(PIN_PA25, 3, 1)
+> +#define PIN_PA25__A11			PINMUX_PIN(PIN_PA25, 4, 1)
+> +#define PIN_PA25__FLEXCOM0_IO6		PINMUX_PIN(PIN_PA25, 5, 1)
+> +#define PIN_PA25__FLEXCOM7_IO0		PINMUX_PIN(PIN_PA25, 6, 3)
+> +#define PIN_PA26			26
+> +#define PIN_PA26__GPIO			PINMUX_PIN(PIN_PA26, 0, 0)
+> +#define PIN_PA26__G0_TX2		PINMUX_PIN(PIN_PA26, 1, 1)
+> +#define PIN_PA26__FLEXCOM5_IO2		PINMUX_PIN(PIN_PA26, 2, 1)
+> +#define PIN_PA26__ISC_FIELD		PINMUX_PIN(PIN_PA26, 3, 1)
+> +#define PIN_PA26__A12			PINMUX_PIN(PIN_PA26, 4, 1)
+> +#define PIN_PA26__TF0			PINMUX_PIN(PIN_PA26, 5, 1)
+> +#define PIN_PA26__FLEXCOM7_IO1		PINMUX_PIN(PIN_PA26, 6, 3)
+> +#define PIN_PA27			27
+> +#define PIN_PA27__GPIO			PINMUX_PIN(PIN_PA27, 0, 0)
+> +#define PIN_PA27__G0_TX3		PINMUX_PIN(PIN_PA27, 1, 1)
+> +#define PIN_PA27__FLEXCOM5_IO3		PINMUX_PIN(PIN_PA27, 2, 1)
+> +#define PIN_PA27__ISC_PCK		PINMUX_PIN(PIN_PA27, 3, 1)
+> +#define PIN_PA27__A13			PINMUX_PIN(PIN_PA27, 4, 1)
+> +#define PIN_PA27__TK0			PINMUX_PIN(PIN_PA27, 5, 1)
+> +#define PIN_PA27__FLEXCOM8_IO0		PINMUX_PIN(PIN_PA27, 6, 3)
+> +#define PIN_PA28			28
+> +#define PIN_PA28__GPIO			PINMUX_PIN(PIN_PA28, 0, 0)
+> +#define PIN_PA28__G0_RX2		PINMUX_PIN(PIN_PA28, 1, 1)
+> +#define PIN_PA28__FLEXCOM5_IO0		PINMUX_PIN(PIN_PA28, 2, 1)
+> +#define PIN_PA28__ISC_D8		PINMUX_PIN(PIN_PA28, 3, 1)
+> +#define PIN_PA28__A14			PINMUX_PIN(PIN_PA28, 4, 1)
+> +#define PIN_PA28__RD0			PINMUX_PIN(PIN_PA28, 5, 1)
+> +#define PIN_PA28__FLEXCOM8_IO1		PINMUX_PIN(PIN_PA28, 6, 3)
+> +#define PIN_PA29			29
+> +#define PIN_PA29__GPIO			PINMUX_PIN(PIN_PA29, 0, 0)
+> +#define PIN_PA29__G0_RX3		PINMUX_PIN(PIN_PA29, 1, 1)
+> +#define PIN_PA29__FLEXCOM5_IO1		PINMUX_PIN(PIN_PA29, 2, 1)
+> +#define PIN_PA29__ISC_D9		PINMUX_PIN(PIN_PA29, 3, 1)
+> +#define PIN_PA29__A15			PINMUX_PIN(PIN_PA29, 4, 1)
+> +#define PIN_PA29__RF0			PINMUX_PIN(PIN_PA29, 5, 1)
+> +#define PIN_PA29__FLEXCOM9_IO0		PINMUX_PIN(PIN_PA29, 6, 3)
+> +#define PIN_PA30			30
+> +#define PIN_PA30__GPIO			PINMUX_PIN(PIN_PA30, 0, 0)
+> +#define PIN_PA30__G0_RXCK		PINMUX_PIN(PIN_PA30, 1, 1)
+> +#define PIN_PA30__FLEXCOM6_IO4		PINMUX_PIN(PIN_PA30, 2, 1)
+> +#define PIN_PA30__ISC_D10		PINMUX_PIN(PIN_PA30, 3, 1)
+> +#define PIN_PA30__A16			PINMUX_PIN(PIN_PA30, 4, 1)
+> +#define PIN_PA30__RK0			PINMUX_PIN(PIN_PA30, 5, 1)
+> +#define PIN_PA30__FLEXCOM9_IO1		PINMUX_PIN(PIN_PA30, 6, 3)
+> +#define PIN_PA31			31
+> +#define PIN_PA31__GPIO			PINMUX_PIN(PIN_PA31, 0, 0)
+> +#define PIN_PA31__G0_TXER		PINMUX_PIN(PIN_PA31, 1, 1)
+> +#define PIN_PA31__FLEXCOM6_IO2		PINMUX_PIN(PIN_PA31, 2, 1)
+> +#define PIN_PA31__ISC_D11		PINMUX_PIN(PIN_PA31, 3, 1)
+> +#define PIN_PA31__A17			PINMUX_PIN(PIN_PA31, 4, 1)
+> +#define PIN_PA31__TD0			PINMUX_PIN(PIN_PA31, 5, 1)
+> +#define PIN_PA31__FLEXCOM10_IO0		PINMUX_PIN(PIN_PA31, 6, 3)
+> +#define PIN_PB0				32
+> +#define PIN_PB0__GPIO			PINMUX_PIN(PIN_PB0, 0, 0)
+> +#define PIN_PB0__G0_COL			PINMUX_PIN(PIN_PB0, 1, 1)
+> +#define PIN_PB0__FLEXCOM6_IO3		PINMUX_PIN(PIN_PB0, 2, 2)
+> +#define PIN_PB0__EXT_IRQ0		PINMUX_PIN(PIN_PB0, 3, 1)
+> +#define PIN_PB0__A18			PINMUX_PIN(PIN_PB0, 4, 1)
+> +#define PIN_PB0__SPDIF_RX		PINMUX_PIN(PIN_PB0, 5, 2)
+> +#define PIN_PB0__FLEXCOM10_IO1		PINMUX_PIN(PIN_PB0, 6, 3)
+> +#define PIN_PB1				33
+> +#define PIN_PB1__GPIO			PINMUX_PIN(PIN_PB1, 0, 0)
+> +#define PIN_PB1__G0_CRS			PINMUX_PIN(PIN_PB1, 1, 1)
+> +#define PIN_PB1__FLEXCOM6_IO1		PINMUX_PIN(PIN_PB1, 2, 2)
+> +#define PIN_PB1__EXT_IRQ1		PINMUX_PIN(PIN_PB1, 3, 1)
+> +#define PIN_PB1__A19			PINMUX_PIN(PIN_PB1, 4, 1)
+> +#define PIN_PB1__SPDIF_TX		PINMUX_PIN(PIN_PB1, 5, 2)
+> +#define PIN_PB1__FLEXCOM11_IO0		PINMUX_PIN(PIN_PB1, 6, 3)
+> +#define PIN_PB2				34
+> +#define PIN_PB2__GPIO			PINMUX_PIN(PIN_PB2, 0, 0)
+> +#define PIN_PB2__G0_TSUCOMP		PINMUX_PIN(PIN_PB2, 1, 1)
+> +#define PIN_PB2__FLEXCOM6_IO0		PINMUX_PIN(PIN_PB2, 2, 1)
+> +#define PIN_PB2__ADTRG			PINMUX_PIN(PIN_PB2, 3, 1)
+> +#define PIN_PB2__A20			PINMUX_PIN(PIN_PB2, 4, 1)
+> +#define PIN_PB2__FLEXCOM11_IO0		PINMUX_PIN(PIN_PB2, 6, 3)
+> +#define PIN_PB3				35
+> +#define PIN_PB3__GPIO			PINMUX_PIN(PIN_PB3, 0, 0)
+> +#define PIN_PB3__RF1			PINMUX_PIN(PIN_PB3, 1, 1)
+> +#define PIN_PB3__FLEXCOM11_IO0		PINMUX_PIN(PIN_PB3, 2, 1)
+> +#define PIN_PB3__PCK2			PINMUX_PIN(PIN_PB3, 3, 2)
+> +#define PIN_PB3__D8			PINMUX_PIN(PIN_PB3, 4, 1)
+> +#define PIN_PB4				36
+> +#define PIN_PB4__GPIO			PINMUX_PIN(PIN_PB4, 0, 0)
+> +#define PIN_PB4__TF1			PINMUX_PIN(PIN_PB4, 1, 1)
+> +#define PIN_PB4__FLEXCOM11_IO1		PINMUX_PIN(PIN_PB4, 2, 1)
+> +#define PIN_PB4__PCK3			PINMUX_PIN(PIN_PB4, 3, 2)
+> +#define PIN_PB4__D9			PINMUX_PIN(PIN_PB4, 4, 1)
+> +#define PIN_PB5				37
+> +#define PIN_PB5__GPIO			PINMUX_PIN(PIN_PB5, 0, 0)
+> +#define PIN_PB5__TK1			PINMUX_PIN(PIN_PB5, 1, 1)
+> +#define PIN_PB5__FLEXCOM11_IO2		PINMUX_PIN(PIN_PB5, 2, 1)
+> +#define PIN_PB5__PCK4			PINMUX_PIN(PIN_PB5, 3, 2)
+> +#define PIN_PB5__D10			PINMUX_PIN(PIN_PB5, 4, 1)
+> +#define PIN_PB6				38
+> +#define PIN_PB6__GPIO			PINMUX_PIN(PIN_PB6, 0, 0)
+> +#define PIN_PB6__RK1			PINMUX_PIN(PIN_PB6, 1, 1)
+> +#define PIN_PB6__FLEXCOM11_IO3		PINMUX_PIN(PIN_PB6, 2, 1)
+> +#define PIN_PB6__PCK5			PINMUX_PIN(PIN_PB6, 3, 2)
+> +#define PIN_PB6__D11			PINMUX_PIN(PIN_PB6, 4, 1)
+> +#define PIN_PB7				39
+> +#define PIN_PB7__GPIO			PINMUX_PIN(PIN_PB7, 0, 0)
+> +#define PIN_PB7__TD1			PINMUX_PIN(PIN_PB7, 1, 1)
+> +#define PIN_PB7__FLEXCOM11_IO4		PINMUX_PIN(PIN_PB7, 2, 1)
+> +#define PIN_PB7__FLEXCOM3_IO5		PINMUX_PIN(PIN_PB7, 3, 2)
+> +#define PIN_PB7__D12			PINMUX_PIN(PIN_PB7, 4, 1)
+> +#define PIN_PB8				40
+> +#define PIN_PB8__GPIO			PINMUX_PIN(PIN_PB8, 0, 0)
+> +#define PIN_PB8__RD1			PINMUX_PIN(PIN_PB8, 1, 1)
+> +#define PIN_PB8__FLEXCOM8_IO0		PINMUX_PIN(PIN_PB8, 2, 1)
+> +#define PIN_PB8__FLEXCOM3_IO6		PINMUX_PIN(PIN_PB8, 3, 2)
+> +#define PIN_PB8__D13			PINMUX_PIN(PIN_PB8, 4, 1)
+> +#define PIN_PB9				41
+> +#define PIN_PB9__GPIO			PINMUX_PIN(PIN_PB9, 0, 0)
+> +#define PIN_PB9__QSPI0_IO3		PINMUX_PIN(PIN_PB9, 1, 1)
+> +#define PIN_PB9__FLEXCOM8_IO1		PINMUX_PIN(PIN_PB9, 2, 1)
+> +#define PIN_PB9__PDMC0_CLK		PINMUX_PIN(PIN_PB9, 3, 1)
+> +#define PIN_PB9__NCS3_NANDCS		PINMUX_PIN(PIN_PB9, 4, 1)
+> +#define PIN_PB9__PWML0			PINMUX_PIN(PIN_PB9, 5, 2)
+> +#define PIN_PB10			42
+> +#define PIN_PB10__GPIO			PINMUX_PIN(PIN_PB10, 0, 0)
+> +#define PIN_PB10__QSPI0_IO2		PINMUX_PIN(PIN_PB10, 1, 1)
+> +#define PIN_PB10__FLEXCOM8_IO2		PINMUX_PIN(PIN_PB10, 2, 1)
+> +#define PIN_PB10__PDMC0_DS0		PINMUX_PIN(PIN_PB10, 3, 1)
+> +#define PIN_PB10__NWE_NWR0_NANDWE	PINMUX_PIN(PIN_PB10, 4, 1)
+> +#define PIN_PB10__PWMH0			PINMUX_PIN(PIN_PB10, 5, 2)
+> +#define PIN_PB11			43
+> +#define PIN_PB11__GPIO			PINMUX_PIN(PIN_PB11, 0, 0)
+> +#define PIN_PB11__QSPI0_IO1		PINMUX_PIN(PIN_PB11, 1, 1)
+> +#define PIN_PB11__FLEXCOM8_IO3		PINMUX_PIN(PIN_PB11, 2, 1)
+> +#define PIN_PB11__PDMC0_DS1		PINMUX_PIN(PIN_PB11, 3, 1)
+> +#define PIN_PB11__NRD_NANDOE		PINMUX_PIN(PIN_PB11, 4, 1)
+> +#define PIN_PB11__PWML1			PINMUX_PIN(PIN_PB11, 5, 2)
+> +#define PIN_PB12			44
+> +#define PIN_PB12__GPIO			PINMUX_PIN(PIN_PB12, 0, 0)
+> +#define PIN_PB12__QSPI0_IO0		PINMUX_PIN(PIN_PB12, 1, 1)
+> +#define PIN_PB12__FLEXCOM8_IO4		PINMUX_PIN(PIN_PB12, 2, 1)
+> +#define PIN_PB12__FLEXCOM6_IO5		PINMUX_PIN(PIN_PB12, 3, 1)
+> +#define PIN_PB12__A21_NANDALE		PINMUX_PIN(PIN_PB12, 4, 1)
+> +#define PIN_PB12__PWMH1			PINMUX_PIN(PIN_PB12, 5, 2)
+> +#define PIN_PB13			45
+> +#define PIN_PB13__GPIO			PINMUX_PIN(PIN_PB13, 0, 0)
+> +#define PIN_PB13__QSPI0_CS		PINMUX_PIN(PIN_PB13, 1, 1)
+> +#define PIN_PB13__FLEXCOM9_IO0		PINMUX_PIN(PIN_PB13, 2, 1)
+> +#define PIN_PB13__FLEXCOM6_IO6		PINMUX_PIN(PIN_PB13, 3, 1)
+> +#define PIN_PB13__A22_NANDCLE		PINMUX_PIN(PIN_PB13, 4, 1)
+> +#define PIN_PB13__PWML2			PINMUX_PIN(PIN_PB13, 5, 2)
+> +#define PIN_PB14			46
+> +#define PIN_PB14__GPIO			PINMUX_PIN(PIN_PB14, 0, 0)
+> +#define PIN_PB14__QSPI0_SCK		PINMUX_PIN(PIN_PB14, 1, 1)
+> +#define PIN_PB14__FLEXCOM9_IO1		PINMUX_PIN(PIN_PB14, 2, 1)
+> +#define PIN_PB14__D0			PINMUX_PIN(PIN_PB14, 4, 1)
+> +#define PIN_PB14__PWMH2			PINMUX_PIN(PIN_PB14, 5, 2)
+> +#define PIN_PB15			47
+> +#define PIN_PB15__GPIO			PINMUX_PIN(PIN_PB15, 0, 0)
+> +#define PIN_PB15__QSPI0_SCKN		PINMUX_PIN(PIN_PB15, 1, 1)
+> +#define PIN_PB15__FLEXCOM9_IO2		PINMUX_PIN(PIN_PB15, 2, 1)
+> +#define PIN_PB15__D1			PINMUX_PIN(PIN_PB15, 4, 1)
+> +#define PIN_PB15__PWML3			PINMUX_PIN(PIN_PB15, 5, 2)
+> +#define PIN_PB16			48
+> +#define PIN_PB16__GPIO			PINMUX_PIN(PIN_PB16, 0, 0)
+> +#define PIN_PB16__QSPI0_IO4		PINMUX_PIN(PIN_PB16, 1, 1)
+> +#define PIN_PB16__FLEXCOM9_IO3		PINMUX_PIN(PIN_PB16, 2, 1)
+> +#define PIN_PB16__PCK0			PINMUX_PIN(PIN_PB16, 3, 1)
+> +#define PIN_PB16__D2			PINMUX_PIN(PIN_PB16, 4, 1)
+> +#define PIN_PB16__PWMH3			PINMUX_PIN(PIN_PB16, 5, 2)
+> +#define PIN_PB16__EXT_IRQ0		PINMUX_PIN(PIN_PB16, 6, 2)
+> +#define PIN_PB17			49
+> +#define PIN_PB17__GPIO			PINMUX_PIN(PIN_PB17, 0, 0)
+> +#define PIN_PB17__QSPI0_IO5		PINMUX_PIN(PIN_PB17, 1, 1)
+> +#define PIN_PB17__FLEXCOM9_IO4		PINMUX_PIN(PIN_PB17, 2, 1)
+> +#define PIN_PB17__PCK1			PINMUX_PIN(PIN_PB17, 3, 1)
+> +#define PIN_PB17__D3			PINMUX_PIN(PIN_PB17, 4, 1)
+> +#define PIN_PB17__PWMEXTRG0		PINMUX_PIN(PIN_PB17, 5, 2)
+> +#define PIN_PB17__EXT_IRQ1		PINMUX_PIN(PIN_PB17, 6, 2)
+> +#define PIN_PB18			50
+> +#define PIN_PB18__GPIO			PINMUX_PIN(PIN_PB18, 0, 0)
+> +#define PIN_PB18__QSPI0_IO6		PINMUX_PIN(PIN_PB18, 1, 1)
+> +#define PIN_PB18__FLEXCOM10_IO0		PINMUX_PIN(PIN_PB18, 2, 1)
+> +#define PIN_PB18__PCK2			PINMUX_PIN(PIN_PB18, 3, 1)
+> +#define PIN_PB18__D4			PINMUX_PIN(PIN_PB18, 4, 1)
+> +#define PIN_PB18__PWMEXTRG1		PINMUX_PIN(PIN_PB18, 5, 2)
+> +#define PIN_PB19			51
+> +#define PIN_PB19__GPIO			PINMUX_PIN(PIN_PB19, 0, 0)
+> +#define PIN_PB19__QSPI0_IO7		PINMUX_PIN(PIN_PB19, 1, 1)
+> +#define PIN_PB19__FLEXCOM10_IO1		PINMUX_PIN(PIN_PB19, 2, 1)
+> +#define PIN_PB19__PCK3			PINMUX_PIN(PIN_PB19, 3, 1)
+> +#define PIN_PB19__D5			PINMUX_PIN(PIN_PB19, 4, 1)
+> +#define PIN_PB19__PWMFI0		PINMUX_PIN(PIN_PB19, 5, 2)
+> +#define PIN_PB20			52
+> +#define PIN_PB20__GPIO			PINMUX_PIN(PIN_PB20, 0, 0)
+> +#define PIN_PB20__QSPI0_DQS		PINMUX_PIN(PIN_PB20, 1, 1)
+> +#define PIN_PB20__FLEXCOM10_IO2		PINMUX_PIN(PIN_PB20, 2, 1)
+> +#define PIN_PB20__D6			PINMUX_PIN(PIN_PB20, 4, 1)
+> +#define PIN_PB20__PWMFI1		PINMUX_PIN(PIN_PB20, 5, 2)
+> +#define PIN_PB21			53
+> +#define PIN_PB21__GPIO			PINMUX_PIN(PIN_PB21, 0, 0)
+> +#define PIN_PB21__QSPI0_INT		PINMUX_PIN(PIN_PB21, 1, 1)
+> +#define PIN_PB21__FLEXCOM10_IO3		PINMUX_PIN(PIN_PB21, 2, 1)
+> +#define PIN_PB21__FLEXCOM9_IO5		PINMUX_PIN(PIN_PB21, 3, 1)
+> +#define PIN_PB21__D7			PINMUX_PIN(PIN_PB21, 4, 1)
+> +#define PIN_PB22			54
+> +#define PIN_PB22__GPIO			PINMUX_PIN(PIN_PB22, 0, 0)
+> +#define PIN_PB22__QSPI1_IO3		PINMUX_PIN(PIN_PB22, 1, 1)
+> +#define PIN_PB22__FLEXCOM10_IO4		PINMUX_PIN(PIN_PB22, 2, 1)
+> +#define PIN_PB22__FLEXCOM9_IO6		PINMUX_PIN(PIN_PB22, 3, 1)
+> +#define PIN_PB22__NANDRDY		PINMUX_PIN(PIN_PB22, 4, 1)
+> +#define PIN_PB23			55
+> +#define PIN_PB23__GPIO			PINMUX_PIN(PIN_PB23, 0, 0)
+> +#define PIN_PB23__QSPI1_IO2		PINMUX_PIN(PIN_PB23, 1, 1)
+> +#define PIN_PB23__FLEXCOM7_IO0		PINMUX_PIN(PIN_PB23, 2, 1)
+> +#define PIN_PB23__I2SMCC0_CK		PINMUX_PIN(PIN_PB23, 3, 1)
+> +#define PIN_PB23__PCK4			PINMUX_PIN(PIN_PB23, 6, 1)
+> +#define PIN_PB24			56
+> +#define PIN_PB24__GPIO			PINMUX_PIN(PIN_PB24, 0, 0)
+> +#define PIN_PB24__QSPI1_IO1		PINMUX_PIN(PIN_PB24, 1, 1)
+> +#define PIN_PB24__FLEXCOM7_IO1		PINMUX_PIN(PIN_PB24, 2, 1)
+> +#define PIN_PB24__I2SMCC0_WS		PINMUX_PIN(PIN_PB24, 3, 1)
+> +#define PIN_PB24__PCK5			PINMUX_PIN(PIN_PB24, 6, 1)
+> +#define PIN_PB25			57
+> +#define PIN_PB25__GPIO			PINMUX_PIN(PIN_PB25, 0, 0)
+> +#define PIN_PB25__QSPI1_IO0		PINMUX_PIN(PIN_PB25, 1, 1)
+> +#define PIN_PB25__FLEXCOM7_IO2		PINMUX_PIN(PIN_PB25, 2, 1)
+> +#define PIN_PB25__I2SMCC0_DOUT1		PINMUX_PIN(PIN_PB25, 3, 1)
+> +#define PIN_PB25__PCK6			PINMUX_PIN(PIN_PB25, 6, 1)
+> +#define PIN_PB26			58
+> +#define PIN_PB26__GPIO			PINMUX_PIN(PIN_PB26, 0, 0)
+> +#define PIN_PB26__QSPI1_CS		PINMUX_PIN(PIN_PB26, 1, 1)
+> +#define PIN_PB26__FLEXCOM7_IO3		PINMUX_PIN(PIN_PB26, 2, 1)
+> +#define PIN_PB26__I2SMCC0_DOUT0		PINMUX_PIN(PIN_PB26, 3, 1)
+> +#define PIN_PB26__PWMEXTRG0		PINMUX_PIN(PIN_PB26, 5, 1)
+> +#define PIN_PB26__PCK7			PINMUX_PIN(PIN_PB26, 6, 1)
+> +#define PIN_PB27			59
+> +#define PIN_PB27__GPIO			PINMUX_PIN(PIN_PB27, 0, 0)
+> +#define PIN_PB27__QSPI1_SCK		PINMUX_PIN(PIN_PB27, 1, 1)
+> +#define PIN_PB27__FLEXCOM7_IO4		PINMUX_PIN(PIN_PB27, 2, 1)
+> +#define PIN_PB27__I2SMCC0_MCK		PINMUX_PIN(PIN_PB27, 3, 1)
+> +#define PIN_PB27__PWMEXTRG1		PINMUX_PIN(PIN_PB27, 5, 1)
+> +#define PIN_PB28			60
+> +#define PIN_PB28__GPIO			PINMUX_PIN(PIN_PB28, 0, 0)
+> +#define PIN_PB28__SDMMC1_RSTN		PINMUX_PIN(PIN_PB28, 1, 1)
+> +#define PIN_PB28__ADTRG			PINMUX_PIN(PIN_PB28, 2, 2)
+> +#define PIN_PB28__PWMFI0		PINMUX_PIN(PIN_PB28, 5, 1)
+> +#define PIN_PB28__FLEXCOM7_IO0		PINMUX_PIN(PIN_PB28, 6, 4)
+> +#define PIN_PB29			61
+> +#define PIN_PB29__GPIO			PINMUX_PIN(PIN_PB29, 0, 0)
+> +#define PIN_PB29__SDMMC1_CMD		PINMUX_PIN(PIN_PB29, 1, 1)
+> +#define PIN_PB29__FLEXCOM3_IO2		PINMUX_PIN(PIN_PB29, 2, 2)
+> +#define PIN_PB29__FLEXCOM0_IO5		PINMUX_PIN(PIN_PB29, 3, 2)
+> +#define PIN_PB29__TIOA3			PINMUX_PIN(PIN_PB29, 4, 2)
+> +#define PIN_PB29__PWMFI1		PINMUX_PIN(PIN_PB29, 5, 1)
+> +#define PIN_PB29__FLEXCOM7_IO1		PINMUX_PIN(PIN_PB29, 6, 4)
+> +#define PIN_PB30			62
+> +#define PIN_PB30__GPIO			PINMUX_PIN(PIN_PB30, 0, 0)
+> +#define PIN_PB30__SDMMC1_CK		PINMUX_PIN(PIN_PB30, 1, 1)
+> +#define PIN_PB30__FLEXCOM3_IO3		PINMUX_PIN(PIN_PB30, 2, 2)
+> +#define PIN_PB30__FLEXCOM0_IO6		PINMUX_PIN(PIN_PB30, 3, 2)
+> +#define PIN_PB30__TIOB3			PINMUX_PIN(PIN_PB30, 4, 1)
+> +#define PIN_PB30__PWMH0			PINMUX_PIN(PIN_PB30, 5, 1)
+> +#define PIN_PB30__FLEXCOM8_IO0		PINMUX_PIN(PIN_PB30, 6, 4)
+> +#define PIN_PB31			63
+> +#define PIN_PB31__GPIO			PINMUX_PIN(PIN_PB31, 0, 0)
+> +#define PIN_PB31__SDMMC1_DAT0		PINMUX_PIN(PIN_PB31, 1, 1)
+> +#define PIN_PB31__FLEXCOM3_IO4		PINMUX_PIN(PIN_PB31, 2, 2)
+> +#define PIN_PB31__FLEXCOM9_IO5		PINMUX_PIN(PIN_PB31, 3, 2)
+> +#define PIN_PB31__TCLK3			PINMUX_PIN(PIN_PB31, 4, 1)
+> +#define PIN_PB31__PWML0			PINMUX_PIN(PIN_PB31, 5, 1)
+> +#define PIN_PB31__FLEXCOM8_IO1		PINMUX_PIN(PIN_PB31, 6, 4)
+> +#define PIN_PC0				64
+> +#define PIN_PC0__GPIO			PINMUX_PIN(PIN_PC0, 0, 0)
+> +#define PIN_PC0__SDMMC1_DAT1		PINMUX_PIN(PIN_PC0, 1, 1)
+> +#define PIN_PC0__FLEXCOM3_IO0		PINMUX_PIN(PIN_PC0, 2, 2)
+> +#define PIN_PC0__TIOA4			PINMUX_PIN(PIN_PC0, 4, 1)
+> +#define PIN_PC0__PWML1			PINMUX_PIN(PIN_PC0, 5, 1)
+> +#define PIN_PC0__FLEXCOM9_IO0		PINMUX_PIN(PIN_PC0, 6, 4)
+> +#define PIN_PC1				65
+> +#define PIN_PC1__GPIO			PINMUX_PIN(PIN_PC1, 0, 0)
+> +#define PIN_PC1__SDMMC1_DAT2		PINMUX_PIN(PIN_PC1, 1, 1)
+> +#define PIN_PC1__FLEXCOM3_IO1		PINMUX_PIN(PIN_PC1, 2, 2)
+> +#define PIN_PC1__TIOB4			PINMUX_PIN(PIN_PC1, 4, 1)
+> +#define PIN_PC1__PWMH1			PINMUX_PIN(PIN_PC1, 5, 1)
+> +#define PIN_PC1__FLEXCOM9_IO1		PINMUX_PIN(PIN_PC1, 6, 4)
+> +#define PIN_PC2				66
+> +#define PIN_PC2__GPIO			PINMUX_PIN(PIN_PC2, 0, 0)
+> +#define PIN_PC2__SDMMC1_DAT3		PINMUX_PIN(PIN_PC2, 1, 1)
+> +#define PIN_PC2__FLEXCOM4_IO0		PINMUX_PIN(PIN_PC2, 2, 2)
+> +#define PIN_PC2__TCLK4			PINMUX_PIN(PIN_PC2, 4, 1)
+> +#define PIN_PC2__PWML2			PINMUX_PIN(PIN_PC2, 5, 1)
+> +#define PIN_PC2__FLEXCOM10_IO0		PINMUX_PIN(PIN_PC2, 6, 4)
+> +#define PIN_PC3				67
+> +#define PIN_PC3__GPIO			PINMUX_PIN(PIN_PC3, 0, 0)
+> +#define PIN_PC3__SDMMC1_WP		PINMUX_PIN(PIN_PC3, 1, 1)
+> +#define PIN_PC3__FLEXCOM4_IO1		PINMUX_PIN(PIN_PC3, 2, 2)
+> +#define PIN_PC3__TIOA5			PINMUX_PIN(PIN_PC3, 4, 1)
+> +#define PIN_PC3__PWMH2			PINMUX_PIN(PIN_PC3, 5, 1)
+> +#define PIN_PC3__FLEXCOM10_IO1		PINMUX_PIN(PIN_PC3, 6, 4)
+> +#define PIN_PC4				68
+> +#define PIN_PC4__GPIO			PINMUX_PIN(PIN_PC4, 0, 0)
+> +#define PIN_PC4__SDMMC1_CD		PINMUX_PIN(PIN_PC4, 1, 1)
+> +#define PIN_PC4__FLEXCOM4_IO2		PINMUX_PIN(PIN_PC4, 2, 2)
+> +#define PIN_PC4__FLEXCOM9_IO6		PINMUX_PIN(PIN_PC4, 3, 2)
+> +#define PIN_PC4__TIOB5			PINMUX_PIN(PIN_PC4, 4, 1)
+> +#define PIN_PC4__PWML3			PINMUX_PIN(PIN_PC4, 5, 1)
+> +#define PIN_PC4__FLEXCOM11_IO0		PINMUX_PIN(PIN_PC4, 6, 4)
+> +#define PIN_PC5				69
+> +#define PIN_PC5__GPIO			PINMUX_PIN(PIN_PC5, 0, 0)
+> +#define PIN_PC5__SDMMC1_1V8SEL		PINMUX_PIN(PIN_PC5, 1, 1)
+> +#define PIN_PC5__FLEXCOM4_IO3		PINMUX_PIN(PIN_PC5, 2, 2)
+> +#define PIN_PC5__FLEXCOM6_IO5		PINMUX_PIN(PIN_PC5, 3, 2)
+> +#define PIN_PC5__TCLK5			PINMUX_PIN(PIN_PC5, 4, 1)
+> +#define PIN_PC5__PWMH3			PINMUX_PIN(PIN_PC5, 5, 1)
+> +#define PIN_PC5__FLEXCOM11_IO1		PINMUX_PIN(PIN_PC5, 6, 4)
+> +#define PIN_PC6				70
+> +#define PIN_PC6__GPIO			PINMUX_PIN(PIN_PC6, 0, 0)
+> +#define PIN_PC6__FLEXCOM4_IO4		PINMUX_PIN(PIN_PC6, 2, 2)
+> +#define PIN_PC6__FLEXCOM6_IO6		PINMUX_PIN(PIN_PC6, 3, 2)
+> +#define PIN_PC7				71
+> +#define PIN_PC7__GPIO			PINMUX_PIN(PIN_PC7, 0, 0)
+> +#define PIN_PC7__I2SMCC0_DIN0		PINMUX_PIN(PIN_PC7, 1, 1)
+> +#define PIN_PC7__FLEXCOM7_IO0		PINMUX_PIN(PIN_PC7, 2, 2)
+> +#define PIN_PC8				72
+> +#define PIN_PC8__GPIO			PINMUX_PIN(PIN_PC8, 0, 0)
+> +#define PIN_PC8__I2SMCC0_DIN1		PINMUX_PIN(PIN_PC8, 1, 1)
+> +#define PIN_PC8__FLEXCOM7_IO1		PINMUX_PIN(PIN_PC8, 2, 2)
+> +#define PIN_PC9				73
+> +#define PIN_PC9__GPIO			PINMUX_PIN(PIN_PC9, 0, 0)
+> +#define PIN_PC9__I2SMCC0_DOUT3		PINMUX_PIN(PIN_PC9, 1, 1)
+> +#define PIN_PC9__FLEXCOM7_IO2		PINMUX_PIN(PIN_PC9, 2, 2)
+> +#define PIN_PC9__FLEXCOM1_IO0		PINMUX_PIN(PIN_PC9, 6, 4)
+> +#define PIN_PC10			74
+> +#define PIN_PC10__GPIO			PINMUX_PIN(PIN_PC10, 0, 0)
+> +#define PIN_PC10__I2SMCC0_DOUT2		PINMUX_PIN(PIN_PC10, 1, 1)
+> +#define PIN_PC10__FLEXCOM7_IO3		PINMUX_PIN(PIN_PC10, 2, 2)
+> +#define PIN_PC10__FLEXCOM1_IO1		PINMUX_PIN(PIN_PC10, 6, 4)
+> +#define PIN_PC11			75
+> +#define PIN_PC11__GPIO			PINMUX_PIN(PIN_PC11, 0, 0)
+> +#define PIN_PC11__I2SMCC1_CK		PINMUX_PIN(PIN_PC11, 1, 1)
+> +#define PIN_PC11__FLEXCOM7_IO4		PINMUX_PIN(PIN_PC11, 2, 2)
+> +#define PIN_PC11__FLEXCOM2_IO0		PINMUX_PIN(PIN_PC11, 6, 4)
+> +#define PIN_PC12			76
+> +#define PIN_PC12__GPIO			PINMUX_PIN(PIN_PC12, 0, 0)
+> +#define PIN_PC12__I2SMCC1_WS		PINMUX_PIN(PIN_PC12, 1, 1)
+> +#define PIN_PC12__FLEXCOM8_IO2		PINMUX_PIN(PIN_PC12, 2, 2)
+> +#define PIN_PC12__FLEXCOM2_IO1		PINMUX_PIN(PIN_PC12, 6, 4)
+> +#define PIN_PC13			77
+> +#define PIN_PC13__GPIO			PINMUX_PIN(PIN_PC13, 0, 0)
+> +#define PIN_PC13__I2SMCC1_MCK		PINMUX_PIN(PIN_PC13, 1, 1)
+> +#define PIN_PC13__FLEXCOM8_IO1		PINMUX_PIN(PIN_PC13, 2, 2)
+> +#define PIN_PC13__FLEXCOM3_IO0		PINMUX_PIN(PIN_PC13, 6, 4)
+> +#define PIN_PC14			78
+> +#define PIN_PC14__GPIO			PINMUX_PIN(PIN_PC14, 0, 0)
+> +#define PIN_PC14__I2SMCC1_DOUT0		PINMUX_PIN(PIN_PC14, 1, 1)
+> +#define PIN_PC14__FLEXCOM8_IO0		PINMUX_PIN(PIN_PC14, 2, 2)
+> +#define PIN_PC14__FLEXCOM3_IO1		PINMUX_PIN(PIN_PC14, 6, 4)
+> +#define PIN_PC15			79
+> +#define PIN_PC15__GPIO			PINMUX_PIN(PIN_PC15, 0, 0)
+> +#define PIN_PC15__I2SMCC1_DOUT1		PINMUX_PIN(PIN_PC15, 1, 1)
+> +#define PIN_PC15__FLEXCOM8_IO3		PINMUX_PIN(PIN_PC15, 2, 2)
+> +#define PIN_PC15__FLEXCOM4_IO0		PINMUX_PIN(PIN_PC15, 6, 4)
+> +#define PIN_PC16			80
+> +#define PIN_PC16__GPIO			PINMUX_PIN(PIN_PC16, 0, 0)
+> +#define PIN_PC16__I2SMCC_DOUT2		PINMUX_PIN(PIN_PC16, 1, 1)
+> +#define PIN_PC16__FLEXCOM8_IO4		PINMUX_PIN(PIN_PC16, 2, 2)
+> +#define PIN_PC16__FLEXCOM3_IO1		PINMUX_PIN(PIN_PC16, 6, 4)
+> +#define PIN_PC17			81
+> +#define PIN_PC17__GPIO			PINMUX_PIN(PIN_PC17, 0, 0)
+> +#define PIN_PC17__I2SMCC1_DOUT3		PINMUX_PIN(PIN_PC17, 1, 1)
+> +#define PIN_PC17__EXT_IRQ0		PINMUX_PIN(PIN_PC17, 2, 3)
+> +#define PIN_PC17__FLEXCOM5_IO0		PINMUX_PIN(PIN_PC17, 6, 4)
+> +#define PIN_PC18			82
+> +#define PIN_PC18__GPIO			PINMUX_PIN(PIN_PC18, 0, 0)
+> +#define PIN_PC18__I2SMCC1_DIN0		PINMUX_PIN(PIN_PC18, 1, 1)
+> +#define PIN_PC18__FLEXCOM9_IO0		PINMUX_PIN(PIN_PC18, 2, 2)
+> +#define PIN_PC18__FLEXCOM5_IO1		PINMUX_PIN(PIN_PC18, 6, 4)
+> +#define PIN_PC19			83
+> +#define PIN_PC19__GPIO			PINMUX_PIN(PIN_PC19, 0, 0)
+> +#define PIN_PC19__I2SMCC1_DIN1		PINMUX_PIN(PIN_PC19, 1, 1)
+> +#define PIN_PC19__FLEXCOM9_IO1		PINMUX_PIN(PIN_PC19, 2, 2)
+> +#define PIN_PC19__FLEXCOM6_IO0		PINMUX_PIN(PIN_PC19, 6, 4)
+> +#define PIN_PC20			84
+> +#define PIN_PC20__GPIO			PINMUX_PIN(PIN_PC20, 0, 0)
+> +#define PIN_PC20__I2SMCC1_DIN2		PINMUX_PIN(PIN_PC20, 1, 1)
+> +#define PIN_PC20__FLEXCOM9_IO4		PINMUX_PIN(PIN_PC20, 2, 2)
+> +#define PIN_PC20__FLEXCOM6_IO1		PINMUX_PIN(PIN_PC20, 6, 4)
+> +#define PIN_PC21			85
+> +#define PIN_PC21__GPIO			PINMUX_PIN(PIN_PC21, 0, 0)
+> +#define PIN_PC21__I2SMCC1_DIN3		PINMUX_PIN(PIN_PC21, 1, 1)
+> +#define PIN_PC21__FLEXCOM9_IO2		PINMUX_PIN(PIN_PC21, 2, 2)
+> +#define PIN_PC21__D3			PINMUX_PIN(PIN_PC21, 4, 2)
+> +#define PIN_PC21__FLEXCOM6_IO0		PINMUX_PIN(PIN_PC21, 6, 5)
+> +#define PIN_PC22			86
+> +#define PIN_PC22__GPIO			PINMUX_PIN(PIN_PC22, 0, 0)
+> +#define PIN_PC22__I2SMCC0_DIN2		PINMUX_PIN(PIN_PC22, 1, 1)
+> +#define PIN_PC22__FLEXCOM9_IO3		PINMUX_PIN(PIN_PC22, 2, 2)
+> +#define PIN_PC22__D4			PINMUX_PIN(PIN_PC22, 4, 2)
+> +#define PIN_PC22__FLEXCOM6_IO1		PINMUX_PIN(PIN_PC22, 6, 5)
+> +#define PIN_PC23			87
+> +#define PIN_PC23__GPIO			PINMUX_PIN(PIN_PC23, 0, 0)
+> +#define PIN_PC23__I2SMCC0_DIN3		PINMUX_PIN(PIN_PC23, 1, 1)
+> +#define PIN_PC23__FLEXCOM0_IO5		PINMUX_PIN(PIN_PC23, 2, 3)
+> +#define PIN_PC23__D5			PINMUX_PIN(PIN_PC23, 4, 2)
+> +#define PIN_PC23__FLEXCOM7_IO0		PINMUX_PIN(PIN_PC23, 6, 5)
+> +#define PIN_PC24			88
+> +#define PIN_PC24__GPIO			PINMUX_PIN(PIN_PC24, 0, 0)
+> +#define PIN_PC24__FLEXCOM0_IO6		PINMUX_PIN(PIN_PC24, 2, 3)
+> +#define PIN_PC24__EXT_IRQ1		PINMUX_PIN(PIN_PC24, 3, 3)
+> +#define PIN_PC24__D6			PINMUX_PIN(PIN_PC24, 4, 2)
+> +#define PIN_PC24__FLEXCOM7_IO1		PINMUX_PIN(PIN_PC24, 6, 5)
+> +#define PIN_PC25			89
+> +#define PIN_PC25__GPIO			PINMUX_PIN(PIN_PC25, 0, 0)
+> +#define PIN_PC25__NTRST			PINMUX_PIN(PIN_PC25, 1, 1)
+> +#define PIN_PC26			90
+> +#define PIN_PC26__GPIO			PINMUX_PIN(PIN_PC26, 0, 0)
+> +#define PIN_PC26__TCK_SWCLK		PINMUX_PIN(PIN_PC26, 1, 1)
+> +#define PIN_PC27			91
+> +#define PIN_PC27__GPIO			PINMUX_PIN(PIN_PC27, 0, 0)
+> +#define PIN_PC27__TMS_SWDIO		PINMUX_PIN(PIN_PC27, 1, 1)
+> +#define PIN_PC28			92
+> +#define PIN_PC28__GPIO			PINMUX_PIN(PIN_PC28, 0, 0)
+> +#define PIN_PC28__TDI			PINMUX_PIN(PIN_PC28, 1, 1)
+> +#define PIN_PC29			93
+> +#define PIN_PC29__GPIO			PINMUX_PIN(PIN_PC29, 0, 0)
+> +#define PIN_PC29__TDO			PINMUX_PIN(PIN_PC29, 1, 1)
+> +#define PIN_PC30			94
+> +#define PIN_PC30__GPIO			PINMUX_PIN(PIN_PC30, 0, 0)
+> +#define PIN_PC30__FLEXCOM10_IO0		PINMUX_PIN(PIN_PC30, 2, 2)
+> +#define PIN_PC31			95
+> +#define PIN_PC31__GPIO			PINMUX_PIN(PIN_PC31, 0, 0)
+> +#define PIN_PC31__FLEXCOM10_IO1		PINMUX_PIN(PIN_PC31, 2, 2)
+> +#define PIN_PD0				96
+> +#define PIN_PD0__GPIO			PINMUX_PIN(PIN_PD0, 0, 0)
+> +#define PIN_PD0__FLEXCOM11_IO0		PINMUX_PIN(PIN_PD0, 2, 2)
+> +#define PIN_PD1				97
+> +#define PIN_PD1__GPIO			PINMUX_PIN(PIN_PD1, 0, 0)
+> +#define PIN_PD1__FLEXCOM11_IO1		PINMUX_PIN(PIN_PD1, 2, 2)
+> +#define PIN_PD2				98
+> +#define PIN_PD2__GPIO			PINMUX_PIN(PIN_PD2, 0, 0)
+> +#define PIN_PD2__SDMMC2_RSTN		PINMUX_PIN(PIN_PD2, 1, 1)
+> +#define PIN_PD2__PCK0			PINMUX_PIN(PIN_PD2, 2, 2)
+> +#define PIN_PD2__CANTX4			PINMUX_PIN(PIN_PD2, 3, 1)
+> +#define PIN_PD2__D7			PINMUX_PIN(PIN_PD2, 4, 2)
+> +#define PIN_PD2__TIOA0			PINMUX_PIN(PIN_PD2, 5, 2)
+> +#define PIN_PD2__FLEXCOM8_IO0		PINMUX_PIN(PIN_PD2, 6, 5)
+> +#define PIN_PD3				99
+> +#define PIN_PD3__GPIO			PINMUX_PIN(PIN_PD3, 0, 0)
+> +#define PIN_PD3__SDMMC2_CMD		PINMUX_PIN(PIN_PD3, 1, 1)
+> +#define PIN_PD3__FLEXCOM0_IO0		PINMUX_PIN(PIN_PD3, 2, 2)
+> +#define PIN_PD3__CANRX4			PINMUX_PIN(PIN_PD3, 3, 1)
+> +#define PIN_PD3__NANDRDY		PINMUX_PIN(PIN_PD3, 4, 2)
+> +#define PIN_PD3__TIOB0			PINMUX_PIN(PIN_PD3, 5, 2)
+> +#define PIN_PD3__FLEXCOM8_IO1		PINMUX_PIN(PIN_PD3, 6, 5)
+> +#define PIN_PD4				100
+> +#define PIN_PD4__GPIO			PINMUX_PIN(PIN_PD4, 0, 0)
+> +#define PIN_PD4__SDMMC2_CK		PINMUX_PIN(PIN_PD4, 1, 1)
+> +#define PIN_PD4__FLEXCOM0_IO1		PINMUX_PIN(PIN_PD4, 2, 2)
+> +#define PIN_PD4__CANTX5			PINMUX_PIN(PIN_PD4, 3, 1)
+> +#define PIN_PD4__NCS3_NANDCS		PINMUX_PIN(PIN_PD4, 4, 2)
+> +#define PIN_PD4__TCLK0			PINMUX_PIN(PIN_PD4, 5, 2)
+> +#define PIN_PD4__FLEXCOM9_IO0		PINMUX_PIN(PIN_PD4, 6, 5)
+> +#define PIN_PD5				101
+> +#define PIN_PD5__GPIO			PINMUX_PIN(PIN_PD5, 0, 0)
+> +#define PIN_PD5__SDMMC2_DAT0		PINMUX_PIN(PIN_PD5, 1, 1)
+> +#define PIN_PD5__FLEXCOM0_IO2		PINMUX_PIN(PIN_PD5, 2, 2)
+> +#define PIN_PD5__CANRX5			PINMUX_PIN(PIN_PD5, 3, 1)
+> +#define PIN_PD5__NWE_NWR0_NANDWE	PINMUX_PIN(PIN_PD5, 4, 2)
+> +#define PIN_PD5__TIOA1			PINMUX_PIN(PIN_PD5, 5, 2)
+> +#define PIN_PD5__FLEXCOM9_IO1		PINMUX_PIN(PIN_PD5, 6, 5)
+> +#define PIN_PD6				102
+> +#define PIN_PD6__GPIO			PINMUX_PIN(PIN_PD6, 0, 0)
+> +#define PIN_PD6__SDMMC2_DAT1		PINMUX_PIN(PIN_PD6, 1, 1)
+> +#define PIN_PD6__FLEXCOM0_IO3		PINMUX_PIN(PIN_PD6, 2, 2)
+> +#define PIN_PD6__SPDIF_RX		PINMUX_PIN(PIN_PD6, 3, 3)
+> +#define PIN_PD6__NRD_NANDOE		PINMUX_PIN(PIN_PD6, 4, 2)
+> +#define PIN_PD6__TIOB1			PINMUX_PIN(PIN_PD6, 5, 2)
+> +#define PIN_PD6__FLEXCOM10_IO0		PINMUX_PIN(PIN_PD6, 6, 5)
+> +#define PIN_PD7				103
+> +#define PIN_PD7__GPIO			PINMUX_PIN(PIN_PD7, 0, 0)
+> +#define PIN_PD7__SDMMC2_DAT2		PINMUX_PIN(PIN_PD7, 1, 1)
+> +#define PIN_PD7__FLEXCOM0_IO4		PINMUX_PIN(PIN_PD7, 2, 2)
+> +#define PIN_PD7__SPDIF_TX		PINMUX_PIN(PIN_PD7, 2, 2)
+> +#define PIN_PD7__A21_NANDALE		PINMUX_PIN(PIN_PD7, 4, 2)
+> +#define PIN_PD7__TCLK1			PINMUX_PIN(PIN_PD7, 5, 2)
+> +#define PIN_PD7__FLEXCOM10_IO1		PINMUX_PIN(PIN_PD7, 6, 5)
+> +#define PIN_PD8				104
+> +#define PIN_PD8__GPIO			PINMUX_PIN(PIN_PD8, 0, 0)
+> +#define PIN_PD8__SDMMC2_DAT3		PINMUX_PIN(PIN_PD8, 1, 1)
+> +#define PIN_PD8__I2SMCC0_DIN0		PINMUX_PIN(PIN_PD8, 3, 1)
+> +#define PIN_PD8__A11_NANDCLE		PINMUX_PIN(PIN_PD8, 4, 2)
+> +#define PIN_PD8__TIOA2			PINMUX_PIN(PIN_PD8, 5, 2)
+> +#define PIN_PD8__FLEXCOM11_IO0		PINMUX_PIN(PIN_PD8, 6, 5)
+> +#define PIN_PD9				105
+> +#define PIN_PD9__GPIO			PINMUX_PIN(PIN_PD9, 0, 0)
+> +#define PIN_PD9__SDMMC2_WP		PINMUX_PIN(PIN_PD9, 1, 1)
+> +#define PIN_PD9__I2SMCC0_DIN1		PINMUX_PIN(PIN_PD9, 3, 2)
+> +#define PIN_PD9__D0			PINMUX_PIN(PIN_PD9, 4, 2)
+> +#define PIN_PD9__TIOB2			PINMUX_PIN(PIN_PD9, 5, 2)
+> +#define PIN_PD9__FLEXCOM11_IO1		PINMUX_PIN(PIN_PD9, 6, 5)
+> +#define PIN_PD10			106
+> +#define PIN_PD10__GPIO			PINMUX_PIN(PIN_PD10, 0, 0)
+> +#define PIN_PD10__SDMMC2_CD		PINMUX_PIN(PIN_PD10, 1, 1)
+> +#define PIN_PD10__PCK6			PINMUX_PIN(PIN_PD10, 2, 2)
+> +#define PIN_PD10__I2SMCC0_DIN2		PINMUX_PIN(PIN_PD10, 3, 2)
+> +#define PIN_PD10__D1			PINMUX_PIN(PIN_PD10, 4, 2)
+> +#define PIN_PD10__TCLK2			PINMUX_PIN(PIN_PD10, 5, 2)
+> +#define PIN_PD10__FLEXCOM0_IO0		PINMUX_PIN(PIN_PD10, 6, 3)
+> +#define PIN_PD11			107
+> +#define PIN_PD11__GPIO			PINMUX_PIN(PIN_PD11, 0, 0)
+> +#define PIN_PD11__SDMMC2_1V8SEL		PINMUX_PIN(PIN_PD11, 1, 1)
+> +#define PIN_PD11__PCK7			PINMUX_PIN(PIN_PD11, 2, 2)
+> +#define PIN_PD11__I2SMCC0_DIN3		PINMUX_PIN(PIN_PD11, 3, 2)
+> +#define PIN_PD11__D2			PINMUX_PIN(PIN_PD11, 4, 2)
+> +#define PIN_PD11__TIOA3			PINMUX_PIN(PIN_PD11, 5, 2)
+> +#define PIN_PD11__FLEXCOM0_IO1		PINMUX_PIN(PIN_PD11, 6, 3)
+> +#define PIN_PD12			108
+> +#define PIN_PD12__GPIO			PINMUX_PIN(PIN_PD12, 0, 0)
+> +#define PIN_PD12__PCK1			PINMUX_PIN(PIN_PD12, 1, 2)
+> +#define PIN_PD12__FLEXCOM1_IO0		PINMUX_PIN(PIN_PD12, 2, 2)
+> +#define PIN_PD12__CANTX0		PINMUX_PIN(PIN_PD12, 4, 2)
+> +#define PIN_PD12__TIOB3			PINMUX_PIN(PIN_PD12, 5, 2)
+> +#define PIN_PD13			109
+> +#define PIN_PD13__GPIO			PINMUX_PIN(PIN_PD13, 0, 0)
+> +#define PIN_PD13__I2SMCC0_CK		PINMUX_PIN(PIN_PD13, 1, 2)
+> +#define PIN_PD13__FLEXCOM1_IO1		PINMUX_PIN(PIN_PD13, 2, 2)
+> +#define PIN_PD13__PWML0			PINMUX_PIN(PIN_PD13, 3, 4)
+> +#define PIN_PD13__CANRX0		PINMUX_PIN(PIN_PD13, 4, 2)
+> +#define PIN_PD13__TCLK3			PINMUX_PIN(PIN_PD13, 5, 2)
+> +#define PIN_PD14			110
+> +#define PIN_PD14__GPIO			PINMUX_PIN(PIN_PD14, 0, 0)
+> +#define PIN_PD14__I2SMCC0_MCK		PINMUX_PIN(PIN_PD14, 1, 2)
+> +#define PIN_PD14__FLEXCOM1_IO2		PINMUX_PIN(PIN_PD14, 2, 2)
+> +#define PIN_PD14__PWMH0			PINMUX_PIN(PIN_PD14, 3, 4)
+> +#define PIN_PD14__CANTX1		PINMUX_PIN(PIN_PD14, 4, 2)
+> +#define PIN_PD14__TIOA4			PINMUX_PIN(PIN_PD14, 5, 2)
+> +#define PIN_PD14__FLEXCOM2_IO0		PINMUX_PIN(PIN_PD14, 6, 5)
+> +#define PIN_PD15			111
+> +#define PIN_PD15__GPIO			PINMUX_PIN(PIN_PD15, 0, 0)
+> +#define PIN_PD15__I2SMCC0_WS		PINMUX_PIN(PIN_PD15, 1, 2)
+> +#define PIN_PD15__FLEXCOM1_IO3		PINMUX_PIN(PIN_PD15, 2, 2)
+> +#define PIN_PD15__PWML1			PINMUX_PIN(PIN_PD15, 3, 4)
+> +#define PIN_PD15__CANRX1		PINMUX_PIN(PIN_PD15, 4, 2)
+> +#define PIN_PD15__TIOB4			PINMUX_PIN(PIN_PD15, 5, 2)
+> +#define PIN_PD15__FLEXCOM2_IO1		PINMUX_PIN(PIN_PD15, 6, 5)
+> +#define PIN_PD16			112
+> +#define PIN_PD16__GPIO			PINMUX_PIN(PIN_PD16, 0, 0)
+> +#define PIN_PD16__I2SMCC0_DOUT0		PINMUX_PIN(PIN_PD16, 1, 2)
+> +#define PIN_PD16__FLEXCOM1_IO4		PINMUX_PIN(PIN_PD16, 2, 2)
+> +#define PIN_PD16__PWMH1			PINMUX_PIN(PIN_PD16, 3, 4)
+> +#define PIN_PD16__CANTX2		PINMUX_PIN(PIN_PD16, 4, 2)
+> +#define PIN_PD16__TCLK4			PINMUX_PIN(PIN_PD16, 5, 2)
+> +#define PIN_PD16__FLEXCOM3_IO0		PINMUX_PIN(PIN_PD16, 6, 5)
+> +#define PIN_PD17			113
+> +#define PIN_PD17__GPIO			PINMUX_PIN(PIN_PD17, 0, 0)
+> +#define PIN_PD17__I2SMCC0_DOUT1		PINMUX_PIN(PIN_PD17, 1, 2)
+> +#define PIN_PD17__FLEXCOM2_IO0		PINMUX_PIN(PIN_PD17, 2, 2)
+> +#define PIN_PD17__PWML2			PINMUX_PIN(PIN_PD17, 3, 4)
+> +#define PIN_PD17__CANRX2		PINMUX_PIN(PIN_PD17, 4, 2)
+> +#define PIN_PD17__TIOA5			PINMUX_PIN(PIN_PD17, 5, 2)
+> +#define PIN_PD17__FLEXCOM3_IO1		PINMUX_PIN(PIN_PD17, 6, 5)
+> +#define PIN_PD18			114
+> +#define PIN_PD18__GPIO			PINMUX_PIN(PIN_PD18, 0, 0)
+> +#define PIN_PD18__I2SMCC0_DOUT2		PINMUX_PIN(PIN_PD18, 1, 2)
+> +#define PIN_PD18__FLEXCOM2_IO1		PINMUX_PIN(PIN_PD18, 2, 2)
+> +#define PIN_PD18__PWMH2			PINMUX_PIN(PIN_PD18, 3, 4)
+> +#define PIN_PD18__CANTX3		PINMUX_PIN(PIN_PD18, 4, 2)
+> +#define PIN_PD18__TIOB5			PINMUX_PIN(PIN_PD18, 5, 2)
+> +#define PIN_PD18__FLEXCOM4_IO0		PINMUX_PIN(PIN_PD18, 6, 5)
+> +#define PIN_PD19			115
+> +#define PIN_PD19__GPIO			PINMUX_PIN(PIN_PD19, 0, 0)
+> +#define PIN_PD19__I2SMCC0_DOUT3		PINMUX_PIN(PIN_PD19, 1, 2)
+> +#define PIN_PD19__FLEXCOM2_IO2		PINMUX_PIN(PIN_PD19, 2, 2)
+> +#define PIN_PD19__PWML3			PINMUX_PIN(PIN_PD19, 3, 4)
+> +#define PIN_PD19__CANRX3		PINMUX_PIN(PIN_PD19, 4, 2)
+> +#define PIN_PD19__TCLK5			PINMUX_PIN(PIN_PD19, 5, 2)
+> +#define PIN_PD19__FLEXCOM4_IO1		PINMUX_PIN(PIN_PD19, 6, 5)
+> +#define PIN_PD20			116
+> +#define PIN_PD20__GPIO			PINMUX_PIN(PIN_PD20, 0, 0)
+> +#define PIN_PD20__PCK0			PINMUX_PIN(PIN_PD20, 1, 3)
+> +#define PIN_PD20__FLEXCOM2_IO3		PINMUX_PIN(PIN_PD20, 2, 2)
+> +#define PIN_PD20__PWMH3			PINMUX_PIN(PIN_PD20, 3, 4)
+> +#define PIN_PD20__CANTX4		PINMUX_PIN(PIN_PD20, 5, 2)
+> +#define PIN_PD20__FLEXCOM5_IO0		PINMUX_PIN(PIN_PD20, 6, 5)
+> +#define PIN_PD21			117
+> +#define PIN_PD21__GPIO			PINMUX_PIN(PIN_PD21, 0, 0)
+> +#define PIN_PD21__PCK1			PINMUX_PIN(PIN_PD21, 1, 3)
+> +#define PIN_PD21__FLEXCOM2_IO4		PINMUX_PIN(PIN_PD21, 2, 2)
+> +#define PIN_PD21__CANRX4		PINMUX_PIN(PIN_PD21, 4, 2)
+> +#define PIN_PD21__FLEXCOM5_IO1		PINMUX_PIN(PIN_PD21, 6, 5)
+> +#define PIN_PD21__G1_TXEN		PINMUX_PIN(PIN_PD21, 7, 1)
+> +#define PIN_PD22			118
+> +#define PIN_PD22__GPIO			PINMUX_PIN(PIN_PD22, 0, 0)
+> +#define PIN_PD22__PDMC0_CLK		PINMUX_PIN(PIN_PD22, 1, 2)
+> +#define PIN_PD22__PWMEXTRG0		PINMUX_PIN(PIN_PD22, 3, 4)
+> +#define PIN_PD22__RD1			PINMUX_PIN(PIN_PD22, 4, 2)
+> +#define PIN_PD22__CANTX5		PINMUX_PIN(PIN_PD22, 6, 2)
+> +#define PIN_PD22__G1_TX0		PINMUX_PIN(PIN_PD22, 7, 1)
+> +#define PIN_PD23			119
+> +#define PIN_PD23__GPIO			PINMUX_PIN(PIN_PD23, 0, 0)
+> +#define PIN_PD23__PDMC0_DS0		PINMUX_PIN(PIN_PD23, 1, 2)
+> +#define PIN_PD23__PWMEXTRG1		PINMUX_PIN(PIN_PD23, 3, 4)
+> +#define PIN_PD23__RF1			PINMUX_PIN(PIN_PD23, 4, 2)
+> +#define PIN_PD23__ISC_MCK		PINMUX_PIN(PIN_PD23, 5, 2)
+> +#define PIN_PD23__CANRX5		PINMUX_PIN(PIN_PD23, 6, 2)
+> +#define PIN_PD23__G1_TX1		PINMUX_PIN(PIN_PD23, 7, 1)
+> +#define PIN_PD24			120
+> +#define PIN_PD24__GPIO			PINMUX_PIN(PIN_PD24, 0, 0)
+> +#define PIN_PD24__PDMC0_DS1		PINMUX_PIN(PIN_PD24, 1, 2)
+> +#define PIN_PD24__PWMFI0		PINMUX_PIN(PIN_PD24, 3, 4)
+> +#define PIN_PD24__RK1			PINMUX_PIN(PIN_PD24, 4, 2)
+> +#define PIN_PD24__ISC_D0		PINMUX_PIN(PIN_PD24, 5, 2)
+> +#define PIN_PD24__G1_RXDV		PINMUX_PIN(PIN_PD24, 7, 1)
+> +#define PIN_PD25			121
+> +#define PIN_PD25__GPIO			PINMUX_PIN(PIN_PD25, 0, 0)
+> +#define PIN_PD25__PDMC1_CLK		PINMUX_PIN(PIN_PD25, 1, 2)
+> +#define PIN_PD25__FLEXCOM5_IO0		PINMUX_PIN(PIN_PD25, 2, 2)
+> +#define PIN_PD25__PWMFI1		PINMUX_PIN(PIN_PD25, 3, 4)
+> +#define PIN_PD25__TD1			PINMUX_PIN(PIN_PD25, 4, 2)
+> +#define PIN_PD25__ISC_D1		PINMUX_PIN(PIN_PD25, 5, 2)
+> +#define PIN_PD25__G1_RX0		PINMUX_PIN(PIN_PD25, 7, 1)
+> +#define PIN_PD26			122
+> +#define PIN_PD26__GPIO			PINMUX_PIN(PIN_PD26, 0, 0)
+> +#define PIN_PD26__PDMC1_DS0		PINMUX_PIN(PIN_PD26, 1, 2)
+> +#define PIN_PD26__FLEXCOM5_IO1		PINMUX_PIN(PIN_PD26, 2, 2)
+> +#define PIN_PD26__ADTRG			PINMUX_PIN(PIN_PD26, 3, 3)
+> +#define PIN_PD26__TF1			PINMUX_PIN(PIN_PD26, 4, 2)
+> +#define PIN_PD26__ISC_D2		PINMUX_PIN(PIN_PD26, 5, 2)
+> +#define PIN_PD26__G1_RX1		PINMUX_PIN(PIN_PD26, 7, 1)
+> +#define PIN_PD27			123
+> +#define PIN_PD27__GPIO			PINMUX_PIN(PIN_PD27, 0, 0)
+> +#define PIN_PD27__PDMC1_DS1		PINMUX_PIN(PIN_PD27, 1, 2)
+> +#define PIN_PD27__FLEXCOM5_IO2		PINMUX_PIN(PIN_PD27, 2, 2)
+> +#define PIN_PD27__TIOA0			PINMUX_PIN(PIN_PD27, 3, 3)
+> +#define PIN_PD27__TK1			PINMUX_PIN(PIN_PD27, 4, 2)
+> +#define PIN_PD27__ISC_D3		PINMUX_PIN(PIN_PD27, 5, 2)
+> +#define PIN_PD27__G1_RXER		PINMUX_PIN(PIN_PD27, 7, 1)
+> +#define PIN_PD28			124
+> +#define PIN_PD28__GPIO			PINMUX_PIN(PIN_PD28, 0, 0)
+> +#define PIN_PD28__RD0			PINMUX_PIN(PIN_PD28, 1, 2)
+> +#define PIN_PD28__FLEXCOM5_IO3		PINMUX_PIN(PIN_PD28, 2, 2)
+> +#define PIN_PD28__TIOB0			PINMUX_PIN(PIN_PD28, 3, 3)
+> +#define PIN_PD28__I2SMCC1_CK		PINMUX_PIN(PIN_PD28, 4, 2)
+> +#define PIN_PD28__ISC_D4		PINMUX_PIN(PIN_PD28, 5, 2)
+> +#define PIN_PD28__PWML3			PINMUX_PIN(PIN_PD28, 6, 5)
+> +#define PIN_PD28__G1_MDC		PINMUX_PIN(PIN_PD28, 7, 1)
+> +#define PIN_PD29			125
+> +#define PIN_PD29__GPIO			PINMUX_PIN(PIN_PD29, 0, 0)
+> +#define PIN_PD29__RF0			PINMUX_PIN(PIN_PD29, 1, 2)
+> +#define PIN_PD29__FLEXCOM5_IO4		PINMUX_PIN(PIN_PD29, 2, 2)
+> +#define PIN_PD29__TCLK0			PINMUX_PIN(PIN_PD29, 3, 3)
+> +#define PIN_PD29__I2SMCC1_WS		PINMUX_PIN(PIN_PD29, 4, 2)
+> +#define PIN_PD29__ISC_D5		PINMUX_PIN(PIN_PD29, 5, 2)
+> +#define PIN_PD29__PWMH3			PINMUX_PIN(PIN_PD29, 6, 5)
+> +#define PIN_PD29__G1_MDIO		PINMUX_PIN(PIN_PD29, 7, 1)
+> +#define PIN_PD30			126
+> +#define PIN_PD30__GPIO			PINMUX_PIN(PIN_PD30, 0, 0)
+> +#define PIN_PD30__RK0			PINMUX_PIN(PIN_PD30, 1, 2)
+> +#define PIN_PD30__FLEXCOM6_IO0		PINMUX_PIN(PIN_PD30, 2, 2)
+> +#define PIN_PD30__TIOA1			PINMUX_PIN(PIN_PD30, 3, 3)
+> +#define PIN_PD30__I2SMCC1_MCK		PINMUX_PIN(PIN_PD30, 4, 2)
+> +#define PIN_PD30__ISC_D6		PINMUX_PIN(PIN_PD30, 5, 2)
+> +#define PIN_PD30__PWMEXTRG0		PINMUX_PIN(PIN_PD30, 6, 5)
+> +#define PIN_PD30__G1_TXCK		PINMUX_PIN(PIN_PD30, 7, 1)
+> +#define PIN_PD31			127
+> +#define PIN_PD31__GPIO			PINMUX_PIN(PIN_PD31, 0, 0)
+> +#define PIN_PD31__TD0			PINMUX_PIN(PIN_PD31, 1, 2)
+> +#define PIN_PD31__FLEXCOM6_IO1		PINMUX_PIN(PIN_PD31, 2, 2)
+> +#define PIN_PD31__TIOB1			PINMUX_PIN(PIN_PD31, 3, 3)
+> +#define PIN_PD31__I2SMCC1_DOUT0		PINMUX_PIN(PIN_PD31, 4, 2)
+> +#define PIN_PD31__ISC_D7		PINMUX_PIN(PIN_PD31, 5, 2)
+> +#define PIN_PD31__PWM_EXTRG1		PINMUX_PIN(PIN_PD31, 6, 5)
+> +#define PIN_PD31__G1_TX2		PINMUX_PIN(PIN_PD31, 7, 1)
+> +#define PIN_PE0				128
+> +#define PIN_PE0__GPIO			PINMUX_PIN(PIN_PE0, 0, 0)
+> +#define PIN_PE0__TF0			PINMUX_PIN(PIN_PE0, 1, 2)
+> +#define PIN_PE0__FLEXCOM6_IO2		PINMUX_PIN(PIN_PE0, 2, 2)
+> +#define PIN_PE0__TCLK1			PINMUX_PIN(PIN_PE0, 3, 3)
+> +#define PIN_PE0__I2SMCC1_DOUT1		PINMUX_PIN(PIN_PE0, 4, 2)
+> +#define PIN_PE0__ISC_HSYNC		PINMUX_PIN(PIN_PE0, 5, 2)
+> +#define PIN_PE0__PWMFI0			PINMUX_PIN(PIN_PE0, 6, 5)
+> +#define PIN_PE0__G1_TX3			PINMUX_PIN(PIN_PE0, 7, 1)
+> +#define PIN_PE1				129
+> +#define PIN_PE1__GPIO			PINMUX_PIN(PIN_PE1, 0, 0)
+> +#define PIN_PE1__TK0			PINMUX_PIN(PIN_PE1, 1, 2)
+> +#define PIN_PE1__FLEXCOM6_IO3		PINMUX_PIN(PIN_PE1, 2, 2)
+> +#define PIN_PE1__TIOA2			PINMUX_PIN(PIN_PE1, 3, 3)
+> +#define PIN_PE1__I2SMCC1_DOUT2		PINMUX_PIN(PIN_PE1, 4, 2)
+> +#define PIN_PE1__ISC_VSYNC		PINMUX_PIN(PIN_PE1, 5, 2)
+> +#define PIN_PE1__PWMFI1			PINMUX_PIN(PIN_PE1, 6, 5)
+> +#define PIN_PE1__G1_RX2			PINMUX_PIN(PIN_PE1, 7, 1)
+> +#define PIN_PE2				130
+> +#define PIN_PE2__GPIO			PINMUX_PIN(PIN_PE2, 0, 0)
+> +#define PIN_PE2__PWML0			PINMUX_PIN(PIN_PE2, 1, 5)
+> +#define PIN_PE2__FLEXCOM6_IO4		PINMUX_PIN(PIN_PE2, 2, 2)
+> +#define PIN_PE2__TIOB2			PINMUX_PIN(PIN_PE2, 3, 3)
+> +#define PIN_PE2__I2SMCC1_DOUT3		PINMUX_PIN(PIN_PE2, 4, 2)
+> +#define PIN_PE2__ISC_FIELD		PINMUX_PIN(PIN_PE2, 5, 2)
+> +#define PIN_PE2__G1_RX3			PINMUX_PIN(PIN_PE2, 7, 1)
+> +#define PIN_PE3				131
+> +#define PIN_PE3__GPIO			PINMUX_PIN(PIN_PE3, 0, 0)
+> +#define PIN_PE3__PWMH0			PINMUX_PIN(PIN_PE3, 1, 5)
+> +#define PIN_PE3__FLEXCOM0_IO0		PINMUX_PIN(PIN_PE3, 2, 4)
+> +#define PIN_PE3__TCLK2			PINMUX_PIN(PIN_PE3, 3, 3)
+> +#define PIN_PE3__I2SMCC1_DIN0		PINMUX_PIN(PIN_PE3, 4, 2)
+> +#define PIN_PE3__ISC_PCK		PINMUX_PIN(PIN_PE3, 5, 2)
+> +#define PIN_PE3__G1_RXCK		PINMUX_PIN(PIN_PE3, 7, 1)
+> +#define PIN_PE4				132
+> +#define PIN_PE4__GPIO			PINMUX_PIN(PIN_PE4, 0, 0)
+> +#define PIN_PE4__PWML1			PINMUX_PIN(PIN_PE4, 1, 5)
+> +#define PIN_PE4__FLEXCOM0_IO1		PINMUX_PIN(PIN_PE4, 2, 4)
+> +#define PIN_PE4__TIOA3			PINMUX_PIN(PIN_PE4, 3, 3)
+> +#define PIN_PE4__I2SMCC1_DIN1		PINMUX_PIN(PIN_PE4, 4, 2)
+> +#define PIN_PE4__ISC_D8			PINMUX_PIN(PIN_PE4, 5, 2)
+> +#define PIN_PE4__G1_TXER		PINMUX_PIN(PIN_PE4, 7, 1)
+> +#define PIN_PE5				133
+> +#define PIN_PE5__GPIO			PINMUX_PIN(PIN_PE5, 0, 0)
+> +#define PIN_PE5__PWMH1			PINMUX_PIN(PIN_PE5, 1, 5)
+> +#define PIN_PE5__FLEXCOM0_IO2		PINMUX_PIN(PIN_PE5, 2, 4)
+> +#define PIN_PE5__TIOB3			PINMUX_PIN(PIN_PE5, 3, 3)
+> +#define PIN_PE5__I2SMCC1_DIN2		PINMUX_PIN(PIN_PE5, 4, 2)
+> +#define PIN_PE5__ISC_D9			PINMUX_PIN(PIN_PE5, 5, 2)
+> +#define PIN_PE5__G1_COL			PINMUX_PIN(PIN_PE5, 7, 1)
+> +#define PIN_PE6				134
+> +#define PIN_PE6__GPIO			PINMUX_PIN(PIN_PE6, 0, 0)
+> +#define PIN_PE6__PWML2			PINMUX_PIN(PIN_PE6, 1, 5)
+> +#define PIN_PE6__FLEXCOM0_IO3		PINMUX_PIN(PIN_PE6, 2, 4)
+> +#define PIN_PE6__TCLK3			PINMUX_PIN(PIN_PE6, 3, 3)
+> +#define PIN_PE6__I2SMCC1_DIN3		PINMUX_PIN(PIN_PE6, 4, 2)
+> +#define PIN_PE6__ISC_D10		PINMUX_PIN(PIN_PE6, 5, 2)
+> +#define PIN_PE6__G1_CRS			PINMUX_PIN(PIN_PE6, 7, 1)
+> +#define PIN_PE7				135
+> +#define PIN_PE7__GPIO			PINMUX_PIN(PIN_PE7, 0, 0)
+> +#define PIN_PE7__PWMH2			PINMUX_PIN(PIN_PE7, 1, 5)
+> +#define PIN_PE7__FLEXCOM0_IO4		PINMUX_PIN(PIN_PE7, 2, 4)
+> +#define PIN_PE7__TIOA4			PINMUX_PIN(PIN_PE7, 3, 3)
+> +#define PIN_PE7__ISC_D11		PINMUX_PIN(PIN_PE7, 5, 2)
+> +#define PIN_PE7__G1_TSUCOMP		PINMUX_PIN(PIN_PE7, 7, 1)
+> +
+> diff --git a/arch/arm/boot/dts/sama7g5.dtsi b/arch/arm/boot/dts/sama7g5.dtsi
+> new file mode 100644
+> index 000000000000..0d83d978bbb8
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/sama7g5.dtsi
+> @@ -0,0 +1,543 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + *  sama7g5.dtsi - Device Tree Include file for SAMA7G5 family SoC
+> + *
+> + *  Copyright (C) 2020 Microchip Technology, Inc. and its subsidiaries
+> + *
+> + *  Author: Eugen Hristev <eugen.hristev@microchip.com>
+> + *  Author: Claudiu Beznea <claudiu.beznea@microchip.com>
+> + *
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/clock/at91.h>
+> +#include <dt-bindings/dma/at91.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +/ {
+> +	model = "Microchip SAMA7G5 family SoC";
+> +	compatible = "microchip,sama7g5";
+> +	#address-cells = <1>;
+> +	#size-cells = <1>;
+> +	interrupt-parent = <&gic>;
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a7";
+> +			reg = <0x0>;
+> +			clocks = <&pmc PMC_TYPE_CORE PMC_CPU>;
+> +			clock-names = "cpu";
+> +			operating-points-v2 = <&cpu_opp_table>;
+> +		};
+> +	};
+> +
+> +	cpu_opp_table: opp-table {
+> +		compatible = "operating-points-v2";
+> +
+> +		opp-600000000 {
+> +			opp-hz = /bits/ 64 <600000000>;
+> +			opp-microvolt = <1125000 1050000 1225000>;
+> +			clock-latency-ns = <50000>;
+> +		};
+> +
+> +		opp-800000000 {
+> +			opp-hz = /bits/ 64 <800000000>;
+> +			opp-microvolt = <1175000 1125000 1225000>;
+> +			clock-latency-ns = <50000>;
+> +		};
+> +
+> +		opp-1000000001 {
+> +			opp-hz = /bits/ 64 <1000000001>;
+> +			opp-microvolt = <1275000 1225000 1300000>;
+> +			clock-latency-ns = <50000>;
+> +		};
+> +
+> +	};
+> +
+> +	clocks {
+> +		slow_xtal: slow_xtal {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +		};
+> +
+> +		main_xtal: main_xtal {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +		};
+> +
+> +		usb_clk: usb_clk {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <48000000>;
+> +		};
+> +	};
+> +
+> +	vddout25: fixed-regulator-vddout25 {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VDDOUT25";
+> +		regulator-min-microvolt = <2500000>;
+> +		regulator-max-microvolt = <2500000>;
+> +		regulator-boot-on;
+> +		status = "disabled";
+> +	};
+> +
+> +	ns_sram: sram@100000 {
+> +		compatible = "mmio-sram";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		reg = <0x100000 0x20000>;
+> +		ranges;
+> +	};
+> +
+> +	ahb@0 {
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+This will throw a warning with W=1. Run 'make W=1 dtbs_check' and fix 
+warnings. Ideally, new platforms are warning free, but this one looks 
+like it inherits a lot.
 
---PNTmBPCT7hxwcZjr
-Content-Type: application/gzip
-Content-Disposition: attachment; filename=".config.gz"
-Content-Transfer-Encoding: base64
+> +		compatible = "simple-bus";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		apb@0 {
+> +			compatible = "simple-bus";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges;
+> +
+> +			secumod: secumod@e0004000 {
+> +				compatible = "atmel,sama5d2-secumod", "syscon";
+> +				reg = <0xe0004000 0x4000>;
+> +				gpio-controller;
+> +				#gpio-cells = <2>;
+> +			};
+> +
+> +			sfrbu: sfr@e0008000 {
+> +				compatible = "atmel,sama5d2-sfrbu", "syscon";
+> +				reg = <0xe0008000 0x20>;
+> +			};
+> +
+> +			pioA: pinctrl@e0014000 {
+> +				compatible = "microchip,sama7g5-pinctrl";
+> +				reg = <0xe0014000 0x800>;
+> +				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
+> +					<GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
+> +					<GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
+> +					<GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
+> +					<GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
+> +				interrupt-controller;
+> +				#interrupt-cells = <2>;
+> +				gpio-controller;
+> +				#gpio-cells = <2>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 11>;
+> +			};
+> +
+> +			pmc: pmc@e0018000 {
+> +				compatible = "microchip,sama7g5-pmc", "syscon";
+> +				reg = <0xe0018000 0x200>;
+> +				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+> +				#clock-cells = <2>;
+> +				clocks = <&clk32k 1>, <&clk32k 0>, <&main_xtal>;
+> +				clock-names = "td_slck", "md_slck", "main_xtal";
+> +			};
+> +
+> +			rtt: rtt@e001d020 {
+> +				compatible = "microchip,sam9x60-rtt", "atmel,at91sam9260-rtt";
+> +				reg = <0xe001d020 0x30>;
+> +				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&clk32k 0>;
+> +			};
+> +
+> +			clk32k: sckc@e001d050 {
 
-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
+clock-controller@...
 
---PNTmBPCT7hxwcZjr--
+> +				compatible = "microchip,sam9x60-sckc";
+> +				reg = <0xe001d050 0x4>;
+> +				clocks = <&slow_xtal>;
+> +				#clock-cells = <1>;
+> +			};
+> +
+> +			gpbr: gpbr@e001d060 {
+> +				compatible = "microchip,sam9x60-gpbr", "atmel,at91sam9260-gpbr", "syscon";
+> +				reg = <0xe001d060 0x48>;
+> +			};
+> +
+> +			ps_wdt: watchdog@e001d180 {
+> +				compatible = "microchip,sam9x60-wdt";
+> +				reg = <0xe001d180 0x24>;
+> +				interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&clk32k 0>;
+> +				status = "disabled";
+> +			};
+> +
+> +			sdmmc0: sdio-host@e1204000 {
+
+mmc@...
+
+> +				compatible = "microchip,sam9x60-sdhci";
+> +				reg = <0xe1204000 0x4000>;
+> +				interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 80>, <&pmc PMC_TYPE_GCK 80>;
+> +				clock-names = "hclock", "multclk";
+> +				assigned-clock-parents = <&pmc PMC_TYPE_CORE PMC_SYSPLL>;
+> +				assigned-clocks = <&pmc PMC_TYPE_GCK 80>;
+> +				assigned-clock-rates = <200000000>;
+> +				microchip,sdcal-inverted;
+> +				status = "disabled";
+> +			};
+> +
+> +			sdmmc1: sdio-host@e1208000 {
+> +				compatible = "microchip,sam9x60-sdhci";
+> +				reg = <0xe1208000 0x4000>;
+> +				interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 81>, <&pmc PMC_TYPE_GCK 81>;
+> +				clock-names = "hclock", "multclk";
+> +				assigned-clock-parents = <&pmc PMC_TYPE_CORE PMC_SYSPLL>;
+> +				assigned-clocks = <&pmc PMC_TYPE_GCK 81>;
+> +				assigned-clock-rates = <200000000>;
+> +				microchip,sdcal-inverted;
+> +				status = "disabled";
+> +			};
+> +
+> +			sdmmc2: sdio-host@e120c000 {
+> +				compatible = "microchip,sam9x60-sdhci";
+> +				reg = <0xe120c000 0x4000>;
+> +				interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 82>, <&pmc PMC_TYPE_GCK 82>;
+> +				clock-names = "hclock", "multclk";
+> +				assigned-clock-parents = <&pmc PMC_TYPE_CORE PMC_SYSPLL>;
+> +				assigned-clocks = <&pmc PMC_TYPE_GCK 82>;
+> +				assigned-clock-rates = <200000000>;
+> +				microchip,sdcal-inverted;
+> +				status = "disabled";
+> +			};
+> +
+> +			pwm: pwm@e1604000 {
+> +				compatible = "atmel,sama5d2-pwm";
+> +				reg = <0xe1604000 0x4000>;
+> +				interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>;
+> +				#pwm-cells = <3>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 77>;
+> +				status = "disabled";
+> +			};
+> +
+> +			spdifrx: spdifrx@e1614000 {
+> +				#sound-dai-cells = <0>;
+> +				compatible = "microchip,sama7g5-spdifrx";
+> +				reg = <0xe1614000 0x4000>;
+> +				interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
+> +				dmas = <&dma0 AT91_XDMAC_DT_PERID(49)>;
+> +				dma-names = "rx";
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 84>, <&pmc PMC_TYPE_GCK 84>;
+> +				clock-names = "pclk", "gclk";
+> +				status = "disabled";
+> +			};
+> +
+> +			spdiftx: spdiftx@e1618000 {
+> +				#sound-dai-cells = <0>;
+> +				compatible = "microchip,sama7g5-spdiftx";
+> +				reg = <0xe1618000 0x4000>;
+> +				interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
+> +				dmas = <&dma0 AT91_XDMAC_DT_PERID(50)>;
+> +				dma-names = "tx";
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 85>, <&pmc PMC_TYPE_GCK 85>;
+> +				clock-names = "pclk", "gclk";
+> +			};
+> +
+> +			i2s0: i2s@e161c000 {
+> +				compatible = "microchip,sama7g5-i2smcc";
+> +				#sound-dai-cells = <0>;
+> +				reg = <0xe161c000 0x4000>;
+> +				interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
+> +				dmas = <&dma0 AT91_XDMAC_DT_PERID(33)>, <&dma0 AT91_XDMAC_DT_PERID(34)>;
+> +				dma-names = "rx", "tx";
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 57>, <&pmc PMC_TYPE_GCK 57>;
+> +				clock-names = "pclk", "gclk";
+> +				status = "disabled";
+> +			};
+> +
+> +			i2s1: i2s@e1620000 {
+> +				compatible = "microchip,sama7g5-i2smcc";
+> +				#sound-dai-cells = <0>;
+> +				reg = <0xe1620000 0x4000>;
+> +				interrupts = <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
+> +				dmas = <&dma0 AT91_XDMAC_DT_PERID(35)>, <&dma0 AT91_XDMAC_DT_PERID(36)>;
+> +				dma-names = "rx", "tx";
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 58>, <&pmc PMC_TYPE_GCK 58>;
+> +				clock-names = "pclk", "gclk";
+> +				status = "disabled";
+> +			};
+> +
+> +			pit64b0: timer@e1800000 {
+> +				compatible = "microchip,sam9x60-pit64b";
+> +				reg = <0xe1800000 0x4000>;
+> +				interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 70>, <&pmc PMC_TYPE_GCK 70>;
+> +				clock-names = "pclk", "gclk";
+> +				status = "okay";
+> +			};
+> +
+> +			pit64b1: timer@e1804000 {
+> +				compatible = "microchip,sam9x60-pit64b";
+> +				reg = <0xe1804000 0x4000>;
+> +				interrupts = <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 71>, <&pmc PMC_TYPE_GCK 71>;
+> +				clock-names = "pclk", "gclk";
+> +				status = "okay";
+> +			};
+> +
+> +			flx0: flexcom@e1818000 {
+> +				compatible = "atmel,sama5d2-flexcom";
+> +				reg = <0xe1818000 0x200>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 38>;
+> +				#address-cells = <1>;
+> +				#size-cells = <1>;
+> +				ranges = <0x0 0xe1818000 0x800>;
+> +				status = "disabled";
+> +
+> +				uart0: serial@200 {
+> +					compatible = "atmel,at91sam9260-usart";
+> +					reg = <0x200 0x200>;
+> +					interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
+> +					clocks = <&pmc PMC_TYPE_PERIPHERAL 38>;
+> +					clock-names = "usart";
+> +					dmas = <&dma1 AT91_XDMAC_DT_PERID(6)>,
+> +						<&dma1 AT91_XDMAC_DT_PERID(5)>;
+> +					dma-names = "tx", "rx";
+> +					atmel,use-dma-rx;
+> +					atmel,use-dma-tx;
+> +				};
+> +			};
+> +
+> +			flx1: flexcom@e181c000 {
+> +				compatible = "atmel,sama5d2-flexcom";
+> +				reg = <0xe181c000 0x200>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 39>;
+> +				#address-cells = <1>;
+> +				#size-cells = <1>;
+> +				ranges = <0x0 0xe181c000 0x800>;
+> +				status = "disabled";
+> +
+> +				i2c1: i2c@600 {
+> +					compatible = "microchip,sam9x60-i2c";
+> +					reg = <0x600 0x200>;
+> +					interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +					clocks = <&pmc PMC_TYPE_PERIPHERAL 39>;
+> +					atmel,fifo-size = <32>;
+> +					dmas = <&dma0 AT91_XDMAC_DT_PERID(7)>,
+> +						<&dma0 AT91_XDMAC_DT_PERID(8)>;
+> +					dma-names = "rx", "tx";
+> +					atmel,use-dma-rx;
+> +					atmel,use-dma-tx;
+> +				};
+> +			};
+> +
+> +			flx3: flexcom@e1824000 {
+> +				compatible = "atmel,sama5d2-flexcom";
+> +				reg = <0xe1824000 0x200>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 41>;
+> +				#address-cells = <1>;
+> +				#size-cells = <1>;
+> +				ranges = <0x0 0xe1824000 0x800>;
+> +				status = "disabled";
+> +
+> +				uart3: serial@200 {
+> +					compatible = "atmel,at91sam9260-usart";
+> +					reg = <0x200 0x200>;
+> +					interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
+> +					clocks = <&pmc PMC_TYPE_PERIPHERAL 41>;
+> +					clock-names = "usart";
+> +					dmas = <&dma1 AT91_XDMAC_DT_PERID(12)>,
+> +						<&dma1 AT91_XDMAC_DT_PERID(11)>;
+> +					dma-names = "tx", "rx";
+> +					atmel,use-dma-rx;
+> +					atmel,use-dma-tx;
+> +				};
+> +			};
+> +
+> +			trng: trng@e2010000 {
+
+rng@...
+
+> +				compatible = "atmel,at91sam9g45-trng";
+> +				reg = <0xe2010000 0x100>;
+> +				interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 97>;
+> +				status = "disabled";
+> +			};
+> +
+> +			flx4: flexcom@e2018000 {
+> +				compatible = "atmel,sama5d2-flexcom";
+> +				reg = <0xe2018000 0x200>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 42>;
+> +				#address-cells = <1>;
+> +				#size-cells = <1>;
+> +				ranges = <0x0 0xe2018000 0x800>;
+> +				status = "disabled";
+> +
+> +				uart4: serial@200 {
+> +					compatible = "atmel,at91sam9260-usart";
+> +					reg = <0x200 0x200>;
+> +					interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
+> +					clocks = <&pmc PMC_TYPE_PERIPHERAL 42>;
+> +					clock-names = "usart";
+> +					dmas = <&dma1 AT91_XDMAC_DT_PERID(14)>,
+> +						<&dma1 AT91_XDMAC_DT_PERID(13)>;
+> +					dma-names = "tx", "rx";
+> +					atmel,use-dma-rx;
+> +					atmel,use-dma-tx;
+> +					atmel,fifo-size = <16>;
+> +				};
+> +			};
+> +
+> +			flx7: flexcom@e2024000 {
+> +				compatible = "atmel,sama5d2-flexcom";
+> +				reg = <0xe2024000 0x200>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 45>;
+> +				#address-cells = <1>;
+> +				#size-cells = <1>;
+> +				ranges = <0x0 0xe2024000 0x800>;
+> +				status = "disabled";
+> +
+> +				uart7: serial@200 {
+> +					compatible = "atmel,at91sam9260-usart";
+> +					reg = <0x200 0x200>;
+> +					interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+> +					clocks = <&pmc PMC_TYPE_PERIPHERAL 45>;
+> +					clock-names = "usart";
+> +					dmas = <&dma1 AT91_XDMAC_DT_PERID(20)>,
+> +						<&dma1 AT91_XDMAC_DT_PERID(19)>;
+> +					dma-names = "tx", "rx";
+> +					atmel,use-dma-rx;
+> +					atmel,use-dma-tx;
+> +					atmel,fifo-size = <16>;
+> +				};
+> +			};
+> +
+> +			gmac0: ethernet@e2800000 {
+> +				compatible = "microchip,sama7g5-gem";
+> +				reg = <0xe2800000 0x1000>;
+> +				interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH
+> +					      GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH
+> +					      GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH
+> +					      GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH
+> +					      GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH
+> +					      GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 51>, <&pmc PMC_TYPE_PERIPHERAL 51>, <&pmc PMC_TYPE_GCK 51>, <&pmc PMC_TYPE_GCK 53>;
+> +				clock-names = "pclk", "hclk", "tx_clk", "tsu_clk";
+> +				assigned-clocks = <&pmc PMC_TYPE_GCK 51>;
+> +				assigned-clock-rates = <125000000>;
+> +				status = "disabled";
+> +			};
+> +
+> +			gmac1: ethernet@e2804000 {
+> +				compatible = "microchip,sama7g5-emac";
+> +				reg = <0xe2804000 0x1000>;
+> +				interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH
+> +					      GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 52>, <&pmc PMC_TYPE_PERIPHERAL 52>;
+> +				clock-names = "pclk", "hclk";
+> +				status = "disabled";
+> +			};
+> +
+> +			dma0: dma-controller@e2808000 {
+> +				compatible = "microchip,sama7g5-dma";
+> +				reg = <0xe2808000 0x1000>;
+> +				interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
+> +				#dma-cells = <1>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 22>;
+> +				clock-names = "dma_clk";
+> +				status = "disabled";
+> +			};
+> +
+> +			dma1: dma-controller@e280c0000 {
+> +				compatible = "microchip,sama7g5-dma";
+> +				reg = <0xe280c000 0x1000>;
+> +				interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>;
+> +				#dma-cells = <1>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 23>;
+> +				clock-names = "dma_clk";
+> +				status = "disabled";
+> +			};
+> +
+> +			/* Place dma2 here despite it's address */
+> +			dma2: dma-controller@e1200000 {
+> +				compatible = "microchip,sama7g5-dma";
+> +				reg = <0xe1200000 0x1000>;
+> +				interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>;
+> +				#dma-cells = <1>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 24>;
+> +				clock-names = "dma_clk";
+> +				dma-requests = <0>;
+> +				status = "disabled";
+> +			};
+> +
+> +			flx8: flexcom@e2818000 {
+> +				compatible = "atmel,sama5d2-flexcom";
+> +				reg = <0xe2818000 0x200>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 46>;
+> +				#address-cells = <1>;
+> +				#size-cells = <1>;
+> +				ranges = <0x0 0xe2818000 0x800>;
+> +				status = "disabled";
+> +
+> +				i2c8: i2c@600 {
+> +					compatible = "microchip,sam9x60-i2c";
+> +					reg = <0x600 0x200>;
+> +					interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +					clocks = <&pmc PMC_TYPE_PERIPHERAL 46>;
+> +					atmel,fifo-size = <32>;
+> +					dmas = <&dma0 AT91_XDMAC_DT_PERID(21)>,
+> +						<&dma0 AT91_XDMAC_DT_PERID(22)>;
+> +					dma-names = "rx", "tx";
+> +					atmel,use-dma-rx;
+> +					atmel,use-dma-tx;
+> +				};
+> +			};
+> +
+> +			flx9: flexcom@e281c000 {
+> +				compatible = "atmel,sama5d2-flexcom";
+> +				reg = <0xe281c000 0x200>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 47>;
+> +				#address-cells = <1>;
+> +				#size-cells = <1>;
+> +				ranges = <0x0 0xe281c000 0x800>;
+> +				status = "disabled";
+> +
+> +				i2c9: i2c@600 {
+> +					compatible = "microchip,sam9x60-i2c";
+> +					reg = <0x600 0x200>;
+> +					interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +					clocks = <&pmc PMC_TYPE_PERIPHERAL 47>;
+> +					atmel,fifo-size = <32>;
+> +					dmas = <&dma0 AT91_XDMAC_DT_PERID(23)>,
+> +						<&dma0 AT91_XDMAC_DT_PERID(24)>;
+> +					dma-names = "rx", "tx";
+> +					atmel,use-dma-rx;
+> +					atmel,use-dma-tx;
+> +				};
+> +			};
+> +
+> +			flx11: flexcom@e2824000 {
+> +				compatible = "atmel,sama5d2-flexcom";
+> +				reg = <0xe2824000 0x200>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 49>;
+> +				#address-cells = <1>;
+> +				#size-cells = <1>;
+> +				ranges = <0x0 0xe2824000 0x800>;
+> +				status = "disabled";
+> +			};
+> +
+> +			gic: interrupt-controller@e8c11000 {
+> +				compatible = "arm,cortex-a7-gic";
+> +				#interrupt-cells = <3>;
+> +				#address-cells = <0>;
+> +				interrupt-controller;
+> +				interrupt-parent;
+> +				reg = <0xe8c11000 0x1000>,
+> +					<0xe8c12000 0x2000>;
+> +				status = "okay";
+
+'okay' is the default drop. Check for other cases.
+
+> +			};
+> +		};
+> +	};
+> +};
+> -- 
+> 2.25.1
+> 
