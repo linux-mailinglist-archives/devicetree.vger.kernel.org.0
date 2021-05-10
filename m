@@ -2,20 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E85FD3793D5
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 18:31:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12CA73793D7
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 18:31:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231610AbhEJQca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 12:32:30 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:42489 "EHLO
+        id S231646AbhEJQck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 12:32:40 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:11161 "EHLO
         relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231570AbhEJQc2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 12:32:28 -0400
+        with ESMTP id S231586AbhEJQc3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 12:32:29 -0400
 X-Originating-IP: 90.89.138.59
 Received: from xps13.home (lfbn-tou-1-1325-59.w90-89.abo.wanadoo.fr [90.89.138.59])
         (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 41E29240010;
-        Mon, 10 May 2021 16:31:21 +0000 (UTC)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 6A074240008;
+        Mon, 10 May 2021 16:31:22 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
 Cc:     Richard Weinberger <richard@nod.at>,
@@ -26,9 +26,9 @@ Cc:     Richard Weinberger <richard@nod.at>,
         Michal Simek <monstr@monstr.eu>,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
         Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v3 3/5] mtd: rawnand: Add a helper to parse the gpio-cs DT property
-Date:   Mon, 10 May 2021 18:31:12 +0200
-Message-Id: <20210510163114.24965-4-miquel.raynal@bootlin.com>
+Subject: [PATCH v3 4/5] mtd: rawnand: arasan: Ensure proper configuration for the asserted target
+Date:   Mon, 10 May 2021 18:31:13 +0200
+Message-Id: <20210510163114.24965-5-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210510163114.24965-1-miquel.raynal@bootlin.com>
 References: <20210510163114.24965-1-miquel.raynal@bootlin.com>
@@ -43,94 +43,151 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-New chips may feature a lot of CS because of their extended length. As
-many controllers have been designed a decade ago, they usually only
-feature just a couple. This does not mean that the entire range of
-these chips cannot be accessed: it is just a matter of adding more
-GPIO CS in the hardware design. A DT property has been added to
-describe the CS array: cs-gpios.
+The controller being always asserting one CS or the other, there is no
+need to actually select the right target before doing a page read/write.
+However, the anfc_select_target() helper actually also changes the
+timing configuration and clock in the case were two different NAND chips
+with different timing requirements would be used. In this situation, we
+must ensure proper configuration of the controller by calling it.
 
-Here is the code parsing it this new property, allocating what needs to
-be, requesting the GPIOs and returning an array with the additional
-available CS. The first entries of this array are left empty and are
-reserved for native CS.
+As a consequence of this change, the anfc_select_target() helper is
+being moved earlier in the driver.
 
+Fixes: 88ffef1b65cf ("mtd: rawnand: arasan: Support the hardware BCH ECC engine")
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- drivers/mtd/nand/raw/nand_base.c | 39 ++++++++++++++++++++++++++++++++
- include/linux/mtd/rawnand.h      |  4 ++++
- 2 files changed, 43 insertions(+)
+ drivers/mtd/nand/raw/arasan-nand-controller.c | 90 ++++++++++++-------
+ 1 file changed, 57 insertions(+), 33 deletions(-)
 
-diff --git a/drivers/mtd/nand/raw/nand_base.c b/drivers/mtd/nand/raw/nand_base.c
-index fb072c444495..aad687b587a5 100644
---- a/drivers/mtd/nand/raw/nand_base.c
-+++ b/drivers/mtd/nand/raw/nand_base.c
-@@ -42,6 +42,7 @@
- #include <linux/io.h>
- #include <linux/mtd/partitions.h>
- #include <linux/of.h>
-+#include <linux/of_gpio.h>
- #include <linux/gpio/consumer.h>
- 
- #include "internals.h"
-@@ -5078,6 +5079,44 @@ static int of_get_nand_secure_regions(struct nand_chip *chip)
+diff --git a/drivers/mtd/nand/raw/arasan-nand-controller.c b/drivers/mtd/nand/raw/arasan-nand-controller.c
+index 549aac00228e..390f8d719c25 100644
+--- a/drivers/mtd/nand/raw/arasan-nand-controller.c
++++ b/drivers/mtd/nand/raw/arasan-nand-controller.c
+@@ -273,6 +273,37 @@ static int anfc_pkt_len_config(unsigned int len, unsigned int *steps,
  	return 0;
  }
  
-+/**
-+ * rawnand_dt_parse_gpio_cs - Parse the gpio-cs property of a controller
-+ * @dev: Device that will be parsed. Also used for managed allocations.
-+ * @cs_array: Array of GPIO desc pointers allocated on success
-+ * @ncs_array: Number of entries in @cs_array updated on success.
-+ * @return 0 on success, an error otherwise.
-+ */
-+int rawnand_dt_parse_gpio_cs(struct device *dev, struct gpio_desc ***cs_array,
-+			     unsigned int *ncs_array)
++static int anfc_select_target(struct nand_chip *chip, int target)
 +{
-+	struct device_node *np = dev->of_node;
-+	struct gpio_desc **descs;
-+	int ndescs, i;
++	struct anand *anand = to_anand(chip);
++	struct arasan_nfc *nfc = to_anfc(chip->controller);
++	int ret;
 +
-+	ndescs = of_gpio_named_count(np, "cs-gpios");
-+	if (ndescs < 0) {
-+		dev_dbg(dev, "No valid cs-gpios property\n");
-+		return 0;
++	/* Update the controller timings and the potential ECC configuration */
++	writel_relaxed(anand->timings, nfc->base + DATA_INTERFACE_REG);
++
++	/* Update clock frequency */
++	if (nfc->cur_clk != anand->clk) {
++		clk_disable_unprepare(nfc->controller_clk);
++		ret = clk_set_rate(nfc->controller_clk, anand->clk);
++		if (ret) {
++			dev_err(nfc->dev, "Failed to change clock rate\n");
++			return ret;
++		}
++
++		ret = clk_prepare_enable(nfc->controller_clk);
++		if (ret) {
++			dev_err(nfc->dev,
++				"Failed to re-enable the controller clock\n");
++			return ret;
++		}
++
++		nfc->cur_clk = anand->clk;
 +	}
-+
-+	descs = devm_kcalloc(dev, ndescs, sizeof(*descs), GFP_KERNEL);
-+	if (!descs)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < ndescs; i++) {
-+		descs[i] = gpiod_get_index_optional(dev, "cs", i,
-+						    GPIOD_OUT_HIGH);
-+		if (IS_ERR(descs[i]))
-+			return PTR_ERR(descs[i]);
-+	}
-+
-+	*ncs_array = ndescs;
-+	*cs_array = descs;
 +
 +	return 0;
 +}
-+EXPORT_SYMBOL(rawnand_dt_parse_gpio_cs);
 +
- static int rawnand_dt_init(struct nand_chip *chip)
- {
- 	struct nand_device *nand = mtd_to_nanddev(nand_to_mtd(chip));
-diff --git a/include/linux/mtd/rawnand.h b/include/linux/mtd/rawnand.h
-index 93f5c0196a09..e01255a9e591 100644
---- a/include/linux/mtd/rawnand.h
-+++ b/include/linux/mtd/rawnand.h
-@@ -1446,4 +1446,8 @@ static inline void *nand_get_data_buf(struct nand_chip *chip)
- 	return chip->data_buf;
+ /*
+  * When using the embedded hardware ECC engine, the controller is in charge of
+  * feeding the engine with, first, the ECC residue present in the data array.
+@@ -401,6 +432,18 @@ static int anfc_read_page_hw_ecc(struct nand_chip *chip, u8 *buf,
+ 	return 0;
  }
  
-+/* Parse the gpio-cs property */
-+int rawnand_dt_parse_gpio_cs(struct device *dev, struct gpio_desc ***cs_array,
-+			     unsigned int *ncs_array);
++static int anfc_sel_read_page_hw_ecc(struct nand_chip *chip, u8 *buf,
++				     int oob_required, int page)
++{
++	int ret;
 +
- #endif /* __LINUX_MTD_RAWNAND_H */
++	ret = anfc_select_target(chip, chip->cur_cs);
++	if (ret)
++		return ret;
++
++	return anfc_read_page_hw_ecc(chip, buf, oob_required, page);
++};
++
+ static int anfc_write_page_hw_ecc(struct nand_chip *chip, const u8 *buf,
+ 				  int oob_required, int page)
+ {
+@@ -461,6 +504,18 @@ static int anfc_write_page_hw_ecc(struct nand_chip *chip, const u8 *buf,
+ 	return ret;
+ }
+ 
++static int anfc_sel_write_page_hw_ecc(struct nand_chip *chip, const u8 *buf,
++				      int oob_required, int page)
++{
++	int ret;
++
++	ret = anfc_select_target(chip, chip->cur_cs);
++	if (ret)
++		return ret;
++
++	return anfc_write_page_hw_ecc(chip, buf, oob_required, page);
++};
++
+ /* NAND framework ->exec_op() hooks and related helpers */
+ static int anfc_parse_instructions(struct nand_chip *chip,
+ 				   const struct nand_subop *subop,
+@@ -753,37 +808,6 @@ static const struct nand_op_parser anfc_op_parser = NAND_OP_PARSER(
+ 		NAND_OP_PARSER_PAT_WAITRDY_ELEM(false)),
+ 	);
+ 
+-static int anfc_select_target(struct nand_chip *chip, int target)
+-{
+-	struct anand *anand = to_anand(chip);
+-	struct arasan_nfc *nfc = to_anfc(chip->controller);
+-	int ret;
+-
+-	/* Update the controller timings and the potential ECC configuration */
+-	writel_relaxed(anand->timings, nfc->base + DATA_INTERFACE_REG);
+-
+-	/* Update clock frequency */
+-	if (nfc->cur_clk != anand->clk) {
+-		clk_disable_unprepare(nfc->controller_clk);
+-		ret = clk_set_rate(nfc->controller_clk, anand->clk);
+-		if (ret) {
+-			dev_err(nfc->dev, "Failed to change clock rate\n");
+-			return ret;
+-		}
+-
+-		ret = clk_prepare_enable(nfc->controller_clk);
+-		if (ret) {
+-			dev_err(nfc->dev,
+-				"Failed to re-enable the controller clock\n");
+-			return ret;
+-		}
+-
+-		nfc->cur_clk = anand->clk;
+-	}
+-
+-	return 0;
+-}
+-
+ static int anfc_check_op(struct nand_chip *chip,
+ 			 const struct nand_operation *op)
+ {
+@@ -1007,8 +1031,8 @@ static int anfc_init_hw_ecc_controller(struct arasan_nfc *nfc,
+ 	if (!anand->bch)
+ 		return -EINVAL;
+ 
+-	ecc->read_page = anfc_read_page_hw_ecc;
+-	ecc->write_page = anfc_write_page_hw_ecc;
++	ecc->read_page = anfc_sel_read_page_hw_ecc;
++	ecc->write_page = anfc_sel_write_page_hw_ecc;
+ 
+ 	return 0;
+ }
 -- 
 2.27.0
 
