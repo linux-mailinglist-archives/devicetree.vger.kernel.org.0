@@ -2,51 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4F1B379155
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 16:51:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4E1A3791A3
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 16:56:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239778AbhEJOwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 10:52:46 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:38036 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238801AbhEJOvo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 10:51:44 -0400
+        id S232625AbhEJO5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 10:57:01 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:52066 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234502AbhEJOzs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 10:55:48 -0400
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14AEoYMK061475;
-        Mon, 10 May 2021 09:50:34 -0500
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14AEsapV054850;
+        Mon, 10 May 2021 09:54:36 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1620658234;
-        bh=OjRPo/+VEPRehC0D2Xoqh9sRDsKdqDCnR1KHMLNxRmk=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=UD8F/2bEQ86yugcFn7/nl001GgmcuekgXyK8ZDiYh4vb/6zEsyg7e7R7sLbqwRqSn
-         SKokhnAzzFMY/9igST2R51TT2D8BX+XaZv2k5U1/14LCA50mSb9xARo7qjevRrc7qh
-         l0DeQbSKXwr/j54qfOwtor7hhPftfhtbJAcbx79s=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14AEoYSp083216
+        s=ti-com-17Q1; t=1620658476;
+        bh=bGjnX6HohEZiHw/QVhGzR4FG7geX74SqjuYW6MnBxVw=;
+        h=From:To:CC:Subject:Date;
+        b=HQITo+MebdxNoFSZyaXRbm/Y0Bvez86NYKxmTac0JultDAPEkROAxUKlRml17S59K
+         wZhMDNMEWmgLXWEVni1mBsJiEZy76/ACaidhWx9AbW+gZnChKEcRjnhBHqWiyT8Pnp
+         PHlmTWLx/TQLgy3Y/M80KBjp52i7PpAm+5BVmNKI=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14AEsak1087903
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 10 May 2021 09:50:34 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 10 May 2021 09:54:36 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 10
- May 2021 09:50:34 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ May 2021 09:54:36 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 10 May 2021 09:50:34 -0500
+ Frontend Transport; Mon, 10 May 2021 09:54:36 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14AEoYfR023174;
-        Mon, 10 May 2021 09:50:34 -0500
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14AEsa09029744;
+        Mon, 10 May 2021 09:54:36 -0500
 From:   Nishanth Menon <nm@ti.com>
-To:     Tero Kristo <kristo@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+To:     Tero Kristo <kristo@kernel.org>, <vigneshr@ti.com>,
+        <grygorii.strashko@ti.com>
+CC:     <lokeshvutla@ti.com>, <linux-kernel@vger.kernel.org>,
         <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, Nishanth Menon <nm@ti.com>
-Subject: [PATCH 4/4] arm64: dts: ti: k3-*: Rename the TI-SCI node
-Date:   Mon, 10 May 2021 09:50:33 -0500
-Message-ID: <20210510145033.7426-5-nm@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am65|j721e|am64: Map the dma / navigator subsystem via explicit ranges
+Date:   Mon, 10 May 2021 09:54:29 -0500
+Message-ID: <20210510145429.8752-1-nm@ti.com>
 X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210510145033.7426-1-nm@ti.com>
-References: <20210510145033.7426-1-nm@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -55,69 +54,120 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Lets rename the node name of TI-SCI node to be system-controller as it
-is a better standardized name for the function that TI-SCI plays in the
-SoC.
+Instead of using empty ranges property, lets map explicitly the address
+range that is mapped onto the dma / navigator subsystems (navss/dmss).
+
+This is also exposed via the dtbs_check with dt-schema newer than
+2021.03 version by throwing out following:
+arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml: bus@100000: main-navss:
+{'type': 'object'} is not allowed for
+{'compatible': ['simple-mfd'], '#address-cells': [[2]], .....
+
+This has already been correctly done for J7200, however was missed for
+other k3 SoCs. Fix that oversight.
 
 Signed-off-by: Nishanth Menon <nm@ti.com>
 ---
- arch/arm64/boot/dts/ti/k3-am64-main.dtsi        | 2 +-
- arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi      | 2 +-
- arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi | 2 +-
- arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
+
+if possible, I'd like to pick this fixup for 5.13 window..
+
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi        | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi        | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi         | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi       | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 4 ++--
+ 5 files changed, 10 insertions(+), 10 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-index e1216073e3df..dc52178d9b64 100644
+index a49e41021573..bb19db04a746 100644
 --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
 +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-@@ -134,7 +134,7 @@ main_pktdma: dma-controller@485c0000 {
+@@ -42,12 +42,12 @@ gic_its: msi-controller@1820000 {
  		};
  	};
  
--	dmsc: dmsc@44043000 {
-+	dmsc: system-controller@44043000 {
- 		compatible = "ti,k2g-sci";
- 		ti,host-id = <12>;
- 		mbox-names = "rx", "tx";
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-index 80d4df775f43..822f4cff1db4 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-@@ -6,7 +6,7 @@
-  */
+-	dmss: dmss {
++	dmss: bus@48000000 {
+ 		compatible = "simple-mfd";
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+ 		dma-ranges;
+-		ranges;
++		ranges = <0x00 0x48000000 0x00 0x48000000 0x00 0x06400000>;
  
- &cbass_wakeup {
--	dmsc: dmsc@44083000 {
-+	dmsc: system-controller@44083000 {
- 		compatible = "ti,am654-sci";
- 		ti,host-id = <12>;
+ 		ti,sci-dev-id = <25>;
  
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-index 9dba2df3569f..65f3fabda114 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-@@ -6,7 +6,7 @@
-  */
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+index 037f9776c4c8..fea8260d33a8 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+@@ -445,11 +445,11 @@ intr_main_gpio: interrupt-controller@a00000 {
+ 		ti,interrupt-ranges = <0 392 32>;
+ 	};
  
- &cbass_mcu_wakeup {
--	dmsc: dmsc@44083000 {
-+	dmsc: system-controller@44083000 {
- 		compatible = "ti,k2g-sci";
- 		ti,host-id = <12>;
+-	main-navss {
++	main_navss: bus@30800000 {
+ 		compatible = "simple-mfd";
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+-		ranges;
++		ranges = <0x0 0x30800000 0x0 0x30800000 0x0 0xbc00000>;
+ 		dma-coherent;
+ 		dma-ranges;
+ 
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+index 0388c02c2203..f5b8ef2f5f77 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+@@ -116,11 +116,11 @@ adc {
+ 		};
+ 	};
+ 
+-	mcu-navss {
++	mcu_navss: bus@28380000 {
+ 		compatible = "simple-mfd";
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+-		ranges;
++		ranges = <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>;
+ 		dma-coherent;
+ 		dma-ranges;
+ 
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+index 512371e36a30..b2d25af872e2 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+@@ -88,11 +88,11 @@ main_gpio_intr: interrupt-controller@a00000 {
+ 		ti,interrupt-ranges = <8 392 56>;
+ 	};
+ 
+-	main-navss {
++	main_navss: bus@30000000 {
+ 		compatible = "simple-mfd";
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+-		ranges;
++		ranges = <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>;
+ 		dma-coherent;
+ 		dma-ranges;
  
 diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-index b83801feeb10..94e821467eaa 100644
+index ad12a5c9f209..172629fa3c7c 100644
 --- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
 +++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-@@ -6,7 +6,7 @@
-  */
+@@ -250,11 +250,11 @@ adc {
+ 		};
+ 	};
  
- &cbass_mcu_wakeup {
--	dmsc: dmsc@44083000 {
-+	dmsc: system-controller@44083000 {
- 		compatible = "ti,k2g-sci";
- 		ti,host-id = <12>;
+-	mcu-navss {
++	mcu_navss: bus@28380000 {
+ 		compatible = "simple-mfd";
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+-		ranges;
++		ranges = <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>;
+ 		dma-coherent;
+ 		dma-ranges;
  
 -- 
 2.31.0
