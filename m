@@ -2,82 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BDF1379260
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 17:18:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6764537927C
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 17:21:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233155AbhEJPT6 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 10 May 2021 11:19:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45230 "EHLO
+        id S237559AbhEJPWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 11:22:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233144AbhEJPSK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 11:18:10 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43FDDC08EAEE
-        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 07:47:18 -0700 (PDT)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1lg7Bb-0005Em-Ef; Mon, 10 May 2021 16:47:07 +0200
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1lg7BZ-0001jS-In; Mon, 10 May 2021 16:47:05 +0200
-Message-ID: <6dc43e369107d470d85dc541dc67432744bd4d01.camel@pengutronix.de>
-Subject: Re: [PATCHv2 2/5] drm/imx: Add 8 pixel alignment fix
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Saravana Kannan <saravanak@google.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        kernel@collabora.com,
-        Boris Brezillon <boris.brezillon@collabora.com>
-Date:   Mon, 10 May 2021 16:47:05 +0200
-In-Reply-To: <20210428222953.235280-3-sebastian.reichel@collabora.com>
-References: <20210428222953.235280-1-sebastian.reichel@collabora.com>
-         <20210428222953.235280-3-sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        with ESMTP id S237237AbhEJPW2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 11:22:28 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A1CEC0610D8
+        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 07:53:39 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id lj11-20020a17090b344bb029015bc3073608so10483834pjb.3
+        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 07:53:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NRw7CDFpS1q9ZVL6Vz48+QpNkzFGcgIXfr4kOnd5kYo=;
+        b=O7EDDvnnwKHp59jdXm/LWuTtFAHOv3r/ayTS4x1rYRhaTr3FvFLeNrKzLei76S/Qs0
+         EW0uPnXwvlDNf6AD27MIvqktQW+VFQQiInlInQ5a4I/B7d7C46ZopnsEEAs8j+pVmUCr
+         7zw58AH7GXd6AXX0aPGsC1vxgKP8p9UoFxmWA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NRw7CDFpS1q9ZVL6Vz48+QpNkzFGcgIXfr4kOnd5kYo=;
+        b=FU1sgrE3ESnBqBn5yQsX8kvTaMX/IAFfeBZHlQmgydlaWmcpkJKyr1zPWAT+x7tP9r
+         253318Srb8F3qh+yNP4jNkVDy/BMSp8VIEdGnryQY7QQGX4sQ5ieeX3TyfgeIVAeMpLZ
+         vc6MoERGw0fXVxgKEgj5l4aVorjQNHffnJ6b9he8J9DBtPvZ+OOP2Dm1xv8NQdaUVTT7
+         op+V00QDCY9HLGOaXeLYSuRPcAk4s+uIU9d/D99OXMIqrHnv+nJrByWcFe99HYZdpOD5
+         7TH1hFxzyjXh+5woiZcUMoKIsICbg5zodHaYo45IPj4Q4hPX+6ozvDt0Zb56mIYBxWCM
+         vSTg==
+X-Gm-Message-State: AOAM530L21r/qAr7DfYK9nW+lriNAskz+0QKOhAtBHWGZTVv1Gr4brgb
+        2hoa9Wj81mmSys9S/HJHWe74bg==
+X-Google-Smtp-Source: ABdhPJyCnxKhzplFOsqDSD0HB21qizrWFUS6W8vKQx85c2pZYNKGLQ93Hmfq9eD3dG4AQCj66QrEQQ==
+X-Received: by 2002:a17:90a:440f:: with SMTP id s15mr42639024pjg.192.1620658418656;
+        Mon, 10 May 2021 07:53:38 -0700 (PDT)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:102b:59ad:66fe:cebc])
+        by smtp.gmail.com with ESMTPSA id bx12sm19863298pjb.1.2021.05.10.07.53.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 May 2021 07:53:38 -0700 (PDT)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Wenchao Han <hanwenchao@huaqin.corp-partner.google.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sc7180: Modify SPI_CLK voltage level for trogdor
+Date:   Mon, 10 May 2021 07:53:12 -0700
+Message-Id: <20210510075253.1.Ib4c296d6ff9819f26bcaf91e8a08729cc203fed0@changeid>
+X-Mailer: git-send-email 2.31.1.607.g51e8a6a459-goog
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sebastian,
+From: Wenchao Han <hanwenchao@huaqin.corp-partner.google.com>
 
-On Thu, 2021-04-29 at 00:29 +0200, Sebastian Reichel wrote:
-> Some standard resolutions like 1366x768 do not work properly with
-> i.MX6 SoCs, since the horizontal resolution needs to be aligned
-> to 8 pixels (so 1360x768 or 1368x768 would work).
-> 
-> This patch allocates framebuffers allocated to 8 pixels. The extra
-> time required to send the extra pixels are removed from the blank
-> time. In order to expose the correct display size to userspace,
-> the stride is increased without increasing the width.
-> 
-> Without this patch systems with this display resolution hang
-> indefinitely during boot up.
-> 
-> Suggested-by: Boris Brezillon <boris.brezillon@collabora.com>
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+On coachz it could be observed that SPI_CLK voltage level was only
+1.4V during active transfers because the drive strength was too
+weak. The line hadn't finished slewing up by the time we started
+driving it down again. Using a drive strength of 8 lets us achieve the
+correct voltage level of 1.8V.
 
-Thank you, I've rebased and applied this patch on top of imx-drm/next.
+Though the worst problems were observed on coachz hardware, let's do
+this across the board for trogdor devices. Scoping other boards shows
+that this makes the clk line look nicer on them too and doesn't
+introduce any problems.
 
-regards
-Philipp
+Only the clk line is adjusted, not any data lines. Because SPI isn't a
+DDR protocol we only sample the data lines on either rising or falling
+edges, not both. That means the clk line needs to toggle twice as fast
+as data lines so having the higher drive strength is more important
+there.
+
+Signed-off-by: Wenchao Han <hanwenchao@huaqin.corp-partner.google.com>
+[dianders: Adjust author real name; adjust commit message]
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+---
+
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+index 24d293ef56d7..c11e07959a63 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+@@ -981,6 +981,7 @@ pinconf {
+ &qspi_clk {
+ 	pinconf {
+ 		pins = "gpio63";
++		drive-strength = <8>;
+ 		bias-disable;
+ 	};
+ };
+-- 
+2.31.1.607.g51e8a6a459-goog
+
