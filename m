@@ -2,252 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52067377D9A
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 10:03:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E43E377E3F
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 10:31:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230166AbhEJIEl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 04:04:41 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:48994 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229852AbhEJIEl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 May 2021 04:04:41 -0400
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 14A82YLT024580;
-        Mon, 10 May 2021 10:03:16 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=U1+KIixkS19m/tNfZg9O3JhGC2YusgG9DdMeBKOr67w=;
- b=1RxCaimzFNRmPSkyiLBZ+DxoAGp8ip4DpOretHPweqyR5ifi13xUlt08C8QQcCc3I8BR
- FmUtSLQGVY1c8ukOG4kYe/tFvMqcz8vuYFg8n3XdmzrcvQZFq0i4QiYHxlqbsNtYQWYH
- ICna4rHIuqMjbhgeLdOUVAdi8WQTZ916xpNae8EDYtEjC7uCvF0HnFqPP/TkiDDzwUxq
- lhzFlYgcOoxsD3kvvrTXkmE1+b3cuNX7KehHnOQ4SQ7TQnjXui9UcJ2trU8TASWBCwgy
- HXGQn6EWChDpm2wP2QGDuWDBX/0f4LaMfHgCcZrOWgr9Kdz+T40HdHgd5meTKLEpvCH6 eQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 38ekxj2x18-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 10 May 2021 10:03:16 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5128310002A;
-        Mon, 10 May 2021 10:03:15 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 332F9218107;
-        Mon, 10 May 2021 10:03:15 +0200 (CEST)
-Received: from lmecxl1060.lme.st.com (10.75.127.50) by SFHDAG2NODE3.st.com
- (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 10 May
- 2021 10:03:14 +0200
-Subject: Re: [PATCH v4 2/2] i2c: stm32f7: add SMBus-Alert support
-To:     Alain Volmat <alain.volmat@foss.st.com>, <wsa@kernel.org>,
-        <robh+dt@kernel.org>
-CC:     <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
-        <alexandre.torgue@foss.st.com>, <linux-i2c@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <fabrice.gasnier@foss.st.com>
-References: <1620220479-2647-1-git-send-email-alain.volmat@foss.st.com>
- <1620220479-2647-3-git-send-email-alain.volmat@foss.st.com>
-From:   Pierre Yves MORDRET <pierre-yves.mordret@foss.st.com>
-Message-ID: <7d175ddb-f60c-6f77-5934-c58d5238435e@foss.st.com>
-Date:   Mon, 10 May 2021 10:02:57 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S230213AbhEJIc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 04:32:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40060 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230228AbhEJIc5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 04:32:57 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 442F2C06175F
+        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 01:31:52 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id a11so8766965plh.3
+        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 01:31:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gckp4CwIdREzc2XV63iEz0XEYATQJrhMFeE6Dl5feXY=;
+        b=Me15DNcWLAPOAGCbTZQTwgdxPa2RW3B5nKy7JFkDKIJ5b6K3U//qtvqskBKA4/uLxK
+         oG5pEED0n3F6IxPkHIEiuuKyJvQSnWnfnrPIfGPWHaOzLvdruiP9tFNmGkku89EO5Cu6
+         ZBxtRnUD3bdJT0AYz9qh+4ZAYhRUzk342qpwM8F8jHNCTja5dYxg4cQaZbZd4KT9JNhL
+         J/wWDm+38bXjBQ9BgqyNXrtB9zHT1UAHLIPP6zBgRtBCh6EC+fT9WTPabXRczkvZU05g
+         ESHzzeApa0zQDz6lOujSqwnAj4t9x61mna27CsLSPYCtQQ8YF42snmyEwDTyDa4JkK6R
+         OeWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gckp4CwIdREzc2XV63iEz0XEYATQJrhMFeE6Dl5feXY=;
+        b=T9XUawQQSDFmBQnCLsBUf17J8rw7IAU390SRrNd6p/l1YPoDP0/grvhjBA634CPHU5
+         83G+Ja84e+NVXhMvFQUlqU+sY7mQF22eEmIaHQ5hyEok0xq/kGwqm/bDWOltJjIwQe2j
+         ky4Hwhfo+VNdUEgDntHt8Hoz3BLPW+FMu9M9y5b1csz6LxLW1TMvd1fE5U0+eBItyjEV
+         aGgKXV3/YH+mRrM4/9qQoiyYaI6YIOpSMoKUL0hS5311MnavOuFbJOHcCFDQTfFWcGkS
+         9ptJyrc/pkE9hbXG7LqYc9l7fsn2rSEY8dGPwmfUO9TjqcG+dOk1rXcf29qrHXuqG0m+
+         UjhA==
+X-Gm-Message-State: AOAM531Q0iviXYFSkFJ8gmgUAxyB3cl0mSTPp2fOE+PhKWlnpTqDJIxV
+        v4moaMPb6DrOxG6zvEcApRBYInUYkBKM3DfTZsI59w==
+X-Google-Smtp-Source: ABdhPJy3CFE2Nxrn+MAqigTDlVhEEg4UuArMR3muy2dMVaeEg7fjiVJpWKLYRCS3ODPR8gLHMLs6GMGLOvLhcl9Q/4c=
+X-Received: by 2002:a17:90a:7e8f:: with SMTP id j15mr27073962pjl.19.1620635511729;
+ Mon, 10 May 2021 01:31:51 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1620220479-2647-3-git-send-email-alain.volmat@foss.st.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
- definitions=2021-05-10_02:2021-05-10,2021-05-10 signatures=0
+References: <20210510070532.3838598-1-vkoul@kernel.org>
+In-Reply-To: <20210510070532.3838598-1-vkoul@kernel.org>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Mon, 10 May 2021 10:31:40 +0200
+Message-ID: <CAG3jFyukM7tYMdQC_0HWGUBLZtafYu21yvk2LDLS0Ha_jJKm8g@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8350: fix the node unit addresses
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all
+Hey Vinod,
 
-Look good to me. I agree more generic
+Thanks for catching this.
 
-
-Reviewed-by: Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>
-
-Regards
-
-On 5/5/21 3:14 PM, Alain Volmat wrote:
-> Add support for the SMBus-Alert protocol to the STM32F7 that has
-> dedicated control and status logic.
-> 
-> If SMBus-Alert is used, the SMBALERT# pin must be configured as alternate
-> function for I2C Alert.
-> 
-> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+On Mon, 10 May 2021 at 09:05, Vinod Koul <vkoul@kernel.org> wrote:
+>
+> Some node unit addresses were put wrongly in the dts, resulting in
+> below warning when run with W=1
+>
+> arch/arm64/boot/dts/qcom/sm8350.dtsi:693.34-702.5: Warning (simple_bus_reg): /soc@0/thermal-sensor@c222000: simple-bus unit address format error, expected "c263000"
+> arch/arm64/boot/dts/qcom/sm8350.dtsi:704.34-713.5: Warning (simple_bus_reg): /soc@0/thermal-sensor@c223000: simple-bus unit address format error, expected "c265000"
+> arch/arm64/boot/dts/qcom/sm8350.dtsi:1180.32-1185.5: Warning (simple_bus_reg): /soc@0/interconnect@90e0000: simple-bus unit address format error, expected "90c0000"
+>
+> Fix by correcting to the correct address as given in reg node
+>
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
 > ---
-> v4: - check for smbus-alert property
-> v2: - rely on st,smbus-alert binding instead of smbus
-> ---
->  drivers/i2c/busses/i2c-stm32f7.c | 73 ++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 73 insertions(+)
-> 
-> diff --git a/drivers/i2c/busses/i2c-stm32f7.c b/drivers/i2c/busses/i2c-stm32f7.c
-> index 0138317ea600..b9b19a2a2ffa 100644
-> --- a/drivers/i2c/busses/i2c-stm32f7.c
-> +++ b/drivers/i2c/busses/i2c-stm32f7.c
-> @@ -51,6 +51,7 @@
->  
->  /* STM32F7 I2C control 1 */
->  #define STM32F7_I2C_CR1_PECEN			BIT(23)
-> +#define STM32F7_I2C_CR1_ALERTEN			BIT(22)
->  #define STM32F7_I2C_CR1_SMBHEN			BIT(20)
->  #define STM32F7_I2C_CR1_WUPEN			BIT(18)
->  #define STM32F7_I2C_CR1_SBC			BIT(16)
-> @@ -125,6 +126,7 @@
->  				(((n) & STM32F7_I2C_ISR_ADDCODE_MASK) >> 17)
->  #define STM32F7_I2C_ISR_DIR			BIT(16)
->  #define STM32F7_I2C_ISR_BUSY			BIT(15)
-> +#define STM32F7_I2C_ISR_ALERT			BIT(13)
->  #define STM32F7_I2C_ISR_PECERR			BIT(11)
->  #define STM32F7_I2C_ISR_ARLO			BIT(9)
->  #define STM32F7_I2C_ISR_BERR			BIT(8)
-> @@ -138,6 +140,7 @@
->  #define STM32F7_I2C_ISR_TXE			BIT(0)
->  
->  /* STM32F7 I2C Interrupt Clear */
-> +#define STM32F7_I2C_ICR_ALERTCF			BIT(13)
->  #define STM32F7_I2C_ICR_PECCF			BIT(11)
->  #define STM32F7_I2C_ICR_ARLOCF			BIT(9)
->  #define STM32F7_I2C_ICR_BERRCF			BIT(8)
-> @@ -279,6 +282,17 @@ struct stm32f7_i2c_msg {
->  };
->  
->  /**
-> + * struct stm32f7_i2c_alert - SMBus alert specific data
-> + * @setup: platform data for the smbus_alert i2c client
-> + * @ara: I2C slave device used to respond to the SMBus Alert with Alert
-> + * Response Address
-> + */
-> +struct stm32f7_i2c_alert {
-> +	struct i2c_smbus_alert_setup setup;
-> +	struct i2c_client *ara;
-> +};
-> +
-> +/**
->   * struct stm32f7_i2c_dev - private data of the controller
->   * @adap: I2C adapter for this controller
->   * @dev: device for this controller
-> @@ -310,6 +324,7 @@ struct stm32f7_i2c_msg {
->   * @analog_filter: boolean to indicate enabling of the analog filter
->   * @dnf_dt: value of digital filter requested via dt
->   * @dnf: value of digital filter to apply
-> + * @alert: SMBus alert specific data
->   */
->  struct stm32f7_i2c_dev {
->  	struct i2c_adapter adap;
-> @@ -341,6 +356,7 @@ struct stm32f7_i2c_dev {
->  	bool analog_filter;
->  	u32 dnf_dt;
->  	u32 dnf;
-> +	struct stm32f7_i2c_alert *alert;
->  };
->  
->  /*
-> @@ -1624,6 +1640,13 @@ static irqreturn_t stm32f7_i2c_isr_error(int irq, void *data)
->  		f7_msg->result = -EINVAL;
->  	}
->  
-> +	if (status & STM32F7_I2C_ISR_ALERT) {
-> +		dev_dbg(dev, "<%s>: SMBus alert received\n", __func__);
-> +		writel_relaxed(STM32F7_I2C_ICR_ALERTCF, base + STM32F7_I2C_ICR);
-> +		i2c_handle_smbus_alert(i2c_dev->alert->ara);
-> +		return IRQ_HANDLED;
-> +	}
-> +
->  	if (!i2c_dev->slave_running) {
->  		u32 mask;
->  		/* Disable interrupts */
-> @@ -1990,6 +2013,42 @@ static void stm32f7_i2c_disable_smbus_host(struct stm32f7_i2c_dev *i2c_dev)
->  	}
->  }
->  
-> +static int stm32f7_i2c_enable_smbus_alert(struct stm32f7_i2c_dev *i2c_dev)
-> +{
-> +	struct stm32f7_i2c_alert *alert;
-> +	struct i2c_adapter *adap = &i2c_dev->adap;
-> +	struct device *dev = i2c_dev->dev;
-> +	void __iomem *base = i2c_dev->base;
-> +
-> +	alert = devm_kzalloc(dev, sizeof(*alert), GFP_KERNEL);
-> +	if (!alert)
-> +		return -ENOMEM;
-> +
-> +	alert->ara = i2c_new_smbus_alert_device(adap, &alert->setup);
-> +	if (IS_ERR(alert->ara))
-> +		return PTR_ERR(alert->ara);
-> +
-> +	i2c_dev->alert = alert;
-> +
-> +	/* Enable SMBus Alert */
-> +	stm32f7_i2c_set_bits(base + STM32F7_I2C_CR1, STM32F7_I2C_CR1_ALERTEN);
-> +
-> +	return 0;
-> +}
-> +
-> +static void stm32f7_i2c_disable_smbus_alert(struct stm32f7_i2c_dev *i2c_dev)
-> +{
-> +	struct stm32f7_i2c_alert *alert = i2c_dev->alert;
-> +	void __iomem *base = i2c_dev->base;
-> +
-> +	if (alert) {
-> +		/* Disable SMBus Alert */
-> +		stm32f7_i2c_clr_bits(base + STM32F7_I2C_CR1,
-> +				     STM32F7_I2C_CR1_ALERTEN);
-> +		i2c_unregister_device(alert->ara);
-> +	}
-> +}
-> +
->  static u32 stm32f7_i2c_func(struct i2c_adapter *adap)
->  {
->  	struct stm32f7_i2c_dev *i2c_dev = i2c_get_adapdata(adap);
-> @@ -2173,6 +2232,16 @@ static int stm32f7_i2c_probe(struct platform_device *pdev)
->  		}
->  	}
->  
-> +	if (of_property_read_bool(pdev->dev.of_node, "smbus-alert")) {
-> +		ret = stm32f7_i2c_enable_smbus_alert(i2c_dev);
-> +		if (ret) {
-> +			dev_err(i2c_dev->dev,
-> +				"failed to enable SMBus alert protocol (%d)\n",
-> +				ret);
-> +			goto i2c_disable_smbus_host;
-> +		}
-> +	}
-> +
->  	dev_info(i2c_dev->dev, "STM32F7 I2C-%d bus adapter\n", adap->nr);
->  
->  	pm_runtime_mark_last_busy(i2c_dev->dev);
-> @@ -2180,6 +2249,9 @@ static int stm32f7_i2c_probe(struct platform_device *pdev)
->  
->  	return 0;
->  
-> +i2c_disable_smbus_host:
-> +	stm32f7_i2c_disable_smbus_host(i2c_dev);
-> +
->  i2c_adapter_remove:
->  	i2c_del_adapter(adap);
->  
-> @@ -2214,6 +2286,7 @@ static int stm32f7_i2c_remove(struct platform_device *pdev)
->  {
->  	struct stm32f7_i2c_dev *i2c_dev = platform_get_drvdata(pdev);
->  
-> +	stm32f7_i2c_disable_smbus_alert(i2c_dev);
->  	stm32f7_i2c_disable_smbus_host(i2c_dev);
->  
->  	i2c_del_adapter(&i2c_dev->adap);
-> 
+>  arch/arm64/boot/dts/qcom/sm8350.dtsi | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> index a8cd224a2f31..d015a9ca95a5 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> @@ -6,6 +6,7 @@
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/clock/qcom,gcc-sm8350.h>
+>  #include <dt-bindings/clock/qcom,rpmh.h>
+> +#include <dt-bindings/interconnect/qcom,sm8350.h>
+>  #include <dt-bindings/mailbox/qcom-ipcc.h>
+>  #include <dt-bindings/power/qcom-aoss-qmp.h>
+>  #include <dt-bindings/power/qcom-rpmpd.h>
+> @@ -689,7 +690,7 @@ pdc: interrupt-controller@b220000 {
+>                         interrupt-controller;
+>                 };
+>
+> -               tsens0: thermal-sensor@c222000 {
+> +               tsens0: thermal-sensor@c263000 {
+>                         compatible = "qcom,sm8350-tsens", "qcom,tsens-v2";
+>                         reg = <0 0x0c263000 0 0x1ff>, /* TM */
+>                               <0 0x0c222000 0 0x8>; /* SROT */
+> @@ -700,7 +701,7 @@ tsens0: thermal-sensor@c222000 {
+>                         #thermal-sensor-cells = <1>;
+>                 };
+>
+> -               tsens1: thermal-sensor@c223000 {
+> +               tsens1: thermal-sensor@c265000 {
+>                         compatible = "qcom,sm8350-tsens", "qcom,tsens-v2";
+>                         reg = <0 0x0c265000 0 0x1ff>, /* TM */
+>                               <0 0x0c223000 0 0x8>; /* SROT */
+> @@ -1176,7 +1177,7 @@ usb_2_ssphy: phy@88ebe00 {
+>                         };
+>                 };
+>
+> -               dc_noc: interconnect@90e0000 {
+> +               dc_noc: interconnect@90c0000 {
+>                         compatible = "qcom,sm8350-dc-noc";
+>                         reg = <0 0x090c0000 0 0x4200>;
+>                         #interconnect-cells = <1>;
 
--- 
---
-~ Py MORDRET
---
+Reviewed-by: Robert Foss <robert.foss@linaro.org>
