@@ -2,111 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29B863780E6
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 12:12:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00F563780E8
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 12:12:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230165AbhEJKNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 06:13:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34596 "EHLO
+        id S230259AbhEJKNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 06:13:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230133AbhEJKNT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 06:13:19 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D40CC06175F
-        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 03:12:14 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id o6-20020a05600c4fc6b029015ec06d5269so2165230wmq.0
-        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 03:12:14 -0700 (PDT)
+        with ESMTP id S230229AbhEJKNU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 06:13:20 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FCEDC061574
+        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 03:12:15 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id n2so16041336wrm.0
+        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 03:12:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Hku4IdX9XsHriOdVJku9o6pIDQa3wzykYMRftLXwsqA=;
-        b=OOjlV0QhNCDkbKahaFUChHiKPQ3Mfv9KIuZb0iUPiJHQZ0KzHHgP/3Qia91d0h2nwP
-         t2RzZm7GiXLLrJOCRWT18mL6OrsUP3uqCs3M0dYeipPcjgWRJgnziZ8qa72WP43wLKZ5
-         SBVrsP4Sd6WWhY6yGk6IdhbsC2fkNFl2HkoGA8m+dW0jWl57k7lYFvIxvRw2RZYLpjnj
-         lp2dLaRQzFWCd9D+CdWeArEUHCKRtbvZ1GH8s3Fy9Ql3zhDaRzGtk7HHuQmr7yE9iqBw
-         RcWd6dh0DbvJuyVkt7gQSwcTlD+P9kZF521nJWdAPr420mci8gfgcTfJbyvrdMpRr+u1
-         rEGg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=rij2/M/HKkSLFPHAJhhVJA6+zwbwek0D/b3cbL9vGJE=;
+        b=MFuPgAt9Xb2qMiVljGJyA+uXnFVr3R2u4usj2DTx1SeqSvaF35dF3HGyWKb9gigUkw
+         a1v6M35FgV96ayryWUJHvvX7NSFgxFgsdeBjtWuTawmAV8aDFaULq05l8n/3jbPopx3H
+         iYnfThykEyMYPXiJJV/ml/JikXVPv5paHsZUaU7c3SuP4xOcVE6qCFjIJpjbfWkhS6sn
+         EYsWSXZtVPQivsWDEaRs9IrYJHgKT1B9pEcgMHYdYJZliwUGC6hFAvVgetsztj9ng5bn
+         wZ2etz0Hd7rxmXaRkhJ21tgZa0MJaolHqhI+gZp5rQbYXukQZipbhxz0fPRaGXyVdPMi
+         IovA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Hku4IdX9XsHriOdVJku9o6pIDQa3wzykYMRftLXwsqA=;
-        b=B3lLW4FEtxNdKxb3alCAzsPpJiBEgQONtF0uCstUyLUx/0WNE68g58RrMI0O5JNogb
-         aefySdxpcNmauF0f6CB/M1Rw8uNrivSBbn/UiSqIe1s2ApZS/Ye31oKTltMRcpfuGXHb
-         ALrvcJfq78Mk5RSkNZ4hHuR5wEzFiSN7eY6mrcpNMuteRCRWcJRNJi+qAu9RZf2Oh2YH
-         uFuTpwUXB+txpgEv+SPWoZwEtdhbZLD/XQuJvuBXR2aMTj3iUKLoYeSxC5+Bb5b9XOj7
-         e0V9rmpCYCXeg2vGd5dApI1L3AJN82/utjJi2LVsr25aEKeVniIsdxY7scu3bdm/5bjD
-         UzHA==
-X-Gm-Message-State: AOAM5306sLDZckZJPo0ztIhHabjuPx/LmOJv7CVWmOun3woMzgow6iEP
-        3QwlAubdALqsMvWqFLsLz4asyA==
-X-Google-Smtp-Source: ABdhPJwFfk++/wPHzBoH7orUTH/DOUBPwpgy703BNGlvAsYNjUb5Vcg5xdtGGW7VF+KMhuyBY03cHA==
-X-Received: by 2002:a1c:6757:: with SMTP id b84mr25395424wmc.58.1620641532999;
-        Mon, 10 May 2021 03:12:12 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=rij2/M/HKkSLFPHAJhhVJA6+zwbwek0D/b3cbL9vGJE=;
+        b=C5YvT+YfJ4/wvbwTe5nKk03OIk3ECioOWQH/qCfgIK3BbdymKRUwSj7EaFccTYv5lW
+         HxdLK1WF9v1sVjmwg4SmojYdSIniBpg4z6H3xO6jvpC6PkMOKrzCf5CyU1HGhlQVRH9J
+         MacwBjgwci3XvZJ1YtPDmo2smAw4xAyiZWOt/3mmkH2neOBGN1gPpJII2Hf9SL6XbEpe
+         6hZWPKW5CMSTv++9fr4ZSU9eFoHfKHZaXEmLwodBccNnHCfprgXvEWAFXzceoaX5SILf
+         XUzQvgBbS9X/lX2B/roY6ujryiXBI4UuqRg+xWfLjpZvPjNWwtipAvcm6oJR2FRUpAXC
+         /8Ig==
+X-Gm-Message-State: AOAM531yi4fmPFxwrHhZteAXcMe66lye15GucHsVxWWclm08MivINqwa
+        NJtTdNxQNcl0JnAFF5uYxKBsJw==
+X-Google-Smtp-Source: ABdhPJyR4qTOnILOTITMg3PbEL5bMtKXighTKxNJaEbAZmb5m3EwgEl6fTAu/xAjlo/IhBefwyqYvw==
+X-Received: by 2002:adf:e44e:: with SMTP id t14mr30166177wrm.310.1620641534038;
+        Mon, 10 May 2021 03:12:14 -0700 (PDT)
 Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id b7sm22072109wri.83.2021.05.10.03.12.12
+        by smtp.gmail.com with ESMTPSA id b7sm22072109wri.83.2021.05.10.03.12.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 May 2021 03:12:12 -0700 (PDT)
+        Mon, 10 May 2021 03:12:13 -0700 (PDT)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     broonie@kernel.org
 Cc:     robh@kernel.org, devicetree@vger.kernel.org, perex@perex.cz,
         alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
         lgirdwood@gmail.com, lee.jones@linaro.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH 0/4] ASoC: codecs: wcd934x: add Headset and button detection support
-Date:   Mon, 10 May 2021 11:11:57 +0100
-Message-Id: <20210510101201.7281-1-srinivas.kandagatla@linaro.org>
+Subject: [PATCH 1/4] ASoC: dt-bindings: wcd934x: add bindings for Headset Button detection
+Date:   Mon, 10 May 2021 11:11:58 +0100
+Message-Id: <20210510101201.7281-2-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20210510101201.7281-1-srinivas.kandagatla@linaro.org>
+References: <20210510101201.7281-1-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patchset adds support to MBHC(Multi Button Headset Control) block found in
-Qualcomm WCD codecs. MBHC support headset type detection, both Mechanical and
-electrical insert/removal detection along with 8 buttons detection,
-Over current interrupts on HPHL/R, Impedance Measurements on HPHL/R.
+Add bindings required for Multi Button Headset detection.
+WCD934x support Headsets with upto 8 buttons including, impedance measurement
+on both L/R Headset speakers and cross connection detection.
 
-Eventhough MBHC block supports things like OverCurrent detection, Currently its
-reported as a kernel debug message. Should this be reported as an uevent to
-userspace? like the way USB reports? 
-Any suggestions?
+Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+---
+ .../bindings/sound/qcom,wcd934x.yaml          | 65 +++++++++++++++++++
+ 1 file changed, 65 insertions(+)
 
-First patch adds a common mbhc driver and the second one wcd934x specific driver
-changes along with sdm845 soundcard related changes.
-
-Common wcd-mbhc-v2 driver should be reusable across multiple codecs like
-WCD9335, WCD934x, WCD937x and WCD938x.
-
-Most of the work is derived from downstream Qualcomm kernels.
-Credits to various Qualcomm authors from Patrick Lai's team who have
-contributed to this code.
-
-This patchset
-
-thanks,
-srini
-
-
-Srinivas Kandagatla (4):
-  ASoC: dt-bindings: wcd934x: add bindings for Headset Button detection
-  ASoC: codecs: wcd: add multi button Headset detection support
-  ASoC: codecs: wcd934x: add mbhc support
-  ASoC: qcom: sdm845: add jack support for WCD934x
-
- .../bindings/sound/qcom,wcd934x.yaml          |   65 +
- include/linux/mfd/wcd934x/registers.h         |   57 +
- sound/soc/codecs/Kconfig                      |    4 +
- sound/soc/codecs/Makefile                     |    2 +
- sound/soc/codecs/wcd-mbhc-v2.c                | 1463 +++++++++++++++++
- sound/soc/codecs/wcd-mbhc-v2.h                |  340 ++++
- sound/soc/codecs/wcd934x.c                    |  885 +++++++++-
- sound/soc/qcom/sdm845.c                       |    8 +
- 8 files changed, 2809 insertions(+), 15 deletions(-)
- create mode 100644 sound/soc/codecs/wcd-mbhc-v2.c
- create mode 100644 sound/soc/codecs/wcd-mbhc-v2.h
-
+diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
+index e8f716b5f875..b25c6ca4e97c 100644
+--- a/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
++++ b/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
+@@ -77,6 +77,64 @@ properties:
+     minimum: 1800000
+     maximum: 2850000
+ 
++  qcom,hphl-jack-type-normally-closed:
++    description: Indicates that HPHL jack switch type is normally closed
++    type: boolean
++
++  qcom,ground-jack-type-normally-closed:
++    description: Indicates that Headset Ground switch type is normally closed
++    type: boolean
++
++  qcom,mbhc-headset-vthreshold-microvolt:
++    description: Voltage threshold value for headset detection
++    minimum: 0
++    maximum: 2850000
++
++  qcom,mbhc-headphone-vthreshold-microvolt:
++    description: Voltage threshold value for headphone detection
++    minimum: 0
++    maximum: 2850000
++
++  qcom,mbhc-button0-vthreshold-microvolt:
++    description: Voltage threshold value for headset button0
++    minimum: 0
++    maximum: 500000
++
++  qcom,mbhc-button1-vthreshold-microvolt:
++    description: Voltage threshold value for headset button1
++    minimum: 0
++    maximum: 500000
++
++  qcom,mbhc-button2-vthreshold-microvolt:
++    description: Voltage threshold value for headset button2
++    minimum: 0
++    maximum: 500000
++
++  qcom,mbhc-button3-vthreshold-microvolt:
++    description: Voltage threshold value for headset button3
++    minimum: 0
++    maximum: 500000
++
++  qcom,mbhc-button4-vthreshold-microvolt:
++    description: Voltage threshold value for headset button4
++    minimum: 0
++    maximum: 500000
++
++  qcom,mbhc-button5-vthreshold-microvolt:
++    description: Voltage threshold value for headset button5
++    minimum: 0
++    maximum: 500000
++
++  qcom,mbhc-button6-vthreshold-microvolt:
++    description: Voltage threshold value for headset button6
++    minimum: 0
++    maximum: 500000
++
++  qcom,mbhc-button7-vthreshold-microvolt:
++    description: Voltage threshold value headset button7
++    minimum: 0
++    maximum: 500000
++
+   clock-output-names:
+     const: mclk
+ 
+@@ -159,6 +217,13 @@ examples:
+         qcom,micbias2-microvolt = <1800000>;
+         qcom,micbias3-microvolt = <1800000>;
+         qcom,micbias4-microvolt = <1800000>;
++        qcom,hphl-jack-type-normally-closed;
++        qcom,ground-jack-type-normally-closed;
++        qcom,mbhc-button0-vthreshold-microvolt = <75000>;
++        qcom,mbhc-button1-vthreshold-microvolt = <150000>;
++        qcom,mbhc-button2-vthreshold-microvolt = <237000>;
++        qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
++        qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
+         clock-names = "extclk";
+         clocks = <&rpmhcc 2>;
+ 
 -- 
 2.21.0
 
