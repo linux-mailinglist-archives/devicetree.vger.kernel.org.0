@@ -2,105 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BE7837953F
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 19:18:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F2F2379601
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 19:33:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232012AbhEJRTK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 13:19:10 -0400
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:55303 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231381AbhEJRTJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 13:19:09 -0400
-X-Originating-IP: 90.89.138.59
-Received: from xps13.home (lfbn-tou-1-1325-59.w90-89.abo.wanadoo.fr [90.89.138.59])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 9C4ED60036;
-        Mon, 10 May 2021 17:18:00 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        <linux-mtd@lists.infradead.org>,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>,
-        Michal Simek <monstr@monstr.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v4] dt-binding: mtd: nand: Document the cs-gpios property
-Date:   Mon, 10 May 2021 19:18:00 +0200
-Message-Id: <20210510171800.27225-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.27.0
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        id S231574AbhEJReq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 13:34:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47748 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232902AbhEJRdn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 13:33:43 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5C13C0612F1;
+        Mon, 10 May 2021 10:29:19 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id l4so25713744ejc.10;
+        Mon, 10 May 2021 10:29:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=zPZnXyNiITS1+tga2LkqtsJSSJCY8+DuMqte16OgOgA=;
+        b=V+W8htSrVhXwsW0l/oyEpTn2StkXXbaVoRhOAECMU1WYOpkX/GL7Go+VY1+BybiodQ
+         0P7DjHJCZvtCbWd8XiBRctvLB0mBVINuMx9qZNPhdFiXE2Xm3P1z9yhSOKx6Dyy5RtED
+         2Hz4JMcw2nEIzbLC3/b0Jl0ypUomWRPGVFQK1mrd4BmIRIizYUFssFM6wqHvh99Aw8LY
+         Gm7hLDHpZNQvsfcIwHlJlwaJcM7/gbvKEuudEUXACKtWeEYGZ5pwzIZHB6+26X333TlH
+         ogosfZwQyjBebMjxSr6gYODQfzsYG7qp2MJCL2ipB5DZwXkCP/xsEq4MCpUp861wHOUD
+         aoaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=zPZnXyNiITS1+tga2LkqtsJSSJCY8+DuMqte16OgOgA=;
+        b=ra3bGcYNe/wbbM7KxgWZpHTpMtCeTFLXhlWZZ1Kv6JsC9ckmqNah0OZFJsu3a8M7RG
+         L6JYI9Y6Da8tsyd/enksbFVISphYjwfErvJRD8fg1VjiYL62Z9cbXdfsIFTY8QNnJSJs
+         5CMIKUjucReXGPvVS7DCY1HKww72ZuDalFGzBi1xhSfwz/qQZrpJR59/0b0ELnLnOmjc
+         KyUxv+lftZd39eBCyehbZ2PR2vg8T1vznubQqMUhU3C/aUSHSHbSpgvxHUcBwtFRsZ2n
+         TzVf9M6II4+i53F7bPRpUVmWOToZhRwXbkwDe/f724Koh8twcDH4T20bG42PAoF8Puar
+         q45g==
+X-Gm-Message-State: AOAM532OVKkUl33j3MG366VykNflXuxdE1FZRi4IeGnimutv+oiYK0l3
+        bYiiaNvnJuIXymXqcqKGFsk=
+X-Google-Smtp-Source: ABdhPJx2bYXVXBCJKyTo+5sI4UwIDOABWxWjS+okg5EsuFjME9+vKWnV5k8mUiIGHZHVQa9c3Xs/KA==
+X-Received: by 2002:a17:906:724b:: with SMTP id n11mr27061945ejk.338.1620667758481;
+        Mon, 10 May 2021 10:29:18 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id g17sm14215855edv.47.2021.05.10.10.29.17
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 10 May 2021 10:29:18 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: rockchip: Remove more clock-names from PWM nodes A test with the command below gives this error:
+Date:   Mon, 10 May 2021 19:29:11 +0200
+Message-Id: <20210510172911.6763-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To reach higher capacities, arrays of chips are now pretty common.
-Unfortunately, most of the controllers have been designed a decade ago
-and did not all anticipate the need for several chip-selects. The new
-cs-gpios property allows to workaround this limitation by adding as many
-GPIO chip-select as needed.
+/arch/arm/boot/dts/rk3228-evb.dt.yaml:
+pwm@110b0020: clock-names: ['pwm'] is too short
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Devices with only one PWM clock use it to both to derive the functional
+clock for the device and as the bus clock. The driver does not need
+"clock-names" to get a handle, so remove them all.
+
+make ARCH=arm dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 ---
+ arch/arm/boot/dts/rk322x.dtsi | 4 ----
+ 1 file changed, 4 deletions(-)
 
-Resending only the binding patch of the series, with the following
-changes requested by Rob:
-* Fixed the coherency between cs-gpios and gpios-cs
-* Added maxItems: 8 (this is a good enough value for most of the cases I
-  guess, this can be increased later if needed).
-* Adding maxItems: 8 lead to an error when checking the example,
-  minItems: 8 had to be added as well to the schema to fix it, not sure
-  this was expected or not.
-
- .../bindings/mtd/nand-controller.yaml          | 18 +++++++++++++++++-
- 1 file changed, 17 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/mtd/nand-controller.yaml b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-index 678b39952502..bd217e6f5018 100644
---- a/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-+++ b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-@@ -38,6 +38,17 @@ properties:
- 
-   ranges: true
- 
-+  cs-gpios:
-+    minItems: 1
-+    maxItems: 8
-+    description:
-+      Array of chip-select available to the controller. The first
-+      entries are a 1:1 mapping of the available chip-select on the
-+      NAND controller (even if they are not used). As many additional
-+      chip-select as needed may follow and should be phandles of GPIO
-+      lines. 'reg' entries of the NAND chip subnodes become indexes of
-+      this array when this property is present.
-+
- patternProperties:
-   "^nand@[a-f0-9]$":
-     type: object
-@@ -164,14 +175,19 @@ examples:
-     nand-controller {
-       #address-cells = <1>;
-       #size-cells = <0>;
-+      cs-gpios = <0>, <&gpioA 1>; /* A single native CS is available */
- 
-       /* controller specific properties */
- 
-       nand@0 {
--        reg = <0>;
-+        reg = <0>; /* Native CS */
-         nand-use-soft-ecc-engine;
-         nand-ecc-algo = "bch";
- 
-         /* controller specific properties */
-       };
-+
-+      nand@1 {
-+        reg = <1>; /* GPIO CS */
-+      };
-     };
+diff --git a/arch/arm/boot/dts/rk322x.dtsi b/arch/arm/boot/dts/rk322x.dtsi
+index 9fbd96c3f..61028a5c9 100644
+--- a/arch/arm/boot/dts/rk322x.dtsi
++++ b/arch/arm/boot/dts/rk322x.dtsi
+@@ -384,7 +384,6 @@
+ 		reg = <0x110b0000 0x10>;
+ 		#pwm-cells = <3>;
+ 		clocks = <&cru PCLK_PWM>;
+-		clock-names = "pwm";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pwm0_pin>;
+ 		status = "disabled";
+@@ -395,7 +394,6 @@
+ 		reg = <0x110b0010 0x10>;
+ 		#pwm-cells = <3>;
+ 		clocks = <&cru PCLK_PWM>;
+-		clock-names = "pwm";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pwm1_pin>;
+ 		status = "disabled";
+@@ -406,7 +404,6 @@
+ 		reg = <0x110b0020 0x10>;
+ 		#pwm-cells = <3>;
+ 		clocks = <&cru PCLK_PWM>;
+-		clock-names = "pwm";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pwm2_pin>;
+ 		status = "disabled";
+@@ -417,7 +414,6 @@
+ 		reg = <0x110b0030 0x10>;
+ 		#pwm-cells = <2>;
+ 		clocks = <&cru PCLK_PWM>;
+-		clock-names = "pwm";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pwm3_pin>;
+ 		status = "disabled";
 -- 
-2.27.0
+2.11.0
 
