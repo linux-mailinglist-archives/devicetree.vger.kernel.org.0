@@ -2,71 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20CE03780C8
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 12:02:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AD2F3780DC
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 12:09:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230423AbhEJKDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 06:03:33 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:49177 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230300AbhEJKD3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 06:03:29 -0400
-Received: from xps13.home (lfbn-tou-1-1325-59.w90-89.abo.wanadoo.fr [90.89.138.59])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 70102240012;
-        Mon, 10 May 2021 10:02:22 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Brian Norris <computersforpeace@gmail.com>,
-        Kamal Dasu <kdasu.kdev@gmail.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH V4] dt-bindings: mtd: brcm, brcmnand: convert to the json-schema
-Date:   Mon, 10 May 2021 12:02:21 +0200
-Message-Id: <20210510100221.6737-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210423050536.29504-1-zajec5@gmail.com>
-References: 
+        id S229566AbhEJKKY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 06:10:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33948 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230302AbhEJKKX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 06:10:23 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19DBAC061760
+        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 03:09:18 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id z6so15982709wrm.4
+        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 03:09:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Lak2E9+GUDiZzQG7k+ylmHyUCfztik4DxRUQZhkU5ro=;
+        b=nsMo1rF1vPg3fCmcCDlqdsBsdgZ5+6CPz5Gu0r6CwIQYLumGthyt4retDR0aK4EgUP
+         yyKicUUKjZfNGMwp9Q0WmSB2nM0M8EtUXosj6TV7arw7hetwGwzyEL9V2JyujJyOgFm7
+         DSY77eZhkenaZf0E88XJEdkhM7bfP3/fGsFTsdSYmy5/h4FX7UmG/PDKoQB3zo1Z1P+F
+         /3uhv17qjoVThYO5j0SJ7dRrNk2xaSwqt0qJLiLjKEQKd8e8m4vVj0C/yeXfUUoSY2ud
+         U11cMdSApBnhI1JXzwXYzOEOynxCi1+daV9oN+LrTugJsh/Vt44kRT/WdQJ0jvRMrAg2
+         s8+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Lak2E9+GUDiZzQG7k+ylmHyUCfztik4DxRUQZhkU5ro=;
+        b=DTJIPjku65REY/EkbotfU2SD50sqfdcq2NyR8WiD6+eFlcrqTN9y35f1nnreICbmD1
+         YhzNxZfoOLi6r/EyIrvN6+0bPsy18HWETyuaQuYhW6fzfhQLIYgSG8MclmWA6BGkD9um
+         7SGVhJ0eRfrhGNqfY0TDS1GXazdNn7ke/9Q4V3Vq18f3KmqmKUwysSliZDEnVbVC+n/a
+         OY2nntCXBPbqSRiNLyZQMz2wB7ctCNkIkhBNOMRORXb7CdJlKpKcVcd2tiDkfX3Us3Bq
+         +x4iiCcnUOlg0SZwm023wQq6dip1uNM461kncB4R6C1vtt/wk/IsPCJ9O1lg6/1QEjgI
+         +d9w==
+X-Gm-Message-State: AOAM530mR9aOB/g5ulLjSrp9yiA2EQ46FWq7YnMMpqmcdzP04i3vj3V8
+        AkjMD5pr/6QRF1IOnKdlDYDfCQ==
+X-Google-Smtp-Source: ABdhPJz3z5wg+OafyD48OYDvMBz7h7pieXW/43X8WIeydnOfIZSxiOuGs4DIsfygLyGkonGdYzcN6A==
+X-Received: by 2002:adf:ed4b:: with SMTP id u11mr29569846wro.293.1620641356622;
+        Mon, 10 May 2021 03:09:16 -0700 (PDT)
+Received: from google.com (105.168.195.35.bc.googleusercontent.com. [35.195.168.105])
+        by smtp.gmail.com with ESMTPSA id n5sm22274941wrx.31.2021.05.10.03.09.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 May 2021 03:09:16 -0700 (PDT)
+Date:   Mon, 10 May 2021 10:09:13 +0000
+From:   Quentin Perret <qperret@google.com>
+To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sasha Levin <sashal@kernel.org>,
+        stable <stable@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        KarimAllah Ahmed <karahmed@amazon.de>,
+        Android Kernel Team <kernel-team@android.com>,
+        Architecture Mailman List <boot-architecture@lists.linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [v5.4 stable] arm: stm32: Regression observed on "no-map"
+ reserved memory region
+Message-ID: <YJkGSb72aKg6ScGo@google.com>
+References: <4a4734d6-49df-677b-71d3-b926c44d89a9@foss.st.com>
+ <CAL_JsqKGG8E9Y53+az+5qAOOGiZRAA-aD-1tKB-hcOp+m3CJYw@mail.gmail.com>
+ <001f8550-b625-17d2-85a6-98a483557c70@foss.st.com>
+ <CAL_Jsq+LUPZFhXd+j-xM67rZB=pvEvZM+1sfckip0Lqq02PkZQ@mail.gmail.com>
+ <CAMj1kXE2Mgr9CsAMnKXff+96xhDaE5OLeNhypHvpN815vZGZhQ@mail.gmail.com>
+ <d7f9607a-9fcb-7ba2-6e39-03030da2deb0@gmail.com>
+ <YH/ixPnHMxNo08mJ@google.com>
+ <cc8f96a4-6c85-b869-d3cf-5dc543982054@gmail.com>
+ <YIFzMkW+tXonTf0K@google.com>
+ <ad90b2bb-0fab-9f06-28dd-038e8005490b@foss.st.com>
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'27736ddd24cb99b9bef2b36b42381eb41da15958'
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ad90b2bb-0fab-9f06-28dd-038e8005490b@foss.st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2021-04-23 at 05:05:36 UTC, =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> This helps validating DTS files.
-> 
-> Changes that require mentioning:
-> 1. Property "clock" was renamed to "clocks"
-> 2. Duplicated properties (defined in nand-controller.yaml) were dropped
-> 3. Compatible "brcm,nand-bcm63168" was added
-> 4. SoC specific "compatible" cases got limited controller versions
-> 
-> Examples changes:
-> 1. Nodes "nand" were renamed to "nand-controller"
-> 2. Nodes "nandcs" were renamed to "nand"
-> 3. Dropped partitions as they were using old syntax and are well
->    documented elsewhere anyway
-> 
-> This rewritten binding validates cleanly using the "dt_binding_check".
-> Some Linux stored DTS files will require updating to make "dtbs_check"
-> happy.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Brian Norris <computersforpeace@gmail.com>
+Hi Alexandre,
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
+On Friday 07 May 2021 at 17:15:20 (+0200), Alexandre TORGUE wrote:
+> Did you get time to continue some tests on this issue ?
 
-Miquel
+I did try a few things, but still fail to reproduced :/
+
+> On my side this DT is not working:
+> 
+> memory@c0000000 {
+>         reg = <0xc0000000 0x20000000>;
+> };
+> 
+> reserved-memory {
+>         #address-cells = <1>;
+>         #size-cells = <1>;
+>         ranges;
+> 
+>         gpu_reserved: gpu@d4000000 {
+>                 reg = <0xd4000000 0x4000000>;
+>                 no-map;
+>         };
+> };
+
+So this does change how memory appears in /proc/iomem for me switching
+from 5.4.101 to v5.4.102 -- for the former d4000000-d7ffffff doesn't
+appear at all, and for the latter it appears as 'reserved'.
+
+But still, it never gets accounted as System RAM for me ...
+
+> Let me know if I can help.
+
+Could you please confirm you get a correct behaviour with 5.10.31 like
+Florian? If so, then bisecting to figure out what we're missing in older
+LTSes would help, but again it feels like we should just revert -- this
+wasn't really a fix in the first place.
+
+Thanks,
+Quentin
