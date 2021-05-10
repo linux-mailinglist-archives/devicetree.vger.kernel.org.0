@@ -2,20 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BEA773793D4
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 18:31:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E85FD3793D5
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 18:31:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231577AbhEJQc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 12:32:27 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:11161 "EHLO
+        id S231610AbhEJQca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 12:32:30 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:42489 "EHLO
         relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231561AbhEJQc0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 12:32:26 -0400
+        with ESMTP id S231570AbhEJQc2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 12:32:28 -0400
 X-Originating-IP: 90.89.138.59
 Received: from xps13.home (lfbn-tou-1-1325-59.w90-89.abo.wanadoo.fr [90.89.138.59])
         (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 0E2DD240006;
-        Mon, 10 May 2021 16:31:19 +0000 (UTC)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 41E29240010;
+        Mon, 10 May 2021 16:31:21 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
 Cc:     Richard Weinberger <richard@nod.at>,
@@ -26,9 +26,9 @@ Cc:     Richard Weinberger <richard@nod.at>,
         Michal Simek <monstr@monstr.eu>,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
         Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v3 2/5] mtd: rawnand: Move struct gpio_desc declaration to the top
-Date:   Mon, 10 May 2021 18:31:11 +0200
-Message-Id: <20210510163114.24965-3-miquel.raynal@bootlin.com>
+Subject: [PATCH v3 3/5] mtd: rawnand: Add a helper to parse the gpio-cs DT property
+Date:   Mon, 10 May 2021 18:31:12 +0200
+Message-Id: <20210510163114.24965-4-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210510163114.24965-1-miquel.raynal@bootlin.com>
 References: <20210510163114.24965-1-miquel.raynal@bootlin.com>
@@ -43,36 +43,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The struct gpio_desc is declared in the middle of the rawnand.h header,
-right before the first function using it (nand_gpio_waitrdy). Before
-adding a new function and to make it clear: move the declaration to the
-top of the file.
+New chips may feature a lot of CS because of their extended length. As
+many controllers have been designed a decade ago, they usually only
+feature just a couple. This does not mean that the entire range of
+these chips cannot be accessed: it is just a matter of adding more
+GPIO CS in the hardware design. A DT property has been added to
+describe the CS array: cs-gpios.
+
+Here is the code parsing it this new property, allocating what needs to
+be, requesting the GPIOs and returning an array with the additional
+available CS. The first entries of this array are left empty and are
+reserved for native CS.
 
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- include/linux/mtd/rawnand.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/mtd/nand/raw/nand_base.c | 39 ++++++++++++++++++++++++++++++++
+ include/linux/mtd/rawnand.h      |  4 ++++
+ 2 files changed, 43 insertions(+)
 
+diff --git a/drivers/mtd/nand/raw/nand_base.c b/drivers/mtd/nand/raw/nand_base.c
+index fb072c444495..aad687b587a5 100644
+--- a/drivers/mtd/nand/raw/nand_base.c
++++ b/drivers/mtd/nand/raw/nand_base.c
+@@ -42,6 +42,7 @@
+ #include <linux/io.h>
+ #include <linux/mtd/partitions.h>
+ #include <linux/of.h>
++#include <linux/of_gpio.h>
+ #include <linux/gpio/consumer.h>
+ 
+ #include "internals.h"
+@@ -5078,6 +5079,44 @@ static int of_get_nand_secure_regions(struct nand_chip *chip)
+ 	return 0;
+ }
+ 
++/**
++ * rawnand_dt_parse_gpio_cs - Parse the gpio-cs property of a controller
++ * @dev: Device that will be parsed. Also used for managed allocations.
++ * @cs_array: Array of GPIO desc pointers allocated on success
++ * @ncs_array: Number of entries in @cs_array updated on success.
++ * @return 0 on success, an error otherwise.
++ */
++int rawnand_dt_parse_gpio_cs(struct device *dev, struct gpio_desc ***cs_array,
++			     unsigned int *ncs_array)
++{
++	struct device_node *np = dev->of_node;
++	struct gpio_desc **descs;
++	int ndescs, i;
++
++	ndescs = of_gpio_named_count(np, "cs-gpios");
++	if (ndescs < 0) {
++		dev_dbg(dev, "No valid cs-gpios property\n");
++		return 0;
++	}
++
++	descs = devm_kcalloc(dev, ndescs, sizeof(*descs), GFP_KERNEL);
++	if (!descs)
++		return -ENOMEM;
++
++	for (i = 0; i < ndescs; i++) {
++		descs[i] = gpiod_get_index_optional(dev, "cs", i,
++						    GPIOD_OUT_HIGH);
++		if (IS_ERR(descs[i]))
++			return PTR_ERR(descs[i]);
++	}
++
++	*ncs_array = ndescs;
++	*cs_array = descs;
++
++	return 0;
++}
++EXPORT_SYMBOL(rawnand_dt_parse_gpio_cs);
++
+ static int rawnand_dt_init(struct nand_chip *chip)
+ {
+ 	struct nand_device *nand = mtd_to_nanddev(nand_to_mtd(chip));
 diff --git a/include/linux/mtd/rawnand.h b/include/linux/mtd/rawnand.h
-index 29df2f43dcb5..93f5c0196a09 100644
+index 93f5c0196a09..e01255a9e591 100644
 --- a/include/linux/mtd/rawnand.h
 +++ b/include/linux/mtd/rawnand.h
-@@ -24,6 +24,7 @@
- #include <linux/types.h>
+@@ -1446,4 +1446,8 @@ static inline void *nand_get_data_buf(struct nand_chip *chip)
+ 	return chip->data_buf;
+ }
  
- struct nand_chip;
-+struct gpio_desc;
- 
- /* The maximum number of NAND chips in an array */
- #define NAND_MAX_CHIPS		8
-@@ -1413,7 +1414,6 @@ void nand_cleanup(struct nand_chip *chip);
-  * instruction and have no physical pin to check it.
-  */
- int nand_soft_waitrdy(struct nand_chip *chip, unsigned long timeout_ms);
--struct gpio_desc;
- int nand_gpio_waitrdy(struct nand_chip *chip, struct gpio_desc *gpiod,
- 		      unsigned long timeout_ms);
- 
++/* Parse the gpio-cs property */
++int rawnand_dt_parse_gpio_cs(struct device *dev, struct gpio_desc ***cs_array,
++			     unsigned int *ncs_array);
++
+ #endif /* __LINUX_MTD_RAWNAND_H */
 -- 
 2.27.0
 
