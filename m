@@ -2,86 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 765E73791BB
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 16:59:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7BF03791BD
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 16:59:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232921AbhEJPAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S235846AbhEJPAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 10 May 2021 11:00:35 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:33962 "EHLO gloria.sntech.de"
+Received: from verein.lst.de ([213.95.11.211]:60310 "EHLO verein.lst.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235859AbhEJO6M (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 May 2021 10:58:12 -0400
-Received: from [95.90.166.74] (helo=phil.lan)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1lg7L4-0003f3-0e; Mon, 10 May 2021 16:56:54 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, zhangqing@rock-chips.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        enric.balletbo@collabora.com
-Subject: Re: [PATCH v9 00/15] soc: rockchip: power-domain: add rk3568 powerdomains
-Date:   Mon, 10 May 2021 16:56:51 +0200
-Message-Id: <162065860682.1723098.16551538520647881153.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210417112952.8516-1-jbx6244@gmail.com>
-References: <20210417112952.8516-1-jbx6244@gmail.com>
+        id S237177AbhEJO7l (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 May 2021 10:59:41 -0400
+Received: by verein.lst.de (Postfix, from userid 2407)
+        id 7F6AC67373; Mon, 10 May 2021 16:58:23 +0200 (CEST)
+Date:   Mon, 10 May 2021 16:58:23 +0200
+From:   Christoph Hellwig <hch@lst.de>
+To:     Claire Chang <tientzu@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        benh@kernel.crashing.org, paulus@samba.org,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
+        grant.likely@arm.com, xypron.glpk@gmx.de,
+        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
+        bauerman@linux.ibm.com, peterz@infradead.org,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        heikki.krogerus@linux.intel.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>, tfiga@chromium.org,
+        bskeggs@redhat.com, bhelgaas@google.com, chris@chris-wilson.co.uk,
+        daniel@ffwll.ch, airlied@linux.ie, dri-devel@lists.freedesktop.org,
+        intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
+        jxgao@google.com, joonas.lahtinen@linux.intel.com,
+        linux-pci@vger.kernel.org, maarten.lankhorst@linux.intel.com,
+        matthew.auld@intel.com, nouveau@lists.freedesktop.org,
+        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com
+Subject: Re: [PATCH v6 01/15] swiotlb: Refactor swiotlb init functions
+Message-ID: <20210510145823.GA28066@lst.de>
+References: <20210510095026.3477496-1-tientzu@chromium.org> <20210510095026.3477496-2-tientzu@chromium.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210510095026.3477496-2-tientzu@chromium.org>
+User-Agent: Mutt/1.5.17 (2007-11-01)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 17 Apr 2021 13:29:37 +0200, Johan Jonker wrote:
-> Fix power-controller node names for dtbs_check.
-> Convert power domain documentation to json-schema.
-> Add a meaningful power domain name.
-> Support power domain function for RK3568 Soc.
-> 
-> Changed in V9:
-> [PATCH v9 13/15]:
->   Rename definitions to $defs
->   Restyle patternProperties
-> 
-> [...]
+Looks good,
 
-Applied, thanks!
-
-[01/15] ARM: dts: rockchip: Fix power-controller node names for rk3066a
-        commit: f2948781a72f0d8cf2adf31758c357f2f35e6c79
-[02/15] ARM: dts: rockchip: Fix power-controller node names for rk3188
-        commit: d3bcbcd396175ac26aa54919c0b31c7d2878fc24
-[03/15] ARM: dts: rockchip: Fix power-controller node names for rk3288
-        commit: 970cdc53cb1afa73602028c103dbfb6a230080be
-[04/15] ARM: dts: rockchip: add #power-domain-cells to power domain nodes
-        commit: a3ec2d38f6dd922007ee4d414cf76d1f55570844
-[05/15] arm64: dts: rockchip: Fix power-controller node names for px30
-        commit: d5de0d688ac6e0202674577b05d0726b8a6af401
-[06/15] arm64: dts: rockchip: Fix power-controller node names for rk3328
-        commit: 6e6a282b49c6db408d27231e3c709fbdf25e3c1b
-[07/15] arm64: dts: rockchip: Fix power-controller node names for rk3399
-        commit: 148bbe29f9108812c6fedd8a228f9e1ed6b422f7
-[08/15] arm64: dts: rockchip: add #power-domain-cells to power domain nodes
-        commit: 837188d49823230f47afdbbec7556740e89a8557
-[09/15] soc: rockchip: pm-domains: Add a meaningful power domain name
-        commit: 0a69452e03564c5eaf99f729de398cd94ee90851
-[10/15] dt-bindings: add power-domain header for RK3568 SoCs
-        commit: 8cbc5d2f2fe42a1bb1491f25486999d8f4ba9733
-[11/15] dt-bindings: arm: rockchip: convert pmu.txt to YAML
-        commit: 41413a20b08258cc34af06e01236980ac68ae334
-[12/15] dt-bindings: arm: rockchip: add more compatible strings to pmu.yaml
-        commit: c29c9dc89381d94a57759b60ef46f3aa2f7d413d
-[13/15] dt-bindings: power: rockchip: Convert to json-schema
-        commit: dfbe3e44ae8415772d561e71b9b4be035af96396
-[14/15] dt-bindings: power: rockchip: Add bindings for RK3568 Soc
-        commit: 53f8551a36f97f04bd896a9e8d2daf0c45ffbae8
-[15/15] soc: rockchip: power-domain: add rk3568 powerdomains
-        commit: b9402acf6350458d934646a4531392bc4f8605d2
-
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Reviewed-by: Christoph Hellwig <hch@lst.de>
