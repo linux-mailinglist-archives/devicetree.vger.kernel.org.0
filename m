@@ -2,151 +2,283 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0A5937993E
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 23:37:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5334437996E
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 23:49:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232481AbhEJVic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 17:38:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47420 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232082AbhEJVib (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 17:38:31 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74AEBC061574
-        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 14:37:25 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id o16so22630877ljp.3
-        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 14:37:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=CUvl66hkrXjCfS0+MBNd5h698LfIk3X/AE2d1CppJVM=;
-        b=dID648OqvC6fpie5hQioI8+BavivqlqN/iNII27m9wwegXP/fBT4072x9hLy3uheNZ
-         Akb5f9TqDODDJATz4d4J69ahd/nnqkbveL5jhMhJ1sxubL/xnqz2GxrdSbVDjneff+Zc
-         bgmTpI+CJl6O6N39Iyj/olaT6kqY+L3lLzRCOUKz506ZhSDBESm1OUT5BbInTSIkJ2L8
-         +MbyeIezWVuAYYloHmQnPEfjhQYK5EKcQq2ltvzLjTIrI4NsSIhNE882WX9bR9zW7xRl
-         TDE/IUx4DrHnHVWcLgu0jyzgvgNiXmU+W4ZlEDa+Tq+AAIoiA0HeIT2gr03b8AebJcDL
-         Hz9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=CUvl66hkrXjCfS0+MBNd5h698LfIk3X/AE2d1CppJVM=;
-        b=Qf/TwJFwywvEirVQRMvr1/OsJk0xPxfaUGS7rFig4AVOG8hsQW83Tyq2j6OPi9OsT8
-         hqP8xSr9aXUxdHQ2AnQZF2fPolAnyvbO9nVzhyVnqhPfMI7GN0OQigAhWx9wF755vX4r
-         YtEDPP9pvT2rpihZ4L6RYuUyf22B0FLCSFXDwNEbyiIS7es8NgVy6GvVnlqc4H53yBwa
-         1hHFR3AQsaxzep2IkRLXm4qlOGPc/hfEZDOSWArr9g/43gCHnyBfTaETeg1IujVO0jlb
-         2jKp8aqX9jGMBnf3c/ejxAmbBS5UVu3oYgfPk4255UCaOmm7aNZxEmiV8wT/Jsde+UZ4
-         tHqw==
-X-Gm-Message-State: AOAM533kJYCBBtNMfG7okAJRPWWoqXVSLtPWnqAk5JU0kJEn5sKu63d3
-        BHKnhc6X+BehXH5Rd/UoyKnPTw==
-X-Google-Smtp-Source: ABdhPJztyPIQuhm88sYU82lPmNBi5JTeQ9tTCbuESFnM9KRry16gs7IhDgtCmSJQBXwLzA3c+zmPJQ==
-X-Received: by 2002:a2e:8797:: with SMTP id n23mr2063883lji.248.1620682643921;
-        Mon, 10 May 2021 14:37:23 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id q19sm1091660lff.16.2021.05.10.14.37.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 May 2021 14:37:22 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     linux-crypto@vger.kernel.org,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Imre Kaloz <kaloz@openwrt.org>,
-        Krzysztof Halasa <khalasa@piap.pl>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 2/3] crypto: ixp4xx: Add DT bindings
-Date:   Mon, 10 May 2021 23:36:33 +0200
-Message-Id: <20210510213634.600866-2-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210510213634.600866-1-linus.walleij@linaro.org>
-References: <20210510213634.600866-1-linus.walleij@linaro.org>
+        id S231923AbhEJVuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 17:50:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59236 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229946AbhEJVup (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 May 2021 17:50:45 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 89DEA61585;
+        Mon, 10 May 2021 21:49:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1620683380;
+        bh=shdNg0dj5nmPSU8o9YJGnMTIgQFNDoi38aBF/3eSl00=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Vlk6qbHvO6iOYUttDcm58ZQoOi6kGx3KHkLquvwW8+OxRo0w4VwiGyB53wrLR5HI3
+         cg2+2b74zYYY1IxUvZzmpA2YGY4Clqh7XN2LQ/YeCvFlONNkIOpQ6TFqSfNvQg+ytJ
+         PDM0z5XMFtT/vgsB+9k6XqMzQMqkqCYkBL60QJQZ+hLSLXa67iKuUveZQCspPIa5iG
+         HY7080h7MemFF1mKyBDRXXBlU0fIdCCquM130CrmzdY5Do2/Oczlm0WFRQnGhlgasP
+         B0ERF012kXvHqsJjluteLfF3o/p/6TvGnnS18JJVp98fpELR+tLKnOS6x42JuWwB/Q
+         WMdIB5b+whAuQ==
+Received: by mail-ej1-f52.google.com with SMTP id b25so26696933eju.5;
+        Mon, 10 May 2021 14:49:40 -0700 (PDT)
+X-Gm-Message-State: AOAM531hTm55mxR0OJjkv8XwAh2UUrcRpne40PUdbfhEG6Q3IE5J/iF3
+        SeNfWNd9u8ovz/P9ed7XZuRQt1hUwM9ROjdZmA==
+X-Google-Smtp-Source: ABdhPJxk2i5SpC56oKHnArvb6C95SwClkJseSzpWshAodQWBwLA3X9ow9/6fJ7P26yOTzvnV9O4XfkzAPr2zVgFWCOc=
+X-Received: by 2002:a17:906:1d0a:: with SMTP id n10mr10911690ejh.341.1620683379036;
+ Mon, 10 May 2021 14:49:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210508123743.18128-1-jbx6244@gmail.com> <20210508123743.18128-3-jbx6244@gmail.com>
+ <20210510161234.GA210306@robh.at.kernel.org> <a30fe9fd-d4bb-c5a7-f8bd-e783a6373727@gmail.com>
+In-Reply-To: <a30fe9fd-d4bb-c5a7-f8bd-e783a6373727@gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 10 May 2021 16:49:26 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJdygCgvE4tyMfoGWHvm2ucYC0g9gMQz9nq-16RCR-eHQ@mail.gmail.com>
+Message-ID: <CAL_JsqJdygCgvE4tyMfoGWHvm2ucYC0g9gMQz9nq-16RCR-eHQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] dt-bindings: soc: rockchip: convert grf.txt to YAML
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     "heiko@sntech.de" <heiko@sntech.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Jianqun Xu <jay.xu@rock-chips.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        David Wu <david.wu@rock-chips.com>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        Tao Huang <huangtao@rock-chips.com>,
+        Liang Chen <cl@rock-chips.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the ixp4xx crypto engine.
+On Mon, May 10, 2021 at 11:32 AM Johan Jonker <jbx6244@gmail.com> wrote:
+>
+>
+>
+> On 5/10/21 6:12 PM, Rob Herring wrote:
+> > On Sat, May 08, 2021 at 02:37:41PM +0200, Johan Jonker wrote:
+> >> Current dts files with 'grf' nodes are manually verified.
+> >> In order to automate this process grf.txt has to be
+> >> converted to YAML.
+> >>
+> >> Most compatibility strings are in use with "simple-mfd" added.
+> >>
+> >> Add description already in use:
+> >> "rockchip,rv1108-pmugrf", "syscon"
+> >>
+> >> Add new descriptions for:
+> >> "rockchip,rk3568-grf", "syscon", "simple-mfd"
+> >> "rockchip,rk3568-pmugrf", "syscon", "simple-mfd"
+> >>
+> >> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> >> ---
+> >>
+> >> Changed V3:
+> >>   remove select
+> >>   change unevaluatedProperties
+> >>   add separate schemas for each 'if' subset
+> >
+> > Sorry, but by separate I meant different files. But you don't *have* to
+> > do that.
+> >
+> >>
+> >> Changed V2:
+> >>   add rockchip,rk3328-grf-gpio.yaml
+> >>   rename grf-gpio nodename
+> >> ---
+> >>  .../devicetree/bindings/soc/rockchip/grf.txt       |  61 -----
+> >>  .../devicetree/bindings/soc/rockchip/grf.yaml      | 262 +++++++++++++++++++++
+> >>  2 files changed, 262 insertions(+), 61 deletions(-)
+> >>  delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/grf.txt
+> >>  create mode 100644 Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.txt b/Documentation/devicetree/bindings/soc/rockchip/grf.txt
+> >> deleted file mode 100644
+> >> index f96511aa3..000000000
+> >> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.txt
+> >> +++ /dev/null
+> >> @@ -1,61 +0,0 @@
+> >> -* Rockchip General Register Files (GRF)
+> >> -
+> >> -The general register file will be used to do static set by software, which
+> >> -is composed of many registers for system control.
+> >> -
+> >> -From RK3368 SoCs, the GRF is divided into two sections,
+> >> -- GRF, used for general non-secure system,
+> >> -- SGRF, used for general secure system,
+> >> -- PMUGRF, used for always on system
+> >> -
+> >> -On RK3328 SoCs, the GRF adds a section for USB2PHYGRF,
+> >> -
+> >> -ON RK3308 SoC, the GRF is divided into four sections:
+> >> -- GRF, used for general non-secure system,
+> >> -- SGRF, used for general secure system,
+> >> -- DETECTGRF, used for audio codec system,
+> >> -- COREGRF, used for pvtm,
+> >> -
+> >> -Required Properties:
+> >> -
+> >> -- compatible: GRF should be one of the following:
+> >> -   - "rockchip,px30-grf", "syscon": for px30
+> >> -   - "rockchip,rk3036-grf", "syscon": for rk3036
+> >> -   - "rockchip,rk3066-grf", "syscon": for rk3066
+> >> -   - "rockchip,rk3188-grf", "syscon": for rk3188
+> >> -   - "rockchip,rk3228-grf", "syscon": for rk3228
+> >> -   - "rockchip,rk3288-grf", "syscon": for rk3288
+> >> -   - "rockchip,rk3308-grf", "syscon": for rk3308
+> >> -   - "rockchip,rk3328-grf", "syscon": for rk3328
+> >> -   - "rockchip,rk3368-grf", "syscon": for rk3368
+> >> -   - "rockchip,rk3399-grf", "syscon": for rk3399
+> >> -   - "rockchip,rv1108-grf", "syscon": for rv1108
+> >> -- compatible: DETECTGRF should be one of the following:
+> >> -   - "rockchip,rk3308-detect-grf", "syscon": for rk3308
+> >> -- compatilbe: COREGRF should be one of the following:
+> >> -   - "rockchip,rk3308-core-grf", "syscon": for rk3308
+> >> -- compatible: PMUGRF should be one of the following:
+> >> -   - "rockchip,px30-pmugrf", "syscon": for px30
+> >> -   - "rockchip,rk3368-pmugrf", "syscon": for rk3368
+> >> -   - "rockchip,rk3399-pmugrf", "syscon": for rk3399
+> >> -- compatible: SGRF should be one of the following:
+> >> -   - "rockchip,rk3288-sgrf", "syscon": for rk3288
+> >> -- compatible: USB2PHYGRF should be one of the following:
+> >> -   - "rockchip,px30-usb2phy-grf", "syscon": for px30
+> >> -   - "rockchip,rk3328-usb2phy-grf", "syscon": for rk3328
+> >> -- compatible: USBGRF should be one of the following:
+> >> -   - "rockchip,rv1108-usbgrf", "syscon": for rv1108
+> >> -- reg: physical base address of the controller and length of memory mapped
+> >> -  region.
+> >> -
+> >> -Example: GRF and PMUGRF of RK3399 SoCs
+> >> -
+> >> -    pmugrf: syscon@ff320000 {
+> >> -            compatible = "rockchip,rk3399-pmugrf", "syscon";
+> >> -            reg = <0x0 0xff320000 0x0 0x1000>;
+> >> -    };
+> >> -
+> >> -    grf: syscon@ff770000 {
+> >> -            compatible = "rockchip,rk3399-grf", "syscon";
+> >> -            reg = <0x0 0xff770000 0x0 0x10000>;
+> >> -    };
+> >> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+> >> new file mode 100644
+> >> index 000000000..264e2e5ff
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+> >> @@ -0,0 +1,262 @@
+> >> +# SPDX-License-Identifier: GPL-2.0
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/soc/rockchip/grf.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Rockchip General Register Files (GRF)
+> >> +
+> >> +maintainers:
+> >> +  - Heiko Stuebner <heiko@sntech.de>
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    oneOf:
+> >> +      - items:
+> >> +          - enum:
+> >> +              - rockchip,rk3066-grf
+> >> +              - rockchip,rk3188-grf
+> >> +              - rockchip,rk3288-sgrf
+> >> +              - rockchip,rv1108-pmugrf
+> >> +              - rockchip,rv1108-usbgrf
+> >> +          - const: syscon
+> >> +      - items:
+> >> +          - enum:
+> >> +              - rockchip,px30-grf
+> >> +              - rockchip,px30-pmugrf
+> >> +              - rockchip,px30-usb2phy-grf
+> >> +              - rockchip,rk3036-grf
+> >> +              - rockchip,rk3228-grf
+> >> +              - rockchip,rk3288-grf
+> >> +              - rockchip,rk3308-core-grf
+> >> +              - rockchip,rk3308-detect-grf
+> >> +              - rockchip,rk3308-grf
+> >> +              - rockchip,rk3328-grf
+> >> +              - rockchip,rk3328-usb2phy-grf
+> >> +              - rockchip,rk3368-grf
+> >> +              - rockchip,rk3368-pmugrf
+> >> +              - rockchip,rk3399-grf
+> >> +              - rockchip,rk3399-pmugrf
+> >> +              - rockchip,rk3568-grf
+> >> +              - rockchip,rk3568-pmugrf
+> >> +              - rockchip,rv1108-grf
+> >> +          - const: syscon
+> >> +          - const: simple-mfd
+> >> +
+> >> +  reg:
+> >> +    maxItems: 1
+> >> +
+> >> +required:
+> >> +  - compatible
+> >> +  - reg
+> >> +
+> >> +unevaluatedProperties: false
+>
+> Hi Rob,
+>
+> I've tried without '$defs' and I can't get dt_binding_check error free with:
+> allOf:
+>   - if:
+>       [etc..]
+>   - if:
+>       [etc..]
+> That's why this construction.
+> Could you test with patch below.
+> Please advise.
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-Herbert, David: This can be applied separately once we are
-happy with the bindings, alternatively it can be merged
-with the support code into ARM SoC.
----
- .../bindings/crypto/intel,ixp4xx-crypto.yaml  | 59 +++++++++++++++++++
- 1 file changed, 59 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml
+There's a requirement that all the properties be defined at the top
+level. If 'unevaluatedProperties' was actually implemented, we
+wouldn't need that. So you need something like this:
 
-diff --git a/Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml b/Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml
-new file mode 100644
-index 000000000000..28d75f4f9a76
---- /dev/null
-+++ b/Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2018 Linaro Ltd.
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/crypto/intel,ixp4xx-crypto.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Intel IXP4xx cryptographic engine
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+  The Intel IXP4xx cryptographic engine makes use of the IXP4xx NPE
-+  (Network Processing Engine). Since it is not a device on its own
-+  it is defined as a subnode of the NPE, if crypto support is
-+  available on the platform.
-+
-+properties:
-+  compatible:
-+    const: intel,ixp4xx-crypto
-+
-+  intel,npe-handle:
-+    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-+    maxItems: 1
-+    description: phandle to the NPE this ethernet instance is using
-+      and the instance to use in the second cell
-+
-+  queue-rx:
-+    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-+    maxItems: 1
-+    description: phandle to the RX queue on the NPE
-+
-+  queue-txready:
-+    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-+    maxItems: 1
-+    description: phandle to the TX READY queue on the NPE
-+
-+required:
-+  - compatible
-+  - intel,npe-handle
-+  - queue-rx
-+  - queue-txready
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    npe: npe@c8006000 {
-+         compatible = "intel,ixp4xx-network-processing-engine";
-+         reg = <0xc8006000 0x1000>, <0xc8007000 0x1000>, <0xc8008000 0x1000>;
-+
-+         crypto {
-+             compatible = "intel,ixp4xx-crypto";
-+             intel,npe-handle = <&npe 2>;
-+             queue-rx = <&qmgr 30>;
-+             queue-txready = <&qmgr 29>;
-+         };
-+    };
--- 
-2.30.2
+diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+index 8a8943317544..8034458fb969 100644
+--- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
++++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+@@ -46,11 +46,18 @@ properties:
+   reg:
+     maxItems: 1
 
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 1
++
+ required:
+   - compatible
+   - reg
+
+-unevaluatedProperties: false
++additionalProperties:
++  type: object
+
+ allOf:
+   - if:
+@@ -158,13 +165,6 @@ allOf:
+               - rockchip,rv1108-grf
+
+     then:
+-      properties:
+-        "#address-cells":
+-          const: 1
+-
+-        "#size-cells":
+-          const: 1
+-
+       required:
+         - "#address-cells"
+         - "#size-cells"
