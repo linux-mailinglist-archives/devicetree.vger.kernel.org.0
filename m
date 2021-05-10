@@ -2,365 +2,585 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43ECA3793DA
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 18:31:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B51AF3793E1
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 18:32:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231676AbhEJQcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 12:32:48 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:51309 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231615AbhEJQcc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 12:32:32 -0400
-X-Originating-IP: 90.89.138.59
-Received: from xps13.home (lfbn-tou-1-1325-59.w90-89.abo.wanadoo.fr [90.89.138.59])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id D5A7A240003;
-        Mon, 10 May 2021 16:31:23 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        <linux-mtd@lists.infradead.org>,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>,
-        Michal Simek <monstr@monstr.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v3 5/5] mtd: rawnand: arasan: Leverage additional GPIO CS
-Date:   Mon, 10 May 2021 18:31:14 +0200
-Message-Id: <20210510163114.24965-6-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210510163114.24965-1-miquel.raynal@bootlin.com>
-References: <20210510163114.24965-1-miquel.raynal@bootlin.com>
+        id S231432AbhEJQdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 12:33:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35070 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231200AbhEJQdi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 12:33:38 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B2EEC06175F;
+        Mon, 10 May 2021 09:32:33 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a4so25498091ejk.1;
+        Mon, 10 May 2021 09:32:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=j/pBjOdXf0s3z7Yx433rgH/yn8XqqRaPJIsdeRgHCLQ=;
+        b=dbBFgsq8unaIonZJxvYUgytSwglbLthxvzsbfRd+22+srKDi9/RsUrWdvxy11fP+I1
+         vDpk4Vf8PKX2xprXKoQy3IrD2E0cOHmHsz7Hze4P7Kge0khOYRg4XxP9SoyLfpr8rkHJ
+         aJI1bxAt97pvJ3y9Q5mLEbL2+zAGhOhWFTRx/WeewNuGDMOCeukARy86MSn+EddF2yI0
+         pfyrahK6JjCVeh7/zl/1jmukOEHWHYmLrRbCId5rDNQYWqCYpO5EekYc3ceCC2pP80Bi
+         vbz/Fv1i0CgK/RJpLK7+q78QRuGE66TX3eq3DrGfvaFjLeX0qWniezbKlfIqHdRHO5HW
+         djRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=j/pBjOdXf0s3z7Yx433rgH/yn8XqqRaPJIsdeRgHCLQ=;
+        b=GC2OOeCxueqD+jMgaStoc/6w80rD4cfH7rQC7d5lPGn3HuC8saxi9Epf5krL4aTWcG
+         OHRYip8h5Esj3B1JwbCafS0Tz38qVLOO0lhL8rI1JA2xrx5hlOha53M9O9mDt4FE4cdm
+         M+mQeiujUFcJfLFOGNmM+DS1S+RJ0/mqqRTgXCf/dPZOtSq0mywNrklfJJtJK5x5NF3P
+         V6Ri3hD2hLUrLk9PTyiBr8ETSlHppC60s4ewFSLw5oiPl6Xim4wKJVQ1rzq71dswVN9V
+         Aocu/n3mc4XPKpxCKiGKihFQ0HNGQYuiUJGUKiT/fkz3lld+4bFPXH8GJfVNe73c3pnO
+         Blhw==
+X-Gm-Message-State: AOAM531M9AXwjw3k0PGkH11Ugv7nMqUTp5VPzC//qVrnFqHGCYf/Ql8m
+        GhpDf5eQqBG1HxXycnq7Jsn4ZHsrH30=
+X-Google-Smtp-Source: ABdhPJwhnkqcQe0SS0lpNxvwO9ozy2NoIPjfR1insKDUbKcf5fPHYgLtlg4Px1HmgkeLyAes8SBFUQ==
+X-Received: by 2002:a17:906:3042:: with SMTP id d2mr27019634ejd.234.1620664351887;
+        Mon, 10 May 2021 09:32:31 -0700 (PDT)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id z22sm13320772edm.57.2021.05.10.09.32.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 May 2021 09:32:31 -0700 (PDT)
+Subject: Re: [PATCH v3 2/4] dt-bindings: soc: rockchip: convert grf.txt to
+ YAML
+To:     Rob Herring <robh@kernel.org>
+Cc:     heiko@sntech.de, linus.walleij@linaro.org,
+        bgolaszewski@baylibre.com, jay.xu@rock-chips.com,
+        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
+        zhangqing@rock-chips.com, huangtao@rock-chips.com,
+        cl@rock-chips.com, linux-gpio@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210508123743.18128-1-jbx6244@gmail.com>
+ <20210508123743.18128-3-jbx6244@gmail.com>
+ <20210510161234.GA210306@robh.at.kernel.org>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <a30fe9fd-d4bb-c5a7-f8bd-e783a6373727@gmail.com>
+Date:   Mon, 10 May 2021 18:32:27 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Flag: yes
-X-Spam-Level: *************
-X-GND-Spam-Score: 200
-X-GND-Status: SPAM
+In-Reply-To: <20210510161234.GA210306@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make use of the cs-gpios DT property as well as the core helper to parse
-it so that the Arasan controller driver can now assert many more chips
-than natively.
 
-The Arasan controller has an internal limitation: RB0 is tied to CS0 and
-RB1 is tied to CS1. Hence, it is possible to use external GPIOs as long
-as one or the other native CS is not used (or configured to be driven as
-a GPIO) and that all additional CS are physically wired on its
-corresponding RB line. Eg. CS0 is used as a native CS, CS1 is not used
-as native CS and may be used as a GPIO CS, CS2 is an additional GPIO
-CS. Then the target asserted by CS0 should also be wired to RB0, while
-the targets asserted by CS1 and CS2 should be wired to RB1.
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+On 5/10/21 6:12 PM, Rob Herring wrote:
+> On Sat, May 08, 2021 at 02:37:41PM +0200, Johan Jonker wrote:
+>> Current dts files with 'grf' nodes are manually verified.
+>> In order to automate this process grf.txt has to be
+>> converted to YAML.
+>>
+>> Most compatibility strings are in use with "simple-mfd" added.
+>>
+>> Add description already in use:
+>> "rockchip,rv1108-pmugrf", "syscon"
+>>
+>> Add new descriptions for:
+>> "rockchip,rk3568-grf", "syscon", "simple-mfd"
+>> "rockchip,rk3568-pmugrf", "syscon", "simple-mfd"
+>>
+>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+>> ---
+>>
+>> Changed V3:
+>>   remove select
+>>   change unevaluatedProperties
+>>   add separate schemas for each 'if' subset
+> 
+> Sorry, but by separate I meant different files. But you don't *have* to 
+> do that.
+> 
+>>
+>> Changed V2:
+>>   add rockchip,rk3328-grf-gpio.yaml
+>>   rename grf-gpio nodename
+>> ---
+>>  .../devicetree/bindings/soc/rockchip/grf.txt       |  61 -----
+>>  .../devicetree/bindings/soc/rockchip/grf.yaml      | 262 +++++++++++++++++++++
+>>  2 files changed, 262 insertions(+), 61 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/grf.txt
+>>  create mode 100644 Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.txt b/Documentation/devicetree/bindings/soc/rockchip/grf.txt
+>> deleted file mode 100644
+>> index f96511aa3..000000000
+>> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.txt
+>> +++ /dev/null
+>> @@ -1,61 +0,0 @@
+>> -* Rockchip General Register Files (GRF)
+>> -
+>> -The general register file will be used to do static set by software, which
+>> -is composed of many registers for system control.
+>> -
+>> -From RK3368 SoCs, the GRF is divided into two sections,
+>> -- GRF, used for general non-secure system,
+>> -- SGRF, used for general secure system,
+>> -- PMUGRF, used for always on system
+>> -
+>> -On RK3328 SoCs, the GRF adds a section for USB2PHYGRF,
+>> -
+>> -ON RK3308 SoC, the GRF is divided into four sections:
+>> -- GRF, used for general non-secure system,
+>> -- SGRF, used for general secure system,
+>> -- DETECTGRF, used for audio codec system,
+>> -- COREGRF, used for pvtm,
+>> -
+>> -Required Properties:
+>> -
+>> -- compatible: GRF should be one of the following:
+>> -   - "rockchip,px30-grf", "syscon": for px30
+>> -   - "rockchip,rk3036-grf", "syscon": for rk3036
+>> -   - "rockchip,rk3066-grf", "syscon": for rk3066
+>> -   - "rockchip,rk3188-grf", "syscon": for rk3188
+>> -   - "rockchip,rk3228-grf", "syscon": for rk3228
+>> -   - "rockchip,rk3288-grf", "syscon": for rk3288
+>> -   - "rockchip,rk3308-grf", "syscon": for rk3308
+>> -   - "rockchip,rk3328-grf", "syscon": for rk3328
+>> -   - "rockchip,rk3368-grf", "syscon": for rk3368
+>> -   - "rockchip,rk3399-grf", "syscon": for rk3399
+>> -   - "rockchip,rv1108-grf", "syscon": for rv1108
+>> -- compatible: DETECTGRF should be one of the following:
+>> -   - "rockchip,rk3308-detect-grf", "syscon": for rk3308
+>> -- compatilbe: COREGRF should be one of the following:
+>> -   - "rockchip,rk3308-core-grf", "syscon": for rk3308
+>> -- compatible: PMUGRF should be one of the following:
+>> -   - "rockchip,px30-pmugrf", "syscon": for px30
+>> -   - "rockchip,rk3368-pmugrf", "syscon": for rk3368
+>> -   - "rockchip,rk3399-pmugrf", "syscon": for rk3399
+>> -- compatible: SGRF should be one of the following:
+>> -   - "rockchip,rk3288-sgrf", "syscon": for rk3288
+>> -- compatible: USB2PHYGRF should be one of the following:
+>> -   - "rockchip,px30-usb2phy-grf", "syscon": for px30
+>> -   - "rockchip,rk3328-usb2phy-grf", "syscon": for rk3328
+>> -- compatible: USBGRF should be one of the following:
+>> -   - "rockchip,rv1108-usbgrf", "syscon": for rv1108
+>> -- reg: physical base address of the controller and length of memory mapped
+>> -  region.
+>> -
+>> -Example: GRF and PMUGRF of RK3399 SoCs
+>> -
+>> -	pmugrf: syscon@ff320000 {
+>> -		compatible = "rockchip,rk3399-pmugrf", "syscon";
+>> -		reg = <0x0 0xff320000 0x0 0x1000>;
+>> -	};
+>> -
+>> -	grf: syscon@ff770000 {
+>> -		compatible = "rockchip,rk3399-grf", "syscon";
+>> -		reg = <0x0 0xff770000 0x0 0x10000>;
+>> -	};
+>> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>> new file mode 100644
+>> index 000000000..264e2e5ff
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>> @@ -0,0 +1,262 @@
+>> +# SPDX-License-Identifier: GPL-2.0
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/soc/rockchip/grf.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Rockchip General Register Files (GRF)
+>> +
+>> +maintainers:
+>> +  - Heiko Stuebner <heiko@sntech.de>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - items:
+>> +          - enum:
+>> +              - rockchip,rk3066-grf
+>> +              - rockchip,rk3188-grf
+>> +              - rockchip,rk3288-sgrf
+>> +              - rockchip,rv1108-pmugrf
+>> +              - rockchip,rv1108-usbgrf
+>> +          - const: syscon
+>> +      - items:
+>> +          - enum:
+>> +              - rockchip,px30-grf
+>> +              - rockchip,px30-pmugrf
+>> +              - rockchip,px30-usb2phy-grf
+>> +              - rockchip,rk3036-grf
+>> +              - rockchip,rk3228-grf
+>> +              - rockchip,rk3288-grf
+>> +              - rockchip,rk3308-core-grf
+>> +              - rockchip,rk3308-detect-grf
+>> +              - rockchip,rk3308-grf
+>> +              - rockchip,rk3328-grf
+>> +              - rockchip,rk3328-usb2phy-grf
+>> +              - rockchip,rk3368-grf
+>> +              - rockchip,rk3368-pmugrf
+>> +              - rockchip,rk3399-grf
+>> +              - rockchip,rk3399-pmugrf
+>> +              - rockchip,rk3568-grf
+>> +              - rockchip,rk3568-pmugrf
+>> +              - rockchip,rv1108-grf
+>> +          - const: syscon
+>> +          - const: simple-mfd
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +unevaluatedProperties: false
+
+Hi Rob,
+
+I've tried without '$defs' and I can't get dt_binding_check error free with:
+allOf:
+  - if:
+      [etc..]
+  - if:
+      [etc..]
+That's why this construction.
+Could you test with patch below.
+Please advise.
+
+Johan
+
+===
+
+/Documentation/devicetree/bindings/soc/rockchip/grf.yaml: ignoring,
+error in schema:
+warning: no schema found in file:
+./Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+  DTEX    Documentation/devicetree/bindings/soc/rockchip/grf.example.dts
+  DTC     Documentation/devicetree/bindings/soc/rockchip/grf.example.dt.yaml
+  CHECK   Documentation/devicetree/bindings/soc/rockchip/grf.example.dt.yaml
+/Documentation/devicetree/bindings/soc/rockchip/grf.example.dt.yaml:
+syscon@ff770000: compatible:0: 'anyOf' conditional failed, one must be
+fixed:
+	'rockchip,rk3399-grf' is not one of [....]
+===
+>> +
+>> +allOf:
+>> +  - $ref: "#/$defs/px30-grf"
+>> +  - $ref: "#/$defs/rk3288-grf"
+>> +  - $ref: "#/$defs/rk3328-grf"
+>> +  - $ref: "#/$defs/rk3399-grf"
+>> +  - $ref: "#/$defs/reboot"
+>> +  - $ref: "#/$defs/usb2"
+>> +  - $ref: "#/$defs/domains"
+>> +
+>> +$defs:
+> 
+> There's not really any point to using '$defs' unless you have 2 or more 
+> references to them.
+> 
+>> +  px30-grf:
+>> +    if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: rockchip,px30-grf
+>> +
+>> +    then:
+>> +      properties:
+>> +        lvds:
+>> +          description:
+>> +            Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.txt
+>> +
+>> +  rk3288-grf:
+>> +    if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: rockchip,rk3288-grf
+>> +
+>> +    then:
+>> +      properties:
+>> +        edp-phy:
+>> +          description:
+>> +            Documentation/devicetree/bindings/phy/rockchip-dp-phy.txt
+>> +
+>> +        usbphy:
+>> +          description:
+>> +            Documentation/devicetree/bindings/phy/rockchip-usb-phy.txt
+>> +
+>> +  rk3328-grf:
+>> +    if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: rockchip,rk3328-grf
+>> +
+>> +    then:
+>> +      properties:
+>> +        gpio:
+>> +          type: object
+>> +
+>> +          $ref: "/schemas/gpio/rockchip,rk3328-grf-gpio.yaml#"
+>> +
+>> +          unevaluatedProperties: false
+>> +
+>> +        power-controller:
+>> +          type: object
+>> +
+>> +          $ref: "/schemas/power/rockchip,power-controller.yaml#"
+>> +
+>> +          unevaluatedProperties: false
+>> +
+>> +  rk3399-grf:
+>> +    if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: rockchip,rk3399-grf
+>> +
+>> +    then:
+>> +      properties:
+>> +        mipi-dphy-rx0:
+>> +          type: object
+>> +
+>> +          $ref: "/schemas/phy/rockchip-mipi-dphy-rx0.yaml#"
+>> +
+>> +          unevaluatedProperties: false
+>> +
+>> +        pcie-phy:
+>> +          description:
+>> +            Documentation/devicetree/bindings/phy/rockchip-pcie-phy.txt
+>> +
+>> +      patternProperties:
+>> +        "phy@[0-9a-f]+$":
+>> +          description:
+>> +            Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+>> +
+>> +  reboot:
+>> +    if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - rockchip,px30-pmugrf
+>> +              - rockchip,rk3036-grf
+>> +              - rockchip,rk3308-grf
+>> +              - rockchip,rk3368-pmugrf
+>> +
+>> +    then:
+>> +      properties:
+>> +        reboot-mode:
+>> +          type: object
+>> +
+>> +          $ref: "/schemas/power/reset/syscon-reboot-mode.yaml#"
+>> +
+>> +          unevaluatedProperties: false
+>> +
+>> +  usb2:
+>> +    if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - rockchip,px30-usb2phy-grf
+>> +              - rockchip,rk3228-grf
+>> +              - rockchip,rk3328-usb2phy-grf
+>> +              - rockchip,rk3399-grf
+>> +              - rockchip,rv1108-grf
+>> +
+>> +    then:
+>> +      properties:
+>> +        "#address-cells":
+>> +          const: 1
+>> +
+>> +        "#size-cells":
+>> +          const: 1
+>> +
+>> +      required:
+>> +        - "#address-cells"
+>> +        - "#size-cells"
+>> +
+>> +      patternProperties:
+>> +        "usb2-phy@[0-9a-f]+$":
+>> +          type: object
+>> +
+>> +          $ref: "/schemas/phy/phy-rockchip-inno-usb2.yaml#"
+>> +
+>> +          unevaluatedProperties: false
+>> +
+>> +  domains:
+>> +    if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - rockchip,px30-pmugrf
+>> +              - rockchip,px30-grf
+>> +              - rockchip,rk3228-grf
+>> +              - rockchip,rk3288-grf
+>> +              - rockchip,rk3328-grf
+>> +              - rockchip,rk3368-pmugrf
+>> +              - rockchip,rk3368-grf
+>> +              - rockchip,rk3399-pmugrf
+>> +              - rockchip,rk3399-grf
+>> +
+>> +    then:
+>> +      properties:
+>> +        io-domains:
+>> +          description:
+>> +            Documentation/devicetree/bindings/power/rockchip-io-domain.txt
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/rk3399-cru.h>
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/power/rk3399-power.h>
+>> +    grf: syscon@ff770000 {
+>> +      compatible = "rockchip,rk3399-grf", "syscon", "simple-mfd";
+>> +      reg = <0xff770000 0x10000>;
+>> +      #address-cells = <1>;
+>> +      #size-cells = <1>;
+>> +
+>> +      mipi_dphy_rx0: mipi-dphy-rx0 {
+>> +        compatible = "rockchip,rk3399-mipi-dphy-rx0";
+>> +        clocks = <&cru SCLK_MIPIDPHY_REF>,
+>> +                 <&cru SCLK_DPHY_RX0_CFG>,
+>> +                 <&cru PCLK_VIO_GRF>;
+>> +        clock-names = "dphy-ref", "dphy-cfg", "grf";
+>> +        power-domains = <&power RK3399_PD_VIO>;
+>> +        #phy-cells = <0>;
+>> +      };
+>> +
+>> +      u2phy0: usb2-phy@e450 {
+>> +        compatible = "rockchip,rk3399-usb2phy";
+>> +        reg = <0xe450 0x10>;
+>> +        clocks = <&cru SCLK_USB2PHY0_REF>;
+>> +        clock-names = "phyclk";
+>> +        #clock-cells = <0>;
+>> +        clock-output-names = "clk_usbphy0_480m";
+>> +        #phy-cells = <0>;
+>> +
+>> +        u2phy0_host: host-port {
+>> +          #phy-cells = <0>;
+>> +          interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH 0>;
+>> +          interrupt-names = "linestate";
+>> +         };
+>> +
+>> +        u2phy0_otg: otg-port {
+>> +          #phy-cells = <0>;
+>> +          interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH 0>,
+>> +                       <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH 0>,
+>> +                       <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH 0>;
+>> +          interrupt-names = "otg-bvalid", "otg-id",
+>> +                            "linestate";
+>> +        };
+>> +      };
+>> +    };
+>> -- 
+>> 2.11.0
+>>====
+
+From c7d3c5abc51f2aaed01081570c5954c3973537d0 Mon Sep 17 00:00:00 2001
+From: Johan Jonker <jbx6244@gmail.com>
+Date: Mon, 10 May 2021 18:24:49 +0200
+Subject: [PATCH] revert $ref fix
+
 ---
- drivers/mtd/nand/raw/arasan-nand-controller.c | 148 +++++++++++++++---
- 1 file changed, 125 insertions(+), 23 deletions(-)
+ .../devicetree/bindings/soc/rockchip/grf.yaml      | 30
++++++-----------------
+ 1 file changed, 7 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/mtd/nand/raw/arasan-nand-controller.c b/drivers/mtd/nand/raw/arasan-nand-controller.c
-index 390f8d719c25..fb72e83595b4 100644
---- a/drivers/mtd/nand/raw/arasan-nand-controller.c
-+++ b/drivers/mtd/nand/raw/arasan-nand-controller.c
-@@ -15,6 +15,7 @@
- #include <linux/clk.h>
- #include <linux/delay.h>
- #include <linux/dma-mapping.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/interrupt.h>
- #include <linux/iopoll.h>
- #include <linux/module.h>
-@@ -107,6 +108,8 @@
- #define ANFC_XLNX_SDR_DFLT_CORE_CLK	100000000
- #define ANFC_XLNX_SDR_HS_CORE_CLK	80000000
- 
-+static struct gpio_desc *anfc_default_cs_array[2] = {NULL, NULL};
-+
- /**
-  * struct anfc_op - Defines how to execute an operation
-  * @pkt_reg: Packet register
-@@ -137,7 +140,6 @@ struct anfc_op {
-  * struct anand - Defines the NAND chip related information
-  * @node:		Used to store NAND chips into a list
-  * @chip:		NAND chip information structure
-- * @cs:			Chip select line
-  * @rb:			Ready-busy line
-  * @page_sz:		Register value of the page_sz field to use
-  * @clk:		Expected clock frequency to use
-@@ -151,11 +153,13 @@ struct anfc_op {
-  * @errloc:		Array of errors located with soft BCH
-  * @hw_ecc:		Buffer to store syndromes computed by hardware
-  * @bch:		BCH structure
-+ * @cs_idx:		Array of chip-select for this device, values are indexes
-+ *			of the controller structure @gpio_cs array
-+ * @ncs_idx:		Size of the @cs_idx array
-  */
- struct anand {
- 	struct list_head node;
- 	struct nand_chip chip;
--	unsigned int cs;
- 	unsigned int rb;
- 	unsigned int page_sz;
- 	unsigned long clk;
-@@ -169,6 +173,8 @@ struct anand {
- 	unsigned int *errloc;
- 	u8 *hw_ecc;
- 	struct bch_control *bch;
-+	int *cs_idx;
-+	int ncs_idx;
- };
- 
- /**
-@@ -179,8 +185,14 @@ struct anand {
-  * @bus_clk:		Pointer to the flash clock
-  * @controller:		Base controller structure
-  * @chips:		List of all NAND chips attached to the controller
-- * @assigned_cs:	Bitmask describing already assigned CS lines
-  * @cur_clk:		Current clock rate
-+ * @cs_array:		CS array. Native CS are left empty, the other cells are
-+ *			populated with their corresponding GPIO descriptor.
-+ * @ncs:		Size of @cs_array
-+ * @cur_cs:		Index in @cs_array of the currently in use CS
-+ * @native_cs:		Currently selected native CS
-+ * @spare_cs:		Native CS that is not wired (may be selected when a GPIO
-+ *			CS is in use)
-  */
- struct arasan_nfc {
- 	struct device *dev;
-@@ -189,8 +201,12 @@ struct arasan_nfc {
- 	struct clk *bus_clk;
- 	struct nand_controller controller;
- 	struct list_head chips;
--	unsigned long assigned_cs;
- 	unsigned int cur_clk;
-+	struct gpio_desc **cs_array;
-+	unsigned int ncs;
-+	int cur_cs;
-+	unsigned int native_cs;
-+	unsigned int spare_cs;
- };
- 
- static struct anand *to_anand(struct nand_chip *nand)
-@@ -273,12 +289,46 @@ static int anfc_pkt_len_config(unsigned int len, unsigned int *steps,
- 	return 0;
- }
- 
-+static bool anfc_is_gpio_cs(struct arasan_nfc *nfc, int nfc_cs)
-+{
-+	return nfc_cs >= 0 && nfc->cs_array[nfc_cs];
-+}
-+
-+static int anfc_relative_to_absolute_cs(struct anand *anand, int num)
-+{
-+	return anand->cs_idx[num];
-+}
-+
-+static void anfc_assert_cs(struct arasan_nfc *nfc, unsigned int nfc_cs_idx)
-+{
-+	/* CS did not change: do nothing */
-+	if (nfc->cur_cs == nfc_cs_idx)
-+		return;
-+
-+	/* Deassert the previous CS if it was a GPIO */
-+	if (anfc_is_gpio_cs(nfc, nfc->cur_cs))
-+		gpiod_set_value_cansleep(nfc->cs_array[nfc->cur_cs], 1);
-+
-+	/* Assert the new one */
-+	if (anfc_is_gpio_cs(nfc, nfc_cs_idx)) {
-+		nfc->native_cs = nfc->spare_cs;
-+		gpiod_set_value_cansleep(nfc->cs_array[nfc_cs_idx], 0);
-+	} else {
-+		nfc->native_cs = nfc_cs_idx;
-+	}
-+
-+	nfc->cur_cs = nfc_cs_idx;
-+}
-+
- static int anfc_select_target(struct nand_chip *chip, int target)
- {
- 	struct anand *anand = to_anand(chip);
- 	struct arasan_nfc *nfc = to_anfc(chip->controller);
-+	unsigned int nfc_cs_idx = anfc_relative_to_absolute_cs(anand, target);
- 	int ret;
- 
-+	anfc_assert_cs(nfc, nfc_cs_idx);
-+
- 	/* Update the controller timings and the potential ECC configuration */
- 	writel_relaxed(anand->timings, nfc->base + DATA_INTERFACE_REG);
- 
-@@ -346,7 +396,7 @@ static int anfc_read_page_hw_ecc(struct nand_chip *chip, u8 *buf,
- 		.addr2_reg =
- 			((page >> 16) & 0xFF) |
- 			ADDR2_STRENGTH(anand->strength) |
--			ADDR2_CS(anand->cs),
-+			ADDR2_CS(nfc->native_cs),
- 		.cmd_reg =
- 			CMD_1(NAND_CMD_READ0) |
- 			CMD_2(NAND_CMD_READSTART) |
-@@ -463,7 +513,7 @@ static int anfc_write_page_hw_ecc(struct nand_chip *chip, const u8 *buf,
- 		.addr2_reg =
- 			((page >> 16) & 0xFF) |
- 			ADDR2_STRENGTH(anand->strength) |
--			ADDR2_CS(anand->cs),
-+			ADDR2_CS(nfc->native_cs),
- 		.cmd_reg =
- 			CMD_1(NAND_CMD_SEQIN) |
- 			CMD_2(NAND_CMD_PAGEPROG) |
-@@ -521,6 +571,7 @@ static int anfc_parse_instructions(struct nand_chip *chip,
- 				   const struct nand_subop *subop,
- 				   struct anfc_op *nfc_op)
- {
-+	struct arasan_nfc *nfc = to_anfc(chip->controller);
- 	struct anand *anand = to_anand(chip);
- 	const struct nand_op_instr *instr = NULL;
- 	bool first_cmd = true;
-@@ -528,7 +579,7 @@ static int anfc_parse_instructions(struct nand_chip *chip,
- 	int ret, i;
- 
- 	memset(nfc_op, 0, sizeof(*nfc_op));
--	nfc_op->addr2_reg = ADDR2_CS(anand->cs);
-+	nfc_op->addr2_reg = ADDR2_CS(nfc->native_cs);
- 	nfc_op->cmd_reg = CMD_PAGE_SIZE(anand->page_sz);
- 
- 	for (op_id = 0; op_id < subop->ninstrs; op_id++) {
-@@ -1118,37 +1169,43 @@ static int anfc_chip_init(struct arasan_nfc *nfc, struct device_node *np)
- 	struct anand *anand;
- 	struct nand_chip *chip;
- 	struct mtd_info *mtd;
--	int cs, rb, ret;
-+	int rb, ret, i;
- 
- 	anand = devm_kzalloc(nfc->dev, sizeof(*anand), GFP_KERNEL);
- 	if (!anand)
- 		return -ENOMEM;
- 
--	/* We do not support multiple CS per chip yet */
--	if (of_property_count_elems_of_size(np, "reg", sizeof(u32)) != 1) {
-+	/* Chip-select init */
-+	anand->ncs_idx = of_property_count_elems_of_size(np, "reg", sizeof(u32));
-+	if (anand->ncs_idx <= 0 || anand->ncs_idx > nfc->ncs) {
- 		dev_err(nfc->dev, "Invalid reg property\n");
- 		return -EINVAL;
- 	}
- 
--	ret = of_property_read_u32(np, "reg", &cs);
--	if (ret)
--		return ret;
-+	anand->cs_idx = devm_kcalloc(nfc->dev, anand->ncs_idx,
-+				     sizeof(*anand->cs_idx), GFP_KERNEL);
-+	if (!anand->cs_idx)
-+		return -ENOMEM;
- 
-+	for (i = 0; i < anand->ncs_idx; i++) {
-+		ret = of_property_read_u32_index(np, "reg", i,
-+						 &anand->cs_idx[i]);
-+		if (ret) {
-+			dev_err(nfc->dev, "invalid CS property: %d\n", ret);
-+			return ret;
-+		}
-+	}
-+
-+	/* Ready-busy init */
- 	ret = of_property_read_u32(np, "nand-rb", &rb);
- 	if (ret)
- 		return ret;
- 
--	if (cs >= ANFC_MAX_CS || rb >= ANFC_MAX_CS) {
--		dev_err(nfc->dev, "Wrong CS %d or RB %d\n", cs, rb);
-+	if (rb >= ANFC_MAX_CS) {
-+		dev_err(nfc->dev, "Wrong RB %d\n", rb);
- 		return -EINVAL;
- 	}
- 
--	if (test_and_set_bit(cs, &nfc->assigned_cs)) {
--		dev_err(nfc->dev, "Already assigned CS %d\n", cs);
--		return -EINVAL;
--	}
+diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+index 264e2e5ff..8a8943317 100644
+--- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
++++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+@@ -53,17 +53,7 @@ required:
+ unevaluatedProperties: false
+
+ allOf:
+-  - $ref: "#/$defs/px30-grf"
+-  - $ref: "#/$defs/rk3288-grf"
+-  - $ref: "#/$defs/rk3328-grf"
+-  - $ref: "#/$defs/rk3399-grf"
+-  - $ref: "#/$defs/reboot"
+-  - $ref: "#/$defs/usb2"
+-  - $ref: "#/$defs/domains"
 -
--	anand->cs = cs;
- 	anand->rb = rb;
- 
- 	chip = &anand->chip;
-@@ -1164,7 +1221,7 @@ static int anfc_chip_init(struct arasan_nfc *nfc, struct device_node *np)
- 		return -EINVAL;
- 	}
- 
--	ret = nand_scan(chip, 1);
-+	ret = nand_scan(chip, anand->ncs_idx);
- 	if (ret) {
- 		dev_err(nfc->dev, "Scan operation failed\n");
- 		return ret;
-@@ -1202,7 +1259,7 @@ static int anfc_chips_init(struct arasan_nfc *nfc)
- 	int nchips = of_get_child_count(np);
- 	int ret;
- 
--	if (!nchips || nchips > ANFC_MAX_CS) {
-+	if (!nchips) {
- 		dev_err(nfc->dev, "Incorrect number of NAND chips (%d)\n",
- 			nchips);
- 		return -EINVAL;
-@@ -1227,6 +1284,47 @@ static void anfc_reset(struct arasan_nfc *nfc)
- 
- 	/* Enable interrupt status */
- 	writel_relaxed(EVENT_MASK, nfc->base + INTR_STS_EN_REG);
-+
-+	nfc->cur_cs = -1;
-+}
-+
-+static int anfc_parse_cs(struct arasan_nfc *nfc)
-+{
-+	int ret;
-+
-+	/* Check the gpio-cs property */
-+	ret = rawnand_dt_parse_gpio_cs(nfc->dev, &nfc->cs_array, &nfc->ncs);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * The controller native CS cannot be both disabled at the same time.
-+	 * Hence, only one native CS can be used if GPIO CS are needed, so that
-+	 * the other is selected when a non-native CS must be asserted (not
-+	 * wired physically or configured as GPIO instead of NAND CS). In this
-+	 * case, the "not" chosen CS is assigned to nfc->spare_cs and selected
-+	 * whenever a GPIO CS must be asserted.
-+	 */
-+	if (nfc->cs_array && nfc->ncs > 2) {
-+		if (!nfc->cs_array[0] && !nfc->cs_array[1]) {
-+			dev_err(nfc->dev,
-+				"Assign a single native CS when using GPIOs\n");
-+			return -EINVAL;
-+		}
-+
-+		if (nfc->cs_array[0])
-+			nfc->spare_cs = 0;
-+		else
-+			nfc->spare_cs = 1;
-+	}
-+
-+	if (!nfc->cs_array) {
-+		nfc->cs_array = anfc_default_cs_array;
-+		nfc->ncs = ANFC_MAX_CS;
-+		return 0;
-+	}
-+
-+	return 0;
- }
- 
- static int anfc_probe(struct platform_device *pdev)
-@@ -1265,6 +1363,10 @@ static int anfc_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto disable_controller_clk;
- 
-+	ret = anfc_parse_cs(nfc);
-+	if (ret)
-+		goto disable_bus_clk;
-+
- 	ret = anfc_chips_init(nfc);
- 	if (ret)
- 		goto disable_bus_clk;
+-$defs:
+-  px30-grf:
+-    if:
++  - if:
+       properties:
+         compatible:
+           contains:
+@@ -75,8 +65,7 @@ $defs:
+           description:
+
+Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.txt
+
+-  rk3288-grf:
+-    if:
++  - if:
+       properties:
+         compatible:
+           contains:
+@@ -92,8 +81,7 @@ $defs:
+           description:
+             Documentation/devicetree/bindings/phy/rockchip-usb-phy.txt
+
+-  rk3328-grf:
+-    if:
++  - if:
+       properties:
+         compatible:
+           contains:
+@@ -115,8 +103,7 @@ $defs:
+
+           unevaluatedProperties: false
+
+-  rk3399-grf:
+-    if:
++  - if:
+       properties:
+         compatible:
+           contains:
+@@ -140,8 +127,7 @@ $defs:
+           description:
+             Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+
+-  reboot:
+-    if:
++  - if:
+       properties:
+         compatible:
+           contains:
+@@ -160,8 +146,7 @@ $defs:
+
+           unevaluatedProperties: false
+
+-  usb2:
+-    if:
++  - if:
+       properties:
+         compatible:
+           contains:
+@@ -192,8 +177,7 @@ $defs:
+
+           unevaluatedProperties: false
+
+-  domains:
+-    if:
++  - if:
+       properties:
+         compatible:
+           contains:
 -- 
-2.27.0
+2.11.0
 
