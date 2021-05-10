@@ -2,64 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19F773780A2
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 11:56:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20CE03780C8
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 12:02:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230468AbhEJJ5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 05:57:55 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:42156 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231140AbhEJJ5g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 05:57:36 -0400
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 9AE791C0B79; Mon, 10 May 2021 11:56:30 +0200 (CEST)
-Date:   Mon, 10 May 2021 11:56:29 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Wan Jiabing <wanjiabing@vivo.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kael_w@yeah.net
-Subject: Re: [PATCH] leds: Fix reference file name of documentation
-Message-ID: <20210510095629.GA14728@amd>
-References: <20210506070824.10965-1-wanjiabing@vivo.com>
+        id S230423AbhEJKDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 06:03:33 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:49177 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230300AbhEJKD3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 06:03:29 -0400
+Received: from xps13.home (lfbn-tou-1-1325-59.w90-89.abo.wanadoo.fr [90.89.138.59])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 70102240012;
+        Mon, 10 May 2021 10:02:22 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Brian Norris <computersforpeace@gmail.com>,
+        Kamal Dasu <kdasu.kdev@gmail.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH V4] dt-bindings: mtd: brcm, brcmnand: convert to the json-schema
+Date:   Mon, 10 May 2021 12:02:21 +0200
+Message-Id: <20210510100221.6737-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20210423050536.29504-1-zajec5@gmail.com>
+References: 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="gBBFr7Ir9EOA20Yy"
-Content-Disposition: inline
-In-Reply-To: <20210506070824.10965-1-wanjiabing@vivo.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: b'27736ddd24cb99b9bef2b36b42381eb41da15958'
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 2021-04-23 at 05:05:36 UTC, =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> This helps validating DTS files.
+> 
+> Changes that require mentioning:
+> 1. Property "clock" was renamed to "clocks"
+> 2. Duplicated properties (defined in nand-controller.yaml) were dropped
+> 3. Compatible "brcm,nand-bcm63168" was added
+> 4. SoC specific "compatible" cases got limited controller versions
+> 
+> Examples changes:
+> 1. Nodes "nand" were renamed to "nand-controller"
+> 2. Nodes "nandcs" were renamed to "nand"
+> 3. Dropped partitions as they were using old syntax and are well
+>    documented elsewhere anyway
+> 
+> This rewritten binding validates cleanly using the "dt_binding_check".
+> Some Linux stored DTS files will require updating to make "dtbs_check"
+> happy.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Brian Norris <computersforpeace@gmail.com>
 
---gBBFr7Ir9EOA20Yy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
 
-On Thu 2021-05-06 15:08:24, Wan Jiabing wrote:
-> In commit 56b01acc1c79a ("dt-bindings: gpio: fairchild,74hc595:
-> Convert to json-schema"), gpio-74x164.txt was deleted and replaced
-> by fairchild,74hc595.yaml. Fix the reference file name.
->=20
-> Signed-off-by: Wan Jiabing <wanjiabing@vivo.com>
-
-Acked-by: Pavel Machek <pavel@ucw.cz>
-
---=20
-http://www.livejournal.com/~pavelmachek
-
---gBBFr7Ir9EOA20Yy
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iEYEARECAAYFAmCZA0wACgkQMOfwapXb+vIxEgCeJcCOXUpDIRw9jY3lxihLArGX
-k6EAn2KJDQ7NG3/gMF6p2v1DvdD6DAjF
-=l7nT
------END PGP SIGNATURE-----
-
---gBBFr7Ir9EOA20Yy--
+Miquel
