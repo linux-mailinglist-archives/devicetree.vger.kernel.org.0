@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9180377FD8
-	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 11:50:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC1BD377FDD
+	for <lists+devicetree@lfdr.de>; Mon, 10 May 2021 11:50:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230396AbhEJJvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 05:51:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57840 "EHLO
+        id S230414AbhEJJvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 05:51:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230384AbhEJJvo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 05:51:44 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FDAEC061763
-        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 02:50:40 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id m190so12953315pga.2
-        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 02:50:40 -0700 (PDT)
+        with ESMTP id S230185AbhEJJvx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 05:51:53 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB949C061760
+        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 02:50:48 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id b15so2684115plh.10
+        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 02:50:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=suql6mxhF7VWacBQX+vVI90y4jo7pK7o7lRK42P1ziE=;
-        b=lOHb/wGLPI35HYDpC1OybPS0wSHtEceWE9NWy4yGK8ilXXldfGkKtOa8K66bNr4LEO
-         Pr9azSla0OuJEaDOigJpQisql/QT6Rzgq/OL94Z5dEW4Jo9qDvVnUfwuUeDl/NGvpzhn
-         KxdIcdeNTo8YF1ZknPwF9akS+XlqzfXmq6cBU=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=l57NLzuwUUMRZhssJX0lL8JJDXGk+1/UfIIsGGfy3jA=;
+        b=huOTaemx/vQNaoB1cvrnA57ypE0vmqhe7ShZkgp3NAItXrk4k8kvOfBQCV83z3IngU
+         LjO0os4LWJvRIc/zT8XVvQ/udpySO4cVFayr8AZ/h253vg4E9s3gUhllP1veAksDKlv1
+         u/GQbBSuwBtUiADmsFqc0gMGCn19+8viSk9bQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=suql6mxhF7VWacBQX+vVI90y4jo7pK7o7lRK42P1ziE=;
-        b=GsbS287g7nDQ/dUXwCZt4ayjBCm8cH338HghZNxdI4+r8RNB8mybM0kyBv/FktmXlO
-         zAWD2OlPBk+txT1oo1VOE94z7iMpjAOXDFfpwc8VYsRrkiuFBLBRzyWCmfSB5KfTwluk
-         4MKRlfYSkTgXEoNEQwH+CMTuPRJVxGSh10ZS98hOMO0B1lCoSySGAaoi7aZGJ3GwMokP
-         B7ltS6pkp3UEvRDuvb1e50czzE8yp8f3t+gP5T5IVjVg/4htV0uXWa7tDEPP7PJFGET+
-         L/3KQzy2kyYIrIMEnGxFvR+kBJT62WVK/e+Lc7oBsnzG8dPIU6kjXXwP3qIlVM7FW8Uq
-         alYw==
-X-Gm-Message-State: AOAM530awlsG3gvJ6X7HWmhonLkR+gXP5MAbXg8ylxFqas8+R6VG+DQM
-        OWLeMWBiMrvlOCz3m0UfaLlXbw==
-X-Google-Smtp-Source: ABdhPJxaRNqwofbH1Q1gT6hjDo7UCjX7KCvjB0rJLaDOY22mJQZwGH/owOzO7oGoIZrGlaECEV1xwQ==
-X-Received: by 2002:a62:2a14:0:b029:263:20c5:6d8c with SMTP id q20-20020a622a140000b029026320c56d8cmr24491637pfq.23.1620640239613;
-        Mon, 10 May 2021 02:50:39 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=l57NLzuwUUMRZhssJX0lL8JJDXGk+1/UfIIsGGfy3jA=;
+        b=jb5MyWW+f90ybZUt1rduKIYHu0tUxY/8n2FAhegNFjxICjzGSvlpYLmks1WmgtpBrr
+         3rPgYjvRdn0fHZVZl+OzLmPIw99CPtl6EuKhei5iB6J2Mx67DqB2EElzQQRmICaErwiv
+         d9teIiNsSeaGJyM0+oFJLybIKr9dWkUzMI0PHUl6NhHVj7tiEWjl4gMJLwMay+L/ztXH
+         I7GHuuc8/g7dwam9/U5ttk6NlPyokRMZJqppFagcP+K3JoEB7D11Ie4Mkv91grw91zX/
+         +FW7SRVtWdrn3ZXKnXAk4MJ6nGdYtWdb+SpS5JAdIcAlnknctYUD8SLP2q5q2lD61kG9
+         OfhA==
+X-Gm-Message-State: AOAM532yCj7yrpalkYXJYIpp3T0Ai4jqc1iaPW1dnUdttfp2QH1wbUk5
+        adC6LiBwxcBtxjR1ypkooKDBuw==
+X-Google-Smtp-Source: ABdhPJxWVuCYZwrOa/E4SzReuXkZoXpg2ApXBYG9GCU58CD3SXKffBuVhoPZLaoYkILB2nJk2guWbw==
+X-Received: by 2002:a17:902:db09:b029:ee:ad5e:cd58 with SMTP id m9-20020a170902db09b02900eead5ecd58mr23870524plx.78.1620640248239;
+        Mon, 10 May 2021 02:50:48 -0700 (PDT)
 Received: from localhost ([2401:fa00:95:205:a524:abe8:94e3:5601])
-        by smtp.gmail.com with UTF8SMTPSA id 3sm10134744pff.132.2021.05.10.02.50.32
+        by smtp.gmail.com with UTF8SMTPSA id i62sm10957565pfc.162.2021.05.10.02.50.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 May 2021 02:50:39 -0700 (PDT)
+        Mon, 10 May 2021 02:50:47 -0700 (PDT)
 From:   Claire Chang <tientzu@chromium.org>
 To:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
         Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
@@ -78,106 +78,114 @@ Cc:     benh@kernel.crashing.org, paulus@samba.org,
         joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
         maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
         nouveau@lists.freedesktop.org, rodrigo.vivi@intel.com,
-        thomas.hellstrom@linux.intel.com, Claire Chang <tientzu@google.com>
-Subject: [PATCH v6 00/15] Restricted DMA
-Date:   Mon, 10 May 2021 17:50:11 +0800
-Message-Id: <20210510095026.3477496-1-tientzu@chromium.org>
+        thomas.hellstrom@linux.intel.com
+Subject: [PATCH v6 01/15] swiotlb: Refactor swiotlb init functions
+Date:   Mon, 10 May 2021 17:50:12 +0800
+Message-Id: <20210510095026.3477496-2-tientzu@chromium.org>
 X-Mailer: git-send-email 2.31.1.607.g51e8a6a459-goog
+In-Reply-To: <20210510095026.3477496-1-tientzu@chromium.org>
+References: <20210510095026.3477496-1-tientzu@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Claire Chang <tientzu@google.com>
+Add a new function, swiotlb_init_io_tlb_mem, for the io_tlb_mem struct
+initialization to make the code reusable.
 
-This series implements mitigations for lack of DMA access control on
-systems without an IOMMU, which could result in the DMA accessing the
-system memory at unexpected times and/or unexpected addresses, possibly
-leading to data leakage or corruption.
+Note that we now also call set_memory_decrypted in swiotlb_init_with_tbl.
 
-For example, we plan to use the PCI-e bus for Wi-Fi and that PCI-e bus is
-not behind an IOMMU. As PCI-e, by design, gives the device full access to
-system memory, a vulnerability in the Wi-Fi firmware could easily escalate
-to a full system exploit (remote wifi exploits: [1a], [1b] that shows a
-full chain of exploits; [2], [3]).
+Signed-off-by: Claire Chang <tientzu@chromium.org>
+---
+ kernel/dma/swiotlb.c | 51 ++++++++++++++++++++++----------------------
+ 1 file changed, 25 insertions(+), 26 deletions(-)
 
-To mitigate the security concerns, we introduce restricted DMA. Restricted
-DMA utilizes the existing swiotlb to bounce streaming DMA in and out of a
-specially allocated region and does memory allocation from the same region.
-The feature on its own provides a basic level of protection against the DMA
-overwriting buffer contents at unexpected times. However, to protect
-against general data leakage and system memory corruption, the system needs
-to provide a way to restrict the DMA to a predefined memory region (this is
-usually done at firmware level, e.g. MPU in ATF on some ARM platforms [4]).
-
-[1a] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_4.html
-[1b] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_11.html
-[2] https://blade.tencent.com/en/advisories/qualpwn/
-[3] https://www.bleepingcomputer.com/news/security/vulnerabilities-found-in-highly-popular-firmware-for-wifi-chips/
-[4] https://github.com/ARM-software/arm-trusted-firmware/blob/master/plat/mediatek/mt8183/drivers/emi_mpu/emi_mpu.c#L132
-
-v6:
-Address the comments in v5
-
-v5:
-Rebase on latest linux-next
-https://lore.kernel.org/patchwork/cover/1416899/
-
-v4:
-- Fix spinlock bad magic
-- Use rmem->name for debugfs entry
-- Address the comments in v3
-https://lore.kernel.org/patchwork/cover/1378113/
-
-v3:
-Using only one reserved memory region for both streaming DMA and memory
-allocation.
-https://lore.kernel.org/patchwork/cover/1360992/
-
-v2:
-Building on top of swiotlb.
-https://lore.kernel.org/patchwork/cover/1280705/
-
-v1:
-Using dma_map_ops.
-https://lore.kernel.org/patchwork/cover/1271660/
-*** BLURB HERE ***
-
-Claire Chang (15):
-  swiotlb: Refactor swiotlb init functions
-  swiotlb: Refactor swiotlb_create_debugfs
-  swiotlb: Add DMA_RESTRICTED_POOL
-  swiotlb: Add restricted DMA pool initialization
-  swiotlb: Add a new get_io_tlb_mem getter
-  swiotlb: Update is_swiotlb_buffer to add a struct device argument
-  swiotlb: Update is_swiotlb_active to add a struct device argument
-  swiotlb: Bounce data from/to restricted DMA pool if available
-  swiotlb: Move alloc_size to find_slots
-  swiotlb: Refactor swiotlb_tbl_unmap_single
-  dma-direct: Add a new wrapper __dma_direct_free_pages()
-  swiotlb: Add restricted DMA alloc/free support.
-  dma-direct: Allocate memory from restricted DMA pool if available
-  dt-bindings: of: Add restricted DMA pool
-  of: Add plumbing for restricted DMA pool
-
- .../reserved-memory/reserved-memory.txt       |  27 ++
- drivers/gpu/drm/i915/gem/i915_gem_internal.c  |   2 +-
- drivers/gpu/drm/nouveau/nouveau_ttm.c         |   2 +-
- drivers/iommu/dma-iommu.c                     |  12 +-
- drivers/of/address.c                          |  25 ++
- drivers/of/device.c                           |   3 +
- drivers/of/of_private.h                       |   5 +
- drivers/pci/xen-pcifront.c                    |   2 +-
- drivers/xen/swiotlb-xen.c                     |   2 +-
- include/linux/device.h                        |   4 +
- include/linux/swiotlb.h                       |  41 ++-
- kernel/dma/Kconfig                            |  14 +
- kernel/dma/direct.c                           |  63 +++--
- kernel/dma/direct.h                           |   9 +-
- kernel/dma/swiotlb.c                          | 242 +++++++++++++-----
- 15 files changed, 356 insertions(+), 97 deletions(-)
-
+diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
+index 8ca7d505d61c..d3232fc19385 100644
+--- a/kernel/dma/swiotlb.c
++++ b/kernel/dma/swiotlb.c
+@@ -168,9 +168,30 @@ void __init swiotlb_update_mem_attributes(void)
+ 	memset(vaddr, 0, bytes);
+ }
+ 
+-int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
++static void swiotlb_init_io_tlb_mem(struct io_tlb_mem *mem, phys_addr_t start,
++				    unsigned long nslabs, bool late_alloc)
+ {
++	void *vaddr = phys_to_virt(start);
+ 	unsigned long bytes = nslabs << IO_TLB_SHIFT, i;
++
++	mem->nslabs = nslabs;
++	mem->start = start;
++	mem->end = mem->start + bytes;
++	mem->index = 0;
++	mem->late_alloc = late_alloc;
++	spin_lock_init(&mem->lock);
++	for (i = 0; i < mem->nslabs; i++) {
++		mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
++		mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
++		mem->slots[i].alloc_size = 0;
++	}
++
++	set_memory_decrypted((unsigned long)vaddr, bytes >> PAGE_SHIFT);
++	memset(vaddr, 0, bytes);
++}
++
++int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
++{
+ 	struct io_tlb_mem *mem;
+ 	size_t alloc_size;
+ 
+@@ -186,16 +207,8 @@ int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
+ 	if (!mem)
+ 		panic("%s: Failed to allocate %zu bytes align=0x%lx\n",
+ 		      __func__, alloc_size, PAGE_SIZE);
+-	mem->nslabs = nslabs;
+-	mem->start = __pa(tlb);
+-	mem->end = mem->start + bytes;
+-	mem->index = 0;
+-	spin_lock_init(&mem->lock);
+-	for (i = 0; i < mem->nslabs; i++) {
+-		mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
+-		mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
+-		mem->slots[i].alloc_size = 0;
+-	}
++
++	swiotlb_init_io_tlb_mem(mem, __pa(tlb), nslabs, false);
+ 
+ 	io_tlb_default_mem = mem;
+ 	if (verbose)
+@@ -282,7 +295,6 @@ swiotlb_late_init_with_default_size(size_t default_size)
+ int
+ swiotlb_late_init_with_tbl(char *tlb, unsigned long nslabs)
+ {
+-	unsigned long bytes = nslabs << IO_TLB_SHIFT, i;
+ 	struct io_tlb_mem *mem;
+ 
+ 	if (swiotlb_force == SWIOTLB_NO_FORCE)
+@@ -297,20 +309,7 @@ swiotlb_late_init_with_tbl(char *tlb, unsigned long nslabs)
+ 	if (!mem)
+ 		return -ENOMEM;
+ 
+-	mem->nslabs = nslabs;
+-	mem->start = virt_to_phys(tlb);
+-	mem->end = mem->start + bytes;
+-	mem->index = 0;
+-	mem->late_alloc = 1;
+-	spin_lock_init(&mem->lock);
+-	for (i = 0; i < mem->nslabs; i++) {
+-		mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
+-		mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
+-		mem->slots[i].alloc_size = 0;
+-	}
+-
+-	set_memory_decrypted((unsigned long)tlb, bytes >> PAGE_SHIFT);
+-	memset(tlb, 0, bytes);
++	swiotlb_init_io_tlb_mem(mem, virt_to_phys(tlb), nslabs, true);
+ 
+ 	io_tlb_default_mem = mem;
+ 	swiotlb_print_info();
 -- 
 2.31.1.607.g51e8a6a459-goog
 
