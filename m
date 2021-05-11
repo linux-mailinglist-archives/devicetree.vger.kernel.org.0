@@ -2,86 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E458937A1EE
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 10:28:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ECCB37A27F
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 10:50:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230506AbhEKI3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 04:29:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38924 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231249AbhEKI30 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 May 2021 04:29:26 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5D68361943;
-        Tue, 11 May 2021 08:28:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620721700;
-        bh=4cFqGgBdAbBe0GybCv/aBA0bJnpRTZe4yHbphP7wiXE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=jynQ+wBdyHTV4wColpT3K+33k7SQI3CioTON0DCXJwQJEViOyc3uRkuJJJDqAWREz
-         fg4ZP7cLfys3Ae0ECK6wNl1odn36jCmHpiMw6HXFfreWLli2uzQgJgR7y1KIjgzAD6
-         +BEIFhfv3rSAAV2d3vW05YqHK406NVllKk1lY7qh+il6+07D+dcnRdsjLno5mmMQ0x
-         O58cDdY303fXyULGaX+b3IZn5GMYtmJ+2vkkbSQPbu0QvkFY8J3P+m4gIgnpDEA+Io
-         Ys76PY5EDXTJ2nwRImeke+iug2nQcDtJeYhRchHqOTuv+qPmlTw0XRxeELQFkGhYw2
-         ceWbH3NKRodZg==
-From:   Mark Brown <broonie@kernel.org>
-To:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>
-Cc:     Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
-Subject: Re: (subset) [PATCH v3 0/7] PinePhone BT audio bringup
-Date:   Tue, 11 May 2021 09:26:02 +0100
-Message-Id: <162072058168.33157.16217732000222184745.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210430035859.3487-1-samuel@sholland.org>
-References: <20210430035859.3487-1-samuel@sholland.org>
+        id S230431AbhEKIvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 04:51:22 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.52]:11750 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230480AbhEKIvV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 04:51:21 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1620723006; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=ssw2nfbJInwO2EZDBz1hpWgmX+x8qdNbHngLj2q5MLnV1nPTbfRJxjav0czKXq1h35
+    2JazBrdv1385wJxv933ltuMjBLwvgpZOmcKUBqk+QnRextehVWuOXgLYxLrhZ0UT6v4S
+    28YDnn0EDeNt0x0SeUgmli/hI4xguY/RmDPmYGaORNVQ/4VJkSTxv2A7SiVqZaASksQ6
+    CzbPrOy7WIoLJUjWvqUQv4aIaeJn+bxDcFUSg/JaGYFCRdYbIzq6tvJRHca/CoWqp5RV
+    VpOyYIrKSkwn6+qY2PGj2wd+5iw69n857Hrk+J/gD0LKqspGi+054yV+O0xOcTuw5d+N
+    X+Uw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1620723006;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=HuyggU0+c1IyGuqhfH37nqp0a2aZqTw9VSyu5gx2FuI=;
+    b=bj5F/p/HxQJbkKmh5bvJ4og2RD6dxeOHkQQwASJti5iiEKUWJAKxalZwNoBBBCd4Sm
+    +ux5e2Z0yIYj7JvIeGpSppkPYWZnuAoGw954Or/ESkZ3lQKksl1tU8yoGOjlGB/8I+Ku
+    aOkczFD5kbNVkpc7tc51/GyO0RzDERL87TioY9fu4Jub0/v66kf77soKMUPCnjkM90if
+    vnIL9N3uon9UfyX8VdEaJkb51TZJzFMyv+39J56m4KtMxy7cFR1lklXCJxp12o6KuQu8
+    4EQaywKRBKc3iXbSx9W0YsLt55iBC3lEuNUHzZHgNM9ADxacpmZ22NksQhNUkIMciEzT
+    wwHQ==
+ARC-Authentication-Results: i=1; strato.com;
+    dkim=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1620723006;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=HuyggU0+c1IyGuqhfH37nqp0a2aZqTw9VSyu5gx2FuI=;
+    b=tA2ATFgf7hZEJ3fH7rXkFEq3jbW042aEnnPszG0yTT84mglI4gcFCooinVWefT2sx2
+    EKN7T3X64KxybpdwfdBd/7u7i/1itf9Ta9dXvZ7niS53Ryr36H6RZZ1fJUs7UP2fjdEv
+    laZFeu0FStR2Nq9S82C5wlu/Q0FEO7ISRfDdtSUneRGMExhlDu4hH8vzcEmSKSJ6Mzq3
+    QH5UcVns7ES4iNUIjm70X+DQoi6zv41OpUkkeZ/mi/HoF0NtcMREkNIO905V66tv+U5H
+    ENa0a3Y9aik8droOGhmJNsNjnDFughMr0Vl4j10ahnqjBGx6zna5FM9uxP5IaaXb4nb6
+    be/Q==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j8IczFY4o="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.25.6 DYNA|AUTH)
+    with ESMTPSA id e01f26x4B8o6bkS
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Tue, 11 May 2021 10:50:06 +0200 (CEST)
+Date:   Tue, 11 May 2021 10:50:01 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Simon Budig <simon.budig@kernelconcepts.de>,
+        Marco Felsch <m.felsch@pengutronix.de>
+Subject: Re: [PATCH v2 2/2] Input: edt-ft5x06 - add support for iovcc-supply
+Message-ID: <YJpFOVv1ifKBEwWV@gerhold.net>
+References: <20210510193108.50178-1-stephan@gerhold.net>
+ <20210510193108.50178-2-stephan@gerhold.net>
+ <20210510194848.g7cgty3lirxkht5g@core>
+ <YJmUm/6Vm3d9hp1z@gerhold.net>
+ <YJowd/tDgVD2TBKO@smile.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <YJowd/tDgVD2TBKO@smile.fi.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Apr 2021 22:58:52 -0500, Samuel Holland wrote:
-> This series uses the additional DAIs added to the sun8i-codec driver to
-> add hardware routing for BT SCO (headset) audio on the PinePhone.
+On Tue, May 11, 2021 at 10:21:27AM +0300, Andy Shevchenko wrote:
+> On Mon, May 10, 2021 at 10:16:41PM +0200, Stephan Gerhold wrote:
+> > On Mon, May 10, 2021 at 09:48:48PM +0200, Ondřej Jirman wrote:
+> > 
+> >   - Bulk regulator API: AFAICT there is no way to use it while also
+> >     maintaining the correct enable/disable order plus the 10us delay.
+> >     See https://lore.kernel.org/linux-input/X%2Fwj+bxe%2FIlznCj6@gerhold.net/
 > 
-> The BT audio connection is represented by the "dummy" bt-sco codec. The
-> connection to the Quectel EG-25G modem via AIF2 works as well, but I do
-> not include it here because there is no appropriate codec driver in
-> tree. We have been using an out-of-tree "dummy" codec driver for the
-> modem similar to bt-sco, and I'm not sure if such a driver would be
-> desired upstream.
+> This by the way can be fixed on regulator level (adding some like ranges into
+> bulk structure with timeouts, and if 0, skip them).
 > 
-> [...]
 
-Applied to
+At the moment the bulk regulator API seems specifically designed to
+enable all the regulators at the same time (with some funky asynchronous
+scheduling code). I'm not sure if there is a straightforward way to
+fit in a sequential enable/disable order with potential delays.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/7] ASoC: dt-bindings: sun8i-codec: Increase #sound-dai-cells
-      commit: 880e007f15a31f446b9e1713720c6ae5a539f3f4
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+I'm also not entirely convinced it's worth it in this case. I would say
+the code in this patch (except for the dev_err_probe()) is still quite
+easy to read. Encoding the enable/disable order + delays in some bulk
+regulator struct might actually be more difficult to read.
 
 Thanks,
-Mark
+Stephan
