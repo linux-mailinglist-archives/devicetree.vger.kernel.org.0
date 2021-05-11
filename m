@@ -2,147 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA51837EDE1
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 00:54:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D979F37EDEA
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 00:54:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386619AbhELUzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 16:55:53 -0400
-Received: from mail-oo1-f46.google.com ([209.85.161.46]:34510 "EHLO
-        mail-oo1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385221AbhELUHV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 16:07:21 -0400
-Received: by mail-oo1-f46.google.com with SMTP id i8-20020a4aa1080000b0290201edd785e7so5222353ool.1;
-        Wed, 12 May 2021 13:06:12 -0700 (PDT)
+        id S238723AbhELU4L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 16:56:11 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:40525 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1385225AbhELUHa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 16:07:30 -0400
+Received: by mail-ot1-f47.google.com with SMTP id t4-20020a05683014c4b02902ed26dd7a60so11526553otq.7;
+        Wed, 12 May 2021 13:06:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=jo6Dz46BspHZ5QKYcvfVJgbPf+bpiO7/FDHcJz0o1TI=;
-        b=uXtOda6Qec9S90mCBHObhMdMpTp6fURNfmMK5WKDhJLp68KqDRy+X2SfcxN5OkccrA
-         mXhFlrlKFb0HHfq6JxbQUzG0PehhANpB0l/k9rIV4n5fyXA980WFQ4lvZazyFZCmiM6H
-         ngEo+ndBb/B44RoJhKHg7EnN/WPPeLvJ/LPRvszizHmvy5E5EpTjAadfCJYv2MfpsP3Z
-         +fj0gKxuUfSL7H/G3wUFRblzigD8EutH+SuwLDRQ0uRHQNC8TIgn/c0oDzK/fb/XT6kC
-         GLxEbUlxRTWEAghtZHDLTcAFkKF9NdukvZ9nmd+4DonLc+cpeZvPy9/cO6QlH2a++M6P
-         9SzA==
-X-Gm-Message-State: AOAM533o5ktTp4tHcBF4hUaVjY1QBiNc8Qeb0pvOyZN4fsVexmTO4JfH
-        90csMkwTrikd1To632/lGg==
-X-Google-Smtp-Source: ABdhPJxDFSQVxLClkJTg+b6TFZAy9l8JrP9W5GwVfM62sQew6UGxQEpVQ1d+msGrVdPqxIQ5m7el5A==
-X-Received: by 2002:a4a:a3c3:: with SMTP id t3mr18346160ool.50.1620849972488;
-        Wed, 12 May 2021 13:06:12 -0700 (PDT)
+        bh=Yb2F6IpQtcrjLpnZ8OUqSNETCWUG2Y/cxmrONnX/qQ0=;
+        b=mJwSG8HRzyUm6D0CaR70aVwF0UK/fWVWzawWiuVacm4DQz4xPZoBErRL4snCUcXZW+
+         U9hAk4sbaOo+c+xMWaZT4CWuYh6ot5E90HUQiY/J6rTqs1RyxRRuDZITA30gAevobNTh
+         bIkq7J7lLqJwYZO7wz9IOdAYZLavsrl7A2Cq7EemUDmH6vJc5n291aw5Ccc1BFfkTbh7
+         ZTgFcagmE/avgVjfG8THkXFqzpYKSDbW0tIGCczacyIIC4izNl08nKsDkksdp9jPSM15
+         cQUjSb8RBjLAT4Q9upjCdV/AiEqySWrokklddZQppJXPXPw/k3e3V3yeM8Vu2xL4zu+H
+         5bDA==
+X-Gm-Message-State: AOAM532LvOymdZZq8QxpHCPEeFi3xNjo78t+RedaQP1wfE/jQeY8TS+y
+        8WEUsozcJqOLBSp2IMYtrQ==
+X-Google-Smtp-Source: ABdhPJwSUe0ziOmWy8JIXkBvGhsOb0+2ofLxLoozk1rPU8UTv2OYA5P1SoJOTqSefVxMYBy7MquboA==
+X-Received: by 2002:a05:6830:1556:: with SMTP id l22mr32038786otp.34.1620849981456;
+        Wed, 12 May 2021 13:06:21 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r10sm192474oic.4.2021.05.12.13.06.11
+        by smtp.gmail.com with ESMTPSA id q26sm185669otn.0.2021.05.12.13.06.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 May 2021 13:06:11 -0700 (PDT)
-Received: (nullmailer pid 2214054 invoked by uid 1000);
-        Tue, 11 May 2021 16:16:48 -0000
-Date:   Tue, 11 May 2021 11:16:48 -0500
+        Wed, 12 May 2021 13:06:20 -0700 (PDT)
+Received: (nullmailer pid 2225064 invoked by uid 1000);
+        Tue, 11 May 2021 16:23:00 -0000
+Date:   Tue, 11 May 2021 11:23:00 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-crypto@vger.kernel.org,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        linux-arm-kernel@lists.infradead.org,
-        Imre Kaloz <kaloz@openwrt.org>,
-        Krzysztof Halasa <khalasa@piap.pl>,
-        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] crypto: ixp4xx: Add DT bindings
-Message-ID: <20210511161648.GA2209918@robh.at.kernel.org>
-References: <20210510213634.600866-1-linus.walleij@linaro.org>
- <20210510213634.600866-2-linus.walleij@linaro.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH net-next v5 21/25] devicetree: bindings: dsa: qca8k:
+ Document internal mdio definition
+Message-ID: <20210511162300.GA2221810@robh.at.kernel.org>
+References: <20210511020500.17269-1-ansuelsmth@gmail.com>
+ <20210511020500.17269-22-ansuelsmth@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210510213634.600866-2-linus.walleij@linaro.org>
+In-Reply-To: <20210511020500.17269-22-ansuelsmth@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 10, 2021 at 11:36:33PM +0200, Linus Walleij wrote:
-> This adds device tree bindings for the ixp4xx crypto engine.
+On Tue, May 11, 2021 at 04:04:56AM +0200, Ansuel Smith wrote:
+> Document new way of declare mapping of internal PHY to port.
+> The new implementation directly declare the PHY connected to the port
+> by adding a node in the switch node. The driver detect this and register
+> an internal mdiobus using the mapping defined in the mdio node.
 > 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
 > ---
-> Herbert, David: This can be applied separately once we are
-> happy with the bindings, alternatively it can be merged
-> with the support code into ARM SoC.
-> ---
->  .../bindings/crypto/intel,ixp4xx-crypto.yaml  | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml
+>  .../devicetree/bindings/net/dsa/qca8k.txt     | 39 +++++++++++++++++++
+>  1 file changed, 39 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml b/Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml
-> new file mode 100644
-> index 000000000000..28d75f4f9a76
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2018 Linaro Ltd.
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/crypto/intel,ixp4xx-crypto.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Intel IXP4xx cryptographic engine
-> +
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +
-> +description: |
-> +  The Intel IXP4xx cryptographic engine makes use of the IXP4xx NPE
-> +  (Network Processing Engine). Since it is not a device on its own
-> +  it is defined as a subnode of the NPE, if crypto support is
-> +  available on the platform.
-> +
-> +properties:
-> +  compatible:
-> +    const: intel,ixp4xx-crypto
-> +
-> +  intel,npe-handle:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> +    maxItems: 1
-> +    description: phandle to the NPE this ethernet instance is using
-> +      and the instance to use in the second cell
-> +
-> +  queue-rx:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> +    maxItems: 1
-> +    description: phandle to the RX queue on the NPE
-> +
-> +  queue-txready:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> +    maxItems: 1
-> +    description: phandle to the TX READY queue on the NPE
-> +
-> +required:
-> +  - compatible
-> +  - intel,npe-handle
-> +  - queue-rx
-> +  - queue-txready
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    npe: npe@c8006000 {
-> +         compatible = "intel,ixp4xx-network-processing-engine";
-> +         reg = <0xc8006000 0x1000>, <0xc8007000 0x1000>, <0xc8008000 0x1000>;
-> +
-> +         crypto {
+> diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.txt b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
+> index 1daf68e7ae19..3973a9d3e426 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/qca8k.txt
+> +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
+> @@ -21,6 +21,10 @@ described in dsa/dsa.txt. If the QCA8K switch is connect to a SoC's external
+>  mdio-bus each subnode describing a port needs to have a valid phandle
+>  referencing the internal PHY it is connected to. This is because there's no
+>  N:N mapping of port and PHY id.
+> +To declare the internal mdio-bus configuration, declare a mdio node in the
+> +switch node and declare the phandle for the port referencing the internal
+> +PHY is connected to. In this config a internal mdio-bus is registred and
 
-The parent schema needs to define 'crypto' and have a ref to this 
-schema. I'd put the example there rather than piecemeal.
+registered
 
-> +             compatible = "intel,ixp4xx-crypto";
-> +             intel,npe-handle = <&npe 2>;
+Otherwise,
 
-A bit redundant to have a phandle to the parent.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-> +             queue-rx = <&qmgr 30>;
-> +             queue-txready = <&qmgr 29>;
-> +         };
-> +    };
+> +the mdio MASTER is used as communication.
+>  
+>  Don't use mixed external and internal mdio-bus configurations, as this is
+>  not supported by the hardware.
+> @@ -150,26 +154,61 @@ for the internal master mdio-bus configuration:
+>  				port@1 {
+>  					reg = <1>;
+>  					label = "lan1";
+> +					phy-mode = "internal";
+> +					phy-handle = <&phy_port1>;
+>  				};
+>  
+>  				port@2 {
+>  					reg = <2>;
+>  					label = "lan2";
+> +					phy-mode = "internal";
+> +					phy-handle = <&phy_port2>;
+>  				};
+>  
+>  				port@3 {
+>  					reg = <3>;
+>  					label = "lan3";
+> +					phy-mode = "internal";
+> +					phy-handle = <&phy_port3>;
+>  				};
+>  
+>  				port@4 {
+>  					reg = <4>;
+>  					label = "lan4";
+> +					phy-mode = "internal";
+> +					phy-handle = <&phy_port4>;
+>  				};
+>  
+>  				port@5 {
+>  					reg = <5>;
+>  					label = "wan";
+> +					phy-mode = "internal";
+> +					phy-handle = <&phy_port5>;
+> +				};
+> +			};
+> +
+> +			mdio {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				phy_port1: phy@0 {
+> +					reg = <0>;
+> +				};
+> +
+> +				phy_port2: phy@1 {
+> +					reg = <1>;
+> +				};
+> +
+> +				phy_port3: phy@2 {
+> +					reg = <2>;
+> +				};
+> +
+> +				phy_port4: phy@3 {
+> +					reg = <3>;
+> +				};
+> +
+> +				phy_port5: phy@4 {
+> +					reg = <4>;
+>  				};
+>  			};
+>  		};
 > -- 
 > 2.30.2
 > 
