@@ -2,93 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65C8837A6F2
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 14:40:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A227837A6F3
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 14:40:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231422AbhEKMly (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 08:41:54 -0400
-Received: from youngberry.canonical.com ([91.189.89.112]:51220 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231262AbhEKMly (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 08:41:54 -0400
-Received: from mail-ua1-f71.google.com ([209.85.222.71])
-        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1lgRgt-0002wi-4h
-        for devicetree@vger.kernel.org; Tue, 11 May 2021 12:40:47 +0000
-Received: by mail-ua1-f71.google.com with SMTP id s15-20020ab0372f0000b02901f51394a2a2so2438391uag.2
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 05:40:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=PrBBhJGbjsmhZDFF8O0bml8Qz0d11xqc/seGdEasPHw=;
-        b=qW5CT5YpQbLUE799AEQvcdTC45Y6pWymQkkHCLlWZWKe8oqoXzMdZ/zXeuMHeBWupU
-         /xZR3xKIHGpTCSaubj119DbdYT4J69NnFsXx4e8O334urcn/QJ0njUIIOHguVFSqvL42
-         hrymmN0b2XDZzMrZYIKWZPl1g4QCZpoQsKKEWJDyFJvLMsL56UPxiW8UKzNVRJWw6z0G
-         cjNFx8rCsD55c2J8K/YxyPCrX1vPx+0Jt8faBlcLfMF9esL1tBpewSkgxS6FXLjmv9tR
-         pMNKmmUoF9wEB3nFXKIW1x3fxSf658A0UF3p2MQf8Xz3dAghy8lwn+FarYadXuBNCsPi
-         0ptw==
-X-Gm-Message-State: AOAM531RrEVg4sacXX0A+tH8ZzucKeEEiH90umXWGf71PPoMwoNARYPM
-        Q0bnTWeoLsQJU76VG7jfxex+k3lQVFSZBT22TGKqRfAGpAUKhVdq9acxIbgYFVtclimtYhRA2ZD
-        YriBswtD2ne3i9JaBZsNO5JG+7ds8x4T/FkCddpA=
-X-Received: by 2002:a67:bc5:: with SMTP id 188mr23940527vsl.50.1620736845801;
-        Tue, 11 May 2021 05:40:45 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzpsSzE8+yaLV7z21WTm61RVHBgd5GIuSd1bUacFjdwJg53yKaDkNu4i27PfGrQ9TJS39xBtQ==
-X-Received: by 2002:a67:bc5:: with SMTP id 188mr23940505vsl.50.1620736845580;
-        Tue, 11 May 2021 05:40:45 -0700 (PDT)
-Received: from localhost.localdomain ([45.237.48.2])
-        by smtp.gmail.com with ESMTPSA id t18sm2204204vke.3.2021.05.11.05.40.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 May 2021 05:40:44 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     linux-samsung-soc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/11] ARM: dts: exynos: enable PMIC wakeup from suspend on Itop Core
-Date:   Tue, 11 May 2021 08:40:35 -0400
-Message-Id: <162073682206.13221.757844834039243258.b4-ty@canonical.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210420164943.11152-1-krzysztof.kozlowski@canonical.com>
-References: <20210420164943.11152-1-krzysztof.kozlowski@canonical.com>
+        id S231262AbhEKMmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 08:42:04 -0400
+Received: from mga06.intel.com ([134.134.136.31]:13352 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230436AbhEKMmD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 May 2021 08:42:03 -0400
+IronPort-SDR: pysKYhdEoPYKFzI7Nc0A8aziFXsSjBvXPl+nupOnf5Hujid0pt3HA2dV/Pr42tL+W9Ov8XcT2z
+ /phuHlGNq2tg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9980"; a="260692222"
+X-IronPort-AV: E=Sophos;i="5.82,290,1613462400"; 
+   d="scan'208";a="260692222"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2021 05:40:40 -0700
+IronPort-SDR: cLZSzduEwAzCFr+a5a+Xy/Z6a+lpXIl9Q7+qxiw5jzqngA3arR7JJIpmPpDlB+rZRF0CfOfCB1
+ JfGyHaQG50SQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,290,1613462400"; 
+   d="scan'208";a="541634012"
+Received: from ahunter-desktop.fi.intel.com (HELO [10.237.72.174]) ([10.237.72.174])
+  by orsmga004.jf.intel.com with ESMTP; 11 May 2021 05:40:37 -0700
+Subject: Re: [PATCH v2 2/3] mmc: sdhci-esdhc-imx: advertise HS400 mode through
+ MMC caps
+To:     Lucas Stach <l.stach@pengutronix.de>,
+        Bough Chen <haibo.chen@nxp.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, dl-linux-imx <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20210510190400.105162-1-l.stach@pengutronix.de>
+ <20210510190400.105162-2-l.stach@pengutronix.de>
+ <VI1PR04MB5294AF754C68D41C844083A990539@VI1PR04MB5294.eurprd04.prod.outlook.com>
+ <8b7ab5139fea41caf15b398ec975ed71229dfd5d.camel@pengutronix.de>
+From:   Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+Message-ID: <2269d9ee-9ca0-a1b7-666e-8f2d9bae51d3@intel.com>
+Date:   Tue, 11 May 2021 15:40:55 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <8b7ab5139fea41caf15b398ec975ed71229dfd5d.camel@pengutronix.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Apr 2021 18:49:33 +0200, Krzysztof Kozlowski wrote:
-> The RTC on S5M8767 PMIC can wakeup the system from suspend to RAM.
-> Add a generic property for this.
+On 11/05/21 11:18 am, Lucas Stach wrote:
+> Am Dienstag, dem 11.05.2021 um 03:00 +0000 schrieb Bough Chen:
+>>> -----Original Message-----
+>>> From: Lucas Stach [mailto:l.stach@pengutronix.de]
+>>> Sent: 2021年5月11日 3:04
+>>> To: Ulf Hansson <ulf.hansson@linaro.org>; Adrian Hunter
+>>> <adrian.hunter@intel.com>; Bough Chen <haibo.chen@nxp.com>
+>>> Cc: Rob Herring <robh+dt@kernel.org>; dl-linux-imx <linux-imx@nxp.com>;
+>>> kernel@pengutronix.de; linux-mmc@vger.kernel.org;
+>>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org
+>>> Subject: [PATCH v2 2/3] mmc: sdhci-esdhc-imx: advertise HS400 mode through
+>>> MMC caps
+>>>
+>>> Instead of having an indirection through the SDHCI layer and emulating a
+>>> capability bit, that isn't there in hardware, do the same same thing as
+>> with
+>>> HS400_ES and advertise the support for HS400 directly through the MMC
+>> caps.
+>>>
+>>> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+>>> ---
+>>>  drivers/mmc/host/sdhci-esdhc-imx.c | 5 +----
+>>>  1 file changed, 1 insertion(+), 4 deletions(-)
+>>>
+>>> diff --git a/drivers/mmc/host/sdhci-esdhc-imx.c
+>>> b/drivers/mmc/host/sdhci-esdhc-imx.c
+>>> index a20459744d21..65a52586db36 100644
+>>> --- a/drivers/mmc/host/sdhci-esdhc-imx.c
+>>> +++ b/drivers/mmc/host/sdhci-esdhc-imx.c
+>>> @@ -427,9 +427,6 @@ static u32 esdhc_readl_le(struct sdhci_host *host, int
+>>> reg)
+>>>  					|
+>> FIELD_PREP(SDHCI_RETUNING_MODE_MASK,
+>>>  						     SDHCI_TUNING_MODE_3);
+>>>
+>>> -			if (imx_data->socdata->flags & ESDHC_FLAG_HS400)
+>>> -				val |= SDHCI_SUPPORT_HS400;
+>>> -
+>>>  			/*
+>>>  			 * Do not advertise faster UHS modes if there are no
+>>>  			 * pinctrl states for 100MHz/200MHz.
+>>> @@ -1603,7 +1600,7 @@ static int sdhci_esdhc_imx_probe(struct
+>>> platform_device *pdev)
+>>>  		host->quirks |= SDHCI_QUIRK_BROKEN_ADMA;
+>>>
+>>>  	if (imx_data->socdata->flags & ESDHC_FLAG_HS400)
+>>> -		host->quirks2 |= SDHCI_QUIRK2_CAPS_BIT63_FOR_HS400;
+>>> +		host->mmc->caps2 |= MMC_CAP2_HS400;
+>>
+>> Hi Lucas,
+>>
+>> I think patch1 and patch 2 are enough to cover your requirement.
+>> For this patch, I think it's unnecessary, sdhci-esdhc-imx.c need to reuse
+>> sdhci.c as much as possible.
+>> In sdhci.c, already contain the following logic. 
+>>
+>>          if (host->quirks2 & SDHCI_QUIRK2_CAPS_BIT63_FOR_HS400 &&
+>>              (host->caps1 & SDHCI_SUPPORT_HS400))
+>>                  mmc->caps2 |= MMC_CAP2_HS400;
+>>
+>> The reason why we directly use host->mmc->caps2 for HS400ES mode is that
+>> sdhci.c do not contain the similar logic.
+> 
+> No, it's not enough. We call mmc_of_parse(), which clears the HS400
+> flags, before sdhci_setup_host() is called, which will then add the
+> HS400 flags again. So either I still need to evaluate the DT property
+> in the esdhc driver to make it return the right emulated SDHCI caps bit
+> for the HS400 case, or do it like in this patch.
+> 
+> While the way it is done here is a bit of a layering violation between
 
-Applied, thanks!
+We see SDHCI as more of a library, not a layer, so this is OK
 
-[01/11] ARM: dts: exynos: enable PMIC wakeup from suspend on Itop Core
-        commit: a1972739c01612adee6bb0a0306ea29be0bb4955
-[02/11] ARM: dts: exynos: enable PMIC wakeup from suspend on Origen4412
-        commit: 765210e19859fcd83dad26441a5c499c0fe27e28
-[03/11] ARM: dts: exynos: enable PMIC wakeup from suspend on Arndale
-        commit: 0272619bde229386edf9f1358470e265628d1653
-[04/11] ARM: dts: exynos: enable PMIC wakeup from suspend on Odroid XU
-        commit: 760ebb8a2529f92f772424c7ddc385a07a9e90a0
-[05/11] ARM: dts: exynos: enable PMIC wakeup from suspend on Midas
-        commit: 7f23ea1265c3dc2cd5824f67498078fa23ede782
-[06/11] ARM: dts: exynos: enable PMIC wakeup from suspend on Odroid X/U3
-        commit: 1178f7127a4679db9b70eb16737627f764d7a9c5
-[07/11] ARM: dts: exynos: enable PMIC wakeup from suspend on P4 Note
-        commit: 9614ae53753003e7a4ecf800db3da189c0f0acd5
-[08/11] ARM: dts: exynos: enable PMIC wakeup from suspend on Arndale Octa
-        commit: 1d4203b1fa02fca97ca97484f2a43da187112ad1
-[09/11] ARM: dts: exynos: enable PMIC wakeup from suspend on SMDK5420
-        commit: a145cc05cb2ccbdde2621c91c7d56c3435d3a125
-[10/11] ARM: dts: exynos: enable PMIC wakeup from suspend on Odroid XU3/XU4 family
-        commit: e4c9b60b271ce428d97577502be9393bdc46dd94
-[11/11] arm64: dts: exynos: enable PMIC wakeup from suspend on TM2
-        commit: d3f713e6b3ccb1bf8306aaff8b11fd30844db0cf
+> SDHCI and MMC, it still feels like the cleaner and more straight
+> forward solution.
+> 
+> Regards,
+> Lucas
+> 
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
