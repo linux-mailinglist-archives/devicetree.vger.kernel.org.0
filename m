@@ -2,132 +2,295 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E61B237A543
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 12:57:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF46B37A552
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 12:57:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231434AbhEKK6T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 06:58:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57172 "EHLO
+        id S231511AbhEKK6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 06:58:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231439AbhEKK6P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 06:58:15 -0400
-Received: from mail-ua1-x933.google.com (mail-ua1-x933.google.com [IPv6:2607:f8b0:4864:20::933])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4690C06174A
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 03:57:08 -0700 (PDT)
-Received: by mail-ua1-x933.google.com with SMTP id h1so6218156uar.0
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 03:57:08 -0700 (PDT)
+        with ESMTP id S231539AbhEKK6k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 06:58:40 -0400
+Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF029C061760
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 03:57:33 -0700 (PDT)
+Received: by mail-vs1-xe33.google.com with SMTP id s15so7142310vsi.4
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 03:57:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=H3TFuIrc3Mj7EWsSB5KHDQrg/psdazR0cVvA5Agy22s=;
-        b=BI5betzphHV53YRAHo1kbf3qtN5EZ+oJQvqpn4XXUNTvjtju9UI5Wxwcu/qn0vpzMa
-         l8lD+g5mD22XYfa4O8a/DkbtdqMxftpPoCgk3EzFxlgMa9475q6tweCGnyLgcCpSu8ue
-         poRgY190B4IYUbsx23WRK7dsxuPfKqFzfOElVB1Ti0fK7UgpND6B/TIlH7Ez2Ztt/UZw
-         X9ChYwX5o5XMrZarBxHM9k9fuDXw7GeXfg0wQeftAJktbg8FdqoErJmdZxTz9ySB9ljp
-         5kzgCqLZ8a1IL5VP4fZ8V/3eoLv/D//8lDoYt4CeIJg/ADMwinFvoAgj3MdlTZUA2vJ8
-         V+KQ==
+        bh=Ey6AztPlStF+EHQEBxICZNmYDnr7gnn/OgJP3awQWRU=;
+        b=oBVycJADQl/R5cnvsrr+Iz1eB2LUXKXbtFN1CtmKUyBBleJ3AaSHFTqOMlRm61ep+d
+         t+fgqWs8hxLoMkEncV29fIoYT0KLNxabEEK6s8lR3JXoVjjdObh0M9dZYrMMrnuxIAP/
+         FoNtO6b4CONjz5w8Bt0ICUDEqATkvImXskCsDCC38MoyeljVXvKiP5GdDqebduvs1T39
+         e8DKD/GPyw+P+WlmPn+pHt2DqX9bdH0vL18slkSIwuChEaTsfEImeonmeJU3yDC6Jma2
+         B61O/leBSgC3tdeb4t1Pdm+LyLdo7Ca+UUzNfXVY0osjoB7dG8gqI4IN9/6f1Ng4t4xt
+         IwHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=H3TFuIrc3Mj7EWsSB5KHDQrg/psdazR0cVvA5Agy22s=;
-        b=TvLmd9lsyMp44hJflHjCkSG2r0AIvb9p8RSiZkKdtmHdCEqgj04iX070D8SYV9dcw3
-         QZLD/NJtAMz+XromhK35j6hOEhd7DiAKVuY/PLIoWm/t7GGDL57XdavBci6YyYuNDDH1
-         +0o11IuAfz5sL3yvKAnLz5xFJcyuwsf61bnjBeGj8Sy654XEp89sG2XldItd3L4WV9hl
-         1lcqHTtDsjocH/ocJXe3O79PBw7xMKnUg65Xtwfo1R5twJ+uczN44lj+m0bzN1CZmLtR
-         1HJHff7G+eGJRxgsrIDkP7zu8+6ha97vvjYTyDItyAAYLnXlqosMpzkvEukBrzKZxnFl
-         6UzQ==
-X-Gm-Message-State: AOAM530jqYjSrQnEvOBGKDM5SzGL+rYHhNKTkp0VsHsHdkWEyrxPQfds
-        aOGtYRlg9QJgeNi8z36bH5cjX7151vHXgzLHDwZLjA==
-X-Google-Smtp-Source: ABdhPJwynumHCSzbxs9fEYhSTsTQNyquQmA9nby0MfgarYqJoMGRF7eJ8B5GdcKLxBd8RzpG4b/jdGZAXltAK2YZE4E=
-X-Received: by 2002:ab0:7002:: with SMTP id k2mr25127013ual.104.1620730627962;
- Tue, 11 May 2021 03:57:07 -0700 (PDT)
+        bh=Ey6AztPlStF+EHQEBxICZNmYDnr7gnn/OgJP3awQWRU=;
+        b=Wgu50/2Z5zc+iAome2+dbNVjLY5Oh0kQ+47yZtvtaj0g5B2Es9myPqRABEfzgm7HbV
+         07U8XLEP7g9WPUhLVHOwekvH7XKHoEnJGuGg3oQigSmsr8gY4/2DAGQNWoc1FNl9jFO5
+         r6jC6RQnms3yQW8iLUaF1qPKDTruVzNLQDbSe87AevSm4GD17bbyklpcly2BxN4+thL+
+         lVKTQIuWOq/Yt4C89FeAIx6ojmfLLH5ZGaGNbfHKdFTyHHbK5RwdwCo2KaORWVao/uhh
+         nkuUwDbSeJ2V2ZO/QOwv1WmwKKmK+RYIg872Vr2pgefDMEKZ0RGJstJQguMqPMqeaXSc
+         SXDg==
+X-Gm-Message-State: AOAM530WfYq2Wlur2Atl75mOCZ0djla+8aTGwXyM71PxS52MXd3Wp5c/
+        9LAXZ3umEKcR4db/2sIR6B3c7IiDH1I6yRkLo8CtKw==
+X-Google-Smtp-Source: ABdhPJw3qzDFl/gzmZd3gitN57mXa5ygDpx3w85ykxyCQl8YfsZ3EEzsfVHZ1UeVnTiS8kESOiSjCdHDQF6QIXii014=
+X-Received: by 2002:a05:6102:505:: with SMTP id l5mr20495237vsa.55.1620730652897;
+ Tue, 11 May 2021 03:57:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210429081151.17558-1-cl@rock-chips.com> <20210429081151.17558-4-cl@rock-chips.com>
-In-Reply-To: <20210429081151.17558-4-cl@rock-chips.com>
+References: <04b97315fed0f4f512356b68f9f5bb6ed7adc41f.1620648698.git.geert+renesas@glider.be>
+In-Reply-To: <04b97315fed0f4f512356b68f9f5bb6ed7adc41f.1620648698.git.geert+renesas@glider.be>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 11 May 2021 12:56:29 +0200
-Message-ID: <CAPDyKFr3cpARwxZPUfnFfJT-=UMynUNK-Jb0NLNJG=k9O-=R9g@mail.gmail.com>
-Subject: Re: [PATCH v4 03/10] dt-bindings: mmc: rockchip-dw-mshc: add
- description for rk3568
-To:     cl@rock-chips.com
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Chen-Yu Tsai <wens@csie.org>, uwe@kleine-koenig.org,
-        mail@david-bauer.net, Johan Jonker <jbx6244@gmail.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        jensenhuang@friendlyarm.com,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        cnsztl@gmail.com, DTML <devicetree@vger.kernel.org>,
+Date:   Tue, 11 May 2021 12:56:55 +0200
+Message-ID: <CAPDyKFqO6fkiwAmrGibpeZAyyeGbDHD03GVc34CPJhEWS2O9XQ@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: mmc: renesas,mmcif: Convert to json-schema
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
         linux-mmc <linux-mmc@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-serial@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Jianqun Xu <jay.xu@rock-chips.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        David Wu <david.wu@rock-chips.com>,
-        zhangqing <zhangqing@rock-chips.com>,
-        Tao Huang <huangtao@rock-chips.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jamie Iles <jamie@jamieiles.com>,
-        linux-watchdog@vger.kernel.org, Marc Zyngier <maz@kernel.org>
+        DTML <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Apr 2021 at 10:12, <cl@rock-chips.com> wrote:
+On Mon, 10 May 2021 at 14:13, Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
 >
-> From: Liang Chen <cl@rock-chips.com>
+> Convert the Renesas Multi Media Card Interface (MMCIF) Device Tree
+> binding documentation to json-schema.
 >
-> add "rockchip,rk3568-dw-mshc", "rockchip,rk3288-dw-mshc" for mmc nodes on
-> a rk3568 platform to rockchip-dw-mshc.yaml.
+> Document missing properties.
+> Update the example to match reality.
 >
-> Signed-off-by: Liang Chen <cl@rock-chips.com>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Applied for next (and by amending the commit message according to
-Rob's suggestion), thanks!
+Applied for next, thanks!
 
 Kind regards
 Uffe
 
 
 > ---
->  .../devicetree/bindings/mmc/rockchip-dw-mshc.yaml        | 9 +--------
->  1 file changed, 1 insertion(+), 8 deletions(-)
+> v2:
+>   - Drop unneeded oneOf,
+>   - Add Reviewed-by.
+> ---
+>  .../devicetree/bindings/mmc/renesas,mmcif.txt |  53 -------
+>  .../bindings/mmc/renesas,mmcif.yaml           | 135 ++++++++++++++++++
+>  2 files changed, 135 insertions(+), 53 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mmc/renesas,mmcif.txt
+>  create mode 100644 Documentation/devicetree/bindings/mmc/renesas,mmcif.yaml
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-> index 3762f1c8de96..eaa3b0ef24f6 100644
-> --- a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-> @@ -29,21 +29,14 @@ properties:
->        - const: rockchip,rk3288-dw-mshc
->        - items:
->            - enum:
-> -            # for Rockchip PX30
->                - rockchip,px30-dw-mshc
-> -            # for Rockchip RK3036
->                - rockchip,rk3036-dw-mshc
-> -            # for Rockchip RK322x
->                - rockchip,rk3228-dw-mshc
-> -            # for Rockchip RK3308
->                - rockchip,rk3308-dw-mshc
-> -            # for Rockchip RK3328
->                - rockchip,rk3328-dw-mshc
-> -            # for Rockchip RK3368
->                - rockchip,rk3368-dw-mshc
-> -            # for Rockchip RK3399
->                - rockchip,rk3399-dw-mshc
-> -            # for Rockchip RV1108
-> +              - rockchip,rk3568-dw-mshc
->                - rockchip,rv1108-dw-mshc
->            - const: rockchip,rk3288-dw-mshc
->
+> diff --git a/Documentation/devicetree/bindings/mmc/renesas,mmcif.txt b/Documentation/devicetree/bindings/mmc/renesas,mmcif.txt
+> deleted file mode 100644
+> index 291532ac0446fc71..0000000000000000
+> --- a/Documentation/devicetree/bindings/mmc/renesas,mmcif.txt
+> +++ /dev/null
+> @@ -1,53 +0,0 @@
+> -* Renesas Multi Media Card Interface (MMCIF) Controller
+> -
+> -This file documents differences between the core properties in mmc.txt
+> -and the properties used by the MMCIF device.
+> -
+> -
+> -Required properties:
+> -
+> -- compatible: should be "renesas,mmcif-<soctype>", "renesas,sh-mmcif" as a
+> -  fallback. Examples with <soctype> are:
+> -       - "renesas,mmcif-r7s72100" for the MMCIF found in r7s72100 SoCs
+> -       - "renesas,mmcif-r8a73a4" for the MMCIF found in r8a73a4 SoCs
+> -       - "renesas,mmcif-r8a7740" for the MMCIF found in r8a7740 SoCs
+> -       - "renesas,mmcif-r8a7742" for the MMCIF found in r8a7742 SoCs
+> -       - "renesas,mmcif-r8a7743" for the MMCIF found in r8a7743 SoCs
+> -       - "renesas,mmcif-r8a7744" for the MMCIF found in r8a7744 SoCs
+> -       - "renesas,mmcif-r8a7745" for the MMCIF found in r8a7745 SoCs
+> -       - "renesas,mmcif-r8a7778" for the MMCIF found in r8a7778 SoCs
+> -       - "renesas,mmcif-r8a7790" for the MMCIF found in r8a7790 SoCs
+> -       - "renesas,mmcif-r8a7791" for the MMCIF found in r8a7791 SoCs
+> -       - "renesas,mmcif-r8a7793" for the MMCIF found in r8a7793 SoCs
+> -       - "renesas,mmcif-r8a7794" for the MMCIF found in r8a7794 SoCs
+> -       - "renesas,mmcif-sh73a0" for the MMCIF found in sh73a0 SoCs
+> -
+> -- interrupts: Some SoCs have only 1 shared interrupt, while others have either
+> -  2 or 3 individual interrupts (error, int, card detect). Below is the number
+> -  of interrupts for each SoC:
+> -    1: r8a73a4, r8a7742, r8a7743, r8a7744, r8a7745, r8a7778, r8a7790, r8a7791,
+> -       r8a7793, r8a7794
+> -    2: r8a7740, sh73a0
+> -    3: r7s72100
+> -
+> -- clocks: reference to the functional clock
+> -
+> -- dmas: reference to the DMA channels, one per channel name listed in the
+> -  dma-names property.
+> -- dma-names: must contain "tx" for the transmit DMA channel and "rx" for the
+> -  receive DMA channel.
+> -- max-frequency: Maximum operating clock frequency, driver uses default clock
+> -  frequency if it is not set.
+> -
+> -
+> -Example: R8A7790 (R-Car H2) MMCIF0
+> -
+> -       mmcif0: mmc@ee200000 {
+> -               compatible = "renesas,mmcif-r8a7790", "renesas,sh-mmcif";
+> -               reg = <0 0xee200000 0 0x80>;
+> -               interrupts = <0 169 IRQ_TYPE_LEVEL_HIGH>;
+> -               clocks = <&mstp3_clks R8A7790_CLK_MMCIF0>;
+> -               dmas = <&dmac0 0xd1>, <&dmac0 0xd2>;
+> -               dma-names = "tx", "rx";
+> -               max-frequency = <97500000>;
+> -       };
+> diff --git a/Documentation/devicetree/bindings/mmc/renesas,mmcif.yaml b/Documentation/devicetree/bindings/mmc/renesas,mmcif.yaml
+> new file mode 100644
+> index 0000000000000000..c36ba561c3875ad3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/renesas,mmcif.yaml
+> @@ -0,0 +1,135 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/renesas,mmcif.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas Multi Media Card Interface (MMCIF) Controller
+> +
+> +maintainers:
+> +  - Wolfram Sang <wsa+renesas@sang-engineering.com>
+> +
+> +allOf:
+> +  - $ref: "mmc-controller.yaml"
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - renesas,mmcif-r7s72100 # RZ/A1H
+> +          - renesas,mmcif-r8a73a4  # R-Mobile APE6
+> +          - renesas,mmcif-r8a7740  # R-Mobile A1
+> +          - renesas,mmcif-r8a7742  # RZ/G1H
+> +          - renesas,mmcif-r8a7743  # RZ/G1M
+> +          - renesas,mmcif-r8a7744  # RZ/G1N
+> +          - renesas,mmcif-r8a7745  # RZ/G1E
+> +          - renesas,mmcif-r8a7778  # R-Car M1A
+> +          - renesas,mmcif-r8a7790  # R-Car H2
+> +          - renesas,mmcif-r8a7791  # R-Car M2-W
+> +          - renesas,mmcif-r8a7793  # R-Car M2-N
+> +          - renesas,mmcif-r8a7794  # R-Car E2
+> +          - renesas,mmcif-sh73a0   # SH-Mobile AG5
+> +      - const: renesas,sh-mmcif
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts: true
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  dmas:
+> +    minItems: 2
+> +    maxItems: 4
+> +    description:
+> +      Must contain a list of pairs of references to DMA specifiers, one for
+> +      transmission, and one for reception.
+> +
+> +  dma-names:
+> +    minItems: 2
+> +    maxItems: 4
+> +    items:
+> +      enum:
+> +        - tx
+> +        - rx
+> +
+> +  max-frequency: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - power-domains
+> +
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: renesas,mmcif-r7s72100
+> +then:
+> +  properties:
+> +    interrupts:
+> +      items:
+> +        - description: Error interrupt
+> +        - description: Normal operation interrupt
+> +        - description: Card detection interrupt
+> +else:
+> +  if:
+> +    properties:
+> +      compatible:
+> +        contains:
+> +          enum:
+> +            - renesas,mmcif-r8a7740
+> +            - renesas,mmcif-sh73a0
+> +  then:
+> +    properties:
+> +      interrupts:
+> +        items:
+> +          - description: Error interrupt
+> +          - description: Normal operation interrupt
+> +  else:
+> +    if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - renesas,mmcif-r8a73a4
+> +              - renesas,mmcif-r8a7778
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 1
+> +    else:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 1
+> +      required:
+> +        - resets
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/r8a7790-cpg-mssr.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/power/r8a7790-sysc.h>
+> +
+> +    mmcif0: mmc@ee200000 {
+> +            compatible = "renesas,mmcif-r8a7790", "renesas,sh-mmcif";
+> +            reg = <0xee200000 0x80>;
+> +            interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
+> +            clocks = <&cpg CPG_MOD 315>;
+> +            power-domains = <&sysc R8A7790_PD_ALWAYS_ON>;
+> +            resets = <&cpg 315>;
+> +            dmas = <&dmac0 0xd1>, <&dmac0 0xd2>, <&dmac1 0xd1>, <&dmac1 0xd2>;
+> +            dma-names = "tx", "rx", "tx", "rx";
+> +            max-frequency = <97500000>;
+> +    };
 > --
-> 2.17.1
->
->
+> 2.25.1
 >
