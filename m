@@ -2,147 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3A4B37B163
-	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 00:10:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9519A37B1A2
+	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 00:34:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230160AbhEKWLa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 18:11:30 -0400
-Received: from mail-co1nam11on2062.outbound.protection.outlook.com ([40.107.220.62]:28129
-        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229637AbhEKWLa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 May 2021 18:11:30 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=W0TzTAGrvlR6G2yI+mOHhaXynLpfXhYCYZI+sX9+9q9885Q9P2CSUzrqO4Upjfx10/te7iRcVe3DkViqH1acKUIk5svuxnmzKJoZagFcGzgLo7NxAQEBoxNTPql07L68iRLQWdOUylVeZRxS6hMPtP/TsmY0ocKU0Q6/5E5riztm7vAIJSKpJebI0usJr4LN5AFHv1CNgS0raamHTJ0Uju3EV1w3luK/fxOY14bZ+9vq53G7iVg3MT/2elyS8kA4OobD1u0bCoa/3jKMXf9yajEhS0mBNUtaR4ETvXSp49zjtkTt2UzwUCihBymHOfyZBfw+cQYBsvdFvV+SlAdrZw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=q2C6t8MH4YtJRXEUIYoIrZxA0o/E3fyN4e7WXv5V468=;
- b=ED2Fx2nDVCI/6khooplMWXhwxjYDU6xUKxMXRCXgDyh2IfVmglIjtsMq96kkoEIUDAO7VSMBKshEs5O49pdnq4DWxRvlk6CIpiG7elSvBZn6FCWHA1pUlupP/Y1eevEAkuxFiuN1iX764c6NZqr6vVIL5V2j5maFvkuHJnoLns+l5MZvlDb43nexQB7nSk+X9YQF9O3aTxEsaNZnvgLoz34057VB5Ij71bXXbp5uuMCPLa11RDfzsmIyDm5Iqjr4Ji0EM2qmy83m5mVIZ4YqGqTKMtPmpDN0VMmOdqUOjE1jq3kWZCXcGaDMIXe8Al8QtsKEjLZRnt8acVLOYYXudA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=infinera.com; dmarc=pass action=none header.from=infinera.com;
- dkim=pass header.d=infinera.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=infinera.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=q2C6t8MH4YtJRXEUIYoIrZxA0o/E3fyN4e7WXv5V468=;
- b=eADg2qUSP9IQmslDa3YBDqYng/U1rJ+UplE6KcTKnMVt3csozPVMUErgXY917qjyFW0j22P0azBLuMscr0v7zHqKkpJQqW9FJm7TaN0XFFt/IQih1BEDogP/RSSPaovfIIoRlzG3pfQuWbyfOwQOZZGzinJdY5USgWtCzMH3os8=
-Received: from PH0PR10MB4615.namprd10.prod.outlook.com (2603:10b6:510:36::24)
- by PH0PR10MB5401.namprd10.prod.outlook.com (2603:10b6:510:e8::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.29; Tue, 11 May
- 2021 22:10:21 +0000
-Received: from PH0PR10MB4615.namprd10.prod.outlook.com
- ([fe80::5021:f762:e76f:d567]) by PH0PR10MB4615.namprd10.prod.outlook.com
- ([fe80::5021:f762:e76f:d567%7]) with mapi id 15.20.4108.031; Tue, 11 May 2021
- 22:10:21 +0000
-From:   Joakim Tjernlund <Joakim.Tjernlund@infinera.com>
-To:     "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
-        "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "mpe@ellerman.id.au" <mpe@ellerman.id.au>,
-        "chris.packham@alliedtelesis.co.nz" 
-        <chris.packham@alliedtelesis.co.nz>,
-        "wsa@kernel.org" <wsa@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-CC:     "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 0/4] P2040/P2041 i2c recovery erratum
-Thread-Topic: [PATCH v3 0/4] P2040/P2041 i2c recovery erratum
-Thread-Index: AQHXRqunPYs0ROSj1UChkpy0/P6j16re14SA
-Date:   Tue, 11 May 2021 22:10:21 +0000
-Message-ID: <b90f48cfdc31af08190e7a8eaa71b7bd488fcbaa.camel@infinera.com>
-References: <20210511212052.27242-1-chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <20210511212052.27242-1-chris.packham@alliedtelesis.co.nz>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.40.0 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=infinera.com;
-x-originating-ip: [88.131.87.201]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: aab79e30-1239-4698-d16f-08d914c991bf
-x-ms-traffictypediagnostic: PH0PR10MB5401:
-x-microsoft-antispam-prvs: <PH0PR10MB5401A08AB3441F27EA0333D2F4539@PH0PR10MB5401.namprd10.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: /2T2fAhmy36gwjZe/5LZv/+L+DyCHWlJFqInofWMTGzvdT6gIi2zzqdWFa/O3MZhoheWkU28pm4NDk6i7fb6LVpmki2fWa1NPwGoU0JwzwoAWFfkd6K2LfNf5oobmSMdfU7uQiBNK6wGoer4j00xG8JvzfgnbHbyZAlOkbrs3myIhv67qzFdYGpdL5xayHptUvLG03oYQIPm2AM6WhN5yV9kxBoZLiDEliehOyNoVGp5Ytk3cXkhEKjfACIf+0YE2/hV1suMBz6xR7Eo/BVX9/Ve+QlxINQRBJph3HYnTjGZekqejtq79gfqiRTkHEiFxQwNnuiG59ILZK0lhMlPrsPZKlxTqqVlWtxVuFddnm6cVLaVFkFzl1r92WBJftL73TqFNf+TKTrMh+5Uy4Fz75jSnNscNzwEWQmcAbbyzDAr3QDUrVQWFS9Ln+tIH5C7+QFEFVxdMHG5ib/3oE6aFXcV6yKKMxnVxNz6rCbFWzmyt9pFX1KWchlSoE48V1tUQA6P2ILxKEfvT6qbVqIbA/2/Opc+2n4BTmTlh/l3qk41FdyhX/AAcy1V/DybstDNvt/TP6DTzPch7yUUuepwtOyfc8/O5sJOrEHHwtgC74fWX5YswyvQWHrtr1E3soZzhaRLRb8BUAxvnfQInvAfrA2DH2hA202io0kqUMhmIisbuFyqQrSTqCifen4hHdPX
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR10MB4615.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39850400004)(366004)(396003)(376002)(346002)(2616005)(26005)(38100700002)(7416002)(5660300002)(122000001)(6506007)(4326008)(6486002)(6512007)(86362001)(54906003)(76116006)(316002)(2906002)(966005)(186003)(91956017)(66946007)(8936002)(8676002)(110136005)(36756003)(64756008)(66476007)(66446008)(66556008)(71200400001)(478600001)(83380400001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?RjRKS3hKd09Ed0xXMTRmZUxQZWlwN2ZWeWV0VmtNeFBPbmNlQmNNdnBMa0l3?=
- =?utf-8?B?cVg1emJuZFVxRkh2MEcydlRjaTAybW50cG82SmJjMHJId1pmTmpwUVM3UTF6?=
- =?utf-8?B?V2xHWVoxVEhXNU0rTFFJYWc0aGlTZzFCdDZCQWxvK0k3M2R3cXVxc3p6NFVw?=
- =?utf-8?B?dlRlek5EZ0t6YzNMNmF4RDRLa05wWjlZRk1YNFJrY2E0ZTJiSXM5NHFDOUhC?=
- =?utf-8?B?cWZxRkYyd0dVdWtFVEpzNXlXNjkrZTM5Q3pHTUlsd2ltMGV2SVcxU1Jia1hQ?=
- =?utf-8?B?K3dRSEE2QU9uNXJxTFlwZHVhWG8wdVhobHFJVUJjbjRyeXg1SHVTNU05U2lp?=
- =?utf-8?B?YWNzeUtka2lTQ2NiSU5YUXl6d082TmdCTmtjWEZlVUwyTTcxdGVuY2tpR0hu?=
- =?utf-8?B?cFV4TFJMNDdaQjNZQmpFb252bjFhd2hBdExuSTRoZ1RublpCeDF6em1KRFR6?=
- =?utf-8?B?V2t2c25KUm9DcjB5THVCMmVNZStPSWtTN0hycm51T1ZNTWF6ZFZpdHU5cHgz?=
- =?utf-8?B?R2xYYU91Z2xySUJCQzlyUTRxZUFuTkU1ZjhXVU5tZklFZXE0Mk9BS1ZoRzV0?=
- =?utf-8?B?ZkluUUY3eW5KdkhYZHBrcTlodmhJQUYyYjd4TWZmVXRwRHhINHN2RnlTeGww?=
- =?utf-8?B?VElqM2VUcEVZM2QyVVlYVDNGek5DL1RMYzkwYlRkMVJJaUZhTmUvc2JnYStw?=
- =?utf-8?B?VzZDVXl2OTBWNnlVK3hRZzVGTS9FNWhQMHZ0MTlXak1STjJCZWZrYVArb2sr?=
- =?utf-8?B?SWxMVGNKajM2NmVUSFNOMTlIdE5XT3ZsVDU2bEk5QTU3dWl2UFVMYzdnUHBR?=
- =?utf-8?B?OGszbEdVMFpwSzBHcmszajM0T2YzdXhqRVEvRld1TUltbkhFQkNoWFprN3lJ?=
- =?utf-8?B?MzlOcC8veHZ4WjJ6MGJ4eVFDM2VXcnJoKytBNSsza1U1Wlo2bHl5UDBFQnNZ?=
- =?utf-8?B?VExmTHVBZjEzN2pmRnRFb0lFSUF1dWtmNHRqa291MWE3VFgyVllnZ3k0ZEht?=
- =?utf-8?B?SjI0NlgyemtUaEhvNzEzVWgzNEh2Y1ZQbHkwYlNIaUxmYzV5ZGdGUCtDQXhh?=
- =?utf-8?B?OG42ME96ZHJDVjU4VG51TlZOOHdidEhVT2VhQWlyU0pjeU96UmFLcEZNOE5Z?=
- =?utf-8?B?anZFdVZaTjN4eVJ3Y0tWYjNKQVg3K0w4VnhvcnE3VitLT3Q2TTE5b3FIdnlr?=
- =?utf-8?B?TStIaVAyQWxGSi8zV0g1aFpMMzA2aVRtU01SZEs5N2dMMm5id1dVWkhzZE9H?=
- =?utf-8?B?TnMyaFBvR0QzZzliOXhOWmlyeG1YdzVyRmVGU0xhRC9wMEl3Nm1tYVJxTFFC?=
- =?utf-8?B?NVdqVjE1R2R6VDVWdjVHdlZJTFpod0xydWFBRnRLRW1xK0RKQ0ZvU2VIYlVs?=
- =?utf-8?B?dEZZRi9hQmRBWFZIRy9BaVNLM3F3RTZUYXlsR0dZMmhkTXQwOWdjaEJtVzJD?=
- =?utf-8?B?aHQ3RnJ3bjBWVlN4cU9qeUplNTR5ci9mWTVXQVJUdTdDd0t1d2lrZ0hLZFJD?=
- =?utf-8?B?aHhnSWY3YmVBei9ZWTMwZTRINHVzbG1sb3JIdHpyMzdYSmRaWllGdHFDSkJt?=
- =?utf-8?B?c2JnbFVOYllGT1p4aWNNQVo0VkhoZDNYUUhmS3hMV2pBcDhPODdOWUNWalJ3?=
- =?utf-8?B?Ull5dWc4UWlIdTlEN1dsVWNQQ0t5RjB2a0w2M3duaHErR3dGQ0o2Y2E3Wkxv?=
- =?utf-8?B?K2xHMVZ6Q0sxM09zM1RHNkdhaFVTaGhmcmNDT0ZxZDZPNytyRnpodGJDWTZn?=
- =?utf-8?Q?c8x14eCCizE6pFURiaz6WjmmVOkhIJFILDghrY4?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <C761C41C8D08D84BA3E78CB70FDFD3F3@namprd10.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S229952AbhEKWfK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 18:35:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45972 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229637AbhEKWfJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 18:35:09 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06AD2C061574;
+        Tue, 11 May 2021 15:34:02 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2BEEC5A5;
+        Wed, 12 May 2021 00:33:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1620772439;
+        bh=KzHx1Q72g1Ph0hy3qlmj9H4gxvGEMdk3xBf/U2vswNg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mlIdKyd0YYwFWiJ5nRc1b+qPije5a5tmd1SvlsC15Xo2aJgRfdeFTyxS9M+Cj5dTh
+         ZF7l22wgGEtqSdN2h6MuAkWaBDUWjgEeoRdH265GsOMGoLKpL0oWqc4yMIbzfNdfxg
+         L1je65f0KGFsc8tmjGbLI02Bz3VqygMVfhSVM+TM=
+Date:   Wed, 12 May 2021 01:33:50 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     rajeevny@codeaurora.org
+Cc:     Doug Anderson <dianders@chromium.org>,
+        Rob Herring <robh@kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Rob Clark <robdclark@gmail.com>, mkrishn@codeaurora.org,
+        Kalyan Thota <kalyan_t@codeaurora.org>,
+        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        Sean Paul <seanpaul@chromium.org>,
+        Jani Nikula <jani.nikula@linux.intel.com>,
+        Lyude Paul <lyude@redhat.com>,
+        "Lankhorst, Maarten" <maarten.lankhorst@intel.com>,
+        Andrzej Hajda <a.hajda@samsung.com>
+Subject: Re: [v3 1/2] dt-bindings: backlight: add DisplayPort aux backlight
+Message-ID: <YJsGToxCpE4I+8MC@pendragon.ideasonboard.com>
+References: <1619416756-3533-1-git-send-email-rajeevny@codeaurora.org>
+ <1619416756-3533-2-git-send-email-rajeevny@codeaurora.org>
+ <20210429180435.GA1385465@robh.at.kernel.org>
+ <CAD=FV=V-kdySH5Pp-Fb-PRYk60Ha_UOTXJHcvMp+uV3P1oo7Uw@mail.gmail.com>
+ <78c4bd291bd4a17ae2a1d02d0217de43@codeaurora.org>
+ <CAD=FV=XW90L6or8NKA-Rjjp3s3fRno1xSkD+X0PA1rTyeKgpMw@mail.gmail.com>
+ <c867b2e59e90899e6c1648e06f5f9cd2@codeaurora.org>
 MIME-Version: 1.0
-X-OriginatorOrg: infinera.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR10MB4615.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aab79e30-1239-4698-d16f-08d914c991bf
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 May 2021 22:10:21.4381
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 285643de-5f5b-4b03-a153-0ae2dc8aaf77
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: XM4o74Wm382PvSNa8gEWDAVkT1swpA7rYPPHPspaVshGA/83Xao2zNIYp1tRdGnhRomlkccCMz1lJpT2whSRLw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR10MB5401
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <c867b2e59e90899e6c1648e06f5f9cd2@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gV2VkLCAyMDIxLTA1LTEyIGF0IDA5OjIwICsxMjAwLCBDaHJpcyBQYWNraGFtIHdyb3RlOg0K
-PiBUaGUgUDIwNDAvUDIwNDEgaGFzIGFuIGVycmF0dW0gd2hlcmUgdGhlIGkyYyByZWNvdmVyeSBz
-Y2hlbWUNCj4gZG9jdW1lbnRlZCBpbiB0aGUgcmVmZXJlbmNlIG1hbnVhbCAoYW5kIGN1cnJlbnRs
-eSBpbXBsZW1lbnRlZA0KPiBpbiB0aGUgaTJjLW1wYy5jIGRyaXZlcikgZG9lcyBub3Qgd29yay4g
-VGhlIGVycmF0YSBkb2N1bWVudA0KPiBwcm92aWRlcyBhbiBhbHRlcm5hdGl2ZSB0aGF0IGRvZXMg
-d29yay4gVGhpcyBzZXJpZXMgaW1wbGVtZW50cw0KPiB0aGF0IGFsdGVybmF0aXZlIGFuZCB1c2Vz
-IGEgcHJvcGVydHkgaW4gdGhlIGRldmljZXRyZWUgdG8NCj4gZGVjaWRlIHdoZW4gdGhlIGFsdGVy
-bmF0aXZlIG1lY2hhbmlzbSBpcyBuZWVkZWQuDQo+IA0KPiBDaHJpcyBQYWNraGFtICg0KToNCj4g
-wqDCoGR0LWJpbmRpbmdzOiBpMmM6IG1wYzogQWRkIGZzbCxpMmMtZXJyYXR1bS1hMDA0NDQ3IGZs
-YWcNCj4gwqDCoHBvd2VycGMvZnNsOiBzZXQgZnNsLGkyYy1lcnJhdHVtLWEwMDQ0NDcgZmxhZyBm
-b3IgUDIwNDEgaTJjDQo+IMKgwqDCoMKgY29udHJvbGxlcnMNCj4gwqDCoHBvd2VycGMvZnNsOiBz
-ZXQgZnNsLGkyYy1lcnJhdHVtLWEwMDQ0NDcgZmxhZyBmb3IgUDEwMTAgaTJjDQo+IMKgwqDCoMKg
-Y29udHJvbGxlcnMNCj4gwqDCoGkyYzogbXBjOiBpbXBsZW1lbnQgZXJyYXR1bSBBLTAwNDQ0NyB3
-b3JrYXJvdW5kDQo+IA0KPiDCoC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL2kyYy9pMmMtbXBjLnlh
-bWwgICAgICB8ICA3ICsrDQo+IMKgYXJjaC9wb3dlcnBjL2Jvb3QvZHRzL2ZzbC9wMTAxMHNpLXBv
-c3QuZHRzaSAgIHwgIDggKysNCj4gwqBhcmNoL3Bvd2VycGMvYm9vdC9kdHMvZnNsL3AyMDQxc2kt
-cG9zdC5kdHNpICAgfCAxNiArKysrDQo+IMKgZHJpdmVycy9pMmMvYnVzc2VzL2kyYy1tcGMuYyAg
-ICAgICAgICAgICAgICAgIHwgODEgKysrKysrKysrKysrKysrKysrLQ0KPiDCoDQgZmlsZXMgY2hh
-bmdlZCwgMTEwIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pDQo+IA0KDQpUaGlzIG5vdyBy
-ZW1pbmRzIG1lIGFib3V0IHRoZSBjdXJyZW50IEkyQyByZXNldCBwcm9jZWR1cmUsIGl0IGRpZG4n
-dCB3b3JrIGZvciB1cyBhbmQgSSBjYW1lIHVwIHdpdGggdGhpcyBvbmU6DQogIGh0dHBzOi8vd3d3
-LnNwaW5pY3MubmV0L2xpc3RzL2xpbnV4LWkyYy9tc2cyOTQ5MC5odG1sDQppdCBuZXZlciBnb3Qg
-aW4gYnV0IHdlIGFyZSBzdGlsbCB1c2luZyBpdC4NCg0KICBKb2NrZQ0KDQo=
+Hi Rajeevny,
+
+On Tue, May 11, 2021 at 11:41:57PM +0530, rajeevny@codeaurora.org wrote:
+> On 01-05-2021 03:08, Doug Anderson wrote:
+> > On Fri, Apr 30, 2021 at 8:10 AM <rajeevny@codeaurora.org> wrote:
+> >> On 30-04-2021 02:33, Doug Anderson wrote:
+> >> > On Thu, Apr 29, 2021 at 11:04 AM Rob Herring <robh@kernel.org> wrote:
+> >> >> On Mon, Apr 26, 2021 at 11:29:15AM +0530, Rajeev Nandan wrote:
+> >> >> > Add bindings for DisplayPort aux backlight driver.
+> >> >> >
+> >> >> > Changes in v2:
+> >> >> > - New
+> >> >> >
+> >> >> > Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
+> >> >> > ---
+> >> >> >  .../bindings/leds/backlight/dp-aux-backlight.yaml  | 49 ++++++++++++++++++++++
+> >> >> >  1 file changed, 49 insertions(+)
+> >> >> >  create mode 100644 Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
+> >> >> >
+> >> >> > diff --git a/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
+> >> >> > new file mode 100644
+> >> >> > index 00000000..0fa8bf0
+> >> >> > --- /dev/null
+> >> >> > +++ b/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
+> >> >> > @@ -0,0 +1,49 @@
+> >> >> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> >> > +%YAML 1.2
+> >> >> > +---
+> >> >> > +$id: http://devicetree.org/schemas/leds/backlight/dp-aux-backlight.yaml#
+> >> >> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> >> > +
+> >> >> > +title: DisplayPort aux backlight driver bindings
+> >> >> > +
+> >> >> > +maintainers:
+> >> >> > +  - Rajeev Nandan <rajeevny@codeaurora.org>
+> >> >> > +
+> >> >> > +description:
+> >> >> > +  Backlight driver to control the brightness over DisplayPort aux channel.
+> >> >> > +
+> >> >> > +allOf:
+> >> >> > +  - $ref: common.yaml#
+> >> >> > +
+> >> >> > +properties:
+> >> >> > +  compatible:
+> >> >> > +    const: dp-aux-backlight
+> >> >> > +
+> >> >> > +  ddc-i2c-bus:
+> >> >> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> >> >> > +    description:
+> >> >> > +      A phandle to the system I2C controller connected to the DDC bus used
+> >> >> > +      for the DisplayPort AUX channel.
+> >> >> > +
+> >> >> > +  enable-gpios:
+> >> >> > +    maxItems: 1
+> >> >> > +    description: GPIO specifier for backlight enable pin.
+> >> >> > +
+> >> >> > +  max-brightness: true
+> >> >> > +
+> >> >> > +required:
+> >> >> > +  - compatible
+> >> >> > +  - ddc-i2c-bus
+> >> >> > +
+> >> >> > +additionalProperties: false
+> >> >> > +
+> >> >> > +examples:
+> >> >> > +  - |
+> >> >> > +    backlight {
+> >> >> > +        compatible = "dp-aux-backlight";
+> >> >> > +        ddc-i2c-bus = <&sn65dsi86_bridge>;
+> >> >> > +        enable-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
+> >> >>
+> >> >> So the DDC bus is connected to a backlight and also a panel? This
+> >> >> binding is not reflecting the h/w, but rather what you want for some
+> >> >> driver.
+> >> >>
+> >> >> There's only one thing here and that's an eDP panel which supports
+> >> >> backlight control via DP aux channel. You can figure all that out from
+> >> >> the panel's compatible and/or reading the EDID.
+> >> >>
+> >> >> You might also be interested in this thread:
+> >> >>
+> >> >> https://lore.kernel.org/lkml/YIKsDtjcIHGNvW0u@orome.fritz.box/
+> >> >
+> >> > I think Rajeev needs to rework everything anyway as per:
+> >> >
+> >> > https://lore.kernel.org/r/87zgxl5qar.fsf@intel.com
+> >> >
+> >> > ...but you're right that it makes sense not to model the backlight as
+> >> > a separate node in the device tree. The panel driver can handle
+> >> > setting up the backlight.
+> >> 
+> >> It was not a good idea to create a separate backlight driver and use
+> >> ddc-i2c-bus to get access to DP aux. I am working to move the code
+> >> to the panel driver and to utilize the new DRM helper functions
+> >> (drm_edp_backlight_*) Lyude has added [1].
+> >> 
+> >> To use these helper functions, the panel driver should have access to the
+> >> "struct drm_dp_aux *". The simple-panel has a "ddc-i2c-bus" property
+> >> to give the panel access to the DDC bus and is currently being used to
+> >> get the EDID from the panel. Can I use the same ddc bus i2c_adapter to get
+> >> the "struct drm_dp_aux *"?
+> >> 
+> >> As per the suggestion [2], I get the "struct drm_dp_aux *" from the
+> >> i2c_adapter of ddc bus (maybe I didn't understand the suggestion correctly),
+> >> and, it turned out, the way I have implemented is not the right way [3].
+> >> So, I am afraid to use the same method in the panel driver.
+> >> 
+> >> 
+> >> [1] https://lore.kernel.org/dri-devel/871rb5bcf9.fsf@intel.com/
+> >> [2] https://www.spinics.net/lists/dri-devel/msg295429.html
+> >> [3]
+> >> https://lore.kernel.org/dri-devel/20210426111116.4lc3ekxjugjr3oho@maple.lan/
+> > 
+> > So it's definitely up to maintainers, not me. ...but I guess I would
+> > have expected something like a new property called "ddc-aux-bus". Then
+> > you'd have to create a new API call called something like
+> > "of_find_ddc_aux_adapter_by_node()" that would allow you to find it.
+> 
+> To implement the first suggestion, I can think of the following way
+> to get the "struct drm_dp_aux" in the panel_simple_probe function:
+> 
+> - Create a new panel-simple DT property "ddc-aux-bus", a phandle to the
+> platform device that implements the AUX channel.
+> 
+> - Create a global list of drm_dp_aux in drm_dp_helper.c. Initialize list 
+> head
+> in drm_dp_aux_init(), add the drm_dp_aux onto the list in 
+> drm_dp_aux_register().
+> Similarly, remove the drm_dp_aux from list in drm_dp_aux_unregister().
+> 
+> - Create a new function of_drm_find_dp_aux_by_node() to get the expected
+> drm_dp_aux from this global list.
+> 
+> Please let me know your views on this implementation.
+> 
+> Below is the summary of the changes in drm dp helper:
+> 
+> ---
+> 
+> // drm_dp_helper.h
+> 
+> struct drm_dp_aux {
+> 	...
+> 	struct list_head list;
+> 	...
+> }
+> 
+> // drm_dp_helper.c
+> 
+> static DEFINE_MUTEX(dp_aux_lock);
+> static LIST_HEAD(dp_aux_list);
+> 
+> static void drm_dp_aux_add(struct drm_dp_aux *aux)
+> {
+>      mutex_lock(&dp_aux_lock);
+>      list_add_tail(&aux->list, &dp_aux_list);
+>      mutex_unlock(&dp_aux_lock);
+> }
+> 
+> static void drm_dp_aux_remove(struct drm_dp_aux *aux)
+> {
+>      mutex_lock(&dp_aux_lock);
+>      list_del_init(&aux->list);
+>      mutex_unlock(&dp_aux_lock);
+> }
+> 
+> #ifdef CONFIG_OF
+> struct drm_dp_aux *of_drm_find_dp_aux_by_node(struct device_node *np)
+> {
+>      struct drm_dp_aux *aux;
+>      mutex_lock(&dp_aux_lock);
+> 
+>      list_for_each_entry(aux, &dp_aux_list, list) {
+>          if (aux->dev->of_node == np) {
+>              mutex_unlock(&dp_aux_lock);
+>              return aux;
+>          }
+>      }
+> 
+>      mutex_unlock(&dp_aux_lock);
+>      return NULL;
+> }
+> EXPORT_SYMBOL(of_drm_find_dp_aux_by_node);
+> #endif
+> 
+> 
+> int drm_dp_aux_init(struct drm_dp_aux *aux)
+> {
+>      INIT_LIST_HEAD(&aux->list);
+>      ...
+> }
+> 
+> int drm_dp_aux_register(struct drm_dp_aux *aux)
+> {
+>      ...
+>      drm_dp_aux_add(aux);
+> 
+>      return 0;
+> }
+> 
+> void drm_dp_aux_unregister(struct drm_dp_aux *aux)
+> {
+>      drm_dp_aux_remove(aux);
+>      ...
+> }
+
+Overall this seems like a good approach, but there's one unanswered
+question: what happens if drm_dp_aux_unregister() is called while a
+panel holds a reference to it ? The drm_dp_aux instances likely need to
+be reference-counted.
+
+> > I guess an alternate way to solve this (I'm not totally sure whether
+> > it's better or worse) would be to add a function that would walk up
+> > the chain of parent bridges and ask them for a pointer to the aux bus.
+> > I definitely haven't thought it all the way through, but I'd imagine
+> > something like drm_bridge_chain_get_ddc_aux(). This is _probably_
+> > better than adding the "ddc-aux-bus" property but it assumes that the
+> > aux bus is provided by one of our parents. Hrm, looking at this
+> > briefly, though, I'm not sure how to do it. It doesn't seem possible
+> > to get the parent bridges from the panel structure. Even if you assume
+> > that your parent is wrapping you with a panel_bridge it still doesn't
+> > seem possible?
+> > 
+> > This probably needs more drm-expertise.
+
+-- 
+Regards,
+
+Laurent Pinchart
