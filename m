@@ -2,360 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A7AE37A29D
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 10:51:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B4FE37A29F
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 10:51:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231168AbhEKIwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 04:52:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56820 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231181AbhEKIwd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 04:52:33 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88092C06175F
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 01:51:26 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id t18so19291820wry.1
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 01:51:26 -0700 (PDT)
+        id S230452AbhEKIwn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 04:52:43 -0400
+Received: from mail-eopbgr1410112.outbound.protection.outlook.com ([40.107.141.112]:37861
+        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231162AbhEKIwj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 May 2021 04:52:39 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=l5jbGigr2GGGuHHHkl3B/9cM4oA1aT5jkj+IKGH1iZKGTxkv+Q2BVD9andJMBnjSQZCxrIEEFVQJFNpXMYjFvw09GSwijAc2gAr44lVWSZqJ60c8hPIOZnOxHZqckVi733Y5pwSgtgjddUKAV6y+VUwmrPx2o1nZzrDXi917bD1edjkp8SCnwhEYB6PL1LvBx1PjP+q8lBWyVHiZ5+IpTCQBBrSW0lwaUyQDIoX2M8G4mBwi4Xyy3Us3GkwKFE4ECDy5T62akGTWRFMUzfgjvhIQ+FTDFi4dyZAS3P3Rq384EZ9Lt1WuUFAVewoaYEcIAmtr2yR+MUCKlq+/9sKbNQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KIEU7rnNNYaHDewmSxYSN0FOMJOEafVezuPyuxNoAEA=;
+ b=l+HjitCw+Uv82KIqQ+sq+O0QC10QJfICWywDtOIEaNRAyHU6vClZFbVJlAuUgugfnSK1MC0WhSKfzgto3o07ZFbZNLyAVSEsrST/xg4/bB32Rhf75gAjVKug5iJgaUC3pr5RrNqCWBxNWy3iE2Sx43MZKh8Scxu+TIV2bvm7vSl0yCoLynQ4sHEaVr8d47Avd2xHDqVL2UtizQPRJyDXcamZqTTPkksap5IxwjDgZDUwOWU236aGHbOzj+mOh5RxQ1W8MR3ervkOGKFi1PsCMDFUmCk6qm/ET9iD8j3mFSqVdlXzT+QTm14xxIsOVmqKBmwXgi6BdzIzcu0PqgoTBw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=uVIcInm117yUPNbjXSfDZDRHOhoiBshLNSOpLU18Vts=;
-        b=Z967oXGL1qkVVnHAlRk0FLK4X6scRI4fqhafdGa1R6ntnzt4zV03e5lI4NJJuFeKxw
-         I+ht0XsKOE/npa0aKkzJYQb3i1JQ6WaFyilu+K9KQddaJm2rOoM9M26bfFCkL4rQsVpS
-         uHKV5IS8kppNU4VDXaaa+Vse3pEDZNjMTfcSO/4IGtIoJ/YaK7B5zFNTxFhf9MAQyS17
-         TWLUTVszXjSvhOGhYeV4OyHBKjIir1JsMuder/0owPDg3QUIdlDxr4vOwDoUxbC3+9DU
-         liDBOoA3kGPXFFMUOboZL0+CO4GAzAvNmA43Nf98h7Wr76ZIeBtxOIob7AETlxZJ8Eut
-         73mA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=uVIcInm117yUPNbjXSfDZDRHOhoiBshLNSOpLU18Vts=;
-        b=I6C4tdWb9NA+fRG4cqBmo3yTQqTbDMTV09NI/JYDkGXwR8fOgqXAy8dZiBV7b5RYB4
-         wzYClLVaFopW2SbmHL3h1W8rz1YoFmUTvFD7NU3Z5GViL0XWySzyo19ETvH7K3PNjMB8
-         R1j/9884bvDsSEO5T59jWzgT8PN3uKLWakqSpMVhq84xbHSaaskc5s69h3lsdIfXz8zX
-         Ijj0hhFXx30ktKEHdWt8ijvi5BjbCfnSarQAWjgqg0vUQjfh2xFBbEdvxhJtsVOIuwAQ
-         iFRvnLgD7pVSD31vwUa5mdVfCsRZ+JvUrseME5kRX2wG7XIobgnd6w1POJoiW2vbXid+
-         2LMA==
-X-Gm-Message-State: AOAM533YdFsR8cO5ZAL0/+unoagDILDya0HUUOoOWneIV2tobYKHzLIc
-        lZecfpQXmceAM206vTMCAPP9Pw==
-X-Google-Smtp-Source: ABdhPJxqvZIj7p2XqWXBCZ+Qw+CEghNirHllm7Q0QuMteaa7OCs1bCx6sOdkKaT4iew23+M+0lJExA==
-X-Received: by 2002:a05:6000:4d:: with SMTP id k13mr36792079wrx.98.1620723085189;
-        Tue, 11 May 2021 01:51:25 -0700 (PDT)
-Received: from arch-thunder.local (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
-        by smtp.gmail.com with ESMTPSA id j7sm23042980wmi.21.2021.05.11.01.51.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 May 2021 01:51:24 -0700 (PDT)
-From:   Rui Miguel Silva <rui.silva@linaro.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sebastian Siewior <bigeasy@linutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        Rui Miguel Silva <rui.silva@linaro.org>
-Subject: [PATCH v2 9/9] usb: isp1763: add peripheral mode
-Date:   Tue, 11 May 2021 09:51:01 +0100
-Message-Id: <20210511085101.2081399-10-rui.silva@linaro.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210511085101.2081399-1-rui.silva@linaro.org>
-References: <20210511085101.2081399-1-rui.silva@linaro.org>
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KIEU7rnNNYaHDewmSxYSN0FOMJOEafVezuPyuxNoAEA=;
+ b=ReiknLBbQOxt/+6g3L/0TyRTen3e4ne0sfxaGbYx7jNtLiNso5Dvr0f8TJvaf7JTX6Zx/f4nJWJCBhjMZg5aKNqiu/fTF6uLXd2omynNzgeoH+fVW9JTWXZnb42VEG1juGUTu3xo2eLyCxYcjxtZv2hiCc+H707yB/Mssgd2I/o=
+Received: from OSAPR01MB2737.jpnprd01.prod.outlook.com (2603:1096:603:38::21)
+ by OS3PR01MB6292.jpnprd01.prod.outlook.com (2603:1096:604:f0::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25; Tue, 11 May
+ 2021 08:51:27 +0000
+Received: from OSAPR01MB2737.jpnprd01.prod.outlook.com
+ ([fe80::48dd:a7cb:a2b2:8d46]) by OSAPR01MB2737.jpnprd01.prod.outlook.com
+ ([fe80::48dd:a7cb:a2b2:8d46%6]) with mapi id 15.20.4108.032; Tue, 11 May 2021
+ 08:51:26 +0000
+From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+To:     Rob Herring <robh@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH] dt-bindings: media: renesas,drif: Use graph schema
+Thread-Topic: [PATCH] dt-bindings: media: renesas,drif: Use graph schema
+Thread-Index: AQHXRdv/jnc1n9IF/0+AWGHP9QP/dKrd+MIw
+Date:   Tue, 11 May 2021 08:51:26 +0000
+Message-ID: <OSAPR01MB27373779BEED96CA812710BEC2539@OSAPR01MB2737.jpnprd01.prod.outlook.com>
+References: <20210510203514.603471-1-robh@kernel.org>
+In-Reply-To: <20210510203514.603471-1-robh@kernel.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=renesas.com;
+x-originating-ip: [2.28.163.2]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: bf61f38c-3531-4277-83ca-08d91459f679
+x-ms-traffictypediagnostic: OS3PR01MB6292:
+x-microsoft-antispam-prvs: <OS3PR01MB629227C7CF040894EC8CA855C2539@OS3PR01MB6292.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: oa57LrHHfrPuHUYIk/Fxn2P1EHOBhEeshdFeFS9OAPDf5BytTqEDou/Gq2M5ToWigjlf+odeswR0oPHkwsBpSK/brEdf0Zlf0r9u7qdokQlomG5mD9ZsdAeNCpsNfsW7qMgAwC53qsvjag93dIFKFi2VAV8aHF6liECizO2t6Q8r0WTs4k2s87thdzhaPENvofX6ZI41gvDokA+Vb5+tfCIVX4VP/14G8cE1YHZkujzcDD2wJ20p3pJjWP6DJCGeQ8ciN3OTis12gszqJp/Sdzw77TSs/GN3t1QdXnDHfF9fnCnuIaKi4SHdDei4WhG5EqWiAGYbGxwLJzRtf/fEChYvrUfucKKEYZ1mX608uPi8FNwaM+x3Xj+acDPc//MVBhChmQgUMHITK90vLHglW5kzG9TXygqheLRHbR1npFVo/+ThIVFug7K+4NWzGzwAa3xtJwvkQGLlirt5JznmB16Aimo6eJa0ot+cQqZfCTlEY1w2z0UrgmYgDRD+u+1VtXxOpmtCW05PnDWj93yLpAZbjjHKZ02jR0lJIGRNSWVoHpVJhsMegxHOMQX5HgZuHK+HGArUNaUyV8irUzQqWFCFrfdtiDJVpIA+ftJmzG8=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSAPR01MB2737.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(498600001)(186003)(76116006)(4326008)(33656002)(110136005)(71200400001)(53546011)(52536014)(6506007)(5660300002)(86362001)(66946007)(66556008)(64756008)(66476007)(66446008)(8936002)(38100700002)(7696005)(26005)(55016002)(9686003)(122000001)(2906002)(54906003)(8676002)(83380400001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?kWjPP6cykMxJJPkapfKImzAlWS22JxKgQc28sho3xlWfHyB/OUtwFU5aLk8Y?=
+ =?us-ascii?Q?CHjvlaAzSi4tUcgkxh9RovvL8U+5rYMdvLzX6fQGcGVWzRUr/Ozm45rcg0rL?=
+ =?us-ascii?Q?CFPDYf1JvSsuk283YniWFWtVJaDtiCt/5KRVBEzx/sxgDU9u3MRo0dtAhrTI?=
+ =?us-ascii?Q?WMq35Dxz8PfKzH6GrlkUHmXvhxynyJnFlrf/3pAd0hMR4rXGwks2oHXQ2EoB?=
+ =?us-ascii?Q?bO1rpv6iAxA/fySFpejDRUBLSYa8eufBWS/upHQ1y1RCDTYHxulxwaJ0QNhB?=
+ =?us-ascii?Q?UVp0N08zhpzy40514BI/0TTZyErmyDAys9bgr+PT4Qh0JAj5GFPhr3UQt9xV?=
+ =?us-ascii?Q?nOjGi+2LaPSTrMnOGzomDl613ahOpqdCtMjSfAZmMwgxa1NrA/QnNcmOxs6l?=
+ =?us-ascii?Q?+MOohWDH4ffa8+E7VSNsGmFrBhgBVaf0cMjKdwPSf0dsGfWxJvWbIsDXknTl?=
+ =?us-ascii?Q?APC1NC1ApUuEtvC9J0g/o0QHhvI1Cn5pZmT3QFA7dXvvPwdH5yLndhs25ocO?=
+ =?us-ascii?Q?9eoqE1Iczhp2yKvPyLfcP95MOkANrHHDdmS2cZ8d9yOfR+CzjGkUbWLZegyh?=
+ =?us-ascii?Q?/Hoq71XArfIgNIsqHJiJqTdyCMDr+zNA/LbVksIWC94oOvaj4NTeamG58c9b?=
+ =?us-ascii?Q?no+F4LdtqS42arJR+H5sXoIKyWllbgaxIzo1ZbGh35usjcWTzm8UTwJZ97nW?=
+ =?us-ascii?Q?xnliQK4hH62N93jYBhOKsF2u4P4a4jvINHmY/RrKCDg/TJboAV+j6iU761JZ?=
+ =?us-ascii?Q?kWrH+yyud239IR3O0stAexVBUoTPRee4lmxFOpnWx0LrSM7RoAklWk86NCcc?=
+ =?us-ascii?Q?5L0RLCf9l6jxn0yL/nOLO7AuokZQytlJnNPDfLyYO/4xw8F7DtMrSg7FCxLS?=
+ =?us-ascii?Q?Ncm53IzRk8VDrb/PsiEap7aJlkLUozaBlMJQqYj52LxAZmUw2HbmOBOulvCb?=
+ =?us-ascii?Q?f7kjqCKuqSMqJIUqpCmMeFF5ryPXb/LkUDrnoUmoNGkXUBm0cn1EicB+CvC7?=
+ =?us-ascii?Q?Fdc/PsGagd8KCP0uvPjZ69ipUC79v05ZMwRHQxIvJQtMWqrcuBCrVKlWBIUT?=
+ =?us-ascii?Q?m604q42IUiLYIvasQEmHgMVDGE3wEcpUUgB4rnhsi9sewaPByLIIw1Z2wTEs?=
+ =?us-ascii?Q?VomB9htguaiOGcVz0PRh6uuubNzEbZpM/kEt6jtqG/LcETWLxBh7NhnXb8E+?=
+ =?us-ascii?Q?dgRyP2yqnWTH3E0kXq7FZCpTl1SDn31M/CloTaqcq/OI2ApX55efDrQYotHZ?=
+ =?us-ascii?Q?ZpEMWyFUlt8JAfPTO6GkGGZJ5/5tgw6xIQZRVR/09H+0T/PN2kcO8oitygnG?=
+ =?us-ascii?Q?L0w=3D?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OSAPR01MB2737.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bf61f38c-3531-4277-83ca-08d91459f679
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 May 2021 08:51:26.7530
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: X4SCgC41IRxHCmhn6LfU5e504wBoTEzwR8gw5+p9tOankVHPjUj7jPsnSIX2IDhVJiXoh+LBczDDBeiP67TGuBPO9CYYkxEOFRAKyUj0uKM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB6292
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Besides the already host mode support add peripheral mode support for
-the isp1763 IP from the isp1760 family.
+Hi Rob,
 
-Signed-off-by: Rui Miguel Silva <rui.silva@linaro.org>
----
- drivers/usb/isp1760/isp1760-core.c | 25 +++++++++++------
- drivers/usb/isp1760/isp1760-regs.h | 42 ++++++++++++++++++++++++++++
- drivers/usb/isp1760/isp1760-udc.c  | 45 ++++++++++++++++++++++--------
- drivers/usb/isp1760/isp1760-udc.h  |  1 +
- 4 files changed, 94 insertions(+), 19 deletions(-)
+thank you for your patch.
 
-diff --git a/drivers/usb/isp1760/isp1760-core.c b/drivers/usb/isp1760/isp1760-core.c
-index 1d847f13abab..ff07e2890692 100644
---- a/drivers/usb/isp1760/isp1760-core.c
-+++ b/drivers/usb/isp1760/isp1760-core.c
-@@ -83,7 +83,8 @@ static int isp1760_init_core(struct isp1760_device *isp)
- 	 *
- 	 * TODO: Really support OTG. For now we configure port 1 in device mode
- 	 */
--	if ((isp->devflags & ISP1760_FLAG_ISP1761) &&
-+	if (((isp->devflags & ISP1760_FLAG_ISP1761) ||
-+	     (isp->devflags & ISP1760_FLAG_ISP1763)) &&
- 	    (isp->devflags & ISP1760_FLAG_PERIPHERAL_EN)) {
- 		isp1760_field_set(hcd->fields, HW_DM_PULLDOWN);
- 		isp1760_field_set(hcd->fields, HW_DP_PULLDOWN);
-@@ -470,13 +471,15 @@ static const struct regmap_config isp1763_dc_regmap_conf = {
- int isp1760_register(struct resource *mem, int irq, unsigned long irqflags,
- 		     struct device *dev, unsigned int devflags)
- {
--	bool udc_disabled = !(devflags & ISP1760_FLAG_ISP1761);
- 	const struct regmap_config *hc_regmap;
- 	const struct reg_field *hc_reg_fields;
-+	const struct regmap_config *dc_regmap;
-+	const struct reg_field *dc_reg_fields;
- 	struct isp1760_device *isp;
- 	struct isp1760_hcd *hcd;
- 	struct isp1760_udc *udc;
- 	struct regmap_field *f;
-+	bool udc_enabled;
- 	int ret;
- 	int i;
- 
-@@ -484,8 +487,11 @@ int isp1760_register(struct resource *mem, int irq, unsigned long irqflags,
- 	 * If neither the HCD not the UDC is enabled return an error, as no
- 	 * device would be registered.
- 	 */
-+	udc_enabled = ((devflags & ISP1760_FLAG_ISP1763) ||
-+		       (devflags & ISP1760_FLAG_ISP1761));
-+
- 	if ((!IS_ENABLED(CONFIG_USB_ISP1760_HCD) || usb_disabled()) &&
--	    (!IS_ENABLED(CONFIG_USB_ISP1761_UDC) || udc_disabled))
-+	    (!IS_ENABLED(CONFIG_USB_ISP1761_UDC) || !udc_enabled))
- 		return -ENODEV;
- 
- 	isp = devm_kzalloc(dev, sizeof(*isp), GFP_KERNEL);
-@@ -498,6 +504,7 @@ int isp1760_register(struct resource *mem, int irq, unsigned long irqflags,
- 	udc = &isp->udc;
- 
- 	hcd->is_isp1763 = !!(devflags & ISP1760_FLAG_ISP1763);
-+	udc->is_isp1763 = !!(devflags & ISP1760_FLAG_ISP1763);
- 
- 	if (!hcd->is_isp1763 && (devflags & ISP1760_FLAG_BUS_WIDTH_8)) {
- 		dev_err(dev, "isp1760/61 do not support data width 8\n");
-@@ -507,9 +514,13 @@ int isp1760_register(struct resource *mem, int irq, unsigned long irqflags,
- 	if (hcd->is_isp1763) {
- 		hc_regmap = &isp1763_hc_regmap_conf;
- 		hc_reg_fields = &isp1763_hc_reg_fields[0];
-+		dc_regmap = &isp1763_dc_regmap_conf;
-+		dc_reg_fields = &isp1763_dc_reg_fields[0];
- 	} else {
- 		hc_regmap = &isp1760_hc_regmap_conf;
- 		hc_reg_fields = &isp1760_hc_reg_fields[0];
-+		dc_regmap = &isp1761_dc_regmap_conf;
-+		dc_reg_fields = &isp1761_dc_reg_fields[0];
- 	}
- 
- 	isp->rst_gpio = devm_gpiod_get_optional(dev, NULL, GPIOD_OUT_HIGH);
-@@ -532,14 +543,12 @@ int isp1760_register(struct resource *mem, int irq, unsigned long irqflags,
- 		hcd->fields[i] = f;
- 	}
- 
--	udc->regs = devm_regmap_init_mmio(dev, hcd->base,
--					  &isp1761_dc_regmap_conf);
-+	udc->regs = devm_regmap_init_mmio(dev, hcd->base, dc_regmap);
- 	if (IS_ERR(udc->regs))
- 		return PTR_ERR(udc->regs);
- 
- 	for (i = 0; i < DC_FIELD_MAX; i++) {
--		f = devm_regmap_field_alloc(dev, udc->regs,
--					    isp1761_dc_reg_fields[i]);
-+		f = devm_regmap_field_alloc(dev, udc->regs, dc_reg_fields[i]);
- 		if (IS_ERR(f))
- 			return PTR_ERR(f);
- 
-@@ -562,7 +571,7 @@ int isp1760_register(struct resource *mem, int irq, unsigned long irqflags,
- 			return ret;
- 	}
- 
--	if (IS_ENABLED(CONFIG_USB_ISP1761_UDC) && !udc_disabled) {
-+	if (IS_ENABLED(CONFIG_USB_ISP1761_UDC) && udc_enabled) {
- 		ret = isp1760_udc_register(isp, irq, irqflags);
- 		if (ret < 0) {
- 			isp1760_hcd_unregister(hcd);
-diff --git a/drivers/usb/isp1760/isp1760-regs.h b/drivers/usb/isp1760/isp1760-regs.h
-index 4f632cbbbd1f..94ea60c20b2a 100644
---- a/drivers/usb/isp1760/isp1760-regs.h
-+++ b/drivers/usb/isp1760/isp1760-regs.h
-@@ -243,8 +243,50 @@ enum isp176x_device_controller_fields {
- 	DC_EPENABLE, DC_ENDPTYP,
- 	/* DC_FRAMENUM */
- 	DC_FRAMENUM, DC_UFRAMENUM,
-+	/* DC_CHIP_ID */
-+	DC_CHIP_ID_HIGH, DC_CHIP_ID_LOW,
-+	/* DC_SCRATCH */
-+	DC_SCRATCH,
- 	/* Last element */
- 	DC_FIELD_MAX,
- };
- 
-+/* ISP1763 */
-+/* Initialization Registers */
-+#define ISP1763_DC_ADDRESS		0x00
-+#define ISP1763_DC_MODE			0x0c
-+#define ISP1763_DC_INTCONF		0x10
-+#define ISP1763_DC_INTENABLE		0x14
-+
-+/* Data Flow Registers */
-+#define ISP1763_DC_EPMAXPKTSZ		0x04
-+#define ISP1763_DC_EPTYPE		0x08
-+
-+#define ISP1763_DC_BUFLEN		0x1c
-+#define ISP1763_DC_BUFSTAT		0x1e
-+#define ISP1763_DC_DATAPORT		0x20
-+
-+#define ISP1763_DC_CTRLFUNC		0x28
-+#define ISP1763_DC_EPINDEX		0x2c
-+
-+/* DMA Registers */
-+#define ISP1763_DC_DMACMD		0x30
-+#define ISP1763_DC_DMATXCOUNT		0x34
-+#define ISP1763_DC_DMACONF		0x38
-+#define ISP1763_DC_DMAHW		0x3c
-+#define ISP1763_DC_DMAINTREASON		0x50
-+#define ISP1763_DC_DMAINTEN		0x54
-+#define ISP1763_DC_DMAEP		0x58
-+#define ISP1763_DC_DMABURSTCOUNT	0x64
-+
-+/* General Registers */
-+#define ISP1763_DC_INTERRUPT		0x18
-+#define ISP1763_DC_CHIPID_LOW		0x70
-+#define ISP1763_DC_CHIPID_HIGH		0x72
-+#define ISP1763_DC_FRAMENUM		0x74
-+#define ISP1763_DC_SCRATCH		0x78
-+#define ISP1763_DC_UNLOCKDEV		0x7c
-+#define ISP1763_DC_INTPULSEWIDTH	0x80
-+#define ISP1763_DC_TESTMODE		0x84
-+
- #endif
-diff --git a/drivers/usb/isp1760/isp1760-udc.c b/drivers/usb/isp1760/isp1760-udc.c
-index 30efc9d32506..3e05e3605435 100644
---- a/drivers/usb/isp1760/isp1760-udc.c
-+++ b/drivers/usb/isp1760/isp1760-udc.c
-@@ -1151,6 +1151,10 @@ static void isp1760_udc_disconnect(struct isp1760_udc *udc)
- 
- static void isp1760_udc_init_hw(struct isp1760_udc *udc)
- {
-+	u32 intconf = udc->is_isp1763 ? ISP1763_DC_INTCONF : ISP176x_DC_INTCONF;
-+	u32 intena = udc->is_isp1763 ? ISP1763_DC_INTENABLE :
-+						ISP176x_DC_INTENABLE;
-+
- 	/*
- 	 * The device controller currently shares its interrupt with the host
- 	 * controller, the DC_IRQ polarity and signaling mode are ignored. Set
-@@ -1160,11 +1164,11 @@ static void isp1760_udc_init_hw(struct isp1760_udc *udc)
- 	 * ACK tokens only (and NYET for the out pipe). The default
- 	 * configuration also generates an interrupt on the first NACK token.
- 	 */
--	isp1760_reg_write(udc->regs, ISP176x_DC_INTCONF,
-+	isp1760_reg_write(udc->regs, intconf,
- 			  ISP176x_DC_CDBGMOD_ACK | ISP176x_DC_DDBGMODIN_ACK |
- 			  ISP176x_DC_DDBGMODOUT_ACK);
- 
--	isp1760_reg_write(udc->regs, ISP176x_DC_INTENABLE, DC_IEPRXTX(7) |
-+	isp1760_reg_write(udc->regs, intena, DC_IEPRXTX(7) |
- 			  DC_IEPRXTX(6) | DC_IEPRXTX(5) | DC_IEPRXTX(4) |
- 			  DC_IEPRXTX(3) | DC_IEPRXTX(2) | DC_IEPRXTX(1) |
- 			  DC_IEPRXTX(0) | ISP176x_DC_IEP0SETUP |
-@@ -1304,13 +1308,14 @@ static int isp1760_udc_start(struct usb_gadget *gadget,
- static int isp1760_udc_stop(struct usb_gadget *gadget)
- {
- 	struct isp1760_udc *udc = gadget_to_udc(gadget);
-+	u32 mode_reg = udc->is_isp1763 ? ISP1763_DC_MODE : ISP176x_DC_MODE;
- 	unsigned long flags;
- 
- 	dev_dbg(udc->isp->dev, "%s\n", __func__);
- 
- 	del_timer_sync(&udc->vbus_timer);
- 
--	isp1760_reg_write(udc->regs, ISP176x_DC_MODE, 0);
-+	isp1760_reg_write(udc->regs, mode_reg, 0);
- 
- 	spin_lock_irqsave(&udc->lock, flags);
- 	udc->driver = NULL;
-@@ -1332,15 +1337,30 @@ static const struct usb_gadget_ops isp1760_udc_ops = {
-  * Interrupt Handling
-  */
- 
-+static u32 isp1760_udc_irq_get_status(struct isp1760_udc *udc)
-+{
-+	u32 status;
-+
-+	if (udc->is_isp1763) {
-+		status = isp1760_reg_read(udc->regs, ISP1763_DC_INTERRUPT)
-+			& isp1760_reg_read(udc->regs, ISP1763_DC_INTENABLE);
-+		isp1760_reg_write(udc->regs, ISP1763_DC_INTERRUPT, status);
-+	} else {
-+		status = isp1760_reg_read(udc->regs, ISP176x_DC_INTERRUPT)
-+			& isp1760_reg_read(udc->regs, ISP176x_DC_INTENABLE);
-+		isp1760_reg_write(udc->regs, ISP176x_DC_INTERRUPT, status);
-+	}
-+
-+	return status;
-+}
-+
- static irqreturn_t isp1760_udc_irq(int irq, void *dev)
- {
- 	struct isp1760_udc *udc = dev;
- 	unsigned int i;
- 	u32 status;
- 
--	status = isp1760_reg_read(udc->regs, ISP176x_DC_INTERRUPT)
--	       & isp1760_reg_read(udc->regs, ISP176x_DC_INTENABLE);
--	isp1760_reg_write(udc->regs, ISP176x_DC_INTERRUPT, status);
-+	status = isp1760_udc_irq_get_status(udc);
- 
- 	if (status & DC_IEVBUS) {
- 		dev_dbg(udc->isp->dev, "%s(VBUS)\n", __func__);
-@@ -1475,6 +1495,7 @@ static void isp1760_udc_init_eps(struct isp1760_udc *udc)
- 
- static int isp1760_udc_init(struct isp1760_udc *udc)
- {
-+	u32 mode_reg = udc->is_isp1763 ? ISP1763_DC_MODE : ISP176x_DC_MODE;
- 	u16 scratch;
- 	u32 chipid;
- 
-@@ -1484,9 +1505,10 @@ static int isp1760_udc_init(struct isp1760_udc *udc)
- 	 * register, and reading the scratch register value back. The chip ID
- 	 * and scratch register contents must match the expected values.
- 	 */
--	isp1760_reg_write(udc->regs, ISP176x_DC_SCRATCH, 0xbabe);
--	chipid = isp1760_reg_read(udc->regs, ISP176x_DC_CHIPID);
--	scratch = isp1760_reg_read(udc->regs, ISP176x_DC_SCRATCH);
-+	isp1760_udc_write(udc, DC_SCRATCH, 0xbabe);
-+	chipid = isp1760_udc_read(udc, DC_CHIP_ID_HIGH) << 16;
-+	chipid |= isp1760_udc_read(udc, DC_CHIP_ID_LOW);
-+	scratch = isp1760_udc_read(udc, DC_SCRATCH);
- 
- 	if (scratch != 0xbabe) {
- 		dev_err(udc->isp->dev,
-@@ -1495,7 +1517,8 @@ static int isp1760_udc_init(struct isp1760_udc *udc)
- 		return -ENODEV;
- 	}
- 
--	if (chipid != 0x00011582 && chipid != 0x00158210) {
-+	if (chipid != 0x00011582 && chipid != 0x00158210 &&
-+	    chipid != 0x00176320) {
- 		dev_err(udc->isp->dev, "udc: invalid chip ID 0x%08x\n", chipid);
- 		return -ENODEV;
- 	}
-@@ -1503,7 +1526,7 @@ static int isp1760_udc_init(struct isp1760_udc *udc)
- 	/* Reset the device controller. */
- 	isp1760_udc_set(udc, DC_SFRESET);
- 	usleep_range(10000, 11000);
--	isp1760_reg_write(udc->regs, ISP176x_DC_MODE, 0);
-+	isp1760_reg_write(udc->regs, mode_reg, 0);
- 	usleep_range(10000, 11000);
- 
- 	return 0;
-diff --git a/drivers/usb/isp1760/isp1760-udc.h b/drivers/usb/isp1760/isp1760-udc.h
-index f2ab5929cc9f..22044e86bc0e 100644
---- a/drivers/usb/isp1760/isp1760-udc.h
-+++ b/drivers/usb/isp1760/isp1760-udc.h
-@@ -84,6 +84,7 @@ struct isp1760_udc {
- 	u16 ep0_length;
- 
- 	bool connected;
-+	bool is_isp1763;
- 
- 	unsigned int devstatus;
- };
--- 
-2.31.1
+> From: Rob Herring <robh@kernel.org>
+> Sent: 10 May 2021 21:35
+> Subject: [PATCH] dt-bindings: media: renesas,drif: Use graph schema
+>=20
+> Convert the renesas,drif binding schema to use the graph schema. The
+> binding referred to video-interfaces.txt, but it doesn't actually use any
+> properties from it as 'sync-active' is a custom property. As 'sync-active=
+'
+> is custom, it needs a type definition.
+>=20
+> Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Ramesh Shanmugasundaram <rashanmu@gmail.com>
+> Cc: linux-media@vger.kernel.org
+> Cc: linux-renesas-soc@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+
+Reviewed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+
+Best regards,
+Fab
+
+> ---
+>  .../bindings/media/renesas,drif.yaml          | 20 +++++++------------
+>  1 file changed, 7 insertions(+), 13 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/renesas,drif.yaml
+> b/Documentation/devicetree/bindings/media/renesas,drif.yaml
+> index f1bdaeab4053..ce505a7c006a 100644
+> --- a/Documentation/devicetree/bindings/media/renesas,drif.yaml
+> +++ b/Documentation/devicetree/bindings/media/renesas,drif.yaml
+> @@ -99,32 +99,26 @@ properties:
+>        Indicates that the channel acts as primary among the bonded
+> channels.
+>=20
+>    port:
+> -    type: object
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    unevaluatedProperties: false
+>      description:
+> -      Child port node corresponding to the data input, in accordance wit=
+h
+> the
+> -      video interface bindings defined in
+> -      Documentation/devicetree/bindings/media/video-interfaces.txt.
+> -      The port node must contain at least one endpoint.
+> +      Child port node corresponding to the data input. The port node mus=
+t
+> +      contain at least one endpoint.
+>=20
+>      properties:
+>        endpoint:
+> -        type: object
+> +        $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> +        unevaluatedProperties: false
+>=20
+>          properties:
+> -          remote-endpoint:
+> -            description:
+> -              A phandle to the remote tuner endpoint subnode in remote
+> node
+> -              port.
+> -
+>            sync-active:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+>              enum: [0, 1]
+>              description:
+>                Indicates sync signal polarity, 0/1 for low/high
+> respectively.
+>                This property maps to SYNCAC bit in the hardware manual.
+> The
+>                default is 1 (active high).
+>=20
+> -        additionalProperties: false
+> -
+>  required:
+>    - compatible
+>    - reg
+> --
+> 2.27.0
 
