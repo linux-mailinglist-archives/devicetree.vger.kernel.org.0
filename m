@@ -2,197 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D89637A601
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 13:48:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7040F37A61A
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 13:54:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231473AbhEKLtV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 07:49:21 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:54235 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231488AbhEKLtU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 May 2021 07:49:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1620733694;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=tCTd+S2Axg2X1q7f2AmsrNqMwgII9y4Yy/+j9XgTu+E=;
-        b=Fj5+kR1LJgadz7sTIhDZjJ2YVjyRGrbmTl4MXsm9A/Ea/t9Mh//IZbpzY9NaZ6SMsEmUja
-        102W88HF+4bboXUXLGFasAymz7fbFtDgG7GIAirIL9PqArLpSeDKAyWXRqwbqxVh42shbo
-        HSEaWuDEMswxEpiWP0urDsJj6s+IPWY=
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
- [209.85.218.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-425-qQUxcNxbOEemNg7xLtCjFw-1; Tue, 11 May 2021 07:48:12 -0400
-X-MC-Unique: qQUxcNxbOEemNg7xLtCjFw-1
-Received: by mail-ej1-f70.google.com with SMTP id d21-20020a1709067f15b02903a61441211cso5829091ejr.14
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 04:48:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=tCTd+S2Axg2X1q7f2AmsrNqMwgII9y4Yy/+j9XgTu+E=;
-        b=dro/wHnHuDHCHfnKkq3oEZXxl8JKGAbxK0HGVVOe8Nrw6oLinw0OJz/AKVCR6NyC24
-         E0NkKOcQavRYZ3yuZ2oWkv3YPVKDYSAgOY7Wcgnc6LZYZ0Kx7VP7z63+9UR0WnJbujnk
-         KtNg9R9RORrqoKN8rQ6qrQSFsUtLxa+UUoiogy+F5/Clu95HUIlK9GPufBHlGaYsu6Vt
-         e6UI10AqYrvkXQUXCLFh6uvKzdJKFrtmdQD5qyYcoy2b41Gd3FhuMgwUoCvYbOVP+8GJ
-         hSuFcgydSSiUa/z78+AQGvn3YI2Qyf8r8SXq9qJivwbuKOoqTgBx5jgRzrmc9j2O8dLf
-         CyLg==
-X-Gm-Message-State: AOAM533o9cb41yekPEvzyjgkTG5xkOeMAW5R0WSq50M2gjRUGVntWzHt
-        GrcC+dWUDaNYAY4sCCfP/f+Fwa+QliZc9Lut0LUQoPT+sxxmr7+uJmoogyjeY409V1g+tTWxJIi
-        hsXLiPgNYG0wqeWYrWhNbTQ==
-X-Received: by 2002:a17:907:f91:: with SMTP id kb17mr30722709ejc.521.1620733691343;
-        Tue, 11 May 2021 04:48:11 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyK1wG8GPs1uiWXaXij0uLW/nSHZ5xv/Mp/aP4/ksfEpDozfyQJa04/xi8Vel+362v042qcCA==
-X-Received: by 2002:a17:907:f91:: with SMTP id kb17mr30722691ejc.521.1620733691162;
-        Tue, 11 May 2021 04:48:11 -0700 (PDT)
-Received: from x1.localdomain (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl. [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
-        by smtp.gmail.com with ESMTPSA id ga28sm11316864ejc.20.2021.05.11.04.48.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 May 2021 04:48:10 -0700 (PDT)
-Subject: Re: [PATCH v7 1/7] MAINTAINERS: Add Advantech AHC1EC0 embedded
- controller entry
-To:     Campion Kang <campion.kang@advantech.com.tw>
-Cc:     andy.shevchenko@gmail.com, chia-lin.kao@canonical.com,
-        corbet@lwn.net, devicetree@vger.kernel.org, jdelvare@suse.com,
-        lee.jones@linaro.org, linux-doc@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, linux@roeck-us.net,
-        mgross@linux.intel.com, platform-driver-x86@vger.kernel.org,
-        robh+dt@kernel.org, wim@linux-watchdog.org
-References: <cf181436-152c-7cd8-76cf-350705cd2bcb@redhat.com>
- <20210507115319.22109-1-campion.kang@advantech.com.tw>
-From:   Hans de Goede <hdegoede@redhat.com>
-Message-ID: <0a64dcbd-25d6-ddcd-4a4e-18619e8270ba@redhat.com>
-Date:   Tue, 11 May 2021 13:48:09 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        id S231312AbhEKL4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 07:56:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41848 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230519AbhEKL4C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 07:56:02 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74815C061574
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 04:54:55 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1lgQyM-0006g1-F2; Tue, 11 May 2021 13:54:46 +0200
+Message-ID: <0aa51fabade743fbaac70a149a771f37e7d05165.camel@pengutronix.de>
+Subject: Re: [PATCH v2 3/3] mmc: core: add support for disabling HS400 mode
+ via DT
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Chris Ruehl <chris.ruehl@gtsys.com.hk>
+Cc:     Adrian Hunter <adrian.hunter@intel.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Date:   Tue, 11 May 2021 13:54:33 +0200
+In-Reply-To: <CAPDyKFrAe-+CENhXkY2fGNw04g-zn+ebcAXSVGa9Td5pJcsujA@mail.gmail.com>
+References: <20210510190400.105162-1-l.stach@pengutronix.de>
+         <20210510190400.105162-3-l.stach@pengutronix.de>
+         <CAPDyKFrAe-+CENhXkY2fGNw04g-zn+ebcAXSVGa9Td5pJcsujA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.1 (3.40.1-1.fc34) 
 MIME-Version: 1.0
-In-Reply-To: <20210507115319.22109-1-campion.kang@advantech.com.tw>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Ulf,
 
-On 5/7/21 1:53 PM, Campion Kang wrote:
-> Hi, Very thanks your time for reviewing.
+Am Dienstag, dem 11.05.2021 um 13:14 +0200 schrieb Ulf Hansson:
+> + Chris Ruehl
 > 
->> -----Original Message-----
->> From: Hans de Goede <hdegoede@redhat.com>
->> Sent: Thursday, May 6, 2021 5:39 PM
->> Subject: Re: [PATCH v7 1/7] MAINTAINERS: Add Advantech AHC1EC0 embedded
->> controller entry
->>
->> Hi,
->>
->> On 5/6/21 11:23 AM, Andy Shevchenko wrote:
->>> On Thu, May 6, 2021 at 11:48 AM Hans de Goede <hdegoede@redhat.com>
->> wrote:
->>>> I'm replying here since this series has no cover-letter, for
->>>> the next version for a series touching so many different
->>>> sub-systems it would be good to start with a cover-letter
->>>> providing some background info on the series.
->>>>
+> On Mon, 10 May 2021 at 21:04, Lucas Stach <l.stach@pengutronix.de> wrote:
+> > 
+> > From: Lucas Stach <dev@lynxeye.de>
+> > 
+> > On some boards the data strobe line isn't wired up, rendering HS400
+> > support broken, even if both the controller and the eMMC claim to
+> > support it. Allow to disable HS400 mode via DT.
 > 
-> Sorry about that, i will study what is cover-letter and its content.
-> Would you kindly provide me a good reference?
-> Can I resend a [Patch v7 0/7] for these patch or provide it in next version?
+> Before I review the series, I just wanted to highlight that quite
+> recently we got a related series posted from Chris [1]. I made some
+> comments, but he hasn't replied yet.
+> 
+> In any case, if I understood it correctly, it looks like some
+> controllers may support HS400 ES, but not HS200. Could that be the
+> case here as well? Or is this a different problem?
+> 
+> 
+That's not the issue I'm trying to solve here. HS400 modes, whether ES
+nor not, require the data strobe line to work. ES mode just defines how
+this line is used. I know for a fact that the board I'm dealing with
+here, just hasn't wired up this line between the SoC and the eMMC. Thus
+HS400 modes fail to work, even though both controller and eMMC support
+this mode.
 
-Please add a cover letter to the next version, which will hopefully
-also address some of the other remarks already made.
+When HS400 is disabled, like in this series, communication falls back
+to HS200 mode and works fine this way.
 
 Regards,
+Lucas
 
-Hans
+> Kind regards
+> Uffe
+> 
+> [1]
+> https://patchwork.kernel.org/project/linux-mmc/patch/20201208061839.21163-7-chris.ruehl@gtsys.com.hk/
+> 
+> > 
+> > Signed-off-by: Lucas Stach <dev@lynxeye.de>
+> > ---
+> > v2:
+> > - move to core
+> > - actually disable all HS400 modes
+> > ---
+> >  drivers/mmc/core/host.c | 3 +++
+> >  1 file changed, 3 insertions(+)
+> > 
+> > diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
+> > index 9b89a91b6b47..0e066c5f5243 100644
+> > --- a/drivers/mmc/core/host.c
+> > +++ b/drivers/mmc/core/host.c
+> > @@ -351,6 +351,9 @@ int mmc_of_parse(struct mmc_host *host)
+> >                 host->caps2 |= MMC_CAP2_NO_SD;
+> >         if (device_property_read_bool(dev, "no-mmc"))
+> >                 host->caps2 |= MMC_CAP2_NO_MMC;
+> > +       if (device_property_read_bool(dev, "no-mmc-hs400"))
+> > +               host->caps2 &= ~(MMC_CAP2_HS400_1_8V | MMC_CAP2_HS400_1_2V |
+> > +                                MMC_CAP2_HS400_ES);
+> > 
+> >         /* Must be after "non-removable" check */
+> >         if (device_property_read_u32(dev, "fixed-emmc-driver-type", &drv_type) == 0) {
+> > --
+> > 2.31.1
+> > 
 
-
-> 
-> 
->>>> I see this is binding to an ACPI device, yet it is also using
->>>> devicetree bindings and properties.
->>>>
->>>> So I take it this means that your ACPI tables are using the
->>>> optional capability of embedded device-tree blobs inside the
->>>> ACPI tables ?
->>>>
->>>> That is an unusual combination on a x86 device, note it is
->>>> not wrong
->>>
->>> It's actually not okay. We have agreed at some point with DT people,
->>> that ACPI should not use non-native variants of natively supported
->>> things. For example, it shouldn't use "interrupt" property for IOxAPIC
->>> (or xIC) provided interrupts, rather Interrupt() has to be used and so
->>> on.
-> 
-> In our experience, most risc platforms are using devicetree, and x86/64 platforms
-> are using ACPI table or grub configure for their specific settings in different HW paltform.
-> In this case, EC chip is a LPC interface that can be integrated in whenever risc or x86/64.
-> So in my understand, I think it is not conflict.
-> (please correct me if i am misunderstanding, i will try to describe more)
-> 
-> If the EC chip is connected to the risc processor, we will bind its properties in the device-tree without modifing the source.
-> If the EC chip is connected to the X86/64 processor, we bind its the properties in the ACPI table and also without modifing the source.
-> Why do we need to bind the properties in ACPI or in the device-tree? Because it is an LPC interface, it cannot automatically load the driver like a USB or PCI device.
-> In the early days, we had to install the EC driver module in our HW platform and manually load it at every boot. Different Advantech HW platforms have different properties for HWMON and others sub-systems. This causes the EC source to be a bit dirty. It is necessary to obtain the hardware platform name from the BIOS DMI table and determine its attributes according to its platform name.
-> Now bind the attributes to ACPI table or device-tree, the EC source is more clear and universal for Advantech devices, and it is important that if the ACPI table matches, it can be automatically loaded.
-> 
->>
->> Right, but that is not the case here, they are using 2 device-tree
->> properties (1), from patch 3/7:
->>
->> +properties:
->> +  compatible:
->> +    const: advantech,ahc1ec0
->> +
->> +  advantech,hwmon-profile:
->> +    description:
->> +      The number of sub-devices specified in the platform. Defines for the
->> +      hwmon profiles can found in dt-bindings/mfd/ahc1ec0-dt.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    maxItems: 1
->> +
->> +  advantech,has-watchdog:
->> +    description:
->> +      Some implementations of the EC include a watchdog used to monitor
->> the
->> +      system. This boolean flag is used to specify whether this watchdog is
->> +      present or not. Default is true, otherwise set to false.
->> +    type: boolean
->>
->>
->>>> but AFAIK you are the first to do this on x86.
->>>
->>> No, not the first. Once Intel tried to invent the pin control
->>> configuration and muxing properties in ACPI, it was luckily rejected
->>> (ACPI 6.x OTOH provides a set of special resources for that).
->>>
->>> So, NAK from me, *if* it's really the case. ACPI tables must be revisited.
->>
-> 
-> I am not sure it supports vendor self-defined attributes for ACPI table?
-> 
->> AFAIK Advantech are not defining things for which an ACPI standard exists,
->> although these 2 properties might just as well may be 2 simple ACPI integer
->> methods, which would actually make things a bit simpler (.e.g it would
->> allow dropping patch 2/7 and 3/7 from the set).
->>
->> Campion, any reason why you went this route; and can the ACPI tables
->> still be changed?
->>
-> 
-> If patches 2/7 and 3/7 are removed, it will be even simpler.
-> This means that there is no device-tree binding designed, in fact, the EC chip only be integrated in the x86/64 platform at present.
-> Sorry, ACPI table now is integrated in the BIOS for Advantech UNO device, 
-> it may be revert to previous rule, that is, there is no ACPI table binding and manually loaded the EC driver. If you have any suggestons I would be very grateful.
-> 
->> Regards,
->>
->> Hans
-> 
 
