@@ -2,239 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B60837B1D3
-	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 00:52:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94B0937B260
+	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 01:18:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230224AbhEKWxx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 18:53:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50134 "EHLO
+        id S229920AbhEKXTW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 19:19:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230280AbhEKWxq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 18:53:46 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF446C06138C
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 15:52:38 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id a5so10112512pfa.11
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 15:52:38 -0700 (PDT)
+        with ESMTP id S229924AbhEKXTW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 19:19:22 -0400
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B157C06175F
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 16:18:14 -0700 (PDT)
+Received: by mail-qv1-xf31.google.com with SMTP id 5so7179255qvk.0
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 16:18:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=3dF8B31PNk7cPhkI1K+ifAM7LFjPxMuEN4CZDqsLjYs=;
-        b=hOncJ7KhKMk9l1BHT4qKfG3LEJOMXRnF3BEuGVJyKHbmLZuhbhoFvOiT2N3Zq0k/Cz
-         GTb6KrDlUHyCe99F/zw2L8+iV02SUphMf8pQzIZonTnlkk7JHOJG+CMhRbei9Af1iKK5
-         6VworG6f1jgx0QKBEta/hA0pIk13xe7gnjZlI=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+fBXq+6nPKqVOlk+v8W280PjoWncpfOOR+yyoDwgdjE=;
+        b=FZRXFHPjEvaukkFmoW4Ji7tyfmF/7vZuOOSEuHFuAwxDPa6oRl7/2Fx9ldAhWulLVk
+         8whcYaziq01nUC0N5yGEmtBFrbFcoLwntKUZgrRBnDZxKr6McpG120KZkCYkv1V8oHZS
+         WZbLnAWGAhhLco7gcDxvDVK/ZcJW3NJt2MV5A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=3dF8B31PNk7cPhkI1K+ifAM7LFjPxMuEN4CZDqsLjYs=;
-        b=UDorzkXEpSf5i73YQebh6+d9MdIrZk5Uwd35ZVK7MrujdwT+q8VGNJnK1tORrjjGMo
-         PLsslWBxHJMLWy0JbgO3WTu16X00DyM+39x8PwtbIbLAWJoSnfpvEeamWDPn45Fs1QDE
-         1vW6mAvmL9ZFA7vH4kqTVN4TGekZv5fkGnz63mtsoaYGotQRmaSiogDikD1gOvrVqfCp
-         WK96WgvGmxhlON8Sq1DUquAna9gOnK5/YfwPYE7j/fur2OIw0vijyRAy1YaCxZT/FceH
-         pFJhR849cgqhLBFLpxUGlrjpmHpoGz0lngnLMQDYJczkkBfeQ+eM3NUSjjUeLdsRPyQC
-         Zi9w==
-X-Gm-Message-State: AOAM5339BJ5mydBPNlDwqnbCAcwiPMGlBev0IHC8qDRdCzqwAH221phB
-        XGAoIHhgQ7WtpWFzrvNzCujlhQ==
-X-Google-Smtp-Source: ABdhPJzdwIoaihmRoDL6WGsLK7mSThzKjWrMJy63C9nRpC6zIzCkoV7CM+EFBQzvJcnkSYPIyma69w==
-X-Received: by 2002:a63:c13:: with SMTP id b19mr33088389pgl.198.1620773558275;
-        Tue, 11 May 2021 15:52:38 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:f1d7:673a:456e:c653])
-        by smtp.gmail.com with UTF8SMTPSA id c15sm14510132pfo.176.2021.05.11.15.52.36
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+fBXq+6nPKqVOlk+v8W280PjoWncpfOOR+yyoDwgdjE=;
+        b=fzw9PCO/HS68o7+EDztEgkpn5aiycaH+rSqXulCWGq+kQCHRY5Bi/LUyVSQ2CeKG/y
+         NI4ogXUCcsM2TUrrevBc9ub5ppM+ntvqVDd4nECQUda4skvS87kiHils2Hgacc5hj3tv
+         T6VjOZR0uyOhCsIieprivQUDfj3C6BS4EWHfhtWF+v8n8HokwO9d588Ggt0kV8v5Abcb
+         HWFJUH6sUwXaSc5Mz3XAm1AaWb/aNrhRiurgH9wiibiSfdNWnH0MvU5w8BU1hYhlGY5y
+         mewZOtuozs4rZ1SsgVzJEJlzVOrgrVcCHw3ZmI0u8wVdUKDrvdIaXgxwTkLzEzsTaxXM
+         vn2Q==
+X-Gm-Message-State: AOAM5314aDHzAObJSjxxCBVhZFmQWsIDxLNIQEcbmfi5vQ7MFAppZRFF
+        VAUitzg7FCzYbwOxTkJ9RJmijM6A1vHEgA==
+X-Google-Smtp-Source: ABdhPJyNiA6K1VAs8wNztqg4nE0ER9Ygz7w770ZBc5nW8UFeJd/Jq+OFPCw9Yc0dU4kwcw7zpsUYMg==
+X-Received: by 2002:a0c:e052:: with SMTP id y18mr31908972qvk.15.1620775093457;
+        Tue, 11 May 2021 16:18:13 -0700 (PDT)
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
+        by smtp.gmail.com with ESMTPSA id c20sm17156892qtg.84.2021.05.11.16.18.10
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 May 2021 15:52:37 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Michal Simek <michal.simek@xilinx.com>, devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-usb@vger.kernel.org, Peter Chen <peter.chen@kernel.org>,
-        linux-kernel@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v10 5/5] arm64: dts: qcom: sc7180-trogdor: Add nodes for onboard USB hub
-Date:   Tue, 11 May 2021 15:52:23 -0700
-Message-Id: <20210511155152.v10.5.Ie0d2c1214b767bb5551dd4cad38398bd40e4466f@changeid>
-X-Mailer: git-send-email 2.31.1.607.g51e8a6a459-goog
-In-Reply-To: <20210511225223.550762-1-mka@chromium.org>
-References: <20210511225223.550762-1-mka@chromium.org>
+        Tue, 11 May 2021 16:18:12 -0700 (PDT)
+Received: by mail-yb1-f178.google.com with SMTP id e190so28465762ybb.10
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 16:18:10 -0700 (PDT)
+X-Received: by 2002:a25:6088:: with SMTP id u130mr45609181ybb.257.1620775090443;
+ Tue, 11 May 2021 16:18:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1619416756-3533-1-git-send-email-rajeevny@codeaurora.org>
+ <1619416756-3533-2-git-send-email-rajeevny@codeaurora.org>
+ <20210429180435.GA1385465@robh.at.kernel.org> <CAD=FV=V-kdySH5Pp-Fb-PRYk60Ha_UOTXJHcvMp+uV3P1oo7Uw@mail.gmail.com>
+ <78c4bd291bd4a17ae2a1d02d0217de43@codeaurora.org> <CAD=FV=XW90L6or8NKA-Rjjp3s3fRno1xSkD+X0PA1rTyeKgpMw@mail.gmail.com>
+ <c867b2e59e90899e6c1648e06f5f9cd2@codeaurora.org>
+In-Reply-To: <c867b2e59e90899e6c1648e06f5f9cd2@codeaurora.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 11 May 2021 16:17:59 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XBb9zs=ZGG-Ky8=_is20L1O6pJ-xBV1k5cF6-vL78pgA@mail.gmail.com>
+Message-ID: <CAD=FV=XBb9zs=ZGG-Ky8=_is20L1O6pJ-xBV1k5cF6-vL78pgA@mail.gmail.com>
+Subject: Re: [v3 1/2] dt-bindings: backlight: add DisplayPort aux backlight
+To:     Rajeev Nandan <rajeevny@codeaurora.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Rob Clark <robdclark@gmail.com>, mkrishn@codeaurora.org,
+        Kalyan Thota <kalyan_t@codeaurora.org>,
+        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        Sean Paul <seanpaul@chromium.org>,
+        Jani Nikula <jani.nikula@linux.intel.com>,
+        Lyude Paul <lyude@redhat.com>,
+        "Lankhorst, Maarten" <maarten.lankhorst@intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Andrzej Hajda <a.hajda@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes for the onboard USB hub on trogdor devices. Remove the
-'always-on' property from the hub regulator, since the regulator
-is now managed by the onboard_usb_hub driver.
+Hi,
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
+On Tue, May 11, 2021 at 11:12 AM <rajeevny@codeaurora.org> wrote:
+>
+> On 01-05-2021 03:08, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Fri, Apr 30, 2021 at 8:10 AM <rajeevny@codeaurora.org> wrote:
+> >>
+> >> On 30-04-2021 02:33, Doug Anderson wrote:
+> >> > Hi,
+> >> >
+> >> > On Thu, Apr 29, 2021 at 11:04 AM Rob Herring <robh@kernel.org> wrote:
+> >> >>
+> >> >> On Mon, Apr 26, 2021 at 11:29:15AM +0530, Rajeev Nandan wrote:
+> >> >> > Add bindings for DisplayPort aux backlight driver.
+> >> >> >
+> >> >> > Changes in v2:
+> >> >> > - New
+> >> >> >
+> >> >> > Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
+> >> >> > ---
+> >> >> >  .../bindings/leds/backlight/dp-aux-backlight.yaml  | 49 ++++++++++++++++++++++
+> >> >> >  1 file changed, 49 insertions(+)
+> >> >> >  create mode 100644 Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
+> >> >> >
+> >> >> > diff --git a/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
+> >> >> > new file mode 100644
+> >> >> > index 00000000..0fa8bf0
+> >> >> > --- /dev/null
+> >> >> > +++ b/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
+> >> >> > @@ -0,0 +1,49 @@
+> >> >> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> >> > +%YAML 1.2
+> >> >> > +---
+> >> >> > +$id: http://devicetree.org/schemas/leds/backlight/dp-aux-backlight.yaml#
+> >> >> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> >> > +
+> >> >> > +title: DisplayPort aux backlight driver bindings
+> >> >> > +
+> >> >> > +maintainers:
+> >> >> > +  - Rajeev Nandan <rajeevny@codeaurora.org>
+> >> >> > +
+> >> >> > +description:
+> >> >> > +  Backlight driver to control the brightness over DisplayPort aux channel.
+> >> >> > +
+> >> >> > +allOf:
+> >> >> > +  - $ref: common.yaml#
+> >> >> > +
+> >> >> > +properties:
+> >> >> > +  compatible:
+> >> >> > +    const: dp-aux-backlight
+> >> >> > +
+> >> >> > +  ddc-i2c-bus:
+> >> >> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> >> >> > +    description:
+> >> >> > +      A phandle to the system I2C controller connected to the DDC bus used
+> >> >> > +      for the DisplayPort AUX channel.
+> >> >> > +
+> >> >> > +  enable-gpios:
+> >> >> > +    maxItems: 1
+> >> >> > +    description: GPIO specifier for backlight enable pin.
+> >> >> > +
+> >> >> > +  max-brightness: true
+> >> >> > +
+> >> >> > +required:
+> >> >> > +  - compatible
+> >> >> > +  - ddc-i2c-bus
+> >> >> > +
+> >> >> > +additionalProperties: false
+> >> >> > +
+> >> >> > +examples:
+> >> >> > +  - |
+> >> >> > +    backlight {
+> >> >> > +        compatible = "dp-aux-backlight";
+> >> >> > +        ddc-i2c-bus = <&sn65dsi86_bridge>;
+> >> >> > +        enable-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
+> >> >>
+> >> >> So the DDC bus is connected to a backlight and also a panel? This
+> >> >> binding is not reflecting the h/w, but rather what you want for some
+> >> >> driver.
+> >> >>
+> >> >> There's only one thing here and that's an eDP panel which supports
+> >> >> backlight control via DP aux channel. You can figure all that out from
+> >> >> the panel's compatible and/or reading the EDID.
+> >> >>
+> >> >> You might also be interested in this thread:
+> >> >>
+> >> >> https://lore.kernel.org/lkml/YIKsDtjcIHGNvW0u@orome.fritz.box/
+> >> >
+> >> > I think Rajeev needs to rework everything anyway as per:
+> >> >
+> >> > https://lore.kernel.org/r/87zgxl5qar.fsf@intel.com
+> >> >
+> >> > ...but you're right that it makes sense not to model the backlight as
+> >> > a separate node in the device tree. The panel driver can handle
+> >> > setting up the backlight.
+> >> >
+> >> > -Doug
+> >>
+> >> It was not a good idea to create a separate backlight driver and use
+> >> ddc-i2c-bus to get access to DP aux. I am working to move the code
+> >> to the panel driver and to utilize the new DRM helper functions
+> >> (drm_edp_backlight_*) Lyude has added [1].
+> >>
+> >> To use these helper functions, the panel driver should have access to
+> >> the
+> >> "struct drm_dp_aux *". The simple-panel has a "ddc-i2c-bus" property
+> >> to give the panel access to the DDC bus and is currently being used to
+> >> get the EDID from the panel. Can I use the same ddc bus i2c_adapter to
+> >> get
+> >> the "struct drm_dp_aux *"?
+> >>
+> >> As per the suggestion [2], I get the "struct drm_dp_aux *" from the
+> >> i2c_adapter of ddc bus (maybe I didn't understand the suggestion
+> >> correctly),
+> >> and, it turned out, the way I have implemented is not the right way
+> >> [3].
+> >> So, I am afraid to use the same method in the panel driver.
+> >>
+> >>
+> >> [1] https://lore.kernel.org/dri-devel/871rb5bcf9.fsf@intel.com/
+> >> [2] https://www.spinics.net/lists/dri-devel/msg295429.html
+> >> [3]
+> >> https://lore.kernel.org/dri-devel/20210426111116.4lc3ekxjugjr3oho@maple.lan/
+> >
+> > So it's definitely up to maintainers, not me. ...but I guess I would
+> > have expected something like a new property called "ddc-aux-bus". Then
+> > you'd have to create a new API call called something like
+> > "of_find_ddc_aux_adapter_by_node()" that would allow you to find it.
+> >
+>
+> To implement the first suggestion, I can think of the following way
+> to get the "struct drm_dp_aux" in the panel_simple_probe function:
+>
+> - Create a new panel-simple DT property "ddc-aux-bus", a phandle to the
+> platform device that implements the AUX channel.
+>
+> - Create a global list of drm_dp_aux in drm_dp_helper.c. Initialize list
+> head
+> in drm_dp_aux_init(), add the drm_dp_aux onto the list in
+> drm_dp_aux_register().
+> Similarly, remove the drm_dp_aux from list in drm_dp_aux_unregister().
+>
+> - Create a new function of_drm_find_dp_aux_by_node() to get the expected
+> drm_dp_aux from this global list.
+>
+> Please let me know your views on this implementation.
 
-Changes in v10:
-- keep 'regulator-boot-on' property
-- updated commit message
+BTW: a bunch of discussion today on IRC:
 
-Changes in v9:
-- none
+https://people.freedesktop.org/~cbrill/dri-log/?channel=dri-devel&highlight_names=&date=2021-05-11&show_html=true
 
-Changes in v8:
-- none
-
-Changes in v7:
-- rebased on qcom/arm64-for-5.13 (with the rest of the series)
-
-Changes in v6:
-- added 'companion-hub' entry to both USB devices
-- added 'vdd-supply' also to hub@2
-
-Changes in v5:
-- patch added to the series
-
- .../boot/dts/qcom/sc7180-trogdor-lazor-r0.dts | 19 ++++++++-----------
- .../boot/dts/qcom/sc7180-trogdor-lazor-r1.dts | 11 ++++-------
- .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts | 19 ++++++++-----------
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 19 ++++++++++++++++++-
- 4 files changed, 38 insertions(+), 30 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-index 5c997cd90069..bae85f6b2bfa 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-@@ -23,17 +23,6 @@ &charger_thermal {
- 	status = "disabled";
- };
- 
--&pp3300_hub {
--	/* pp3300_l7c is used to power the USB hub */
--	/delete-property/regulator-always-on;
--	/delete-property/regulator-boot-on;
--};
--
--&pp3300_l7c {
--	regulator-always-on;
--	regulator-boot-on;
--};
--
- &sn65dsi86_out {
- 	/*
- 	 * Lane 0 was incorrectly mapped on the cable, but we've now decided
-@@ -42,3 +31,11 @@ &sn65dsi86_out {
- 	 */
- 	lane-polarities = <1 0>;
- };
-+
-+&usb_hub_2_0 {
-+	 vdd-supply = <&pp3300_l7c>;
-+};
-+
-+&usb_hub_3_0 {
-+	 vdd-supply = <&pp3300_l7c>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-index d9fbcc7bc5bd..45f014c3539d 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-@@ -23,13 +23,10 @@ &charger_thermal {
- 	status = "disabled";
- };
- 
--&pp3300_hub {
--	/* pp3300_l7c is used to power the USB hub */
--	/delete-property/regulator-always-on;
--	/delete-property/regulator-boot-on;
-+&usb_hub_2_0 {
-+	 vdd-supply = <&pp3300_l7c>;
- };
- 
--&pp3300_l7c {
--	regulator-always-on;
--	regulator-boot-on;
-+&usb_hub_3_0 {
-+	 vdd-supply = <&pp3300_l7c>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-index 2b522f9e0d8f..2f5263e3d1b9 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-@@ -42,17 +42,6 @@ &panel {
- 	compatible = "auo,b116xa01";
- };
- 
--&pp3300_hub {
--	/* pp3300_l7c is used to power the USB hub */
--	/delete-property/regulator-always-on;
--	/delete-property/regulator-boot-on;
--};
--
--&pp3300_l7c {
--	regulator-always-on;
--	regulator-boot-on;
--};
--
- &sdhc_2 {
- 	status = "okay";
- };
-@@ -61,6 +50,14 @@ &trackpad {
- 	interrupts = <58 IRQ_TYPE_EDGE_FALLING>;
- };
- 
-+&usb_hub_2_0 {
-+	 vdd-supply = <&pp3300_l7c>;
-+};
-+
-+&usb_hub_3_0 {
-+	 vdd-supply = <&pp3300_l7c>;
-+};
-+
- /* PINCTRL - modifications to sc7180-trogdor.dtsi */
- 
- &trackpad_int_1v8_odl {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 192e2e424fde..0d6a7447dc77 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -206,7 +206,6 @@ pp3300_hub: pp3300-hub {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&en_pp3300_hub>;
- 
--		regulator-always-on;
- 		regulator-boot-on;
- 
- 		vin-supply = <&pp3300_a>;
-@@ -848,6 +847,24 @@ &usb_1 {
- 
- &usb_1_dwc3 {
- 	dr_mode = "host";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	/* 2.0 hub on port 1 */
-+	usb_hub_2_0: hub@1 {
-+		compatible = "usbbda,5411";
-+		reg = <1>;
-+		vdd-supply = <&pp3300_hub>;
-+		companion-hub = <&usb_hub_3_0>;
-+	};
-+
-+	/* 3.0 hub on port 2 */
-+	usb_hub_3_0: hub@2 {
-+		compatible = "usbbda,411";
-+		reg = <2>;
-+		vdd-supply = <&pp3300_hub>;
-+		companion-hub = <&usb_hub_2_0>;
-+	};
- };
- 
- &usb_1_hsphy {
--- 
-2.31.1.607.g51e8a6a459-goog
-
+-Doug
