@@ -2,80 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28E7937EDF3
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 00:54:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A690F37EDF9
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 00:54:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1387780AbhELU5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 16:57:18 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:43654 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385242AbhELUHs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 16:07:48 -0400
-Received: by mail-ot1-f44.google.com with SMTP id u19-20020a0568302493b02902d61b0d29adso20889892ots.10;
-        Wed, 12 May 2021 13:06:39 -0700 (PDT)
+        id S1389483AbhELU5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 16:57:46 -0400
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:41872 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1385272AbhELUH6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 16:07:58 -0400
+Received: by mail-oi1-f176.google.com with SMTP id c3so23335039oic.8;
+        Wed, 12 May 2021 13:06:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=y75a+npHzYnAcEOmEtDKotRbA7WzUvRLx11YfyY+WUU=;
-        b=fOnNwwkQoz1aeXd1g78+C/sgX6prwYfmni/oxUbPW+c3nKuFAvgYzEzQ9JxLXSLdAw
-         1/NmdkTp7oO31UDiwl8cB72LBJeiisD4wQQFHgR0CyARAFWfTCEaAjl7GaSBDjAtRnGD
-         CpRrONmloydX2rCi24i3FK/3VeIKIRjdyKlMwiRJrOVyHp2QVHb4wV4W3LOFIaFj+cxd
-         289i41PI5zikr3TNZqoD5SWDSkTxK2gjOQN9G4zz6HHl9K0qgYEeCGMzCFWo6cwVnTjJ
-         YT84I7CdJ1qRPzbm+Z/NnUAX5yZwB+nSrYORhLME/Yg4EAVAdC4/o0miMYHrl/VT8E+j
-         L6NA==
-X-Gm-Message-State: AOAM532NqUXylFHyZdnOHkLOGSfY6+gDyDBs8O8J/VAXt4kw+9NZkOky
-        T5AgKLZg2IAbVturXbiQCw==
-X-Google-Smtp-Source: ABdhPJxoDGfKmXXaK6iKVaWIMgHWAwaXQ+vvdi96PtmRwBpqWzU3YEAOkWPn3koqCfhG8RemFU1aVw==
-X-Received: by 2002:a9d:614b:: with SMTP id c11mr32075996otk.59.1620849998823;
-        Wed, 12 May 2021 13:06:38 -0700 (PDT)
+        bh=oIC6fjBsBBa/9DolC8gyU2fnbDGV0M3iOztTJzuBJgE=;
+        b=CxBFzn5IoQkgQbuHlDPq70+IJ2IkIY+NT/S3u38kjoN2JAW3EyzhTBoCWmRtpTxOZY
+         MuvuXrfqWMxYjqAlfz9oh3bmVYJPVU+2h90GMdw0RKGknhXSEO2WYm/mY1u4x8qXdU1e
+         Ryki3ptA3J2t9OXpPo0oEuhWLDFsy2dmzeRGLMYar8/sKvUZCnTGnWsfJhvC3ZvmzTE3
+         y55a+wA30/HPAKiEO1qnK5ehblK3udUUKXjl0I9sxl3888Kw6ZTGfi2mXd/V1pRqWOgZ
+         FN70lrMBasHod+3GKViUgMFQ4xv0w9jzM4A7XXKIJQP7/SdYexP8iuYC5SewT7tTg27m
+         3LfA==
+X-Gm-Message-State: AOAM530FV9WYgVfVQFNxe/skssiCeyeMamfKo1ZLbUk5v5PLtgYskb5x
+        SSSUcZY6TPidpTVzraMnUQ==
+X-Google-Smtp-Source: ABdhPJxs6DaOjZ5AP9Q5L742mIrNt1lpTK8EPddVNEA2s1v1SdOWBuSFcVGkSZhJ9FtL8Un0pJqaFQ==
+X-Received: by 2002:aca:ac58:: with SMTP id v85mr27314598oie.1.1620850009660;
+        Wed, 12 May 2021 13:06:49 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id q1sm192057otc.21.2021.05.12.13.06.37
+        by smtp.gmail.com with ESMTPSA id k20sm189762otb.15.2021.05.12.13.06.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 May 2021 13:06:38 -0700 (PDT)
-Received: (nullmailer pid 2020688 invoked by uid 1000);
+        Wed, 12 May 2021 13:06:48 -0700 (PDT)
+Received: (nullmailer pid 2020685 invoked by uid 1000);
         Tue, 11 May 2021 13:40:20 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        =?utf-8?b?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
-In-Reply-To: <20210510231737.30313-9-digetx@gmail.com>
-References: <20210510231737.30313-1-digetx@gmail.com> <20210510231737.30313-9-digetx@gmail.com>
-Subject: Re: [PATCH v7 8/8] dt-bindings: clock: tegra: Convert to schema
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Arnd Bergmann <arnd@arndb.de>, Imre Kaloz <kaloz@openwrt.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Krzysztof Halasa <khalasa@piap.pl>
+In-Reply-To: <20210510213634.600866-2-linus.walleij@linaro.org>
+References: <20210510213634.600866-1-linus.walleij@linaro.org> <20210510213634.600866-2-linus.walleij@linaro.org>
+Subject: Re: [PATCH 2/3] crypto: ixp4xx: Add DT bindings
 Date:   Tue, 11 May 2021 08:40:20 -0500
-Message-Id: <1620740420.957803.2020687.nullmailer@robh.at.kernel.org>
+Message-Id: <1620740420.942104.2020684.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 May 2021 02:17:37 +0300, Dmitry Osipenko wrote:
-> Convert NVIDIA Tegra clock bindings to schema.
+On Mon, 10 May 2021 23:36:33 +0200, Linus Walleij wrote:
+> This adds device tree bindings for the ixp4xx crypto engine.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  .../bindings/clock/nvidia,tegra114-car.txt    |  63 ----------
->  .../bindings/clock/nvidia,tegra124-car.txt    | 107 ----------------
->  .../bindings/clock/nvidia,tegra124-car.yaml   | 115 ++++++++++++++++++
->  .../bindings/clock/nvidia,tegra20-car.txt     |  63 ----------
->  .../bindings/clock/nvidia,tegra20-car.yaml    |  69 +++++++++++
->  .../bindings/clock/nvidia,tegra210-car.txt    |  56 ---------
->  .../bindings/clock/nvidia,tegra30-car.txt     |  63 ----------
->  7 files changed, 184 insertions(+), 352 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra114-car.txt
->  delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra124-car.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra124-car.yaml
->  delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra20-car.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra20-car.yaml
->  delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra210-car.txt
->  delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra30-car.txt
+> Herbert, David: This can be applied separately once we are
+> happy with the bindings, alternatively it can be merged
+> with the support code into ARM SoC.
+> ---
+>  .../bindings/crypto/intel,ixp4xx-crypto.yaml  | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -84,10 +73,10 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/clock/nvidia,tegra20-car.example.dt.yaml:0:0: /example-0/usb-controller@c5004000: failed to match any schema with compatible: ['nvidia,tegra20-ehci']
-Documentation/devicetree/bindings/clock/nvidia,tegra124-car.example.dt.yaml:0:0: /example-0/usb-controller@c5004000: failed to match any schema with compatible: ['nvidia,tegra20-ehci']
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.example.dt.yaml: npe@c8006000: 'crypto' does not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
 
-See https://patchwork.ozlabs.org/patch/1476773
+See https://patchwork.ozlabs.org/patch/1476741
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
