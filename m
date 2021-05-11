@@ -2,84 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D25137B0D0
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 23:31:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF16837B0B4
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 23:21:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229970AbhEKVcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 17:32:10 -0400
-Received: from elvis.franken.de ([193.175.24.41]:50509 "EHLO elvis.franken.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229784AbhEKVcK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 May 2021 17:32:10 -0400
-Received: from uucp (helo=alpha)
-        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
-        id 1lgZy2-0004Ah-00; Tue, 11 May 2021 23:31:02 +0200
-Received: by alpha.franken.de (Postfix, from userid 1000)
-        id 5E38BC0E6B; Tue, 11 May 2021 23:13:59 +0200 (CEST)
-Date:   Tue, 11 May 2021 23:13:59 +0200
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 2/2] dt-bindings: gpio: Add devicetree binding for IDT
- 79RC32434 GPIO controller
-Message-ID: <20210511211359.GA19043@alpha.franken.de>
-References: <20210426095426.118356-1-tsbogend@alpha.franken.de>
- <20210426095426.118356-2-tsbogend@alpha.franken.de>
- <CACRpkda7n3VL-EpwdXDxt47azFo8Wkp67-urUy7--3D6TJs7iA@mail.gmail.com>
+        id S229970AbhEKVWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 17:22:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57766 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229994AbhEKVWG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 17:22:06 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1B0CC061761
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 14:20:59 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 56D03806B6;
+        Wed, 12 May 2021 09:20:55 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1620768055;
+        bh=4dX9P5KDi1fr7Qs6oEsdntuC7ZXWJh3Zpfa0sqNoOyE=;
+        h=From:To:Cc:Subject:Date;
+        b=DGwIX2QlPRWdTgox6EGCq5hGy1DXVMAVwGsn2RUVpBJ2m6SOxU/pcoYn9mTC40vPu
+         rZSRM/nAqUSOHZqt/cwm637WeBoY2B/CpXpFZfKh+MbHohLImQ1PCxAip3q+CMRqPj
+         e5zPORpqbarLcu6pmYS7CtZOkHRks53Z779oXh/lF66HyoNXC5b/c/H4FsOtwrkODL
+         YG17OaO3nK6lusWUqTe07frW4aATZZX2uLAx1pWgFivxBmPpxZzFyPu70Rba2kBFWW
+         e9jUC7A/8TCgp9nIZ3kwgpu71aFIG7jeRHcbvkqyxHiU7j3PwgLZyEBXkCu1zR9zJm
+         Hmn1dlTnLxFtA==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B609af5370000>; Wed, 12 May 2021 09:20:55 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.20])
+        by pat.atlnz.lc (Postfix) with ESMTP id 3A08513ECA6;
+        Wed, 12 May 2021 09:20:55 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id 34DA3283A61; Wed, 12 May 2021 09:20:55 +1200 (NZST)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     wsa@kernel.org, andriy.shevchenko@linux.intel.com,
+        andy.shevchenko@gmail.com, robh+dt@kernel.org, mpe@ellerman.id.au
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v3 0/4] P2040/P2041 i2c recovery erratum
+Date:   Wed, 12 May 2021 09:20:48 +1200
+Message-Id: <20210511212052.27242-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkda7n3VL-EpwdXDxt47azFo8Wkp67-urUy7--3D6TJs7iA@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=K6Jc4BeI c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=5FLXtPjwQuUA:10 a=LMdnaIF9TloyW3KOcEsA:9
+X-SEG-SpamProfiler-Score: 0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 01, 2021 at 02:13:35PM +0200, Linus Walleij wrote:
-> On Mon, Apr 26, 2021 at 11:54 AM Thomas Bogendoerfer
-> <tsbogend@alpha.franken.de> wrote:
-> 
-> > Add YAML devicetree binding for IDT 79RC32434 GPIO controller
-> >
-> > Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> > ---
-> > Changes in v4:
-> >  - renamed to idt,32434-gpio this time for real
-> 
-> Overall looks good to me.
-> 
-> > +required:
-> (...)
-> > +  - ngpios
-> 
-> Is there a *technical* reason why this is required?
-> 
-> Can't the driver just default to 32 gpios when not specified?
+The P2040/P2041 has an erratum where the i2c recovery scheme
+documented in the reference manual (and currently implemented
+in the i2c-mpc.c driver) does not work. The errata document
+provides an alternative that does work. This series implements
+that alternative and uses a property in the devicetree to
+decide when the alternative mechanism is needed.
 
-sure, I make it optional.
+Chris Packham (4):
+  dt-bindings: i2c: mpc: Add fsl,i2c-erratum-a004447 flag
+  powerpc/fsl: set fsl,i2c-erratum-a004447 flag for P2041 i2c
+    controllers
+  powerpc/fsl: set fsl,i2c-erratum-a004447 flag for P1010 i2c
+    controllers
+  i2c: mpc: implement erratum A-004447 workaround
 
-> > +  - interrupt-controller
-> > +  - "#interrupt-cells"
-> > +  - interrupts
-> 
-> Why can't interrupt support be made optional?
-> 
-> It is fine if the driver errors out if not provided, but
-> for the bindings this feels optional.
+ .../devicetree/bindings/i2c/i2c-mpc.yaml      |  7 ++
+ arch/powerpc/boot/dts/fsl/p1010si-post.dtsi   |  8 ++
+ arch/powerpc/boot/dts/fsl/p2041si-post.dtsi   | 16 ++++
+ drivers/i2c/busses/i2c-mpc.c                  | 81 ++++++++++++++++++-
+ 4 files changed, 110 insertions(+), 2 deletions(-)
 
-I'll make them optional.
+--=20
+2.31.1
 
-> Or does the thing break unless you handle the IRQs?
-
-no, they could be used just as GPIOs.
-
-Thomas.
-
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
