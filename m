@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0297837B1D2
-	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 00:52:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64EBE37B1D0
+	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 00:52:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230184AbhEKWxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 18:53:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50100 "EHLO
+        id S229980AbhEKWxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 18:53:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230186AbhEKWxp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 18:53:45 -0400
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28DD5C06138B
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 15:52:34 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id j12so10741451pgh.7
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 15:52:34 -0700 (PDT)
+        with ESMTP id S230210AbhEKWxn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 18:53:43 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85476C06174A
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 15:52:36 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id i5so12057419pgm.0
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 15:52:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=8aKnVtIxlUG/2eUQmNl0qPhaQg9l3TplAhr5B7EOd6U=;
-        b=LvzERiaiALvJFXjzftXoHUCyKmzQ4UBbwHeONAJXlRmCEFlO7I1pPQBoo51KsymSOC
-         izVUQGDqJF43p1PMQqu3RTbUEknJP2LEoPusHVkm35IFDHE1EcXzm+DDGZ9PnIg4GVln
-         ZePnFPrFMA0JsA1+JnW4vWXx0HQ5ISkwnuUXg=
+        bh=gRQceREUuiCBW1dDPT9pW8DTooXv4gDopBNig6+8fl4=;
+        b=OW/P9sC+CSrENSE0CY93ntk7hv9X6EHj0SeYCSCRFvGnpoEkq8Sew+c+2aaen4Y4K4
+         kw5ZEA8bZQEfaC22bL9WCkpgBJCw7Oh2I2KMxHBBl09OiE0h3IHk0PpfLa2rRiyKnako
+         YjWRH4n3oKTAQQHr4q8V0LQ2eu/E14u86KaOQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=8aKnVtIxlUG/2eUQmNl0qPhaQg9l3TplAhr5B7EOd6U=;
-        b=q0iDKXHJLlaESKBL+qUI7p9/x+DAPrPTD3RN4EFux5vqR543b/hB5iOYYpGi00ADeG
-         cnQYo2h5p94FremrUd/e2V0KR/PnPjQY6C9aZvyKJZkasd0hrl/etkjDuMbJzSn429Uq
-         mJTNJizitz2zDBD9+F5O/ECXidyZThns3IUz+44F2ceIF2U+f+5tA8bDm2J/iNrgy68D
-         bpi5bklPhkGSbeviHDnc2bQ38ODdx3BaS+GAwctrqq0VHpzgggtb20k+joBR0LKyrWpB
-         szgY4BqNzC3nBqUECpOjiwFX0FD6tuqIzYwq729uBZLdKLRBLlJUhn5CZ3Rd8CrsgEgj
-         JAgQ==
-X-Gm-Message-State: AOAM533h4Blf7c8LLEvyfl9xfPMhhqHSY1yMMYlCgx4UQ3jzCAT5q1Iq
-        p28acXQ1F4t6M++IJTDMlY9QTA==
-X-Google-Smtp-Source: ABdhPJzcc0HOveQxurQucFIXSEwc1uBL9OYa3E78PzbfuEgM9Oc9XcjLr/Ej3fQt4k23AWDj8Izisg==
-X-Received: by 2002:a63:540b:: with SMTP id i11mr33172485pgb.44.1620773553616;
-        Tue, 11 May 2021 15:52:33 -0700 (PDT)
+        bh=gRQceREUuiCBW1dDPT9pW8DTooXv4gDopBNig6+8fl4=;
+        b=HKzz9No1r7QeEXieEBX0mPcDWFdxDbhoUO1cDnpbOxONmJH+cYdMKoi+l20lnvxWyb
+         pDzpg5icKSTB4aB/fSZpVNYJiAuXJAL51aoi7j4DrewNgzYtO3aIEULsbf78C9FuF7Hf
+         TcYJ106OKl7DozEuMsfzsjlnxvM12Up3xIiUmEhpucdbkE7nskB73N1pg/cWBwTJmzMh
+         w7WjMOSxNM8Ztkz+6/SQprVBcYhlE1vGi7bF1bDYmHCOxSG557RjZ0EZCi1Yb6xACD30
+         SMkgZMergF/0s9qb/qJSHlMRQtfIdMm1SbZ+cmhhyHZdELCkct9QKsgabe9AE003Fkyd
+         0z/w==
+X-Gm-Message-State: AOAM5300pSunraG6dh+2WJQh1o++DCpJ3HMCTEwKDT32ns/spGN0SaXM
+        5kwkosE/pyOD/TGpxoovGFGQ8Q==
+X-Google-Smtp-Source: ABdhPJxC4sUDqeEqFhnkGv/ppoRkR1ADL9dIeJz19eEymRt580OLgyluH6yVAteZp+18x70blvmgsw==
+X-Received: by 2002:aa7:808d:0:b029:2bf:bf00:c6f6 with SMTP id v13-20020aa7808d0000b02902bfbf00c6f6mr12699793pff.64.1620773556081;
+        Tue, 11 May 2021 15:52:36 -0700 (PDT)
 Received: from localhost ([2620:15c:202:201:f1d7:673a:456e:c653])
-        by smtp.gmail.com with UTF8SMTPSA id x22sm14230968pfa.24.2021.05.11.15.52.32
+        by smtp.gmail.com with UTF8SMTPSA id h15sm14441528pfk.26.2021.05.11.15.52.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 May 2021 15:52:33 -0700 (PDT)
+        Tue, 11 May 2021 15:52:35 -0700 (PDT)
 From:   Matthias Kaehlcke <mka@chromium.org>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Alan Stern <stern@rowland.harvard.edu>,
@@ -57,10 +57,18 @@ Cc:     Michal Simek <michal.simek@xilinx.com>, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzk@kernel.org>,
         Bastien Nocera <hadess@hadess.net>,
         Matthias Kaehlcke <mka@chromium.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v10 3/5] of/platform: Add stubs for of_platform_device_create/destroy()
-Date:   Tue, 11 May 2021 15:52:21 -0700
-Message-Id: <20210511155152.v10.3.I08fd2e1c775af04f663730e9fb4d00e6bbb38541@changeid>
+        Al Cooper <alcooperx@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Christian Lamparter <chunkeey@googlemail.com>,
+        Colin Ian King <colin.king@canonical.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Vinod Koul <vkoul@kernel.org>
+Subject: [PATCH v10 4/5] usb: host: xhci-plat: Create platform device for onboard hubs in probe()
+Date:   Tue, 11 May 2021 15:52:22 -0700
+Message-Id: <20210511155152.v10.4.I7a3a7d9d2126c34079b1cab87aa0b2ec3030f9b7@changeid>
 X-Mailer: git-send-email 2.31.1.607.g51e8a6a459-goog
 In-Reply-To: <20210511225223.550762-1-mka@chromium.org>
 References: <20210511225223.550762-1-mka@chromium.org>
@@ -70,78 +78,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Code for platform_device_create() and of_platform_device_destroy() is
-only generated if CONFIG_OF_ADDRESS=y. Add stubs to avoid unresolved
-symbols when CONFIG_OF_ADDRESS is not set.
+Check during probe() if a hub supported by the onboard_usb_hub
+driver is connected to the controller. If such a hub is found
+create the corresponding platform device. This requires the
+device tree to have a node for the hub with its vendor and
+product id (which is not common for USB devices). Further the
+platform device is only created when CONFIG_USB_ONBOARD_HUB=y/m.
 
 Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-Acked-by: Rob Herring <robh@kernel.org>
 ---
 
 Changes in v10:
 - none
 
 Changes in v9:
-- added Rob's 'Acked-by' tag
+- added dependency on USB_ONBOARD_HUB (or !!USB_ONBOARD_HUB) to
+  USB_XHCI_PLATFORM
 
 Changes in v8:
-- fixed C&P error in commit message
+- none
 
 Changes in v7:
 - none
 
 Changes in v6:
+- none
+
+Changes in v5:
 - patch added to the series
 
- include/linux/of_platform.h | 22 ++++++++++++++++++----
- 1 file changed, 18 insertions(+), 4 deletions(-)
+ drivers/usb/host/Kconfig     |  1 +
+ drivers/usb/host/xhci-plat.c | 16 ++++++++++++++++
+ include/linux/usb/hcd.h      |  2 ++
+ 3 files changed, 19 insertions(+)
 
-diff --git a/include/linux/of_platform.h b/include/linux/of_platform.h
-index 84a966623e78..d15b6cd5e1c3 100644
---- a/include/linux/of_platform.h
-+++ b/include/linux/of_platform.h
-@@ -61,16 +61,18 @@ static inline struct platform_device *of_find_device_by_node(struct device_node
- }
- #endif
+diff --git a/drivers/usb/host/Kconfig b/drivers/usb/host/Kconfig
+index b94f2a070c05..da50496787fe 100644
+--- a/drivers/usb/host/Kconfig
++++ b/drivers/usb/host/Kconfig
+@@ -54,6 +54,7 @@ config USB_XHCI_PCI_RENESAS
+ config USB_XHCI_PLATFORM
+ 	tristate "Generic xHCI driver for a platform device"
+ 	select USB_XHCI_RCAR if ARCH_RENESAS
++	depends on USB_ONBOARD_HUB || !USB_ONBOARD_HUB
+ 	help
+ 	  Adds an xHCI host driver for a generic platform device, which
+ 	  provides a memory space and an irq.
+diff --git a/drivers/usb/host/xhci-plat.c b/drivers/usb/host/xhci-plat.c
+index c1edcc9b13ce..9c0fb7e8df1f 100644
+--- a/drivers/usb/host/xhci-plat.c
++++ b/drivers/usb/host/xhci-plat.c
+@@ -15,6 +15,7 @@
+ #include <linux/of.h>
+ #include <linux/of_device.h>
+ #include <linux/platform_device.h>
++#include <linux/usb/onboard_hub.h>
+ #include <linux/usb/phy.h>
+ #include <linux/slab.h>
+ #include <linux/acpi.h>
+@@ -195,6 +196,7 @@ static int xhci_plat_probe(struct platform_device *pdev)
+ 	int			ret;
+ 	int			irq;
+ 	struct xhci_plat_priv	*priv = NULL;
++	struct device_node	*np;
  
-+extern int of_platform_bus_probe(struct device_node *root,
-+				 const struct of_device_id *matches,
-+				 struct device *parent);
-+
-+#ifdef CONFIG_OF_ADDRESS
- /* Platform devices and busses creation */
- extern struct platform_device *of_platform_device_create(struct device_node *np,
- 						   const char *bus_id,
- 						   struct device *parent);
  
- extern int of_platform_device_destroy(struct device *dev, void *data);
--extern int of_platform_bus_probe(struct device_node *root,
--				 const struct of_device_id *matches,
--				 struct device *parent);
--#ifdef CONFIG_OF_ADDRESS
-+
- extern int of_platform_populate(struct device_node *root,
- 				const struct of_device_id *matches,
- 				const struct of_dev_auxdata *lookup,
-@@ -84,6 +86,18 @@ extern int devm_of_platform_populate(struct device *dev);
+ 	if (usb_disabled())
+@@ -374,6 +376,17 @@ static int xhci_plat_probe(struct platform_device *pdev)
+ 	 */
+ 	pm_runtime_forbid(&pdev->dev);
  
- extern void devm_of_platform_depopulate(struct device *dev);
- #else
-+/* Platform devices and busses creation */
-+static inline struct platform_device *of_platform_device_create(struct device_node *np,
-+								const char *bus_id,
-+								struct device *parent)
-+{
-+	return NULL;
-+}
-+static inline int of_platform_device_destroy(struct device *dev, void *data)
-+{
-+	return -ENODEV;
-+}
++	np = usb_of_get_device_node(hcd->self.root_hub, hcd->self.busnum);
++	if (np && of_is_onboard_usb_hub(np)) {
++		struct platform_device *pdev;
 +
- static inline int of_platform_populate(struct device_node *root,
- 					const struct of_device_id *matches,
- 					const struct of_dev_auxdata *lookup,
++		pdev = of_platform_device_create(np, NULL, NULL);
++		if (pdev)
++			hcd->onboard_hub_dev = &pdev->dev;
++		else
++			xhci_warn(xhci, "failed to create onboard hub platform device\n");
++	}
++
+ 	return 0;
+ 
+ 
+@@ -420,6 +433,9 @@ static int xhci_plat_remove(struct platform_device *dev)
+ 	usb_remove_hcd(hcd);
+ 	usb_put_hcd(shared_hcd);
+ 
++	if (hcd->onboard_hub_dev)
++		of_platform_device_destroy(hcd->onboard_hub_dev, NULL);
++
+ 	clk_disable_unprepare(clk);
+ 	clk_disable_unprepare(reg_clk);
+ 	usb_put_hcd(hcd);
+diff --git a/include/linux/usb/hcd.h b/include/linux/usb/hcd.h
+index 96281cd50ff6..d02a508e19b0 100644
+--- a/include/linux/usb/hcd.h
++++ b/include/linux/usb/hcd.h
+@@ -225,6 +225,8 @@ struct usb_hcd {
+ 	 * (ohci 32, uhci 1024, ehci 256/512/1024).
+ 	 */
+ 
++	struct device *onboard_hub_dev;
++
+ 	/* The HC driver's private data is stored at the end of
+ 	 * this structure.
+ 	 */
 -- 
 2.31.1.607.g51e8a6a459-goog
 
