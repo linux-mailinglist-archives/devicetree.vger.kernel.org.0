@@ -2,77 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7142937EDF4
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 00:54:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E55137EDE6
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 00:54:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1387849AbhELU5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 16:57:19 -0400
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:46943 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385245AbhELUHt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 16:07:49 -0400
-Received: by mail-oi1-f172.google.com with SMTP id x15so9629457oic.13;
-        Wed, 12 May 2021 13:06:40 -0700 (PDT)
+        id S241280AbhELU4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 16:56:03 -0400
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:33370 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1385223AbhELUH1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 16:07:27 -0400
+Received: by mail-oi1-f178.google.com with SMTP id b25so18161132oic.0;
+        Wed, 12 May 2021 13:06:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=tH0uP4kbT2K4dbMJy1WnIwOnLMaRXnLhS70byarsYPk=;
-        b=uCSFpmcpKSZ4uY+ZIu6B50OOp0SNNZfQTNCMG7zYPMtZ7G9eUeAY2HfNc4ZR4vKaxf
-         +nmvBkTTeWvkvwueGJeXque9apsvs1qgnZPEmKQmfPCHXWuP9aSm3l+nahqEjMysZT/x
-         /iZUhjiBLEc+sHiQIoq91c4t/hOZQCm543TjNi8wwcrUYD0HNMGJ1Em5/CgwYSBARcUu
-         xCqsvj48ic258Dc2yY/LPddGKNhH2SfqpIDgktq/pqqRzQFGYdmsalpDEemcNK7QPEbi
-         XM/KmR0Is/jtjUNgFe2dWTeVowY6aVHqFLWCGCE1FFeae+M3Neqw2M7bKDelU92xkiXu
-         JbOQ==
-X-Gm-Message-State: AOAM532dneiQYzZia+UG0zTBM4JUAkv89j+QdMgBaa5oREjbDg1uZTCO
-        W2vnu3KquXCERK8NN4sT/A==
-X-Google-Smtp-Source: ABdhPJx3EpAPwhZKx9aHT/jJbZuQ/7I3A6eO4fAPoiikmfxRxbhA47sWrgL/sKQCmbV/v4Qxt/qfAA==
-X-Received: by 2002:a05:6808:193:: with SMTP id w19mr10841986oic.152.1620850000411;
-        Wed, 12 May 2021 13:06:40 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=8mK8FNLcUAP6zHwFtfduF9ONl8iQuSOq8udr35xhVZw=;
+        b=rfbzN5gtwWvTTE3Nngn9kcc3WwV3oTr93yzevEWCk0Eo2HJZ2GgzKy+W7SPhyVJVfC
+         dogCc6HqQ318qgiW3qrv3T2DK762IeWBRPd0yfnuYV2Exp7DVVKNpnGfY59CvH/yKQdY
+         wRnC3+7fyvWnXQunvxbzo2uWCjq8Yn3h46NYuZzWP6URcIj/adpGGi31ou5iwwQ1bFS8
+         OepJ8Mn988uhB87MT2oGu6RCl6D88f9Fp7lq9gO+W0PBO3I3rbg+crse54re4F5TI1c4
+         LUrg/8dDSrs13VhJPH2pAVIiPQb1q8sqWzaR2LmYEXaIHmQ6XiaMV5z+iMSiHQJuTFGu
+         Vc8w==
+X-Gm-Message-State: AOAM5309vDH92N6pPyqDiH24PuUY2STfLbZVl9S26k7IBExOu7q7jeZz
+        maPMx5ddr90gwzohV0uKqw==
+X-Google-Smtp-Source: ABdhPJygkS5R5T5PEwrtsxUteg5Ksl4UaPopx1hiuVEvWf7CYPqSYko5JqMkb2MTszCKk1qkDDV6xg==
+X-Received: by 2002:aca:c449:: with SMTP id u70mr163257oif.146.1620849977312;
+        Wed, 12 May 2021 13:06:17 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h2sm217086oop.47.2021.05.12.13.06.39
+        by smtp.gmail.com with ESMTPSA id v28sm238408ood.27.2021.05.12.13.06.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 May 2021 13:06:39 -0700 (PDT)
-Received: (nullmailer pid 2460281 invoked by uid 1000);
-        Tue, 11 May 2021 19:23:38 -0000
-Date:   Tue, 11 May 2021 14:23:38 -0500
+        Wed, 12 May 2021 13:06:16 -0700 (PDT)
+Received: (nullmailer pid 2491536 invoked by uid 1000);
+        Tue, 11 May 2021 19:47:17 -0000
+Date:   Tue, 11 May 2021 14:47:17 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2] media: dt-bindings: media: renesas,isp: Add bindings
- for ISP Channel Selector
-Message-ID: <20210511192338.GA2460234@robh.at.kernel.org>
-References: <20210511142320.3463742-1-niklas.soderlund+renesas@ragnatech.se>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+        Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-iio@vger.kernel.org, Robert Yang <decatf@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        devicetree@vger.kernel.org, Hans de Goede <hdegoede@redhat.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: iio: kionix,kxcjk1013: Document
+ kionix,kx023-1025
+Message-ID: <20210511194717.GA2491222@robh.at.kernel.org>
+References: <20210511142402.4457-1-stephan@gerhold.net>
+ <20210511142402.4457-2-stephan@gerhold.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210511142320.3463742-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20210511142402.4457-2-stephan@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 May 2021 16:23:20 +0200, Niklas Söderlund wrote:
-> Add bindings for Renesas R-Car ISP Channel Selector IP. The ISP is
-> responsible for filtering the MIPI CSI-2 bus and directing the different
-> CSI-2 virtual channels to different R-Car VIN instances (DMA engines)
-> for capture.
+On Tue, 11 May 2021 16:24:00 +0200, Stephan Gerhold wrote:
+> The KX023-1025 accelerometer uses similar register bits as kxcjk1023,
+> so it can make use of the same driver. Document the new kionix,kx023-1025
+> compatible that is also supported by the kxcjk-1013 driver now.
 > 
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 > ---
-> * Changes since v1
-> - Fix order of compatible value.
-> - Use /schemas/graph.yaml#/properties/port instead of
->   /schemas/graph.yaml#/$defs/port-base for port@0.
-> - Drop status in examples.
-> ---
->  .../bindings/media/renesas,isp.yaml           | 196 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 197 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/renesas,isp.yaml
+>  .../devicetree/bindings/iio/accel/kionix,kxcjk1013.yaml          | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
