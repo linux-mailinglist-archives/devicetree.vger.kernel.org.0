@@ -2,277 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3CEE37A4DC
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 12:45:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E61B237A543
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 12:57:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231375AbhEKKqk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 06:46:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54366 "EHLO
+        id S231434AbhEKK6T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 06:58:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231359AbhEKKqi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 06:46:38 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 201DAC061574;
-        Tue, 11 May 2021 03:45:31 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id f24so29058947ejc.6;
-        Tue, 11 May 2021 03:45:31 -0700 (PDT)
+        with ESMTP id S231439AbhEKK6P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 06:58:15 -0400
+Received: from mail-ua1-x933.google.com (mail-ua1-x933.google.com [IPv6:2607:f8b0:4864:20::933])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4690C06174A
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 03:57:08 -0700 (PDT)
+Received: by mail-ua1-x933.google.com with SMTP id h1so6218156uar.0
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 03:57:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=bWKGwnwAwFRl36HwtmKxtqsTpE9XdFfKDjDcwRdKExw=;
-        b=kcEOB9++K3pe+4XTCRH3oLbORZ4nzWQ9kEQiRNJ1dW+oU2N+Sd0HaZhVwU/TBGz5S4
-         l/B+novxVhXPmgB3tRrLAU1wHlJYQyS/2zOdCO8W7KDH6eka0G2Na1Hl4BcZdVS89aXO
-         ApAhLTwP5tAGYHzByyUOBcuOvYwdbSnu3GvoQ7vmHyHzlx/u95mlmO6JjdllI8JFc2gt
-         AkPP9WH16eEvafOabigPDBNYJwpzpOxshzmUIQq3/PC3SlH5Xjj+PGNAPgwJ/g9dBnIu
-         xZfdWyiXceo3o2BxIUQBDt/98bgozRChTRJw8RQ+RoFebwqxJzf9H/2jOq+Scli7Il8c
-         fq3g==
+        bh=H3TFuIrc3Mj7EWsSB5KHDQrg/psdazR0cVvA5Agy22s=;
+        b=BI5betzphHV53YRAHo1kbf3qtN5EZ+oJQvqpn4XXUNTvjtju9UI5Wxwcu/qn0vpzMa
+         l8lD+g5mD22XYfa4O8a/DkbtdqMxftpPoCgk3EzFxlgMa9475q6tweCGnyLgcCpSu8ue
+         poRgY190B4IYUbsx23WRK7dsxuPfKqFzfOElVB1Ti0fK7UgpND6B/TIlH7Ez2Ztt/UZw
+         X9ChYwX5o5XMrZarBxHM9k9fuDXw7GeXfg0wQeftAJktbg8FdqoErJmdZxTz9ySB9ljp
+         5kzgCqLZ8a1IL5VP4fZ8V/3eoLv/D//8lDoYt4CeIJg/ADMwinFvoAgj3MdlTZUA2vJ8
+         V+KQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=bWKGwnwAwFRl36HwtmKxtqsTpE9XdFfKDjDcwRdKExw=;
-        b=PxJkiN246zvxN+oNxSWXQO5viKAvFhMGyeTCcyYoytA2zSl0Ytqbc6UCbb+os9YFA8
-         cMmx/sTb9ZxdFWJG2NvH13jLRXYiEq8VGMUplE0aOFOmPszzZWy2u34dEOJCDRtHjI+J
-         vTZR70brtkJ2YxLKm4C8SrDisriPJNlR8acy6XSQfou0/IoA2bMdtG1aF36nP5kzCVd/
-         WRp5WzwKnrSw+Bw1l8fuKhZb5ATSuNmH314THYGpz7D+2/yjh097i7+RZMZdmaQI3FWz
-         JbW8KpwDHaQ454QyWLJUj2pgXji37GCjCLfbEzJ1bpDW7nYesYA7/V+pxrYBzLOckMpx
-         k7Sw==
-X-Gm-Message-State: AOAM532fbWDehW8ebW3lQy8HK1wo4tN7YfqJ10nC+WrCO1yUHm6NiCsq
-        2NW8z/uRv37hRR4dFeOcpZjM7ORFBa2WHs5FTCs=
-X-Google-Smtp-Source: ABdhPJxl6p2gQdPm8BORwq0bVwzWhMQQLIiSAKvtPX270GOkf816VrXHxAerJtpe1JXpnG/MqO4mXszAThlhMFebQmk=
-X-Received: by 2002:a17:906:7ac9:: with SMTP id k9mr31528167ejo.229.1620729929659;
- Tue, 11 May 2021 03:45:29 -0700 (PDT)
+        bh=H3TFuIrc3Mj7EWsSB5KHDQrg/psdazR0cVvA5Agy22s=;
+        b=TvLmd9lsyMp44hJflHjCkSG2r0AIvb9p8RSiZkKdtmHdCEqgj04iX070D8SYV9dcw3
+         QZLD/NJtAMz+XromhK35j6hOEhd7DiAKVuY/PLIoWm/t7GGDL57XdavBci6YyYuNDDH1
+         +0o11IuAfz5sL3yvKAnLz5xFJcyuwsf61bnjBeGj8Sy654XEp89sG2XldItd3L4WV9hl
+         1lcqHTtDsjocH/ocJXe3O79PBw7xMKnUg65Xtwfo1R5twJ+uczN44lj+m0bzN1CZmLtR
+         1HJHff7G+eGJRxgsrIDkP7zu8+6ha97vvjYTyDItyAAYLnXlqosMpzkvEukBrzKZxnFl
+         6UzQ==
+X-Gm-Message-State: AOAM530jqYjSrQnEvOBGKDM5SzGL+rYHhNKTkp0VsHsHdkWEyrxPQfds
+        aOGtYRlg9QJgeNi8z36bH5cjX7151vHXgzLHDwZLjA==
+X-Google-Smtp-Source: ABdhPJwynumHCSzbxs9fEYhSTsTQNyquQmA9nby0MfgarYqJoMGRF7eJ8B5GdcKLxBd8RzpG4b/jdGZAXltAK2YZE4E=
+X-Received: by 2002:ab0:7002:: with SMTP id k2mr25127013ual.104.1620730627962;
+ Tue, 11 May 2021 03:57:07 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210406013344.124255-1-aford173@gmail.com> <20210511024604.GE3425@dragon>
-In-Reply-To: <20210511024604.GE3425@dragon>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Tue, 11 May 2021 05:45:17 -0500
-Message-ID: <CAHCN7xLFpL=9BF9M5gUA6sMhc2ZZMNz+GP0OLmLfpJAWdD7W-w@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: imx8mn: Add spba1 bus
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20210429081151.17558-1-cl@rock-chips.com> <20210429081151.17558-4-cl@rock-chips.com>
+In-Reply-To: <20210429081151.17558-4-cl@rock-chips.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 11 May 2021 12:56:29 +0200
+Message-ID: <CAPDyKFr3cpARwxZPUfnFfJT-=UMynUNK-Jb0NLNJG=k9O-=R9g@mail.gmail.com>
+Subject: Re: [PATCH v4 03/10] dt-bindings: mmc: rockchip-dw-mshc: add
+ description for rk3568
+To:     cl@rock-chips.com
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Chen-Yu Tsai <wens@csie.org>, uwe@kleine-koenig.org,
+        mail@david-bauer.net, Johan Jonker <jbx6244@gmail.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        jensenhuang@friendlyarm.com,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        cnsztl@gmail.com, DTML <devicetree@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-serial@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Jianqun Xu <jay.xu@rock-chips.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        David Wu <david.wu@rock-chips.com>,
+        zhangqing <zhangqing@rock-chips.com>,
+        Tao Huang <huangtao@rock-chips.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jamie Iles <jamie@jamieiles.com>,
+        linux-watchdog@vger.kernel.org, Marc Zyngier <maz@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 10, 2021 at 9:46 PM Shawn Guo <shawnguo@kernel.org> wrote:
+On Thu, 29 Apr 2021 at 10:12, <cl@rock-chips.com> wrote:
 >
-> On Mon, Apr 05, 2021 at 08:33:42PM -0500, Adam Ford wrote:
-> > The i.MX8MN has an SPBA bus which covers much of the audio, but
-> > there is a second SPBA bus which covers many of the serial interfaces
-> > like SPI and UARTs currently missing from the device tree. The reference
-> > manual calls the bus handling the audio peripherals SPBA2, and the bus
-> > handling the serial peripherals is called SPBA1.
-> >
-> > Rename the existing spba bus to spba2 and add spba1.
-> >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> > index 4dac4da38f4c..e961acd237a8 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> > @@ -255,7 +255,7 @@ aips1: bus@30000000 {
-> >                       #size-cells = <1>;
-> >                       ranges;
-> >
-> > -                     spba: spba-bus@30000000 {
-> > +                     spba2: spba-bus@30000000 {
-> >                               compatible = "fsl,spba-bus", "simple-bus";
+> From: Liang Chen <cl@rock-chips.com>
 >
-> Just noticed that "fsl,spba-bus" is undocumented, no?
-
-I attempted to push the bindings, and I was told it was applied, but
-when I asked where the bindings were applied I never got a response -
-[1].
-
-Do you want me to resend the bindings?
-
+> add "rockchip,rk3568-dw-mshc", "rockchip,rk3288-dw-mshc" for mmc nodes on
+> a rk3568 platform to rockchip-dw-mshc.yaml.
 >
-> Also may I ask if you have a real use case for this bus node?
+> Signed-off-by: Liang Chen <cl@rock-chips.com>
 
-The reference manual shows the SPBA bus tells the DMA controller which
-peripherals are associated with it.  Nearly all the i.MX boards use
-this.  The boards I support have Bluetooth devices connected to a UART
-running high speeds, and if the DMA driver isn't loaded, I can see a
-performance change.  In fact, if the DMA firmware isn't loaded, I
-often get transfer errors.
+Applied for next (and by amending the commit message according to
+Rob's suggestion), thanks!
 
-adam
+Kind regards
+Uffe
 
-[1] - https://lore.kernel.org/linux-devicetree/CAHCN7x+om4W5jqnuAW4-nMkZLc5nrYu7NUsbM36r0wyFSYa4-g@mail.gmail.com/T/
 
+> ---
+>  .../devicetree/bindings/mmc/rockchip-dw-mshc.yaml        | 9 +--------
+>  1 file changed, 1 insertion(+), 8 deletions(-)
 >
-> Shawn
+> diff --git a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
+> index 3762f1c8de96..eaa3b0ef24f6 100644
+> --- a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
+> @@ -29,21 +29,14 @@ properties:
+>        - const: rockchip,rk3288-dw-mshc
+>        - items:
+>            - enum:
+> -            # for Rockchip PX30
+>                - rockchip,px30-dw-mshc
+> -            # for Rockchip RK3036
+>                - rockchip,rk3036-dw-mshc
+> -            # for Rockchip RK322x
+>                - rockchip,rk3228-dw-mshc
+> -            # for Rockchip RK3308
+>                - rockchip,rk3308-dw-mshc
+> -            # for Rockchip RK3328
+>                - rockchip,rk3328-dw-mshc
+> -            # for Rockchip RK3368
+>                - rockchip,rk3368-dw-mshc
+> -            # for Rockchip RK3399
+>                - rockchip,rk3399-dw-mshc
+> -            # for Rockchip RV1108
+> +              - rockchip,rk3568-dw-mshc
+>                - rockchip,rv1108-dw-mshc
+>            - const: rockchip,rk3288-dw-mshc
 >
-> >                               #address-cells = <1>;
-> >                               #size-cells = <1>;
-> > @@ -681,80 +681,88 @@ aips3: bus@30800000 {
-> >                       #size-cells = <1>;
-> >                       ranges;
-> >
-> > -                     ecspi1: spi@30820000 {
-> > -                             compatible = "fsl,imx8mn-ecspi", "fsl,imx51-ecspi";
-> > +                     spba1: spba-bus@30800000 {
-> > +                             compatible = "fsl,spba-bus", "simple-bus";
-> >                               #address-cells = <1>;
-> > -                             #size-cells = <0>;
-> > -                             reg = <0x30820000 0x10000>;
-> > -                             interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-> > -                             clocks = <&clk IMX8MN_CLK_ECSPI1_ROOT>,
-> > -                                      <&clk IMX8MN_CLK_ECSPI1_ROOT>;
-> > -                             clock-names = "ipg", "per";
-> > -                             dmas = <&sdma1 0 7 1>, <&sdma1 1 7 2>;
-> > -                             dma-names = "rx", "tx";
-> > -                             status = "disabled";
-> > -                     };
-> > +                             #size-cells = <1>;
-> > +                             reg = <0x30800000 0x100000>;
-> > +                             ranges;
-> >
-> > -                     ecspi2: spi@30830000 {
-> > -                             compatible = "fsl,imx8mn-ecspi", "fsl,imx51-ecspi";
-> > -                             #address-cells = <1>;
-> > -                             #size-cells = <0>;
-> > -                             reg = <0x30830000 0x10000>;
-> > -                             interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
-> > -                             clocks = <&clk IMX8MN_CLK_ECSPI2_ROOT>,
-> > -                                      <&clk IMX8MN_CLK_ECSPI2_ROOT>;
-> > -                             clock-names = "ipg", "per";
-> > -                             dmas = <&sdma1 2 7 1>, <&sdma1 3 7 2>;
-> > -                             dma-names = "rx", "tx";
-> > -                             status = "disabled";
-> > -                     };
-> > +                             ecspi1: spi@30820000 {
-> > +                                     compatible = "fsl,imx8mn-ecspi", "fsl,imx51-ecspi";
-> > +                                     #address-cells = <1>;
-> > +                                     #size-cells = <0>;
-> > +                                     reg = <0x30820000 0x10000>;
-> > +                                     interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-> > +                                     clocks = <&clk IMX8MN_CLK_ECSPI1_ROOT>,
-> > +                                              <&clk IMX8MN_CLK_ECSPI1_ROOT>;
-> > +                                     clock-names = "ipg", "per";
-> > +                                     dmas = <&sdma1 0 7 1>, <&sdma1 1 7 2>;
-> > +                                     dma-names = "rx", "tx";
-> > +                                     status = "disabled";
-> > +                             };
-> >
-> > -                     ecspi3: spi@30840000 {
-> > -                             compatible = "fsl,imx8mn-ecspi", "fsl,imx51-ecspi";
-> > -                             #address-cells = <1>;
-> > -                             #size-cells = <0>;
-> > -                             reg = <0x30840000 0x10000>;
-> > -                             interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-> > -                             clocks = <&clk IMX8MN_CLK_ECSPI3_ROOT>,
-> > -                                      <&clk IMX8MN_CLK_ECSPI3_ROOT>;
-> > -                             clock-names = "ipg", "per";
-> > -                             dmas = <&sdma1 4 7 1>, <&sdma1 5 7 2>;
-> > -                             dma-names = "rx", "tx";
-> > -                             status = "disabled";
-> > -                     };
-> > +                             ecspi2: spi@30830000 {
-> > +                                     compatible = "fsl,imx8mn-ecspi", "fsl,imx51-ecspi";
-> > +                                     #address-cells = <1>;
-> > +                                     #size-cells = <0>;
-> > +                                     reg = <0x30830000 0x10000>;
-> > +                                     interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
-> > +                                     clocks = <&clk IMX8MN_CLK_ECSPI2_ROOT>,
-> > +                                              <&clk IMX8MN_CLK_ECSPI2_ROOT>;
-> > +                                     clock-names = "ipg", "per";
-> > +                                     dmas = <&sdma1 2 7 1>, <&sdma1 3 7 2>;
-> > +                                     dma-names = "rx", "tx";
-> > +                                     status = "disabled";
-> > +                             };
-> >
-> > -                     uart1: serial@30860000 {
-> > -                             compatible = "fsl,imx8mn-uart", "fsl,imx6q-uart";
-> > -                             reg = <0x30860000 0x10000>;
-> > -                             interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-> > -                             clocks = <&clk IMX8MN_CLK_UART1_ROOT>,
-> > -                                      <&clk IMX8MN_CLK_UART1_ROOT>;
-> > -                             clock-names = "ipg", "per";
-> > -                             dmas = <&sdma1 22 4 0>, <&sdma1 23 4 0>;
-> > -                             dma-names = "rx", "tx";
-> > -                             status = "disabled";
-> > -                     };
-> > +                             ecspi3: spi@30840000 {
-> > +                                     compatible = "fsl,imx8mn-ecspi", "fsl,imx51-ecspi";
-> > +                                     #address-cells = <1>;
-> > +                                     #size-cells = <0>;
-> > +                                     reg = <0x30840000 0x10000>;
-> > +                                     interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-> > +                                     clocks = <&clk IMX8MN_CLK_ECSPI3_ROOT>,
-> > +                                              <&clk IMX8MN_CLK_ECSPI3_ROOT>;
-> > +                                     clock-names = "ipg", "per";
-> > +                                     dmas = <&sdma1 4 7 1>, <&sdma1 5 7 2>;
-> > +                                     dma-names = "rx", "tx";
-> > +                                     status = "disabled";
-> > +                             };
-> >
-> > -                     uart3: serial@30880000 {
-> > -                             compatible = "fsl,imx8mn-uart", "fsl,imx6q-uart";
-> > -                             reg = <0x30880000 0x10000>;
-> > -                             interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
-> > -                             clocks = <&clk IMX8MN_CLK_UART3_ROOT>,
-> > -                                      <&clk IMX8MN_CLK_UART3_ROOT>;
-> > -                             clock-names = "ipg", "per";
-> > -                             dmas = <&sdma1 26 4 0>, <&sdma1 27 4 0>;
-> > -                             dma-names = "rx", "tx";
-> > -                             status = "disabled";
-> > -                     };
-> > +                             uart1: serial@30860000 {
-> > +                                     compatible = "fsl,imx8mn-uart", "fsl,imx6q-uart";
-> > +                                     reg = <0x30860000 0x10000>;
-> > +                                     interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-> > +                                     clocks = <&clk IMX8MN_CLK_UART1_ROOT>,
-> > +                                              <&clk IMX8MN_CLK_UART1_ROOT>;
-> > +                                     clock-names = "ipg", "per";
-> > +                                     dmas = <&sdma1 22 4 0>, <&sdma1 23 4 0>;
-> > +                                     dma-names = "rx", "tx";
-> > +                                     status = "disabled";
-> > +                             };
-> >
-> > -                     uart2: serial@30890000 {
-> > -                             compatible = "fsl,imx8mn-uart", "fsl,imx6q-uart";
-> > -                             reg = <0x30890000 0x10000>;
-> > -                             interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
-> > -                             clocks = <&clk IMX8MN_CLK_UART2_ROOT>,
-> > -                                      <&clk IMX8MN_CLK_UART2_ROOT>;
-> > -                             clock-names = "ipg", "per";
-> > -                             status = "disabled";
-> > +                             uart3: serial@30880000 {
-> > +                                     compatible = "fsl,imx8mn-uart", "fsl,imx6q-uart";
-> > +                                     reg = <0x30880000 0x10000>;
-> > +                                     interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
-> > +                                     clocks = <&clk IMX8MN_CLK_UART3_ROOT>,
-> > +                                              <&clk IMX8MN_CLK_UART3_ROOT>;
-> > +                                     clock-names = "ipg", "per";
-> > +                                     dmas = <&sdma1 26 4 0>, <&sdma1 27 4 0>;
-> > +                                     dma-names = "rx", "tx";
-> > +                                     status = "disabled";
-> > +                             };
-> > +
-> > +                             uart2: serial@30890000 {
-> > +                                     compatible = "fsl,imx8mn-uart", "fsl,imx6q-uart";
-> > +                                     reg = <0x30890000 0x10000>;
-> > +                                     interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
-> > +                                     clocks = <&clk IMX8MN_CLK_UART2_ROOT>,
-> > +                                              <&clk IMX8MN_CLK_UART2_ROOT>;
-> > +                                     clock-names = "ipg", "per";
-> > +                                     status = "disabled";
-> > +                             };
-> >                       };
-> >
-> >                       crypto: crypto@30900000 {
-> > --
-> > 2.25.1
-> >
+> --
+> 2.17.1
+>
+>
+>
