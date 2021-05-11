@@ -2,233 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D907537AC7E
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 18:54:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2492737AC88
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 18:59:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231352AbhEKQ4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 12:56:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53864 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230315AbhEKQ4D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 12:56:03 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E2E1C061574
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 09:54:56 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 82-20020a1c01550000b0290142562ff7c9so1612812wmb.3
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 09:54:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=PAGZXasHuGX2gUXUoo6CURCa+Aksr5PU0wV10L4+JjE=;
-        b=lzghGyHoEDnwLxVF+qCG3LJbzpUtcve8nd0UczDGejPM9KkJa/4tPfD4hE2Or7jV+z
-         xkgqRlRaBX7PPjZSmchBPqwNo7IEPAoZkuRvlL+GwRLtSV6TAoNQ4XMa7xpNjM1P/4VR
-         81L+czMTFjkrTO9LOsFaUWE6GapIMssohkEOaDv+nrX9urhlD27NAFPgGWtRNGMHtarc
-         B6Arp02opLevpvwS7zTakhLqOy/LnsBJd4h4/uhCntkdNp+hlFJgFIYQLQ9E4sG5J2To
-         eGWCUde4a54y9g+IVFD0uIEhSOJ6gR5mfIkPsvphjeH/Hf7Xk3wWvGF9KsruenFvz11b
-         Ltyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=PAGZXasHuGX2gUXUoo6CURCa+Aksr5PU0wV10L4+JjE=;
-        b=lsOrKcd/QgqHJ2V9GW3Rw83mD9jl3DbF1wr/EYe3jG6WfumiNbbxfLzzNmwEfewyRD
-         uiWm9fshOZA4h+p9eYtfxBExOqT6yYL/d0m9/0Au/4Tera9/3tr0svjEKHPFGajcDYfq
-         A4h6KY9K3Mq76HH5b9qQTNYuUoWc+dPxXm5CRXYOm8/YNNfspqoo2EgLeaoBrjqbZ36B
-         dkotvmdLfKIG99uFQC3Bh/9I6Y8bYVkZkLN5MiKSRga+pJFFc7OfSeXrgwmlVoU1SxkB
-         fKBOVgNZOCQh0hMiM/w0VF3pSFVkDaDOucCWqU/cR3sEwrjLCqLn8pMyzlaQADHIZljk
-         xx1Q==
-X-Gm-Message-State: AOAM530GcbCNpCwky+0YDe80R9MzhhqZiNeVeF2Zp+Jf2+h9Pu313b7u
-        lWvFkE11Uq0Af0MxrGctMhP3fedj3PZO046L
-X-Google-Smtp-Source: ABdhPJzzKqzK9HxYAlauFFN8vJlMS15p65DZBLSWNrUs/Q0UWnsCsJf0lv70Q32eWGYnF9gNp9pVfg==
-X-Received: by 2002:a05:600c:4ecb:: with SMTP id g11mr4335105wmq.172.1620752095184;
-        Tue, 11 May 2021 09:54:55 -0700 (PDT)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id j7sm24187366wmi.21.2021.05.11.09.54.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 May 2021 09:54:54 -0700 (PDT)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH] dt-bindings: display: convert faraday,tve200 to YAML
-Date:   Tue, 11 May 2021 16:54:48 +0000
-Message-Id: <20210511165448.422987-1-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+        id S231379AbhEKRA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 13:00:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34766 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231230AbhEKRA5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 May 2021 13:00:57 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7A7C1617C9;
+        Tue, 11 May 2021 16:59:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1620752390;
+        bh=fIaiKncbOhF42NMcvb4keKbwIafRTHDcsfrQf6pI4Zc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=iSOZZjkLk1XC2l7Ax+Cejz3YlYEvxypiYQEMM1+doGiT2tjeA46AqiAH1no71ZxgU
+         aXMplkqs+teBTIiQ7yV4cSjsEPNT7mJuMFqsvX2jG1n6qDgLAR0rDicrYsKJVFZ7ow
+         eunzD+6ugHMcpFbv7t22K3drcWLFU05L6+C7L0qS/PBtHlfmbtHsBtmJ910yJmse60
+         n45dphqcT2+6qZ8D9VKeKoPOySfD5uZK6qjZ7NqvHs0s33ebXyBQO6hud9rZKCGHUz
+         C0pmR7VGDAoLWT4zyo5RfVVn5rRJAlS0HlyLulgaVqJULDOBhCBI/fNBwxUvr+1QwZ
+         XICr7CfLBDaJg==
+Received: by mail-ej1-f45.google.com with SMTP id b25so30763926eju.5;
+        Tue, 11 May 2021 09:59:50 -0700 (PDT)
+X-Gm-Message-State: AOAM533+E9NQ+8c3t4NhfWOArIybY8Fcbnaysl23ciaPLUcfwpsKFg3s
+        IfiTg+Pc6y4OfBs7bjn/dSBsdPqSuN6NAgpQsQ==
+X-Google-Smtp-Source: ABdhPJxp5uMHxFRYAjGBeRPy0112+HQl4dnKPgPi5HnV7AMeIGK9ib7Kgyb4Krz215eGf9u0Uv0O15l+sUz8XH7qDeI=
+X-Received: by 2002:a17:906:b0cb:: with SMTP id bk11mr33264259ejb.310.1620752388961;
+ Tue, 11 May 2021 09:59:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210429041641.11077-1-rex-bc.chen@mediatek.com> <20210429041641.11077-4-rex-bc.chen@mediatek.com>
+In-Reply-To: <20210429041641.11077-4-rex-bc.chen@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Wed, 12 May 2021 00:59:37 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_94qU7Qm8yLjKOypTAP8m2yT27n2xainc70=buMCjMTcg@mail.gmail.com>
+Message-ID: <CAAOTY_94qU7Qm8yLjKOypTAP8m2yT27n2xainc70=buMCjMTcg@mail.gmail.com>
+Subject: Re: [v3 RESEND,PATCH 3/3] drm/mediatek: dpi: add bus format negotiation
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Jitao Shi <jitao.shi@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Converts display/faraday,tve200.txt to yaml.
+Hi, Rex:
 
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
- .../bindings/display/faraday,tve200.txt       | 54 -----------
- .../bindings/display/faraday,tve200.yaml      | 92 +++++++++++++++++++
- 2 files changed, 92 insertions(+), 54 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/faraday,tve200.txt
- create mode 100644 Documentation/devicetree/bindings/display/faraday,tve200.yaml
+Rex-BC Chen <rex-bc.chen@mediatek.com> =E6=96=BC 2021=E5=B9=B44=E6=9C=8829=
+=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=8812:16=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> Add the atomic_get_output_bus_fmts, atomic_get_input_bus_fmts to negotiat=
+e
+> the possible output and input formats for the current mode and monitor,
+> and use the negotiated formats in a basic atomic_check callback.
+>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_dpi.c | 92 ++++++++++++++++++++++++++++--
+>  1 file changed, 87 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediate=
+k/mtk_dpi.c
+> index c548780dd3a5..8822d9448ae8 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> @@ -536,6 +536,87 @@ static int mtk_dpi_set_display_mode(struct mtk_dpi *=
+dpi,
+>         return 0;
+>  }
+>
+> +#define MAX_OUTPUT_SEL_FORMATS 2
+> +
+> +static u32 *mtk_dpi_bridge_atomic_get_output_bus_fmts(struct drm_bridge =
+*bridge,
+> +                                       struct drm_bridge_state *bridge_s=
+tate,
+> +                                       struct drm_crtc_state *crtc_state=
+,
+> +                                       struct drm_connector_state *conn_=
+state,
+> +                                       unsigned int *num_output_fmts)
+> +{
+> +       u32 *output_fmts;
+> +       struct mtk_dpi *dpi =3D bridge_to_dpi(bridge);
+> +
+> +       *num_output_fmts =3D 0;
+> +
+> +       output_fmts =3D kcalloc(MAX_OUTPUT_SEL_FORMATS, sizeof(*output_fm=
+ts),
+> +                             GFP_KERNEL);
+> +       if (!output_fmts)
+> +               return NULL;
+> +
+> +       /* Default 8bit RGB fallback */
+> +       if (dpi->conf->dual_edge) {
+> +               output_fmts[0] =3D  MEDIA_BUS_FMT_RGB888_2X12_LE;
+> +               output_fmts[1] =3D  MEDIA_BUS_FMT_RGB888_2X12_BE;
+> +               *num_output_fmts =3D 2;
+> +       } else {
+> +               output_fmts[0] =3D  MEDIA_BUS_FMT_RGB888_1X24;
+> +               *num_output_fmts =3D 1;
+> +       }
+> +
+> +       return output_fmts;
+> +}
+> +
+> +#define MAX_INPUT_SEL_FORMATS  1
+> +
+> +static u32 *mtk_dpi_bridge_atomic_get_input_bus_fmts(struct drm_bridge *=
+bridge,
+> +                                       struct drm_bridge_state *bridge_s=
+tate,
+> +                                       struct drm_crtc_state *crtc_state=
+,
+> +                                       struct drm_connector_state *conn_=
+state,
+> +                                       u32 output_fmt,
+> +                                       unsigned int *num_input_fmts)
+> +{
+> +       u32 *input_fmts;
+> +
+> +       *num_input_fmts =3D 0;
+> +
+> +       input_fmts =3D kcalloc(MAX_INPUT_SEL_FORMATS, sizeof(*input_fmts)=
+,
+> +                            GFP_KERNEL);
+> +       if (!input_fmts)
+> +               return NULL;
+> +
+> +       *num_input_fmts =3D 1;
+> +       input_fmts[0] =3D MEDIA_BUS_FMT_RGB888_1X24;
+> +
+> +       return input_fmts;
+> +}
+> +
+> +static int mtk_dpi_bridge_atomic_check(struct drm_bridge *bridge,
+> +                                      struct drm_bridge_state *bridge_st=
+ate,
+> +                                      struct drm_crtc_state *crtc_state,
+> +                                      struct drm_connector_state *conn_s=
+tate)
+> +{
+> +       struct mtk_dpi *dpi =3D bridge->driver_private;
+> +       unsigned int out_bus_format;
+> +
+> +       out_bus_format =3D bridge_state->output_bus_cfg.format;
+> +
+> +       dev_dbg(dpi->dev, "input format 0x%04x, output format 0x%04x\n",
+> +               bridge_state->input_bus_cfg.format,
+> +               bridge_state->output_bus_cfg.format);
+> +
+> +       dpi->ddr_edge_sel =3D (out_bus_format =3D=3D MEDIA_BUS_FMT_RGB888=
+_2X12_LE) ?
+> +                               true : false;
 
-diff --git a/Documentation/devicetree/bindings/display/faraday,tve200.txt b/Documentation/devicetree/bindings/display/faraday,tve200.txt
-deleted file mode 100644
-index 82e3bc0b7485..000000000000
---- a/Documentation/devicetree/bindings/display/faraday,tve200.txt
-+++ /dev/null
-@@ -1,54 +0,0 @@
--* Faraday TV Encoder TVE200
--
--Required properties:
--
--- compatible: must be one of:
--	"faraday,tve200"
--	"cortina,gemini-tvc", "faraday,tve200"
--
--- reg: base address and size of the control registers block
--
--- interrupts: contains an interrupt specifier for the interrupt
--	line from the TVE200
--
--- clock-names: should contain "PCLK" for the clock line clocking the
--	silicon and "TVE" for the 27MHz clock to the video driver
--
--- clocks: contains phandle and clock specifier pairs for the entries
--	in the clock-names property. See
--	Documentation/devicetree/bindings/clock/clock-bindings.txt
--
--Optional properties:
--
--- resets: contains the reset line phandle for the block
--
--Required sub-nodes:
--
--- port: describes LCD panel signals, following the common binding
--	for video transmitter interfaces; see
--	Documentation/devicetree/bindings/media/video-interfaces.txt
--	This port should have the properties:
--	reg = <0>;
--	It should have one endpoint connected to a remote endpoint where
--	the display is connected.
--
--Example:
--
--display-controller@6a000000 {
--	#address-cells = <1>;
--	#size-cells = <0>;
--	compatible = "faraday,tve200";
--	reg = <0x6a000000 0x1000>;
--	interrupts = <13 IRQ_TYPE_EDGE_RISING>;
--	resets = <&syscon GEMINI_RESET_TVC>;
--	clocks = <&syscon GEMINI_CLK_GATE_TVC>,
--		 <&syscon GEMINI_CLK_TVC>;
--	clock-names = "PCLK", "TVE";
--
--	port@0 {
--		reg = <0>;
--		display_out: endpoint {
--			remote-endpoint = <&panel_in>;
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/display/faraday,tve200.yaml b/Documentation/devicetree/bindings/display/faraday,tve200.yaml
-new file mode 100644
-index 000000000000..3ab51e7e72af
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/faraday,tve200.yaml
-@@ -0,0 +1,92 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/faraday,tve200.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Faraday TV Encoder TVE200
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: faraday,tve200
-+      - items:
-+          - const: cortina,gemini-tvc
-+          - const: faraday,tve200
-+
-+  reg:
-+    minItems: 1
-+
-+  interrupts:
-+    minItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: PCLK
-+      - const: TVE
-+
-+  clocks:
-+    minItems: 2
-+
-+  resets:
-+    minItems: 1
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "^port@[0-9]+$":
-+    type: object
-+    description: describes LCD panel signals, following the common binding
-+      for video transmitter interfaces; see
-+      Documentation/devicetree/bindings/media/video-interfaces.txt
-+      It should have one endpoint connected to a remote endpoint where
-+      the display is connected.
-+
-+    properties:
-+      reg:
-+        const: 0
-+
-+    required:
-+      - reg
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clock-names
-+  - clocks
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/cortina,gemini-clock.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/reset/cortina,gemini-reset.h>
-+    display-controller@6a000000 {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      compatible = "faraday,tve200";
-+      reg = <0x6a000000 0x1000>;
-+      interrupts = <13 IRQ_TYPE_EDGE_RISING>;
-+      resets = <&syscon GEMINI_RESET_TVC>;
-+      clocks = <&syscon GEMINI_CLK_GATE_TVC>,
-+               <&syscon GEMINI_CLK_TVC>;
-+      clock-names = "PCLK", "TVE";
-+
-+      port@0 {
-+        reg = <0>;
-+        display_out: endpoint {
-+          remote-endpoint = <&panel_in>;
-+        };
-+      };
-+    };
--- 
-2.26.3
+I would like to keep the out_bus_format rather than keep ddr_edge_sel,
+and in mtk_dpi_dual_edge() use dpi->out_bus_format to decide edge
+selection.
 
+Regards,
+Chun-Kuang.
+
+> +
+> +       dpi->bit_num =3D MTK_DPI_OUT_BIT_NUM_8BITS;
+> +       dpi->channel_swap =3D MTK_DPI_OUT_CHANNEL_SWAP_RGB;
+> +       dpi->yc_map =3D MTK_DPI_OUT_YC_MAP_RGB;
+> +       dpi->color_format =3D MTK_DPI_COLOR_FORMAT_RGB;
+> +
+> +       return 0;
+> +}
+> +
+>  static int mtk_dpi_bridge_attach(struct drm_bridge *bridge,
+>                                  enum drm_bridge_attach_flags flags)
+>  {
+>
+> @@ -574,6 +655,12 @@ static const struct drm_bridge_funcs mtk_dpi_bridge_=
+funcs =3D {
+>         .mode_set =3D mtk_dpi_bridge_mode_set,
+>         .disable =3D mtk_dpi_bridge_disable,
+>         .enable =3D mtk_dpi_bridge_enable,
+> +       .atomic_check =3D mtk_dpi_bridge_atomic_check,
+> +       .atomic_get_output_bus_fmts =3D mtk_dpi_bridge_atomic_get_output_=
+bus_fmts,
+> +       .atomic_get_input_bus_fmts =3D mtk_dpi_bridge_atomic_get_input_bu=
+s_fmts,
+> +       .atomic_duplicate_state =3D drm_atomic_helper_bridge_duplicate_st=
+ate,
+> +       .atomic_destroy_state =3D drm_atomic_helper_bridge_destroy_state,
+> +       .atomic_reset =3D drm_atomic_helper_bridge_reset,
+>  };
+>
+>  void mtk_dpi_start(struct device *dev)
+> @@ -620,11 +707,6 @@ static int mtk_dpi_bind(struct device *dev, struct d=
+evice *master, void *data)
+>         }
+>         drm_connector_attach_encoder(dpi->connector, &dpi->encoder);
+>
+> -       dpi->bit_num =3D MTK_DPI_OUT_BIT_NUM_8BITS;
+> -       dpi->channel_swap =3D MTK_DPI_OUT_CHANNEL_SWAP_RGB;
+> -       dpi->yc_map =3D MTK_DPI_OUT_YC_MAP_RGB;
+> -       dpi->color_format =3D MTK_DPI_COLOR_FORMAT_RGB;
+> -
+>         return 0;
+>
+>  err_cleanup:
+> --
+> 2.18.0
+>
