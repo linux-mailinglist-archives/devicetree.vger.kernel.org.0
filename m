@@ -2,65 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AAE8737B086
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 23:07:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D25137B0D0
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 23:31:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230130AbhEKVIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 17:08:52 -0400
-Received: from 82-65-109-163.subs.proxad.net ([82.65.109.163]:38248 "EHLO
-        luna.linkmauve.fr" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229925AbhEKVIs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 17:08:48 -0400
-Received: by luna.linkmauve.fr (Postfix, from userid 1000)
-        id 01046F4063C; Tue, 11 May 2021 23:07:34 +0200 (CEST)
-From:   Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-To:     Arnd Bergmann <arnd@arndb.de>,
-        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.ne@posteo.net>,
-        linux-kernel@vger.kernel.org
-Cc:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
-        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        id S229970AbhEKVcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 17:32:10 -0400
+Received: from elvis.franken.de ([193.175.24.41]:50509 "EHLO elvis.franken.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229784AbhEKVcK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 May 2021 17:32:10 -0400
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1lgZy2-0004Ah-00; Tue, 11 May 2021 23:31:02 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id 5E38BC0E6B; Tue, 11 May 2021 23:13:59 +0200 (CEST)
+Date:   Tue, 11 May 2021 23:13:59 +0200
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Vadym Kochan <vadym.kochan@plvision.eu>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 3/3] dt-bindings: eeprom-93xx46: Add support for 93C46, 93C56 and 93C66
-Date:   Tue, 11 May 2021 23:07:26 +0200
-Message-Id: <20210511210727.24895-4-linkmauve@linkmauve.fr>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210511210727.24895-1-linkmauve@linkmauve.fr>
-References: <20210424212543.13929-1-linkmauve@linkmauve.fr>
- <20210511210727.24895-1-linkmauve@linkmauve.fr>
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 2/2] dt-bindings: gpio: Add devicetree binding for IDT
+ 79RC32434 GPIO controller
+Message-ID: <20210511211359.GA19043@alpha.franken.de>
+References: <20210426095426.118356-1-tsbogend@alpha.franken.de>
+ <20210426095426.118356-2-tsbogend@alpha.franken.de>
+ <CACRpkda7n3VL-EpwdXDxt47azFo8Wkp67-urUy7--3D6TJs7iA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACRpkda7n3VL-EpwdXDxt47azFo8Wkp67-urUy7--3D6TJs7iA@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These devices differ by the size of their storage, which is why they
-have different compatible strings.
+On Sat, May 01, 2021 at 02:13:35PM +0200, Linus Walleij wrote:
+> On Mon, Apr 26, 2021 at 11:54 AM Thomas Bogendoerfer
+> <tsbogend@alpha.franken.de> wrote:
+> 
+> > Add YAML devicetree binding for IDT 79RC32434 GPIO controller
+> >
+> > Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> > ---
+> > Changes in v4:
+> >  - renamed to idt,32434-gpio this time for real
+> 
+> Overall looks good to me.
+> 
+> > +required:
+> (...)
+> > +  - ngpios
+> 
+> Is there a *technical* reason why this is required?
+> 
+> Can't the driver just default to 32 gpios when not specified?
 
-Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-Acked-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/misc/eeprom-93xx46.txt | 3 +++
- 1 file changed, 3 insertions(+)
+sure, I make it optional.
 
-diff --git a/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt b/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
-index 7b636b7a8311..72ea0af368d4 100644
---- a/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
-+++ b/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
-@@ -2,7 +2,10 @@ EEPROMs (SPI) compatible with Microchip Technology 93xx46 family.
- 
- Required properties:
- - compatible : shall be one of:
-+    "atmel,at93c46"
-     "atmel,at93c46d"
-+    "atmel,at93c56"
-+    "atmel,at93c66"
-     "eeprom-93xx46"
-     "microchip,93lc46b"
- - data-size : number of data bits per word (either 8 or 16)
+> > +  - interrupt-controller
+> > +  - "#interrupt-cells"
+> > +  - interrupts
+> 
+> Why can't interrupt support be made optional?
+> 
+> It is fine if the driver errors out if not provided, but
+> for the bindings this feels optional.
+
+I'll make them optional.
+
+> Or does the thing break unless you handle the IRQs?
+
+no, they could be used just as GPIOs.
+
+Thomas.
+
 -- 
-2.31.1
-
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
