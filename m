@@ -2,270 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EBCA137A41F
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 11:56:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E10AF37A416
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 11:56:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231411AbhEKJ5y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 05:57:54 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.84]:35349 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231355AbhEKJ5x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 05:57:53 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1620726994; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=cruQWi6iQedZh2QAiAdIN6qhtYkIDkRiHNuH0i1TJ372djfUQj+zH+iIa0J9iUzdQx
-    eWClUzF+uwm8bZBQPHbEXYt4fRNZS6ed+fxDRREW997ioGe4Ut4CGC1e7anALrp4JMQo
-    Sb5Ma6OkLwzH/6YFSyyZQxbvCo6Iin1yvICB3LhCCCiNnOaYuT5XAly28BGJbo5WR+BD
-    vsLY6RpLU0jm7Fve5TMRv3vFqMvDVIILSrEr9t2II0UR1EpOq81BItmmOdozLRF8DhoO
-    O7T5L23IuhVZ4pJd1kxaGeHsb1H3k+xDjsMUNBl2wxq5Zh0UTlWEzW+ePkI10zN3frwn
-    l7Kw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1620726994;
-    s=strato-dkim-0002; d=strato.com;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=D6URkMLk8KPcvfEx/EmSnV297njs47xlSC2vdmlsg40=;
-    b=tcic+vqhmMwbilx/kw/JnWdEwQSHuEev19e5vRFfnq02I1hJibjAyLDGU4HsqlEy2d
-    MMjpU5aRXlcv25Lbs0rOyq1Qooge6dYl0ZKz9KsWVN0LUh16aS3/tP85/fEccOS4Y49O
-    NNUCMaYIUY5sH7Rzx4L5DyxB+s+1la3zUdW33IvYV7t0+dOHY9HO2bx7P6dZUn459UxL
-    T/96YBpZFJi6bhM2Lvv2+6sc0cf2IL4wDwppuJoVzuASXQeFSeTzaeMngBbVUTL7oell
-    20l422OmsqvTWZxbCnBm8BBVPKnooZcMx+x+odlhK7J9NNr1sD03SuJdgB1GIqIObL5u
-    ogZg==
-ARC-Authentication-Results: i=1; strato.com;
-    dkim=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1620726994;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=D6URkMLk8KPcvfEx/EmSnV297njs47xlSC2vdmlsg40=;
-    b=Y878TqWmeS343L7BKSPJEJLr+nGtI51wMK04iuC3UhvJIS3SmXKEaf05CvVyY9N3EK
-    pzRbuXvQvhZMg3uura+0+AzSd2noqJaElPWSMPkJ9siop+8jhsN2xZ1NlCp9ChsL0FrF
-    1Bo2BdAlMJ5Pb5Y7BUmZoISr2dwh/RFKCZHpDimI2xt1CCrboSdqY1PEd0/YpKASxNNl
-    aczOTYdz497OQqmplUy/06s14xj6GJIUGLS+puopQwgnSR4Q7qcgEZfcLn7UzB1LrN20
-    waxtcPhSOksyepy4ingx/TJ1/WGIh9Wtts+S+Ch9fdnLKQ5rm23YZ9O7sUu/8Rbl3Rz/
-    2h3Q==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxB5m6ONKhX"
-X-RZG-CLASS-ID: mo00
-Received: from droid..
-    by smtp.strato.de (RZmta 47.25.6 DYNA|AUTH)
-    with ESMTPSA id R01591x4B9uX06H
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Tue, 11 May 2021 11:56:33 +0200 (CEST)
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        id S231217AbhEKJ4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 05:56:53 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:43800 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231245AbhEKJ4x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 05:56:53 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14B9tfuC111120;
+        Tue, 11 May 2021 04:55:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1620726941;
+        bh=MCuBDSA7fc5SHmGrOTAvYKl2d1dNicT14OoYgJkByAg=;
+        h=Subject:CC:References:From:Date:In-Reply-To;
+        b=x6C0X/mum0n1FVkGGitro7N689dBn6+gny6bdwkBeTeNW5dufDhtnS+QQSsxmU/5n
+         ilvImQCgDoI0DnC9HlSiT+moIV/1cj1+oc/PxwQBN+U0WyGEy08lDYzHAF67IJX8rO
+         5WzsDqe8q90zObfkPxvQyNU7Xd3YMAP0+RWkWGvE=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14B9tfIL031463
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 11 May 2021 04:55:41 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 11
+ May 2021 04:55:41 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 11 May 2021 04:55:41 -0500
+Received: from [10.250.235.117] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14B9tZI6064034;
+        Tue, 11 May 2021 04:55:36 -0500
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am65: Add support for UHS-I modes
+ in MMCSD1 subsystem
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Robert Yang <decatf@gmail.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
-        Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Hans de Goede <hdegoede@redhat.com>,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH 3/3] iio: accel: kxcjk-1013: Add support for KX023-1025
-Date:   Tue, 11 May 2021 11:54:09 +0200
-Message-Id: <20210511095409.9290-4-stephan@gerhold.net>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210511095409.9290-1-stephan@gerhold.net>
-References: <20210511095409.9290-1-stephan@gerhold.net>
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20210511095339.16268-1-a-govindraju@ti.com>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <238b6d95-ae9d-2a9c-ae8c-97dcc712ee83@ti.com>
+Date:   Tue, 11 May 2021 15:25:33 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210511095339.16268-1-a-govindraju@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The KX023-1025 accelerometer [1] seems to be some mixture of
-KXCJK and KXTF9. It has the motion interrupt functionality from KXCJK
-but also the tap detection from KXTF9, and a lot more functionality.
+On 11/05/21 3:23 pm, Aswath Govindraju wrote:
+> UHS-I speed modes are supported in AM65 S.R. 2.0 SoC[1].
+> 
+> Add support by removing the no-1-8-v tag and including the voltage
+> regulator device tree nodes for power cycling.
+> 
+> However, the 4 bit interface of AM65 SR 1.0 cannot be supported at 3.3 V or
+> 1.8 V because of erratas i2025 and i2026 [2]. As the SD card is the primary
+> boot mode for development usecases, continue to enable SD card and disable
+> UHS-I modes in it to minimize any ageing issues happening because of
+> erratas.
+> 
+> k3-am6528-iot2050-basic and k3-am6548-iot2050-advanced boards use S.R. 1.0
+> version of AM65 SoC. Therefore, add no-1-8-v in sdhci1 device tree nodes
+> for these boards.
+> 
+> [1] - https://www.ti.com/lit/ug/spruid7e/spruid7e.pdf, section 12.3.6.1.1
+> [2] - https://www.ti.com/lit/er/sprz452e/sprz452e.pdf
+> 
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> ---
 
-The configuration register map seems fairly different at first,
-but actually all register bits used by the kxcjk-1013 driver are
-available at the same bit positions on KX023-1025. It's just quite
-misleading because:
+changes since v1:
+ - added no-1-8-v tag in sdhci1 dt nodes of k3-am6528-iot2050-basic and
+k3-am6548-iot2050-advanced boards as they use S.R.1.0 version AM65 SoC.
 
-  1. The registers have entirely different names and are at different
-     addresses, but the bits are mostly named the same (and mean the same).
-  2. There are many more registers and bits used that are reserved on KXCJK
-     to enable additional functionality.
+Thanks,
+Aswath
 
-Ignoring all additionally available functionality for now, the KX023
-works just fine after setting up the struct with the correct register
-addresses. The only difference that needs to be handled additionally
-is that the KX023 supports two configurable interrupt lines (INT1/2).
-
-For now only INT1 is supported so we route all interrupts used by
-the driver there.
-
-[1]: https://kionixfs.azureedge.net/en/datasheet/KX023-1025%20Specifications%20Rev%2012.0.pdf
-
-Cc: Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
----
- drivers/iio/accel/kxcjk-1013.c | 93 ++++++++++++++++++++++++++++++++++
- 1 file changed, 93 insertions(+)
-
-diff --git a/drivers/iio/accel/kxcjk-1013.c b/drivers/iio/accel/kxcjk-1013.c
-index e630419a11d8..20f3634d225d 100644
---- a/drivers/iio/accel/kxcjk-1013.c
-+++ b/drivers/iio/accel/kxcjk-1013.c
-@@ -79,6 +79,45 @@
- #define KXTF9_REG_HYST_SET		0x5F
- #define KXCJK1013_REG_WAKE_THRES	0x6A
- 
-+/* Everything up to 0x11 is equal to KXCJK1013/KXTF9 above */
-+#define KX023_REG_INS1			0x12
-+#define KX023_REG_INS2			0x13
-+#define KX023_REG_INS3			0x14
-+#define KX023_REG_STAT			0x15
-+#define KX023_REG_INT_REL		0x17
-+#define KX023_REG_CNTL1			0x18
-+#define KX023_REG_CNTL2			0x19
-+#define KX023_REG_CNTL3			0x1A
-+#define KX023_REG_ODCNTL		0x1B
-+#define KX023_REG_INC1			0x1C
-+#define KX023_REG_INC2			0x1D
-+#define KX023_REG_INC3			0x1E
-+#define KX023_REG_INC4			0x1F
-+#define KX023_REG_INC5			0x20
-+#define KX023_REG_INC6			0x21
-+#define KX023_REG_TILT_TIMER		0x22
-+#define KX023_REG_WUFC			0x23
-+#define KX023_REG_TDTRC			0x24
-+#define KX023_REG_TDTC			0x25
-+#define KX023_REG_TTH			0x26
-+#define KX023_REG_TTL			0x27
-+#define KX023_REG_FTD			0x28
-+#define KX023_REG_STD			0x29
-+#define KX023_REG_TLT			0x2A
-+#define KX023_REG_TWS			0x2B
-+#define KX023_REG_ATH			0x30
-+#define KX023_REG_TILT_ANGLE_LL		0x32
-+#define KX023_REG_TILT_ANGLE_HL		0x33
-+#define KX023_REG_HYST_SET		0x34
-+#define KX023_REG_LP_CNTL		0x35
-+#define KX023_REG_BUF_CNTL1		0x3A
-+#define KX023_REG_BUF_CNTL2		0x3B
-+#define KX023_REG_BUF_STATUS_1		0x3C
-+#define KX023_REG_BUF_STATUS_2		0x3D
-+#define KX023_REG_BUF_CLEAR		0x3E
-+#define KX023_REG_BUF_READ		0x3F
-+#define KX023_REG_SELF_TEST		0x60
-+
- #define KXCJK1013_REG_CTRL1_BIT_PC1	BIT(7)
- #define KXCJK1013_REG_CTRL1_BIT_RES	BIT(6)
- #define KXCJK1013_REG_CTRL1_BIT_DRDY	BIT(5)
-@@ -119,6 +158,14 @@
- #define KXCJK1013_REG_INT_SRC2_BIT_XP	BIT(4)
- #define KXCJK1013_REG_INT_SRC2_BIT_XN	BIT(5)
- 
-+/* KX023 interrupt routing to INT1. INT2 can be configured with INC6 */
-+#define KX023_REG_INC4_BFI1		BIT(6)
-+#define KX023_REG_INC4_WMI1		BIT(5)
-+#define KX023_REG_INC4_DRDY1		BIT(4)
-+#define KX023_REG_INC4_TDTI1		BIT(2)
-+#define KX023_REG_INC4_WUFI1		BIT(1)
-+#define KX023_REG_INC4_TPI1		BIT(0)
-+
- #define KXCJK1013_DEFAULT_WAKE_THRES	1
- 
- enum kx_chipset {
-@@ -126,6 +173,7 @@ enum kx_chipset {
- 	KXCJ91008,
- 	KXTJ21009,
- 	KXTF9,
-+	KX0231025,
- 	KX_MAX_CHIPS /* this must be last */
- };
- 
-@@ -172,6 +220,19 @@ const struct kx_chipset_regs kxtf9_regs = {
- 	.wake_thres	= KXTF9_REG_WAKE_THRESH,
- };
- 
-+/* The registers have totally different names but the bits are compatible */
-+const struct kx_chipset_regs kx0231025_regs = {
-+	.int_src1	= KX023_REG_INS2,
-+	.int_src2	= KX023_REG_INS3,
-+	.int_rel	= KX023_REG_INT_REL,
-+	.ctrl1		= KX023_REG_CNTL1,
-+	.wuf_ctrl	= KX023_REG_CNTL3,
-+	.int_ctrl1	= KX023_REG_INC1,
-+	.data_ctrl	= KX023_REG_ODCNTL,
-+	.wake_timer	= KX023_REG_WUFC,
-+	.wake_thres	= KX023_REG_ATH,
-+};
-+
- struct kxcjk1013_data {
- 	struct regulator_bulk_data regulators[2];
- 	struct i2c_client *client;
-@@ -308,6 +369,22 @@ static const struct {
- 		{0x05, 5100},
- 		{0x06, 2700},
- 	},
-+	/* KX023-1025 */
-+	{
-+		/* First 4 are not in datasheet, taken from KXCTJ2-1009 */
-+		{0x08, 1240000},
-+		{0x09, 621000},
-+		{0x0A, 309000},
-+		{0x0B, 151000},
-+		{0, 81000},
-+		{0x01, 40000},
-+		{0x02, 22000},
-+		{0x03, 12000},
-+		{0x04, 7000},
-+		{0x05, 4400},
-+		{0x06, 3000},
-+		{0x07, 3000},
-+	},
- };
- 
- static const struct {
-@@ -483,6 +560,17 @@ static int kxcjk1013_chip_init(struct kxcjk1013_data *data)
- 		return ret;
- 	}
- 
-+	/* On KX023, route all used interrupts to INT1 for now */
-+	if (data->chipset == KX0231025 && data->client->irq > 0) {
-+		ret = i2c_smbus_write_byte_data(data->client, KX023_REG_INC4,
-+						KX023_REG_INC4_DRDY1 |
-+						KX023_REG_INC4_WUFI1);
-+		if (ret < 0) {
-+			dev_err(&data->client->dev, "Error writing reg_inc4\n");
-+			return ret;
-+		}
-+	}
-+
- 	ret = kxcjk1013_set_mode(data, OPERATION);
- 	if (ret < 0)
- 		return ret;
-@@ -1414,6 +1502,9 @@ static int kxcjk1013_probe(struct i2c_client *client,
- 	case KXTF9:
- 		data->regs = &kxtf9_regs;
- 		break;
-+	case KX0231025:
-+		data->regs = &kx0231025_regs;
-+		break;
- 	default:
- 		return -EINVAL;
- 	}
-@@ -1633,6 +1724,7 @@ static const struct i2c_device_id kxcjk1013_id[] = {
- 	{"kxcj91008", KXCJ91008},
- 	{"kxtj21009", KXTJ21009},
- 	{"kxtf9",     KXTF9},
-+	{"kx023-1025", KX0231025},
- 	{"SMO8500",   KXCJ91008},
- 	{}
- };
-@@ -1644,6 +1736,7 @@ static const struct of_device_id kxcjk1013_of_match[] = {
- 	{ .compatible = "kionix,kxcj91008", },
- 	{ .compatible = "kionix,kxtj21009", },
- 	{ .compatible = "kionix,kxtf9", },
-+	{ .compatible = "kionix,kx023-1025", },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, kxcjk1013_of_match);
--- 
-2.31.1
+>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  1 -
+>  .../boot/dts/ti/k3-am6528-iot2050-basic.dts   |  4 +++
+>  .../arm64/boot/dts/ti/k3-am654-base-board.dts | 33 +++++++++++++++++++
+>  .../dts/ti/k3-am6548-iot2050-advanced.dts     |  4 +++
+>  4 files changed, 41 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> index cb340d1b401f..632f32fce4a1 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> @@ -301,7 +301,6 @@
+>  		ti,otap-del-sel = <0x2>;
+>  		ti,trm-icp = <0x8>;
+>  		dma-coherent;
+> -		no-1-8-v;
+>  	};
+>  
+>  	scm_conf: scm-conf@100000 {
+> diff --git a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
+> index 4f7e3f2a6265..485266960d5f 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
+> @@ -40,6 +40,10 @@
+>  	status = "disabled";
+>  };
+>  
+> +&sdhci1 {
+> +	no-1-8-v;
+> +};
+> +
+>  &main_pmx0 {
+>  	main_uart0_pins_default: main-uart0-pins-default {
+>  		pinctrl-single,pins = <
+> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> index 9e87fb313a54..51c594b4dddb 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> @@ -91,6 +91,38 @@
+>  		#clock-cells = <0>;
+>  		clock-frequency = <24000000>;
+>  	};
+> +
+> +	evm_12v0: fixedregulator-evm12v0 {
+> +		/* main supply */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "evm_12v0";
+> +		regulator-min-microvolt = <12000000>;
+> +		regulator-max-microvolt = <12000000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vcc3v3_io: fixedregulator-vcc3v3io {
+> +		/* Output of TPS54334 */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc3v3_io";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		vin-supply = <&evm_12v0>;
+> +	};
+> +
+> +	vdd_mmc1_sd: fixedregulator-sd {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vdd_mmc1_sd";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-boot-on;
+> +		enable-active-high;
+> +		vin-supply = <&vcc3v3_io>;
+> +		gpio = <&pca9554 4 GPIO_ACTIVE_HIGH>;
+> +	};
+>  };
+>  
+>  &wkup_pmx0 {
+> @@ -350,6 +382,7 @@
+>   * disable sdhci1
+>   */
+>  &sdhci1 {
+> +	vmmc-supply = <&vdd_mmc1_sd>;
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&main_mmc1_pins_default>;
+>  	ti,driver-strength-ohm = <50>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
+> index ec9617c13cdb..3643a19b5f33 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
+> @@ -55,6 +55,10 @@
+>  	disable-wp;
+>  };
+>  
+> +&sdhci1 {
+> +	no-1-8-v;
+> +};
+> +
+>  &main_uart0 {
+>  	status = "disabled";
+>  };
+> 
 
