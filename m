@@ -2,153 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A01137A16C
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 10:11:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E52237A197
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 10:18:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230130AbhEKIM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 04:12:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47752 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230126AbhEKIM5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 04:12:57 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69128C061574
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 01:11:50 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1lgNUV-0001xi-Cn; Tue, 11 May 2021 10:11:43 +0200
-Message-ID: <854ec10d9a32df97d1f53a784dffca4e5036b059.camel@pengutronix.de>
-Subject: Re: [PATCH 3/7] PCI: imx6: Rework PHY search and mapping
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, patchwork-lst@pengutronix.de
-Date:   Tue, 11 May 2021 10:11:42 +0200
-In-Reply-To: <20210510170510.GA276768@robh.at.kernel.org>
-References: <20210510141509.929120-1-l.stach@pengutronix.de>
-         <20210510141509.929120-3-l.stach@pengutronix.de>
-         <20210510170510.GA276768@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.1 (3.40.1-1.fc34) 
+        id S230305AbhEKITh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 04:19:37 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:57427 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230157AbhEKITh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 May 2021 04:19:37 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 40025580E43;
+        Tue, 11 May 2021 04:18:28 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Tue, 11 May 2021 04:18:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=W3psH/2qgATwtINm37wUxNWcRwQ
+        rHkL1ZPkquwyesfk=; b=n7N2rQXFXg1fjlMT0vhGhUG/nS1KRz1suiGnqUh7UBB
+        jrN8jx39VE3aoo9xssTLcayDcvTxja1ZrIWKjUWci8gaZp489iYLbVQ3qKH7WDNt
+        hR/WB1KETo2D4SxbkhSZ9IQ9Vw5SLiUWqyjBRVvye4m9owZ+wG1ZH0aqep492quq
+        jTm5WMsYMvdlhI2XUlDgUsxqAS60y7q6LL18Gh9G3bonVV3JUMAyRmdvKdxeOxKf
+        GrNiOqc7ELFd6staIPI8rdmLDATLxo4K33DfzZHt70WYAIlafKvW5oKZibY/3YiU
+        5WP2SrZeCj7u/SllC+MOnvfNd8RsitRtMmLYvs7sR1Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=W3psH/
+        2qgATwtINm37wUxNWcRwQrHkL1ZPkquwyesfk=; b=Gw24brRJ/8OYpN+talOvn2
+        GYkZJjFL+Zdhe1/+Xej9W5BFVFVsPRQNpGtcuB1kKr1XPvrc8TruuFKnDxTBsqwx
+        RFvOTHKMKsZBCDQcT89cD+AzEz8GZwo0aDlERcDOUiHDf3Y9PHc1mSTqpIyo01Hi
+        x872EUdNXkyEGojaXh0kSPbso9RiyKIwAfTcJDhw1dLns17W1XukzoaOqCImWKuV
+        iMwm4aK93WgTus9UaIAYMLZ4uzfbGpa5vI6RzePDck4VKuNVIuqBCxJU3LZnbjUu
+        +5jQGilyxfxDjab5GPMFfN1rcz76yvj31sBZe8yO4z15GP/4dd8QtI7lnwT+90vQ
+        ==
+X-ME-Sender: <xms:0j2aYJG0Qb30edIe3sYX8-AN26rA-rn_Fj_4OUWh56l9n57dVYCVnQ>
+    <xme:0j2aYOVD1hiqp1hygbJGI6zyJzppIE6U2xOoh7c6g-U1HeqOVVtmzefUH4iciiu6w
+    jpdFDOtrFzdbpSrgLY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdehtddgtddvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:0j2aYLL-tjgckFbHWAybgrug0nA1oVwWXEJdSeci_-RJxCvEFRE6Uw>
+    <xmx:0j2aYPHJufuaH8Ck-i6-nMQ94iQypBu8UeMkAP2iq9cVysz8luPAPQ>
+    <xmx:0j2aYPVF-X3cOl2Y9Jrb4yMLb-m9QQXbZwGRoxmEDskoY0fZmalhHg>
+    <xmx:1D2aYLr3yjQRA0Ff7s2_Q4n2QuxCkbHAGvk4q5goZ7KrXjPpgBtF7A>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA;
+        Tue, 11 May 2021 04:18:26 -0400 (EDT)
+Date:   Tue, 11 May 2021 10:18:23 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Naresh Kamboju <naresh.kamboju@linaro.org>
+Cc:     Chukun Pan <amadeus@jmu.edu.cn>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi@lists.linux.dev,
+        open list <linux-kernel@vger.kernel.org>,
+        lkft-triage@lists.linaro.org, regressions@lists.linux.dev
+Subject: Re: [PATCH 1/2] arm64: dts: allwinner: h5: Add NanoPi R1S H5 support
+Message-ID: <20210511081823.mmcrliomwtetcirx@gilmour>
+References: <20210503142905.21468-1-amadeus@jmu.edu.cn>
+ <CA+G9fYsRZswjeDZj1hiGDu5HZ+jYCVsOOL6MAzEb=LVfQ1_NpA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="6z5yg7iwrnly6v2y"
+Content-Disposition: inline
+In-Reply-To: <CA+G9fYsRZswjeDZj1hiGDu5HZ+jYCVsOOL6MAzEb=LVfQ1_NpA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, dem 10.05.2021 um 12:05 -0500 schrieb Rob Herring:
-> On Mon, May 10, 2021 at 04:15:05PM +0200, Lucas Stach wrote:
-> > We don't need to have a phandle of the PHY, as we know the compatible
-> > of the node we are looking for. This will make it easier to put add
-> > more PHY handling for new generations later on, where the
-> > "fsl,imx7d-pcie-phy" phandle would be a misnomer.
-> > 
-> > Also we can use a helper function to get the resource for us,
-> > simplifying out driver code a bit.
-> 
-> Better yes, but really all the phy handling should be split out to 
-> its own driver even in the older h/w with shared phy registers.
-> 
-That would be a quite massive DT binding changing break, possibly even
-a separate driver. Maybe it's time to do this for i.MX8MM, as the
-current driver just kept piling on special cases for "almost the same"
-hardware that by now looks quite different to the original i.MX6 PCIe
-integration this driver was supposed to handle.
 
-> Soon as there's a chip with 2 PCI hosts, you're going to need the phy 
-> binding.
+--6z5yg7iwrnly6v2y
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Uh, there even is a chip like that already (i.MX8MQ), it just happened
-to not require any handling of the PHY registers. Don't know why I
-didn't think of this. :/
+Hi,
 
-Regards,
-Lucas
+On Tue, May 11, 2021 at 10:51:28AM +0530, Naresh Kamboju wrote:
+> On Mon, 3 May 2021 at 20:09, Chukun Pan <amadeus@jmu.edu.cn> wrote:
+> >
+> > The NanoPi R1S H5 is a open source board made by FriendlyElec.
+> > It has the following features:
+> >
+> > - Allwinner H5, Quad-core Cortex-A53
+> > - 512MB DDR3 RAM
+> > - 10/100/1000M Ethernet x 2
+> > - RTL8189ETV WiFi 802.11b/g/n
+> > - USB 2.0 host port (A)
+> > - MicroSD Slot
+> > - Serial Debug Port
+> > - 5V 2A DC power-supply
+> >
+> > Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+>=20
+> Linux next tag next-20210511 arm64 build failed due to this error.
+>=20
+> Error: /builds/linux/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h=
+5.dts:35.15-16
+> syntax error
+> FATAL ERROR: Unable to parse input tree
+> make[3]: *** [/builds/linux/scripts/Makefile.lib:365:
+> arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dtb] Error 1
+> make[3]: Target '__build' not remade because of errors.
+>=20
+> Reported-by: Naresh Kamboju <naresh.kamboju@linaro.org>
+>=20
+> #regzb introduced: 7c9dbeda744f ("arm64: dts: allwinner: h5: Add
+> NanoPi R1S H5 support")
 
-> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> > ---
-> >  .../devicetree/bindings/pci/fsl,imx6q-pcie.txt  |  5 ++---
-> >  drivers/pci/controller/dwc/pci-imx6.c           | 17 +++++------------
-> >  2 files changed, 7 insertions(+), 15 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
-> > index de4b2baf91e8..308540df99ef 100644
-> > --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
-> > +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
-> > @@ -54,7 +54,6 @@ Additional required properties for imx7d-pcie and imx8mq-pcie:
-> >  	       - "pciephy"
-> >  	       - "apps"
-> >  	       - "turnoff"
-> > -- fsl,imx7d-pcie-phy: A phandle to an fsl,imx7d-pcie-phy node.
-> >  
-> >  Additional required properties for imx8mq-pcie:
-> >  - clock-names: Must include the following additional entries:
-> > @@ -88,8 +87,8 @@ Example:
-> >  
-> >  * Freescale i.MX7d PCIe PHY
-> >  
-> > -This is the PHY associated with the IMX7d PCIe controller.  It's used by the
-> > -PCI-e controller via the fsl,imx7d-pcie-phy phandle.
-> > +This is the PHY associated with the IMX7d PCIe controller.  It's looked up by
-> > +the PCI-e controller via the fsl,imx7d-pcie-phy compatible.
-> >  
-> >  Required properties:
-> >  - compatible:
-> > diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> > index 922c14361cd3..5e13758222e8 100644
-> > --- a/drivers/pci/controller/dwc/pci-imx6.c
-> > +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> > @@ -555,7 +555,7 @@ static void imx6_pcie_deassert_core_reset(struct imx6_pcie *imx6_pcie)
-> >  			writel(PCIE_PHY_CMN_REG26_ATT_MODE,
-> >  			       imx6_pcie->phy_base + PCIE_PHY_CMN_REG26);
-> >  		} else {
-> > -			dev_warn(dev, "Unable to apply ERR010728 workaround. DT missing fsl,imx7d-pcie-phy phandle ?\n");
-> > +			dev_warn(dev, "Unable to apply ERR010728 workaround. DT missing fsl,imx7d-pcie-phy node?\n");
-> >  		}
-> >  
-> >  		imx7d_pcie_wait_for_phy_pll_lock(imx6_pcie);
-> > @@ -970,7 +970,7 @@ static int imx6_pcie_probe(struct platform_device *pdev)
-> >  	struct device *dev = &pdev->dev;
-> >  	struct dw_pcie *pci;
-> >  	struct imx6_pcie *imx6_pcie;
-> > -	struct device_node *np;
-> > +	struct device_node *np = NULL;
-> >  	struct resource *dbi_base;
-> >  	struct device_node *node = dev->of_node;
-> >  	int ret;
-> > @@ -991,17 +991,10 @@ static int imx6_pcie_probe(struct platform_device *pdev)
-> >  	imx6_pcie->pci = pci;
-> >  	imx6_pcie->drvdata = of_device_get_match_data(dev);
-> >  
-> > -	/* Find the PHY if one is defined, only imx7d uses it */
-> > -	np = of_parse_phandle(node, "fsl,imx7d-pcie-phy", 0);
-> > +	/* Find the PHY if one is present in DT, only imx7d uses it */
-> > +	np = of_find_compatible_node(NULL, NULL, "fsl,imx7d-pcie-phy");
-> >  	if (np) {
-> > -		struct resource res;
-> > -
-> > -		ret = of_address_to_resource(np, 0, &res);
-> > -		if (ret) {
-> > -			dev_err(dev, "Unable to map PCIe PHY\n");
-> > -			return ret;
-> > -		}
-> > -		imx6_pcie->phy_base = devm_ioremap_resource(dev, &res);
-> > +		imx6_pcie->phy_base = devm_of_iomap(dev, np, 0, NULL);
-> >  		if (IS_ERR(imx6_pcie->phy_base)) {
-> >  			dev_err(dev, "Unable to map PCIe PHY\n");
-> >  			return PTR_ERR(imx6_pcie->phy_base);
-> > -- 
-> > 2.29.2
-> > 
+Thanks, I dropped the patch.
+Chukun, please resend it once it's fixed
 
+Maxime
 
+--6z5yg7iwrnly6v2y
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYJo9zwAKCRDj7w1vZxhR
+xe67AQCUYlXoGcwJHLhh68hRF0ylL5Pt4GTchOLKtWcp6i7AkQEA7TgGLlf2l4S6
+htRJVKBQZSxCAzqukoXw9M0lRZRnzAA=
+=ToBG
+-----END PGP SIGNATURE-----
+
+--6z5yg7iwrnly6v2y--
