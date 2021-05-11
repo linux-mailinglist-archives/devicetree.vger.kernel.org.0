@@ -2,118 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96DFC37A589
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 13:15:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C10637A5EC
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 13:44:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231397AbhEKLQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 07:16:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32954 "EHLO
+        id S230501AbhEKLpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 07:45:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230443AbhEKLQ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 07:16:27 -0400
-Received: from mail-vk1-xa2e.google.com (mail-vk1-xa2e.google.com [IPv6:2607:f8b0:4864:20::a2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0704C061574
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 04:15:20 -0700 (PDT)
-Received: by mail-vk1-xa2e.google.com with SMTP id l124so3901350vkh.7
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 04:15:20 -0700 (PDT)
+        with ESMTP id S230400AbhEKLpT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 07:45:19 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BC08C061574
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 04:44:12 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id x2so28150679lff.10
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 04:44:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=hHAQPVzBsVWn5SIpJgCp6vriYjWaGYRU2fNUBN0wdpw=;
-        b=o+S/wjsPy/FGxRO/OYk6oXHPiTIptpc5DQdLEJLZDMeyGJLtpaH9D4X3Oy69dI/DKh
-         W6SmuaZ2/PT/d/P7p40GeqWIgudOzlm5zoiV6AQ6Z1t8cq+maDbGzvNUM6L8nv7xZH2U
-         XSqX3QmG5TGZk/orIoOidfCyS3GrbtCCNTOBFUcv/bVctmUbL2t+CTHIPUu+Jx3B7bdc
-         EpV+95xKr2FS5xTWZkljH9d6ZtUOAWDCaU47nKNXWZO5scDai2sv1bkxUzcUZ6Z9/RYD
-         9ZGm+4GkWNZQKHsPtjkUf+9zvRhQEeUKKPRj5o25OogUkb1o+k+csM17ltTp56AAZ30J
-         Jfig==
+        bh=YO4TjVWcPtqNNzMr61EsFlpq55QiNyR1/uGAVe+7KS0=;
+        b=u6sbnZIXFUnrYo7hLErOug/6/RJf4E1s6i0GYI59q431jjd3OjdZ+u0fkupRQ7SNxa
+         h49onyaitqi7fLamZtlvY1Zh9CvN60yV2lfBkQqZ0IlOW0w2BTp7Av1pnHTrXKf7jLNZ
+         5RxIY4wINCCWHmDTUeSaDJlgCCJo1NuKg3fzcqqRF+04KC3Bvjk1RJoMbtOmqG2qpeWD
+         F9LZBE5kwJ+BDJCd6sk64cLZhTlHgLqCqoUiUcFxE3wsYgfRRPA4u4jkLK6hS/LAnRCO
+         AcD6onRXfC4T9G94N4CksZZU6ObDnVuuagxKFp4PaWzUbbW7cHpLSWOqKI9700XHHV+M
+         3Pag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=hHAQPVzBsVWn5SIpJgCp6vriYjWaGYRU2fNUBN0wdpw=;
-        b=Y0zNkFmERPOjQcc0xssD8JVI7OYimqLAel8ThIqgj7EoBPEqxQdc2IyUcexP5g6QPf
-         XgrHsrgI5ezqPknSPU4FdnhggM96BXQYn2q9qyHUvbTKOzskQZfiHQ60Z+c5JxObVjNV
-         lucvi5ADxbMDWQ005w+uuNTKDlkWiNCQQlZkLHyRfWb7gIXWLBgfL3NwttEw08Usl822
-         JGQHJUAMjoVQDC1Hj479HNjOtT2HaqISStWMV63vyannO9yapt8wBSdi2uVl9UGu6fJF
-         Olnqp+Uf6GzGH6V/zqIc9w+kendcgmiun3zIBzRLNAaRawNtk2MEayGwZ2orCGRBDCtJ
-         7SqQ==
-X-Gm-Message-State: AOAM5310ZUMQYOLzd3NEqSkoLAlym261f9GM6569mpyOayj29qjV1A6w
-        auyMmlqa/1L94QWOx/e+PYYKHhxJO8BekwnTmSikTA==
-X-Google-Smtp-Source: ABdhPJxYxWbFj2qO8+8U3f8oWGl4hGBN1E219YphlbQgPjhS4n0vUXrkjDTIzdBj9d6FR8xgDoHg7YisbPO/vyknD2Q=
-X-Received: by 2002:a1f:f2ce:: with SMTP id q197mr21391439vkh.15.1620731720168;
- Tue, 11 May 2021 04:15:20 -0700 (PDT)
+        bh=YO4TjVWcPtqNNzMr61EsFlpq55QiNyR1/uGAVe+7KS0=;
+        b=SCXUrmMAUqGd82crexEmIx01JPqHQ4ic2JP/yPa7dEtJJr2cMdqS+22SQi4i8hE3vv
+         tIrzv/PY8ts6Afo4FiMo8dARq/F2I1P5bX88cGYCYAPwC/sBk046/xPp+zOVklKpcima
+         1+Z3hUW1enCiSGbRPMAucuZ1czLwdgOkA8NamQn8fuFnl31/VBGQgjctAmPxHV3RuPaK
+         6EvsQ7Tm6lM9xxUY0Rxbi+O91QhNKDZjUAZwXUmySP8nCJsPZrS/+NN5nSTCfSpFjMXo
+         WYUcxrk2yR+kNynx7gAL6sRK+KOf7Ciz/14N+9jdX+CZn2uElKxoE0ZDgoZwlWUbCOrK
+         wk7A==
+X-Gm-Message-State: AOAM532FTy37d2Y7FqymM0fBRiAcqBO52w6Bilmi2QIyC9jffox0H7sj
+        VAhp7s8jpuj9OKBmzpj8VLtdyzk7InEG3fKTm0zlsfJU1k8=
+X-Google-Smtp-Source: ABdhPJz3KhU5z7JrPIxuEQQ//e1PqNsIytDsJv0oT+2m1KldlGhZpEQymGRnLH6e9G8rASh0rpnW2hLfGA2lu8myuKA=
+X-Received: by 2002:a19:c391:: with SMTP id t139mr21712345lff.295.1620733450532;
+ Tue, 11 May 2021 04:44:10 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210510190400.105162-1-l.stach@pengutronix.de> <20210510190400.105162-3-l.stach@pengutronix.de>
-In-Reply-To: <20210510190400.105162-3-l.stach@pengutronix.de>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 11 May 2021 13:14:44 +0200
-Message-ID: <CAPDyKFrAe-+CENhXkY2fGNw04g-zn+ebcAXSVGa9Td5pJcsujA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] mmc: core: add support for disabling HS400 mode
- via DT
-To:     Lucas Stach <l.stach@pengutronix.de>,
-        Chris Ruehl <chris.ruehl@gtsys.com.hk>
-Cc:     Adrian Hunter <adrian.hunter@intel.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20210510185931.104780-1-l.stach@pengutronix.de>
+In-Reply-To: <20210510185931.104780-1-l.stach@pengutronix.de>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 11 May 2021 08:43:57 -0300
+Message-ID: <CAOMZO5BGOg31gaR58PmVx6yyJE-D0q6+Sm2tyQrnccCBtSGULw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] arm64: dts: imx8mq: add Nitrogen8 SoM
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        "Lukas F . Hartmann" <lukas@mntre.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         Sascha Hauer <kernel@pengutronix.de>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+ Chris Ruehl
+Hi Lucas,
 
-On Mon, 10 May 2021 at 21:04, Lucas Stach <l.stach@pengutronix.de> wrote:
+On Mon, May 10, 2021 at 4:00 PM Lucas Stach <l.stach@pengutronix.de> wrote:
 >
 > From: Lucas Stach <dev@lynxeye.de>
 >
-> On some boards the data strobe line isn't wired up, rendering HS400
-> support broken, even if both the controller and the eMMC claim to
-> support it. Allow to disable HS400 mode via DT.
-
-Before I review the series, I just wanted to highlight that quite
-recently we got a related series posted from Chris [1]. I made some
-comments, but he hasn't replied yet.
-
-In any case, if I understood it correctly, it looks like some
-controllers may support HS400 ES, but not HS200. Could that be the
-case here as well? Or is this a different problem?
-
-Kind regards
-Uffe
-
-[1]
-https://patchwork.kernel.org/project/linux-mmc/patch/20201208061839.21163-7-chris.ruehl@gtsys.com.hk/
-
+> This adds the description of the Nitrogen8 System on Module. The module
+> is quite simple with only a few (almost) fixed regulators and a eMMC
+> on-board.
+>
+> The eMMC is currently limited to 50MHz modes via the pinctrl, as the board
+> has not wired up the data strobe line, which prevents HS400 mode from
+> working. As both the controller and the eMMC support this mode, it is
+> automatically selected when we allow the faster modes, leading to failing
+> transfers. Until we have a proper solution to only disable HS400 mode,
+> keep the eMMC at the slow bus modes.
 >
 > Signed-off-by: Lucas Stach <dev@lynxeye.de>
-> ---
-> v2:
-> - move to core
-> - actually disable all HS400 modes
-> ---
->  drivers/mmc/core/host.c | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
-> index 9b89a91b6b47..0e066c5f5243 100644
-> --- a/drivers/mmc/core/host.c
-> +++ b/drivers/mmc/core/host.c
-> @@ -351,6 +351,9 @@ int mmc_of_parse(struct mmc_host *host)
->                 host->caps2 |= MMC_CAP2_NO_SD;
->         if (device_property_read_bool(dev, "no-mmc"))
->                 host->caps2 |= MMC_CAP2_NO_MMC;
-> +       if (device_property_read_bool(dev, "no-mmc-hs400"))
-> +               host->caps2 &= ~(MMC_CAP2_HS400_1_8V | MMC_CAP2_HS400_1_2V |
-> +                                MMC_CAP2_HS400_ES);
->
->         /* Must be after "non-removable" check */
->         if (device_property_read_u32(dev, "fixed-emmc-driver-type", &drv_type) == 0) {
-> --
-> 2.31.1
->
+
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
