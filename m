@@ -2,41 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4026837A1D0
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 10:27:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00DA637A1D2
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 10:27:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230353AbhEKI2X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 04:28:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36744 "EHLO mail.kernel.org"
+        id S231186AbhEKI22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 04:28:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36844 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231156AbhEKI2P (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 May 2021 04:28:15 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4D85061432;
-        Tue, 11 May 2021 08:27:08 +0000 (UTC)
+        id S230483AbhEKI2R (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 May 2021 04:28:17 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 427E1613C3;
+        Tue, 11 May 2021 08:27:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620721628;
-        bh=Av6ODrArdaRyklq5h81aFEAyRwi1Zqxxq8VsieTEPwc=;
+        s=k20201202; t=1620721631;
+        bh=mCBFyU4XUfWkB55SJhQL3mqIT6VRoEqjftOBUHEEXpg=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=rnqD5y5awUoCzDztVqE7CeesfCzLk6Gz3oinRh2ZmUDKeQraocy8gnv0LYOqtwFpP
-         6xn1jv62HDunW9Bg4kVolb6XSnxxifD+R4heNr0YmkQvpmwXX1WnRjfXz2ma5iBa0h
-         kKESGJBZyMTFU1z4H9+ym1I/P0RKYP/hIPS42qVwyLko2lU7y2nMG1FaAnIB6Y/OIb
-         ZqVBgkJQEQl1CjQAwfddwNoxcVfyGRdM1VmVv1a/kTI6IZlr4eXRn5NczC0CSi2OUh
-         rFmzXuYcrJzydmqXJji1WZvQG1yZkInhlc/Lk1ENo9t7M/HoUoIVrv/lY3rIQSh3RM
-         sCSB8jdpKozpA==
+        b=XYMXG2128GsTJB7pqGsJvAKj6VAWrrfBkFbuuC09wOhG/UKti9b+gfIR6eD3dcNFz
+         8RjRK3A6+mtXC2Z2s/+xIl6JDh5u4yQr3cpO556AhY8RKPqT45eazZ98nRiiexWJVy
+         NTnuDRS3nHbl95H6JxHpBZ2CvHRzIw6ZfiU/n0LLzvIfzEM999/qBOqZCQm7wjPsrB
+         RGVGp38Krk+iv0+OKTn76gD27mv+GzK1+bWXpgLP5TU9Oo/ywkI4LJlmbgzsdja8gE
+         egjI8jQMDqh/wV49Ht42/S8Szc3bV7QOSnIgqsnFJukAaHeZi5bPoQpMAd4BzBc5S9
+         vupvzBG9yRHcQ==
 From:   Mark Brown <broonie@kernel.org>
-To:     Leilk Liu <leilk.liu@mediatek.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-spi@vger.kernel.org
-Subject: Re: [PATCH] spi: take the SPI IO-mutex in the spi_set_cs_timing method
-Date:   Tue, 11 May 2021 09:25:38 +0100
-Message-Id: <162072071982.33404.18025194443786909424.b4-ty@kernel.org>
+To:     agross@kernel.org, lgirdwood@gmail.com, bjorn.andersson@linaro.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        devicetree@vger.kernel.org, robh@kernel.org
+Cc:     Mark Brown <broonie@kernel.org>, wcheng@codeaurora.org,
+        dmitry.baryshkov@linaro.org, linux-arm-msm@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 0/2] Enable VBUS current boost on pm8150b platforms
+Date:   Tue, 11 May 2021 09:25:39 +0100
+Message-Id: <162072067394.33366.15146499353870845816.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210508060214.1485-1-leilk.liu@mediatek.com>
-References: <20210508060214.1485-1-leilk.liu@mediatek.com>
+In-Reply-To: <20210426221446.1852572-1-bryan.odonoghue@linaro.org>
+References: <20210426221446.1852572-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -44,18 +42,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 8 May 2021 14:02:14 +0800, Leilk Liu wrote:
-> this patch takes the io_mutex to prevent an unprotected HW
-> register modification in the set_cs_timing callback.
+On Mon, 26 Apr 2021 23:14:44 +0100, Bryan O'Donoghue wrote:
+> The first version of this patch set the current limit to 3 amps as was done
+> in downstream. Mark indicated a preference to set this on a per-system
+> basis instead of blitzing it, as in downstream.
+> 
+> Looking at what was upstream versus what was in my working tree I saw that
+> in fact the VBUS boost driver had been upstreamed minus accompanying DTS in
+> pm8150b.
+> 
+> [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
 Thanks!
 
-[1/1] spi: take the SPI IO-mutex in the spi_set_cs_timing method
-      commit: dc5fa590273890a8541ce6e999d606bfb2d73797
+[1/2] regulator: Add a routine to set the current limit for QCOM PMIC VBUS
+      commit: 67823d9dadd4dddee4b6bd075f6852b6ade5604a
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
