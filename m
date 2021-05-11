@@ -2,181 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACD4337A410
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 11:54:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6945B37A41A
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 11:56:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231224AbhEKJzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 05:55:05 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:43496 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231189AbhEKJzE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 05:55:04 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14B9roQ6110601;
-        Tue, 11 May 2021 04:53:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1620726830;
-        bh=z9UAR+/RmS3yDyR1l995bN55sFL4hrr9lxH1F4VEQjY=;
-        h=From:To:CC:Subject:Date;
-        b=cm46Afi4XVnDWcwhl5s9KL0Iy6F6+I+WbF9BVo3ajfVOkywNACexJC4IY0CjjwY2F
-         m4KKWk6m/5xJUWzWYWEkZ7dgRuNhTIgDfaj3A6a2Jq1sSiTzSC9WzFw6fBPZjhT+oY
-         K48yBApcghSnnsqY2vaJFR/QApUSWCRij2ryncGI=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14B9roRt123002
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 11 May 2021 04:53:50 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 11
- May 2021 04:53:49 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 11 May 2021 04:53:49 -0500
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14B9rfrn089715;
-        Tue, 11 May 2021 04:53:42 -0500
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        id S231248AbhEKJ5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 05:57:50 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.50]:29450 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231204AbhEKJ5u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 05:57:50 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1620726992; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=WlxFcwav1MRFO+0Mc9pYpdY/uxHjQmHSFj577EMCswyKD+tv60DbSfm3U1So6QIZsC
+    tN0l9DMG9BruswJ/zvQZM7THejQWHuk2eZYrECvlp0nAnNhK2rOlXfFjW2LJFrJeu7yM
+    eHz8VW2AI9TSjxWbHoNaWy+2kSagurPXEwVl/f3y/rkrmiqIChzX7jSGGLDYpnZydzZ9
+    clzPdutDY4P0hXrJyd2Dd7udaYJcydK9rbmO+EIyWsairaNuuhmeYSvD3dn6uvlQK4Kz
+    go2RNvyDdVW/Cmkhp0zktTKToiCml9RxyDlO7Mdz2ZoT2AancJfR0MHwdkUgW/vBUGYm
+    a5Xw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1620726992;
+    s=strato-dkim-0002; d=strato.com;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=jcNXvz5f9tnYTEscLTSeAx+kTE7Xm9iCh0rpRW6mXpQ=;
+    b=a/W0VuS2exEu8EuL9MwalbZ92Zpt8IACx+Wz/H32RH+scBr6ltMlzwW70M5CeR7kmn
+    Eq1EoUp/+MVklO0NG3F9i2sPvZlQn15Pag7eUgUWMR3WK8fDDgILpB53CvLxDpn7lJK+
+    F8t8++MfPLSsDw/GZuIeq0xeJxMxvcyiuYKP6QkhkYg/wpxR5/qUIsIvHjMS/PZYBHuF
+    brsHcb6xwTlD81Z5BTNqdExiM+PGGR4+ByncrjQXJ0bMz4OGJJr2SLNoTqYYhC5qR6h7
+    Rofb54ONdrSUkCnp/qFXcFORFZQFxXuhhj1Z2CUUJVFCecjk2Dyt0TqutnPinnA2zikC
+    k3gg==
+ARC-Authentication-Results: i=1; strato.com;
+    dkim=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1620726992;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=jcNXvz5f9tnYTEscLTSeAx+kTE7Xm9iCh0rpRW6mXpQ=;
+    b=VKGdWXuOGoOHzEwY7+0LEo5EI/4raXChYpG0CCTolVlBRIU/I7Js65ze6S/4Vd+iR4
+    /GXiqr6XT9ovBKfccYLCq4TphEpiL5CIHj/+GJr4/PUwIfY4t+/w75j/XeTY3GMcSZM9
+    LVha8z7b7zWP8mtAVBjLW0vxlYYuvWQDv5lY1WUAfj13h2T7OCGkGltmtNk8JVG8fQ/k
+    /dHpb19Es2lOSzM1Bo3jEybF5PFwiI2bywPljKSCHa3qYJ9wdGWXuNSSbBA9XOX13Kd8
+    uM3fSll7XnJ5BJDvbgheUfoMnCmTgFrtc+WyzUEZcu7sJN9wm+1MlGg1urVWP5JoMsxt
+    Iy5A==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxB5m6ONKhX"
+X-RZG-CLASS-ID: mo00
+Received: from droid..
+    by smtp.strato.de (RZmta 47.25.6 DYNA|AUTH)
+    with ESMTPSA id R01591x4B9uT06D
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Tue, 11 May 2021 11:56:29 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2] arm64: dts: ti: k3-am65: Add support for UHS-I modes in MMCSD1 subsystem
-Date:   Tue, 11 May 2021 15:23:39 +0530
-Message-ID: <20210511095339.16268-1-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
+        Robert Yang <decatf@gmail.com>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
+        Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Hans de Goede <hdegoede@redhat.com>,
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH 0/3] iio: accel: kxcjk-1013: Add support for KX023-1025
+Date:   Tue, 11 May 2021 11:54:06 +0200
+Message-Id: <20210511095409.9290-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-UHS-I speed modes are supported in AM65 S.R. 2.0 SoC[1].
+KX023-1025 [1] is another accelerometer from Kionix that has lots
+of additional functionality compared to KXCJK-1013. It combines the
+motion interrupt functionality from KXCJK with the tap detection
+from KXTF9, plus a lot more other functionality.
 
-Add support by removing the no-1-8-v tag and including the voltage
-regulator device tree nodes for power cycling.
+This patch set does not add support for any of the extra functionality,
+but makes basic functionality work with the existing kxcjk-1013 driver.
 
-However, the 4 bit interface of AM65 SR 1.0 cannot be supported at 3.3 V or
-1.8 V because of erratas i2025 and i2026 [2]. As the SD card is the primary
-boot mode for development usecases, continue to enable SD card and disable
-UHS-I modes in it to minimize any ageing issues happening because of
-erratas.
+At first, the register map for the KX023-1025 seems quite different
+from the other accelerometers supported by the kxcjk-1013.
+However, it turns out that at least most of the register bits
+still mean the same for KX023-1025.
 
-k3-am6528-iot2050-basic and k3-am6548-iot2050-advanced boards use S.R. 1.0
-version of AM65 SoC. Therefore, add no-1-8-v in sdhci1 device tree nodes
-for these boards.
+This patch set refactors the kxcjk-1013 driver a little bit
+to get the register addresses from a chip-specific struct.
+The register bits can be re-used for all the different chips.
 
-[1] - https://www.ti.com/lit/ug/spruid7e/spruid7e.pdf, section 12.3.6.1.1
-[2] - https://www.ti.com/lit/er/sprz452e/sprz452e.pdf
+The KX023-1025 is used in several smartphones from Huawei.
+I tested these changes on a Huawei Ascend G7, someone else reported
+they also work fine on the Huawei Honor 5X (codename "kiwi").
 
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  1 -
- .../boot/dts/ti/k3-am6528-iot2050-basic.dts   |  4 +++
- .../arm64/boot/dts/ti/k3-am654-base-board.dts | 33 +++++++++++++++++++
- .../dts/ti/k3-am6548-iot2050-advanced.dts     |  4 +++
- 4 files changed, 41 insertions(+), 1 deletion(-)
+[1]: https://kionixfs.azureedge.net/en/datasheet/KX023-1025%20Specifications%20Rev%2012.0.pdf
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-index cb340d1b401f..632f32fce4a1 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -301,7 +301,6 @@
- 		ti,otap-del-sel = <0x2>;
- 		ti,trm-icp = <0x8>;
- 		dma-coherent;
--		no-1-8-v;
- 	};
- 
- 	scm_conf: scm-conf@100000 {
-diff --git a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
-index 4f7e3f2a6265..485266960d5f 100644
---- a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
-@@ -40,6 +40,10 @@
- 	status = "disabled";
- };
- 
-+&sdhci1 {
-+	no-1-8-v;
-+};
-+
- &main_pmx0 {
- 	main_uart0_pins_default: main-uart0-pins-default {
- 		pinctrl-single,pins = <
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-index 9e87fb313a54..51c594b4dddb 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-@@ -91,6 +91,38 @@
- 		#clock-cells = <0>;
- 		clock-frequency = <24000000>;
- 	};
-+
-+	evm_12v0: fixedregulator-evm12v0 {
-+		/* main supply */
-+		compatible = "regulator-fixed";
-+		regulator-name = "evm_12v0";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcc3v3_io: fixedregulator-vcc3v3io {
-+		/* Output of TPS54334 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_io";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		vin-supply = <&evm_12v0>;
-+	};
-+
-+	vdd_mmc1_sd: fixedregulator-sd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_mmc1_sd";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		vin-supply = <&vcc3v3_io>;
-+		gpio = <&pca9554 4 GPIO_ACTIVE_HIGH>;
-+	};
- };
- 
- &wkup_pmx0 {
-@@ -350,6 +382,7 @@
-  * disable sdhci1
-  */
- &sdhci1 {
-+	vmmc-supply = <&vdd_mmc1_sd>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_mmc1_pins_default>;
- 	ti,driver-strength-ohm = <50>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
-index ec9617c13cdb..3643a19b5f33 100644
---- a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
-@@ -55,6 +55,10 @@
- 	disable-wp;
- };
- 
-+&sdhci1 {
-+	no-1-8-v;
-+};
-+
- &main_uart0 {
- 	status = "disabled";
- };
+Stephan Gerhold (3):
+  dt-bindings: iio: kionix,kxcjk1013: Document kionix,kx023-1025
+  iio: accel: kxcjk-1013: Refactor configuration registers into struct
+  iio: accel: kxcjk-1013: Add support for KX023-1025
+
+ .../bindings/iio/accel/kionix,kxcjk1013.yaml  |   1 +
+ drivers/iio/accel/kxcjk-1013.c                | 217 ++++++++++++++----
+ 2 files changed, 176 insertions(+), 42 deletions(-)
+
 -- 
-2.17.1
+2.31.1
 
