@@ -2,125 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E27CD37AB21
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 17:50:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73BF437AAC3
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 17:33:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231815AbhEKPv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 11:51:29 -0400
-Received: from lizzard.sbs.de ([194.138.37.39]:53758 "EHLO lizzard.sbs.de"
+        id S231743AbhEKPfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 11:35:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33526 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231561AbhEKPv2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 May 2021 11:51:28 -0400
-Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
-        by lizzard.sbs.de (8.15.2/8.15.2) with ESMTPS id 14BFnqIE012506
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 11 May 2021 17:49:52 +0200
-Received: from [167.87.32.54] ([167.87.32.54])
-        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 14BFQqmi012261;
-        Tue, 11 May 2021 17:26:52 +0200
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am65: Add support for UHS-I modes
- in MMCSD1 subsystem
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210511095339.16268-1-a-govindraju@ti.com>
- <200b5648-b2d9-b4c9-f81a-b39c3baf81f9@siemens.com>
- <7561137c-adf1-bf03-c442-ff8174b2f143@ti.com>
-From:   Jan Kiszka <jan.kiszka@siemens.com>
-Message-ID: <95539fea-8190-7a3d-05aa-90824eb03293@siemens.com>
-Date:   Tue, 11 May 2021 17:26:52 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        id S231609AbhEKPe7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 May 2021 11:34:59 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B017C6191C;
+        Tue, 11 May 2021 15:33:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1620747232;
+        bh=0ycZJyo5rPknGQbcP1uAKYtdIN0dctFP9qaEHA1Lmtk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ZjsrZAwbc/lBKJzT5Qnk9hhA7hlNe9/+wsYAaQ2hCTHDuuS714UHT6/PWDkPLtFVN
+         PGNsYrLkQZQ1njQMFNmrF+rY39q/TgojalbAiTiTFUb8PZp5nbjHm2FQrAyGecNVnb
+         EFjtdDxosV0WEHHZtJzjScukgd4H65tzu8ct8/DgkOWVpEXiQRX93jUgit8bPoBFw8
+         4UaZJ8n36ZGgLFTGYdVNhCLgSUAdMe+PK32kf2pkJ+5uBrTdO+Lm2MfL5TkWLGYyuF
+         UzXOSq495Yh6kMMp2pjKebGAlUkklNesbZGSBbHQ6dUDDZshlwFG4FA61TEF9kzj8H
+         s2J+Xs12uTA1Q==
+Received: by mail-qk1-f176.google.com with SMTP id 76so19114845qkn.13;
+        Tue, 11 May 2021 08:33:52 -0700 (PDT)
+X-Gm-Message-State: AOAM531i5nLTX5InfGMpwo1rUGeWyOyKyHeWQrLpkLuNcifHdLcedA5Z
+        I08mCcw4lGzUvuJ5zWyZX8uM0ETDp4xHgr3I5A==
+X-Google-Smtp-Source: ABdhPJzgBwoKu9MHPdLj91APOY8pzFmxS2DLOE3Q2ktzZ0fUiNWOhbcxKfUo1JHMW7OvuM894BUmNNo5VnEbhOJ8/vY=
+X-Received: by 2002:a37:6116:: with SMTP id v22mr14616810qkb.464.1620747229748;
+ Tue, 11 May 2021 08:33:49 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <7561137c-adf1-bf03-c442-ff8174b2f143@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210507004047.4454-1-chris.packham@alliedtelesis.co.nz>
+ <20210507004047.4454-2-chris.packham@alliedtelesis.co.nz> <20210507214936.GA2944698@robh.at.kernel.org>
+ <c5d6f8d0-9b8a-b3bf-b7c3-884f03f7ecee@alliedtelesis.co.nz>
+In-Reply-To: <c5d6f8d0-9b8a-b3bf-b7c3-884f03f7ecee@alliedtelesis.co.nz>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 11 May 2021 10:33:37 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKaeubNxYwGNOJYv=VcwR_6NzwkXnQ4DjOwXDudEmZ2Rg@mail.gmail.com>
+Message-ID: <CAL_JsqKaeubNxYwGNOJYv=VcwR_6NzwkXnQ4DjOwXDudEmZ2Rg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: i2c: mpc: Add fsl,i2c-erratum-a004447 flag
+To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Cc:     "wsa@kernel.org" <wsa@kernel.org>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
+        "mpe@ellerman.id.au" <mpe@ellerman.id.au>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Joakim Tjernlund <Joakim.Tjernlund@infinera.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11.05.21 12:13, Aswath Govindraju wrote:
-> Hi Jan,
-> 
-> On 11/05/21 3:31 pm, Jan Kiszka wrote:
->> On 11.05.21 11:53, Aswath Govindraju wrote:
->>> UHS-I speed modes are supported in AM65 S.R. 2.0 SoC[1].
->>>
->>> Add support by removing the no-1-8-v tag and including the voltage
->>> regulator device tree nodes for power cycling.
->>>
->>> However, the 4 bit interface of AM65 SR 1.0 cannot be supported at 3.3 V or
->>> 1.8 V because of erratas i2025 and i2026 [2]. As the SD card is the primary
->>> boot mode for development usecases, continue to enable SD card and disable
->>> UHS-I modes in it to minimize any ageing issues happening because of
->>> erratas.
->>>
->>> k3-am6528-iot2050-basic and k3-am6548-iot2050-advanced boards use S.R. 1.0
->>> version of AM65 SoC. Therefore, add no-1-8-v in sdhci1 device tree nodes
->>> for these boards.
->>>
->>> [1] - https://www.ti.com/lit/ug/spruid7e/spruid7e.pdf
->>> [2] - https://www.ti.com/lit/er/sprz452e/sprz452e.pdf
->>>
->>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->>> ---
->>>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  1 -
->>>  .../boot/dts/ti/k3-am6528-iot2050-basic.dts   |  4 +++
->>>  .../arm64/boot/dts/ti/k3-am654-base-board.dts | 33 +++++++++++++++++++
->>>  .../dts/ti/k3-am6548-iot2050-advanced.dts     |  4 +++
->>>  4 files changed, 41 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
->>> index cb340d1b401f..632f32fce4a1 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
->>> @@ -301,7 +301,6 @@
->>>  		ti,otap-del-sel = <0x2>;
->>>  		ti,trm-icp = <0x8>;
->>>  		dma-coherent;
->>> -		no-1-8-v;
->>>  	};
->>>  
->>>  	scm_conf: scm-conf@100000 {
->>> diff --git a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
->>> index 4f7e3f2a6265..485266960d5f 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
->>> +++ b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
->>> @@ -40,6 +40,10 @@
->>>  	status = "disabled";
->>>  };
->>>  
->>> +&sdhci1 {
->>> +	no-1-8-v;
->>> +};
->>> +
->>
->> Let's move that to k3-am65-iot2050-common.dtsi, to avoid repeating
->> yourself. There is already a sdhci1 extension.
->>
-> 
-> The reason why I added these tags in board dts and not in the common
-> dtsi is because if it was added in the common board then for all the iot
-> boards this will be applicable and in future if a different version of
-> iot boards use S.R. 2.0 then we might have to change it again.
+On Sun, May 9, 2021 at 4:08 PM Chris Packham
+<Chris.Packham@alliedtelesis.co.nz> wrote:
+>
+>
+> On 8/05/21 9:49 am, Rob Herring wrote:
+> > On Fri, May 07, 2021 at 12:40:45PM +1200, Chris Packham wrote:
+> >> Document the fsl,i2c-erratum-a004447 flag which indicates the presence
+> >> of an i2c erratum on some QorIQ SoCs.
+> >>
+> >> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> >> ---
+> >>   Documentation/devicetree/bindings/i2c/i2c-mpc.yaml | 7 +++++++
+> >>   1 file changed, 7 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mpc.yaml b/Documentation/devicetree/bindings/i2c/i2c-mpc.yaml
+> >> index 7b553d559c83..98c6fcf7bf26 100644
+> >> --- a/Documentation/devicetree/bindings/i2c/i2c-mpc.yaml
+> >> +++ b/Documentation/devicetree/bindings/i2c/i2c-mpc.yaml
+> >> @@ -46,6 +46,13 @@ properties:
+> >>       description: |
+> >>         I2C bus timeout in microseconds
+> >>
+> >> +  fsl,i2c-erratum-a004447:
+> >> +    $ref: /schemas/types.yaml#/definitions/flag
+> >> +    description: |
+> >> +      Indicates the presence of QorIQ erratum A-004447, which
+> >> +      says that the standard i2c recovery scheme mechanism does
+> >> +      not work and an alternate implementation is needed.
+> > The problem with adding a property for an errata is you have to update
+> > the dtb. If you use the compatible string, then only an OS update is
+> > needed. That assumes you have specific enough compatible strings.
+>
+> I was following the style of the existing fsl,usb-erratum-a007792 or
+> fsl,erratum-a008585 properties. But that's not really a compelling reason.
+>
+> The existing compatible string is "fsl-i2c" and it's used by pretty much
+> every powerpc QorIQ SoC. There are some specific compatible strings in
+> the driver for some of the older mpc SoCs. A more specific compatible
+> string will work although determining which ones are affected might be a
+> bit troublesome. That we know of the P2041 and P1010 are affected but I
+> suspect there may be more. One disadvantage of using the compatible
+> string is that as affected SoCs are identified we'll have to update the
+> driver to know that SoC is affected and update the dtb to use it. With
+> the property we'd just have to update the dtb.
 
-Yes, we will have to take care of the split-up for SR2.0-based variants.
-I didn't have the chance study their DTs yet but I strongly suspect that
-there will be more differences. Then we may add some
-k3-am65-iot2050-common-{SR1,SR2}.dtsi.
+If you don't have specific compatibles in the dtb already, then it's
+mute as the point was to avoid the dtb update.
 
-So, I would not try to refactor when not all variables are on the table yet.
+> I'm not too fussed either way so if that's a hard NACK on the property I
+> can send a version that uses compatible strings instead.
 
-Thanks
-Jan
+Acked-by: Rob Herring <robh@kernel.org>
 
-
--- 
-Siemens AG, T RDA IOT
-Corporate Competence Center Embedded Linux
+You could still add compatibles for the next time...
