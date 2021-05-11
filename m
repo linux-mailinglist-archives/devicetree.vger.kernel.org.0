@@ -2,36 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 590B337A88B
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 16:09:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2642337A8EA
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 16:18:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231733AbhEKOKS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 10:10:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48356 "EHLO mail.kernel.org"
+        id S231661AbhEKOTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 10:19:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56392 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231663AbhEKOKS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 May 2021 10:10:18 -0400
+        id S231523AbhEKOTr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 May 2021 10:19:47 -0400
 Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 63F81613F7;
-        Tue, 11 May 2021 14:09:07 +0000 (UTC)
-Date:   Tue, 11 May 2021 15:10:14 +0100
+        by mail.kernel.org (Postfix) with ESMTPSA id 3647B611BE;
+        Tue, 11 May 2021 14:18:39 +0000 (UTC)
+Date:   Tue, 11 May 2021 15:19:45 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Hans de Goede <hdegoede@redhat.com>
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Peter Rosin <peda@axentia.se>,
         Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Yang <decatf@gmail.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 0/3] iio: accel: kxcjk-1013: Add support for KX023-1025
-Message-ID: <20210511151014.3d9d6768@jic23-huawei>
-In-Reply-To: <91258724-09cc-ed39-2277-6fbcca0c53e9@redhat.com>
-References: <20210511095409.9290-1-stephan@gerhold.net>
-        <91258724-09cc-ed39-2277-6fbcca0c53e9@redhat.com>
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: iio: afe: current-sense-shunt: add
+ io-channel-cells
+Message-ID: <20210511151945.1c3fd6e0@jic23-huawei>
+In-Reply-To: <1e8651a3-e730-411b-18a8-800e9bd9304e@canonical.com>
+References: <20210506150637.35288-1-krzysztof.kozlowski@canonical.com>
+        <0e68ca18-7d8c-12ab-59b1-56404b29be77@axentia.se>
+        <20210508165944.2e3d8d91@jic23-huawei>
+        <1e8651a3-e730-411b-18a8-800e9bd9304e@canonical.com>
 X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -40,56 +39,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 May 2021 12:44:23 +0200
-Hans de Goede <hdegoede@redhat.com> wrote:
+On Mon, 10 May 2021 08:17:17 -0400
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
 
-> Hi,
+> On 08/05/2021 11:59, Jonathan Cameron wrote:
+> > On Sat, 8 May 2021 00:44:58 +0200
+> > Peter Rosin <peda@axentia.se> wrote:
+> >   
+> >> Hi!
+> >>
+> >> On 2021-05-06 17:06, Krzysztof Kozlowski wrote:  
+> >>> The current-sense-shunt is an IIO provider thus can be referenced by IIO
+> >>> consumers (via "io-channels" property in consumer device node).
+> >>> Such provider is required to describe number of cells used in phandle
+> >>> lookup with "io-channel-cells" property.  This also fixes dtbs_check
+> >>> warnings like:
+> >>>
+> >>>   arch/arm/boot/dts/s5pv210-fascinate4g.dt.yaml: current-sense-shunt:
+> >>>     '#io-channel-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
+> >>>
+> >>> Fixes: ce66e52b6c16 ("dt-bindings:iio:afe:current-sense-shunt: txt to yaml conversion.")
+> >>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> >>> ---
+> >>>  .../devicetree/bindings/iio/afe/current-sense-shunt.yaml     | 5 +++++
+> >>>  1 file changed, 5 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/iio/afe/current-sense-shunt.yaml b/Documentation/devicetree/bindings/iio/afe/current-sense-shunt.yaml
+> >>> index 90439a8dc785..05166d8a3124 100644
+> >>> --- a/Documentation/devicetree/bindings/iio/afe/current-sense-shunt.yaml
+> >>> +++ b/Documentation/devicetree/bindings/iio/afe/current-sense-shunt.yaml
+> >>> @@ -24,12 +24,16 @@ properties:
+> >>>      description: |
+> >>>        Channel node of a voltage io-channel.
+> >>>  
+> >>> +  "#io-channel-cells":
+> >>> +    const: 0
+> >>> +
+> >>>    shunt-resistor-micro-ohms:
+> >>>      description: The shunt resistance.
+> >>>  
+> >>>  required:
+> >>>    - compatible
+> >>>    - io-channels
+> >>> +  - "#io-channel-cells"
+> >>>    - shunt-resistor-micro-ohms    
+> >>
+> >> I know I'm listed as maintainer and all, but I have not kept up with the yaml
+> >> conversion. Sorry. So, given that I might very well fundamentally misunderstand
+> >> something, it does not sound correct that #io-channel-cells is now "required".
+> >> I regard it as optional, and only needed if some other in-kernel driver is
+> >> consuming the sensed current. What am I missing?
+> >>  
+> > 
+> > Agreed. This should be optional and I have deliberately not introduced it
+> > into all the bindings that could in theory support being used as providers.
+> > 
+> > So far I've not pushed it out in a blanket fashion into existing bindings
+> > even as optional.
+> >   
+> >> Also, whatever is done in this binding should preferably also be done in the
+> >> two "sister" afe bindings, i.e. current-sense-amplifier and voltage-divider.  
+> > 
+> > This particular case is squashing an error, so whilst I'm happy to have those
+> > gain the binding addition, I would like to see them in a separate patch as
+> > less likely they'd get back ported.
+> > 
+> > If Kryysztof is fine with me just dropping the required I can pick up this patch.  
 > 
-> On 5/11/21 11:54 AM, Stephan Gerhold wrote:
-> > KX023-1025 [1] is another accelerometer from Kionix that has lots
-> > of additional functionality compared to KXCJK-1013. It combines the
-> > motion interrupt functionality from KXCJK with the tap detection
-> > from KXTF9, plus a lot more other functionality.
-> > 
-> > This patch set does not add support for any of the extra functionality,
-> > but makes basic functionality work with the existing kxcjk-1013 driver.
-> > 
-> > At first, the register map for the KX023-1025 seems quite different
-> > from the other accelerometers supported by the kxcjk-1013.
-> > However, it turns out that at least most of the register bits
-> > still mean the same for KX023-1025.
-> > 
-> > This patch set refactors the kxcjk-1013 driver a little bit
-> > to get the register addresses from a chip-specific struct.
-> > The register bits can be re-used for all the different chips.
-> > 
-> > The KX023-1025 is used in several smartphones from Huawei.
-> > I tested these changes on a Huawei Ascend G7, someone else reported
-> > they also work fine on the Huawei Honor 5X (codename "kiwi").
-> > 
-> > [1]: https://kionixfs.azureedge.net/en/datasheet/KX023-1025%20Specifications%20Rev%2012.0.pdf
-> > 
-> > Stephan Gerhold (3):
-> >   dt-bindings: iio: kionix,kxcjk1013: Document kionix,kx023-1025
-> >   iio: accel: kxcjk-1013: Refactor configuration registers into struct
-> >   iio: accel: kxcjk-1013: Add support for KX023-1025  
-> 
-> Thanks, the entire series looks good to me:
-> 
-> Reviewed-by: Hans de Goede <hdegoede@redhat.com>
-> 
-
-Other than those things 0-day found which would be good to tidy up for a v2
-looks good to me.
+> Having here required number of cells helps any DT-user to seamlessly
+> integrate with it (e.g. with his in-tree or out-of-tree DTS, with
+> overlays). However it also can be added with such DTS or overlay, so in
+> general I don't mind dropping the required piece. Thanks!
+I dropped the required and applied to the togreg branch of iio.git.
 
 Thanks,
 
 Jonathan
 
-> for the series.
 > 
-> Regards,
-> 
-> Hans
-> 
+> Best regards,
+> Krzysztof
 
