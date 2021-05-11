@@ -2,78 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8012137A5FA
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 13:46:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D89637A601
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 13:48:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230478AbhEKLsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 07:48:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40034 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230400AbhEKLsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 07:48:00 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1BADC061574
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 04:46:52 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id s25so36438ljo.11
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 04:46:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=h1eK/LiSW68c+KB3iND1/GFxMdwpuYaLYFblZwKKZ1U=;
-        b=SKWRZkC4/5Obo8EhpRMpq/H1HugDUO+/2t/KK3+/e7BYkXjjQKm5A2Rgt5F581Gr/7
-         w4wlhjQNsqEd9k+rgyxZYn5j+I/mlBKIQ+dYX95wuxbrQPNbQ0pULlo2XZ38/JIuEojQ
-         TpoBoS6DlLfMjYNFxQcQJC+oEqigEtK8WFx6xukSP9ip2jNpv785X5akqkOgFSnFtyaB
-         1upkHJIewAL78MdVZaWJzf0QcwakB4TqGhlq/XNmn1sHmb7cp/6fL4//8NmhrlATVH8x
-         gYG0a7YFuPl7RZOQVjueI6aQjO4MJxdTeZgaE3FtpTkm4TR74mORDkI37NPjLWi32Fx5
-         gqHw==
+        id S231473AbhEKLtV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 07:49:21 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:54235 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231488AbhEKLtU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 May 2021 07:49:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1620733694;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=tCTd+S2Axg2X1q7f2AmsrNqMwgII9y4Yy/+j9XgTu+E=;
+        b=Fj5+kR1LJgadz7sTIhDZjJ2YVjyRGrbmTl4MXsm9A/Ea/t9Mh//IZbpzY9NaZ6SMsEmUja
+        102W88HF+4bboXUXLGFasAymz7fbFtDgG7GIAirIL9PqArLpSeDKAyWXRqwbqxVh42shbo
+        HSEaWuDEMswxEpiWP0urDsJj6s+IPWY=
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
+ [209.85.218.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-425-qQUxcNxbOEemNg7xLtCjFw-1; Tue, 11 May 2021 07:48:12 -0400
+X-MC-Unique: qQUxcNxbOEemNg7xLtCjFw-1
+Received: by mail-ej1-f70.google.com with SMTP id d21-20020a1709067f15b02903a61441211cso5829091ejr.14
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 04:48:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=h1eK/LiSW68c+KB3iND1/GFxMdwpuYaLYFblZwKKZ1U=;
-        b=rbWMLRnhJwOAj2dKYdggKhjsCZ6K+XhmgqiyDi4NR7nVj259COQTuPslhvhJ3p7jv1
-         x474hUpVnVssrqiOuC9inwUDxWgQ57yXG4gmb1C77v1qTozgVe2A+6g1hI956JYOS43w
-         /ibMp7tR/qf8t8ySeGkAvffme19W5gUCmYqaOpokK//OfogNN76gS5H8kE6pHGJVyqUt
-         uiPU+tvkocNhN+Ncjtg1M0yT7qn0E/ET1qN3IKgdPogyeWUlfMS58KOnJ/RGm+BRmOxT
-         uBKNb68Mle1MwAbBmlzOPpZVWCt1y7RAUISTUcD048peJVXRcbPl+xZR5A4RXwQCJmbw
-         H/tg==
-X-Gm-Message-State: AOAM531JQ39Mk5ALVE+mzuBz9nV13LlQR2Lk1oM+jpgkBnPONZoROE3y
-        GTX0jVuaEQ/vLBJ693DPCizSY3jKe6TdqsBVXzI=
-X-Google-Smtp-Source: ABdhPJw/Fg+RY/E5UQA2GOo3WJdHynai38usVkF6mXe5Nc4Igz6DPFBTO4ZQBlHWXg27U0yaAIZWxad+KTlKox9LTAk=
-X-Received: by 2002:a05:651c:a06:: with SMTP id k6mr24422345ljq.347.1620733611417;
- Tue, 11 May 2021 04:46:51 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=tCTd+S2Axg2X1q7f2AmsrNqMwgII9y4Yy/+j9XgTu+E=;
+        b=dro/wHnHuDHCHfnKkq3oEZXxl8JKGAbxK0HGVVOe8Nrw6oLinw0OJz/AKVCR6NyC24
+         E0NkKOcQavRYZ3yuZ2oWkv3YPVKDYSAgOY7Wcgnc6LZYZ0Kx7VP7z63+9UR0WnJbujnk
+         KtNg9R9RORrqoKN8rQ6qrQSFsUtLxa+UUoiogy+F5/Clu95HUIlK9GPufBHlGaYsu6Vt
+         e6UI10AqYrvkXQUXCLFh6uvKzdJKFrtmdQD5qyYcoy2b41Gd3FhuMgwUoCvYbOVP+8GJ
+         hSuFcgydSSiUa/z78+AQGvn3YI2Qyf8r8SXq9qJivwbuKOoqTgBx5jgRzrmc9j2O8dLf
+         CyLg==
+X-Gm-Message-State: AOAM533o9cb41yekPEvzyjgkTG5xkOeMAW5R0WSq50M2gjRUGVntWzHt
+        GrcC+dWUDaNYAY4sCCfP/f+Fwa+QliZc9Lut0LUQoPT+sxxmr7+uJmoogyjeY409V1g+tTWxJIi
+        hsXLiPgNYG0wqeWYrWhNbTQ==
+X-Received: by 2002:a17:907:f91:: with SMTP id kb17mr30722709ejc.521.1620733691343;
+        Tue, 11 May 2021 04:48:11 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyK1wG8GPs1uiWXaXij0uLW/nSHZ5xv/Mp/aP4/ksfEpDozfyQJa04/xi8Vel+362v042qcCA==
+X-Received: by 2002:a17:907:f91:: with SMTP id kb17mr30722691ejc.521.1620733691162;
+        Tue, 11 May 2021 04:48:11 -0700 (PDT)
+Received: from x1.localdomain (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl. [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
+        by smtp.gmail.com with ESMTPSA id ga28sm11316864ejc.20.2021.05.11.04.48.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 May 2021 04:48:10 -0700 (PDT)
+Subject: Re: [PATCH v7 1/7] MAINTAINERS: Add Advantech AHC1EC0 embedded
+ controller entry
+To:     Campion Kang <campion.kang@advantech.com.tw>
+Cc:     andy.shevchenko@gmail.com, chia-lin.kao@canonical.com,
+        corbet@lwn.net, devicetree@vger.kernel.org, jdelvare@suse.com,
+        lee.jones@linaro.org, linux-doc@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, linux@roeck-us.net,
+        mgross@linux.intel.com, platform-driver-x86@vger.kernel.org,
+        robh+dt@kernel.org, wim@linux-watchdog.org
+References: <cf181436-152c-7cd8-76cf-350705cd2bcb@redhat.com>
+ <20210507115319.22109-1-campion.kang@advantech.com.tw>
+From:   Hans de Goede <hdegoede@redhat.com>
+Message-ID: <0a64dcbd-25d6-ddcd-4a4e-18619e8270ba@redhat.com>
+Date:   Tue, 11 May 2021 13:48:09 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-References: <20210510185931.104780-1-l.stach@pengutronix.de> <20210510185931.104780-3-l.stach@pengutronix.de>
-In-Reply-To: <20210510185931.104780-3-l.stach@pengutronix.de>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 11 May 2021 08:46:38 -0300
-Message-ID: <CAOMZO5AZEuKnwSpwdMp7SxLLE+5VQ3rnU-QVuP_yfnFqd6qJ4Q@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: imx8mq: add support for MNT Reform2
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        "Lukas F . Hartmann" <lukas@mntre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210507115319.22109-1-campion.kang@advantech.com.tw>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 10, 2021 at 4:00 PM Lucas Stach <l.stach@pengutronix.de> wrote:
+Hi,
+
+On 5/7/21 1:53 PM, Campion Kang wrote:
+> Hi, Very thanks your time for reviewing.
+> 
+>> -----Original Message-----
+>> From: Hans de Goede <hdegoede@redhat.com>
+>> Sent: Thursday, May 6, 2021 5:39 PM
+>> Subject: Re: [PATCH v7 1/7] MAINTAINERS: Add Advantech AHC1EC0 embedded
+>> controller entry
+>>
+>> Hi,
+>>
+>> On 5/6/21 11:23 AM, Andy Shevchenko wrote:
+>>> On Thu, May 6, 2021 at 11:48 AM Hans de Goede <hdegoede@redhat.com>
+>> wrote:
+>>>> I'm replying here since this series has no cover-letter, for
+>>>> the next version for a series touching so many different
+>>>> sub-systems it would be good to start with a cover-letter
+>>>> providing some background info on the series.
+>>>>
+> 
+> Sorry about that, i will study what is cover-letter and its content.
+> Would you kindly provide me a good reference?
+> Can I resend a [Patch v7 0/7] for these patch or provide it in next version?
+
+Please add a cover letter to the next version, which will hopefully
+also address some of the other remarks already made.
+
+Regards,
+
+Hans
 
 
-> +&i2c3 {
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_i2c3>;
-> +       status = "okay";
-> +
-> +       pcf8523: pcf8523@68 {
+> 
+> 
+>>>> I see this is binding to an ACPI device, yet it is also using
+>>>> devicetree bindings and properties.
+>>>>
+>>>> So I take it this means that your ACPI tables are using the
+>>>> optional capability of embedded device-tree blobs inside the
+>>>> ACPI tables ?
+>>>>
+>>>> That is an unusual combination on a x86 device, note it is
+>>>> not wrong
+>>>
+>>> It's actually not okay. We have agreed at some point with DT people,
+>>> that ACPI should not use non-native variants of natively supported
+>>> things. For example, it shouldn't use "interrupt" property for IOxAPIC
+>>> (or xIC) provided interrupts, rather Interrupt() has to be used and so
+>>> on.
+> 
+> In our experience, most risc platforms are using devicetree, and x86/64 platforms
+> are using ACPI table or grub configure for their specific settings in different HW paltform.
+> In this case, EC chip is a LPC interface that can be integrated in whenever risc or x86/64.
+> So in my understand, I think it is not conflict.
+> (please correct me if i am misunderstanding, i will try to describe more)
+> 
+> If the EC chip is connected to the risc processor, we will bind its properties in the device-tree without modifing the source.
+> If the EC chip is connected to the X86/64 processor, we bind its the properties in the ACPI table and also without modifing the source.
+> Why do we need to bind the properties in ACPI or in the device-tree? Because it is an LPC interface, it cannot automatically load the driver like a USB or PCI device.
+> In the early days, we had to install the EC driver module in our HW platform and manually load it at every boot. Different Advantech HW platforms have different properties for HWMON and others sub-systems. This causes the EC source to be a bit dirty. It is necessary to obtain the hardware platform name from the BIOS DMI table and determine its attributes according to its platform name.
+> Now bind the attributes to ACPI table or device-tree, the EC source is more clear and universal for Advantech devices, and it is important that if the ACPI table matches, it can be automatically loaded.
+> 
+>>
+>> Right, but that is not the case here, they are using 2 device-tree
+>> properties (1), from patch 3/7:
+>>
+>> +properties:
+>> +  compatible:
+>> +    const: advantech,ahc1ec0
+>> +
+>> +  advantech,hwmon-profile:
+>> +    description:
+>> +      The number of sub-devices specified in the platform. Defines for the
+>> +      hwmon profiles can found in dt-bindings/mfd/ahc1ec0-dt.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    maxItems: 1
+>> +
+>> +  advantech,has-watchdog:
+>> +    description:
+>> +      Some implementations of the EC include a watchdog used to monitor
+>> the
+>> +      system. This boolean flag is used to specify whether this watchdog is
+>> +      present or not. Default is true, otherwise set to false.
+>> +    type: boolean
+>>
+>>
+>>>> but AFAIK you are the first to do this on x86.
+>>>
+>>> No, not the first. Once Intel tried to invent the pin control
+>>> configuration and muxing properties in ACPI, it was luckily rejected
+>>> (ACPI 6.x OTOH provides a set of special resources for that).
+>>>
+>>> So, NAK from me, *if* it's really the case. ACPI tables must be revisited.
+>>
+> 
+> I am not sure it supports vendor self-defined attributes for ACPI table?
+> 
+>> AFAIK Advantech are not defining things for which an ACPI standard exists,
+>> although these 2 properties might just as well may be 2 simple ACPI integer
+>> methods, which would actually make things a bit simpler (.e.g it would
+>> allow dropping patch 2/7 and 3/7 from the set).
+>>
+>> Campion, any reason why you went this route; and can the ACPI tables
+>> still be changed?
+>>
+> 
+> If patches 2/7 and 3/7 are removed, it will be even simpler.
+> This means that there is no device-tree binding designed, in fact, the EC chip only be integrated in the x86/64 platform at present.
+> Sorry, ACPI table now is integrated in the BIOS for Advantech UNO device, 
+> it may be revert to previous rule, that is, there is no ACPI table binding and manually loaded the EC driver. If you have any suggestons I would be very grateful.
+> 
+>> Regards,
+>>
+>> Hans
+> 
 
-Just a nit: node names should be generic: rtc@68
-
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
