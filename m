@@ -2,142 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA13A37A7C1
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 15:34:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACFF337A7F8
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 15:44:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231440AbhEKNgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 09:36:02 -0400
-Received: from mail-bn7nam10on2059.outbound.protection.outlook.com ([40.107.92.59]:2560
-        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231401AbhEKNgB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 May 2021 09:36:01 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ie5XEKYbwNwcGj4h3w1BNfDxhcSQ1hP/JaHBYldmutaCmzxuxVmFtizG2hL5V0//nVFaptcAz3zvxZgRbt079/XfEcO2E1kaUTYuWNwpeCVaJvZHH/IOiPVkPrJ78yXgJQYAvH93BpIJaGYCg5jp2ykZ9lsU655W7+EnJXMxTwlRcN9yVZq4E4Yh4Zo0LBBDNPu8rXiYOxKGTicp4OZ/2Tv2bQ7PE3M8NCBuvbOo4ESBEdOu7z6vJMPZs1sAnIKxizhHrAAwVAKIQKXQW7COxlRKHfvAm2YF6cvnD7azBmgUl7zDbnzjyN6qyAp5PMg5EqX31OWwn7LiUkKU/irSdw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bi6nVHPdxls6TkJQDiwcgx7OQDwncC4CGCD/njWLMlM=;
- b=mjP5L8+YQy8zRLMJt/G6n+oDUplvB4NGXqiMuA+VoSggRKwuiQHayzfsPTCkR+qrNI6AxbMgrA0ADyY/YhqdlAP7MjXL2SfNjfQA35bY5ouGcfv/MyFJjd8DkTxXaPv/SDfcVey5awbeqbobm1V8mEZQfLf/cFkzD04U220lX+Ob4Jco+f+M1v1WZDvsKbabSrLcc3a0n7lCtqExUuxjN8Y5oSc5GS35SyV86R5O/lfNl29SwX1CebErSxkJkGeu9APkaRz2or+b5ae7BMhtKvBbTJeEID76uiWjLiethOVeHcZuIoDAHyVynEXIzFJpD7S+qi7b0k+Wems6HVgvFg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bi6nVHPdxls6TkJQDiwcgx7OQDwncC4CGCD/njWLMlM=;
- b=RDt5uzZ+t25GKuL+JB479kFx+2Iu1GkxCqePzoKSMrLlOeV2O0i1MUqnWAJCr9BujHAXWWTtAIa7UYO/9Md09y9zONH+JIdPIP377RBb2z99mnQXLHpfTvel8GedqXtmsMYhFelg3/5rJjC2yGRjYELm0PY2TjPXLY9XirKgsMNSmCeibqIUG5zYA2f9oK7iLzdnUy2fIFTC+XDWTGZxk0CWO/EA1R+LOGidjtTuejOWiVHcQg6YpxEycPwr/2DUPEnveZ4q9BiJg3Gk6InJfjEzaL56I2bDDDdS8Zsp39f3XynOWnO12X0BfJMLoUaiHr42HXsvY6+P/7QhII+kVw==
-Received: from DM6PR12MB3898.namprd12.prod.outlook.com (2603:10b6:5:1c6::18)
- by DM5PR12MB1929.namprd12.prod.outlook.com (2603:10b6:3:106::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.26; Tue, 11 May
- 2021 13:34:53 +0000
-Received: from DM6PR12MB3898.namprd12.prod.outlook.com
- ([fe80::dce6:427d:df17:3974]) by DM6PR12MB3898.namprd12.prod.outlook.com
- ([fe80::dce6:427d:df17:3974%5]) with mapi id 15.20.4108.031; Tue, 11 May 2021
- 13:34:53 +0000
-From:   Vadim Pasternak <vadimp@nvidia.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-CC:     "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH hwmon-next v7 0/3] Add support for MPS Multi-phase mp2888
- controller
-Thread-Topic: [PATCH hwmon-next v7 0/3] Add support for MPS Multi-phase mp2888
- controller
-Thread-Index: AQHXRipuLL+jULWEu0a+/2x+DAlvKKreR78AgAAAP7A=
-Date:   Tue, 11 May 2021 13:34:53 +0000
-Message-ID: <DM6PR12MB38985D51FA4430D1CD1F6303AF539@DM6PR12MB3898.namprd12.prod.outlook.com>
-References: <20210511055619.118104-1-vadimp@nvidia.com>
- <b967ca2a-acb6-6b76-7aee-788126f910e7@roeck-us.net>
-In-Reply-To: <b967ca2a-acb6-6b76-7aee-788126f910e7@roeck-us.net>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: roeck-us.net; dkim=none (message not signed)
- header.d=none;roeck-us.net; dmarc=none action=none header.from=nvidia.com;
-x-originating-ip: [46.117.116.151]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 75ee7d13-dfff-469b-0da0-08d914818f34
-x-ms-traffictypediagnostic: DM5PR12MB1929:
-x-microsoft-antispam-prvs: <DM5PR12MB192958547D9C5E32F833E3AEAF539@DM5PR12MB1929.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 3DD9XFG074L+U04Bj0TqUMTa2/syxCBPA4xeBgDEuHjt6ryfs/LiEYKBrPhMx6lfU5ZHcgKxzCcv50yKF/k3kvVd0uROMYCXq53Bu8lra3JQPV7NgUye50hGx2627xfVFezcBE3ob35O8vMmwcHMYRdvU6BsIx6q1No20qI1jmyPc8yxefvpuLi9FwszPfGLQFIn5m6AXQ40qdeYZdSlqpEZbQX4itRhOiYC6Sxb+smHgRg/RmSs6Ug5Mj0jhONlMUP7fjFc6SUuD/PnmumWTfPdVujlfiDF9yYV9v02rM5jc8FOfTosVErGZ+W9aiaERD5BPqMnLsm9SQbLICE5k9j4F1bNiaLGGflN66RHVZz5W21vrEbHxc3LgbwtqwB0/qsYRhBepT9oGU8rZXq1mqhtXoKxHFIAZaq9fl/p3GhAco053oTa71JYlhWij+wgj8UA7h4cGVhyB5Uf7/J5ckSNxE5Mm1pIxvl8RftIRdtCjIF1tFzmLSeCMv6mxjwR36nLhtvm40qQA4ZVsJrCbUmaJCy0rF3lHATrvqlGdl2RHfxFPtk8hdPX2I4CqqO7kKxSc6bwe0W0REWBhFg8v1vDBFKJJClA4VCYPiKfrGo=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR12MB3898.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(396003)(136003)(346002)(366004)(376002)(66446008)(83380400001)(2906002)(66556008)(64756008)(8676002)(7696005)(66476007)(33656002)(54906003)(110136005)(71200400001)(26005)(86362001)(66946007)(76116006)(316002)(6506007)(186003)(52536014)(8936002)(38100700002)(478600001)(4326008)(122000001)(9686003)(53546011)(5660300002)(55016002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?L1FkNkE3U3owQkFDUWpwRW5HdmpSZUNsWENIak41OUVGaDBENFM3blFGQk5S?=
- =?utf-8?B?N0tDa0t1dXNUY2RNMUw4N0phV1NscmVxdmdPSEg3cndSOVRSTnhWL2hMMWlX?=
- =?utf-8?B?TkJDcnowQ1hnSVNMTDJ6bS9vMnkrUkpOMy9WZlpMeldnZ3RVYjJxYlhmalFE?=
- =?utf-8?B?VEJlcmJFVUx3QmErTnZ6V0Q1MGx2R1hoMXQxTi9yZVVTMGgrQ2QwdjJOTDlF?=
- =?utf-8?B?cDM0RmJheU9FcWpocEFIS3JmYjJNd0lmUEdSRkxpZ1hEcS9HckVBSm8vMGY1?=
- =?utf-8?B?MERlS1BwS0NpMksxQXBpOFFBUTVURWRNS1llM3REU3BBSVZ5N1hwWTROaHFJ?=
- =?utf-8?B?aUFxdzJ6em9aVHpMdVZpYTBtajdlaFBsQiszdXFNbkV4MWpuaW4xUlJDNnJn?=
- =?utf-8?B?a0ZWZU55TXN3NHNNVGZWTnZ5ejhlSXBqazFQeENaNzZRZVZvSTYrZC9DN1c1?=
- =?utf-8?B?TFA5UEF1WHJCNXZSWXNGRDQvZmozaXFMVDZ6K0pQN0dlZ1EzVThRVjNGeU1J?=
- =?utf-8?B?VHBmY0d1NGxPQWV6cDVvZGpDTFBsSEVUR0tmcWJhQnlFR1E2VmVBVUhlaFZs?=
- =?utf-8?B?L0NpdCtQNGM4a0ZSYVlGMVk4cHVUZkFqeUd1WGdkSkIzWjdHbWRyejM0dEZF?=
- =?utf-8?B?RnBkVEVjYnJKdUtxamJlVHV5b2V2a0QrV1N6KzlWKzBaNDBjb1JNRVZLK1BL?=
- =?utf-8?B?RzQ5VE5qOVIzWFMwdmpuUmNLSDlpdVFlN3FHSE1yN29mcFh4MU1aSFlVSzNi?=
- =?utf-8?B?bmxFMURUbzU0R2pVTzYzZHlLN0ZyU0hZZE5VdXc1SDh0Ymd4VE5aeS9Oa09o?=
- =?utf-8?B?Smk2YTV0dlR5V2pKSWFudHl2UUxrQ0xMaU5nYlZkcFpMcmhpd2pwMXVLR1Bu?=
- =?utf-8?B?YnNGSkFiUzVrZDQ2YkxNMkNUck12REVjUzJDNDllWENIaklGWExFaURVVXYw?=
- =?utf-8?B?YWRtMnhNTnI5cXUyY3pPcU43dExHQnFNNW9KaytuMlFYSFdwNGgycVdZUCt6?=
- =?utf-8?B?eU92SkpVbXlZK0ZLN2JsKy81MGVHQ1p1akpQUEdaWEx5dzYwSUp4QW9hdUZW?=
- =?utf-8?B?R3RPRDVlRGRwMFU1SDFZc081eWJ5OWxERFFMOVB4RG1PR3k1UGRvakhJcnFo?=
- =?utf-8?B?Y29GZnVBQWdjV0pVKzd4NGROakFjRUhBODJOdk9JODUrTDlFYUwydHg2Vkd3?=
- =?utf-8?B?bkI1S0NJNXBxZSs4TW5ycElYK2ZWOE9vLyt5VkxuazZXTTFkeEZZR1h3aFZM?=
- =?utf-8?B?MEJZWEh1ampDeHJYM0FZK0VHc3c2UUVWbjFtenVINzgxZTVKZTA4d09vZFVs?=
- =?utf-8?B?TjV0Vzh3azZoR1VzU29WWGdrV29ZNmM5Mk04ay8wYTNjaU1Nb3Q1TzZjUHdK?=
- =?utf-8?B?a1g4VHdwb0YvMUVKUmNiVDA2eDhoalRyNE03RUJSNzQ4TGhvaEJSZmJiaEVj?=
- =?utf-8?B?ZjUwYTYzbVA0bjJheFV5WW9vUHFFSUVGVlRLNHBZdjU3Sm9HZjhienYxZlFI?=
- =?utf-8?B?MUtsbkg4TFRCM2tnSnQ5QVdqVk1qd2l2NTN4ekRsbGNLWVdBT3hrZjJuQUcv?=
- =?utf-8?B?OGM5VlFwcysyM1pQQm9jc1hWZWtFNC9oZmt1OGhVZDJyNzI3NnFEckVPNGNk?=
- =?utf-8?B?VC9pTWJtN2Z3VkpOWVo5eDYvUDFzMGRSSGZUbk01QVFlRjR6dFowMHlyRnV4?=
- =?utf-8?B?Slk5Sk9lNnJxMERQMnVXVWl2YTJPV1Y1YnVkWDZMT2JMUVdVSEpoMzJ0SFdD?=
- =?utf-8?Q?0CluYMj7iFKrC+PnPuUSJEm8nEqNIpJSBmdcnmU?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S231492AbhEKNpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 09:45:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52078 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230435AbhEKNpr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 May 2021 09:45:47 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B210B6192C;
+        Tue, 11 May 2021 13:44:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1620740680;
+        bh=0gtK+SJNoRroYqpZxXO9QMth9hd9b/rKhnd/XoT38YQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=XtdoiP0gZ+rKX79UqZPd20HGXRIIbHAbEat0dyEaoYEILdlS7NTlzecb0ZNAtTz+D
+         QTDQkI0+IFO2bK7Gp75kyGNNquowuM0or1pc1U7lsQChETi7OpkSn0jUhptHGIEnuH
+         fSdw21N1Yy6a9RLCO7nrCsICecGVd2N6ChqqFHCqWExI/x6vruXZbT7pkWi7ybGBL/
+         yjkCaW74hzx3vMwWBNPk068VZOFOOY4qtl4Fa1n7tsmN7cSzKlxpF537QtwpZEIN+2
+         HE5PQ+TCm45etli8n07f9d11NoKPQFtNGbsUSyvk63KV+eD5UNOX08H3g78nzwvkz/
+         nmLkXeJudMjqw==
+Received: by mail-ej1-f48.google.com with SMTP id l4so29826903ejc.10;
+        Tue, 11 May 2021 06:44:40 -0700 (PDT)
+X-Gm-Message-State: AOAM531Zv7GmCgnjue9eC2Gtvm/hWAcrIcWByrtay8A9SUWNrpGQlOA+
+        v9Ek+SBLAOePWx35qvwNm4IO9Q7V1wgyYHpdWA==
+X-Google-Smtp-Source: ABdhPJyrWgIUlnOMhVp7YSyR/CWZOr54gf3UNB1vwdQnelxzeEkHmRrxQ841ilXDozmbXutGgeZtxVaJ2xxtGRrkxgg=
+X-Received: by 2002:a17:906:dbdc:: with SMTP id yc28mr11876880ejb.130.1620740679070;
+ Tue, 11 May 2021 06:44:39 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3898.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 75ee7d13-dfff-469b-0da0-08d914818f34
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 May 2021 13:34:53.4016
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: AQBDBa055VkqbjzO9bY8/fxuTb/i9yQgTH66PKomAAB+vFIisgENd3DMPkLJ7mNsgKXm21ZhYjKtJmA/i4Aleg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1929
+References: <20210510204524.617390-1-robh@kernel.org> <d3aae746-284b-b0bc-0d52-a76c361d3592@lucaceresoli.net>
+In-Reply-To: <d3aae746-284b-b0bc-0d52-a76c361d3592@lucaceresoli.net>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 11 May 2021 08:44:25 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLhwifngoNK0ciO=yuVqpEbMGOSWMHyT=5DcYcO9jcuCw@mail.gmail.com>
+Message-ID: <CAL_JsqLhwifngoNK0ciO=yuVqpEbMGOSWMHyT=5DcYcO9jcuCw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: More removals of type references on common properties
+To:     Luca Ceresoli <luca@lucaceresoli.net>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>,
+        Odelu Kukatla <okukatla@codeaurora.org>,
+        Alex Elder <elder@kernel.org>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Input <linux-input@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogR3VlbnRlciBSb2VjayA8
-Z3JvZWNrN0BnbWFpbC5jb20+IE9uIEJlaGFsZiBPZiBHdWVudGVyIFJvZWNrDQo+IFNlbnQ6IFR1
-ZXNkYXksIE1heSAxMSwgMjAyMSA0OjMyIFBNDQo+IFRvOiBWYWRpbSBQYXN0ZXJuYWsgPHZhZGlt
-cEBudmlkaWEuY29tPjsgcm9iaCtkdEBrZXJuZWwub3JnDQo+IENjOiBsaW51eC1od21vbkB2Z2Vy
-Lmtlcm5lbC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnDQo+IFN1YmplY3Q6IFJlOiBb
-UEFUQ0ggaHdtb24tbmV4dCB2NyAwLzNdIEFkZCBzdXBwb3J0IGZvciBNUFMgTXVsdGktcGhhc2UN
-Cj4gbXAyODg4IGNvbnRyb2xsZXINCj4gDQo+IE9uIDUvMTAvMjEgMTA6NTYgUE0sIFZhZGltIFBh
-c3Rlcm5hayB3cm90ZToNCj4gPiBBZGQgZHJpdmVyIGFuZCBkb2N1bWVudGF0aW9uIGZvciBtcDI4
-ODggZGV2aWNlIGZyb20gTW9ub2xpdGhpYyBQb3dlcg0KPiA+IFN5c3RlbXMsIEluYy4gKE1QUykg
-dmVuZG9yLiBUaGlzIGlzIGEgZGlnaXRhbCwgbXVsdGktcGhhc2UsDQo+ID4gcHVsc2Utd2lkdGgg
-bW9kdWxhdGlvbiBjb250cm9sbGVyLg0KPiA+DQo+ID4gUGF0Y2ggc2V0IGluY2x1ZGVzOg0KPiA+
-IFBhdGNoICMxIC0gaW5jcmVhc2VzIG1heGltdW0gbnVtYmVyIG9mIHBoYXNlcy4NCj4gPiBQYXRj
-aCAjMiAtIHByb3ZpZGVzIG1wMjg4OCBkcml2ZXIgYW5kIGRvY3VtZW50YXRpb24uDQo+ID4gUGF0
-Y2ggIzMgLSBwcm92aWRlc3kgYmluZGluZyBkb2N1bWVudGF0aW9uLg0KPiA+DQo+IA0KPiBTZXJp
-ZXMgYXBwbGllZC4NCg0KVGhhbmsgeW91LCBHdWVudGVyLg0KDQpJIHNlZSBmcm9tIHRoZSBmb2xs
-b3dpbmcgZXJyb3JzIGZyb20gcm9ib3Q6DQo+PiBFUlJPUjogbW9kcG9zdDogbW9kdWxlIG1wMjg4
-OCB1c2VzIHN5bWJvbCBwbWJ1c19kb19wcm9iZSBmcm9tIG5hbWVzcGFjZSBQTUJVUywgYnV0IGRv
-ZXMgbm90IGltcG9ydCBpdC4NCj4+IEVSUk9SOiBtb2Rwb3N0OiBtb2R1bGUgbXAyODg4IHVzZXMg
-c3ltYm9sIHBtYnVzX3JlYWRfd29yZF9kYXRhIGZyb20gbmFtZXNwYWNlIFBNQlVTLCBidXQgZG9l
-cyBub3QgaW1wb3J0IGl0Lg0KPj4gRVJST1I6IG1vZHBvc3Q6IG1vZHVsZSBtcDI4ODggdXNlcyBz
-eW1ib2wgcG1idXNfd3JpdGVfd29yZF9kYXRhIGZyb20gbmFtZXNwYWNlIFBNQlVTLCBidXQgZG9l
-cyBub3QgaW1wb3J0IGl0Lg0KPj4gRVJST1I6IG1vZHBvc3Q6IG1vZHVsZSBtcDI4ODggdXNlcyBz
-eW1ib2wgcG1idXNfZ2V0X2RyaXZlcl9pbmZvIGZyb20gbmFtZXNwYWNlIFBNQlVTLCBidXQgZG9l
-cyBub3QgaW1wb3J0IGl0Lg0KDQpXaGF0IGRvZXMgaXQgbWVhbj8NCg0KPiANCj4gVGhhbmtzLA0K
-PiBHdWVudGVyDQoNCg==
+On Tue, May 11, 2021 at 2:20 AM Luca Ceresoli <luca@lucaceresoli.net> wrote:
+>
+> Hi,
+>
+> On 10/05/21 22:45, Rob Herring wrote:
+> > Users of common properties shouldn't have a type definition as the
+> > common schemas already have one. A few new ones slipped in and
+> > *-names was missed in the last clean-up pass. Drop all the unnecessary
+> > type references in the tree.
+> >
+> > A meta-schema update to catch these is pending.
+> >
+> > Cc: Luca Ceresoli <luca@lucaceresoli.net>
+> > Cc: Stephen Boyd <sboyd@kernel.org>
+> > Cc: Olivier Moysan <olivier.moysan@foss.st.com>
+> > Cc: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+> > Cc: Jonathan Cameron <jic23@kernel.org>
+> > Cc: Lars-Peter Clausen <lars@metafoo.de>
+> > Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Cc: Georgi Djakov <djakov@kernel.org>
+> > Cc: "David S. Miller" <davem@davemloft.net>
+> > Cc: Jakub Kicinski <kuba@kernel.org>
+> > Cc: Sebastian Reichel <sre@kernel.org>
+> > Cc: Orson Zhai <orsonzhai@gmail.com>
+> > Cc: Baolin Wang <baolin.wang7@gmail.com>
+> > Cc: Chunyan Zhang <zhang.lyra@gmail.com>
+> > Cc: Liam Girdwood <lgirdwood@gmail.com>
+> > Cc: Mark Brown <broonie@kernel.org>
+> > Cc: Fabrice Gasnier <fabrice.gasnier@st.com>
+> > Cc: Odelu Kukatla <okukatla@codeaurora.org>
+> > Cc: Alex Elder <elder@kernel.org>
+> > Cc: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > Cc: linux-clk@vger.kernel.org
+> > Cc: alsa-devel@alsa-project.org
+> > Cc: linux-iio@vger.kernel.org
+> > Cc: linux-arm-kernel@lists.infradead.org
+> > Cc: linux-input@vger.kernel.org
+> > Cc: linux-pm@vger.kernel.org
+> > Cc: netdev@vger.kernel.org
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/clock/idt,versaclock5.yaml    | 2 --
+> >  .../devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml         | 1 -
+> >  Documentation/devicetree/bindings/input/input.yaml              | 1 -
+> >  Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml   | 1 -
+> >  Documentation/devicetree/bindings/net/qcom,ipa.yaml             | 1 -
+> >  .../devicetree/bindings/power/supply/sc2731-charger.yaml        | 2 +-
+> >  Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml          | 2 +-
+> >  7 files changed, 2 insertions(+), 8 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> > index c268debe5b8d..28675b0b80f1 100644
+> > --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> > +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> > @@ -60,7 +60,6 @@ properties:
+> >      maxItems: 2
+> >
+> >    idt,xtal-load-femtofarads:
+> > -    $ref: /schemas/types.yaml#/definitions/uint32
+> >      minimum: 9000
+> >      maximum: 22760
+> >      description: Optional load capacitor for XTAL1 and XTAL2
+> > @@ -84,7 +83,6 @@ patternProperties:
+> >          enum: [ 1800000, 2500000, 3300000 ]
+> >        idt,slew-percent:
+> >          description: The Slew rate control for CMOS single-ended.
+> > -        $ref: /schemas/types.yaml#/definitions/uint32
+> >          enum: [ 80, 85, 90, 100 ]
+>
+> Ok, but shouldn't "percent" be listed in
+> Documentation/devicetree/bindings/property-units.txt?
+
+It is in the schema already[1].
+
+> Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
+
+Thanks.
+
+Rob
+
+[1] https://github.com/devicetree-org/dt-schema/blob/master/schemas/property-units.yaml
