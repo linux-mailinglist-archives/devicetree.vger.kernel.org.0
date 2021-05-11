@@ -2,43 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED86437A1D6
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 10:27:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E458937A1EE
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 10:28:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231163AbhEKI2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 04:28:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37092 "EHLO mail.kernel.org"
+        id S230506AbhEKI3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 04:29:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38924 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231175AbhEKI21 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 May 2021 04:28:27 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 041D9613CF;
-        Tue, 11 May 2021 08:27:19 +0000 (UTC)
+        id S231249AbhEKI30 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 May 2021 04:29:26 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5D68361943;
+        Tue, 11 May 2021 08:28:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620721640;
-        bh=xngQb/H4l+AEBkqcLavgTosOEueZ5/zsF+zrSKV7Dgc=;
+        s=k20201202; t=1620721700;
+        bh=4cFqGgBdAbBe0GybCv/aBA0bJnpRTZe4yHbphP7wiXE=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=MpeVf7eM5Bw86VyLLtpJS/EzrV+z1CuisGU4pqCPhSzfyQwx+2vmFl97LtcdOR58n
-         sAeYbCkaWytBq7W2leR5GoOZ9YtwL7dYQjW1T21W6mgRkIq4MWDYVNRgo56x7SRKgW
-         gFAwrnokQcQT4L19scu+9dIBZt+4UVnjvEk9PYW7PEpK9vv2agccColEYMVUaQVpCV
-         yJFY0IRRx/s5rXLz1oQDP4AsMH4NNyfthVdZF5X4OxPw2EGPOnHS/N9kGPqqmwPOX6
-         Dxl5SfP6q3I/Ushb6l+sdpCX5BTFiQTrO3LPt50m1/2wgu8iFbYWDSh0g7/cA81Xrz
-         qBezT8U+L800w==
+        b=jynQ+wBdyHTV4wColpT3K+33k7SQI3CioTON0DCXJwQJEViOyc3uRkuJJJDqAWREz
+         fg4ZP7cLfys3Ae0ECK6wNl1odn36jCmHpiMw6HXFfreWLli2uzQgJgR7y1KIjgzAD6
+         +BEIFhfv3rSAAV2d3vW05YqHK406NVllKk1lY7qh+il6+07D+dcnRdsjLno5mmMQ0x
+         O58cDdY303fXyULGaX+b3IZn5GMYtmJ+2vkkbSQPbu0QvkFY8J3P+m4gIgnpDEA+Io
+         Ys76PY5EDXTJ2nwRImeke+iug2nQcDtJeYhRchHqOTuv+qPmlTw0XRxeELQFkGhYw2
+         ceWbH3NKRodZg==
 From:   Mark Brown <broonie@kernel.org>
-To:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bartosz Dudziak <bartosz.dudziak@snejp.pl>,
+To:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Kathiravan T <kathirav@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: regulator: qcom: Document PM8226 smd regulator
-Date:   Tue, 11 May 2021 09:25:42 +0100
-Message-Id: <162072067395.33366.7650476255510624158.b4-ty@kernel.org>
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
+Subject: Re: (subset) [PATCH v3 0/7] PinePhone BT audio bringup
+Date:   Tue, 11 May 2021 09:26:02 +0100
+Message-Id: <162072058168.33157.16217732000222184745.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210502115304.8570-1-bartosz.dudziak@snejp.pl>
-References: <20210502115304.8570-1-bartosz.dudziak@snejp.pl>
+In-Reply-To: <20210430035859.3487-1-samuel@sholland.org>
+References: <20210430035859.3487-1-samuel@sholland.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -46,19 +45,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 2 May 2021 13:53:03 +0200, Bartosz Dudziak wrote:
-> Document the PM8226 SMD-RPM regulator entry.
+On Thu, 29 Apr 2021 22:58:52 -0500, Samuel Holland wrote:
+> This series uses the additional DAIs added to the sun8i-codec driver to
+> add hardware routing for BT SCO (headset) audio on the PinePhone.
+> 
+> The BT audio connection is represented by the "dummy" bt-sco codec. The
+> connection to the Quectel EG-25G modem via AIF2 works as well, but I do
+> not include it here because there is no appropriate codec driver in
+> tree. We have been using an out-of-tree "dummy" codec driver for the
+> modem similar to bt-sco, and I'm not sure if such a driver would be
+> desired upstream.
+> 
+> [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
 Thanks!
 
-[1/2] dt-bindings: regulator: qcom: Document PM8226 smd regulator
-      commit: 00c8b0b1e6e1314bb57aab6438fbc2803c637d9d
-[2/2] regulator: qcom_smd: Add PM8226 regulator support
-      commit: 8c816d56a2a4e757bb121d1af4c04f47ac0572d3
+[1/7] ASoC: dt-bindings: sun8i-codec: Increase #sound-dai-cells
+      commit: 880e007f15a31f446b9e1713720c6ae5a539f3f4
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
