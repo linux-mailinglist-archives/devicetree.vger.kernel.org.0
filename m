@@ -2,165 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D037937AC55
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 18:49:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C6E537AC53
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 18:49:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230435AbhEKQuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 12:50:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52572 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231230AbhEKQuU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 12:50:20 -0400
-Received: from mail-il1-x134.google.com (mail-il1-x134.google.com [IPv6:2607:f8b0:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D20FEC061574
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 09:49:13 -0700 (PDT)
-Received: by mail-il1-x134.google.com with SMTP id v13so17731098ilj.8
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 09:49:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Ll12iwWOH+g7rF+Qcvmc/ZPVWK50RY5A+TnwOnViek8=;
-        b=jF9yywweDau5byF0sr7SVkFA9hoYDaWzF8iy+wyA9wHf9oOaCvA+67rLL4jVjSY9gn
-         QoY25mdgO7IV1eEXpAEk5s63+vTygeFS39HRXfLrmhNXD74fIDm9qeLodCWWHbiJG3ic
-         G2KrYNbeLupAhGANRLweLDvdOuGV9VrSQUJi8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Ll12iwWOH+g7rF+Qcvmc/ZPVWK50RY5A+TnwOnViek8=;
-        b=Pu5ig19EFv3tGl3RxvK/hiXNQQlw/i1EXhxbn+GGs8Zh+rlhRy7AGlJhh91q/+JrtB
-         OcA4FqgIGR6ExTDEOGygsFDKR1JL+9VLKNCBfmDRjgsW2sYdkdBZT2aRxjuaJ00BFl7u
-         +q9iJ3t3uIHeoDJkIHCYWJXn+SKEJmOe9w5+0VebeF7rNHCw0XMZcp5j5ziZ0esIC7IR
-         JH8L4zBVyC3Z5T/LqfyO4u+HHQyZimp7W3QsYqemoT9lfQnOXcZqk4ZiZGR+attGnczf
-         +xl8st93rHhjYfD5WYDE5Aa2KVV7cGyhM9E02H+Q9elr+Lao551L8nHU+H7xD0h/r1Q1
-         qYUg==
-X-Gm-Message-State: AOAM531TM7+LGhdb17tjwn96M/ztvSwqq4Z6tB6J7jXGLoNr5N9fHBNe
-        9aVR+/ExYGLjgqTlBVROXJGRDj7wPBqt3A==
-X-Google-Smtp-Source: ABdhPJyG93cmvHbvrTxBsRknagA6FwsAwfZ3xTUA0kGeR2trpyXL5zpPniInrBHYDfqJOSYhw1tMhA==
-X-Received: by 2002:a92:cec3:: with SMTP id z3mr26924940ilq.179.1620751753041;
-        Tue, 11 May 2021 09:49:13 -0700 (PDT)
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com. [209.85.166.54])
-        by smtp.gmail.com with ESMTPSA id l19sm7665814ioj.11.2021.05.11.09.49.12
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 May 2021 09:49:12 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id p11so18766381iob.9
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 09:49:12 -0700 (PDT)
-X-Received: by 2002:a05:6e02:e82:: with SMTP id t2mr17831684ilj.18.1620751359226;
- Tue, 11 May 2021 09:42:39 -0700 (PDT)
+        id S230484AbhEKQuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 12:50:12 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:54290 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230435AbhEKQuM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 12:50:12 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14BGmxsf009587;
+        Tue, 11 May 2021 11:48:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1620751739;
+        bh=EXAHHMVat87Ts4QpaLnkvfakXOyXP0EushBlIk4YxAU=;
+        h=From:To:CC:Subject:Date;
+        b=V24NP39TD9uOX4Lr4LCxTO9F5JHfnVY7ADK/udWXy3Zp97C/pck+P6lCl2Qi4gqlT
+         xGDySaKjuD5mTIQ5Lntqnmk4a2bvsBWRMRzz/eQCWhXu8jFVl57KptsoVbs18rtKEc
+         oY+vwqode2qcmtZPNXEOmCuvgFQUWGzEzbD1X9rw=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14BGmx0j118266
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 11 May 2021 11:48:59 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 11
+ May 2021 11:48:58 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 11 May 2021 11:48:58 -0500
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14BGmpjT012233;
+        Tue, 11 May 2021 11:48:52 -0500
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3] arm64: dts: ti: k3-am65: Add support for UHS-I modes in MMCSD1 subsystem
+Date:   Tue, 11 May 2021 22:18:49 +0530
+Message-ID: <20210511164849.20016-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20210510095026.3477496-1-tientzu@chromium.org>
- <20210510095026.3477496-5-tientzu@chromium.org> <20210510150256.GC28066@lst.de>
-In-Reply-To: <20210510150256.GC28066@lst.de>
-From:   Claire Chang <tientzu@chromium.org>
-Date:   Wed, 12 May 2021 00:42:28 +0800
-X-Gmail-Original-Message-ID: <CALiNf28jgAU7zN4pwgPKgaecM-KXRHHqwHj4sPXVf_3M0-goMQ@mail.gmail.com>
-Message-ID: <CALiNf28jgAU7zN4pwgPKgaecM-KXRHHqwHj4sPXVf_3M0-goMQ@mail.gmail.com>
-Subject: Re: [PATCH v6 04/15] swiotlb: Add restricted DMA pool initialization
-To:     Christoph Hellwig <hch@lst.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        grant.likely@arm.com, xypron.glpk@gmx.de,
-        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
-        bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
-        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
-        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
-        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
-        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
-        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
-        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
-        nouveau@lists.freedesktop.org, rodrigo.vivi@intel.com,
-        thomas.hellstrom@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 10, 2021 at 11:03 PM Christoph Hellwig <hch@lst.de> wrote:
->
-> > +#ifdef CONFIG_DMA_RESTRICTED_POOL
-> > +#include <linux/io.h>
-> > +#include <linux/of.h>
-> > +#include <linux/of_fdt.h>
-> > +#include <linux/of_reserved_mem.h>
-> > +#include <linux/slab.h>
-> > +#endif
->
-> I don't think any of this belongs into swiotlb.c.  Marking
-> swiotlb_init_io_tlb_mem non-static and having all this code in a separate
-> file is probably a better idea.
+UHS-I speed modes are supported in AM65 S.R. 2.0 SoC[1].
 
-Will do in the next version.
+Add support by removing the no-1-8-v tag and including the voltage
+regulator device tree nodes for power cycling.
 
->
-> > +#ifdef CONFIG_DMA_RESTRICTED_POOL
-> > +static int rmem_swiotlb_device_init(struct reserved_mem *rmem,
-> > +                                 struct device *dev)
-> > +{
-> > +     struct io_tlb_mem *mem = rmem->priv;
-> > +     unsigned long nslabs = rmem->size >> IO_TLB_SHIFT;
-> > +
-> > +     if (dev->dma_io_tlb_mem)
-> > +             return 0;
-> > +
-> > +     /* Since multiple devices can share the same pool, the private data,
-> > +      * io_tlb_mem struct, will be initialized by the first device attached
-> > +      * to it.
-> > +      */
->
-> This is not the normal kernel comment style.
+However, the 4 bit interface of AM65 SR 1.0 cannot be supported at 3.3 V or
+1.8 V because of erratas i2025 and i2026 [2]. As the SD card is the primary
+boot mode for development usecases, continue to enable SD card and disable
+UHS-I modes in it to minimize any ageing issues happening because of
+erratas.
 
-Will fix this in the next version.
+k3-am6528-iot2050-basic and k3-am6548-iot2050-advanced boards use S.R. 1.0
+version of AM65 SoC. Therefore, add no-1-8-v in sdhci1 device tree node of
+the common iot2050 device tree file.
 
->
-> > +#ifdef CONFIG_ARM
-> > +             if (!PageHighMem(pfn_to_page(PHYS_PFN(rmem->base)))) {
-> > +                     kfree(mem);
-> > +                     return -EINVAL;
-> > +             }
-> > +#endif /* CONFIG_ARM */
->
-> And this is weird.  Why would ARM have such a restriction?  And if we have
-> such rstrictions it absolutely belongs into an arch helper.
+[1] - https://www.ti.com/lit/ug/spruid7e/spruid7e.pdf, section 12.3.6.1.1
+[2] - https://www.ti.com/lit/er/sprz452e/sprz452e.pdf
 
-Now I think the CONFIG_ARM can just be removed?
-The goal here is to make sure we're using linear map and can safely
-use phys_to_dma/dma_to_phys.
+Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+---
 
->
-> > +             swiotlb_init_io_tlb_mem(mem, rmem->base, nslabs, false);
-> > +
-> > +             rmem->priv = mem;
-> > +
-> > +#ifdef CONFIG_DEBUG_FS
-> > +             if (!debugfs_dir)
-> > +                     debugfs_dir = debugfs_create_dir("swiotlb", NULL);
-> > +
-> > +             swiotlb_create_debugfs(mem, rmem->name, debugfs_dir);
->
-> Doesn't the debugfs_create_dir belong into swiotlb_create_debugfs?  Also
-> please use IS_ENABLEd or a stub to avoid ifdefs like this.
+changes since v2:
+- moved the no-1-8-v tag to common iot2050 dtsi file.
 
-Will move it into swiotlb_create_debugfs and use IS_ENABLED in the next version.
+changes since v1:
+- added no-1-8-v tag in sdhci1 dt nodes of k3-am6528-iot2050-basic and
+  k3-am6548-iot2050-advanced boards as they use S.R.1.0 version AM65 SoC.
+
+ .../boot/dts/ti/k3-am65-iot2050-common.dtsi   |  1 +
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  1 -
+ .../arm64/boot/dts/ti/k3-am654-base-board.dts | 33 +++++++++++++++++++
+ 3 files changed, 34 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+index de763ca9251c..46cc348cd4be 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+@@ -555,6 +555,7 @@
+ 	pinctrl-0 = <&main_mmc1_pins_default>;
+ 	ti,driver-strength-ohm = <50>;
+ 	disable-wp;
++	no-1-8-v;
+ };
+ 
+ &usb0 {
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+index cb340d1b401f..632f32fce4a1 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+@@ -301,7 +301,6 @@
+ 		ti,otap-del-sel = <0x2>;
+ 		ti,trm-icp = <0x8>;
+ 		dma-coherent;
+-		no-1-8-v;
+ 	};
+ 
+ 	scm_conf: scm-conf@100000 {
+diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+index 9e87fb313a54..51c594b4dddb 100644
+--- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+@@ -91,6 +91,38 @@
+ 		#clock-cells = <0>;
+ 		clock-frequency = <24000000>;
+ 	};
++
++	evm_12v0: fixedregulator-evm12v0 {
++		/* main supply */
++		compatible = "regulator-fixed";
++		regulator-name = "evm_12v0";
++		regulator-min-microvolt = <12000000>;
++		regulator-max-microvolt = <12000000>;
++		regulator-always-on;
++		regulator-boot-on;
++	};
++
++	vcc3v3_io: fixedregulator-vcc3v3io {
++		/* Output of TPS54334 */
++		compatible = "regulator-fixed";
++		regulator-name = "vcc3v3_io";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-always-on;
++		regulator-boot-on;
++		vin-supply = <&evm_12v0>;
++	};
++
++	vdd_mmc1_sd: fixedregulator-sd {
++		compatible = "regulator-fixed";
++		regulator-name = "vdd_mmc1_sd";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-boot-on;
++		enable-active-high;
++		vin-supply = <&vcc3v3_io>;
++		gpio = <&pca9554 4 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ &wkup_pmx0 {
+@@ -350,6 +382,7 @@
+  * disable sdhci1
+  */
+ &sdhci1 {
++	vmmc-supply = <&vdd_mmc1_sd>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&main_mmc1_pins_default>;
+ 	ti,driver-strength-ohm = <50>;
+-- 
+2.17.1
+
