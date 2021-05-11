@@ -2,74 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E022437A068
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 09:11:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15FC937A06D
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 09:12:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230280AbhEKHML (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 03:12:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59436 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229945AbhEKHML (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 May 2021 03:12:11 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C7EF261926;
-        Tue, 11 May 2021 07:11:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1620717065;
-        bh=djMw+MkHqXSDFMuuNAj5hXKn0ROWz969fz0NJXZ2+Oo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Yzr6qHAPC4C2gAz9uxv2B3lxa6Hv0XWXup4Ed9z38Ulr70tmmu3RRYB0UtXg0wyOY
-         CCmomC1i4VIPn8HdQulkOj4jrgzm+fj4JCtDVDx0qYy0rC5u8akRKGbkDvLzYRJ+mp
-         GUpWxXJw7e6yYDuxnQBjpybVUUUbFlqQPe7Khp+k=
-Date:   Tue, 11 May 2021 09:11:03 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Tudor Ambarus <tudor.ambarus@microchip.com>, rafael@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, nsaenz@kernel.org,
-        maxime@cerno.tech, khilman@kernel.org, ulf.hansson@linaro.org,
-        len.brown@intel.com, pavel@ucw.cz, robh+dt@kernel.org,
-        frowand.list@gmail.com, maz@kernel.org, tglx@linutronix.de,
-        saravanak@google.com, geert@linux-m68k.org, nsaenzjulienne@suse.de,
-        guillaume.tucker@collabora.com, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, corbet@lwn.net,
-        nicolas.ferre@microchip.com, claudiu.beznea@microchip.com,
-        linux-doc@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-        kernel-team@android.com, linux-rpi-kernel@lists.infradead.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v2] clk: Skip clk provider registration when np is NULL
-Message-ID: <YJouB/ZUOcadrokW@kroah.com>
-References: <20210426065618.588144-1-tudor.ambarus@microchip.com>
- <20210510193645.GA3920948@roeck-us.net>
+        id S230023AbhEKHNy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 03:13:54 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:36284 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230268AbhEKHNw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 03:13:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1620717166; x=1652253166;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=D1JleMTnSO1ymCUdXh/+hDEDMbLr8UzAtT0hHDbs/TM=;
+  b=j7SEgFlonMsJWksy4bEizeL9MM4E42HEQB1UQsBY1TS5VgWnLxaibhoh
+   v9ikj3PaweKpTZtDU4zBEwJ25Byqjc+wgef4azVFM0C8TF3DET0ou0wT+
+   UbBnFk15dvl6PtGjYww5sPadMi/iPo42UmsBvqWRagtsv2D/6LZ2wKXS7
+   +ztgKNzJi9/T0mSzT72IHCIOsb5lnubvpHP5aeklPt4TiDLfVswpkZvjw
+   jpMh/T7Gzw4IKb3CLqjlMjYoRy5SQryQ6eHh7LDjwgGmSnFQppeJk4GWs
+   uxWj/7wxkce94xQhxNXTKPmWSTozw/0xPbZa8CoSNXtO+B/XCmn640Wzx
+   g==;
+IronPort-SDR: U1wcL16wsUcFPGnZ+c2LFMisb+Y0E+3rqgCPM/aSODXfWAAJ/O4hqnh6Dlb6GtSJzMV9Tem+j1
+ 1CG6q4BcCf3QKpF/vt89DI6OjhNOkOFRVjhzqA3w4pMNHWtGzivgmx7eHzSKGu8lqXhr2/OYFj
+ hIo4blqIl91FUgYbLRQQ/jJHp3DMqadRQaH+4WCPKyCJVbroZEtisXJzEsLuNv8k85pO1s05YN
+ 6hI5KTz91/p0bV4V5499ZwFnJxIBNAqliTofX/2rknWbaZDAFoioMmjP7lM4Fpk8axFoMWL0SU
+ ZKc=
+X-IronPort-AV: E=Sophos;i="5.82,290,1613458800"; 
+   d="scan'208";a="121163380"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 11 May 2021 00:12:39 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Tue, 11 May 2021 00:12:39 -0700
+Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Tue, 11 May 2021 00:12:33 -0700
+From:   Eugen Hristev <eugen.hristev@microchip.com>
+To:     <robh+dt@kernel.org>, <nicolas.ferre@microchip.com>
+CC:     <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
+        <soc@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <claudiu.beznea@microchip.com>,
+        <codrin.ciubotariu@microchip.com>,
+        "Eugen Hristev" <eugen.hristev@microchip.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 1/4] dt-bindings: ARM: at91: document sama7g5ek board
+Date:   Tue, 11 May 2021 10:12:20 +0300
+Message-ID: <20210511071223.71379-1-eugen.hristev@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210510193645.GA3920948@roeck-us.net>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 10, 2021 at 12:36:45PM -0700, Guenter Roeck wrote:
-> On Mon, Apr 26, 2021 at 09:56:18AM +0300, Tudor Ambarus wrote:
-> > commit 6579c8d97ad7 ("clk: Mark fwnodes when their clock provider is added")
-> > revealed that clk/bcm/clk-raspberrypi.c driver calls
-> > devm_of_clk_add_hw_provider(), with a NULL dev->of_node, which resulted in a
-> > NULL pointer dereference in of_clk_add_hw_provider() when calling
-> > fwnode_dev_initialized().
-> > 
-> > Returning 0 is reducing the if conditions in driver code and is being
-> > consistent with the CONFIG_OF=n inline stub that returns 0 when CONFIG_OF
-> > is disabled. The downside is that drivers will maybe register clkdev lookups
-> > when they don't need to and waste some memory.
-> > 
-> > Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> > Fixes: 6579c8d97ad7 ("clk: Mark fwnodes when their clock provider is added")
-> > Fixes: 3c9ea42802a1 ("clk: Mark fwnodes when their clock provider is added/removed")
-> > Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
-> > Reviewed-by: Stephen Boyd <sboyd@kernel.org>
-> 
-> Tested-by: Guenter Roeck <linux@roeck-us.net>
+Document the SAMA7G5 Evaluation Kit based on sama7g5 SoC.
 
-Now applied to my tree, thanks and sorry for the delay, I thought this
-was going through the clk tree.
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+---
+ Documentation/devicetree/bindings/arm/atmel-at91.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-greg k-h
+diff --git a/Documentation/devicetree/bindings/arm/atmel-at91.yaml b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
+index 6fc5a22ad962..fba071b9af1d 100644
+--- a/Documentation/devicetree/bindings/arm/atmel-at91.yaml
++++ b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
+@@ -145,6 +145,11 @@ properties:
+           - const: atmel,sama5d4
+           - const: atmel,sama5
+ 
++      - items:
++          - const: microchip,sama7g5ek # SAMA7G5 Evaluation Kit
++          - const: microchip,sama7g5
++          - const: microchip,sama7
++
+       - items:
+           - enum:
+               - atmel,sams70j19
+-- 
+2.25.1
+
