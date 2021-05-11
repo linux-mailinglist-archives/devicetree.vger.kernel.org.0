@@ -2,68 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E10AF37A416
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 11:56:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D70337A446
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 12:06:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231217AbhEKJ4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 05:56:53 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:43800 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231245AbhEKJ4x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 05:56:53 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14B9tfuC111120;
-        Tue, 11 May 2021 04:55:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1620726941;
-        bh=MCuBDSA7fc5SHmGrOTAvYKl2d1dNicT14OoYgJkByAg=;
-        h=Subject:CC:References:From:Date:In-Reply-To;
-        b=x6C0X/mum0n1FVkGGitro7N689dBn6+gny6bdwkBeTeNW5dufDhtnS+QQSsxmU/5n
-         ilvImQCgDoI0DnC9HlSiT+moIV/1cj1+oc/PxwQBN+U0WyGEy08lDYzHAF67IJX8rO
-         5WzsDqe8q90zObfkPxvQyNU7Xd3YMAP0+RWkWGvE=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14B9tfIL031463
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 11 May 2021 04:55:41 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 11
- May 2021 04:55:41 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 11 May 2021 04:55:41 -0500
-Received: from [10.250.235.117] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14B9tZI6064034;
-        Tue, 11 May 2021 04:55:36 -0500
+        id S231367AbhEKKHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 06:07:23 -0400
+Received: from lizzard.sbs.de ([194.138.37.39]:49821 "EHLO lizzard.sbs.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231422AbhEKKHV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 May 2021 06:07:21 -0400
+Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
+        by lizzard.sbs.de (8.15.2/8.15.2) with ESMTPS id 14BA5kJA023652
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 11 May 2021 12:05:46 +0200
+Received: from [167.87.32.54] ([167.87.32.54])
+        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 14BA1sqw007580;
+        Tue, 11 May 2021 12:01:55 +0200
 Subject: Re: [PATCH v2] arm64: dts: ti: k3-am65: Add support for UHS-I modes
  in MMCSD1 subsystem
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+To:     Aswath Govindraju <a-govindraju@ti.com>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
         Lokesh Vutla <lokeshvutla@ti.com>,
         Kishon Vijay Abraham I <kishon@ti.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
         Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 References: <20210511095339.16268-1-a-govindraju@ti.com>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <238b6d95-ae9d-2a9c-ae8c-97dcc712ee83@ti.com>
-Date:   Tue, 11 May 2021 15:25:33 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+From:   Jan Kiszka <jan.kiszka@siemens.com>
+Message-ID: <200b5648-b2d9-b4c9-f81a-b39c3baf81f9@siemens.com>
+Date:   Tue, 11 May 2021 12:01:54 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
 In-Reply-To: <20210511095339.16268-1-a-govindraju@ti.com>
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/05/21 3:23 pm, Aswath Govindraju wrote:
+On 11.05.21 11:53, Aswath Govindraju wrote:
 > UHS-I speed modes are supported in AM65 S.R. 2.0 SoC[1].
 > 
 > Add support by removing the no-1-8-v tag and including the voltage
@@ -79,19 +59,11 @@ On 11/05/21 3:23 pm, Aswath Govindraju wrote:
 > version of AM65 SoC. Therefore, add no-1-8-v in sdhci1 device tree nodes
 > for these boards.
 > 
-> [1] - https://www.ti.com/lit/ug/spruid7e/spruid7e.pdf, section 12.3.6.1.1
+> [1] - https://www.ti.com/lit/ug/spruid7e/spruid7e.pdf
 > [2] - https://www.ti.com/lit/er/sprz452e/sprz452e.pdf
 > 
 > Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
 > ---
-
-changes since v1:
- - added no-1-8-v tag in sdhci1 dt nodes of k3-am6528-iot2050-basic and
-k3-am6548-iot2050-advanced boards as they use S.R.1.0 version AM65 SoC.
-
-Thanks,
-Aswath
-
 >  arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  1 -
 >  .../boot/dts/ti/k3-am6528-iot2050-basic.dts   |  4 +++
 >  .../arm64/boot/dts/ti/k3-am654-base-board.dts | 33 +++++++++++++++++++
@@ -122,6 +94,12 @@ Aswath
 > +	no-1-8-v;
 > +};
 > +
+
+Let's move that to k3-am65-iot2050-common.dtsi, to avoid repeating
+yourself. There is already a sdhci1 extension.
+
+Jan
+
 >  &main_pmx0 {
 >  	main_uart0_pins_default: main-uart0-pins-default {
 >  		pinctrl-single,pins = <
@@ -193,3 +171,6 @@ Aswath
 >  };
 > 
 
+-- 
+Siemens AG, T RDA IOT
+Corporate Competence Center Embedded Linux
