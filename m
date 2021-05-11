@@ -2,132 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89EEA37A674
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 14:20:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1BC437A685
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 14:25:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231533AbhEKMVv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 08:21:51 -0400
-Received: from mail-db8eur05on2054.outbound.protection.outlook.com ([40.107.20.54]:1363
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231429AbhEKMVv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 May 2021 08:21:51 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LvUncDvyHHUJx22Uvxb7RVQJJAT1czWxjLNn8O27jueqGxR49xg3ct6Us7XsS+D9iadsJJiMj39o4lUV0TzXswGRc1h/Wj9xlxR8G/agcYW2Y76O78epTlkxZi28HYyTwFtgSQud4WjqfAwwAurbq5PfcIPrpdbyQ1dMtwz9H2qR3MVpSPdPJMmo5+4cGAyAwZfvoqWRUS0AfJFKBiJJ10CA3F8ymLnHotzj2nqNAVHkksznhyI64gjQGgwNTsmXvFqZd2MGsal5DrpBR8OVvVYP9GV3iN+Z+718unAOI9tzWH334L9OslN9o8v8HDPKLuEoil9jpLNok5GI0sAsUg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S0dhuSRsOhrBCB2dl9rbxmNfz+XUu/OWwIB9A9KZ1Q0=;
- b=miXiahicfFc6MUNeSfFp7QC2bkS0/Egc4F2hKP0F24QmB7OoMdwQeZsQGzOUANNYREDOmSEFbcxzt5QRJDMRVe4Jan2TraKWmQAfCOA7NZCOIXhOP9t+Kb2AFp2dNCrkP0mnXzrfclTeXNkkjgq4JFG31NtnNE/nPcaO9vM8UPpFpW/7q7pByjASwfsU41OoueVFyInRfcjxFURfbs9wUKg89fRfux3nvqUXoJ0p8BYAMD5mAkBFy1QaIuJCenAVb91/orSBCMx3H+e3wGj6m981kLCbCVc9ggLL0Vm6rReq+DrUkqEeaMOX/ES1qFkTFCgEZlheIhQNxol5QHq9HQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S0dhuSRsOhrBCB2dl9rbxmNfz+XUu/OWwIB9A9KZ1Q0=;
- b=RzcX+OntEhPxNmyPpCOdwRVv3Jrp+9mVsHmUFqTvvz4dC6BzP1Lcufy3wjgpKjIkw717Vz+zhgn6fmwITyzIzgcUCgJElHaRqxmjoL3pKlEbIVA1b/6qdcYEkDB83MF8eDds0luDeB8Ot/rMlVPMz5WkQ1n7ZlWQ3GoZb5qEjRs=
-Received: from VE1PR04MB6688.eurprd04.prod.outlook.com (2603:10a6:803:127::25)
- by VI1PR04MB4062.eurprd04.prod.outlook.com (2603:10a6:803:40::32) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.30; Tue, 11 May
- 2021 12:20:43 +0000
-Received: from VE1PR04MB6688.eurprd04.prod.outlook.com
- ([fe80::de2:8b2:852b:6eca]) by VE1PR04MB6688.eurprd04.prod.outlook.com
- ([fe80::de2:8b2:852b:6eca%7]) with mapi id 15.20.4108.031; Tue, 11 May 2021
- 12:20:43 +0000
-From:   Robin Gong <yibin.gong@nxp.com>
-To:     Adam Ford <aford173@gmail.com>, Shawn Guo <shawnguo@kernel.org>
-CC:     arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH 1/2] arm64: dts: imx8mn: Add spba1 bus
-Thread-Topic: [PATCH 1/2] arm64: dts: imx8mn: Add spba1 bus
-Thread-Index: AQHXKoTrm+1dEO4gCEi87d5cyZOFDqrdyocAgACF5YCAABIPoA==
-Date:   Tue, 11 May 2021 12:20:42 +0000
-Message-ID: <VE1PR04MB6688CD4AA4826EEEBBA2651689539@VE1PR04MB6688.eurprd04.prod.outlook.com>
-References: <20210406013344.124255-1-aford173@gmail.com>
- <20210511024604.GE3425@dragon>
- <CAHCN7xLFpL=9BF9M5gUA6sMhc2ZZMNz+GP0OLmLfpJAWdD7W-w@mail.gmail.com>
-In-Reply-To: <CAHCN7xLFpL=9BF9M5gUA6sMhc2ZZMNz+GP0OLmLfpJAWdD7W-w@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [183.192.232.236]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d2b78ae8-fcc7-4b04-efa5-08d91477327b
-x-ms-traffictypediagnostic: VI1PR04MB4062:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB40626A25C43F5246F692101F89539@VI1PR04MB4062.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 8q3H//w8awkKbiZp8Jf5zQYXlLRb56y9KczOuWPU2s1B91A2B9JqsLdw7OvBjGyroRH1hucnAzhjQtRaBiG7gaMvjQNTPtDQ0Hvf8B+OgnxuVKtOStu6/2uJ4i8qAKhsCIo9YKGqGl3jtNoRdlWJCU5Qvc88kNSADqjm/SM8IBkVs3A6cIRewfOWWkJBT5QTCBEU48DN5BWXSZjU6hJaSSkoFqhznFIFKStLfckclrEhwm/c7653K+DfZMjglZxqMVbWFCXgj4RrpsR5xfxbS7OQQh5cdQoL3TZkxhnCSSrl5gw/0N0XQeYjazCVEQ8cFcMDumRvthfxCwTPY2jVLE76KJtKM1LN5mYc6rRgpYdlKgxYu0n0zkS1FFF60/KZmz/zezeCriNEWssMAvspxKUJT7paeTv1mG3Mai5Smf6PWvi34SyIRcDUrwGessyZ0bshpDc4jzq6Bk8i+4iWyM7jolAsPwjMW+qCxsjOE8F+XMRgPCABg4sY/UZcjbLSnPSQQRVSM8rvmmIqJwXzaPM80YrvFCxek6BB0pkNOqZJAIAlxCzqVaoLZpBpT+fVoR6lpgCmB5/gzQQytQisJox2lD5RWZj/5FKXS1cRiZFbUq+mZ9fDovHivB+hChZfb4Vw51FcxgxTx7V+Ow51xA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6688.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(376002)(366004)(396003)(346002)(136003)(33656002)(110136005)(4744005)(5660300002)(478600001)(76116006)(55016002)(86362001)(54906003)(66556008)(66946007)(71200400001)(66446008)(64756008)(66476007)(7696005)(9686003)(2906002)(186003)(53546011)(38100700002)(6506007)(8676002)(122000001)(316002)(52536014)(83380400001)(8936002)(26005)(4326008)(32563001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?vzWI1qv8fBo47U428PG7Y0Xc4SfP0E+gzRXBOE5huE7oDQVxP1GZ5XeIfpeh?=
- =?us-ascii?Q?fA9daOWmxzH66wFauuePc2L3DybOf6UK3eT0y+xAFw4NbyhyWoz8BeZIhtHr?=
- =?us-ascii?Q?Mt+/vbWfMiA6KFntrj5P1MyCAcLNooN9VkmFccGxxjd1gNboG9CXV6Z5eRYv?=
- =?us-ascii?Q?INhdRWwYhb2aDIkBrDYaFjvXHEpBRLKxcdFk5Uj5O567jTjBIy3A1O7gyjBR?=
- =?us-ascii?Q?oyBQoMN8Iz3iJDC9RNFTe5hoYf4N2rC2S83shsHvQ/dnSKOy6wmzJRRVyzTE?=
- =?us-ascii?Q?5e6pjkyPMfshvyYWvRgWpfi9EaetB3WhTUKVuMY4WHmnK1uksVIOv+bCl3/x?=
- =?us-ascii?Q?xpti90YJd2/Xl9G+NWxeqN0MqwJojdqXL12MwGw+3Aby0Srnn8bziOHkClrN?=
- =?us-ascii?Q?AlsXW7xw23vCSsbfJYmPKZjeSiJLdoTDCAJs8uW8m6RdLxOh/i+XEYOCfraP?=
- =?us-ascii?Q?nxQZyvSOkIzal6nTUIDoDCD8SB1aMPmqmygcN3UWYs5yDss6sj/2gTgE9MQ7?=
- =?us-ascii?Q?QD1IXwwc2wvOX6azeLEfqRNIvCYH/fw0FbtaD/LS/pqRD84uMDU0kCf0sWb5?=
- =?us-ascii?Q?njv0wJRITH0GitTw6llzSyEOfIoxZvtz/7agzC5sEcAzpyGE2skEqLnE593/?=
- =?us-ascii?Q?RtCTHPcOjW2FfQY3XDGdwjT8RK1ZAdHg1FRPh1t//AONS/av/CIfNW1LfsEO?=
- =?us-ascii?Q?lQQ88yzPX1uqH3j7eLThyBXFOjefur5sZ1bVm4ryOwTfCMbkhdPLCp8Ay5bZ?=
- =?us-ascii?Q?NDht0DH4BtN4rJNaORx7RKGgcx1TRgpAX9zykb11Nrq/9s+X4RS5axGFyfI5?=
- =?us-ascii?Q?JxJlL7o6yS/ZYbQ9qVXVPH0Tp5cwsLJ/pt1qVx4MCbU6Fy4b3Qjvk4sLNYax?=
- =?us-ascii?Q?NIDBPyyudmw0YWfgPxpt0930JBPKpd9pZgiFGXYYxI4TyEPpRbgR2Uxv1AAe?=
- =?us-ascii?Q?CO84fVuAexDD3xSByww0NeQ1hUIxW+VF6MLfvWiohcZz42/mcMDH33xKJJzQ?=
- =?us-ascii?Q?/3spp4TticvcRv6BpMT43moBmCn5vRnOp4ZJnD+C0UTEgQlWPvri80Y1C+0d?=
- =?us-ascii?Q?mKJlreVwbFcfbfMBqv+YihNlj2ncfQRG7Fs1vgPe6NN8b6NtZGV5A2/PAmgv?=
- =?us-ascii?Q?LuR/LduKHn47T4NL7BVC1RApnc6Y634awIbCcKbFGgCobuLDAgR492YwxkKB?=
- =?us-ascii?Q?6ARiEtIPQN3nOX8dGXv4PMWfnm+T9lI2mQoua01dcvH7DU9kojleJolSs82o?=
- =?us-ascii?Q?E8c3OZZcRQI2a9JTBVnkHagikmGmQyJwSVFNEAEAs41LRHDld0Zg6RV+OEkw?=
- =?us-ascii?Q?7fj7OLtJlAEkiGhxBRt9txkn?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S231513AbhEKM0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 08:26:39 -0400
+Received: from polaris.svanheule.net ([84.16.241.116]:35874 "EHLO
+        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231423AbhEKM0i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 08:26:38 -0400
+Received: from terra.local.svanheule.net (unknown [IPv6:2a02:a03f:eafb:ee01:a5bf:613f:4f5:f348])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 33A251FCC1D;
+        Tue, 11 May 2021 14:25:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1620735930;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=pXFaVKy+wOmrEMOM/qypVknWMmqZIUQ8HWg1Wk58Nog=;
+        b=TWR+oI/pYIXBY09oaovraxNH/t2wtW94gjy2gKL2OBx97uK6shZ6G7RyrHFGZNfi9Iq6zq
+        zuTqQbRmQNCb0wFTw/xa35Eh+53NpIqjprfk79srhtc7xkQ7KoYy+QnBORgzzjTdwCwSwP
+        ZkCqrqHNICjn20ppyc4APQXzURnIfBkIfINn7qZIJ17y5Vogot9ZaXLPD/YpDjLo8+DhvR
+        x1+VEtu7qXWD+moX75raBZoX2J5Irb1dKH79BHzrSO+Yy91l4MbDkXPXQPxi99Uw5tISZH
+        tIAmqh7Pk374OaHF7roTED/rhGphcVHgomUl6Sq5F1ECrqeN0OufZ8eUZNwUVQ==
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Sander Vanheule <sander@svanheule.net>
+Subject: [PATCH 0/5] RTL8231 GPIO expander support
+Date:   Tue, 11 May 2021 14:25:18 +0200
+Message-Id: <cover.1620735871.git.sander@svanheule.net>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6688.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2b78ae8-fcc7-4b04-efa5-08d91477327b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 May 2021 12:20:42.9343
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: h12iimvlxOzSSz3otYUDzifZnFBu70L84bV48DhpmMddl0jYpwrAJn/+ZwZo3gKyZqSwGONOTXzM1HyEmhNrIg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4062
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021/05/11 18:45 Adam Ford <aford173@gmail.com> wrote:
-> > Also may I ask if you have a real use case for this bus node?
->=20
-> The reference manual shows the SPBA bus tells the DMA controller which
-> peripherals are associated with it.  Nearly all the i.MX boards use this.=
-  The
-> boards I support have Bluetooth devices connected to a UART running high
-> speeds, and if the DMA driver isn't loaded, I can see a performance chang=
-e.
-Compare PIO with DMA on UART, but not w/o this  'spba bus node ' patch?=20
+The RTL8231 GPIO and LED expander can be configured for use as an MDIO or SMI
+bus device. Currently only the MDIO mode is supported, although SMI mode
+support should be fairly straightforward, once an SMI bus driver is available.
 
-> In fact, if the DMA firmware isn't loaded, I often get transfer errors.
-UART use SDMA ROM firmware instead of RAM firmware, so it should work
-even without sdma RAM firmware loaded.  Still curious what really happen in
-your board without this patch.=20
+Provided features by the RTL8231:
+  - Up to 37 GPIOs
+    - Configurable drive strength: 8mA or 4mA (currently unsupported)
+    - Input debouncing on high GPIOs (currently unsupported)
+  - Up to 88 LEDs in multiple scan matrix groups
+    - On, off, or one of six toggling intervals
+    - "single-color mode": 2×36 single color LEDs + 8 bi-color LEDs
+    - "bi-color mode": (12 + 2×6) bi-color LEDs + 24 single color LEDs
+  - Up to one PWM output (currently unsupported)
+    - Fixed duty cycle, 8 selectable frequencies (1.2kHz - 4.8kHz)
 
+There remain some log warnings when probing the device, possibly due to the way
+I'm using the MFD subsystem. Would it be possible to avoid these?
+[    2.602242] rtl8231-pinctrl: Failed to locate of_node [id: -2]
+[    2.609380] rtl8231-pinctrl rtl8231-pinctrl.0.auto: no of_node; not parsing pinctrl DT
 
-=20
+When no 'leds' sub-node is specified:
+[    2.922262] rtl8231-leds: Failed to locate of_node [id: -2]
+[    2.967149] rtl8231-leds rtl8231-leds.1.auto: no of_node; not parsing pinctrl DT
+[    2.975673] rtl8231-leds rtl8231-leds.1.auto: scan mode missing or invalid
+[    2.983531] rtl8231-leds: probe of rtl8231-leds.1.auto failed with error -22
+
+Changes since RFC:
+  - Dropped MDIO regmap interface. I was unable to resolve the Kconfig
+    dependency issue, so have reverted to using regmap_config.reg_read/write.
+  - Added pinctrl support
+  - Added LED support
+  - Changed root device to MFD, with pinctrl and leds child devices. Root
+    device is now an mdio_device driver.
+
+Sander Vanheule (5):
+  dt-bindings: leds: Binding for RTL8231 scan matrix
+  dt-bindings: mfd: Binding for RTL8231
+  mfd: Add RTL8231 core device
+  pinctrl: Add RTL8231 pin control and GPIO support
+  leds: Add support for RTL8231 LED scan matrix
+
+ .../bindings/leds/realtek,rtl8231-leds.yaml   | 159 ++++++
+ .../bindings/mfd/realtek,rtl8231.yaml         | 202 +++++++
+ drivers/leds/Kconfig                          |  10 +
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-rtl8231.c                   | 281 ++++++++++
+ drivers/mfd/Kconfig                           |   9 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/rtl8231.c                         | 163 ++++++
+ drivers/pinctrl/Kconfig                       |  10 +
+ drivers/pinctrl/Makefile                      |   1 +
+ drivers/pinctrl/pinctrl-rtl8231.c             | 497 ++++++++++++++++++
+ include/linux/mfd/rtl8231.h                   |  49 ++
+ 12 files changed, 1383 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/realtek,rtl8231-leds.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/realtek,rtl8231.yaml
+ create mode 100644 drivers/leds/leds-rtl8231.c
+ create mode 100644 drivers/mfd/rtl8231.c
+ create mode 100644 drivers/pinctrl/pinctrl-rtl8231.c
+ create mode 100644 include/linux/mfd/rtl8231.h
+
+-- 
+2.31.1
 
