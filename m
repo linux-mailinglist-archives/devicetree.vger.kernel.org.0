@@ -2,147 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EB2B37A670
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 14:20:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89EEA37A674
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 14:20:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231460AbhEKMVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 08:21:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47492 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231383AbhEKMVU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 08:21:20 -0400
-Received: from mail-vk1-xa2c.google.com (mail-vk1-xa2c.google.com [IPv6:2607:f8b0:4864:20::a2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8129EC06174A
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 05:20:13 -0700 (PDT)
-Received: by mail-vk1-xa2c.google.com with SMTP id k85so3984173vka.9
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 05:20:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=J9p0IV9O/0BHMoRbDshc2d2b/2+hF9lZpmTlcmjAloA=;
-        b=RbVZmRNIsScv4qi8gxjWkiSJG43CXZdX+0+a5AkcDFjoJ9J5eGTxj+1afg4LX90EmW
-         k4R/qk6hyDZar8BWrQIHMd/bKTgWKR14kz47HRjhO7tSLL8VnV0qUitEzDXamyivkMLO
-         tTEQlbTn1hHYt7+cwbYDnxrmimrp9f4Gv4Chkv7sTeG5CH/vBG92miOM9cnzK6/xjX55
-         xoL7WuR3RrBtW7t3pDFPbVI/VCm1cJP7KK3ZCLRqDzJ5NJ6LdFZ7/+Pdac5VaWLpHLTp
-         NFi7KFoj+47/9/VUPlyzAZu0KrDASFcJfMWvfA+bfCiWK9BavfWWSwv18yn+JnboCSVG
-         nBNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=J9p0IV9O/0BHMoRbDshc2d2b/2+hF9lZpmTlcmjAloA=;
-        b=sSfT9yUHdTnkbXZXuWqPu9A8txVQj1mqKT2jRt+nHbyFMzkvBI11KHFeKchGPbetgI
-         3zAiSh020v7R8fURwD2GlsL7KB7YOW7oolnJz3UoqAky+YT/BC+SDQCtwwOmPCJblOt5
-         ItwMjN2uhb3yRF7fyamQEuUkQoobRX4dS9x8YHD78+jKP/JapxtFC+YDUyw6ErUk6GPd
-         W8yeWieQYTu8j3awMvMMiEB4Sayj+n4hwnvkno0VTm8Yhq2iGTIwth9baEoal9Q3YwYC
-         CIY+mufUbT6kSFD6E+RFuPR1el7WOPMGBRj/9+COrNS+kC7u7D4J2JGOa4eTKv8vrDkD
-         hz+Q==
-X-Gm-Message-State: AOAM530YOUiDJb36kHwB5vIsiVoImN38T8W2pkMnD6Z0zi6iqzlEivnI
-        CFo26S/7tWswsXSUWgfbKlWDVeD3DquW/hvbbZFH/A==
-X-Google-Smtp-Source: ABdhPJyy0HX6uiYQyMYND+Hu2ICNbRj8Qpd12xxBCQ/P4A91seUGfmc8gvrGzRUb+45J3s5mY3TfTuSa8mgEplFrUfM=
-X-Received: by 2002:a1f:aecf:: with SMTP id x198mr22224995vke.6.1620735612522;
- Tue, 11 May 2021 05:20:12 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210510190400.105162-1-l.stach@pengutronix.de>
- <20210510190400.105162-3-l.stach@pengutronix.de> <CAPDyKFrAe-+CENhXkY2fGNw04g-zn+ebcAXSVGa9Td5pJcsujA@mail.gmail.com>
- <0aa51fabade743fbaac70a149a771f37e7d05165.camel@pengutronix.de>
-In-Reply-To: <0aa51fabade743fbaac70a149a771f37e7d05165.camel@pengutronix.de>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 11 May 2021 14:19:36 +0200
-Message-ID: <CAPDyKFpii+q+oLqtt7he+qjqyzeUY39Oy0Wqq4cn5rXfEB6KiA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] mmc: core: add support for disabling HS400 mode
- via DT
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Chris Ruehl <chris.ruehl@gtsys.com.hk>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
+        id S231533AbhEKMVv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 08:21:51 -0400
+Received: from mail-db8eur05on2054.outbound.protection.outlook.com ([40.107.20.54]:1363
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231429AbhEKMVv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 May 2021 08:21:51 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LvUncDvyHHUJx22Uvxb7RVQJJAT1czWxjLNn8O27jueqGxR49xg3ct6Us7XsS+D9iadsJJiMj39o4lUV0TzXswGRc1h/Wj9xlxR8G/agcYW2Y76O78epTlkxZi28HYyTwFtgSQud4WjqfAwwAurbq5PfcIPrpdbyQ1dMtwz9H2qR3MVpSPdPJMmo5+4cGAyAwZfvoqWRUS0AfJFKBiJJ10CA3F8ymLnHotzj2nqNAVHkksznhyI64gjQGgwNTsmXvFqZd2MGsal5DrpBR8OVvVYP9GV3iN+Z+718unAOI9tzWH334L9OslN9o8v8HDPKLuEoil9jpLNok5GI0sAsUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=S0dhuSRsOhrBCB2dl9rbxmNfz+XUu/OWwIB9A9KZ1Q0=;
+ b=miXiahicfFc6MUNeSfFp7QC2bkS0/Egc4F2hKP0F24QmB7OoMdwQeZsQGzOUANNYREDOmSEFbcxzt5QRJDMRVe4Jan2TraKWmQAfCOA7NZCOIXhOP9t+Kb2AFp2dNCrkP0mnXzrfclTeXNkkjgq4JFG31NtnNE/nPcaO9vM8UPpFpW/7q7pByjASwfsU41OoueVFyInRfcjxFURfbs9wUKg89fRfux3nvqUXoJ0p8BYAMD5mAkBFy1QaIuJCenAVb91/orSBCMx3H+e3wGj6m981kLCbCVc9ggLL0Vm6rReq+DrUkqEeaMOX/ES1qFkTFCgEZlheIhQNxol5QHq9HQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=S0dhuSRsOhrBCB2dl9rbxmNfz+XUu/OWwIB9A9KZ1Q0=;
+ b=RzcX+OntEhPxNmyPpCOdwRVv3Jrp+9mVsHmUFqTvvz4dC6BzP1Lcufy3wjgpKjIkw717Vz+zhgn6fmwITyzIzgcUCgJElHaRqxmjoL3pKlEbIVA1b/6qdcYEkDB83MF8eDds0luDeB8Ot/rMlVPMz5WkQ1n7ZlWQ3GoZb5qEjRs=
+Received: from VE1PR04MB6688.eurprd04.prod.outlook.com (2603:10a6:803:127::25)
+ by VI1PR04MB4062.eurprd04.prod.outlook.com (2603:10a6:803:40::32) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.30; Tue, 11 May
+ 2021 12:20:43 +0000
+Received: from VE1PR04MB6688.eurprd04.prod.outlook.com
+ ([fe80::de2:8b2:852b:6eca]) by VE1PR04MB6688.eurprd04.prod.outlook.com
+ ([fe80::de2:8b2:852b:6eca%7]) with mapi id 15.20.4108.031; Tue, 11 May 2021
+ 12:20:43 +0000
+From:   Robin Gong <yibin.gong@nxp.com>
+To:     Adam Ford <aford173@gmail.com>, Shawn Guo <shawnguo@kernel.org>
+CC:     arm-soc <linux-arm-kernel@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 1/2] arm64: dts: imx8mn: Add spba1 bus
+Thread-Topic: [PATCH 1/2] arm64: dts: imx8mn: Add spba1 bus
+Thread-Index: AQHXKoTrm+1dEO4gCEi87d5cyZOFDqrdyocAgACF5YCAABIPoA==
+Date:   Tue, 11 May 2021 12:20:42 +0000
+Message-ID: <VE1PR04MB6688CD4AA4826EEEBBA2651689539@VE1PR04MB6688.eurprd04.prod.outlook.com>
+References: <20210406013344.124255-1-aford173@gmail.com>
+ <20210511024604.GE3425@dragon>
+ <CAHCN7xLFpL=9BF9M5gUA6sMhc2ZZMNz+GP0OLmLfpJAWdD7W-w@mail.gmail.com>
+In-Reply-To: <CAHCN7xLFpL=9BF9M5gUA6sMhc2ZZMNz+GP0OLmLfpJAWdD7W-w@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [183.192.232.236]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d2b78ae8-fcc7-4b04-efa5-08d91477327b
+x-ms-traffictypediagnostic: VI1PR04MB4062:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR04MB40626A25C43F5246F692101F89539@VI1PR04MB4062.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 8q3H//w8awkKbiZp8Jf5zQYXlLRb56y9KczOuWPU2s1B91A2B9JqsLdw7OvBjGyroRH1hucnAzhjQtRaBiG7gaMvjQNTPtDQ0Hvf8B+OgnxuVKtOStu6/2uJ4i8qAKhsCIo9YKGqGl3jtNoRdlWJCU5Qvc88kNSADqjm/SM8IBkVs3A6cIRewfOWWkJBT5QTCBEU48DN5BWXSZjU6hJaSSkoFqhznFIFKStLfckclrEhwm/c7653K+DfZMjglZxqMVbWFCXgj4RrpsR5xfxbS7OQQh5cdQoL3TZkxhnCSSrl5gw/0N0XQeYjazCVEQ8cFcMDumRvthfxCwTPY2jVLE76KJtKM1LN5mYc6rRgpYdlKgxYu0n0zkS1FFF60/KZmz/zezeCriNEWssMAvspxKUJT7paeTv1mG3Mai5Smf6PWvi34SyIRcDUrwGessyZ0bshpDc4jzq6Bk8i+4iWyM7jolAsPwjMW+qCxsjOE8F+XMRgPCABg4sY/UZcjbLSnPSQQRVSM8rvmmIqJwXzaPM80YrvFCxek6BB0pkNOqZJAIAlxCzqVaoLZpBpT+fVoR6lpgCmB5/gzQQytQisJox2lD5RWZj/5FKXS1cRiZFbUq+mZ9fDovHivB+hChZfb4Vw51FcxgxTx7V+Ow51xA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6688.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(376002)(366004)(396003)(346002)(136003)(33656002)(110136005)(4744005)(5660300002)(478600001)(76116006)(55016002)(86362001)(54906003)(66556008)(66946007)(71200400001)(66446008)(64756008)(66476007)(7696005)(9686003)(2906002)(186003)(53546011)(38100700002)(6506007)(8676002)(122000001)(316002)(52536014)(83380400001)(8936002)(26005)(4326008)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?vzWI1qv8fBo47U428PG7Y0Xc4SfP0E+gzRXBOE5huE7oDQVxP1GZ5XeIfpeh?=
+ =?us-ascii?Q?fA9daOWmxzH66wFauuePc2L3DybOf6UK3eT0y+xAFw4NbyhyWoz8BeZIhtHr?=
+ =?us-ascii?Q?Mt+/vbWfMiA6KFntrj5P1MyCAcLNooN9VkmFccGxxjd1gNboG9CXV6Z5eRYv?=
+ =?us-ascii?Q?INhdRWwYhb2aDIkBrDYaFjvXHEpBRLKxcdFk5Uj5O567jTjBIy3A1O7gyjBR?=
+ =?us-ascii?Q?oyBQoMN8Iz3iJDC9RNFTe5hoYf4N2rC2S83shsHvQ/dnSKOy6wmzJRRVyzTE?=
+ =?us-ascii?Q?5e6pjkyPMfshvyYWvRgWpfi9EaetB3WhTUKVuMY4WHmnK1uksVIOv+bCl3/x?=
+ =?us-ascii?Q?xpti90YJd2/Xl9G+NWxeqN0MqwJojdqXL12MwGw+3Aby0Srnn8bziOHkClrN?=
+ =?us-ascii?Q?AlsXW7xw23vCSsbfJYmPKZjeSiJLdoTDCAJs8uW8m6RdLxOh/i+XEYOCfraP?=
+ =?us-ascii?Q?nxQZyvSOkIzal6nTUIDoDCD8SB1aMPmqmygcN3UWYs5yDss6sj/2gTgE9MQ7?=
+ =?us-ascii?Q?QD1IXwwc2wvOX6azeLEfqRNIvCYH/fw0FbtaD/LS/pqRD84uMDU0kCf0sWb5?=
+ =?us-ascii?Q?njv0wJRITH0GitTw6llzSyEOfIoxZvtz/7agzC5sEcAzpyGE2skEqLnE593/?=
+ =?us-ascii?Q?RtCTHPcOjW2FfQY3XDGdwjT8RK1ZAdHg1FRPh1t//AONS/av/CIfNW1LfsEO?=
+ =?us-ascii?Q?lQQ88yzPX1uqH3j7eLThyBXFOjefur5sZ1bVm4ryOwTfCMbkhdPLCp8Ay5bZ?=
+ =?us-ascii?Q?NDht0DH4BtN4rJNaORx7RKGgcx1TRgpAX9zykb11Nrq/9s+X4RS5axGFyfI5?=
+ =?us-ascii?Q?JxJlL7o6yS/ZYbQ9qVXVPH0Tp5cwsLJ/pt1qVx4MCbU6Fy4b3Qjvk4sLNYax?=
+ =?us-ascii?Q?NIDBPyyudmw0YWfgPxpt0930JBPKpd9pZgiFGXYYxI4TyEPpRbgR2Uxv1AAe?=
+ =?us-ascii?Q?CO84fVuAexDD3xSByww0NeQ1hUIxW+VF6MLfvWiohcZz42/mcMDH33xKJJzQ?=
+ =?us-ascii?Q?/3spp4TticvcRv6BpMT43moBmCn5vRnOp4ZJnD+C0UTEgQlWPvri80Y1C+0d?=
+ =?us-ascii?Q?mKJlreVwbFcfbfMBqv+YihNlj2ncfQRG7Fs1vgPe6NN8b6NtZGV5A2/PAmgv?=
+ =?us-ascii?Q?LuR/LduKHn47T4NL7BVC1RApnc6Y634awIbCcKbFGgCobuLDAgR492YwxkKB?=
+ =?us-ascii?Q?6ARiEtIPQN3nOX8dGXv4PMWfnm+T9lI2mQoua01dcvH7DU9kojleJolSs82o?=
+ =?us-ascii?Q?E8c3OZZcRQI2a9JTBVnkHagikmGmQyJwSVFNEAEAs41LRHDld0Zg6RV+OEkw?=
+ =?us-ascii?Q?7fj7OLtJlAEkiGhxBRt9txkn?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6688.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d2b78ae8-fcc7-4b04-efa5-08d91477327b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 May 2021 12:20:42.9343
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: h12iimvlxOzSSz3otYUDzifZnFBu70L84bV48DhpmMddl0jYpwrAJn/+ZwZo3gKyZqSwGONOTXzM1HyEmhNrIg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4062
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 May 2021 at 13:54, Lucas Stach <l.stach@pengutronix.de> wrote:
->
-> Hi Ulf,
->
-> Am Dienstag, dem 11.05.2021 um 13:14 +0200 schrieb Ulf Hansson:
-> > + Chris Ruehl
-> >
-> > On Mon, 10 May 2021 at 21:04, Lucas Stach <l.stach@pengutronix.de> wrote:
-> > >
-> > > From: Lucas Stach <dev@lynxeye.de>
-> > >
-> > > On some boards the data strobe line isn't wired up, rendering HS400
-> > > support broken, even if both the controller and the eMMC claim to
-> > > support it. Allow to disable HS400 mode via DT.
-> >
-> > Before I review the series, I just wanted to highlight that quite
-> > recently we got a related series posted from Chris [1]. I made some
-> > comments, but he hasn't replied yet.
-> >
-> > In any case, if I understood it correctly, it looks like some
-> > controllers may support HS400 ES, but not HS200. Could that be the
-> > case here as well? Or is this a different problem?
-> >
-> >
-> That's not the issue I'm trying to solve here. HS400 modes, whether ES
-> nor not, require the data strobe line to work. ES mode just defines how
-> this line is used. I know for a fact that the board I'm dealing with
-> here, just hasn't wired up this line between the SoC and the eMMC. Thus
-> HS400 modes fail to work, even though both controller and eMMC support
-> this mode.
->
-> When HS400 is disabled, like in this series, communication falls back
-> to HS200 mode and works fine this way.
+On 2021/05/11 18:45 Adam Ford <aford173@gmail.com> wrote:
+> > Also may I ask if you have a real use case for this bus node?
+>=20
+> The reference manual shows the SPBA bus tells the DMA controller which
+> peripherals are associated with it.  Nearly all the i.MX boards use this.=
+  The
+> boards I support have Bluetooth devices connected to a UART running high
+> speeds, and if the DMA driver isn't loaded, I can see a performance chang=
+e.
+Compare PIO with DMA on UART, but not w/o this  'spba bus node ' patch?=20
 
-Alright, thanks for clarifying. I will look into the series soon.
+> In fact, if the DMA firmware isn't loaded, I often get transfer errors.
+UART use SDMA ROM firmware instead of RAM firmware, so it should work
+even without sdma RAM firmware loaded.  Still curious what really happen in
+your board without this patch.=20
 
-Kind regards
-Uffe
 
->
-> Regards,
-> Lucas
->
-> > Kind regards
-> > Uffe
-> >
-> > [1]
-> > https://patchwork.kernel.org/project/linux-mmc/patch/20201208061839.21163-7-chris.ruehl@gtsys.com.hk/
-> >
-> > >
-> > > Signed-off-by: Lucas Stach <dev@lynxeye.de>
-> > > ---
-> > > v2:
-> > > - move to core
-> > > - actually disable all HS400 modes
-> > > ---
-> > >  drivers/mmc/core/host.c | 3 +++
-> > >  1 file changed, 3 insertions(+)
-> > >
-> > > diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
-> > > index 9b89a91b6b47..0e066c5f5243 100644
-> > > --- a/drivers/mmc/core/host.c
-> > > +++ b/drivers/mmc/core/host.c
-> > > @@ -351,6 +351,9 @@ int mmc_of_parse(struct mmc_host *host)
-> > >                 host->caps2 |= MMC_CAP2_NO_SD;
-> > >         if (device_property_read_bool(dev, "no-mmc"))
-> > >                 host->caps2 |= MMC_CAP2_NO_MMC;
-> > > +       if (device_property_read_bool(dev, "no-mmc-hs400"))
-> > > +               host->caps2 &= ~(MMC_CAP2_HS400_1_8V | MMC_CAP2_HS400_1_2V |
-> > > +                                MMC_CAP2_HS400_ES);
-> > >
-> > >         /* Must be after "non-removable" check */
-> > >         if (device_property_read_u32(dev, "fixed-emmc-driver-type", &drv_type) == 0) {
-> > > --
-> > > 2.31.1
-> > >
->
->
+=20
+
