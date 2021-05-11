@@ -2,120 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D75A379D8E
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 05:18:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D3FB379DA1
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 05:24:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230070AbhEKDT3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 23:19:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38868 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230018AbhEKDT2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 23:19:28 -0400
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E411C061574
-        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 20:18:22 -0700 (PDT)
-Received: by mail-io1-xd32.google.com with SMTP id n40so1067041ioz.4
-        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 20:18:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OkHDlYFluPki2ZdUn0/eNDhFO7FqUp9u17CiwZh22fI=;
-        b=mTFWoS6vW84BXMZlAa+QisfevYOw9aQGHn03C7IpjFYVCHUvAFmLmfRnnKOMgnch6A
-         F5tqeukS8/OV4hrfyHJcyO7fsYN/V9XaVD6Uf7xie0bG9KgBlDHH9bmSxm+HrNDvDgSB
-         TMl+2Ng1YPohPWBnJyb7kB3XZJYx2xWNO85r0=
+        id S229586AbhEKDZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 23:25:53 -0400
+Received: from mail-lj1-f177.google.com ([209.85.208.177]:36399 "EHLO
+        mail-lj1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229465AbhEKDZw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 May 2021 23:25:52 -0400
+Received: by mail-lj1-f177.google.com with SMTP id o16so23362877ljp.3;
+        Mon, 10 May 2021 20:24:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OkHDlYFluPki2ZdUn0/eNDhFO7FqUp9u17CiwZh22fI=;
-        b=toGmikMyXulBcWjbv6NpfEE/Gm8O7+7X0TIIdjSO1qmRQx5L0kjvtdmhZGXY8H6FjZ
-         OrZszETaD71nOJxNZtBuYqfMrkHoffBIIcTaeq26h/dySucqe/oi1ug5Snn+j15c4ls9
-         w5fQvnAluG4Lbg43KHGrKvFQ9QbVTjtc2pCLhp4gg4VkwzLwyetgoNIMy77WXthbTA/2
-         7bGLaFLq2FHzltV8Sby18qpMcyqd9PrD1PC7xyzLfoDgsY3uvFPImOc0fGSHBe+LCoor
-         FOGCKxbUl8CI8RopcpaP03sYjbZ42SHtP469Ch1VCmNo6uPmXALvRi9Ljv+sTac41rvt
-         OmdA==
-X-Gm-Message-State: AOAM531GqiCzXVB85UELMsjGFQccU5tMR+kFvma+zjRrpKuVkZheFIOH
-        FTLjwPpxF+VeauuN2DI2diOuYBnm5xqjwDxDaablAg==
-X-Google-Smtp-Source: ABdhPJyrD8bDd6jE5FS8jaJSkAfnWnTZbGMj2SNEByq0yqDn2YByH4a4ZLSTNDq73en4LDotx14twU2BKaNZJ46rNQ8=
-X-Received: by 2002:a5d:9694:: with SMTP id m20mr20648173ion.40.1620703101484;
- Mon, 10 May 2021 20:18:21 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210421090601.730744-1-hsinyi@chromium.org>
-In-Reply-To: <20210421090601.730744-1-hsinyi@chromium.org>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Tue, 11 May 2021 11:17:55 +0800
-Message-ID: <CAJMQK-jxUwoz_zP-PgoEhnjqxzFC965csj0tNjuTxUT7Rg7Cmg@mail.gmail.com>
-Subject: Re: [PATCH v3 00/10] Add several jacuzzi boards
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Ben Ho <Ben.Ho@mediatek.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>
+        h=x-gm-message-state:message-id:subject:from:reply-to:to:cc
+         :in-reply-to:references:mime-version:date:user-agent
+         :content-transfer-encoding;
+        bh=t5dihwh6taxcRIhzyzPXuTSAxXGXraKDtiK/9X4Jh/Y=;
+        b=JqcF7yLJ1Tp42uiWQltIBHjIKDzcN8bYpR3dzB7Uo0lE7CBjXyMuirE1ni7OVTZ8HN
+         IbGpnmbrJME2NEw8lw1CGmfzKORKqGa0vKNdquU43OcP3nEEQFkrJ7XTqX2NGs9q9dA/
+         QjVRTbU5dR6iG8sY3N55lAgTbXOqO/WZnpaBB3aG2wZlvbHFD7+3NwLm6R8boJqPtI9a
+         zCUxdKy6JkKmOWqVxTz7Iwqxg3Dc+8TlYn8Mxah9ua/nmSeiTdHV0buJaAC8nyRyeH3d
+         14NJZGIXyLPmxUM7xW2e3We7311Sb94bp6t2TaZkZ2qVKgnIwXf358rV66fhbCzKSN7t
+         MGLA==
+X-Gm-Message-State: AOAM531iFfpQbCV5R2rncKOBAUq2r00MdVhWSVxXQ99qphUgD+PNeF8S
+        syB05KsIK1D8SLOYulzAfXblsJT619JtMw==
+X-Google-Smtp-Source: ABdhPJwD3l/iF8tqr97idrVOmnyHS3NJ37MZAL/xw4/7kF3eFrOciG1X6h4w5Okm/ESeb7iU1NJe6A==
+X-Received: by 2002:a2e:9dc3:: with SMTP id x3mr23213877ljj.206.1620703484941;
+        Mon, 10 May 2021 20:24:44 -0700 (PDT)
+Received: from dc7vkhyyyyyyyyyyyyyby-3.rev.dnainternet.fi (dc7vkhyyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::2])
+        by smtp.gmail.com with ESMTPSA id f22sm835673lfc.102.2021.05.10.20.24.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 May 2021 20:24:44 -0700 (PDT)
+Message-ID: <6121a55d7db8cc4376c068e289fb29b9d4479dbd.camel@fi.rohmeurope.com>
+Subject: Re: [PATCH v9 05/10] regulator: IRQ based event/error notification
+ helpers
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Reply-To: matti.vaittinen@fi.rohmeurope.com
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        kernel test robot <lkp@intel.com>
+Cc:     kbuild-all@lists.01.org, Mark Brown <broonie@kernel.org>,
+        Kees Cook <keescook@chromium.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "agross@kernel.org" <agross@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+In-Reply-To: <CAHp75Vfw+5R-qN+iGC4hYSbL6phOoSZ7nuNsyroQPODxEmMaNA@mail.gmail.com>
+References: <a22cf56239512f52ae5927f226e79d890d7a1240.1620645507.git.matti.vaittinen@fi.rohmeurope.com>
+         <202105110342.Oembupaq-lkp@intel.com>
+         <CAHp75Vfw+5R-qN+iGC4hYSbL6phOoSZ7nuNsyroQPODxEmMaNA@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Date:   Tue, 11 May 2021 06:24:32 +0300
+User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 21, 2021 at 5:06 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
->
-> Add several jacuzzi follower devices: kappa, willo, burnet, kenzo, and
-> fennel.
->
+Hi Andy, All,
 
-Hi Matthias,
+On Mon, 2021-05-10 at 23:20 +0300, Andy Shevchenko wrote:
+> On Mon, May 10, 2021 at 10:46 PM kernel test robot <lkp@intel.com>
+> wrote:
 
-Can you help pick this series? thanks.
+> > 
+> >    include/linux/bitops.h:35:2: warning: this 'for' clause does not
+> > guard... [-Wmisleading-indentation]
+> >       35 |  for ((bit) = find_first_bit((addr), (size));  \
+> >          |  ^~~
+> >    drivers/regulator/irq_helpers.c:242:3: note: in expansion of
+> > macro 'for_each_set_bit'
+> >      242 |   for_each_set_bit(j, &stat->notifs, BITS_PER_TYPE(stat-
+> > >notifs))
+> >          |   ^~~~~~~~~~~~~~~~
+> >    drivers/regulator/irq_helpers.c:244:4: note: ...this statement,
+> > but the latter is misleadingly indented as if it were guarded by
+> > the 'for'
+> 
+> Seems like missed {}
+> 
+> Matti, there is a serious question: how had you tested this...
 
+I actually did. I did not just run rebase for the series and threw new
+version but I actually did run this in real HW, with real break-out
+board and with a fresh info print to see the event being sent.
 
-> Change log:
-> v2 -> v3:
->  - remove unused property in i2c2 in willow and burnet.
->  - add fennel.
->
-> Hsin-Yi Wang (10):
->   dt-bindings: arm64: dts: mediatek: Add mt8183-kukui-jacuzzi-kappa
->   dt-bindings: arm64: dts: mediatek: Add mt8183-kukui-jacuzzi-willow
->   dt-bindings: arm64: dts: mediatek: Add mt8183-kukui-jacuzzi-burnet
->   dt-bindings: arm64: dts: mediatek: Add mt8183-kukui-jacuzzi-kenzo
->   dt-bindings: arm64: dts: mediatek: Add mt8183-kukui-jacuzzi-fennel
->   arm64: dts: mt8183: Add kukui-jacuzzi-kappa board
->   arm64: dts: mt8183: Add kukui-jacuzzi-willow board
->   arm64: dts: mt8183: Add kukui-jacuzzi-burnet board
->   arm64: dts: mt8183: Add kukui-jacuzzi-kenzo board
->   arm64: dts: mt8183: Add kukui-jacuzzi-fennel board
->
->  .../devicetree/bindings/arm/mediatek.yaml     | 29 +++++++++++-
->  arch/arm64/boot/dts/mediatek/Makefile         |  8 ++++
->  .../mediatek/mt8183-kukui-jacuzzi-burnet.dts  | 30 +++++++++++++
->  .../mt8183-kukui-jacuzzi-fennel-sku1.dts      | 44 +++++++++++++++++++
->  .../mt8183-kukui-jacuzzi-fennel-sku6.dts      | 32 ++++++++++++++
->  .../mediatek/mt8183-kukui-jacuzzi-fennel.dtsi | 27 ++++++++++++
->  .../mt8183-kukui-jacuzzi-fennel14.dts         | 16 +++++++
->  .../mediatek/mt8183-kukui-jacuzzi-kappa.dts   | 16 +++++++
->  .../mediatek/mt8183-kukui-jacuzzi-kenzo.dts   | 12 +++++
->  .../mt8183-kukui-jacuzzi-willow-sku0.dts      | 13 ++++++
->  .../mt8183-kukui-jacuzzi-willow-sku1.dts      | 12 +++++
->  .../mediatek/mt8183-kukui-jacuzzi-willow.dtsi | 26 +++++++++++
->  .../dts/mediatek/mt8183-kukui-jacuzzi.dtsi    |  8 ++++
->  13 files changed, 271 insertions(+), 2 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dts
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel.dtsi
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14.dts
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dts
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dts
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku0.dts
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku1.dts
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow.dtsi
->
-> --
-> 2.31.1.498.g6c1eba8ee3d-goog
->
+> (besides obvious compilation error)
+> Perhaps you have to fix your process somewhere to avoid missing
+> important steps?
+
+Yes. Can't deny this. And process fix should be simple. If code/patch
+needs a change (even a print removal/print severity change/parameter
+change)  - then it needs to be tested again prior formatting the
+patches.
+
+Sorry folks.
+
+--Matti
+
