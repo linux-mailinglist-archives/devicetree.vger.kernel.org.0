@@ -2,220 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2492737AC88
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 18:59:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4931237AC9E
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 19:03:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231379AbhEKRA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 13:00:57 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34766 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231230AbhEKRA5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 May 2021 13:00:57 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7A7C1617C9;
-        Tue, 11 May 2021 16:59:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620752390;
-        bh=fIaiKncbOhF42NMcvb4keKbwIafRTHDcsfrQf6pI4Zc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=iSOZZjkLk1XC2l7Ax+Cejz3YlYEvxypiYQEMM1+doGiT2tjeA46AqiAH1no71ZxgU
-         aXMplkqs+teBTIiQ7yV4cSjsEPNT7mJuMFqsvX2jG1n6qDgLAR0rDicrYsKJVFZ7ow
-         eunzD+6ugHMcpFbv7t22K3drcWLFU05L6+C7L0qS/PBtHlfmbtHsBtmJ910yJmse60
-         n45dphqcT2+6qZ8D9VKeKoPOySfD5uZK6qjZ7NqvHs0s33ebXyBQO6hud9rZKCGHUz
-         C0pmR7VGDAoLWT4zyo5RfVVn5rRJAlS0HlyLulgaVqJULDOBhCBI/fNBwxUvr+1QwZ
-         XICr7CfLBDaJg==
-Received: by mail-ej1-f45.google.com with SMTP id b25so30763926eju.5;
-        Tue, 11 May 2021 09:59:50 -0700 (PDT)
-X-Gm-Message-State: AOAM533+E9NQ+8c3t4NhfWOArIybY8Fcbnaysl23ciaPLUcfwpsKFg3s
-        IfiTg+Pc6y4OfBs7bjn/dSBsdPqSuN6NAgpQsQ==
-X-Google-Smtp-Source: ABdhPJxp5uMHxFRYAjGBeRPy0112+HQl4dnKPgPi5HnV7AMeIGK9ib7Kgyb4Krz215eGf9u0Uv0O15l+sUz8XH7qDeI=
-X-Received: by 2002:a17:906:b0cb:: with SMTP id bk11mr33264259ejb.310.1620752388961;
- Tue, 11 May 2021 09:59:48 -0700 (PDT)
+        id S231435AbhEKRES (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 13:04:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55706 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231329AbhEKRES (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 13:04:18 -0400
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65E98C06174A;
+        Tue, 11 May 2021 10:03:11 -0700 (PDT)
+Received: by mail-oi1-x231.google.com with SMTP id v24so558118oiv.3;
+        Tue, 11 May 2021 10:03:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=SenRFtg3kcFbs9vUTSmXrCXzTJuUoNr/azEqion6f2I=;
+        b=ms09Mwt8atK8e8z4XkXwnkx/g/8OA3s4WXTvgC8GOPh8A68iFoqao0PcCZaQvrCWsE
+         Y+hny1Mkf6oYe87L6FSD+3p7wd7wual20ENgIsKkh6aJqUQAkN7pCvs7buQMKtIZN4G8
+         uU0GjjdXnZL3pumcB0+oBHZg+g2O1AX2kJBiUYazyoSpa44uXeuwqfJkfz6whYExen9a
+         qesivuXtZZ6/x6cqBODlDk29idP1b18zL3j1bMbqu4yoztV5qBg0xZlk4JsrDN950yNP
+         tWDHRzbFEVEKPrVPo4/p7SHc0ImrDnmqfnlFCyDI8KWQzx8Pllg+3U2o1wSCWVHhm9iX
+         bx3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=SenRFtg3kcFbs9vUTSmXrCXzTJuUoNr/azEqion6f2I=;
+        b=aP9ritPxpMKeczrP6W8qi7sv43sCNkS/2ukTk7EzCILzcfxJXqHEiUwOgGoec93jaC
+         aQ3/yuUjDARqBhIyk3nwxQPI1zPKH+pQ/J4BJZpMSVUdxq9DPHS9Qr6mL/X0M4XNXXot
+         oWMAyjfYXC2w7HZCGz7CZLhHqlpZkD4RWsq50EoC1m9B4pe3izcF1lAHaQWimL1yKRqk
+         UM5nWMXUeuMM4a+tTyPYsWoUaY80U/lDNhSULa5n46uK7NpRooY3J4rmMIaQHAVKQD0j
+         laB3Lstacttx+TG3OaWmgRvzGofYOhB/MKwveKgbvF21QX86AeqkTYD6tObftz81gKLA
+         FyvQ==
+X-Gm-Message-State: AOAM530n6BCha1k18GGkUYT1tbERb5lOMocdlViGe2mDZoxANDL6rlDk
+        KIh4bMaf34iV/V3IEkf90WkohPRhQmA=
+X-Google-Smtp-Source: ABdhPJwnIEc9xuTkyAD1ymyeOcrSUYpAk5q55kGwgiAq9RpWg6Oe3n1ZGfG7oOk76v7SVQVU06OW8w==
+X-Received: by 2002:aca:c792:: with SMTP id x140mr12467289oif.88.1620752590542;
+        Tue, 11 May 2021 10:03:10 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id c19sm3272847oiw.7.2021.05.11.10.03.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 May 2021 10:03:09 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH hwmon-next v7 0/3] Add support for MPS Multi-phase mp2888
+ controller
+To:     Vadim Pasternak <vadimp@nvidia.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Cc:     "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20210511055619.118104-1-vadimp@nvidia.com>
+ <b967ca2a-acb6-6b76-7aee-788126f910e7@roeck-us.net>
+ <DM6PR12MB38985D51FA4430D1CD1F6303AF539@DM6PR12MB3898.namprd12.prod.outlook.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <3f3fa7b2-3891-3540-4703-f5bf83ffaec1@roeck-us.net>
+Date:   Tue, 11 May 2021 10:03:07 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-References: <20210429041641.11077-1-rex-bc.chen@mediatek.com> <20210429041641.11077-4-rex-bc.chen@mediatek.com>
-In-Reply-To: <20210429041641.11077-4-rex-bc.chen@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Wed, 12 May 2021 00:59:37 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_94qU7Qm8yLjKOypTAP8m2yT27n2xainc70=buMCjMTcg@mail.gmail.com>
-Message-ID: <CAAOTY_94qU7Qm8yLjKOypTAP8m2yT27n2xainc70=buMCjMTcg@mail.gmail.com>
-Subject: Re: [v3 RESEND,PATCH 3/3] drm/mediatek: dpi: add bus format negotiation
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Jitao Shi <jitao.shi@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <DM6PR12MB38985D51FA4430D1CD1F6303AF539@DM6PR12MB3898.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Rex:
+On 5/11/21 6:34 AM, Vadim Pasternak wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Guenter Roeck <groeck7@gmail.com> On Behalf Of Guenter Roeck
+>> Sent: Tuesday, May 11, 2021 4:32 PM
+>> To: Vadim Pasternak <vadimp@nvidia.com>; robh+dt@kernel.org
+>> Cc: linux-hwmon@vger.kernel.org; devicetree@vger.kernel.org
+>> Subject: Re: [PATCH hwmon-next v7 0/3] Add support for MPS Multi-phase
+>> mp2888 controller
+>>
+>> On 5/10/21 10:56 PM, Vadim Pasternak wrote:
+>>> Add driver and documentation for mp2888 device from Monolithic Power
+>>> Systems, Inc. (MPS) vendor. This is a digital, multi-phase,
+>>> pulse-width modulation controller.
+>>>
+>>> Patch set includes:
+>>> Patch #1 - increases maximum number of phases.
+>>> Patch #2 - provides mp2888 driver and documentation.
+>>> Patch #3 - providesy binding documentation.
+>>>
+>>
+>> Series applied.
+> 
+> Thank you, Guenter.
+> 
+> I see from the following errors from robot:
+>>> ERROR: modpost: module mp2888 uses symbol pmbus_do_probe from namespace PMBUS, but does not import it.
+>>> ERROR: modpost: module mp2888 uses symbol pmbus_read_word_data from namespace PMBUS, but does not import it.
+>>> ERROR: modpost: module mp2888 uses symbol pmbus_write_word_data from namespace PMBUS, but does not import it.
+>>> ERROR: modpost: module mp2888 uses symbol pmbus_get_driver_info from namespace PMBUS, but does not import it.
+> 
+> What does it mean?
+> 
 
-Rex-BC Chen <rex-bc.chen@mediatek.com> =E6=96=BC 2021=E5=B9=B44=E6=9C=8829=
-=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=8812:16=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> Add the atomic_get_output_bus_fmts, atomic_get_input_bus_fmts to negotiat=
-e
-> the possible output and input formats for the current mode and monitor,
-> and use the negotiated formats in a basic atomic_check callback.
->
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_dpi.c | 92 ++++++++++++++++++++++++++++--
->  1 file changed, 87 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediate=
-k/mtk_dpi.c
-> index c548780dd3a5..8822d9448ae8 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> @@ -536,6 +536,87 @@ static int mtk_dpi_set_display_mode(struct mtk_dpi *=
-dpi,
->         return 0;
->  }
->
-> +#define MAX_OUTPUT_SEL_FORMATS 2
-> +
-> +static u32 *mtk_dpi_bridge_atomic_get_output_bus_fmts(struct drm_bridge =
-*bridge,
-> +                                       struct drm_bridge_state *bridge_s=
-tate,
-> +                                       struct drm_crtc_state *crtc_state=
-,
-> +                                       struct drm_connector_state *conn_=
-state,
-> +                                       unsigned int *num_output_fmts)
-> +{
-> +       u32 *output_fmts;
-> +       struct mtk_dpi *dpi =3D bridge_to_dpi(bridge);
-> +
-> +       *num_output_fmts =3D 0;
-> +
-> +       output_fmts =3D kcalloc(MAX_OUTPUT_SEL_FORMATS, sizeof(*output_fm=
-ts),
-> +                             GFP_KERNEL);
-> +       if (!output_fmts)
-> +               return NULL;
-> +
-> +       /* Default 8bit RGB fallback */
-> +       if (dpi->conf->dual_edge) {
-> +               output_fmts[0] =3D  MEDIA_BUS_FMT_RGB888_2X12_LE;
-> +               output_fmts[1] =3D  MEDIA_BUS_FMT_RGB888_2X12_BE;
-> +               *num_output_fmts =3D 2;
-> +       } else {
-> +               output_fmts[0] =3D  MEDIA_BUS_FMT_RGB888_1X24;
-> +               *num_output_fmts =3D 1;
-> +       }
-> +
-> +       return output_fmts;
-> +}
-> +
-> +#define MAX_INPUT_SEL_FORMATS  1
-> +
-> +static u32 *mtk_dpi_bridge_atomic_get_input_bus_fmts(struct drm_bridge *=
-bridge,
-> +                                       struct drm_bridge_state *bridge_s=
-tate,
-> +                                       struct drm_crtc_state *crtc_state=
-,
-> +                                       struct drm_connector_state *conn_=
-state,
-> +                                       u32 output_fmt,
-> +                                       unsigned int *num_input_fmts)
-> +{
-> +       u32 *input_fmts;
-> +
-> +       *num_input_fmts =3D 0;
-> +
-> +       input_fmts =3D kcalloc(MAX_INPUT_SEL_FORMATS, sizeof(*input_fmts)=
-,
-> +                            GFP_KERNEL);
-> +       if (!input_fmts)
-> +               return NULL;
-> +
-> +       *num_input_fmts =3D 1;
-> +       input_fmts[0] =3D MEDIA_BUS_FMT_RGB888_1X24;
-> +
-> +       return input_fmts;
-> +}
-> +
-> +static int mtk_dpi_bridge_atomic_check(struct drm_bridge *bridge,
-> +                                      struct drm_bridge_state *bridge_st=
-ate,
-> +                                      struct drm_crtc_state *crtc_state,
-> +                                      struct drm_connector_state *conn_s=
-tate)
-> +{
-> +       struct mtk_dpi *dpi =3D bridge->driver_private;
-> +       unsigned int out_bus_format;
-> +
-> +       out_bus_format =3D bridge_state->output_bus_cfg.format;
-> +
-> +       dev_dbg(dpi->dev, "input format 0x%04x, output format 0x%04x\n",
-> +               bridge_state->input_bus_cfg.format,
-> +               bridge_state->output_bus_cfg.format);
-> +
-> +       dpi->ddr_edge_sel =3D (out_bus_format =3D=3D MEDIA_BUS_FMT_RGB888=
-_2X12_LE) ?
-> +                               true : false;
+It needs
 
-I would like to keep the out_bus_format rather than keep ddr_edge_sel,
-and in mtk_dpi_dual_edge() use dpi->out_bus_format to decide edge
-selection.
+MODULE_IMPORT_NS(PMBUS);
 
-Regards,
-Chun-Kuang.
+No worries, I'll fix it up.
 
-> +
-> +       dpi->bit_num =3D MTK_DPI_OUT_BIT_NUM_8BITS;
-> +       dpi->channel_swap =3D MTK_DPI_OUT_CHANNEL_SWAP_RGB;
-> +       dpi->yc_map =3D MTK_DPI_OUT_YC_MAP_RGB;
-> +       dpi->color_format =3D MTK_DPI_COLOR_FORMAT_RGB;
-> +
-> +       return 0;
-> +}
-> +
->  static int mtk_dpi_bridge_attach(struct drm_bridge *bridge,
->                                  enum drm_bridge_attach_flags flags)
->  {
->
-> @@ -574,6 +655,12 @@ static const struct drm_bridge_funcs mtk_dpi_bridge_=
-funcs =3D {
->         .mode_set =3D mtk_dpi_bridge_mode_set,
->         .disable =3D mtk_dpi_bridge_disable,
->         .enable =3D mtk_dpi_bridge_enable,
-> +       .atomic_check =3D mtk_dpi_bridge_atomic_check,
-> +       .atomic_get_output_bus_fmts =3D mtk_dpi_bridge_atomic_get_output_=
-bus_fmts,
-> +       .atomic_get_input_bus_fmts =3D mtk_dpi_bridge_atomic_get_input_bu=
-s_fmts,
-> +       .atomic_duplicate_state =3D drm_atomic_helper_bridge_duplicate_st=
-ate,
-> +       .atomic_destroy_state =3D drm_atomic_helper_bridge_destroy_state,
-> +       .atomic_reset =3D drm_atomic_helper_bridge_reset,
->  };
->
->  void mtk_dpi_start(struct device *dev)
-> @@ -620,11 +707,6 @@ static int mtk_dpi_bind(struct device *dev, struct d=
-evice *master, void *data)
->         }
->         drm_connector_attach_encoder(dpi->connector, &dpi->encoder);
->
-> -       dpi->bit_num =3D MTK_DPI_OUT_BIT_NUM_8BITS;
-> -       dpi->channel_swap =3D MTK_DPI_OUT_CHANNEL_SWAP_RGB;
-> -       dpi->yc_map =3D MTK_DPI_OUT_YC_MAP_RGB;
-> -       dpi->color_format =3D MTK_DPI_COLOR_FORMAT_RGB;
-> -
->         return 0;
->
->  err_cleanup:
-> --
-> 2.18.0
->
+Guenter
+
+
