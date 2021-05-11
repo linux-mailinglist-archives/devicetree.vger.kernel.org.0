@@ -2,119 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D64637A4D0
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 12:44:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3CEE37A4DC
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 12:45:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230320AbhEKKpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 06:45:36 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:34831 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230166AbhEKKpe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 May 2021 06:45:34 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1620729867;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=a9YCTNzQqq3Nnca7i2b7kcNFhUAF6ByevzDuIX2ljPA=;
-        b=aU3l4xD89P64XKhPsj/N2e6fxssSdDEaY1LLXj1+KRINH5UbiZ1C+7X71UHNOLhsy3FjMd
-        uOfBrhllmjwr5fyxkdncggdTfTtuLpPOnR68gcqJ37NfWCa9ZHQndz5b+SUfdXc3V8u/rz
-        efj9/qinsWLFXSa5wwSM5YKMLvVFiPQ=
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
- [209.85.208.72]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-204-XrNcJansO9Cj3twJ7IBrbA-1; Tue, 11 May 2021 06:44:25 -0400
-X-MC-Unique: XrNcJansO9Cj3twJ7IBrbA-1
-Received: by mail-ed1-f72.google.com with SMTP id y17-20020a0564023591b02903886c26ada4so10700602edc.5
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 03:44:25 -0700 (PDT)
+        id S231375AbhEKKqk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 06:46:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54366 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231359AbhEKKqi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 06:46:38 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 201DAC061574;
+        Tue, 11 May 2021 03:45:31 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id f24so29058947ejc.6;
+        Tue, 11 May 2021 03:45:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bWKGwnwAwFRl36HwtmKxtqsTpE9XdFfKDjDcwRdKExw=;
+        b=kcEOB9++K3pe+4XTCRH3oLbORZ4nzWQ9kEQiRNJ1dW+oU2N+Sd0HaZhVwU/TBGz5S4
+         l/B+novxVhXPmgB3tRrLAU1wHlJYQyS/2zOdCO8W7KDH6eka0G2Na1Hl4BcZdVS89aXO
+         ApAhLTwP5tAGYHzByyUOBcuOvYwdbSnu3GvoQ7vmHyHzlx/u95mlmO6JjdllI8JFc2gt
+         AkPP9WH16eEvafOabigPDBNYJwpzpOxshzmUIQq3/PC3SlH5Xjj+PGNAPgwJ/g9dBnIu
+         xZfdWyiXceo3o2BxIUQBDt/98bgozRChTRJw8RQ+RoFebwqxJzf9H/2jOq+Scli7Il8c
+         fq3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=a9YCTNzQqq3Nnca7i2b7kcNFhUAF6ByevzDuIX2ljPA=;
-        b=Yf4v8Ub/+2IxooFhOOED1mwLmaqkuckhpzMMv7OQtKDfSoCBwBvR3afI34FLApCWx2
-         v96F8myWGBeZmeSj78Cru1ErbBx7mQMT88bB9LT8O8hFgQ3tJR02StoifPlFBBvcjL22
-         2gmLSzxVNVxH1i8btg2qK4vK9U6B7lVx1p8/HqDN2XFBrHGxRzq+KZuOh18/PUsW+M0a
-         72uxYGoPxkz4km5w/XFCw8czf410GqkfuZkXSvdUV6INjk8QJXE++ZLI093pzk09aFVH
-         MrcisHjoxqKquCxo7H5H2pWqR/Y55eyq7VY+yAfNjr7F6FvAeJkhoAtfS8LqxcnZaZ73
-         19/Q==
-X-Gm-Message-State: AOAM532L6j4a+wVSsVKSQ1ZoLBaMYJY5yf6egl7WJyXKm/+pfh0cgpof
-        +sOfm1xg5FNUFS7jAWPDLnMQQR+x3H+A7DvHh2XFAUFe0LdBUSOxKfoeEtSk/gexZCHJozaaxaY
-        uhzqgm2chZs5atbvAdBNEjA==
-X-Received: by 2002:a17:907:93a:: with SMTP id au26mr2209525ejc.271.1620729864487;
-        Tue, 11 May 2021 03:44:24 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwV51LVSR8D2jr0aQfX6SMaIXLecAdVC3stzHo4XMOY59C4aPXhk95zXoM5nwQqDso0vtS4Zg==
-X-Received: by 2002:a17:907:93a:: with SMTP id au26mr2209504ejc.271.1620729864279;
-        Tue, 11 May 2021 03:44:24 -0700 (PDT)
-Received: from x1.localdomain (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl. [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
-        by smtp.gmail.com with ESMTPSA id cr21sm11105474ejc.2.2021.05.11.03.44.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 May 2021 03:44:23 -0700 (PDT)
-Subject: Re: [PATCH 0/3] iio: accel: kxcjk-1013: Add support for KX023-1025
-To:     Stephan Gerhold <stephan@gerhold.net>,
-        Jonathan Cameron <jic23@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Yang <decatf@gmail.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20210511095409.9290-1-stephan@gerhold.net>
-From:   Hans de Goede <hdegoede@redhat.com>
-Message-ID: <91258724-09cc-ed39-2277-6fbcca0c53e9@redhat.com>
-Date:   Tue, 11 May 2021 12:44:23 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bWKGwnwAwFRl36HwtmKxtqsTpE9XdFfKDjDcwRdKExw=;
+        b=PxJkiN246zvxN+oNxSWXQO5viKAvFhMGyeTCcyYoytA2zSl0Ytqbc6UCbb+os9YFA8
+         cMmx/sTb9ZxdFWJG2NvH13jLRXYiEq8VGMUplE0aOFOmPszzZWy2u34dEOJCDRtHjI+J
+         vTZR70brtkJ2YxLKm4C8SrDisriPJNlR8acy6XSQfou0/IoA2bMdtG1aF36nP5kzCVd/
+         WRp5WzwKnrSw+Bw1l8fuKhZb5ATSuNmH314THYGpz7D+2/yjh097i7+RZMZdmaQI3FWz
+         JbW8KpwDHaQ454QyWLJUj2pgXji37GCjCLfbEzJ1bpDW7nYesYA7/V+pxrYBzLOckMpx
+         k7Sw==
+X-Gm-Message-State: AOAM532fbWDehW8ebW3lQy8HK1wo4tN7YfqJ10nC+WrCO1yUHm6NiCsq
+        2NW8z/uRv37hRR4dFeOcpZjM7ORFBa2WHs5FTCs=
+X-Google-Smtp-Source: ABdhPJxl6p2gQdPm8BORwq0bVwzWhMQQLIiSAKvtPX270GOkf816VrXHxAerJtpe1JXpnG/MqO4mXszAThlhMFebQmk=
+X-Received: by 2002:a17:906:7ac9:: with SMTP id k9mr31528167ejo.229.1620729929659;
+ Tue, 11 May 2021 03:45:29 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210511095409.9290-1-stephan@gerhold.net>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210406013344.124255-1-aford173@gmail.com> <20210511024604.GE3425@dragon>
+In-Reply-To: <20210511024604.GE3425@dragon>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Tue, 11 May 2021 05:45:17 -0500
+Message-ID: <CAHCN7xLFpL=9BF9M5gUA6sMhc2ZZMNz+GP0OLmLfpJAWdD7W-w@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: imx8mn: Add spba1 bus
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, May 10, 2021 at 9:46 PM Shawn Guo <shawnguo@kernel.org> wrote:
+>
+> On Mon, Apr 05, 2021 at 08:33:42PM -0500, Adam Ford wrote:
+> > The i.MX8MN has an SPBA bus which covers much of the audio, but
+> > there is a second SPBA bus which covers many of the serial interfaces
+> > like SPI and UARTs currently missing from the device tree. The reference
+> > manual calls the bus handling the audio peripherals SPBA2, and the bus
+> > handling the serial peripherals is called SPBA1.
+> >
+> > Rename the existing spba bus to spba2 and add spba1.
+> >
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> > index 4dac4da38f4c..e961acd237a8 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> > @@ -255,7 +255,7 @@ aips1: bus@30000000 {
+> >                       #size-cells = <1>;
+> >                       ranges;
+> >
+> > -                     spba: spba-bus@30000000 {
+> > +                     spba2: spba-bus@30000000 {
+> >                               compatible = "fsl,spba-bus", "simple-bus";
+>
+> Just noticed that "fsl,spba-bus" is undocumented, no?
 
-On 5/11/21 11:54 AM, Stephan Gerhold wrote:
-> KX023-1025 [1] is another accelerometer from Kionix that has lots
-> of additional functionality compared to KXCJK-1013. It combines the
-> motion interrupt functionality from KXCJK with the tap detection
-> from KXTF9, plus a lot more other functionality.
-> 
-> This patch set does not add support for any of the extra functionality,
-> but makes basic functionality work with the existing kxcjk-1013 driver.
-> 
-> At first, the register map for the KX023-1025 seems quite different
-> from the other accelerometers supported by the kxcjk-1013.
-> However, it turns out that at least most of the register bits
-> still mean the same for KX023-1025.
-> 
-> This patch set refactors the kxcjk-1013 driver a little bit
-> to get the register addresses from a chip-specific struct.
-> The register bits can be re-used for all the different chips.
-> 
-> The KX023-1025 is used in several smartphones from Huawei.
-> I tested these changes on a Huawei Ascend G7, someone else reported
-> they also work fine on the Huawei Honor 5X (codename "kiwi").
-> 
-> [1]: https://kionixfs.azureedge.net/en/datasheet/KX023-1025%20Specifications%20Rev%2012.0.pdf
-> 
-> Stephan Gerhold (3):
->   dt-bindings: iio: kionix,kxcjk1013: Document kionix,kx023-1025
->   iio: accel: kxcjk-1013: Refactor configuration registers into struct
->   iio: accel: kxcjk-1013: Add support for KX023-1025
+I attempted to push the bindings, and I was told it was applied, but
+when I asked where the bindings were applied I never got a response -
+[1].
 
-Thanks, the entire series looks good to me:
+Do you want me to resend the bindings?
 
-Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+>
+> Also may I ask if you have a real use case for this bus node?
 
-for the series.
+The reference manual shows the SPBA bus tells the DMA controller which
+peripherals are associated with it.  Nearly all the i.MX boards use
+this.  The boards I support have Bluetooth devices connected to a UART
+running high speeds, and if the DMA driver isn't loaded, I can see a
+performance change.  In fact, if the DMA firmware isn't loaded, I
+often get transfer errors.
 
-Regards,
+adam
 
-Hans
+[1] - https://lore.kernel.org/linux-devicetree/CAHCN7x+om4W5jqnuAW4-nMkZLc5nrYu7NUsbM36r0wyFSYa4-g@mail.gmail.com/T/
 
+>
+> Shawn
+>
+> >                               #address-cells = <1>;
+> >                               #size-cells = <1>;
+> > @@ -681,80 +681,88 @@ aips3: bus@30800000 {
+> >                       #size-cells = <1>;
+> >                       ranges;
+> >
+> > -                     ecspi1: spi@30820000 {
+> > -                             compatible = "fsl,imx8mn-ecspi", "fsl,imx51-ecspi";
+> > +                     spba1: spba-bus@30800000 {
+> > +                             compatible = "fsl,spba-bus", "simple-bus";
+> >                               #address-cells = <1>;
+> > -                             #size-cells = <0>;
+> > -                             reg = <0x30820000 0x10000>;
+> > -                             interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+> > -                             clocks = <&clk IMX8MN_CLK_ECSPI1_ROOT>,
+> > -                                      <&clk IMX8MN_CLK_ECSPI1_ROOT>;
+> > -                             clock-names = "ipg", "per";
+> > -                             dmas = <&sdma1 0 7 1>, <&sdma1 1 7 2>;
+> > -                             dma-names = "rx", "tx";
+> > -                             status = "disabled";
+> > -                     };
+> > +                             #size-cells = <1>;
+> > +                             reg = <0x30800000 0x100000>;
+> > +                             ranges;
+> >
+> > -                     ecspi2: spi@30830000 {
+> > -                             compatible = "fsl,imx8mn-ecspi", "fsl,imx51-ecspi";
+> > -                             #address-cells = <1>;
+> > -                             #size-cells = <0>;
+> > -                             reg = <0x30830000 0x10000>;
+> > -                             interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+> > -                             clocks = <&clk IMX8MN_CLK_ECSPI2_ROOT>,
+> > -                                      <&clk IMX8MN_CLK_ECSPI2_ROOT>;
+> > -                             clock-names = "ipg", "per";
+> > -                             dmas = <&sdma1 2 7 1>, <&sdma1 3 7 2>;
+> > -                             dma-names = "rx", "tx";
+> > -                             status = "disabled";
+> > -                     };
+> > +                             ecspi1: spi@30820000 {
+> > +                                     compatible = "fsl,imx8mn-ecspi", "fsl,imx51-ecspi";
+> > +                                     #address-cells = <1>;
+> > +                                     #size-cells = <0>;
+> > +                                     reg = <0x30820000 0x10000>;
+> > +                                     interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+> > +                                     clocks = <&clk IMX8MN_CLK_ECSPI1_ROOT>,
+> > +                                              <&clk IMX8MN_CLK_ECSPI1_ROOT>;
+> > +                                     clock-names = "ipg", "per";
+> > +                                     dmas = <&sdma1 0 7 1>, <&sdma1 1 7 2>;
+> > +                                     dma-names = "rx", "tx";
+> > +                                     status = "disabled";
+> > +                             };
+> >
+> > -                     ecspi3: spi@30840000 {
+> > -                             compatible = "fsl,imx8mn-ecspi", "fsl,imx51-ecspi";
+> > -                             #address-cells = <1>;
+> > -                             #size-cells = <0>;
+> > -                             reg = <0x30840000 0x10000>;
+> > -                             interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
+> > -                             clocks = <&clk IMX8MN_CLK_ECSPI3_ROOT>,
+> > -                                      <&clk IMX8MN_CLK_ECSPI3_ROOT>;
+> > -                             clock-names = "ipg", "per";
+> > -                             dmas = <&sdma1 4 7 1>, <&sdma1 5 7 2>;
+> > -                             dma-names = "rx", "tx";
+> > -                             status = "disabled";
+> > -                     };
+> > +                             ecspi2: spi@30830000 {
+> > +                                     compatible = "fsl,imx8mn-ecspi", "fsl,imx51-ecspi";
+> > +                                     #address-cells = <1>;
+> > +                                     #size-cells = <0>;
+> > +                                     reg = <0x30830000 0x10000>;
+> > +                                     interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+> > +                                     clocks = <&clk IMX8MN_CLK_ECSPI2_ROOT>,
+> > +                                              <&clk IMX8MN_CLK_ECSPI2_ROOT>;
+> > +                                     clock-names = "ipg", "per";
+> > +                                     dmas = <&sdma1 2 7 1>, <&sdma1 3 7 2>;
+> > +                                     dma-names = "rx", "tx";
+> > +                                     status = "disabled";
+> > +                             };
+> >
+> > -                     uart1: serial@30860000 {
+> > -                             compatible = "fsl,imx8mn-uart", "fsl,imx6q-uart";
+> > -                             reg = <0x30860000 0x10000>;
+> > -                             interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+> > -                             clocks = <&clk IMX8MN_CLK_UART1_ROOT>,
+> > -                                      <&clk IMX8MN_CLK_UART1_ROOT>;
+> > -                             clock-names = "ipg", "per";
+> > -                             dmas = <&sdma1 22 4 0>, <&sdma1 23 4 0>;
+> > -                             dma-names = "rx", "tx";
+> > -                             status = "disabled";
+> > -                     };
+> > +                             ecspi3: spi@30840000 {
+> > +                                     compatible = "fsl,imx8mn-ecspi", "fsl,imx51-ecspi";
+> > +                                     #address-cells = <1>;
+> > +                                     #size-cells = <0>;
+> > +                                     reg = <0x30840000 0x10000>;
+> > +                                     interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
+> > +                                     clocks = <&clk IMX8MN_CLK_ECSPI3_ROOT>,
+> > +                                              <&clk IMX8MN_CLK_ECSPI3_ROOT>;
+> > +                                     clock-names = "ipg", "per";
+> > +                                     dmas = <&sdma1 4 7 1>, <&sdma1 5 7 2>;
+> > +                                     dma-names = "rx", "tx";
+> > +                                     status = "disabled";
+> > +                             };
+> >
+> > -                     uart3: serial@30880000 {
+> > -                             compatible = "fsl,imx8mn-uart", "fsl,imx6q-uart";
+> > -                             reg = <0x30880000 0x10000>;
+> > -                             interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
+> > -                             clocks = <&clk IMX8MN_CLK_UART3_ROOT>,
+> > -                                      <&clk IMX8MN_CLK_UART3_ROOT>;
+> > -                             clock-names = "ipg", "per";
+> > -                             dmas = <&sdma1 26 4 0>, <&sdma1 27 4 0>;
+> > -                             dma-names = "rx", "tx";
+> > -                             status = "disabled";
+> > -                     };
+> > +                             uart1: serial@30860000 {
+> > +                                     compatible = "fsl,imx8mn-uart", "fsl,imx6q-uart";
+> > +                                     reg = <0x30860000 0x10000>;
+> > +                                     interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+> > +                                     clocks = <&clk IMX8MN_CLK_UART1_ROOT>,
+> > +                                              <&clk IMX8MN_CLK_UART1_ROOT>;
+> > +                                     clock-names = "ipg", "per";
+> > +                                     dmas = <&sdma1 22 4 0>, <&sdma1 23 4 0>;
+> > +                                     dma-names = "rx", "tx";
+> > +                                     status = "disabled";
+> > +                             };
+> >
+> > -                     uart2: serial@30890000 {
+> > -                             compatible = "fsl,imx8mn-uart", "fsl,imx6q-uart";
+> > -                             reg = <0x30890000 0x10000>;
+> > -                             interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
+> > -                             clocks = <&clk IMX8MN_CLK_UART2_ROOT>,
+> > -                                      <&clk IMX8MN_CLK_UART2_ROOT>;
+> > -                             clock-names = "ipg", "per";
+> > -                             status = "disabled";
+> > +                             uart3: serial@30880000 {
+> > +                                     compatible = "fsl,imx8mn-uart", "fsl,imx6q-uart";
+> > +                                     reg = <0x30880000 0x10000>;
+> > +                                     interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
+> > +                                     clocks = <&clk IMX8MN_CLK_UART3_ROOT>,
+> > +                                              <&clk IMX8MN_CLK_UART3_ROOT>;
+> > +                                     clock-names = "ipg", "per";
+> > +                                     dmas = <&sdma1 26 4 0>, <&sdma1 27 4 0>;
+> > +                                     dma-names = "rx", "tx";
+> > +                                     status = "disabled";
+> > +                             };
+> > +
+> > +                             uart2: serial@30890000 {
+> > +                                     compatible = "fsl,imx8mn-uart", "fsl,imx6q-uart";
+> > +                                     reg = <0x30890000 0x10000>;
+> > +                                     interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
+> > +                                     clocks = <&clk IMX8MN_CLK_UART2_ROOT>,
+> > +                                              <&clk IMX8MN_CLK_UART2_ROOT>;
+> > +                                     clock-names = "ipg", "per";
+> > +                                     status = "disabled";
+> > +                             };
+> >                       };
+> >
+> >                       crypto: crypto@30900000 {
+> > --
+> > 2.25.1
+> >
