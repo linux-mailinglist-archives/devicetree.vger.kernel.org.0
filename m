@@ -2,102 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FBA937ABC1
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 18:21:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92B7437ABDA
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 18:24:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230382AbhEKQWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 12:22:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42512 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231451AbhEKQWX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 May 2021 12:22:23 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7D93761919;
-        Tue, 11 May 2021 16:21:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620750076;
-        bh=Cn3ACvm/0DEZQWq3vsRFDc7XaLRknxn7nJqnZw2JE8Q=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Hpat+hR/a0DpakGNA4KJY/x15t4/P5bUzqXxo3ukJHN7NBk+grTUAV3zpxaBdp5MF
-         3ugmQ/jSD0dnJV31fsPpC3GsicpCM8K7mba88i3iR/8GG+sdk4+KVng97Iab4gkwtu
-         MFidujA+Tg7w77xQ/9k4Urt6DNsFGUYnCqXhgXkxkW/wmWajOqcgGGU8sMGm5ASJvm
-         4Dw22nueg/NRmgCKnDsAoi4C+eyFGL1pPnpOdSY9lX2EuElg5M8NvwLz36ozFJL5en
-         v/u6rzmqRIzxhKf06PGwKDYukjxHEdFHppYwQ4Xsqm14Q/+nj78ccq//8qtbnPLPH9
-         iqy5I1bjIe/0Q==
-Received: by mail-ej1-f48.google.com with SMTP id f24so30642131ejc.6;
-        Tue, 11 May 2021 09:21:16 -0700 (PDT)
-X-Gm-Message-State: AOAM533qdtaT2a5dOW8ZanMi1mzq3buOxGJCT6yKILyQlo/0xQtRsOdn
-        AiaaMwqk+6zEkys6SkoAyxywDOIhlx9JFxR02Q==
-X-Google-Smtp-Source: ABdhPJxnKH+9sRFG4bOGXa5OAw5Qi4cQmVDFCJeva0RME9sa0QQOwDhf1+v79OaUZ7s+OQyBtYYcJy4eSNT2dOS+TdY=
-X-Received: by 2002:a17:906:a48:: with SMTP id x8mr32395056ejf.127.1620750074915;
- Tue, 11 May 2021 09:21:14 -0700 (PDT)
+        id S230491AbhEKQZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 12:25:11 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:48972 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230435AbhEKQZL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 12:25:11 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14BGNlod130736;
+        Tue, 11 May 2021 11:23:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1620750227;
+        bh=2S0dW+Pan00olnh4RJyxyhUbCCf+6qGyEYXhbx4w51k=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=f/iYcdZWVt3ZnujhA2wskq/K5Qj7hkZAVEDxcxkb6y+q7/7IiG581oyY74K9diXvd
+         7lF3GIaPqVNHlw/+KLkAOWQuYDTeRIQnVLbUsymvSFmBpMoVhi0HFipOrW0JYfWbIz
+         T2CMjsEQgdtzkX4VJ4gLqekxe4DSbzyvW81lkaIs=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14BGNkN7032115
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 11 May 2021 11:23:46 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 11
+ May 2021 11:23:46 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 11 May 2021 11:23:46 -0500
+Received: from [10.24.69.20] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14BGNhI7097525;
+        Tue, 11 May 2021 11:23:44 -0500
+Subject: Re: [PATCH] arm64: dts: ti: k3*: Introduce reg definition for
+ interrupt routers
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        <grygorii.strashko@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20210510145508.8994-1-nm@ti.com>
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+Message-ID: <45c92c1d-1d58-4711-ac07-68406492b86b@ti.com>
+Date:   Tue, 11 May 2021 21:53:42 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210429042834.1127456-1-hsinyi@chromium.org> <20210429042834.1127456-2-hsinyi@chromium.org>
-In-Reply-To: <20210429042834.1127456-2-hsinyi@chromium.org>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Wed, 12 May 2021 00:21:04 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-qM6e_yuokOxgct_sUs_e=jknX3k+WpGQfs0RjnOPi1A@mail.gmail.com>
-Message-ID: <CAAOTY_-qM6e_yuokOxgct_sUs_e=jknX3k+WpGQfs0RjnOPi1A@mail.gmail.com>
-Subject: Re: [PATCH v6 2/3] drm/mediatek: init panel orientation property
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     DRI Development <dri-devel@lists.freedesktop.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Sean Paul <sean@poorly.run>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210510145508.8994-1-nm@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Hsin-Yi:
 
-Hsin-Yi Wang <hsinyi@chromium.org> =E6=96=BC 2021=E5=B9=B44=E6=9C=8829=E6=
-=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=8812:28=E5=AF=AB=E9=81=93=EF=BC=
-=9A
->
-> Init panel orientation property after connector is initialized. Let the
-> panel driver decides the orientation value later.
 
-Acked-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-
->
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+On 10/05/21 8:25 pm, Nishanth Menon wrote:
+> Interrupt routers are memory mapped peripherals, that are organized
+> in our dts bus hierarchy to closely represents the actual hardware
+> behavior.
+> 
+> However, without explicitly calling out the reg property, using
+> 2021.03+ dt-schema package, this exposes the following problem with
+> dtbs_check:
+> 
+> /arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml: bus@100000:
+> interrupt-controller0: {'type': 'object'} is not allowed for
+> {'compatible': ['ti,sci-intr'], .....
+> 
+> Even though we don't use interrupt router directly via memory mapped
+> registers and have to use it via the system controller, the hardware
+> block is memory mapped, so describe the base address in device tree.
+> 
+> This is a valid, comprehensive description of hardware and permitted
+> by the existing ti,sci-intr schema.
+> 
+> Signed-off-by: Nishanth Menon <nm@ti.com>
 > ---
->  drivers/gpu/drm/mediatek/mtk_dsi.c | 7 +++++++
->  1 file changed, 7 insertions(+)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediate=
-k/mtk_dsi.c
-> index ae403c67cbd9..9da1fd649131 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> @@ -964,6 +964,13 @@ static int mtk_dsi_encoder_init(struct drm_device *d=
-rm, struct mtk_dsi *dsi)
->                 ret =3D PTR_ERR(dsi->connector);
->                 goto err_cleanup_encoder;
->         }
-> +
-> +       ret =3D drm_connector_init_panel_orientation_property(dsi->connec=
-tor);
-> +       if (ret) {
-> +               DRM_ERROR("Unable to init panel orientation\n");
-> +               goto err_cleanup_encoder;
-> +       }
-> +
->         drm_connector_attach_encoder(dsi->connector, &dsi->encoder);
->
->         return 0;
-> --
-> 2.31.1.498.g6c1eba8ee3d-goog
->
+> 
+> if possible, I'd like to pick this fixup for 5.13 window..
+> 
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi        | 3 ++-
+>  arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi         | 3 ++-
+>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi        | 6 ++++--
+>  arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi      | 3 ++-
+>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi       | 6 ++++--
+>  arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi | 3 ++-
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi       | 6 ++++--
+>  arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 3 ++-
+>  8 files changed, 22 insertions(+), 11 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> index b2bcbf23eefd..a49e41021573 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> @@ -373,8 +373,9 @@ main_spi4: spi@20140000 {
+>  		clocks = <&k3_clks 145 0>;
+>  	};
+>  
+> -	main_gpio_intr: interrupt-controller0 {
+> +	main_gpio_intr: interrupt-controller@a00000 {
+>  		compatible = "ti,sci-intr";
+> +		reg = <0x00 0xa00000 0x00 0x800>;
+
+IIRC, we are going with 0x00a00000 (0x%8x) for all regs. With that fixed for all
+regs:
+
+Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
+
+Thanks and regards,
+Lokesh
