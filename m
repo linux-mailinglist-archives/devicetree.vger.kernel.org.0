@@ -2,98 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 353E937A9F3
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 16:54:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A456F37AA48
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 17:09:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231768AbhEKOzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 10:55:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54570 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231684AbhEKOzX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 10:55:23 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0A08C06174A
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 07:54:15 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1lgTlx-0001dn-48; Tue, 11 May 2021 16:54:09 +0200
-Message-ID: <2ea9546c7dc1644376576db2cb01005fb041f349.camel@pengutronix.de>
-Subject: Re: [PATCH 3/7] PCI: imx6: Rework PHY search and mapping
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
-        Sascha Hauer <kernel@pengutronix.de>,
-        patchwork-lst@pengutronix.de
-Date:   Tue, 11 May 2021 16:54:08 +0200
-In-Reply-To: <CAL_Jsq+dkJ+bbuQDQieHdocjLoNKN2vib8scJsdGnCnffSGAcA@mail.gmail.com>
-References: <20210510141509.929120-1-l.stach@pengutronix.de>
-         <20210510141509.929120-3-l.stach@pengutronix.de>
-         <20210510170510.GA276768@robh.at.kernel.org>
-         <854ec10d9a32df97d1f53a784dffca4e5036b059.camel@pengutronix.de>
-         <CAL_Jsq+dkJ+bbuQDQieHdocjLoNKN2vib8scJsdGnCnffSGAcA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.1 (3.40.1-1.fc34) 
+        id S231854AbhEKPKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 11:10:52 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:58638 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231863AbhEKPKw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 11:10:52 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14BF9c8l100508;
+        Tue, 11 May 2021 10:09:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1620745778;
+        bh=Dd3BAY4LHeMGt4I7Gn+peV7+TPMSkkQjBljubv2gyC0=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=R5VmpG5HumEEfO1DV0oTYVmhrwgz4rCL95Ft5hs4nW3yJU4Vbap9aWo0RjgQVxUD4
+         dk6qsCTYTFRAVqiTc2goyV6KjtZKQmuWXQiir7TCdOBYH2dEo2G/9glZQrgMcUVgfv
+         b3oJdqQuuOFAm3rmRsCS8z2uRrwzstxkbJwQmu7g=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14BF9cJk033955
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 11 May 2021 10:09:38 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 11
+ May 2021 10:09:37 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 11 May 2021 10:09:37 -0500
+Received: from [10.250.234.148] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14BF9WRc090534;
+        Tue, 11 May 2021 10:09:35 -0500
+Subject: Re: [PATCH] arm64: dts: ti: k3-am65|j721e|am64: Map the dma /
+ navigator subsystem via explicit ranges
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        <grygorii.strashko@ti.com>
+CC:     <lokeshvutla@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20210510145429.8752-1-nm@ti.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <67cc87c4-2ad8-04ab-e583-0b544bcadbce@ti.com>
+Date:   Tue, 11 May 2021 20:39:31 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20210510145429.8752-1-nm@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, dem 11.05.2021 um 09:21 -0500 schrieb Rob Herring:
-> On Tue, May 11, 2021 at 3:11 AM Lucas Stach <l.stach@pengutronix.de> wrote:
-> > 
-> > Am Montag, dem 10.05.2021 um 12:05 -0500 schrieb Rob Herring:
-> > > On Mon, May 10, 2021 at 04:15:05PM +0200, Lucas Stach wrote:
-> > > > We don't need to have a phandle of the PHY, as we know the compatible
-> > > > of the node we are looking for. This will make it easier to put add
-> > > > more PHY handling for new generations later on, where the
-> > > > "fsl,imx7d-pcie-phy" phandle would be a misnomer.
-> > > > 
-> > > > Also we can use a helper function to get the resource for us,
-> > > > simplifying out driver code a bit.
-> > > 
-> > > Better yes, but really all the phy handling should be split out to
-> > > its own driver even in the older h/w with shared phy registers.
-> > > 
-> > That would be a quite massive DT binding changing break, possibly even
-> > a separate driver. Maybe it's time to do this for i.MX8MM, as the
-> > current driver just kept piling on special cases for "almost the same"
-> > hardware that by now looks quite different to the original i.MX6 PCIe
-> > integration this driver was supposed to handle.
+
+
+On 5/10/21 8:24 PM, Nishanth Menon wrote:
+> Instead of using empty ranges property, lets map explicitly the address
+> range that is mapped onto the dma / navigator subsystems (navss/dmss).
 > 
-> No, you don't need to change DT, and a DT change adding a phy node
-> wouldn't even be correct modeling of the h/w IMO. For the i.MX6 phy, a
-> separate PHY driver would have to create its own platform device in
-> its initcall (if the iMX6 PCI compatible is found). Then the PCI
-> driver would need to use a non-DT based phy_get() lookup. For the
-> cases with a phandle to the phy, I'd assume a phy driver could be
-> instantiated for that node. You'll again need a non-DT phy_get() if
-> not using the phy binding.
+> This is also exposed via the dtbs_check with dt-schema newer than
+> 2021.03 version by throwing out following:
+> arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml: bus@100000: main-navss:
+> {'type': 'object'} is not allowed for
+> {'compatible': ['simple-mfd'], '#address-cells': [[2]], .....
+> 
+> This has already been correctly done for J7200, however was missed for
+> other k3 SoCs. Fix that oversight.
+> 
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> ---
+> 
 
-The original i.MX6 PCIe with the internal PHY is the easy case, as you
-laid out above.
+Acked-by: Vignesh Raghavendra <vigneshr@ti.com>
 
-What I'm more concerned about is the i.MX7 and i.MX8MQ, where we have a
-MMIO mapped PHY and quite a bit of the clocks/reset/GPR handling would
-need to move from the controller to the PHY driver. Without a binding
-change I fear that we end up in a worst of both worlds situation, where
-we have lots of code in the driver to separate resources that are
-currently all attached to the PCIe controller node in the DT, without a
-real gain in making the driver any simpler or easier to maintain.
-
-But right now that's all speculation. Maybe I need to type something up
-and see where it falls on the shiny/horrible scale.
-
-Regards,
-Lucas
-
+> if possible, I'd like to pick this fixup for 5.13 window..
+> 
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi        | 4 ++--
+>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi        | 4 ++--
+>  arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi         | 4 ++--
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi       | 4 ++--
+>  arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 4 ++--
+>  5 files changed, 10 insertions(+), 10 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> index a49e41021573..bb19db04a746 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> @@ -42,12 +42,12 @@ gic_its: msi-controller@1820000 {
+>  		};
+>  	};
+>  
+> -	dmss: dmss {
+> +	dmss: bus@48000000 {
+>  		compatible = "simple-mfd";
+>  		#address-cells = <2>;
+>  		#size-cells = <2>;
+>  		dma-ranges;
+> -		ranges;
+> +		ranges = <0x00 0x48000000 0x00 0x48000000 0x00 0x06400000>;
+>  
+>  		ti,sci-dev-id = <25>;
+>  
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> index 037f9776c4c8..fea8260d33a8 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> @@ -445,11 +445,11 @@ intr_main_gpio: interrupt-controller@a00000 {
+>  		ti,interrupt-ranges = <0 392 32>;
+>  	};
+>  
+> -	main-navss {
+> +	main_navss: bus@30800000 {
+>  		compatible = "simple-mfd";
+>  		#address-cells = <2>;
+>  		#size-cells = <2>;
+> -		ranges;
+> +		ranges = <0x0 0x30800000 0x0 0x30800000 0x0 0xbc00000>;
+>  		dma-coherent;
+>  		dma-ranges;
+>  
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+> index 0388c02c2203..f5b8ef2f5f77 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+> @@ -116,11 +116,11 @@ adc {
+>  		};
+>  	};
+>  
+> -	mcu-navss {
+> +	mcu_navss: bus@28380000 {
+>  		compatible = "simple-mfd";
+>  		#address-cells = <2>;
+>  		#size-cells = <2>;
+> -		ranges;
+> +		ranges = <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>;
+>  		dma-coherent;
+>  		dma-ranges;
+>  
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> index 512371e36a30..b2d25af872e2 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> @@ -88,11 +88,11 @@ main_gpio_intr: interrupt-controller@a00000 {
+>  		ti,interrupt-ranges = <8 392 56>;
+>  	};
+>  
+> -	main-navss {
+> +	main_navss: bus@30000000 {
+>  		compatible = "simple-mfd";
+>  		#address-cells = <2>;
+>  		#size-cells = <2>;
+> -		ranges;
+> +		ranges = <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>;
+>  		dma-coherent;
+>  		dma-ranges;
+>  
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> index ad12a5c9f209..172629fa3c7c 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> @@ -250,11 +250,11 @@ adc {
+>  		};
+>  	};
+>  
+> -	mcu-navss {
+> +	mcu_navss: bus@28380000 {
+>  		compatible = "simple-mfd";
+>  		#address-cells = <2>;
+>  		#size-cells = <2>;
+> -		ranges;
+> +		ranges = <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>;
+>  		dma-coherent;
+>  		dma-ranges;
+>  
+> 
