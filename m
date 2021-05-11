@@ -2,274 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E68EB37AF68
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 21:36:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53C3337AF8B
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 21:48:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231851AbhEKThi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 15:37:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34246 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232116AbhEKThf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 15:37:35 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50EC0C061761;
-        Tue, 11 May 2021 12:36:27 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id u21so31414300ejo.13;
-        Tue, 11 May 2021 12:36:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=05zZZjc7y6WQTTPW2NVb4ONKI0/ly7nNr9xWWzLqImw=;
-        b=UR+cNc7m19yoK94EtOFOiwy4y38mH3SoS/2MjVXwyuTYFaO0esWb94Tf/10mN8OQdl
-         TeF7QmiLyRnz9skbSL2/78CpG9Rs/FjwtLJjDaNYJH0Z9ksQHFX+6Unan+J9UBadTQSw
-         Avy2XOK7M7fedMbrdarqKG7eUeXBFKNZ9XnmCOqsdZiLJZD8fBMa4+SIime1/67QK7Ik
-         fnYuStK7JWc201t5qEls0dqP+VFKjwkUzzfb4zlqeZDxohHyRFHmCmnKITckKtc7ihh8
-         IFBINs3PXjWZ+HELF4KkJFLk8nlsWF0jjh/szJ85ZK9KmytxvtGrS6s7+BLUqVxjZBy5
-         SnYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=05zZZjc7y6WQTTPW2NVb4ONKI0/ly7nNr9xWWzLqImw=;
-        b=rdIfTYm/4cTh9Ie/niBJX8WzxSd5kW8ABVU6bKKy2vf6JNswsj70Fo1wZEE5/xS0St
-         rcJLi4oB+IXkfRoePVJXNRH386neSDmnhjyDXl7k/Bm9dbEjyyTGRq/vcqIzaW6kEniu
-         StT8X+yYkvliFvwMESf1ncQIJF0zdCVYDl9fPLkAkiOIo6OdxpVQ3EapBEvempuZzCgf
-         Lw8+W3PKExgossGTWc/kSn/+gyPxwW/HEd2WpghJbxu+CnpcAsoDz27JJr2+ctCF0VuN
-         dNPYvOaP9k2LmerM/j92eJU9JfkC7pd982F0LJCjImLRMEMCSawveVljbqKkwWEFGJll
-         5llA==
-X-Gm-Message-State: AOAM533oiF9IllucbeQm5wU0nWLhodUaRvietWRCYxkjcDxK6k3tKnC9
-        9pYZoLXk1ocJEZsxFiG+jwoaGgzrEIu3p74g2Kc=
-X-Google-Smtp-Source: ABdhPJxHY6GRA0dJoJzZoKeRf9MaAI3VfRY0rnMJR/x2PcXGFZupMdAB/pmjWboB8R4mFZCz+WEphATULaGvHctI6nk=
-X-Received: by 2002:a17:907:75f6:: with SMTP id jz22mr32971508ejc.504.1620761786072;
- Tue, 11 May 2021 12:36:26 -0700 (PDT)
+        id S231610AbhEKTth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 15:49:37 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:34426 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231474AbhEKTth (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 15:49:37 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14BJmNqg073029;
+        Tue, 11 May 2021 14:48:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1620762503;
+        bh=hzvT5WuMiuQH1Vq1OyjpWEdZemybAFC+dULLzT8TK+0=;
+        h=From:To:CC:Subject:Date;
+        b=DOCgDjfP0U+445UQM1q1uy96lDviDZFl4w690lnILs5h16Vq5RJANgilUTF9fSRyI
+         JEg1R4j6xOvDU8+BIA6uevb4JrsNSLPVnis9cWy0Gsb/2pIajle+xq7unnTqlVZtz8
+         l4D2aqM51uLRJKBExidLzOmBnjitUGtw1/Kypb+U=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14BJmMKE031884
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 11 May 2021 14:48:22 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 11
+ May 2021 14:48:22 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 11 May 2021 14:48:22 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14BJmMTr067209;
+        Tue, 11 May 2021 14:48:22 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     <kristo@kernel.org>, <lokeshvutla@ti.com>
+CC:     <grygorii.strashko@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, Nishanth Menon <nm@ti.com>
+Subject: [PATCH V2] arm64: dts: ti: k3*: Introduce reg definition for interrupt routers
+Date:   Tue, 11 May 2021 14:48:21 -0500
+Message-ID: <20210511194821.13919-1-nm@ti.com>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-References: <20210331232356.2204476-1-adrien.grassein@gmail.com>
- <20210331232356.2204476-4-adrien.grassein@gmail.com> <20210511022725.GC3425@dragon>
-In-Reply-To: <20210511022725.GC3425@dragon>
-From:   Adrien Grassein <adrien.grassein@gmail.com>
-Date:   Tue, 11 May 2021 21:36:14 +0200
-Message-ID: <CABkfQAHLttLVgOv29T0DRY1F=2z3k_K1f=40ZURLX4gE_tLXoQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] arm64: dts: imx8mq-nitrogen: add lt8912 MIPI-DSI
- to HDMI
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>, catalin.marinas@arm.com,
-        will@kernel.org, Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shawn,
+Interrupt routers are memory mapped peripherals, that are organized
+in our dts bus hierarchy to closely represents the actual hardware
+behavior.
 
-Thanks for your review.
+However, without explicitly calling out the reg property, using
+2021.03+ dt-schema package, this exposes the following problem with
+dtbs_check:
 
-Le mar. 11 mai 2021 =C3=A0 04:27, Shawn Guo <shawnguo@kernel.org> a =C3=A9c=
-rit :
->
-> On Thu, Apr 01, 2021 at 01:23:55AM +0200, Adrien Grassein wrote:
-> > Add support of the lt8912b in the DTB.
-> > This adds the support of the DB_DSIHD daugther board from
-> > Boundary Devices.
-> >
-> > Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
-> > ---
-> >  .../boot/dts/freescale/imx8mq-nitrogen.dts    | 120 ++++++++++++++++++
-> >  1 file changed, 120 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts b/arch/a=
-rm64/boot/dts/freescale/imx8mq-nitrogen.dts
-> > index 04992cbba56e..4ffd23ea705f 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts
-> > @@ -34,6 +34,19 @@ power {
-> >               };
-> >       };
-> >
-> > +     hdmi-connector {
-> > +             compatible =3D "hdmi-connector";
-> > +             ddc-i2c-bus =3D <&ddc_i2c_bus>;
-> > +             label =3D "hdmi";
-> > +             type =3D "a";
-> > +
-> > +             port {
-> > +                     hdmi_connector_in: endpoint {
-> > +                             remote-endpoint =3D <&lt8912_out>;
-> > +                     };
-> > +             };
-> > +     };
-> > +
-> >       reg_usb_otg_vbus: regulator-usb-otg-vbus {
-> >               compatible =3D "regulator-fixed";
-> >               pinctrl-names =3D "default";
-> > @@ -81,6 +94,9 @@ reg_vref_5v: regulator-vref-5v {
-> >       };
-> >  };
-> >
-> > +&dphy {
-> > +     status =3D "okay";
-> > +};
-> >
-> >  &fec1 {
-> >       pinctrl-names =3D "default";
-> > @@ -193,6 +209,97 @@ rtc@68 {
-> >       };
-> >  };
-> >
-> > +&i2c4 {
-> > +     clock-frequency =3D <100000>;
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&pinctrl_i2c4>;
-> > +     status =3D "okay";
-> > +
-> > +     pca9546: i2cmux9546@70 {
->
-> Node name should be generic, so 9546 should be dropped from there?
->
-> > +             compatible =3D "nxp,pca9546";
-> > +             reg =3D <0x70>;
-> > +             #address-cells =3D <1>;
-> > +             #size-cells =3D <0>;
-> > +
-> > +             i2c4@0 {
->
-> Is number 4 really needed in node name?
->
-I add 4 to keep it coherent with the DTS file (i2c1@0 for example).
+/arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml: bus@100000:
+interrupt-controller0: {'type': 'object'} is not allowed for
+{'compatible': ['ti,sci-intr'], .....
 
-> > +                     reg =3D <0>;
-> > +                     #address-cells =3D <1>;
-> > +                     #size-cells =3D <0>;
-> > +                     clock-frequency =3D <100000>;
-> > +
-> > +                     hdmi-bridge@48 {
-> > +                             compatible =3D "lontium,lt8912b";
-> > +                             reg =3D <0x48> ;
-> > +                             reset-gpios =3D <&max7323 0 GPIO_ACTIVE_L=
-OW>;
-> > +
-> > +                             ports {
-> > +                                     #address-cells =3D <1>;
-> > +                                     #size-cells =3D <0>;
-> > +
-> > +                                     port@0 {
-> > +                                             reg =3D <0>;
-> > +
-> > +                                             hdmi_out_in: endpoint {
-> > +                                                     data-lanes =3D <1=
- 2 3 4>;
-> > +                                                     remote-endpoint =
-=3D <&mipi_dsi_out>;
-> > +                                             };
-> > +                                     };
-> > +
-> > +                                     port@1 {
-> > +                                             reg =3D <1>;
-> > +
-> > +                                             lt8912_out: endpoint {
-> > +                                                     remote-endpoint =
-=3D <&hdmi_connector_in>;
-> > +                                             };
-> > +                                     };
-> > +                             };
-> > +                     };
-> > +             };
-> > +
-> > +             ddc_i2c_bus: i2c4@1 {
-> > +                     reg =3D <1>;
-> > +                     #address-cells =3D <1>;
-> > +                     #size-cells =3D <0>;
-> > +                     clock-frequency =3D <100000>;
-> > +             };
-> > +
-> > +             i2c4@3 {
-> > +                     reg =3D <3>;
-> > +                     #address-cells =3D <1>;
-> > +                     #size-cells =3D <0>;
-> > +                     clock-frequency =3D <100000>;
-> > +
-> > +                     max7323: max7323@68 {
->
-> Can we have a generic node name for this device?
->
-> > +                             compatible =3D "maxim,max7323";
-> > +                             pinctrl-names =3D "default";
-> > +                             pinctrl-0 =3D <&pinctrl_max7323>;
-> > +                             gpio-controller;
-> > +                             reg =3D <0x68>;
-> > +                             #gpio-cells =3D <2>;
-> > +                     };
-> > +             };
-> > +     };
-> > +};
-> > +
-> > +&lcdif {
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&mipi_dsi {
-> > +     status =3D "okay";
->
-> Move it to end of property list.
->
-> > +     #address-cells =3D <1>;
-> > +     #size-cells =3D <0>;
-> > +
-> > +     ports {
-> > +             port@1 {
-> > +                     reg =3D <1>;
->
-> Newline between property and child node.
->
-> Shawn
->
-> > +                     mipi_dsi_out: endpoint {
-> > +                             remote-endpoint =3D <&hdmi_out_in>;
-> > +                     };
-> > +             };
-> > +     };
-> > +};
-> > +
-> >  &uart1 { /* console */
-> >       pinctrl-names =3D "default";
-> >       pinctrl-0 =3D <&pinctrl_uart1>;
-> > @@ -368,6 +475,19 @@ MX8MQ_IOMUXC_GPIO1_IO06_GPIO1_IO6                0=
-x49
-> >               >;
-> >       };
-> >
-> > +     pinctrl_i2c4: i2c4grp {
-> > +             fsl,pins =3D <
-> > +                     MX8MQ_IOMUXC_I2C4_SCL_I2C4_SCL                  0=
-x4000007f
-> > +                     MX8MQ_IOMUXC_I2C4_SDA_I2C4_SDA                  0=
-x4000007f
-> > +             >;
-> > +     };
-> > +
-> > +     pinctrl_max7323: max7323grp {
-> > +             fsl,pins =3D <
-> > +                     MX8MQ_IOMUXC_NAND_RE_B_GPIO3_IO15 0x19
-> > +             >;
-> > +     };
-> > +
-> >       pinctrl_reg_arm_dram: reg-arm-dramgrp {
-> >               fsl,pins =3D <
-> >                       MX8MQ_IOMUXC_SAI5_RXD3_GPIO3_IO24       0x16
-> > --
-> > 2.25.1
-> >
+Even though we don't use interrupt router directly via memory mapped
+registers and have to use it via the system controller, the hardware
+block is memory mapped, so describe the base address in device tree.
 
-The other comments are OK.
-I will send you an updated patch set.
+This is a valid, comprehensive description of hardware and permitted
+by the existing ti,sci-intr schema.
 
-Thanks again,
+Reviewed-by: Tero Kristo <kristo@kernel.org>
+Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+
+Changes since v1:
+* updates to register to be consistent (use 0x%08x formatting).
+
+V1: https://lore.kernel.org/linux-arm-kernel/20210510145508.8994-1-nm@ti.com/
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi        | 3 ++-
+ arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi         | 3 ++-
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi        | 6 ++++--
+ arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi      | 3 ++-
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi       | 6 ++++--
+ arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi | 3 ++-
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi       | 6 ++++--
+ arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 3 ++-
+ 8 files changed, 22 insertions(+), 11 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+index b2bcbf23eefd..5075a2143641 100644
+--- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+@@ -373,8 +373,9 @@ main_spi4: spi@20140000 {
+ 		clocks = <&k3_clks 145 0>;
+ 	};
+ 
+-	main_gpio_intr: interrupt-controller0 {
++	main_gpio_intr: interrupt-controller@a00000 {
+ 		compatible = "ti,sci-intr";
++		reg = <0x00 0x00a00000 0x00 0x800>;
+ 		ti,intr-trigger-type = <1>;
+ 		interrupt-controller;
+ 		interrupt-parent = <&gic500>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi
+index 99e94dee1bd4..deb19ae5e168 100644
+--- a/arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi
+@@ -74,8 +74,9 @@ mcu_spi1: spi@4b10000 {
+ 		clocks = <&k3_clks 148 0>;
+ 	};
+ 
+-	mcu_gpio_intr: interrupt-controller1 {
++	mcu_gpio_intr: interrupt-controller@4210000 {
+ 		compatible = "ti,sci-intr";
++		reg = <0x00 0x04210000 0x00 0x200>;
+ 		ti,intr-trigger-type = <1>;
+ 		interrupt-controller;
+ 		interrupt-parent = <&gic500>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+index cb340d1b401f..cbdb6331de11 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+@@ -433,8 +433,9 @@ usb1_phy: phy@4110000 {
+ 		#phy-cells = <0>;
+ 	};
+ 
+-	intr_main_gpio: interrupt-controller0 {
++	intr_main_gpio: interrupt-controller@a00000 {
+ 		compatible = "ti,sci-intr";
++		reg = <0x0 0x00a00000 0x0 0x400>;
+ 		ti,intr-trigger-type = <1>;
+ 		interrupt-controller;
+ 		interrupt-parent = <&gic500>;
+@@ -454,8 +455,9 @@ main-navss {
+ 
+ 		ti,sci-dev-id = <118>;
+ 
+-		intr_main_navss: interrupt-controller1 {
++		intr_main_navss: interrupt-controller@310e0000 {
+ 			compatible = "ti,sci-intr";
++			reg = <0x0 0x310e0000 0x0 0x2000>;
+ 			ti,intr-trigger-type = <4>;
+ 			interrupt-controller;
+ 			interrupt-parent = <&gic500>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
+index ed42f13e7663..62a18b110c52 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
+@@ -69,8 +69,9 @@ wkup_i2c0: i2c@42120000 {
+ 		power-domains = <&k3_pds 115 TI_SCI_PD_EXCLUSIVE>;
+ 	};
+ 
+-	intr_wkup_gpio: interrupt-controller2 {
++	intr_wkup_gpio: interrupt-controller@42200000 {
+ 		compatible = "ti,sci-intr";
++		reg = <0x42200000 0x200>;
+ 		ti,intr-trigger-type = <1>;
+ 		interrupt-controller;
+ 		interrupt-parent = <&gic500>;
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+index f86c493a44f1..7a6c2054c5ed 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+@@ -68,8 +68,9 @@ gic_its: msi-controller@1820000 {
+ 		};
+ 	};
+ 
+-	main_gpio_intr: interrupt-controller0 {
++	main_gpio_intr: interrupt-controller@a00000 {
+ 		compatible = "ti,sci-intr";
++		reg = <0x00 0x00a00000 0x00 0x800>;
+ 		ti,intr-trigger-type = <1>;
+ 		interrupt-controller;
+ 		interrupt-parent = <&gic500>;
+@@ -86,8 +87,9 @@ main_navss: bus@30000000 {
+ 		ranges = <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>;
+ 		ti,sci-dev-id = <199>;
+ 
+-		main_navss_intr: interrupt-controller1 {
++		main_navss_intr: interrupt-controller@310e0000 {
+ 			compatible = "ti,sci-intr";
++			reg = <0x00 0x310e0000 0x00 0x4000>;
+ 			ti,intr-trigger-type = <4>;
+ 			interrupt-controller;
+ 			interrupt-parent = <&gic500>;
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+index 5e74e43822c3..825b9f1931b7 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+@@ -96,8 +96,9 @@ mcu_uart0: serial@40a00000 {
+ 		clock-names = "fclk";
+ 	};
+ 
+-	wkup_gpio_intr: interrupt-controller2 {
++	wkup_gpio_intr: interrupt-controller@42200000 {
+ 		compatible = "ti,sci-intr";
++		reg = <0x00 0x42200000 0x00 0x400>;
+ 		ti,intr-trigger-type = <1>;
+ 		interrupt-controller;
+ 		interrupt-parent = <&gic500>;
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+index c2aa45a3ac79..d5e41f665794 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+@@ -76,8 +76,9 @@ gic_its: msi-controller@1820000 {
+ 		};
+ 	};
+ 
+-	main_gpio_intr: interrupt-controller0 {
++	main_gpio_intr: interrupt-controller@a00000 {
+ 		compatible = "ti,sci-intr";
++		reg = <0x00 0x00a00000 0x00 0x800>;
+ 		ti,intr-trigger-type = <1>;
+ 		interrupt-controller;
+ 		interrupt-parent = <&gic500>;
+@@ -97,8 +98,9 @@ main-navss {
+ 
+ 		ti,sci-dev-id = <199>;
+ 
+-		main_navss_intr: interrupt-controller1 {
++		main_navss_intr: interrupt-controller@310e0000 {
+ 			compatible = "ti,sci-intr";
++			reg = <0x0 0x310e0000 0x0 0x4000>;
+ 			ti,intr-trigger-type = <4>;
+ 			interrupt-controller;
+ 			interrupt-parent = <&gic500>;
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+index d56e3475aee7..ad12a5c9f209 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+@@ -96,8 +96,9 @@ mcu_uart0: serial@40a00000 {
+ 		clock-names = "fclk";
+ 	};
+ 
+-	wkup_gpio_intr: interrupt-controller2 {
++	wkup_gpio_intr: interrupt-controller@42200000 {
+ 		compatible = "ti,sci-intr";
++		reg = <0x00 0x42200000 0x00 0x400>;
+ 		ti,intr-trigger-type = <1>;
+ 		interrupt-controller;
+ 		interrupt-parent = <&gic500>;
+-- 
+2.31.0
+
