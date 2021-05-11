@@ -2,63 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CE7F37A946
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 16:28:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 522DE37A962
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 16:33:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231730AbhEKOaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 10:30:01 -0400
-Received: from rere.qmqm.pl ([91.227.64.183]:22994 "EHLO rere.qmqm.pl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231695AbhEKOaB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 May 2021 10:30:01 -0400
-Received: from remote.user (localhost [127.0.0.1])
-        by rere.qmqm.pl (Postfix) with ESMTPSA id 4FfgJz6vpgz9C;
-        Tue, 11 May 2021 16:28:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=rere.qmqm.pl; s=1;
-        t=1620743332; bh=g0uzjO2epbVe4ZYIqc5bZyHsR0KkcBusnVcUP8KYD5A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=d6ZYWYn8OWXAuhGqNe0FDYL89QP+I/MSbA99WWJx9187OcT/+V1WGN5rWBynmwM8V
-         iTEHQfXvGqZeRfHQRXJnmZaODFAaWrvOiF0dLe0mbkkijlf6oUImvrwwPeXmyUQwA2
-         0F/vS8V8CS/1mCLfTMPP/XVyvyfeGg0P/4aZ6og6a39O7y8pWjxlM1RV0wXXtzMBPV
-         PqLk4arqhO5e8j9uEAo2WTxPAKYI/uyr+th3x9fMbGCjtvSHW0OLB29L+xU55+v6dG
-         55mYK2Mrp1aK7FR2YC7Y7u/4rmySKOX2daM55vJWRlYK2HD6waRwhlx8mlV30h1Dem
-         Vu818fjKExtZA==
-X-Virus-Status: Clean
-X-Virus-Scanned: clamav-milter 0.103.2 at mail
-Date:   Tue, 11 May 2021 16:28:47 +0200
-From:   =?iso-8859-2?Q?Micha=B3_Miros=B3aw?= <mirq-linux@rere.qmqm.pl>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Yang <decatf@gmail.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Hans de Goede <hdegoede@redhat.com>
-Subject: Re: [PATCH 0/3] iio: accel: kxcjk-1013: Add support for KX023-1025
-Message-ID: <20210511142847.GA4413@qmqm.qmqm.pl>
-References: <20210511095409.9290-1-stephan@gerhold.net>
+        id S231760AbhEKOe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 10:34:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49886 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231782AbhEKOe6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 10:34:58 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 900E5C06174A
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 07:33:51 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id c22so1985086ejd.12
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 07:33:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fEsnV5/PLwt/6bHEOK62lgG5k074PWDC2L+nXDsQMj4=;
+        b=2B5WfW0PBmzhxfYoxBblPEpyvpGC5zf2MMzpmLA2qNQE79LtMSQPC1cGpSvu4FnARc
+         zEWKb/Z6WMmqSQSlqZeqqXmXTOAEl6Nj3t5wykGn7DfvjcoHrzomuExs2LuwF9RO3SEW
+         12h+yArLVacunhkZ+9CbKHB7B61H8Pc6b9bgOWV8PMBaDDXaLYcXFwTFQ13zD4vfBmGv
+         /gxyGV00OhwUUtcdevvruVT9K86Vz0k76yjZqeXTQFdhTy1Oni68Ir2uZKw00d0ptYS8
+         /gUonY4aJ9ENGB/qmhGMvxcnqG02CfptXBSm7MoGeSfSzVV0VhGxwdSeGWiL6nPRvpXO
+         lqig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fEsnV5/PLwt/6bHEOK62lgG5k074PWDC2L+nXDsQMj4=;
+        b=BOb808ic5rj8XEUqB1wKBCqJCo0wRIwyN/AoWUL/CTTHF/TgOKNFC8irqPkpvB0yh5
+         o6jub89us+MEGHPL9nJcbuUZ99dpp8ujr1oyhSuSLwteBNtwG0ce2SwtCbJzvmghFz63
+         jsOf7uhHLTq3dUUxjEU6V4dE+0u6Bj3rZX+OuIbEPdFJttbc1ymS08IHgOw2/H5Oi6Dh
+         nLQk6nDotqsuxUbS47+P56c5EFk6sn87Z+sUWlOZOcS7DO7TWRM3XegkNP0GWJLxXUgD
+         rXiw5aJghgQf7q+iR1ddr8Xde0YB+I1sshGQKUw8ZPeGCkF4pt6S9A1tOy5eOa6XLP51
+         ftAA==
+X-Gm-Message-State: AOAM530AA9X9bkG6Mv+yMX2ZAkJQ0s77dZNYeg+jVcDJqUm3mxL0tv3n
+        uOpuQ/MD0tMX3HapAeHDKrs95g==
+X-Google-Smtp-Source: ABdhPJz63OHh7AYFiqCZii8KRrxI3FR+o7VeaDmM9Y5way694aajhinueyWzdmn519gWiHGKmXma7g==
+X-Received: by 2002:a17:906:8588:: with SMTP id v8mr32000972ejx.550.1620743630340;
+        Tue, 11 May 2021 07:33:50 -0700 (PDT)
+Received: from bismarck.berto.se (p54ac5521.dip0.t-ipconnect.de. [84.172.85.33])
+        by smtp.googlemail.com with ESMTPSA id pw11sm11753284ejb.88.2021.05.11.07.33.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 May 2021 07:33:49 -0700 (PDT)
+From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH v2] media: dt-bindings: media: renesas,vin: Add r8a779a0 support
+Date:   Tue, 11 May 2021 16:33:32 +0200
+Message-Id: <20210511143332.3469877-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-2
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210511095409.9290-1-stephan@gerhold.net>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 11, 2021 at 11:54:06AM +0200, Stephan Gerhold wrote:
-> KX023-1025 [1] is another accelerometer from Kionix that has lots
-> of additional functionality compared to KXCJK-1013. It combines the
-> motion interrupt functionality from KXCJK with the tap detection
-> from KXTF9, plus a lot more other functionality.
+Document support for the VIN module in the Renesas V3U (r8a779a0) SoC.
+The V3U is different from other SoCs as it have 32 instead of 8 (most of
+Gen3) or 16 (V3H) VIN instances. The VIN instances are also connected to
+a new IP the R-Car ISP Channel Selector.
 
-When I researched KXTF9 support it occurred to me that the -10xx part is
-duplicating the information in 'KXyyy' - it seems to be a project number
-or something. I would suggest to use just 'kx023' prefix for the code
-and DT but leave the full identification in the comments/description.
+Signed-off-by: Niklas SÃ¶derlund <niklas.soderlund+renesas@ragnatech.se>
+---
+* Changes since v1
+- Update commit message documentation.
+---
+ .../bindings/media/renesas,vin.yaml           | 26 ++++++++++++++++++-
+ 1 file changed, 25 insertions(+), 1 deletion(-)
 
-Best Regards
-Micha³ Miros³aw
+diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+index dd1a5ce5896cef13..5ba06b0f030b4030 100644
+--- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
++++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+@@ -51,6 +51,7 @@ properties:
+               - renesas,vin-r8a77980 # R-Car V3H
+               - renesas,vin-r8a77990 # R-Car E3
+               - renesas,vin-r8a77995 # R-Car D3
++              - renesas,vin-r8a779a0 # R-Car V3U
+ 
+   reg:
+     maxItems: 1
+@@ -111,7 +112,7 @@ properties:
+     description: VIN channel number
+     $ref: /schemas/types.yaml#/definitions/uint32
+     minimum: 0
+-    maximum: 15
++    maximum: 31
+ 
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+@@ -187,6 +188,29 @@ properties:
+           - required:
+               - endpoint@3
+ 
++      port@2:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Input port node, multiple endpoints describing all the R-Car ISP
++          modules connected the VIN.
++
++        properties:
++          endpoint@0:
++            $ref: /schemas/graph.yaml#/properties/endpoint
++            description: Endpoint connected to ISP0.
++
++          endpoint@1:
++            $ref: /schemas/graph.yaml#/properties/endpoint
++            description: Endpoint connected to ISP1.
++
++          endpoint@2:
++            $ref: /schemas/graph.yaml#/properties/endpoint
++            description: Endpoint connected to ISP2.
++
++          endpoint@3:
++            $ref: /schemas/graph.yaml#/properties/endpoint
++            description: Endpoint connected to ISP3.
++
+ required:
+   - compatible
+   - reg
+-- 
+2.31.1
+
