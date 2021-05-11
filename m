@@ -2,170 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C6E537AC53
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 18:49:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D907537AC7E
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 18:54:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230484AbhEKQuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 12:50:12 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:54290 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230435AbhEKQuM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 12:50:12 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14BGmxsf009587;
-        Tue, 11 May 2021 11:48:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1620751739;
-        bh=EXAHHMVat87Ts4QpaLnkvfakXOyXP0EushBlIk4YxAU=;
-        h=From:To:CC:Subject:Date;
-        b=V24NP39TD9uOX4Lr4LCxTO9F5JHfnVY7ADK/udWXy3Zp97C/pck+P6lCl2Qi4gqlT
-         xGDySaKjuD5mTIQ5Lntqnmk4a2bvsBWRMRzz/eQCWhXu8jFVl57KptsoVbs18rtKEc
-         oY+vwqode2qcmtZPNXEOmCuvgFQUWGzEzbD1X9rw=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14BGmx0j118266
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 11 May 2021 11:48:59 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 11
- May 2021 11:48:58 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 11 May 2021 11:48:58 -0500
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14BGmpjT012233;
-        Tue, 11 May 2021 11:48:52 -0500
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3] arm64: dts: ti: k3-am65: Add support for UHS-I modes in MMCSD1 subsystem
-Date:   Tue, 11 May 2021 22:18:49 +0530
-Message-ID: <20210511164849.20016-1-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
+        id S231352AbhEKQ4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 12:56:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53864 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230315AbhEKQ4D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 12:56:03 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E2E1C061574
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 09:54:56 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 82-20020a1c01550000b0290142562ff7c9so1612812wmb.3
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 09:54:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PAGZXasHuGX2gUXUoo6CURCa+Aksr5PU0wV10L4+JjE=;
+        b=lzghGyHoEDnwLxVF+qCG3LJbzpUtcve8nd0UczDGejPM9KkJa/4tPfD4hE2Or7jV+z
+         xkgqRlRaBX7PPjZSmchBPqwNo7IEPAoZkuRvlL+GwRLtSV6TAoNQ4XMa7xpNjM1P/4VR
+         81L+czMTFjkrTO9LOsFaUWE6GapIMssohkEOaDv+nrX9urhlD27NAFPgGWtRNGMHtarc
+         B6Arp02opLevpvwS7zTakhLqOy/LnsBJd4h4/uhCntkdNp+hlFJgFIYQLQ9E4sG5J2To
+         eGWCUde4a54y9g+IVFD0uIEhSOJ6gR5mfIkPsvphjeH/Hf7Xk3wWvGF9KsruenFvz11b
+         Ltyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PAGZXasHuGX2gUXUoo6CURCa+Aksr5PU0wV10L4+JjE=;
+        b=lsOrKcd/QgqHJ2V9GW3Rw83mD9jl3DbF1wr/EYe3jG6WfumiNbbxfLzzNmwEfewyRD
+         uiWm9fshOZA4h+p9eYtfxBExOqT6yYL/d0m9/0Au/4Tera9/3tr0svjEKHPFGajcDYfq
+         A4h6KY9K3Mq76HH5b9qQTNYuUoWc+dPxXm5CRXYOm8/YNNfspqoo2EgLeaoBrjqbZ36B
+         dkotvmdLfKIG99uFQC3Bh/9I6Y8bYVkZkLN5MiKSRga+pJFFc7OfSeXrgwmlVoU1SxkB
+         fKBOVgNZOCQh0hMiM/w0VF3pSFVkDaDOucCWqU/cR3sEwrjLCqLn8pMyzlaQADHIZljk
+         xx1Q==
+X-Gm-Message-State: AOAM530GcbCNpCwky+0YDe80R9MzhhqZiNeVeF2Zp+Jf2+h9Pu313b7u
+        lWvFkE11Uq0Af0MxrGctMhP3fedj3PZO046L
+X-Google-Smtp-Source: ABdhPJzzKqzK9HxYAlauFFN8vJlMS15p65DZBLSWNrUs/Q0UWnsCsJf0lv70Q32eWGYnF9gNp9pVfg==
+X-Received: by 2002:a05:600c:4ecb:: with SMTP id g11mr4335105wmq.172.1620752095184;
+        Tue, 11 May 2021 09:54:55 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id j7sm24187366wmi.21.2021.05.11.09.54.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 May 2021 09:54:54 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH] dt-bindings: display: convert faraday,tve200 to YAML
+Date:   Tue, 11 May 2021 16:54:48 +0000
+Message-Id: <20210511165448.422987-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-UHS-I speed modes are supported in AM65 S.R. 2.0 SoC[1].
+Converts display/faraday,tve200.txt to yaml.
 
-Add support by removing the no-1-8-v tag and including the voltage
-regulator device tree nodes for power cycling.
-
-However, the 4 bit interface of AM65 SR 1.0 cannot be supported at 3.3 V or
-1.8 V because of erratas i2025 and i2026 [2]. As the SD card is the primary
-boot mode for development usecases, continue to enable SD card and disable
-UHS-I modes in it to minimize any ageing issues happening because of
-erratas.
-
-k3-am6528-iot2050-basic and k3-am6548-iot2050-advanced boards use S.R. 1.0
-version of AM65 SoC. Therefore, add no-1-8-v in sdhci1 device tree node of
-the common iot2050 device tree file.
-
-[1] - https://www.ti.com/lit/ug/spruid7e/spruid7e.pdf, section 12.3.6.1.1
-[2] - https://www.ti.com/lit/er/sprz452e/sprz452e.pdf
-
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 ---
+ .../bindings/display/faraday,tve200.txt       | 54 -----------
+ .../bindings/display/faraday,tve200.yaml      | 92 +++++++++++++++++++
+ 2 files changed, 92 insertions(+), 54 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/faraday,tve200.txt
+ create mode 100644 Documentation/devicetree/bindings/display/faraday,tve200.yaml
 
-changes since v2:
-- moved the no-1-8-v tag to common iot2050 dtsi file.
-
-changes since v1:
-- added no-1-8-v tag in sdhci1 dt nodes of k3-am6528-iot2050-basic and
-  k3-am6548-iot2050-advanced boards as they use S.R.1.0 version AM65 SoC.
-
- .../boot/dts/ti/k3-am65-iot2050-common.dtsi   |  1 +
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  1 -
- .../arm64/boot/dts/ti/k3-am654-base-board.dts | 33 +++++++++++++++++++
- 3 files changed, 34 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-index de763ca9251c..46cc348cd4be 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-@@ -555,6 +555,7 @@
- 	pinctrl-0 = <&main_mmc1_pins_default>;
- 	ti,driver-strength-ohm = <50>;
- 	disable-wp;
-+	no-1-8-v;
- };
- 
- &usb0 {
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-index cb340d1b401f..632f32fce4a1 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -301,7 +301,6 @@
- 		ti,otap-del-sel = <0x2>;
- 		ti,trm-icp = <0x8>;
- 		dma-coherent;
--		no-1-8-v;
- 	};
- 
- 	scm_conf: scm-conf@100000 {
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-index 9e87fb313a54..51c594b4dddb 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-@@ -91,6 +91,38 @@
- 		#clock-cells = <0>;
- 		clock-frequency = <24000000>;
- 	};
+diff --git a/Documentation/devicetree/bindings/display/faraday,tve200.txt b/Documentation/devicetree/bindings/display/faraday,tve200.txt
+deleted file mode 100644
+index 82e3bc0b7485..000000000000
+--- a/Documentation/devicetree/bindings/display/faraday,tve200.txt
++++ /dev/null
+@@ -1,54 +0,0 @@
+-* Faraday TV Encoder TVE200
+-
+-Required properties:
+-
+-- compatible: must be one of:
+-	"faraday,tve200"
+-	"cortina,gemini-tvc", "faraday,tve200"
+-
+-- reg: base address and size of the control registers block
+-
+-- interrupts: contains an interrupt specifier for the interrupt
+-	line from the TVE200
+-
+-- clock-names: should contain "PCLK" for the clock line clocking the
+-	silicon and "TVE" for the 27MHz clock to the video driver
+-
+-- clocks: contains phandle and clock specifier pairs for the entries
+-	in the clock-names property. See
+-	Documentation/devicetree/bindings/clock/clock-bindings.txt
+-
+-Optional properties:
+-
+-- resets: contains the reset line phandle for the block
+-
+-Required sub-nodes:
+-
+-- port: describes LCD panel signals, following the common binding
+-	for video transmitter interfaces; see
+-	Documentation/devicetree/bindings/media/video-interfaces.txt
+-	This port should have the properties:
+-	reg = <0>;
+-	It should have one endpoint connected to a remote endpoint where
+-	the display is connected.
+-
+-Example:
+-
+-display-controller@6a000000 {
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	compatible = "faraday,tve200";
+-	reg = <0x6a000000 0x1000>;
+-	interrupts = <13 IRQ_TYPE_EDGE_RISING>;
+-	resets = <&syscon GEMINI_RESET_TVC>;
+-	clocks = <&syscon GEMINI_CLK_GATE_TVC>,
+-		 <&syscon GEMINI_CLK_TVC>;
+-	clock-names = "PCLK", "TVE";
+-
+-	port@0 {
+-		reg = <0>;
+-		display_out: endpoint {
+-			remote-endpoint = <&panel_in>;
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/display/faraday,tve200.yaml b/Documentation/devicetree/bindings/display/faraday,tve200.yaml
+new file mode 100644
+index 000000000000..3ab51e7e72af
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/faraday,tve200.yaml
+@@ -0,0 +1,92 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/faraday,tve200.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	evm_12v0: fixedregulator-evm12v0 {
-+		/* main supply */
-+		compatible = "regulator-fixed";
-+		regulator-name = "evm_12v0";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
++title: Faraday TV Encoder TVE200
 +
-+	vcc3v3_io: fixedregulator-vcc3v3io {
-+		/* Output of TPS54334 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_io";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		vin-supply = <&evm_12v0>;
-+	};
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
 +
-+	vdd_mmc1_sd: fixedregulator-sd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_mmc1_sd";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		vin-supply = <&vcc3v3_io>;
-+		gpio = <&pca9554 4 GPIO_ACTIVE_HIGH>;
-+	};
- };
- 
- &wkup_pmx0 {
-@@ -350,6 +382,7 @@
-  * disable sdhci1
-  */
- &sdhci1 {
-+	vmmc-supply = <&vdd_mmc1_sd>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_mmc1_pins_default>;
- 	ti,driver-strength-ohm = <50>;
++properties:
++  compatible:
++    oneOf:
++      - const: faraday,tve200
++      - items:
++          - const: cortina,gemini-tvc
++          - const: faraday,tve200
++
++  reg:
++    minItems: 1
++
++  interrupts:
++    minItems: 1
++
++  clock-names:
++    items:
++      - const: PCLK
++      - const: TVE
++
++  clocks:
++    minItems: 2
++
++  resets:
++    minItems: 1
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++patternProperties:
++  "^port@[0-9]+$":
++    type: object
++    description: describes LCD panel signals, following the common binding
++      for video transmitter interfaces; see
++      Documentation/devicetree/bindings/media/video-interfaces.txt
++      It should have one endpoint connected to a remote endpoint where
++      the display is connected.
++
++    properties:
++      reg:
++        const: 0
++
++    required:
++      - reg
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clock-names
++  - clocks
++  - "#address-cells"
++  - "#size-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/cortina,gemini-clock.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/reset/cortina,gemini-reset.h>
++    display-controller@6a000000 {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      compatible = "faraday,tve200";
++      reg = <0x6a000000 0x1000>;
++      interrupts = <13 IRQ_TYPE_EDGE_RISING>;
++      resets = <&syscon GEMINI_RESET_TVC>;
++      clocks = <&syscon GEMINI_CLK_GATE_TVC>,
++               <&syscon GEMINI_CLK_TVC>;
++      clock-names = "PCLK", "TVE";
++
++      port@0 {
++        reg = <0>;
++        display_out: endpoint {
++          remote-endpoint = <&panel_in>;
++        };
++      };
++    };
 -- 
-2.17.1
+2.26.3
 
