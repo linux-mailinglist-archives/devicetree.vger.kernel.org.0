@@ -2,85 +2,301 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC56037A901
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 16:21:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B63D37A909
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 16:23:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231750AbhEKOWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 10:22:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58564 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231154AbhEKOWj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 May 2021 10:22:39 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 443B0611CC;
-        Tue, 11 May 2021 14:21:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620742892;
-        bh=754tmoCujVq6lcUy8BeWkfA3aUF0gZ2lG5aHBKFhZ3w=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=tQIEz3IwTFUbXijv/Wx2YlxtAGBXUQfAW+URx78HUJvoivQS9TfrOKYIC0BKBgy4x
-         gD8gar4U/unzs6QO4CJtsAMBTTVw2yCiPHdM+czxxV0ONyPDI9irklHQmqStfYXNWO
-         X2JI+YHdqSJ6Hz4JzWnPg5EyNt3DDN0ys/mn6nO3i7d9LiLz5kCN9VRYrdB30KE14s
-         SrVzJssgH9JFdXZv8ALK72yytJrSou+o1ZBFkEF+jmJiie1/+t3F5Dl5Qdi6XBpE4o
-         j7LNZ/DolKP6A8W6Xcnagdi5jF0n0SsXG7bi76q4sUUj3KfoLFTFlANmNGlFIBQ+ym
-         +YqeHlYvLEAUg==
-Received: by mail-ed1-f43.google.com with SMTP id s6so23054227edu.10;
-        Tue, 11 May 2021 07:21:32 -0700 (PDT)
-X-Gm-Message-State: AOAM531uuhGC6Wk8yfP4Sa0A8AFtFTNH+5HtukWmP6mhk0zNuToFJV1n
-        htb90R/zTF0njaJzOdFKyaxF/YzKVHnymPRo0A==
-X-Google-Smtp-Source: ABdhPJz6YEH4sg1aBHVhiGqT0sRQACzH0OtRLw5u2iOJhPP/q+aSP4ABZ5LhSBxOqn6ObbdH+LmLAfnUs2+wn8l27b4=
-X-Received: by 2002:a05:6402:c9b:: with SMTP id cm27mr30368188edb.258.1620742890641;
- Tue, 11 May 2021 07:21:30 -0700 (PDT)
+        id S231617AbhEKOYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 10:24:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47492 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231501AbhEKOYy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 10:24:54 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EF6BC06174A
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 07:23:48 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id b17so23124336ede.0
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 07:23:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Br8rMX5HFxDRkh9ZQ3wOwD7w/n9WgFZfbCjeKHedFic=;
+        b=F/yK3VMsNrQ9uRK+zK0uvVo09atNln8Pg6B/yMAjawvRyCz0GXT3c1ObjYFC5pwL4E
+         CjR5EKMW3JX/U4+RPdpRbknd5AFDz+2cySorzXzlfDxe3Pl8pCZoDwDLd+qyWXxdt3kT
+         GopJlW7OnIJDhWv662lQGvPuctkuZkghWO/oouxmysx9HUA1P8rIYeNRxhDlkzYyC/pW
+         2vCAMeuEsyReoSJ/9BoEvAVvcxwL1M4oG1O4RTqM9HHVT1a+UAT6nSgr1nIfuu1x3+24
+         88IUgrqu9ozVqLiQ+xFEbUJq8nB24LRCiNmgPz3hX8vIgj9CAy9iy7gFUKUTcBc1bHps
+         OLng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Br8rMX5HFxDRkh9ZQ3wOwD7w/n9WgFZfbCjeKHedFic=;
+        b=WqhdT/HNPeakMzRP73+/nSzQQ6ct1pNHEkaSmHMT4KGPu3+rLP0w8IS/E1E3TYOtc6
+         DOW7R+BDb+zvJhYypiGyn0bZ+8O5yYnTWKl2lvy+LcZB7m6sct2JkC/e2FQr1zk1phCy
+         XX+jlwY2qH8J9qVNlsiLU6igoyR5bANOV8FhqlcI4IyYfnLCI4zkZ8/MinmjqXFuYk5W
+         S7mAVNuNEFlEbBCqCtRPnlzEObvbU0KN/UqEN4wsBGQRaOfUnQuVgRYTQYA+2VZb6Yld
+         GT6412I5Cn11R6HJlTLjC5Qqesbcw1pSVCdflkeStbjlRg4CuKNHhRD+MH73JYCfBH9i
+         zM7w==
+X-Gm-Message-State: AOAM531khohOksr0IzJRjo3dhM+5rGe/oqLPd0K6Z3WAxjZa/IRTmzdN
+        VKfwM6fOZ1qHjwpFd6H8pyHIOQ==
+X-Google-Smtp-Source: ABdhPJw3QMO17Xc6fkoixF8k6OA9IQQZz7j/h65Uo4/I+kG0XIJ3DEl2gOMptIKZkzLjjP2i6E2wfQ==
+X-Received: by 2002:a05:6402:c7:: with SMTP id i7mr37569269edu.194.1620743027005;
+        Tue, 11 May 2021 07:23:47 -0700 (PDT)
+Received: from bismarck.berto.se (p54ac5521.dip0.t-ipconnect.de. [84.172.85.33])
+        by smtp.googlemail.com with ESMTPSA id l11sm14303565eds.75.2021.05.11.07.23.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 May 2021 07:23:46 -0700 (PDT)
+From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH v2] media: dt-bindings: media: renesas,isp: Add bindings for ISP Channel Selector
+Date:   Tue, 11 May 2021 16:23:20 +0200
+Message-Id: <20210511142320.3463742-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20210510141509.929120-1-l.stach@pengutronix.de>
- <20210510141509.929120-3-l.stach@pengutronix.de> <20210510170510.GA276768@robh.at.kernel.org>
- <854ec10d9a32df97d1f53a784dffca4e5036b059.camel@pengutronix.de>
-In-Reply-To: <854ec10d9a32df97d1f53a784dffca4e5036b059.camel@pengutronix.de>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 11 May 2021 09:21:13 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+dkJ+bbuQDQieHdocjLoNKN2vib8scJsdGnCnffSGAcA@mail.gmail.com>
-Message-ID: <CAL_Jsq+dkJ+bbuQDQieHdocjLoNKN2vib8scJsdGnCnffSGAcA@mail.gmail.com>
-Subject: Re: [PATCH 3/7] PCI: imx6: Rework PHY search and mapping
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
-        Sascha Hauer <kernel@pengutronix.de>,
-        patchwork-lst@pengutronix.de
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 11, 2021 at 3:11 AM Lucas Stach <l.stach@pengutronix.de> wrote:
->
-> Am Montag, dem 10.05.2021 um 12:05 -0500 schrieb Rob Herring:
-> > On Mon, May 10, 2021 at 04:15:05PM +0200, Lucas Stach wrote:
-> > > We don't need to have a phandle of the PHY, as we know the compatible
-> > > of the node we are looking for. This will make it easier to put add
-> > > more PHY handling for new generations later on, where the
-> > > "fsl,imx7d-pcie-phy" phandle would be a misnomer.
-> > >
-> > > Also we can use a helper function to get the resource for us,
-> > > simplifying out driver code a bit.
-> >
-> > Better yes, but really all the phy handling should be split out to
-> > its own driver even in the older h/w with shared phy registers.
-> >
-> That would be a quite massive DT binding changing break, possibly even
-> a separate driver. Maybe it's time to do this for i.MX8MM, as the
-> current driver just kept piling on special cases for "almost the same"
-> hardware that by now looks quite different to the original i.MX6 PCIe
-> integration this driver was supposed to handle.
+Add bindings for Renesas R-Car ISP Channel Selector IP. The ISP is
+responsible for filtering the MIPI CSI-2 bus and directing the different
+CSI-2 virtual channels to different R-Car VIN instances (DMA engines)
+for capture.
 
-No, you don't need to change DT, and a DT change adding a phy node
-wouldn't even be correct modeling of the h/w IMO. For the i.MX6 phy, a
-separate PHY driver would have to create its own platform device in
-its initcall (if the iMX6 PCI compatible is found). Then the PCI
-driver would need to use a non-DT based phy_get() lookup. For the
-cases with a phandle to the phy, I'd assume a phy driver could be
-instantiated for that node. You'll again need a non-DT phy_get() if
-not using the phy binding.
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+---
+* Changes since v1
+- Fix order of compatible value.
+- Use /schemas/graph.yaml#/properties/port instead of
+  /schemas/graph.yaml#/$defs/port-base for port@0.
+- Drop status in examples.
+---
+ .../bindings/media/renesas,isp.yaml           | 196 ++++++++++++++++++
+ MAINTAINERS                                   |   1 +
+ 2 files changed, 197 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/renesas,isp.yaml
 
-Rob
+diff --git a/Documentation/devicetree/bindings/media/renesas,isp.yaml b/Documentation/devicetree/bindings/media/renesas,isp.yaml
+new file mode 100644
+index 0000000000000000..514857d36f6b7d74
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/renesas,isp.yaml
+@@ -0,0 +1,196 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++# Copyright (C) 2021 Renesas Electronics Corp.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/renesas,isp.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas R-Car ISP Channel Selector
++
++maintainers:
++  - Niklas Söderlund <niklas.soderlund@ragnatech.se>
++
++description:
++  The R-Car ISP Channel Selector provides MIPI CSI-2 VC and DT filtering
++  capabilities for the Renesas R-Car family of devices. It is used in
++  conjunction with the R-Car VIN and CSI-2 modules, which provides the video
++  capture capabilities.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - renesas,r8a779a0-isp # V3U
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Input port node, multiple endpoints describing the connected R-Car
++          CSI-2 receivers.
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Single endpoint describing the R-Car VIN connected to output port 0.
++
++      port@2:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Single endpoint describing the R-Car VIN connected to output port 1.
++
++      port@3:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Single endpoint describing the R-Car VIN connected to output port 2.
++
++      port@4:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Single endpoint describing the R-Car VIN connected to output port 3.
++
++      port@5:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Single endpoint describing the R-Car VIN connected to output port 4.
++
++      port@6:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Single endpoint describing the R-Car VIN connected to output port 5.
++
++      port@7:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Single endpoint describing the R-Car VIN connected to output port 6.
++
++      port@8:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Single endpoint describing the R-Car VIN connected to output port 7.
++
++    required:
++      - port@0
++      - port@1
++      - port@2
++      - port@3
++      - port@4
++      - port@5
++      - port@6
++      - port@7
++      - port@8
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - power-domains
++  - resets
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/r8a779a0-cpg-mssr.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/power/r8a779a0-sysc.h>
++
++    isp1: isp@fed20000 {
++            compatible = "renesas,r8a779a0-isp";
++            reg = <0xfed20000 0x10000>;
++            interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
++            clocks = <&cpg CPG_MOD 613>;
++            power-domains = <&sysc R8A779A0_PD_A3ISP01>;
++            resets = <&cpg 613>;
++
++            ports {
++                    #address-cells = <1>;
++                    #size-cells = <0>;
++
++                    port@0 {
++                            #address-cells = <1>;
++                            #size-cells = <0>;
++
++                            reg = <0>;
++                            isp1csi41: endpoint@1 {
++                                    reg = <1>;
++                                    remote-endpoint = <&csi41isp1>;
++                            };
++                    };
++
++                    port@1 {
++                            reg = <1>;
++                            isp1vin08: endpoint {
++                                    remote-endpoint = <&vin08isp1>;
++                            };
++                    };
++
++                    port@2 {
++                            reg = <2>;
++                            isp1vin09: endpoint {
++                                    remote-endpoint = <&vin09isp1>;
++                            };
++                    };
++
++                    port@3 {
++                            reg = <3>;
++                            isp1vin10: endpoint {
++                                    remote-endpoint = <&vin10isp1>;
++                            };
++                    };
++
++                    port@4 {
++                            reg = <4>;
++                            isp1vin11: endpoint {
++                                    remote-endpoint = <&vin11isp1>;
++                            };
++                    };
++
++                    port@5 {
++                            reg = <5>;
++                            isp1vin12: endpoint {
++                                    remote-endpoint = <&vin12isp1>;
++                            };
++                    };
++
++                    port@6 {
++                            reg = <6>;
++                            isp1vin13: endpoint {
++                                    remote-endpoint = <&vin13isp1>;
++                            };
++                    };
++
++                    port@7 {
++                            reg = <7>;
++                            isp1vin14: endpoint {
++                                    remote-endpoint = <&vin14isp1>;
++                            };
++                    };
++
++                    port@8 {
++                            reg = <8>;
++                            isp1vin15: endpoint {
++                                    remote-endpoint = <&vin15isp1>;
++                            };
++                    };
++            };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 8d36a86863b25335..c35a9c93da84f4f7 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -11398,6 +11398,7 @@ L:	linux-renesas-soc@vger.kernel.org
+ S:	Supported
+ T:	git git://linuxtv.org/media_tree.git
+ F:	Documentation/devicetree/bindings/media/renesas,csi2.yaml
++F:	Documentation/devicetree/bindings/media/renesas,isp.yaml
+ F:	Documentation/devicetree/bindings/media/renesas,vin.yaml
+ F:	drivers/media/platform/rcar-vin/
+ 
+-- 
+2.31.1
+
