@@ -2,295 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF46B37A552
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 12:57:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96DFC37A589
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 13:15:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231511AbhEKK6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 06:58:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57270 "EHLO
+        id S231397AbhEKLQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 07:16:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231539AbhEKK6k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 06:58:40 -0400
-Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF029C061760
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 03:57:33 -0700 (PDT)
-Received: by mail-vs1-xe33.google.com with SMTP id s15so7142310vsi.4
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 03:57:33 -0700 (PDT)
+        with ESMTP id S230443AbhEKLQ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 07:16:27 -0400
+Received: from mail-vk1-xa2e.google.com (mail-vk1-xa2e.google.com [IPv6:2607:f8b0:4864:20::a2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0704C061574
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 04:15:20 -0700 (PDT)
+Received: by mail-vk1-xa2e.google.com with SMTP id l124so3901350vkh.7
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 04:15:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Ey6AztPlStF+EHQEBxICZNmYDnr7gnn/OgJP3awQWRU=;
-        b=oBVycJADQl/R5cnvsrr+Iz1eB2LUXKXbtFN1CtmKUyBBleJ3AaSHFTqOMlRm61ep+d
-         t+fgqWs8hxLoMkEncV29fIoYT0KLNxabEEK6s8lR3JXoVjjdObh0M9dZYrMMrnuxIAP/
-         FoNtO6b4CONjz5w8Bt0ICUDEqATkvImXskCsDCC38MoyeljVXvKiP5GdDqebduvs1T39
-         e8DKD/GPyw+P+WlmPn+pHt2DqX9bdH0vL18slkSIwuChEaTsfEImeonmeJU3yDC6Jma2
-         B61O/leBSgC3tdeb4t1Pdm+LyLdo7Ca+UUzNfXVY0osjoB7dG8gqI4IN9/6f1Ng4t4xt
-         IwHg==
+        bh=hHAQPVzBsVWn5SIpJgCp6vriYjWaGYRU2fNUBN0wdpw=;
+        b=o+S/wjsPy/FGxRO/OYk6oXHPiTIptpc5DQdLEJLZDMeyGJLtpaH9D4X3Oy69dI/DKh
+         W6SmuaZ2/PT/d/P7p40GeqWIgudOzlm5zoiV6AQ6Z1t8cq+maDbGzvNUM6L8nv7xZH2U
+         XSqX3QmG5TGZk/orIoOidfCyS3GrbtCCNTOBFUcv/bVctmUbL2t+CTHIPUu+Jx3B7bdc
+         EpV+95xKr2FS5xTWZkljH9d6ZtUOAWDCaU47nKNXWZO5scDai2sv1bkxUzcUZ6Z9/RYD
+         9ZGm+4GkWNZQKHsPtjkUf+9zvRhQEeUKKPRj5o25OogUkb1o+k+csM17ltTp56AAZ30J
+         Jfig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Ey6AztPlStF+EHQEBxICZNmYDnr7gnn/OgJP3awQWRU=;
-        b=Wgu50/2Z5zc+iAome2+dbNVjLY5Oh0kQ+47yZtvtaj0g5B2Es9myPqRABEfzgm7HbV
-         07U8XLEP7g9WPUhLVHOwekvH7XKHoEnJGuGg3oQigSmsr8gY4/2DAGQNWoc1FNl9jFO5
-         r6jC6RQnms3yQW8iLUaF1qPKDTruVzNLQDbSe87AevSm4GD17bbyklpcly2BxN4+thL+
-         lVKTQIuWOq/Yt4C89FeAIx6ojmfLLH5ZGaGNbfHKdFTyHHbK5RwdwCo2KaORWVao/uhh
-         nkuUwDbSeJ2V2ZO/QOwv1WmwKKmK+RYIg872Vr2pgefDMEKZ0RGJstJQguMqPMqeaXSc
-         SXDg==
-X-Gm-Message-State: AOAM530WfYq2Wlur2Atl75mOCZ0djla+8aTGwXyM71PxS52MXd3Wp5c/
-        9LAXZ3umEKcR4db/2sIR6B3c7IiDH1I6yRkLo8CtKw==
-X-Google-Smtp-Source: ABdhPJw3qzDFl/gzmZd3gitN57mXa5ygDpx3w85ykxyCQl8YfsZ3EEzsfVHZ1UeVnTiS8kESOiSjCdHDQF6QIXii014=
-X-Received: by 2002:a05:6102:505:: with SMTP id l5mr20495237vsa.55.1620730652897;
- Tue, 11 May 2021 03:57:32 -0700 (PDT)
+        bh=hHAQPVzBsVWn5SIpJgCp6vriYjWaGYRU2fNUBN0wdpw=;
+        b=Y0zNkFmERPOjQcc0xssD8JVI7OYimqLAel8ThIqgj7EoBPEqxQdc2IyUcexP5g6QPf
+         XgrHsrgI5ezqPknSPU4FdnhggM96BXQYn2q9qyHUvbTKOzskQZfiHQ60Z+c5JxObVjNV
+         lucvi5ADxbMDWQ005w+uuNTKDlkWiNCQQlZkLHyRfWb7gIXWLBgfL3NwttEw08Usl822
+         JGQHJUAMjoVQDC1Hj479HNjOtT2HaqISStWMV63vyannO9yapt8wBSdi2uVl9UGu6fJF
+         Olnqp+Uf6GzGH6V/zqIc9w+kendcgmiun3zIBzRLNAaRawNtk2MEayGwZ2orCGRBDCtJ
+         7SqQ==
+X-Gm-Message-State: AOAM5310ZUMQYOLzd3NEqSkoLAlym261f9GM6569mpyOayj29qjV1A6w
+        auyMmlqa/1L94QWOx/e+PYYKHhxJO8BekwnTmSikTA==
+X-Google-Smtp-Source: ABdhPJxYxWbFj2qO8+8U3f8oWGl4hGBN1E219YphlbQgPjhS4n0vUXrkjDTIzdBj9d6FR8xgDoHg7YisbPO/vyknD2Q=
+X-Received: by 2002:a1f:f2ce:: with SMTP id q197mr21391439vkh.15.1620731720168;
+ Tue, 11 May 2021 04:15:20 -0700 (PDT)
 MIME-Version: 1.0
-References: <04b97315fed0f4f512356b68f9f5bb6ed7adc41f.1620648698.git.geert+renesas@glider.be>
-In-Reply-To: <04b97315fed0f4f512356b68f9f5bb6ed7adc41f.1620648698.git.geert+renesas@glider.be>
+References: <20210510190400.105162-1-l.stach@pengutronix.de> <20210510190400.105162-3-l.stach@pengutronix.de>
+In-Reply-To: <20210510190400.105162-3-l.stach@pengutronix.de>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 11 May 2021 12:56:55 +0200
-Message-ID: <CAPDyKFqO6fkiwAmrGibpeZAyyeGbDHD03GVc34CPJhEWS2O9XQ@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: mmc: renesas,mmcif: Convert to json-schema
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+Date:   Tue, 11 May 2021 13:14:44 +0200
+Message-ID: <CAPDyKFrAe-+CENhXkY2fGNw04g-zn+ebcAXSVGa9Td5pJcsujA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] mmc: core: add support for disabling HS400 mode
+ via DT
+To:     Lucas Stach <l.stach@pengutronix.de>,
+        Chris Ruehl <chris.ruehl@gtsys.com.hk>
+Cc:     Adrian Hunter <adrian.hunter@intel.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
         linux-mmc <linux-mmc@vger.kernel.org>,
         DTML <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 10 May 2021 at 14:13, Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> Convert the Renesas Multi Media Card Interface (MMCIF) Device Tree
-> binding documentation to json-schema.
->
-> Document missing properties.
-> Update the example to match reality.
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Rob Herring <robh@kernel.org>
++ Chris Ruehl
 
-Applied for next, thanks!
+On Mon, 10 May 2021 at 21:04, Lucas Stach <l.stach@pengutronix.de> wrote:
+>
+> From: Lucas Stach <dev@lynxeye.de>
+>
+> On some boards the data strobe line isn't wired up, rendering HS400
+> support broken, even if both the controller and the eMMC claim to
+> support it. Allow to disable HS400 mode via DT.
+
+Before I review the series, I just wanted to highlight that quite
+recently we got a related series posted from Chris [1]. I made some
+comments, but he hasn't replied yet.
+
+In any case, if I understood it correctly, it looks like some
+controllers may support HS400 ES, but not HS200. Could that be the
+case here as well? Or is this a different problem?
 
 Kind regards
 Uffe
 
+[1]
+https://patchwork.kernel.org/project/linux-mmc/patch/20201208061839.21163-7-chris.ruehl@gtsys.com.hk/
 
+>
+> Signed-off-by: Lucas Stach <dev@lynxeye.de>
 > ---
 > v2:
->   - Drop unneeded oneOf,
->   - Add Reviewed-by.
+> - move to core
+> - actually disable all HS400 modes
 > ---
->  .../devicetree/bindings/mmc/renesas,mmcif.txt |  53 -------
->  .../bindings/mmc/renesas,mmcif.yaml           | 135 ++++++++++++++++++
->  2 files changed, 135 insertions(+), 53 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mmc/renesas,mmcif.txt
->  create mode 100644 Documentation/devicetree/bindings/mmc/renesas,mmcif.yaml
+>  drivers/mmc/core/host.c | 3 +++
+>  1 file changed, 3 insertions(+)
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/renesas,mmcif.txt b/Documentation/devicetree/bindings/mmc/renesas,mmcif.txt
-> deleted file mode 100644
-> index 291532ac0446fc71..0000000000000000
-> --- a/Documentation/devicetree/bindings/mmc/renesas,mmcif.txt
-> +++ /dev/null
-> @@ -1,53 +0,0 @@
-> -* Renesas Multi Media Card Interface (MMCIF) Controller
-> -
-> -This file documents differences between the core properties in mmc.txt
-> -and the properties used by the MMCIF device.
-> -
-> -
-> -Required properties:
-> -
-> -- compatible: should be "renesas,mmcif-<soctype>", "renesas,sh-mmcif" as a
-> -  fallback. Examples with <soctype> are:
-> -       - "renesas,mmcif-r7s72100" for the MMCIF found in r7s72100 SoCs
-> -       - "renesas,mmcif-r8a73a4" for the MMCIF found in r8a73a4 SoCs
-> -       - "renesas,mmcif-r8a7740" for the MMCIF found in r8a7740 SoCs
-> -       - "renesas,mmcif-r8a7742" for the MMCIF found in r8a7742 SoCs
-> -       - "renesas,mmcif-r8a7743" for the MMCIF found in r8a7743 SoCs
-> -       - "renesas,mmcif-r8a7744" for the MMCIF found in r8a7744 SoCs
-> -       - "renesas,mmcif-r8a7745" for the MMCIF found in r8a7745 SoCs
-> -       - "renesas,mmcif-r8a7778" for the MMCIF found in r8a7778 SoCs
-> -       - "renesas,mmcif-r8a7790" for the MMCIF found in r8a7790 SoCs
-> -       - "renesas,mmcif-r8a7791" for the MMCIF found in r8a7791 SoCs
-> -       - "renesas,mmcif-r8a7793" for the MMCIF found in r8a7793 SoCs
-> -       - "renesas,mmcif-r8a7794" for the MMCIF found in r8a7794 SoCs
-> -       - "renesas,mmcif-sh73a0" for the MMCIF found in sh73a0 SoCs
-> -
-> -- interrupts: Some SoCs have only 1 shared interrupt, while others have either
-> -  2 or 3 individual interrupts (error, int, card detect). Below is the number
-> -  of interrupts for each SoC:
-> -    1: r8a73a4, r8a7742, r8a7743, r8a7744, r8a7745, r8a7778, r8a7790, r8a7791,
-> -       r8a7793, r8a7794
-> -    2: r8a7740, sh73a0
-> -    3: r7s72100
-> -
-> -- clocks: reference to the functional clock
-> -
-> -- dmas: reference to the DMA channels, one per channel name listed in the
-> -  dma-names property.
-> -- dma-names: must contain "tx" for the transmit DMA channel and "rx" for the
-> -  receive DMA channel.
-> -- max-frequency: Maximum operating clock frequency, driver uses default clock
-> -  frequency if it is not set.
-> -
-> -
-> -Example: R8A7790 (R-Car H2) MMCIF0
-> -
-> -       mmcif0: mmc@ee200000 {
-> -               compatible = "renesas,mmcif-r8a7790", "renesas,sh-mmcif";
-> -               reg = <0 0xee200000 0 0x80>;
-> -               interrupts = <0 169 IRQ_TYPE_LEVEL_HIGH>;
-> -               clocks = <&mstp3_clks R8A7790_CLK_MMCIF0>;
-> -               dmas = <&dmac0 0xd1>, <&dmac0 0xd2>;
-> -               dma-names = "tx", "rx";
-> -               max-frequency = <97500000>;
-> -       };
-> diff --git a/Documentation/devicetree/bindings/mmc/renesas,mmcif.yaml b/Documentation/devicetree/bindings/mmc/renesas,mmcif.yaml
-> new file mode 100644
-> index 0000000000000000..c36ba561c3875ad3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/renesas,mmcif.yaml
-> @@ -0,0 +1,135 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/renesas,mmcif.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas Multi Media Card Interface (MMCIF) Controller
-> +
-> +maintainers:
-> +  - Wolfram Sang <wsa+renesas@sang-engineering.com>
-> +
-> +allOf:
-> +  - $ref: "mmc-controller.yaml"
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - renesas,mmcif-r7s72100 # RZ/A1H
-> +          - renesas,mmcif-r8a73a4  # R-Mobile APE6
-> +          - renesas,mmcif-r8a7740  # R-Mobile A1
-> +          - renesas,mmcif-r8a7742  # RZ/G1H
-> +          - renesas,mmcif-r8a7743  # RZ/G1M
-> +          - renesas,mmcif-r8a7744  # RZ/G1N
-> +          - renesas,mmcif-r8a7745  # RZ/G1E
-> +          - renesas,mmcif-r8a7778  # R-Car M1A
-> +          - renesas,mmcif-r8a7790  # R-Car H2
-> +          - renesas,mmcif-r8a7791  # R-Car M2-W
-> +          - renesas,mmcif-r8a7793  # R-Car M2-N
-> +          - renesas,mmcif-r8a7794  # R-Car E2
-> +          - renesas,mmcif-sh73a0   # SH-Mobile AG5
-> +      - const: renesas,sh-mmcif
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts: true
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  dmas:
-> +    minItems: 2
-> +    maxItems: 4
-> +    description:
-> +      Must contain a list of pairs of references to DMA specifiers, one for
-> +      transmission, and one for reception.
-> +
-> +  dma-names:
-> +    minItems: 2
-> +    maxItems: 4
-> +    items:
-> +      enum:
-> +        - tx
-> +        - rx
-> +
-> +  max-frequency: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - power-domains
-> +
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: renesas,mmcif-r7s72100
-> +then:
-> +  properties:
-> +    interrupts:
-> +      items:
-> +        - description: Error interrupt
-> +        - description: Normal operation interrupt
-> +        - description: Card detection interrupt
-> +else:
-> +  if:
-> +    properties:
-> +      compatible:
-> +        contains:
-> +          enum:
-> +            - renesas,mmcif-r8a7740
-> +            - renesas,mmcif-sh73a0
-> +  then:
-> +    properties:
-> +      interrupts:
-> +        items:
-> +          - description: Error interrupt
-> +          - description: Normal operation interrupt
-> +  else:
-> +    if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,mmcif-r8a73a4
-> +              - renesas,mmcif-r8a7778
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
-> +    else:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
-> +      required:
-> +        - resets
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/r8a7790-cpg-mssr.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/power/r8a7790-sysc.h>
-> +
-> +    mmcif0: mmc@ee200000 {
-> +            compatible = "renesas,mmcif-r8a7790", "renesas,sh-mmcif";
-> +            reg = <0xee200000 0x80>;
-> +            interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks = <&cpg CPG_MOD 315>;
-> +            power-domains = <&sysc R8A7790_PD_ALWAYS_ON>;
-> +            resets = <&cpg 315>;
-> +            dmas = <&dmac0 0xd1>, <&dmac0 0xd2>, <&dmac1 0xd1>, <&dmac1 0xd2>;
-> +            dma-names = "tx", "rx", "tx", "rx";
-> +            max-frequency = <97500000>;
-> +    };
+> diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
+> index 9b89a91b6b47..0e066c5f5243 100644
+> --- a/drivers/mmc/core/host.c
+> +++ b/drivers/mmc/core/host.c
+> @@ -351,6 +351,9 @@ int mmc_of_parse(struct mmc_host *host)
+>                 host->caps2 |= MMC_CAP2_NO_SD;
+>         if (device_property_read_bool(dev, "no-mmc"))
+>                 host->caps2 |= MMC_CAP2_NO_MMC;
+> +       if (device_property_read_bool(dev, "no-mmc-hs400"))
+> +               host->caps2 &= ~(MMC_CAP2_HS400_1_8V | MMC_CAP2_HS400_1_2V |
+> +                                MMC_CAP2_HS400_ES);
+>
+>         /* Must be after "non-removable" check */
+>         if (device_property_read_u32(dev, "fixed-emmc-driver-type", &drv_type) == 0) {
 > --
-> 2.25.1
+> 2.31.1
 >
