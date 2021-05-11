@@ -2,56 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25BCC379C28
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 03:39:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E69DA379C50
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 03:55:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230321AbhEKBkU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 May 2021 21:40:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35036 "EHLO mail.kernel.org"
+        id S230251AbhEKB4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 May 2021 21:56:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54190 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229953AbhEKBkS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 May 2021 21:40:18 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0D50961458;
-        Tue, 11 May 2021 01:39:10 +0000 (UTC)
+        id S230023AbhEKB43 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 May 2021 21:56:29 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D97236147E;
+        Tue, 11 May 2021 01:55:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620697152;
-        bh=saynCoF2qaPX4IC3mxYmIUPX6kYnrbiSYHQHbQT14Z0=;
+        s=k20201202; t=1620698124;
+        bh=26hn+0kOgqaRBLID4DhwQ54tAZJRkx9R8d5RuUNnH28=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gYK9XRLp5XPiOSNW4vOrzOUwiRsViFCjhZmhm4qFYFUl68C25nN0mWIQ8ZaG5kbai
-         r5rLPT2GPfM6R+XbioCOuK1Z1sRtjN0BYyN9BcsJsyagiYYzX7As3/iGue2HtLAlBJ
-         5KwEfDG/oeKr/UzqRl2eb9g0Nt4SBM13ySkyQ1v+K5l0neyjmgW3yI7us8kEtU9PBC
-         bEIVDptU1rTVxwwbpE384UDNjwH89U3SfpnzzDjua6KHRIltLT1xSSLACRJaz+Fo6b
-         b1rPV7aaAY/x7T3z9wZgfIaZZfoFUiefSfTSmvrHG0M0/3Xluo4RDwLuyWmem/zWoj
-         EOeC4mQfXJ9uA==
-Date:   Tue, 11 May 2021 09:39:07 +0800
+        b=Xenllyu5mTFYA9dun8KMT8Jjq2SVYyfHS7Zk2R+sw937wxrA+WtFWCUecKyHOEwku
+         JDAi7nxCm0kxKk8U9XEUp3GJkuHqJMB+zCVU2yRTM3vUDc43S5HJwjyi/lh9KufBBK
+         MVg9BDEodJYf55PB1FrciMZesuvyiA9n9IBbTndgZJUw9/IiwkojqcV0JmnR43bZHZ
+         dlWHId+ABSc2b4qwUrp7WRLw/oWbEGaA6KYY31j7y0x4O8eF3Fk+axLSmmpMXwLNZj
+         wmY+CgB+QjhJ8SQBM6P65PM0weBZtT/+sgd2YBnrRggrLIXWYznL9sZ8XVAnQh14Qj
+         u0AH6gaJBrNng==
+Date:   Tue, 11 May 2021 09:55:17 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+To:     Heiko Schocher <hs@denx.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Alice Guo <alice.guo@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
         Fabio Estevam <festevam@gmail.com>,
+        Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>, Li Jun <jun.li@nxp.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: imx25-pinfunc: Fix gpio function name for pads
- GPIO_[A-F]
-Message-ID: <20210511013906.GJ27585@dragon>
-References: <20200810084725.16112-1-u.kleine-koenig@pengutronix.de>
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Teresa Remmet <t.remmet@phytec.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] arm64: dts: imx8mp: add flexspi node
+Message-ID: <20210511015516.GA3425@dragon>
+References: <20210309053116.1486347-1-hs@denx.de>
+ <20210309053116.1486347-4-hs@denx.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200810084725.16112-1-u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20210309053116.1486347-4-hs@denx.de>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 10, 2020 at 10:47:25AM +0200, Uwe Kleine-König wrote:
-> The pinfunc definitions used GPIO_A as function instead of GPIO_1_0 as
-> done for all the other pins with GPIO functionality. Fix for consistency.
+On Tue, Mar 09, 2021 at 06:31:15AM +0100, Heiko Schocher wrote:
+> add node for the flexspi modul on imx8mp.
 > 
-> There are no mainline users that needs adaption.
-> 
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> Signed-off-by: Heiko Schocher <hs@denx.de>
 
-Applied, thanks.
+Applied #3 and #4, thanks.
