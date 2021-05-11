@@ -2,57 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84C2937B03F
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 22:48:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7499B37B046
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 22:49:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229932AbhEKUtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 16:49:22 -0400
-Received: from elvis.franken.de ([193.175.24.41]:50417 "EHLO elvis.franken.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229924AbhEKUtW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 May 2021 16:49:22 -0400
-Received: from uucp (helo=alpha)
-        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
-        id 1lgZIb-0003nj-01; Tue, 11 May 2021 22:48:13 +0200
-Received: by alpha.franken.de (Postfix, from userid 1000)
-        id 31031C0E42; Tue, 11 May 2021 22:41:47 +0200 (CEST)
-Date:   Tue, 11 May 2021 22:41:47 +0200
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     Xiaochuan Mao <maoxiaochuan@loongson.cn>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Qing Zhang <zhangqing@loongson.cn>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] MIPS:DTS:Correct device id of pcie for Loongnon-2K
-Message-ID: <20210511204147.GB18185@alpha.franken.de>
-References: <20210428120628.21041-1-maoxiaochuan@loongson.cn>
+        id S229925AbhEKUub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 16:50:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50692 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229809AbhEKUua (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 16:50:30 -0400
+Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF434C061574;
+        Tue, 11 May 2021 13:49:23 -0700 (PDT)
+Received: by mail-io1-xd2c.google.com with SMTP id t3so19460149iol.5;
+        Tue, 11 May 2021 13:49:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=I8R7x1c7Hd6UBScR8nVqjaGtYPLLSsOUFoINPtQV2yI=;
+        b=nH7wOQdjKYb6s7Jy1bbcA4JVN4rsIiE/FQuQl16w8lbYz5f6TFsrGR8fk5ZVF6Sj17
+         aGZKzanmmNSniNwaJlLRF2bpJNIpsswoiT351XfQYh+Tj1DkUF7P9znJvknEj6umSkC5
+         jlGzeBA6wsSQ3dFSKz5hMA1Na0nELiOw6DsLyCZ5yo3WE6yINdKrNFA6atMlOU5hajWj
+         LPrAQdSfV7jz+Oxg0x6rsVUS9oMDdWOVRE7Ri96BeCC1B+DfpeCIWaNOZKbzEFT/C8PO
+         /iNyFyS/3Lw7ufHD+hw2QM/ZMUgGkP34JOhJyRes3eMAfg83EettB12z3JnV5bYg5tXE
+         UlYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=I8R7x1c7Hd6UBScR8nVqjaGtYPLLSsOUFoINPtQV2yI=;
+        b=MCZv8BUGTvhj3fBmJI2CVVSeAvp+Q1o329uRwJy0cgnmlJeAfPuyWDq9Ux7MVO2mzA
+         UvK4K6Vn+eZgrBXS4fua14vhRKNH9XcTe8rFJ9aEpoiPX91PS7hk9V+2Uw1u8l5IvcNt
+         WbH5ayoL4sPhh/Z9c9kNUf/FwT+pL6KlrhtPFVvFcHYb0x5Fd1lqwTE94yIdgDUCj8WA
+         M3fHsWpENYam3xCpZgY5d2v2QgEivnu5ZkWHDRbquNifvhYnAMm/XohVWGCAQOyOMSf3
+         vcYnUJKsH5hKfdnQo9nYLtcoHrWRytF73sPjcEFLFZ0MhcV+nTrvJZzI7Zx9SQVV4/4i
+         8kRw==
+X-Gm-Message-State: AOAM531xkpaEZ902WjfqHPsUD7OR39JE71B4E7K6+Rhli78Wp0yRE0qT
+        3Da4bq5R3ygKCjua1X43GJs=
+X-Google-Smtp-Source: ABdhPJxYyQFIyIPsZJxqXizYf8eK9bBtTD7v1lyx7UXns4BGxPzgRzvrMt768UJ0rsUSLQk3z4l2xA==
+X-Received: by 2002:a6b:d10c:: with SMTP id l12mr23715805iob.179.1620766163490;
+        Tue, 11 May 2021 13:49:23 -0700 (PDT)
+Received: from zobel.corp.climate.com ([76.232.4.204])
+        by smtp.gmail.com with ESMTPSA id p25sm4535851ioh.39.2021.05.11.13.49.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 May 2021 13:49:23 -0700 (PDT)
+From:   Doug Zobel <dougdev334@gmail.com>
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Doug Zobel <dougdev334@gmail.com>
+Subject: [PATCH 0/2] Device Tree support for LP5562 predefined patterns
+Date:   Tue, 11 May 2021 15:48:32 -0500
+Message-Id: <20210511204834.2675271-1-dougdev334@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210428120628.21041-1-maoxiaochuan@loongson.cn>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 28, 2021 at 08:06:28PM +0800, Xiaochuan Mao wrote:
-> from Loongson-2K user manual know that Loongson-2K have two
-> pcie controller pcie0 and pcie1, pcie0 have four port named port0~port3
-> and pcie1 have 2 port named port0~port1. the device id of port0 is 7a19
-> in each pcie controller and others are 7a09.
-> 
-> Signed-off-by: Xiaochuan Mao <maoxiaochuan@loongson.cn>
-> ---
-> v1:
-> revert class code
-> ---
->  .../boot/dts/loongson/loongson64-2k1000.dtsi     | 16 ++++++++--------
->  1 file changed, 8 insertions(+), 8 deletions(-)
+Add support for the LP5562 pre-defined LED patterns in Device Tree.
 
-applied to mips-next.
+Doug Zobel (2):
+  leds: lp55xx: support predefined pattern in Device Tree
+  dt: bindings: lp55xx: Add predefined LED pattern
 
-Thomas.
+ .../devicetree/bindings/leds/leds-lp55xx.yaml | 103 +++++++++++++++++-
+ drivers/leds/leds-lp55xx-common.c             |  94 ++++++++++++++--
+ 2 files changed, 186 insertions(+), 11 deletions(-)
 
 -- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+2.20.1
+
