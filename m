@@ -2,77 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B7F637AFAE
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 21:52:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0A9037AFBC
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 21:56:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232279AbhEKTxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 15:53:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37864 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232296AbhEKTxQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 15:53:16 -0400
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EB56C06138B
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 12:52:08 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id i190so16797365pfc.12
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 12:52:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=a1nPWrBOuBAg2EyL45vQ76j5xYClZ1CRM9qwjrLW/ic=;
-        b=Cl3EcGblA/5ey63pSyMGX5tgM/8WlEQuFWDYN32DOOoVMSt+aTqUur1mFBsKU4BOHG
-         agJJsq46+bfqn7l14BhJJWpe9JSlsLqooK6SZTYPH1vNVxk6R8X7RLTT2gz5CFJu1lDU
-         EOrdmilnyJjJ5q5iShroha1hwIEEIv1sg/oOY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=a1nPWrBOuBAg2EyL45vQ76j5xYClZ1CRM9qwjrLW/ic=;
-        b=ar581iy6dbH6W84IfZHryj5b26houoPgHDsWLqfYci6DIk45+om/TuV/3aYUkdVj/d
-         fL2UY27/QfkMYBYlkoNvoAcN+igEPFGch6EJW7EkaVye0v7Ns0DbsurQRs3/M0dlb+gT
-         JpTQPvke0ZECAO5CMSnTocE6Pj2HfE6yaOf1cxDQt0zSjgUM4/kt3ov+beiPpiBboxWd
-         AAf+C0AVmgEviGSm/x/PDXpKX/4C6eqlmCdH/6/EiKYt65r3rrOkF9nUMUqPmyasAaf2
-         +3X7M9fsUT6OANog6OnVbcBuynpXmXbU9d4PE66fP1x9a9FfOaRZwq72Y2Bc6MOFe4W+
-         UuPw==
-X-Gm-Message-State: AOAM530wwx6hv+oZ29oPs6PHNSXLcIuyOfQjmAThK3pE9D/8lJ8xy1cW
-        czSYQCglivIHvWuYRlE6L+djSS/ppiVJIA==
-X-Google-Smtp-Source: ABdhPJxzHQuxXJOty2KKur3HxOyL11SN7VPm15QXw+NQLk0z6HJrsVX4ZR92Pt6ZtLHiTARTWk4nnA==
-X-Received: by 2002:a62:2a14:0:b029:263:20c5:6d8c with SMTP id q20-20020a622a140000b029026320c56d8cmr32334338pfq.23.1620762727844;
-        Tue, 11 May 2021 12:52:07 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:f1d7:673a:456e:c653])
-        by smtp.gmail.com with UTF8SMTPSA id v130sm14248452pfc.25.2021.05.11.12.51.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 May 2021 12:52:03 -0700 (PDT)
-Date:   Tue, 11 May 2021 12:51:57 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rajeshwari Ravindra Kamble <rkambl@codeaurora.org>
-Cc:     amitk@kernel.org, thara.gopinath@linaro.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, rui.zhang@intel.com,
-        daniel.lezcano@linaro.org, robh+dt@kernel.org,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sanm@codeaurora.org, manafm@codeaurora.org
-Subject: Re: [PATCH V4 3/3] arm64: dts: qcom: SC7280: Add thermal zone support
-Message-ID: <YJrgXQdKuvpm4KAz@google.com>
-References: <1620367641-23383-1-git-send-email-rkambl@codeaurora.org>
- <1620367641-23383-4-git-send-email-rkambl@codeaurora.org>
+        id S229637AbhEKT5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 15:57:31 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:35480 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229548AbhEKT5a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 15:57:30 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14BJuKZ5075190;
+        Tue, 11 May 2021 14:56:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1620762980;
+        bh=jREPqUlN56tfJbDslJ/VrtzVWHMHHbKEqFIHjonThXM=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=LROmAtLrK37NG62O0LZ1N91kJ5Ikf01+SUAi9QRRAZscnqAVyG6XmG7B7jUs1nmEc
+         jDZ1n4+6Gb/0ZtvFGfKQbVpMG0HV2ejgBoS9VsSuG8kjQ1+8gN8y7Sucp5fMGAUje6
+         uwNRNHYm6oCJAObuaLKQqI3EKCBSJfKU0q+fgnNI=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14BJuKC8100270
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 11 May 2021 14:56:20 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 11
+ May 2021 14:56:19 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 11 May 2021 14:56:20 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14BJuJac083008;
+        Tue, 11 May 2021 14:56:19 -0500
+Date:   Tue, 11 May 2021 14:56:19 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Lokesh Vutla <lokeshvutla@ti.com>
+CC:     Tero Kristo <kristo@kernel.org>, <grygorii.strashko@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3*: Introduce reg definition for
+ interrupt routers
+Message-ID: <20210511195619.ezzzzxfvjqxszfv3@surfacing>
+References: <20210510145508.8994-1-nm@ti.com>
+ <45c92c1d-1d58-4711-ac07-68406492b86b@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <1620367641-23383-4-git-send-email-rkambl@codeaurora.org>
+In-Reply-To: <45c92c1d-1d58-4711-ac07-68406492b86b@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 07, 2021 at 11:37:21AM +0530, Rajeshwari Ravindra Kamble wrote:
-> Adding thermal zone and cooling maps support in SC7280.
+On 21:53-20210511, Lokesh Vutla wrote:
 > 
-> Signed-off-by: Rajeshwari Ravindra Kamble <rkambl@codeaurora.org>
+> 
+> On 10/05/21 8:25 pm, Nishanth Menon wrote:
+> > Interrupt routers are memory mapped peripherals, that are organized
+> > in our dts bus hierarchy to closely represents the actual hardware
+> > behavior.
+> > 
+> > However, without explicitly calling out the reg property, using
+> > 2021.03+ dt-schema package, this exposes the following problem with
+> > dtbs_check:
+> > 
+> > /arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml: bus@100000:
+> > interrupt-controller0: {'type': 'object'} is not allowed for
+> > {'compatible': ['ti,sci-intr'], .....
+> > 
+> > Even though we don't use interrupt router directly via memory mapped
+> > registers and have to use it via the system controller, the hardware
+> > block is memory mapped, so describe the base address in device tree.
+> > 
+> > This is a valid, comprehensive description of hardware and permitted
+> > by the existing ti,sci-intr schema.
+> > 
+> > Signed-off-by: Nishanth Menon <nm@ti.com>
+> > ---
+> > 
+> > if possible, I'd like to pick this fixup for 5.13 window..
+> > 
+> >  arch/arm64/boot/dts/ti/k3-am64-main.dtsi        | 3 ++-
+> >  arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi         | 3 ++-
+> >  arch/arm64/boot/dts/ti/k3-am65-main.dtsi        | 6 ++++--
+> >  arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi      | 3 ++-
+> >  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi       | 6 ++++--
+> >  arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi | 3 ++-
+> >  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi       | 6 ++++--
+> >  arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 3 ++-
+> >  8 files changed, 22 insertions(+), 11 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> > index b2bcbf23eefd..a49e41021573 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> > @@ -373,8 +373,9 @@ main_spi4: spi@20140000 {
+> >  		clocks = <&k3_clks 145 0>;
+> >  	};
+> >  
+> > -	main_gpio_intr: interrupt-controller0 {
+> > +	main_gpio_intr: interrupt-controller@a00000 {
+> >  		compatible = "ti,sci-intr";
+> > +		reg = <0x00 0xa00000 0x00 0x800>;
+> 
+> IIRC, we are going with 0x00a00000 (0x%8x) for all regs. With that fixed for all
+> regs:
+> 
+> Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
 
-As requested earlier, you should add reviewers of earlier versions to
-cc: and provide a change log for each patch. Please don't ignore these
-types of request, or potential reviewers might decide to stop reviewing
-your patches (or just not see the new version(s)).
+Thanks for the catch.. Picked your reviews and posted v2
+https://lore.kernel.org/linux-arm-kernel/20210511194821.13919-1-nm@ti.com/
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
