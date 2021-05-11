@@ -2,134 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F5E137AA95
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 17:23:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E27CD37AB21
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 17:50:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231811AbhEKPYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 11:24:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32984 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231792AbhEKPYf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 11:24:35 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22584C061574;
-        Tue, 11 May 2021 08:23:27 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id h4so29287296lfv.0;
-        Tue, 11 May 2021 08:23:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ADKRjjG+U6Cx+ubrJWYRmb4HSWDPh6DbS/6I/KaMcho=;
-        b=YHLePLdx2gwPUhEfq8XHinUFEUh6dL/DkYPtmtXq4EiSYAFDlZxmH890syxHI9UQ81
-         BDfUwOAlkdOmM76fZODHkf+ovx9/G7EVcZRzDt4ylC4PhppjPoa48vcInW8HtOvedrP+
-         AGXvmg5hjd4NNqZqhHG2iQNwKscF4/iAB25mrHNHQMRirU1kXlb+OhpVa7GWR2VYFFi0
-         qsIRl9v9E8bSiCXESOoiZ43GawZm5AQLFdDYLkGDRweUsEnFhM2Ip99SwwYuhV/qrpja
-         rhX03dMsLjniXnh1jfX6eSK43LWWbENyYjF3xUixMCDyLQJGr/N4DMGvLsuhohrSbzJU
-         rmWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ADKRjjG+U6Cx+ubrJWYRmb4HSWDPh6DbS/6I/KaMcho=;
-        b=mDA+rOiGEMC/PUyV3kMNE8opDCbWTRPKNj/YY4v4+M3tko97uUHuE9Ww7IgrX4aeq5
-         8H6iCto+FngMbtlfywIlNrT026wqfgprLqxHXRc6USKd7ypMHQAnVSuCV14cmDAUvfVW
-         f6fZX3WKa4WMv4eGyGSfsgWoQTPmQkEHqdPMkO2i7SdEUM7h+X3tYcFrTgePVwBM7bY9
-         sSMhLnxGtOwtb4oh+E7QfHzAAeiXZ9Pl7tv1ZW/R3lnS1P4kFRAOjHOjzh9hEROsQ4rV
-         ZvtTH+b0PGCYHz0MFpYtOU23ypHUY4CFSFESZyeyQn6PYPk/vfevm5IMXabrSmOSXo0+
-         OaLQ==
-X-Gm-Message-State: AOAM533vs5eLdsHWBF6s8xfuBOxD33RGM7oPyOp8bQTSu1NjSl88BWeJ
-        RPHMaDi8Vey7u54SRBJpqz7pwbpH2SU=
-X-Google-Smtp-Source: ABdhPJz2Qpvhj9Yo/qa3WG+mUOgsviecIss7RAxZ9bmKuZfDVgwGavhNzYBNq/KK0x89lJcBnuWUEw==
-X-Received: by 2002:a05:6512:acc:: with SMTP id n12mr20637115lfu.408.1620746605520;
-        Tue, 11 May 2021 08:23:25 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-193-91.dynamic.spd-mgts.ru. [109.252.193.91])
-        by smtp.googlemail.com with ESMTPSA id k25sm148208lji.61.2021.05.11.08.23.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 May 2021 08:23:25 -0700 (PDT)
-Subject: Re: [PATCH v7 6/8] clk: tegra: cclk: Handle thermal DIV2 CPU
- frequency throttling
-To:     =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-tegra@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20210510231737.30313-1-digetx@gmail.com>
- <20210510231737.30313-7-digetx@gmail.com>
- <20210511144139.GB4413@qmqm.qmqm.pl>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <04bc9e16-be7e-cf18-9fff-436dd063bf10@gmail.com>
-Date:   Tue, 11 May 2021 18:23:24 +0300
+        id S231815AbhEKPv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 11:51:29 -0400
+Received: from lizzard.sbs.de ([194.138.37.39]:53758 "EHLO lizzard.sbs.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231561AbhEKPv2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 May 2021 11:51:28 -0400
+Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
+        by lizzard.sbs.de (8.15.2/8.15.2) with ESMTPS id 14BFnqIE012506
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 11 May 2021 17:49:52 +0200
+Received: from [167.87.32.54] ([167.87.32.54])
+        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 14BFQqmi012261;
+        Tue, 11 May 2021 17:26:52 +0200
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am65: Add support for UHS-I modes
+ in MMCSD1 subsystem
+To:     Aswath Govindraju <a-govindraju@ti.com>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210511095339.16268-1-a-govindraju@ti.com>
+ <200b5648-b2d9-b4c9-f81a-b39c3baf81f9@siemens.com>
+ <7561137c-adf1-bf03-c442-ff8174b2f143@ti.com>
+From:   Jan Kiszka <jan.kiszka@siemens.com>
+Message-ID: <95539fea-8190-7a3d-05aa-90824eb03293@siemens.com>
+Date:   Tue, 11 May 2021 17:26:52 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210511144139.GB4413@qmqm.qmqm.pl>
+In-Reply-To: <7561137c-adf1-bf03-c442-ff8174b2f143@ti.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-11.05.2021 17:41, Michał Mirosław пишет:
-> On Tue, May 11, 2021 at 02:17:35AM +0300, Dmitry Osipenko wrote:
->> Check whether thermal DIV2 throttle is active in order to report
->> the CPU frequency properly. This very useful for userspace tools
->> like cpufreq-info which show actual frequency asserted from hardware.
->>
->> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
->> ---
->>  drivers/clk/tegra/clk-tegra-super-cclk.c | 16 ++++++++++++++--
->>  drivers/clk/tegra/clk-tegra30.c          |  2 +-
->>  2 files changed, 15 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/clk/tegra/clk-tegra-super-cclk.c b/drivers/clk/tegra/clk-tegra-super-cclk.c
->> index a03119c30456..f75822b71d0e 100644
->> --- a/drivers/clk/tegra/clk-tegra-super-cclk.c
->> +++ b/drivers/clk/tegra/clk-tegra-super-cclk.c
->> @@ -25,6 +25,8 @@
->>  
->>  #define SUPER_CDIV_ENB		BIT(31)
->>  
->> +#define TSENSOR_SLOWDOWN	BIT(23)
->> +
->>  static struct tegra_clk_super_mux *cclk_super;
->>  static bool cclk_on_pllx;
->>  
->> @@ -47,10 +49,20 @@ static int cclk_super_set_rate(struct clk_hw *hw, unsigned long rate,
->>  static unsigned long cclk_super_recalc_rate(struct clk_hw *hw,
->>  					    unsigned long parent_rate)
->>  {
->> +	struct tegra_clk_super_mux *super = to_clk_super_mux(hw);
->> +	u32 val = readl_relaxed(super->reg);
->> +	unsigned int div2;
->> +
->> +	/* check whether thermal throttling is active */
->> +	if (val & TSENSOR_SLOWDOWN)
->> +		div2 = 2;
->> +	else
->> +		div2 = 1;
->> +
->>  	if (cclk_super_get_parent(hw) == PLLX_INDEX)
->> -		return parent_rate;
->> +		return parent_rate / div2;
->>  
->> -	return tegra_clk_super_ops.recalc_rate(hw, parent_rate);
->> +	return tegra_clk_super_ops.recalc_rate(hw, parent_rate) / div2;
->>  }
+On 11.05.21 12:13, Aswath Govindraju wrote:
+> Hi Jan,
 > 
-> Could you check if the compiler can optimize out the division? I know this
-> is a slow path, but nevertheless the 'shr' version would be the same amount
-> of source code.
+> On 11/05/21 3:31 pm, Jan Kiszka wrote:
+>> On 11.05.21 11:53, Aswath Govindraju wrote:
+>>> UHS-I speed modes are supported in AM65 S.R. 2.0 SoC[1].
+>>>
+>>> Add support by removing the no-1-8-v tag and including the voltage
+>>> regulator device tree nodes for power cycling.
+>>>
+>>> However, the 4 bit interface of AM65 SR 1.0 cannot be supported at 3.3 V or
+>>> 1.8 V because of erratas i2025 and i2026 [2]. As the SD card is the primary
+>>> boot mode for development usecases, continue to enable SD card and disable
+>>> UHS-I modes in it to minimize any ageing issues happening because of
+>>> erratas.
+>>>
+>>> k3-am6528-iot2050-basic and k3-am6548-iot2050-advanced boards use S.R. 1.0
+>>> version of AM65 SoC. Therefore, add no-1-8-v in sdhci1 device tree nodes
+>>> for these boards.
+>>>
+>>> [1] - https://www.ti.com/lit/ug/spruid7e/spruid7e.pdf
+>>> [2] - https://www.ti.com/lit/er/sprz452e/sprz452e.pdf
+>>>
+>>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>>> ---
+>>>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  1 -
+>>>  .../boot/dts/ti/k3-am6528-iot2050-basic.dts   |  4 +++
+>>>  .../arm64/boot/dts/ti/k3-am654-base-board.dts | 33 +++++++++++++++++++
+>>>  .../dts/ti/k3-am6548-iot2050-advanced.dts     |  4 +++
+>>>  4 files changed, 41 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+>>> index cb340d1b401f..632f32fce4a1 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+>>> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+>>> @@ -301,7 +301,6 @@
+>>>  		ti,otap-del-sel = <0x2>;
+>>>  		ti,trm-icp = <0x8>;
+>>>  		dma-coherent;
+>>> -		no-1-8-v;
+>>>  	};
+>>>  
+>>>  	scm_conf: scm-conf@100000 {
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
+>>> index 4f7e3f2a6265..485266960d5f 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
+>>> +++ b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
+>>> @@ -40,6 +40,10 @@
+>>>  	status = "disabled";
+>>>  };
+>>>  
+>>> +&sdhci1 {
+>>> +	no-1-8-v;
+>>> +};
+>>> +
+>>
+>> Let's move that to k3-am65-iot2050-common.dtsi, to avoid repeating
+>> yourself. There is already a sdhci1 extension.
+>>
+> 
+> The reason why I added these tags in board dts and not in the common
+> dtsi is because if it was added in the common board then for all the iot
+> boards this will be applicable and in future if a different version of
+> iot boards use S.R. 2.0 then we might have to change it again.
 
-Hello Michał,
+Yes, we will have to take care of the split-up for SR2.0-based variants.
+I didn't have the chance study their DTs yet but I strongly suspect that
+there will be more differences. Then we may add some
+k3-am65-iot2050-common-{SR1,SR2}.dtsi.
 
-GCC can't optimize that division. I'll wait for more comments and then
-update this patch in v8 with yours suggestion. Thank you for taking a
-look at the patches.
+So, I would not try to refactor when not all variables are on the table yet.
+
+Thanks
+Jan
+
+
+-- 
+Siemens AG, T RDA IOT
+Corporate Competence Center Embedded Linux
