@@ -2,103 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4ECCB37A27F
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 10:50:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33B4D37A28A
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 10:51:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230431AbhEKIvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 04:51:22 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.52]:11750 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230480AbhEKIvV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 04:51:21 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1620723006; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=ssw2nfbJInwO2EZDBz1hpWgmX+x8qdNbHngLj2q5MLnV1nPTbfRJxjav0czKXq1h35
-    2JazBrdv1385wJxv933ltuMjBLwvgpZOmcKUBqk+QnRextehVWuOXgLYxLrhZ0UT6v4S
-    28YDnn0EDeNt0x0SeUgmli/hI4xguY/RmDPmYGaORNVQ/4VJkSTxv2A7SiVqZaASksQ6
-    CzbPrOy7WIoLJUjWvqUQv4aIaeJn+bxDcFUSg/JaGYFCRdYbIzq6tvJRHca/CoWqp5RV
-    VpOyYIrKSkwn6+qY2PGj2wd+5iw69n857Hrk+J/gD0LKqspGi+054yV+O0xOcTuw5d+N
-    X+Uw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1620723006;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=HuyggU0+c1IyGuqhfH37nqp0a2aZqTw9VSyu5gx2FuI=;
-    b=bj5F/p/HxQJbkKmh5bvJ4og2RD6dxeOHkQQwASJti5iiEKUWJAKxalZwNoBBBCd4Sm
-    +ux5e2Z0yIYj7JvIeGpSppkPYWZnuAoGw954Or/ESkZ3lQKksl1tU8yoGOjlGB/8I+Ku
-    aOkczFD5kbNVkpc7tc51/GyO0RzDERL87TioY9fu4Jub0/v66kf77soKMUPCnjkM90if
-    vnIL9N3uon9UfyX8VdEaJkb51TZJzFMyv+39J56m4KtMxy7cFR1lklXCJxp12o6KuQu8
-    4EQaywKRBKc3iXbSx9W0YsLt55iBC3lEuNUHzZHgNM9ADxacpmZ22NksQhNUkIMciEzT
-    wwHQ==
-ARC-Authentication-Results: i=1; strato.com;
-    dkim=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1620723006;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=HuyggU0+c1IyGuqhfH37nqp0a2aZqTw9VSyu5gx2FuI=;
-    b=tA2ATFgf7hZEJ3fH7rXkFEq3jbW042aEnnPszG0yTT84mglI4gcFCooinVWefT2sx2
-    EKN7T3X64KxybpdwfdBd/7u7i/1itf9Ta9dXvZ7niS53Ryr36H6RZZ1fJUs7UP2fjdEv
-    laZFeu0FStR2Nq9S82C5wlu/Q0FEO7ISRfDdtSUneRGMExhlDu4hH8vzcEmSKSJ6Mzq3
-    QH5UcVns7ES4iNUIjm70X+DQoi6zv41OpUkkeZ/mi/HoF0NtcMREkNIO905V66tv+U5H
-    ENa0a3Y9aik8droOGhmJNsNjnDFughMr0Vl4j10ahnqjBGx6zna5FM9uxP5IaaXb4nb6
-    be/Q==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j8IczFY4o="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.25.6 DYNA|AUTH)
-    with ESMTPSA id e01f26x4B8o6bkS
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Tue, 11 May 2021 10:50:06 +0200 (CEST)
-Date:   Tue, 11 May 2021 10:50:01 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Simon Budig <simon.budig@kernelconcepts.de>,
-        Marco Felsch <m.felsch@pengutronix.de>
-Subject: Re: [PATCH v2 2/2] Input: edt-ft5x06 - add support for iovcc-supply
-Message-ID: <YJpFOVv1ifKBEwWV@gerhold.net>
-References: <20210510193108.50178-1-stephan@gerhold.net>
- <20210510193108.50178-2-stephan@gerhold.net>
- <20210510194848.g7cgty3lirxkht5g@core>
- <YJmUm/6Vm3d9hp1z@gerhold.net>
- <YJowd/tDgVD2TBKO@smile.fi.intel.com>
+        id S230386AbhEKIwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 04:52:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56724 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230316AbhEKIwN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 04:52:13 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 454ABC061574
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 01:51:07 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id g65so10644243wmg.2
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 01:51:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QF3gKv7VTtDVAFANjakXh9njdRISNpRUS3Lr86kJVaY=;
+        b=okWZdckEqGZUXxO3Zjpwgy3oHKs5yLJFHVgqgQY+OITUgoGjavCiCBgizlvL21Tlq/
+         xfu8EdJWz4GZ4rKFkbbjrAukgz3gMZiNs52UxS4PKXG/G5b4AkL4N5ruDcRO35ykUkKW
+         qKCV8M06TMNJ4l860Mi8zjMC8AML3nGgzuE8PnU48rhmFYWKmeQmRRoAwFqpygGyQ1kA
+         QVfxeXJBVB2x98WTh/9U98c8+4JOGuCgi4qoEFsz0MPPW/NgJrIHsleiWbtoQxgc7Xcn
+         aFPxfLozWrqfiXDQUSPE+qcws/5x6Upc+mfQng4oT7h0qZVszE7dswxrUEfL1ASv4V88
+         N+bA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QF3gKv7VTtDVAFANjakXh9njdRISNpRUS3Lr86kJVaY=;
+        b=mdnmVSu+SvhqMh0ptsHGIzhSV1Eg7PYN6psZiM0mKdoaKITB6c+FqE60A17CBTNh5q
+         Pj5+Tgmvq4CBN/4RmA7/DC6utjP4cnTjW8Bz3+cq1ToO2n3lh903/vOKxoJPavUF1Hj4
+         ZH9aUr6KBHT5J0IBEX+Rn1X3uKzT5QGFhYuRkdmdsbtwsPysh7zR1hCeWxPRqoz/kf3K
+         tYiuzM8OW280Z7ChzTkySd0GCwFepGhSmrWbpONCnU0RFl2OW4HauMIAj/MICPCpqY/T
+         4kQ3R8cE5OD/f8ugvFF9mM3p3nH9yQDx6yrwT+AsagWa4iFOTgXOz7fA4WoAOYQoaJpU
+         ONdw==
+X-Gm-Message-State: AOAM531DsdzunI0dmWTNP8HEV0HLo7Fl6KETJWGeT4458bba6uDecx8P
+        7LlUFE4uxTepKP/QZ0fBOhFz1A==
+X-Google-Smtp-Source: ABdhPJyaMx5QLAIag6J1ENl4JC/bE4/GzFR/uT4VfoGaI2CeMRe1M+ktjHPKotLWzxB2FlwM5wiqQg==
+X-Received: by 2002:a1c:c90f:: with SMTP id f15mr4159209wmb.142.1620723065986;
+        Tue, 11 May 2021 01:51:05 -0700 (PDT)
+Received: from arch-thunder.local (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
+        by smtp.gmail.com with ESMTPSA id j7sm23042980wmi.21.2021.05.11.01.51.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 May 2021 01:51:05 -0700 (PDT)
+From:   Rui Miguel Silva <rui.silva@linaro.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sebastian Siewior <bigeasy@linutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        Rui Miguel Silva <rui.silva@linaro.org>
+Subject: [PATCH v2 0/9] usb: isp1760: extend support for isp1763
+Date:   Tue, 11 May 2021 09:50:52 +0100
+Message-Id: <20210511085101.2081399-1-rui.silva@linaro.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <YJowd/tDgVD2TBKO@smile.fi.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 11, 2021 at 10:21:27AM +0300, Andy Shevchenko wrote:
-> On Mon, May 10, 2021 at 10:16:41PM +0200, Stephan Gerhold wrote:
-> > On Mon, May 10, 2021 at 09:48:48PM +0200, Ondřej Jirman wrote:
-> > 
-> >   - Bulk regulator API: AFAICT there is no way to use it while also
-> >     maintaining the correct enable/disable order plus the 10us delay.
-> >     See https://lore.kernel.org/linux-input/X%2Fwj+bxe%2FIlznCj6@gerhold.net/
-> 
-> This by the way can be fixed on regulator level (adding some like ranges into
-> bulk structure with timeouts, and if 0, skip them).
-> 
+The Arm MPS3 FPGA prototyping board [0] have an isp1763 [1] as USB
+controller.  There is already support for the isp1760 and isp1761 in
+tree, this series extend the support also for the isp1763.
 
-At the moment the bulk regulator API seems specifically designed to
-enable all the regulators at the same time (with some funky asynchronous
-scheduling code). I'm not sure if there is a straightforward way to
-fit in a sequential enable/disable order with potential delays.
+Move register access using regmap, remove some platform data and code,
+refactor the mempool, use dr_mode to align to existing bindings, then
+add the support for isp1763 host mode, add bindings files that did not
+existed and at the end add also support for peripheral mode for
+isp1763.
 
-I'm also not entirely convinced it's worth it in this case. I would say
-the code in this patch (except for the dev_err_probe()) is still quite
-easy to read. Encoding the enable/disable order + delays in some bulk
-regulator struct might actually be more difficult to read.
+@Laurent and @Sebastian, I add both of you in the bindings files as
+maintainers (it is a mandatory field)since you were the ones which
+contributed with the initial code and peripheral code, let me know if
+you are ok with it.  If yes I may send a follow up to add also entries
+in MAINTAINERS file that it is also missing.
 
-Thanks,
-Stephan
+v1 [2] -> v2:
+
+kernel test robot:
+- add two patches (1/9 and 3/9) to fix dozens of pre-existing sparse
+  warnings so that this series does not introduce new ones.
+  No sparse warning left.
+- fix duplication of regmap fields
+
+Laurent:
+- move initializers from .h to .c
+- change interrupt registers setup from field to one shot register
+  setting (did not change hcd hw mode init because I think it did not
+  make the difference and even avoid artifact around setting twice the
+  register)
+
+Rob test bot:
+- fix suffix at compatible string to clean up warning in bindings
+
+Cheers,
+   Rui
+
+[0]: https://developer.arm.com/tools-and-software/development-boards/fpga-prototyping-boards/mps3
+[1]: https://media.digikey.com/pdf/Data%20Sheets/ST%20Ericsson%20PDFs/ISP1763A.pdf
+[2]: https://lore.kernel.org/linux-devicetree/20210504101910.18619-1-rui.silva@linaro.org/
+
+Rui Miguel Silva (9):
+  usb: isp1760: fix strict typechecking
+  usb: isp1760: move to regmap for register access
+  usb: isp1760: use relaxed primitives
+  usb: isp1760: remove platform data struct and code
+  usb: isp1760: hcd: refactor mempool config and setup
+  usb: isp1760: use dr_mode binding
+  usb: isp1760: add support for isp1763
+  dt-bindings: usb: nxp,isp1760: add bindings
+  usb: isp1763: add peripheral mode
+
+ .../devicetree/bindings/usb/nxp,isp1760.yaml  |   59 +
+ arch/arm/boot/dts/arm-realview-eb.dtsi        |    2 +-
+ arch/arm/boot/dts/arm-realview-pb1176.dts     |    2 +-
+ arch/arm/boot/dts/arm-realview-pb11mp.dts     |    2 +-
+ arch/arm/boot/dts/arm-realview-pbx.dtsi       |    2 +-
+ arch/arm/boot/dts/vexpress-v2m-rs1.dtsi       |    2 +-
+ arch/arm/boot/dts/vexpress-v2m.dtsi           |    2 +-
+ drivers/usb/isp1760/Kconfig                   |    4 +-
+ drivers/usb/isp1760/isp1760-core.c            |  513 ++++++++-
+ drivers/usb/isp1760/isp1760-core.h            |   44 +-
+ drivers/usb/isp1760/isp1760-hcd.c             | 1021 ++++++++++++-----
+ drivers/usb/isp1760/isp1760-hcd.h             |   57 +-
+ drivers/usb/isp1760/isp1760-if.c              |   41 +-
+ drivers/usb/isp1760/isp1760-regs.h            |  435 ++++---
+ drivers/usb/isp1760/isp1760-udc.c             |  250 ++--
+ drivers/usb/isp1760/isp1760-udc.h             |   13 +-
+ include/linux/usb/isp1760.h                   |   19 -
+ 17 files changed, 1758 insertions(+), 710 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/nxp,isp1760.yaml
+ delete mode 100644 include/linux/usb/isp1760.h
+
+-- 
+2.31.1
+
