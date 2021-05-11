@@ -2,301 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B63D37A909
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 16:23:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93E3537A910
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 16:24:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231617AbhEKOYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 10:24:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47492 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231501AbhEKOYy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 10:24:54 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EF6BC06174A
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 07:23:48 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id b17so23124336ede.0
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 07:23:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Br8rMX5HFxDRkh9ZQ3wOwD7w/n9WgFZfbCjeKHedFic=;
-        b=F/yK3VMsNrQ9uRK+zK0uvVo09atNln8Pg6B/yMAjawvRyCz0GXT3c1ObjYFC5pwL4E
-         CjR5EKMW3JX/U4+RPdpRbknd5AFDz+2cySorzXzlfDxe3Pl8pCZoDwDLd+qyWXxdt3kT
-         GopJlW7OnIJDhWv662lQGvPuctkuZkghWO/oouxmysx9HUA1P8rIYeNRxhDlkzYyC/pW
-         2vCAMeuEsyReoSJ/9BoEvAVvcxwL1M4oG1O4RTqM9HHVT1a+UAT6nSgr1nIfuu1x3+24
-         88IUgrqu9ozVqLiQ+xFEbUJq8nB24LRCiNmgPz3hX8vIgj9CAy9iy7gFUKUTcBc1bHps
-         OLng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Br8rMX5HFxDRkh9ZQ3wOwD7w/n9WgFZfbCjeKHedFic=;
-        b=WqhdT/HNPeakMzRP73+/nSzQQ6ct1pNHEkaSmHMT4KGPu3+rLP0w8IS/E1E3TYOtc6
-         DOW7R+BDb+zvJhYypiGyn0bZ+8O5yYnTWKl2lvy+LcZB7m6sct2JkC/e2FQr1zk1phCy
-         XX+jlwY2qH8J9qVNlsiLU6igoyR5bANOV8FhqlcI4IyYfnLCI4zkZ8/MinmjqXFuYk5W
-         S7mAVNuNEFlEbBCqCtRPnlzEObvbU0KN/UqEN4wsBGQRaOfUnQuVgRYTQYA+2VZb6Yld
-         GT6412I5Cn11R6HJlTLjC5Qqesbcw1pSVCdflkeStbjlRg4CuKNHhRD+MH73JYCfBH9i
-         zM7w==
-X-Gm-Message-State: AOAM531khohOksr0IzJRjo3dhM+5rGe/oqLPd0K6Z3WAxjZa/IRTmzdN
-        VKfwM6fOZ1qHjwpFd6H8pyHIOQ==
-X-Google-Smtp-Source: ABdhPJw3QMO17Xc6fkoixF8k6OA9IQQZz7j/h65Uo4/I+kG0XIJ3DEl2gOMptIKZkzLjjP2i6E2wfQ==
-X-Received: by 2002:a05:6402:c7:: with SMTP id i7mr37569269edu.194.1620743027005;
-        Tue, 11 May 2021 07:23:47 -0700 (PDT)
-Received: from bismarck.berto.se (p54ac5521.dip0.t-ipconnect.de. [84.172.85.33])
-        by smtp.googlemail.com with ESMTPSA id l11sm14303565eds.75.2021.05.11.07.23.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 May 2021 07:23:46 -0700 (PDT)
-From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org
-Cc:     linux-renesas-soc@vger.kernel.org,
-        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Subject: [PATCH v2] media: dt-bindings: media: renesas,isp: Add bindings for ISP Channel Selector
-Date:   Tue, 11 May 2021 16:23:20 +0200
-Message-Id: <20210511142320.3463742-1-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.31.1
+        id S231786AbhEKOZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 10:25:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60488 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231773AbhEKOZH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 May 2021 10:25:07 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7BF676187E;
+        Tue, 11 May 2021 14:24:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1620743040;
+        bh=K5dIHfa4f6iByDzBZIlrjQRjF6/bEjxWK1nUAqzRpew=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=JwaonazL7mHtxi37clzYyAaTtim9WYGe0jNdHlIfH66KDgGwD7QSLjEbrzvQMGgxj
+         cDxVGdxsCSttt8JIk8CkX28GzepNyrYgvBI1JuvlFOJaMgtQqfDezEAUokTzNj9Di/
+         AXk99SIB1YVQuMhT8u6c+PflBGCBBVOhpYgwe9cQWyML9PY1iJv974grpxFQf2Zlfk
+         aUGvNVSxIAiuPtI40JwsNp54vhkyiWFA7kZoGWTVhKJA8n9Wz1XL4k007CFv87+k2k
+         ie6Ts3jvb6fuJ96vpOt+4eetlT3LXFNfFHwPDzEMeFWHkETQEygR474DDgvL+Oc1l/
+         9cZVdIGiRgynA==
+Received: by mail-ed1-f53.google.com with SMTP id v5so12032451edc.8;
+        Tue, 11 May 2021 07:24:00 -0700 (PDT)
+X-Gm-Message-State: AOAM5336IfGGHK4WvHXBJwJ1DkR9FDCNaG8F6ys88Kmm2uB8QC8lGEBv
+        7Kemzwb5+bFmJnTumAKG56ABR7gqI57cF0v2Aw==
+X-Google-Smtp-Source: ABdhPJxvejkoMRuepYDfIZklCbkFbvR1TbNfZ2DNIhf0/HxlULmwCrdyYucaU8vfjuT695OoYvWsI5knsrz4cgRv3yU=
+X-Received: by 2002:a50:c446:: with SMTP id w6mr33152086edf.62.1620743038881;
+ Tue, 11 May 2021 07:23:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20210510204524.617390-1-robh@kernel.org> <d3aae746-284b-b0bc-0d52-a76c361d3592@lucaceresoli.net>
+ <CAL_JsqLhwifngoNK0ciO=yuVqpEbMGOSWMHyT=5DcYcO9jcuCw@mail.gmail.com> <2b09c4ed-758d-6eed-8fc1-39653d10e844@lucaceresoli.net>
+In-Reply-To: <2b09c4ed-758d-6eed-8fc1-39653d10e844@lucaceresoli.net>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 11 May 2021 09:23:44 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKEdtJ=NndWAR4j1WEBnzML_UkGFzKd6fkKOiV1SLFczg@mail.gmail.com>
+Message-ID: <CAL_JsqKEdtJ=NndWAR4j1WEBnzML_UkGFzKd6fkKOiV1SLFczg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: More removals of type references on common properties
+To:     Luca Ceresoli <luca@lucaceresoli.net>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>,
+        Odelu Kukatla <okukatla@codeaurora.org>,
+        Alex Elder <elder@kernel.org>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Input <linux-input@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for Renesas R-Car ISP Channel Selector IP. The ISP is
-responsible for filtering the MIPI CSI-2 bus and directing the different
-CSI-2 virtual channels to different R-Car VIN instances (DMA engines)
-for capture.
+On Tue, May 11, 2021 at 9:09 AM Luca Ceresoli <luca@lucaceresoli.net> wrote:
+>
+> Hi Rob,
+>
+> On 11/05/21 15:44, Rob Herring wrote:
+> > On Tue, May 11, 2021 at 2:20 AM Luca Ceresoli <luca@lucaceresoli.net> wrote:
+> >>
+> >> Hi,
+> >>
+> >> On 10/05/21 22:45, Rob Herring wrote:
+> >>> Users of common properties shouldn't have a type definition as the
+> >>> common schemas already have one. A few new ones slipped in and
+> >>> *-names was missed in the last clean-up pass. Drop all the unnecessary
+> >>> type references in the tree.
+> >>>
+> >>> A meta-schema update to catch these is pending.
+> >>>
+> >>> Cc: Luca Ceresoli <luca@lucaceresoli.net>
+> >>> Cc: Stephen Boyd <sboyd@kernel.org>
+> >>> Cc: Olivier Moysan <olivier.moysan@foss.st.com>
+> >>> Cc: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+> >>> Cc: Jonathan Cameron <jic23@kernel.org>
+> >>> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> >>> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> >>> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> >>> Cc: Georgi Djakov <djakov@kernel.org>
+> >>> Cc: "David S. Miller" <davem@davemloft.net>
+> >>> Cc: Jakub Kicinski <kuba@kernel.org>
+> >>> Cc: Sebastian Reichel <sre@kernel.org>
+> >>> Cc: Orson Zhai <orsonzhai@gmail.com>
+> >>> Cc: Baolin Wang <baolin.wang7@gmail.com>
+> >>> Cc: Chunyan Zhang <zhang.lyra@gmail.com>
+> >>> Cc: Liam Girdwood <lgirdwood@gmail.com>
+> >>> Cc: Mark Brown <broonie@kernel.org>
+> >>> Cc: Fabrice Gasnier <fabrice.gasnier@st.com>
+> >>> Cc: Odelu Kukatla <okukatla@codeaurora.org>
+> >>> Cc: Alex Elder <elder@kernel.org>
+> >>> Cc: Shengjiu Wang <shengjiu.wang@nxp.com>
+> >>> Cc: linux-clk@vger.kernel.org
+> >>> Cc: alsa-devel@alsa-project.org
+> >>> Cc: linux-iio@vger.kernel.org
+> >>> Cc: linux-arm-kernel@lists.infradead.org
+> >>> Cc: linux-input@vger.kernel.org
+> >>> Cc: linux-pm@vger.kernel.org
+> >>> Cc: netdev@vger.kernel.org
+> >>> Signed-off-by: Rob Herring <robh@kernel.org>
+> >>> ---
+> >>>  Documentation/devicetree/bindings/clock/idt,versaclock5.yaml    | 2 --
+> >>>  .../devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml         | 1 -
+> >>>  Documentation/devicetree/bindings/input/input.yaml              | 1 -
+> >>>  Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml   | 1 -
+> >>>  Documentation/devicetree/bindings/net/qcom,ipa.yaml             | 1 -
+> >>>  .../devicetree/bindings/power/supply/sc2731-charger.yaml        | 2 +-
+> >>>  Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml          | 2 +-
+> >>>  7 files changed, 2 insertions(+), 8 deletions(-)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> >>> index c268debe5b8d..28675b0b80f1 100644
+> >>> --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> >>> +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> >>> @@ -60,7 +60,6 @@ properties:
+> >>>      maxItems: 2
+> >>>
+> >>>    idt,xtal-load-femtofarads:
+> >>> -    $ref: /schemas/types.yaml#/definitions/uint32
+> >>>      minimum: 9000
+> >>>      maximum: 22760
+> >>>      description: Optional load capacitor for XTAL1 and XTAL2
+> >>> @@ -84,7 +83,6 @@ patternProperties:
+> >>>          enum: [ 1800000, 2500000, 3300000 ]
+> >>>        idt,slew-percent:
+> >>>          description: The Slew rate control for CMOS single-ended.
+> >>> -        $ref: /schemas/types.yaml#/definitions/uint32
+> >>>          enum: [ 80, 85, 90, 100 ]
+> >>
+> >> Ok, but shouldn't "percent" be listed in
+> >> Documentation/devicetree/bindings/property-units.txt?
+> >
+> > It is in the schema already[1].
+>
+> Sure, but having an incomplete file in the kernel is poorly useful, if
+> not misleading. What about any of these options:
+>
+> - add to property-units.txt the missing units
+> - delete property-units.txt from the kernel sources
+> - replace the entire content of property-units.txt with a link to the
+>   schema file, stating it is the authoritative and complete source
+>
+> I would feel a lot better with any of these. I can prepare the patch too.
 
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
----
-* Changes since v1
-- Fix order of compatible value.
-- Use /schemas/graph.yaml#/properties/port instead of
-  /schemas/graph.yaml#/$defs/port-base for port@0.
-- Drop status in examples.
----
- .../bindings/media/renesas,isp.yaml           | 196 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 197 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/renesas,isp.yaml
+Yes, we should remove it. I just hadn't gotten around to it. Note
+there is one reference to it in writing-bindings.rst.
 
-diff --git a/Documentation/devicetree/bindings/media/renesas,isp.yaml b/Documentation/devicetree/bindings/media/renesas,isp.yaml
-new file mode 100644
-index 0000000000000000..514857d36f6b7d74
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/renesas,isp.yaml
-@@ -0,0 +1,196 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+# Copyright (C) 2021 Renesas Electronics Corp.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/renesas,isp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas R-Car ISP Channel Selector
-+
-+maintainers:
-+  - Niklas Söderlund <niklas.soderlund@ragnatech.se>
-+
-+description:
-+  The R-Car ISP Channel Selector provides MIPI CSI-2 VC and DT filtering
-+  capabilities for the Renesas R-Car family of devices. It is used in
-+  conjunction with the R-Car VIN and CSI-2 modules, which provides the video
-+  capture capabilities.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r8a779a0-isp # V3U
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Input port node, multiple endpoints describing the connected R-Car
-+          CSI-2 receivers.
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Single endpoint describing the R-Car VIN connected to output port 0.
-+
-+      port@2:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Single endpoint describing the R-Car VIN connected to output port 1.
-+
-+      port@3:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Single endpoint describing the R-Car VIN connected to output port 2.
-+
-+      port@4:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Single endpoint describing the R-Car VIN connected to output port 3.
-+
-+      port@5:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Single endpoint describing the R-Car VIN connected to output port 4.
-+
-+      port@6:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Single endpoint describing the R-Car VIN connected to output port 5.
-+
-+      port@7:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Single endpoint describing the R-Car VIN connected to output port 6.
-+
-+      port@8:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Single endpoint describing the R-Car VIN connected to output port 7.
-+
-+    required:
-+      - port@0
-+      - port@1
-+      - port@2
-+      - port@3
-+      - port@4
-+      - port@5
-+      - port@6
-+      - port@7
-+      - port@8
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - power-domains
-+  - resets
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r8a779a0-cpg-mssr.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/power/r8a779a0-sysc.h>
-+
-+    isp1: isp@fed20000 {
-+            compatible = "renesas,r8a779a0-isp";
-+            reg = <0xfed20000 0x10000>;
-+            interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
-+            clocks = <&cpg CPG_MOD 613>;
-+            power-domains = <&sysc R8A779A0_PD_A3ISP01>;
-+            resets = <&cpg 613>;
-+
-+            ports {
-+                    #address-cells = <1>;
-+                    #size-cells = <0>;
-+
-+                    port@0 {
-+                            #address-cells = <1>;
-+                            #size-cells = <0>;
-+
-+                            reg = <0>;
-+                            isp1csi41: endpoint@1 {
-+                                    reg = <1>;
-+                                    remote-endpoint = <&csi41isp1>;
-+                            };
-+                    };
-+
-+                    port@1 {
-+                            reg = <1>;
-+                            isp1vin08: endpoint {
-+                                    remote-endpoint = <&vin08isp1>;
-+                            };
-+                    };
-+
-+                    port@2 {
-+                            reg = <2>;
-+                            isp1vin09: endpoint {
-+                                    remote-endpoint = <&vin09isp1>;
-+                            };
-+                    };
-+
-+                    port@3 {
-+                            reg = <3>;
-+                            isp1vin10: endpoint {
-+                                    remote-endpoint = <&vin10isp1>;
-+                            };
-+                    };
-+
-+                    port@4 {
-+                            reg = <4>;
-+                            isp1vin11: endpoint {
-+                                    remote-endpoint = <&vin11isp1>;
-+                            };
-+                    };
-+
-+                    port@5 {
-+                            reg = <5>;
-+                            isp1vin12: endpoint {
-+                                    remote-endpoint = <&vin12isp1>;
-+                            };
-+                    };
-+
-+                    port@6 {
-+                            reg = <6>;
-+                            isp1vin13: endpoint {
-+                                    remote-endpoint = <&vin13isp1>;
-+                            };
-+                    };
-+
-+                    port@7 {
-+                            reg = <7>;
-+                            isp1vin14: endpoint {
-+                                    remote-endpoint = <&vin14isp1>;
-+                            };
-+                    };
-+
-+                    port@8 {
-+                            reg = <8>;
-+                            isp1vin15: endpoint {
-+                                    remote-endpoint = <&vin15isp1>;
-+                            };
-+                    };
-+            };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8d36a86863b25335..c35a9c93da84f4f7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11398,6 +11398,7 @@ L:	linux-renesas-soc@vger.kernel.org
- S:	Supported
- T:	git git://linuxtv.org/media_tree.git
- F:	Documentation/devicetree/bindings/media/renesas,csi2.yaml
-+F:	Documentation/devicetree/bindings/media/renesas,isp.yaml
- F:	Documentation/devicetree/bindings/media/renesas,vin.yaml
- F:	drivers/media/platform/rcar-vin/
- 
--- 
-2.31.1
-
+Rob
