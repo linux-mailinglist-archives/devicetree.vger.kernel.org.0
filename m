@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33B4D37A28A
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 10:51:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 443F837A28C
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 10:51:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230386AbhEKIwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 04:52:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56724 "EHLO
+        id S230370AbhEKIwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 04:52:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230316AbhEKIwN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 04:52:13 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 454ABC061574
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 01:51:07 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id g65so10644243wmg.2
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 01:51:07 -0700 (PDT)
+        with ESMTP id S230486AbhEKIwP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 04:52:15 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D0B6C06175F
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 01:51:09 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id y124-20020a1c32820000b029010c93864955so742850wmy.5
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 01:51:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=QF3gKv7VTtDVAFANjakXh9njdRISNpRUS3Lr86kJVaY=;
-        b=okWZdckEqGZUXxO3Zjpwgy3oHKs5yLJFHVgqgQY+OITUgoGjavCiCBgizlvL21Tlq/
-         xfu8EdJWz4GZ4rKFkbbjrAukgz3gMZiNs52UxS4PKXG/G5b4AkL4N5ruDcRO35ykUkKW
-         qKCV8M06TMNJ4l860Mi8zjMC8AML3nGgzuE8PnU48rhmFYWKmeQmRRoAwFqpygGyQ1kA
-         QVfxeXJBVB2x98WTh/9U98c8+4JOGuCgi4qoEFsz0MPPW/NgJrIHsleiWbtoQxgc7Xcn
-         aFPxfLozWrqfiXDQUSPE+qcws/5x6Upc+mfQng4oT7h0qZVszE7dswxrUEfL1ASv4V88
-         N+bA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=9wdsrW9vDLYc6IQvaaSKZQ3XOa1HAhG690/1zHFSgqw=;
+        b=SDqe3vIyqiOg3rMT4NazE7yzrdytv5uiYY6zTLZBtlsAPcaBhEbZ+OS+WEClXW2Cvu
+         ELlj/Mx9y5PneND99G3Q37+g9rUxSJFcUozSuEwiNEVZc1NIMtw7fDXP/XZyQB876SBL
+         +a9NVOrIxk0306JAdRUV0noVQTWnRwglCg8C2Almq7buk/QJ7R5LbYIabzg+1f+HkATW
+         BzQHFisDrMQpeaHvQk77MRm4Ss6+l1g4RG7D3zksLVUYiW9qOk8e7H36AhjYV3b5xATC
+         RD+A0RvXvXm34QgJ/koAcrIXcHclTqAjtH0vBmEfq6tqavIUlryIRaY9CO8PTMMCLORm
+         LGQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=QF3gKv7VTtDVAFANjakXh9njdRISNpRUS3Lr86kJVaY=;
-        b=mdnmVSu+SvhqMh0ptsHGIzhSV1Eg7PYN6psZiM0mKdoaKITB6c+FqE60A17CBTNh5q
-         Pj5+Tgmvq4CBN/4RmA7/DC6utjP4cnTjW8Bz3+cq1ToO2n3lh903/vOKxoJPavUF1Hj4
-         ZH9aUr6KBHT5J0IBEX+Rn1X3uKzT5QGFhYuRkdmdsbtwsPysh7zR1hCeWxPRqoz/kf3K
-         tYiuzM8OW280Z7ChzTkySd0GCwFepGhSmrWbpONCnU0RFl2OW4HauMIAj/MICPCpqY/T
-         4kQ3R8cE5OD/f8ugvFF9mM3p3nH9yQDx6yrwT+AsagWa4iFOTgXOz7fA4WoAOYQoaJpU
-         ONdw==
-X-Gm-Message-State: AOAM531DsdzunI0dmWTNP8HEV0HLo7Fl6KETJWGeT4458bba6uDecx8P
-        7LlUFE4uxTepKP/QZ0fBOhFz1A==
-X-Google-Smtp-Source: ABdhPJyaMx5QLAIag6J1ENl4JC/bE4/GzFR/uT4VfoGaI2CeMRe1M+ktjHPKotLWzxB2FlwM5wiqQg==
-X-Received: by 2002:a1c:c90f:: with SMTP id f15mr4159209wmb.142.1620723065986;
-        Tue, 11 May 2021 01:51:05 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=9wdsrW9vDLYc6IQvaaSKZQ3XOa1HAhG690/1zHFSgqw=;
+        b=KgOoeHyqyB6aXvKWaDCJUP9sAAXho2SaIbxBloylNQUEs5FJxARZ1oHcKnsErUmE1q
+         vSp+bFE3IINbG6NT+xLy4OE7seg9MLqogk0d3hPWWg1/hEAPH8D6ulqDQwYNmI/Eu36U
+         SXQJm4b7jIhP3AXckUe0djs6L2wPBoEM8r1EwgN4k9GRgSbCI9MCqtYYz6O4AdvAj2SG
+         cJAImoFcqtP0oqUe3wQQfmK4kedMdbrjBErqSPaUSujhAG49/oN+Avby9riaXScqrcrg
+         YzC5jrCcXheolp1ZETtmda7Xe+/45tSBobe0IxMRL6o24dzClvUSSoovxjihhH4+5Av7
+         ps/Q==
+X-Gm-Message-State: AOAM530uVYgZiuk8/0eckbK7cg6Bq9erclsfkXAGU1QS/tJO9LHCiRJp
+        moB7I4yTX8Y/pff83mpnZ9QVWg==
+X-Google-Smtp-Source: ABdhPJxD3VLLuc7tR8qw3mX+RO6PR2fTmFtgJ98N6KaULbSGvgPXQ2Edf6BvTlTdmNbLbPGX9aImuA==
+X-Received: by 2002:a7b:c0cb:: with SMTP id s11mr31372471wmh.146.1620723068095;
+        Tue, 11 May 2021 01:51:08 -0700 (PDT)
 Received: from arch-thunder.local (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
-        by smtp.gmail.com with ESMTPSA id j7sm23042980wmi.21.2021.05.11.01.51.04
+        by smtp.gmail.com with ESMTPSA id j7sm23042980wmi.21.2021.05.11.01.51.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 May 2021 01:51:05 -0700 (PDT)
+        Tue, 11 May 2021 01:51:07 -0700 (PDT)
 From:   Rui Miguel Silva <rui.silva@linaro.org>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Sebastian Siewior <bigeasy@linutronix.de>,
@@ -54,89 +54,196 @@ To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
         Rui Miguel Silva <rui.silva@linaro.org>
-Subject: [PATCH v2 0/9] usb: isp1760: extend support for isp1763
-Date:   Tue, 11 May 2021 09:50:52 +0100
-Message-Id: <20210511085101.2081399-1-rui.silva@linaro.org>
+Subject: [PATCH v2 1/9] usb: isp1760: fix strict typechecking
+Date:   Tue, 11 May 2021 09:50:53 +0100
+Message-Id: <20210511085101.2081399-2-rui.silva@linaro.org>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210511085101.2081399-1-rui.silva@linaro.org>
+References: <20210511085101.2081399-1-rui.silva@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Arm MPS3 FPGA prototyping board [0] have an isp1763 [1] as USB
-controller.  There is already support for the isp1760 and isp1761 in
-tree, this series extend the support also for the isp1763.
+There are a lot of pre-existing typechecking warnings around the
+access and assign of elements of ptd structure of __dw type.
 
-Move register access using regmap, remove some platform data and code,
-refactor the mempool, use dr_mode to align to existing bindings, then
-add the support for isp1763 host mode, add bindings files that did not
-existed and at the end add also support for peripheral mode for
-isp1763.
+sparse: warning: invalid assignment: |=
+sparse:    left side has type restricted __dw
+sparse:    right side has type unsigned int
 
-@Laurent and @Sebastian, I add both of you in the bindings files as
-maintainers (it is a mandatory field)since you were the ones which
-contributed with the initial code and peripheral code, let me know if
-you are ok with it.  If yes I may send a follow up to add also entries
-in MAINTAINERS file that it is also missing.
+or
 
-v1 [2] -> v2:
+warning: restricted __dw degrades to integer
 
-kernel test robot:
-- add two patches (1/9 and 3/9) to fix dozens of pre-existing sparse
-  warnings so that this series does not introduce new ones.
-  No sparse warning left.
-- fix duplication of regmap fields
+or
 
-Laurent:
-- move initializers from .h to .c
-- change interrupt registers setup from field to one shot register
-  setting (did not change hcd hw mode init because I think it did not
-  make the difference and even avoid artifact around setting twice the
-  register)
+sparse: warning: incorrect type in assignment (different base types)
+sparse:    expected restricted __dw [usertype] dw4
+sparse:    got unsigned int [assigned] [usertype] usof
 
-Rob test bot:
-- fix suffix at compatible string to clean up warning in bindings
+To handle this, annotate conversions along the {TO,FROM}_DW* macros
+and some assignments and function arguments.
 
-Cheers,
-   Rui
+This clean up completely all sparse warnings for this driver.
 
-[0]: https://developer.arm.com/tools-and-software/development-boards/fpga-prototyping-boards/mps3
-[1]: https://media.digikey.com/pdf/Data%20Sheets/ST%20Ericsson%20PDFs/ISP1763A.pdf
-[2]: https://lore.kernel.org/linux-devicetree/20210504101910.18619-1-rui.silva@linaro.org/
+Signed-off-by: Rui Miguel Silva <rui.silva@linaro.org>
+---
+ drivers/usb/isp1760/isp1760-hcd.c | 92 ++++++++++++++++---------------
+ 1 file changed, 47 insertions(+), 45 deletions(-)
 
-Rui Miguel Silva (9):
-  usb: isp1760: fix strict typechecking
-  usb: isp1760: move to regmap for register access
-  usb: isp1760: use relaxed primitives
-  usb: isp1760: remove platform data struct and code
-  usb: isp1760: hcd: refactor mempool config and setup
-  usb: isp1760: use dr_mode binding
-  usb: isp1760: add support for isp1763
-  dt-bindings: usb: nxp,isp1760: add bindings
-  usb: isp1763: add peripheral mode
-
- .../devicetree/bindings/usb/nxp,isp1760.yaml  |   59 +
- arch/arm/boot/dts/arm-realview-eb.dtsi        |    2 +-
- arch/arm/boot/dts/arm-realview-pb1176.dts     |    2 +-
- arch/arm/boot/dts/arm-realview-pb11mp.dts     |    2 +-
- arch/arm/boot/dts/arm-realview-pbx.dtsi       |    2 +-
- arch/arm/boot/dts/vexpress-v2m-rs1.dtsi       |    2 +-
- arch/arm/boot/dts/vexpress-v2m.dtsi           |    2 +-
- drivers/usb/isp1760/Kconfig                   |    4 +-
- drivers/usb/isp1760/isp1760-core.c            |  513 ++++++++-
- drivers/usb/isp1760/isp1760-core.h            |   44 +-
- drivers/usb/isp1760/isp1760-hcd.c             | 1021 ++++++++++++-----
- drivers/usb/isp1760/isp1760-hcd.h             |   57 +-
- drivers/usb/isp1760/isp1760-if.c              |   41 +-
- drivers/usb/isp1760/isp1760-regs.h            |  435 ++++---
- drivers/usb/isp1760/isp1760-udc.c             |  250 ++--
- drivers/usb/isp1760/isp1760-udc.h             |   13 +-
- include/linux/usb/isp1760.h                   |   19 -
- 17 files changed, 1758 insertions(+), 710 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/usb/nxp,isp1760.yaml
- delete mode 100644 include/linux/usb/isp1760.h
-
+diff --git a/drivers/usb/isp1760/isp1760-hcd.c b/drivers/usb/isp1760/isp1760-hcd.c
+index 33ae656c4b68..0e0a4b01c710 100644
+--- a/drivers/usb/isp1760/isp1760-hcd.c
++++ b/drivers/usb/isp1760/isp1760-hcd.c
+@@ -66,44 +66,46 @@ struct ptd {
+ #define ATL_PTD_OFFSET		0x0c00
+ #define PAYLOAD_OFFSET		0x1000
+ 
+-
+-/* ATL */
+-/* DW0 */
+-#define DW0_VALID_BIT			1
+-#define FROM_DW0_VALID(x)		((x) & 0x01)
+-#define TO_DW0_LENGTH(x)		(((u32) x) << 3)
+-#define TO_DW0_MAXPACKET(x)		(((u32) x) << 18)
+-#define TO_DW0_MULTI(x)			(((u32) x) << 29)
+-#define TO_DW0_ENDPOINT(x)		(((u32)	x) << 31)
++#define TO_DW(x)	((__force __dw)x)
++#define TO_U32(x)	((__force u32)x)
++
++ /* ATL */
++ /* DW0 */
++#define DW0_VALID_BIT			TO_DW(1)
++#define FROM_DW0_VALID(x)		(TO_U32(x) & 0x01)
++#define TO_DW0_LENGTH(x)		TO_DW((((u32)x) << 3))
++#define TO_DW0_MAXPACKET(x)		TO_DW((((u32)x) << 18))
++#define TO_DW0_MULTI(x)			TO_DW((((u32)x) << 29))
++#define TO_DW0_ENDPOINT(x)		TO_DW((((u32)x) << 31))
+ /* DW1 */
+-#define TO_DW1_DEVICE_ADDR(x)		(((u32) x) << 3)
+-#define TO_DW1_PID_TOKEN(x)		(((u32) x) << 10)
+-#define DW1_TRANS_BULK			((u32) 2 << 12)
+-#define DW1_TRANS_INT			((u32) 3 << 12)
+-#define DW1_TRANS_SPLIT			((u32) 1 << 14)
+-#define DW1_SE_USB_LOSPEED		((u32) 2 << 16)
+-#define TO_DW1_PORT_NUM(x)		(((u32) x) << 18)
+-#define TO_DW1_HUB_NUM(x)		(((u32) x) << 25)
++#define TO_DW1_DEVICE_ADDR(x)		TO_DW((((u32)x) << 3))
++#define TO_DW1_PID_TOKEN(x)		TO_DW((((u32)x) << 10))
++#define DW1_TRANS_BULK			TO_DW(((u32)2 << 12))
++#define DW1_TRANS_INT			TO_DW(((u32)3 << 12))
++#define DW1_TRANS_SPLIT			TO_DW(((u32)1 << 14))
++#define DW1_SE_USB_LOSPEED		TO_DW(((u32)2 << 16))
++#define TO_DW1_PORT_NUM(x)		TO_DW((((u32)x) << 18))
++#define TO_DW1_HUB_NUM(x)		TO_DW((((u32)x) << 25))
+ /* DW2 */
+-#define TO_DW2_DATA_START_ADDR(x)	(((u32) x) << 8)
+-#define TO_DW2_RL(x)			((x) << 25)
+-#define FROM_DW2_RL(x)			(((x) >> 25) & 0xf)
++#define TO_DW2_DATA_START_ADDR(x)	TO_DW((((u32)x) << 8))
++#define TO_DW2_RL(x)			TO_DW(((x) << 25))
++#define FROM_DW2_RL(x)			((TO_U32(x) >> 25) & 0xf)
+ /* DW3 */
+-#define FROM_DW3_NRBYTESTRANSFERRED(x)		((x) & 0x7fff)
+-#define FROM_DW3_SCS_NRBYTESTRANSFERRED(x)	((x) & 0x07ff)
+-#define TO_DW3_NAKCOUNT(x)		((x) << 19)
+-#define FROM_DW3_NAKCOUNT(x)		(((x) >> 19) & 0xf)
+-#define TO_DW3_CERR(x)			((x) << 23)
+-#define FROM_DW3_CERR(x)		(((x) >> 23) & 0x3)
+-#define TO_DW3_DATA_TOGGLE(x)		((x) << 25)
+-#define FROM_DW3_DATA_TOGGLE(x)		(((x) >> 25) & 0x1)
+-#define TO_DW3_PING(x)			((x) << 26)
+-#define FROM_DW3_PING(x)		(((x) >> 26) & 0x1)
+-#define DW3_ERROR_BIT			(1 << 28)
+-#define DW3_BABBLE_BIT			(1 << 29)
+-#define DW3_HALT_BIT			(1 << 30)
+-#define DW3_ACTIVE_BIT			(1 << 31)
+-#define FROM_DW3_ACTIVE(x)		(((x) >> 31) & 0x01)
++#define FROM_DW3_NRBYTESTRANSFERRED(x)		TO_U32((x) & 0x7fff)
++#define FROM_DW3_SCS_NRBYTESTRANSFERRED(x)	TO_U32((x) & 0x07ff)
++#define TO_DW3_NAKCOUNT(x)		TO_DW(((x) << 19))
++#define FROM_DW3_NAKCOUNT(x)		((TO_U32(x) >> 19) & 0xf)
++#define TO_DW3_CERR(x)			TO_DW(((x) << 23))
++#define FROM_DW3_CERR(x)		((TO_U32(x) >> 23) & 0x3)
++#define TO_DW3_DATA_TOGGLE(x)		TO_DW(((x) << 25))
++#define FROM_DW3_DATA_TOGGLE(x)		((TO_U32(x) >> 25) & 0x1)
++#define TO_DW3_PING(x)			TO_DW(((x) << 26))
++#define FROM_DW3_PING(x)		((TO_U32(x) >> 26) & 0x1)
++#define DW3_ERROR_BIT			TO_DW((1 << 28))
++#define DW3_BABBLE_BIT			TO_DW((1 << 29))
++#define DW3_HALT_BIT			TO_DW((1 << 30))
++#define DW3_ACTIVE_BIT			TO_DW((1 << 31))
++#define FROM_DW3_ACTIVE(x)		((TO_U32(x) >> 31) & 0x01)
+ 
+ #define INT_UNDERRUN			(1 << 2)
+ #define INT_BABBLE			(1 << 1)
+@@ -292,12 +294,12 @@ static void ptd_write(void __iomem *base, u32 ptd_offset, u32 slot,
+ 								struct ptd *ptd)
+ {
+ 	mem_writes8(base, ptd_offset + slot*sizeof(*ptd) + sizeof(ptd->dw0),
+-						&ptd->dw1, 7*sizeof(ptd->dw1));
++		    (__force u32 *)&ptd->dw1, 7 * sizeof(ptd->dw1));
+ 	/* Make sure dw0 gets written last (after other dw's and after payload)
+ 	   since it contains the enable bit */
+ 	wmb();
+-	mem_writes8(base, ptd_offset + slot*sizeof(*ptd), &ptd->dw0,
+-							sizeof(ptd->dw0));
++	mem_writes8(base, ptd_offset + slot * sizeof(*ptd),
++		    (__force u32 *)&ptd->dw0, sizeof(ptd->dw0));
+ }
+ 
+ 
+@@ -553,7 +555,7 @@ static void create_ptd_atl(struct isp1760_qh *qh,
+ 	ptd->dw0 |= TO_DW0_ENDPOINT(usb_pipeendpoint(qtd->urb->pipe));
+ 
+ 	/* DW1 */
+-	ptd->dw1 = usb_pipeendpoint(qtd->urb->pipe) >> 1;
++	ptd->dw1 = TO_DW((usb_pipeendpoint(qtd->urb->pipe) >> 1));
+ 	ptd->dw1 |= TO_DW1_DEVICE_ADDR(usb_pipedevice(qtd->urb->pipe));
+ 	ptd->dw1 |= TO_DW1_PID_TOKEN(qtd->packet_type);
+ 
+@@ -575,7 +577,7 @@ static void create_ptd_atl(struct isp1760_qh *qh,
+ 		/* SE bit for Split INT transfers */
+ 		if (usb_pipeint(qtd->urb->pipe) &&
+ 				(qtd->urb->dev->speed == USB_SPEED_LOW))
+-			ptd->dw1 |= 2 << 16;
++			ptd->dw1 |= DW1_SE_USB_LOSPEED;
+ 
+ 		rl = 0;
+ 		nak = 0;
+@@ -647,14 +649,14 @@ static void transform_add_int(struct isp1760_qh *qh,
+ 		 * that number come from? 0xff seems to work fine...
+ 		 */
+ 		/* ptd->dw5 = 0x1c; */
+-		ptd->dw5 = 0xff; /* Execute Complete Split on any uFrame */
++		ptd->dw5 = TO_DW(0xff); /* Execute Complete Split on any uFrame */
+ 	}
+ 
+ 	period = period >> 1;/* Ensure equal or shorter period than requested */
+ 	period &= 0xf8; /* Mask off too large values and lowest unused 3 bits */
+ 
+-	ptd->dw2 |= period;
+-	ptd->dw4 = usof;
++	ptd->dw2 |= TO_DW(period);
++	ptd->dw4 = TO_DW(usof);
+ }
+ 
+ static void create_ptd_int(struct isp1760_qh *qh,
+@@ -977,10 +979,10 @@ static void schedule_ptds(struct usb_hcd *hcd)
+ static int check_int_transfer(struct usb_hcd *hcd, struct ptd *ptd,
+ 								struct urb *urb)
+ {
+-	__dw dw4;
++	u32 dw4;
+ 	int i;
+ 
+-	dw4 = ptd->dw4;
++	dw4 = TO_U32(ptd->dw4);
+ 	dw4 >>= 8;
+ 
+ 	/* FIXME: ISP1761 datasheet does not say what to do with these. Do we
 -- 
 2.31.1
 
