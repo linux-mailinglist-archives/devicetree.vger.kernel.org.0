@@ -2,121 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2642337A8EA
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 16:18:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC56037A901
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 16:21:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231661AbhEKOTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 10:19:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56392 "EHLO mail.kernel.org"
+        id S231750AbhEKOWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 10:22:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58564 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231523AbhEKOTr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 May 2021 10:19:47 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3647B611BE;
-        Tue, 11 May 2021 14:18:39 +0000 (UTC)
-Date:   Tue, 11 May 2021 15:19:45 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Peter Rosin <peda@axentia.se>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: afe: current-sense-shunt: add
- io-channel-cells
-Message-ID: <20210511151945.1c3fd6e0@jic23-huawei>
-In-Reply-To: <1e8651a3-e730-411b-18a8-800e9bd9304e@canonical.com>
-References: <20210506150637.35288-1-krzysztof.kozlowski@canonical.com>
-        <0e68ca18-7d8c-12ab-59b1-56404b29be77@axentia.se>
-        <20210508165944.2e3d8d91@jic23-huawei>
-        <1e8651a3-e730-411b-18a8-800e9bd9304e@canonical.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S231154AbhEKOWj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 May 2021 10:22:39 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 443B0611CC;
+        Tue, 11 May 2021 14:21:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1620742892;
+        bh=754tmoCujVq6lcUy8BeWkfA3aUF0gZ2lG5aHBKFhZ3w=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=tQIEz3IwTFUbXijv/Wx2YlxtAGBXUQfAW+URx78HUJvoivQS9TfrOKYIC0BKBgy4x
+         gD8gar4U/unzs6QO4CJtsAMBTTVw2yCiPHdM+czxxV0ONyPDI9irklHQmqStfYXNWO
+         X2JI+YHdqSJ6Hz4JzWnPg5EyNt3DDN0ys/mn6nO3i7d9LiLz5kCN9VRYrdB30KE14s
+         SrVzJssgH9JFdXZv8ALK72yytJrSou+o1ZBFkEF+jmJiie1/+t3F5Dl5Qdi6XBpE4o
+         j7LNZ/DolKP6A8W6Xcnagdi5jF0n0SsXG7bi76q4sUUj3KfoLFTFlANmNGlFIBQ+ym
+         +YqeHlYvLEAUg==
+Received: by mail-ed1-f43.google.com with SMTP id s6so23054227edu.10;
+        Tue, 11 May 2021 07:21:32 -0700 (PDT)
+X-Gm-Message-State: AOAM531uuhGC6Wk8yfP4Sa0A8AFtFTNH+5HtukWmP6mhk0zNuToFJV1n
+        htb90R/zTF0njaJzOdFKyaxF/YzKVHnymPRo0A==
+X-Google-Smtp-Source: ABdhPJz6YEH4sg1aBHVhiGqT0sRQACzH0OtRLw5u2iOJhPP/q+aSP4ABZ5LhSBxOqn6ObbdH+LmLAfnUs2+wn8l27b4=
+X-Received: by 2002:a05:6402:c9b:: with SMTP id cm27mr30368188edb.258.1620742890641;
+ Tue, 11 May 2021 07:21:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20210510141509.929120-1-l.stach@pengutronix.de>
+ <20210510141509.929120-3-l.stach@pengutronix.de> <20210510170510.GA276768@robh.at.kernel.org>
+ <854ec10d9a32df97d1f53a784dffca4e5036b059.camel@pengutronix.de>
+In-Reply-To: <854ec10d9a32df97d1f53a784dffca4e5036b059.camel@pengutronix.de>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 11 May 2021 09:21:13 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+dkJ+bbuQDQieHdocjLoNKN2vib8scJsdGnCnffSGAcA@mail.gmail.com>
+Message-ID: <CAL_Jsq+dkJ+bbuQDQieHdocjLoNKN2vib8scJsdGnCnffSGAcA@mail.gmail.com>
+Subject: Re: [PATCH 3/7] PCI: imx6: Rework PHY search and mapping
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
+        Sascha Hauer <kernel@pengutronix.de>,
+        patchwork-lst@pengutronix.de
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 10 May 2021 08:17:17 -0400
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
+On Tue, May 11, 2021 at 3:11 AM Lucas Stach <l.stach@pengutronix.de> wrote:
+>
+> Am Montag, dem 10.05.2021 um 12:05 -0500 schrieb Rob Herring:
+> > On Mon, May 10, 2021 at 04:15:05PM +0200, Lucas Stach wrote:
+> > > We don't need to have a phandle of the PHY, as we know the compatible
+> > > of the node we are looking for. This will make it easier to put add
+> > > more PHY handling for new generations later on, where the
+> > > "fsl,imx7d-pcie-phy" phandle would be a misnomer.
+> > >
+> > > Also we can use a helper function to get the resource for us,
+> > > simplifying out driver code a bit.
+> >
+> > Better yes, but really all the phy handling should be split out to
+> > its own driver even in the older h/w with shared phy registers.
+> >
+> That would be a quite massive DT binding changing break, possibly even
+> a separate driver. Maybe it's time to do this for i.MX8MM, as the
+> current driver just kept piling on special cases for "almost the same"
+> hardware that by now looks quite different to the original i.MX6 PCIe
+> integration this driver was supposed to handle.
 
-> On 08/05/2021 11:59, Jonathan Cameron wrote:
-> > On Sat, 8 May 2021 00:44:58 +0200
-> > Peter Rosin <peda@axentia.se> wrote:
-> >   
-> >> Hi!
-> >>
-> >> On 2021-05-06 17:06, Krzysztof Kozlowski wrote:  
-> >>> The current-sense-shunt is an IIO provider thus can be referenced by IIO
-> >>> consumers (via "io-channels" property in consumer device node).
-> >>> Such provider is required to describe number of cells used in phandle
-> >>> lookup with "io-channel-cells" property.  This also fixes dtbs_check
-> >>> warnings like:
-> >>>
-> >>>   arch/arm/boot/dts/s5pv210-fascinate4g.dt.yaml: current-sense-shunt:
-> >>>     '#io-channel-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-> >>>
-> >>> Fixes: ce66e52b6c16 ("dt-bindings:iio:afe:current-sense-shunt: txt to yaml conversion.")
-> >>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> >>> ---
-> >>>  .../devicetree/bindings/iio/afe/current-sense-shunt.yaml     | 5 +++++
-> >>>  1 file changed, 5 insertions(+)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/iio/afe/current-sense-shunt.yaml b/Documentation/devicetree/bindings/iio/afe/current-sense-shunt.yaml
-> >>> index 90439a8dc785..05166d8a3124 100644
-> >>> --- a/Documentation/devicetree/bindings/iio/afe/current-sense-shunt.yaml
-> >>> +++ b/Documentation/devicetree/bindings/iio/afe/current-sense-shunt.yaml
-> >>> @@ -24,12 +24,16 @@ properties:
-> >>>      description: |
-> >>>        Channel node of a voltage io-channel.
-> >>>  
-> >>> +  "#io-channel-cells":
-> >>> +    const: 0
-> >>> +
-> >>>    shunt-resistor-micro-ohms:
-> >>>      description: The shunt resistance.
-> >>>  
-> >>>  required:
-> >>>    - compatible
-> >>>    - io-channels
-> >>> +  - "#io-channel-cells"
-> >>>    - shunt-resistor-micro-ohms    
-> >>
-> >> I know I'm listed as maintainer and all, but I have not kept up with the yaml
-> >> conversion. Sorry. So, given that I might very well fundamentally misunderstand
-> >> something, it does not sound correct that #io-channel-cells is now "required".
-> >> I regard it as optional, and only needed if some other in-kernel driver is
-> >> consuming the sensed current. What am I missing?
-> >>  
-> > 
-> > Agreed. This should be optional and I have deliberately not introduced it
-> > into all the bindings that could in theory support being used as providers.
-> > 
-> > So far I've not pushed it out in a blanket fashion into existing bindings
-> > even as optional.
-> >   
-> >> Also, whatever is done in this binding should preferably also be done in the
-> >> two "sister" afe bindings, i.e. current-sense-amplifier and voltage-divider.  
-> > 
-> > This particular case is squashing an error, so whilst I'm happy to have those
-> > gain the binding addition, I would like to see them in a separate patch as
-> > less likely they'd get back ported.
-> > 
-> > If Kryysztof is fine with me just dropping the required I can pick up this patch.  
-> 
-> Having here required number of cells helps any DT-user to seamlessly
-> integrate with it (e.g. with his in-tree or out-of-tree DTS, with
-> overlays). However it also can be added with such DTS or overlay, so in
-> general I don't mind dropping the required piece. Thanks!
-I dropped the required and applied to the togreg branch of iio.git.
+No, you don't need to change DT, and a DT change adding a phy node
+wouldn't even be correct modeling of the h/w IMO. For the i.MX6 phy, a
+separate PHY driver would have to create its own platform device in
+its initcall (if the iMX6 PCI compatible is found). Then the PCI
+driver would need to use a non-DT based phy_get() lookup. For the
+cases with a phandle to the phy, I'd assume a phy driver could be
+instantiated for that node. You'll again need a non-DT phy_get() if
+not using the phy binding.
 
-Thanks,
-
-Jonathan
-
-> 
-> Best regards,
-> Krzysztof
-
+Rob
