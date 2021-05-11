@@ -2,114 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F97B37AD0B
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 19:24:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7B2637ADDB
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 20:08:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231549AbhEKRZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 13:25:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60532 "EHLO
+        id S232043AbhEKSJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 14:09:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231488AbhEKRZO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 13:25:14 -0400
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EB10C06174A
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 10:24:07 -0700 (PDT)
-Received: by mail-oi1-x22b.google.com with SMTP id u16so19721094oiu.7
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 10:24:07 -0700 (PDT)
+        with ESMTP id S232009AbhEKSJO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 14:09:14 -0400
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49486C06175F
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 11:08:07 -0700 (PDT)
+Received: by mail-qk1-x72e.google.com with SMTP id q10so15511528qkc.5
+        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 11:08:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=XmrHR0LeLKDOvGPgiLH+kJ5EvGhX8fXlpAVkIlJfG5Y=;
-        b=ATUh//YBW0Kw74D+sxRJrzheCmYrLCvVYSnudw0MzUBiWvifsoq65X0GohbI/FJmLc
-         wHZlQB62/PKMGGjmqnh0EqEhctNqpE+hapeWnE4mZtFedRZAlgC1lsUoA0i5ZFcOJGtI
-         QaJv6IHglbHVjBIDlTl58pUY6Tj3IYxDac1W0=
+        d=marek-ca.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=m5/6pzxNzbbYkFsZXg0EnLX6bHrV+zgSw51fRvk1jaw=;
+        b=GxqXSpc9O3mQr6WF2n529jLUFaUDRLuLriBdpyn0AZdRmFZL30u5fVlxn6NBAZUYlS
+         UuEdXTOgaE8+46iQTvUj5Cxi+zP087QIt+Q4KbqDdvw8qljS6C7fYaaphVAg/lXkdwQb
+         63cy2eJymoWOm24Kq0QVkSpU4P473CSkNrOu6n9RscYz6sg8LMXvvtBrLacse+7KrC5I
+         zZzvY0eWm6SB7c9dQhVXjBs0wpvlr8qUVxXQtn+9NSf5xMWX7Wi8Dp+jJjHGc1A85XBx
+         mzS5RUqsoPSOFzXOTwmY/20OpyEwohkPDTUXAnpwZnVezauDybPjQBFeQbgTJC4IgHrz
+         Ofug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=XmrHR0LeLKDOvGPgiLH+kJ5EvGhX8fXlpAVkIlJfG5Y=;
-        b=egOJTsL/+bMkJdOhHpRciw3gGS8f96PLqZh4cClSMejK+hUiJm3jPqXbwpazVDW6Uv
-         BO6gfgJLJfM+8tKujcrMelMKqGMdJPesnb4HyuAKlh/SZU/jWrfAmXjhYCXkiTA1jrER
-         vdj39tCSe/JiDPEKl4Pt/gJRc17AAvzXWia7gnExLdbs514l+e+zDNNTrzfw5hCh+vdQ
-         rtYl+50hdwYFoQejJZwBCVsT+8KUcuwdL2mh7XVdDiecHq8VSdpIVlNiCg8TRRiF7TiD
-         961qmASnZKIgoASVKkRVsrICtQ9aK96iK9BGPhQPg0bGIdFm4bKZ39xsAre8CDDte/Kg
-         8spw==
-X-Gm-Message-State: AOAM531vFlwVCD38Vd/4ol06Tbg8pvM3Mwrwlw5ovVndcg0xXIjZQYTK
-        NQJ7LhOsssj6EJ7XnTC3O/RUpfQ6Vv+7oTRCgUxywg==
-X-Google-Smtp-Source: ABdhPJxusffkMJZCUwfXdGeGXpS0u/Ku8ZMHDBE3M2DepCZjKd6VqVmO6mnhU1hB5cse8s5416ajbmCkrUpyE24HNPk=
-X-Received: by 2002:aca:654d:: with SMTP id j13mr4398347oiw.125.1620753846715;
- Tue, 11 May 2021 10:24:06 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 11 May 2021 10:24:06 -0700
-MIME-Version: 1.0
-In-Reply-To: <20210511041930.592483-1-bjorn.andersson@linaro.org>
-References: <20210511041930.592483-1-bjorn.andersson@linaro.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Tue, 11 May 2021 10:24:06 -0700
-Message-ID: <CAE-0n53CxUfHerU68ShKiDPGRSfB-2Cwbt+aHrQsyF6XSMc=CA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: phy: Introduce Qualcomm eDP/DP PHY binding
-To:     Andy Gross <agross@kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=m5/6pzxNzbbYkFsZXg0EnLX6bHrV+zgSw51fRvk1jaw=;
+        b=B9xNCN4c+jBS4GP+15BZ+mhBDgek+6KSMjMtfSWljvbHzcCAjyoqex/nV/EE/BYIKk
+         krouYY67/VWcnIN93Vy4NExz8S83cxNnA5EVVkqQJpTpQxQx8cbJlQmG/khf+j6CrJOk
+         nzFuhGsb/9udUe4t5IErwQ94Xr882Q5FlIhhM0nwsiZZIMUEtsabk7Ft1N/hcSd4UfYb
+         YZW6KsSoMV1nuRl3LSnydZBXYn0BITSnazcRQnJ6GLuj4QZbyavOI8toapYzpFq2COLM
+         UZl4FamJPoHOqTJY9dBaeGoUXmH1EK3rwn9fgukhypJSA9krgc65NYhg91HRIEsqTiq0
+         xFEw==
+X-Gm-Message-State: AOAM530iauDE8p4l7sfIew8beYcrVg4A0W7uuZHASPuHk57LzP0ilzI5
+        a811iaGwTZvatbkgq2MvcQaRfQ==
+X-Google-Smtp-Source: ABdhPJx8gtspoCkhqQR/buYqOvYmOoVT/ts0w783jwbgCnO58tAbN0EGk2e/Hpn9a+JSCs8Vzsnfjw==
+X-Received: by 2002:a05:620a:21c5:: with SMTP id h5mr23029616qka.395.1620756486485;
+        Tue, 11 May 2021 11:08:06 -0700 (PDT)
+Received: from localhost.localdomain (modemcable068.184-131-66.mc.videotron.ca. [66.131.184.68])
+        by smtp.gmail.com with ESMTPSA id g5sm17104476qtm.2.2021.05.11.11.08.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 May 2021 11:08:06 -0700 (PDT)
+From:   Jonathan Marek <jonathan@marek.ca>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     robert.foss@linaro.org, andrey.konovalov@linaro.org,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Clark <robdclark@gmail.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        linux-kernel@vger.kernel.org (open list),
+        linux-media@vger.kernel.org (open list:QUALCOMM CAMERA SUBSYSTEM DRIVER),
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, sbillaka@codeaurora.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Todor Tomov <todor.too@gmail.com>
+Subject: [PATCH 00/17] CAMSS: SM8250 support (and some fixes)
+Date:   Tue, 11 May 2021 14:07:07 -0400
+Message-Id: <20210511180728.23781-1-jonathan@marek.ca>
+X-Mailer: git-send-email 2.26.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Bjorn Andersson (2021-05-10 21:19:29)
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-> new file mode 100644
-> index 000000000000..c258e4f7e332
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/phy/qcom,edp-phy.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Qualcomm DP/eDP PHY
-> +
-> +maintainers:
-> +  - Bjorn Andersson <bjorn.andersson@linaro.org>
-> +
-> +description:
-> +  The Qualcomm DP/eDP PHY is found in a number of Qualcomm platform and
-> +  provides the physical interface for DisplayPort and Embedded Display Port.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,sc8180x-dp-phy
-> +      - qcom,sc8180x-edp-phy
-> +
-> +  reg:
-> +    items:
-> +      - description: PHY base register block
-> +      - description: tx0 register block
-> +      - description: tx1 register block
-> +      - description: PLL register block
-> +
-> +  clocks:
-> +    maxItems: 2
+This adds initial support for SM8250 and its 4 VFEs and 6 CSIPHYs.
+The only big change is the added camss-vfe-480.c to support the
+Titan 480 VFE.
 
-Can this be items: - const: again? I think having maxItems means you can
-have one or two items, which wouldn't match the number of clock-names
-then.
+Jonathan Marek (17):
+  media: camss: csiphy-3ph: don't print HW version as an error
+  media: camss: csiphy-3ph: disable interrupts
+  media: camss: csiphy-3ph: add support for SM8250 CSI DPHY
+  media: camss: csid-170: fix non-10bit formats
+  media: camss: csid-170: don't enable unused irqs
+  media: camss: csid-170: remove stray comment
+  media: camss: csid-170: support more than one lite vfe
+  media: camss: csid-170: set the right HALF_CMD when disabled
+  media: camss: csid: allow csid to work without a regulator
+  media: camss: remove vdda-csiN from sdm845 resources
+  media: camss: fix VFE irq name
+  media: camss: vfe-170: clean up some dead code
+  media: camss: vfe-170: fix "VFE halt timeout" error
+  media: camss: Add initial support for VFE hardware version Titan 480
+  media: camss: add support for V4L2_PIX_FMT_GREY for sdm845 HW
+  media: camss: add support for SM8250 camss
+  media: dt-bindings: media: camss: Add qcom,sm8250-camss binding
 
-> +
-> +  clock-names:
-> +    items:
-> +      - const: aux
-> +      - const: cfg_ahb
-> +
+ .../bindings/media/qcom,sm8250-camss.yaml     | 398 +++++++++++++
+ drivers/media/platform/qcom/camss/Makefile    |   1 +
+ .../platform/qcom/camss/camss-csid-170.c      |  31 +-
+ .../media/platform/qcom/camss/camss-csid.c    |  39 +-
+ .../qcom/camss/camss-csiphy-3ph-1-0.c         | 181 ++++--
+ .../media/platform/qcom/camss/camss-csiphy.c  |   9 +-
+ .../media/platform/qcom/camss/camss-vfe-170.c |  65 +-
+ .../media/platform/qcom/camss/camss-vfe-480.c | 554 ++++++++++++++++++
+ drivers/media/platform/qcom/camss/camss-vfe.c |  13 +-
+ drivers/media/platform/qcom/camss/camss-vfe.h |   1 +
+ .../media/platform/qcom/camss/camss-video.c   |   5 +-
+ drivers/media/platform/qcom/camss/camss.c     | 202 ++++++-
+ drivers/media/platform/qcom/camss/camss.h     |   1 +
+ 13 files changed, 1352 insertions(+), 148 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+ create mode 100644 drivers/media/platform/qcom/camss/camss-vfe-480.c
+
+-- 
+2.26.1
+
