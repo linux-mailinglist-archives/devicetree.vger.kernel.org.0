@@ -2,238 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 94B0937B260
-	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 01:18:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A957937B2C5
+	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 01:50:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229920AbhEKXTW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 19:19:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56258 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229924AbhEKXTW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 19:19:22 -0400
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B157C06175F
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 16:18:14 -0700 (PDT)
-Received: by mail-qv1-xf31.google.com with SMTP id 5so7179255qvk.0
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 16:18:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+fBXq+6nPKqVOlk+v8W280PjoWncpfOOR+yyoDwgdjE=;
-        b=FZRXFHPjEvaukkFmoW4Ji7tyfmF/7vZuOOSEuHFuAwxDPa6oRl7/2Fx9ldAhWulLVk
-         8whcYaziq01nUC0N5yGEmtBFrbFcoLwntKUZgrRBnDZxKr6McpG120KZkCYkv1V8oHZS
-         WZbLnAWGAhhLco7gcDxvDVK/ZcJW3NJt2MV5A=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+fBXq+6nPKqVOlk+v8W280PjoWncpfOOR+yyoDwgdjE=;
-        b=fzw9PCO/HS68o7+EDztEgkpn5aiycaH+rSqXulCWGq+kQCHRY5Bi/LUyVSQ2CeKG/y
-         NI4ogXUCcsM2TUrrevBc9ub5ppM+ntvqVDd4nECQUda4skvS87kiHils2Hgacc5hj3tv
-         T6VjOZR0uyOhCsIieprivQUDfj3C6BS4EWHfhtWF+v8n8HokwO9d588Ggt0kV8v5Abcb
-         HWFJUH6sUwXaSc5Mz3XAm1AaWb/aNrhRiurgH9wiibiSfdNWnH0MvU5w8BU1hYhlGY5y
-         mewZOtuozs4rZ1SsgVzJEJlzVOrgrVcCHw3ZmI0u8wVdUKDrvdIaXgxwTkLzEzsTaxXM
-         vn2Q==
-X-Gm-Message-State: AOAM5314aDHzAObJSjxxCBVhZFmQWsIDxLNIQEcbmfi5vQ7MFAppZRFF
-        VAUitzg7FCzYbwOxTkJ9RJmijM6A1vHEgA==
-X-Google-Smtp-Source: ABdhPJyNiA6K1VAs8wNztqg4nE0ER9Ygz7w770ZBc5nW8UFeJd/Jq+OFPCw9Yc0dU4kwcw7zpsUYMg==
-X-Received: by 2002:a0c:e052:: with SMTP id y18mr31908972qvk.15.1620775093457;
-        Tue, 11 May 2021 16:18:13 -0700 (PDT)
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
-        by smtp.gmail.com with ESMTPSA id c20sm17156892qtg.84.2021.05.11.16.18.10
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 May 2021 16:18:12 -0700 (PDT)
-Received: by mail-yb1-f178.google.com with SMTP id e190so28465762ybb.10
-        for <devicetree@vger.kernel.org>; Tue, 11 May 2021 16:18:10 -0700 (PDT)
-X-Received: by 2002:a25:6088:: with SMTP id u130mr45609181ybb.257.1620775090443;
- Tue, 11 May 2021 16:18:10 -0700 (PDT)
+        id S229736AbhEKXwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 19:52:05 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36120 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229637AbhEKXwF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 May 2021 19:52:05 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1BA716187E;
+        Tue, 11 May 2021 23:50:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1620777058;
+        bh=F5ZEQuF0H9iy+oscjWcT5j+fhCa3iygNB9Kp4e81/pE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=O7IBcM/jHmtJjTBZ+0nNpaPPz/f2AOYcSHLOnCwFuwfnef1H4EhcK7xVOe0CMGTSQ
+         6cLI9+89r+sqpvNuNRk5ajcgk6RqNLtB0LBTeebiFKfq4z/BBLiMmS0F6Bo8kq7yS5
+         8iI9+YVEITzMoWx1LYhTnaFAPVjGEGjp+J2zt9O21ZsfijQqmckUcNUMIX8OozvwyQ
+         b1OsD/88PMWK6bz4Vn2HppEKMKaskLeBoFAZkCYYDU+h4tghUp6SGaMBjxPt2im7mu
+         mSchn0VcimtB33HQ+UGH+J+igGbTz/zZAv9+3dsTh4OCE4oLvMIS8Zkq5S4zYotr4w
+         YBLsXEmdx/Kbw==
+Received: by mail-ej1-f46.google.com with SMTP id m12so32323493eja.2;
+        Tue, 11 May 2021 16:50:58 -0700 (PDT)
+X-Gm-Message-State: AOAM531wroLBjTy0TZGPsn8f+TyA1dhXZll/aVatrnX+Si0omHPn43vW
+        htMdJGQ5S9cyz3+crHdnCCeZFEv34RKC6dggFw==
+X-Google-Smtp-Source: ABdhPJzjNs7/285LwkoeFSKYuqkSqbvIEBl87cc/Cda5/XkfKnqXdUrPzChXJP8JxwNkqt+qZOyNF1qaEMQ3Eu+lbWM=
+X-Received: by 2002:a17:906:b0cb:: with SMTP id bk11mr34935753ejb.310.1620777056572;
+ Tue, 11 May 2021 16:50:56 -0700 (PDT)
 MIME-Version: 1.0
-References: <1619416756-3533-1-git-send-email-rajeevny@codeaurora.org>
- <1619416756-3533-2-git-send-email-rajeevny@codeaurora.org>
- <20210429180435.GA1385465@robh.at.kernel.org> <CAD=FV=V-kdySH5Pp-Fb-PRYk60Ha_UOTXJHcvMp+uV3P1oo7Uw@mail.gmail.com>
- <78c4bd291bd4a17ae2a1d02d0217de43@codeaurora.org> <CAD=FV=XW90L6or8NKA-Rjjp3s3fRno1xSkD+X0PA1rTyeKgpMw@mail.gmail.com>
- <c867b2e59e90899e6c1648e06f5f9cd2@codeaurora.org>
-In-Reply-To: <c867b2e59e90899e6c1648e06f5f9cd2@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 11 May 2021 16:17:59 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XBb9zs=ZGG-Ky8=_is20L1O6pJ-xBV1k5cF6-vL78pgA@mail.gmail.com>
-Message-ID: <CAD=FV=XBb9zs=ZGG-Ky8=_is20L1O6pJ-xBV1k5cF6-vL78pgA@mail.gmail.com>
-Subject: Re: [v3 1/2] dt-bindings: backlight: add DisplayPort aux backlight
-To:     Rajeev Nandan <rajeevny@codeaurora.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Rob Clark <robdclark@gmail.com>, mkrishn@codeaurora.org,
-        Kalyan Thota <kalyan_t@codeaurora.org>,
-        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
-        Abhinav Kumar <abhinavk@codeaurora.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        Jani Nikula <jani.nikula@linux.intel.com>,
-        Lyude Paul <lyude@redhat.com>,
-        "Lankhorst, Maarten" <maarten.lankhorst@intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Andrzej Hajda <a.hajda@samsung.com>
+References: <20210429041641.11077-1-rex-bc.chen@mediatek.com> <20210429041641.11077-4-rex-bc.chen@mediatek.com>
+In-Reply-To: <20210429041641.11077-4-rex-bc.chen@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Wed, 12 May 2021 07:50:45 +0800
+X-Gmail-Original-Message-ID: <CAAOTY__8=BhPScCSk4OMmJ3rYzfER0ZAqSVCn45ASs0LsM---w@mail.gmail.com>
+Message-ID: <CAAOTY__8=BhPScCSk4OMmJ3rYzfER0ZAqSVCn45ASs0LsM---w@mail.gmail.com>
+Subject: Re: [v3 RESEND,PATCH 3/3] drm/mediatek: dpi: add bus format negotiation
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Jitao Shi <jitao.shi@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi, Rex:
 
-On Tue, May 11, 2021 at 11:12 AM <rajeevny@codeaurora.org> wrote:
+Rex-BC Chen <rex-bc.chen@mediatek.com> =E6=96=BC 2021=E5=B9=B44=E6=9C=8829=
+=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=8812:16=E5=AF=AB=E9=81=93=EF=
+=BC=9A
 >
-> On 01-05-2021 03:08, Doug Anderson wrote:
-> > Hi,
-> >
-> > On Fri, Apr 30, 2021 at 8:10 AM <rajeevny@codeaurora.org> wrote:
-> >>
-> >> On 30-04-2021 02:33, Doug Anderson wrote:
-> >> > Hi,
-> >> >
-> >> > On Thu, Apr 29, 2021 at 11:04 AM Rob Herring <robh@kernel.org> wrote:
-> >> >>
-> >> >> On Mon, Apr 26, 2021 at 11:29:15AM +0530, Rajeev Nandan wrote:
-> >> >> > Add bindings for DisplayPort aux backlight driver.
-> >> >> >
-> >> >> > Changes in v2:
-> >> >> > - New
-> >> >> >
-> >> >> > Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
-> >> >> > ---
-> >> >> >  .../bindings/leds/backlight/dp-aux-backlight.yaml  | 49 ++++++++++++++++++++++
-> >> >> >  1 file changed, 49 insertions(+)
-> >> >> >  create mode 100644 Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
-> >> >> >
-> >> >> > diff --git a/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
-> >> >> > new file mode 100644
-> >> >> > index 00000000..0fa8bf0
-> >> >> > --- /dev/null
-> >> >> > +++ b/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
-> >> >> > @@ -0,0 +1,49 @@
-> >> >> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> >> > +%YAML 1.2
-> >> >> > +---
-> >> >> > +$id: http://devicetree.org/schemas/leds/backlight/dp-aux-backlight.yaml#
-> >> >> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> >> > +
-> >> >> > +title: DisplayPort aux backlight driver bindings
-> >> >> > +
-> >> >> > +maintainers:
-> >> >> > +  - Rajeev Nandan <rajeevny@codeaurora.org>
-> >> >> > +
-> >> >> > +description:
-> >> >> > +  Backlight driver to control the brightness over DisplayPort aux channel.
-> >> >> > +
-> >> >> > +allOf:
-> >> >> > +  - $ref: common.yaml#
-> >> >> > +
-> >> >> > +properties:
-> >> >> > +  compatible:
-> >> >> > +    const: dp-aux-backlight
-> >> >> > +
-> >> >> > +  ddc-i2c-bus:
-> >> >> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> >> >> > +    description:
-> >> >> > +      A phandle to the system I2C controller connected to the DDC bus used
-> >> >> > +      for the DisplayPort AUX channel.
-> >> >> > +
-> >> >> > +  enable-gpios:
-> >> >> > +    maxItems: 1
-> >> >> > +    description: GPIO specifier for backlight enable pin.
-> >> >> > +
-> >> >> > +  max-brightness: true
-> >> >> > +
-> >> >> > +required:
-> >> >> > +  - compatible
-> >> >> > +  - ddc-i2c-bus
-> >> >> > +
-> >> >> > +additionalProperties: false
-> >> >> > +
-> >> >> > +examples:
-> >> >> > +  - |
-> >> >> > +    backlight {
-> >> >> > +        compatible = "dp-aux-backlight";
-> >> >> > +        ddc-i2c-bus = <&sn65dsi86_bridge>;
-> >> >> > +        enable-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
-> >> >>
-> >> >> So the DDC bus is connected to a backlight and also a panel? This
-> >> >> binding is not reflecting the h/w, but rather what you want for some
-> >> >> driver.
-> >> >>
-> >> >> There's only one thing here and that's an eDP panel which supports
-> >> >> backlight control via DP aux channel. You can figure all that out from
-> >> >> the panel's compatible and/or reading the EDID.
-> >> >>
-> >> >> You might also be interested in this thread:
-> >> >>
-> >> >> https://lore.kernel.org/lkml/YIKsDtjcIHGNvW0u@orome.fritz.box/
-> >> >
-> >> > I think Rajeev needs to rework everything anyway as per:
-> >> >
-> >> > https://lore.kernel.org/r/87zgxl5qar.fsf@intel.com
-> >> >
-> >> > ...but you're right that it makes sense not to model the backlight as
-> >> > a separate node in the device tree. The panel driver can handle
-> >> > setting up the backlight.
-> >> >
-> >> > -Doug
-> >>
-> >> It was not a good idea to create a separate backlight driver and use
-> >> ddc-i2c-bus to get access to DP aux. I am working to move the code
-> >> to the panel driver and to utilize the new DRM helper functions
-> >> (drm_edp_backlight_*) Lyude has added [1].
-> >>
-> >> To use these helper functions, the panel driver should have access to
-> >> the
-> >> "struct drm_dp_aux *". The simple-panel has a "ddc-i2c-bus" property
-> >> to give the panel access to the DDC bus and is currently being used to
-> >> get the EDID from the panel. Can I use the same ddc bus i2c_adapter to
-> >> get
-> >> the "struct drm_dp_aux *"?
-> >>
-> >> As per the suggestion [2], I get the "struct drm_dp_aux *" from the
-> >> i2c_adapter of ddc bus (maybe I didn't understand the suggestion
-> >> correctly),
-> >> and, it turned out, the way I have implemented is not the right way
-> >> [3].
-> >> So, I am afraid to use the same method in the panel driver.
-> >>
-> >>
-> >> [1] https://lore.kernel.org/dri-devel/871rb5bcf9.fsf@intel.com/
-> >> [2] https://www.spinics.net/lists/dri-devel/msg295429.html
-> >> [3]
-> >> https://lore.kernel.org/dri-devel/20210426111116.4lc3ekxjugjr3oho@maple.lan/
-> >
-> > So it's definitely up to maintainers, not me. ...but I guess I would
-> > have expected something like a new property called "ddc-aux-bus". Then
-> > you'd have to create a new API call called something like
-> > "of_find_ddc_aux_adapter_by_node()" that would allow you to find it.
-> >
+> Add the atomic_get_output_bus_fmts, atomic_get_input_bus_fmts to negotiat=
+e
+> the possible output and input formats for the current mode and monitor,
+> and use the negotiated formats in a basic atomic_check callback.
 >
-> To implement the first suggestion, I can think of the following way
-> to get the "struct drm_dp_aux" in the panel_simple_probe function:
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_dpi.c | 92 ++++++++++++++++++++++++++++--
+>  1 file changed, 87 insertions(+), 5 deletions(-)
 >
-> - Create a new panel-simple DT property "ddc-aux-bus", a phandle to the
-> platform device that implements the AUX channel.
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediate=
+k/mtk_dpi.c
+> index c548780dd3a5..8822d9448ae8 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> @@ -536,6 +536,87 @@ static int mtk_dpi_set_display_mode(struct mtk_dpi *=
+dpi,
+>         return 0;
+>  }
 >
-> - Create a global list of drm_dp_aux in drm_dp_helper.c. Initialize list
-> head
-> in drm_dp_aux_init(), add the drm_dp_aux onto the list in
-> drm_dp_aux_register().
-> Similarly, remove the drm_dp_aux from list in drm_dp_aux_unregister().
->
-> - Create a new function of_drm_find_dp_aux_by_node() to get the expected
-> drm_dp_aux from this global list.
->
-> Please let me know your views on this implementation.
+> +#define MAX_OUTPUT_SEL_FORMATS 2
+> +
+> +static u32 *mtk_dpi_bridge_atomic_get_output_bus_fmts(struct drm_bridge =
+*bridge,
+> +                                       struct drm_bridge_state *bridge_s=
+tate,
+> +                                       struct drm_crtc_state *crtc_state=
+,
+> +                                       struct drm_connector_state *conn_=
+state,
+> +                                       unsigned int *num_output_fmts)
+> +{
+> +       u32 *output_fmts;
+> +       struct mtk_dpi *dpi =3D bridge_to_dpi(bridge);
+> +
+> +       *num_output_fmts =3D 0;
+> +
+> +       output_fmts =3D kcalloc(MAX_OUTPUT_SEL_FORMATS, sizeof(*output_fm=
+ts),
+> +                             GFP_KERNEL);
+> +       if (!output_fmts)
+> +               return NULL;
+> +
+> +       /* Default 8bit RGB fallback */
+> +       if (dpi->conf->dual_edge) {
+> +               output_fmts[0] =3D  MEDIA_BUS_FMT_RGB888_2X12_LE;
+> +               output_fmts[1] =3D  MEDIA_BUS_FMT_RGB888_2X12_BE;
+> +               *num_output_fmts =3D 2;
 
-BTW: a bunch of discussion today on IRC:
+In the definition of dual_edge, it may imply that support
+MEDIA_BUS_FMT_BGR565_2X8_BE and MEDIA_BUS_FMT_BGR565_2X8_LE. So I
+would like dpi->conf to store output_fmts instead of dual_edge. The
+output_fmts could imply use dual_edge or not.
 
-https://people.freedesktop.org/~cbrill/dri-log/?channel=dri-devel&highlight_names=&date=2021-05-11&show_html=true
+Regards,
+Chun-Kuang.
 
--Doug
+> +       } else {
+> +               output_fmts[0] =3D  MEDIA_BUS_FMT_RGB888_1X24;
+> +               *num_output_fmts =3D 1;
+> +       }
+> +
+> +       return output_fmts;
+> +}
+> +
+> +#define MAX_INPUT_SEL_FORMATS  1
+> +
+> +static u32 *mtk_dpi_bridge_atomic_get_input_bus_fmts(struct drm_bridge *=
+bridge,
+> +                                       struct drm_bridge_state *bridge_s=
+tate,
+> +                                       struct drm_crtc_state *crtc_state=
+,
+> +                                       struct drm_connector_state *conn_=
+state,
+> +                                       u32 output_fmt,
+> +                                       unsigned int *num_input_fmts)
+> +{
+> +       u32 *input_fmts;
+> +
+> +       *num_input_fmts =3D 0;
+> +
+> +       input_fmts =3D kcalloc(MAX_INPUT_SEL_FORMATS, sizeof(*input_fmts)=
+,
+> +                            GFP_KERNEL);
+> +       if (!input_fmts)
+> +               return NULL;
+> +
+> +       *num_input_fmts =3D 1;
+> +       input_fmts[0] =3D MEDIA_BUS_FMT_RGB888_1X24;
+> +
+> +       return input_fmts;
+> +}
+> +
+> +static int mtk_dpi_bridge_atomic_check(struct drm_bridge *bridge,
+> +                                      struct drm_bridge_state *bridge_st=
+ate,
+> +                                      struct drm_crtc_state *crtc_state,
+> +                                      struct drm_connector_state *conn_s=
+tate)
+> +{
+> +       struct mtk_dpi *dpi =3D bridge->driver_private;
+> +       unsigned int out_bus_format;
+> +
+> +       out_bus_format =3D bridge_state->output_bus_cfg.format;
+> +
+> +       dev_dbg(dpi->dev, "input format 0x%04x, output format 0x%04x\n",
+> +               bridge_state->input_bus_cfg.format,
+> +               bridge_state->output_bus_cfg.format);
+> +
+> +       dpi->ddr_edge_sel =3D (out_bus_format =3D=3D MEDIA_BUS_FMT_RGB888=
+_2X12_LE) ?
+> +                               true : false;
+> +
+> +       dpi->bit_num =3D MTK_DPI_OUT_BIT_NUM_8BITS;
+> +       dpi->channel_swap =3D MTK_DPI_OUT_CHANNEL_SWAP_RGB;
+> +       dpi->yc_map =3D MTK_DPI_OUT_YC_MAP_RGB;
+> +       dpi->color_format =3D MTK_DPI_COLOR_FORMAT_RGB;
+> +
+> +       return 0;
+> +}
+> +
+>  static int mtk_dpi_bridge_attach(struct drm_bridge *bridge,
+>                                  enum drm_bridge_attach_flags flags)
+>  {
+>
+> @@ -574,6 +655,12 @@ static const struct drm_bridge_funcs mtk_dpi_bridge_=
+funcs =3D {
+>         .mode_set =3D mtk_dpi_bridge_mode_set,
+>         .disable =3D mtk_dpi_bridge_disable,
+>         .enable =3D mtk_dpi_bridge_enable,
+> +       .atomic_check =3D mtk_dpi_bridge_atomic_check,
+> +       .atomic_get_output_bus_fmts =3D mtk_dpi_bridge_atomic_get_output_=
+bus_fmts,
+> +       .atomic_get_input_bus_fmts =3D mtk_dpi_bridge_atomic_get_input_bu=
+s_fmts,
+> +       .atomic_duplicate_state =3D drm_atomic_helper_bridge_duplicate_st=
+ate,
+> +       .atomic_destroy_state =3D drm_atomic_helper_bridge_destroy_state,
+> +       .atomic_reset =3D drm_atomic_helper_bridge_reset,
+>  };
+>
+>  void mtk_dpi_start(struct device *dev)
+> @@ -620,11 +707,6 @@ static int mtk_dpi_bind(struct device *dev, struct d=
+evice *master, void *data)
+>         }
+>         drm_connector_attach_encoder(dpi->connector, &dpi->encoder);
+>
+> -       dpi->bit_num =3D MTK_DPI_OUT_BIT_NUM_8BITS;
+> -       dpi->channel_swap =3D MTK_DPI_OUT_CHANNEL_SWAP_RGB;
+> -       dpi->yc_map =3D MTK_DPI_OUT_YC_MAP_RGB;
+> -       dpi->color_format =3D MTK_DPI_COLOR_FORMAT_RGB;
+> -
+>         return 0;
+>
+>  err_cleanup:
+> --
+> 2.18.0
+>
