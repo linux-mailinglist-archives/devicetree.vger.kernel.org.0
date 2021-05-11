@@ -2,103 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09B05379EF4
-	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 07:05:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6778379F12
+	for <lists+devicetree@lfdr.de>; Tue, 11 May 2021 07:21:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230329AbhEKFGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 01:06:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34546 "EHLO
+        id S230096AbhEKFW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 01:22:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230332AbhEKFGm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 01:06:42 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 656C6C061574;
-        Mon, 10 May 2021 22:05:28 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id r11so6459053edt.13;
-        Mon, 10 May 2021 22:05:28 -0700 (PDT)
+        with ESMTP id S230009AbhEKFWz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 May 2021 01:22:55 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70E68C06175F
+        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 22:21:41 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id zg3so27885083ejb.8
+        for <devicetree@vger.kernel.org>; Mon, 10 May 2021 22:21:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=60Lo7xpvw9UYiOl5jHY1jyhH6Kp5rVQT5uk6x+ikYXU=;
-        b=pjQO8ugBczY9ILfH5Ui6UlNeLY/hw0v2Wri0bS7ozgYFH7Rw7zZ2L+Ocuz6mTii+5M
-         s7scXBV+9K7VzAh1xOi1X81cAx/a8eRzcoKJeYeJD4XTAbY94W/rpTUnNxoj6bK5iwVn
-         RCxL2BKbUzyxZpsGCNKyoSWgPwrByD7gwvkJpetY3sD6qDwDrrj297WF1X64ArPugqfW
-         KxP9ah9+vSu1cCc4kInCQrJuw3yYb8tHIgqbBf65v1hCMRhalDLL29C1ZFC5nXaDdZus
-         8FVzJSKIM9mflu7XevZtKrPU5j5De0skFtRRj1wlsi3hHHTBIIxLgNrauhBnTdWWs7/Z
-         2+wQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=o7qvVYTxIMvAfWp7wQVxyaZrRU/DExjEtTnActjnLoY=;
+        b=CUvd21dZicHSdFcB2WKTwesV82JRksY6kwmw63mPPVEIqln3djKwKo0ohzdHfRpoC0
+         ciPwj/lBWy8yZpu/Q8/rtDpybfjlNpChL1jFK+8GTyg1ixnYGQLU060m14an8Y/IfY5+
+         7TZN9rEX38BiBVOXNXwO5Wocx9dVszZG5bAoRuXTO5eCUmMgS9m01Awxk420gZ/pV381
+         MQ8cwvNDdTQL7Ogmvj+9QcnHqyBHIRd+4YPecYMlAI/LePaAjh7oyR7HVni0VVkEbWlm
+         lKDKUgntZnzejJ5MpdpHFhr471/bDu22Qpo6thTOh+VRl9DZVz/8jJPCrEfbRMh/OI8O
+         qTrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=60Lo7xpvw9UYiOl5jHY1jyhH6Kp5rVQT5uk6x+ikYXU=;
-        b=Dswy63rAq/mpd14V1QxeO/koPNO/HOkda8JbbYGU7PZZaUtJZwJ/Ja+Ts+hW60xu08
-         NKmPJIAHPkcSM/Pxtr0mkhtS1p/Zz1cCREui03L7V/JVO21V0oXEB8vErifqK0LuxHaw
-         OkXF4qit4erKL2fTM6JcXIVTwvozC+O20n6Ww7ENh/K6xJB1w6fVlJr2dsK4It34QAb8
-         ABsdRpufGbTWqrRD2znDD/PfwyuXhQMJ5aCyTqvRyynQY3I8h/29MI1QiuY8poSzu1Ry
-         1OJim3cjAC8/X0XQWMnfj30QNhIAcMPmooiEJ7a9BjZhT173mMGKyZqWFKIFubnVklrl
-         aDYA==
-X-Gm-Message-State: AOAM531CZdTyER5XnN59Kuy9HggBnBm4QXFMrlnBaR4QaJajx/KPN6PA
-        D2EfW97lVZG7mmbGJnHB9bU=
-X-Google-Smtp-Source: ABdhPJw7kqDOZphNYsS6zYAyisU/b00uYXV8iECUQs30s1WPz+PYOUmr7Ei3q1Xd9QTuux1I5TbZgg==
-X-Received: by 2002:a50:ee86:: with SMTP id f6mr33839634edr.154.1620709527251;
-        Mon, 10 May 2021 22:05:27 -0700 (PDT)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id g24sm3620302eds.41.2021.05.10.22.05.26
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 10 May 2021 22:05:27 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, linus.walleij@linaro.org,
-        bgolaszewski@baylibre.com, jay.xu@rock-chips.com,
-        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
-        zhangqing@rock-chips.com, huangtao@rock-chips.com,
-        cl@rock-chips.com, linux-gpio@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 4/4] arm64: dts: rename grf-gpio nodename in rk3328.dtsi
-Date:   Tue, 11 May 2021 07:05:11 +0200
-Message-Id: <20210511050511.5973-5-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20210511050511.5973-1-jbx6244@gmail.com>
-References: <20210511050511.5973-1-jbx6244@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=o7qvVYTxIMvAfWp7wQVxyaZrRU/DExjEtTnActjnLoY=;
+        b=eBZqE5qPWuLteIPW8yLVyRBDX/1xuuScist1FYV9PV9Piye2S+qJoWqMDIXWpxslEP
+         D11md7OyLX8zYrFkshQxNnJrT4Pbi+QK/WZsNcPDwnBqUNl3h22p23Qhem4y9bPGDc8M
+         e3tdFHAd0s0RLC2OnChsK0BZJ12BhezmCrLnmTg7SfwcuHm3/+GacDvuRjSL2c+mYKqT
+         xb3lOYX9lyF6qvTxUwmf0/JNBxp3bFIbfGFJckxRkzemB7JTBSJXHPrmpxysda2IjgOt
+         pUzQCbodq/u7hdn+VL4st/2S5EOct2D50dzBDNx2mtTLnK2KSkCMfo6JTwcwbO1NhOxN
+         Gr9g==
+X-Gm-Message-State: AOAM532gGXHdmfDEmQEQiFGd0mRXaqrm7bMUVU5n6fHZMX74LsxojOpZ
+        w6m31r//k51KTLTYk//EVxr9/5nR8SztN2+R7xCQ3Q==
+X-Google-Smtp-Source: ABdhPJxXDOxOInJbvAi7HHYEeYbA2V9jdKzkjQD1c3CtgM+zhQj43lQN1OUFreObmxolmlLp1EYRdC3tFAoh8sBWeMU=
+X-Received: by 2002:a17:906:85da:: with SMTP id i26mr29846987ejy.287.1620710499783;
+ Mon, 10 May 2021 22:21:39 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210503142905.21468-1-amadeus@jmu.edu.cn>
+In-Reply-To: <20210503142905.21468-1-amadeus@jmu.edu.cn>
+From:   Naresh Kamboju <naresh.kamboju@linaro.org>
+Date:   Tue, 11 May 2021 10:51:28 +0530
+Message-ID: <CA+G9fYsRZswjeDZj1hiGDu5HZ+jYCVsOOL6MAzEb=LVfQ1_NpA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: allwinner: h5: Add NanoPi R1S H5 support
+To:     Chukun Pan <amadeus@jmu.edu.cn>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi@lists.linux.dev,
+        open list <linux-kernel@vger.kernel.org>,
+        lkft-triage@lists.linaro.org, regressions@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A test with the command below gives this error:
+On Mon, 3 May 2021 at 20:09, Chukun Pan <amadeus@jmu.edu.cn> wrote:
+>
+> The NanoPi R1S H5 is a open source board made by FriendlyElec.
+> It has the following features:
+>
+> - Allwinner H5, Quad-core Cortex-A53
+> - 512MB DDR3 RAM
+> - 10/100/1000M Ethernet x 2
+> - RTL8189ETV WiFi 802.11b/g/n
+> - USB 2.0 host port (A)
+> - MicroSD Slot
+> - Serial Debug Port
+> - 5V 2A DC power-supply
+>
+> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
 
-/arch/arm64/boot/dts/rockchip/rk3328-a1.dt.yaml: syscon@ff100000:
-grf-gpio: {'compatible': ['rockchip,rk3328-grf-gpio'],
-'gpio-controller': True, '#gpio-cells': [[2]], 'phandle': [[68]]} is not
-of type 'array'
+Linux next tag next-20210511 arm64 build failed due to this error.
 
-Due to the regex "(?<!,nr)-gpios?$" anything that ends on
-'-gpio', '-gpios' gives a match.
+Error: /builds/linux/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts:35.15-16
+syntax error
+FATAL ERROR: Unable to parse input tree
+make[3]: *** [/builds/linux/scripts/Makefile.lib:365:
+arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dtb] Error 1
+make[3]: Target '__build' not remade because of errors.
 
-Rename 'grf-gpio' nodename to generic 'gpio'
+Reported-by: Naresh Kamboju <naresh.kamboju@linaro.org>
 
-make ARCH=arm64 dtbs_check
-DT_SCHEMA_FILES=~/.local/lib/python3.5/site-packages/dtschema/
-schemas/gpio/gpio-consumer.yaml
+#regzb introduced: 7c9dbeda744f ("arm64: dts: allwinner: h5: Add
+NanoPi R1S H5 support")
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3328.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-index 4ce49aae7..2e458fb87 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-@@ -291,7 +291,7 @@
- 			status = "disabled";
- 		};
- 
--		grf_gpio: grf-gpio {
-+		grf_gpio: gpio {
- 			compatible = "rockchip,rk3328-grf-gpio";
- 			gpio-controller;
- 			#gpio-cells = <2>;
--- 
-2.11.0
+> ---
+>  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+>  .../dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts | 194 ++++++++++++++++++
+>  2 files changed, 195 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts
 
+
+steps to reproduce:
+--------------------------
+# TuxMake is a command line tool and Python library that provides
+# portable and repeatable Linux kernel builds across a variety of
+# architectures, toolchains, kernel configurations, and make targets.
+#
+# TuxMake supports the concept of runtimes.
+# See https://docs.tuxmake.org/runtimes/, for that to work it requires
+# that you install podman or docker on your system.
+#
+# To install tuxmake on your system globally:
+# sudo pip3 install -U tuxmake
+#
+# See https://docs.tuxmake.org/ for complete documentation.
+
+
+tuxmake --runtime podman --target-arch arm64 --toolchain gcc-9
+--kconfig defconfig --kconfig-add
+https://builds.tuxbuild.com/1sNFFZazb6TLzCYLxNoyIcWs0eU/config
+
+
+metadata:
+  git branch: master
+  git repo: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+  git commit: 4bf27b1f73303c33c5570b63f8ed734abcd1991f
+  git describe: next-20210511
+
+
+--
+Linaro LKFT
+https://lkft.linaro.org
