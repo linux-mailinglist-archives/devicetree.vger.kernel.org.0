@@ -2,80 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 804F737BE2E
-	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 15:24:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E07A37BED8
+	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 15:51:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230213AbhELNZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 09:25:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47414 "EHLO
+        id S231162AbhELNwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 09:52:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230494AbhELNZZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 09:25:25 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F734C061760;
-        Wed, 12 May 2021 06:24:15 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id i9so27148277lfe.13;
-        Wed, 12 May 2021 06:24:15 -0700 (PDT)
+        with ESMTP id S230362AbhELNwQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 09:52:16 -0400
+Received: from mail-vk1-xa31.google.com (mail-vk1-xa31.google.com [IPv6:2607:f8b0:4864:20::a31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7624AC061761
+        for <devicetree@vger.kernel.org>; Wed, 12 May 2021 06:51:08 -0700 (PDT)
+Received: by mail-vk1-xa31.google.com with SMTP id n74so4768181vkc.6
+        for <devicetree@vger.kernel.org>; Wed, 12 May 2021 06:51:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=FNt+NOcWM8X1QJ7llYMoCnrfDlcGrj2tEmZi8pUq7O8=;
-        b=qOWvRvG7tzgimbdfyTHQ7s8eJVvPGW7eBJMyIZ2evsp1iXImlG/8vtJfM53xv/cm4W
-         UlRZbYkQnMWZHJx0+mxlQR43MIK+DaaJYHnUH0+3sZu1KMjg88ipdKn/maaJAt9e2aZB
-         put/LJunWg1p9PS9HCLQYJFPrT6xIojlyc2UV+Bcx3TT0JyhdG07K58MjdkFoEJUE1JL
-         m6ewPsZN4Z00WjRyLBrJhBaugQfsgdcoXLLyzyMH57tTWbERketJlQRXtuTIY5QCXqu/
-         lgqTpYTXBigYquhBLNt+L/NWXGXlutO3n+dpZ6XvQ1/X3jd4FzQxfgHCv7rNgzmbWcNV
-         RmmA==
+         :cc;
+        bh=Jowz1jnkMOr3gH5yQSgGMVN6x7Lry8Su5OlE7bU8MPI=;
+        b=x8zdvCKn2bNSMcUkWXc+bpIp2E636IiqxMYB9KGWoZUar2n/Bf0XGdc9a+mhfCveWy
+         PDPrNaXNtGyqg5Re5lKi11lHdMNdatRwBgV0zPz6wqlPfyc+jsCsdVtB9+Pcaau6VrtM
+         mvkwqrCJ0kF44hjW7u0JjznAUBXS3xVIUwz2TEDI4vqBSsSX9EIL8caTXZ5w2+KXanWr
+         /2xkp7EmD63TzYJOHRFlYk580hc5jTj6kKnvwBDCPD8r2pNYWruX+1FGR6IJCvfgsy49
+         WjqTud2XfJCO4zXEKLRH5eplfPoQtKLzGzf0wpBGxPEgbjJzSATCogbNwsnN7Y4XJSt3
+         SWhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=FNt+NOcWM8X1QJ7llYMoCnrfDlcGrj2tEmZi8pUq7O8=;
-        b=ftOyKMsfSeMCVKxEA+1vJvY9TXdY51ezVbOFA6t5+ttYLmdBEFykFk3o9/OeNyRcdW
-         54orqh4nO+OAp0GEGMZgxEts1YOcVD8ZqR8Yq8LSxuf2KzwOUJHDzJnEAEEECbd6REKq
-         F8r9oxstZXwKT1vWeNnzWEl8Y+HrQMeneNCVin4TnuydePJfD5BGw5my60jRVTkVPk0I
-         83eVZIM+iw4yz0DaSVurDJl7yevtJmg0Zh16byl9kFep3RyasfHQS7muQvKb4u6v7Qx9
-         chTN7hKqNkruUDimDAJL7jefAYgHi2J9lTscd2zivFILzvWijnNZi42SonuD6StVZV9Y
-         WW6Q==
-X-Gm-Message-State: AOAM533YXwmr7eRL2hy/skzS4HI+Xlxwrakl3/k1EE1moQ24MqlNy9KO
-        dkU0Oxivai/ZH3gSJ6bKlkZa5PVxTtDPFwS4+Ns=
-X-Google-Smtp-Source: ABdhPJzPH/WVZDS5OucEds1xF3JzYycwl3MbagkYpZIqK8/hfDllSm5c2ngzuBI8JvgJM5di53AUtl/mY/I4aDjZq9Q=
-X-Received: by 2002:a19:c391:: with SMTP id t139mr26232562lff.295.1620825854210;
- Wed, 12 May 2021 06:24:14 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=Jowz1jnkMOr3gH5yQSgGMVN6x7Lry8Su5OlE7bU8MPI=;
+        b=WciDoFvZQ70eKaBn9ahxEJwj3S19/xZcs7lYb5BSfqI51kyvFCcf91ZqcRdHz7Zcwe
+         2Lx61SEgyopwwwhn0SvmhZxK3CHCvOoh2XM7xPThSEnQLzQNiDgE279XU+NU5EMYarxo
+         uhz6iiAIJkyfaClXycuj6WVx3Gkw2ztfLXY5akQcLETp/rmyztwq4LLtA9IAQ9SsEJIn
+         qIOz0em57FW85QvEdFwnE8Ywf67MkEOkUcdxZM0GZH1je2Lw72x2mQkIRQPtQ/34LOJH
+         LG27SUEmWirnGcPnZOFB0fgvyTyhBaZv/wpb/v7Q8kW0dSBesrijxULaFZTTdN2Dnu0j
+         SL5Q==
+X-Gm-Message-State: AOAM531zU/deg61pJ1101jHX3MsjF6x0ZLPjkN790F/hgCwba4puii+9
+        YwGWSdgDjkt7S4svGlGbC/klMclzkyrFA60d6y9l8g==
+X-Google-Smtp-Source: ABdhPJx8zR9ROGiDsPfhddCCRFlE4zhaPq5y1bpybJCuT4h5Kz2qpp6Svv+S8YHJKW2TJ4bd2N59hBdWm2IOHM72cxI=
+X-Received: by 2002:a1f:5504:: with SMTP id j4mr28021678vkb.7.1620827467457;
+ Wed, 12 May 2021 06:51:07 -0700 (PDT)
 MIME-Version: 1.0
-References: <1620813510-31079-1-git-send-email-michal.vokac@ysoft.com>
-In-Reply-To: <1620813510-31079-1-git-send-email-michal.vokac@ysoft.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Wed, 12 May 2021 10:24:03 -0300
-Message-ID: <CAOMZO5D-UxVbFZRfrHrv83R8Q=O4Rs1YkCzoF152ou=oU+=baQ@mail.gmail.com>
-Subject: Re: [PATCH RESEND] ARM: dts: imx6dl-yapp4: Use aliases to set custom
- MMC device indexes
-To:     =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20201224111210.1214-1-rojay@codeaurora.org> <20201224111210.1214-4-rojay@codeaurora.org>
+ <YAGqKfDfB7EEuZVn@builder.lan> <6bfec3e6-3d26-7ade-d836-032273856ce2@codeaurora.org>
+ <CAPDyKFqF0NE3QRAEfiqj5QOXXH2om4CpyyeudeqoovANfvjsaQ@mail.gmail.com>
+ <20210429075054.vrotcbldbaivfh2d@vireshk-i7> <3743d729-4287-a389-72e2-2201ee59601d@codeaurora.org>
+ <CAPDyKFrVcvXvSHrRyJFZUjTXEeOLk2k7G-36pOSWUKhkWRTftA@mail.gmail.com> <b02be4a9-aae4-62c2-2ef2-5ade683eb1a9@codeaurora.org>
+In-Reply-To: <b02be4a9-aae4-62c2-2ef2-5ade683eb1a9@codeaurora.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 12 May 2021 15:50:31 +0200
+Message-ID: <CAPDyKFqKw_5Cf8Qb0jEMF2YtFpCRQmHabhWYrAQfQBbkszKUqg@mail.gmail.com>
+Subject: Re: [PATCH 3/3] i2c: i2c-qcom-geni: Add support for 'assigned-performance-states'
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Roja Rani Yarubandi <rojay@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Matthias Kaehlcke <mka@chromium.org>, akashast@codeaurora.org,
+        msavaliy@qti.qualcomm.com, parashar@codeaurora.org,
+        Linux PM <linux-pm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-i2c@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 12, 2021 at 6:58 AM Michal Vok=C3=A1=C4=8D <michal.vokac@ysoft.=
-com> wrote:
+On Mon, 10 May 2021 at 08:37, Rajendra Nayak <rnayak@codeaurora.org> wrote:
 >
-> Until commit fa2d0aa96941 ("mmc: core: Allow setting slot index via
-> device tree alias") was introduced, our usdhc3 and usdhc4 devices
-> were enumerated as mmc0 and mmc1. The mmc1 device is used to boot/update
-> the board and its name must be fixed.
 >
-> With the referenced commit, aliases from imx6qdl.dtsi took effect.
-> Override the aliases to get back the original device indexes.
 >
-> Signed-off-by: Michal Vok=C3=A1=C4=8D <michal.vokac@ysoft.com>
+> On 5/7/2021 2:36 PM, Ulf Hansson wrote:
+> > On Tue, 4 May 2021 at 09:18, Rajendra Nayak <rnayak@codeaurora.org> wrote:
+> >>
+> >>
+> >> []...
+> >>>>>>
+> >>>>>> Ulf, Viresh, I think we discussed this at the time of introducing the
+> >>>>>> performance states.
+> >>>>>>
+> >>>>>> The client's state does not affect if its performance_state should
+> >>>>>> be included in the calculation of the aggregated performance_state, so
+> >>>>>> each driver that needs to keep some minimum performance state needs to
+> >>>>>> have these two snippets.
+> >>>>>>
+> >>>>>> Would it not make sense to on enable/disable re-evaluate the
+> >>>>>> performance_state and potentially reconfigure the hardware
+> >>>>>> automatically?
+> >>>>>
+> >>>>> I agree, this will be repeated across multiple drivers which would
+> >>>>> need some minimal vote while they are active, handling this during
+> >>>>> genpd enable/disable in genpd core makes sense.
+> >>>>
+> >>>> Initially that's what we tried out, but we realized that it was
+> >>>> difficult to deal with this internally in genpd, but more importantly
+> >>>> it also removed some flexibility from consumers and providers. See
+> >>>> commit 68de2fe57a8f ("PM / Domains: Make genpd performance states
+> >>>> orthogonal to the idlestates").
+> >>>>
+> >>>> As a matter of fact this was quite recently discussed [1], which also
+> >>>> pointed out some issues when using the "required-opps" in combination,
+> >>>> but perhaps that got resolved? Viresh?
+> >>>
+> >>> So I looked again at that thread in detail today. The basic idea was
+> >>> to enable/disable the genpd from within the OPP core and there were
+> >>> doubts on how to do that efficiently as there are cases where domains
+> >>> may be enabled for an OPP, but not for others.. etc. etc.
+> >>>
+> >>> I am not sure if I consider that thread as part of the discussion we
+> >>> are having here, they may be related, but that thread doesn't block
+> >>> anything to be done in the genpd core.
+> >>
+> >> That's true, the 2 threads are different in the sense that one talks
+> >> about having OPP core managing power on/off along with setting perf state,
+> >> while the other talks about genpd core managing a default perf state
+> >> along with power on/off, but they are similar in the sense that both
+> >> are related to the discussion whether we should treat powering on and off
+> >> a domain related to setting its performance state or if it should be
+> >> considered completely orthogonal.
+> >>
+> >> I think the clock framework treats setting clock rates and turning
+> >> on/off a clock orthogonal because there is an inherent assumption that
+> >> once the clock is turned off, what rate it was set to should not matter,
+> >> and it can be running at the same rate when we turn the clock back on.
+> >>
+> >> I guess we can have the same assumption here that a perf state of a
+> >> power domain should not matter if the power domain is turned off
+> >> and hence the perf state need not be dropped explicitly during power off,
+> >> atleast that should be true for the qcom power domains supporting perf
+> >> state upstream.
+> >>
+> >> Should that be the approach taken here? I guess that would mean the patch
+> >> I had proposed earlier [1] to manage this in the genpd core would have to set the default
+> >> perf state at attach and remove it only during a detach of the device to
+> >> the pm_domain, and not manage it during the runtime_suspend/resume of the device.
+> >
+> > Right, I think this would be a step in the right direction, but it's
+> > not sufficient to solve the complete problem. As you also point out
+> > below.
+> >
+> >>
+> >>>> A consumer driver
+> >>>> can no longer make its vote for its device to stick around, when the
+> >>>> device becomes runtime suspended - and how do we know that we never
+> >>>> need to support such a case?
+> >>
+> >> The above approach should take care of this but the down side of it would be,
+> >> unlike in the case of clocks where the devices assigning a default clock rate
+> >> might be doing so on a device specific clock (rarely shared with other devices)
+> >> in case of power domain, and especially in the qcom implementation of these
+> >> power domains which support perf state, these can be large domains with lots of devices,
+> >> and any device being active (not necessarily wanting any default perf state) will keep
+> >> the domain at the default perf state, requested by a device which isn't really active.
+> >
+> > Yep, this certainly sounds suboptimal. To me, this isn't good enough.
+> >
+> >>
+> >>> What about doing this just for the assigned-performance-state case as
+> >>> the clients don't want to play with it at all.
+> >>
+> >> well, thats possible too, but you obviously can't reuse the same bindings
+> >> in such cases
+> >
+> > Not sure I understand the issue with the DT binding? Let me elaborate
+> > on how I think we could move forward.
+> >
+> > It looks like we have two problems to solve:
+> >
+> > *) We need a new DT binding.
+> > If that becomes a generic property along the lines of the
+> > "assigned-performance-state" as suggested - or if we decide to add a
+> > SoC specific binding via using an additional cell in "power-domains"
+> > (suggested by Rob), doesn't really matter much to me. The arguments
+> > for the new DT property are very much similar to why we added
+> > "assigned-clock-rates" for clocks.
+> >
+> > **) We want to avoid boiler-plate code in drivers to manage
+> > "assigned-performance-state" for their devices.
+> > No matter what DT property we decide on (generic or SoC specific), we
+> > should be able to manage this from the PM domain (genpd) layer. No
+> > changes in the drivers should be needed.
+> > If a generic binding is used, we could consider to let genpd
+> > internally manage the whole thing (DT parsing and updating performance
+> > state votes for assigned-performance-state only).
+>
+> Sure, so for starters does that mean I should re-spin my series which
+> adds the generic 'assigned-performance-states' bindings and see if Rob
+> is OK with that? I am guessing you are OK with the way that binding gets
+> used within genpd core in that series, or would you want it to be handled
+> differently?
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+A re-spin would definitely move this forward. If we can convince Rob
+about the generic DT binding, I will certainly agree to change genpd
+to help/manage the DT parsing.
+
+Although, I am not sure yet what is the best. Let genpd to do the
+parsing internally in genpd_add_device() or just provide a helper
+function that can be called from an ->attach|detach_dev() callback.
+
+In the end it boils done to decide whether we should use the
+->start|stop() callbacks or let genpd internally manage the "assigned
+performance state". Honestly, I would prefer to look at how the code
+would need to  be changed, before answering this.
+
+>
+> > If we go for an SoC specific binding, the genpd provider needs to be
+> > updated. It can manage DT parsing from the ->attach|detach_dev()
+> > callbacks and update performance votes from the ->start|stop()
+> > callbacks.
+> > We could also consider a hybrid of these two solutions.
+> >>
+> >> [1] https://lore.kernel.org/patchwork/patch/1284042/
+
+Kind regards
+Uffe
