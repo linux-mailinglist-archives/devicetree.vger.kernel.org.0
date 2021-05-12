@@ -2,97 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DA9237CD83
+	by mail.lfdr.de (Postfix) with ESMTP id D9C9D37CD84
 	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 19:14:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236085AbhELQz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 12:55:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59160 "EHLO
+        id S240590AbhELQz7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 12:55:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241015AbhELQ0O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 12:26:14 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E29C1C06138C;
-        Wed, 12 May 2021 08:55:24 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id q5so4678015wrs.4;
-        Wed, 12 May 2021 08:55:24 -0700 (PDT)
+        with ESMTP id S240162AbhELQa3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 12:30:29 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A074DC08EACF;
+        Wed, 12 May 2021 09:03:16 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id p20so6276044ljj.8;
+        Wed, 12 May 2021 09:03:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=VWsd8P+/clpyE0bHHUTPwD2kU5tZcJeb3jH59tmqXLI=;
-        b=teO0yxmgWsLewvAzd7+q2EYj2Iq/RFxCoukA2Mu0QntKo39hWLFwYV85k9ADjkyU0p
-         1mZKT/d72aOAiLMnmA4875PFINxbRexIs5Id0TM7+9v1ZwS7R/2c2fZOQAixvP+QJ0Lc
-         6RDqNQSEN4a5luBFi3NAS40m8uTkxKtSsoL4+P7tMsKvF0nvIX0i8f/zfQc9+MAklF1z
-         2Yhp/31DNBrwxS3Zs7zb7EJXNmhuH/zffM0OKe4xAh+Zmcfn6Sdb3/6LWMc/hW9NNJUu
-         6mjzDzGQMVU91s3PVvBVafF+uZKPGds1tmhmWIcYf68FyeGDwPCEYuNc0uokWW+gvxcY
-         UGxA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=m5a3LpSMEA2FyBM0XUI5BkccXTFTL84Xmwv8wTBlzfM=;
+        b=mr/g/PwBPVeExTjtiZC+qX8HbljZsXXFQpRTFHmFENuSx7iLcL4ulhU2K2nbToesaV
+         FM436fFeJbW6OP1Agi7rENm91cnFQiSmN4hE79wgZoFRoxh7frZ6SMcuxC5SNqjT677x
+         jFIzMQSNGijLC5wO0W7OIfXicS5i9JY/VEuX5RttgbEmXB++EqsZdkTGfI2VsaSCoE9t
+         2EGlDt6nzTTID3RjVW+eC206NKN75z0N/Y+EFJhtDQgikkfXr+JWvNo6LzLN9g0KVyk9
+         aUQeJ326qMk1vWFBAKIqA41fjJcYancb3l/UX9Dy1UJiwAYwIjZQQvOQwHoLBODmyVna
+         +Pgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=VWsd8P+/clpyE0bHHUTPwD2kU5tZcJeb3jH59tmqXLI=;
-        b=IN5ELSxDtBaJVq7cXanC+JqTVueVz8evar7xgTXh+7SHPDNhlfcx72javVl1Or08ns
-         9AG9Fmb/ccej9/Y8VTcL6YWcGxfqCT5WFU/fXSMHR+V9C3PJioAHux+YviocGJNtSpdr
-         Dv4DfZ0fWB51vn2NAAtUo6LmDNgIeROwdh80I1PGZKOM/NYeTAnuXNty/CSpj/YhvqEc
-         7qL9enaeV5YDFk25avgCn6Ro60+SSbU41xpALV/qaqRog/Xu49R0SzS9DnW93y3ZC+FF
-         0vlhlmgFSHdcm/0H3G247+78/pBL/EhuzI0MtoWPja3l2/n3K5va9mbHEU0pzZFCNENK
-         IasA==
-X-Gm-Message-State: AOAM530hvTLuaUg8nUd/8UnKK+HUUCJq73drSiuFQylLNnfm9z9MAd/N
-        c09qlEo06YiETwXHwKZJ9Zs=
-X-Google-Smtp-Source: ABdhPJz1MaDA4gtjBPt57L7+5y/dDi6iluOMqHAbzWspXUgRbOub+cvoog0I72CcKc8Ep5AymBJhRQ==
-X-Received: by 2002:adf:ed43:: with SMTP id u3mr46322177wro.334.1620834923250;
-        Wed, 12 May 2021 08:55:23 -0700 (PDT)
-Received: from ziggy.stardust ([37.223.140.37])
-        by smtp.gmail.com with ESMTPSA id a21sm6613105wmj.34.2021.05.12.08.55.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 May 2021 08:55:22 -0700 (PDT)
-Subject: Re: [PATCH v3 2/2] dt-bindings: mediatek: Add optional mediatek,
- gce-events property
-To:     Rob Herring <robh@kernel.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
-        Jassi Brar <jaswinder.singh@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        linux-mediatek@lists.infradead.org,
+        bh=m5a3LpSMEA2FyBM0XUI5BkccXTFTL84Xmwv8wTBlzfM=;
+        b=HbnnxRX3NLF4kni8BJbPGn4Ml1OBaVevFJw93uQLrATI8sZe8gZtu4QUQaKdKaOurK
+         kH34b2Y+EE7wXckgNpAY7l1MDgrnx5ceEkDx+SpwAkSCxRjGhy7s2sWSJeFG2gZ5Pi+m
+         v4IXp/G52uVp9sNAZQss37gP/Fq1rJBg4vhbqdTKNFKjyT9CbBDyweq94sBPD12HiX/T
+         C/8Mqb9h0GMTQR7mWXCF9OTIuPh32ImXnX5Z6owaSrgeBQawEM009EIzYWn1DlW/jKxu
+         vDQ1NB1vsDsXdEMmxP5JQtd2SCact3n+AqcHFrSBTTHsH46coEbzLXr6VaZN+he2sCYY
+         Je0Q==
+X-Gm-Message-State: AOAM530WR+2B0xjsdYn9lbW2BSqYEe3Z1TqQ4GYKfqQZPHVQiq/0EWTa
+        BSbIik0E70hSsSd+d7JjJXc=
+X-Google-Smtp-Source: ABdhPJwbfi+Iv9VSTgBMtpTqyMbSw1fieIjoLW3VHjdo1A4uK4xe3NoyvdsrwxdLRI3Xj+FV5+L1dQ==
+X-Received: by 2002:a2e:9c01:: with SMTP id s1mr29260574lji.402.1620835394404;
+        Wed, 12 May 2021 09:03:14 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id a6sm32646ljp.76.2021.05.12.09.03.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 May 2021 09:03:13 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>
-References: <20210504054612.3585017-1-hsinyi@chromium.org>
- <20210504054612.3585017-2-hsinyi@chromium.org>
- <20210506203124.GA753747@robh.at.kernel.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <a573e490-44bd-d6a1-d0c0-075b6541f720@gmail.com>
-Date:   Wed, 12 May 2021 17:55:21 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] dt-bindings: pwm: brcm,iproc-pwm: convert to the json-schema
+Date:   Wed, 12 May 2021 18:02:53 +0200
+Message-Id: <20210512160253.15000-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <20210506203124.GA753747@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jassi,
+From: Rafał Miłecki <rafal@milecki.pl>
 
-On 06/05/2021 22:31, Rob Herring wrote:
-> On Tue, 04 May 2021 13:46:12 +0800, Hsin-Yi Wang wrote:
->> This property is used by gce clients.
->>
->> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
->> ---
->> v2->v3: move definition to Documentation/devicetree/bindings/mailbox/mtk-gce.txt
->> ---
->>  .../devicetree/bindings/mailbox/mtk-gce.txt       | 15 +++++++++++++++
->>  1 file changed, 15 insertions(+)
->>
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
-> 
+This helps validating DTS files.
 
-Will you take this through your branch, or do you prefer me taking it through mine?
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../bindings/pwm/brcm,iproc-pwm.txt           | 21 ---------
+ .../bindings/pwm/brcm,iproc-pwm.yaml          | 45 +++++++++++++++++++
+ 2 files changed, 45 insertions(+), 21 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pwm/brcm,iproc-pwm.txt
+ create mode 100644 Documentation/devicetree/bindings/pwm/brcm,iproc-pwm.yaml
 
-Regards,
-Matthias
+diff --git a/Documentation/devicetree/bindings/pwm/brcm,iproc-pwm.txt b/Documentation/devicetree/bindings/pwm/brcm,iproc-pwm.txt
+deleted file mode 100644
+index 655f6cd4ef46..000000000000
+--- a/Documentation/devicetree/bindings/pwm/brcm,iproc-pwm.txt
++++ /dev/null
+@@ -1,21 +0,0 @@
+-Broadcom iProc PWM controller device tree bindings
+-
+-This controller has 4 channels.
+-
+-Required Properties :
+-- compatible: must be "brcm,iproc-pwm"
+-- reg: physical base address and length of the controller's registers
+-- clocks: phandle + clock specifier pair for the external clock
+-- #pwm-cells: Should be 3. See pwm.yaml in this directory for a
+-  description of the cells format.
+-
+-Refer to clocks/clock-bindings.txt for generic clock consumer properties.
+-
+-Example:
+-
+-pwm: pwm@18031000 {
+-	compatible = "brcm,iproc-pwm";
+-	reg = <0x18031000 0x28>;
+-	clocks = <&osc>;
+-	#pwm-cells = <3>;
+-};
+diff --git a/Documentation/devicetree/bindings/pwm/brcm,iproc-pwm.yaml b/Documentation/devicetree/bindings/pwm/brcm,iproc-pwm.yaml
+new file mode 100644
+index 000000000000..218ab06c34d1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/brcm,iproc-pwm.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/brcm,iproc-pwm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom iProc PWM controller
++
++maintainers:
++  - Rafał Miłecki <rafal@milecki.pl>
++
++description:
++  This controller has 4 channels.
++
++allOf:
++  - $ref: pwm.yaml#
++
++properties:
++  compatible:
++    const: brcm,iproc-pwm
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description: external clock
++    maxItems: 1
++
++  "#pwm-cells":
++    const: 3
++
++unevaluatedProperties: false
++
++required:
++  - reg
++  - clocks
++
++examples:
++  - |
++    pwm@18031000 {
++        compatible = "brcm,iproc-pwm";
++        reg = <0x18031000 0x28>;
++        clocks = <&osc>;
++        #pwm-cells = <3>;
++    };
+-- 
+2.26.2
+
