@@ -2,109 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EF1837BC81
-	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 14:29:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C06937BC97
+	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 14:34:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232212AbhELMa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 08:30:28 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:34912 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232196AbhELMa1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 08:30:27 -0400
-X-UUID: 56acb10324ea40e2bea1352a797416fa-20210512
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=ewPs1Oa6a3lyJ4v/+R+Na+4N5EnjMReDZVRwjMtKeis=;
-        b=ewEoqOKvSAWVqKqd0u9hldRL4upWs4M/EifpIJ8EQaXDgkQ3tFEDnplJWcc44suitQcRVH3My30OOlv9FVrLYXvY5Mmt5Wqwo4vJJRN/nqjCvKEWg4bzO6izgAZi/BpIqHHp4e4b1//axLcRhg4In1omHMg+L8VZUrmmL5Q0Ulg=;
-X-UUID: 56acb10324ea40e2bea1352a797416fa-20210512
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 172632164; Wed, 12 May 2021 20:29:13 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N2.mediatek.inc
- (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 12 May
- 2021 20:29:08 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 12 May 2021 20:29:07 +0800
-Message-ID: <1620822547.2983.8.camel@mhfsdcap03>
-Subject: Re: [PATCH v5 13/16] media: mtk-vcodec: Get rid of
- mtk_smi_larb_get/put
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>,
+        id S232514AbhELMfd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 08:35:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36050 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232519AbhELMfb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 08:35:31 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC5F5C061574
+        for <devicetree@vger.kernel.org>; Wed, 12 May 2021 05:34:21 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id b19-20020a05600c06d3b029014258a636e8so2958943wmn.2
+        for <devicetree@vger.kernel.org>; Wed, 12 May 2021 05:34:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=L3AMrfm7KzdYjAx0MG/kXRzLEqn5TfDInWeiOnoS8A0=;
+        b=wGwwVglhSHA1nu0sddt1O78EWcwn6fB5M95MBU2mYu8yxjZWRmVl4Xk2W/HBVliIQ+
+         VqbqZ4D3hgvRwEI1eQ0SgoEs1oOuTGok3UPrOy9fE4HVc/V0LQd182Ehxjlb7M/vBxJZ
+         1RejYqLqgKbdZ0/pTt6wEMHd7BbvNQfmn8aBdO+FGkEvHNyA9co4wkELQmNPARhE1beW
+         7DK+sIGytXjOYdOJ7HhZNAMAAGxlGbDm3fMt3ulRHEjA9g6MXUa/2FfQ2FELIpeebL8E
+         ythDkvX3BJoH9pQYp67RthOVD/w/EfKqEQnDXyxRkx3Brks5/3IgR1ibdRT56edbosyD
+         Ukpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=L3AMrfm7KzdYjAx0MG/kXRzLEqn5TfDInWeiOnoS8A0=;
+        b=FcIRrtmsok3xm8I4+48LWGOzPy8odTqg8BEnPFCS4VzzQd0QIus0FfNRhY10VNHB47
+         gDA0PT7lOvpMzRjac8sLWZzVYxBIT1Z3HSqWPKYTQLU2XP3RRQ3Ese54XgX6ds43B2d1
+         2B9f5QT0s+q8lYU0olTIC4mZvvhvbW8jRIi9Y75Rg2WWMLXd+mjQHkpLB+WkiGk/Qt/l
+         RKjTClFsbzo33UoC+Lq85WQxSZSFkKBvdoELEppKH9nPmEaCx+JQGjuB5jXzEn8k0100
+         AUfHiFArtm96fhDAdc5BDhg5fWnU3fRmWnwSois6LzDzTp79e6Zf1o5bIvJUOV6v49ue
+         dqfA==
+X-Gm-Message-State: AOAM531rrjQoFwytYlz9i7C52UKILY4Z5faAPlQIvy/UWvqjMy81nLvt
+        7bp6o9tQ/MdMJlkK3M29lyLIcg==
+X-Google-Smtp-Source: ABdhPJxaogDe/xKEAVJSwlt6+D1vz2gSm4YwiHq4FwR/U+34LWOpQZ6ZvVIPkXLGy3PggDAnBF3Vyw==
+X-Received: by 2002:a7b:cbc2:: with SMTP id n2mr38803203wmi.69.1620822860514;
+        Wed, 12 May 2021 05:34:20 -0700 (PDT)
+Received: from google.com (105.168.195.35.bc.googleusercontent.com. [35.195.168.105])
+        by smtp.gmail.com with ESMTPSA id j10sm30643193wrt.32.2021.05.12.05.34.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 May 2021 05:34:20 -0700 (PDT)
+Date:   Wed, 12 May 2021 12:34:17 +0000
+From:   Quentin Perret <qperret@google.com>
+To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Will Deacon <will.deacon@arm.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>, <youlin.pei@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sasha Levin <sashal@kernel.org>,
+        stable <stable@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         Nicolas Boichat <drinkcat@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>, <anan.sun@mediatek.com>,
-        <chao.hao@mediatek.com>, <ming-fan.chen@mediatek.com>,
-        <yi.kuo@mediatek.com>, <eizan@chromium.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Irui Wang <irui.wang@mediatek.com>
-Date:   Wed, 12 May 2021 20:29:07 +0800
-In-Reply-To: <CAJMQK-iTrQRDDm_=LNqSpvXFd431LYRxXMasJHUpN+K8rJ=Qpg@mail.gmail.com>
-References: <20210410091128.31823-1-yong.wu@mediatek.com>
-         <20210410091128.31823-14-yong.wu@mediatek.com>
-         <CAJMQK-iTrQRDDm_=LNqSpvXFd431LYRxXMasJHUpN+K8rJ=Qpg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        Stephen Boyd <swboyd@chromium.org>,
+        KarimAllah Ahmed <karahmed@amazon.de>,
+        Android Kernel Team <kernel-team@android.com>,
+        Architecture Mailman List <boot-architecture@lists.linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [v5.4 stable] arm: stm32: Regression observed on "no-map"
+ reserved memory region
+Message-ID: <YJvLSbGh0YPRo0S2@google.com>
+References: <001f8550-b625-17d2-85a6-98a483557c70@foss.st.com>
+ <CAL_Jsq+LUPZFhXd+j-xM67rZB=pvEvZM+1sfckip0Lqq02PkZQ@mail.gmail.com>
+ <CAMj1kXE2Mgr9CsAMnKXff+96xhDaE5OLeNhypHvpN815vZGZhQ@mail.gmail.com>
+ <d7f9607a-9fcb-7ba2-6e39-03030da2deb0@gmail.com>
+ <YH/ixPnHMxNo08mJ@google.com>
+ <cc8f96a4-6c85-b869-d3cf-5dc543982054@gmail.com>
+ <YIFzMkW+tXonTf0K@google.com>
+ <ad90b2bb-0fab-9f06-28dd-038e8005490b@foss.st.com>
+ <YJkGSb72aKg6ScGo@google.com>
+ <e1da4a98-7521-518f-f85a-51e9c58b1fc3@foss.st.com>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 7780E5B9D2712AB2AE1806AA941E22A5D94145B0E8BDFD93F8EBEB7BFDD94F3E2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e1da4a98-7521-518f-f85a-51e9c58b1fc3@foss.st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gV2VkLCAyMDIxLTA1LTEyIGF0IDE3OjIwICswODAwLCBIc2luLVlpIFdhbmcgd3JvdGU6DQo+
-IE9uIFNhdCwgQXByIDEwLCAyMDIxIGF0IDU6MTQgUE0gWW9uZyBXdSA8eW9uZy53dUBtZWRpYXRl
-ay5jb20+IHdyb3RlOg0KPiA+DQo+ID4gTWVkaWFUZWsgSU9NTVUgaGFzIGFscmVhZHkgYWRkZWQg
-dGhlIGRldmljZV9saW5rIGJldHdlZW4gdGhlIGNvbnN1bWVyDQo+ID4gYW5kIHNtaS1sYXJiIGRl
-dmljZS4gSWYgdGhlIHZjb2RlYyBkZXZpY2UgY2FsbCB0aGUgcG1fcnVudGltZV9nZXRfc3luYywN
-Cj4gPiB0aGUgc21pLWxhcmIncyBwbV9ydW50aW1lX2dldF9zeW5jIGFsc28gYmUgY2FsbGVkIGF1
-dG9tYXRpY2FsbHkuDQo+ID4NCj4gPiBDQzogVGlmZmFueSBMaW4gPHRpZmZhbnkubGluQG1lZGlh
-dGVrLmNvbT4NCj4gPiBDQzogSXJ1aSBXYW5nIDxpcnVpLndhbmdAbWVkaWF0ZWsuY29tPg0KPiA+
-IFNpZ25lZC1vZmYtYnk6IFlvbmcgV3UgPHlvbmcud3VAbWVkaWF0ZWsuY29tPg0KPiA+IFJldmll
-d2VkLWJ5OiBFdmFuIEdyZWVuIDxldmdyZWVuQGNocm9taXVtLm9yZz4NCj4gPiBBY2tlZC1ieTog
-VGlmZmFueSBMaW4gPHRpZmZhbnkubGluQG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiAgLi4u
-L3BsYXRmb3JtL210ay12Y29kZWMvbXRrX3Zjb2RlY19kZWNfcG0uYyAgIHwgMzcgKystLS0tLS0t
-LS0tLS0tDQo+ID4gIC4uLi9wbGF0Zm9ybS9tdGstdmNvZGVjL210a192Y29kZWNfZHJ2LmggICAg
-ICB8ICAzIC0tDQo+ID4gIC4uLi9wbGF0Zm9ybS9tdGstdmNvZGVjL210a192Y29kZWNfZW5jLmMg
-ICAgICB8ICAxIC0NCj4gPiAgLi4uL3BsYXRmb3JtL210ay12Y29kZWMvbXRrX3Zjb2RlY19lbmNf
-cG0uYyAgIHwgNDYgKystLS0tLS0tLS0tLS0tLS0tLQ0KPiA+ICA0IGZpbGVzIGNoYW5nZWQsIDEw
-IGluc2VydGlvbnMoKyksIDc3IGRlbGV0aW9ucygtKQ0KDQpbLi4uXQ0KDQo+ID4gQEAgLTEwOCwx
-MyArODAsNiBAQCB2b2lkIG10a192Y29kZWNfZW5jX2Nsb2NrX29uKHN0cnVjdCBtdGtfdmNvZGVj
-X3BtICpwbSkNCj4gPiAgICAgICAgICAgICAgICAgfQ0KPiA+ICAgICAgICAgfQ0KPiA+DQo+ID4g
-LSAgICAgICByZXQgPSBtdGtfc21pX2xhcmJfZ2V0KHBtLT5sYXJidmVuYyk7DQo+ID4gLSAgICAg
-ICBpZiAocmV0KSB7DQo+ID4gLSAgICAgICAgICAgICAgIG10a192NGwyX2VycigibXRrX3NtaV9s
-YXJiX2dldCBsYXJiMyBmYWlsICVkIiwgcmV0KTsNCj4gPiAtICAgICAgICAgICAgICAgZ290byBj
-bGtlcnI7DQo+ID4gLSAgICAgICB9DQo+ID4gLSAgICAgICByZXR1cm47DQo+IA0KPiBZb3UgY2Fu
-J3QgZGVsZXRlIHRoZSByZXR1cm47IGhlcmUsIG90aGVyd2lzZSB2Y29kZWNfY2xrIHdpbGwgYmUg
-dHVybmVkDQo+IG9mZiBpbW1lZGlhdGVseSBhZnRlciB0aGV5IGFyZSB0dXJuZWQgb24uDQoNClRo
-YW5rcyB2ZXJ5IG11Y2ggZm9yIHlvdXIgcmV2aWV3Lg0KDQpTb3JyeSBmb3IgdGhpcy4gWW91IGFy
-ZSBxdWl0ZSByaWdodC4NCg0KSSBjaGVja2VkIHRoaXMsIGl0IHdhcyBpbnRyb2R1Y2VkIGluIHY0
-IHdoZW4gSSByZWJhc2UgdGhlIGNvZGUuIEkgd2lsbA0KZml4IGl0IGluIG5leHQgdGltZS4NCg0K
-PiANCj4gPiAtDQo+ID4gIGNsa2VycjoNCj4gPiAgICAgICAgIGZvciAoaSAtPSAxOyBpID49IDA7
-IGktLSkNCj4gPiAgICAgICAgICAgICAgICAgY2xrX2Rpc2FibGVfdW5wcmVwYXJlKGVuY19jbGst
-PmNsa19pbmZvW2ldLnZjb2RlY19jbGspOw0KPiA+IEBAIC0xMjUsNyArOTAsNiBAQCB2b2lkIG10
-a192Y29kZWNfZW5jX2Nsb2NrX29mZihzdHJ1Y3QgbXRrX3Zjb2RlY19wbSAqcG0pDQo+ID4gICAg
-ICAgICBzdHJ1Y3QgbXRrX3Zjb2RlY19jbGsgKmVuY19jbGsgPSAmcG0tPnZlbmNfY2xrOw0KPiA+
-ICAgICAgICAgaW50IGkgPSAwOw0KPiA+DQo+ID4gLSAgICAgICBtdGtfc21pX2xhcmJfcHV0KHBt
-LT5sYXJidmVuYyk7DQo+ID4gICAgICAgICBmb3IgKGkgPSBlbmNfY2xrLT5jbGtfbnVtIC0gMTsg
-aSA+PSAwOyBpLS0pDQo+ID4gICAgICAgICAgICAgICAgIGNsa19kaXNhYmxlX3VucHJlcGFyZShl
-bmNfY2xrLT5jbGtfaW5mb1tpXS52Y29kZWNfY2xrKTsNCj4gPiAgfQ0KPiA+IC0tDQo+ID4gMi4x
-OC4wDQo+ID4NCg0K
+On Wednesday 12 May 2021 at 12:55:53 (+0200), Alexandre TORGUE wrote:
+> We saw that patches [1] and [2] cause issue on stable version (at least for
+> 5.4). As you said issue can be seen with above device tree and check in
+> /proc/iomem than gpu_reserved region is taken by the kernel as "System RAM".
+> 
+> On v5.10 stream there are no issues seen taking patches [1]&[2] and the
+> reason is linked to patches [3]&[4] which have been introduced in v5.10.0.
+> Reverting them give me the same behavior than on stable version.
 
+Thanks for confirming. Given that the patches were not really fixes, I
+think reverting is still the best option. I've sent reverts to -stable
+for 5.4 and prior:
+
+https://lore.kernel.org/stable/20210512122853.3243417-1-qperret@google.com/
+
+Cheers,
+Quentin
