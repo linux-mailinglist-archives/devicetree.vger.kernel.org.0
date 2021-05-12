@@ -2,92 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 495F637EDE3
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 00:54:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC34837EDEE
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 00:54:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234280AbhELUz7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 16:55:59 -0400
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:33527 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385222AbhELUHY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 16:07:24 -0400
-Received: by mail-ot1-f46.google.com with SMTP id i23-20020a9d68d70000b02902dc19ed4c15so17675459oto.0;
-        Wed, 12 May 2021 13:06:15 -0700 (PDT)
+        id S237967AbhELU4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 16:56:24 -0400
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:37786 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1385232AbhELUHi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 16:07:38 -0400
+Received: by mail-oi1-f176.google.com with SMTP id k25so23419961oic.4;
+        Wed, 12 May 2021 13:06:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=R+IkTxHfBAFtRW2lutUn2nLuybmbDOndfHyxHFIGXaI=;
-        b=KEJTFJ32AGZ1hEyMnRZQf5SBVKAUN2U73+p+CNE1Gx5UDrwMrVIhX9DZrODhC4PppU
-         a+buVEjq2pJ4GDZCkgvIJ+Zvb4J302PuIp2wc0GlgLca7VfyoUUmfDHsEIA7XtKHPOSV
-         ssWeNMuug2WdYy5t1MEQA6quoMvzg750SPc9F8bbYsgl8dwG8wqAXwbwarui9xXk11u1
-         Pj0uxobjjxgb8b6E5+jZbMaIzAmh/ezZ0DsNf7EY7ozt07Q/gdOgl2gYQagWYAU8FLF6
-         rnVHjxiEChTBUa7iKoJvfmKiLEsW4Q+V+NzgQRkDi3YIKuKWDgqq+m7oAH/+vjdAKccs
-         CnsA==
-X-Gm-Message-State: AOAM533dh2Hjyh8IlFJsXkGu7s3n9xmodxImrnhzGP+hB62wzqlOVsOt
-        ZhRtH3rnrx4PDNvh4WMe3w==
-X-Google-Smtp-Source: ABdhPJyG8OgYODqmif7KLuvC9iYkhDrkyxnP9FXn3KO96V37sMXjKIhdDf7CxSiCcL6jmHxTm/V3RQ==
-X-Received: by 2002:a9d:4b9c:: with SMTP id k28mr27136751otf.183.1620849975351;
-        Wed, 12 May 2021 13:06:15 -0700 (PDT)
+        bh=ZT4JNzSVA4XzKpARhAEfHQrvscUrf/xbLw82kFR8CgM=;
+        b=gUYvJSMePg6fhzUY7HrLQWKBXq5ZoZjxqu1wYUjOb894V34suYFMTfeniJfdwigZpC
+         tdqyOpCXdPKF3FrJNFlAEXLNYcSOMcROPV2IbPM5BXg/mcVqKwQMWg1Dj60gG7x/4B9+
+         FBuvIwXxdOiR5F2Pta7iGt0S8xhBL8DqdvwVo4fob/G2cogTylB0qjTS2M2NZXxHxHDK
+         nbsPaKpFq0xixVz1JIDUv45MxX8eQekzr++8zWiyN93zFfySgYkK6/1aUteavS2sd8Bl
+         vtUmeT+P472696GFJq5m5Xqtnl2mMXw5MRObuXFt6IHB3JJvLbmrPCym2G8l9RAJK/+C
+         86zA==
+X-Gm-Message-State: AOAM532YmmW0S3QK66werJdHwr5RkAZ96zCou8DbnjLsXXisNNpwhiyX
+        F6TMH2AwdLxrTdTuldTrIw==
+X-Google-Smtp-Source: ABdhPJyx3BiGpIeRJ3UIVk48+wQi6XdGs6DMxX1QJJ+UbedL6x3vdBzMYF8skTJgNZgJb8r3EWzcbQ==
+X-Received: by 2002:aca:1a05:: with SMTP id a5mr182147oia.26.1620849989353;
+        Wed, 12 May 2021 13:06:29 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z9sm213503oos.16.2021.05.12.13.06.13
+        by smtp.gmail.com with ESMTPSA id h184sm191133oia.1.2021.05.12.13.06.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 May 2021 13:06:14 -0700 (PDT)
-Received: (nullmailer pid 204086 invoked by uid 1000);
+        Wed, 12 May 2021 13:06:28 -0700 (PDT)
+Received: (nullmailer pid 204078 invoked by uid 1000);
         Wed, 12 May 2021 18:35:16 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Nava kishore Manne <nava.manne@xilinx.com>
-Cc:     linux-fpga@vger.kernel.org, wendy.liang@xilinx.com,
-        lakshmi.sai.krishna.potthuri@xilinx.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        iwamatsu@nigauri.org, chinnikishore369@gmail.com, arnd@arndb.de,
-        amit.sunil.dhamne@xilinx.com, ravi.patel@xilinx.com,
-        zou_wei@huawei.com, robh+dt@kernel.org, gregkh@linuxfoundation.org,
-        linux-kernel@vger.kernel.org, rajan.vaja@xilinx.com,
-        git@xilinx.com, mdf@kernel.org, trix@redhat.com,
-        tejas.patel@xilinx.com, michal.simek@xilinx.com
-In-Reply-To: <20210512125042.30973-4-nava.manne@xilinx.com>
-References: <20210512125042.30973-1-nava.manne@xilinx.com> <20210512125042.30973-4-nava.manne@xilinx.com>
-Subject: Re: [PATCH v5 3/4] dt-bindings: firmware: Add bindings for xilinx firmware
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     michal.simek@xilinx.com, linux-pwm@vger.kernel.org,
+        Alvaro Gamez <alvaro.gamez@hazent.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20210511191239.774570-1-sean.anderson@seco.com>
+References: <20210511191239.774570-1-sean.anderson@seco.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: pwm: Add Xilinx AXI Timer
 Date:   Wed, 12 May 2021 13:35:16 -0500
-Message-Id: <1620844516.515515.204085.nullmailer@robh.at.kernel.org>
+Message-Id: <1620844516.484369.204077.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 May 2021 18:20:41 +0530, Nava kishore Manne wrote:
-> Add documentation to describe Xilinx firmware driver bindings.
-> Firmware driver provides an interface to firmware APIs.
-> Interface APIs can be used by any driver to communicate
-> to Platform Management Unit.
+On Tue, 11 May 2021 15:12:37 -0400, Sean Anderson wrote:
+> This adds a binding for the Xilinx LogiCORE IP AXI Timer. This device is
+> a "soft" block, so it has many parameters which would not be
+> configurable in most hardware. This binding is usually automatically
+> generated by Xilinx's tools, so the names and values of some properties
+> must be kept as they are. Replacement properties have been provided for
+> new device trees.
 > 
-> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
+> Because we need to init timer devices so early in boot, the easiest way
+> to configure things is to use a device tree property. For the moment
+> this is 'xlnx,pwm', but this could be extended/renamed/etc. in the
+> future if these is a need for a generic property.
+> 
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
 > ---
-> Changes for v4:
->                 -Added new yaml file for xilinx firmware
->                  as suggested by Rob.
-> Changes for v5:
->                 -Fixed some minor issues and updated the fpga node name to versal_fpga.
+> How should the clocking situation be documented? For the moment I have
+> just left clock as optional, but should clock-frequency be documented?
 > 
->  .../firmware/xilinx/xlnx,zynqmp-firmware.yaml | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+> Changes in v3:
+> - Mark all boolean-as-int properties as deprecated
+> - Add xlnx,pwm and xlnx,gen?-active-low properties.
+> - Make newer replacement properties mutually-exclusive with what they
+>   replace
+> - Add an example with non-deprecated properties only.
+> 
+> Changes in v2:
+> - Use 32-bit addresses for example binding
+> 
+>  .../bindings/pwm/xlnx,axi-timer.yaml          | 142 ++++++++++++++++++
+>  1 file changed, 142 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml:16:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
 
 dtschema/dtc warnings/errors:
-Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/gpio/rockchip,rk3328-grf-gpio.yaml'
-xargs: dt-doc-validate: exited with status 255; aborting
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/xlnx,versal-clk.example.dt.yaml: zynqmp-firmware: 'clock-controller' does not match any of the regexes: 'pinctrl-[0-9]+', 'versal_fpga'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/crypto/xlnx,zynqmp-aes.example.dt.yaml: zynqmp-firmware: 'zynqmp-aes' does not match any of the regexes: 'pinctrl-[0-9]+', 'versal_fpga'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+Documentation/devicetree/bindings/pwm/xlnx,axi-timer.example.dts:49.37-57.11: ERROR (duplicate_label): /example-1/timer@800e0000: Duplicate label 'axi_timer_0' on /example-1/timer@800e0000 and /example-0/timer@800e0000
+ERROR: Input tree has errors, aborting (use -f to force output)
+make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/pwm/xlnx,axi-timer.example.dt.yaml] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1416: dt_binding_check] Error 2
 
-See https://patchwork.ozlabs.org/patch/1477568
+See https://patchwork.ozlabs.org/patch/1477288
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
