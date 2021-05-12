@@ -2,67 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01ACD37EDED
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 00:54:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 495F637EDE3
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 00:54:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236281AbhELU4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 16:56:21 -0400
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:34652 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385231AbhELUHh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 16:07:37 -0400
-Received: by mail-oi1-f176.google.com with SMTP id u11so2262339oiv.1;
-        Wed, 12 May 2021 13:06:27 -0700 (PDT)
+        id S234280AbhELUz7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 16:55:59 -0400
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:33527 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1385222AbhELUHY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 16:07:24 -0400
+Received: by mail-ot1-f46.google.com with SMTP id i23-20020a9d68d70000b02902dc19ed4c15so17675459oto.0;
+        Wed, 12 May 2021 13:06:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=s2DS0EP+Lhy5SLk5RYFh/X7aa8tDWN8bv9ksm/BaqCo=;
-        b=DKtHA1duQcshx5qA4uufmPEIJtw1pp3CWVK1wkAC2ojGm0+4w3qZLtRkWfVUysMtxb
-         Muf8ZxxUyyAzdPgCdrPOXIr0JQzhckrZvJsXm3FA+J1G8kYFr68VSnzUGXAbthu8KyBy
-         ynykGr1BMbJh7x0L55+bXmeeC3N3Jo1RNfQ6lk9pzoBgFVKnksuDQe/U+xPvASX4jgT5
-         hpOJ96oIV9C9Q0GgdpCn0V3QU6GYkuPo6bsCt15FTR2+MdA1hu5CBHjEXIHCr9QO+Skz
-         CJSJ36fRypx6abOp7yi0m5/yBG1jTRiBCE+RR8OAcBYG4lEzYsATbVz1RS9H+pHLEXGA
-         anyA==
-X-Gm-Message-State: AOAM530ryBQ2+duFQLMIgygabDt6s0ay9zr8k/5dmLyFy00bqgBwRWS6
-        gP+BPbCpd+kgZoOb2OWlqQ==
-X-Google-Smtp-Source: ABdhPJyV51HHN+G1WFSrWZTGxA01fzLDa78XZO+hOz79AYboo84b25VEYMKObdQerJo6+HohNlsybg==
-X-Received: by 2002:aca:f245:: with SMTP id q66mr28094334oih.179.1620849987507;
-        Wed, 12 May 2021 13:06:27 -0700 (PDT)
+        bh=R+IkTxHfBAFtRW2lutUn2nLuybmbDOndfHyxHFIGXaI=;
+        b=KEJTFJ32AGZ1hEyMnRZQf5SBVKAUN2U73+p+CNE1Gx5UDrwMrVIhX9DZrODhC4PppU
+         a+buVEjq2pJ4GDZCkgvIJ+Zvb4J302PuIp2wc0GlgLca7VfyoUUmfDHsEIA7XtKHPOSV
+         ssWeNMuug2WdYy5t1MEQA6quoMvzg750SPc9F8bbYsgl8dwG8wqAXwbwarui9xXk11u1
+         Pj0uxobjjxgb8b6E5+jZbMaIzAmh/ezZ0DsNf7EY7ozt07Q/gdOgl2gYQagWYAU8FLF6
+         rnVHjxiEChTBUa7iKoJvfmKiLEsW4Q+V+NzgQRkDi3YIKuKWDgqq+m7oAH/+vjdAKccs
+         CnsA==
+X-Gm-Message-State: AOAM533dh2Hjyh8IlFJsXkGu7s3n9xmodxImrnhzGP+hB62wzqlOVsOt
+        ZhRtH3rnrx4PDNvh4WMe3w==
+X-Google-Smtp-Source: ABdhPJyG8OgYODqmif7KLuvC9iYkhDrkyxnP9FXn3KO96V37sMXjKIhdDf7CxSiCcL6jmHxTm/V3RQ==
+X-Received: by 2002:a9d:4b9c:: with SMTP id k28mr27136751otf.183.1620849975351;
+        Wed, 12 May 2021 13:06:15 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id p1sm178247otk.58.2021.05.12.13.06.26
+        by smtp.gmail.com with ESMTPSA id z9sm213503oos.16.2021.05.12.13.06.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 May 2021 13:06:26 -0700 (PDT)
-Received: (nullmailer pid 204082 invoked by uid 1000);
+        Wed, 12 May 2021 13:06:14 -0700 (PDT)
+Received: (nullmailer pid 204086 invoked by uid 1000);
         Wed, 12 May 2021 18:35:16 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     daire.mcnamara@microchip.com
-Cc:     lewis.hanly@microchip.com, david.abdurachmanov@gmail.com,
-        conor.dooley@microchip.com, palmer@dabbelt.com,
-        devicetree@vger.kernel.org, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, linux-rtc@vger.kernel.org,
-        padmarao.begari@microchip.com, cyril.jean@microchip.com,
-        robh+dt@kernel.org
-In-Reply-To: <20210512111133.1650740-2-daire.mcnamara@microchip.com>
-References: <20210512111133.1650740-1-daire.mcnamara@microchip.com> <20210512111133.1650740-2-daire.mcnamara@microchip.com>
-Subject: Re: [PATCH v1 1/2] dt-bindings: rtc: microchip: Add Microchip PolarFire host binding
+To:     Nava kishore Manne <nava.manne@xilinx.com>
+Cc:     linux-fpga@vger.kernel.org, wendy.liang@xilinx.com,
+        lakshmi.sai.krishna.potthuri@xilinx.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        iwamatsu@nigauri.org, chinnikishore369@gmail.com, arnd@arndb.de,
+        amit.sunil.dhamne@xilinx.com, ravi.patel@xilinx.com,
+        zou_wei@huawei.com, robh+dt@kernel.org, gregkh@linuxfoundation.org,
+        linux-kernel@vger.kernel.org, rajan.vaja@xilinx.com,
+        git@xilinx.com, mdf@kernel.org, trix@redhat.com,
+        tejas.patel@xilinx.com, michal.simek@xilinx.com
+In-Reply-To: <20210512125042.30973-4-nava.manne@xilinx.com>
+References: <20210512125042.30973-1-nava.manne@xilinx.com> <20210512125042.30973-4-nava.manne@xilinx.com>
+Subject: Re: [PATCH v5 3/4] dt-bindings: firmware: Add bindings for xilinx firmware
 Date:   Wed, 12 May 2021 13:35:16 -0500
-Message-Id: <1620844516.500323.204081.nullmailer@robh.at.kernel.org>
+Message-Id: <1620844516.515515.204085.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 May 2021 12:11:32 +0100, daire.mcnamara@microchip.com wrote:
-> From: Daire McNamara <daire.mcnamara@microchip.com>
+On Wed, 12 May 2021 18:20:41 +0530, Nava kishore Manne wrote:
+> Add documentation to describe Xilinx firmware driver bindings.
+> Firmware driver provides an interface to firmware APIs.
+> Interface APIs can be used by any driver to communicate
+> to Platform Management Unit.
 > 
-> Add device tree bindings for the Microchip PolarFire real-time
-> clock controller
-> 
-> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
 > ---
->  .../bindings/rtc/microchip,mfps-rtc.yaml      | 61 +++++++++++++++++++
->  1 file changed, 61 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
+> Changes for v4:
+>                 -Added new yaml file for xilinx firmware
+>                  as suggested by Rob.
+> Changes for v5:
+>                 -Fixed some minor issues and updated the fpga node name to versal_fpga.
+> 
+>  .../firmware/xilinx/xlnx,zynqmp-firmware.yaml | 66 +++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -71,15 +80,14 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.example.dts:19:18: fatal error: dt-bindings/clock/microchip,mpfs-clock.h: No such file or directory
-   19 |         #include <dt-bindings/clock/microchip,mpfs-clock.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1416: dt_binding_check] Error 2
+Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/gpio/rockchip,rk3328-grf-gpio.yaml'
+xargs: dt-doc-validate: exited with status 255; aborting
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/xlnx,versal-clk.example.dt.yaml: zynqmp-firmware: 'clock-controller' does not match any of the regexes: 'pinctrl-[0-9]+', 'versal_fpga'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/crypto/xlnx,zynqmp-aes.example.dt.yaml: zynqmp-firmware: 'zynqmp-aes' does not match any of the regexes: 'pinctrl-[0-9]+', 'versal_fpga'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
 
-See https://patchwork.ozlabs.org/patch/1477539
+See https://patchwork.ozlabs.org/patch/1477568
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
