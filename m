@@ -2,66 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24D2937EDE8
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 00:54:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E53A37EDEB
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 00:54:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241708AbhELU4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 16:56:09 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:44555 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385224AbhELUH2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 16:07:28 -0400
-Received: by mail-ot1-f54.google.com with SMTP id r26-20020a056830121ab02902a5ff1c9b81so21670766otp.11;
-        Wed, 12 May 2021 13:06:19 -0700 (PDT)
+        id S234206AbhELU4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 16:56:15 -0400
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:37654 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1385226AbhELUHc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 16:07:32 -0400
+Received: by mail-ot1-f48.google.com with SMTP id v19-20020a0568301413b0290304f00e3d88so520060otp.4;
+        Wed, 12 May 2021 13:06:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=bDpn0xOsJEyqotdRpMYjw+ug9Gx1M8eSNlxTk3hCNS0=;
-        b=cmLz7KCd4yXLXRfhpG/QNuLXC2EJEQaeTVBvTIEL+IqHWOd9TOTpNQ7+B8EP2fban0
-         x85Nvz0Opy/N4OSMZ8Slb9QtjHbMY7PdH4KV5khFgr/s1OYBl6b4LT1l5Zi+P6EMXTNv
-         Zi1fjrdNzhLuLUQ4xcb8/XtuB2sKbomIGhLIkO7OJrRSQ+VCJj8aln1wQiTMXwk3V9P7
-         qIRCtp6c8Kx0EQsDbfsvhJxkPmz8PCBbjhJLBu0EG0j1k2hCYGr5QxwIO5Gg11fj5VUc
-         1hMKK5bn6TK2kd7D63nH3KXsBj8ZcepBvlSbM6ozwI+LCCFC13Nt8ylnd0H9aROwmESD
-         elug==
-X-Gm-Message-State: AOAM531PTrudS7wIykYarpFvbEVc+KxXUqfnPf1yn9nAF7OmLGCXcG09
-        Rt6vGkSV/9soQOXzJsoqrahTqAssEQ==
-X-Google-Smtp-Source: ABdhPJyELr+EXup1zcc4RnO7m+0mc55//JTIHHm1eW0apyiwBCZ/i+5RMJseKGRLph6YtmWi0wGeCg==
-X-Received: by 2002:a05:6830:30bc:: with SMTP id g28mr31982488ots.43.1620849979543;
-        Wed, 12 May 2021 13:06:19 -0700 (PDT)
+        bh=hhnaSOD9rZUaH7zbR+h3t72aZb7UhhEovYqBhpogtio=;
+        b=Ssd0khHDrdt2dhdZ3Urq0aXdE8OfnJaohg+0BuqDWAPAngJbovL99aRdp/jXvcjdWx
+         CTgh3KaEtNe2jwhC5LBQfkPDHIgUlK34/J+0+3laeo5uS48GU8Mfs7pf4RbWvlBpvFD2
+         9mDpGKWJgfSQMaTfkk85p8PxWewwyleFUahNBa3dpIiM5Y9LV8mx9YlzGnDzmHpPvu7f
+         U4jBFJ5g7jyq52pA5hkHeKxjtAAp9LWCSpKFDT4qcF0h+6wNsZCznTNDSGiP7umoUpCH
+         tFXXSHdSUXDgMyYgJ44e9iRyb4rujXYUcG5MRRdlx9PtcF5XKIs0ycG6ii2/TRAaH3Ls
+         rVMw==
+X-Gm-Message-State: AOAM5337DdkSkmA8RGkwOEHXXEQe9qwrcz+DU7MCx+qfxehtB7qKcb+k
+        KCX8rIOnfZdr7HtXwY0l80hPod7FRA==
+X-Google-Smtp-Source: ABdhPJzyWvUr3Ry/8XTYUAydrxrHT/tsdf/bcwoWjSHkvNEpPyamIYQZ0sf4FRVUdyw+345Ug+z0Aw==
+X-Received: by 2002:a05:6830:208c:: with SMTP id y12mr30405131otq.129.1620849983154;
+        Wed, 12 May 2021 13:06:23 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k7sm215496ood.36.2021.05.12.13.06.17
+        by smtp.gmail.com with ESMTPSA id h6sm223813oom.21.2021.05.12.13.06.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 May 2021 13:06:18 -0700 (PDT)
-Received: (nullmailer pid 204075 invoked by uid 1000);
+        Wed, 12 May 2021 13:06:22 -0700 (PDT)
+Received: (nullmailer pid 204080 invoked by uid 1000);
         Wed, 12 May 2021 18:35:16 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Marek <jonathan@marek.ca>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, andrey.konovalov@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>, robert.foss@linaro.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-In-Reply-To: <20210511180728.23781-18-jonathan@marek.ca>
-References: <20210511180728.23781-1-jonathan@marek.ca> <20210511180728.23781-18-jonathan@marek.ca>
-Subject: Re: [PATCH 17/17] media: dt-bindings: media: camss: Add qcom,sm8250-camss binding
+To:     Doug Zobel <dougdev334@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+        Pavel Machek <pavel@ucw.cz>
+In-Reply-To: <20210511204834.2675271-3-dougdev334@gmail.com>
+References: <20210511204834.2675271-1-dougdev334@gmail.com> <20210511204834.2675271-3-dougdev334@gmail.com>
+Subject: Re: [PATCH 2/2] dt: bindings: lp55xx: Add predefined LED pattern
 Date:   Wed, 12 May 2021 13:35:16 -0500
-Message-Id: <1620844516.475963.204074.nullmailer@robh.at.kernel.org>
+Message-Id: <1620844516.492214.204079.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 May 2021 14:07:24 -0400, Jonathan Marek wrote:
-> Add bindings for qcom,sm8250-camss in order to support the camera
-> subsystem for SM8250.
+On Tue, 11 May 2021 15:48:34 -0500, Doug Zobel wrote:
+> Add a new device tree object for LP5562 predfined led patterns.
 > 
-> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+> Signed-off-by: Doug Zobel <dougdev334@gmail.com>
 > ---
->  .../bindings/media/qcom,sm8250-camss.yaml     | 398 ++++++++++++++++++
->  1 file changed, 398 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+>  .../devicetree/bindings/leds/leds-lp55xx.yaml | 103 +++++++++++++++++-
+>  1 file changed, 102 insertions(+), 1 deletion(-)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -70,15 +65,12 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/media/qcom,sm8250-camss.example.dts:20:18: fatal error: dt-bindings/clock/qcom,camcc-sm8250.h: No such file or directory
-   20 |         #include <dt-bindings/clock/qcom,camcc-sm8250.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/media/qcom,sm8250-camss.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1416: dt_binding_check] Error 2
+Documentation/devicetree/bindings/leds/leds-lp55xx.example.dts:159.28-172.20: Warning (unit_address_vs_reg): /example-0/i2c/led-controller@30/pattern@1: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/leds/leds-lp55xx.example.dts:174.28-209.20: Warning (unit_address_vs_reg): /example-0/i2c/led-controller@30/pattern@2: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/leds/leds-lp55xx.example.dts:147.24-151.20: Warning (unique_unit_address): /example-0/i2c/led-controller@30/led@1: duplicate unit-address (also used in node /example-0/i2c/led-controller@30/pattern@1)
+Documentation/devicetree/bindings/leds/leds-lp55xx.example.dts:153.24-157.20: Warning (unique_unit_address): /example-0/i2c/led-controller@30/led@2: duplicate unit-address (also used in node /example-0/i2c/led-controller@30/pattern@2)
 
-See https://patchwork.ozlabs.org/patch/1477274
+See https://patchwork.ozlabs.org/patch/1477300
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
