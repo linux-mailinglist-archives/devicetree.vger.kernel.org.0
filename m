@@ -2,331 +2,415 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2C6037B3FF
-	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 04:01:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8578437B426
+	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 04:23:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230284AbhELCCn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 May 2021 22:02:43 -0400
-Received: from mail-bn8nam12on2053.outbound.protection.outlook.com ([40.107.237.53]:29089
-        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
+        id S229945AbhELCZB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 May 2021 22:25:01 -0400
+Received: from mail-vi1eur05on2081.outbound.protection.outlook.com ([40.107.21.81]:46977
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230388AbhELCCm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 May 2021 22:02:42 -0400
+        id S229932AbhELCZB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 May 2021 22:25:01 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=G85yhFdCcZma8hjVmOzdFS0gCRXm8CI06wVB7ie+1OlRnsiU9DJdkMwiRW3MwYp2CzdKvfDzvWmIPhs9qPh2CwBtoAoPoV1ftSnNpbv7rGClmvUGaZ3wPxPw+1pK68gCUWerheQCG56pajk25wbd26HwffXhh7FL9uV5QcvoMnl9G4sIvel36OV2U4rYbctxkBe5XVwAq6fmGD6yubRZLVob5OFR3aq7jGAHt9PNnbCueCh5qG6HehtEZpIjULp2lq2YUZpP7PhgaxKikQQF8rxV+iEE1ir7dErHlitSgLSuYdoq3CIfH2gmyNoIXranF37Gw1t486abxLZY2bw/Zw==
+ b=L4xVDG4aCzD84bYaYBJH0yrXp5ptVK8bkRjAbveMwSPxf2O9vOnJeBCboX1j+c2cRUNM7MjFp7VzSNECYppxvHupfMhGK6zaiITPqiQ/jsV02LGTuXyAuqFOPoN4rqBdYZC+fb74xGTTQqozTpirFw/HxzAMvjdJ3DDkFtucq/6eEBgUy/xPh/CZ1JWlQoMBN/1Yb9P6Ad7mag9jU5IalIRD6DfnMaaXrz0f/AHqTssuayo1nCq01cWagR16jebUFkR0SXC07EkfBQsmccobXzKZHtpVh0wamb8uDmgm3Sa9TT0IUP4o6VtAmhHlWMVveUVijc+LcwYhKpiqXfD2ow==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3qjrJi6L4/XfLDnC/XtevV+BhtoC8R1svYX0ijjj9nI=;
- b=TLF2tBAJ+1QWsTM5rr8HDOqTOTgXcK91zHl2zu+Zr+65KHeLk3WCwxQeVG9170SaWQpxcvOd//wa1avIw6Fg6MRHn12a/f2AYqyJPzZKJWQGMrD9wAh01qruvD8oaw2u+65tR1w19f/6VELuUzfQeajvokIUUN1rnCRDaxEADkvetGGtv1cvLbzn9cXGe5E9/N5f7s+ebmc1Da8nsCZO8sy/I0B0emChckvgVlDxxQRezvyQspbqAQDNUIOsYM7LAZjbp9BSB9gfDD2MC2ylqRKinTMBUB7ItpmlQCBUD2QS844bpvb5LWm8NUaqEHHInXw9D3n1xfvIMpPQLWZADw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ bh=G7cWTfBFjpl/2IYlOulFOiy6fM4AUXvRIt3D0N5y8cc=;
+ b=JNqx6ijDsdginHRKmndu5zLUluCvPXsHFN65zzPcl2RN0Y5XhbKjLfCxtQlxmDEj21YAfeyF8DFFwBhDhllU2g2hZtW9/GQu3gGvxftAK3mhxd55zHKjSUVnL+PHctYmDNL2baVgJcDuhUff693J5MbHivDq8UgWqs5Uejb9/NvsRIvi8aJCo8qB492EeAP0O3CBo/6JAqg5wvdVVx9VAHr+pnlgJNPNCM9snb7NN8wGh9hxGaxlzSX/yd9d3wX/+ZsWQwXJ5JycMumslDG2t5N9tettjINjpWkls65pOf/C0i9j4mS65LUn1gowu6UcGC1Fjx/r5s2s6cbfavt8jw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3qjrJi6L4/XfLDnC/XtevV+BhtoC8R1svYX0ijjj9nI=;
- b=IFsME2D+czVBP/LII4QPCFXMREtNGAljzbCurmD+dvQbEJ7AwPTou/di2PWj15qkDb4BLHmSietDlsRh6t9IhqGEyabWCCA9RiTW4EGhXQ0VMk7y0LVDfuDVnrq2ZBu/AKzFrNfbv1+C+HhHSUAriOll2YPmeDH5ZCYu0APTBNA=
-Received: from BN9P220CA0021.NAMP220.PROD.OUTLOOK.COM (2603:10b6:408:13e::26)
- by MN2PR02MB6766.namprd02.prod.outlook.com (2603:10b6:208:1dc::22) with
+ bh=G7cWTfBFjpl/2IYlOulFOiy6fM4AUXvRIt3D0N5y8cc=;
+ b=F+vP/1IyLwCMAufGN3o0gw++hfulLsau9DKUE9ufHEUPVmVrZQyNGOWR/Dk/cfHo4j8+Go5nn2+VcUnzf/QvtpWLVfPknpSlxYH5oURkhWuFHjZXSTvLk7DCGu5drF8AJFw+sLtKFB1vfpTiJp6EQr9lGjNGA9WwTttzSbuf3FU=
+Received: from VI1PR04MB5294.eurprd04.prod.outlook.com (2603:10a6:803:5a::22)
+ by VI1PR0402MB3550.eurprd04.prod.outlook.com (2603:10a6:803:3::17) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25; Wed, 12 May
- 2021 02:01:34 +0000
-Received: from BN1NAM02FT052.eop-nam02.prod.protection.outlook.com
- (2603:10b6:408:13e:cafe::a) by BN9P220CA0021.outlook.office365.com
- (2603:10b6:408:13e::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25 via Frontend
- Transport; Wed, 12 May 2021 02:01:34 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- BN1NAM02FT052.mail.protection.outlook.com (10.13.2.160) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4065.21 via Frontend Transport; Wed, 12 May 2021 02:01:33 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Tue, 11 May 2021 19:01:21 -0700
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Tue, 11 May 2021 19:01:21 -0700
-Envelope-to: mdf@kernel.org,
- robh@kernel.org,
- trix@redhat.com,
- devicetree@vger.kernel.org,
- linux-fpga@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Received: from [172.19.72.212] (port=35752 helo=xsj-xw9400.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <lizhi.hou@xilinx.com>)
-        id 1lgeBc-0002O6-UZ; Tue, 11 May 2021 19:01:20 -0700
-Received: by xsj-xw9400.xilinx.com (Postfix, from userid 21952)
-        id 2BCF9600138; Tue, 11 May 2021 18:53:46 -0700 (PDT)
-From:   Lizhi Hou <lizhi.hou@xilinx.com>
-To:     <linux-kernel@vger.kernel.org>
-CC:     Lizhi Hou <lizhi.hou@xilinx.com>, <linux-fpga@vger.kernel.org>,
-        <maxz@xilinx.com>, <sonal.santan@xilinx.com>, <yliu@xilinx.com>,
-        <michal.simek@xilinx.com>, <stefanos@xilinx.com>,
-        <devicetree@vger.kernel.org>, <trix@redhat.com>, <mdf@kernel.org>,
-        <robh@kernel.org>, Max Zhen <max.zhen@xilinx.com>
-Subject: [PATCH V6 XRT Alveo 20/20] fpga: xrt: Kconfig and Makefile updates for XRT drivers
-Date:   Tue, 11 May 2021 18:53:39 -0700
-Message-ID: <20210512015339.5649-21-lizhi.hou@xilinx.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210512015339.5649-1-lizhi.hou@xilinx.com>
-References: <20210512015339.5649-1-lizhi.hou@xilinx.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.27; Wed, 12 May
+ 2021 02:23:50 +0000
+Received: from VI1PR04MB5294.eurprd04.prod.outlook.com
+ ([fe80::ed5a:8f34:39b:db40]) by VI1PR04MB5294.eurprd04.prod.outlook.com
+ ([fe80::ed5a:8f34:39b:db40%3]) with mapi id 15.20.4129.026; Wed, 12 May 2021
+ 02:23:50 +0000
+From:   Bough Chen <haibo.chen@nxp.com>
+To:     Adrian Hunter <adrian.hunter@intel.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>, dl-linux-imx <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH v2 2/3] mmc: sdhci-esdhc-imx: advertise HS400 mode through
+ MMC caps
+Thread-Topic: [PATCH v2 2/3] mmc: sdhci-esdhc-imx: advertise HS400 mode
+ through MMC caps
+Thread-Index: AQHXRc9Bnq07D6evekaifiKekikY+ardlYRwgABbZYCAAEk9gIAA5M4g
+Date:   Wed, 12 May 2021 02:23:49 +0000
+Message-ID: <VI1PR04MB5294B58769D6BCB2615F90DF90529@VI1PR04MB5294.eurprd04.prod.outlook.com>
+References: <20210510190400.105162-1-l.stach@pengutronix.de>
+ <20210510190400.105162-2-l.stach@pengutronix.de>
+ <VI1PR04MB5294AF754C68D41C844083A990539@VI1PR04MB5294.eurprd04.prod.outlook.com>
+ <8b7ab5139fea41caf15b398ec975ed71229dfd5d.camel@pengutronix.de>
+ <2269d9ee-9ca0-a1b7-666e-8f2d9bae51d3@intel.com>
+In-Reply-To: <2269d9ee-9ca0-a1b7-666e-8f2d9bae51d3@intel.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+authentication-results: intel.com; dkim=none (message not signed)
+ header.d=none;intel.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.71]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 932882bf-8945-42ee-cc34-08d914ecfab8
+x-ms-traffictypediagnostic: VI1PR0402MB3550:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR0402MB35507621F4835E0A06AC07ED90529@VI1PR0402MB3550.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: g+a8ETdu6yTsI/ikh/drUPdlFxzp07wIBTwhrjYjZ7kc5PyJergGLCR8znUlgdNXA/9REjDtj1q+9FmLrvTDA1H83NfnkPq5jA13GE819uzYaZynqDLlIxd/FTqYbiddINoVJM6E/n9S7X3ujUIvScgcSgckSyt30uYNh+9elR+68XVqaBN8x+HUduOV+KnR5jtlD0ynEEbh3FwpQ7LOYl1lXuiplwRP/PHtDXRR40ubwszHYXpZlKM/wauGD0qZUcALtXSb0eiQTWRR36OjNtxhHgbAHQWTlbrpuFEhdevpzr2apSWqKemOvHTWcWZjRmw3BBc5DWRUOOx8LwdDzWISAPaKz0Yt9iwpjNUIAOjD9cOH2LUcywR0CXL8j/8jjuO3KfXgyyJPREGtfzoBYlfKV0QkHjz3S/ePWwHFnGdAb8T2EM3NCuBoWQDdJ1tZRXigFcycm+nMkNbHfuZE45relSWPDOcA64XkZG2dUCG7vR3w15n7Y7UDmCB8ikYslLqFurh4itnHdu3jfxDnL5R9rt+kK9J3r64IbOlzHpg3l99xD+ci3ra3l6/MhEQvIZFsG8H0XGtcDAs0vduuI8OUdBmL1fdekDfpMcPn9CM=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5294.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(9686003)(6506007)(76116006)(8676002)(55016002)(53546011)(54906003)(7696005)(99936003)(4326008)(2906002)(71200400001)(66946007)(110136005)(83380400001)(186003)(26005)(33656002)(38100700002)(66446008)(66556008)(66616009)(64756008)(5660300002)(66476007)(52536014)(8936002)(122000001)(498600001)(86362001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?b1k5a2RHWjF6UkhldlRMVHZiRUFVcy9ldkF4bjA2MFB3dXZtaUljNEx3aFlC?=
+ =?utf-8?B?NDVnRTB1Vk9sdG14UXV5NkRkazA4S29IZytURCtCQ00vWVJmU1pGZUtMU1NP?=
+ =?utf-8?B?dldOWGdhdFpBSHU5Rm9sYVJiajIwYjRuMmEzUGpiRXgzYXIxME40Z2Y0YTY1?=
+ =?utf-8?B?MjhnbzhJMGxvY3hSeXd0bjAxYmFoa2h6VnlwR1gzUTlFSUJKMldkaCtSakNv?=
+ =?utf-8?B?bElacEVidlNZVE05M0syVW5OOWwxenpPd1dFNEFOL1lHZGF3OVJFZkltSFpF?=
+ =?utf-8?B?QzZUYUE5MzcwdGpkTkZkTEl5MFJxTXE2TFp4MEpxWHB3dE1CdnpERlU1Q2Vq?=
+ =?utf-8?B?M3ZtNHFFTVFUWTU2L0tEOU1IWGtGY3VManRDaFJ3cnRqV3djWCtKdWUrcW11?=
+ =?utf-8?B?L1M3QVZReWIzeE5sUHNRY21QVzRiblVXKzRLaHZZVHM2ZEg5aWlXeUsxcVhn?=
+ =?utf-8?B?Qm9CM05obTYwZnhFSU13U0h1c3hZeFhGSlNWVkFDOVh0TGpSbkJOYlkyOXRU?=
+ =?utf-8?B?VExBU1hsc0dWVDVaSEEyb2FUT1JuRlNvYWpXV1ZFM1J6bzcvODJCQ2Z0REIz?=
+ =?utf-8?B?bFVySmFRV3RPYmFMU2RHNVlXWXdqeTFZVjRtL1gxeEdMMSt2aWM2VHh1ZWtm?=
+ =?utf-8?B?dlErQ1h4TGNwbGcrR2pBOU4xNjRSQ09mR1BoQUpDSVl3UnhkT09PWFR4NnRB?=
+ =?utf-8?B?WTN4U0dWSE91TjVHbHlNZGZ2eTdiWi9XeFlaME1yZHNvQUVqWWpXaWozb1kz?=
+ =?utf-8?B?TUZCQm5SRTU5Qk9MTG0wOE9sdGR2dUJEdkpQRmozTjgxSVYxSXJRZEtBZ3Q2?=
+ =?utf-8?B?em9XZVEvVEdJczF0b0FWdXhyOVJmZzN5U0p5akpiR1BaM1ZjY01SMklaUG1a?=
+ =?utf-8?B?NHQwSkFZU3JLSHU2Vkdtb0c3KzlGYUU2ZFovTFgvcmh1aXMrdCszNkZrc1FM?=
+ =?utf-8?B?eUhoZzFyNTRWc050Y0pmcjRZWVFWblpTN01RaU9XWmViWXE2aFZwVjQzU0RQ?=
+ =?utf-8?B?dGdkSmludUl2TDRiOFlYS09abmszTGlmMk9QRGNiRHRlSFdodWVyTnZqN2Nl?=
+ =?utf-8?B?bzNUU2ZqUVRsenU1d1dsL1daRjFNOWpMd3BzOEU1RzZGaUpWY0FWeHQ4Y21W?=
+ =?utf-8?B?dWhrU3ZzMmNNQitvZDRCMDJnU1hJTk9KNEQ4YlhjN3E2YWppNURRVG5pdFVh?=
+ =?utf-8?B?emNTRHJ0VkprVXlTdXNacVBYWFdPbnA1cVpZbGFwWEZkb1p0djB0OC83VHdj?=
+ =?utf-8?B?WmppSlRqZmRlY1lVN3NKMldKYTYzTTZXVm54cjlOZElQOS9aNjVGbTNyU1Vs?=
+ =?utf-8?B?WUpOd0hIN0l6bmwxdWxvempwaDBObFBkRjl2ajczeVFWZlFVbzBnb0NSOEtU?=
+ =?utf-8?B?bzBPOEc2dHJxTHZQcDI3QmNWNk9OeERlQzJaZnZ3U2poQXduc1NmaHZ2c1VN?=
+ =?utf-8?B?WGhucHdFUm91Qm1NRjR0K2owZmZ2bFBleXZzamV0MktySXZUMGl2ZVhnK01X?=
+ =?utf-8?B?ZEFBMDJtMkJtM05TUHhiSGtaWnNndWhwNlRhUEx6R2VqYVBrRmRVdWQ3Vmxp?=
+ =?utf-8?B?QWlPWmZKMW9yLzhYTFZGYWpKdE5GcWtQTWtEUG5CTHU4SzlTM0I5Q1VESHRz?=
+ =?utf-8?B?QS9XUkJWc1ZUNVBEVFlvK0R1T3J3ZXlSUVl6N1ljNzl6WDN5V0dMZzBCQ3NU?=
+ =?utf-8?B?bFhOc1VyT00vYlIwcGp1NFhmbjFja0V6VmQrUWdYYm5Hci9EVWtEQVI1NDlr?=
+ =?utf-8?Q?5Td/RY6lkm10uU9crOgQTZ6V2frKbd2dwC4NiDH?=
+Content-Type: multipart/signed;
+        protocol="application/x-pkcs7-signature";
+        micalg=2.16.840.1.101.3.4.2.1;
+        boundary="----=_NextPart_000_033D_01D74718.E40885F0"
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e877211d-c46f-44a6-e721-08d914e9de5c
-X-MS-TrafficTypeDiagnostic: MN2PR02MB6766:
-X-Microsoft-Antispam-PRVS: <MN2PR02MB6766F1577512177CF3D112E8A1529@MN2PR02MB6766.namprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: riKqxK6APc/JJgY4P+1M3UOnfpJg5FytNpCJkopmssJ47ZFuxHEsFbcB5Ez4B3LG38O0XlzXtfgxuOERX/eyoqG8JkOD4V2/W5bCw+ZYa/etDh2ftSrKvAKkMyv6h00ahKVkznp1VAcIoCA1YB+L/w0hwUdjSub78/g2kwgaO0bh9BWJ6RyNryuQISu+IP2ocNfN7egp7V00C919+ypOoXc3NzDHa5jFoIButbuPgmwrxzKjxjWAryLqT1dhQdRqML6MKZoIIfjhw61qcxnitMP5wkfQOBWqrg5igUr8YNa6RwY84ZbnEpHq2DDnGzHqc1sDeFOvlHpyj0t8PeXkYIH7ssoiFeGKUBAbjUPzz59hrwQbuq8bgTREdwKx04kGqHV5mk+QdH/8BQwkoL9OkkoJsNpl9lYsARSeCDIlRUUdxYXxGx/WXwZr1m+NhqBUl0Vuc1xu0GLfzyHSSRRcSsxjLcEZEYXjy8axAauYNs/dHm918czg+XWu2ixmy1RW6agg8EMX9yNBi8/c00qp2csoYvrIxISgoZZuUx529HMEq15IdcP3q7O+FeOQGIg6CKurJOmRQVLoYCiZ7GxSxRYJ61/dPDO2aojRfd2k3v78GXpVdXe/xjzbZxya8P3lVwN0p7t7K07cPkCrSUWDpn1DfEvaBJpftpZQeHJYu7Y=
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(39850400004)(376002)(136003)(396003)(346002)(46966006)(36840700001)(107886003)(6266002)(336012)(44832011)(426003)(5660300002)(2616005)(4326008)(15650500001)(6666004)(478600001)(1076003)(7636003)(82740400003)(8676002)(36756003)(6916009)(70206006)(70586007)(82310400003)(316002)(42186006)(36906005)(47076005)(8936002)(36860700001)(54906003)(2906002)(186003)(26005)(356005)(83380400001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2021 02:01:33.8722
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5294.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 932882bf-8945-42ee-cc34-08d914ecfab8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 May 2021 02:23:49.8329
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e877211d-c46f-44a6-e721-08d914e9de5c
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN1NAM02FT052.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR02MB6766
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 0mtYoHi9oWnhy2ZWf6AP2AWHrFa33MZExv8G6szOOK8wzhONwVqrO8yEUvUiwkz/q4hhVGl7eZCsSOpIjCBqjw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3550
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update fpga Kconfig/Makefile and add Kconfig/Makefile for new drivers.
+------=_NextPart_000_033D_01D74718.E40885F0
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
-Signed-off-by: Max Zhen <max.zhen@xilinx.com>
-Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
-Reviewed-by: Tom Rix <trix@redhat.com>
----
- drivers/Makefile                   |  1 +
- drivers/fpga/Kconfig               |  2 ++
- drivers/fpga/Makefile              |  5 +++++
- drivers/fpga/xrt/Kconfig           |  8 ++++++++
- drivers/fpga/xrt/lib/Kconfig       | 17 +++++++++++++++++
- drivers/fpga/xrt/lib/Makefile      | 30 ++++++++++++++++++++++++++++++
- drivers/fpga/xrt/metadata/Kconfig  | 12 ++++++++++++
- drivers/fpga/xrt/metadata/Makefile | 16 ++++++++++++++++
- drivers/fpga/xrt/mgmt/Kconfig      | 15 +++++++++++++++
- drivers/fpga/xrt/mgmt/Makefile     | 19 +++++++++++++++++++
- 10 files changed, 125 insertions(+)
- create mode 100644 drivers/fpga/xrt/Kconfig
- create mode 100644 drivers/fpga/xrt/lib/Kconfig
- create mode 100644 drivers/fpga/xrt/lib/Makefile
- create mode 100644 drivers/fpga/xrt/metadata/Kconfig
- create mode 100644 drivers/fpga/xrt/metadata/Makefile
- create mode 100644 drivers/fpga/xrt/mgmt/Kconfig
- create mode 100644 drivers/fpga/xrt/mgmt/Makefile
+> -----Original Message-----
+> From: Adrian Hunter [mailto:adrian.hunter@intel.com]
+> Sent: 2021=E5=B9=B45=E6=9C=8811=E6=97=A5 20:41
+> To: Lucas Stach <l.stach@pengutronix.de>; Bough Chen
+> <haibo.chen@nxp.com>; Ulf Hansson <ulf.hansson@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>; dl-linux-imx =
+<linux-imx@nxp.com>;
+> kernel@pengutronix.de; linux-mmc@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org
+> Subject: Re: [PATCH v2 2/3] mmc: sdhci-esdhc-imx: advertise HS400 mode
+> through MMC caps
+>=20
+> On 11/05/21 11:18 am, Lucas Stach wrote:
+> > Am Dienstag, dem 11.05.2021 um 03:00 +0000 schrieb Bough Chen:
+> >>> -----Original Message-----
+> >>> From: Lucas Stach [mailto:l.stach@pengutronix.de]
+> >>> Sent: 2021=E5=B9=B45=E6=9C=8811=E6=97=A5 3:04
+> >>> To: Ulf Hansson <ulf.hansson@linaro.org>; Adrian Hunter
+> >>> <adrian.hunter@intel.com>; Bough Chen <haibo.chen@nxp.com>
+> >>> Cc: Rob Herring <robh+dt@kernel.org>; dl-linux-imx
+> >>> <linux-imx@nxp.com>; kernel@pengutronix.de;
+> >>> linux-mmc@vger.kernel.org; devicetree@vger.kernel.org;
+> >>> linux-arm-kernel@lists.infradead.org
+> >>> Subject: [PATCH v2 2/3] mmc: sdhci-esdhc-imx: advertise HS400 mode
+> >>> through MMC caps
+> >>>
+> >>> Instead of having an indirection through the SDHCI layer and
+> >>> emulating a capability bit, that isn't there in hardware, do the
+> >>> same same thing as
+> >> with
+> >>> HS400_ES and advertise the support for HS400 directly through the
+> >>> MMC
+> >> caps.
+> >>>
+> >>> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> >>> ---
+> >>>  drivers/mmc/host/sdhci-esdhc-imx.c | 5 +----
+> >>>  1 file changed, 1 insertion(+), 4 deletions(-)
+> >>>
+> >>> diff --git a/drivers/mmc/host/sdhci-esdhc-imx.c
+> >>> b/drivers/mmc/host/sdhci-esdhc-imx.c
+> >>> index a20459744d21..65a52586db36 100644
+> >>> --- a/drivers/mmc/host/sdhci-esdhc-imx.c
+> >>> +++ b/drivers/mmc/host/sdhci-esdhc-imx.c
+> >>> @@ -427,9 +427,6 @@ static u32 esdhc_readl_le(struct sdhci_host
+> >>> *host, int
+> >>> reg)
+> >>>  					|
+> >> FIELD_PREP(SDHCI_RETUNING_MODE_MASK,
+> >>>  						     SDHCI_TUNING_MODE_3);
+> >>>
+> >>> -			if (imx_data->socdata->flags & ESDHC_FLAG_HS400)
+> >>> -				val |=3D SDHCI_SUPPORT_HS400;
+> >>> -
+> >>>  			/*
+> >>>  			 * Do not advertise faster UHS modes if there are no
+> >>>  			 * pinctrl states for 100MHz/200MHz.
+> >>> @@ -1603,7 +1600,7 @@ static int sdhci_esdhc_imx_probe(struct
+> >>> platform_device *pdev)
+> >>>  		host->quirks |=3D SDHCI_QUIRK_BROKEN_ADMA;
+> >>>
+> >>>  	if (imx_data->socdata->flags & ESDHC_FLAG_HS400)
+> >>> -		host->quirks2 |=3D SDHCI_QUIRK2_CAPS_BIT63_FOR_HS400;
+> >>> +		host->mmc->caps2 |=3D MMC_CAP2_HS400;
+> >>
+> >> Hi Lucas,
+> >>
+> >> I think patch1 and patch 2 are enough to cover your requirement.
+> >> For this patch, I think it's unnecessary, sdhci-esdhc-imx.c need to
+> >> reuse sdhci.c as much as possible.
+> >> In sdhci.c, already contain the following logic.
+> >>
+> >>          if (host->quirks2 & SDHCI_QUIRK2_CAPS_BIT63_FOR_HS400
+> &&
+> >>              (host->caps1 & SDHCI_SUPPORT_HS400))
+> >>                  mmc->caps2 |=3D MMC_CAP2_HS400;
+> >>
+> >> The reason why we directly use host->mmc->caps2 for HS400ES mode is
+> >> that sdhci.c do not contain the similar logic.
+> >
+> > No, it's not enough. We call mmc_of_parse(), which clears the HS400
+> > flags, before sdhci_setup_host() is called, which will then add the
+> > HS400 flags again. So either I still need to evaluate the DT =
+property
+> > in the esdhc driver to make it return the right emulated SDHCI caps
+> > bit for the HS400 case, or do it like in this patch.
+> >
+> > While the way it is done here is a bit of a layering violation =
+between
+>=20
+> We see SDHCI as more of a library, not a layer, so this is OK
 
-diff --git a/drivers/Makefile b/drivers/Makefile
-index 6fba7daba591..dbb3b727fc7a 100644
---- a/drivers/Makefile
-+++ b/drivers/Makefile
-@@ -179,6 +179,7 @@ obj-$(CONFIG_STM)		+= hwtracing/stm/
- obj-$(CONFIG_ANDROID)		+= android/
- obj-$(CONFIG_NVMEM)		+= nvmem/
- obj-$(CONFIG_FPGA)		+= fpga/
-+obj-$(CONFIG_FPGA_XRT_METADATA) += fpga/
- obj-$(CONFIG_FSI)		+= fsi/
- obj-$(CONFIG_TEE)		+= tee/
- obj-$(CONFIG_MULTIPLEXER)	+= mux/
-diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
-index 5ff9438b7b46..01410ff000b9 100644
---- a/drivers/fpga/Kconfig
-+++ b/drivers/fpga/Kconfig
-@@ -227,4 +227,6 @@ config FPGA_MGR_ZYNQMP_FPGA
- 	  to configure the programmable logic(PL) through PS
- 	  on ZynqMP SoC.
- 
-+source "drivers/fpga/xrt/Kconfig"
-+
- endif # FPGA
-diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
-index 18dc9885883a..4b887bf95cb3 100644
---- a/drivers/fpga/Makefile
-+++ b/drivers/fpga/Makefile
-@@ -48,3 +48,8 @@ obj-$(CONFIG_FPGA_DFL_NIOS_INTEL_PAC_N3000)	+= dfl-n3000-nios.o
- 
- # Drivers for FPGAs which implement DFL
- obj-$(CONFIG_FPGA_DFL_PCI)		+= dfl-pci.o
-+
-+# XRT drivers for Alveo
-+obj-$(CONFIG_FPGA_XRT_METADATA)		+= xrt/metadata/
-+obj-$(CONFIG_FPGA_XRT_LIB)		+= xrt/lib/
-+obj-$(CONFIG_FPGA_XRT_XMGMT)		+= xrt/mgmt/
-diff --git a/drivers/fpga/xrt/Kconfig b/drivers/fpga/xrt/Kconfig
-new file mode 100644
-index 000000000000..0e2c59589ddd
---- /dev/null
-+++ b/drivers/fpga/xrt/Kconfig
-@@ -0,0 +1,8 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+#
-+# Xilinx Alveo FPGA device configuration
-+#
-+
-+source "drivers/fpga/xrt/metadata/Kconfig"
-+source "drivers/fpga/xrt/lib/Kconfig"
-+source "drivers/fpga/xrt/mgmt/Kconfig"
-diff --git a/drivers/fpga/xrt/lib/Kconfig b/drivers/fpga/xrt/lib/Kconfig
-new file mode 100644
-index 000000000000..935369fad570
---- /dev/null
-+++ b/drivers/fpga/xrt/lib/Kconfig
-@@ -0,0 +1,17 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+#
-+# XRT Alveo FPGA device configuration
-+#
-+
-+config FPGA_XRT_LIB
-+	tristate "XRT Alveo Driver Library"
-+	depends on HWMON && PCI && HAS_IOMEM
-+	select FPGA_XRT_METADATA
-+	select REGMAP_MMIO
-+	help
-+	  Select this option to enable Xilinx XRT Alveo driver library. This
-+	  library is core infrastructure of XRT Alveo FPGA drivers which
-+	  provides functions for working with device nodes, iteration and
-+	  lookup of platform devices, common interfaces for platform devices,
-+	  plumbing of function call and ioctls between platform devices and
-+	  parent partitions.
-diff --git a/drivers/fpga/xrt/lib/Makefile b/drivers/fpga/xrt/lib/Makefile
-new file mode 100644
-index 000000000000..58563416efbf
---- /dev/null
-+++ b/drivers/fpga/xrt/lib/Makefile
-@@ -0,0 +1,30 @@
-+# SPDX-License-Identifier: GPL-2.0
-+#
-+# Copyright (C) 2020-2021 Xilinx, Inc. All rights reserved.
-+#
-+# Authors: Sonal.Santan@xilinx.com
-+#
-+
-+FULL_XRT_PATH=$(srctree)/$(src)/..
-+FULL_DTC_PATH=$(srctree)/scripts/dtc/libfdt
-+
-+obj-$(CONFIG_FPGA_XRT_LIB) += xrt-lib.o
-+
-+xrt-lib-objs :=			\
-+	lib-drv.o		\
-+	xroot.o			\
-+	xclbin.o		\
-+	subdev.o		\
-+	cdev.o			\
-+	group.o			\
-+	xleaf/vsec.o		\
-+	xleaf/axigate.o		\
-+	xleaf/devctl.o		\
-+	xleaf/icap.o		\
-+	xleaf/clock.o		\
-+	xleaf/clkfreq.o		\
-+	xleaf/ucs.o		\
-+	xleaf/ddr_calibration.o
-+
-+ccflags-y := -I$(FULL_XRT_PATH)/include	 \
-+	-I$(FULL_DTC_PATH)
-diff --git a/drivers/fpga/xrt/metadata/Kconfig b/drivers/fpga/xrt/metadata/Kconfig
-new file mode 100644
-index 000000000000..129adda47e94
---- /dev/null
-+++ b/drivers/fpga/xrt/metadata/Kconfig
-@@ -0,0 +1,12 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+#
-+# XRT Alveo FPGA device configuration
-+#
-+
-+config FPGA_XRT_METADATA
-+	bool "XRT Alveo Driver Metadata Parser"
-+	select LIBFDT
-+	help
-+	  This option provides helper functions to parse Xilinx Alveo FPGA
-+	  firmware metadata. The metadata is in device tree format and the
-+	  XRT driver uses it to discover the HW subsystems behind PCIe BAR.
-diff --git a/drivers/fpga/xrt/metadata/Makefile b/drivers/fpga/xrt/metadata/Makefile
-new file mode 100644
-index 000000000000..14f65ef1595c
---- /dev/null
-+++ b/drivers/fpga/xrt/metadata/Makefile
-@@ -0,0 +1,16 @@
-+# SPDX-License-Identifier: GPL-2.0
-+#
-+# Copyright (C) 2020-2021 Xilinx, Inc. All rights reserved.
-+#
-+# Authors: Sonal.Santan@xilinx.com
-+#
-+
-+FULL_XRT_PATH=$(srctree)/$(src)/..
-+FULL_DTC_PATH=$(srctree)/scripts/dtc/libfdt
-+
-+obj-$(CONFIG_FPGA_XRT_METADATA) += xrt-md.o
-+
-+xrt-md-objs := metadata.o
-+
-+ccflags-y := -I$(FULL_XRT_PATH)/include	\
-+	-I$(FULL_DTC_PATH)
-diff --git a/drivers/fpga/xrt/mgmt/Kconfig b/drivers/fpga/xrt/mgmt/Kconfig
-new file mode 100644
-index 000000000000..31e9e19fffb8
---- /dev/null
-+++ b/drivers/fpga/xrt/mgmt/Kconfig
-@@ -0,0 +1,15 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+#
-+# Xilinx XRT FPGA device configuration
-+#
-+
-+config FPGA_XRT_XMGMT
-+	tristate "Xilinx Alveo Management Driver"
-+	depends on FPGA_XRT_LIB
-+	select FPGA_XRT_METADATA
-+	select FPGA_BRIDGE
-+	select FPGA_REGION
-+	help
-+	  Select this option to enable XRT PCIe driver for Xilinx Alveo FPGA.
-+	  This driver provides interfaces for userspace application to access
-+	  Alveo FPGA device.
-diff --git a/drivers/fpga/xrt/mgmt/Makefile b/drivers/fpga/xrt/mgmt/Makefile
-new file mode 100644
-index 000000000000..16644571b673
---- /dev/null
-+++ b/drivers/fpga/xrt/mgmt/Makefile
-@@ -0,0 +1,19 @@
-+# SPDX-License-Identifier: GPL-2.0
-+#
-+# Copyright (C) 2020-2021 Xilinx, Inc. All rights reserved.
-+#
-+# Authors: Sonal.Santan@xilinx.com
-+#
-+
-+FULL_XRT_PATH=$(srctree)/$(src)/..
-+FULL_DTC_PATH=$(srctree)/scripts/dtc/libfdt
-+
-+obj-$(CONFIG_FPGA_XRT_XMGMT)	+= xrt-mgmt.o
-+
-+xrt-mgmt-objs := root.o		\
-+	   xmgmt-main.o		\
-+	   xrt-mgr.o		\
-+	   xmgmt-main-region.o
-+
-+ccflags-y := -I$(FULL_XRT_PATH)/include		\
-+	-I$(FULL_DTC_PATH)
--- 
-2.27.0
+Okay, I see.
+For this patch:
+Reviewed-by: Haibo Chen <haibo.chen@nxp.com>
 
+Regards
+Haibo
+>=20
+> > SDHCI and MMC, it still feels like the cleaner and more straight
+> > forward solution.
+> >
+> > Regards,
+> > Lucas
+> >
+
+
+------=_NextPart_000_033D_01D74718.E40885F0
+Content-Type: application/pkcs7-signature;
+	name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="smime.p7s"
+
+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
+U2VydmljZXMsQ049U2VydmljZXMsQ049Q29uZmlndXJhdGlvbixEQz13YmksREM9bnhwLERDPWNv
+bT9jZXJ0aWZpY2F0ZVJldm9jYXRpb25MaXN0P2Jhc2U/b2JqZWN0Q2xhc3M9Y1JMRGlzdHJpYnV0
+aW9uUG9pbnSGL2h0dHA6Ly9ud3cucGtpLm54cC5jb20vY3JsL05YUEVudGVycHJpc2VDQTUuY3Js
+hi9odHRwOi8vd3d3LnBraS5ueHAuY29tL2NybC9OWFBFbnRlcnByaXNlQ0E1LmNybDCCARAGCCsG
+AQUFBwEBBIIBAjCB/zCBuwYIKwYBBQUHMAKGga5sZGFwOi8vL0NOPU5YUCUyMEVudGVycHJpc2Ul
+MjBDQSUyMDUsQ049QUlBLENOPVB1YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNlcnZpY2VzLENO
+PUNvbmZpZ3VyYXRpb24sREM9d2JpLERDPW54cCxEQz1jb20/Y0FDZXJ0aWZpY2F0ZT9iYXNlP29i
+amVjdENsYXNzPWNlcnRpZmljYXRpb25BdXRob3JpdHkwPwYIKwYBBQUHMAKGM2h0dHA6Ly9ud3cu
+cGtpLm54cC5jb20vY2VydHMvTlhQLUVudGVycHJpc2UtQ0E1LmNydDBBBgNVHREEOjA4oCIGCisG
+AQQBgjcUAgOgFAwSaGFpYm8uY2hlbkBueHAuY29tgRJoYWliby5jaGVuQG54cC5jb20wDQYJKoZI
+hvcNAQELBQADggEBAAbO3KB4UPjzcz8dqs00dc1WxVm1GGcg29yJnKejuwv95IGs8TmqHcXZ3zot
+7J4cDniEn2Pdvjfw3tVoykkz7vT/JkS5QfOgUeQX7GAKMe2AT17e9VskzipZ+37vsDPfW1XPVRn4
+WMgJUHLRad79yO/ojeTPavpUFtAY3wlI4B8dT7du7ibI4Zokemv0PvTpanmUY+V+EjibmoXDTbXm
+VJEG965sDuYYeh40QeE5siWSSoDA0yHxRb0TvMBbbkR406oUSSIEZyR4a6iGRgsXral8LULemoOx
+N6HCSMmhyGdWXJOMFhbLkPEZQkOXpUCdzwJnG8X3hPnlRNp1qEeIXoQwggfrMIIG06ADAgECAhMt
+AAC+6uSCGwwZxWD/AAAAAL7qMA0GCSqGSIb3DQEBCwUAMIG2MRwwGgYDVQQDDBNOWFAgRW50ZXJw
+cmlzZSBDQSA1MQswCQYDVQQLDAJJVDERMA8GA1UECgwITlhQIEIuVi4xEjAQBgNVBAcMCUVpbmRo
+b3ZlbjEWMBQGA1UECAwNTm9vcmQtQnJhYmFudDETMBEGCgmSJomT8ixkARkWA3diaTETMBEGCgmS
+JomT8ixkARkWA254cDETMBEGCgmSJomT8ixkARkWA2NvbTELMAkGA1UEBhMCTkwwHhcNMTkxMDMx
+MDEyNzM1WhcNMjExMDMwMDEyNzM1WjCBmjETMBEGCgmSJomT8ixkARkWA2NvbTETMBEGCgmSJomT
+8ixkARkWA254cDETMBEGCgmSJomT8ixkARkWA3diaTEMMAoGA1UECxMDTlhQMQswCQYDVQQLEwJD
+TjEWMBQGA1UECxMNTWFuYWdlZCBVc2VyczETMBEGA1UECxMKRGV2ZWxvcGVyczERMA8GA1UEAxMI
+bnhhMTI5MzcwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDE9+2XERF+z26pPnpECTBk
+Qd8RJomqRzsIUDwr4pXlYguj7693YrAllPcn16SP/HlCQLOV73S/EQlQ22fHiv8Op3odseIduNQt
+qSaD65NFnj1wOvsidBPwP6GeSk4ZE4lWZYVAE/UT8bT6dDNgM3NDoCEPRSNnJwsp4qGlyFYpl1wa
+JuNyF/crQt8c0HZ7IZmcpMSdywmmWhYQOjDg+GzDdHfFSK1EmFf15IgYh/S0iKjwZXcohqRSFh4/
+Y9O+PqQ8tRuuIh/nZMK9E8tT/WIFd2kWe2dR1TbcyTpXEPrCNZiYj5LV6dPVJuQsCWwy6evTzLkU
+rqcPsCky/loDLZ7NAgMBAAGjggQKMIIEBjA8BgkrBgEEAYI3FQcELzAtBiUrBgEEAYI3FQiFgsB+
+gY70VYbthTiC65lLmpJWP4Xmim6EteF+AgFkAgE6MBMGA1UdJQQMMAoGCCsGAQUFBwMEMA4GA1Ud
+DwEB/wQEAwIFIDAMBgNVHRMBAf8EAjAAMBsGCSsGAQQBgjcVCgQOMAwwCgYIKwYBBQUHAwQwgZQG
+CSqGSIb3DQEJDwSBhjCBgzALBglghkgBZQMEASowCwYJYIZIAWUDBAEtMAsGCWCGSAFlAwQBFjAL
+BglghkgBZQMEARkwCwYJYIZIAWUDBAECMAsGCWCGSAFlAwQBBTAKBggqhkiG9w0DBzAHBgUrDgMC
+BzAOBggqhkiG9w0DAgICAIAwDgYIKoZIhvcNAwQCAgIAMB0GA1UdDgQWBBTlL+2gnauehNbF4Mck
+cbLTqj/vJTAfBgNVHSMEGDAWgBRYlWDuTnTvZSKqve0ZqSt6jhedBzCCAUYGA1UdHwSCAT0wggE5
+MIIBNaCCATGgggEthoHIbGRhcDovLy9DTj1OWFAlMjBFbnRlcnByaXNlJTIwQ0ElMjA1LENOPW5s
+YW1zcGtpMDAwNSxDTj1DRFAsQ049UHVibGljJTIwS2V5JTIwU2VydmljZXMsQ049U2VydmljZXMs
+Q049Q29uZmlndXJhdGlvbixEQz13YmksREM9bnhwLERDPWNvbT9jZXJ0aWZpY2F0ZVJldm9jYXRp
+b25MaXN0P2Jhc2U/b2JqZWN0Q2xhc3M9Y1JMRGlzdHJpYnV0aW9uUG9pbnSGL2h0dHA6Ly9ud3cu
+cGtpLm54cC5jb20vY3JsL05YUEVudGVycHJpc2VDQTUuY3Jshi9odHRwOi8vd3d3LnBraS5ueHAu
+Y29tL2NybC9OWFBFbnRlcnByaXNlQ0E1LmNybDCCARAGCCsGAQUFBwEBBIIBAjCB/zCBuwYIKwYB
+BQUHMAKGga5sZGFwOi8vL0NOPU5YUCUyMEVudGVycHJpc2UlMjBDQSUyMDUsQ049QUlBLENOPVB1
+YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNlcnZpY2VzLENOPUNvbmZpZ3VyYXRpb24sREM9d2Jp
+LERDPW54cCxEQz1jb20/Y0FDZXJ0aWZpY2F0ZT9iYXNlP29iamVjdENsYXNzPWNlcnRpZmljYXRp
+b25BdXRob3JpdHkwPwYIKwYBBQUHMAKGM2h0dHA6Ly9ud3cucGtpLm54cC5jb20vY2VydHMvTlhQ
+LUVudGVycHJpc2UtQ0E1LmNydDBBBgNVHREEOjA4oCIGCisGAQQBgjcUAgOgFAwSaGFpYm8uY2hl
+bkBueHAuY29tgRJoYWliby5jaGVuQG54cC5jb20wDQYJKoZIhvcNAQELBQADggEBAHNaESyBZSXf
+2VjPBOZH2PR/VsyRkmOCEkPU1uxvKTFAYPwmzTsnlPgU4OK9G3DLFpZhrUFfoz2G5Z9lHxrOftqX
+lCk7OQpEtEom0dbQN/ZCAmsMIfweppoH+zVGjO45OVI1W+qlQcNhdSV5sylHjD5Gg1GF/DOL4koc
+vFlMhaX/MQ7vNrRO6KI7vTl5mcObxpfWVdPT3D8RgKml2n8xTLi7jiIII8rgWexZYlx3ukUBWRJb
+ZgDGZ+bOPl0EK26M1ELLUTT/uAxPifKlj1Ls37bW+h3GhgsiW+lZVN7qZWar54TIpAogfVOIaip3
+BeirywBeJLBrgkFfD8yA9JvyFNQxggTDMIIEvwIBATCBzjCBtjEcMBoGA1UEAwwTTlhQIEVudGVy
+cHJpc2UgQ0EgNTELMAkGA1UECwwCSVQxETAPBgNVBAoMCE5YUCBCLlYuMRIwEAYDVQQHDAlFaW5k
+aG92ZW4xFjAUBgNVBAgMDU5vb3JkLUJyYWJhbnQxEzARBgoJkiaJk/IsZAEZFgN3YmkxEzARBgoJ
+kiaJk/IsZAEZFgNueHAxEzARBgoJkiaJk/IsZAEZFgNjb20xCzAJBgNVBAYTAk5MAhMtAAC+69VX
+9gixtDt/AAAAAL7rMA0GCWCGSAFlAwQCAQUAoIICxTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcB
+MBwGCSqGSIb3DQEJBTEPFw0yMTA1MTIwMjIzNDZaMC8GCSqGSIb3DQEJBDEiBCAHYEH4bENO0pKy
+lCtkEcJBnaX95L98J4h56eSaV8Tu6DCBkwYJKoZIhvcNAQkPMYGFMIGCMAsGCWCGSAFlAwQBKjAL
+BglghkgBZQMEARYwCgYIKoZIhvcNAwcwCwYJYIZIAWUDBAECMA4GCCqGSIb3DQMCAgIAgDANBggq
+hkiG9w0DAgIBQDALBglghkgBZQMEAgEwCwYJYIZIAWUDBAIDMAsGCWCGSAFlAwQCAjAHBgUrDgMC
+GjCB3wYJKwYBBAGCNxAEMYHRMIHOMIG2MRwwGgYDVQQDDBNOWFAgRW50ZXJwcmlzZSBDQSA1MQsw
+CQYDVQQLDAJJVDERMA8GA1UECgwITlhQIEIuVi4xEjAQBgNVBAcMCUVpbmRob3ZlbjEWMBQGA1UE
+CAwNTm9vcmQtQnJhYmFudDETMBEGCgmSJomT8ixkARkWA3diaTETMBEGCgmSJomT8ixkARkWA254
+cDETMBEGCgmSJomT8ixkARkWA2NvbTELMAkGA1UEBhMCTkwCEy0AAL7q5IIbDBnFYP8AAAAAvuow
+geEGCyqGSIb3DQEJEAILMYHRoIHOMIG2MRwwGgYDVQQDDBNOWFAgRW50ZXJwcmlzZSBDQSA1MQsw
+CQYDVQQLDAJJVDERMA8GA1UECgwITlhQIEIuVi4xEjAQBgNVBAcMCUVpbmRob3ZlbjEWMBQGA1UE
+CAwNTm9vcmQtQnJhYmFudDETMBEGCgmSJomT8ixkARkWA3diaTETMBEGCgmSJomT8ixkARkWA254
+cDETMBEGCgmSJomT8ixkARkWA2NvbTELMAkGA1UEBhMCTkwCEy0AAL7q5IIbDBnFYP8AAAAAvuow
+DQYJKoZIhvcNAQEBBQAEggEAJvbzMhiGxOFfrgLHeyehFcAz3FJUE0i8PQ88kpC6wjnkN93ZsWkk
+QTdsCUb3JW+T7UwkVSR+s90S5GZIszHxurrlRBut7/Uh3pag+BAPf2ZCN12p0dXwjxyLg0aSqiOj
+mQSfr5a4lmkLFjPDZVRx8C7aUAbYw+EV1Nc6X04G+hBwze1GTjlI9nlbU4E8wWSjQrgk4LaGM2Wu
+aRCC51GSLsbCXwb64Xt5+uVj0ZHcuJ31pqu2+y0AIO6JLL41uiyzqKdif6Ylt5aEXBPEnsoKs1su
++GWHu1coiS7HaLPnytORpWXMp2HOGyA3SxKPWjr8/OVCZ6efvjlTeHcgQ2Hm/AAAAAAAAA==
+
+------=_NextPart_000_033D_01D74718.E40885F0--
