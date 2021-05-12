@@ -2,92 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3190837EDD9
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 00:53:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85C6C37EDCB
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 00:44:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382223AbhELUz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 16:55:29 -0400
-Received: from mail-oo1-f52.google.com ([209.85.161.52]:36857 "EHLO
-        mail-oo1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385217AbhELUHN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 16:07:13 -0400
-Received: by mail-oo1-f52.google.com with SMTP id v13-20020a4aa40d0000b02902052145a469so3585641ool.3;
-        Wed, 12 May 2021 13:06:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=W+U+q4eTJh3spyOvwiyGHGUH//7zxa04tD+r5bY4uEs=;
-        b=NAvX5HW7A+Dy4y4Y0MLDMYlAvJjQqgJl1U0gcQ48zCrorzUE2x2HNAKqZfrfeCVRl3
-         TslM4C5Al6kRoKJrgP37rCJl3ElsJs/fsGTAkz8QuudEXBJPaphrLbXjNl6q9zCT8RV3
-         f4tBxHwsOOQauE8xtZqVxnJS2f7P7cVe+p4vDG33XNnqUoMuB0LWAwSDEI1QjOsT3dYu
-         yPkHv/EiJdgrwaPDo5ijg7Lj97J1nPXkZRNudQgGLxYSgWDUKJaYi4/QruKDdTe/uA2g
-         P8GKh2LVwR9HoaMJdvCUYQ60wt4IuxOVcpA2VeaQfJXs8WtQv8aVBpVv1Vh0Pp60T3fp
-         f9ZA==
-X-Gm-Message-State: AOAM5324jBeTP5/Lwkb66ZIEa2Eu0/KYn8B/7X39+2YcGOb6w6wHfzcY
-        2kqLPxp5MeCCk2rA3NKGFA==
-X-Google-Smtp-Source: ABdhPJz6exy8PFow7Wm6BrJeScyxRaMuPcJ29FGguAbvDNvhXui353fKkfnfOGYvQv2F8Or+1TWQfA==
-X-Received: by 2002:a4a:c446:: with SMTP id h6mr18340852ooq.82.1620849964709;
-        Wed, 12 May 2021 13:06:04 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r2sm165952otq.28.2021.05.12.13.06.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 May 2021 13:06:03 -0700 (PDT)
-Received: (nullmailer pid 204088 invoked by uid 1000);
-        Wed, 12 May 2021 18:35:16 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     devicetree@vger.kernel.org, Ray Jui <rjui@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Scott Branden <sbranden@broadcom.com>
-In-Reply-To: <20210512160750.15183-1-zajec5@gmail.com>
-References: <20210512160750.15183-1-zajec5@gmail.com>
-Subject: Re: [PATCH] dt-bindings: i2c: brcm,iproc-i2c: convert to the json-schema
-Date:   Wed, 12 May 2021 13:35:16 -0500
-Message-Id: <1620844516.523024.204087.nullmailer@robh.at.kernel.org>
+        id S1346094AbhELUyt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 16:54:49 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:37496 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239491AbhELSsd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 14:48:33 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14CIkvcS079077;
+        Wed, 12 May 2021 13:46:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1620845217;
+        bh=+qlCC1Oh9br/08D52lMvpxPo1A6lpVxS/kywEzQ8g+I=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=SrtzjOSOBujOsFsvR4lli7We8pjeduaGlWp0A7/+DPPjdvlE6H+jVchysUytlkoOK
+         C5Ver/e0zwupbN7IwfiQ5j7vxqu4Uw/L484QxLd4bWe/168B4nyFEH+xJ2o0kHVpTD
+         tz/7b0a6MZyNPIMChj2EHR4JwSyzydgUJrbqF23E=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14CIkvYr123186
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 12 May 2021 13:46:57 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 12
+ May 2021 13:46:57 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 12 May 2021 13:46:57 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14CIkv5q121571;
+        Wed, 12 May 2021 13:46:57 -0500
+Date:   Wed, 12 May 2021 13:46:57 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>, <a-govindraju@ti.com>
+Subject: Re: [PATCH 0/5] AM64: EVM/SK: Enable PCIe and USB
+Message-ID: <20210512184657.27wjr5bfcvkp47m3@twelve>
+References: <20210512150107.26793-1-kishon@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20210512150107.26793-1-kishon@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 May 2021 18:07:50 +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On 20:31-20210512, Kishon Vijay Abraham I wrote:
+> AM642 EVM has one PCIe slot and AM642 SK has one USB slot.
+> AM64 SoC has one SERDES module which can be used by either PCIe or USB.
 > 
-> This helps validating DTS files.
+> Add DT nodes to represent and enable SERDES/PCIe/USB modules in EVM/SK.
 > 
-> Introduced changes:
-> 1. Added arm-gic.h include
+> Kishon Vijay Abraham I (5):
+>   arm64: dts: ti: k3-am64-main: Add SERDES DT node
+>   arm64: dts: ti: k3-am64-main: Add PCIe DT node
+>   arm64: dts: ti: k3-am642-evm: Enable PCIe and SERDES
+>   arm64: dts: ti: k3-am642-sk: Enable USB Super-Speed HOST port
+>   arm64: dts: ti: k3-am642-sk: Disable PCIe
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
->  .../bindings/i2c/brcm,iproc-i2c.txt           | 46 ------------
->  .../bindings/i2c/brcm,iproc-i2c.yaml          | 71 +++++++++++++++++++
->  2 files changed, 71 insertions(+), 46 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/i2c/brcm,iproc-i2c.txt
->  create mode 100644 Documentation/devicetree/bindings/i2c/brcm,iproc-i2c.yaml
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 102 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am642-evm.dts  |  30 +++++++
+>  arch/arm64/boot/dts/ti/k3-am642-sk.dts   |  47 +++++++++++
+>  3 files changed, 179 insertions(+)
+> 
+> -- 
+> 2.17.1
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+when applied on next-20210512 : the following got added in dtbs_check
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/i2c/brcm,iproc-i2c.example.dt.yaml:0:0: /example-0/i2c@18008000/wm8750@1a: failed to match any schema with compatible: ['wlf,wm8750']
-
-See https://patchwork.ozlabs.org/patch/1477696
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+arch/arm64/boot/dts/ti/k3-am642-evm.dt.yaml:0:0: /bus@f4000/syscon@43000000/mux: failed to match any schema with compatible: ['mmio-mux']
+arch/arm64/boot/dts/ti/k3-am642-sk.dt.yaml:0:0: /bus@f4000/syscon@43000000/mux: failed to match any schema with compatible: ['mmio-mux']
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
