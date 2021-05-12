@@ -2,132 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0122637BA0D
-	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 12:08:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E2A637BB5C
+	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 12:56:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230166AbhELKJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 06:09:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59978 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230145AbhELKJq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 06:09:46 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07ED9C06175F
-        for <devicetree@vger.kernel.org>; Wed, 12 May 2021 03:08:38 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id a5so11105670pfa.11
-        for <devicetree@vger.kernel.org>; Wed, 12 May 2021 03:08:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=kZgjstHOYROHTT7vT6IiQEY3IT65wMZE5r7tRuaAKfk=;
-        b=oIjOZtMNkRnY/ZbSuRC1GuQVbWrSsC8CR9YJWVkrafcQiuM6f36qbzdrYp5Qsog/S+
-         LuFcXwmdiXHxqQ32iQSNo+FFu4KyoaFcuBSnMo5f7GoQmgowVYLQHtd/HFWTLiA1sovK
-         eD4NUMeax/ib7ahf6XVp++kRKX1j+AeoArlx8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=kZgjstHOYROHTT7vT6IiQEY3IT65wMZE5r7tRuaAKfk=;
-        b=E6oWuzLJA/mSllX0aenPW/SP9H1CEwc4F7ECglLLUTN8hggu5dk7otBdJPV0JFKTZS
-         9FsvmNS+Mp9dcSzrVV8xbWEzgixKi5fRRndvAydK2DB8Zi6GyH6NleNm5ClcSvyI1cog
-         PHJwR4uAoI6FImpICacuF4P90HmKRhpzMffea8goUbRe/BtM8R/RPheMTT20FhuO68AM
-         ki9Nzx6zVW8UBpD8CuhpOILencgVxDsGQeoUJ7gddwepDaStOV1EvThEiHGH2D9QeZUf
-         mbnZARZO5fO2XrEYCJClf2ScQgRekKaWY3+ZHtSvsXmxJqJmaa/xpcqvPhpZF+s7jF8+
-         c3zQ==
-X-Gm-Message-State: AOAM5338JG68k+s+oeF5I0TROC4AXvM/mDpPK1oJqaeMmzi+Vu2+Ol/H
-        55jULOdQovkpp9LIlJeN6B/CLAzaiMx2Uq8m
-X-Google-Smtp-Source: ABdhPJyHBs4vGbem7nSqycxt02ZAcG6NKtziRpLT4qcqxjo4mtcGAGrO250A304B4NkZPuRmRaZtWQ==
-X-Received: by 2002:a65:60da:: with SMTP id r26mr16206280pgv.133.1620814117422;
-        Wed, 12 May 2021 03:08:37 -0700 (PDT)
-Received: from ikjn-p920.tpe.corp.google.com ([2401:fa00:1:b:2e82:bfc3:6037:8e16])
-        by smtp.gmail.com with ESMTPSA id o12sm15619919pjr.43.2021.05.12.03.08.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 May 2021 03:08:37 -0700 (PDT)
-From:   Ikjoon Jang <ikjn@chromium.org>
-To:     devicetree@vger.kernel.org, linux-input@vger.kernel.org
-Cc:     Jiri Kosina <jikos@kernel.org>, Ikjoon Jang <ikjn@chromium.org>,
-        Rob Herring <robh@kernel.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: [PATCH v6] mfd: google,cros-ec: add DT bindings for a baseboard's switch device
-Date:   Wed, 12 May 2021 18:08:31 +0800
-Message-Id: <20210512100832.3878138-1-ikjn@chromium.org>
-X-Mailer: git-send-email 2.31.1.607.g51e8a6a459-goog
-In-Reply-To: <20210415032958.740233-2-ikjn@chromium.org>
-References: <20210415032958.740233-2-ikjn@chromium.org>
+        id S230102AbhELK5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 06:57:30 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:34186 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S230096AbhELK5a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 May 2021 06:57:30 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 14CApkbl019914;
+        Wed, 12 May 2021 12:55:57 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=HLNK8RvTvKmlpYPvFe1wt2QinsOgjKUyLLA9NdybeCY=;
+ b=3dXEhjmQd98pBK6cfYSP2abqgW9LsPsRcW7KylHZeme/GLpkLurf1o63xzfaLpJ0rd9h
+ nWe9hDgiSbMxqP1Sq5s+XawarIBKRJA0d2Z1MsMgTErOvKfLtz0wSlKbzQSAikiV/t5a
+ oDGhLUr3EuAMoZmJqTX4B3XRX19CkMMhxhJsLE2saM9/Td7sDfzS4ajQAJxxBdGp4GYy
+ YF8RxaFhXcV/Bahdzxe/j6foVPid5TQ2QOm4F1IraGiiljX6Gr1qxhH1cS7rQX+3AMPX
+ 8FItocbYo2Cq+yGFVuvPhQ/BZ8noPN6bP3oaUZBApcvcvcpRZu2Bh9YZXfpJ22DS42XO tg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 38fq9tpx0s-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 12 May 2021 12:55:57 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 52AE510002A;
+        Wed, 12 May 2021 12:55:55 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 24B7221C56F;
+        Wed, 12 May 2021 12:55:55 +0200 (CEST)
+Received: from lmecxl0912.lme.st.com (10.75.127.49) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 12 May
+ 2021 12:55:54 +0200
+Subject: Re: [v5.4 stable] arm: stm32: Regression observed on "no-map"
+ reserved memory region
+To:     Quentin Perret <qperret@google.com>
+CC:     Florian Fainelli <f.fainelli@gmail.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sasha Levin <sashal@kernel.org>,
+        stable <stable@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        KarimAllah Ahmed <karahmed@amazon.de>,
+        Android Kernel Team <kernel-team@android.com>,
+        Architecture Mailman List <boot-architecture@lists.linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+References: <4a4734d6-49df-677b-71d3-b926c44d89a9@foss.st.com>
+ <CAL_JsqKGG8E9Y53+az+5qAOOGiZRAA-aD-1tKB-hcOp+m3CJYw@mail.gmail.com>
+ <001f8550-b625-17d2-85a6-98a483557c70@foss.st.com>
+ <CAL_Jsq+LUPZFhXd+j-xM67rZB=pvEvZM+1sfckip0Lqq02PkZQ@mail.gmail.com>
+ <CAMj1kXE2Mgr9CsAMnKXff+96xhDaE5OLeNhypHvpN815vZGZhQ@mail.gmail.com>
+ <d7f9607a-9fcb-7ba2-6e39-03030da2deb0@gmail.com>
+ <YH/ixPnHMxNo08mJ@google.com>
+ <cc8f96a4-6c85-b869-d3cf-5dc543982054@gmail.com>
+ <YIFzMkW+tXonTf0K@google.com>
+ <ad90b2bb-0fab-9f06-28dd-038e8005490b@foss.st.com>
+ <YJkGSb72aKg6ScGo@google.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <e1da4a98-7521-518f-f85a-51e9c58b1fc3@foss.st.com>
+Date:   Wed, 12 May 2021 12:55:53 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <YJkGSb72aKg6ScGo@google.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-05-12_05:2021-05-12,2021-05-12 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is for ChromeOS tablets which have a 'cros_cbas' switch device
-in the "Whiskers" base board. This device can be instantiated only by
-device tree on ARM platforms. ChromeOS EC doesn't provide a way to
-probe the device.
+Hi Quentin,
 
-Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Acked-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+On 5/10/21 12:09 PM, Quentin Perret wrote:
+> Hi Alexandre,
+> 
+> On Friday 07 May 2021 at 17:15:20 (+0200), Alexandre TORGUE wrote:
+>> Did you get time to continue some tests on this issue ?
+> 
+> I did try a few things, but still fail to reproduced :/
+> 
+>> On my side this DT is not working:
+>>
+>> memory@c0000000 {
+>>          reg = <0xc0000000 0x20000000>;
+>> };
+>>
+>> reserved-memory {
+>>          #address-cells = <1>;
+>>          #size-cells = <1>;
+>>          ranges;
+>>
+>>          gpu_reserved: gpu@d4000000 {
+>>                  reg = <0xd4000000 0x4000000>;
+>>                  no-map;
+>>          };
+>> };
+> 
+> So this does change how memory appears in /proc/iomem for me switching
+> from 5.4.101 to v5.4.102 -- for the former d4000000-d7ffffff doesn't
+> appear at all, and for the latter it appears as 'reserved'.
+> 
+> But still, it never gets accounted as System RAM for me ...
+> 
+>> Let me know if I can help.
+> 
+> Could you please confirm you get a correct behaviour with 5.10.31 like
+> Florian? If so, then bisecting to figure out what we're missing in older
+> LTSes would help, but again it feels like we should just revert -- this
+> wasn't really a fix in the first place.
 
----
 
-Changes in v6:
- - Remove a label from cbas node in an example
+We saw that patches [1] and [2] cause issue on stable version (at least 
+for 5.4). As you said issue can be seen with above device tree and check 
+in /proc/iomem than gpu_reserved region is taken by the kernel as 
+"System RAM".
 
-Changes in v5:
- - Add missing blank lines and change the description property's position.
- - Add a note to description: "this device cannot be detected at runtime."
+On v5.10 stream there are no issues seen taking patches [1]&[2] and the 
+reason is linked to patches [3]&[4] which have been introduced in 
+v5.10.0. Reverting them give me the same behavior than on stable version.
 
-Changes in v4:
-Define cros-cbase bindings inside google,cros-ec.yaml instead of
-a separated binding document.
 
- .../bindings/mfd/google,cros-ec.yaml          | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
+[1] of/fdt: Make sure no-map does not remove already reserved regions
+[2] fdt: Properly handle "no-map" field in the memory region
+[3] arch, drivers: replace for_each_membock() with for_each_mem_range()
+[4] memblock: use separate iterators for memory and reserved regions
 
-diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-index 76bf16ee27ec..929c17552d8b 100644
---- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-+++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-@@ -114,6 +114,22 @@ properties:
-       - "#address-cells"
-       - "#size-cells"
- 
-+  cbas:
-+    type: object
-+
-+    description:
-+      This device is used to signal when a detachable base is attached
-+      to a Chrome OS tablet. This device cannot be detected at runtime.
-+
-+    properties:
-+      compatible:
-+        const: google,cros-cbas
-+
-+    required:
-+      - compatible
-+
-+    additionalProperties: false
-+
- patternProperties:
-   "^i2c-tunnel[0-9]*$":
-     type: object
-@@ -180,6 +196,10 @@ examples:
-             interrupts = <99 0>;
-             interrupt-parent = <&gpio7>;
-             spi-max-frequency = <5000000>;
-+
-+            cbas {
-+                compatible = "google,cros-cbas";
-+            };
-         };
-     };
- 
--- 
-2.31.1.607.g51e8a6a459-goog
+regards
+Alex
+
+> 
+> Thanks,
+> Quentin
+> 
 
