@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1C0337B8D2
-	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 11:05:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A59937B8D4
+	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 11:05:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230381AbhELJGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 05:06:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45594 "EHLO
+        id S230408AbhELJGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 05:06:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230383AbhELJGv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 05:06:51 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2870C06175F
-        for <devicetree@vger.kernel.org>; Wed, 12 May 2021 02:05:43 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id j3-20020a05600c4843b02901484662c4ebso2628625wmo.0
-        for <devicetree@vger.kernel.org>; Wed, 12 May 2021 02:05:43 -0700 (PDT)
+        with ESMTP id S230393AbhELJGy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 05:06:54 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35F30C061574
+        for <devicetree@vger.kernel.org>; Wed, 12 May 2021 02:05:46 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id e7so4285808wrc.11
+        for <devicetree@vger.kernel.org>; Wed, 12 May 2021 02:05:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Vgxld/f3SUwpcMSWNYdxMjxyAHMeE/P2VEowI+v3Huw=;
-        b=ZhRgLdQcYxDv1sv/utXe9neuEDwIcsgTeeFDtZP79+wHgwrox32eOMlpZcTKGaF6jj
-         BgFhwuYVu88eg5zbHXqPtZ/nuOVCZgKfhfCkuPtwDCQJlT5g/p0myxdPbUZgJxTOvdE3
-         qjIAB+aNEFrCQoFipqLdQSlmWsukOybGaHvQuqWAUQpMJIN/PVbQvRKHNM28dvjbY3yZ
-         KhUlLR4F9TFObUx7MloxXk7Pd34X93jr4gxzYWIiVydwDVWrycjD8UYZaoRjmyLpIKH+
-         iI+gybgsx7gik70B9VoicSNfSFKkggBYwQl6f6KidsMx4ozD43zq3Jt4OkFYiGis2F28
-         IrYA==
+        bh=DNxyhq7WYEH0U4TtHXig9vqQWs7OAdf1s4tgVO034Ek=;
+        b=HGOnTOk1wyuMeZate+pz9qa08rrPMAJyz+9W8PbfIsKz6pUsZzlwvHVdXcd8oxv1PW
+         FtK952Lkh6G/MfpDsX9fPnQEP5tmeeCyZImONdTYMgyuiiYyezyF89qJDCo1yOT3S9gT
+         pDvcvhSYNUSjHvA6n/83ZMWRT9XngvFFtn6fK670UZUwz3CnA2NpO+gveurYtElnjeqJ
+         3Cr8mKGg0TC8fZe2KzwiE1jFwxpk/XiofC/USk27vTmAm3gprnAfejguyozUOodmadn2
+         sTj4v3g7dMFxDHiV8x5MfY5S3d9KNE6vxUqOapgV3qtFijKc4sbFUyMOftUyothcROEF
+         anBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Vgxld/f3SUwpcMSWNYdxMjxyAHMeE/P2VEowI+v3Huw=;
-        b=PahgbVGYZY0qg/EKXWWBDKbI27vti5R1CqXBgFeIRupWuH4k0DyFYyDfER88+bcKwt
-         fY9SVBph3kQub3p2X8RFjevDNDHOAIgvgiwfBlGrPoXGPl+Uh6zxUC6bhQgj+nPk8N18
-         dwApVzq6Md2bbGnG6Z6dmMgE7TLm2Dei54ygOs3541E/opSFFe0kNgk1rPmmWlBWQBcY
-         GMyZr0qTQDucxs4SZpEIkUPVyR+IiwjWF8zwQPA5OEP2PUkrP4FB71rUBk7v6zDDiTFr
-         aK2M7EXCO4CyhhdZhfr/tTRZ6StiaOTXNQBijrPSSX1kY/fVsdY+U0VIMg2RkvkJ26MV
-         Oigg==
-X-Gm-Message-State: AOAM532/c5YPn34LIoKm/qnExvcVngiUPDbu1j7waiu3aLQy15kIWr/N
-        5mTM/OWoaAEzz5rXQ02XggDCNA==
-X-Google-Smtp-Source: ABdhPJwiTdDNSvixBRDjBkAtd13P81mARaB3JlzOW4b32T8E0ylvaHakCc2/uFfv+5ij442rr9t/Vg==
-X-Received: by 2002:a05:600c:c7:: with SMTP id u7mr37006259wmm.156.1620810342711;
-        Wed, 12 May 2021 02:05:42 -0700 (PDT)
+        bh=DNxyhq7WYEH0U4TtHXig9vqQWs7OAdf1s4tgVO034Ek=;
+        b=q1oAxwnpANhVDEBLOJnYPY+oygFo58yYiP9VkDvpRl0Iil3BceQeJgaRFcUJ4mxhLE
+         4VNWb8plIcOfZL8/rTaTHjsJZoJW7Kb5gwh/H+JtZAfKhcq9RXrrKOJRHdDUdIUUtng8
+         mlBQ1R2VjQ0hF87gXv7aF7YEONoanmOdhP/JJAtQ/we5Gm7KZJMHWJkaljO20Qxd/FHF
+         Y4IMlzDby4pcw7+X/WCYacziHFczd/pV/H56BHm7DPsGWcgpB21b/0DFpwEJMcEsVrYG
+         gYAiWe6PELypXGXCTA0vRGFos0LbpZ7wJ1dLrMGuI9aE6+JBobDMYJbEAY4sqXLHciQl
+         kF0A==
+X-Gm-Message-State: AOAM532DTfn7TpU14X0uagU9JyxsNCl4IidYEbrYdv+zwpC8VpkMKwCn
+        gj/7nsFtKt+rAVtJUcphF98MHg==
+X-Google-Smtp-Source: ABdhPJwqyoSAD4Wpj4Bs/+VYsvXqU4WIzy9O2AchHRJcVZNN25kyPgqokk69CeaZC7bVkpXTu2JZ8A==
+X-Received: by 2002:a5d:654b:: with SMTP id z11mr44001285wrv.167.1620810344928;
+        Wed, 12 May 2021 02:05:44 -0700 (PDT)
 Received: from arch-thunder.local (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
-        by smtp.gmail.com with ESMTPSA id v20sm26679451wmj.15.2021.05.12.02.05.41
+        by smtp.gmail.com with ESMTPSA id v20sm26679451wmj.15.2021.05.12.02.05.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 May 2021 02:05:42 -0700 (PDT)
+        Wed, 12 May 2021 02:05:44 -0700 (PDT)
 From:   Rui Miguel Silva <rui.silva@linaro.org>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Sebastian Siewior <bigeasy@linutronix.de>,
@@ -54,9 +54,9 @@ To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
         Rui Miguel Silva <rui.silva@linaro.org>
-Subject: [PATCH v3 3/9] usb: isp1760: use relaxed primitives
-Date:   Wed, 12 May 2021 10:05:23 +0100
-Message-Id: <20210512090529.2283637-4-rui.silva@linaro.org>
+Subject: [PATCH v3 4/9] usb: isp1760: remove platform data struct and code
+Date:   Wed, 12 May 2021 10:05:24 +0100
+Message-Id: <20210512090529.2283637-5-rui.silva@linaro.org>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210512090529.2283637-1-rui.silva@linaro.org>
 References: <20210512090529.2283637-1-rui.silva@linaro.org>
@@ -66,57 +66,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use io relaxed access memory primitives to satisfy strict type
-checking (__force).
+Since the removal of the Blackfin port with:
+commit 4ba66a976072 ("arch: remove blackfin port")
 
-This will fix some existing sparse warnings:
-sparse: warning: cast to restricted __le32
+No one is using or referencing this header and platform data struct.
+Remove them.
 
 Signed-off-by: Rui Miguel Silva <rui.silva@linaro.org>
 ---
- drivers/usb/isp1760/isp1760-hcd.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/usb/isp1760/isp1760-if.c | 20 +++-----------------
+ include/linux/usb/isp1760.h      | 19 -------------------
+ 2 files changed, 3 insertions(+), 36 deletions(-)
+ delete mode 100644 include/linux/usb/isp1760.h
 
-diff --git a/drivers/usb/isp1760/isp1760-hcd.c b/drivers/usb/isp1760/isp1760-hcd.c
-index 20d142140574..2cc0555e029d 100644
---- a/drivers/usb/isp1760/isp1760-hcd.c
-+++ b/drivers/usb/isp1760/isp1760-hcd.c
-@@ -246,7 +246,7 @@ static void bank_reads8(void __iomem *src_base, u32 src_offset, u32 bank_addr,
+diff --git a/drivers/usb/isp1760/isp1760-if.c b/drivers/usb/isp1760/isp1760-if.c
+index abfba9f5ec23..fb6701608cd8 100644
+--- a/drivers/usb/isp1760/isp1760-if.c
++++ b/drivers/usb/isp1760/isp1760-if.c
+@@ -16,7 +16,6 @@
+ #include <linux/of.h>
+ #include <linux/platform_device.h>
+ #include <linux/slab.h>
+-#include <linux/usb/isp1760.h>
+ #include <linux/usb/hcd.h>
  
- 	if (src_offset < PAYLOAD_OFFSET) {
- 		while (bytes >= 4) {
--			*dst = le32_to_cpu(__raw_readl(src));
-+			*dst = readl_relaxed(src);
- 			bytes -= 4;
- 			src++;
- 			dst++;
-@@ -267,7 +267,7 @@ static void bank_reads8(void __iomem *src_base, u32 src_offset, u32 bank_addr,
- 	 * allocated.
- 	 */
- 	if (src_offset < PAYLOAD_OFFSET)
--		val = le32_to_cpu(__raw_readl(src));
-+		val = readl_relaxed(src);
- 	else
- 		val = __raw_readl(src);
+ #include "isp1760-core.h"
+@@ -225,22 +224,9 @@ static int isp1760_plat_probe(struct platform_device *pdev)
  
-@@ -301,7 +301,7 @@ static void mem_writes8(void __iomem *dst_base, u32 dst_offset,
+ 		if (of_property_read_bool(dp, "dreq-polarity"))
+ 			devflags |= ISP1760_FLAG_DREQ_POL_HIGH;
+-	} else if (dev_get_platdata(&pdev->dev)) {
+-		struct isp1760_platform_data *pdata =
+-			dev_get_platdata(&pdev->dev);
+-
+-		if (pdata->is_isp1761)
+-			devflags |= ISP1760_FLAG_ISP1761;
+-		if (pdata->bus_width_16)
+-			devflags |= ISP1760_FLAG_BUS_WIDTH_16;
+-		if (pdata->port1_otg)
+-			devflags |= ISP1760_FLAG_OTG_EN;
+-		if (pdata->analog_oc)
+-			devflags |= ISP1760_FLAG_ANALOG_OC;
+-		if (pdata->dack_polarity_high)
+-			devflags |= ISP1760_FLAG_DACK_POL_HIGH;
+-		if (pdata->dreq_polarity_high)
+-			devflags |= ISP1760_FLAG_DREQ_POL_HIGH;
++	} else {
++		pr_err("isp1760: no platform data\n");
++		return -ENXIO;
+ 	}
  
- 	if (dst_offset < PAYLOAD_OFFSET) {
- 		while (bytes >= 4) {
--			__raw_writel(cpu_to_le32(*src), dst);
-+			writel_relaxed(*src, dst);
- 			bytes -= 4;
- 			src++;
- 			dst++;
-@@ -322,7 +322,7 @@ static void mem_writes8(void __iomem *dst_base, u32 dst_offset,
- 	 */
- 
- 	if (dst_offset < PAYLOAD_OFFSET)
--		__raw_writel(cpu_to_le32(*src), dst);
-+		writel_relaxed(*src, dst);
- 	else
- 		__raw_writel(*src, dst);
- }
+ 	ret = isp1760_register(mem_res, irq_res->start, irqflags, &pdev->dev,
+diff --git a/include/linux/usb/isp1760.h b/include/linux/usb/isp1760.h
+deleted file mode 100644
+index b75ded28db81..000000000000
+--- a/include/linux/usb/isp1760.h
++++ /dev/null
+@@ -1,19 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0 */
+-/*
+- * board initialization should put one of these into dev->platform_data
+- * and place the isp1760 onto platform_bus named "isp1760-hcd".
+- */
+-
+-#ifndef __LINUX_USB_ISP1760_H
+-#define __LINUX_USB_ISP1760_H
+-
+-struct isp1760_platform_data {
+-	unsigned is_isp1761:1;			/* Chip is ISP1761 */
+-	unsigned bus_width_16:1;		/* 16/32-bit data bus width */
+-	unsigned port1_otg:1;			/* Port 1 supports OTG */
+-	unsigned analog_oc:1;			/* Analog overcurrent */
+-	unsigned dack_polarity_high:1;		/* DACK active high */
+-	unsigned dreq_polarity_high:1;		/* DREQ active high */
+-};
+-
+-#endif /* __LINUX_USB_ISP1760_H */
 -- 
 2.31.1
 
