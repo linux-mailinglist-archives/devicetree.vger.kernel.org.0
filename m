@@ -2,55 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C06937BC97
-	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 14:34:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A33F37BCBD
+	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 14:44:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232514AbhELMfd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 08:35:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36050 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232519AbhELMfb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 08:35:31 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC5F5C061574
-        for <devicetree@vger.kernel.org>; Wed, 12 May 2021 05:34:21 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id b19-20020a05600c06d3b029014258a636e8so2958943wmn.2
-        for <devicetree@vger.kernel.org>; Wed, 12 May 2021 05:34:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=L3AMrfm7KzdYjAx0MG/kXRzLEqn5TfDInWeiOnoS8A0=;
-        b=wGwwVglhSHA1nu0sddt1O78EWcwn6fB5M95MBU2mYu8yxjZWRmVl4Xk2W/HBVliIQ+
-         VqbqZ4D3hgvRwEI1eQ0SgoEs1oOuTGok3UPrOy9fE4HVc/V0LQd182Ehxjlb7M/vBxJZ
-         1RejYqLqgKbdZ0/pTt6wEMHd7BbvNQfmn8aBdO+FGkEvHNyA9co4wkELQmNPARhE1beW
-         7DK+sIGytXjOYdOJ7HhZNAMAAGxlGbDm3fMt3ulRHEjA9g6MXUa/2FfQ2FELIpeebL8E
-         ythDkvX3BJoH9pQYp67RthOVD/w/EfKqEQnDXyxRkx3Brks5/3IgR1ibdRT56edbosyD
-         Ukpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=L3AMrfm7KzdYjAx0MG/kXRzLEqn5TfDInWeiOnoS8A0=;
-        b=FcIRrtmsok3xm8I4+48LWGOzPy8odTqg8BEnPFCS4VzzQd0QIus0FfNRhY10VNHB47
-         gDA0PT7lOvpMzRjac8sLWZzVYxBIT1Z3HSqWPKYTQLU2XP3RRQ3Ese54XgX6ds43B2d1
-         2B9f5QT0s+q8lYU0olTIC4mZvvhvbW8jRIi9Y75Rg2WWMLXd+mjQHkpLB+WkiGk/Qt/l
-         RKjTClFsbzo33UoC+Lq85WQxSZSFkKBvdoELEppKH9nPmEaCx+JQGjuB5jXzEn8k0100
-         AUfHiFArtm96fhDAdc5BDhg5fWnU3fRmWnwSois6LzDzTp79e6Zf1o5bIvJUOV6v49ue
-         dqfA==
-X-Gm-Message-State: AOAM531rrjQoFwytYlz9i7C52UKILY4Z5faAPlQIvy/UWvqjMy81nLvt
-        7bp6o9tQ/MdMJlkK3M29lyLIcg==
-X-Google-Smtp-Source: ABdhPJxaogDe/xKEAVJSwlt6+D1vz2gSm4YwiHq4FwR/U+34LWOpQZ6ZvVIPkXLGy3PggDAnBF3Vyw==
-X-Received: by 2002:a7b:cbc2:: with SMTP id n2mr38803203wmi.69.1620822860514;
-        Wed, 12 May 2021 05:34:20 -0700 (PDT)
-Received: from google.com (105.168.195.35.bc.googleusercontent.com. [35.195.168.105])
-        by smtp.gmail.com with ESMTPSA id j10sm30643193wrt.32.2021.05.12.05.34.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 May 2021 05:34:20 -0700 (PDT)
-Date:   Wed, 12 May 2021 12:34:17 +0000
-From:   Quentin Perret <qperret@google.com>
-To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        id S233160AbhELMp3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 08:45:29 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:22792 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233182AbhELMp3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 May 2021 08:45:29 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 14CCc9HY007980;
+        Wed, 12 May 2021 14:44:06 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=Sdiz04I1eZ4tZNAdMz6Zqee8SEhTjRnafOqx+r8AJxY=;
+ b=HLKFvyBumNJb2ATy5rSpigSmr8Bk4cQCx02DFapETO0C4tgDsbEDZ6xYytTyxhOTBRjw
+ PvGUA5ivmmriLjiuXNhOPI3cy/wTiIskzzABnCdjJmLTRv7h4Bze5jBCYpZxUJqUog5J
+ d+DXBPrcZxQySJ7Zqxe+2pIutK35/9hdkCq28XOTGW++PjBuxL9sBTq4an8tN4vPGf90
+ Z3LE35rwNhPeCSoZWcRO2UrqTtZS3zWLgT/5iWRjKPuJxwj9lufEdiKIyGBZIy+/4uQG
+ 7C/9N/sqgjN+JZKSvalbDPqJ356oXzFHhe+LbuKlTGsT0HlWW808g28pN/mhkWSaLZV9 Jw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 38g3jabsk2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 12 May 2021 14:44:06 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 210E810002A;
+        Wed, 12 May 2021 14:44:06 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id DD70E221F7D;
+        Wed, 12 May 2021 14:44:05 +0200 (CEST)
+Received: from lmecxl0912.lme.st.com (10.75.127.51) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 12 May
+ 2021 14:44:04 +0200
+Subject: Re: [v5.4 stable] arm: stm32: Regression observed on "no-map"
+ reserved memory region
+To:     Quentin Perret <qperret@google.com>
+CC:     Florian Fainelli <f.fainelli@gmail.com>,
         Ard Biesheuvel <ardb@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -66,9 +56,6 @@ Cc:     Florian Fainelli <f.fainelli@gmail.com>,
         Architecture Mailman List <boot-architecture@lists.linaro.org>,
         Frank Rowand <frowand.list@gmail.com>,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [v5.4 stable] arm: stm32: Regression observed on "no-map"
- reserved memory region
-Message-ID: <YJvLSbGh0YPRo0S2@google.com>
 References: <001f8550-b625-17d2-85a6-98a483557c70@foss.st.com>
  <CAL_Jsq+LUPZFhXd+j-xM67rZB=pvEvZM+1sfckip0Lqq02PkZQ@mail.gmail.com>
  <CAMj1kXE2Mgr9CsAMnKXff+96xhDaE5OLeNhypHvpN815vZGZhQ@mail.gmail.com>
@@ -79,28 +66,48 @@ References: <001f8550-b625-17d2-85a6-98a483557c70@foss.st.com>
  <ad90b2bb-0fab-9f06-28dd-038e8005490b@foss.st.com>
  <YJkGSb72aKg6ScGo@google.com>
  <e1da4a98-7521-518f-f85a-51e9c58b1fc3@foss.st.com>
+ <YJvLSbGh0YPRo0S2@google.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <2f384c1f-e897-e458-4562-8a7c0bd338e1@foss.st.com>
+Date:   Wed, 12 May 2021 14:44:04 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e1da4a98-7521-518f-f85a-51e9c58b1fc3@foss.st.com>
+In-Reply-To: <YJvLSbGh0YPRo0S2@google.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.51]
+X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-05-12_06:2021-05-12,2021-05-12 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday 12 May 2021 at 12:55:53 (+0200), Alexandre TORGUE wrote:
-> We saw that patches [1] and [2] cause issue on stable version (at least for
-> 5.4). As you said issue can be seen with above device tree and check in
-> /proc/iomem than gpu_reserved region is taken by the kernel as "System RAM".
+On 5/12/21 2:34 PM, Quentin Perret wrote:
+> On Wednesday 12 May 2021 at 12:55:53 (+0200), Alexandre TORGUE wrote:
+>> We saw that patches [1] and [2] cause issue on stable version (at least for
+>> 5.4). As you said issue can be seen with above device tree and check in
+>> /proc/iomem than gpu_reserved region is taken by the kernel as "System RAM".
+>>
+>> On v5.10 stream there are no issues seen taking patches [1]&[2] and the
+>> reason is linked to patches [3]&[4] which have been introduced in v5.10.0.
+>> Reverting them give me the same behavior than on stable version.
 > 
-> On v5.10 stream there are no issues seen taking patches [1]&[2] and the
-> reason is linked to patches [3]&[4] which have been introduced in v5.10.0.
-> Reverting them give me the same behavior than on stable version.
+> Thanks for confirming. Given that the patches were not really fixes, I
+> think reverting is still the best option. I've sent reverts to -stable
+> for 5.4 and prior:
+> 
+> https://lore.kernel.org/stable/20210512122853.3243417-1-qperret@google.com/
+> 
 
-Thanks for confirming. Given that the patches were not really fixes, I
-think reverting is still the best option. I've sent reverts to -stable
-for 5.4 and prior:
+Thanks Quentin.
 
-https://lore.kernel.org/stable/20210512122853.3243417-1-qperret@google.com/
+alex
 
-Cheers,
-Quentin
+> Cheers,
+> Quentin
+> 
+
