@@ -2,78 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0931337C57D
-	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 17:40:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6BBB37C582
+	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 17:40:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232868AbhELPlI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 11:41:08 -0400
-Received: from mail-vk1-f179.google.com ([209.85.221.179]:34726 "EHLO
-        mail-vk1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234616AbhELPdZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 11:33:25 -0400
-Received: by mail-vk1-f179.google.com with SMTP id q135so4845103vke.1;
-        Wed, 12 May 2021 08:32:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cHUHY47xKY6M8wsOsrnoPowybpfBI0bLg/vVropFhTc=;
-        b=de9Vp95qpRi12wNI3UGvV24nKQPfSd79FOiEtyHjwEYGUYYvuzTwrUFb4HQFYGJ+pm
-         +UJTf07bxLgEHkOF8YuAScTCseKXWykPZimRlw4oaT/i+bPVkE4MsYJ3LBOX+0QbRQ//
-         vlV2WyyZuKo0r6cn9tAbQpAwX+OL14KMJE0iWGYjoUqBIYWEko72LzKadbdPj7CfHTog
-         AUr7liZe2tVlgj36YQi0HdMjf4wJ5+n82lmLsrvHtpgTufLhLrRbAUsnUnzI8sxQhfxs
-         Ozl0pMziu5MIS12RzHHNcaoZURHvRZSDt/RBDHfkT7OGpsWBNyNO7uRtBEEHSC+wMV1W
-         tEgg==
-X-Gm-Message-State: AOAM531TDmqbCOepG8z11m45UkmEFE7NG6hBm8Z72m87Oz+QJDyjOhna
-        bWdUUrUwJ36uvD8CWmDQa2xeEMORHo1ywFOjYMs=
-X-Google-Smtp-Source: ABdhPJy4j45rbhSUmGa2sukaqCXSAXpQu8R4tysokooKoUeP72NCQxu5ym8wZwCL1KfOXU7HkrCIogzLFhaUDmo8j04=
-X-Received: by 2002:a1f:a388:: with SMTP id m130mr29310938vke.1.1620833535781;
- Wed, 12 May 2021 08:32:15 -0700 (PDT)
+        id S233156AbhELPlJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 11:41:09 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:40072 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234840AbhELPed (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 11:34:33 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14CFXHN4017873;
+        Wed, 12 May 2021 10:33:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1620833597;
+        bh=M4L0ShxGeQXtxLHTUqB17KpjcOtc7d6VVBZpkVEJMZA=;
+        h=From:To:CC:Subject:Date;
+        b=ZFvoWB84Jbn2uJEeIx/3bUfG4r+jghmmZ8Aux+k+NZx1Tytl4XNSZ4+mxwcbg5tk+
+         2JQLqfTw8wdcNvQ3nJ/OuWQGqzDe9PGu5+73qNs7jW0Vf8oh88o64UlGFrGLpXLY3c
+         j3YruvidxlXTYq1rEtxQYdtJRXdSl7TRuU1cznQo=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14CFXHaP071950
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 12 May 2021 10:33:17 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 12
+ May 2021 10:33:16 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 12 May 2021 10:33:16 -0500
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14CFX9v0045910;
+        Wed, 12 May 2021 10:33:10 -0500
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <kristo@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+Subject: [PATCH] arm64: dts: ti: j7200-main: Enable USB2 PHY RX sensitivity workaround
+Date:   Wed, 12 May 2021 21:03:08 +0530
+Message-ID: <20210512153308.5840-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20210106113730.k5qveshjgcd57kgx@runtux.com> <20210106113929.fizyg6fcsmsntkiy@runtux.com>
- <CANiq72=Cfv=Qo2fs+HDjUc8pV37mL326SDS5JpGotUfHLwK_rQ@mail.gmail.com>
-In-Reply-To: <CANiq72=Cfv=Qo2fs+HDjUc8pV37mL326SDS5JpGotUfHLwK_rQ@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 12 May 2021 17:32:04 +0200
-Message-ID: <CAMuHMdUW3U6DVkHp3xiHFzvRUDJ1FwTNCnBWp5LCuDGxhds9wg@mail.gmail.com>
-Subject: Re: [PATCH 1/1] auxdisplay: Add I2C gpio expander example
-To:     Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Cc:     Ralf Schlatterbeck <rsc@runtux.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Willy Tarreau <w@1wt.eu>, Lars Poeschel <poeschel@lemonage.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miguel,
+From: Roger Quadros <rogerq@ti.com>
 
-On Wed, Jan 6, 2021 at 1:18 PM Miguel Ojeda
-<miguel.ojeda.sandonis@gmail.com> wrote:
-> On Wed, Jan 6, 2021 at 12:39 PM Ralf Schlatterbeck <rsc@runtux.com> wrote:
-> > The hd44780 displays are often used with pcf8574 based I/O expanders.
-> > Add example to documentation.
-> >
-> > Signed-off-by: Ralf Schlatterbeck <rsc@runtux.com>
+Enable work around feature built into the controller to address issue with
+RX Sensitivity for USB2 PHY.
 
-> Rob, if you are taking this on your tree:
->
->     Acked-by: Miguel Ojeda <ojeda@kernel.org>
->
-> Otherwise, I will pick it up.
+Fixes: 6197d7139d12 ("arm64: dts: ti: k3-j7200-main: Add USB controller")
+Signed-off-by: Roger Quadros <rogerq@ti.com>
+Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-Seems like so far no one has picked this up?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+index f86c493a44f1..07c0ce484cae 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+@@ -679,6 +679,7 @@
+ 					  "otg";
+ 			maximum-speed = "super-speed";
+ 			dr_mode = "otg";
++			cdns,phyrst-a-enable;
+ 		};
+ 	};
+ 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
