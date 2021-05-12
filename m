@@ -2,213 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AB2137CD87
+	by mail.lfdr.de (Postfix) with ESMTP id D6C4F37CD88
 	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 19:14:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240688AbhELQ4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 12:56:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60172 "EHLO
+        id S244454AbhELQ4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 12:56:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236911AbhELQcW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 12:32:22 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B408C061240;
-        Wed, 12 May 2021 09:08:04 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id p12so30296137ljg.1;
-        Wed, 12 May 2021 09:08:04 -0700 (PDT)
+        with ESMTP id S236030AbhELQr7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 12:47:59 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB3E0C08EB20;
+        Wed, 12 May 2021 09:20:50 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id d11so24219161wrw.8;
+        Wed, 12 May 2021 09:20:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=EFUqatXFcYynCbDY6/O5QHoLQn2Iw8/bOL3++Grnj0k=;
-        b=LyOy6jKC+HEvJmIG6dcl25mKN+A6hINsqDwEQWnQ/tI1x3egzx2ZZEQ0GFFwLEpUhF
-         sRH9TgGcS5Yhxzrirr9Zizt2utTz9gAaOc6WFm99Ow4D3BxX38ajUIjAUkjsH45DVIfY
-         frgvLALpsHWeS2Y8oC3S90NIA7REf1jVMN2Px3fRH7n1D9dU2vg32wfKBa02CNxicjNe
-         FEgFhGMET9xKOtjN2F8ylVYI2+eLpCxIcHr3UPKR0ItcxjvptEnjNKHkjy/uD//AhDsa
-         T1m4NOESbZJ6E3LGBUKF+4CLov2LvmtBB46gbW6ch7wEaE6k+zhzJ2XMWgMmDhf+9jm8
-         +oLA==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=g3cwY6Hzy6EqdwJaqVSzBqAF7NmFEme2hYX8gRSTBJ8=;
+        b=gC0znr5PRqA5wRxIgIiAmKgcHzgv0b4bKRjccuLX6Iwidd0KlUZ2dVEKJTX4BS6Qtn
+         mI5KQGsRLvvomQg3r1/1EuhiaVFE3MPEuthJz3koNfy/MJItDQkBi/+PawpVMNsJwalC
+         rPEk4mSaplt1hE0GFzt4Ku+/sK1bZF4w6A5yyLuqrz73ySV3uM6cB7yojp4KImi9JDhO
+         iv6ajbxfjtSdxh87h+6h+9VE4LucPMWfTDDhDViS7Umn+ktC1mRacDEjrc+Helrg8dhj
+         V7VWK8KnfqeqXjjL9lW3JSEt7a8kPfmPsJvV6dApGLFHwmMOqqW/Wgf8UQpvBroTgKLj
+         6DFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=EFUqatXFcYynCbDY6/O5QHoLQn2Iw8/bOL3++Grnj0k=;
-        b=CfedAFDA8Uzn7P4Ppu5frB3v/N3qsA+7PXawwY/VQXpsKWigHYGb6Ny3UDiLABZZJc
-         ClMduEhY8zmM68+frKnqi/hhOQpR6sF1G99lgzNYBGCHN0qsWGwwImVx8kYysdgd4Qzw
-         sHXJqwKwWv47a9KDP50lsRpetQ1ysLW5B1ibj+bYRbzpXxfRIU+m5tXosQA0ZNIXmGIY
-         ZemJ7cLb9irdzPzqLHmjDoD+uf4F5rkhtU1qUddHS7hPZ9Xgr0eUl+v1grByJU3To+Rg
-         Dl9Ac1dxCd/Di9jyMPfw6OUaPXXLUZ2UDAEiphwVdFzFAI/UlKjGibI9EQJag5Ul33Z1
-         K9WQ==
-X-Gm-Message-State: AOAM530Vukt0BC49wL0tOHZQNtAW5uaZeI/xTPERtrCopDItd7fLs41X
-        7drhoKyA/vcvy9Z/MonI4fM=
-X-Google-Smtp-Source: ABdhPJxsRLAELF/wAu9LwuvCU9T9itzN8m3FmjU6PGT/rSWEBHEaQcXTNpE7z/txdNK96uUcGOStNw==
-X-Received: by 2002:a2e:6e03:: with SMTP id j3mr29047247ljc.218.1620835682627;
-        Wed, 12 May 2021 09:08:02 -0700 (PDT)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id r19sm9078lfi.246.2021.05.12.09.08.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 May 2021 09:08:02 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] dt-bindings: i2c: brcm,iproc-i2c: convert to the json-schema
-Date:   Wed, 12 May 2021 18:07:50 +0200
-Message-Id: <20210512160750.15183-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
+        bh=g3cwY6Hzy6EqdwJaqVSzBqAF7NmFEme2hYX8gRSTBJ8=;
+        b=mez7OvqSkUeoMmccXKkpYux0eUkLClyM2Ci/XvvYpG8s3MhGvxpTHoySs/qVsrgAZw
+         FHe45UNVzpISu3M2bftvfRJBuQxkGyrhr2yk9P/P4hZ6p61QwP6tUeKQvrOHszQQuCon
+         47ioomL6CbjAX3SI1rLsA6cRxS8q3uL94+JqJKzc7q/UTmaxqt/nF1DkvB0k9KJhvaWR
+         dBmIN+bu4if4cAnK9khzOXkC0t6AJgn0z75JW2ltVJogOTTUUjBREQB5qRsEEr6qjGRL
+         /Uitgnlj1DpPUexIA6MotlMJbIoZZhH88EEMcS2DK1+fyNiOme8lWQ3Zs9CfoI2BjPOc
+         A4bA==
+X-Gm-Message-State: AOAM531kYtL2dHSpm9ceI/gIhvcZZbASvMeV9L+ucEtr3mBAZTeGDH6Y
+        kQMPNxeE8L+E041UeOu6zIU/uJ6IiImAyw==
+X-Google-Smtp-Source: ABdhPJwxmmhuNFN4Qj6xtMqbuk5mOqU/iFz28N2vLzffR4UhACjE+oiPI8EWzNhx1E44PPwQUX6Z7Q==
+X-Received: by 2002:a5d:4a51:: with SMTP id v17mr42251239wrs.259.1620836449668;
+        Wed, 12 May 2021 09:20:49 -0700 (PDT)
+Received: from ziggy.stardust ([37.223.140.37])
+        by smtp.gmail.com with ESMTPSA id f7sm135279wmq.30.2021.05.12.09.20.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 May 2021 09:20:49 -0700 (PDT)
+Subject: Re: [PATCH v3 3/3] arm64: dts: mediatek: mt8167: add some DRM nodes
+To:     Fabien Parent <fparent@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Cc:     mkorpershoek@baylibre.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210406113631.2675029-1-fparent@baylibre.com>
+ <20210406113631.2675029-3-fparent@baylibre.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <df4c57f9-115b-c4da-e656-e4bdec62c2d7@gmail.com>
+Date:   Wed, 12 May 2021 18:20:48 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210406113631.2675029-3-fparent@baylibre.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hi Fabien,
 
-This helps validating DTS files.
+As you might remember this patch didn't hit mainline in the last merge window.
+Actually there are some concerns about the driver architecture [1].
 
-Introduced changes:
-1. Added arm-gic.h include
+Apart from that small comment below.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- .../bindings/i2c/brcm,iproc-i2c.txt           | 46 ------------
- .../bindings/i2c/brcm,iproc-i2c.yaml          | 71 +++++++++++++++++++
- 2 files changed, 71 insertions(+), 46 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/i2c/brcm,iproc-i2c.txt
- create mode 100644 Documentation/devicetree/bindings/i2c/brcm,iproc-i2c.yaml
+[1]
+https://lore.kernel.org/linux-mediatek/CAK8P3a2Qg-uz0kMXFMrvRjUv3NRvZXjTwS1P5MDvFk3feYaBzg@mail.gmail.com/
 
-diff --git a/Documentation/devicetree/bindings/i2c/brcm,iproc-i2c.txt b/Documentation/devicetree/bindings/i2c/brcm,iproc-i2c.txt
-deleted file mode 100644
-index d12cc33cca6c..000000000000
---- a/Documentation/devicetree/bindings/i2c/brcm,iproc-i2c.txt
-+++ /dev/null
-@@ -1,46 +0,0 @@
--Broadcom iProc I2C controller
--
--Required properties:
--
--- compatible:
--    Must be "brcm,iproc-i2c" or "brcm,iproc-nic-i2c"
--
--- reg:
--    Define the base and range of the I/O address space that contain the iProc
--    I2C controller registers
--
--- clock-frequency:
--    This is the I2C bus clock. Need to be either 100000 or 400000
--
--- #address-cells:
--    Always 1 (for I2C addresses)
--
--- #size-cells:
--    Always 0
--
--Optional properties:
--
--- interrupts:
--    Should contain the I2C interrupt. For certain revisions of the I2C
--    controller, I2C interrupt is unwired to the interrupt controller. In such
--    case, this property should be left unspecified, and driver will fall back
--    to polling mode
--
--- brcm,ape-hsls-addr-mask:
--    Required for "brcm,iproc-nic-i2c". Host view of address mask into the
--    'APE' co-processor. Value must be unsigned, 32-bit
--
--Example:
--	i2c0: i2c@18008000 {
--		compatible = "brcm,iproc-i2c";
--		reg = <0x18008000 0x100>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--		interrupts = <GIC_SPI 85 IRQ_TYPE_NONE>;
--		clock-frequency = <100000>;
--
--		codec: wm8750@1a {
--			compatible = "wlf,wm8750";
--			reg = <0x1a>;
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/i2c/brcm,iproc-i2c.yaml b/Documentation/devicetree/bindings/i2c/brcm,iproc-i2c.yaml
-new file mode 100644
-index 000000000000..2aa75b7add7b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/brcm,iproc-i2c.yaml
-@@ -0,0 +1,71 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i2c/brcm,iproc-i2c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom iProc I2C controller
-+
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - brcm,iproc-i2c
-+      - brcm,iproc-nic-i2c
-+
-+  reg:
-+    maxItems: 1
-+
-+  clock-frequency:
-+    enum: [ 100000, 400000 ]
-+
-+  interrupts:
-+    description: |
-+      Should contain the I2C interrupt. For certain revisions of the I2C
-+      controller, I2C interrupt is unwired to the interrupt controller. In such
-+      case, this property should be left unspecified, and driver will fall back
-+      to polling mode
-+    maxItems: 1
-+
-+  brcm,ape-hsls-addr-mask:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Host view of address mask into the 'APE' co-processor
-+
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: brcm,iproc-nic-i2c
-+    then:
-+      required:
-+        - brcm,ape-hsls-addr-mask
-+
-+unevaluatedProperties: false
-+
-+required:
-+  - reg
-+  - clock-frequency
-+  - '#address-cells'
-+  - '#size-cells'
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    i2c@18008000 {
-+        compatible = "brcm,iproc-i2c";
-+        reg = <0x18008000 0x100>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        interrupts = <GIC_SPI 85 IRQ_TYPE_NONE>;
-+        clock-frequency = <100000>;
-+
-+        wm8750@1a {
-+            compatible = "wlf,wm8750";
-+            reg = <0x1a>;
-+        };
-+    };
--- 
-2.26.2
+On 06/04/2021 13:36, Fabien Parent wrote:
+> Add all the DRM nodes required to get DSI to work on MT8167 SoC.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> ---
+> Note: This series is based on https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/log/?h=v5.12-next/dts64-2
+> 
+> V3:
+> 	* Removed unicode character in commit summary
+> V2:
+> 	* No changes
+> 
+>  arch/arm64/boot/dts/mediatek/mt8167.dtsi | 149 +++++++++++++++++++++++
+>  1 file changed, 149 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8167.dtsi b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
+> index 9029051624a6..17942095944e 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8167.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
+> @@ -16,6 +16,19 @@
+>  / {
+>  	compatible = "mediatek,mt8167";
+>  
+> +	aliases {
+> +		aal0 = &aal;
+> +		ccorr0 = &ccorr;
+> +		color0 = &color;
+> +		dither0 = &dither;
+> +		dsi0 = &dsi;
+> +		ovl0 = &ovl0;
+> +		pwm0 = &disp_pwm;
+> +		rdma0 = &rdma0;
+> +		rdma1 = &rdma1;
+> +		wdma0 = &wdma;
+> +	};
+> +
+>  	soc {
+>  		topckgen: topckgen@10000000 {
+>  			compatible = "mediatek,mt8167-topckgen", "syscon";
+> @@ -114,6 +127,13 @@ vdecsys: syscon@16000000 {
+>  			#clock-cells = <1>;
+>  		};
+>  
+> +		mutex: mutex@14015000 {
+> +			compatible = "mediatek,mt8167-disp-mutex";
+> +			reg = <0 0x14015000 0 0x1000>;
+> +			interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_LOW>;
+> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
+> +		};
+> +
+>  		pio: pinctrl@1000b000 {
+>  			compatible = "mediatek,mt8167-pinctrl";
+>  			reg = <0 0x1000b000 0 0x1000>;
+> @@ -126,6 +146,135 @@ pio: pinctrl@1000b000 {
+>  			interrupts = <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
+>  		};
+>  
+> +		rdma1: rdma1@1400a000 {
+> +			compatible = "mediatek,mt8167-disp-rdma",
+> +				     "mediatek,mt2701-disp-rdma";
+> +			reg = <0 0x1400a000 0 0x1000>;
+> +			interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_LOW>;
+> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
+> +			clocks = <&mmsys CLK_MM_DISP_RDMA1>;
+> +			iommus = <&iommu M4U_PORT_DISP_RDMA1>;
+> +			mediatek,larb = <&larb0>;
+> +		};
+> +
+> +		disp_pwm: disp_pwm@1100f000 {
+> +			compatible = "mediatek,mt8167-disp-pwm",
+> +				     "mediatek,mt8173-disp-pwn";
 
+Should be "mediatek,mt8173-disp-pwm" right?
+I'll un-stage this patch but keep the rest for v5.14. Please re-submit once the
+driver binding is clarified.
+
+Regards,
+Matthias
