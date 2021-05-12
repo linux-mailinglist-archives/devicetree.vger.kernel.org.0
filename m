@@ -2,25 +2,25 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0042637B9BB
-	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 11:55:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D84D37B9C8
+	for <lists+devicetree@lfdr.de>; Wed, 12 May 2021 11:56:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230185AbhELJ4k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 05:56:40 -0400
-Received: from uho.ysoft.cz ([81.19.3.130]:24907 "EHLO uho.ysoft.cz"
+        id S230406AbhELJ54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 05:57:56 -0400
+Received: from uho.ysoft.cz ([81.19.3.130]:44770 "EHLO uho.ysoft.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230329AbhELJ4j (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 May 2021 05:56:39 -0400
+        id S230300AbhELJ5w (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 May 2021 05:57:52 -0400
 Received: from iota-build.ysoft.local (unknown [10.1.5.151])
-        by uho.ysoft.cz (Postfix) with ESMTP id F3843A1B65;
-        Wed, 12 May 2021 11:55:28 +0200 (CEST)
+        by uho.ysoft.cz (Postfix) with ESMTP id 79B1CA02C2;
+        Wed, 12 May 2021 11:56:43 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
-        s=20160406-ysoft-com; t=1620813329;
-        bh=ppuEtfUiNh6dPna9esARC/I573CvEjsGGl/2B/7p0bA=;
+        s=20160406-ysoft-com; t=1620813403;
+        bh=SG2y18C7JNfTDUdkAYTD8f+Wpft0cnGU4jaSxzMgYBs=;
         h=From:To:Cc:Subject:Date:From;
-        b=jMGnnZmNRDrqSJ2f9xNKGupyjRyNPvpNlbkDoUCudpzAW0RLKYaor5/a2bvxCuhPb
-         gI0J2o4xigK2/URYPxJkfeF6zzunb6+ue5GGpc0m5SfV6rpL042H5aC0YWdAsG37rj
-         l57vsA/OWZLSQDLK/2yybSVScppN5RJCpoiVZb/I=
+        b=SLG6Qg+DJ3GzlTGeJV5O/TAGbWajSJHZA2UDlj1BauYIPr/TZYYwq1dQkqQq/ewg/
+         hmeuX44ONiwt4v4KOnTKGoyZ/BkZ4aVXA0EqpoOKJ6pMniALPv7JOTVBGzYDvaQwux
+         JEg7TRCTb7UyzbYfWFZqEBxqBQXHjlp5/e5gOcqc=
 From:   =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
 To:     Shawn Guo <shawnguo@kernel.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -29,10 +29,11 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
         linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
-Subject: [PATCH RESEND] ARM: dts: imx6dl-yapp4: Configure the OLED display segment offset
-Date:   Wed, 12 May 2021 11:55:14 +0200
-Message-Id: <1620813314-30803-1-git-send-email-michal.vokac@ysoft.com>
+        =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>,
+        stable@vger.kernel.org
+Subject: [PATCH RESEND] ARM: dts: imx6dl-yapp4: Fix RGMII connection to QCA8334 switch
+Date:   Wed, 12 May 2021 11:56:32 +0200
+Message-Id: <1620813392-30933-1-git-send-email-michal.vokac@ysoft.com>
 X-Mailer: git-send-email 2.1.4
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -41,30 +42,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The imx6dl-yapp4 platform uses a GE-LX012864FWPP3N0000 OLED display.
-The display consist of a 128x64 OLED panel and a SSD1305 controller.
+The FEC does not have a PHY so it should not have a phy-handle. It is
+connected to the switch at RGMII level so we need a fixed-link sub-node
+on both ends.
 
-The OLED panel resolution is 128x64 but the built-in controller default
-resolution is 132x64. To display properly a segment offset needs to be
-configured.
+This was not a problem until the qca8k.c driver was converted to PHYLINK
+by commit b3591c2a3661 ("net: dsa: qca8k: Switch to PHYLINK instead of
+PHYLIB"). That commit revealed the FEC configuration was not correct.
 
+Fixes: 87489ec3a77f ("ARM: dts: imx: Add Y Soft IOTA Draco, Hydra and Ursa boards")
+Cc: stable@vger.kernel.org
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
 ---
- arch/arm/boot/dts/imx6dl-yapp4-common.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm/boot/dts/imx6dl-yapp4-common.dtsi | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi b/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
-index 51972c85e207..111d4d331f98 100644
+index 111d4d331f98..686dab57a1e4 100644
 --- a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
 +++ b/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
-@@ -373,6 +373,7 @@
- 		solomon,height = <64>;
- 		solomon,width = <128>;
- 		solomon,page-offset = <0>;
-+		solomon,col-offset = <4>;
- 		solomon,prechargep2 = <15>;
- 		reset-gpios = <&gpio_oled 1 GPIO_ACTIVE_LOW>;
- 		vbat-supply = <&sw2_reg>;
+@@ -121,9 +121,13 @@
+ 	phy-reset-gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
+ 	phy-reset-duration = <20>;
+ 	phy-supply = <&sw2_reg>;
+-	phy-handle = <&ethphy0>;
+ 	status = "okay";
+ 
++	fixed-link {
++		speed = <1000>;
++		full-duplex;
++	};
++
+ 	mdio {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
 -- 
 2.1.4
 
