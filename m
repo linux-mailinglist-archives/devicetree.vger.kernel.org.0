@@ -2,120 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5265837FF63
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 22:43:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC06137FF71
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 22:48:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231529AbhEMUou (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 16:44:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55072 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230305AbhEMUot (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 May 2021 16:44:49 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5CEEB6143D;
-        Thu, 13 May 2021 20:43:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620938619;
-        bh=A3b16ZVY/C5ZO5MXnyxLTrDK5X7y0uCD4VfIVPCIxZw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Gzx8vcmyVC0PIR9R2EXJPmIMlLRpTQ8mculxrb84Gtg/6WwgrrIZHkJ0jXgbzupv7
-         ZOskrgV4czU9o14jF6gcavbWFomqFb4wmesnYXsTboG/lOb999I41AMrsv31N/QPnq
-         ozaIpKTRB6Jcv0z/kuvGD/0xe4aI8cEO3yaVpR0+Lww/wJEp27sNjwSvdOzBUDP3j5
-         RC6LdYaWC1SFL2mv0nYVgCqER/F2ifnbsn4mRgXdJXEOu2AA3wH6jEkVsJoxwYVsr6
-         djJoEY15lT3GsVih2iNuZ4ELSpmRBszqd30pu5akOg9S64WFoZNLSKzmoXiru/c9Uq
-         0fkuqtFS+8pgg==
-Received: by mail-qk1-f175.google.com with SMTP id 76so26829697qkn.13;
-        Thu, 13 May 2021 13:43:39 -0700 (PDT)
-X-Gm-Message-State: AOAM533fAtBpcI2jUvedlI3SsF5baKtc71XGKIvKsXnM5DNDsvOPTOB6
-        Sl7TVhYw0ONFQEiNJcKIDBeCijfGtBcMFmv+ig==
-X-Google-Smtp-Source: ABdhPJyS9sqwtUxxwJj+pw7aOZgNGV+YskujLTBOnbUWy50BMbWIxY3hIKtH/Vp7VcL3+me6WFqaxQaF0aAZqR54m0g=
-X-Received: by 2002:a37:6116:: with SMTP id v22mr26536521qkb.464.1620938618472;
- Thu, 13 May 2021 13:43:38 -0700 (PDT)
+        id S233158AbhEMUtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 16:49:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43378 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233148AbhEMUtH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 16:49:07 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22D79C061574;
+        Thu, 13 May 2021 13:47:57 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id c22so13590184ejd.12;
+        Thu, 13 May 2021 13:47:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=H4mINdsdXYds/5sATdUIYmsbV+FNndDHPDOhCDo3Rls=;
+        b=CNCSOyhyFytemyV2sU9Vbk6spqFQfa+dUlln09qsdRnSV6DDsO3/J/51MMgfQEgmKo
+         1o2fp09zAfkATnCPn2zNAErP6+m1IOUBamNo1gFM38M2ZBv56/kOUUfdlD40wFMMhJXc
+         K6CLyz0u+VMc+Aa0oMwgwo4xMvDaNb2QDXrJrwrQkjWAkZ0kN8q7QeMCRurqK46nnDyT
+         hO5hQl0Y68QaL7GmvyrYX79Ml9TyPoAUafK9G9KbEk9facwz0rKcPK2WUH/QR8eORvC5
+         +/aKJj1VBQuMrBRBtiwTVUrYqExlSsFIzRbq7YbPIq5KkjopyvsfB9ej3ajEBizqy2cB
+         Oj+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=H4mINdsdXYds/5sATdUIYmsbV+FNndDHPDOhCDo3Rls=;
+        b=Lh5LG0O/6IIRZlJJp7rc/7zuCn9+l2wUer7Ywg7EQzb1pDsWZeMmRt1hpocRLYvh/8
+         20ObseeRxm7d//CuIRB383aUjKSzr7QUVLpuaFChlLgYqYGp92Zl2TJXzdE0B1QYcZLe
+         XAvzlWpubqIAcJu4RaVA2vC+Gq6sVWWeddH3RUNKcnSglRUBvwd+O0obecrBHbfoRAOh
+         v80GsRfd8QqiYorCZTqkkjgqU4DFTZKunbKqHNWEi+rme5Na0O2hTIHUSduuh7RJiaNm
+         Z0IM+y2HLQxGFZ0kRXfp4oMd8At0uTkcuc8YQ7O+zmvRTmDhBtx6XhcWc0gzQAcdflSM
+         6ejA==
+X-Gm-Message-State: AOAM5311H+r5EKDyyGyy3RRuGjqo+ukJ8lub6pECCFyg3L/du/GQK6vR
+        FYbLbRDkJZZJXIhOleGG+fBsZ8B52DOcMvO4/ZwBto2LO1E=
+X-Google-Smtp-Source: ABdhPJze3Ay/us59Gj2mhXRtb5Pl8STZzTXB63JDQKoED3KuFSFVzCEbMtTtddJa1xCNZn8aTYlhoZERJDseXNFg5qM=
+X-Received: by 2002:a17:907:969e:: with SMTP id hd30mr28614653ejc.501.1620938875834;
+ Thu, 13 May 2021 13:47:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210511191239.774570-1-sean.anderson@seco.com>
- <20210513021631.GA878860@robh.at.kernel.org> <f9165937-c578-d225-9f5e-d964367c4711@seco.com>
- <70176596-2250-8ae1-912a-9f9c30694e7d@seco.com>
-In-Reply-To: <70176596-2250-8ae1-912a-9f9c30694e7d@seco.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 13 May 2021 15:43:27 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJY1W=t-gYYt+iTPgF7e9yJqzYFYGSJNrA4BNhAY+va8Q@mail.gmail.com>
-Message-ID: <CAL_JsqJY1W=t-gYYt+iTPgF7e9yJqzYFYGSJNrA4BNhAY+va8Q@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: pwm: Add Xilinx AXI Timer
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Linux PWM List <linux-pwm@vger.kernel.org>,
-        devicetree@vger.kernel.org, Michal Simek <michal.simek@xilinx.com>,
-        Alvaro Gamez <alvaro.gamez@hazent.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+References: <20210511204834.2675271-1-dougdev334@gmail.com>
+ <20210511204834.2675271-3-dougdev334@gmail.com> <20210513022036.GA890569@robh.at.kernel.org>
+In-Reply-To: <20210513022036.GA890569@robh.at.kernel.org>
+From:   Doug Zobel <dougdev334@gmail.com>
+Date:   Thu, 13 May 2021 15:47:19 -0500
+Message-ID: <CABa6EMYdY9WBN0+edgcEFc0uiBmWUDert7nXCN+FWeRMG=0S6A@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt: bindings: lp55xx: Add predefined LED pattern
+To:     Rob Herring <robh@kernel.org>
+Cc:     Pavel Machek <pavel@ucw.cz>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 13, 2021 at 10:28 AM Sean Anderson <sean.anderson@seco.com> wrote:
->
->
->
-> On 5/13/21 10:33 AM, Sean Anderson wrote:
->  >
->  >
->  > On 5/12/21 10:16 PM, Rob Herring wrote:
->  >  > On Tue, May 11, 2021 at 03:12:37PM -0400, Sean Anderson wrote:
->  >  >> This adds a binding for the Xilinx LogiCORE IP AXI Timer. This device is
->  >  >> a "soft" block, so it has many parameters which would not be
->  >  >> configurable in most hardware. This binding is usually automatically
->  >  >> generated by Xilinx's tools, so the names and values of some properties
->  >  >> must be kept as they are. Replacement properties have been provided for
->  >  >> new device trees.
->  >  >
->  >  > Because you have some tool generating properties is not a reason we have
->  >  > to accept them upstream.
->  >
->  > These properties are already in arch/microblaze/boot/dts/system.dts and
->  > in the devicetree supplied to Linux by qemu. Removing these properties
->  > will break existing setups, which I would like to avoid.
+Sorry for the re-send.  I didn't realize gmail was sending everything
+HTML encoded.
 
-Already in use in upstream dts files is different than just
-'automatically generated' by vendor tools.
+On Wed, May 12, 2021 at 9:20 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, May 11, 2021 at 03:48:34PM -0500, Doug Zobel wrote:
+> > Add a new device tree object for LP5562 predfined led patterns.
+>
+> If you are going to define something generic looking, put it in a
+> generic binding.
 
->  >
->  >  > 'deprecated' is for what *we* have deprecated.
->  >
->  > Ok. I will remove that then.
->  >
->  >  >
->  >  > In this case, I don't really see the point in defining new properties
->  >  > just to have bool.
->  >
->  > I don't either, but it was requested, by Michal...
->
-> Err, your comment on the original bindings was
->
->  > Can't all these be boolean?
+I'm not clear on what this would be.  After re-running the
+dt_binding_check with DT_CHECKER_FLAGS=-m, I see that the pattern
+object definitions I have won't work since the numbering conflicts
+with the existing led objects.  I was going to move these patterns
+under a new 'predefine-patterns' object.  Is this what you mean by a
+'generic binding'?
 
-With no other context, yes that's what I would ask. Now you've given
-me some context, between using the existing ones and 2 sets of
-properties to maintain, I choose the former.
+> I don't know that this belongs in DT though. Won't a user want to create
+> their own patterns? That means there should be a sysfs interface (which
+> we either already have or has been attempted IIRC).
 
-> And Michal commented
->
->  > I think in this case you should described what it is used by current
->  > driver in Microblaze and these options are required. The rest are by
->  > design optional.
->  > If you want to change them to different value then current binding
->  > should be deprecated and have any transition time with code alignment.
->
-> So that is what I tried to accomplish with this revision. I also tried
-> allowing something like
->
->         xlnx,one-timer-only = <0>; /* two timers */
->         xlnx,one-timer-only = <1>; /* one timer  */
->         xlnx,one-timer-only; /* one timer */
->         /* property absent means two timers */
->
-> but I was unable to figure out how to express this with json-schema. I
-> don't think it's the best design either...
+Yes, there is a sysfs interface for running patterns via the firmware
+loading interface.  The firmware loading interface doesn't seem well
+suited for constantly changing the pattern that the LED driver runs.
+I found it to be slow and unreliable when quickly changing the LED
+pattern.  The existing predef pattern functionality works much better.
+Unfortunately the only way to define the patterns for it is via the
+platform data structure.  Adding the predef patterns to the device
+tree seemed like a good way to make use of the existing functionality
+in the driver.
 
-json-schema would certainly let you, but generally we don't want
-properties to have more than 1 type.
-
-Rob
+> >
+> > Signed-off-by: Doug Zobel <dougdev334@gmail.com>
+> > ---
+> >  .../devicetree/bindings/leds/leds-lp55xx.yaml | 103 +++++++++++++++++-
+> >  1 file changed, 102 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+> > index f552cd143d5b..2524a84fe688 100644
+> > --- a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+> > +++ b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+> > @@ -100,6 +100,31 @@ patternProperties:
+> >          $ref: /schemas/types.yaml#/definitions/string
+> >          description: name of channel
+> >
+> > +  "(^pattern@[0-9a-f]$|pattern)":
+> > +    type: object
+> > +    $ref: common.yaml#
+> > +    description: |
+> > +      LP5562 sepcific object.  LED pattern program saved to and run on LP5562.
+> > +    properties:
+> > +      pat-name:
+> > +        $ref: /schemas/types.yaml#/definitions/string
+> > +        description: Name of pattern program
+> > +
+> > +      pat-r:
+> > +        $ref: /schemas/types.yaml#/definitions/uint8-array
+> > +        description: |
+> > +          Program data for red channel.  See LP5562 datasheet for program format specification.
+> > +
+> > +      pat-g:
+> > +        $ref: /schemas/types.yaml#/definitions/uint8-array
+> > +        description: |
+> > +          Program data for green channel.  See LP5562 datasheet for program format specification.
+> > +
+> > +      pat-b:
+> > +        $ref: /schemas/types.yaml#/definitions/uint8-array
+> > +        description: |
+> > +          Program data for blue channel.  See LP5562 datasheet for program format specification.
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > @@ -223,6 +248,82 @@ examples:
+> >                 };
+> >              };
+> >          };
+> > -    };
+> >
+> > +        led-controller@30 {
+> > +            #address-cells = <1>;
+> > +            #size-cells = <0>;
+> > +            compatible = "ti,lp5562";
+> > +            reg = <0x30>;
+> > +
+> > +            led@0 {
+> > +                reg = <0>;
+> > +                chan-name = "red";
+> > +                color = <LED_COLOR_ID_RED>;
+> > +            };
+> > +
+> > +            led@1 {
+> > +                reg = <1>;
+> > +                chan-name = "green";
+> > +                color = <LED_COLOR_ID_GREEN>;
+> > +            };
+> > +
+> > +            led@2 {
+> > +                reg = <2>;
+> > +                chan-name = "blue";
+> > +                color = <LED_COLOR_ID_BLUE>;
+> > +            };
+> > +
+> > +            pattern@1 {
+> > +                /* Pulsing blue pattern
+> > +                 *   Blue:
+> > +                 *     027F: Ramp up 50%
+> > +                 *     027F: Ramp up 50%
+> > +                 *     4600: Wait 100ms
+> > +                 *     02FF: Ramp down 50%
+> > +                 *     02FF: Ramp down 50%
+> > +                 *     4600: Wait 100ms
+> > +                 *     0000: Goto start
+> > +                 */
+> > +                pat-name = "Pulsing Blue";
+> > +                pat-b = [02 7f 02 7f 46 00 02 ff 02 ff 46 00 00 00];
+> > +            };
+> > +
+> > +            pattern@2 {
+> > +                /*
+> > +                 * HSV rainbow
+> > +                 *   Red:
+> > +                 *     40FF: Set PWM 255
+> > +                 *     41FF: Ramp down 50%
+> > +                 *     41FF: Ramp down 50%
+> > +                 *     41FF: Wait 1/2 ramp time
+> > +                 *     41FF: Wait 1/2 ramp time
+> > +                 *     417F: Ramp up 50%
+> > +                 *     417F: Ramp up 50%
+> > +                 *     0000: Goto start
+> > +                 *   Green:
+> > +                 *     4000: Set PWM 0
+> > +                 *     417F: Ramp up 50%
+> > +                 *     417F: Ramp up 50%
+> > +                 *     41FF: Ramp down 50%
+> > +                 *     41FF: Ramp down 50%
+> > +                 *     41FF: Wait 1/2 ramp time
+> > +                 *     41FF: Wait 1/2 ramp time
+> > +                 *     0000: Goto start
+> > +                 *   Blue:
+> > +                 *     4000: Set PWM 0
+> > +                 *     41FF: Wait 1/2 ramp time
+> > +                 *     41FF: Wait 1/2 ramp time
+> > +                 *     417F: Ramp up 50%
+> > +                 *     417F: Ramp up 50%
+> > +                 *     41FF: Ramp down 50%
+> > +                 *     41FF: Ramp down 50%
+> > +                 *     0000: Goto start
+> > +                 */
+> > +                pat-name = "HSV Rainbow";
+> > +                pat-r = [40 ff 41 FF 41 FF 41 FF 41 FF 41 7F 41 7F 00 00];
+> > +                pat-g = [40 00 41 7F 41 7F 41 FF 41 FF 41 FF 41 FF 00 00];
+> > +                pat-b = [40 00 41 FF 41 FF 41 7F 41 7F 41 FF 41 FF 00 00];
+> > +            };
+> > +        };
+> > +    };
+> >  ...
+> > --
+> > 2.20.1
+> >
