@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F00C37F1B9
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 05:44:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9E9D37F1BF
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 05:47:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230362AbhEMDp3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 23:45:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50184 "EHLO mail.kernel.org"
+        id S230501AbhEMDsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 23:48:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51118 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230109AbhEMDp2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 May 2021 23:45:28 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D3D56613FC;
-        Thu, 13 May 2021 03:44:17 +0000 (UTC)
+        id S231126AbhEMDsh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 May 2021 23:48:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 10F59611AE;
+        Thu, 13 May 2021 03:47:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620877459;
-        bh=ZTKvkWEQTOlTTMRT6PkyxlnT2PHJ9UiQuuk+33hcGqg=;
+        s=k20201202; t=1620877648;
+        bh=p6xrZ3JTKsWDJtrDHXmvV7dSY9P2McoHF8Qq23N2Hy0=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iH4laW1Q9IA/6svGaDX9CdR3tPfMDTibVXEGCKB2cIl5ZkS0AjBsoglS8vsieUOGg
-         EK1Aa11wAf6knbwtv6kOuRVRpISdWMi5mjm+pvp5vK9Rh+yA4Xv0l0Idz02u4i2B0C
-         ORkHxKA5mmuH+97C8SHIraoegLXCsSZOrC1poWqVqLXRlIW8Jv8rDlr8gPFGrXzHVZ
-         qTsylXtKer3MZIs/bOvTYwvbrnzzo9gzegRwhW4xtLuJc18SMe4ZWLugAs5A21NHHO
-         szpcMwe5X3km14z2x6JZRBENCwdonNjUBv4ijsKpfSGnWI8Qe5ErgLOLrD4HkirbcU
-         qxTvgsdsxzv/A==
-Date:   Thu, 13 May 2021 11:44:14 +0800
+        b=RiOJMHOw7QFqZMpitICnAEodKuvl9bO6LqkcTIank8kD4vMgQXKutx5MQQIjJeD23
+         tEsNAoFtjyrBU0eZ1ImCY3Q1Mlj79a0vCuhGI3ur3N26xvwsPmuixwsZ9B/xOLUVgl
+         kfP79D3HhAmDuzXTbs7P3Uqq4DZEOY/L17oXj5nSLFZoQ6ELq4yXx3mKykuvB2CmFj
+         QNfZUIThbOnbdGm3vIP/E8IYbMUFRYlMrGtzjMNctzSStqiLbfy6fUGLiQWg5HJ57V
+         Rb0FmsdZimyEX84vZMNq0iugQhPpJ3zLjcJ+wI5ggElXzpq/z8iW0qVweiihQpG7Rr
+         0ZP5qvVHQoFaA==
+Date:   Thu, 13 May 2021 11:47:23 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Primoz Fiser <primoz.fiser@norik.com>
+To:     Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: imx6: phyFLEX: Fix UART hardware flow control
-Message-ID: <20210513034413.GM3425@dragon>
-References: <20210412062450.1430199-1-primoz.fiser@norik.com>
- <20210412062450.1430199-2-primoz.fiser@norik.com>
+        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        stable@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: imx6dl-yapp4: Fix RGMII connection to QCA8334
+ switch
+Message-ID: <20210513034722.GN3425@dragon>
+References: <1618325157-5774-1-git-send-email-michal.vokac@ysoft.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210412062450.1430199-2-primoz.fiser@norik.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1618325157-5774-1-git-send-email-michal.vokac@ysoft.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 12, 2021 at 08:24:50AM +0200, Primoz Fiser wrote:
-> Serial interface uart3 on phyFLEX board is capable of 5-wire connection
-> including signals RTS and CTS for hardware flow control.
+On Tue, Apr 13, 2021 at 04:45:57PM +0200, Michal Vokáč wrote:
+> The FEC does not have a PHY so it should not have a phy-handle. It is
+> connected to the switch at RGMII level so we need a fixed-link sub-node
+> on both ends.
 > 
-> Fix signals UART3_CTS_B and UART3_RTS_B padmux assignments and add
-> missing property "uart-has-rtscts" to allow serial interface to be
-> configured and used with the hardware flow control.
+> This was not a problem until the qca8k.c driver was converted to PHYLINK
+> by commit b3591c2a3661 ("net: dsa: qca8k: Switch to PHYLINK instead of
+> PHYLIB"). That commit revealed the FEC configuration was not correct.
 > 
-> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+> Fixes: 87489ec3a77f ("ARM: dts: imx: Add Y Soft IOTA Draco, Hydra and Ursa boards")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
 
 Applied, thanks.
