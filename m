@@ -2,333 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF3B237FCF6
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 19:56:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 594E137FCFC
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 19:56:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231480AbhEMR5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 13:57:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33060 "EHLO
+        id S231589AbhEMR53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 13:57:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231493AbhEMR43 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 13:56:29 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07E4FC06138E
-        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 10:54:28 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a4so41086912ejk.1
-        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 10:54:28 -0700 (PDT)
+        with ESMTP id S231494AbhEMR5J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 13:57:09 -0400
+Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A877C061763
+        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 10:55:56 -0700 (PDT)
+Received: by mail-qk1-x729.google.com with SMTP id i67so26334643qkc.4
+        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 10:55:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=5Jy97aMm7VEGQNVs4spkiz3xhAyYCzC385iFjGUTMn8=;
-        b=QDXEMRVGDZPGERNVWO+0LDZqnYdDRVmF2ThgP7px72YvKxY1EvaW8emeauyXh5hBAx
-         e1lc8ykXc5tpyxmnNkcmNZYVodOa91zsRKdMo15pFdWTGNQt0G/8nNoDLL+x3vMA1aFf
-         IjBOlNCAOPTWMYzBqj3+67GqcWXmdxmWh3wNhgZTtk4XBnjpgRdNdvqj/wWv9rGSg+Cp
-         T/25gnOzd2AOSRvTGkn+qLtwfvWbbdD2sPgUbVlNyBGgOQHIGo6imy7BSEtBNSxKXFYn
-         UzeEPYXenOY6QDZKHpg5WRuw0Dk8hBAyddW07F9ti9P2/zccdID9CshInlXXExpO1r61
-         +nRw==
+        d=marek-ca.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=G6cunyyCAgFMO8WDuEbxdeQNabsoZvGD6x3wsqvioTQ=;
+        b=HyrbNR3fsh4EG0A55QAyn5sRwI6IQPua85FUNamY/gY5lzI3leCTQdkonmPO4sKNU+
+         8UO2l2vGtUzqXLr9fLE1v8TzWIfz1LAvbwOx+AkisxDO/lji5ddjM42rniKHuX8FBZp1
+         Rx4cdtnAExzCBkW27jbPXOgL/08YTu+BjwqL9FFtme+tio5w5eW7ftpbe2TDEdAQdNIo
+         onhRYs0spK2w66UpW4ggUJuUyjRLctLRKOcM/dZ2XjjhBsXo8dfQwm5AOsZSTF1C7VK+
+         pG66ub4+spOoZ2YyQuXCH8X00s6SERuaT/5xFOdkaRUkVA9T6YAoQ75ABB7SVpWU4qks
+         KBWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=5Jy97aMm7VEGQNVs4spkiz3xhAyYCzC385iFjGUTMn8=;
-        b=kBKRXmjgU57dNAjQ3MiZLwXxtuHhlgeJ1/b4TFfg5fmoBy+NHf/EIh+jPaVY34/4Ka
-         lo4jQb2v3/ctuyt2madReIpgIF9Jsfwtxjt7Fd+s7grwu2BnKDm4U3bV0F9Kse68ULfW
-         tvvxOalfGyk+DsA6LH5i9GRF7TqpAWZLJrmhyFvD02TRUEXsiTHmtEfIg4fbS10gu4mV
-         xR2sG2Bc9UfXwoGdH6yuGzVLdTPo+Db8smIV9u1g1OLStmSIKLOrdi5pZa29ir1Ybdn6
-         +myaWHOPEsQNwjEGJa4F1XyXaQbga7AUs037/T/kqrGL6K8IoTTg9gIjBKoVPYg6F/pu
-         6I1A==
-X-Gm-Message-State: AOAM531lpRJKjTQvzyggX00DfRCCoRqtmFmbwTr4AngmGrbHxZHapcl5
-        lXTRKyigOaM5clWmRQGj1Uzn93mpJ3nywsn6H32yVg==
-X-Google-Smtp-Source: ABdhPJyjJrIe5NfB/SgNpUbbYhp5PwWZevJfF2nDS2rzDV/COs7JX2gE8nAaUKkvcfbYNdtm7H3JDS1XSpUPuzuF3P0=
-X-Received: by 2002:a17:906:c448:: with SMTP id ck8mr13902565ejb.497.1620928467472;
- Thu, 13 May 2021 10:54:27 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=G6cunyyCAgFMO8WDuEbxdeQNabsoZvGD6x3wsqvioTQ=;
+        b=RTm11HI4YNwxhsaGkE1jhZAFxxgsakyYPr9HeLQIVOisHG3KRpKRm/A3oKMKUU4fO9
+         54IOxMr4PiojE0TlOCeAsn6i53SjDT+NR0R/FrdF8/umEcdUIFTsRzVv1lmkroZ0y2FO
+         KYFNmHtfEZtvpXOt8LHobDQBhNf5r/AjSj1H81iVnogF5vvUTvB9hQuSRcBdypdWC2Zg
+         jrVv8jQlQ/OmlC796MAnozNLD6YwX1oOWnWetf7C29F0OphG95UwksYbYPjVBD/PnI6c
+         yRjEcETgeOLeO8OXNT6Cs+VtLd4BOTl2/Njn3aunDD4HVwedM9Xroye0qph5Z89ffd3d
+         iFCQ==
+X-Gm-Message-State: AOAM532NcdpET1iVenGQDrioBUS0TjbMr02av7aYK1m+Uv4C7ZUmbbIu
+        tRysVO+PDJVe9la3RpmQ4ccbcQ==
+X-Google-Smtp-Source: ABdhPJzHv12G0x5hOV8M/Sof7AYXqEPgmkJQppEK1BFjto9Iyv6o8I7Jg25n8IpHNG3aiGWE2BmxWg==
+X-Received: by 2002:a37:9707:: with SMTP id z7mr39366330qkd.407.1620928555624;
+        Thu, 13 May 2021 10:55:55 -0700 (PDT)
+Received: from localhost.localdomain (modemcable068.184-131-66.mc.videotron.ca. [66.131.184.68])
+        by smtp.gmail.com with ESMTPSA id 44sm2899114qtb.45.2021.05.13.10.55.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 May 2021 10:55:55 -0700 (PDT)
+From:   Jonathan Marek <jonathan@marek.ca>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     robert.foss@linaro.org, andrey.konovalov@linaro.org,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-i2c@vger.kernel.org (open list:QUALCOMM I2C CCI DRIVER),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH] i2c: qcom-cci: add sm8250 compatible
+Date:   Thu, 13 May 2021 13:55:17 -0400
+Message-Id: <20210513175518.6023-1-jonathan@marek.ca>
+X-Mailer: git-send-email 2.26.1
 MIME-Version: 1.0
-References: <20210407123438.224551-1-mindal@semihalf.com> <20210511030658.GG3425@dragon>
- <AM0PR04MB67542D30A9424D455DB3ADD496539@AM0PR04MB6754.eurprd04.prod.outlook.com>
- <20210513021214.GJ3425@dragon> <20210513141921.i7sfmekbcw2m7vxd@skbuf>
-In-Reply-To: <20210513141921.i7sfmekbcw2m7vxd@skbuf>
-From:   Marcin Wojtas <mw@semihalf.com>
-Date:   Thu, 13 May 2021 19:54:15 +0200
-Message-ID: <CAPv3WKfnWFjfZw39avZBEyUpEsH2f=NCs8VfjeR+wzk4qV3GmA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: fsl-ls1028a: Correct ECAM PCIE window ranges
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Kornel Duleba <mindal@semihalf.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "tn@semihalf.com" <tn@semihalf.com>,
-        "upstream@semihalf.com" <upstream@semihalf.com>,
-        Alexandru Marginean <alexandru.marginean@nxp.com>,
-        Bjorn Helgaas <bhelgaas@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vladimir,
+SM8250 CCI is the same as SDM845, add an equivalent compatible for SM8250.
 
-czw., 13 maj 2021 o 16:19 Vladimir Oltean <vladimir.oltean@nxp.com> napisa=
-=C5=82(a):
->
-> On Thu, May 13, 2021 at 10:12:15AM +0800, Shawn Guo wrote:
-> > On Tue, May 11, 2021 at 09:48:22AM +0000, Claudiu Manoil wrote:
-> > > >-----Original Message-----
-> > > >From: Shawn Guo <shawnguo@kernel.org>
-> > > >Sent: Tuesday, May 11, 2021 6:07 AM
-> > > [...]
-> > > >Subject: Re: [PATCH] arm64: dts: fsl-ls1028a: Correct ECAM PCIE wind=
-ow
-> > > >ranges
-> > > >
-> > > >+ Claudiu
-> > > >
-> > > >On Wed, Apr 07, 2021 at 02:34:38PM +0200, Kornel Duleba wrote:
-> > > >> Currently all PCIE windows point to bus address 0x0, which does no=
-t match
-> > > >> the values obtained from hardware during EA.
-> > > >> Replace those values with CPU addresses, since in reality we
-> > > >> have a 1:1 mapping between the two.
-> > > >>
-> > > >> Signed-off-by: Kornel Duleba <mindal@semihalf.com>
-> > > >
-> > > >Claudiu,
-> > > >
-> > > >Do you have any comment on this?
-> > > >
-> > >
-> > > Well, probing is still working with this change, I've just tested it.
-> > >
-> > > PCI listing at boot time changes from:
-> > >
-> > > pci-host-generic 1f0000000.pcie: host bridge /soc/pcie@1f0000000 rang=
-es:
-> > > pci-host-generic 1f0000000.pcie:      MEM 0x01f8000000..0x01f815ffff =
--> 0x0000000000
-> > > pci-host-generic 1f0000000.pcie:      MEM 0x01f8160000..0x01f81cffff =
--> 0x0000000000
-> > >
-> > > to:
-> > >
-> > > pci-host-generic 1f0000000.pcie: host bridge /soc/pcie@1f0000000 rang=
-es:
-> > > pci-host-generic 1f0000000.pcie:      MEM 0x01f8000000..0x01f815ffff =
--> 0x01f8000000
-> > > pci-host-generic 1f0000000.pcie:      MEM 0x01f8160000..0x01f81cffff =
--> 0x01f8160000
-> > >
-> > > and looks reasonable.
-> > > Adding Vladimir and Alex just in case.
-> > >
-> > > Acked-by: Claudiu Manoil <claudiu.manoil@nxp.com>
-> >
-> > Thanks, Claudiu.
-> >
-> > Kornel,
-> >
-> > Do we need a Fixes tag for this patch?
-> >
-> > Shawn
->
-> Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
->
-> I am not sure whether "incorrect data that is unused" deserves a Fixes:
-> tag or not, probably not.
->
-> Bjorn Helgaas did point out before that "The fact that all these windows
-> map to PCI bus address 0 looks broken", so there's that:
->
-> https://patchwork.kernel.org/project/linux-pci/cover/20201129230743.30069=
-78-1-kw@linux.com/
->
-> And while it does look "broken", with the Enhanced Allocation capability
-> and the pci-host-ecam-generic driver, there is no address translation
-> taking place, so no inbound/outbound windows are configured, so the
-> range.pci_addr calculated in devm_of_pci_get_host_bridge_resources() is
-> not used for anything except for printing.
+Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+---
+ Documentation/devicetree/bindings/i2c/i2c-qcom-cci.txt | 5 +++--
+ drivers/i2c/busses/i2c-qcom-cci.c                      | 1 +
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
-...in Linux. Please note Linux device trees can be used as-is by other
-projects. Regardless my opinion on how that's unfortunate, FreeBSD
-does additional ranges check before performing EA and fails. Since the
-current DT description is imo broken and the change is transparent for
-Linux, it would be great to get this change merged into tree in case
-there are are no objections.
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-qcom-cci.txt b/Documentation/devicetree/bindings/i2c/i2c-qcom-cci.txt
+index c6668b7c66e6..7b9fc0c22eaf 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c-qcom-cci.txt
++++ b/Documentation/devicetree/bindings/i2c/i2c-qcom-cci.txt
+@@ -9,6 +9,7 @@ PROPERTIES:
+ 		"qcom,msm8916-cci"
+ 		"qcom,msm8996-cci"
+ 		"qcom,sdm845-cci"
++		"qcom,sm8250-cci"
+ 
+ - reg
+ 	Usage: required
+@@ -41,8 +42,8 @@ PROPERTIES:
+ 
+ SUBNODES:
+ 
+-The CCI provides I2C masters for one (msm8916) or two i2c busses (msm8996 and
+-sdm845), described as subdevices named "i2c-bus@0" and "i2c-bus@1".
++The CCI provides I2C masters for one (msm8916) or two i2c busses (msm8996,
++sdm845 and sm8250), described as subdevices named "i2c-bus@0" and "i2c-bus@1".
+ 
+ PROPERTIES:
+ 
+diff --git a/drivers/i2c/busses/i2c-qcom-cci.c b/drivers/i2c/busses/i2c-qcom-cci.c
+index c63d5545fc2a..c1de8eb66169 100644
+--- a/drivers/i2c/busses/i2c-qcom-cci.c
++++ b/drivers/i2c/busses/i2c-qcom-cci.c
+@@ -769,6 +769,7 @@ static const struct of_device_id cci_dt_match[] = {
+ 	{ .compatible = "qcom,msm8916-cci", .data = &cci_v1_data},
+ 	{ .compatible = "qcom,msm8996-cci", .data = &cci_v2_data},
+ 	{ .compatible = "qcom,sdm845-cci", .data = &cci_v2_data},
++	{ .compatible = "qcom,sm8250-cci", .data = &cci_v2_data},
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, cci_dt_match);
+-- 
+2.26.1
 
-Thanks,
-Marcin
-
->
-> FWIW here's a more complete image of what changes with Kornel's patch
-> ("-" is before, "+" is after) - again all is limited to the dmesg output.
->
->  pci-host-generic 1f0000000.pcie: host bridge /soc/pcie@1f0000000 ranges:
->  pci-host-generic 1f0000000.pcie: Parsing ranges property...
-> -pci-host-generic 1f0000000.pcie:      MEM 0x01f8000000..0x01f815ffff -> =
-0x0000000000
-> +pci-host-generic 1f0000000.pcie:      MEM 0x01f8000000..0x01f815ffff -> =
-0x01f8000000
->  pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-tmp_res start 0x01f8000000 end 0x01f815ffff
-> -pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-pci_addr 0x0000000000 =3D> offset 0x01f8000000
-> -pci-host-generic 1f0000000.pcie:      MEM 0x01f8160000..0x01f81cffff -> =
-0x0000000000
-> +pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-pci_addr 0x01f8000000 =3D> offset 0x0000000000
-> +pci-host-generic 1f0000000.pcie:      MEM 0x01f8160000..0x01f81cffff -> =
-0x01f8160000
->  pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-tmp_res start 0x01f8160000 end 0x01f81cffff
-> -pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-pci_addr 0x0000000000 =3D> offset 0x01f8160000
-> -pci-host-generic 1f0000000.pcie:      MEM 0x01f81d0000..0x01f81effff -> =
-0x0000000000
-> +pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-pci_addr 0x01f8160000 =3D> offset 0x0000000000
-> +pci-host-generic 1f0000000.pcie:      MEM 0x01f81d0000..0x01f81effff -> =
-0x01f81d0000
->  pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-tmp_res start 0x01f81d0000 end 0x01f81effff
-> -pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-pci_addr 0x0000000000 =3D> offset 0x01f81d0000
-> -pci-host-generic 1f0000000.pcie:      MEM 0x01f81f0000..0x01f820ffff -> =
-0x0000000000
-> +pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-pci_addr 0x01f81d0000 =3D> offset 0x0000000000
-> +pci-host-generic 1f0000000.pcie:      MEM 0x01f81f0000..0x01f820ffff -> =
-0x01f81f0000
->  pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-tmp_res start 0x01f81f0000 end 0x01f820ffff
-> -pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-pci_addr 0x0000000000 =3D> offset 0x01f81f0000
-> -pci-host-generic 1f0000000.pcie:      MEM 0x01f8210000..0x01f822ffff -> =
-0x0000000000
-> +pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-pci_addr 0x01f81f0000 =3D> offset 0x0000000000
-> +pci-host-generic 1f0000000.pcie:      MEM 0x01f8210000..0x01f822ffff -> =
-0x01f8210000
->  pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-tmp_res start 0x01f8210000 end 0x01f822ffff
-> -pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-pci_addr 0x0000000000 =3D> offset 0x01f8210000
-> -pci-host-generic 1f0000000.pcie:      MEM 0x01f8230000..0x01f824ffff -> =
-0x0000000000
-> +pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-pci_addr 0x01f8210000 =3D> offset 0x0000000000
-> +pci-host-generic 1f0000000.pcie:      MEM 0x01f8230000..0x01f824ffff -> =
-0x01f8230000
->  pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-tmp_res start 0x01f8230000 end 0x01f824ffff
-> -pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-pci_addr 0x0000000000 =3D> offset 0x01f8230000
-> -pci-host-generic 1f0000000.pcie:      MEM 0x01fc000000..0x01fc3fffff -> =
-0x0000000000
-> +pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-pci_addr 0x01f8230000 =3D> offset 0x0000000000
-> +pci-host-generic 1f0000000.pcie:      MEM 0x01fc000000..0x01fc3fffff -> =
-0x01fc000000
->  pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-tmp_res start 0x01fc000000 end 0x01fc3fffff
-> -pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-pci_addr 0x0000000000 =3D> offset 0x01fc000000
-> +pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
-pci_addr 0x01fc000000 =3D> offset 0x0000000000
->  pci-host-generic 1f0000000.pcie: ECAM at [mem 0x1f0000000-0x1f00fffff] f=
-or [bus 00]
->  pci-host-generic 1f0000000.pcie: PCI host bridge to bus 0000:00
->  pci_bus 0000:00: root bus resource [bus 00]
-> -pci_bus 0000:00: root bus resource [mem 0x1f8000000-0x1f815ffff] (bus ad=
-dress [0x00000000-0x0015ffff])
-> -pci_bus 0000:00: root bus resource [mem 0x1f8160000-0x1f81cffff pref] (b=
-us address [0x00000000-0x0006ffff])
-> -pci_bus 0000:00: root bus resource [mem 0x1f81d0000-0x1f81effff] (bus ad=
-dress [0x00000000-0x0001ffff])
-> -pci_bus 0000:00: root bus resource [mem 0x1f81f0000-0x1f820ffff pref] (b=
-us address [0x00000000-0x0001ffff])
-> -pci_bus 0000:00: root bus resource [mem 0x1f8210000-0x1f822ffff] (bus ad=
-dress [0x00000000-0x0001ffff])
-> -pci_bus 0000:00: root bus resource [mem 0x1f8230000-0x1f824ffff pref] (b=
-us address [0x00000000-0x0001ffff])
-> -pci_bus 0000:00: root bus resource [mem 0x1fc000000-0x1fc3fffff] (bus ad=
-dress [0x00000000-0x003fffff])
-> +pci_bus 0000:00: root bus resource [mem 0x1f8000000-0x1f815ffff]
-> +pci_bus 0000:00: root bus resource [mem 0x1f8160000-0x1f81cffff pref]
-> +pci_bus 0000:00: root bus resource [mem 0x1f81d0000-0x1f81effff]
-> +pci_bus 0000:00: root bus resource [mem 0x1f81f0000-0x1f820ffff pref]
-> +pci_bus 0000:00: root bus resource [mem 0x1f8210000-0x1f822ffff]
-> +pci_bus 0000:00: root bus resource [mem 0x1f8230000-0x1f824ffff pref]
-> +pci_bus 0000:00: root bus resource [mem 0x1fc000000-0x1fc3fffff]
->  pci 0000:00:00.0: [1957:e100] type 00 class 0x020001
->  pci 0000:00:00.0: BAR 0: [mem 0x1f8000000-0x1f803ffff 64bit] (from Enhan=
-ced Allocation, properties 0x0)
->  pci 0000:00:00.0: BAR 2: [mem 0x1f8160000-0x1f816ffff 64bit pref] (from =
-Enhanced Allocation, properties 0x1)
->
-> My understanding might be wrong, but it should be possible for the PCIe
-> host bridge driver to initialize some of its resources by enumerating
-> the functions which have the EA capability, and not require the device
-> tree writer to add a "ranges" entry for them at all. Then this discussion
-> would be moot - that resource would have no way to be incorrect.
->
-> $ lspci -vvv
-> 0000:00:00.0 Ethernet controller: Freescale Semiconductor Inc Device e100=
- (rev 01) (prog-if 01)
->         Subsystem: Freescale Semiconductor Inc Device e100
-> (...)
->         Capabilities: [9c] Enhanced Allocation (EA): NumEntries=3D4
->                 Entry 0: Enable+ Writable- EntrySize=3D3
->                          BAR Equivalent Indicator: BAR 0
->                          PrimaryProperties: memory space, non-prefetchabl=
-e
->                          SecondaryProperties: entry unavailable for use, =
-PrimaryProperties should be used
->                          Base: 1f8000000
->                          MaxOffset: 0003ffff
->                 Entry 1: Enable+ Writable- EntrySize=3D3
->                          BAR Equivalent Indicator: BAR 2
->                          PrimaryProperties: memory space, prefetchable
->                          SecondaryProperties: memory space, non-prefetcha=
-ble
->                          Base: 1f8160000
->                          MaxOffset: 0000ffff
->                 Entry 2: Enable+ Writable- EntrySize=3D3
->                          BAR Equivalent Indicator: VF-BAR 0
->                          PrimaryProperties: VF memory space, non-prefetch=
-able
->                          SecondaryProperties: entry unavailable for use, =
-PrimaryProperties should be used
->                          Base: 1f81d0000
->                          MaxOffset: 0000ffff
->                 Entry 3: Enable+ Writable- EntrySize=3D3
->                          BAR Equivalent Indicator: VF-BAR 2
->                          PrimaryProperties: VF memory space, prefetchable
->                          SecondaryProperties: VF memory space, prefetchab=
-le
->                          Base: 1f81f0000
->                          MaxOffset: 0000ffff
->
-> This information, which is already present in the hardware, needs to be
-> duplicated here (now I do see that the 'ranges' property declares them
-> larger than they really are, too):
->
->                                   /* PF0-6 BAR0 - non-prefetchable memory=
- */
->                         ranges =3D <0x82000000 0x0 0x00000000  0x1 0xf800=
-0000  0x0 0x160000
->                                   /* PF0-6 BAR2 - prefetchable memory */
->                                   0xc2000000 0x0 0x00000000  0x1 0xf81600=
-00  0x0 0x070000
->                                   /* PF0: VF0-1 BAR0 - non-prefetchable m=
-emory */
->                                   0x82000000 0x0 0x00000000  0x1 0xf81d00=
-00  0x0 0x020000
->                                   /* PF0: VF0-1 BAR2 - prefetchable memor=
-y */
->                                   0xc2000000 0x0 0x00000000  0x1 0xf81f00=
-00  0x0 0x020000
