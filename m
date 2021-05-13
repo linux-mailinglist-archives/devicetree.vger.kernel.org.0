@@ -2,98 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20B6937FB0C
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 17:51:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1104A37FB4D
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 18:13:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233332AbhEMPwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 11:52:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33590 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234933AbhEMPwV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 11:52:21 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79156C061760;
-        Thu, 13 May 2021 08:51:11 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 4730D1F40EFD
-Received: by earth.universe (Postfix, from userid 1000)
-        id 8881C3C0C95; Thu, 13 May 2021 17:51:07 +0200 (CEST)
-Date:   Thu, 13 May 2021 17:51:07 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH 4/6] dt-bindings: power: supply: charger-manager: Convert
- to DT schema format
-Message-ID: <20210513155107.qyur6dsrwpkrxpjk@earth.universe>
-References: <20210412230320.382885-1-sebastian.reichel@collabora.com>
- <20210412230320.382885-5-sebastian.reichel@collabora.com>
- <20210413152641.GA1707619@robh.at.kernel.org>
+        id S235051AbhEMQOh convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 13 May 2021 12:14:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53910 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234993AbhEMQOb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 May 2021 12:14:31 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BA3EC6142E;
+        Thu, 13 May 2021 16:13:18 +0000 (UTC)
+Date:   Thu, 13 May 2021 17:14:26 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
+Cc:     Stephan Gerhold <stephan@gerhold.net>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Yang <decatf@gmail.com>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Hans de Goede <hdegoede@redhat.com>
+Subject: Re: [PATCH 0/3] iio: accel: kxcjk-1013: Add support for KX023-1025
+Message-ID: <20210513171426.27dd6533@jic23-huawei>
+In-Reply-To: <20210511145051.GC4413@qmqm.qmqm.pl>
+References: <20210511095409.9290-1-stephan@gerhold.net>
+        <20210511142847.GA4413@qmqm.qmqm.pl>
+        <YJqWzgmxVEvfElZj@gerhold.net>
+        <20210511145051.GC4413@qmqm.qmqm.pl>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="f3dxslgfbnr5shxd"
-Content-Disposition: inline
-In-Reply-To: <20210413152641.GA1707619@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 11 May 2021 16:50:51 +0200
+Michał Mirosław <mirq-linux@rere.qmqm.pl> wrote:
 
---f3dxslgfbnr5shxd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On Tue, May 11, 2021 at 04:38:06PM +0200, Stephan Gerhold wrote:
+> > Hi Michał,
+> > 
+> > On Tue, May 11, 2021 at 04:28:47PM +0200, Michał Mirosław wrote:  
+> > > On Tue, May 11, 2021 at 11:54:06AM +0200, Stephan Gerhold wrote:  
+> > > > KX023-1025 [1] is another accelerometer from Kionix that has lots
+> > > > of additional functionality compared to KXCJK-1013. It combines the
+> > > > motion interrupt functionality from KXCJK with the tap detection
+> > > > from KXTF9, plus a lot more other functionality.  
+> > > When I researched KXTF9 support it occurred to me that the -10xx part is
+> > > duplicating the information in 'KXyyy' - it seems to be a project number
+> > > or something. I would suggest to use just 'kx023' prefix for the code
+> > > and DT but leave the full identification in the comments/description.  
+> > There do seem to be two different KXTF9 from Kionix, a KXTF9-4100 [1]
+> > and a KXTF9-2050 [2] with separate datasheets. Have you checked if there
+> > is a meaningful difference between them?  
+> 
+> I haven't compared them thoroughly, but the versions seem to differ only
+> in power consumption (maybe a different manufacturing process?). The
+> register sets seem the same.
 
-Hi,
+Differ in expected Vdd supply voltage. 3.3 vs 1.8V .  Looks like this has
+knock on effects on things like self test values.  So I'd argue it's worth keeping
+the distinction for device tree. 
 
-On Tue, Apr 13, 2021 at 10:26:41AM -0500, Rob Herring wrote:
-> On Tue, 13 Apr 2021 01:03:18 +0200, Sebastian Reichel wrote:
-> > Convert the binding to DT schema format.
-> >=20
-> > I slightly modified the binding by allowing regulator-[0-9] and cable-[=
-0-9]
-> > instead of regulator@[0-9] and cable@[0-9], so that DT compiler does not
-> > complain about missing 'reg' property. The driver actually ignores the
-> > nodename and can handle both styles.
-> >=20
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > ---
-> >  .../bindings/power/supply/charger-manager.txt |  91 --------
-> >  .../power/supply/charger-manager.yaml         | 215 ++++++++++++++++++
-> >  2 files changed, 215 insertions(+), 91 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/power/supply/char=
-ger-manager.txt
-> >  create mode 100644 Documentation/devicetree/bindings/power/supply/char=
-ger-manager.yaml
->=20
-> Reviewed-by: Rob Herring <robh@kernel.org>
+We could do a double compatible
 
-Thanks, queued.
+compatible = kionix,kx023-1024, konix,kx023;
 
--- Sebastian
+but may be too late to do that now.
 
---f3dxslgfbnr5shxd
-Content-Type: application/pgp-signature; name="signature.asc"
+Jonathan
 
------BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmCdSuYACgkQ2O7X88g7
-+pqAqA/8D3sftstSxvWSAwrnIc71f6dMiQc8fkBjKfdHwxKa2wuGK/ujBrtn5u6p
-y6cQ8uLLGJL0qUlZstQ85VdsJBsEYla3yc6HoIsRFLF3xn4oBPMD6hSQmp/x03E7
-ay1fVAQo+9R9uV/OzBKQDJ0LxPw07LpE6KE5vAyz8E+N8E1XH3latq0cih8xVbK3
-j+8NZZoCA/puOhMLt0fN5LXYEwP9rzG4aqWYd+MOJZOmMExnbSAQHvR9m0t6QlL/
-zA3klBxOp2Vn3p9wflnXR5zbBbA3zNroYSsOsOWrw39vGNTsgzukeHyunMKkyTZb
-ow7L+zlDDU4nggqDMzu/6sU1D6lMeWRpqJZn1DdM7akkptONML3Dnk4cFs/OzVLq
-e1cic3QovO9/uWU7l/9f5nNhuBUzxe+JBWbHZ4UNb0Ve3pxP5u1VdQbJgXoGlu6y
-esLOyOl9zllYupLsFjP5qFCIbYnHvuQ7UjPBrlDMKQhbOSJy/Oysa0ghkzViHhec
-HQXLTQOQBlEHzc6iHrw31CF5BWku2MoWZd9eo5d4TOerCHrNMi6lCjeoDeUeZQIv
-vtmCdrR0Ncf1p5cqLGzXXdvIdxoYfTSJW3LvekOosfRuAg0b17EYdjnNyN3ykM1s
-yZN9UaYqyspSIbJX3kkwZSqvEAFA4SvwGmQBfX/+Ck+afOcm2E8=
-=diRH
------END PGP SIGNATURE-----
+> 
+> Best Regards
+> Michał Mirosław
 
---f3dxslgfbnr5shxd--
