@@ -2,96 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0DF137F123
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 04:09:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEB2D37F12C
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 04:12:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230175AbhEMCKP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 22:10:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55888 "EHLO mail.kernel.org"
+        id S230199AbhEMCNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 22:13:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57970 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229630AbhEMCKO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 May 2021 22:10:14 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 04F0660FE9;
-        Thu, 13 May 2021 02:09:03 +0000 (UTC)
+        id S230183AbhEMCN3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 May 2021 22:13:29 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CE1E561412;
+        Thu, 13 May 2021 02:12:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620871745;
-        bh=VGw1fMdv7a1LyI1pnnicV4IuFjxiNwdg/mYbWWDFhHA=;
+        s=k20201202; t=1620871941;
+        bh=QgoHavFjvdFVkg5O4nfKiBT0PrV385tfL3o9ywBzcZA=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Cra+afcn4f04+Ui4+XAyl1MzvES37KAqkJocA6GKzLJcNHurLa02CD7gEnj0JR0X6
-         v/o1/o3oukhhXGJIB0d4ggspmzvuoututtLhbjI2Y3g4OF3I42uw5LA0NDtL4AJcBb
-         ECh1W5NDfGGu64DXkDsXrTjr7YUg+yGvkirWZK9MtNwcb1XtAOhX6LKQ9KNZ0GvQXf
-         asMbA5yOQPeWUJZp2najeUon31au7gPkA/abtobbb7Nu1gKKTVjOpttt0OyOoGc5I8
-         XD1GXTizzHkxkRJtOa7/Mt7nlh3iQkAPlQeQU/puVMYF6+fCuogGehC0ENouoKj3hO
-         VVLPaSw983b7w==
-Date:   Thu, 13 May 2021 10:09:00 +0800
+        b=SNOu0izeiQs4veWStr5/7fxOp9ymO+ywBr0V9f0l65XzC8hO4dvscYD0ZRK42EkbU
+         MOqKwtPXGT8d0Qdz874n5zrWBQFp4zHEcyziSqFFYpzZNR26YbM8dOXN+/imb+t6Hm
+         GO1J9c0uyujT9R1J9a8eLXprkuD3IKGDvm0gplcu9HUqIXvxtagOuerjZkNu+HOlhd
+         s0O24pgMQThyNkhAbSMTYau43Nrcnw4xxlw2zTVvU+FjA5z7xbwMHWQZN3iAKSLzrj
+         045FpME41j3ipd52p+Ct+/3q3egwBG7PdcSub7BBSLhXwEFzPR6a5igkWJQgQ2unbH
+         8xNCMGtP1Kduw==
+Date:   Thu, 13 May 2021 10:12:15 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Robin Gong <yibin.gong@nxp.com>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] arm64: dts: imx8mn: Add spba1 bus
-Message-ID: <20210513020859.GI3425@dragon>
-References: <20210406013344.124255-1-aford173@gmail.com>
- <20210511024604.GE3425@dragon>
- <CAHCN7xLFpL=9BF9M5gUA6sMhc2ZZMNz+GP0OLmLfpJAWdD7W-w@mail.gmail.com>
- <VE1PR04MB6688CD4AA4826EEEBBA2651689539@VE1PR04MB6688.eurprd04.prod.outlook.com>
- <CAHCN7xJ5Hq6bRpEgE8Pi9VbQ_Kejy-sgKQsJ93pQEG3U_Wsu=Q@mail.gmail.com>
+To:     Claudiu Manoil <claudiu.manoil@nxp.com>
+Cc:     Kornel Duleba <mindal@semihalf.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mw@semihalf.com" <mw@semihalf.com>,
+        "tn@semihalf.com" <tn@semihalf.com>,
+        "upstream@semihalf.com" <upstream@semihalf.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Alexandru Marginean <alexandru.marginean@nxp.com>
+Subject: Re: [PATCH] arm64: dts: fsl-ls1028a: Correct ECAM PCIE window ranges
+Message-ID: <20210513021214.GJ3425@dragon>
+References: <20210407123438.224551-1-mindal@semihalf.com>
+ <20210511030658.GG3425@dragon>
+ <AM0PR04MB67542D30A9424D455DB3ADD496539@AM0PR04MB6754.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAHCN7xJ5Hq6bRpEgE8Pi9VbQ_Kejy-sgKQsJ93pQEG3U_Wsu=Q@mail.gmail.com>
+In-Reply-To: <AM0PR04MB67542D30A9424D455DB3ADD496539@AM0PR04MB6754.eurprd04.prod.outlook.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 11, 2021 at 09:48:38AM -0500, Adam Ford wrote:
-> On Tue, May 11, 2021 at 7:20 AM Robin Gong <yibin.gong@nxp.com> wrote:
+On Tue, May 11, 2021 at 09:48:22AM +0000, Claudiu Manoil wrote:
+> >-----Original Message-----
+> >From: Shawn Guo <shawnguo@kernel.org>
+> >Sent: Tuesday, May 11, 2021 6:07 AM
+> [...]
+> >Subject: Re: [PATCH] arm64: dts: fsl-ls1028a: Correct ECAM PCIE window
+> >ranges
 > >
-> > On 2021/05/11 18:45 Adam Ford <aford173@gmail.com> wrote:
-> > > > Also may I ask if you have a real use case for this bus node?
-> > >
-> > > The reference manual shows the SPBA bus tells the DMA controller which
-> > > peripherals are associated with it.  Nearly all the i.MX boards use this.  The
-> > > boards I support have Bluetooth devices connected to a UART running high
-> > > speeds, and if the DMA driver isn't loaded, I can see a performance change.
-> > Compare PIO with DMA on UART, but not w/o this  'spba bus node ' patch?
+> >+ Claudiu
 > >
-> > > In fact, if the DMA firmware isn't loaded, I often get transfer errors.
-> > UART use SDMA ROM firmware instead of RAM firmware, so it should work
-> > even without sdma RAM firmware loaded.  Still curious what really happen in
-> > your board without this patch.
+> >On Wed, Apr 07, 2021 at 02:34:38PM +0200, Kornel Duleba wrote:
+> >> Currently all PCIE windows point to bus address 0x0, which does not match
+> >> the values obtained from hardware during EA.
+> >> Replace those values with CPU addresses, since in reality we
+> >> have a 1:1 mapping between the two.
+> >>
+> >> Signed-off-by: Kornel Duleba <mindal@semihalf.com>
+> >
+> >Claudiu,
+> >
+> >Do you have any comment on this?
+> >
 > 
-> What I am seeing is that at times, the HCI UART loading before the DMA
-> firmware is loaded.
+> Well, probing is still working with this change, I've just tested it.
 > 
-> [   10.582037] Bluetooth: HCI UART driver ver 2.3
-> [   10.586867] Bluetooth: HCI UART protocol H4 registered
-> [   10.593566] imx-sdma 30bd0000.dma-controller: sdma firmware not ready!
-> [   10.594548] Bluetooth: HCI UART protocol Broadcom registered
-> [   10.600108] imx-uart 30860000.serial: We cannot prepare for the RX slave dma!
+> PCI listing at boot time changes from:
 > 
-> When I get the above message, the bluetooth chip I have throws
-> timeouts and does not function.
+> pci-host-generic 1f0000000.pcie: host bridge /soc/pcie@1f0000000 ranges:
+> pci-host-generic 1f0000000.pcie:      MEM 0x01f8000000..0x01f815ffff -> 0x0000000000
+> pci-host-generic 1f0000000.pcie:      MEM 0x01f8160000..0x01f81cffff -> 0x0000000000
 > 
-> [   10.615090] imx-sdma 302c0000.dma-controller: loaded firmware 4.5
+> to:
 > 
-> Once the firmware is loaded, I can unload the HCI Uart driver and
-> re-load Bluetooth works again.
+> pci-host-generic 1f0000000.pcie: host bridge /soc/pcie@1f0000000 ranges:
+> pci-host-generic 1f0000000.pcie:      MEM 0x01f8000000..0x01f815ffff -> 0x01f8000000
+> pci-host-generic 1f0000000.pcie:      MEM 0x01f8160000..0x01f81cffff -> 0x01f8160000
 > 
-> Based on that, I've been having my system delay the loading of the
-> Bluetooth modules until after the firmware is loaded, but this tells
-> me there is a relationship between the DMA and UART.
+> and looks reasonable.
+> Adding Vladimir and Alex just in case.
+> 
+> Acked-by: Claudiu Manoil <claudiu.manoil@nxp.com>
 
-Yeah, I can see how DMA firmware impacts your Bluetooth device, but do
-not follow how this spba node change make a difference here.
+Thanks, Claudiu.
 
-Nevertheless, patches look good.  Applied, thanks.
+Kornel,
+
+Do we need a Fixes tag for this patch?
 
 Shawn
