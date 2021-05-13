@@ -2,66 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 26C1237F154
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 04:28:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C11C137F157
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 04:31:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230367AbhEMC3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 22:29:51 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:36744 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230366AbhEMC3n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 22:29:43 -0400
-Received: by mail-ot1-f47.google.com with SMTP id n32-20020a9d1ea30000b02902a53d6ad4bdso22486403otn.3
-        for <devicetree@vger.kernel.org>; Wed, 12 May 2021 19:28:34 -0700 (PDT)
+        id S230267AbhEMCcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 22:32:16 -0400
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:33503 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229630AbhEMCcP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 22:32:15 -0400
+Received: by mail-oi1-f169.google.com with SMTP id b25so18861096oic.0;
+        Wed, 12 May 2021 19:31:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=1R4NK7sXPmJsCqubEpuc25FerWW0N8S/UMeRUegpPe4=;
-        b=Y+4DC615vK2tQIawroX3yBw1N8qZ3khSlqnLb+taoWmt13JUM5+kwjnZDKCf3modv7
-         LkDVdJxhyuZ97/6GrN4clX7vnDuqS8MALz0dh+rmK5RDkfVReA6NW7vieAKrSJyHHkOo
-         9sIXsqClyJ+LupJzP675cBpjRVroSMYI2SwnkzrwBzTlyEDrTzAGixuOPEknhojLsihw
-         RD8H/CgcjB00LwiQcXrJRDR7DFjYN84LojcTotaH8ewu4xYKiwky73i4KwYuSZK3+oIE
-         mVsnPe9v9H4dW9CS6j89SC/t9lCz8q8IZQcLEN/bbNJtNEpoKAdIyvDdsaiQtpD0aIiT
-         EsqA==
-X-Gm-Message-State: AOAM532+zmLJWcUBPJ2WvdSXuGzYLAvniZLxMiAHWXZCQCxmTMFK45ib
-        KLUVLlc2zf3hLFcawqGPnw==
-X-Google-Smtp-Source: ABdhPJz4o3CzX1oUjO2CQ8KfltMzT6Fd6QQbDaWnSbfbVJpq6srieZQhjqi8zTnaM0y6EUqGqcnKGg==
-X-Received: by 2002:a9d:5e02:: with SMTP id d2mr19538766oti.171.1620872914602;
-        Wed, 12 May 2021 19:28:34 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=T4+xGNATKcG7KI85jTdzNk3Jk4cn9OQmVyTgwdUELT4=;
+        b=MVc6Tu5L+gWRMzWWxvWFKg+uHCZUqixWE9BY/2qe7cIq2ol18hN3np/Mf6hpC3OWHG
+         TY7mg+NIMBIOpYHIMKUj5oaqfsEzQtwVQs+/Y4fabhTG+4I0QqPjCH1dQvjn3pTDu1ZE
+         rEEOPrFoq8U9Z8Ra/IGIijHmeYxCzhRVHkISunHAOERWbK5DOXWj0iCzT8DQt8qEMIXt
+         UbVM5+LLSK8WhBqCMiMjKkHhcBmrysSejO2l5ErDszJmP2bAFYUeIbN8YSJ49tyzCl3c
+         RE9vufyRYQSouVYUH61AIKx6NhIaiM07Bkg7Q8/lVTpdpTM1N86ok+YiLkd+FgqTF336
+         PMrg==
+X-Gm-Message-State: AOAM5331O7GO5Na73Nxj3ixSCwk5/eG2lOXrA8X39FQFlJ1oSNGjFvI4
+        FpD99wiXStVmy/Lp774eKw==
+X-Google-Smtp-Source: ABdhPJxIya1KtJJCP0zHTCZ9HTvBQXnDwZACRLxhvG7Fef9QzsKVQJg2i1alUZulkd/o1lRaiwrfXQ==
+X-Received: by 2002:a54:4396:: with SMTP id u22mr1237417oiv.118.1620873066476;
+        Wed, 12 May 2021 19:31:06 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t23sm364265oij.21.2021.05.12.19.28.33
+        by smtp.gmail.com with ESMTPSA id e6sm360792otk.64.2021.05.12.19.31.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 May 2021 19:28:34 -0700 (PDT)
-Received: (nullmailer pid 908835 invoked by uid 1000);
-        Thu, 13 May 2021 02:28:33 -0000
-Date:   Wed, 12 May 2021 21:28:33 -0500
+        Wed, 12 May 2021 19:31:05 -0700 (PDT)
+Received: (nullmailer pid 912364 invoked by uid 1000);
+        Thu, 13 May 2021 02:31:04 -0000
+Date:   Wed, 12 May 2021 21:31:04 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Boris Lysov <arzamas-16@mail.ee>
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, linux@roeck-us.net,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: watchdog: mediatek: add support for
- mt6577 SoC
-Message-ID: <20210513022833.GA908695@robh.at.kernel.org>
-References: <20210513013515.31329-1-arzamas-16@mail.ee>
- <20210513013515.31329-3-arzamas-16@mail.ee>
+To:     Nava kishore Manne <nava.manne@xilinx.com>
+Cc:     mdf@kernel.org, trix@redhat.com, michal.simek@xilinx.com,
+        arnd@arndb.de, rajan.vaja@xilinx.com, gregkh@linuxfoundation.org,
+        linus.walleij@linaro.org, amit.sunil.dhamne@xilinx.com,
+        tejas.patel@xilinx.com, zou_wei@huawei.com,
+        manish.narani@xilinx.com, lakshmi.sai.krishna.potthuri@xilinx.com,
+        wendy.liang@xilinx.com, linux-fpga@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, git@xilinx.com,
+        chinnikishore369@gmail.com
+Subject: Re: [RFC PATCH 2/4] fpga: Add new properties to support user-key
+ encrypted bitstream loading
+Message-ID: <20210513023104.GA909876@robh.at.kernel.org>
+References: <20210504102227.15475-1-nava.manne@xilinx.com>
+ <20210504102227.15475-3-nava.manne@xilinx.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210513013515.31329-3-arzamas-16@mail.ee>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210504102227.15475-3-nava.manne@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 13 May 2021 04:35:14 +0300, Boris Lysov wrote:
-> Add support for Mediatek mt6577 SoC to device tree binding
-> documentation.
+On Tue, May 04, 2021 at 03:52:25PM +0530, Nava kishore Manne wrote:
+> This patch Adds ‘encrypted-key-name’ and
+> ‘encrypted-user-key-fpga-config’ properties
+> to support user-key encrypted bitstream loading
+> use case.
 > 
-> Signed-off-by: Boris Lysov <arzamas-16@mail.ee>
+> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
 > ---
->  Documentation/devicetree/bindings/watchdog/mtk-wdt.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/fpga/fpga-region.txt | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/fpga/fpga-region.txt b/Documentation/devicetree/bindings/fpga/fpga-region.txt
+> index d787d57491a1..957dc6cbcd9e 100644
+> --- a/Documentation/devicetree/bindings/fpga/fpga-region.txt
+> +++ b/Documentation/devicetree/bindings/fpga/fpga-region.txt
+> @@ -177,6 +177,9 @@ Optional properties:
+>  	it indicates that the FPGA has already been programmed with this image.
+>  	If this property is in an overlay targeting a FPGA region, it is a
+>  	request to program the FPGA with that image.
+> +- encrypted-key-name : should contain the name of an encrypted key file located
+> +	on the firmware search path. It will be used to decrypt the FPGA image
+> +	file.
+>  - fpga-bridges : should contain a list of phandles to FPGA Bridges that must be
+>  	controlled during FPGA programming along with the parent FPGA bridge.
+>  	This property is optional if the FPGA Manager handles the bridges.
+> @@ -187,6 +190,8 @@ Optional properties:
+>  - external-fpga-config : boolean, set if the FPGA has already been configured
+>  	prior to OS boot up.
+>  - encrypted-fpga-config : boolean, set if the bitstream is encrypted
+> +- encrypted-user-key-fpga-config : boolean, set if the bitstream is encrypted
+> +	with user key.
 
-Acked-by: Rob Herring <robh@kernel.org>
+What's the relationship with encrypted-fpga-config? Both present or 
+mutually exclusive? Couldn't this be implied by encrypted-key-name being 
+present?
+
+>  - region-unfreeze-timeout-us : The maximum time in microseconds to wait for
+>  	bridges to successfully become enabled after the region has been
+>  	programmed.
+> -- 
+> 2.17.1
+> 
