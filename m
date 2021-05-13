@@ -2,188 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E3D837FA1E
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 16:56:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A51037FA29
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 17:01:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234646AbhEMO5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 10:57:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49014 "EHLO
+        id S233423AbhEMPCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 11:02:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234704AbhEMO4a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 10:56:30 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC04AC061574
-        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 07:55:19 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id b25so40215047eju.5
-        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 07:55:19 -0700 (PDT)
+        with ESMTP id S233073AbhEMPCf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 11:02:35 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C0EFC061574
+        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 08:01:25 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id n184so25536572oia.12
+        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 08:01:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/8vd2SAwTdt88nX11VE63bL19uYaNF7maDv4yIT9Ok4=;
-        b=OdlYf21e3GAV7+fJtPuYd/MZ2x4Q9Ktm+p6MDIKe45eorVK0EItJBVTUhfRpEn1FKy
-         wzScKBxoIgLTaEF0kfXWfKAsWcuCcWa3kZRhrmZnRtT3Y8Kyv3BIut7KInyGQK/Q7+82
-         S+MS6SQbce1OEAMhTpVs41rMza/m9fge+6nrVnaUWhQe7KfXS7z/YvfOYIzMysYwE9CT
-         CqdFxylTupNIeHkP1Nqfg4LyMqQGMfcdVkBmNLsTXbZlq6CrAH7kDom2FjfWzECS5b0S
-         mZvicBNTg4i76IA8Udo6EWsXsKvSB93DSIKbcwksVrNZgJEzPIXioVdLDVMMsyH/nVJw
-         M1Qg==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=ldgM2NO/Seow+Q56F+YNVD+hDuAL7t+LwPBtglqZh1k=;
+        b=uYchrcCSs746S+q+9gMFDs6pbFLse8WQ2iy43FWr0fZToAUlq/4rnF1ltQEKoNweE9
+         CkkEYo4Eya6PfW2wAroDNcr1tL3SML6J2unwF5momMpunX923eAMlEMk6qYGR8bC1NCR
+         ctx9nHfoAzpWkueL6j7Jt+6M9qpgkLEI+r5AK6+eMlGJPSWogR271QQ49emat4oZYOWO
+         zG6lhb42WpTw5HEs6ClOhIXmRNItwJqkEH3th/EzSx3UUD0+J8bFW3uCRNtMJn893i8T
+         xpjIBeAiFz2e8FgOGIDjfBF5bFM0W7wAPYKIaBi/+Cr+ub2CZDlf5vhQwBKjVreDzSEA
+         9eCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/8vd2SAwTdt88nX11VE63bL19uYaNF7maDv4yIT9Ok4=;
-        b=qNFnEBQhiGTge/C3aV36gYjIacs/5Jw/U9ZdDxq2gkjSS5Y8EwJS/4d+vNZGzGjaB+
-         88Ub/hfop8YmwzsIWcPiGztZ/nTqJGysPQo6gh7tYN6zetLDOkO+rtOY7GCl0PPa/x0k
-         sdwAJuRe6PHDdnY4RXwgzkb7eJ7y7zIT059pmigmfLGE5RKeBVRrBn0RymZr4UJNN34k
-         owEWN2eIswDKRYBYTfv1PFwrmA9VFSQ7cCNBEiyXAp5QPJqwdMHEmuqmWRJZuIAJkpDj
-         KyVpKuRXUm4PckzleXg9CBDKmHkJ3HZTdYJefxQSQp8L94+KAtIEX5c6yKAHfq7ATPk8
-         tzYQ==
-X-Gm-Message-State: AOAM530EzybDG8CuQ/M8LQDda64BBYyMhNbQucL/EdzjXJMqBZWfMDPM
-        R29pOgDkA2r0hi3rR155viE+NfHAvL8d/uT3MCi9sA==
-X-Google-Smtp-Source: ABdhPJzyUVhAWAlVMgDV04Iqsca9WuX0WFa9WkM+n0Abvzy901iwOodylHjwZuY3UIH9Xp68bXI9dnwIoJZkQnfZBmk=
-X-Received: by 2002:a17:906:13db:: with SMTP id g27mr468360ejc.88.1620917718561;
- Thu, 13 May 2021 07:55:18 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=ldgM2NO/Seow+Q56F+YNVD+hDuAL7t+LwPBtglqZh1k=;
+        b=a2mjXrtK/AjK4Wd4T8c0HeY5YWn7pHC5nVjgkIffeL9ha5Vz3toGE9m16vkKWDWxbw
+         IqlZC/MrwrNZly90vSQKrABcxhA7EvQGyMBvxSWLaGE0yX+ADcPADzq7GwQkcvxAW7B1
+         zrSpuA6aXyYKz5bj1fRZ1A281Dr/6MbsSSYj1V8RscmXEvS1+cZGxlnhHQIk/3+B2NPJ
+         JW1YzUDEocR/3FX1nQl9chKK7rsTJ6ylszytsQJsx3eOo474dc2MQZUfJUI+fjI5SNea
+         nUtQfIKoerJYzyfmttbfJ+5H1+5vVoKkDP2P8HpIxU0w5TvE/uvrR6uxPUG0NeVgorY8
+         Q4Pw==
+X-Gm-Message-State: AOAM531nKsRwudCGvGVqD1JYubpiRPvm8ge9OTZnXEt9W3WwBOoSJ1Q3
+        2xYmv3e+IdG2gFQEf5uXAw4=
+X-Google-Smtp-Source: ABdhPJyt5yDteKzelnGnRuRCn9CZhQKv5LRroEA1l8WsVRyhotR5+3i5X3VeFHbmGyO221CzU290OQ==
+X-Received: by 2002:aca:5d08:: with SMTP id r8mr735254oib.51.1620918084722;
+        Thu, 13 May 2021 08:01:24 -0700 (PDT)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id x30sm694721ott.41.2021.05.13.08.01.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 May 2021 08:01:24 -0700 (PDT)
+Date:   Thu, 13 May 2021 10:01:22 -0500
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        lgirdwood@gmail.com, pierre-louis.bossart@linux.intel.com,
+        tiwai@suse.com, heiko@sntech.de, robh+dt@kernel.org,
+        perex@perex.cz, jbx6244@gmail.com, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, maccraft123mc@gmail.com,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH v9 1/4] mfd: Add Rockchip rk817 audio CODEC support
+Message-ID: <20210513150122.GA8450@wintermute.localdomain>
+References: <20210505140854.15929-1-macroalpha82@gmail.com>
+ <20210505140854.15929-2-macroalpha82@gmail.com>
+ <20210510162329.GD751702@dell>
 MIME-Version: 1.0
-References: <20210421052855.1279713-1-drinkcat@chromium.org> <c91746ce-88b6-5612-74a5-74600c7761e8@baylibre.com>
-In-Reply-To: <c91746ce-88b6-5612-74a5-74600c7761e8@baylibre.com>
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Date:   Thu, 13 May 2021 11:55:06 -0300
-Message-ID: <CAAEAJfD3i+L4w1NuE5pUkMuH=R3CfBztDn-ZLcYR=onkcZ4Gxg@mail.gmail.com>
-Subject: Re: [PATCH v13 0/4] drm/panfrost: Add support for mt8183 GPU
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh@kernel.org>,
-        Steven Price <steven.price@arm.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Tomeu Vizoso <tomeu.vizoso@collabora.com>, fshao@chromium.org,
-        David Airlie <airlied@linux.ie>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>, hsinyi@chromium.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        hoegsberg@chromium.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210510162329.GD751702@dell>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Neil,
+On Mon, May 10, 2021 at 05:23:29PM +0100, Lee Jones wrote:
+> On Wed, 05 May 2021, Chris Morgan wrote:
+> 
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> > 
+> > Add rk817 codec support cell to rk808 mfd driver.
+> > 
+> > Tested-by: Maciej Matuszczyk <maccraft123mc@gmail.com>
+> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Nit: These should be chronological.
 
-On Mon, 26 Apr 2021 at 06:59, Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> Hi,
->
-> On 21/04/2021 07:28, Nicolas Boichat wrote:
-> > Hi!
-> >
-> > This is just a rebase of the v11, untested (but it seems like
-> > Neil Armstrong recently tested it), with small changes in
-> > binding and dts. v11 cover follows:
-> >
-> > Follow-up on the v5 [1], things have gotten significantly
-> > better in the last year, thanks to the efforts on Bifrost
-> > support by the Collabora team (and probably others I'm not
-> > aware of).
-> >
-> > I've been testing this series on a MT8183/kukui device, with a
-> > chromeos-5.10 kernel [2], and got basic Chromium OS UI up with
-> > mesa 20.3.2 (lots of artifacts though).
-> >
-> > devfreq is currently not supported, as we'll need:
-> >  - Clock core support for switching the GPU core clock (see 2/4).
-> >  - Platform-specific handling of the 2-regulator (see 3/4).
-> >
-> > Since the latter is easy to detect, patch 3/4 just disables
-> > devfreq if the more than one regulator is specified in the
-> > compatible matching table.
-> >
-> > [1] https://patchwork.kernel.org/project/linux-mediatek/cover/20200306041345.259332-1-drinkcat@chromium.org/
-> > [2] https://crrev.com/c/2608070
-> >
-> > Changes in v13:
-> >  - devfreq: Fix conflict resolution mistake when rebasing, didn't
-> >    even compile. Oops.
-> >
-> > Changes in v12:
-> >  - binding: Fix min/maxItems logic (Rob Herring)
-> >  - Add gpu node to mt8183-pumpkin.dts as well (Neil Armstrong).
-> >
-> > Changes in v11:
-> >  - binding: power-domain-names not power-domainS-names
-> >  - mt8183*.dts: remove incorrect supply-names
-> >
-> > Changes in v10:
-> >  - Fix the binding to make sure sram-supply property can be provided.
-> >
+Acknowledged. I will make sure to do this if a v10 is necessary.
+
+> 
+> > ---
 > > Changes in v9:
-> >  - Explain why devfreq needs to be disabled for GPUs with >1
-> >    regulators.
-> >
+> >  - Add cover letter.
+> >  - Remove documentation for interrupt parent per Rob Herring's request.
+> >  - Remove unused MODULE_DEVICE_TABLE to fix a bug identified by kernel test
+> >    robot.
 > > Changes in v8:
-> >  - Use DRM_DEV_INFO instead of ERROR
-> >
+> >  - Added additional documentation for missing properties of #sound-dai-cells,
+> >    interrupt-parent, and wakeup-source for mfd documentation.
+> >  - Corrected order of elements descriptions in device tree documentation.
+> >  - Changed name of "mic-in-differential" to "rockchip,mic-in-differential".
+> >  - Changed name of sound card from "rockchip,rk817-codec" to "Analog".
+> >  - Removed unused resets and reset-names from the i2s1_2ch node.
 > > Changes in v7:
-> >  - Fix GPU ID in commit message
-> >  - Fix GPU ID in commit message
-> >
+> >  - Removed ifdef around register definitions for MFD.
+> >  - Replaced codec documentation with updates to MFD documentation.
+> >  - Reordered elements in example to comply with upstream rules.
+> >  - Added binding update back for Odroid Go Advance as requested.
+> >  - Submitting patches from gmail now.
 > > Changes in v6:
-> >  - Rebased, actually tested with recent mesa driver.
-> >  - Add gpu regulators to kukui dtsi as well.
-> >  - Power domains are now attached to spm, not scpsys
-> >  - Drop R-B.
-> >  - devfreq: New change
-> >  - Context conflicts, reflow the code.
-> >  - Use ARRAY_SIZE for power domains too.
-> >
+> >  - Included additional project maintainers for correct subsystems.
+> >  - Removed unneeded compatible from DT documentation.
+> >  - Removed binding update for Odroid Go Advance (will do in seperate series).
 > > Changes in v5:
-> >  - Rename "2d" power domain to "core2"
-> >  - Rename "2d" power domain to "core2" (keep R-B again).
-> >  - Change power domain name from 2d to core2.
-> >
+> >  - Move register definitions from rk817_codec.h to main rk808.h register
+> >    definitions.
+> >  - Add volatile register for codec bits.
+> >  - Add default values for codec bits.
+> >  - Removed of_compatible from mtd driver (not necessary).
+> >  - Switched to using parent regmap instead of private regmap for codec.
 > > Changes in v4:
-> >  - Add power-domain-names description
-> >    (kept Alyssa's reviewed-by as the change is minor)
-> >  - Add power-domain-names to describe the 3 domains.
-> >    (kept Alyssa's reviewed-by as the change is minor)
-> >  - Add power domain names.
-> >
+> >  - Created set_pll() call.
+> >  - Created user visible gain control in mic.
+> >  - Check for return value of clk_prepare_enable().
+> >  - Removed duplicate clk_prepare_enable().
+> >  - Split DT documentation to separate commit.
 > > Changes in v3:
-> >  - Match mt8183-mali instead of bifrost, as we require special
-> >    handling for the 2 regulators and 3 power domains.
-> >
+> >  - Use DAPM macros to set audio path.
+> >  - Updated devicetree binding (as every rk817 has this codec chip).
+> >  - Changed documentation to yaml format.
+> >  - Split MFD changes to separate commit.
 > > Changes in v2:
-> >  - Use sram instead of mali_sram as SRAM supply name.
-> >  - Rename mali@ to gpu@.
-> >
-> > Nicolas Boichat (4):
-> >   dt-bindings: gpu: mali-bifrost: Add Mediatek MT8183
-> >   arm64: dts: mt8183: Add node for the Mali GPU
-> >   drm/panfrost: devfreq: Disable devfreq when num_supplies > 1
-> >   drm/panfrost: Add mt8183-mali compatible string
-> >
-> >  .../bindings/gpu/arm,mali-bifrost.yaml        |  30 ++++-
-> >  arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |   5 +
-> >  .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   5 +
-> >  .../boot/dts/mediatek/mt8183-pumpkin.dts      |   5 +
-> >  arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 105 ++++++++++++++++++
-> >  drivers/gpu/drm/panfrost/panfrost_devfreq.c   |   9 ++
-> >  drivers/gpu/drm/panfrost/panfrost_drv.c       |  10 ++
-> >  7 files changed, 168 insertions(+), 1 deletion(-)
-> >
->
-> Seems this version is ready to be applied if we get a review on the DT ?
->
-> Mathias ? could you have a look ?
->
+> >  - Fixed audio path registers to solve some bugs.
+> > 
+> >  drivers/mfd/rk808.c       | 85 +++++++++++++++++++++++++++++++++++++++
+> >  include/linux/mfd/rk808.h | 81 +++++++++++++++++++++++++++++++++++++
+> >  2 files changed, 166 insertions(+)
+> > 
+> > diff --git a/drivers/mfd/rk808.c b/drivers/mfd/rk808.c
+> > index ad923dd4e007..9231209184e0 100644
+> > --- a/drivers/mfd/rk808.c
+> > +++ b/drivers/mfd/rk808.c
+> > @@ -65,6 +65,7 @@ static bool rk817_is_volatile_reg(struct device *dev, unsigned int reg)
+> >  	switch (reg) {
+> >  	case RK817_SECONDS_REG ... RK817_WEEKS_REG:
+> >  	case RK817_RTC_STATUS_REG:
+> > +	case RK817_CODEC_DTOP_LPT_SRST:
+> >  	case RK817_INT_STS_REG0:
+> >  	case RK817_INT_STS_REG1:
+> >  	case RK817_INT_STS_REG2:
+> > @@ -163,6 +164,11 @@ static const struct mfd_cell rk817s[] = {
+> >  		.num_resources = ARRAY_SIZE(rk817_rtc_resources),
+> >  		.resources = &rk817_rtc_resources[0],
+> >  	},
+> > +#ifdef CONFIG_SND_SOC_RK817
+> > +	{
+> > +		.name = "rk817-codec",
+> > +	},
+> > +#endif
+> 
+> No #ifery please.
+> 
+> Just replace it with a comment.
+> 
+> If no associated driver exists, it just won't match/bind.
 
-Given Rob has Acked the DT bindings, I think it's OK to apply patches
-1, 3 and 4 via drm-misc, letting Mediatek people sort out the DT changes.
+I did the "if" here because I noticed that if I have a rk817 and do not
+utilize the codec I receive a dmesg warning. I put the if here to silence
+it in the event that someone was using this PMIC but didn't want to use
+the audio codec. I will make the change if you say so though, but I just
+want to confirm that it's acceptable to have a warning for all rk817s
+that do not use the codec about a missing codec.  The hardware is always
+present, I just can't say for certain it will always be used.
 
-My two unsolicited cents :-)
+Thank you.
 
-Ezequiel
+> 
+> -- 
+> Lee Jones [李琼斯]
+> Senior Technical Lead - Developer Services
+> Linaro.org │ Open source software for Arm SoCs
+> Follow Linaro: Facebook | Twitter | Blog
