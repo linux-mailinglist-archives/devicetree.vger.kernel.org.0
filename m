@@ -2,308 +2,333 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DD0937FCE7
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 19:54:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF3B237FCF6
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 19:56:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231411AbhEMRzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 13:55:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60904 "EHLO
+        id S231480AbhEMR5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 13:57:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231440AbhEMRyz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 13:54:55 -0400
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6690C06138B
-        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 10:53:40 -0700 (PDT)
-Received: by mail-qk1-x72e.google.com with SMTP id x8so26349552qkl.2
-        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 10:53:40 -0700 (PDT)
+        with ESMTP id S231493AbhEMR43 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 13:56:29 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07E4FC06138E
+        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 10:54:28 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a4so41086912ejk.1
+        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 10:54:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=YfZ7j6r2p4cf2Fxp2XxLB9DzarScwyL/PoTPj+WOpUg=;
-        b=ZUZEM1kIXWJ/f8axHwCFZ52joD+B2HmxciELbU9TVq9smhRWo7Y57NTGZn9CIVe6Mf
-         zeQSSlpbkimhuVvXvuxKDyZAF+wRlCdEYgsKH7HQdBQmi/Nbr6iVQtN8QFAhGtx0bNMm
-         /401h+yyfGMfAV8OLOxH9XuReT7B9aZIgogghlR24N0GGhncbBjSke7xKc1fBz4hnyDz
-         K+Q39SwYU9nUfvjuvK7LR8MkdvzQ98iKRmNGCuCTfGJgmtcYFRtSaBu/0kzqqxRjzlCu
-         0yrWGBsbP11bQhpzqhZyMJWbSWzETpjOgajlkjO7KiKM9RPB22eiPef5xmTgBCmm/mCi
-         fNrw==
+        d=semihalf-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=5Jy97aMm7VEGQNVs4spkiz3xhAyYCzC385iFjGUTMn8=;
+        b=QDXEMRVGDZPGERNVWO+0LDZqnYdDRVmF2ThgP7px72YvKxY1EvaW8emeauyXh5hBAx
+         e1lc8ykXc5tpyxmnNkcmNZYVodOa91zsRKdMo15pFdWTGNQt0G/8nNoDLL+x3vMA1aFf
+         IjBOlNCAOPTWMYzBqj3+67GqcWXmdxmWh3wNhgZTtk4XBnjpgRdNdvqj/wWv9rGSg+Cp
+         T/25gnOzd2AOSRvTGkn+qLtwfvWbbdD2sPgUbVlNyBGgOQHIGo6imy7BSEtBNSxKXFYn
+         UzeEPYXenOY6QDZKHpg5WRuw0Dk8hBAyddW07F9ti9P2/zccdID9CshInlXXExpO1r61
+         +nRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=YfZ7j6r2p4cf2Fxp2XxLB9DzarScwyL/PoTPj+WOpUg=;
-        b=pK9Jly4+v87TxY18bLjasJnmlJvu1kWv81TpXtfgchTlS0hF52H1umIA6idY+u54IQ
-         PC6WWm4QMhh5PhyZxUMq8zO8dCE/ybocP9yLw73s7Fg4JLpiS9aCNkGyXX564TgOcjnw
-         uI1RFO6+qbLedjvdyPrCPIJhzJzrTEDAaafzY9hrklEkO2LrvX5WWhVbKFErApVn3HY2
-         8+L58kTOHNdrxmoX25mkB+0354azSSRz3y2qFLXOC9yvS6nliyMFH3fomfFKcdQCrm25
-         Vr3yHo0LIDRbKMyycLpt8A5cMPtd2G48DAxe9vGQfdwoUn8aiw5r5htK3ddZwTejp41m
-         NOHw==
-X-Gm-Message-State: AOAM530WWo6qX34ZBpWTdJo+8tTUMg1QrTFmm6bbsfwTAlRk1Ijgft3V
-        Vgcufpbc28WxytfBjKfpqabd1A==
-X-Google-Smtp-Source: ABdhPJx40sUwdxqSU6S/2jmrH2kZwq8RuGy/Xx0pr8czbr6yWT2aTSV83/lE1QFG2fUgWgN6l1sxsg==
-X-Received: by 2002:a37:9a97:: with SMTP id c145mr23294029qke.47.1620928419927;
-        Thu, 13 May 2021 10:53:39 -0700 (PDT)
-Received: from localhost.localdomain (modemcable068.184-131-66.mc.videotron.ca. [66.131.184.68])
-        by smtp.gmail.com with ESMTPSA id m67sm2778736qkd.108.2021.05.13.10.53.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 May 2021 10:53:39 -0700 (PDT)
-From:   Jonathan Marek <jonathan@marek.ca>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     robert.foss@linaro.org, andrey.konovalov@linaro.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 2/3] dt-bindings: clock: add QCOM SM8250 camera clock bindings
-Date:   Thu, 13 May 2021 13:52:54 -0400
-Message-Id: <20210513175258.5842-3-jonathan@marek.ca>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20210513175258.5842-1-jonathan@marek.ca>
-References: <20210513175258.5842-1-jonathan@marek.ca>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=5Jy97aMm7VEGQNVs4spkiz3xhAyYCzC385iFjGUTMn8=;
+        b=kBKRXmjgU57dNAjQ3MiZLwXxtuHhlgeJ1/b4TFfg5fmoBy+NHf/EIh+jPaVY34/4Ka
+         lo4jQb2v3/ctuyt2madReIpgIF9Jsfwtxjt7Fd+s7grwu2BnKDm4U3bV0F9Kse68ULfW
+         tvvxOalfGyk+DsA6LH5i9GRF7TqpAWZLJrmhyFvD02TRUEXsiTHmtEfIg4fbS10gu4mV
+         xR2sG2Bc9UfXwoGdH6yuGzVLdTPo+Db8smIV9u1g1OLStmSIKLOrdi5pZa29ir1Ybdn6
+         +myaWHOPEsQNwjEGJa4F1XyXaQbga7AUs037/T/kqrGL6K8IoTTg9gIjBKoVPYg6F/pu
+         6I1A==
+X-Gm-Message-State: AOAM531lpRJKjTQvzyggX00DfRCCoRqtmFmbwTr4AngmGrbHxZHapcl5
+        lXTRKyigOaM5clWmRQGj1Uzn93mpJ3nywsn6H32yVg==
+X-Google-Smtp-Source: ABdhPJyjJrIe5NfB/SgNpUbbYhp5PwWZevJfF2nDS2rzDV/COs7JX2gE8nAaUKkvcfbYNdtm7H3JDS1XSpUPuzuF3P0=
+X-Received: by 2002:a17:906:c448:: with SMTP id ck8mr13902565ejb.497.1620928467472;
+ Thu, 13 May 2021 10:54:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210407123438.224551-1-mindal@semihalf.com> <20210511030658.GG3425@dragon>
+ <AM0PR04MB67542D30A9424D455DB3ADD496539@AM0PR04MB6754.eurprd04.prod.outlook.com>
+ <20210513021214.GJ3425@dragon> <20210513141921.i7sfmekbcw2m7vxd@skbuf>
+In-Reply-To: <20210513141921.i7sfmekbcw2m7vxd@skbuf>
+From:   Marcin Wojtas <mw@semihalf.com>
+Date:   Thu, 13 May 2021 19:54:15 +0200
+Message-ID: <CAPv3WKfnWFjfZw39avZBEyUpEsH2f=NCs8VfjeR+wzk4qV3GmA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: fsl-ls1028a: Correct ECAM PCIE window ranges
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Kornel Duleba <mindal@semihalf.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "tn@semihalf.com" <tn@semihalf.com>,
+        "upstream@semihalf.com" <upstream@semihalf.com>,
+        Alexandru Marginean <alexandru.marginean@nxp.com>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for camera clock controller for
-Qualcomm Technology Inc's SM8250 SoC.
+Hi Vladimir,
 
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
----
- .../bindings/clock/qcom,camcc-sm8250.yaml     |  73 +++++++++
- include/dt-bindings/clock/qcom,camcc-sm8250.h | 138 ++++++++++++++++++
- 2 files changed, 211 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,camcc-sm8250.yaml
- create mode 100644 include/dt-bindings/clock/qcom,camcc-sm8250.h
+czw., 13 maj 2021 o 16:19 Vladimir Oltean <vladimir.oltean@nxp.com> napisa=
+=C5=82(a):
+>
+> On Thu, May 13, 2021 at 10:12:15AM +0800, Shawn Guo wrote:
+> > On Tue, May 11, 2021 at 09:48:22AM +0000, Claudiu Manoil wrote:
+> > > >-----Original Message-----
+> > > >From: Shawn Guo <shawnguo@kernel.org>
+> > > >Sent: Tuesday, May 11, 2021 6:07 AM
+> > > [...]
+> > > >Subject: Re: [PATCH] arm64: dts: fsl-ls1028a: Correct ECAM PCIE wind=
+ow
+> > > >ranges
+> > > >
+> > > >+ Claudiu
+> > > >
+> > > >On Wed, Apr 07, 2021 at 02:34:38PM +0200, Kornel Duleba wrote:
+> > > >> Currently all PCIE windows point to bus address 0x0, which does no=
+t match
+> > > >> the values obtained from hardware during EA.
+> > > >> Replace those values with CPU addresses, since in reality we
+> > > >> have a 1:1 mapping between the two.
+> > > >>
+> > > >> Signed-off-by: Kornel Duleba <mindal@semihalf.com>
+> > > >
+> > > >Claudiu,
+> > > >
+> > > >Do you have any comment on this?
+> > > >
+> > >
+> > > Well, probing is still working with this change, I've just tested it.
+> > >
+> > > PCI listing at boot time changes from:
+> > >
+> > > pci-host-generic 1f0000000.pcie: host bridge /soc/pcie@1f0000000 rang=
+es:
+> > > pci-host-generic 1f0000000.pcie:      MEM 0x01f8000000..0x01f815ffff =
+-> 0x0000000000
+> > > pci-host-generic 1f0000000.pcie:      MEM 0x01f8160000..0x01f81cffff =
+-> 0x0000000000
+> > >
+> > > to:
+> > >
+> > > pci-host-generic 1f0000000.pcie: host bridge /soc/pcie@1f0000000 rang=
+es:
+> > > pci-host-generic 1f0000000.pcie:      MEM 0x01f8000000..0x01f815ffff =
+-> 0x01f8000000
+> > > pci-host-generic 1f0000000.pcie:      MEM 0x01f8160000..0x01f81cffff =
+-> 0x01f8160000
+> > >
+> > > and looks reasonable.
+> > > Adding Vladimir and Alex just in case.
+> > >
+> > > Acked-by: Claudiu Manoil <claudiu.manoil@nxp.com>
+> >
+> > Thanks, Claudiu.
+> >
+> > Kornel,
+> >
+> > Do we need a Fixes tag for this patch?
+> >
+> > Shawn
+>
+> Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+>
+> I am not sure whether "incorrect data that is unused" deserves a Fixes:
+> tag or not, probably not.
+>
+> Bjorn Helgaas did point out before that "The fact that all these windows
+> map to PCI bus address 0 looks broken", so there's that:
+>
+> https://patchwork.kernel.org/project/linux-pci/cover/20201129230743.30069=
+78-1-kw@linux.com/
+>
+> And while it does look "broken", with the Enhanced Allocation capability
+> and the pci-host-ecam-generic driver, there is no address translation
+> taking place, so no inbound/outbound windows are configured, so the
+> range.pci_addr calculated in devm_of_pci_get_host_bridge_resources() is
+> not used for anything except for printing.
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,camcc-sm8250.yaml b/Documentation/devicetree/bindings/clock/qcom,camcc-sm8250.yaml
-new file mode 100644
-index 000000000000..54bb57147505
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/qcom,camcc-sm8250.yaml
-@@ -0,0 +1,73 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/qcom,camcc-sm8250.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Camera Clock & Reset Controller Binding for SM8250
-+
-+maintainers:
-+  - Jonathan Marek <jonathan@marek.ca>
-+
-+description: |
-+  Qualcomm camera clock control module which supports the clocks, resets and
-+  power domains on SM8250.
-+
-+  See also dt-bindings/clock/qcom,camcc-sm8250.h
-+
-+properties:
-+  compatible:
-+    const: qcom,sm8250-camcc
-+
-+properties:
-+  compatible:
-+    enum:
-+      -
-+
-+  clocks:
-+    items:
-+      - description: Board XO source
-+      - description: Sleep clock source
-+
-+  clock-names:
-+    items:
-+      - const: bi_tcxo
-+      - const: sleep_clk
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  '#reset-cells':
-+    const: 1
-+
-+  '#power-domain-cells':
-+    const: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - '#clock-cells'
-+  - '#reset-cells'
-+  - '#power-domain-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,rpmh.h>
-+    clock-controller@ad00000 {
-+      compatible = "qcom,sm8250-camcc";
-+      reg = <0x0ad00000 0x10000>;
-+      clocks = <&rpmhcc RPMH_CXO_CLK>,
-+               <&sleep_clk>;
-+      clock-names = "bi_tcxo", "sleep_clk";
-+      #clock-cells = <1>;
-+      #reset-cells = <1>;
-+      #power-domain-cells = <1>;
-+    };
-+...
-diff --git a/include/dt-bindings/clock/qcom,camcc-sm8250.h b/include/dt-bindings/clock/qcom,camcc-sm8250.h
-new file mode 100644
-index 000000000000..383ead17608d
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,camcc-sm8250.h
-@@ -0,0 +1,138 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (c) 2018-2021, The Linux Foundation. All rights reserved.
-+ */
-+
-+#ifndef _DT_BINDINGS_CLK_QCOM_CAM_CC_SM8250_H
-+#define _DT_BINDINGS_CLK_QCOM_CAM_CC_SM8250_H
-+
-+/* CAM_CC clocks */
-+#define CAM_CC_BPS_AHB_CLK		0
-+#define CAM_CC_BPS_AREG_CLK		1
-+#define CAM_CC_BPS_AXI_CLK		2
-+#define CAM_CC_BPS_CLK			3
-+#define CAM_CC_BPS_CLK_SRC		4
-+#define CAM_CC_CAMNOC_AXI_CLK		5
-+#define CAM_CC_CAMNOC_AXI_CLK_SRC	6
-+#define CAM_CC_CAMNOC_DCD_XO_CLK	7
-+#define CAM_CC_CCI_0_CLK		8
-+#define CAM_CC_CCI_0_CLK_SRC		9
-+#define CAM_CC_CCI_1_CLK		10
-+#define CAM_CC_CCI_1_CLK_SRC		11
-+#define CAM_CC_CORE_AHB_CLK		12
-+#define CAM_CC_CPAS_AHB_CLK		13
-+#define CAM_CC_CPHY_RX_CLK_SRC		14
-+#define CAM_CC_CSI0PHYTIMER_CLK		15
-+#define CAM_CC_CSI0PHYTIMER_CLK_SRC	16
-+#define CAM_CC_CSI1PHYTIMER_CLK		17
-+#define CAM_CC_CSI1PHYTIMER_CLK_SRC	18
-+#define CAM_CC_CSI2PHYTIMER_CLK		19
-+#define CAM_CC_CSI2PHYTIMER_CLK_SRC	20
-+#define CAM_CC_CSI3PHYTIMER_CLK		21
-+#define CAM_CC_CSI3PHYTIMER_CLK_SRC	22
-+#define CAM_CC_CSI4PHYTIMER_CLK		23
-+#define CAM_CC_CSI4PHYTIMER_CLK_SRC	24
-+#define CAM_CC_CSI5PHYTIMER_CLK		25
-+#define CAM_CC_CSI5PHYTIMER_CLK_SRC	26
-+#define CAM_CC_CSIPHY0_CLK		27
-+#define CAM_CC_CSIPHY1_CLK		28
-+#define CAM_CC_CSIPHY2_CLK		29
-+#define CAM_CC_CSIPHY3_CLK		30
-+#define CAM_CC_CSIPHY4_CLK		31
-+#define CAM_CC_CSIPHY5_CLK		32
-+#define CAM_CC_FAST_AHB_CLK_SRC		33
-+#define CAM_CC_FD_CORE_CLK		34
-+#define CAM_CC_FD_CORE_CLK_SRC		35
-+#define CAM_CC_FD_CORE_UAR_CLK		36
-+#define CAM_CC_GDSC_CLK			37
-+#define CAM_CC_ICP_AHB_CLK		38
-+#define CAM_CC_ICP_CLK			39
-+#define CAM_CC_ICP_CLK_SRC		40
-+#define CAM_CC_IFE_0_AHB_CLK		41
-+#define CAM_CC_IFE_0_AREG_CLK		42
-+#define CAM_CC_IFE_0_AXI_CLK		43
-+#define CAM_CC_IFE_0_CLK		44
-+#define CAM_CC_IFE_0_CLK_SRC		45
-+#define CAM_CC_IFE_0_CPHY_RX_CLK	46
-+#define CAM_CC_IFE_0_CSID_CLK		47
-+#define CAM_CC_IFE_0_CSID_CLK_SRC	48
-+#define CAM_CC_IFE_0_DSP_CLK		49
-+#define CAM_CC_IFE_1_AHB_CLK		50
-+#define CAM_CC_IFE_1_AREG_CLK		51
-+#define CAM_CC_IFE_1_AXI_CLK		52
-+#define CAM_CC_IFE_1_CLK		53
-+#define CAM_CC_IFE_1_CLK_SRC		54
-+#define CAM_CC_IFE_1_CPHY_RX_CLK	55
-+#define CAM_CC_IFE_1_CSID_CLK		56
-+#define CAM_CC_IFE_1_CSID_CLK_SRC	57
-+#define CAM_CC_IFE_1_DSP_CLK		58
-+#define CAM_CC_IFE_LITE_AHB_CLK		59
-+#define CAM_CC_IFE_LITE_AXI_CLK		60
-+#define CAM_CC_IFE_LITE_CLK		61
-+#define CAM_CC_IFE_LITE_CLK_SRC		62
-+#define CAM_CC_IFE_LITE_CPHY_RX_CLK	63
-+#define CAM_CC_IFE_LITE_CSID_CLK	64
-+#define CAM_CC_IFE_LITE_CSID_CLK_SRC	65
-+#define CAM_CC_IPE_0_AHB_CLK		66
-+#define CAM_CC_IPE_0_AREG_CLK		67
-+#define CAM_CC_IPE_0_AXI_CLK		68
-+#define CAM_CC_IPE_0_CLK		69
-+#define CAM_CC_IPE_0_CLK_SRC		70
-+#define CAM_CC_JPEG_CLK			71
-+#define CAM_CC_JPEG_CLK_SRC		72
-+#define CAM_CC_MCLK0_CLK		73
-+#define CAM_CC_MCLK0_CLK_SRC		74
-+#define CAM_CC_MCLK1_CLK		75
-+#define CAM_CC_MCLK1_CLK_SRC		76
-+#define CAM_CC_MCLK2_CLK		77
-+#define CAM_CC_MCLK2_CLK_SRC		78
-+#define CAM_CC_MCLK3_CLK		79
-+#define CAM_CC_MCLK3_CLK_SRC		80
-+#define CAM_CC_MCLK4_CLK		81
-+#define CAM_CC_MCLK4_CLK_SRC		82
-+#define CAM_CC_MCLK5_CLK		83
-+#define CAM_CC_MCLK5_CLK_SRC		84
-+#define CAM_CC_MCLK6_CLK		85
-+#define CAM_CC_MCLK6_CLK_SRC		86
-+#define CAM_CC_PLL0			87
-+#define CAM_CC_PLL0_OUT_EVEN		88
-+#define CAM_CC_PLL0_OUT_ODD		89
-+#define CAM_CC_PLL1			90
-+#define CAM_CC_PLL1_OUT_EVEN		91
-+#define CAM_CC_PLL2			92
-+#define CAM_CC_PLL2_OUT_MAIN		93
-+#define CAM_CC_PLL3			94
-+#define CAM_CC_PLL3_OUT_EVEN		95
-+#define CAM_CC_PLL4			96
-+#define CAM_CC_PLL4_OUT_EVEN		97
-+#define CAM_CC_SBI_AHB_CLK		98
-+#define CAM_CC_SBI_AXI_CLK		99
-+#define CAM_CC_SBI_CLK			100
-+#define CAM_CC_SBI_CPHY_RX_CLK		101
-+#define CAM_CC_SBI_CSID_CLK		102
-+#define CAM_CC_SBI_CSID_CLK_SRC		103
-+#define CAM_CC_SBI_DIV_CLK_SRC		104
-+#define CAM_CC_SBI_IFE_0_CLK		105
-+#define CAM_CC_SBI_IFE_1_CLK		106
-+#define CAM_CC_SLEEP_CLK		107
-+#define CAM_CC_SLEEP_CLK_SRC		108
-+#define CAM_CC_SLOW_AHB_CLK_SRC		109
-+#define CAM_CC_XO_CLK_SRC		110
-+
-+/* CAM_CC resets */
-+#define CAM_CC_BPS_BCR			0
-+#define CAM_CC_ICP_BCR			1
-+#define CAM_CC_IFE_0_BCR		2
-+#define CAM_CC_IFE_1_BCR		3
-+#define CAM_CC_IPE_0_BCR		4
-+#define CAM_CC_SBI_BCR			5
-+
-+/* CAM_CC GDSCRs */
-+#define BPS_GDSC			0
-+#define IPE_0_GDSC			1
-+#define SBI_GDSC			2
-+#define IFE_0_GDSC			3
-+#define IFE_1_GDSC			4
-+#define TITAN_TOP_GDSC			5
-+
-+#endif
--- 
-2.26.1
+...in Linux. Please note Linux device trees can be used as-is by other
+projects. Regardless my opinion on how that's unfortunate, FreeBSD
+does additional ranges check before performing EA and fails. Since the
+current DT description is imo broken and the change is transparent for
+Linux, it would be great to get this change merged into tree in case
+there are are no objections.
 
+Thanks,
+Marcin
+
+>
+> FWIW here's a more complete image of what changes with Kornel's patch
+> ("-" is before, "+" is after) - again all is limited to the dmesg output.
+>
+>  pci-host-generic 1f0000000.pcie: host bridge /soc/pcie@1f0000000 ranges:
+>  pci-host-generic 1f0000000.pcie: Parsing ranges property...
+> -pci-host-generic 1f0000000.pcie:      MEM 0x01f8000000..0x01f815ffff -> =
+0x0000000000
+> +pci-host-generic 1f0000000.pcie:      MEM 0x01f8000000..0x01f815ffff -> =
+0x01f8000000
+>  pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+tmp_res start 0x01f8000000 end 0x01f815ffff
+> -pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+pci_addr 0x0000000000 =3D> offset 0x01f8000000
+> -pci-host-generic 1f0000000.pcie:      MEM 0x01f8160000..0x01f81cffff -> =
+0x0000000000
+> +pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+pci_addr 0x01f8000000 =3D> offset 0x0000000000
+> +pci-host-generic 1f0000000.pcie:      MEM 0x01f8160000..0x01f81cffff -> =
+0x01f8160000
+>  pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+tmp_res start 0x01f8160000 end 0x01f81cffff
+> -pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+pci_addr 0x0000000000 =3D> offset 0x01f8160000
+> -pci-host-generic 1f0000000.pcie:      MEM 0x01f81d0000..0x01f81effff -> =
+0x0000000000
+> +pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+pci_addr 0x01f8160000 =3D> offset 0x0000000000
+> +pci-host-generic 1f0000000.pcie:      MEM 0x01f81d0000..0x01f81effff -> =
+0x01f81d0000
+>  pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+tmp_res start 0x01f81d0000 end 0x01f81effff
+> -pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+pci_addr 0x0000000000 =3D> offset 0x01f81d0000
+> -pci-host-generic 1f0000000.pcie:      MEM 0x01f81f0000..0x01f820ffff -> =
+0x0000000000
+> +pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+pci_addr 0x01f81d0000 =3D> offset 0x0000000000
+> +pci-host-generic 1f0000000.pcie:      MEM 0x01f81f0000..0x01f820ffff -> =
+0x01f81f0000
+>  pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+tmp_res start 0x01f81f0000 end 0x01f820ffff
+> -pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+pci_addr 0x0000000000 =3D> offset 0x01f81f0000
+> -pci-host-generic 1f0000000.pcie:      MEM 0x01f8210000..0x01f822ffff -> =
+0x0000000000
+> +pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+pci_addr 0x01f81f0000 =3D> offset 0x0000000000
+> +pci-host-generic 1f0000000.pcie:      MEM 0x01f8210000..0x01f822ffff -> =
+0x01f8210000
+>  pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+tmp_res start 0x01f8210000 end 0x01f822ffff
+> -pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+pci_addr 0x0000000000 =3D> offset 0x01f8210000
+> -pci-host-generic 1f0000000.pcie:      MEM 0x01f8230000..0x01f824ffff -> =
+0x0000000000
+> +pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+pci_addr 0x01f8210000 =3D> offset 0x0000000000
+> +pci-host-generic 1f0000000.pcie:      MEM 0x01f8230000..0x01f824ffff -> =
+0x01f8230000
+>  pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+tmp_res start 0x01f8230000 end 0x01f824ffff
+> -pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+pci_addr 0x0000000000 =3D> offset 0x01f8230000
+> -pci-host-generic 1f0000000.pcie:      MEM 0x01fc000000..0x01fc3fffff -> =
+0x0000000000
+> +pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+pci_addr 0x01f8230000 =3D> offset 0x0000000000
+> +pci-host-generic 1f0000000.pcie:      MEM 0x01fc000000..0x01fc3fffff -> =
+0x01fc000000
+>  pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+tmp_res start 0x01fc000000 end 0x01fc3fffff
+> -pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+pci_addr 0x0000000000 =3D> offset 0x01fc000000
+> +pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: =
+pci_addr 0x01fc000000 =3D> offset 0x0000000000
+>  pci-host-generic 1f0000000.pcie: ECAM at [mem 0x1f0000000-0x1f00fffff] f=
+or [bus 00]
+>  pci-host-generic 1f0000000.pcie: PCI host bridge to bus 0000:00
+>  pci_bus 0000:00: root bus resource [bus 00]
+> -pci_bus 0000:00: root bus resource [mem 0x1f8000000-0x1f815ffff] (bus ad=
+dress [0x00000000-0x0015ffff])
+> -pci_bus 0000:00: root bus resource [mem 0x1f8160000-0x1f81cffff pref] (b=
+us address [0x00000000-0x0006ffff])
+> -pci_bus 0000:00: root bus resource [mem 0x1f81d0000-0x1f81effff] (bus ad=
+dress [0x00000000-0x0001ffff])
+> -pci_bus 0000:00: root bus resource [mem 0x1f81f0000-0x1f820ffff pref] (b=
+us address [0x00000000-0x0001ffff])
+> -pci_bus 0000:00: root bus resource [mem 0x1f8210000-0x1f822ffff] (bus ad=
+dress [0x00000000-0x0001ffff])
+> -pci_bus 0000:00: root bus resource [mem 0x1f8230000-0x1f824ffff pref] (b=
+us address [0x00000000-0x0001ffff])
+> -pci_bus 0000:00: root bus resource [mem 0x1fc000000-0x1fc3fffff] (bus ad=
+dress [0x00000000-0x003fffff])
+> +pci_bus 0000:00: root bus resource [mem 0x1f8000000-0x1f815ffff]
+> +pci_bus 0000:00: root bus resource [mem 0x1f8160000-0x1f81cffff pref]
+> +pci_bus 0000:00: root bus resource [mem 0x1f81d0000-0x1f81effff]
+> +pci_bus 0000:00: root bus resource [mem 0x1f81f0000-0x1f820ffff pref]
+> +pci_bus 0000:00: root bus resource [mem 0x1f8210000-0x1f822ffff]
+> +pci_bus 0000:00: root bus resource [mem 0x1f8230000-0x1f824ffff pref]
+> +pci_bus 0000:00: root bus resource [mem 0x1fc000000-0x1fc3fffff]
+>  pci 0000:00:00.0: [1957:e100] type 00 class 0x020001
+>  pci 0000:00:00.0: BAR 0: [mem 0x1f8000000-0x1f803ffff 64bit] (from Enhan=
+ced Allocation, properties 0x0)
+>  pci 0000:00:00.0: BAR 2: [mem 0x1f8160000-0x1f816ffff 64bit pref] (from =
+Enhanced Allocation, properties 0x1)
+>
+> My understanding might be wrong, but it should be possible for the PCIe
+> host bridge driver to initialize some of its resources by enumerating
+> the functions which have the EA capability, and not require the device
+> tree writer to add a "ranges" entry for them at all. Then this discussion
+> would be moot - that resource would have no way to be incorrect.
+>
+> $ lspci -vvv
+> 0000:00:00.0 Ethernet controller: Freescale Semiconductor Inc Device e100=
+ (rev 01) (prog-if 01)
+>         Subsystem: Freescale Semiconductor Inc Device e100
+> (...)
+>         Capabilities: [9c] Enhanced Allocation (EA): NumEntries=3D4
+>                 Entry 0: Enable+ Writable- EntrySize=3D3
+>                          BAR Equivalent Indicator: BAR 0
+>                          PrimaryProperties: memory space, non-prefetchabl=
+e
+>                          SecondaryProperties: entry unavailable for use, =
+PrimaryProperties should be used
+>                          Base: 1f8000000
+>                          MaxOffset: 0003ffff
+>                 Entry 1: Enable+ Writable- EntrySize=3D3
+>                          BAR Equivalent Indicator: BAR 2
+>                          PrimaryProperties: memory space, prefetchable
+>                          SecondaryProperties: memory space, non-prefetcha=
+ble
+>                          Base: 1f8160000
+>                          MaxOffset: 0000ffff
+>                 Entry 2: Enable+ Writable- EntrySize=3D3
+>                          BAR Equivalent Indicator: VF-BAR 0
+>                          PrimaryProperties: VF memory space, non-prefetch=
+able
+>                          SecondaryProperties: entry unavailable for use, =
+PrimaryProperties should be used
+>                          Base: 1f81d0000
+>                          MaxOffset: 0000ffff
+>                 Entry 3: Enable+ Writable- EntrySize=3D3
+>                          BAR Equivalent Indicator: VF-BAR 2
+>                          PrimaryProperties: VF memory space, prefetchable
+>                          SecondaryProperties: VF memory space, prefetchab=
+le
+>                          Base: 1f81f0000
+>                          MaxOffset: 0000ffff
+>
+> This information, which is already present in the hardware, needs to be
+> duplicated here (now I do see that the 'ranges' property declares them
+> larger than they really are, too):
+>
+>                                   /* PF0-6 BAR0 - non-prefetchable memory=
+ */
+>                         ranges =3D <0x82000000 0x0 0x00000000  0x1 0xf800=
+0000  0x0 0x160000
+>                                   /* PF0-6 BAR2 - prefetchable memory */
+>                                   0xc2000000 0x0 0x00000000  0x1 0xf81600=
+00  0x0 0x070000
+>                                   /* PF0: VF0-1 BAR0 - non-prefetchable m=
+emory */
+>                                   0x82000000 0x0 0x00000000  0x1 0xf81d00=
+00  0x0 0x020000
+>                                   /* PF0: VF0-1 BAR2 - prefetchable memor=
+y */
+>                                   0xc2000000 0x0 0x00000000  0x1 0xf81f00=
+00  0x0 0x020000
