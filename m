@@ -2,119 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD49237F807
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 14:35:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A722237F8CF
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 15:32:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233870AbhEMMgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 08:36:25 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:58130 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233357AbhEMMgY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 08:36:24 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14DCZCeD112244;
-        Thu, 13 May 2021 07:35:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1620909312;
-        bh=6hkZN1ufAaRZSekrRI6opIq0EU23mi/iUO/k+A69uZo=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=eQlrpVtLmJqw9nG7x3gpEoL6lXwkCHKDxWG7CLAHSGyChYOAL7lalG4o5mO8shlkB
-         rjjfzJcau9eSco+o9ZuWC3E+QvAnjQMeQLIL4SJmTBxusY3VjEBTJxk0fWrjmU+ATy
-         MVOFxkGjre/Oaqt9FQ/G5RlDhlyGmcpPia3Oncuo=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14DCZCIx080340
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 13 May 2021 07:35:12 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 13
- May 2021 07:35:11 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 13 May 2021 07:35:11 -0500
-Received: from [10.250.232.183] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14DCZ7gP130234;
-        Thu, 13 May 2021 07:35:09 -0500
-Subject: Re: [PATCH 4/5] arm64: dts: ti: k3-am642-sk: Enable USB Super-Speed
- HOST port
-To:     Nishanth Menon <nm@ti.com>
-CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>, <a-govindraju@ti.com>
-References: <20210512150107.26793-1-kishon@ti.com>
- <20210512150107.26793-5-kishon@ti.com>
- <20210512194022.27h53llpxmvg3eoe@splurge>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <595af264-a962-cf3f-81ae-6398bc1e5d20@ti.com>
-Date:   Thu, 13 May 2021 18:05:06 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S233987AbhEMNdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 09:33:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44094 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229964AbhEMNdY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 May 2021 09:33:24 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 905EF61363;
+        Thu, 13 May 2021 13:32:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1620912735;
+        bh=K3hK/G0b4FdBTcp760KZTDWKAGMICe3kjVKyRjjqQ9c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=O7qOuLaxXWxqLB+rL/HX9ZhWlHqP8nfh3Q9rsGaq+oqaILxb7A2yOcza8+fjoKGU8
+         8S7hkErJa1OVOwmY8/LF8zEsiytqmO1mhY1CT9AswteaW02VhbDyY+0pJXGorU7aHD
+         tXzzfjTFsScF64ftJTUYbiW48RVFgZN3SMG1nj4UQEe0ZhCE+DKm1vaWvxK92udSfT
+         7H2F94ZXPKZmypQvYg6xITj8Sj5LQzrjGw/gig0WNIZX/uxM3/37CL3FPjxBcApi2t
+         5nJvkjTbqptMRdoWYe9aT6b2pF1jgt/SGT0ZARbqNjoC8vbb4jkfdKrvAZmwe6yLi7
+         ig/c1fLmFqhBA==
+Date:   Thu, 13 May 2021 14:31:32 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org
+Subject: Re: [PATCH] ASoC: qcom: lpass-cpu: Fix pop noise during audio
+ capture begin
+Message-ID: <20210513133132.GC5813@sirena.org.uk>
+References: <20210513114539.4813-1-srivasam@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <20210512194022.27h53llpxmvg3eoe@splurge>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="3siQDZowHQqNOShm"
+Content-Disposition: inline
+In-Reply-To: <20210513114539.4813-1-srivasam@codeaurora.org>
+X-Cookie: snafu = Situation Normal All F%$*ed up
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
 
-On 13/05/21 1:10 am, Nishanth Menon wrote:
-> On 20:31-20210512, Kishon Vijay Abraham I wrote:
->> Enable USB Super-Speed HOST port.
->>
->> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
->> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->> ---
->>  arch/arm64/boot/dts/ti/k3-am642-sk.dts | 39 ++++++++++++++++++++++++++
->>  1 file changed, 39 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
->> index 8424cd071955..056c1b2df559 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
->> @@ -5,6 +5,8 @@
->>  
->>  /dts-v1/;
->>  
->> +#include <dt-bindings/mux/ti-serdes.h>
->> +#include <dt-bindings/phy/phy.h>
->>  #include <dt-bindings/gpio/gpio.h>
->>  #include <dt-bindings/net/ti-dp83867.h>
->>  #include "k3-am642.dtsi"
->> @@ -85,6 +87,12 @@
->>  		>;
->>  	};
->>  
->> +	main_usb0_pins_default: main-usb0-pins-default {
->> +		pinctrl-single,pins = <
->> +			AM64X_IOPAD(0x02a8, PIN_OUTPUT, 0) /* (E19) USB0_DRVVBUS */
->> +		>;
->> +	};
->> +
->>  	main_i2c1_pins_default: main-i2c1-pins-default {
->>  		pinctrl-single,pins = <
->>  			AM64X_IOPAD(0x0268, PIN_INPUT_PULLUP, 0) /* (C18) I2C1_SCL */
->> @@ -235,6 +243,37 @@
->>  	disable-wp;
->>  };
->>  
->> +&serdes_ln_ctrl {
->> +	idle-states = <AM64_SERDES0_LANE0_USB>;
->> +};
->> +
->> +&serdes_wiz0 {
->> +	status = "okay";
-> 
-> 
-> not sure I understand why default of okay needs to be explicitly stated
-> as okay in board dts.
+--3siQDZowHQqNOShm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-hmm, not required. Will remove it.
+On Thu, May 13, 2021 at 05:15:39PM +0530, Srinivasa Rao Mandadapu wrote:
 
-Thanks
-Kishon
+> +	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
+> +		ret = regmap_fields_write(i2sctl->spken, id,
+> +						 LPAIF_I2SCTL_SPKEN_ENABLE);
+> +	} else  {
+> +		ret = regmap_fields_write(i2sctl->micen, id,
+> +						 LPAIF_I2SCTL_MICEN_ENABLE);
+> +	}
+
+This commit doesn't remove the matching update in triger() so we'd have
+two redundant updates.  I guess it's unlikely to be harmful but it looks
+wrong/confusing.
+
+--3siQDZowHQqNOShm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmCdKjQACgkQJNaLcl1U
+h9DuswgAhMWhYHcZug7WiZh1LrB3iTOXX6ezIaxTUNfqlza9nf4nSQw3P3tyO6ci
+LZGERj2vXEi0Eukkh65G98T6YV8j4cyU+91R2pVjb1RJC+SJwSl35a4ZEco777Hq
+GsOtXWYtHhpOOhpZvG+jkRSnUrkMDn1yOHPfWyApP4958rJxwqsKoHevCwuSTDrF
+fMt2F5eb1qoeao46trnkbNGs1EaWYm7nbu3TFZDWa2FWxTvjJoNc00m3S+hOapMr
+EsDSrpsSmcbGu7JHHGonJ4t8mdxsoIEsGy4JcPpSbbwu4mb5GZsGLGHo8jVnTF44
++uGj78EbxQRId8s4I71QW3lXnalgRQ==
+=jAkE
+-----END PGP SIGNATURE-----
+
+--3siQDZowHQqNOShm--
