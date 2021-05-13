@@ -2,146 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1B6337F717
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 13:47:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5DB537F710
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 13:46:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233549AbhEMLsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 07:48:11 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:28775 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233502AbhEMLsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 07:48:00 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1620906411; h=Content-Transfer-Encoding: MIME-Version:
- Message-Id: Date: Subject: Cc: To: From: Sender;
- bh=R3PRA2rUnS5fig4+xW1jrQHWFtxLg10TUka5lgODj/c=; b=aPyuQF0TSJ6YiMFdbf0kslj1LOFvcvRwt+r6M+bDR3VTdi3PxxBbfNSMbk4inFqju+7bSOHv
- 5CQcpebj5IJJqe0io0DR3APiEtiW0a0d3XOWOL+G0Qi56lhpo1TLG2txoVA3C714cRp9XGZV
- Eif+TGpm8gBXlbnKcXAD82Xlv+w=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 609d1174c7220f8fd31f5713 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 13 May 2021 11:45:56
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 2EB3BC43460; Thu, 13 May 2021 11:45:56 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1220EC433F1;
-        Thu, 13 May 2021 11:45:49 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 1220EC433F1
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Subject: [PATCH] ASoC: qcom: lpass-cpu: Fix pop noise during audio capture begin
-Date:   Thu, 13 May 2021 17:15:39 +0530
-Message-Id: <20210513114539.4813-1-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.29.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S231759AbhEMLru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 07:47:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35172 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231738AbhEMLrs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 07:47:48 -0400
+Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4123C061574;
+        Thu, 13 May 2021 04:46:37 -0700 (PDT)
+Received: by mail-io1-xd2a.google.com with SMTP id p8so24559838iol.11;
+        Thu, 13 May 2021 04:46:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=BK4qT11Jcy2nrTMBkQncpXyFc35XEEjYCK/MCqvtRuY=;
+        b=jIjh5Hn+VtVG5LtWuuAqzs91VERchHii1B5R9VriyZB0old767hT16jywsD9Ix0mzr
+         lj5jC/x5KdNdK/ZBZffjolitnRPVrWxZd1rKJVYumb+NCSV/r9V/Bi4qycFxrsjueoEF
+         YQrIe6qKGMbN5t6nRG2c6WwbOyszZJH4EBZD7VMTQ9puazrf/o9Vh8z4EXsd7nJ/Obyo
+         Y/EK1ADBXLnYbwKq16j5LQTovFJAVz0Bv7wD/hqvkpCqdfBkMi3STayOO4Kco+11VNZA
+         RbsoYQd+eE3xkRFMSYx0bQCBonAq88b/kScAysihJJFkfclV9mQmLcuRVEUi9OvwXvsU
+         Sk6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=BK4qT11Jcy2nrTMBkQncpXyFc35XEEjYCK/MCqvtRuY=;
+        b=Se8TJoAOk7A7HW0+79YXEPXmkpbE1RudGm4O7FSjHaXkXSMgA0050KsKufvqZhyD1h
+         ic7CPspctmjl9LnOq9/qaHIKfrpUlWke4rgbjuV+pGExkXysYwsxsj3RSvd6DkeLTVM1
+         8jEHQfPDNAscM4mWIYPS5Ca0XuF4FgLPwKObRKJE7nct1QMlPFzudbftj1RGehZgKFuu
+         C6eta6z41aOic1mSBUONogKfZIl5UX62jZrNNCEoYKt3Wi0PQnr1u6ekIBmPxURGogC5
+         8wLCnA1b0K7zsFkIb/AQmDCwDBbEj3MLg8yr4DMuWbNoYZdE76awO50NQ75mh5v6gJez
+         onAA==
+X-Gm-Message-State: AOAM532bqwqjR4F/JbB7WBWcgnqWMqSmrZv9PqFoUOrsXoE6D4kaP7GQ
+        Q3N6N0BJg5Uo2LkW8kSQfEQ=
+X-Google-Smtp-Source: ABdhPJwMns8v9R5jX+V3mJ70Y1UWJL5D0BVlKjaR4sY4/Mc9zGc0VuwxuWjBBPAyjUblBtXOCsGl1g==
+X-Received: by 2002:a05:6602:70d:: with SMTP id f13mr31647503iox.16.1620906396431;
+        Thu, 13 May 2021 04:46:36 -0700 (PDT)
+Received: from aford-OptiPlex-7050.logicpd.com ([174.46.170.158])
+        by smtp.gmail.com with ESMTPSA id x13sm1298192ilv.88.2021.05.13.04.46.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 May 2021 04:46:35 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/3] arm64: dts: renesas: beacon: Fix USB extal reference
+Date:   Thu, 13 May 2021 06:46:15 -0500
+Message-Id: <20210513114617.30191-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch fixes PoP noise of around 15ms observed during audio capture begin.
-Enables BCLK and LRCLK in snd_soc_dai_ops startup call for introducing some delay
-before capture start and clock enable.
+The USB extal clock reference isn't associated to a crystal, it's
+assoicated to a programmable clock, so remove the extal reference,
+add the usb2_clksel.  Since usb_extal is referenced by the versaclock,
+reference it here so the usb2_clksel can get the proper clock speed
+of 50MHz.
 
-Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
----
- sound/soc/qcom/lpass-cpu.c | 37 +++++++++++++++++++++++++++++++++----
- 1 file changed, 33 insertions(+), 4 deletions(-)
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
-index c62d2612e8f5..3dcfc2f115a7 100644
---- a/sound/soc/qcom/lpass-cpu.c
-+++ b/sound/soc/qcom/lpass-cpu.c
-@@ -73,14 +73,28 @@ static int lpass_cpu_daiops_startup(struct snd_pcm_substream *substream,
- 		struct snd_soc_dai *dai)
- {
- 	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
--	int ret;
-+	struct lpaif_i2sctl *i2sctl = drvdata->i2sctl;
-+	unsigned int id = dai->driver->id;
-+	int ret = -EINVAL;
+diff --git a/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi b/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
+index 8d3a4d6ee885..bd3d26b2a2bb 100644
+--- a/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
++++ b/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
+@@ -319,8 +319,10 @@
+ 	status = "okay";
+ };
  
- 	ret = clk_prepare_enable(drvdata->mi2s_osr_clk[dai->driver->id]);
- 	if (ret) {
- 		dev_err(dai->dev, "error in enabling mi2s osr clk: %d\n", ret);
- 		return ret;
- 	}
--	ret = clk_prepare(drvdata->mi2s_bit_clk[dai->driver->id]);
-+
-+	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
-+		ret = regmap_fields_write(i2sctl->spken, id,
-+						 LPAIF_I2SCTL_SPKEN_ENABLE);
-+	} else  {
-+		ret = regmap_fields_write(i2sctl->micen, id,
-+						 LPAIF_I2SCTL_MICEN_ENABLE);
-+	}
-+	if (ret)
-+		dev_err(dai->dev, "error writing to i2sctl reg: %d\n",
-+			ret);
-+
-+	ret = clk_prepare_enable(drvdata->mi2s_bit_clk[dai->driver->id]);
- 	if (ret) {
- 		dev_err(dai->dev, "error in enabling mi2s bit clk: %d\n", ret);
- 		clk_disable_unprepare(drvdata->mi2s_osr_clk[dai->driver->id]);
-@@ -93,9 +107,23 @@ static void lpass_cpu_daiops_shutdown(struct snd_pcm_substream *substream,
- 		struct snd_soc_dai *dai)
- {
- 	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
-+	struct lpaif_i2sctl *i2sctl = drvdata->i2sctl;
-+	unsigned int id = dai->driver->id;
-+	int ret = -EINVAL;
+-&usb_extal_clk {
+-	clock-frequency = <50000000>;
++&usb2_clksel {
++	clocks = <&cpg CPG_MOD 703>, <&cpg CPG_MOD 704>,
++		  <&versaclock5 3>, <&usb3s0_clk>;
++	status = "okay";
+ };
  
- 	clk_disable_unprepare(drvdata->mi2s_osr_clk[dai->driver->id]);
--	clk_unprepare(drvdata->mi2s_bit_clk[dai->driver->id]);
-+	clk_disable_unprepare(drvdata->mi2s_bit_clk[dai->driver->id]);
-+
-+	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
-+		ret = regmap_fields_write(i2sctl->spken, id,
-+					 LPAIF_I2SCTL_SPKEN_DISABLE);
-+	} else  {
-+		ret = regmap_fields_write(i2sctl->micen, id,
-+					 LPAIF_I2SCTL_MICEN_DISABLE);
-+	}
-+	if (ret)
-+		dev_err(dai->dev, "error writing to i2sctl reg: %d\n",
-+				ret);
- }
- 
- static int lpass_cpu_daiops_hw_params(struct snd_pcm_substream *substream,
-@@ -308,7 +336,8 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
- 				ret);
- 
- 		clk_disable(drvdata->mi2s_bit_clk[dai->driver->id]);
--
-+		break;
-+	default:
- 		break;
- 	}
- 
+ &usb3s0_clk {
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+2.17.1
 
