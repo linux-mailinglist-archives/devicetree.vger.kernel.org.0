@@ -2,71 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC70A37FF3B
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 22:34:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5265837FF63
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 22:43:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233015AbhEMUfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 16:35:12 -0400
-Received: from mail.manjaro.org ([176.9.38.148]:53140 "EHLO mail.manjaro.org"
+        id S231529AbhEMUou (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 16:44:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55072 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232977AbhEMUfL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 May 2021 16:35:11 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.manjaro.org (Postfix) with ESMTP id 304C322111A;
-        Thu, 13 May 2021 22:34:00 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at manjaro.org
-Received: from mail.manjaro.org ([127.0.0.1])
-        by localhost (manjaro.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 8j8NsS7U-BOf; Thu, 13 May 2021 22:33:57 +0200 (CEST)
-From:   Tobias Schramm <t.schramm@manjaro.org>
-To:     =?UTF-8?q?Jernej=20=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org,
-        Tobias Schramm <t.schramm@manjaro.org>
-Subject: [PATCH v2 2/2] ARM: dts: sun8i: v3s: add pwm controller to v3s dts
-Date:   Thu, 13 May 2021 22:35:27 +0200
-Message-Id: <20210513203527.2072090-3-t.schramm@manjaro.org>
-In-Reply-To: <20210513203527.2072090-1-t.schramm@manjaro.org>
-References: <20210513203527.2072090-1-t.schramm@manjaro.org>
+        id S230305AbhEMUot (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 May 2021 16:44:49 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5CEEB6143D;
+        Thu, 13 May 2021 20:43:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1620938619;
+        bh=A3b16ZVY/C5ZO5MXnyxLTrDK5X7y0uCD4VfIVPCIxZw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Gzx8vcmyVC0PIR9R2EXJPmIMlLRpTQ8mculxrb84Gtg/6WwgrrIZHkJ0jXgbzupv7
+         ZOskrgV4czU9o14jF6gcavbWFomqFb4wmesnYXsTboG/lOb999I41AMrsv31N/QPnq
+         ozaIpKTRB6Jcv0z/kuvGD/0xe4aI8cEO3yaVpR0+Lww/wJEp27sNjwSvdOzBUDP3j5
+         RC6LdYaWC1SFL2mv0nYVgCqER/F2ifnbsn4mRgXdJXEOu2AA3wH6jEkVsJoxwYVsr6
+         djJoEY15lT3GsVih2iNuZ4ELSpmRBszqd30pu5akOg9S64WFoZNLSKzmoXiru/c9Uq
+         0fkuqtFS+8pgg==
+Received: by mail-qk1-f175.google.com with SMTP id 76so26829697qkn.13;
+        Thu, 13 May 2021 13:43:39 -0700 (PDT)
+X-Gm-Message-State: AOAM533fAtBpcI2jUvedlI3SsF5baKtc71XGKIvKsXnM5DNDsvOPTOB6
+        Sl7TVhYw0ONFQEiNJcKIDBeCijfGtBcMFmv+ig==
+X-Google-Smtp-Source: ABdhPJyS9sqwtUxxwJj+pw7aOZgNGV+YskujLTBOnbUWy50BMbWIxY3hIKtH/Vp7VcL3+me6WFqaxQaF0aAZqR54m0g=
+X-Received: by 2002:a37:6116:: with SMTP id v22mr26536521qkb.464.1620938618472;
+ Thu, 13 May 2021 13:43:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210511191239.774570-1-sean.anderson@seco.com>
+ <20210513021631.GA878860@robh.at.kernel.org> <f9165937-c578-d225-9f5e-d964367c4711@seco.com>
+ <70176596-2250-8ae1-912a-9f9c30694e7d@seco.com>
+In-Reply-To: <70176596-2250-8ae1-912a-9f9c30694e7d@seco.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 13 May 2021 15:43:27 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJY1W=t-gYYt+iTPgF7e9yJqzYFYGSJNrA4BNhAY+va8Q@mail.gmail.com>
+Message-ID: <CAL_JsqJY1W=t-gYYt+iTPgF7e9yJqzYFYGSJNrA4BNhAY+va8Q@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: pwm: Add Xilinx AXI Timer
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Linux PWM List <linux-pwm@vger.kernel.org>,
+        devicetree@vger.kernel.org, Michal Simek <michal.simek@xilinx.com>,
+        Alvaro Gamez <alvaro.gamez@hazent.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Allwinner V3s and V3 SoCs feature a pwm controller identical to the
-one used in the Allwinner A20.
-This commit adds it to the V3s dtsi.
+On Thu, May 13, 2021 at 10:28 AM Sean Anderson <sean.anderson@seco.com> wrote:
+>
+>
+>
+> On 5/13/21 10:33 AM, Sean Anderson wrote:
+>  >
+>  >
+>  > On 5/12/21 10:16 PM, Rob Herring wrote:
+>  >  > On Tue, May 11, 2021 at 03:12:37PM -0400, Sean Anderson wrote:
+>  >  >> This adds a binding for the Xilinx LogiCORE IP AXI Timer. This device is
+>  >  >> a "soft" block, so it has many parameters which would not be
+>  >  >> configurable in most hardware. This binding is usually automatically
+>  >  >> generated by Xilinx's tools, so the names and values of some properties
+>  >  >> must be kept as they are. Replacement properties have been provided for
+>  >  >> new device trees.
+>  >  >
+>  >  > Because you have some tool generating properties is not a reason we have
+>  >  > to accept them upstream.
+>  >
+>  > These properties are already in arch/microblaze/boot/dts/system.dts and
+>  > in the devicetree supplied to Linux by qemu. Removing these properties
+>  > will break existing setups, which I would like to avoid.
 
-Signed-off-by: Tobias Schramm <t.schramm@manjaro.org>
----
- arch/arm/boot/dts/sun8i-v3s.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Already in use in upstream dts files is different than just
+'automatically generated' by vendor tools.
 
-diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v3s.dtsi
-index eb4cb63fef13..456dee9de87f 100644
---- a/arch/arm/boot/dts/sun8i-v3s.dtsi
-+++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
-@@ -422,6 +422,15 @@ wdt0: watchdog@1c20ca0 {
- 			clocks = <&osc24M>;
- 		};
- 
-+		pwm: pwm@1c21400 {
-+			compatible = "allwinner,sun8i-v3s-pwm",
-+				     "allwinner,sun7i-a20-pwm";
-+			reg = <0x01c21400 0xc>;
-+			clocks = <&osc24M>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
- 		lradc: lradc@1c22800 {
- 			compatible = "allwinner,sun4i-a10-lradc-keys";
- 			reg = <0x01c22800 0x400>;
--- 
-2.31.1
+>  >
+>  >  > 'deprecated' is for what *we* have deprecated.
+>  >
+>  > Ok. I will remove that then.
+>  >
+>  >  >
+>  >  > In this case, I don't really see the point in defining new properties
+>  >  > just to have bool.
+>  >
+>  > I don't either, but it was requested, by Michal...
+>
+> Err, your comment on the original bindings was
+>
+>  > Can't all these be boolean?
 
+With no other context, yes that's what I would ask. Now you've given
+me some context, between using the existing ones and 2 sets of
+properties to maintain, I choose the former.
+
+> And Michal commented
+>
+>  > I think in this case you should described what it is used by current
+>  > driver in Microblaze and these options are required. The rest are by
+>  > design optional.
+>  > If you want to change them to different value then current binding
+>  > should be deprecated and have any transition time with code alignment.
+>
+> So that is what I tried to accomplish with this revision. I also tried
+> allowing something like
+>
+>         xlnx,one-timer-only = <0>; /* two timers */
+>         xlnx,one-timer-only = <1>; /* one timer  */
+>         xlnx,one-timer-only; /* one timer */
+>         /* property absent means two timers */
+>
+> but I was unable to figure out how to express this with json-schema. I
+> don't think it's the best design either...
+
+json-schema would certainly let you, but generally we don't want
+properties to have more than 1 type.
+
+Rob
