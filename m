@@ -2,543 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E787037F5F3
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 12:52:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 203EE37F602
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 12:55:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232195AbhEMKxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 06:53:45 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:42268 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232197AbhEMKxn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 May 2021 06:53:43 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1620903150; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=l43av0MNdasuSlRaWS4HbE7aHdm8Jr27+otQGPeLkDA=;
- b=FBj5AA3HAl0+XyqStYrlOYszWfVnA0SewXsVK0iHAX6/XpraTDX1G53J4HcEf01Eje6QZ4rq
- Or2Ppme0W/xlUy2pqpXmnUnKlgV+UyNoIMaZzUBds6FEipRC+6WakITBpAqAoCLDrn6woh9E
- 2bQx4C/LFA2p/w9OtlqYBejel+w=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 609d04ed7bf557a01215f547 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 13 May 2021 10:52:29
- GMT
-Sender: mkrishn=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 48FF7C4338A; Thu, 13 May 2021 10:52:29 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: mkrishn)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 400C4C433D3;
-        Thu, 13 May 2021 10:52:26 +0000 (UTC)
+        id S232817AbhEMK4O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 06:56:14 -0400
+Received: from mail-bn8nam12on2078.outbound.protection.outlook.com ([40.107.237.78]:51872
+        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232698AbhEMK4N (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 May 2021 06:56:13 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bFIYGWVQiD5CA19F3MC3ni2zMyRNpHi917bYpobNU1Rr1LAG/EjKi3x48oj7v1oEbtqBa2WR+EYBDKqe6Rk4PRN8i4F0DQ+Z1B7dIlb56YY3YtwNRdHER5x4k8uED6WFNcnXtqWKW9c+ygk0dXSOhxmfz3gVZx0/opnMRRuflS4gcDETvHQ/3tmlJ+0Bxat2fmWefPueoVIm/Jh+FQTn8JIGpt4kqFvKXOY6bB1TCe425oulogGK1iW268BIWDOvpXj3Bkb6vIqAktsg3ruOj2QKhU9sXUMP112i21NNEei4fz4tSq07ozquj5MZbYxEjYvUvxkYEjIT/hooqCu4kA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uCGJ0kyrtIT6H0PF0PWs2O1voiqakML63XTuliT260c=;
+ b=KrhQI46++DkLnGS3gFu81X5R6yGGD1lZThLRLOFsd/NdcBG8p2qDkznqaEkXhPzL3tS5TKJn7xZuOpfeYphJsmU/NnXVimhNrMcQ/Y/rzYuverOsiQmKOr1ssV9SMQdsFf4W1moD6kZ++AQHOJDOzqLsG3WbLrqUu77OyW7suXRlkxMjwp+o8LudiJ3bJqrjFEJOxSvOzNHrxPipKwz1tfFT1cRvh0md7AgjktQFEjuL+I0ReQ4BaIV35fWI3fc9kEGcMTraKe3OgukTKdA0wSqSpC/NE82A5lh3hq2EV+Miic+MXKfGbBc8ti/7X37ZEiYM63Y2TqAOglecFvcUvw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
+ dkim=pass header.d=xilinx.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uCGJ0kyrtIT6H0PF0PWs2O1voiqakML63XTuliT260c=;
+ b=fB/LsH5rGDmLCcmrFTCcwCPv8bkZh2P0yL0/qkf5a4eKjqNGqpUpcWtA1YzCB7sG676Mb/YrNnAoynfm5jd8L9i1cfIvCYQtVgz9JYk4tx1E+3OZ06Ipf7ul76DxjsrnJsbg7ZySrlj/FLXz7SzplKG9aP8VFoDT/qyJF5pUnMU=
+Received: from MWHPR02MB2623.namprd02.prod.outlook.com (2603:10b6:300:44::9)
+ by CO6PR02MB7697.namprd02.prod.outlook.com (2603:10b6:303:ad::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.26; Thu, 13 May
+ 2021 10:54:59 +0000
+Received: from MWHPR02MB2623.namprd02.prod.outlook.com
+ ([fe80::97d:165e:73af:bef8]) by MWHPR02MB2623.namprd02.prod.outlook.com
+ ([fe80::97d:165e:73af:bef8%11]) with mapi id 15.20.4129.025; Thu, 13 May 2021
+ 10:54:59 +0000
+From:   Nava kishore Manne <navam@xilinx.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "mdf@kernel.org" <mdf@kernel.org>,
+        "trix@redhat.com" <trix@redhat.com>,
+        Michal Simek <michals@xilinx.com>,
+        "arnd@arndb.de" <arnd@arndb.de>, Rajan Vaja <RAJANV@xilinx.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        Amit Sunil Dhamne <amitsuni@xlnx.xilinx.com>,
+        Tejas Patel <tejasp@xlnx.xilinx.com>,
+        "zou_wei@huawei.com" <zou_wei@huawei.com>,
+        Manish Narani <MNARANI@xilinx.com>,
+        Sai Krishna Potthuri <lakshmis@xilinx.com>,
+        Jiaying Liang <jliang@xilinx.com>,
+        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>, git <git@xilinx.com>,
+        "chinnikishore369@gmail.com" <chinnikishore369@gmail.com>
+Subject: RE: [RFC PATCH 2/4] fpga: Add new properties to support user-key
+ encrypted bitstream loading
+Thread-Topic: [RFC PATCH 2/4] fpga: Add new properties to support user-key
+ encrypted bitstream loading
+Thread-Index: AQHXQM90hYIAhSQLOEqomCrE4N/mi6rgvmsAgACDurA=
+Date:   Thu, 13 May 2021 10:54:58 +0000
+Message-ID: <MWHPR02MB262309A8DC5BD857CBB01446C2519@MWHPR02MB2623.namprd02.prod.outlook.com>
+References: <20210504102227.15475-1-nava.manne@xilinx.com>
+ <20210504102227.15475-3-nava.manne@xilinx.com>
+ <20210513023104.GA909876@robh.at.kernel.org>
+In-Reply-To: <20210513023104.GA909876@robh.at.kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=xilinx.com;
+x-originating-ip: [149.199.50.129]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d0958621-50d7-422a-8e28-08d915fd8d55
+x-ms-traffictypediagnostic: CO6PR02MB7697:
+x-ld-processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CO6PR02MB76970C427996363C5C19395DC2519@CO6PR02MB7697.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: QRd4koPHOZYujGH0+y50EydVfeTj7sjnq9+P3lQFfltsiO/r7NDR67F1gs3SQRultfV/84klZqQsqfIAi+r7+mZIme3tp0ZOGAlbjEMxks1dJQi6JMdfg+WwZ0tFCIUoWTXctXsKQBrQpstJsuYXCnriX0qraQjt71upNunCfm90q2xuTNM1mGAtY1WTZmE0RnhY+3rHRnY5UuwZO+t2I4PWvUjgrZsbq0jBicaXolPZGQHPAzUdVtBHfU+ESypGa9eKIc4gZPfTHV5W8WJQqOXkMloOdCPMnrh2GyW6IyvAL6KSnZOi7AI9EkNcSo3tkafM2Zko6G1UARdxK5cybD0g+1uE6ZMsXHhp8BiF0NHncwGDOay5z21/1agiRxcKWSyO5LSQ47r16DAoO3a3Lq1q06jGbgtjm3LAb3kTx1+nBtTWq+N9u3+S6jaZ0SiviWcdWP1zZTK/EA5yDSkAfvgcMHWJdQs2Aoowmj9V1WXPY590IhO333RIQffbggyDrREjJ0dmFrUrQVqelb6A1hCa+xsniWkSiOTQ/KHumBRppAZCiEWsxvDKHDODYtAJ474/2mErMK2a/EZJsPrH6hBLogGPsgtML5ReyvvK6Do=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR02MB2623.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(136003)(346002)(396003)(39860400002)(376002)(5660300002)(38100700002)(64756008)(8676002)(316002)(54906003)(86362001)(7416002)(55016002)(6506007)(53546011)(7696005)(8936002)(33656002)(26005)(2906002)(66946007)(83380400001)(186003)(71200400001)(76116006)(478600001)(66476007)(66446008)(4326008)(122000001)(66556008)(6916009)(52536014)(9686003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VnFmcnBETm1XanVuNngwY1RBN1ZVOTkvVWUwak9aYmxsNnB1c3hpT1ZTWkJY?=
+ =?utf-8?B?UEhFYUlpeEF5V29QSmV3bDhLbkxNSnpha3FCb1pBUXJDa3RVbElkTmdqWHhu?=
+ =?utf-8?B?T3p6R3g4T01pNHM3akZDUTZRclpFbi9LcHc3TGNZRDhTazVpaXlTUUZ0aGdT?=
+ =?utf-8?B?RXhtZDlyT1l1bmw5Wm8vbGdpcGpjTlB1amdQdTA4cFg0VmZvQjlqektTclZl?=
+ =?utf-8?B?UkRKOVRNbllMOW9iRkJGUnhVSmZBQnRIZ0J5WHJJK2xya2dFN0V1WUtUanh6?=
+ =?utf-8?B?UUc4eGphMnhQMmttL3lWWUY4TTRFQ2p0S3Z5Q2N5VEptYi9Oa3h4bGNrdUtw?=
+ =?utf-8?B?cWpseGpCV05oeDY1Y0NjU0d3cWlsRThPWWJZNG5MUXpiaWhIUDBNdUdmbDUr?=
+ =?utf-8?B?VWRHTjViQVJ5c054OGRKSjV2dFdISVIvRUNuY0hjaGdid1Y2TnEwMlJmUjRW?=
+ =?utf-8?B?cVNkTWg5NEpLZTJNaW9jY3pyZ2lOZDhZK0J4Qk9QK05pdUdocTFLYlJtd2tw?=
+ =?utf-8?B?TFlrTHhlc2NqTDlzSE9JMUJkWHNsUFJvRlBrekdKTDNYcko1czRhc1hsQy9v?=
+ =?utf-8?B?WHdDbEVKU0FaSk9iaUU5a1haQUU0a3Y4T01aMzNuUjA3QmRIcWtKUi96YXVB?=
+ =?utf-8?B?WHlIMGZIdXpqZVpOMk8zRm5neWh2aVI2YlVQQ1huQkduYzN3d1lQVlJEb1ov?=
+ =?utf-8?B?c0t3bkFSQlUrb3JSb1RmRTRQREFaK2FoQjJuZUhGZ1hyZU55eFU1V0ExbHFY?=
+ =?utf-8?B?R3diNWRyd0c4NXJlaXd1aWg1bEhmS21LK2Zta3FJb3NqRU03WVYvOHV2c1F0?=
+ =?utf-8?B?a3pFNU9yS25LSFJZRzY1eUJ2eE5sNFFUbjZ2czFPL0FkZUw1ZGFWeHBQOG03?=
+ =?utf-8?B?UXRFRVJtazB1Qk93R044RzBYTXlsZ255R2F2NTNNT0x5VGRZaHdoZllydjBW?=
+ =?utf-8?B?U2hlQWxvL2ozWThQOGk2U2Ziem10V2RicVdVZDh2SSszOWxjMElUbGVHKzQy?=
+ =?utf-8?B?UjdONmttUXJ6K2tIUjNWNURyYUF1UWc3aTc3bjlmRmZHRmtjcTdBamtHWXpm?=
+ =?utf-8?B?c3loSzVrQnpjYW4zcFZISVpSS3RLbS96eEhEWmExeFFaT1pORHd2NnJBak5R?=
+ =?utf-8?B?ak5xYVpPOUZnZWd6YVZBd2JlUGYvWHpEaDBKdzdka1hHRG9rVk5OZ0V6STJs?=
+ =?utf-8?B?b3NKODZXVU1maUJic1p4TEVnRlJpT3JkWEdVZ3FXQ3VVMDFpRXNxZnp5RSt1?=
+ =?utf-8?B?Zit4dnFOeFl6alVtckdmRU1SQm1HbkhjY1NUNEZRamlKTVE5TFdiUUg3ZDFr?=
+ =?utf-8?B?dWxUb3NZZ05id2dzQmJtdStuVXpKYzhDeFhJSmFNL0p5ckgxb3JhRFlVNVpt?=
+ =?utf-8?B?cHFrOUlVenIrZUMzMFJaLzRKemxVR3VFR1lIMytEWlVDS3E0YkpSdmRVdXdF?=
+ =?utf-8?B?MjVQM3B3YlRCWktqRW5PckNwRXpPRzk0T20reDJFSVBkY3VBM0d2Z2dqcWdP?=
+ =?utf-8?B?SlBvRWYzczVWMFYxc0dKcjhPU2k2THNzamdlNHpabUUwZ0g0U2NWOGowWmFP?=
+ =?utf-8?B?dlpIdmxmT01QVkxhWXhzTjJOVVg5bG5vK0FuNnNLSlpKN3ZSVmpMN2lpYmNw?=
+ =?utf-8?B?N3hUMmRROFdUNW5wc25uSkt3M2cvcDBGYi9NamZ3K1JwdkN6cEJ3UnQ3OVI0?=
+ =?utf-8?B?MlBYNTJOME93V1JER1NzTGpLWFFIb1dORTFZZ0VWMGZPSDkyRDc5Qzl0bXFB?=
+ =?utf-8?Q?3BsUaqUSrCPGMIN011k3hf2noJbLE3oXE40qUz2?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 13 May 2021 16:22:26 +0530
-From:   mkrishn@codeaurora.org
-To:     robh@kernel.org, robh+dt@kernel.org
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kalyan_t@codeaurora.org,
-        tanmay@codeaurora.org, abhinavk@codeaurora.org,
-        robdclark@gmail.com, swboyd@chromium.org,
-        bjorn.andersson@linaro.org, vinod.koul@linaro.org,
-        dianders@chromium.org, khsieh@codeaurora.org, sean@poorly.run
-Subject: Fwd: Re: [PATCH v15 2/4] dt-bindings: msm: dsi: add yaml schemas for
- DSI bindings
-In-Reply-To: <827048554933585f4cc42c94aa911e55@codeaurora.org>
-References: <1617620770-26202-1-git-send-email-mkrishn@codeaurora.org>
- <1617620770-26202-2-git-send-email-mkrishn@codeaurora.org>
- <20210408150300.GA1476562@robh.at.kernel.org>
- <827048554933585f4cc42c94aa911e55@codeaurora.org>
-Message-ID: <4326018bcc2efc812b3267c830570f04@codeaurora.org>
-X-Sender: mkrishn@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR02MB2623.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d0958621-50d7-422a-8e28-08d915fd8d55
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 May 2021 10:54:58.6901
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: oseNuOXzsve/9JPfW1L+1aNkeHQ9TGXHbCubrpbkOJUI2zOzweAL/fHtENgYr8t0qGEv8f+ePuZhA3ly7zFQiw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR02MB7697
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-04-08 20:33, Rob Herring wrote:
-> On Mon, Apr 05, 2021 at 04:36:08PM +0530, Krishna Manikandan wrote:
->> Add YAML schema for the device tree bindings for DSI
->> 
->> Signed-off-by: Krishna Manikandan <mkrishn@codeaurora.org>
->> 
->> Changes in v1:
->>     - Separate dsi controller bindings to a separate patch (Stephen 
->> Boyd)
->>     - Merge dsi-common-controller.yaml and dsi-controller-main.yaml to
->>       a single file (Stephen Boyd)
->>     - Drop supply entries and definitions from properties (Stephen 
->> Boyd)
->>     - Modify phy-names property for dsi controller (Stephen Boyd)
->>     - Remove boolean from description (Stephen Boyd)
->>     - Drop pinctrl properties as they are standard entries (Stephen 
->> Boyd)
->>     - Modify the description for ports property and keep the reference
->>       to the generic binding where this is defined (Stephen Boyd)
->>     - Add description to clock names (Stephen Boyd)
->>     - Correct the indendation (Stephen Boyd)
->>     - Drop the label for display dt nodes and correct the node
->>       name (Stephen Boyd)
->> 
->> Changes in v2:
->>     - Drop maxItems for clock (Stephen Boyd)
->>     - Drop qcom,mdss-mdp-transfer-time-us as it is not used in 
->> upstream
->>       dt file (Stephen Boyd)
->>     - Keep child node directly under soc node (Stephen Boyd)
->>     - Drop qcom,sync-dual-dsi as it is not used in upstream dt
->> 
->> Changes in v3:
->>     - Add description for register property (Stephen Boyd)
->> 
->> Changes in v4:
->>     - Add maxItems for phys property (Stephen Boyd)
->>     - Add maxItems for reg property (Stephen Boyd)
->>     - Add reference for data-lanes property (Stephen Boyd)
->>     - Remove soc from example (Stephen Boyd)
->> 
->> Changes in v5:
->>     - Modify title and description (Stephen Boyd)
->>     - Add required properties for ports node (Stephen Boyd)
->>     - Add data-lanes in the example (Stephen Boyd)
->>     - Drop qcom,master-dsi property (Stephen Boyd)
->> 
->> Changes in v6:
->>     - Add required properties for port@0, port@1 and corresponding
->>       endpoints (Stephen Boyd)
->>     - Add address-cells and size-cells for ports (Stephen Boyd)
->>     - Use additionalProperties instead of unevaluatedProperties 
->> (Stephen Boyd)
->> ---
->>  .../bindings/display/msm/dsi-controller-main.yaml  | 213 
->> ++++++++++++++++++
->>  .../devicetree/bindings/display/msm/dsi.txt        | 249 
->> ---------------------
->>  2 files changed, 213 insertions(+), 249 deletions(-)
->>  create mode 100644 
->> Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
->>  delete mode 100644 
->> Documentation/devicetree/bindings/display/msm/dsi.txt
->> 
->> diff --git 
->> a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml 
->> b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
->> new file mode 100644
->> index 0000000..7858524
->> --- /dev/null
->> +++ 
->> b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
->> @@ -0,0 +1,213 @@
->> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: 
->> http://devicetree.org/schemas/display/msm/dsi-controller-main.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Display DSI controller
->> +
->> +maintainers:
->> +  - Krishna Manikandan <mkrishn@codeaurora.org>
->> +
->> +allOf:
->> +  - $ref: "../dsi-controller.yaml#"
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - const: qcom,mdss-dsi-ctrl
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  reg-names:
->> +    const: dsi_ctrl
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    items:
->> +      - description: Display byte clock
->> +      - description: Display byte interface clock
->> +      - description: Display pixel clock
->> +      - description: Display escape clock
->> +      - description: Display AHB clock
->> +      - description: Display AXI clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: byte
->> +      - const: byte_intf
->> +      - const: pixel
->> +      - const: core
->> +      - const: iface
->> +      - const: bus
->> +
->> +  phys:
->> +    maxItems: 1
->> +
->> +  phy-names:
->> +    const: dsi
->> +
->> +  "#address-cells": true
->> +
->> +  "#size-cells": true
->> +
->> +  syscon-sfpb:
->> +    description: A phandle to mmss_sfpb syscon node (only for DSIv2).
->> +    $ref: "/schemas/types.yaml#/definitions/phandle"
->> +
->> +  qcom,dual-dsi-mode:
->> +    type: boolean
->> +    description: |
->> +      Indicates if the DSI controller is driving a panel which needs
->> +      2 DSI links.
->> +
->> +  ports:
-> 
-> Same issues in this one.
-> 
->> +    $ref: "/schemas/graph.yaml#/properties/port"
->> +    type: object
->> +    description: |
->> +      Contains DSI controller input and output ports as children, 
->> each
->> +      containing one endpoint subnode.
->> +
->> +    properties:
->> +      port@0:
->> +        type: object
->> +        description: |
->> +          Input endpoints of the controller.
->> +
->> +        properties:
->> +          reg:
->> +            const: 0
->> +
->> +          endpoint:
->> +            type: object
->> +            properties:
->> +              remote-endpoint:
-> 
-> Don't need to describe this, the common schema does.
-> 
->> +                description: |
->> +                  For port@1, set to phandle of the connected 
->> panel/bridge's
->> +                  input endpoint. For port@0, set to the MDP 
->> interface output.
->> +
->> +              data-lanes:
->> +                $ref: "/schemas/media/video-interfaces.yaml#"
-> 
-> Not how this reference works. Look at other examples.
-> 
->> +                description: |
->> +                  This describes how the physical DSI data lanes are 
->> mapped
->> +                  to the logical lanes on the given platform. The 
->> value contained in
->> +                  index n describes what physical lane is mapped to 
->> the logical lane n
->> +                  (DATAn, where n lies between 0 and 3). The clock 
->> lane position is fixed
->> +                  and can't be changed. Hence, they aren't a part of 
->> the DT bindings.
->> +
->> +                items:
->> +                  - const: 0
->> +                  - const: 1
->> +                  - const: 2
->> +                  - const: 3
-> 
-> If this is the only possible value, why does it need to be in DT?
-Hi Rob,
-These are the possible values:
--    <0 1 2 3>
--    <1 2 3 0>
--    <2 3 0 1>
--    <3 0 1 2>
--    <0 3 2 1>
--    <1 0 3 2>
--    <2 1 0 3>
--    <3 2 1 0>
-
-Shall I follow the below mentioned approach for defining these values ?
-oneOf:
-   - items:
-     - const: 0
-     - const: 1
-     - const: 2
-     - const: 3
-   - items:
-     - const: 1
-     - const: 2
-     - const: 3
-     - const: 0
-   - items:
-     - const: 2
-     - const: 3
-     - const: 0
-     - const: 1
-   - items:
-     - const: 3
-     - const: 0
-     - const: 1
-     - const: 2
-   - items:
-     - const: 0
-     - const: 3
-     - const: 2
-     - const: 1
-   - items:
-     - const: 1
-     - const: 0
-     - const: 3
-     - const: 2
-   - items:
-     - const: 2
-     - const: 1
-     - const: 0
-     - const: 3
-   - items:
-     - const: 3
-     - const: 2
-     - const: 1
-     - const: 0
-
-Thanks,
-Krishna
-> 
->> +
->> +            required:
->> +              - remote-endpoint
->> +
->> +        required:
->> +          - reg
->> +          - endpoint
->> +
->> +      port@1:
->> +        type: object
->> +        description: |
->> +          Output endpoints of the controller.
->> +        properties:
->> +          reg:
->> +            const: 1
->> +
->> +          endpoint:
->> +            type: object
->> +            properties:
->> +              remote-endpoint: true
->> +              data-lanes:
->> +                items:
->> +                  - const: 0
->> +                  - const: 1
->> +                  - const: 2
->> +                  - const: 3
->> +
->> +            required:
->> +              - remote-endpoint
->> +              - data-lanes
->> +
->> +        required:
->> +          - reg
->> +          - endpoint
->> +
->> +    required:
->> +      - port@0
->> +      - port@1
->> +      - "#address-cells"
->> +      - "#size-cells"
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - reg-names
->> +  - interrupts
->> +  - clocks
->> +  - clock-names
->> +  - phys
->> +  - phy-names
->> +  - ports
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +     #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +     #include <dt-bindings/clock/qcom,dispcc-sdm845.h>
->> +     #include <dt-bindings/clock/qcom,gcc-sdm845.h>
->> +
->> +     dsi@ae94000 {
->> +           compatible = "qcom,mdss-dsi-ctrl";
->> +           reg = <0x0ae94000 0x400>;
->> +           reg-names = "dsi_ctrl";
->> +
->> +           #address-cells = <1>;
->> +           #size-cells = <0>;
->> +
->> +           interrupt-parent = <&mdss>;
->> +           interrupts = <4>;
->> +
->> +           clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK>,
->> +                    <&dispcc DISP_CC_MDSS_BYTE0_INTF_CLK>,
->> +                    <&dispcc DISP_CC_MDSS_PCLK0_CLK>,
->> +                    <&dispcc DISP_CC_MDSS_ESC0_CLK>,
->> +                    <&dispcc DISP_CC_MDSS_AHB_CLK>,
->> +                    <&dispcc DISP_CC_MDSS_AXI_CLK>;
->> +           clock-names = "byte",
->> +                         "byte_intf",
->> +                         "pixel",
->> +                         "core",
->> +                         "iface",
->> +                         "bus";
->> +
->> +           phys = <&dsi0_phy>;
->> +           phy-names = "dsi";
->> +
->> +           ports {
->> +                  #address-cells = <1>;
->> +                  #size-cells = <0>;
->> +
->> +                  port@0 {
->> +                          reg = <0>;
->> +                          dsi0_in: endpoint {
->> +                                   remote-endpoint = 
->> <&dpu_intf1_out>;
->> +                          };
->> +                  };
->> +
->> +                  port@1 {
->> +                          reg = <1>;
->> +                          dsi0_out: endpoint {
->> +                                   remote-endpoint = <&sn65dsi86_in>;
->> +                                   data-lanes = <0 1 2 3>;
->> +                          };
->> +                  };
->> +           };
->> +     };
->> +...
->> diff --git a/Documentation/devicetree/bindings/display/msm/dsi.txt 
->> b/Documentation/devicetree/bindings/display/msm/dsi.txt
->> deleted file mode 100644
->> index b9a64d3..0000000
->> --- a/Documentation/devicetree/bindings/display/msm/dsi.txt
->> +++ /dev/null
->> @@ -1,249 +0,0 @@
->> -Qualcomm Technologies Inc. adreno/snapdragon DSI output
->> -
->> -DSI Controller:
->> -Required properties:
->> -- compatible:
->> -  * "qcom,mdss-dsi-ctrl"
->> -- reg: Physical base address and length of the registers of 
->> controller
->> -- reg-names: The names of register regions. The following regions are 
->> required:
->> -  * "dsi_ctrl"
->> -- interrupts: The interrupt signal from the DSI block.
->> -- power-domains: Should be <&mmcc MDSS_GDSC>.
->> -- clocks: Phandles to device clocks.
->> -- clock-names: the following clocks are required:
->> -  * "mdp_core"
->> -  * "iface"
->> -  * "bus"
->> -  * "core_mmss"
->> -  * "byte"
->> -  * "pixel"
->> -  * "core"
->> -  For DSIv2, we need an additional clock:
->> -   * "src"
->> -  For DSI6G v2.0 onwards, we need also need the clock:
->> -   * "byte_intf"
->> -- assigned-clocks: Parents of "byte" and "pixel" for the given 
->> platform.
->> -- assigned-clock-parents: The Byte clock and Pixel clock PLL outputs 
->> provided
->> -  by a DSI PHY block. See [1] for details on clock bindings.
->> -- vdd-supply: phandle to vdd regulator device node
->> -- vddio-supply: phandle to vdd-io regulator device node
->> -- vdda-supply: phandle to vdda regulator device node
->> -- phys: phandle to DSI PHY device node
->> -- phy-names: the name of the corresponding PHY device
->> -- syscon-sfpb: A phandle to mmss_sfpb syscon node (only for DSIv2)
->> -- ports: Contains 2 DSI controller ports as child nodes. Each port 
->> contains
->> -  an endpoint subnode as defined in [2] and [3].
->> -
->> -Optional properties:
->> -- panel@0: Node of panel connected to this DSI controller.
->> -  See files in [4] for each supported panel.
->> -- qcom,dual-dsi-mode: Boolean value indicating if the DSI controller 
->> is
->> -  driving a panel which needs 2 DSI links.
->> -- qcom,master-dsi: Boolean value indicating if the DSI controller is 
->> driving
->> -  the master link of the 2-DSI panel.
->> -- qcom,sync-dual-dsi: Boolean value indicating if the DSI controller 
->> is
->> -  driving a 2-DSI panel whose 2 links need receive command 
->> simultaneously.
->> -- pinctrl-names: the pin control state names; should contain 
->> "default"
->> -- pinctrl-0: the default pinctrl state (active)
->> -- pinctrl-n: the "sleep" pinctrl state
->> -- ports: contains DSI controller input and output ports as children, 
->> each
->> -  containing one endpoint subnode.
->> -
->> -  DSI Endpoint properties:
->> -  - remote-endpoint: For port@0, set to phandle of the connected 
->> panel/bridge's
->> -    input endpoint. For port@1, set to the MDP interface output. See 
->> [2] for
->> -    device graph info.
->> -
->> -  - data-lanes: this describes how the physical DSI data lanes are 
->> mapped
->> -    to the logical lanes on the given platform. The value contained 
->> in
->> -    index n describes what physical lane is mapped to the logical 
->> lane n
->> -    (DATAn, where n lies between 0 and 3). The clock lane position is 
->> fixed
->> -    and can't be changed. Hence, they aren't a part of the DT 
->> bindings. See
->> -    [3] for more info on the data-lanes property.
->> -
->> -    For example:
->> -
->> -    data-lanes = <3 0 1 2>;
->> -
->> -    The above mapping describes that the logical data lane DATA0 is 
->> mapped to
->> -    the physical data lane DATA3, logical DATA1 to physical DATA0, 
->> logic DATA2
->> -    to phys DATA1 and logic DATA3 to phys DATA2.
->> -
->> -    There are only a limited number of physical to logical mappings 
->> possible:
->> -    <0 1 2 3>
->> -    <1 2 3 0>
->> -    <2 3 0 1>
->> -    <3 0 1 2>
->> -    <0 3 2 1>
->> -    <1 0 3 2>
->> -    <2 1 0 3>
->> -    <3 2 1 0>
-> 
-> You've dropped all these?
+SGkgUm9iLA0KDQoJUGxlYXNlIGZpbmQgbXkgcmVzcG9uc2UgaW5saW5lLg0KDQo+IC0tLS0tT3Jp
+Z2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IFJvYiBIZXJyaW5nIDxyb2JoQGtlcm5lbC5vcmc+
+DQo+IFNlbnQ6IFRodXJzZGF5LCBNYXkgMTMsIDIwMjEgODowMSBBTQ0KPiBUbzogTmF2YSBraXNo
+b3JlIE1hbm5lIDxuYXZhbUB4aWxpbnguY29tPg0KPiBDYzogbWRmQGtlcm5lbC5vcmc7IHRyaXhA
+cmVkaGF0LmNvbTsgTWljaGFsIFNpbWVrIDxtaWNoYWxzQHhpbGlueC5jb20+Ow0KPiBhcm5kQGFy
+bmRiLmRlOyBSYWphbiBWYWphIDxSQUpBTlZAeGlsaW54LmNvbT47DQo+IGdyZWdraEBsaW51eGZv
+dW5kYXRpb24ub3JnOyBsaW51cy53YWxsZWlqQGxpbmFyby5vcmc7IEFtaXQgU3VuaWwgRGhhbW5l
+DQo+IDxhbWl0c3VuaUB4bG54LnhpbGlueC5jb20+OyBUZWphcyBQYXRlbCA8dGVqYXNwQHhsbngu
+eGlsaW54LmNvbT47DQo+IHpvdV93ZWlAaHVhd2VpLmNvbTsgTWFuaXNoIE5hcmFuaSA8TU5BUkFO
+SUB4aWxpbnguY29tPjsgU2FpIEtyaXNobmENCj4gUG90dGh1cmkgPGxha3NobWlzQHhpbGlueC5j
+b20+OyBKaWF5aW5nIExpYW5nIDxqbGlhbmdAeGlsaW54LmNvbT47IGxpbnV4LQ0KPiBmcGdhQHZn
+ZXIua2VybmVsLm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LQ0KPiBrZXJu
+ZWxAdmdlci5rZXJuZWwub3JnOyBsaW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc7
+IGdpdA0KPiA8Z2l0QHhpbGlueC5jb20+OyBjaGlubmlraXNob3JlMzY5QGdtYWlsLmNvbQ0KPiBT
+dWJqZWN0OiBSZTogW1JGQyBQQVRDSCAyLzRdIGZwZ2E6IEFkZCBuZXcgcHJvcGVydGllcyB0byBz
+dXBwb3J0IHVzZXIta2V5DQo+IGVuY3J5cHRlZCBiaXRzdHJlYW0gbG9hZGluZw0KPiANCj4gT24g
+VHVlLCBNYXkgMDQsIDIwMjEgYXQgMDM6NTI6MjVQTSArMDUzMCwgTmF2YSBraXNob3JlIE1hbm5l
+IHdyb3RlOg0KPiA+IFRoaXMgcGF0Y2ggQWRkcyDigJhlbmNyeXB0ZWQta2V5LW5hbWXigJkgYW5k
+DQo+ID4g4oCYZW5jcnlwdGVkLXVzZXIta2V5LWZwZ2EtY29uZmln4oCZIHByb3BlcnRpZXMgdG8g
+c3VwcG9ydCB1c2VyLWtleQ0KPiA+IGVuY3J5cHRlZCBiaXRzdHJlYW0gbG9hZGluZyB1c2UgY2Fz
+ZS4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IE5hdmEga2lzaG9yZSBNYW5uZSA8bmF2YS5tYW5u
+ZUB4aWxpbnguY29tPg0KPiA+IC0tLQ0KPiA+ICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvZnBnYS9mcGdhLXJlZ2lvbi50eHQgfCA1ICsrKysrDQo+ID4gIDEgZmlsZSBjaGFuZ2Vk
+LCA1IGluc2VydGlvbnMoKykNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2Rl
+dmljZXRyZWUvYmluZGluZ3MvZnBnYS9mcGdhLXJlZ2lvbi50eHQNCj4gPiBiL0RvY3VtZW50YXRp
+b24vZGV2aWNldHJlZS9iaW5kaW5ncy9mcGdhL2ZwZ2EtcmVnaW9uLnR4dA0KPiA+IGluZGV4IGQ3
+ODdkNTc0OTFhMS4uOTU3ZGM2Y2JjZDllIDEwMDY0NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9mcGdhL2ZwZ2EtcmVnaW9uLnR4dA0KPiA+ICsrKyBiL0RvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9mcGdhL2ZwZ2EtcmVnaW9uLnR4dA0KPiA+IEBA
+IC0xNzcsNiArMTc3LDkgQEAgT3B0aW9uYWwgcHJvcGVydGllczoNCj4gPiAgCWl0IGluZGljYXRl
+cyB0aGF0IHRoZSBGUEdBIGhhcyBhbHJlYWR5IGJlZW4gcHJvZ3JhbW1lZCB3aXRoIHRoaXMNCj4g
+aW1hZ2UuDQo+ID4gIAlJZiB0aGlzIHByb3BlcnR5IGlzIGluIGFuIG92ZXJsYXkgdGFyZ2V0aW5n
+IGEgRlBHQSByZWdpb24sIGl0IGlzIGENCj4gPiAgCXJlcXVlc3QgdG8gcHJvZ3JhbSB0aGUgRlBH
+QSB3aXRoIHRoYXQgaW1hZ2UuDQo+ID4gKy0gZW5jcnlwdGVkLWtleS1uYW1lIDogc2hvdWxkIGNv
+bnRhaW4gdGhlIG5hbWUgb2YgYW4gZW5jcnlwdGVkIGtleSBmaWxlDQo+IGxvY2F0ZWQNCj4gPiAr
+CW9uIHRoZSBmaXJtd2FyZSBzZWFyY2ggcGF0aC4gSXQgd2lsbCBiZSB1c2VkIHRvIGRlY3J5cHQg
+dGhlIEZQR0ENCj4gaW1hZ2UNCj4gPiArCWZpbGUuDQo+ID4gIC0gZnBnYS1icmlkZ2VzIDogc2hv
+dWxkIGNvbnRhaW4gYSBsaXN0IG9mIHBoYW5kbGVzIHRvIEZQR0EgQnJpZGdlcyB0aGF0IG11c3QN
+Cj4gYmUNCj4gPiAgCWNvbnRyb2xsZWQgZHVyaW5nIEZQR0EgcHJvZ3JhbW1pbmcgYWxvbmcgd2l0
+aCB0aGUgcGFyZW50IEZQR0ENCj4gYnJpZGdlLg0KPiA+ICAJVGhpcyBwcm9wZXJ0eSBpcyBvcHRp
+b25hbCBpZiB0aGUgRlBHQSBNYW5hZ2VyIGhhbmRsZXMgdGhlIGJyaWRnZXMuDQo+ID4gQEAgLTE4
+Nyw2ICsxOTAsOCBAQCBPcHRpb25hbCBwcm9wZXJ0aWVzOg0KPiA+ICAtIGV4dGVybmFsLWZwZ2Et
+Y29uZmlnIDogYm9vbGVhbiwgc2V0IGlmIHRoZSBGUEdBIGhhcyBhbHJlYWR5IGJlZW4NCj4gY29u
+ZmlndXJlZA0KPiA+ICAJcHJpb3IgdG8gT1MgYm9vdCB1cC4NCj4gPiAgLSBlbmNyeXB0ZWQtZnBn
+YS1jb25maWcgOiBib29sZWFuLCBzZXQgaWYgdGhlIGJpdHN0cmVhbSBpcyBlbmNyeXB0ZWQNCj4g
+PiArLSBlbmNyeXB0ZWQtdXNlci1rZXktZnBnYS1jb25maWcgOiBib29sZWFuLCBzZXQgaWYgdGhl
+IGJpdHN0cmVhbSBpcw0KPiBlbmNyeXB0ZWQNCj4gPiArCXdpdGggdXNlciBrZXkuDQo+IA0KPiBX
+aGF0J3MgdGhlIHJlbGF0aW9uc2hpcCB3aXRoIGVuY3J5cHRlZC1mcGdhLWNvbmZpZz8gQm90aCBw
+cmVzZW50IG9yDQo+IG11dHVhbGx5IGV4Y2x1c2l2ZT8gQ291bGRuJ3QgdGhpcyBiZSBpbXBsaWVk
+IGJ5IGVuY3J5cHRlZC1rZXktbmFtZSBiZWluZw0KPiBwcmVzZW50Pw0KPiANCg0KSW4gRW5jcnlw
+dGlvbiB3ZSBoYXZlIHR3byBraW5kcyBvZiB1c2UgY2FzZSBvbmUgaXMgRW5jcnlwdGVkIEJpdHN0
+cmVhbSBsb2FkaW5nIHdpdGggRGV2aWNlLWtleSBhbmQNCk90aGVyIG9uZSBpcyBFbmNyeXB0ZWQg
+Qml0c3RyZWFtIGxvYWRpbmcgd2l0aCBVc2VyLWtleS4gZW5jcnlwdGVkLWZwZ2EtY29uZmlnIGFu
+ZCBlbmNyeXB0ZWQtdXNlci1rZXktZnBnYS1jb25maWcgDQphcmUgbXV0dWFsbHkgZXhjbHVzaXZl
+LiBUbyBkaWZmZXJlbnRpYXRlIGJvdGggdGhlIHVzZSBjYXNlcyBJIGhhdmUgYWRkZWQgdGhpcyBu
+ZXcgZmxhZyBhbmQgQWVzIEtleSBmaWxlKGVuY3J5cHRlZC1rZXktbmFtZSkNCmlzIG5lZWRlZCBv
+bmx5IGZvciBlbmNyeXB0ZWQtdXNlci1rZXktZnBnYS1jb25maWcgdXNlIGNhc2VzLg0KDQpSZWdh
+cmRzLA0KTmF2YWtpc2hvcmUuDQo=
