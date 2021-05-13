@@ -2,105 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C11C137F157
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 04:31:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B9B537F173
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 04:53:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230267AbhEMCcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 22:32:16 -0400
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:33503 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229630AbhEMCcP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 22:32:15 -0400
-Received: by mail-oi1-f169.google.com with SMTP id b25so18861096oic.0;
-        Wed, 12 May 2021 19:31:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=T4+xGNATKcG7KI85jTdzNk3Jk4cn9OQmVyTgwdUELT4=;
-        b=MVc6Tu5L+gWRMzWWxvWFKg+uHCZUqixWE9BY/2qe7cIq2ol18hN3np/Mf6hpC3OWHG
-         TY7mg+NIMBIOpYHIMKUj5oaqfsEzQtwVQs+/Y4fabhTG+4I0QqPjCH1dQvjn3pTDu1ZE
-         rEEOPrFoq8U9Z8Ra/IGIijHmeYxCzhRVHkISunHAOERWbK5DOXWj0iCzT8DQt8qEMIXt
-         UbVM5+LLSK8WhBqCMiMjKkHhcBmrysSejO2l5ErDszJmP2bAFYUeIbN8YSJ49tyzCl3c
-         RE9vufyRYQSouVYUH61AIKx6NhIaiM07Bkg7Q8/lVTpdpTM1N86ok+YiLkd+FgqTF336
-         PMrg==
-X-Gm-Message-State: AOAM5331O7GO5Na73Nxj3ixSCwk5/eG2lOXrA8X39FQFlJ1oSNGjFvI4
-        FpD99wiXStVmy/Lp774eKw==
-X-Google-Smtp-Source: ABdhPJxIya1KtJJCP0zHTCZ9HTvBQXnDwZACRLxhvG7Fef9QzsKVQJg2i1alUZulkd/o1lRaiwrfXQ==
-X-Received: by 2002:a54:4396:: with SMTP id u22mr1237417oiv.118.1620873066476;
-        Wed, 12 May 2021 19:31:06 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e6sm360792otk.64.2021.05.12.19.31.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 May 2021 19:31:05 -0700 (PDT)
-Received: (nullmailer pid 912364 invoked by uid 1000);
-        Thu, 13 May 2021 02:31:04 -0000
-Date:   Wed, 12 May 2021 21:31:04 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Nava kishore Manne <nava.manne@xilinx.com>
-Cc:     mdf@kernel.org, trix@redhat.com, michal.simek@xilinx.com,
-        arnd@arndb.de, rajan.vaja@xilinx.com, gregkh@linuxfoundation.org,
-        linus.walleij@linaro.org, amit.sunil.dhamne@xilinx.com,
-        tejas.patel@xilinx.com, zou_wei@huawei.com,
-        manish.narani@xilinx.com, lakshmi.sai.krishna.potthuri@xilinx.com,
-        wendy.liang@xilinx.com, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, git@xilinx.com,
-        chinnikishore369@gmail.com
-Subject: Re: [RFC PATCH 2/4] fpga: Add new properties to support user-key
- encrypted bitstream loading
-Message-ID: <20210513023104.GA909876@robh.at.kernel.org>
-References: <20210504102227.15475-1-nava.manne@xilinx.com>
- <20210504102227.15475-3-nava.manne@xilinx.com>
+        id S230149AbhEMCy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 22:54:59 -0400
+Received: from eu-shark2.inbox.eu ([195.216.236.82]:59404 "EHLO
+        eu-shark2.inbox.eu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229745AbhEMCy6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 22:54:58 -0400
+Received: from eu-shark2.inbox.eu (localhost [127.0.0.1])
+        by eu-shark2-out.inbox.eu (Postfix) with ESMTP id E56C21E00735;
+        Thu, 13 May 2021 05:53:48 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mail.ee; s=20150108;
+        t=1620874428; bh=hf7fll+wR710tvsEbGpPR6mYFJy2OFrCdxVYUwh6qKc=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=XLtSmJJW9daLWkBNJkCEg/rZ9UB6tAXEbwlVQs3edyVtp+GBWiLn7tH7qnIu6OT/w
+         Ze+d73YpReZavcyEB02+HoIcYWmeq+Z1RGRmpmQDe9ufOx25mnx4BFlSujz9mfS30q
+         KmRPqXt///5Q2k1hhfsVGypoUM6KnyuifasPBmo4=
+Received: from localhost (localhost [127.0.0.1])
+        by eu-shark2-in.inbox.eu (Postfix) with ESMTP id DBA6E1E00712;
+        Thu, 13 May 2021 05:53:48 +0300 (EEST)
+Received: from eu-shark2.inbox.eu ([127.0.0.1])
+        by localhost (eu-shark2.inbox.eu [127.0.0.1]) (spamfilter, port 35)
+        with ESMTP id eLQBTY2BkmTH; Thu, 13 May 2021 05:53:48 +0300 (EEST)
+Received: from mail.inbox.eu (eu-pop1 [127.0.0.1])
+        by eu-shark2-in.inbox.eu (Postfix) with ESMTP id 9F7321E0072C;
+        Thu, 13 May 2021 05:53:48 +0300 (EEST)
+Received: from localhost.localdomain (unknown [134.19.185.34])
+        (Authenticated sender: arzamas-16@mail.ee)
+        by mail.inbox.eu (Postfix) with ESMTPA id C28191BE011B;
+        Thu, 13 May 2021 04:35:21 +0300 (EEST)
+From:   Boris Lysov <arzamas-16@mail.ee>
+To:     matthias.bgg@gmail.com, linux@roeck-us.net, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org
+Subject: [PATCH v3 3/3] watchdog: mtk_wdt: add support for mt6577
+Date:   Thu, 13 May 2021 04:35:15 +0300
+Message-Id: <20210513013515.31329-4-arzamas-16@mail.ee>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210513013515.31329-1-arzamas-16@mail.ee>
+References: <20210513013515.31329-1-arzamas-16@mail.ee>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210504102227.15475-3-nava.manne@xilinx.com>
+X-Virus-Scanned: OK
+X-ESPOL: 885mlYlKBD+tlF+pRmXdARpV2ydIWeTj+e++1BlagBmJPCuYDTYAEE/3gR8FQALEog==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 04, 2021 at 03:52:25PM +0530, Nava kishore Manne wrote:
-> This patch Adds ‘encrypted-key-name’ and
-> ‘encrypted-user-key-fpga-config’ properties
-> to support user-key encrypted bitstream loading
-> use case.
-> 
-> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
-> ---
->  Documentation/devicetree/bindings/fpga/fpga-region.txt | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/fpga/fpga-region.txt b/Documentation/devicetree/bindings/fpga/fpga-region.txt
-> index d787d57491a1..957dc6cbcd9e 100644
-> --- a/Documentation/devicetree/bindings/fpga/fpga-region.txt
-> +++ b/Documentation/devicetree/bindings/fpga/fpga-region.txt
-> @@ -177,6 +177,9 @@ Optional properties:
->  	it indicates that the FPGA has already been programmed with this image.
->  	If this property is in an overlay targeting a FPGA region, it is a
->  	request to program the FPGA with that image.
-> +- encrypted-key-name : should contain the name of an encrypted key file located
-> +	on the firmware search path. It will be used to decrypt the FPGA image
-> +	file.
->  - fpga-bridges : should contain a list of phandles to FPGA Bridges that must be
->  	controlled during FPGA programming along with the parent FPGA bridge.
->  	This property is optional if the FPGA Manager handles the bridges.
-> @@ -187,6 +190,8 @@ Optional properties:
->  - external-fpga-config : boolean, set if the FPGA has already been configured
->  	prior to OS boot up.
->  - encrypted-fpga-config : boolean, set if the bitstream is encrypted
-> +- encrypted-user-key-fpga-config : boolean, set if the bitstream is encrypted
-> +	with user key.
+This patch adds support for watchdog used by mt6577 and related SoCs such
+as mt6575 and mt8317. These watchdogs are known for having shifted WDT_MODE
+and SWSYSRST registers and using different SWSYSRST_KEY value.
 
-What's the relationship with encrypted-fpga-config? Both present or 
-mutually exclusive? Couldn't this be implied by encrypted-key-name being 
-present?
+Signed-off-by: Boris Lysov <arzamas-16@mail.ee>
+---
+ drivers/watchdog/mtk_wdt.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
->  - region-unfreeze-timeout-us : The maximum time in microseconds to wait for
->  	bridges to successfully become enabled after the region has been
->  	programmed.
-> -- 
-> 2.17.1
-> 
+diff --git a/drivers/watchdog/mtk_wdt.c b/drivers/watchdog/mtk_wdt.c
+index 0878fa33dffe..91d498b5d212 100644
+--- a/drivers/watchdog/mtk_wdt.c
++++ b/drivers/watchdog/mtk_wdt.c
+@@ -54,6 +54,10 @@
+ #define MT2712_SWSYSRST_KEY_SHIFT	24		// unlock_key [31:24]
+ #define MT2712_SWSYSRST_KEY		0x88
+ 
++#define MT6577_WDT_MODE_KEY_SHIFT	8		// unlock_key [15:8]
++#define MT6577_SWSYSRST_KEY_SHIFT	8		// unlock_key [15:8]
++#define MT6577_SWSYSRST_KEY		0x15
++
+ #define MT6589_WDT_MODE_KEY_SHIFT	24		// unlock_key [31:24]
+ #define MT6589_SWSYSRST_KEY_SHIFT	24		// unlock_key [31:24]
+ #define MT6589_SWSYSRST_KEY		0x88
+@@ -94,6 +98,13 @@ static const struct mtk_wdt_data mt2712_data = {
+ 	.wdt_swsys_rst_key =		MT2712_SWSYSRST_KEY,
+ };
+ 
++static const struct mtk_wdt_data mt6577_data = {
++	.toprgu_sw_rst_num =		-1,
++	.wdt_mode_key_shift =		MT6577_WDT_MODE_KEY_SHIFT,
++	.wdt_swsys_rst_key_shift =	MT6577_SWSYSRST_KEY_SHIFT,
++	.wdt_swsys_rst_key =		MT6577_SWSYSRST_KEY,
++};
++
+ static const struct mtk_wdt_data mt6589_data = {
+ 	.toprgu_sw_rst_num =		-1,
+ 	.wdt_mode_key_shift =		MT6589_WDT_MODE_KEY_SHIFT,
+@@ -376,6 +387,7 @@ static int mtk_wdt_resume(struct device *dev)
+ 
+ static const struct of_device_id mtk_wdt_dt_ids[] = {
+ 	{ .compatible = "mediatek,mt2712-wdt", .data = &mt2712_data },
++	{ .compatible = "mediatek,mt6577-wdt", .data = &mt6577_data },
+ 	{ .compatible = "mediatek,mt6589-wdt", .data = &mt6589_data },
+ 	{ .compatible = "mediatek,mt8183-wdt", .data = &mt8183_data },
+ 	{ .compatible = "mediatek,mt8192-wdt", .data = &mt8192_data },
+-- 
+2.20.1
+
