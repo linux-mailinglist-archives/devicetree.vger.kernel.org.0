@@ -2,89 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 971C737FB56
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 18:17:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD95C37FC30
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 19:14:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235077AbhEMQTA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 12:19:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56674 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229521AbhEMQTA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 May 2021 12:19:00 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 89FA26108D;
-        Thu, 13 May 2021 16:17:47 +0000 (UTC)
-Date:   Thu, 13 May 2021 17:18:55 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Yang <decatf@gmail.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?B?TWlj?= =?UTF-8?B?aGHFgiBNaXJvc8WCYXc=?= 
-        <mirq-linux@rere.qmqm.pl>,
-        Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Hans de Goede <hdegoede@redhat.com>
-Subject: Re: [PATCH v2 0/3] iio: accel: kxcjk-1013: Add support for
- KX023-1025
-Message-ID: <20210513171855.4bbeca6b@jic23-huawei>
-In-Reply-To: <20210511142402.4457-1-stephan@gerhold.net>
-References: <20210511142402.4457-1-stephan@gerhold.net>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S230154AbhEMRP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 13:15:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52028 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229877AbhEMRP3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 13:15:29 -0400
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06D75C061574
+        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 10:14:19 -0700 (PDT)
+Received: by mail-pg1-x529.google.com with SMTP id y32so22054817pga.11
+        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 10:14:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=kSs+1tBj3VUYIMuFlEEx58LmywfW1aed7E8E2k9YJrU=;
+        b=Qb4KCDH67UjllIopYlb1nqkuOcpV8gfLoK/X/8+ToEConK64B5kY9kueyUreIOSwn8
+         TZqzo+n/lUBLNtRO/LsEjSPUhLS9YVa+eZqf0EdSv4nhHBWsysq5QR+C4c+Eh0Fy5Ywi
+         QgD92NU5Rzg7PabDrwSovVVYENDtF3/w2zmj8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=kSs+1tBj3VUYIMuFlEEx58LmywfW1aed7E8E2k9YJrU=;
+        b=md2ipXZh8AJGJ/bSPhvUKbRLWMdM/i5oqpxF7pkD9PVP54hB+GKUmhjO2Bpt6zBw6s
+         cTgUJT8xImGvccdwjj5FFzpV+HWCkQSSSu/LjIbJVFm4zcB7r+xy20Prq3uDuIgMgV/W
+         YIHxICe7j7xweRe9slHehz3rIC9xxv3kf0JxtkqkKJKSmC7wzv0agCBoT1s6f0yGDf/6
+         qzF+sAUbK+FP9X5WKLPS5/katviux3rCEvIvsu7lBf0TFRzUG/Eji838KeF5XBMkbcP8
+         7y/niLeFphKNsvtx1C2R+7ZnhrA4n37KwwQkoUcXoiPfBS/06gkUf0RecO+4GzV4y8Jq
+         tR8g==
+X-Gm-Message-State: AOAM531q4nbh19ERKN7NSs3kcjvRrJrjHE1IxLbPCXEmus7oyBqq9evp
+        1sLE0Mr55WpOew46H1qhkxzy3g==
+X-Google-Smtp-Source: ABdhPJxlZ9XLksNeF3rW1kBEnzOLBwWdzU5gFedyz4E7+6DbgjIgL+4tmb8BSdVm/frRfGe97vMuKQ==
+X-Received: by 2002:a63:fb05:: with SMTP id o5mr41545190pgh.316.1620926058610;
+        Thu, 13 May 2021 10:14:18 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:4c2:8d34:961f:de80])
+        by smtp.gmail.com with UTF8SMTPSA id t192sm2355328pfc.56.2021.05.13.10.14.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 May 2021 10:14:17 -0700 (PDT)
+Date:   Thu, 13 May 2021 10:14:16 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     bjorn.andersson@linaro.org, dianders@chromium.org,
+        viresh.kumar@linaro.org, sboyd@kernel.org, agross@kernel.org,
+        robh+dt@kernel.org, rjw@rjwysocki.net,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: sc7280: Add cpu OPP tables
+Message-ID: <YJ1eaECY6VDN94dr@google.com>
+References: <1620807083-5451-1-git-send-email-sibis@codeaurora.org>
+ <1620807083-5451-3-git-send-email-sibis@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1620807083-5451-3-git-send-email-sibis@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 May 2021 16:23:59 +0200
-Stephan Gerhold <stephan@gerhold.net> wrote:
-
-> KX023-1025 [1] is another accelerometer from Kionix that has lots
-> of additional functionality compared to KXCJK-1013. It combines the
-> motion interrupt functionality from KXCJK with the tap detection
-> from KXTF9, plus a lot more other functionality.
+On Wed, May 12, 2021 at 01:41:23PM +0530, Sibi Sankar wrote:
+> Add OPP tables required to scale DDR/L3 per freq-domain on SC7280 SoCs.
 > 
-> This patch set does not add support for any of the extra functionality,
-> but makes basic functionality work with the existing kxcjk-1013 driver.
-> 
-> At first, the register map for the KX023-1025 seems quite different
-> from the other accelerometers supported by the kxcjk-1013.
-> However, it turns out that at least most of the register bits
-> still mean the same for KX023-1025.
-> 
-> This patch set refactors the kxcjk-1013 driver a little bit
-> to get the register addresses from a chip-specific struct.
-> The register bits can be re-used for all the different chips.
-> 
-> The KX023-1025 is used in several smartphones from Huawei.
-> I tested these changes on a Huawei Ascend G7, someone else reported
-> they also work fine on the Huawei Honor 5X (codename "kiwi").
-> 
-> [1]: https://kionixfs.azureedge.net/en/datasheet/KX023-1025%20Specifications%20Rev%2012.0.pdf
-
-Series applied to the togreg branch of iio.git and pushed out as testing
-for the bots to see if they can find anything we missed.
-
-Thanks,
-
-Jonathan
-
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
 > ---
-> Changes in v2:
->   - Make register structs static (reported by kernel test robot)
 > 
-> Stephan Gerhold (3):
->   dt-bindings: iio: kionix,kxcjk1013: Document kionix,kx023-1025
->   iio: accel: kxcjk-1013: Refactor configuration registers into struct
->   iio: accel: kxcjk-1013: Add support for KX023-1025
+> V3:
+>  * Rename cpu opp table nodes [Matthias]
+>  * Rename opp phandles [Doug]
 > 
->  .../bindings/iio/accel/kionix,kxcjk1013.yaml  |   1 +
->  drivers/iio/accel/kxcjk-1013.c                | 217 ++++++++++++++----
->  2 files changed, 176 insertions(+), 42 deletions(-)
+> Depends on the following patch series:
+> L3 Provider Support: https://lore.kernel.org/lkml/1618556290-28303-1-git-send-email-okukatla@codeaurora.org/
+> CPUfreq Support: https://lore.kernel.org/lkml/1618020280-5470-2-git-send-email-tdas@codeaurora.org/
+> RPMH Provider Support: https://lore.kernel.org/lkml/1619517059-12109-1-git-send-email-okukatla@codeaurora.org/
 > 
+> It also depends on L3 and cpufreq dt nodes from the ^^ series to not have
+> overlapping memory regions.
+> 
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 215 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 215 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 0bb835aeae33..89ec11eb7fc0 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -7,6 +7,7 @@
+>  
+>  #include <dt-bindings/clock/qcom,gcc-sc7280.h>
+>  #include <dt-bindings/clock/qcom,rpmh.h>
+> +#include <dt-bindings/interconnect/qcom,osm-l3.h>
+>  #include <dt-bindings/interconnect/qcom,sc7280.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/mailbox/qcom-ipcc.h>
+> @@ -71,6 +72,9 @@
+>  					   &LITTLE_CPU_SLEEP_1
+>  					   &CLUSTER_SLEEP_0>;
+>  			next-level-cache = <&L2_0>;
+> +			operating-points-v2 = <&cpu0_opp_table>;
+> +			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+> +					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
+>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			L2_0: l2-cache {
+>  				compatible = "cache";
+> @@ -90,6 +94,9 @@
+>  					   &LITTLE_CPU_SLEEP_1
+>  					   &CLUSTER_SLEEP_0>;
+>  			next-level-cache = <&L2_100>;
+> +			operating-points-v2 = <&cpu0_opp_table>;
+> +			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+> +					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
+>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			L2_100: l2-cache {
+>  				compatible = "cache";
+> @@ -106,6 +113,9 @@
+>  					   &LITTLE_CPU_SLEEP_1
+>  					   &CLUSTER_SLEEP_0>;
+>  			next-level-cache = <&L2_200>;
+> +			operating-points-v2 = <&cpu0_opp_table>;
+> +			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+> +					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
+>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			L2_200: l2-cache {
+>  				compatible = "cache";
+> @@ -122,6 +132,9 @@
+>  					   &LITTLE_CPU_SLEEP_1
+>  					   &CLUSTER_SLEEP_0>;
+>  			next-level-cache = <&L2_300>;
+> +			operating-points-v2 = <&cpu0_opp_table>;
+> +			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+> +					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
+>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			L2_300: l2-cache {
+>  				compatible = "cache";
+> @@ -138,6 +151,9 @@
+>  					   &BIG_CPU_SLEEP_1
+>  					   &CLUSTER_SLEEP_0>;
+>  			next-level-cache = <&L2_400>;
+> +			operating-points-v2 = <&cpu4_opp_table>;
+> +			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+> +					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
+>  			qcom,freq-domain = <&cpufreq_hw 1>;
+>  			L2_400: l2-cache {
+>  				compatible = "cache";
+> @@ -154,6 +170,9 @@
+>  					   &BIG_CPU_SLEEP_1
+>  					   &CLUSTER_SLEEP_0>;
+>  			next-level-cache = <&L2_500>;
+> +			operating-points-v2 = <&cpu4_opp_table>;
+> +			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+> +					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
+>  			qcom,freq-domain = <&cpufreq_hw 1>;
+>  			L2_500: l2-cache {
+>  				compatible = "cache";
+> @@ -170,6 +189,9 @@
+>  					   &BIG_CPU_SLEEP_1
+>  					   &CLUSTER_SLEEP_0>;
+>  			next-level-cache = <&L2_600>;
+> +			operating-points-v2 = <&cpu4_opp_table>;
+> +			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+> +					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
+>  			qcom,freq-domain = <&cpufreq_hw 1>;
+>  			L2_600: l2-cache {
+>  				compatible = "cache";
+> @@ -186,6 +208,9 @@
+>  					   &BIG_CPU_SLEEP_1
+>  					   &CLUSTER_SLEEP_0>;
+>  			next-level-cache = <&L2_700>;
+> +			operating-points-v2 = <&cpu7_opp_table>;
+> +			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+> +					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
+>  			qcom,freq-domain = <&cpufreq_hw 2>;
+>  			L2_700: l2-cache {
+>  				compatible = "cache";
+> @@ -248,6 +273,196 @@
+>  		};
+>  	};
+>  
+> +	cpu0_opp_table: cpu0-opp-table {
+> +		compatible = "operating-points-v2";
+> +		opp-shared;
+> +
+> +		cpu0_opp_300mhz: opp-300000000 {
+> +			opp-hz = /bits/ 64 <300000000>;
+> +			opp-peak-kBps = <800000 9600000>;
+> +		};
+> +
+> +		cpu0_opp_691mhz: opp-691200000 {
+> +			opp-hz = /bits/ 64 <691200000>;
+> +			opp-peak-kBps = <800000 17817600>;
+> +		};
+> +
+> +		cpu0_opp_806mhz: opp-806400000 {
+> +			opp-hz = /bits/ 64 <806400000>;
+> +			opp-peak-kBps = <800000 20889600>;
+> +		};
+> +
+> +		cpu0_opp_940mhz: opp-940800000 {
 
+nit: one could argue that rounded it's 941 MHz. Same for some other OPPs.
+
+Not super-important though, so:
+
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
