@@ -2,187 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD36F37FADC
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 17:36:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C766C37FB00
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 17:49:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234947AbhEMPhn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 11:37:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58478 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234932AbhEMPhj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 11:37:39 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10435C061574
-        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 08:36:24 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id a25so7327443edr.12
-        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 08:36:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=snejp.pl; s=gmail;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=I1jcRoiTwZROLEGK3W13nn0z7cF0FHWZcsDuLrXIOJo=;
-        b=V4amHLQIiQwPZ7mdIoVOdaBLuHN/l/9A6qc/a+VKzXvOm7BmZj3KoPOb6mM+b3YIsV
-         C9SNJ5NB6Yk3WOiV+3biktSAp8C9FyeFk6Hnc3zRlvhM8+ns1OBVZr0ErxrFNjf0Lykz
-         UXD8klcen6ZX3YK9sM19sl1IjlzdKUaBEFdikZYRGYyQCpF2nUIqnEKLKKUDuE8ri/WL
-         2nReZpm+sBnFZ1lEeRkV7JT+oXfrxKhPzrnWzS87OLmFP6BJ0ttZ3oF9utpVuN4czAwX
-         vpam0BxROCT4bZX57bBD3HPaWZFdRnB57J7xPPf4/Roo/dETDXMLzQDygDhV8nyE3dPg
-         Wn6g==
+        id S231200AbhEMPuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 11:50:13 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:52976 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229724AbhEMPuN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 May 2021 11:50:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1620920943;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=OXFg9yT+SRP4aJjvJsKPgnXEZ8W+KPtuhwXQgp0wnKU=;
+        b=MB4mmajmb3I8VtS26f7BMKuIvcFeL3WI+YMCAwrlRcXQ63rj+Tgd898W8C6pGUCstzFI2M
+        QN508vgjDqRBUNAxBhYSuSLtkl/6T2bOkO+lKHUYOEXaZ8e1kLkOqpiyyyr0+2z3KYXJcA
+        u0Qy5g01DCRwYML0EWoNw4BPbOa0b3A=
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-196-G_AKVj6GNdWhW8_ixiXxRw-1; Thu, 13 May 2021 11:49:01 -0400
+X-MC-Unique: G_AKVj6GNdWhW8_ixiXxRw-1
+Received: by mail-qt1-f197.google.com with SMTP id o15-20020a05622a138fb02901e0ac29f6b2so6634430qtk.11
+        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 08:49:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=I1jcRoiTwZROLEGK3W13nn0z7cF0FHWZcsDuLrXIOJo=;
-        b=XByDB9qXyWz3cXqPtoYUNGor2cieIJPNekFetFpK7TgLCgKF82qfUKWLi1yVGZ5pLn
-         bDYTSm85NlKd9xKxVuI9rCvAeBWyuiWSi9z1j2Z0En1TVF9imTH8QJeCJic/XlSCKLnc
-         QTUeKbwfMUhYwh9XezyICVsmbID9vrXsYGjFfnuofZzwXFOAHZMhligRsRMkkHR9xMbG
-         kJnI1qVUz3ts+/ULjxiDeCybLJGdFbZYrYqltk8hK8sKlaJNT3++NBcoRx4VG+BdlVrz
-         l8eRNKVVborljlyuCxL9vOPDL3QOlSw9Q6un1inA6ghava8PaWa62pbvAJ+/KiH/cw+c
-         mDqA==
-X-Gm-Message-State: AOAM533mBpm/y9k6YH1TNc92JOtsqxPlsOqxki8+VJhpuMJJJQmJQyL4
-        L6i96Vhp5CKiv3BGUtpalHuO4A==
-X-Google-Smtp-Source: ABdhPJztK9wj1Z3IOAtL4fptZucOx8vwrzydF45R+1QkUTxsZj+AGhGZL9ImYJcq4iUljsDnYZx2Ag==
-X-Received: by 2002:a05:6402:341:: with SMTP id r1mr50979929edw.113.1620920182857;
-        Thu, 13 May 2021 08:36:22 -0700 (PDT)
-Received: from PackardBell (192038133011.mbb.telenor.dk. [192.38.133.11])
-        by smtp.googlemail.com with ESMTPSA id p5sm2001723ejm.115.2021.05.13.08.36.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 May 2021 08:36:22 -0700 (PDT)
-Received: from localhost (PackardBell [local])
-        by PackardBell (OpenSMTPD) with ESMTPA id acc32ad6;
-        Thu, 13 May 2021 15:35:48 +0000 (UTC)
-From:   Bartosz Dudziak <bartosz.dudziak@snejp.pl>
-To:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
-        David Sterba <dsterba@suse.com>, Jens Axboe <axboe@kernel.dk>,
-        Bartosz Dudziak <bartosz.dudziak@snejp.pl>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Kumar Gala <galak@codeaurora.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/2] arm: qcom: Add SMP support for Cortex-A7
-Date:   Thu, 13 May 2021 17:34:42 +0200
-Message-Id: <20210513153442.52941-3-bartosz.dudziak@snejp.pl>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210513153442.52941-1-bartosz.dudziak@snejp.pl>
-References: <20210513153442.52941-1-bartosz.dudziak@snejp.pl>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=OXFg9yT+SRP4aJjvJsKPgnXEZ8W+KPtuhwXQgp0wnKU=;
+        b=NxkFhwgjrGl/r3BrZR56WR+aTTm0sJX8NQ+TQ4zWojxSjVh/b8QIT61Dmj9VhR4NEW
+         hM5ha+O+EkBjZ3N2shyLed0jDNL4H1P4nmKgsLQB8pw1O/ZYrPUXP1M1YSEeUEw3uKnm
+         kS/6B1g8e4+LqjnM3f5Q6GgufEP52BprEQt26BN5osQrFa3vODZ2u+0gY2SBq1JwrYKn
+         cnkea7RI+3Yd2vBA9MQ1LzIOI0NIjfWg6QJezgzxjy9HDp45EZexCiICoD1Do1AEkNls
+         wRvFylGRIXqrhieOGlzuDF7UAoOuZZvq8aN3XZWdLhcHNya6UTsEfr/J0TyygARgqXk/
+         cZaw==
+X-Gm-Message-State: AOAM532++LIw5pBiYFudIqsxkL7V6KmkcAdAtqjuGQpDXYpRNDA0wTvc
+        B7FIwpPpsLlcvf/qRnE5y1Ow7VKWqzc4xp7lDeaDTezXtbs995MhsuG8u+36zPu4Cxr4zF0KOY1
+        GkPK80fxLflZ+8HivXV3MpQ==
+X-Received: by 2002:a37:98c4:: with SMTP id a187mr38940511qke.277.1620920941060;
+        Thu, 13 May 2021 08:49:01 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwUyK6JS8Fjz7RmzsmXIRnyG/yAEecKiFii/ajYNOLBY3TFUJO/jJ58x9Xer/nE8I7bMnTXWw==
+X-Received: by 2002:a37:98c4:: with SMTP id a187mr38940499qke.277.1620920940893;
+        Thu, 13 May 2021 08:49:00 -0700 (PDT)
+Received: from localhost.localdomain (075-142-250-213.res.spectrum.com. [75.142.250.213])
+        by smtp.gmail.com with ESMTPSA id 195sm2645020qkj.1.2021.05.13.08.48.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 May 2021 08:49:00 -0700 (PDT)
+Subject: Re: [PATCH V6 XRT Alveo 16/20] fpga: xrt: clock driver
+To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
+Cc:     linux-fpga@vger.kernel.org, maxz@xilinx.com,
+        sonal.santan@xilinx.com, yliu@xilinx.com, michal.simek@xilinx.com,
+        stefanos@xilinx.com, devicetree@vger.kernel.org, mdf@kernel.org,
+        robh@kernel.org, Max Zhen <max.zhen@xilinx.com>
+References: <20210512015339.5649-1-lizhi.hou@xilinx.com>
+ <20210512015339.5649-17-lizhi.hou@xilinx.com>
+From:   Tom Rix <trix@redhat.com>
+Message-ID: <f4a18fa4-f023-d4e5-0622-e15108de90b9@redhat.com>
+Date:   Thu, 13 May 2021 08:48:57 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
+In-Reply-To: <20210512015339.5649-17-lizhi.hou@xilinx.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Implement support for Cortex-A7 CPU release sequence.
 
-Signed-off-by: Bartosz Dudziak <bartosz.dudziak@snejp.pl>
----
- arch/arm/mach-qcom/platsmp.c | 72 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 72 insertions(+)
 
-diff --git a/arch/arm/mach-qcom/platsmp.c b/arch/arm/mach-qcom/platsmp.c
-index 630a038f45..10780bf14a 100644
---- a/arch/arm/mach-qcom/platsmp.c
-+++ b/arch/arm/mach-qcom/platsmp.c
-@@ -29,6 +29,7 @@
- #define COREPOR_RST		BIT(5)
- #define CORE_RST		BIT(4)
- #define L2DT_SLP		BIT(3)
-+#define CORE_MEM_CLAMP		BIT(1)
- #define CLAMP			BIT(0)
- 
- #define APC_PWR_GATE_CTL	0x14
-@@ -75,6 +76,63 @@ static int scss_release_secondary(unsigned int cpu)
- 	return 0;
- }
- 
-+static int cortex_a7_release_secondary(unsigned int cpu)
-+{
-+	int ret = 0;
-+	void __iomem *reg;
-+	struct device_node *cpu_node, *acc_node;
-+	u32 reg_val;
-+
-+	cpu_node = of_get_cpu_node(cpu, NULL);
-+	if (!cpu_node)
-+		return -ENODEV;
-+
-+	acc_node = of_parse_phandle(cpu_node, "qcom,acc", 0);
-+	if (!acc_node) {
-+		ret = -ENODEV;
-+		goto out_acc;
-+	}
-+
-+	reg = of_iomap(acc_node, 0);
-+	if (!reg) {
-+		ret = -ENOMEM;
-+		goto out_acc_map;
-+	}
-+
-+	/* Put the CPU into reset. */
-+	reg_val = CORE_RST | COREPOR_RST | CLAMP | CORE_MEM_CLAMP;
-+	writel(reg_val, reg + APCS_CPU_PWR_CTL);
-+
-+	/* Turn on the BHS, set the BHS_CNT to 16 XO clock cycles */
-+	writel(BHS_EN | (0x10 << BHS_CNT_SHIFT), reg + APC_PWR_GATE_CTL);
-+	/* Wait for the BHS to settle */
-+	udelay(2);
-+
-+	reg_val &= ~CORE_MEM_CLAMP;
-+	writel(reg_val, reg + APCS_CPU_PWR_CTL);
-+
-+	reg_val |= L2DT_SLP;
-+	writel(reg_val, reg + APCS_CPU_PWR_CTL);
-+	udelay(2);
-+
-+	reg_val = (reg_val | BIT(17)) & ~CLAMP;
-+	writel(reg_val, reg + APCS_CPU_PWR_CTL);
-+	udelay(2);
-+
-+	/* Release CPU out of reset and bring it to life. */
-+	reg_val &= ~(CORE_RST | COREPOR_RST);
-+	writel(reg_val, reg + APCS_CPU_PWR_CTL);
-+	reg_val |= CORE_PWRD_UP;
-+	writel(reg_val, reg + APCS_CPU_PWR_CTL);
-+
-+out_acc_map:
-+	of_node_put(acc_node);
-+out_acc:
-+	of_node_put(cpu_node);
-+
-+	return ret;
-+}
-+
- static int kpssv1_release_secondary(unsigned int cpu)
- {
- 	int ret = 0;
-@@ -281,6 +339,11 @@ static int msm8660_boot_secondary(unsigned int cpu, struct task_struct *idle)
- 	return qcom_boot_secondary(cpu, scss_release_secondary);
- }
- 
-+static int cortex_a7_boot_secondary(unsigned int cpu, struct task_struct *idle)
-+{
-+	return qcom_boot_secondary(cpu, cortex_a7_release_secondary);
-+}
-+
- static int kpssv1_boot_secondary(unsigned int cpu, struct task_struct *idle)
- {
- 	return qcom_boot_secondary(cpu, kpssv1_release_secondary);
-@@ -315,6 +378,15 @@ static const struct smp_operations smp_msm8660_ops __initconst = {
- };
- CPU_METHOD_OF_DECLARE(qcom_smp, "qcom,gcc-msm8660", &smp_msm8660_ops);
- 
-+static const struct smp_operations qcom_smp_cortex_a7_ops __initconst = {
-+	.smp_prepare_cpus	= qcom_smp_prepare_cpus,
-+	.smp_boot_secondary	= cortex_a7_boot_secondary,
-+#ifdef CONFIG_HOTPLUG_CPU
-+	.cpu_die		= qcom_cpu_die,
-+#endif
-+};
-+CPU_METHOD_OF_DECLARE(qcom_smp_cortex_a7, "qcom,cpss-acc", &qcom_smp_cortex_a7_ops);
-+
- static const struct smp_operations qcom_smp_kpssv1_ops __initconst = {
- 	.smp_prepare_cpus	= qcom_smp_prepare_cpus,
- 	.smp_boot_secondary	= kpssv1_boot_secondary,
--- 
-2.25.1
+> +
+> +static int get_freq(struct clock *clock, u16 *freq)
+> +{
+
+> +
+> +	/*
+> +	 * Multiply both numerator (mul0) and the denominator (div1) with
+> +	 * 1000 to account for fractional portion of divider
+> +	 */
+> +
+> +	div1 *= 1000;
+> +	div1 += div_frac1;
+> +	div0 *= div1;
+> +	mul0 *= 1000;
+> +	if (div0 == 0) {
+> +		CLOCK_ERR(clock, "clockwiz 0 divider");
+
+This prevents a divide by zero, but returns 0 without setting freq
+
+A -EINVAL should be returned or freq initialized to some default value
+
+> +		return 0;
+> +	}
+> +
+> +	input = mul0 * 100;
+> +	do_div(input, div0);
+> +	*freq = (u16)input;
+> +
+> +	return 0;
+> +}
+> +
+>
+> +
+> +static int clock_verify_freq(struct clock *clock)
+> +{
+> +	u32 lookup_freq, clock_freq_counter, request_in_khz, tolerance;
+> +	int err = 0;
+> +	u16 freq;
+> +
+> +	mutex_lock(&clock->clock_lock);
+> +
+> +	err = get_freq(clock, &freq);
+> +	if (err) {
+> +		xrt_err(clock->xdev, "get freq failed, %d", err);
+> +		goto end;
+> +	}
+> +
+> +	err = get_freq_counter(clock, &clock_freq_counter);
+> +	if (err) {
+> +		xrt_err(clock->xdev, "get freq counter failed, %d", err);
+> +		goto end;
+> +	}
+> +
+> +	lookup_freq = find_matching_freq(freq, frequency_table,
+> +					 ARRAY_SIZE(frequency_table));
+
+I am running v6 through clang's static analyzer, it shows a problem here
+
+drivers/fpga/xrt/lib/xleaf/clock.c:474:16: warning: 1st function call 
+argument is an uninitialized value
+         lookup_freq = find_matching_freq(freq, frequency_table,
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+See problem with get_freq above
+
+Tom
+
 
