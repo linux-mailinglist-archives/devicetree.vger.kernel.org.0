@@ -2,506 +2,543 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A59A437F5C7
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 12:43:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E787037F5F3
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 12:52:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231303AbhEMKok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 06:44:40 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.54]:29964 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230329AbhEMKoi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 06:44:38 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1620902604; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=dvWio0d3C8tL3wz0u7Aw03KSFZNNqVxKslWGB6i+DlnhnWgSctrtqBcHWRADycHPP5
-    0ggBp4WDnIdIBimDPXgdE743AOvIEkz26G45lXuS8EfYZ2kIDNhwtXN6498iXAL8tLkU
-    KdH7g0VHMDnshrC519c+kadjhOZGN756hSFKU8O3qAbOwTclvF3XP8lWjBzc/IXlE8s+
-    dz9dye4UNND0TtHd9ubjNyzPBPzELIZoqVXechVwsH/eqnAOU21sZUuBYrTuDAAtYfjU
-    3qpkz+nTlUT8g4PFkPezUUjPIIDpAgFbhuSRg9bEsTAf7rgJatMCJj5vSUueo0JZua+a
-    5MmA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1620902604;
-    s=strato-dkim-0002; d=strato.com;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=IsbpEsgbbvnnzGPsaDkOD9zDycMHYyB7lT+Wai1GJkc=;
-    b=j2tfLwZS8MHtBTsQRs2AW0V70F6gL7BgHyaqtbR95O9n4DAxrZygPDS+dZOTCHI7u0
-    9jBL3TAOr/me23OiXuQIYMeTKQkLeSQqNyDrZVXny6v/6NqXXk9DLtGaSxL24/YdilxT
-    W/J9j1c7TlncQ/M56uDTMclMbIpjbfMBhINAo/hs83+TRYqnpy/5Wj5QbG13fAzDhZOI
-    tCoKqs+k5mPOe3dqV79UtvY71e0BhDsN8J8KkLX1ORMiNaE6rtUs+8PiEIdD1xHGkgMl
-    WqdRT5MdkfE2rdj9w+1HCO1PIXaK8UlAbOpr1U6FEP717Z6AyQTLRb6pfOTXNksn/aMt
-    iFPg==
-ARC-Authentication-Results: i=1; strato.com;
-    dkim=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1620902604;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=IsbpEsgbbvnnzGPsaDkOD9zDycMHYyB7lT+Wai1GJkc=;
-    b=J3C5Qu+07hwTC16auimdIAGIBCgOKV2hO1D41JelEdSI6GnJxacYTiFlzTDLGmRH22
-    IX6SVNW7kso5McsSaZKQT5H4zcjLsQpXyUanCQE77ifa05ZCbdWe8Tsy1HRwq80tdZKr
-    iqLqooYfCN8jyLkUoD5S8FpDYRy8JU7bplSPHfACNc9J5ZLaaRu6jqGAf2Lmb9z5mZ1f
-    NOHgz6amF4vq17ZutjXXwvI28+EBKz9Ho4M8abDQQsghTyElAjhk4p2uVyScQdBr4g2F
-    JG7WGQk/tyt47tyVqXKJKyZTFjeOSrZJjlyfILa37hElFYUYjP984iQtW5GsP/SiQZ9D
-    bcZA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxB4G6OJCs="
-X-RZG-CLASS-ID: mo00
-Received: from droid..
-    by smtp.strato.de (RZmta 47.25.7 DYNA|AUTH)
-    with ESMTPSA id j06c13x4DAhNA9I
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Thu, 13 May 2021 12:43:23 +0200 (CEST)
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        linux-kernel@vger.kernel.org,
-        Vincent Knecht <vincent.knecht@mailoo.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [RFC PATCH 2/2] ASoC: codecs: Add driver for NXP/Goodix TFA989x (TFA1) amplifiers
-Date:   Thu, 13 May 2021 12:41:29 +0200
-Message-Id: <20210513104129.36583-2-stephan@gerhold.net>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210513104129.36583-1-stephan@gerhold.net>
-References: <20210513104129.36583-1-stephan@gerhold.net>
+        id S232195AbhEMKxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 06:53:45 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:42268 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232197AbhEMKxn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 May 2021 06:53:43 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1620903150; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=l43av0MNdasuSlRaWS4HbE7aHdm8Jr27+otQGPeLkDA=;
+ b=FBj5AA3HAl0+XyqStYrlOYszWfVnA0SewXsVK0iHAX6/XpraTDX1G53J4HcEf01Eje6QZ4rq
+ Or2Ppme0W/xlUy2pqpXmnUnKlgV+UyNoIMaZzUBds6FEipRC+6WakITBpAqAoCLDrn6woh9E
+ 2bQx4C/LFA2p/w9OtlqYBejel+w=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 609d04ed7bf557a01215f547 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 13 May 2021 10:52:29
+ GMT
+Sender: mkrishn=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 48FF7C4338A; Thu, 13 May 2021 10:52:29 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: mkrishn)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 400C4C433D3;
+        Thu, 13 May 2021 10:52:26 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 13 May 2021 16:22:26 +0530
+From:   mkrishn@codeaurora.org
+To:     robh@kernel.org, robh+dt@kernel.org
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kalyan_t@codeaurora.org,
+        tanmay@codeaurora.org, abhinavk@codeaurora.org,
+        robdclark@gmail.com, swboyd@chromium.org,
+        bjorn.andersson@linaro.org, vinod.koul@linaro.org,
+        dianders@chromium.org, khsieh@codeaurora.org, sean@poorly.run
+Subject: Fwd: Re: [PATCH v15 2/4] dt-bindings: msm: dsi: add yaml schemas for
+ DSI bindings
+In-Reply-To: <827048554933585f4cc42c94aa911e55@codeaurora.org>
+References: <1617620770-26202-1-git-send-email-mkrishn@codeaurora.org>
+ <1617620770-26202-2-git-send-email-mkrishn@codeaurora.org>
+ <20210408150300.GA1476562@robh.at.kernel.org>
+ <827048554933585f4cc42c94aa911e55@codeaurora.org>
+Message-ID: <4326018bcc2efc812b3267c830570f04@codeaurora.org>
+X-Sender: mkrishn@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-NXP's TFA98xx (now part of Goodix) are fairly popular speaker amplifiers
-used in many smartphones and tablets. Most of them are sold as "smart
-amplifiers" with built-in "CoolFlux DSP" that is used for volume control,
-plus a "sophisticated speaker-boost and protection algorithm".
+On 2021-04-08 20:33, Rob Herring wrote:
+> On Mon, Apr 05, 2021 at 04:36:08PM +0530, Krishna Manikandan wrote:
+>> Add YAML schema for the device tree bindings for DSI
+>> 
+>> Signed-off-by: Krishna Manikandan <mkrishn@codeaurora.org>
+>> 
+>> Changes in v1:
+>>     - Separate dsi controller bindings to a separate patch (Stephen 
+>> Boyd)
+>>     - Merge dsi-common-controller.yaml and dsi-controller-main.yaml to
+>>       a single file (Stephen Boyd)
+>>     - Drop supply entries and definitions from properties (Stephen 
+>> Boyd)
+>>     - Modify phy-names property for dsi controller (Stephen Boyd)
+>>     - Remove boolean from description (Stephen Boyd)
+>>     - Drop pinctrl properties as they are standard entries (Stephen 
+>> Boyd)
+>>     - Modify the description for ports property and keep the reference
+>>       to the generic binding where this is defined (Stephen Boyd)
+>>     - Add description to clock names (Stephen Boyd)
+>>     - Correct the indendation (Stephen Boyd)
+>>     - Drop the label for display dt nodes and correct the node
+>>       name (Stephen Boyd)
+>> 
+>> Changes in v2:
+>>     - Drop maxItems for clock (Stephen Boyd)
+>>     - Drop qcom,mdss-mdp-transfer-time-us as it is not used in 
+>> upstream
+>>       dt file (Stephen Boyd)
+>>     - Keep child node directly under soc node (Stephen Boyd)
+>>     - Drop qcom,sync-dual-dsi as it is not used in upstream dt
+>> 
+>> Changes in v3:
+>>     - Add description for register property (Stephen Boyd)
+>> 
+>> Changes in v4:
+>>     - Add maxItems for phys property (Stephen Boyd)
+>>     - Add maxItems for reg property (Stephen Boyd)
+>>     - Add reference for data-lanes property (Stephen Boyd)
+>>     - Remove soc from example (Stephen Boyd)
+>> 
+>> Changes in v5:
+>>     - Modify title and description (Stephen Boyd)
+>>     - Add required properties for ports node (Stephen Boyd)
+>>     - Add data-lanes in the example (Stephen Boyd)
+>>     - Drop qcom,master-dsi property (Stephen Boyd)
+>> 
+>> Changes in v6:
+>>     - Add required properties for port@0, port@1 and corresponding
+>>       endpoints (Stephen Boyd)
+>>     - Add address-cells and size-cells for ports (Stephen Boyd)
+>>     - Use additionalProperties instead of unevaluatedProperties 
+>> (Stephen Boyd)
+>> ---
+>>  .../bindings/display/msm/dsi-controller-main.yaml  | 213 
+>> ++++++++++++++++++
+>>  .../devicetree/bindings/display/msm/dsi.txt        | 249 
+>> ---------------------
+>>  2 files changed, 213 insertions(+), 249 deletions(-)
+>>  create mode 100644 
+>> Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+>>  delete mode 100644 
+>> Documentation/devicetree/bindings/display/msm/dsi.txt
+>> 
+>> diff --git 
+>> a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml 
+>> b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+>> new file mode 100644
+>> index 0000000..7858524
+>> --- /dev/null
+>> +++ 
+>> b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+>> @@ -0,0 +1,213 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: 
+>> http://devicetree.org/schemas/display/msm/dsi-controller-main.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Display DSI controller
+>> +
+>> +maintainers:
+>> +  - Krishna Manikandan <mkrishn@codeaurora.org>
+>> +
+>> +allOf:
+>> +  - $ref: "../dsi-controller.yaml#"
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - const: qcom,mdss-dsi-ctrl
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  reg-names:
+>> +    const: dsi_ctrl
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: Display byte clock
+>> +      - description: Display byte interface clock
+>> +      - description: Display pixel clock
+>> +      - description: Display escape clock
+>> +      - description: Display AHB clock
+>> +      - description: Display AXI clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: byte
+>> +      - const: byte_intf
+>> +      - const: pixel
+>> +      - const: core
+>> +      - const: iface
+>> +      - const: bus
+>> +
+>> +  phys:
+>> +    maxItems: 1
+>> +
+>> +  phy-names:
+>> +    const: dsi
+>> +
+>> +  "#address-cells": true
+>> +
+>> +  "#size-cells": true
+>> +
+>> +  syscon-sfpb:
+>> +    description: A phandle to mmss_sfpb syscon node (only for DSIv2).
+>> +    $ref: "/schemas/types.yaml#/definitions/phandle"
+>> +
+>> +  qcom,dual-dsi-mode:
+>> +    type: boolean
+>> +    description: |
+>> +      Indicates if the DSI controller is driving a panel which needs
+>> +      2 DSI links.
+>> +
+>> +  ports:
+> 
+> Same issues in this one.
+> 
+>> +    $ref: "/schemas/graph.yaml#/properties/port"
+>> +    type: object
+>> +    description: |
+>> +      Contains DSI controller input and output ports as children, 
+>> each
+>> +      containing one endpoint subnode.
+>> +
+>> +    properties:
+>> +      port@0:
+>> +        type: object
+>> +        description: |
+>> +          Input endpoints of the controller.
+>> +
+>> +        properties:
+>> +          reg:
+>> +            const: 0
+>> +
+>> +          endpoint:
+>> +            type: object
+>> +            properties:
+>> +              remote-endpoint:
+> 
+> Don't need to describe this, the common schema does.
+> 
+>> +                description: |
+>> +                  For port@1, set to phandle of the connected 
+>> panel/bridge's
+>> +                  input endpoint. For port@0, set to the MDP 
+>> interface output.
+>> +
+>> +              data-lanes:
+>> +                $ref: "/schemas/media/video-interfaces.yaml#"
+> 
+> Not how this reference works. Look at other examples.
+> 
+>> +                description: |
+>> +                  This describes how the physical DSI data lanes are 
+>> mapped
+>> +                  to the logical lanes on the given platform. The 
+>> value contained in
+>> +                  index n describes what physical lane is mapped to 
+>> the logical lane n
+>> +                  (DATAn, where n lies between 0 and 3). The clock 
+>> lane position is fixed
+>> +                  and can't be changed. Hence, they aren't a part of 
+>> the DT bindings.
+>> +
+>> +                items:
+>> +                  - const: 0
+>> +                  - const: 1
+>> +                  - const: 2
+>> +                  - const: 3
+> 
+> If this is the only possible value, why does it need to be in DT?
+Hi Rob,
+These are the possible values:
+-    <0 1 2 3>
+-    <1 2 3 0>
+-    <2 3 0 1>
+-    <3 0 1 2>
+-    <0 3 2 1>
+-    <1 0 3 2>
+-    <2 1 0 3>
+-    <3 2 1 0>
 
-Unfortunately, they are also almost entirely undocumented. The short
-datasheets (e.g. [1] for TFA9897) describe the available features,
-but do not provide any information about the registers or how to use
-the "CoolFlux DSP".
+Shall I follow the below mentioned approach for defining these values ?
+oneOf:
+   - items:
+     - const: 0
+     - const: 1
+     - const: 2
+     - const: 3
+   - items:
+     - const: 1
+     - const: 2
+     - const: 3
+     - const: 0
+   - items:
+     - const: 2
+     - const: 3
+     - const: 0
+     - const: 1
+   - items:
+     - const: 3
+     - const: 0
+     - const: 1
+     - const: 2
+   - items:
+     - const: 0
+     - const: 3
+     - const: 2
+     - const: 1
+   - items:
+     - const: 1
+     - const: 0
+     - const: 3
+     - const: 2
+   - items:
+     - const: 2
+     - const: 1
+     - const: 0
+     - const: 3
+   - items:
+     - const: 3
+     - const: 2
+     - const: 1
+     - const: 0
 
-The amplifiers are most often configured through proprietary userspace
-libraries. There are also some (rather complex) kernel drivers (e.g. [2])
-but even those rely on obscure firmware blobs for configuration (so-called
-"containers"). They seem to contain different "profiles" with tuned speaker
-settings, sample rates and volume steps (which would be better exposed
-as separate ALSA mixers).
-
-The format of the firmware files seems to have changed a lot over the time,
-so it's not even possible to simply re-use the firmware originally provided
-by the vendor.
-
-Overall, it seems close to impossible to develop a proper mainline driver
-for these amplifiers that could make proper use of the built-in DSP.
-
-This commit implements a compromise: At least the TFA1 family of the
-TFA98xx amplifiers (usually called TFA989x) provide a way to *bypass*
-the DSP using a special register sequence. The register sequence can be
-found in similar variations in the kernel drivers from lots of vendors
-e.g. in [3] and was probably mainly used for factory testing.
-
-With the DSP bypassed, the amplifier acts mostly like a dumb standard
-speaker amplifier, without (hardware) volume control. However, the setup
-is much simpler and it works without any obscure firmware.
-
-This driver implements the DSP bypass combined with chip-specific
-initialization sequences adapted from [2]. Only TFA9895 is supported in
-this initial commit. Except for the lack of volume control I can not hear
-any difference with or without the DSP, it works just fine.
-
-This driver allows the speaker to work on mainline Linux running on the
-Samsung Galaxy A3/A5 (2015) [TFA9895] and Alcatel Idol 3 [TFA9897].
-TFA9897 support will be added in separate patch set later.
-
-[1]: https://product.goodix.com/en/docview/TFA9897%20SDS_Rev.3.1?objectId=47&objectType=document&version=78
-[2]: https://source.codeaurora.org/external/mas/tfa98xx
-[3]: https://github.com/sonyxperiadev/kernel/blob/57b5050e340f40a88e1ddb8d16fd9adb44418923/sound/soc/codecs/tfa98xx.c#L1422-L1462
-
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
----
- MAINTAINERS                |   7 +
- sound/soc/codecs/Kconfig   |  11 ++
- sound/soc/codecs/Makefile  |   2 +
- sound/soc/codecs/tfa989x.c | 298 +++++++++++++++++++++++++++++++++++++
- 4 files changed, 318 insertions(+)
- create mode 100644 sound/soc/codecs/tfa989x.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index bd7aff0c120f..33079fddc7b8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13204,6 +13204,13 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/sound/tfa9879.txt
- F:	sound/soc/codecs/tfa9879*
- 
-+NXP/Goodix TFA989X (TFA1) DRIVER
-+M:	Stephan Gerhold <stephan@gerhold.net>
-+L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
-+F:	sound/soc/codecs/tfa989x.c
-+
- NXP-NCI NFC DRIVER
- M:	Clément Perrochaud <clement.perrochaud@effinnov.com>
- R:	Charles Gorand <charles.gorand@effinnov.com>
-diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index 2a7b3e363069..196919bc27ab 100644
---- a/sound/soc/codecs/Kconfig
-+++ b/sound/soc/codecs/Kconfig
-@@ -211,6 +211,7 @@ config SND_SOC_ALL_CODECS
- 	imply SND_SOC_TAS6424
- 	imply SND_SOC_TDA7419
- 	imply SND_SOC_TFA9879
-+	imply SND_SOC_TFA989X
- 	imply SND_SOC_TLV320ADCX140
- 	imply SND_SOC_TLV320AIC23_I2C
- 	imply SND_SOC_TLV320AIC23_SPI
-@@ -1408,6 +1409,16 @@ config SND_SOC_TFA9879
- 	tristate "NXP Semiconductors TFA9879 amplifier"
- 	depends on I2C
- 
-+config SND_SOC_TFA989X
-+	tristate "NXP/Goodix TFA989X (TFA1) amplifiers"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  Enable support for NXP (now Goodix) TFA989X (TFA1 family) speaker
-+	  amplifiers, e.g. TFA9895.
-+	  Note that the driver currently bypasses the built-in "CoolFlux DSP"
-+	  and does not support (hardware) volume control.
-+
- config SND_SOC_TLV320AIC23
- 	tristate
- 
-diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
-index 0efdba609048..8c7257035e4c 100644
---- a/sound/soc/codecs/Makefile
-+++ b/sound/soc/codecs/Makefile
-@@ -229,6 +229,7 @@ snd-soc-tas6424-objs := tas6424.o
- snd-soc-tda7419-objs := tda7419.o
- snd-soc-tas2770-objs := tas2770.o
- snd-soc-tfa9879-objs := tfa9879.o
-+snd-soc-tfa989x-objs := tfa989x.o
- snd-soc-tlv320aic23-objs := tlv320aic23.o
- snd-soc-tlv320aic23-i2c-objs := tlv320aic23-i2c.o
- snd-soc-tlv320aic23-spi-objs := tlv320aic23-spi.o
-@@ -551,6 +552,7 @@ obj-$(CONFIG_SND_SOC_TAS6424)	+= snd-soc-tas6424.o
- obj-$(CONFIG_SND_SOC_TDA7419)	+= snd-soc-tda7419.o
- obj-$(CONFIG_SND_SOC_TAS2770) += snd-soc-tas2770.o
- obj-$(CONFIG_SND_SOC_TFA9879)	+= snd-soc-tfa9879.o
-+obj-$(CONFIG_SND_SOC_TFA989X)	+= snd-soc-tfa989x.o
- obj-$(CONFIG_SND_SOC_TLV320AIC23)	+= snd-soc-tlv320aic23.o
- obj-$(CONFIG_SND_SOC_TLV320AIC23_I2C)	+= snd-soc-tlv320aic23-i2c.o
- obj-$(CONFIG_SND_SOC_TLV320AIC23_SPI)	+= snd-soc-tlv320aic23-spi.o
-diff --git a/sound/soc/codecs/tfa989x.c b/sound/soc/codecs/tfa989x.c
-new file mode 100644
-index 000000000000..408e26eee108
---- /dev/null
-+++ b/sound/soc/codecs/tfa989x.c
-@@ -0,0 +1,298 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2021 Stephan Gerhold
-+ *
-+ * Register definitions/sequences taken from various tfa98xx kernel drivers:
-+ * Copyright (C) 2014-2020 NXP Semiconductors, All Rights Reserved.
-+ * Copyright (C) 2013 Sony Mobile Communications Inc.
-+ */
-+
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <sound/soc.h>
-+
-+#define TFA989X_STATUSREG		0x00
-+#define TFA989X_BATTERYVOLTAGE		0x01
-+#define TFA989X_TEMPERATURE		0x02
-+#define TFA989X_REVISIONNUMBER		0x03
-+#define TFA989X_REVISIONNUMBER_REV_MSK	GENMASK(7, 0)	/* device revision */
-+#define TFA989X_I2SREG			0x04
-+#define TFA989X_I2SREG_CHSA		6	/* amplifier input select */
-+#define TFA989X_I2SREG_CHSA_MSK		GENMASK(7, 6)
-+#define TFA989X_I2SREG_I2SSR		12	/* sample rate */
-+#define TFA989X_I2SREG_I2SSR_MSK	GENMASK(15, 12)
-+#define TFA989X_BAT_PROT		0x05
-+#define TFA989X_AUDIO_CTR		0x06
-+#define TFA989X_DCDCBOOST		0x07
-+#define TFA989X_SPKR_CALIBRATION	0x08
-+#define TFA989X_SYS_CTRL		0x09
-+#define TFA989X_SYS_CTRL_PWDN		0	/* power down */
-+#define TFA989X_SYS_CTRL_I2CR		1	/* I2C reset */
-+#define TFA989X_SYS_CTRL_CFE		2	/* enable CoolFlux DSP */
-+#define TFA989X_SYS_CTRL_AMPE		3	/* enable amplifier */
-+#define TFA989X_SYS_CTRL_DCA		4	/* enable boost */
-+#define TFA989X_SYS_CTRL_SBSL		5	/* DSP configured */
-+#define TFA989X_SYS_CTRL_AMPC		6	/* amplifier enabled by DSP */
-+#define TFA989X_I2S_SEL_REG		0x0a
-+#define TFA989X_I2S_SEL_REG_SPKR_MSK	GENMASK(10, 9)	/* speaker impedance */
-+#define TFA989X_I2S_SEL_REG_DCFG_MSK	GENMASK(14, 11)	/* DCDC compensation */
-+#define TFA989X_PWM_CONTROL		0x41
-+#define TFA989X_CURRENTSENSE1		0x46
-+#define TFA989X_CURRENTSENSE2		0x47
-+#define TFA989X_CURRENTSENSE3		0x48
-+#define TFA989X_CURRENTSENSE4		0x49
-+
-+#define TFA9895_REVISION		0x12
-+
-+struct tfa989x_rev {
-+	unsigned int rev;
-+	int (*init)(struct regmap *regmap);
-+};
-+
-+static bool tfa989x_writeable_reg(struct device *dev, unsigned int reg)
-+{
-+	return reg > TFA989X_REVISIONNUMBER;
-+}
-+
-+static bool tfa989x_volatile_reg(struct device *dev, unsigned int reg)
-+{
-+	return reg < TFA989X_REVISIONNUMBER;
-+}
-+
-+static const struct regmap_config tfa989x_regmap = {
-+	.reg_bits = 8,
-+	.val_bits = 16,
-+
-+	.writeable_reg	= tfa989x_writeable_reg,
-+	.volatile_reg	= tfa989x_volatile_reg,
-+	.cache_type	= REGCACHE_RBTREE,
-+};
-+
-+static const char * const chsa_text[] = { "Left", "Right", /* "DSP" */ };
-+static SOC_ENUM_SINGLE_DECL(chsa_enum, TFA989X_I2SREG, TFA989X_I2SREG_CHSA, chsa_text);
-+static const struct snd_kcontrol_new chsa_mux = SOC_DAPM_ENUM("Amp Input", chsa_enum);
-+
-+static const struct snd_soc_dapm_widget tfa989x_dapm_widgets[] = {
-+	SND_SOC_DAPM_OUTPUT("OUT"),
-+	SND_SOC_DAPM_SUPPLY("POWER", TFA989X_SYS_CTRL, TFA989X_SYS_CTRL_PWDN, 1, NULL, 0),
-+	SND_SOC_DAPM_OUT_DRV("AMPE", TFA989X_SYS_CTRL, TFA989X_SYS_CTRL_AMPE, 0, NULL, 0),
-+
-+	SND_SOC_DAPM_MUX("Amp Input", SND_SOC_NOPM, 0, 0, &chsa_mux),
-+	SND_SOC_DAPM_AIF_IN("AIFINL", "HiFi Playback", 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_IN("AIFINR", "HiFi Playback", 1, SND_SOC_NOPM, 0, 0),
-+};
-+
-+static const struct snd_soc_dapm_route tfa989x_dapm_routes[] = {
-+	{"OUT", NULL, "AMPE"},
-+	{"AMPE", NULL, "POWER"},
-+	{"AMPE", NULL, "Amp Input"},
-+	{"Amp Input", "Left", "AIFINL"},
-+	{"Amp Input", "Right", "AIFINR"},
-+};
-+
-+static const struct snd_soc_component_driver tfa989x_component = {
-+	.dapm_widgets		= tfa989x_dapm_widgets,
-+	.num_dapm_widgets	= ARRAY_SIZE(tfa989x_dapm_widgets),
-+	.dapm_routes		= tfa989x_dapm_routes,
-+	.num_dapm_routes	= ARRAY_SIZE(tfa989x_dapm_routes),
-+	.use_pmdown_time	= 1,
-+	.endianness		= 1,
-+	.non_legacy_dai_naming	= 1,
-+};
-+
-+static const unsigned int tfa989x_rates[] = {
-+	8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000
-+};
-+
-+static int tfa989x_find_sample_rate(unsigned int rate)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(tfa989x_rates); ++i)
-+		if (tfa989x_rates[i] == rate)
-+			return i;
-+
-+	return -EINVAL;
-+}
-+
-+static int tfa989x_hw_params(struct snd_pcm_substream *substream,
-+			     struct snd_pcm_hw_params *params,
-+			     struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_component *component = dai->component;
-+	int sr;
-+
-+	sr = tfa989x_find_sample_rate(params_rate(params));
-+	if (sr < 0)
-+		return sr;
-+
-+	return snd_soc_component_update_bits(component, TFA989X_I2SREG,
-+					     TFA989X_I2SREG_I2SSR_MSK,
-+					     sr << TFA989X_I2SREG_I2SSR);
-+}
-+
-+static const struct snd_soc_dai_ops tfa989x_dai_ops = {
-+	.hw_params = tfa989x_hw_params,
-+};
-+
-+static struct snd_soc_dai_driver tfa989x_dai = {
-+	.name = "tfa989x-hifi",
-+	.playback = {
-+		.stream_name	= "HiFi Playback",
-+		.formats	= SNDRV_PCM_FMTBIT_S16_LE,
-+		.rates		= SNDRV_PCM_RATE_8000_48000,
-+		.rate_min	= 8000,
-+		.rate_max	= 48000,
-+		.channels_min	= 1,
-+		.channels_max	= 2,
-+	},
-+	.ops = &tfa989x_dai_ops,
-+};
-+
-+static const struct reg_sequence tfa9895_reg_init[] = {
-+	/* some other registers must be set for optimal amplifier behaviour */
-+	{ TFA989X_BAT_PROT, 0x13ab },
-+	{ TFA989X_AUDIO_CTR, 0x001f },
-+
-+	/* peak voltage protection is always on, but may be written */
-+	{ TFA989X_SPKR_CALIBRATION, 0x3c4e },
-+
-+	/* TFA989X_SYSCTRL_DCA = 0 */
-+	{ TFA989X_SYS_CTRL, 0x024d },
-+	{ TFA989X_PWM_CONTROL, 0x0308 },
-+	{ TFA989X_CURRENTSENSE4, 0x0e82 },
-+};
-+
-+static int tfa9895_init(struct regmap *regmap)
-+{
-+	return regmap_multi_reg_write(regmap, tfa9895_reg_init,
-+				      ARRAY_SIZE(tfa9895_reg_init));
-+}
-+
-+static const struct tfa989x_rev tfa9895_rev = {
-+	.rev	= TFA9895_REVISION,
-+	.init	= tfa9895_init,
-+};
-+
-+/*
-+ * Note: At the moment this driver bypasses the "CoolFlux DSP" built into the
-+ * TFA989X amplifiers. Unfortunately, there seems to be absolutely
-+ * no documentation for it - the public "short datasheets" do not provide
-+ * any information about the DSP or available registers.
-+ *
-+ * Usually the TFA989X amplifiers are configured through proprietary userspace
-+ * libraries. There are also some (rather complex) kernel drivers but even those
-+ * rely on obscure firmware blobs for configuration (so-called "containers").
-+ * They seem to contain different "profiles" with tuned speaker settings, sample
-+ * rates and volume steps (which would be better exposed as separate ALSA mixers).
-+ *
-+ * Bypassing the DSP disables volume control (and perhaps some speaker
-+ * optimization?), but at least allows using the speaker without obscure
-+ * kernel drivers and firmware.
-+ *
-+ * Ideally NXP (or now Goodix) should release proper documentation for these
-+ * amplifiers so that support for the "CoolFlux DSP" can be implemented properly.
-+ */
-+static int tfa989x_dsp_bypass(struct regmap *regmap)
-+{
-+	int ret;
-+
-+	/* Clear CHSA to bypass DSP and take input from I2S 1 left channel */
-+	ret = regmap_clear_bits(regmap, TFA989X_I2SREG, TFA989X_I2SREG_CHSA_MSK);
-+	if (ret)
-+		return ret;
-+
-+	/* Set DCDC compensation to off and speaker impedance to 8 ohm */
-+	ret = regmap_update_bits(regmap, TFA989X_I2S_SEL_REG,
-+				 TFA989X_I2S_SEL_REG_DCFG_MSK |
-+				 TFA989X_I2S_SEL_REG_SPKR_MSK,
-+				 TFA989X_I2S_SEL_REG_SPKR_MSK);
-+	if (ret)
-+		return ret;
-+
-+	/* Set DCDC to follower mode and disable CoolFlux DSP */
-+	return regmap_clear_bits(regmap, TFA989X_SYS_CTRL,
-+				 BIT(TFA989X_SYS_CTRL_DCA) |
-+				 BIT(TFA989X_SYS_CTRL_CFE) |
-+				 BIT(TFA989X_SYS_CTRL_AMPC));
-+}
-+
-+static int tfa989x_i2c_probe(struct i2c_client *i2c)
-+{
-+	struct device *dev = &i2c->dev;
-+	const struct tfa989x_rev *rev;
-+	struct regmap *regmap;
-+	unsigned int val;
-+	int ret;
-+
-+	rev = device_get_match_data(dev);
-+	if (!rev) {
-+		dev_err(dev, "unknown device revision\n");
-+		return -ENODEV;
-+	}
-+
-+	regmap = devm_regmap_init_i2c(i2c, &tfa989x_regmap);
-+	if (IS_ERR(regmap))
-+		return PTR_ERR(regmap);
-+
-+	/* Bypass regcache for reset and init sequence */
-+	regcache_cache_bypass(regmap, true);
-+
-+	/* Dummy read to generate i2c clocks, required on some devices */
-+	regmap_read(regmap, TFA989X_REVISIONNUMBER, &val);
-+
-+	ret = regmap_read(regmap, TFA989X_REVISIONNUMBER, &val);
-+	if (ret) {
-+		dev_err(dev, "failed to read revision number: %d\n", ret);
-+		return ret;
-+	}
-+
-+	val &= TFA989X_REVISIONNUMBER_REV_MSK;
-+	if (val != rev->rev) {
-+		dev_err(dev, "invalid revision number, expected %#x, got %#x\n",
-+			rev->rev, val);
-+		return -ENODEV;
-+	}
-+
-+	ret = regmap_write(regmap, TFA989X_SYS_CTRL, BIT(TFA989X_SYS_CTRL_I2CR));
-+	if (ret) {
-+		dev_err(dev, "failed to reset I2C registers: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = rev->init(regmap);
-+	if (ret) {
-+		dev_err(dev, "failed to initialize registers: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = tfa989x_dsp_bypass(regmap);
-+	if (ret) {
-+		dev_err(dev, "failed to enable DSP bypass: %d\n", ret);
-+		return ret;
-+	}
-+	regcache_cache_bypass(regmap, false);
-+
-+	return devm_snd_soc_register_component(dev, &tfa989x_component,
-+					       &tfa989x_dai, 1);
-+}
-+
-+static const struct of_device_id tfa989x_of_match[] = {
-+	{ .compatible = "nxp,tfa9895", .data = &tfa9895_rev },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, tfa989x_of_match);
-+
-+static struct i2c_driver tfa989x_i2c_driver = {
-+	.driver = {
-+		.name = "tfa989x",
-+		.of_match_table = tfa989x_of_match,
-+	},
-+	.probe_new = tfa989x_i2c_probe,
-+};
-+module_i2c_driver(tfa989x_i2c_driver);
-+
-+MODULE_DESCRIPTION("ASoC NXP/Goodix TFA989X (TFA1) driver");
-+MODULE_AUTHOR("Stephan Gerhold <stephan@gerhold.net>");
-+MODULE_LICENSE("GPL");
--- 
-2.31.1
-
+Thanks,
+Krishna
+> 
+>> +
+>> +            required:
+>> +              - remote-endpoint
+>> +
+>> +        required:
+>> +          - reg
+>> +          - endpoint
+>> +
+>> +      port@1:
+>> +        type: object
+>> +        description: |
+>> +          Output endpoints of the controller.
+>> +        properties:
+>> +          reg:
+>> +            const: 1
+>> +
+>> +          endpoint:
+>> +            type: object
+>> +            properties:
+>> +              remote-endpoint: true
+>> +              data-lanes:
+>> +                items:
+>> +                  - const: 0
+>> +                  - const: 1
+>> +                  - const: 2
+>> +                  - const: 3
+>> +
+>> +            required:
+>> +              - remote-endpoint
+>> +              - data-lanes
+>> +
+>> +        required:
+>> +          - reg
+>> +          - endpoint
+>> +
+>> +    required:
+>> +      - port@0
+>> +      - port@1
+>> +      - "#address-cells"
+>> +      - "#size-cells"
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - reg-names
+>> +  - interrupts
+>> +  - clocks
+>> +  - clock-names
+>> +  - phys
+>> +  - phy-names
+>> +  - ports
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +     #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +     #include <dt-bindings/clock/qcom,dispcc-sdm845.h>
+>> +     #include <dt-bindings/clock/qcom,gcc-sdm845.h>
+>> +
+>> +     dsi@ae94000 {
+>> +           compatible = "qcom,mdss-dsi-ctrl";
+>> +           reg = <0x0ae94000 0x400>;
+>> +           reg-names = "dsi_ctrl";
+>> +
+>> +           #address-cells = <1>;
+>> +           #size-cells = <0>;
+>> +
+>> +           interrupt-parent = <&mdss>;
+>> +           interrupts = <4>;
+>> +
+>> +           clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK>,
+>> +                    <&dispcc DISP_CC_MDSS_BYTE0_INTF_CLK>,
+>> +                    <&dispcc DISP_CC_MDSS_PCLK0_CLK>,
+>> +                    <&dispcc DISP_CC_MDSS_ESC0_CLK>,
+>> +                    <&dispcc DISP_CC_MDSS_AHB_CLK>,
+>> +                    <&dispcc DISP_CC_MDSS_AXI_CLK>;
+>> +           clock-names = "byte",
+>> +                         "byte_intf",
+>> +                         "pixel",
+>> +                         "core",
+>> +                         "iface",
+>> +                         "bus";
+>> +
+>> +           phys = <&dsi0_phy>;
+>> +           phy-names = "dsi";
+>> +
+>> +           ports {
+>> +                  #address-cells = <1>;
+>> +                  #size-cells = <0>;
+>> +
+>> +                  port@0 {
+>> +                          reg = <0>;
+>> +                          dsi0_in: endpoint {
+>> +                                   remote-endpoint = 
+>> <&dpu_intf1_out>;
+>> +                          };
+>> +                  };
+>> +
+>> +                  port@1 {
+>> +                          reg = <1>;
+>> +                          dsi0_out: endpoint {
+>> +                                   remote-endpoint = <&sn65dsi86_in>;
+>> +                                   data-lanes = <0 1 2 3>;
+>> +                          };
+>> +                  };
+>> +           };
+>> +     };
+>> +...
+>> diff --git a/Documentation/devicetree/bindings/display/msm/dsi.txt 
+>> b/Documentation/devicetree/bindings/display/msm/dsi.txt
+>> deleted file mode 100644
+>> index b9a64d3..0000000
+>> --- a/Documentation/devicetree/bindings/display/msm/dsi.txt
+>> +++ /dev/null
+>> @@ -1,249 +0,0 @@
+>> -Qualcomm Technologies Inc. adreno/snapdragon DSI output
+>> -
+>> -DSI Controller:
+>> -Required properties:
+>> -- compatible:
+>> -  * "qcom,mdss-dsi-ctrl"
+>> -- reg: Physical base address and length of the registers of 
+>> controller
+>> -- reg-names: The names of register regions. The following regions are 
+>> required:
+>> -  * "dsi_ctrl"
+>> -- interrupts: The interrupt signal from the DSI block.
+>> -- power-domains: Should be <&mmcc MDSS_GDSC>.
+>> -- clocks: Phandles to device clocks.
+>> -- clock-names: the following clocks are required:
+>> -  * "mdp_core"
+>> -  * "iface"
+>> -  * "bus"
+>> -  * "core_mmss"
+>> -  * "byte"
+>> -  * "pixel"
+>> -  * "core"
+>> -  For DSIv2, we need an additional clock:
+>> -   * "src"
+>> -  For DSI6G v2.0 onwards, we need also need the clock:
+>> -   * "byte_intf"
+>> -- assigned-clocks: Parents of "byte" and "pixel" for the given 
+>> platform.
+>> -- assigned-clock-parents: The Byte clock and Pixel clock PLL outputs 
+>> provided
+>> -  by a DSI PHY block. See [1] for details on clock bindings.
+>> -- vdd-supply: phandle to vdd regulator device node
+>> -- vddio-supply: phandle to vdd-io regulator device node
+>> -- vdda-supply: phandle to vdda regulator device node
+>> -- phys: phandle to DSI PHY device node
+>> -- phy-names: the name of the corresponding PHY device
+>> -- syscon-sfpb: A phandle to mmss_sfpb syscon node (only for DSIv2)
+>> -- ports: Contains 2 DSI controller ports as child nodes. Each port 
+>> contains
+>> -  an endpoint subnode as defined in [2] and [3].
+>> -
+>> -Optional properties:
+>> -- panel@0: Node of panel connected to this DSI controller.
+>> -  See files in [4] for each supported panel.
+>> -- qcom,dual-dsi-mode: Boolean value indicating if the DSI controller 
+>> is
+>> -  driving a panel which needs 2 DSI links.
+>> -- qcom,master-dsi: Boolean value indicating if the DSI controller is 
+>> driving
+>> -  the master link of the 2-DSI panel.
+>> -- qcom,sync-dual-dsi: Boolean value indicating if the DSI controller 
+>> is
+>> -  driving a 2-DSI panel whose 2 links need receive command 
+>> simultaneously.
+>> -- pinctrl-names: the pin control state names; should contain 
+>> "default"
+>> -- pinctrl-0: the default pinctrl state (active)
+>> -- pinctrl-n: the "sleep" pinctrl state
+>> -- ports: contains DSI controller input and output ports as children, 
+>> each
+>> -  containing one endpoint subnode.
+>> -
+>> -  DSI Endpoint properties:
+>> -  - remote-endpoint: For port@0, set to phandle of the connected 
+>> panel/bridge's
+>> -    input endpoint. For port@1, set to the MDP interface output. See 
+>> [2] for
+>> -    device graph info.
+>> -
+>> -  - data-lanes: this describes how the physical DSI data lanes are 
+>> mapped
+>> -    to the logical lanes on the given platform. The value contained 
+>> in
+>> -    index n describes what physical lane is mapped to the logical 
+>> lane n
+>> -    (DATAn, where n lies between 0 and 3). The clock lane position is 
+>> fixed
+>> -    and can't be changed. Hence, they aren't a part of the DT 
+>> bindings. See
+>> -    [3] for more info on the data-lanes property.
+>> -
+>> -    For example:
+>> -
+>> -    data-lanes = <3 0 1 2>;
+>> -
+>> -    The above mapping describes that the logical data lane DATA0 is 
+>> mapped to
+>> -    the physical data lane DATA3, logical DATA1 to physical DATA0, 
+>> logic DATA2
+>> -    to phys DATA1 and logic DATA3 to phys DATA2.
+>> -
+>> -    There are only a limited number of physical to logical mappings 
+>> possible:
+>> -    <0 1 2 3>
+>> -    <1 2 3 0>
+>> -    <2 3 0 1>
+>> -    <3 0 1 2>
+>> -    <0 3 2 1>
+>> -    <1 0 3 2>
+>> -    <2 1 0 3>
+>> -    <3 2 1 0>
+> 
+> You've dropped all these?
