@@ -2,74 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17A7637F4F2
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 11:41:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F4BC37F5C6
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 12:43:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232327AbhEMJmr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 05:42:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47094 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232353AbhEMJma (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 May 2021 05:42:30 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 715B861285;
-        Thu, 13 May 2021 09:41:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620898880;
-        bh=5REy0cBkp2rSOWKa8qbir57z+YBnFCooUTiOwGD5oCE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GElZOuF1/N35y4cmpxHVtdnKHX0/5E1SLFc67kCL9TvRpwvOMiuoYxhJ1hvl3iMTO
-         cAWfCFHhTEO1AxmDfcW2L/QTfEPh1y3Kv0YLYeEkORfau2XFEHRL/bVQY3YxInPbBe
-         K43YxKW9m10NtGofcIzWs5noSkXgBaBM2aYzn2s9q85S/BBRyJYgwFbWMF5gRjoNcH
-         DErVLFit3vcwStOMsHXMTiJj3ZSkmAZ6Wj4chtRWQ06T5qzxs9yRy1ifiRVI+EokUS
-         ojl1RjkAjlreTHmVTrOVqCs4LgNgeoZwpL3Cy3Mwft/xy2Zx59jg9lptX/Wd2Srxw1
-         2RJ/Tm+oz0R8g==
-Date:   Thu, 13 May 2021 12:41:15 +0300
-From:   Abel Vesa <abelvesa@kernel.org>
-To:     Jacky Bai <ping.bai@nxp.com>
-Cc:     shawnguo@kernel.org, robh+dt@kernel.org, abel.vesa@nxp.com,
-        s.hauer@pengutronix.de, sboyd@kernel.org, festevam@gmail.com,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-imx@nxp.com
-Subject: Re: [PATCH v2 2/2] clk: imx: Remove the audio ipg clock from imx8mp
-Message-ID: <YJz0O5Du/A3Cmi2r@ryzen.lan>
-References: <20210420055453.1235297-1-ping.bai@nxp.com>
- <20210420055453.1235297-2-ping.bai@nxp.com>
+        id S230362AbhEMKoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 06:44:39 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.52]:30246 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230130AbhEMKoi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 06:44:38 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1620902603; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=EGNaYPHQlC5lU8PXw+0QOkJ4hDBr7oBSDswKwXD9IBH6F//YyUFB4+fxgq1T0bVRmr
+    Az16hyk2XBr3LXWUi6qypoyPB0aNAZLTXC2n03jNy3Mjy+f4HeLN2ukqVvkhXvteMeiq
+    P7gl51PTA26mX+gm92BSuxBnQmsPfmdmx2ATAQ00AI+VU5L4bFev5rAlMFanW2mxtzdE
+    0nkCA5CwI9UmXHyZCaXTS8Y9e5YLELhj4DOKm4dpRPfaiTRx4pkceDiHQlyW8rt/8MlE
+    FmnoxCDvaGPF8RoldQp5sSa9sRIiIjREkv+1FiMe9iQPSo2DK9XhSeUtbwnH1ojiCLEF
+    aJlQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1620902603;
+    s=strato-dkim-0002; d=strato.com;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=n1wCL+fq1gwX1B/7sXKYovHlJD7nUV7ac25vUwP6dCc=;
+    b=poqgbDGewXJY/QkYvTcX7YDGL/znb08isg5oMziRZ7XWxrneDbGQRPdUSV61LbMv3N
+    XToFBAl9FhR9x+w9HwyTkBWDTZ7uwsfeFlEUfDHUKJtXtFIyeSbPWaVNlNN7WW1lQf+m
+    smOPdXFFG5n1+L2KyHaZ4iG9ayx5mmB5rohy9SvSNvxkmbH0AyIh6NZSOyF2FfFypW+i
+    5T1xa8c0HlzMaO1BBkIPAqohGeGuOt6mrKKdCyCa4KnxtlQlkFHj3sPAZWmzd2ydAIjM
+    m2aOvPjK+uVnVS3cXDieJ0KUQXOFi9JKsHKnYBDDSCTiYa2D7HuVisyhNKxlk9Nuen3n
+    nneA==
+ARC-Authentication-Results: i=1; strato.com;
+    dkim=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1620902603;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=n1wCL+fq1gwX1B/7sXKYovHlJD7nUV7ac25vUwP6dCc=;
+    b=ocwmxCcgnSmnlKSoPT3ig/B4+VTQC6O1CN701poWxWHjeU0GrtlmmPChm0lQTP+v8J
+    C9BgmfS8HAFFpzqNx4Hhz3my9EUPTh2vcLX8m59cRByvu02oUnGW/N0Licw6YRDggzvT
+    mvyn+9NWoYbg21/RTeTjSxd1kms6AMq8Tk0wSSKHazn+eOIrcpIXOrxFkVKa6mLrvBWr
+    7xRe9FwQFzBdpR1IxYmrIvM0nwkjMXFMfRN8T3XKNBxY1AK8cvlw+VfggkC5ljLlFvf1
+    pyiiylKYlTBuQgOgSPBfR1rX/0XkWMYW1LTEp1eFYgb1bvCdwWOmZCWY7z90bAkLHsiW
+    h+dg==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxB4G6OJCs="
+X-RZG-CLASS-ID: mo00
+Received: from droid..
+    by smtp.strato.de (RZmta 47.25.7 DYNA|AUTH)
+    with ESMTPSA id j06c13x4DAhMA9H
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Thu, 13 May 2021 12:43:22 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        linux-kernel@vger.kernel.org,
+        Vincent Knecht <vincent.knecht@mailoo.org>,
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [RFC PATCH 1/2] ASoC: dt-bindings: codecs: Add bindings for nxp,tfa989x
+Date:   Thu, 13 May 2021 12:41:28 +0200
+Message-Id: <20210513104129.36583-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210420055453.1235297-2-ping.bai@nxp.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-04-20 13:54:53, Jacky Bai wrote:
-> There is no audio ipg clock on i.MX8MP, so remove this from
-> the clock driver.
-> 
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+NXP/Goodix TFA989X (TFA1) amplifiers are controlled via an I2C bus.
+Add simple device tree bindings that describe how to set them up
+in the device tree.
 
-Applied, thanks.
+Right now only nxp,tfa9895 is supported but this will be extended
+to at least nxp,tfa9897 in the near future.
 
-> ---
-> - changes v2:
->   keep the clock binding define no changes to fix the cross tree
->   dependency with dts.
-> ---
->  drivers/clk/imx/clk-imx8mp.c | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/drivers/clk/imx/clk-imx8mp.c b/drivers/clk/imx/clk-imx8mp.c
-> index e39c9c907c38..12837304545d 100644
-> --- a/drivers/clk/imx/clk-imx8mp.c
-> +++ b/drivers/clk/imx/clk-imx8mp.c
-> @@ -556,7 +556,6 @@ static int imx8mp_clocks_probe(struct platform_device *pdev)
->  	hws[IMX8MP_CLK_MIPI_DSI_ESC_RX] = imx8m_clk_hw_composite_bus("mipi_dsi_esc_rx", imx8mp_mipi_dsi_esc_rx_sels, ccm_base + 0x9200);
->  
->  	hws[IMX8MP_CLK_IPG_ROOT] = imx_clk_hw_divider2("ipg_root", "ahb_root", ccm_base + 0x9080, 0, 1);
-> -	hws[IMX8MP_CLK_IPG_AUDIO_ROOT] = imx_clk_hw_divider2("ipg_audio_root", "audio_ahb", ccm_base + 0x9180, 0, 1);
->  
->  	hws[IMX8MP_CLK_DRAM_ALT] = imx8m_clk_hw_composite("dram_alt", imx8mp_dram_alt_sels, ccm_base + 0xa000);
->  	hws[IMX8MP_CLK_DRAM_APB] = imx8m_clk_hw_composite_critical("dram_apb", imx8mp_dram_apb_sels, ccm_base + 0xa080);
-> -- 
-> 2.26.2
-> 
+Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+---
+ .../bindings/sound/nxp,tfa989x.yaml           | 54 +++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
+
+diff --git a/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml b/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
+new file mode 100644
+index 000000000000..45db5776550c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/nxp,tfa989x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP/Goodix TFA989X (TFA1) Audio Amplifiers
++
++maintainers:
++  - Stephan Gerhold <stephan@gerhold.net>
++
++properties:
++  compatible:
++    enum:
++      - nxp,tfa9895
++
++  reg:
++    maxItems: 1
++
++  '#sound-dai-cells':
++    const: 0
++
++  sound-name-prefix:
++    $ref: /schemas/types.yaml#/definitions/string
++    description:
++      Used as prefix for sink/source names of the component. Must be a
++      unique string among multiple instances of the same component.
++
++required:
++  - compatible
++  - reg
++  - '#sound-dai-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      audio-codec@34 {
++        compatible = "nxp,tfa9895";
++        reg = <0x34>;
++        sound-name-prefix = "Speaker Left";
++        #sound-dai-cells = <0>;
++      };
++      audio-codec@36 {
++        compatible = "nxp,tfa9895";
++        reg = <0x36>;
++        sound-name-prefix = "Speaker Right";
++        #sound-dai-cells = <0>;
++      };
++    };
+-- 
+2.31.1
+
