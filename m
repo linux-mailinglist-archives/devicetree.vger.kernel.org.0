@@ -2,88 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6698437F711
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 13:46:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B17B137F797
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 14:12:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232537AbhEMLrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 07:47:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35184 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232106AbhEMLru (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 07:47:50 -0400
-Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CDE5C06175F;
-        Thu, 13 May 2021 04:46:39 -0700 (PDT)
-Received: by mail-il1-x12c.google.com with SMTP id e14so22725338ils.12;
-        Thu, 13 May 2021 04:46:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=Rm89In9VFgXIxrvmbcLZClWvwBKBEh2Q5L+7MRo67Ho=;
-        b=SJaLe9Zy5ycMUyRgFr43qRxDs35epaWnNzYIYXRnTU32HE0hWQsaruvP9WeJ3tUEFC
-         I8EyDVXOl7qax0ttNsr+M5JgjFgdozLNLloiKm81joRa1hHe4hLpFr5Caw/OFZnF9Nrt
-         sjemsJnMpkBs56Q6kOnjd09qo5Rg6L/KVU6+vp5/tcRv7WsUWai7REWjZnUxnK8IEFWU
-         yJ1CHGcnV34w2LtpDR3+85REc84NOGJ6mcEjCM2rcNl2SG57bMYJl4pdtRFeYCmBQSuQ
-         5F+Udu/TTY30UYkW7yc05ZbwR0xjJ3bhgnoz4QKNr9079w1p9VE/fJe4a+b9cKqcF6IM
-         bJAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=Rm89In9VFgXIxrvmbcLZClWvwBKBEh2Q5L+7MRo67Ho=;
-        b=tuLu7ft7q0dfzE//kOu/oD9GUpRpYND+J8QF5zu/arYfvfxmk9IRRl+N8y9yb2YNqL
-         DmLQemPzyxcVQMpMmuUk74K3YtJKTWUZMWW8F8sTLBhYixCjBgwlQGRkplmZBTgOwWaD
-         bSouxp9AQ8cjbfdSCSDKARBfdcuxndQd8OTQEEKLKxCtFALWxwL4Yz/uczZI4NCAAYWI
-         WJuEz2LKUEhPqMx335/7Da51Qg8nWL706I7Bu3qShJLe+vGZW73zZDyufyEhArB0husk
-         HbVUxz6T94j/wqo7/FuErnFrcdNTX5nLYoPfEGA7rI+qMy1K92neXTyhs8PEWGd+4ncs
-         7TlQ==
-X-Gm-Message-State: AOAM533GEJxCRNkc0h93m/mnJRcMjqzXLC88RrUMM+/T5RjaGoPsxuvA
-        aXNFvTbNITEiaVOc1bzwdwk=
-X-Google-Smtp-Source: ABdhPJyXKOm4TyYEisCK+GMqYFhJFX9a3p/X+xRQOqdAcu+fYr2cM05ikYn20cVPJok9l1uLlyrpSQ==
-X-Received: by 2002:a05:6e02:1b83:: with SMTP id h3mr19359239ili.199.1620906398843;
-        Thu, 13 May 2021 04:46:38 -0700 (PDT)
-Received: from aford-OptiPlex-7050.logicpd.com ([174.46.170.158])
-        by smtp.gmail.com with ESMTPSA id x13sm1298192ilv.88.2021.05.13.04.46.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 May 2021 04:46:38 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: defconfig: Enable usb2_clksel for rcar3 and RZ/G2
-Date:   Thu, 13 May 2021 06:46:17 -0500
-Message-Id: <20210513114617.30191-3-aford173@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210513114617.30191-1-aford173@gmail.com>
-References: <20210513114617.30191-1-aford173@gmail.com>
+        id S233740AbhEMMNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 08:13:33 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:51078 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233701AbhEMMM3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 08:12:29 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14DCBCAH100536;
+        Thu, 13 May 2021 07:11:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1620907872;
+        bh=cW2zgIg/Oktxd6n2CPYG9djpPhCbNXtDbLcmRLCEqXQ=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=Lz8l6AGds50KzkIvmxzmdSpINU+7FeT6JygcGY65uAv5PtXahsdlfbztCePk4t9Hv
+         48lBp9tNI1kusxJ9iqJi8a52XhDdO/nklKyucxNmj1nWIF9xL/IT/tuT4Iz07DanQy
+         MuZyZByZWvb78iKj8vUMvFardOqHQje0zszWJwvk=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14DCBCfu046925
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 13 May 2021 07:11:12 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 13
+ May 2021 07:11:12 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 13 May 2021 07:11:12 -0500
+Received: from [10.250.232.183] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14DCB93h116594;
+        Thu, 13 May 2021 07:11:10 -0500
+Subject: Re: [PATCH 1/4] arm64: dts: ti: k3-j721e-main: Fix external refclk
+ input to SERDES
+To:     Nishanth Menon <nm@ti.com>
+CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+References: <20210512151209.27560-1-kishon@ti.com>
+ <20210512151209.27560-2-kishon@ti.com>
+ <20210512185157.q5sr2xqf3w5igfte@imagines>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <68c95cf1-84fa-2194-7bb1-e3c60e7f1fc0@ti.com>
+Date:   Thu, 13 May 2021 17:41:08 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20210512185157.q5sr2xqf3w5igfte@imagines>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is a clock driver that's needed when using an external
-USB reference clock called usb2_clksel.
-Enable it in the defconfig.
+Hi Nishanth,
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+On 13/05/21 12:21 am, Nishanth Menon wrote:
+> On 20:42-20210512, Kishon Vijay Abraham I wrote:
+>> Rename the external refclk inputs to the SERDES from
+>> dummy_cmn_refclk/dummy_cmn_refclk1 to cmn_refclk/cmn_refclk1
+>> respectively. Also move the external refclk DT nodes outside the
+>> cbass_main DT node. Since in j721e common processor board, only the
+>> cmn_refclk1 is connected to 100MHz clock, fix the clock frequency.
+>>
+>> Fixes: afd094ebe69f ("arm64: dts: ti: k3-j721e-main: Add WIZ and SERDES PHY nodes")
+> 
+> Assume we want this part of 5.13 fixes?
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 08c6f769df9a..c1110fc20cdb 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -987,6 +987,7 @@ CONFIG_SM_GPUCC_8250=y
- CONFIG_SM_DISPCC_8250=y
- CONFIG_QCOM_HFPLL=y
- CONFIG_CLK_GFM_LPASS_SM8250=m
-+CONFIG_CLK_RCAR_USB2_CLOCK_SEL=y
- CONFIG_HWSPINLOCK=y
- CONFIG_HWSPINLOCK_QCOM=y
- CONFIG_ARM_MHU=y
--- 
-2.17.1
+This doesn't fix any functionality. Okay for me to go in 5.14 along with
+the rest of the series.
+> 
+>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+>> ---
+>>  .../dts/ti/k3-j721e-common-proc-board.dts     |  4 ++
+>>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 58 ++++++++++---------
+>>  2 files changed, 34 insertions(+), 28 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+>> index 60764366e22b..86f7ab511ee8 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+>> @@ -635,6 +635,10 @@
+>>  	status = "disabled";
+>>  };
+>>  
+>> +&cmn_refclk1 {
+>> +	clock-frequency = <100000000>;
+>> +};
+>> +
+>>  &serdes0 {
+>>  	serdes0_pcie_link: link@0 {
+>>  		reg = <0>;
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+>> index c2aa45a3ac79..002a0c1520ee 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+>> @@ -8,6 +8,20 @@
+>>  #include <dt-bindings/mux/mux.h>
+>>  #include <dt-bindings/mux/ti-serdes.h>
+>>  
+>> +/ {
+>> +	cmn_refclk: cmn-refclk {
+>> +		#clock-cells = <0>;
+>> +		compatible = "fixed-clock";
+>> +		clock-frequency = <0>;
+>> +	};
+>> +
+>> +	cmn_refclk1: cmn-refclk1 {
+> 
+> Just curious: why cant we use the standard nodenames with clock?
 
+We can use standard names here. Is there any defined nodename for
+clocks? clk or clock? Don't see $nodename defined for clocks in
+dt-schema repository.
+
+Thanks
+Kishon
