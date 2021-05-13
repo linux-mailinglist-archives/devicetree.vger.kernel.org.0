@@ -2,124 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC93A37FE72
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 21:56:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B50E37FE9D
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 22:11:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232305AbhEMT6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 15:58:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59970 "EHLO
+        id S232505AbhEMUM3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 16:12:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232263AbhEMT6D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 15:58:03 -0400
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 725DBC06174A
-        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 12:56:52 -0700 (PDT)
-Received: by mail-qk1-x72d.google.com with SMTP id v8so8753184qkv.1
-        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 12:56:52 -0700 (PDT)
+        with ESMTP id S232290AbhEMUM2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 16:12:28 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42B43C061574
+        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 13:11:18 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id m9so28032913wrx.3
+        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 13:11:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ImB00rCkO3Du5fe7tW03c3z2e4cEx+x9KwGSBQTfV8Y=;
-        b=MYFZYZfeOsnayRhW4lf4ZMW7Qg1ZxX5/VeI5As9fUKYtgLYeIfesf4bvt4LNtZOd+n
-         mkh1Pl/j62eJYdcFcF8Y2m6ir8r1lBayar5pI5GS/9TfjCguiGAxUpRTjmDCYN3YH2Mm
-         Z0AnoB/pz5FOM4R1rfgdwYatRIcNVvXv6Dd1QJICdDN2iC66ipJ+K+zDXDw9M/IMJJ/4
-         0jQySlzbudom8C/dZwF2oQFXMydcug0llFJ2F8aLGsh62K9YKz2SVWcD6csBXeZZ+rYR
-         CUCXvys1qHCIdb/JwjDUvGntkYEyNUIEFy25Qpq7Qy4zk5fQUo6uUWx6Xx10j9hFMVTx
-         ejTQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=w/tzSs3pMNhmQae+nTddF81fyXP89tQ8kavFT4k6oOw=;
+        b=GIwGyzP59MWwIr1FkBw+UOSvsPwKQpzftwq0kuw95r6SKAR7s0UtWfKUCYA/RU+Eq3
+         izVL+EO/kZ4pv610a4asj1Vfb1jfdrqPL5NNsP0+Vy14W35aoIRleY4dTgRJZb0sSbIg
+         slK25fbZNNWrtdP3Wc7bieqWuzC1gGXFgheCqKuYNNIcyaSOC+nf2BqaEOWo+BuQHY2I
+         BfwAbqJRwcEPonmZ+FiRsuouoJ3pninGs0mLy6iBXq4VUq7ljrz9+Rf2kggfZ9DYUijb
+         6bfwSvK/eczrmOHVedTaVIz8NauJ+PZnR3eShz96+IeVt38PRaRqu+POZ6VYGsnb6Q9y
+         vw1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ImB00rCkO3Du5fe7tW03c3z2e4cEx+x9KwGSBQTfV8Y=;
-        b=EhG6R3dGEoO5iVGgnL3oopf+hCh6bOxue0uyt8if9ksrj4iDQXQ+pEW8IinIx7+ANG
-         h7h/+jwRoECJdLGMezZFrnfvKbJGWzZnXMgKTD8L1KWRbxL4v0jj9H9zwBV0XwyTFuKW
-         4AKTbY+URREA2RkV/G4u/1zAkRzi2r8XkGxqwwhsGul5KkqTQzyxq8cj0TNVBMeyuvsc
-         4M4Fuf5rE++16lIRF9EMhWTRAzU0VopNeqWykiAy8OHslwyPKsqSPmVStIVFpSVsuvGn
-         vHdPIwgGCtecr4wKKZo5jgmNiyue20l0JFfGksqEjZyVu9HosvJn56SZJl482cl9Mctk
-         gdxw==
-X-Gm-Message-State: AOAM532+3PoTlc1woRz8y8ieCPTJnuSCba71SP6AiwutD4z8Jmt9vE9Z
-        D3P4672y6C1dKbSnlJtq/vDSMg==
-X-Google-Smtp-Source: ABdhPJx1RtfJ/l4n/RuqVFt93meQ5WMhpxPL9gL8UNj3gRu1WJT/XnnZlFikpcxf3KQh0hdKj1TlWA==
-X-Received: by 2002:ae9:ed86:: with SMTP id c128mr32927476qkg.224.1620935811744;
-        Thu, 13 May 2021 12:56:51 -0700 (PDT)
-Received: from localhost.localdomain (modemcable068.184-131-66.mc.videotron.ca. [66.131.184.68])
-        by smtp.gmail.com with ESMTPSA id h12sm3211228qkj.52.2021.05.13.12.56.50
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=w/tzSs3pMNhmQae+nTddF81fyXP89tQ8kavFT4k6oOw=;
+        b=DzZi2cgjy40zEehMya36rvsDnBlfbGyWbaArLAxWROB6TJAIjke/Aj2xED4M9snIoT
+         DLsradDyTnsxoHfS9KrBuBmCa9gYhCJ6ZwTDqaEf88VGfAr0mL+Ti1p3q+t+hEagoP3/
+         Z1RbAKKm57faPLIVrlCE5J6dCYFBqAbQHiF0RmAmGrpYK+K8gS8XXYC1pVdWQSVHVK/N
+         tgjJj6eLT37MH8LsefAY4yeNVPCOaZvzvsvRRvf0m5urtmoZysFiZepii1+Kbakg12No
+         zbrpCM7Uhm8xa7rLpQ0aZyQrOPsLuDAEMpM6XBlMOSq7PrgNqHZ3jgNLCCt98X/3/Jcp
+         fbmQ==
+X-Gm-Message-State: AOAM5313cGX0zia6EclJagIbfFcZdSNSsBwzZDjxx4Dg/UvIIEePPKC5
+        VE90BzyMxAoA1vl7OvVtRUU5yA==
+X-Google-Smtp-Source: ABdhPJwNIcd0EDRfG3jhOFUxpQlxO8GboAJpcG/rEHXU0psLBmv6fJiIiBBxr9hEMER99bKq9zCqOg==
+X-Received: by 2002:a5d:4e52:: with SMTP id r18mr52497343wrt.179.1620936676923;
+        Thu, 13 May 2021 13:11:16 -0700 (PDT)
+Received: from dell ([91.110.221.215])
+        by smtp.gmail.com with ESMTPSA id y12sm3138587wma.47.2021.05.13.13.11.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 May 2021 12:56:51 -0700 (PDT)
-From:   Jonathan Marek <jonathan@marek.ca>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 2/2] dt-bindings: clock: add QCOM SM8350 display clock bindings
-Date:   Thu, 13 May 2021 15:56:17 -0400
-Message-Id: <20210513195617.15068-2-jonathan@marek.ca>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20210513195617.15068-1-jonathan@marek.ca>
-References: <20210513195617.15068-1-jonathan@marek.ca>
+        Thu, 13 May 2021 13:11:16 -0700 (PDT)
+Date:   Thu, 13 May 2021 21:11:14 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        lgirdwood@gmail.com, pierre-louis.bossart@linux.intel.com,
+        tiwai@suse.com, heiko@sntech.de, robh+dt@kernel.org,
+        perex@perex.cz, jbx6244@gmail.com, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, maccraft123mc@gmail.com,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH v9 1/4] mfd: Add Rockchip rk817 audio CODEC support
+Message-ID: <20210513201114.GE805368@dell>
+References: <20210505140854.15929-1-macroalpha82@gmail.com>
+ <20210505140854.15929-2-macroalpha82@gmail.com>
+ <20210510162329.GD751702@dell>
+ <20210513150122.GA8450@wintermute.localdomain>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210513150122.GA8450@wintermute.localdomain>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add sm8350 DISPCC bindings, which are simply a symlink to the sm8250
-bindings. Update the documentation with add the new compatible.
+On Thu, 13 May 2021, Chris Morgan wrote:
 
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
----
- .../devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml       | 6 ++++--
- include/dt-bindings/clock/qcom,dispcc-sm8350.h              | 1 +
- 2 files changed, 5 insertions(+), 2 deletions(-)
- create mode 120000 include/dt-bindings/clock/qcom,dispcc-sm8350.h
+> On Mon, May 10, 2021 at 05:23:29PM +0100, Lee Jones wrote:
+> > On Wed, 05 May 2021, Chris Morgan wrote:
+> > 
+> > > From: Chris Morgan <macromorgan@hotmail.com>
+> > > 
+> > > Add rk817 codec support cell to rk808 mfd driver.
+> > > 
+> > > Tested-by: Maciej Matuszczyk <maccraft123mc@gmail.com>
+> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > 
+> > Nit: These should be chronological.
+> 
+> Acknowledged. I will make sure to do this if a v10 is necessary.
+> 
+> > 
+> > > ---
+> > > Changes in v9:
+> > >  - Add cover letter.
+> > >  - Remove documentation for interrupt parent per Rob Herring's request.
+> > >  - Remove unused MODULE_DEVICE_TABLE to fix a bug identified by kernel test
+> > >    robot.
+> > > Changes in v8:
+> > >  - Added additional documentation for missing properties of #sound-dai-cells,
+> > >    interrupt-parent, and wakeup-source for mfd documentation.
+> > >  - Corrected order of elements descriptions in device tree documentation.
+> > >  - Changed name of "mic-in-differential" to "rockchip,mic-in-differential".
+> > >  - Changed name of sound card from "rockchip,rk817-codec" to "Analog".
+> > >  - Removed unused resets and reset-names from the i2s1_2ch node.
+> > > Changes in v7:
+> > >  - Removed ifdef around register definitions for MFD.
+> > >  - Replaced codec documentation with updates to MFD documentation.
+> > >  - Reordered elements in example to comply with upstream rules.
+> > >  - Added binding update back for Odroid Go Advance as requested.
+> > >  - Submitting patches from gmail now.
+> > > Changes in v6:
+> > >  - Included additional project maintainers for correct subsystems.
+> > >  - Removed unneeded compatible from DT documentation.
+> > >  - Removed binding update for Odroid Go Advance (will do in seperate series).
+> > > Changes in v5:
+> > >  - Move register definitions from rk817_codec.h to main rk808.h register
+> > >    definitions.
+> > >  - Add volatile register for codec bits.
+> > >  - Add default values for codec bits.
+> > >  - Removed of_compatible from mtd driver (not necessary).
+> > >  - Switched to using parent regmap instead of private regmap for codec.
+> > > Changes in v4:
+> > >  - Created set_pll() call.
+> > >  - Created user visible gain control in mic.
+> > >  - Check for return value of clk_prepare_enable().
+> > >  - Removed duplicate clk_prepare_enable().
+> > >  - Split DT documentation to separate commit.
+> > > Changes in v3:
+> > >  - Use DAPM macros to set audio path.
+> > >  - Updated devicetree binding (as every rk817 has this codec chip).
+> > >  - Changed documentation to yaml format.
+> > >  - Split MFD changes to separate commit.
+> > > Changes in v2:
+> > >  - Fixed audio path registers to solve some bugs.
+> > > 
+> > >  drivers/mfd/rk808.c       | 85 +++++++++++++++++++++++++++++++++++++++
+> > >  include/linux/mfd/rk808.h | 81 +++++++++++++++++++++++++++++++++++++
+> > >  2 files changed, 166 insertions(+)
+> > > 
+> > > diff --git a/drivers/mfd/rk808.c b/drivers/mfd/rk808.c
+> > > index ad923dd4e007..9231209184e0 100644
+> > > --- a/drivers/mfd/rk808.c
+> > > +++ b/drivers/mfd/rk808.c
+> > > @@ -65,6 +65,7 @@ static bool rk817_is_volatile_reg(struct device *dev, unsigned int reg)
+> > >  	switch (reg) {
+> > >  	case RK817_SECONDS_REG ... RK817_WEEKS_REG:
+> > >  	case RK817_RTC_STATUS_REG:
+> > > +	case RK817_CODEC_DTOP_LPT_SRST:
+> > >  	case RK817_INT_STS_REG0:
+> > >  	case RK817_INT_STS_REG1:
+> > >  	case RK817_INT_STS_REG2:
+> > > @@ -163,6 +164,11 @@ static const struct mfd_cell rk817s[] = {
+> > >  		.num_resources = ARRAY_SIZE(rk817_rtc_resources),
+> > >  		.resources = &rk817_rtc_resources[0],
+> > >  	},
+> > > +#ifdef CONFIG_SND_SOC_RK817
+> > > +	{
+> > > +		.name = "rk817-codec",
+> > > +	},
+> > > +#endif
+> > 
+> > No #ifery please.
+> > 
+> > Just replace it with a comment.
+> > 
+> > If no associated driver exists, it just won't match/bind.
+> 
+> I did the "if" here because I noticed that if I have a rk817 and do not
+> utilize the codec I receive a dmesg warning. I put the if here to silence
+> it in the event that someone was using this PMIC but didn't want to use
+> the audio codec. I will make the change if you say so though, but I just
+> want to confirm that it's acceptable to have a warning for all rk817s
+> that do not use the codec about a missing codec.  The hardware is always
+> present, I just can't say for certain it will always be used.
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-index 0cdf53f41f84..8f414642445e 100644
---- a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-@@ -4,24 +4,26 @@
- $id: http://devicetree.org/schemas/clock/qcom,dispcc-sm8x50.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Qualcomm Display Clock & Reset Controller Binding for SM8150/SM8250
-+title: Qualcomm Display Clock & Reset Controller Binding for SM8150/SM8250/SM8350
- 
- maintainers:
-   - Jonathan Marek <jonathan@marek.ca>
- 
- description: |
-   Qualcomm display clock control module which supports the clocks, resets and
--  power domains on SM8150 and SM8250.
-+  power domains on SM8150/SM8250/SM8350.
- 
-   See also:
-     dt-bindings/clock/qcom,dispcc-sm8150.h
-     dt-bindings/clock/qcom,dispcc-sm8250.h
-+    dt-bindings/clock/qcom,dispcc-sm8350.h
- 
- properties:
-   compatible:
-     enum:
-       - qcom,sm8150-dispcc
-       - qcom,sm8250-dispcc
-+      - qcom,sm8350-dispcc
- 
-   clocks:
-     items:
-diff --git a/include/dt-bindings/clock/qcom,dispcc-sm8350.h b/include/dt-bindings/clock/qcom,dispcc-sm8350.h
-new file mode 120000
-index 000000000000..0312b4544acb
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,dispcc-sm8350.h
-@@ -0,0 +1 @@
-+qcom,dispcc-sm8250.h
-\ No newline at end of file
+What is the dmesg warning you receive?
+
 -- 
-2.26.1
-
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
