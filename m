@@ -2,66 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5436237F36E
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 09:12:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECE3337F378
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 09:18:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230232AbhEMHNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 03:13:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58574 "EHLO mail.kernel.org"
+        id S231496AbhEMHTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 03:19:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34928 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229786AbhEMHNK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 May 2021 03:13:10 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 64FE8611AE;
-        Thu, 13 May 2021 07:11:59 +0000 (UTC)
+        id S229786AbhEMHTd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 May 2021 03:19:33 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 729D4611AE;
+        Thu, 13 May 2021 07:18:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620889920;
-        bh=k+6Ew2CIxOhEvA6CXddp4OAx2+o8XObSLpDWTsumM0k=;
+        s=k20201202; t=1620890304;
+        bh=WAvO94HsJCdneEYNhdUxVhfZZdUZi9qG7hKuUaNAHiY=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tUOTmWaX1DxVWSzvnUckdViRhoEqa5p703Fdyf38JH7+F995g5d2H4bQPGvnlpOmf
-         kAIe4HtO1eP6agRjvnG8EOmtHs7xlM90IPzWCyeIR/JcHGpxdujvIWMes9OhcyxYv6
-         xXMhxNOxI2lwwwgqHCu9eWwCudomN/UxRKExTyun18lSx2t5YDWLoInoD1r227zpgB
-         VmwIm/a0udC+ImabEEDYR269+Q85naGx1EGAI44Ddl8qBvy3UT5nWWah9KLuFwMhTL
-         KOVjU9QR+Mw7KYSSIRQG/4ws6WMmn3gfh7NjDfwOYPpaI/L+RrhPVLerJvnVaiO6Qs
-         PWoeuS8sbQ5gw==
-Date:   Thu, 13 May 2021 15:11:55 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 0/2] arm64: dts: freescale: sl28: fix RGMII
-Message-ID: <20210513071154.GP3425@dragon>
-References: <20210413153349.29119-1-michael@walle.cc>
+        b=GsjYj+VEwKTwuIV0Hlc6xnP18ifEA36HCMSai0I5JUnGPQu0lEngubR/4Ro+03zYk
+         +hSJaLMOA+3V1F6XzbcdkWv+ugSOB823LOSt8TINLs037Q7zFsjAh6JvifCfEZnyVF
+         pTNIzxIJtpt/r3cbMC73JqrquANtz1CmIE5WOYfetaZWwN7deE2IrsREh28CwFVb5X
+         F1Rhsobm6bn9qreTg2gTfCnactdBDjX/EOH2GxfgjOa0ePktwA+hWJ4qHeJsj0O0GL
+         AfVCTsniYkkGo2W7m0h3lodRihadnblxyob7oiSxy+7IF5FvwHUtnRejacYMNIlnFa
+         4TFCSkrkQEY7Q==
+Date:   Thu, 13 May 2021 10:18:20 +0300
+From:   Abel Vesa <abelvesa@kernel.org>
+To:     Dong Aisheng <aisheng.dong@nxp.com>
+Cc:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        dongas86@gmail.com, kernel@pengutronix.de, shawnguo@kernel.org,
+        linux-imx@nxp.com, abel.vesa@nxp.com, sboyd@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: arm: imx: scu: fix naming typo of clk
+ compatible string
+Message-ID: <YJzSvPtw7djhGHnD@ryzen.lan>
+References: <20210423033334.3317992-1-aisheng.dong@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210413153349.29119-1-michael@walle.cc>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20210423033334.3317992-1-aisheng.dong@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 13, 2021 at 05:33:47PM +0200, Michael Walle wrote:
-> This fixes the RGMII on the sl28 boards. While the network port was
-> actually working it is still out-of-spec.
+On 21-04-23 11:33:29, Dong Aisheng wrote:
+> There is a typo in binding doc that the name of compatible string of
+> scu clock should be "fsl,xxx-clk" rather than "fsl,xxx-clock".
+> In reality, both example and dts using "fsl,xxx-clk", so fixing the doc
+> is enough.
 > 
-> Please note, that this is split into two patches because each one fixes
-> a different commit.
-> 
-> Michael Walle (2):
->   arm64: dts: freescale: sl28: fix RGMII clock and voltage
->   arm64: dts: freescale: sl28: fix RGMII clock and voltage
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
 
-Can we distinguish the subject a bit by using different prefix like
-'sl28-var1' and 'sl28-var4'?
+Reviewed-by: Abel Vesa <abel.vesa@nxp.com>
 
-Shawn
-
+> ---
+>  Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
->  .../boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts     | 3 ++-
->  .../boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dts     | 5 ++---
->  2 files changed, 4 insertions(+), 4 deletions(-)
-> 
+> diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+> index 395359dc94fd..3adf3f6f2beb 100644
+> --- a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+> +++ b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+> @@ -86,8 +86,8 @@ This binding uses the common clock binding[1].
+>  
+>  Required properties:
+>  - compatible:		Should be one of:
+> -			  "fsl,imx8qm-clock"
+> -			  "fsl,imx8qxp-clock"
+> +			  "fsl,imx8qm-clk"
+> +			  "fsl,imx8qxp-clk"
+>  			followed by "fsl,scu-clk"
+>  - #clock-cells:		Should be either
+>  			2: Contains the Resource and Clock ID value.
 > -- 
-> 2.20.1
+> 2.25.1
 > 
