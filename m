@@ -2,82 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6E4F37FFA8
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 23:11:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 495893800D4
+	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 01:28:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233331AbhEMVMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 17:12:34 -0400
-Received: from mx3.wp.pl ([212.77.101.10]:17303 "EHLO mx3.wp.pl"
+        id S231512AbhEMXaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 19:30:06 -0400
+Received: from mail.manjaro.org ([176.9.38.148]:44514 "EHLO mail.manjaro.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233324AbhEMVMb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 May 2021 17:12:31 -0400
-Received: (wp-smtpd smtp.wp.pl 16248 invoked from network); 13 May 2021 23:04:39 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=1024a;
-          t=1620939879; bh=AzcBINbYZdnielXea23PvA+W95/jspAWRWbklsvvER4=;
-          h=From:To:Cc:Subject;
-          b=X+NynzB3VgC9qFG2Yiu/O9VuxwKsNFRNrTboSNrNw3OPdtlzAKFnZJS+d1++9DUbV
-           /9Pmw2JARHRm9xik90L+A1maVIFIRV8hLLHR1Dnq+GOyNWJt5JV7+K12F10Jrx9oU4
-           19lBhypJa7y/jhLs10+SXO6u+OUgERHFhM/ph+GA=
-Received: from riviera.nat.ds.pw.edu.pl (HELO LAPTOP-OLEK.lan) (olek2@wp.pl@[194.29.137.1])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <linus.walleij@linaro.org>; 13 May 2021 23:04:39 +0200
-From:   Aleksander Jan Bajkowski <olek2@wp.pl>
-To:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        robh+dt@kernel.org, john@phrozen.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Aleksander Jan Bajkowski <olek2@wp.pl>
-Subject: [PATCH 2/2] dt-bindings: gpio: stp: add gphy3 and gphy4 properties
-Date:   Thu, 13 May 2021 23:03:40 +0200
-Message-Id: <20210513210340.10466-2-olek2@wp.pl>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210513210340.10466-1-olek2@wp.pl>
-References: <20210513210340.10466-1-olek2@wp.pl>
+        id S230240AbhEMXaG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 May 2021 19:30:06 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.manjaro.org (Postfix) with ESMTP id 58AB1222543;
+        Fri, 14 May 2021 01:28:54 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at manjaro.org
+Received: from mail.manjaro.org ([127.0.0.1])
+        by localhost (manjaro.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id lOs_WYWHEGdx; Fri, 14 May 2021 01:28:52 +0200 (CEST)
+From:   Tobias Schramm <t.schramm@manjaro.org>
+To:     =?UTF-8?q?Jernej=20=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+        devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org,
+        Tobias Schramm <t.schramm@manjaro.org>
+Subject: [PATCH v2 0/7] Add missing peripherals to Allwinner V3s/V3 device trees
+Date:   Fri, 14 May 2021 01:30:17 +0200
+Message-Id: <20210513233024.2076725-1-t.schramm@manjaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-WP-DKIM-Status: good (id: wp.pl)                                      
-X-WP-MailID: a88212db06a9e0d4b6918adb88f1eed9
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 0000000 [QSO0]                               
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The xRX300 family has 3 and the xRX330 has 4 gphs. They can also control
-some pins of the gpio cascade. This patch documents the missing properties.
+The Allwinner V3s/V3 SoCs feature quite a few peripherals that have good
+driver support but yet are nowhere to be found in the SoCs dts.
+This patchset adds the DMA controller, the relevant DMA properties for all
+peripherals supporting DMA, the integrated analog codec and - for the
+Allwinner V3 SoC - also the I2S interface.
+I've included all of those changes in one patchset since they do all
+depend on addition of the DMA controller.
+All changes have been tested in a recent project of mine using a Sochip S3
+(a rebranded Allwinner V3) and are confirmed working.
 
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
----
- .../devicetree/bindings/gpio/gpio-stp-xway.yaml  | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+This is v2 of this patchset.
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-stp-xway.yaml b/Documentation/devicetree/bindings/gpio/gpio-stp-xway.yaml
-index a36acc98898c..beb755edf639 100644
---- a/Documentation/devicetree/bindings/gpio/gpio-stp-xway.yaml
-+++ b/Documentation/devicetree/bindings/gpio/gpio-stp-xway.yaml
-@@ -84,6 +84,22 @@ properties:
-     minimum: 0x0
-     maximum: 0x7
- 
-+  lantiq,phy3:
-+    description:
-+      The gphy3 core can control 3 bits of the gpio cascade. Available on
-+      the xRX300 and xRX330 family.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0x0
-+    maximum: 0x7
-+
-+  lantiq,phy4:
-+    description:
-+      The gphy4 core can control 3 bits of the gpio cascade. Available on
-+      the xRX330 family.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0x0
-+    maximum: 0x7
-+
-   lantiq,rising:
-     description:
-       Use rising instead of falling edge for the shift register.
+Cheers,
+Tobias
+
+Changelog:
+  v2:
+    - add v3/v3s specific compatible strings
+    - fix v3s audio codec analog frontend compatible
+    - fix an I2S -> I2C typo
+
+Tobias Schramm (7):
+  ARM: dts: sun8i: v3s: add DMA controller to v3s dts
+  ARM: dts: sun8i: v3s: add DMA properties to peripherals supporting DMA
+  ARM: dts: sun8i: v3s: add analog codec and frontend to v3s dts
+  ASoC: dt-bindings: sun8i-a23-codec-analog: add compatible for
+    Allwinner V3
+  ARM: dts: sun8i: V3: add codec analog frontend to V3 dts
+  dt-bindings: sound: sun4i-i2s: add Allwinner V3 I2S compatible
+  ARM: dts: sun8i: V3: add I2S interface to V3 dts
+
+ .../sound/allwinner,sun4i-a10-i2s.yaml        |  3 ++
+ .../allwinner,sun8i-a23-codec-analog.yaml     |  9 +++--
+ arch/arm/boot/dts/sun8i-v3.dtsi               | 31 +++++++++++++++
+ arch/arm/boot/dts/sun8i-v3s.dtsi              | 39 +++++++++++++++++++
+ 4 files changed, 79 insertions(+), 3 deletions(-)
+
 -- 
-2.30.2
+2.31.1
 
