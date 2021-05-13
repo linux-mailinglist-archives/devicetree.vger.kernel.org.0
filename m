@@ -2,23 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 792F737FD55
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 20:40:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB88437FDD8
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 21:09:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231280AbhEMSlP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 14:41:15 -0400
-Received: from mail.manjaro.org ([176.9.38.148]:38732 "EHLO mail.manjaro.org"
+        id S232148AbhEMTKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 15:10:19 -0400
+Received: from mail.manjaro.org ([176.9.38.148]:42400 "EHLO mail.manjaro.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231167AbhEMSlO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 May 2021 14:41:14 -0400
-X-Greylist: delayed 1279 seconds by postgrey-1.27 at vger.kernel.org; Thu, 13 May 2021 14:41:14 EDT
+        id S231221AbhEMTKT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 May 2021 15:10:19 -0400
 Received: from localhost (localhost [127.0.0.1])
-        by mail.manjaro.org (Postfix) with ESMTP id DA66922111A;
-        Thu, 13 May 2021 20:18:44 +0200 (CEST)
+        by mail.manjaro.org (Postfix) with ESMTP id AD815221190;
+        Thu, 13 May 2021 21:09:08 +0200 (CEST)
 X-Virus-Scanned: Debian amavisd-new at manjaro.org
 Received: from mail.manjaro.org ([127.0.0.1])
         by localhost (manjaro.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Z8FFyIV5ygwk; Thu, 13 May 2021 20:18:42 +0200 (CEST)
+        with ESMTP id kwKRxNQN1rsI; Thu, 13 May 2021 21:09:06 +0200 (CEST)
 From:   Tobias Schramm <t.schramm@manjaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Maxime Ripard <mripard@kernel.org>,
@@ -26,43 +25,38 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
         Tobias Schramm <t.schramm@manjaro.org>
-Subject: [PATCH] ARM: dts: sun8i: v3s: add pwm controller to v3s dts
-Date:   Thu, 13 May 2021 20:20:00 +0200
-Message-Id: <20210513182000.2068223-1-t.schramm@manjaro.org>
+Subject: [PATCH 0/4] Add missing peripherals to Allwinner V3s/V3 device trees
+Date:   Thu, 13 May 2021 21:09:45 +0200
+Message-Id: <20210513190949.2069235-1-t.schramm@manjaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Allwinner V3s and V3 SoCs feature a pwm controller identical to the
-one used in the Allwinner A20.
-This commit adds it to the V3s dtsi.
+The Allwinner V3s/V3 SoCs feature quite a few peripherals that have good
+driver support but yet are nowhere to be found in the SoCs dts.
+This patchset adds the DMA controller, the relevant DMA properties for all
+peripherals supporting DMA, the integrated analog codec and - for the
+Allwinner V3 SoC - also the I2S interface.
+I've included all of those changes in one patchset since they do all
+depend on addition of the DMA controller.
+All changes have been tested in a recent project of mine using a Sochip S3
+(a rebranded Allwinner V3) and are confirmed working.
 
-Signed-off-by: Tobias Schramm <t.schramm@manjaro.org>
----
- arch/arm/boot/dts/sun8i-v3s.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Cheers,
+Tobias
 
-diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v3s.dtsi
-index 770f5a25ab4c..22bc5ab4c3ca 100644
---- a/arch/arm/boot/dts/sun8i-v3s.dtsi
-+++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
-@@ -433,6 +433,14 @@ wdt0: watchdog@1c20ca0 {
- 			clocks = <&osc24M>;
- 		};
- 
-+		pwm: pwm@1c21400 {
-+			compatible = "allwinner,sun7i-a20-pwm";
-+			reg = <0x01c21400 0xc>;
-+			clocks = <&osc24M>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
- 		lradc: lradc@1c22800 {
- 			compatible = "allwinner,sun4i-a10-lradc-keys";
- 			reg = <0x01c22800 0x400>;
+Tobias Schramm (4):
+  ARM: dts: sun8i: v3s: add DMA controller to v3s dts
+  ARM: dts: sun8i: v3s: add DMA properties to peripherals supporting DMA
+  ARM: dts: sun8i: v3s: add analog codec and frontend to v3s dts
+  ARM: dts: sun8i: V3: add I2S interface to V3 dts
+
+ arch/arm/boot/dts/sun8i-v3.dtsi  | 25 ++++++++++++++++++++
+ arch/arm/boot/dts/sun8i-v3s.dtsi | 39 ++++++++++++++++++++++++++++++++
+ 2 files changed, 64 insertions(+)
+
 -- 
 2.30.1
 
