@@ -2,352 +2,333 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E83E37F996
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 16:20:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5E0537F9B2
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 16:33:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234448AbhEMOVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 10:21:06 -0400
-Received: from mail-eopbgr80058.outbound.protection.outlook.com ([40.107.8.58]:59167
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        id S230252AbhEMOfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 10:35:04 -0400
+Received: from mail-eopbgr60065.outbound.protection.outlook.com ([40.107.6.65]:58852
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234424AbhEMOUf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 May 2021 10:20:35 -0400
+        id S234480AbhEMOfD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 May 2021 10:35:03 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MdmeZd/XQsUaj3Mt5mWtZ9qscHrLgzWM2D46/Vs9Pex9LOAkSq7Vc6+uFMb5DjB+Uj/R0TI43ei5beRJKTLzgCT1F0+SOjEh9a/3Ps/YdAh7eW0T9FcZRVQ3/y1ETv/TNKwcMOu78U+CysaHmOfpTMflvLp4b9JaVsm8pYHGG6exVkSnK+n/5akFzzp911JzGPczYn/8K2215TiDUoRA2yydK31ywVXoAN7VEVuzOkOJuGOF8MLC/EYUMSWVrwX9TJem1rerBP0m/tDRSbge8zkBXAullYLZgnIUaVQJTNV73PdBDNDi75tCgB0rcOhd9ThQDAocriuI/llXvqA0Nw==
+ b=JP5gPeeo2rBG85780de3nencDURLGndx4wfjT9u+bsYffV9px4zuqxLunOX734LZ7TQEahmWg+ZvWWOo5ALvFxOWVRXK3tE/IgN9CHs7hbTz9PTMVs6DO3WJXwENXPUhjX07melflTcVDxQq4RUPrk4acZ5aHxXlhlnsFqGHQZ+WY2QgVRj+BFXDbl/QJr+hWLGxv3TX7ECYMQbfTnkSlwjT+bLNWpoXcmy7gP/M238fUpOluqkb52nCU3Od4K65Sw693HDBbOy2iaGNCn80d12JXUpmNiBhhfzdNfzxq3X6APgr+yTFFyQdtutl/CXAtFDuPXxeWC9ylo3KOlHcyA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fR6DUr919AJY+oJOGkDNMbnf9pSvu1+sx+MWeR6o6oA=;
- b=ZlLShWU5stHkdwkSCitrohqP9dvbfKqYX1qmPiJFv/AN7+oBpMeeQelJEorjbsX5ZTLZFGQGLVE/NPyIbtxl7DrmUn2XGkLkWVWl01ALRkdGnOVBkZUrP9BJztOt5pS01ue2pS2vHrhnGLt0RlK701z7nGLiP1ifg27C3MHJQd9L3hLmRjNj/q6nBoQN6mCwdlrurOA5blf1mZvCF65p5zfyfI8zwFQyrbJ5pNhCrkP8m7GivYPUfZpQ0E05qwzut8vB4YeT495kyjwUHAiWRLbhrwMBfx+jBV1Qsr6ApD4GGnlRxGuvNUFlIa228BwtRHJzGYEhSkBcoSzT5BwF4Q==
+ bh=JRPriKkoBmzo9f7Uf7gaXvgbVuWlxvmUUAy8KBNwUaI=;
+ b=Sb3Fp9KEsh3AkENXqVdeR/3jX2bT4C80TI/24BmtESr38O7hd/voQM73RD1Dzo9/Df+kLeu20+OzSBgiSgr2U3hTRb8wv41hhCx6Jx6+abccH5L3bZL3/E73PF5t/qg5kO8I01Ad/dwCkQvWXt3uIOn4lFk0OkfGcmizEurmoFfCNcgGnoR1+vQLt/iIHhYn9APhvfw5jWk8R9m4ryUOshTBCXIxD/5KVTUb08vT40b0m0iJPlavj6sAhVWG4ShL2Hr+ieopegfe0S6I+S0H1d4KVqJrFMecdZ3qqLYNz8csUEpBza+4RcMvHcYvurVVAfnlsvrwkZLLttlE8wBJvQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fR6DUr919AJY+oJOGkDNMbnf9pSvu1+sx+MWeR6o6oA=;
- b=j9rQrOish0aXZHsrMb6wpo55Puf7xVZofiP3JotHb4AIYftIYnNFXL1Os/CPspcPJYMydNhnMZ0cevJLH/aTJ3g4r+9Wb0Z5r8yyRQeKUSDg57qMIzaxS7ipmXdchmjKEU9sCeu0/7Qoy42ctIjuYbU4V/R2xjAw9KtmucmrK6E=
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VI1PR0402MB2861.eurprd04.prod.outlook.com (2603:10a6:800:b5::19) with
+ bh=JRPriKkoBmzo9f7Uf7gaXvgbVuWlxvmUUAy8KBNwUaI=;
+ b=ZpVXbZPHoUudazc3PysgXl9kaBzXjTBZRSh1W9kNyljeMUIs2n7NXtIPqspGc6YG0y5UWvQY5GF6qxDPHgII57GZfC1DH5/UITbYYRJEgBG7p6E7C3AyE2ZXFQWyyyEpb/khODfLCg5nibTntD2fK7Anpa6ZGl8+zL0Vdf5DWkA=
+Authentication-Results: lists.infradead.org; dkim=none (message not signed)
+ header.d=none;lists.infradead.org; dmarc=none action=none
+ header.from=seco.com;
+Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
+ by DB7PR03MB4155.eurprd03.prod.outlook.com (2603:10a6:10:13::12) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25; Thu, 13 May
- 2021 14:19:22 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::f0c0:cb99:d153:e39b]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::f0c0:cb99:d153:e39b%7]) with mapi id 15.20.4108.031; Thu, 13 May 2021
- 14:19:22 +0000
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>
-CC:     Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Kornel Duleba <mindal@semihalf.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mw@semihalf.com" <mw@semihalf.com>,
-        "tn@semihalf.com" <tn@semihalf.com>,
-        "upstream@semihalf.com" <upstream@semihalf.com>,
-        Alexandru Marginean <alexandru.marginean@nxp.com>,
-        Bjorn Helgaas <bhelgaas@google.com>
-Subject: Re: [PATCH] arm64: dts: fsl-ls1028a: Correct ECAM PCIE window ranges
-Thread-Topic: [PATCH] arm64: dts: fsl-ls1028a: Correct ECAM PCIE window ranges
-Thread-Index: AQHXRhK6wSxUwtoqZkenOXHlDRJ4r6reBtQAgAKnz4CAAMsmgA==
-Date:   Thu, 13 May 2021 14:19:22 +0000
-Message-ID: <20210513141921.i7sfmekbcw2m7vxd@skbuf>
-References: <20210407123438.224551-1-mindal@semihalf.com>
- <20210511030658.GG3425@dragon>
- <AM0PR04MB67542D30A9424D455DB3ADD496539@AM0PR04MB6754.eurprd04.prod.outlook.com>
- <20210513021214.GJ3425@dragon>
-In-Reply-To: <20210513021214.GJ3425@dragon>
-Accept-Language: en-US
+ 2021 14:33:51 +0000
+Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
+ ([fe80::40d5:3554:c709:6b1b]) by DB7PR03MB4523.eurprd03.prod.outlook.com
+ ([fe80::40d5:3554:c709:6b1b%5]) with mapi id 15.20.4129.026; Thu, 13 May 2021
+ 14:33:51 +0000
+Subject: Re: [PATCH v3 1/2] dt-bindings: pwm: Add Xilinx AXI Timer
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        michal.simek@xilinx.com, Alvaro Gamez <alvaro.gamez@hazent.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20210511191239.774570-1-sean.anderson@seco.com>
+ <20210513021631.GA878860@robh.at.kernel.org>
+From:   Sean Anderson <sean.anderson@seco.com>
+Message-ID: <f9165937-c578-d225-9f5e-d964367c4711@seco.com>
+Date:   Thu, 13 May 2021 10:33:44 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+In-Reply-To: <20210513021631.GA878860@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [86.127.41.210]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d0a18c19-a8b0-4287-4aa6-08d9161a1b01
-x-ms-traffictypediagnostic: VI1PR0402MB2861:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR0402MB2861C3D4A3E4B196AD0C6675E0519@VI1PR0402MB2861.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: HaLImKWcBYnS0auArxtJa+W+uPbnzUNqJrSmDN2Eklqs12heGQjqR9juq1L5oQXtReRm/3bQXP/tBCZUyi0t3+huv9frPKlIzXYEwl1xV4ZlQlFrkKOPDt6n9R40MSiozrNegNvxZDzOMoh6E4WfalEafmMYAQVKdFYku9FFS0Q1WOQ5C8EMQt0xzhU10SdDlbFmgVl6h8gVWDiqiXdmJFUYlY16IxA+BYZfQrPjXE6vOscn5capcIdoLVaW2RSTQlmrHOVe9li3jBbO4qlC2FRo4AHuFYOUGF6vwNpymrf849SC59POtzwg58KTd0zGExvoC50BX1CiLKW2xiuI0CEa37RdVBJ7+8vRoYetYXC7DoQxBxDEmN+ZdNEO0YQiFgnU9CdVTFah2UXdwknyjGpAQ+tHLJgEGRgEuRLlrrds6GIE0AuBXDyRuJzkV+SxX7eVtNNJQIj6ZJJuAIV1l/sSj2kqx7cFkmveTh4lv7BFU/zZRwGvULFIANpnpOPgjuVAnh3pkYKEVxSdH54X4I2hR5K8LjC5BH6m9lQJqlXxDySOW/FgaUtwq8t1s1Li/2+EsiOjv1nPlxCrSM2K6aW3ahybrn4kaKBE7mn4Pkn+HoHgQb1+DqdxEdWNtTzBwgrQPgT3at7y4B5aNelmZ7n6ZQOSbmT2AXMwlEjeFQmBQ/VlGUCv+EKsGZhz0c+O
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(4636009)(346002)(39850400004)(396003)(136003)(366004)(376002)(6916009)(6486002)(478600001)(6506007)(9686003)(6512007)(186003)(54906003)(122000001)(1076003)(26005)(2906002)(966005)(4326008)(8676002)(38100700002)(7416002)(86362001)(71200400001)(83380400001)(5660300002)(66946007)(33716001)(66556008)(64756008)(66476007)(44832011)(76116006)(8936002)(66446008)(316002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?MXeB/I1sZEpXGzSlmELyJ5J0iakf9leCPbdz/mAlweVwoSIaHEDLnaEjbetV?=
- =?us-ascii?Q?u8vAp2pwSGdqPH7tglNv0z8E3In/og1+9Hzol15oQkh9xLqVjmUd91t8+6wz?=
- =?us-ascii?Q?vA8+TbUuJDsXhz/UbRcKqzPn5W9EgH5CQTZgCJSCMT+JJR2rWGaBAFgb3uLS?=
- =?us-ascii?Q?hgwRPDaCRMldHOAcBiQf5cfrwlRWWr7J3EL5cXjX/VmvaWtMaa7xwyCJ+ocQ?=
- =?us-ascii?Q?8iEgH/mCDzN5zu1VcsnQ7JFKlDx6Mmrsoj40otJxdLER9KRf5bRzMtdfkQxu?=
- =?us-ascii?Q?Y2LJEiMGp1AQ0jdbKDHvcvYEq9kz6f6txgZzeEfS9AE+Ro4VVbYLBYj09fsa?=
- =?us-ascii?Q?K4cdHi+/A2XfyIonbewimrBakOK8RZD2XBZPsSkWgRp2+1JNCnJS641Ti3fB?=
- =?us-ascii?Q?aE0KacxAr42tAImydLyMaRjjdVK0z7VzDmiMWPs3G4nN8DrxbBiiSpEX9iq8?=
- =?us-ascii?Q?PHr7ws5910X8z6HX2mkT4qEE8oBjwsSG8TO0/0omlckkUsKuFj/uckc1dTM/?=
- =?us-ascii?Q?LyDg3rNhNXs5tHmEseywMPY93uNs0S+sPyB67qKjJaUrMu8TpRt60zjQLBQ4?=
- =?us-ascii?Q?9wN45+9d7lNK3W43GHGNaRJqmx7aHs3xpusVtPNRTwN0dEVsiSWuzhvgOzup?=
- =?us-ascii?Q?sDFuPXycMBs4LNTHjuiKWXajHxZL7m8jJaW8WvLqKkRhaP2s/60zM+T/28oW?=
- =?us-ascii?Q?FRFccSW292boy79hD0xuo2oQXdX6QxWWJ6D9ZtEmFhC68U7aNaP91eeduvAN?=
- =?us-ascii?Q?GdplKhVMP9CgmWJNoPgFiMFS7mOh3Eznx1XJw+P+1AdMGEXhdalpQ4kSUy+3?=
- =?us-ascii?Q?y4Lr/jF/f88+4Urn/3dJ2I6HgS+XCh9s8vRnBExx9thZtnmOfDiNaq+XsSvf?=
- =?us-ascii?Q?z+m5EI5wJe+5WEB8FbBzwzf8UjYTdUxxSQLAaMaQ28pHGhH4iGg+nZeiN4NY?=
- =?us-ascii?Q?ac+ETTcdz18+Tj/KWriWEScIIlMIGQ50jQu9PYQHIsED56YDICA3Argw2kHz?=
- =?us-ascii?Q?R4jkCKzLXDjand87rJg18l8ABfR+VZjo1+HqT4AekXHobYTzPEQ2zFYsaFBo?=
- =?us-ascii?Q?Z2GSPwbuMJSHY0XwxZoLJAiZsWQd2h3/NUXUWjXTVy5dVcXU3JIVP3FEVYDm?=
- =?us-ascii?Q?L4otjdlqsgXoog/rworF4vQ73CnSwct0czoKD+iYwNN4l6YWqjH5ODRcWJz3?=
- =?us-ascii?Q?FJ3++Db/0JEhTw6fkEFdPsOsBYk6263Lny+dhl1zUm/+KPQXNjqs4x6CXejc?=
- =?us-ascii?Q?WYaoIAklo/o5AE6R1WbPmf/cUp9TvzvH2BrAntx8Hu3m33HTBstEyOJBhVR7?=
- =?us-ascii?Q?Vj09bCa3TZtTe3cwEK0clqcS?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <06E0CD60FBF9004FB6018489E1C93131@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [50.195.82.171]
+X-ClientProxiedBy: BL1PR13CA0407.namprd13.prod.outlook.com
+ (2603:10b6:208:2c2::22) To DB7PR03MB4523.eurprd03.prod.outlook.com
+ (2603:10a6:10:19::27)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [172.27.1.65] (50.195.82.171) by BL1PR13CA0407.namprd13.prod.outlook.com (2603:10b6:208:2c2::22) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.11 via Frontend Transport; Thu, 13 May 2021 14:33:49 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9ea478b6-e207-4905-3322-08d9161c2065
+X-MS-TrafficTypeDiagnostic: DB7PR03MB4155:
+X-Microsoft-Antispam-PRVS: <DB7PR03MB41553A203F994239A017628396519@DB7PR03MB4155.eurprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: TZe2Jr4cl4FWWjzzWIw03qbbhToEwxRIRBjUJePaT3SGIXVfv+YHfLd5h1ngwszt0vEvU3xrCdx4r6fj3vvylT40gGFyBSU7CzH1ihqZmw5mcdGDlszDwl+IHobeATVyS3v2qOU4WYrOkCoO6SsBIh0fhD8aXlRjVadcuaEyALs9FdMh++/S+HHHZyBKPJaTOMoRo+SCjjNgvyopxrOGGf9ARM7bwPGANDF0ZL5I+XJ/nXAbSWD0r9lC9FMCpF3XswaxJMAbmPdHNQd3xBYZ1PDINlibRbhFQFCamkZHlF9cr+KOb7GBhnUmmhxTWmFgGK2PfZzidk2Gp/ibjgdBPQNrwDpryNnkBb14xtlOtXSlqdm2fQf5YD4j7zvuNf+I8W8WLvloBq13LypDXY0Sx7bAD9HdecxvvSJB7LC3B1S8iWnTK2YBtANIm5sQ9N37RQyFNpjv8psiNL7dFmSlNVNncUX7HDtXzp67+lyI0hfE9QjX3VI684PAKJWg2aWV9s0ZiAGACDGh9ajZWSFhVqP/Cqm97PwmH+TUg57E9bOa/Nel3vTRa5h0UkKgDqcJISCgKQaifpm6tNWVKpr90KiYEnpntCHEndZbIjn5a8Vc6gi1okIAQWc4dg2XtTKPqHNZ2bXBCeGdgdaupmsnYob3+BMe2wjZIQaSkwNGYrk5Wtx08WsOXuRg9IYjgOQC6pVr6eEXrX4+tFt88niD62y5viEiZ9XoHRrNF1Q6Vdc6epA230w1moD/dNztOL8jXE+IYx83Gd3EV1A6QcW0Y6LyGm3w2ShEvWATSr1paGs=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(6916009)(186003)(4326008)(66946007)(66476007)(66556008)(16526019)(31696002)(966005)(86362001)(31686004)(8676002)(2906002)(83380400001)(498600001)(6666004)(53546011)(8936002)(956004)(2616005)(38100700002)(44832011)(38350700002)(26005)(5660300002)(6486002)(16576012)(52116002)(36756003)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?ZlNTcEVlY1Zia1c1VlhGNHB4bGY3Mml6b1NHckNDSGs0NU02TEZnbHRvSENl?=
+ =?utf-8?B?blVKUUhSZUx2eHMxTEI0U2wwaDVMMEZHQUNtaHBUWFFNOFNCNjBTMWY1OWFJ?=
+ =?utf-8?B?UGlydXFoWEVQT2hyVWQzcXd1dytQbVExd3V3bzRaLzlSMThvT3JLYUNLa3RC?=
+ =?utf-8?B?SHBrT0I3OUxzS0ZmUnVGQVdyKzQ5bGJ5K1dqS0t3V0NGUlhDME00VXc4aDNi?=
+ =?utf-8?B?OURhQ3BJdTRBOE1TdEFSdUoxUVZSY1BYK29XV3U3VVNVT1pmdjE5ZUhzMzZS?=
+ =?utf-8?B?VjZ5aVNqcExKMEU4MUY5YjI1QkRKam9qSUhQWG9ZMGRWMUIweUNZOUhDS1FK?=
+ =?utf-8?B?UzM0SUpVVW81T1I4OVhGOGt6enVEQ0RsSFBtL2Ntd3E5UFZuRkp5WDNJTEox?=
+ =?utf-8?B?VEJjWHdlUm1SU1NSdGRQQ1lzaERYWVNESW9VTkY0SGhreThURkM5WlFQVGtH?=
+ =?utf-8?B?TEE4L1lUc2R3L1Y5Vjc4bXN2aE9RMiszcDFyYThOd2Y2Z2YwWlZXUTczck5m?=
+ =?utf-8?B?MEdaU3RIQ1FJZGxyMFV3WlZRNjlzSVN4cnp5dDNzSkp1MjZ4VlVYQk50SmNu?=
+ =?utf-8?B?aU9OQXNLd210dC9NWHppSXc3UC80UlZGaVQ4UGZnWE1RdEtlWkZ4K3lRakJu?=
+ =?utf-8?B?SGp5dE1IeDRKUkIwUUpYNjQvQ3pDbHhkcUk1bmJjVCthUmxtNm5pVDI0OFZa?=
+ =?utf-8?B?c2s0a3ZtQ2xQQkVXK05DbUJlWHVQMzNMT3NueFgrTHJqeklwdkphcVNsZmY5?=
+ =?utf-8?B?REJQdVczOGRNazlvRGozeW92eXcrTW81SExmN3Mya0QxelNJOTFNZkt3Ynkw?=
+ =?utf-8?B?eWM2b0pDdHAzdkZiRWtrL042NFJXM3RKU2VPNUlsR2tFQkxkd3dzenpnSzBE?=
+ =?utf-8?B?QXZBQW9sVGJXcTh6eThEZjFrYVBtSUhJcEJHTjFsNzNWc2NwWXh3allYSFhR?=
+ =?utf-8?B?blM4N0FrZ2ZaM2VSL0hwUUhQSFIxaG9QMk53b2d4WTZrTnl6bGZIMGtFUVc2?=
+ =?utf-8?B?QUlVWnA2MXQwSzgzdUM5RkVlZmVXVDNRY0VSZXVmWW9tZlVlTU5XUEkyVUZN?=
+ =?utf-8?B?WENwZGxqS29Kd2JlOHJWRk1TYnJUM1VYY3kzSzJtWUlIKzJJem56dlk4VTBB?=
+ =?utf-8?B?d2Z0bjNLSUV3L0dwZEVFTUlESE9KTi9yOFIvSGt0bk5RZHBLa0F0akJoYy95?=
+ =?utf-8?B?M2xHRW4xRHF2QWNnQ0I2aTRZY2hJQ0MzeWFnM21vbStPZSsvQXlUbUhTMXJU?=
+ =?utf-8?B?aDA3ZG1LeWxsK3gwNUZ6cUxQY2JESEdEK0JqSXhBdmxESHFJZ1VGK1RLRWhM?=
+ =?utf-8?B?ejg4SVF3NlE2eENqWTdEbU5WdjQ5eE8yVHVoMXlRM0dvM0oxZGZLRzJTeE5q?=
+ =?utf-8?B?ckN1RWZzaWxyd0EzSFV5N2kvM3c4dXJrTUJJbEcxZk9iZ1FNZWZuVVhzdmRO?=
+ =?utf-8?B?ZGNobEtzK0djYk9mNzFaSmQ3NHBXMDhJOWlVeHZSSkpZa3VaZzd2RTZlZ0lt?=
+ =?utf-8?B?RUxJZlVLL3BydG8rSWtVRm1nVUJJaUF1TUZrTlBGbXJuUHd4UVhsd1VJN0F4?=
+ =?utf-8?B?TXUwZ2dkMGF5ZVNWVmZHY1ZJSzU3NmNhSXJ1c3dnWFlvdG1UMjFXd2p3UDda?=
+ =?utf-8?B?Z0d2bEFKTXVmZ215bzNEdlRaT2dtVitiZm5YcVpFcWY4RnVZc2dyL0ZrbFF3?=
+ =?utf-8?B?R0o5M0l4a1VEc2xmdGg2TkVDNUhITHNqcVJlVFFOaDFIRllQc0FNbys3Nzk4?=
+ =?utf-8?Q?//19GKEdOWr3jU7m+UZU566xLJvhuUXIL6i/TqQ?=
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ea478b6-e207-4905-3322-08d9161c2065
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d0a18c19-a8b0-4287-4aa6-08d9161a1b01
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 May 2021 14:19:22.6176
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2021 14:33:51.0502
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: cyxfGwId7QvQKnlLHPv4gXawqhMs2Bv2Uj2Lh7fc3KrpKMpYp7obQStgopG+1H+4PukRTqDgsfOxlMS4Iq5TwA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB2861
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UhVFZzbN8BpfO2kAuT0TMxCAgXLW2ucG2FEdVhLHJbej0uvDq5b5kUtmvz2OhhrcOMKBcpgZ0E3Un1qL+fCV5g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR03MB4155
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 13, 2021 at 10:12:15AM +0800, Shawn Guo wrote:
-> On Tue, May 11, 2021 at 09:48:22AM +0000, Claudiu Manoil wrote:
-> > >-----Original Message-----
-> > >From: Shawn Guo <shawnguo@kernel.org>
-> > >Sent: Tuesday, May 11, 2021 6:07 AM
-> > [...]
-> > >Subject: Re: [PATCH] arm64: dts: fsl-ls1028a: Correct ECAM PCIE window
-> > >ranges
-> > >
-> > >+ Claudiu
-> > >
-> > >On Wed, Apr 07, 2021 at 02:34:38PM +0200, Kornel Duleba wrote:
-> > >> Currently all PCIE windows point to bus address 0x0, which does not =
-match
-> > >> the values obtained from hardware during EA.
-> > >> Replace those values with CPU addresses, since in reality we
-> > >> have a 1:1 mapping between the two.
-> > >>
-> > >> Signed-off-by: Kornel Duleba <mindal@semihalf.com>
-> > >
-> > >Claudiu,
-> > >
-> > >Do you have any comment on this?
-> > >
-> >
-> > Well, probing is still working with this change, I've just tested it.
-> >
-> > PCI listing at boot time changes from:
-> >
-> > pci-host-generic 1f0000000.pcie: host bridge /soc/pcie@1f0000000 ranges=
-:
-> > pci-host-generic 1f0000000.pcie:      MEM 0x01f8000000..0x01f815ffff ->=
- 0x0000000000
-> > pci-host-generic 1f0000000.pcie:      MEM 0x01f8160000..0x01f81cffff ->=
- 0x0000000000
-> >
-> > to:
-> >
-> > pci-host-generic 1f0000000.pcie: host bridge /soc/pcie@1f0000000 ranges=
-:
-> > pci-host-generic 1f0000000.pcie:      MEM 0x01f8000000..0x01f815ffff ->=
- 0x01f8000000
-> > pci-host-generic 1f0000000.pcie:      MEM 0x01f8160000..0x01f81cffff ->=
- 0x01f8160000
-> >
-> > and looks reasonable.
-> > Adding Vladimir and Alex just in case.
-> >
-> > Acked-by: Claudiu Manoil <claudiu.manoil@nxp.com>
->
-> Thanks, Claudiu.
->
-> Kornel,
->
-> Do we need a Fixes tag for this patch?
->
-> Shawn
 
-Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-I am not sure whether "incorrect data that is unused" deserves a Fixes:
-tag or not, probably not.
+On 5/12/21 10:16 PM, Rob Herring wrote:
+ > On Tue, May 11, 2021 at 03:12:37PM -0400, Sean Anderson wrote:
+ >> This adds a binding for the Xilinx LogiCORE IP AXI Timer. This device is
+ >> a "soft" block, so it has many parameters which would not be
+ >> configurable in most hardware. This binding is usually automatically
+ >> generated by Xilinx's tools, so the names and values of some properties
+ >> must be kept as they are. Replacement properties have been provided for
+ >> new device trees.
+ >
+ > Because you have some tool generating properties is not a reason we have
+ > to accept them upstream.
 
-Bjorn Helgaas did point out before that "The fact that all these windows
-map to PCI bus address 0 looks broken", so there's that:
+These properties are already in arch/microblaze/boot/dts/system.dts and
+in the devicetree supplied to Linux by qemu. Removing these properties
+will break existing setups, which I would like to avoid.
 
-https://patchwork.kernel.org/project/linux-pci/cover/20201129230743.3006978=
--1-kw@linux.com/
+ > 'deprecated' is for what *we* have deprecated.
 
-And while it does look "broken", with the Enhanced Allocation capability
-and the pci-host-ecam-generic driver, there is no address translation
-taking place, so no inbound/outbound windows are configured, so the
-range.pci_addr calculated in devm_of_pci_get_host_bridge_resources() is
-not used for anything except for printing.
+Ok. I will remove that then.
 
-FWIW here's a more complete image of what changes with Kornel's patch
-("-" is before, "+" is after) - again all is limited to the dmesg output.
+ >
+ > In this case, I don't really see the point in defining new properties
+ > just to have bool.
 
- pci-host-generic 1f0000000.pcie: host bridge /soc/pcie@1f0000000 ranges:
- pci-host-generic 1f0000000.pcie: Parsing ranges property...
--pci-host-generic 1f0000000.pcie:      MEM 0x01f8000000..0x01f815ffff -> 0x=
-0000000000
-+pci-host-generic 1f0000000.pcie:      MEM 0x01f8000000..0x01f815ffff -> 0x=
-01f8000000
- pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: tm=
-p_res start 0x01f8000000 end 0x01f815ffff
--pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: pc=
-i_addr 0x0000000000 =3D> offset 0x01f8000000
--pci-host-generic 1f0000000.pcie:      MEM 0x01f8160000..0x01f81cffff -> 0x=
-0000000000
-+pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: pc=
-i_addr 0x01f8000000 =3D> offset 0x0000000000
-+pci-host-generic 1f0000000.pcie:      MEM 0x01f8160000..0x01f81cffff -> 0x=
-01f8160000
- pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: tm=
-p_res start 0x01f8160000 end 0x01f81cffff
--pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: pc=
-i_addr 0x0000000000 =3D> offset 0x01f8160000
--pci-host-generic 1f0000000.pcie:      MEM 0x01f81d0000..0x01f81effff -> 0x=
-0000000000
-+pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: pc=
-i_addr 0x01f8160000 =3D> offset 0x0000000000
-+pci-host-generic 1f0000000.pcie:      MEM 0x01f81d0000..0x01f81effff -> 0x=
-01f81d0000
- pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: tm=
-p_res start 0x01f81d0000 end 0x01f81effff
--pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: pc=
-i_addr 0x0000000000 =3D> offset 0x01f81d0000
--pci-host-generic 1f0000000.pcie:      MEM 0x01f81f0000..0x01f820ffff -> 0x=
-0000000000
-+pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: pc=
-i_addr 0x01f81d0000 =3D> offset 0x0000000000
-+pci-host-generic 1f0000000.pcie:      MEM 0x01f81f0000..0x01f820ffff -> 0x=
-01f81f0000
- pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: tm=
-p_res start 0x01f81f0000 end 0x01f820ffff
--pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: pc=
-i_addr 0x0000000000 =3D> offset 0x01f81f0000
--pci-host-generic 1f0000000.pcie:      MEM 0x01f8210000..0x01f822ffff -> 0x=
-0000000000
-+pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: pc=
-i_addr 0x01f81f0000 =3D> offset 0x0000000000
-+pci-host-generic 1f0000000.pcie:      MEM 0x01f8210000..0x01f822ffff -> 0x=
-01f8210000
- pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: tm=
-p_res start 0x01f8210000 end 0x01f822ffff
--pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: pc=
-i_addr 0x0000000000 =3D> offset 0x01f8210000
--pci-host-generic 1f0000000.pcie:      MEM 0x01f8230000..0x01f824ffff -> 0x=
-0000000000
-+pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: pc=
-i_addr 0x01f8210000 =3D> offset 0x0000000000
-+pci-host-generic 1f0000000.pcie:      MEM 0x01f8230000..0x01f824ffff -> 0x=
-01f8230000
- pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: tm=
-p_res start 0x01f8230000 end 0x01f824ffff
--pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: pc=
-i_addr 0x0000000000 =3D> offset 0x01f8230000
--pci-host-generic 1f0000000.pcie:      MEM 0x01fc000000..0x01fc3fffff -> 0x=
-0000000000
-+pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: pc=
-i_addr 0x01f8230000 =3D> offset 0x0000000000
-+pci-host-generic 1f0000000.pcie:      MEM 0x01fc000000..0x01fc3fffff -> 0x=
-01fc000000
- pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: tm=
-p_res start 0x01fc000000 end 0x01fc3fffff
--pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: pc=
-i_addr 0x0000000000 =3D> offset 0x01fc000000
-+pci-host-generic 1f0000000.pcie: devm_of_pci_get_host_bridge_resources: pc=
-i_addr 0x01fc000000 =3D> offset 0x0000000000
- pci-host-generic 1f0000000.pcie: ECAM at [mem 0x1f0000000-0x1f00fffff] for=
- [bus 00]
- pci-host-generic 1f0000000.pcie: PCI host bridge to bus 0000:00
- pci_bus 0000:00: root bus resource [bus 00]
--pci_bus 0000:00: root bus resource [mem 0x1f8000000-0x1f815ffff] (bus addr=
-ess [0x00000000-0x0015ffff])
--pci_bus 0000:00: root bus resource [mem 0x1f8160000-0x1f81cffff pref] (bus=
- address [0x00000000-0x0006ffff])
--pci_bus 0000:00: root bus resource [mem 0x1f81d0000-0x1f81effff] (bus addr=
-ess [0x00000000-0x0001ffff])
--pci_bus 0000:00: root bus resource [mem 0x1f81f0000-0x1f820ffff pref] (bus=
- address [0x00000000-0x0001ffff])
--pci_bus 0000:00: root bus resource [mem 0x1f8210000-0x1f822ffff] (bus addr=
-ess [0x00000000-0x0001ffff])
--pci_bus 0000:00: root bus resource [mem 0x1f8230000-0x1f824ffff pref] (bus=
- address [0x00000000-0x0001ffff])
--pci_bus 0000:00: root bus resource [mem 0x1fc000000-0x1fc3fffff] (bus addr=
-ess [0x00000000-0x003fffff])
-+pci_bus 0000:00: root bus resource [mem 0x1f8000000-0x1f815ffff]
-+pci_bus 0000:00: root bus resource [mem 0x1f8160000-0x1f81cffff pref]
-+pci_bus 0000:00: root bus resource [mem 0x1f81d0000-0x1f81effff]
-+pci_bus 0000:00: root bus resource [mem 0x1f81f0000-0x1f820ffff pref]
-+pci_bus 0000:00: root bus resource [mem 0x1f8210000-0x1f822ffff]
-+pci_bus 0000:00: root bus resource [mem 0x1f8230000-0x1f824ffff pref]
-+pci_bus 0000:00: root bus resource [mem 0x1fc000000-0x1fc3fffff]
- pci 0000:00:00.0: [1957:e100] type 00 class 0x020001
- pci 0000:00:00.0: BAR 0: [mem 0x1f8000000-0x1f803ffff 64bit] (from Enhance=
-d Allocation, properties 0x0)
- pci 0000:00:00.0: BAR 2: [mem 0x1f8160000-0x1f816ffff 64bit pref] (from En=
-hanced Allocation, properties 0x1)
+I don't either, but it was requested, by Michal...
 
-My understanding might be wrong, but it should be possible for the PCIe
-host bridge driver to initialize some of its resources by enumerating
-the functions which have the EA capability, and not require the device
-tree writer to add a "ranges" entry for them at all. Then this discussion
-would be moot - that resource would have no way to be incorrect.
+ >
+ >>
+ >> Because we need to init timer devices so early in boot, the easiest way
+ >> to configure things is to use a device tree property. For the moment
+ >> this is 'xlnx,pwm', but this could be extended/renamed/etc. in the
+ >> future if these is a need for a generic property.
+ >
+ > No...
+ >
+ >> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+ >> ---
+ >> How should the clocking situation be documented? For the moment I have
+ >> just left clock as optional, but should clock-frequency be documented?
+ >>
+ >> Changes in v3:
+ >> - Mark all boolean-as-int properties as deprecated
+ >> - Add xlnx,pwm and xlnx,gen?-active-low properties.
+ >> - Make newer replacement properties mutually-exclusive with what they
+ >>    replace
+ >> - Add an example with non-deprecated properties only.
+ >>
+ >> Changes in v2:
+ >> - Use 32-bit addresses for example binding
+ >>
+ >>   .../bindings/pwm/xlnx,axi-timer.yaml          | 142 ++++++++++++++++++
+ >>   1 file changed, 142 insertions(+)
+ >>   create mode 100644 Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml
+ >>
+ >> diff --git a/Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml b/Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml
+ >> new file mode 100644
+ >> index 000000000000..a5e90658e31a
+ >> --- /dev/null
+ >> +++ b/Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml
+ >> @@ -0,0 +1,142 @@
+ >> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+ >> +%YAML 1.2
+ >> +---
+ >> +$id: http://devicetree.org/schemas/pwm/xlnx,axi-timer.yaml#
+ >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+ >> +
+ >> +title: Xilinx LogiCORE IP AXI Timer Device Tree Binding
+ >> +
+ >> +maintainers:
+ >> +  - Sean Anderson <sean.anderson@seco.com>
+ >> +
+ >> +properties:
+ >> +  compatible:
+ >> +    oneOf:
+ >> +      - items:
+ >> +        - const: xlnx,axi-timer-2.0
+ >> +        - const: xlnx,xps-timer-1.00.a
+ >> +      - const: xlnx,xps-timer-1.00.a
+ >> +
+ >> +  clocks:
+ >> +    maxItems: 1
+ >> +
+ >> +  clock-names:
+ >> +    const: s_axi_aclk
+ >> +
+ >> +  reg:
+ >> +    maxItems: 1
+ >> +
+ >> +  xlnx,count-width:
+ >> +    $ref: /schemas/types.yaml#/definitions/uint32
+ >> +    minimum: 8
+ >> +    maximum: 32
+ >> +    description:
+ >> +      The width of the counter(s), in bits.
+ >> +
+ >> +  xlnx,gen0-assert:
+ >> +    $ref: /schemas/types.yaml#/definitions/uint32
+ >> +    enum: [ 0, 1 ]
+ >> +    default: 1
+ >> +    deprecated: true
+ >> +    description:
+ >> +      The polarity of the generateout0 signal. 0 for active-low, 1 for active-high.
+ >> +
+ >> +  xlnx,gen0-active-low:
+ >> +    $ref: /schemas/types.yaml#/definitions/flag
+ >> +    description:
+ >> +      The generate0 signal is active-low.
+ >> +
+ >> +  xlnx,gen1-assert:
+ >> +    $ref: /schemas/types.yaml#/definitions/uint32
+ >> +    enum: [ 0, 1 ]
+ >> +    default: 1
+ >> +    deprecated: true
+ >> +    description:
+ >> +      The polarity of the generateout1 signal. 0 for active-low, 1 for active-high.
+ >> +
+ >> +  xlnx,gen1-active-low:
+ >> +    $ref: /schemas/types.yaml#/definitions/flag
+ >> +    description:
+ >> +      The generate1 signal is active-low.
+ >> +
+ >> +  xlnx,one-timer-only:
+ >> +    $ref: /schemas/types.yaml#/definitions/uint32
+ >> +    enum: [ 0, 1 ]
+ >> +    deprecated: true
+ >> +    description:
+ >> +      Whether only one timer is present in this block.
+ >> +
+ >> +  xlnx,single-timer:
+ >> +    $ref: /schemas/types.yaml#/definitions/flag
+ >> +    description:
+ >> +      Only one timer is present in this block.
+ >> +
+ >> +  xlnx,pwm:
+ >> +    $ref: /schemas/types.yaml#/definitions/flag
+ >> +    description:
+ >> +      This timer should be configured as a PWM.
+ >
+ > If a PWM, perhaps you want a '#pwm-cells' property which can serve as
+ > the hint to configure as a PWM.
 
-$ lspci -vvv
-0000:00:00.0 Ethernet controller: Freescale Semiconductor Inc Device e100 (=
-rev 01) (prog-if 01)
-	Subsystem: Freescale Semiconductor Inc Device e100
-(...)
-	Capabilities: [9c] Enhanced Allocation (EA): NumEntries=3D4
-		Entry 0: Enable+ Writable- EntrySize=3D3
-			 BAR Equivalent Indicator: BAR 0
-			 PrimaryProperties: memory space, non-prefetchable
-			 SecondaryProperties: entry unavailable for use, PrimaryProperties shoul=
-d be used
-			 Base: 1f8000000
-			 MaxOffset: 0003ffff
-		Entry 1: Enable+ Writable- EntrySize=3D3
-			 BAR Equivalent Indicator: BAR 2
-			 PrimaryProperties: memory space, prefetchable
-			 SecondaryProperties: memory space, non-prefetchable
-			 Base: 1f8160000
-			 MaxOffset: 0000ffff
-		Entry 2: Enable+ Writable- EntrySize=3D3
-			 BAR Equivalent Indicator: VF-BAR 0
-			 PrimaryProperties: VF memory space, non-prefetchable
-			 SecondaryProperties: entry unavailable for use, PrimaryProperties shoul=
-d be used
-			 Base: 1f81d0000
-			 MaxOffset: 0000ffff
-		Entry 3: Enable+ Writable- EntrySize=3D3
-			 BAR Equivalent Indicator: VF-BAR 2
-			 PrimaryProperties: VF memory space, prefetchable
-			 SecondaryProperties: VF memory space, prefetchable
-			 Base: 1f81f0000
-			 MaxOffset: 0000ffff
+Ok, that's a good idea.
 
-This information, which is already present in the hardware, needs to be
-duplicated here (now I do see that the 'ranges' property declares them
-larger than they really are, too):
+--Sean
 
-				  /* PF0-6 BAR0 - non-prefetchable memory */
-			ranges =3D <0x82000000 0x0 0x00000000  0x1 0xf8000000  0x0 0x160000
-				  /* PF0-6 BAR2 - prefetchable memory */
-				  0xc2000000 0x0 0x00000000  0x1 0xf8160000  0x0 0x070000
-				  /* PF0: VF0-1 BAR0 - non-prefetchable memory */
-				  0x82000000 0x0 0x00000000  0x1 0xf81d0000  0x0 0x020000
-				  /* PF0: VF0-1 BAR2 - prefetchable memory */
-				  0xc2000000 0x0 0x00000000  0x1 0xf81f0000  0x0 0x020000=
+ >
+ >> +
+ >> +required:
+ >> +  - compatible
+ >> +  - reg
+ >> +  - xlnx,count-width
+ >> +
+ >> +allOf:
+ >> +  - if:
+ >> +      required:
+ >> +        - clocks
+ >> +    then:
+ >> +      required:
+ >> +        - clock-names
+ >> +
+ >> +  - if:
+ >> +      required:
+ >> +        - xlnx,gen0-active-low
+ >> +    then:
+ >> +      not:
+ >> +        required:
+ >> +          - xlnx,gen0-assert
+ >> +
+ >> +  - if:
+ >> +      required:
+ >> +        - xlnx,gen0-active-low
+ >> +    then:
+ >> +      not:
+ >> +        required:
+ >> +          - xlnx,gen0-assert
+ >> +
+ >> +  - if:
+ >> +      required:
+ >> +        - xlnx,one-timer-only
+ >> +    then:
+ >> +      not:
+ >> +        required:
+ >> +          - xlnx,single-timer
+ >> +
+ >> +additionalProperties: true
+ >> +
+ >> +examples:
+ >> +  - |
+ >> +    axi_timer_0: timer@800e0000 {
+ >> +        clock-names = "s_axi_aclk";
+ >> +        clocks = <&zynqmp_clk 71>;
+ >> +        compatible = "xlnx,axi-timer-2.0", "xlnx,xps-timer-1.00.a";
+ >> +        reg = <0x800e0000 0x10000>;
+ >> +        xlnx,count-width = <0x20>;
+ >> +        xlnx,gen0-assert = <0x1>;
+ >> +        xlnx,gen1-assert = <0x1>;
+ >> +        xlnx,one-timer-only = <0x0>;
+ >> +        xlnx,trig0-assert = <0x1>;
+ >> +        xlnx,trig1-assert = <0x1>;
+ >> +    };
+ >> +
+ >> +  - |
+ >> +    axi_timer_0: timer@800e0000 {
+ >> +        clock-names = "s_axi_aclk";
+ >> +        clocks = <&zynqmp_clk 71>;
+ >> +        compatible = "xlnx,axi-timer-2.0", "xlnx,xps-timer-1.00.a";
+ >> +        reg = <0x800e0000 0x10000>;
+ >> +        xlnx,count-width = <0x20>;
+ >> +        xlnx,gen0-active-low;
+ >> +        xlnx,single-timer;
+ >> +    };
+ >> --
+ >> 2.25.1
+ >>
