@@ -2,155 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E00A037F9B8
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 16:35:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 896AC37FA10
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 16:54:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234511AbhEMOgJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 10:36:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56170 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234494AbhEMOgH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 May 2021 10:36:07 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A894761439;
-        Thu, 13 May 2021 14:34:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620916497;
-        bh=xxfQlMD0wezKXwFYz7D8jYYCXmAAXgZnJxiZiy+zERw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=h9wyMZvJCnfOcphUqpJuu+DGLjnYKSne2kKoyNvvrQCh5yv9WAiU+VhRuXZMyRYlA
-         ZZdofZvciEmZE6ny7W2LbRmDjsXyMboATkOt+TlpKxuE3imtxfa0KTMNXV3My7aoc2
-         bb1XkXIhUE9z5vw7QrOd6NN8s9ir+/DkCoWn1yZJAt/p1sTIpgBBTcK6aq7G3UyT7W
-         /JfCpNRrmioEpTw0sw5i0aCP1at7gFzqTrBLdw6l7OEfpFke4l53G3e+dB2Pxd+AGG
-         SrKYnhoYYAbF1uQP+GOEBJ2WbphdD8h4nFv4xIH8Pwlofcc9dKcIfG2zwBDWCa4SS5
-         E/wpodRAxHxTw==
-Received: by mail-ed1-f50.google.com with SMTP id c22so31210098edn.7;
-        Thu, 13 May 2021 07:34:57 -0700 (PDT)
-X-Gm-Message-State: AOAM5310bsc2BIdpsdaXF5mNOa31Re80jsIaCR3jqxZtphQFUJZT+wNJ
-        Q04Xr1ptb0HYSiD/IXpF3ehycHcwvC1WRjqRSg==
-X-Google-Smtp-Source: ABdhPJwEpp9Y9Fpl5bmyoUu5TLouC2jnXOjbcycNr9lgu5xw7SEYdFpsCB7SACyUOYBlugxVcIxqW33hPAfKM5Cv6Ls=
-X-Received: by 2002:a50:c446:: with SMTP id w6mr47224146edf.62.1620916496110;
- Thu, 13 May 2021 07:34:56 -0700 (PDT)
+        id S234627AbhEMOzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 10:55:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47800 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234500AbhEMOxt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 10:53:49 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBD10C06134B
+        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 07:52:06 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id u21so40214513ejo.13
+        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 07:52:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=vanguardiasur-com-ar.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0OfZKh7G4FCWvdITFgddq0jjch2im9fcQcbtcvyCbJ0=;
+        b=yGER9sFeqImCRTjxagvrdLG2NXeJuvmnYhHyvT/N3ibkZ0cOji38G2r3ETIQg+Hjkh
+         iWkFpwduPfMD3/zTiaVJ5R/D6Ok2eqmCn9maTaJ/XEGisZQmWko1EbbZbCNg/o0Xndbk
+         UYvAC19wnmE2b1jbVkkvuAd/MEoAVq+usc6vd24X0pLgwurO+L6JcwXQUFVvnneLHfHE
+         N8Wt49yUqefE6Hhrn/kIxCPfhOu7Ka1HDFak1FUkPbIMhdwRWDRVdLBwPcKzg6R38lYQ
+         FHk8DwLtiXp6G+VquVP9NSbHCv4qUZ0WD4WJ/LjTrYVZ5SjRrsW51DB/8qINyepIGEV/
+         r6Dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0OfZKh7G4FCWvdITFgddq0jjch2im9fcQcbtcvyCbJ0=;
+        b=KgOmzgtC8Rv7UDLMQQgO/A41nmaHdkDNyubzo6ZzTqFgKZNX627NgjBeg79Sax12BE
+         331W0QIecSEfxQGQiId7pootBN7MosJa/ss4saO7VNZ64lLMOrUxeMBgTJMMnsqvvD91
+         2eCAJY4YDzh0CYFpKt8+l1iV3Fs687FPrkhU438yye+cTBi8Fgl4LM0M4doKPj6emcJF
+         ZFCpvQA11jmRwasPnS+jMgkSYJBvH/HUxmMMEUd7CG1IgP0zPF53MoRNU0oRZihZPG3d
+         9B58hf3fipIEvkJNeOUapbsrulVsJ1Rh8sliDtcyF7VtN/QwxSPqtJrJ3nyCSM6NpHbB
+         5CHg==
+X-Gm-Message-State: AOAM532no5+3eDx+peFgYyMSwk/bKhvBkRJKCLQ9/tp2wfQ5GWWgnYd+
+        m+BaqkqCwURyQ41FC6Cgd4kbSEn5yQMELexXLlUh2A==
+X-Google-Smtp-Source: ABdhPJxM3ATiNSUpOAOJ9eWZOuQdhYbDZCWVTt9AZfZgddggWQHRJ7iT1otIC6/tIvl+X8AGtpE7CYg8qTpqn1cHFCY=
+X-Received: by 2002:a17:907:b09:: with SMTP id h9mr13061663ejl.430.1620917525095;
+ Thu, 13 May 2021 07:52:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210504102227.15475-1-nava.manne@xilinx.com> <20210504102227.15475-3-nava.manne@xilinx.com>
- <20210513023104.GA909876@robh.at.kernel.org> <MWHPR02MB262309A8DC5BD857CBB01446C2519@MWHPR02MB2623.namprd02.prod.outlook.com>
-In-Reply-To: <MWHPR02MB262309A8DC5BD857CBB01446C2519@MWHPR02MB2623.namprd02.prod.outlook.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 13 May 2021 09:34:43 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+mHsrgQOrT48gaoqBOUuMf5mxeVauM74RDxELiA8fXKg@mail.gmail.com>
-Message-ID: <CAL_Jsq+mHsrgQOrT48gaoqBOUuMf5mxeVauM74RDxELiA8fXKg@mail.gmail.com>
-Subject: Re: [RFC PATCH 2/4] fpga: Add new properties to support user-key
- encrypted bitstream loading
-To:     Nava kishore Manne <navam@xilinx.com>
-Cc:     "mdf@kernel.org" <mdf@kernel.org>,
-        "trix@redhat.com" <trix@redhat.com>,
-        Michal Simek <michals@xilinx.com>,
-        "arnd@arndb.de" <arnd@arndb.de>, Rajan Vaja <RAJANV@xilinx.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        Amit Sunil Dhamne <amitsuni@xlnx.xilinx.com>,
-        Tejas Patel <tejasp@xlnx.xilinx.com>,
-        "zou_wei@huawei.com" <zou_wei@huawei.com>,
-        Manish Narani <MNARANI@xilinx.com>,
-        Sai Krishna Potthuri <lakshmis@xilinx.com>,
-        Jiaying Liang <jliang@xilinx.com>,
-        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>, git <git@xilinx.com>,
-        "chinnikishore369@gmail.com" <chinnikishore369@gmail.com>
+References: <20210421052855.1279713-1-drinkcat@chromium.org> <20210421132841.v13.2.I9f45f5c1f975422d58b5904d11546349e9ccdc94@changeid>
+In-Reply-To: <20210421132841.v13.2.I9f45f5c1f975422d58b5904d11546349e9ccdc94@changeid>
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Date:   Thu, 13 May 2021 11:51:53 -0300
+Message-ID: <CAAEAJfBQzTQmZxTeq3gQcDgNbvMtzgNXegnY0MWUOC1MZ-W1mw@mail.gmail.com>
+Subject: Re: [PATCH v13 2/4] arm64: dts: mt8183: Add node for the Mali GPU
+To:     Nicolas Boichat <drinkcat@chromium.org>
+Cc:     Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        fshao@chromium.org, hsinyi@chromium.org, hoegsberg@chromium.org,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 13, 2021 at 5:55 AM Nava kishore Manne <navam@xilinx.com> wrote=
-:
->
-> Hi Rob,
->
->         Please find my response inline.
->
-> > -----Original Message-----
-> > From: Rob Herring <robh@kernel.org>
-> > Sent: Thursday, May 13, 2021 8:01 AM
-> > To: Nava kishore Manne <navam@xilinx.com>
-> > Cc: mdf@kernel.org; trix@redhat.com; Michal Simek <michals@xilinx.com>;
-> > arnd@arndb.de; Rajan Vaja <RAJANV@xilinx.com>;
-> > gregkh@linuxfoundation.org; linus.walleij@linaro.org; Amit Sunil Dhamne
-> > <amitsuni@xlnx.xilinx.com>; Tejas Patel <tejasp@xlnx.xilinx.com>;
-> > zou_wei@huawei.com; Manish Narani <MNARANI@xilinx.com>; Sai Krishna
-> > Potthuri <lakshmis@xilinx.com>; Jiaying Liang <jliang@xilinx.com>; linu=
-x-
-> > fpga@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> > kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; git
-> > <git@xilinx.com>; chinnikishore369@gmail.com
-> > Subject: Re: [RFC PATCH 2/4] fpga: Add new properties to support user-k=
-ey
-> > encrypted bitstream loading
-> >
-> > On Tue, May 04, 2021 at 03:52:25PM +0530, Nava kishore Manne wrote:
-> > > This patch Adds =E2=80=98encrypted-key-name=E2=80=99 and
-> > > =E2=80=98encrypted-user-key-fpga-config=E2=80=99 properties to suppor=
-t user-key
-> > > encrypted bitstream loading use case.
-> > >
-> > > Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/fpga/fpga-region.txt | 5 +++++
-> > >  1 file changed, 5 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/fpga/fpga-region.txt
-> > > b/Documentation/devicetree/bindings/fpga/fpga-region.txt
-> > > index d787d57491a1..957dc6cbcd9e 100644
-> > > --- a/Documentation/devicetree/bindings/fpga/fpga-region.txt
-> > > +++ b/Documentation/devicetree/bindings/fpga/fpga-region.txt
-> > > @@ -177,6 +177,9 @@ Optional properties:
-> > >     it indicates that the FPGA has already been programmed with this
-> > image.
-> > >     If this property is in an overlay targeting a FPGA region, it is =
-a
-> > >     request to program the FPGA with that image.
-> > > +- encrypted-key-name : should contain the name of an encrypted key f=
-ile
-> > located
-> > > +   on the firmware search path. It will be used to decrypt the FPGA
-> > image
-> > > +   file.
-> > >  - fpga-bridges : should contain a list of phandles to FPGA Bridges t=
-hat must
-> > be
-> > >     controlled during FPGA programming along with the parent FPGA
-> > bridge.
-> > >     This property is optional if the FPGA Manager handles the bridges=
-.
-> > > @@ -187,6 +190,8 @@ Optional properties:
-> > >  - external-fpga-config : boolean, set if the FPGA has already been
-> > configured
-> > >     prior to OS boot up.
-> > >  - encrypted-fpga-config : boolean, set if the bitstream is encrypted
-> > > +- encrypted-user-key-fpga-config : boolean, set if the bitstream is
-> > encrypted
-> > > +   with user key.
-> >
-> > What's the relationship with encrypted-fpga-config? Both present or
-> > mutually exclusive? Couldn't this be implied by encrypted-key-name bein=
-g
-> > present?
-> >
->
-> In Encryption we have two kinds of use case one is Encrypted Bitstream lo=
-ading with Device-key and
-> Other one is Encrypted Bitstream loading with User-key. encrypted-fpga-co=
-nfig and encrypted-user-key-fpga-config
-> are mutually exclusive. To differentiate both the use cases I have added =
-this new flag and Aes Key file(encrypted-key-name)
-> is needed only for encrypted-user-key-fpga-config use cases.
+Hi Nicolas,
 
-If encrypted-key-name is required for a user key, then why do you need
-encrypted-user-key-fpga-config also?
+On Wed, 21 Apr 2021 at 02:29, Nicolas Boichat <drinkcat@chromium.org> wrote:
+>
+> Add a basic GPU node for mt8183.
+>
+> Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
+> ---
+> The binding we use with out-of-tree Mali drivers includes more
+> clocks, this is used for devfreq: the out-of-tree driver switches
+> clk_mux to clk_sub_parent (26Mhz), adjusts clk_main_parent, then
+> switches clk_mux back to clk_main_parent:
+> (see https://chromium.googlesource.com/chromiumos/third_party/kernel/+/chromeos-4.19/drivers/gpu/arm/midgard/platform/mediatek/mali_kbase_runtime_pm.c#423)
+> clocks =
+>         <&topckgen CLK_TOP_MFGPLL_CK>,
+>         <&topckgen CLK_TOP_MUX_MFG>,
+>         <&clk26m>,
+>         <&mfgcfg CLK_MFG_BG3D>;
+> clock-names =
+>         "clk_main_parent",
+>         "clk_mux",
+>         "clk_sub_parent",
+>         "subsys_mfg_cg";
+> (based on discussions, this probably belongs in the clock core)
+>
+> This only matters for devfreq, that is disabled anyway as we don't
+> have platform-specific code to handle >1 supplies.
+>
 
-IOW, why have 3 properties (that's 9 possible combinations) for 2 modes?
+Nit: I think some of this info could be relevant, so I'd make
+it part of the commit description.
 
-Rob
+> (no changes since v12)
+>
+> Changes in v12:
+>  - Add gpu node to mt8183-pumpkin.dts as well (Neil Armstrong).
+>
+> Changes in v11:
+>  - mt8183*.dts: remove incorrect supply-names
+>
+> Changes in v6:
+>  - Add gpu regulators to kukui dtsi as well.
+>  - Power domains are now attached to spm, not scpsys
+>  - Drop R-B.
+>
+> Changes in v5:
+>  - Rename "2d" power domain to "core2" (keep R-B again).
+>
+> Changes in v4:
+>  - Add power-domain-names to describe the 3 domains.
+>    (kept Alyssa's reviewed-by as the change is minor)
+>
+> Changes in v2:
+>  - Use sram instead of mali_sram as SRAM supply name.
+>  - Rename mali@ to gpu@.
+>
+>  arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |   5 +
+>  .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   5 +
+>  .../boot/dts/mediatek/mt8183-pumpkin.dts      |   5 +
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 105 ++++++++++++++++++
+>  4 files changed, 120 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+> index edff1e03e6fe..7bc0a6a7fadf 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+> @@ -42,6 +42,11 @@ &auxadc {
+>         status = "okay";
+>  };
+>
+> +&gpu {
+> +       mali-supply = <&mt6358_vgpu_reg>;
+> +       sram-supply = <&mt6358_vsram_gpu_reg>;
+> +};
+> +
+>  &i2c0 {
+>         pinctrl-names = "default";
+>         pinctrl-0 = <&i2c_pins_0>;
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> index ff56bcfa3370..e4e54be1c2b2 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> @@ -279,6 +279,11 @@ dsi_out: endpoint {
+>         };
+>  };
+>
+> +&gpu {
+> +       mali-supply = <&mt6358_vgpu_reg>;
+> +       sram-supply = <&mt6358_vsram_gpu_reg>;
+> +};
+> +
+>  &i2c0 {
+>         pinctrl-names = "default";
+>         pinctrl-0 = <&i2c0_pins>;
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
+> index 0aff5eb52e88..ee912825cfc6 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
+> @@ -68,6 +68,11 @@ &auxadc {
+>         status = "okay";
+>  };
+>
+> +&gpu {
+> +       mali-supply = <&mt6358_vgpu_reg>;
+> +       sram-supply = <&mt6358_vsram_gpu_reg>;
+> +};
+> +
+>  &i2c0 {
+>         pinctrl-names = "default";
+>         pinctrl-0 = <&i2c_pins_0>;
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index c5e822b6b77a..c75fdeea8aa4 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -1118,6 +1118,111 @@ mfgcfg: syscon@13000000 {
+>                         #clock-cells = <1>;
+>                 };
+>
+> +               gpu: gpu@13040000 {
+> +                       compatible = "mediatek,mt8183-mali", "arm,mali-bifrost";
+> +                       reg = <0 0x13040000 0 0x4000>;
+> +                       interrupts =
+> +                               <GIC_SPI 280 IRQ_TYPE_LEVEL_LOW>,
+> +                               <GIC_SPI 279 IRQ_TYPE_LEVEL_LOW>,
+> +                               <GIC_SPI 278 IRQ_TYPE_LEVEL_LOW>;
+> +                       interrupt-names = "job", "mmu", "gpu";
+> +
+> +                       clocks = <&topckgen CLK_TOP_MFGPLL_CK>;
+> +
+> +                       power-domains =
+> +                               <&spm MT8183_POWER_DOMAIN_MFG_CORE0>,
+> +                               <&spm MT8183_POWER_DOMAIN_MFG_CORE1>,
+> +                               <&spm MT8183_POWER_DOMAIN_MFG_2D>;
+> +                       power-domain-names = "core0", "core1", "core2";
+> +
+> +                       operating-points-v2 = <&gpu_opp_table>;
+> +               };
+> +
+> +               gpu_opp_table: opp_table0 {
+
+If my eyes don't fool me, the OPP table being here means it's a child
+of the "soc" node. Given it's not an SoC peripheral,
+it'd make more sense to move it to root "/".
+
+Other than that, I think it looks good:
+
+Reviewed-by: Ezequiel Garcia <ezequiel@collabora.com>
+
+Thanks!
+Ezequiel
