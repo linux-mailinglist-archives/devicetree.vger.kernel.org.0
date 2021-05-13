@@ -2,145 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C766C37FB00
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 17:49:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20B6937FB0C
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 17:51:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231200AbhEMPuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 11:50:13 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:52976 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229724AbhEMPuN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 May 2021 11:50:13 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1620920943;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=OXFg9yT+SRP4aJjvJsKPgnXEZ8W+KPtuhwXQgp0wnKU=;
-        b=MB4mmajmb3I8VtS26f7BMKuIvcFeL3WI+YMCAwrlRcXQ63rj+Tgd898W8C6pGUCstzFI2M
-        QN508vgjDqRBUNAxBhYSuSLtkl/6T2bOkO+lKHUYOEXaZ8e1kLkOqpiyyyr0+2z3KYXJcA
-        u0Qy5g01DCRwYML0EWoNw4BPbOa0b3A=
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-196-G_AKVj6GNdWhW8_ixiXxRw-1; Thu, 13 May 2021 11:49:01 -0400
-X-MC-Unique: G_AKVj6GNdWhW8_ixiXxRw-1
-Received: by mail-qt1-f197.google.com with SMTP id o15-20020a05622a138fb02901e0ac29f6b2so6634430qtk.11
-        for <devicetree@vger.kernel.org>; Thu, 13 May 2021 08:49:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=OXFg9yT+SRP4aJjvJsKPgnXEZ8W+KPtuhwXQgp0wnKU=;
-        b=NxkFhwgjrGl/r3BrZR56WR+aTTm0sJX8NQ+TQ4zWojxSjVh/b8QIT61Dmj9VhR4NEW
-         hM5ha+O+EkBjZ3N2shyLed0jDNL4H1P4nmKgsLQB8pw1O/ZYrPUXP1M1YSEeUEw3uKnm
-         kS/6B1g8e4+LqjnM3f5Q6GgufEP52BprEQt26BN5osQrFa3vODZ2u+0gY2SBq1JwrYKn
-         cnkea7RI+3Yd2vBA9MQ1LzIOI0NIjfWg6QJezgzxjy9HDp45EZexCiICoD1Do1AEkNls
-         wRvFylGRIXqrhieOGlzuDF7UAoOuZZvq8aN3XZWdLhcHNya6UTsEfr/J0TyygARgqXk/
-         cZaw==
-X-Gm-Message-State: AOAM532++LIw5pBiYFudIqsxkL7V6KmkcAdAtqjuGQpDXYpRNDA0wTvc
-        B7FIwpPpsLlcvf/qRnE5y1Ow7VKWqzc4xp7lDeaDTezXtbs995MhsuG8u+36zPu4Cxr4zF0KOY1
-        GkPK80fxLflZ+8HivXV3MpQ==
-X-Received: by 2002:a37:98c4:: with SMTP id a187mr38940511qke.277.1620920941060;
-        Thu, 13 May 2021 08:49:01 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwUyK6JS8Fjz7RmzsmXIRnyG/yAEecKiFii/ajYNOLBY3TFUJO/jJ58x9Xer/nE8I7bMnTXWw==
-X-Received: by 2002:a37:98c4:: with SMTP id a187mr38940499qke.277.1620920940893;
-        Thu, 13 May 2021 08:49:00 -0700 (PDT)
-Received: from localhost.localdomain (075-142-250-213.res.spectrum.com. [75.142.250.213])
-        by smtp.gmail.com with ESMTPSA id 195sm2645020qkj.1.2021.05.13.08.48.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 May 2021 08:49:00 -0700 (PDT)
-Subject: Re: [PATCH V6 XRT Alveo 16/20] fpga: xrt: clock driver
-To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
-Cc:     linux-fpga@vger.kernel.org, maxz@xilinx.com,
-        sonal.santan@xilinx.com, yliu@xilinx.com, michal.simek@xilinx.com,
-        stefanos@xilinx.com, devicetree@vger.kernel.org, mdf@kernel.org,
-        robh@kernel.org, Max Zhen <max.zhen@xilinx.com>
-References: <20210512015339.5649-1-lizhi.hou@xilinx.com>
- <20210512015339.5649-17-lizhi.hou@xilinx.com>
-From:   Tom Rix <trix@redhat.com>
-Message-ID: <f4a18fa4-f023-d4e5-0622-e15108de90b9@redhat.com>
-Date:   Thu, 13 May 2021 08:48:57 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S233332AbhEMPwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 11:52:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33590 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234933AbhEMPwV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 11:52:21 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79156C061760;
+        Thu, 13 May 2021 08:51:11 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id 4730D1F40EFD
+Received: by earth.universe (Postfix, from userid 1000)
+        id 8881C3C0C95; Thu, 13 May 2021 17:51:07 +0200 (CEST)
+Date:   Thu, 13 May 2021 17:51:07 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-kernel@vger.kernel.org, kernel@collabora.com,
+        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH 4/6] dt-bindings: power: supply: charger-manager: Convert
+ to DT schema format
+Message-ID: <20210513155107.qyur6dsrwpkrxpjk@earth.universe>
+References: <20210412230320.382885-1-sebastian.reichel@collabora.com>
+ <20210412230320.382885-5-sebastian.reichel@collabora.com>
+ <20210413152641.GA1707619@robh.at.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20210512015339.5649-17-lizhi.hou@xilinx.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="f3dxslgfbnr5shxd"
+Content-Disposition: inline
+In-Reply-To: <20210413152641.GA1707619@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--f3dxslgfbnr5shxd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +
-> +static int get_freq(struct clock *clock, u16 *freq)
-> +{
+Hi,
 
-> +
-> +	/*
-> +	 * Multiply both numerator (mul0) and the denominator (div1) with
-> +	 * 1000 to account for fractional portion of divider
-> +	 */
-> +
-> +	div1 *= 1000;
-> +	div1 += div_frac1;
-> +	div0 *= div1;
-> +	mul0 *= 1000;
-> +	if (div0 == 0) {
-> +		CLOCK_ERR(clock, "clockwiz 0 divider");
+On Tue, Apr 13, 2021 at 10:26:41AM -0500, Rob Herring wrote:
+> On Tue, 13 Apr 2021 01:03:18 +0200, Sebastian Reichel wrote:
+> > Convert the binding to DT schema format.
+> >=20
+> > I slightly modified the binding by allowing regulator-[0-9] and cable-[=
+0-9]
+> > instead of regulator@[0-9] and cable@[0-9], so that DT compiler does not
+> > complain about missing 'reg' property. The driver actually ignores the
+> > nodename and can handle both styles.
+> >=20
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > ---
+> >  .../bindings/power/supply/charger-manager.txt |  91 --------
+> >  .../power/supply/charger-manager.yaml         | 215 ++++++++++++++++++
+> >  2 files changed, 215 insertions(+), 91 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/power/supply/char=
+ger-manager.txt
+> >  create mode 100644 Documentation/devicetree/bindings/power/supply/char=
+ger-manager.yaml
+>=20
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-This prevents a divide by zero, but returns 0 without setting freq
+Thanks, queued.
 
-A -EINVAL should be returned or freq initialized to some default value
+-- Sebastian
 
-> +		return 0;
-> +	}
-> +
-> +	input = mul0 * 100;
-> +	do_div(input, div0);
-> +	*freq = (u16)input;
-> +
-> +	return 0;
-> +}
-> +
->
-> +
-> +static int clock_verify_freq(struct clock *clock)
-> +{
-> +	u32 lookup_freq, clock_freq_counter, request_in_khz, tolerance;
-> +	int err = 0;
-> +	u16 freq;
-> +
-> +	mutex_lock(&clock->clock_lock);
-> +
-> +	err = get_freq(clock, &freq);
-> +	if (err) {
-> +		xrt_err(clock->xdev, "get freq failed, %d", err);
-> +		goto end;
-> +	}
-> +
-> +	err = get_freq_counter(clock, &clock_freq_counter);
-> +	if (err) {
-> +		xrt_err(clock->xdev, "get freq counter failed, %d", err);
-> +		goto end;
-> +	}
-> +
-> +	lookup_freq = find_matching_freq(freq, frequency_table,
-> +					 ARRAY_SIZE(frequency_table));
+--f3dxslgfbnr5shxd
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I am running v6 through clang's static analyzer, it shows a problem here
+-----BEGIN PGP SIGNATURE-----
 
-drivers/fpga/xrt/lib/xleaf/clock.c:474:16: warning: 1st function call 
-argument is an uninitialized value
-         lookup_freq = find_matching_freq(freq, frequency_table,
-                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmCdSuYACgkQ2O7X88g7
++pqAqA/8D3sftstSxvWSAwrnIc71f6dMiQc8fkBjKfdHwxKa2wuGK/ujBrtn5u6p
+y6cQ8uLLGJL0qUlZstQ85VdsJBsEYla3yc6HoIsRFLF3xn4oBPMD6hSQmp/x03E7
+ay1fVAQo+9R9uV/OzBKQDJ0LxPw07LpE6KE5vAyz8E+N8E1XH3latq0cih8xVbK3
+j+8NZZoCA/puOhMLt0fN5LXYEwP9rzG4aqWYd+MOJZOmMExnbSAQHvR9m0t6QlL/
+zA3klBxOp2Vn3p9wflnXR5zbBbA3zNroYSsOsOWrw39vGNTsgzukeHyunMKkyTZb
+ow7L+zlDDU4nggqDMzu/6sU1D6lMeWRpqJZn1DdM7akkptONML3Dnk4cFs/OzVLq
+e1cic3QovO9/uWU7l/9f5nNhuBUzxe+JBWbHZ4UNb0Ve3pxP5u1VdQbJgXoGlu6y
+esLOyOl9zllYupLsFjP5qFCIbYnHvuQ7UjPBrlDMKQhbOSJy/Oysa0ghkzViHhec
+HQXLTQOQBlEHzc6iHrw31CF5BWku2MoWZd9eo5d4TOerCHrNMi6lCjeoDeUeZQIv
+vtmCdrR0Ncf1p5cqLGzXXdvIdxoYfTSJW3LvekOosfRuAg0b17EYdjnNyN3ykM1s
+yZN9UaYqyspSIbJX3kkwZSqvEAFA4SvwGmQBfX/+Ck+afOcm2E8=
+=diRH
+-----END PGP SIGNATURE-----
 
-See problem with get_freq above
-
-Tom
-
-
+--f3dxslgfbnr5shxd--
