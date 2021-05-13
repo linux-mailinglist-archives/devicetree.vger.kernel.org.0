@@ -2,174 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB5D837F16E
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 04:47:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D30B137F1AD
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 05:34:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230126AbhEMCtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 22:49:02 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:50050 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229813AbhEMCtC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 22:49:02 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14D2ljqr012163;
-        Wed, 12 May 2021 21:47:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1620874065;
-        bh=CVL24IXjC7hS/rORC2nMLVaPFRAth7V3AD9AbT6OxgY=;
-        h=Subject:From:To:CC:References:Date:In-Reply-To;
-        b=ohtqtg3h70b1QcdUPjyCMG0N9JyIV82M+uk+TEsSdLZDUq8Uhq8G61Gj9M7mD2aWO
-         h7EnD5cTwYy8nLP1fSpTWp4+Z+QG60mmeiMwOH5BKYJzYcIFtNP2jEYEUBvWuLaBW5
-         0jJZGF7JYZrHPLS3r2U3D37oH/50BjDGilvaKYU8=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14D2lid3070216
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 12 May 2021 21:47:44 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 12
- May 2021 21:47:44 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 12 May 2021 21:47:44 -0500
-Received: from [10.250.33.185] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14D2li1V024269;
-        Wed, 12 May 2021 21:47:44 -0500
-Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: k3-r5f: Update bindings
- for AM64x SoCs
-From:   Suman Anna <s-anna@ti.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20210327143117.1840-1-s-anna@ti.com>
- <20210327143117.1840-2-s-anna@ti.com>
- <8948a30c-1a2f-1fb0-05bb-37be9c02c5d5@ti.com>
-Message-ID: <ff8edffb-d926-9641-740b-2c292139aa07@ti.com>
-Date:   Wed, 12 May 2021 21:47:44 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <8948a30c-1a2f-1fb0-05bb-37be9c02c5d5@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S230176AbhEMDfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 23:35:16 -0400
+Received: from lucky1.263xmail.com ([211.157.147.131]:43542 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230018AbhEMDfP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 23:35:15 -0400
+Received: from localhost (unknown [192.168.167.224])
+        by lucky1.263xmail.com (Postfix) with ESMTP id D0640BA0CE;
+        Thu, 13 May 2021 11:33:58 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P12381T139987660035840S1620876834871090_;
+        Thu, 13 May 2021 11:33:57 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <9e628830b7c19a64fdc016674d074f56>
+X-RL-SENDER: cl@rock-chips.com
+X-SENDER: cl@rock-chips.com
+X-LOGIN-NAME: cl@rock-chips.com
+X-FST-TO: heiko@sntech.de
+X-RCPT-COUNT: 30
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   <cl@rock-chips.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, jagan@amarulasolutions.com, wens@csie.org,
+        uwe@kleine-koenig.org, mail@david-bauer.net, jbx6244@gmail.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        jensenhuang@friendlyarm.com, michael@amarulasolutions.com,
+        cnsztl@gmail.com, devicetree@vger.kernel.org,
+        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+        gregkh@linuxfoundation.org, linux-serial@vger.kernel.org,
+        linux-i2c@vger.kernel.org, jay.xu@rock-chips.com,
+        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
+        zhangqing@rock-chips.com, huangtao@rock-chips.com,
+        cl@rock-chips.com, wim@linux-watchdog.org, linux@roeck-us.net,
+        jamie@jamieiles.com, linux-watchdog@vger.kernel.org, maz@kernel.org
+Subject: [RESEND PATCH v4 06/10] dt-bindings: gpio: change items restriction of clock for rockchip,gpio-bank
+Date:   Thu, 13 May 2021 11:33:51 +0800
+Message-Id: <20210513033351.17879-1-cl@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210429081151.17558-1-cl@rock-chips.com>
+References: <20210429081151.17558-1-cl@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+From: Liang Chen <cl@rock-chips.com>
 
-On 4/19/21 8:55 AM, Suman Anna wrote:
-> Hi Rob,
-> 
-> On 3/27/21 9:31 AM, Suman Anna wrote:
->> The K3 AM64x SoCs have two dual-core Arm R5F clusters/subsystems, with
->> 2 R5F cores each, both in the MAIN voltage domain.
->>
->> These clusters are a revised IP version compared to those present on
->> J721E and J7200 SoCs, and supports a new "Single-CPU" mode instead of
->> LockStep mode. Update the K3 R5F remoteproc bindings with the compatible
->> info relevant to these R5F clusters/subsystems on K3 AM64x SoCs.
->>
->> Signed-off-by: Suman Anna <s-anna@ti.com>
->> ---
->> v2: No changes
->>
->>  .../bindings/remoteproc/ti,k3-r5f-rproc.yaml  | 31 ++++++++++++++++---
-> 
-> Looks like this patch has fallen through the cracks, can you please review and
-> give your ack for this patch so that Bjorn can pick up the series for 5.13?
+The clock property need 2 items on some rockchip chips.
 
-Gentle reminder, do you have any comments on this patch. Appreciate your ack so
-that we can get this in for 5.14?
+Signed-off-by: Liang Chen <cl@rock-chips.com>
+---
+ Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-regards
-Suman
+diff --git a/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml b/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
+index d993e00..0df147f 100644
+--- a/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
++++ b/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
+@@ -22,7 +22,11 @@ properties:
+     maxItems: 1
+ 
+   clocks:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 2
++    items:
++      - description: APB interface clock source
++      - description: GPIO debounce reference clock source
+ 
+   gpio-controller: true
+ 
+-- 
+2.7.4
 
-> 
-> regards
-> Suman
-> 
->>  1 file changed, 26 insertions(+), 5 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
->> index d905d614502b..130fbaacc4b1 100644
->> --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
->> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
->> @@ -14,8 +14,12 @@ description: |
->>    processor subsystems/clusters (R5FSS). The dual core cluster can be used
->>    either in a LockStep mode providing safety/fault tolerance features or in a
->>    Split mode providing two individual compute cores for doubling the compute
->> -  capacity. These are used together with other processors present on the SoC
->> -  to achieve various system level goals.
->> +  capacity on most SoCs. These are used together with other processors present
->> +  on the SoC to achieve various system level goals.
->> +
->> +  AM64x SoCs do not support LockStep mode, but rather a new non-safety mode
->> +  called "Single-CPU" mode, where only Core0 is used, but with ability to use
->> +  Core1's TCMs as well.
->>  
->>    Each Dual-Core R5F sub-system is represented as a single DTS node
->>    representing the cluster, with a pair of child DT nodes representing
->> @@ -33,6 +37,7 @@ properties:
->>        - ti,am654-r5fss
->>        - ti,j721e-r5fss
->>        - ti,j7200-r5fss
->> +      - ti,am64-r5fss
->>  
->>    power-domains:
->>      description: |
->> @@ -56,11 +61,12 @@ properties:
->>  
->>    ti,cluster-mode:
->>      $ref: /schemas/types.yaml#/definitions/uint32
->> -    enum: [0, 1]
->>      description: |
->>        Configuration Mode for the Dual R5F cores within the R5F cluster.
->> -      Should be either a value of 1 (LockStep mode) or 0 (Split mode),
->> -      default is LockStep mode if omitted.
->> +      Should be either a value of 1 (LockStep mode) or 0 (Split mode) on
->> +      most SoCs (AM65x, J721E, J7200), default is LockStep mode if omitted;
->> +      and should be either a value of 0 (Split mode) or 2 (Single-CPU mode)
->> +      on AM64x SoCs, default is Split mode if omitted.
->>  
->>  # R5F Processor Child Nodes:
->>  # ==========================
->> @@ -97,6 +103,7 @@ patternProperties:
->>            - ti,am654-r5f
->>            - ti,j721e-r5f
->>            - ti,j7200-r5f
->> +          - ti,am64-r5f
->>  
->>        reg:
->>          items:
->> @@ -198,6 +205,20 @@ patternProperties:
->>  
->>      unevaluatedProperties: false
->>  
->> +if:
->> +  properties:
->> +    compatible:
->> +      enum:
->> +        - ti,am64-r5fss
->> +then:
->> +  properties:
->> +    ti,cluster-mode:
->> +      enum: [0, 2]
->> +else:
->> +  properties:
->> +    ti,cluster-mode:
->> +      enum: [0, 1]
->> +
->>  required:
->>    - compatible
->>    - power-domains
->>
-> 
+
 
