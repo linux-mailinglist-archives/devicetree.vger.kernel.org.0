@@ -2,194 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3667F37F13D
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 04:20:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7A9E37F142
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 04:22:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230183AbhEMCVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 May 2021 22:21:48 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:35346 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229630AbhEMCVs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 22:21:48 -0400
-Received: by mail-ot1-f42.google.com with SMTP id 69-20020a9d0a4b0000b02902ed42f141e1so12292748otg.2;
-        Wed, 12 May 2021 19:20:38 -0700 (PDT)
+        id S230259AbhEMCYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 May 2021 22:24:02 -0400
+Received: from mail-oo1-f43.google.com ([209.85.161.43]:41941 "EHLO
+        mail-oo1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230037AbhEMCYB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 May 2021 22:24:01 -0400
+Received: by mail-oo1-f43.google.com with SMTP id e7-20020a4ad2470000b02902088d0512ceso2546502oos.8;
+        Wed, 12 May 2021 19:22:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=+Y42oGdrMd3tYCXJqJNfiv2RuuGSmqgHgvmQbIwOftY=;
-        b=isGY589LeHHHObSwpUkjwegCKsD/tTy7ExA4CNTtIVvoV3g2qS/MBJa0sAAlZ2k9CH
-         J2kUEm+b1c7LQL1DRcz9EKL9Ly7/ryDHju4zeX8qOGhOFqo4Uf11pGJWOWo4LsMH2FGS
-         WU/RtzbLjC3k8OgNe0eK87u+eyxsptqY22Jl6TiANYpDPKuQQByCvtXhcCITfTNNEAXG
-         eXH7b+dscPAm+dd4IzWFk8ibReREiuWiPOuFpvT4UgGAuKTrvtLcC9xw8bchVpNOnjgg
-         RhZDGszcntuXhY4rCxSxC8oBymtQxDki+RhYH8aKxM35DZPviV+x87dCfppKKuaZtlZK
-         FGdA==
-X-Gm-Message-State: AOAM532WfCOE8a6+C946mSPVs3zHptASbWqiS0nlI7iJyZtfANRajmj/
-        RkAy0JrWuys9kxo3XOHApA==
-X-Google-Smtp-Source: ABdhPJwVBpVOfEr7q0rdcf0ZPngrOnuRD90z52CKo7EbRrNLG0S+2I7V5oyhKUn9yx+KkP2UJtDLzQ==
-X-Received: by 2002:a9d:1922:: with SMTP id j34mr11022853ota.250.1620872437860;
-        Wed, 12 May 2021 19:20:37 -0700 (PDT)
+        bh=bjbsKbExJtqqkUx1FT2hl9g6O34xQvhxKjFsG5FoPFQ=;
+        b=kUiXU/GWinaocDjZ645EhMqEVVn58BxOQos1qz/PmfWj80H1SJGNK4VnmCNeRrPvuU
+         U7LSa5WsFLsfxmSNmvXhv/KjUBI9UoYeTP2z2CsgG+GDF0hs6okBIQUURI7RJAC+UnJf
+         oVKoYrhWjO3f9sK+lgbVY/veXSrSUUtsE+1z0fZMaLSmJOqkB0Uwf6ozt2ZGQ/ulfXDw
+         zpq9CGjbDEuuxxW6siYpLpclkLb1vM98URoX9UNQ1MlfUWhDc5cAQaAgTDQHuVWyqbYh
+         xoWRn8CRMI55uvfwT4WazcBTC7daOHBFVAkuavlLjK6qBUfSKofF+Ph+M8t3X8AcYkzH
+         D2mg==
+X-Gm-Message-State: AOAM531FrX3VK91B0V55JPuu8/UNtQ7ebGK9eDzxyPKOZztzNEnwvoDP
+        XelllSx4MwhD3Yr2096MJJFff638Pg==
+X-Google-Smtp-Source: ABdhPJwXoMiahwvEN4+Fn78L/YNhAbFffO00UELQ9/ukJIag3rZoN0sWlcAkCjNiqZ/tH5uZycETDg==
+X-Received: by 2002:a4a:5242:: with SMTP id d63mr30053006oob.93.1620872571068;
+        Wed, 12 May 2021 19:22:51 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y205sm373425oie.58.2021.05.12.19.20.36
+        by smtp.gmail.com with ESMTPSA id y6sm378806otk.42.2021.05.12.19.22.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 May 2021 19:20:37 -0700 (PDT)
-Received: (nullmailer pid 895629 invoked by uid 1000);
-        Thu, 13 May 2021 02:20:36 -0000
-Date:   Wed, 12 May 2021 21:20:36 -0500
+        Wed, 12 May 2021 19:22:50 -0700 (PDT)
+Received: (nullmailer pid 898636 invoked by uid 1000);
+        Thu, 13 May 2021 02:22:49 -0000
+Date:   Wed, 12 May 2021 21:22:49 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Doug Zobel <dougdev334@gmail.com>
-Cc:     Pavel Machek <pavel@ucw.cz>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt: bindings: lp55xx: Add predefined LED pattern
-Message-ID: <20210513022036.GA890569@robh.at.kernel.org>
-References: <20210511204834.2675271-1-dougdev334@gmail.com>
- <20210511204834.2675271-3-dougdev334@gmail.com>
+To:     daire.mcnamara@microchip.com
+Cc:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        palmer@dabbelt.com, cyril.jean@microchip.com,
+        padmarao.begari@microchip.com, lewis.hanly@microchip.com,
+        conor.dooley@microchip.com, david.abdurachmanov@gmail.com
+Subject: Re: [PATCH v1 1/2] dt-bindings: rtc: microchip: Add Microchip
+ PolarFire host binding
+Message-ID: <20210513022249.GA896078@robh.at.kernel.org>
+References: <20210512111133.1650740-1-daire.mcnamara@microchip.com>
+ <20210512111133.1650740-2-daire.mcnamara@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210511204834.2675271-3-dougdev334@gmail.com>
+In-Reply-To: <20210512111133.1650740-2-daire.mcnamara@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 11, 2021 at 03:48:34PM -0500, Doug Zobel wrote:
-> Add a new device tree object for LP5562 predfined led patterns.
-
-If you are going to define something generic looking, put it in a 
-generic binding.
-
-I don't know that this belongs in DT though. Won't a user want to create 
-their own patterns? That means there should be a sysfs interface (which 
-we either already have or has been attempted IIRC).
-
+On Wed, May 12, 2021 at 12:11:32PM +0100, daire.mcnamara@microchip.com wrote:
+> From: Daire McNamara <daire.mcnamara@microchip.com>
 > 
-> Signed-off-by: Doug Zobel <dougdev334@gmail.com>
+> Add device tree bindings for the Microchip PolarFire real-time
+> clock controller
+> 
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
 > ---
->  .../devicetree/bindings/leds/leds-lp55xx.yaml | 103 +++++++++++++++++-
->  1 file changed, 102 insertions(+), 1 deletion(-)
+>  .../bindings/rtc/microchip,mfps-rtc.yaml      | 61 +++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
-> index f552cd143d5b..2524a84fe688 100644
-> --- a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
-> +++ b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
-> @@ -100,6 +100,31 @@ patternProperties:
->          $ref: /schemas/types.yaml#/definitions/string
->          description: name of channel
->  
-> +  "(^pattern@[0-9a-f]$|pattern)":
-> +    type: object
-> +    $ref: common.yaml#
-> +    description: |
-> +      LP5562 sepcific object.  LED pattern program saved to and run on LP5562.
-> +    properties:
-> +      pat-name:
-> +        $ref: /schemas/types.yaml#/definitions/string
-> +        description: Name of pattern program
+> diff --git a/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml b/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
+> new file mode 100644
+> index 000000000000..c82b3e7351e0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/microchip,mfps-rtc.yaml#
 > +
-> +      pat-r:
-> +        $ref: /schemas/types.yaml#/definitions/uint8-array
-> +        description: |
-> +          Program data for red channel.  See LP5562 datasheet for program format specification.
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +      pat-g:
-> +        $ref: /schemas/types.yaml#/definitions/uint8-array
-> +        description: |
-> +          Program data for green channel.  See LP5562 datasheet for program format specification.
+> +title: Microchip PolarFire Soc (MPFS) RTC Device Tree Bindings
 > +
-> +      pat-b:
-> +        $ref: /schemas/types.yaml#/definitions/uint8-array
-> +        description: |
-> +          Program data for blue channel.  See LP5562 datasheet for program format specification.
+> +allOf:
+> +  - $ref: "rtc.yaml#"
 > +
->  required:
->    - compatible
->    - reg
-> @@ -223,6 +248,82 @@ examples:
->                 };
->              };
->          };
-> -    };
->  
-> +        led-controller@30 {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            compatible = "ti,lp5562";
-> +            reg = <0x30>;
+> +maintainers:
+> +  - Daire McNamara <daire.mcnamara@microchip.com>
+> +  - Lewis Hanly <lewis.hanly@microchip.com>
 > +
-> +            led@0 {
-> +                reg = <0>;
-> +                chan-name = "red";
-> +                color = <LED_COLOR_ID_RED>;
-> +            };
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - microchip,mpfs-rtc
 > +
-> +            led@1 {
-> +                reg = <1>;
-> +                chan-name = "green";
-> +                color = <LED_COLOR_ID_GREEN>;
-> +            };
+> +  reg:
+> +    maxItems: 1
 > +
-> +            led@2 {
-> +                reg = <2>;
-> +                chan-name = "blue";
-> +                color = <LED_COLOR_ID_BLUE>;
-> +            };
+> +  interrupts:
+> +    maxItems: 1
 > +
-> +            pattern@1 {
-> +                /* Pulsing blue pattern
-> +                 *   Blue:
-> +                 *     027F: Ramp up 50%
-> +                 *     027F: Ramp up 50%
-> +                 *     4600: Wait 100ms
-> +                 *     02FF: Ramp down 50%
-> +                 *     02FF: Ramp down 50%
-> +                 *     4600: Wait 100ms
-> +                 *     0000: Goto start
-> +                 */
-> +                pat-name = "Pulsing Blue";
-> +                pat-b = [02 7f 02 7f 46 00 02 ff 02 ff 46 00 00 00];
-> +            };
+> +  prescaler:
+> +    maxItems: 1
+
+An array?
+
+Needs a type, constraints, and vendor prefix.
+
 > +
-> +            pattern@2 {
-> +                /*
-> +                 * HSV rainbow
-> +                 *   Red:
-> +                 *     40FF: Set PWM 255
-> +                 *     41FF: Ramp down 50%
-> +                 *     41FF: Ramp down 50%
-> +                 *     41FF: Wait 1/2 ramp time
-> +                 *     41FF: Wait 1/2 ramp time
-> +                 *     417F: Ramp up 50%
-> +                 *     417F: Ramp up 50%
-> +                 *     0000: Goto start
-> +                 *   Green:
-> +                 *     4000: Set PWM 0
-> +                 *     417F: Ramp up 50%
-> +                 *     417F: Ramp up 50%
-> +                 *     41FF: Ramp down 50%
-> +                 *     41FF: Ramp down 50%
-> +                 *     41FF: Wait 1/2 ramp time
-> +                 *     41FF: Wait 1/2 ramp time
-> +                 *     0000: Goto start
-> +                 *   Blue:
-> +                 *     4000: Set PWM 0
-> +                 *     41FF: Wait 1/2 ramp time
-> +                 *     41FF: Wait 1/2 ramp time
-> +                 *     417F: Ramp up 50%
-> +                 *     417F: Ramp up 50%
-> +                 *     41FF: Ramp down 50%
-> +                 *     41FF: Ramp down 50%
-> +                 *     0000: Goto start
-> +                 */
-> +                pat-name = "HSV Rainbow";
-> +                pat-r = [40 ff 41 FF 41 FF 41 FF 41 FF 41 7F 41 7F 00 00];
-> +                pat-g = [40 00 41 7F 41 7F 41 FF 41 FF 41 FF 41 FF 00 00];
-> +                pat-b = [40 00 41 FF 41 FF 41 7F 41 7F 41 FF 41 FF 00 00];
-> +            };
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: rtc
+
+Kind of a pointless name. You don't need *-names when there is only 1.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/microchip,mpfs-clock.h>
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +        rtc@20124000 {
+> +            compatible = "microchip,mpfs-rtc";
+> +            reg = <0 0x20124000 0 0x1000>;
+> +            clocks = <&clkcfg CLK_RTC>;
+> +            clock-names = "rtc";
+> +            interrupts = <80>;
 > +        };
 > +    };
->  ...
+> +...
 > -- 
-> 2.20.1
+> 2.25.1
 > 
