@@ -2,125 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B17B137F797
-	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 14:12:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B92937F7E0
+	for <lists+devicetree@lfdr.de>; Thu, 13 May 2021 14:25:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233740AbhEMMNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 May 2021 08:13:33 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:51078 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233701AbhEMMM3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 08:12:29 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14DCBCAH100536;
-        Thu, 13 May 2021 07:11:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1620907872;
-        bh=cW2zgIg/Oktxd6n2CPYG9djpPhCbNXtDbLcmRLCEqXQ=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Lz8l6AGds50KzkIvmxzmdSpINU+7FeT6JygcGY65uAv5PtXahsdlfbztCePk4t9Hv
-         48lBp9tNI1kusxJ9iqJi8a52XhDdO/nklKyucxNmj1nWIF9xL/IT/tuT4Iz07DanQy
-         MuZyZByZWvb78iKj8vUMvFardOqHQje0zszWJwvk=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14DCBCfu046925
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 13 May 2021 07:11:12 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 13
- May 2021 07:11:12 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 13 May 2021 07:11:12 -0500
-Received: from [10.250.232.183] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14DCB93h116594;
-        Thu, 13 May 2021 07:11:10 -0500
-Subject: Re: [PATCH 1/4] arm64: dts: ti: k3-j721e-main: Fix external refclk
- input to SERDES
-To:     Nishanth Menon <nm@ti.com>
-CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-References: <20210512151209.27560-1-kishon@ti.com>
- <20210512151209.27560-2-kishon@ti.com>
- <20210512185157.q5sr2xqf3w5igfte@imagines>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <68c95cf1-84fa-2194-7bb1-e3c60e7f1fc0@ti.com>
-Date:   Thu, 13 May 2021 17:41:08 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S233116AbhEMM0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 May 2021 08:26:18 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:40408 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233842AbhEMM0M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 May 2021 08:26:12 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1620908703; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=pr01Ly3p5hRG+lG2/BBp6EqnyJFCtnIgYRylZWwtXRM=; b=YY6IkGvd214AaNM1l8saMtnsi71GXy7rFEQGrrJz7Ey/btyer1g4PzVXiESztbfCiItZ5T+F
+ 5f9xm06+LE0ayJuUFk3QkuL3hAmyUmO7aC1Oz4+KfVeNcYg8FcDWjAhoX5vrwkchedaDnHXv
+ oCZbfuHZkakx+JiE/yTBvNUGQkE=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 609d1a8da4c86a394a363f34 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 13 May 2021 12:24:45
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 0C0C4C4323A; Thu, 13 May 2021 12:24:45 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D557BC433F1;
+        Thu, 13 May 2021 12:24:40 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D557BC433F1
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
+        srinivas.kandagatla@linaro.org, dianders@chromium.org,
+        swboyd@chromium.org, judyhsiao@chromium.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH] arm64: dts: qcom: Add wakeup delay for adau codec
+Date:   Thu, 13 May 2021 17:54:29 +0530
+Message-Id: <20210513122429.25295-1-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-In-Reply-To: <20210512185157.q5sr2xqf3w5igfte@imagines>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
+Add wakeup delay for fixing PoP noise during capture begin.
 
-On 13/05/21 12:21 am, Nishanth Menon wrote:
-> On 20:42-20210512, Kishon Vijay Abraham I wrote:
->> Rename the external refclk inputs to the SERDES from
->> dummy_cmn_refclk/dummy_cmn_refclk1 to cmn_refclk/cmn_refclk1
->> respectively. Also move the external refclk DT nodes outside the
->> cbass_main DT node. Since in j721e common processor board, only the
->> cmn_refclk1 is connected to 100MHz clock, fix the clock frequency.
->>
->> Fixes: afd094ebe69f ("arm64: dts: ti: k3-j721e-main: Add WIZ and SERDES PHY nodes")
-> 
-> Assume we want this part of 5.13 fixes?
+Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+---
+ arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-This doesn't fix any functionality. Okay for me to go in 5.14 along with
-the rest of the series.
-> 
->> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
->> ---
->>  .../dts/ti/k3-j721e-common-proc-board.dts     |  4 ++
->>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 58 ++++++++++---------
->>  2 files changed, 34 insertions(+), 28 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
->> index 60764366e22b..86f7ab511ee8 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
->> @@ -635,6 +635,10 @@
->>  	status = "disabled";
->>  };
->>  
->> +&cmn_refclk1 {
->> +	clock-frequency = <100000000>;
->> +};
->> +
->>  &serdes0 {
->>  	serdes0_pcie_link: link@0 {
->>  		reg = <0>;
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->> index c2aa45a3ac79..002a0c1520ee 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->> @@ -8,6 +8,20 @@
->>  #include <dt-bindings/mux/mux.h>
->>  #include <dt-bindings/mux/ti-serdes.h>
->>  
->> +/ {
->> +	cmn_refclk: cmn-refclk {
->> +		#clock-cells = <0>;
->> +		compatible = "fixed-clock";
->> +		clock-frequency = <0>;
->> +	};
->> +
->> +	cmn_refclk1: cmn-refclk1 {
-> 
-> Just curious: why cant we use the standard nodenames with clock?
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+index 4c6e433c8226..3eb8550da1fc 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+@@ -23,6 +23,7 @@ / {
+ 	adau7002: audio-codec-1 {
+ 		compatible = "adi,adau7002";
+ 		IOVDD-supply = <&pp1800_l15a>;
++		wakeup-delay-ms = <15>;
+ 		#sound-dai-cells = <0>;
+ 	};
+ };
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
-We can use standard names here. Is there any defined nodename for
-clocks? clk or clock? Don't see $nodename defined for clocks in
-dt-schema repository.
-
-Thanks
-Kishon
