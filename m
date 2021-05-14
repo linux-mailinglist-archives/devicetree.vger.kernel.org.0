@@ -2,218 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD45838092D
-	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 14:09:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2954D38095B
+	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 14:20:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231839AbhENMLD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 May 2021 08:11:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49302 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231394AbhENMLC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 08:11:02 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08511C061574;
-        Fri, 14 May 2021 05:09:50 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id k10so13117876ejj.8;
-        Fri, 14 May 2021 05:09:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Go5OSz4/H+uPDLDGGgQ0MKW8Mm4VQjGQmcRsSfCNjhk=;
-        b=nD4+69L0GyZ2kV1uA2c1GTo/HMZ/EwsYCcl5GHssbzJpZ+D9vMPWQCPTEaQD39HZas
-         SMqHD02OWB4MeDbgtjJiRznlEVZ4oAL7xBeX1jKBOqN0JFLQLwqLpsdH2H4iWAyK3t5l
-         ekdbOWF2G6Js328yV3c4NJzRJWujby5zvV6XP90+7maeQ5yF7u8NV7QaAG+NrSKY/0ZN
-         ohGCc8yaGYndmDKouASKQlLz4/OLbKU9mdJeC93rcApDsP7fY+/6tUrpYTa+Q1/3v/Xp
-         4e+LRZ/sK2MeoFOvS683JBwCUp9a030AItFCwn4rI541vd396RfYD+a/3zypC6Xadphn
-         Ho5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Go5OSz4/H+uPDLDGGgQ0MKW8Mm4VQjGQmcRsSfCNjhk=;
-        b=qVljTajgMQmOWSXBfAltptRivkoEASRzn6tG1KWjSOdIV3cBvqKcM66m8o8jCBH1lG
-         5GYOoUIVITHPh+p+Xs36FT+KeDy5gmktRyJuo/dcxGlXU2YthQhV42yOrmiinEQHhUW9
-         jSE4NEnF4RtXjrS9BV9PtNbPCeFiH/jWKJNiWnmxCW/02Mla34jENpCht08cyRhNlSJU
-         hVpEwuEiE4+3neOIPs8dw5GCGjuAUi4BGFVcWT8pI7ZVbQqb6TPiJkZ8LlcRRNWRVTKJ
-         bE4D+X2mKl9AbGKGmP4gtMaDHV1uF1szmGlKo21ktLZkWmr6LEko0gnLcHSQNdSnGqK/
-         HGfA==
-X-Gm-Message-State: AOAM532Ez8LsY4I59AXIoCyIct1Im5P7mABnIWJUAa7STouxDby7y2ZS
-        +FABZAj7/lMIiV/wrUQbgNXVC6Vz0bs=
-X-Google-Smtp-Source: ABdhPJyAnROvySSX2j8qEuTumlWsloarcCjIII71QSFBa3JDkrFykrLpk6GMnrwn96PJCPZnt2nMIA==
-X-Received: by 2002:a17:906:60d6:: with SMTP id f22mr48909457ejk.177.1620994188724;
-        Fri, 14 May 2021 05:09:48 -0700 (PDT)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id i5sm749805ejv.120.2021.05.14.05.09.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 May 2021 05:09:48 -0700 (PDT)
-Subject: Re: [PATCH 4/4] arm64: dts: rockchip: add USB support to RK3308 dts
-To:     Tobias Schramm <t.schramm@manjaro.org>, linux-usb@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210514102734.2091238-1-t.schramm@manjaro.org>
- <20210514102734.2091238-5-t.schramm@manjaro.org>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <01388394-603e-6a43-2044-ae1e93eb0ff3@gmail.com>
-Date:   Fri, 14 May 2021 14:09:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        id S233237AbhENMVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 May 2021 08:21:48 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:44034 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232996AbhENMVs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 May 2021 08:21:48 -0400
+Received: from p5b127fa9.dip0.t-ipconnect.de ([91.18.127.169] helo=phil.fritz.box)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1lhWny-0002bC-00; Fri, 14 May 2021 14:20:34 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: fix regulator-gpio states array
+Date:   Fri, 14 May 2021 14:20:30 +0200
+Message-Id: <162099477649.1967349.15932194686004438889.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210510215840.16270-1-jbx6244@gmail.com>
+References: <20210510215840.16270-1-jbx6244@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210514102734.2091238-5-t.schramm@manjaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tobias,
-
-Just sent a patch for grf.yaml and rockchip-usb-phy.yaml conversion myself.
-
-Added { .compatible = "rockchip,rk3308-usb2phy", .data =
-&rk3308_phy_cfgs }, to phy-rockchip-inno-usb2.c
-
-Added is "rockchip,rk3308-usb-phy" to rockchip-usb-phy.txt
-
-compatible = "rockchip,rk3308-usb2phy"; is used in this patch.
-
-Maybe try phy-rockchip-inno-usb2.yaml?
-
-"rockchip,rk3308-usb2phy-grf", "syscon", "simple-mfd" document missing.
-
-Could someone recheck the reg memory size?
-Is this still correct then?
-
-===
-compatible = "rockchip,rk3308-grf", "syscon", "simple-mfd";
-reg = <0x0 0xff000000 0x0 0x10000>;
-
-Do we still need "0x0 0x10000" here?
-===
-compatible = "rockchip,rk3308-usb2phy-grf", "syscon", "simple-mfd";
-reg = <0x0 0xff008000 0x0 0x4000>;
-===
-compatible = "rockchip,rk3308-detect-grf", "syscon", "simple-mfd";
-reg = <0x0 0xff00b000 0x0 0x1000>;
-===
-compatible = "rockchip,rk3308-core-grf", "syscon", "simple-mfd";
-reg = <0x0 0xff00c000 0x0 0x1000>;
-===
-
-Johan
-
-On 5/14/21 12:27 PM, Tobias Schramm wrote:
-> The Rockchip RK3308 features an integrated USB 2.0 phy, an USB OTG
-> controller and OHCI/EHCI interfaces.
-> This patch adds all of those to the RK3308 dtsi and thereby enables USB
-> support on the RK3308.
+On Mon, 10 May 2021 23:58:40 +0200, Johan Jonker wrote:
+> A test with the command below gives this error:
 > 
-> Signed-off-by: Tobias Schramm <t.schramm@manjaro.org>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3308.dtsi | 75 ++++++++++++++++++++++++
->  1 file changed, 75 insertions(+)
+> /arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dt.yaml:
+> sdmmcio-regulator: states:0:
+> [1800000, 1, 3300000, 0] is too long
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3308.dtsi b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-> index 0c5fa9801e6f..80fd802d6c15 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-> @@ -177,6 +177,43 @@ reboot-mode {
->  		};
->  	};
->  
-> +	usb2phy_grf: syscon@ff008000 {
-> +		compatible = "rockchip,rk3308-usb2phy-grf", "syscon",
-> +			     "simple-mfd";
-> +		reg = <0x0 0xff008000 0x0 0x4000>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +
-> +		u2phy: usb2-phy@100 {
-
-> +			compatible = "rockchip,rk3308-usb2phy";
-> +			reg = <0x100 0x10>;
-> +			clocks = <&cru SCLK_USBPHY_REF>;
-> +			clock-names = "phyclk";
-> +			clock-output-names = "usb480m_phy";
-> +			#clock-cells = <0>;
-> +			assigned-clocks = <&cru USB480M>;
-> +			assigned-clock-parents = <&u2phy>;
-> +			status = "disabled";
-> +
-
-Looks like
-
-> +			u2phy_otg: otg-port {
-> +				#phy-cells = <0>;
-> +				interrupts = <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>,
-> +					     <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>,
-> +					     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
-> +				interrupt-names = "otg-bvalid", "otg-id",
-> +						  "linestate";
-> +				status = "disabled";
-> +			};
-> +
-> +			u2phy_host: host-port {
-> +				#phy-cells = <0>;
-> +				interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
-> +				interrupt-names = "linestate";
-> +				status = "disabled";
-> +			};
-> +		};
-> +	};
-> +
->  	detect_grf: syscon@ff00b000 {
->  		compatible = "rockchip,rk3308-detect-grf", "syscon", "simple-mfd";
->  		reg = <0x0 0xff00b000 0x0 0x1000>;
-> @@ -579,6 +616,44 @@ spdif_tx: spdif-tx@ff3a0000 {
->  		status = "disabled";
->  	};
->  
-> +	usb20_otg: usb@ff400000 {
-> +		compatible = "rockchip,rk3308-usb", "rockchip,rk3066-usb",
-> +			     "snps,dwc2";
-> +		reg = <0x0 0xff400000 0x0 0x40000>;
-> +		interrupts = <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&cru HCLK_OTG>;
-> +		clock-names = "otg";
-> +		dr_mode = "otg";
-> +		g-np-tx-fifo-size = <16>;
-> +		g-rx-fifo-size = <280>;
-> +		g-tx-fifo-size = <256 128 128 64 32 16>;
-> +		phys = <&u2phy_otg>;
-> +		phy-names = "usb2-phy";
-> +		status = "disabled";
-> +	};
-> +
-> +	usb_host_ehci: usb@ff440000 {
-> +		compatible = "generic-ehci";
-> +		reg = <0x0 0xff440000 0x0 0x10000>;
-> +		interrupts = <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&cru HCLK_HOST>, <&cru HCLK_HOST_ARB>, <&u2phy>;
-> +		clock-names = "usbhost", "arbiter", "utmi";
-> +		phys = <&u2phy_host>;
-> +		phy-names = "usb";
-> +		status = "disabled";
-> +	};
-> +
-> +	usb_host_ohci: usb@ff450000 {
-> +		compatible = "generic-ohci";
-> +		reg = <0x0 0xff450000 0x0 0x10000>;
-> +		interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&cru HCLK_HOST>, <&cru HCLK_HOST_ARB>, <&u2phy>;
-> +		clock-names = "usbhost", "arbiter", "utmi";
-> +		phys = <&u2phy_host>;
-> +		phy-names = "usb";
-> +		status = "disabled";
-> +	};
-> +
->  	sdmmc: mmc@ff480000 {
->  		compatible = "rockchip,rk3308-dw-mshc", "rockchip,rk3288-dw-mshc";
->  		reg = <0x0 0xff480000 0x0 0x4000>;
+> dtbs_check expects regulator-gpio states in a format
+> of 2 per item, so fix them all.
 > 
+> [...]
+
+Applied, thanks!
+
+[1/1] arm64: dts: rockchip: fix regulator-gpio states array
+      commit: b82f8e2992534aab0fa762a37376be30df263701
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
