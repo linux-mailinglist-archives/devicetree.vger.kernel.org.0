@@ -2,90 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DDD06380FD2
-	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 20:34:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06C5738101F
+	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 20:56:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231765AbhENSfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 May 2021 14:35:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51074 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231267AbhENSfy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 14:35:54 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B43A8C06174A
-        for <devicetree@vger.kernel.org>; Fri, 14 May 2021 11:34:41 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id k19so355707pfu.5
-        for <devicetree@vger.kernel.org>; Fri, 14 May 2021 11:34:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=lELtbwQEctdIwPQb3wCQp5OuKO4/lkfT92gv1xyToGE=;
-        b=gSrEImsqcT8WUGbSMZ53B7UmwxHd+LIibGRNufbT852dWJIzp0i8btI4zX7WXhaYtG
-         XvOIwJcw8HHEeQkgQHQ5YeVjBnSpqI8AgJNG4QNiIkHMitswBlzQoq4kHxTrUiXytj0Z
-         RsCHapE64niz5srWtsa12N8xR/tqm/VLRfqtU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=lELtbwQEctdIwPQb3wCQp5OuKO4/lkfT92gv1xyToGE=;
-        b=lVzWXB0BTfvVjKdzlNVONlrQ+kPZvsKcKdlEkGmXfFlyGvXMSYvY25qTFVGSDKxt2l
-         3z99Wzh384yq2/ngAy0Rg47mVN+tLJO8MMakdp7LOnCTMK5p2dVHhaO8tMzlzEjPuQI2
-         J1tgBuHwtfBbTdtcQKThIb7WG9wDWIpYjf0nnt6x9vaKbPlbVp6WZNnDdakpynSuV8k6
-         Xn2AYR2h0u1RUqL3hvuCKHF7VZ5wMpyRcY6M/0LAZ8FxXDDGjDlr9V5qZcvL77wzWAHN
-         hQtP0f9Fc9NRYlyFG5vDkkq7F0fgWb/z3ju5kUkG0FgIHAkC1Zule50J7DFtUu8+eoyp
-         lpGQ==
-X-Gm-Message-State: AOAM531yEMTHAbU9oZ649lPLiP5CzGrG2gBzxsP5AksuaWih9HeoS4ED
-        IfFJU9Jq/oBfuZkuZSaC8MtPkQ==
-X-Google-Smtp-Source: ABdhPJwwG0FPWg4ZVysBvGRUFzN69CmNe/Rog4IBIjy9UL84MRc8Br5Uk3bUyMH30eFS+wfxZ/h4fQ==
-X-Received: by 2002:a62:585:0:b029:2a2:3976:60a9 with SMTP id 127-20020a6205850000b02902a2397660a9mr42984565pff.47.1621017281302;
-        Fri, 14 May 2021 11:34:41 -0700 (PDT)
-Received: from sujitka-glaptop.hsd1.ca.comcast.net ([2601:646:8e00:b2f0:6d29:e373:344b:8862])
-        by smtp.gmail.com with ESMTPSA id ga1sm5375127pjb.5.2021.05.14.11.34.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 May 2021 11:34:40 -0700 (PDT)
-From:   Sujit Kautkar <sujitka@chromium.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Sujit Kautkar <sujitka@chromium.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        id S231434AbhENS5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 May 2021 14:57:11 -0400
+Received: from ssl.serverraum.org ([176.9.125.105]:51845 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229930AbhENS5L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 14:57:11 -0400
+Received: from mwalle01.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:fa59:71ff:fe9b:b851])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 507E42224B;
+        Fri, 14 May 2021 20:55:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1621018558;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=EpUyQLsXWKjuLN+gi1ZtfGRx6wOkPliPVXtSTMqebbw=;
+        b=Z7t7/KC1lB35xw2ChETlzHtW5srMes7PGRZT6RMQRvoZ68XfQRJz6pXvLsiQLuItXattrq
+        Lr9IE6zBZkF6C+GMQxDEb0cej4KZ0JsO+zht29uF1Xk5G9O0XTAXgma5m2SDOSe9Awq901
+        Fed6FuHebNRAwWMOSkHZ0dEohuEit8U=
+From:   Michael Walle <michael@walle.cc>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sc7180: Move rmtfs memory region
-Date:   Fri, 14 May 2021 11:34:34 -0700
-Message-Id: <20210514113430.1.Ic2d032cd80424af229bb95e2c67dd4de1a70cb0c@changeid>
-X-Mailer: git-send-email 2.31.1.751.gd2f1c929bd-goog
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Walle <michael@walle.cc>
+Subject: [PATCH v2 0/2] arm64: dts: freescale: sl28: fix RGMII
+Date:   Fri, 14 May 2021 20:55:51 +0200
+Message-Id: <20210514185553.10095-1-michael@walle.cc>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Move rmtfs memory region so that it does not overlap with system
-RAM (kernel data) when KAsan is enabled. This puts rmtfs right
-after mba_mem which is not supposed to increase beyond 0x94600000
+This fixes the RGMII on the sl28 boards. While the network port was
+actually working it is still out-of-spec.
 
-Signed-off-by: Sujit Kautkar <sujitka@chromium.org>
----
+Please note, that this is split into two patches because each one fixes
+a different commit.
 
- arch/arm64/boot/dts/qcom/sc7180-idp.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes since v1:
+  - use different subjects for the two patches. I didn't use sl28-varN
+	because I'd like to keep "sl28:" for all the sl28 related patches.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-index e77a7926034a7..afe0f9c258164 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-@@ -45,7 +45,7 @@ chosen {
- 
- /* Increase the size from 2MB to 8MB */
- &rmtfs_mem {
--	reg = <0x0 0x84400000 0x0 0x800000>;
-+	reg = <0x0 0x94600000 0x0 0x800000>;
- };
- 
- / {
+Michael Walle (2):
+  arm64: dts: freescale: sl28: var4: fix RGMII clock and voltage
+  arm64: dts: freescale: sl28: var1: fix RGMII clock and voltage
+
+ .../boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts     | 3 ++-
+ .../boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dts     | 5 ++---
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
 -- 
-2.31.1.751.gd2f1c929bd-goog
+2.20.1
 
