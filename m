@@ -2,99 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 684FF380F4E
-	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 19:52:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A0A2380FCE
+	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 20:33:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235262AbhENRx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 May 2021 13:53:57 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:33684 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232283AbhENRx5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 13:53:57 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14EHqhnO122389;
-        Fri, 14 May 2021 12:52:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1621014763;
-        bh=p1y0pfI3bOHRSyIFrMLUcKSE86kcSmmxfAUKQKd7sDs=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=iP8rw7+mLrHiRN9IoIh8VlzKwMaSbhVnUrkJO974SKSMEQxS/IIWDx5xytL6+9mRO
-         dYvx6xW/dqDaUjAzer+tIXnQSUg4z7SQxNHBlIcl/Wu9HZHWYZ58tGwJqVXQQ9ERar
-         Qz5Vv32g7jpz/YAWRA61BYSfAMafHgAM3LVzRhUA=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14EHqh7K028039
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 14 May 2021 12:52:43 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 14
- May 2021 12:52:42 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Fri, 14 May 2021 12:52:42 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14EHqgke096913;
-        Fri, 14 May 2021 12:52:42 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     <kristo@kernel.org>, <lokeshvutla@ti.com>,
-        Nishanth Menon <nm@ti.com>
-CC:     <grygorii.strashko@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH V2] arm64: dts: ti: k3*: Introduce reg definition for interrupt routers
-Date:   Fri, 14 May 2021 12:52:42 -0500
-Message-ID: <162101475414.23259.1469654942030805165.b4-ty@ti.com>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210511194821.13919-1-nm@ti.com>
-References: <20210511194821.13919-1-nm@ti.com>
+        id S233405AbhENSev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 May 2021 14:34:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50786 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229952AbhENSev (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 14:34:51 -0400
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A6ECC061574
+        for <devicetree@vger.kernel.org>; Fri, 14 May 2021 11:33:28 -0700 (PDT)
+Received: by mail-ot1-x330.google.com with SMTP id v19-20020a0568301413b0290304f00e3d88so81702otp.4
+        for <devicetree@vger.kernel.org>; Fri, 14 May 2021 11:33:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=MyepW9OZoA5Tfnsk829LBdO7lppfBfCNDTAkF2rLFjw=;
+        b=CSruQYkZcAvyzO2bwdSLSevjn6wHjzL16r4vHhL3WjVB3Wmud9BONG+RXENhltUe5z
+         QbRig6W7y1v7Hqiv6xbTxAMtt/QzbcbWfbbWvJNLnEEpzWgm3/2GakdSSSHlvXR2/huV
+         0wYXCs0tFCLIi4zF1EE674UyBsA5BDSDAYcRr1ox9xCLM6L/uQCk4ikuDbAYtOZu6HMB
+         BrfcFLZYIQueonpmtZKGNThbUD2M+8wrfudMTV7Uk4z+tIQA5XC10G6qi8JgGyZ1U/nG
+         IVd3RtCeROniLEIr73zMa2pltdFkKC+Re4rRPXtFcgNEeVttA0bRsE3/1HiiVR275ONS
+         nI2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=MyepW9OZoA5Tfnsk829LBdO7lppfBfCNDTAkF2rLFjw=;
+        b=K8M2uDkkkjdqKOVr8cXCKEmKO/QodM3Z3ktzmVDA+hrMx5LaKrcJKWTn+j1oxR9D4F
+         /E8RXdR2uRoUJH+i0DUzATEWEmJULExUb2RzldzdTCVZKTWdrj6yMFeePL6cSMaBmw2Q
+         2r2dephPgLvj3MevKdnokLrB0nFHHYYHCto4YEkOFkYySIsf3N4SOwtDZluEYNOl+eRi
+         x3Y2oNQ0pqfuAIabDXxH4eTwuHYS68gaR8eb4yogMfMSjkKJgxHBhi8+JSbwYItmTouP
+         KUZsZAbX5Od1mgV5hqnnsu6kAaOhTvFI3HU4sVIDaDpWAJdj/J/myGkuEOOKeprEm1E/
+         8o+g==
+X-Gm-Message-State: AOAM530aAL6U7LcIZa1mXNhlXedtjFvcAlzeY+2UobtEAk+UvWQRWijC
+        OuOymarArOKV6phleZlL4r7uaf0lslE=
+X-Google-Smtp-Source: ABdhPJxXAj49fp1LA89JGsmz+P/omVWNY4qgVVhPM43OY3SY7lNrKcSbRajKZ4rZRZprL6MVcO7rRg==
+X-Received: by 2002:a05:6830:1693:: with SMTP id k19mr18376058otr.210.1621017206861;
+        Fri, 14 May 2021 11:33:26 -0700 (PDT)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id u201sm1296914oia.10.2021.05.14.11.33.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 May 2021 11:33:26 -0700 (PDT)
+Date:   Fri, 14 May 2021 13:33:24 -0500
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        pierre-louis.bossart@linux.intel.com, tiwai@suse.com,
+        heiko@sntech.de, lee.jones@linaro.org, robh+dt@kernel.org,
+        perex@perex.cz, jbx6244@gmail.com, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, maccraft123mc@gmail.com,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH v10 2/4] ASoC: Add Rockchip rk817 audio CODEC support
+Message-ID: <20210514183324.GA20917@wintermute.localdomain>
+References: <20210514171940.20831-1-macroalpha82@gmail.com>
+ <20210514171940.20831-3-macroalpha82@gmail.com>
+ <20210514174958.GC6516@sirena.org.uk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210514174958.GC6516@sirena.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 May 2021 14:48:21 -0500, Nishanth Menon wrote:
-> Interrupt routers are memory mapped peripherals, that are organized
-> in our dts bus hierarchy to closely represents the actual hardware
-> behavior.
+On Fri, May 14, 2021 at 06:49:58PM +0100, Mark Brown wrote:
+> On Fri, May 14, 2021 at 12:19:38PM -0500, Chris Morgan wrote:
 > 
-> However, without explicitly calling out the reg property, using
-> 2021.03+ dt-schema package, this exposes the following problem with
-> dtbs_check:
+> > +static int rk817_codec_parse_dt_property(struct device *dev,
+> > +					 struct rk817_codec_priv *rk817)
+> > +{
+> > +	struct device_node *node = dev->parent->of_node;
+> > +
+> > +	if (!node) {
+> > +		dev_err(dev, "%s() dev->parent->of_node is NULL\n",
+> > +			__func__);
+> > +		return -ENODEV;
+> > +	}
 > 
-> [...]
+> There's no need to fail the probe here, you won't be able to read any DT
+> properties but that shouldn't stop the driver binding.
 
-Hi Nishanth Menon,
+If I'm not mistaken this is actually telling us to fail if the parent
+device (the PMIC itself) isn't present. I think I'll remove this as not
+necessary since if the parent node isn't present the mfd driver will
+never load, meaning this driver will never load either.
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+Below this line however we're failing if the codec node isn't present.
+Are you telling me we want to bind the driver if the node isn't present
+(such as in the edge case where the driver is present and the PMIC is a
+rk817, but the CODEC is not in use)? I will remove the return code if
+you think that is what needs to be done. My concern there though is if
+we do that we'll either be in a position to again report a bunch of
+errors for the edge case of users who want to use the PMIC but not the
+codec (in this case missing clocks and whatnot) if we try to bind the
+driver and the user doesn't want it. I can also set those errors to
+debug level, but I think that they might be important enough for users
+who DO want to use the codec to keep them as dev_err.
 
-[1/1] arm64: dts: ti: k3*: Introduce reg definition for interrupt routers
-      commit: cab12badfc99f93c1dccf192dd150f94b687a27c
+Let me know what you think.
 
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+Thank you.
