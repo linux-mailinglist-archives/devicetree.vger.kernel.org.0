@@ -2,111 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EAB7380403
-	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 09:08:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9023B3804C1
+	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 09:57:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231394AbhENHJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 May 2021 03:09:14 -0400
-Received: from foss.arm.com ([217.140.110.172]:44208 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230023AbhENHJN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 May 2021 03:09:13 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B5910175D;
-        Fri, 14 May 2021 00:08:02 -0700 (PDT)
-Received: from slackpad.fritz.box (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 76FB63F718;
-        Fri, 14 May 2021 00:08:01 -0700 (PDT)
-Date:   Fri, 14 May 2021 08:07:56 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Tobias Schramm <t.schramm@manjaro.org>
-Cc:     Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/7] ARM: dts: sun8i: v3s: add DMA properties to
- peripherals supporting DMA
-Message-ID: <20210514080756.3a6c0f53@slackpad.fritz.box>
-In-Reply-To: <20210513233024.2076725-3-t.schramm@manjaro.org>
-References: <20210513233024.2076725-1-t.schramm@manjaro.org>
-        <20210513233024.2076725-3-t.schramm@manjaro.org>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
+        id S233226AbhENH6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 May 2021 03:58:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48842 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233100AbhENH6u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 03:58:50 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEE30C061574
+        for <devicetree@vger.kernel.org>; Fri, 14 May 2021 00:57:39 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1lhShQ-0001hC-LK; Fri, 14 May 2021 09:57:32 +0200
+Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ore@pengutronix.de>)
+        id 1lhShP-0005IV-Vo; Fri, 14 May 2021 09:57:31 +0200
+Date:   Fri, 14 May 2021 09:57:31 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Subject: Re: [PATCH v6 0/3] mainline ti tsc2046 adc driver
+Message-ID: <20210514075731.ipxq2o4cdxd3piu3@pengutronix.de>
+References: <20210428073208.19570-1-o.rempel@pengutronix.de>
+ <20210503122818.59f50e45@jic23-huawei>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210503122818.59f50e45@jic23-huawei>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 09:44:59 up 162 days, 21:51, 46 users,  load average: 0.01, 0.04,
+ 0.00
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 May 2021 01:30:19 +0200
-Tobias Schramm <t.schramm@manjaro.org> wrote:
+Hi Jonathan,
 
-> This commit adds DMA properties to all peripherals supporting DMA on the
-> Allwinner V3s, enabling accelerated data transfer to them.
+On Mon, May 03, 2021 at 12:28:18PM +0100, Jonathan Cameron wrote:
+> On Wed, 28 Apr 2021 09:32:05 +0200
+> Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 > 
-> Signed-off-by: Tobias Schramm <t.schramm@manjaro.org>
-
-DMA channels match the manual.
-
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-
-Cheers,
-Andre
-
-> ---
->  arch/arm/boot/dts/sun8i-v3s.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+> Hi Oleksij,
 > 
-> diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v3s.dtsi
-> index f0296ab46137..3eaa8703e2ac 100644
-> --- a/arch/arm/boot/dts/sun8i-v3s.dtsi
-> +++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
-> @@ -285,6 +285,8 @@ crypto@1c15000 {
->  			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&ccu CLK_BUS_CE>, <&ccu CLK_CE>;
->  			clock-names = "ahb", "mod";
-> +			dmas = <&dma 16>, <&dma 16>;
-> +			dma-names = "rx", "tx";
->  			resets = <&ccu RST_BUS_CE>;
->  			reset-names = "ahb";
->  		};
-> @@ -446,6 +448,8 @@ uart0: serial@1c28000 {
->  			reg-shift = <2>;
->  			reg-io-width = <4>;
->  			clocks = <&ccu CLK_BUS_UART0>;
-> +			dmas = <&dma 6>, <&dma 6>;
-> +			dma-names = "rx", "tx";
->  			resets = <&ccu RST_BUS_UART0>;
->  			status = "disabled";
->  		};
-> @@ -457,6 +461,8 @@ uart1: serial@1c28400 {
->  			reg-shift = <2>;
->  			reg-io-width = <4>;
->  			clocks = <&ccu CLK_BUS_UART1>;
-> +			dmas = <&dma 7>, <&dma 7>;
-> +			dma-names = "rx", "tx";
->  			resets = <&ccu RST_BUS_UART1>;
->  			status = "disabled";
->  		};
-> @@ -468,6 +474,8 @@ uart2: serial@1c28800 {
->  			reg-shift = <2>;
->  			reg-io-width = <4>;
->  			clocks = <&ccu CLK_BUS_UART2>;
-> +			dmas = <&dma 8>, <&dma 8>;
-> +			dma-names = "rx", "tx";
->  			resets = <&ccu RST_BUS_UART2>;
->  			pinctrl-0 = <&uart2_pins>;
->  			pinctrl-names = "default";
-> @@ -547,6 +555,8 @@ spi0: spi@1c68000 {
->  			interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&ccu CLK_BUS_SPI0>, <&ccu CLK_SPI0>;
->  			clock-names = "ahb", "mod";
-> +			dmas = <&dma 23>, <&dma 23>;
-> +			dma-names = "rx", "tx";
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&spi0_pins>;
->  			resets = <&ccu RST_BUS_SPI0>;
+> Series applied with the tweaks as per review to patch 3.  Please
+> check I didn't mess those up though.
+> 
+> Applied to the togreg branch of iio.git and pushed out as testing for
+> the autobuilders to poke at it.
 
+It works. Thx!
+
+Now i need to make configurable iio buffer layout
+
+for the drivers/input/touchscreen/resistive-adc-touch.c
+
+Do you have ideas what is the proper way to make it?
+
+Regards,
+Oleksij
+
+> 
+> Jonathan
+> 
+> > changes v6:
+> > - get blessing from Dmitry Torokhov
+> > - rebase against latest iio/testing
+> > - use simple name for iio_dev->name
+> > - use Jonathan's version for oversampling-ratio description 
+> > 
+> > changes v5:
+> > - remove type for the settling-time-us property
+> > 
+> > changes v4:
+> > - spell fixes
+> > - add more comments
+> > - make code more readable
+> > - move scan_buf to the priv
+> > - use FIELD_GET to extract ADC data
+> > - make some multi line code as one line
+> > - do not use atomic API for trig_more_count
+> > - fix build warning on 64bit system
+> > - add NULL check for the devm_kasprintf()
+> > - use return devm_iio_device_register(), without additional error
+> >   printing.
+> > 
+> > changes v3:
+> > - different spell fixes
+> > - add some notes about driver structure
+> > - rename the trigger to point on the touchscreen nature of it
+> > - rename DT binding to oversampling-ratio
+> > - make sure we have some defaults in case no DT property is set
+> > 
+> > changes v2:
+> > - rework and extend DT binding properties
+> > - remove touchscreen related code from the IIO ADC driver
+> > - make trigger be active longer then IRQ is requesting. This is needed
+> >   to get "inactive" samples
+> > - make oversampling and settle time configurable
+> > 
+> > TI TSC2046 is a touchscreen controller based on 8 channel ADC. Since most of
+> > this ADC based touchscreen controller share same set of challenges, it
+> > is better keep then as simple IIO ADC devices attached to a generic
+> > resistive-adc-touch driver.
+> > 
+> > This driver can replace drivers/input/touchscreen/ads7846.c and has
+> > following advantages over it:
+> > - less code to maintain
+> > - shared code paths (resistive-adc-touch, iio-hwmon, etc)
+> > - can be used as plain IIO ADC to investigate signaling issues or test
+> >   real capacity of the plates and attached low-pass filters
+> >   (or use the touchscreen as a microphone if you like ;) )
+> > 
+> > Oleksij Rempel (3):
+> >   dt-bindings:iio:adc: add generic settling-time-us and
+> >     oversampling-ratio channel properties
+> >   dt-bindings:iio:adc: add documentation for TI TSC2046 controller
+> >   iio: adc: add ADC driver for the TI TSC2046 controller
+> > 
+> >  .../devicetree/bindings/iio/adc/adc.yaml      |  12 +
+> >  .../bindings/iio/adc/ti,tsc2046.yaml          | 115 +++
+> >  MAINTAINERS                                   |   8 +
+> >  drivers/iio/adc/Kconfig                       |  12 +
+> >  drivers/iio/adc/Makefile                      |   1 +
+> >  drivers/iio/adc/ti-tsc2046.c                  | 720 ++++++++++++++++++
+> >  6 files changed, 868 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml
+> >  create mode 100644 drivers/iio/adc/ti-tsc2046.c
+> > 
+> 
+> 
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
