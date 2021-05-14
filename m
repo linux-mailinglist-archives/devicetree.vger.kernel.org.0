@@ -2,135 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3229B3810AF
-	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 21:25:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F95C381150
+	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 21:59:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231887AbhENTZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 May 2021 15:25:56 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:44942 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S234252AbhENTZ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 May 2021 15:25:26 -0400
-X-IronPort-AV: E=Sophos;i="5.82,300,1613401200"; 
-   d="scan'208";a="81343922"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 15 May 2021 04:24:12 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 00C7E4010906;
-        Sat, 15 May 2021 04:24:08 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Subject: [PATCH 16/16] arm64: dts: renesas: Add initial device tree for RZ/G2L SMARC EVK
-Date:   Fri, 14 May 2021 20:22:18 +0100
-Message-Id: <20210514192218.13022-17-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210514192218.13022-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20210514192218.13022-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S230230AbhENUA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 May 2021 16:00:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57772 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230149AbhENUA2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 May 2021 16:00:28 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 25B7361574;
+        Fri, 14 May 2021 19:59:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1621022356;
+        bh=kvpM2wP0uIglMvvx7Q23dMMBxKa2Vo33yjfFPo9LiLQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=O1WtW9SfpMHAjK+C5VCcOBrmdexpWk18bUjozXxg5NNigk+ATDstnA8GiZ8CrMJBE
+         Bzpl/ejl47SjBh4Dg+4EsuQIN9vMbZYEXgKLzhpzoCl5m6WvDpZsHVExQb1aBwO41F
+         AHxsW9bxzm8aXtNDS6oeAdN0Hge2MIoDq7lINRpgldCFi3uW4WvqC9M1H4RO12Ldvu
+         bdeBnRZdRYkpejr5mt765gXxNEau/svpcwYSZcvAIBW9+qrpM3ZgP0XfI7tMxv7D7v
+         7E1huwY7iaIDs149Fb0kEh0vQmqe1YD8R0ku1pyRNezMNCJAltFcG3h9f3qUu4rKTG
+         grrWg1tlG/qVA==
+Date:   Fri, 14 May 2021 20:58:35 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        pierre-louis.bossart@linux.intel.com, tiwai@suse.com,
+        heiko@sntech.de, lee.jones@linaro.org, robh+dt@kernel.org,
+        perex@perex.cz, jbx6244@gmail.com, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, maccraft123mc@gmail.com,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH v10 2/4] ASoC: Add Rockchip rk817 audio CODEC support
+Message-ID: <20210514195835.GD6516@sirena.org.uk>
+References: <20210514171940.20831-1-macroalpha82@gmail.com>
+ <20210514171940.20831-3-macroalpha82@gmail.com>
+ <20210514174958.GC6516@sirena.org.uk>
+ <20210514183324.GA20917@wintermute.localdomain>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ZJcv+A0YCCLh2VIg"
+Content-Disposition: inline
+In-Reply-To: <20210514183324.GA20917@wintermute.localdomain>
+X-Cookie: Necessity is a mother.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic support for RZ/G2L SMARC EVK (based on R9A07G044L2):
-- memory
-- External input clock
-- SCIF
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/Makefile          |  2 ++
- arch/arm64/boot/dts/renesas/g2l-smarc.dtsi    | 27 +++++++++++++++++++
- .../boot/dts/renesas/r9a07g044l2-smarc.dts    | 21 +++++++++++++++
- 3 files changed, 50 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/g2l-smarc.dtsi
- create mode 100644 arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts
+--ZJcv+A0YCCLh2VIg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index f2de2fa0c8b8..74daf49f1c56 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -62,3 +62,5 @@ dtb-$(CONFIG_ARCH_R8A77990) += r8a77990-ebisu.dtb
- dtb-$(CONFIG_ARCH_R8A77995) += r8a77995-draak.dtb
- 
- dtb-$(CONFIG_ARCH_R8A779A0) += r8a779a0-falcon.dtb
-+
-+dtb-$(CONFIG_ARCH_R9A07G044L) += r9a07g044l2-smarc.dtb
-diff --git a/arch/arm64/boot/dts/renesas/g2l-smarc.dtsi b/arch/arm64/boot/dts/renesas/g2l-smarc.dtsi
-new file mode 100644
-index 000000000000..9b95d73fb798
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/g2l-smarc.dtsi
-@@ -0,0 +1,27 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree Source for the RZ/G2L SMARC EVK common parts
-+ *
-+ * Copyright (C) 2021 Renesas Electronics Corp.
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	aliases {
-+		serial0 = &scif0;
-+	};
-+
-+	chosen {
-+		bootargs = "ignore_loglevel";
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&extal_clk {
-+	clock-frequency = <24000000>;
-+};
-+
-+&scif0 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts
-new file mode 100644
-index 000000000000..9ebd406445bc
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts
-@@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree Source for the RZ/G2L SMARC EVK board
-+ *
-+ * Copyright (C) 2021 Renesas Electronics Corp.
-+ */
-+
-+/dts-v1/;
-+#include "r9a07g044l2.dtsi"
-+#include "g2l-smarc.dtsi"
-+
-+/ {
-+	model = "Renesas SMARC EVK based on r9a07g044l2";
-+	compatible = "renesas,smarc-r9a07g044l2", "renesas,r9a07g044l2", "renesas,r9a07g044";
-+
-+	memory@48000000 {
-+		device_type = "memory";
-+		/* first 128MB is reserved for secure area. */
-+		reg = <0x0 0x48000000 0x0 0x78000000>;
-+	};
-+};
--- 
-2.17.1
+On Fri, May 14, 2021 at 01:33:24PM -0500, Chris Morgan wrote:
+> On Fri, May 14, 2021 at 06:49:58PM +0100, Mark Brown wrote:
 
+> > > +	if (!node) {
+> > > +		dev_err(dev, "%s() dev->parent->of_node is NULL\n",
+> > > +			__func__);
+
+> > There's no need to fail the probe here, you won't be able to read any DT
+> > properties but that shouldn't stop the driver binding.
+
+> If I'm not mistaken this is actually telling us to fail if the parent
+> device (the PMIC itself) isn't present. I think I'll remove this as not
+> necessary since if the parent node isn't present the mfd driver will
+> never load, meaning this driver will never load either.
+
+So it is - I edited incorrectly when I went to reply.
+
+> Below this line however we're failing if the codec node isn't present.
+> Are you telling me we want to bind the driver if the node isn't present
+> (such as in the edge case where the driver is present and the PMIC is a
+> rk817, but the CODEC is not in use)? I will remove the return code if
+
+Yes.
+
+> you think that is what needs to be done. My concern there though is if
+> we do that we'll either be in a position to again report a bunch of
+> errors for the edge case of users who want to use the PMIC but not the
+> codec (in this case missing clocks and whatnot) if we try to bind the
+
+Why would there be any errors?
+
+--ZJcv+A0YCCLh2VIg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmCe1moACgkQJNaLcl1U
+h9BDCgf/fcUp6NX1vj4DehSa1d/ysInM3TiL047VkuC5a5gJXUHV+mazQKyvfx7p
+4HM9osvdJP9DxW0DMRceJuGUOAMAaZtSi6lpkF95RElw5FUQ46U+lnKcQwWyKyRp
+lbqHNiIdwkdoGj9cHr1wp0sQPyQyMUFTMrIydZ6SHaTUkk4i4jOlqsBeMg7f4OGy
+itcLEGC8BtzddPnNFM//0oiqDSZfGj7S0yzqyAwtULqndz6E1xQ79hG9IazoFn5C
+S8pRJqdITTk/hB+azI+x52JzZrG4Cs1hHezvR8tIY6iSrFjG2SOITEK+KDiVq74/
+42JnTRAyk8OYBqh1+b/u3QlvAFAzqQ==
+=wmN+
+-----END PGP SIGNATURE-----
+
+--ZJcv+A0YCCLh2VIg--
