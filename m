@@ -2,93 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41D2638051E
-	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 10:23:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3D94380524
+	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 10:25:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233391AbhENIYL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 May 2021 04:24:11 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:16297 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233546AbhENIYI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 04:24:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1620980577; x=1652516577;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=UPGXRvLS3AgmuOFiWdkF2ik+v8HO4jPIF0qnh3jhSVc=;
-  b=rh2vgQYkqsIq4ePwDIEM8UkL2k62+xLaX9qKkJwAI6QYWhik+LAKbwaK
-   Kc93OzJ4a5pudbGf57bcp8CmDdY0XeE1LbsM/ZpJPVRuX1qh8Lt46NQYy
-   2l4m9DT7gOO/Shdrj1BaM1OFrFmE6h2HV+PYFFnfC9teUiXkhOzZAwC35
-   KzxYjnrsfXchsA+pVjI+4ihjOroI/DlfXFgzhmUwTdynIF/i0G80MoyzN
-   md4zHCixgEyobgTxU3INE8C9WfeTdmITsSVM9gh4OKfHxAAZYjdA8kQXj
-   YvkN2CnkH0u0qFuq12WRq1YR/EqQzNQgH+CE1Abcb6DbTkMvXzLAnyAFo
-   w==;
-IronPort-SDR: u4UE5UOXQfY44f7yKsGNKLrT3uBCPvUWWwWuECIcY5Bc59XNVrQNbgWCbUBakI2cTtcsAHwuq9
- /P8AUCI7DSHF3Qui7hpamDiROxeQ5k6NHvrjFZiE6tH4cDG6a+7pFzTEfocww9UBneHF+Qxs5q
- wi2PggfGToNxBMUBmKEaFggPA0K+e1+aNGoGNExS+LMHsM0Bl1H3vjd7fH2LF9ULvQ+1du6fTw
- +Vn0+QFeovs+tohSGuor6JFhFarGQo0wSPTIGyyNRctSQ+aQtt0lzUT0AkKVsK7E96EEdIa6YM
- sOw=
-X-IronPort-AV: E=Sophos;i="5.82,299,1613458800"; 
-   d="scan'208";a="115307201"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 May 2021 01:22:56 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Fri, 14 May 2021 01:22:56 -0700
-Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Fri, 14 May 2021 01:22:53 -0700
-From:   Eugen Hristev <eugen.hristev@microchip.com>
-To:     <robh+dt@kernel.org>, <nicolas.ferre@microchip.com>
-CC:     <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
-        <soc@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <claudiu.beznea@microchip.com>,
-        <codrin.ciubotariu@microchip.com>, <tudor.ambarus@microchip.com>,
-        Eugen Hristev <eugen.hristev@microchip.com>
-Subject: [PATCH v4 4/4] ARM: multi_v7_defconfig: add sama7g5 SoC
-Date:   Fri, 14 May 2021 11:21:51 +0300
-Message-ID: <20210514082151.178571-4-eugen.hristev@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210514082151.178571-1-eugen.hristev@microchip.com>
-References: <20210514082151.178571-1-eugen.hristev@microchip.com>
+        id S230455AbhENI0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 May 2021 04:26:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54968 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229524AbhENI0a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 04:26:30 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C943C061574
+        for <devicetree@vger.kernel.org>; Fri, 14 May 2021 01:25:19 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id lz27so2203698ejb.11
+        for <devicetree@vger.kernel.org>; Fri, 14 May 2021 01:25:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=PV2s94YrOisqT7vMow1MSTArbLb4x54m3t4M6sxYgd4=;
+        b=mszs3i61VpgEcW+HhPVGH8seTyGbkLh7fyiVAwvdyu5YG279nwzxdH0nq8ZJSwPTTO
+         epGalcRCLv6KsUjFWW6RNzeua5NbNtseN5BrbXtMS3ZWuSkJ8Z4Tw1iCDHJ4jFWpDMBm
+         DhansTsqpezKeGUTYk8MLDUY6vLuF2UzzK16AWXAE6kiT8trDSSkpp75J4+Re850oRfM
+         1xInEBmHT5mOSj4sswnW0rVUvIKW2aCn1wURSi5nrTMbynQ9yEXxL+UTg+XBLrKu/SbA
+         J1KuWq4yy8iM/BJfucYyNzbP6BlvIdLrDDIsHIxmMcDkrWT2Qlq9v6AWq9bPyzIPJ/mf
+         q0YA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=PV2s94YrOisqT7vMow1MSTArbLb4x54m3t4M6sxYgd4=;
+        b=SeD2hIYsIeXU8cOYYNcATD1V89kV0b66iYKGpcLTwjUkkjZd5Lffl2UYkJOjumaMZ3
+         MbKRmNzu0AjpXCw/j2suvnLptp89r/YzE99l+eltFbhap71c+oXobUkKZdtHpOGc4aw2
+         vU2QMTqeoM2ybodfZXCQYmWPf0vtU1GGc7sk34/nrzHXi5KcM3iPMRVg1w2NxvUkdUjG
+         6b+Gh9hclll20tbnoWskqq6X2ROVzJKEZnnry1TwfO/heHOSr0Ss1PF/JVdUTS6h3quL
+         oki/mjwBMnKDFfeionbkPT2tmiHOwUDoLufLP/8xbPtGsIzCL2qGr9bmuxC6Qtoeuw6e
+         9K9A==
+X-Gm-Message-State: AOAM532/H/PLnsvMti/HV9rjXpye6u0uJCGPnnLSK7FxMWXQ+RGFois7
+        pOeB7ENUh5dKqZ173JKXmikE3NtD17wyyvYZBl/JnA==
+X-Google-Smtp-Source: ABdhPJzvcfolTJJGELzA1NbWGzfPhoG5rqgQHhAsYFVH5w6zh66Wfl3cLyM9JlAR/cDKDRUohcKGJin39+nb++iBxow=
+X-Received: by 2002:a17:906:15c7:: with SMTP id l7mr26355348ejd.167.1620980718039;
+ Fri, 14 May 2021 01:25:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20210407123438.224551-1-mindal@semihalf.com> <20210511030658.GG3425@dragon>
+ <AM0PR04MB67542D30A9424D455DB3ADD496539@AM0PR04MB6754.eurprd04.prod.outlook.com>
+ <20210513021214.GJ3425@dragon> <20210513141921.i7sfmekbcw2m7vxd@skbuf>
+ <CAPv3WKfnWFjfZw39avZBEyUpEsH2f=NCs8VfjeR+wzk4qV3GmA@mail.gmail.com> <20210513183102.6dflgb4v2oekdlq5@skbuf>
+In-Reply-To: <20210513183102.6dflgb4v2oekdlq5@skbuf>
+From:   =?UTF-8?Q?Kornel_Dul=C4=99ba?= <mindal@semihalf.com>
+Date:   Fri, 14 May 2021 10:25:07 +0200
+Message-ID: <CAKpxNiyxDi66CXW4Z_exC=uy6mNbfhdBG5czgqNZqxmszegB0A@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: fsl-ls1028a: Correct ECAM PCIE window ranges
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     Marcin Wojtas <mw@semihalf.com>, Shawn Guo <shawnguo@kernel.org>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "tn@semihalf.com" <tn@semihalf.com>,
+        "upstream@semihalf.com" <upstream@semihalf.com>,
+        Alexandru Marginean <alexandru.marginean@nxp.com>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Microchip SAMA7G5 ARM v7 Cortex-A7 based SoC to multi_v7_defconfig.
-Also add it's clock timer, the PIT64B.
+Hi Vladimir,
 
-Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
----
- arch/arm/configs/multi_v7_defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+On Thu, May 13, 2021 at 8:31 PM Vladimir Oltean <vladimir.oltean@nxp.com> w=
+rote:
+>
+> Hi Marcin,
+>
+> On Thu, May 13, 2021 at 07:54:15PM +0200, Marcin Wojtas wrote:
+> > Hi Vladimir,
+> >
+> > czw., 13 maj 2021 o 16:19 Vladimir Oltean <vladimir.oltean@nxp.com> nap=
+isa=C5=82(a):
+> > >
+> > > On Thu, May 13, 2021 at 10:12:15AM +0800, Shawn Guo wrote:
+> > > > On Tue, May 11, 2021 at 09:48:22AM +0000, Claudiu Manoil wrote:
+> > > > > >-----Original Message-----
+> > > > > >From: Shawn Guo <shawnguo@kernel.org>
+> > > > > >Sent: Tuesday, May 11, 2021 6:07 AM
+> > > > > [...]
+> > > > > >Subject: Re: [PATCH] arm64: dts: fsl-ls1028a: Correct ECAM PCIE =
+window
+> > > > > >ranges
+> > > > > >
+> > > > > >+ Claudiu
+> > > > > >
+> > > > > >On Wed, Apr 07, 2021 at 02:34:38PM +0200, Kornel Duleba wrote:
+> > > > > >> Currently all PCIE windows point to bus address 0x0, which doe=
+s not match
+> > > > > >> the values obtained from hardware during EA.
+> > > > > >> Replace those values with CPU addresses, since in reality we
+> > > > > >> have a 1:1 mapping between the two.
+> > > > > >>
+> > > > > >> Signed-off-by: Kornel Duleba <mindal@semihalf.com>
+> > > > > >
+> > > > > >Claudiu,
+> > > > > >
+> > > > > >Do you have any comment on this?
+> > > > > >
+> > > > >
+> > > > > Well, probing is still working with this change, I've just tested=
+ it.
+> > > > >
+> > > > > PCI listing at boot time changes from:
+> > > > >
+> > > > > pci-host-generic 1f0000000.pcie: host bridge /soc/pcie@1f0000000 =
+ranges:
+> > > > > pci-host-generic 1f0000000.pcie:      MEM 0x01f8000000..0x01f815f=
+fff -> 0x0000000000
+> > > > > pci-host-generic 1f0000000.pcie:      MEM 0x01f8160000..0x01f81cf=
+fff -> 0x0000000000
+> > > > >
+> > > > > to:
+> > > > >
+> > > > > pci-host-generic 1f0000000.pcie: host bridge /soc/pcie@1f0000000 =
+ranges:
+> > > > > pci-host-generic 1f0000000.pcie:      MEM 0x01f8000000..0x01f815f=
+fff -> 0x01f8000000
+> > > > > pci-host-generic 1f0000000.pcie:      MEM 0x01f8160000..0x01f81cf=
+fff -> 0x01f8160000
+> > > > >
+> > > > > and looks reasonable.
+> > > > > Adding Vladimir and Alex just in case.
+> > > > >
+> > > > > Acked-by: Claudiu Manoil <claudiu.manoil@nxp.com>
+> > > >
+> > > > Thanks, Claudiu.
+> > > >
+> > > > Kornel,
+> > > >
+> > > > Do we need a Fixes tag for this patch?
+> > > >
+> > > > Shawn
+> > >
+> > > Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> > >
+> > > I am not sure whether "incorrect data that is unused" deserves a Fixe=
+s:
+> > > tag or not, probably not.
+> > >
+> > > Bjorn Helgaas did point out before that "The fact that all these wind=
+ows
+> > > map to PCI bus address 0 looks broken", so there's that:
+> > >
+> > > https://patchwork.kernel.org/project/linux-pci/cover/20201129230743.3=
+006978-1-kw@linux.com/
+> > >
+> > > And while it does look "broken", with the Enhanced Allocation capabil=
+ity
+> > > and the pci-host-ecam-generic driver, there is no address translation
+> > > taking place, so no inbound/outbound windows are configured, so the
+> > > range.pci_addr calculated in devm_of_pci_get_host_bridge_resources() =
+is
+> > > not used for anything except for printing.
+> >
+> > ...in Linux. Please note Linux device trees can be used as-is by other
+> > projects. Regardless my opinion on how that's unfortunate, FreeBSD
+> > does additional ranges check before performing EA and fails. Since the
+> > current DT description is imo broken and the change is transparent for
+> > Linux, it would be great to get this change merged into tree in case
+> > there are are no objections.
+>
+> Just for my curiosity, can you please link me to the extra FreeBSD checks=
+?
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index 3823da605430..d77872e62fe7 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -16,6 +16,7 @@ CONFIG_ARCH_AT91=y
- CONFIG_SOC_SAMA5D2=y
- CONFIG_SOC_SAMA5D3=y
- CONFIG_SOC_SAMA5D4=y
-+CONFIG_SOC_SAMA7G5=y
- CONFIG_ARCH_BCM=y
- CONFIG_ARCH_BCM_CYGNUS=y
- CONFIG_ARCH_BCM_HR2=y
-@@ -996,6 +997,7 @@ CONFIG_APQ_MMCC_8084=y
- CONFIG_MSM_GCC_8660=y
- CONFIG_MSM_MMCC_8960=y
- CONFIG_MSM_MMCC_8974=y
-+CONFIG_MICROCHIP_PIT64B=y
- CONFIG_BCM2835_MBOX=y
- CONFIG_ROCKCHIP_IOMMU=y
- CONFIG_TEGRA_IOMMU_GART=y
--- 
-2.25.1
+FreeBSD parses values from "ranges" and uses "rman" API to store them.
+Now "rman", or Resource manager is used in the FreeBSD kernel to
+manage memory regions.
+In particular it checks if any two regions inserted into the same
+"manager" overlap.
+If they do it is treated as a fatal error, which in our case causes
+the PCI driver to fail to probe.
+code: https://github.com/freebsd/freebsd-src/blob/main/sys/dev/pci/pci_host=
+_generic.c#L148.
 
+>
+> Anyway, I'm not sure what is more "broken", to have a "ranges" property
+> when no address translation takes place, or for that "ranges" property
+> to be set to a confusing "child address space" value. That's not to say
+> I have an objection against Shawn merging the patch.
+>
+> My main point was slightly different though, the "ranges" property is
+> currently mandatory, although in this case it provides no information
+> which cannot be retrieved directly from the config space. Properties
+> that have no other use except to be pedantic are, well, useless.
+> Maybe we can do something about that too.
