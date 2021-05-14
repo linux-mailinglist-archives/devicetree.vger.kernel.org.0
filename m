@@ -2,53 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 529A8380F45
-	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 19:51:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51F9C380F46
+	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 19:51:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232259AbhENRws (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 May 2021 13:52:48 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:60066 "EHLO
+        id S231331AbhENRxF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 May 2021 13:53:05 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:60100 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231331AbhENRwr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 13:52:47 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14EHpPc2038855;
-        Fri, 14 May 2021 12:51:25 -0500
+        with ESMTP id S229681AbhENRxE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 13:53:04 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14EHpoNo038903;
+        Fri, 14 May 2021 12:51:50 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1621014685;
-        bh=Bkhr+ZCq3P1gRanQXbZ+bXkJ91bpC+rsbdaaVwiIx6w=;
+        s=ti-com-17Q1; t=1621014710;
+        bh=n7DLuL4pxk0A6LMaK34RCZxhdysfsbCLmks5vPOt5eE=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=gM9WlfJEK/Wx+miFn6pIDML201K/VUXVvlrz949gnfKBPfQ4KBX22U+hW1a5CsiPp
-         ftXkfvw50m6AodDel++mmMpHQu2O/c+YLY/hsz7f+K4R1kk5Yx0rX0q7N1kZaapPet
-         YjTbCBRoyWZj+DO9vIUEwQAHejOL0Wl9reXEYp4g=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14EHpPUM071771
+        b=gtdiUqI/qfzQB2JKRhWDas9W8vr+BUDOyslQPyGDLxktLbdxl4IGnLkAU4ezQpHsL
+         j6FMOJ5vcBV+lUv7/o1LAw0lgK2MPMVgnWfvW4LzUkADt3Fztp7n3HJqM4vZGE/gq1
+         RmqaTIqjkUBdSm/E6iDGCxhOCi6PCYa3FWoG2+Kc=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14EHpob7026706
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 14 May 2021 12:51:25 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+        Fri, 14 May 2021 12:51:50 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 14
- May 2021 12:51:25 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ May 2021 12:51:49 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Fri, 14 May 2021 12:51:25 -0500
+ Frontend Transport; Fri, 14 May 2021 12:51:49 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14EHpPsb019912;
-        Fri, 14 May 2021 12:51:25 -0500
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14EHpnNJ020164;
+        Fri, 14 May 2021 12:51:49 -0500
 From:   Nishanth Menon <nm@ti.com>
 To:     Tero Kristo <kristo@kernel.org>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
+        Vignesh Raghavendra <vigneshr@ti.com>
 CC:     Nishanth Menon <nm@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am654-base-board: remove ov5640
-Date:   Fri, 14 May 2021 12:51:24 -0500
-Message-ID: <162101466671.22774.12075456714226042080.b4-ty@ti.com>
+        =?UTF-8?q?P=C3=A9ter=20Ujfalusi?= <peter.ujfalusi@gmail.com>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: ti: j7200-main: Mark Main NAVSS as dma-coherent
+Date:   Fri, 14 May 2021 12:51:48 -0500
+Message-ID: <162101469409.22902.3718929680839642431.b4-ty@ti.com>
 X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210423083120.73476-1-tomi.valkeinen@ideasonboard.com>
-References: <20210423083120.73476-1-tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <20210510180601.19458-1-vigneshr@ti.com>
+References: <20210510180601.19458-1-vigneshr@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -57,23 +58,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 23 Apr 2021 11:31:20 +0300, Tomi Valkeinen wrote:
-> AM654 EVM boards are not shipped with OV5640 sensor module, it is a
-> separate purchase. OV5640 module is also just one of the possible
-> sensors or capture boards you can connect.
+On Mon, 10 May 2021 23:36:01 +0530, Vignesh Raghavendra wrote:
+> Traffic through main NAVSS interconnect is coherent wrt ARM caches on
+> J7200 SoC.  Add missing dma-coherent property to main_navss node.
 > 
-> However, for some reason, OV5640 has been added to the board dts file,
-> making it cumbersome to use other sensors.
-> 
-> [...]
+> Also add dma-ranges to be consistent with mcu_navss node
+> and with AM65/J721e main_navss and mcu_navss nodes.
 
-Hi Tomi Valkeinen,
+Hi Vignesh Raghavendra,
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/1] arm64: dts: ti: k3-am654-base-board: remove ov5640
-      commit: df61cd9393845383adc4ea2410f2a91e1d1972b6
+[1/1] arm64: dts: ti: j7200-main: Mark Main NAVSS as dma-coherent
+      commit: 52ae30f55a2a40cff549fac95de82f25403bd387
 
 
 All being well this means that it will be integrated into the linux-next
