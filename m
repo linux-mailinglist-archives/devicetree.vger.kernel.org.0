@@ -2,100 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 759683803C7
-	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 08:50:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CE763803DE
+	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 09:00:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229927AbhENGwJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 May 2021 02:52:09 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:38654 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231336AbhENGwI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 02:52:08 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1620975058; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=d51erDtkha1RR6bdcED15Fv71pub36quAgP8GlBGWEc=; b=BzNKgoMwYouCC+lbEX6uyFkBILCdCoxAXqlu240kHs4xPnBX7hRPu3ZNphCrDd84DJDKvW6v
- 18WtfVhFH4Rew2vqxFuE2ZRzIe2fUWAdp8VM9YSNt441qEHhMvLNOzYazo2JOmoU7KdHNGkE
- 4g6MOlGAPULnJV9MzHjfQ+oC6pU=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 609e1dd0c7220f8fd36165c5 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 14 May 2021 06:50:56
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id CE409C43144; Fri, 14 May 2021 06:50:55 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [192.168.1.100] (unknown [157.48.128.130])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 399BFC433F1;
-        Fri, 14 May 2021 06:50:48 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 399BFC433F1
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-Subject: Re: [PATCH] ASoC: qcom: lpass-cpu: Fix pop noise during audio capture
- begin
-To:     Mark Brown <broonie@kernel.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org
-References: <20210513114539.4813-1-srivasam@codeaurora.org>
- <20210513133132.GC5813@sirena.org.uk>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited.
-Message-ID: <a6649fad-c2ca-1808-4227-8bcb373f66bd@codeaurora.org>
-Date:   Fri, 14 May 2021 12:20:46 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        id S232715AbhENHBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 May 2021 03:01:37 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:60823 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230349AbhENHBc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 03:01:32 -0400
+X-UUID: 5176a6e832494564bff7475722abdff4-20210514
+X-UUID: 5176a6e832494564bff7475722abdff4-20210514
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2013543313; Fri, 14 May 2021 14:59:52 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 14 May 2021 14:59:50 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 14 May 2021 14:59:49 +0800
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        <youlin.pei@mediatek.com>, <chuanjia.liu@mediatek.com>,
+        <qizhong.cheng@mediatek.com>, <sin_jieyang@mediatek.com>,
+        <drinkcat@chromium.org>, <Rex-BC.Chen@mediatek.com>,
+        Krzysztof Wilczyski <kw@linux.com>, <Ryan-JH.Yu@mediatek.com>
+Subject: [PATCH 0/2] PCI: mediatek-gen3: Add support for disable dvfsrc
+Date:   Fri, 14 May 2021 14:59:25 +0800
+Message-ID: <20210514065927.20774-1-jianjun.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-In-Reply-To: <20210513133132.GC5813@sirena.org.uk>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Brown,
+These series patches add support for disable dvfsrc voltage request.
 
-Thanks for your review comments!!!
+Jianjun Wang (2):
+  dt-bindings: PCI: mediatek-gen3: Add property to disable dvfsrc
+    voltage request
+  PCI: mediatek-gen3: Add support for disable dvfsrc voltage request
 
-On 5/13/2021 7:01 PM, Mark Brown wrote:
-> On Thu, May 13, 2021 at 05:15:39PM +0530, Srinivasa Rao Mandadapu wrote:
->
->> +	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
->> +		ret = regmap_fields_write(i2sctl->spken, id,
->> +						 LPAIF_I2SCTL_SPKEN_ENABLE);
->> +	} else  {
->> +		ret = regmap_fields_write(i2sctl->micen, id,
->> +						 LPAIF_I2SCTL_MICEN_ENABLE);
->> +	}
-> This commit doesn't remove the matching update in triger() so we'd have
-> two redundant updates.  I guess it's unlikely to be harmful but it looks
-> wrong/confusing.
-
-Yes, It's not harmful, as clk_prepare_enable is enabling clock only once 
-but maintaining count.
-
-As Some times in Suspend/resume Sequence not hitting startup/shutdown, 
-but Trigger, so for maintaining
-
-consistency not removed in trigger.
+ .../bindings/pci/mediatek-pcie-gen3.yaml      |  8 +++++
+ drivers/pci/controller/pcie-mediatek-gen3.c   | 32 +++++++++++++++++++
+ 2 files changed, 40 insertions(+)
 
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+2.25.1
 
