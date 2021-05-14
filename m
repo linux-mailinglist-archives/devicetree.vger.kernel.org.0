@@ -2,66 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 337C7380E4B
-	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 18:37:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79AD5380E58
+	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 18:43:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231124AbhENQiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 May 2021 12:38:52 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:47212 "EHLO gloria.sntech.de"
+        id S233097AbhENQom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 May 2021 12:44:42 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:40626 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230431AbhENQiw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 May 2021 12:38:52 -0400
-Received: from p5b127fa9.dip0.t-ipconnect.de ([91.18.127.169] helo=phil.fritz.box)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1lhaoi-0003p9-LK; Fri, 14 May 2021 18:37:36 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linus.walleij@linaro.org, linux-phy@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, vkoul@kernel.org,
-        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
-        cl@rock-chips.com, linux-arm-kernel@lists.infradead.org,
-        kishon@ti.com, huangtao@rock-chips.com, zhangqing@rock-chips.com,
-        jay.xu@rock-chips.com
-Subject: Re: (subset) [PATCH v5 0/4] convert grf.txt to YAML
-Date:   Fri, 14 May 2021 18:37:35 +0200
-Message-Id: <162101023435.2009214.882597722137585064.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210512122346.9463-1-jbx6244@gmail.com>
-References: <20210512122346.9463-1-jbx6244@gmail.com>
+        id S230431AbhENQol (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 May 2021 12:44:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=a3EKWIis+zR6gQ4DUZ9TNegMci0bPDZjHjVHulVe+gI=; b=mhb66vKQJ/NVPgv4tnTioqdNr7
+        4sQyoTbl26QQtylNUgnVhcbpDT0hQovK5963TuaszgCPDCi9LtXMyor2zoG+x0pZmEVfL+kScAX+w
+        1QGU3HdB4Zv7O+LZ87G6dA1SaiiGdC+w9HZL+VXcVYMcd8AvrmwuqukUX8m158MhEXUQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1lhauK-004D9H-Ld; Fri, 14 May 2021 18:43:24 +0200
+Date:   Fri, 14 May 2021 18:43:24 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH net-next v5 07/25] net: dsa: qca8k: handle error with
+ qca8k_rmw operation
+Message-ID: <YJ6orOpINGHT6kZD@lunn.ch>
+References: <20210511020500.17269-1-ansuelsmth@gmail.com>
+ <20210511020500.17269-8-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210511020500.17269-8-ansuelsmth@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 May 2021 14:23:42 +0200, Johan Jonker wrote:
-> Changed V5:
->   changed compatibles for rk3066/rk3188
->   add rockchip-usb-phy.yaml
->   move and restyle grf nodes rk3066/rk3188
->   remove applied patches
-> 
-> Changed V4:
->   revert separate schemas for each 'if' subset
->   add additionalProperties
->   move properties to top level
-> 
-> [...]
+> -static u32
+> -qca8k_rmw(struct qca8k_priv *priv, u32 reg, u32 mask, u32 val)
+> +static int
+> +qca8k_rmw(struct qca8k_priv *priv, u32 reg, u32 mask, u32 write_val)
+>  {
+>  	struct mii_bus *bus = priv->bus;
+>  	u16 r1, r2, page;
+> -	u32 ret;
+> +	u32 val;
+> +	int ret;
+>  
+>  	qca8k_split_addr(reg, &r1, &r2, &page);
+>  
+> @@ -205,10 +206,15 @@ qca8k_rmw(struct qca8k_priv *priv, u32 reg, u32 mask, u32 val)
+>  	if (ret < 0)
+>  		goto exit;
+>  
+> -	ret = qca8k_mii_read32(bus, 0x10 | r2, r1);
+> -	ret &= ~mask;
+> -	ret |= val;
+> -	qca8k_mii_write32(bus, 0x10 | r2, r1, ret);
+> +	val = qca8k_mii_read32(bus, 0x10 | r2, r1);
+> +	if (val < 0) {
+> +		ret = val;
+> +		goto exit;
+> +	}
+> +
+> +	val &= ~mask;
+> +	val |= write_val;
+> +	qca8k_mii_write32(bus, 0x10 | r2, r1, val);
 
-Applied, thanks!
+Does qca8k_mii_write32() not return an code?
 
-[2/4] dt-bindings: soc: rockchip: convert grf.txt to YAML
-      commit: f2ffa8f9e32d38f5c37e3c61c5b02d434057f3db
-[3/4] ARM: dts: rockchip: move and restyle grf nodes rk3066/rk3188
-      commit: a082a4ba218457fd52256e4357184b58d3fcaa49
-[4/4] arm64: dts: rename grf-gpio nodename in rk3328.dtsi
-      commit: 19486fe587b8ed17daf87a6419b51e3a65ce565c
+Seems like yet another function you could modify. But i suggest you
+wait, get this patchset merged first.
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+
+    Andrew
