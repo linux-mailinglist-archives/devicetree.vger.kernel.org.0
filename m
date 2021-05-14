@@ -2,107 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A0A2380FCE
-	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 20:33:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDD06380FD2
+	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 20:34:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233405AbhENSev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 May 2021 14:34:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50786 "EHLO
+        id S231765AbhENSfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 May 2021 14:35:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229952AbhENSev (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 14:34:51 -0400
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A6ECC061574
-        for <devicetree@vger.kernel.org>; Fri, 14 May 2021 11:33:28 -0700 (PDT)
-Received: by mail-ot1-x330.google.com with SMTP id v19-20020a0568301413b0290304f00e3d88so81702otp.4
-        for <devicetree@vger.kernel.org>; Fri, 14 May 2021 11:33:28 -0700 (PDT)
+        with ESMTP id S231267AbhENSfy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 14:35:54 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B43A8C06174A
+        for <devicetree@vger.kernel.org>; Fri, 14 May 2021 11:34:41 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id k19so355707pfu.5
+        for <devicetree@vger.kernel.org>; Fri, 14 May 2021 11:34:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=MyepW9OZoA5Tfnsk829LBdO7lppfBfCNDTAkF2rLFjw=;
-        b=CSruQYkZcAvyzO2bwdSLSevjn6wHjzL16r4vHhL3WjVB3Wmud9BONG+RXENhltUe5z
-         QbRig6W7y1v7Hqiv6xbTxAMtt/QzbcbWfbbWvJNLnEEpzWgm3/2GakdSSSHlvXR2/huV
-         0wYXCs0tFCLIi4zF1EE674UyBsA5BDSDAYcRr1ox9xCLM6L/uQCk4ikuDbAYtOZu6HMB
-         BrfcFLZYIQueonpmtZKGNThbUD2M+8wrfudMTV7Uk4z+tIQA5XC10G6qi8JgGyZ1U/nG
-         IVd3RtCeROniLEIr73zMa2pltdFkKC+Re4rRPXtFcgNEeVttA0bRsE3/1HiiVR275ONS
-         nI2w==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lELtbwQEctdIwPQb3wCQp5OuKO4/lkfT92gv1xyToGE=;
+        b=gSrEImsqcT8WUGbSMZ53B7UmwxHd+LIibGRNufbT852dWJIzp0i8btI4zX7WXhaYtG
+         XvOIwJcw8HHEeQkgQHQ5YeVjBnSpqI8AgJNG4QNiIkHMitswBlzQoq4kHxTrUiXytj0Z
+         RsCHapE64niz5srWtsa12N8xR/tqm/VLRfqtU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=MyepW9OZoA5Tfnsk829LBdO7lppfBfCNDTAkF2rLFjw=;
-        b=K8M2uDkkkjdqKOVr8cXCKEmKO/QodM3Z3ktzmVDA+hrMx5LaKrcJKWTn+j1oxR9D4F
-         /E8RXdR2uRoUJH+i0DUzATEWEmJULExUb2RzldzdTCVZKTWdrj6yMFeePL6cSMaBmw2Q
-         2r2dephPgLvj3MevKdnokLrB0nFHHYYHCto4YEkOFkYySIsf3N4SOwtDZluEYNOl+eRi
-         x3Y2oNQ0pqfuAIabDXxH4eTwuHYS68gaR8eb4yogMfMSjkKJgxHBhi8+JSbwYItmTouP
-         KUZsZAbX5Od1mgV5hqnnsu6kAaOhTvFI3HU4sVIDaDpWAJdj/J/myGkuEOOKeprEm1E/
-         8o+g==
-X-Gm-Message-State: AOAM530aAL6U7LcIZa1mXNhlXedtjFvcAlzeY+2UobtEAk+UvWQRWijC
-        OuOymarArOKV6phleZlL4r7uaf0lslE=
-X-Google-Smtp-Source: ABdhPJxXAj49fp1LA89JGsmz+P/omVWNY4qgVVhPM43OY3SY7lNrKcSbRajKZ4rZRZprL6MVcO7rRg==
-X-Received: by 2002:a05:6830:1693:: with SMTP id k19mr18376058otr.210.1621017206861;
-        Fri, 14 May 2021 11:33:26 -0700 (PDT)
-Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
-        by smtp.gmail.com with ESMTPSA id u201sm1296914oia.10.2021.05.14.11.33.25
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lELtbwQEctdIwPQb3wCQp5OuKO4/lkfT92gv1xyToGE=;
+        b=lVzWXB0BTfvVjKdzlNVONlrQ+kPZvsKcKdlEkGmXfFlyGvXMSYvY25qTFVGSDKxt2l
+         3z99Wzh384yq2/ngAy0Rg47mVN+tLJO8MMakdp7LOnCTMK5p2dVHhaO8tMzlzEjPuQI2
+         J1tgBuHwtfBbTdtcQKThIb7WG9wDWIpYjf0nnt6x9vaKbPlbVp6WZNnDdakpynSuV8k6
+         Xn2AYR2h0u1RUqL3hvuCKHF7VZ5wMpyRcY6M/0LAZ8FxXDDGjDlr9V5qZcvL77wzWAHN
+         hQtP0f9Fc9NRYlyFG5vDkkq7F0fgWb/z3ju5kUkG0FgIHAkC1Zule50J7DFtUu8+eoyp
+         lpGQ==
+X-Gm-Message-State: AOAM531yEMTHAbU9oZ649lPLiP5CzGrG2gBzxsP5AksuaWih9HeoS4ED
+        IfFJU9Jq/oBfuZkuZSaC8MtPkQ==
+X-Google-Smtp-Source: ABdhPJwwG0FPWg4ZVysBvGRUFzN69CmNe/Rog4IBIjy9UL84MRc8Br5Uk3bUyMH30eFS+wfxZ/h4fQ==
+X-Received: by 2002:a62:585:0:b029:2a2:3976:60a9 with SMTP id 127-20020a6205850000b02902a2397660a9mr42984565pff.47.1621017281302;
+        Fri, 14 May 2021 11:34:41 -0700 (PDT)
+Received: from sujitka-glaptop.hsd1.ca.comcast.net ([2601:646:8e00:b2f0:6d29:e373:344b:8862])
+        by smtp.gmail.com with ESMTPSA id ga1sm5375127pjb.5.2021.05.14.11.34.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 May 2021 11:33:26 -0700 (PDT)
-Date:   Fri, 14 May 2021 13:33:24 -0500
-From:   Chris Morgan <macroalpha82@gmail.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        pierre-louis.bossart@linux.intel.com, tiwai@suse.com,
-        heiko@sntech.de, lee.jones@linaro.org, robh+dt@kernel.org,
-        perex@perex.cz, jbx6244@gmail.com, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, maccraft123mc@gmail.com,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH v10 2/4] ASoC: Add Rockchip rk817 audio CODEC support
-Message-ID: <20210514183324.GA20917@wintermute.localdomain>
-References: <20210514171940.20831-1-macroalpha82@gmail.com>
- <20210514171940.20831-3-macroalpha82@gmail.com>
- <20210514174958.GC6516@sirena.org.uk>
+        Fri, 14 May 2021 11:34:40 -0700 (PDT)
+From:   Sujit Kautkar <sujitka@chromium.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Sujit Kautkar <sujitka@chromium.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sc7180: Move rmtfs memory region
+Date:   Fri, 14 May 2021 11:34:34 -0700
+Message-Id: <20210514113430.1.Ic2d032cd80424af229bb95e2c67dd4de1a70cb0c@changeid>
+X-Mailer: git-send-email 2.31.1.751.gd2f1c929bd-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210514174958.GC6516@sirena.org.uk>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 14, 2021 at 06:49:58PM +0100, Mark Brown wrote:
-> On Fri, May 14, 2021 at 12:19:38PM -0500, Chris Morgan wrote:
-> 
-> > +static int rk817_codec_parse_dt_property(struct device *dev,
-> > +					 struct rk817_codec_priv *rk817)
-> > +{
-> > +	struct device_node *node = dev->parent->of_node;
-> > +
-> > +	if (!node) {
-> > +		dev_err(dev, "%s() dev->parent->of_node is NULL\n",
-> > +			__func__);
-> > +		return -ENODEV;
-> > +	}
-> 
-> There's no need to fail the probe here, you won't be able to read any DT
-> properties but that shouldn't stop the driver binding.
+Move rmtfs memory region so that it does not overlap with system
+RAM (kernel data) when KAsan is enabled. This puts rmtfs right
+after mba_mem which is not supposed to increase beyond 0x94600000
 
-If I'm not mistaken this is actually telling us to fail if the parent
-device (the PMIC itself) isn't present. I think I'll remove this as not
-necessary since if the parent node isn't present the mfd driver will
-never load, meaning this driver will never load either.
+Signed-off-by: Sujit Kautkar <sujitka@chromium.org>
+---
 
-Below this line however we're failing if the codec node isn't present.
-Are you telling me we want to bind the driver if the node isn't present
-(such as in the edge case where the driver is present and the PMIC is a
-rk817, but the CODEC is not in use)? I will remove the return code if
-you think that is what needs to be done. My concern there though is if
-we do that we'll either be in a position to again report a bunch of
-errors for the edge case of users who want to use the PMIC but not the
-codec (in this case missing clocks and whatnot) if we try to bind the
-driver and the user doesn't want it. I can also set those errors to
-debug level, but I think that they might be important enough for users
-who DO want to use the codec to keep them as dev_err.
+ arch/arm64/boot/dts/qcom/sc7180-idp.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Let me know what you think.
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+index e77a7926034a7..afe0f9c258164 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+@@ -45,7 +45,7 @@ chosen {
+ 
+ /* Increase the size from 2MB to 8MB */
+ &rmtfs_mem {
+-	reg = <0x0 0x84400000 0x0 0x800000>;
++	reg = <0x0 0x94600000 0x0 0x800000>;
+ };
+ 
+ / {
+-- 
+2.31.1.751.gd2f1c929bd-goog
 
-Thank you.
