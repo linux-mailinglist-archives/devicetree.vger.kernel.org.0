@@ -2,169 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2C48380CE0
-	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 17:27:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19135380D21
+	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 17:31:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234651AbhENP2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 May 2021 11:28:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37416 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231419AbhENP2n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 11:28:43 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B7CFC061574;
-        Fri, 14 May 2021 08:27:30 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id t15so7457010edr.11;
-        Fri, 14 May 2021 08:27:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=i3brosy5XXCkmKkwn4l+AKR0pDfb4h3+yvaYa21wYq8=;
-        b=mvupAA+p79dUWGrk5E9BhZLhvX9JvYDYdfPKI0wDBotNmCLqg3UFxsUrKQkKJqiY8S
-         XhsJVW4vb1kD1hglJRcJzKssA5UudA7JhrLNQ70yXUK4P4dNVfNhXsyKC0nashJtSiwZ
-         orl4sFrJASzL4RelDgUo65UasmHetoYz+MTm7rZzbxDsooDJ25IlZrMV4oru0CiIu91y
-         5XSaX9kx2z5I0tlTHvbX+dikC1jfIQFiTiLHQSZ1UPlIAfmPlZBSGc/IxYepE/4l+o2L
-         AMV6zGQOuc4Rr9IeLJ61y/xUYZV3gHWJZg7j1Q9Po+Gj1YWHfdXEj8coPnAq9LwhRmbF
-         /LgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=i3brosy5XXCkmKkwn4l+AKR0pDfb4h3+yvaYa21wYq8=;
-        b=dJgC9Q7QtNLjy7e4cs6j9cyBX5CP5pgAsX5N5qlcA3yX+1npO96WyqtLGM/6+6aXCq
-         oVoBKV0jMKioStzsf/CFUrBRxGEJbXwzq5xuKFF19isweaNwGlq4o17k0W6hccW8kI+a
-         pT53eVQXTOaul2YMv2UGTaC0nhBAgayYQQiyrU3tMUyAisJKTwFcCd+6wprVSfUmLDXd
-         SKTAUBTWR+tj6eqLPeLO/PRlvzuSQrzmRG4tlhJnl7j/Zox08vY/ZSAaO72EW2VNuE3S
-         8DtTlD25DmKj2HijfWSU3hBNuEikJzycybpSy+vqdS/DQg7F2dOVFYFyiWEQt1soPNq5
-         jFeg==
-X-Gm-Message-State: AOAM530n4sJkaETlkk/d4qDbzl9KSi2mOj+0Gn646wzgpcnzWo8ivlgR
-        gaRKk7cO3+AhFjmyT6ANe59ydMPayh04sBm/IwE=
-X-Google-Smtp-Source: ABdhPJzxzvECOpWhrEYSAUed+9/+7dKEurVBbGT3SafR8RZsxzrkQZPj+cNf2hwM9Z2zBQsI6YC4+h9k5GCJ+ejBCoQ=
-X-Received: by 2002:a05:6402:310a:: with SMTP id dc10mr56815244edb.38.1621006049041;
- Fri, 14 May 2021 08:27:29 -0700 (PDT)
+        id S234807AbhENPcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 May 2021 11:32:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45410 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234820AbhENPcH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 May 2021 11:32:07 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id F26DD61454;
+        Fri, 14 May 2021 15:30:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1621006255;
+        bh=Jw5WbrKaK58stPthP0QwAZkov+5hEKRXAOBHxLndh7c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QB3622KhuCsNng+oVdaxcDzh2R5t96nGI19NPmYMGLLKmTBXRWP2a6P7euJGePKGd
+         1Zv3f5aHzzLvuNRi8vi6fsEMjA8ivVQaVxJ8sXgkeeG9EZnNPcs5O7akVYOy7qGRKb
+         CHbTDyD7n13upd0sz1lSzdcTyzYs+yQs6OU0vPMX0koyVZzc46MPa1S8rV7487ypzz
+         SsSEfZwWtB9MFGAzpJH7h6zuIUW02jeYToRGRMxnlguDuW2jnNTWcgK+TW7lJo1OsY
+         nF5fRj64C8U56hURXnmrX7/66KUqNTpLIgnFUJrgzGgCvTYLJOjMDSGC+l61g3MAD7
+         OIQx1x4LE66qg==
+Date:   Fri, 14 May 2021 16:30:14 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org
+Subject: Re: [PATCH] ASoC: qcom: lpass-cpu: Fix pop noise during audio
+ capture begin
+Message-ID: <20210514153014.GB6516@sirena.org.uk>
+References: <20210513114539.4813-1-srivasam@codeaurora.org>
+ <20210513133132.GC5813@sirena.org.uk>
+ <a6649fad-c2ca-1808-4227-8bcb373f66bd@codeaurora.org>
 MIME-Version: 1.0
-References: <20210406013344.124255-1-aford173@gmail.com> <20210511024604.GE3425@dragon>
- <CAHCN7xLFpL=9BF9M5gUA6sMhc2ZZMNz+GP0OLmLfpJAWdD7W-w@mail.gmail.com>
- <VE1PR04MB6688CD4AA4826EEEBBA2651689539@VE1PR04MB6688.eurprd04.prod.outlook.com>
- <CAHCN7xJ5Hq6bRpEgE8Pi9VbQ_Kejy-sgKQsJ93pQEG3U_Wsu=Q@mail.gmail.com> <VE1PR04MB668860A19062925162C40F3C89509@VE1PR04MB6688.eurprd04.prod.outlook.com>
-In-Reply-To: <VE1PR04MB668860A19062925162C40F3C89509@VE1PR04MB6688.eurprd04.prod.outlook.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Fri, 14 May 2021 10:27:17 -0500
-Message-ID: <CAHCN7xJ0xPJJaxMrzpZSGKjgh46bSEGgtsECd9ZqnpHKSCH9EA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: imx8mn: Add spba1 bus
-To:     Robin Gong <yibin.gong@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Bn2rw/3z4jIqBvZU"
+Content-Disposition: inline
+In-Reply-To: <a6649fad-c2ca-1808-4227-8bcb373f66bd@codeaurora.org>
+X-Cookie: Necessity is a mother.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 14, 2021 at 9:57 AM Robin Gong <yibin.gong@nxp.com> wrote:
->
-> On 5/11/21 22:49 Adam Ford <aford173@gmail.com> wrote:
->
-> > > Compare PIO with DMA on UART, but not w/o this  'spba bus node ' patch?
-> > >
-> > > > In fact, if the DMA firmware isn't loaded, I often get transfer errors.
-> > > UART use SDMA ROM firmware instead of RAM firmware, so it should work
-> > > even without sdma RAM firmware loaded.  Still curious what really
-> > > happen in your board without this patch.
-> >
-> > What I am seeing is that at times, the HCI UART loading before the DMA
-> > firmware is loaded.
-> >
-> > [   10.582037] Bluetooth: HCI UART driver ver 2.3
-> > [   10.586867] Bluetooth: HCI UART protocol H4 registered
-> > [   10.593566] imx-sdma 30bd0000.dma-controller: sdma firmware not
-> > ready!
-> Seems you apply my patch set ' add ecspi ERR009165 for i.mx6/7 soc family'
-> https://www.spinics.net/lists/linux-spi/msg26728.html
 
-I did this on the 5.13-rc1 which appears to have this series applied.
+--Bn2rw/3z4jIqBvZU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> where 'sdma firmware not ready' added?
->
-> > [   10.594548] Bluetooth: HCI UART protocol Broadcom registered
-> > [   10.600108] imx-uart 30860000.serial: We cannot prepare for the RX slave
-> > dma!
-> Why not use ROM script for UART as mailine linux-next did (even the above patch set)?
+On Fri, May 14, 2021 at 12:20:46PM +0530, Srinivasa Rao Mandadapu wrote:
+> On 5/13/2021 7:01 PM, Mark Brown wrote:
 
+> > This commit doesn't remove the matching update in triger() so we'd have
+> > two redundant updates.  I guess it's unlikely to be harmful but it looks
+> > wrong/confusing.
 
+> Yes, It's not harmful, as clk_prepare_enable is enabling clock only once but
+> maintaining count.
 
-> If so, I don't think you could such issue on your board. What script(peripheral types) you
-> set in uart dts such as below is 4-- MCU domain UART-> IMX_DMATYPE_UART->app_2_mcu:
->
-> dmas = <&sdma1 22 4 0>, <&sdma1 23 4 0>;
+> As Some times in Suspend/resume Sequence not hitting startup/shutdown, but
+> Trigger, so for maintaining
 
-I didn't change the DMA references from the default, and I didn't
-check to verify whether they are right or not.
+> consistency not removed in trigger.
 
->
-> >
-> > When I get the above message, the bluetooth chip I have throws timeouts and
-> > does not function.
-> >
-> > [   10.615090] imx-sdma 302c0000.dma-controller: loaded firmware 4.5
-> >
-> > Once the firmware is loaded, I can unload the HCI Uart driver and re-load
-> > Bluetooth works again.
-> >
-> > Based on that, I've been having my system delay the loading of the Bluetooth
-> > modules until after the firmware is loaded, but this tells me there is a
-> > relationship between the DMA and UART.
-> If you use ram script, of course you should use it after firmware loaded. Actually
-> Spba bus in dts is only used for per_2_per script judging if the peripheral address
-> could be accessed directly by SDMA over SPBA, if yes, set SDMA_WATERMARK_LEVEL_SP
-> to let per_2_per script access peripheral over SPBA, otherwise, access peripheral by
-> AIPS instead like ARM side did. Please check with below commit for more.
-> Besides, per_2_per script is used for audio data sample rate convert between ASRC and
-> various audio input. So audio peripherals include ASRC should be in register scope of
-> 'spba-bus' . But with your patch, there are two 'spba-bus' device node in dts, so the first
-> Spba-bus should contain audio peripheral, otherwise, 'of_find_compatible_node
-> (NULL, NULL, "fsl,spba-bus")' may find the wrong one so that SDMA_WATERMARK_LEVEL_SP
-> Never be set.
+This at least needs some commenting so that it's clear, it looks buggy
+at the minute.
 
-I don't pretend to understand the details of the dma driver, but I
-attempted to make the patch match the address range of both spba
-busses from the technical reference manual,so there should be an spba
-bus for the audio peripherals and an spba bus for the serial
-peripherals like UART and SPI.  I only named them spba1 and spba2
-based on the memory ranges defined in the ref manual. Table 2-5 shows
-SBPA1 is 3080_0000 and table 2-3 shows SPBA2 starts at 3000_0000 which
-is what I believe I did in this patch.
+--Bn2rw/3z4jIqBvZU
+Content-Type: application/pgp-signature; name="signature.asc"
 
->
-> BTW, do you mean the above firmware load issue you met is gone if this patch applied?
-> If yes, that really surprised me...
+-----BEGIN PGP SIGNATURE-----
 
-I wasn't trying to imply that adding the spba-bus fixes my Bluetooth
-issue.  I was just stating there is some relationship between the DMA
-and the UART and if the UART throws a DMA error, the Bluetooth will
-fail too.  What I have been doing to ensure the order of operations is
-to make the imx_sdma and the Bluetooth system as modules.  I tell my
-sysfs to load the imx_sdma module first, then load the Bluetooth
-modules.  When done in that order, I never see the DMA errors. With
-UART baud rates at 3Mbps+, I wanted to make sure the DMA was
-operational to help potentially reduce the A53 workload.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmCel4UACgkQJNaLcl1U
+h9AtTAf+LYcPOf6JSMImI2cuYbGIbm6pkW/Gx2rR/b2MwTYRacf5Y69rz++r39VM
+W1M2i1v9UGvb4CoYMeGn4NMA1m0r94UDo6vRC0xqx+WIbXglUiFmrT/h76K+1uEr
+e8jabqpQT3dcdeY938IJ7TFdGCyRafKd/1Dr5nazc7xRb8yc2i5SPV0RRsiFpYO2
+otRmdXuyqgNyIV7t77179ZiZUGZvH7/l/Fod8mZXLM9GkpEJkzAe7xIxZicP+EHg
+piX4zMQJg2agEhKhFDo9aRTl9erYxOAoMTXIcrBAuxG4JJLnF0sEOhhqCAcILPqm
+r+qkC06Hv8IgT0CVDC4yDXiM3b7dMQ==
+=D5DP
+-----END PGP SIGNATURE-----
 
-adam
->
-> commit 8391ecf465ec5c8ccef547267df6d40beb8999a4
-> Author: Shengjiu Wang <shengjiu.wang@freescale.com>
-> Date:   Fri Jul 10 17:08:16 2015 +0800
->
->     dmaengine: imx-sdma: Add device to device support
->
->
->
->
->
+--Bn2rw/3z4jIqBvZU--
