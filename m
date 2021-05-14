@@ -2,87 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35171380A5A
-	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 15:23:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84837380A85
+	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 15:42:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233927AbhENNZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 May 2021 09:25:00 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:52266 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230075AbhENNY6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 09:24:58 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 39A851F432DE
-Subject: Re: [RESEND PATCH v7 2/2] arm64: dts: mt8183: add cbas node under
- cros_ec
-To:     Ikjoon Jang <ikjn@chromium.org>, devicetree@vger.kernel.org,
-        Lee Jones <lee.jones@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Guenter Roeck <groeck@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        linux-input@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
-        Jiri Kosina <jikos@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20210514122051.266169-1-ikjn@chromium.org>
- <20210514122051.266169-3-ikjn@chromium.org>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <2a216922-c93b-0e1b-0dee-add6cdc9a3c9@collabora.com>
-Date:   Fri, 14 May 2021 15:23:42 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        id S234026AbhENNn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 May 2021 09:43:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41890 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234006AbhENNnu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 09:43:50 -0400
+Received: from mail.manjaro.org (mail.manjaro.org [IPv6:2a01:4f8:150:448b::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9B9AC061574;
+        Fri, 14 May 2021 06:42:38 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by mail.manjaro.org (Postfix) with ESMTP id 968C6222590;
+        Fri, 14 May 2021 15:42:36 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at manjaro.org
+Received: from mail.manjaro.org ([127.0.0.1])
+        by localhost (manjaro.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id qwnMcMQxrZeM; Fri, 14 May 2021 15:42:34 +0200 (CEST)
+From:   Tobias Schramm <t.schramm@manjaro.org>
+To:     =?UTF-8?q?Jernej=20=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org,
+        Tobias Schramm <t.schramm@manjaro.org>
+Subject: [PATCH v3 0/7] Add missing peripherals to Allwinner V3s/V3 device trees
+Date:   Fri, 14 May 2021 15:43:58 +0200
+Message-Id: <20210514134405.2097464-1-t.schramm@manjaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20210514122051.266169-3-ikjn@chromium.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ikjoon,
+The Allwinner V3s/V3 SoCs feature quite a few peripherals that have good
+driver support but yet are nowhere to be found in the SoCs dts.
+This patchset adds the DMA controller, the relevant DMA properties for all
+peripherals supporting DMA, the integrated analog codec and - for the
+Allwinner V3 SoC - also the I2S interface.
+I've included all of those changes in one patchset since they do all
+depend on addition of the DMA controller.
+All changes have been tested in a recent project of mine using a Sochip S3
+(a rebranded Allwinner V3) and are confirmed working.
 
-Thank you for the patch.
+This is v3 of this patchset.
 
-On 14/5/21 14:20, Ikjoon Jang wrote:
-> Add a 'cbas' device node for supporting tablet mode switch in
-> kukui devices.
-> 
-> Kukui platforms with detacheable base have an additional input
-> device under cros-ec, which reports SW_TABLET_MODE regarding
-> its base state (e.g. base flipped or detached).
-> 
-> Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
-> 
+Cheers,
+Tobias
 
-Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Changelog:
+  v2:
+    - add v3/v3s specific compatible strings
+    - fix v3s audio codec analog frontend compatible
+    - fix an I2S -> I2C typo
 
-> ---
-> 
-> Changes in v7:
-> - remove a label in cbas node
-> - fix an erratum in commit message (table --> tablet)
-> - dt-binding patchess merged altogether with mt8183 dts
-> 
->  arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> index ff56bcfa3370..1512605a438e 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> @@ -816,6 +816,10 @@ usbc_extcon: extcon0 {
->  			compatible = "google,extcon-usbc-cros-ec";
->  			google,usb-port-id = <0>;
->  		};
-> +
-> +		cbas {
-> +			compatible = "google,cros-cbas";
-> +		};
->  	};
->  };
->  
-> 
+  v3:
+    - fix yaml list indentation in allwinner,sun8i-a23-codec-analog.yaml
+
+Tobias Schramm (7):
+  ARM: dts: sun8i: v3s: add DMA controller to v3s dts
+  ARM: dts: sun8i: v3s: add DMA properties to peripherals supporting DMA
+  ARM: dts: sun8i: v3s: add analog codec and frontend to v3s dts
+  ASoC: dt-bindings: sun8i-a23-codec-analog: add compatible for
+    Allwinner V3
+  ARM: dts: sun8i: V3: add codec analog frontend to V3 dts
+  dt-bindings: sound: sun4i-i2s: add Allwinner V3 I2S compatible
+  ARM: dts: sun8i: V3: add I2S interface to V3 dts
+
+ .../sound/allwinner,sun4i-a10-i2s.yaml        |  3 ++
+ .../allwinner,sun8i-a23-codec-analog.yaml     |  9 +++--
+ arch/arm/boot/dts/sun8i-v3.dtsi               | 31 +++++++++++++++
+ arch/arm/boot/dts/sun8i-v3s.dtsi              | 39 +++++++++++++++++++
+ 4 files changed, 79 insertions(+), 3 deletions(-)
+
+-- 
+2.31.1
+
