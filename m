@@ -2,130 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5D613807AC
-	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 12:47:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1288A3807A9
+	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 12:47:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232078AbhENKsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 May 2021 06:48:19 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.83]:17098 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232053AbhENKsQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 06:48:16 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1620989045; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=pmq7QYHzo+prEMJrMP2cDyBfw41rlani3SzajT0L8ncBkD9Yw6ZtDV7zrYwmSnVCtg
-    HTz6Q48+GynS8gcCOUZ5sWuFgvqchkrHuHxOyOAEjVAn/qDoCjgsHE+AaH0F1Uv6eY+a
-    Hytj7vWJiGKEUEE4DwInz1Oqgih4l6RT0qS7tZ/t2OwzDYOznUN7ALEBFuk/F4mXTArB
-    SNGm2NEORL2rRk8ikqL+PhXxSVSPlQMagQilG5PSgomfR60i2K6e7VaK9FY7Sfz6Lt3G
-    iphiMeGHQarsDY+/K4V4N+bhtSQofGG/KGB9ENaDMRdvY4GYveIQ9k/eNlvgJZcQrGnY
-    +ksg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1620989045;
-    s=strato-dkim-0002; d=strato.com;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=onZ1ndtHrNRFqAtDjGioRxEfQXLifJXbNhb184j8N9g=;
-    b=VajhScdtRyhKsBH+lcw6FglMqIysujkiluQYtWQUJFrRQDOL8A1RyHwrIJHVRNm4Pz
-    moMw0y4fkSXby+Rwu3hBtsSwFO3zZvK8cCJ3bJ8EMW7fnwL0GgJr4eFvYXrEAutHqD9i
-    DXqt+MPVzzwX6rbOb06XG+lf6rihO75BFquDDolMZQcw+8r2ufxg8GuXTPNAqE/+co+a
-    8hiLctbPCuoxUp9n5Hh5MU+6wIBXLa6tzHoKXw6qI9/F+5x+GHwDKoOZJj7g2Qzuqzif
-    k+zekgwXcO9ceszHjQ0yxnIqBYHyk+lAEfCHJPYOkSFjk4O0kPx6AEhSdncmHrgWdP5m
-    4gDg==
-ARC-Authentication-Results: i=1; strato.com;
-    dkim=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1620989045;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=onZ1ndtHrNRFqAtDjGioRxEfQXLifJXbNhb184j8N9g=;
-    b=AECLsnTsmsdgQelCoRn/ViLk9exFytmnpVLLEPz1lGdLdx47TNKmi7Ajjrc+KZGnWE
-    C7B/K3DCZoVBHumhiYIXP8YjOAlbDf4Wny4sBxNJ+uPSTyWLXus6Vf5wj1BDcYqNQptE
-    JjwrxGX9vscbBqhOxM5/mCX2X0+W31rYuaKVFmm/3oWdxgIfayqgXi30P0BwmY2cVcgx
-    wiZCBjapX5n0a7exGaxoUBKYh9UH2gsmC1yOxcbcEJiZuCaEUtG84IajIli0rl8XU/xh
-    UZVI8vY1x6ms9Bl/kcjjmqMXkVS974z8Xfc91cHoue8BFt6TtaZkoemtnw2AmVjJ3Zy6
-    Sh9Q==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxB5m6OWA=="
-X-RZG-CLASS-ID: mo00
-Received: from droid..
-    by smtp.strato.de (RZmta 47.25.7 SBL|AUTH)
-    with ESMTPSA id j06c13x4EAi4Fyo
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Fri, 14 May 2021 12:44:04 +0200 (CEST)
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH 5/5] arm64: dts: qcom: msm8916-huawei-g7: Add NFC
-Date:   Fri, 14 May 2021 12:43:28 +0200
-Message-Id: <20210514104328.18756-5-stephan@gerhold.net>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210514104328.18756-1-stephan@gerhold.net>
-References: <20210514104328.18756-1-stephan@gerhold.net>
+        id S232048AbhENKsK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 May 2021 06:48:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48072 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231600AbhENKsJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 May 2021 06:48:09 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8ED3C61408;
+        Fri, 14 May 2021 10:46:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1620989218;
+        bh=Ux8YzJnBSwRgnaSNa08UTSzDAiWaxXMm8YbEFnJGvEU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mQH0FQQhZUw30gwfPpibEfzK/SMLWnRm6Flgv3/OZA7an8lWB7gZHJbJJ3xXRCAm/
+         GB6nVvynaCNdTjD8ShC6gLgcn2W0S9sbDxo801wx4ehNIvQf+R0fXiCvlLcNnz1vRy
+         +wQT3Ity+uF0gzLNfM+9dSh/CMuiE/vM5Xx575u1VYF3dlVNx+0lEpKhrSrfBgbaNu
+         IqTyJED6fXmsxBu+7iRPZOCp6BRVCOUplU6B1WuS/jkEXPvWjcLCKgMpMWtjiG7E8p
+         d22y/N92eko3eLUK23CXafxVGwwuWoELBnLd50ix1+oP3QLB49pYzgkgiQn2rxIS2c
+         1EZc0rK/PFs/g==
+Date:   Fri, 14 May 2021 16:16:54 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     kishon@ti.com, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org, robh+dt@kernel.org,
+        linux-staging@lists.linux.dev, gregkh@linuxfoundation.org,
+        neil@brown.name, ilya.lipnitskiy@gmail.com
+Subject: Re: [PATCH RESEND v2 0/6] phy: ralink: mt7621-pci-phy: some
+ improvements
+Message-ID: <YJ5VHnZaLi4o31vL@vkoul-mobl.Dlink>
+References: <20210508070930.5290-1-sergio.paracuellos@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210508070930.5290-1-sergio.paracuellos@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Huawei Ascend G7 supports NFC using the NXP PN547, which is
-supported by the nxp-nci-i2c driver in mainline. It seems to detect
-NFC tags using "nfctool" just fine, although it seems like there
-are not really any useful applications making use of the Linux NFC
-subsystem. :(
+On 08-05-21, 09:09, Sergio Paracuellos wrote:
+> Hi all,
+> 
+> This series contains some improvements in the pci phy driver
+> for MT7621 SoCs.
+> 
+> MT7621 SoC clock driver has already mainlined in
+> 'commit 48df7a26f470 ("clk: ralink: add clock driver for mt7621 SoC")'
+> 
+> Because of this we can update schema documentation and device tree
+> to add related clock entries and avoid custom architecture code
+> in favour of using the clock kernel framework to retrieve clock
+> frequency needed to properly configure the PCIe related Phys.
+> 
+> After this changes there is no problem to properly enable this
+> driver for COMPILE_TEST.
+> 
+> Configuration has also modified from 'tristate' to 'bool' depending
+> on PCI_MT7621 which seems to have more sense.
 
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
----
- .../arm64/boot/dts/qcom/msm8916-huawei-g7.dts | 26 +++++++++++++++++++
- 1 file changed, 26 insertions(+)
+Applied 2-6, thanks
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts b/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts
-index 5ad4e921b110..e0075b574190 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts
-@@ -193,6 +193,24 @@ rmi4-f11@11 {
- 	};
- };
- 
-+&blsp_i2c6 {
-+	status = "okay";
-+
-+	nfc@28 {
-+		compatible = "nxp,pn547", "nxp,nxp-nci-i2c";
-+		reg = <0x28>;
-+
-+		interrupt-parent = <&msmgpio>;
-+		interrupts = <21 IRQ_TYPE_EDGE_RISING>;
-+
-+		enable-gpios = <&msmgpio 20 GPIO_ACTIVE_HIGH>;
-+		firmware-gpios = <&msmgpio 2 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&nfc_default>;
-+	};
-+};
-+
- &blsp1_uart2 {
- 	status = "okay";
- };
-@@ -378,6 +396,14 @@ gpio_leds_default: gpio-leds-default {
- 		bias-disable;
- 	};
- 
-+	nfc_default: nfc-default {
-+		pins = "gpio2", "gpio20", "gpio21";
-+		function = "gpio";
-+
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
- 	mag_reset_default: mag-reset-default {
- 		pins = "gpio36";
- 		function = "gpio";
 -- 
-2.31.1
-
+~Vinod
