@@ -2,81 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A74C381021
-	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 20:56:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 964343810BD
+	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 21:28:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232139AbhENS5N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 May 2021 14:57:13 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:49409 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229930AbhENS5N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 14:57:13 -0400
-Received: from mwalle01.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:fa59:71ff:fe9b:b851])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 71ADB22256;
-        Fri, 14 May 2021 20:56:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1621018560;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=k+Vlef7jvOgvilVVGjBjjKMPscsAK3dgpBzI2L4C8Zg=;
-        b=temU5cA4euB+8etpqOS7IPN8QBpLP6u4KNpnrSrAHUDNWCmYAC9nyDNdRLRpDmGu7cCtrR
-        mm9SQt4YqribXXekS6sJOPjmx8WXPoVH/MI7w7CysuMdFfLyvSWp4h/RC4HeCUwXIST4Kb
-        pv0+cEv9kS+8BetLr/R6NmAcBM8EMkw=
-From:   Michael Walle <michael@walle.cc>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        id S230471AbhENT3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 May 2021 15:29:25 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:15521 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S229524AbhENT3Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 May 2021 15:29:25 -0400
+X-Greylist: delayed 303 seconds by postgrey-1.27 at vger.kernel.org; Fri, 14 May 2021 15:29:24 EDT
+X-IronPort-AV: E=Sophos;i="5.82,300,1613401200"; 
+   d="scan'208";a="81147945"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 15 May 2021 04:23:07 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id D8EC34010906;
+        Sat, 15 May 2021 04:23:03 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH v2 2/2] arm64: dts: freescale: sl28: var1: fix RGMII clock and voltage
-Date:   Fri, 14 May 2021 20:55:53 +0200
-Message-Id: <20210514185553.10095-3-michael@walle.cc>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210514185553.10095-1-michael@walle.cc>
-References: <20210514185553.10095-1-michael@walle.cc>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Magnus Damm <magnus.damm@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Subject: [PATCH 00/16] Add new Renesas RZ/G2L SoC and Renesas RZ/G2L SMARC EVK support
+Date:   Fri, 14 May 2021 20:22:02 +0100
+Message-Id: <20210514192218.13022-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-During hardware validation it was noticed that the clock isn't
-continuously enabled when there is no link. This is because the 125MHz
-clock is derived from the internal PLL which seems to go into some kind
-of power-down mode every once in a while. The LS1028A expects a contiuous
-clock. Thus enable the PLL all the time.
+Hi All,
 
-Also, the RGMII pad voltage is wrong, it was configured to 2.5V (that is
-the VDDH regulator). The correct voltage is 1.8V, i.e. the VDDIO
-regulator.
+This patch series adds initial support for Renesas RZ/G2L SoC and
+Renesas RZ/G2L SMARC EVK.
 
-This fix is for the freescale/fsl-ls1028a-kontron-sl28-var1.dts.
+The RZ/G2L SoC includes a single/dual Cortex-A55 CPU including
+below list of IP's:
+* Cortex-M33
+* 3D Graphics engine (Arm Mali-G31)
+* Video Codec (H.264)
+* Camera interface (MIPI-CSI or Parallel-IF)
+* Display interface (MIPI-DSI or Parallel-IF)
+* USB2.0 interface 2ch, SD interface 2ch
+* CAN interface (CAN-FD)
+* Giga bit Ethernet 2ch
 
-Fixes: 642856097c18 ("arm64: dts: freescale: sl28: add variant 1")
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- .../arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Initial patches enables minimal peripherals on Renesas RZ/G2L
+SMARC EVK and booted via initramfs.
+* Documentation for RZ/G2{L,LC,UL} SoC variants
+* SoC identification support
+* CPG core support
+* Minimal SoC DTSi
+* Minimal DTS for SMARC EVK
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
-index 6c309b97587d..e8d31279b7a3 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
-@@ -46,7 +46,8 @@
- 			eee-broken-100tx;
- 			qca,clk-out-frequency = <125000000>;
- 			qca,clk-out-strength = <AR803X_STRENGTH_FULL>;
--			vddio-supply = <&vddh>;
-+			qca,keep-pll-enabled;
-+			vddio-supply = <&vddio>;
- 
- 			vddio: vddio-regulator {
- 				regulator-name = "VDDIO";
+Patches are based on top of [1] master branch.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/
+
+Links for SoC and EVK:
+[*] https://www.renesas.com/us/en/products/microcontrollers-microprocessors/
+rz-arm-based-high-end-32-64-bit-mpus/rzg2l-general-purpose-microprocessors-
+dual-core-arm-cortex-a55-12-ghz-cpus-3d-graphics-and-video-codec
+[*] https://www.renesas.com/us/en/products/microcontrollers-microprocessors/
+rz-arm-based-high-end-32-64-bit-mpus/rzg2lc-general-purpose-microprocessors-
+dual-core-arm-cortex-a55-12-ghz-cpus-3d-graphics
+[*] https://renesas.info/wiki/RZ-G/RZ-G2L_SMARC
+
+Cheers,
+Prabhakar
+
+Biju Das (1):
+  serial: sh-sci: Add support for RZ/G2L SoC
+
+Lad Prabhakar (15):
+  dt-bindings: arm: renesas: Document Renesas RZ/G2UL SoC
+  dt-bindings: arm: renesas: Document Renesas RZ/G2{L,LC} SoC variants
+  dt-bindings: arm: renesas: Document SMARC EVK
+  soc: renesas: Add ARCH_R9A07G044{L,LC} for the new RZ/G2{L,LC} SoC's
+  arm64: defconfig: Enable ARCH_R9A07G044{L,LC}
+  dt-bindings: arm: renesas,prr: Add new compatible string for
+    RZ/G{L,LC,UL}
+  soc: renesas: Add support to read LSI DEVID register
+  soc: renesas: Add support to identify RZ/G2{L,LC} SoC's
+  dt-bindings: serial: renesas,scif: Document r9a07g044 bindings
+  dt-bindings: clock: renesas: Document RZ/G2L SoC CPG driver
+  clk: renesas: Define RZ/G2L CPG Clock Definitions
+  clk: renesas: Add CPG core wrapper for RZ/G2L SoC
+  clk: renesas: Add support for R9A07G044L SoC
+  arm64: dts: renesas: Add initial DTSI for RZ/G2{L,LC} SoC's
+  arm64: dts: renesas: Add initial device tree for RZ/G2L SMARC EVK
+
+ .../devicetree/bindings/arm/renesas,prr.yaml  |   6 +-
+ .../devicetree/bindings/arm/renesas.yaml      |  18 +
+ .../bindings/clock/renesas,rzg2l-cpg.yaml     |  80 ++
+ .../bindings/serial/renesas,scif.yaml         |   4 +
+ arch/arm64/boot/dts/renesas/Makefile          |   2 +
+ arch/arm64/boot/dts/renesas/g2l-smarc.dtsi    |  27 +
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    |  70 ++
+ arch/arm64/boot/dts/renesas/r9a07g044l.dtsi   |  21 +
+ arch/arm64/boot/dts/renesas/r9a07g044l1.dtsi  |  43 +
+ .../boot/dts/renesas/r9a07g044l2-smarc.dts    |  21 +
+ arch/arm64/boot/dts/renesas/r9a07g044l2.dtsi  |  62 ++
+ arch/arm64/configs/defconfig                  |   2 +
+ drivers/clk/renesas/Kconfig                   |  12 +
+ drivers/clk/renesas/Makefile                  |   2 +
+ drivers/clk/renesas/r9a07g044l-cpg.c          | 372 +++++++
+ drivers/clk/renesas/renesas-rzg2l-cpg.c       | 964 ++++++++++++++++++
+ drivers/clk/renesas/renesas-rzg2l-cpg.h       | 223 ++++
+ drivers/soc/renesas/Kconfig                   |  10 +
+ drivers/soc/renesas/renesas-soc.c             |  33 +-
+ drivers/tty/serial/sh-sci.c                   |  11 +
+ drivers/tty/serial/sh-sci.h                   |   1 +
+ include/dt-bindings/clock/r9a07g044l-cpg.h    |  89 ++
+ 22 files changed, 2070 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml
+ create mode 100644 arch/arm64/boot/dts/renesas/g2l-smarc.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a07g044l.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a07g044l1.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a07g044l2.dtsi
+ create mode 100644 drivers/clk/renesas/r9a07g044l-cpg.c
+ create mode 100644 drivers/clk/renesas/renesas-rzg2l-cpg.c
+ create mode 100644 drivers/clk/renesas/renesas-rzg2l-cpg.h
+ create mode 100644 include/dt-bindings/clock/r9a07g044l-cpg.h
+
 -- 
-2.20.1
+2.17.1
 
