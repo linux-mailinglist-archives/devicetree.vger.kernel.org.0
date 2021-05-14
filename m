@@ -2,209 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24015380C33
-	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 16:48:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38BC4380C5A
+	for <lists+devicetree@lfdr.de>; Fri, 14 May 2021 16:57:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233086AbhENOuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 May 2021 10:50:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57008 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232971AbhENOuJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 May 2021 10:50:09 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF91AC06174A
-        for <devicetree@vger.kernel.org>; Fri, 14 May 2021 07:48:56 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id r12so4684346wrp.1
-        for <devicetree@vger.kernel.org>; Fri, 14 May 2021 07:48:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=qk8PAC7djaeBU0jQbfU6OXoqZvIZrKqv6YILZJB9cnA=;
-        b=SRRFKOjiz8E6BpghVkf4BD/7Hy6Ww6utNWhgkoOjIgDkazwsehD1+1Qnij9JuiFmDN
-         R0KQHKVWP284nUW0/NkesvWYQUHODAjQvPyA6G63Kk0af8kvYYNQHlT1x0BMSSdZDXhl
-         x0IXQ6jP4nnBXJ66Mv4bBeJ8aJ8Aexe1wJNp//Jc2adK4VbIXI4vK4fe0AJTZJ19nktZ
-         p2fDweM7h+0FEvWnplH4FnKSzuV/aLlXyeW+esOWB0bfmXVwNze4qCe0scO5npn7xxR5
-         X6mcmCLOFfWh5mxBG2NlA2kTOrsgFu1JItRSKLmPcNY5nZK7QmLIQ4/jXdCvkZOEnhc9
-         rYMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=qk8PAC7djaeBU0jQbfU6OXoqZvIZrKqv6YILZJB9cnA=;
-        b=d76ULsaCXyBBEdG5DrEsHi+5kIaL8PIa28nMXi4NTCroFkNwvYBiFmjla8dFUBDU+A
-         ReLKOKyQIIhuN9eTRUARsPvS+8/3f9AFmpI/4jbpi20wai5wnMZt97LWjq7IprOf16Fd
-         C/qyZp6OAJEfgJEBv6oTiGrFDiPBsLUiMsypbF77f0DuhD4JXt+3LsQ1GXysOBMSU8VR
-         wAE4Vh/6sLVAeYa8hERrSsuFNRWweRE7Kp4lmHA5oTcJgjYa0pHkk8usOFIsr0PzcfIw
-         qZECcFIuEF9cyNlMs6Wb6OjknCbGamq7uOXBagWHBrkEotrog4aCb6tEQe5yPhyKmmge
-         FnjQ==
-X-Gm-Message-State: AOAM530gG91qFp32wxiNqVI3Jc38o1z5JyWEM4P+RwgzTFnGVhV368Y9
-        tFhhJkewUo3EvlmxDW6cXBqakK8/BedOk7QY
-X-Google-Smtp-Source: ABdhPJzYQH6oCQ9mAhLNbVN2ZPyuNnylKHjaDnUSi8bBDD6blzpCMfsh/3lCmfcN5vC6DXrQ+dnB1A==
-X-Received: by 2002:adf:bc46:: with SMTP id a6mr21290203wrh.232.1621003735286;
-        Fri, 14 May 2021 07:48:55 -0700 (PDT)
-Received: from [172.20.10.7] ([37.173.48.34])
-        by smtp.gmail.com with ESMTPSA id k11sm11599007wmj.1.2021.05.14.07.48.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 May 2021 07:48:54 -0700 (PDT)
-Subject: Re: [PATCH v13 0/4] drm/panfrost: Add support for mt8183 GPU
-To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc:     Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh@kernel.org>,
-        Steven Price <steven.price@arm.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Tomeu Vizoso <tomeu.vizoso@collabora.com>, fshao@chromium.org,
-        David Airlie <airlied@linux.ie>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        id S233046AbhENO6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 May 2021 10:58:39 -0400
+Received: from mail-eopbgr10041.outbound.protection.outlook.com ([40.107.1.41]:7652
+        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230484AbhENO6i (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 May 2021 10:58:38 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=k3OvmEJyj8h7jUCgnrq51Fc4mSiNIlS77zHH5nfU+08a1Jmlh/F3y8Zw3wbkKlXFsUN/+JjX2kUzWyHIp3rXIHb800k/gYh8JW92iRnomPVLa+BVvcovJc6XLIBq78kv0j9ISlzNKBwMkEpOUL2ki0iqQF3K8WDf44eqpDN7fy2v9/WQe8RK4XWQU000jFHWVgCYMMM1ub/WUTJWDmX+ftD5QSdk362EoKNE9H6TNnCNH/F9gWLG1Wu1vqKFhcUh0n0Z7+XHQhexTj6aLxT7LPdIm0sIqL2oZgMXrS/KreE2geuXYaifvH0ZvoO0ktBXtDPc4H2l7UBfHV3fW6mCcA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=85EbY+MRf/ys2Z1Vh3n5q3mh8vhCVgf6459Zo1NbUjU=;
+ b=I5d9TZkLaQDnE6gPjtay+ZqxBoEOzhfXox1ZPj2WQq1k1cQHmC9neLNbTU5akn11bfKFeFuhQ4VTJP0UDYS1PTQg5N/7p8Tfqo6b+d+aEBtXC7bpOfLiRxV9erjqE/HXzn1xcJYWBpF2DNt2azOFWilneVrTv7ABGbluQZClDWkT4bEcVPhwohwrQHuhhigUzirv1OYE+Wvwzj4cqo8tlqjpSR/1PwxbFrOciQit8EvTBujm2To5YnvsY/XEvkFe0+2/pRR9ZXH8d5Xlwl1v/A4UCTD3jEri9LKABZOdoUwDRzLZRz+hW4hHLY0Z8KxchqDeKEC2GKnl6ol1O4p0bw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=85EbY+MRf/ys2Z1Vh3n5q3mh8vhCVgf6459Zo1NbUjU=;
+ b=h9xlymgr4W5X8dHCD7pPBBiynx4/Ka91iUak2Dq7HDzieCvYgi5iU5+x02AmyvMaIvoxUi7+vDyRZPL9LmmkWPm4EpVIx9MOqmNE6G9/XtmOjP3lnkwQRko230TdzIW0+UjMi3IkBacUwlrYre6PF1AJqDuSwedqRwyBhBDvKnc=
+Received: from VE1PR04MB6688.eurprd04.prod.outlook.com (2603:10a6:803:127::25)
+ by VI1PR04MB7022.eurprd04.prod.outlook.com (2603:10a6:800:126::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.28; Fri, 14 May
+ 2021 14:57:24 +0000
+Received: from VE1PR04MB6688.eurprd04.prod.outlook.com
+ ([fe80::bcfe:215c:1b66:6011]) by VE1PR04MB6688.eurprd04.prod.outlook.com
+ ([fe80::bcfe:215c:1b66:6011%4]) with mapi id 15.20.4129.026; Fri, 14 May 2021
+ 14:57:24 +0000
+From:   Robin Gong <yibin.gong@nxp.com>
+To:     Adam Ford <aford173@gmail.com>
+CC:     Shawn Guo <shawnguo@kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>, hsinyi@chromium.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        hoegsberg@chromium.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-References: <20210421052855.1279713-1-drinkcat@chromium.org>
- <c91746ce-88b6-5612-74a5-74600c7761e8@baylibre.com>
- <CAAEAJfD3i+L4w1NuE5pUkMuH=R3CfBztDn-ZLcYR=onkcZ4Gxg@mail.gmail.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <373d0803-8658-9413-2f51-1e9804c39126@baylibre.com>
-Date:   Fri, 14 May 2021 16:48:52 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
-MIME-Version: 1.0
-In-Reply-To: <CAAEAJfD3i+L4w1NuE5pUkMuH=R3CfBztDn-ZLcYR=onkcZ4Gxg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 1/2] arm64: dts: imx8mn: Add spba1 bus
+Thread-Topic: [PATCH 1/2] arm64: dts: imx8mn: Add spba1 bus
+Thread-Index: AQHXKoTrm+1dEO4gCEi87d5cyZOFDqrdyocAgACF5YCAABIPoIAAMe4AgASmRGA=
+Date:   Fri, 14 May 2021 14:57:24 +0000
+Message-ID: <VE1PR04MB668860A19062925162C40F3C89509@VE1PR04MB6688.eurprd04.prod.outlook.com>
+References: <20210406013344.124255-1-aford173@gmail.com>
+ <20210511024604.GE3425@dragon>
+ <CAHCN7xLFpL=9BF9M5gUA6sMhc2ZZMNz+GP0OLmLfpJAWdD7W-w@mail.gmail.com>
+ <VE1PR04MB6688CD4AA4826EEEBBA2651689539@VE1PR04MB6688.eurprd04.prod.outlook.com>
+ <CAHCN7xJ5Hq6bRpEgE8Pi9VbQ_Kejy-sgKQsJ93pQEG3U_Wsu=Q@mail.gmail.com>
+In-Reply-To: <CAHCN7xJ5Hq6bRpEgE8Pi9VbQ_Kejy-sgKQsJ93pQEG3U_Wsu=Q@mail.gmail.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [183.192.233.176]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 61e158f9-06da-4464-c65c-08d916e8956b
+x-ms-traffictypediagnostic: VI1PR04MB7022:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR04MB7022FF5C35B6EA294A8BB44589509@VI1PR04MB7022.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: SQ0bgI0P4+GMbj30d2LYoWLZO6oWuDETAblQtGts1YufZNarQNAucrkKP2SOPd94i/aRW30K+/Ci5Fqvk1YtcxoOxvhbeVe30P+SVxpgmtisLkILOptptRx86GxINqb53SKWy/59/HMA/UDy38bYaIb9+KO/sA2Y2w6SE0qIvyEddTUqRA7l3Ge2wY4XJjMV6JHqIliFNm9S2aTm+T4wCUqFftU+0vEmeS7/BmoefbegFMhzScGHNPqKVa08jZoBXj3boWlxv2s29/u/t2MNr3Aqy8x+3MkDj0ghULRSv6wUhYPdNAoEbhe+RbPqU96BrYhopLEj0UqDkSxe4KZegD1XOjF5ayJnoTfw6xUBqSIDv50zq9Opc9IQ9M0umZRq2yusJ+4dBOWqVxO8ZTDp0fDdWEPEHzoTNSD96cFgSsrFjEzcOEgK+3ERvA03L3OSP6yFM7nocx4wJNc7vN8Jiy/JZDSXgva0fEU+kXWUvjAdB9o8r8aJFGk+uU39qXW75D5BQOfFRWkk0YTfVeU531cAiXPd8LBBVt09xvb3ofmo2MxfAs9KDuxorDpQG8/R37ANhpkGlR/WH7OseV3ENBzouBeZoF41XffMecRALXP5BFtVXsDnrfwK0ptlui/T4pyAqNr++qnQPFWPJxPe9DNd2vCXojFZeYgaJHRqvgOtSxMY0AXctgphwJFt+hqKNJo9JQRQTg5QWIOoNqXC9Y1hCkJijdHH3I2Pp/kcFyQ=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6688.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(366004)(136003)(376002)(39850400004)(396003)(55016002)(54906003)(76116006)(4326008)(5660300002)(9686003)(71200400001)(316002)(6916009)(83380400001)(52536014)(8936002)(66446008)(64756008)(38100700002)(6506007)(53546011)(122000001)(8676002)(966005)(2906002)(478600001)(66556008)(66476007)(186003)(26005)(86362001)(66946007)(33656002)(7696005)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?SnhyRWQ5TCsxZS9MNHl4OGpnQmMxUmE0STFXNlBsTzNoT1Y1UXFxNFFERzhq?=
+ =?utf-8?B?QVkzR2dNMnZ1LzhPL1BCNmlNc3l2M01MclQyenFSN1IwWEs2NzB2bFpSUjNW?=
+ =?utf-8?B?VWQzRVkwSGxzMGxIV29IRUMvTmZmM2JlRFV4WFFQOTI1M1hRWTNVb3c1SUo1?=
+ =?utf-8?B?SUdweW5sSVROTkd2aUtvVU04ME9kQTVHVzJhanBtWmRYSWFHS0VkRXVlbFZa?=
+ =?utf-8?B?OTQvVlZMTFU1eUZQRE1Qc1hBemFuODlKQU9aakI3SEJpVUJPekNSSUZGWFJx?=
+ =?utf-8?B?SlAyVFFDUCtRQU9wV24rMSszL3JEUzVmRHJrTDhWajVhaFRUcjZUSGUyZ3hj?=
+ =?utf-8?B?Vy9qWjNvQjJud3RzdUNwSmJ3T2Nvdm5WTXlNS1JxQkIxWC9RdVR1Tm1iVnpn?=
+ =?utf-8?B?eTFCUmdic1czejlJWHJmbzBoVTZoODVVTGVwRlNMSXd4d0o5TGVUYTJwZDlt?=
+ =?utf-8?B?TUI5UllFVDFneENPaDUzT21BY0haQ2pGQy9LN3NoaFA3MUkyZWRJMEJWeWV2?=
+ =?utf-8?B?UllGbHRmZGloZU00TmdzN2VWd21MSTZUVnZNSTNoYzJlOHdxV296K0ZsMDFh?=
+ =?utf-8?B?dWt0VVY1UWNFSjA3U2V6UmFya0lNUXB6ZGxiUGtmVmlRUXVKQWJ2LytaVTZq?=
+ =?utf-8?B?b0psakdvaFdueVNTTkcycTBIN0FNZUNlL2FUTDZJOGxHNFNwMUdjYVkvS1RP?=
+ =?utf-8?B?S05SUms1dzBVTDQrcERYbHBMd1RvTFBWdWZTVUYvTXh1aXR1RDI1bVcxeWty?=
+ =?utf-8?B?Y0pzVlJBSlNScFhVYmpic2hzWFk2eXB0U2dVM085U0RhQ3Z1N2p0OFFDeUNt?=
+ =?utf-8?B?ZU1sRWRpU2h3WnBMaUplaGd3b0xYR0FwZFo2ZllqTlhycHJ5NFdIMWo3Vm05?=
+ =?utf-8?B?dWNjZllsdjlNRjlTTUt1U21JSkFsYXJhbnJ2b1gzdnZSelIza1lZSU1tVEtj?=
+ =?utf-8?B?d3ZhUHdwbFVpN2xxZndNZzdmYnB4OTZBWFFyeGFva2duU0VUVEpMcDVJQlJv?=
+ =?utf-8?B?cFBtbHo4SDRXNS9iTHZqTEdhNkVtK0ttMTdnMVhLU3BEQ1JCektZdGErOHJD?=
+ =?utf-8?B?V0JjZzQ0eVBZV0d1a3lOTUViSWYvU3VObmFMY0hySU5HNk5SSUp3cVVrNHBr?=
+ =?utf-8?B?REtoOExTdkNFUEsyOE4vb1VXdHZhcXNCZi9CR3ZFV0pCYks0WHdWV285TG9J?=
+ =?utf-8?B?RURJdW1CYTB2djc0MklUcGRWT3NNTlVvRHlXRnRxTm5hcytHU2Y5NGt4aXVC?=
+ =?utf-8?B?NWo1cnJvMU1YLzl1VDdvbDdEQXZRNEtrZnFHUEM2N2dJMnVHWmhmeWJBbjJ0?=
+ =?utf-8?B?Zk95TGtJcEFBS2Z4N3JWS3hZbHI4cU83SVd5UFRZbzNqU3RUb3FsV1dxei9j?=
+ =?utf-8?B?eXVhZHRacjdVNXpDZU9KcHE1eEpvcXY1Ykl1ZjRUa0JISTZ1UzJtVm9nd043?=
+ =?utf-8?B?ZTZKV0h6Y0d0NDhxYnRyZ3N2V01FM3YxbEVZU2ZBcDlST3VsNkZFRmFLNXRr?=
+ =?utf-8?B?b1FPTHF4bFkwNTFNR0VyVTRDVGpXUDZYV0hicTJVeWlBaVdBM2k5WUZQM3NQ?=
+ =?utf-8?B?b2NKWmE5cVZBMWMxZkZTTXlBVVFVcTZzN1lZczBYdXBnenhQWVUzbXZXTGtR?=
+ =?utf-8?B?USt3UHhxUVprVGxZK1VMVU5GcDdrM3BhU2Z2ajRWZWQwWlFUdjEvSXpxR3I4?=
+ =?utf-8?B?U3JiQ09VYklHVHBKd0RRR1NnQi9wOFZVYTJleHZiM3pjdjdRbG1WODJxM3ZV?=
+ =?utf-8?Q?YayhSxxttU+3BCJql3Q/Hbn3poZDFOujeZ7jzmc?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6688.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 61e158f9-06da-4464-c65c-08d916e8956b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 May 2021 14:57:24.3408
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: oRLC73OIzyMiHxvfS0wbDsip9GEdsOLrcoJ6PwrOTi2IYcKPShf56tNnbco9NqEz5gQa66k4Rahr+1oXx2rvOA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7022
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/05/2021 16:55, Ezequiel Garcia wrote:
-> Hi Neil,
-> 
-> On Mon, 26 Apr 2021 at 06:59, Neil Armstrong <narmstrong@baylibre.com> wrote:
->>
->> Hi,
->>
->> On 21/04/2021 07:28, Nicolas Boichat wrote:
->>> Hi!
->>>
->>> This is just a rebase of the v11, untested (but it seems like
->>> Neil Armstrong recently tested it), with small changes in
->>> binding and dts. v11 cover follows:
->>>
->>> Follow-up on the v5 [1], things have gotten significantly
->>> better in the last year, thanks to the efforts on Bifrost
->>> support by the Collabora team (and probably others I'm not
->>> aware of).
->>>
->>> I've been testing this series on a MT8183/kukui device, with a
->>> chromeos-5.10 kernel [2], and got basic Chromium OS UI up with
->>> mesa 20.3.2 (lots of artifacts though).
->>>
->>> devfreq is currently not supported, as we'll need:
->>>  - Clock core support for switching the GPU core clock (see 2/4).
->>>  - Platform-specific handling of the 2-regulator (see 3/4).
->>>
->>> Since the latter is easy to detect, patch 3/4 just disables
->>> devfreq if the more than one regulator is specified in the
->>> compatible matching table.
->>>
->>> [1] https://patchwork.kernel.org/project/linux-mediatek/cover/20200306041345.259332-1-drinkcat@chromium.org/
->>> [2] https://crrev.com/c/2608070
->>>
->>> Changes in v13:
->>>  - devfreq: Fix conflict resolution mistake when rebasing, didn't
->>>    even compile. Oops.
->>>
->>> Changes in v12:
->>>  - binding: Fix min/maxItems logic (Rob Herring)
->>>  - Add gpu node to mt8183-pumpkin.dts as well (Neil Armstrong).
->>>
->>> Changes in v11:
->>>  - binding: power-domain-names not power-domainS-names
->>>  - mt8183*.dts: remove incorrect supply-names
->>>
->>> Changes in v10:
->>>  - Fix the binding to make sure sram-supply property can be provided.
->>>
->>> Changes in v9:
->>>  - Explain why devfreq needs to be disabled for GPUs with >1
->>>    regulators.
->>>
->>> Changes in v8:
->>>  - Use DRM_DEV_INFO instead of ERROR
->>>
->>> Changes in v7:
->>>  - Fix GPU ID in commit message
->>>  - Fix GPU ID in commit message
->>>
->>> Changes in v6:
->>>  - Rebased, actually tested with recent mesa driver.
->>>  - Add gpu regulators to kukui dtsi as well.
->>>  - Power domains are now attached to spm, not scpsys
->>>  - Drop R-B.
->>>  - devfreq: New change
->>>  - Context conflicts, reflow the code.
->>>  - Use ARRAY_SIZE for power domains too.
->>>
->>> Changes in v5:
->>>  - Rename "2d" power domain to "core2"
->>>  - Rename "2d" power domain to "core2" (keep R-B again).
->>>  - Change power domain name from 2d to core2.
->>>
->>> Changes in v4:
->>>  - Add power-domain-names description
->>>    (kept Alyssa's reviewed-by as the change is minor)
->>>  - Add power-domain-names to describe the 3 domains.
->>>    (kept Alyssa's reviewed-by as the change is minor)
->>>  - Add power domain names.
->>>
->>> Changes in v3:
->>>  - Match mt8183-mali instead of bifrost, as we require special
->>>    handling for the 2 regulators and 3 power domains.
->>>
->>> Changes in v2:
->>>  - Use sram instead of mali_sram as SRAM supply name.
->>>  - Rename mali@ to gpu@.
->>>
->>> Nicolas Boichat (4):
->>>   dt-bindings: gpu: mali-bifrost: Add Mediatek MT8183
->>>   arm64: dts: mt8183: Add node for the Mali GPU
->>>   drm/panfrost: devfreq: Disable devfreq when num_supplies > 1
->>>   drm/panfrost: Add mt8183-mali compatible string
->>>
->>>  .../bindings/gpu/arm,mali-bifrost.yaml        |  30 ++++-
->>>  arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |   5 +
->>>  .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   5 +
->>>  .../boot/dts/mediatek/mt8183-pumpkin.dts      |   5 +
->>>  arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 105 ++++++++++++++++++
->>>  drivers/gpu/drm/panfrost/panfrost_devfreq.c   |   9 ++
->>>  drivers/gpu/drm/panfrost/panfrost_drv.c       |  10 ++
->>>  7 files changed, 168 insertions(+), 1 deletion(-)
->>>
->>
->> Seems this version is ready to be applied if we get a review on the DT ?
->>
->> Mathias ? could you have a look ?
->>
-> 
-> Given Rob has Acked the DT bindings, I think it's OK to apply patches
-> 1, 3 and 4 via drm-misc, letting Mediatek people sort out the DT changes.
-> 
-> My two unsolicited cents :-)
-
-Yeah sure, is there a panfrost maintainer in the room ? I can apply them if you ack me.
-
-Neil
-
-> 
-> Ezequiel
-> 
-
+T24gNS8xMS8yMSAyMjo0OSBBZGFtIEZvcmQgPGFmb3JkMTczQGdtYWlsLmNvbT4gd3JvdGU6DQoN
+Cj4gPiBDb21wYXJlIFBJTyB3aXRoIERNQSBvbiBVQVJULCBidXQgbm90IHcvbyB0aGlzICAnc3Bi
+YSBidXMgbm9kZSAnIHBhdGNoPw0KPiA+DQo+ID4gPiBJbiBmYWN0LCBpZiB0aGUgRE1BIGZpcm13
+YXJlIGlzbid0IGxvYWRlZCwgSSBvZnRlbiBnZXQgdHJhbnNmZXIgZXJyb3JzLg0KPiA+IFVBUlQg
+dXNlIFNETUEgUk9NIGZpcm13YXJlIGluc3RlYWQgb2YgUkFNIGZpcm13YXJlLCBzbyBpdCBzaG91
+bGQgd29yaw0KPiA+IGV2ZW4gd2l0aG91dCBzZG1hIFJBTSBmaXJtd2FyZSBsb2FkZWQuICBTdGls
+bCBjdXJpb3VzIHdoYXQgcmVhbGx5DQo+ID4gaGFwcGVuIGluIHlvdXIgYm9hcmQgd2l0aG91dCB0
+aGlzIHBhdGNoLg0KPiANCj4gV2hhdCBJIGFtIHNlZWluZyBpcyB0aGF0IGF0IHRpbWVzLCB0aGUg
+SENJIFVBUlQgbG9hZGluZyBiZWZvcmUgdGhlIERNQQ0KPiBmaXJtd2FyZSBpcyBsb2FkZWQuDQo+
+IA0KPiBbICAgMTAuNTgyMDM3XSBCbHVldG9vdGg6IEhDSSBVQVJUIGRyaXZlciB2ZXIgMi4zDQo+
+IFsgICAxMC41ODY4NjddIEJsdWV0b290aDogSENJIFVBUlQgcHJvdG9jb2wgSDQgcmVnaXN0ZXJl
+ZA0KPiBbICAgMTAuNTkzNTY2XSBpbXgtc2RtYSAzMGJkMDAwMC5kbWEtY29udHJvbGxlcjogc2Rt
+YSBmaXJtd2FyZSBub3QNCj4gcmVhZHkhDQpTZWVtcyB5b3UgYXBwbHkgbXkgcGF0Y2ggc2V0ICcg
+YWRkIGVjc3BpIEVSUjAwOTE2NSBmb3IgaS5teDYvNyBzb2MgZmFtaWx5Jw0KaHR0cHM6Ly93d3cu
+c3Bpbmljcy5uZXQvbGlzdHMvbGludXgtc3BpL21zZzI2NzI4Lmh0bWwgDQp3aGVyZSAnc2RtYSBm
+aXJtd2FyZSBub3QgcmVhZHknIGFkZGVkPw0KDQo+IFsgICAxMC41OTQ1NDhdIEJsdWV0b290aDog
+SENJIFVBUlQgcHJvdG9jb2wgQnJvYWRjb20gcmVnaXN0ZXJlZA0KPiBbICAgMTAuNjAwMTA4XSBp
+bXgtdWFydCAzMDg2MDAwMC5zZXJpYWw6IFdlIGNhbm5vdCBwcmVwYXJlIGZvciB0aGUgUlggc2xh
+dmUNCj4gZG1hIQ0KV2h5IG5vdCB1c2UgUk9NIHNjcmlwdCBmb3IgVUFSVCBhcyBtYWlsaW5lIGxp
+bnV4LW5leHQgZGlkIChldmVuIHRoZSBhYm92ZSBwYXRjaCBzZXQpPw0KSWYgc28sIEkgZG9uJ3Qg
+dGhpbmsgeW91IGNvdWxkIHN1Y2ggaXNzdWUgb24geW91ciBib2FyZC4gV2hhdCBzY3JpcHQocGVy
+aXBoZXJhbCB0eXBlcykgeW91DQpzZXQgaW4gdWFydCBkdHMgc3VjaCBhcyBiZWxvdyBpcyA0LS0g
+TUNVIGRvbWFpbiBVQVJULT4gSU1YX0RNQVRZUEVfVUFSVC0+YXBwXzJfbWN1Og0KIA0KZG1hcyA9
+IDwmc2RtYTEgMjIgNCAwPiwgPCZzZG1hMSAyMyA0IDA+Ow0KDQo+IA0KPiBXaGVuIEkgZ2V0IHRo
+ZSBhYm92ZSBtZXNzYWdlLCB0aGUgYmx1ZXRvb3RoIGNoaXAgSSBoYXZlIHRocm93cyB0aW1lb3V0
+cyBhbmQNCj4gZG9lcyBub3QgZnVuY3Rpb24uDQo+IA0KPiBbICAgMTAuNjE1MDkwXSBpbXgtc2Rt
+YSAzMDJjMDAwMC5kbWEtY29udHJvbGxlcjogbG9hZGVkIGZpcm13YXJlIDQuNQ0KPiANCj4gT25j
+ZSB0aGUgZmlybXdhcmUgaXMgbG9hZGVkLCBJIGNhbiB1bmxvYWQgdGhlIEhDSSBVYXJ0IGRyaXZl
+ciBhbmQgcmUtbG9hZA0KPiBCbHVldG9vdGggd29ya3MgYWdhaW4uDQo+IA0KPiBCYXNlZCBvbiB0
+aGF0LCBJJ3ZlIGJlZW4gaGF2aW5nIG15IHN5c3RlbSBkZWxheSB0aGUgbG9hZGluZyBvZiB0aGUg
+Qmx1ZXRvb3RoDQo+IG1vZHVsZXMgdW50aWwgYWZ0ZXIgdGhlIGZpcm13YXJlIGlzIGxvYWRlZCwg
+YnV0IHRoaXMgdGVsbHMgbWUgdGhlcmUgaXMgYQ0KPiByZWxhdGlvbnNoaXAgYmV0d2VlbiB0aGUg
+RE1BIGFuZCBVQVJULiANCklmIHlvdSB1c2UgcmFtIHNjcmlwdCwgb2YgY291cnNlIHlvdSBzaG91
+bGQgdXNlIGl0IGFmdGVyIGZpcm13YXJlIGxvYWRlZC4gQWN0dWFsbHkgDQpTcGJhIGJ1cyBpbiBk
+dHMgaXMgb25seSB1c2VkIGZvciBwZXJfMl9wZXIgc2NyaXB0IGp1ZGdpbmcgaWYgdGhlIHBlcmlw
+aGVyYWwgYWRkcmVzcw0KY291bGQgYmUgYWNjZXNzZWQgZGlyZWN0bHkgYnkgU0RNQSBvdmVyIFNQ
+QkEsIGlmIHllcywgc2V0IFNETUFfV0FURVJNQVJLX0xFVkVMX1NQDQp0byBsZXQgcGVyXzJfcGVy
+IHNjcmlwdCBhY2Nlc3MgcGVyaXBoZXJhbCBvdmVyIFNQQkEsIG90aGVyd2lzZSwgYWNjZXNzIHBl
+cmlwaGVyYWwgYnkNCkFJUFMgaW5zdGVhZCBsaWtlIEFSTSBzaWRlIGRpZC4gUGxlYXNlIGNoZWNr
+IHdpdGggYmVsb3cgY29tbWl0IGZvciBtb3JlLg0KQmVzaWRlcywgcGVyXzJfcGVyIHNjcmlwdCBp
+cyB1c2VkIGZvciBhdWRpbyBkYXRhIHNhbXBsZSByYXRlIGNvbnZlcnQgYmV0d2VlbiBBU1JDIGFu
+ZA0KdmFyaW91cyBhdWRpbyBpbnB1dC4gU28gYXVkaW8gcGVyaXBoZXJhbHMgaW5jbHVkZSBBU1JD
+IHNob3VsZCBiZSBpbiByZWdpc3RlciBzY29wZSBvZiANCidzcGJhLWJ1cycgLiBCdXQgd2l0aCB5
+b3VyIHBhdGNoLCB0aGVyZSBhcmUgdHdvICdzcGJhLWJ1cycgZGV2aWNlIG5vZGUgaW4gZHRzLCBz
+byB0aGUgZmlyc3QNClNwYmEtYnVzIHNob3VsZCBjb250YWluIGF1ZGlvIHBlcmlwaGVyYWwsIG90
+aGVyd2lzZSwgJ29mX2ZpbmRfY29tcGF0aWJsZV9ub2RlDQooTlVMTCwgTlVMTCwgImZzbCxzcGJh
+LWJ1cyIpJyBtYXkgZmluZCB0aGUgd3Jvbmcgb25lIHNvIHRoYXQgU0RNQV9XQVRFUk1BUktfTEVW
+RUxfU1ANCk5ldmVyIGJlIHNldC4NCg0KQlRXLCBkbyB5b3UgbWVhbiB0aGUgYWJvdmUgZmlybXdh
+cmUgbG9hZCBpc3N1ZSB5b3UgbWV0IGlzIGdvbmUgaWYgdGhpcyBwYXRjaCBhcHBsaWVkPw0KSWYg
+eWVzLCB0aGF0IHJlYWxseSBzdXJwcmlzZWQgbWUuLi4NCg0KY29tbWl0IDgzOTFlY2Y0NjVlYzVj
+OGNjZWY1NDcyNjdkZjZkNDBiZWI4OTk5YTQNCkF1dGhvcjogU2hlbmdqaXUgV2FuZyA8c2hlbmdq
+aXUud2FuZ0BmcmVlc2NhbGUuY29tPg0KRGF0ZTogICBGcmkgSnVsIDEwIDE3OjA4OjE2IDIwMTUg
+KzA4MDANCg0KICAgIGRtYWVuZ2luZTogaW14LXNkbWE6IEFkZCBkZXZpY2UgdG8gZGV2aWNlIHN1
+cHBvcnQNCg0KDQoNCg0KDQo=
