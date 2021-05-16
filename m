@@ -2,101 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89D3A3820AB
-	for <lists+devicetree@lfdr.de>; Sun, 16 May 2021 21:39:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEAF93820E1
+	for <lists+devicetree@lfdr.de>; Sun, 16 May 2021 22:24:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232853AbhEPTk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 May 2021 15:40:28 -0400
-Received: from antares.kleine-koenig.org ([94.130.110.236]:48006 "EHLO
-        antares.kleine-koenig.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232322AbhEPTk1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 May 2021 15:40:27 -0400
-Received: from antares.kleine-koenig.org (localhost [127.0.0.1])
-        by antares.kleine-koenig.org (Postfix) with ESMTP id A9A86B9CFB6;
-        Sun, 16 May 2021 21:39:10 +0200 (CEST)
-Received: from antares.kleine-koenig.org ([94.130.110.236])
-        by antares.kleine-koenig.org (antares.kleine-koenig.org [94.130.110.236]) (amavisd-new, port 10024)
-        with ESMTP id 0RN9mhaQgUHe; Sun, 16 May 2021 21:39:09 +0200 (CEST)
-Received: from taurus.defre.kleine-koenig.org (unknown [IPv6:2a02:8071:b5c8:7bfc:d65f:b030:4f16:836c])
-        by antares.kleine-koenig.org (Postfix) with ESMTPSA;
-        Sun, 16 May 2021 21:39:09 +0200 (CEST)
-Subject: Re: [PATCH] arm64: dts: rockchip: helios64: Add support for two PWM
- fans
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Aditya Prayoga <aditya@kobol.io>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20210510090607.970145-1-uwe@kleine-koenig.org>
- <162099477649.1967349.5366927271429530848.b4-ty@sntech.de>
-From:   =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <uwe@kleine-koenig.org>
-Message-ID: <ebe574a9-5831-6c6d-bbb7-995afa6eb277@kleine-koenig.org>
-Date:   Sun, 16 May 2021 21:39:04 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        id S233488AbhEPUZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 May 2021 16:25:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52964 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233417AbhEPUZP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 May 2021 16:25:15 -0400
+X-Greylist: delayed 311 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 16 May 2021 13:24:00 PDT
+Received: from cascadia.aikidev.net (cascadia.aikidev.net [IPv6:2600:3c01:e000:267:0:a171:de7:c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 61CF0C061573;
+        Sun, 16 May 2021 13:24:00 -0700 (PDT)
+Received: from localhost (unknown [IPv6:2600:3c01:e000:21:21:21:0:100b])
+        (Authenticated sender: vagrant@aikidev.net)
+        by cascadia.aikidev.net (Postfix) with ESMTPSA id C567D1A904;
+        Sun, 16 May 2021 13:18:48 -0700 (PDT)
+From:   Vagrant Cascadian <vagrant@reproducible-builds.org>
+To:     Salvatore Bonaccorso <carnil@debian.org>,
+        Jernej =?utf-8?Q?=C5=A0krabe?= =?utf-8?Q?c?= 
+        <jernej.skrabec@siol.net>
+Cc:     Maxime Ripard <maxime@cerno.tech>,
+        "B.R. Oake" <broake@mailfence.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Chen-Yu Tsai <wens@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: sun8i: h3: orangepi-plus: Fix Ethernet PHY mode
+In-Reply-To: <YKFPGC2qBMipQPbd@eldamar.lan>
+References: <1243888060.510560.1612783497400@ichabod.co-bxl>
+ <20210210150118.ly252i37eykayrcb@gilmour>
+ <1719200956.433094.1613199092092@ichabod.co-bxl>
+ <6612268.HtAl026vyE@jernej-laptop> <YKFPGC2qBMipQPbd@eldamar.lan>
+Date:   Sun, 16 May 2021 13:18:44 -0700
+Message-ID: <87o8dawhy3.fsf@yucca>
 MIME-Version: 1.0
-In-Reply-To: <162099477649.1967349.5366927271429530848.b4-ty@sntech.de>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="uz8oQWuihi4QVrR2zOgjaJ2sFqPmGin9G"
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha512; protocol="application/pgp-signature"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---uz8oQWuihi4QVrR2zOgjaJ2sFqPmGin9G
-Content-Type: multipart/mixed; boundary="Sc8PLjnSA6IWTdq7dj4nUtzmQSDDYFERh";
- protected-headers="v1"
-From: =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <uwe@kleine-koenig.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
- Aditya Prayoga <aditya@kobol.io>, Rob Herring <robh+dt@kernel.org>
-Message-ID: <ebe574a9-5831-6c6d-bbb7-995afa6eb277@kleine-koenig.org>
-Subject: Re: [PATCH] arm64: dts: rockchip: helios64: Add support for two PWM
- fans
-References: <20210510090607.970145-1-uwe@kleine-koenig.org>
- <162099477649.1967349.5366927271429530848.b4-ty@sntech.de>
-In-Reply-To: <162099477649.1967349.5366927271429530848.b4-ty@sntech.de>
-
---Sc8PLjnSA6IWTdq7dj4nUtzmQSDDYFERh
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+--=-=-=
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-On 5/14/21 2:20 PM, Heiko Stuebner wrote:
-> On Mon, 10 May 2021 11:06:07 +0200, Uwe Kleine-K=C3=B6nig wrote:
->> On the helios64 board the two connectors P6 and P7 are supposed to
->> power two fans. Add the corresponding pwm-fan devices.
->=20
-> Applied, thanks!
->=20
-> [1/1] arm64: dts: rockchip: helios64: Add support for two PWM fans
->        commit: 271b66414df0b172c936b3cfd1894b7939f84165
->=20
-> Adapted the ordering "fan*" above "led*".
+On 2021-05-16, Salvatore Bonaccorso wrote:
+> On Sat, Feb 13, 2021 at 09:51:17AM +0100, Jernej =C5=A0krabec wrote:
+>> Let me first explain that it was oversight on my side not noticing initi=
+als in=20
+>> your SoB tag. But since the issue was raised by Maxime, I didn't follow =
+up.
+>>=20
+>> Dne sobota, 13. februar 2021 ob 07:51:32 CET je B.R. Oake napisal(a):
+>> > On Wed Feb 10 at 16:01:18 CET 2021, Maxime Ripard wrote:
+>> > > Unfortunately we can't take this patch as is, this needs to be your =
+real
+>> > > name, see:
+>> > > https://www.kernel.org/doc/html/latest/process/submitting-patches.ht=
+ml#de
+>> > > veloper-s-certificate-of-origin-1-1
+>> > Dear Maxime,
+>> >=20
+>> > Thank you very much for considering my contribution and for all your
+>> > work on supporting sunxi-based hardware; I appreciate it.
+>> >=20
+>> > Thank you for referring me to the Developer's Certificate of Origin, b=
+ut
+>> > I had already read it before submitting (I had to do so in order to kn=
+ow
+>> > what I was saying by "Signed-off-by:") and I do certify what it says.
+>> >=20
+>> > Looking through recent entries in the commit log of the mainline kerne=
+l,
+>> > I see several patches from authors such as:
+>> >=20
+>> >   H.J. Lu <hjl.tools@gmail.com>
+>> >   B K Karthik <karthik.bk2000@live.com>
+>> >   JC Kuo <jckuo@nvidia.com>
+>> >   EJ Hsu <ejh@nvidia.com>
+>> >   LH Lin <lh.lin@mediatek.com>
+>> >   KP Singh <kpsingh@kernel.org>
+>> >   Karthik B S <karthik.b.s@intel.com>
+>> >   Shreyas NC <shreyas.nc@intel.com>
+>> >   Vandana BN <bnvandana@gmail.com>
+>> >=20
+>> > so I believe names of this form are in fact acceptable, even if the
+>> > style might seem a little old-fashioned to some.
+>>=20
+>> Speaking generally, not only for this case, prior art arguments rarely h=
+old,=20
+>> because:
+>> - it might be oversight,
+>> - it might be a bad practice, which should not be followed in new=20
+>> contributions,
+>> - different maintainers have different point of view on same thing,
+>> - maintainer wants to adapt new practice or steer subsystem in new direc=
+tion
+>>=20
+>> >=20
+>> > I would like to add that I have met many people with names such as C.J=
+.,
+>> > A A, TC, MG, etc. That is what everybody calls them and it would be
+>> > natural for them to sign themselves that way. Some of them might want =
+to
+>> > contribute to Linux some day, and I think it would be a great shame and
+>> > a loss to all of us if they were discouraged from doing so by reading
+>> > our conversation in the archives and concluding that any contribution
+>> > from them, however small, would be summarily refused simply because of
+>> > their name. Please could you ensure that does not happen?
+>>=20
+>> The link you posted says following:
+>> "using your real name (sorry, no pseudonyms or anonymous contributions.)"
+>>=20
+>> I believe that real name means no initials, no matter what people are=20
+>> accustomed to. From my point of view, CJ is pseudonym derived from real =
+name.
+>>=20
+>> This is not the first time that fix of SoB tag was requested, you can fi=
+nd such=20
+>> requests in ML archives.
 
-Oh indeed. Thanks
+I'm sure this isn't the first time this sort of thing has been brought
+up on this subject, but I feel obliged to mention:
 
-Best regards
-Uwe
+  https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about=
+-names/
+
+This seems to be blocked on culturally dependent perception of what
+looks like a "real name" as opposed to any technical grounds.
+
+What is the goal of the "real name" in Signed-off-by actually trying to
+achieve?
 
 
---Sc8PLjnSA6IWTdq7dj4nUtzmQSDDYFERh--
+live well,
+  vagrant
 
---uz8oQWuihi4QVrR2zOgjaJ2sFqPmGin9G
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmChdNgACgkQwfwUeK3K
-7AmQfAf/Q7SlIh4/6sviI7ef/0a2x9qNbD6us3y2O4BpMNVWabUjrDHuyTQmbkty
-fP3lENjZgMu4aOyreeNVtv/6zpQRm/82bI7PXgI8iWzkoUG9F5lvYlnmIpexbuDb
-pjVXINxguJ+zDecBcjIRc0rHhdQ8Wuz82gQO11tO22Nj7j9BIZcY9X3d+oPouW0G
-j01T4w/gLFIwbW6asrXLYaWBNgDej416MSbDDKdtlfAkuBNKKczwQrTJgEwgIGAV
-QVIoE6DngQZbaKyKiRdfeSjCdqHEc2T1b/ZcvDuCScpp9ZNkDjSVezPTfvMAyS8z
-BqcnIcdqWM+QnF940FXYYWvGLpBciA==
-=E/Kk
+iHUEARYKAB0WIQRlgHNhO/zFx+LkXUXcUY/If5cWqgUCYKF+JQAKCRDcUY/If5cW
+qsokAP9nYxJeAbCY5XVe6Mq51MJdRig2BlF4b3b5KwBHW0fy7QD/ddOU4rtOhc6s
+fmXJjZNIdsqtIoXZwCygfIhnMmWoAg8=
+=o8xs
 -----END PGP SIGNATURE-----
-
---uz8oQWuihi4QVrR2zOgjaJ2sFqPmGin9G--
+--=-=-=--
