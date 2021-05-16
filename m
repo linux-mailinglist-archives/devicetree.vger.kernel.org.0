@@ -2,109 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA81D381D86
-	for <lists+devicetree@lfdr.de>; Sun, 16 May 2021 11:05:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68844381DC9
+	for <lists+devicetree@lfdr.de>; Sun, 16 May 2021 11:56:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234389AbhEPJGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 May 2021 05:06:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50124 "EHLO mail.kernel.org"
+        id S229681AbhEPJ5a convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 16 May 2021 05:57:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33894 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229445AbhEPJGg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 16 May 2021 05:06:36 -0400
+        id S229661AbhEPJ53 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 16 May 2021 05:57:29 -0400
 Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B7D3A610A6;
-        Sun, 16 May 2021 09:05:19 +0000 (UTC)
-Date:   Sun, 16 May 2021 10:06:31 +0100
+        by mail.kernel.org (Postfix) with ESMTPSA id 100E160698;
+        Sun, 16 May 2021 09:56:08 +0000 (UTC)
+Date:   Sun, 16 May 2021 10:57:20 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Liam Beguin <liambeguin@gmail.com>
-Cc:     jdelvare@suse.com, linux@roeck-us.net, lars@metafoo.de,
-        pmeerw@pmeerw.net, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        Peter Rosin <peda@axentia.se>
-Subject: Re: [RFC PATCH v1 0/2] hwmon: (iio_hwmon) optionally force iio
- channel type
-Message-ID: <20210516100631.7310a7bb@jic23-huawei>
-In-Reply-To: <20210516044315.116290-1-liambeguin@gmail.com>
-References: <20210516044315.116290-1-liambeguin@gmail.com>
+To:     Jozsef Horvath <info@ministro.hu>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexandru Ardelean <aardelean@deviqon.com>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Saravanan Sekar <sravanhome@gmail.com>,
+        Tomislav Denis <tomislav.denis@avl.com>,
+        Gene Chen <gene_chen@richtek.com>,
+        Alex Dewar <alex.dewar90@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: iio: adc: devicetree bindings for
+ texas instruments ads7142
+Message-ID: <20210516105720.2b9cf46a@jic23-huawei>
+In-Reply-To: <a8200f9ce6a4b3fdf5a9b1e61bbc7c4ced8361b6.1621105931.git.info@ministro.hu>
+References: <9f9c64ca70f80d8a024ea66e3963350e35f27c1d.1621105931.git.info@ministro.hu>
+        <a8200f9ce6a4b3fdf5a9b1e61bbc7c4ced8361b6.1621105931.git.info@ministro.hu>
 X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 16 May 2021 00:43:13 -0400
-Liam Beguin <liambeguin@gmail.com> wrote:
+On Sun, 16 May 2021 07:31:05 +0000
+Jozsef Horvath <info@ministro.hu> wrote:
 
-> Add a devicetree binding to optionally force a different IIO channel
-> type.
+> This is a device tree schema for iio driver for
+>  Texas Instruments ADS7142 dual-channel, programmable sensor monitor.
 > 
-> This is useful in cases where ADC channels are connected to a circuit
-> that represent another unit such as a temperature or a current.
+> Datasheet: https://www.ti.com/lit/ds/symlink/ads7142.pdf
 > 
-> `channel-types` was chosen instead of `io-channel-types` as this is not
-> part of the iio consumer bindings.
-> 
-> In the current form, this patch does what it's intended to do:
-> change the unit displayed by `sensors`, but feels like the wrong way to
-> address the problem.
-> 
-> Would it be possible to force the type of different IIO channels for
-> this kind of use case with a devicetree binding from the IIO subsystem?
-> 
-> It would be convenient to do it within the IIO subsystem to have the
-> right unit there too.
-> 
-> Thanks for your time,
-> Liam
+> Signed-off-by: Jozsef Horvath <info@ministro.hu>
 
-Hi Liam,
+Hi József,
 
-+CC Peter for AFE part.
+A few comments inline.
 
-It's an interesting approach, but I would suggest we think about this
-a different way.
-
-Whenever a channel is being used to measure something 'different' from
-what it actually measures (e.g. a voltage ADC measuring a current) that
-reflects their being some analog component involved.
-If you look at drivers/iio/afe/iio-rescale.c you can see the approach
-we currently use to handle this.
-
-Effectively what you add to devicetree is a consumer of the ADC channel
-which in turn provides services to other devices. For this current case
-it would be either a current-sense-amplifier or a current-sense-shunt 
-depending on what the analog front end looks like.  We have to describe
-the characteristics of that front end which isn't something that can
-be done via a simple channel type.
-
-That afe consumer device can then provide services to another consumer
-(e.g. iio-hwmon) which work for your usecase.
-
-The main limitation of this approach currently is you end up with
-one device per channel.  That could be improved upon if you have a usecase
-where it matters.
-
-I don't think we currently have an equivalent for temperature sensing
-but it would be easy enough to do something similar.
+thanks,
 
 Jonathan
+> ---
+> 
+> changes v1
+>   - Redundant parameters (ti,threshold-rising, etc.)
+>     are removed
+>   - Supply name changed(vref -> avdd)
+>   - Added dvdd supply
+>   - All the properties are removed with prefix "ti,"
+> changes v2
+>   - "ti,prealert-count" parameter added, just for completeness.
+> ---
+>  .../bindings/iio/adc/ti,ads7142.yaml          | 110 ++++++++++++++++++
+>  1 file changed, 110 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads7142.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads7142.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads7142.yaml
+> new file mode 100644
+> index 000000000000..6e52079c68f7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads7142.yaml
+> @@ -0,0 +1,110 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/iio/adc/ti,ads7142.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Texas Instruments ADS7142 adc driver device tree bindings
+
+ADC
+
+> +
+> +maintainers:
+> +  - József Horváth <info@ministro.hu>
+> +
+> +description: |
+> +  This document is for describing the required device tree parameters
+> +   for ads7142 adc
+
+ADC
+
+> +  The required parameters for proper operation are described below.
+> +
+> +  Datasheet: https://www.ti.com/lit/ds/symlink/ads7142.pdf
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,ads7142
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: |
+> +      The BUSY/PDY pin is used as interrupt line
+
+RDY ?
+
+> +       in autonomous monitoring mode.
+> +    maxItems: 1
+> +
+> +  avdd-supply:
+> +    description: Regulator for the reference voltage
+> +
+> +  dvdd-supply: true
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  "#io-channel-cells":
+> +    const: 1
+> +
+> +  ti,prealert-count:
+> +    description: |
+> +      Sets the Pre-Alert Event Count for both,
+> +       high and low comparators, for both the channels.
+
+Interesting.  Why is this a device tree property rather than something
+we want to configure from userspace?  Looks like it would map to _period
+after scaling by the sampling frequency.
+
+https://elixir.bootlin.com/linux/latest/source/Documentation/ABI/testing/sysfs-bus-iio#L1003
 
 
-> 
-> Liam Beguin (2):
->   hwmon: (iio_hwmon) optionally force iio channel type
->   dt-bindings: hwmon: add iio-hwmon bindings
-> 
->  .../devicetree/bindings/hwmon/iio-hwmon.yaml  | 41 +++++++++++++++++++
->  drivers/hwmon/iio_hwmon.c                     |  2 +
->  2 files changed, 43 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml
-> 
-> 
-> base-commit: 9f4ad9e425a1d3b6a34617b8ea226d56a119a717
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maximum: 15
+> +    minimum: 0
+> +
+> +patternProperties:
+> +  "^channel@[0-1]$":
+> +    $ref: "adc.yaml"
+> +    type: object
+> +    description: |
+> +      Represents the external channels which are connected to the ADC.
+> +    properties:
+> +      reg:
+> +        description: |
+> +          The channel number.
+> +        items:
+> +          minimum: 0
+> +          maximum: 1
+
+enum: [0 1]
+is a more compact way of putting this IIRC.
+ 
+> +
+> +    required:
+> +      - reg
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - "#io-channel-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      adc@1f {
+> +        compatible = "ti,ads7142";
+> +        reg = <0x1f>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        #io-channel-cells = <1>;
+> +
+> +        avdd-supply = <&vdd_3v3_reg>;
+> +        dvdd-supply = <&vdd_1v8_reg>;
+> +
+> +        interrupt-parent = <&gpio>;
+> +        interrupts = <7 2>;
+> +
+> +        ti,prealert-count = <4>;
+> +
+> +        channel@0 {
+> +          reg = <0>;
+> +        };
+> +
+> +        channel@1 {
+> +          reg = <1>;
+> +        };
+> +      };
+> +    };
+> +...
+> +
 
