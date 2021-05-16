@@ -2,136 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B25643821E8
-	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 01:06:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBCFB3821F8
+	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 01:11:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232508AbhEPXHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 May 2021 19:07:40 -0400
-Received: from mx2.suse.de ([195.135.220.15]:44012 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232079AbhEPXHi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 16 May 2021 19:07:38 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 04EC7B1FE;
-        Sun, 16 May 2021 23:06:22 +0000 (UTC)
-From:   =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>
-To:     linux-rockchip@lists.infradead.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org
-Subject: [PATCH 9/9] arm64: dts: rockchip: rk1808: Add CPU operating points
-Date:   Mon, 17 May 2021 01:05:51 +0200
-Message-Id: <20210516230551.12469-10-afaerber@suse.de>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210516230551.12469-1-afaerber@suse.de>
-References: <20210516230551.12469-1-afaerber@suse.de>
+        id S229910AbhEPXMP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 May 2021 19:12:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33024 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229479AbhEPXMP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 May 2021 19:12:15 -0400
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D826CC061573;
+        Sun, 16 May 2021 16:10:59 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id j11so3653855qtn.12;
+        Sun, 16 May 2021 16:10:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=PoY+EuPlWoGo2pcajMw8QY1wd4IJBhLEmq5qQl8UIlk=;
+        b=HNPSwjPV1ofyklqh8xCLJFvlt9IWr3JBO8NPXTO4JEY8BPbL3EyxDk3gMVcxlAGtVq
+         D8NnnuyFduSPHiGegwkVOEKI9VGYlaCw7rNeN2Izyx/csYUyzRAGhNPwenbj0GGiNa+V
+         7IyJPjfTVHWm3rXJC7knBkZFcsOp9IpN3+ZnZkW3cV/i3V7N1m0itvxFqUrLh1TxYuce
+         hwsB7sKuI3ZFiVE8FGV3hJ2V5ySjamIWEOGG7ZaxyVOE4CudJWZ3xOQ26FUvRgmF+trU
+         lOZRMPypL/IXOEyIFFF58RgaBiSLlEGn9/7eEvIX7orRLoKrCIRipbbOndhZdcMNCoNn
+         SEMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=PoY+EuPlWoGo2pcajMw8QY1wd4IJBhLEmq5qQl8UIlk=;
+        b=BWanz5h+h/1FWD/irRvsFmzO372yVpJ15Ibjnb1pKBwCpd2XWkuGQENL+wdfw6CJvf
+         uxjxtaQ4kdp+VhRe72DkTdz4CnpwFstId4NwRpwjS0nAHaE22uGeJv2wfOimnuItm6AG
+         r6cWEiXzLaks26AJ4VqjEX1N5pa5YztDfQ7SohSajDbY1QxaEJevT/r/MwnGzV4NDRQl
+         Dimj6KglodrwELXgYuCJIkn0FX/FArmmb/D3FTL6Gs2EfULz+2SFfeg/xhlmtWRVJ4qw
+         5LBgK7CsnM0mYWJxS8XGuakmL6tBntAMIeGzuzNg8YE3SmplXONqN0xEA1EHBx8snPbd
+         lq5A==
+X-Gm-Message-State: AOAM533mltN/f80vSBDQlbDAqtlXB6CnhvpuVNS0Lu1Mqo7VxH0WJJk6
+        EUJscj+ExDpYN72CN/ccVp0=
+X-Google-Smtp-Source: ABdhPJytrgXGlxQ817LtCB14QZcajUBcsKrWFjZeIqu9SNrIcSQsEIJo8QwRX6I8yeno1D70KmEemg==
+X-Received: by 2002:ac8:4698:: with SMTP id g24mr5664517qto.112.1621206659083;
+        Sun, 16 May 2021 16:10:59 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 7sm10375052qtu.38.2021.05.16.16.10.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 May 2021 16:10:58 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [RFC PATCH v1 0/2] hwmon: (iio_hwmon) optionally force iio
+ channel type
+To:     Liam Beguin <liambeguin@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>
+Cc:     jdelvare@suse.com, lars@metafoo.de, pmeerw@pmeerw.net,
+        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, Peter Rosin <peda@axentia.se>
+References: <20210516044315.116290-1-liambeguin@gmail.com>
+ <20210516100631.7310a7bb@jic23-huawei> <CBEREZMZ2Z8U.13BH8G7RKPPL7@shaak>
+ <e56146c5-2bff-3a6d-b54e-fd40993f82aa@roeck-us.net>
+ <20210516172618.2d7ad168@jic23-huawei> <CBEVHCPHGJJD.2IDUUG1RPDF64@shaak>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <d99331c5-b3d6-5e87-3a3d-8cf2817dea11@roeck-us.net>
+Date:   Sun, 16 May 2021 16:10:56 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CBEVHCPHGJJD.2IDUUG1RPDF64@shaak>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Associate operating points with both CPU nodes.
-Data source is the shipping TB-RK1808M0 DTB.
+On 5/16/21 11:14 AM, Liam Beguin wrote:
+> On Sun May 16, 2021 at 12:26 PM EDT, Jonathan Cameron wrote:
+>> On Sun, 16 May 2021 08:54:06 -0700
+>> Guenter Roeck <linux@roeck-us.net> wrote:
+>>
+>>> On 5/16/21 8:02 AM, Liam Beguin wrote:
+>>>> Hi Jonathan,
+>>>>
+>>>> On Sun May 16, 2021 at 5:06 AM EDT, Jonathan Cameron wrote:
+>>>>> On Sun, 16 May 2021 00:43:13 -0400
+>>>>> Liam Beguin <liambeguin@gmail.com> wrote:
+>>>>>   
+>>>>>> Add a devicetree binding to optionally force a different IIO channel
+>>>>>> type.
+>>>>>>
+>>>>>> This is useful in cases where ADC channels are connected to a circuit
+>>>>>> that represent another unit such as a temperature or a current.
+>>>>>>
+>>>>>> `channel-types` was chosen instead of `io-channel-types` as this is not
+>>>>>> part of the iio consumer bindings.
+>>>>>>
+>>>>>> In the current form, this patch does what it's intended to do:
+>>>>>> change the unit displayed by `sensors`, but feels like the wrong way to
+>>>>>> address the problem.
+>>>>>>
+>>>>>> Would it be possible to force the type of different IIO channels for
+>>>>>> this kind of use case with a devicetree binding from the IIO subsystem?
+>>>>>>
+>>>>>> It would be convenient to do it within the IIO subsystem to have the
+>>>>>> right unit there too.
+>>>>>>
+>>>>>> Thanks for your time,
+>>>>>> Liam
+>>>>>
+>>>>> Hi Liam,
+>>>>>
+>>>>> +CC Peter for AFE part.
+>>>>>
+>>>>> It's an interesting approach, but I would suggest we think about this
+>>>>> a different way.
+>>>>>
+>>>>> Whenever a channel is being used to measure something 'different' from
+>>>>> what it actually measures (e.g. a voltage ADC measuring a current) that
+>>>>> reflects their being some analog component involved.
+>>>>> If you look at drivers/iio/afe/iio-rescale.c you can see the approach
+>>>>> we currently use to handle this.
+>>>>
+>>>> Many thanks for pointing out the AFE code. That look like what I was
+>>>> hoping to accomplish, but in a much better way.
+>>>>    
+>>>>>
+>>>>> Effectively what you add to devicetree is a consumer of the ADC channel
+>>>>> which in turn provides services to other devices. For this current case
+>>>>> it would be either a current-sense-amplifier or a current-sense-shunt
+>>>>> depending on what the analog front end looks like. We have to describe
+>>>>> the characteristics of that front end which isn't something that can
+>>>>> be done via a simple channel type.
+>>>>>   
+>>>>
+>>>> Understood. My original intention was to use sensors.conf to do the
+>>>> conversions and take into accounts those parameters.
+>>>>    
+>>>>> That afe consumer device can then provide services to another consumer
+>>>>> (e.g. iio-hwmon) which work for your usecase.
+>>>>>
+>>>>> The main limitation of this approach currently is you end up with
+>>>>> one device per channel. That could be improved upon if you have a
+>>>>> usecase
+>>>>> where it matters.
+>>>>>
+>>>>> I don't think we currently have an equivalent for temperature sensing
+>>>>> but it would be easy enough to do something similar.
+>>>>
+>>>> Wonderful, thanks again for pointing out the AFE!
+>>>>    
+>>>
+>>> Please don't reinvent the ntc_thermistor driver.
+> 
+>> Agreed, I'd forgotten it existed :( Had a feeling we'd solved that
+>> problem before
+>> but couldn't remember the name of the driver.
+>>
+>> The afe driver already deals with current / voltage scaling and
+>> conversion
+>> for common analog circuits. Potential dividers, current shunts etc, but
+>> they
+>> are all the linear cases IIRC.
+>>
+>> ntc_thermistor deals with the much more complex job of dealing with a
+>> thermistor.
+> 
+> I agree, no need to reinvent this.
+> 
+> Like Jonathan said, the ntc_thermistor driver seems to handle much more
+> complex cases. Where would be the best place to add support for PT100
+> and PT1000? iio-rescale?
+> 
 
-Signed-off-by: Andreas Färber <afaerber@suse.de>
----
- arch/arm64/boot/dts/rockchip/rk1808.dtsi | 64 ++++++++++++++++++++++++
- 1 file changed, 64 insertions(+)
+Those sensors don't seem to be even useful for hardware monitoring, so
+if they are linear (and it looks like that that the case) iio would be
+a better place.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk1808.dtsi b/arch/arm64/boot/dts/rockchip/rk1808.dtsi
-index b4a71c5c8be7..82614c47f144 100644
---- a/arch/arm64/boot/dts/rockchip/rk1808.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk1808.dtsi
-@@ -32,7 +32,10 @@ cpu0: cpu@0 {
- 			compatible = "arm,cortex-a35";
- 			reg = <0x0 0x0>;
- 			enable-method = "psci";
-+			dynamic-power-coefficient = <74>;
-+			operating-points-v2 = <&cpu0_opp_table>;
- 			cpu-idle-states = <&CPU_SLEEP>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu1: cpu@1 {
-@@ -40,6 +43,7 @@ cpu1: cpu@1 {
- 			compatible = "arm,cortex-a35";
- 			reg = <0x0 0x1>;
- 			enable-method = "psci";
-+			operating-points-v2 = <&cpu0_opp_table>;
- 			cpu-idle-states = <&CPU_SLEEP>;
- 		};
- 
-@@ -57,6 +61,66 @@ CPU_SLEEP: cpu-sleep {
- 		};
- 	};
- 
-+	cpu0_opp_table: cpu0-opp-table {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-408000000 {
-+			opp-hz = /bits/ 64 <408000000>;
-+			opp-microvolt = <750000 750000 950000>;
-+			clock-latency-ns = <40000>;
-+			opp-suspend;
-+		};
-+
-+		opp-600000000 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-microvolt = <750000 750000 950000>;
-+			clock-latency-ns = <40000>;
-+		};
-+
-+		opp-816000000 {
-+			opp-hz = /bits/ 64 <816000000>;
-+			opp-microvolt = <750000 750000 950000>;
-+			clock-latency-ns = <40000>;
-+		};
-+
-+		opp-1008000000 {
-+			opp-hz = /bits/ 64 <1008000000>;
-+			opp-microvolt = <750000 750000 950000>;
-+			clock-latency-ns = <40000>;
-+		};
-+
-+		opp-1200000000 {
-+			opp-hz = /bits/ 64 <1200000000>;
-+			opp-microvolt = <800000 800000 950000>;
-+			clock-latency-ns = <40000>;
-+		};
-+
-+		opp-1296000000 {
-+			opp-hz = /bits/ 64 <1296000000>;
-+			opp-microvolt = <825000 825000 950000>;
-+			clock-latency-ns = <40000>;
-+		};
-+
-+		opp-1416000000 {
-+			opp-hz = /bits/ 64 <1416000000>;
-+			opp-microvolt = <850000 850000 950000>;
-+			clock-latency-ns = <40000>;
-+		};
-+
-+		opp-1512000000 {
-+			opp-hz = /bits/ 64 <1512000000>;
-+			opp-microvolt = <875000 875000 950000>;
-+			clock-latency-ns = <40000>;
-+		};
-+
-+		opp-1608000000 {
-+			opp-hz = /bits/ 64 <1608000000>;
-+			opp-microvolt = <900000 900000 950000>;
-+			clock-latency-ns = <40000>;
-+		};
-+	};
-+
- 	arm-pmu {
- 		compatible = "arm,cortex-a35-pmu";
- 		interrupts = <GIC_SPI 228 IRQ_TYPE_LEVEL_HIGH>,
--- 
-2.31.1
-
+Guenter
