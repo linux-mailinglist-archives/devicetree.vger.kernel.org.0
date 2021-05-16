@@ -2,142 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 412C638212A
-	for <lists+devicetree@lfdr.de>; Sun, 16 May 2021 23:19:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79F96382136
+	for <lists+devicetree@lfdr.de>; Sun, 16 May 2021 23:41:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234070AbhEPVUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 May 2021 17:20:35 -0400
-Received: from lb2-smtp-cloud8.xs4all.net ([194.109.24.25]:45389 "EHLO
-        lb2-smtp-cloud8.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234076AbhEPVUe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 16 May 2021 17:20:34 -0400
-Received: from copland.sibelius.xs4all.nl ([83.163.83.176])
-        by smtp-cloud8.xs4all.net with ESMTP
-        id iOA9lJWwKWkKbiOAPlkPrx; Sun, 16 May 2021 23:19:17 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
-        t=1621199957; bh=HOikwmeJWakjyZ7lU+im9UqH19VkGuK5u0ycvEvKpYg=;
-        h=From:To:Subject:Date:Message-Id:MIME-Version:From:Subject;
-        b=YQDeZVcVf6d38kGbeZ0705ZtiQkW7XYyau0Y9RpL3drHc9fwEbfB1bDVARECJbvA8
-         Z9WHsTSGEUQ+cxLWfOzyE8r4qrMLSiZIy0+g4vbccART7rB11EZ3VNJDm/IM+A61SW
-         GP+Mad4JxMH98+PAMKCScfziBg7C/rayfZpPbyW1AULWKg6kYx8JTycpAX7dBkPU2A
-         hxfTXeO0J2kychGYdfky4xNvmwIsX3eHP3I4Ej0SoU0MTAi5oNap93vNqDVEKmYJld
-         Vz6hj4ULV6p6Riig6uALO+H+RhHTwpnPKLiM/7g38Jpez+LArbX8OgyE1MObJvGoYD
-         hpcjoQdYJzZbQ==
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     devicetree@vger.kernel.org
-Cc:     maz@kernel.org, arnd@arndb.de,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Hector Martin <marcan@marcan.st>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: apple: Add PCIe node
-Date:   Sun, 16 May 2021 23:18:47 +0200
-Message-Id: <20210516211851.74921-3-mark.kettenis@xs4all.nl>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210516211851.74921-1-mark.kettenis@xs4all.nl>
-References: <20210516211851.74921-1-mark.kettenis@xs4all.nl>
+        id S234022AbhEPVmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 May 2021 17:42:13 -0400
+Received: from polaris.svanheule.net ([84.16.241.116]:33580 "EHLO
+        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234006AbhEPVmN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 May 2021 17:42:13 -0400
+Received: from [IPv6:2a02:a03f:eafb:ee01:186f:4d03:79dc:8c8e] (unknown [IPv6:2a02:a03f:eafb:ee01:186f:4d03:79dc:8c8e])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 59C1F1FF4B9;
+        Sun, 16 May 2021 23:40:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1621201256;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=zC492mPkBn9ingCoXgTAUaVrJcaY2gLfvNuMI2kNax8=;
+        b=Xrt4KLp5CcPBIjQTQMHw5uJPs+RqSgzwCnzF4VaO8tv/cWnJaA/X+zGtGrh9HLVYwObqOd
+        sFg4nDNG+4W/2ReMGDSnjUrOcyDvhbDBIAypqgXgJq3jJKYdfzBd2FdR7olgAJLTW2ZRz+
+        6HniZFSYnBP0NX80Y67zhPd5NtZ/9aZtovXjgzDo5ByHVitnsFeGfMPl8O9qrQ/ZkzDVMT
+        Ffu0zVnlLxz3eJVSZGcybpeNjeBdID/xbnio2loC+FZabTPcfzugIDQIIUo0bLZYNq4fsc
+        wBNpLMgehFEf4tBdH/EODkrAkSDWNwHbe0fjG10GzZW7pUFCFf/rxNuFwEAK6Q==
+Message-ID: <b7d39a26bc3a90de4d8e4fdbf8f944de43d12a56.camel@svanheule.net>
+Subject: Re: [PATCH 0/5] RTL8231 GPIO expander support
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Date:   Sun, 16 May 2021 23:40:51 +0200
+In-Reply-To: <CAHp75VffoKyyPJbdtKMLx575c9LT0S8+EHOk7Mw36j=aTL6Q4Q@mail.gmail.com>
+References: <cover.1620735871.git.sander@svanheule.net>
+         <CAHp75VffoKyyPJbdtKMLx575c9LT0S8+EHOk7Mw36j=aTL6Q4Q@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CMAE-Envelope: MS4xfFZK+xFYmI4iu+AvuNjdTrW1Fj61/71SG98CoULY7GKFiYRox6X/GCgTJdRU/rHlsuQvOAxBmauzAJjKYWoBowS1cXcCyTDlrNr4ipOS/AhaQO3jI47o
- DKx3dgubfDSJZ39muL/J5dhiUDbbfD15VEcp2VYyIkbOUqg9lhPzw/eSpDeCJHEw/J/NPSn9tZEjcAx9smwN9Jwq/71hoHgJcL9L8vLZWIUzwhEpoYQmJ6Zg
- SD3IFVLRLttF0UvFe8a3VHZwxzaD3azLQaBtIcTrKPbxTB0gz6HXW2FfQWe6xi4RlKiVSn6gvdit9Cd5ysyzAx7pUZBOY6kmqKyPMyTDeid/HngOG41m6iL/
- 43092UZGvKmh93K36abWvEVU5P6HOtQXs58d5hx/JhXwJYNeXRJWEN6g0LYrGU4592/LB9V2xiIMJDObeMoRUXkIjeQYL6xk/B2o3oixyEADP0XVvT/HgoAQ
- KQbSUMMYwkx2+l0kY4DA1uK7LHMahVlozumbRgZmJBNucP3VELyz8xnHtTI=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Mark Kettenis <kettenis@openbsd.org>
+On Wed, 2021-05-12 at 18:29 +0300, Andy Shevchenko wrote:
+> 
+> 
+> On Tuesday, May 11, 2021, Sander Vanheule <sander@svanheule.net> wrote:
+> > The RTL8231 GPIO and LED expander can be configured for use as an MDIO or
+> > SMI
+> > bus device. Currently only the MDIO mode is supported, although SMI mode
+> > support should be fairly straightforward, once an SMI bus driver is
+> > available.
+> > 
+> > Provided features by the RTL8231:
+> >   - Up to 37 GPIOs
+> >     - Configurable drive strength: 8mA or 4mA (currently unsupported)
+> >     - Input debouncing on high GPIOs (currently unsupported)
+> >   - Up to 88 LEDs in multiple scan matrix groups
+> >     - On, off, or one of six toggling intervals
+> >     - "single-color mode": 2×36 single color LEDs + 8 bi-color LEDs
+> >     - "bi-color mode": (12 + 2×6) bi-color LEDs + 24 single color LEDs
+> >   - Up to one PWM output (currently unsupported)
+> >     - Fixed duty cycle, 8 selectable frequencies (1.2kHz - 4.8kHz)
+> > 
+> > There remain some log warnings when probing the device, possibly due to the
+> > way
+> > I'm using the MFD subsystem. Would it be possible to avoid these?
+> > [    2.602242] rtl8231-pinctrl: Failed to locate of_node [id: -2]
+> > [    2.609380] rtl8231-pinctrl rtl8231-pinctrl.0.auto: no of_node; not
+> > parsing pinctrl DT
+> > 
+> > When no 'leds' sub-node is specified:
+> > [    2.922262] rtl8231-leds: Failed to locate of_node [id: -2]
+> > [    2.967149] rtl8231-leds rtl8231-leds.1.auto: no of_node; not parsing
+> > pinctrl DT
+> > [    2.975673] rtl8231-leds rtl8231-leds.1.auto: scan mode missing or
+> > invalid
+> > [    2.983531] rtl8231-leds: probe of rtl8231-leds.1.auto failed with error
+> > -22
+> > 
+> > 
+> 
+> 
+> I have several comments to the series, but I may give them next week.
+> 
+> Just couple here:
+> 1. If subsystem provides a regmap API I would suggest to use it, I.o.w. try
+> again to understand what is wrong with MDIO case.
 
-Add node corresponding to the apcie,t8103 node in the
-Apple device tree for the Mac mini (M1, 2020).
+Are you referring to the MDIO regmap interface, or the GPIO regmap interface?
 
-Clock references and DART (IOMMU) references are left out at the
-moment and will be added once the appropriate bindings have been
-settled upon.
+For the MDIO regmap interface, I have been able to resolve the Kconfig
+dependency issue. So I can reintroduce that, if that's preferred over the
+solution in this v1.
 
-Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
----
- arch/arm64/boot/dts/apple/t8103.dtsi | 64 ++++++++++++++++++++++++++++
- 1 file changed, 64 insertions(+)
+With an extra patch, I was able to use the gpio-regmap interface, dropping most
+of the GPIO code. The current gpio-regmap implementation makes the assumption
+that an output value can be set while a pin is configured as an input. That
+assumption is invalid for this chip, so I had to provide an extra flag for
+gpio_regmap_config, similar to how this is handled in gpio-mmio.
 
-diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-index 503a76fc30e6..102947935d63 100644
---- a/arch/arm64/boot/dts/apple/t8103.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-@@ -214,5 +214,69 @@ pinctrl_smc: pinctrl@23e820000 {
- 				     <AIC_IRQ 396 IRQ_TYPE_LEVEL_HIGH>,
- 				     <AIC_IRQ 397 IRQ_TYPE_LEVEL_HIGH>;
- 		};
-+
-+		pcie0: pcie@690000000 {
-+			compatible = "apple,t8103-pcie", "apple,pcie";
-+			device_type = "pci";
-+
-+			reg = <0x6 0x90000000 0x0 0x1000000>,
-+			      <0x6 0x80000000 0x0 0x4000>,
-+			      <0x6 0x8c000000 0x0 0x4000>,
-+			      <0x6 0x81000000 0x0 0x8000>,
-+			      <0x6 0x82000000 0x0 0x8000>,
-+			      <0x6 0x83000000 0x0 0x8000>;
-+			reg-names = "ecam", "rc", "phy", "port0", "port1", "port2";
-+
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 695 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 698 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 701 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			msi-controller;
-+			msi-parent = <&pcie0>;
-+			msi-ranges = <704 32>;
-+
-+			bus-range = <0 7>;
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			ranges = <0x43000000 0x6 0xa0000000 0x6 0xa0000000 0x0 0x20000000>,
-+				 <0x02000000 0x0 0xc0000000 0x6 0xc0000000 0x0 0x40000000>;
-+
-+			pinctrl-0 = <&pcie_pins>;
-+			pinctrl-names = "default";
-+
-+			pci@0,0 {
-+				device_type = "pci";
-+				reg = <0x0 0x0 0x0 0x0 0x0>;
-+				reset-gpios = <&pinctrl_ap 152 0>;
-+				max-link-speed = <2>;
-+
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges;
-+			};
-+
-+			pci@1,0 {
-+				device_type = "pci";
-+				reg = <0x800 0x0 0x0 0x0 0x0>;
-+				reset-gpios = <&pinctrl_ap 153 0>;
-+				max-link-speed = <2>;
-+
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges;
-+			};
-+
-+			pci@2,0 {
-+				device_type = "pci";
-+				reg = <0x1000 0x0 0x0 0x0 0x0>;
-+				reset-gpios = <&pinctrl_ap 33 0>;
-+				max-link-speed = <1>;
-+
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges;
-+			};
-+		};
- 	};
- };
--- 
-2.31.1
+
+> 2. Please, switch to fwnode API in LED driver
+
+Since you had the same comment on my previous patch set, I had already tried to
+this this into account as much as possible.
+
+There's a few things I couldn't find the fwnode-equivalent for:
+ * I use of_node_name_prefix to enforce the naming required by the binding. I
+   could just walk over all (available) child nodes, which would be mostly
+   equivalent.
+ * To get the address of an LED child node, I use of_get_address, since this
+   appeared to provide what I want to do: get the address of the node. I know
+   next to nothing about ACPI. Does the equivalent exist there? Or am I taking
+   the wrong approach?
+
+
+I have updated patches ready, if you would rather just review a v2.
+
+
+Best,
+Sander
 
