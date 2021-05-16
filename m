@@ -2,154 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B0E3381FCA
-	for <lists+devicetree@lfdr.de>; Sun, 16 May 2021 18:25:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD77C381FD4
+	for <lists+devicetree@lfdr.de>; Sun, 16 May 2021 18:31:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230158AbhEPQ0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 May 2021 12:26:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50380 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230032AbhEPQ0Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 16 May 2021 12:26:24 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5B79F61026;
-        Sun, 16 May 2021 16:25:06 +0000 (UTC)
-Date:   Sun, 16 May 2021 17:26:18 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Liam Beguin <liambeguin@gmail.com>, jdelvare@suse.com,
-        lars@metafoo.de, pmeerw@pmeerw.net, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        Peter Rosin <peda@axentia.se>
-Subject: Re: [RFC PATCH v1 0/2] hwmon: (iio_hwmon) optionally force iio
- channel type
-Message-ID: <20210516172618.2d7ad168@jic23-huawei>
-In-Reply-To: <e56146c5-2bff-3a6d-b54e-fd40993f82aa@roeck-us.net>
-References: <20210516044315.116290-1-liambeguin@gmail.com>
-        <20210516100631.7310a7bb@jic23-huawei>
-        <CBEREZMZ2Z8U.13BH8G7RKPPL7@shaak>
-        <e56146c5-2bff-3a6d-b54e-fd40993f82aa@roeck-us.net>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S231612AbhEPQcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 May 2021 12:32:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58432 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229955AbhEPQcR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 May 2021 12:32:17 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B85DFC061573;
+        Sun, 16 May 2021 09:31:00 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id c15so4327335ljr.7;
+        Sun, 16 May 2021 09:31:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fxlBfjD9rrdff0l547dFdguKUyG+OHefR+tkmXlzxcQ=;
+        b=NDeXlZayRPolYdbkFXX5VpsJnlg2CG0s7eQ1fOfYv3FdOBRki2jfachJ4bo2VatHxL
+         cVtVkQwKjQB97s5c96i5RMoVwUltne2CIIdyMfqF5wt1lRCPBTRCTzM8WWtIr6PwC5df
+         kDr4oH1HrWG+c86taJMmIcmyg/IGTmLwbk7IVK7pSMuFX315JM3DUkWQVBYO2yPFGBAP
+         MY0C0nCT6oOUWD5VEejcpPqTmtz6RL4QD0XbHN/vYt+JqV7BirmtJhqwbCgblc7c+uCw
+         jbjlFZ1RnQSBU/4rOtAQUBlvbyC2HJmwsEw6mt2lNwg40C+nOONaBtXhUGfrrnIZCH35
+         R3EQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fxlBfjD9rrdff0l547dFdguKUyG+OHefR+tkmXlzxcQ=;
+        b=eeTnWTrXjKMPRgSBe149em+Lsekc7tGW4YnN3YGNI9rQfLKw2KWbl4KHivLj3buEVU
+         YmlwTddHyFQxvtoppFSv1DTk6lJvfXC0gdMtC0i/sObOUlI8uoWYJTQMfWRil266gr0D
+         GTWuQIp8PVXk6pB7SmQhXuNFsLZc6IDzvXeVCSTLrjuD9PnV+/uP23q2Zw8I24TYwapE
+         xL/68KjWXT5rOb6f/GgU+N7Yl5G5FpyxSyKug4TC07sJPxyEJqncWDzCVw/1n95OttOq
+         y75Di4V08a1HUxaLdT8AEWRzPw//3HYu0gsUmAZK95tnVai6C/MEjMT5eWn0xTTNA88C
+         6y6w==
+X-Gm-Message-State: AOAM531ZqAKVHVX6R0kLkmoXwTqqZYP0osuAam3ur6FzE00Yx+O14h5S
+        YY6yMe3fvcyzsYq6cZXndD8BbZkz0Ks=
+X-Google-Smtp-Source: ABdhPJwxt36n5XUZKj5CYtPbyxnu327kHvYfLX0xMh5vFiUNUlg9/CwBjOcsK7JplH/dggSx6i4a1Q==
+X-Received: by 2002:a2e:bc1e:: with SMTP id b30mr11912401ljf.6.1621182659290;
+        Sun, 16 May 2021 09:30:59 -0700 (PDT)
+Received: from localhost.localdomain (109-252-193-91.dynamic.spd-mgts.ru. [109.252.193.91])
+        by smtp.gmail.com with ESMTPSA id m2sm1704548lfo.23.2021.05.16.09.30.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 May 2021 09:30:59 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Prashant Gaikwad <pgaikwad@nvidia.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-tegra@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v8 0/9] Couple improvements for Tegra clk driver
+Date:   Sun, 16 May 2021 19:30:32 +0300
+Message-Id: <20210516163041.12818-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 16 May 2021 08:54:06 -0700
-Guenter Roeck <linux@roeck-us.net> wrote:
+This series fixes couple minor standalone problems of the Tegra clk
+driver and adds new features.
 
-> On 5/16/21 8:02 AM, Liam Beguin wrote:
-> > Hi Jonathan,
-> > 
-> > On Sun May 16, 2021 at 5:06 AM EDT, Jonathan Cameron wrote:  
-> >> On Sun, 16 May 2021 00:43:13 -0400
-> >> Liam Beguin <liambeguin@gmail.com> wrote:
-> >>  
-> >>> Add a devicetree binding to optionally force a different IIO channel
-> >>> type.
-> >>>
-> >>> This is useful in cases where ADC channels are connected to a circuit
-> >>> that represent another unit such as a temperature or a current.
-> >>>
-> >>> `channel-types` was chosen instead of `io-channel-types` as this is not
-> >>> part of the iio consumer bindings.
-> >>>
-> >>> In the current form, this patch does what it's intended to do:
-> >>> change the unit displayed by `sensors`, but feels like the wrong way to
-> >>> address the problem.
-> >>>
-> >>> Would it be possible to force the type of different IIO channels for
-> >>> this kind of use case with a devicetree binding from the IIO subsystem?
-> >>>
-> >>> It would be convenient to do it within the IIO subsystem to have the
-> >>> right unit there too.
-> >>>
-> >>> Thanks for your time,
-> >>> Liam  
-> >>
-> >> Hi Liam,
-> >>
-> >> +CC Peter for AFE part.
-> >>
-> >> It's an interesting approach, but I would suggest we think about this
-> >> a different way.
-> >>
-> >> Whenever a channel is being used to measure something 'different' from
-> >> what it actually measures (e.g. a voltage ADC measuring a current) that
-> >> reflects their being some analog component involved.
-> >> If you look at drivers/iio/afe/iio-rescale.c you can see the approach
-> >> we currently use to handle this.  
-> > 
-> > Many thanks for pointing out the AFE code. That look like what I was
-> > hoping to accomplish, but in a much better way.
-> >   
-> >>
-> >> Effectively what you add to devicetree is a consumer of the ADC channel
-> >> which in turn provides services to other devices. For this current case
-> >> it would be either a current-sense-amplifier or a current-sense-shunt
-> >> depending on what the analog front end looks like. We have to describe
-> >> the characteristics of that front end which isn't something that can
-> >> be done via a simple channel type.
-> >>  
-> > 
-> > Understood. My original intention was to use sensors.conf to do the
-> > conversions and take into accounts those parameters.
-> >   
-> >> That afe consumer device can then provide services to another consumer
-> >> (e.g. iio-hwmon) which work for your usecase.
-> >>
-> >> The main limitation of this approach currently is you end up with
-> >> one device per channel. That could be improved upon if you have a
-> >> usecase
-> >> where it matters.
-> >>
-> >> I don't think we currently have an equivalent for temperature sensing
-> >> but it would be easy enough to do something similar.  
-> > 
-> > Wonderful, thanks again for pointing out the AFE!
-> >   
-> 
-> Please don't reinvent the ntc_thermistor driver.
-Agreed, I'd forgotten it existed :(  Had a feeling we'd solved that problem before
-but couldn't remember the name of the driver.
+Changelog:
 
-The afe driver already deals with current / voltage scaling and conversion
-for common analog circuits. Potential dividers, current shunts etc, but they
-are all the linear cases IIRC.
+v8: - Replaced division with a shift, which was suggested by Michał Mirosław
+      in a comment to "Handle thermal DIV2 CPU frequency throttling" v7 patch.
+      Cortex A9 CPUs don't have hardware divider and shifting is a minor
+      improvement here, nevertheless it's good to have it.
 
-ntc_thermistor deals with the much more complex job of dealing with a thermistor.
+    - Added new patch "Don't deassert reset on enabling clocks", which I
+      accidentally forgot to include in v7. Previously sound driver
+      was a blocker for this patch, the sound is fixed now in v5.13. The
+      patch itself is needed for maintaining proper clk/reset sequences
+      by PMC and other drivers.
 
-Thanks,
+v7: - Added r-b from Rob Herring to the schema patch which he gave to v6.
 
-Jonathan
+    - Dropped the MAINTAINERS-update patch. Previously Peter said on IRC
+      that he doesn't have time on the tegra-clk driver anymore and approved
+      the patch, but then he refused to ack the v6 patch, saying that he
+      is not reading mailing lists. So I don't feel comfortable with that
+      patch. Peter could send it by himself if will be necessary.
 
-> 
-> Thanks,
-> Guenter
-> 
-> > Liam
-> >   
-> >>
-> >> Jonathan
-> >>
-> >>  
-> >>>
-> >>> Liam Beguin (2):
-> >>>    hwmon: (iio_hwmon) optionally force iio channel type
-> >>>    dt-bindings: hwmon: add iio-hwmon bindings
-> >>>
-> >>>   .../devicetree/bindings/hwmon/iio-hwmon.yaml  | 41 +++++++++++++++++++
-> >>>   drivers/hwmon/iio_hwmon.c                     |  2 +
-> >>>   2 files changed, 43 insertions(+)
-> >>>   create mode 100644 Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml
-> >>>
-> >>>
-> >>> base-commit: 9f4ad9e425a1d3b6a34617b8ea226d56a119a717  
-> >   
-> 
+    - Added these new patches:
+
+        clk: tegra: cclk: Handle thermal DIV2 CPU frequency throttling
+        clk: tegra: Mark external clocks as not having reset control
+
+      I sent out the new Tegra30 thermal sensor driver and now CPU clock
+      could be throttled by the sensor hardware [1]. The first patch adds
+      support for reporting of the throttled frequency properly.
+
+      [1] https://patchwork.ozlabs.org/project/linux-tegra/list/?series=243126
+
+      During of debugging sound issues of Asus Transformer devices, I noticed
+      that the external clocks are missing the no-reset flag. The second
+      patch fixes it.
+
+v6: - Made a small improvement and corrected a typo in patch
+      "Fix refcounting of gate clocks" that were spotted by
+      Michał Mirosław.
+
+v5: - Corrected example in the schema binding to silence dt_binding_check
+      warning.
+
+    - The Tegra124 binding is factored out into standalone binding since
+      Tegra124 has properties that aren't used by other SoCs and I couldn't
+      figure out how to make them conditional in schema.
+
+v4: - Added new patch that converts DT bindings to schema.
+
+v3: - Added acks from Thierry Reding that he gave to v2.
+
+    - Added new patch "clk: tegra: Don't allow zero clock rate for PLLs".
+
+v2: - Added these new patches:
+
+      clk: tegra: Halve SCLK rate on Tegra20
+      MAINTAINERS: Hand Tegra clk driver to Jon and Thierry
+
+v1: - Collected clk patches into a single series.
+
+Dmitry Osipenko (9):
+  clk: tegra30: Use 300MHz for video decoder by default
+  clk: tegra: Fix refcounting of gate clocks
+  clk: tegra: Ensure that PLLU configuration is applied properly
+  clk: tegra: Halve SCLK rate on Tegra20
+  clk: tegra: Don't allow zero clock rate for PLLs
+  clk: tegra: cclk: Handle thermal DIV2 CPU frequency throttling
+  clk: tegra: Mark external clocks as not having reset control
+  clk: tegra: Don't deassert reset on enabling clocks
+  dt-bindings: clock: tegra: Convert to schema
+
+ .../bindings/clock/nvidia,tegra114-car.txt    |  63 ----------
+ .../bindings/clock/nvidia,tegra124-car.txt    | 107 ----------------
+ .../bindings/clock/nvidia,tegra124-car.yaml   | 115 ++++++++++++++++++
+ .../bindings/clock/nvidia,tegra20-car.txt     |  63 ----------
+ .../bindings/clock/nvidia,tegra20-car.yaml    |  69 +++++++++++
+ .../bindings/clock/nvidia,tegra210-car.txt    |  56 ---------
+ .../bindings/clock/nvidia,tegra30-car.txt     |  63 ----------
+ drivers/clk/tegra/clk-periph-gate.c           |  80 +++++++-----
+ drivers/clk/tegra/clk-periph.c                |  11 ++
+ drivers/clk/tegra/clk-pll.c                   |  12 +-
+ drivers/clk/tegra/clk-tegra-periph.c          |   6 +-
+ drivers/clk/tegra/clk-tegra-super-cclk.c      |  16 ++-
+ drivers/clk/tegra/clk-tegra20.c               |   6 +-
+ drivers/clk/tegra/clk-tegra30.c               |   6 +-
+ drivers/clk/tegra/clk.h                       |   4 -
+ 15 files changed, 272 insertions(+), 405 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra114-car.txt
+ delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra124-car.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra124-car.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra20-car.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra20-car.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra210-car.txt
+ delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra30-car.txt
+
+-- 
+2.30.2
 
