@@ -2,70 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C513E381BDB
-	for <lists+devicetree@lfdr.de>; Sun, 16 May 2021 02:47:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DE0C381C21
+	for <lists+devicetree@lfdr.de>; Sun, 16 May 2021 04:42:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231751AbhEPAsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 May 2021 20:48:23 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:34748 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231608AbhEPAsX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 May 2021 20:48:23 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5F7122BA;
-        Sun, 16 May 2021 02:47:08 +0200 (CEST)
+        id S232362AbhEPCnx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 May 2021 22:43:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48126 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229628AbhEPCnv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 May 2021 22:43:51 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AB6EC061573;
+        Sat, 15 May 2021 19:42:31 -0700 (PDT)
+Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C20752BA;
+        Sun, 16 May 2021 04:42:28 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1621126028;
-        bh=y22OiUo17yK6rBbpTsXssLO5LCnk1ST6vy0PnB1LKD8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZeSMu0OvIK8jxZGzpZ+rjT13jkw7jrqm4QC6pnK6ujtG487lPmWIwQqbjxf2J7YRk
-         TV6esioPA6BQJs5GvfXvv6xx8n4//tSJsJYcvjikWlR9X/GWA5Ytey/KvAuORnzA7x
-         68zSgjUywgSOJ+0nhJKBjr7Qbcr3OWhvMONnEJXc=
-Date:   Sun, 16 May 2021 03:46:58 +0300
+        s=mail; t=1621132949;
+        bh=6xN2eCMcMwVfj599mI2qOlkNIpDfUW3R3fO6dacJGAs=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Dwi7KxDys3sze32ioYlwtOBEPgcX0HkcxxkCqNATdT0RzwoCliBvJgsRoPQIIzdWt
+         6RZtl8pMF+69GanWYMb5o1AGV7YfYiXZN4ehLSc+yMsbTgx1tqSjM1QROkHImUWhCg
+         pqr+Jn8sBAnudCiLa6flFNG+cx0iIMyhmylv9O2Q=
 From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Marek Vasut <marex@denx.de>
-Cc:     dri-devel@lists.freedesktop.org, ch@denx.de,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: display: bridge: lvds-codec: Fix spacing
-Message-ID: <YKBrgk/jJ3pLgkNj@pendragon.ideasonboard.com>
-References: <20210515203932.366799-1-marex@denx.de>
- <YKBBlWXXK8LUc8ac@pendragon.ideasonboard.com>
- <b2d1119e-f875-6775-3813-7d342d66c465@denx.de>
+To:     linux-media@vger.kernel.org
+Cc:     Rui Miguel Silva <rmfrfs@gmail.com>, kernel@pengutronix.de,
+        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Marek Vasut <marex@denx.de>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Martin Kepplinger <martin.kepplinger@puri.sm>,
+        Dorota Czaplejewicz <dorota.czaplejewicz@puri.sm>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [RFC PATCH 0/3] media: imx: imx7-media-csi: i.MX8MM support
+Date:   Sun, 16 May 2021 05:42:13 +0300
+Message-Id: <20210516024216.4576-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.28.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <b2d1119e-f875-6775-3813-7d342d66c465@denx.de>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+Hello,
 
-On Sun, May 16, 2021 at 01:49:11AM +0200, Marek Vasut wrote:
-> On 5/15/21 11:48 PM, Laurent Pinchart wrote:
-> > Hi Marek,
-> 
-> Hi,
-> 
-> > Thank you for the patch.
-> > 
-> > On Sat, May 15, 2021 at 10:39:32PM +0200, Marek Vasut wrote:
-> >> Add missing spaces to make the diagrams readable, no functional change.
-> > 
-> > Looks better indeed. The patch view looks bad though, because of the
-> > tabs. Maybe you could replace them with spaces, while at it ?
-> 
-> It is all spaces, where do you see tabs ?
+This small patch series updates the imx7-media-csi driver to work on the
+i.MX8MM with an OV5640 sensor.
 
-Right after "Slot", "Clock" and "DATA[0123]". You're not touching those
-lines, but having tabs there messes up the formatting of the patch
-itself (the resulting bindings file looks good).
+Patch 1/3 extends the nxp,imx7-csi DT bindings with a compatible string
+for the i.MX8MM. While the CSI bridge in that SoC doesn't seem to differ
+from the one in the i.MX7 according to the reference manual, experience
+shows that NXP reference manuals are not always reliable. To be on the
+safe side, a new fsl,imx8mm-csi compatible string, with a fallback on
+fsl,imx7-csi, will avoid future backward-compatibility problems.
 
-By the way, the subject line doesn't match the patch, you're modifying
-panel/lvds.yaml, not bridge/lvds-codec.yaml.
+Patches 2/3 and 3/3 fix issues with RAW8 and RAW10 capture from an
+OV5640 sensor. The fixes are the result of experimentation and study of
+NXP BSP drivers, as the reference manual doesn't provide much
+information in this area. I'm not very happy with this, as understanding
+the exact effect of the register fields modified by those two patches
+would be better. Still, without support from NXP (which I would really,
+really appreciate - anyone from NXP reading this ?), I can't do better.
+
+Given those concerns, I would also appreciate if this series could be
+tested widely for possible regressions. There should be no change for
+YUV formats, so only raw formats (RAW8, RAW10, RAW12 and RAW14) need to
+be tested.
+
+Laurent Pinchart (3):
+  dt-bindings: media: nxp,imx7-csi: Add i.MX8MM support
+  media: imx: imx7-media-csi: Set TWO_8BIT_SENSOR for >= 10-bit formats
+  media: imx: imx7-media-csi: Don't set PIXEL_BIT in CSICR1
+
+ .../bindings/media/nxp,imx7-csi.yaml          | 12 +++++++----
+ drivers/staging/media/imx/imx7-media-csi.c    | 21 +++++--------------
+ 2 files changed, 13 insertions(+), 20 deletions(-)
 
 -- 
 Regards,
 
 Laurent Pinchart
+
