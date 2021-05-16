@@ -2,147 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A4DC382017
-	for <lists+devicetree@lfdr.de>; Sun, 16 May 2021 18:58:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61637382046
+	for <lists+devicetree@lfdr.de>; Sun, 16 May 2021 20:14:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230157AbhEPQ7T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 May 2021 12:59:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36406 "EHLO
+        id S230410AbhEPSPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 May 2021 14:15:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbhEPQ7T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 May 2021 12:59:19 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38FCAC061573;
-        Sun, 16 May 2021 09:58:03 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id r11so4100519edt.13;
-        Sun, 16 May 2021 09:58:03 -0700 (PDT)
+        with ESMTP id S229445AbhEPSPU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 May 2021 14:15:20 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3804FC061573;
+        Sun, 16 May 2021 11:14:05 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id v4so3397771qtp.1;
+        Sun, 16 May 2021 11:14:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=THGNQdN+G1zV46mDYPmEAZYdYXCX5MmcuOTwcSwtuvo=;
-        b=vAwr7XqIbClut1z4sdTFuPnfDRT1ReLHcBMUUYKcxipLRLfV/kXk3zPTCVrzm+fdyg
-         GfOTvKxO/JsS73b3r+5civRLoH6xcwav0JK7i76bRxbzMNt2ejSSZLjyoM88eW2v8RKF
-         yhrGqWpt7E9XKqed3CTJQqdwVjgWnp0hq2Vn+2p3uGEtIB27UTpX8Zj8fTEECzHkLztC
-         HFSvs76VCxvdJeD/Drx4dAp19lieKG65qSWKvz74tOuKBFPCDS0ZdQxEZPQpVCQtiIIq
-         oFHVlNlXKk/W9dAbPBo0p119Z0MPSQn/hhbSlu1L7n68Wp+VE4jL6NhFewnV47SNgEKE
-         TPxQ==
+        h=mime-version:content-transfer-encoding:date:message-id:from:to:cc
+         :subject:references:in-reply-to;
+        bh=A10QVI63ZnZaEwuZVcvvWXL6QCvI3g5Ffr4RSYcvmsU=;
+        b=QiKHl+MrpHxo+WCvelIu7kydY1Vn0quJnq7WdUD/5ntDFBAkGkP6E9YQXPS0hoSMVK
+         z9VEsANA/awWcmVF8s5mvEZScXzD5MpCgdc1AUsKDBmOE/U6kiIcEvaYDRpyTdobiiTm
+         NHQK4ntkyx94yoTbQIbG4lEW7N2/k6sZMgj+qXg9EQqfRtJ2nVDU0WWj3r1pw/iP2Qvl
+         d4AF/hJ5bdTTT2qsvQYw8mFzCrpAuqn73OYKrk6HejiVcSaXQbVOqgT6qeDN/5EmmjEo
+         nTT2IekEeCjrIx1EKPepPy8NklTFXctOyB2QNHyWBwEtUywIZXVoVyi/t951fSnOa7jx
+         KsyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition
-         :content-transfer-encoding:in-reply-to;
-        bh=THGNQdN+G1zV46mDYPmEAZYdYXCX5MmcuOTwcSwtuvo=;
-        b=mZWdNW0Pp6gBX+/aJ77Wd3I+Cm+U2BgHvQdjgPZFQnUrdetriP/wAzSxttpBWNUERe
-         A9nytcrZLUiKHQrhUjENyacKCdifchq7gttlUFlTCMsorUB2jeoG05D6gGF86Hh8yqCq
-         QSpW69/g4f4+gxcJP8Yl9/XwX4Q69rdka7xcpbWlspM5rCdKM2Mo7NDUIS1xbLkyyJ4w
-         Y2dmLCAbReGzjmd5MHAC5XZBBy1tYIx4y5P7CfTK5W1+EiKUsa1ozwx6lXrlFzqEC5oC
-         fRZa4S1TUuqCeb1FCQyfUnDbWprfB2jAe2E8BP4r921khXBkFyTi0WFQcqQpOtgHMg76
-         FIuA==
-X-Gm-Message-State: AOAM5323hcSbwhLL2KsxaXKVbW9MRgZ+thd9YfnoThIl2xYbdMqI8sSM
-        SGW27S+whdnHriZIFcjehao=
-X-Google-Smtp-Source: ABdhPJwaShKoLi6L7M46jeK47mTX8GC6V1iNP2M+rmarPzrHU77J5vNHFEl+wU8YJI3T79mFG1OrGQ==
-X-Received: by 2002:aa7:c548:: with SMTP id s8mr5163282edr.114.1621184281922;
-        Sun, 16 May 2021 09:58:01 -0700 (PDT)
-Received: from eldamar (80-218-24-251.dclient.hispeed.ch. [80.218.24.251])
-        by smtp.gmail.com with ESMTPSA id l11sm9027237edw.42.2021.05.16.09.58.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 May 2021 09:58:01 -0700 (PDT)
-Sender: Salvatore Bonaccorso <salvatore.bonaccorso@gmail.com>
-Date:   Sun, 16 May 2021 18:58:00 +0200
-From:   Salvatore Bonaccorso <carnil@debian.org>
-To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>
-Cc:     Maxime Ripard <maxime@cerno.tech>,
-        "B.R. Oake" <broake@mailfence.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Chen-Yu Tsai <wens@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Vagrant Cascadian <vagrant@reproducible-builds.org>
-Subject: Re: [PATCH] ARM: dts: sun8i: h3: orangepi-plus: Fix Ethernet PHY mode
-Message-ID: <YKFPGC2qBMipQPbd@eldamar.lan>
-References: <1243888060.510560.1612783497400@ichabod.co-bxl>
- <20210210150118.ly252i37eykayrcb@gilmour>
- <1719200956.433094.1613199092092@ichabod.co-bxl>
- <6612268.HtAl026vyE@jernej-laptop>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6612268.HtAl026vyE@jernej-laptop>
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:from:to:cc:subject:references:in-reply-to;
+        bh=A10QVI63ZnZaEwuZVcvvWXL6QCvI3g5Ffr4RSYcvmsU=;
+        b=BCLZRKSYMaprSeDv6GVflAcGllkQ8lPEoQ4hqiIDxl+CyVMm96EBusMVxqg/WO0kNq
+         tnjYGm2hVr7sHK7Q+MP2mV+gEWJRIZwrPoOwNClHZb1CB97lDTrVEUPXz6uX31/PGjpr
+         HuvRgkTMDwW62AkeiAB4Qh5iZTQh7pEZwswdKiqIDiT8HbofrIQCEVZRRAKpTuWhIpMl
+         Ej0nNfRLZu28nlWsOAR1ZQD3R1I6I6R6x02i9TtD7Sxf8EiEURac7jwIXUxIw8GZSpMG
+         AiSQPyWEw3R9PBDWP4f4fLPqBdCteEIzxpDFqrTXfuzXEIq2gngARU4SUFayCsEQvJmk
+         d8MQ==
+X-Gm-Message-State: AOAM532GFpKAR6OwtQs4JsPqZjowqMbAFsrHobeBtAsqrc6oANNFvJdh
+        P+09fsB5+ZIYLak+r4Sl4N+nBK+dVae8hw==
+X-Google-Smtp-Source: ABdhPJxjHtYy7hiP/faV1yjmuHhffGJkp7KWujxD9Vl19H0DGlRSAz5drA+71RG17tpKHeXNiEwWMQ==
+X-Received: by 2002:a05:622a:350:: with SMTP id r16mr51130966qtw.27.1621188844299;
+        Sun, 16 May 2021 11:14:04 -0700 (PDT)
+Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id s190sm8845581qkc.40.2021.05.16.11.14.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 May 2021 11:14:03 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Sun, 16 May 2021 14:14:02 -0400
+Message-Id: <CBEVHCPHGJJD.2IDUUG1RPDF64@shaak>
+From:   "Liam Beguin" <liambeguin@gmail.com>
+To:     "Jonathan Cameron" <jic23@kernel.org>,
+        "Guenter Roeck" <linux@roeck-us.net>
+Cc:     <jdelvare@suse.com>, <lars@metafoo.de>, <pmeerw@pmeerw.net>,
+        <linux-hwmon@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>, "Peter Rosin" <peda@axentia.se>
+Subject: Re: [RFC PATCH v1 0/2] hwmon: (iio_hwmon) optionally force iio
+ channel type
+References: <20210516044315.116290-1-liambeguin@gmail.com>
+ <20210516100631.7310a7bb@jic23-huawei> <CBEREZMZ2Z8U.13BH8G7RKPPL7@shaak>
+ <e56146c5-2bff-3a6d-b54e-fd40993f82aa@roeck-us.net>
+ <20210516172618.2d7ad168@jic23-huawei>
+In-Reply-To: <20210516172618.2d7ad168@jic23-huawei>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Sun May 16, 2021 at 12:26 PM EDT, Jonathan Cameron wrote:
+> On Sun, 16 May 2021 08:54:06 -0700
+> Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> > On 5/16/21 8:02 AM, Liam Beguin wrote:
+> > > Hi Jonathan,
+> > >=20
+> > > On Sun May 16, 2021 at 5:06 AM EDT, Jonathan Cameron wrote: =20
+> > >> On Sun, 16 May 2021 00:43:13 -0400
+> > >> Liam Beguin <liambeguin@gmail.com> wrote:
+> > >> =20
+> > >>> Add a devicetree binding to optionally force a different IIO channe=
+l
+> > >>> type.
+> > >>>
+> > >>> This is useful in cases where ADC channels are connected to a circu=
+it
+> > >>> that represent another unit such as a temperature or a current.
+> > >>>
+> > >>> `channel-types` was chosen instead of `io-channel-types` as this is=
+ not
+> > >>> part of the iio consumer bindings.
+> > >>>
+> > >>> In the current form, this patch does what it's intended to do:
+> > >>> change the unit displayed by `sensors`, but feels like the wrong wa=
+y to
+> > >>> address the problem.
+> > >>>
+> > >>> Would it be possible to force the type of different IIO channels fo=
+r
+> > >>> this kind of use case with a devicetree binding from the IIO subsys=
+tem?
+> > >>>
+> > >>> It would be convenient to do it within the IIO subsystem to have th=
+e
+> > >>> right unit there too.
+> > >>>
+> > >>> Thanks for your time,
+> > >>> Liam =20
+> > >>
+> > >> Hi Liam,
+> > >>
+> > >> +CC Peter for AFE part.
+> > >>
+> > >> It's an interesting approach, but I would suggest we think about thi=
+s
+> > >> a different way.
+> > >>
+> > >> Whenever a channel is being used to measure something 'different' fr=
+om
+> > >> what it actually measures (e.g. a voltage ADC measuring a current) t=
+hat
+> > >> reflects their being some analog component involved.
+> > >> If you look at drivers/iio/afe/iio-rescale.c you can see the approac=
+h
+> > >> we currently use to handle this. =20
+> > >=20
+> > > Many thanks for pointing out the AFE code. That look like what I was
+> > > hoping to accomplish, but in a much better way.
+> > >  =20
+> > >>
+> > >> Effectively what you add to devicetree is a consumer of the ADC chan=
+nel
+> > >> which in turn provides services to other devices. For this current c=
+ase
+> > >> it would be either a current-sense-amplifier or a current-sense-shun=
+t
+> > >> depending on what the analog front end looks like. We have to descri=
+be
+> > >> the characteristics of that front end which isn't something that can
+> > >> be done via a simple channel type.
+> > >> =20
+> > >=20
+> > > Understood. My original intention was to use sensors.conf to do the
+> > > conversions and take into accounts those parameters.
+> > >  =20
+> > >> That afe consumer device can then provide services to another consum=
+er
+> > >> (e.g. iio-hwmon) which work for your usecase.
+> > >>
+> > >> The main limitation of this approach currently is you end up with
+> > >> one device per channel. That could be improved upon if you have a
+> > >> usecase
+> > >> where it matters.
+> > >>
+> > >> I don't think we currently have an equivalent for temperature sensin=
+g
+> > >> but it would be easy enough to do something similar. =20
+> > >=20
+> > > Wonderful, thanks again for pointing out the AFE!
+> > >  =20
+> >=20
+> > Please don't reinvent the ntc_thermistor driver.
 
-On Sat, Feb 13, 2021 at 09:51:17AM +0100, Jernej Škrabec wrote:
-> Hi!
-> 
-> Let me first explain that it was oversight on my side not noticing initials in 
-> your SoB tag. But since the issue was raised by Maxime, I didn't follow up.
-> 
-> Dne sobota, 13. februar 2021 ob 07:51:32 CET je B.R. Oake napisal(a):
-> > On Wed Feb 10 at 16:01:18 CET 2021, Maxime Ripard wrote:
-> > > Unfortunately we can't take this patch as is, this needs to be your real
-> > > name, see:
-> > > https://www.kernel.org/doc/html/latest/process/submitting-patches.html#de
-> > > veloper-s-certificate-of-origin-1-1
-> > Dear Maxime,
-> > 
-> > Thank you very much for considering my contribution and for all your
-> > work on supporting sunxi-based hardware; I appreciate it.
-> > 
-> > Thank you for referring me to the Developer's Certificate of Origin, but
-> > I had already read it before submitting (I had to do so in order to know
-> > what I was saying by "Signed-off-by:") and I do certify what it says.
-> > 
-> > Looking through recent entries in the commit log of the mainline kernel,
-> > I see several patches from authors such as:
-> > 
-> >   H.J. Lu <hjl.tools@gmail.com>
-> >   B K Karthik <karthik.bk2000@live.com>
-> >   JC Kuo <jckuo@nvidia.com>
-> >   EJ Hsu <ejh@nvidia.com>
-> >   LH Lin <lh.lin@mediatek.com>
-> >   KP Singh <kpsingh@kernel.org>
-> >   Karthik B S <karthik.b.s@intel.com>
-> >   Shreyas NC <shreyas.nc@intel.com>
-> >   Vandana BN <bnvandana@gmail.com>
-> > 
-> > so I believe names of this form are in fact acceptable, even if the
-> > style might seem a little old-fashioned to some.
-> 
-> Speaking generally, not only for this case, prior art arguments rarely hold, 
-> because:
-> - it might be oversight,
-> - it might be a bad practice, which should not be followed in new 
-> contributions,
-> - different maintainers have different point of view on same thing,
-> - maintainer wants to adapt new practice or steer subsystem in new direction
-> 
-> > 
-> > I would like to add that I have met many people with names such as C.J.,
-> > A A, TC, MG, etc. That is what everybody calls them and it would be
-> > natural for them to sign themselves that way. Some of them might want to
-> > contribute to Linux some day, and I think it would be a great shame and
-> > a loss to all of us if they were discouraged from doing so by reading
-> > our conversation in the archives and concluding that any contribution
-> > from them, however small, would be summarily refused simply because of
-> > their name. Please could you ensure that does not happen?
-> 
-> The link you posted says following:
-> "using your real name (sorry, no pseudonyms or anonymous contributions.)"
-> 
-> I believe that real name means no initials, no matter what people are 
-> accustomed to. From my point of view, CJ is pseudonym derived from real name.
-> 
-> This is not the first time that fix of SoB tag was requested, you can find such 
-> requests in ML archives.
+> Agreed, I'd forgotten it existed :( Had a feeling we'd solved that
+> problem before
+> but couldn't remember the name of the driver.
+>
+> The afe driver already deals with current / voltage scaling and
+> conversion
+> for common analog circuits. Potential dividers, current shunts etc, but
+> they
+> are all the linear cases IIRC.
+>
+> ntc_thermistor deals with the much more complex job of dealing with a
+> thermistor.
 
-Any chance this could be resolved? In downstream (here Debian) we
-would be interested to have the patch applied due to
-https://bugs.debian.org/988574 reported by Vagrant Cascadian.
+I agree, no need to reinvent this.
 
-Regards,
-Salvatore
+Like Jonathan said, the ntc_thermistor driver seems to handle much more
+complex cases. Where would be the best place to add support for PT100
+and PT1000? iio-rescale?
+
+Thanks,
+Liam
+
+>
+> Thanks,
+>
+> Jonathan
+>
+> >=20
+> > Thanks,
+> > Guenter
+> >=20
+> > > Liam
+> > >  =20
+> > >>
+> > >> Jonathan
+> > >>
+> > >> =20
+> > >>>
+> > >>> Liam Beguin (2):
+> > >>>    hwmon: (iio_hwmon) optionally force iio channel type
+> > >>>    dt-bindings: hwmon: add iio-hwmon bindings
+> > >>>
+> > >>>   .../devicetree/bindings/hwmon/iio-hwmon.yaml  | 41 ++++++++++++++=
++++++
+> > >>>   drivers/hwmon/iio_hwmon.c                     |  2 +
+> > >>>   2 files changed, 43 insertions(+)
+> > >>>   create mode 100644 Documentation/devicetree/bindings/hwmon/iio-hw=
+mon.yaml
+> > >>>
+> > >>>
+> > >>> base-commit: 9f4ad9e425a1d3b6a34617b8ea226d56a119a717 =20
+> > >  =20
+> >=20
+
