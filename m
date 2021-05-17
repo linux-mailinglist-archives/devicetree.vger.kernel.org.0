@@ -2,74 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A102F386D1F
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 00:44:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1754386D22
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 00:44:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344020AbhEQWpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 18:45:30 -0400
-Received: from mail-oo1-f52.google.com ([209.85.161.52]:33679 "EHLO
-        mail-oo1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239660AbhEQWpa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 18:45:30 -0400
-Received: by mail-oo1-f52.google.com with SMTP id j17-20020a4ad6d10000b02901fef5280522so1829785oot.0;
-        Mon, 17 May 2021 15:44:12 -0700 (PDT)
+        id S239660AbhEQWpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 18:45:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39620 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344047AbhEQWpi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 18:45:38 -0400
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1989C061756
+        for <devicetree@vger.kernel.org>; Mon, 17 May 2021 15:44:20 -0700 (PDT)
+Received: by mail-ot1-x336.google.com with SMTP id v19-20020a0568301413b0290304f00e3d88so6991591otp.4
+        for <devicetree@vger.kernel.org>; Mon, 17 May 2021 15:44:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to;
+        bh=wCRHhc5CNBJgeMhaZjv6HXKmZODtshURpIj1KAaY5Ec=;
+        b=g+E0FkptmLlSmUHEwmiG+oo+73R0KoVQ6ZYrO2YZY87UWOeSK7NCOGonMgu7YbkF5K
+         tpc6Epp38Yfcsqk62OCFS6pO2apPoNwzSeKtkIUk62afQ7eReEJdZkBOmkQJ//8Ejbwv
+         vMGRKEdlrjRvy6emPj6ymTRudWOjIuEX3cQZo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=L+8IYdctVljsJPJZjh7tFzHKTPA7QUIi97B/h1sPgbk=;
-        b=QrxK/XlYAOK8wHpkskjWNUGYIh1MJSGeBqG8bUKxBP3tHIWih3lb2u0t4C/pcpygdv
-         UADUHiRpE5fViytgraXmHZuMInYBZorYdSwtTZmfBPH/hpmG5yram0UdphcMWj2Yn1L0
-         gux2pzjB3rk10NkPfHeqlOteoQCFeLmTLJlVGw0nRWKU31I88sDOSPNjAeSqBUlLgWU3
-         VyGokV8KqQF628d7SD2bsR74wTiDgXSaji4XPNQesbnVeo7Zmuawf8WoGWN1RWqeZuEC
-         idPkR1WXcMfxYWl2yCarzyWLpUf4wPnTCLGdn3n+PSCpoDBqGdO9QxKlE1MCaAZ7f0W/
-         Q+Dw==
-X-Gm-Message-State: AOAM5317GxqlwAeo2h3d4un19dvlXXK6Cz4zMbWGsJkDhIGd3Ms+BgXp
-        3W0dYyVfwslI0Y3OBQeusg==
-X-Google-Smtp-Source: ABdhPJx9mnuaKeSNahPLlZlzIGu86g0crYHS92e2Mp8vyOsAOYJIRjXDCJOjPnG7ZUwY3isL0TpDkA==
-X-Received: by 2002:a4a:250e:: with SMTP id g14mr1726791ooa.31.1621291452176;
-        Mon, 17 May 2021 15:44:12 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j18sm3415782ota.7.2021.05.17.15.44.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 May 2021 15:44:11 -0700 (PDT)
-Received: (nullmailer pid 3346634 invoked by uid 1000);
-        Mon, 17 May 2021 22:44:10 -0000
-Date:   Mon, 17 May 2021 17:44:10 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     devicetree@vger.kernel.org, Deepak Saxena <dsaxena@plexity.net>,
-        linux-crypto@vger.kernel.org,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Arnd Bergmann <arnd@arndb.de>, Matt Mackall <mpm@selenic.com>
-Subject: Re: [PATCH 4/5] hw_random: ixp4xx: Add DT bindings
-Message-ID: <20210517224410.GA3346574@robh.at.kernel.org>
-References: <20210511132928.814697-1-linus.walleij@linaro.org>
- <20210511132928.814697-4-linus.walleij@linaro.org>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to;
+        bh=wCRHhc5CNBJgeMhaZjv6HXKmZODtshURpIj1KAaY5Ec=;
+        b=iEjPAE3EvpyHV3Jyina8IwhSfKrvdCeYwxjx/1qocpwXjj4qapzTyu7IIKJEo0ypO4
+         uOjc9FQQXCk+3fRecg7Mfzw/TUNNVD1/Jn5qE8Px4rQdkEWpB3YNaN/bOeekNFilnp5B
+         T6N+UVGt25iD2lbqsVlU8YnWA0LOxYLoGb9lrOpNrzK2qCAswPeJhuKx2EIGVka3ydpF
+         JyZykkeffyHhZ+Q4F8WKNHoOnfD4cyqWHdmYvCmCgr2hhy+D6Ck5IAP14Eh7tzqJp0V0
+         gyYRDh6pDi8Fi/T8npFzm2vHD3c6rTgGIGUY6qPDFNMiT3tw+0HieMJTWEkXERds46EF
+         eAnw==
+X-Gm-Message-State: AOAM530Dqvc/QaFjTCigqTBus8TkbYNLk8VO2nxd0tzU6hyt5SaaINjE
+        X74al6/otjjJFf963sw728s4iONn8sAQTOrax3cg5g==
+X-Google-Smtp-Source: ABdhPJwYgIM7DXk4ykEISh2uQ5fNb2X4gzr+wMSjIK74xoOhgRVS2GV4QGZspwoG0xgsXil5WszACVf7E8Gczjs1ZpM=
+X-Received: by 2002:a05:6830:1556:: with SMTP id l22mr1581018otp.34.1621291460212;
+ Mon, 17 May 2021 15:44:20 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 17 May 2021 15:44:19 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210511132928.814697-4-linus.walleij@linaro.org>
+In-Reply-To: <20210513122429.25295-1-srivasam@codeaurora.org>
+References: <20210513122429.25295-1-srivasam@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Mon, 17 May 2021 15:44:19 -0700
+Message-ID: <CAE-0n51jjHWSFiip-utVKjAQbaJuj+oKq0GPLgw2q2mG_9B=eg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: Add wakeup delay for adau codec
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, dianders@chromium.org,
+        judyhsiao@chromium.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 May 2021 15:29:27 +0200, Linus Walleij wrote:
-> This adds device tree bindings for the simple random number
-> generator found in the IXP46x SoCs.
-> 
-> Cc: Deepak Saxena <dsaxena@plexity.net>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+Quoting Srinivasa Rao Mandadapu (2021-05-13 05:24:29)
+> Add wakeup delay for fixing PoP noise during capture begin.
+>
+> Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
 > ---
-> The idea is to apply this through the ARM SoC tree along
-> with other IXP4xx refactorings.
-> Please tell me if you prefer another solution.
-> ---
->  .../bindings/rng/intel,ixp46x-rng.yaml        | 36 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 37 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rng/intel,ixp46x-rng.yaml
-> 
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+> index 4c6e433c8226..3eb8550da1fc 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+> @@ -23,6 +23,7 @@ / {
+>         adau7002: audio-codec-1 {
+>                 compatible = "adi,adau7002";
+>                 IOVDD-supply = <&pp1800_l15a>;
+> +               wakeup-delay-ms = <15>;
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Is this part of the binding?
