@@ -2,90 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3737838383A
-	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 17:51:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 481723838AC
+	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 18:00:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238927AbhEQPuz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 11:50:55 -0400
-Received: from mail-ot1-f52.google.com ([209.85.210.52]:34529 "EHLO
-        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243083AbhEQPrX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 11:47:23 -0400
-Received: by mail-ot1-f52.google.com with SMTP id u25-20020a0568302319b02902ac3d54c25eso5954393ote.1;
-        Mon, 17 May 2021 08:46:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=BpisGO1EY/OutI+0r2Ss3WkR4guRrGoWKpsaAn3hDH4=;
-        b=FPEFUc5qSrQs5eGDOD/z1TM60PN18/GuZjvIBb+UVKGk+/31lE2LKElxXQyMx9thNl
-         lHbQU8Xt4dauKN2vC4GFHkvSIMUQnN+b6McDixVKTyusb8xN4RP6hQri78lv6W27RR9T
-         A4dl9+TUCq4QRdOibVDGXlpShzScoH3g2imFLQf7WwUVzbnM2P4VsSXCxDOQhRRPeNGH
-         Wfxajgzvil/eCkHJyQXs+9DfEUR/oFJb+1SvZn7WGebtaRJwNjGWummda2cfj7hBbS9b
-         INfAMxY29VBOuU/CG1nWd+S5iQimw2QIwi3RrIfJ8oS1jbxF7FGMXmF29Io7EhNuJ1Xe
-         92Iw==
-X-Gm-Message-State: AOAM530iwaYVfaezlmUoMXqHiF9XeOLRC3UfCiU1ulEbCyZV0tGxskHz
-        zapUSYcqDXDzU9T5Z+OFXg==
-X-Google-Smtp-Source: ABdhPJwIursDMrlVj6a1IbFbqh11nlxKUw0DMAjHBtI58RXtKtoGhAMJI5Mbpw5HNgeWBknepQj0iw==
-X-Received: by 2002:a9d:2aaa:: with SMTP id e39mr170906otb.169.1621266365457;
-        Mon, 17 May 2021 08:46:05 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id a23sm3246571otf.47.2021.05.17.08.46.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 May 2021 08:46:04 -0700 (PDT)
-Received: (nullmailer pid 2631254 invoked by uid 1000);
-        Mon, 17 May 2021 15:46:03 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     a-govindraju@ti.com, Lokesh Vutla <lokeshvutla@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <kristo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org
-In-Reply-To: <20210517061739.5762-2-kishon@ti.com>
-References: <20210517061739.5762-1-kishon@ti.com> <20210517061739.5762-2-kishon@ti.com>
-Subject: Re: [PATCH v2 1/6] dt-bindings: mux: Convert reg-mux DT bindings to YAML
-Date:   Mon, 17 May 2021 10:46:03 -0500
-Message-Id: <1621266363.910480.2631253.nullmailer@robh.at.kernel.org>
+        id S245275AbhEQP6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 11:58:44 -0400
+Received: from foss.arm.com ([217.140.110.172]:56630 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1345535AbhEQP40 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 May 2021 11:56:26 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 40CC3106F;
+        Mon, 17 May 2021 08:55:06 -0700 (PDT)
+Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 062BF3F73D;
+        Mon, 17 May 2021 08:55:04 -0700 (PDT)
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Hector Yuan <hector.yuan@mediatek.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v4] dt-bindings: dvfs: Add support for generic performance domains
+Date:   Mon, 17 May 2021 16:54:58 +0100
+Message-Id: <20210517155458.1016707-1-sudeep.holla@arm.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 May 2021 11:47:34 +0530, Kishon Vijay Abraham I wrote:
-> Convert reg-mux DT bindings to YAML. Move the examples provided in
-> reg-mux.txt to mux-controller.txt and remove reg-mux.txt
-> 
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-> ---
->  .../bindings/mux/mux-controller.txt           | 113 ++++++++++++++-
->  .../devicetree/bindings/mux/reg-mux.txt       | 129 ------------------
->  .../devicetree/bindings/mux/reg-mux.yaml      |  47 +++++++
->  3 files changed, 159 insertions(+), 130 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mux/reg-mux.txt
->  create mode 100644 Documentation/devicetree/bindings/mux/reg-mux.yaml
-> 
+The CLKSCREW attack [0] exposed security vulnerabilities in energy management
+implementations where untrusted software had direct access to clock and
+voltage hardware controls. In this attack, the malicious software was able to
+place the platform into unsafe overclocked or undervolted configurations. Such
+configurations then enabled the injection of predictable faults to reveal
+secrets.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Many Arm-based systems used to or still use voltage regulator and clock
+frameworks in the kernel. These frameworks allow callers to independently
+manipulate frequency and voltage settings. Such implementations can render
+systems susceptible to this form of attack.
 
-yamllint warnings/errors:
+Attacks such as CLKSCREW are now being mitigated by not having direct and
+independent control of clock and voltage in the kernel and moving that
+control to a trusted entity, such as the SCP firmware or secure world
+firmware/software which are to perform sanity checking on the requested
+performance levels, thereby preventing any attempted malicious programming.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.example.dt.yaml: serdes-ln-ctrl@4080: 'mux-reg-masks' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mux/reg-mux.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.example.dt.yaml: serdes-ln-ctrl@4080: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mux/reg-mux.yaml
+With the advent of such an abstraction, there is a need to replace the
+generic clock and regulator bindings used by such devices with a generic
+performance domains bindings.
 
-See https://patchwork.ozlabs.org/patch/1479231
+[0] https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/tang
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+Link: https://lore.kernel.org/r/20201116181356.804590-1-sudeep.holla@arm.com
+Cc: Rob Herring <robh+dt@kernel.org>
+Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+---
+Hi All,
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Sorry for yet another delay, I don't want to mist this for v5.14 as Mediatek
+cpufreq driver was depending on this IIRC.
 
-pip3 install dtschema --upgrade
+v3[3]->v4:
+	- Dropped unnecessary phandle-array reference
+	- Added maxItems = 1 for the property
 
-Please check and re-submit.
+v2[2]->v3[3]:
+	- Dropped required properties
+	- Added non cpu device example
+	- Updated cpu bindings too
+
+v1[1]->v2[2]:
+	- Changed to Dual License
+	- Added select: true, enum for #performance-domain-cells and
+	  $ref for performance-domain
+	- Changed the example to use real existing compatibles instead
+	  of made-up ones
+
+Regards,
+Sudeep
+
+[1] https://lore.kernel.org/r/20201105173539.1426301-1-sudeep.holla@arm.com
+[2] https://lore.kernel.org/r/20201116181356.804590-1-sudeep.holla@arm.com
+[3] https://lore.kernel.org/r/20210407135913.2067694-1-sudeep.holla@arm.com
+
+ .../devicetree/bindings/arm/cpus.yaml         |  7 ++
+ .../bindings/dvfs/performance-domain.yaml     | 74 +++++++++++++++++++
+ 2 files changed, 81 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dvfs/performance-domain.yaml
+
+diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
+index f3c7249c73d6..9a2432a88074 100644
+--- a/Documentation/devicetree/bindings/arm/cpus.yaml
++++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+@@ -257,6 +257,13 @@ description: |+
+
+       where voltage is in V, frequency is in MHz.
+
++  performance-domains:
++    maxItems: 1
++    description:
++      List of phandles and performance domain specifiers, as defined by
++      bindings of the performance domain provider. See also
++      dvfs/performance-domain.yaml.
++
+   power-domains:
+     description:
+       List of phandles and PM domain specifiers, as defined by bindings of the
+diff --git a/Documentation/devicetree/bindings/dvfs/performance-domain.yaml b/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
+new file mode 100644
+index 000000000000..c8b91207f34d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
+@@ -0,0 +1,74 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/dvfs/performance-domain.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Generic performance domains
++
++maintainers:
++  - Sudeep Holla <sudeep.holla@arm.com>
++
++description: |+
++  This binding is intended for performance management of groups of devices or
++  CPUs that run in the same performance domain. Performance domains must not
++  be confused with power domains. A performance domain is defined by a set
++  of devices that always have to run at the same performance level. For a given
++  performance domain, there is a single point of control that affects all the
++  devices in the domain, making it impossible to set the performance level of
++  an individual device in the domain independently from other devices in
++  that domain. For example, a set of CPUs that share a voltage domain, and
++  have a common frequency control, is said to be in the same performance
++  domain.
++
++  This device tree binding can be used to bind performance domain consumer
++  devices with their performance domains provided by performance domain
++  providers. A performance domain provider can be represented by any node in
++  the device tree and can provide one or more performance domains. A consumer
++  node can refer to the provider by a phandle and a set of phandle arguments
++  (so called performance domain specifiers) of length specified by the
++  \#performance-domain-cells property in the performance domain provider node.
++
++select: true
++
++properties:
++  "#performance-domain-cells":
++    description:
++      Number of cells in a performance domain specifier. Typically 0 for nodes
++      representing a single performance domain and 1 for nodes providing
++      multiple performance domains (e.g. performance controllers), but can be
++      any value as specified by device tree binding documentation of particular
++      provider.
++    enum: [ 0, 1 ]
++
++  performance-domains:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 1
++    description:
++      A phandle and performance domain specifier as defined by bindings of the
++      performance controller/provider specified by phandle.
++
++additionalProperties: true
++
++examples:
++  - |
++    performance: performance-controller@12340000 {
++        compatible = "qcom,cpufreq-hw";
++        reg = <0x12340000 0x1000>;
++        #performance-domain-cells = <1>;
++    };
++
++    // The node above defines a performance controller that is a performance
++    // domain provider and expects one cell as its phandle argument.
++
++    cpus {
++        #address-cells = <2>;
++        #size-cells = <0>;
++
++        cpu@0 {
++            device_type = "cpu";
++            compatible = "arm,cortex-a57";
++            reg = <0x0 0x0>;
++            performance-domains = <&performance 1>;
++        };
++    };
+--
+2.25.1
 
