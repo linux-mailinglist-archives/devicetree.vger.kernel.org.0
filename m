@@ -2,390 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42868382285
-	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 03:29:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1990B38228E
+	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 03:35:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231755AbhEQBay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 May 2021 21:30:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35344 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbhEQBay (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 May 2021 21:30:54 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CABDC061573;
-        Sun, 16 May 2021 18:29:38 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id b25so6722074eju.5;
-        Sun, 16 May 2021 18:29:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=tfk7idN6d8Us3CSSE9XskKFeDEhcgl+dS3ug7P80bS8=;
-        b=nnbn1dsqRGedupN2zz6HPr/jbtHr7fGPU8tqQfsnNA1j7pmJQkKbdzcw5ND5az9MnI
-         SLYxWjrVDlZFhejgYA5o5ple6RNTRlA38FeStpnYJKVz7cRFRA1I22HQ2kG9F60OTXSR
-         +F9ezPkIoU7NXuWrUPFtHIuXGTkzELBnlyXoHPX7bqdyj+Ts2wcAMYu2Wd0DluFJATAr
-         GoZGFuXzbVNR3KzZhir4Z1+w0jPy9gIzslhVbcxXtGINGUgpBPhBQsfzhKCCwl+66DWV
-         tdxFWGr6QuPjxvHwcszLDg6LeAJ0GilzOiH5WjapL6OOJytte4D0wz0OvxA5n8MsHpQ9
-         kk7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=tfk7idN6d8Us3CSSE9XskKFeDEhcgl+dS3ug7P80bS8=;
-        b=OBFKO3uF5+2sGV1aMdski02fthV0uJKs1ksCvLayN84XBNsioCwCy/lAOflGsOIX6s
-         g+H/yvjfLVh2vsER5VmRB1pqTNBA7UzruOcZMW9drfpJBUjYg3eMEPAfL3tHEE9/kToN
-         aD7J55C62eETT4J7P5i8Y94i/giSrHO4xn5H9tcuRF7JRkUy8VaDcYMJDKO29nDrwfAN
-         rfygqR7hUneNICmGYt1XQm+BmVkiz2pwbP4icc2Nphrf/B8hWiAuZL7gr9Tpnuvitz7m
-         7mXF0gjBtxmX2xPHAavZsAPsrl59V9mB8bB9wHCwlw1MTJNhoylU7obRvQLMUSUWUQU8
-         HAYg==
-X-Gm-Message-State: AOAM530ydhYfUWeDJct6V5qbvzuN1DFY+fBr/nTU3FDoEA05tIt9OuWR
-        CwPJwkFIEH0yr3mlTHSKbbSpu+v7z3I=
-X-Google-Smtp-Source: ABdhPJyXGRthTcjGkL4IJZqMxkYi1ioLTjrnNMNE9okKPAez0P1oK4SGeOcUyjQ0gXfcuJWc3QCNiA==
-X-Received: by 2002:a17:906:1dd1:: with SMTP id v17mr6785404ejh.31.1621214976804;
-        Sun, 16 May 2021 18:29:36 -0700 (PDT)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id s26sm55800edr.97.2021.05.16.18.29.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 May 2021 18:29:36 -0700 (PDT)
-Subject: Re: [PATCH 3/9] arm64: dts: rockchip: Prepare Rockchip RK1808
-To:     =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        linux-rockchip@lists.infradead.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        id S232532AbhEQBgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 May 2021 21:36:41 -0400
+Received: from mail-eopbgr00088.outbound.protection.outlook.com ([40.107.0.88]:31054
+        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229479AbhEQBgl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 16 May 2021 21:36:41 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fygq2i3fJJ8WDdgywD+WLbVBL8e37K1hNRm0XEkEMEIXNnYTPDLrMyd57+1z9SYVRaEi7NUC3FIc+mqCQygtDGGnPkcJWH2sqYjcAdUQEqjm8a5zCb2QWdPXo3pwBz/SnTvTSZNsrujP/btFpa2PijRYjM+8He+vtiNfgpr25kxY3sxNoQFPsh6wIVCctfz8dshD+gBfmeIU1oJDtcBWsibq5h++fC0o11Imjk+HWxx+/IfVJ22FDSR7qC9ja30FYzPtLRG4ZZSFSMYHsRdqtr+KwVFr+NQqx3H99rP01NXqS/tdOcAoNAOygAni20j2yCv+F2GXBw7ILa1AN0Q7ag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vFzJPHRZKph0Om/sTK564iicMtswyECu9bccQ9Aec8g=;
+ b=T0HcXus2DoOf/uJ/6F+RckynqcmO30cId8IX7iWpt1ZfJFmZ/E8kvQxLYStp2wu721/tMKlJIckAYY1fBfkRBBb98kmlLvQWgAbp/Fy+LaKPCUZV3P9QGM0ftmcnuXVOv4Por5l6822PmNxkJ8ACbfQ57tVwzV8xiVDR2qMpMyvAFdHYlQavFsXVx4xr22HvYCkRDXzm/Y1yjMtQE0Pejyh7tXjDS2USTkVy00Cxqj0wRk/K9l/0lBybZ5lKPn+CZ2NAmqG3o3IaMuWNFa0VASyP7TuoX8Kgjwkqg21D4Duc4npLwy84wtFnEevWt9A0+nHjvkiy37lSM47DBELaeg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vFzJPHRZKph0Om/sTK564iicMtswyECu9bccQ9Aec8g=;
+ b=eYihPa8AxBerCcMDQGaJzgeEUYDdTJRSmBrhaZY2Bqekyh1Z0QDQOk6UBB63NMxvrTTOIRRUF4Wy3iGb/HQbQX+GizdUV3Ihq3qQxuge2X0icI0mts2t6lGbjHVJu8gcs//nQr0SijqlQi/oc9JmkcxD9CoCnB0hxedfvvb1lZg=
+Received: from VE1PR04MB6688.eurprd04.prod.outlook.com (2603:10a6:803:127::25)
+ by VI1PR04MB7022.eurprd04.prod.outlook.com (2603:10a6:800:126::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.28; Mon, 17 May
+ 2021 01:35:22 +0000
+Received: from VE1PR04MB6688.eurprd04.prod.outlook.com
+ ([fe80::bcfe:215c:1b66:6011]) by VE1PR04MB6688.eurprd04.prod.outlook.com
+ ([fe80::bcfe:215c:1b66:6011%4]) with mapi id 15.20.4129.031; Mon, 17 May 2021
+ 01:35:22 +0000
+From:   Robin Gong <yibin.gong@nxp.com>
+To:     Adam Ford <aford173@gmail.com>
+CC:     Shawn Guo <shawnguo@kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org
-References: <20210516230551.12469-1-afaerber@suse.de>
- <20210516230551.12469-4-afaerber@suse.de>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <f46625ed-4c83-9fd2-52cd-e07a4d93a254@gmail.com>
-Date:   Mon, 17 May 2021 03:29:33 +0200
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
-MIME-Version: 1.0
-In-Reply-To: <20210516230551.12469-4-afaerber@suse.de>
-Content-Type: text/plain; charset=utf-8
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 1/2] arm64: dts: imx8mn: Add spba1 bus
+Thread-Topic: [PATCH 1/2] arm64: dts: imx8mn: Add spba1 bus
+Thread-Index: AQHXKoTrm+1dEO4gCEi87d5cyZOFDqrdyocAgACF5YCAABIPoIAAMe4AgASmRGCAABuHgIADyZ8w
+Date:   Mon, 17 May 2021 01:35:22 +0000
+Message-ID: <VE1PR04MB66880A52479E192514239D94892D9@VE1PR04MB6688.eurprd04.prod.outlook.com>
+References: <20210406013344.124255-1-aford173@gmail.com>
+ <20210511024604.GE3425@dragon>
+ <CAHCN7xLFpL=9BF9M5gUA6sMhc2ZZMNz+GP0OLmLfpJAWdD7W-w@mail.gmail.com>
+ <VE1PR04MB6688CD4AA4826EEEBBA2651689539@VE1PR04MB6688.eurprd04.prod.outlook.com>
+ <CAHCN7xJ5Hq6bRpEgE8Pi9VbQ_Kejy-sgKQsJ93pQEG3U_Wsu=Q@mail.gmail.com>
+ <VE1PR04MB668860A19062925162C40F3C89509@VE1PR04MB6688.eurprd04.prod.outlook.com>
+ <CAHCN7xJ0xPJJaxMrzpZSGKjgh46bSEGgtsECd9ZqnpHKSCH9EA@mail.gmail.com>
+In-Reply-To: <CAHCN7xJ0xPJJaxMrzpZSGKjgh46bSEGgtsECd9ZqnpHKSCH9EA@mail.gmail.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.67]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 05f7c1b0-41b2-424a-204d-08d918d409ac
+x-ms-traffictypediagnostic: VI1PR04MB7022:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR04MB7022D6EFF410CCD1F0810ABB892D9@VI1PR04MB7022.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: +o0N0m0Jns5mWI23geZ4PsbHGGl5UDYdaqT3GK4tpem0wwQtDAsx7+jbBcygx9lM0lFYADf088sdnjxpbpTK6O7Q6Cemfu3pShtl2GoIh9aQE/8LC6Ko1CWq/V01nXaZiIZdMUhZErOCRXmZMZqyC3vWqp9kJRm+7QtF8ioyINUNiKlA18O9JfA2in29QHA98qXjCkeIC8ssRIwGQnppp2/0sHgF9i05EUKXAJgk3QJLdoWIGrtfRW6USh06nja6Zs04enFKNbZ2TgoJ98Q9cTCLBn/r3KmnCOZlSJoLfB0M67qvOTV6XmpiZPF8RpckK4PPSC4LbwWvODH5iSSIRjNK5ees9njFl2Os8blg/Hroaq7lGq435qd0aFKc/6doByS0mSB/xzVJde1R/Q1u7p0N9KJPKsDC09XbpVgjx4SsdhMYdIN4A6H9M6pW1bh8N1DpWCsByNgZsVtbqExBja9dwQM+4N0GQ7Z3EjvNRCnbe/g1xTpqN7Nb+GNbv90hRlsRgttJcWa7oh8YQrcKR8Skds0ZJqS6ptW1ioAbBsCuSS5c2I1kmV3ety1r3wamUrEQgFX6CGiKEHpXWDbSgXv0TZR3Ahegr+HWVlClEDem3aK/E9JjT8j77wTSArbGWhHUG5e9JuO0E4XSSY/YcQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6688.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(39860400002)(346002)(396003)(136003)(366004)(66946007)(66476007)(66556008)(64756008)(66446008)(71200400001)(316002)(6506007)(26005)(478600001)(76116006)(54906003)(7696005)(8676002)(4326008)(52536014)(6916009)(38100700002)(9686003)(2906002)(55016002)(8936002)(5660300002)(33656002)(86362001)(83380400001)(122000001)(186003)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?q+i7FMBLtWfw5U/zKC1JO1c+etHOYpHuV1pkdSFva5649os1Vw1xwpNJ8kKE?=
+ =?us-ascii?Q?I8QrpFuZFwyMcmZs9Kg9QNCUPcr6yfdCXLxYNC1B57O8URxIfSWpO6i99Cqx?=
+ =?us-ascii?Q?NP5YhOyJs092MXXIoMoXOl2G8KeBsLcCsJdSCw3o2tTVg9Mt74NEYC3mc7Xy?=
+ =?us-ascii?Q?//6nGs6DUTle2tTJeQsQYjNQeeJYy0SyGtEv4wxMqSZ1DazSAadWne6wzLBU?=
+ =?us-ascii?Q?uBAszTSIyQD/aTdLWvaXtKto+9cG4lCZOCIQY87JEB/LFz/H2sZ+WFvvHmbI?=
+ =?us-ascii?Q?HbM2KvOhENGWB8hNTt7rmnpOTdbOPzQ1UM01N4XDdR2kmaBnYUAL2NlwDI52?=
+ =?us-ascii?Q?GA4jO0gUcZX9pk3RjSue805NhYIQIuB04YsG7yytPPx0c0+Wg+HvTLMEXreB?=
+ =?us-ascii?Q?kQkUk/qCWqdXm/bqj43egtdEOxXAet/6neOEZSalU//VZt8qV4qEBe619Utf?=
+ =?us-ascii?Q?sPCT2hTSTXTyjPeDEFGnZ3Di5IX6JgtyXAL7ZtW8aXc5bMyqHQNU+4a2N1oz?=
+ =?us-ascii?Q?FZHSZusjwQavL8vd2N8+UA1bFPcl5a4fakT1dYeVfQJLTETci35AKDwzRm6P?=
+ =?us-ascii?Q?QPIGjIZgKarR/gOKYt9KQ51hI0p1HI1zdbUh8VWHO9z35SVcpJ9hfutX8k0P?=
+ =?us-ascii?Q?Jotzl6Enu+J1UF2gHOoGxG5SznYyfCuB8N39E34POU2zmeT9umDYJdJ6G8ge?=
+ =?us-ascii?Q?h7ZhGin7vyrC+8BrxiQkoT+ptkwI7ByUgMl9wTE6JPEke8g1PQswjyaDRbIn?=
+ =?us-ascii?Q?+jWB8wAdaHW7pW8m5tf7koE0R1ESoGU/h3wrcMP1T8DPn+fhRYZeJIe1o5qq?=
+ =?us-ascii?Q?t6l8s9e6WgmUrNcwZ90k9tdihdf8n5KYUguX5NCqhbJ0yODfU0Xecfnu5cM2?=
+ =?us-ascii?Q?ocAi4xXgtQTnA5q1ZSa91j9iVCDV6Ou5obh37phzpGctjR+cgdTHsVXlUVFv?=
+ =?us-ascii?Q?NuOlVNJaProvAjGmZB41KHtXjASeeXTLKKgZleWAm33H7hN3mD7QHXfQeEYn?=
+ =?us-ascii?Q?0d1Tt4DFBYX+d21UAkjlnmJALzuiwg6reeFzXj77KQb7gnyyBrQzjhb7fxxd?=
+ =?us-ascii?Q?vDehBE3dhwvoqau6y6mTw5hbZPZtYd5CT3lQFa193lTKJGpcYWEN6+LV+6uY?=
+ =?us-ascii?Q?iFcdC28/4f/nDTfp3A025V2jkJzS1mre8WW0LIhR4PZ5LukAMk/EcQETVXGt?=
+ =?us-ascii?Q?HGly1Yey5jDdOobvVj6OoQLQIgOz0FkrsHODP7TnpSLMajrTBGpYOEJmr3h/?=
+ =?us-ascii?Q?nuUywdvMhrm8feAPdYjUU4oURTl8sOSZAdhyIjhaYKQtNaeXeN7vX8hLcvFp?=
+ =?us-ascii?Q?iSwND2MQSwLR2FlWIcjq14Bs?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6688.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 05f7c1b0-41b2-424a-204d-08d918d409ac
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 May 2021 01:35:22.3694
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: XSS9cUvWoL5rd59tR5fiEa5m5AQA1W/PEPF06NEozr1BP4aS9NvkoYNt6+BOnDHdaJ69pmOd7511VlP2K5hlPg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7022
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andreas,
+On 5/14/21 Adam Ford <aford173@gmail.com> wrote: =20
+> I did this on the 5.13-rc1 which appears to have this series applied.
 
-Send the complete serie to all maintainers and mail lists.
+Sorry, I didn't see it on 5.13-rc2 even....
 
-===
-Heiko's sort rules:
+> > where 'sdma firmware not ready' added?
 
-compatible
-reg
-interrupts
-[alphabetical]
-status [if needed]
+> >
+> > > [   10.594548] Bluetooth: HCI UART protocol Broadcom registered
+> > > [   10.600108] imx-uart 30860000.serial: We cannot prepare for the RX
+> slave
+> > > dma!
+> > Why not use ROM script for UART as mailine linux-next did (even the abo=
+ve
+> patch set)?
+>=20
+>=20
+>=20
+> > If so, I don't think you could such issue on your board. What
+> > script(peripheral types) you set in uart dts such as below is 4-- MCU d=
+omain
+> UART-> IMX_DMATYPE_UART->app_2_mcu:
+> >
+> > dmas =3D <&sdma1 22 4 0>, <&sdma1 23 4 0>;
+>=20
+> I didn't change the DMA references from the default, and I didn't check t=
+o
+> verify whether they are right or not.
+If so, I don't think you could see the above firmware load error since UART
+use ROM firmware by default instead.
 
-===
-My incomplete list:
+>=20
+> >
+> > >
+> > > When I get the above message, the bluetooth chip I have throws
+> > > timeouts and does not function.
+> > >
+> > > [   10.615090] imx-sdma 302c0000.dma-controller: loaded firmware 4.5
+> > >
+> > > Once the firmware is loaded, I can unload the HCI Uart driver and
+> > > re-load Bluetooth works again.
+> > >
+> > > Based on that, I've been having my system delay the loading of the
+> > > Bluetooth modules until after the firmware is loaded, but this tells
+> > > me there is a relationship between the DMA and UART.
+> > If you use ram script, of course you should use it after firmware
+> > loaded. Actually Spba bus in dts is only used for per_2_per script
+> > judging if the peripheral address could be accessed directly by SDMA
+> > over SPBA, if yes, set SDMA_WATERMARK_LEVEL_SP to let per_2_per script
+> > access peripheral over SPBA, otherwise, access peripheral by AIPS inste=
+ad
+> like ARM side did. Please check with below commit for more.
+> > Besides, per_2_per script is used for audio data sample rate convert
+> > between ASRC and various audio input. So audio peripherals include
+> > ASRC should be in register scope of 'spba-bus' . But with your patch,
+> > there are two 'spba-bus' device node in dts, so the first Spba-bus
+> > should contain audio peripheral, otherwise, 'of_find_compatible_node
+> > (NULL, NULL, "fsl,spba-bus")' may find the wrong one so that
+> SDMA_WATERMARK_LEVEL_SP Never be set.
+>=20
+> I don't pretend to understand the details of the dma driver, but I attemp=
+ted to
+> make the patch match the address range of both spba busses from the
+> technical reference manual,so there should be an spba bus for the audio
+> peripherals and an spba bus for the serial peripherals like UART and SPI.=
+  I
+> only named them spba1 and spba2 based on the memory ranges defined in
+> the ref manual. Table 2-5 shows
+> SBPA1 is 3080_0000 and table 2-3 shows SPBA2 starts at 3000_0000 which is
+> what I believe I did in this patch.
+Okay, I'm not saying your patch is not wrong, just curious about your UART =
+issue
+you mentioned :)
 
-For nodes:
-If exists on top: model, compatible and chosen.
-Sort things without reg alphabetical first,
-then sort the rest by reg address.
-
-Inside nodes:
-If exists on top: compatible, reg and interrupts.
-In alphabetical order the required properties.
-Then in alphabetical order the other properties.
-And as last things that start with '#' in alphabetical order.
-Add status below all other properties for soc internal components with
-any board-specifics.
-Keep an empty line between properties and nodes.
-
-Exceptions:
-Sort pinctrl-0 above pinctrl-names, so it stays in line with clock-names
-and dma-names.
-Sort simple-audio-card,name above other simple-audio-card properties.
-Sort regulator-name above other regulator properties.
-Sort regulator-min-microvolt above regulator-max-microvolt.
-
-===
-
-Fix complete dtsi for property sort order!
-Add more drivers. (cru, pinctrl)
-
-Johan
-
-On 5/17/21 1:05 AM, Andreas Färber wrote:
-> Add an initial Device Tree for Rockchip RK1808 SoC.
-> Based on shipping TB-RK1808M0 DTB.
-> 
-> Signed-off-by: Andreas Färber <afaerber@suse.de>
-> ---
->  arch/arm64/boot/dts/rockchip/rk1808.dtsi | 203 +++++++++++++++++++++++
->  1 file changed, 203 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk1808.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk1808.dtsi b/arch/arm64/boot/dts/rockchip/rk1808.dtsi
-> new file mode 100644
-> index 000000000000..af2b51afda7d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk1808.dtsi
-> @@ -0,0 +1,203 @@
-> +// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-> +/*
-> + * Copyright (c) 2021 Andreas Färber
-> + */
-> +
-
-#include <dt-bindings/clock/rk1808-cru.h>
-
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +/ {
-> +	compatible = "rockchip,rk1808";
-> +	interrupt-parent = <&gic>;
-
-> +	#address-cells = <1>;
-> +	#size-cells = <1>;
-
-
-	#address-cells = <2>;
-	#size-cells = <2>;
-
-64 bit ??
-
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		serial1 = &uart1;
-> +		serial2 = &uart2;
-> +		serial3 = &uart3;
-> +		serial4 = &uart4;
-> +		serial5 = &uart5;
-> +		serial6 = &uart6;
-> +		serial7 = &uart7;
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
-> +
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a35";
-> +			reg = <0x0 0x0>;
-> +			enable-method = "psci";
-> +			cpu-idle-states = <&CPU_SLEEP>;
-> +		};
-> +
-> +		cpu1: cpu@1 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a35";
-> +			reg = <0x0 0x1>;
-> +			enable-method = "psci";
-> +			cpu-idle-states = <&CPU_SLEEP>;
-> +		};
-> +
-> +		idle-states {
-> +			entry-method = "psci";
-> +
-> +			CPU_SLEEP: cpu-sleep {
-> +				compatible = "arm,idle-state";
-> +				local-timer-stop;
-> +				arm,psci-suspend-param = <0x10000>;
-> +				entry-latency-us = <120>;
-> +				exit-latency-us = <250>;
-> +				min-residency-us = <900>;
-> +			};
-> +		};
-> +	};
-> +
-
-> +	arm-pmu {
-
-sort node names
-
-> +		compatible = "arm,cortex-a35-pmu";
-> +		interrupts = <GIC_SPI 228 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-affinity = <&cpu0>, <&cpu1>;
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-> +		arm,no-tick-in-suspend;
-> +	};
-> +
-> +	xin24m: xin24m {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <24000000>;
-> +		#clock-cells = <0>;
-> +		clock-output-names = "xin24m";
-> +	};
-> +
-
-> +	firmware {
-
-sort node names
-
-> +		psci {
-> +			compatible = "arm,psci-1.0";
-> +			method = "smc";
-> +		};
-> +
-> +		tee {
-> +			compatible = "linaro,optee-tz";
-> +			method = "smc";
-> +		};
-> +	};
-> +
-
-> +	soc {
-> +		compatible = "simple-bus";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-
-Remove, use 64bit reg.
-See:
-
-https://github.com/rockchip-linux/kernel/blob/develop-4.19/arch/arm64/boot/dts/rockchip/rk1808.dtsi
-
-> +
-> +		system_sram: sram@fec00000 {
-> +			compatible = "mmio-sram";
-> +			reg = <0xfec00000 0x200000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0x0 0xfec00000 0x200000>;
-> +		};
-> +
-> +		gic: interrupt-controller@ff100000 {
-> +			compatible = "arm,gic-v3";
-> +			reg = <0xff100000 0x10000>, /* GICD */
-> +			      <0xff140000 0xc0000>, /* GICR */
-> +			      <0xff300000 0x10000>, /* GICC */
-> +			      <0xff310000 0x10000>, /* GICH */
-> +			      <0xff320000 0x10000>; /* GICV */
-> +			interrupt-controller;
-> +			#interrupt-cells = <3>;
-> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges;
-> +
-> +			gic_its: msi-controller@ff120000 {
-> +				compatible = "arm,gic-v3-its";
-> +				reg = <0xff120000 0x20000>;
-> +				msi-controller;
-> +				#msi-cells = <1>;
-> +			};
-> +		};
-> +
-
-> +		uart0: serial@ff430000 {
-> +			compatible = "rockchip,rk1808-uart", "snps,dw-apb-uart";
-> +			reg = <0xff430000 0x100>;
-> +			reg-shift = <2>;
-> +			reg-io-width = <4>;
-> +			interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
-> +			status = "disabled";
-> +		};
-
-From manufacturer tree:
-
-	uart0: serial@ff430000 {
-		compatible = "rockchip,rk1808-uart", "snps,dw-apb-uart";
-		reg = <0x0 0xff430000 0x0 0x100>;
-		interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
-		clocks = <&cru SCLK_UART0_PMU>, <&cru PCLK_UART0_PMU>;
-		clock-names = "baudclk", "apb_pclk";
-		dmas = <&dmac 0>, <&dmac 1>;
-		pinctrl-0 = <&uart0_xfer &uart0_cts &uart0_rts>;
-		pinctrl-names = "default";
-		reg-io-width = <4>;
-		reg-shift = <2>;
-		status = "disabled";
-	};
-
-Sort all uart nodes.
-
-Does this work without SCLK_UART0_PMU, PCLK_UART0_PMU and pinctrl??
-Add clk-rk1808.c rk1808-cru.h
-
-In mainline pinctrl and gpio are WIP and split elsewhere now.
-
-pinctrl: rockchip: add support for rk1808 SoCs
-
-https://github.com/rockchip-linux/kernel/commit/b2828bc4417c9669fdaca3b8ef392f41850c86e7
-
-> +
-> +		uart1: serial@ff540000 {
-> +			compatible = "rockchip,rk1808-uart", "snps,dw-apb-uart";
-> +			reg = <0xff540000 0x100>;
-> +			reg-shift = <2>;
-> +			reg-io-width = <4>;
-> +			interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
-> +			status = "disabled";
-> +		};
-> +
-> +		uart2: serial@ff550000 {
-> +			compatible = "rockchip,rk1808-uart", "snps,dw-apb-uart";
-> +			reg = <0xff550000 0x100>;
-> +			reg-shift = <2>;
-> +			reg-io-width = <4>;
-> +			interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
-> +			status = "disabled";
-> +		};
-> +
-> +		uart3: serial@ff560000 {
-> +			compatible = "rockchip,rk1808-uart", "snps,dw-apb-uart";
-> +			reg = <0xff560000 0x100>;
-> +			reg-shift = <2>;
-> +			reg-io-width = <4>;
-> +			interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
-> +			status = "disabled";
-> +		};
-> +
-> +		uart4: serial@ff570000 {
-> +			compatible = "rockchip,rk1808-uart", "snps,dw-apb-uart";
-> +			reg = <0xff570000 0x100>;
-> +			reg-shift = <2>;
-> +			reg-io-width = <4>;
-> +			interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
-> +			status = "disabled";
-> +		};
-> +
-> +		uart5: serial@ff5a0000 {
-> +			compatible = "rockchip,rk1808-uart", "snps,dw-apb-uart";
-> +			reg = <0xff5a0000 0x100>;
-> +			reg-shift = <2>;
-> +			reg-io-width = <4>;
-> +			interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-> +			status = "disabled";
-> +		};
-> +
-> +		uart6: serial@ff5b0000 {
-> +			compatible = "rockchip,rk1808-uart", "snps,dw-apb-uart";
-> +			reg = <0xff5b0000 0x100>;
-> +			reg-shift = <2>;
-> +			reg-io-width = <4>;
-> +			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
-> +			status = "disabled";
-> +		};
-> +
-> +		uart7: serial@ff5c0000 {
-> +			compatible = "rockchip,rk1808-uart", "snps,dw-apb-uart";
-> +			reg = <0xff5c0000 0x100>;
-> +			reg-shift = <2>;
-> +			reg-io-width = <4>;
-> +			interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
-> +			status = "disabled";
-> +		};
-> +	};
-> +};
-> 
