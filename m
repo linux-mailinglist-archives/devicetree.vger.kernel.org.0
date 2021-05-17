@@ -2,227 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF4E6383A1E
-	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 18:37:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BBAE383A0C
+	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 18:35:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245310AbhEQQiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 12:38:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40654 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244973AbhEQQie (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 12:38:34 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 915FFC003665;
-        Mon, 17 May 2021 08:41:09 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id 60F471F423BD
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     netdev@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org
-Cc:     Jose Abreu <joabreu@synopsys.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        David Wu <david.wu@rock-chips.com>,
+        id S243741AbhEQQg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 12:36:56 -0400
+Received: from foss.arm.com ([217.140.110.172]:57760 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S244641AbhEQQgr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 May 2021 12:36:47 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EEA2C106F;
+        Mon, 17 May 2021 09:35:30 -0700 (PDT)
+Received: from [10.57.66.179] (unknown [10.57.66.179])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D8D063F73D;
+        Mon, 17 May 2021 09:35:28 -0700 (PDT)
+Subject: Re: [PATCH v5 4/6] drm/sprd: add Unisoc's drm display controller
+ driver
+To:     Joerg Roedel <joro@8bytes.org>, Kevin Tang <kevin3.tang@gmail.com>
+Cc:     Maxime Ripard <maxime@cerno.tech>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Chen-Yu Tsai <wens213@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>
-Subject: [PATCH v3 net-next 4/4] net: stmmac: Add RK3566/RK3568 SoC support
-Date:   Mon, 17 May 2021 12:40:37 -0300
-Message-Id: <20210517154037.37946-5-ezequiel@collabora.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210517154037.37946-1-ezequiel@collabora.com>
-References: <20210517154037.37946-1-ezequiel@collabora.com>
+        Mark Rutland <mark.rutland@arm.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
+        ML dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org
+References: <20210425123607.26537-1-kevin3.tang@gmail.com>
+ <20210425123607.26537-5-kevin3.tang@gmail.com>
+ <20210430092249.n75to2das5m6p4zb@gilmour>
+ <CAFPSGXYJxWJDo1cz+kJB8J9YayGx1hYa=04K5OJ3DHh9ifbuRQ@mail.gmail.com>
+ <YKI26bZGAA+ZNLLj@8bytes.org>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <bc0e3025-60bd-c6b4-117f-592dc1c1a2f0@arm.com>
+Date:   Mon, 17 May 2021 17:35:23 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <YKI26bZGAA+ZNLLj@8bytes.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: David Wu <david.wu@rock-chips.com>
+On 2021-05-17 10:27, Joerg Roedel wrote:
+> On Fri, Apr 30, 2021 at 08:20:10PM +0800, Kevin Tang wrote:
+>> Cc  Robin & Joerg
+> 
+> This is just some GPU internal MMU being used here, it seems. It doesn't
+> use the IOMMU core code, so no Ack needed from the IOMMU side.
 
-Add constants and callback functions for the dwmac present
-on RK3566/RK3568 SoCs.
+Except the actual MMU being used is drivers/iommu/sprd_iommu.c - this is 
+just the display driver poking directly at the interrupt registers of 
+its associated IOMMU instance. I still think this is wrong, and that it 
+should be treated as a shared interrupt, with the IOMMU driver handling 
+its own registers and reporting to the client through the standard 
+report_iommu_fault() API, especially since there are apparently more 
+blocks using these IOMMU instances than just the display.
 
-RK3568 has two MACs, and RK3566 just one, but it's otherwise
-the same IP core.
-
-Signed-off-by: David Wu <david.wu@rock-chips.com>
-[Ezequiel: Separate rk3566-gmac support]
-Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
----
- .../net/ethernet/stmicro/stmmac/dwmac-rk.c    | 121 ++++++++++++++++++
- 1 file changed, 121 insertions(+)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-index 791c13d47a35..280ac0129572 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-@@ -33,11 +33,13 @@ struct rk_gmac_ops {
- 	void (*set_rgmii_speed)(struct rk_priv_data *bsp_priv, int speed);
- 	void (*set_rmii_speed)(struct rk_priv_data *bsp_priv, int speed);
- 	void (*integrated_phy_powerup)(struct rk_priv_data *bsp_priv);
-+	u32 regs[];
- };
- 
- struct rk_priv_data {
- 	struct platform_device *pdev;
- 	phy_interface_t phy_iface;
-+	int id;
- 	struct regulator *regulator;
- 	bool suspended;
- 	const struct rk_gmac_ops *ops;
-@@ -996,6 +998,107 @@ static const struct rk_gmac_ops rk3399_ops = {
- 	.set_rmii_speed = rk3399_set_rmii_speed,
- };
- 
-+#define RK3568_GRF_GMAC0_CON0		0x0380
-+#define RK3568_GRF_GMAC0_CON1		0x0384
-+#define RK3568_GRF_GMAC1_CON0		0x0388
-+#define RK3568_GRF_GMAC1_CON1		0x038c
-+
-+/* RK3568_GRF_GMAC0_CON1 && RK3568_GRF_GMAC1_CON1 */
-+#define RK3568_GMAC_PHY_INTF_SEL_RGMII	\
-+		(GRF_BIT(4) | GRF_CLR_BIT(5) | GRF_CLR_BIT(6))
-+#define RK3568_GMAC_PHY_INTF_SEL_RMII	\
-+		(GRF_CLR_BIT(4) | GRF_CLR_BIT(5) | GRF_BIT(6))
-+#define RK3568_GMAC_FLOW_CTRL			GRF_BIT(3)
-+#define RK3568_GMAC_FLOW_CTRL_CLR		GRF_CLR_BIT(3)
-+#define RK3568_GMAC_RXCLK_DLY_ENABLE		GRF_BIT(1)
-+#define RK3568_GMAC_RXCLK_DLY_DISABLE		GRF_CLR_BIT(1)
-+#define RK3568_GMAC_TXCLK_DLY_ENABLE		GRF_BIT(0)
-+#define RK3568_GMAC_TXCLK_DLY_DISABLE		GRF_CLR_BIT(0)
-+
-+/* RK3568_GRF_GMAC0_CON0 && RK3568_GRF_GMAC1_CON0 */
-+#define RK3568_GMAC_CLK_RX_DL_CFG(val)	HIWORD_UPDATE(val, 0x7F, 8)
-+#define RK3568_GMAC_CLK_TX_DL_CFG(val)	HIWORD_UPDATE(val, 0x7F, 0)
-+
-+static void rk3568_set_to_rgmii(struct rk_priv_data *bsp_priv,
-+				int tx_delay, int rx_delay)
-+{
-+	struct device *dev = &bsp_priv->pdev->dev;
-+	u32 con0, con1;
-+
-+	if (IS_ERR(bsp_priv->grf)) {
-+		dev_err(dev, "Missing rockchip,grf property\n");
-+		return;
-+	}
-+
-+	con0 = (bsp_priv->id == 1) ? RK3568_GRF_GMAC1_CON0 :
-+				     RK3568_GRF_GMAC0_CON0;
-+	con1 = (bsp_priv->id == 1) ? RK3568_GRF_GMAC1_CON1 :
-+				     RK3568_GRF_GMAC0_CON1;
-+
-+	regmap_write(bsp_priv->grf, con0,
-+		     RK3568_GMAC_CLK_RX_DL_CFG(rx_delay) |
-+		     RK3568_GMAC_CLK_TX_DL_CFG(tx_delay));
-+
-+	regmap_write(bsp_priv->grf, con1,
-+		     RK3568_GMAC_PHY_INTF_SEL_RGMII |
-+		     RK3568_GMAC_RXCLK_DLY_ENABLE |
-+		     RK3568_GMAC_TXCLK_DLY_ENABLE);
-+}
-+
-+static void rk3568_set_to_rmii(struct rk_priv_data *bsp_priv)
-+{
-+	struct device *dev = &bsp_priv->pdev->dev;
-+	u32 con1;
-+
-+	if (IS_ERR(bsp_priv->grf)) {
-+		dev_err(dev, "%s: Missing rockchip,grf property\n", __func__);
-+		return;
-+	}
-+
-+	con1 = (bsp_priv->id == 1) ? RK3568_GRF_GMAC1_CON1 :
-+				     RK3568_GRF_GMAC0_CON1;
-+	regmap_write(bsp_priv->grf, con1, RK3568_GMAC_PHY_INTF_SEL_RMII);
-+}
-+
-+static void rk3568_set_gmac_speed(struct rk_priv_data *bsp_priv, int speed)
-+{
-+	struct device *dev = &bsp_priv->pdev->dev;
-+	unsigned long rate;
-+	int ret;
-+
-+	switch (speed) {
-+	case 10:
-+		rate = 2500000;
-+		break;
-+	case 100:
-+		rate = 25000000;
-+		break;
-+	case 1000:
-+		rate = 125000000;
-+		break;
-+	default:
-+		dev_err(dev, "unknown speed value for GMAC speed=%d", speed);
-+		return;
-+	}
-+
-+	ret = clk_set_rate(bsp_priv->clk_mac_speed, rate);
-+	if (ret)
-+		dev_err(dev, "%s: set clk_mac_speed rate %ld failed %d\n",
-+			__func__, rate, ret);
-+}
-+
-+static const struct rk_gmac_ops rk3568_ops = {
-+	.set_to_rgmii = rk3568_set_to_rgmii,
-+	.set_to_rmii = rk3568_set_to_rmii,
-+	.set_rgmii_speed = rk3568_set_gmac_speed,
-+	.set_rmii_speed = rk3568_set_gmac_speed,
-+	.regs = {
-+		0xfe2a0000, /* gmac0 */
-+		0xfe010000, /* gmac1 */
-+		0x0, /* sentinel */
-+	},
-+};
-+
- #define RV1108_GRF_GMAC_CON0		0X0900
- 
- /* RV1108_GRF_GMAC_CON0 */
-@@ -1264,6 +1367,7 @@ static struct rk_priv_data *rk_gmac_setup(struct platform_device *pdev,
- {
- 	struct rk_priv_data *bsp_priv;
- 	struct device *dev = &pdev->dev;
-+	struct resource *res;
- 	int ret;
- 	const char *strings = NULL;
- 	int value;
-@@ -1275,6 +1379,22 @@ static struct rk_priv_data *rk_gmac_setup(struct platform_device *pdev,
- 	of_get_phy_mode(dev->of_node, &bsp_priv->phy_iface);
- 	bsp_priv->ops = ops;
- 
-+	/* Some SoCs have multiple MAC controllers, which need
-+	 * to be distinguished.
-+	 */
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	if (res) {
-+		int i = 0;
-+
-+		while (ops->regs[i]) {
-+			if (ops->regs[i] == res->start) {
-+				bsp_priv->id = i;
-+				break;
-+			}
-+			i++;
-+		}
-+	}
-+
- 	bsp_priv->regulator = devm_regulator_get_optional(dev, "phy");
- 	if (IS_ERR(bsp_priv->regulator)) {
- 		if (PTR_ERR(bsp_priv->regulator) == -EPROBE_DEFER) {
-@@ -1561,6 +1681,7 @@ static const struct of_device_id rk_gmac_dwmac_match[] = {
- 	{ .compatible = "rockchip,rk3366-gmac", .data = &rk3366_ops },
- 	{ .compatible = "rockchip,rk3368-gmac", .data = &rk3368_ops },
- 	{ .compatible = "rockchip,rk3399-gmac", .data = &rk3399_ops },
-+	{ .compatible = "rockchip,rk3568-gmac", .data = &rk3568_ops },
- 	{ .compatible = "rockchip,rv1108-gmac", .data = &rv1108_ops },
- 	{ }
- };
--- 
-2.30.0
-
+Robin.
