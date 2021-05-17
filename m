@@ -2,70 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5267E383872
-	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 17:52:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBA243837A6
+	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 17:46:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344163AbhEQPxH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 11:53:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47160 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S244768AbhEQPvL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 May 2021 11:51:11 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6487F610A2;
-        Mon, 17 May 2021 15:13:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621264384;
-        bh=W5xkZsukITwxD2vyq79yAHhInfmLtEQuAjuviEfY5Gw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=JJQmSbUHURNv1p453cVx1E+CiI67NzqNDt5EQVhK0jwX2D4kJhMgTyUdWRO+YOwQI
-         yaORaFDJh4XkfzmcgS2naqPTjXGDFq3MZiB3+jLg9fzb2CWC5YMga98J8bmtPynkjN
-         Vgf5NJeLR+L+mhS4kWK5tCEQk2tBjfduCc+BZmCKH2k9oYyyErNYe+HE626ey8YIIy
-         SvE4Gn78abXd3w/CPbc8cDS3TloZX156Ifmxxpv6ZlwWCo/4N0jStnSTjlhMB3ctKy
-         wNa9B1wCU8XIthaxJDrgpCdDLPEoVkFY+1FSWcvyxNT8VBsVkYAIUo4QmSYlSFo+LZ
-         JOjovBjkqgkCA==
-Received: by mail-ed1-f54.google.com with SMTP id di13so7363173edb.2;
-        Mon, 17 May 2021 08:13:04 -0700 (PDT)
-X-Gm-Message-State: AOAM531yx8U/Gg/LP1wX6QowW4JFYIyGFS2CK8EOxFEyzpv6Iq/s5ZVN
-        jHQOCKIC50LZX8jh/1FBYTAlpj0GNeIA6hTGIA==
-X-Google-Smtp-Source: ABdhPJzlXPKQhfjtV7b7SxTeY0v65tOCReL5EfTzNb8MxkY9dfVx8RFPbEhGN+/BM+4NxfE1ePCtAV3Swas4r/nkUOA=
-X-Received: by 2002:a05:6402:100c:: with SMTP id c12mr579637edu.165.1621264382986;
- Mon, 17 May 2021 08:13:02 -0700 (PDT)
+        id S243541AbhEQPq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 11:46:28 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:52960 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343804AbhEQPmK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 11:42:10 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: ezequiel)
+        with ESMTPSA id C04171F423BA
+From:   Ezequiel Garcia <ezequiel@collabora.com>
+To:     netdev@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     Jose Abreu <joabreu@synopsys.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        David Wu <david.wu@rock-chips.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Chen-Yu Tsai <wens213@gmail.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>
+Subject: [PATCH v3 net-next 0/4] net: stmmac: RK3568
+Date:   Mon, 17 May 2021 12:40:33 -0300
+Message-Id: <20210517154037.37946-1-ezequiel@collabora.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-References: <20210424110608.15748-3-michael@walle.cc> <20210510104411.11267-1-miquel.raynal@bootlin.com>
-In-Reply-To: <20210510104411.11267-1-miquel.raynal@bootlin.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 17 May 2021 10:12:51 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK3Wym+ERaQ0np-v8HM39TyNUTAwbhKHPasOPx5xnMNsQ@mail.gmail.com>
-Message-ID: <CAL_JsqK3Wym+ERaQ0np-v8HM39TyNUTAwbhKHPasOPx5xnMNsQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] dt-bindings: mtd: add YAML schema for the generic
- MTD bindings
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Michael Walle <michael@walle.cc>,
-        MTD Maling List <linux-mtd@lists.infradead.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 10, 2021 at 5:44 AM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
->
-> On Sat, 2021-04-24 at 11:06:05 UTC, Michael Walle wrote:
-> > Convert MTD's common.txt to mtd.yaml.
-> >
-> > Signed-off-by: Michael Walle <michael@walle.cc>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
->
-> Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.
+Here's the third version of this patchset, taking
+the feedback from Heiko and Chen-Yu Tsai.
 
-This is causing a warning in linux-next:
+Although this solution is a tad ugly as it hardcodes
+the register addresses, we believe it's the most robust approach.
 
-/builds/robherring/linux-dt/Documentation/devicetree/bindings/spi/spi-mux.example.dt.yaml:
-spi-flash@0: $nodename:0: 'spi-flash@0' does not match '^flash(@.*)?$'
- From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+See:
 
-Rob
+https://lore.kernel.org/netdev/CAGb2v67ZBR=XDFPeXQc429HNu_dbY__-KN50tvBW44fXMs78_w@mail.gmail.com/
+
+This is tested on RK3566 EVB2 and seems to work well.
+Once the RK3568 devicetree lands upstream, we'll post
+patches to add network support for RK3566 and RK3568.
+
+Thanks!
+
+David Wu (2):
+  net: stmmac: dwmac-rk: Check platform-specific ops
+  net: stmmac: Add RK3566/RK3568 SoC support
+
+Ezequiel Garcia (2):
+  net: stmmac: Don't set has_gmac if has_gmac4 is set
+  dt-bindings: net: rockchip-dwmac: add rk3568 compatible string
+
+ .../bindings/net/rockchip-dwmac.yaml          |  30 ++--
+ .../net/ethernet/stmicro/stmmac/dwmac-rk.c    | 158 +++++++++++++++++-
+ 2 files changed, 173 insertions(+), 15 deletions(-)
+
+-- 
+2.30.0
+
