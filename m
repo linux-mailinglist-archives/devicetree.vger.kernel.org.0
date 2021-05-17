@@ -2,224 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96B2E3829C4
-	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 12:24:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D03E4382A18
+	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 12:48:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236273AbhEQK0M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 06:26:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41736 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236209AbhEQK0M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 06:26:12 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFC55C061573
-        for <devicetree@vger.kernel.org>; Mon, 17 May 2021 03:24:55 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id y14so3695145wrm.13
-        for <devicetree@vger.kernel.org>; Mon, 17 May 2021 03:24:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=1uqNXUpVyuomhEWX3uzRubVqH//B/oaEGgllzNXN/bQ=;
-        b=s71N+Em/VMij/lL/5g5CtNDBocNukAPXqlIoUo7Uyt+f+cF+yWkr9s7CQ3qv/6lQPI
-         Yb1UdBUD14KQw3qsG84gfZ96qWozHhlyj7gbdOp2qWx4DWj6jGhPCTil3B0F67k9zQhu
-         woOh/nF21F8Uo06a9hXOu+1I53OjT9b/Zbzgp6kVbk6yE3CAfVAbVEeiXlwImzDwFIc+
-         N0PFWdi+jEVZvATjC+4QXCHSMbFwCiSdRb1s3FrIlrTivn17VUtNPX5piWM1g1l1KXyX
-         ifPebyVmh9iKuncI9eKLJoRmBW2/lCPjw5lDbjpCJsNHIA/nrzNh32PJgOhE6GRa/1bL
-         p6yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=1uqNXUpVyuomhEWX3uzRubVqH//B/oaEGgllzNXN/bQ=;
-        b=bqpGMQjhEySLwSg4zpEEVQRSw0WfeHDqrpn8A8mKZ+WrJiLYHdME2lNybwD3mcKb5K
-         48EOOxIu56aevpj2OTe0hlmw3+jWXGBrd4aAphH9SepZl2ZFqd3sVszEQMbxqaxQmsOI
-         hZg5vog4mp6IqKJu2Ij9DudozPGOJ+v9AKV9kd5hMYNi73un/vYqkNpOxtHIupFo7FLq
-         Pca97qwOHeSh+7nyMWH9sm+urJFyTT8WS4F98y+SIXTlNxKJ5P8aqS5N8KJvoTtvI7/r
-         uR2g8ukxRXAct664SsJavJNQoBr1CB4b+AC85Ol+6MS1LpCTb367/jdacnr7utEB6zvx
-         34Eg==
-X-Gm-Message-State: AOAM530Y9oGLIwa6hEjpifBKP2+TEuBZ4gR+dAniApd4IIMnFuUEofQt
-        nQA58+di/uQkxDu/PcPYZ9DHgQ==
-X-Google-Smtp-Source: ABdhPJyvDDcgOB1SFtKlawbsc996gmsnMdi83ARlyPr2D3PYLKd4sf/6Tow1BtYpLrEXi7LIhr3ebg==
-X-Received: by 2002:a05:6000:188d:: with SMTP id a13mr38290175wri.61.1621247094350;
-        Mon, 17 May 2021 03:24:54 -0700 (PDT)
-Received: from ?IPv6:2a01:e0a:90c:e290:3044:ffc:eaa9:6a70? ([2a01:e0a:90c:e290:3044:ffc:eaa9:6a70])
-        by smtp.gmail.com with ESMTPSA id y21sm21092169wmi.15.2021.05.17.03.24.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 May 2021 03:24:53 -0700 (PDT)
-Subject: Re: [PATCH v13 0/4] drm/panfrost: Add support for mt8183 GPU
-To:     Steven Price <steven.price@arm.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc:     Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh@kernel.org>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Tomeu Vizoso <tomeu.vizoso@collabora.com>, fshao@chromium.org,
-        David Airlie <airlied@linux.ie>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>, hsinyi@chromium.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        hoegsberg@chromium.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-References: <20210421052855.1279713-1-drinkcat@chromium.org>
- <c91746ce-88b6-5612-74a5-74600c7761e8@baylibre.com>
- <CAAEAJfD3i+L4w1NuE5pUkMuH=R3CfBztDn-ZLcYR=onkcZ4Gxg@mail.gmail.com>
- <373d0803-8658-9413-2f51-1e9804c39126@baylibre.com>
- <ce401ca2-e285-4fcf-0583-c1dae94dba6a@arm.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <8e35886c-7b51-aa93-5f9c-df0fae635828@baylibre.com>
-Date:   Mon, 17 May 2021 12:24:51 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
-MIME-Version: 1.0
-In-Reply-To: <ce401ca2-e285-4fcf-0583-c1dae94dba6a@arm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S236447AbhEQKtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 06:49:36 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:37140 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236381AbhEQKtg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 May 2021 06:49:36 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 15EBC1A0A12;
+        Mon, 17 May 2021 12:48:19 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 inva020.eu-rdc02.nxp.com 15EBC1A0A12
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com;
+        s=nselector3; t=1621248499;
+        bh=Im5JodYbpOO68PyPNbm9SHNQGqEZEAD/9V5qHFtCRc0=;
+        h=From:To:Subject:Date:From;
+        b=ZSgOk8crfOlyKbfm1KA1QIohQUU4aafWPnznyk4kNOIcaIgYGI6pCpKAMuOLJbqWP
+         t9g9xcaVba2Ld7dvYP8zR0lwfbD2u9LNJytQZ7KLGgcMRQGiiz7BitBf3s3MvhlcyJ
+         6vkZWaW+6Uhsg3lGloKlKH3Q5KXfv+wiiLfd18C4bKDRo1y9UgS2EWM0zqGx/X4DN+
+         d6sUP33JhHSWYrPRD2ayD8ZdX7ULBLTK2qCoCMEldY+hyYG9xMRFduyeEtHq+kw/gO
+         rLVQROZPdWpEQbPYFo8gsddCqyDBaDA58KdaCeVKYlUJQcfOi1egXFE77QU8estoug
+         PN0L7oecv/nHg==
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 0C2E21A0A01;
+        Mon, 17 May 2021 12:48:12 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 inva020.eu-rdc02.nxp.com 0C2E21A0A01
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id A1987402D9;
+        Mon, 17 May 2021 18:48:02 +0800 (+08)
+From:   Shengjiu Wang <shengjiu.wang@nxp.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
+        tiwai@suse.com, timur@kernel.org, nicoleotsuka@gmail.com,
+        Xiubo.Lee@gmail.com, festevam@gmail.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3 1/2] ASoC: dt-bindings: imx-card: Add binding doc for imx sound card
+Date:   Mon, 17 May 2021 18:31:27 +0800
+Message-Id: <1621247488-21412-1-git-send-email-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/05/2021 17:27, Steven Price wrote:
-> On 14/05/2021 15:48, Neil Armstrong wrote:
->> On 13/05/2021 16:55, Ezequiel Garcia wrote:
->>> Hi Neil,
->>>
->>> On Mon, 26 Apr 2021 at 06:59, Neil Armstrong <narmstrong@baylibre.com> wrote:
->>>>
->>>> Hi,
->>>>
->>>> On 21/04/2021 07:28, Nicolas Boichat wrote:
->>>>> Hi!
->>>>>
->>>>> This is just a rebase of the v11, untested (but it seems like
->>>>> Neil Armstrong recently tested it), with small changes in
->>>>> binding and dts. v11 cover follows:
->>>>>
->>>>> Follow-up on the v5 [1], things have gotten significantly
->>>>> better in the last year, thanks to the efforts on Bifrost
->>>>> support by the Collabora team (and probably others I'm not
->>>>> aware of).
->>>>>
->>>>> I've been testing this series on a MT8183/kukui device, with a
->>>>> chromeos-5.10 kernel [2], and got basic Chromium OS UI up with
->>>>> mesa 20.3.2 (lots of artifacts though).
->>>>>
->>>>> devfreq is currently not supported, as we'll need:
->>>>>  - Clock core support for switching the GPU core clock (see 2/4).
->>>>>  - Platform-specific handling of the 2-regulator (see 3/4).
->>>>>
->>>>> Since the latter is easy to detect, patch 3/4 just disables
->>>>> devfreq if the more than one regulator is specified in the
->>>>> compatible matching table.
->>>>>
->>>>> [1] https://patchwork.kernel.org/project/linux-mediatek/cover/20200306041345.259332-1-drinkcat@chromium.org/
->>>>> [2] https://crrev.com/c/2608070
->>>>>
->>>>> Changes in v13:
->>>>>  - devfreq: Fix conflict resolution mistake when rebasing, didn't
->>>>>    even compile. Oops.
->>>>>
->>>>> Changes in v12:
->>>>>  - binding: Fix min/maxItems logic (Rob Herring)
->>>>>  - Add gpu node to mt8183-pumpkin.dts as well (Neil Armstrong).
->>>>>
->>>>> Changes in v11:
->>>>>  - binding: power-domain-names not power-domainS-names
->>>>>  - mt8183*.dts: remove incorrect supply-names
->>>>>
->>>>> Changes in v10:
->>>>>  - Fix the binding to make sure sram-supply property can be provided.
->>>>>
->>>>> Changes in v9:
->>>>>  - Explain why devfreq needs to be disabled for GPUs with >1
->>>>>    regulators.
->>>>>
->>>>> Changes in v8:
->>>>>  - Use DRM_DEV_INFO instead of ERROR
->>>>>
->>>>> Changes in v7:
->>>>>  - Fix GPU ID in commit message
->>>>>  - Fix GPU ID in commit message
->>>>>
->>>>> Changes in v6:
->>>>>  - Rebased, actually tested with recent mesa driver.
->>>>>  - Add gpu regulators to kukui dtsi as well.
->>>>>  - Power domains are now attached to spm, not scpsys
->>>>>  - Drop R-B.
->>>>>  - devfreq: New change
->>>>>  - Context conflicts, reflow the code.
->>>>>  - Use ARRAY_SIZE for power domains too.
->>>>>
->>>>> Changes in v5:
->>>>>  - Rename "2d" power domain to "core2"
->>>>>  - Rename "2d" power domain to "core2" (keep R-B again).
->>>>>  - Change power domain name from 2d to core2.
->>>>>
->>>>> Changes in v4:
->>>>>  - Add power-domain-names description
->>>>>    (kept Alyssa's reviewed-by as the change is minor)
->>>>>  - Add power-domain-names to describe the 3 domains.
->>>>>    (kept Alyssa's reviewed-by as the change is minor)
->>>>>  - Add power domain names.
->>>>>
->>>>> Changes in v3:
->>>>>  - Match mt8183-mali instead of bifrost, as we require special
->>>>>    handling for the 2 regulators and 3 power domains.
->>>>>
->>>>> Changes in v2:
->>>>>  - Use sram instead of mali_sram as SRAM supply name.
->>>>>  - Rename mali@ to gpu@.
->>>>>
->>>>> Nicolas Boichat (4):
->>>>>   dt-bindings: gpu: mali-bifrost: Add Mediatek MT8183
->>>>>   arm64: dts: mt8183: Add node for the Mali GPU
->>>>>   drm/panfrost: devfreq: Disable devfreq when num_supplies > 1
->>>>>   drm/panfrost: Add mt8183-mali compatible string
->>>>>
->>>>>  .../bindings/gpu/arm,mali-bifrost.yaml        |  30 ++++-
->>>>>  arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |   5 +
->>>>>  .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   5 +
->>>>>  .../boot/dts/mediatek/mt8183-pumpkin.dts      |   5 +
->>>>>  arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 105 ++++++++++++++++++
->>>>>  drivers/gpu/drm/panfrost/panfrost_devfreq.c   |   9 ++
->>>>>  drivers/gpu/drm/panfrost/panfrost_drv.c       |  10 ++
->>>>>  7 files changed, 168 insertions(+), 1 deletion(-)
->>>>>
->>>>
->>>> Seems this version is ready to be applied if we get a review on the DT ?
->>>>
->>>> Mathias ? could you have a look ?
->>>>
->>>
->>> Given Rob has Acked the DT bindings, I think it's OK to apply patches
->>> 1, 3 and 4 via drm-misc, letting Mediatek people sort out the DT changes.
->>>
->>> My two unsolicited cents :-)
-> 
-> You make a convincing point - and if everyone is happy for the DT
-> changes to be handled separately I don't see a reason for the other
-> patches to be held up.
-> 
->> Yeah sure, is there a panfrost maintainer in the room ? I can apply them if you ack me.
-> 
-> I seem to be applying most Panfrost changes these days, so I'll save you
-> the effort and push 1,3,4 to drm-misc-next.
+Imx-card is a new added machine driver for supporting
+ak4458/ak5558/ak5552/ak4497 codec on i.MX platforms. But these
+DAC/ADCs are not only supported codecs. This machine driver is
+designed to be a more common machine driver for i.MX platform,
+it can support widely cpu dai interface and codec dai interface.
 
-Thanks !
+Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+---
+changes in v3:
+- use a generic compatible string as Rob's comments.
+- change the file name
 
-Neil
+changes in v2:
+- update doc accoring to Rob's comment, use the common porperties.
 
-> 
-> Thanks,
-> 
-> Steve
-> 
+ .../bindings/sound/imx-audio-card.yaml        | 122 ++++++++++++++++++
+ 1 file changed, 122 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/imx-audio-card.yaml
+
+diff --git a/Documentation/devicetree/bindings/sound/imx-audio-card.yaml b/Documentation/devicetree/bindings/sound/imx-audio-card.yaml
+new file mode 100644
+index 000000000000..d1816dd061cf
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/imx-audio-card.yaml
+@@ -0,0 +1,122 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/imx-audio-card.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP i.MX audio sound card.
++
++maintainers:
++  - Shengjiu Wang <shengjiu.wang@nxp.com>
++
++properties:
++  compatible:
++    enum:
++      - fsl,imx-audio-card
++
++  model:
++    $ref: /schemas/types.yaml#/definitions/string
++    description: User specified audio sound card name
++
++  audio-routing:
++    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
++    description:
++      A list of the connections between audio components. Each entry is a
++      pair of strings, the first being the connection's sink, the second
++      being the connection's source. Valid names could be power supplies,
++      MicBias of codec and the jacks on the board.
++
++patternProperties:
++  ".*-dai-link$":
++    description:
++      Each subnode represents a dai link. Subnodes of each dai links would be
++      cpu/codec dais.
++
++    type: object
++
++    properties:
++      link-name:
++        description: Indicates dai-link name and PCM stream name.
++        $ref: /schemas/types.yaml#/definitions/string
++        maxItems: 1
++
++      format:
++        description: audio format.
++        items:
++          enum:
++            - i2s
++            - dsp_b
++
++      dai-tdm-slot-num:
++        description: see tdm-slot.txt.
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++      dai-tdm-slot-width:
++        description: see tdm-slot.txt.
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++      cpu:
++        description: Holds subnode which indicates cpu dai.
++        type: object
++        properties:
++          sound-dai: true
++
++      codec:
++        description: Holds subnode which indicates codec dai.
++        type: object
++        properties:
++          sound-dai: true
++
++      fsl,mclk-equal-bclk:
++        description: Indicates mclk can be equal to bclk, especially for sai interface
++        $ref: /schemas/types.yaml#/definitions/flag
++
++    required:
++      - link-name
++      - cpu
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - model
++
++additionalProperties: false
++
++examples:
++  - |
++    sound-ak4458 {
++        compatible = "fsl,imx-audio-card";
++        model = "ak4458-audio";
++        pri-dai-link {
++            link-name = "akcodec";
++            format = "i2s";
++            fsl,mclk-equal-bclk;
++            cpu {
++                 sound-dai = <&sai1>;
++            };
++            codec {
++                 sound-dai = <&ak4458_1>, <&ak4458_2>;
++            };
++        };
++        fe-dai-link {
++            link-name = "HiFi-ASRC-FE";
++            format = "i2s";
++            cpu {
++                sound-dai = <&easrc>;
++            };
++        };
++        be-dai-link {
++            link-name = "HiFi-ASRC-BE";
++            format = "dsp_b";
++            dai-tdm-slot-num = <8>;
++            dai-tdm-slot-width = <32>;
++            fsl,mclk-equal-bclk;
++            cpu {
++                sound-dai = <&sai1>;
++            };
++            codec {
++                sound-dai = <&ak4458_1>, <&ak4458_2>;
++            };
++        };
++    };
+-- 
+2.27.0
 
