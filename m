@@ -2,146 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF35D38270E
-	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 10:31:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60AF5382781
+	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 10:51:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230011AbhEQIcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 04:32:18 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:50512 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229755AbhEQIcR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 04:32:17 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14H8UukX001313;
-        Mon, 17 May 2021 03:30:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1621240256;
-        bh=5+GQXpK8pVkLU17QoqgTrmAgiNWs/zpijoNBJuK5Now=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=L0hBS7HT3nisWCzsrk816R8uPjpayQoFk3lP+fkvDl5wzzH5XZ8VvlvTtBwJuD/Et
-         FLtfGL//iZ+PK/BFrjO3cJ7PRyNMDh7tK822XPQTjuPcliXdbED5slyTF49T835HSF
-         TA2vrJlAoInGTwmzIhSGbUE5NjJoU5LJI4bXKvvA=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14H8Uu0J056190
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 17 May 2021 03:30:56 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 17
- May 2021 03:30:56 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 17 May 2021 03:30:56 -0500
-Received: from [10.250.232.247] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14H8Uq8p086445;
-        Mon, 17 May 2021 03:30:53 -0500
-Subject: Re: [PATCH 1/4] arm64: dts: ti: k3-j721e-main: Fix external refclk
- input to SERDES
-To:     Nishanth Menon <nm@ti.com>
-CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-References: <20210512151209.27560-1-kishon@ti.com>
- <20210512151209.27560-2-kishon@ti.com>
- <20210512185157.q5sr2xqf3w5igfte@imagines>
- <68c95cf1-84fa-2194-7bb1-e3c60e7f1fc0@ti.com>
- <20210513140137.5uvftgtsku3xfobz@engraving>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <81b7dc76-0918-0a95-5715-cf701e638bbe@ti.com>
-Date:   Mon, 17 May 2021 14:00:51 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S235731AbhEQIwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 04:52:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48468 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235735AbhEQIwR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 04:52:17 -0400
+Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A80B9C06174A
+        for <devicetree@vger.kernel.org>; Mon, 17 May 2021 01:51:01 -0700 (PDT)
+Received: from [IPv6:2a02:a03f:eafb:ee01:404a:340a:91cb:c07b] (unknown [IPv6:2a02:a03f:eafb:ee01:404a:340a:91cb:c07b])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id CBB6E1FF8B2;
+        Mon, 17 May 2021 10:50:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1621241460;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=h5tsms5xI9mYoU2aDfH9/YdSGrBfg2Dt6aTgdrqgN0M=;
+        b=lEd4V0jDDjiTkNzNAmUv+3XSNCwDDz3bv9rUAqw3pFigetdsit0+mGGJuHYsU4owuoAolv
+        hs9gEkmRWMg0coyZFZ/28vTjmh8VxGQSs46OC2vWHLc/H6LTutZBnziBMvHMMDasNfFNzy
+        NOZO4iPtKGPiDRrKSeWXELv1T8jotVNIkqaBRyVn+N7ta8ZlOp/bRXPjwSrGvLkBjY+5rv
+        vrEHx8VY0EVopDg/fi/zGVU9OG2RSBQIiqobJg9YHxOW48zHZDKvUOIH/AGusM4DOUV/ov
+        yhl7bdh4BSG4nnSoB5B34ekyketrpKTRQuO8GVIB5q24DXtus0X8kDz60dcgfA==
+Message-ID: <a717bd96509b38bdfd8883847b8d085f9bdd919f.camel@svanheule.net>
+Subject: Re: [PATCH 0/5] RTL8231 GPIO expander support
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Date:   Mon, 17 May 2021 10:50:57 +0200
+In-Reply-To: <CAHp75VdS63n55b3RG7ZL1=uVgB=7ZiBtTOmV0t+5hw6xKoLFSg@mail.gmail.com>
+References: <cover.1620735871.git.sander@svanheule.net>
+         <CAHp75VffoKyyPJbdtKMLx575c9LT0S8+EHOk7Mw36j=aTL6Q4Q@mail.gmail.com>
+         <b7d39a26bc3a90de4d8e4fdbf8f944de43d12a56.camel@svanheule.net>
+         <CAHp75VdS63n55b3RG7ZL1=uVgB=7ZiBtTOmV0t+5hw6xKoLFSg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
 MIME-Version: 1.0
-In-Reply-To: <20210513140137.5uvftgtsku3xfobz@engraving>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
-
-On 13/05/21 7:31 pm, Nishanth Menon wrote:
-> On 17:41-20210513, Kishon Vijay Abraham I wrote:
->> Hi Nishanth,
->>
->> On 13/05/21 12:21 am, Nishanth Menon wrote:
->>> On 20:42-20210512, Kishon Vijay Abraham I wrote:
->>>> Rename the external refclk inputs to the SERDES from
->>>> dummy_cmn_refclk/dummy_cmn_refclk1 to cmn_refclk/cmn_refclk1
->>>> respectively. Also move the external refclk DT nodes outside the
->>>> cbass_main DT node. Since in j721e common processor board, only the
->>>> cmn_refclk1 is connected to 100MHz clock, fix the clock frequency.
->>>>
->>>> Fixes: afd094ebe69f ("arm64: dts: ti: k3-j721e-main: Add WIZ and SERDES PHY nodes")
->>>
->>> Assume we want this part of 5.13 fixes?
->>
->> This doesn't fix any functionality. Okay for me to go in 5.14 along with
->> the rest of the series.
+On Mon, 2021-05-17 at 11:13 +0300, Andy Shevchenko wrote:
+> On Mon, May 17, 2021 at 12:40 AM Sander Vanheule <sander@svanheule.net> wrote:
+> > On Wed, 2021-05-12 at 18:29 +0300, Andy Shevchenko wrote:
+> > > On Tuesday, May 11, 2021, Sander Vanheule <sander@svanheule.net> wrote:
 > 
+> ...
 > 
->>>
->>>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
->>>> ---
->>>>  .../dts/ti/k3-j721e-common-proc-board.dts     |  4 ++
->>>>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 58 ++++++++++---------
->>>>  2 files changed, 34 insertions(+), 28 deletions(-)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
->>>> index 60764366e22b..86f7ab511ee8 100644
->>>> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
->>>> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
->>>> @@ -635,6 +635,10 @@
->>>>  	status = "disabled";
->>>>  };
->>>>  
->>>> +&cmn_refclk1 {
->>>> +	clock-frequency = <100000000>;
->>>> +};
->>>> +
->>>>  &serdes0 {
->>>>  	serdes0_pcie_link: link@0 {
->>>>  		reg = <0>;
->>>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->>>> index c2aa45a3ac79..002a0c1520ee 100644
->>>> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->>>> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->>>> @@ -8,6 +8,20 @@
->>>>  #include <dt-bindings/mux/mux.h>
->>>>  #include <dt-bindings/mux/ti-serdes.h>
->>>>  
->>>> +/ {
->>>> +	cmn_refclk: cmn-refclk {
->>>> +		#clock-cells = <0>;
->>>> +		compatible = "fixed-clock";
->>>> +		clock-frequency = <0>;
->>>> +	};
->>>> +
->>>> +	cmn_refclk1: cmn-refclk1 {
->>>
->>> Just curious: why cant we use the standard nodenames with clock?
->>
->> We can use standard names here. Is there any defined nodename for
->> clocks? clk or clock? Don't see $nodename defined for clocks in
->> dt-schema repository.
+> > >  * > > > I have several comments to the series, but I may give them next
+> > >    week.
+> > > 
+> > > Just couple here:
+> > > 1. If subsystem provides a regmap API I would suggest to use it, I.o.w.
+> > > try
+> > > again to understand what is wrong with MDIO case.
+> > 
+> > Are you referring to the MDIO regmap interface, or the GPIO regmap
+> > interface?
 > 
-> Looking at the fixed-clock example, lets go with clock
+> MDIO
+> 
+> > For the MDIO regmap interface, I have been able to resolve the Kconfig
+> > dependency issue. So I can reintroduce that, if that's preferred over the
+> > solution in this v1.
+> > 
+> > With an extra patch, I was able to use the gpio-regmap interface, dropping
+> > most
+> > of the GPIO code. The current gpio-regmap implementation makes the
+> > assumption
+> > that an output value can be set while a pin is configured as an input. That
+> > assumption is invalid for this chip, so I had to provide an extra flag for
+> > gpio_regmap_config, similar to how this is handled in gpio-mmio.
+> > 
+> > 
+> > > 2. Please, switch to fwnode API in LED driver
+> > 
+> > Since you had the same comment on my previous patch set, I had already tried
+> > to
+> > this this into account as much as possible.
+> > 
+> > There's a few things I couldn't find the fwnode-equivalent for:
+> >  * I use of_node_name_prefix to enforce the naming required by the binding.
+> > I
+> >    could just walk over all (available) child nodes, which would be mostly
+> >    equivalent.
+> 
+> AFAIU the LED traditional bindings is that you define LED compatible
+> nodes and all child nodes of it are the one-per-LED ones, there
+> shouldn't be others.
 
-Since I have two clocks here adding clock@0 and clock@1 introduces the
-following error.
-/home/a0393678/repos/linux-wip/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml:
-/: clock@0: 'anyOf' conditional failed, one must be fixed:
-        'reg' is a required property
-        'ranges' is a required property
+OK, then I can just iterate over all child fwnodes.
 
-The current "fixed-clock" binding doesn't allow adding "reg" property.
-We'll stick to non standard names? or do you think the binding has to be
-fixed?
 
-Thanks
-Kishon
+> >  * To get the address of an LED child node, I use of_get_address, since this
+> >    appeared to provide what I want to do: get the address of the node. I
+> > know
+> >    next to nothing about ACPI. Does the equivalent exist there? Or am I
+> > taking
+> >    the wrong approach?
+> 
+> What are the means of an address in this case?
+
+The chip appears to be intended for use with ethernet switches. The registers
+are organised to into a few groups, to provide 2 or 3 status LEDs per switch
+port:
+
+ * "LED0" group for 32 ports,
+ * "LED1" group for 32 ports,
+ * "LED2" group for 24 ports
+
+The number of LEDs that can be used depends on the output mode, so I use a two-
+part <#PORT #LED> address, resembling how this is defined by Realtek.
+
+A single linear LED address space would get awkward gaps in bi-color mode (where
+only the lower 24 ports can be used), but would still require addresses to be
+able to specify which LED is where. For example in case the user want to link
+them to a phy trigger for a specific switch port.
+
+Best,
+Sander
+
