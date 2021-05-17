@@ -2,84 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 984F7383D75
-	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 21:32:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A705383D77
+	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 21:32:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233582AbhEQTdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 15:33:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52610 "EHLO
+        id S234061AbhEQTdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 15:33:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233552AbhEQTdf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 15:33:35 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BBA3C061756
-        for <devicetree@vger.kernel.org>; Mon, 17 May 2021 12:32:18 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id z130so4181679wmg.2
-        for <devicetree@vger.kernel.org>; Mon, 17 May 2021 12:32:18 -0700 (PDT)
+        with ESMTP id S233897AbhEQTdg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 15:33:36 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16D60C061756
+        for <devicetree@vger.kernel.org>; Mon, 17 May 2021 12:32:19 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id d11so7614494wrw.8
+        for <devicetree@vger.kernel.org>; Mon, 17 May 2021 12:32:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=o1MWPbCmhKRlzL0yQboMxEH1Vw5Cn+akoWVJYorN7PI=;
-        b=gMdukzhdloaqM5m8ubf2QsTgloFt0oz4um3ZEfJnC6cRrLb4WDhRkOO8MNcXJ94tzK
-         OsESwrpQ+vzWnStApEaLzk1FMuLyLEIdf/9Z90xd3FZNVj06J2RkE1n9bxgY6fe/8Ncq
-         oMgmF2/Lb4Ef9gxGuRWxbug+9XbrOFu3dztlMNhzuKM4goSO9cB79LOp8yCHrch6G5z1
-         HWJ0aecZ9uoZonwBT8M6tSqtz9Xl2UXBHAhYliIpdVymj8MLW0MqFmKaLA5Z/2EOyLDb
-         5P2DbcnKIVCSr2++Fcqi4xE4GWwqr7q4xAfJua5M+zhShrrYAB1xyMBmX/O5KdCAXWia
-         kKvA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=L8WTjWPmIl+NDRjCmABsKVn9l03ziqgB8V0IbKFuAe8=;
+        b=aHD6a8IdVjOg0h8WRgNOByK07H0QAQ4/UU76vtJetpUiQI0uTzqBWSA+aUXa8IzbD3
+         WVWXUrzA14bH2vQW+g6L7y3wLcY8BJwcnXStZbNfB8b3xGLAKXRFwMEcbHO7OKP6CRAp
+         /XX2p4EC1cl1uZWnF/nmJKrmDaJDpiRYslPZ0PObUl53wQPmh1GLaK6wxVaFX/+3H1a7
+         sPcwGqYazDaXq7Shh7WFdm94Me8lThY8yPoTRqgN6J7WTz6B73Vdz1cDyOBeW+po/JeP
+         Tp7o1M1FmC+jGt0qRNgRok1ollox6tQZL7zsY3V7p2u8eOQ5jN4OinfScYXD5eHP1fiF
+         MEug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=o1MWPbCmhKRlzL0yQboMxEH1Vw5Cn+akoWVJYorN7PI=;
-        b=opF8R66nfNC4iVitGRiGp53hdo91BAOxx8ffjJNfKIgkofkisEnQ5JIkNFvc1Iq7JT
-         VWHUg6jSICAeWc0hPXOfXYrbEBPYjeTG6lEMIjOOjF/I8ybe/60ybYgDm1AsfkV4bDCz
-         p8QajsS8GipVrmWCiUlSsXgIYklwU+3fJ/Fm+KWY/2d0JL/voo6/jCsWmT6Z/OcYBRIz
-         ZnXD4Qww0FQHGN9Vl4JpFqkc+XW3wqABTKXoAzafIhIbQmKO+CsODv9BXumBWz1VG6q3
-         gqOJCczWkhRNusU4rWIlauB9k3LArzkbt9xflKO74nloobYAf0ZrJbtITGO7Ls451XyI
-         Um2Q==
-X-Gm-Message-State: AOAM5334esqyI0MCMBsLqvxyNyM6JTPwCb/4Ww7jV+NJ78N9AL3/cT2X
-        SobGBhyHebipC0lB/UsJOwkOzw==
-X-Google-Smtp-Source: ABdhPJwsv8iDnA2SN4nduILJwkjwb9WmpT/ZkNYhNGWcTPOkmyY9kui9eXiLhc780cUiLjBIdSA3DQ==
-X-Received: by 2002:a1c:1f84:: with SMTP id f126mr617294wmf.189.1621279936942;
-        Mon, 17 May 2021 12:32:16 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=L8WTjWPmIl+NDRjCmABsKVn9l03ziqgB8V0IbKFuAe8=;
+        b=XC+7QjI0PiZe9zXxQ3MMIkaGQVHpKsySthzI/XzJLT4HSnhkvQKBngIUV//jvkWQmO
+         +LElAk/VOPsz2h44HACICPnfQkd2ndj50Nu2xfDgxLE3IrjzVh3zfXiA3q8OMYxd3jDA
+         2F650eJpTgt3yHDQ9s0Jc5dBiVQvv9YDPBK+vn9MlFuvDPuuaDRVkiBEp1LMrUMUQr18
+         AHPdu+8gfUYH8gvlrZv4u2LyPLsWVrVJEuBhF0RbL4mBTdIXi1xaae+oqhtNjCeIfrM8
+         qDhS4Yxy1rq0RLZfyRyItilZDlBhwO7hNKrybeFuw8dzcffPcXjifqc/ylpYk1vaV5au
+         hrMQ==
+X-Gm-Message-State: AOAM531h68Hc/Qf0NvigWc7e47V41y1+qg6svxJGxO+keGzWEcDJmAql
+        lzlTQ4vSItjbbB8nk4c54nO0gQ==
+X-Google-Smtp-Source: ABdhPJw3CybUk4/0huZ1HOTg4nECJ87UHqLkIlNugxHB4p9+DNz+ufghReTZPLPr1/GLbP2eVN6sgA==
+X-Received: by 2002:adf:f58e:: with SMTP id f14mr1545053wro.258.1621279937843;
+        Mon, 17 May 2021 12:32:17 -0700 (PDT)
 Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id e10sm18928907wrw.20.2021.05.17.12.32.15
+        by smtp.googlemail.com with ESMTPSA id e10sm18928907wrw.20.2021.05.17.12.32.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 May 2021 12:32:16 -0700 (PDT)
+        Mon, 17 May 2021 12:32:17 -0700 (PDT)
 From:   Corentin Labbe <clabbe@baylibre.com>
 To:     arnd@arndb.de, linus.walleij@linaro.org, olof@lixom.net,
         robh+dt@kernel.org, soc@kernel.org, ulli.kroll@googlemail.com
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH 0/5] ARM: gemini: add two more board
-Date:   Mon, 17 May 2021 19:32:00 +0000
-Message-Id: <20210517193205.691147-1-clabbe@baylibre.com>
+Subject: [PATCH 1/5] ARM: dts: gemini: add labels for USB, IDE, flash and ethernet
+Date:   Mon, 17 May 2021 19:32:01 +0000
+Message-Id: <20210517193205.691147-2-clabbe@baylibre.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210517193205.691147-1-clabbe@baylibre.com>
+References: <20210517193205.691147-1-clabbe@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I have two boards with a SL3516 SoC. Both are NAS box.
+Adding label will help simplify boards's dts.
 
-Corentin Labbe (5):
-  ARM: dts: gemini: add labels for USB, IDE, flash and ethernet
-  dt-bindings: add vendor prefix for edimax
-  dt-bindings: add vendor prefix for ssi
-  ARM: gemini: add device tree for edimax NS2502
-  ARM: gemini: add device tree for ssi1328
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+ arch/arm/boot/dts/gemini.dtsi | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
- .../devicetree/bindings/vendor-prefixes.yaml  |   4 +
- arch/arm/boot/dts/Makefile                    |   2 +
- arch/arm/boot/dts/gemini-ns2502.dts           | 141 +++++++++++++++
- arch/arm/boot/dts/gemini-ssi1328.dts          | 162 ++++++++++++++++++
- arch/arm/boot/dts/gemini.dtsi                 |  12 +-
- 5 files changed, 315 insertions(+), 6 deletions(-)
- create mode 100644 arch/arm/boot/dts/gemini-ns2502.dts
- create mode 100644 arch/arm/boot/dts/gemini-ssi1328.dts
-
+diff --git a/arch/arm/boot/dts/gemini.dtsi b/arch/arm/boot/dts/gemini.dtsi
+index 065ed10a79fa..6e043869d495 100644
+--- a/arch/arm/boot/dts/gemini.dtsi
++++ b/arch/arm/boot/dts/gemini.dtsi
+@@ -16,7 +16,7 @@ soc {
+ 		compatible = "simple-bus";
+ 		interrupt-parent = <&intcon>;
+ 
+-		flash@30000000 {
++		flash: flash@30000000 {
+ 			compatible = "cortina,gemini-flash", "cfi-flash";
+ 			syscon = <&syscon>;
+ 			pinctrl-names = "default";
+@@ -321,7 +321,7 @@ pci_intc: interrupt-controller {
+ 			};
+ 		};
+ 
+-		ethernet@60000000 {
++		ethernet: ethernet@60000000 {
+ 			compatible = "cortina,gemini-ethernet";
+ 			reg = <0x60000000 0x4000>, /* Global registers, queue */
+ 			      <0x60004000 0x2000>, /* V-bit */
+@@ -356,7 +356,7 @@ gmac1: ethernet-port@1 {
+ 			};
+ 		};
+ 
+-		ide@63000000 {
++		ide0: ide@63000000 {
+ 			compatible = "cortina,gemini-pata", "faraday,ftide010";
+ 			reg = <0x63000000 0x1000>;
+ 			interrupts = <4 IRQ_TYPE_EDGE_RISING>;
+@@ -369,7 +369,7 @@ ide@63000000 {
+ 			#size-cells = <0>;
+ 		};
+ 
+-		ide@63400000 {
++		ide1: ide@63400000 {
+ 			compatible = "cortina,gemini-pata", "faraday,ftide010";
+ 			reg = <0x63400000 0x1000>;
+ 			interrupts = <5 IRQ_TYPE_EDGE_RISING>;
+@@ -414,7 +414,7 @@ display-controller@6a000000 {
+ 			status = "disabled";
+ 		};
+ 
+-		usb@68000000 {
++		usb0: usb@68000000 {
+ 			compatible = "cortina,gemini-usb", "faraday,fotg210";
+ 			reg = <0x68000000 0x1000>;
+ 			interrupts = <10 IRQ_TYPE_LEVEL_HIGH>;
+@@ -435,7 +435,7 @@ usb@68000000 {
+ 			status = "disabled";
+ 		};
+ 
+-		usb@69000000 {
++		usb1: usb@69000000 {
+ 			compatible = "cortina,gemini-usb", "faraday,fotg210";
+ 			reg = <0x69000000 0x1000>;
+ 			interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
 -- 
 2.26.3
 
