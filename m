@@ -2,74 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7CAB382895
-	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 11:42:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BDC0382967
+	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 12:06:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236066AbhEQJnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 05:43:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46878 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235911AbhEQJnW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 May 2021 05:43:22 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 216ED61005;
-        Mon, 17 May 2021 09:42:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621244526;
-        bh=Z8OXhIfGFQeLSw6Ti2tA4FkfLSbhFA00yCID19JwS+Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KRZalEdinOKoKQ+9WqrEFqHEOCNz+VpaKG+080Edla2HYD3msp3bFLLXEucB+skWt
-         j1YhmYHymwesse8zWc4FMq9ZwkZ8lUSBe9mqixkgO0K0xe4lrISO98ibLzgJyPIsX5
-         WfGqH1By3Q3ESQ5T9m1NAXBIeZ+sOTn+rFuFOoGTji7spjJYdtmxxsgYT7TTDn7Tpx
-         gybvhcHHAEzW4ip7Uvey5jhsOetfSEsgQ3oPL1BwM/pFu+y7avR0TsPRsxknu8slo/
-         dQ7ftYsGefaIn8U30HUsJeTUBEmb7cEkLjWCyO+d0YpEhDdmWQFh+E1eWWO8d8O0B4
-         vKna5MlF+lCkw==
-Date:   Mon, 17 May 2021 15:12:02 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Jonathan McDowell <noodles@earth.li>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/5] ARM: dts: qcom: Add tsens details to ipq806x
-Message-ID: <YKI6amMC8Rg6Kb1I@vkoul-mobl.Dlink>
-References: <cover.1621097174.git.noodles@earth.li>
- <cbcac8439d3fcaaf17df041cab12d904c8058189.1621097174.git.noodles@earth.li>
+        id S236377AbhEQKHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 06:07:45 -0400
+Received: from mail-vk1-f172.google.com ([209.85.221.172]:38860 "EHLO
+        mail-vk1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236457AbhEQKHc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 06:07:32 -0400
+Received: by mail-vk1-f172.google.com with SMTP id v188so1227626vkf.5;
+        Mon, 17 May 2021 03:06:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3GIvUHbLf7bHSRqm2WLTNacDJxM/viGmccF85dLQBwA=;
+        b=kgj66GhWBF9lSl5RZ1+KN1t42gwt17XKys+bussDhr8+eyDsLWQ3nUBueSqPlbzBLk
+         JmU/MmuWb4K+aNWFOPEAYY+wxWFdmTnMoqYVO17U5ZAfLp0If9EXRsiaHSPifs+jJroe
+         036Ht7fQSOTaIkIkCgCumFRsoRZ7GuNskSEFUzk24E/IXeWp1KMba4TEOYKyCdlGPNO0
+         KOG0lcbwNYovgC+JQEnPqnnOmBond/4ireIKo8wbUwAqnSHg4rGzJ/jhLQ1onQTWCfsj
+         1rIWr16EHCVx6bLOA+mv/uHcKCmTdsqLevaSPETStGtiszQGOJ8E87v1gdH5K2tDUwMr
+         cQnA==
+X-Gm-Message-State: AOAM530Ydd+lFTvxoGkf9wm9zWQdSJFvJslTnsK2b9Jq/YtQsuzXSGHu
+        UgGztXq1bPkV1GhAZJP6KAYMiQMgzAp7kwH9hP7kKZBqVn4=
+X-Google-Smtp-Source: ABdhPJzSuMIbh1shCp6BdMEcK0rCBCq1qUwTtUHKlfzDdiILXCroLjHVOs+3ObXQvUWmkW1diQnXIjz/O7+UgWA0tmI=
+X-Received: by 2002:a1f:eac1:: with SMTP id i184mr1956195vkh.2.1621245974394;
+ Mon, 17 May 2021 03:06:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cbcac8439d3fcaaf17df041cab12d904c8058189.1621097174.git.noodles@earth.li>
+References: <20210513114617.30191-1-aford173@gmail.com>
+In-Reply-To: <20210513114617.30191-1-aford173@gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 17 May 2021 12:06:02 +0200
+Message-ID: <CAMuHMdXXHbRzRhSZqkh=QaHmndSyjyk5BQrz5-PRVHBLb+qHMw@mail.gmail.com>
+Subject: Re: [PATCH 1/3] arm64: dts: renesas: beacon: Fix USB extal reference
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15-05-21, 17:52, Jonathan McDowell wrote:
+Hi Adam,
 
->  		gcc: clock-controller@900000 {
-> -			compatible = "qcom,gcc-ipq8064";
-> +			compatible = "qcom,gcc-ipq8064", "syscon";
+Thanks for your patch!
 
-Does this belong here
+On Thu, May 13, 2021 at 1:46 PM Adam Ford <aford173@gmail.com> wrote:
+> The USB extal clock reference isn't associated to a crystal, it's
+> assoicated to a programmable clock, so remove the extal reference,
 
->  			reg = <0x00900000 0x4000>;
->  			#clock-cells = <1>;
->  			#reset-cells = <1>;
-> +			#power-domain-cells = <1>;
-> +
-> +			tsens: thermal-sensor@900000 {
-> +				compatible = "qcom,ipq8064-tsens";
-> +
-> +				nvmem-cells = <&tsens_calib>, <&tsens_calib_backup>;
-> +				nvmem-cell-names = "calib", "calib_backup";
-> +				interrupts = <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>;
-> +				interrupt-names = "uplow";
-> +
-> +				#qcom,sensors = <11>;
-> +				#thermal-sensor-cells = <1>;
-> +			};
+associated
 
-We have sensor under gcc node..?
+> add the usb2_clksel.  Since usb_extal is referenced by the versaclock,
+> reference it here so the usb2_clksel can get the proper clock speed
+> of 50MHz.
+>
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.14, with the above fixed.
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-~Vinod
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
