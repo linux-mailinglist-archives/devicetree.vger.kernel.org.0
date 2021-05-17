@@ -2,109 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72B6B382A43
-	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 12:53:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 070FB382A7F
+	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 13:03:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236562AbhEQKyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 06:54:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48214 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236564AbhEQKyf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 06:54:35 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E5DFC061573
-        for <devicetree@vger.kernel.org>; Mon, 17 May 2021 03:53:19 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1liaru-0007ET-Ma; Mon, 17 May 2021 12:53:02 +0200
-Message-ID: <72fef3d9f79194876f2035e996bb83f9f8b12902.camel@pengutronix.de>
-Subject: Re: [PATCH v9 03/13] media: hantro: Use syscon instead of 'ctrl'
- register
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Ezequiel Garcia <ezequiel@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        lee.jones@linaro.org, gregkh@linuxfoundation.org,
-        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
-        emil.l.velikov@gmail.com, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>
-Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-imx@nxp.com, kernel@pengutronix.de, kernel@collabora.com,
-        cphealy@gmail.com, linux-arm-kernel@lists.infradead.org,
-        linux-media@vger.kernel.org
-Date:   Mon, 17 May 2021 12:52:57 +0200
-In-Reply-To: <831a59b052df02e9860b9766e631a7ab6a37c46a.camel@collabora.com>
-References: <20210407073534.376722-1-benjamin.gaignard@collabora.com>
-         <20210407073534.376722-4-benjamin.gaignard@collabora.com>
-         <7bcbb787d82f21d42563d8fb7e3c2e7d40123932.camel@pengutronix.de>
-         <831a59b052df02e9860b9766e631a7ab6a37c46a.camel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.1 (3.40.1-1.fc34) 
+        id S236573AbhEQLEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 07:04:22 -0400
+Received: from mx2.suse.de ([195.135.220.15]:47490 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236514AbhEQLEV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 May 2021 07:04:21 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 70B4FAE89;
+        Mon, 17 May 2021 11:03:04 +0000 (UTC)
+Subject: Re: [PATCH 3/9] arm64: dts: rockchip: Prepare Rockchip RK1808
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+References: <20210516230551.12469-1-afaerber@suse.de>
+ <20210516230551.12469-4-afaerber@suse.de>
+ <f46625ed-4c83-9fd2-52cd-e07a4d93a254@gmail.com>
+From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
+Organization: SUSE Software Solutions Germany GmbH
+Message-ID: <3f5767aa-77c4-6007-adfa-a85bf0a7e9ad@suse.de>
+Date:   Mon, 17 May 2021 13:03:03 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <f46625ed-4c83-9fd2-52cd-e07a4d93a254@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ezequiel,
+Hi Johan,
 
-Am Sonntag, dem 16.05.2021 um 19:40 -0300 schrieb Ezequiel Garcia:
-> Hi Lucas,
-> 
-> On Fri, 2021-04-16 at 12:54 +0200, Lucas Stach wrote:
-> > Am Mittwoch, dem 07.04.2021 um 09:35 +0200 schrieb Benjamin Gaignard:
-> > > In order to be able to share the control hardware block between
-> > > VPUs use a syscon instead a ioremap it in the driver.
-> > > To keep the compatibility with older DT if 'nxp,imx8mq-vpu-ctrl'
-> > > phandle is not found look at 'ctrl' reg-name.
-> > > With the method it becomes useless to provide a list of register
-> > > names so remove it.
-> > 
-> > Sorry for putting a spoke in the wheel after many iterations of the
-> > series.
-> > 
-> > We just discussed a way forward on how to handle the clocks and resets
-> > provided by the blkctl block on i.MX8MM and later and it seems there is
-> > a consensus on trying to provide virtual power domains from a blkctl
-> > driver, controlling clocks and resets for the devices in the power
-> > domain. I would like to avoid introducing yet another way of handling
-> > the blkctl and thus would like to align the i.MX8MQ VPU blkctl with
-> > what we are planning to do on the later chip generations.
-> > 
-> > CC'ing Jacky Bai and Peng Fan from NXP, as they were going to give this
-> > virtual power domain thing a shot.
-> > 
-> 
-> It seems the i.MX8MM BLK-CTL series are moving forward:
-> 
-> https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=479175
-> 
-> ... but I'm unable to wrap my head around how this affects the
-> devicetree VPU modelling for i.MX8MQ (and also i.MX8MM, i.MX8MP, ...).
-> 
-> 
-For the i.MX8MQ we want to have the same virtual power-domains provided
-by a BLK-CTRL driver for the VPUs, as on i.MX8MM. This way we should be
-able to use the same DT bindings for the VPUs on i.MX8MQ and i.MX8MM,
-even though the SoC integration with the blk-ctrl is a little
-different.
+On 17.05.21 03:29, Johan Jonker wrote:
+> Send the complete serie to all maintainers and mail lists.
 
-> Can you clarify that?
+That's unhelpful - all patches went to linux-rockchip, LAKML and LKML,
+and get_maintainers.pl was used. The cover letter was explicitly copied
+to DTML as get_maintainers.pl doesn't catch it. You'll find them here:
+
+https://lore.kernel.org/linux-rockchip/20210516230551.12469-1-afaerber@suse.de/
+
+Which mailing list or maintainer do you think all should've gone to in
+addition? You're not listed anywhere in linux-next MAINTAINERS. If you
+want to be CC'ed, you can nicely ask me to for a v2 (and explaining why
+would help for the next series), or you can send patches against
+MAINTAINERS yourself.
+
+Copying all maintainers and lists would likely not be appreciated by the
+colleagues and may get mails flagged as spam.
+
+> ===
+> Heiko's sort rules:
 > 
-I'm planning on sending some patches adding i.MX8MQ VPU support to the
-BLK-CTRL driver in the next few days. I guess that should clarify
-things. :)
+> compatible
+> reg
+> interrupts
+> [alphabetical]
+> status [if needed]
+> 
+> ===
+> My incomplete list:
+> 
+> For nodes:
+> If exists on top: model, compatible and chosen.
+> Sort things without reg alphabetical first,
+> then sort the rest by reg address.
+> 
+> Inside nodes:
+> If exists on top: compatible, reg and interrupts.
+> In alphabetical order the required properties.
+> Then in alphabetical order the other properties.
+> And as last things that start with '#' in alphabetical order.
+> Add status below all other properties for soc internal components with
+> any board-specifics.
+> Keep an empty line between properties and nodes.
+> 
+> Exceptions:
+> Sort pinctrl-0 above pinctrl-names, so it stays in line with clock-names
+> and dma-names.
+> Sort simple-audio-card,name above other simple-audio-card properties.
+> Sort regulator-name above other regulator properties.
+> Sort regulator-min-microvolt above regulator-max-microvolt.
+> 
+> ===
 
-Regards,
-Lucas
+
+Here's a rule for you: No top-posting on kernel lists.
 
 
+> 
+> Fix complete dtsi for property sort order!
+> Add more drivers. (cru, pinctrl)
+
+-ETONE! I don't work for Rockchip, so don't command me to add drivers
+for them that I have no source code for (cover letter) nor complete TRM.
+You're welcome that I did this service to the kernel community in my
+spare time... If you look up the date of Hackweek 20, you'll find that
+it took me two months to get this patchset binding-documented and
+cleaned up to this point, so by extrapolation it's unrealistic to expect
+much more of me here anytime soon. Rudeness certainly does not motivate.
+
+Heiko knows me - if he has any comments, he should be well capable of
+voicing them himself inline. I will not follow nonsensical rules that
+diverge from other mainline arm-soc vendors - unless I've missed some
+new directive from Rob or arm-soc maintainers that would apply to all.
+
+Thanks for nothing,
+
+Andreas
+
+-- 
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+GF: Felix Imendörffer
+HRB 36809 (AG Nürnberg)
