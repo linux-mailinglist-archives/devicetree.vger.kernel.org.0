@@ -2,80 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92A47386C0C
-	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 23:11:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A636386C34
+	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 23:21:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235863AbhEQVMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 17:12:53 -0400
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:34339 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235796AbhEQVMx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 17:12:53 -0400
-Received: by mail-ot1-f49.google.com with SMTP id u25-20020a0568302319b02902ac3d54c25eso6824197ote.1;
-        Mon, 17 May 2021 14:11:35 -0700 (PDT)
+        id S245043AbhEQVW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 17:22:27 -0400
+Received: from mail-oo1-f49.google.com ([209.85.161.49]:39599 "EHLO
+        mail-oo1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238105AbhEQVW0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 17:22:26 -0400
+Received: by mail-oo1-f49.google.com with SMTP id t17-20020a4a3e110000b02901fab2f46a48so1776118oot.6;
+        Mon, 17 May 2021 14:21:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=er+nFmon+svqmtkFcqXC0e3slEFDd9HMF6EJMQ1oQXM=;
-        b=lv8UhXIjfiglvtAX0+ymkiEoyrRzuTgHHX2E8hMHEdNTMVswOeg4YSO8k9ls2YFfYx
-         k4j21TzqM1P/046kcqBniL+vp23tSEyfR3fTECKxmV+HJd08DdoOZJwm31iR5rmskMEz
-         2S4fYEfTZd4HFChNABr/8HpW0s3yrKYzqNg6+02MpCCtFSJ/NCy9GD9X0zNP/pizmK/2
-         Ds3OQwa3XBe2kQ2SgnGJ45zR/stazw3nvLwCGJht3ve6WcVTrRqjkWM0EVSiWQfUHHls
-         V7G22tM+2XDmlIOwMqXn4f/q9fLtNWUHiiWq+gVCPb6jwL2FcvmL/dnHZ+/7PiCTMDsg
-         fdSQ==
-X-Gm-Message-State: AOAM531vD4D+yb4Wf4eETzmhfWxy19FoE/gzvZDAOlp3bTBdsfPZ9fvg
-        PZYZUt/9QaKnBwK9BWs3/VNdC/a3vQ==
-X-Google-Smtp-Source: ABdhPJxkTw2VFbtDoOEtMEjJz0I8famE3J/wge+2Bnazq1FlHH61nbZWedLyyZ53+pWLMXKdfG1buw==
-X-Received: by 2002:a05:6830:1f52:: with SMTP id u18mr1233598oth.298.1621285895288;
-        Mon, 17 May 2021 14:11:35 -0700 (PDT)
+        bh=H+xQb/YUD+zWL7WqcnM7Hx21NL++K+v/NLZ4vp4x8SU=;
+        b=PIXWubEeuHcCchSmxMSUYsvCmo3QlVTVJMkr8gp+KCpI53feOXTI91TEux3UX1gCDU
+         i4uu/qNHJ54xJdYlSY+/IzhIMu47qSOu+GyGJJ3A9ByQCClrlhBRpNKuyY1Psb0XZ283
+         41KVT6Z3XId5hZ3kygF9Wt817Txr3cjcTXDSuzVgCBpd5DMoOgaI+xZMGVEGrFeGgZTY
+         9AZ054F7EGpnzvJRlHb4n4EmFl/lk6oarDyLm+nzoGHP9J+omjWClSaqMbzr/QYMshbi
+         2RDbk58QNhEnktQvIZ9XBqqo2T0Qs0RH+FnYKdpoTGedKfQd/7kdtQBHiJBQ/Z7udnXu
+         c3uA==
+X-Gm-Message-State: AOAM5317N4Y2qh9K7PLC365Rx6W1zavo0427YjVtjyE02VY6/rSt4QMb
+        bAXEieS3cBgV+OtulTqu4Q==
+X-Google-Smtp-Source: ABdhPJyu+2dIPk66FSdMtfquQSmsDuHMDfnfNSwCQ2FFAp04pH1ZoQnqsVu1q/S0rSJcdqJW//X4ew==
+X-Received: by 2002:a4a:ea2b:: with SMTP id y11mr1504407ood.42.1621286468890;
+        Mon, 17 May 2021 14:21:08 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id a11sm2955723oif.52.2021.05.17.14.11.34
+        by smtp.gmail.com with ESMTPSA id r19sm3335527ooj.5.2021.05.17.14.20.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 May 2021 14:11:34 -0700 (PDT)
-Received: (nullmailer pid 3200619 invoked by uid 1000);
-        Mon, 17 May 2021 21:11:33 -0000
-Date:   Mon, 17 May 2021 16:11:33 -0500
+        Mon, 17 May 2021 14:21:07 -0700 (PDT)
+Received: (nullmailer pid 3214427 invoked by uid 1000);
+        Mon, 17 May 2021 21:18:11 -0000
+Date:   Mon, 17 May 2021 16:18:11 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v5 2/2] dt-bindings: gpio: Add devicetree binding for IDT
- 79RC32434 GPIO controller
-Message-ID: <20210517211133.GA3200481@robh.at.kernel.org>
-References: <20210514123309.134048-1-tsbogend@alpha.franken.de>
- <20210514123309.134048-2-tsbogend@alpha.franken.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
+        devicetree@vger.kernel.org,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: media: renesas,drif: Use graph schema
+Message-ID: <20210517211811.GA3214242@robh.at.kernel.org>
+References: <20210510203514.603471-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210514123309.134048-2-tsbogend@alpha.franken.de>
+In-Reply-To: <20210510203514.603471-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 May 2021 14:33:08 +0200, Thomas Bogendoerfer wrote:
-> Add YAML devicetree binding for IDT 79RC32434 GPIO controller
+On Mon, 10 May 2021 15:35:14 -0500, Rob Herring wrote:
+> Convert the renesas,drif binding schema to use the graph schema. The
+> binding referred to video-interfaces.txt, but it doesn't actually use any
+> properties from it as 'sync-active' is a custom property. As 'sync-active'
+> is custom, it needs a type definition.
 > 
-> Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Ramesh Shanmugasundaram <rashanmu@gmail.com>
+> Cc: linux-media@vger.kernel.org
+> Cc: linux-renesas-soc@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
-> Changes in v5:
->  - made interrupt controller optional
->  - made ngpios setting optional
-> 
-> Changes in v4:
->  - renamed to idt,32434-gpio this time for real
-> 
-> Changes in v3:
->  - renamed to idt,32434-gpio
->  - drop ngpio description
->  - use gpio0: gpio@50004 in example
-> 
-> 
->  .../bindings/gpio/idt,32434-gpio.yaml         | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/idt,32434-gpio.yaml
+>  .../bindings/media/renesas,drif.yaml          | 20 +++++++------------
+>  1 file changed, 7 insertions(+), 13 deletions(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
