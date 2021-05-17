@@ -2,77 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61311386D37
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 00:50:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B96F9386D3D
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 00:52:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344121AbhEQWv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 18:51:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48204 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237058AbhEQWv2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 May 2021 18:51:28 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPS id 3A40161244;
-        Mon, 17 May 2021 22:50:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621291811;
-        bh=SiPzTsIqJmGUCqbaAmc3M2Z1x9Mwcu3ibWitf4T1ldA=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=WFLJDhmx5geOwnIh9qeL/X6f9CcAgfG/BARGyvIYCjt6gwfVM35ycW6nGVvHj5nKx
-         xt/TO/4fJ/edgQejZSgLXC5dsW1tr9Gk8VVT8HPhRVhEL50x1QJvXgI93aNwHeh+Ku
-         SLq2nWdP61lycH1iGwLc4W1xHEMjbDmZLIa8KNpbSc813F4vWFdEoDpw9gOg03hRuP
-         DGxvF2Lw964Y/ROKpP3FBWKcZ7i8z9XkUJtCrt5FAjQFWnCIc6L5GtooJUUPHsW4IE
-         V0RyXRHfl2nq4Z7gMjGeCleL0bzZBdkAkyOpJxXcmo6rGVFlmb1JLum086v/I3EVS2
-         DeALc6ATvvyww==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 2F6CB60A35;
-        Mon, 17 May 2021 22:50:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        id S235009AbhEQWxi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 18:53:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41412 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232416AbhEQWxi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 18:53:38 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A031C061573
+        for <devicetree@vger.kernel.org>; Mon, 17 May 2021 15:52:19 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 94B183EE;
+        Tue, 18 May 2021 00:52:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1621291937;
+        bh=GXeWFRZp8wP2V6yFrUBBhlqhlDxTD0g68OGHT2Z8FyA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TxDo75slydjoovBcwO2C5oy85snZJGrx7h9EmmSAKK0v/1nx37e3IkIyoduwxRRaZ
+         +7W3wN0Qjmmg6RZpyK+L6nwxnFCxklPGJM5m5/UbcdRvztCqlEMCFCikT99TLTUC2Q
+         VgGiTUgOPIZAi6HprjmLnWrOOp8My7XG/Mp1pRic=
+Date:   Tue, 18 May 2021 01:52:16 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     dri-devel@lists.freedesktop.org, ch@denx.de,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH V2] dt-bindings: display: Fix spacing in lvds.yaml
+Message-ID: <YKLzoJB5iagCvU21@pendragon.ideasonboard.com>
+References: <20210517224336.409301-1-marex@denx.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v3 net-next 0/4] net: stmmac: RK3568
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <162129181118.15707.9043302436761903769.git-patchwork-notify@kernel.org>
-Date:   Mon, 17 May 2021 22:50:11 +0000
-References: <20210517154037.37946-1-ezequiel@collabora.com>
-In-Reply-To: <20210517154037.37946-1-ezequiel@collabora.com>
-To:     Ezequiel Garcia <ezequiel@collabora.com>
-Cc:     netdev@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, joabreu@synopsys.com, heiko@sntech.de,
-        davem@davemloft.net, kuba@kernel.org, pgwipeout@gmail.com,
-        kever.yang@rock-chips.com, david.wu@rock-chips.com,
-        robh+dt@kernel.org, jbx6244@gmail.com, wens213@gmail.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210517224336.409301-1-marex@denx.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Hi Marek,
 
-This series was applied to netdev/net-next.git (refs/heads/master):
+Thank you for the patch.
 
-On Mon, 17 May 2021 12:40:33 -0300 you wrote:
-> Here's the third version of this patchset, taking
-> the feedback from Heiko and Chen-Yu Tsai.
+On Tue, May 18, 2021 at 12:43:36AM +0200, Marek Vasut wrote:
+> Add missing spaces to make the diagrams readable, no functional change.
 > 
-> Although this solution is a tad ugly as it hardcodes
-> the register addresses, we believe it's the most robust approach.
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: devicetree@vger.kernel.org
+> To: dri-devel@lists.freedesktop.org
+> ---
+> V2: Replace all the other tabs too
+
+Thanks for taking my comment into account.
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> ---
+>  .../bindings/display/panel/lvds.yaml          | 46 +++++++++----------
+>  1 file changed, 23 insertions(+), 23 deletions(-)
 > 
-> See:
-> 
-> [...]
+> diff --git a/Documentation/devicetree/bindings/display/panel/lvds.yaml b/Documentation/devicetree/bindings/display/panel/lvds.yaml
+> index 31164608ba1d..49460c9dceea 100644
+> --- a/Documentation/devicetree/bindings/display/panel/lvds.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/lvds.yaml
+> @@ -51,37 +51,37 @@ properties:
+>        - "jeida-18" - 18-bit data mapping compatible with the [JEIDA], [LDI] and
+>          [VESA] specifications. Data are transferred as follows on 3 LVDS lanes.
+>  
+> -      Slot	    0       1       2       3       4       5       6
+> -            ________________                         _________________
+> -      Clock	                \_______________________/
+> -              ______  ______  ______  ______  ______  ______  ______
+> -      DATA0	><__G0__><__R5__><__R4__><__R3__><__R2__><__R1__><__R0__><
+> -      DATA1	><__B1__><__B0__><__G5__><__G4__><__G3__><__G2__><__G1__><
+> -      DATA2	><_CTL2_><_CTL1_><_CTL0_><__B5__><__B4__><__B3__><__B2__><
+> +      Slot          0       1       2       3       4       5       6
+> +                ________________                         _________________
+> +      Clock                     \_______________________/
+> +                  ______  ______  ______  ______  ______  ______  ______
+> +      DATA0     ><__G0__><__R5__><__R4__><__R3__><__R2__><__R1__><__R0__><
+> +      DATA1     ><__B1__><__B0__><__G5__><__G4__><__G3__><__G2__><__G1__><
+> +      DATA2     ><_CTL2_><_CTL1_><_CTL0_><__B5__><__B4__><__B3__><__B2__><
+>  
+>        - "jeida-24" - 24-bit data mapping compatible with the [DSIM] and [LDI]
+>          specifications. Data are transferred as follows on 4 LVDS lanes.
+>  
+> -      Slot	    0       1       2       3       4       5       6
+> -            ________________                         _________________
+> -      Clock	                \_______________________/
+> -              ______  ______  ______  ______  ______  ______  ______
+> -      DATA0	><__G2__><__R7__><__R6__><__R5__><__R4__><__R3__><__R2__><
+> -      DATA1	><__B3__><__B2__><__G7__><__G6__><__G5__><__G4__><__G3__><
+> -      DATA2	><_CTL2_><_CTL1_><_CTL0_><__B7__><__B6__><__B5__><__B4__><
+> -      DATA3	><_CTL3_><__B1__><__B0__><__G1__><__G0__><__R1__><__R0__><
+> +      Slot          0       1       2       3       4       5       6
+> +                ________________                         _________________
+> +      Clock                     \_______________________/
+> +                  ______  ______  ______  ______  ______  ______  ______
+> +      DATA0     ><__G2__><__R7__><__R6__><__R5__><__R4__><__R3__><__R2__><
+> +      DATA1     ><__B3__><__B2__><__G7__><__G6__><__G5__><__G4__><__G3__><
+> +      DATA2     ><_CTL2_><_CTL1_><_CTL0_><__B7__><__B6__><__B5__><__B4__><
+> +      DATA3     ><_CTL3_><__B1__><__B0__><__G1__><__G0__><__R1__><__R0__><
+>  
+>        - "vesa-24" - 24-bit data mapping compatible with the [VESA] specification.
+>          Data are transferred as follows on 4 LVDS lanes.
+>  
+> -      Slot	    0       1       2       3       4       5       6
+> -            ________________                         _________________
+> -      Clock	                \_______________________/
+> -              ______  ______  ______  ______  ______  ______  ______
+> -      DATA0	><__G0__><__R5__><__R4__><__R3__><__R2__><__R1__><__R0__><
+> -      DATA1	><__B1__><__B0__><__G5__><__G4__><__G3__><__G2__><__G1__><
+> -      DATA2	><_CTL2_><_CTL1_><_CTL0_><__B5__><__B4__><__B3__><__B2__><
+> -      DATA3	><_CTL3_><__B7__><__B6__><__G7__><__G6__><__R7__><__R6__><
+> +      Slot          0       1       2       3       4       5       6
+> +                ________________                         _________________
+> +      Clock                     \_______________________/
+> +                  ______  ______  ______  ______  ______  ______  ______
+> +      DATA0     ><__G0__><__R5__><__R4__><__R3__><__R2__><__R1__><__R0__><
+> +      DATA1     ><__B1__><__B0__><__G5__><__G4__><__G3__><__G2__><__G1__><
+> +      DATA2     ><_CTL2_><_CTL1_><_CTL0_><__B5__><__B4__><__B3__><__B2__><
+> +      DATA3     ><_CTL3_><__B7__><__B6__><__G7__><__G6__><__R7__><__R6__><
+>  
+>        Control signals are mapped as follows.
+>  
 
-Here is the summary with links:
-  - [v3,net-next,1/4] net: stmmac: Don't set has_gmac if has_gmac4 is set
-    https://git.kernel.org/netdev/net-next/c/d6b0625163a8
-  - [v3,net-next,2/4] net: stmmac: dwmac-rk: Check platform-specific ops
-    https://git.kernel.org/netdev/net-next/c/37c80d15ff4b
-  - [v3,net-next,3/4] dt-bindings: net: rockchip-dwmac: add rk3568 compatible string
-    https://git.kernel.org/netdev/net-next/c/f9da1c9d7fb5
-  - [v3,net-next,4/4] net: stmmac: Add RK3566/RK3568 SoC support
-    https://git.kernel.org/netdev/net-next/c/3bb3d6b1c195
+-- 
+Regards,
 
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Laurent Pinchart
