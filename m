@@ -2,139 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80243382BFE
-	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 14:22:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D694382C4F
+	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 14:36:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236978AbhEQMXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 08:23:46 -0400
-Received: from mx2.suse.de ([195.135.220.15]:53820 "EHLO mx2.suse.de"
+        id S229734AbhEQMiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 08:38:13 -0400
+Received: from mail.bugwerft.de ([46.23.86.59]:40684 "EHLO mail.bugwerft.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235036AbhEQMXp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 May 2021 08:23:45 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 1B6C8B1C2;
-        Mon, 17 May 2021 12:22:28 +0000 (UTC)
-Subject: Re: [PATCH 0/9] arm64: dts: rockchip: Initial Toybrick TB-RK1808M0
- support
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-References: <20210516230551.12469-1-afaerber@suse.de>
- <87im3hvikv.wl-maz@kernel.org>
-From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
-Organization: SUSE Software Solutions Germany GmbH
-Message-ID: <e633c5ac-7cd6-c733-a295-6dca8ba9c605@suse.de>
-Date:   Mon, 17 May 2021 14:22:27 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        id S231732AbhEQMiN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 May 2021 08:38:13 -0400
+Received: from hq-00021.Speedport_W_724V_01011603_07_002 (p200300d83f181dcec1913e3a7e010a83.dip0.t-ipconnect.de [IPv6:2003:d8:3f18:1dce:c191:3e3a:7e01:a83])
+        by mail.bugwerft.de (Postfix) with ESMTPSA id A9BAB4E2F00;
+        Mon, 17 May 2021 12:29:33 +0000 (UTC)
+From:   Daniel Mack <daniel@zonque.org>
+To:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     robh+dt@kernel.org, kuninori.morimoto.gx@renesas.com,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        Daniel Mack <daniel@zonque.org>
+Subject: [PATCH 1/3] dt-bindings: clock: convert cs2000-cp bindings to yaml
+Date:   Mon, 17 May 2021 14:29:24 +0200
+Message-Id: <20210517122926.3263455-1-daniel@zonque.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <87im3hvikv.wl-maz@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
+The original author of the file was added as maintainer.
 
-On 17.05.21 11:02, Marc Zyngier wrote:
-> On Mon, 17 May 2021 00:05:42 +0100,
-> Andreas Färber <afaerber@suse.de> wrote:
->> Patches are based on the shipping toybrick.dtb file.
+Signed-off-by: Daniel Mack <daniel@zonque.org>
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+---
+ .../bindings/clock/cirrus,cs2000-cp.yaml      | 64 +++++++++++++++++++
+ .../devicetree/bindings/clock/cs2000-cp.txt   | 22 -------
+ 2 files changed, 64 insertions(+), 22 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/cirrus,cs2000-cp.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/cs2000-cp.txt
 
->> http://t.rock-chips.com/en/wiki.php?mod=view&id=110 gives instructions for
-
->> compiling sources, but no source download or link is actually provided.
-
->> 
-
->> I encountered a hang: earlycon revealed it being related to KVM and
->> vGIC.  Disabling KVM in Kconfig works around it, as does removing
->> the vGIC irq in DT.  I've already tried low and high for the vGIC
->> interrupt, so no clue what might cause it. On an mPCIe card with 1
->> GiB of RAM I figured KVM is not going to be a major use case, so if
->> we find no other solution, we could just delete the interrupts
->> property in its .dts, as demonstrated here.
-> 
-> I think you figured it out wrong,
-
-Did I? I identified that an issue resulting in no serial console was
-dependent on CONFIG_KVM being enabled and specifically to the vGIC
-interrupt being specified in my DT. That's all I said.
-
-I never claimed KVM code was to blame, you should know me better by now!
-
-> for a number of reasons:
-> 
-> - KVM hanging is usually a sign that you have described the platform
->   the wrong way. Either you are stepping over reserved memory regions,
->   or you have badly described the GIC itself.
-
-This whole series is about a new DT hardware description, so yes, that
-is the most likely source of the problem I'm observing. Without further
-hints how to verify what may cause it, you're just stating the obvious.
-
-The only /reserved-memory entries in the shipping DTB are drm-logo of
-size 0 and ramoops - the latter I could try to test, but I'd assume that
-to just be a software convention that for lack of oops should not affect
-KVM here?
-
-And why would reserved memory affect the vGIC but no other driver doing
-allocations? Any way to narrow it down, does vGIC allocate specially?
-
-Only other issue I'm seeing is Debian failing to mount partitions that I
-checked I do have drivers built in for and ends up failing to provide an
-emergency shell. In order to boot a clean openSUSE rootfs for comparison
-I'd first need to figure out adding any USB host nodes and clocks.
-
-> 
-> - It could also be a bug in KVM, which will need to be fixed. If
->   that's because the HW is broken, we need to be able to detect it.
-> 
-> - You cannot be prescriptive of what a user is going to run. People
->   have been running KVM on systems with less memory than that.
-> 
-> So no, we don't paper over these issues.
-
-As you can see in patch 3, it does include the vGIC interrupt, so that
-anyone with access to the TB-96AIoT or any EVB can test KVM and report
-success or failure. Thus I don't see me as papering over something here.
-
-However, patch 5 is needed to test this patchset on at least M0 - to
-have serial and eMMC rootfs working - until a better fix is found.
-
-> We work out what is going
-> wrong and we fix it.
-
-Thanks. You were specifically copied to advise on
-how to figure out what might cause it, so that we/I can fix it properly. :)
-
-As I mentioned, I already tried changing the interrupt between high and
-low (which was a likely bug source on Realtek RK1319 (where I'm still
-waiting on them to confirm a ~year later...)).
-I don't have a data source other than the downstream .dtb to check the
-interrupt number - mainline PX30/RK3308/RK3328/RK3368/RK3399 do all use
-9 and high consistently though, so I figured it's likely correct.
-
-What I was wondering is whether the vGIC, similar to arch timer, might
-need some initialization in the bootloader? (Note: No U-Boot sources
-either at the link.)
-Unfortunately I'm seeing a recurring pattern (cf. Realtek) that vendors
-in their BSPs don't enable KVM and thus don't validate their hardware
-description against KVM; their shipping 4.4 based kernel here does not
-seem to have KVM enabled.
-
-Or is it possible for vendors to actually have a Cortex-A35 without the
-Armv8 Virtualization Extensions in silicon? If so, how could one verify?
-
-Thanks,
-Andreas
-
+diff --git a/Documentation/devicetree/bindings/clock/cirrus,cs2000-cp.yaml b/Documentation/devicetree/bindings/clock/cirrus,cs2000-cp.yaml
+new file mode 100644
+index 000000000000..3af81087e5f9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/cirrus,cs2000-cp.yaml
+@@ -0,0 +1,64 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/cirrus,cs2000-cp.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Binding CIRRUS LOGIC Fractional-N Clock Synthesizer & Clock Multiplier
++
++maintainers:
++  - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
++
++description: |
++  The CS2000-CP is an extremely versatile system clocking device that
++  utilizes a programmable phase lock loop.
++
++  Link: https://www.cirrus.com/products/cs2000/
++
++properties:
++  compatible:
++    enum:
++      - cirrus,cs2000-cp
++
++  clocks:
++    description:
++      Common clock binding for CLK_IN, XTI/REF_CLK
++    minItems: 2
++    maxItems: 2
++
++  clock-names:
++    minItems: 2
++    maxItems: 2
++
++  '#clock-cells':
++    const: 0
++
++  reg:
++    description:
++      The chip select number on the I2C bus
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c@0 {
++      reg = <0x0 0x100>;
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      cs2000: clk_multiplier@4f {
++        #clock-cells = <0>;
++        compatible = "cirrus,cs2000-cp";
++        reg = <0x4f>;
++        clocks = <&rcar_sound 0>, <&x12_clk>;
++        clock-names = "clk_in", "ref_clk";
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/clock/cs2000-cp.txt b/Documentation/devicetree/bindings/clock/cs2000-cp.txt
+deleted file mode 100644
+index 54e6df0bee8a..000000000000
+--- a/Documentation/devicetree/bindings/clock/cs2000-cp.txt
++++ /dev/null
+@@ -1,22 +0,0 @@
+-CIRRUS LOGIC Fractional-N Clock Synthesizer & Clock Multiplier
+-
+-Required properties:
+-
+-- compatible:		"cirrus,cs2000-cp"
+-- reg:			The chip select number on the I2C bus
+-- clocks:		common clock binding for CLK_IN, XTI/REF_CLK
+-- clock-names:		CLK_IN : clk_in, XTI/REF_CLK : ref_clk
+-- #clock-cells:		must be <0>
+-
+-Example:
+-
+-&i2c2 {
+-	...
+-	cs2000: clk_multiplier@4f {
+-		#clock-cells = <0>;
+-		compatible = "cirrus,cs2000-cp";
+-		reg = <0x4f>;
+-		clocks = <&rcar_sound 0>, <&x12_clk>;
+-		clock-names = "clk_in", "ref_clk";
+-	};
+-};
 -- 
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-GF: Felix Imendörffer
-HRB 36809 (AG Nürnberg)
+2.31.1
+
