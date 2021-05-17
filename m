@@ -2,127 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 355083825CD
-	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 09:49:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 580793825E2
+	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 09:52:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234891AbhEQHue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 03:50:34 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:40588 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235535AbhEQHuO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 03:50:14 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14H7mbEP115682;
-        Mon, 17 May 2021 02:48:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1621237717;
-        bh=PswJzuVJEpo2V7rLJvAKEapfrXwbPZ/ywMR3JM+8zp4=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=YLRY+8FfTx/HoaXGt+NEz6R9M5rxLuquJUAk/sxt8tkZ9Qz7gwTMOHY3KefYswRcH
-         HB0arP15VCWEmmlbuRFDoqobtz2sKvJ0xf5T3uQ4S7dNFslHyX9DTaUrPnDgx3uGUd
-         WXOSae3bKDo2if4DPWO03jx4yZSuRENrTBN6grCY=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14H7mbjN008730
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 17 May 2021 02:48:37 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 17
- May 2021 02:48:36 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 17 May 2021 02:48:36 -0500
-Received: from a0393678-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14H7lOck007607;
-        Mon, 17 May 2021 02:48:29 -0500
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Heiko Stuebner <heiko@sntech.de>
-CC:     Jonathan Corbet <corbet@lwn.net>, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <linux-pci@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>,
-        <linux-rockchip@lists.infradead.org>,
+        id S235278AbhEQHx2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 03:53:28 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:27925 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229736AbhEQHx2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 03:53:28 -0400
+X-UUID: ad15c8c4012d447e8ec36526ea48e42a-20210517
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=h+98Z93ZAZ7sxTZlhBFEYtH38irCUScH0nEBanpBnHA=;
+        b=eMNtV5VJoC6YvMkt2o6hFXY5Nl09N9VEdsJT8WZACcPNjxpkGm4yw84kipbQkILZg22F04lfCLx/kqQ57yjHtROi+CEm3Hj577tDakkc/liVKzaz4zD7p5sg283Lao3EVriSpg0WWjr0ylMC4pmYKdFn+NYhbEEmArbQ57u6W5g=;
+X-UUID: ad15c8c4012d447e8ec36526ea48e42a-20210517
+Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <irui.wang@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1774268038; Mon, 17 May 2021 15:52:00 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 17 May
+ 2021 15:51:58 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 17 May 2021 15:51:57 +0800
+Message-ID: <1621237917.25594.7.camel@mhfsdcap03>
+Subject: Re: [PATCH 1/5] dt-bindings: media: mtk-vcodec: Add dma-ranges
+ property
+From:   Irui Wang <irui.wang@mediatek.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
+CC:     Rob Herring <robh@kernel.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        "Andrew-CT Chen" <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Fritz Koenig" <frkoenig@chromium.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: [PATCH v6 7/7] Documentation: PCI: endpoint/pci-endpoint-cfs: Guide to use SR-IOV
-Date:   Mon, 17 May 2021 13:17:23 +0530
-Message-ID: <20210517074723.10212-8-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210517074723.10212-1-kishon@ti.com>
-References: <20210517074723.10212-1-kishon@ti.com>
+        <srv_heupstream@mediatek.com>, <linux-mediatek@lists.infradead.org>
+Date:   Mon, 17 May 2021 15:51:57 +0800
+In-Reply-To: <2b97b41c-d5d8-ac32-a9cf-c7bef09ed8ef@xs4all.nl>
+References: <20210203083752.12586-1-irui.wang@mediatek.com>
+         <20210203083752.12586-2-irui.wang@mediatek.com>
+         <20210210225323.GA2961490@robh.at.kernel.org>
+         <1614581129.14457.0.camel@mhfsdcap03>
+         <2b97b41c-d5d8-ac32-a9cf-c7bef09ed8ef@xs4all.nl>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-TM-SNTS-SMTP: AC0AA144FDC81F6D769A28429EE706EB2A987DF65EC0BB169DF477EAD59927522000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Documentation to help users use PCI endpoint to create virtual
-functions using configfs. An endpoint function is designated as a
-virtual endpoint function device when it is linked to a physical
-endpoint function device (instead of a endpoint controller).
-
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- Documentation/PCI/endpoint/pci-endpoint-cfs.rst | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/PCI/endpoint/pci-endpoint-cfs.rst b/Documentation/PCI/endpoint/pci-endpoint-cfs.rst
-index 696f8eeb4738..56fb33c5e8fd 100644
---- a/Documentation/PCI/endpoint/pci-endpoint-cfs.rst
-+++ b/Documentation/PCI/endpoint/pci-endpoint-cfs.rst
-@@ -43,6 +43,7 @@ entries corresponding to EPF driver will be created by the EPF core.
- 		.. <EPF Driver1>/
- 			... <EPF Device 11>/
- 			... <EPF Device 21>/
-+			... <EPF Device 31>/
- 		.. <EPF Driver2>/
- 			... <EPF Device 12>/
- 			... <EPF Device 22>/
-@@ -68,6 +69,7 @@ created)
- 				... subsys_vendor_id
- 				... subsys_id
- 				... interrupt_pin
-+			        ... <Symlink EPF Device 31>/
-                                 ... primary/
- 			                ... <Symlink EPC Device1>/
-                                 ... secondary/
-@@ -79,6 +81,13 @@ interface should be added in 'primary' directory and symlink of endpoint
- controller connected to secondary interface should be added in 'secondary'
- directory.
- 
-+The <EPF Device> directory can have a list of symbolic links
-+(<Symlink EPF Device 31>) to other <EPF Device>. These symbolic links should
-+be created by the user to represent the virtual functions that are bound to
-+the physical function. In the above directory structure <EPF Device 11> is a
-+physical function and <EPF Device 31> is a virtual function. An EPF device once
-+it's linked to another EPF device, cannot be linked to a EPC device.
-+
- EPC Device
- ==========
- 
-@@ -98,7 +107,8 @@ entries corresponding to EPC device will be created by the EPC core.
- 
- The <EPC Device> directory will have a list of symbolic links to
- <EPF Device>. These symbolic links should be created by the user to
--represent the functions present in the endpoint device.
-+represent the functions present in the endpoint device. Only <EPF Device>
-+that represents a physical function can be linked to a EPC device.
- 
- The <EPC Device> directory will also have a *start* field. Once
- "1" is written to this field, the endpoint device will be ready to
--- 
-2.17.1
+RGVhciBIYW5zLCBSb2IgYW5kIE1haW50YWluZXJzLA0KDQpNdWNoIGFwcHJlY2lhdGVkIGZvciBy
+ZXZpZXdpbmcgdGhpcyBwYXRjaHNldCwgd2UgaGF2ZSBzZW50IFBBVENILVYzIGZvcg0KdGhlIHBh
+dGNoc2V0IHdpdGggUm9iJ3MgY29tbWVudHM6DQpodHRwczovL3BhdGNod29yay5rZXJuZWwub3Jn
+L3Byb2plY3QvbGludXgtbWVkaWF0ZWsvY292ZXIvMjAyMTA0MTIxMjQ1NTUuMjY4OTctMS1pcnVp
+LndhbmdAbWVkaWF0ZWsuY29tLw0KDQpKdXN0IEdlbnRsZSBwaW5nIGZvciB0aGlzIFYzIHBhdGNo
+Lg0KDQpUaGFua3MsDQpCZXN0IFJlZ2FyZHMNCg0KT24gVGh1LCAyMDIxLTA0LTI5IGF0IDEzOjE1
+ICswMjAwLCBIYW5zIFZlcmt1aWwgd3JvdGU6DQo+IEhpIFJvYiwNCj4gDQo+IE9uIDAxLzAzLzIw
+MjEgMDc6NDUsIElydWkgV2FuZyB3cm90ZToNCj4gPiBPbiBXZWQsIDIwMjEtMDItMTAgYXQgMTY6
+NTMgLTA2MDAsIFJvYiBIZXJyaW5nIHdyb3RlOg0KPiA+PiBPbiBXZWQsIEZlYiAwMywgMjAyMSBh
+dCAwNDozNzo0OFBNICswODAwLCBJcnVpIFdhbmcgd3JvdGU6DQo+ID4+PiBBZGRzIGRtYS1yYW5n
+ZXMgcHJvcGVydHkgZm9yIERNQSBhZGRyZXNzZXMgdHJhbnNsYXRpb24uDQo+ID4+Pg0KPiA+Pj4g
+U2lnbmVkLW9mZi1ieTogSXJ1aSBXYW5nIDxpcnVpLndhbmdAbWVkaWF0ZWsuY29tPg0KPiA+Pj4g
+LS0tDQo+ID4+PiAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21lZGlhL21lZGlh
+dGVrLXZjb2RlYy50eHQgfCAyICsrDQo+ID4+PiAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9u
+cygrKQ0KPiA+Pj4NCj4gPj4+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
+YmluZGluZ3MvbWVkaWEvbWVkaWF0ZWstdmNvZGVjLnR4dCBiL0RvY3VtZW50YXRpb24vZGV2aWNl
+dHJlZS9iaW5kaW5ncy9tZWRpYS9tZWRpYXRlay12Y29kZWMudHh0DQo+ID4+PiBpbmRleCBmODUy
+NzZlNjI5YmYuLmU0NjQ0ZjhjYWVlOSAxMDA2NDQNCj4gPj4+IC0tLSBhL0RvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9tZWRpYS9tZWRpYXRlay12Y29kZWMudHh0DQo+ID4+PiArKysg
+Yi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVkaWEvbWVkaWF0ZWstdmNvZGVj
+LnR4dA0KPiA+Pj4gQEAgLTIzLDYgKzIzLDggQEAgUmVxdWlyZWQgcHJvcGVydGllczoNCj4gPj4+
+ICAtIGlvbW11cyA6IHNob3VsZCBwb2ludCB0byB0aGUgcmVzcGVjdGl2ZSBJT01NVSBibG9jayB3
+aXRoIG1hc3RlciBwb3J0IGFzDQo+ID4+PiAgICBhcmd1bWVudCwgc2VlIERvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9pb21tdS9tZWRpYXRlayxpb21tdS50eHQNCj4gPj4+ICAgIGZv
+ciBkZXRhaWxzLg0KPiA+Pj4gKy0gZG1hLXJhbmdlcyA6IGRlc2NyaWJlcyBob3cgdGhlIHBoeXNp
+Y2FsIGFkZHJlc3Mgc3BhY2Ugb2YgdGhlIElPTU1VIG1hcHMNCj4gPj4+ICsgIHRvIG1lbW9yeS4N
+Cj4gPj4NCj4gPj4gZG1hLXJhbmdlcyBpcyBzdXBwb3NlZCB0byBiZSBpbiBhIGJ1cy9wYXJlbnQg
+bm9kZS4NCj4gPiBEZWFyIFJvYiwNCj4gPiANCj4gPiBUaGUgbXQ4MTkyIGlvbW11IHN1cHBvcnQg
+MH4xNkdCIGlvdmEuIFdlIHNlcGFyYXRlIGl0IHRvIGZvdXIgYmFua3M6DQo+ID4gMH40RzsgNEd+
+OEc7IDhHfjEyRzsgMTJHfjE2Ry4NCj4gPiANCj4gPiBUaGUgImRtYS1yYW5nZXMiIGNvdWxkIGJl
+IHVzZWQgdG8gYWRqdXN0IHRoZSBiYW5rIHdlIGxvY2F0ZS4NCj4gPiBJZiB3ZSBkb24ndCBzZXQg
+dGhpcyBwcm9wZXJ0eS4gVGhlIGRlZmF1bHQgcmFuZ2UgYWx3YXlzIGlzIDB+NEcuDQo+ID4gDQo+
+ID4gSGVyZSB3ZSBkb24ndCBoYXZlIGFjdHVhbCBidXMvcGFyZW50IGNvbmNlcHQgaGVyZS4gIEFu
+ZCB0aGUgaW92YQ0KPiA+IHJlcXVpcmVtZW50IGlzIGZvciBvdXIgSFcuIFRodXMgcHV0IHRoZSBw
+cm9wZXJ0eSBpbiBvdXIgbm9kZS4NCj4gPiANCj4gPiBJcyB0aGlzIE9LPyBJZiB0aGlzIGlzIG9r
+IGZvciB5b3UsIEkgd2lsbCBwdXQgdGhpcyBtZXNzYWdlIGluIHRoZSBjb21taXQNCj4gPiBtZXNz
+YWdlIGFuZCBiaW5kaW5nIGluIG5leHQgdmVyc2lvbi4NCj4gDQo+IENhbiB5b3UgYW5zd2VyIEly
+dWkncyBxdWVzdGlvbj8gSnVzdCBhIHJlbWluZGVyLi4uDQo+IA0KPiBNdWNoIGFwcHJlY2lhdGVk
+IQ0KPiANCj4gUmVnYXJkcywNCj4gDQo+IAlIYW5zDQo+IA0KPiA+IA0KPiA+IFJlZ2FyZHMNCj4g
+Pj4NCj4gPj4+ICBPbmUgb2YgdGhlIHR3byBmb2xsb3dpbmcgbm9kZXM6DQo+ID4+PiAgLSBtZWRp
+YXRlayx2cHUgOiB0aGUgbm9kZSBvZiB0aGUgdmlkZW8gcHJvY2Vzc29yIHVuaXQsIGlmIHVzaW5n
+IFZQVS4NCj4gPj4+ICAtIG1lZGlhdGVrLHNjcCA6IHRoZSBub2RlIG9mIHRoZSBTQ1AgdW5pdCwg
+aWYgdXNpbmcgU0NQLg0KPiA+Pj4gLS0gDQo+ID4+PiAyLjI1LjENCj4gPj4+DQo+ID4gDQo+IA0K
+DQo=
 
