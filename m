@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 367BD382CBD
+	by mail.lfdr.de (Postfix) with ESMTP id 7F4E3382CBE
 	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 14:59:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237176AbhEQNAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S237207AbhEQNAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 17 May 2021 09:00:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48688 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237182AbhEQNAj (ORCPT
+        with ESMTP id S237183AbhEQNAj (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 09:00:39 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E9CEC061763
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62685C0613ED
         for <devicetree@vger.kernel.org>; Mon, 17 May 2021 05:59:21 -0700 (PDT)
 Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1licq0-0006di-NM; Mon, 17 May 2021 14:59:12 +0200
+        id 1licq0-0006dj-NL; Mon, 17 May 2021 14:59:12 +0200
 Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1licpy-000390-Uy; Mon, 17 May 2021 14:59:10 +0200
+        id 1licpy-000399-Vu; Mon, 17 May 2021 14:59:10 +0200
 From:   Oleksij Rempel <o.rempel@pengutronix.de>
 To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -29,9 +29,9 @@ To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
         linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
         David Jander <david@protonic.nl>, devicetree@vger.kernel.org
-Subject: [RFC PATCH v1 1/3] dt-bindings: touchscreen: add touchscreen-x/y-plate-ohms property
-Date:   Mon, 17 May 2021 14:59:07 +0200
-Message-Id: <20210517125909.12024-2-o.rempel@pengutronix.de>
+Subject: [RFC PATCH v1 2/3] dt-bindings: touchscreen: resistive-adc-touch: add support for z1 and z2 channels
+Date:   Mon, 17 May 2021 14:59:08 +0200
+Message-Id: <20210517125909.12024-3-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210517125909.12024-1-o.rempel@pengutronix.de>
 References: <20210517125909.12024-1-o.rempel@pengutronix.de>
@@ -45,33 +45,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Te calculate the pressure on a restrictive touchscreen we need need to
-know resistance at least of X plate. Some calculations need to use both
-X and Y values.
-So, add generic properties which can be used by all drivers
+For pressure calculation based on plates resistance we need some additional
+properties:
+- z1 and z2 channels with additional measurements between plates
+- actual resistance of the touchscreen. Currently we use only
+  X-resistance.
 
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 ---
- .../devicetree/bindings/input/touchscreen/touchscreen.yaml  | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../bindings/input/touchscreen/resistive-adc-touch.yaml  | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
-index 046ace461cc9..4b5b212c772c 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
-@@ -74,6 +74,12 @@ properties:
-   touchscreen-y-mm:
-     description: vertical length in mm of the touchscreen
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.yaml b/Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.yaml
+index 53df21a6589e..538c3b1ef1e1 100644
+--- a/Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.yaml
++++ b/Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.yaml
+@@ -43,6 +43,7 @@ properties:
+   touchscreen-inverted-y: true
+   touchscreen-swapped-x-y: true
+   touchscreen-min-pressure: true
++  touchscreen-x-plate-ohms: true
  
-+  touchscreen-x-plate-ohms:
-+    description: Resistance of the X-plate in Ohms
-+
-+  touchscreen-y-plate-ohms:
-+    description: Resistance of the Y-plate in Ohms
-+
- dependencies:
-   touchscreen-size-x: [ touchscreen-size-y ]
-   touchscreen-size-y: [ touchscreen-size-x ]
+ additionalProperties: false
+ 
+@@ -59,3 +60,11 @@ examples:
+       io-channels = <&adc 24>, <&adc 25>, <&adc 26>;
+       io-channel-names = "x", "y", "pressure";
+     };
++  - |
++    resistive_touch {
++      compatible = "resistive-adc-touch";
++      touchscreen-min-pressure = <50000>;
++      io-channels = <&adc 1>, <&adc 2>, <&adc 3>, <&adc 4>;
++      io-channel-names = "x", "y", "z1", "z2";
++      touchscreen-x-plate-ohms = <800>;
++    };
 -- 
 2.29.2
 
