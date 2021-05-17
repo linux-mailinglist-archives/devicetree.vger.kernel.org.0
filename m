@@ -2,142 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 930CB3822EE
-	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 04:53:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EECB238239A
+	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 06:57:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234109AbhEQCzD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 May 2021 22:55:03 -0400
-Received: from mail-eopbgr1320102.outbound.protection.outlook.com ([40.107.132.102]:46315
-        "EHLO APC01-PU1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234039AbhEQCzD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 16 May 2021 22:55:03 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XAKNMrO9V2pWmawDg063o4+H+/CIffYoLTdaWbGlbDfFyz0kcDeUjMAspsHZA5UY+SdsP796fJZ9LUl5n6QpaPq+ENEPZcJXzVUJehiv7qxmJw/A0/QX+3F2a/KouZjvM41isqE2O/d9FkyeO1+busTa5hNPE4fyPcmgkzpTe4u1NnFq33BrZPa0h5c8mz99rKLTdT7ku7GUXjOu42SY/rfUdbEekzOGDYbxgQgLlM66ysii8mOTtF3Y/v02peKCBHYgVtKiCihXV3PosIS42eHgDbMW4UmNrO0cfpVaWxDsTJpVSZcLjb17h+Kco/q1a5NoKM7vcROfAxUzBEcTcQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xKqDZhWZ0JG8IWFnWwZLYhXk+Mwv592Z7NCnVP7jW+A=;
- b=K1wUt2vCvFnZBuXSxau7m2XqnfpoU6+WjCL00x35KD9sELzzR1qm4rr39Rhs1g82eIU32QP2I6xsWiKDoOJLCMLavYhAL1aly2jl2wRMnkvzPCVcJyh70wQF3QaXHAmeS1lIOSmZk2y0135yygERObgyHc3FwzOxzSXc9fEwbFRGcX5OqedW5DH7aUG6+n7c45boFiN8FzFINJ++AQYCb2fqZGRNsV3jXXx1rS3LjfOUp6zOgOgzr49a0euLTJ0TnuqqHds8x2Wpxnf482Ph5LkO0rTnZslio6waoMybVF1+c+yjdtVIpptYhjI33dfvJLi+9hiGpEyYAihkQ7ILyw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xKqDZhWZ0JG8IWFnWwZLYhXk+Mwv592Z7NCnVP7jW+A=;
- b=TYEWyHQX+UUJE3k27VoNhhv946fWMWnNJVD28DJyfumLevlkFbAjJCpoLXtREbOnhqcN8p/hiwMVxXb5p55dW45tkE9CJMW7k/VEaJF5197b544zY/IuPp1x44qL9kDwAaj+cUlwsdaBRVmyIfS8KiEqo6+iksQrVg+4vVdrFHAXtuTDtfG2b0CFKfOf4k+ltO3MnaVmg7fDQ4ootNu5r9CmPQLWBZoDQExrQV4H8iQfLp/ld4C5cShbnVRShJuRGO48XGyozCrTjT1m8x/h31TkTqxXWpgo9x2LFilULnl0zrWLFtXuXXzavEr2n9QsOc9x8biRvqW4nTEig9PdUQ==
-Received: from HK0PR06MB3362.apcprd06.prod.outlook.com (2603:1096:203:8b::10)
- by HK0PR06MB2211.apcprd06.prod.outlook.com (2603:1096:203:40::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.26; Mon, 17 May
- 2021 02:53:44 +0000
-Received: from HK0PR06MB3362.apcprd06.prod.outlook.com
- ([fe80::58:9144:f232:6918]) by HK0PR06MB3362.apcprd06.prod.outlook.com
- ([fe80::58:9144:f232:6918%7]) with mapi id 15.20.4129.031; Mon, 17 May 2021
- 02:53:44 +0000
-From:   Billy Tsai <billy_tsai@aspeedtech.com>
-To:     =?utf-8?B?VXdlIEtsZWluZS1Lw7ZuaWc=?= 
-        <u.kleine-koenig@pengutronix.de>
-CC:     "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        id S233655AbhEQE6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 00:58:39 -0400
+Received: from mail-lf1-f43.google.com ([209.85.167.43]:46894 "EHLO
+        mail-lf1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229625AbhEQE6j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 00:58:39 -0400
+Received: by mail-lf1-f43.google.com with SMTP id i9so6759350lfe.13;
+        Sun, 16 May 2021 21:57:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:reply-to:to:cc
+         :in-reply-to:references:mime-version:date:user-agent
+         :content-transfer-encoding;
+        bh=ZlBxGhYLZ60uGDaPOSr/zz7izf5PGo7iYr82/TiNDOQ=;
+        b=E+zP2LSMSbK65WxXy9THvknp5RylijQ7mfAxj5iwLuA63uOVbTCjdSsNakY2CFRo3w
+         LOnsYBxw4rOJEBDxwkyHOhU8e3PhrV3jhAQEcg8v2PGCJA+bI6NQcBeUAvYHdZwsiiIo
+         ORJg3fGAzaAf0EQH0cJAE4MsmWLVI3XlqFH9/Vm3w88MPoz9bY6vH1hSOZ4T73d46E4G
+         3BBNsMlzByFJb+O4NTJFY4gVg/V6ycwj/H0goTNZrGlmbrLiGbRW1KEiuaHWyzl8boEj
+         6uOrAtWE6cnAAJ2JZCYo4G4VycAS94EsWbjjBuqDdZlSHZkHwllHup3jUZ0QME1yOKNH
+         FSSA==
+X-Gm-Message-State: AOAM531qw2B2rIgSesCMiMuLiYHI9jX9yZ3DTIqvI5Gc66Tq2hiYlbOa
+        /4/FE+fdz+l3t4Q5Ox08GS4=
+X-Google-Smtp-Source: ABdhPJz6XlOoLFS1OExcL4aOBvUwCPGZFB6U6VqCJpuJZQYA/MBhFsa1h3+611hseFVm2x5fKxip8Q==
+X-Received: by 2002:ac2:54ba:: with SMTP id w26mr41231726lfk.78.1621227440658;
+        Sun, 16 May 2021 21:57:20 -0700 (PDT)
+Received: from dc7vkhyyyyyyyyyyyyyby-3.rev.dnainternet.fi (dc7vkhyyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::2])
+        by smtp.gmail.com with ESMTPSA id g28sm2775163ljn.134.2021.05.16.21.57.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 May 2021 21:57:19 -0700 (PDT)
+Message-ID: <fefd2daff66123d5a812ad41466095e56e699bf2.camel@fi.rohmeurope.com>
+Subject: Re: [PATCH v9 02/10] reboot: Add hardware protection power-off
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Reply-To: matti.vaittinen@fi.rohmeurope.com
+To:     Petr Mladek <pmladek@suse.com>
+Cc:     "josef@toxicpanda.com" <josef@toxicpanda.com>,
+        "keescook@chromium.org" <keescook@chromium.org>,
+        "rppt@kernel.org" <rppt@kernel.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        BMC-SW <BMC-SW@aspeedtech.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>
-Subject: Re: [v5 2/2] pwm: Add Aspeed ast2600 PWM support
-Thread-Topic: [v5 2/2] pwm: Add Aspeed ast2600 PWM support
-Thread-Index: AQHXSGulcCg0aX8h/0K5uaOliF3ibarkqkSAgALasoA=
-Date:   Mon, 17 May 2021 02:53:44 +0000
-Message-ID: <7A439233-C5FF-4BCA-8A5C-945EB847F487@aspeedtech.com>
-References: <20210514024845.10531-1-billy_tsai@aspeedtech.com>
- <20210514024845.10531-3-billy_tsai@aspeedtech.com>
- <20210515151827.amiqh6j6brv44jif@pengutronix.de>
-In-Reply-To: <20210515151827.amiqh6j6brv44jif@pengutronix.de>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none
- header.from=aspeedtech.com;
-x-originating-ip: [211.20.114.70]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 617d6dab-8e55-49d3-207b-08d918defc3c
-x-ms-traffictypediagnostic: HK0PR06MB2211:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <HK0PR06MB22111CD0DECE65586634BDED8B2D9@HK0PR06MB2211.apcprd06.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3173;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: E2JFr8/mLZXOifG9g1xqNL6/KurtT0pSRu6BY9peSrvPi+FZ7846d7f0giqJ1e8TOV/7jj5pBTXaK+MnT9JfrhDP3vkVRwXDWSsK5et0ZQmxOYiJ+yyF97lmWwM1m1E7EkOa2B3D9N7XlFz3X14gGcXt6qbmm4QgjmYj2R+O5jq8nOfU31GwLosr9Vj1LJEpIGLQyk2DlyqMHHOeyA6vQ1nBLhh+mTFxJ6bx9BMCI//cmjNY1oPzWUM0mbhyKR6MeDZCdrphYxm/Ar3pBTDpHQ+NywFHJgN1U9wKl6JkjSHWWAHL8iGv7DsBxx/Cjl9ocp7uHNTk2eqsYCuHK8frEajx8mSpyKFFwAGS8FVJPsDeV1ZVInDKlVuQXJUoB2zipnXd7IlewKlY3sgqsin8BKSI41UwJ2I5AyeXU3lCeoEZzTirCBuUW9Mjp4vvOZ619UJVzweu0LDxc8aSYEFAhuuEcAbZoyD8SkuEovGqE9+/lOTYIZxgN5DxP/YClCe5QPCvz03Jil/sUbCIaldow+iPoQf9kFjF3vUgVqknnpJpvN90LuuBV+/XOo1bkIOC48r2ugUW2mbNYI1TZXQrHAYijBwDEzSQU0Efx2cLyvK5bDLmVW1DwDzGDhsY9ptiR/T7T+akRBUYq7f8HJ9wIkYKnbcg/Mj/ntx9clt7jrw=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3362.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(396003)(39840400004)(376002)(346002)(366004)(54906003)(316002)(8676002)(8936002)(38100700002)(26005)(122000001)(36756003)(71200400001)(186003)(55236004)(66556008)(66476007)(4326008)(6486002)(64756008)(86362001)(76116006)(2616005)(66446008)(66946007)(2906002)(7416002)(6512007)(478600001)(33656002)(6916009)(4744005)(5660300002)(6506007)(45980500001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?MEVIa09iUUlFSG9kcGk4VGQrcVd0ZDRzMVUxT21pM0RNSzJ4SXlBVlcrdm5G?=
- =?utf-8?B?aklhLzdoNXgwYjhNTlBoS3NXc2ltQWVLckUxc211RFlFdC9sQkh6bjlVUVpE?=
- =?utf-8?B?QzRwQ1JscGlSdHVVRHB3R25Hb0k0cTU2cnZUVjB1dTRQUENzQlpFa2VpQ0lB?=
- =?utf-8?B?QzVKamhnRkczcEE5TmhIc0dmYkJablMvYk1oUEpwbzFxR3ZQclRMVS9QbUt1?=
- =?utf-8?B?RWxjN29DaTBkM0JpQVBXSDl5QTRlUWdpdFFDTWgxSXdLRFoxV0ZVN080bWty?=
- =?utf-8?B?dDgydjZNdytvek95WmV1eVZBRWdJTkYwWDRhY0U2T3hNSTNmVDNSYnQ5ZHdL?=
- =?utf-8?B?YUR6Uk5IMWZuTkxWR2NzaEtySHUxNzNOT3N0aTZwTjVMLytNRUVQdUk5aXdF?=
- =?utf-8?B?bzM2dVJZQm91ckw3KzBzSEJKYzMrcVJzQ0hDcWp5NHlCdVlvVkpKd2pySGJL?=
- =?utf-8?B?YmxUMnRjVThkL2ZTL3VQSDlVQWhBYXpibGVQWGw4VnJuQ1UzdHk1cktTWk96?=
- =?utf-8?B?VTYxcHg1MzdXRmgrL3NDL2tDQytFdzd6WHV3VEtVUUdPc1c1ZU1sbmQzR1Fq?=
- =?utf-8?B?ZFN5NlhBeEJLYllNdVBYVWFTeDc0cVdIK1djV2xDeXh0c09MUXdWak1mblNo?=
- =?utf-8?B?cW0zRGpwZEx4UERyNXU2Wm5tTXdIQ2NBVEordjZkTWlGZGs1eU40SDV2MHU1?=
- =?utf-8?B?bEN0T0g2azc5d1BIV3V0d0lORmJZcTZGUWFlUncwWEdObkN1MGVKb1dqTklL?=
- =?utf-8?B?eldyTFBzTEtyNXl5MllQMncvL2lHQ1ZBc3FJbGhkdmlLeVNZcUdQdHVMdGxQ?=
- =?utf-8?B?UWZiVE9IRUxIejA3QWU5QmpFaE9Gak9nT3VSbjBmaW5VWUdQK0psNEVWZ0Vj?=
- =?utf-8?B?ME9pZzZJMUxFd0RKQ0FYSkNQQ0RLeGxJZE1rQkI2K3AySGkycVlrUkxhY1lh?=
- =?utf-8?B?UmlwUWRnSGNKQVE4TWFJd3gzaG1vd3Y2NThiYVdWVnJ2SWtOMUUzWHpDdnU3?=
- =?utf-8?B?ZUx5UXRWYytZUFpHdzduUVl3eFIwQ0pTTHZpSVNZQ0hteUtNRHdlNzkxMFBk?=
- =?utf-8?B?eGV5eXpKbjhxUjBtTFRHYXBtcktsTFFmelA2ZWkzSnUwVFJqMlVNSEYvaFo0?=
- =?utf-8?B?d0JSUVV6UE10ZDdXZHdKYkJIRGwrQ2EwdjFQMEdCakZOU2JhVldsWmd0d1JJ?=
- =?utf-8?B?UUprZWtnUUdvY2ozODg3VXdkSVh0T0NTWlkxOGcrM3pDTHZ1NTBHdWtkVFF0?=
- =?utf-8?B?SXhUOXBPSVFydHpTNzRScTJzMWpONnNCWXIvSEZUODViY1lYTlJrM3YyZzc1?=
- =?utf-8?B?Ti9pczhTelJFZUhueDdGZVdUa0ZqYTN4ZGFmdUxXTDlXb0FVbTdyQllpUUZr?=
- =?utf-8?B?dnA4TXRKYUpCVFdQN3p5Qll5dUp2aWVYdkVhcWUvbnl6WmJvbFpGY3BzT1g0?=
- =?utf-8?B?UFN6OSt1Q2o3VUg4YkdGSnpQSGEvSzIybTlFdTdlUUFkR25LcUNtaXZvNHN3?=
- =?utf-8?B?ZDUyYWZaeHV6VW5vWEVYRlZzVHZNbEtHNitBTU02MUtkRzFaQTZwVC9SUWxU?=
- =?utf-8?B?Y0xvUnRVYm00Z2sxaDgzUGExTlkvcTJiSnhnOVVmMmY1VDNNaUo1aFgwOE5Z?=
- =?utf-8?B?L0tmOTJuOC9RUGJrY0RiOVlSaFNlRDRlQTkwdkFVeTR3a0xDa0dxZDdvQTNL?=
- =?utf-8?B?cHl1VXphbWZQbEJPeHNLdkNXd0VRM2tlZHdNczAyOTZTd1hzRmgrVUxpQWxI?=
- =?utf-8?Q?XXfPLTSvvkzbxrEvE6Tdm2gka88duxfwwcPPfRC?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <028DDC2490E84644A71E36C5C6CB86FD@apcprd06.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "rui.zhang@intel.com" <rui.zhang@intel.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kai.heng.feng@canonical.com" <kai.heng.feng@canonical.com>,
+        "mcroce@microsoft.com" <mcroce@microsoft.com>,
+        "amitk@kernel.org" <amitk@kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
+        "agross@kernel.org" <agross@kernel.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "rafael.j.wysocki@intel.com" <rafael.j.wysocki@intel.com>,
+        rostedt@goodmis.org, Geert Uytterhoeven <geert@linux-m68k.org>
+In-Reply-To: <YJzkq+NPW4ZMB8AF@alley>
+References: <cover.1620645507.git.matti.vaittinen@fi.rohmeurope.com>
+         <97260f8e150abb898a262fade25860609b460912.1620645507.git.matti.vaittinen@fi.rohmeurope.com>
+         <YJuPwAZroVZ/w633@alley>
+         <2149df3f542d25ce15d049e81d6188bb7198478c.camel@fi.rohmeurope.com>
+         <YJzkq+NPW4ZMB8AF@alley>
+Content-Type: text/plain; charset="UTF-8"
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3362.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 617d6dab-8e55-49d3-207b-08d918defc3c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 May 2021 02:53:44.1781
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: LhqsalUsMlKKffK9ETFa20YniEkyOkRzPnaX8qjr9gLMmCuB2PPtkRp92WcM8qlBm9jzvo5aozh8++kzggxyWm6HFzEFBBH0rNXqsLwxMDw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK0PR06MB2211
+Date:   Mon, 17 May 2021 07:57:11 +0300
+User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGVsbG8sDQoNCu+7v09uIDIwMjEvNS8xNSwgMTE6NTcgUE0sVXdlIEtsZWluZS1Lw7ZuaWd3cm90
-ZToNCg0KCT4JPiArCWRpdl9oID0gRElWX1JPVU5EX0RPV05fVUxMKGRpdl9oLA0KCT4JPiArCQkJ
-CSAgIChGSUVMRF9NQVgoUFdNX0FTUEVFRF9DVFJMX0NMS19ESVZfTCkgKyAxKSk7DQoJPgk+ICsJ
-ZGl2X2ggPSBESVZfUk9VTkRfRE9XTl9VTEwoZGl2X2gsIE5TRUNfUEVSX1NFQyk7DQoNCgk+IEFz
-IGEgZGl2aXNpb24gaXMgYW4gZXhwZW5zaXZlIG9wZXJhdGlvbiB5b3UgY2FuIGJldHRlciBmaXJz
-dCBtdWx0aXBseQ0KCT4gTlNFQ19QRVJfU0VDIGFuZCBGSUVMRF9NQVgoUFdNX0FTUEVFRF9DVFJM
-X0NMS19ESVZfTCkgKyAxIGFuZCBkaXZpZGUgYnkNCgk+IHRoZSByZXN1bHQuDQoNCldoZW4gSSBt
-dWx0aXBseSBOU0VDX1BFUl9TRUMgYW5kIEZJRUxEX01BWChQV01fQVNQRUVEX0NUUkxfQ0xLX0RJ
-Vl9MKSArIDEgdGhlIHJlc3VsdCB3aWxsIG92ZXJmbG93DQpmb3IgMzItYml0cyBhbmQgdGhlIGRp
-dmlzb3IgdHlwZSBvZiBkb19kaXYgaXMgMzItYml0cyBzbyBJIG5lZWQgdG8gZG8gZGl2IHR3aWNl
-IHRvIGF2b2lkIHRoZSBpc3N1ZS4NCkNhbiB5b3UgZ2l2ZSBtZSBzb21lIHN1Z2dlc3RzPw0KDQpU
-aGFua3MNCg0K
+
+On Thu, 2021-05-13 at 10:34 +0200, Petr Mladek wrote:
+> On Wed 2021-05-12 12:00:46, Vaittinen, Matti wrote:
+> > On Wed, 2021-05-12 at 10:20 +0200, Petr Mladek wrote:
+> > > On Mon 2021-05-10 14:28:30, Matti Vaittinen wrote:
+> > > > There can be few cases when we need to shut-down the system in
+> > > > order to
+> > > > protect the hardware. Currently this is done at east by the
+> > > > thermal
+> > > > core
+> > > > when temperature raises over certain limit.
+> > > > 
+> > > > Some PMICs can also generate interrupts for example for over-
+> > > > current or
+> > > > over-voltage, voltage drops, short-circuit, ... etc. On some
+> > > > systems
+> > > > these are a sign of hardware failure and only thing to do is
+> > > > try to
+> > > > protect the rest of the hardware by shutting down the system.
+> > > > 
+> > > > Add shut-down logic which can be used by all subsystems instead
+> > > > of
+> > > > implementing the shutdown in each subsystem. The logic is
+> > > > stolen
+> > > > from
+> > > > thermal_core with difference of using atomic_t instead of a
+> > > > mutex
+> > > > in
+> > > > order to allow calls directly from IRQ context.
+> > > > 
+> > > > Signed-off-by: Matti Vaittinen <
+> > > > matti.vaittinen@fi.rohmeurope.com>
+> > > > 
+> > > > diff --git a/kernel/reboot.c b/kernel/reboot.c
+> > > > index a6ad5eb2fa73..5da8c80a2647 100644
+> > > > --- a/kernel/reboot.c
+> > > > +++ b/kernel/reboot.c
+> > > > @@ -518,6 +519,85 @@ void orderly_reboot(void)
+> > > >  }
+> > > >  EXPORT_SYMBOL_GPL(orderly_reboot);
+> > > >  
+> > > > +/**
+> > > > + * hw_failure_emergency_poweroff_func - emergency poweroff
+> > > > work
+> > > > after a known delay
+> > > > + * @work: work_struct associated with the emergency poweroff
+> > > > function
+> > > > + *
+> > > > + * This function is called in very critical situations to
+> > > > force
+> > > > + * a kernel poweroff after a configurable timeout value.
+> > > > + */
+> > > > +static void hw_failure_emergency_poweroff_func(struct
+> > > > work_struct
+> > > > *work)
+> > > > +{
+> > > > +	/*
+> > > > +	 * We have reached here after the emergency shutdown
+> > > > waiting
+> > > > period has
+> > > > +	 * expired. This means orderly_poweroff has not been
+> > > > able to
+> > > > shut off
+> > > > +	 * the system for some reason.
+> > > > +	 *
+> > > > +	 * Try to shut down the system immediately using
+> > > > kernel_power_off
+> > > > +	 * if populated
+> > > > +	 */
+> > > > +	WARN(1, "Hardware protection timed-out. Trying forced
+> > > > poweroff\n");
+> > > > +	kernel_power_off();
+> > > 
+> > > WARN() look like an overkill here. It prints many lines that are
+> > > not
+> > > much useful in this case. The function is called from well-known
+> > > context (workqueue worker).
+> > 
+> > This was the existing code which I stole from the thermal_core. I
+> > kind
+> > of think that eye-catching WARN is actually a good choice here.
+> > Doing
+> > autonomous power-off without a WARNing does not sound good to me :)
+> > 
+> > > Also be aware that "panic_on_warn" commandline option will
+> > > trigger
+> > > panic() here.
+> > 
+> > Hmm.. If panic() hangs the system that might indeed be a problem.
+> > Now
+> > we are (again) on a territory which I don't know well. I'd
+> > appreciate
+> > any input from thermal folks and Mark. I don't like the idea of
+> > making
+> > extreme things like power-off w/o well visible log-trace. Thus I
+> > would
+> > like to have WARN()-like eye-catcher, even if the call-trace was
+> > not
+> > too varying. It will at least point to this worker. Any better
+> > suggestions than WARN()?
+> 
+> Heh, it might make sense to create a system wide API for these. I am
+> sure that WARN() is mis-used this way on many other locations.
+> 
+> There already are two locations that use another eye-catching text.
+> A common API might help to avoid duplication of the common parts,
+> see
+> https://lore.kernel.org/lkml/20210305194206.3165917-2-elver@google.com/
+> 
+> Well, it might be out of scope for this patchset.
+
+I just had a very brief "chat" with Geert (3 IRC messages, posted
+during 4 or 5 days :]) - and Geert pointed me to this:
+
+https://lore.kernel.org/linux-iommu/20210331093104.383705-4-geert+renesas@glider.be/
+
+So, maybe I'll just go with simple pr_emerg() and trust that the
+emerg() print should catch attention as such level print probably
+should. I'll respin the patch series (probably tomorrow) - let's see
+what thermal and regulator folks say :)
+
+Thanks for all the help this far!
+
+Best Regards
+	Matti Vaittinen
+
