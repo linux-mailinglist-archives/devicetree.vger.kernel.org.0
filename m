@@ -2,78 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B06D383B2C
-	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 19:21:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F343F383D11
+	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 21:17:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235813AbhEQRXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 13:23:04 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:44655 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235374AbhEQRXE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 13:23:04 -0400
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 279C422205;
-        Mon, 17 May 2021 19:21:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1621272104;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=n0XeYHGKPn3tAk4NE5qtwy+82XOwHicwJhKVYd+Quu0=;
-        b=NLt8ILfsYe7YGec6chkTMlUXi8czCzDDngpe0MJc9oiXEHZdKmD7nSj1TOeSwAe4cs56yF
-        CfVr8FiXxt5qeluBrTq58lurxX/b6qcaH1XNsvAkETX6Rxfvp+Pwt8SoKquz5PG1aEjwzX
-        Ips3+93bYN2qwlryvMcasvdoWSePluE=
+        id S232172AbhEQTSf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 15:18:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55948 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232147AbhEQTSe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 May 2021 15:18:34 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 32E64610CD;
+        Mon, 17 May 2021 19:17:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1621279038;
+        bh=bclKj3T5OzMHwLMDNU1qKI1Dt6RViH88PuPQbMHGRr4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=KyL2dYeDr8a1Y7Nyx672Enhc8n14G0dS9jL60PBUVlds1wh0Kdck4guWmafFfhg3J
+         V/ekBJ1Ql309JKIuC1rjKGqWTk69+8rbZC3OXkgujcOA1IwG+WanN1rZzn8DFNq58P
+         /4Ge3UjjnbW/X2xIj/v3ah6CBy+bqbmzwaeUf2DnCjnnyQh71YCuAu60u1LC/sRfdX
+         A6sthgM1T6iZHrLWLnp8kj4P0Zaksio3dAh/JeYsqNwFSoJb6sigvVkmFUsiWMpdSa
+         1iPEgKN+HfvtijCxyo4Gyzw5hjVgmCocJjrLVI/Sc8TKaf81WO2pcQnEypbxJ/7TF8
+         RkyiDl/acaF8g==
+Received: by mail-ed1-f43.google.com with SMTP id f1so8221677edt.4;
+        Mon, 17 May 2021 12:17:18 -0700 (PDT)
+X-Gm-Message-State: AOAM532i4vG8E7/FdVOGp00Zfb4EVe5XRevYp5PWWTyzjt6mBHKVILlt
+        wldue9jApE5nsrm2DrfyI96UjX9mXOWmjQig+Q==
+X-Google-Smtp-Source: ABdhPJxwWUTWR46pVeUhN6Po3a3w6B9MWb0twgV12pS8uxUBoS8TpJ9ffrEiu87zRYE9GCN0FD+HyoyXgJTdXkElYnA=
+X-Received: by 2002:a05:6402:54e:: with SMTP id i14mr1895380edx.289.1621279036856;
+ Mon, 17 May 2021 12:17:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 17 May 2021 19:21:40 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        MTD Maling List <linux-mtd@lists.infradead.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: Re: [PATCH v2 2/5] dt-bindings: mtd: add YAML schema for the generic
- MTD bindings
-In-Reply-To: <CAL_JsqK3Wym+ERaQ0np-v8HM39TyNUTAwbhKHPasOPx5xnMNsQ@mail.gmail.com>
-References: <20210424110608.15748-3-michael@walle.cc>
- <20210510104411.11267-1-miquel.raynal@bootlin.com>
- <CAL_JsqK3Wym+ERaQ0np-v8HM39TyNUTAwbhKHPasOPx5xnMNsQ@mail.gmail.com>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <9c95f93c218028898c01970bfd9f3e0a@walle.cc>
-X-Sender: michael@walle.cc
+References: <20210517155458.1016707-1-sudeep.holla@arm.com>
+In-Reply-To: <20210517155458.1016707-1-sudeep.holla@arm.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 17 May 2021 14:17:05 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK6B40D8dRu8KoOsx6eSzRXx6KsSEu5mjDokPEAy+p4oA@mail.gmail.com>
+Message-ID: <CAL_JsqK6B40D8dRu8KoOsx6eSzRXx6KsSEu5mjDokPEAy+p4oA@mail.gmail.com>
+Subject: Re: [PATCH v4] dt-bindings: dvfs: Add support for generic performance domains
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Hector Yuan <hector.yuan@mediatek.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2021-05-17 17:12, schrieb Rob Herring:
-> On Mon, May 10, 2021 at 5:44 AM Miquel Raynal 
-> <miquel.raynal@bootlin.com> wrote:
->> 
->> On Sat, 2021-04-24 at 11:06:05 UTC, Michael Walle wrote:
->> > Convert MTD's common.txt to mtd.yaml.
->> >
->> > Signed-off-by: Michael Walle <michael@walle.cc>
->> > Reviewed-by: Rob Herring <robh@kernel.org>
->> 
->> Applied to 
->> https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git 
->> mtd/next, thanks.
-> 
-> This is causing a warning in linux-next:
-> 
-> /builds/robherring/linux-dt/Documentation/devicetree/bindings/spi/spi-mux.example.dt.yaml:
-> spi-flash@0: $nodename:0: 'spi-flash@0' does not match '^flash(@.*)?$'
->  From schema:
-> /builds/robherring/linux-dt/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+On Mon, May 17, 2021 at 10:55 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
+>
+> The CLKSCREW attack [0] exposed security vulnerabilities in energy management
+> implementations where untrusted software had direct access to clock and
+> voltage hardware controls. In this attack, the malicious software was able to
+> place the platform into unsafe overclocked or undervolted configurations. Such
+> configurations then enabled the injection of predictable faults to reveal
+> secrets.
+>
+> Many Arm-based systems used to or still use voltage regulator and clock
+> frameworks in the kernel. These frameworks allow callers to independently
+> manipulate frequency and voltage settings. Such implementations can render
+> systems susceptible to this form of attack.
+>
+> Attacks such as CLKSCREW are now being mitigated by not having direct and
+> independent control of clock and voltage in the kernel and moving that
+> control to a trusted entity, such as the SCP firmware or secure world
+> firmware/software which are to perform sanity checking on the requested
+> performance levels, thereby preventing any attempted malicious programming.
+>
+> With the advent of such an abstraction, there is a need to replace the
+> generic clock and regulator bindings used by such devices with a generic
+> performance domains bindings.
+>
+> [0] https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/tang
+>
+> Link: https://lore.kernel.org/r/20201116181356.804590-1-sudeep.holla@arm.com
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
 
-For reference, the patch which fixes this:
-https://lore.kernel.org/linux-devicetree/20210517153946.9502-1-michael@walle.cc/
-
--michael
+Reviewed-by: Rob Herring <robh@kernel.org>
