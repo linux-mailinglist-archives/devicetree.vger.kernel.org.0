@@ -2,87 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 716543823B4
-	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 07:28:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C34033823EE
+	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 08:06:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234317AbhEQFaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 01:30:08 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:26129 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234074AbhEQFaI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 01:30:08 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1621229332; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=f2OQmIUadLX/vJUsCw/tZ97nNVk3pjk1o5K0ABgM7o0=;
- b=c+O61l+tFwcQAFxWZOuPkC+UUXm9YnKKppPLmSz4e1xhFKEnN24x/JJxxL9qFkmCvbYDKIj9
- bm0e8CpjR3NQ19a0ar3cueEUa6XDAZu8DWuT/NLz1LgiYvSc5/+VIWcOZVsHwtzRAyfEF3k2
- xGt55MyK4u21zl+clf/A9Njkknw=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 60a1ff067b5af81b5c21cea4 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 17 May 2021 05:28:38
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 1C9CEC4338A; Mon, 17 May 2021 05:28:38 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id B1CDEC433F1;
-        Mon, 17 May 2021 05:28:37 +0000 (UTC)
+        id S233357AbhEQGHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 02:07:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39270 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231775AbhEQGHq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 02:07:46 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1B3FC061573
+        for <devicetree@vger.kernel.org>; Sun, 16 May 2021 23:06:30 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1liWOV-0003CW-Qv; Mon, 17 May 2021 08:06:23 +0200
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1liWOS-0007UL-CQ; Mon, 17 May 2021 08:06:20 +0200
+Date:   Mon, 17 May 2021 08:06:15 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Billy Tsai <billy_tsai@aspeedtech.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        BMC-SW <BMC-SW@aspeedtech.com>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [v5 2/2] pwm: Add Aspeed ast2600 PWM support
+Message-ID: <20210517060615.3hyifoebyrddsrta@pengutronix.de>
+References: <20210514024845.10531-1-billy_tsai@aspeedtech.com>
+ <20210514024845.10531-3-billy_tsai@aspeedtech.com>
+ <20210515151827.amiqh6j6brv44jif@pengutronix.de>
+ <7A439233-C5FF-4BCA-8A5C-945EB847F487@aspeedtech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 17 May 2021 10:58:37 +0530
-From:   skakit@codeaurora.org
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org
-Subject: Re: [PATCH V4 7/8] arm64: dts: qcom: sc7280: Add channel nodes for
- sc7280-idp
-In-Reply-To: <YJKvtLMPCg56DO1E@google.com>
-References: <1620197726-23802-1-git-send-email-skakit@codeaurora.org>
- <1620197726-23802-8-git-send-email-skakit@codeaurora.org>
- <YJKvtLMPCg56DO1E@google.com>
-Message-ID: <a835d67abc8509f1e7de5f0afd330a1c@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="jitc6yys25vbjviz"
+Content-Disposition: inline
+In-Reply-To: <7A439233-C5FF-4BCA-8A5C-945EB847F487@aspeedtech.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-05-05 20:16, Matthias Kaehlcke wrote:
-> On Wed, May 05, 2021 at 12:25:25PM +0530, satya priya wrote:
-> 
->> Subject: arm64: dts: qcom: sc7280: Add channel nodes for sc7280-idp
-> 
-> nit: just 'channel nodes' is a bit vague. In case you respin maybe
-> change it to something like 'Add ADC channel nodes for PMIC
-> temperatures to sc7280-idp'
-> 
 
-Okay will change it and resend v4.
+--jitc6yys25vbjviz
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> In any case it doesn't seem worth to respin just for this.
-> 
->> 
->> Add channel nodes for the on die temperatures of PMICS
->> pmk8350, pm8350, pmr735a and pmr735b.
->> 
->> Signed-off-by: satya priya <skakit@codeaurora.org>
-> 
-> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Hello Billy,
+
+On Mon, May 17, 2021 at 02:53:44AM +0000, Billy Tsai wrote:
+> =EF=BB=BFOn 2021/5/15, 11:57 PM,Uwe Kleine-K=C3=B6nigwrote:
+>=20
+> 	>	> +	div_h =3D DIV_ROUND_DOWN_ULL(div_h,
+> 	>	> +				   (FIELD_MAX(PWM_ASPEED_CTRL_CLK_DIV_L) + 1));
+> 	>	> +	div_h =3D DIV_ROUND_DOWN_ULL(div_h, NSEC_PER_SEC);
+>=20
+> 	> As a division is an expensive operation you can better first multiply
+> 	> NSEC_PER_SEC and FIELD_MAX(PWM_ASPEED_CTRL_CLK_DIV_L) + 1 and divide by
+> 	> the result.
+>=20
+> When I multiply NSEC_PER_SEC and FIELD_MAX(PWM_ASPEED_CTRL_CLK_DIV_L) + 1=
+ the result will overflow
+> for 32-bits and the divisor type of do_div is 32-bits so I need to do div=
+ twice to avoid the issue.
+> Can you give me some suggests?
+
+Hmm, you're right. There doesn't seem to be a div64_64, I thought there
+was one. Anyhow, while looking at the various divide functions I saw
+that dividing by a constant shouldn't be that expensive, so I think the
+sane way is to keep the two divisions and add a comment describing the
+problem.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
+   |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--jitc6yys25vbjviz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmCiB9UACgkQwfwUeK3K
+7AkFCggAhYDJgJhK9vMuvxKsmyBpdGvk7Cxj1jfumQXEFfVFWnhAqzh6sTS0AaOO
+1gCpneq8ySB1xnuFkOcwZtpc8i2n2Lc6jy6N+OVpWKHFepLkcmg3G3zXcFTTaxiG
+mEYL7jm4TNEDGTmIG/6h2hLk/QVvB/PGTfUJLhaoINZctO0jWGZkTKy0iUxWOq5u
+Zklk3UmeDm8TVp+/y5xQl4gz3LaY4PKugHY1CHSVt7aZR1eaVYEYyZDjEWCsI7Ri
+PRx3BBp92Zt35aq9eQ6izuT6Bxaq+Mh2ole8uaiC1aeyVCN8xi5eZTFs4RuGDwSL
+s9Xfz8SqBeNWtheP8Ft0bBVQPuj/Lg==
+=kyG1
+-----END PGP SIGNATURE-----
+
+--jitc6yys25vbjviz--
