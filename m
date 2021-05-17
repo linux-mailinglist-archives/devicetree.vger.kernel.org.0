@@ -2,73 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CCEB382982
-	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 12:09:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B4EF3829B1
+	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 12:20:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236146AbhEQKK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 06:10:58 -0400
-Received: from mail-vs1-f52.google.com ([209.85.217.52]:36538 "EHLO
-        mail-vs1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236224AbhEQKK4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 06:10:56 -0400
-Received: by mail-vs1-f52.google.com with SMTP id d13so2828305vso.3;
-        Mon, 17 May 2021 03:09:40 -0700 (PDT)
+        id S236103AbhEQKWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 06:22:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40816 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230248AbhEQKWG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 06:22:06 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 915B3C061573;
+        Mon, 17 May 2021 03:20:50 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id n2so5844026wrm.0;
+        Mon, 17 May 2021 03:20:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
+         :from:to:references:in-reply-to;
+        bh=p5B0LfPWxukMwc2CWTpCHetVCW9lclGiGdiXVNhvVxQ=;
+        b=UXI3dPpznRJ7eMcG4L0qr8aRXYY08vnQk7O02lg//IekINR/WJQneiKMUptqAes8bC
+         jK6BOd8nUAUKPboX2l6SlFJIbA8q8JaV2/I/3UIAEpowd++Va9hVmWyWG5eihiXLmPp1
+         JG5g+BDFv2Q1w/fb6hCDkzFGqezLzuvKbeRCYfuPNBRzrqFdxIA71o0/ymIHc0+Gd1EQ
+         xKaqjXINsJZq7dcks4Lsujq/CHNzteeaMxA7BgqqblaOi3hzwQddeZg9+IEshszSrLps
+         nyDM2p8+MeHPMZnqqP+Dcjq/tvfXd7CbpElemG4o78ekcLuv5SiBRRddfUnsVmO1w1D1
+         1ZJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=e6iGJcGcTtYBC7B9R84xOrj6qAa4tF3fGN/GCOKLHbU=;
-        b=fOWOOhoq8mfwtjP5wmBdIDt1ZarUE5PM1dMp53jiPk4AgJKxaYgVfD5fOhQB5vsm3J
-         hByT34pEe4zI5pQ9d5R3ZAkO8YfWfbPhiYP+xDFNQjSyPbB+XtV7ahJAAIbV7cnz68Ia
-         hGrPTnZBoU/hSXZcdLlRJDWd4elSNmVVdGMj6YGOKvlu9Hstgtt3ACjluhyZK/wg/HEy
-         RhxP+FffdpNj9RqGqjmvxqUldUjCT+NjArhUXDJ/AcxHzlPT1kvGdKQF04HXNGnhyana
-         n0cclH9xa4b2UAGrP8Obl4IuzoHebd8682eeiLDnyVEyLV7cPp/LwzRqBDen1JLOB3Pb
-         JjNw==
-X-Gm-Message-State: AOAM533CnWACYL7wGDTZ4He5y55UWJ4afDe3KGB1zIHUbdCM2L52HzNr
-        gWTs4o+Jicor/T4VaT+fKvXRn4rYFDWFn5QqS4Q=
-X-Google-Smtp-Source: ABdhPJx4hV6xEa6RglTPK6Qyvqqt6ANlmCYxeq/e5G5A1AUa4NWnqYRm++zrYEcRGiB4xDeEHITlHLT3VYwOoeQ539U=
-X-Received: by 2002:a67:f84f:: with SMTP id b15mr9555646vsp.40.1621246167982;
- Mon, 17 May 2021 03:09:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210513114617.30191-1-aford173@gmail.com> <20210513114617.30191-3-aford173@gmail.com>
-In-Reply-To: <20210513114617.30191-3-aford173@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 17 May 2021 12:09:16 +0200
-Message-ID: <CAMuHMdXB=R_CZ-tdzbdcVsGtgUoYU7LTmaSeErcLzHuAUm+-Lw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: defconfig: Enable usb2_clksel for rcar3 and RZ/G2
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:cc:subject:from:to:references:in-reply-to;
+        bh=p5B0LfPWxukMwc2CWTpCHetVCW9lclGiGdiXVNhvVxQ=;
+        b=RdJn/N3guPG0LYCqTOC7RgOmBATxPFqucJLqaHXCA1FCwqGdtzvqioAgNZz5bo7fqc
+         YPidXvFsFcl9bBWTuo/pS0txtgYz/qKcIkmtbtdYM1GEdyNaLa21nc4/WP7hPEoZO0wt
+         rABqEaHlE2OFPdrGi7SEXbjAVABYaKcRUOlbMNIPSnBcFYS1HLFnwLJXbqW0lLPd3Act
+         7EwJrjgzJfNcC/UaZY/tkZxErEMX5USQpsSUA7OEZlTVEjmA8Uu7z4b3AsbWBKXYZauS
+         /MZobGgdRG+LRBFIXCMqWMhaSNaZ4FettvDHKKOOcgAb73V5w9t4bgUcWfA8xwaSbFw3
+         aiLA==
+X-Gm-Message-State: AOAM532bULcRgg3dyrDRUh8/85gUATbnn3rVyNWiqalmCNHPKygkuXha
+        EMnMnIFZO3PXVeNH/Qk9YLQ=
+X-Google-Smtp-Source: ABdhPJypNrPG7VMem7/+BkEvqjU3vFa7r9JPQ9iWNu97p0dQiSAkeTuDDcyZayoiVaU3CMRMFJrcDQ==
+X-Received: by 2002:a05:6000:1c1:: with SMTP id t1mr72596535wrx.421.1621246849174;
+        Mon, 17 May 2021 03:20:49 -0700 (PDT)
+Received: from localhost (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
+        by smtp.gmail.com with ESMTPSA id g5sm4132675wmi.8.2021.05.17.03.20.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 May 2021 03:20:48 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Mon, 17 May 2021 11:20:48 +0100
+Message-Id: <CBFG1K0T4F4N.2TVMNM7DIWEVZ@arch-thunder>
+Cc:     <kernel@pengutronix.de>, "Fabio Estevam" <festevam@gmail.com>,
+        <linux-imx@nxp.com>, "Steve Longerbeam" <slongerbeam@gmail.com>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        "Marek Vasut" <marex@denx.de>,
+        "Marco Felsch" <m.felsch@pengutronix.de>,
+        "Martin Kepplinger" <martin.kepplinger@puri.sm>,
+        "Dorota Czaplejewicz" <dorota.czaplejewicz@puri.sm>,
+        "Rob Herring" <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [RFC PATCH 0/3] media: imx: imx7-media-csi: i.MX8MM support
+From:   "Rui Miguel Silva" <rmfrfs@gmail.com>
+To:     "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>,
+        <linux-media@vger.kernel.org>
+References: <20210516024216.4576-1-laurent.pinchart@ideasonboard.com>
+In-Reply-To: <20210516024216.4576-1-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 13, 2021 at 1:46 PM Adam Ford <aford173@gmail.com> wrote:
-> There is a clock driver that's needed when using an external
-> USB reference clock called usb2_clksel.
-> Enable it in the defconfig.
+Hi Laurent,
+Thanks for extending support for imx8.
+
+On Sun May 16, 2021 at 3:42 AM WEST, Laurent Pinchart wrote:
+> Hello,
 >
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> This small patch series updates the imx7-media-csi driver to work on the
+> i.MX8MM with an OV5640 sensor.
+>
+> Patch 1/3 extends the nxp,imx7-csi DT bindings with a compatible string
+> for the i.MX8MM. While the CSI bridge in that SoC doesn't seem to differ
+> from the one in the i.MX7 according to the reference manual, experience
+> shows that NXP reference manuals are not always reliable. To be on the
+> safe side, a new fsl,imx8mm-csi compatible string, with a fallback on
+> fsl,imx7-csi, will avoid future backward-compatibility problems.
+>
+> Patches 2/3 and 3/3 fix issues with RAW8 and RAW10 capture from an
+> OV5640 sensor. The fixes are the result of experimentation and study of
+> NXP BSP drivers, as the reference manual doesn't provide much
+> information in this area. I'm not very happy with this, as understanding
+> the exact effect of the register fields modified by those two patches
+> would be better. Still, without support from NXP (which I would really,
+> really appreciate - anyone from NXP reading this ?), I can't do better.
+>
+> Given those concerns, I would also appreciate if this series could be
+> tested widely for possible regressions. There should be no change for
+> YUV formats, so only raw formats (RAW8, RAW10, RAW12 and RAW14) need to
+> be tested.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.14.
+I've tested with my setup in imx7 which is RAW10 only, and everything
+looks fine.
 
-Gr{oetje,eeting}s,
+I only have a small suggestion in 2/3.
 
-                        Geert
+------
+Cheers,
+     Rui
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> Laurent Pinchart (3):
+>   dt-bindings: media: nxp,imx7-csi: Add i.MX8MM support
+>   media: imx: imx7-media-csi: Set TWO_8BIT_SENSOR for >=3D 10-bit formats
+>   media: imx: imx7-media-csi: Don't set PIXEL_BIT in CSICR1
+>
+>  .../bindings/media/nxp,imx7-csi.yaml          | 12 +++++++----
+>  drivers/staging/media/imx/imx7-media-csi.c    | 21 +++++--------------
+>  2 files changed, 13 insertions(+), 20 deletions(-)
+>
+> --=20
+> Regards,
+>
+> Laurent Pinchart
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
+
