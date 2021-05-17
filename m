@@ -2,80 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8363C386D16
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 00:43:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52D90386D1D
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 00:43:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239633AbhEQWoV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 18:44:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39296 "EHLO
+        id S1344019AbhEQWpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 18:45:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238622AbhEQWoV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 18:44:21 -0400
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85A1CC061573
-        for <devicetree@vger.kernel.org>; Mon, 17 May 2021 15:43:03 -0700 (PDT)
-Received: by mail-ot1-x330.google.com with SMTP id 36-20020a9d0ba70000b02902e0a0a8fe36so6971269oth.8
-        for <devicetree@vger.kernel.org>; Mon, 17 May 2021 15:43:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=qIX+t1YKWWujAYO4RKswTYxIn2MPzDzLJIB7Mq7c8Zs=;
-        b=b+W4cpgVKx3kWrlVef2M79/pgvOqXNvJl3FbrPV3bSuaY1bLFGkxN1+GcNoMVH+93w
-         K7FowwMRI9xBrgzzz/+eZX/ezkLOspMSXjuh4YyY1vuXB9vKtmGVYeVTqVmyeL9vu8su
-         qsJoEdef0PkAAbO7LQ1c6oX2FstQ+o6WWyMro=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=qIX+t1YKWWujAYO4RKswTYxIn2MPzDzLJIB7Mq7c8Zs=;
-        b=l3SVweW/gsvnORCVdFjncFoVGfsL+FqvrvsTdFpXIyjbvB78IWfK3b7UaplQUVclcS
-         No4biDewS1fEVOA/uFkaCHMYDhghhZQ9HbkIibkqZdagKcOXniM9nRIA9n5r+I9dQSXT
-         ARv9DGJPVSasvrOHFrzPWSwQOJFAcY+bV9pAs4o1cAda290w+PYyJWVWnP9hHnN0//Lt
-         vjToNzX+Ga9JphZo0ZicxTIP4kS+++iNo+Lklrv9jZKTK7j6np3wKVNya3QWrsbJMH8w
-         oZ7Xu/jLtzOTF0rZe1XVI7bDPSjbFmPBfdFsSkuJoLaxnUza7srf1QgR3FFdRjNzNi24
-         dy3w==
-X-Gm-Message-State: AOAM530rrMdAC96fWoeAsbJGUNn8tQWSDjDbKq+wXmv80xVaLF/kpkOl
-        SzCDeNfyz/SlTYsgCFwbUusCnwP28jZNzFT9Pa4NiQ==
-X-Google-Smtp-Source: ABdhPJxcjBpwmNvcCV5pFmHQfODx320xdu80rVlOUvrDwd+0Se/xR8dkiiavxISQU1Ht/wA9YwYeHRfkcR0QHJNanMI=
-X-Received: by 2002:a05:6830:1556:: with SMTP id l22mr1576626otp.34.1621291383035;
- Mon, 17 May 2021 15:43:03 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 17 May 2021 15:43:02 -0700
+        with ESMTP id S239660AbhEQWpM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 18:45:12 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 689F0C061573
+        for <devicetree@vger.kernel.org>; Mon, 17 May 2021 15:43:55 -0700 (PDT)
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id A4A4E8047F;
+        Tue, 18 May 2021 00:43:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1621291433;
+        bh=yGKE+8AB9tFQWV6h47Yj8Gn/yuNMlBin89Uo6YsPfqQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=JQynP8By8ZkkViJLFnQFqyZpcgAY6hj27B8mheqm64vbLfzsywBCtQnvPw5y49J0S
+         vVK83l9727J1OJGNAT2ep7MhFSUM7toctPZUguXwuFMvlQ08BIcfebMzag4YWwNteM
+         L+OA0+9WsL8NWEoyfCygLpKTU333pMKLlzG6aJOXeU1+lZEidD6SNw9nRyI1zsSNI7
+         wNdmQUdfWlrKJVJcArl6u1BxQ/eUc0wsQiskdWiRs5krC9b0cD8BLa+aXLppPl2NBL
+         3E8Z60EzRV7rrxM4dmTKjy0lNHjGjuix+hLebLmY7v+IvyLSjFLF4ZNl7kNaKHF6ip
+         buqM/RThPoqKw==
+From:   Marek Vasut <marex@denx.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     ch@denx.de, Marek Vasut <marex@denx.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
+Subject: [PATCH V2] dt-bindings: display: Fix spacing in lvds.yaml
+Date:   Tue, 18 May 2021 00:43:36 +0200
+Message-Id: <20210517224336.409301-1-marex@denx.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <20210514122051.266169-3-ikjn@chromium.org>
-References: <20210514122051.266169-1-ikjn@chromium.org> <20210514122051.266169-3-ikjn@chromium.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Mon, 17 May 2021 15:43:02 -0700
-Message-ID: <CAE-0n521WWMmUs4oPxpc7kGC1pxZygdjHkU_ULa665-6kf469w@mail.gmail.com>
-Subject: Re: [RESEND PATCH v7 2/2] arm64: dts: mt8183: add cbas node under cros_ec
-To:     Ikjoon Jang <ikjn@chromium.org>, Lee Jones <lee.jones@linaro.org>,
-        devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Guenter Roeck <groeck@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Benson Leung <bleung@chromium.org>,
-        linux-input@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
-        Jiri Kosina <jikos@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.102.4 at phobos.denx.de
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Ikjoon Jang (2021-05-14 05:20:50)
-> Add a 'cbas' device node for supporting tablet mode switch in
-> kukui devices.
->
-> Kukui platforms with detacheable base have an additional input
-> device under cros-ec, which reports SW_TABLET_MODE regarding
-> its base state (e.g. base flipped or detached).
->
-> Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
->
-> ---
+Add missing spaces to make the diagrams readable, no functional change.
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: devicetree@vger.kernel.org
+To: dri-devel@lists.freedesktop.org
+---
+V2: Replace all the other tabs too
+---
+ .../bindings/display/panel/lvds.yaml          | 46 +++++++++----------
+ 1 file changed, 23 insertions(+), 23 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/lvds.yaml b/Documentation/devicetree/bindings/display/panel/lvds.yaml
+index 31164608ba1d..49460c9dceea 100644
+--- a/Documentation/devicetree/bindings/display/panel/lvds.yaml
++++ b/Documentation/devicetree/bindings/display/panel/lvds.yaml
+@@ -51,37 +51,37 @@ properties:
+       - "jeida-18" - 18-bit data mapping compatible with the [JEIDA], [LDI] and
+         [VESA] specifications. Data are transferred as follows on 3 LVDS lanes.
+ 
+-      Slot	    0       1       2       3       4       5       6
+-            ________________                         _________________
+-      Clock	                \_______________________/
+-              ______  ______  ______  ______  ______  ______  ______
+-      DATA0	><__G0__><__R5__><__R4__><__R3__><__R2__><__R1__><__R0__><
+-      DATA1	><__B1__><__B0__><__G5__><__G4__><__G3__><__G2__><__G1__><
+-      DATA2	><_CTL2_><_CTL1_><_CTL0_><__B5__><__B4__><__B3__><__B2__><
++      Slot          0       1       2       3       4       5       6
++                ________________                         _________________
++      Clock                     \_______________________/
++                  ______  ______  ______  ______  ______  ______  ______
++      DATA0     ><__G0__><__R5__><__R4__><__R3__><__R2__><__R1__><__R0__><
++      DATA1     ><__B1__><__B0__><__G5__><__G4__><__G3__><__G2__><__G1__><
++      DATA2     ><_CTL2_><_CTL1_><_CTL0_><__B5__><__B4__><__B3__><__B2__><
+ 
+       - "jeida-24" - 24-bit data mapping compatible with the [DSIM] and [LDI]
+         specifications. Data are transferred as follows on 4 LVDS lanes.
+ 
+-      Slot	    0       1       2       3       4       5       6
+-            ________________                         _________________
+-      Clock	                \_______________________/
+-              ______  ______  ______  ______  ______  ______  ______
+-      DATA0	><__G2__><__R7__><__R6__><__R5__><__R4__><__R3__><__R2__><
+-      DATA1	><__B3__><__B2__><__G7__><__G6__><__G5__><__G4__><__G3__><
+-      DATA2	><_CTL2_><_CTL1_><_CTL0_><__B7__><__B6__><__B5__><__B4__><
+-      DATA3	><_CTL3_><__B1__><__B0__><__G1__><__G0__><__R1__><__R0__><
++      Slot          0       1       2       3       4       5       6
++                ________________                         _________________
++      Clock                     \_______________________/
++                  ______  ______  ______  ______  ______  ______  ______
++      DATA0     ><__G2__><__R7__><__R6__><__R5__><__R4__><__R3__><__R2__><
++      DATA1     ><__B3__><__B2__><__G7__><__G6__><__G5__><__G4__><__G3__><
++      DATA2     ><_CTL2_><_CTL1_><_CTL0_><__B7__><__B6__><__B5__><__B4__><
++      DATA3     ><_CTL3_><__B1__><__B0__><__G1__><__G0__><__R1__><__R0__><
+ 
+       - "vesa-24" - 24-bit data mapping compatible with the [VESA] specification.
+         Data are transferred as follows on 4 LVDS lanes.
+ 
+-      Slot	    0       1       2       3       4       5       6
+-            ________________                         _________________
+-      Clock	                \_______________________/
+-              ______  ______  ______  ______  ______  ______  ______
+-      DATA0	><__G0__><__R5__><__R4__><__R3__><__R2__><__R1__><__R0__><
+-      DATA1	><__B1__><__B0__><__G5__><__G4__><__G3__><__G2__><__G1__><
+-      DATA2	><_CTL2_><_CTL1_><_CTL0_><__B5__><__B4__><__B3__><__B2__><
+-      DATA3	><_CTL3_><__B7__><__B6__><__G7__><__G6__><__R7__><__R6__><
++      Slot          0       1       2       3       4       5       6
++                ________________                         _________________
++      Clock                     \_______________________/
++                  ______  ______  ______  ______  ______  ______  ______
++      DATA0     ><__G0__><__R5__><__R4__><__R3__><__R2__><__R1__><__R0__><
++      DATA1     ><__B1__><__B0__><__G5__><__G4__><__G3__><__G2__><__G1__><
++      DATA2     ><_CTL2_><_CTL1_><_CTL0_><__B5__><__B4__><__B3__><__B2__><
++      DATA3     ><_CTL3_><__B7__><__B6__><__G7__><__G6__><__R7__><__R6__><
+ 
+       Control signals are mapped as follows.
+ 
+-- 
+2.30.2
+
