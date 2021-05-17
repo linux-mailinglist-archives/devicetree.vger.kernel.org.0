@@ -2,112 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FE943837AA
-	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 17:46:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3737838383A
+	for <lists+devicetree@lfdr.de>; Mon, 17 May 2021 17:51:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244838AbhEQPqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 11:46:34 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:53000 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244167AbhEQPmS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 11:42:18 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id 8D5C71F40323
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     netdev@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org
-Cc:     Jose Abreu <joabreu@synopsys.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        David Wu <david.wu@rock-chips.com>,
+        id S238927AbhEQPuz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 11:50:55 -0400
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:34529 "EHLO
+        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243083AbhEQPrX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 11:47:23 -0400
+Received: by mail-ot1-f52.google.com with SMTP id u25-20020a0568302319b02902ac3d54c25eso5954393ote.1;
+        Mon, 17 May 2021 08:46:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=BpisGO1EY/OutI+0r2Ss3WkR4guRrGoWKpsaAn3hDH4=;
+        b=FPEFUc5qSrQs5eGDOD/z1TM60PN18/GuZjvIBb+UVKGk+/31lE2LKElxXQyMx9thNl
+         lHbQU8Xt4dauKN2vC4GFHkvSIMUQnN+b6McDixVKTyusb8xN4RP6hQri78lv6W27RR9T
+         A4dl9+TUCq4QRdOibVDGXlpShzScoH3g2imFLQf7WwUVzbnM2P4VsSXCxDOQhRRPeNGH
+         Wfxajgzvil/eCkHJyQXs+9DfEUR/oFJb+1SvZn7WGebtaRJwNjGWummda2cfj7hBbS9b
+         INfAMxY29VBOuU/CG1nWd+S5iQimw2QIwi3RrIfJ8oS1jbxF7FGMXmF29Io7EhNuJ1Xe
+         92Iw==
+X-Gm-Message-State: AOAM530iwaYVfaezlmUoMXqHiF9XeOLRC3UfCiU1ulEbCyZV0tGxskHz
+        zapUSYcqDXDzU9T5Z+OFXg==
+X-Google-Smtp-Source: ABdhPJwIursDMrlVj6a1IbFbqh11nlxKUw0DMAjHBtI58RXtKtoGhAMJI5Mbpw5HNgeWBknepQj0iw==
+X-Received: by 2002:a9d:2aaa:: with SMTP id e39mr170906otb.169.1621266365457;
+        Mon, 17 May 2021 08:46:05 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id a23sm3246571otf.47.2021.05.17.08.46.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 May 2021 08:46:04 -0700 (PDT)
+Received: (nullmailer pid 2631254 invoked by uid 1000);
+        Mon, 17 May 2021 15:46:03 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     a-govindraju@ti.com, Lokesh Vutla <lokeshvutla@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Chen-Yu Tsai <wens213@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>
-Subject: [PATCH v3 net-next 2/4] net: stmmac: dwmac-rk: Check platform-specific ops
-Date:   Mon, 17 May 2021 12:40:35 -0300
-Message-Id: <20210517154037.37946-3-ezequiel@collabora.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210517154037.37946-1-ezequiel@collabora.com>
-References: <20210517154037.37946-1-ezequiel@collabora.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Tero Kristo <kristo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org
+In-Reply-To: <20210517061739.5762-2-kishon@ti.com>
+References: <20210517061739.5762-1-kishon@ti.com> <20210517061739.5762-2-kishon@ti.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: mux: Convert reg-mux DT bindings to YAML
+Date:   Mon, 17 May 2021 10:46:03 -0500
+Message-Id: <1621266363.910480.2631253.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: David Wu <david.wu@rock-chips.com>
+On Mon, 17 May 2021 11:47:34 +0530, Kishon Vijay Abraham I wrote:
+> Convert reg-mux DT bindings to YAML. Move the examples provided in
+> reg-mux.txt to mux-controller.txt and remove reg-mux.txt
+> 
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> ---
+>  .../bindings/mux/mux-controller.txt           | 113 ++++++++++++++-
+>  .../devicetree/bindings/mux/reg-mux.txt       | 129 ------------------
+>  .../devicetree/bindings/mux/reg-mux.yaml      |  47 +++++++
+>  3 files changed, 159 insertions(+), 130 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mux/reg-mux.txt
+>  create mode 100644 Documentation/devicetree/bindings/mux/reg-mux.yaml
+> 
 
-Add a check for non-null struct rk_gmac_ops for the
-configured PHY interface mode, failing if unsupported.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Signed-off-by: David Wu <david.wu@rock-chips.com>
-[Ezequiel: Refactor so it fails if unsupported]
-Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
----
- .../net/ethernet/stmicro/stmmac/dwmac-rk.c    | 31 +++++++++++++++++--
- 1 file changed, 29 insertions(+), 2 deletions(-)
+yamllint warnings/errors:
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-index 56034f21fcef..791c13d47a35 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-@@ -1342,11 +1342,36 @@ static struct rk_priv_data *rk_gmac_setup(struct platform_device *pdev,
- 	return bsp_priv;
- }
- 
-+static int rk_gmac_check_ops(struct rk_priv_data *bsp_priv)
-+{
-+	switch (bsp_priv->phy_iface) {
-+	case PHY_INTERFACE_MODE_RGMII:
-+	case PHY_INTERFACE_MODE_RGMII_ID:
-+	case PHY_INTERFACE_MODE_RGMII_RXID:
-+	case PHY_INTERFACE_MODE_RGMII_TXID:
-+		if (!bsp_priv->ops->set_to_rgmii)
-+			return -EINVAL;
-+		break;
-+	case PHY_INTERFACE_MODE_RMII:
-+		if (!bsp_priv->ops->set_to_rmii)
-+			return -EINVAL;
-+		break;
-+	default:
-+		dev_err(&bsp_priv->pdev->dev,
-+			"unsupported interface %d", bsp_priv->phy_iface);
-+	}
-+	return 0;
-+}
-+
- static int rk_gmac_powerup(struct rk_priv_data *bsp_priv)
- {
- 	int ret;
- 	struct device *dev = &bsp_priv->pdev->dev;
- 
-+	ret = rk_gmac_check_ops(bsp_priv);
-+	if (ret)
-+		return ret;
-+
- 	ret = gmac_clk_enable(bsp_priv, true);
- 	if (ret)
- 		return ret;
-@@ -1417,10 +1442,12 @@ static void rk_fix_speed(void *priv, unsigned int speed)
- 	case PHY_INTERFACE_MODE_RGMII_ID:
- 	case PHY_INTERFACE_MODE_RGMII_RXID:
- 	case PHY_INTERFACE_MODE_RGMII_TXID:
--		bsp_priv->ops->set_rgmii_speed(bsp_priv, speed);
-+		if (bsp_priv->ops->set_rgmii_speed)
-+			bsp_priv->ops->set_rgmii_speed(bsp_priv, speed);
- 		break;
- 	case PHY_INTERFACE_MODE_RMII:
--		bsp_priv->ops->set_rmii_speed(bsp_priv, speed);
-+		if (bsp_priv->ops->set_rmii_speed)
-+			bsp_priv->ops->set_rmii_speed(bsp_priv, speed);
- 		break;
- 	default:
- 		dev_err(dev, "unsupported interface %d", bsp_priv->phy_iface);
--- 
-2.30.0
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.example.dt.yaml: serdes-ln-ctrl@4080: 'mux-reg-masks' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mux/reg-mux.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.example.dt.yaml: serdes-ln-ctrl@4080: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mux/reg-mux.yaml
+
+See https://patchwork.ozlabs.org/patch/1479231
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
