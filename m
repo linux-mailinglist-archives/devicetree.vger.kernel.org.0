@@ -2,181 +2,303 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0523238742F
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 10:39:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A7553874A8
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 11:06:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347548AbhERIks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 04:40:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59514 "EHLO
+        id S1347735AbhERJH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 05:07:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242786AbhERIkn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 04:40:43 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3632C061573;
-        Tue, 18 May 2021 01:39:23 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 295CA2224B;
-        Tue, 18 May 2021 10:39:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1621327161;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=wN0B4yaF1WgJIn6AazhTXeaQAJgd9QwuhScgIP3JPig=;
-        b=W7b3wCMRCC72RnHy19toWuAE0OyvC1yLqiBEuGMw1sko1O8bL+Y9dPLdMp1tOLShcNbhRh
-        ouSdgYVJewMtatpzPXd3OBAhJdWrUa/sdhY9+zjXbCcd6s6dCXG8xXrBGYMzRzky8y2cdo
-        ffr7ke+rRR4ESpybksIKM3BR72SUytI=
+        with ESMTP id S1347714AbhERJHP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 05:07:15 -0400
+Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2F32C0613ED
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 02:05:56 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:c161:a89e:52bd:1787])
+        by xavier.telenet-ops.be with bizsmtp
+        id 695s2500d446CkP0195sBj; Tue, 18 May 2021 11:05:53 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1livfk-006q2F-FE; Tue, 18 May 2021 11:05:52 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1liuVt-0068d1-7n; Tue, 18 May 2021 09:51:37 +0200
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>
+Cc:     linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Subject: [PATCH] dt-bindings: display: ssd1307fb: Convert to json-schema
+Date:   Tue, 18 May 2021 09:51:31 +0200
+Message-Id: <20210518075131.1463091-1-geert@linux-m68k.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 18 May 2021 10:39:20 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Sander Vanheule <sander@svanheule.net>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/7] gpio: regmap: Add configurable dir/value order
-In-Reply-To: <d5f294489d31a80b69169f358da89bb7f70d1328.1621279162.git.sander@svanheule.net>
-References: <cover.1621279162.git.sander@svanheule.net>
- <d5f294489d31a80b69169f358da89bb7f70d1328.1621279162.git.sander@svanheule.net>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <675e36df5aaa1e1be3a1a77289a0a952@walle.cc>
-X-Sender: michael@walle.cc
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Convert the Solomon SSD1307 Framebuffer Device Tree binding
+documentation to json-schema.
 
-Am 2021-05-17 21:28, schrieb Sander Vanheule:
-> GPIO chips may not support setting the output value when a pin is
-> configured as an input, although the current implementation assumes 
-> this
-> is always possible.
-> 
-> Add support for setting pin direction before value. The order defaults
-> to setting the value first, but this can be reversed by setting the
-> regmap_config.no_set_on_input flag, similar to the corresponding flag 
-> in
-> the gpio-mmio driver.
-> 
-> Signed-off-by: Sander Vanheule <sander@svanheule.net>
-> ---
->  drivers/gpio/gpio-regmap.c  | 20 +++++++++++++++++---
->  include/linux/gpio/regmap.h |  3 +++
->  2 files changed, 20 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpio/gpio-regmap.c b/drivers/gpio/gpio-regmap.c
-> index 134cedf151a7..1cdb20f8f8b4 100644
-> --- a/drivers/gpio/gpio-regmap.c
-> +++ b/drivers/gpio/gpio-regmap.c
-> @@ -170,14 +170,25 @@ static int gpio_regmap_direction_input(struct
-> gpio_chip *chip,
->  	return gpio_regmap_set_direction(chip, offset, false);
->  }
-> 
-> -static int gpio_regmap_direction_output(struct gpio_chip *chip,
-> -					unsigned int offset, int value)
-> +static int gpio_regmap_dir_out_val_first(struct gpio_chip *chip,
-> +					 unsigned int offset, int value)
+Fix the spelling of the "pwms" property.
+Document default values.
+Make properties with default values not required.
 
-Can we leave the name as is? TBH I find these two similar names
-super confusing. Maybe its just me, though.
+Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+---
+I have listed Maxime as the maintainer, as he wrote the original driver
+and bindings.  Maxime: Please scream if this is inappropriate ;-)
+---
+ .../bindings/display/solomon,ssd1307fb.yaml   | 166 ++++++++++++++++++
+ .../devicetree/bindings/display/ssd1307fb.txt |  60 -------
+ 2 files changed, 166 insertions(+), 60 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/ssd1307fb.txt
 
->  {
->  	gpio_regmap_set(chip, offset, value);
-> 
->  	return gpio_regmap_set_direction(chip, offset, true);
->  }
-> 
-> +static int gpio_regmap_dir_out_dir_first(struct gpio_chip *chip,
-> +					 unsigned int offset, int value)
-> +{
-> +	int err;
+diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+new file mode 100644
+index 0000000000000000..bd632d86a4f814a0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+@@ -0,0 +1,166 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/solomon,ssd1307fb.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Solomon SSD1307 OLED Controller Framebuffer
++
++maintainers:
++  - Maxime Ripard <mripard@kernel.org>
++
++properties:
++  compatible:
++    enum:
++      - solomon,ssd1305fb-i2c
++      - solomon,ssd1306fb-i2c
++      - solomon,ssd1307fb-i2c
++      - solomon,ssd1309fb-i2c
++
++  reg:
++    maxItems: 1
++
++  pwms:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  vbat-supply:
++    description: The supply for VBAT
++
++  solomon,height:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 16
++    description:
++      Height in pixel of the screen driven by the controller
++
++  solomon,width:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 96
++    description:
++      Width in pixel of the screen driven by the controller
++
++  solomon,page-offset:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 1
++    description:
++      Offset of pages (band of 8 pixels) that the screen is mapped to
++
++  solomon,segment-no-remap:
++    type: boolean
++    description:
++      Display needs normal (non-inverted) data column to segment mapping
++
++  solomon,col-offset:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 0
++    description:
++      Offset of columns (COL/SEG) that the screen is mapped to
++
++  solomon,com-seq:
++    type: boolean
++    description:
++      Display uses sequential COM pin configuration
++
++  solomon,com-lrremap:
++    type: boolean
++    description:
++      Display uses left-right COM pin remap
++
++  solomon,com-invdir:
++    type: boolean
++    description:
++      Display uses inverted COM pin scan direction
++
++  solomon,com-offset:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 0
++    description:
++      Number of the COM pin wired to the first display line
++
++  solomon,prechargep1:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 2
++    description:
++      Length of deselect period (phase 1) in clock cycles
++
++  solomon,prechargep2:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 2
++    description:
++      Length of precharge period (phase 2) in clock cycles.  This needs to be
++      the higher, the higher the capacitance of the OLED's pixels is.
++
++  solomon,dclk-div:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 1
++    maximum: 16
++    description:
++      Clock divisor. The default value is controller-dependent.
++
++  solomon,dclk-frq:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 0
++    maximum: 15
++    description:
++      Clock frequency, higher value means higher frequency.
++      The default value is controller-dependent.
++
++  solomon,lookup-table:
++    $ref: /schemas/types.yaml#/definitions/uint8-array
++    maxItems: 4
++    description:
++      8 bit value array of current drive pulse widths for BANK0, and colors A,
++      B, and C. Each value in range of 31 to 63 for pulse widths of 32 to 64.
++      Color D is always width 64.
++
++  solomon,area-color-enable:
++    type: boolean
++    description:
++      Display uses color mode
++
++  solomon,low-power:
++    type: boolean
++    description:
++      Display runs in low power mode
++
++required:
++  - compatible
++  - reg
++
++if:
++  properties:
++    compatible:
++      contains:
++        const: solomon,ssd1307fb-i2c
++then:
++  required:
++    - pwms
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c1 {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            ssd1307: oled@3c {
++                    compatible = "solomon,ssd1307fb-i2c";
++                    reg = <0x3c>;
++                    pwms = <&pwm 4 3000>;
++                    reset-gpios = <&gpio2 7>;
++            };
++
++            ssd1306: oled@3d {
++                    compatible = "solomon,ssd1306fb-i2c";
++                    reg = <0x3c>;
++                    pwms = <&pwm 4 3000>;
++                    reset-gpios = <&gpio2 7>;
++                    solomon,com-lrremap;
++                    solomon,com-invdir;
++                    solomon,com-offset = <32>;
++                    solomon,lookup-table = /bits/ 8 <0x3f 0x3f 0x3f 0x3f>;
++            };
++    };
+diff --git a/Documentation/devicetree/bindings/display/ssd1307fb.txt b/Documentation/devicetree/bindings/display/ssd1307fb.txt
+deleted file mode 100644
+index 2dcb6d12d1371536..0000000000000000
+--- a/Documentation/devicetree/bindings/display/ssd1307fb.txt
++++ /dev/null
+@@ -1,60 +0,0 @@
+-* Solomon SSD1307 Framebuffer Driver
+-
+-Required properties:
+-  - compatible: Should be "solomon,<chip>fb-<bus>". The only supported bus for
+-    now is i2c, and the supported chips are ssd1305, ssd1306, ssd1307 and
+-    ssd1309.
+-  - reg: Should contain address of the controller on the I2C bus. Most likely
+-         0x3c or 0x3d
+-  - pwm: Should contain the pwm to use according to the OF device tree PWM
+-         specification [0]. Only required for the ssd1307.
+-  - solomon,height: Height in pixel of the screen driven by the controller
+-  - solomon,width: Width in pixel of the screen driven by the controller
+-  - solomon,page-offset: Offset of pages (band of 8 pixels) that the screen is
+-    mapped to.
+-
+-Optional properties:
+-  - reset-gpios: The GPIO used to reset the OLED display, if available. See
+-                 Documentation/devicetree/bindings/gpio/gpio.txt for details.
+-  - vbat-supply: The supply for VBAT
+-  - solomon,segment-no-remap: Display needs normal (non-inverted) data column
+-                              to segment mapping
+-  - solomon,col-offset: Offset of columns (COL/SEG) that the screen is mapped to.
+-  - solomon,com-seq: Display uses sequential COM pin configuration
+-  - solomon,com-lrremap: Display uses left-right COM pin remap
+-  - solomon,com-invdir: Display uses inverted COM pin scan direction
+-  - solomon,com-offset: Number of the COM pin wired to the first display line
+-  - solomon,prechargep1: Length of deselect period (phase 1) in clock cycles.
+-  - solomon,prechargep2: Length of precharge period (phase 2) in clock cycles.
+-                         This needs to be the higher, the higher the capacitance
+-                         of the OLED's pixels is
+-  - solomon,dclk-div: Clock divisor 1 to 16
+-  - solomon,dclk-frq: Clock frequency 0 to 15, higher value means higher
+-                      frequency
+-  - solomon,lookup-table: 8 bit value array of current drive pulse widths for
+-                          BANK0, and colors A, B, and C. Each value in range
+-                          of 31 to 63 for pulse widths of 32 to 64. Color D
+-                          is always width 64.
+-  - solomon,area-color-enable: Display uses color mode
+-  - solomon,low-power. Display runs in low power mode
+-
+-[0]: Documentation/devicetree/bindings/pwm/pwm.txt
+-
+-Examples:
+-ssd1307: oled@3c {
+-        compatible = "solomon,ssd1307fb-i2c";
+-        reg = <0x3c>;
+-        pwms = <&pwm 4 3000>;
+-        reset-gpios = <&gpio2 7>;
+-};
+-
+-ssd1306: oled@3c {
+-        compatible = "solomon,ssd1306fb-i2c";
+-        reg = <0x3c>;
+-        pwms = <&pwm 4 3000>;
+-        reset-gpios = <&gpio2 7>;
+-        solomon,com-lrremap;
+-        solomon,com-invdir;
+-        solomon,com-offset = <32>;
+-        solomon,lookup-table = /bits/ 8 <0x3f 0x3f 0x3f 0x3f>;
+-};
+-- 
+2.25.1
 
-use ret for consistency here
-
-> +
-> +	err = gpio_regmap_set_direction(chip, offset, true);
-> +	gpio_regmap_set(chip, offset, value);
-> +
-> +	return err;
-> +}
-> +
-
-Instead of adding a new one, we can also just check no_set_on_input
-in gpio_regmap_direction_output(), which I'd prefer.
-
-static int gpio_regmap_direction_output(struct gpio_chip *chip,
-					unsigned int offset, int value)
-{
-	struct gpio_regmap *gpio = gpiochip_get_data(chip);
-	int ret;
-
-	if (gpio->no_set_on_input) {
-		/* some smart comment here, also mention gliches */
-		ret = gpio_regmap_set_direction(chip, offset, true);
-		gpio_regmap_set(chip, offset, value);
-	} else {
-		gpio_regmap_set(chip, offset, value);
-		ret = gpio_regmap_set_direction(chip, offset, true);
-	}
-
-	return ret;
-}
-
->  void gpio_regmap_set_drvdata(struct gpio_regmap *gpio, void *data)
->  {
->  	gpio->driver_data = data;
-> @@ -277,7 +288,10 @@ struct gpio_regmap *gpio_regmap_register(const
-> struct gpio_regmap_config *config
->  	if (gpio->reg_dir_in_base || gpio->reg_dir_out_base) {
->  		chip->get_direction = gio_regmap_get_direction;
->  		chip->direction_input = gpio_regmap_direction_input;
-> -		chip->direction_output = gpio_regmap_direction_output;
-> +		if (config->no_set_on_input)
-> +			chip->direction_output = gpio_regmap_dir_out_dir_first;
-> +		else
-> +			chip->direction_output = gpio_regmap_dir_out_val_first;
->  	}
-> 
->  	ret = gpiochip_add_data(chip, gpio);
-> diff --git a/include/linux/gpio/regmap.h b/include/linux/gpio/regmap.h
-> index 334dd928042b..2a732f8f23be 100644
-> --- a/include/linux/gpio/regmap.h
-> +++ b/include/linux/gpio/regmap.h
-> @@ -30,6 +30,8 @@ struct regmap;
->   * @reg_dir_out_base:	(Optional) out setting register base address
->   * @reg_stride:		(Optional) May be set if the registers (of the
->   *			same type, dat, set, etc) are not consecutive.
-> + * @no_set_on_input:	Set if output value can only be set when the 
-> direction
-> + *			is configured as output.
-
-set_direction_first ?
-
->   * @ngpio_per_reg:	Number of GPIOs per register
->   * @irq_domain:		(Optional) IRQ domain if the controller is
->   *			interrupt-capable
-> @@ -73,6 +75,7 @@ struct gpio_regmap_config {
->  	unsigned int reg_dir_out_base;
->  	int reg_stride;
->  	int ngpio_per_reg;
-> +	bool no_set_on_input;
->  	struct irq_domain *irq_domain;
-> 
->  	int (*reg_mask_xlate)(struct gpio_regmap *gpio, unsigned int base,
-
--michael
