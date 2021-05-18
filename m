@@ -2,351 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EBC36386E91
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 02:55:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47A46386EAB
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 03:04:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345210AbhERA4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 20:56:51 -0400
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:33318 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238397AbhERA4v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 20:56:51 -0400
-Received: by mail-oi1-f173.google.com with SMTP id b25so8269310oic.0;
-        Mon, 17 May 2021 17:55:33 -0700 (PDT)
+        id S1343975AbhERBF7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 21:05:59 -0400
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:38713 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239943AbhERBF7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 21:05:59 -0400
+Received: by mail-oi1-f176.google.com with SMTP id z3so8211763oib.5;
+        Mon, 17 May 2021 18:04:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=wGTUJVaGi2vt0X1DPJ7HK4WSdmnqY5nH6zbfoY0v/ZM=;
-        b=tegbHOriLuSxsgN7gTPAU13b67VS/jUtXrdfGclU3rkz6ev31gYDIkE3DCcFkO72Hl
-         aKWcPLwrjWrX5k2trTR54gSED2FOk29I1lOeDd0VSUUAMy233vzyne5d1oB/DIQmlHvO
-         K3CZoPNWd2c620sjNjcnwa7E+Ga7H4lGUBTnsn9Ce/be7f28l4mMVvVb/iLEhguLwzhO
-         F95+gR2naexqglmlWz4Z2fAq/zx5FiSVwnrKbcTaq7o8LzoE1tkivivhrzE9XpK/v3E0
-         VQ+W11seVWFC9RRc4IGQ6PgWk6VxslpdfaDzHjg1gbA75UE2bFNkc2nHUmC3uduAfHDy
-         syWQ==
-X-Gm-Message-State: AOAM532/C+UiEZ2f+38sGHP+lIoDbxSue6rChKajFTj+K0DLaVdlXx9I
-        f6AVwc9nQ9VniZIvSWXW5drOKdM0/Q==
-X-Google-Smtp-Source: ABdhPJx9y6NYXD/QSwdJQBZpXT3hnfJO77xc5bRiLZ0+Wo1uzpD0xR2XaeaNda9tMrrOGvAC0Q1aWQ==
-X-Received: by 2002:aca:47ca:: with SMTP id u193mr1424602oia.69.1621299332631;
-        Mon, 17 May 2021 17:55:32 -0700 (PDT)
+        bh=SxHwQbAd9PyYMHvbV2F26fHPcBALRSGxTgLDpMOWzQQ=;
+        b=aKGiL43z+Fn7bRbpCFhQLgrN0EGf+kZVJCJSyRxFdkMwh4ad3dYrhxIUiYwD4tuXUs
+         hTkMo4NGmo3GLe+izEROBFTUw4C99/LhvCt9efLoBokfbs0WiIQJ/oe6wnfe4hJNCd+d
+         EX+F1BWFn9f5nLOElvsgiPt8BPn1Ce44OU/FvbuG7yzZYYipxcfydnkXZoWrFbtBfEtz
+         Yc/BlJH8/++W1U46EuecW0zxCehmkpGxaqqDlNhcKJJehVRJOAENgp79JfRIs//FuBg/
+         fxNkg/D2vXoa9NrOUu0EPdC1zyXeujteicc4+z8Cx33Toge1nI/WXXr4nG/L1GQOFupB
+         LiLQ==
+X-Gm-Message-State: AOAM531zE3IZns8bS5d3fP30CZOteMXintUzjuZjeJe9VuIFbzU488Es
+        mURZC+roBrANKizlfaEcHQ==
+X-Google-Smtp-Source: ABdhPJyf0pyW0S41fWKZ804dgH5cblGefnR1aOV1tvOb/H1KFlgu8LzH9jN6ZmU22hvwZ66FGvTi/A==
+X-Received: by 2002:aca:2417:: with SMTP id n23mr1411208oic.111.1621299880509;
+        Mon, 17 May 2021 18:04:40 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o20sm3385995oos.19.2021.05.17.17.55.31
+        by smtp.gmail.com with ESMTPSA id z9sm3398791oog.25.2021.05.17.18.04.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 May 2021 17:55:32 -0700 (PDT)
-Received: (nullmailer pid 3548426 invoked by uid 1000);
-        Tue, 18 May 2021 00:55:31 -0000
-Date:   Mon, 17 May 2021 19:55:31 -0500
+        Mon, 17 May 2021 18:04:39 -0700 (PDT)
+Received: (nullmailer pid 3562405 invoked by uid 1000);
+        Tue, 18 May 2021 01:04:38 -0000
+Date:   Mon, 17 May 2021 20:04:38 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        kgunda@codeaurora.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH V3 3/3] dt-bindings: pinctrl: qcom-pmic-gpio: Convert
- qcom pmic gpio bindings to YAML
-Message-ID: <20210518005531.GA3539579@robh.at.kernel.org>
-References: <1620817988-18809-1-git-send-email-skakit@codeaurora.org>
- <1620817988-18809-4-git-send-email-skakit@codeaurora.org>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     heiko@sntech.de, linus.walleij@linaro.org, kishon@ti.com,
+        vkoul@kernel.org, jay.xu@rock-chips.com, shawn.lin@rock-chips.com,
+        david.wu@rock-chips.com, zhangqing@rock-chips.com,
+        huangtao@rock-chips.com, cl@rock-chips.com,
+        linux-phy@lists.infradead.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/4] dt-bindings: phy: convert rockchip-usb-phy.txt to
+ YAML
+Message-ID: <20210518010438.GA3548693@robh.at.kernel.org>
+References: <20210512122346.9463-1-jbx6244@gmail.com>
+ <20210512122346.9463-2-jbx6244@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1620817988-18809-4-git-send-email-skakit@codeaurora.org>
+In-Reply-To: <20210512122346.9463-2-jbx6244@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 12, 2021 at 04:43:08PM +0530, satya priya wrote:
-> Convert Qualcomm PMIC GPIO bindings from .txt to .yaml format.
+On Wed, May 12, 2021 at 02:23:43PM +0200, Johan Jonker wrote:
+> Current dts files with Rockchip 'usbphy' nodes are manually verified.
+> In order to automate this process rockchip-usb-phy.txt has to be
+> converted to YAML.
 > 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
+> Add "#phy-cells", because it is a required property
+> by phy-provider.yaml
+
+Maybe we should relax that. Or changing the node name would solve it. 
+
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
-> Changes in V3:
->  - As per Rob's comments fixed bot erros.
->  - Moved this patch to end of the series so that other patches are not
->    blocked on this.
+>  .../devicetree/bindings/phy/rockchip-usb-phy.txt   | 52 -------------
+>  .../devicetree/bindings/phy/rockchip-usb-phy.yaml  | 86 ++++++++++++++++++++++
+>  2 files changed, 86 insertions(+), 52 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/phy/rockchip-usb-phy.txt
+>  create mode 100644 Documentation/devicetree/bindings/phy/rockchip-usb-phy.yaml
 > 
-> Changes in V4:
->  - As per Rob's comments, added maxItems for reg and interrupts.
->    Added reference of "pinmux-node.yaml" and "pincfg-node.yaml".
->    Made 'additionalProperties' as false.
-> 
->  .../devicetree/bindings/pinctrl/qcom,pmic-gpio.txt | 288 ---------------------
->  .../bindings/pinctrl/qcom,pmic-gpio.yaml           | 245 ++++++++++++++++++
->  2 files changed, 245 insertions(+), 288 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-
-
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
+> diff --git a/Documentation/devicetree/bindings/phy/rockchip-usb-phy.txt b/Documentation/devicetree/bindings/phy/rockchip-usb-phy.txt
+> deleted file mode 100644
+> index 4ed569046..000000000
+> --- a/Documentation/devicetree/bindings/phy/rockchip-usb-phy.txt
+> +++ /dev/null
+> @@ -1,52 +0,0 @@
+> -ROCKCHIP USB2 PHY
+> -
+> -Required properties:
+> - - compatible: matching the soc type, one of
+> -     "rockchip,rk3066a-usb-phy"
+> -     "rockchip,rk3188-usb-phy"
+> -     "rockchip,rk3288-usb-phy"
+> - - #address-cells: should be 1
+> - - #size-cells: should be 0
+> -
+> -Deprecated properties:
+> - - rockchip,grf : phandle to the syscon managing the "general
+> -   register files" - phy should be a child of the GRF instead
+> -
+> -Sub-nodes:
+> -Each PHY should be represented as a sub-node.
+> -
+> -Sub-nodes
+> -required properties:
+> -- #phy-cells: should be 0
+> -- reg: PHY configure reg address offset in GRF
+> -		"0x320" - for PHY attach to OTG controller
+> -		"0x334" - for PHY attach to HOST0 controller
+> -		"0x348" - for PHY attach to HOST1 controller
+> -
+> -Optional Properties:
+> -- clocks : phandle + clock specifier for the phy clocks
+> -- clock-names: string, clock name, must be "phyclk"
+> -- #clock-cells: for users of the phy-pll, should be 0
+> -- reset-names: Only allow the following entries:
+> - - phy-reset
+> -- resets: Must contain an entry for each entry in reset-names.
+> -- vbus-supply: power-supply phandle for vbus power source
+> -
+> -Example:
+> -
+> -grf: syscon@ff770000 {
+> -	compatible = "rockchip,rk3288-grf", "syscon", "simple-mfd";
+> -
+> -...
+> -
+> -	usbphy: phy {
+> -		compatible = "rockchip,rk3288-usb-phy";
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -
+> -		usbphy0: usb-phy0 {
+> -			#phy-cells = <0>;
+> -			reg = <0x320>;
+> -		};
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/phy/rockchip-usb-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip-usb-phy.yaml
 > new file mode 100644
-> index 0000000..85381a0
+> index 000000000..3b6b39da0
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> @@ -0,0 +1,245 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/phy/rockchip-usb-phy.yaml
+> @@ -0,0 +1,86 @@
+> +# SPDX-License-Identifier: GPL-2.0
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/pinctrl/qcom,pmic-gpio.yaml#
+> +$id: http://devicetree.org/schemas/phy/rockchip-usb-phy.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Qualcomm PMIC GPIO block
+> +title: Rockchip USB2.0 phy
 > +
 > +maintainers:
-> +  - Bjorn Andersson <bjorn.andersson@sonymobile.com>
-> +
-> +description: |
-> +  This binding describes the GPIO block(s) found in the 8xxx series of
-> +  PMIC's from Qualcomm.
+> +  - Heiko Stuebner <heiko@sntech.de>
 > +
 > +properties:
 > +  compatible:
-> +    items:
-> +      - enum:
-> +          - qcom,pm8005-gpio
-> +          - qcom,pm8018-gpio
-> +          - qcom,pm8038-gpio
-> +          - qcom,pm8058-gpio
-> +          - qcom,pm8916-gpio
-> +          - qcom,pm8917-gpio
-> +          - qcom,pm8921-gpio
-> +          - qcom,pm8941-gpio
-> +          - qcom,pm8950-gpio
-> +          - qcom,pm8994-gpio
-> +          - qcom,pm8998-gpio
-> +          - qcom,pma8084-gpio
-> +          - qcom,pmi8950-gpio
-> +          - qcom,pmi8994-gpio
-> +          - qcom,pmi8998-gpio
-> +          - qcom,pms405-gpio
-> +          - qcom,pm660-gpio
-> +          - qcom,pm660l-gpio
-> +          - qcom,pm8150-gpio
-> +          - qcom,pm8150b-gpio
-> +          - qcom,pm6150-gpio
-> +          - qcom,pm6150l-gpio
-> +          - qcom,pmx55-gpio
-> +          - qcom,pm7325-gpio
-> +          - qcom,pm8350c-gpio
-> +          - qcom,pmk8350-gpio
-> +          - qcom,pmr735a-gpio
+> +    oneOf:
+> +      - const: rockchip,rk3288-usb-phy
+> +      - items:
+> +          - enum:
+> +              - rockchip,rk3066a-usb-phy
+> +              - rockchip,rk3188-usb-phy
+> +          - const: rockchip,rk3288-usb-phy
 > +
-> +      - enum:
-> +          - qcom,spmi-gpio
-> +          - qcom,ssbi-gpio
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 44
+> +  "#phy-cells":
+> +    const: 0
 
-Please say something about what the 1-44 interrupts are if you can't 
-define each one.
+If we did add this, we'd want it to be 1 so we could identify which phy.
 
 > +
-> +  '#interrupt-cells':
-> +    const: 2
+> +  "#address-cells":
+> +    const: 1
 > +
-> +  interrupt-controller: true
-> +
-> +  gpio-controller: true
-> +
-> +  gpio-ranges:
-> +    maxItems: 1
-> +
-> +  '#gpio-cells':
-> +    const: 2
-> +    description: |
-> +        The first cell will be used to define gpio number and the
-> +        second denotes the flags for this gpio
-> +
-> +  gpio-keys:
-> +    type: object
-> +    properties:
-> +      volume-keys:
-> +        type: object
-> +        anyOf:
-> +          - $ref: "pinmux-node.yaml"
-> +          - $ref: "pincfg-node.yaml"
-> +        properties:
-> +          pins:
-> +            description: |
-> +                List of gpio pins affected by the properties specified in
-> +                this subnode.  Valid pins are
-> +                     - gpio1-gpio4 for pm8005
-> +                     - gpio1-gpio6 for pm8018
-> +                     - gpio1-gpio12 for pm8038
-> +                     - gpio1-gpio40 for pm8058
-> +                     - gpio1-gpio4 for pm8916
-> +                     - gpio1-gpio38 for pm8917
-> +                     - gpio1-gpio44 for pm8921
-> +                     - gpio1-gpio36 for pm8941
-> +                     - gpio1-gpio8 for pm8950 (hole on gpio3)
-> +                     - gpio1-gpio22 for pm8994
-> +                     - gpio1-gpio26 for pm8998
-> +                     - gpio1-gpio22 for pma8084
-> +                     - gpio1-gpio2 for pmi8950
-> +                     - gpio1-gpio10 for pmi8994
-> +                     - gpio1-gpio12 for pms405 (holes on gpio1, gpio9
-> +                                                and gpio10)
-> +                     - gpio1-gpio10 for pm8150 (holes on gpio2, gpio5,
-> +                                                gpio7 and gpio8)
-> +                     - gpio1-gpio12 for pm8150b (holes on gpio3, gpio4
-> +                                                 and gpio7)
-> +                     - gpio1-gpio12 for pm8150l (hole on gpio7)
-> +                     - gpio1-gpio10 for pm6150
-> +                     - gpio1-gpio12 for pm6150l
-> +                     - gpio1-gpio10 for pm7325
-> +                     - gpio1-gpio9 for pm8350c
-> +                     - gpio1-gpio4 for pmk8350
-> +                     - gpio1-gpio4 for pmr735a
-> +
-> +            items:
-> +              pattern: "^gpio([0-9]+)$"
-> +
-> +          function:
-> +            description: |
-> +                Specify the alternative function to be configured for the
-> +                specified pins.
-
-No need to redescribe a common property.
-
-> +            items:
-> +              - enum:
-> +                  - normal
-> +                  - paired
-> +                  - func1
-> +                  - func2
-> +                  - dtest1
-> +                  - dtest2
-> +                  - dtest3
-> +                  - dtest4
-> +                  - func3  # supported by LV/MV GPIO subtypes
-> +                  - func4  # supported by LV/MV GPIO subtypes
-> +
-> +          bias-disable: true
-> +
-> +          bias-pull-down: true
-> +
-> +          bias-pull-up: true
-> +
-> +          qcom,pull-up-strength:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            description: |
-> +                Specifies the strength to use for pull up, if selected.
-> +                Valid values are defined in
-> +                <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> +                If this property is omitted 30uA strength will be used
-> +                if pull up is selected
-> +
-> +          bias-high-impedance: true
-> +
-> +          input-enable: true
-> +
-> +          output-high: true
-> +
-> +          output-low: true
-> +
-> +          power-source: true
-> +
-> +          qcom,drive-strength:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            description: |
-> +                Selects the drive strength for the specified pins
-> +                Valid drive strength values are defined in
-> +                <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-
-Please define the constraints here.
-
-> +
-> +          drive-push-pull: true
-> +
-> +          drive-open-drain: true
-> +
-> +          drive-open-source: true
-> +
-> +          qcom,analog-pass:
-> +            $ref: /schemas/types.yaml#/definitions/flag
-> +            description: |
-> +                The specified pins are configured in
-> +                analog-pass-through mode.
-> +
-> +          qcom,atest:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            description: |
-> +                Selects ATEST rail to route to GPIO when it's
-> +                configured in analog-pass-through mode.
-> +            enum: [1 2 3 4]
-
-enum: [ 1, 2, 3, 4 ]
-
-> +
-> +          qcom,dtest-buffer:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            description: |
-> +                Selects DTEST rail to route to GPIO when it's
-> +                configured as digital input.
-> +            enum: [1 2 3 4]
-
-Ditto.
-
-> +
-> +        required:
-> +          - pins
-> +          - function
-> +
-> +        additionalProperties: false
-> +
-> +additionalProperties: false
+> +  "#size-cells":
+> +    const: 0
 > +
 > +required:
 > +  - compatible
-> +  - reg
+> +  - "#phy-cells"
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +additionalProperties: false
+> +
+> +patternProperties:
+> +  "usb-phy@[0-9a-f]+$":
+> +    type: object
+> +
+> +    properties:
+> +      reg:
+> +        maxItems: 1
+> +
+> +      "#phy-cells":
+> +        const: 0
+> +
+> +      clocks:
+> +        maxItems: 1
+> +
+> +      clock-names:
+> +        const: phyclk
+> +
+> +      "#clock-cells":
+> +        const: 0
+> +
+> +      resets:
+> +        maxItems: 1
+> +
+> +      reset-names:
+> +        const: phy-reset
+> +
+> +      vbus-supply:
+> +        description: phandle for vbus power source
+> +
+> +    required:
+> +      - reg
+> +      - "#phy-cells"
+> +
+> +    additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+> +    usbphy: usbphy {
+> +      compatible = "rockchip,rk3288-usb-phy";
+> +      #phy-cells = <0>;
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
 > +
-> +    pm8921_gpio: gpio@150 {
-> +      compatible = "qcom,pm8921-gpio", "qcom,ssbi-gpio";
-> +      reg = <0x150 0x160>;
-> +      interrupts = <192 1>, <193 1>, <194 1>,
-> +                   <195 1>, <196 1>, <197 1>,
-> +                   <198 1>, <199 1>, <200 1>,
-> +                   <201 1>, <202 1>, <203 1>,
-> +                   <204 1>, <205 1>, <206 1>,
-> +                   <207 1>, <208 1>, <209 1>,
-> +                   <210 1>, <211 1>, <212 1>,
-> +                   <213 1>, <214 1>, <215 1>,
-> +                   <216 1>, <217 1>, <218 1>,
-> +                   <219 1>, <220 1>, <221 1>,
-> +                   <222 1>, <223 1>, <224 1>,
-> +                   <225 1>, <226 1>, <227 1>,
-> +                   <228 1>, <229 1>, <230 1>,
-> +                   <231 1>, <232 1>, <233 1>,
-> +                   <234 1>, <235 1>;
-> +
-> +      gpio-controller;
-> +      #gpio-cells = <2>;
-> +
-> +      pm8921_gpio_keys: gpio-keys {
-> +        volume-keys {
-> +          pins = "gpio20", "gpio21";
-> +          function = "normal";
-> +
-> +          input-enable;
-> +          bias-pull-up;
-> +          drive-push-pull;
-> +          qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
-> +          power-source = <PM8921_GPIO_S4>;
-> +        };
+> +      usbphy0: usb-phy@320 {
+> +        reg = <0x320>;
+> +        #phy-cells = <0>;
 > +      };
 > +    };
-> +...
 > -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-> of Code Aurora Forum, hosted by The Linux Foundation
+> 2.11.0
 > 
