@@ -2,105 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB948387D5D
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 18:27:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 337C5387D87
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 18:31:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350622AbhERQ25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 12:28:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53942 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350608AbhERQ24 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 12:28:56 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D712C06138B
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 09:27:35 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id a11so5391441plh.3
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 09:27:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=f1d/gi6dWIkxeOVPavTj9FbVcjVV1QNQTHRoa065Axw=;
-        b=ltK2Iy7UdPjTLSC30wGMvTDqSuz9Tgdw5TPVjMsfHwcsICjhevbCzkqvnNmYfn4OGw
-         ME3LAkIlii0f3cb+FMfATTKVje3qgqtyyLv7HbeqRlZsaUkGCLFATvjez4IZ96DDla5m
-         PxBhkAB9GQL67fnkmX2ZLFmzmtcJyR6PF0uag=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=f1d/gi6dWIkxeOVPavTj9FbVcjVV1QNQTHRoa065Axw=;
-        b=W8839ggmsjOfNnOOq3pf5x9a7C3GTwd9v1aQ8HFnLWPbvm9znqHZKWIKezovhNOKyx
-         bUvK7fAp2sfBCIO+iuGdpV2eDQsolQdebxWX1uxPwEuLg4csXnUI/6wOVZdRRA/WH2iS
-         +mCHt7ikt2epvs+cKAtPVDoKEFW31+49Q0P8Ji4+qOrkDzx6ktamVJU/LBcPlYyHEVxz
-         Oh5vwi1dHtqh3Usvo5ljECcXTZUynWA3PnnnQfie/4yKfbJ17hOXZ7OYTA63SR0Ffc/2
-         8qITGxroPAFfzB6FTUs/a5OrzOc4/Pk3zoxCUaQixjufhefPSTn4g57w7C5HpeKr0G3v
-         6u2A==
-X-Gm-Message-State: AOAM532WNFP/sz/5luAyFXQsJW4PnsWFSxsQxl8zS2FkPnK8RXd/KE1B
-        6T74N0DA0C03AVnHIM+At0HCeA==
-X-Google-Smtp-Source: ABdhPJzWDMbUyShJOIx/gvCaFmMVofj6AaRHabNDQzzxjDYAOK3p+QoSxAXMzeVSyXoUi8wW/IS3YA==
-X-Received: by 2002:a17:902:44:b029:ee:9107:4242 with SMTP id 62-20020a1709020044b02900ee91074242mr5541000pla.18.1621355254874;
-        Tue, 18 May 2021 09:27:34 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:5b64:c814:4f8b:838e])
-        by smtp.gmail.com with UTF8SMTPSA id l67sm13529552pgl.18.2021.05.18.09.27.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 May 2021 09:27:34 -0700 (PDT)
-Date:   Tue, 18 May 2021 09:27:31 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     satya priya <skakit@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org
-Subject: Re: [RESEND PATCH V4 2/8] arm64: dts: qcom: sc7280: Add
- thermal-zones node
-Message-ID: <YKPq84r7soE0yjMA@google.com>
-References: <1621318822-29332-1-git-send-email-skakit@codeaurora.org>
- <1621318822-29332-3-git-send-email-skakit@codeaurora.org>
- <YKOog43JZghth3Np@vkoul-mobl.Dlink>
+        id S237653AbhERQcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 12:32:32 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:10714 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245101AbhERQcb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 12:32:31 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1621355473; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=Og8vpZqeLAdSl93O6NbyuGWY01inTUHJlOZ8Qy7/qaA=;
+ b=ofc3phqn1Tuxw50/2R+h7Gh4AKTinLJuI/smys3NJiLahgYGNIQyaSWsS6PO73wG1HJ7L7vI
+ zlqBh+yL29uljNz/IyoiCrGGwE0SueVYtQBB9rs92cVhfsH0R6ovFS0CyvnXbj4EcWHzJ5or
+ gHCMots15qKXrXnEDPM9ntQmFvk=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 60a3ebb91449805ea2688ddf (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 18 May 2021 16:30:49
+ GMT
+Sender: gubbaven=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id C29CAC43460; Tue, 18 May 2021 16:30:48 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: gubbaven)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9E564C4338A;
+        Tue, 18 May 2021 16:30:42 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YKOog43JZghth3Np@vkoul-mobl.Dlink>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 18 May 2021 22:00:42 +0530
+From:   gubbaven@codeaurora.org
+To:     Marcel Holtmann <marcel@holtmann.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        devicetree@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Bluetooth Kernel Mailing List 
+        <linux-bluetooth@vger.kernel.org>,
+        Hemantg <hemantg@codeaurora.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Balakrishna Godavarthi <bgodavar@codeaurora.org>,
+        Rocky Liao <rjliao@codeaurora.org>, hbandi@codeaurora.org,
+        Abhishek Pandit-Subedi <abhishekpandit@chromium.org>
+Subject: Re: [PATCH v3 4/5] dt-bindings: net: bluetooth: Convert Qualcomm BT
+ binding to DT schema
+In-Reply-To: <C6C73C77-669D-4552-AC0B-74BAA3FF583F@holtmann.org>
+References: <1620322392-27148-1-git-send-email-gubbaven@codeaurora.org>
+ <1620322392-27148-5-git-send-email-gubbaven@codeaurora.org>
+ <20210507011753.GB1126886@robh.at.kernel.org>
+ <C81968AD-1C0B-4764-9631-FF227D026ED7@holtmann.org>
+ <CAL_JsqKy-wyrG8hvg2yTBdB44BgPa11hcTPwKTD-WgVykvpLaw@mail.gmail.com>
+ <C6C73C77-669D-4552-AC0B-74BAA3FF583F@holtmann.org>
+Message-ID: <8ba855ff3f1e285a87b651ed4b98a702@codeaurora.org>
+X-Sender: gubbaven@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 18, 2021 at 05:14:03PM +0530, Vinod Koul wrote:
-> On 18-05-21, 11:50, satya priya wrote:
-> > Add thermal-zones node for SC7280 SoC.
-> > 
-> > Signed-off-by: satya priya <skakit@codeaurora.org>
-> > Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
-> > ---
-> > Changes in RESEND V4:
-> >  - No Changes.
-> > 
-> >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > index 2cc4785..2a7d488 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > @@ -1125,4 +1125,7 @@
-> >  			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-> >  			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-> >  	};
-> > +
-> > +	thermal_zones: thermal-zones {
-> > +	};
+Hi Marcel and Rob,
+
+On 2021-05-13 20:51, Marcel Holtmann wrote:
+> Hi Rob,
 > 
-> Empty node..? what am i missing here...
+>>>>> Converted Qualcomm Bluetooth binidings to DT schema.
+>>>>> 
+>>>>> Signed-off-by: Venkata Lakshmi Narayana Gubba 
+>>>>> <gubbaven@codeaurora.org>
+>>>>> ---
+>>>>> .../devicetree/bindings/net/qualcomm-bluetooth.txt |  69 
+>>>>> -------------
+>>>>> .../bindings/net/qualcomm-bluetooth.yaml           | 111 
+>>>>> +++++++++++++++++++++
+>>>>> 2 files changed, 111 insertions(+), 69 deletions(-)
+>>>>> delete mode 100644 
+>>>>> Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
+>>>>> create mode 100644 
+>>>>> Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml
+>>>> 
+>>>> 
+>>>>> diff --git 
+>>>>> a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml 
+>>>>> b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml
+>>>>> new file mode 100644
+>>>>> index 0000000..3f3ec4d
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml
+>>>>> @@ -0,0 +1,111 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/net/qualcomm-bluetooth.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Qualcomm Bluetooth Chips
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Marcel Holtmann <marcel@holtmann.org>
+>>>> 
+>>>> This should be someone who cares about Qcom BT.
+>>> 
+>>> yes, please, assign this to someone that knows the hardware.
+>>> 
+>>> Rob, can we leave this out for now if there is no dedicated person?
+>> 
+>> No, it's required. It can be me if it comes to that. However, if no
+>> one can be bothered to step up, then we should just remove it perhaps.
+>> QCom is a big company, I'm sure they can find some name.
+> 
+> I hope so as well since my name is clearly the wrong one there. I have
+> too little knowledge about that hardware and the platforms it is used
+> in.
+> 
+[Venkata]:
+I will update maintainers names in next patchset.
+> Regards
+> 
+> Marcel
 
-The 'thermal-zones' node with the SoC thermal zones is usually created
-in the <soc>.dtsi, however it doesn't exist yet. The 'Add DT bindings
-and device tree nodes for TSENS in SC7280' series
-(https://patchwork.kernel.org/project/linux-arm-msm/list/?series=478225)
-is creating it, but the series hasn't landed yet.
-
-The node is needed by other patches in this series that add non-SoC
-thermal zones. Hence either an empty node needs to be added (for now)
-or this series should 'officially' depend on the TSENS series mentioned
-above.
+Regards,
+Venkata.
