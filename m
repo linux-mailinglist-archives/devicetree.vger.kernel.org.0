@@ -2,131 +2,423 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95AA7387E0A
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 18:57:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05E7C387E0F
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 18:58:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351016AbhERQ6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 12:58:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60864 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350992AbhERQ6c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 12:58:32 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32024C06175F;
-        Tue, 18 May 2021 09:57:13 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id n2so15656492ejy.7;
-        Tue, 18 May 2021 09:57:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=DHH8YHAlTPU5T8bDwFoNt/piYkwaeBsEh0BIqwvr1v8=;
-        b=Pr9vJRvAGeRZq3F9LEs3Ot8+o+c5VHPHPU2rvqxAlJqLbyhmKZdXY577NAgttua00w
-         sLwqNiuRl/ipGfTh2jE4DVXIKXZWsk1vhGHmz3NLj5OjCiEGP+p1BKJ3rURY1vsgqPZr
-         pqZzJaS7Zz0X4FTIkLwSH5yk5N2RZqvKhDtsalejQT51T1CYi7cevbzybEy+G2aQfsKS
-         11jN/tgEaC7v2zv+IuO9AzlGILN8RjTJrrtRNEskXtLd8adb8jEwM1ThqD0Yvs2fRjS8
-         3PAmmymqEwLRPi6FZ7FHI/Dnc8iOhCY0w/Yw5h6nZzcRXKI+98QAA7RcF9iaJuRgFI+E
-         g9bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=DHH8YHAlTPU5T8bDwFoNt/piYkwaeBsEh0BIqwvr1v8=;
-        b=SUrg0D13/6jN95aAE05URP1S6WYl+2+sL182gEPt9d1u3lOaawCKXiVhnNjCJDOjz4
-         q93iIaNvssZmZOGdoEhT5HYBVeaYW31iAAY1Jy9qj+uvwNt33SL6cC+R4rlMZ0jRruy+
-         Ca4LK8htPIPdiTEGhtCM1kcfzDZm2z7WgooqgBfe8qonXcr9UFiEyhhkmiuw8v8TsciL
-         wEqo5PzIOVjobYoqW5I5D+X5riIbW9x4mHxUMFIr8NizWXIzh9GOM+JKuSHCzDIrXUrG
-         maQiz9z2adno9mN+nbQRizcjnZU75d53PHsZ160Igh1Rfa4VDfaNfdpIcxsnLSzNeIM+
-         KYxw==
-X-Gm-Message-State: AOAM531DZuw1s6gxEmvxCT3N7YftTXZE6jvG21rbzSwv4B/Ws+TB4g3v
-        iNtjN8A5KsS3PHA70ufZZww=
-X-Google-Smtp-Source: ABdhPJxCoRdQlBvUqCnmlq7ggRW09bTbmA0gtEsyu7TsFhhhCSuIPzqLSP7/iEmVQZpJfCnZxMrNnQ==
-X-Received: by 2002:a17:906:a0d3:: with SMTP id bh19mr6259825ejb.205.1621357031934;
-        Tue, 18 May 2021 09:57:11 -0700 (PDT)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id n2sm13525676edi.32.2021.05.18.09.57.10
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 18 May 2021 09:57:11 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, kishon@ti.com, vkoul@kernel.org,
-        linux-phy@lists.infradead.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v6 4/4] arm64: dts: rockchip: rename nodename for phy-rockchip-inno-usb2
-Date:   Tue, 18 May 2021 18:56:58 +0200
-Message-Id: <20210518165658.12764-5-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20210518165658.12764-1-jbx6244@gmail.com>
-References: <20210518165658.12764-1-jbx6244@gmail.com>
+        id S1344969AbhERQ7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 12:59:31 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:46834 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S245642AbhERQ7b (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 May 2021 12:59:31 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1621357093; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=JYcksdFpIH2mN5fW8bxlulMm48eWeKLR2NoHMuPEYHw=;
+ b=wMrQY/vKWzjItU65dUdmleUoXFSlRea29OcbFK9sPG1JqHeoti9B7kJyLll7auz7+Ux3hbTM
+ mP/FGzOu51d04IRwXTUnckoHLSEDdzdc1+A9Uy4MrwspqKMPwBTxpFGfDsY0KCpCoU30DpqT
+ A1/biaeoSckVDV+xUvB8RgawgQQ=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 60a3f21567d156359abc4264 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 18 May 2021 16:57:57
+ GMT
+Sender: okukatla=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id CED9BC4338A; Tue, 18 May 2021 16:57:57 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: okukatla)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0561DC433D3;
+        Tue, 18 May 2021 16:57:55 +0000 (UTC)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 18 May 2021 22:27:55 +0530
+From:   okukatla@codeaurora.org
+To:     Georgi Djakov <georgi.djakov@linaro.org>
+Cc:     bjorn.andersson@linaro.org, evgreen@google.com,
+        Andy Gross <agross@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        sboyd@kernel.org, seansw@qti.qualcomm.com, sibis@codeaurora.org,
+        elder@linaro.org, linux-arm-msm-owner@vger.kernel.org
+Subject: Re: [2/3] interconnect: qcom: Add EPSS L3 support on SC7280
+In-Reply-To: <3a4460f3-3416-16f0-8e21-45e8b7a3a0ad@linaro.org>
+References: <1618556290-28303-1-git-send-email-okukatla@codeaurora.org>
+ <1618556290-28303-3-git-send-email-okukatla@codeaurora.org>
+ <3a4460f3-3416-16f0-8e21-45e8b7a3a0ad@linaro.org>
+Message-ID: <bb663a1d6c4c5b4616a607ad86fc35f1@codeaurora.org>
+X-Sender: okukatla@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pattern: "^(|usb-|usb2-|usb3-|pci-|pcie-|sata-)phy(@[0-9a-f,]+)*$"
-in phy-provider.yaml has required "#phy-cells" for phy nodes.
-The "phy-cells" in rockchip-inno-usb2 nodes are located in subnodes.
-Rename the nodename to pattern "usb2phy@[0-9a-f]+$" to prevent
-notifications.
+On 2021-04-20 13:41, Georgi Djakov wrote:
+> Hi Odelu,
+> 
+> On 16.04.21 9:58, Odelu Kukatla wrote:
+>> Add Epoch Subsystem (EPSS) L3 interconnect provider support on
+>> SC7280 SoCs.
+>> 
+>> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
+>> ---
+>>   drivers/interconnect/qcom/osm-l3.c             | 124 
+>> +++++++++++++++++++------
+>>   drivers/interconnect/qcom/sc7280.h             |  10 ++
+>>   include/dt-bindings/interconnect/qcom,osm-l3.h |  10 +-
+>>   3 files changed, 114 insertions(+), 30 deletions(-)
+>> 
+>> diff --git a/drivers/interconnect/qcom/osm-l3.c 
+>> b/drivers/interconnect/qcom/osm-l3.c
+>> index 695f287..3403e09 100644
+>> --- a/drivers/interconnect/qcom/osm-l3.c
+>> +++ b/drivers/interconnect/qcom/osm-l3.c
+>> @@ -15,6 +15,7 @@
+>>   #include <dt-bindings/interconnect/qcom,osm-l3.h>
+>>     #include "sc7180.h"
+>> +#include "sc7280.h"
+>>   #include "sdm845.h"
+>>   #include "sm8150.h"
+>>   #include "sm8250.h"
+>> @@ -32,17 +33,24 @@
+>>     /* EPSS Register offsets */
+>>   #define EPSS_LUT_ROW_SIZE		4
+>> +#define EPSS_REG_L3_VOTE		0x90
+>>   #define EPSS_REG_FREQ_LUT		0x100
+>>   #define EPSS_REG_PERF_STATE		0x320
+>> +#define EPSS_CORE_OFFSET		0x4
+>> +#define EPSS_L3_VOTE_REG(base, cpu)\
+>> +			((base + EPSS_REG_L3_VOTE) +\
+>> +			(cpu * EPSS_CORE_OFFSET))
+> 
+> Nit: Please add parenthesis around "base" and "cpu" to avoid
+> any potential precedence issues.
+> 
+Done! will address this in next revision.
+>>   -#define OSM_L3_MAX_LINKS		1
+>> +#define L3_DOMAIN_CNT		4
+>> +#define L3_MAX_LINKS		9
+>>     #define to_qcom_provider(_provider) \
+>>   	container_of(_provider, struct qcom_osm_l3_icc_provider, provider)
+>>     struct qcom_osm_l3_icc_provider {
+>> -	void __iomem *base;
+>> +	void __iomem *domain_base[L3_DOMAIN_CNT];
+>>   	unsigned int max_state;
+>> +	bool per_core_dcvs;
+>>   	unsigned int reg_perf_state;
+>>   	unsigned long lut_tables[LUT_MAX_ENTRIES];
+>>   	struct icc_provider provider;
+>> @@ -58,31 +66,36 @@ struct qcom_osm_l3_icc_provider {
+>>    */
+>>   struct qcom_icc_node {
+>>   	const char *name;
+>> -	u16 links[OSM_L3_MAX_LINKS];
+>> +	u16 links[L3_MAX_LINKS];
+>>   	u16 id;
+>>   	u16 num_links;
+>>   	u16 buswidth;
+>> +	u16 domain;
+>> +	int cpu;
+> 
+> Please describe these in the kerneldoc. Adding a kerneldoc for
+> qcom_osm_l3_icc_provider would be also nice.
+> 
+Done! will address this in next revision.
+>>   };
+>>     struct qcom_icc_desc {
+>>   	const struct qcom_icc_node **nodes;
+>>   	size_t num_nodes;
+>> +	bool per_core_dcvs;
+>>   	unsigned int lut_row_size;
+>>   	unsigned int reg_freq_lut;
+>>   	unsigned int reg_perf_state;
+>>   };
+>>   -#define DEFINE_QNODE(_name, _id, _buswidth, ...)			\
+>> -	static const struct qcom_icc_node _name = {			\
+>> -		.name = #_name,						\
+>> -		.id = _id,						\
+>> -		.buswidth = _buswidth,					\
+>> -		.num_links = ARRAY_SIZE(((int[]){ __VA_ARGS__ })),	\
+>> -		.links = { __VA_ARGS__ },				\
+>> +#define DEFINE_QNODE(_name, _id, _buswidth, _domain, _cpu, ...)			\
+>> +	static const struct qcom_icc_node _name = {				\
+>> +		.name = #_name,							\
+>> +		.id = _id,							\
+>> +		.buswidth = _buswidth,						\
+>> +		.domain = _domain,						\
+>> +		.cpu = _cpu,						\
+>> +		.num_links = ARRAY_SIZE(((int[]){ __VA_ARGS__ })),		\
+>> +		.links = { __VA_ARGS__ },					\
+>>   	}
+>>   -DEFINE_QNODE(sdm845_osm_apps_l3, SDM845_MASTER_OSM_L3_APPS, 16, 
+>> SDM845_SLAVE_OSM_L3);
+>> -DEFINE_QNODE(sdm845_osm_l3, SDM845_SLAVE_OSM_L3, 16);
+>> +DEFINE_QNODE(sdm845_osm_apps_l3, SDM845_MASTER_OSM_L3_APPS, 16, 0, 0, 
+>> SDM845_SLAVE_OSM_L3);
+>> +DEFINE_QNODE(sdm845_osm_l3, SDM845_SLAVE_OSM_L3, 16, 0, 0);
+>>     static const struct qcom_icc_node *sdm845_osm_l3_nodes[] = {
+>>   	[MASTER_OSM_L3_APPS] = &sdm845_osm_apps_l3,
+>> @@ -97,8 +110,8 @@ static const struct qcom_icc_desc sdm845_icc_osm_l3 
+>> = {
+>>   	.reg_perf_state = OSM_REG_PERF_STATE,
+>>   };
+>>   -DEFINE_QNODE(sc7180_osm_apps_l3, SC7180_MASTER_OSM_L3_APPS, 16, 
+>> SC7180_SLAVE_OSM_L3);
+>> -DEFINE_QNODE(sc7180_osm_l3, SC7180_SLAVE_OSM_L3, 16);
+>> +DEFINE_QNODE(sc7180_osm_apps_l3, SC7180_MASTER_OSM_L3_APPS, 16, 0, 0, 
+>> SC7180_SLAVE_OSM_L3);
+>> +DEFINE_QNODE(sc7180_osm_l3, SC7180_SLAVE_OSM_L3, 16, 0, 0);
+>>     static const struct qcom_icc_node *sc7180_osm_l3_nodes[] = {
+>>   	[MASTER_OSM_L3_APPS] = &sc7180_osm_apps_l3,
+>> @@ -113,8 +126,8 @@ static const struct qcom_icc_desc 
+>> sc7180_icc_osm_l3 = {
+>>   	.reg_perf_state = OSM_REG_PERF_STATE,
+>>   };
+>>   -DEFINE_QNODE(sm8150_osm_apps_l3, SM8150_MASTER_OSM_L3_APPS, 32, 
+>> SM8150_SLAVE_OSM_L3);
+>> -DEFINE_QNODE(sm8150_osm_l3, SM8150_SLAVE_OSM_L3, 32);
+>> +DEFINE_QNODE(sm8150_osm_apps_l3, SM8150_MASTER_OSM_L3_APPS, 32, 0, 0, 
+>> SM8150_SLAVE_OSM_L3);
+>> +DEFINE_QNODE(sm8150_osm_l3, SM8150_SLAVE_OSM_L3, 32, 0, 0);
+>>     static const struct qcom_icc_node *sm8150_osm_l3_nodes[] = {
+>>   	[MASTER_OSM_L3_APPS] = &sm8150_osm_apps_l3,
+>> @@ -129,8 +142,8 @@ static const struct qcom_icc_desc 
+>> sm8150_icc_osm_l3 = {
+>>   	.reg_perf_state = OSM_REG_PERF_STATE,
+>>   };
+>>   -DEFINE_QNODE(sm8250_epss_apps_l3, SM8250_MASTER_EPSS_L3_APPS, 32, 
+>> SM8250_SLAVE_EPSS_L3);
+>> -DEFINE_QNODE(sm8250_epss_l3, SM8250_SLAVE_EPSS_L3, 32);
+>> +DEFINE_QNODE(sm8250_epss_apps_l3, SM8250_MASTER_EPSS_L3_APPS, 32, 0, 
+>> 0, SM8250_SLAVE_EPSS_L3);
+>> +DEFINE_QNODE(sm8250_epss_l3, SM8250_SLAVE_EPSS_L3, 32, 0, 0);
+>>     static const struct qcom_icc_node *sm8250_epss_l3_nodes[] = {
+>>   	[MASTER_EPSS_L3_APPS] = &sm8250_epss_apps_l3,
+>> @@ -145,6 +158,39 @@ static const struct qcom_icc_desc 
+>> sm8250_icc_epss_l3 = {
+>>   	.reg_perf_state = EPSS_REG_PERF_STATE,
+>>   };
+>>   +DEFINE_QNODE(sc7280_epss_apps_l3, SC7280_MASTER_EPSS_L3_APPS, 32, 
+>> 0, 0, SC7280_SLAVE_EPSS_L3_SHARED, SC7280_SLAVE_EPSS_L3_CPU0, 
+>> SC7280_SLAVE_EPSS_L3_CPU1, SC7280_SLAVE_EPSS_L3_CPU2, 
+>> SC7280_SLAVE_EPSS_L3_CPU3, SC7280_SLAVE_EPSS_L3_CPU4, 
+>> SC7280_SLAVE_EPSS_L3_CPU5, SC7280_SLAVE_EPSS_L3_CPU6, 
+>> SC7280_SLAVE_EPSS_L3_CPU7);
+>> +DEFINE_QNODE(sc7280_epss_l3_shared, SC7280_SLAVE_EPSS_L3_SHARED, 32, 
+>> 0, 0);
+>> +DEFINE_QNODE(sc7280_epss_l3_cpu0, SC7280_SLAVE_EPSS_L3_CPU0, 32, 1, 
+>> 0);
+>> +DEFINE_QNODE(sc7280_epss_l3_cpu1, SC7280_SLAVE_EPSS_L3_CPU1, 32, 1, 
+>> 1);
+>> +DEFINE_QNODE(sc7280_epss_l3_cpu2, SC7280_SLAVE_EPSS_L3_CPU2, 32, 1, 
+>> 2);
+>> +DEFINE_QNODE(sc7280_epss_l3_cpu3, SC7280_SLAVE_EPSS_L3_CPU3, 32, 1, 
+>> 3);
+>> +DEFINE_QNODE(sc7280_epss_l3_cpu4, SC7280_SLAVE_EPSS_L3_CPU4, 32, 2, 
+>> 0);
+>> +DEFINE_QNODE(sc7280_epss_l3_cpu5, SC7280_SLAVE_EPSS_L3_CPU5, 32, 2, 
+>> 1);
+>> +DEFINE_QNODE(sc7280_epss_l3_cpu6, SC7280_SLAVE_EPSS_L3_CPU6, 32, 2, 
+>> 2);
+>> +DEFINE_QNODE(sc7280_epss_l3_cpu7, SC7280_SLAVE_EPSS_L3_CPU7, 32, 3, 
+>> 0);
+>> +
+>> +static const struct qcom_icc_node *sc7280_epss_l3_nodes[] = {
+>> +	[MASTER_EPSS_L3_APPS] = &sc7280_epss_apps_l3,
+>> +	[SLAVE_EPSS_L3_SHARED] = &sc7280_epss_l3_shared,
+>> +	[SLAVE_EPSS_L3_CPU0] = &sc7280_epss_l3_cpu0,
+>> +	[SLAVE_EPSS_L3_CPU1] = &sc7280_epss_l3_cpu1,
+>> +	[SLAVE_EPSS_L3_CPU2] = &sc7280_epss_l3_cpu2,
+>> +	[SLAVE_EPSS_L3_CPU3] = &sc7280_epss_l3_cpu3,
+>> +	[SLAVE_EPSS_L3_CPU4] = &sc7280_epss_l3_cpu4,
+>> +	[SLAVE_EPSS_L3_CPU5] = &sc7280_epss_l3_cpu5,
+>> +	[SLAVE_EPSS_L3_CPU6] = &sc7280_epss_l3_cpu6,
+>> +	[SLAVE_EPSS_L3_CPU7] = &sc7280_epss_l3_cpu7,
+>> +};
+>> +
+>> +static const struct qcom_icc_desc sc7280_icc_epss_l3 = {
+>> +	.nodes = sc7280_epss_l3_nodes,
+>> +	.num_nodes = ARRAY_SIZE(sc7280_epss_l3_nodes),
+>> +	.per_core_dcvs = true,
+>> +	.lut_row_size = EPSS_LUT_ROW_SIZE,
+>> +	.reg_freq_lut = EPSS_REG_FREQ_LUT,
+>> +	.reg_perf_state = EPSS_REG_PERF_STATE,
+>> +};
+>> +
+>>   static int qcom_icc_set(struct icc_node *src, struct icc_node *dst)
+>>   {
+>>   	struct qcom_osm_l3_icc_provider *qp;
+>> @@ -156,13 +202,18 @@ static int qcom_icc_set(struct icc_node *src, 
+>> struct icc_node *dst)
+>>   	u32 agg_avg = 0;
+>>   	u64 rate;
+>>   -	qn = src->data;
+>> +	qn = dst->data;
+>>   	provider = src->provider;
+> 
+> dst->provider? To keep it symmetric maybe? I am expecting that src
+> and dst are the same provider?
+> 
+Yes, you are correct.
+>>   	qp = to_qcom_provider(provider);
+>>   -	list_for_each_entry(n, &provider->nodes, node_list)
+>> -		provider->aggregate(n, 0, n->avg_bw, n->peak_bw,
+>> -				    &agg_avg, &agg_peak);
+>> +	/* Skip aggregation when per core l3 scaling is enabled */
+>> +	if (qp->per_core_dcvs) {
+>> +		agg_peak = dst->peak_bw;
+>> +	} else {
+>> +		list_for_each_entry(n, &provider->nodes, node_list)
+>> +			provider->aggregate(n, 0, n->avg_bw, n->peak_bw,
+>> +						&agg_avg, &agg_peak);
+>> +	}
+>>     	rate = max(agg_avg, agg_peak);
+>>   	rate = icc_units_to_bps(rate);
+>> @@ -173,7 +224,10 @@ static int qcom_icc_set(struct icc_node *src, 
+>> struct icc_node *dst)
+>>   			break;
+>>   	}
+>>   -	writel_relaxed(index, qp->base + qp->reg_perf_state);
+>> +	if (qp->per_core_dcvs)
+>> +		writel_relaxed(index, EPSS_L3_VOTE_REG(qp->domain_base[qn->domain], 
+>> qn->cpu));
+>> +	else
+>> +		writel_relaxed(index, qp->domain_base[qn->domain] + 
+>> qp->reg_perf_state);
+>>     	return 0;
+>>   }
+>> @@ -194,11 +248,12 @@ static int qcom_osm_l3_probe(struct 
+>> platform_device *pdev)
+>>   	const struct qcom_icc_desc *desc;
+>>   	struct icc_onecell_data *data;
+>>   	struct icc_provider *provider;
+>> +	struct property *prop;
+>>   	const struct qcom_icc_node **qnodes;
+>>   	struct icc_node *node;
+>>   	size_t num_nodes;
+>>   	struct clk *clk;
+>> -	int ret;
+>> +	int ret, index, domain_count;
+>>     	clk = clk_get(&pdev->dev, "xo");
+>>   	if (IS_ERR(clk))
+>> @@ -218,12 +273,21 @@ static int qcom_osm_l3_probe(struct 
+>> platform_device *pdev)
+>>   	if (!qp)
+>>   		return -ENOMEM;
+>>   -	qp->base = devm_platform_ioremap_resource(pdev, 0);
+>> -	if (IS_ERR(qp->base))
+>> -		return PTR_ERR(qp->base);
+>> +	prop = of_find_property(pdev->dev.of_node, "reg", NULL);
+>> +	if (!prop)
+>> +		return -EINVAL;
+>> +	domain_count = prop->length / (4 * sizeof(prop->length));
+>> +	if(!domain_count)
+> 
+> Please add a space before opening the parenthesis.
+> 
+>> +		return -EINVAL;
+>> +
+>> +	for (index = 0; index < domain_count ; index++) {
+>> +		qp->domain_base[index] = devm_platform_ioremap_resource(pdev, 
+>> index);
+>> +		if (IS_ERR(qp->domain_base[index]))
+>> +			return PTR_ERR(qp->domain_base[index]);
+>> +	}
+>>     	/* HW should be in enabled state to proceed */
+>> -	if (!(readl_relaxed(qp->base + REG_ENABLE) & 0x1)) {
+>> +	if (!(readl_relaxed(qp->domain_base[0] + REG_ENABLE) & 0x1)) {
+>>   		dev_err(&pdev->dev, "error hardware not enabled\n");
+>>   		return -ENODEV;
+>>   	}
+>> @@ -235,7 +299,7 @@ static int qcom_osm_l3_probe(struct 
+>> platform_device *pdev)
+>>   	qp->reg_perf_state = desc->reg_perf_state;
+>>     	for (i = 0; i < LUT_MAX_ENTRIES; i++) {
+>> -		info = readl_relaxed(qp->base + desc->reg_freq_lut +
+>> +		info = readl_relaxed(qp->domain_base[0] + desc->reg_freq_lut +
+>>   				     i * desc->lut_row_size);
+>>   		src = FIELD_GET(LUT_SRC, info);
+>>   		lval = FIELD_GET(LUT_L_VAL, info);
+>> @@ -254,6 +318,7 @@ static int qcom_osm_l3_probe(struct 
+>> platform_device *pdev)
+>>   		prev_freq = freq;
+>>   	}
+>>   	qp->max_state = i;
+>> +	qp->per_core_dcvs = desc->per_core_dcvs;
+>>     	qnodes = desc->nodes;
+>>   	num_nodes = desc->num_nodes;
+>> @@ -309,6 +374,7 @@ static int qcom_osm_l3_probe(struct 
+>> platform_device *pdev)
+>>     static const struct of_device_id osm_l3_of_match[] = {
+>>   	{ .compatible = "qcom,sc7180-osm-l3", .data = &sc7180_icc_osm_l3 },
+>> +	{ .compatible = "qcom,sc7280-epss-l3", .data = &sc7280_icc_epss_l3 
+>> },
+>>   	{ .compatible = "qcom,sdm845-osm-l3", .data = &sdm845_icc_osm_l3 },
+>>   	{ .compatible = "qcom,sm8150-osm-l3", .data = &sm8150_icc_osm_l3 },
+>>   	{ .compatible = "qcom,sm8250-epss-l3", .data = &sm8250_icc_epss_l3 
+>> },
+>> diff --git a/drivers/interconnect/qcom/sc7280.h 
+>> b/drivers/interconnect/qcom/sc7280.h
+>> index 66ac6ee..6d323ba 100644
+>> --- a/drivers/interconnect/qcom/sc7280.h
+>> +++ b/drivers/interconnect/qcom/sc7280.h
+>> @@ -148,5 +148,15 @@
+>>   #define SC7280_SLAVE_PCIE_1			137
+>>   #define SC7280_SLAVE_QDSS_STM			138
+>>   #define SC7280_SLAVE_TCU			139
+>> +#define SC7280_MASTER_EPSS_L3_APPS			140
+>> +#define SC7280_SLAVE_EPSS_L3_SHARED			141
+>> +#define SC7280_SLAVE_EPSS_L3_CPU0			142
+>> +#define SC7280_SLAVE_EPSS_L3_CPU1			143
+>> +#define SC7280_SLAVE_EPSS_L3_CPU2			144
+>> +#define SC7280_SLAVE_EPSS_L3_CPU3			145
+>> +#define SC7280_SLAVE_EPSS_L3_CPU4			146
+>> +#define SC7280_SLAVE_EPSS_L3_CPU5			147
+>> +#define SC7280_SLAVE_EPSS_L3_CPU6			148
+>> +#define SC7280_SLAVE_EPSS_L3_CPU7			149
+>>     #endif
+>> diff --git a/include/dt-bindings/interconnect/qcom,osm-l3.h 
+>> b/include/dt-bindings/interconnect/qcom,osm-l3.h
+>> index 61ef649..99534a5 100644
+>> --- a/include/dt-bindings/interconnect/qcom,osm-l3.h
+>> +++ b/include/dt-bindings/interconnect/qcom,osm-l3.h
+>> @@ -1,6 +1,6 @@
+>>   /* SPDX-License-Identifier: GPL-2.0 */
+>>   /*
+>> - * Copyright (C) 2019 The Linux Foundation. All rights reserved.
+>> + * Copyright (C) 2019, 2021 The Linux Foundation. All rights 
+>> reserved.
+>>    */
+>>     #ifndef __DT_BINDINGS_INTERCONNECT_QCOM_OSM_L3_H
+>> @@ -11,5 +11,13 @@
+>>     #define MASTER_EPSS_L3_APPS	0
+>>   #define SLAVE_EPSS_L3_SHARED	1
+>> +#define SLAVE_EPSS_L3_CPU0	2
+>> +#define SLAVE_EPSS_L3_CPU1	3
+>> +#define SLAVE_EPSS_L3_CPU2	4
+>> +#define SLAVE_EPSS_L3_CPU3	5
+>> +#define SLAVE_EPSS_L3_CPU4	6
+>> +#define SLAVE_EPSS_L3_CPU5	7
+>> +#define SLAVE_EPSS_L3_CPU6	8
+>> +#define SLAVE_EPSS_L3_CPU7	9
+> 
+> This hunk should be part of the dt-bindings patch.
+> 
+Done! will address this in next revision.
 
-make ARCH=arm64 dtbs_check
-DT_SCHEMA_FILES=~/.local/lib/python3.5/site-packages/dtschema/schemas/
-phy/phy-provider.yaml
-
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/px30.dtsi   | 2 +-
- arch/arm64/boot/dts/rockchip/rk3328.dtsi | 2 +-
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 4 ++--
- 3 files changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts/rockchip/px30.dtsi
-index 4e243d72e..248ebb61a 100644
---- a/arch/arm64/boot/dts/rockchip/px30.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
-@@ -822,7 +822,7 @@
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 
--		u2phy: usb2-phy@100 {
-+		u2phy: usb2phy@100 {
- 			compatible = "rockchip,px30-usb2phy";
- 			reg = <0x100 0x20>;
- 			clocks = <&pmucru SCLK_USBPHY_REF>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-index bc0bdc3d8..8c821acb2 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-@@ -819,7 +819,7 @@
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 
--		u2phy: usb2-phy@100 {
-+		u2phy: usb2phy@100 {
- 			compatible = "rockchip,rk3328-usb2phy";
- 			reg = <0x100 0x10>;
- 			clocks = <&xin24m>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index a2eba5357..c1a253507 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -1418,7 +1418,7 @@
- 			status = "disabled";
- 		};
- 
--		u2phy0: usb2-phy@e450 {
-+		u2phy0: usb2phy@e450 {
- 			compatible = "rockchip,rk3399-usb2phy";
- 			reg = <0xe450 0x10>;
- 			clocks = <&cru SCLK_USB2PHY0_REF>;
-@@ -1445,7 +1445,7 @@
- 			};
- 		};
- 
--		u2phy1: usb2-phy@e460 {
-+		u2phy1: usb2phy@e460 {
- 			compatible = "rockchip,rk3399-usb2phy";
- 			reg = <0xe460 0x10>;
- 			clocks = <&cru SCLK_USB2PHY1_REF>;
--- 
-2.11.0
-
+> Thanks,
+> Georgi
