@@ -2,233 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89907387B2B
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 16:33:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BEC2387B3A
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 16:35:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231612AbhEROek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 10:34:40 -0400
-Received: from out3-smtp.messagingengine.com ([66.111.4.27]:59493 "EHLO
-        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231402AbhEROei (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 May 2021 10:34:38 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.nyi.internal (Postfix) with ESMTP id 3F3595C010D;
-        Tue, 18 May 2021 10:33:20 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Tue, 18 May 2021 10:33:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=FrUlgAZl7XLF/3clrgjCszNAYAE
-        2HNQnZkoVBplSGys=; b=RkFFFVyfCIPjwlkOtCpqAs51p6nq80tP17M0UeQUFwB
-        grcoeKLK4Vwj+CaKRnFeizXv0cRdkb16lcu9405CJQgV7d70irbMBOJIwsFK+8Sh
-        St5XhdSQSQpPtsxTS3jmrkyJk6WLx6KpkFEcWr8ZpLjZwqjARtaL8DqSBqJI8eVg
-        ctsB2pzJZ8pjGW8mVwAzGihab7WKYPj3S6wfKt0rZaC0sAuuyzXOefx69NGSj62/
-        wxVq4sTU5jE3buERtY9klKVeHfaSUznL0t0OJSYv9WG4J1taF8EhB0jVCpebMEZK
-        WdPcdwIfkA/X7VqTGxrJzA5xrJHuT4/hqA2bn7QULDg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=FrUlgA
-        Zl7XLF/3clrgjCszNAYAE2HNQnZkoVBplSGys=; b=vjx/fru3+ejYVBBLlS5Ict
-        M5bjK1Vnr1peBf+W13+s/dloQABSZ5i2l13qY5Fcei4eJc+DBsDjZ+kdJhRqZEA0
-        huR6avdIJjWcBWNUXv47nzh3MmTcjIFt9N2EbHQ1nl0HBCFa+EJHwOermOMkBYZL
-        mN1q5TLmnuQFtqP/4kQj/cGU3n9xa6YY0XIkUNpdEWqGLEyevfepFBgyaW/m2kBQ
-        kwopJPh1Qd24RWLvccmSkL25azpfuBOft/XgSI5azFW3i7V5vo5ktA86qZ0PSZqF
-        U9CbNHQddwseO+RjsDPdSMBgaCbWmWbt5aL9gFxeSToojEDEVu9VpCbgq+EmPhZA
-        ==
-X-ME-Sender: <xms:L9CjYATTInJz7SQIWSj7qKp1VibfS-rZFU4hiQO3MxlpiUdbgtXBxw>
-    <xme:L9CjYNyMDyqK7padAbYdtmLZBLscFULQx_9IhaoA89Psg9gOFOO6ilBxA6FErO3cu
-    WqLKJ_gspCTViVLKzQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdeijedgjeejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepffetteevieejteeuhfffgeektefghfeileehhedtuddutefhhfejtddvtddu
-    ledvnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucfkphepledtrdekle
-    drieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhr
-    ohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:L9CjYN35XHtoasd8zhtD8d26Qy61Moq1RYn4LMma7wnSrTnuOmkipQ>
-    <xmx:L9CjYEBdslF4wPP7R6KVaxzdtcUITD5sYrkcI85K8zvWAHxr9AeKhQ>
-    <xmx:L9CjYJj4_LuMW593oa1lPb1FyVHJkmSDsTsgubAzPlc-2LK5azsSfg>
-    <xmx:MNCjYJfSKQDIdTXfmnonDZdmFCKx2g4JZBk7Ju9q64shVIMWe535DA>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA;
-        Tue, 18 May 2021 10:33:18 -0400 (EDT)
-Date:   Tue, 18 May 2021 16:33:17 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-fbdev@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: display: ssd1307fb: Convert to json-schema
-Message-ID: <20210518143317.yy2sxxnd7yt6cyrx@gilmour>
-References: <20210518075131.1463091-1-geert@linux-m68k.org>
+        id S233243AbhEROgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 10:36:47 -0400
+Received: from mail-ua1-f47.google.com ([209.85.222.47]:39794 "EHLO
+        mail-ua1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232245AbhEROgp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 10:36:45 -0400
+Received: by mail-ua1-f47.google.com with SMTP id a12so3301727uak.6;
+        Tue, 18 May 2021 07:35:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zebz9Gz8Zw8lQG2LiaFvqSG6xwA9z2xU/a+9st7RAd4=;
+        b=QX5XhXPgXZXKx+b6wLRpuQjUKP5WvNh3V6YWnWL432vHixlzaOrnACFcVgMg2PaoHS
+         KIafGF2j35uUqwjL/7/ypWz30iikkN8M8d0yqiLEmW4BKa9l0qSytViZRYRNeP29MSCu
+         R5pSaTs6+m18MioQwsUE69u/Os6MNuJ+EAww/mVLpsIHSAalJuMjh5EAlJXonA+x+AGS
+         LpZSbH2Mmx/pE3XkGqpPDvU0d9aCGJZOhln5TJaBIaEUZqirpG53bN0KwDSEA6NERwrg
+         e/20rDjxFe+fRXOOUyZB4m2tsxsP9iBI4aTbcO3W+f/1nfnF6Fp4NeFT1Kounffe2bgT
+         1YPg==
+X-Gm-Message-State: AOAM530dorFPjcpfccUm4a/PE0DIiCd/HDKI29Z9x/6rL6rr25VGWOZ5
+        FTJUexx7EJVmMg2ZyfXRH/d6DKG4yRSMZLCIksPxh0QmvEg=
+X-Google-Smtp-Source: ABdhPJzasGlFQRXLxNTx9IOFZHu2tN4P8gFB4eopIGDQ9iVTdObR7fr+c/2eBhcaOmDqqiI3Ejua84TD9jYUXq1w3e0=
+X-Received: by 2002:ab0:7705:: with SMTP id z5mr6782625uaq.2.1621348527338;
+ Tue, 18 May 2021 07:35:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="p7d7m3hcldjdfnrs"
-Content-Disposition: inline
-In-Reply-To: <20210518075131.1463091-1-geert@linux-m68k.org>
+References: <20210322144848.1065067-1-geert@linux-m68k.org>
+ <20210322144848.1065067-3-geert@linux-m68k.org> <fb42abb0e79a57e2aab123468d95ff7e@protonic.nl>
+In-Reply-To: <fb42abb0e79a57e2aab123468d95ff7e@protonic.nl>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 18 May 2021 16:35:16 +0200
+Message-ID: <CAMuHMdXN9bPnEjXJUWszS5iwuVLBHJV7c+jhBU1t1EXnAnFYig@mail.gmail.com>
+Subject: Re: [PATCH 02/17] dt-bindings: auxdisplay: ht16k33: Document Adafruit
+ segment displays
+To:     Robin van der Gracht <robin@protonic.nl>
+Cc:     Rob Herring <robh+dt@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hoi Robin,
 
---p7d7m3hcldjdfnrs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, Mar 23, 2021 at 10:12 AM robin <robin@protonic.nl> wrote:
+> On 2021-03-22 15:48, Geert Uytterhoeven wrote:
+> > The Holtek HT16K33 LED controller is not only used for driving
+> > dot-matrix displays, but also for driving segment displays.
+> >
+> > Document compatible values for the Adafruit 7-segment[1] and
+> > 14-segment[2] FeatherWing expansion boards with red displays.
+> > According
+> > to the schematics, all other Adafruit 7-segment and 14-segment display
+> > backpack and FeatherWing expansion boards (including bare boards and
+> > boards fitted with displays) are compatible with these two boards.
+> > Add a "color" property to support the different color variants.
+> >
+> > [1] https://www.adafruit.com/product/3108
+> > [2] https://www.adafruit.com/product/3130
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
 
-Hi
+> > --- a/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
+> > +++ b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
+> > @@ -14,14 +14,23 @@ allOf:
+> >
+> >  properties:
+> >    compatible:
+> > -    const: holtek,ht16k33
+> > +    oneOf:
+> > +      - items:
+> > +          - const: adafruit,3108  # 0.56" 4-Digit 7-Segment
+> > FeatherWing Display (Red)
+> > +          - const: holtek,ht16k33
+> > +
+> > +      - items:
+> > +          - const: adafruit,3130  # 0.54" Quad Alphanumeric
+> > FeatherWing Display (Red)
+> > +          - const: holtek,ht16k33
+> > +
+> > +      - const: holtek,ht16k33     # Generic 16*8 LED controller with
+> > dot-matrix display
+> >
+> >    reg:
+> >      maxItems: 1
+> >
+> >    refresh-rate-hz:
+> >      maxItems: 1
+> > -    description: Display update interval in Hertz
+> > +    description: Display update interval in Hertz for dot-matrix
+> > displays
+>
+> The above should be included in patch 16
 
-On Tue, May 18, 2021 at 09:51:31AM +0200, Geert Uytterhoeven wrote:
-> Convert the Solomon SSD1307 Framebuffer Device Tree binding
-> documentation to json-schema.
->=20
-> Fix the spelling of the "pwms" property.
-> Document default values.
-> Make properties with default values not required.
->=20
-> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> ---
-> I have listed Maxime as the maintainer, as he wrote the original driver
-> and bindings.  Maxime: Please scream if this is inappropriate ;-)
+I disagree: bindings are independent from the driver implementation.
 
-Fine by me :)
+> >    interrupts:
+> >      maxItems: 1
+> > @@ -41,10 +50,17 @@ properties:
+> >      default: 16
+> >      description: Initial brightness level
+> >
+> > +  color: true
+> > +    description:
+> > +      Color of the display.  Use one of the LED_COLOR_ID_* prefixed
+> > definitions
+> > +      from the header include/dt-bindings/leds/common.h.  The default
+> > is red.
+> > +    minimum: 0
+> > +    maximum: 9
+> > +    default: 1
+> > +
+>
+> The above should be included in patch 17
 
-> ---
->  .../bindings/display/solomon,ssd1307fb.yaml   | 166 ++++++++++++++++++
->  .../devicetree/bindings/display/ssd1307fb.txt |  60 -------
->  2 files changed, 166 insertions(+), 60 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/solomon,ssd=
-1307fb.yaml
->  delete mode 100644 Documentation/devicetree/bindings/display/ssd1307fb.t=
-xt
->=20
-> diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.=
-yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> new file mode 100644
-> index 0000000000000000..bd632d86a4f814a0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> @@ -0,0 +1,166 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/solomon,ssd1307fb.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Solomon SSD1307 OLED Controller Framebuffer
-> +
-> +maintainers:
-> +  - Maxime Ripard <mripard@kernel.org>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - solomon,ssd1305fb-i2c
-> +      - solomon,ssd1306fb-i2c
-> +      - solomon,ssd1307fb-i2c
-> +      - solomon,ssd1309fb-i2c
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  pwms:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  vbat-supply:
-> +    description: The supply for VBAT
-> +
-> +  solomon,height:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 16
-> +    description:
-> +      Height in pixel of the screen driven by the controller
-> +
-> +  solomon,width:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 96
-> +    description:
-> +      Width in pixel of the screen driven by the controller
-> +
-> +  solomon,page-offset:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 1
-> +    description:
-> +      Offset of pages (band of 8 pixels) that the screen is mapped to
-> +
-> +  solomon,segment-no-remap:
-> +    type: boolean
-> +    description:
-> +      Display needs normal (non-inverted) data column to segment mapping
-> +
-> +  solomon,col-offset:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 0
-> +    description:
-> +      Offset of columns (COL/SEG) that the screen is mapped to
-> +
-> +  solomon,com-seq:
-> +    type: boolean
-> +    description:
-> +      Display uses sequential COM pin configuration
-> +
-> +  solomon,com-lrremap:
-> +    type: boolean
-> +    description:
-> +      Display uses left-right COM pin remap
-> +
-> +  solomon,com-invdir:
-> +    type: boolean
-> +    description:
-> +      Display uses inverted COM pin scan direction
-> +
-> +  solomon,com-offset:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 0
-> +    description:
-> +      Number of the COM pin wired to the first display line
-> +
-> +  solomon,prechargep1:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 2
-> +    description:
-> +      Length of deselect period (phase 1) in clock cycles
-> +
-> +  solomon,prechargep2:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 2
-> +    description:
-> +      Length of precharge period (phase 2) in clock cycles.  This needs =
-to be
-> +      the higher, the higher the capacitance of the OLED's pixels is.
-> +
-> +  solomon,dclk-div:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
-> +    maximum: 16
-> +    description:
-> +      Clock divisor. The default value is controller-dependent.
+Same here.
 
-I guess we could document the default using an if / else statement?
-Looks good otherwise :)
+> >  required:
+> >    - compatible
+> >    - reg
+> > -  - refresh-rate-hz
+>
+> 'refresh-rate-hz' is still a required property for the dot-matrix /
+> fbdev setup.
 
-Maxime
+True.
 
---p7d7m3hcldjdfnrs
-Content-Type: application/pgp-signature; name="signature.asc"
+> If it can no longer be listed here than maybe its nice to mention that
+> it's required
+> somewhere else (in it's description?).
 
------BEGIN PGP SIGNATURE-----
+    if:
+      properties:
+        compatible:
+          const: holtek,ht16k33
+    then:
+      required:
+        - refresh-rate-hz
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYKPQLAAKCRDj7w1vZxhR
-xeKaAQDmjvKNJwaVYfTQjl3b/T04NM9NVNFImz1x2uj7ftswHQD8DfD+L8sbH09v
-yeZEUShSYKCHK9VStSHw0JPqy0oSeQ8=
-=jitB
------END PGP SIGNATURE-----
+Thanks!
 
---p7d7m3hcldjdfnrs--
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
