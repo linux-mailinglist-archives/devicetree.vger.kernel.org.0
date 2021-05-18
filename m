@@ -2,180 +2,603 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CEC0387E49
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 19:18:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18043387E4F
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 19:20:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351092AbhERRTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 13:19:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37342 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351091AbhERRTS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 13:19:18 -0400
-Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD3EDC06175F
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 10:17:59 -0700 (PDT)
-Received: by mail-qt1-x833.google.com with SMTP id g8so525131qtp.4
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 10:17:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20150623.gappssmtp.com; s=20150623;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=qJf1xQ+28NnAlK43hj654qEgRrKzipkMXHBsgZzKcQQ=;
-        b=jl6nkGRna7urQ78bL7v3bD+QWmlbdVa0MQHADOJeyhwz5p+pm3dVfDF4Te1IzBnPL7
-         nlKlPY7CTKcz+kTFU2RxALOk9jUpTe/G/SvqO+4OskPULcE8x7GgnHABgk9/Rv2fkQlM
-         rwghuG9qsgzsONAauvf0CRd9lzs9dI2raXJgGQDYKIdZXtN3zraMQXoz/Zly0TPeBva+
-         eTiDhnjBoqmJ2MPmOAkfj3DEVLanSR3mRQiv7URcyEm/vqGpN9Adqqm0zmQdgKWvzbAd
-         NlKOTlxFnfOBEBWDbE6gQwbfKR+L3/XaMIEMDs3Ct3jN/CcqK/lOXtr/fZqK0GPWIwMc
-         /3AA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=qJf1xQ+28NnAlK43hj654qEgRrKzipkMXHBsgZzKcQQ=;
-        b=DALy6+1VI+eeomk8PO01M4imQbRyLkHrDM4RGFQzJwFPMgluDyCrFCYVJkR2bl0gLh
-         jcsp0ZsGg7fjOL3OnKKPR5ny7xfMQB7MjyWB8cA5rR0WzczbODSfntl5HARe5m1KpNf2
-         NbDwVZoQmUU7qR8Key1KWJXrtECYiYFphUx3SNX1Z3c9Cn9iSuioFd1c9VrW48rsllGK
-         nFfB3Gc+gEPCVS2UHcSN7dlcUZt/+QWno5hAnWUDXRP6d1tIn57Xe/aPHD/4wr/RqfxB
-         dqoMqo9KajFN8z9dGD9U+lLnfBbmY0nQjb9vra1CbLceT03BqRARZ6GOwTlG8eWWLwls
-         QW+A==
-X-Gm-Message-State: AOAM531VTWShOZQirUGskj/EQbwyoytT+tLdU2aJys580X1s7m/4ivLS
-        239lUUPBweiT9sOojsKgNQ4NoQ==
-X-Google-Smtp-Source: ABdhPJwFCakSIEdHaGsprjjlr1VL3AJif3L4ZlgN9vty0qn+s/kb3sZ+RVbgOyQON0pjsh4rPin//A==
-X-Received: by 2002:ac8:5846:: with SMTP id h6mr5915303qth.215.1621358278997;
-        Tue, 18 May 2021 10:17:58 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain (173-246-12-168.qc.cable.ebox.net. [173.246.12.168])
-        by smtp.gmail.com with ESMTPSA id b3sm11931277qtg.55.2021.05.18.10.17.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 May 2021 10:17:58 -0700 (PDT)
-Message-ID: <a473ea02de9b54482c1d2c82db2e4c7512920022.camel@ndufresne.ca>
-Subject: Re: [PATCH v10 6/9] media: uapi: Add a control for HANTRO driver
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Ezequiel Garcia <ezequiel@collabora.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        lee.jones@linaro.org, gregkh@linuxfoundation.org,
-        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, emil.l.velikov@gmail.com
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
-        kernel@collabora.com, cphealy@gmail.com
-Date:   Tue, 18 May 2021 13:17:56 -0400
-In-Reply-To: <f46b9c889914360348f218b45f10a06bd1bd8595.camel@collabora.com>
-References: <20210420121046.181889-1-benjamin.gaignard@collabora.com>
-         <20210420121046.181889-7-benjamin.gaignard@collabora.com>
-         <a7c9fe23-2900-ac90-7131-21380fbfc793@xs4all.nl>
-         <1cf94540-7f4d-0179-dd1e-0b82ee30f6d2@collabora.com>
-         <815a4bd6-599b-cfb8-9ddc-efa4b7092c23@xs4all.nl>
-         <f46b9c889914360348f218b45f10a06bd1bd8595.camel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.1 (3.40.1-1.fc34) 
+        id S1346207AbhERRV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 13:21:56 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:41794 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238824AbhERRV4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 13:21:56 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14IHKPkw115906;
+        Tue, 18 May 2021 12:20:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1621358425;
+        bh=SXODeA8BLOKIQmb9cYe4EDDYgO3SVauOCZtXAXgwQpE=;
+        h=From:To:CC:Subject:Date;
+        b=M73c3hyzabCxbPKO4zetjdwcJqaSRg5V9BOkKEVBWq4tFJDCewXGkh2znWaUhzPip
+         lnOgOKrSRxSD9SYrPgfzdYYZFsv001Wkslv3wVWBMEPtafrKdCMvj+66s06ECOQhBk
+         GEkoDTkp1Sbtwu0ScNLZzYrNDEMKW4RAGhdg8y0M=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14IHKPmH112431
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 18 May 2021 12:20:25 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 18
+ May 2021 12:20:25 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 18 May 2021 12:20:25 -0500
+Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14IHKP7j088612;
+        Tue, 18 May 2021 12:20:25 -0500
+Received: from localhost ([10.250.32.40])
+        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 14IHKPRF004382;
+        Tue, 18 May 2021 12:20:25 -0500
+From:   Suman Anna <s-anna@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>
+CC:     Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
+Subject: [PATCH] dt-bindings: mailbox: Convert omap-mailbox.txt binding to YAML
+Date:   Tue, 18 May 2021 12:20:22 -0500
+Message-ID: <20210518172022.10562-1-s-anna@ti.com>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le dimanche 16 mai 2021 à 20:04 -0300, Ezequiel Garcia a écrit :
-> Hi Hans,
-> 
-> On Thu, 2021-05-06 at 14:50 +0200, Hans Verkuil wrote:
-> > On 05/05/2021 17:20, Benjamin Gaignard wrote:
-> > > 
-> > > Le 05/05/2021 à 16:55, Hans Verkuil a écrit :
-> > > > On 20/04/2021 14:10, Benjamin Gaignard wrote:
-> > > > > The HEVC HANTRO driver needs to know the number of bits to skip at
-> > > > > the beginning of the slice header.
-> > > > > That is a hardware specific requirement so create a dedicated control
-> > > > > for this purpose.
-> > > > > 
-> > > > > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> > > > > ---
-> > > > >   .../userspace-api/media/drivers/hantro.rst    | 19 +++++++++++++++++++
-> > > > >   .../userspace-api/media/drivers/index.rst     |  1 +
-> > > > >   include/media/hevc-ctrls.h                    | 13 +++++++++++++
-> > > > >   3 files changed, 33 insertions(+)
-> > > > >   create mode 100644 Documentation/userspace-api/media/drivers/hantro.rst
-> > > > > 
-> > > > > diff --git a/Documentation/userspace-api/media/drivers/hantro.rst b/Documentation/userspace-api/media/drivers/hantro.rst
-> > > > > new file mode 100644
-> > > > > index 000000000000..cd9754b4e005
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/userspace-api/media/drivers/hantro.rst
-> > > > > @@ -0,0 +1,19 @@
-> > > > > +.. SPDX-License-Identifier: GPL-2.0
-> > > > > +
-> > > > > +Hantro video decoder driver
-> > > > > +===========================
-> > > > > +
-> > > > > +The Hantro video decoder driver implements the following driver-specific controls:
-> > > > > +
-> > > > > +``V4L2_CID_HANTRO_HEVC_SLICE_HEADER_SKIP (integer)``
-> > > > > +    Specifies to Hantro HEVC video decoder driver the number of data (in bits) to
-> > > > > +    skip in the slice segment header.
-> > > > > +    If non-IDR, the bits to be skipped go from syntax element "pic_output_flag"
-> > > > > +    to before syntax element "slice_temporal_mvp_enabled_flag".
-> > > > > +    If IDR, the skipped bits are just "pic_output_flag"
-> > > > > +    (separate_colour_plane_flag is not supported).
-> > > > I'm not very keen on this. Without this information the video data cannot be
-> > > > decoded, or will it just be suboptimal?
-> > > 
-> > > Without that information the video can't be decoded.
-> > > 
-> > > > 
-> > > > The problem is that a generic decoder would have to know that the HW is a hantro,
-> > > > and then call this control. If they don't (and are testing on non-hantro HW), then
-> > > > it won't work, thus defeating the purpose of the HW independent decoder API.
-> > > > 
-> > > > Since hantro is widely used, and if there is no other way to do this beside explitely
-> > > > setting this control, then perhaps this should be part of the standard HEVC API.
-> > > > Non-hantro drivers that do not need this can just skip it.
-> > > 
-> > > Even if I put this parameter in decode_params structure that would means that a generic
-> > > userland decoder will have to know how the compute this value for hantro HW since it
-> > > isn't something that could be done on kernel side.
-> > 
-> > But since hantro is very common, any userland decoder will need to calculate this anyway.
-> > So perhaps it is better to have this as part of the decode_params?
-> > 
-> > I'd like to know what others think about this.
-> > 
-> 
-> As you know, I'm not a fan of carrying these "unstable" APIs around.
-> I know it's better than nothing, but I feel they create the illusion
-> of the interface being supported in mainline. Since it's unstable,
-> it's difficult for applications to adopt them.
-> 
-> As Nicolas mentioned, this means neither FFmpeg nor GStreamer will adopt
-> these APIs, which worries me, as that means we lose two major user bases.
-> 
-> My personal take from this, is that we need to find ways to stabilize
-> our stateless codec APIs in less time and perhaps with less effort.
-> 
-> IMO, a less stiff interface could help us here, and that's why I think
-> having hardware-specific controls can be useful. Hardware designers
-> can be so creative :)
-> 
-> I'm not against introducing this specific parameter in
-> v4l2_ctrl_hevc_codec_params, arguing that Hantro is widely used,
-> but I'd like us to be open to hardware-specific controls as a way
-> to extend the APIs seamlessly.
-> 
-> Applications won't have to _know_ what hardware they are running on,
-> they can just use VIDIOC_QUERYCTRL to find out which controls are needed.
+Convert the current OMAP Mailbox binding from text format to YAML
+format/DT schema, and delete the legacy text binding file.
 
-Can you extend on this, perhaps we need an RFC for this specific mechanism. I
-don't immediatly see how I could enumerate controls and figure-out which one are
-needed. Perhaps we need to add new control flags for mandatory control ? This
-way userspace could detect unsupported HW if it finds a mandatory control that
-it does not know about ?
+The new YAML binding conversion is an updated version compared to
+the original. The descriptions for certain properties have been
+improved to provide more clarity. Constraints are added to the
+properties 'ti,mbox-num-users', 'ti,mbox-num-fifos' and 'interrupts'.
+The 'ti,hwmods' is a legacy property and is retained only to reflect
+the existing usage on some older OMAP2 and OMAP3 platforms.
 
-> 
-> Thanks,
-> Ezequiel
-> 
+All the existing examples have also been updated to reflect the
+latest dts nodes (ti,hwmods removed from OMAP4 and AM33xx examples,
+and interrupts value updated for AM65x SoCs).
 
+Signed-off-by: Suman Anna <s-anna@ti.com>
+---
+Hi,
+
+This patch does fix a number of dtbs_check warnings seen around OMAP Mailbox
+nodes with the latest kernel. There are few left-over warnings when just
+this patch is used on v5.13-rc1 or next-20210518. I have posted a separate
+fix for a warning on TI K3 SoCs [1], and will be posting a separate cleanup
+series for OMAP2+ SoCs. The dts patches can be picked up independently
+of this patch.
+
+regards
+Suman
+
+[1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210514212016.3153-1-s-anna@ti.com/
+
+ .../bindings/mailbox/omap-mailbox.txt         | 184 -----------
+ .../bindings/mailbox/ti,omap-mailbox.yaml     | 309 ++++++++++++++++++
+ 2 files changed, 309 insertions(+), 184 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mailbox/omap-mailbox.txt
+ create mode 100644 Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
+
+diff --git a/Documentation/devicetree/bindings/mailbox/omap-mailbox.txt b/Documentation/devicetree/bindings/mailbox/omap-mailbox.txt
+deleted file mode 100644
+index 12371f5c6cd9..000000000000
+--- a/Documentation/devicetree/bindings/mailbox/omap-mailbox.txt
++++ /dev/null
+@@ -1,184 +0,0 @@
+-OMAP2+ and K3 Mailbox
+-=====================
+-
+-The OMAP mailbox hardware facilitates communication between different processors
+-using a queued mailbox interrupt mechanism. The IP block is external to the
+-various processor subsystems and is connected on an interconnect bus. The
+-communication is achieved through a set of registers for message storage and
+-interrupt configuration registers.
+-
+-Each mailbox IP block/cluster has a certain number of h/w fifo queues and output
+-interrupt lines. An output interrupt line is routed to an interrupt controller
+-within a processor subsystem, and there can be more than one line going to a
+-specific processor's interrupt controller. The interrupt line connections are
+-fixed for an instance and are dictated by the IP integration into the SoC
+-(excluding the SoCs that have a Interrupt Crossbar IP). Each interrupt line is
+-programmable through a set of interrupt configuration registers, and have a rx
+-and tx interrupt source per h/w fifo. Communication between different processors
+-is achieved through the appropriate programming of the rx and tx interrupt
+-sources on the appropriate interrupt lines.
+-
+-The number of h/w fifo queues and interrupt lines dictate the usable registers.
+-All the current OMAP SoCs except for the newest DRA7xx SoC has a single IP
+-instance. DRA7xx has multiple instances with different number of h/w fifo queues
+-and interrupt lines between different instances. The interrupt lines can also be
+-routed to different processor sub-systems on DRA7xx as they are routed through
+-the Crossbar, a kind of interrupt router/multiplexer. The K3 AM65x and J721E
+-SoCs has each of these instances form a cluster and combine multiple clusters
+-into a single IP block present within the Main NavSS. The interrupt lines from
+-all these clusters are multiplexed and routed to different processor subsystems
+-over a limited number of common interrupt output lines of an Interrupt Router.
+-The AM64x SoCS also uses a single IP block comprising of multiple clusters,
+-but the number of clusters are smaller, and the interrupt output lines are
+-connected directly to various processors.
+-
+-Mailbox Device Node:
+-====================
+-A Mailbox device node is used to represent a Mailbox IP instance/cluster within
+-a SoC. The sub-mailboxes are represented as child nodes of this parent node.
+-
+-Required properties:
+---------------------
+-- compatible:		Should be one of the following,
+-			    "ti,omap2-mailbox" for OMAP2420, OMAP2430 SoCs
+-			    "ti,omap3-mailbox" for OMAP3430, OMAP3630 SoCs
+-			    "ti,omap4-mailbox" for OMAP44xx, OMAP54xx, AM33xx,
+-						   AM43xx and DRA7xx SoCs
+-			    "ti,am654-mailbox" for K3 AM65x and J721E SoCs
+-			    "ti,am64-mailbox" for K3 AM64x SoCs
+-- reg:			Contains the mailbox register address range (base
+-			address and length)
+-- interrupts:		Contains the interrupt information for the mailbox
+-			device. The format is dependent on which interrupt
+-			controller the Mailbox device uses
+-- #mbox-cells:		Common mailbox binding property to identify the number
+-			of cells required for the mailbox specifier. Should be
+-			1
+-- ti,mbox-num-users:	Number of targets (processor devices) that the mailbox
+-			device can interrupt
+-- ti,mbox-num-fifos:	Number of h/w fifo queues within the mailbox IP block
+-
+-SoC-specific Required properties:
+----------------------------------
+-The following are mandatory properties for the OMAP architecture based SoCs
+-only:
+-- ti,hwmods:		Name of the hwmod associated with the mailbox. This
+-			should be defined in the mailbox node only if the node
+-			is not defined as a child node of a corresponding sysc
+-			interconnect node.
+-
+-The following are mandatory properties for the K3 AM65x and J721E SoCs only:
+-- interrupt-parent:	Should contain a phandle to the TI-SCI interrupt
+-			controller node that is used to dynamically program
+-			the interrupt routes between the IP and the main GIC
+-			controllers. See the following binding for additional
+-			details,
+-			Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.yaml
+-
+-Child Nodes:
+-============
+-A child node is used for representing the actual sub-mailbox device that is
+-used for the communication between the host processor and a remote processor.
+-Each child node should have a unique node name across all the different
+-mailbox device nodes.
+-
+-Required properties:
+---------------------
+-- ti,mbox-tx:		sub-mailbox descriptor property defining a Tx fifo
+-- ti,mbox-rx:		sub-mailbox descriptor property defining a Rx fifo
+-
+-Sub-mailbox Descriptor Data
+----------------------------
+-Each of the above ti,mbox-tx and ti,mbox-rx properties should have 3 cells of
+-data that represent the following:
+-    Cell #1 (fifo_id) - mailbox fifo id used either for transmitting
+-                        (ti,mbox-tx) or for receiving (ti,mbox-rx)
+-    Cell #2 (irq_id)  - irq identifier index number to use from the parent's
+-                        interrupts data. Should be 0 for most of the cases, a
+-                        positive index value is seen only on mailboxes that have
+-                        multiple interrupt lines connected to the MPU processor.
+-    Cell #3 (usr_id)  - mailbox user id for identifying the interrupt line
+-                        associated with generating a tx/rx fifo interrupt.
+-
+-Optional Properties:
+---------------------
+-- ti,mbox-send-noirq:   Quirk flag to allow the client user of this sub-mailbox
+-                        to send messages without triggering a Tx ready interrupt,
+-                        and to control the Tx ticker. Should be used only on
+-                        sub-mailboxes used to communicate with WkupM3 remote
+-                        processor on AM33xx/AM43xx SoCs.
+-
+-Mailbox Users:
+-==============
+-A device needing to communicate with a target processor device should specify
+-them using the common mailbox binding properties, "mboxes" and the optional
+-"mbox-names" (please see Documentation/devicetree/bindings/mailbox/mailbox.txt
+-for details). Each value of the mboxes property should contain a phandle to the
+-mailbox controller device node and an args specifier that will be the phandle to
+-the intended sub-mailbox child node to be used for communication. The equivalent
+-"mbox-names" property value can be used to give a name to the communication channel
+-to be used by the client user.
+-
+-
+-Example:
+---------
+-
+-1. /* OMAP4 */
+-mailbox: mailbox@4a0f4000 {
+-	compatible = "ti,omap4-mailbox";
+-	reg = <0x4a0f4000 0x200>;
+-	interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+-	ti,hwmods = "mailbox";
+-	#mbox-cells = <1>;
+-	ti,mbox-num-users = <3>;
+-	ti,mbox-num-fifos = <8>;
+-	mbox_ipu: mbox_ipu {
+-		ti,mbox-tx = <0 0 0>;
+-		ti,mbox-rx = <1 0 0>;
+-	};
+-	mbox_dsp: mbox_dsp {
+-		ti,mbox-tx = <3 0 0>;
+-		ti,mbox-rx = <2 0 0>;
+-	};
+-};
+-
+-dsp {
+-	...
+-	mboxes = <&mailbox &mbox_dsp>;
+-	...
+-};
+-
+-2. /* AM33xx */
+-mailbox: mailbox@480c8000 {
+-	compatible = "ti,omap4-mailbox";
+-	reg = <0x480C8000 0x200>;
+-	interrupts = <77>;
+-	ti,hwmods = "mailbox";
+-	#mbox-cells = <1>;
+-	ti,mbox-num-users = <4>;
+-	ti,mbox-num-fifos = <8>;
+-	mbox_wkupm3: wkup_m3 {
+-		ti,mbox-tx = <0 0 0>;
+-		ti,mbox-rx = <0 0 3>;
+-	};
+-};
+-
+-3. /* AM65x */
+-&cbass_main {
+-	cbass_main_navss: interconnect0 {
+-		mailbox0_cluster0: mailbox@31f80000 {
+-			compatible = "ti,am654-mailbox";
+-			reg = <0x00 0x31f80000 0x00 0x200>;
+-			#mbox-cells = <1>;
+-			ti,mbox-num-users = <4>;
+-			ti,mbox-num-fifos = <16>;
+-			interrupt-parent = <&intr_main_navss>;
+-			interrupts = <164 0>;
+-
+-			mbox_mcu_r5fss0_core0: mbox-mcu-r5fss0-core0 {
+-				ti,mbox-tx = <1 0 0>;
+-				ti,mbox-rx = <0 0 0>;
+-			};
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
+new file mode 100644
+index 000000000000..1b5d71df1d51
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
+@@ -0,0 +1,309 @@
++# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mailbox/ti,omap-mailbox.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI OMAP2+ and K3 Mailbox devices
++
++maintainers:
++  - Suman Anna <s-anna@ti.com>
++
++description: |
++  The OMAP Mailbox hardware facilitates communication between different
++  processors using a queued mailbox interrupt mechanism. The IP block is
++  external to the various processor subsystems and is connected on an
++  interconnect bus. The communication is achieved through a set of registers
++  for message storage and interrupt configuration registers.
++
++  Each mailbox IP block/cluster has a certain number of h/w fifo queues and
++  output interrupt lines. An output interrupt line is routed to an interrupt
++  controller within a processor subsystem, and there can be more than one line
++  going to a specific processor's interrupt controller. The interrupt line
++  connections are fixed for an instance and are dictated by the IP integration
++  into the SoC (excluding the SoCs that have an Interrupt Crossbar or an
++  Interrupt Router IP). Each interrupt line is programmable through a set of
++  interrupt configuration registers, and have a rx and tx interrupt source per
++  h/w fifo. Communication between different processors is achieved through the
++  appropriate programming of the rx and tx interrupt sources on the appropriate
++  interrupt lines.
++
++  The number of h/w fifo queues and interrupt lines dictate the usable
++  registers. All the current OMAP SoCs except for the newest DRA7xx SoC has a
++  single IP instance. DRA7xx has multiple instances with different number of
++  h/w fifo queues and interrupt lines between different instances. The interrupt
++  lines can also be routed to different processor sub-systems on DRA7xx as they
++  are routed through the Crossbar, a kind of interrupt router/multiplexer. The
++  K3 AM65x, J721E and J7200 SoCs has each of these instances form a cluster and
++  combine multiple clusters into a single IP block present within the Main
++  NavSS. The interrupt lines from all these clusters are multiplexed and routed
++  to different processor subsystems over a limited number of common interrupt
++  output lines of an Interrupt Router. The AM64x SoCS also uses a single IP
++  block comprising of multiple clusters, but the number of clusters are
++  smaller, and the interrupt output lines are connected directly to various
++  processors.
++
++  Mailbox Controller Nodes
++  =========================
++  A Mailbox device node is used to represent a Mailbox IP instance/cluster
++  within a SoC. The sub-mailboxes (actual communication channels) are
++  represented as child nodes of this parent node.
++
++  Mailbox Users
++  ==============
++  A device needing to communicate with a target processor device should specify
++  them using the common mailbox binding properties, "mboxes" and the optional
++  "mbox-names" (please see Documentation/devicetree/bindings/mailbox/mailbox.txt
++  for details). Each value of the mboxes property should contain a phandle to
++  the mailbox controller device node and an args specifier that will be the
++  phandle to the intended sub-mailbox child node to be used for communication.
++  The equivalent "mbox-names" property value can be used to give a name to the
++  communication channel to be used by the client user.
++
++definitions:
++  omap-mbox-descriptor:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description: |
++      The omap-mbox-descriptor is made of up of 3 cells and represents a single
++      uni-directional communication channel. A typical sub-mailbox device uses
++      two such channels - one for transmitting (Tx) and one for receiving (Rx).
++    items:
++      - description: |
++          mailbox fifo id used either for transmitting on ti,mbox-tx channel or
++          for receiving on ti,mbox-rx channel (fifo_id). This is the hardware
++          fifo number within a mailbox cluster.
++      - description: |
++          irq identifier index number to use from the parent's interrupts data.
++          Should be 0 for most of the cases, a positive index value is seen only
++          on mailboxes that have multiple interrupt lines connected to the MPU
++          processor (irq_id). This is an index number in the listed interrupts
++          property in the DT nodes.
++      - description: |
++          mailbox user id for identifying the interrupt line associated with
++          generating a tx/rx fifo interrupt (usr_id). This is the hardware
++          user id number within a mailbox cluster.
++
++  omap-sub-mailbox:
++    type: object
++    description: |
++      The omap-sub-mailbox is a child node within a Mailbox controller device
++      node and represents the actual communication channel used to send and
++      receive messages between the host processor and a remote processor. Each
++      child node should have a unique node name across all the different mailbox
++      device nodes.
++
++    properties:
++      ti,mbox-tx:
++        $ref: "#/definitions/omap-mbox-descriptor"
++        description: sub-mailbox descriptor property defining a Tx fifo.
++
++      ti,mbox-rx:
++        $ref: "#/definitions/omap-mbox-descriptor"
++        description: sub-mailbox descriptor property defining a Rx fifo.
++
++      ti,mbox-send-noirq:
++        type: boolean
++        description: |
++          Quirk flag to allow the client user of this sub-mailbox to send
++          messages without triggering a Tx ready interrupt, and to control
++          the Tx ticker. Should be used only on sub-mailboxes used to
++          communicate with WkupM3 remote processor on AM33xx/AM43xx SoCs.
++
++    required:
++      - ti,mbox-tx
++      - ti,mbox-rx
++
++properties:
++  compatible:
++    enum:
++      - ti,omap2-mailbox # for OMAP2420, OMAP2430 SoCs
++      - ti,omap3-mailbox # for OMAP3430, OMAP3630 SoCs
++      - ti,omap4-mailbox # for OMAP44xx, OMAP54xx, AM33xx, AM43xx and DRA7xx SoCs
++      - ti,am654-mailbox # for K3 AM65x, J721E and J7200 SoCs
++      - ti,am64-mailbox  # for K3 AM64x SoCs
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    description: |
++      Contains the interrupt information for the mailbox device. The format is
++      dependent on which interrupt controller the Mailbox device uses. The
++      number of interrupts listed will at most be the value specified in
++      ti,mbox-num-users property, but is usually limited by the number of
++      interrupts reaching the main processor. An interrupt-parent property
++      is required on SoCs where the interrupt lines are connected through a
++      Interrupt Router before reaching the main processor's GIC.
++
++  "#mbox-cells":
++    const: 1
++    description: |
++      Common mailbox binding property to identify the number of cells required
++      for the mailbox specifier in a consumer node. The specifier is a phandle
++      to a omap-sub-mailbox device.
++
++  ti,mbox-num-users:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      Number of targets (processor devices) that the mailbox device can
++      interrupt.
++
++  ti,mbox-num-fifos:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Number of h/w fifo queues within the mailbox IP block.
++
++  ti,hwmods:
++    $ref: /schemas/types.yaml#/definitions/string
++    description: |
++      Name of the hwmod associated with the mailbox. This should be defined
++      in the mailbox node only if the node is not defined as a child node of
++      a corresponding sysc interconnect node.
++
++      This property is only needed on some legacy OMAP SoCs which have not
++      yet been converted to the ti,sysc interconnect hierarachy, but is
++      otherwise considered obsolete.
++
++patternProperties:
++  "^mbox-[a-z0-9-]+$":
++    $ref: "#/definitions/omap-sub-mailbox"
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - "#mbox-cells"
++  - ti,mbox-num-users
++  - ti,mbox-num-fifos
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          enum:
++            - ti,am654-mailbox
++    then:
++      required:
++        - interrupt-parent
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            - ti,am654-mailbox
++            - ti,am64-mailbox
++    then:
++      properties:
++        ti,mbox-num-users:
++          const: 4
++        ti,mbox-num-fifos:
++          const: 16
++        interrupts:
++          minItems: 1
++          maxItems: 4
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            - ti,omap4-mailbox
++    then:
++      properties:
++        ti,mbox-num-users:
++          enum: [3, 4]
++        ti,mbox-num-fifos:
++          enum: [8, 12]
++        interrupts:
++          minItems: 1
++          maxItems: 4
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            - ti,omap3-mailbox
++    then:
++      properties:
++        ti,mbox-num-users:
++          const: 2
++        ti,mbox-num-fifos:
++          const: 2
++        interrupts:
++          minItems: 1
++          maxItems: 1
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            - ti,omap2-mailbox
++    then:
++      properties:
++        ti,mbox-num-users:
++          const: 4
++        ti,mbox-num-fifos:
++          const: 6
++        interrupts:
++          minItems: 1
++          maxItems: 2
++
++additionalProperties: false
++
++examples:
++  - |
++    /* OMAP4 */
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    mailbox: mailbox@4a0f4000 {
++        compatible = "ti,omap4-mailbox";
++        reg = <0x4a0f4000 0x200>;
++        interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
++        #mbox-cells = <1>;
++        ti,mbox-num-users = <3>;
++        ti,mbox-num-fifos = <8>;
++
++        mbox_ipu: mbox-ipu {
++            ti,mbox-tx = <0 0 0>;
++            ti,mbox-rx = <1 0 0>;
++        };
++        mbox_dsp: mbox-dsp {
++            ti,mbox-tx = <3 0 0>;
++            ti,mbox-rx = <2 0 0>;
++        };
++    };
++
++    dsp {
++        mboxes = <&mailbox &mbox_dsp>;
++    };
++
++  - |
++    /* AM33xx */
++    mailbox1: mailbox@480c8000 {
++        compatible = "ti,omap4-mailbox";
++        reg = <0x480c8000 0x200>;
++        interrupts = <77>;
++        #mbox-cells = <1>;
++        ti,mbox-num-users = <4>;
++        ti,mbox-num-fifos = <8>;
++
++        mbox_wkupm3: mbox-wkup-m3 {
++            ti,mbox-tx = <0 0 0>;
++            ti,mbox-rx = <0 0 3>;
++            ti,mbox-send-noirq;
++        };
++    };
++
++  - |
++    /* AM65x */
++    mailbox0_cluster0: mailbox@31f80000 {
++        compatible = "ti,am654-mailbox";
++        reg = <0x31f80000 0x200>;
++        #mbox-cells = <1>;
++        ti,mbox-num-users = <4>;
++        ti,mbox-num-fifos = <16>;
++        interrupt-parent = <&intr_main_navss>;
++        interrupts = <436>;
++
++        mbox_mcu_r5fss0_core0: mbox-mcu-r5fss0-core0 {
++            ti,mbox-tx = <1 0 0>;
++            ti,mbox-rx = <0 0 0>;
++        };
++    };
+-- 
+2.30.1
 
