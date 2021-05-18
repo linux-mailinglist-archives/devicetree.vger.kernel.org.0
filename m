@@ -2,66 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A571386F16
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 03:21:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A21A386F20
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 03:27:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238016AbhERBW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 21:22:58 -0400
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:45591 "EHLO
-        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237293AbhERBW5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 21:22:57 -0400
-Received: by mail-oi1-f170.google.com with SMTP id w127so4428865oig.12;
-        Mon, 17 May 2021 18:21:40 -0700 (PDT)
+        id S1345644AbhERB2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 21:28:54 -0400
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:34528 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238837AbhERB2y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 21:28:54 -0400
+Received: by mail-ot1-f51.google.com with SMTP id u25-20020a0568302319b02902ac3d54c25eso7293972ote.1;
+        Mon, 17 May 2021 18:27:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=roK24cWAgMZxvTHg22P9ht1ialJs4hUE+tJxHNLXDAU=;
-        b=GDEHM7pj6XYWNlcQ/89/npoqnGSjWFUHwYA5gzzZfhJXfR3nAav3cB875OFn3eLMzH
-         pw/9QYi19jGbGUeFUa3BbMiBaRo/wXusQisJKf0J8HXgUpiQcH1UuoDfqQBuQkEpJiUd
-         B43eSllT+aqB4t2RRwkvdTRrAld2lYtPozpwbF48iCMtdh0zpXrEE17n9zbbEfgYuz3/
-         4faD6CUZHe2zJFCNnmjS2rBxPU5zB/73Mn0KU82ldAFK2P1en1UeIgZjJf4UbWwSW5F4
-         yDOzFXTRFb6fcZv9yOhOBbxrYXnQw+jtzpxZGZWb5N2Sjj/t+/rcV0gEH7YRUxnAr7Ar
-         r4QA==
-X-Gm-Message-State: AOAM533iwQDMyhS/W+NAnOCRxkn50v9txETPjeSAmoy1oxwmtjiZryGv
-        F4LcjSzg0eq+L4/ZtHKvqJoRA63ZmA==
-X-Google-Smtp-Source: ABdhPJy+zxSGUtb9OL1svdetvQDtijPs5InWuaWndpH+V+4slSRtw2GLe3Sr9rTU4/rLu2vvMr3gSA==
-X-Received: by 2002:a05:6808:b0f:: with SMTP id s15mr1491145oij.58.1621300900304;
-        Mon, 17 May 2021 18:21:40 -0700 (PDT)
+        bh=x5MuHDr1VuOYtFi32SjfZtdQohcWcKpREmn5Jo1hbuE=;
+        b=Q27jtacByMq/gw5VqDadpH08wC36fpKKpU5wLJUDOqtIyhuApSrxxiyHh8CrWTPf6l
+         AbeZ4sTyTJ5vjd7f/t4H6+4cYtmn/w80P1I7W/QFhDW9TqzbrxX41w1AAmS4eNCGobYQ
+         IG2qdl6ZQclqoC5wq6qcCkGgNg8WnPMZDdU7c6oErk/h/kMUEhXMT7OO7KWA76yr2kmX
+         kw3QfQujmTfCC5ur45A2CP9+12ud0o5HOubLSntEF2gTwjDXMDFXbsHz2ETLQ3nt+/uz
+         b0weRlH/mCj1oA/sIpzWwD+9bzyZPVV5jOxnbEaWukDHqejVSRJ/5BV5eOKJhDdNu3wv
+         Z7og==
+X-Gm-Message-State: AOAM5319APeNdAdjl68EC3J2Pn9abE3ApVJSzgxbHIX3YoKPwGuEjpGp
+        5LyINlU+YU3tbu3uRAOAPA==
+X-Google-Smtp-Source: ABdhPJzW/WET1XynmeNegfDrhTPJIkFYbUP1pwCRoml9gTosHpax4KZkPIP2FBySmP+4CDjgKyLGDA==
+X-Received: by 2002:a9d:ea2:: with SMTP id 31mr2193056otj.200.1621301257191;
+        Mon, 17 May 2021 18:27:37 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k16sm3486015otp.19.2021.05.17.18.21.38
+        by smtp.gmail.com with ESMTPSA id 77sm2500602otc.54.2021.05.17.18.27.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 May 2021 18:21:38 -0700 (PDT)
-Received: (nullmailer pid 3590411 invoked by uid 1000);
-        Tue, 18 May 2021 01:21:37 -0000
-Date:   Mon, 17 May 2021 20:21:37 -0500
+        Mon, 17 May 2021 18:27:36 -0700 (PDT)
+Received: (nullmailer pid 3600153 invoked by uid 1000);
+        Tue, 18 May 2021 01:27:35 -0000
+Date:   Mon, 17 May 2021 20:27:35 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     linux-mips@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 1/3] dt-bindings: vendor-prefixes: Add an entry for
- OpenEmbed
-Message-ID: <20210518012137.GA3590381@robh.at.kernel.org>
-References: <20210514051743.15248-1-o.rempel@pengutronix.de>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     lgirdwood@gmail.com, alsa-devel@alsa-project.org,
+        broonie@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 4/9] ASoC: dt-bindings: wcd938x-sdw: add bindings for
+ wcd938x-sdw
+Message-ID: <20210518012735.GA3600100@robh.at.kernel.org>
+References: <20210514103405.29927-1-srinivas.kandagatla@linaro.org>
+ <20210514103405.29927-5-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210514051743.15248-1-o.rempel@pengutronix.de>
+In-Reply-To: <20210514103405.29927-5-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 May 2021 07:17:41 +0200, Oleksij Rempel wrote:
-> Add "openembed" entry for https://www.openembed.com/
+On Fri, 14 May 2021 11:34:00 +0100, Srinivas Kandagatla wrote:
+> Qualcomm WCD9380/WCD9385 Codec is a standalone Hi-Fi audio codec IC
+> connected over SoundWire. This device has two SoundWire devices RX and
+> TX respectively. This bindings is for those slave devices on WCD9380/WCD9385.
 > 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../bindings/sound/qcom,wcd938x-sdw.yaml      | 70 +++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd938x-sdw.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
