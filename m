@@ -2,225 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D50F387A51
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 15:44:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABD1B387A8B
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 15:58:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233716AbhERNpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 09:45:17 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:46723 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233678AbhERNpR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 09:45:17 -0400
-Received: by mail-ot1-f48.google.com with SMTP id d3-20020a9d29030000b029027e8019067fso8609558otb.13;
-        Tue, 18 May 2021 06:43:58 -0700 (PDT)
+        id S1349720AbhERN77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 09:59:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48088 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343744AbhERN77 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 09:59:59 -0400
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CC8DC061756
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 06:58:41 -0700 (PDT)
+Received: by mail-qk1-x734.google.com with SMTP id i67so9311779qkc.4
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 06:58:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=c0rcuf59hk8zzhGYb9mHFLDEmB+phP4Kth6slEOIZYA=;
+        b=lFI0AHcModwrEa18qX2uKnk2Wac55m5AiPLM2cv6lnVwkVH8JDjqEIw0gazCaElftB
+         cHNLRg0l98UfE8vp/8XiQGbD96CtVJc0fhLv9d7phtdY+1C1sgwhDT1cCrwNauVQRMVj
+         zr3eFfPWbISXhR8fSSHBrFosPT42cHLgNrX+4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=4jm0S8ddMwt/uhSM0T7FAx+DzX2TUerJKHM1uev3sJo=;
-        b=riw202ukrBM78UBj9hYe4zJU9NOD65jD87FO6+IYAdI8bz3xAK+MoRmtvZazxeQFfh
-         mLg+fnbE588xucUhCL95oso0d9rKZM7T7ddxFSAPoW48O7Rjbn263Ak/TkRUTJ8KIiGQ
-         lFFgSlL6gAuJxX1axS7LcZz5Z/ZHo5jTC+rc+Gxnjj8xkxhFzy4AAeyyVjSWM5yIWfgd
-         JPnse6YJa+yM0uh8IYd00Oi4ETZ3HPQGri5L9tj37mPJMF0I/zJ4k32PR3vSr1lMrR1a
-         61wCamM0YbeIdQiC1ZTMs0QA/Q0YScM7ipqKPK0IxfsZTjrjeUNQt7b9zN5Qgb6vGB7J
-         3ipA==
-X-Gm-Message-State: AOAM5331dWyXRBUxiWUrkvhyJ/vbFFfE0gXvc72poT1H2qTyFF0ZBtMo
-        AbMkRu3huQ0kDUPAcG/DeJnYPZPHSg==
-X-Google-Smtp-Source: ABdhPJwqRh21mnQ7HNrbhfem5wZW2JCmKm+iiEQPID+joQ5Q/8Y/FKtUHNCGH2kOT/YhySo/mrnZzQ==
-X-Received: by 2002:a9d:4617:: with SMTP id y23mr4197255ote.71.1621345438482;
-        Tue, 18 May 2021 06:43:58 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e20sm3610817oot.11.2021.05.18.06.43.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 May 2021 06:43:57 -0700 (PDT)
-Received: (nullmailer pid 561495 invoked by uid 1000);
-        Tue, 18 May 2021 13:43:56 -0000
-Date:   Tue, 18 May 2021 08:43:56 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Mark Kettenis <mark.kettenis@xs4all.nl>
-Cc:     devicetree@vger.kernel.org, Mark Kettenis <kettenis@openbsd.org>,
-        Hector Martin <marcan@marcan.st>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: Add DT bindings for
- apple,pinctrl
-Message-ID: <20210518134356.GA553438@robh.at.kernel.org>
-References: <20210516183221.93686-1-mark.kettenis@xs4all.nl>
- <20210516183221.93686-2-mark.kettenis@xs4all.nl>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=c0rcuf59hk8zzhGYb9mHFLDEmB+phP4Kth6slEOIZYA=;
+        b=NOaXyf/EjmVDP5q3gP+vlw2b9LIffcHxCnOLS7+mGfNC1CIyiyke5s1ypj9VlcQqcf
+         t/8o8llszNovoebExcNFDA1rz0MQ7rceHGjkThIZTIir6gVmT/BFfJNH0dUs8Kl8WGFa
+         Ae+WKqB3ZNnnjiGihjlR9bpVPA7J8CSq8CnhCrYZRS0zKXepVukWKBB8ojwgNf3U+hM8
+         MMskEU/msXW3Kxpoc/seoS8FMtF9eFrRSXxqGNLmv4VJFgk3OS/nHAfCfguRxYEKbbrP
+         kX7iObYH0jNPjCRo9gAqeb1M4emkAEIThMW4DDDB+HQGXdTMAsq9+XDmreBBJY6JZ/s5
+         uP9Q==
+X-Gm-Message-State: AOAM530OIBRFvuTgDM60OwDrk7eXs5dPZG5tSkRPv7oEUTNgEfmAQE0L
+        h/G6UOQxXnAKY1eymjSpdp/4/yzH+SM7cQ==
+X-Google-Smtp-Source: ABdhPJxC7QY7oYEvbsdcacs7vQ0QMfNBq5EhfXWq8aAIKR/IZzqFsS0UQebBUEYM/eAgDzcWzO7GoQ==
+X-Received: by 2002:a37:606:: with SMTP id 6mr5651092qkg.245.1621346320228;
+        Tue, 18 May 2021 06:58:40 -0700 (PDT)
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
+        by smtp.gmail.com with ESMTPSA id d84sm12344413qke.131.2021.05.18.06.58.40
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 May 2021 06:58:40 -0700 (PDT)
+Received: by mail-yb1-f178.google.com with SMTP id r8so13369411ybb.9
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 06:58:40 -0700 (PDT)
+X-Received: by 2002:a25:aad4:: with SMTP id t78mr7268437ybi.343.1621346308916;
+ Tue, 18 May 2021 06:58:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210516183221.93686-2-mark.kettenis@xs4all.nl>
+References: <20210517200907.1459182-1-dianders@chromium.org>
+ <20210517130450.v7.2.Ieb731d23680db4700cc41fe51ccc73ba0b785fb7@changeid> <CAL_JsqLMs10Luj7fKkNVu-BUZhpqAGJMZyUxz76N3b9Xa7EByg@mail.gmail.com>
+In-Reply-To: <CAL_JsqLMs10Luj7fKkNVu-BUZhpqAGJMZyUxz76N3b9Xa7EByg@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 18 May 2021 06:58:16 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Xsc1noo7ZBK4_+Cty6KO5vc7Ex7G7BCg38rRu3s=fvUg@mail.gmail.com>
+Message-ID: <CAD=FV=Xsc1noo7ZBK4_+Cty6KO5vc7Ex7G7BCg38rRu3s=fvUg@mail.gmail.com>
+Subject: Re: [PATCH v7 02/10] dt-bindings: display: simple: List hpd
+ properties in panel-simple
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+        Lyude Paul <lyude@redhat.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Linus W <linus.walleij@linaro.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Rob Clark <robdclark@chromium.org>,
+        Steev Klimaszewski <steev@kali.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 16, 2021 at 08:32:17PM +0200, Mark Kettenis wrote:
-> From: Mark Kettenis <kettenis@openbsd.org>
-> 
-> The Apple GPIO controller is a simple combined pin and GPIO conroller
-> present on Apple ARM SoC platforms, including various iPhone and iPad
-> devices and the "Apple Silicon" Macs.
-> 
-> Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
-> ---
->  .../bindings/pinctrl/apple,pinctrl.yaml       | 103 ++++++++++++++++++
->  MAINTAINERS                                   |   2 +
->  include/dt-bindings/pinctrl/apple.h           |  13 +++
->  3 files changed, 118 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
->  create mode 100644 include/dt-bindings/pinctrl/apple.h
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
-> new file mode 100644
-> index 000000000000..fae23e1d845e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
-> @@ -0,0 +1,103 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/apple,pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Apple GPIO controller
-> +
-> +maintainers:
-> +  - Mark Kettenis <kettenis@openbsd.org>
-> +
-> +description: |
-> +  The Apple GPIO controller is a simple combined pin and GPIO
-> +  controller present on Apple ARM SoC platforms, including various
-> +  iPhone and iPad devices and the "Apple Silicon" Macs.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: apple,t8103-pinctrl
-> +      - const: apple,pinctrl
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    const: 2
-> +
-> +  gpio-ranges:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 7
+Hi,
 
-Add some description about what each interrupt is.
+On Tue, May 18, 2021 at 5:42 AM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Mon, May 17, 2021 at 3:09 PM Douglas Anderson <dianders@chromium.org> wrote:
+> >
+> > These are described in panel-common.yaml but if I don't list them in
+> > panel-simple then I get yells when running 'dt_binding_check' in a
+> > future patch. List them along with other properties that seem to be
+> > listed in panel-simple for similar reasons.
+>
+> If you have HPD, is it still a simple panel? I don't see this as an
+> omission because the use of these properties for simple panels was
+> never documented IIRC.
 
-Is this really 1-7 or either 1 or 7?
+I would say so. It is currently supported by panel-simple in Linux. Of
+course, you could make the argument that panel-simple is no longer
+really "simple" because of things like this...
 
-> +
-> +  interrupt-controller: true
-> +
-> +patternProperties:
-> +  '-pins$':
-> +    type: object
-> +    $ref: pinmux-node.yaml#
-> +
-> +    properties:
-> +      pinmux:
-> +        description:
-> +          Values are constructed from pin number and alternate function
-> +          configuration number using the APPLE_PINMUX() helper macro
-> +          defined in include/dt-bindings/pinctrl/apple.h.
-> +
-> +    required:
-> +      - pinmux
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - gpio-controller
-> +  - '#gpio-cells'
-> +  - gpio-ranges
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/apple-aic.h>
-> +    #include <dt-bindings/pinctrl/apple.h>
-> +
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      pinctrl: pinctrl@23c100000 {
-> +        compatible = "apple,t8103-pinctrl", "apple,pinctrl";
-> +        reg = <0x2 0x3c100000 0x0 0x100000>;
-> +        clocks = <&gpio_clk>;
-> +
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +        gpio-ranges = <&pinctrl 0 0 212>;
-> +
-> +        interrupt-controller;
-> +        interrupt-parent = <&aic>;
-> +        interrupts = <AIC_IRQ 16 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <AIC_IRQ 17 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <AIC_IRQ 18 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <AIC_IRQ 19 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <AIC_IRQ 20 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <AIC_IRQ 21 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <AIC_IRQ 22 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +        pcie_pins: pcie-pins {
-> +          pinmux = <APPLE_PINMUX(150, 1)>,
-> +                   <APPLE_PINMUX(151, 1)>,
-> +                   <APPLE_PINMUX(32, 1)>;
-> +        };
-> +      };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index ad0e9be66885..7327c9b778f1 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1654,9 +1654,11 @@ C:	irc://chat.freenode.net/asahi-dev
->  T:	git https://github.com/AsahiLinux/linux.git
->  F:	Documentation/devicetree/bindings/arm/apple.yaml
->  F:	Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
-> +F:	Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
->  F:	arch/arm64/boot/dts/apple/
->  F:	drivers/irqchip/irq-apple-aic.c
->  F:	include/dt-bindings/interrupt-controller/apple-aic.h
-> +F:	include/dt-bindings/pinctrl/apple.h
->  
->  ARM/ARTPEC MACHINE SUPPORT
->  M:	Jesper Nilsson <jesper.nilsson@axis.com>
-> diff --git a/include/dt-bindings/pinctrl/apple.h b/include/dt-bindings/pinctrl/apple.h
-> new file mode 100644
-> index 000000000000..ea0a6f466592
-> --- /dev/null
-> +++ b/include/dt-bindings/pinctrl/apple.h
-> @@ -0,0 +1,13 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ OR MIT */
-> +/*
-> + * This header provides constants for Apple pinctrl bindings.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_PINCTRL_APPLE_H
-> +#define _DT_BINDINGS_PINCTRL_APPLE_H
-> +
-> +#define APPLE_PINMUX(pin, func) ((pin) | ((func) << 16))
-> +#define APPLE_PIN(pinmux) ((pinmux) & 0xffff)
-> +#define APPLE_FUNC(pinmux) ((pinmux) >> 16)
-> +
-> +#endif /* _DT_BINDINGS_PINCTRL_APPLE_H */
-> -- 
-> 2.31.1
-> 
+I guess I'd say this: I believe that the HPD properties eventually
+belong in the generic "edp-panel" that I'm still planning to post (and
+which will be based on this series). I justified that previously [1]
+by talking about the fact that there's a single timing diagram that
+(as far as I've been able to tell) is fairly universal in panel specs.
+It's a complicated timing diagram showing some two dozen timings (and
+includes HPD!), but if you support all the timings then you've
+supported pretty much all panels. IMO the original intent of
+"simple-panel" was to specify a panel that's just like all the other
+panels w/ a few parameters.
+
+NOTE: I'd also say that for nearly all eDP panels HPD is important,
+but in many designs HPD is handled "magically" and not specified in
+the device tree. This is because it goes to a dedicated location on
+the eDP controller / bridge chip. I added the HPD GPIO support (and
+no-hpd) to simple-panel because my bridge chip has a fairly useless
+HPD line and we don't use it. Even though the fact that we need the
+HPD specified like this is a function of our bridge chip, back in the
+day I was told that the property belonged in the panel and so that's
+where it lives.
+
+
+> Not saying we can't add them, but justify it as an addition, not just
+> fixing a warning.
+
+Sure, I'll beef up the commit message.
+
+
+> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> > ---
+> > I didn't spend tons of time digging to see if there was supposed to be
+> > a better way of doing this. If there is, feel free to yell.
+>
+> That's the right way to do it unless you want to allow all common
+> properties, then we'd use unevaluatedProperties instead of
+> additionalProperties.
+
+Ah, perfect. Thanks!
+
+[1] https://lore.kernel.org/r/CAD=FV=VZYOMPwQZzWdhJGh5cjJWw_EcM-wQVEivZ-bdGXjPrEQ@mail.gmail.com/
+
+
+-Doug
