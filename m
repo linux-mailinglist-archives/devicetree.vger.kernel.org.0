@@ -2,238 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 082C6387C9B
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 17:39:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB948387D5D
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 18:27:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350261AbhERPkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 11:40:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43072 "EHLO
+        id S1350622AbhERQ25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 12:28:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345234AbhERPkm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 11:40:42 -0400
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D652C061756
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 08:39:24 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id 36-20020a9d0ba70000b02902e0a0a8fe36so8992966oth.8
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 08:39:24 -0700 (PDT)
+        with ESMTP id S1350608AbhERQ24 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 12:28:56 -0400
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D712C06138B
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 09:27:35 -0700 (PDT)
+Received: by mail-pl1-x635.google.com with SMTP id a11so5391441plh.3
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 09:27:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2hSwqPBR8xk5peOjp8r36zshPTihxbD5KyZ7/NEBH24=;
-        b=mvj1ormvns6c8e+ic/PsSJNg9DLr9kf/17VvtRI2XtMI//1llYzD/QpQuvPakUJYQQ
-         DS+Xo/uoPIJyjHoavYY7zuWK4qVVV83WVk5nAn7MDmEsl2vw0uz1xsLweQYC/9dTzzRV
-         ghr128tExjqZBppdRqp8xWwxJxE68i7ZTjFXGbfJPFUT9aWJyvLRdh3QWPkRkYnXtm3T
-         zrCwTYgf17p8ER1Pg5Xx1kYVK5BPy71uz1Lto2qzL+gIYXWfHrE0RCY/SPzUIGJYMqlV
-         +BRUesvZx2dingYSETXNoJPVsjGINfdPZ7JjYsY39BlCrS8AMVaG+GwJF7MJ4hKWkcDX
-         W6lQ==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=f1d/gi6dWIkxeOVPavTj9FbVcjVV1QNQTHRoa065Axw=;
+        b=ltK2Iy7UdPjTLSC30wGMvTDqSuz9Tgdw5TPVjMsfHwcsICjhevbCzkqvnNmYfn4OGw
+         ME3LAkIlii0f3cb+FMfATTKVje3qgqtyyLv7HbeqRlZsaUkGCLFATvjez4IZ96DDla5m
+         PxBhkAB9GQL67fnkmX2ZLFmzmtcJyR6PF0uag=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2hSwqPBR8xk5peOjp8r36zshPTihxbD5KyZ7/NEBH24=;
-        b=A0AghDVYY3kHcogpiI3cWzxNvWscP96SNX2rzlIlH+XdJaBjzHQroIflzikaK1gRnS
-         g03HBXefQ6hGwqr3d3HL4DRvf0GuMWfd9+U31b9kgm/uMHtytZSzsaJPSlKZpJV/ajwj
-         P7YPLnrCcnpVd3TCz02JGFAkHMoJbQbI/1WWXjbRz8Qu/bdmEUS3yP3Gj+opG5sKaynE
-         3hB1XiGKJkhH6PuVOR6VTequI1Oa+TEnV7C1tsfL3v5S7jcprvKtvXHymeRw4JiWb8kw
-         bRDpsJgHeMipLHZSu7FrI6OJv9V386/ZMn8GMYOhIcnWaqJCroGzaJFWpAqbwHZdfSPu
-         whog==
-X-Gm-Message-State: AOAM533zCHDJV3KMiIabF7752bfTjNvnveA1CPKKkuPdc1l0RiIor0RA
-        8IrCQ9v+XI8U1wi+GU2OtdGOil/LI49mJoUdFtkDLQ==
-X-Google-Smtp-Source: ABdhPJxs5EkaQ8cVqMmDDyuAeI4LeAKT2u8OFSqwXjSjLKhqFVkkYjQ9FPfi1Tdv13wngOPWcvaW1DPF7TKLro0KyJ0=
-X-Received: by 2002:a9d:4f15:: with SMTP id d21mr4807826otl.155.1621352363686;
- Tue, 18 May 2021 08:39:23 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210505213731.538612-1-bhupesh.sharma@linaro.org>
- <20210505213731.538612-10-bhupesh.sharma@linaro.org> <20210518150702.GW2484@yoga>
-In-Reply-To: <20210518150702.GW2484@yoga>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Tue, 18 May 2021 21:09:12 +0530
-Message-ID: <CAH=2NtxMR5zCBJ7_u3kT9Koewv3Ay4baH8YQ9frX2uhO2gDM=Q@mail.gmail.com>
-Subject: Re: [PATCH v2 09/17] crypto: qce: core: Add support to initialize
- interconnect path
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=f1d/gi6dWIkxeOVPavTj9FbVcjVV1QNQTHRoa065Axw=;
+        b=W8839ggmsjOfNnOOq3pf5x9a7C3GTwd9v1aQ8HFnLWPbvm9znqHZKWIKezovhNOKyx
+         bUvK7fAp2sfBCIO+iuGdpV2eDQsolQdebxWX1uxPwEuLg4csXnUI/6wOVZdRRA/WH2iS
+         +mCHt7ikt2epvs+cKAtPVDoKEFW31+49Q0P8Ji4+qOrkDzx6ktamVJU/LBcPlYyHEVxz
+         Oh5vwi1dHtqh3Usvo5ljECcXTZUynWA3PnnnQfie/4yKfbJ17hOXZ7OYTA63SR0Ffc/2
+         8qITGxroPAFfzB6FTUs/a5OrzOc4/Pk3zoxCUaQixjufhefPSTn4g57w7C5HpeKr0G3v
+         6u2A==
+X-Gm-Message-State: AOAM532WNFP/sz/5luAyFXQsJW4PnsWFSxsQxl8zS2FkPnK8RXd/KE1B
+        6T74N0DA0C03AVnHIM+At0HCeA==
+X-Google-Smtp-Source: ABdhPJzWDMbUyShJOIx/gvCaFmMVofj6AaRHabNDQzzxjDYAOK3p+QoSxAXMzeVSyXoUi8wW/IS3YA==
+X-Received: by 2002:a17:902:44:b029:ee:9107:4242 with SMTP id 62-20020a1709020044b02900ee91074242mr5541000pla.18.1621355254874;
+        Tue, 18 May 2021 09:27:34 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:5b64:c814:4f8b:838e])
+        by smtp.gmail.com with UTF8SMTPSA id l67sm13529552pgl.18.2021.05.18.09.27.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 May 2021 09:27:34 -0700 (PDT)
+Date:   Tue, 18 May 2021 09:27:31 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     satya priya <skakit@codeaurora.org>,
         Andy Gross <agross@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bhupesh.linux@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org
+Subject: Re: [RESEND PATCH V4 2/8] arm64: dts: qcom: sc7280: Add
+ thermal-zones node
+Message-ID: <YKPq84r7soE0yjMA@google.com>
+References: <1621318822-29332-1-git-send-email-skakit@codeaurora.org>
+ <1621318822-29332-3-git-send-email-skakit@codeaurora.org>
+ <YKOog43JZghth3Np@vkoul-mobl.Dlink>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <YKOog43JZghth3Np@vkoul-mobl.Dlink>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
-
-Thanks for the review.
-
-On Tue, 18 May 2021 at 20:37, Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
-> On Wed 05 May 16:37 CDT 2021, Bhupesh Sharma wrote:
->
-> > From: Thara Gopinath <thara.gopinath@linaro.org>
-> >
-> > Crypto engine on certain Snapdragon processors like sm8150, sm8250, sm8350
-> > etc. requires interconnect path between the engine and memory to be
-> > explicitly enabled and bandwidth set prior to any operations. Add support
-> > in the qce core to enable the interconnect path appropriately.
-> >
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Andy Gross <agross@kernel.org>
-> > Cc: Herbert Xu <herbert@gondor.apana.org.au>
-> > Cc: David S. Miller <davem@davemloft.net>
-> > Cc: Stephen Boyd <sboyd@kernel.org>
-> > Cc: Michael Turquette <mturquette@baylibre.com>
-> > Cc: Vinod Koul <vkoul@kernel.org>
-> > Cc: dmaengine@vger.kernel.org
-> > Cc: linux-clk@vger.kernel.org
-> > Cc: linux-crypto@vger.kernel.org
-> > Cc: devicetree@vger.kernel.org
-> > Cc: linux-kernel@vger.kernel.org
-> > Cc: bhupesh.linux@gmail.com
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > [Make header file inclusion alphabetical]
-> > Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
->
-> This says that you prepared the patch, then Thara picked up the patch
-> and sorted the includes. But somehow you then sent the patch.
->
-> I.e. you name should be the last - unless you jointly wrote the path, in
-> which case you should also add a "Co-developed-by: Thara".
-
-No, it's the other way around. Thara prepared the patch (as the
-'From:' field suggests) and I just changed the inclusion order of the
-header files and made it in alphabetical order.
-
-I will move my S-o-b later in the order.
-
+On Tue, May 18, 2021 at 05:14:03PM +0530, Vinod Koul wrote:
+> On 18-05-21, 11:50, satya priya wrote:
+> > Add thermal-zones node for SC7280 SoC.
+> > 
+> > Signed-off-by: satya priya <skakit@codeaurora.org>
+> > Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
 > > ---
-> >  drivers/crypto/qce/core.c | 35 ++++++++++++++++++++++++++++-------
-> >  drivers/crypto/qce/core.h |  1 +
-> >  2 files changed, 29 insertions(+), 7 deletions(-)
-> >
-> > diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
-> > index 80b75085c265..92a0ff1d357e 100644
-> > --- a/drivers/crypto/qce/core.c
-> > +++ b/drivers/crypto/qce/core.c
-> > @@ -5,6 +5,7 @@
-> >
-> >  #include <linux/clk.h>
-> >  #include <linux/dma-mapping.h>
-> > +#include <linux/interconnect.h>
-> >  #include <linux/interrupt.h>
-> >  #include <linux/module.h>
-> >  #include <linux/mod_devicetable.h>
-> > @@ -21,6 +22,8 @@
-> >  #define QCE_MAJOR_VERSION5   0x05
-> >  #define QCE_QUEUE_LENGTH     1
-> >
-> > +#define QCE_DEFAULT_MEM_BANDWIDTH    393600
->
-> Do we know what this rate is?
-
-I think this corresponds to the arbitrated bandwidth / instantaneous
-bandwidth (in KBps)
-for the qce crypto part [I think 'average/peak bandwidth' would be a
-better terminology :) ].
-
-Maybe Thara can add more comments here.
-
+> > Changes in RESEND V4:
+> >  - No Changes.
+> > 
+> >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 +++
+> >  1 file changed, 3 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > index 2cc4785..2a7d488 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > @@ -1125,4 +1125,7 @@
+> >  			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
+> >  			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
+> >  	};
 > > +
-> >  static const struct qce_algo_ops *qce_ops[] = {
-> >  #ifdef CONFIG_CRYPTO_DEV_QCE_SKCIPHER
-> >       &skcipher_ops,
-> > @@ -202,21 +205,35 @@ static int qce_crypto_probe(struct platform_device *pdev)
-> >       if (ret < 0)
-> >               return ret;
-> >
-> > +     qce->mem_path = of_icc_get(qce->dev, "memory");
->
-> Using devm_of_icc_get() would save you some changes to the error path.
+> > +	thermal_zones: thermal-zones {
+> > +	};
+> 
+> Empty node..? what am i missing here...
 
-Ok, I can address this in v3.
+The 'thermal-zones' node with the SoC thermal zones is usually created
+in the <soc>.dtsi, however it doesn't exist yet. The 'Add DT bindings
+and device tree nodes for TSENS in SC7280' series
+(https://patchwork.kernel.org/project/linux-arm-msm/list/?series=478225)
+is creating it, but the series hasn't landed yet.
 
-> > +     if (IS_ERR(qce->mem_path))
-> > +             return PTR_ERR(qce->mem_path);
-> > +
-> >       qce->core = devm_clk_get(qce->dev, "core");
-> > -     if (IS_ERR(qce->core))
-> > -             return PTR_ERR(qce->core);
-> > +     if (IS_ERR(qce->core)) {
-> > +             ret = PTR_ERR(qce->core);
-> > +             goto err_mem_path_put;
-> > +     }
-> >
-> >       qce->iface = devm_clk_get(qce->dev, "iface");
-> > -     if (IS_ERR(qce->iface))
-> > -             return PTR_ERR(qce->iface);
-> > +     if (IS_ERR(qce->iface)) {
-> > +             ret = PTR_ERR(qce->iface);
-> > +             goto err_mem_path_put;
-> > +     }
-> >
-> >       qce->bus = devm_clk_get(qce->dev, "bus");
-> > -     if (IS_ERR(qce->bus))
-> > -             return PTR_ERR(qce->bus);
-> > +     if (IS_ERR(qce->bus)) {
-> > +             ret = PTR_ERR(qce->bus);
-> > +             goto err_mem_path_put;
-> > +     }
-> > +
-> > +     ret = icc_set_bw(qce->mem_path, QCE_DEFAULT_MEM_BANDWIDTH, QCE_DEFAULT_MEM_BANDWIDTH);
-> > +     if (ret)
-> > +             goto err_mem_path_put;
-> >
-> >       ret = clk_prepare_enable(qce->core);
-> >       if (ret)
-> > -             return ret;
-> > +             goto err_mem_path_disable;
-> >
-> >       ret = clk_prepare_enable(qce->iface);
-> >       if (ret)
-> > @@ -256,6 +273,10 @@ static int qce_crypto_probe(struct platform_device *pdev)
-> >       clk_disable_unprepare(qce->iface);
-> >  err_clks_core:
-> >       clk_disable_unprepare(qce->core);
-> > +err_mem_path_disable:
-> > +     icc_set_bw(qce->mem_path, 0, 0);
->
-> When you icc_put() (or devm_of_icc_get() does it for you) the path's
-> votes are implicitly set to 0, so you don't need to do this.
->
-> And as such, you don't need to change the error path at all.
-
-Ok, got it. Will change v3 accordingly.
-
-Thanks,
-Bhupesh
-
-> > +err_mem_path_put:
-> > +     icc_put(qce->mem_path);
-> >       return ret;
-> >  }
-> >
-> > diff --git a/drivers/crypto/qce/core.h b/drivers/crypto/qce/core.h
-> > index 085774cdf641..228fcd69ec51 100644
-> > --- a/drivers/crypto/qce/core.h
-> > +++ b/drivers/crypto/qce/core.h
-> > @@ -35,6 +35,7 @@ struct qce_device {
-> >       void __iomem *base;
-> >       struct device *dev;
-> >       struct clk *core, *iface, *bus;
-> > +     struct icc_path *mem_path;
-> >       struct qce_dma_data dma;
-> >       int burst_size;
-> >       unsigned int pipe_pair_id;
-> > --
-> > 2.30.2
-> >
+The node is needed by other patches in this series that add non-SoC
+thermal zones. Hence either an empty node needs to be added (for now)
+or this series should 'officially' depend on the TSENS series mentioned
+above.
