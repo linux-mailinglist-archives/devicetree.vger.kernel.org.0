@@ -2,121 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76DC33881F2
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 23:16:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4192D388218
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 23:27:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241373AbhERVR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 17:17:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34686 "EHLO
+        id S239338AbhERV2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 17:28:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236573AbhERVR0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 17:17:26 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2664C061760
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 14:16:07 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id w15so13114801ljo.10
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 14:16:07 -0700 (PDT)
+        with ESMTP id S236772AbhERV2V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 17:28:21 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44024C06175F
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 14:27:03 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id i9so15935538lfe.13
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 14:27:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=cvtZ6ckUlmE+gpWNrBbw9zxXMPT5gh65PGrIYRqcK5Y=;
-        b=iLl0ogtDiHXNumD0oddnV4kaw9Ev2AwKFeUmc2FjyS+1M6VOsapRKaqm7p2BglvgxI
-         T6dmZ/sUaHraMvyjpXwbpGnJb+kLpKcmvfMepzi9aH2S8ld/vgsm91XDqtfJmh8xlAwM
-         dAdfTX4DzekHupKNC7n1eYCOMU98eToddA/jxOtwmGQ1IlM17Dsg01JnAzLmsMIpf791
-         Myf2aXgx3l84KQt4Jo9VHjzcvWiD7/VQ02tVsUP6zOzYpWhK65la6QKwCMuNZVS9mLy0
-         cPR2YFgDBwfLkGBDPwmHudjJXoaZHyF5/RWTljNuCUZWR8dkqteiMUoBh4j4hTjoQ6Uw
-         Rykg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Yq66EOFTE3KRowHKWchwUg+sRn03C/iAH0DpjtlmwwA=;
+        b=lbe3tVEZF3bf4ofQpWHktP6cfisd1oE7LA39QhhbdQjbakjMFGhOVKYWhpBpvX1EJp
+         ysRjbDTbPSu4nO7kn2stpcaZzDV+8xJUrXTzh+738Nnpovc3b92eFYab3dURRe5n5lCk
+         eZr1uA96p7Dxv0kLbK+9PEF9TKGlBrjZkSrQbk26KQ0/aWQ9CIVVXNMNvMqpEr6CK0Lj
+         vkjb7ph6cxQEnlPxtwjSL9LZU9SJZDt4oNQrCt1fwSWXtxbmCPfn9dCno/K/xI3R2QWf
+         m5gLZ6hj4rRzsRFDYvrj/6fM6A/gd7oKsSo13Ns8zUvzHlar3TDq6FnajVrOtDNbk2Uv
+         dwdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=cvtZ6ckUlmE+gpWNrBbw9zxXMPT5gh65PGrIYRqcK5Y=;
-        b=ey4O/ycpvkON7WJJerNizpEU8OGDlP8xNEzLJmeBg6OyC2Ic779HQko9qmVPXm3upV
-         asKKuj8k1mtqgcv7KpL94wZnIfqc9kmn4DIhK1t9ApY8pWdZYJm4bwWZGOzdlwvvwlDQ
-         qCt5LEH9x6HuOeMCenfw5Py4gukv35suHEJRx9PsxOUitCze2IAALhVgbvsLyzCCwpjR
-         p3W482lSdD5ztgPppiZYHurAlo2buRU5D/55IFlxhdqoRZb/Z0Yf8Qyrm0pTWqecABbI
-         c6upQz/eXy8IsM+NIRWk9d+CW/I/yDOsMrMJxRUylu/ROl1mFBgakRQbZWmgffU6hH6O
-         6LUw==
-X-Gm-Message-State: AOAM533X1SuuKQFm7s8W5q8GAdg27SJFpwgLpIcoHSPEmvZQgSczkpUX
-        oN0Qy/tXiYq4vnzFNqTp1w0xIg==
-X-Google-Smtp-Source: ABdhPJwdgDivEG21hAH7jNDs5nhwwFl04oy+clqY5EDKhnLQf9OSj189KQKsWbxE+tXrlXFlPH8ilg==
-X-Received: by 2002:a2e:808f:: with SMTP id i15mr5579846ljg.376.1621372566177;
-        Tue, 18 May 2021 14:16:06 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id v66sm546415lfa.222.2021.05.18.14.16.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 May 2021 14:16:05 -0700 (PDT)
-Subject: Re: [RESEND PATCH V4 2/8] arm64: dts: qcom: sc7280: Add thermal-zones
- node
-To:     Matthias Kaehlcke <mka@chromium.org>, Vinod Koul <vkoul@kernel.org>
-Cc:     satya priya <skakit@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org
-References: <1621318822-29332-1-git-send-email-skakit@codeaurora.org>
- <1621318822-29332-3-git-send-email-skakit@codeaurora.org>
- <YKOog43JZghth3Np@vkoul-mobl.Dlink> <YKPq84r7soE0yjMA@google.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <2b1e0927-5521-1a6d-eedb-27f420bf2cb2@linaro.org>
-Date:   Wed, 19 May 2021 00:16:05 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Yq66EOFTE3KRowHKWchwUg+sRn03C/iAH0DpjtlmwwA=;
+        b=O86rnHmybJlPmdKd69h1AJsUTTKR453EIdBSjPJGDknyeozIl0pJxr2+bt8bcGy5TF
+         98Y6pDbfCCbM79LA9SeJZhX217/ZYgMej7ytN/kWiPUrD7XQ4v/vrNtSmt9E4DY7NfWf
+         Wxa3NlQckysRt29Kkdc7+26xMLAbB4L7WZoafMXuZ5uBJsWnHcZlQXX/eQxT7lBZCiUV
+         b+R/3puKJ64D7xV9o9mKbLkjtsVdlqzHCrnh1U6VSDLFDpYSIlOtgb4fi+cKaZ+qcYXP
+         aEOGEXGYs4Ra2Psv+FaDCBnFcFM5FOTnFIqsm4vnQCbPq/4wAyHiRyBEI+V1AsHxA5Zr
+         rw5g==
+X-Gm-Message-State: AOAM530bgfO3AJiuH1pyzFVz8Xkumm02PKC+wt2Tgj1wE+YQQyrvUV1z
+        9XoRkMf7eQ6tfKH4tziMhKJud3T0G/NrG6boUDFLNQ==
+X-Google-Smtp-Source: ABdhPJytvp4UMxSWihjcIDYPHUG5+ApQIY9lubQNV5E+oo/RN8aQfDBOqcOVsm4UfQKeUxXP7easAc2R2d3wYUKG5Og=
+X-Received: by 2002:a05:6512:11ea:: with SMTP id p10mr5301738lfs.157.1621373221557;
+ Tue, 18 May 2021 14:27:01 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <YKPq84r7soE0yjMA@google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <20210518185353.3802437-1-clabbe@baylibre.com>
+In-Reply-To: <20210518185353.3802437-1-clabbe@baylibre.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 18 May 2021 23:26:50 +0200
+Message-ID: <CACRpkdaXtuHWbZvRiV5GTf4PAPKfO4--ecu0w+XEyU3xZrEOQQ@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: gemini: convert obsolete SPI properties
+To:     Corentin Labbe <clabbe@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/05/2021 19:27, Matthias Kaehlcke wrote:
-> On Tue, May 18, 2021 at 05:14:03PM +0530, Vinod Koul wrote:
->> On 18-05-21, 11:50, satya priya wrote:
->>> Add thermal-zones node for SC7280 SoC.
->>>
->>> Signed-off-by: satya priya <skakit@codeaurora.org>
->>> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
->>> ---
->>> Changes in RESEND V4:
->>>   - No Changes.
->>>
->>>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 +++
->>>   1 file changed, 3 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->>> index 2cc4785..2a7d488 100644
->>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->>> @@ -1125,4 +1125,7 @@
->>>   			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
->>>   			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
->>>   	};
->>> +
->>> +	thermal_zones: thermal-zones {
->>> +	};
->>
->> Empty node..? what am i missing here...
-> 
-> The 'thermal-zones' node with the SoC thermal zones is usually created
-> in the <soc>.dtsi, however it doesn't exist yet. The 'Add DT bindings
-> and device tree nodes for TSENS in SC7280' series
-> (https://patchwork.kernel.org/project/linux-arm-msm/list/?series=478225)
-> is creating it, but the series hasn't landed yet.
-> 
-> The node is needed by other patches in this series that add non-SoC
-> thermal zones. Hence either an empty node needs to be added (for now)
-> or this series should 'officially' depend on the TSENS series mentioned
-> above.
+On Tue, May 18, 2021 at 8:53 PM Corentin Labbe <clabbe@baylibre.com> wrote:
 
-You can reference the TZ node as /thermal-zones/ even from non-SoC 
-includes. See pm8150.dtsi for example.
+> gpio-xxx are obsoletes properties, convert them to xxx-gpios.
+>
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 
+Patch applied!
 
--- 
-With best wishes
-Dmitry
+Yours,
+Linus Walleij
