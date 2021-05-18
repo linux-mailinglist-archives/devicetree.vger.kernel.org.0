@@ -2,147 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDF93387B67
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 16:39:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20D48387B72
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 16:42:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234291AbhEROlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 10:41:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57660 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234991AbhEROlH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 10:41:07 -0400
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 140A7C06138F
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 07:39:49 -0700 (PDT)
-Received: by mail-oi1-x235.google.com with SMTP id u11so9989029oiv.1
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 07:39:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zp3it5Zu0KA9JHtt+jDEOh0cwWAwW8S1nVYQo9cUI6g=;
-        b=M+LBCcMHMPB69ojN8igqTaiE33ZRMpEcF1APy9OlgsLWEwTLhd++g9E5r/PdgPXEYk
-         Sf+oWKImVvjttXeuquw1tqKq5sDT5hjJaJrr+UNwmVU4yyHWnKmjWyMw/MlpRuRujG3f
-         OPz9XnatcZBy1chC6V/PUTr8885yi7PK0DlXuwh780MM5fxWeByS/rU5afx+k05h1jpm
-         6Fcu7iuPNq3rkO4cA5dE3C1+aLyOA0g1mfkf0PgTpooOLOhwOnpmJucMbwAHPEXBoGUI
-         M0YmbK1i3TawT2Kq/MdoI37cIF1l4xEwiO9riemaM2il88FrHe0Ly8xeiVsF219JVpb/
-         6zcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zp3it5Zu0KA9JHtt+jDEOh0cwWAwW8S1nVYQo9cUI6g=;
-        b=pgE1NjQnWuc6Q42RkqTi6mpsWiEH1uS4DTTHASr6CKzmJvYTn6aYp5cTCmMsMJCoMj
-         as2rif0dWebB2dbgmh2tNDxPtEdb+G/6t8NQFAZBhGlecM6tdFXew1qcWDFpmvq9vsYo
-         gOYiFyRsa939IZxc2uQc42EXa4bJPF70eAuGYGfz3gjmJZZ/v89fbNqZp6wD2wWXmh1h
-         s03JarOkQtNKBnI+YqFTChHmbeFyZ1Fy1I0yrV/THckhHIq0iXysM5IHm7ZzaboohkS5
-         cmhHQi7yEi9L648loaSWjwie+iLQfj3JL7HVsMNvJRlIeeszjJpsAg5aj3CPoOdTBFJG
-         IzWw==
-X-Gm-Message-State: AOAM532eaBbequqbJKmNY3/LyKYhflU65hGduEh7FEhqqIVAlvKfdwjL
-        /MKYng5vvahjtzi0VgZGdmm5ZG2RqZ0Ev57vHiDooA==
-X-Google-Smtp-Source: ABdhPJztinWXNYTl+kiATtOdsiKD/CaM/e4dVlbDyWrHV5TSscaWHVYcyb9gQYVDavq46dJM3FBF4Qd71vU3cs+rKMU=
-X-Received: by 2002:a05:6808:f0b:: with SMTP id m11mr3641199oiw.12.1621348788489;
- Tue, 18 May 2021 07:39:48 -0700 (PDT)
+        id S234201AbhEROnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 10:43:19 -0400
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:59471 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234454AbhEROnS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 May 2021 10:43:18 -0400
+Received: from compute7.internal (compute7.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id 94D685C0078;
+        Tue, 18 May 2021 10:42:00 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute7.internal (MEProxy); Tue, 18 May 2021 10:42:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=YgUnKWPLXtTSoYCrHJ7uD62GR8D
+        CqNUmpuXjd/mwDI4=; b=D9+cnkyj+vegtUQEWXpO6E4Wgy9XmPwpTIS9PElobBn
+        VF/ABDg2vXEsbWhvaHAmvI/g74e8XEPJQGmzOf0Zm0Am2/ckKB+Jd5/vSJlGK3c4
+        yiY2lY9Q0SgrfcRxGT8dQQW2XTWLT6VxhHflH0llane6qNvaPARGdelQBn+3ciab
+        pNs/quVwRci4lWOJHOZSGBfrBUX0ChIAE6PliREE+jhaN47gVgKeqjzZpRDAWOrd
+        v6dXjArwc6Ih2Efyl9q1yGim0cyVMnR4sv2bZmE+iHfPxTKeVnzLz14dq8SCpK3+
+        C3fbgBA37Z2U1mr3CWgrKQ0Z0e2mS5ecJTYsLVHJnIQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=YgUnKW
+        PLXtTSoYCrHJ7uD62GR8DCqNUmpuXjd/mwDI4=; b=wAOQQdv+tVRVQwuFkv7WXK
+        DfxtfjYLLLrSOaUdEO1kT7orRY/oC/LHg+dfIbzzVFFm2L8pd0VpXspZGnDrtizg
+        av/j1YYqM0KX/+Oc1h0S6fLPrxWL4ywZ0UaIiew2Wdc4UeLHeXdL7S6/Gh2QIx4k
+        qvdwt27iKtrRrJSeWD/XqzUKsbW/MoJtBmKeKvAj3VCUPPa1IObchuCGvvL78UGO
+        T3W8sVrKP8mQ5tReFj8FxupTB2VXVa4utseeVKBF2m6Ulx9rcy9Duim6l9QhQbUp
+        DZW/MLfSX96OTtqSTf9rx2yC3TSQavPBYW2wJZYsLz8oWKRo+z/jslY4QZbPj9nw
+        ==
+X-ME-Sender: <xms:N9KjYJlJfsB2T-H10x1AwG1wV2OK4PLtoDCMxez740WmUF5-ctFvPQ>
+    <xme:N9KjYE3o5jrX7NG1RX3iJOjdxDbKv-77gCKwbfbWFBVBsbga42_VDqTqI8joE03ds
+    2yQBqZ3QjVuX23_Zx8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdeijedgjeekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:N9KjYPpuYm1iOnYGcTTl9mhDv9q6ebMPFa9iaaYQAjk99pfVTXlk5g>
+    <xmx:N9KjYJlI-WFQGat_P8Fvz8APiCrBJCpZhNLwCPx4LsxvK02ndm-5jw>
+    <xmx:N9KjYH0jrYUcToU6QLNpP8fAxgrCEnxc-daF7haTD6M0uOEKoR0oAQ>
+    <xmx:ONKjYH-mwp75cclVayJIuh1FcHhsFFto6uNIrdij2s_k8pbVvUhIUw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA;
+        Tue, 18 May 2021 10:41:59 -0400 (EDT)
+Date:   Tue, 18 May 2021 16:41:57 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Tobias Schramm <t.schramm@manjaro.org>
+Cc:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] ARM: dts: sun8i: v3s: add pwm controller to v3s
+ dts
+Message-ID: <20210518144157.27ahl5d6oo6ij2br@gilmour>
+References: <20210513203527.2072090-1-t.schramm@manjaro.org>
 MIME-Version: 1.0
-References: <20210505213731.538612-1-bhupesh.sharma@linaro.org>
- <20210505213731.538612-17-bhupesh.sharma@linaro.org> <d809f290-ed94-7e35-bc4d-bd695965fa04@linaro.org>
-In-Reply-To: <d809f290-ed94-7e35-bc4d-bd695965fa04@linaro.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Tue, 18 May 2021 20:09:37 +0530
-Message-ID: <CAH=2NtwS+WBbwbp1tftyMjOCWo9ORZfiZFRr+UNxKQLc9aUNcA@mail.gmail.com>
-Subject: Re: [PATCH v2 16/17] crypto: qce: Defer probe in case interconnect is
- not yet initialized
-To:     Thara Gopinath <thara.gopinath@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bhupesh.linux@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ohu52cazgyohwcuf"
+Content-Disposition: inline
+In-Reply-To: <20210513203527.2072090-1-t.schramm@manjaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Thara,
 
-On Mon, 10 May 2021 at 18:53, Thara Gopinath <thara.gopinath@linaro.org> wrote:
->
->
->
-> On 5/5/21 5:37 PM, Bhupesh Sharma wrote:
-> > On some Qualcomm parts the qce crypto driver needs the interconnect between
-> > the crypto block and main memory to be initialized first before the crypto
-> > registers can be accessed. So it makes sense to defer the qce crypto driver
-> > probing in case the interconnect driver is not yet probed.
-> >
-> > This fixes the qce probe failure issues when both qce and
-> > interconnect drivers are compiled as static part of the kernel.
-> >
-> > Cc: Thara Gopinath <thara.gopinath@linaro.org>
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Andy Gross <agross@kernel.org>
-> > Cc: Herbert Xu <herbert@gondor.apana.org.au>
-> > Cc: David S. Miller <davem@davemloft.net>
-> > Cc: Stephen Boyd <sboyd@kernel.org>
-> > Cc: Michael Turquette <mturquette@baylibre.com>
-> > Cc: Vinod Koul <vkoul@kernel.org>
-> > Cc: dmaengine@vger.kernel.org
-> > Cc: linux-clk@vger.kernel.org
-> > Cc: linux-crypto@vger.kernel.org
-> > Cc: devicetree@vger.kernel.org
-> > Cc: linux-kernel@vger.kernel.org
-> > Cc: bhupesh.linux@gmail.com
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >   drivers/crypto/qce/core.c | 14 ++++++++++++++
-> >   1 file changed, 14 insertions(+)
-> >
-> > diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
-> > index 3e742e9911fa..9915b184f780 100644
-> > --- a/drivers/crypto/qce/core.c
-> > +++ b/drivers/crypto/qce/core.c
-> > @@ -222,6 +222,20 @@ static int qce_crypto_probe(struct platform_device *pdev)
-> >               return ret;
-> >
-> >       qce->mem_path = of_icc_get(qce->dev, "memory");
-> > +
-> > +     /* Check for NULL return path, which indicates
-> > +      * interconnect API is disabled or the "interconnects"
-> > +      * DT property is missing.
-> > +      */
-> > +     if (!qce->mem_path)
-> > +             /* On some qcom parts, the qce crypto block needs interconnect
-> > +              * paths to be configured before the registers can be accessed.
-> > +              * Check here for the same.
-> > +              */
-> > +             if (!strcmp(of_id->compatible, "qcom,ipq6018-qce") ||
-> > +                 !strcmp(of_id->compatible, "qcom,sdm845-qce"))
-> > +                     return -EPROBE_DEFER;
-> > +
->
-> Hi Bhupesh,
->
-> You don't need this here. of_icc_get returns -EPROBE_DEFER if the
-> interconnect provider is not initialized yet.
+--ohu52cazgyohwcuf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for the review.
+On Thu, May 13, 2021 at 10:35:25PM +0200, Tobias Schramm wrote:
+> This patchset adds the pwm controller to the Allwinner V3s dts. The PWM
+> controller is compatible with the one found in the Allwinner A20.
+>=20
+> This is v2 of this patchset.
 
-Yes, I finished testing all the possible combinations with qce, bam
-dma and interconnect drivers compiled as modules v/s as static parts
-of the kernel and we don't need this extra check for the interconnect
-here. We should be fine with checking just the qce_dma_request()
-return value and returning early in the qce probe() flow if no dma
-channels are yet available from the bam dma driver.
+Applied both, thanks
+Maxime
 
-I have made the changes in v3 and will post it for review shortly.
+--ohu52cazgyohwcuf
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Regards,
-Bhupesh
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYKPSNQAKCRDj7w1vZxhR
+xbY2AQDxrdAuccSfqaGj2NNOhoDEnXZ5EszygOkWwGpLuPi7dgD/ZhbZ8PR6DHgp
+w/aINtgVz4zBL6EcN3eH7lrytRWGTA0=
+=dHGb
+-----END PGP SIGNATURE-----
+
+--ohu52cazgyohwcuf--
