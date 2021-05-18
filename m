@@ -2,130 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD3BE3877A8
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 13:29:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 575A23877C1
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 13:33:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243687AbhERLaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 07:30:30 -0400
-Received: from mail-lf1-f54.google.com ([209.85.167.54]:33452 "EHLO
-        mail-lf1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238801AbhERLaa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 07:30:30 -0400
-Received: by mail-lf1-f54.google.com with SMTP id h4so13661093lfv.0;
-        Tue, 18 May 2021 04:29:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=dcJhZHI2dMBnsGGuAZxTwh/jDPWWPYy1O0c7zJIFI2Q=;
-        b=DikOqRPFItvq/zDpraDr0Oevx3V9Pn4UsG7FPWl71h70ekQ+lyVUmMHCjt7W6ikHC0
-         ffjO/eLWxQeEKgu6TKxW/BlTuT3UOApKn4d1S+AVm5Q+mIXJet8aXCO3JTTmUUypgKes
-         VHdJ2cv/O5FH5oKKluD4Xx9eCOYRf4Lh5m8v4gTWaOu/BGXuOmB6X3akfC5ZVsEzVctH
-         7e805evd3O3OSSFVUzbCDJP7THhzWSmQpEkI5czE0qB15knRuqFeBQGGB0Bi+XoyhiJj
-         lyS8PZoymJXmOAoVSKjjxsZxRFcsnbBRTQamC9NJMysGYxV+nZbt5NkAhCHutrpl7YzV
-         l83A==
-X-Gm-Message-State: AOAM5324meWRcnBQnmoNTrYA8Gc0ZzmqHCOMC7Ru0d4UySOC5XeA7PIl
-        zAOKCIP3l4hdZ+6bTl+ojVk=
-X-Google-Smtp-Source: ABdhPJwe5wZdkDxZsmNXpGcgrdpRaYMah8nwFziwesxZzIh4oRkc/xlzCVi0bxg5aMoJRBIZe8fnJA==
-X-Received: by 2002:a05:6512:510:: with SMTP id o16mr1673142lfb.488.1621337350977;
-        Tue, 18 May 2021 04:29:10 -0700 (PDT)
-Received: from localhost.localdomain (dc7vkhyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::1])
-        by smtp.gmail.com with ESMTPSA id t22sm2258555lfe.309.2021.05.18.04.29.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 May 2021 04:29:10 -0700 (PDT)
-Date:   Tue, 18 May 2021 14:29:04 +0300
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>, Kees Cook <keescook@chromium.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "agross@kernel.org" <agross@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: [PATCH v10 11/11] MAINTAINERS: Add reviewer for regulator irq_helpers
-Message-ID: <15105258ec870240c7e05ea01236986b379bf7f8.1621333893.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1621333893.git.matti.vaittinen@fi.rohmeurope.com>
+        id S230418AbhERLe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 07:34:59 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:53004 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240582AbhERLey (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 07:34:54 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 68FE15A9;
+        Tue, 18 May 2021 13:33:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1621337608;
+        bh=kmO3XCC2pDO2hN7btUQer2F/7F+XQOYQpLIDEE3wBJk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TtVkjvwrfBgny+UH89j4tvdAebLee2M2ma2BoJrUB/Q3UfrPe32d53AGBcdQXTPfs
+         KIr2pASy6ixiodBJiBkxu41D522yplFe9HThveEvudNO0ReXSUGLcg9HXhF4Earh/i
+         uh04ObQwtWW+MGnwODew5h9P9Fu1P1oWY4PGyqr0=
+Date:   Tue, 18 May 2021 14:33:27 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     linux-media@vger.kernel.org, Rui Miguel Silva <rmfrfs@gmail.com>,
+        kernel@pengutronix.de, Fabio Estevam <festevam@gmail.com>,
+        linux-imx@nxp.com, Steve Longerbeam <slongerbeam@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Marek Vasut <marex@denx.de>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Dorota Czaplejewicz <dorota.czaplejewicz@puri.sm>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH 1/3] dt-bindings: media: nxp,imx7-csi: Add i.MX8MM
+ support
+Message-ID: <YKOmB0L+0i48ziX7@pendragon.ideasonboard.com>
+References: <20210516024216.4576-1-laurent.pinchart@ideasonboard.com>
+ <20210516024216.4576-2-laurent.pinchart@ideasonboard.com>
+ <bbe18b43336f73a5c3809b933e07270ef0a45134.camel@puri.sm>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="UugvWAfsgieZRqgk"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <cover.1621333893.git.matti.vaittinen@fi.rohmeurope.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <bbe18b43336f73a5c3809b933e07270ef0a45134.camel@puri.sm>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Martin,
 
---UugvWAfsgieZRqgk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, May 18, 2021 at 01:26:21PM +0200, Martin Kepplinger wrote:
+> Am Sonntag, dem 16.05.2021 um 05:42 +0300 schrieb Laurent Pinchart:
+> > The i.MX8MM integrates a CSI bridge IP core, as the i.MX7. There seems
+> > to be no difference between the two SoCs according to the reference
+> > manual, but as documentation may not be accurate, add a compatible
+> > string for the i.MX8MM, with a fallback on the compatible i.MX7.
+> > 
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > ---
+> >  .../devicetree/bindings/media/nxp,imx7-csi.yaml      | 12 ++++++++--
+> > --
+> >  1 file changed, 8 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/nxp,imx7-
+> > csi.yaml b/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
+> > index d91575b8ebb9..5922a2795167 100644
+> > --- a/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
+> > +++ b/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
+> > @@ -4,7 +4,7 @@
+> >  $id: http://devicetree.org/schemas/media/nxp,imx7-csi.yaml#
+> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> >  
+> > -title: i.MX7 CMOS Sensor Interface
+> > +title: i.MX7 and i.MX8 CSI bridge (CMOS Sensor Interface)
+> >  
+> >  maintainers:
+> >    - Rui Miguel Silva <rmfrfs@gmail.com>
+> > @@ -15,9 +15,13 @@ description: |
+> >  
+> >  properties:
+> >    compatible:
+> > -    enum:
+> > -      - fsl,imx7-csi
+> > -      - fsl,imx6ul-csi
+> > +    oneOf:
+> > +      - enum:
+> > +          - fsl,imx7-csi
+> > +          - fsl,imx6ul-csi
+> > +      - items:
+> > +          - const: fsl,imx8mm-csi
+> > +          - const: fsl,imx7-csi
+> >  
+> >    reg:
+> >      maxItems: 1
+> 
+> isn't the fsl,imx8mm-csi compatible missing in the driver then?
 
-Add a reviewer entry for the regulator irq_helpers.
+The driver will match on the "fsl,imx7-csi" compatible string, which the
+bindings makes mandatory as a fallback for i.MX8MM. If we later find
+differences between the CSI bridge in the i.MX7 and i.MX8MM, we can add
+the compatible string to the driver to enable device-specific code
+without any backward-compatibility issue.
 
-Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
----
-Changelog:
- v7 - onwards
-  - no changes
- v6:
-  - New patch
----
- MAINTAINERS | 4 ++++
- 1 file changed, 4 insertions(+)
+-- 
+Regards,
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 008fcad7ac00..48fd36e93b66 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19551,6 +19551,10 @@ F:	include/dt-bindings/regulator/
- F:	include/linux/regulator/
- K:	regulator_get_optional
-=20
-+VOLTAGE AND CURRENT REGULATOR IRQ HELPERS
-+R:	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-+F:	drivers/regulator/irq_helpers.c
-+
- VRF
- M:	David Ahern <dsahern@kernel.org>
- L:	netdev@vger.kernel.org
---=20
-2.25.4
-
-
---=20
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =3D]=20
-
---UugvWAfsgieZRqgk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmCjpQAACgkQeFA3/03a
-ocV2mwgArv5FNsn4yKrQE5FJBeqzxxCob1kdon3S3j1oL2yP8GfvDcSgOnAX7vFp
-xK8XjQy/XF8bOuST+igrlI1oL6oPMLuv2MDotPYFzdybWAvIzGsnLp1jULOL967I
-f9+4cvk65RmFeAji4Bukzaotgl6KWpoPW2mNCZ2YIM8QxQWqOA9iZ8RTkUXd76GB
-u4l5OReAqrh9ip9hFvboDpro0YRU0IwznJfJ0SyMsYOMsfLhAne4ku7Aopz1ugyj
-oF5EpC0rGg/b5czPBtieW9uGhR4WX4bDp18DPQLE0ph1duNw8NGxF4pn1cd5IAwJ
-tPS9mf7/0ZJgYWAiSNntSQN2wy4hjw==
-=oKGl
------END PGP SIGNATURE-----
-
---UugvWAfsgieZRqgk--
+Laurent Pinchart
