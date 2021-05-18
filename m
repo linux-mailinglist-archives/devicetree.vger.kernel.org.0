@@ -2,194 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CD4D3872B3
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 08:54:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7113C3872E1
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 09:10:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239975AbhERG4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 02:56:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35662 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235627AbhERG4H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 02:56:07 -0400
-Received: from mail-qv1-xf44.google.com (mail-qv1-xf44.google.com [IPv6:2607:f8b0:4864:20::f44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F15BC061573
-        for <devicetree@vger.kernel.org>; Mon, 17 May 2021 23:54:49 -0700 (PDT)
-Received: by mail-qv1-xf44.google.com with SMTP id u33so4429638qvf.9
-        for <devicetree@vger.kernel.org>; Mon, 17 May 2021 23:54:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XgyF0OvHzw8KTyadFBcEzsCamkUD+/ukWzei3hnGvkc=;
-        b=VO0BvOlWIIiGkUdtOb1VSOWiBrk2KLMr0fiDCPwaBrvrf/j2/7hCX1JlEDcxzMqFmv
-         42I6m34flwgfsu+jKFLERtm6bjzporQ7M0BTCF240tpdoJChz4PcESq3XpYvN81Vfxez
-         ZW4CMor3EwZRISv4nvwP/XJ/8ZZ+MrGyZniYE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XgyF0OvHzw8KTyadFBcEzsCamkUD+/ukWzei3hnGvkc=;
-        b=EAjBK8KuTj2wYOssjEstwmwxmN5Oy76Z81eBQSprhU5Hw8dNSRGg8fIqo7HYUCK97/
-         zNJyPapX+BpzzpARAyCKKK1g4Qi1/65XjtZb5ngv/KYf1ag5/mjkV3kG+w+VEaRW0r3R
-         7LIpGgy9ObnAzcRS57dv+ljGziQ8TcqawM1B/86qxSGufaZa4Qh4YSy7z3rTQSnxtFj2
-         WC3PgufRT36GKSCstoBnOtZEhPtVleBIQX5/WwsDzQWpPNwj+nCj4TJT7i1ftt7PmD66
-         oma74p3QPbTmKnJJMGZYTcJifKUtQsHSo24y8OAbNevEpdiL1z6xjCAT3Q6Qd14xBRl1
-         xpcA==
-X-Gm-Message-State: AOAM531TumIxEJjnQsQPhYOgYkqB1VjwSowjcnq9bHU53MTuza7g9nbV
-        rFbEioiCT1b9P7aDK1yt0+NNUV0veMv/5Q==
-X-Google-Smtp-Source: ABdhPJzpzQcoh7Rhi19Eq34OcJItXwXTHvx6TsUE3x6pXyBreFxR7/Uu9ISt2nRFeFIZ33qSgBD2Ug==
-X-Received: by 2002:a05:6214:2243:: with SMTP id c3mr4004163qvc.21.1621320888903;
-        Mon, 17 May 2021 23:54:48 -0700 (PDT)
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com. [209.85.222.174])
-        by smtp.gmail.com with ESMTPSA id 25sm2259586qtd.51.2021.05.17.23.54.48
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 May 2021 23:54:48 -0700 (PDT)
-Received: by mail-qk1-f174.google.com with SMTP id 76so8289554qkn.13
-        for <devicetree@vger.kernel.org>; Mon, 17 May 2021 23:54:48 -0700 (PDT)
-X-Received: by 2002:a05:6638:10e4:: with SMTP id g4mr3960623jae.90.1621320877050;
- Mon, 17 May 2021 23:54:37 -0700 (PDT)
+        id S239585AbhERHLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 03:11:24 -0400
+Received: from mail-db8eur05on2049.outbound.protection.outlook.com ([40.107.20.49]:26464
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S237714AbhERHLY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 May 2021 03:11:24 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Z+YPDkFctQGsEXGP+UBaCcuYGnMO4m7LXhPf7coW5NbofLlW0S4iHtTPWJP7KDv6hZmIbbUxDnulaJw0YdOkQInWbbYWijlG7lVVROJN3aKWdF3dE+BnMZwm+vBJCOriWkMgRcfv5eLuucqFBSI5db6pSZ6gDT/lz7IeBQkWNHN7463jXepxOU3KlAUcJduPzFsBgr/jkJCqtjsZCcpRhyCjbjEl0oxcx7ycoU7Oo158jNrdfqE+thy/V/3WkGAg/ROq9eC0Q79ZwO78VwfHOmu6pYnHc3YminV9P36oNHMQ9j0klKHwfi7FmRhWOWJa3n/wU3Kf34S2IoYyzMWpZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Xe+9gkYA2zs3oFiRFNsk8tEPkeST/bF7U0k0Rh9CP9s=;
+ b=NPf3qmJpLF3On10RibgyTox9oh8jXSrlpGTCD8ZMbajFtKbXhNAOzllxUvdB57In2hpAqxngmjfZ9K+kliaTW6PMNlHTkCBBf5aqaRjGsdA8HNEjpyOKSx9qtuiOD9dNEYy3hkdTMw+DF2liZuTgOGddryvYqYJ22WNwcyBFl3QvbvWIWmW0luxWidUqtKFwIEm+77VOSPORCFMdYE1eq5U+/Z4X8Rtiw4sEDwLi/pl+zP8s0z5sPczHJv+HIRZMztn8Ly/vQp8RVWESJzQx7tYI9mbuVOqNXlXCuI59HHXq8lq/vQQTcblwEUjF8AztXJh44SGzWHkDha1Q+iQ39w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Xe+9gkYA2zs3oFiRFNsk8tEPkeST/bF7U0k0Rh9CP9s=;
+ b=hYBiza672vOfTw3Jc+dzM+dELrfJdm4nu6CoX/e1Bdhx2yHggvljrV+TkpXH8v6oA6CR0keqBqhOZY8CBuOY/uZtA8CJ5WKo02Wx8YylHsilEs3LHllEbVJRk7z7jCqemxNf0plAVNdAPCqVD6BzA+Qd+KPz4Ne9VOlXrgRXo8A=
+Received: from AM6PR04MB4966.eurprd04.prod.outlook.com (2603:10a6:20b:2::14)
+ by AM6PR04MB4327.eurprd04.prod.outlook.com (2603:10a6:209:40::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.26; Tue, 18 May
+ 2021 07:10:02 +0000
+Received: from AM6PR04MB4966.eurprd04.prod.outlook.com
+ ([fe80::b10a:ad0:a6f5:db9b]) by AM6PR04MB4966.eurprd04.prod.outlook.com
+ ([fe80::b10a:ad0:a6f5:db9b%2]) with mapi id 15.20.4129.031; Tue, 18 May 2021
+ 07:10:01 +0000
+From:   Aisheng Dong <aisheng.dong@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>,
+        "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "G.n. Zhou" <guoniu.zhou@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Peng Fan <peng.fan@nxp.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "paul.kocialkowski@bootlin.com" <paul.kocialkowski@bootlin.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "ezequiel@collabora.com" <ezequiel@collabora.com>,
+        Mirela Rabulea <mirela.rabulea@nxp.com>
+Subject: RE: [PATCH v11] arm64: dts: imx8qxp: Add jpeg encoder/decoder nodes
+Thread-Topic: [PATCH v11] arm64: dts: imx8qxp: Add jpeg encoder/decoder nodes
+Thread-Index: AQHXOClx/EGs7P4PmkKRDSOc1GkfSqrhJaCAgAfSNPA=
+Date:   Tue, 18 May 2021 07:10:01 +0000
+Message-ID: <AM6PR04MB4966FC14F882215A3B9891D0802C9@AM6PR04MB4966.eurprd04.prod.outlook.com>
+References: <20210423101414.20068-1-mirela.rabulea@oss.nxp.com>
+ <20210513073832.GS3425@dragon>
+In-Reply-To: <20210513073832.GS3425@dragon>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.67]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 3bcd6784-ddfd-48f6-4452-08d919cbf46e
+x-ms-traffictypediagnostic: AM6PR04MB4327:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM6PR04MB43271A8A0FCB26587B73B9C9802C9@AM6PR04MB4327.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ezU1Y1VB/YcMsiApwFK4CVesKLfXpStrX3JLvaaKGuH1kHB1OoCWmWnLLK+BfghLetQdc+hXVcau8c7toirZiZFWjEPzAtMc7mVALmYOxVIJWkpczHkfHI07cjgXNk8DeQ47pAsN/fQzdx8h2mgezhPMjDuSWXHS/p1pMsAieHUH36dQ7zUrE8RpZOdcPI5LdmyjGhbcFaO3PL/Ib8X62l6FUumekIU7EWMThRPS5g4CntC4efEwGU4m5yvod6rveXBgOmhPEelQPcSL06rayZNXhJtBWxZi+xOnZe07axO3/BxMKMfo5roY/7NLgztJGBty+furlBgOvHIvcoVakpb7l18K+6A0yySJiJf0pvfJt7D84DC4GKIEAhERtNk08P5565bGDBEbWdWiVMGGJ+rEKd3EImtH1k7eKIl36mlD3cde+91J3BNkq/SrSlKr+na8Dz03QMnC8AjUN94KkMCn4z3o3c/HG66WOZ7dkWHyBv8xxWX6h3r49C5dI4hZRYVUITyg51zgZ3dNSPDkY+z0t7n6FJ/le/nOtyS7U00oWuknLVLzezfum391cT0NmbDvYNyCbhS9BDWsTqsauBdtcn2JCGWsi1xGYqoGb2Mtj2unDZKEQmSvgfednQ7yoT4MpunbsoJZAdtEAe1ssw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4966.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(366004)(376002)(396003)(136003)(346002)(8936002)(6506007)(316002)(4326008)(86362001)(5660300002)(110136005)(8676002)(7416002)(76116006)(7696005)(55016002)(66476007)(122000001)(52536014)(64756008)(66556008)(71200400001)(38100700002)(66446008)(9686003)(2906002)(54906003)(83380400001)(186003)(66946007)(33656002)(44832011)(26005)(478600001)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?UVBkY1NZMVJiVlBYZmFiV1pIQ1NuUnJlQW51ZnUvM0dVWVN2OTZIaHkvMXdD?=
+ =?utf-8?B?VmhMRkhaM0lISlNPdzY2ODNxOXo1MTRpVzcrQW1ySlZqK3pMcUcwdk5EVmpi?=
+ =?utf-8?B?aXMyVmNDQmR3R3lybEhacU85NHNVdld3YXVxVXdjMmJGRGtSUExiSlZ5b1FF?=
+ =?utf-8?B?OC9mMVBCbHJEQ0lsZ3lZcGRsWTU0ZDVWSm5vQnJoam10K0tjeHJmejBJamlI?=
+ =?utf-8?B?dGEvWG5QMXBnbVJzMlFPRkdXUDVMQXdmWHE1Rkxrem4zanNLZVUxUlkyUmRq?=
+ =?utf-8?B?L1l1ZmZ6bU9QK24xNnc5ZXVDb0FQVk1kNlBIbmlOUVhObjd3dVJpcHlFNUZj?=
+ =?utf-8?B?UVp5ZUNGVTVoRXltRGZjRE9DTGE2ZVgxdUprMDZFa1kxUVBQWnRkT25wYmlS?=
+ =?utf-8?B?elpPV2RhTTJvUE5lTTN4WVZIRzJPbjFSUlRNZG9xUlZWMzJ4YWpWemdVS01m?=
+ =?utf-8?B?c3JHLy9sYTBMUzBOWTBUek9UdUgvRjlnNnlTR0dhcGtuU1g1Tm9BZFZzUDc0?=
+ =?utf-8?B?OEIvVjN3dk0zQ0dtQTN5dGpsYiswcVduUmtWblRKM2liSDY0RTMybXU0K2t6?=
+ =?utf-8?B?Q1ZRbEthUzNDWnA2MEFYQm4raFZWN3dob1cwNHkyKytlNDVnanMyUmhTVWhK?=
+ =?utf-8?B?RklVWGFCMHYxbHl0ZkpEc0hFdTFwbzJXUnNVZ0lEYy96ZXJwUnE4ZS8zOE1s?=
+ =?utf-8?B?bUw1eEwxMTZEUjViL3pLQmRXVFpNTXpGdXN3cDZOTm5vdmtaaDRkcm1DbmJk?=
+ =?utf-8?B?emFocFlybHVYUTU1RHZoM1RxUlhleDZFYXBONWJGelhsK1F5SDc4RmRDaGtz?=
+ =?utf-8?B?YzkrU0Z2Z252bjZFUUZTaElUMWxtZldsL1pYWnQvNElNTlhmL2k5YUlqYUNK?=
+ =?utf-8?B?SEtxMDRiOGdlUEJDUjUyWml1RFg5aU1VNlNPTEU5QzYyYkJVNXdvN05HQnpj?=
+ =?utf-8?B?UnZEQndxWEtWYUtkQVE1alJod1VYWk9rV096c3VjT3FLdHpiMGVEdDFwM0pK?=
+ =?utf-8?B?OXk1dWZUeHNkZ0dIZ0QzTjVieFR1V3JDQ3ppcExOYnRHQk1DOXlwVjZzdTZL?=
+ =?utf-8?B?dTI4VHA5RkJFSk5UM3pCL0I2MHR4ZVpodjRnUjUrb1R6UXh1eFlDZ3pPSmxq?=
+ =?utf-8?B?OFpTeFNRWUl5YkRONHE2WHVlb1dEejdhUmYyNy9EYkR2YVcyWndxVjJQVkNM?=
+ =?utf-8?B?SlA5RW5UWVVHdWd6aUNYTmF3eXN1cmRkVDlaRmpMVlc3QUF4bE94ZmlGNWY4?=
+ =?utf-8?B?eTdJdnZhMkdYSVdaMjAyQkdIZVZ6cVU1d29NbGVWOEZFR0ptd243ZVFZTEgy?=
+ =?utf-8?B?SUhDNUhPdGVSSjJjV0orczFxTzZWUEhFQkVodjFibEFuekpwSGJGcnNVczFz?=
+ =?utf-8?B?SG1QL2t2NGY3RFVSTmoycldDbXpnT0dOaDFVdGg4bm9wNWpEaXFUaHIrTkNZ?=
+ =?utf-8?B?SHYwK3Z6Tmt4djYyT29YTElramZOOVFhMzVnS3hTNWhabFpWdzZZbkhJaWhX?=
+ =?utf-8?B?cHZMc0dOUjFCalZVWDJrWEsrRXA3VlRROW5tVTM3eGN3ajFJM3llOFZ4bWhK?=
+ =?utf-8?B?d3NHQllGR2dlUXBxeUM1ZDdMUlZvS01CRzh5UTdPZTdrT3hyTzNLZFBhYVQ1?=
+ =?utf-8?B?WVpjRXhBMXhXRk1uc3BpOGFrb2NsdmpIMmtGb3Urb0JUc0VrdUVsZzZPbFc5?=
+ =?utf-8?B?WWRCOHhjamppaXZKcjNoTFA0a0taTDdMRzhCMW1tdDhTZDRYaVFGK2JvWHhC?=
+ =?utf-8?Q?z24nOcsKecCdIM6bxIdqAy5gttS9YljCEAfQyVl?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20210510095026.3477496-1-tientzu@chromium.org>
-In-Reply-To: <20210510095026.3477496-1-tientzu@chromium.org>
-From:   Claire Chang <tientzu@chromium.org>
-Date:   Tue, 18 May 2021 14:54:26 +0800
-X-Gmail-Original-Message-ID: <CALiNf2-LhQqAX3kJSETOxG4ipu9Nhs97yYiGm0XZKG7vBQ_hNQ@mail.gmail.com>
-Message-ID: <CALiNf2-LhQqAX3kJSETOxG4ipu9Nhs97yYiGm0XZKG7vBQ_hNQ@mail.gmail.com>
-Subject: Re: [PATCH v6 00/15] Restricted DMA
-To:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        grant.likely@arm.com, xypron.glpk@gmx.de,
-        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
-        bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
-        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
-        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
-        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
-        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
-        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
-        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
-        nouveau@lists.freedesktop.org, rodrigo.vivi@intel.com,
-        thomas.hellstrom@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4966.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3bcd6784-ddfd-48f6-4452-08d919cbf46e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 May 2021 07:10:01.8788
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: rJR2O5RLNoZlx6w3HqhlgYbohRQHuBdHOA+WHHaE8bpKCzyI3WZQKevkihX6ft5abK0VBHi2y3wAk1F+y8Ma3g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB4327
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-v7: https://lore.kernel.org/patchwork/cover/1431031/
-
-On Mon, May 10, 2021 at 5:50 PM Claire Chang <tientzu@chromium.org> wrote:
->
-> From: Claire Chang <tientzu@google.com>
->
-> This series implements mitigations for lack of DMA access control on
-> systems without an IOMMU, which could result in the DMA accessing the
-> system memory at unexpected times and/or unexpected addresses, possibly
-> leading to data leakage or corruption.
->
-> For example, we plan to use the PCI-e bus for Wi-Fi and that PCI-e bus is
-> not behind an IOMMU. As PCI-e, by design, gives the device full access to
-> system memory, a vulnerability in the Wi-Fi firmware could easily escalate
-> to a full system exploit (remote wifi exploits: [1a], [1b] that shows a
-> full chain of exploits; [2], [3]).
->
-> To mitigate the security concerns, we introduce restricted DMA. Restricted
-> DMA utilizes the existing swiotlb to bounce streaming DMA in and out of a
-> specially allocated region and does memory allocation from the same region.
-> The feature on its own provides a basic level of protection against the DMA
-> overwriting buffer contents at unexpected times. However, to protect
-> against general data leakage and system memory corruption, the system needs
-> to provide a way to restrict the DMA to a predefined memory region (this is
-> usually done at firmware level, e.g. MPU in ATF on some ARM platforms [4]).
->
-> [1a] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_4.html
-> [1b] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_11.html
-> [2] https://blade.tencent.com/en/advisories/qualpwn/
-> [3] https://www.bleepingcomputer.com/news/security/vulnerabilities-found-in-highly-popular-firmware-for-wifi-chips/
-> [4] https://github.com/ARM-software/arm-trusted-firmware/blob/master/plat/mediatek/mt8183/drivers/emi_mpu/emi_mpu.c#L132
->
-> v6:
-> Address the comments in v5
->
-> v5:
-> Rebase on latest linux-next
-> https://lore.kernel.org/patchwork/cover/1416899/
->
-> v4:
-> - Fix spinlock bad magic
-> - Use rmem->name for debugfs entry
-> - Address the comments in v3
-> https://lore.kernel.org/patchwork/cover/1378113/
->
-> v3:
-> Using only one reserved memory region for both streaming DMA and memory
-> allocation.
-> https://lore.kernel.org/patchwork/cover/1360992/
->
-> v2:
-> Building on top of swiotlb.
-> https://lore.kernel.org/patchwork/cover/1280705/
->
-> v1:
-> Using dma_map_ops.
-> https://lore.kernel.org/patchwork/cover/1271660/
-> *** BLURB HERE ***
->
-> Claire Chang (15):
->   swiotlb: Refactor swiotlb init functions
->   swiotlb: Refactor swiotlb_create_debugfs
->   swiotlb: Add DMA_RESTRICTED_POOL
->   swiotlb: Add restricted DMA pool initialization
->   swiotlb: Add a new get_io_tlb_mem getter
->   swiotlb: Update is_swiotlb_buffer to add a struct device argument
->   swiotlb: Update is_swiotlb_active to add a struct device argument
->   swiotlb: Bounce data from/to restricted DMA pool if available
->   swiotlb: Move alloc_size to find_slots
->   swiotlb: Refactor swiotlb_tbl_unmap_single
->   dma-direct: Add a new wrapper __dma_direct_free_pages()
->   swiotlb: Add restricted DMA alloc/free support.
->   dma-direct: Allocate memory from restricted DMA pool if available
->   dt-bindings: of: Add restricted DMA pool
->   of: Add plumbing for restricted DMA pool
->
->  .../reserved-memory/reserved-memory.txt       |  27 ++
->  drivers/gpu/drm/i915/gem/i915_gem_internal.c  |   2 +-
->  drivers/gpu/drm/nouveau/nouveau_ttm.c         |   2 +-
->  drivers/iommu/dma-iommu.c                     |  12 +-
->  drivers/of/address.c                          |  25 ++
->  drivers/of/device.c                           |   3 +
->  drivers/of/of_private.h                       |   5 +
->  drivers/pci/xen-pcifront.c                    |   2 +-
->  drivers/xen/swiotlb-xen.c                     |   2 +-
->  include/linux/device.h                        |   4 +
->  include/linux/swiotlb.h                       |  41 ++-
->  kernel/dma/Kconfig                            |  14 +
->  kernel/dma/direct.c                           |  63 +++--
->  kernel/dma/direct.h                           |   9 +-
->  kernel/dma/swiotlb.c                          | 242 +++++++++++++-----
->  15 files changed, 356 insertions(+), 97 deletions(-)
->
-> --
-> 2.31.1.607.g51e8a6a459-goog
->
+PiBGcm9tOiBTaGF3biBHdW8gPHNoYXduZ3VvQGtlcm5lbC5vcmc+DQo+IFNlbnQ6IFRodXJzZGF5
+LCBNYXkgMTMsIDIwMjEgMzozOSBQTQ0KPiANCj4gT24gRnJpLCBBcHIgMjMsIDIwMjEgYXQgMDE6
+MTQ6MTRQTSArMDMwMCwgTWlyZWxhIFJhYnVsZWEgKE9TUykgd3JvdGU6DQo+ID4gRnJvbTogTWly
+ZWxhIFJhYnVsZWEgPG1pcmVsYS5yYWJ1bGVhQG54cC5jb20+DQo+ID4NCj4gPiBBZGQgZHRzIGZv
+ciBpbWFnaW5nIHN1YnN5dGVtLCBpbmNsdWRlIGpwZWcgbm9kZXMgaGVyZS4NCj4gPiBUZXN0ZWQg
+b24gaW14OHF4cCBvbmx5LCBzaG91bGQgd29yayBvbiBpbXg4cW0sIGJ1dCBpdCB3YXMgbm90IHRl
+c3RlZC4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IE1pcmVsYSBSYWJ1bGVhIDxtaXJlbGEucmFi
+dWxlYUBueHAuY29tPg0KPiANCj4gU28gdGhlIGJpbmRpbmdzIGFuZCBkcml2ZXIgcGFydHMgaGF2
+ZSBiZWVuIGFjY2VwdGVkIGFscmVhZHk/DQo+IA0KPiA+IC0tLQ0KPiA+IENoYW5nZXMgaW4gdjEx
+Og0KPiA+ICAgQWRyZXNzIGZlZWRiYWNrIGZyb20gQWlzaGVuZyBEb25nOg0KPiA+ICAgLSBSZW5h
+bWUgaW1nX2pwZWdfZGVjX2Nsay9pbWdfanBlZ19lbmNfY2xrIHRvDQo+IGpwZWdfZGVjX2xwY2cv
+anBlZ19lbmNfbHBjZyB0byBtYWtlIGl0IHZpc2libGUgaXQncyBscGNnIG5vdCBvdGhlciB0eXBl
+IG9mIGNsaw0KPiA+ICAgLSBEcm9wIHRoZSBjYW1lcmFkZXYgbm9kZSwgbm90IG5lZWRlZCBmb3Ig
+anBlZw0KPiA+ICAgLSBNYXRjaCBhc3NpZ25lZC1jbG9ja3MgJiBhc3NpZ25lZC1jbG9jay1yYXRl
+cw0KPiA+DQo+ID4gIC4uLi9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OC1zcy1pbWcuZHRz
+aSB8IDgyDQo+ICsrKysrKysrKysrKysrKysrKysNCj4gPiAgYXJjaC9hcm02NC9ib290L2R0cy9m
+cmVlc2NhbGUvaW14OHF4cC5kdHNpICAgIHwgIDEgKw0KPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDgz
+IGluc2VydGlvbnMoKykNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtNjQvYm9vdC9k
+dHMvZnJlZXNjYWxlL2lteDgtc3MtaW1nLmR0c2kNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9hcmNo
+L2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4LXNzLWltZy5kdHNpDQo+IGIvYXJjaC9hcm02
+NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OC1zcy1pbWcuZHRzaQ0KPiA+IG5ldyBmaWxlIG1vZGUg
+MTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAwMDAwLi5jNTA4ZTVkMGM5MmINCj4gPiAtLS0gL2Rl
+di9udWxsDQo+ID4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OC1zcy1p
+bWcuZHRzaQ0KPiA+IEBAIC0wLDAgKzEsODIgQEANCj4gPiArLy8gU1BEWC1MaWNlbnNlLUlkZW50
+aWZpZXI6IEdQTC0yLjArDQo+ID4gKy8qDQo+ID4gKyAqIENvcHlyaWdodCAyMDE5LTIwMjEgTlhQ
+DQo+ID4gKyAqIFpob3UgR3Vvbml1IDxndW9uaXUuemhvdUBueHAuY29tPg0KPiA+ICsgKi8NCj4g
+PiAraW1nX3N1YnN5czogYnVzQDU4MDAwMDAwIHsNCj4gPiArCWNvbXBhdGlibGUgPSAic2ltcGxl
+LWJ1cyI7DQo+ID4gKwkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCj4gPiArCSNzaXplLWNlbGxzID0g
+PDE+Ow0KPiA+ICsJcmFuZ2VzID0gPDB4NTgwMDAwMDAgMHgwIDB4NTgwMDAwMDAgMHgxMDAwMDAw
+PjsNCj4gPiArDQo+ID4gKwlpbWdfaXBnX2NsazogY2xvY2staW1nLWlwZyB7DQo+ID4gKwkJY29t
+cGF0aWJsZSA9ICJmaXhlZC1jbG9jayI7DQo+ID4gKwkJI2Nsb2NrLWNlbGxzID0gPDA+Ow0KPiA+
+ICsJCWNsb2NrLWZyZXF1ZW5jeSA9IDwyMDAwMDAwMDA+Ow0KPiA+ICsJCWNsb2NrLW91dHB1dC1u
+YW1lcyA9ICJpbWdfaXBnX2NsayI7DQo+ID4gKwl9Ow0KPiANCj4gSG1tLCBub3Qgc3VyZSBhIGZp
+eGVkLWNsb2NrIHNob3VsZCBiZSBpbiB0aGUgc3Vic3lzdGVtLg0KDQpFYWNoIHN1YnN5c3RlbSBo
+YXMgaXRzIG93biBmaXhlZCBjbG9jayBzbGljZS4gKEluZGVwZW5kZW50IHdpdGggDQpvdGhlciBz
+dWJzeXN0ZW1zKS4gU28gd2UgcHV0IGl0IGluIHRoZSBzdWJzeXN0ZW0gZHRzaS4NCg0KUmVnYXJk
+cw0KQWlzaGVuZw0K
