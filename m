@@ -2,78 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0556388255
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 23:44:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3287388258
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 23:45:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236052AbhERVqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 17:46:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41130 "EHLO
+        id S1352509AbhERVqk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 17:46:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352569AbhERVqJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 17:46:09 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04026C061573
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 14:44:50 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id m11so16026725lfg.3
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 14:44:49 -0700 (PDT)
+        with ESMTP id S1352569AbhERVqj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 17:46:39 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE2C8C061573
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 14:45:20 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id m11so16028079lfg.3
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 14:45:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gDa4WHcFdueIrXi1rhrqppN7ZdRyzonqmDM/tclsxk8=;
-        b=Lozegdgl3LLaiS0DXMtRyh+aYAHSn61Q/FZlftfF4LWfmAT2SnDWl/kDnCvxJ0+HCg
-         C/UczA06CvIaQwdsRrA0MRbAP18/vKmY3tp8abR4BWTx9vExf4998RxT+wY4EjVlgIA3
-         P9dMcEWNlvtU8tJps7PF1fbPzPLKjRrQZRlLFdFw6rcl1zMBoUuEMfuET28VQgrrUP5a
-         zwmFBQhStoj5cxp+N77Qu61+4FJNBwaqNjqQzeHhjNFz4RjCmNxRDaZv4ycSqK8WFUq3
-         oCwDwaGi5gelGVkpHyD7wSJJNXcQbKeOxVM/azsA+biQ6dJ+wa7qS1e7YAxhFKyjyM/X
-         1QWQ==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Zq8Oj0D7oak1Vt4kV54mr1ZTCVcZbOhaIw9L0IBs9T0=;
+        b=l2FFG8EPiN3vjj4EafWKp8FVGmDqN3MACtnwZCAHjEyaKq0ByGblwx9z9oUGFFqzjh
+         ZIWvcDQWDjlRNkhQP6YpWYgl00aCM02ts8vijCHXKa9L2Xt+encl3y47O5AGwIUIpE2b
+         joGZEqrwpnr1nYpEeJKj7hEYIthii8xUcMb7T+uAZWCVEqI85gReLfVbMHFWAgdWLX3c
+         MeOq2BlFNOHaigcy5h6BauK9gVc3tvfWBMPip9wwAtWA2PeEZCpVv8cOzwX0kDB0af2x
+         EWjxVtEN0kWy4wtT9U+eysxOAha7+KyHLrEHVX/O/AvlYzbS1LXxRN4nhK5MFqK2hNEN
+         FVJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gDa4WHcFdueIrXi1rhrqppN7ZdRyzonqmDM/tclsxk8=;
-        b=NjMtYNT89YyDI1lQZeuF0jCuZbhnJ5wt2jwX4htcW7/fVILtn+B8BB+UpPv7vEm/um
-         gDM1ZMJYqq0gVqkaweUOah/NblvZm/7zMjzOT0G54l4bSANaeyWN12m+ftZsEgRrQft2
-         diDhHJZBiEUyUe3gEt0SxmJmL3YsB44vAv+svlkUWDFQCngQbYQQWzVmXkMBjDnlhJFt
-         miMGG2AWwkZF2K/ng6hah9FMbqHQLb0kLkD8qT5a1ey/N11neFCityVl23/g0/3sSL97
-         LBq9YobDc2/vSUQVgK1AiqxXaoTU5VNULJJWX0Q1tUvBtVFT+CDmG+9IPSTP34k9Riy/
-         Eg4w==
-X-Gm-Message-State: AOAM5326v/P7/iMRFf90SzvbymZ86/SBWypmpkV78ojLFO7ds7FwmXPi
-        JS9M5WPMs2oV2hdkqdPn9Y2Idar3S/625yFGyZEXRw==
-X-Google-Smtp-Source: ABdhPJyv4BLDM+5oyevoFet2Ve5mvZ0YIVLNRIwIVT5044vGftDZlD8yee6eNLuaQFvmk1PTZxkoGk+fLfCys6C7K6o=
-X-Received: by 2002:a05:6512:49b:: with SMTP id v27mr5678712lfq.29.1621374288547;
- Tue, 18 May 2021 14:44:48 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Zq8Oj0D7oak1Vt4kV54mr1ZTCVcZbOhaIw9L0IBs9T0=;
+        b=roCA/f5d76JvkC6xj0nw07lpS+oT+vpgMmGfLtWFn0cnY6TPicwyHqlixqJkt387M1
+         WV00KABzSaDYPFsb98A8OjAXqa6nwT6XhczGb/OLLahTBeB6+liT31I3CPmGdzufsh7y
+         5jdzoJJQ5Fs17ey2zSzMHZWgiUZMs9CiUEUyp1DyoH9rhOiyrD8yoT3Rq3UQnUdgIhpB
+         zITIOEImrth2eZo2/lHNkY429aIwdb8jJmgtucMLZWoEpxjn0CXt4GYv6+zxGhOm/f4e
+         JILvmrRK3zD0Tnb8sDK9EQ/M43Fv6zbi7nyB0cTNxWTHmkkU6Q7xcqXyO6MA2hO7CYGU
+         PI5w==
+X-Gm-Message-State: AOAM530lxwWi8CYZcfOiRs+XvM8+RewYa3OCFp7xXLwI0IAHe8q6r7mM
+        gaOTPXtqp3ucMbSo2eRo0so=
+X-Google-Smtp-Source: ABdhPJxh5+b5L6ZRRyHsSrTpjq+R+4xiVVCh52oF+kqhQNv1TVL1AeH/w7K17KfxyxbG0Kf8MuzQ8w==
+X-Received: by 2002:a05:6512:1192:: with SMTP id g18mr5531306lfr.659.1621374319358;
+        Tue, 18 May 2021 14:45:19 -0700 (PDT)
+Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id v1sm2015837lfo.179.2021.05.18.14.45.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 May 2021 14:45:18 -0700 (PDT)
+Subject: Re: [PATCH] dt-bindings: sound: wm8750: convert to the json-schema
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20210512205926.780-1-zajec5@gmail.com>
+ <20210518185511.GF4358@sirena.org.uk>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Message-ID: <edc9e00f-1074-8a9b-1666-ba4a0b9a08f6@gmail.com>
+Date:   Tue, 18 May 2021 23:45:17 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-References: <20210518151655.125153-1-clabbe@baylibre.com> <20210518151655.125153-5-clabbe@baylibre.com>
-In-Reply-To: <20210518151655.125153-5-clabbe@baylibre.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 18 May 2021 23:44:37 +0200
-Message-ID: <CACRpkdaP5eGe+afaDd29hYy=_drH-245OTcdUFgq0Sz8nZxajw@mail.gmail.com>
-Subject: Re: [PATCH 4/5] ARM: gemini_config: enable sl3516-ce crypto
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Russell King <linux@armlinux.org.uk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210518185511.GF4358@sirena.org.uk>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 18, 2021 at 5:17 PM Corentin Labbe <clabbe@baylibre.com> wrote:
+On 18.05.2021 20:55, Mark Brown wrote:
+> On Wed, May 12, 2021 at 10:59:26PM +0200, Rafał Miłecki wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> This helps validating DTS files.
+> 
+> Please submit patches using subject lines reflecting the style for the
+> subsystem, this makes it easier for people to identify relevant patches.
+> Look at what existing commits in the area you're changing are doing and
+> make sure your subject lines visually resemble what they're doing.
+> There's no need to resubmit to fix this alone.
 
-> Enable the crypto offloader by default.
->
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-
-I'll apply this once the driver is applied to the crypto tree, I need to
-update the defconfig for gemini in some other regards as well.
-
-Thanks!
-Linus Walleij
+Oops, "ASoC: " prefix is quite unique, no many subsystems use any prefix
+before the "dt-bindings:". I didn't think of checking that, sorry.
