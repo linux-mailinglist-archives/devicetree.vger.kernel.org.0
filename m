@@ -2,303 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A7553874A8
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 11:06:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53BE93875CF
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 11:55:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347735AbhERJH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 05:07:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37274 "EHLO
+        id S243215AbhERJ4W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 05:56:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347714AbhERJHP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 05:07:15 -0400
-Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2F32C0613ED
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 02:05:56 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:c161:a89e:52bd:1787])
-        by xavier.telenet-ops.be with bizsmtp
-        id 695s2500d446CkP0195sBj; Tue, 18 May 2021 11:05:53 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1livfk-006q2F-FE; Tue, 18 May 2021 11:05:52 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1liuVt-0068d1-7n; Tue, 18 May 2021 09:51:37 +0200
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: [PATCH] dt-bindings: display: ssd1307fb: Convert to json-schema
-Date:   Tue, 18 May 2021 09:51:31 +0200
-Message-Id: <20210518075131.1463091-1-geert@linux-m68k.org>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S1348111AbhERJ4U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 05:56:20 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 697D9C061573
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 02:55:02 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id b7so4471749wmh.5
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 02:55:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=fginyF3h0uO7FrUs8ObqH5iIkZOGxEkZEk2Vd5hl+Xk=;
+        b=Ia0JbupATcQIAZpnsgPyw/IxSOH5RZnB8RmQwq7l+YBDwL8AK1RjU7QgciKS4WEX1Q
+         2P9apoj7sgKliK0A87i0x8huLkQzYQ0vFpt9K12LY0ksK7kcj0j9UbEIGHeJZD+XoQ7D
+         oOBEk/6BBz9luYtN1SZt0MuXWtGkUPVMkMsCN3I938eK1TgUKy7XRN5vR3zqv7Bpc7ma
+         +Qvzu/2WX1/R1VFNB1F+HyodIQS4C2X3n8rxapwRiiyENVNdR6JTVE0cKG/AsV/lW6Y0
+         p561NTj8uWYm8ZV7Z5gRA42s8lQAJdBMhMUmckwY/ysUv0URwYM6L13n3swBZ/V0N6uL
+         20mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=fginyF3h0uO7FrUs8ObqH5iIkZOGxEkZEk2Vd5hl+Xk=;
+        b=QckYSWfUC7x5RL3U3WK+zR7WII8lmXBlbP1D6zWPYyh8aU+33Ow9AhCTv8FebB71cX
+         ALOBQE09hEwRA5ip70UdIy6JIylHVudpP1DfCwjhKe8Md9cFEaxIKV12qM8oTMaI6Dde
+         Ggm5SWHNzRZsE8NRbpZPsTg1azLhDJ8suuL3vfZ+096ECz5S1S3lIjMyMADMvtEg7NB0
+         157Jix7N5LK40oHwkR/XMbC3OambzLha5lgjmM6lIgwJeq1CdUuLrLp480Z5F3D67Vmr
+         f34ccqYm0EzlWtMUvEef79cHUup19c2QmXZYbRR14Invdi0B/BHkansLABuiOrnHuA3f
+         S4Dg==
+X-Gm-Message-State: AOAM532VjSgSyMKK4EFlAWhrz7s1WcQQRmZkfqHPSOE4u36Zw2jllhXR
+        QqtG0wcq5xR2EIN9zbQimGeHzA==
+X-Google-Smtp-Source: ABdhPJwctiP6iNlOp+0KFqNHTYlHVOzwDJqpjoyzt4CfSSa1ZARgEvW7Zuwr3HxKdXV9J88hqOzC9A==
+X-Received: by 2002:a1c:28b:: with SMTP id 133mr4440939wmc.135.1621331701145;
+        Tue, 18 May 2021 02:55:01 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id q3sm18355872wrr.43.2021.05.18.02.54.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 May 2021 02:55:00 -0700 (PDT)
+Date:   Tue, 18 May 2021 11:54:57 +0200
+From:   LABBE Corentin <clabbe@baylibre.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>, SoC Team <soc@kernel.org>,
+        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 4/5] ARM: gemini: add device tree for edimax NS2502
+Message-ID: <YKOO8UxdmZBjYbt4@Red>
+References: <20210517193205.691147-1-clabbe@baylibre.com>
+ <20210517193205.691147-5-clabbe@baylibre.com>
+ <CACRpkdY3c4uvo1zbEgNW0meF-4P8be_nmoOEQAHP5V+GXgoG=A@mail.gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdY3c4uvo1zbEgNW0meF-4P8be_nmoOEQAHP5V+GXgoG=A@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Solomon SSD1307 Framebuffer Device Tree binding
-documentation to json-schema.
+Le Tue, May 18, 2021 at 01:46:20AM +0200, Linus Walleij a écrit :
+> Hi Corentin,
+> 
+> this is looking nice! Just one thing:
+> 
+> On Mon, May 17, 2021 at 9:32 PM Corentin Labbe <clabbe@baylibre.com> wrote:
+> 
+> > The edimax NS2502 is a NAS box running a SL3516 SoC.
+> >
+> > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> 
+> > +&flash {
+> > +       status = "okay";
+> > +       /* 8MB of flash */
+> > +       reg = <0x30000000 0x00800000>;
+> 
+> No pin control setting? I guess it may work but this doesn't hurt
+> (I think):
+> 
+>     pinctrl-names = "enabled", "disabled";
+>     pinctrl-0 = <&pflash_default_pins>;
+>     pinctrl-1 = <&pflash_disabled_pins>;
+> 
 
-Fix the spelling of the "pwms" property.
-Document default values.
-Make properties with default values not required.
+I have added, without any change in behavour.
 
-Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
----
-I have listed Maxime as the maintainer, as he wrote the original driver
-and bindings.  Maxime: Please scream if this is inappropriate ;-)
----
- .../bindings/display/solomon,ssd1307fb.yaml   | 166 ++++++++++++++++++
- .../devicetree/bindings/display/ssd1307fb.txt |  60 -------
- 2 files changed, 166 insertions(+), 60 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
- delete mode 100644 Documentation/devicetree/bindings/display/ssd1307fb.txt
+> > +       partitions {
+> > +               compatible = "fixed-partitions";
+> > +               #address-cells = <1>;
+> > +               #size-cells = <1>;
+> > +
+> > +               partition@0 {
+> > +                       label = "RedBoot";
+> > +                       reg = <0x00000000 0x00020000>;
+> > +                       read-only;
+> > +               };
+> > +               partition@20000 {
+> > +                       label = "kernel";
+> > +                       reg = <0x00020000 0x00700000>;
+> > +               };
+> > +               partition@720000 {
+> > +                       label = "VCTL";
+> > +                       reg = <0x00720000 0x00020000>;
+> > +                       read-only;
+> > +               };
+> > +               partition@740000 {
+> > +                       label = "CurConf";
+> > +                       reg = <0x00740000 0x000a0000>;
+> > +                       read-only;
+> > +               };
+> > +               partition@7e0000 {
+> > +                       label = "FIS";
+> > +                       reg = <0x007e0000 0x00010000>;
+> > +                       read-only;
+> > +               };
+> > +       };
+> > +};
+> 
+> Is the FIS broken since you hardcode the partitions?
+> 
+> Doesn't this work:
+> 
+> partitions {
+>     compatible = "redboot-fis";
+>     /* Eraseblock at 0x7e0000 */
+>     fis-index-block = <0xfc>;
+> };
+> 
+> (Needs CONFIG_MTD_REDBOOT_PARTS)
 
-diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-new file mode 100644
-index 0000000000000000..bd632d86a4f814a0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-@@ -0,0 +1,166 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/solomon,ssd1307fb.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Solomon SSD1307 OLED Controller Framebuffer
-+
-+maintainers:
-+  - Maxime Ripard <mripard@kernel.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - solomon,ssd1305fb-i2c
-+      - solomon,ssd1306fb-i2c
-+      - solomon,ssd1307fb-i2c
-+      - solomon,ssd1309fb-i2c
-+
-+  reg:
-+    maxItems: 1
-+
-+  pwms:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  vbat-supply:
-+    description: The supply for VBAT
-+
-+  solomon,height:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 16
-+    description:
-+      Height in pixel of the screen driven by the controller
-+
-+  solomon,width:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 96
-+    description:
-+      Width in pixel of the screen driven by the controller
-+
-+  solomon,page-offset:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 1
-+    description:
-+      Offset of pages (band of 8 pixels) that the screen is mapped to
-+
-+  solomon,segment-no-remap:
-+    type: boolean
-+    description:
-+      Display needs normal (non-inverted) data column to segment mapping
-+
-+  solomon,col-offset:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 0
-+    description:
-+      Offset of columns (COL/SEG) that the screen is mapped to
-+
-+  solomon,com-seq:
-+    type: boolean
-+    description:
-+      Display uses sequential COM pin configuration
-+
-+  solomon,com-lrremap:
-+    type: boolean
-+    description:
-+      Display uses left-right COM pin remap
-+
-+  solomon,com-invdir:
-+    type: boolean
-+    description:
-+      Display uses inverted COM pin scan direction
-+
-+  solomon,com-offset:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 0
-+    description:
-+      Number of the COM pin wired to the first display line
-+
-+  solomon,prechargep1:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 2
-+    description:
-+      Length of deselect period (phase 1) in clock cycles
-+
-+  solomon,prechargep2:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 2
-+    description:
-+      Length of precharge period (phase 2) in clock cycles.  This needs to be
-+      the higher, the higher the capacitance of the OLED's pixels is.
-+
-+  solomon,dclk-div:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 1
-+    maximum: 16
-+    description:
-+      Clock divisor. The default value is controller-dependent.
-+
-+  solomon,dclk-frq:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 15
-+    description:
-+      Clock frequency, higher value means higher frequency.
-+      The default value is controller-dependent.
-+
-+  solomon,lookup-table:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    maxItems: 4
-+    description:
-+      8 bit value array of current drive pulse widths for BANK0, and colors A,
-+      B, and C. Each value in range of 31 to 63 for pulse widths of 32 to 64.
-+      Color D is always width 64.
-+
-+  solomon,area-color-enable:
-+    type: boolean
-+    description:
-+      Display uses color mode
-+
-+  solomon,low-power:
-+    type: boolean
-+    description:
-+      Display runs in low power mode
-+
-+required:
-+  - compatible
-+  - reg
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: solomon,ssd1307fb-i2c
-+then:
-+  required:
-+    - pwms
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c1 {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            ssd1307: oled@3c {
-+                    compatible = "solomon,ssd1307fb-i2c";
-+                    reg = <0x3c>;
-+                    pwms = <&pwm 4 3000>;
-+                    reset-gpios = <&gpio2 7>;
-+            };
-+
-+            ssd1306: oled@3d {
-+                    compatible = "solomon,ssd1306fb-i2c";
-+                    reg = <0x3c>;
-+                    pwms = <&pwm 4 3000>;
-+                    reset-gpios = <&gpio2 7>;
-+                    solomon,com-lrremap;
-+                    solomon,com-invdir;
-+                    solomon,com-offset = <32>;
-+                    solomon,lookup-table = /bits/ 8 <0x3f 0x3f 0x3f 0x3f>;
-+            };
-+    };
-diff --git a/Documentation/devicetree/bindings/display/ssd1307fb.txt b/Documentation/devicetree/bindings/display/ssd1307fb.txt
-deleted file mode 100644
-index 2dcb6d12d1371536..0000000000000000
---- a/Documentation/devicetree/bindings/display/ssd1307fb.txt
-+++ /dev/null
-@@ -1,60 +0,0 @@
--* Solomon SSD1307 Framebuffer Driver
--
--Required properties:
--  - compatible: Should be "solomon,<chip>fb-<bus>". The only supported bus for
--    now is i2c, and the supported chips are ssd1305, ssd1306, ssd1307 and
--    ssd1309.
--  - reg: Should contain address of the controller on the I2C bus. Most likely
--         0x3c or 0x3d
--  - pwm: Should contain the pwm to use according to the OF device tree PWM
--         specification [0]. Only required for the ssd1307.
--  - solomon,height: Height in pixel of the screen driven by the controller
--  - solomon,width: Width in pixel of the screen driven by the controller
--  - solomon,page-offset: Offset of pages (band of 8 pixels) that the screen is
--    mapped to.
--
--Optional properties:
--  - reset-gpios: The GPIO used to reset the OLED display, if available. See
--                 Documentation/devicetree/bindings/gpio/gpio.txt for details.
--  - vbat-supply: The supply for VBAT
--  - solomon,segment-no-remap: Display needs normal (non-inverted) data column
--                              to segment mapping
--  - solomon,col-offset: Offset of columns (COL/SEG) that the screen is mapped to.
--  - solomon,com-seq: Display uses sequential COM pin configuration
--  - solomon,com-lrremap: Display uses left-right COM pin remap
--  - solomon,com-invdir: Display uses inverted COM pin scan direction
--  - solomon,com-offset: Number of the COM pin wired to the first display line
--  - solomon,prechargep1: Length of deselect period (phase 1) in clock cycles.
--  - solomon,prechargep2: Length of precharge period (phase 2) in clock cycles.
--                         This needs to be the higher, the higher the capacitance
--                         of the OLED's pixels is
--  - solomon,dclk-div: Clock divisor 1 to 16
--  - solomon,dclk-frq: Clock frequency 0 to 15, higher value means higher
--                      frequency
--  - solomon,lookup-table: 8 bit value array of current drive pulse widths for
--                          BANK0, and colors A, B, and C. Each value in range
--                          of 31 to 63 for pulse widths of 32 to 64. Color D
--                          is always width 64.
--  - solomon,area-color-enable: Display uses color mode
--  - solomon,low-power. Display runs in low power mode
--
--[0]: Documentation/devicetree/bindings/pwm/pwm.txt
--
--Examples:
--ssd1307: oled@3c {
--        compatible = "solomon,ssd1307fb-i2c";
--        reg = <0x3c>;
--        pwms = <&pwm 4 3000>;
--        reset-gpios = <&gpio2 7>;
--};
--
--ssd1306: oled@3c {
--        compatible = "solomon,ssd1306fb-i2c";
--        reg = <0x3c>;
--        pwms = <&pwm 4 3000>;
--        reset-gpios = <&gpio2 7>;
--        solomon,com-lrremap;
--        solomon,com-invdir;
--        solomon,com-offset = <32>;
--        solomon,lookup-table = /bits/ 8 <0x3f 0x3f 0x3f 0x3f>;
--};
--- 
-2.25.1
+No it does not.
+
+physmap-flash 30000000.flash: no enabled pin control state
+physmap-flash 30000000.flash: no disabled pin control state
+physmap-flash 30000000.flash: initialized Gemini-specific physmap control
+physmap-flash 30000000.flash: physmap platform flash device: [mem 0x30000000-0x331fffff]
+30000000.flash: Found 1 x16 devices at 0x0 in 16-bit bank. Manufacturer ID 0x000001 Chip ID 0x002201
+number of CFI chips: 1
+Searching for RedBoot partition table in 30000000.flash at offset 0x1fe0000
+No RedBoot partition table detected in 30000000.flash
+Searching for RedBoot partition table in 30000000.flash at offset 0x1fe0000
+No RedBoot partition table detected in 30000000.flash
 
