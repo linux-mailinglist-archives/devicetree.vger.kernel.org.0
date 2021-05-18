@@ -2,107 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 575A23877C1
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 13:33:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D4D03877D6
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 13:39:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230418AbhERLe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 07:34:59 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:53004 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240582AbhERLey (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 07:34:54 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 68FE15A9;
-        Tue, 18 May 2021 13:33:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1621337608;
-        bh=kmO3XCC2pDO2hN7btUQer2F/7F+XQOYQpLIDEE3wBJk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TtVkjvwrfBgny+UH89j4tvdAebLee2M2ma2BoJrUB/Q3UfrPe32d53AGBcdQXTPfs
-         KIr2pASy6ixiodBJiBkxu41D522yplFe9HThveEvudNO0ReXSUGLcg9HXhF4Earh/i
-         uh04ObQwtWW+MGnwODew5h9P9Fu1P1oWY4PGyqr0=
-Date:   Tue, 18 May 2021 14:33:27 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     linux-media@vger.kernel.org, Rui Miguel Silva <rmfrfs@gmail.com>,
-        kernel@pengutronix.de, Fabio Estevam <festevam@gmail.com>,
-        linux-imx@nxp.com, Steve Longerbeam <slongerbeam@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Marek Vasut <marex@denx.de>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Dorota Czaplejewicz <dorota.czaplejewicz@puri.sm>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH 1/3] dt-bindings: media: nxp,imx7-csi: Add i.MX8MM
- support
-Message-ID: <YKOmB0L+0i48ziX7@pendragon.ideasonboard.com>
-References: <20210516024216.4576-1-laurent.pinchart@ideasonboard.com>
- <20210516024216.4576-2-laurent.pinchart@ideasonboard.com>
- <bbe18b43336f73a5c3809b933e07270ef0a45134.camel@puri.sm>
+        id S244760AbhERLkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 07:40:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44250 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243762AbhERLkf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 07:40:35 -0400
+Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93F37C061756
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 04:39:17 -0700 (PDT)
+Received: from [IPv6:2a02:a03f:eafb:ee01:6102:7bbd:c7da:85a4] (unknown [IPv6:2a02:a03f:eafb:ee01:6102:7bbd:c7da:85a4])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 075CB200155;
+        Tue, 18 May 2021 13:39:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1621337955;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=uwmdW801vRB3PpGUwtnmy412PKt6fejTaQGhH97dxaI=;
+        b=imcG4dei6UyHr6SFf4F0c1hXxbKSIYueqDyCAEL6DmGi6QLXqliwyNb1JJNNfBl6mJSlfS
+        qVltN5tq7OFNwOi9jF4V1GE2FyHOldZzf+OzNxW8BWL1yOy2Hq4BOZjIVQ5j8k2BzFseRH
+        5aMb1AYhrH9qSJo2HGU+l/Pk3H4D7BMx23a2RnlfoOUGsiKEqahAQmLL7vGHZHPep59Ljs
+        43xZLHZwCK33fKKvAhVx5zRruPkqsGtbTMCtBKns6tk4Caahdb+z2OpElDa2b6V+qxp6Lk
+        Z7AWze8mtSLPjIyTCxnDiD7jvoTKovM20Dpz6RtFx8+/JISHB80d0LQBa6NBrg==
+Message-ID: <1fcbaf8029f3b9f79a138d423413f625886c8415.camel@svanheule.net>
+Subject: Re: [PATCH v2 2/7] gpio: regmap: Add configurable dir/value order
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Date:   Tue, 18 May 2021 13:39:12 +0200
+In-Reply-To: <YKMbF3Ow8IrBBlXW@lunn.ch>
+References: <cover.1621279162.git.sander@svanheule.net>
+         <d5f294489d31a80b69169f358da89bb7f70d1328.1621279162.git.sander@svanheule.net>
+         <YKMbF3Ow8IrBBlXW@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <bbe18b43336f73a5c3809b933e07270ef0a45134.camel@puri.sm>
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+Hi Andrew,
 
-On Tue, May 18, 2021 at 01:26:21PM +0200, Martin Kepplinger wrote:
-> Am Sonntag, dem 16.05.2021 um 05:42 +0300 schrieb Laurent Pinchart:
-> > The i.MX8MM integrates a CSI bridge IP core, as the i.MX7. There seems
-> > to be no difference between the two SoCs according to the reference
-> > manual, but as documentation may not be accurate, add a compatible
-> > string for the i.MX8MM, with a fallback on the compatible i.MX7.
-> > 
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> >  .../devicetree/bindings/media/nxp,imx7-csi.yaml      | 12 ++++++++--
-> > --
-> >  1 file changed, 8 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/nxp,imx7-
-> > csi.yaml b/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
-> > index d91575b8ebb9..5922a2795167 100644
-> > --- a/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
-> > +++ b/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
-> > @@ -4,7 +4,7 @@
-> >  $id: http://devicetree.org/schemas/media/nxp,imx7-csi.yaml#
-> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >  
-> > -title: i.MX7 CMOS Sensor Interface
-> > +title: i.MX7 and i.MX8 CSI bridge (CMOS Sensor Interface)
-> >  
-> >  maintainers:
-> >    - Rui Miguel Silva <rmfrfs@gmail.com>
-> > @@ -15,9 +15,13 @@ description: |
-> >  
-> >  properties:
-> >    compatible:
-> > -    enum:
-> > -      - fsl,imx7-csi
-> > -      - fsl,imx6ul-csi
-> > +    oneOf:
-> > +      - enum:
-> > +          - fsl,imx7-csi
-> > +          - fsl,imx6ul-csi
-> > +      - items:
-> > +          - const: fsl,imx8mm-csi
-> > +          - const: fsl,imx7-csi
-> >  
-> >    reg:
-> >      maxItems: 1
+On Tue, 2021-05-18 at 03:40 +0200, Andrew Lunn wrote:
+> On Mon, May 17, 2021 at 09:28:04PM +0200, Sander Vanheule wrote:
+> > GPIO chips may not support setting the output value when a pin is
+> > configured as an input
 > 
-> isn't the fsl,imx8mm-csi compatible missing in the driver then?
+> Could you describe what happens with the hardware you are playing
+> with. Not being able to do this means you will get glitches when
+> enabling the output so you should not use these GPIOs with bit banging
+> busses like i2c.
 
-The driver will match on the "fsl,imx7-csi" compatible string, which the
-bindings makes mandatory as a fallback for i.MX8MM. If we later find
-differences between the CSI bridge in the i.MX7 and i.MX8MM, we can add
-the compatible string to the driver to enable device-specific code
-without any backward-compatibility issue.
+As I was testing this driver, I noticed that output settings for GPIO LEDs,
+connected to the RTL8231, weren't being properly set. The actual LED brightness
+didn't correspond to the one reported by sysfs. Changing the operation order
+fixed this.
 
--- 
-Regards,
+However, the vendor code uses I2C bitbanging quite extensively on these chips,
+so I decided to have another look.
 
-Laurent Pinchart
+From u-boot on my device, I can manipulate the RTL8231 registeres relatively
+easily. I performed the following short tests:
+ * Set pin to input, pull pin high, write output low, change direction: pin
+   output changes to low value
+ * Set pin to input pull pin low, write output high, change direction: pin
+   output changes to high value
+
+Which seems to indicate that I _can_ set output values on input pins... I'll
+need to look into this in more detail when I have a bit more time, later this
+week.
+
+
+Best,
+Sander
+
