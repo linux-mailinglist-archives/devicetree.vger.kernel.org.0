@@ -2,189 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B54C387B78
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 16:42:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0AC5387B99
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 16:45:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235178AbhEROoI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 10:44:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58378 "EHLO
+        id S233943AbhEROqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 10:46:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234454AbhEROoI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 10:44:08 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FB6EC061756
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 07:42:50 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id b9-20020a17090a9909b029015cf9effaeaso1652363pjp.5
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 07:42:50 -0700 (PDT)
+        with ESMTP id S238656AbhEROq0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 10:46:26 -0400
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACCDBC061760
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 07:45:07 -0700 (PDT)
+Received: by mail-ot1-x336.google.com with SMTP id q7-20020a9d57870000b02902a5c2bd8c17so8832637oth.5
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 07:45:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=b3DMt2F3yR1S8LhJiSdAhlPcYPUp2f9kxGSREUS+xFY=;
-        b=hrKuPisLxc8CgXd9G6ghQ6FBg4IJtnIX7kOnnpJojVxnuLnLTdp7lfi3kHnxK9dz0+
-         v+gfHV/vAujTUbSAZUMzTXMkFkS06vjZKGpIpbupOJ0CQzyDiB9qEwDG9gBbYwNjwB4d
-         4/Sf3gbt9uYnMkgDd4vJ4RAplDIoz0rt8sNrsoWPDkLadtBj8lQDAplYoqANqXtRTxxB
-         9Uu38T6Ax0+/znT5ex5MKtIhfm+jjo6r6sCDk+5rEXrNF0dGBmJcQq2cfYm3W6e2PAML
-         +bdCUUIS3x+IPNlwCBnwGWge0nKbJeB1ZSjS4dDyFnma0emXEP+2ooA+vRqNc1qdezZ/
-         xQ/Q==
+        bh=+I0Y4c5QVZL3j3aPLLsY6yUi9Anm8Xg8tXjxoP3kmaA=;
+        b=DnF+V1u4aXfJZ0oMCAAXVp7EbHLzATcib064zpKEqM8fIX4X69sfv/dY8JiFaYBOfd
+         G7pFWoX7Vl4lFtsb0NaacSygopz/JAtOiei+V//sdhqUKWCYOBBNK4B6/KtpTtQ5yYwj
+         6x2OBaAgKEHrw74FV0O2KRJIQv5eCZIvHQPjm887seB6nt32HOQVcD6PMKgF+4KoDnlU
+         zB8qdF+HVfIskVEK8YYHaKcKHLQYbDTYLHgOOufGWxhlw5uMz7WtdaUoIUAIaSJ1lv+5
+         QQdPTZwc+mm/6260PKrS67+k3Dmr3St/Xyj+aqsBpdXcd/1vCuaQBtd00au1uUFEDdZe
+         9F3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=b3DMt2F3yR1S8LhJiSdAhlPcYPUp2f9kxGSREUS+xFY=;
-        b=iJZmBdtx+Jm4lRK9EqdCUfC8N1lpW0cH9MWI+EktmSV3blqQhTc/MErcwV73w9WDtL
-         LfNKyhr2Mc6OgX3uj/CDSbg036uBkO73J3uhI28i/Uy+SOivmGsH7unYXwxg8tFwcK18
-         VBbtPZK9Jh5H64kJ/lCEIzqL/J3+6ssX4aNyBxK/nMev8yifeze5ngdSjfSZdLbklXPo
-         j73V3TDTGqMuLhGwfipKZK58KyWxsudjDXqPfUHvY1h37nQOb5d5jKMraSrSG+ffPbNP
-         VW7veUUDTOPmHe4ttxsmCtbU64vAI5/chOX0cK1J961E7PiTkhfwx0zJdMEWd6tlueEd
-         hAdA==
-X-Gm-Message-State: AOAM532Rn7hPfbuajfOffsTTCdxQBxY3SmrfPZmpjVFilkYMJbi85bK2
-        vcIQrMrdHSonisnGrR3sWlAEIasYjjyWQ3NeIzrA0NWPgh/3ms1M
-X-Google-Smtp-Source: ABdhPJz6HxDCbuqQzC6kuOWJ/Z4wKk+gxz+hYXy740zOMxhRX6CV1XDh880v/3VEjfhmUyaukGJCeYabreKqbOSypV0=
-X-Received: by 2002:a17:90a:e391:: with SMTP id b17mr1086553pjz.75.1621348970117;
- Tue, 18 May 2021 07:42:50 -0700 (PDT)
+        bh=+I0Y4c5QVZL3j3aPLLsY6yUi9Anm8Xg8tXjxoP3kmaA=;
+        b=k66BsYu/Pbkbqafz+F/BsMb6yGxv3AcVq1Fmu9IoP7YN2Wi0rUv5+oAzsKD/+Cp2b3
+         WjDnWlNBKPmKZCWENhHQMuFF35p7nrK/7VbPZAv35PeWfglRKBQxsWlM5F7qCaJi3Gn5
+         5HctYxFrkW5j3juc+gn2FK+idrKK7v7BtKg/Xk/2fpqRd2fMUdLLIrJiAU8cPWake+pH
+         S1OAY/C2soc5TgfOYCyIGnfc0+7By0ab4P0IEUwfCdi2IcYiqwW0rKmaZSWLG1xEsF2O
+         btW91ChFdCl9ew0zX5DvFdEKVk2mOICfw10ND83h8Q7wgggM2Igx1acn67CVBjHppH/p
+         nO3A==
+X-Gm-Message-State: AOAM5310zKr97e9ZsPGEbNrEkStfzjeEjmqyIHIZQIS8tB168DvbnsrX
+        n2jkmmRMfzQ9Lna9DXVeOXvGyGF6cdAvJIVwbmDiAg==
+X-Google-Smtp-Source: ABdhPJwU1vhdtj7C21PJReFsn9XQdq26AflNTFKimt9sKly+sQlhEy3C2/XoK/nlnzfDDetaWEyWUhUrTn+I7Si2byU=
+X-Received: by 2002:a9d:4f15:: with SMTP id d21mr4610254otl.155.1621349106931;
+ Tue, 18 May 2021 07:45:06 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210518141927.24795-1-dafna.hirschfeld@collabora.com> <20210518141927.24795-2-dafna.hirschfeld@collabora.com>
-In-Reply-To: <20210518141927.24795-2-dafna.hirschfeld@collabora.com>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Tue, 18 May 2021 16:42:38 +0200
-Message-ID: <CAG3jFyuu7Vvd3QtKpfVg+uSFB9JJmKOAovxpX_gs=BoBUYuamw@mail.gmail.com>
-Subject: Re: [PATCH v6 RESEND 1/2] dt-bindings: display: add google,cros-ec-anx7688.yaml
-To:     Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-mediatek@lists.infradead.org,
-        linux-kernel <linux-kernel@vger.kernel.org>, megous@megous.com,
-        linux-usb@vger.kernel.org, Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        enric.balletbo@collabora.com,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, kernel@collabora.com,
-        dafna3@gmail.com, Rob Herring <robh+dt@kernel.org>
+References: <20210505213731.538612-1-bhupesh.sharma@linaro.org>
+ <20210505213731.538612-16-bhupesh.sharma@linaro.org> <7d8bc623-ef12-c7ae-0d12-16b0b1c48ffe@linaro.org>
+In-Reply-To: <7d8bc623-ef12-c7ae-0d12-16b0b1c48ffe@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Tue, 18 May 2021 20:14:56 +0530
+Message-ID: <CAH=2NtxEq4p83EvJYe4cw3krhx0g2TYGFYRSEHc+jQJmBzdsqw@mail.gmail.com>
+Subject: Re: [PATCH v2 15/17] crypto: qce: Defer probing if BAM dma is not yet initialized
+To:     Thara Gopinath <thara.gopinath@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bhupesh.linux@gmail.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Series applied to drm-misc-next.
+HI Thara,
 
-https://cgit.freedesktop.org/drm/drm-misc/commit/?id=b67f7599c90ae36a5174826132f7690fa13d462c
+On Mon, 10 May 2021 at 18:52, Thara Gopinath <thara.gopinath@linaro.org> wrote:
+>
+>
+>
+> On 5/5/21 5:37 PM, Bhupesh Sharma wrote:
+> > Since the Qualcomm qce crypto driver needs the BAM dma driver to be
+> > setup first (to allow crypto operations), it makes sense to defer
+> > the qce crypto driver probing in case the BAM dma driver is not yet
+> > probed.
+> >
+> > This fixes the qce probe failure issues when both qce and BMA dma
+> > are compiled as static part of the kernel.
+> >
+> > Cc: Thara Gopinath <thara.gopinath@linaro.org>
+> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Andy Gross <agross@kernel.org>
+> > Cc: Herbert Xu <herbert@gondor.apana.org.au>
+> > Cc: David S. Miller <davem@davemloft.net>
+> > Cc: Stephen Boyd <sboyd@kernel.org>
+> > Cc: Michael Turquette <mturquette@baylibre.com>
+> > Cc: Vinod Koul <vkoul@kernel.org>
+> > Cc: dmaengine@vger.kernel.org
+> > Cc: linux-clk@vger.kernel.org
+> > Cc: linux-crypto@vger.kernel.org
+> > Cc: devicetree@vger.kernel.org
+> > Cc: linux-kernel@vger.kernel.org
+> > Cc: bhupesh.linux@gmail.com
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+> >   drivers/crypto/qce/core.c  | 4 ++++
+> >   drivers/dma/qcom/bam_dma.c | 7 +++++++
+> >   2 files changed, 11 insertions(+)
+> >
+> > diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
+> > index 9a7d7ef94687..3e742e9911fa 100644
+> > --- a/drivers/crypto/qce/core.c
+> > +++ b/drivers/crypto/qce/core.c
+> > @@ -15,6 +15,7 @@
+> >   #include <linux/types.h>
+> >   #include <crypto/algapi.h>
+> >   #include <crypto/internal/hash.h>
+> > +#include <soc/qcom/bam_dma.h>
+> >
+> >   #include "core.h"
+> >   #include "cipher.h"
+> > @@ -201,6 +202,9 @@ static int qce_crypto_probe(struct platform_device *pdev)
+> >                       of_match_device(qce_crypto_of_match, &pdev->dev);
+> >       int ret;
+> >
+> > +     /* qce driver requires BAM dma driver to be setup first */
+> > +     if (!bam_is_probed())
+> > +             return -EPROBE_DEFER;
+>
+> Hi Bhupesh,
+>
+> You don't need this here. qce_dma_request returns -EPROBE_DEFER if the
+> dma controller is not probed yet.
 
-On Tue, 18 May 2021 at 16:19, Dafna Hirschfeld
-<dafna.hirschfeld@collabora.com> wrote:
->
-> ChromeOS EC ANX7688 is a display bridge that converts HDMI 2.0 to
-> DisplayPort 1.3 Ultra-HDi (4096x2160p60). It is an Analogix ANX7688 chip
-> which is connected to and operated by the ChromeOS Embedded Controller
-> (See google,cros-ec.yaml). It is accessed using I2C tunneling through
-> the EC and therefore its node should be a child of an EC I2C tunnel node
-> (See google,cros-ec-i2c-tunnel.yaml).
->
-> ChromOS EC ANX7688 is found on Acer Chromebook R13 (elm)
->
-> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bridge/google,cros-ec-anx7688.yaml        | 82 +++++++++++++++++++
->  1 file changed, 82 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/google,cros-ec-anx7688.yaml
->
-> diff --git a/Documentation/devicetree/bindings/display/bridge/google,cros-ec-anx7688.yaml b/Documentation/devicetree/bindings/display/bridge/google,cros-ec-anx7688.yaml
-> new file mode 100644
-> index 000000000000..9f7cc6b757cb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/google,cros-ec-anx7688.yaml
-> @@ -0,0 +1,82 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/google,cros-ec-anx7688.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ChromeOS EC ANX7688 HDMI to DP Converter through Type-C Port
-> +
-> +maintainers:
-> +  - Nicolas Boichat <drinkcat@chromium.org>
-> +  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> +
-> +description: |
-> +  ChromeOS EC ANX7688 is a display bridge that converts HDMI 2.0 to
-> +  DisplayPort 1.3 Ultra-HDi (4096x2160p60). It is an Analogix ANX7688 chip
-> +  which is connected to and operated by the ChromeOS Embedded Controller
-> +  (See google,cros-ec.yaml). It is accessed using I2C tunneling through
-> +  the EC and therefore its node should be a child of an EC I2C tunnel node
-> +  (See google,cros-ec-i2c-tunnel.yaml).
-> +
-> +properties:
-> +  compatible:
-> +    const: google,cros-ec-anx7688
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: I2C address of the device.
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Video port for HDMI input.
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: USB Type-c connector.
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c_tunnel_b: i2c-tunnel1 {
-> +        compatible = "google,cros-ec-i2c-tunnel";
-> +        google,remote-bus = <1>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        anx7688: anx7688@2c {
-> +            compatible = "google,cros-ec-anx7688";
-> +            reg = <0x2c>;
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                port@0 {
-> +                    reg = <0>;
-> +                    anx7688_in: endpoint {
-> +                        remote-endpoint = <&hdmi0_out>;
-> +                    };
-> +                };
-> +                port@1 {
-> +                    reg = <1>;
-> +                    anx7688_out: endpoint {
-> +                        remote-endpoint = <&typec_connector>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> --
-> 2.17.1
+Thanks for the review.
+
+Yes, we can just use qce_dma_request() return value to return from the
+qce probe() function early, in case the bam dma channels are not
+available yet.
+
+I have made the changes in v3 and will post it for review shortly.
+
+Regards,
+Bhupesh
+
+
+
+
+
+
+> >
+> >       qce = devm_kzalloc(dev, sizeof(*qce), GFP_KERNEL);
+> >       if (!qce)
+> > diff --git a/drivers/dma/qcom/bam_dma.c b/drivers/dma/qcom/bam_dma.c
+> > index 2bc3b7c7ee5a..c854fcc82dbf 100644
+> > --- a/drivers/dma/qcom/bam_dma.c
+> > +++ b/drivers/dma/qcom/bam_dma.c
+> > @@ -935,6 +935,12 @@ static void bam_channel_init(struct bam_device *bdev, struct bam_chan *bchan,
+> >       INIT_LIST_HEAD(&bchan->desc_list);
+> >   }
+> >
+> > +bool bam_is_probed(void)
+> > +{
+> > +     return bam_probed;
+> > +}
+> > +EXPORT_SYMBOL_GPL(bam_is_probed);
+> > +
+> >   static const struct of_device_id bam_of_match[] = {
+> >       { .compatible = "qcom,bam-v1.3.0", .data = &bam_v1_3_reg_info },
+> >       { .compatible = "qcom,bam-v1.4.0", .data = &bam_v1_4_reg_info },
+> > @@ -1084,6 +1090,7 @@ static int bam_dma_probe(struct platform_device *pdev)
+> >       if (ret)
+> >               goto err_unregister_dma;
+> >
+> > +     bam_probed = true;
+> >       if (!bdev->bamclk) {
+> >               pm_runtime_disable(&pdev->dev);
+> >               return 0;
+> >
 >
