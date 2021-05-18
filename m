@@ -2,301 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1021387AF8
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 16:20:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4995F387B00
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 16:20:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349971AbhEROVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 10:21:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52942 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349963AbhEROVB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 10:21:01 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6998BC061756;
-        Tue, 18 May 2021 07:19:43 -0700 (PDT)
-Received: from guri.fritz.box (unknown [IPv6:2a02:810a:880:f54:8085:99d1:d3e8:47cc])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: dafna)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 4FADF1F42B0D;
-        Tue, 18 May 2021 15:19:41 +0100 (BST)
-From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-To:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     megous@megous.com, linux-usb@vger.kernel.org, a.hajda@samsung.com,
-        narmstrong@baylibre.com, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@siol.net, airlied@linux.ie,
-        daniel@ffwll.ch, chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
-        enric.balletbo@collabora.com, drinkcat@chromium.org,
-        hsinyi@chromium.org, kernel@collabora.com, dafna3@gmail.com,
-        dafna.hirschfeld@collabora.com, robh+dt@kernel.org
-Subject: [PATCH v6 RESEND 2/2] drm/bridge: Add ChromeOS EC ANX7688 bridge driver support
-Date:   Tue, 18 May 2021 16:19:27 +0200
-Message-Id: <20210518141927.24795-3-dafna.hirschfeld@collabora.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210518141927.24795-1-dafna.hirschfeld@collabora.com>
-References: <20210518141927.24795-1-dafna.hirschfeld@collabora.com>
+        id S1349893AbhEROVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 10:21:32 -0400
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:42786 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1349959AbhEROVc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 10:21:32 -0400
+Received: by mail-oi1-f177.google.com with SMTP id c196so1723440oib.9;
+        Tue, 18 May 2021 07:20:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=hJ7DVI8fhmwBOH2IUo1UrfyvEw8/sy8ERU4boAZCTso=;
+        b=f6ET+gXPlUmc7TWYz3BQZejcxaBZH6E7Ccq+vDOpesMI1cRKggqMEQiNBaLq1/ZAkR
+         6AB4omNe66s4Q41UHHupgi9T8LpEb2xrRXZWLqBGIUBhY1RLNkqtF7mcEbTpWfRCJL4Q
+         N7NkEPvYLNf3VFwh3NFKK70VDrBdX38boSwhC+v8j2rfMPLDTtHN3bqMgWs9JuC3vs1D
+         3ivlmt9JHsR4M9WOx63xaYw8ke6LPB0xqkoGTbBccps7VcNg1w+HZ7iPoGPkp/KCTJgM
+         hnFdOeJvuFkfEwpKIZsq1hnMq9C1QXLeqp5oi5AsNAPP/u/tlufiQaMn+lFxviFKvjiK
+         hVKQ==
+X-Gm-Message-State: AOAM531Icy98neUzKO7s+yud+aZ45fek3AIPi1JFM3PruAqTC/NmVUIw
+        Z9PINO3dN2L1TGrNqH3vAw==
+X-Google-Smtp-Source: ABdhPJynRC8420FIewuhiizTHJ0JIkGZoXyJiMlRQ3p6rQVxlUE6GcHDy22QVqjHj/ZT9D4CJfj+WQ==
+X-Received: by 2002:aca:4dc3:: with SMTP id a186mr3676923oib.22.1621347613471;
+        Tue, 18 May 2021 07:20:13 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id e11sm3779210ook.20.2021.05.18.07.20.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 May 2021 07:20:11 -0700 (PDT)
+Received: (nullmailer pid 617644 invoked by uid 1000);
+        Tue, 18 May 2021 14:20:09 -0000
+Date:   Tue, 18 May 2021 09:20:09 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Matt Merhar <mattmerhar@protonmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        Peter Geis <pgwipeout@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Paul Fertser <fercerpav@gmail.com>, devicetree@vger.kernel.org,
+        Viresh Kumar <vireshk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v5 1/3] dt-bindings: soc: tegra-pmc: Document core power
+ domain
+Message-ID: <20210518142009.GA617606@robh.at.kernel.org>
+References: <20210516231755.24193-1-digetx@gmail.com>
+ <20210516231755.24193-2-digetx@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210516231755.24193-2-digetx@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+On Mon, 17 May 2021 02:17:53 +0300, Dmitry Osipenko wrote:
+> All NVIDIA Tegra SoCs have a core power domain where majority of hardware
+> blocks reside. Document the new core power domain properties.
+> 
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  .../arm/tegra/nvidia,tegra20-pmc.yaml         | 35 +++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+> 
 
-This driver adds support for the ChromeOS EC ANX7688 HDMI to DP converter
-
-For our use case, the only reason the Linux kernel driver is necessary is
-to reject resolutions that require more bandwidth than what is available
-on the DP side. DP bandwidth and lane count are reported by the bridge via
-2 registers and, as far as we know, only chips that have a firmware
-version greater than 0.85 support these two registers.
-
-Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-[The driver is OF only so should depends on CONFIG_OF]
-Reported-by: kbuild test robot <lkp@intel.com>
-Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-[convert to i2c driver, rename to cros_ec_anx7688, add err checks]
-Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- drivers/gpu/drm/bridge/Kconfig           |  12 ++
- drivers/gpu/drm/bridge/Makefile          |   1 +
- drivers/gpu/drm/bridge/cros-ec-anx7688.c | 191 +++++++++++++++++++++++
- 3 files changed, 204 insertions(+)
- create mode 100644 drivers/gpu/drm/bridge/cros-ec-anx7688.c
-
-diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-index 630072f3ab59..7e9df06bae19 100644
---- a/drivers/gpu/drm/bridge/Kconfig
-+++ b/drivers/gpu/drm/bridge/Kconfig
-@@ -50,6 +50,18 @@ config DRM_CHRONTEL_CH7033
- 
- 	  If in doubt, say "N".
- 
-+config DRM_CROS_EC_ANX7688
-+	tristate "ChromeOS EC ANX7688 bridge"
-+	depends on OF
-+	select DRM_KMS_HELPER
-+	select REGMAP_I2C
-+	help
-+	  ChromeOS EC ANX7688 is an ultra-low power
-+	  4K Ultra-HD (4096x2160p60) mobile HD transmitter
-+	  designed for ChromeOS devices. It converts HDMI
-+	  2.0 to DisplayPort 1.3 Ultra-HD. It is connected
-+	  to the ChromeOS Embedded Controller.
-+
- config DRM_DISPLAY_CONNECTOR
- 	tristate "Display connector support"
- 	depends on OF
-diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
-index b017ec182b8f..ae27ef374ef3 100644
---- a/drivers/gpu/drm/bridge/Makefile
-+++ b/drivers/gpu/drm/bridge/Makefile
-@@ -2,6 +2,7 @@
- obj-$(CONFIG_DRM_CDNS_DSI) += cdns-dsi.o
- obj-$(CONFIG_DRM_CHIPONE_ICN6211) += chipone-icn6211.o
- obj-$(CONFIG_DRM_CHRONTEL_CH7033) += chrontel-ch7033.o
-+obj-$(CONFIG_DRM_CROS_EC_ANX7688) += cros-ec-anx7688.o
- obj-$(CONFIG_DRM_DISPLAY_CONNECTOR) += display-connector.o
- obj-$(CONFIG_DRM_LONTIUM_LT8912B) += lontium-lt8912b.o
- obj-$(CONFIG_DRM_LONTIUM_LT9611) += lontium-lt9611.o
-diff --git a/drivers/gpu/drm/bridge/cros-ec-anx7688.c b/drivers/gpu/drm/bridge/cros-ec-anx7688.c
-new file mode 100644
-index 000000000000..0f6d907432e3
---- /dev/null
-+++ b/drivers/gpu/drm/bridge/cros-ec-anx7688.c
-@@ -0,0 +1,191 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * CrOS EC ANX7688 HDMI->DP bridge driver
-+ *
-+ * Copyright 2020 Google LLC
-+ */
-+
-+#include <drm/drm_bridge.h>
-+#include <drm/drm_print.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <linux/types.h>
-+
-+/* Register addresses */
-+#define ANX7688_VENDOR_ID_REG		0x00
-+#define ANX7688_DEVICE_ID_REG		0x02
-+
-+#define ANX7688_FW_VERSION_REG		0x80
-+
-+#define ANX7688_DP_BANDWIDTH_REG	0x85
-+#define ANX7688_DP_LANE_COUNT_REG	0x86
-+
-+#define ANX7688_VENDOR_ID		0x1f29
-+#define ANX7688_DEVICE_ID		0x7688
-+
-+/* First supported firmware version (0.85) */
-+#define ANX7688_MINIMUM_FW_VERSION	0x0085
-+
-+static const struct regmap_config cros_ec_anx7688_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+};
-+
-+struct cros_ec_anx7688 {
-+	struct i2c_client *client;
-+	struct regmap *regmap;
-+	struct drm_bridge bridge;
-+	bool filter;
-+};
-+
-+static inline struct cros_ec_anx7688 *
-+bridge_to_cros_ec_anx7688(struct drm_bridge *bridge)
-+{
-+	return container_of(bridge, struct cros_ec_anx7688, bridge);
-+}
-+
-+static bool cros_ec_anx7688_bridge_mode_fixup(struct drm_bridge *bridge,
-+					      const struct drm_display_mode *mode,
-+					      struct drm_display_mode *adjusted_mode)
-+{
-+	struct cros_ec_anx7688 *anx = bridge_to_cros_ec_anx7688(bridge);
-+	int totalbw, requiredbw;
-+	u8 dpbw, lanecount;
-+	u8 regs[2];
-+	int ret;
-+
-+	if (!anx->filter)
-+		return true;
-+
-+	/* Read both regs 0x85 (bandwidth) and 0x86 (lane count). */
-+	ret = regmap_bulk_read(anx->regmap, ANX7688_DP_BANDWIDTH_REG, regs, 2);
-+	if (ret < 0) {
-+		DRM_ERROR("Failed to read bandwidth/lane count\n");
-+		return false;
-+	}
-+	dpbw = regs[0];
-+	lanecount = regs[1];
-+
-+	/* Maximum 0x19 bandwidth (6.75 Gbps Turbo mode), 2 lanes */
-+	if (dpbw > 0x19 || lanecount > 2) {
-+		DRM_ERROR("Invalid bandwidth/lane count (%02x/%d)\n", dpbw,
-+			  lanecount);
-+		return false;
-+	}
-+
-+	/* Compute available bandwidth (kHz) */
-+	totalbw = dpbw * lanecount * 270000 * 8 / 10;
-+
-+	/* Required bandwidth (8 bpc, kHz) */
-+	requiredbw = mode->clock * 8 * 3;
-+
-+	DRM_DEBUG_KMS("DP bandwidth: %d kHz (%02x/%d); mode requires %d Khz\n",
-+		      totalbw, dpbw, lanecount, requiredbw);
-+
-+	if (totalbw == 0) {
-+		DRM_ERROR("Bandwidth/lane count are 0, not rejecting modes\n");
-+		return true;
-+	}
-+
-+	return totalbw >= requiredbw;
-+}
-+
-+static const struct drm_bridge_funcs cros_ec_anx7688_bridge_funcs = {
-+	.mode_fixup = cros_ec_anx7688_bridge_mode_fixup,
-+};
-+
-+static int cros_ec_anx7688_bridge_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct cros_ec_anx7688 *anx7688;
-+	u16 vendor, device, fw_version;
-+	u8 buffer[4];
-+	int ret;
-+
-+	anx7688 = devm_kzalloc(dev, sizeof(*anx7688), GFP_KERNEL);
-+	if (!anx7688)
-+		return -ENOMEM;
-+
-+	anx7688->client = client;
-+	i2c_set_clientdata(client, anx7688);
-+
-+	anx7688->regmap = devm_regmap_init_i2c(client, &cros_ec_anx7688_regmap_config);
-+	if (IS_ERR(anx7688->regmap)) {
-+		ret = PTR_ERR(anx7688->regmap);
-+		dev_err(dev, "regmap i2c init failed: %d\n", ret);
-+		return ret;
-+	}
-+
-+	/* Read both vendor and device id (4 bytes). */
-+	ret = regmap_bulk_read(anx7688->regmap, ANX7688_VENDOR_ID_REG,
-+			       buffer, 4);
-+	if (ret) {
-+		dev_err(dev, "Failed to read chip vendor/device id\n");
-+		return ret;
-+	}
-+
-+	vendor = (u16)buffer[1] << 8 | buffer[0];
-+	device = (u16)buffer[3] << 8 | buffer[2];
-+	if (vendor != ANX7688_VENDOR_ID || device != ANX7688_DEVICE_ID) {
-+		dev_err(dev, "Invalid vendor/device id %04x/%04x\n",
-+			vendor, device);
-+		return -ENODEV;
-+	}
-+
-+	ret = regmap_bulk_read(anx7688->regmap, ANX7688_FW_VERSION_REG,
-+			       buffer, 2);
-+	if (ret) {
-+		dev_err(dev, "Failed to read firmware version\n");
-+		return ret;
-+	}
-+
-+	fw_version = (u16)buffer[0] << 8 | buffer[1];
-+	dev_info(dev, "ANX7688 firmware version 0x%04x\n", fw_version);
-+
-+	anx7688->bridge.of_node = dev->of_node;
-+
-+	/* FW version >= 0.85 supports bandwidth/lane count registers */
-+	if (fw_version >= ANX7688_MINIMUM_FW_VERSION)
-+		anx7688->filter = true;
-+	else
-+		/* Warn, but not fail, for backwards compatibility */
-+		DRM_WARN("Old ANX7688 FW version (0x%04x), not filtering\n",
-+			 fw_version);
-+
-+	anx7688->bridge.funcs = &cros_ec_anx7688_bridge_funcs;
-+	drm_bridge_add(&anx7688->bridge);
-+
-+	return 0;
-+}
-+
-+static int cros_ec_anx7688_bridge_remove(struct i2c_client *client)
-+{
-+	struct cros_ec_anx7688 *anx7688 = i2c_get_clientdata(client);
-+
-+	drm_bridge_remove(&anx7688->bridge);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id cros_ec_anx7688_bridge_match_table[] = {
-+	{ .compatible = "google,cros-ec-anx7688" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, cros_ec_anx7688_bridge_match_table);
-+
-+static struct i2c_driver cros_ec_anx7688_bridge_driver = {
-+	.probe_new = cros_ec_anx7688_bridge_probe,
-+	.remove = cros_ec_anx7688_bridge_remove,
-+	.driver = {
-+		.name = "cros-ec-anx7688-bridge",
-+		.of_match_table = cros_ec_anx7688_bridge_match_table,
-+	},
-+};
-+
-+module_i2c_driver(cros_ec_anx7688_bridge_driver);
-+
-+MODULE_DESCRIPTION("ChromeOS EC ANX7688 HDMI->DP bridge driver");
-+MODULE_AUTHOR("Nicolas Boichat <drinkcat@chromium.org>");
-+MODULE_AUTHOR("Enric Balletbo i Serra <enric.balletbo@collabora.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.17.1
-
+Reviewed-by: Rob Herring <robh@kernel.org>
