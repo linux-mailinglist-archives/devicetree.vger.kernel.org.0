@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A21A386F20
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 03:27:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC200386F24
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 03:29:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345644AbhERB2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 21:28:54 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:34528 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238837AbhERB2y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 21:28:54 -0400
-Received: by mail-ot1-f51.google.com with SMTP id u25-20020a0568302319b02902ac3d54c25eso7293972ote.1;
-        Mon, 17 May 2021 18:27:37 -0700 (PDT)
+        id S238790AbhERBa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 21:30:27 -0400
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:39508 "EHLO
+        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239339AbhERBa1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 21:30:27 -0400
+Received: by mail-oi1-f170.google.com with SMTP id u144so8257240oie.6;
+        Mon, 17 May 2021 18:29:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=x5MuHDr1VuOYtFi32SjfZtdQohcWcKpREmn5Jo1hbuE=;
-        b=Q27jtacByMq/gw5VqDadpH08wC36fpKKpU5wLJUDOqtIyhuApSrxxiyHh8CrWTPf6l
-         AbeZ4sTyTJ5vjd7f/t4H6+4cYtmn/w80P1I7W/QFhDW9TqzbrxX41w1AAmS4eNCGobYQ
-         IG2qdl6ZQclqoC5wq6qcCkGgNg8WnPMZDdU7c6oErk/h/kMUEhXMT7OO7KWA76yr2kmX
-         kw3QfQujmTfCC5ur45A2CP9+12ud0o5HOubLSntEF2gTwjDXMDFXbsHz2ETLQ3nt+/uz
-         b0weRlH/mCj1oA/sIpzWwD+9bzyZPVV5jOxnbEaWukDHqejVSRJ/5BV5eOKJhDdNu3wv
-         Z7og==
-X-Gm-Message-State: AOAM5319APeNdAdjl68EC3J2Pn9abE3ApVJSzgxbHIX3YoKPwGuEjpGp
-        5LyINlU+YU3tbu3uRAOAPA==
-X-Google-Smtp-Source: ABdhPJzW/WET1XynmeNegfDrhTPJIkFYbUP1pwCRoml9gTosHpax4KZkPIP2FBySmP+4CDjgKyLGDA==
-X-Received: by 2002:a9d:ea2:: with SMTP id 31mr2193056otj.200.1621301257191;
-        Mon, 17 May 2021 18:27:37 -0700 (PDT)
+        bh=G5rlvH5ctDOjiEvtgp0QPj5NTMf+LJJxdap62IYZ7rc=;
+        b=KOkrQgw8I5u9XqcRzoCZL0KDHIeNMSil/4+Vf0LqHU7PtrqNEee0vJiDlsu4192Fbi
+         P4USUGAkKA+Db3kzCro9w+/9AM70o8JOf54GLE2lnvceoO8mjuUcovylv2paCCt+KC1Z
+         2kVbtIKay22r9lPJFvTgew2CrgsEqblNUWCJR0Mw7ax+s7MM/iHn8mlFLPKqhnMCXW1W
+         9J+8aWLuqzqgeeBwAxTwEpnTfNedBRGF4NP2i5dGiUMp+jcAn9FOpAL3Zn/XwaR+IZPe
+         b67zBlATP4COqI6oYs75cH5h2u6CbPWKyO0XLO3uNhK8UDXsBFJhNgSGbMzJLYVLhY1Q
+         SYhw==
+X-Gm-Message-State: AOAM5310kF/pJvJg8WsP+Deccrcyhs79G7Vs4TAkRWlgwJKxdoN3KjZY
+        GoZ8iD+2hPMh+PZJbNlKsg==
+X-Google-Smtp-Source: ABdhPJxu5sCBoppCrV1nenGEOaEw/iO0i1K0SwPC+mMOngSMEQKGgJoq2mqtZkwnXVi87nKERpCbZg==
+X-Received: by 2002:a54:4104:: with SMTP id l4mr2023654oic.48.1621301348704;
+        Mon, 17 May 2021 18:29:08 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 77sm2500602otc.54.2021.05.17.18.27.36
+        by smtp.gmail.com with ESMTPSA id c13sm3511147oto.18.2021.05.17.18.29.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 May 2021 18:27:36 -0700 (PDT)
-Received: (nullmailer pid 3600153 invoked by uid 1000);
-        Tue, 18 May 2021 01:27:35 -0000
-Date:   Mon, 17 May 2021 20:27:35 -0500
+        Mon, 17 May 2021 18:29:07 -0700 (PDT)
+Received: (nullmailer pid 3602690 invoked by uid 1000);
+        Tue, 18 May 2021 01:29:06 -0000
+Date:   Mon, 17 May 2021 20:29:06 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     lgirdwood@gmail.com, alsa-devel@alsa-project.org,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 4/9] ASoC: dt-bindings: wcd938x-sdw: add bindings for
- wcd938x-sdw
-Message-ID: <20210518012735.GA3600100@robh.at.kernel.org>
-References: <20210514103405.29927-1-srinivas.kandagatla@linaro.org>
- <20210514103405.29927-5-srinivas.kandagatla@linaro.org>
+To:     Tobias Schramm <t.schramm@manjaro.org>
+Cc:     linux-sunxi@lists.linux.dev, Chen-Yu Tsai <wens@csie.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v3 4/7] ASoC: dt-bindings: sun8i-a23-codec-analog: add
+ compatible for Allwinner V3
+Message-ID: <20210518012906.GA3602631@robh.at.kernel.org>
+References: <20210514134405.2097464-1-t.schramm@manjaro.org>
+ <20210514134405.2097464-5-t.schramm@manjaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210514103405.29927-5-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20210514134405.2097464-5-t.schramm@manjaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 May 2021 11:34:00 +0100, Srinivas Kandagatla wrote:
-> Qualcomm WCD9380/WCD9385 Codec is a standalone Hi-Fi audio codec IC
-> connected over SoundWire. This device has two SoundWire devices RX and
-> TX respectively. This bindings is for those slave devices on WCD9380/WCD9385.
+On Fri, 14 May 2021 15:44:02 +0200, Tobias Schramm wrote:
+> The analog codec frontend of the Allwinner V3 is compatible with the
+> analog codec frontend used on the Allwinner H3.
+> This patch adds a compatible string for the analog codec frontend on the
+> Allwinner V3 SoC.
 > 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Signed-off-by: Tobias Schramm <t.schramm@manjaro.org>
 > ---
->  .../bindings/sound/qcom,wcd938x-sdw.yaml      | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd938x-sdw.yaml
+>  .../bindings/sound/allwinner,sun8i-a23-codec-analog.yaml | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
