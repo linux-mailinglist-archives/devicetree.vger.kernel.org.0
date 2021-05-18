@@ -2,161 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BEC2387B3A
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 16:35:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33A75387B45
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 16:38:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233243AbhEROgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 10:36:47 -0400
-Received: from mail-ua1-f47.google.com ([209.85.222.47]:39794 "EHLO
-        mail-ua1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232245AbhEROgp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 10:36:45 -0400
-Received: by mail-ua1-f47.google.com with SMTP id a12so3301727uak.6;
-        Tue, 18 May 2021 07:35:27 -0700 (PDT)
+        id S233620AbhEROj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 10:39:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57178 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233603AbhEROjZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 10:39:25 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FA0FC061573
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 07:38:05 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id n17-20020a7bc5d10000b0290169edfadac9so1677367wmk.1
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 07:38:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mE2MENBP8OHhxc2QEqxv5MmkAUk1hcdbV87e9Jg3ziM=;
+        b=U9PbCXaPBtKPTQBynkPy5/aESRYE6eNapGtHSu4pYxv5aULFyUWY8AZ7qWFQD5qo/V
+         zsGgfz7GoOzcnSB2BS7+2KbhyE5aYi6soJGsGlERG4kfNjJ5RX65tOY2NFJOXxcOepDW
+         vsQdpv5l5zcL1HISRFIMmvGlJLIDYvYyzWxS8lR//PgOqdrNpTmJ2aJD75uDfYLxEv34
+         9V8wQU5F5jdI3bF9wp0PBJv9yYj7UUGz1/ClQphuMqXbDFNOG02quhAvF7DwbHfFd59l
+         0KP7V+vJf53X0ORg7zSz9nIjY2Jq4zy6wJ6sJ6Nh4Bj/pQ1E/qfACEnHVQ8af7XzloFW
+         k2QQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zebz9Gz8Zw8lQG2LiaFvqSG6xwA9z2xU/a+9st7RAd4=;
-        b=QX5XhXPgXZXKx+b6wLRpuQjUKP5WvNh3V6YWnWL432vHixlzaOrnACFcVgMg2PaoHS
-         KIafGF2j35uUqwjL/7/ypWz30iikkN8M8d0yqiLEmW4BKa9l0qSytViZRYRNeP29MSCu
-         R5pSaTs6+m18MioQwsUE69u/Os6MNuJ+EAww/mVLpsIHSAalJuMjh5EAlJXonA+x+AGS
-         LpZSbH2Mmx/pE3XkGqpPDvU0d9aCGJZOhln5TJaBIaEUZqirpG53bN0KwDSEA6NERwrg
-         e/20rDjxFe+fRXOOUyZB4m2tsxsP9iBI4aTbcO3W+f/1nfnF6Fp4NeFT1Kounffe2bgT
-         1YPg==
-X-Gm-Message-State: AOAM530dorFPjcpfccUm4a/PE0DIiCd/HDKI29Z9x/6rL6rr25VGWOZ5
-        FTJUexx7EJVmMg2ZyfXRH/d6DKG4yRSMZLCIksPxh0QmvEg=
-X-Google-Smtp-Source: ABdhPJzasGlFQRXLxNTx9IOFZHu2tN4P8gFB4eopIGDQ9iVTdObR7fr+c/2eBhcaOmDqqiI3Ejua84TD9jYUXq1w3e0=
-X-Received: by 2002:ab0:7705:: with SMTP id z5mr6782625uaq.2.1621348527338;
- Tue, 18 May 2021 07:35:27 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mE2MENBP8OHhxc2QEqxv5MmkAUk1hcdbV87e9Jg3ziM=;
+        b=HWLnaMbEZkFq5uKHQa5vCjWLl99cxafxgSL0RanoaderZliwdGHLpHuKiax2JVoaWg
+         d/n1SmWHxL9gA6WEqE0h1kY8l4fWjwTxTj3Tmkb91aHJ00yNcSkGSq9aUNYj7Rf+RTmo
+         /jMGPvD7I9rvT9Ltz9uFC5fYn3bhdu5LkudxQfhHMwntHf7vPV0JUyEoYnC/On255lVu
+         jpgscrBGXxdClUkejYfWWwqB4b3ZvEBZGWdSKgWc5pnCPMz3rNKM+BMPIMGqUVHLL48s
+         PMY5FlPUMCfoGF7ro+nOQe5hJc0asw5B6G2vXUmuaJfakHi7cVa6+5Ntuy5aKcMnuc/G
+         KqTg==
+X-Gm-Message-State: AOAM533YIYg7hNGUvYe3S4dKDrGpW5+XmeYUV0pL68TFh68G9FQzS1Xb
+        D7rbAI2eZQyai7C9wgiUA3pXQZDYTfCetQ==
+X-Google-Smtp-Source: ABdhPJwhaavdxdJD/EGbuei1v8exFvlpDGMlyeRZHP/pamSqgThe6zrK9mpkaG17vL5EeKmg/5ebtw==
+X-Received: by 2002:a1c:b384:: with SMTP id c126mr5889386wmf.110.1621348684125;
+        Tue, 18 May 2021 07:38:04 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.gmail.com with ESMTPSA id m6sm21329087wrp.29.2021.05.18.07.38.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 May 2021 07:38:03 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     broonie@kernel.org
+Cc:     robh@kernel.org, devicetree@vger.kernel.org, perex@perex.cz,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        lgirdwood@gmail.com,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v6 0/9] ASoC: codecs: add wcd938x support
+Date:   Tue, 18 May 2021 15:37:50 +0100
+Message-Id: <20210518143759.16837-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <20210322144848.1065067-1-geert@linux-m68k.org>
- <20210322144848.1065067-3-geert@linux-m68k.org> <fb42abb0e79a57e2aab123468d95ff7e@protonic.nl>
-In-Reply-To: <fb42abb0e79a57e2aab123468d95ff7e@protonic.nl>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 18 May 2021 16:35:16 +0200
-Message-ID: <CAMuHMdXN9bPnEjXJUWszS5iwuVLBHJV7c+jhBU1t1EXnAnFYig@mail.gmail.com>
-Subject: Re: [PATCH 02/17] dt-bindings: auxdisplay: ht16k33: Document Adafruit
- segment displays
-To:     Robin van der Gracht <robin@protonic.nl>
-Cc:     Rob Herring <robh+dt@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hoi Robin,
+This patchset adds support for Qualcomm WCD938X codec.
 
-On Tue, Mar 23, 2021 at 10:12 AM robin <robin@protonic.nl> wrote:
-> On 2021-03-22 15:48, Geert Uytterhoeven wrote:
-> > The Holtek HT16K33 LED controller is not only used for driving
-> > dot-matrix displays, but also for driving segment displays.
-> >
-> > Document compatible values for the Adafruit 7-segment[1] and
-> > 14-segment[2] FeatherWing expansion boards with red displays.
-> > According
-> > to the schematics, all other Adafruit 7-segment and 14-segment display
-> > backpack and FeatherWing expansion boards (including bare boards and
-> > boards fitted with displays) are compatible with these two boards.
-> > Add a "color" property to support the different color variants.
-> >
-> > [1] https://www.adafruit.com/product/3108
-> > [2] https://www.adafruit.com/product/3130
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+Qualcomm WCD9380/WCD9385 Codec is a standalone Hi-Fi audio codec IC
+connected over SoundWire. This device has two SoundWire devices, RX and
+TX respectively supporting 4 x ADCs, ClassH, Ear, Aux PA, 2xHPH,
+7 x TX diff inputs, 8 DMICs and MBHC.
 
-> > --- a/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-> > +++ b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-> > @@ -14,14 +14,23 @@ allOf:
-> >
-> >  properties:
-> >    compatible:
-> > -    const: holtek,ht16k33
-> > +    oneOf:
-> > +      - items:
-> > +          - const: adafruit,3108  # 0.56" 4-Digit 7-Segment
-> > FeatherWing Display (Red)
-> > +          - const: holtek,ht16k33
-> > +
-> > +      - items:
-> > +          - const: adafruit,3130  # 0.54" Quad Alphanumeric
-> > FeatherWing Display (Red)
-> > +          - const: holtek,ht16k33
-> > +
-> > +      - const: holtek,ht16k33     # Generic 16*8 LED controller with
-> > dot-matrix display
-> >
-> >    reg:
-> >      maxItems: 1
-> >
-> >    refresh-rate-hz:
-> >      maxItems: 1
-> > -    description: Display update interval in Hertz
-> > +    description: Display update interval in Hertz for dot-matrix
-> > displays
->
-> The above should be included in patch 16
+Eventhough this device has two SoundWire devices, only tx device has
+access to main codec Control/Status Registers!
 
-I disagree: bindings are independent from the driver implementation.
+For codec driver to be functional it would need both tx and rx Soundwire devices
+to be up and this is taken care by using device component framework and device-links
+are used to ensure proper pm dependencies. Ex tx does not enter suspend
+before rx or codec is suspended.
 
-> >    interrupts:
-> >      maxItems: 1
-> > @@ -41,10 +50,17 @@ properties:
-> >      default: 16
-> >      description: Initial brightness level
-> >
-> > +  color: true
-> > +    description:
-> > +      Color of the display.  Use one of the LED_COLOR_ID_* prefixed
-> > definitions
-> > +      from the header include/dt-bindings/leds/common.h.  The default
-> > is red.
-> > +    minimum: 0
-> > +    maximum: 9
-> > +    default: 1
-> > +
->
-> The above should be included in patch 17
+This patchset along with other SoundWire patches on the list
+have been tested on SM8250 MTP device.
 
-Same here.
+Thanks,
+srini
 
-> >  required:
-> >    - compatible
-> >    - reg
-> > -  - refresh-rate-hz
->
-> 'refresh-rate-hz' is still a required property for the dot-matrix /
-> fbdev setup.
+Changes since v5:
+	- removed ref in qcom,mbhc-buttons-vthreshold-microvolt bindings
+	 to fix dt_bindings_check warning
 
-True.
 
-> If it can no longer be listed here than maybe its nice to mention that
-> it's required
-> somewhere else (in it's description?).
+Srinivas Kandagatla (9):
+  ASoC: dt-bindings: wcd938x: add bindings for wcd938x
+  ASoC: codecs: wcd-clsh: add new version support
+  ASoC: codecs: wcd938x: add basic driver
+  ASoC: dt-bindings: wcd938x-sdw: add bindings for wcd938x-sdw
+  ASoC: codecs: wcd938x-sdw: add SoundWire driver
+  ASoC: codecs: wcd938x: add basic controls
+  ASoC: codecs: wcd938x: add playback dapm widgets
+  ASoC: codecs: wcd938x: add capture dapm widgets
+  ASoC: codecs: wcd938x: add audio routing
 
-    if:
-      properties:
-        compatible:
-          const: holtek,ht16k33
-    then:
-      required:
-        - refresh-rate-hz
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../bindings/sound/qcom,wcd938x-sdw.yaml      |   70 +
+ .../bindings/sound/qcom,wcd938x.yaml          |  148 +
+ sound/soc/codecs/Kconfig                      |   13 +
+ sound/soc/codecs/Makefile                     |    4 +
+ sound/soc/codecs/wcd-clsh-v2.c                |  348 +-
+ sound/soc/codecs/wcd-clsh-v2.h                |   16 +
+ sound/soc/codecs/wcd938x-sdw.c                |  298 ++
+ sound/soc/codecs/wcd938x.c                    | 3753 +++++++++++++++++
+ sound/soc/codecs/wcd938x.h                    |  705 ++++
+ 9 files changed, 5345 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd938x-sdw.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd938x.yaml
+ create mode 100644 sound/soc/codecs/wcd938x-sdw.c
+ create mode 100644 sound/soc/codecs/wcd938x.c
+ create mode 100644 sound/soc/codecs/wcd938x.h
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.21.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
