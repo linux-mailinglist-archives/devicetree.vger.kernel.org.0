@@ -2,126 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 088C6387FFD
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 20:54:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B3AD388008
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 20:56:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351699AbhERSzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 14:55:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59096 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351695AbhERSzT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 14:55:19 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E711DC06175F
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 11:54:00 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id z137-20020a1c7e8f0000b02901774f2a7dc4so2106812wmc.0
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 11:54:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=YjYQHeqKS2kjIoIBl/OQt2CgrSmm0dChlmcHt1OGoqM=;
-        b=RtxaK3BQVVFrc7xm2rzL24PV1U/NtA9hcAmFKeBTZWYGjDGvtodm6xsjAHQ8KzWoKk
-         pniOdOxrEF3Y5L3hbJT5F9fqclMb2e7ae7aXwojdmGGzTgepx4J0mKsboIg3bqBdrNEA
-         6h6xHi5GuGclR192HnaAVvkz1rqBsU9Mxhzz33Lg1Tp44m9rUoo+U0cVrBmzd+BR2W53
-         SLPkWZ2yB74eWnjSzo46BCTHxiCrDIJPnz7VYdeUOxIkx1LqirWA+5Hdc59NZSZTD3JC
-         it39wQgVJRjLgUKFp0CpiRwOt+FpPJgYipOaeh3uNUJKANKi+lDcqlGzUZZGofYiYBlk
-         GmCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=YjYQHeqKS2kjIoIBl/OQt2CgrSmm0dChlmcHt1OGoqM=;
-        b=Q8urlNGKCnz92lA8kGxH7db+Xw0VLOUBGd2ioZ5mSo4X/Vkq2IIHhse3E0mnIfWBWC
-         XcRLNV8oX4fF8VgtUmdfm+fuDDJMmjRGzQse+tOYLNNDfPXJjFtldkpSDXmSaqD0PGGS
-         ue7MTP5smWO/j5CyGrE+YetCGf6Ca0e2Zp5AuEGWOCPLQku6LdbcZcvoXRc2w4RASBQd
-         DijtrIUxgLI+iTGPz2hjecmX6Hx9pYZUZaIEiVj+zuXUCDDnxGINVSQYqPGE1l8a5XA2
-         frjmOQ7q6WmVzlsoVYPJR66hrwkTHNbnVeP8QjL3FowKEbr3khMQD/Bp30ucGDoypzJj
-         wQEw==
-X-Gm-Message-State: AOAM533Sqz1Gnd9jNLv36d+UgspKAPKvgSKPRscFJwpaMloeFb0xcBkV
-        J7aBVDxC6dc1glj/ijY9+/aoAA==
-X-Google-Smtp-Source: ABdhPJx5Nj1zwTvJgyWbYtWlJntgoIzHrk0UajcMq3DRCjRN21cLJ+WXz/kgqtu0jmRg5ReV170ang==
-X-Received: by 2002:a7b:c5d2:: with SMTP id n18mr6497446wmk.97.1621364039581;
-        Tue, 18 May 2021 11:53:59 -0700 (PDT)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id j10sm22498405wrt.32.2021.05.18.11.53.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 May 2021 11:53:59 -0700 (PDT)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     linus.walleij@linaro.org, robh+dt@kernel.org,
-        ulli.kroll@googlemail.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH] ARM: dts: gemini: convert obsolete SPI properties
-Date:   Tue, 18 May 2021 18:53:53 +0000
-Message-Id: <20210518185353.3802437-1-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+        id S243686AbhERS5N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 14:57:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48100 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236295AbhERS5N (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 May 2021 14:57:13 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id AB49861244;
+        Tue, 18 May 2021 18:55:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1621364155;
+        bh=ngHUXT+f+DSDBSObqrCSX01A2qzhXw+3no7b1VXfMg0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YwAbxH7046HmOhfxPAUS3Rr5DA/W4aaYUNEssSGZdgmHnU1bKMZw2GZ/B+Zifp4LN
+         v2Z7bK+3OMUDkajDfIarhZg8poplHwMek5tn+zDueYcAbdyId8Kmj27/HhE2B8kjQr
+         PZACSYwnZBnoMqw6cezD7LwhRKWS6PT052bbZN1ZPZjSxC7UCiWUQobIqwc4GjtxZj
+         YBfElL11OfkGLvmSYdr8mHH+YWe3/5TOEuzRc+Ua12C8vI2cQ7811cx5kvCwhuTL0Y
+         wE03nZ2OZ9yZo6ZusMm+mctH/suomFn51bxvVrGm/rIAW0icWUJ79mgjFlwQM3FXpB
+         IkHf3SmPL7Png==
+Date:   Tue, 18 May 2021 19:55:11 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH] dt-bindings: sound: wm8750: convert to the json-schema
+Message-ID: <20210518185511.GF4358@sirena.org.uk>
+References: <20210512205926.780-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="K/NRh952CO+2tg14"
+Content-Disposition: inline
+In-Reply-To: <20210512205926.780-1-zajec5@gmail.com>
+X-Cookie: Radioactive cats have 18 half-lives.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-gpio-xxx are obsoletes properties, convert them to xxx-gpios.
 
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
- arch/arm/boot/dts/gemini-dlink-dir-685.dts | 6 +++---
- arch/arm/boot/dts/gemini-sl93512r.dts      | 6 +++---
- arch/arm/boot/dts/gemini-sq201.dts         | 6 +++---
- 3 files changed, 9 insertions(+), 9 deletions(-)
+--K/NRh952CO+2tg14
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm/boot/dts/gemini-dlink-dir-685.dts b/arch/arm/boot/dts/gemini-dlink-dir-685.dts
-index cc39289e99dd..b2a0f3b1441e 100644
---- a/arch/arm/boot/dts/gemini-dlink-dir-685.dts
-+++ b/arch/arm/boot/dts/gemini-dlink-dir-685.dts
-@@ -61,9 +61,9 @@ spi {
- 		#size-cells = <0>;
- 
- 		/* Collides with IDE pins, that's cool (we do not use them) */
--		gpio-sck = <&gpio1 5 GPIO_ACTIVE_HIGH>;
--		gpio-miso = <&gpio1 8 GPIO_ACTIVE_HIGH>;
--		gpio-mosi = <&gpio1 7 GPIO_ACTIVE_HIGH>;
-+		sck-gpios = <&gpio1 5 GPIO_ACTIVE_HIGH>;
-+		miso-gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
-+		mosi-gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>;
- 		cs-gpios = <&gpio0 20 GPIO_ACTIVE_LOW>;
- 		num-chipselects = <1>;
- 
-diff --git a/arch/arm/boot/dts/gemini-sl93512r.dts b/arch/arm/boot/dts/gemini-sl93512r.dts
-index a0916d3c1059..c78e55fd2562 100644
---- a/arch/arm/boot/dts/gemini-sl93512r.dts
-+++ b/arch/arm/boot/dts/gemini-sl93512r.dts
-@@ -87,9 +87,9 @@ spi {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		/* Check pin collisions */
--		gpio-sck = <&gpio1 28 GPIO_ACTIVE_HIGH>;
--		gpio-miso = <&gpio1 30 GPIO_ACTIVE_HIGH>;
--		gpio-mosi = <&gpio1 29 GPIO_ACTIVE_HIGH>;
-+		sck-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
-+		miso-gpios = <&gpio1 30 GPIO_ACTIVE_HIGH>;
-+		mosi-gpios = <&gpio1 29 GPIO_ACTIVE_HIGH>;
- 		cs-gpios = <&gpio1 31 GPIO_ACTIVE_HIGH>;
- 		num-chipselects = <1>;
- 
-diff --git a/arch/arm/boot/dts/gemini-sq201.dts b/arch/arm/boot/dts/gemini-sq201.dts
-index 4aa17393f8a9..3104af698cd6 100644
---- a/arch/arm/boot/dts/gemini-sq201.dts
-+++ b/arch/arm/boot/dts/gemini-sq201.dts
-@@ -72,9 +72,9 @@ spi {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		/* Check pin collisions */
--		gpio-sck = <&gpio1 28 GPIO_ACTIVE_HIGH>;
--		gpio-miso = <&gpio1 30 GPIO_ACTIVE_HIGH>;
--		gpio-mosi = <&gpio1 29 GPIO_ACTIVE_HIGH>;
-+		sck-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
-+		miso-gpios = <&gpio1 30 GPIO_ACTIVE_HIGH>;
-+		mosi-gpios = <&gpio1 29 GPIO_ACTIVE_HIGH>;
- 		cs-gpios = <&gpio1 31 GPIO_ACTIVE_HIGH>;
- 		num-chipselects = <1>;
- 
--- 
-2.26.3
+On Wed, May 12, 2021 at 10:59:26PM +0200, Rafa=C5=82 Mi=C5=82ecki wrote:
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+>=20
+> This helps validating DTS files.
 
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
+
+--K/NRh952CO+2tg14
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmCkDY4ACgkQJNaLcl1U
+h9CLjQf+N+1vWZP2xEyjUXIoDVcpwY20cpELji9dGtr+XKrxJKvfhCkha3PEeh+p
+80OB5SHZ53eNQPRw/pedfbXnuC+RUdUQwQGu5L4ZX3KKtQZqST8u/dtQjbMKT6/T
+uOQ4O05Is5ZhniCdraNPDb81XmHU9Ead44VJ7qNhWyN7UvBjLNF8vobuk7RLNBrN
+nCE7yDDKnFpVS7QNWbODxF8MBbYC922iHNWgYFPGRWRDRwCfKc0USOgpuw3bsHc0
+gRCQxkqp25s5tQUOh3A68kBJw3upSTWYBCIDJSrvAw3H/6IuaqolXDCoHoe+eBcm
+omrKS7m2/D1C0i+Px16Knxit+wCfYA==
+=xD3o
+-----END PGP SIGNATURE-----
+
+--K/NRh952CO+2tg14--
