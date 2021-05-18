@@ -2,95 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D92D387F10
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 19:54:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3729387F44
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 20:09:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351328AbhERRzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 13:55:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45656 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351325AbhERRzr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 13:55:47 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E70E1C061761
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 10:54:28 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id r12so11211608wrp.1
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 10:54:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=oTjBUDtJCB1J9ynhq80z5EUfzEOQqX8trIBK7k8vqMA=;
-        b=K4IpbOBeRCDOgQiM6FDeJT3mk1uhIKsw0dzbEbSPM1skpiUAk+nb9km8r3h/745grb
-         /HLeM3mmZwtutSsG50RHiRis51y6YQei9vpzPt8Lz9jAJqcfh5T27atB3JxEUtZjZyIb
-         xMIILo0/85wryKnJD9jmv10XAaEHukZ9NYvIoHRzrz42g50p/R5atl2iYlftxJ1zxyoz
-         M2Rk93DnSuW1Ijfh2DKwFhi0Fd1VGPcgdrSTH9Pyqp5Ndn7ec4NMbKncBdhIR0ydireS
-         Pz3rXpQ4XtkJya2vrNQ8kN0ETSPtXT2znaP1BFE7odo+p+DhnDd2CyGdUumOQ3vp1C8S
-         UX/A==
+        id S230017AbhERSLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 14:11:11 -0400
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:41817 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229652AbhERSLL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 14:11:11 -0400
+Received: by mail-ot1-f44.google.com with SMTP id 36-20020a9d0ba70000b02902e0a0a8fe36so9426735oth.8;
+        Tue, 18 May 2021 11:09:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=oTjBUDtJCB1J9ynhq80z5EUfzEOQqX8trIBK7k8vqMA=;
-        b=EElOSm/vpa8vfqRi59sVcXrjdTKBRzJpqYXZwYD9gteeD922C1JuXzOWLP/7DphLM0
-         QhuMjQAjlUpBsSIZOjMZB1lFqeUWyRO7ZOzt4tR1djYMfHuUHFr8OsjBEnUd061mifu2
-         j83FkXV2e2LoAO/Wi1TQc6ZA/axImgMzvrvPGV2tOUX2W5ShQHnT3/Dkgp48HjU6AJJn
-         eeou8XMTpt+mPmr2bIvruJnVbiRWRDXCf4tNpONb05W1si1Ef8a1Ln0aA6JUO5wSwiH5
-         UVmhJqeai1sTDbFFreo5zS3mHcVbcgdSdrhnBrsmOqj72gdeXwtb78k0jL/1z9FY2Yrk
-         j8fQ==
-X-Gm-Message-State: AOAM530jJEjLdLWUWmmQ7+DLyAlCMcF/9Vsk949xxv7zOu0uQ5DiCStY
-        HqhGuR9uj5Hq0TLztazjhIydnQ==
-X-Google-Smtp-Source: ABdhPJw8Tr0azrXxw/3cA5XoNuS3GO362ZVgSmK+kMj5HqdWeyqVqXBzGMEbV+QpbfMIDmo1+rvA8A==
-X-Received: by 2002:a5d:4346:: with SMTP id u6mr8631720wrr.304.1621360467692;
-        Tue, 18 May 2021 10:54:27 -0700 (PDT)
-Received: from localhost.localdomain ([88.160.162.107])
-        by smtp.gmail.com with ESMTPSA id a17sm14458963wrt.53.2021.05.18.10.54.26
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=FkuvQrSQFUpcINK14j2wFhP0462nBtLGLd1FHV4P3x0=;
+        b=I5LkQXU5LBy2vSOZex4kHXTNaj0xwTYdhIIqPkAImW4+1PLelZGY2JF4ISYC6or/Hu
+         DYsHpSKSZe+asvWPfAaSS0mEKwyHOSFlRrgQVwlhGlrex0BxgEtVfD2VXan3WDgzTSxN
+         qWMYQiVfTyEJIeKeJH6vDpDQB/U3VeF0i/dUfRaiQYujzfgqbatMCm3qVrDyCTcxQmlM
+         9+YShqWx8ua75ZkqAHky/v+y5Uyp5I9WHpo83zckxnGEDKgQjk1DOnlOBKkYzKD/TW24
+         4Hcg2sSGv9y2iisJYYzzQT7rX1U5nFdMi6nDMp53Uyegoj+s9zA1ClOhEuZS3gw2Juo/
+         kiiA==
+X-Gm-Message-State: AOAM5319nXZpWHb1qvtpfg9HvMQVKYjekfsnicwUPLkg5wCsvl3m5xXi
+        WXZOGiOGUdKyOIw0oEXt5A==
+X-Google-Smtp-Source: ABdhPJy83vorwZ946H+siNqyaTQi794cgapVkhtLojUJKGMSukubOgZuoLBbq9vciBwGECDWOkjSaQ==
+X-Received: by 2002:a9d:4a85:: with SMTP id i5mr5360010otf.102.1621361391485;
+        Tue, 18 May 2021 11:09:51 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 77sm2940360otc.54.2021.05.18.11.09.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 May 2021 10:54:27 -0700 (PDT)
-From:   Fabien Parent <fparent@baylibre.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     mkorpershoek@baylibre.com, Fabien Parent <fparent@baylibre.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] dt-bindings: pwm: pwm-mtk-disp: add binding for MT8365 SoC
-Date:   Tue, 18 May 2021 19:54:21 +0200
-Message-Id: <20210518175422.2678665-3-fparent@baylibre.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210518175422.2678665-1-fparent@baylibre.com>
-References: <20210518175422.2678665-1-fparent@baylibre.com>
+        Tue, 18 May 2021 11:09:50 -0700 (PDT)
+Received: (nullmailer pid 961183 invoked by uid 1000);
+        Tue, 18 May 2021 18:09:49 -0000
+Date:   Tue, 18 May 2021 13:09:49 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Ion Agorria <ion@agorria.com>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] ASoC: tegra: Unify ASoC machine drivers
+Message-ID: <20210518180949.GA949047@robh.at.kernel.org>
+References: <20210518001356.19227-1-digetx@gmail.com>
+ <20210518001356.19227-3-digetx@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210518001356.19227-3-digetx@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding documentation to the pwm-mtk-disp driver for the MT8365
-SoC.
+On Tue, May 18, 2021 at 03:13:56AM +0300, Dmitry Osipenko wrote:
+> Squash all machine drivers into a single-universal one. This reduces
+> code duplication, eases addition of a new drivers and upgrades older
+> code to a modern Linux kernel APIs.
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
----
- Documentation/devicetree/bindings/pwm/pwm-mtk-disp.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+Nice, I never understood why each codec needed it's own machine driver 
+(and typically in turn compatible string).
 
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-mtk-disp.yaml b/Documentation/devicetree/bindings/pwm/pwm-mtk-disp.yaml
-index 85bca1c59f95..548ec7e06028 100644
---- a/Documentation/devicetree/bindings/pwm/pwm-mtk-disp.yaml
-+++ b/Documentation/devicetree/bindings/pwm/pwm-mtk-disp.yaml
-@@ -22,6 +22,9 @@ properties:
-       - items:
-           - const: mediatek,mt8167-disp-pwm
-           - const: mediatek,mt8173-disp-pwm
-+      - items:
-+          - const: mediatek,mt8365-disp-pwm
-+          - const: mediatek,mt8183-disp-pwm
- 
-   reg:
-     maxItems: 1
--- 
-2.31.1
+>
+> Suggested-by: Jonathan Hunter <jonathanh@nvidia.com>
+> Co-developed-by: Ion Agorria <ion@agorria.com>
+> Signed-off-by: Ion Agorria <ion@agorria.com>
+> Co-developed-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
 
+[...]
+
+> diff --git a/sound/soc/tegra/tegra_wm8903.c b/sound/soc/tegra/tegra_wm8903.c
+> index e4863fa37b0c..fdf74bfd728e 100644
+> --- a/sound/soc/tegra/tegra_wm8903.c
+> +++ b/sound/soc/tegra/tegra_wm8903.c
+> @@ -14,192 +14,80 @@
+>   *         graeme.gregory@wolfsonmicro.com or linux@wolfsonmicro.com
+>   */
+>  
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/of.h>
+>  #include <linux/module.h>
+>  #include <linux/platform_device.h>
+> -#include <linux/slab.h>
+> -#include <linux/gpio.h>
+> -#include <linux/of_gpio.h>
+>  
+>  #include <sound/core.h>
+>  #include <sound/jack.h>
+> -#include <sound/pcm.h>
+> -#include <sound/pcm_params.h>
+>  #include <sound/soc.h>
+>  
+>  #include "../codecs/wm8903.h"
+>  
+> -#include "tegra_asoc_utils.h"
+> +#include "tegra_asoc_machine.h"
+>  
+> -#define DRV_NAME "tegra-snd-wm8903"
+> +static struct snd_soc_jack_pin tegra_wm8903_mic_jack_pins[] = {
+> +	{ .pin = "Mic Jack", .mask = SND_JACK_MICROPHONE },
+> +};
+>  
+> -struct tegra_wm8903 {
+> -	int gpio_spkr_en;
+> -	int gpio_hp_det;
+> -	int gpio_hp_mute;
+> -	int gpio_int_mic_en;
+> -	int gpio_ext_mic_en;
+> -	struct tegra_asoc_utils_data util_data;
+> +static const char * const tegra_active_low_hp_compats[] = {
+> +	"ad,tegra-audio-plutux",
+> +	"ad,tegra-audio-wm8903-medcom-wide",
+> +	"ad,tegra-audio-wm8903-tec",
+> +	"nvidia,tegra-audio-wm8903-cardhu",
+> +	"nvidia,tegra-audio-wm8903-harmony",
+> +	"nvidia,tegra-audio-wm8903-picasso",
+> +	"nvidia,tegra-audio-wm8903-seaboard",
+> +	"nvidia,tegra-audio-wm8903-ventana",
+> +	NULL,
+
+I think this list should be added to the main match table below with 
+data having a flag for active low HP. Then you only match once, don't 
+need the exported function and the next difference is much easier to 
+add.
+
+>  };
+>  
+> -static int tegra_wm8903_hw_params(struct snd_pcm_substream *substream,
+> -					struct snd_pcm_hw_params *params)
+> +static int tegra_wm8903_init(struct snd_soc_pcm_runtime *rtd)
+>  {
+> -	struct snd_soc_pcm_runtime *rtd = asoc_substream_to_rtd(substream);
+> -	struct snd_soc_dai *codec_dai = asoc_rtd_to_codec(rtd, 0);
+> +	struct tegra_machine *machine = snd_soc_card_get_drvdata(rtd->card);
+> +	struct device_node *np = rtd->card->dev->of_node;
+>  	struct snd_soc_card *card = rtd->card;
+> -	struct tegra_wm8903 *machine = snd_soc_card_get_drvdata(card);
+> -	int srate, mclk;
+>  	int err;
+>  
+> -	srate = params_rate(params);
+> -	switch (srate) {
+> -	case 64000:
+> -	case 88200:
+> -	case 96000:
+> -		mclk = 128 * srate;
+> -		break;
+> -	default:
+> -		mclk = 256 * srate;
+> -		break;
+> -	}
+> -	/* FIXME: Codec only requires >= 3MHz if OSR==0 */
+> -	while (mclk < 6000000)
+> -		mclk *= 2;
+> +	/*
+> +	 * Older version of machine driver was ignoring GPIO polarity,
+> +	 * forcing it to active-low.  This means that all older device-trees
+> +	 * which set the polarity to active-high are wrong and we need to fix
+> +	 * up them.
+> +	 */
+> +	if (of_device_compatible_match(np, tegra_active_low_hp_compats)) {
+> +		bool active_low = gpiod_is_active_low(machine->gpiod_hp_det);
+
+[...]
+
+> +static const struct tegra_asoc_data tegra_wm8903_data = {
+> +	.mclk_rate = tegra_asoc_machine_mclk_rate,
+> +	.card = &snd_soc_tegra_wm8903,
+> +	.add_common_dapm_widgets = true,
+> +	.add_common_controls = true,
+> +	.add_common_soc_ops = true,
+> +	.add_mic_jack = true,
+> +	.add_hp_jack = true,
+> +};
+>  
+>  static const struct of_device_id tegra_wm8903_of_match[] = {
+> -	{ .compatible = "nvidia,tegra-audio-wm8903", },
+> +	{ .compatible = "nvidia,tegra-audio-wm8903", .data = &tegra_wm8903_data },
+>  	{},
+>  };
+> +MODULE_DEVICE_TABLE(of, tegra_wm8903_of_match);
+>  
+>  static struct platform_driver tegra_wm8903_driver = {
+>  	.driver = {
+> -		.name = DRV_NAME,
+> -		.pm = &snd_soc_pm_ops,
+> +		.name = "tegra-wm8903",
+>  		.of_match_table = tegra_wm8903_of_match,
+> +		.pm = &snd_soc_pm_ops,
+>  	},
+> -	.probe = tegra_wm8903_driver_probe,
+> +	.probe = tegra_asoc_machine_probe,
+>  };
+>  module_platform_driver(tegra_wm8903_driver);
+>  
+>  MODULE_AUTHOR("Stephen Warren <swarren@nvidia.com>");
+>  MODULE_DESCRIPTION("Tegra+WM8903 machine ASoC driver");
+>  MODULE_LICENSE("GPL");
+> -MODULE_ALIAS("platform:" DRV_NAME);
+> -MODULE_DEVICE_TABLE(of, tegra_wm8903_of_match);
