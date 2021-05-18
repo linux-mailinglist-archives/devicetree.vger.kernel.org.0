@@ -2,109 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03AEB388304
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 01:18:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D17E338831E
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 01:29:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237112AbhERXTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 19:19:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33830 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235802AbhERXTa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 19:19:30 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2B99C06175F
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 16:18:11 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id b26so274127lfq.4
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 16:18:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=t1lUkNBuVC2UZABZ7mjXl1iS2OFEu1Ax24kG7Pa9v9o=;
-        b=oIb6bCshL727qAb4uQIy4tdqNvs4pKTGrZeO2A2o7UfVH/eztAfkfvbBEipSokq+59
-         FoJYB78uhQ4mijp8vZr0SP4cPRxTCgv+9YN3uSxCr2FnO74K7P78F1v6PtUE7f6iC8Pv
-         FPES6jgvgT3i/uSIj/QqFa76gtm49FrRaxPB30vHeUYSMgKZxTDA9R4MdmfdBPJPUrAk
-         PXjdR2Bdhpl2t8wkJ57L3l+BRB1V7Q+57X8geh0vCm1fe1G8J0cZ40q6tT3ssBW4SGXn
-         7chziYboyIHfa834KfPzy+3k9wESGMTH0oTvTN+o2L+36uT6tElzd3NtoyPiJe6LOZLv
-         Maww==
+        id S238652AbhERXaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 19:30:20 -0400
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:40781 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230352AbhERXaT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 19:30:19 -0400
+Received: by mail-oi1-f179.google.com with SMTP id s19so11420522oic.7;
+        Tue, 18 May 2021 16:29:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=t1lUkNBuVC2UZABZ7mjXl1iS2OFEu1Ax24kG7Pa9v9o=;
-        b=OyoNF6bvLNedBAu/gLupt54umXFf1L/9/lSt61hc1+NGmvB0qg92j7DBLsFcgRz8Tp
-         /V5lVbB6Vk01WURie0DNkHDdMhyKRMfERLgOMPKZIC6GMb3DGWaszMCx1y8MLZuoV2FT
-         +QvvTAzDzMbkkvfCERewJPjmvjecJUnUzEZLP/5kNNu0fNpt91TRpDU/k2jqjoMLQB90
-         uOaDqT2PAURrJ/TfqeTs5yYsgq5s8y1eC7s08yfBWMgU3k0ERCVHxjJpf1851ZulI/z7
-         21JPHxAE9Q8qHuxXD5QwwNAe1BBrWonkiPm7JoO3nQuFUjH0Oo8WNMF++9Ci+zdRSNlm
-         VTzA==
-X-Gm-Message-State: AOAM533uT6lpbsZJdo1xLW/qIhInOZd4ehZUDMfLzbCs+0jk+bMdRQcW
-        Hj+OK9/teeFHJFioqQH/HllIZ7ISCXm55wMX1J1Qsg==
-X-Google-Smtp-Source: ABdhPJwbX+FemxVEp4TpL+OaKW57UtYIhtlS+hTGYuSbNLuqKI0W4v/DXLByxnfuX+1snj0AfuXOkxd2UaRJJjUo3pw=
-X-Received: by 2002:ac2:5145:: with SMTP id q5mr3321479lfd.529.1621379890103;
- Tue, 18 May 2021 16:18:10 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=K2Mnwda2bA0bR8eHAT1VCSFjs3XmfSjqKvaYT9eR8H0=;
+        b=kWRXyPuE6DeB5BBvK9CbS66ooAcj77a0Wi+LB9EJITWI0FYuNsNnSy4an1KqQP8xyB
+         kUOtA+TfWcTQt56USIX+OJkYk79iuFTq6B2h5KCo8u2doXwoOC6vcZCwb5QhnnMRr7Uh
+         p+cqN2gx9e6uTqCcZDE8bjOb09Sc8QCuh4OMFvThms4CGQcQM3GPNufkt8KQ0RVmcJBo
+         Zvyx1wywPzjucqLeujblQ8Xc6aUCmZWCzEB485aNJ665N2ZuIMBdWcFqMS+JTkzR6KKp
+         CwMY1qNW3gLQCoaOyWRSphnf5WT5t70oBQH4FSELDX8PHzaYXlyNniLvhY1dFdgBZBhs
+         AcgQ==
+X-Gm-Message-State: AOAM531IiYRhz88LlRkINmT8Rx4x0X4uPloC/Mk/WrfvcDrcZGA6feF8
+        WJlJ15XTsT8I3bAErWSCsa837G0PzA==
+X-Google-Smtp-Source: ABdhPJymwlT6WNlhW8gTX0f5PwbFXWyq1QqGXhYr+AZ9T54rc8DwHw6mj5xGTXoG6wFYIJKN2Zz2jA==
+X-Received: by 2002:aca:d404:: with SMTP id l4mr5237726oig.160.1621380540051;
+        Tue, 18 May 2021 16:29:00 -0700 (PDT)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id d19sm3985608oop.26.2021.05.18.16.28.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 May 2021 16:28:59 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org, Peter Rosin <peda@axentia.se>,
+        Wolfram Sang <wsa@kernel.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Roger Quadros <rogerq@ti.com>,
+        Jonathan Cameron <jic23@kernel.org>
+Subject: [PATCH 0/6] dt-bindings: Convert mux bindings to schema
+Date:   Tue, 18 May 2021 18:28:52 -0500
+Message-Id: <20210518232858.1535403-1-robh@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20210517193205.691147-1-clabbe@baylibre.com> <20210517193205.691147-5-clabbe@baylibre.com>
- <CACRpkdY3c4uvo1zbEgNW0meF-4P8be_nmoOEQAHP5V+GXgoG=A@mail.gmail.com> <YKOO8UxdmZBjYbt4@Red>
-In-Reply-To: <YKOO8UxdmZBjYbt4@Red>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 19 May 2021 01:17:59 +0200
-Message-ID: <CACRpkdYqaoggyBO9=fdi2iUh9O0Y_jT5jnc7+qbE9HzEWK57Sg@mail.gmail.com>
-Subject: Re: [PATCH 4/5] ARM: gemini: add device tree for edimax NS2502
-To:     LABBE Corentin <clabbe@baylibre.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>, SoC Team <soc@kernel.org>,
-        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 18, 2021 at 11:55 AM LABBE Corentin <clabbe@baylibre.com> wrote=
-:
-> Le Tue, May 18, 2021 at 01:46:20AM +0200, Linus Walleij a =C3=A9crit :
+This series converts the mux-controller and some i2c mux bindings to DT
+schema. This was a rabbit hole of trying to fix undocumented (by schema)
+compatibles (enabled by setting DT_CHECKER_FLAGS=-m). So this is mux
+bindings, and then a few others that are used in the mux binding
+examples.
 
-> > Is the FIS broken since you hardcode the partitions?
-> >
-> > Doesn't this work:
-> >
-> > partitions {
-> >     compatible =3D "redboot-fis";
-> >     /* Eraseblock at 0x7e0000 */
-> >     fis-index-block =3D <0xfc>;
-> > };
-> >
-> > (Needs CONFIG_MTD_REDBOOT_PARTS)
->
-> No it does not.
->
-> physmap-flash 30000000.flash: no enabled pin control state
-> physmap-flash 30000000.flash: no disabled pin control state
-> physmap-flash 30000000.flash: initialized Gemini-specific physmap control
-> physmap-flash 30000000.flash: physmap platform flash device: [mem 0x30000=
-000-0x331fffff]
-> 30000000.flash: Found 1 x16 devices at 0x0 in 16-bit bank. Manufacturer I=
-D 0x000001 Chip ID 0x002201
-> number of CFI chips: 1
-> Searching for RedBoot partition table in 30000000.flash at offset 0x1fe00=
-00
-> No RedBoot partition table detected in 30000000.flash
-> Searching for RedBoot partition table in 30000000.flash at offset 0x1fe00=
-00
-> No RedBoot partition table detected in 30000000.flash
+The mdio and iio mux bindings still need to be done. Patches welcome.TM
 
-Hm since it searches at 0x1fe0000 that's where it thinks the last
-eraseblock is so the erase blocks are 0x20000 (128KB).
+It's probably easiest if I take the whole series.
 
-FIS at 0x7e0000 should be erase block
-0x7e0000/0x20000 =3D 0x3f
+Rob
 
-Can you test fis-index-block =3D <0x3f> and see what happens?
+Rob Herring (6):
+  dt-bindings: mfd: ti,j721e-system-controller: Fix mux node errors
+  dt-bindings: rtc: nxp,pcf8563: Convert to DT schema
+  dt-bindings: mux: Convert mux controller bindings to schema
+  dt-bindings: i2c: Convert i2c-mux bindings to DT schema
+  dt-bindings: i2c: i2c-mux-pca954x: Convert to DT schema
+  dt-bindings: i2c: maxim,max9286: Use the i2c-mux.yaml schema
 
-Yours,
-Linus Walleij
+ .../bindings/i2c/i2c-demux-pinctrl.txt        |   2 +-
+ .../devicetree/bindings/i2c/i2c-mux-gpio.txt  |   4 +-
+ .../devicetree/bindings/i2c/i2c-mux-gpmux.txt |  99 ----------
+ .../bindings/i2c/i2c-mux-gpmux.yaml           | 124 ++++++++++++
+ .../bindings/i2c/i2c-mux-ltc4306.txt          |   4 +-
+ .../bindings/i2c/i2c-mux-pca954x.txt          |  74 -------
+ .../bindings/i2c/i2c-mux-pca954x.yaml         | 106 ++++++++++
+ .../bindings/i2c/i2c-mux-pinctrl.txt          |   4 +-
+ .../devicetree/bindings/i2c/i2c-mux-reg.txt   |   4 +-
+ .../devicetree/bindings/i2c/i2c-mux.txt       |  73 -------
+ .../devicetree/bindings/i2c/i2c-mux.yaml      |  87 +++++++++
+ .../iio/multiplexer/io-channel-mux.txt        |   2 +-
+ .../bindings/media/i2c/maxim,max9286.yaml     |  23 +--
+ .../mfd/ti,j721e-system-controller.yaml       |  19 +-
+ .../devicetree/bindings/mtd/ti,am654-hbmc.txt |   2 +-
+ .../devicetree/bindings/mux/adi,adg792a.txt   |   2 +-
+ .../devicetree/bindings/mux/adi,adgs1408.txt  |   2 +-
+ .../devicetree/bindings/mux/gpio-mux.txt      |  69 -------
+ .../devicetree/bindings/mux/gpio-mux.yaml     |  92 +++++++++
+ .../devicetree/bindings/mux/mux-consumer.yaml |  46 +++++
+ .../bindings/mux/mux-controller.txt           | 157 ---------------
+ .../bindings/mux/mux-controller.yaml          | 182 ++++++++++++++++++
+ .../devicetree/bindings/mux/reg-mux.txt       | 129 -------------
+ .../devicetree/bindings/mux/reg-mux.yaml      | 143 ++++++++++++++
+ .../bindings/net/mdio-mux-multiplexer.txt     |   2 +-
+ .../devicetree/bindings/rtc/nxp,pcf8563.yaml  |  50 +++++
+ .../devicetree/bindings/rtc/pcf8563.txt       |  29 ---
+ 27 files changed, 860 insertions(+), 670 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-mux-gpmux.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-mux-gpmux.yaml
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-mux.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-mux.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mux/gpio-mux.txt
+ create mode 100644 Documentation/devicetree/bindings/mux/gpio-mux.yaml
+ create mode 100644 Documentation/devicetree/bindings/mux/mux-consumer.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mux/mux-controller.txt
+ create mode 100644 Documentation/devicetree/bindings/mux/mux-controller.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mux/reg-mux.txt
+ create mode 100644 Documentation/devicetree/bindings/mux/reg-mux.yaml
+ create mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf8563.yaml
+ delete mode 100644 Documentation/devicetree/bindings/rtc/pcf8563.txt
+
+-- 
+2.27.0
+
