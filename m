@@ -2,450 +2,351 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BAEBB386E99
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 02:56:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBC36386E91
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 02:55:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237502AbhERA6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 May 2021 20:58:09 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:54204 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235379AbhERA6I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 20:58:08 -0400
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 14I0gHZJ065062;
-        Tue, 18 May 2021 08:42:18 +0800 (GMT-8)
-        (envelope-from billy_tsai@aspeedtech.com)
-Received: from BillyTsai-pc.aspeed.com (192.168.2.149) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 18 May
- 2021 08:54:49 +0800
-From:   Billy Tsai <billy_tsai@aspeedtech.com>
-To:     <lee.jones@linaro.org>, <robh+dt@kernel.org>, <joel@jms.id.au>,
-        <andrew@aj.id.au>, <thierry.reding@gmail.com>,
-        <u.kleine-koenig@pengutronix.de>, <p.zabel@pengutronix.de>,
-        <billy_tsai@aspeedtech.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pwm@vger.kernel.org>
-CC:     <BMC-SW@aspeedtech.com>
-Subject: [v6 2/2] pwm: Add Aspeed ast2600 PWM support
-Date:   Tue, 18 May 2021 08:55:17 +0800
-Message-ID: <20210518005517.9036-3-billy_tsai@aspeedtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210518005517.9036-1-billy_tsai@aspeedtech.com>
-References: <20210518005517.9036-1-billy_tsai@aspeedtech.com>
+        id S1345210AbhERA4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 May 2021 20:56:51 -0400
+Received: from mail-oi1-f173.google.com ([209.85.167.173]:33318 "EHLO
+        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238397AbhERA4v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 May 2021 20:56:51 -0400
+Received: by mail-oi1-f173.google.com with SMTP id b25so8269310oic.0;
+        Mon, 17 May 2021 17:55:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=wGTUJVaGi2vt0X1DPJ7HK4WSdmnqY5nH6zbfoY0v/ZM=;
+        b=tegbHOriLuSxsgN7gTPAU13b67VS/jUtXrdfGclU3rkz6ev31gYDIkE3DCcFkO72Hl
+         aKWcPLwrjWrX5k2trTR54gSED2FOk29I1lOeDd0VSUUAMy233vzyne5d1oB/DIQmlHvO
+         K3CZoPNWd2c620sjNjcnwa7E+Ga7H4lGUBTnsn9Ce/be7f28l4mMVvVb/iLEhguLwzhO
+         F95+gR2naexqglmlWz4Z2fAq/zx5FiSVwnrKbcTaq7o8LzoE1tkivivhrzE9XpK/v3E0
+         VQ+W11seVWFC9RRc4IGQ6PgWk6VxslpdfaDzHjg1gbA75UE2bFNkc2nHUmC3uduAfHDy
+         syWQ==
+X-Gm-Message-State: AOAM532/C+UiEZ2f+38sGHP+lIoDbxSue6rChKajFTj+K0DLaVdlXx9I
+        f6AVwc9nQ9VniZIvSWXW5drOKdM0/Q==
+X-Google-Smtp-Source: ABdhPJx9y6NYXD/QSwdJQBZpXT3hnfJO77xc5bRiLZ0+Wo1uzpD0xR2XaeaNda9tMrrOGvAC0Q1aWQ==
+X-Received: by 2002:aca:47ca:: with SMTP id u193mr1424602oia.69.1621299332631;
+        Mon, 17 May 2021 17:55:32 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id o20sm3385995oos.19.2021.05.17.17.55.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 May 2021 17:55:32 -0700 (PDT)
+Received: (nullmailer pid 3548426 invoked by uid 1000);
+        Tue, 18 May 2021 00:55:31 -0000
+Date:   Mon, 17 May 2021 19:55:31 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        kgunda@codeaurora.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH V3 3/3] dt-bindings: pinctrl: qcom-pmic-gpio: Convert
+ qcom pmic gpio bindings to YAML
+Message-ID: <20210518005531.GA3539579@robh.at.kernel.org>
+References: <1620817988-18809-1-git-send-email-skakit@codeaurora.org>
+ <1620817988-18809-4-git-send-email-skakit@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.2.149]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 14I0gHZJ065062
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1620817988-18809-4-git-send-email-skakit@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add the support of PWM controller which can be found at aspeed
-ast2600 soc. The pwm supoorts up to 16 channels and it's part function
-of multi-function device "pwm-tach controller".
+On Wed, May 12, 2021 at 04:43:08PM +0530, satya priya wrote:
+> Convert Qualcomm PMIC GPIO bindings from .txt to .yaml format.
+> 
+> Signed-off-by: satya priya <skakit@codeaurora.org>
+> ---
+> Changes in V3:
+>  - As per Rob's comments fixed bot erros.
+>  - Moved this patch to end of the series so that other patches are not
+>    blocked on this.
+> 
+> Changes in V4:
+>  - As per Rob's comments, added maxItems for reg and interrupts.
+>    Added reference of "pinmux-node.yaml" and "pincfg-node.yaml".
+>    Made 'additionalProperties' as false.
+> 
+>  .../devicetree/bindings/pinctrl/qcom,pmic-gpio.txt | 288 ---------------------
+>  .../bindings/pinctrl/qcom,pmic-gpio.yaml           | 245 ++++++++++++++++++
+>  2 files changed, 245 insertions(+), 288 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
 
-Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
----
- drivers/pwm/Kconfig         |   9 +
- drivers/pwm/Makefile        |   1 +
- drivers/pwm/pwm-aspeed-g6.c | 351 ++++++++++++++++++++++++++++++++++++
- 3 files changed, 361 insertions(+)
- create mode 100644 drivers/pwm/pwm-aspeed-g6.c
 
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 63be5362fd3a..3b2d4cf024a6 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -51,6 +51,15 @@ config PWM_AB8500
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-ab8500.
- 
-+config PWM_ASPEED_G6
-+	tristate "ASPEEDG6 PWM support"
-+	depends on ARCH_ASPEED || COMPILE_TEST
-+	help
-+	  Generic PWM framework driver for ASPEED G6 SoC.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-aspeed-g6.
-+
- config PWM_ATMEL
- 	tristate "Atmel PWM support"
- 	depends on OF
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index cbdcd55d69ee..29d22d806e68 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -2,6 +2,7 @@
- obj-$(CONFIG_PWM)		+= core.o
- obj-$(CONFIG_PWM_SYSFS)		+= sysfs.o
- obj-$(CONFIG_PWM_AB8500)	+= pwm-ab8500.o
-+obj-$(CONFIG_PWM_ASPEED_G6)	+= pwm-aspeed-g6.o
- obj-$(CONFIG_PWM_ATMEL)		+= pwm-atmel.o
- obj-$(CONFIG_PWM_ATMEL_HLCDC_PWM)	+= pwm-atmel-hlcdc.o
- obj-$(CONFIG_PWM_ATMEL_TCB)	+= pwm-atmel-tcb.o
-diff --git a/drivers/pwm/pwm-aspeed-g6.c b/drivers/pwm/pwm-aspeed-g6.c
-new file mode 100644
-index 000000000000..a80211eb4877
---- /dev/null
-+++ b/drivers/pwm/pwm-aspeed-g6.c
-@@ -0,0 +1,351 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (C) 2021 ASPEED Technology Inc.
-+ *
-+ * PWM controller driver for Aspeed ast26xx SoCs.
-+ * This drivers doesn't support earlier version of the IP.
-+ *
-+ * The formula of pwm frequency:
-+ * PWM frequency = CLK Source / ((DIV_L + 1) * BIT(DIV_H) * (PERIOD + 1))
-+ *
-+ * The software driver fixes the period to 255, which causes the high-frequency
-+ * precision of the PWM to be coarse, in exchange for the fineness of the duty cycle.
-+ *
-+ * Register usage:
-+ * PIN_ENABLE: When it is unset the pwm controller will always output low to the extern.
-+ * Use to determine whether the PWM channel is enabled or disabled
-+ * CLK_ENABLE: When it is unset the pwm controller will reset the duty counter to 0 and
-+ * output low to the PIN_ENABLE mux after that the driver can still change the pwm period
-+ * and duty and the value will apply when CLK_ENABLE be set again.
-+ * Use to determin whether duty_cycle bigger than 0.
-+ * PWM_ASPEED_CTRL_INVERSE: When it is toggled the output value will inverse immediately.
-+ * PWM_ASPEED_DUTY_CYCLE_FALLING_POINT/PWM_ASPEED_DUTY_CYCLE_RISING_POINT: When these two
-+ * values are equal it means the duty cycle = 100%.
-+ *
-+ * Limitations:
-+ * - When changing both duty cycle and period, we cannot prevent in
-+ *   software that the output might produce a period with mixed
-+ *   settings.
-+ *
-+ * Improvements:
-+ * - When changing the duty cycle or period, our pwm controller will not
-+ *   generate the glitch, the configure will change at next cycle of pwm.
-+ *   This improvement can disable/enable through PWM_ASPEED_CTRL_DUTY_SYNC_DISABLE.
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/errno.h>
-+#include <linux/delay.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of_platform.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/sysfs.h>
-+#include <linux/reset.h>
-+#include <linux/regmap.h>
-+#include <linux/bitfield.h>
-+#include <linux/slab.h>
-+#include <linux/pwm.h>
-+#include <linux/math64.h>
-+
-+/* The channel number of Aspeed pwm controller */
-+#define PWM_ASPEED_NR_PWMS 16
-+
-+/* PWM Control Register */
-+#define PWM_ASPEED_CTRL_CH(ch) (((ch)*0x10) + 0x00)
-+#define PWM_ASPEED_CTRL_LOAD_SEL_RISING_AS_WDT BIT(19)
-+#define PWM_ASPEED_CTRL_DUTY_LOAD_AS_WDT_ENABLE BIT(18)
-+#define PWM_ASPEED_CTRL_DUTY_SYNC_DISABLE BIT(17)
-+#define PWM_ASPEED_CTRL_CLK_ENABLE BIT(16)
-+#define PWM_ASPEED_CTRL_LEVEL_OUTPUT BIT(15)
-+#define PWM_ASPEED_CTRL_INVERSE BIT(14)
-+#define PWM_ASPEED_CTRL_OPEN_DRAIN_ENABLE BIT(13)
-+#define PWM_ASPEED_CTRL_PIN_ENABLE BIT(12)
-+#define PWM_ASPEED_CTRL_CLK_DIV_H GENMASK(11, 8)
-+#define PWM_ASPEED_CTRL_CLK_DIV_L GENMASK(7, 0)
-+
-+/* PWM Duty Cycle Register */
-+#define PWM_ASPEED_DUTY_CYCLE_CH(ch) (((ch)*0x10) + 0x04)
-+#define PWM_ASPEED_DUTY_CYCLE_PERIOD GENMASK(31, 24)
-+#define PWM_ASPEED_DUTY_CYCLE_POINT_AS_WDT GENMASK(23, 16)
-+#define PWM_ASPEED_DUTY_CYCLE_FALLING_POINT GENMASK(15, 8)
-+#define PWM_ASPEED_DUTY_CYCLE_RISING_POINT GENMASK(7, 0)
-+
-+/* PWM fixed value */
-+#define PWM_ASPEED_FIXED_PERIOD FIELD_MAX(PWM_ASPEED_DUTY_CYCLE_PERIOD)
-+
-+struct aspeed_pwm_data {
-+	struct pwm_chip chip;
-+	struct clk *clk;
-+	struct regmap *regmap;
-+	struct reset_control *reset;
-+};
-+
-+static inline struct aspeed_pwm_data *
-+aspeed_pwm_chip_to_data(struct pwm_chip *c)
-+{
-+	return container_of(c, struct aspeed_pwm_data, chip);
-+}
-+
-+static u64 aspeed_pwm_get_period(struct pwm_chip *chip, struct pwm_device *pwm)
-+{
-+	struct aspeed_pwm_data *priv = aspeed_pwm_chip_to_data(chip);
-+	unsigned long rate;
-+	u32 index = pwm->hwpwm;
-+	u32 val;
-+	u64 period, div_h, div_l, clk_period;
-+
-+	rate = clk_get_rate(priv->clk);
-+	regmap_read(priv->regmap, PWM_ASPEED_CTRL_CH(index), &val);
-+	div_h = FIELD_GET(PWM_ASPEED_CTRL_CLK_DIV_H, val);
-+	div_l = FIELD_GET(PWM_ASPEED_CTRL_CLK_DIV_L, val);
-+	regmap_read(priv->regmap, PWM_ASPEED_DUTY_CYCLE_CH(index), &val);
-+	clk_period = FIELD_GET(PWM_ASPEED_DUTY_CYCLE_PERIOD, val);
-+	period = (NSEC_PER_SEC * BIT(div_h) * (div_l + 1) * (clk_period + 1));
-+	period = DIV_ROUND_UP_ULL(period, rate);
-+
-+	return period;
-+}
-+
-+static int aspeed_pwm_set_period(struct pwm_chip *chip, struct pwm_device *pwm,
-+				 const struct pwm_state *state)
-+{
-+	struct device *dev = chip->dev;
-+	struct aspeed_pwm_data *priv = aspeed_pwm_chip_to_data(chip);
-+	unsigned long rate;
-+	u64 div_h, div_l, divisor;
-+	u32 index = pwm->hwpwm;
-+
-+	rate = clk_get_rate(priv->clk);
-+	/*
-+	 * Pick the smallest value for div_h so that div_l can be the biggest
-+	 * which results in a finer resolution near the target period value.
-+	 */
-+	divisor = (u64)NSEC_PER_SEC * (PWM_ASPEED_FIXED_PERIOD + 1) *
-+		  (FIELD_MAX(PWM_ASPEED_CTRL_CLK_DIV_L) + 1);
-+	div_h = order_base_2(div64_u64(rate * state->period, divisor));
-+	if (div_h > 0xf)
-+		div_h = 0xf;
-+
-+	divisor = ((u64)NSEC_PER_SEC * (PWM_ASPEED_FIXED_PERIOD + 1)) << div_h;
-+	div_l = div64_u64(rate * state->period, divisor);
-+
-+	if (div_l == 0)
-+		return -ERANGE;
-+
-+	div_l -= 1;
-+
-+	if (div_l > 255)
-+		div_l = 255;
-+
-+	dev_dbg(dev, "clk source: %ld div_h %lld, div_l : %lld\n", rate, div_h,
-+		div_l);
-+
-+	regmap_update_bits(
-+		priv->regmap, PWM_ASPEED_CTRL_CH(index),
-+		(PWM_ASPEED_CTRL_CLK_DIV_H | PWM_ASPEED_CTRL_CLK_DIV_L),
-+		FIELD_PREP(PWM_ASPEED_CTRL_CLK_DIV_H, div_h) |
-+			FIELD_PREP(PWM_ASPEED_CTRL_CLK_DIV_L, div_l));
-+	return 0;
-+}
-+
-+static void aspeed_pwm_set_duty(struct pwm_chip *chip, struct pwm_device *pwm,
-+				const struct pwm_state *state)
-+{
-+	struct device *dev = chip->dev;
-+	struct aspeed_pwm_data *priv = aspeed_pwm_chip_to_data(chip);
-+	u32 duty_pt;
-+	u32 index = pwm->hwpwm;
-+	u64 cur_period;
-+
-+	cur_period = aspeed_pwm_get_period(chip, pwm);
-+	duty_pt = DIV_ROUND_DOWN_ULL(
-+		state->duty_cycle * (PWM_ASPEED_FIXED_PERIOD + 1), cur_period);
-+	dev_dbg(dev, "cur_period = %lld, duty_cycle = %lld, duty_pt = %d\n",
-+		cur_period, state->duty_cycle, duty_pt);
-+	if (duty_pt == 0) {
-+		regmap_update_bits(priv->regmap, PWM_ASPEED_CTRL_CH(index),
-+				   PWM_ASPEED_CTRL_CLK_ENABLE, 0);
-+	} else {
-+		if (duty_pt >= (PWM_ASPEED_FIXED_PERIOD + 1))
-+			duty_pt = 0;
-+		regmap_update_bits(
-+			priv->regmap, PWM_ASPEED_DUTY_CYCLE_CH(index),
-+			PWM_ASPEED_DUTY_CYCLE_FALLING_POINT,
-+			FIELD_PREP(PWM_ASPEED_DUTY_CYCLE_FALLING_POINT,
-+				   duty_pt));
-+		regmap_update_bits(priv->regmap, PWM_ASPEED_CTRL_CH(index),
-+				   PWM_ASPEED_CTRL_CLK_ENABLE,
-+				   PWM_ASPEED_CTRL_CLK_ENABLE);
-+	}
-+}
-+
-+static void aspeed_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-+				 struct pwm_state *state)
-+{
-+	struct device *dev = chip->dev;
-+	struct aspeed_pwm_data *priv = aspeed_pwm_chip_to_data(chip);
-+	u32 index = pwm->hwpwm;
-+	bool polarity, ch_en, clk_en;
-+	u32 duty_pt, val;
-+
-+	regmap_read(priv->regmap, PWM_ASPEED_CTRL_CH(index), &val);
-+	polarity = FIELD_GET(PWM_ASPEED_CTRL_INVERSE, val);
-+	ch_en = FIELD_GET(PWM_ASPEED_CTRL_PIN_ENABLE, val);
-+	clk_en = FIELD_GET(PWM_ASPEED_CTRL_CLK_ENABLE, val);
-+	regmap_read(priv->regmap, PWM_ASPEED_DUTY_CYCLE_CH(index), &val);
-+	duty_pt = FIELD_GET(PWM_ASPEED_DUTY_CYCLE_FALLING_POINT, val);
-+
-+	state->period = aspeed_pwm_get_period(chip, pwm);
-+	if (clk_en && duty_pt)
-+		state->duty_cycle = DIV_ROUND_UP_ULL(
-+			state->period * duty_pt, PWM_ASPEED_FIXED_PERIOD + 1);
-+	else
-+		state->duty_cycle = clk_en ? state->period : 0;
-+	state->polarity = polarity;
-+	state->enabled = ch_en;
-+	dev_dbg(dev, "get period: %lldns, duty_cycle: %lldns", state->period,
-+		state->duty_cycle);
-+}
-+
-+static int aspeed_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-+			    const struct pwm_state *state)
-+{
-+	struct device *dev = chip->dev;
-+	struct aspeed_pwm_data *priv = aspeed_pwm_chip_to_data(chip);
-+	u32 index = pwm->hwpwm;
-+	int ret;
-+
-+	dev_dbg(dev, "apply period: %lldns, duty_cycle: %lldns", state->period,
-+		state->duty_cycle);
-+
-+	regmap_update_bits(priv->regmap, PWM_ASPEED_CTRL_CH(index),
-+			   PWM_ASPEED_CTRL_PIN_ENABLE,
-+			   state->enabled ? PWM_ASPEED_CTRL_PIN_ENABLE : 0);
-+	/*
-+	 * Fixed the period to the max value and rising point to 0
-+	 * for high resolution and simplify frequency calculation.
-+	 */
-+	regmap_update_bits(priv->regmap, PWM_ASPEED_DUTY_CYCLE_CH(index),
-+			   (PWM_ASPEED_DUTY_CYCLE_PERIOD |
-+			    PWM_ASPEED_DUTY_CYCLE_RISING_POINT),
-+			   FIELD_PREP(PWM_ASPEED_DUTY_CYCLE_PERIOD,
-+				      PWM_ASPEED_FIXED_PERIOD));
-+
-+	ret = aspeed_pwm_set_period(chip, pwm, state);
-+	if (ret)
-+		return ret;
-+	aspeed_pwm_set_duty(chip, pwm, state);
-+	regmap_update_bits(priv->regmap, PWM_ASPEED_CTRL_CH(index),
-+			   PWM_ASPEED_CTRL_INVERSE,
-+			   FIELD_PREP(PWM_ASPEED_CTRL_INVERSE,
-+				      state->polarity));
-+	return 0;
-+}
-+
-+static const struct pwm_ops aspeed_pwm_ops = {
-+	.apply = aspeed_pwm_apply,
-+	.get_state = aspeed_pwm_get_state,
-+	.owner = THIS_MODULE,
-+};
-+
-+static int aspeed_pwm_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	int ret;
-+	struct aspeed_pwm_data *priv;
-+	struct device_node *np;
-+	struct platform_device *parent_dev;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	np = pdev->dev.parent->of_node;
-+	if (!of_device_is_compatible(np, "aspeed,ast2600-pwm-tach"))
-+		return dev_err_probe(dev, -ENODEV,
-+				     "unsupported pwm device binding\n");
-+
-+	priv->regmap = syscon_node_to_regmap(np);
-+	if (IS_ERR(priv->regmap))
-+		return dev_err_probe(dev, PTR_ERR(priv->regmap),
-+				     "couldn't get regmap\n");
-+
-+	parent_dev = of_find_device_by_node(np);
-+	priv->clk = devm_clk_get(&parent_dev->dev, 0);
-+	if (IS_ERR(priv->clk))
-+		return dev_err_probe(dev, PTR_ERR(priv->clk),
-+				     "couldn't get clock\n");
-+
-+	ret = clk_prepare_enable(priv->clk);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "couldn't enable clock\n");
-+
-+	priv->reset = of_reset_control_get_shared(np, NULL);
-+	if (IS_ERR(priv->reset))
-+		return dev_err_probe(dev, PTR_ERR(priv->reset),
-+				     "get reset failed\n");
-+
-+	ret = reset_control_deassert(priv->reset);
-+	if (ret) {
-+		dev_err(dev, "cannot deassert reset control: %pe\n",
-+			ERR_PTR(ret));
-+		goto err_disable_clk;
-+	}
-+
-+	priv->chip.dev = dev;
-+	priv->chip.ops = &aspeed_pwm_ops;
-+	priv->chip.npwm = PWM_ASPEED_NR_PWMS;
-+	priv->chip.of_xlate = of_pwm_xlate_with_flags;
-+	priv->chip.of_pwm_n_cells = 3;
-+
-+	ret = pwmchip_add(&priv->chip);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to add PWM chip: %pe\n", ERR_PTR(ret));
-+		goto err_assert_reset;
-+	}
-+	dev_set_drvdata(dev, priv);
-+	return 0;
-+err_assert_reset:
-+	reset_control_assert(priv->reset);
-+err_disable_clk:
-+	clk_disable_unprepare(priv->clk);
-+	return ret;
-+}
-+
-+static int aspeed_pwm_remove(struct platform_device *dev)
-+{
-+	struct aspeed_pwm_data *priv = platform_get_drvdata(dev);
-+
-+	pwmchip_remove(&priv->chip);
-+	reset_control_assert(priv->reset);
-+	clk_disable_unprepare(priv->clk);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id of_pwm_match_table[] = {
-+	{
-+		.compatible = "aspeed,ast2600-pwm",
-+	},
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, of_pwm_match_table);
-+
-+static struct platform_driver aspeed_pwm_driver = {
-+	.probe = aspeed_pwm_probe,
-+	.remove	= aspeed_pwm_remove,
-+	.driver	= {
-+		.name = "aspeed_pwm",
-+		.of_match_table = of_pwm_match_table,
-+	},
-+};
-+
-+module_platform_driver(aspeed_pwm_driver);
-+
-+MODULE_AUTHOR("Billy Tsai <billy_tsai@aspeedtech.com>");
-+MODULE_DESCRIPTION("ASPEED PWM device driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.25.1
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
+> new file mode 100644
+> index 0000000..85381a0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
+> @@ -0,0 +1,245 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/qcom,pmic-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm PMIC GPIO block
+> +
+> +maintainers:
+> +  - Bjorn Andersson <bjorn.andersson@sonymobile.com>
+> +
+> +description: |
+> +  This binding describes the GPIO block(s) found in the 8xxx series of
+> +  PMIC's from Qualcomm.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - qcom,pm8005-gpio
+> +          - qcom,pm8018-gpio
+> +          - qcom,pm8038-gpio
+> +          - qcom,pm8058-gpio
+> +          - qcom,pm8916-gpio
+> +          - qcom,pm8917-gpio
+> +          - qcom,pm8921-gpio
+> +          - qcom,pm8941-gpio
+> +          - qcom,pm8950-gpio
+> +          - qcom,pm8994-gpio
+> +          - qcom,pm8998-gpio
+> +          - qcom,pma8084-gpio
+> +          - qcom,pmi8950-gpio
+> +          - qcom,pmi8994-gpio
+> +          - qcom,pmi8998-gpio
+> +          - qcom,pms405-gpio
+> +          - qcom,pm660-gpio
+> +          - qcom,pm660l-gpio
+> +          - qcom,pm8150-gpio
+> +          - qcom,pm8150b-gpio
+> +          - qcom,pm6150-gpio
+> +          - qcom,pm6150l-gpio
+> +          - qcom,pmx55-gpio
+> +          - qcom,pm7325-gpio
+> +          - qcom,pm8350c-gpio
+> +          - qcom,pmk8350-gpio
+> +          - qcom,pmr735a-gpio
+> +
+> +      - enum:
+> +          - qcom,spmi-gpio
+> +          - qcom,ssbi-gpio
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 44
 
+Please say something about what the 1-44 interrupts are if you can't 
+define each one.
+
+> +
+> +  '#interrupt-cells':
+> +    const: 2
+> +
+> +  interrupt-controller: true
+> +
+> +  gpio-controller: true
+> +
+> +  gpio-ranges:
+> +    maxItems: 1
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +    description: |
+> +        The first cell will be used to define gpio number and the
+> +        second denotes the flags for this gpio
+> +
+> +  gpio-keys:
+> +    type: object
+> +    properties:
+> +      volume-keys:
+> +        type: object
+> +        anyOf:
+> +          - $ref: "pinmux-node.yaml"
+> +          - $ref: "pincfg-node.yaml"
+> +        properties:
+> +          pins:
+> +            description: |
+> +                List of gpio pins affected by the properties specified in
+> +                this subnode.  Valid pins are
+> +                     - gpio1-gpio4 for pm8005
+> +                     - gpio1-gpio6 for pm8018
+> +                     - gpio1-gpio12 for pm8038
+> +                     - gpio1-gpio40 for pm8058
+> +                     - gpio1-gpio4 for pm8916
+> +                     - gpio1-gpio38 for pm8917
+> +                     - gpio1-gpio44 for pm8921
+> +                     - gpio1-gpio36 for pm8941
+> +                     - gpio1-gpio8 for pm8950 (hole on gpio3)
+> +                     - gpio1-gpio22 for pm8994
+> +                     - gpio1-gpio26 for pm8998
+> +                     - gpio1-gpio22 for pma8084
+> +                     - gpio1-gpio2 for pmi8950
+> +                     - gpio1-gpio10 for pmi8994
+> +                     - gpio1-gpio12 for pms405 (holes on gpio1, gpio9
+> +                                                and gpio10)
+> +                     - gpio1-gpio10 for pm8150 (holes on gpio2, gpio5,
+> +                                                gpio7 and gpio8)
+> +                     - gpio1-gpio12 for pm8150b (holes on gpio3, gpio4
+> +                                                 and gpio7)
+> +                     - gpio1-gpio12 for pm8150l (hole on gpio7)
+> +                     - gpio1-gpio10 for pm6150
+> +                     - gpio1-gpio12 for pm6150l
+> +                     - gpio1-gpio10 for pm7325
+> +                     - gpio1-gpio9 for pm8350c
+> +                     - gpio1-gpio4 for pmk8350
+> +                     - gpio1-gpio4 for pmr735a
+> +
+> +            items:
+> +              pattern: "^gpio([0-9]+)$"
+> +
+> +          function:
+> +            description: |
+> +                Specify the alternative function to be configured for the
+> +                specified pins.
+
+No need to redescribe a common property.
+
+> +            items:
+> +              - enum:
+> +                  - normal
+> +                  - paired
+> +                  - func1
+> +                  - func2
+> +                  - dtest1
+> +                  - dtest2
+> +                  - dtest3
+> +                  - dtest4
+> +                  - func3  # supported by LV/MV GPIO subtypes
+> +                  - func4  # supported by LV/MV GPIO subtypes
+> +
+> +          bias-disable: true
+> +
+> +          bias-pull-down: true
+> +
+> +          bias-pull-up: true
+> +
+> +          qcom,pull-up-strength:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            description: |
+> +                Specifies the strength to use for pull up, if selected.
+> +                Valid values are defined in
+> +                <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+> +                If this property is omitted 30uA strength will be used
+> +                if pull up is selected
+> +
+> +          bias-high-impedance: true
+> +
+> +          input-enable: true
+> +
+> +          output-high: true
+> +
+> +          output-low: true
+> +
+> +          power-source: true
+> +
+> +          qcom,drive-strength:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            description: |
+> +                Selects the drive strength for the specified pins
+> +                Valid drive strength values are defined in
+> +                <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+
+Please define the constraints here.
+
+> +
+> +          drive-push-pull: true
+> +
+> +          drive-open-drain: true
+> +
+> +          drive-open-source: true
+> +
+> +          qcom,analog-pass:
+> +            $ref: /schemas/types.yaml#/definitions/flag
+> +            description: |
+> +                The specified pins are configured in
+> +                analog-pass-through mode.
+> +
+> +          qcom,atest:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            description: |
+> +                Selects ATEST rail to route to GPIO when it's
+> +                configured in analog-pass-through mode.
+> +            enum: [1 2 3 4]
+
+enum: [ 1, 2, 3, 4 ]
+
+> +
+> +          qcom,dtest-buffer:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            description: |
+> +                Selects DTEST rail to route to GPIO when it's
+> +                configured as digital input.
+> +            enum: [1 2 3 4]
+
+Ditto.
+
+> +
+> +        required:
+> +          - pins
+> +          - function
+> +
+> +        additionalProperties: false
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+> +
+> +    pm8921_gpio: gpio@150 {
+> +      compatible = "qcom,pm8921-gpio", "qcom,ssbi-gpio";
+> +      reg = <0x150 0x160>;
+> +      interrupts = <192 1>, <193 1>, <194 1>,
+> +                   <195 1>, <196 1>, <197 1>,
+> +                   <198 1>, <199 1>, <200 1>,
+> +                   <201 1>, <202 1>, <203 1>,
+> +                   <204 1>, <205 1>, <206 1>,
+> +                   <207 1>, <208 1>, <209 1>,
+> +                   <210 1>, <211 1>, <212 1>,
+> +                   <213 1>, <214 1>, <215 1>,
+> +                   <216 1>, <217 1>, <218 1>,
+> +                   <219 1>, <220 1>, <221 1>,
+> +                   <222 1>, <223 1>, <224 1>,
+> +                   <225 1>, <226 1>, <227 1>,
+> +                   <228 1>, <229 1>, <230 1>,
+> +                   <231 1>, <232 1>, <233 1>,
+> +                   <234 1>, <235 1>;
+> +
+> +      gpio-controller;
+> +      #gpio-cells = <2>;
+> +
+> +      pm8921_gpio_keys: gpio-keys {
+> +        volume-keys {
+> +          pins = "gpio20", "gpio21";
+> +          function = "normal";
+> +
+> +          input-enable;
+> +          bias-pull-up;
+> +          drive-push-pull;
+> +          qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
+> +          power-source = <PM8921_GPIO_S4>;
+> +        };
+> +      };
+> +    };
+> +...
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+> of Code Aurora Forum, hosted by The Linux Foundation
+> 
