@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2DC538739A
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 09:55:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 232DE3873A0
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 09:56:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240320AbhERH4q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 03:56:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49338 "EHLO
+        id S1347347AbhERH5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 03:57:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240926AbhERH4p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 03:56:45 -0400
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00636C061573;
-        Tue, 18 May 2021 00:55:27 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id d25-20020a0568300459b02902f886f7dd43so7895813otc.6;
-        Tue, 18 May 2021 00:55:27 -0700 (PDT)
+        with ESMTP id S1347340AbhERH5v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 03:57:51 -0400
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEBC4C061573;
+        Tue, 18 May 2021 00:56:29 -0700 (PDT)
+Received: by mail-ot1-x335.google.com with SMTP id 36-20020a9d0ba70000b02902e0a0a8fe36so7890841oth.8;
+        Tue, 18 May 2021 00:56:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=9Ku+2qffcgpQdd0AjY56gzrAJrKY2KJcMohJ2tJvXf4=;
-        b=Na0zHLilOIyO08nKHQ9Rk7cEScz+Er3m/qzB/L01gvI3zl19eiI1nmCTiIFcqS1Pvm
-         V7MurMFawVuQDx7L/e5tNc03CXvfaIerVbi85B5I3S/UjyJSRE3RC3ESDMzIfqhtdxxh
-         5Zz8FUME2fZh4YcNXs7N2zL1sB0/OlaLlAQpX6/OznJroWFEOLulIDmqOLQnuiiYT/xu
-         KQDioiGZKc6ANZQIONcJftfy1bcbQDDBVToeGW7q5OWo8NCcMuxAvZO6U9vQAApFyl7n
-         KpKNOThP0UYI1o+PFIDkkoQ1h1h6GgLIa2NpMK2zVV0PeQ1wwa9HsKLEAGFx/zaNiZeJ
-         /fbA==
+        bh=eV5UeGE3IBd/TIBlyE+R6Ktv03bYUpvZbdBBEdJMQzQ=;
+        b=jY0F9IxRD4ekkcpL37y0m+d6AmuFTNX8O0umjcxbJ3jJUkglW2/nKIhBx0QwAmJeES
+         Ou7w8vRVKw+gNez6uTVnkIzC/BXDpObDb1/325flUqaKRrAWziyy7qcTT19zOBAzCYOK
+         SHkFLnAwg/+w8CAz4O4VtuOGh2JNQFVoC+wk4sa6byGZHDsLEebe5U3lH0QUtdp68mJb
+         UeuJv7xX25sHQltFuip6OHSqcERSHZ18VzkHGY23IkCVSabD1BtR3it/KFCmSCOJoMO4
+         qoklw1mEEexzRxJZLpCpRKIdFyoFBhTwZdR8Z9fp3PCfyp67bVk3l+nnLo2EuJVOQIkc
+         eX5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=9Ku+2qffcgpQdd0AjY56gzrAJrKY2KJcMohJ2tJvXf4=;
-        b=rKhupbVfLaOLXyAZ+CUy1qPg5unXN65crEIjdl7qRpBIqXE8qAbUSd9/pdYEyKBR75
-         ONTkh3LC9DdDPrlyTEqSie9oS5Q35P4pOe+jJUaQ6Vnr+5CBPBpyPZdRfwOsoJOlawVq
-         792PVH1gkU9dXioYxyi6tIEA5a53kKa8Tc/30DZEP0SE4+hO4Amw9oAbesxYgzV00/BT
-         5RbPeeR04zAzm6rhJsR4TaedrDO+kFLhXOXIdctG4PWXDBCt8MCd8CiUlC5pel2nvb07
-         gSPjWrnXfg9ChR/SHM0fRyu9jLkwLx+no0lyO+VePl2FoRY2E+vUjyCEHvmhPvpPsOvk
-         e30Q==
-X-Gm-Message-State: AOAM532tHUp0ONLJptyLLocDfYw808Jl+SudTbIMx1/ZeUlWa2RUjf0K
-        lzPr70SlqxsuAQZ9y69PZmDEEOaHh8H6pCpXBE4=
-X-Google-Smtp-Source: ABdhPJz2bDQvDTNVzRCoGcczOCh+FXQKGpbraKCSNpVie7voi/8Wq+IKI3U4tO+fUQ4PrTwb/YLSJS64jOKrYbWc1ko=
-X-Received: by 2002:a9d:4115:: with SMTP id o21mr3240707ote.52.1621324527407;
- Tue, 18 May 2021 00:55:27 -0700 (PDT)
+        bh=eV5UeGE3IBd/TIBlyE+R6Ktv03bYUpvZbdBBEdJMQzQ=;
+        b=DHRMwinfCfmVOJewhYWWv7VHRmD3sqOoHSPhRq3PH8m0J+lOxIcGqwlduSXYzixlsz
+         Fk0USkZwjaQ45ad6DKLX8HdY3PdSZ4bwHEYhhcZocVORI7BJe+zIEX5lsJs4jwAxFiHy
+         GMCPYQhICYjCqpUOv6NY5IDiwTEr/CEq0gnuqcmv3AZyXqJxECwdjK9UWdCOLf1A5lwq
+         Cu9gq+pU38SYQQ2rmuo543dy40uWDFpZYkQTjv0c+NUAGQad0Xwek8N7Yl0g9bfT1dr1
+         k9YoEe8ciOwJkq+LZI2J59jQ072+aq4giu2l8BTkse/1BaR56NiskuTO+GgboKhMFLFd
+         C/Sg==
+X-Gm-Message-State: AOAM531vUgmEAnJBvFbtHfcDd9RkOb+OWAOLtR/G3mrTvfXt2fZeAwUR
+        2Wxxe3ZJaoAlofd52kXay4SV+wdFUjTxOKDxNOk=
+X-Google-Smtp-Source: ABdhPJxLc3looZn7M7xcGCA/jcvWbC7LmkpoidFEPt7TdytDDoufdjipEMQXoHTrS5rR3Y+DmY5/4GQhRSxZkg96mQM=
+X-Received: by 2002:a05:6830:1646:: with SMTP id h6mr3222722otr.118.1621324589179;
+ Tue, 18 May 2021 00:56:29 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210517171205.1581938-1-abelvesa@kernel.org> <20210517171205.1581938-6-abelvesa@kernel.org>
-In-Reply-To: <20210517171205.1581938-6-abelvesa@kernel.org>
+References: <20210517171205.1581938-1-abelvesa@kernel.org> <20210517171205.1581938-7-abelvesa@kernel.org>
+In-Reply-To: <20210517171205.1581938-7-abelvesa@kernel.org>
 From:   Dong Aisheng <dongas86@gmail.com>
-Date:   Tue, 18 May 2021 15:54:25 +0800
-Message-ID: <CAA+hA=RNfWYaE81yYv5Dyt8QSXd_NTGcwjWwitiRNe4ZOtRWvw@mail.gmail.com>
-Subject: Re: [PATCH 5/7] arm64: dts: freescale: Add ddr subsys dtsi for imx8dxl
+Date:   Tue, 18 May 2021 15:55:26 +0800
+Message-ID: <CAA+hA=T_y7YsBZb67ypzxVfNb9F810jZOYPsfpE9Y-y=GQ1p6A@mail.gmail.com>
+Subject: Re: [PATCH 6/7] arm64: dts: freescale: Add lsio subsys dtsi for imx8dxl
 To:     Abel Vesa <abelvesa@kernel.org>
 Cc:     Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <kernel@pengutronix.de>,
@@ -71,62 +71,103 @@ On Tue, May 18, 2021 at 1:16 AM <abelvesa@kernel.org> wrote:
 >
 > From: Jacky Bai <ping.bai@nxp.com>
 >
-> Add the ddr subsys dtsi for i.MX8DXL. Additional db pmu is added
-> compared to i.MX8QXP.
+> On i.MX8DXL, the LSIO subsystem includes below devices:
+>
+> 1x Inline Encryption Engine (IEE)
+> 1x FlexSPI
+> 4x Pulse Width Modulator (PWM)
+> 5x General Purpose Timer (GPT)
+> 8x GPIO
+> 14x Message Unit (MU)
+> 256KB On-Chip Memory (OCRAM)
+>
+> compared to the common imx8-ss-lsio dtsi, some nodes' interrupt
+> property need to be updated.
 >
 > Signed-off-by: Jacky Bai <ping.bai@nxp.com>
 > Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
 > ---
->  .../boot/dts/freescale/imx8dxl-ss-ddr.dtsi    | 34 +++++++++++++++++++
->  1 file changed, 34 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-ss-ddr.dtsi
+>  .../boot/dts/freescale/imx8dxl-ss-lsio.dtsi   | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-ss-lsio.dtsi
 >
-> diff --git a/arch/arm64/boot/dts/freescale/imx8dxl-ss-ddr.dtsi b/arch/arm64/boot/dts/freescale/imx8dxl-ss-ddr.dtsi
+> diff --git a/arch/arm64/boot/dts/freescale/imx8dxl-ss-lsio.dtsi b/arch/arm64/boot/dts/freescale/imx8dxl-ss-lsio.dtsi
 > new file mode 100644
-> index 000000000000..640b43f5ae97
+> index 000000000000..7496a38694df
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8dxl-ss-ddr.dtsi
-> @@ -0,0 +1,34 @@
+> +++ b/arch/arm64/boot/dts/freescale/imx8dxl-ss-lsio.dtsi
+> @@ -0,0 +1,68 @@
 > +// SPDX-License-Identifier: GPL-2.0+
 > +/*
-> + * Copyright 2021 NXP
+> + * Copyright 2019-2021 NXP
 > + */
-> +
-> +&ddr_subsys {
-> +       db_ipg_clk: clock-db-ipg {
-> +               compatible = "fixed-clock";
-> +               #clock-cells = <0>;
-> +               clock-frequency = <456000000>;
-> +               clock-output-names = "db_ipg_clk";
-> +       };
-> +
-> +       db_pmu0: db-pmu@5ca40000 {
-> +               compatible = "fsl,imx8dxl-db-pmu";
-> +               reg = <0x5ca40000 0x10000>;
-> +               interrupt-parent = <&gic>;
-> +               interrupts = <GIC_SPI 338 IRQ_TYPE_LEVEL_HIGH>;
-> +               clocks = <&db_pmu0_lpcg 1>, <&db_pmu0_lpcg 0>;
-
-fix lpcg index
-
-> +               clock-names = "ipg", "cnt";
-> +               power-domains = <&pd IMX_SC_R_PERF>;
-> +       };
-> +
-> +       db_pmu0_lpcg: clock-controller@5cae0000 {
-> +               compatible = "fsl,imx8qxp-lpcg";
-> +               reg = <0x5cae0000 0x10000>;
-> +               #clock-cells = <1>;
-> +               clocks = <&db_ipg_clk>, <&db_ipg_clk>;
-> +               bit-offset = <0 16>;
-
-fix lpcg index by using macro
-
-> +               clock-output-names = "perf_lpcg_cnt_clk",
-> +                                    "perf_lpcg_ipg_clk";
-> +               power-domains = <&pd IMX_SC_R_PERF>;
-> +       };
+> +&lsio_gpio0 {
+> +       compatible = "fsl,imx8dxl-gpio", "fsl,imx35-gpio";
+> +       interrupts = <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
 > +};
+> +
+> +&lsio_gpio1 {
+> +       compatible = "fsl,imx8dxl-gpio", "fsl,imx35-gpio";
+> +       interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
+> +};
+> +
+> +&lsio_gpio2 {
+> +       compatible = "fsl,imx8dxl-gpio", "fsl,imx35-gpio";
+> +       interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+> +};
+> +
+> +&lsio_gpio3 {
+> +       compatible = "fsl,imx8dxl-gpio", "fsl,imx35-gpio";
+> +       interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
+> +};
+> +
+> +&lsio_gpio4 {
+> +       compatible = "fsl,imx8dxl-gpio", "fsl,imx35-gpio";
+> +       interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
+> +};
+> +
+> +&lsio_gpio5 {
+> +       compatible = "fsl,imx8dxl-gpio", "fsl,imx35-gpio";
+> +       interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> +};
+> +
+> +&lsio_gpio6 {
+> +       compatible = "fsl,imx8dxl-gpio", "fsl,imx35-gpio";
+> +       interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
+> +};
+> +
+> +&lsio_gpio7 {
+> +       compatible = "fsl,imx8dxl-gpio", "fsl,imx35-gpio";
+> +       interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
+> +};
+> +
+> +&lsio_mu0 {
+> +       compatible = "fsl,imx8dxl-mu", "fsl,imx8qxp-mu", "fsl,imx6sx-mu";
+> +       interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
+> +};
+> +
+> +&lsio_mu1 {
+> +       compatible = "fsl,imx8-mu-scu", "fsl,imx8qxp-mu", "fsl,imx6sx-mu";
+> +       interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
+> +};
+> +
+> +&lsio_mu2 {
+> +       compatible = "fsl,imx8-mu-scu", "fsl,imx8qxp-mu", "fsl,imx6sx-mu";
+> +       interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>;
+> +};
+> +
+> +&lsio_mu3 {
+> +       compatible = "fsl,imx8-mu-scu", "fsl,imx8qxp-mu", "fsl,imx6sx-mu";
+> +       interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
+> +};
+> +
+> +&lsio_mu4 {
+> +       compatible = "fsl,imx8-mu-scu", "fsl,imx8qxp-mu", "fsl,imx6sx-mu";
+> +       interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
+> +};
+
+pls add the missing mu5/13
+
 > --
 > 2.31.1
 >
