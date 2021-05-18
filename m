@@ -2,60 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5833387EF6
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 19:50:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F8C2387F0B
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 19:54:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245418AbhERRvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 13:51:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44608 "EHLO
+        id S1351303AbhERRzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 13:55:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351396AbhERRvQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 13:51:16 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 691BCC06175F
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 10:49:57 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id r12so11198735wrp.1
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 10:49:57 -0700 (PDT)
+        with ESMTP id S1345673AbhERRzo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 13:55:44 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27F1BC06175F
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 10:54:26 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id q5so11199580wrs.4
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 10:54:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=Gl8VJYhAQI3TRwRQ35D+w8dJpAM3ONFhp8A1OmnXSMo=;
-        b=AUr8zBIIePIoFqg6DpFsMwpGhzG/9Cvzt08MmeLDH1cBeySEuFQsikNKFiUxOeAvlK
-         +ni5gM9njkAcFTtetDG7+q8EBh6ERotNyyf8olQnXc+dsYfJZNNMqd7fNScyXDpU87MJ
-         BRPGhT0Nk77eyFJfAo8ba9TL6HP3hBZUvHvWwW+Qx1dUyHvZ4DF1LjVt4oqpDevw8BgX
-         rgYpXbrqU7kV4p1gCHXNx0HgN6QafJa1cN9JmVYJgReTk+viRpQdpS229la+utsIbUYb
-         qdD2NRRT/qkEQpOQGHgeYYxrPz3pc5a96tRaS4fVBHk0+z8eseezhXSayKY5kagRc4Of
-         XXIw==
+        bh=CWPyuzoJy/mScoWjTd2g156JIqxC7nCj/J8y8W+5TIQ=;
+        b=gFITqRQ42/kzXwvlJxXPZLz9mArPh+pgdzCUd/Jxd1yrL6hggF14NdJNillhgJdwyX
+         Sce0Br+HzNLf+LOydSu6aplcnaRFCsjewZ+DGhQFzn95i9HvdGi7Vj0BFatbdG9lD2Oy
+         mvNPsKvV+132xtqDcIQ2zn1o0rRLooZVm6bkQJ+onnbx88YTgoTors2oG8C38Zwb49Xj
+         ynvUDuaGkuN57coAxPIG3Gjp3LW+ruLhQTAVMx1wHLTTJq5YGgg/bCyW2W/Zo7ywGYPh
+         F57HYLCKxLUOIKXusNpVCm7AxFQBEFqVWk3gcMS6EfxZl5WffEcfM8tVle8Pmyb/8oYd
+         NuuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=Gl8VJYhAQI3TRwRQ35D+w8dJpAM3ONFhp8A1OmnXSMo=;
-        b=E3Y18s4ASL/jwHKI1tNuYThu36AIZYBtEHT8GpL0Bg0PbM0TtbvgmBf3B9tJeffA28
-         EqalAgdZjArOTvzQZZbxgrPBjUJvxXSXopDUsBBI26Ibc5+hYol5+600kcq03JMKtHcF
-         sjL9ejeOd5MyO2BoMcrN0+wLo6Tgk7FNh9JZD2fp7QR5FhEVniXf1c488skf160mAL7X
-         sM9/y1j9hprR52qPauA72Zj9bISj/mz5wyTDZV+gRjruoezrDJZiekkzL06h1U5LNXCF
-         XjefKmUUy333jxUl5NE0PjaxEOGm/CyqYZIWDhzP8u4bklc/YThTzZAT1qWMmwB4nJNs
-         6syw==
-X-Gm-Message-State: AOAM533XJvfWA2MbTWXOhP+zcNhHs11X9ZBaXyKcN/RkgbaIOGBLDfg8
-        jPaEUSGqs6081tFYiqAyexCoSg==
-X-Google-Smtp-Source: ABdhPJxcKvaemzBTl73kbrRDUgwxoDNdc1YVk6iTA3PvkBjZBgHGlW/VsDW6/2iGMRJEBKgbCJFRbQ==
-X-Received: by 2002:a05:6000:1445:: with SMTP id v5mr6930370wrx.412.1621360196158;
-        Tue, 18 May 2021 10:49:56 -0700 (PDT)
+        bh=CWPyuzoJy/mScoWjTd2g156JIqxC7nCj/J8y8W+5TIQ=;
+        b=rlXQWSGff6AfZ9zZq5skNzAxZ3r/MADNUpJwMC3W2IOAVsaJiuv6CLbw3N7bg4usXL
+         QHnFdqGgB1Lhw1yry6DUCa69zArcvbarqcVyTgVpcjPwDrg/WtkTU/XXHBVIof9xeCNk
+         Y3ovDmUfgvpO3ghiB9M5s8TmMllroKUvEFmejUMsGg1KR3car/YJqjueYpxD6qe64xTX
+         pZGqxFK96AQH/tn9hEEJsu4EiSYTK3D4ew3+c3LXpbEHawQ1pw5Bx0Nn5vGR98onnjXG
+         JmOabHVi2/DNKIpSvIqWy5ad41OGINalG3YVDWbpUWMOvoV95d1c7SQWF7PNbxdk5Hvr
+         wwXg==
+X-Gm-Message-State: AOAM530rZFMp+juQG6szPqjLFCQZeiwG1MaoZQ2uvxiT/agVmphrw7zJ
+        OTP1j/C7CfXQ72D3hNW49Y6jzQ==
+X-Google-Smtp-Source: ABdhPJzoBUSu3qBReU3Wn0C/GcMbanCzAN+0PiM0fvT4m9u2qWF6Q6o+Gx0yv3qirYtHdkj9jj/OzQ==
+X-Received: by 2002:a5d:4003:: with SMTP id n3mr8552995wrp.173.1621360464840;
+        Tue, 18 May 2021 10:54:24 -0700 (PDT)
 Received: from localhost.localdomain ([88.160.162.107])
-        by smtp.gmail.com with ESMTPSA id h14sm27991329wrq.45.2021.05.18.10.49.55
+        by smtp.gmail.com with ESMTPSA id a17sm14458963wrt.53.2021.05.18.10.54.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 May 2021 10:49:55 -0700 (PDT)
+        Tue, 18 May 2021 10:54:24 -0700 (PDT)
 From:   Fabien Parent <fparent@baylibre.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>
 Cc:     mkorpershoek@baylibre.com, Fabien Parent <fparent@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: mediatek: mt8516: remove 2 invalid i2c clocks
-Date:   Tue, 18 May 2021 19:49:40 +0200
-Message-Id: <20210518174940.2672318-1-fparent@baylibre.com>
+Subject: [PATCH 1/3] dt-bindings: pwm: pwm-mtk-disp: convert to YAML schema
+Date:   Tue, 18 May 2021 19:54:19 +0200
+Message-Id: <20210518175422.2678665-1-fparent@baylibre.com>
 X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -63,70 +67,155 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The two clocks "main-source" and "main-sel" are not present in the
-driver and not defined in the binding documentation. Remove them
-as they are not used and not described in the documentation.
+Convert the dt-binding documentation for pwm-mtk-disp to YAML.
 
 Signed-off-by: Fabien Parent <fparent@baylibre.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8516.dtsi | 27 ++++++------------------
- 1 file changed, 6 insertions(+), 21 deletions(-)
+ .../devicetree/bindings/pwm/pwm-mtk-disp.txt  | 44 ----------
+ .../devicetree/bindings/pwm/pwm-mtk-disp.yaml | 83 +++++++++++++++++++
+ 2 files changed, 83 insertions(+), 44 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-mtk-disp.txt
+ create mode 100644 Documentation/devicetree/bindings/pwm/pwm-mtk-disp.yaml
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8516.dtsi b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-index bbe5a1419eff..d1b67c82d761 100644
---- a/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-@@ -345,14 +345,9 @@ i2c0: i2c@11009000 {
- 			reg = <0 0x11009000 0 0x90>,
- 			      <0 0x11000180 0 0x80>;
- 			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_LOW>;
--			clocks = <&topckgen CLK_TOP_AHB_INFRA_D2>,
--				 <&infracfg CLK_IFR_I2C0_SEL>,
--				 <&topckgen CLK_TOP_I2C0>,
-+			clocks = <&topckgen CLK_TOP_I2C0>,
- 				 <&topckgen CLK_TOP_APDMA>;
--			clock-names = "main-source",
--				      "main-sel",
--				      "main",
--				      "dma";
-+			clock-names = "main", "dma";
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			status = "disabled";
-@@ -364,14 +359,9 @@ i2c1: i2c@1100a000 {
- 			reg = <0 0x1100a000 0 0x90>,
- 			      <0 0x11000200 0 0x80>;
- 			interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_LOW>;
--			clocks = <&topckgen CLK_TOP_AHB_INFRA_D2>,
--				 <&infracfg CLK_IFR_I2C1_SEL>,
--				 <&topckgen CLK_TOP_I2C1>,
-+			clocks = <&topckgen CLK_TOP_I2C1>,
- 				 <&topckgen CLK_TOP_APDMA>;
--			clock-names = "main-source",
--				      "main-sel",
--				      "main",
--				      "dma";
-+			clock-names = "main", "dma";
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			status = "disabled";
-@@ -383,14 +373,9 @@ i2c2: i2c@1100b000 {
- 			reg = <0 0x1100b000 0 0x90>,
- 			      <0 0x11000280 0 0x80>;
- 			interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_LOW>;
--			clocks = <&topckgen CLK_TOP_AHB_INFRA_D2>,
--				 <&infracfg CLK_IFR_I2C2_SEL>,
--				 <&topckgen CLK_TOP_I2C2>,
-+			clocks = <&topckgen CLK_TOP_I2C2>,
- 				 <&topckgen CLK_TOP_APDMA>;
--			clock-names = "main-source",
--				      "main-sel",
--				      "main",
--				      "dma";
-+			clock-names = "main", "dma";
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			status = "disabled";
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-mtk-disp.txt b/Documentation/devicetree/bindings/pwm/pwm-mtk-disp.txt
+deleted file mode 100644
+index 902b271891ae..000000000000
+--- a/Documentation/devicetree/bindings/pwm/pwm-mtk-disp.txt
++++ /dev/null
+@@ -1,44 +0,0 @@
+-MediaTek display PWM controller
+-
+-Required properties:
+- - compatible: should be "mediatek,<name>-disp-pwm":
+-   - "mediatek,mt2701-disp-pwm": found on mt2701 SoC.
+-   - "mediatek,mt6595-disp-pwm": found on mt6595 SoC.
+-   - "mediatek,mt8167-disp-pwm", "mediatek,mt8173-disp-pwm": found on mt8167 SoC.
+-   - "mediatek,mt8173-disp-pwm": found on mt8173 SoC.
+- - reg: physical base address and length of the controller's registers.
+- - #pwm-cells: must be 2. See pwm.yaml in this directory for a description of
+-   the cell format.
+- - clocks: phandle and clock specifier of the PWM reference clock.
+- - clock-names: must contain the following:
+-   - "main": clock used to generate PWM signals.
+-   - "mm": sync signals from the modules of mmsys.
+- - pinctrl-names: Must contain a "default" entry.
+- - pinctrl-0: One property must exist for each entry in pinctrl-names.
+-   See pinctrl/pinctrl-bindings.txt for details of the property values.
+-
+-Example:
+-	pwm0: pwm@1401e000 {
+-		compatible = "mediatek,mt8173-disp-pwm",
+-			     "mediatek,mt6595-disp-pwm";
+-		reg = <0 0x1401e000 0 0x1000>;
+-		#pwm-cells = <2>;
+-		clocks = <&mmsys CLK_MM_DISP_PWM026M>,
+-			 <&mmsys CLK_MM_DISP_PWM0MM>;
+-		clock-names = "main", "mm";
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&disp_pwm0_pins>;
+-	};
+-
+-	backlight_lcd: backlight_lcd {
+-		compatible = "pwm-backlight";
+-		pwms = <&pwm0 0 1000000>;
+-		brightness-levels = <
+-			  0  16  32  48  64  80  96 112
+-			128 144 160 176 192 208 224 240
+-			255
+-		>;
+-		default-brightness-level = <9>;
+-		power-supply = <&mt6397_vio18_reg>;
+-		enable-gpios = <&pio 95 GPIO_ACTIVE_HIGH>;
+-	};
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-mtk-disp.yaml b/Documentation/devicetree/bindings/pwm/pwm-mtk-disp.yaml
+new file mode 100644
+index 000000000000..0f016c81cd53
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/pwm-mtk-disp.yaml
+@@ -0,0 +1,83 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/pwm/pwm-mtk-disp.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: MediaTek display PWM controller
++
++maintainers:
++  - Thierry Reding <thierry.reding@gmail.com>
++  - Lee Jones <lee.jones@linaro.org>
++  - Matthias Brugger <matthias.bgg@gmail.com>
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - mediatek,mt2701-disp-pwm
++          - mediatek,mt6595-disp-pwm
++          - mediatek,mt8173-disp-pwm
++      - items:
++          - const: mediatek,mt8167-disp-pwm
++          - const: mediatek,mt8173-disp-pwm
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: clock used to generate PWM signals
++      - description: sync signal from the mmsys module
++
++  clock-names:
++    items:
++      - const: main
++      - const: mm
++
++  "#pwm-cells":
++    const: 2
++
++  power-domains:
++    description:
++      List of phandles and PM domain specifiers, as defined by bindings of the
++      PM domain provider (see also ../power_domain.txt).
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/mt8173-clk.h>
++    #include <dt-bindings/gpio/gpio.h>
++    pwm0: pwm@1401e000 {
++      compatible = "mediatek,mt8173-disp-pwm";
++      reg = <0x1401e000 0x1000>;
++      #pwm-cells = <2>;
++      clocks = <&mmsys CLK_MM_DISP_PWM026M>,
++               <&mmsys CLK_MM_DISP_PWM0MM>;
++      clock-names = "main", "mm";
++      pinctrl-names = "default";
++      pinctrl-0 = <&disp_pwm0_pins>;
++    };
++
++    backlight_lcd: backlight_lcd {
++      compatible = "pwm-backlight";
++      pwms = <&pwm0 0 1000000>;
++      brightness-levels = <
++        0  16  32  48  64  80  96 112
++        128 144 160 176 192 208 224 240
++        255
++      >;
++      default-brightness-level = <9>;
++      power-supply = <&mt6397_vio18_reg>;
++      enable-gpios = <&pio 95 GPIO_ACTIVE_HIGH>;
++    };
 -- 
 2.31.1
 
