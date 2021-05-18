@@ -2,128 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AB43387B24
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 16:30:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89907387B2B
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 16:33:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230505AbhEROcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 10:32:08 -0400
-Received: from youngberry.canonical.com ([91.189.89.112]:51680 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231246AbhEROcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 10:32:07 -0400
-Received: from mail-qt1-f200.google.com ([209.85.160.200])
-        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1lj0kB-0003ay-3g
-        for devicetree@vger.kernel.org; Tue, 18 May 2021 14:30:47 +0000
-Received: by mail-qt1-f200.google.com with SMTP id h12-20020ac8776c0000b02901f1228fdb1bso3930972qtu.6
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 07:30:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=zIep+mDf5u2lcxAQ599gQS4SQzw/nWv5n3LYaeTIvWc=;
-        b=g3ukLTdF3A7YFra3jvXsG41hid27Cu8XIM/CpN05iHsPeddA/8NN9v3UIa+rM6K3/9
-         ITCPhAwHzRI30PGdJqNQU3kxq06GIyYbizKN8RbCNU+0vctdTULOpUuB8tHNl82zdyp6
-         65SRDdTa6j7Gk6ZRSUQIOGbhbDpVekg2ZY74iOSOoQ5SBnwuIsAC4JlWmbbqzkjHk+Gv
-         4xEY0F31T1rJE1K+TOb4wlkAlPri29/L2VBSonKSQVRJpIkUkBNf3vJxMYrokR/wUp9D
-         6erZxQa/XiYFXPGE7j9KZKVIbgBZITPi+wudeJmZ0palPsNatXh+W22AnLFbPDu/3f/A
-         VoKg==
-X-Gm-Message-State: AOAM530+6dH7raR0P7tqEp5qWR0Cs0uve/m/a9Zr06WWDvaBc6U0phrj
-        B1TFWoyu2CkC+HpnHjqepVFcXonVu4/zEc4V6lA2GbeQXytmpdpP67lFQ1k0sf+z7pbEIDwRmft
-        eS8ezTFhDuO/PYqcVCmg5gI2UZAn6CEbd8pux6Vw=
-X-Received: by 2002:a05:622a:210:: with SMTP id b16mr5044998qtx.51.1621348246227;
-        Tue, 18 May 2021 07:30:46 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwpyWpzh/kiWyRW2rwQmit2HXqGLgcp+uEU++c6YSGJ4CJjKAvVgy4lKK8lBiy0QbkQAnCnZA==
-X-Received: by 2002:a05:622a:210:: with SMTP id b16mr5044978qtx.51.1621348246015;
-        Tue, 18 May 2021 07:30:46 -0700 (PDT)
-Received: from [192.168.1.4] ([45.237.48.6])
-        by smtp.gmail.com with ESMTPSA id h14sm3811162qto.58.2021.05.18.07.30.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 May 2021 07:30:45 -0700 (PDT)
-Subject: Re: [linux-nfc] [PATCH 2/2] nfc: s3fwrn5: i2c: Enable optional clock
- from device tree
-To:     Stephan Gerhold <stephan@gerhold.net>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-nfc@lists.01.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Bongsu Jeon <bongsu.jeon@samsung.com>,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20210518133935.571298-1-stephan@gerhold.net>
- <20210518133935.571298-2-stephan@gerhold.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <ac04821e-359d-aaaa-7e07-280156f64036@canonical.com>
-Date:   Tue, 18 May 2021 10:30:43 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S231612AbhEROek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 10:34:40 -0400
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:59493 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231402AbhEROei (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 May 2021 10:34:38 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.nyi.internal (Postfix) with ESMTP id 3F3595C010D;
+        Tue, 18 May 2021 10:33:20 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Tue, 18 May 2021 10:33:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=FrUlgAZl7XLF/3clrgjCszNAYAE
+        2HNQnZkoVBplSGys=; b=RkFFFVyfCIPjwlkOtCpqAs51p6nq80tP17M0UeQUFwB
+        grcoeKLK4Vwj+CaKRnFeizXv0cRdkb16lcu9405CJQgV7d70irbMBOJIwsFK+8Sh
+        St5XhdSQSQpPtsxTS3jmrkyJk6WLx6KpkFEcWr8ZpLjZwqjARtaL8DqSBqJI8eVg
+        ctsB2pzJZ8pjGW8mVwAzGihab7WKYPj3S6wfKt0rZaC0sAuuyzXOefx69NGSj62/
+        wxVq4sTU5jE3buERtY9klKVeHfaSUznL0t0OJSYv9WG4J1taF8EhB0jVCpebMEZK
+        WdPcdwIfkA/X7VqTGxrJzA5xrJHuT4/hqA2bn7QULDg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=FrUlgA
+        Zl7XLF/3clrgjCszNAYAE2HNQnZkoVBplSGys=; b=vjx/fru3+ejYVBBLlS5Ict
+        M5bjK1Vnr1peBf+W13+s/dloQABSZ5i2l13qY5Fcei4eJc+DBsDjZ+kdJhRqZEA0
+        huR6avdIJjWcBWNUXv47nzh3MmTcjIFt9N2EbHQ1nl0HBCFa+EJHwOermOMkBYZL
+        mN1q5TLmnuQFtqP/4kQj/cGU3n9xa6YY0XIkUNpdEWqGLEyevfepFBgyaW/m2kBQ
+        kwopJPh1Qd24RWLvccmSkL25azpfuBOft/XgSI5azFW3i7V5vo5ktA86qZ0PSZqF
+        U9CbNHQddwseO+RjsDPdSMBgaCbWmWbt5aL9gFxeSToojEDEVu9VpCbgq+EmPhZA
+        ==
+X-ME-Sender: <xms:L9CjYATTInJz7SQIWSj7qKp1VibfS-rZFU4hiQO3MxlpiUdbgtXBxw>
+    <xme:L9CjYNyMDyqK7padAbYdtmLZBLscFULQx_9IhaoA89Psg9gOFOO6ilBxA6FErO3cu
+    WqLKJ_gspCTViVLKzQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdeijedgjeejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepffetteevieejteeuhfffgeektefghfeileehhedtuddutefhhfejtddvtddu
+    ledvnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucfkphepledtrdekle
+    drieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhr
+    ohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:L9CjYN35XHtoasd8zhtD8d26Qy61Moq1RYn4LMma7wnSrTnuOmkipQ>
+    <xmx:L9CjYEBdslF4wPP7R6KVaxzdtcUITD5sYrkcI85K8zvWAHxr9AeKhQ>
+    <xmx:L9CjYJj4_LuMW593oa1lPb1FyVHJkmSDsTsgubAzPlc-2LK5azsSfg>
+    <xmx:MNCjYJfSKQDIdTXfmnonDZdmFCKx2g4JZBk7Ju9q64shVIMWe535DA>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA;
+        Tue, 18 May 2021 10:33:18 -0400 (EDT)
+Date:   Tue, 18 May 2021 16:33:17 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-fbdev@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: display: ssd1307fb: Convert to json-schema
+Message-ID: <20210518143317.yy2sxxnd7yt6cyrx@gilmour>
+References: <20210518075131.1463091-1-geert@linux-m68k.org>
 MIME-Version: 1.0
-In-Reply-To: <20210518133935.571298-2-stephan@gerhold.net>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="p7d7m3hcldjdfnrs"
+Content-Disposition: inline
+In-Reply-To: <20210518075131.1463091-1-geert@linux-m68k.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-Hi,
+--p7d7m3hcldjdfnrs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for the patch.
+Hi
 
-On 18/05/2021 09:39, Stephan Gerhold wrote:
-> s3fwrn5 has a NFC_CLK_REQ output GPIO, which is asserted whenever
-> the clock is needed for the current operation. This GPIO can be either
-> connected directly to the clock provider, or must be monitored by
-> this driver.
-> 
-> As an example for the first case, on many Qualcomm devices the
-> NFC clock is provided by the main PMIC. The clock can be either
-> permanently enabled (clocks = <&rpmcc RPM_SMD_BB_CLK2>) or enabled
-> only when requested through a special input pin on the PMIC
-> (clocks = <&rpmcc RPM_SMD_BB_CLK2_PIN>).
-> 
-> On the Samsung Galaxy A3/A5 (2015, Qualcomm MSM8916) this mechanism
-> is used with S3FWRN5's NFC_CLK_REQ output GPIO to enable the clock
-> only when necessary. However, to make that work the s3fwrn5 driver
-> must keep the RPM_SMD_BB_CLK2_PIN clock enabled.
-
-This contradicts the code. You wrote that pin should be kept enabled
-(somehow... by driver? by it's firmware?) but your code requests the
-clock from provider.
-
-> 
-> This commit adds support for this by requesting an optional clock
-
-Don't write "This commit".
-https://elixir.bootlin.com/linux/latest/source/Documentation/process/submitting-patches.rst#L89
-
-> and keeping it permanently enabled. Note that the actual (physical)
-> clock won't be permanently enabled since this will depend on the
-> output of NFC_CLK_REQ from S3FWRN5.
-
-What pin is that "NFC_CLK_REQ"? I cannot find such name. Is it GPIO2?
-What clock are you talking here? The one going to the modem part?
-
-I also don't see here how this clock is going to be automatically
-on-off... driver does not perform such. Unless you speak about your
-particular HW configuration where the GPIO is somehow connected with AND
-(but then it is not relevant to the code).
-
-> 
-> In the future (when needed by some other device) this could be
-> extended to work for the second case (monitoring the NFC_CLK_REQ
-> GPIO and enabling the clock from the kernel when needed).
-> 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+On Tue, May 18, 2021 at 09:51:31AM +0200, Geert Uytterhoeven wrote:
+> Convert the Solomon SSD1307 Framebuffer Device Tree binding
+> documentation to json-schema.
+>=20
+> Fix the spelling of the "pwms" property.
+> Document default values.
+> Make properties with default values not required.
+>=20
+> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
 > ---
->  drivers/nfc/s3fwrn5/i2c.c | 32 ++++++++++++++++++++++++++++++--
->  1 file changed, 30 insertions(+), 2 deletions(-)
-> 
+> I have listed Maxime as the maintainer, as he wrote the original driver
+> and bindings.  Maxime: Please scream if this is inappropriate ;-)
 
+Fine by me :)
 
-Best regards,
-Krzysztof
+> ---
+>  .../bindings/display/solomon,ssd1307fb.yaml   | 166 ++++++++++++++++++
+>  .../devicetree/bindings/display/ssd1307fb.txt |  60 -------
+>  2 files changed, 166 insertions(+), 60 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/solomon,ssd=
+1307fb.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/ssd1307fb.t=
+xt
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.=
+yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+> new file mode 100644
+> index 0000000000000000..bd632d86a4f814a0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+> @@ -0,0 +1,166 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/solomon,ssd1307fb.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Solomon SSD1307 OLED Controller Framebuffer
+> +
+> +maintainers:
+> +  - Maxime Ripard <mripard@kernel.org>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - solomon,ssd1305fb-i2c
+> +      - solomon,ssd1306fb-i2c
+> +      - solomon,ssd1307fb-i2c
+> +      - solomon,ssd1309fb-i2c
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  pwms:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  vbat-supply:
+> +    description: The supply for VBAT
+> +
+> +  solomon,height:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 16
+> +    description:
+> +      Height in pixel of the screen driven by the controller
+> +
+> +  solomon,width:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 96
+> +    description:
+> +      Width in pixel of the screen driven by the controller
+> +
+> +  solomon,page-offset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 1
+> +    description:
+> +      Offset of pages (band of 8 pixels) that the screen is mapped to
+> +
+> +  solomon,segment-no-remap:
+> +    type: boolean
+> +    description:
+> +      Display needs normal (non-inverted) data column to segment mapping
+> +
+> +  solomon,col-offset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 0
+> +    description:
+> +      Offset of columns (COL/SEG) that the screen is mapped to
+> +
+> +  solomon,com-seq:
+> +    type: boolean
+> +    description:
+> +      Display uses sequential COM pin configuration
+> +
+> +  solomon,com-lrremap:
+> +    type: boolean
+> +    description:
+> +      Display uses left-right COM pin remap
+> +
+> +  solomon,com-invdir:
+> +    type: boolean
+> +    description:
+> +      Display uses inverted COM pin scan direction
+> +
+> +  solomon,com-offset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 0
+> +    description:
+> +      Number of the COM pin wired to the first display line
+> +
+> +  solomon,prechargep1:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 2
+> +    description:
+> +      Length of deselect period (phase 1) in clock cycles
+> +
+> +  solomon,prechargep2:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 2
+> +    description:
+> +      Length of precharge period (phase 2) in clock cycles.  This needs =
+to be
+> +      the higher, the higher the capacitance of the OLED's pixels is.
+> +
+> +  solomon,dclk-div:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    maximum: 16
+> +    description:
+> +      Clock divisor. The default value is controller-dependent.
+
+I guess we could document the default using an if / else statement?
+Looks good otherwise :)
+
+Maxime
+
+--p7d7m3hcldjdfnrs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYKPQLAAKCRDj7w1vZxhR
+xeKaAQDmjvKNJwaVYfTQjl3b/T04NM9NVNFImz1x2uj7ftswHQD8DfD+L8sbH09v
+yeZEUShSYKCHK9VStSHw0JPqy0oSeQ8=
+=jitB
+-----END PGP SIGNATURE-----
+
+--p7d7m3hcldjdfnrs--
