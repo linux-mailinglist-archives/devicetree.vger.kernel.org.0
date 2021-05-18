@@ -2,93 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2C4D387782
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 13:27:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF177387780
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 13:26:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233624AbhERL2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 07:28:21 -0400
-Received: from comms.puri.sm ([159.203.221.185]:58644 "EHLO comms.puri.sm"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233632AbhERL2U (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 May 2021 07:28:20 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 10C96E0DCA;
-        Tue, 18 May 2021 04:26:32 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Zs4ZMaLfVfwn; Tue, 18 May 2021 04:26:27 -0700 (PDT)
-Message-ID: <bbe18b43336f73a5c3809b933e07270ef0a45134.camel@puri.sm>
-Subject: Re: [RFC PATCH 1/3] dt-bindings: media: nxp,imx7-csi: Add i.MX8MM
- support
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org
-Cc:     Rui Miguel Silva <rmfrfs@gmail.com>, kernel@pengutronix.de,
-        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Marek Vasut <marex@denx.de>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Dorota Czaplejewicz <dorota.czaplejewicz@puri.sm>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Date:   Tue, 18 May 2021 13:26:21 +0200
-In-Reply-To: <20210516024216.4576-2-laurent.pinchart@ideasonboard.com>
-References: <20210516024216.4576-1-laurent.pinchart@ideasonboard.com>
-         <20210516024216.4576-2-laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1 
-Content-Transfer-Encoding: 8bit
+        id S230494AbhERL17 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 07:27:59 -0400
+Received: from mail-lf1-f47.google.com ([209.85.167.47]:46652 "EHLO
+        mail-lf1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233393AbhERL16 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 07:27:58 -0400
+Received: by mail-lf1-f47.google.com with SMTP id i9so13558159lfe.13;
+        Tue, 18 May 2021 04:26:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9UP0Ve8zPlcDC6ko6Yn1C9bDcYQbHNon0ynodga2ftY=;
+        b=p0QHulf8CQuAP2M+ySriE9B2JAuTsX92KeNSpekkEhrtPYwKzfdieeB6GmnJAXyI4p
+         L0SayRe/drFQHZEjJam1a9BIGWhXCXo8WrSqaSuUnocmFW2NEJhCt2uyw4vEM7QaCYAP
+         jCgzkhFVVB28CVV1vwNqCQw8zppFLigFwV5eGgfQqQUiFbxCuuIPJ/zN8EVtmTxhgZ7y
+         P0uBdcjbSbnhFZHwNBsqWsHeoJ4gwy8xbjBtewodt90qdMAwOYMpQ80g5qT3mo+CgDJX
+         Q9yUKw6JAPpajKeru/2FWeR8EeaTGeR4VhWh+9gNIDRemiAztqVZDuVrKT50INSTv4GX
+         BpjQ==
+X-Gm-Message-State: AOAM533pjAiRD+sp4bR9rmfEbXiEYn+41F8NEmpEkFJ2L9MzKh4btkrY
+        EAohR8WRTACUwRA28huDkuw=
+X-Google-Smtp-Source: ABdhPJzDYHNNxgJ27Y/fsTnyCSkA52sefFwuudJ2N0R7TR2XgC/vabSADcgYwIo+FjEhSkSU/ME6LA==
+X-Received: by 2002:ac2:5dfc:: with SMTP id z28mr3803962lfq.297.1621337199080;
+        Tue, 18 May 2021 04:26:39 -0700 (PDT)
+Received: from localhost.localdomain (dc7vkhyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::1])
+        by smtp.gmail.com with ESMTPSA id m12sm2279010lfb.72.2021.05.18.04.26.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 May 2021 04:26:38 -0700 (PDT)
+Date:   Tue, 18 May 2021 14:26:31 +0300
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, Kees Cook <keescook@chromium.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "agross@kernel.org" <agross@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: [PATCH v10 04/11] regulator: add warning flags
+Message-ID: <b4824751515cd791504e6823b7c82b5e6c0787a7.1621333893.git.matti.vaittinen@fi.rohmeurope.com>
+References: <cover.1621333893.git.matti.vaittinen@fi.rohmeurope.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="Nq2Wo0NMKNjxTN9z"
+Content-Disposition: inline
+In-Reply-To: <cover.1621333893.git.matti.vaittinen@fi.rohmeurope.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Sonntag, dem 16.05.2021 um 05:42 +0300 schrieb Laurent Pinchart:
-> The i.MX8MM integrates a CSI bridge IP core, as the i.MX7. There
-> seems
-> to be no difference between the two SoCs according to the reference
-> manual, but as documentation may not be accurate, add a compatible
-> string for the i.MX8MM, with a fallback on the compatible i.MX7.
-> 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  .../devicetree/bindings/media/nxp,imx7-csi.yaml      | 12 ++++++++--
-> --
->  1 file changed, 8 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx7-
-> csi.yaml b/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
-> index d91575b8ebb9..5922a2795167 100644
-> --- a/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
-> @@ -4,7 +4,7 @@
->  $id: http://devicetree.org/schemas/media/nxp,imx7-csi.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: i.MX7 CMOS Sensor Interface
-> +title: i.MX7 and i.MX8 CSI bridge (CMOS Sensor Interface)
->  
->  maintainers:
->    - Rui Miguel Silva <rmfrfs@gmail.com>
-> @@ -15,9 +15,13 @@ description: |
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - fsl,imx7-csi
-> -      - fsl,imx6ul-csi
-> +    oneOf:
-> +      - enum:
-> +          - fsl,imx7-csi
-> +          - fsl,imx6ul-csi
-> +      - items:
-> +          - const: fsl,imx8mm-csi
-> +          - const: fsl,imx7-csi
->  
->    reg:
->      maxItems: 1
 
-isn't the fsl,imx8mm-csi compatible missing in the driver then?
+--Nq2Wo0NMKNjxTN9z
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-thanks!
-                     martin
+Add 'warning' level events and error flags to regulator core.
+Current regulator core notifications are used to inform consumers
+about errors where HW is misbehaving in such way it is assumed to
+be broken/unrecoverable.
 
+There are PMICs which are designed for system(s) that may have use
+for regulator indications sent before HW is damaged so that some
+board/consumer specific recovery-event can be performed while
+continuing most of the normal operations.
+
+Add new WARNING level events and notifications to be used for
+that purpose.
+
+Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+---
+No changes since RFC-v2
+---
+ include/linux/regulator/consumer.h | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/include/linux/regulator/consumer.h b/include/linux/regulator/c=
+onsumer.h
+index 20e84a84fb77..f72ca73631be 100644
+--- a/include/linux/regulator/consumer.h
++++ b/include/linux/regulator/consumer.h
+@@ -119,6 +119,16 @@ struct regulator_dev;
+ #define REGULATOR_EVENT_PRE_DISABLE		0x400
+ #define REGULATOR_EVENT_ABORT_DISABLE		0x800
+ #define REGULATOR_EVENT_ENABLE			0x1000
++/*
++ * Following notifications should be emitted only if detected condition
++ * is such that the HW is likely to still be working but consumers should
++ * take a recovery action to prevent problems esacalating into errors.
++ */
++#define REGULATOR_EVENT_UNDER_VOLTAGE_WARN	0x2000
++#define REGULATOR_EVENT_OVER_CURRENT_WARN	0x4000
++#define REGULATOR_EVENT_OVER_VOLTAGE_WARN	0x8000
++#define REGULATOR_EVENT_OVER_TEMP_WARN		0x10000
++#define REGULATOR_EVENT_WARN_MASK		0x1E000
+=20
+ /*
+  * Regulator errors that can be queried using regulator_get_error_flags
+@@ -138,6 +148,10 @@ struct regulator_dev;
+ #define REGULATOR_ERROR_FAIL			BIT(4)
+ #define REGULATOR_ERROR_OVER_TEMP		BIT(5)
+=20
++#define REGULATOR_ERROR_UNDER_VOLTAGE_WARN	BIT(6)
++#define REGULATOR_ERROR_OVER_CURRENT_WARN	BIT(7)
++#define REGULATOR_ERROR_OVER_VOLTAGE_WARN	BIT(8)
++#define REGULATOR_ERROR_OVER_TEMP_WARN		BIT(9)
+=20
+ /**
+  * struct pre_voltage_change_data - Data sent with PRE_VOLTAGE_CHANGE event
+--=20
+2.25.4
+
+
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+--Nq2Wo0NMKNjxTN9z
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmCjpGcACgkQeFA3/03a
+ocWMWAf+PtcaNWKVJnmgiLk7BSuQayo54SV2Cq8enx85N6EB3SSR4X3afpcydSdP
+rbXsqc9rb3/XhHYk94nSGfPjhXlJCjdHQzt50CiJY8d1ti1uVaJkB2kSS6qj0bqT
+a2RPukcfS52PWIM68bK5FHyS6Q2c0UPEXB9GwfVKCD9L9iWwDb3POkA+vKjXzEx8
+v7iDJjP4y1R37bUrboeB1a7Y4G6CUy1ZE0SSh4aMxtlTggK/aIdiV8uuKyAzmdYm
+67jBRyq4t0ZO9lnLTvBbr7/U+AbSQta6BNa0mG/s5chQNdPhQKGUz959n3TEKjUh
+2hvMCRxS4M+Dy2qr3Oi33gymRbhSvQ==
+=Jc1+
+-----END PGP SIGNATURE-----
+
+--Nq2Wo0NMKNjxTN9z--
