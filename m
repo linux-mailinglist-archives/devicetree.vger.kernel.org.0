@@ -2,101 +2,371 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B2BB387BA7
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 16:49:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BB76387BB6
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 16:53:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236931AbhEROvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 10:51:15 -0400
-Received: from mail-vk1-f171.google.com ([209.85.221.171]:42795 "EHLO
-        mail-vk1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235434AbhEROvP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 10:51:15 -0400
-Received: by mail-vk1-f171.google.com with SMTP id m129so2102162vkh.9;
-        Tue, 18 May 2021 07:49:57 -0700 (PDT)
+        id S240882AbhEROyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 10:54:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60942 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235888AbhEROyy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 10:54:54 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D4EFC061573
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 07:53:36 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id i22so14486243lfl.10
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 07:53:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=q9BrS57AFtqSjxIH0E9ojUZbMm+idOxPAdJsxmeQ9Pw=;
+        b=uqpoeGj6CkbjWt5Ld+DDTa4vIiGfeyMUmcMrKx5iqvz7ErAKyQ1ER1HqucNZJlv6Yz
+         IVvYSi6zcqTNJG7DEK818lqv+1M7/HBjfppXMXZoAIzhwBRclNNDMrK6Y8qvZ/W+Ym3Q
+         +9QdRi7PaRUay/u9A1swutfoeSd5aNJdmEfLXXFFBCGsBtFwOd8vqEmgf9iI2jAuFRZk
+         M8rgp1ABthgjOp8TpCaJ+zfaeu8l0uYdaPmm7Ivd61JzKSSbxlRi943YnTYorzMsibSy
+         e6VHV9X9HQz0FoFCQFiSwXBQ8Pa++hq/73kuJCRfLZOKa2AjMU4RYgN7Hurw7Nb7fZwK
+         EQlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=y10PWJw0DRQc++ZzVaFYO8op4Q+GioEhXZLxuqYRvPE=;
-        b=UnOulr16jgijEefXo05lRFF94KK3WurxK3V1f+4popLSPAPTZnaEDoTviwf2Vqz/k5
-         U3JV9FcyVswxDj8d9PA5Ln2v+AMN8YJ8SimTE4oYIEmOrfCXpojmkbvKveuAvdE1kQZz
-         RZBp2CXJL7Nah64ug3whGyo+VHNSckuVH7v5FO6bC0aUwWJ60QYH0tGXHLBHSXG2k1nI
-         X6k0wSqenluI8oja9khUvTVkvt+JAA+2l91+H8U6m8yYpTcDQxC2NeDslLm3uaC3ivQ0
-         djwXNefGGop8SlzVxpXvFtu9+aFbCrs6e5C65YqOCWMUjynaWZRMEt522GbkmtxwSaKx
-         rqXg==
-X-Gm-Message-State: AOAM533VXfYnveJhuwdn3/837uBu54D4ly0PxT3FMooyi1l69krDhFHW
-        VYZA1ku38SmiBhtrv27/bU8PpDsmEDA2AGFR/FI=
-X-Google-Smtp-Source: ABdhPJxt3csEOJ+HZlUNZyI4+ozqFzhRSPkaymurZ7JCVflSiXGt84wNn+aIH/66rsKkPf6/JaIeeeHvYwGOSw2pHqA=
-X-Received: by 2002:a1f:eac1:: with SMTP id i184mr6332144vkh.2.1621349396836;
- Tue, 18 May 2021 07:49:56 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=q9BrS57AFtqSjxIH0E9ojUZbMm+idOxPAdJsxmeQ9Pw=;
+        b=g2YRcOIWhHEPPhBV3M6RbmSUKpx60mnoi0LS9vx7NXha7HZXDhW3Mse8UTVuaJ5ba6
+         qn4Jf9znD/buY16Tm+j42HEiibL3ufw8nDRadXIYFitQ94zzpWgzivzyMkgWnGZk+LK/
+         EAchCh6c00Pwa6YBBDrnC13B/gY7gRLrwf84QlmLFoC2xOta6JaCs/6ZlA/9Fiu4QTJG
+         5J6EmEPoUvGDVd3UNBrRI9JBqGygsXcxq16+e3UXxP38H3w9j3fLXinQIaq6v7pa69R/
+         cxL+fHET2zfki1ZFPQmtFeM3Xzir46WkouumQen6TtcKSOUS4hEUU6LvQPicFJaf3Fnw
+         4kYQ==
+X-Gm-Message-State: AOAM533MzwX5GdILfOTaKO7S3Qe7T4kQXjn+x5PC/IVjJtgSgD91fplv
+        AlNRtSGNNmEkEIiB0o/mWZ9Cug==
+X-Google-Smtp-Source: ABdhPJwfc6Jp2yzstWLrYd+2iWIpMgUt+oWOWHykkxIF5q1y9u/a544InrICKH56/Wjccpb2x1x3Sw==
+X-Received: by 2002:ac2:44a7:: with SMTP id c7mr4422393lfm.332.1621349614530;
+        Tue, 18 May 2021 07:53:34 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id d7sm2307805lfg.253.2021.05.18.07.53.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 May 2021 07:53:34 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     lee.jones@linaro.org, linux-kernel@vger.kernel.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3] mfd: db8500-prcmu: Add devicetree bindings
+Date:   Tue, 18 May 2021 16:51:32 +0200
+Message-Id: <20210518145132.428340-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20210518075131.1463091-1-geert@linux-m68k.org> <20210518143317.yy2sxxnd7yt6cyrx@gilmour>
-In-Reply-To: <20210518143317.yy2sxxnd7yt6cyrx@gilmour>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 18 May 2021 16:49:45 +0200
-Message-ID: <CAMuHMdXKaLpLL5Q1FnjHJ5kbs=+9Mm-QHXZp1i3M4zNr7G=e_w@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: display: ssd1307fb: Convert to json-schema
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
+This driver was merged in the early days of device tree
+on Arm in 2012 and somehow we failed to provide bindings
+for it. Fix it up with some YAML bindings.
 
-On Tue, May 18, 2021 at 4:33 PM Maxime Ripard <maxime@cerno.tech> wrote:
-> On Tue, May 18, 2021 at 09:51:31AM +0200, Geert Uytterhoeven wrote:
-> > Convert the Solomon SSD1307 Framebuffer Device Tree binding
-> > documentation to json-schema.
-> >
-> > Fix the spelling of the "pwms" property.
-> > Document default values.
-> > Make properties with default values not required.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> > ---
-> > I have listed Maxime as the maintainer, as he wrote the original driver
-> > and bindings.  Maxime: Please scream if this is inappropriate ;-)
->
-> Fine by me :)
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v2->v3:
+- Enforce unit name on the DT node, 'prcmu@'
+- Remove overspecified unit names for prcmu-timer and thermal and
+  use patternProperties to match this to a regexp instead.
+- Drop dependency interrupt-controller: [ interrupts ] instead make
+  interrupts required. Make interrupts required instead since
+  interrupt-controller is already required.
+ChangeLog v1->v2:
+- Make the main PRCMU node name more generic instead of
+  hammering it down to a specific address.
+---
+ .../bindings/mfd/stericsson,db8500-prcmu.yaml | 278 ++++++++++++++++++
+ 1 file changed, 278 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml
 
-Thanks!
-
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-
-> > +  solomon,dclk-div:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    minimum: 1
-> > +    maximum: 16
-> > +    description:
-> > +      Clock divisor. The default value is controller-dependent.
->
-> I guess we could document the default using an if / else statement?
-
-While clk-div has only two different defaults, dclk-frq has different
-defaults for each of the 4 variants supported.
-
-Do you think it's worthwhile doing that? All upstream DTS files lack
-these properties, thus use the default values.
-
-> Looks good otherwise :)
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml b/Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml
+new file mode 100644
+index 000000000000..a0d4bad5dc81
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml
+@@ -0,0 +1,278 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/stericsson,db8500-prcmu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ST-Ericsson DB8500 PRCMU - Power Reset and Control Management Unit
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description:
++  The DB8500 Power Reset and Control Management Unit is an XP70 8-bit
++  microprocessor that is embedded in the always-on power domain of the
++  DB8500 SoCs to manage the low power states, powering up and down parts
++  of the silicon, and controlling reset of different IP blocks.
++
++properties:
++  $nodename:
++    pattern: '^prcmu@[0-9a-f]+$'
++
++  compatible:
++    description: The device is compatible both to the device-specific
++      compatible "stericsson,db8500-prcmu" and "syscon". The latter
++      compatible is needed for the device to be exposed as a system
++      controller so that arbitrary registers can be access by
++      different operating system components.
++    items:
++      - const: stericsson,db8500-prcmu
++      - const: syscon
++
++  reg:
++    items:
++      - description: Main PRCMU register area
++      - description: PRCMU TCPM register area
++      - description: PRCMU TCDM register area
++
++  reg-names:
++    items:
++      - const: prcmu
++      - const: prcmu-tcpm
++      - const: prcmu-tcdm
++
++  interrupts:
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 1
++
++  ranges: true
++
++  interrupt-controller: true
++
++  '#interrupt-cells':
++    const: 2
++
++  db8500-prcmu-regulators:
++    description: Node describing the DB8500 regulators. These are mainly
++      power rails inside the silicon but some of those are also routed
++      out to external pins.
++    type: object
++
++    properties:
++      compatible:
++        const: stericsson,db8500-prcmu-regulator
++
++      db8500_vape:
++        description: The voltage for the application processor, the
++          main voltage domain for the chip.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++      db8500_varm:
++        description: The voltage for the ARM Cortex A-9 CPU.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++      db8500_vmodem:
++        description: The voltage for the modem subsystem.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++      db8500_vpll:
++        description: The voltage for the phase locked loop clocks.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++      db8500_vsmps1:
++        description: Also known as VIO12, is a step-down voltage regulator
++          for 1.2V I/O. SMPS means System Management Power Source.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++      db8500_vsmps2:
++        description: Also known as VIO18, is a step-down voltage regulator
++          for 1.8V I/O. SMPS means System Management Power Source.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++      db8500_vsmps3:
++        description: This is a step-down voltage regulator
++          for 0.87 thru 1.875V I/O. SMPS means System Management Power Source.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++      db8500_vrf1:
++        description: RF transciever voltage regulator.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++      db8500_sva_mmdsp:
++        description: Smart Video Accelerator (SVA) multimedia DSP (MMDSP)
++          voltage regulator. This is the voltage for the accelerator DSP
++          for video encoding and decoding.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++      db8500_sva_mmdsp_ret:
++        description: Smart Video Accelerator (SVA) multimedia DSP (MMDSP)
++          voltage regulator for retention mode.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++      db8500_sva_pipe:
++        description: Smart Video Accelerator (SVA) multimedia DSP (MMDSP)
++          voltage regulator for the data pipe.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++      db8500_sia_mmdsp:
++        description: Smart Image Accelerator (SIA) multimedia DSP (MMDSP)
++          voltage regulator. This is the voltage for the accelerator DSP
++          for image encoding and decoding.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++      db8500_sia_mmdsp_ret:
++        description: Smart Image Accelerator (SIA) multimedia DSP (MMDSP)
++          voltage regulator for retention mode.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++      db8500_sia_pipe:
++        description: Smart Image Accelerator (SIA) multimedia DSP (MMDSP)
++          voltage regulator for the data pipe.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++      db8500_sga:
++        description: Smart Graphics Accelerator (SGA) voltage regulator.
++          This is in effect controlling the power to the MALI400 3D
++          accelerator block.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++      db8500_b2r2_mcde:
++        description: Blit Blend Rotate and Rescale (B2R2), and Multi-Channel
++          Display Engine (MCDE) voltage regulator. These are two graphics
++          blocks.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++      db8500_esram12:
++        description: Embedded Static RAM (ESRAM) 1 and 2 voltage regulator.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++      db8500_esram12_ret:
++        description: Embedded Static RAM (ESRAM) 1 and 2 voltage regulator for
++          retention mode.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++      db8500_esram34:
++        description: Embedded Static RAM (ESRAM) 3 and 4 voltage regulator.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++      db8500_esram34_ret:
++        description: Embedded Static RAM (ESRAM) 3 and 4 voltage regulator for
++          retention mode.
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++    required:
++      - compatible
++      - db8500_vape
++      - db8500_varm
++      - db8500_vmodem
++      - db8500_vpll
++      - db8500_vsmps1
++      - db8500_vsmps2
++      - db8500_vsmps3
++      - db8500_vrf1
++      - db8500_sva_mmdsp
++      - db8500_sva_mmdsp_ret
++      - db8500_sva_pipe
++      - db8500_sia_mmdsp
++      - db8500_sia_mmdsp_ret
++      - db8500_sia_pipe
++      - db8500_sga
++      - db8500_b2r2_mcde
++      - db8500_esram12
++      - db8500_esram12_ret
++      - db8500_esram34
++      - db8500_esram34_ret
++
++    additionalProperties: false
++
++patternProperties:
++  "^thermal@[0-9a-f]+$":
++    description: Node describing the DB8500 thermal control functions.
++      This binds to an operating system driver that monitors the
++      temperature of the SoC.
++    type: object
++
++    properties:
++      compatible:
++        const: stericsson,db8500-thermal
++
++      reg:
++        maxItems: 1
++
++      interrupts:
++        items:
++          - description: Hotmon low interrupt (falling temperature)
++          - description: Hotmon high interrupt (rising temperature)
++
++      interrupt-names:
++        items:
++          - const: IRQ_HOTMON_LOW
++          - const: IRQ_HOTMON_HIGH
++
++      '#thermal-sensor-cells':
++        const: 0
++
++    additionalProperties: false
++
++  "^prcmu-timer-4@[0-9a-f]+$":
++    description: Node describing the externally visible timer 4 in the
++      PRCMU block. This timer is interesting to the operating system
++      since even thought it has a very low resolution (32768 Hz) it is
++      always on, and thus provides a consistent monotonic timeline for
++      the system.
++    type: object
++
++    properties:
++      compatible:
++        const: stericsson,db8500-prcmu-timer-4
++
++      reg:
++        maxItems: 1
++
++    additionalProperties: false
++
++  "^ab850[05]$":
++    description: Node describing the Analog Baseband 8500 mixed-signals
++      ASIC AB8500 and subcomponents. The AB8500 is accessed through the
++      PRCMU and hence it appears here. This component has a separate
++      set of devicetree bindings. The AB8505 is a newer version of the
++      same ASIC.
++    type: object
++
++required:
++  - compatible
++  - reg
++  - '#address-cells'
++  - '#size-cells'
++  - ranges
++  - interrupts
++  - interrupt-controller
++  - '#interrupt-cells'
++  - db8500-prcmu-regulators
++
++additionalProperties: false
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.31.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
