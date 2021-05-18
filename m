@@ -2,75 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8079738740C
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 10:30:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CA9E387465
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 10:50:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347476AbhERIa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 04:30:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57052 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347461AbhERIaX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 04:30:23 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D670C0613ED
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 01:29:05 -0700 (PDT)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1liv5x-00074k-4I; Tue, 18 May 2021 10:28:53 +0200
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1liv5v-0006oV-PI; Tue, 18 May 2021 10:28:51 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Robin van der Gracht <robin@protonic.nl>,
-        Oleksij Rempel <o.rempel@pengutronix.de>,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>
-Subject: [PATCH v1 9/9] ARM: dts: imx6dl-prtvt7: Remove unused 'sound-dai-cells' from ssi1 node
-Date:   Tue, 18 May 2021 10:28:50 +0200
-Message-Id: <20210518082850.26048-10-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210518082850.26048-1-o.rempel@pengutronix.de>
-References: <20210518082850.26048-1-o.rempel@pengutronix.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S241702AbhERIuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 04:50:44 -0400
+Received: from www.linuxtv.org ([130.149.80.248]:33952 "EHLO www.linuxtv.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241701AbhERIuo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 May 2021 04:50:44 -0400
+X-Greylist: delayed 1651 seconds by postgrey-1.27 at vger.kernel.org; Tue, 18 May 2021 04:50:44 EDT
+Received: from mchehab by www.linuxtv.org with local (Exim 4.92)
+        (envelope-from <mchehab@linuxtv.org>)
+        id 1liuzA-008u5t-Qs; Tue, 18 May 2021 08:21:52 +0000
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Date:   Tue, 18 May 2021 08:21:13 +0000
+Subject: [git:media_stage/master] media: ARM: dts: sama5d4: enable Hantro G1 VDEC
+To:     linuxtv-commits@linuxtv.org
+Cc:     devicetree@vger.kernel.org,
+        Emil Velikov <emil.velikov@collabora.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>
+Mail-followup-to: linux-media@vger.kernel.org
+Forward-to: linux-media@vger.kernel.org
+Reply-to: linux-media@vger.kernel.org
+Message-Id: <E1liuzA-008u5t-Qs@www.linuxtv.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Robin van der Gracht <robin@protonic.nl>
+This is an automatic generated email to let you know that the following patch were queued:
 
-The 'fsl,ssi' documentation doesn't say anything about specifying this.
+Subject: media: ARM: dts: sama5d4: enable Hantro G1 VDEC
+Author:  Emil Velikov <emil.velikov@collabora.com>
+Date:    Thu Apr 1 16:43:36 2021 +0200
 
-Signed-off-by: Robin van der Gracht <robin@protonic.nl>
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+Add the SAMA5D4 VDEC module which comprises Hantro G1 video decoder
+core.
+
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Frank Rowand <frowand.list@gmail.com>
+Cc: devicetree@vger.kernel.org
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+Signed-off-by: Emil Velikov <emil.velikov@collabora.com>
+Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+
+ arch/arm/boot/dts/sama5d4.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
 ---
- arch/arm/boot/dts/imx6dl-prtvt7.dts | 1 -
- 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/imx6dl-prtvt7.dts b/arch/arm/boot/dts/imx6dl-prtvt7.dts
-index ea6719e2dff9..190d26642bc8 100644
---- a/arch/arm/boot/dts/imx6dl-prtvt7.dts
-+++ b/arch/arm/boot/dts/imx6dl-prtvt7.dts
-@@ -290,7 +290,6 @@ &snvs_pwrkey {
- };
+diff --git a/arch/arm/boot/dts/sama5d4.dtsi b/arch/arm/boot/dts/sama5d4.dtsi
+index 05c55875835d..e47e1ca63043 100644
+--- a/arch/arm/boot/dts/sama5d4.dtsi
++++ b/arch/arm/boot/dts/sama5d4.dtsi
+@@ -101,6 +101,13 @@
+ 			ranges = <0 0x100000 0x2400>;
+ 		};
  
- &ssi1 {
--	#sound-dai-cells = <0>;
- 	status = "okay";
- };
- 
--- 
-2.29.2
-
++		vdec0: vdec@300000 {
++			compatible = "microchip,sama5d4-vdec";
++			reg = <0x00300000 0x100000>;
++			interrupts = <19 IRQ_TYPE_LEVEL_HIGH 4>;
++			clocks = <&pmc PMC_TYPE_PERIPHERAL 19>;
++		};
++
+ 		usb0: gadget@400000 {
+ 			compatible = "atmel,sama5d3-udc";
+ 			reg = <0x00400000 0x100000
