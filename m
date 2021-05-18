@@ -2,95 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6E45387E84
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 19:35:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5833387EF6
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 19:50:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351271AbhERRgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 13:36:06 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:18156 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1351184AbhERRfy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 May 2021 13:35:54 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1621359276; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=ZgFIvI40y7otmHzklIMUNhMtm0MlsP2bGGKHOKWsOXI=; b=IEyNrujA+DA9qaLOU9gLnGsOeOVxqsWGI/NnJmD5g9HNpybv8uhON2OExdiqprooHPM7ZSXv
- Dykcp5LAemye3UMqfZNr3NHPJpXxkN9Ce/2slDg6A+nYeE+AOxyyhg9hLLmCMLNUehjtZOWY
- qAk1hh2nvB+F87BbUXsfbXB+EHI=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 60a3faabb15734c8f9ca67fb (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 18 May 2021 17:34:35
- GMT
-Sender: okukatla=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id B6734C43217; Tue, 18 May 2021 17:34:34 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from okukatla1-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: okukatla)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C307FC43217;
-        Tue, 18 May 2021 17:34:29 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C307FC43217
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=okukatla@codeaurora.org
-From:   Odelu Kukatla <okukatla@codeaurora.org>
-To:     georgi.djakov@linaro.org, sibis@codeaurora.org,
-        bjorn.andersson@linaro.org, evgreen@google.com,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     sboyd@kernel.org, seansw@qti.qualcomm.com, elder@linaro.org,
-        linux-pm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org,
-        Odelu Kukatla <okukatla@codeaurora.org>
-Subject: [V2 3/3] arm64: dts: qcom: sc7280: Add EPSS L3 interconnect provider
-Date:   Tue, 18 May 2021 23:04:02 +0530
-Message-Id: <1621359242-18641-4-git-send-email-okukatla@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1621359242-18641-1-git-send-email-okukatla@codeaurora.org>
-References: <1621359242-18641-1-git-send-email-okukatla@codeaurora.org>
+        id S245418AbhERRvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 13:51:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44608 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1351396AbhERRvQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 13:51:16 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 691BCC06175F
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 10:49:57 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id r12so11198735wrp.1
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 10:49:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Gl8VJYhAQI3TRwRQ35D+w8dJpAM3ONFhp8A1OmnXSMo=;
+        b=AUr8zBIIePIoFqg6DpFsMwpGhzG/9Cvzt08MmeLDH1cBeySEuFQsikNKFiUxOeAvlK
+         +ni5gM9njkAcFTtetDG7+q8EBh6ERotNyyf8olQnXc+dsYfJZNNMqd7fNScyXDpU87MJ
+         BRPGhT0Nk77eyFJfAo8ba9TL6HP3hBZUvHvWwW+Qx1dUyHvZ4DF1LjVt4oqpDevw8BgX
+         rgYpXbrqU7kV4p1gCHXNx0HgN6QafJa1cN9JmVYJgReTk+viRpQdpS229la+utsIbUYb
+         qdD2NRRT/qkEQpOQGHgeYYxrPz3pc5a96tRaS4fVBHk0+z8eseezhXSayKY5kagRc4Of
+         XXIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Gl8VJYhAQI3TRwRQ35D+w8dJpAM3ONFhp8A1OmnXSMo=;
+        b=E3Y18s4ASL/jwHKI1tNuYThu36AIZYBtEHT8GpL0Bg0PbM0TtbvgmBf3B9tJeffA28
+         EqalAgdZjArOTvzQZZbxgrPBjUJvxXSXopDUsBBI26Ibc5+hYol5+600kcq03JMKtHcF
+         sjL9ejeOd5MyO2BoMcrN0+wLo6Tgk7FNh9JZD2fp7QR5FhEVniXf1c488skf160mAL7X
+         sM9/y1j9hprR52qPauA72Zj9bISj/mz5wyTDZV+gRjruoezrDJZiekkzL06h1U5LNXCF
+         XjefKmUUy333jxUl5NE0PjaxEOGm/CyqYZIWDhzP8u4bklc/YThTzZAT1qWMmwB4nJNs
+         6syw==
+X-Gm-Message-State: AOAM533XJvfWA2MbTWXOhP+zcNhHs11X9ZBaXyKcN/RkgbaIOGBLDfg8
+        jPaEUSGqs6081tFYiqAyexCoSg==
+X-Google-Smtp-Source: ABdhPJxcKvaemzBTl73kbrRDUgwxoDNdc1YVk6iTA3PvkBjZBgHGlW/VsDW6/2iGMRJEBKgbCJFRbQ==
+X-Received: by 2002:a05:6000:1445:: with SMTP id v5mr6930370wrx.412.1621360196158;
+        Tue, 18 May 2021 10:49:56 -0700 (PDT)
+Received: from localhost.localdomain ([88.160.162.107])
+        by smtp.gmail.com with ESMTPSA id h14sm27991329wrq.45.2021.05.18.10.49.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 May 2021 10:49:55 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     mkorpershoek@baylibre.com, Fabien Parent <fparent@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: mediatek: mt8516: remove 2 invalid i2c clocks
+Date:   Tue, 18 May 2021 19:49:40 +0200
+Message-Id: <20210518174940.2672318-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.31.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Epoch Subsystem (EPSS) L3 interconnect provider node on SC7280
-SoCs.
+The two clocks "main-source" and "main-sel" are not present in the
+driver and not defined in the binding documentation. Remove them
+as they are not used and not described in the documentation.
 
-Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
 ---
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ arch/arm64/boot/dts/mediatek/mt8516.dtsi | 27 ++++++------------------
+ 1 file changed, 6 insertions(+), 21 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 6b22021..5aec586 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -1122,6 +1122,15 @@
- 			};
- 		};
- 
-+		epss_l3: interconnect@18590000 {
-+			compatible = "qcom,sc7280-epss-l3";
-+			reg = <0 0x18590000 0 1000>, <0 0x18591000 0 0x100>,
-+				<0 0x18592000 0 0x100>, <0 0x18593000 0 0x100>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
-+			clock-names = "xo", "alternate";
-+			#interconnect-cells = <1>;
-+		};
-+
- 		clk_virt: interconnect {
- 			compatible = "qcom,sc7280-clk-virt";
- 			#interconnect-cells = <2>;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8516.dtsi b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
+index bbe5a1419eff..d1b67c82d761 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8516.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
+@@ -345,14 +345,9 @@ i2c0: i2c@11009000 {
+ 			reg = <0 0x11009000 0 0x90>,
+ 			      <0 0x11000180 0 0x80>;
+ 			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_LOW>;
+-			clocks = <&topckgen CLK_TOP_AHB_INFRA_D2>,
+-				 <&infracfg CLK_IFR_I2C0_SEL>,
+-				 <&topckgen CLK_TOP_I2C0>,
++			clocks = <&topckgen CLK_TOP_I2C0>,
+ 				 <&topckgen CLK_TOP_APDMA>;
+-			clock-names = "main-source",
+-				      "main-sel",
+-				      "main",
+-				      "dma";
++			clock-names = "main", "dma";
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			status = "disabled";
+@@ -364,14 +359,9 @@ i2c1: i2c@1100a000 {
+ 			reg = <0 0x1100a000 0 0x90>,
+ 			      <0 0x11000200 0 0x80>;
+ 			interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_LOW>;
+-			clocks = <&topckgen CLK_TOP_AHB_INFRA_D2>,
+-				 <&infracfg CLK_IFR_I2C1_SEL>,
+-				 <&topckgen CLK_TOP_I2C1>,
++			clocks = <&topckgen CLK_TOP_I2C1>,
+ 				 <&topckgen CLK_TOP_APDMA>;
+-			clock-names = "main-source",
+-				      "main-sel",
+-				      "main",
+-				      "dma";
++			clock-names = "main", "dma";
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			status = "disabled";
+@@ -383,14 +373,9 @@ i2c2: i2c@1100b000 {
+ 			reg = <0 0x1100b000 0 0x90>,
+ 			      <0 0x11000280 0 0x80>;
+ 			interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_LOW>;
+-			clocks = <&topckgen CLK_TOP_AHB_INFRA_D2>,
+-				 <&infracfg CLK_IFR_I2C2_SEL>,
+-				 <&topckgen CLK_TOP_I2C2>,
++			clocks = <&topckgen CLK_TOP_I2C2>,
+ 				 <&topckgen CLK_TOP_APDMA>;
+-			clock-names = "main-source",
+-				      "main-sel",
+-				      "main",
+-				      "dma";
++			clock-names = "main", "dma";
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			status = "disabled";
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.31.1
 
