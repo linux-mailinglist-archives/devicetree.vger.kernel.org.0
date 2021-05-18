@@ -2,195 +2,371 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04451387B09
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 16:23:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC4B8387B20
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 16:29:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231932AbhEROYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 10:24:23 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:39661 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231614AbhEROYW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 May 2021 10:24:22 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 882705807BB;
-        Tue, 18 May 2021 10:23:04 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Tue, 18 May 2021 10:23:04 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=wlDho/GsBmqZTJ4tGbQWTMKtpBy
-        pP3Eg/xmSUmHVVyE=; b=TUj68VVRCs7GR+qJ9pJQRyxezgA04pdNAZZfxvXZwhv
-        a6xr0BoCnoongayhKGTyMxwTvlwV72dI+kRsIEhCl8LSuALhyupYd34gW9VQZzux
-        OLIp9xXTMwuKICYwPOKozjQEHagHgVEQZ0lf6O8Q9RRoytwFAiCQ166S/NOGP6Xn
-        hB7abiuJfTGclxkcILIhEf/fO0uhSK582yfKj/soCfkTx0fkYiv/osPmpActTp7j
-        CYHNF9rOyxeohQz/1mHBqXwUJB8k8DVDj4HodjpK/OYZBeQdAUswnC2ZNiMnKrUL
-        1NRqn0wsdyuP5mXMYW6GM+qA9OVbCqJWHsRaJHR0daw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=wlDho/
-        GsBmqZTJ4tGbQWTMKtpBypP3Eg/xmSUmHVVyE=; b=rGu0CffdFaBZEpzEXvA8NA
-        cRRSg2ZAfptZ+8kFxV0j8q3bU22U5/kH0Mx1Oq6S0GGpu4kdgf87pQSw20I7hOxY
-        38CwzCiZQEygswYoUCCyT1i4aSVtH1jOIJ8W351vGnWgc3MrOc0jkONQMz8Z71ZC
-        cmbEMVaJKjTI6hrIjnRPstJGa3UmdYuz7wtlvuEBLeMb4njm0c0iPhhDP5DvAExr
-        WBnukYBqEetjfKpguYKahhu8Fic/9MP+le7OFlNRfIMcO1yeC9oYQFR/avHsxSdl
-        rF8Utt8ZqtE6HYDEkWBgy2abkuJ7p4PuTIeexzyhj2GkgCF8ZAfK1EdSkQdZ61jw
-        ==
-X-ME-Sender: <xms:x82jYHzuYKpMXZceDVik0GZlzSu0g0X8xkPTADr35Lyxh-bO3uhPkg>
-    <xme:x82jYPQOz0sK2ykyNrhkTi2Fg4CXJbQTTklHS6dFzbf4pQ3Hy92-UozLEwfIg7WAL
-    xnj-HBQVCBVpK09UvQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdeijedgjeehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttdejnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepuedtgfejueduheevgfevvdettdduleffgfffkeeltdffkeegudekjeeuveei
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:x82jYBXu6KbfVg8G8nrCXdDoUd6edIuXI6UM3rKCYV0BuX8S6pua7Q>
-    <xmx:x82jYBipU03Mzq9DPKYTtH_3EQ3GDEwOM7KNnGndO6gHYXy_6Qd3dw>
-    <xmx:x82jYJBT7gSzw2XCB2aPm1aI-TnYDDLLGOjHty-5tpUBQHvY7azqPw>
-    <xmx:yM2jYNs_hQV7V11nv1qY8jiJb6jq4r0LW9yys7gokB3avQkXgA9FBA>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA;
-        Tue, 18 May 2021 10:23:02 -0400 (EDT)
-Date:   Tue, 18 May 2021 16:23:00 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Kevin Tang <kevin3.tang@gmail.com>
-Cc:     Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        id S231704AbhEROam (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 10:30:42 -0400
+Received: from phobos.denx.de ([85.214.62.61]:56360 "EHLO phobos.denx.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230373AbhEROak (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 May 2021 10:30:40 -0400
+X-Greylist: delayed 110140 seconds by postgrey-1.27 at vger.kernel.org; Tue, 18 May 2021 10:30:39 EDT
+Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: lukma@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 6115681E77;
+        Tue, 18 May 2021 16:29:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1621348159;
+        bh=SJkkxv8FIvOpWr84nF14awOgVmTv3IbdPVxLiM7xvNM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ApL5dpEEqlbZCtMvGbzf61BWcaT05QxcvtDhlkLrR7OD3cw2DHXcyEWAAlDPkMUNF
+         2kUMLqe2dDIcvnrlhFL/KcHOtYSQeDjeg9Pmfk8ik3DmeTSgNZydytsnH2Q4ACwAxp
+         P3XnFMFBXvrM3VD+15GxHLLjA5X0liGKEEvp6i5OSNYZsGvimZV7hbUMGgSwawAGRi
+         UDaqM74k8MGeF+XjT9YRJ91TyD7lPXFrXW6w706LqjcLlUmyuG53QBnIZnaDiTgwos
+         w5lVsbocQskPwrGx6VOflO0nt72RrTd6j4fJmmoZn45jEE9ez8QBv8jnV3PVPd8mRV
+         twtkoDyJ3IngQ==
+From:   Lukasz Majewski <lukma@denx.de>
+To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
-        ML dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 4/6] drm/sprd: add Unisoc's drm display controller
- driver
-Message-ID: <20210518142300.stvrnyfxnojdidug@gilmour>
-References: <20210425123607.26537-1-kevin3.tang@gmail.com>
- <20210425123607.26537-5-kevin3.tang@gmail.com>
- <20210430092249.n75to2das5m6p4zb@gilmour>
- <CAFPSGXYim34tVydpB3ukD8XOc9Y2xSzm3RHyWuUx-mRGPLXwiQ@mail.gmail.com>
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     soc@kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lukasz Majewski <lukma@denx.de>
+Subject: [PATCH v3] ARM: dts: imx28: Add DTS description of imx28 based XEA board
+Date:   Tue, 18 May 2021 16:28:57 +0200
+Message-Id: <20210518142857.26170-1-lukma@denx.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="mhzvc4qd3u5jbqqo"
-Content-Disposition: inline
-In-Reply-To: <CAFPSGXYim34tVydpB3ukD8XOc9Y2xSzm3RHyWuUx-mRGPLXwiQ@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.102.4 at phobos.denx.de
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch adds DTS definition of the imx278 based XEA board.
 
---mhzvc4qd3u5jbqqo
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Lukasz Majewski <lukma@denx.de>
 
-On Fri, May 14, 2021 at 09:18:00PM +0800, Kevin Tang wrote:
-> Maxime Ripard <maxime@cerno.tech> =E4=BA=8E2021=E5=B9=B44=E6=9C=8830=E6=
-=97=A5=E5=91=A8=E4=BA=94 =E4=B8=8B=E5=8D=885:22=E5=86=99=E9=81=93=EF=BC=9A
-> > > +     info =3D drm_format_info(fb->format->format);
-> >
-> > Here fb->format is the result of drm_format_info(fb->format->format)
->
-> info->num_planes =3D=3D 3? I will fix it on next version
+---
+Changes for v3:
+- Remove meaningless 'regulator-always-on' and 'enable-active-high'
+- Provide proper order for ssp{023}
+- Change memory start address to @40000000
 
-It's not really what I meant. You don't need the call to drm_format_info
-in the first place, the result is going to be fb->format.
+Changes for v2:
+- Fix 'memory' node and remove regulators subnode
+- Rename 'flash0: s25fl256s0@0' to flash@0
+- Add proper compatible for XEA board
+---
+ arch/arm/boot/dts/Makefile       |   3 +-
+ arch/arm/boot/dts/imx28-lwe.dtsi | 170 +++++++++++++++++++++++++++++++
+ arch/arm/boot/dts/imx28-xea.dts  |  99 ++++++++++++++++++
+ 3 files changed, 271 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/imx28-lwe.dtsi
+ create mode 100644 arch/arm/boot/dts/imx28-xea.dts
 
-So either you do info =3D fb->format and
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 8e5d4ab4e75e..d2398a090e4d 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -721,7 +721,8 @@ dtb-$(CONFIG_ARCH_MXS) += \
+ 	imx28-m28evk.dtb \
+ 	imx28-sps1.dtb \
+ 	imx28-ts4600.dtb \
+-	imx28-tx28.dtb
++	imx28-tx28.dtb \
++	imx28-xea.dtb
+ dtb-$(CONFIG_ARCH_NOMADIK) += \
+ 	ste-nomadik-s8815.dtb \
+ 	ste-nomadik-nhk15.dtb
+diff --git a/arch/arm/boot/dts/imx28-lwe.dtsi b/arch/arm/boot/dts/imx28-lwe.dtsi
+new file mode 100644
+index 000000000000..bb971e660db8
+--- /dev/null
++++ b/arch/arm/boot/dts/imx28-lwe.dtsi
+@@ -0,0 +1,170 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++/*
++ * Copyright 2021
++ * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
++ */
++
++/dts-v1/;
++#include "imx28.dtsi"
++
++/ {
++	aliases {
++		spi2 = &ssp3;
++	};
++
++	chosen {
++		bootargs = "root=/dev/mmcblk0p2 rootfstype=ext4 ro rootwait console=ttyAMA0,115200 panic=1";
++	};
++
++	memory@40000000 {
++		reg = <0x40000000 0x08000000>;
++	};
++
++	reg_3v3: regulator-reg-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++
++	reg_usb_5v: regulator-reg-usb-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "usb_vbus";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++	};
++
++	reg_fec_3v3: regulator-reg-fec-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "fec-phy";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++};
++
++&duart {
++	pinctrl-names = "default";
++	pinctrl-0 = <&duart_pins_a>;
++	status = "okay";
++};
++
++&i2c0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c0_pins_a>;
++	status = "okay";
++};
++
++&saif0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&saif0_pins_a>;
++	#sound-dai-cells = <0>;
++	assigned-clocks = <&clks 53>;
++	assigned-clock-rates = <12000000>;
++	status = "okay";
++};
++
++&saif1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&saif1_pins_a>;
++	fsl,saif-master = <&saif0>;
++	#sound-dai-cells = <0>;
++	status = "okay";
++};
++
++&spi3_pins_a {
++	fsl,pinmux-ids = <
++		MX28_PAD_AUART2_RX__SSP3_D4
++		MX28_PAD_AUART2_TX__SSP3_D5
++		MX28_PAD_SSP3_SCK__SSP3_SCK
++		MX28_PAD_SSP3_MOSI__SSP3_CMD
++		MX28_PAD_SSP3_MISO__SSP3_D0
++		MX28_PAD_SSP3_SS0__SSP3_D3
++		MX28_PAD_AUART2_TX__GPIO_3_9
++	>;
++};
++
++&ssp0 {
++	compatible = "fsl,imx28-mmc";
++	pinctrl-names = "default";
++	pinctrl-0 = <&mmc0_8bit_pins_a>;
++	bus-width = <8>;
++	vmmc-supply = <&reg_3v3>;
++	non-removable;
++	status = "okay";
++};
++
++&ssp2 {
++	compatible = "fsl,imx28-spi";
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi2_pins_a>;
++	status = "okay";
++};
++
++&ssp3 {
++	compatible = "fsl,imx28-spi";
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi3_pins_a>;
++	status = "okay";
++
++	flash@0 {
++		compatible = "jedec,spi-nor";
++		spi-max-frequency = <40000000>;
++		reg = <0>;
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "u-boot";
++				reg = <0 0x80000>;
++				read-only;
++			};
++
++			partition@80000 {
++				label = "env0";
++				reg = <0x80000 0x10000>;
++			};
++
++			partition@90000 {
++				label = "env1";
++				reg = <0x90000 0x10000>;
++			};
++
++			partition@100000 {
++				label = "kernel";
++				reg = <0x100000 0x400000>;
++			};
++
++			partition@500000 {
++				label = "swupdate";
++				reg = <0x500000 0x800000>;
++			};
++		};
++	};
++};
++
++&usb0 {
++	vbus-supply = <&reg_usb_5v>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&usb0_pins_b>, <&usb0_id_pins_a>;
++	dr_mode = "host";
++	status = "okay";
++};
++
++&usbphy0 {
++	status = "okay";
++};
++
++&usb1 {
++	vbus-supply = <&reg_usb_5v>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&usb1_pins_b>;
++	dr_mode = "host";
++	status = "okay";
++};
++
++&usbphy1 {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/imx28-xea.dts b/arch/arm/boot/dts/imx28-xea.dts
+new file mode 100644
+index 000000000000..a400c108f66a
+--- /dev/null
++++ b/arch/arm/boot/dts/imx28-xea.dts
+@@ -0,0 +1,99 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++/*
++ * Copyright 2021
++ * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
++ */
++
++/dts-v1/;
++#include "imx28-lwe.dtsi"
++
++/ {
++	compatible = "lwn,imx28-xea", "fsl,imx28";
++};
++
++&can0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&can1_pins_a>;
++	status = "okay";
++};
++
++&i2c1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c1_pins_b>;
++	status = "okay";
++};
++
++&pinctrl {
++	pinctrl-names = "default";
++	pinctrl-0 = <&hog_pins_a &hog_pins_tiva>;
++
++	hog_pins_a: hog@0 {
++		reg = <0>;
++		fsl,pinmux-ids = <
++			MX28_PAD_GPMI_D00__GPIO_0_0
++			MX28_PAD_GPMI_D02__GPIO_0_2
++			MX28_PAD_GPMI_D05__GPIO_0_5
++			MX28_PAD_GPMI_CE1N__GPIO_0_17
++			MX28_PAD_GPMI_RDY0__GPIO_0_20
++			MX28_PAD_GPMI_RDY1__GPIO_0_21
++			MX28_PAD_GPMI_RDY2__GPIO_0_22
++			MX28_PAD_GPMI_RDN__GPIO_0_24
++			MX28_PAD_GPMI_CLE__GPIO_0_27
++			MX28_PAD_LCD_VSYNC__GPIO_1_28
++			MX28_PAD_SSP1_SCK__GPIO_2_12
++			MX28_PAD_SSP1_CMD__GPIO_2_13
++			MX28_PAD_SSP2_SS1__GPIO_2_20
++			MX28_PAD_SSP2_SS2__GPIO_2_21
++			MX28_PAD_LCD_D00__GPIO_1_0
++			MX28_PAD_LCD_D01__GPIO_1_1
++			MX28_PAD_LCD_D02__GPIO_1_2
++			MX28_PAD_LCD_D03__GPIO_1_3
++			MX28_PAD_LCD_D04__GPIO_1_4
++			MX28_PAD_LCD_D05__GPIO_1_5
++			MX28_PAD_LCD_D06__GPIO_1_6
++		>;
++		fsl,drive-strength = <MXS_DRIVE_4mA>;
++		fsl,voltage = <MXS_VOLTAGE_HIGH>;
++		fsl,pull-up = <MXS_PULL_DISABLE>;
++	};
++
++	hog_pins_tiva: hog@1 {
++		reg = <1>;
++		fsl,pinmux-ids = <
++			MX28_PAD_GPMI_RDY3__GPIO_0_23
++			MX28_PAD_GPMI_WRN__GPIO_0_25
++		>;
++		fsl,voltage = <MXS_VOLTAGE_HIGH>;
++		fsl,pull-up = <MXS_PULL_DISABLE>;
++	};
++
++	hog_pins_coding: hog@2 {
++		reg = <2>;
++		fsl,pinmux-ids = <
++			MX28_PAD_GPMI_D01__GPIO_0_1
++			MX28_PAD_GPMI_D03__GPIO_0_3
++			MX28_PAD_GPMI_D04__GPIO_0_4
++			MX28_PAD_GPMI_D06__GPIO_0_6
++			MX28_PAD_GPMI_D07__GPIO_0_7
++		>;
++		fsl,voltage = <MXS_VOLTAGE_HIGH>;
++		fsl,pull-up = <MXS_PULL_DISABLE>;
++	};
++};
++
++&reg_fec_3v3 {
++	gpio = <&gpio0 0 0>;
++};
++
++&reg_usb_5v {
++	gpio = <&gpio0 2 0>;
++};
++
++&spi2_pins_a {
++	fsl,pinmux-ids = <
++		MX28_PAD_SSP2_SCK__SSP2_SCK
++		MX28_PAD_SSP2_MOSI__SSP2_CMD
++		MX28_PAD_SSP2_MISO__SSP2_D0
++		MX28_PAD_SSP2_SS0__GPIO_2_19
++	>;
++};
+-- 
+2.20.1
 
-> > > +     if (fb->format->num_planes =3D=3D 3) {
-
-You use info here
-
-> > > +             /* UV pitch is 1/2 of Y pitch */
-> > > +             pitch =3D (fb->pitches[0] / info->cpp[0]) |
-> > > +                             (fb->pitches[0] / info->cpp[0] << 15);
-
-Or you can use fb->format->cpp here
-
-Either way you should be consistent.
-
-> > > +static struct sprd_plane *sprd_planes_init(struct drm_device *drm)
-> > > +{
-> > > +     struct sprd_plane *plane, *primary;
-> > > +     enum drm_plane_type plane_type;
-> > > +     int i;
-> > > +
-> > > +     for (i =3D 0; i < 6; i++) {
-> > > +             plane_type =3D (i =3D=3D 0) ? DRM_PLANE_TYPE_PRIMARY :
-> > > +                                     DRM_PLANE_TYPE_OVERLAY;
-> > > +
-> > > +             plane =3D drmm_universal_plane_alloc(drm, struct sprd_p=
-lane, base,
-> > > +                                            1, &sprd_plane_funcs,
-> > > +                                            layer_fmts, ARRAY_SIZE(l=
-ayer_fmts),
-> > > +                                            NULL, plane_type, NULL);
-> > > +             if (IS_ERR(plane)) {
-> > > +                     drm_err(drm, "failed to init drm plane: %d\n", =
-i);
-> > > +                     return plane;
-> > > +             }
-> > > +
-> > > +             drm_plane_helper_add(&plane->base, &sprd_plane_helper_f=
-uncs);
-> > > +
-> > > +             sprd_plane_create_properties(plane, i);
-> > > +
-> > > +             if (i =3D=3D 0)
-> > > +                     primary =3D plane;
-> > > +     }
-> > > +
-> > > +     return primary;
-> > > +}
-> > > +
-> > > +static void sprd_crtc_mode_set_nofb(struct drm_crtc *crtc)
-> > > +{
-> > > +     struct sprd_dpu *dpu =3D to_sprd_crtc(crtc);
-> > > +     struct drm_display_mode *mode =3D &crtc->state->adjusted_mode;
-> > > +
-> > > +     if (mode->type & DRM_MODE_TYPE_PREFERRED)
-> > > +             drm_display_mode_to_videomode(mode, &dpu->ctx.vm);
-> >
-> > What happens if the mode isn't a preferred mode?
->
-> Have already replied on the dsi driver side
->
-> > > +}
-> > > +
-> > > +static void sprd_crtc_atomic_enable(struct drm_crtc *crtc,
-> > > +                                struct drm_atomic_state *state)
-> > > +{
-> > > +     struct sprd_dpu *dpu =3D to_sprd_crtc(crtc);
-> > > +
-> > > +     sprd_dpu_init(dpu);
-> >
-> > I guess that call would fail here or program a bogus value. We already
-> > discussed this in the previous version, but I'm really not sure why you
-> > need this in the first place. Just use the crtc_state->adjusted_mode and
-> > program that.
->
-> Is also the enable_irq issue about this comment?
-
-Not really? This is about the preferred mode stuff.
-
-Maxime
-
---mhzvc4qd3u5jbqqo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYKPNxAAKCRDj7w1vZxhR
-xZXwAP9/NXLI0TRCAPdbdHm+3gthxN/JG367Yk9DJ3bk9KrivgD7B/xCB69BZS1h
-qxO3bwJYKuYPQ9gqup6eqpZIyb1Xnwk=
-=4WSJ
------END PGP SIGNATURE-----
-
---mhzvc4qd3u5jbqqo--
