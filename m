@@ -2,127 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C93D388327
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 01:29:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6144C388357
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 01:51:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239142AbhERXac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 19:30:32 -0400
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:43727 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239043AbhERXa2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 19:30:28 -0400
-Received: by mail-oi1-f179.google.com with SMTP id j75so11394942oih.10;
-        Tue, 18 May 2021 16:29:10 -0700 (PDT)
+        id S239349AbhERXxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 19:53:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41150 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231409AbhERXxG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 19:53:06 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 599FAC06175F
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 16:51:47 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id j10so16280580lfb.12
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 16:51:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9edfP7byxvK0U61EA/wSfyi78oOGqh1Vam8gAK6iPTs=;
+        b=qBLQUbOhrNIqoPvFcPylhSjRcgJSbYYE/U9GIqwEedomt/tfWzA85r+bbVrKAwis73
+         id2JCF8EsvI9ww1M4ucaVaNAw2gXh+Nzc3lr7EVrJdRRKtpaYavMppRMiaTVw6sU5bwe
+         LWT0Esl2qD0Ups8rO/RbSSyKF2jOVrLKtXAUup3Y9/3/YsvHt9IyGfScBsl+0JZDQhNf
+         6AM54mGvvp9VSIarEyfB8qSx0C1OJDJt9fmcZ7pZocKk1fNik/whA/Gna6vQgRTYKZTK
+         ZRqWdr/Vgp1cR9t90PXvENWM/xpuDfJvoImwCgJaz50DF/E0iVQkYuWwqSdCGZdZzQhN
+         GgTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=kaw4fdxwXpH2Tc4Crz2ymu7i5j1xi8qpQ3DL7swjbB8=;
-        b=Hy8sFdRpLoqNcpm9kMsE+KBYPHSy3yEOceOjy8VoDrZ6BkL/muLeQOpF6S10mRQF7o
-         IMtcqqjx22XGXhKT7so84KiHBL1VKuT9WyjnetbxrZtFV04vBmtEGJ4lENXUz7U+WZUR
-         7SBdQL9Ki4BLQ1cmJR4AepcEcGHXe+9BpqsgAkw1vp4pVuPVa1VJFb2oU+XF/YlviL6a
-         KBiDTXxA/4cYTI+yejwU2kZHbBTGiUQz4xp9SkQicDIfVaAlE3WzmaI5/5UcsS65m7If
-         Wam0L7hcVGY276HRpxuQHrnOSzsf0xOI+fp8JXvNkSLDdZUHCagcufn5WHGQnwQKx+zZ
-         rEmA==
-X-Gm-Message-State: AOAM532G56tQD6bjwmDPDFWXB4L2OfIw5XhUj4v62j8Mgc0iX4EbB+Gy
-        sR38TIzEHgDyiqdEELB1G9Qjn8VDrA==
-X-Google-Smtp-Source: ABdhPJzy60bW7jOMP9l8J926xwD2kkYdNKYxJ1XI45JCGcle3eCUzwPiB4MH9mB5QK0S2q3fYst8pw==
-X-Received: by 2002:a05:6808:184:: with SMTP id w4mr5599516oic.27.1621380549000;
-        Tue, 18 May 2021 16:29:09 -0700 (PDT)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id d19sm3985608oop.26.2021.05.18.16.29.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 May 2021 16:29:08 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org, Peter Rosin <peda@axentia.se>,
-        Wolfram Sang <wsa@kernel.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Roger Quadros <rogerq@ti.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Subject: [PATCH 6/6] dt-bindings: i2c: maxim,max9286: Use the i2c-mux.yaml schema
-Date:   Tue, 18 May 2021 18:28:58 -0500
-Message-Id: <20210518232858.1535403-7-robh@kernel.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210518232858.1535403-1-robh@kernel.org>
-References: <20210518232858.1535403-1-robh@kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9edfP7byxvK0U61EA/wSfyi78oOGqh1Vam8gAK6iPTs=;
+        b=tbZLo9QqRBc6VRdU0hMRNdcW6O/EUi5L+9dgvMcK40XaietkQ6UaAmCpzyC3ovcMm0
+         x8gx+eF/Z6A6TFfGSCyBWWraUih93HAtmXRPKB83pOA8Sb+8egdqSLF6XFNOdBRkythS
+         JVYj/akH03ueSt3dCqcPfag72alEQ+kq5vXwthan7Ba3YkpV3pBHw2+82CTtpHA6gA0g
+         RXsff6z3cFhZHm7OqtgCM/dQItAjB3ZbgOM2JSesJr8BvPpS6bAM5DTq59l9wpqbLWly
+         IW2rD7gw360Gd5CGISjRbbmXe4cX3nL80qMmRmsTMk4D5x6vecGycCPa4IU1RCoGF8T9
+         dnhA==
+X-Gm-Message-State: AOAM533Bs0QIci3KM5EQK9VUJSASSoZmNHpI9bYrqAniX5yYo2Bme/LI
+        o/QXEdjozNU+p1VT2YNFtajq+y8lEiZTs2lx9IccR8DSePg=
+X-Google-Smtp-Source: ABdhPJym9GoeL27+IEeJYYnnReVKRL2eKM1qmzRgU3YRPz12gHL8AdcQPEWAsVeSGo+ydu3yWcnvyvzdoCxUgZkGdko=
+X-Received: by 2002:a05:6512:49b:: with SMTP id v27mr5967475lfq.29.1621381905714;
+ Tue, 18 May 2021 16:51:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20210514123309.134048-1-tsbogend@alpha.franken.de> <20210514123309.134048-2-tsbogend@alpha.franken.de>
+In-Reply-To: <20210514123309.134048-2-tsbogend@alpha.franken.de>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 19 May 2021 01:51:35 +0200
+Message-ID: <CACRpkdbhyvMt=e-ne50Vb3jbCbcPCdhFw6nov4Gxge3q1fo5_g@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] dt-bindings: gpio: Add devicetree binding for IDT
+ 79RC32434 GPIO controller
+To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use the i2c-mux.yaml schema in the maxim,max9286 binding schema. With this,
-several properties can be dropped as they are defined in i2c-mux.yaml
-already.
+On Fri, May 14, 2021 at 2:33 PM Thomas Bogendoerfer
+<tsbogend@alpha.franken.de> wrote:
 
-Cc: Jacopo Mondi <jacopo+renesas@jmondi.org>
-Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../bindings/media/i2c/maxim,max9286.yaml     | 23 +++----------------
- 1 file changed, 3 insertions(+), 20 deletions(-)
+> Add YAML devicetree binding for IDT 79RC32434 GPIO controller
+>
+> Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> ---
+> Changes in v5:
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-index ee16102fdfe7..02f656e78700 100644
---- a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-@@ -111,17 +111,10 @@ properties:
- 
-   i2c-mux:
-     type: object
-+    $ref: /schemas/i2c/i2c-mux.yaml#
-+    unevaluatedProperties: false
-     description: |
--      Each GMSL link is modelled as a child bus of an i2c bus
--      multiplexer/switch, in accordance with bindings described in
--      Documentation/devicetree/bindings/i2c/i2c-mux.txt.
--
--    properties:
--      '#address-cells':
--        const: 1
--
--      '#size-cells':
--        const: 0
-+      Each GMSL link is modelled as a child bus of an i2c bus multiplexer/switch.
- 
-     patternProperties:
-       "^i2c@[0-3]$":
-@@ -133,12 +126,6 @@ properties:
-           channels.
- 
-         properties:
--          '#address-cells':
--            const: 1
--
--          '#size-cells':
--            const: 0
--
-           reg:
-             description: The index of the GMSL channel.
-             maxItems: 1
-@@ -173,10 +160,6 @@ properties:
- 
-             additionalProperties: false
- 
--        additionalProperties: false
--
--    additionalProperties: false
--
- required:
-   - compatible
-   - reg
--- 
-2.27.0
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
+Yours,
+Linus Walleij
