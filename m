@@ -2,130 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 10A713871DD
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 08:27:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9CBD38720D
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 08:42:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233686AbhERG2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 02:28:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57618 "EHLO
+        id S1344612AbhERGns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 02:43:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234413AbhERG2X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 02:28:23 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83376C061573;
-        Mon, 17 May 2021 23:27:05 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id 27so4993216pgy.3;
-        Mon, 17 May 2021 23:27:05 -0700 (PDT)
+        with ESMTP id S238575AbhERGnr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 02:43:47 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 521DDC061573
+        for <devicetree@vger.kernel.org>; Mon, 17 May 2021 23:42:30 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id g24so4969680pji.4
+        for <devicetree@vger.kernel.org>; Mon, 17 May 2021 23:42:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=JQGuujMWoz7ctS+NiJQK1UQkIfCwzUf11oIcBdMR1xU=;
-        b=bvFuriLODXVcIJVOWwh0ck6blpd5vo0EDlg23CefiWifKJTQlpy0mdIbHk6yhpgKwE
-         31MqnHQLqtu+pWemOGZm0ERashP/LKp2ZqVdAP5NFQW4Jd2SVRU1YVbuxCCKFdiYZYGZ
-         5tMlW0T+JI1iOq3hl/6ylGE6u/jdVe4JZ7UITaiSo/TuZOqQLayD9JXMonNdyEZrvHmS
-         w/DTZV/vUqd2p09VddK5/0j8CrfW+oS0oV+cXgiN2y7M2HqriPIl2nFz1jq5QHeK3gtu
-         eE/BeH7ycyTSdTF2E3moSdB/s6HTPCub9O43BjwyA5AmNGBGcLZivytEZu/bZuANxBbT
-         a7iA==
+        bh=PDyrwk3dKvoxKjer/W/nKoHZ25xkHMzcXLNqNVSjI98=;
+        b=VtOmdjwVV5WinnYM8kjIEP+f3T2dP4qhZew2qo2b8rOixnhhoKqE73hDfXFYiPhVG+
+         U6BAIa1KXGyc+Nw/pBnyzHhaT1tIpO8FD1D5RuU3Fbq8THMadmNoknnSwKB9hGOx3JSo
+         9OgCVPZ0ChLJsVYfXDyAbZmg8Bo+ncPHVka+o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=JQGuujMWoz7ctS+NiJQK1UQkIfCwzUf11oIcBdMR1xU=;
-        b=mCH5r2cTWLAA+tNaC5Uv6I+dCLKkKc8uZhCZyD2ddNTYmaAk3zAyk+S7j5JIMBrgDq
-         HRe1wuEfmYMAjIbKkmEYwbCeOuNPY6BwIfe4qrSaj8nwuZHM9mYwDVQdO7GUa9dNhQmh
-         O8z0JIaekqjcKiVJrxAoJCyPcnBiMLUvqeEaPArD0J68/EeGiShO01c2VI6+HPXEZKXy
-         GpSuWkaIbSAv/hCCCNq86YGsQwoP3HD9e7LVjXEDHK7ZwTHVrFG/osjtBJ3i9z5NAilx
-         XCkTYIZFX+ogjW3BUZfKahOEEgaJ+m8kJviw+yCsQ86AJmd7kMjOjXsLQ2wT6UOBcre2
-         nwBw==
-X-Gm-Message-State: AOAM533lwXZqtjDQDHs4kzWvUQi/qisTbK7l5CnoYfDs0sfmfM050cBz
-        cmBYjFK38rEu3GFkTUWfuVg=
-X-Google-Smtp-Source: ABdhPJz0txRUcgmBn2DhQ0GHOxAIJ8o4YBeACd2LRg54QFreNOFvy/GQeAAwQE5GS1p7OO/w8ciGfg==
-X-Received: by 2002:a63:4a4b:: with SMTP id j11mr3421425pgl.451.1621319224979;
-        Mon, 17 May 2021 23:27:04 -0700 (PDT)
-Received: from varodek.localdomain ([223.179.151.249])
-        by smtp.gmail.com with ESMTPSA id w125sm11105094pfw.214.2021.05.17.23.27.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 May 2021 23:27:04 -0700 (PDT)
-From:   Vaibhav Gupta <vaibhavgupta40@gmail.com>
-To:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>
-Cc:     vaibhavgupta40@gmail.com, Kishon Vijay Abraham <kishon@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Praneeth Bajjuri <praneeth@ti.com>,
-        Gowtham Tammana <g-tammana@ti.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: ti: k3-am64-main: Enable crypto accelerator
-Date:   Tue, 18 May 2021 11:56:30 +0530
-Message-Id: <20210518062630.144154-1-vaibhavgupta40@gmail.com>
-X-Mailer: git-send-email 2.31.1
+        bh=PDyrwk3dKvoxKjer/W/nKoHZ25xkHMzcXLNqNVSjI98=;
+        b=jT4I2nftIfxCB8fxtXNv0h/rmEFD8ZFj/BQhzJ185gIb0UznesbE5TpI10BcpiM7VC
+         u1LX9vDtwPF9bYnowmcPJV8QIMRd7++CgBhYhK//lvmPZK0oYDte+3pWBNzTWuoIYvLj
+         zQtkvnRWyCU1Q1IiAd5I5agh9D/GzkbUQil1xHsXyCTm0HNxXZRU9vJGx5Ji64MDdNZG
+         v3P2SeKb4n9NWDxL5HZ7AXL8PVmjhB+MZUyyFI8WqLc62VrZ/wc5tVRyldgNHl+4Z+bh
+         9mifawIhSBsIHLOhPVDQga1aGZFEVb3GzqucoE1VwqN5fRdy74GBFDzQFhMvwNo3phdx
+         pRQg==
+X-Gm-Message-State: AOAM5332lI38nLN51KcPVEBqxI9G8k/dL7iEVYz7LX7LbNYjtYdG+E0p
+        3hbYfO6JqrKEexZyK/rDCCPzkg==
+X-Google-Smtp-Source: ABdhPJw/3HNuoTaSGjywqAr2hcme1ypfuSgw3ugqZ0Om4CEwcZ/8hmi6P3tglXLSkIpe+RJxzArq6w==
+X-Received: by 2002:a17:902:b408:b029:ec:e879:bbd8 with SMTP id x8-20020a170902b408b02900ece879bbd8mr2877299plr.65.1621320149869;
+        Mon, 17 May 2021 23:42:29 -0700 (PDT)
+Received: from localhost ([2401:fa00:95:205:f284:b819:54ca:c198])
+        by smtp.gmail.com with UTF8SMTPSA id f21sm7240386pjt.11.2021.05.17.23.42.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 May 2021 23:42:29 -0700 (PDT)
+From:   Claire Chang <tientzu@chromium.org>
+To:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     benh@kernel.crashing.org, paulus@samba.org,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
+        grant.likely@arm.com, xypron.glpk@gmx.de,
+        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
+        bauerman@linux.ibm.com, peterz@infradead.org,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        heikki.krogerus@linux.intel.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>, tfiga@chromium.org,
+        bskeggs@redhat.com, bhelgaas@google.com, chris@chris-wilson.co.uk,
+        tientzu@chromium.org, daniel@ffwll.ch, airlied@linux.ie,
+        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+        jani.nikula@linux.intel.com, jxgao@google.com,
+        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
+        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
+        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com
+Subject: [PATCH v7 00/15] Restricted DMA 
+Date:   Tue, 18 May 2021 14:42:00 +0800
+Message-Id: <20210518064215.2856977-1-tientzu@chromium.org>
+X-Mailer: git-send-email 2.31.1.751.gd2f1c929bd-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vaibhav Gupta <v_gupta@ti.com>
+This series implements mitigations for lack of DMA access control on
+systems without an IOMMU, which could result in the DMA accessing the
+system memory at unexpected times and/or unexpected addresses, possibly
+leading to data leakage or corruption.
 
-Add the node for SA2UL including the random number generator.
+For example, we plan to use the PCI-e bus for Wi-Fi and that PCI-e bus is
+not behind an IOMMU. As PCI-e, by design, gives the device full access to
+system memory, a vulnerability in the Wi-Fi firmware could easily escalate
+to a full system exploit (remote wifi exploits: [1a], [1b] that shows a
+full chain of exploits; [2], [3]).
 
-[v_gupta@ti.com: Add address ranges entry in cbass_main]
-Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-Signed-off-by: Vaibhav Gupta <v_gupta@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 25 ++++++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am64.dtsi      |  1 +
- 2 files changed, 26 insertions(+)
+To mitigate the security concerns, we introduce restricted DMA. Restricted
+DMA utilizes the existing swiotlb to bounce streaming DMA in and out of a
+specially allocated region and does memory allocation from the same region.
+The feature on its own provides a basic level of protection against the DMA
+overwriting buffer contents at unexpected times. However, to protect
+against general data leakage and system memory corruption, the system needs
+to provide a way to restrict the DMA to a predefined memory region (this is
+usually done at firmware level, e.g. MPU in ATF on some ARM platforms [4]).
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-index 25b702303637..adbc3c0673f3 100644
---- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-@@ -160,6 +160,31 @@ k3_reset: reset-controller {
- 		};
- 	};
- 
-+	main_crypto: crypto@40900000 {
-+		compatible = "ti,am64-sa2ul";
-+		reg = <0x0 0x40900000 0x0 0x1200>;
-+		power-domains = <&k3_pds 133 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 133 0>, <&k3_clks 133 1>, <&k3_clks 133 2>;
-+		clock-names = "pka_in_clk" , "x1_clk" , "x2_clk";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges = <0x0 0x040900000 0x00 0x040900000 0x0 0x30000>;
-+
-+		status = "okay";
-+
-+		dmas = <&main_pktdma 0xc001 15>, <&main_pktdma 0x4002 15>,
-+				<&main_pktdma 0x4003 15>;
-+		dma-names = "tx", "rx1", "rx2";
-+
-+		eip76d_rng: rng@40910000 {
-+			compatible = "inside-secure,safexcel-eip76";
-+			reg = <0x0 0x40910000 0x0 0x80>;
-+			interrupts = <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&k3_clks 133 2>;
-+			clock-names = "x2_clk";
-+		};
-+	};
-+
- 	main_pmx0: pinctrl@f4000 {
- 		compatible = "pinctrl-single";
- 		reg = <0x00 0xf4000 0x00 0x2d0>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am64.dtsi b/arch/arm64/boot/dts/ti/k3-am64.dtsi
-index 0ae8c844c482..e2bea44a16c5 100644
---- a/arch/arm64/boot/dts/ti/k3-am64.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64.dtsi
-@@ -85,6 +85,7 @@ cbass_main: bus@f4000 {
- 			 <0x00 0x78000000 0x00 0x78000000 0x00 0x00800000>, /* Main R5FSS */
- 			 <0x06 0x00000000 0x06 0x00000000 0x01 0x00000000>, /* PCIe DAT1 */
- 			 <0x05 0x00000000 0x05 0x00000000 0x01 0x00000000>, /* FSS0 DAT3 */
-+			 <0x00 0x40900000 0x00 0x40900000 0x00 0x00030000>, /* SA2UL */
- 
- 			 /* MCU Domain Range */
- 			 <0x00 0x04000000 0x00 0x04000000 0x00 0x01ff1400>;
+[1a] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_4.html
+[1b] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_11.html
+[2] https://blade.tencent.com/en/advisories/qualpwn/
+[3] https://www.bleepingcomputer.com/news/security/vulnerabilities-found-in-highly-popular-firmware-for-wifi-chips/
+[4] https://github.com/ARM-software/arm-trusted-firmware/blob/master/plat/mediatek/mt8183/drivers/emi_mpu/emi_mpu.c#L132
+
+v7:
+Fix debugfs, PageHighMem and comment style in rmem_swiotlb_device_init
+
+v6:
+Address the comments in v5
+https://lore.kernel.org/patchwork/cover/1423201/
+
+v5:
+Rebase on latest linux-next
+https://lore.kernel.org/patchwork/cover/1416899/
+
+v4:
+- Fix spinlock bad magic
+- Use rmem->name for debugfs entry
+- Address the comments in v3
+https://lore.kernel.org/patchwork/cover/1378113/
+
+v3:
+Using only one reserved memory region for both streaming DMA and memory
+allocation.
+https://lore.kernel.org/patchwork/cover/1360992/
+
+v2:
+Building on top of swiotlb.
+https://lore.kernel.org/patchwork/cover/1280705/
+
+v1:
+Using dma_map_ops.
+https://lore.kernel.org/patchwork/cover/1271660/
+
+Claire Chang (15):
+  swiotlb: Refactor swiotlb init functions
+  swiotlb: Refactor swiotlb_create_debugfs
+  swiotlb: Add DMA_RESTRICTED_POOL
+  swiotlb: Add restricted DMA pool initialization
+  swiotlb: Add a new get_io_tlb_mem getter
+  swiotlb: Update is_swiotlb_buffer to add a struct device argument
+  swiotlb: Update is_swiotlb_active to add a struct device argument
+  swiotlb: Bounce data from/to restricted DMA pool if available
+  swiotlb: Move alloc_size to find_slots
+  swiotlb: Refactor swiotlb_tbl_unmap_single
+  dma-direct: Add a new wrapper __dma_direct_free_pages()
+  swiotlb: Add restricted DMA alloc/free support.
+  dma-direct: Allocate memory from restricted DMA pool if available
+  dt-bindings: of: Add restricted DMA pool
+  of: Add plumbing for restricted DMA pool
+
+ .../reserved-memory/reserved-memory.txt       |  27 ++
+ drivers/gpu/drm/i915/gem/i915_gem_internal.c  |   2 +-
+ drivers/gpu/drm/nouveau/nouveau_ttm.c         |   2 +-
+ drivers/iommu/dma-iommu.c                     |  12 +-
+ drivers/of/address.c                          |  25 ++
+ drivers/of/device.c                           |   3 +
+ drivers/of/of_private.h                       |   5 +
+ drivers/pci/xen-pcifront.c                    |   2 +-
+ drivers/xen/swiotlb-xen.c                     |   2 +-
+ include/linux/device.h                        |   4 +
+ include/linux/swiotlb.h                       |  41 ++-
+ kernel/dma/Kconfig                            |  14 +
+ kernel/dma/direct.c                           |  63 +++--
+ kernel/dma/direct.h                           |   9 +-
+ kernel/dma/swiotlb.c                          | 242 +++++++++++++-----
+ 15 files changed, 356 insertions(+), 97 deletions(-)
+
 -- 
-2.31.1
+2.31.1.751.gd2f1c929bd-goog
 
