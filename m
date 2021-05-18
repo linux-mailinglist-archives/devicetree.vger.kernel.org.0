@@ -2,115 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 236913882C0
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 00:31:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03AEB388304
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 01:18:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237623AbhERWcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 18:32:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51480 "EHLO
+        id S237112AbhERXTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 19:19:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237154AbhERWcu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 18:32:50 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94374C061573;
-        Tue, 18 May 2021 15:31:31 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id i9so16095522lfe.13;
-        Tue, 18 May 2021 15:31:31 -0700 (PDT)
+        with ESMTP id S235802AbhERXTa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 19:19:30 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2B99C06175F
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 16:18:11 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id b26so274127lfq.4
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 16:18:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=6ljTRHwDIGzKo93ro0EyJFj979FSc4cfbPsSrjnxUwY=;
-        b=EZ1892QSAlcdInwXoIsMLGfBxydo1KcRAPSMXGWFBtVz33HsOcLCnYuXraX+CikYq4
-         MXk/yi+C6QME/uL9aalttKXxoKix8sL2suoO/6QP2322m4DLH4p3GWCPMULIumAk5Lfk
-         3hpwqiEIOLOKEeSXwUI4Vpsry4X1eQOjE5kTns+E01m4ssxuXe0n5u1xjBQw0wFrSl6U
-         ZLcF3ehyVwO4z2qWjoCfKfn9ej4x65SZ2Vex3P9E+OsEDzm94CWjj0JxOUZxAKfklGY6
-         JR76fvBSQw8qjEKE2CGcEvuBVjFThmoVeDlA5WFQxFs8CIPKsi4mumcG2vsAKlt697iH
-         JXNQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=t1lUkNBuVC2UZABZ7mjXl1iS2OFEu1Ax24kG7Pa9v9o=;
+        b=oIb6bCshL727qAb4uQIy4tdqNvs4pKTGrZeO2A2o7UfVH/eztAfkfvbBEipSokq+59
+         FoJYB78uhQ4mijp8vZr0SP4cPRxTCgv+9YN3uSxCr2FnO74K7P78F1v6PtUE7f6iC8Pv
+         FPES6jgvgT3i/uSIj/QqFa76gtm49FrRaxPB30vHeUYSMgKZxTDA9R4MdmfdBPJPUrAk
+         PXjdR2Bdhpl2t8wkJ57L3l+BRB1V7Q+57X8geh0vCm1fe1G8J0cZ40q6tT3ssBW4SGXn
+         7chziYboyIHfa834KfPzy+3k9wESGMTH0oTvTN+o2L+36uT6tElzd3NtoyPiJe6LOZLv
+         Maww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=6ljTRHwDIGzKo93ro0EyJFj979FSc4cfbPsSrjnxUwY=;
-        b=GsQpfUFBAwTLnie9swUvAEMSmBBRtxjFsbGnV8DNZf+GxhuotgrDTk5vG3Y7Af8qMb
-         VQsp8LMqjFOC4CRXiSZjvWI/Z7p7ISvCFihgUj2uZytLsv/NsPzfcMwIhcoXQ7x/3cLM
-         fg2coUSRP9lWSGntYR2nfzr7VCY5vOBxB3vMsylCOXxTVWPtRP7XInJQhAlcQp43XQCe
-         4p9D5rjt3lYz9pjeEryfc28pbWqQMfGd6zS/dC2xGHWSfkW8PZHvF/rTuCen9IYTmLzJ
-         mmr9kExJqhRm8b20aMIkvyCj7SXyD/jTcDUl9F+Um5tEpFxATC+Vb0PHy9235GFYLPLa
-         wvjQ==
-X-Gm-Message-State: AOAM530cFFg1/8/FLDJVcjZj1F5FRB2C23xlPbschHubWchpr6pqaJlr
-        PROxpd58NI3T6ZeiGesJwDg=
-X-Google-Smtp-Source: ABdhPJybbVaMiPw92JX0U2shg8oyjsaIK95UmJ6HxuvOu18l6A+ecA9rZrx3Yn/FqFTI23c+Zl+7EA==
-X-Received: by 2002:a19:431b:: with SMTP id q27mr5484708lfa.226.1621377089928;
-        Tue, 18 May 2021 15:31:29 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-193-91.dynamic.spd-mgts.ru. [109.252.193.91])
-        by smtp.googlemail.com with ESMTPSA id m22sm2392071lfu.219.2021.05.18.15.31.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 May 2021 15:31:29 -0700 (PDT)
-Subject: Question about Tegra UCMs
-To:     Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Takashi Iwai <tiwai@suse.com>, Ion Agorria <ion@agorria.com>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-References: <20210518001356.19227-1-digetx@gmail.com>
- <20210518001356.19227-3-digetx@gmail.com>
- <20210518180949.GA949047@robh.at.kernel.org>
- <20210518183455.GE4358@sirena.org.uk>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <92cef674-c454-e08c-b44d-d8c08b1e8ccf@gmail.com>
-Date:   Wed, 19 May 2021 01:31:28 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=t1lUkNBuVC2UZABZ7mjXl1iS2OFEu1Ax24kG7Pa9v9o=;
+        b=OyoNF6bvLNedBAu/gLupt54umXFf1L/9/lSt61hc1+NGmvB0qg92j7DBLsFcgRz8Tp
+         /V5lVbB6Vk01WURie0DNkHDdMhyKRMfERLgOMPKZIC6GMb3DGWaszMCx1y8MLZuoV2FT
+         +QvvTAzDzMbkkvfCERewJPjmvjecJUnUzEZLP/5kNNu0fNpt91TRpDU/k2jqjoMLQB90
+         uOaDqT2PAURrJ/TfqeTs5yYsgq5s8y1eC7s08yfBWMgU3k0ERCVHxjJpf1851ZulI/z7
+         21JPHxAE9Q8qHuxXD5QwwNAe1BBrWonkiPm7JoO3nQuFUjH0Oo8WNMF++9Ci+zdRSNlm
+         VTzA==
+X-Gm-Message-State: AOAM533uT6lpbsZJdo1xLW/qIhInOZd4ehZUDMfLzbCs+0jk+bMdRQcW
+        Hj+OK9/teeFHJFioqQH/HllIZ7ISCXm55wMX1J1Qsg==
+X-Google-Smtp-Source: ABdhPJwbX+FemxVEp4TpL+OaKW57UtYIhtlS+hTGYuSbNLuqKI0W4v/DXLByxnfuX+1snj0AfuXOkxd2UaRJJjUo3pw=
+X-Received: by 2002:ac2:5145:: with SMTP id q5mr3321479lfd.529.1621379890103;
+ Tue, 18 May 2021 16:18:10 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210518183455.GE4358@sirena.org.uk>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210517193205.691147-1-clabbe@baylibre.com> <20210517193205.691147-5-clabbe@baylibre.com>
+ <CACRpkdY3c4uvo1zbEgNW0meF-4P8be_nmoOEQAHP5V+GXgoG=A@mail.gmail.com> <YKOO8UxdmZBjYbt4@Red>
+In-Reply-To: <YKOO8UxdmZBjYbt4@Red>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 19 May 2021 01:17:59 +0200
+Message-ID: <CACRpkdYqaoggyBO9=fdi2iUh9O0Y_jT5jnc7+qbE9HzEWK57Sg@mail.gmail.com>
+Subject: Re: [PATCH 4/5] ARM: gemini: add device tree for edimax NS2502
+To:     LABBE Corentin <clabbe@baylibre.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>, SoC Team <soc@kernel.org>,
+        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Mark, could you please help me to understand the UCM naming scheme that ALSA uses..
+On Tue, May 18, 2021 at 11:55 AM LABBE Corentin <clabbe@baylibre.com> wrote=
+:
+> Le Tue, May 18, 2021 at 01:46:20AM +0200, Linus Walleij a =C3=A9crit :
 
-About a year ago I tried to complain to Jaroslav Kysela in a comment to the UCM change [1] that it should be breaking the naming scheme of Tegra UCMs, but haven't got a meaningful reply and moved on to other things.
+> > Is the FIS broken since you hardcode the partitions?
+> >
+> > Doesn't this work:
+> >
+> > partitions {
+> >     compatible =3D "redboot-fis";
+> >     /* Eraseblock at 0x7e0000 */
+> >     fis-index-block =3D <0xfc>;
+> > };
+> >
+> > (Needs CONFIG_MTD_REDBOOT_PARTS)
+>
+> No it does not.
+>
+> physmap-flash 30000000.flash: no enabled pin control state
+> physmap-flash 30000000.flash: no disabled pin control state
+> physmap-flash 30000000.flash: initialized Gemini-specific physmap control
+> physmap-flash 30000000.flash: physmap platform flash device: [mem 0x30000=
+000-0x331fffff]
+> 30000000.flash: Found 1 x16 devices at 0x0 in 16-bit bank. Manufacturer I=
+D 0x000001 Chip ID 0x002201
+> number of CFI chips: 1
+> Searching for RedBoot partition table in 30000000.flash at offset 0x1fe00=
+00
+> No RedBoot partition table detected in 30000000.flash
+> Searching for RedBoot partition table in 30000000.flash at offset 0x1fe00=
+00
+> No RedBoot partition table detected in 30000000.flash
 
-[1] https://github.com/alsa-project/alsa-ucm-conf/commit/8ff2d50745efbb6959324f672460e413f0b618b8
+Hm since it searches at 0x1fe0000 that's where it thinks the last
+eraseblock is so the erase blocks are 0x20000 (128KB).
 
-Today I noticed that the naming scheme changed again and I still don't understand what to do about it.
+FIS at 0x7e0000 should be erase block
+0x7e0000/0x20000 =3D 0x3f
 
-I have two devices:
+Can you test fis-index-block =3D <0x3f> and see what happens?
 
- 1. Acer Picasso tablet that uses "Acer Iconia Tab A500 WM8903" for the card model name.
-
- 2. Google Nexus 7 that uses "ASUS Google Nexus 7 ALC5642".
-
-Previously UCMs were picked up by pulseaudio from these paths:
-
- 1. /usr/share/alsa/ucm2/Acer Iconia Tab A500 WM8903/
- 2. /usr/share/alsa/ucm2/ASUS Google Nexus 7 ALC5642/
-
-Now the lookup paths are changed to:
-
- 1. /usr/share/alsa/ucm2/Acer_Iconia_Tab/
- 2. /usr/share/alsa/ucm2/ASUS_Google_Nex/
-
-Strace shows that pulseaudio searches UCMs only at these paths.
-
-The output of /proc/asound/cards:
-
- 0 [WM8903         ]: Acer_Iconia_Tab - Acer Iconia Tab A500 WM8903
-                      Acer Iconia Tab A500 WM8903
-
- 0 [ALC5642        ]: ASUS_Google_Nex - ASUS Google Nexus 7 ALC5642
-                      ASUS Google Nexus 7 ALC5642
-
-IIUC, the "ucm2/Tegra/codec_name" scheme [2] that the current ALSA UCM uses simply doesn't work at all. Is there anything on the kernel side that I could change to get a working naming scheme? If yes, I may try to do something about it in the v2, thanks in advance.
-
-[2] https://github.com/alsa-project/alsa-ucm-conf/tree/master/ucm2/Tegra
+Yours,
+Linus Walleij
