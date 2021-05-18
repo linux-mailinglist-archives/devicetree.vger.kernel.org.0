@@ -2,119 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34ABD3877FF
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 13:48:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34AA1387846
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 14:01:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348856AbhERLtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 07:49:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51134 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232135AbhERLtZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 May 2021 07:49:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 888AF61007;
-        Tue, 18 May 2021 11:48:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621338487;
-        bh=uXT8X84pU/MhQkoLeSofNd4xcdpY6KU8l/egukUIF18=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=H1OvMa4m8OviY3qqjFsihKek0GJRdB01yCxklaXOTxg9ofq80Fb1SDj5oCxrJnt6U
-         aQOVJ5Z70uFXu9Ed256zDIudHG/QRvLtlaqeBhBNS8vqXcFJf75OH1GZk8RrSQhiiW
-         y6K7zN8JIihdObT6I56LKBMf/mKi6R242TsfrvLAA6kIk11vcJlST0EV7UNUFPYeau
-         oLKJZmGz+zoZdVw3QwqWg35VY4qEsoOYGFu5PmxIFPCL4cwe6e9WYj/zAvZdtF+Lao
-         1xjLtdGmxD6+wxZZ5vfWCtJAT/sc2/3aiXkLl2frskRO7QXiieFPWZ9gYT27nDnwh3
-         xfBHnQyrtsGEQ==
-Date:   Tue, 18 May 2021 17:18:03 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, mka@chromium.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org
-Subject: Re: [RESEND PATCH V4 4/8] arm64: dts: qcom: pm8350c: Add temp-alarm
- support
-Message-ID: <YKOpc+mi9fxVRMbI@vkoul-mobl.Dlink>
-References: <1621318822-29332-1-git-send-email-skakit@codeaurora.org>
- <1621318822-29332-5-git-send-email-skakit@codeaurora.org>
+        id S1348983AbhERMC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 08:02:57 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:37180 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1348965AbhERMCy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 08:02:54 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14IC1Xoe022496;
+        Tue, 18 May 2021 07:01:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1621339293;
+        bh=1lel3gH0yK6JEo4QIhQRWSw3/QbFc7G9njZHvEgNBFE=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=xPC0UHk/RcfYKAVu0CpYyg7/EPR7Bxsui16JxeuFrrOLdQFmlGN22+PQGkLiyEddR
+         QklKyWyrltKOgpKefdtRqT3NdHTM5SZh6H9oGeMiG9XXI6w1qhxIidIPDzTVmfACgs
+         FZuW/8cQpxu+NE0ISYgTifkbV3+KkjI/r2hTjgXk=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14IC1XgD126896
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 18 May 2021 07:01:33 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 18
+ May 2021 07:01:33 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 18 May 2021 07:01:33 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14IC1X7v021298;
+        Tue, 18 May 2021 07:01:33 -0500
+Date:   Tue, 18 May 2021 07:01:33 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Vaibhav Gupta <vaibhavgupta40@gmail.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham <kishon@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Praneeth Bajjuri <praneeth@ti.com>,
+        Gowtham Tammana <g-tammana@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am64-main: Enable crypto
+ accelerator
+Message-ID: <20210518120133.73qmsd6uu6dwtjfu@backshift>
+References: <20210518062630.144154-1-vaibhavgupta40@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <1621318822-29332-5-git-send-email-skakit@codeaurora.org>
+In-Reply-To: <20210518062630.144154-1-vaibhavgupta40@gmail.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18-05-21, 11:50, satya priya wrote:
-> Add temp-alarm node for PM8350C pmic and also modify gpio
-> node to add gpio ranges and "qcom,spmi-gpio" compatible.
-
-These should be two patches explaining why things are done like that
-
+On 11:56-20210518, Vaibhav Gupta wrote:
+> From: Vaibhav Gupta <v_gupta@ti.com>
 > 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
-> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> Add the node for SA2UL including the random number generator.
+> 
+> [v_gupta@ti.com: Add address ranges entry in cbass_main]
+> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> Signed-off-by: Vaibhav Gupta <v_gupta@ti.com>
+
+
+I see that you have missed the series Suman posted in [1]. It has a few
+cleanups of interest.
+
 > ---
-> Changes in RESEND V4:
->  - No Changes.
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 25 ++++++++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am64.dtsi      |  1 +
+>  2 files changed, 26 insertions(+)
 > 
->  arch/arm64/boot/dts/qcom/pm8350c.dtsi | 32 +++++++++++++++++++++++++++++++-
->  1 file changed, 31 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/pm8350c.dtsi b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-> index 2b9b75e..e1b75ae 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-> @@ -13,13 +13,43 @@
->  		#address-cells = <1>;
->  		#size-cells = <0>;
->  
-> +		pm8350c_temp_alarm: temp-alarm@a00 {
-> +			compatible = "qcom,spmi-temp-alarm";
-> +			reg = <0xa00>;
-> +			interrupts = <0x2 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
-> +			#thermal-sensor-cells = <0>;
-> +		};
-> +
->  		pm8350c_gpios: gpio@8800 {
-> -			compatible = "qcom,pm8350c-gpio";
-> +			compatible = "qcom,pm8350c-gpio", "qcom,spmi-gpio";
-
-why is this changed?
-
->  			reg = <0x8800>;
->  			gpio-controller;
-> +			gpio-ranges = <&pm8350c_gpios 0 0 9>;
->  			#gpio-cells = <2>;
->  			interrupt-controller;
->  			#interrupt-cells = <2>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> index 25b702303637..adbc3c0673f3 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> @@ -160,6 +160,31 @@ k3_reset: reset-controller {
 >  		};
 >  	};
->  };
+>  
+> +	main_crypto: crypto@40900000 {
+> +		compatible = "ti,am64-sa2ul";
+> +		reg = <0x0 0x40900000 0x0 0x1200>;
+> +		power-domains = <&k3_pds 133 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 133 0>, <&k3_clks 133 1>, <&k3_clks 133 2>;
+> +		clock-names = "pka_in_clk" , "x1_clk" , "x2_clk";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0x0 0x040900000 0x00 0x040900000 0x0 0x30000>;
 > +
-> +&thermal_zones {
-> +	pm8350c_thermal: pm8350c-thermal {
-> +		polling-delay-passive = <100>;
-> +		polling-delay = <0>;
-> +		thermal-sensors = <&pm8350c_temp_alarm>;
+> +		status = "okay";
+drop this..
 > +
-> +		trips {
-> +			pm8350c_trip0: trip0 {
-> +				temperature = <95000>;
-> +				hysteresis = <0>;
-> +				type = "passive";
-> +			};
+> +		dmas = <&main_pktdma 0xc001 15>, <&main_pktdma 0x4002 15>,
+> +				<&main_pktdma 0x4003 15>;
+> +		dma-names = "tx", "rx1", "rx2";
 > +
-> +			pm8350c_crit: pm8350c-crit {
-> +				temperature = <115000>;
-> +				hysteresis = <0>;
-> +				type = "critical";
-> +			};
+> +		eip76d_rng: rng@40910000 {
+> +			compatible = "inside-secure,safexcel-eip76";
+> +			reg = <0x0 0x40910000 0x0 0x80>;
+> +			interrupts = <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&k3_clks 133 2>;
+> +			clock-names = "x2_clk";
 > +		};
 > +	};
-> +};
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-> of Code Aurora Forum, hosted by The Linux Foundation
+> +
+>  	main_pmx0: pinctrl@f4000 {
+>  		compatible = "pinctrl-single";
+>  		reg = <0x00 0xf4000 0x00 0x2d0>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am64.dtsi b/arch/arm64/boot/dts/ti/k3-am64.dtsi
+> index 0ae8c844c482..e2bea44a16c5 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am64.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am64.dtsi
+> @@ -85,6 +85,7 @@ cbass_main: bus@f4000 {
+>  			 <0x00 0x78000000 0x00 0x78000000 0x00 0x00800000>, /* Main R5FSS */
+>  			 <0x06 0x00000000 0x06 0x00000000 0x01 0x00000000>, /* PCIe DAT1 */
+>  			 <0x05 0x00000000 0x05 0x00000000 0x01 0x00000000>, /* FSS0 DAT3 */
+> +			 <0x00 0x40900000 0x00 0x40900000 0x00 0x00030000>, /* SA2UL */
+>  
+>  			 /* MCU Domain Range */
+>  			 <0x00 0x04000000 0x00 0x04000000 0x00 0x01ff1400>;
+
+
+I think you might have missed the discussion here:[1]
+a) Could I suggest you co-ordinate with Suman as to which series should
+   I consider? Suman's looks a lot complete..
+b) Considering the potential for TF-A booting Linux without u-boot on HS
+   devices, may I suggest making sure that the dts board files for evm have the
+   nodes disabled by default?
+
+[1] https://lore.kernel.org/linux-arm-kernel/20210514221148.m42zldo6lfxn5l4m@underfed/
 
 -- 
-~Vinod
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
