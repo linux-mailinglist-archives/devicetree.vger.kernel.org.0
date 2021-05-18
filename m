@@ -2,226 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 38B71387FBA
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 20:38:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 088C6387FFD
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 20:54:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346083AbhERSjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 14:39:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55524 "EHLO
+        id S1351699AbhERSzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 14:55:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241108AbhERSj3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 14:39:29 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78116C061573
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 11:38:10 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id c14so9534405wrx.3
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 11:38:10 -0700 (PDT)
+        with ESMTP id S1351695AbhERSzT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 14:55:19 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E711DC06175F
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 11:54:00 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id z137-20020a1c7e8f0000b02901774f2a7dc4so2106812wmc.0
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 11:54:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=Huc21UOdwPm7LAcMF6IDLuI3qr/CzsjN0hTgKyze11c=;
-        b=pbeTfT/zAWAbrjMc3KD6Gzn44cNIr2HWhd/h4jEOEDiAKnA1jNwbNxzq3c+yPkuqiO
-         EV+UhtlP7sMyOQLLG+DDeVOypX6sqKdQMyERYUwEX8oOpAfv4rULeWo2Zz/ZwylS6h+7
-         zJj2PK9IuFIyJqGMGehkGvvL/ZVyDOY4OYpI8IdibzlIkSRxBgGrNRw9nDeO5ZUEI/Zu
-         UjWWnDebmzljIs+V154G0HncayJW78gM5BMlO4TJWBkf5yCrs/zVkHiXeHW09z8Rhu7+
-         ljgHDRtTChGqOXB0dGbidywt8MXbfSIuN1BnoB7Ojfv3YkgtsMLACcWN99FsEc/f2lGR
-         zNwQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YjYQHeqKS2kjIoIBl/OQt2CgrSmm0dChlmcHt1OGoqM=;
+        b=RtxaK3BQVVFrc7xm2rzL24PV1U/NtA9hcAmFKeBTZWYGjDGvtodm6xsjAHQ8KzWoKk
+         pniOdOxrEF3Y5L3hbJT5F9fqclMb2e7ae7aXwojdmGGzTgepx4J0mKsboIg3bqBdrNEA
+         6h6xHi5GuGclR192HnaAVvkz1rqBsU9Mxhzz33Lg1Tp44m9rUoo+U0cVrBmzd+BR2W53
+         SLPkWZ2yB74eWnjSzo46BCTHxiCrDIJPnz7VYdeUOxIkx1LqirWA+5Hdc59NZSZTD3JC
+         it39wQgVJRjLgUKFp0CpiRwOt+FpPJgYipOaeh3uNUJKANKi+lDcqlGzUZZGofYiYBlk
+         GmCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Huc21UOdwPm7LAcMF6IDLuI3qr/CzsjN0hTgKyze11c=;
-        b=NO7joVQ+YOdZ/NMzaywyTkWF8dEvOzD4jWx2SWu3EVpjEJrEjCT2bP+L1dV4/3MGcq
-         fBfbL+DQ71ORiBRB5AX1S+J/XkHqfNWp8ln8V9epG+ZpX/8ERdGlp58saTUymcKFaKHC
-         +NBWY+TWRUKT/SFQ0KSJHqWVAPHolMU330A0hIPDiS6ODmeieIzJkQ3w4PaEGzVotrgg
-         mLB2cY2TCdPv8QG6AnIg3pOnq42l4DE68drGaWE9iST5uCJPhL6kPJ+qH/yE6d5LLbfQ
-         yATHLScVL5iTvKo7ioyfewouGq14OwomY+qnOMu20c/k147HrKByCAQByp2iUbxnpy40
-         Rg0w==
-X-Gm-Message-State: AOAM530YGdicuk0431cT0z8T5PHg4alQZrT7O8r6SKOAKgiRMLL1cwqf
-        WGC+tehrksAn/bt1/3reWkm9pQ==
-X-Google-Smtp-Source: ABdhPJxEzSm2dA9aDTl991lTkKDfsxON+bT2vLdlUOLnICU65XUyaEVNHQyr+Z2Bn2OQ+ltXRjcWHg==
-X-Received: by 2002:adf:9c8e:: with SMTP id d14mr9057975wre.140.1621363089108;
-        Tue, 18 May 2021 11:38:09 -0700 (PDT)
-Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
-        by smtp.googlemail.com with ESMTPSA id b12sm23051343wro.28.2021.05.18.11.38.07
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YjYQHeqKS2kjIoIBl/OQt2CgrSmm0dChlmcHt1OGoqM=;
+        b=Q8urlNGKCnz92lA8kGxH7db+Xw0VLOUBGd2ioZ5mSo4X/Vkq2IIHhse3E0mnIfWBWC
+         XcRLNV8oX4fF8VgtUmdfm+fuDDJMmjRGzQse+tOYLNNDfPXJjFtldkpSDXmSaqD0PGGS
+         ue7MTP5smWO/j5CyGrE+YetCGf6Ca0e2Zp5AuEGWOCPLQku6LdbcZcvoXRc2w4RASBQd
+         DijtrIUxgLI+iTGPz2hjecmX6Hx9pYZUZaIEiVj+zuXUCDDnxGINVSQYqPGE1l8a5XA2
+         frjmOQ7q6WmVzlsoVYPJR66hrwkTHNbnVeP8QjL3FowKEbr3khMQD/Bp30ucGDoypzJj
+         wQEw==
+X-Gm-Message-State: AOAM533Sqz1Gnd9jNLv36d+UgspKAPKvgSKPRscFJwpaMloeFb0xcBkV
+        J7aBVDxC6dc1glj/ijY9+/aoAA==
+X-Google-Smtp-Source: ABdhPJx5Nj1zwTvJgyWbYtWlJntgoIzHrk0UajcMq3DRCjRN21cLJ+WXz/kgqtu0jmRg5ReV170ang==
+X-Received: by 2002:a7b:c5d2:: with SMTP id n18mr6497446wmk.97.1621364039581;
+        Tue, 18 May 2021 11:53:59 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id j10sm22498405wrt.32.2021.05.18.11.53.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 May 2021 11:38:08 -0700 (PDT)
-Date:   Tue, 18 May 2021 20:38:06 +0200
-From:   LABBE Corentin <clabbe@baylibre.com>
-To:     Rob Herring <robh@kernel.org>, linus.walleij@linaro.org
-Cc:     airlied@linux.ie, daniel@ffwll.ch, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: display: convert faraday,tve200 to YAML
-Message-ID: <YKQJjrlTB0RZYNOK@Red>
-References: <20210511165448.422987-1-clabbe@baylibre.com>
- <20210518002624.GA3346846@robh.at.kernel.org>
+        Tue, 18 May 2021 11:53:59 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     linus.walleij@linaro.org, robh+dt@kernel.org,
+        ulli.kroll@googlemail.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH] ARM: dts: gemini: convert obsolete SPI properties
+Date:   Tue, 18 May 2021 18:53:53 +0000
+Message-Id: <20210518185353.3802437-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210518002624.GA3346846@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Mon, May 17, 2021 at 07:26:24PM -0500, Rob Herring a écrit :
-> On Tue, May 11, 2021 at 04:54:48PM +0000, Corentin Labbe wrote:
-> > Converts display/faraday,tve200.txt to yaml.
-> > 
-> > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> > ---
-> >  .../bindings/display/faraday,tve200.txt       | 54 -----------
-> >  .../bindings/display/faraday,tve200.yaml      | 92 +++++++++++++++++++
-> >  2 files changed, 92 insertions(+), 54 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/display/faraday,tve200.txt
-> >  create mode 100644 Documentation/devicetree/bindings/display/faraday,tve200.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/faraday,tve200.txt b/Documentation/devicetree/bindings/display/faraday,tve200.txt
-> > deleted file mode 100644
-> > index 82e3bc0b7485..000000000000
-> > --- a/Documentation/devicetree/bindings/display/faraday,tve200.txt
-> > +++ /dev/null
-> > @@ -1,54 +0,0 @@
-> > -* Faraday TV Encoder TVE200
-> > -
-> > -Required properties:
-> > -
-> > -- compatible: must be one of:
-> > -	"faraday,tve200"
-> > -	"cortina,gemini-tvc", "faraday,tve200"
-> > -
-> > -- reg: base address and size of the control registers block
-> > -
-> > -- interrupts: contains an interrupt specifier for the interrupt
-> > -	line from the TVE200
-> > -
-> > -- clock-names: should contain "PCLK" for the clock line clocking the
-> > -	silicon and "TVE" for the 27MHz clock to the video driver
-> > -
-> > -- clocks: contains phandle and clock specifier pairs for the entries
-> > -	in the clock-names property. See
-> > -	Documentation/devicetree/bindings/clock/clock-bindings.txt
-> > -
-> > -Optional properties:
-> > -
-> > -- resets: contains the reset line phandle for the block
-> > -
-> > -Required sub-nodes:
-> > -
-> > -- port: describes LCD panel signals, following the common binding
-> > -	for video transmitter interfaces; see
-> > -	Documentation/devicetree/bindings/media/video-interfaces.txt
-> > -	This port should have the properties:
-> > -	reg = <0>;
-> > -	It should have one endpoint connected to a remote endpoint where
-> > -	the display is connected.
-> > -
-> > -Example:
-> > -
-> > -display-controller@6a000000 {
-> > -	#address-cells = <1>;
-> > -	#size-cells = <0>;
-> > -	compatible = "faraday,tve200";
-> > -	reg = <0x6a000000 0x1000>;
-> > -	interrupts = <13 IRQ_TYPE_EDGE_RISING>;
-> > -	resets = <&syscon GEMINI_RESET_TVC>;
-> > -	clocks = <&syscon GEMINI_CLK_GATE_TVC>,
-> > -		 <&syscon GEMINI_CLK_TVC>;
-> > -	clock-names = "PCLK", "TVE";
-> > -
-> > -	port@0 {
-> > -		reg = <0>;
-> > -		display_out: endpoint {
-> > -			remote-endpoint = <&panel_in>;
-> > -		};
-> > -	};
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/display/faraday,tve200.yaml b/Documentation/devicetree/bindings/display/faraday,tve200.yaml
-> > new file mode 100644
-> > index 000000000000..3ab51e7e72af
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/faraday,tve200.yaml
-> > @@ -0,0 +1,92 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/faraday,tve200.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Faraday TV Encoder TVE200
-> > +
-> > +maintainers:
-> > +  - Linus Walleij <linus.walleij@linaro.org>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - const: faraday,tve200
-> > +      - items:
-> > +          - const: cortina,gemini-tvc
-> > +          - const: faraday,tve200
-> > +
-> > +  reg:
-> > +    minItems: 1
-> 
-> maxItems: 1
-> 
-> They evaluate the same, but maxItems seems a bit more logical. 
-> 
-> > +
-> > +  interrupts:
-> > +    minItems: 1
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: PCLK
-> > +      - const: TVE
-> > +
-> > +  clocks:
-> > +    minItems: 2
-> > +
-> > +  resets:
-> > +    minItems: 1
-> > +
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 0
-> > +
-> > +patternProperties:
-> > +  "^port@[0-9]+$":
-> 
-> Should be just 'port' or 'port@0', but really the former is preferred 
-> when only 1. 
-> 
-> Use the graph binding:
-> 
-> $ref: /schemas/graph.yaml#/properties/port
-> 
+gpio-xxx are obsoletes properties, convert them to xxx-gpios.
 
-I have a problem:
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+ arch/arm/boot/dts/gemini-dlink-dir-685.dts | 6 +++---
+ arch/arm/boot/dts/gemini-sl93512r.dts      | 6 +++---
+ arch/arm/boot/dts/gemini-sq201.dts         | 6 +++---
+ 3 files changed, 9 insertions(+), 9 deletions(-)
 
-I get the following warning:
-/usr/src/linux-next/arch/arm/boot/dts/gemini.dtsi:410.31-423.5: Warning (graph_child_address): /soc/display-controller@6a000000: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
-  also defined at /usr/src/linux-next/arch/arm/boot/dts/gemini-dlink-dir-685.dts:492.31-501.5
-
-But if I remove them!
-/usr/src/linux-next/arch/arm/boot/dts/gemini-dlink-dir-685.dts:496.5-15: Warning (reg_format): /soc/display-controller@6a000000/port@0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/gemini-dlink-dir-685.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/gemini-dlink-dir-685.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/gemini-dlink-dir-685.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/gemini-dlink-dir-685.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/gemini-dlink-dir-685.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-/usr/src/linux-next/arch/arm/boot/dts/gemini-dlink-dir-685.dts:495.11-500.6: Warning (avoid_default_addr_size): /soc/display-controller@6a000000/port@0: Relying on default #address-cells value
-/usr/src/linux-next/arch/arm/boot/dts/gemini-dlink-dir-685.dts:495.11-500.6: Warning (avoid_default_addr_size): /soc/display-controller@6a000000/port@0: Relying on default #size-cells value
-arch/arm/boot/dts/gemini-dlink-dir-685.dt.yaml: Warning (avoid_unnecessary_addr_size): Failed prerequisite 'avoid_default_addr_size'
-arch/arm/boot/dts/gemini-dlink-dir-685.dt.yaml: Warning (unique_unit_address): Failed prerequisite 'avoid_default_addr_size'
-/usr/src/linux-next/arch/arm/boot/dts/gemini-dlink-dir-685.dts:495.11-500.6: Warning (graph_port): /soc/display-controller@6a000000/port@0: graph node '#address-cells' is -1, must be 1
-/usr/src/linux-next/arch/arm/boot/dts/gemini-dlink-dir-685.dts:495.11-500.6: Warning (graph_port): /soc/display-controller@6a000000/port@0: graph node '#size-cells' is -1, must be 0
-
-The only solution is to remove "reg = <0>;" and calling the node "port".
-Does it is acceptable ?
+diff --git a/arch/arm/boot/dts/gemini-dlink-dir-685.dts b/arch/arm/boot/dts/gemini-dlink-dir-685.dts
+index cc39289e99dd..b2a0f3b1441e 100644
+--- a/arch/arm/boot/dts/gemini-dlink-dir-685.dts
++++ b/arch/arm/boot/dts/gemini-dlink-dir-685.dts
+@@ -61,9 +61,9 @@ spi {
+ 		#size-cells = <0>;
+ 
+ 		/* Collides with IDE pins, that's cool (we do not use them) */
+-		gpio-sck = <&gpio1 5 GPIO_ACTIVE_HIGH>;
+-		gpio-miso = <&gpio1 8 GPIO_ACTIVE_HIGH>;
+-		gpio-mosi = <&gpio1 7 GPIO_ACTIVE_HIGH>;
++		sck-gpios = <&gpio1 5 GPIO_ACTIVE_HIGH>;
++		miso-gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
++		mosi-gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>;
+ 		cs-gpios = <&gpio0 20 GPIO_ACTIVE_LOW>;
+ 		num-chipselects = <1>;
+ 
+diff --git a/arch/arm/boot/dts/gemini-sl93512r.dts b/arch/arm/boot/dts/gemini-sl93512r.dts
+index a0916d3c1059..c78e55fd2562 100644
+--- a/arch/arm/boot/dts/gemini-sl93512r.dts
++++ b/arch/arm/boot/dts/gemini-sl93512r.dts
+@@ -87,9 +87,9 @@ spi {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 		/* Check pin collisions */
+-		gpio-sck = <&gpio1 28 GPIO_ACTIVE_HIGH>;
+-		gpio-miso = <&gpio1 30 GPIO_ACTIVE_HIGH>;
+-		gpio-mosi = <&gpio1 29 GPIO_ACTIVE_HIGH>;
++		sck-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
++		miso-gpios = <&gpio1 30 GPIO_ACTIVE_HIGH>;
++		mosi-gpios = <&gpio1 29 GPIO_ACTIVE_HIGH>;
+ 		cs-gpios = <&gpio1 31 GPIO_ACTIVE_HIGH>;
+ 		num-chipselects = <1>;
+ 
+diff --git a/arch/arm/boot/dts/gemini-sq201.dts b/arch/arm/boot/dts/gemini-sq201.dts
+index 4aa17393f8a9..3104af698cd6 100644
+--- a/arch/arm/boot/dts/gemini-sq201.dts
++++ b/arch/arm/boot/dts/gemini-sq201.dts
+@@ -72,9 +72,9 @@ spi {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 		/* Check pin collisions */
+-		gpio-sck = <&gpio1 28 GPIO_ACTIVE_HIGH>;
+-		gpio-miso = <&gpio1 30 GPIO_ACTIVE_HIGH>;
+-		gpio-mosi = <&gpio1 29 GPIO_ACTIVE_HIGH>;
++		sck-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
++		miso-gpios = <&gpio1 30 GPIO_ACTIVE_HIGH>;
++		mosi-gpios = <&gpio1 29 GPIO_ACTIVE_HIGH>;
+ 		cs-gpios = <&gpio1 31 GPIO_ACTIVE_HIGH>;
+ 		num-chipselects = <1>;
+ 
+-- 
+2.26.3
 
