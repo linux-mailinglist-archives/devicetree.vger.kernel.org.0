@@ -2,185 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8125A387BA0
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 16:47:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B2BB387BA7
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 16:49:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234987AbhEROsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 10:48:42 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:35591 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234550AbhEROsl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 10:48:41 -0400
-Received: by mail-ot1-f42.google.com with SMTP id 69-20020a9d0a4b0000b02902ed42f141e1so8849942otg.2;
-        Tue, 18 May 2021 07:47:23 -0700 (PDT)
+        id S236931AbhEROvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 10:51:15 -0400
+Received: from mail-vk1-f171.google.com ([209.85.221.171]:42795 "EHLO
+        mail-vk1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235434AbhEROvP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 10:51:15 -0400
+Received: by mail-vk1-f171.google.com with SMTP id m129so2102162vkh.9;
+        Tue, 18 May 2021 07:49:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=i/3knGC4CpMEkTbYVCH3cvqb7hCOaLFy+F4QJW4cARQ=;
-        b=VgIUTGjFIYEyx89OyA+x2eyprZkhbidxndWSDmGvKvsU2F/BjQhjZ37I0pcEaJ2UL+
-         Yd4zuVIZhMXhbSwHeMfwTbx9vxw4viMRyS9NSzqMBDQDBWmrp/aGsdL/stQQb0qP3F+g
-         yP1lkhXcn1ReYkYi+9TCyV1JkrkA0R9VX7nrK/DkvQDYIY3VIbhPbA2g94UooOs/wdz5
-         lsFdHM+9iudcJkLw47shxd6g8ONYgOgqYW1gKGJz9vysYJhRcq5IkgWXGwrEATFerEBI
-         ZwH6NE/9ITMiyBDfyJc6dZdI5s7kNcjUNff3V8Y3DWi5on/oZw7YtfrgYlYSeeRN4KI5
-         aVZQ==
-X-Gm-Message-State: AOAM533TChvvo9usaT6J3KEu6QzM2d7TUIGMb+2fcRqYDqE7AiG34h8Y
-        SG0SWqjtmLfLOYU1/7qDP8gRvUttxA==
-X-Google-Smtp-Source: ABdhPJwNmUr4/MF32fXbrpebVI1fsgUw9cKHKbmY3WR/0DiaZb3AQD49VP0j6t9aYWtsxn3SuKSE0w==
-X-Received: by 2002:a05:6830:1284:: with SMTP id z4mr4599470otp.148.1621349243412;
-        Tue, 18 May 2021 07:47:23 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v79sm3415081oia.14.2021.05.18.07.47.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 May 2021 07:47:23 -0700 (PDT)
-Received: (nullmailer pid 656643 invoked by uid 1000);
-        Tue, 18 May 2021 14:47:22 -0000
-Date:   Tue, 18 May 2021 09:47:22 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-        linux-input@vger.kernel.org, David Jander <david@protonic.nl>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: touchscreen: Convert resistive-adc-touch
- binding to json schema
-Message-ID: <20210518144722.GA617855@robh.at.kernel.org>
-References: <20210517071825.20316-1-o.rempel@pengutronix.de>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=y10PWJw0DRQc++ZzVaFYO8op4Q+GioEhXZLxuqYRvPE=;
+        b=UnOulr16jgijEefXo05lRFF94KK3WurxK3V1f+4popLSPAPTZnaEDoTviwf2Vqz/k5
+         U3JV9FcyVswxDj8d9PA5Ln2v+AMN8YJ8SimTE4oYIEmOrfCXpojmkbvKveuAvdE1kQZz
+         RZBp2CXJL7Nah64ug3whGyo+VHNSckuVH7v5FO6bC0aUwWJ60QYH0tGXHLBHSXG2k1nI
+         X6k0wSqenluI8oja9khUvTVkvt+JAA+2l91+H8U6m8yYpTcDQxC2NeDslLm3uaC3ivQ0
+         djwXNefGGop8SlzVxpXvFtu9+aFbCrs6e5C65YqOCWMUjynaWZRMEt522GbkmtxwSaKx
+         rqXg==
+X-Gm-Message-State: AOAM533VXfYnveJhuwdn3/837uBu54D4ly0PxT3FMooyi1l69krDhFHW
+        VYZA1ku38SmiBhtrv27/bU8PpDsmEDA2AGFR/FI=
+X-Google-Smtp-Source: ABdhPJxt3csEOJ+HZlUNZyI4+ozqFzhRSPkaymurZ7JCVflSiXGt84wNn+aIH/66rsKkPf6/JaIeeeHvYwGOSw2pHqA=
+X-Received: by 2002:a1f:eac1:: with SMTP id i184mr6332144vkh.2.1621349396836;
+ Tue, 18 May 2021 07:49:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210517071825.20316-1-o.rempel@pengutronix.de>
+References: <20210518075131.1463091-1-geert@linux-m68k.org> <20210518143317.yy2sxxnd7yt6cyrx@gilmour>
+In-Reply-To: <20210518143317.yy2sxxnd7yt6cyrx@gilmour>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 18 May 2021 16:49:45 +0200
+Message-ID: <CAMuHMdXKaLpLL5Q1FnjHJ5kbs=+9Mm-QHXZp1i3M4zNr7G=e_w@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: ssd1307fb: Convert to json-schema
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 17, 2021 at 09:18:24AM +0200, Oleksij Rempel wrote:
-> Convert the resistive-adc-touch binding to DT schema format using json-schema.
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> ---
->  .../input/touchscreen/resistive-adc-touch.txt | 33 ----------
->  .../touchscreen/resistive-adc-touch.yaml      | 61 +++++++++++++++++++
->  2 files changed, 61 insertions(+), 33 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.txt
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.txt b/Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.txt
-> deleted file mode 100644
-> index af5223bb5bdd..000000000000
-> --- a/Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.txt
-> +++ /dev/null
-> @@ -1,33 +0,0 @@
-> -Generic resistive touchscreen ADC
-> -
-> -Required properties:
-> -
-> - - compatible: must be "resistive-adc-touch"
-> -The device must be connected to an ADC device that provides channels for
-> -position measurement and optional pressure.
-> -Refer to
-> -https://github.com/devicetree-org/dt-schema/blob/master/schemas/iio/iio-consumer.yaml
-> -for details
-> -
-> - - iio-channels: must have at least two channels connected to an ADC device.
-> -These should correspond to the channels exposed by the ADC device and should
-> -have the right index as the ADC device registers them. These channels
-> -represent the relative position on the "x" and "y" axes.
-> - - iio-channel-names: must have all the channels' names. Mandatory channels
-> -are "x" and "y".
-> -
-> -Optional properties:
-> - - iio-channels: The third channel named "pressure" is optional and can be
-> -used if the ADC device also measures pressure besides position.
-> -If this channel is missing, pressure will be ignored and the touchscreen
-> -will only report position.
-> - - iio-channel-names: optional channel named "pressure".
-> -
-> -Example:
-> -
-> -	resistive_touch: resistive_touch {
-> -		compatible = "resistive-adc-touch";
-> -		touchscreen-min-pressure = <50000>;
-> -		io-channels = <&adc 24>, <&adc 25>, <&adc 26>;
-> -		io-channel-names = "x", "y", "pressure";
-> -	};
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.yaml b/Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.yaml
-> new file mode 100644
-> index 000000000000..53df21a6589e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/touchscreen/resistive-adc-touch.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Generic resistive touchscreen ADC
-> +
-> +maintainers:
-> +  - Oleksij Rempel <o.rempel@pengutronix.de>
-> +
-> +description: |
-> +  Generic ADC based resistive touchscreen controller
-> +  The device must be connected to an ADC device that provides channels for
-> +  position measurement and optional pressure.
-> +
-> +allOf:
-> +  - $ref: touchscreen.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: resistive-adc-touch
-> +
-> +  io-channels:
-> +    minItems: 2
-> +    maxItems: 3
+Hi Maxime,
 
-maxItems is implied by the 'items' length.
+On Tue, May 18, 2021 at 4:33 PM Maxime Ripard <maxime@cerno.tech> wrote:
+> On Tue, May 18, 2021 at 09:51:31AM +0200, Geert Uytterhoeven wrote:
+> > Convert the Solomon SSD1307 Framebuffer Device Tree binding
+> > documentation to json-schema.
+> >
+> > Fix the spelling of the "pwms" property.
+> > Document default values.
+> > Make properties with default values not required.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> > ---
+> > I have listed Maxime as the maintainer, as he wrote the original driver
+> > and bindings.  Maxime: Please scream if this is inappropriate ;-)
+>
+> Fine by me :)
 
-> +    items:
-> +      - description: x
-> +      - description: y
-> +      - description: pressure (optional)
-> +
-> +  io-channel-names:
+Thanks!
 
-This needs minItems, too.
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
 
-> +    items:
-> +      - const: x
-> +      - const: y
-> +      - const: pressure
-> +
-> +  touchscreen-size-x: true
-> +  touchscreen-size-y: true
-> +  touchscreen-fuzz-x: true
-> +  touchscreen-fuzz-y: true
-> +  touchscreen-inverted-x: true
-> +  touchscreen-inverted-y: true
-> +  touchscreen-swapped-x-y: true
-> +  touchscreen-min-pressure: true
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - io-channels
-> +  - io-channel-names
-> +
-> +examples:
-> +  - |
-> +    resistive_touch {
+> > +  solomon,dclk-div:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    minimum: 1
+> > +    maximum: 16
+> > +    description:
+> > +      Clock divisor. The default value is controller-dependent.
+>
+> I guess we could document the default using an if / else statement?
 
-touchscreen {
+While clk-div has only two different defaults, dclk-frq has different
+defaults for each of the 4 variants supported.
 
-> +      compatible = "resistive-adc-touch";
-> +      touchscreen-min-pressure = <50000>;
-> +      io-channels = <&adc 24>, <&adc 25>, <&adc 26>;
-> +      io-channel-names = "x", "y", "pressure";
-> +    };
-> -- 
-> 2.29.2
-> 
+Do you think it's worthwhile doing that? All upstream DTS files lack
+these properties, thus use the default values.
+
+> Looks good otherwise :)
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
