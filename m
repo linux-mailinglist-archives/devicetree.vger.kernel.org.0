@@ -2,92 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5633D387FAD
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 20:35:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38B71387FBA
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 20:38:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239285AbhERSg6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 14:36:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59618 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238176AbhERSg5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 May 2021 14:36:57 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B63286124C;
-        Tue, 18 May 2021 18:35:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621362939;
-        bh=XJyZ3btOtpI/qD2+8BYa2+IPxWF8tqgUCMjGDNYO7j0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MlWq8wvnyveocW9is2F7cFDzcSYS+XcdcSp1EVdHkvPHgJLASrHkFjcHTM4a98BT1
-         VTx6mCu4MAjLVydRigQuSEDFImYDJ5FSJ8KrA5YgYxsMJhfh26m2xZkuMlDagACX8Z
-         kRaL/wRDtLw8olb4WaruUFmtK+Im4l6jzi27dx3WyvpvT8VsRe3GAEs7Sx4E6txZRa
-         5h2NhaotJ6uNjxw98OmD2HBT0i2NL1QPT4ic4kxgbuID6WqYj0ODVz04s8nfEiJGS5
-         NLTKAs5KKrO6EEuotfAPRSRAKuDctKdYoGI8mJEhyPCxJMQAIRnlN+SWdK322UQcMy
-         NlYbKJhv94KAg==
-Date:   Tue, 18 May 2021 19:34:55 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Dmitry Osipenko <digetx@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Ion Agorria <ion@agorria.com>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] ASoC: tegra: Unify ASoC machine drivers
-Message-ID: <20210518183455.GE4358@sirena.org.uk>
-References: <20210518001356.19227-1-digetx@gmail.com>
- <20210518001356.19227-3-digetx@gmail.com>
- <20210518180949.GA949047@robh.at.kernel.org>
+        id S1346083AbhERSjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 14:39:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55524 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241108AbhERSj3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 14:39:29 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78116C061573
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 11:38:10 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id c14so9534405wrx.3
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 11:38:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=Huc21UOdwPm7LAcMF6IDLuI3qr/CzsjN0hTgKyze11c=;
+        b=pbeTfT/zAWAbrjMc3KD6Gzn44cNIr2HWhd/h4jEOEDiAKnA1jNwbNxzq3c+yPkuqiO
+         EV+UhtlP7sMyOQLLG+DDeVOypX6sqKdQMyERYUwEX8oOpAfv4rULeWo2Zz/ZwylS6h+7
+         zJj2PK9IuFIyJqGMGehkGvvL/ZVyDOY4OYpI8IdibzlIkSRxBgGrNRw9nDeO5ZUEI/Zu
+         UjWWnDebmzljIs+V154G0HncayJW78gM5BMlO4TJWBkf5yCrs/zVkHiXeHW09z8Rhu7+
+         ljgHDRtTChGqOXB0dGbidywt8MXbfSIuN1BnoB7Ojfv3YkgtsMLACcWN99FsEc/f2lGR
+         zNwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=Huc21UOdwPm7LAcMF6IDLuI3qr/CzsjN0hTgKyze11c=;
+        b=NO7joVQ+YOdZ/NMzaywyTkWF8dEvOzD4jWx2SWu3EVpjEJrEjCT2bP+L1dV4/3MGcq
+         fBfbL+DQ71ORiBRB5AX1S+J/XkHqfNWp8ln8V9epG+ZpX/8ERdGlp58saTUymcKFaKHC
+         +NBWY+TWRUKT/SFQ0KSJHqWVAPHolMU330A0hIPDiS6ODmeieIzJkQ3w4PaEGzVotrgg
+         mLB2cY2TCdPv8QG6AnIg3pOnq42l4DE68drGaWE9iST5uCJPhL6kPJ+qH/yE6d5LLbfQ
+         yATHLScVL5iTvKo7ioyfewouGq14OwomY+qnOMu20c/k147HrKByCAQByp2iUbxnpy40
+         Rg0w==
+X-Gm-Message-State: AOAM530YGdicuk0431cT0z8T5PHg4alQZrT7O8r6SKOAKgiRMLL1cwqf
+        WGC+tehrksAn/bt1/3reWkm9pQ==
+X-Google-Smtp-Source: ABdhPJxEzSm2dA9aDTl991lTkKDfsxON+bT2vLdlUOLnICU65XUyaEVNHQyr+Z2Bn2OQ+ltXRjcWHg==
+X-Received: by 2002:adf:9c8e:: with SMTP id d14mr9057975wre.140.1621363089108;
+        Tue, 18 May 2021 11:38:09 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id b12sm23051343wro.28.2021.05.18.11.38.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 May 2021 11:38:08 -0700 (PDT)
+Date:   Tue, 18 May 2021 20:38:06 +0200
+From:   LABBE Corentin <clabbe@baylibre.com>
+To:     Rob Herring <robh@kernel.org>, linus.walleij@linaro.org
+Cc:     airlied@linux.ie, daniel@ffwll.ch, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: display: convert faraday,tve200 to YAML
+Message-ID: <YKQJjrlTB0RZYNOK@Red>
+References: <20210511165448.422987-1-clabbe@baylibre.com>
+ <20210518002624.GA3346846@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="HnQK338I3UIa/qiP"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20210518180949.GA949047@robh.at.kernel.org>
-X-Cookie: Radioactive cats have 18 half-lives.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210518002624.GA3346846@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Le Mon, May 17, 2021 at 07:26:24PM -0500, Rob Herring a écrit :
+> On Tue, May 11, 2021 at 04:54:48PM +0000, Corentin Labbe wrote:
+> > Converts display/faraday,tve200.txt to yaml.
+> > 
+> > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> > ---
+> >  .../bindings/display/faraday,tve200.txt       | 54 -----------
+> >  .../bindings/display/faraday,tve200.yaml      | 92 +++++++++++++++++++
+> >  2 files changed, 92 insertions(+), 54 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/display/faraday,tve200.txt
+> >  create mode 100644 Documentation/devicetree/bindings/display/faraday,tve200.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/faraday,tve200.txt b/Documentation/devicetree/bindings/display/faraday,tve200.txt
+> > deleted file mode 100644
+> > index 82e3bc0b7485..000000000000
+> > --- a/Documentation/devicetree/bindings/display/faraday,tve200.txt
+> > +++ /dev/null
+> > @@ -1,54 +0,0 @@
+> > -* Faraday TV Encoder TVE200
+> > -
+> > -Required properties:
+> > -
+> > -- compatible: must be one of:
+> > -	"faraday,tve200"
+> > -	"cortina,gemini-tvc", "faraday,tve200"
+> > -
+> > -- reg: base address and size of the control registers block
+> > -
+> > -- interrupts: contains an interrupt specifier for the interrupt
+> > -	line from the TVE200
+> > -
+> > -- clock-names: should contain "PCLK" for the clock line clocking the
+> > -	silicon and "TVE" for the 27MHz clock to the video driver
+> > -
+> > -- clocks: contains phandle and clock specifier pairs for the entries
+> > -	in the clock-names property. See
+> > -	Documentation/devicetree/bindings/clock/clock-bindings.txt
+> > -
+> > -Optional properties:
+> > -
+> > -- resets: contains the reset line phandle for the block
+> > -
+> > -Required sub-nodes:
+> > -
+> > -- port: describes LCD panel signals, following the common binding
+> > -	for video transmitter interfaces; see
+> > -	Documentation/devicetree/bindings/media/video-interfaces.txt
+> > -	This port should have the properties:
+> > -	reg = <0>;
+> > -	It should have one endpoint connected to a remote endpoint where
+> > -	the display is connected.
+> > -
+> > -Example:
+> > -
+> > -display-controller@6a000000 {
+> > -	#address-cells = <1>;
+> > -	#size-cells = <0>;
+> > -	compatible = "faraday,tve200";
+> > -	reg = <0x6a000000 0x1000>;
+> > -	interrupts = <13 IRQ_TYPE_EDGE_RISING>;
+> > -	resets = <&syscon GEMINI_RESET_TVC>;
+> > -	clocks = <&syscon GEMINI_CLK_GATE_TVC>,
+> > -		 <&syscon GEMINI_CLK_TVC>;
+> > -	clock-names = "PCLK", "TVE";
+> > -
+> > -	port@0 {
+> > -		reg = <0>;
+> > -		display_out: endpoint {
+> > -			remote-endpoint = <&panel_in>;
+> > -		};
+> > -	};
+> > -};
+> > diff --git a/Documentation/devicetree/bindings/display/faraday,tve200.yaml b/Documentation/devicetree/bindings/display/faraday,tve200.yaml
+> > new file mode 100644
+> > index 000000000000..3ab51e7e72af
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/faraday,tve200.yaml
+> > @@ -0,0 +1,92 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/faraday,tve200.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Faraday TV Encoder TVE200
+> > +
+> > +maintainers:
+> > +  - Linus Walleij <linus.walleij@linaro.org>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - const: faraday,tve200
+> > +      - items:
+> > +          - const: cortina,gemini-tvc
+> > +          - const: faraday,tve200
+> > +
+> > +  reg:
+> > +    minItems: 1
+> 
+> maxItems: 1
+> 
+> They evaluate the same, but maxItems seems a bit more logical. 
+> 
+> > +
+> > +  interrupts:
+> > +    minItems: 1
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: PCLK
+> > +      - const: TVE
+> > +
+> > +  clocks:
+> > +    minItems: 2
+> > +
+> > +  resets:
+> > +    minItems: 1
+> > +
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 0
+> > +
+> > +patternProperties:
+> > +  "^port@[0-9]+$":
+> 
+> Should be just 'port' or 'port@0', but really the former is preferred 
+> when only 1. 
+> 
+> Use the graph binding:
+> 
+> $ref: /schemas/graph.yaml#/properties/port
+> 
 
---HnQK338I3UIa/qiP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I have a problem:
 
-On Tue, May 18, 2021 at 01:09:49PM -0500, Rob Herring wrote:
-> On Tue, May 18, 2021 at 03:13:56AM +0300, Dmitry Osipenko wrote:
+I get the following warning:
+/usr/src/linux-next/arch/arm/boot/dts/gemini.dtsi:410.31-423.5: Warning (graph_child_address): /soc/display-controller@6a000000: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
+  also defined at /usr/src/linux-next/arch/arm/boot/dts/gemini-dlink-dir-685.dts:492.31-501.5
 
-> > Squash all machine drivers into a single-universal one. This reduces
-> > code duplication, eases addition of a new drivers and upgrades older
-> > code to a modern Linux kernel APIs.
+But if I remove them!
+/usr/src/linux-next/arch/arm/boot/dts/gemini-dlink-dir-685.dts:496.5-15: Warning (reg_format): /soc/display-controller@6a000000/port@0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/gemini-dlink-dir-685.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/gemini-dlink-dir-685.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/gemini-dlink-dir-685.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/gemini-dlink-dir-685.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/gemini-dlink-dir-685.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+/usr/src/linux-next/arch/arm/boot/dts/gemini-dlink-dir-685.dts:495.11-500.6: Warning (avoid_default_addr_size): /soc/display-controller@6a000000/port@0: Relying on default #address-cells value
+/usr/src/linux-next/arch/arm/boot/dts/gemini-dlink-dir-685.dts:495.11-500.6: Warning (avoid_default_addr_size): /soc/display-controller@6a000000/port@0: Relying on default #size-cells value
+arch/arm/boot/dts/gemini-dlink-dir-685.dt.yaml: Warning (avoid_unnecessary_addr_size): Failed prerequisite 'avoid_default_addr_size'
+arch/arm/boot/dts/gemini-dlink-dir-685.dt.yaml: Warning (unique_unit_address): Failed prerequisite 'avoid_default_addr_size'
+/usr/src/linux-next/arch/arm/boot/dts/gemini-dlink-dir-685.dts:495.11-500.6: Warning (graph_port): /soc/display-controller@6a000000/port@0: graph node '#address-cells' is -1, must be 1
+/usr/src/linux-next/arch/arm/boot/dts/gemini-dlink-dir-685.dts:495.11-500.6: Warning (graph_port): /soc/display-controller@6a000000/port@0: graph node '#size-cells' is -1, must be 0
 
-> Nice, I never understood why each codec needed it's own machine driver=20
-> (and typically in turn compatible string).
+The only solution is to remove "reg = <0>;" and calling the node "port".
+Does it is acceptable ?
 
-It's generally the clocking configuration, things with fancy clock trees
-don't play so nicely with generic systems where we want to configure
-them at runtime, or things with complex routing in the CPU where we
-only recently started getting bindings that were functional enough to
-use.  Tegra is fairly complex internally.
-
---HnQK338I3UIa/qiP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmCkCM4ACgkQJNaLcl1U
-h9AZvQf9HjR/2m9uTMHCDFsce0DuGGYDqEzCiG5qOqeuuV4xjqIU+osUPQo4iKSK
-kMg2Vjpq2bsjm1SWhgN34VBADGb8rrKl/yR/hGaveQ+CCJ+r3P972ODYG9eqpje+
-KBaVc1sDnacC62AWm00l9ztcerToy17fTH0LXHpYYsFH57aapf/qDovV9uCn6BC2
-il3CtEgBbir6jirbggzz4CORYPJGnbtxzHdW+SzrqgzS1gyAIqMzlgisNROi6UJr
-F3ivHT3fjm7W7zZPSkWZVIZW0QISJe1m1e4am6L7Zn2YEIlh//xj58TbBVHaibMQ
-uC+KH59xh17FYm2T4gTrsrC8ikJKpg==
-=bgh3
------END PGP SIGNATURE-----
-
---HnQK338I3UIa/qiP--
