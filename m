@@ -2,169 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1997387BD7
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 17:00:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3595B387BF1
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 17:07:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245512AbhERPBw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 11:01:52 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.165]:17361 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234596AbhERPBu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 11:01:50 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1621350023; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=QUU80e8clEURh4Kp4spwHo3wbcXe0npaQCAc7W1dJ+uu88p1plZxekIw3s9SGlWY5+
-    6PKHSZNJ3UGaSz9Ut3MHUHviJAkR5qT8TsTFdab71s1bitvypX9gF6fIWqra6pchLDkS
-    JrwG89Q9zdbGg43uYPVXAQM/OOclMfGBdEugOT8I2b+A3xxZPg+2LmIlhBh817+p4O/E
-    OBSRkYGaAzvjyJkxVTEVZJAjc89uqeftEkGign0A/y2fwolVTMlxTpISKIJ36BldQnEV
-    lXHqdmpmq7GMw1F2FAq4oXSy3dU+ffd4XlHgAFMlBgGXl/fm1aJG2hhNWXSGQ/zTuMFH
-    M7wQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1621350023;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=+JBRI2wnUVvQdzfM9cNkT70UphTkFhDyy9+MMG5Vv7E=;
-    b=TmqtFXOoCQKYtPDWk8qRcuOcd9Wb9HPBTy+LmoEE94liBHHGQJ8r3QVKCmSxfsU2Mc
-    Pfut2LO4PCSYc6F+euvtdIMsqdzejKVuRfOkqZyPugOk2LNZiMd9/MSpYbS6tD/DQAi5
-    4BGCbU7VLzSnucOU5o+cTUbUyxIA0NIOY3q0G+LDMVM3TpLFU9+fBw/8nvaZ/XtzI94H
-    i39tOlL8SOrmBdayBDj+HV5Dljap5EgklF9QJzDo/GEkczWkxP7jb/jK0iqY/eJtMv6j
-    Nn6aN0hmHzxcqT6rHLvBEJDUp3Jvt1phWatwhPUFVxqTNlFBpHDbddAxGYu8VPBAHgNw
-    UkNg==
-ARC-Authentication-Results: i=1; strato.com;
-    dkim=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1621350023;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=+JBRI2wnUVvQdzfM9cNkT70UphTkFhDyy9+MMG5Vv7E=;
-    b=l9NbGhV3fde5WU1fTbtmWR0QYoHrEAFhsG9iSLWZf8bQk1tzqSXr/fXYVdiyJuyPOR
-    Hjysk1iZlK1QQIwY1qBZXfrnHUCWSEZqki+pHEh3gnf9lbzvqPs6gnk4M0c5zdI/S75+
-    fKR6eMqKt3c3BUFNflItIvtA3C0bYXIJGRrLh/egK2W7LnV1h60DXKbsyKRqkWA4ML6J
-    qtF2BuPj03u1oU3d1dHTlC26d/9oWCqQWWmbBmczgJJKHPq75kQMySKZubpr7tC1m71Q
-    Alp2md5l4l8k52UWwSnEcbh44HV3AVBn+ghE6NVikoBvRggre+NAEcm5UUS/gXSF3sWY
-    J7wA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j7Ic/Da4o="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.26.1 DYNA|AUTH)
-    with ESMTPSA id z041eax4IF0M06r
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Tue, 18 May 2021 17:00:22 +0200 (CEST)
-Date:   Tue, 18 May 2021 17:00:17 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-nfc@lists.01.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Bongsu Jeon <bongsu.jeon@samsung.com>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [linux-nfc] [PATCH 2/2] nfc: s3fwrn5: i2c: Enable optional clock
- from device tree
-Message-ID: <YKPWgSnz7STV4u+c@gerhold.net>
-References: <20210518133935.571298-1-stephan@gerhold.net>
- <20210518133935.571298-2-stephan@gerhold.net>
- <ac04821e-359d-aaaa-7e07-280156f64036@canonical.com>
+        id S1345197AbhERPIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 11:08:25 -0400
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:41593 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1343837AbhERPIP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 May 2021 11:08:15 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id A9CCB5C0154;
+        Tue, 18 May 2021 11:06:56 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Tue, 18 May 2021 11:06:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=UtZnScApeETjyLyNRFDWSVh+wz6
+        +gPca+YgDd6VPR5E=; b=Vrx4mu49F+jjLkO3TymHrB0XV72VRYt0gEwF4vR2Rqe
+        XNq+hTB2XBpnmCaMG+/HwNQZFhX8iRSQH6D/Wnta09KnJMOqb1ZHGOIiUMKrOba5
+        SKvMe9f07evWK5NOoS+IHqKLQvYkoInlRLnGz0uWk7HWs7yq5u4rCkcrj44eAwDr
+        iLbRK8waq0X9oT63zsjyY6z6bkZzSf/F8IPCgLkv18JxL/re8jXemd+/ttGk8+PA
+        lcErDSmt09MZJPg9ejwNuJhx1N2gmkajZ3ZmRReXLsj2bbH+kLH7UZg40Q5xJlTR
+        Xy0NzbbmtPDR/256wL6MS43RN8pXctRtMRfqZHU/apA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=UtZnSc
+        ApeETjyLyNRFDWSVh+wz6+gPca+YgDd6VPR5E=; b=hUjZZKYFtiOWtlef0HiIOm
+        /9IgrR27rkAvQehkAPdMy1Lo5shMOj3/s8bDdKzWawQ8jfXUNemRW60ocX47u5yC
+        LTiXrdv6bK68yVzwGFSC4cseMDXauHWAaL/iqlibQU2E6Q2Jm1l3I5Nwkk9yvktc
+        bsoirodCq8+nVo4Kk691q3ltuHuf4RdbXiJuJ9Y0L1rBnD57ND6VvycLx/NXDfON
+        bEqecQf8pYPXaaB1lB+RQFXZcpmFMu+tzsHlGt2utTX+6EcpGRjy0DwaZS1KhDn3
+        5Z9VME55vdMZGARAGuChfkWGgJdQDPQeqSO7huue/jldylYcm4WQabXBUZjq8EHQ
+        ==
+X-ME-Sender: <xms:D9ijYJg0ZDZoDCy5u_NzUZiReq2XDCy6iFj3nvMczDe_3gGxmOF2Vw>
+    <xme:D9ijYOAQAcQvcyg1U9JyRt_C8lHQgSdxhiMqFbBI4Zk6F2SvYIkTdn6y3KkPLmVJa
+    e6P6X6ejxWS0ed5sGk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdeijedgkeegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttdejnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhephfeutddvuedthfdtffeltefhudfhgeekueffhfefveehjeethfelffevfedt
+    veegnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghdpkhgrlhiiuhhmvghushdrtghomh
+    enucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgr
+    rhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:D9ijYJHHfS-6dhRNV3mPiE27pRHiwspVFMy2Xq0F8_xs1d116A3Tuw>
+    <xmx:D9ijYOSqaTa0sAO9lgfOl6dFffDHJ7w9DbTq5csiryA3ddlH7cYBCQ>
+    <xmx:D9ijYGxf-phLAaMF6orCGBKadaewhGCGg143nezImMHT06hVAXKJNQ>
+    <xmx:ENijYByTUF4wjTxcVrZ4Lv7jr4DzU5pivtPypnIwaI2NUGo0P2iJ6Q>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA;
+        Tue, 18 May 2021 11:06:55 -0400 (EDT)
+Date:   Tue, 18 May 2021 17:06:52 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Vagrant Cascadian <vagrant@reproducible-builds.org>
+Cc:     Salvatore Bonaccorso <carnil@debian.org>,
+        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>,
+        "B.R. Oake" <broake@mailfence.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Chen-Yu Tsai <wens@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: sun8i: h3: orangepi-plus: Fix Ethernet PHY mode
+Message-ID: <20210518150652.zxj56bljjeq3ogln@gilmour>
+References: <1243888060.510560.1612783497400@ichabod.co-bxl>
+ <20210210150118.ly252i37eykayrcb@gilmour>
+ <1719200956.433094.1613199092092@ichabod.co-bxl>
+ <6612268.HtAl026vyE@jernej-laptop>
+ <YKFPGC2qBMipQPbd@eldamar.lan>
+ <87o8dawhy3.fsf@yucca>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="qqqwqasxaqgopl6t"
 Content-Disposition: inline
-In-Reply-To: <ac04821e-359d-aaaa-7e07-280156f64036@canonical.com>
+In-Reply-To: <87o8dawhy3.fsf@yucca>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Tue, May 18, 2021 at 10:30:43AM -0400, Krzysztof Kozlowski wrote:
-> On 18/05/2021 09:39, Stephan Gerhold wrote:
-> > s3fwrn5 has a NFC_CLK_REQ output GPIO, which is asserted whenever
-> > the clock is needed for the current operation. This GPIO can be either
-> > connected directly to the clock provider, or must be monitored by
-> > this driver.
-> > 
-> > As an example for the first case, on many Qualcomm devices the
-> > NFC clock is provided by the main PMIC. The clock can be either
-> > permanently enabled (clocks = <&rpmcc RPM_SMD_BB_CLK2>) or enabled
-> > only when requested through a special input pin on the PMIC
-> > (clocks = <&rpmcc RPM_SMD_BB_CLK2_PIN>).
-> > 
-> > On the Samsung Galaxy A3/A5 (2015, Qualcomm MSM8916) this mechanism
-> > is used with S3FWRN5's NFC_CLK_REQ output GPIO to enable the clock
-> > only when necessary. However, to make that work the s3fwrn5 driver
-> > must keep the RPM_SMD_BB_CLK2_PIN clock enabled.
-> 
-> This contradicts the code. You wrote that pin should be kept enabled
-> (somehow... by driver? by it's firmware?) but your code requests the
-> clock from provider.
-> 
+--qqqwqasxaqgopl6t
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Yeah, I see how that's a bit confusing. Let me try to explain it a bit
-better. So the Samsung Galaxy A5 (2015) has a "S3FWRN5XS1-YF30", some
-variant of S3FWRN5 I guess. That S3FWRN5 has a "XI" and "XO" pin in the
-schematics. "XO" seems to be floating, but "XI" goes to "BB_CLK2"
-on PM8916 (the main PMIC).
+On Sun, May 16, 2021 at 01:18:44PM -0700, Vagrant Cascadian wrote:
+> On 2021-05-16, Salvatore Bonaccorso wrote:
+> > On Sat, Feb 13, 2021 at 09:51:17AM +0100, Jernej =C5=A0krabec wrote:
+> >> Let me first explain that it was oversight on my side not noticing ini=
+tials in=20
+> >> your SoB tag. But since the issue was raised by Maxime, I didn't follo=
+w up.
+> >>=20
+> >> Dne sobota, 13. februar 2021 ob 07:51:32 CET je B.R. Oake napisal(a):
+> >> > On Wed Feb 10 at 16:01:18 CET 2021, Maxime Ripard wrote:
+> >> > > Unfortunately we can't take this patch as is, this needs to be you=
+r real
+> >> > > name, see:
+> >> > > https://www.kernel.org/doc/html/latest/process/submitting-patches.=
+html#de
+> >> > > veloper-s-certificate-of-origin-1-1
+> >> > Dear Maxime,
+> >> >=20
+> >> > Thank you very much for considering my contribution and for all your
+> >> > work on supporting sunxi-based hardware; I appreciate it.
+> >> >=20
+> >> > Thank you for referring me to the Developer's Certificate of Origin,=
+ but
+> >> > I had already read it before submitting (I had to do so in order to =
+know
+> >> > what I was saying by "Signed-off-by:") and I do certify what it says.
+> >> >=20
+> >> > Looking through recent entries in the commit log of the mainline ker=
+nel,
+> >> > I see several patches from authors such as:
+> >> >=20
+> >> >   H.J. Lu <hjl.tools@gmail.com>
+> >> >   B K Karthik <karthik.bk2000@live.com>
+> >> >   JC Kuo <jckuo@nvidia.com>
+> >> >   EJ Hsu <ejh@nvidia.com>
+> >> >   LH Lin <lh.lin@mediatek.com>
+> >> >   KP Singh <kpsingh@kernel.org>
+> >> >   Karthik B S <karthik.b.s@intel.com>
+> >> >   Shreyas NC <shreyas.nc@intel.com>
+> >> >   Vandana BN <bnvandana@gmail.com>
+> >> >=20
+> >> > so I believe names of this form are in fact acceptable, even if the
+> >> > style might seem a little old-fashioned to some.
+> >>=20
+> >> Speaking generally, not only for this case, prior art arguments rarely=
+ hold,=20
+> >> because:
+> >> - it might be oversight,
+> >> - it might be a bad practice, which should not be followed in new=20
+> >> contributions,
+> >> - different maintainers have different point of view on same thing,
+> >> - maintainer wants to adapt new practice or steer subsystem in new dir=
+ection
+> >>=20
+> >> >=20
+> >> > I would like to add that I have met many people with names such as C=
+=2EJ.,
+> >> > A A, TC, MG, etc. That is what everybody calls them and it would be
+> >> > natural for them to sign themselves that way. Some of them might wan=
+t to
+> >> > contribute to Linux some day, and I think it would be a great shame =
+and
+> >> > a loss to all of us if they were discouraged from doing so by reading
+> >> > our conversation in the archives and concluding that any contribution
+> >> > from them, however small, would be summarily refused simply because =
+of
+> >> > their name. Please could you ensure that does not happen?
+> >>=20
+> >> The link you posted says following:
+> >> "using your real name (sorry, no pseudonyms or anonymous contributions=
+=2E)"
+> >>=20
+> >> I believe that real name means no initials, no matter what people are=
+=20
+> >> accustomed to. From my point of view, CJ is pseudonym derived from rea=
+l name.
+> >>=20
+> >> This is not the first time that fix of SoB tag was requested, you can =
+find such=20
+> >> requests in ML archives.
+>=20
+> I'm sure this isn't the first time this sort of thing has been brought
+> up on this subject, but I feel obliged to mention:
+>=20
+>   https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-abo=
+ut-names/
+>=20
+> This seems to be blocked on culturally dependent perception of what
+> looks like a "real name" as opposed to any technical grounds.
+>=20
+> What is the goal of the "real name" in Signed-off-by actually trying to
+> achieve?
 
-Then, there is "GPIO2/NFC_CLK_REQ" on the S3FWRN5. This goes to
-GPIO_2_NFC_CLK_REQ on PM8916. (Note: I'm talking about two different
-GPIO2 here, one on S3FWRN5 and one on PM8916, they just happen to have
-the same number...)
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html#deve=
+loper-s-certificate-of-origin-1-1
 
-So in other words, S3FWRN5 gets some clock from BB_CLK2 on PM8916,
-and can tell PM8916 that it needs the clock via GPIO2/NFC_CLK_REQ.
+I'm not the one making the rules, sorry
 
-Now the confusing part is that the rpmcc/clk-smd-rpm driver has two
-clocks that represent BB_CLK2 (see include/dt-bindings/clock/qcom,rpmcc.h):
+Maxime
 
-  - RPM_SMD_BB_CLK2
-  - RPM_SMD_BB_CLK2_PIN
+--qqqwqasxaqgopl6t
+Content-Type: application/pgp-signature; name="signature.asc"
 
-(There are also *_CLK2_A variants but they are even more confusing
- and not needed here...)
+-----BEGIN PGP SIGNATURE-----
 
-Those end up in different register settings in PM8916. There is one bit
-to permanently enable BB_CLK2 (= RPM_SMD_BB_CLK2), and one bit to enable
-BB_CLK2 based on the status of GPIO_2_NFC_CLK_REQ on PM8916
-(= RPM_SMD_BB_CLK2_PIN).
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYKPYDAAKCRDj7w1vZxhR
+xXECAPwPQPuDwA61Q2rSL92rcSESsZsduUWrz98QLINr377e+gD9HXsf9H7P36qZ
+DleU5wX9rkQ417ncngbQxsmmAH/6pwA=
+=ayow
+-----END PGP SIGNATURE-----
 
-So there is indeed some kind of "AND" inside PM8916 (the register bit
-and "NFC_CLK_REQ" input pin). To make that "AND" work I need to make
-some driver (here: the s3fwrn5 driver) enable the clock so the register
-bit in PM8916 gets set.
-
-> > 
-> > This commit adds support for this by requesting an optional clock
-> 
-> Don't write "This commit".
-> https://elixir.bootlin.com/linux/latest/source/Documentation/process/submitting-patches.rst#L89
-> 
-
-OK, will fix this in v2 (I guess there will be a v2 to clarify things
-at least...)
-
-> > and keeping it permanently enabled. Note that the actual (physical)
-> > clock won't be permanently enabled since this will depend on the
-> > output of NFC_CLK_REQ from S3FWRN5.
-> 
-> What pin is that "NFC_CLK_REQ"? I cannot find such name. Is it GPIO2?
-> What clock are you talking here? The one going to the modem part?
-> 
-
-It's indeed GPIO2 on S3FWRN5, but that's pretty much all I can say since
-I can't seem to find any datasheet for S3FWRN5. :( I don't know what it
-is used for. As I mentioned above, BB_CLK2 goes to "XI" on S3FWRN5.
-
-> I also don't see here how this clock is going to be automatically
-> on-off... driver does not perform such. Unless you speak about your
-> particular HW configuration where the GPIO is somehow connected with AND
-> (but then it is not relevant to the code).
-> 
-
-I hope I covered this above already and it's a bit clearer now.
-Sorry for the confusion!
-
-Thanks!
-Stephan
+--qqqwqasxaqgopl6t--
