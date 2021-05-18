@@ -2,253 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DB36387955
-	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 14:58:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9F2A387967
+	for <lists+devicetree@lfdr.de>; Tue, 18 May 2021 14:59:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231859AbhERM7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 08:59:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34158 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232228AbhERM7Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 08:59:16 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83656C061763
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 05:57:58 -0700 (PDT)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1lizIE-0002tn-Dc; Tue, 18 May 2021 14:57:50 +0200
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1lizID-00079P-TA; Tue, 18 May 2021 14:57:49 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        David Jander <david@protonic.nl>, devicetree@vger.kernel.org
-Subject: [PATCH v2 4/4] Input: resistive-adc-touch: add support for z1 and z2 channels
-Date:   Tue, 18 May 2021 14:57:48 +0200
-Message-Id: <20210518125748.26823-5-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210518125748.26823-1-o.rempel@pengutronix.de>
-References: <20210518125748.26823-1-o.rempel@pengutronix.de>
+        id S235078AbhERNAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 09:00:54 -0400
+Received: from mail-oo1-f46.google.com ([209.85.161.46]:35338 "EHLO
+        mail-oo1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244850AbhERNAu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 09:00:50 -0400
+Received: by mail-oo1-f46.google.com with SMTP id s20-20020a4ae9940000b02902072d5df239so2212339ood.2
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 05:59:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ql+9UOI+ynnNwT/MKTb6YYHrLFl/HmtKIOBbQYJJbdE=;
+        b=NblCBQuVX34PCD2phih5wl1P4RNnJmI5qbZ/YQOErZaNsODh3YR2hCJypjqNrAUUXL
+         Y/wlA3oP5XZu6cv1f4TOKvHn+SSnOjKYMYH6s4gvkn6hhkyr05mN+DaztiYk6f9nYx8R
+         MdZrA647Zc38LSGqp/B/TmRtNPE1/Keauq/Ik2ecZoBrzauypU4T7NSdE7mKNwMPvFaZ
+         CC0G2J/jH7HlXNlcjbEpJRh0bshmG0EZHvCDrbAi/g49zegk+zADKzQWhwVAOfBXfQFK
+         uJaysKMait5kNDseMUuFlaOI83B5oPThgxhDGlL4b3HJF6vkwR84vNdOnfMohtuVoZv/
+         6HhQ==
+X-Gm-Message-State: AOAM5301GohLoa0fl1aye9NuFr8W18Mma/89XZ9qsQ7HFmAYU7h4T5Ag
+        g7ZnLF0RnD7Ntn+h9P8PeA==
+X-Google-Smtp-Source: ABdhPJy15udTxFSSU+fKRJjg3g6/siEwKnl4fNQ+78a+Mb7vXu3vmgtlxALvUy9RzGKheAO7vg50ug==
+X-Received: by 2002:a4a:e697:: with SMTP id u23mr4243417oot.51.1621342771562;
+        Tue, 18 May 2021 05:59:31 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id h11sm362697ote.72.2021.05.18.05.59.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 May 2021 05:59:31 -0700 (PDT)
+Received: (nullmailer pid 492742 invoked by uid 1000);
+        Tue, 18 May 2021 12:59:30 -0000
+Date:   Tue, 18 May 2021 07:59:30 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org,
+        ch@denx.de, Sam Ravnborg <sam@ravnborg.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: display: bridge: lvds-codec: Fix spacing
+Message-ID: <20210518125930.GA485447@robh.at.kernel.org>
+References: <20210515203932.366799-1-marex@denx.de>
+ <YKBBlWXXK8LUc8ac@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YKBBlWXXK8LUc8ac@pendragon.ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for the z1 and z2 channels. These are used to
-calculate the applied pressure. As there is no common order of the
-individual channels of a resistive touch ADC, support for
-io-channel-names is added (although the DT bindings stated the
-driver already supports these).
+On Sun, May 16, 2021 at 12:48:05AM +0300, Laurent Pinchart wrote:
+> Hi Marek,
+> 
+> Thank you for the patch.
+> 
+> On Sat, May 15, 2021 at 10:39:32PM +0200, Marek Vasut wrote:
+> > Add missing spaces to make the diagrams readable, no functional change.
+> 
+> Looks better indeed. The patch view looks bad though, because of the
+> tabs. Maybe you could replace them with spaces, while at it ?
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- .../input/touchscreen/resistive-adc-touch.c   | 141 ++++++++++++++++--
- 1 file changed, 128 insertions(+), 13 deletions(-)
+It's best to not have tabs in yaml. And if we ever generate any 
+documentation out of the schema, the tabs would probably cause issues.
 
-diff --git a/drivers/input/touchscreen/resistive-adc-touch.c b/drivers/input/touchscreen/resistive-adc-touch.c
-index e50af30183f4..470b95ed3569 100644
---- a/drivers/input/touchscreen/resistive-adc-touch.c
-+++ b/drivers/input/touchscreen/resistive-adc-touch.c
-@@ -20,7 +20,18 @@
- 
- #define DRIVER_NAME					"resistive-adc-touch"
- #define GRTS_DEFAULT_PRESSURE_MIN			50000
-+#define GRTS_DEFAULT_PRESSURE_MAX			65535
- #define GRTS_MAX_POS_MASK				GENMASK(11, 0)
-+#define GRTS_MAX_CHANNELS				4
-+
-+enum grts_ch_type {
-+	GRTS_CH_NONE = 0,
-+	GRTS_CH_X,
-+	GRTS_CH_Y,
-+	GRTS_CH_PRESSURE,
-+	GRTS_CH_Z1,
-+	GRTS_CH_Z2,
-+};
- 
- /**
-  * struct grts_state - generic resistive touch screen information struct
-@@ -33,24 +44,61 @@
-  */
- struct grts_state {
- 	u32				pressure_min;
-+	u32				x_plate_ohms;
- 	bool				pressure;
- 	struct iio_channel		*iio_chans;
- 	struct iio_cb_buffer		*iio_cb;
- 	struct input_dev		*input;
- 	struct touchscreen_properties	prop;
-+	u8				ch[GRTS_MAX_CHANNELS];
- };
- 
- static int grts_cb(const void *data, void *private)
- {
- 	const u16 *touch_info = data;
- 	struct grts_state *st = private;
--	unsigned int x, y, press = 0x0;
-+	unsigned int x, y, press = 0, z1 = 0, z2;
-+	unsigned int Rt, i;
-+
-+	for (i = 0; i < ARRAY_SIZE(st->ch) && st->ch[i] != GRTS_CH_NONE; i++) {
-+		switch (st->ch[i]) {
-+		case GRTS_CH_X:
-+			x = touch_info[i];
-+			break;
-+		case GRTS_CH_Y:
-+			y = touch_info[i];
-+			break;
-+		case GRTS_CH_PRESSURE:
-+			press = touch_info[i];
-+			break;
-+		case GRTS_CH_Z1:
-+			z1 = touch_info[i];
-+			break;
-+		case GRTS_CH_Z2:
-+			z2 = touch_info[i];
-+			break;
-+		case GRTS_CH_NONE:
-+			break;
-+		}
-+	}
- 
--	/* channel data coming in buffer in the order below */
--	x = touch_info[0];
--	y = touch_info[1];
--	if (st->pressure)
--		press = touch_info[2];
-+	if (z1) {
-+		Rt = z2;
-+		Rt -= z1;
-+		Rt *= st->x_plate_ohms;
-+		Rt = DIV_ROUND_CLOSEST(Rt, 16);
-+		Rt *= x;
-+		Rt /= z1;
-+		Rt = DIV_ROUND_CLOSEST(Rt, 256);
-+		/*
-+		 * On increased pressure the resistance (Rt) is decreasing
-+		 * so, convert values to make it looks as real pressure.
-+		 */
-+		if (Rt < GRTS_DEFAULT_PRESSURE_MAX)
-+			press = GRTS_DEFAULT_PRESSURE_MAX - Rt;
-+		else
-+			press = 0;
-+	}
- 
- 	if ((!x && !y) || (st->pressure && (press < st->pressure_min))) {
- 		/* report end of touch */
-@@ -94,6 +142,72 @@ static void grts_disable(void *data)
- 	iio_channel_release_all_cb(data);
- }
- 
-+static int grts_get_properties(struct grts_state *st, struct device *dev)
-+{
-+	int idx, error;
-+
-+	idx = device_property_match_string(dev, "io-channel-names", "x");
-+	if (idx < 0)
-+		return idx;
-+
-+	if (idx >= ARRAY_SIZE(st->ch))
-+		return -EOVERFLOW;
-+
-+	st->ch[idx] = GRTS_CH_X;
-+
-+	idx = device_property_match_string(dev, "io-channel-names", "y");
-+	if (idx < 0)
-+		return idx;
-+
-+	if (idx >= ARRAY_SIZE(st->ch))
-+		return -EOVERFLOW;
-+
-+	st->ch[idx] = GRTS_CH_Y;
-+
-+	/* pressure is optional */
-+	idx = device_property_match_string(dev, "io-channel-names", "pressure");
-+	if (idx >= 0) {
-+		if (idx >= ARRAY_SIZE(st->ch))
-+			return -EOVERFLOW;
-+
-+		st->ch[idx] = GRTS_CH_PRESSURE;
-+		st->pressure = true;
-+
-+		return 0;
-+	}
-+
-+	/* if no pressure is defined, try optional z1 + z2 */
-+	idx = device_property_match_string(dev, "io-channel-names", "z1");
-+	if (idx < 0)
-+		return 0;
-+
-+	if (idx >= ARRAY_SIZE(st->ch))
-+		return -EOVERFLOW;
-+
-+	st->ch[idx] = GRTS_CH_Z1;
-+
-+	/* if z1 is provided z2 is not optional */
-+	idx = device_property_match_string(dev, "io-channel-names", "z2");
-+	if (idx < 0)
-+		return idx;
-+
-+	if (idx >= ARRAY_SIZE(st->ch))
-+		return -EOVERFLOW;
-+
-+	st->ch[idx] = GRTS_CH_Z2;
-+	st->pressure = true;
-+
-+	error = device_property_read_u32(dev,
-+					 "touchscreen-x-plate-ohms",
-+					 &st->x_plate_ohms);
-+	if (error) {
-+		dev_err(dev, "can't get touchscreen-x-plate-ohms property\n");
-+		return error;
-+	}
-+
-+	return 0;
-+}
-+
- static int grts_probe(struct platform_device *pdev)
- {
- 	struct grts_state *st;
-@@ -115,12 +229,13 @@ static int grts_probe(struct platform_device *pdev)
- 		return error;
- 	}
- 
--	chan = &st->iio_chans[0];
--	st->pressure = false;
--	while (chan && chan->indio_dev) {
--		if (!strcmp(chan->channel->datasheet_name, "pressure"))
--			st->pressure = true;
--		chan++;
-+	if (!device_property_present(dev, "io-channel-names"))
-+		return -ENODEV;
-+
-+	error = grts_get_properties(st, dev);
-+	if (error) {
-+		dev_err(dev, "Failed to parse properties\n");
-+		return error;
- 	}
- 
- 	if (st->pressure) {
-@@ -148,7 +263,7 @@ static int grts_probe(struct platform_device *pdev)
- 	input_set_abs_params(input, ABS_Y, 0, GRTS_MAX_POS_MASK - 1, 0, 0);
- 	if (st->pressure)
- 		input_set_abs_params(input, ABS_PRESSURE, st->pressure_min,
--				     0xffff, 0, 0);
-+				     GRTS_DEFAULT_PRESSURE_MAX, 0, 0);
- 
- 	input_set_capability(input, EV_KEY, BTN_TOUCH);
- 
--- 
-2.29.2
-
+Rob
