@@ -2,119 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBCD5389249
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 17:11:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B504389256
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 17:14:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233194AbhESPM4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 11:12:56 -0400
-Received: from polaris.svanheule.net ([84.16.241.116]:48288 "EHLO
-        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232917AbhESPMz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 11:12:55 -0400
-Received: from [IPv6:2a02:a03f:eafb:ee01:c82d:5b70:209e:672d] (unknown [IPv6:2a02:a03f:eafb:ee01:c82d:5b70:209e:672d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sander@svanheule.net)
-        by polaris.svanheule.net (Postfix) with ESMTPSA id 84913200AD3;
-        Wed, 19 May 2021 17:11:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-        s=mail1707; t=1621437094;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=BD18HcFvy6yUf3IJScH+2XFqwpBjnjH9zx+MD2Vdm0Q=;
-        b=as9z3vwLUgwY2TRN7BhTBhYTm5lN8Gj1LWEpMcriPOsMClvz8VRoHd/AfLy7i9ws9V238X
-        GdsyzsMEnxjCNH6nsfINaHxxrIje1VS0QXjR9fjbdz/j9D0mZyd1b/kN/d6MIGXYS7nOXs
-        TjCnqBEHHVlUVRuJYMUh4RQRRs53Wdj+Gm5QMqJTk9wqgsVXEfhKADJ3C1qq46y+TtvXDY
-        WOS7e5k0x1W9YNaVi9yopSqWbnHYVEHlU/yzrZJ/9+GHm1UioRzFi3atuqpT9ZpN0icIcY
-        l4micdViM8xq8Db7sAn52RdaFu1BrNZy0koX9d6DSrVv3YviuvfC8+gakxa1PA==
-Message-ID: <19bf02ddf94ae37384331ccf3e614ac9cdb6cd1b.camel@svanheule.net>
-Subject: Re: [PATCH 3/5] mfd: Add RTL8231 core device
-From:   Sander Vanheule <sander@svanheule.net>
-To:     Lee Jones <lee.jones@linaro.org>, kernel test robot <lkp@intel.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, kbuild-all@lists.01.org,
-        linux-kernel@vger.kernel.org
-Date:   Wed, 19 May 2021 17:11:32 +0200
-In-Reply-To: <20210519145809.GI2549456@dell>
-References: <f6fb81e62f5006a9e7772f5f2840d94b8d0d885d.1620735871.git.sander@svanheule.net>
-         <202105122140.ZFyj5hQy-lkp@intel.com> <20210519145809.GI2549456@dell>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+        id S239455AbhESPPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 11:15:45 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:53550 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233577AbhESPPo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 11:15:44 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14JFEEhZ107727;
+        Wed, 19 May 2021 10:14:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1621437254;
+        bh=JLprp5Wyndl+zIrf2Vm1yh2awJx90eNQiNKEDp5mqt0=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=rUotHyVawT2S/Vg0zGFaqNEt1igJm0hiHu0q8V6HGufhFMBaTGwTQUx/4SC8LiCuV
+         dUs05FVcE0qzdsJfeQLp7Xuy0PKXqDeUPd+omHAWeDgAxMd9vMOaBvnon3w3E7P/jy
+         PiCCMkLnxpVP7lpAy6/dQ+KbZ1ZIkYj6n+jgoKMU=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14JFEE7q030202
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 19 May 2021 10:14:14 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 19
+ May 2021 10:14:14 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 19 May 2021 10:14:14 -0500
+Received: from [10.250.32.40] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14JFEEBI018990;
+        Wed, 19 May 2021 10:14:14 -0500
+Subject: Re: [PATCH] dt-bindings: mailbox: Convert omap-mailbox.txt binding to
+ YAML
+To:     Rob Herring <robh+dt@kernel.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>
+CC:     Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20210518172022.10562-1-s-anna@ti.com>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <c666919f-cc10-3ca5-a1e3-5062c260e827@ti.com>
+Date:   Wed, 19 May 2021 10:14:14 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210518172022.10562-1-s-anna@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2021-05-19 at 15:58 +0100, Lee Jones wrote:
-> On Wed, 12 May 2021, kernel test robot wrote:
+On 5/18/21 12:20 PM, Suman Anna wrote:
+> Convert the current OMAP Mailbox binding from text format to YAML
+> format/DT schema, and delete the legacy text binding file.
 > 
-> > Hi Sander,
-> > 
-> > Thank you for the patch! Yet something to improve:
-> > 
-> > [auto build test ERROR on pavel-linux-leds/for-next]
-> > [also build test ERROR on lee-mfd/for-mfd-next pinctrl/devel v5.13-rc1]
-> > [If your patch is applied to the wrong git tree, kindly drop us a note.
-> > And when submitting patch, we suggest to use '--base' as documented in
-> > https://git-scm.com/docs/git-format-patch]
-> > 
-> > url:   
-> > https://github.com/0day-ci/linux/commits/Sander-Vanheule/RTL8231-GPIO-expander-support/20210511-202618
-> > base:   git://git.kernel.org/pub/scm/linux/kernel/git/pavel/linux-leds.git
-> > for-next
-> > config: h8300-randconfig-r012-20210512 (attached as .config)
-> > compiler: h8300-linux-gcc (GCC) 9.3.0
-> > reproduce (this is a W=1 build):
-> >         wget
-> > https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O
-> > ~/bin/make.cross
-> >         chmod +x ~/bin/make.cross
-> >         #
-> > https://github.com/0day-ci/linux/commit/e031cc2da2c2948230bacd1ca56cfe9990e1aefd
-> >         git remote add linux-review https://github.com/0day-ci/linux
-> >         git fetch --no-tags linux-review Sander-Vanheule/RTL8231-GPIO-
-> > expander-support/20210511-202618
-> >         git checkout e031cc2da2c2948230bacd1ca56cfe9990e1aefd
-> >         # save the attached .config to linux build tree
-> >         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross W=1
-> > ARCH=h8300 
-> > 
-> > If you fix the issue, kindly add following tag as appropriate
-> > Reported-by: kernel test robot <lkp@intel.com>
-> > 
-> > All errors (new ones prefixed by >>):
-> > 
-> >    h8300-linux-ld: drivers/mfd/rtl8231.o: in function
-> > `rtl8231_mdio_reg_write':
-> > > > rtl8231.c:(.text+0x4f): undefined reference to `mdiobus_write'
-> >    h8300-linux-ld: drivers/mfd/rtl8231.o: in function `rtl8231_mdio_reg_read':
-> > > > rtl8231.c:(.text+0x75): undefined reference to `mdiobus_read'
-> >    h8300-linux-ld: drivers/mfd/rtl8231.o: in function `mdio_module_init':
-> > > > rtl8231.c:(.init.text+0xd): undefined reference to `mdio_driver_register'
-> > 
-> > ---
-> > 0-DAY CI Kernel Test Service, Intel Corporation
-> > https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+> The new YAML binding conversion is an updated version compared to
+> the original. The descriptions for certain properties have been
+> improved to provide more clarity. Constraints are added to the
+> properties 'ti,mbox-num-users', 'ti,mbox-num-fifos' and 'interrupts'.
+> The 'ti,hwmods' is a legacy property and is retained only to reflect
+> the existing usage on some older OMAP2 and OMAP3 platforms.
 > 
-> Please could you take a look at these failures.
+> All the existing examples have also been updated to reflect the
+> latest dts nodes (ti,hwmods removed from OMAP4 and AM33xx examples,
+> and interrupts value updated for AM65x SoCs).
 > 
-> Either fix them up or report a false positive.
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> ---
+> Hi,
+> 
+> This patch does fix a number of dtbs_check warnings seen around OMAP Mailbox
+> nodes with the latest kernel. There are few left-over warnings when just
+> this patch is used on v5.13-rc1 or next-20210518. I have posted a separate
+> fix for a warning on TI K3 SoCs [1], and will be posting a separate cleanup
+> series for OMAP2+ SoCs. The dts patches can be picked up independently
+> of this patch.
 
-Hi Lee,
+FYI, All the dtbs_check warnings will be gone with [1] and the OMAP2+ cleanup
+series [2].
 
-These were caused by a missing dependency on MDIO_BUS. This should be resolved
-in the v2 series.
+> 
+> regards
+> Suman
+> 
+> [1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210514212016.3153-1-s-anna@ti.com/
 
-https://lore.kernel.org/lkml/f1ca940216c0accfc804afee2dbe46d260d890ae.1621279162.git.sander@svanheule.net/
+[2] https://patchwork.kernel.org/project/linux-omap/list/?series=484489
 
-I wasn't sure how to attribute this to the test bot, since the depedency was
-partly resolved through another patch.
+[snip]
 
-Best,
-Sander
-
+regards
+Suman
