@@ -2,107 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C81F3886F9
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 07:50:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3782F3887BF
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 08:44:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239913AbhESFvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 01:51:37 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:14618 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344680AbhESFvS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 01:51:18 -0400
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
-  by alexa-out.qualcomm.com with ESMTP; 18 May 2021 22:47:09 -0700
-X-QCInternal: smtphost
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 18 May 2021 22:47:08 -0700
-X-QCInternal: smtphost
-Received: from dikshita-linux.qualcomm.com ([10.204.65.237])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 19 May 2021 11:16:47 +0530
-Received: by dikshita-linux.qualcomm.com (Postfix, from userid 347544)
-        id 7EFD8219B3; Wed, 19 May 2021 11:16:46 +0530 (IST)
-From:   Dikshita Agarwal <dikshita@codeaurora.org>
-To:     david.brown@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        id S232305AbhESGpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 02:45:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48110 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230154AbhESGpq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 02:45:46 -0400
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CC4CC06175F;
+        Tue, 18 May 2021 23:44:26 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id l70so8765491pga.1;
+        Tue, 18 May 2021 23:44:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=Dn2ZnNyuJvry6P0uiwHBiVp5f0XAzwhsMlJuOW6GD14=;
+        b=la7VuDczzH7HuYSobGEpghR9f74VzTf9GrST1MLIujYr2iIcKMqveNVubAT1QtJI26
+         ThOoV4VVrJ4ua8MrRzF6cdrlrUG8EysPLYQhZu0eq/k4yEzy/5Yv7do+uOANrXvTceUj
+         NNFzZzDej9+X9WXsZhqYQlvLaPYbfpJcdsEF3ZX42uNWYhMJm4L+XTNlPoj/S2OYCzGp
+         1pD5VLoP09r189AF+y8AljlMF3eZaTeNGt4JLU/FD4nSEldncFkmrBWEtSDcEujRH2Yi
+         u3/jC6rPSK/+dccSODzcSwC41hitb17ICDStd4SddAKzF/oxv+R/VdDwiKJVFN1nKepR
+         055g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=Dn2ZnNyuJvry6P0uiwHBiVp5f0XAzwhsMlJuOW6GD14=;
+        b=ZFcNyZiPEaxiyGUg6U7N25lienEb8UOZUK1wGNKgdQW8daDb5aXnRilLSc9vKHVn8+
+         skojSgmZo4PQHhcMENkAjXw4HFkrtCSQZzguvuxrmFg+wHIFhK7vrJsi41GFabllJWLb
+         5fOAS6/nYCl9nNwU2fKLtN7GRqzSCbIaYMn2faNq/FDdfBPrcYXhOCuMOne25qtD0CbB
+         ZjPd+pknFkfHONJxD/TH3QaftsG8D2FDT/6D333qJCt3H5T1RZFUaeHJyyCtE9HT3W1e
+         3LU4ZuVaKJGijAoXz8nbmqh46uleilrddpMzZ8ax5HLziIrHuBPcDwjY0BO/3OoHtMxt
+         6CcQ==
+X-Gm-Message-State: AOAM533fTjWruyygJOzF0hbhcxdTtsdKbSNfwWU5NtrAqGIlZj3JPpN4
+        UWedW8l5QXVRrAgol9E9dLU=
+X-Google-Smtp-Source: ABdhPJygzmFUnbW5eV4hQPRASF5F2vQrxjWhuMRIxUZpiuLQMMThLb0kVfS8zMQcqJDImumr5YWg0Q==
+X-Received: by 2002:a65:5a8f:: with SMTP id c15mr9487205pgt.0.1621406665661;
+        Tue, 18 May 2021 23:44:25 -0700 (PDT)
+Received: from localhost.localdomain (1-171-11-163.dynamic-ip.hinet.net. [1.171.11.163])
+        by smtp.gmail.com with ESMTPSA id m14sm14085447pff.17.2021.05.18.23.44.23
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 18 May 2021 23:44:24 -0700 (PDT)
+From:   cy_huang <u0084500@gmail.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, cy_huang@richtek.com,
         devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        vgarodia@codeaurora.org, Dikshita Agarwal <dikshita@codeaurora.org>
-Subject: [PATCH] arm64: dts: qcom: sc7280: Add venus DT node
-Date:   Wed, 19 May 2021 11:16:44 +0530
-Message-Id: <1621403204-21398-1-git-send-email-dikshita@codeaurora.org>
+Subject: [PATCH v3 1/2] regulator: rt6160: Add DT binding document for Richtek RT6160
+Date:   Wed, 19 May 2021 14:43:58 +0800
+Message-Id: <1621406639-29911-1-git-send-email-u0084500@gmail.com>
 X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DT entries for the sc7280 venus encoder/decoder.
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-Co-developed-by: Mansur Alisha Shaik <mansur@codeaurora.org>
-Signed-off-by: Dikshita Agarwal <dikshita@codeaurora.org>
+Add DT binding document for Richtek RT6160 voltage regulator.
+
+Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
 ---
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 43 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+since v3
+- Move all regulator related properties to the upper node.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 4c44a52..9b4cc9a 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -60,6 +60,11 @@
- 			no-map;
- 			reg = <0x0 0x80b00000 0x0 0x100000>;
- 		};
+since v2
+- Move buckboost node from patternProperties to Properties.
+---
+ .../regulator/richtek,rt6160-regulator.yaml        | 61 ++++++++++++++++++++++
+ 1 file changed, 61 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt6160-regulator.yaml
+
+diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt6160-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt6160-regulator.yaml
+new file mode 100644
+index 00000000..0534b0d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/richtek,rt6160-regulator.yaml
+@@ -0,0 +1,61 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/richtek,rt6160-regulator.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+		video_mem: memory@8b200000 {
-+			reg = <0x0 0x8b200000 0x0 0x500000>;
-+			no-map;
-+		};
- 	};
- 
- 	cpus {
-@@ -850,6 +855,44 @@
- 			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		venus: video-codec@0aa00000 {
-+			compatible = "qcom,sc7280-venus";
-+			reg = <0 0x0aa00000 0 0xd0600>;
-+			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
++title: Richtek RT6160 BuckBoost converter
 +
-+			clocks = <&videocc VIDEO_CC_MVSC_CORE_CLK>,
-+				 <&videocc VIDEO_CC_MVSC_CTL_AXI_CLK>,
-+				 <&videocc VIDEO_CC_VENUS_AHB_CLK>,
-+				 <&videocc VIDEO_CC_MVS0_CORE_CLK>,
-+				 <&videocc VIDEO_CC_MVS0_AXI_CLK>;
-+			clock-names = "core", "bus", "iface",
-+				      "vcodec_core", "vcodec_bus";
++maintainers:
++  - ChiYuan Huang <cy_huang@richtek.com>
 +
-+			power-domains = <&videocc MVSC_GDSC>,
-+					<&videocc MVS0_GDSC>;
-+			power-domain-names = "venus", "vcodec0";
++description: |
++  The RT6160 is a high-efficiency buck-boost converter that can provide
++  up to 3A output current from 2025mV to 5200mV. And it support the wide
++  input voltage range from 2200mV to 5500mV.
 +
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_VENUS_CFG 0>,
-+					<&mmss_noc MASTER_VIDEO_P0 0 &mc_virt SLAVE_EBI1 0>;
-+			interconnect-names = "cpu-cfg", "video-mem";
++  Datasheet is available at
++  https://www.richtek.com/assets/product_file/RT6160A/DS6160A-00.pdf
 +
-+			iommus = <&apps_smmu 0x2180 0x20>,
-+				 <&apps_smmu 0x2184 0x20>;
-+			memory-region = <&video_mem>;
++allOf:
++  - $ref: regulator.yaml#
 +
-+			video-decoder {
-+				compatible = "venus-decoder";
-+			};
++properties:
++  compatible:
++    enum:
++      - richtek,rt6160
 +
-+			video-encoder {
-+				compatible = "venus-encoder";
-+			};
++  reg:
++    maxItems: 1
 +
-+			video-firmware {
-+				iommus = <&apps_smmu 0x21a2 0x0>;
-+			};
-+		};
++  enable-gpios:
++    description: A connection of the 'enable' gpio line.
++    maxItems: 1
 +
- 		videocc: clock-controller@aaf0000 {
- 			compatible = "qcom,sc7280-videocc";
- 			reg = <0 0xaaf0000 0 0x10000>;
++  richtek,vsel-active-low:
++    description: |
++      Used to indicate the 'vsel' pin active level. if not specified, use
++      high active level as the default.
++    type: boolean
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      rt6160@75 {
++        compatible = "richtek,rt6160";
++        reg = <0x75>;
++        enable-gpios = <&gpio26 2 0>;
++        regulator-name = "rt6160-buckboost";
++        regulator-min-microvolt = <2025000>;
++        regulator-max-microvolt = <5200000>;
++      };
++    };
 -- 
 2.7.4
 
