@@ -2,884 +2,429 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EBF6388E0E
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 14:30:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E5AE388E1D
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 14:31:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241401AbhESMcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 08:32:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42316 "EHLO
+        id S1353399AbhESMdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 08:33:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232850AbhESMcG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 08:32:06 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 768FDC06175F;
-        Wed, 19 May 2021 05:30:46 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id i12-20020a05683033ecb02903346fa0f74dso937813otu.10;
-        Wed, 19 May 2021 05:30:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:reply-to:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=aKHr+1V+CDnfzSzbLj1hWsDUAY0cmFm/k2Vt/tEA6F8=;
-        b=mS6dszP8bCc2Bg+C3HNJ90znzhnOLWLPWwIiOluenf/xCXlIEpAtt+46phu38p/Fwd
-         6eEb0hNH6g4T4MKxxgIqyzCgBs5WHfUPY9TSeC4WbfBgHoGSFDc/UDmAK9E9CA0wX7O6
-         z1J375Xmxq3LEb8QdLdZq8p5gFtUJS37C6E5P/+LYy2eqqNXQ0wlx8i0x1QmkWMizQ9x
-         lqIxiiVb+5xD0JXUb9HkN4lQ81/NM71gwLE8cldY/aXtY4jpVAVhiLNUSgZvpuEV5QCc
-         YUsCH/Dm9kwzqk48pzrWSDZzVvK5crEW+Np/tcOrpSIMQqgc/KxFD/NlKXezFylBmXYh
-         poow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :reply-to:references:mime-version:content-disposition
-         :content-transfer-encoding:in-reply-to;
-        bh=aKHr+1V+CDnfzSzbLj1hWsDUAY0cmFm/k2Vt/tEA6F8=;
-        b=bgeuMXBagTXM3jzCsmQIfutOdn5DpgR7bzNkJiTTgsVt6EbK9JzSW4DWtMYgiKafTZ
-         0e41j/xPn52cWDap7eLEAGgoRIkDPTBXq8Ep1Eq7qsZChMp1lqdwFLjOHBmn05y896VX
-         eIHHX8akvdfLrODjjuUaLY4gB+8UuSgZcN27kos7HJspZh24mdXaw2X6E0fz2kLcQakg
-         hfh0EGgKrZowgXPetH9ofBDRAi/PUz8AWl6CMhAjkdemguoqNv1xENBSHzbPQkKDQcaz
-         IbZTUsNssVPEe/8T7+FiksPmdQPM7+gUlavFuyMrUDmF7uEzGsh51q9iLPlGWz8pVKsH
-         dOFw==
-X-Gm-Message-State: AOAM5307xHGygtnOjJpAOaoM8qkn03aOIXEgrFAVBeYTvZQj5IbEoO+H
-        kMaJywjLLnJDRS8/2mZF8B6xyh9/pZgt
-X-Google-Smtp-Source: ABdhPJxOhBgHwUIx0RCQQWzAVbOph3yRvDgdajDuJH9n960Otk/URTgPiiYCbnqV6/LOlbQctg972Q==
-X-Received: by 2002:a05:6830:18fb:: with SMTP id d27mr8529362otf.235.1621427445589;
-        Wed, 19 May 2021 05:30:45 -0700 (PDT)
-Received: from serve.minyard.net ([47.184.156.158])
-        by smtp.gmail.com with ESMTPSA id r2sm4471424otq.28.2021.05.19.05.30.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 May 2021 05:30:44 -0700 (PDT)
-Sender: Corey Minyard <tcminyard@gmail.com>
-Received: from minyard.net (unknown [IPv6:2001:470:b8f6:1b:9144:ba66:ea13:f260])
-        by serve.minyard.net (Postfix) with ESMTPSA id 6AFE818000C;
-        Wed, 19 May 2021 12:30:43 +0000 (UTC)
-Date:   Wed, 19 May 2021 07:30:42 -0500
-From:   Corey Minyard <minyard@acm.org>
-To:     Quan Nguyen <quan@os.amperecomputing.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        openipmi-developer@lists.sourceforge.net,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>,
-        openbmc@lists.ozlabs.org
-Subject: Re: [PATCH v3 2/7] ipmi: ssif_bmc: Add SSIF BMC driver
-Message-ID: <20210519123042.GF2921206@minyard.net>
-Reply-To: minyard@acm.org
-References: <20210519074934.20712-1-quan@os.amperecomputing.com>
- <20210519074934.20712-3-quan@os.amperecomputing.com>
+        with ESMTP id S1353232AbhESMdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 08:33:06 -0400
+Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6074C061760
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 05:31:46 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:c161:a89e:52bd:1787])
+        by laurent.telenet-ops.be with bizsmtp
+        id 6cXi25005446CkP01cXihn; Wed, 19 May 2021 14:31:42 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1ljLMT-007EqW-LD; Wed, 19 May 2021 14:31:41 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1ljLMT-007agr-4o; Wed, 19 May 2021 14:31:41 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v3] ARM: dts: renesas: Move enable-method to CPU nodes
+Date:   Wed, 19 May 2021 14:31:37 +0200
+Message-Id: <35fcfedf9de9269185c48ca5a6dfcba7cdd3484b.1621427319.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210519074934.20712-3-quan@os.amperecomputing.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 19, 2021 at 02:49:29PM +0700, Quan Nguyen wrote:
-> The SMBus system interface (SSIF) IPMI BMC driver can be used to perform
-> in-band IPMI communication with their host in management (BMC) side.
-> 
-> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
-> ---
-> v3:
->   + Removed redundant license info [Joel]
->   + Switched to use traditional if-else [Joel]
->   + Removed unused ssif_bmc_ioctl() [Joel]
->   + Made handle_request()/complete_response() to return void [Joel]
->   + Refactored send_ssif_bmc_response()/receive_ssif_bmc_request() [Corey]
->   + Removed mutex [Corey]
->   + Use spin_lock/unlock_irqsave/restore in callback [Corey]
->   + Removed the unnecessary memset [Corey]
->   + Switch to use dev_err() [Corey]
-> 
-> v2:
->   + Fixed compiling error with COMPILE_TEST for arc
-> 
->  drivers/char/ipmi/Kconfig    |  11 +
->  drivers/char/ipmi/Makefile   |   1 +
->  drivers/char/ipmi/ssif_bmc.c | 605 +++++++++++++++++++++++++++++++++++
->  drivers/char/ipmi/ssif_bmc.h |  93 ++++++
->  4 files changed, 710 insertions(+)
->  create mode 100644 drivers/char/ipmi/ssif_bmc.c
->  create mode 100644 drivers/char/ipmi/ssif_bmc.h
-> 
-> diff --git a/drivers/char/ipmi/Kconfig b/drivers/char/ipmi/Kconfig
-> index 07847d9a459a..ad5c5161bcd6 100644
-> --- a/drivers/char/ipmi/Kconfig
-> +++ b/drivers/char/ipmi/Kconfig
-> @@ -133,6 +133,17 @@ config ASPEED_BT_IPMI_BMC
->  	  found on Aspeed SOCs (AST2400 and AST2500). The driver
->  	  implements the BMC side of the BT interface.
->  
-> +config SSIF_IPMI_BMC
-> +	tristate "SSIF IPMI BMC driver"
-> +	select I2C
-> +	select I2C_SLAVE
-> +	help
-> +	  This enables the IPMI SMBus system interface (SSIF) at the
-> +	  management (BMC) side.
-> +
-> +	  The driver implements the BMC side of the SMBus system
-> +	  interface (SSIF).
-> +
->  config IPMB_DEVICE_INTERFACE
->  	tristate 'IPMB Interface handler'
->  	depends on I2C
-> diff --git a/drivers/char/ipmi/Makefile b/drivers/char/ipmi/Makefile
-> index 0822adc2ec41..d04a214d74c4 100644
-> --- a/drivers/char/ipmi/Makefile
-> +++ b/drivers/char/ipmi/Makefile
-> @@ -27,3 +27,4 @@ obj-$(CONFIG_ASPEED_BT_IPMI_BMC) += bt-bmc.o
->  obj-$(CONFIG_ASPEED_KCS_IPMI_BMC) += kcs_bmc_aspeed.o
->  obj-$(CONFIG_NPCM7XX_KCS_IPMI_BMC) += kcs_bmc_npcm7xx.o
->  obj-$(CONFIG_IPMB_DEVICE_INTERFACE) += ipmb_dev_int.o
-> +obj-$(CONFIG_SSIF_IPMI_BMC) += ssif_bmc.o
-> diff --git a/drivers/char/ipmi/ssif_bmc.c b/drivers/char/ipmi/ssif_bmc.c
-> new file mode 100644
-> index 000000000000..d0ea7059b1db
-> --- /dev/null
-> +++ b/drivers/char/ipmi/ssif_bmc.c
-> @@ -0,0 +1,605 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * The driver for BMC side of SSIF interface
-> + *
-> + * Copyright (c) 2021, Ampere Computing LLC
-> + *
-> + */
-> +
-> +#include <linux/i2c.h>
-> +#include <linux/miscdevice.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/poll.h>
-> +#include <linux/sched.h>
-> +#include <linux/mutex.h>
-> +#include <linux/spinlock.h>
-> +
-> +#include "ssif_bmc.h"
-> +
-> +/* Handle SSIF message that will be sent to user */
-> +static ssize_t ssif_bmc_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
-> +{
-> +	struct ssif_bmc_ctx *ssif_bmc = to_ssif_bmc(file);
-> +	struct ssif_msg msg;
-> +	unsigned long flags;
-> +	ssize_t ret;
-> +
-> +	spin_lock_irqsave(&ssif_bmc->lock, flags);
-> +	while (!ssif_bmc->request_available) {
-> +		if (file->f_flags & O_NONBLOCK) {
+According to Documentation/devicetree/bindings/arm/cpus.yaml, the
+"enable-method" property should be a property of the individual CPU
+nodes, and not of the parent "cpus" container node.
+However, on R-Car Gen2 and RZ/G1 SoCs, the property is tied to the
+"cpus" node instead.
 
-There is no real need to check this under the lock.  It would simplify
-the end of this function if you checked this outside the lock.
+Secondary CPU bringup and CPU hot (un)plug work regardless, as
+arm_dt_init_cpu_maps() falls back to looking in the "cpus" node.
 
-> +			ret = -EAGAIN;
-> +			goto out_unlock;
-> +		}
-> +		spin_unlock_irqrestore(&ssif_bmc->lock, flags);
-> +		ret = wait_event_interruptible(ssif_bmc->wait_queue,
-> +					       ssif_bmc->request_available);
-> +		if (ret)
-> +			return ret;
-> +		spin_lock_irqsave(&ssif_bmc->lock, flags);
-> +	}
-> +
-> +	count = min_t(ssize_t, ssif_msg_len(&ssif_bmc->request),
-> +		      min_t(ssize_t, sizeof(struct ssif_msg), count));
+The cpuidle code does not have such a fallback, so it does not detect
+the enable-method.  Note that cpuidle does not support the
+"renesas,apmu" enable-method yet, so for now this does not make any
+difference.
 
-Just curious, what happens if userland supplies a buffer that is too
-small?  Is data lost?  In that case, I would think returning an error
-here would be the better thing, as opposed to silently truncating the
-message.
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+To be queued in renesas-devel for v5.14.
+Note that v1 and v2 never received any feedback.
 
-> +	memcpy(&msg, &ssif_bmc->request, count);
-> +	ssif_bmc->request_available = false;
-> +	spin_unlock_irqrestore(&ssif_bmc->lock, flags);
-> +
-> +	ret = copy_to_user(buf, &msg, count);
-> +	goto out;
-> +
-> +out_unlock:
-> +	spin_unlock_irqrestore(&ssif_bmc->lock, flags);
-> +out:
-> +	return (ret < 0) ? ret : count;
-> +}
-> +
-> +/* Handle SSIF message that is written by user */
-> +static ssize_t ssif_bmc_write(struct file *file, const char __user *buf, size_t count,
-> +			      loff_t *ppos)
-> +{
-> +	struct ssif_bmc_ctx *ssif_bmc = to_ssif_bmc(file);
-> +	struct ssif_msg msg;
-> +	unsigned long flags;
-> +	ssize_t ret;
-> +
-> +	if (count > sizeof(struct ssif_msg))
-> +		return -EINVAL;
-> +
-> +	ret = copy_from_user(&msg, buf, count);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (!msg.len || count < ssif_msg_len(&msg))
-> +		return -EINVAL;
-> +
-> +	spin_lock_irqsave(&ssif_bmc->lock, flags);
-> +	while (ssif_bmc->response_in_progress) {
-> +		if (file->f_flags & O_NONBLOCK) {
+Arm64 and powerpc do not have such a fallback, but SH has, like arm32.
 
-Same comment as O_NONBLOCK before.
+v3:
+  - Extend to cover all R-Car Gen2 and RZ/G2 .dtsi files,
 
-> +			ret = -EAGAIN;
-> +			goto out_unlock;
-> +		}
-> +		spin_unlock_irqrestore(&ssif_bmc->lock, flags);
-> +		ret = wait_event_interruptible(ssif_bmc->wait_queue,
-> +					       !ssif_bmc->response_in_progress);
-> +		if (ret)
-> +			goto out;
-> +		spin_lock_irqsave(&ssif_bmc->lock, flags);
-> +	}
-> +
-> +	memcpy(&ssif_bmc->response, &msg, count);
-> +	ssif_bmc->is_singlepart_read = (ssif_msg_len(&msg) <= MAX_PAYLOAD_PER_TRANSACTION + 1);
-> +	ssif_bmc->response_in_progress = true;
-> +	if (ssif_bmc->set_ssif_bmc_status)
-> +		ssif_bmc->set_ssif_bmc_status(ssif_bmc, SSIF_BMC_READY);
-> +
-> +out_unlock:
-> +	spin_unlock_irqrestore(&ssif_bmc->lock, flags);
-> +
-> +out:
-> +	return (ret < 0) ? ret : count;
-> +}
-> +
-> +static int ssif_bmc_open(struct inode *inode, struct file *file)
-> +{
-> +	struct ssif_bmc_ctx *ssif_bmc = to_ssif_bmc(file);
-> +	int ret = 0;
-> +
-> +	spin_lock_irq(&ssif_bmc->lock);
-> +	if (!ssif_bmc->running)
-> +		ssif_bmc->running = 1;
-> +	else
-> +		ret = -EBUSY;
-> +	spin_unlock_irq(&ssif_bmc->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static unsigned int ssif_bmc_poll(struct file *file, poll_table *wait)
-> +{
-> +	struct ssif_bmc_ctx *ssif_bmc = to_ssif_bmc(file);
-> +	unsigned int mask = 0;
-> +
-> +	poll_wait(file, &ssif_bmc->wait_queue, wait);
-> +
-> +	spin_lock_irq(&ssif_bmc->lock);
-> +	/*
-> +	 * The request message is now available so userspace application can
-> +	 * get the request
-> +	 */
-> +	if (ssif_bmc->request_available)
-> +		mask |= POLLIN;
-> +
-> +	spin_unlock_irq(&ssif_bmc->lock);
-> +
-> +	return mask;
-> +}
-> +
-> +static int ssif_bmc_release(struct inode *inode, struct file *file)
-> +{
-> +	struct ssif_bmc_ctx *ssif_bmc = to_ssif_bmc(file);
-> +
-> +	spin_lock_irq(&ssif_bmc->lock);
-> +	ssif_bmc->running = 0;
-> +	spin_unlock_irq(&ssif_bmc->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +/*
-> + * System calls to device interface for user apps
-> + */
-> +static const struct file_operations ssif_bmc_fops = {
-> +	.owner		= THIS_MODULE,
-> +	.open		= ssif_bmc_open,
-> +	.read		= ssif_bmc_read,
-> +	.write		= ssif_bmc_write,
-> +	.release	= ssif_bmc_release,
-> +	.poll		= ssif_bmc_poll,
-> +};
-> +
-> +/* Called with ssif_bmc->lock held. */
-> +static void handle_request(struct ssif_bmc_ctx *ssif_bmc)
-> +{
-> +	if (ssif_bmc->set_ssif_bmc_status)
-> +		ssif_bmc->set_ssif_bmc_status(ssif_bmc, SSIF_BMC_BUSY);
-> +
-> +	/* Request message is available to process */
-> +	ssif_bmc->request_available = true;
-> +	/*
-> +	 * This is the new READ request.
-> +	 */
-> +	wake_up_all(&ssif_bmc->wait_queue);
-> +}
-> +
-> +/* Called with ssif_bmc->lock held. */
-> +static void complete_response(struct ssif_bmc_ctx *ssif_bmc)
-> +{
-> +	/* Invalidate response in buffer to denote it having been sent. */
-> +	ssif_bmc->response.len = 0;
-> +	ssif_bmc->response_in_progress = false;
-> +	ssif_bmc->nbytes_processed = 0;
-> +	ssif_bmc->remain_len = 0;
-> +	wake_up_all(&ssif_bmc->wait_queue);
-> +}
-> +
-> +static void set_multipart_response_buffer(struct ssif_bmc_ctx *ssif_bmc, u8 *val)
-> +{
-> +	u8 response_len = 0;
-> +	int idx = 0;
-> +	u8 data_len;
-> +
-> +	data_len = ssif_bmc->response.len;
-> +	switch (ssif_bmc->smbus_cmd) {
-> +	case SSIF_IPMI_MULTIPART_READ_START:
-> +		/*
-> +		 * Read Start length is 32 bytes.
-> +		 * Read Start transfer first 30 bytes of IPMI response
-> +		 * and 2 special code 0x00, 0x01.
-> +		 */
-> +		*val = MAX_PAYLOAD_PER_TRANSACTION;
-> +		ssif_bmc->remain_len = data_len - MAX_IPMI_DATA_PER_START_TRANSACTION;
-> +		ssif_bmc->block_num = 0;
-> +
-> +		ssif_bmc->response_buf[idx++] = 0x00; /* Start Flag */
-> +		ssif_bmc->response_buf[idx++] = 0x01; /* Start Flag */
-> +		ssif_bmc->response_buf[idx++] = ssif_bmc->response.netfn_lun;
-> +		ssif_bmc->response_buf[idx++] = ssif_bmc->response.cmd;
-> +		ssif_bmc->response_buf[idx++] = ssif_bmc->response.payload[0];
-> +
-> +		response_len = MAX_PAYLOAD_PER_TRANSACTION - idx;
-> +
-> +		memcpy(&ssif_bmc->response_buf[idx], &ssif_bmc->response.payload[1],
-> +		       response_len);
-> +		break;
-> +
-> +	case SSIF_IPMI_MULTIPART_READ_MIDDLE:
-> +		/*
-> +		 * IPMI READ Middle or READ End messages can carry up to 31 bytes
-> +		 * IPMI data plus block number byte.
-> +		 */
-> +		if (ssif_bmc->remain_len < MAX_IPMI_DATA_PER_MIDDLE_TRANSACTION) {
-> +			/*
-> +			 * This is READ End message
-> +			 *  Return length is the remaining response data length
-> +			 *  plus block number
-> +			 *  Block number 0xFF is to indicate this is last message
-> +			 *
-> +			 */
-> +			*val = ssif_bmc->remain_len + 1;
-> +			ssif_bmc->block_num = 0xFF;
-> +			ssif_bmc->response_buf[idx++] = ssif_bmc->block_num;
-> +			response_len = ssif_bmc->remain_len;
-> +			/* Clean the buffer */
-> +			memset(&ssif_bmc->response_buf[idx], 0, MAX_PAYLOAD_PER_TRANSACTION - idx);
-> +		} else {
-> +			/*
-> +			 * This is READ Middle message
-> +			 *  Response length is the maximum SMBUS transfer length
-> +			 *  Block number byte is incremented
-> +			 * Return length is maximum SMBUS transfer length
-> +			 */
-> +			*val = MAX_PAYLOAD_PER_TRANSACTION;
-> +			ssif_bmc->remain_len -= MAX_IPMI_DATA_PER_MIDDLE_TRANSACTION;
-> +			response_len = MAX_IPMI_DATA_PER_MIDDLE_TRANSACTION;
-> +			ssif_bmc->response_buf[idx++] = ssif_bmc->block_num;
-> +			ssif_bmc->block_num++;
-> +		}
-> +
-> +		memcpy(&ssif_bmc->response_buf[idx],
-> +		       ssif_bmc->response.payload + 1 + ssif_bmc->nbytes_processed,
-> +		       response_len);
-> +		break;
-> +
-> +	default:
-> +		/* Do not expect to go to this case */
-> +		dev_err(&ssif_bmc->client->dev,
-> +			"Error: Unexpected SMBus command received 0x%x\n", ssif_bmc->smbus_cmd);
-> +		break;
-> +	}
-> +
-> +	ssif_bmc->nbytes_processed += response_len;
-> +}
-> +
-> +/* Process the IPMI response that will be read by master */
-> +static void handle_read_processed(struct ssif_bmc_ctx *ssif_bmc, u8 *val)
-> +{
-> +	u8 *buf;
-> +	u8 pec_len, addr, len;
-> +	u8 pec = 0;
-> +
-> +	pec_len = ssif_bmc->pec_support ? 1 : 0;
-> +	/* PEC - Start Read Address */
-> +	addr = GET_8BIT_ADDR(ssif_bmc->client->addr);
-> +	pec = i2c_smbus_pec(pec, &addr, 1);
-> +	/* PEC - SSIF Command */
-> +	pec = i2c_smbus_pec(pec, &ssif_bmc->smbus_cmd, 1);
-> +	/* PEC - Restart Write Address */
-> +	addr = addr | 0x01;
-> +	pec = i2c_smbus_pec(pec, &addr, 1);
-> +
-> +	if (ssif_bmc->is_singlepart_read) {
-> +		/* Single-part Read processing */
-> +		buf = (u8 *)&ssif_bmc->response;
-> +
-> +		if (ssif_bmc->response.len && ssif_bmc->msg_idx < ssif_bmc->response.len) {
-> +			ssif_bmc->msg_idx++;
-> +			*val = buf[ssif_bmc->msg_idx];
-> +		} else if (ssif_bmc->response.len && ssif_bmc->msg_idx == ssif_bmc->response.len) {
-> +			ssif_bmc->msg_idx++;
-> +			*val = i2c_smbus_pec(pec, buf, ssif_msg_len(&ssif_bmc->response));
-> +		} else {
-> +			*val = 0;
-> +		}
-> +		/* Invalidate response buffer to denote it is sent */
-> +		if (ssif_bmc->msg_idx + 1 >= (ssif_msg_len(&ssif_bmc->response) + pec_len))
-> +			complete_response(ssif_bmc);
-> +	} else {
-> +		/* Multi-part Read processing */
-> +		switch (ssif_bmc->smbus_cmd) {
-> +		case SSIF_IPMI_MULTIPART_READ_START:
-> +		case SSIF_IPMI_MULTIPART_READ_MIDDLE:
-> +			buf = (u8 *)&ssif_bmc->response_buf;
-> +			*val = buf[ssif_bmc->msg_idx];
-> +			ssif_bmc->msg_idx++;
-> +			break;
-> +		default:
-> +			/* Do not expect to go to this case */
-> +			dev_err(&ssif_bmc->client->dev,
-> +				"Error: Unexpected SMBus command received 0x%x\n",
-> +				ssif_bmc->smbus_cmd);
-> +			break;
-> +		}
-> +		len = (ssif_bmc->block_num == 0xFF) ?
-> +		       ssif_bmc->remain_len + 1 : MAX_PAYLOAD_PER_TRANSACTION;
-> +		if (ssif_bmc->msg_idx == (len + 1)) {
-> +			pec = i2c_smbus_pec(pec, &len, 1);
-> +			*val = i2c_smbus_pec(pec, ssif_bmc->response_buf, len);
-> +		}
-> +		/* Invalidate response buffer to denote last response is sent */
-> +		if (ssif_bmc->block_num == 0xFF &&
-> +		    ssif_bmc->msg_idx > (ssif_bmc->remain_len + pec_len)) {
-> +			complete_response(ssif_bmc);
-> +		}
-> +	}
-> +}
-> +
-> +static void handle_write_received(struct ssif_bmc_ctx *ssif_bmc, u8 *val)
-> +{
-> +	u8 *buf;
-> +	u8 smbus_cmd;
-> +
-> +	buf = (u8 *)&ssif_bmc->request;
-> +	if (ssif_bmc->msg_idx >= sizeof(struct ssif_msg))
+v2:
+  - Update reference after commit 672951cbd1b70a9e ("dt-bindings: arm:
+    Convert cpu binding to json-schema").
+---
+ arch/arm/boot/dts/r8a7742.dtsi  | 5 ++++-
+ arch/arm/boot/dts/r8a7743.dtsi  | 3 ++-
+ arch/arm/boot/dts/r8a7744.dtsi  | 3 ++-
+ arch/arm/boot/dts/r8a7745.dtsi  | 3 ++-
+ arch/arm/boot/dts/r8a77470.dtsi | 3 ++-
+ arch/arm/boot/dts/r8a7790.dtsi  | 9 ++++++++-
+ arch/arm/boot/dts/r8a7791.dtsi  | 3 ++-
+ arch/arm/boot/dts/r8a7792.dtsi  | 3 ++-
+ arch/arm/boot/dts/r8a7793.dtsi  | 3 ++-
+ arch/arm/boot/dts/r8a7794.dtsi  | 3 ++-
+ 10 files changed, 28 insertions(+), 10 deletions(-)
 
-Shouldn't you abort the message if you get too much data?  Otherwise you
-get silent truncation.
+diff --git a/arch/arm/boot/dts/r8a7742.dtsi b/arch/arm/boot/dts/r8a7742.dtsi
+index 8e989063d7027dc2..a2279686ffcccb04 100644
+--- a/arch/arm/boot/dts/r8a7742.dtsi
++++ b/arch/arm/boot/dts/r8a7742.dtsi
+@@ -47,7 +47,6 @@ can_clk: can {
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		enable-method = "renesas,apmu";
+ 
+ 		cpu0: cpu@0 {
+ 			device_type = "cpu";
+@@ -56,6 +55,7 @@ cpu0: cpu@0 {
+ 			clock-frequency = <1400000000>;
+ 			clocks = <&cpg CPG_CORE R8A7742_CLK_Z>;
+ 			power-domains = <&sysc R8A7742_PD_CA15_CPU0>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA15>;
+ 			capacity-dmips-mhz = <1024>;
+ 			voltage-tolerance = <1>; /* 1% */
+@@ -77,6 +77,7 @@ cpu1: cpu@1 {
+ 			clock-frequency = <1400000000>;
+ 			clocks = <&cpg CPG_CORE R8A7742_CLK_Z>;
+ 			power-domains = <&sysc R8A7742_PD_CA15_CPU1>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA15>;
+ 			capacity-dmips-mhz = <1024>;
+ 			voltage-tolerance = <1>; /* 1% */
+@@ -98,6 +99,7 @@ cpu2: cpu@2 {
+ 			clock-frequency = <1400000000>;
+ 			clocks = <&cpg CPG_CORE R8A7742_CLK_Z>;
+ 			power-domains = <&sysc R8A7742_PD_CA15_CPU2>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA15>;
+ 			capacity-dmips-mhz = <1024>;
+ 			voltage-tolerance = <1>; /* 1% */
+@@ -119,6 +121,7 @@ cpu3: cpu@3 {
+ 			clock-frequency = <1400000000>;
+ 			clocks = <&cpg CPG_CORE R8A7742_CLK_Z>;
+ 			power-domains = <&sysc R8A7742_PD_CA15_CPU3>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA15>;
+ 			capacity-dmips-mhz = <1024>;
+ 			voltage-tolerance = <1>; /* 1% */
+diff --git a/arch/arm/boot/dts/r8a7743.dtsi b/arch/arm/boot/dts/r8a7743.dtsi
+index 16e3bf01fc88f0b8..7e5e09d210ec5a60 100644
+--- a/arch/arm/boot/dts/r8a7743.dtsi
++++ b/arch/arm/boot/dts/r8a7743.dtsi
+@@ -49,7 +49,6 @@ can_clk: can {
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		enable-method = "renesas,apmu";
+ 
+ 		cpu0: cpu@0 {
+ 			device_type = "cpu";
+@@ -59,6 +58,7 @@ cpu0: cpu@0 {
+ 			clocks = <&cpg CPG_CORE R8A7743_CLK_Z>;
+ 			clock-latency = <300000>; /* 300 us */
+ 			power-domains = <&sysc R8A7743_PD_CA15_CPU0>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA15>;
+ 
+ 			/* kHz - uV - OPPs unknown yet */
+@@ -78,6 +78,7 @@ cpu1: cpu@1 {
+ 			clocks = <&cpg CPG_CORE R8A7743_CLK_Z>;
+ 			clock-latency = <300000>; /* 300 us */
+ 			power-domains = <&sysc R8A7743_PD_CA15_CPU1>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA15>;
+ 
+ 			/* kHz - uV - OPPs unknown yet */
+diff --git a/arch/arm/boot/dts/r8a7744.dtsi b/arch/arm/boot/dts/r8a7744.dtsi
+index 4865e39164fafaa1..8419683a9d83915c 100644
+--- a/arch/arm/boot/dts/r8a7744.dtsi
++++ b/arch/arm/boot/dts/r8a7744.dtsi
+@@ -49,7 +49,6 @@ can_clk: can {
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		enable-method = "renesas,apmu";
+ 
+ 		cpu0: cpu@0 {
+ 			device_type = "cpu";
+@@ -59,6 +58,7 @@ cpu0: cpu@0 {
+ 			clocks = <&cpg CPG_CORE R8A7744_CLK_Z>;
+ 			clock-latency = <300000>; /* 300 us */
+ 			power-domains = <&sysc R8A7744_PD_CA15_CPU0>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA15>;
+ 
+ 			/* kHz - uV - OPPs unknown yet */
+@@ -78,6 +78,7 @@ cpu1: cpu@1 {
+ 			clocks = <&cpg CPG_CORE R8A7744_CLK_Z>;
+ 			clock-latency = <300000>; /* 300 us */
+ 			power-domains = <&sysc R8A7744_PD_CA15_CPU1>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA15>;
+ 
+ 			/* kHz - uV - OPPs unknown yet */
+diff --git a/arch/arm/boot/dts/r8a7745.dtsi b/arch/arm/boot/dts/r8a7745.dtsi
+index 0756197258de4a4b..817edb61a54409a3 100644
+--- a/arch/arm/boot/dts/r8a7745.dtsi
++++ b/arch/arm/boot/dts/r8a7745.dtsi
+@@ -64,7 +64,6 @@ can_clk: can {
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		enable-method = "renesas,apmu";
+ 
+ 		cpu0: cpu@0 {
+ 			device_type = "cpu";
+@@ -73,6 +72,7 @@ cpu0: cpu@0 {
+ 			clock-frequency = <1000000000>;
+ 			clocks = <&cpg CPG_CORE R8A7745_CLK_Z2>;
+ 			power-domains = <&sysc R8A7745_PD_CA7_CPU0>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA7>;
+ 		};
+ 
+@@ -83,6 +83,7 @@ cpu1: cpu@1 {
+ 			clock-frequency = <1000000000>;
+ 			clocks = <&cpg CPG_CORE R8A7745_CLK_Z2>;
+ 			power-domains = <&sysc R8A7745_PD_CA7_CPU1>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA7>;
+ 		};
+ 
+diff --git a/arch/arm/boot/dts/r8a77470.dtsi b/arch/arm/boot/dts/r8a77470.dtsi
+index 5d1f3570d5c7ed2a..13ef1e9bf4d5e292 100644
+--- a/arch/arm/boot/dts/r8a77470.dtsi
++++ b/arch/arm/boot/dts/r8a77470.dtsi
+@@ -25,7 +25,6 @@ aliases {
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		enable-method = "renesas,apmu";
+ 
+ 		cpu0: cpu@0 {
+ 			device_type = "cpu";
+@@ -34,6 +33,7 @@ cpu0: cpu@0 {
+ 			clock-frequency = <1000000000>;
+ 			clocks = <&cpg CPG_CORE R8A77470_CLK_Z2>;
+ 			power-domains = <&sysc R8A77470_PD_CA7_CPU0>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA7>;
+ 		};
+ 
+@@ -44,6 +44,7 @@ cpu1: cpu@1 {
+ 			clock-frequency = <1000000000>;
+ 			clocks = <&cpg CPG_CORE R8A77470_CLK_Z2>;
+ 			power-domains = <&sysc R8A77470_PD_CA7_CPU1>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA7>;
+ 		};
+ 
+diff --git a/arch/arm/boot/dts/r8a7790.dtsi b/arch/arm/boot/dts/r8a7790.dtsi
+index f7c4b52b8c26a59d..ed6dd4fcc503cbd8 100644
+--- a/arch/arm/boot/dts/r8a7790.dtsi
++++ b/arch/arm/boot/dts/r8a7790.dtsi
+@@ -69,7 +69,6 @@ can_clk: can {
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		enable-method = "renesas,apmu";
+ 
+ 		cpu0: cpu@0 {
+ 			device_type = "cpu";
+@@ -78,6 +77,7 @@ cpu0: cpu@0 {
+ 			clock-frequency = <1300000000>;
+ 			clocks = <&cpg CPG_CORE R8A7790_CLK_Z>;
+ 			power-domains = <&sysc R8A7790_PD_CA15_CPU0>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA15>;
+ 			capacity-dmips-mhz = <1024>;
+ 			voltage-tolerance = <1>; /* 1% */
+@@ -99,6 +99,7 @@ cpu1: cpu@1 {
+ 			clock-frequency = <1300000000>;
+ 			clocks = <&cpg CPG_CORE R8A7790_CLK_Z>;
+ 			power-domains = <&sysc R8A7790_PD_CA15_CPU1>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA15>;
+ 			capacity-dmips-mhz = <1024>;
+ 			voltage-tolerance = <1>; /* 1% */
+@@ -120,6 +121,7 @@ cpu2: cpu@2 {
+ 			clock-frequency = <1300000000>;
+ 			clocks = <&cpg CPG_CORE R8A7790_CLK_Z>;
+ 			power-domains = <&sysc R8A7790_PD_CA15_CPU2>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA15>;
+ 			capacity-dmips-mhz = <1024>;
+ 			voltage-tolerance = <1>; /* 1% */
+@@ -141,6 +143,7 @@ cpu3: cpu@3 {
+ 			clock-frequency = <1300000000>;
+ 			clocks = <&cpg CPG_CORE R8A7790_CLK_Z>;
+ 			power-domains = <&sysc R8A7790_PD_CA15_CPU3>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA15>;
+ 			capacity-dmips-mhz = <1024>;
+ 			voltage-tolerance = <1>; /* 1% */
+@@ -162,6 +165,7 @@ cpu4: cpu@100 {
+ 			clock-frequency = <780000000>;
+ 			clocks = <&cpg CPG_CORE R8A7790_CLK_Z2>;
+ 			power-domains = <&sysc R8A7790_PD_CA7_CPU0>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA7>;
+ 			capacity-dmips-mhz = <539>;
+ 		};
+@@ -173,6 +177,7 @@ cpu5: cpu@101 {
+ 			clock-frequency = <780000000>;
+ 			clocks = <&cpg CPG_CORE R8A7790_CLK_Z2>;
+ 			power-domains = <&sysc R8A7790_PD_CA7_CPU1>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA7>;
+ 			capacity-dmips-mhz = <539>;
+ 		};
+@@ -184,6 +189,7 @@ cpu6: cpu@102 {
+ 			clock-frequency = <780000000>;
+ 			clocks = <&cpg CPG_CORE R8A7790_CLK_Z2>;
+ 			power-domains = <&sysc R8A7790_PD_CA7_CPU2>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA7>;
+ 			capacity-dmips-mhz = <539>;
+ 		};
+@@ -195,6 +201,7 @@ cpu7: cpu@103 {
+ 			clock-frequency = <780000000>;
+ 			clocks = <&cpg CPG_CORE R8A7790_CLK_Z2>;
+ 			power-domains = <&sysc R8A7790_PD_CA7_CPU3>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA7>;
+ 			capacity-dmips-mhz = <539>;
+ 		};
+diff --git a/arch/arm/boot/dts/r8a7791.dtsi b/arch/arm/boot/dts/r8a7791.dtsi
+index f05d7541f87ec574..0ccc162d3c2c981a 100644
+--- a/arch/arm/boot/dts/r8a7791.dtsi
++++ b/arch/arm/boot/dts/r8a7791.dtsi
+@@ -68,7 +68,6 @@ can_clk: can {
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		enable-method = "renesas,apmu";
+ 
+ 		cpu0: cpu@0 {
+ 			device_type = "cpu";
+@@ -77,6 +76,7 @@ cpu0: cpu@0 {
+ 			clock-frequency = <1500000000>;
+ 			clocks = <&cpg CPG_CORE R8A7791_CLK_Z>;
+ 			power-domains = <&sysc R8A7791_PD_CA15_CPU0>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA15>;
+ 			voltage-tolerance = <1>; /* 1% */
+ 			clock-latency = <300000>; /* 300 us */
+@@ -97,6 +97,7 @@ cpu1: cpu@1 {
+ 			clock-frequency = <1500000000>;
+ 			clocks = <&cpg CPG_CORE R8A7791_CLK_Z>;
+ 			power-domains = <&sysc R8A7791_PD_CA15_CPU1>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA15>;
+ 			voltage-tolerance = <1>; /* 1% */
+ 			clock-latency = <300000>; /* 300 us */
+diff --git a/arch/arm/boot/dts/r8a7792.dtsi b/arch/arm/boot/dts/r8a7792.dtsi
+index bd7ff205433e8e9f..9cdb73894ac23a80 100644
+--- a/arch/arm/boot/dts/r8a7792.dtsi
++++ b/arch/arm/boot/dts/r8a7792.dtsi
+@@ -45,7 +45,6 @@ can_clk: can {
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		enable-method = "renesas,apmu";
+ 
+ 		cpu0: cpu@0 {
+ 			device_type = "cpu";
+@@ -54,6 +53,7 @@ cpu0: cpu@0 {
+ 			clock-frequency = <1000000000>;
+ 			clocks = <&cpg CPG_CORE R8A7792_CLK_Z>;
+ 			power-domains = <&sysc R8A7792_PD_CA15_CPU0>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA15>;
+ 		};
+ 
+@@ -64,6 +64,7 @@ cpu1: cpu@1 {
+ 			clock-frequency = <1000000000>;
+ 			clocks = <&cpg CPG_CORE R8A7792_CLK_Z>;
+ 			power-domains = <&sysc R8A7792_PD_CA15_CPU1>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA15>;
+ 		};
+ 
+diff --git a/arch/arm/boot/dts/r8a7793.dtsi b/arch/arm/boot/dts/r8a7793.dtsi
+index 6d74475030edfeb6..dea4b1e108af0a82 100644
+--- a/arch/arm/boot/dts/r8a7793.dtsi
++++ b/arch/arm/boot/dts/r8a7793.dtsi
+@@ -60,7 +60,6 @@ can_clk: can {
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		enable-method = "renesas,apmu";
+ 
+ 		cpu0: cpu@0 {
+ 			device_type = "cpu";
+@@ -69,6 +68,7 @@ cpu0: cpu@0 {
+ 			clock-frequency = <1500000000>;
+ 			clocks = <&cpg CPG_CORE R8A7793_CLK_Z>;
+ 			power-domains = <&sysc R8A7793_PD_CA15_CPU0>;
++			enable-method = "renesas,apmu";
+ 			voltage-tolerance = <1>; /* 1% */
+ 			clock-latency = <300000>; /* 300 us */
+ 
+@@ -89,6 +89,7 @@ cpu1: cpu@1 {
+ 			clock-frequency = <1500000000>;
+ 			clocks = <&cpg CPG_CORE R8A7793_CLK_Z>;
+ 			power-domains = <&sysc R8A7793_PD_CA15_CPU1>;
++			enable-method = "renesas,apmu";
+ 			voltage-tolerance = <1>; /* 1% */
+ 			clock-latency = <300000>; /* 300 us */
+ 
+diff --git a/arch/arm/boot/dts/r8a7794.dtsi b/arch/arm/boot/dts/r8a7794.dtsi
+index f974b8676bc59222..6a4709332acc4b52 100644
+--- a/arch/arm/boot/dts/r8a7794.dtsi
++++ b/arch/arm/boot/dts/r8a7794.dtsi
+@@ -62,7 +62,6 @@ can_clk: can {
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		enable-method = "renesas,apmu";
+ 
+ 		cpu0: cpu@0 {
+ 			device_type = "cpu";
+@@ -71,6 +70,7 @@ cpu0: cpu@0 {
+ 			clock-frequency = <1000000000>;
+ 			clocks = <&cpg CPG_CORE R8A7794_CLK_Z2>;
+ 			power-domains = <&sysc R8A7794_PD_CA7_CPU0>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA7>;
+ 		};
+ 
+@@ -81,6 +81,7 @@ cpu1: cpu@1 {
+ 			clock-frequency = <1000000000>;
+ 			clocks = <&cpg CPG_CORE R8A7794_CLK_Z2>;
+ 			power-domains = <&sysc R8A7794_PD_CA7_CPU1>;
++			enable-method = "renesas,apmu";
+ 			next-level-cache = <&L2_CA7>;
+ 		};
+ 
+-- 
+2.25.1
 
-> +		return;
-> +
-> +	smbus_cmd = ssif_bmc->smbus_cmd;
-> +	switch (smbus_cmd) {
-> +	case SSIF_IPMI_SINGLEPART_WRITE:
-> +		/* Single-part write */
-> +		buf[ssif_bmc->msg_idx - 1] = *val;
-> +		ssif_bmc->msg_idx++;
-> +
-> +		break;
-
-Generally you put the space after the break, not before.  You did this
-right before, but didn't from here down in the file.
-
-> +	case SSIF_IPMI_MULTIPART_WRITE_START:
-> +		/* Reset length to zero */
-> +		if (ssif_bmc->msg_idx == 1)
-> +			ssif_bmc->request.len = 0;
-
-What happens if you get this and you are in the middle of a message?
-
-> +
-> +		fallthrough;
-> +	case SSIF_IPMI_MULTIPART_WRITE_MIDDLE:
-> +	case SSIF_IPMI_MULTIPART_WRITE_END:
-
-What happens if you get these and you are not in a message?
-
-> +		/* Multi-part write, 2nd byte received is length */
-> +		if (ssif_bmc->msg_idx == 1) {
-> +			ssif_bmc->request.len += *val;
-> +			ssif_bmc->recv_len = *val;
-> +		} else {
-> +			buf[ssif_bmc->msg_idx - 1 +
-> +			    ssif_bmc->request.len - ssif_bmc->recv_len]	= *val;
-> +		}
-> +
-> +		ssif_bmc->msg_idx++;
-> +
-> +		break;
-> +	default:
-> +		/* Do not expect to go to this case */
-> +		dev_err(&ssif_bmc->client->dev,
-> +			"Error: Unexpected SMBus command received 0x%x\n", ssif_bmc->smbus_cmd);
-> +		break;
-> +	}
-> +}
-> +
-> +static bool validate_pec(struct ssif_bmc_ctx *ssif_bmc)
-> +{
-> +	u8 rpec = 0, cpec = 0;
-> +	bool ret = true;
-> +	u8 addr, index;
-> +	u8 *buf;
-> +
-> +	buf = (u8 *)&ssif_bmc->request;
-> +	switch (ssif_bmc->smbus_cmd) {
-> +	case SSIF_IPMI_SINGLEPART_WRITE:
-> +		if ((ssif_bmc->msg_idx - 1) == ssif_msg_len(&ssif_bmc->request)) {
-> +			/* PEC is not included */
-> +			ssif_bmc->pec_support = false;
-> +			return true;
-> +		}
-> +
-> +		if ((ssif_bmc->msg_idx - 1) != (ssif_msg_len(&ssif_bmc->request) + 1))
-> +			goto error;
-> +
-> +		/* PEC is included */
-> +		ssif_bmc->pec_support = true;
-> +		rpec = buf[ssif_bmc->msg_idx - 2];
-> +		addr = GET_8BIT_ADDR(ssif_bmc->client->addr);
-> +		cpec = i2c_smbus_pec(cpec, &addr, 1);
-> +		cpec = i2c_smbus_pec(cpec, &ssif_bmc->smbus_cmd, 1);
-> +		cpec = i2c_smbus_pec(cpec, buf, ssif_msg_len(&ssif_bmc->request));
-> +		if (rpec != cpec) {
-> +			dev_err(&ssif_bmc->client->dev, "Bad PEC 0x%02x vs. 0x%02x\n", rpec, cpec);
-> +			ret = false;
-> +		}
-> +
-> +		break;
-> +	case SSIF_IPMI_MULTIPART_WRITE_START:
-> +	case SSIF_IPMI_MULTIPART_WRITE_MIDDLE:
-> +	case SSIF_IPMI_MULTIPART_WRITE_END:
-> +		index = ssif_bmc->request.len - ssif_bmc->recv_len;
-> +		if ((ssif_bmc->msg_idx - 1 + index) == ssif_msg_len(&ssif_bmc->request)) {
-> +			/* PEC is not included */
-> +			ssif_bmc->pec_support = false;
-> +			return true;
-> +		}
-> +
-> +		if ((ssif_bmc->msg_idx - 1 + index) != (ssif_msg_len(&ssif_bmc->request) + 1))
-> +			goto error;
-> +
-> +		/* PEC is included */
-> +		ssif_bmc->pec_support = true;
-> +		rpec = buf[ssif_bmc->msg_idx - 2 + index];
-> +		addr = GET_8BIT_ADDR(ssif_bmc->client->addr);
-> +		cpec = i2c_smbus_pec(cpec, &addr, 1);
-> +		cpec = i2c_smbus_pec(cpec, &ssif_bmc->smbus_cmd, 1);
-> +		cpec = i2c_smbus_pec(cpec, &ssif_bmc->recv_len, 1);
-> +		/* As SMBus specification does not allow the length
-> +		 * (byte count) in the Write-Block protocol to be zero.
-> +		 * Therefore, it is illegal to have the last Middle
-> +		 * transaction in the sequence carry 32-bytes and have
-> +		 * a length of ‘0’ in the End transaction.
-> +		 * But some users may try to use this way and we should
-> +		 * prevent ssif_bmc driver broken in this case.
-> +		 */
-> +		if (ssif_bmc->recv_len != 0)
-> +			cpec = i2c_smbus_pec(cpec, buf + 1 + index, ssif_bmc->recv_len);
-> +
-> +		if (rpec != cpec) {
-> +			dev_err(&ssif_bmc->client->dev, "Bad PEC 0x%02x vs. 0x%02x\n", rpec, cpec);
-> +			ret = false;
-> +		}
-> +
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	return ret;
-> +error:
-> +	/* Do not expect to go to this case */
-> +	dev_err(&ssif_bmc->client->dev,
-> +		"Error: Unexpected length received %d\n", ssif_msg_len(&ssif_bmc->request));
-> +
-> +	return false;
-> +}
-> +
-> +static void complete_write_received(struct ssif_bmc_ctx *ssif_bmc)
-> +{
-> +	u8 cmd = ssif_bmc->smbus_cmd;
-> +
-> +	/* A BMC that receives an invalid PEC shall drop the data for the write
-> +	 * transaction and any further transactions (read or write) until
-> +	 * the next valid read or write Start transaction is received
-> +	 */
-> +	if (!validate_pec(ssif_bmc)) {
-> +		dev_err(&ssif_bmc->client->dev, "Received invalid PEC\n");
-> +		return;
-> +	}
-> +
-> +	if (cmd == SSIF_IPMI_SINGLEPART_WRITE || cmd == SSIF_IPMI_MULTIPART_WRITE_END)
-> +		handle_request(ssif_bmc);
-> +}
-> +
-> +static void initialize_transfer(struct ssif_bmc_ctx *ssif_bmc, u8 *val)
-> +{
-> +	/* SMBUS command can vary (single or multi-part) */
-> +	ssif_bmc->smbus_cmd = *val;
-> +	ssif_bmc->msg_idx++;
-> +
-> +	if (ssif_bmc->smbus_cmd == SSIF_IPMI_SINGLEPART_WRITE ||
-> +	    ssif_bmc->smbus_cmd == SSIF_IPMI_MULTIPART_WRITE_START) {
-> +		/*
-> +		 * The response can be delayed in BMC causing host SSIF driver
-> +		 * to timeout and send a new request once BMC slave is ready.
-> +		 * In that case check for pending response and clear it
-> +		 */
-> +		if (ssif_bmc->response_in_progress) {
-> +			dev_err(&ssif_bmc->client->dev,
-> +				"Warn: SSIF new request with pending response");
-> +			complete_response(ssif_bmc);
-> +		}
-> +	} else if (unlikely(ssif_bmc->smbus_cmd != SSIF_IPMI_SINGLEPART_READ &&
-> +			    ssif_bmc->smbus_cmd != SSIF_IPMI_MULTIPART_WRITE_MIDDLE &&
-> +			    ssif_bmc->smbus_cmd != SSIF_IPMI_MULTIPART_WRITE_END &&
-> +			    ssif_bmc->smbus_cmd != SSIF_IPMI_MULTIPART_READ_START &&
-> +			    ssif_bmc->smbus_cmd != SSIF_IPMI_MULTIPART_READ_MIDDLE)) {
-> +		/* Unknown command, clear it */
-> +		dev_err(&ssif_bmc->client->dev, "Warn: Unknown SMBus command");
-> +		complete_response(ssif_bmc);
-> +	}
-> +}
-> +
-> +/*
-> + * Callback function to handle I2C slave events
-> + */
-> +static int ssif_bmc_cb(struct i2c_client *client, enum i2c_slave_event event, u8 *val)
-> +{
-> +	unsigned long flags;
-> +	struct ssif_bmc_ctx *ssif_bmc = i2c_get_clientdata(client);
-> +
-> +	spin_lock_irqsave(&ssif_bmc->lock, flags);
-> +
-> +	/* I2C Event Handler:
-> +	 *   I2C_SLAVE_READ_REQUESTED	0x0
-> +	 *   I2C_SLAVE_WRITE_REQUESTED	0x1
-> +	 *   I2C_SLAVE_READ_PROCESSED	0x2
-> +	 *   I2C_SLAVE_WRITE_RECEIVED	0x3
-> +	 *   I2C_SLAVE_STOP		0x4
-> +	 */
-> +	switch (event) {
-> +	case I2C_SLAVE_READ_REQUESTED:
-> +		ssif_bmc->msg_idx = 0;
-> +		if (ssif_bmc->is_singlepart_read)
-> +			*val = ssif_bmc->response.len;
-> +		else
-> +			set_multipart_response_buffer(ssif_bmc, val);
-> +		break;
-> +
-> +	case I2C_SLAVE_WRITE_REQUESTED:
-> +		ssif_bmc->msg_idx = 0;
-> +		break;
-> +
-> +	case I2C_SLAVE_READ_PROCESSED:
-> +		handle_read_processed(ssif_bmc, val);
-> +		break;
-> +
-> +	case I2C_SLAVE_WRITE_RECEIVED:
-> +		if (ssif_bmc->msg_idx)
-> +			handle_write_received(ssif_bmc, val);
-> +		else
-> +			initialize_transfer(ssif_bmc, val);
-> +
-> +		break;
-> +
-> +	case I2C_SLAVE_STOP:
-> +		if (ssif_bmc->last_event == I2C_SLAVE_WRITE_RECEIVED)
-> +			complete_write_received(ssif_bmc);
-> +		/* Reset message index */
-> +		ssif_bmc->msg_idx = 0;
-> +		break;
-> +
-> +	default:
-> +		break;
-> +	}
-> +	ssif_bmc->last_event = event;
-> +	spin_unlock_irqrestore(&ssif_bmc->lock, flags);
-> +
-> +	return 0;
-> +}
-> +
-> +struct ssif_bmc_ctx *ssif_bmc_alloc(struct i2c_client *client, int sizeof_priv)
-> +{
-> +	struct ssif_bmc_ctx *ssif_bmc;
-> +	int ret;
-> +
-> +	ssif_bmc = devm_kzalloc(&client->dev, sizeof(*ssif_bmc) + sizeof_priv, GFP_KERNEL);
-> +	if (!ssif_bmc)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	spin_lock_init(&ssif_bmc->lock);
-> +
-> +	init_waitqueue_head(&ssif_bmc->wait_queue);
-> +	ssif_bmc->request_available = false;
-> +	ssif_bmc->response_in_progress = false;
-> +
-> +	/* Register misc device interface */
-> +	ssif_bmc->miscdev.minor = MISC_DYNAMIC_MINOR;
-> +	ssif_bmc->miscdev.name = DEVICE_NAME;
-> +	ssif_bmc->miscdev.fops = &ssif_bmc_fops;
-> +	ssif_bmc->miscdev.parent = &client->dev;
-> +	ret = misc_register(&ssif_bmc->miscdev);
-> +	if (ret)
-> +		goto out;
-> +
-> +	ssif_bmc->client = client;
-> +	ssif_bmc->client->flags |= I2C_CLIENT_SLAVE;
-> +
-> +	/* Register I2C slave */
-> +	i2c_set_clientdata(client, ssif_bmc);
-> +	ret = i2c_slave_register(client, ssif_bmc_cb);
-> +	if (ret) {
-> +		misc_deregister(&ssif_bmc->miscdev);
-> +		goto out;
-> +	}
-> +
-> +	return ssif_bmc;
-> +
-> +out:
-> +	devm_kfree(&client->dev, ssif_bmc);
-> +	return ERR_PTR(ret);
-> +}
-> +EXPORT_SYMBOL(ssif_bmc_alloc);
-> +
-> +MODULE_AUTHOR("Chuong Tran <chuong@os.amperecomputing.com>");
-> +MODULE_AUTHOR("Quan Nguyen <quan@os.amperecomputing.com>");
-> +MODULE_DESCRIPTION("Linux device driver of the BMC IPMI SSIF interface.");
-> +MODULE_LICENSE("GPL v2");
-> diff --git a/drivers/char/ipmi/ssif_bmc.h b/drivers/char/ipmi/ssif_bmc.h
-> new file mode 100644
-> index 000000000000..eab540061f14
-> --- /dev/null
-> +++ b/drivers/char/ipmi/ssif_bmc.h
-> @@ -0,0 +1,93 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ */
-> +/*
-> + * The driver for BMC side of SSIF interface
-> + *
-> + * Copyright (c) 2021, Ampere Computing LLC
-> + *
-> + * This program is free software; you can redistribute it and/or
-> + * modify it under the terms of the GNU General Public License as
-> + * published by the Free Software Foundation; either version 2 of
-> + * the License, or (at your option) any later version.
-> + *
-> + * This program is distributed in the hope that it will be useful,
-> + * but WITHOUT ANY WARRANTY; without even the implied warranty of
-> + * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> + * GNU General Public License for more details.
-> + *
-> + * You should have received a copy of the GNU General Public License
-> + * along with this program.  If not, see <https://www.gnu.org/licenses/>.
-> + */
-> +#ifndef __SSIF_BMC_H__
-> +#define __SSIF_BMC_H__
-> +
-> +#define DEVICE_NAME				"ipmi-ssif-host"
-> +
-> +#define GET_8BIT_ADDR(addr_7bit)		(((addr_7bit) << 1) & 0xff)
-> +
-> +#define MSG_PAYLOAD_LEN_MAX			252
-> +
-> +/* A standard SMBus Transaction is limited to 32 data bytes */
-> +#define MAX_PAYLOAD_PER_TRANSACTION		32
-> +
-> +#define MAX_IPMI_DATA_PER_START_TRANSACTION	30
-> +#define MAX_IPMI_DATA_PER_MIDDLE_TRANSACTION	31
-> +
-> +#define SSIF_IPMI_SINGLEPART_WRITE		0x2
-> +#define SSIF_IPMI_SINGLEPART_READ		0x3
-> +#define SSIF_IPMI_MULTIPART_WRITE_START		0x6
-> +#define SSIF_IPMI_MULTIPART_WRITE_MIDDLE	0x7
-> +#define SSIF_IPMI_MULTIPART_WRITE_END		0x8
-> +#define SSIF_IPMI_MULTIPART_READ_START		0x3
-> +#define SSIF_IPMI_MULTIPART_READ_MIDDLE		0x9
-> +
-> +struct ssif_msg {
-> +	u8 len;
-> +	u8 netfn_lun;
-> +	u8 cmd;
-> +	u8 payload[MSG_PAYLOAD_LEN_MAX];
-> +} __packed;
-> +
-> +static inline u32 ssif_msg_len(struct ssif_msg *ssif_msg)
-> +{
-> +	return ssif_msg->len + 1;
-> +}
-> +
-> +#define SSIF_BMC_BUSY   0x01
-> +#define SSIF_BMC_READY  0x02
-> +
-> +struct ssif_bmc_ctx {
-> +	struct i2c_client	*client;
-> +	struct miscdevice	miscdev;
-> +	u8			running;
-> +	u8			smbus_cmd;
-> +	struct ssif_msg		request;
-> +	bool			request_available;
-> +	struct ssif_msg		response;
-> +	bool			response_in_progress;
-> +	/* Response buffer for Multi-part Read Transaction */
-> +	u8			response_buf[MAX_PAYLOAD_PER_TRANSACTION];
-> +	/* Flag to identify a Multi-part Read Transaction */
-> +	bool			is_singlepart_read;
-> +	u8			nbytes_processed;
-> +	u8			remain_len;
-> +	u8			recv_len;
-> +	/* Block Number of a Multi-part Read Transaction */
-> +	u8			block_num;
-> +	size_t			msg_idx;
-> +	enum i2c_slave_event	last_event;
-> +	bool			pec_support;
-> +	/* spinlock */
-> +	spinlock_t		lock;
-> +	wait_queue_head_t	wait_queue;
-> +	void (*set_ssif_bmc_status)(struct ssif_bmc_ctx *ssif_bmc, unsigned int flags);
-> +	void			*priv;
-> +};
-> +
-> +static inline struct ssif_bmc_ctx *to_ssif_bmc(struct file *file)
-> +{
-> +	return container_of(file->private_data, struct ssif_bmc_ctx, miscdev);
-> +}
-> +
-> +struct ssif_bmc_ctx *ssif_bmc_alloc(struct i2c_client *client, int sizeof_priv);
-> +
-> +#endif /* __SSIF_BMC_H__ */
-> -- 
-> 2.28.0
-> 
