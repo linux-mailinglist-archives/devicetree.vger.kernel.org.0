@@ -2,81 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F05693895E5
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 20:55:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02B7B3895EF
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 20:57:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231789AbhESS4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 14:56:44 -0400
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:38870 "EHLO
-        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229755AbhESS4o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 14:56:44 -0400
-Received: by mail-oi1-f177.google.com with SMTP id z3so14056753oib.5;
-        Wed, 19 May 2021 11:55:24 -0700 (PDT)
+        id S230145AbhESS6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 14:58:52 -0400
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:47014 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229797AbhESS6u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 14:58:50 -0400
+Received: by mail-oi1-f180.google.com with SMTP id x15so14030182oic.13;
+        Wed, 19 May 2021 11:57:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=DfJwaFSSdfu0thZ2Cn3t+uJakI2Lyxq/EcGAu8YcPsg=;
-        b=N+A6iotzQOXhkkQBZbcO7vaDP2ul8oqS98ncUWmazgL4aiAqqDTECd43FS9NeWip7s
-         ek9WD7e4pKznwFhaj53js5xssXs+zhvOJQMqkKo+iR+AZ9yBDcKk+0DnstOWgxx2OQ3T
-         K7HiRAQm6oIEoHWOjBex6PQ77yjZEH5rNYDmrkoWxAq1mJS0rlAWKNf+y5l2WNKaBe+W
-         bcm3wFpYMJBTuVymT17uqObEJ6Q7ISTSwP1sPXF0eJmb76AWCL/YSYTlF8k39Ubs+R+0
-         iAmWFXcWbENODsQRpdBHWsRX/5olByBaU0RV9F3itnCRLgnNvnUCcC3vx3ovoP2/kxD2
-         ipMQ==
-X-Gm-Message-State: AOAM533xSfhcTGUto5zpUwmhOqcWlbLqGjidImpT/wVCjESrEX5gAjlp
-        0EDNaVfXHbGn7vHLaTq8Og==
-X-Google-Smtp-Source: ABdhPJzoGCN0N40Nhaq9Ddug/dAwXluP1+HZQcWkRFpkBk/o4g6/sSDkr4/qhIyZP2IC3dnt/zTsSA==
-X-Received: by 2002:aca:1015:: with SMTP id 21mr495980oiq.92.1621450524171;
-        Wed, 19 May 2021 11:55:24 -0700 (PDT)
+        bh=yw2vBtY21N4yRC0iwxctO/GkBEp9ciC/k8efOzsLdqg=;
+        b=gxjv0NcLQ6jwyzKO8OYz+6SpwkJ1Q1ePFmT900rBidsKHPM2kmI8+BSz+8WCEuta+U
+         r4jHVq3tJY0omIjOfXFHV8lZWz+q1tZHzM+6kTUcL8Qqa0d324w3yikfJNQJHxFFQ3OF
+         ElJC00O7pRMFA7THGt3tz/KZACKNAAuqkhuhPMDtmtkRJSiXdC/02V22t7AoOdWeOe3H
+         N6Vlmcw7J6iJddF17N+N+uRVXjdYus1k8lN0gsJJRZxeIl+IHOsDruQyUr1QcWS9wArx
+         5azU2fDCZXzALn+oEN3oZmuFtZhWAwFhABa72OH2o+0DcUeiajJUkuQP44/cS2gqozJE
+         NxFQ==
+X-Gm-Message-State: AOAM533R9ogQEp99xCoGrO4FTWpQESnyzfER8OT6lSElLr3TsD9p4mUy
+        5r+87WMFRvwF8y0DFT0ZZw==
+X-Google-Smtp-Source: ABdhPJxjtgwDoIGacrl74xC1RxwJzx59AzYCfysoq2ouzuc/SA25XubhO9xhn6KmSWgP8NvlN6PDkg==
+X-Received: by 2002:aca:4dc3:: with SMTP id a186mr644373oib.22.1621450648851;
+        Wed, 19 May 2021 11:57:28 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s17sm46433oog.31.2021.05.19.11.55.22
+        by smtp.gmail.com with ESMTPSA id p127sm98789oig.16.2021.05.19.11.57.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 May 2021 11:55:23 -0700 (PDT)
-Received: (nullmailer pid 3449813 invoked by uid 1000);
-        Wed, 19 May 2021 18:55:21 -0000
-Date:   Wed, 19 May 2021 13:55:21 -0500
+        Wed, 19 May 2021 11:57:27 -0700 (PDT)
+Received: (nullmailer pid 3453175 invoked by uid 1000);
+        Wed, 19 May 2021 18:57:26 -0000
+Date:   Wed, 19 May 2021 13:57:26 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     s.hauer@pengutronix.de, robh+dt@kernel.org, timur@kernel.org,
-        linux-imx@nxp.com, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, Xiubo.Lee@gmail.com,
-        nicoleotsuka@gmail.com, kernel@pengutronix.de, lgirdwood@gmail.com,
-        perex@perex.cz, alsa-devel@alsa-project.org,
-        linux-arm-kernel@lists.infradead.org, broonie@kernel.org,
-        tiwai@suse.com, shawnguo@kernel.org, devicetree@vger.kernel.org,
-        festevam@gmail.com
-Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: imx-card: Add binding doc for
- imx sound card
-Message-ID: <20210519185521.GA3449751@robh.at.kernel.org>
-References: <1621247488-21412-1-git-send-email-shengjiu.wang@nxp.com>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Beomho Seo <beomho.seo@samsung.com>, linux-pm@vger.kernel.org,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: power: supply: Add DT schema for
+ richtek,rt5033-battery
+Message-ID: <20210519185726.GA3453116@robh.at.kernel.org>
+References: <20210517105113.240379-1-stephan@gerhold.net>
+ <20210517105113.240379-2-stephan@gerhold.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1621247488-21412-1-git-send-email-shengjiu.wang@nxp.com>
+In-Reply-To: <20210517105113.240379-2-stephan@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 May 2021 18:31:27 +0800, Shengjiu Wang wrote:
-> Imx-card is a new added machine driver for supporting
-> ak4458/ak5558/ak5552/ak4497 codec on i.MX platforms. But these
-> DAC/ADCs are not only supported codecs. This machine driver is
-> designed to be a more common machine driver for i.MX platform,
-> it can support widely cpu dai interface and codec dai interface.
+On Mon, 17 May 2021 12:51:11 +0200, Stephan Gerhold wrote:
+> The RT5033 PMIC provides a simple fuel gauge via I2C.
+> Add a DT schema to describe how to set it up in the device tree.
 > 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> Note that although RT5033 is a MFD with lots of functionality
+> (also charger, regulator, LEDs, ...) the fuel gauge has a separate
+> I2C bus and is not part of the MFD.
+> 
+> Cc: Beomho Seo <beomho.seo@samsung.com>
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 > ---
-> changes in v3:
-> - use a generic compatible string as Rob's comments.
-> - change the file name
-> 
-> changes in v2:
-> - update doc accoring to Rob's comment, use the common porperties.
-> 
->  .../bindings/sound/imx-audio-card.yaml        | 122 ++++++++++++++++++
->  1 file changed, 122 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/imx-audio-card.yaml
+>  .../power/supply/richtek,rt5033-battery.yaml  | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/richtek,rt5033-battery.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
