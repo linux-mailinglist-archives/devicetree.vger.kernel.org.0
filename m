@@ -2,78 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24EFE3896E1
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 21:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6557389706
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 21:50:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232174AbhESTnh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 15:43:37 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:44087 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbhESTng (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 15:43:36 -0400
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id BD39D22178;
-        Wed, 19 May 2021 21:42:11 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1621453332;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=o4jBnun2LSkXDmFiIlCKYTFr+oT+1PQC4hYSvDF/i3w=;
-        b=edWurywZjdeWJTnNg9V7vpsyUR7RzqcRH28dfvryzJ20dy/kY2UELkS+jhTiU+gGn8TDOl
-        fbD5SU21m3zjoeNh7/nY7sI+TQ1wHT1jPJNzYoAGOnjGYLlI03Rlq1WOygzHVFIisUirdf
-        VYdud+aU8VdMHf3ousvOf8uZvS0UBjg=
+        id S232259AbhESTva (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 15:51:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42190 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232256AbhESTva (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 May 2021 15:51:30 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPS id 3EB75611B0;
+        Wed, 19 May 2021 19:50:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1621453810;
+        bh=rszwbAkPk9ccvnHq47Mvxi0c53lLCYYj20OpAcPxaJ0=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=JX0z3LuN9sY5TV+rXJcgajBX4/rZpSuNlMZ7+MQL3uK97uzoHVpALKzj6A7w5GcYr
+         F+QBEAMtvZpM9Vl0oxPb0HtOQldXHPCW2ILdNi2hQtkQ6+hQBppiRJn0pD2+KHBYXt
+         73CKgYF2ZESAgdMaZiKYklCHPyCOJ5fh29FLsxjerq26NBCo1s2PcaeddlIFv5JSBx
+         Ebu8wCkw9lL8kKvVJ8cYQUmUBnS1vzYM+9udxLVB4fV4EInrFScIvSa0Yn8R4w2mR0
+         2yxi+QrGvCPy4v/hs2smtykKrdQqffDvl12XOOOGwd9rW0YAOIcacQCQ1dIqUUsW3J
+         GC9W4di3kb22w==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 3195C60A56;
+        Wed, 19 May 2021 19:50:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 19 May 2021 21:42:11 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     Lee Jones <lee.jones@linaro.org>, robh+dt@kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        bgolaszewski@baylibre.com, jdelvare@suse.com,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, Luka Perkov <luka.perkov@sartura.hr>,
-        jmp@epiphyte.org, Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>
-Subject: Re: [PATCH 1/6] mfd: Add Delta TN48M CPLD driver
-In-Reply-To: <CA+HBbNHCnpg9qCzZbT9KVNqX-daC68iaJKNdyEf7do3w98miWw@mail.gmail.com>
-References: <20210430123511.116057-1-robert.marko@sartura.hr>
- <af4923ef1ed0693fcd67d7986348b164@walle.cc>
- <CA+HBbNHCnpg9qCzZbT9KVNqX-daC68iaJKNdyEf7do3w98miWw@mail.gmail.com>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <0f28cabf858154842819935000f32bc2@walle.cc>
-X-Sender: michael@walle.cc
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2 1/2] dt-bindings: net: nfc: s3fwrn5: Add optional clock
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <162145381019.1870.2964109189084564601.git-patchwork-notify@kernel.org>
+Date:   Wed, 19 May 2021 19:50:10 +0000
+References: <20210519091613.7343-1-stephan@gerhold.net>
+In-Reply-To: <20210519091613.7343-1-stephan@gerhold.net>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     krzysztof.kozlowski@canonical.com, davem@davemloft.net,
+        kuba@kernel.org, k.opasiak@samsung.com, robh+dt@kernel.org,
+        linux-nfc@lists.01.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bongsu.jeon@samsung.com, ~postmarketos/upstreaming@lists.sr.ht
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello:
 
-Am 2021-05-19 13:53, schrieb Robert Marko:
-> On Thu, May 6, 2021 at 6:34 PM Michael Walle <michael@walle.cc> wrote:
->> Am 2021-04-30 14:35, schrieb Robert Marko:
->> > Delta TN48M switches have a Lattice CPLD that serves
->> > multiple purposes including being a GPIO expander.
->> > So lets add the MFD core driver for it.
->> 
->> Did you have a look at mfd/simple-mfd-i2c.c?
+This series was applied to netdev/net-next.git (refs/heads/master):
+
+On Wed, 19 May 2021 11:16:12 +0200 you wrote:
+> On some systems, S3FWRN5 depends on having an external clock enabled
+> to function correctly. Allow declaring that clock in the device tree.
 > 
-> Yes, that was my first idea but we have a requirement to expose CPLD
-> information via debugfs as there are userspace applications using it.
-> And simple-mfd-i2c does not allow us to do so.
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> ---
+> Changes in v2: Minor change in commit message only
+> v1: https://lore.kernel.org/netdev/20210518133935.571298-1-stephan@gerhold.net/
+> 
+> [...]
 
-Mh, last time Lee wasn't very fond of having a driver that just 
-populates
-sub-drivers while doing almost nothing itself. See
-https://lore.kernel.org/lkml/20200605065709.GD3714@dell/
+Here is the summary with links:
+  - [v2,1/2] dt-bindings: net: nfc: s3fwrn5: Add optional clock
+    https://git.kernel.org/netdev/net-next/c/9cc52f5a533a
+  - [v2,2/2] nfc: s3fwrn5: i2c: Enable optional clock from device tree
+    https://git.kernel.org/netdev/net-next/c/340f42f7ff0b
 
-That being said, I'd also like to expose our CPLD version, but until now
-haven't found a good solution.
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
--michael
+
