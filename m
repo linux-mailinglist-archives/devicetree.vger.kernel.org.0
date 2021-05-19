@@ -2,116 +2,329 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 256E0388D4D
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 13:54:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B6EB388D66
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 14:02:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352657AbhESL4O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 07:56:14 -0400
-Received: from tux.runtux.com ([176.9.82.136]:39240 "EHLO tux.runtux.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240448AbhESL4O (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 May 2021 07:56:14 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by tux.runtux.com (Postfix) with ESMTP id A77CB6F0D6;
-        Wed, 19 May 2021 13:54:52 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at tux.runtux.com
-Received: from tux.runtux.com ([127.0.0.1])
-        by localhost (tux2.runtux.com [127.0.0.1]) (amavisd-new, port 10026)
-        with LMTP id S3S3Grr3HLSe; Wed, 19 May 2021 13:54:51 +0200 (CEST)
-Received: from bee.priv.zoo (62-99-217-90.static.upcbusiness.at [62.99.217.90])
-        (Authenticated sender: postmaster@runtux.com)
-        by tux.runtux.com (Postfix) with ESMTPSA id 9F36A6EFFE;
-        Wed, 19 May 2021 13:54:51 +0200 (CEST)
-Received: by bee.priv.zoo (Postfix, from userid 1002)
-        id 32B5A46E; Wed, 19 May 2021 13:54:51 +0200 (CEST)
-Date:   Wed, 19 May 2021 13:54:51 +0200
-From:   Ralf Schlatterbeck <rsc@runtux.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Willy Tarreau <w@1wt.eu>, Lars Poeschel <poeschel@lemonage.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/1] auxdisplay: Add I2C gpio expander example
-Message-ID: <20210519115450.qoqpy7d5dgnjtenx@runtux.com>
-References: <20210106113730.k5qveshjgcd57kgx@runtux.com>
- <20210106113929.fizyg6fcsmsntkiy@runtux.com>
- <CANiq72=Cfv=Qo2fs+HDjUc8pV37mL326SDS5JpGotUfHLwK_rQ@mail.gmail.com>
- <CAMuHMdUW3U6DVkHp3xiHFzvRUDJ1FwTNCnBWp5LCuDGxhds9wg@mail.gmail.com>
- <CANiq72mCFwYnbynQgwNGTt0mzo_rMrnQfpinz6DrPttFxUpyNQ@mail.gmail.com>
- <20210517152035.GA2581887@robh.at.kernel.org>
- <20210519090047.e63d2im5vgskqpcs@runtux.com>
- <CAMuHMdV80XUo5ihXUkogCikGA4H71Ada9w=9W9d9d1zdgrw0uA@mail.gmail.com>
+        id S1346290AbhESMDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 08:03:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35868 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1353009AbhESMDQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 08:03:16 -0400
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C35D6C061761
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 05:01:55 -0700 (PDT)
+Received: by mail-io1-xd2d.google.com with SMTP id e17so195918iol.7
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 05:01:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QbcVwQW1z15G6VjS0UeeaaJEOmNbFGmcyc8swkb4/8g=;
+        b=OAv0T2Oc6tv18fE2NrzQGd43DJALHgYEWT6TjprKNCoz3x+XoHKwH9dBuwGPmcJCmH
+         t2iHw4gziydt7dTF2RTp+oEAhCYOVc4XIaQyb5iq1D0pNfkHFzxOXDvkNDqSroOgUT/m
+         QiQsNPKaDkr0tHXhC9/r1daj0JHiXv9/cLXG1ZN6Sn3q6AZU7H6Zi+TYzd7lCYN1zPj1
+         mb2rxjYDcAuDSzbTM7EOxv3HA1Qqph1/nv4VATtXj6AxRAisa6t7xkZBU7/bZhvKHI34
+         myyKCJKQb/1v4YDOdVbOfbXVh04bjeD5FA2dyl2+e/apqegxd2HS5O96JxqFC1OeW8dx
+         DyVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QbcVwQW1z15G6VjS0UeeaaJEOmNbFGmcyc8swkb4/8g=;
+        b=sMOCWTSysqnpO6/vwbqzIvYKntFPF5OIOWg22YXfuRYZqtyl8lRVCZzYHDzCidemzH
+         6uiHtTkwUFSVNsAzb0hyifXbZiL0IouvBKtEJtg8uziaRy/aC5BMM0KheygORSH9SS1K
+         xkuSG8GUbjN9meE9+7dy3t4WpSQRw2Oh6992Juj5qGEGhLznIVxHA0ZZUcQ6xAfjO+Aa
+         SKpX4S0ud+v3im28nApKvTPJoM8yFrYRu3Ri5KCV+laJtWCsHrAzd1ja7taqdfqMovyV
+         7ZQNe9Xd0s/kGzCalcA0E1xQBqwvxAecXPVrHwan3I64JLL9oTvTSvdNKBWKsilzzNrL
+         brWg==
+X-Gm-Message-State: AOAM530kSRUmFZdHANDxIt+JmPNI4eIE0BBVNWcwbu7Q2oR2uiTXqXWv
+        h368kCfACh+f6VMcYyzlkUuM4Kzg8gg9v/XXFg9dMg==
+X-Google-Smtp-Source: ABdhPJy+Dpc5p77lHiZnSay9+BoIG7EvK09vpmvABwcqk+PQ8B5i6qIjM+AqMZPD3g27HqNhlpXdB/mMz9Gdnrest8c=
+X-Received: by 2002:a02:4844:: with SMTP id p65mr12234056jaa.102.1621425715190;
+ Wed, 19 May 2021 05:01:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdV80XUo5ihXUkogCikGA4H71Ada9w=9W9d9d1zdgrw0uA@mail.gmail.com>
-X-ray:  beware
-User-Agent: NeoMutt/20180716
+References: <20210430123511.116057-1-robert.marko@sartura.hr>
+ <20210430123511.116057-4-robert.marko@sartura.hr> <f5bc39d4-742d-4403-7b5d-172a2410a631@roeck-us.net>
+In-Reply-To: <f5bc39d4-742d-4403-7b5d-172a2410a631@roeck-us.net>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Wed, 19 May 2021 14:01:44 +0200
+Message-ID: <CA+HBbNE2E8jEnLhGE-Z3qqYFS99TnCMdS7m8rfum1MbPX+-=bw@mail.gmail.com>
+Subject: Re: [PATCH 4/6] hwmon: Add Delta TN48M CPLD HWMON driver
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Lee Jones <lee.jones@linaro.org>, robh+dt@kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        bgolaszewski@baylibre.com, jdelvare@suse.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
+        Paul Menzel <pmenzel@molgen.mpg.de>,
+        Donald Buczek <buczek@molgen.mpg.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The hd44780 displays are often used with pcf8574 based I/O expanders.
-Add example to documentation.
+On Fri, Apr 30, 2021 at 3:12 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> On 4/30/21 5:35 AM, Robert Marko wrote:
+> > Delta TN48M has a CPLD that also monitors the power supply
+> > statuses.
+> >
+> > These are useful to be presented to the users, so lets
+> > add a driver for HWMON part of the CPLD.
+> >
+> > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> > ---
+> >  drivers/hwmon/Kconfig       |  10 +++
+> >  drivers/hwmon/Makefile      |   1 +
+> >  drivers/hwmon/tn48m-hwmon.c | 148 ++++++++++++++++++++++++++++++++++++
+> >  drivers/mfd/tn48m-cpld.c    |   3 +
+> >  include/linux/mfd/tn48m.h   |   1 +
+> >  5 files changed, 163 insertions(+)
+> >  create mode 100644 drivers/hwmon/tn48m-hwmon.c
+> >
+> > diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+> > index 54f04e61fb83..89271dfeb775 100644
+> > --- a/drivers/hwmon/Kconfig
+> > +++ b/drivers/hwmon/Kconfig
+> > @@ -1924,6 +1924,16 @@ config SENSORS_TMP513
+> >         This driver can also be built as a module. If so, the module
+> >         will be called tmp513.
+> >
+> > +config SENSORS_TN48M
+> > +     tristate "Delta Networks TN48M switch CPLD HWMON driver"
+> > +     depends on MFD_TN48M_CPLD
+> > +     help
+> > +       If you say yes here you get support for Delta Networks TN48M
+> > +       CPLD.
+> > +
+> > +       This driver can also be built as a module. If so, the module
+> > +       will be called tn48m-hwmon.
+> > +
+> >  config SENSORS_VEXPRESS
+> >       tristate "Versatile Express"
+> >       depends on VEXPRESS_CONFIG
+> > diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
+> > index fe38e8a5c979..22e470057ffe 100644
+> > --- a/drivers/hwmon/Makefile
+> > +++ b/drivers/hwmon/Makefile
+> > @@ -187,6 +187,7 @@ obj-$(CONFIG_SENSORS_TMP108)      += tmp108.o
+> >  obj-$(CONFIG_SENSORS_TMP401) += tmp401.o
+> >  obj-$(CONFIG_SENSORS_TMP421) += tmp421.o
+> >  obj-$(CONFIG_SENSORS_TMP513) += tmp513.o
+> > +obj-$(CONFIG_SENSORS_TN48M)  += tn48m-hwmon.o
+> >  obj-$(CONFIG_SENSORS_VEXPRESS)       += vexpress-hwmon.o
+> >  obj-$(CONFIG_SENSORS_VIA_CPUTEMP)+= via-cputemp.o
+> >  obj-$(CONFIG_SENSORS_VIA686A)        += via686a.o
+> > diff --git a/drivers/hwmon/tn48m-hwmon.c b/drivers/hwmon/tn48m-hwmon.c
+> > new file mode 100644
+> > index 000000000000..80fd18d74f1d
+> > --- /dev/null
+> > +++ b/drivers/hwmon/tn48m-hwmon.c
+> > @@ -0,0 +1,148 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Delta TN48M CPLD HWMON driver
+> > + *
+> > + * Copyright 2020 Sartura Ltd
+> > + *
+> > + * Author: Robert Marko <robert.marko@sartura.hr>
+> > + */
+> > +
+> > +#include <linux/bitfield.h>
+> > +#include <linux/hwmon-sysfs.h>
+> > +#include <linux/hwmon.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/module.h>
+> > +#include <linux/platform_device.h>
+> > +
+> > +#include <linux/mfd/tn48m.h>
+> > +
+> > +#define PSU1_PRESENT_MASK    BIT(0)
+> > +#define PSU2_PRESENT_MASK    BIT(1)
+> > +#define PSU1_POWERGOOD_MASK  BIT(2)
+> > +#define PSU2_POWERGOOD_MASK  BIT(3)
+> > +#define PSU1_ALERT_MASK              BIT(4)
+> > +#define PSU2_ALERT_MASK              BIT(5)
+> > +
+> > +static int board_id_get(struct tn48m_data *data)
+> > +{
+> > +     unsigned int regval;
+> > +
+> > +     regmap_read(data->regmap, BOARD_ID, &regval);
+> > +
+> > +     switch (regval) {
+> > +     case BOARD_ID_TN48M:
+> > +             return BOARD_ID_TN48M;
+> > +     case BOARD_ID_TN48M_P:
+> > +             return BOARD_ID_TN48M_P;
+> > +     default:
+> > +             return -EINVAL;
+> > +     }
+> > +}
+> > +
+> > +static ssize_t psu_present_show(struct device *dev,
+> > +                             struct device_attribute *attr, char *buf)
+> > +{
+> > +     struct sensor_device_attribute_2 *attr2 = to_sensor_dev_attr_2(attr);
+> > +     struct tn48m_data *data = dev_get_drvdata(dev);
+> > +     unsigned int regval, status;
+> > +
+> > +     if (board_id_get(data) == BOARD_ID_TN48M_P) {
+> > +             regmap_read(data->regmap, attr2->nr, &regval);
+> > +
+> > +             if (attr2->index == 1)
+> > +                     status = !FIELD_GET(PSU1_PRESENT_MASK, regval);
+> > +             else
+> > +                     status = !FIELD_GET(PSU2_PRESENT_MASK, regval);
+> > +     } else
+> > +             status = 0;
+> > +
+> > +     return sprintf(buf, "%d\n", status);
+> > +}
+> > +
+> > +static ssize_t psu_pg_show(struct device *dev,
+> > +                        struct device_attribute *attr, char *buf)
+> > +{
+> > +     struct sensor_device_attribute_2 *attr2 = to_sensor_dev_attr_2(attr);
+> > +     struct tn48m_data *data = dev_get_drvdata(dev);
+> > +     unsigned int regval, status;
+> > +
+> > +     regmap_read(data->regmap, attr2->nr, &regval);
+> > +
+> > +     if (attr2->index == 1)
+> > +             status = FIELD_GET(PSU1_POWERGOOD_MASK, regval);
+> > +     else
+> > +             status = FIELD_GET(PSU2_POWERGOOD_MASK, regval);
+> > +
+> > +     return sprintf(buf, "%d\n", status);
+> > +}
+> > +
+> > +static ssize_t psu_alert_show(struct device *dev,
+> > +                           struct device_attribute *attr, char *buf)
+> > +{
+> > +     struct sensor_device_attribute_2 *attr2 = to_sensor_dev_attr_2(attr);
+> > +     struct tn48m_data *data = dev_get_drvdata(dev);
+> > +     unsigned int regval, status;
+> > +
+> > +     if (board_id_get(data) == BOARD_ID_TN48M_P) {
+> > +             regmap_read(data->regmap, attr2->nr, &regval);
+> > +
+> > +             if (attr2->index == 1)
+> > +                     status = !FIELD_GET(PSU1_ALERT_MASK, regval);
+> > +             else
+> > +                     status = !FIELD_GET(PSU2_ALERT_MASK, regval);
+> > +     } else
+> > +             status = 0;
+> > +
+> > +     return sprintf(buf, "%d\n", status);
+> > +}
+> > +
+> > +static SENSOR_DEVICE_ATTR_2_RO(psu1_present, psu_present, PSU_STATUS, 1);
+> > +static SENSOR_DEVICE_ATTR_2_RO(psu2_present, psu_present, PSU_STATUS, 2);
+> > +static SENSOR_DEVICE_ATTR_2_RO(psu1_pg, psu_pg, PSU_STATUS, 1);
+> > +static SENSOR_DEVICE_ATTR_2_RO(psu2_pg, psu_pg, PSU_STATUS, 2);
+> > +static SENSOR_DEVICE_ATTR_2_RO(psu1_alert, psu_alert, PSU_STATUS, 1);
+> > +static SENSOR_DEVICE_ATTR_2_RO(psu2_alert, psu_alert, PSU_STATUS, 2);
+> > +
+> > +static struct attribute *tn48m_hwmon_attrs[] = {
+> > +     &sensor_dev_attr_psu1_present.dev_attr.attr,
+> > +     &sensor_dev_attr_psu2_present.dev_attr.attr,
+> > +     &sensor_dev_attr_psu1_pg.dev_attr.attr,
+> > +     &sensor_dev_attr_psu2_pg.dev_attr.attr,
+> > +     &sensor_dev_attr_psu1_alert.dev_attr.attr,
+> > +     &sensor_dev_attr_psu2_alert.dev_attr.attr,
+>
+> Literally none of those attributes are standard hwmon attributes.
+> I don't know what this is, but it is not a hardware monitoring driver.
 
-Signed-off-by: Ralf Schlatterbeck <rsc@runtux.com>
----
-Updated Patch, thanks to Geert Uytterhoeven for his tip on how to
-reproduce the warning. I've removed the address from the i2c stanza
-which fixes it. Let me know if I should re-post the patch in a separate
-thread.
+Yes, I agree that it does not expose any of the standard attributes, but these
+are the only ones the CPLD exposes.
 
- .../bindings/auxdisplay/hit,hd44780.yaml      | 31 ++++++++++++++++++-
- 1 file changed, 30 insertions(+), 1 deletion(-)
+I don't know where else to put them, MFD driver did not seem logical to me.
+>
+> > +     NULL
+> > +};
+> > +
+> > +ATTRIBUTE_GROUPS(tn48m_hwmon);
+> > +
+> > +static int tn48m_hwmon_probe(struct platform_device *pdev)
+> > +{
+> > +     struct tn48m_data *data = dev_get_drvdata(pdev->dev.parent);
+> > +     struct device *hwmon_dev;
+> > +
+> > +     hwmon_dev = devm_hwmon_device_register_with_groups(&pdev->dev,
+> > +                                                        "tn48m_hwmon",
+> > +                                                        data,
+> > +                                                        tn48m_hwmon_groups);
+>
+> Please use devm_hwmon_device_register_with_info() to register hwmon devices.
+> Of course, that only makes sense for actual hardware monitoring drivers
+> which do support standard attributes.
 
-diff --git a/Documentation/devicetree/bindings/auxdisplay/hit,hd44780.yaml b/Documentation/devicetree/bindings/auxdisplay/hit,hd44780.yaml
-index 9222b06e93a0..fde07e4b119d 100644
---- a/Documentation/devicetree/bindings/auxdisplay/hit,hd44780.yaml
-+++ b/Documentation/devicetree/bindings/auxdisplay/hit,hd44780.yaml
-@@ -12,7 +12,10 @@ maintainers:
- description:
-   The Hitachi HD44780 Character LCD Controller is commonly used on character
-   LCDs that can display one or more lines of text. It exposes an M6800 bus
--  interface, which can be used in either 4-bit or 8-bit mode.
-+  interface, which can be used in either 4-bit or 8-bit mode. By using a
-+  GPIO expander it is possible to use the driver with one of the popular I2C
-+  expander boards based on the PCF8574 available for these displays. For
-+  an example see below.
- 
- properties:
-   compatible:
-@@ -94,3 +97,29 @@ examples:
-             display-height-chars = <2>;
-             display-width-chars = <16>;
-     };
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            pcf8574: pcf8574@27 {
-+                    compatible = "nxp,pcf8574";
-+                    reg = <0x27>;
-+                    gpio-controller;
-+                    #gpio-cells = <2>;
-+            };
-+    };
-+    hd44780 {
-+            compatible = "hit,hd44780";
-+            display-height-chars = <2>;
-+            display-width-chars  = <16>;
-+            data-gpios = <&pcf8574 4 0>,
-+                         <&pcf8574 5 0>,
-+                         <&pcf8574 6 0>,
-+                         <&pcf8574 7 0>;
-+            enable-gpios = <&pcf8574 2 0>;
-+            rs-gpios = <&pcf8574 0 0>;
-+            rw-gpios = <&pcf8574 1 0>;
-+            backlight-gpios = <&pcf8574 3 0>;
-+    };
+Yes, devm_hwmon_device_register_with_info() made no sense without any of the
+standard attributes.
+
+Robert
+>
+> > +     return PTR_ERR_OR_ZERO(hwmon_dev);
+> > +}
+> > +
+> > +static const struct platform_device_id tn48m_hwmon_id_table[] = {
+> > +     { "delta,tn48m-hwmon", },
+> > +     { }
+> > +};
+> > +MODULE_DEVICE_TABLE(platform, tn48m_hwmon_id_table);
+> > +
+> > +static struct platform_driver tn48m_hwmon_driver = {
+> > +     .driver = {
+> > +             .name = "tn48m-hwmon",
+> > +     },
+> > +     .probe = tn48m_hwmon_probe,
+> > +     .id_table = tn48m_hwmon_id_table,
+> > +};
+> > +module_platform_driver(tn48m_hwmon_driver);
+> > +
+> > +MODULE_AUTHOR("Robert Marko <robert.marko@sartura.hr>");
+> > +MODULE_DESCRIPTION("Delta TN48M CPLD HWMON driver");
+> > +MODULE_LICENSE("GPL");
+> > diff --git a/drivers/mfd/tn48m-cpld.c b/drivers/mfd/tn48m-cpld.c
+> > index f22a15ddd22d..4d837aca01e7 100644
+> > --- a/drivers/mfd/tn48m-cpld.c
+> > +++ b/drivers/mfd/tn48m-cpld.c
+> > @@ -20,6 +20,9 @@
+> >  static const struct mfd_cell tn48m_cell[] = {
+> >       {
+> >               .name = "delta,tn48m-gpio",
+> > +     },
+> > +     {
+> > +             .name = "delta,tn48m-hwmon",
+> >       }
+> >  };
+> >
+> > diff --git a/include/linux/mfd/tn48m.h b/include/linux/mfd/tn48m.h
+> > index 9cc2b04c8d69..eb2cfc3a5db7 100644
+> > --- a/include/linux/mfd/tn48m.h
+> > +++ b/include/linux/mfd/tn48m.h
+> > @@ -22,6 +22,7 @@
+> >  #define SFP_TX_DISABLE               0x31
+> >  #define SFP_PRESENT          0x3a
+> >  #define SFP_LOS                      0x40
+> > +#define PSU_STATUS           0xa
+> >
+> >  struct tn48m_data {
+> >       struct device *dev;
+> >
+>
+
+
 -- 
-2.20.1
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
