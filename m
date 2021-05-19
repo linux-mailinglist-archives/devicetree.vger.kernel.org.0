@@ -2,69 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCED538978B
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 22:10:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 601703897AB
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 22:16:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232889AbhESULb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 16:11:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49994 "EHLO mail.kernel.org"
+        id S231998AbhESURV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 16:17:21 -0400
+Received: from mail.bugwerft.de ([46.23.86.59]:37548 "EHLO mail.bugwerft.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232864AbhESULa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 May 2021 16:11:30 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPS id B142D61363;
-        Wed, 19 May 2021 20:10:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621455009;
-        bh=YUy2bzxwS1O7akO+aDYOgRvz95Vr3MgoLXF4XLOK8jU=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=TKxiNJ+r0WR1GDM2jFgGs/GbFrP5Mv7lIt9dHm98R+56+hSs83930megSLg3JTq82
-         WK9isM+2pnYMWqcPlrnhF0VloYKj1wXgGVpD83JsEDHj7IG+kq80I64y7BlCF5OX51
-         dsrMlCLCB4mkiuQx1upo3VVzHMm59Q3eA6IifIQA+gZTMY58TpgrpB+43fB5drrTH1
-         qT1S191i+2VnYU3xmXCW0TzWSyvv0z6inwelY0+xwVptgxnsG/wd+A+Q11TcGRO5HA
-         dRqD+7ju3ZoQMh8tIdS4+LW1wx+lkTAluPR+UtKIczNd9XJVqi9lD6Ye9HKG5UghDe
-         vCZDhgnTC5HVw==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id A6E8660A56;
-        Wed, 19 May 2021 20:10:09 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        id S230176AbhESURU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 May 2021 16:17:20 -0400
+Received: from hq-00021.Speedport_W_724V_01011603_07_002 (p200300d83f181d7939130a2764e31627.dip0.t-ipconnect.de [IPv6:2003:d8:3f18:1d79:3913:a27:64e3:1627])
+        by mail.bugwerft.de (Postfix) with ESMTPSA id EE98E4E406D;
+        Wed, 19 May 2021 20:15:58 +0000 (UTC)
+From:   Daniel Mack <daniel@zonque.org>
+To:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     robh+dt@kernel.org, kuninori.morimoto.gx@renesas.com,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        Daniel Mack <daniel@zonque.org>
+Subject: [PATCH v2 0/3] clk: cs2000-cp: make aux output pin configurable
+Date:   Wed, 19 May 2021 22:15:48 +0200
+Message-Id: <20210519201551.690654-1-daniel@zonque.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH] dt-bindings: net: renesas,ether: Update Sergei's email
- address
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <162145500967.9091.18142980397422047683.git-patchwork-notify@kernel.org>
-Date:   Wed, 19 May 2021 20:10:09 +0000
-References: <15fb12769fcfeac8c761bf860ad94b9b223d3f9c.1621429311.git.geert+renesas@glider.be>
-In-Reply-To: <15fb12769fcfeac8c761bf860ad94b9b223d3f9c.1621429311.git.geert+renesas@glider.be>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        sergei.shtylyov@gmail.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+v2:
+ * Address review comments from Rob Herring on the dt bindings
 
-This patch was applied to netdev/net.git (refs/heads/master):
+Daniel Mack (3):
+  dt-bindings: clock: convert cs2000-cp bindings to yaml
+  dt-bindings: clock: cs2000-cp: Document aux-output-source
+  clk: cs2000-cp: Make aux output function controllable
 
-On Wed, 19 May 2021 15:02:53 +0200 you wrote:
-> Update Sergei's email address, as per commit 534a8bf0ccdd7b3f
-> ("MAINTAINERS: switch to my private email for Renesas Ethernet
-> drivers").
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  Documentation/devicetree/bindings/net/renesas,ether.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/clock/cirrus,cs2000-cp.yaml      | 73 +++++++++++++++++++
+ .../devicetree/bindings/clock/cs2000-cp.txt   | 22 ------
+ drivers/clk/clk-cs2000-cp.c                   |  9 +++
+ include/dt-bindings/clock/cirrus,cs2000-cp.h  | 14 ++++
+ 4 files changed, 96 insertions(+), 22 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/cirrus,cs2000-cp.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/cs2000-cp.txt
+ create mode 100644 include/dt-bindings/clock/cirrus,cs2000-cp.h
 
-Here is the summary with links:
-  - dt-bindings: net: renesas,ether: Update Sergei's email address
-    https://git.kernel.org/netdev/net/c/d5b3bd6ab541
-
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+-- 
+2.31.1
 
