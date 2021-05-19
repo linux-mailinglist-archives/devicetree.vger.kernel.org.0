@@ -2,112 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24EDC389998
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 01:07:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 542273899A5
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 01:09:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229973AbhESXIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 19:08:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46552 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229952AbhESXIk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 19:08:40 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACB28C061574
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 16:07:20 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id e19so10981458pfv.3
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 16:07:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=bNc/PWg94RceQRhCF+NWBGbuB6YRbrHAKURevypSwFM=;
-        b=mSWFOwADaHEDlE4bh10NpqgWa6CTP9+Sm9dHQ6eoBbWGJHDdMViCN7coGdcVCtEMQE
-         yC0L+DJ9wfdsZp5NBL8n/C7xdGyAf9raRZrWSyAhMMvnFfyjbmbsnQvaQpVuFKuZ7NiH
-         oOIkeQEx0OPk7XKv9FAunwxgRWKkZ8fdnXAEE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bNc/PWg94RceQRhCF+NWBGbuB6YRbrHAKURevypSwFM=;
-        b=CaOFzyeAiVRDQjMD6DTh8k1IEyX/Ox5r6Zvq0g0DR2R3oPYdn54OUGbz9RiUwOwrr3
-         tC8EfirU4kVh17wkDZSc/1feF4pslXlFuXR7fblxhnXXNXRYkmHyIt6N0EO/0zqekpQ4
-         uINR6L28bRo8/y1V6PpzoPhXz6CyuH/+3+/mCEls+PRMA8+843JTRAEVroXE0s5ioiiW
-         Fy5+VHKryQzPXoFcS0zDdBQ4zdeLqm0/O3HX9tObWNinwoHr+pwdgjofVN3Vfw+qZ6L0
-         7f3oHO8FJsNb1Ao54ayIobl6YvkYFMNXZCGB64zvoz2wwTrrVszLPTv2oqd2wPUXnMu8
-         Ta/A==
-X-Gm-Message-State: AOAM531YBiALnlOSDVcj8NerRe6pVE30fP46oDnlWweMm5ljHkIsS7B5
-        H7x5phP95EkBhyXW2d6Ib6z4gQ==
-X-Google-Smtp-Source: ABdhPJzBEoDJyD7xAJElngJnr/KuQQSRJrUCEpy57acaWEpNQlcSaojYP4getzfGJYiB1eHj7IPsKg==
-X-Received: by 2002:a63:4b18:: with SMTP id y24mr1493340pga.438.1621465640249;
-        Wed, 19 May 2021 16:07:20 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:3d5d:d560:9fb4:d9d1])
-        by smtp.gmail.com with UTF8SMTPSA id l15sm422658pjj.23.2021.05.19.16.07.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 May 2021 16:07:19 -0700 (PDT)
-Date:   Wed, 19 May 2021 16:07:17 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Alan Stern <stern@rowland.harvard.edu>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-usb@vger.kernel.org, Peter Chen <peter.chen@kernel.org>,
-        linux-kernel@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Al Cooper <alcooperx@gmail.com>,
-        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: Re: [PATCH v10 2/5] USB: misc: Add onboard_usb_hub driver
-Message-ID: <YKWaJdrpj1ixx9+v@google.com>
-References: <20210511225223.550762-1-mka@chromium.org>
- <20210511155152.v10.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
- <YKPz7a68duMyXU5x@google.com>
- <20210518194511.GA1137841@rowland.harvard.edu>
- <YKQ0XxhIWaN37HMr@google.com>
- <20210519144356.GB1165692@rowland.harvard.edu>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210519144356.GB1165692@rowland.harvard.edu>
+        id S229465AbhESXLP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 19:11:15 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:50665 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229518AbhESXLO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 May 2021 19:11:14 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id D3B99580CA8;
+        Wed, 19 May 2021 19:09:53 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute4.internal (MEProxy); Wed, 19 May 2021 19:09:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm2; bh=uykUpkAPzAx+pWmdjpmWlEs1UfJFsMN
+        sFBBQU3DXK/8=; b=MMbN35+iPeDzwQxj6Oulw/zZKN4TNShuMqVJUm+GKiulMB8
+        vRDXWhULks2tZW5geiokn8Ionoue/jggO1UnhhfF8ok2nqFx7OA2DFm+JUqitx52
+        dnrimu6Za42n0JWu6/xiMhkyLdWvbCHLRi+6z6MycG+1eI1lGKIDwrKN+G2WRo46
+        KsK7ppfOYqHxG5WcttYODOJdi8f0yLf0SMJEbnrB8lTXhpvuiMwRtxX912gBdbSU
+        eddy7FhfGwlUnI9WR/BCi9X/uc9r8YxfMgAZHEozqdh8Tuuv309VNikpNFblcBNU
+        GpFHjlI2ywdfIBCaMyzSUH6RXmoc3yogra9ec+A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=uykUpk
+        APzAx+pWmdjpmWlEs1UfJFsMNsFBBQU3DXK/8=; b=CRu+9qBy7PHotmd2ANhUgy
+        l1tu5Zlq7b3TLfZp/YIi2xLW8G9amP6NwlO4c7W0Uh9nzxSsSpYfMmF4Km+LsVJJ
+        3Tvej100CkASxSY0vNW0c7RIf7+2xy9A7px49LXDa2ll4jCt5oBnbkY1BNGzWy9V
+        EWjB7SArnVlxVspd+RZIC0WCgKZdFL4BCeJVtMxS+HYe5ea6WbQDJ/iPIu8HEX9+
+        quSZF9cr30+904ZJzOXH4jxNsIZwf8aG/kR1eSVaj+0rISvylneULjpTVsgu21iZ
+        N7FirM5tLh3I37qc/xein5hH0S//p+2S0S03Vad1FwZ921NFVLGMhS07jKfzydJw
+        ==
+X-ME-Sender: <xms:wJqlYJ6g8vqp_fikeaTCkLttyrw5dtqdwFNygryXnFLweW1vycBz0w>
+    <xme:wJqlYG5zOjNS2klRFLoQuS5scJJk0PInlCA-sFov0HYW2VKuy1cBTYmJgtcUFPEDq
+    Dsesep91QImjiBalQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdejtddgudelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
+    grthhtvghrnhepudehtddtleektedvfeeitdeljeekveelkeegvdfhtdejhefgfedtfedv
+    jeejledtnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiii
+    gvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghu
+X-ME-Proxy: <xmx:wJqlYAdSYBgZlAOy7SQ3HctU0YIqVLzoQJehdP0g2YotHTaTdnhv1Q>
+    <xmx:wJqlYCKjDODHleNxAmESCpYeltmipvcJwuGv7h8dmKf2I9sVUR8kyw>
+    <xmx:wJqlYNLFjdsVsWMNxAprqcC-lQ1MO80AlycpLq80mtxpUWkanfOBcg>
+    <xmx:wZqlYEYHDQ29a09oD3WpsSMUpL5qJewm9Lx12B2f2rc_WvLLggp9nQ>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 5B5ECA004A5; Wed, 19 May 2021 19:09:52 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-448-gae190416c7-fm-20210505.004-gae190416
+Mime-Version: 1.0
+Message-Id: <1516d2c0-0497-48b3-a366-711287132c35@www.fastmail.com>
+In-Reply-To: <20210519105736.GA27246@aspeedtech.com>
+References: <20210506100312.1638-1-steven_lee@aspeedtech.com>
+ <20210506100312.1638-6-steven_lee@aspeedtech.com>
+ <20210506102458.GA20777@pengutronix.de>
+ <19a81e25-dfa1-4ad3-9628-19f43f4230d2@www.fastmail.com>
+ <20210507062416.GD23749@aspeedtech.com>
+ <2a339218-19d7-4eea-a734-8053dd553dbb@www.fastmail.com>
+ <20210510060338.GB6883@aspeedtech.com>
+ <f063cb34-9a42-4373-a333-cad1d8a9c37b@www.fastmail.com>
+ <20210514020900.GB540@aspeedtech.com>
+ <57113deb-d4c1-4572-af95-fce02c04d7a9@www.fastmail.com>
+ <20210519105736.GA27246@aspeedtech.com>
+Date:   Thu, 20 May 2021 08:39:29 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Steven Lee" <steven_lee@aspeedtech.com>
+Cc:     "Philipp Zabel" <p.zabel@pengutronix.de>,
+        "Ulf Hansson" <ulf.hansson@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Joel Stanley" <joel@jms.id.au>,
+        "Adrian Hunter" <adrian.hunter@intel.com>,
+        "Ryan Chen" <ryanchen.aspeed@gmail.com>,
+        "moderated list:ASPEED SD/MMC DRIVER" <linux-aspeed@lists.ozlabs.org>,
+        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list" <linux-kernel@vger.kernel.org>,
+        "Hongwei Zhang" <Hongweiz@ami.com>,
+        "Ryan Chen" <ryan_chen@aspeedtech.com>,
+        "Chin-Ting Kuo" <chin-ting_kuo@aspeedtech.com>
+Subject: =?UTF-8?Q?Re:_[PATCH_v3_5/5]_mmc:_sdhci-of-aspeed:_Assert/Deassert_reset?=
+ =?UTF-8?Q?_signal_before_probing_eMMC?=
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 19, 2021 at 10:43:56AM -0400, Alan Stern wrote:
-> On Tue, May 18, 2021 at 02:40:47PM -0700, Matthias Kaehlcke wrote:
+
+
+On Wed, 19 May 2021, at 20:27, Steven Lee wrote:
+> The 05/14/2021 10:37, Andrew Jeffery wrote:
 > > 
-> > Could you also have a look at "[4/5] usb: host: xhci-plat:
-> > Create platform device for onboard hubs in probe()"
-> > (https://lore.kernel.org/patchwork/patch/1425453/)? It's a
-> > relatively short patch that creates the platform device for
-> > the driver from xhci-plat as you suggested in the v4
-> > discussion.
+> > 
+> > On Fri, 14 May 2021, at 11:39, Steven Lee wrote:
+> > > The 05/13/2021 08:42, Andrew Jeffery wrote:
+> > > > 
+> > > > 
+> > > > On Mon, 10 May 2021, at 15:33, Steven Lee wrote:
+> > > > > The 05/07/2021 15:36, Andrew Jeffery wrote:
+> > > > > > 
+> > > > > > 
+> > > > > > On Fri, 7 May 2021, at 15:54, Steven Lee wrote:
+> > > > > > > The 05/07/2021 09:32, Andrew Jeffery wrote:
+> > > > > > > > 
+> > > > > > > > 
+> > > > > > > > On Thu, 6 May 2021, at 19:54, Philipp Zabel wrote:
+> > > > > > > > > Hi Steven,
+> > > > > > > > > 
+> > > > > > > > > On Thu, May 06, 2021 at 06:03:12PM +0800, Steven Lee wrote:
+> > > > > > > > > > +	if (info) {
+> > > > > > > > > > +		if (info->flag & PROBE_AFTER_ASSET_DEASSERT) {
+> > > > > > > > > > +			sdc->rst = devm_reset_control_get(&pdev->dev, NULL);
+> > > > > > > > > 
+> > > > > > > > > Please use devm_reset_control_get_exclusive() or
+> > > > > > > > > devm_reset_control_get_optional_exclusive().
+> > > > > > > > > 
+> > > > > > > > > > +			if (!IS_ERR(sdc->rst)) {
+> > > > > > > > > 
+> > > > > > > > > Please just return errors here instead of ignoring them.
+> > > > > > > > > The reset_control_get_optional variants return NULL in case the
+> > > > > > > > > device node doesn't contain a resets phandle, in case you really
+> > > > > > > > > consider this reset to be optional even though the flag is set?
+> > > > > > > > 
+> > > > > > > > It feels like we should get rid of the flag and leave it to the 
+> > > > > > > > devicetree.
+> > > > > > > > 
+> > > > > > > 
+> > > > > > > Do you mean adding a flag, for instance, "mmc-reset" in the
+> > > > > > > device tree and call of_property_read_bool() in aspeed_sdc_probe()?
+> > > > > > > 
+> > > > > > > > I'm still kind of surprised it's not something we want to do for the 
+> > > > > > > > 2400 and 2500 as well.
+> > > > > > > > 
+> > > > > > > 
+> > > > > > > Per discussion with the chip designer, AST2400 and AST2500 doesn't need
+> > > > > > > this implementation since the chip design is different to AST2600.
+> > > > > > 
+> > > > > > So digging a bit more deeply on this, it looks like the reset is 
+> > > > > > already taken care of by drivers/clk/clk-ast2600.c in the 
+> > > > > > clk_prepare_enable() path.
+> > > > > > 
+> > > > > > clk-ast2600 handles resets when enabling the clock for most peripherals:
+> > > > > > 
+> > > > > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/clk-ast2600.c?h=v5.12#n276
+> > > > > > 
+> > > > > > and this is true for both the SD controller and the eMMC controller:
+> > > > > > 
+> > > > > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/clk-ast2600.c?h=v5.12#n94
+> > > > > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/clk-ast2600.c?h=v5.12#n88
+> > > > > > 
+> > > > > > If this weren't the case you'd specify a reset property in the SD/eMMC 
+> > > > > > devicetree nodes for the 2600 and then use 
+> > > > > > devm_reset_control_get_optional_exclusive() as Philipp suggested. See 
+> > > > > > the reset binding here:
+> > > > > > 
+> > > > > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/reset/reset.txt?h=v5.12
+> > > > > > 
+> > > > > > So on the surface it seems the reset handling in this patch is 
+> > > > > > unnecessary. Have you observed an issue with the SoC that means it's 
+> > > > > > required?
+> > > > > > 
+> > > > > 
+> > > > > Yes, you are right, aspeed_sdc_probe() calls clk_prepare_enable(),
+> > > > > aspeed_g6_clk_enable() does reset eMMC.
+> > > > > 
+> > > > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/mmc/host/sdhci-of-aspeed.c#n496
+> > > > > 
+> > > > > However, the clock of eMMC is enabled in my u-boot(2019.04).
+> > > > > So it is retruned in the condition of aspeed_g6_clk_is_enabled() below
+> > > > > and doesn't reset eMMC.
+> > > > > 
+> > > > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/clk-ast2600.c?h=v5.12#n285
+> > > > 
+> > > > Okay, so what's the issue that the patch addresses? Is there a bug? 
+> > > > Presumably if u-boot isn't making use of the eMMC the clock won't be 
+> > > > on, so we'll do the reset if the kernel wants to make use of the 
+> > > > device. If u-boot _is_ using the eMMC, u-boot will have done the 
+> > > > correct clock enable/reset sequence and so the controller should be 
+> > > > ready to go?
+> > > > 
+> > > > The only potential issue remaining is u-boot leaving the controller in 
+> > > > a configuration the kernel isn't expecting when handing over. If that's 
+> > > > the issue then we've forgotten to do some specific initialisation (i.e. 
+> > > > not just reset the entire thing) of the controller in the driver probe 
+> > > > path, right?
+> > > > 
+> > > 
+> > > If DMA engine is used before probing eMMC in kernel stage,
+> > > eMMC controller may have unexpected behavior when re-exectuing
+> > > identifying process.
+> > > Thus, we need to reset at the beginning of kernel since
+> > > kernel is a new stage. We should not assume some one do something
+> > > before.
+> > > 
+> > > > FWIW I haven't recently seen any poor behaviour from the controller or 
+> > > > driver. For us (IBM) it seems to be working well since we sorted out 
+> > > > the phase configuration.
+> > > > 
+> > > 
+> > > Yes, you are right, everything work well currently. But, kernel is a new
+> > > stage, we cannot assume eMMC controller is at initial state when
+> > > entering kernel stage.
+> > 
+> > Okay. That sounds true no matter what the hardware design though (going 
+> > back to the difference between the 2400/2500 and 2600).
+> > 
+> > Given the reset is tied up in the clock gating, it would be nice if we 
+> > could do the following in aspeed_sdc_probe():
+> > 
+> > ```
+> > /* Clean up the controller in case it wasn't left in a good state by the bootloader */
+> > clock_disable_unprepare(...);
+> > 
+> > clock_prepare_enable(...);
+> > ```
+> > 
+> > But the enable_count tracked by clock_core_{en,dis}able() kills that 
+> > idea.
+> > 
+> > This makes it seem like we need to break out the appropriate indexes 
+> > to add `resets` properties in the devicetree. This will need some input 
+> > from Joel, given the eMMC/SD resets can't currently be handled that way.
+> > 
 > 
-> I'm not the maintainer for xhci-related drivers.
+> Hi Adnrew,
 > 
-> However, there is at least one thing about this patch which looks 
-> suspicious: Adding the onboard_hub_dev pointer to struct usb_hcd instead 
-> of to struct xhci_plat_priv, where it would make a lot more sense.
+> I was wondering if I should wait for Joel's comment, or
+> 
+> 1. Drop this patch in this patch series, and prepare another patch
+> series for this issue in the future. Since sdhci works well as long as we
+> don't use DMA engine before kernel stage.
 
-I can move it to struct usb_hcd if that's preferred
+I think this is the way forward, it's kind of separate to what you're 
+trying to achieve with the rest of the patches in this series.
 
-> It's also worth mentioning that this approach won't work at all when the 
-> onboard hub is not at the top level (its parent isn't the root hub),
+I'll poke Joel.
 
-Yes, this limitation is mentioned in the commit message of '[2/5] USB:
-misc: Add onboard_usb_hub driver'. It shouldn't be hard to add support
-for nested hubs, however I currently have no such configuration for
-testing, so I prefer to defer it until the need actually arises and
-it can be tested.
+Cheers,
 
-> or when more than one onboard hubs are connected to the same root hub.
-
-Right, currently that isn't supported. xhci-plat could iterate over the
-ports and have a list of the platform devices it owns. It would also
-require some logic to make sure only one platform device is created per
-hub. Much of this code could probably live in the onboard_hub driver
-and would also be used if support for non-root hubs is added.
+Andrew
