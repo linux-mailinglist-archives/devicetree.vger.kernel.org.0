@@ -2,99 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58808388664
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 07:06:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3A4038868B
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 07:31:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238470AbhESFHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 01:07:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55048 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239033AbhESFHf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 May 2021 01:07:35 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 28B416135B;
-        Wed, 19 May 2021 05:06:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1621400775;
-        bh=FeabjgYqNybppZqqnzHbLi82CaLWP46ifWGb6yUuS6Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=owPRJ8NF3nHj+plPrk07gzFM0TqfRSAX/C21sBfQaEsGWKPfAmgq01nAg0+YWc/rZ
-         jTHUKzHktSI8QizOIRUM0SI/0g42/d0kjkZm82PbkIVaRJhTEJdR3rCWMKUpJd6egv
-         Mfkx5JZhGZG+rlzToHPJsE/j+hv1FgEFb44vtdtE=
-Date:   Wed, 19 May 2021 07:06:11 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-usb@vger.kernel.org, Peter Chen <peter.chen@kernel.org>,
-        linux-kernel@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Al Cooper <alcooperx@gmail.com>,
-        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: Re: [PATCH v10 2/5] USB: misc: Add onboard_usb_hub driver
-Message-ID: <YKScw3zcnTV5AAA1@kroah.com>
-References: <20210511225223.550762-1-mka@chromium.org>
- <20210511155152.v10.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
- <YKPz7a68duMyXU5x@google.com>
- <20210518194511.GA1137841@rowland.harvard.edu>
- <YKQ0XxhIWaN37HMr@google.com>
+        id S231880AbhESFdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 01:33:05 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:47909 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S239653AbhESFck (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 01:32:40 -0400
+X-UUID: 294fa27d168740cfa5356bc62f4d1256-20210519
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=R77Q1fQW/odTmnYvAyiJFw4Pabof7f591ESN1e7RqC4=;
+        b=Nkv2IH+00T7LnZXW05A/HuORHiBBsUtDzG+8p/stQU8UnC8UMJRofokaKzOCed0qBF9dtL5Zr8GDd1HhINgQeTcR928KNsj3PS6qqyfEJSjugVktSWPiqNK2y9IsbXcG4TkyLUBvXeVznThEe2EDENAJGL68TjnfHrJKAKg9tlc=;
+X-UUID: 294fa27d168740cfa5356bc62f4d1256-20210519
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <jitao.shi@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 345906070; Wed, 19 May 2021 13:31:17 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33N2.mediatek.inc
+ (172.27.4.76) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 19 May
+ 2021 13:31:14 +0800
+Received: from [10.16.6.141] (10.16.6.141) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 19 May 2021 13:31:13 +0800
+Message-ID: <1621402273.10680.0.camel@mszsdaap41>
+Subject: Re: [PATCH 4/4] drm/mediatek: add dsi module reset driver
+From:   Jitao Shi <jitao.shi@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Huijuan Xie =?UTF-8?Q?=28=E8=B0=A2=E6=85=A7=E5=A8=9F=29?= 
+        <Huijuan.Xie@mediatek.com>,
+        "stonea168@163.com" <stonea168@163.com>,
+        Cawa Cheng =?UTF-8?Q?=28=E9=84=AD=E6=9B=84=E7=A6=A7=29?= 
+        <cawa.cheng@mediatek.com>,
+        Rex-BC Chen =?UTF-8?Q?=28=E9=99=B3=E6=9F=8F=E8=BE=B0=29?= 
+        <Rex-BC.Chen@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Yingjoe Chen =?UTF-8?Q?=28=E9=99=B3=E8=8B=B1=E6=B4=B2=29?= 
+        <Yingjoe.Chen@mediatek.com>,
+        Eddie Huang =?UTF-8?Q?=28=E9=BB=83=E6=99=BA=E5=82=91=29?= 
+        <eddie.huang@mediatek.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Date:   Wed, 19 May 2021 13:31:13 +0800
+In-Reply-To: <CAAOTY__JZsAmGtX-+hNu0123xKoEdP2CgGxmQK2bqa-i+3dr6Q@mail.gmail.com>
+References: <20210420132614.150242-1-jitao.shi@mediatek.com>
+         <20210420132614.150242-4-jitao.shi@mediatek.com>
+         <CAAOTY__JZsAmGtX-+hNu0123xKoEdP2CgGxmQK2bqa-i+3dr6Q@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YKQ0XxhIWaN37HMr@google.com>
+X-TM-SNTS-SMTP: 86D50871892250EBFA58D265CE83AD217ED8423C9374DC154FC2BF45A4E07E942000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 18, 2021 at 02:40:47PM -0700, Matthias Kaehlcke wrote:
-> On Tue, May 18, 2021 at 03:45:11PM -0400, Alan Stern wrote:
-> > On Tue, May 18, 2021 at 10:05:49AM -0700, Matthias Kaehlcke wrote:
-> > > Hi Alan,
-> > > 
-> > > You seemed to have a generally favorable view of this driver,
-> > > but I haven't heard from you in a while :)
-> > > 
-> > > On v4 expressed a series of suggestions and concerns, which
-> > > should be addressed in this version:
-> > > 
-> > > https://lore.kernel.org/patchwork/patch/1313000/
-> > > https://lore.kernel.org/patchwork/patch/1313001/
-> > > 
-> > > Rob acked the DT binding and the of_platform change. Please let me
-> > > know if the USB part needs any further changes or if you think this
-> > > series is ready to land.
-> > 
-> > Those were long and complicated threads, and a lot of the material has
-> > gone out of my brain since last October.  :-(
-> > 
-> > Still, at the time when this was first posted I don't remember there
-> > being any big outstanding issues regarding the USB part of the
-> > implementation.  It seemed to be pretty much all in order.
-> > 
-> > You can add:
-> > 
-> > Acked-by: Alan Stern <stern@rowland.harvard.edu>
-> > 
-> > to this patch.  Greg KH may have some thoughts of his own...
-> 
-> Thanks!
-> 
-> Could you also have a look at "[4/5] usb: host: xhci-plat:
-> Create platform device for onboard hubs in probe()"
-> (https://lore.kernel.org/patchwork/patch/1425453/)? It's a
-> relatively short patch that creates the platform device for
-> the driver from xhci-plat as you suggested in the v4
-> discussion.
-> 
-> Greg, are there any more concerns from your side?
+T24gU2F0LCAyMDIxLTA0LTI0IGF0IDA3OjUwICswODAwLCBDaHVuLUt1YW5nIEh1IHdyb3RlOg0K
+PiBIaSwgSml0YW86DQo+IA0KPiBKaXRhbyBTaGkgPGppdGFvLnNoaUBtZWRpYXRlay5jb20+IOaW
+vCAyMDIx5bm0NOaciDIw5pelIOmAseS6jCDkuIvljYg5OjI25a+r6YGT77yaDQo+ID4NCj4gPiBS
+ZXNldCBkc2kgSFcgdG8gZGVmYXVsdCB3aGVuIHBvd2VyIG9uLiBQcmV2ZW50IHRoZSBzZXR0aW5n
+IGRpZmZlcmV0DQo+ID4gYmV0d2VlbiBib290bG9hZGVyIGFuZCBrZXJuZWwuDQo+ID4NCj4gPiBT
+aWduZWQtb2ZmLWJ5OiBKaXRhbyBTaGkgPGppdGFvLnNoaUBtZWRpYXRlay5jb20+DQo+ID4gLS0t
+DQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHNpLmMgfCAzNiArKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKy0NCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDM1IGluc2VydGlvbnMo
+KyksIDEgZGVsZXRpb24oLSkNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+bWVkaWF0ZWsvbXRrX2RzaS5jIGIvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kc2kuYw0K
+PiA+IGluZGV4IDQ1NWZlNTgyYzZiNS4uMTEzNDM4ZGRkNGNjIDEwMDY0NA0KPiA+IC0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHNpLmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9k
+cm0vbWVkaWF0ZWsvbXRrX2RzaS5jDQo+ID4gQEAgLTcsMTAgKzcsMTIgQEANCj4gPiAgI2luY2x1
+ZGUgPGxpbnV4L2NvbXBvbmVudC5oPg0KPiA+ICAjaW5jbHVkZSA8bGludXgvaW9wb2xsLmg+DQo+
+ID4gICNpbmNsdWRlIDxsaW51eC9pcnEuaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L21mZC9zeXNj
+b24uaD4NCj4gPiAgI2luY2x1ZGUgPGxpbnV4L29mLmg+DQo+ID4gICNpbmNsdWRlIDxsaW51eC9v
+Zl9wbGF0Zm9ybS5oPg0KPiA+ICAjaW5jbHVkZSA8bGludXgvcGh5L3BoeS5oPg0KPiA+ICAjaW5j
+bHVkZSA8bGludXgvcGxhdGZvcm1fZGV2aWNlLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9yZWdt
+YXAuaD4NCj4gPg0KPiA+ICAjaW5jbHVkZSA8dmlkZW8vbWlwaV9kaXNwbGF5Lmg+DQo+ID4gICNp
+bmNsdWRlIDx2aWRlby92aWRlb21vZGUuaD4NCj4gPiBAQCAtMTQzLDYgKzE0NSw4IEBADQo+ID4g
+ICNkZWZpbmUgREFUQV8wICAgICAgICAgICAgICAgICAgICAgICAgICgweGZmIDw8IDE2KQ0KPiA+
+ICAjZGVmaW5lIERBVEFfMSAgICAgICAgICAgICAgICAgICAgICAgICAoMHhmZiA8PCAyNCkNCj4g
+Pg0KPiA+ICsjZGVmaW5lIE1NU1lTX1NXX1JTVF9EU0lfQiBCSVQoMjUpDQo+ID4gKw0KPiA+ICAj
+ZGVmaW5lIE5TX1RPX0NZQ0xFKG4sIGMpICAgICgobikgLyAoYykgKyAoKChuKSAlIChjKSkgPyAx
+IDogMCkpDQo+ID4NCj4gPiAgI2RlZmluZSBNVEtfRFNJX0hPU1RfSVNfUkVBRCh0eXBlKSBcDQo+
+ID4gQEAgLTE4Niw3ICsxOTAsOCBAQCBzdHJ1Y3QgbXRrX2RzaSB7DQo+ID4gICAgICAgICBzdHJ1
+Y3QgZHJtX2JyaWRnZSAqbmV4dF9icmlkZ2U7DQo+ID4gICAgICAgICBzdHJ1Y3QgZHJtX2Nvbm5l
+Y3RvciAqY29ubmVjdG9yOw0KPiA+ICAgICAgICAgc3RydWN0IHBoeSAqcGh5Ow0KPiA+IC0NCj4g
+PiArICAgICAgIHN0cnVjdCByZWdtYXAgKm1tc3lzX3N3X3JzdF9iOw0KPiA+ICsgICAgICAgdTMy
+IHN3X3JzdF9iOw0KPiA+ICAgICAgICAgdm9pZCBfX2lvbWVtICpyZWdzOw0KPiA+DQo+ID4gICAg
+ICAgICBzdHJ1Y3QgY2xrICplbmdpbmVfY2xrOw0KPiA+IEBAIC0yNzIsNiArMjc3LDE2IEBAIHN0
+YXRpYyB2b2lkIG10a19kc2lfZGlzYWJsZShzdHJ1Y3QgbXRrX2RzaSAqZHNpKQ0KPiA+ICAgICAg
+ICAgbXRrX2RzaV9tYXNrKGRzaSwgRFNJX0NPTl9DVFJMLCBEU0lfRU4sIDApOw0KPiA+ICB9DQo+
+ID4NCj4gPiArc3RhdGljIHZvaWQgbXRrX2RzaV9yZXNldF9hbGwoc3RydWN0IG10a19kc2kgKmRz
+aSkNCj4gPiArew0KPiA+ICsgICAgICAgcmVnbWFwX3VwZGF0ZV9iaXRzKGRzaS0+bW1zeXNfc3df
+cnN0X2IsIGRzaS0+c3dfcnN0X2IsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgTU1T
+WVNfU1dfUlNUX0RTSV9CLCAwKTsNCj4gPiArICAgICAgIHVzbGVlcF9yYW5nZSgxMDAwLCAxMTAw
+KTsNCj4gPiArDQo+ID4gKyAgICAgICByZWdtYXBfdXBkYXRlX2JpdHMoZHNpLT5tbXN5c19zd19y
+c3RfYiwgZHNpLT5zd19yc3RfYiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICBNTVNZ
+U19TV19SU1RfRFNJX0IsIE1NU1lTX1NXX1JTVF9EU0lfQik7DQo+ID4gK30NCj4gPiArDQo+ID4g
+IHN0YXRpYyB2b2lkIG10a19kc2lfcmVzZXRfZW5naW5lKHN0cnVjdCBtdGtfZHNpICpkc2kpDQo+
+ID4gIHsNCj4gPiAgICAgICAgIG10a19kc2lfbWFzayhkc2ksIERTSV9DT05fQ1RSTCwgRFNJX1JF
+U0VULCBEU0lfUkVTRVQpOw0KPiA+IEBAIC05ODUsNiArMTAwMCw4IEBAIHN0YXRpYyBpbnQgbXRr
+X2RzaV9iaW5kKHN0cnVjdCBkZXZpY2UgKmRldiwgc3RydWN0IGRldmljZSAqbWFzdGVyLCB2b2lk
+ICpkYXRhKQ0KPiA+DQo+ID4gICAgICAgICByZXQgPSBtdGtfZHNpX2VuY29kZXJfaW5pdChkcm0s
+IGRzaSk7DQo+ID4NCj4gPiArICAgICAgIG10a19kc2lfcmVzZXRfYWxsKGRzaSk7DQo+ID4gKw0K
+PiA+ICAgICAgICAgcmV0dXJuIHJldDsNCj4gPiAgfQ0KPiA+DQo+ID4gQEAgLTEwMDcsNiArMTAy
+NCw3IEBAIHN0YXRpYyBpbnQgbXRrX2RzaV9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpw
+ZGV2KQ0KPiA+ICAgICAgICAgc3RydWN0IGRldmljZSAqZGV2ID0gJnBkZXYtPmRldjsNCj4gPiAg
+ICAgICAgIHN0cnVjdCBkcm1fcGFuZWwgKnBhbmVsOw0KPiA+ICAgICAgICAgc3RydWN0IHJlc291
+cmNlICpyZWdzOw0KPiA+ICsgICAgICAgc3RydWN0IHJlZ21hcCAqcmVnbWFwOw0KPiA+ICAgICAg
+ICAgaW50IGlycV9udW07DQo+ID4gICAgICAgICBpbnQgcmV0Ow0KPiA+DQo+ID4gQEAgLTEwMjIs
+NiArMTA0MCwyMiBAQCBzdGF0aWMgaW50IG10a19kc2lfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2Rl
+dmljZSAqcGRldikNCj4gPiAgICAgICAgICAgICAgICAgcmV0dXJuIHJldDsNCj4gPiAgICAgICAg
+IH0NCj4gPg0KPiA+ICsgICAgICAgcmVnbWFwID0gc3lzY29uX3JlZ21hcF9sb29rdXBfYnlfcGhh
+bmRsZShkZXYtPm9mX25vZGUsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICJtZWRpYXRlayxzeXNjb24tZHNpIik7DQo+ID4gKyAgICAgICByZXQg
+PSBvZl9wcm9wZXJ0eV9yZWFkX3UzMl9pbmRleChkZXYtPm9mX25vZGUsICJtZWRpYXRlayxzeXNj
+b24tZHNpIiwgMSwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICZkc2ktPnN3X3JzdF9iKTsNCj4gPiArDQo+ID4gKyAgICAgICBpZiAoSVNfRVJSKHJlZ21hcCkp
+DQo+ID4gKyAgICAgICAgICAgICAgIHJldCA9IFBUUl9FUlIocmVnbWFwKTsNCj4gPiArDQo+ID4g
+KyAgICAgICBpZiAocmV0KSB7DQo+ID4gKyAgICAgICAgICAgICAgIHJldCA9IFBUUl9FUlIocmVn
+bWFwKTsNCj4gPiArICAgICAgICAgICAgICAgZGV2X2VycihkZXYsICJGYWlsZWQgdG8gZ2V0IG1t
+c3lzIHJlZ2lzdGVyczogJWRcbiIsIHJldCk7DQo+ID4gKyAgICAgICAgICAgICAgIHJldHVybiBy
+ZXQ7DQo+ID4gKyAgICAgICB9DQo+ID4gKw0KPiA+ICsgICAgICAgZHNpLT5tbXN5c19zd19yc3Rf
+YiA9IHJlZ21hcDsNCj4gPiArDQo+IA0KPiBJdCBsb29rcyBsaWtlIHRoYXQgbXRrLW1tc3lzIGlz
+IHRoZSByZXNldCBjb250cm9sbGVyIGFuZCBtdGstZHNpIGlzDQo+IHJlc2V0IGNvbnN1bWVyLiBQ
+bGVhc2UgcmVmZXIgdG8gWzFdLCBbMl0gdG8gaW1wbGVtZW50Lg0KPiANCj4gWzFdIGh0dHBzOi8v
+d3d3Lmtlcm5lbC5vcmcvZG9jL2h0bWwvbGF0ZXN0L2RyaXZlci1hcGkvcmVzZXQuaHRtbA0KPiBb
+Ml0gaHR0cHM6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQvdG9ydmFs
+ZHMvbGludXguZ2l0L3RyZWUvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Jlc2V0
+L3Jlc2V0LnR4dD9oPXY1LjEyLXJjOA0KPiANCj4gUmVnYXJkcywNCj4gQ2h1bi1LdWFuZy4NCj4g
+DQoNClRoYW5rcywgSSdsbCBmaXggbmV4dCB2ZXJzaW9uLg0KDQo+ID4gICAgICAgICByZXQgPSBk
+cm1fb2ZfZmluZF9wYW5lbF9vcl9icmlkZ2UoZGV2LT5vZl9ub2RlLCAwLCAwLA0KPiA+ICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICZwYW5lbCwgJmRzaS0+bmV4dF9i
+cmlkZ2UpOw0KPiA+ICAgICAgICAgaWYgKHJldCkNCj4gPiAtLQ0KPiA+IDIuMjUuMQ0KPiA+IF9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+ID4gZHJpLWRl
+dmVsIG1haWxpbmcgbGlzdA0KPiA+IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4g
+PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZl
+bA0KDQo=
 
-Yes, I think there are, but like Alan said, it's been a long time since
-I've looked at this.  I'll review it soon when I get a chance...
-
-greg k-h
