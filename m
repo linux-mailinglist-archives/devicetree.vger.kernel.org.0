@@ -2,59 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A0BE388B1C
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 11:51:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB466388B38
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 11:54:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346447AbhESJwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 05:52:24 -0400
-Received: from 82-65-109-163.subs.proxad.net ([82.65.109.163]:41996 "EHLO
-        luna.linkmauve.fr" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345162AbhESJwT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 05:52:19 -0400
-Received: by luna.linkmauve.fr (Postfix, from userid 1000)
-        id 662CAF4068A; Wed, 19 May 2021 11:50:51 +0200 (CEST)
-From:   Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org
-Cc:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
-        Ash Logan <ash@heyquark.com>,
-        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.ne@posteo.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/4] powerpc: wii_defconfig: Enable OTP by default
-Date:   Wed, 19 May 2021 11:50:44 +0200
-Message-Id: <20210519095044.4109-5-linkmauve@linkmauve.fr>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210519095044.4109-1-linkmauve@linkmauve.fr>
-References: <20210519095044.4109-1-linkmauve@linkmauve.fr>
+        id S232276AbhESJzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 05:55:24 -0400
+Received: from mail-ua1-f53.google.com ([209.85.222.53]:34724 "EHLO
+        mail-ua1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245745AbhESJzY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 05:55:24 -0400
+Received: by mail-ua1-f53.google.com with SMTP id x1so3721494uau.1;
+        Wed, 19 May 2021 02:54:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Gvr46UuP/aK1hvdWUxVGtDfsF8ud4ousl9JTfPPOif0=;
+        b=p+zANF9XY5zG5BIdAtRAjyTyBdFWiGUEpYfrHZYkO/EgpRpGWpu+irpLgOC2zby3J9
+         4ajOHQGu0U81QTvLbOrCqyQewtsFDgmWwnWL1N/flY53vh9LWZHAZ+O/2FMVUCm5hXLS
+         GSt2YviG+Z/DmHS8FdapBkXQh37XpdxMFRpYhnNV5uhsDfTtCCNVS1FxuCFjvKiSZbhs
+         y9Rxay1F8qDFvSfua88mHtvSnqv15I6zlSwi9gOogcJsG6MOZw1b+in3nZFYeHmCwMi1
+         mt3wKTNj47HCrKLujSdCX8WB2g+eGTVlJ+C36sTybr7Hds03zAlAi3Kj1oyTcE7rfs16
+         fc3g==
+X-Gm-Message-State: AOAM530hS4mGbsCGHKrrCCWNQiExtPujElgNuMVnfzwgMm2KQFN7lKcA
+        W0PT9NV9o5KZ6lquchrg4L7elZq4OSL+/7DM5Uo=
+X-Google-Smtp-Source: ABdhPJxQeHn6vy6se+92JGjupVPtNrd9RHNFzUY140wdZNDAlJ5Rg2eg8vPbVYUEqYCgsh7Ls2X9pNQOobSI3duXejY=
+X-Received: by 2002:ab0:2242:: with SMTP id z2mr8817879uan.58.1621418043172;
+ Wed, 19 May 2021 02:54:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210106113730.k5qveshjgcd57kgx@runtux.com> <20210106113929.fizyg6fcsmsntkiy@runtux.com>
+ <CANiq72=Cfv=Qo2fs+HDjUc8pV37mL326SDS5JpGotUfHLwK_rQ@mail.gmail.com>
+ <CAMuHMdUW3U6DVkHp3xiHFzvRUDJ1FwTNCnBWp5LCuDGxhds9wg@mail.gmail.com>
+ <CANiq72mCFwYnbynQgwNGTt0mzo_rMrnQfpinz6DrPttFxUpyNQ@mail.gmail.com>
+ <20210517152035.GA2581887@robh.at.kernel.org> <20210519090047.e63d2im5vgskqpcs@runtux.com>
+In-Reply-To: <20210519090047.e63d2im5vgskqpcs@runtux.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 19 May 2021 11:53:51 +0200
+Message-ID: <CAMuHMdV80XUo5ihXUkogCikGA4H71Ada9w=9W9d9d1zdgrw0uA@mail.gmail.com>
+Subject: Re: [PATCH 1/1] auxdisplay: Add I2C gpio expander example
+To:     Ralf Schlatterbeck <rsc@runtux.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Willy Tarreau <w@1wt.eu>, Lars Poeschel <poeschel@lemonage.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This selects the nintendo-otp module when building for this platform, if
-CONFIG_NVMEM is also selected.
+Hi Ralf,
 
-Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
----
- arch/powerpc/configs/wii_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+On Wed, May 19, 2021 at 11:00 AM Ralf Schlatterbeck <rsc@runtux.com> wrote:
+> On Mon, May 17, 2021 at 10:20:35AM -0500, Rob Herring wrote:
+> > Now it warns in linux-next:
+> >
+> > Documentation/devicetree/bindings/auxdisplay/hit,hd44780.example.dts:52.18-62.11: Warning (unit_address_vs_reg): /example-1/i2c@2000: node has a unit name, but no reg or ranges property
+>
+> [I'm the author of that patch]
+> Can someone point me to the documentation of how to check a single
+> example against the dt schemata? I think I had that figured out how to
+> run the dt-checks over the whole tree in january but didn't bother with
+> warnings since the whole devtree was riddled with warnings at the time.
 
-diff --git a/arch/powerpc/configs/wii_defconfig b/arch/powerpc/configs/wii_defconfig
-index 379c171f3ddd..a0c45bf2bfb1 100644
---- a/arch/powerpc/configs/wii_defconfig
-+++ b/arch/powerpc/configs/wii_defconfig
-@@ -99,6 +99,7 @@ CONFIG_LEDS_TRIGGER_HEARTBEAT=y
- CONFIG_LEDS_TRIGGER_PANIC=y
- CONFIG_RTC_CLASS=y
- CONFIG_RTC_DRV_GENERIC=y
-+CONFIG_NVMEM_NINTENDO_OTP=y
- CONFIG_EXT2_FS=y
- CONFIG_EXT4_FS=y
- CONFIG_FUSE_FS=m
+It's much better in v5.13-rc2.
+
+> Docs on how to quickly check for warnings/errors would help me a lot. My
+> naive usage of dt-validate on an example yields a traceback, I've opened
+> a report on github because I think that even with gross mis-usage the
+> tool shouldn't traceback...
+
+make dt_binding_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/auxdisplay/hit,hd44780.yaml
+
+That still runs some checks on all files, unless you apply
+https://lore.kernel.org/linux-devicetree/20210309112148.2309116-1-geert+renesas@glider.be/
+first
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.31.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
