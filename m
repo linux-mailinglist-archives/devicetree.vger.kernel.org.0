@@ -2,89 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8783E3884E3
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 04:46:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F9663884EC
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 04:48:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237001AbhESCrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 22:47:52 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:39751 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235114AbhESCrv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 22:47:51 -0400
-Received: by mail-ot1-f54.google.com with SMTP id d25-20020a0568300459b02902f886f7dd43so10500158otc.6;
-        Tue, 18 May 2021 19:46:32 -0700 (PDT)
+        id S237349AbhESCte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 22:49:34 -0400
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:38650 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237274AbhESCtd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 22:49:33 -0400
+Received: by mail-ot1-f49.google.com with SMTP id q7-20020a9d57870000b02902a5c2bd8c17so10502951oth.5;
+        Tue, 18 May 2021 19:48:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=NdESKQMh43nC6JZr8BTSQsMvdc5KFh0MQVjejGwQt0Y=;
-        b=tTjqqI56+FxdySyFkRVJgZLE2yZ2PIlGAKXp2uiMMe7r+KTwYfj5ETqzbAHh4Ntwzo
-         6xEItnDMmlY0vkYqkCDReb7jcm3rZF6T9CRkUad9zKfnsaLBkadKQAxz3kVsz8pRb8jH
-         AaJQ1oYW4EVwKdPQh440aF6CzwnG4omyCyh4ml2M1tNrOEokuUv1DpFvDINu75kBgMNR
-         dE5+jno7qEIOP8/9EC2Neojj69q+WM+jxoIMYqDbYG1OyaDLK5sF15Lryow131n6xdxg
-         otfxYSkZXJLsODaNAgkcRwGVRDSuuyI+iBtCwnjOr3UQVYpO3EwmIIxEaR7MaNmQX0jr
-         gtKw==
-X-Gm-Message-State: AOAM533gaee76CxuHO+H9L4wYkm4+2b97trUgyNPlBhRtDehL7tlOyB6
-        4BwqEZyd/UcIfe22nLt3XlZYALQcxA==
-X-Google-Smtp-Source: ABdhPJyLtwLU5cVvUUA+7JfBr/dF1/lkXauFhjIqpLcKY7qXxLRlJUKcALQm7of52aoqdd3FZ6HNqA==
-X-Received: by 2002:a05:6830:1df0:: with SMTP id b16mr6692001otj.40.1621392392035;
-        Tue, 18 May 2021 19:46:32 -0700 (PDT)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id x11sm4268909otr.36.2021.05.18.19.46.31
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Q4LcyG7TR1wlU65C0tMqAS7GQ9Qzklf/Ua5vm6bP0dY=;
+        b=kBf1wdaFlurEs4ItIqW4b39n51OaGMkHtLJMebu0IxJq7Ut57VErSsUG2ImAr0/LkL
+         6oJ7HtYP0dU4rCub5rs/M5BZeycN3Tpzh/yciz5eOModxUNQy1Fl6d/QTFtI0frRoq6O
+         5NMPnUEutkw9rAQlr33955Qx4VKC4hPEuS5OGFA8kvobCVYuTgg8PMPGBZKSf7G5VBLe
+         E79XFtV26uMb2VS6R4Yn/Rfs8gfdZv9dTa66gmsxmqNcvew9aWAckwWYXLXgKfSjGHHp
+         Wxxhs2beVxG36oT6QQ9qCjPrbITriVuHuukEfB89wqAacMQwdCOIAo0tmfCTi9ZOtjOX
+         ODew==
+X-Gm-Message-State: AOAM532ozCSL+wHJ73O5OSfVQa6neqrUXXiWP47mpGA10axUxDnhUB69
+        gDzTddJKsmRmHoW3z88y1A==
+X-Google-Smtp-Source: ABdhPJx3BlvLuylgzd5eRpyEpXh47BO/eHtxDBU1//TMyqLZFNXTI3iRXR5JOdrQYhqAlyt6R2LmPw==
+X-Received: by 2002:a9d:62d0:: with SMTP id z16mr559268otk.180.1621392493120;
+        Tue, 18 May 2021 19:48:13 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id x14sm3853076oic.3.2021.05.18.19.48.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 May 2021 19:46:31 -0700 (PDT)
+        Tue, 18 May 2021 19:48:12 -0700 (PDT)
+Received: (nullmailer pid 1905258 invoked by uid 1000);
+        Wed, 19 May 2021 02:48:11 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org
-Subject: [PATCH] dt-bindings: mmc: Drop the "sdhci" compatible example
-Date:   Tue, 18 May 2021 21:46:30 -0500
-Message-Id: <20210519024630.1902477-1-robh@kernel.org>
-X-Mailer: git-send-email 2.27.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+To:     Odelu Kukatla <okukatla@codeaurora.org>
+Cc:     elder@linaro.org, bjorn.andersson@linaro.org,
+        seansw@qti.qualcomm.com, linux-kernel@vger.kernel.org,
+        georgi.djakov@linaro.org, devicetree@vger.kernel.org,
+        Georgi Djakov <djakov@kernel.org>,
+        linux-arm-msm@vger.kernel.org, sboyd@kernel.org,
+        sibis@codeaurora.org, Andy Gross <agross@kernel.org>,
+        evgreen@google.com, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm-owner@vger.kernel.org, linux-pm@vger.kernel.org
+In-Reply-To: <1621359242-18641-2-git-send-email-okukatla@codeaurora.org>
+References: <1621359242-18641-1-git-send-email-okukatla@codeaurora.org> <1621359242-18641-2-git-send-email-okukatla@codeaurora.org>
+Subject: Re: [V2 1/3] dt-bindings: interconnect: Add EPSS L3 DT binding on SC7280
+Date:   Tue, 18 May 2021 21:48:11 -0500
+Message-Id: <1621392491.220233.1905257.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "sdhci" compatible is not documented though used as a fallback in a
-few cases. It is also not supported by a Linux driver. Just remove the
-example as part of ridding examples of undocumented bindings.
+On Tue, 18 May 2021 23:04:00 +0530, Odelu Kukatla wrote:
+> Add Epoch Subsystem (EPSS) L3 interconnect provider binding on SC7280
+> SoCs.
+> 
+> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
+> ---
+>  .../devicetree/bindings/interconnect/qcom,osm-l3.yaml          |  3 ++-
+>  include/dt-bindings/interconnect/qcom,osm-l3.h                 | 10 +++++++++-
+>  2 files changed, 11 insertions(+), 2 deletions(-)
+> 
 
-Cc: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: linux-mmc@vger.kernel.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/mmc/mmc-controller.yaml  | 16 ----------------
- 1 file changed, 16 deletions(-)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-index e141330c1114..6bf97cdd9507 100644
---- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-+++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-@@ -357,22 +357,6 @@ dependencies:
- additionalProperties: true
- 
- examples:
--  - |
--    mmc@ab000000 {
--        compatible = "sdhci";
--        reg = <0xab000000 0x200>;
--        interrupts = <23>;
--        bus-width = <4>;
--        cd-gpios = <&gpio 69 0>;
--        cd-inverted;
--        wp-gpios = <&gpio 70 0>;
--        max-frequency = <50000000>;
--        keep-power-in-suspend;
--        wakeup-source;
--        mmc-pwrseq = <&sdhci0_pwrseq>;
--        clk-phase-sd-hs = <63>, <72>;
--    };
--
-   - |
-     mmc3: mmc@1c12000 {
-         #address-cells = <1>;
--- 
-2.27.0
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.example.dt.yaml: interconnect@17d41000: reg: [[399773696, 5120]] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+
+See https://patchwork.ozlabs.org/patch/1480367
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
