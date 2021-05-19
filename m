@@ -2,219 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F007389812
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 22:38:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2DAC3897FB
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 22:35:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229532AbhESUji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 16:39:38 -0400
-Received: from mx0b-00268f01.pphosted.com ([148.163.159.192]:8640 "EHLO
-        mx0b-00268f01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229437AbhESUjh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 May 2021 16:39:37 -0400
-X-Greylist: delayed 5699 seconds by postgrey-1.27 at vger.kernel.org; Wed, 19 May 2021 16:39:37 EDT
-Received: from pps.filterd (m0165121.ppops.net [127.0.0.1])
-        by mx0b-00268f01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 14JIrQIi001497;
-        Wed, 19 May 2021 19:02:54 GMT
-Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2046.outbound.protection.outlook.com [104.47.66.46])
-        by mx0b-00268f01.pphosted.com with ESMTP id 38n53f8rue-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 19 May 2021 19:02:53 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cCsOYuzsLiS/Ev8HBLFh2tQKIKn4ZnDtyPijFRFF7IzJ1oqs8WDPUCx8dbdUPm3FHr/8EjVdZFXc98QJ8qZufr/eSCbNz3kBzUBjQSqea3HhxADB9LSqe05oHe4BVs9MePWcr8QECTL2TNAnpD3s7FFrNiiJPCrOtDCEKJ4Qu1W8jZSgR6UWD3rxSO1fhmt9IoZ/8bTIVatGvgbODKCfgpGMBSLK9YOhIN618/HJ0Zls50EQmRZ82o7dieG773Z4AMAkudCh0V6IQAZmPrrTo9tr458t9KJtV7Gi6vqtBrT9XSXFNmf2/CY1GgCLWgXyfjSbr7yMRzmEQ5KZ6wFrJQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kvoCsGU2nQjTYgbXdS5nzV22tJWDyVf+C2DmIiz8KGY=;
- b=MQz2ukTuGzE1KUQtHk2lSCvjWNP+nuArwlHBayu0Zj2w8rFPdglfK3kYJasSLXXWp7eMgM/IU5F03v/kQXxDFQPsvKoLaunnJLxWkZ1WoUQ3FXYCAf7sxxqKVwO0QJk77+LqLj32rGUYFNtIHPPifeixg+fD9pNn16afy+gVe2znzrdDKdhDz1x7EsiOaDUcvdFdu5qtsrEJ/L6FSemkkHrdNvgm3CkjV2nq/15WdLqmrRQkizYwqzk0beO088iANkAEMIysrD6l5K5ZW7aLbLZUIZKtIx9Cj8CIxpflow/zHBE6iuKeSAJ1BJOrDqpSkSnfYaMfsO1rRYE5iLFKzg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=equinix.com; dmarc=pass action=none header.from=equinix.com;
- dkim=pass header.d=equinix.com; arc=none
+        id S229454AbhESUhP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 16:37:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40526 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229437AbhESUhP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 16:37:15 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 325A2C06175F
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 13:35:55 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id q5so15354262wrs.4
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 13:35:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=equinixinc.onmicrosoft.com; s=selector2-equinixinc-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kvoCsGU2nQjTYgbXdS5nzV22tJWDyVf+C2DmIiz8KGY=;
- b=G70Mr8hNK4MUvJHRVwYADZSPMqtWo7GTP2un1AWyUvHTppH6SzdqGo2wuqUOBf3UY2O0GlaRJt/AVrD+fYdpkYMo+QqoSDWV7aoocj6ilCmqLXrsPPyeoxZvkcRzesJ3x0I9EnUffi3wKJckjHLc4pvhYzus6+dEip+C5Xuig9g=
-Received: from DM5PR04MB0762.namprd04.prod.outlook.com (2603:10b6:3:f3::13) by
- DM6PR04MB5532.namprd04.prod.outlook.com (2603:10b6:5:12d::17) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4129.28; Wed, 19 May 2021 19:02:51 +0000
-Received: from DM5PR04MB0762.namprd04.prod.outlook.com
- ([fe80::d9ba:6e7f:b51e:6cab]) by DM5PR04MB0762.namprd04.prod.outlook.com
- ([fe80::d9ba:6e7f:b51e:6cab%2]) with mapi id 15.20.4129.033; Wed, 19 May 2021
- 19:02:50 +0000
-From:   Zev Weiss <zweiss@equinix.com>
-To:     Jamin Lin <jamin_lin@aspeedtech.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/ASPEED I2C DRIVER" <openbmc@lists.ozlabs.org>,
-        "steven_lee@aspeedtech.com" <steven_lee@aspeedtech.com>,
-        "chiawei_wang@aspeedtech.com" <chiawei_wang@aspeedtech.com>,
-        "troy_lee@aspeedtech.com" <troy_lee@aspeedtech.com>,
-        "ryan_chen@aspeedtech.com" <ryan_chen@aspeedtech.com>
-Subject: Re: [PATCH 1/3] i2c: aspeed: avoid new registers definition of
- AST2600
-Thread-Topic: [PATCH 1/3] i2c: aspeed: avoid new registers definition of
- AST2600
-Thread-Index: AQHXTOGQ+04th/dwT0i8Ccm8YNu1Cw==
-Date:   Wed, 19 May 2021 19:02:50 +0000
-Message-ID: <YKVg2Kfbex3DYbNI@packtop>
-References: <20210519080436.18975-1-jamin_lin@aspeedtech.com>
- <20210519080436.18975-2-jamin_lin@aspeedtech.com>
-In-Reply-To: <20210519080436.18975-2-jamin_lin@aspeedtech.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: aspeedtech.com; dkim=none (message not signed)
- header.d=none;aspeedtech.com; dmarc=none action=none header.from=equinix.com;
-x-originating-ip: [24.181.166.149]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f83a6770-f627-4288-3300-08d91af8b324
-x-ms-traffictypediagnostic: DM6PR04MB5532:
-x-microsoft-antispam-prvs: <DM6PR04MB5532A50BF223C8ACA86B6910C32B9@DM6PR04MB5532.namprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: o0klEahC8/xfDOGVZ+y/xugA+ddS+D9mkiSdlLJp6lqex5UK9g0Y1wnWbjAfz+BDu8R34aVAlDNX3+3B5i8A0NglRseLRepKnGUJzLqwe/hLwjXe6+JhYgFkKREiOe9aDGDqVdHR+k+0Ju/mvuzsAAYzeDVts+EbUjFi2xkwCFralcsuj726EnNVYMNr2vBIn31xLPt7jz2xyHxIiMq6fbTw/+svga7bCw36Foxszf7e1JCSbIGBPvgrdqriycO6buYtWpbGIeaXaxfNZ/BLp8VgeP6jns0cq/2BG2hwlqbccMfDUVoabgIV8xEd59DFclz7jHTJLHnyCqEbLKY8TNlblJvUUGIetOvSJkO/NN1qiZrY7DcUkH6WglBYY+A+M2oAN8RT53QPVwNs3W15ZDtWhKYYwVDgXg+yeO4AZTj9ptL5FXQpou8Ba1oLirp4leYquzYrAG/Vpyq8rv+xB2Q3hxno7K9onln33i7jShZEtm0SOUTkfFCepjh5REIOT0i9P4AEwsjLa2J5MrekjzbYe0VvG0w/wofQNHCA0McAF+MbTxStSb6+vIOzn5PdVE9H4IAlSM9Gh/RQzi7Ri5/m5tRJnoYZovA4O5oZ0sE=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR04MB0762.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(4636009)(376002)(136003)(396003)(346002)(39860400002)(366004)(4326008)(478600001)(54906003)(8936002)(8676002)(316002)(6916009)(86362001)(91956017)(7416002)(66946007)(6486002)(5660300002)(76116006)(122000001)(6512007)(71200400001)(9686003)(26005)(186003)(66556008)(66476007)(64756008)(66446008)(38100700002)(33716001)(6506007)(2906002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?YPZUePZVPDx0O51aDq5UGtkk0XLS4WQfuV/sNJHKhO6Hpb01+20LGgeuplwI?=
- =?us-ascii?Q?yYNd6uMu2S19ySiBs8xKOhWUk73ZWtaiXa0DhrVv1zRaVSLvs/YvVzu3Yx0B?=
- =?us-ascii?Q?tWKoPKyBfCQqjfsJ5YiTo/vmFEdGxVavht3WjG2w4La3sPogUPi3yxXbOaR9?=
- =?us-ascii?Q?Es9BNihUxq8Pib7t4lGsAin7q2/CX+o7AmkGFt28LG1Y/OiRzxZZ3cEy2s7c?=
- =?us-ascii?Q?T/ZTeJZHDBv1zKaRonWucRZpKe+QRynagI2tQWDMYCE0aZ6c50x54jvZGtVy?=
- =?us-ascii?Q?woc2wwoHJ50YT7BAPRY3wCxXB6ZjlKFJzZt/jjKLIK61IKhLD5OaZAQVds9t?=
- =?us-ascii?Q?RQoAtVsWFjmDpNiVk+Lisxts5WYrUGd1cnTIaOr9tbnULI+vhNNyG/j5M5ct?=
- =?us-ascii?Q?3ScsL48AIGWdflRPsekxzZBwOk+5gUMsQ2W6rzOIbTppjn24edXHbWcYV/oy?=
- =?us-ascii?Q?JNFjH2al3xfVbQy6qfMG5/+s6crsb8G9LLzN643RplPBnW7xOnDCA0d2RMER?=
- =?us-ascii?Q?c2kYov7DL2xCbqkG0unQBjmo7R/lNJ95Uh4XCDosMRDTcPVnjvBvhOERKt3i?=
- =?us-ascii?Q?zxzJUEb5Yj78phUODW3JMI4CaVgFPnt+0EKth6HpzSevSvI4LDCvbw500yGU?=
- =?us-ascii?Q?5Y2HgLCL8VOJq4z0SzLg43pHRy4S3t35mkpRwMwbohrXIHqB4RNbxqvTT8FA?=
- =?us-ascii?Q?T4lgr5TK0NsHt/sdXR7gaVmK+hSkJ2+z7niwwFjZRCKo0/5a9ZpJWfiZ6imj?=
- =?us-ascii?Q?sGFlkKvH5jxm6yNHc0TlgHvLMLxcld5v3o7n4Paqk59HvZkgnJghlYAzwK/p?=
- =?us-ascii?Q?HScOQa6TMG46FXURY1PK/jcvBVVugvVe+Acn6iTNowfN/xOLsaTWK/7of3wR?=
- =?us-ascii?Q?bfZzFl+TMiATVVV3A8MAbteY5XlEjMJ67VWXlz+BFiuo+0GqLjlwnOv8yzve?=
- =?us-ascii?Q?a4afsI92JaxsmR6+mbQ0MUS+HDz8OMtSOcWyJ9g+ox14dShTJp5EAbFgxw3g?=
- =?us-ascii?Q?YkocReRTy//ZvFbkrcmcuxHLBofbJWiSYEupIMbVP/sZd9+tDXiMmYPl0B+y?=
- =?us-ascii?Q?q5O+FYvDGzgvm3n2fum+0hP+ZJ04fo249uR55iBztQOlK9xphnDEFLYSU0IA?=
- =?us-ascii?Q?3vPZCNiVjBAFUCzFc9bkNjNc+UrgQyVDAqwyExyWrpwnYdV45nX5eRPZmlTu?=
- =?us-ascii?Q?PVW8m+yBzoQnuK6a+wncIaaETT5uEzM4qyg4p33XBM5+IzEgM7JR51q2i/6H?=
- =?us-ascii?Q?o/5LWIRFkeSnKrIoQrgCmZn/miVMYyUVhfEEYa7AAkp7Td76m9Rt3ZeK01Az?=
- =?us-ascii?Q?Z4AJ1iN0WnmbWOkRi/JzhH3K/kLGQUw9/zyjOPkpdZzKOQ=3D=3D?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <84F50A129A8DAD49B76EF596CB752539@namprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EHNW49TmyZaaRrFWUNtWXt+ZlgbUc2SAp8tKEH8gOoY=;
+        b=o3bt4GjXWraSnEy+C9ViC9P14StdEqRMztBo8yt4KXqmgIKa2B6FGstQuPjVjMMwMC
+         ThLdrtuT6oddEi3gI/axnzz1d4S3kdhZUOYnTHI1feyuxLVsVdX3b/Ti8ZFg5x9nXnRI
+         Mm098zmlkuvhFQBxFQZAoj/JDGDVQpLaz0NRg6qt0Hf2O+32LYqLrKvW9B4gwOeum6Br
+         H/5TsIGVkpRlCXsjcjAU5/+BN+C9hHc+SkEMhkX7cFPp3iVX9cT0GKv6yknOKNQKTZ7x
+         cKWY1POEUVL/Ux4cNd6q3BrXRDF2R1D0Ahm/dKlucEECJN2XxwFGprlp3w+ezADMMeiq
+         hwsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EHNW49TmyZaaRrFWUNtWXt+ZlgbUc2SAp8tKEH8gOoY=;
+        b=uYfigDzV0sXQopQb7zW7dp4xmJUYkN+aa0KB/kymfmM2q9wUp+s2uKuwmVydSD5H4a
+         8WF1vCfs6VEtY6VN7vVufabISPQWbSPx1VImVOH5dH4t6Kp30RkcRpfpOXu9D1YX4LAD
+         D+Gy58i1cNVSHBJZWxW+GSs8BAwpxRWACvUiKqxXSGfXlduALxlX9vYN8XxUakYyEkP7
+         WCM/eg6VNtXl/5XPab0Kq52O97kcYNMtmy3SY2NddxJPzaxxwaVSfEP6eqq7LBwHHmGf
+         srH1Qo6r9hIQK4mlouQqGe2Isnu/uE4c8B0//mOJ9oMhJZIVY7CP+cgjWl8mPu1LVLC7
+         Cdkw==
+X-Gm-Message-State: AOAM530KSoMzQxcRWUYWg4grjJgqZTzSACf+jH9V/K8Talz7ohAyGqpQ
+        UlphsT35Z7P6YUfC+RXmB3wd4prHsALliw==
+X-Google-Smtp-Source: ABdhPJzAHcq/7ZxKFF4pjEJZP86gjjMy+kdD+NQ/hRlf+/06xeRDG7FxZP7QHAYkDFynteVfB8HWjA==
+X-Received: by 2002:a5d:62d0:: with SMTP id o16mr801711wrv.164.1621456553771;
+        Wed, 19 May 2021 13:35:53 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id y20sm7531918wmi.0.2021.05.19.13.35.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 May 2021 13:35:53 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     airlied@linux.ie, daniel@ffwll.ch, linus.walleij@linaro.org,
+        robh+dt@kernel.org, ulli.kroll@googlemail.com
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH v2 1/3] dt-bindings: display: convert faraday,tve200
+Date:   Wed, 19 May 2021 20:35:45 +0000
+Message-Id: <20210519203547.837237-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-OriginatorOrg: equinix.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR04MB0762.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f83a6770-f627-4288-3300-08d91af8b324
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 May 2021 19:02:50.8511
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 72adb271-2fc7-4afe-a5ee-9de6a59f6bfb
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: zDuP14UVcLw+WRfwC3DERIqIJVUsl+QU2gFiThZxkWypGLngxDBgujxc4z4wpx2XmQ6aJxycWTRPzCuYenCgsA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR04MB5532
-X-Proofpoint-ORIG-GUID: wMwPn8DyDFsX_YFW7eiXhh4qf4UDxt8Y
-X-Proofpoint-GUID: wMwPn8DyDFsX_YFW7eiXhh4qf4UDxt8Y
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
- definitions=2021-05-19_09:2021-05-19,2021-05-19 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- lowpriorityscore=0 impostorscore=0 phishscore=0 spamscore=0 clxscore=1011
- malwarescore=0 bulkscore=0 adultscore=0 suspectscore=0 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2104190000
- definitions=main-2105190115
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 19, 2021 at 03:04:27AM CDT, Jamin Lin wrote:
->The register definition between AST2600 A2 and A3 is different.
->This patch avoid new registers definition of AST2600 to use
->this driver. We will submit the path for the new registers
->definition of AST2600.
->
->Signed-off-by: Jamin Lin <jamin_lin@aspeedtech.com>
->---
-> drivers/i2c/busses/i2c-aspeed.c | 22 ++++++++++++++++++++++
-> 1 file changed, 22 insertions(+)
->
->diff --git a/drivers/i2c/busses/i2c-aspeed.c b/drivers/i2c/busses/i2c-aspe=
-ed.c
->index 724bf30600d6..007309077d9f 100644
->--- a/drivers/i2c/busses/i2c-aspeed.c
->+++ b/drivers/i2c/busses/i2c-aspeed.c
->@@ -19,14 +19,20 @@
-> #include <linux/irqchip/chained_irq.h>
-> #include <linux/irqdomain.h>
-> #include <linux/kernel.h>
->+#include <linux/mfd/syscon.h>
-> #include <linux/module.h>
-> #include <linux/of_address.h>
-> #include <linux/of_irq.h>
-> #include <linux/of_platform.h>
-> #include <linux/platform_device.h>
->+#include <linux/regmap.h>
-> #include <linux/reset.h>
-> #include <linux/slab.h>
->
->+/* I2C Global Registers */
->+/* 0x0c : I2CG Global Control Register (AST2500)  */
->+#define ASPEED_I2CG_GLOBAL_CTRL_REG			0x0c
->+
-> /* I2C Register */
-> #define ASPEED_I2C_FUN_CTRL_REG				0x00
-> #define ASPEED_I2C_AC_TIMING_REG1			0x04
->@@ -973,6 +979,22 @@ static int aspeed_i2c_probe_bus(struct platform_devic=
-e *pdev)
-> 	struct resource *res;
-> 	int irq, ret;
->
->+	if (of_device_is_compatible(pdev->dev.of_node,
->+				    "aspeed,ast2600-i2c-bus")) {
->+		u32 global_ctrl;
->+		struct regmap *gr_regmap;
->+
->+		gr_regmap =3D syscon_regmap_lookup_by_compatible("aspeed,ast2600-i2c-gl=
-obal");
->+
->+		if (IS_ERR(gr_regmap)) {
->+			ret =3D PTR_ERR(gr_regmap);
->+		} else {
->+			regmap_read(gr_regmap, ASPEED_I2CG_GLOBAL_CTRL_REG, &global_ctrl);
->+			if (global_ctrl & BIT(2))
->+				return -EIO;
+Converts display/faraday,tve200.txt to yaml.
 
-A macro definition might be a bit nicer than a raw BIT(2) here I'd
-think.
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+Changes since v1:
+- added two subsequent patchs fixing issue found when converting
+- fixed all issues reported by Rob Herring
+ .../bindings/display/faraday,tve200.txt       | 54 ---------------
+ .../bindings/display/faraday,tve200.yaml      | 68 +++++++++++++++++++
+ 2 files changed, 68 insertions(+), 54 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/faraday,tve200.txt
+ create mode 100644 Documentation/devicetree/bindings/display/faraday,tve200.yaml
 
-Also, it seems a bit unfortunate to just bail on the device entirely if
-we find this bit set (seems like a good way for a bootloader to
-inadvertently DoS the kernel), though I guess poking global syscon bits
-in the bus probe function might not be ideal.  Could/should we consider
-some module-level init code to ensure that bit is cleared?
+diff --git a/Documentation/devicetree/bindings/display/faraday,tve200.txt b/Documentation/devicetree/bindings/display/faraday,tve200.txt
+deleted file mode 100644
+index 82e3bc0b7485..000000000000
+--- a/Documentation/devicetree/bindings/display/faraday,tve200.txt
++++ /dev/null
+@@ -1,54 +0,0 @@
+-* Faraday TV Encoder TVE200
+-
+-Required properties:
+-
+-- compatible: must be one of:
+-	"faraday,tve200"
+-	"cortina,gemini-tvc", "faraday,tve200"
+-
+-- reg: base address and size of the control registers block
+-
+-- interrupts: contains an interrupt specifier for the interrupt
+-	line from the TVE200
+-
+-- clock-names: should contain "PCLK" for the clock line clocking the
+-	silicon and "TVE" for the 27MHz clock to the video driver
+-
+-- clocks: contains phandle and clock specifier pairs for the entries
+-	in the clock-names property. See
+-	Documentation/devicetree/bindings/clock/clock-bindings.txt
+-
+-Optional properties:
+-
+-- resets: contains the reset line phandle for the block
+-
+-Required sub-nodes:
+-
+-- port: describes LCD panel signals, following the common binding
+-	for video transmitter interfaces; see
+-	Documentation/devicetree/bindings/media/video-interfaces.txt
+-	This port should have the properties:
+-	reg = <0>;
+-	It should have one endpoint connected to a remote endpoint where
+-	the display is connected.
+-
+-Example:
+-
+-display-controller@6a000000 {
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	compatible = "faraday,tve200";
+-	reg = <0x6a000000 0x1000>;
+-	interrupts = <13 IRQ_TYPE_EDGE_RISING>;
+-	resets = <&syscon GEMINI_RESET_TVC>;
+-	clocks = <&syscon GEMINI_CLK_GATE_TVC>,
+-		 <&syscon GEMINI_CLK_TVC>;
+-	clock-names = "PCLK", "TVE";
+-
+-	port@0 {
+-		reg = <0>;
+-		display_out: endpoint {
+-			remote-endpoint = <&panel_in>;
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/display/faraday,tve200.yaml b/Documentation/devicetree/bindings/display/faraday,tve200.yaml
+new file mode 100644
+index 000000000000..e2ee77767321
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/faraday,tve200.yaml
+@@ -0,0 +1,68 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/faraday,tve200.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Faraday TV Encoder TVE200
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++properties:
++  compatible:
++    oneOf:
++      - const: faraday,tve200
++      - items:
++          - const: cortina,gemini-tvc
++          - const: faraday,tve200
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    minItems: 1
++
++  clock-names:
++    items:
++      - const: PCLK
++      - const: TVE
++
++  clocks:
++    minItems: 2
++
++  resets:
++    minItems: 1
++
++  port:
++    $ref: /schemas/graph.yaml#/properties/port
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clock-names
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/cortina,gemini-clock.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/reset/cortina,gemini-reset.h>
++    display-controller@6a000000 {
++      compatible = "faraday,tve200";
++      reg = <0x6a000000 0x1000>;
++      interrupts = <13 IRQ_TYPE_EDGE_RISING>;
++      resets = <&syscon GEMINI_RESET_TVC>;
++      clocks = <&syscon GEMINI_CLK_GATE_TVC>,
++               <&syscon GEMINI_CLK_TVC>;
++      clock-names = "PCLK", "TVE";
++
++      port {
++        display_out: endpoint {
++          remote-endpoint = <&panel_in>;
++        };
++      };
++    };
+-- 
+2.26.3
 
-
-Zev
-
->+		}
->+	}
->+
-> 	bus =3D devm_kzalloc(&pdev->dev, sizeof(*bus), GFP_KERNEL);
-> 	if (!bus)
-> 		return -ENOMEM;
->--=20
->2.17.1
->=
