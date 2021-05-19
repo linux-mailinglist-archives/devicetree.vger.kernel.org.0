@@ -2,259 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B40D388ADE
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 11:42:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18AD1388AF6
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 11:45:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345690AbhESJnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 05:43:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60400 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345675AbhESJnw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 05:43:52 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D95AFC0613ED
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 02:42:32 -0700 (PDT)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1ljIie-0002Bl-GP; Wed, 19 May 2021 11:42:24 +0200
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1ljIic-0007PI-S2; Wed, 19 May 2021 11:42:22 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        id S1345252AbhESJrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 05:47:17 -0400
+Received: from 82-65-109-163.subs.proxad.net ([82.65.109.163]:41800 "EHLO
+        luna.linkmauve.fr" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239539AbhESJrQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 05:47:16 -0400
+Received: by luna.linkmauve.fr (Postfix, from userid 1000)
+        id 3D981F40627; Wed, 19 May 2021 11:45:55 +0200 (CEST)
+From:   Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org
+Cc:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
+        Ash Logan <ash@heyquark.com>,
+        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.ne@posteo.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        David Jander <david@protonic.nl>, devicetree@vger.kernel.org
-Subject: [PATCH v4 5/5] Input: resistive-adc-touch: add support for z1 and z2 channels
-Date:   Wed, 19 May 2021 11:42:21 +0200
-Message-Id: <20210519094221.27792-6-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210519094221.27792-1-o.rempel@pengutronix.de>
-References: <20210519094221.27792-1-o.rempel@pengutronix.de>
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/4] =?UTF-8?q?nvmem:=20nintendo-otp:=20Add=20new=20driver?= =?UTF-8?q?=20for=20the=20Wii=20and=20Wii=C2=A0U=20OTP?=
+Date:   Wed, 19 May 2021 11:45:43 +0200
+Message-Id: <20210519094546.3954-2-linkmauve@linkmauve.fr>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210519094546.3954-1-linkmauve@linkmauve.fr>
+References: <20210519094546.3954-1-linkmauve@linkmauve.fr>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for the z1 and z2 channels. These are used to
-calculate the applied pressure. As there is no common order of the
-individual channels of a resistive touch ADC, support for
-io-channel-names is added (although the DT bindings stated the
-driver already supports these).
+This OTP is read-only and contains various keys used by the console to
+decrypt, encrypt or verify various pieces of storage.
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+Its size depends on the console, it is 128 bytes on the Wii and
+1024 bytes on the Wii U (split into eight 128 bytes banks).
+
+It can be used directly by writing into one register and reading from
+the other one, without any additional synchronisation.
+
+Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
 ---
- .../input/touchscreen/resistive-adc-touch.c   | 142 ++++++++++++++++--
- 1 file changed, 128 insertions(+), 14 deletions(-)
+ drivers/nvmem/Kconfig        |  11 ++++
+ drivers/nvmem/Makefile       |   2 +
+ drivers/nvmem/nintendo-otp.c | 115 +++++++++++++++++++++++++++++++++++
+ 3 files changed, 128 insertions(+)
+ create mode 100644 drivers/nvmem/nintendo-otp.c
 
-diff --git a/drivers/input/touchscreen/resistive-adc-touch.c b/drivers/input/touchscreen/resistive-adc-touch.c
-index e50af30183f4..fa90005b7bc9 100644
---- a/drivers/input/touchscreen/resistive-adc-touch.c
-+++ b/drivers/input/touchscreen/resistive-adc-touch.c
-@@ -20,7 +20,18 @@
+diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
+index dd2019006838..dd6196e49b2d 100644
+--- a/drivers/nvmem/Kconfig
++++ b/drivers/nvmem/Kconfig
+@@ -107,6 +107,17 @@ config MTK_EFUSE
+ 	  This driver can also be built as a module. If so, the module
+ 	  will be called efuse-mtk.
  
- #define DRIVER_NAME					"resistive-adc-touch"
- #define GRTS_DEFAULT_PRESSURE_MIN			50000
-+#define GRTS_DEFAULT_PRESSURE_MAX			65535
- #define GRTS_MAX_POS_MASK				GENMASK(11, 0)
-+#define GRTS_MAX_CHANNELS				4
++config NVMEM_NINTENDO_OTP
++	tristate "Nintendo Wii and Wii U OTP Support"
++	help
++	  This is a driver to expose the OTP on a Nintendo Wii or Wii U.
 +
-+enum grts_ch_type {
-+	GRTS_CH_NONE = 0,
-+	GRTS_CH_X,
-+	GRTS_CH_Y,
-+	GRTS_CH_PRESSURE,
-+	GRTS_CH_Z1,
-+	GRTS_CH_Z2,
++	  This memory contains common and per-console keys, signatures and
++	  related data required to access peripherals.
++
++	  This driver can also be built as a module. If so, the module
++	  will be called nvmem-nintendo-otp.
++
+ config QCOM_QFPROM
+ 	tristate "QCOM QFPROM Support"
+ 	depends on ARCH_QCOM || COMPILE_TEST
+diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
+index bbea1410240a..dcbbde35b6a8 100644
+--- a/drivers/nvmem/Makefile
++++ b/drivers/nvmem/Makefile
+@@ -23,6 +23,8 @@ obj-$(CONFIG_NVMEM_LPC18XX_OTP)	+= nvmem_lpc18xx_otp.o
+ nvmem_lpc18xx_otp-y		:= lpc18xx_otp.o
+ obj-$(CONFIG_NVMEM_MXS_OCOTP)	+= nvmem-mxs-ocotp.o
+ nvmem-mxs-ocotp-y		:= mxs-ocotp.o
++obj-$(CONFIG_NVMEM_NINTENDO_OTP)	+= nvmem-nintendo-otp.o
++nvmem-nintendo-otp-y		:= nintendo-otp.o
+ obj-$(CONFIG_MTK_EFUSE)		+= nvmem_mtk-efuse.o
+ nvmem_mtk-efuse-y		:= mtk-efuse.o
+ obj-$(CONFIG_QCOM_QFPROM)	+= nvmem_qfprom.o
+diff --git a/drivers/nvmem/nintendo-otp.c b/drivers/nvmem/nintendo-otp.c
+new file mode 100644
+index 000000000000..de6f5d7c10ef
+--- /dev/null
++++ b/drivers/nvmem/nintendo-otp.c
+@@ -0,0 +1,115 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Nintendo Wii and Wii U OTP driver
++ *
++ * Copyright (C) 2021 Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
++ */
++
++#include <linux/device.h>
++#include <linux/io.h>
++#include <linux/module.h>
++#include <linux/mod_devicetable.h>
++#include <linux/nvmem-provider.h>
++#include <linux/of_device.h>
++#include <linux/platform_device.h>
++
++#define HW_OTPCMD  0
++#define HW_OTPDATA 4
++#define OTP_READ   0x80000000
++
++struct nintendo_otp_priv {
++	void __iomem *regs;
 +};
- 
- /**
-  * struct grts_state - generic resistive touch screen information struct
-@@ -33,24 +44,61 @@
-  */
- struct grts_state {
- 	u32				pressure_min;
-+	u32				x_plate_ohms;
- 	bool				pressure;
- 	struct iio_channel		*iio_chans;
- 	struct iio_cb_buffer		*iio_cb;
- 	struct input_dev		*input;
- 	struct touchscreen_properties	prop;
-+	u8				ch[GRTS_MAX_CHANNELS];
- };
- 
- static int grts_cb(const void *data, void *private)
- {
- 	const u16 *touch_info = data;
- 	struct grts_state *st = private;
--	unsigned int x, y, press = 0x0;
-+	unsigned int x, y, press = 0, z1 = 0, z2;
-+	unsigned int Rt, i;
 +
-+	for (i = 0; i < ARRAY_SIZE(st->ch) && st->ch[i] != GRTS_CH_NONE; i++) {
-+		switch (st->ch[i]) {
-+		case GRTS_CH_X:
-+			x = touch_info[i];
-+			break;
-+		case GRTS_CH_Y:
-+			y = touch_info[i];
-+			break;
-+		case GRTS_CH_PRESSURE:
-+			press = touch_info[i];
-+			break;
-+		case GRTS_CH_Z1:
-+			z1 = touch_info[i];
-+			break;
-+		case GRTS_CH_Z2:
-+			z2 = touch_info[i];
-+			break;
-+		case GRTS_CH_NONE:
-+			break;
-+		}
-+	}
- 
--	/* channel data coming in buffer in the order below */
--	x = touch_info[0];
--	y = touch_info[1];
--	if (st->pressure)
--		press = touch_info[2];
-+	if (z1) {
-+		Rt = z2;
-+		Rt -= z1;
-+		Rt *= st->x_plate_ohms;
-+		Rt = DIV_ROUND_CLOSEST(Rt, 16);
-+		Rt *= x;
-+		Rt /= z1;
-+		Rt = DIV_ROUND_CLOSEST(Rt, 256);
-+		/*
-+		 * On increased pressure the resistance (Rt) is decreasing
-+		 * so, convert values to make it looks as real pressure.
-+		 */
-+		if (Rt < GRTS_DEFAULT_PRESSURE_MAX)
-+			press = GRTS_DEFAULT_PRESSURE_MAX - Rt;
-+		else
-+			press = 0;
-+	}
- 
- 	if ((!x && !y) || (st->pressure && (press < st->pressure_min))) {
- 		/* report end of touch */
-@@ -94,12 +142,77 @@ static void grts_disable(void *data)
- 	iio_channel_release_all_cb(data);
- }
- 
-+static int grts_get_properties(struct grts_state *st, struct device *dev)
++struct nintendo_otp_devtype_data {
++	const char *name;
++	unsigned int num_banks;
++};
++
++static const struct nintendo_otp_devtype_data hollywood_otp_data = {
++	.name = "wii-otp",
++	.num_banks = 1,
++};
++
++static const struct nintendo_otp_devtype_data latte_otp_data = {
++	.name = "wiiu-otp",
++	.num_banks = 8,
++};
++
++static int nintendo_otp_reg_read(void *context,
++				 unsigned int reg, void *_val, size_t bytes)
 +{
-+	int idx, error;
++	struct nintendo_otp_priv *priv = context;
++	u32 *val = _val;
++	int words = bytes >> 2;
++	u32 bank, addr;
 +
-+	idx = device_property_match_string(dev, "io-channel-names", "x");
-+	if (idx < 0)
-+		return idx;
-+
-+	if (idx >= ARRAY_SIZE(st->ch))
-+		return -EOVERFLOW;
-+
-+	st->ch[idx] = GRTS_CH_X;
-+
-+	idx = device_property_match_string(dev, "io-channel-names", "y");
-+	if (idx < 0)
-+		return idx;
-+
-+	if (idx >= ARRAY_SIZE(st->ch))
-+		return -EOVERFLOW;
-+
-+	st->ch[idx] = GRTS_CH_Y;
-+
-+	/* pressure is optional */
-+	idx = device_property_match_string(dev, "io-channel-names", "pressure");
-+	if (idx >= 0) {
-+		if (idx >= ARRAY_SIZE(st->ch))
-+			return -EOVERFLOW;
-+
-+		st->ch[idx] = GRTS_CH_PRESSURE;
-+		st->pressure = true;
-+
-+		return 0;
-+	}
-+
-+	/* if no pressure is defined, try optional z1 + z2 */
-+	idx = device_property_match_string(dev, "io-channel-names", "z1");
-+	if (idx < 0)
-+		return 0;
-+
-+	if (idx >= ARRAY_SIZE(st->ch))
-+		return -EOVERFLOW;
-+
-+	st->ch[idx] = GRTS_CH_Z1;
-+
-+	/* if z1 is provided z2 is not optional */
-+	idx = device_property_match_string(dev, "io-channel-names", "z2");
-+	if (idx < 0)
-+		return idx;
-+
-+	if (idx >= ARRAY_SIZE(st->ch))
-+		return -EOVERFLOW;
-+
-+	st->ch[idx] = GRTS_CH_Z2;
-+	st->pressure = true;
-+
-+	error = device_property_read_u32(dev,
-+					 "touchscreen-x-plate-ohms",
-+					 &st->x_plate_ohms);
-+	if (error) {
-+		dev_err(dev, "can't get touchscreen-x-plate-ohms property\n");
-+		return error;
++	while (words--) {
++		bank = (reg << 1) & ~0xff;
++		addr = (reg >> 2) & 0x1f;
++		iowrite32be(OTP_READ | bank | addr, priv->regs + HW_OTPCMD);
++		*val++ = ioread32be(priv->regs + HW_OTPDATA);
++		reg += 4;
 +	}
 +
 +	return 0;
 +}
 +
- static int grts_probe(struct platform_device *pdev)
- {
- 	struct grts_state *st;
- 	struct input_dev *input;
- 	struct device *dev = &pdev->dev;
--	struct iio_channel *chan;
- 	int error;
- 
- 	st = devm_kzalloc(dev, sizeof(struct grts_state), GFP_KERNEL);
-@@ -115,12 +228,13 @@ static int grts_probe(struct platform_device *pdev)
- 		return error;
- 	}
- 
--	chan = &st->iio_chans[0];
--	st->pressure = false;
--	while (chan && chan->indio_dev) {
--		if (!strcmp(chan->channel->datasheet_name, "pressure"))
--			st->pressure = true;
--		chan++;
-+	if (!device_property_present(dev, "io-channel-names"))
-+		return -ENODEV;
++static const struct of_device_id nintendo_otp_of_table[] = {
++	{ .compatible = "nintendo,hollywood-otp", .data = &hollywood_otp_data },
++	{ .compatible = "nintendo,latte-otp", .data = &latte_otp_data },
++	{/* sentinel */},
++};
++MODULE_DEVICE_TABLE(of, nintendo_otp_of_table);
 +
-+	error = grts_get_properties(st, dev);
-+	if (error) {
-+		dev_err(dev, "Failed to parse properties\n");
-+		return error;
- 	}
- 
- 	if (st->pressure) {
-@@ -148,7 +262,7 @@ static int grts_probe(struct platform_device *pdev)
- 	input_set_abs_params(input, ABS_Y, 0, GRTS_MAX_POS_MASK - 1, 0, 0);
- 	if (st->pressure)
- 		input_set_abs_params(input, ABS_PRESSURE, st->pressure_min,
--				     0xffff, 0, 0);
-+				     GRTS_DEFAULT_PRESSURE_MAX, 0, 0);
- 
- 	input_set_capability(input, EV_KEY, BTN_TOUCH);
- 
++static int nintendo_otp_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	const struct of_device_id *of_id =
++		of_match_device(nintendo_otp_of_table, dev);
++	struct resource *res;
++	struct nvmem_device *nvmem;
++	struct nintendo_otp_priv *priv;
++
++	struct nvmem_config config = {
++		.stride = 4,
++		.word_size = 4,
++		.reg_read = nintendo_otp_reg_read,
++		.read_only = true,
++		.root_only = true,
++	};
++
++	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
++
++	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
++	priv->regs = devm_ioremap_resource(dev, res);
++	if (IS_ERR(priv->regs))
++		return PTR_ERR(priv->regs);
++
++	if (of_id->data) {
++		const struct nintendo_otp_devtype_data *data = of_id->data;
++		config.name = data->name;
++		config.size = data->num_banks * 128;
++	}
++
++	config.dev = dev;
++	config.priv = priv;
++
++	nvmem = devm_nvmem_register(dev, &config);
++
++	return PTR_ERR_OR_ZERO(nvmem);
++}
++
++static struct platform_driver nintendo_otp_driver = {
++	.probe = nintendo_otp_probe,
++	.driver = {
++		.name = "nintendo-otp",
++		.of_match_table = nintendo_otp_of_table,
++	},
++};
++module_platform_driver(nintendo_otp_driver);
++MODULE_AUTHOR("Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>");
++MODULE_DESCRIPTION("Nintendo Wii and Wii U OTP driver");
++MODULE_LICENSE("GPL v2");
 -- 
-2.29.2
+2.31.1
 
