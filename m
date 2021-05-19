@@ -2,396 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29C193887C3
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 08:44:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BB353887D6
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 08:54:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230154AbhESGpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 02:45:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48152 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232437AbhESGpx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 02:45:53 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7A95C061760;
-        Tue, 18 May 2021 23:44:32 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id v14so6022686pgi.6;
-        Tue, 18 May 2021 23:44:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=47NKUzkUn7sG2o34JRLfK9VDmGON44TGQJRbbxFfmZk=;
-        b=Iqp1jQrOE6Gi2AM0Ej+G8iUCkn8SlASHhx9TEXM1Xi3iN0X9Y9ssIL5tvxsmzF7AsO
-         jjEzwdNnLsV8w/1XdBThdainzd44Les5c9A+odTwPDGtBQI7/t+tk0hcYW1AUTcKTGzg
-         0GeZZqpogVpfr51jIT3Yc+FmXL7JqAncSZajmfXhVO3w09fJg3iPDjxTLALkHma26/In
-         V6sEdkWGj6dVKi56DLH1k1xFMZ9/0USkZ/kxR3VSD2gQkAQ/m+yoIPfUXWp8X4Wa2uV1
-         YoLoVE07R6dGWWsEJBD26cE3ykmFWT+oPwcY3ZPxsZIGt/fb9EV9bPkSVit6vaj6TgEV
-         U80A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=47NKUzkUn7sG2o34JRLfK9VDmGON44TGQJRbbxFfmZk=;
-        b=svAABVc9bPhl+0QM42JhLhTBKg3sJn0doGhd4baFf2AnByXUCPLJZ2O3JuFtCc1NCN
-         Gn5gt7qzG7crbf3trB27nSx6YXYaGoDZZRsqZ7ELYJ5mqdZ63vTFm3f7N2kyziaWf+yf
-         00lwaNSiTB3toQEO2ry86WnuMiGoKHEnz1GFOSaOIfCg4AdHBRO3j40ZE34skoJEBcvk
-         oaS5cVg7z4lJhxokF4JRzCe/TkEi/J1rRxD8oc9yFHYAdtfycRknzEL/yBhdmfxUhnsn
-         ZigPTxC9XHi3JuKL8tM8ewusBrp06fAdBm+3GWdLrfWQAPMx++1T0n28/4Lh5oBd+sGJ
-         RX+A==
-X-Gm-Message-State: AOAM530waotlzN5b6BWwgxeTblQJaDKGttZAyHVMwLfmZcxbSu9/xctK
-        6lsyWmjRcgEkOTfj49YpeYw=
-X-Google-Smtp-Source: ABdhPJw/9LtuKExW0BVWOmVo65o1a+vjMHppQIBExMbL0PEPJNOcqpUX7beho/4W9lHniwfGCIAwgw==
-X-Received: by 2002:a63:4b5b:: with SMTP id k27mr9574334pgl.368.1621406672237;
-        Tue, 18 May 2021 23:44:32 -0700 (PDT)
-Received: from localhost.localdomain (1-171-11-163.dynamic-ip.hinet.net. [1.171.11.163])
-        by smtp.gmail.com with ESMTPSA id m14sm14085447pff.17.2021.05.18.23.44.29
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 18 May 2021 23:44:31 -0700 (PDT)
-From:   cy_huang <u0084500@gmail.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, cy_huang@richtek.com,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3 2/2] regulator: rt6160: Add support for Richtek RT6160
-Date:   Wed, 19 May 2021 14:43:59 +0800
-Message-Id: <1621406639-29911-2-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1621406639-29911-1-git-send-email-u0084500@gmail.com>
-References: <1621406639-29911-1-git-send-email-u0084500@gmail.com>
+        id S233380AbhESGz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 02:55:29 -0400
+Received: from mail-vi1eur05on2066.outbound.protection.outlook.com ([40.107.21.66]:31936
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232539AbhESGz3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 May 2021 02:55:29 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YPtK+J+gRyLKMdUwmp2aBUIZlWTqldFq8fWzAoejsLVn7B/zJL2L85WhWkdwGKVwDzK+daOuSXzuOfr0O1RBY89lPhlWe0i0+RzS0bgzbbfAy2jrLqqt2u1VMSgi1gO/LUGhlX6AoHrlXlmKhBc8yedxZekxvIixDGyInrbOPG3wJIoBq0JWJbGt9WLgEZhDeu8UJQwKnd8iAKrp6SCIjd902dYWeuBrxEioKACO0tBRQmNo5mCuEie+C9gVgTo4jR77qnD4halYsXl5C4qGzGcDd+oU6pNonBnNr/lk5tX45lXVQv0c1oyioakLmE2Lo+EbymYnEWlyZb9Lj/CKdw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dhqI4YjY51Ii8lbKKbBCqjAEASrLpnBliIPPCRKrHbs=;
+ b=TOuQVMBBI33t1QliFdUGMhe3StktfSdgCOjxRL9HWNha4Dxm4MfritcJjVZ9tZDx+0BvSuyUTzDmD4sEvjrNRItITx+203Qf+v48TLhm0CiwOajnPSgk+jm9/ZTzwb1mOyZTWL2wf3yOhnXx6Kr5b55nA17ufeqCATpWmuUPc6lpPdJID3mJnvTjoYJeA+soWaO+gxfPyajIwcnTIprqAaWC29OjOCXgpP+VgYNtVCWG6EM26II2N6LTjNpPwULA+7TfazXLHXvPq13MMa8bAY3gOYGKEuGUn7WmvuCmdOkF5gf1r/Nilki5KDPpIG7Gjy5tUcRiHcFHOd3xaz/Q/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dhqI4YjY51Ii8lbKKbBCqjAEASrLpnBliIPPCRKrHbs=;
+ b=YaMrU18sZz+8dXMVInZLyKga0mk/hbk3y0a8D1d9vB5ffMMhZJoLE7mOeOBu/UeSBqQiPNCQBCDhgH1fhtq3nX2tbgCxkOAxHZMjIFCmLpA6geM8+0+Oy6JRG6vhkNX7kPsvwdFnPiU56x1doqtNtoYbAFJXJYZo9L/0FLdhpn0=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=oss.nxp.com;
+Received: from AM5PR04MB3137.eurprd04.prod.outlook.com (2603:10a6:206:c::18)
+ by AM7PR04MB6997.eurprd04.prod.outlook.com (2603:10a6:20b:10d::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.26; Wed, 19 May
+ 2021 06:54:05 +0000
+Received: from AM5PR04MB3137.eurprd04.prod.outlook.com
+ ([fe80::31a9:4de7:806f:93eb]) by AM5PR04MB3137.eurprd04.prod.outlook.com
+ ([fe80::31a9:4de7:806f:93eb%5]) with mapi id 15.20.4129.032; Wed, 19 May 2021
+ 06:54:05 +0000
+From:   "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, aisheng.dong@nxp.com,
+        guoniu.zhou@nxp.com, linux-arm-kernel@lists.infradead.org
+Cc:     peng.fan@nxp.com, s.hauer@pengutronix.de, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, mchehab@kernel.org,
+        hverkuil-cisco@xs4all.nl, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, paul.kocialkowski@bootlin.com,
+        daniel.baluta@nxp.com, robert.chiras@nxp.com,
+        laurentiu.palcu@nxp.com, p.zabel@pengutronix.de,
+        ezequiel@collabora.com, Mirela Rabulea <mirela.rabulea@nxp.com>
+Subject: [PATCH v12] arm64: dts: imx8qxp: Add jpeg encoder/decoder nodes
+Date:   Wed, 19 May 2021 09:53:55 +0300
+Message-Id: <20210519065355.27615-1-mirela.rabulea@oss.nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-Originating-IP: [86.124.171.30]
+X-ClientProxiedBy: VI1PR06CA0134.eurprd06.prod.outlook.com
+ (2603:10a6:803:a0::27) To AM5PR04MB3137.eurprd04.prod.outlook.com
+ (2603:10a6:206:c::18)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from fsr-ub1664-134.ea.freescale.net (86.124.171.30) by VI1PR06CA0134.eurprd06.prod.outlook.com (2603:10a6:803:a0::27) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.25 via Frontend Transport; Wed, 19 May 2021 06:54:03 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2b5a0e07-110e-4161-769d-08d91a92e454
+X-MS-TrafficTypeDiagnostic: AM7PR04MB6997:
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <AM7PR04MB69970802447CD04D9EE96D00CE2B9@AM7PR04MB6997.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: gsSZhnmhynl2oTjOaCxD4C4k9LYp/gFyv7iPnMU+XP5anGTKyKNS7bzv5nBMAcxQ7N8pUMP/LHoYZddK/56/JboXBYrIhgj89gY00O7JjLLO+zyhowOCPXM617eUqbb/UVb/FCZFCYpy1JM/HBldHivSjB2fuIcIbZvfsUvX+Y+bZ2CPcQP+UJYgt1NS3vakWZ9XYGTUyszYOzrMY0gv63ot1QaVRQvZdgU8Bj0gI2nysZWrd6LoHn+u82IWmLSEnPLSgC0qZYfJ6Xv/q+/X7Xw28rqPYSmlpYgi28zO1I0aNZaQKaxbIl27CHDxQiTKXX4F0J+B8V48XsFxPrDkF6VtDEuSzllKkgq27kHzYdwGVCYEh87HMCxi2c05Bfp1wOXlEJ1Ys/KXOMBHZ7o9saXnFI1x3v/Q4K67CqQvlzpFxCqcdDq1GGoez1zBhUSdknvqo6ISmSbK3mseF/YVskwJk2pRGdQOxi9fc9n8ao9VipQCqdkTnFVmCAdYvuOgS6wPLDQZvXU8f7g14WbD+jjfkUWoXW3PWhkJSyy4M1yUILP25dnndIbwX3+22tNNZr8WcMNB8aIAFPOOrdCS9/VZV0Eu0eD8nZrSnJWD00DCbL9gJV6R0WBtl/x8A3ZmA5ZFxnMNWMgHHfw4mg6+XEbaW7rH+GHueo2r+qzzIvO1ZS1PQCwCFkbP5M/I0i/A
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM5PR04MB3137.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(39860400002)(346002)(376002)(366004)(136003)(86362001)(52116002)(6486002)(66476007)(7416002)(83380400001)(38100700002)(2906002)(316002)(8936002)(66946007)(6506007)(66556008)(26005)(5660300002)(478600001)(16526019)(6512007)(6666004)(2616005)(186003)(4326008)(956004)(38350700002)(8676002)(1076003)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?TwYdR2sNzK/VuyfDBFnt+I0dY4k4mDSScCtdQI7ZEg4GzK+C5f2uUd2BxLKW?=
+ =?us-ascii?Q?p8qXPw5Q6BtJpsPH/a2VRlnEHLtFWmYcaS02HajquT20dEoCvTC2h4ib8Brh?=
+ =?us-ascii?Q?CaLdOArdhSVzBmpJXwaN88EZOuAPICDNa+/BEckf55rBOllBbeNAGB8Ci8ov?=
+ =?us-ascii?Q?tXuelInZJZEJjh7yhFY5SSGz850xDNq27HVdP0kOoVItZKrsVhQgzXdBCiZa?=
+ =?us-ascii?Q?yFp0nnpZwq2YTTvXA288ldvBRotAvAP5/W5MVvWdQ+/NzYDQ04aS4j8nUXX2?=
+ =?us-ascii?Q?X+cUWgWuFPctV5YekNfY/6xrbyxryG2bXzEcg4pOOjNNzS1XJ8uiRz9EzMBT?=
+ =?us-ascii?Q?iO9skgKy5HdUv1VMVKUpZIk3BLajaNQLCvkDAo5Fv96PqP//5ZW+8VJXq+YQ?=
+ =?us-ascii?Q?sV4doiPitDKcZjuR2C/8LczntT+1JRaiXc56EhOxMmXKh7qBJecwKgZbR7Ft?=
+ =?us-ascii?Q?5pvJwCgDAhg55/f0gRMn8WZtY6EFjwBf94QVzMCCgWZcCFO0KhvMGjxAfYMY?=
+ =?us-ascii?Q?j8PLkJ3b/aCatnlQHle8mzfN+QEGVmamupYHRsba0rr4BgSyd5ad7een5Qpr?=
+ =?us-ascii?Q?ZhgrDbQipvvLd+7+fRgdiLkZpOVClEbhNGaKpGpA6Ycw/mY5FoQu7NV/FRjl?=
+ =?us-ascii?Q?LBGYHnlybouIjrAK5XVGvx4SHkAPMqH4FWT8bvtduWJrcNoi9hzdURXSMWM3?=
+ =?us-ascii?Q?9jCElTgRNNsdl+dN1IZip6pCaDoMlV7WhvRq1VI11Roz5Kvuv0l5NrTiwVtt?=
+ =?us-ascii?Q?cbP7zfgDQAbbNnitkY2aoah+gEl6rJClUXx7jEAQbzL1NGJ2zkwILYQhsiGA?=
+ =?us-ascii?Q?oJsDY1pDRoxwwhsBfgn39RFuWuDJBqL3oaCkww8WH2d2NZZepS12OQA6BBHC?=
+ =?us-ascii?Q?zzCbMvhJYmyd/c7Jq4GVJQ4G79U8bZJ+pBSMA5a/3LAEv+8fXUSft7qtKQuJ?=
+ =?us-ascii?Q?1B/xijotqLbenp9z1kMCTW5VNtr6ilIr58OjleLW2SxA5TQNmBheSy9uX12a?=
+ =?us-ascii?Q?ONF4QSpqkmjbZ1diJ6AaoHr+8oZKFEDId4bFombmzYAFJ9sHR0MopB6b11v2?=
+ =?us-ascii?Q?aaMV1H6kwy8oH3GV5a8JNeqVcDp/3X/6liNdx0yX7ns2xXmEwDPEB4hjH/lT?=
+ =?us-ascii?Q?dNrBs3FetOi+J3pziou3oi3WHzpGA8r838AQXx7ZongUI/ekjba8k5VcMKSo?=
+ =?us-ascii?Q?lqt4F2qTEDZ6vXlDPkk30vnMBdkVBn7jHlLT09r6GlqFxnrNcSXJ7LIF/SBP?=
+ =?us-ascii?Q?qiobL1CdBuejNtOUaSEBQiuqIpQxg8uRmr9wNPSLc2tqRooxcMdS9MOYzIRP?=
+ =?us-ascii?Q?BKYbbi2zixERT5LTgTT0GSdz?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2b5a0e07-110e-4161-769d-08d91a92e454
+X-MS-Exchange-CrossTenant-AuthSource: AM5PR04MB3137.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 May 2021 06:54:04.9932
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: L+TS4XtXoo4rAnN5x1Iaiu/DOTXcuCd0hdHZB2xiel0JimCFGjuegLuMo+DZq1MHv5kbJDOq7mqaZ4o2HGiFUQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB6997
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+From: Mirela Rabulea <mirela.rabulea@nxp.com>
 
-Add support for Richtek RT6160 voltage regulator. It can provide up
-to 3A output current within the adjustable voltage from 2025mV
-to 5200mV. It integrate a buckboost converter to support wide input
-voltage range from 2200mV to 5500mV.
+Add dts for imaging subsytem, include jpeg nodes here.
+Tested on imx8qxp only, should work on imx8qm, but it was not tested.
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+Signed-off-by: Mirela Rabulea <mirela.rabulea@nxp.com>
 ---
-since v3
-- Use more header file like as of_regulator.h and property.h.
-- Change the parsing string from 'richtek,vsel_active_low' to 'richtek,vsel-active-low'.
-- Use of_get_regulator_init_data to get the regulator init_data.
+Changes in v12:
+  Adress feedback from Shawn Guo:
+  - sort nodes based on unit address
+  Adress feedback from Aisheng Dong:
+  - Use clock indices for LPCG clocks in consumer nodes (jpegdec/jpegenc)
 
-since v2
-- Fix W=1 warning for of_device_id.
----
- drivers/regulator/Kconfig            |  11 ++
- drivers/regulator/Makefile           |   1 +
- drivers/regulator/rt6160-regulator.c | 269 +++++++++++++++++++++++++++++++++++
- 3 files changed, 281 insertions(+)
- create mode 100644 drivers/regulator/rt6160-regulator.c
+ .../arm64/boot/dts/freescale/imx8-ss-img.dtsi | 82 +++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8qxp.dtsi    |  1 +
+ 2 files changed, 83 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi
 
-diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-index 9d84d92..4fe7ddc 100644
---- a/drivers/regulator/Kconfig
-+++ b/drivers/regulator/Kconfig
-@@ -1030,6 +1030,17 @@ config REGULATOR_RT5033
- 	  RT5033 PMIC. The device supports multiple regulators like
- 	  current source, LDO and Buck.
- 
-+config REGULATOR_RT6160
-+	tristate "Richtek RT6160 BuckBoost voltage regulator"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  This adds support for voltage regulator in Richtek RT6160.
-+	  This device automatically change voltage output mode from
-+	  Buck or Boost. The mode transistion depend on the input source voltage.
-+	  The wide output range is from 2025mV to 5200mV and can be used on most
-+	  common application scenario.
-+
- config REGULATOR_RTMV20
- 	tristate "RTMV20 Laser Diode Regulator"
- 	depends on I2C
-diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
-index 580b015..5b2c93e 100644
---- a/drivers/regulator/Makefile
-+++ b/drivers/regulator/Makefile
-@@ -124,6 +124,7 @@ obj-$(CONFIG_REGULATOR_ROHM)	+= rohm-regulator.o
- obj-$(CONFIG_REGULATOR_RT4801)	+= rt4801-regulator.o
- obj-$(CONFIG_REGULATOR_RT4831)	+= rt4831-regulator.o
- obj-$(CONFIG_REGULATOR_RT5033)	+= rt5033-regulator.o
-+obj-$(CONFIG_REGULATOR_RT6160)	+= rt6160-regulator.o
- obj-$(CONFIG_REGULATOR_RTMV20)	+= rtmv20-regulator.o
- obj-$(CONFIG_REGULATOR_S2MPA01) += s2mpa01.o
- obj-$(CONFIG_REGULATOR_S2MPS11) += s2mps11.o
-diff --git a/drivers/regulator/rt6160-regulator.c b/drivers/regulator/rt6160-regulator.c
+diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi
 new file mode 100644
-index 00000000..4483c17
+index 000000000000..2ee789930cbc
 --- /dev/null
-+++ b/drivers/regulator/rt6160-regulator.c
-@@ -0,0 +1,269 @@
-+// SPDX-License-Identifier: GPL-2.0-only
++++ b/arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi
+@@ -0,0 +1,82 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright 2019-2021 NXP
++ * Zhou Guoniu <guoniu.zhou@nxp.com>
++ */
++img_subsys: bus@58000000 {
++	compatible = "simple-bus";
++	#address-cells = <1>;
++	#size-cells = <1>;
++	ranges = <0x58000000 0x0 0x58000000 0x1000000>;
 +
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/driver.h>
-+#include <linux/regulator/of_regulator.h>
++	img_ipg_clk: clock-img-ipg {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <200000000>;
++		clock-output-names = "img_ipg_clk";
++	};
 +
-+#define RT6160_MODE_AUTO	0
-+#define RT6160_MODE_FPWM	1
++	jpegdec: jpegdec@58400000 {
++		compatible = "nxp,imx8qxp-jpgdec";
++		reg = <0x58400000 0x00050000 >;
++		interrupts = <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 311 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&img_jpeg_dec_lpcg IMX_LPCG_CLK_0>,
++			 <&img_jpeg_dec_lpcg IMX_LPCG_CLK_4>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&img_jpeg_dec_lpcg IMX_LPCG_CLK_0>,
++				  <&img_jpeg_dec_lpcg IMX_LPCG_CLK_4>;
++		assigned-clock-rates = <200000000>, <200000000>;
++		power-domains = <&pd IMX_SC_R_MJPEG_DEC_MP>,
++				<&pd IMX_SC_R_MJPEG_DEC_S0>,
++				<&pd IMX_SC_R_MJPEG_DEC_S1>,
++				<&pd IMX_SC_R_MJPEG_DEC_S2>,
++				<&pd IMX_SC_R_MJPEG_DEC_S3>;
++	};
 +
-+#define RT6160_REG_CNTL		0x01
-+#define RT6160_REG_STATUS	0x02
-+#define RT6160_REG_DEVID	0x03
-+#define RT6160_REG_VSELL	0x04
-+#define RT6160_REG_VSELH	0x05
++	jpegenc: jpegenc@58450000 {
++		compatible = "nxp,imx8qxp-jpgenc";
++		reg = <0x58450000 0x00050000 >;
++		interrupts = <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&img_jpeg_enc_lpcg IMX_LPCG_CLK_0>,
++			 <&img_jpeg_enc_lpcg IMX_LPCG_CLK_4>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&img_jpeg_enc_lpcg IMX_LPCG_CLK_0>,
++				  <&img_jpeg_enc_lpcg IMX_LPCG_CLK_4>;
++		assigned-clock-rates = <200000000>, <200000000>;
++		power-domains = <&pd IMX_SC_R_MJPEG_ENC_MP>,
++				<&pd IMX_SC_R_MJPEG_ENC_S0>,
++				<&pd IMX_SC_R_MJPEG_ENC_S1>,
++				<&pd IMX_SC_R_MJPEG_ENC_S2>,
++				<&pd IMX_SC_R_MJPEG_ENC_S3>;
++	};
 +
-+#define RT6160_FPWM_MASK	BIT(3)
-+#define RT6160_RAMPRATE_MASK	GENMASK(1, 0)
-+#define RT6160_VID_MASK		GENMASK(7, 4)
-+#define RT6160_VSEL_MASK	GENMASK(6, 0)
-+#define RT6160_HDSTAT_MASK	BIT(4)
-+#define RT6160_UVSTAT_MASK	BIT(3)
-+#define RT6160_OCSTAT_MASK	BIT(2)
-+#define RT6160_TSDSTAT_MASK	BIT(1)
-+#define RT6160_PGSTAT_MASK	BIT(0)
++	img_jpeg_dec_lpcg: clock-controller@585d0000 {
++		compatible = "fsl,imx8qxp-lpcg";
++		reg = <0x585d0000 0x10000>;
++		#clock-cells = <1>;
++		clocks = <&img_ipg_clk>, <&img_ipg_clk>;
++		clock-indices = <IMX_LPCG_CLK_0>,
++				<IMX_LPCG_CLK_4>;
++		clock-output-names = "img_jpeg_dec_lpcg_clk",
++				     "img_jpeg_dec_lpcg_ipg_clk";
++		power-domains = <&pd IMX_SC_R_MJPEG_DEC_MP>;
++	};
 +
-+#define RT6160_RAMPRATE_1VMS	0
-+#define RT6160_RAMPRATE_2P5VMS	1
-+#define RT6160_RAMPRATE_5VMS	2
-+#define RT6160_RAMPRATE_10VMS	3
-+#define RT6160_VENDOR_ID	0xA0
-+#define RT6160_VOUT_MINUV	2025000
-+#define RT6160_VOUT_MAXUV	5200000
-+#define RT6160_VOUT_STPUV	25000
-+#define RT6160_N_VOUTS		((RT6160_VOUT_MAXUV - RT6160_VOUT_MINUV) / RT6160_VOUT_STPUV + 1)
-+
-+struct rt6160_priv {
-+	struct regulator_desc desc;
-+	bool vsel_active_low;
++	img_jpeg_enc_lpcg: clock-controller@585f0000 {
++		compatible = "fsl,imx8qxp-lpcg";
++		reg = <0x585f0000 0x10000>;
++		#clock-cells = <1>;
++		clocks = <&img_ipg_clk>, <&img_ipg_clk>;
++		clock-indices = <IMX_LPCG_CLK_0>,
++				<IMX_LPCG_CLK_4>;
++		clock-output-names = "img_jpeg_enc_lpcg_clk",
++				     "img_jpeg_enc_lpcg_ipg_clk";
++		power-domains = <&pd IMX_SC_R_MJPEG_ENC_MP>;
++	};
 +};
-+
-+static int rt6160_set_mode(struct regulator_dev *rdev, unsigned int mode)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int mode_val;
-+
-+	switch (mode) {
-+	case REGULATOR_MODE_FAST:
-+		mode_val = RT6160_FPWM_MASK;
-+		break;
-+	case REGULATOR_MODE_NORMAL:
-+		mode_val = 0;
-+		break;
-+	default:
-+		dev_err(&rdev->dev, "mode not supported\n");
-+		return -EINVAL;
-+	}
-+
-+	return regmap_update_bits(regmap, RT6160_REG_CNTL, RT6160_FPWM_MASK, mode_val);
-+}
-+
-+static unsigned int rt6160_get_mode(struct regulator_dev *rdev)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int val;
-+	int ret;
-+
-+	ret = regmap_read(regmap, RT6160_REG_CNTL, &val);
-+	if (ret)
-+		return ret;
-+
-+	if (val & RT6160_FPWM_MASK)
-+		return REGULATOR_MODE_FAST;
-+
-+	return REGULATOR_MODE_NORMAL;
-+}
-+
-+static int rt6160_set_suspend_voltage(struct regulator_dev *rdev, int uV)
-+{
-+	struct rt6160_priv *priv = rdev_get_drvdata(rdev);
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int reg = RT6160_REG_VSELH;
-+	int vsel;
-+
-+	vsel = regulator_map_voltage_linear(rdev, uV, uV);
-+	if (vsel < 0)
-+		return vsel;
-+
-+	if (priv->vsel_active_low)
-+		reg = RT6160_REG_VSELL;
-+
-+	return regmap_update_bits(regmap, reg, RT6160_VSEL_MASK, vsel);
-+}
-+
-+static int rt6160_set_ramp_delay(struct regulator_dev *rdev, int ramp_delay)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int ramp_value = RT6160_RAMPRATE_1VMS;
-+
-+	switch (ramp_delay) {
-+	case 1 ... 1000:
-+		ramp_value = RT6160_RAMPRATE_1VMS;
-+		break;
-+	case 1001 ... 2500:
-+		ramp_value = RT6160_RAMPRATE_2P5VMS;
-+		break;
-+	case 2501 ... 5000:
-+		ramp_value = RT6160_RAMPRATE_5VMS;
-+		break;
-+	case 5001 ... 10000:
-+		ramp_value = RT6160_RAMPRATE_10VMS;
-+		break;
-+	default:
-+		dev_warn(&rdev->dev, "ramp_delay %d not supported, setting 1000\n", ramp_delay);
-+	}
-+
-+	return regmap_update_bits(regmap, RT6160_REG_CNTL, RT6160_RAMPRATE_MASK, ramp_value);
-+}
-+
-+static int rt6160_get_error_flags(struct regulator_dev *rdev, unsigned int *flags)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int val, events = 0;
-+	int ret;
-+
-+	ret = regmap_read(regmap, RT6160_REG_STATUS, &val);
-+	if (ret)
-+		return ret;
-+
-+	if (val & (RT6160_HDSTAT_MASK | RT6160_TSDSTAT_MASK))
-+		events |= REGULATOR_ERROR_OVER_TEMP;
-+
-+	if (val & RT6160_UVSTAT_MASK)
-+		events |= REGULATOR_ERROR_UNDER_VOLTAGE;
-+
-+	if (val & RT6160_OCSTAT_MASK)
-+		events |= REGULATOR_ERROR_OVER_CURRENT;
-+
-+	if (val & RT6160_PGSTAT_MASK)
-+		events |= REGULATOR_ERROR_FAIL;
-+
-+	*flags = events;
-+	return 0;
-+}
-+
-+static const struct regulator_ops rt6160_regulator_ops = {
-+	.list_voltage = regulator_list_voltage_linear,
-+	.set_voltage_sel = regulator_set_voltage_sel_regmap,
-+	.get_voltage_sel = regulator_get_voltage_sel_regmap,
-+
-+	.set_mode = rt6160_set_mode,
-+	.get_mode = rt6160_get_mode,
-+	.set_suspend_voltage = rt6160_set_suspend_voltage,
-+	.set_ramp_delay = rt6160_set_ramp_delay,
-+	.get_error_flags = rt6160_get_error_flags,
-+};
-+
-+static unsigned int rt6160_of_map_mode(unsigned int mode)
-+{
-+	if (mode == RT6160_MODE_FPWM)
-+		return REGULATOR_MODE_FAST;
-+	else if (mode == RT6160_MODE_AUTO)
-+		return REGULATOR_MODE_NORMAL;
-+
-+	return REGULATOR_MODE_INVALID;
-+}
-+
-+static bool rt6160_is_accessible_reg(struct device *dev, unsigned int reg)
-+{
-+	if (reg >= RT6160_REG_CNTL && reg <= RT6160_REG_VSELH)
-+		return true;
-+	return false;
-+}
-+
-+static const struct regmap_config rt6160_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = RT6160_REG_VSELH,
-+
-+	.writeable_reg = rt6160_is_accessible_reg,
-+	.readable_reg = rt6160_is_accessible_reg,
-+};
-+
-+static int rt6160_probe(struct i2c_client *i2c)
-+{
-+	struct rt6160_priv *priv;
-+	struct regmap *regmap;
-+	struct gpio_desc *enable_gpio;
-+	struct regulator_config regulator_cfg = {};
-+	struct regulator_dev *rdev;
-+	unsigned int devid;
-+	int ret;
-+
-+	priv = devm_kzalloc(&i2c->dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->vsel_active_low = device_property_present(&i2c->dev, "richtek,vsel-active-low");
-+
-+	enable_gpio = devm_gpiod_get_optional(&i2c->dev, "enable", GPIOD_OUT_HIGH);
-+	if (IS_ERR(enable_gpio)) {
-+		dev_err(&i2c->dev, "Failed to get 'enable' gpio\n");
-+		return PTR_ERR(enable_gpio);
-+	}
-+
-+	regmap = devm_regmap_init_i2c(i2c, &rt6160_regmap_config);
-+	if (IS_ERR(regmap)) {
-+		dev_err(&i2c->dev, "Failed to init regmap\n");
-+		return PTR_ERR(regmap);
-+	}
-+
-+	ret = regmap_read(regmap, RT6160_REG_DEVID, &devid);
-+	if (ret)
-+		return ret;
-+
-+	if ((devid & RT6160_VID_MASK) != RT6160_VENDOR_ID) {
-+		dev_err(&i2c->dev, "VID not correct [0x%02x]\n", devid);
-+		return -ENODEV;
-+	}
-+
-+	priv->desc.name = "rt6160-buckboost";
-+	priv->desc.type = REGULATOR_VOLTAGE;
-+	priv->desc.owner = THIS_MODULE;
-+	priv->desc.min_uV = RT6160_VOUT_MINUV;
-+	priv->desc.uV_step = RT6160_VOUT_STPUV;
-+	priv->desc.vsel_reg = RT6160_REG_VSELH;
-+	priv->desc.vsel_mask = RT6160_VSEL_MASK;
-+	priv->desc.n_voltages = RT6160_N_VOUTS;
-+	priv->desc.of_map_mode = rt6160_of_map_mode;
-+	priv->desc.ops = &rt6160_regulator_ops;
-+	if (priv->vsel_active_low)
-+		priv->desc.vsel_reg = RT6160_REG_VSELL;
-+
-+	regulator_cfg.dev = &i2c->dev;
-+	regulator_cfg.regmap = regmap;
-+	regulator_cfg.driver_data = priv;
-+	regulator_cfg.init_data = of_get_regulator_init_data(&i2c->dev, i2c->dev.of_node,
-+							     &priv->desc);
-+
-+	rdev = devm_regulator_register(&i2c->dev, &priv->desc, &regulator_cfg);
-+	if (IS_ERR(rdev)) {
-+		dev_err(&i2c->dev, "Failed to register regulator\n");
-+		return PTR_ERR(rdev);
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id __maybe_unused rt6160_of_match_table[] = {
-+	{ .compatible = "richtek,rt6160", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, rt6160_of_match_table);
-+
-+static struct i2c_driver rt6160_driver = {
-+	.driver = {
-+		.name = "rt6160",
-+		.of_match_table = rt6160_of_match_table,
-+	},
-+	.probe_new = rt6160_probe,
-+};
-+module_i2c_driver(rt6160_driver);
-+
-+MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
-+MODULE_LICENSE("GPL v2");
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+index 1e6b4995091e..2d9589309bd0 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+@@ -258,6 +258,7 @@
+ 	};
+ 
+ 	/* sorted in register address */
++	#include "imx8-ss-img.dtsi"
+ 	#include "imx8-ss-adma.dtsi"
+ 	#include "imx8-ss-conn.dtsi"
+ 	#include "imx8-ss-ddr.dtsi"
 -- 
-2.7.4
+2.17.1
 
