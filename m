@@ -2,88 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F9663884EC
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 04:48:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B7A8388546
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 05:32:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237349AbhESCte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 22:49:34 -0400
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:38650 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237274AbhESCtd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 22:49:33 -0400
-Received: by mail-ot1-f49.google.com with SMTP id q7-20020a9d57870000b02902a5c2bd8c17so10502951oth.5;
-        Tue, 18 May 2021 19:48:13 -0700 (PDT)
+        id S237414AbhESDdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 23:33:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33244 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237387AbhESDde (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 23:33:34 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D716DC06175F;
+        Tue, 18 May 2021 20:32:14 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id 27so7161672pgy.3;
+        Tue, 18 May 2021 20:32:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7wVF+iyY+kYlSNZc2QC2Z8VNfrjdof9DM0HbDZzRDL4=;
+        b=aOyqJAKwmvsZyYiDlUgzeEe/3RU9eb2s4NxJULYlSTuRDmMUpja71h7HaBZCys3UiM
+         CvuNuAGePQq3xt4HR/9abBde1nJuD7GVHZ0HsUIHFzUfsdVBypZd4eN9GUlbUBPK2eJK
+         UxUw9pum7YIYqf3WsRXFz6NaOOhSEVU3+HDZvqBUtrK5DXb/ZQjuY89L1vy0EBFk/U4b
+         aqwAzsRpM09sWwCVZneSlmxH3LJTbl9P261eXTjbD6YI23EMXIV87n7w1ocOywVo8nhU
+         l2Va1mQuBjm5T4HlTs7PLEegs06/FyFPV3BfxpCdgZ+sOsVxstOMRHAmPxINpfe89zJk
+         wDXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=Q4LcyG7TR1wlU65C0tMqAS7GQ9Qzklf/Ua5vm6bP0dY=;
-        b=kBf1wdaFlurEs4ItIqW4b39n51OaGMkHtLJMebu0IxJq7Ut57VErSsUG2ImAr0/LkL
-         6oJ7HtYP0dU4rCub5rs/M5BZeycN3Tpzh/yciz5eOModxUNQy1Fl6d/QTFtI0frRoq6O
-         5NMPnUEutkw9rAQlr33955Qx4VKC4hPEuS5OGFA8kvobCVYuTgg8PMPGBZKSf7G5VBLe
-         E79XFtV26uMb2VS6R4Yn/Rfs8gfdZv9dTa66gmsxmqNcvew9aWAckwWYXLXgKfSjGHHp
-         Wxxhs2beVxG36oT6QQ9qCjPrbITriVuHuukEfB89wqAacMQwdCOIAo0tmfCTi9ZOtjOX
-         ODew==
-X-Gm-Message-State: AOAM532ozCSL+wHJ73O5OSfVQa6neqrUXXiWP47mpGA10axUxDnhUB69
-        gDzTddJKsmRmHoW3z88y1A==
-X-Google-Smtp-Source: ABdhPJx3BlvLuylgzd5eRpyEpXh47BO/eHtxDBU1//TMyqLZFNXTI3iRXR5JOdrQYhqAlyt6R2LmPw==
-X-Received: by 2002:a9d:62d0:: with SMTP id z16mr559268otk.180.1621392493120;
-        Tue, 18 May 2021 19:48:13 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x14sm3853076oic.3.2021.05.18.19.48.11
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7wVF+iyY+kYlSNZc2QC2Z8VNfrjdof9DM0HbDZzRDL4=;
+        b=tVYsqy0F/nLbuCyzPfKDiLyeXsYUUGcZl1H3tSCfsifgF2alzZalDpoJiAq0xOLJ79
+         WHsVj/vDiyneB88JDhXv9lHL6Bo2ju5mLMueNAMMOkiLT/crFGyA5obdJHSLTy+Pxzzu
+         +Qe7DcaiZcQwv0XuK5oHBg/2wVGPUGRgEbKatEIRDWyfXsYZg1BPF2TuIfV+FmdIvELk
+         euIyMGZYz62p96Qj1oJm+G8OkLqoU4LdEpmo5cDboheqXvPN+ZOS33Yjc8nUD03Mz6V6
+         OIiGhP4Q9qJnHXSZR0uVY4yC9t2sVNayV8r55Jz/qA54+/13yPQzds1qyx+eosPnLmkL
+         EA0A==
+X-Gm-Message-State: AOAM533PW0fs45iMl9/p8FKrQBaxASBx57yoJ86mjzMJ+FDkwp7cS/cb
+        ladROyC3JyHOVb7L1yXgdhVyczIUcKinWN9vwjg=
+X-Google-Smtp-Source: ABdhPJzL5kZiNFGM+U3ygMPBbAYn/1cVFHYVTB5yxRM5MpHnBFLDvopgXYW7dJID7qZzvU4Ng4kDrQ==
+X-Received: by 2002:aa7:8207:0:b029:251:20c1:1861 with SMTP id k7-20020aa782070000b029025120c11861mr8476632pfi.13.1621395134400;
+        Tue, 18 May 2021 20:32:14 -0700 (PDT)
+Received: from localhost.localdomain ([138.197.212.246])
+        by smtp.gmail.com with ESMTPSA id g13sm8244587pfr.75.2021.05.18.20.32.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 May 2021 19:48:12 -0700 (PDT)
-Received: (nullmailer pid 1905258 invoked by uid 1000);
-        Wed, 19 May 2021 02:48:11 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Odelu Kukatla <okukatla@codeaurora.org>
-Cc:     elder@linaro.org, bjorn.andersson@linaro.org,
-        seansw@qti.qualcomm.com, linux-kernel@vger.kernel.org,
-        georgi.djakov@linaro.org, devicetree@vger.kernel.org,
-        Georgi Djakov <djakov@kernel.org>,
-        linux-arm-msm@vger.kernel.org, sboyd@kernel.org,
-        sibis@codeaurora.org, Andy Gross <agross@kernel.org>,
-        evgreen@google.com, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm-owner@vger.kernel.org, linux-pm@vger.kernel.org
-In-Reply-To: <1621359242-18641-2-git-send-email-okukatla@codeaurora.org>
-References: <1621359242-18641-1-git-send-email-okukatla@codeaurora.org> <1621359242-18641-2-git-send-email-okukatla@codeaurora.org>
-Subject: Re: [V2 1/3] dt-bindings: interconnect: Add EPSS L3 DT binding on SC7280
-Date:   Tue, 18 May 2021 21:48:11 -0500
-Message-Id: <1621392491.220233.1905257.nullmailer@robh.at.kernel.org>
+        Tue, 18 May 2021 20:32:13 -0700 (PDT)
+From:   DENG Qingfang <dqfext@gmail.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-staging@lists.linux.dev, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org
+Cc:     Weijie Gao <weijie.gao@mediatek.com>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        =?UTF-8?q?Ren=C3=A9=20van=20Dorst?= <opensource@vdorst.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+Subject: [PATCH net-next v2 0/4] MT7530 interrupt support
+Date:   Wed, 19 May 2021 11:31:58 +0800
+Message-Id: <20210519033202.3245667-1-dqfext@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 May 2021 23:04:00 +0530, Odelu Kukatla wrote:
-> Add Epoch Subsystem (EPSS) L3 interconnect provider binding on SC7280
-> SoCs.
-> 
-> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
-> ---
->  .../devicetree/bindings/interconnect/qcom,osm-l3.yaml          |  3 ++-
->  include/dt-bindings/interconnect/qcom,osm-l3.h                 | 10 +++++++++-
->  2 files changed, 11 insertions(+), 2 deletions(-)
-> 
+Add support for MT7530 interrupt controller.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+DENG Qingfang (4):
+  net: phy: add MediaTek Gigabit Ethernet PHY driver
+  net: dsa: mt7530: add interrupt support
+  dt-bindings: net: dsa: add MT7530 interrupt controller binding
+  staging: mt7621-dts: enable MT7530 interrupt controller
 
-yamllint warnings/errors:
+ .../devicetree/bindings/net/dsa/mt7530.txt    |   6 +
+ drivers/net/dsa/mt7530.c                      | 264 ++++++++++++++++--
+ drivers/net/dsa/mt7530.h                      |  20 +-
+ drivers/net/phy/Kconfig                       |   5 +
+ drivers/net/phy/Makefile                      |   1 +
+ drivers/net/phy/mediatek-ge.c                 | 112 ++++++++
+ drivers/staging/mt7621-dts/mt7621.dtsi        |   4 +
+ 7 files changed, 384 insertions(+), 28 deletions(-)
+ create mode 100644 drivers/net/phy/mediatek-ge.c
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.example.dt.yaml: interconnect@17d41000: reg: [[399773696, 5120]] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-
-See https://patchwork.ozlabs.org/patch/1480367
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+-- 
+2.25.1
 
