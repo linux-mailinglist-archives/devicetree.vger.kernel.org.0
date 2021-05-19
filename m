@@ -2,89 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 485C638991C
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 00:11:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25354389989
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 00:59:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229465AbhESWMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 18:12:35 -0400
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:40854 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229455AbhESWMf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 18:12:35 -0400
-Received: by mail-ot1-f53.google.com with SMTP id 80-20020a9d08560000b0290333e9d2b247so2593087oty.7;
-        Wed, 19 May 2021 15:11:13 -0700 (PDT)
+        id S229518AbhESXBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 19:01:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44808 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229465AbhESXBH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 19:01:07 -0400
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8167EC061574;
+        Wed, 19 May 2021 15:59:47 -0700 (PDT)
+Received: by mail-qk1-x72e.google.com with SMTP id k4so3352133qkd.0;
+        Wed, 19 May 2021 15:59:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FL4A84RnGL9eXsLReJXIYBVZb+CRyoUol9pEHr5O5qY=;
+        b=Dvq29lHaaHrwBS8AFWZSoJCdqQsSj5w0bo8XghtBLAZTBjrQf4RXb+AY3jd8EtUP94
+         KVMw8BwVB+j9N56QZ2bUXRwSkx94v24XrW5t9yTBPEk2Eg1E/sjej0T/YJ+UN8/hVyf2
+         eZl8fwg+VCSsuIKKXAIvKGBmJaQlJRJsra5j8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PHQQpS2EvBsKOZih9h34Kkl6JWS3zX+JZhU1E+mE6WA=;
-        b=aLlZTC6NXLGTlTClq9h3qDfpwwM9McTLR8IdvklE43p5G4cenyvCF0/0QpkJyeND9h
-         5bvmMCnwtWXSnjgqLCA9BfNDIQ5ifvNAfDNyxmLPdungMNK1xBiSm+TCuPUcEDM37GsQ
-         Yrkr4OdSHr8qwXoP8DCoK7GPF4DR+BD9Zt9s7vqGTowUeSfIl0Mo4BUTpQvLFCZ0Qdpt
-         jmqxMZb+0+XZk4G8w1ECFQRNyxZ0pYXX5ssvgBdrxA0wbjWY/3x2L3Mo6e9rwnBpXYK6
-         ndAi+3uM6/oLbglohWe+zwpN6ogq4Tqez+9H57vNvSaclpecwSA1LVXkMN576mT115Y4
-         1N5w==
-X-Gm-Message-State: AOAM533pm4KFvOzp/pg+E2Gz5WxZHCzI8xpq8/rilluA7gnaO1a1+jqa
-        1kZ3fIE9I4l2L22gICBrNkSk3MfqVA==
-X-Google-Smtp-Source: ABdhPJz7e+i1WTOlR4EGjINAE5Fn0AvSykqtdCL1EYOngHXvnGv4VUW/+ZC3Z+ER7MlQrH05OjCFXQ==
-X-Received: by 2002:a9d:ef6:: with SMTP id 109mr1420027otj.74.1621462273409;
-        Wed, 19 May 2021 15:11:13 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y34sm232289ota.16.2021.05.19.15.11.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 May 2021 15:11:11 -0700 (PDT)
-Received: (nullmailer pid 3751945 invoked by uid 1000);
-        Wed, 19 May 2021 22:11:10 -0000
-Date:   Wed, 19 May 2021 17:11:10 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Olivier Dautricourt <olivier.dautricourt@orolia.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Stefan Roese <sr@denx.de>
-Subject: Re: [PATCH v5 1/3] dt-bindings: dma: add schema for altera-msgdma
-Message-ID: <20210519221110.GA3751894@robh.at.kernel.org>
-References: <7d77772f49b978e3d52d3815b8743fe54c816994.1621343877.git.olivier.dautricourt@orolia.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FL4A84RnGL9eXsLReJXIYBVZb+CRyoUol9pEHr5O5qY=;
+        b=f2MF1XTJ4TP4mVLdJEJH4ivR1W0r5aA1UerFQf/J8SNX7TmWcT2l91ZFSKbEZZlsym
+         YfL34ypIXdd5Qf66VIDTmbORlUUsLQbu6k6Uivz/7x2bu3tl8UjUMDqI/nDo91t1zC0o
+         h0rJUIkNq67EMpULB/yGKMV621MdNuHbMGfCPhIfzsv7w5ld8R14uKdhY4WPHCj2otZ3
+         XZIrb05PsJdfuVx/jx7ZQXO6CTGfSJl2cejQBpuZB0crrtZTkxogyijNLWXz2bfxE/VF
+         Kfv6g09a05eEmIUVqqn4gpqys1jslJm9RZp9x7nQpvgGl8QMp+jLxLnBcW8glvfTp79m
+         fGxA==
+X-Gm-Message-State: AOAM531Hkzp0ZzHXBqzdA3mKlppLPticZRmeD9Izg1JszLY9n2qzPh/y
+        h1+j7OrgVhymPXhS7aHY+DBz6Jy6HSRBeb0sYqg=
+X-Google-Smtp-Source: ABdhPJySEJL2SSIhxhurMKhfYZmnqZskBqtE2XkdoVEbVmUuDFR04avlb3/LIVd+WzCgLE4Ok6LLOCaBZg/S+B/hSKw=
+X-Received: by 2002:a37:424c:: with SMTP id p73mr1926220qka.465.1621465186642;
+ Wed, 19 May 2021 15:59:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7d77772f49b978e3d52d3815b8743fe54c816994.1621343877.git.olivier.dautricourt@orolia.com>
+References: <20210519080436.18975-1-jamin_lin@aspeedtech.com> <20210519080436.18975-2-jamin_lin@aspeedtech.com>
+In-Reply-To: <20210519080436.18975-2-jamin_lin@aspeedtech.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Wed, 19 May 2021 22:59:34 +0000
+Message-ID: <CACPK8XdNXiGMQZOtsfMMK+w_PSvO20XT8B9MG+rGhdjYoV4ZuQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] i2c: aspeed: avoid new registers definition of AST2600
+To:     Jamin Lin <jamin_lin@aspeedtech.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Rayn Chen <rayn_chen@aspeedtech.com>,
+        "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/ASPEED I2C DRIVER" <openbmc@lists.ozlabs.org>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
+        Troy Lee <troy_lee@aspeedtech.com>, steven_lee@aspeedtech.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 May 2021 15:23:34 +0200, Olivier Dautricourt wrote:
-> add yaml schema for Altera mSGDMA bindings in devicetree.
-> 
-> Reviewed-by: Stefan Roese <sr@denx.de>
-> Signed-off-by: Olivier Dautricourt <olivier.dautricourt@orolia.com>
-> ---
-> 
-> Notes:
->     Changes in v2:
->      - fix reg size in dt example
->      - fix dt_binding check warning
->      - add list in MAINTAINERS entry
-> 
->     Changes from v2 to v3:
->      none
-> 
->     Changes from v3 to v4:
->      none
-> 
->     Changes from v4 to v5:
->         as per Rob's comments:
->             - change compatible field from 'altr,msgdma' to
->               'altr,socfpga-msgdma' to indicate that it's compatible
->                with altera socfpga family.
->             - describe each region separately
->             - remove maxItems/minItems for reg section.
->         as per Vinod's comments:
->             - separate MAINTAINERS editing in another commit
->             - remove description for #dma-cells
-> 
->  .../devicetree/bindings/dma/altr,msgdma.yaml  | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/altr,msgdma.yaml
-> 
+On Wed, 19 May 2021 at 08:05, Jamin Lin <jamin_lin@aspeedtech.com> wrote:
+>
+> The register definition between AST2600 A2 and A3 is different.
+> This patch avoid new registers definition of AST2600 to use
+> this driver. We will submit the path for the new registers
+> definition of AST2600.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+The AST2600 v9 datasheet says that bit 2 selects between old and new
+register sets, and that the old register set is the default.
+
+Has the default changed for the A3?, and the datasheet is incorrect?
+
+Does the A3 still support the old register set?
+
+>
+> Signed-off-by: Jamin Lin <jamin_lin@aspeedtech.com>
+> ---
+>  drivers/i2c/busses/i2c-aspeed.c | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+>
+> diff --git a/drivers/i2c/busses/i2c-aspeed.c b/drivers/i2c/busses/i2c-aspeed.c
+> index 724bf30600d6..007309077d9f 100644
+> --- a/drivers/i2c/busses/i2c-aspeed.c
+> +++ b/drivers/i2c/busses/i2c-aspeed.c
+> @@ -19,14 +19,20 @@
+>  #include <linux/irqchip/chained_irq.h>
+>  #include <linux/irqdomain.h>
+>  #include <linux/kernel.h>
+> +#include <linux/mfd/syscon.h>
+>  #include <linux/module.h>
+>  #include <linux/of_address.h>
+>  #include <linux/of_irq.h>
+>  #include <linux/of_platform.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+>  #include <linux/reset.h>
+>  #include <linux/slab.h>
+>
+> +/* I2C Global Registers */
+> +/* 0x0c : I2CG Global Control Register (AST2500)  */
+> +#define ASPEED_I2CG_GLOBAL_CTRL_REG                    0x0c
+> +
+>  /* I2C Register */
+>  #define ASPEED_I2C_FUN_CTRL_REG                                0x00
+>  #define ASPEED_I2C_AC_TIMING_REG1                      0x04
+> @@ -973,6 +979,22 @@ static int aspeed_i2c_probe_bus(struct platform_device *pdev)
+>         struct resource *res;
+>         int irq, ret;
+>
+> +       if (of_device_is_compatible(pdev->dev.of_node,
+> +                                   "aspeed,ast2600-i2c-bus")) {
+> +               u32 global_ctrl;
+> +               struct regmap *gr_regmap;
+> +
+> +               gr_regmap = syscon_regmap_lookup_by_compatible("aspeed,ast2600-i2c-global");
+> +
+> +               if (IS_ERR(gr_regmap)) {
+> +                       ret = PTR_ERR(gr_regmap);
+> +               } else {
+> +                       regmap_read(gr_regmap, ASPEED_I2CG_GLOBAL_CTRL_REG, &global_ctrl);
+> +                       if (global_ctrl & BIT(2))
+> +                               return -EIO;
+> +               }
+> +       }
+> +
+>         bus = devm_kzalloc(&pdev->dev, sizeof(*bus), GFP_KERNEL);
+>         if (!bus)
+>                 return -ENOMEM;
+> --
+> 2.17.1
+>
