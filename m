@@ -2,906 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9E6D3884B4
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 04:20:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60B663884DF
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 04:42:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231351AbhESCVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 22:21:22 -0400
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:45724 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229583AbhESCVW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 22:21:22 -0400
-Received: by mail-ot1-f43.google.com with SMTP id t10-20020a05683022eab0290304ed8bc759so10436022otc.12;
-        Tue, 18 May 2021 19:20:03 -0700 (PDT)
+        id S235194AbhESCmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 22:42:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50310 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235114AbhESCmo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 22:42:44 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFFEAC06175F;
+        Tue, 18 May 2021 19:41:23 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id e11so13734145ljn.13;
+        Tue, 18 May 2021 19:41:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Ds2nQNSf53rLNzgnwSK+XlfEIpaMEY5kLWYEJdqYKso=;
+        b=CuAez1KXsXCvwOJ6J1xGJayTx861OxXEEKRVEPulnXf4I2PmgIbWWZUnuiaNpDYIiT
+         FcWUNDd05jv4VRqiFlpEQ6xuud4Q4rUm+f22Noo8BKfJZ/u+yXJ+1haBYmfZ507pdLQN
+         CpLrmZoZ6/4aeCAv7uTYqb6y6pQeqEwqyvdC89ysY2iMAb8lWtCDnerY8H4mmiEJzTG6
+         b/Z8kwfg0a+MayK+phvubSH01jR0HZZZvT47wlsjq2xearXJ8WwlL378AcjfRC/LXno+
+         TStAYg+QUZ17bQ2EcB+uSO6MZ01o0xOyTToqPDnTaPUR9kyzTr8KToAE1OVqluDK5Q57
+         G9nQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=VEHRgObQq5FzJ8CfxBMfJlCk25oB2JPkzhhW/E1J9y0=;
-        b=mXbDfnxuYPXXXrYSq2ZQ+JRMBy5tdh+M8zuuwzpRHF1ayFfnN18ODctNNUHiCGTHWv
-         PpqaAvYXxVLr7fw5pXnZIQGyz9GjO5zWKLjFkF5IKQtAKlPCWjzRPQTHQ+wExCWl+p1o
-         rXsFC2LLQ8+tlvRiE3q+ANijo7oMp370eBYal6cyqHBa66VnWpQY8Yi8yM1pbd8ai99s
-         0JBuZLWjvfkFzrFPL707oiXMSf0whfIwSlQLJ7C7IB/8hRbrKxtkVZEpIk2OAwdq+4zL
-         ZZYlGZkgMXQorKhBAIxbAZ7/LZxIqrW/iPEuqW1wUHfcCA1zscyIWJDn2YXi22aO8gIA
-         MhtA==
-X-Gm-Message-State: AOAM530aoDm6dl2kYfR/SdlQwKdaqYIzvsRBx+dS+5Xyj1gPM0gaw87/
-        IrYYTxhHEHkcpuSNZJCB5AhQjrrvXw==
-X-Google-Smtp-Source: ABdhPJwtbkbNxfm5hgkA8Jc/eAGFca5kpA5m0w/gr1eLj86PZadBpbvMyDr1jVjPOL1ktpn5/bwWUA==
-X-Received: by 2002:a9d:3bcb:: with SMTP id k69mr6998313otc.206.1621390802102;
-        Tue, 18 May 2021 19:20:02 -0700 (PDT)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id l11sm3991180ooq.44.2021.05.18.19.20.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 May 2021 19:20:01 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Peter Rosin <peda@axentia.se>, netdev@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] dt-bindings: net: Convert MDIO mux bindings to DT schema
-Date:   Tue, 18 May 2021 21:20:00 -0500
-Message-Id: <20210519022000.1858188-1-robh@kernel.org>
-X-Mailer: git-send-email 2.27.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Ds2nQNSf53rLNzgnwSK+XlfEIpaMEY5kLWYEJdqYKso=;
+        b=T1mJYLVaScI+129nc+Mz8xhP2I0vkrtpWzwrYxCF6z3lu7bwN3e74HOO2TBnaRhkPG
+         XOTIqGC4lQowtilsOhnyI/6l+003d+bmHVbT0SixrZ+3MklXEyfifeE8umnldbWmmVSO
+         OtWlGD+wLUwxxaDxw3G5HYMUTHQktqU51ywpvTBrFq2lWOsLSv6nvzLevixEOOCHTrjz
+         CKpeO0FXHZA0FhAGODzVXTX4AenF5UOz/icjoPuqzzDQwIy/bCBrBmK+iy83t72+WiaD
+         i39h9dwvrhfWJYq0wSKOJPWXkMJRSJS3Vzm++d0u5RRbuVa6ZaJkPgPyIma9oMbglGd8
+         8ILQ==
+X-Gm-Message-State: AOAM533mNUUp2tbwDLkGPrngtoCU7Y4noF6YgXM7n/sJxGWEbM9G6MnV
+        FpvCpO5J56ip/XV9u2RYLnaJRm3FRz3hJ3wHi3E=
+X-Google-Smtp-Source: ABdhPJwHUzYZopD4c/trdGmu3nVVYnnUdOeGztC3RPJdA1kpiZQ/B4a4xBNG2RkSYWIFzV3YgflNjjP7D4/SpouYRA0=
+X-Received: by 2002:a2e:2f03:: with SMTP id v3mr309970ljv.168.1621392082230;
+ Tue, 18 May 2021 19:41:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1621183560-6668-1-git-send-email-u0084500@gmail.com> <20210518133831.GA543149@robh.at.kernel.org>
+In-Reply-To: <20210518133831.GA543149@robh.at.kernel.org>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Wed, 19 May 2021 10:41:10 +0800
+Message-ID: <CADiBU3_E1+S0WGQZVy3hN9U+7bdMVSai4+w+zshhucELN6iuCg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] regulator: rt6160: Add DT binding document for
+ Richtek RT6160
+To:     Rob Herring <robh@kernel.org>
+Cc:     lgirdwood@gmail.com, Mark Brown <broonie@kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        cy_huang <cy_huang@richtek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the common MDIO mux bindings to DT schema.
+Hi,
 
-Drop the example from mdio-mux.yaml as mdio-mux-gpio.yaml has the same one.
+Rob Herring <robh@kernel.org> =E6=96=BC 2021=E5=B9=B45=E6=9C=8818=E6=97=A5 =
+=E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=889:38=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Mon, May 17, 2021 at 12:45:59AM +0800, cy_huang wrote:
+> > From: ChiYuan Huang <cy_huang@richtek.com>
+> >
+> > Add DT binding document for Richtek RT6160 voltage regulator.
+> >
+> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> > ---
+> > since v2
+> > - Move buckboost node from patternProperties to Properties.
+> > ---
+> >  .../regulator/richtek,rt6160-regulator.yaml        | 67 ++++++++++++++=
+++++++++
+> >  1 file changed, 67 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/regulator/richtek=
+,rt6160-regulator.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt6160=
+-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt616=
+0-regulator.yaml
+> > new file mode 100644
+> > index 00000000..4ce1f7c
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/regulator/richtek,rt6160-regula=
+tor.yaml
+> > @@ -0,0 +1,67 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/regulator/richtek,rt6160-regulator.=
+yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Richtek RT6160 BuckBoost converter
+> > +
+> > +maintainers:
+> > +  - ChiYuan Huang <cy_huang@richtek.com>
+> > +
+> > +description: |
+> > +  The RT6160 is a high-efficiency buck-boost converter that can provid=
+e
+> > +  up to 3A output current from 2025mV to 5200mV. And it support the wi=
+de
+> > +  input voltage range from 2200mV to 5500mV.
+> > +
+> > +  Datasheet is available at
+> > +  https://www.richtek.com/assets/product_file/RT6160A/DS6160A-00.pdf
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - richtek,rt6160
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  enable-gpios:
+> > +    description: A connection of the 'enable' gpio line.
+> > +    maxItems: 1
+> > +
+> > +  richtek,vsel_active_low:
+>
+> richtek,vsel-active-low
+>
+Ack in next v3.
+> > +    description: |
+> > +      Used to indicate the 'vsel' pin active level. if not specified, =
+use
+> > +      high active level as the default.
+> > +    type: boolean
+> > +
+> > +  buckboost:
+>
+> If this is the only regulator, you don't really need a child node here.
+> Just move everything up.
+>
+OK, the original thinking is to separate the node to make the
+regulator property more clear.
+To put the regulator property up is also good.
 
-Cc: "David S. Miller" <davem@davemloft.net>
-Cc: Jakub Kicinski <kuba@kernel.org>
-Cc: Ray Jui <rjui@broadcom.com>
-Cc: Scott Branden <sbranden@broadcom.com>
-Cc: bcm-kernel-feedback-list@broadcom.com
-Cc: Andrew Lunn <andrew@lunn.ch>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Russell King <linux@armlinux.org.uk>
-Cc: Peter Rosin <peda@axentia.se>
-Cc: netdev@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-This is an addition to my mux binding conversions[1].
-
-Rob
-
-[1] https://lore.kernel.org/linux-devicetree/20210518232858.1535403-1-robh@kernel.org/
-
- .../bindings/net/brcm,mdio-mux-iproc.txt      |   2 +-
- .../devicetree/bindings/net/mdio-mux-gpio.txt | 119 ---------------
- .../bindings/net/mdio-mux-gpio.yaml           | 135 ++++++++++++++++++
- .../bindings/net/mdio-mux-mmioreg.txt         |  75 ----------
- .../bindings/net/mdio-mux-mmioreg.yaml        |  78 ++++++++++
- .../bindings/net/mdio-mux-multiplexer.txt     |  82 -----------
- .../bindings/net/mdio-mux-multiplexer.yaml    |  82 +++++++++++
- .../devicetree/bindings/net/mdio-mux.txt      | 129 -----------------
- .../devicetree/bindings/net/mdio-mux.yaml     |  44 ++++++
- 9 files changed, 340 insertions(+), 406 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/net/mdio-mux-gpio.txt
- create mode 100644 Documentation/devicetree/bindings/net/mdio-mux-gpio.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/mdio-mux-mmioreg.txt
- create mode 100644 Documentation/devicetree/bindings/net/mdio-mux-mmioreg.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/mdio-mux-multiplexer.txt
- create mode 100644 Documentation/devicetree/bindings/net/mdio-mux-multiplexer.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/mdio-mux.txt
- create mode 100644 Documentation/devicetree/bindings/net/mdio-mux.yaml
-
-diff --git a/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.txt b/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.txt
-index b58843f29591..deb9e852ea27 100644
---- a/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.txt
-+++ b/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.txt
-@@ -17,7 +17,7 @@ Optional properties:
- - clocks: phandle of the core clock which drives the mdio block.
- 
- Additional information regarding generic multiplexer properties can be found
--at- Documentation/devicetree/bindings/net/mdio-mux.txt
-+at- Documentation/devicetree/bindings/net/mdio-mux.yaml
- 
- 
- for example:
-diff --git a/Documentation/devicetree/bindings/net/mdio-mux-gpio.txt b/Documentation/devicetree/bindings/net/mdio-mux-gpio.txt
-deleted file mode 100644
-index 694987d3c17a..000000000000
---- a/Documentation/devicetree/bindings/net/mdio-mux-gpio.txt
-+++ /dev/null
-@@ -1,119 +0,0 @@
--Properties for an MDIO bus multiplexer/switch controlled by GPIO pins.
--
--This is a special case of a MDIO bus multiplexer.  One or more GPIO
--lines are used to control which child bus is connected.
--
--Required properties in addition to the generic multiplexer properties:
--
--- compatible : mdio-mux-gpio.
--- gpios : GPIO specifiers for each GPIO line.  One or more must be specified.
--
--
--Example :
--
--	/* The parent MDIO bus. */
--	smi1: mdio@1180000001900 {
--		compatible = "cavium,octeon-3860-mdio";
--		#address-cells = <1>;
--		#size-cells = <0>;
--		reg = <0x11800 0x00001900 0x0 0x40>;
--	};
--
--	/*
--	   An NXP sn74cbtlv3253 dual 1-of-4 switch controlled by a
--	   pair of GPIO lines.  Child busses 2 and 3 populated with 4
--	   PHYs each.
--	 */
--	mdio-mux {
--		compatible = "mdio-mux-gpio";
--		gpios = <&gpio1 3 0>, <&gpio1 4 0>;
--		mdio-parent-bus = <&smi1>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		mdio@2 {
--			reg = <2>;
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			phy11: ethernet-phy@1 {
--				reg = <1>;
--				marvell,reg-init = <3 0x10 0 0x5777>,
--					<3 0x11 0 0x00aa>,
--					<3 0x12 0 0x4105>,
--					<3 0x13 0 0x0a60>;
--				interrupt-parent = <&gpio>;
--				interrupts = <10 8>; /* Pin 10, active low */
--			};
--			phy12: ethernet-phy@2 {
--				reg = <2>;
--				marvell,reg-init = <3 0x10 0 0x5777>,
--					<3 0x11 0 0x00aa>,
--					<3 0x12 0 0x4105>,
--					<3 0x13 0 0x0a60>;
--				interrupt-parent = <&gpio>;
--				interrupts = <10 8>; /* Pin 10, active low */
--			};
--			phy13: ethernet-phy@3 {
--				reg = <3>;
--				marvell,reg-init = <3 0x10 0 0x5777>,
--					<3 0x11 0 0x00aa>,
--					<3 0x12 0 0x4105>,
--					<3 0x13 0 0x0a60>;
--				interrupt-parent = <&gpio>;
--				interrupts = <10 8>; /* Pin 10, active low */
--			};
--			phy14: ethernet-phy@4 {
--				reg = <4>;
--				marvell,reg-init = <3 0x10 0 0x5777>,
--					<3 0x11 0 0x00aa>,
--					<3 0x12 0 0x4105>,
--					<3 0x13 0 0x0a60>;
--				interrupt-parent = <&gpio>;
--				interrupts = <10 8>; /* Pin 10, active low */
--			};
--		};
--
--		mdio@3 {
--			reg = <3>;
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			phy21: ethernet-phy@1 {
--				reg = <1>;
--				marvell,reg-init = <3 0x10 0 0x5777>,
--					<3 0x11 0 0x00aa>,
--					<3 0x12 0 0x4105>,
--					<3 0x13 0 0x0a60>;
--				interrupt-parent = <&gpio>;
--				interrupts = <12 8>; /* Pin 12, active low */
--			};
--			phy22: ethernet-phy@2 {
--				reg = <2>;
--				marvell,reg-init = <3 0x10 0 0x5777>,
--					<3 0x11 0 0x00aa>,
--					<3 0x12 0 0x4105>,
--					<3 0x13 0 0x0a60>;
--				interrupt-parent = <&gpio>;
--				interrupts = <12 8>; /* Pin 12, active low */
--			};
--			phy23: ethernet-phy@3 {
--				reg = <3>;
--				marvell,reg-init = <3 0x10 0 0x5777>,
--					<3 0x11 0 0x00aa>,
--					<3 0x12 0 0x4105>,
--					<3 0x13 0 0x0a60>;
--				interrupt-parent = <&gpio>;
--				interrupts = <12 8>; /* Pin 12, active low */
--			};
--			phy24: ethernet-phy@4 {
--				reg = <4>;
--				marvell,reg-init = <3 0x10 0 0x5777>,
--					<3 0x11 0 0x00aa>,
--					<3 0x12 0 0x4105>,
--					<3 0x13 0 0x0a60>;
--				interrupt-parent = <&gpio>;
--				interrupts = <12 8>; /* Pin 12, active low */
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/net/mdio-mux-gpio.yaml b/Documentation/devicetree/bindings/net/mdio-mux-gpio.yaml
-new file mode 100644
-index 000000000000..71c25c4580ea
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/mdio-mux-gpio.yaml
-@@ -0,0 +1,135 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/mdio-mux-gpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Properties for an MDIO bus multiplexer/switch controlled by GPIO pins.
-+
-+maintainers:
-+  - Andrew Lunn <andrew@lunn.ch>
-+
-+description:
-+  This is a special case of a MDIO bus multiplexer.  One or more GPIO
-+  lines are used to control which child bus is connected.
-+
-+allOf:
-+  - $ref: /schemas/net/mdio-mux.yaml#
-+
-+properties:
-+  compatible:
-+    const: mdio-mux-gpio
-+
-+  gpios:
-+    description:
-+      List of GPIOs used to control the multiplexer, least significant bit first.
-+    minItems: 1
-+    maxItems: 32
-+
-+required:
-+  - compatible
-+  - gpios
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    /*
-+     An NXP sn74cbtlv3253 dual 1-of-4 switch controlled by a
-+     pair of GPIO lines.  Child busses 2 and 3 populated with 4
-+     PHYs each.
-+     */
-+    mdio-mux {
-+        compatible = "mdio-mux-gpio";
-+        gpios = <&gpio1 3 0>, <&gpio1 4 0>;
-+        mdio-parent-bus = <&smi1>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        mdio@2 {
-+            reg = <2>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            ethernet-phy@1 {
-+                reg = <1>;
-+                marvell,reg-init = <3 0x10 0 0x5777>,
-+                  <3 0x11 0 0x00aa>,
-+                  <3 0x12 0 0x4105>,
-+                  <3 0x13 0 0x0a60>;
-+                interrupt-parent = <&gpio>;
-+                interrupts = <10 8>; /* Pin 10, active low */
-+            };
-+            ethernet-phy@2 {
-+                reg = <2>;
-+                marvell,reg-init = <3 0x10 0 0x5777>,
-+                  <3 0x11 0 0x00aa>,
-+                  <3 0x12 0 0x4105>,
-+                  <3 0x13 0 0x0a60>;
-+                interrupt-parent = <&gpio>;
-+                interrupts = <10 8>; /* Pin 10, active low */
-+            };
-+            ethernet-phy@3 {
-+                reg = <3>;
-+                marvell,reg-init = <3 0x10 0 0x5777>,
-+                  <3 0x11 0 0x00aa>,
-+                  <3 0x12 0 0x4105>,
-+                  <3 0x13 0 0x0a60>;
-+                interrupt-parent = <&gpio>;
-+                interrupts = <10 8>; /* Pin 10, active low */
-+            };
-+            ethernet-phy@4 {
-+                reg = <4>;
-+                marvell,reg-init = <3 0x10 0 0x5777>,
-+                  <3 0x11 0 0x00aa>,
-+                  <3 0x12 0 0x4105>,
-+                  <3 0x13 0 0x0a60>;
-+                interrupt-parent = <&gpio>;
-+                interrupts = <10 8>; /* Pin 10, active low */
-+            };
-+        };
-+
-+        mdio@3 {
-+            reg = <3>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            ethernet-phy@1 {
-+                reg = <1>;
-+                marvell,reg-init = <3 0x10 0 0x5777>,
-+                  <3 0x11 0 0x00aa>,
-+                  <3 0x12 0 0x4105>,
-+                  <3 0x13 0 0x0a60>;
-+                interrupt-parent = <&gpio>;
-+                interrupts = <12 8>; /* Pin 12, active low */
-+            };
-+            ethernet-phy@2 {
-+                reg = <2>;
-+                marvell,reg-init = <3 0x10 0 0x5777>,
-+                  <3 0x11 0 0x00aa>,
-+                  <3 0x12 0 0x4105>,
-+                  <3 0x13 0 0x0a60>;
-+                interrupt-parent = <&gpio>;
-+                interrupts = <12 8>; /* Pin 12, active low */
-+            };
-+            ethernet-phy@3 {
-+                reg = <3>;
-+                marvell,reg-init = <3 0x10 0 0x5777>,
-+                  <3 0x11 0 0x00aa>,
-+                  <3 0x12 0 0x4105>,
-+                  <3 0x13 0 0x0a60>;
-+                interrupt-parent = <&gpio>;
-+                interrupts = <12 8>; /* Pin 12, active low */
-+            };
-+            ethernet-phy@4 {
-+                reg = <4>;
-+                marvell,reg-init = <3 0x10 0 0x5777>,
-+                  <3 0x11 0 0x00aa>,
-+                  <3 0x12 0 0x4105>,
-+                  <3 0x13 0 0x0a60>;
-+                interrupt-parent = <&gpio>;
-+                interrupts = <12 8>; /* Pin 12, active low */
-+            };
-+        };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/net/mdio-mux-mmioreg.txt b/Documentation/devicetree/bindings/net/mdio-mux-mmioreg.txt
-deleted file mode 100644
-index 065e8bdb957d..000000000000
---- a/Documentation/devicetree/bindings/net/mdio-mux-mmioreg.txt
-+++ /dev/null
-@@ -1,75 +0,0 @@
--Properties for an MDIO bus multiplexer controlled by a memory-mapped device
--
--This is a special case of a MDIO bus multiplexer.  A memory-mapped device,
--like an FPGA, is used to control which child bus is connected.  The mdio-mux
--node must be a child of the memory-mapped device.  The driver currently only
--supports devices with 8, 16 or 32-bit registers.
--
--Required properties in addition to the generic multiplexer properties:
--
--- compatible : string, must contain "mdio-mux-mmioreg"
--
--- reg : integer, contains the offset of the register that controls the bus
--	multiplexer.  The size field in the 'reg' property is the size of
--	register, and must therefore be 1, 2, or 4.
--
--- mux-mask : integer, contains an eight-bit mask that specifies which
--	bits in the register control the actual bus multiplexer.  The
--	'reg' property of each child mdio-mux node must be constrained by
--	this mask.
--
--Example:
--
--The FPGA node defines a memory-mapped FPGA with a register space of 0x30 bytes.
--For the "EMI2" MDIO bus, register 9 (BRDCFG1) controls the mux on that bus.
--A bitmask of 0x6 means that bits 1 and 2 (bit 0 is lsb) are the bits on
--BRDCFG1 that control the actual mux.
--
--	/* The FPGA node */
--	fpga: board-control@3,0 {
--		#address-cells = <1>;
--		#size-cells = <1>;
--		compatible = "fsl,p5020ds-fpga", "fsl,fpga-ngpixis";
--		reg = <3 0 0x30>;
--		ranges = <0 3 0 0x30>;
--
--		mdio-mux-emi2 {
--			compatible = "mdio-mux-mmioreg", "mdio-mux";
--			mdio-parent-bus = <&xmdio0>;
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <9 1>; // BRDCFG1
--			mux-mask = <0x6>; // EMI2
--
--			emi2_slot1: mdio@0 {	// Slot 1 XAUI (FM2)
--				reg = <0>;
--				#address-cells = <1>;
--				#size-cells = <0>;
--
--				phy_xgmii_slot1: ethernet-phy@0 {
--					compatible = "ethernet-phy-ieee802.3-c45";
--					reg = <4>;
--				};
--			};
--
--			emi2_slot2: mdio@2 {	// Slot 2 XAUI (FM1)
--				reg = <2>;
--				#address-cells = <1>;
--				#size-cells = <0>;
--
--				phy_xgmii_slot2: ethernet-phy@4 {
--					compatible = "ethernet-phy-ieee802.3-c45";
--					reg = <0>;
--				};
--			};
--		};
--	};
--
--	/* The parent MDIO bus. */
--	xmdio0: mdio@f1000 {
--		#address-cells = <1>;
--		#size-cells = <0>;
--		compatible = "fsl,fman-xmdio";
--		reg = <0xf1000 0x1000>;
--		interrupts = <100 1 0 0>;
--	};
-diff --git a/Documentation/devicetree/bindings/net/mdio-mux-mmioreg.yaml b/Documentation/devicetree/bindings/net/mdio-mux-mmioreg.yaml
-new file mode 100644
-index 000000000000..3b573c95d3f5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/mdio-mux-mmioreg.yaml
-@@ -0,0 +1,78 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/mdio-mux-mmioreg.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Properties for an MDIO bus multiplexer controlled by a memory-mapped device
-+
-+maintainers:
-+  - Andrew Lunn <andrew@lunn.ch>
-+
-+description: |+
-+  This is a special case of a MDIO bus multiplexer.  A memory-mapped device,
-+  like an FPGA, is used to control which child bus is connected.  The mdio-mux
-+  node must be a child of the memory-mapped device.  The driver currently only
-+  supports devices with 8, 16 or 32-bit registers.
-+
-+allOf:
-+  - $ref: /schemas/net/mdio-mux.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: mdio-mux-mmioreg
-+      - const: mdio-mux
-+
-+  reg:
-+    description: Contains the offset of the register that controls the bus
-+      multiplexer. The size field in the 'reg' property is the size of register,
-+      and must therefore be 1, 2, or 4.
-+    maxItems: 1
-+
-+  mux-mask:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Contains an eight-bit mask that specifies which bits in the
-+      register control the actual bus multiplexer.  The 'reg' property of each
-+      child mdio-mux node must be constrained by this mask.
-+
-+required:
-+  - compatible
-+  - reg
-+  - mux-mask
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    mdio-mux@9 {
-+        compatible = "mdio-mux-mmioreg", "mdio-mux";
-+        mdio-parent-bus = <&xmdio0>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        reg = <9 1>; // BRDCFG1
-+        mux-mask = <0x6>; // EMI2
-+
-+        mdio@0 {  // Slot 1 XAUI (FM2)
-+            reg = <0>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            phy_xgmii_slot1: ethernet-phy@0 {
-+                compatible = "ethernet-phy-ieee802.3-c45";
-+                reg = <4>;
-+            };
-+        };
-+
-+        mdio@2 {  // Slot 2 XAUI (FM1)
-+            reg = <2>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            ethernet-phy@4 {
-+                compatible = "ethernet-phy-ieee802.3-c45";
-+                reg = <0>;
-+            };
-+        };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/net/mdio-mux-multiplexer.txt b/Documentation/devicetree/bindings/net/mdio-mux-multiplexer.txt
-deleted file mode 100644
-index 87fd0b4f654f..000000000000
---- a/Documentation/devicetree/bindings/net/mdio-mux-multiplexer.txt
-+++ /dev/null
-@@ -1,82 +0,0 @@
--Properties for an MDIO bus multiplexer consumer device
--
--This is a special case of MDIO mux  when MDIO mux is defined as a consumer
--of a mux producer device. The mux producer can be of any type like mmio mux
--producer, gpio mux producer or generic register based mux producer.
--
--Required properties in addition to the MDIO Bus multiplexer properties:
--
--- compatible : should be "mmio-mux-multiplexer"
--- mux-controls : mux controller node to use for operating the mux
--- mdio-parent-bus : phandle to the parent MDIO bus.
--
--each child node of mdio bus multiplexer consumer device represent a mdio
--bus.
--
--for more information please refer
--Documentation/devicetree/bindings/mux/mux-controller.yaml
--and Documentation/devicetree/bindings/net/mdio-mux.txt
--
--Example:
--In below example the Mux producer and consumer are separate nodes.
--
--&i2c0 {
--	fpga@66 { // fpga connected to i2c
--		compatible = "fsl,lx2160aqds-fpga", "fsl,fpga-qixis-i2c",
--			     "simple-mfd";
--		reg = <0x66>;
--
--		mux: mux-controller { // Mux Producer
--			compatible = "reg-mux";
--			#mux-control-cells = <1>;
--			mux-reg-masks = <0x54 0xf8>, /* 0: reg 0x54, bits 7:3 */
--					<0x54 0x07>; /* 1: reg 0x54, bits 2:0 */
--		};
--	};
--};
--
--mdio-mux-1 { // Mux consumer
--	compatible = "mdio-mux-multiplexer";
--	mux-controls = <&mux 0>;
--	mdio-parent-bus = <&emdio1>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--
--	mdio@0 {
--		reg = <0x0>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--	};
--
--	mdio@8 {
--		reg = <0x8>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--	};
--
--	..
--	..
--};
--
--mdio-mux-2 { // Mux consumer
--	compatible = "mdio-mux-multiplexer";
--	mux-controls = <&mux 1>;
--	mdio-parent-bus = <&emdio2>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--
--	mdio@0 {
--		reg = <0x0>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--	};
--
--	mdio@1 {
--		reg = <0x1>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--	};
--
--	..
--	..
--};
-diff --git a/Documentation/devicetree/bindings/net/mdio-mux-multiplexer.yaml b/Documentation/devicetree/bindings/net/mdio-mux-multiplexer.yaml
-new file mode 100644
-index 000000000000..282987074ee4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/mdio-mux-multiplexer.yaml
-@@ -0,0 +1,82 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/mdio-mux-multiplexer.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Properties for an MDIO bus multiplexer consumer device
-+
-+maintainers:
-+  - Andrew Lunn <andrew@lunn.ch>
-+
-+description: |+
-+  This is a special case of MDIO mux when MDIO mux is defined as a consumer
-+  of a mux producer device. The mux producer can be of any type like mmio mux
-+  producer, gpio mux producer or generic register based mux producer.
-+
-+
-+allOf:
-+  - $ref: /schemas/net/mdio-mux.yaml#
-+
-+properties:
-+  compatible:
-+    const: mdio-mux-multiplexer
-+
-+  mux-controls:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - mux-controls
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    mux: mux-controller { // Mux Producer
-+        compatible = "reg-mux";
-+        #mux-control-cells = <1>;
-+        mux-reg-masks = <0x54 0xf8>, /* 0: reg 0x54, bits 7:3 */
-+                        <0x54 0x07>; /* 1: reg 0x54, bits 2:0 */
-+    };
-+
-+    mdio-mux-1 { // Mux consumer
-+        compatible = "mdio-mux-multiplexer";
-+        mux-controls = <&mux 0>;
-+        mdio-parent-bus = <&emdio1>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        mdio@0 {
-+            reg = <0x0>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+        };
-+
-+        mdio@8 {
-+            reg = <0x8>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+        };
-+    };
-+
-+    mdio-mux-2 { // Mux consumer
-+        compatible = "mdio-mux-multiplexer";
-+        mux-controls = <&mux 1>;
-+        mdio-parent-bus = <&emdio2>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        mdio@0 {
-+            reg = <0x0>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+        };
-+
-+        mdio@1 {
-+            reg = <0x1>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+        };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/net/mdio-mux.txt b/Documentation/devicetree/bindings/net/mdio-mux.txt
-deleted file mode 100644
-index f58571f36570..000000000000
---- a/Documentation/devicetree/bindings/net/mdio-mux.txt
-+++ /dev/null
-@@ -1,129 +0,0 @@
--Common MDIO bus multiplexer/switch properties.
--
--An MDIO bus multiplexer/switch will have several child busses that are
--numbered uniquely in a device dependent manner.  The nodes for an MDIO
--bus multiplexer/switch will have one child node for each child bus.
--
--Required properties:
--- #address-cells = <1>;
--- #size-cells = <0>;
--
--Optional properties:
--- mdio-parent-bus : phandle to the parent MDIO bus.
--
--- Other properties specific to the multiplexer/switch hardware.
--
--Required properties for child nodes:
--- #address-cells = <1>;
--- #size-cells = <0>;
--- reg : The sub-bus number.
--
--
--Example :
--
--	/* The parent MDIO bus. */
--	smi1: mdio@1180000001900 {
--		compatible = "cavium,octeon-3860-mdio";
--		#address-cells = <1>;
--		#size-cells = <0>;
--		reg = <0x11800 0x00001900 0x0 0x40>;
--	};
--
--	/*
--	   An NXP sn74cbtlv3253 dual 1-of-4 switch controlled by a
--	   pair of GPIO lines.  Child busses 2 and 3 populated with 4
--	   PHYs each.
--	 */
--	mdio-mux {
--		compatible = "mdio-mux-gpio";
--		gpios = <&gpio1 3 0>, <&gpio1 4 0>;
--		mdio-parent-bus = <&smi1>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		mdio@2 {
--			reg = <2>;
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			phy11: ethernet-phy@1 {
--				reg = <1>;
--				marvell,reg-init = <3 0x10 0 0x5777>,
--					<3 0x11 0 0x00aa>,
--					<3 0x12 0 0x4105>,
--					<3 0x13 0 0x0a60>;
--				interrupt-parent = <&gpio>;
--				interrupts = <10 8>; /* Pin 10, active low */
--			};
--			phy12: ethernet-phy@2 {
--				reg = <2>;
--				marvell,reg-init = <3 0x10 0 0x5777>,
--					<3 0x11 0 0x00aa>,
--					<3 0x12 0 0x4105>,
--					<3 0x13 0 0x0a60>;
--				interrupt-parent = <&gpio>;
--				interrupts = <10 8>; /* Pin 10, active low */
--			};
--			phy13: ethernet-phy@3 {
--				reg = <3>;
--				marvell,reg-init = <3 0x10 0 0x5777>,
--					<3 0x11 0 0x00aa>,
--					<3 0x12 0 0x4105>,
--					<3 0x13 0 0x0a60>;
--				interrupt-parent = <&gpio>;
--				interrupts = <10 8>; /* Pin 10, active low */
--			};
--			phy14: ethernet-phy@4 {
--				reg = <4>;
--				marvell,reg-init = <3 0x10 0 0x5777>,
--					<3 0x11 0 0x00aa>,
--					<3 0x12 0 0x4105>,
--					<3 0x13 0 0x0a60>;
--				interrupt-parent = <&gpio>;
--				interrupts = <10 8>; /* Pin 10, active low */
--			};
--		};
--
--		mdio@3 {
--			reg = <3>;
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			phy21: ethernet-phy@1 {
--				reg = <1>;
--				marvell,reg-init = <3 0x10 0 0x5777>,
--					<3 0x11 0 0x00aa>,
--					<3 0x12 0 0x4105>,
--					<3 0x13 0 0x0a60>;
--				interrupt-parent = <&gpio>;
--				interrupts = <12 8>; /* Pin 12, active low */
--			};
--			phy22: ethernet-phy@2 {
--				reg = <2>;
--				marvell,reg-init = <3 0x10 0 0x5777>,
--					<3 0x11 0 0x00aa>,
--					<3 0x12 0 0x4105>,
--					<3 0x13 0 0x0a60>;
--				interrupt-parent = <&gpio>;
--				interrupts = <12 8>; /* Pin 12, active low */
--			};
--			phy23: ethernet-phy@3 {
--				reg = <3>;
--				marvell,reg-init = <3 0x10 0 0x5777>,
--					<3 0x11 0 0x00aa>,
--					<3 0x12 0 0x4105>,
--					<3 0x13 0 0x0a60>;
--				interrupt-parent = <&gpio>;
--				interrupts = <12 8>; /* Pin 12, active low */
--			};
--			phy24: ethernet-phy@4 {
--				reg = <4>;
--				marvell,reg-init = <3 0x10 0 0x5777>,
--					<3 0x11 0 0x00aa>,
--					<3 0x12 0 0x4105>,
--					<3 0x13 0 0x0a60>;
--				interrupt-parent = <&gpio>;
--				interrupts = <12 8>; /* Pin 12, active low */
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/net/mdio-mux.yaml b/Documentation/devicetree/bindings/net/mdio-mux.yaml
-new file mode 100644
-index 000000000000..92163fa45f39
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/mdio-mux.yaml
-@@ -0,0 +1,44 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/mdio-mux.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Common MDIO bus multiplexer/switch properties.
-+
-+maintainers:
-+  - Andrew Lunn <andrew@lunn.ch>
-+
-+description: |+
-+  An MDIO bus multiplexer/switch will have several child busses that are
-+  numbered uniquely in a device dependent manner.  The nodes for an MDIO
-+  bus multiplexer/switch will have one child node for each child bus.
-+
-+properties:
-+  $nodename:
-+    pattern: '^mdio-mux[\-@]?'
-+
-+  mdio-parent-bus:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      The phandle of the I2C bus that this multiplexer's master-side port is
-+      connected to.
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+patternProperties:
-+  '^mdio@[0-9a-f]+$':
-+    type: object
-+
-+    properties:
-+      reg:
-+        maxItems: 1
-+        description: The sub-bus number.
-+
-+additionalProperties: true
-+
-+...
--- 
-2.27.0
-
+I'll refine it and resend the v3 patch series, Thanks.
+> > +    description: BuckBoost converter regulator description.
+> > +    type: object
+> > +    $ref: regulator.yaml#
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    i2c {
+> > +      #address-cells =3D <1>;
+> > +      #size-cells =3D <0>;
+> > +
+> > +      rt6160@75 {
+> > +        compatible =3D "richtek,rt6160";
+> > +        reg =3D <0x75>;
+> > +        enable-gpios =3D <&gpio26 2 0>;
+> > +
+> > +        buckboost {
+> > +          regulator-name =3D "rt6160-buckboost";
+> > +          regulator-min-microvolt =3D <2025000>;
+> > +          regulator-max-microvolt =3D <5200000>;
+> > +          regulator-allowed-modes =3D <0 1>;
+> > +        };
+> > +      };
+> > +    };
+> > --
+> > 2.7.4
+> >
