@@ -2,138 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B68BA389624
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 21:03:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A0D438965B
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 21:14:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231272AbhESTFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 15:05:13 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:46775 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230140AbhESTFM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 15:05:12 -0400
-Received: by mail-ot1-f42.google.com with SMTP id d3-20020a9d29030000b029027e8019067fso12655074otb.13;
-        Wed, 19 May 2021 12:03:52 -0700 (PDT)
+        id S231956AbhESTQN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 15:16:13 -0400
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:38750 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229990AbhESTQN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 15:16:13 -0400
+Received: by mail-ot1-f46.google.com with SMTP id i14-20020a9d624e0000b029033683c71999so1546940otk.5;
+        Wed, 19 May 2021 12:14:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=903IGKg0Z/AmHXN1npm7TfNT4Xyet5hYcaJmA4ADIt0=;
-        b=NrA7tqf3tvglo/NCUT80a/UJW6PzIMX29OoZEkHC+rvWdq8rSPPBpjDpkTu1Ux3T+T
-         WkVGKnJrhJ2sGPuuNIX1rQ2tv86vzneCp3T0agIelU7y+g5cYcQzSN/QT7p/cDkpatzN
-         JA9MAKz1EEx5QE5CmlspLbKmmh7ZwdBzJrchw6GNK0dw13y6naU2KZuLP+ZVZf41DfK5
-         mJQn33DCOHz7pmZOOrGYRjNGu8ZcfgxiU71MG2R5bDcuYxeZM1eM78TgyNj4OsHAXoPP
-         +E2Bq6jRe10MXlZipuGw5oEd0Y+XFC7vV28QmD1QJL/Cy3w2Mw/xRg+d8p5dwaDWVBmr
-         BuZA==
-X-Gm-Message-State: AOAM531ClYkS69ZWdvDCAP84kjDb/x5raiCSjuqkQeYoA4kX2d9b/3i2
-        rf6hJLoXxR7e2Uh+25w3tYo4PvoYXg==
-X-Google-Smtp-Source: ABdhPJyU/RDU+0Sz9xufG2+4gBupEYPcEuW0VfsUHIBgc0N3EYKE+NH5sshAf74Lej40woAXLH0yUw==
-X-Received: by 2002:a05:6830:719:: with SMTP id y25mr781915ots.218.1621451032498;
-        Wed, 19 May 2021 12:03:52 -0700 (PDT)
+        bh=izYVo1pODY59TvGRJ6tr5HWEWAw6nNqCoxBw5MFLCwg=;
+        b=YOrQ7IsW2jrS+QQRREwD4S2IhTgK8UBHRo9p4/ucyuETFcigaZ5sQmczersT/nPYWK
+         r3O2mKDxmWii3FiB5I30MSm26EKCp1++iwrtDsut2YhsnbyeEk/UjKCNKgMjej+d3cZ+
+         H0QdzhgXvKJ9aFxjQFBrNazcOhlTGR12cidx8i4ukVPcnUbve59FgGuq0wds2v1+THEM
+         giGXUMXRyOoRJEcgbFgGcZEfTlMdb9/mc+1vK2d7JMnRzHQ/mLYSs0oAKPuGgXt6iWi9
+         WIRpgevcXV00PjcufzyMkJY/sL6U0MJ5TvYp2onQCp/ZjvJ/LqNqyJUxM6Ng9FGuHZFx
+         vvBg==
+X-Gm-Message-State: AOAM532YGueJfQtegwdPcqKkEqmFsw/KKhaJP+XfFKoh1Wg/O2M373jX
+        0hC0RMR8ktFb6eLkTEp8Cg==
+X-Google-Smtp-Source: ABdhPJzJMP2S9PPrAcuHOCF1RfGVRc+VX3tuXr42FGFEFyyuPTnPSurDFrey1rgenAPAQXKp9XlYaw==
+X-Received: by 2002:a9d:7f1a:: with SMTP id j26mr810672otq.244.1621451692875;
+        Wed, 19 May 2021 12:14:52 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u24sm123876otg.73.2021.05.19.12.03.51
+        by smtp.gmail.com with ESMTPSA id h9sm53703oor.16.2021.05.19.12.14.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 May 2021 12:03:51 -0700 (PDT)
-Received: (nullmailer pid 3462989 invoked by uid 1000);
-        Wed, 19 May 2021 19:03:51 -0000
-Date:   Wed, 19 May 2021 14:03:51 -0500
+        Wed, 19 May 2021 12:14:51 -0700 (PDT)
+Received: (nullmailer pid 3479665 invoked by uid 1000);
+        Wed, 19 May 2021 19:14:50 -0000
+Date:   Wed, 19 May 2021 14:14:50 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Daniel Mack <daniel@zonque.org>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        kuninori.morimoto.gx@renesas.com, mturquette@baylibre.com,
-        sboyd@kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: clk: cs2000-cp: Document
- aux-output-source
-Message-ID: <20210519190351.GA3459779@robh.at.kernel.org>
-References: <20210517122926.3263455-1-daniel@zonque.org>
- <20210517122926.3263455-2-daniel@zonque.org>
+To:     Wang Xingang <wangxingang5@huawei.com>
+Cc:     will@kernel.org, joro@8bytes.org, frowand.list@gmail.com,
+        helgaas@kernel.org, gregkh@linuxfoundation.org,
+        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        xieyingtai@huawei.com
+Subject: Re: [PATCH v2] iommu/of: Fix pci_request_acs() before enumerating
+ PCI devices
+Message-ID: <20210519191450.GA3469078@robh.at.kernel.org>
+References: <1621257425-37856-1-git-send-email-wangxingang5@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210517122926.3263455-2-daniel@zonque.org>
+In-Reply-To: <1621257425-37856-1-git-send-email-wangxingang5@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 17, 2021 at 02:29:25PM +0200, Daniel Mack wrote:
-> This new optional property can be used to control the function of the
-> auxiliary output pin. Introduce a new dt-bindings include file that
-> contains the numerical values.
+On Mon, May 17, 2021 at 01:17:05PM +0000, Wang Xingang wrote:
+> From: Xingang Wang <wangxingang5@huawei.com>
 > 
-> Signed-off-by: Daniel Mack <daniel@zonque.org>
+> When booting with devicetree, the pci_request_acs() is called after the
+> enumeration and initialization of PCI devices, thus the ACS is not
+> enabled. This patch add check for IOMMU in of_core_init(), and call
+> pci_request_acs() when iommu is detected, making sure that the ACS will
+> be enabled.
+> 
+> Fixes: 6bf6c24720d33 ("iommu/of: Request ACS from the PCI core when
+> configuring IOMMU linkage")
+> Signed-off-by: Xingang Wang <wangxingang5@huawei.com>
 > ---
->  .../bindings/clock/cirrus,cs2000-cp.yaml          | 15 ++++++++++++++-
->  include/dt-bindings/clock/cirrus,cs2000-cp.h      | 14 ++++++++++++++
->  2 files changed, 28 insertions(+), 1 deletion(-)
->  create mode 100644 include/dt-bindings/clock/cirrus,cs2000-cp.h
+>  drivers/iommu/of_iommu.c | 1 -
+>  drivers/of/base.c        | 9 ++++++++-
+>  2 files changed, 8 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/cirrus,cs2000-cp.yaml b/Documentation/devicetree/bindings/clock/cirrus,cs2000-cp.yaml
-> index 3af81087e5f9..d20ed0aabcb0 100644
-> --- a/Documentation/devicetree/bindings/clock/cirrus,cs2000-cp.yaml
-> +++ b/Documentation/devicetree/bindings/clock/cirrus,cs2000-cp.yaml
-> @@ -38,6 +38,16 @@ properties:
->        The chip select number on the I2C bus
->      maxItems: 1
+> Change log:
+> v1->v2:
+>  - remove pci_request_acs() in of_iommu_configure
+>  - check and call pci_request_acs() in of_core_init()
+> 
+> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+> index a9d2df001149..54a14da242cc 100644
+> --- a/drivers/iommu/of_iommu.c
+> +++ b/drivers/iommu/of_iommu.c
+> @@ -205,7 +205,6 @@ const struct iommu_ops *of_iommu_configure(struct device *dev,
+>  			.np = master_np,
+>  		};
 >  
-> +  cirrus,aux-output-source:
-> +    description:
-> +      Specfies the function of the auxililary clock output pin
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum:
-> +      - 0 # CS2000CP_AUX_OUTPUT_REF_CLK:  ref_clk input
-> +      - 1 # CS2000CP_AUX_OUTPUT_CLK_IN:   clk_in input
-> +      - 2 # CS2000CP_AUX_OUTPUT_CLK_OUT:  clk_out output
-> +      - 3 # CS2000CP_AUX_OUTPUT_PLL_LOCK: pll lock status
-> +
->  required:
->    - compatible
->    - reg
-> @@ -45,10 +55,12 @@ required:
->    - clock-names
->    - '#clock-cells'
+> -		pci_request_acs();
+>  		err = pci_for_each_dma_alias(to_pci_dev(dev),
+>  					     of_pci_iommu_init, &info);
+>  	} else {
+> diff --git a/drivers/of/base.c b/drivers/of/base.c
+> index 48e941f99558..95cd8f0e5435 100644
+> --- a/drivers/of/base.c
+> +++ b/drivers/of/base.c
+> @@ -24,6 +24,7 @@
+>  #include <linux/of.h>
+>  #include <linux/of_device.h>
+>  #include <linux/of_graph.h>
+> +#include <linux/pci.h>
+>  #include <linux/spinlock.h>
+>  #include <linux/slab.h>
+>  #include <linux/string.h>
+> @@ -166,7 +167,7 @@ void __of_phandle_cache_inv_entry(phandle handle)
+>  void __init of_core_init(void)
+>  {
+>  	struct device_node *np;
+> -
+> +	bool of_iommu_detect = false;
 >  
-> -additionalProperties: false
-> +additionalProperties: true
+>  	/* Create the kset, and register existing nodes */
+>  	mutex_lock(&of_mutex);
+> @@ -180,6 +181,12 @@ void __init of_core_init(void)
+>  		__of_attach_node_sysfs(np);
+>  		if (np->phandle && !phandle_cache[of_phandle_cache_hash(np->phandle)])
+>  			phandle_cache[of_phandle_cache_hash(np->phandle)] = np;
+> +
+> +		/* Detect IOMMU and make sure ACS will be enabled */
+> +		if (!of_iommu_detect && of_get_property(np, "iommu-map", NULL)) {
+> +			of_iommu_detect = true;
+> +			pci_request_acs();
+> +		}
 
-No, that's only correct for collections of common properties.
+Private DT internal init code doesn't seem like the right place for 
+this. If this needs to be ordered WRT PCI device enumeration, then 
+somewhere in the PCI host bridge or bus init code seems like the right 
+place to me.
 
+Also, shouldn't this be conditional on 'iommu-map' being in the host 
+bridge or a parent or ??? rather than just any iommu-map anywhere in the 
+DT.
+
+>  	}
+>  	mutex_unlock(&of_mutex);
 >  
->  examples:
->    - |
-> +    #include <dt-bindings/clock/cirrus,cs2000-cp.h>
-> +
->      i2c@0 {
->        reg = <0x0 0x100>;
->        #address-cells = <1>;
-> @@ -60,5 +72,6 @@ examples:
->          reg = <0x4f>;
->          clocks = <&rcar_sound 0>, <&x12_clk>;
->          clock-names = "clk_in", "ref_clk";
-> +        cirrus,aux-output-source = <CS2000CP_AUX_OUTPUT_CLK_OUT>;
->        };
->      };
-> diff --git a/include/dt-bindings/clock/cirrus,cs2000-cp.h b/include/dt-bindings/clock/cirrus,cs2000-cp.h
-> new file mode 100644
-> index 000000000000..b9b13cfc8fbd
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/cirrus,cs2000-cp.h
-> @@ -0,0 +1,14 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-
-What about non-GPL users?
-
-> +/*
-> + * Copyright (C) 2021 Daniel Mack
-> + */
-> +
-> +#ifndef __DT_BINDINGS_CS2000CP_CLK_H
-> +#define __DT_BINDINGS_CS2000CP_CLK_H
-> +
-> +#define CS2000CP_AUX_OUTPUT_REF_CLK	0
-> +#define CS2000CP_AUX_OUTPUT_CLK_IN	1
-> +#define CS2000CP_AUX_OUTPUT_CLK_OUT	2
-> +#define CS2000CP_AUX_OUTPUT_PLL_LOCK	3
-> +
-> +#endif /* __DT_BINDINGS_CS2000CP_CLK_H */
 > -- 
-> 2.31.1
+> 2.19.1
 > 
