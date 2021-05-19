@@ -2,390 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14FD4388C6D
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 13:12:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9577388C9C
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 13:20:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346196AbhESLNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 07:13:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52326 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346165AbhESLNA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 07:13:00 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E9D9C061761
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 04:11:39 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id p7so9842761wru.10
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 04:11:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=Vc8qJg9NmyT5ZEGfIcNUqKz3BJwvE15c53tr2iQnxUA=;
-        b=Ic7eZmPZ6/e2jgfkov/tZpcd1TKjFXlykvq9B2L15Gk/irhrypS5YJPmxzodwiiqsf
-         DJD9hUtVjsuDlye9WDOd/rqu9BIOgAGRJt/NeV1/EVbPYKsvzmAeo4gMd4+/aMQSCMB9
-         3MDn115nESViNS2wHi/2MIm/NMvoAHE5CJRbxFPcAIS7KMyTyO1RL/iuDjHZ9pzXrUJ7
-         FolV404EjuHW6DsUzm+ZVP9eOQjlspWpi4dtyXBwYNfa3i9oHBIhzLcknewOSvrwI2oi
-         WsMBzENlLmvjqiQ58ZhzZ6eE76c+1zGVLXBDhgazh1T8QE3OHPPeDdJvVS6x2rEnDJjM
-         KNMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Vc8qJg9NmyT5ZEGfIcNUqKz3BJwvE15c53tr2iQnxUA=;
-        b=eA3ZySs2nqnIxWQ97o1nTyboB/Fe5MsbknbFX82yD5EkGu00q8YeRK4c3y5gSZI2zH
-         XEKytncD2GqDWGtAl4Ps+A9ajNJcR1bDHmVLgL3Hn9IjOnMsIhnFYQ3jRNrKE5aDtxSU
-         qYjFZBf4cTHe7kyc6y26Ynasg/x+e2+FyBrOsZyKjZpqgBOxIjn7L/vUiLWlus2atX61
-         LQwR2pLTqxvTth4na2rWzTZ6I5Gh8+cKGv9HLLYSF+6LkRpdrAFHHTWjOhNhPn8Uzc1b
-         QzhS/c3YkeeyZyg/cTwwozxhg8FkEq9OrR1pwlWHXK+4xvppWm1/uAzUrVCeX3A0fy7j
-         tqYA==
-X-Gm-Message-State: AOAM532nOTVDDHwA2Kr2wRNryZbJXEXfjbj1fZspxzcabazPNF21sJ46
-        /X2cgT4lKYXo/IKh4+aC38SS9w==
-X-Google-Smtp-Source: ABdhPJx0iXQiXNiDCS1Ed60PcEy+0Zd6RrBCwtbt1gF9HqpKG8BR2R/kGw6g9cV/u+tMrD0iv53JYA==
-X-Received: by 2002:a5d:6d81:: with SMTP id l1mr13732937wrs.17.1621422698035;
-        Wed, 19 May 2021 04:11:38 -0700 (PDT)
-Received: from dell ([91.110.221.215])
-        by smtp.gmail.com with ESMTPSA id q3sm22762845wrr.43.2021.05.19.04.11.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 May 2021 04:11:37 -0700 (PDT)
-Date:   Wed, 19 May 2021 12:11:25 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     robh+dt@kernel.org, linus.walleij@linaro.org,
-        bgolaszewski@baylibre.com, jdelvare@suse.com, linux@roeck-us.net,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        luka.perkov@sartura.hr, jmp@epiphyte.org, pmenzel@molgen.mpg.de,
-        buczek@molgen.mpg.de
-Subject: Re: [PATCH 1/6] mfd: Add Delta TN48M CPLD driver
-Message-ID: <20210519111125.GD2403908@dell>
-References: <20210430123511.116057-1-robert.marko@sartura.hr>
+        id S1349791AbhESLVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 07:21:53 -0400
+Received: from mail1.perex.cz ([77.48.224.245]:58622 "EHLO mail1.perex.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1346140AbhESLVx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 May 2021 07:21:53 -0400
+X-Greylist: delayed 384 seconds by postgrey-1.27 at vger.kernel.org; Wed, 19 May 2021 07:21:52 EDT
+Received: from mail1.perex.cz (localhost [127.0.0.1])
+        by smtp1.perex.cz (Perex's E-mail Delivery System) with ESMTP id 084F5A003F;
+        Wed, 19 May 2021 13:14:08 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.perex.cz 084F5A003F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=perex.cz; s=default;
+        t=1621422848; bh=wew+NugOgMPA2bBfXTyTXyYcqOob/svN5eI50XpSaI8=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=Z09uzpWc26dvXYSPW4FgXK2fPwXcv/UcQNYn0xe/yioFWAlvWePv3MfDKeppn/B9L
+         r4fOkgZUlqDHcYBl93dwby9AYRaexbqTJyM/aw97Y9V8MM5BNjm8WEdg4nS1epjzpi
+         vlJ4kuwy92Uau3rauWxsuX/J7nTS6DqPm9fXYVR8=
+Received: from p1gen2.localdomain (unknown [192.168.100.98])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: perex)
+        by mail1.perex.cz (Perex's E-mail Delivery System) with ESMTPSA;
+        Wed, 19 May 2021 13:13:53 +0200 (CEST)
+Subject: Re: Question about Tegra UCMs
+To:     Dmitry Osipenko <digetx@gmail.com>, Mark Brown <broonie@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Takashi Iwai <tiwai@suse.com>, Ion Agorria <ion@agorria.com>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+References: <20210518001356.19227-1-digetx@gmail.com>
+ <20210518001356.19227-3-digetx@gmail.com>
+ <20210518180949.GA949047@robh.at.kernel.org>
+ <20210518183455.GE4358@sirena.org.uk>
+ <92cef674-c454-e08c-b44d-d8c08b1e8ccf@gmail.com>
+From:   Jaroslav Kysela <perex@perex.cz>
+Message-ID: <562efe35-dd91-12a0-96a5-b8f4f34ea153@perex.cz>
+Date:   Wed, 19 May 2021 13:13:53 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
+In-Reply-To: <92cef674-c454-e08c-b44d-d8c08b1e8ccf@gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210430123511.116057-1-robert.marko@sartura.hr>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Apr 2021, Robert Marko wrote:
-
-> Delta TN48M switches have a Lattice CPLD that serves
-> multiple purposes including being a GPIO expander.
-> So lets add the MFD core driver for it.
+Dne 19. 05. 21 v 0:31 Dmitry Osipenko napsal(a):
+> Mark, could you please help me to understand the UCM naming scheme that ALSA uses..
 > 
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> ---
->  drivers/mfd/Kconfig       |  13 +++
->  drivers/mfd/Makefile      |   1 +
->  drivers/mfd/tn48m-cpld.c  | 181 ++++++++++++++++++++++++++++++++++++++
->  include/linux/mfd/tn48m.h |  30 +++++++
->  4 files changed, 225 insertions(+)
->  create mode 100644 drivers/mfd/tn48m-cpld.c
->  create mode 100644 include/linux/mfd/tn48m.h
+> About a year ago I tried to complain to Jaroslav Kysela in a comment to the UCM change [1] that it should be breaking the naming scheme of Tegra UCMs, but haven't got a meaningful reply and moved on to other things.
 > 
-> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> index b74efa469e90..809041f98d71 100644
-> --- a/drivers/mfd/Kconfig
-> +++ b/drivers/mfd/Kconfig
-> @@ -297,6 +297,19 @@ config MFD_ASIC3
->  	  This driver supports the ASIC3 multifunction chip found on many
->  	  PDAs (mainly iPAQ and HTC based ones)
->  
-> +config MFD_TN48M_CPLD
-> +	tristate "Delta Networks TN48M switch CPLD driver"
-> +	depends on I2C
-> +	select MFD_CORE
-> +	select REGMAP_I2C
-> +	help
-> +	  Select this option to enable support for Delta Networks TN48M switch
-> +	  CPLD. It consists of GPIO and hwmon drivers.
-> +	  CPLD provides GPIOS-s for the SFP slots as well as power supply
-> +	  related information.
-> +	  Driver provides debugfs information about the board model as
-> +	  well as hardware and CPLD revision information.
+> [1] https://github.com/alsa-project/alsa-ucm-conf/commit/8ff2d50745efbb6959324f672460e413f0b618b8
 
-No need for every sentence to be it's own paragraphs.
+I'm sorry about that, but it's better to create a tracked ticket (issue or
+pull request).
 
-Please re-align to be a single chunk.
+> Today I noticed that the naming scheme changed again and I still don't understand what to do about it.
+> 
+> I have two devices:
+> 
+>  1. Acer Picasso tablet that uses "Acer Iconia Tab A500 WM8903" for the card model name.
+> 
+>  2. Google Nexus 7 that uses "ASUS Google Nexus 7 ALC5642".
+> 
+> Previously UCMs were picked up by pulseaudio from these paths:
+> 
+>  1. /usr/share/alsa/ucm2/Acer Iconia Tab A500 WM8903/
+>  2. /usr/share/alsa/ucm2/ASUS Google Nexus 7 ALC5642/
+> 
+> Now the lookup paths are changed to:
+> 
+>  1. /usr/share/alsa/ucm2/Acer_Iconia_Tab/
+>  2. /usr/share/alsa/ucm2/ASUS_Google_Nex/
 
->  config PMIC_DA903X
->  	bool "Dialog Semiconductor DA9030/DA9034 PMIC Support"
->  	depends on I2C=y
-> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> index 834f5463af28..974663341f08 100644
-> --- a/drivers/mfd/Makefile
-> +++ b/drivers/mfd/Makefile
-> @@ -27,6 +27,7 @@ obj-$(CONFIG_MFD_TI_LP87565)	+= lp87565.o
->  obj-$(CONFIG_MFD_DAVINCI_VOICECODEC)	+= davinci_voicecodec.o
->  obj-$(CONFIG_MFD_DM355EVM_MSP)	+= dm355evm_msp.o
->  obj-$(CONFIG_MFD_TI_AM335X_TSCADC)	+= ti_am335x_tscadc.o
-> +obj-$(CONFIG_MFD_TN48M_CPLD)	+= tn48m-cpld.o
->  
->  obj-$(CONFIG_MFD_STA2X11)	+= sta2x11-mfd.o
->  obj-$(CONFIG_MFD_STMPE)		+= stmpe.o
-> diff --git a/drivers/mfd/tn48m-cpld.c b/drivers/mfd/tn48m-cpld.c
-> new file mode 100644
-> index 000000000000..b84510fb630a
-> --- /dev/null
-> +++ b/drivers/mfd/tn48m-cpld.c
-> @@ -0,0 +1,181 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Delta TN48M CPLD parent driver
-> + *
-> + * Copyright 2020 Sartura Ltd
+Yes, it's based on the driver name (which is incorrectly set /or not set/ in
+your case).
 
-This is out of date.
+Lookup paths (with description):
 
-> + * Author: Robert Marko <robert.marko@sartura.hr>
-> + */
-> +
-> +#include <linux/debugfs.h>
-> +#include <linux/i2c.h>
-> +#include <linux/kernel.h>
-> +#include <linux/mfd/core.h>
-> +#include <linux/mfd/tn48m.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/slab.h>
-> +
-> +static const struct mfd_cell tn48m_cell[] = {};
+https://github.com/alsa-project/alsa-ucm-conf/blob/master/ucm2/ucm.conf
 
-Please populate this.
+The latest scheme is even different - lookups were moved to ucm2/conf.d with
+redirection to the more descriptive layered configuration tree structure, so
+the other developers can immediately identify the hardware which is
+configured. See Qualcomm examples. The long card names does not help us so much.
 
-Without it, this is not an MFD.
+> Strace shows that pulseaudio searches UCMs only at these paths.
+> 
+> The output of /proc/asound/cards:
+> 
+>  0 [WM8903         ]: Acer_Iconia_Tab - Acer Iconia Tab A500 WM8903
+>                       Acer Iconia Tab A500 WM8903
+> 
+>  0 [ALC5642        ]: ASUS_Google_Nex - ASUS Google Nexus 7 ALC5642
+>                       ASUS Google Nexus 7 ALC5642
 
-> +static const struct regmap_config tn48m_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = 0x40,
-> +};
-> +
-> +static int hardware_version_show(struct seq_file *s, void *data)
-> +{
-> +	struct tn48m_data *priv = s->private;
-> +	unsigned int regval;
-> +	char *buf;
-> +
-> +	regmap_read(priv->regmap, HARDWARE_VERSION_ID, &regval);
-> +
-> +	switch (FIELD_GET(HARDWARE_VERSION_MASK, regval)) {
-> +	case HARDWARE_VERSION_EVT1:
-> +		buf = "EVT1";
-> +		break;
-> +	case HARDWARE_VERSION_EVT2:
-> +		buf = "EVT2";
-> +		break;
-> +	case HARDWARE_VERSION_DVT:
-> +		buf = "DVT";
-> +		break;
-> +	case HARDWARE_VERSION_PVT:
-> +		buf = "PVT";
-> +		break;
-> +	default:
-> +		buf = "Unknown";
-> +		break;
-> +	}
-> +
-> +	seq_printf(s, "%s\n", buf);
-> +
-> +	return 0;
-> +}
-> +
+Fields are explained in:
 
-Please drop this '\n'.
+https://github.com/alsa-project/alsa-ucm-conf/blob/master/ucm2/README.md
 
-> +DEFINE_SHOW_ATTRIBUTE(hardware_version);
-> +
-> +static int board_id_show(struct seq_file *s, void *data)
-> +{
-> +	struct tn48m_data *priv = s->private;
-> +	unsigned int regval;
-> +	char *buf;
-> +
-> +	regmap_read(priv->regmap, BOARD_ID, &regval);
-> +
-> +	switch (regval) {
-> +	case BOARD_ID_TN48M:
-> +		buf = "TN48M";
-> +		break;
-> +	case BOARD_ID_TN48M_P:
-> +		buf = "TN48-P";
-> +		break;
-> +	default:
-> +		buf = "Unknown";
-> +		break;
-> +	}
-> +
-> +	seq_printf(s, "%s\n", buf);
-> +
-> +	return 0;
-> +}
-> +
+> Is there anything on the kernel side that I could change to get a working naming scheme? If yes, I may try to do something about it in the v2, thanks in advance.
 
-Please drop this '\n'.
+Try to set a meaningful driver name (usually the code handling the ASoC card
+creation). It should be very close to the kernel module name (but more user
+friendly). The current code for your hardware use the auto-generated driver
+name from the ALSA long name.
 
-> +DEFINE_SHOW_ATTRIBUTE(board_id);
-> +
-> +static int code_version_show(struct seq_file *s, void *data)
-> +{
-> +	struct tn48m_data *priv = s->private;
-> +	unsigned int regval;
-> +
-> +	regmap_read(priv->regmap, CPLD_CODE_VERSION, &regval);
-> +
-> +	seq_printf(s, "%d\n", regval);
-> +
-> +	return 0;
-> +}
-> +
+Then try to reuse the existing configs - for example your Nexus 7 config has
+many blocks from codecs/rt5640/* .
 
-Please drop this '\n'.
+Anyway, create a PR so we can discuss the details.
 
-> +DEFINE_SHOW_ATTRIBUTE(code_version);
-> +
-> +static void tn48m_init_debugfs(struct tn48m_data *data)
-> +{
-> +	data->debugfs_dir = debugfs_create_dir(data->client->name, NULL);
-> +
-> +	debugfs_create_file("hardware_version",
-> +			    0400,
-> +			    data->debugfs_dir,
-> +			    data,
-> +			    &hardware_version_fops);
-> +
-> +	debugfs_create_file("board_id",
-> +			    0400,
-> +			    data->debugfs_dir,
-> +			    data,
-> +			    &board_id_fops);
-> +
-> +	debugfs_create_file("code_version",
-> +			    0400,
-> +			    data->debugfs_dir,
-> +			    data,
-> +			    &code_version_fops);
-> +}
-
-Does S/W actually do anything useful with these files?
-
-Or are they just there for the sake of it?
-
-If the latter, just print them to the kernel log and have done.
-
-> +static int tn48m_probe(struct i2c_client *client)
-> +{
-> +	struct tn48m_data *data;
-
-'ddata' for both please.
-
-> +	int ret;
-> +
-> +	data = devm_kzalloc(&client->dev, sizeof(*data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	data->client = client;
-> +	data->dev = &client->dev;
-> +	i2c_set_clientdata(client, data);
-> +
-> +	data->regmap = devm_regmap_init_i2c(client, &tn48m_regmap_config);
-> +	if (IS_ERR(data->regmap)) {
-> +		dev_err(data->dev, "Failed to allocate regmap\n");
-> +		return PTR_ERR(data->regmap);
-> +	}
-> +
-> +	ret = devm_mfd_add_devices(data->dev, PLATFORM_DEVID_AUTO, tn48m_cell,
-> +				   ARRAY_SIZE(tn48m_cell), NULL, 0, NULL);
-> +	if (ret)
-> +		dev_err(data->dev, "Failed to register sub-devices %d\n", ret);
-> +
-> +	tn48m_init_debugfs(data);
-> +
-> +	return ret;
-> +}
-> +
-> +static int tn48m_remove(struct i2c_client *client)
-> +{
-> +	struct tn48m_data *data = i2c_get_clientdata(client);
-> +
-> +	debugfs_remove_recursive(data->debugfs_dir);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id tn48m_of_match[] = {
-> +	{ .compatible = "delta,tn48m-cpld"},
-
-Missing ' ' before the '}'.
-
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, tn48m_of_match);
-> +
-> +static struct i2c_driver tn48m_driver = {
-> +	.driver = {
-> +		.name = "tn48m-cpld",
-> +		.of_match_table = tn48m_of_match,
-> +	},
-> +	.probe_new	= tn48m_probe,
-> +	.remove		= tn48m_remove,
-> +};
-> +module_i2c_driver(tn48m_driver);
-> +
-> +MODULE_AUTHOR("Robert Marko <robert.marko@sartura.hr>");
-> +MODULE_DESCRIPTION("Delta TN48M CPLD parent driver");
-> +MODULE_LICENSE("GPL");
-> diff --git a/include/linux/mfd/tn48m.h b/include/linux/mfd/tn48m.h
-> new file mode 100644
-> index 000000000000..551c550efa54
-> --- /dev/null
-> +++ b/include/linux/mfd/tn48m.h
-> @@ -0,0 +1,30 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright 2020 Sartura Ltd
-
-Out of date.
-
-> + */
-> +
-> +#ifndef __TN48M_H__
-> +#define __TN48M_H__
-
-Better prefix with MFD.
-
-> +#include <linux/device.h>
-> +#include <linux/regmap.h>
-> +
-> +#define HARDWARE_VERSION_ID	0x0
-> +#define HARDWARE_VERSION_MASK	GENMASK(3, 0)
-> +#define HARDWARE_VERSION_EVT1	0
-> +#define HARDWARE_VERSION_EVT2	1
-> +#define HARDWARE_VERSION_DVT	2
-> +#define HARDWARE_VERSION_PVT	3
-> +#define BOARD_ID		0x1
-> +#define BOARD_ID_TN48M		0xa
-> +#define BOARD_ID_TN48M_P	0xb
-> +#define CPLD_CODE_VERSION	0x2
-> +
-> +struct tn48m_data {
-> +	struct device *dev;
-> +	struct regmap *regmap;
-> +	struct i2c_client *client;
-
-You don't need both 'dev' and 'client'.
-
-> +	struct dentry *debugfs_dir;
-> +};
-> +
-> +#endif
+					Jaroslav
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Jaroslav Kysela <perex@perex.cz>
+Linux Sound Maintainer; ALSA Project; Red Hat, Inc.
