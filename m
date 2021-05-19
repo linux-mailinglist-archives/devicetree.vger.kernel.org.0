@@ -2,113 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 940F6389361
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 18:13:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69D5538937F
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 18:18:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354579AbhESQOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 12:14:43 -0400
-Received: from youngberry.canonical.com ([91.189.89.112]:35915 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354944AbhESQOe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 12:14:34 -0400
-Received: from mail-qt1-f199.google.com ([209.85.160.199])
-        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1ljOos-0008P8-09
-        for devicetree@vger.kernel.org; Wed, 19 May 2021 16:13:14 +0000
-Received: by mail-qt1-f199.google.com with SMTP id z9-20020a05622a0609b02901f30a4fcf9bso6166087qta.4
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 09:13:13 -0700 (PDT)
+        id S1355156AbhESQUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 12:20:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38628 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346313AbhESQUM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 12:20:12 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00201C06175F
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 09:18:51 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id q5so14642354wrs.4
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 09:18:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=llPfZ8AOPilzKmViev4XTbmhiuGiojY0tKb8nEMUYB4=;
+        b=YpumUkT2zhUhb1gcFON7vhnOA6X+5Sc0KNC5HjSjNRgyCNI122racDg6XFNc5l6psP
+         G1TV099JaWISOPvAoo6zW4/kbkKFp7KMqc1WKIIRRB1lgp2AIUmW8kKHa5F65Zj0Su0x
+         peumpe9ZTdBGm1CCLnpKK0jpgmMlHbROIf108f3gXbrEO5MxZR4kVnsNXyFusDdb3Gjh
+         ZEzpZTUW1T7g23c9FbHRQwg0PyFj8FSB2u2aaKjmlhXtTqD5pAUmBfhr32A4WDZRJMQO
+         pQs38URDfHtMqlVagVLQfPW1H//NtNp2LhulTCU27QoB7Ktdpiygp30XGBL5p3nMqA3/
+         +6lA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=eS+z7fWf9ik7UiPFy0EbImNsC/jTSa8AjK2vvxy5tQE=;
-        b=BqutA10Vr4Bw+yPDWfD5fkIhmywKQFyuP3VciLDWLLxO/gHao3x0Va1E9Zbjif6fxG
-         5GifZUjYv5yjzQU35iR1IY8FP8dI/vYyOdErcjm1ebPBxXWlNggBpDV3i4XMATCBMaGl
-         6nrm1XYlCBsAlkxB5TpLDPxZzOSGE4ADK2U0ROjyNJ+LHbnst1gWHnJWWyoC12V2onAT
-         giQolLQeSIPCt4FUgiHLVTIzRF6C+D8PIu8Nk0xJZBjQTVYYXeicInf1xb6hcItA/1CD
-         EGVfM6DGrlgHvPlz1PT0goQhxflVHQAKoP0PX3oCHYFgBGQ/LaK+ZwnjKknNYmLjK17e
-         ZRPw==
-X-Gm-Message-State: AOAM5318k0USjHJ9OvJabUcwc5JytWQ2bFLMzW9DTyoG/rzSfO6MRKVJ
-        Ci4+YnZaWW/CeAkeqlEymz7wETCyi/dSgY4J+VMljakG2CNzs+IEpP/jOqjJBeTlKC7ivbc0ogj
-        D3+tF2nAxoQ4xQS/Buc3ENlDXDrgwKctvXe0yw0w=
-X-Received: by 2002:a05:620a:13a6:: with SMTP id m6mr77877qki.370.1621440793085;
-        Wed, 19 May 2021 09:13:13 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzUghUkKBDIuGvqx1Nu07luWzepugYJj1I5VtklAhOR9KibnL6Cutz0I3Szhxs1G5QJhQj6OA==
-X-Received: by 2002:a05:620a:13a6:: with SMTP id m6mr77852qki.370.1621440792900;
-        Wed, 19 May 2021 09:13:12 -0700 (PDT)
-Received: from [192.168.1.4] ([45.237.48.3])
-        by smtp.gmail.com with ESMTPSA id f1sm83218qkl.93.2021.05.19.09.13.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 May 2021 09:13:12 -0700 (PDT)
-Subject: Re: [linux-nfc] [PATCH v2 2/2] nfc: s3fwrn5: i2c: Enable optional
- clock from device tree
-To:     Stephan Gerhold <stephan@gerhold.net>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-nfc@lists.01.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Bongsu Jeon <bongsu.jeon@samsung.com>,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20210519091613.7343-1-stephan@gerhold.net>
- <20210519091613.7343-2-stephan@gerhold.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <86461091-617b-62ec-a9e5-2aec337d69ce@canonical.com>
-Date:   Wed, 19 May 2021 12:13:05 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        bh=llPfZ8AOPilzKmViev4XTbmhiuGiojY0tKb8nEMUYB4=;
+        b=M/ZRCubnUWKV+iLTC2FlklOZjH1p2dPopJ3dLlbmiMwmX8SYe/s3cM+SNBmNVIlTp7
+         LEZL6eccl7AD5ddRs0KQ32XTMgPhbDJ2iHJPkAMfhYWOVNS7OU7LgzExyClpxHHkmDI1
+         ius9BSIEgKIcnXgbxOthI5NfpbukX5poGV7ZZKiXEXUgD2ikq0ne2DSEcpA89LLsId1c
+         RZ9Yf63kKS60zr0FcF9kTiB5zpVDvlNsU0SoufT85lVvT7KQvIYaR5Wm1Bot7X33HlUn
+         apxaJiKQyrUCL8KxUWk/X2P5otAD4eK628IIDsX92dInoxkYGsfjsL7QUjbIJjNJ6Lwy
+         1Ptw==
+X-Gm-Message-State: AOAM533VUK+pIt2cQzBD99G4RnnTmwh7cYN/4GUrwAPDi0tgM9S9f7GY
+        9p705u++R2Udm6cRbEC7VTzbBQ==
+X-Google-Smtp-Source: ABdhPJy53K9D1kmFCUpC/PIf+b5cYVmChTkcnu+yAIk6l/+kiu3PmLWiqS1kjyM5UzZgnnvapssAuA==
+X-Received: by 2002:adf:f9ce:: with SMTP id w14mr15784947wrr.387.1621441130604;
+        Wed, 19 May 2021 09:18:50 -0700 (PDT)
+Received: from localhost.localdomain ([88.160.162.107])
+        by smtp.gmail.com with ESMTPSA id m9sm5638547wmq.40.2021.05.19.09.18.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 May 2021 09:18:50 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     mkorpershoek@baylibre.com, Fabien Parent <fparent@baylibre.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH 1/3] dt-bindings: arm: mediatek: mmsys: convert to YAML format
+Date:   Wed, 19 May 2021 18:18:44 +0200
+Message-Id: <20210519161847.3747352-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210519091613.7343-2-stephan@gerhold.net>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/05/2021 05:16, Stephan Gerhold wrote:
-> S3FWRN5 depends on a clock input ("XI" pin) to function properly.
-> Depending on the hardware configuration this could be an always-on
-> oscillator or some external clock that must be explicitly enabled.
-> 
-> So far we assumed that the clock is always-on.
-> Make the driver request an (optional) clock from the device tree
-> and make sure the clock is running before starting S3FWRN5.
-> 
-> Note: S3FWRN5 asserts "GPIO2" whenever it needs the clock input to
-> function correctly. On some hardware configurations, GPIO2 is
-> connected directly to an input pin of the external clock provider
-> (e.g. the main PMIC of the SoC). In that case, it can automatically
-> AND the clock enable bit and clock request from S3FWRN5 so that
-> the clock is actually only enabled when needed.
-> 
-> It is also conceivable that on some other hardware configuration
-> S3FWRN5's GPIO2 might be connected as a regular GPIO input
-> of the SoC. In that case, follow-up patches could extend the
-> driver to request the GPIO, set up an interrupt and only enable
-> the clock when requested by S3FWRN5.
-> 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
-> This allows NFC to work properly on the Samsung Galaxy A3/A5 (2015).
-> 
-> Changes in v2: Rewrite commit message and comment based on discussion
-> 
->   Note: I tried to explain the setup a bit better but dropped most of
->         the explanations about the exact configuration on the Samsung
->         Galaxy A5. I think the HW-specific details were more confusing
->         than helping. :)
-> 
-> v1: https://lore.kernel.org/netdev/20210518133935.571298-2-stephan@gerhold.net/
-> ---
->  drivers/nfc/s3fwrn5/i2c.c | 30 ++++++++++++++++++++++++++++--
->  1 file changed, 28 insertions(+), 2 deletions(-)
-> 
+Convert the mmsys bindings to the YAML format.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+---
+ .../bindings/arm/mediatek/mediatek,mmsys.txt  | 31 ----------
+ .../bindings/arm/mediatek/mediatek,mmsys.yaml | 57 +++++++++++++++++++
+ 2 files changed, 57 insertions(+), 31 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
+deleted file mode 100644
+index 78c50733985c..000000000000
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
++++ /dev/null
+@@ -1,31 +0,0 @@
+-Mediatek mmsys controller
+-============================
+-
+-The Mediatek mmsys system controller provides clock control, routing control,
+-and miscellaneous control in mmsys partition.
+-
+-Required Properties:
+-
+-- compatible: Should be one of:
+-	- "mediatek,mt2701-mmsys", "syscon"
+-	- "mediatek,mt2712-mmsys", "syscon"
+-	- "mediatek,mt6765-mmsys", "syscon"
+-	- "mediatek,mt6779-mmsys", "syscon"
+-	- "mediatek,mt6797-mmsys", "syscon"
+-	- "mediatek,mt7623-mmsys", "mediatek,mt2701-mmsys", "syscon"
+-	- "mediatek,mt8167-mmsys", "syscon"
+-	- "mediatek,mt8173-mmsys", "syscon"
+-	- "mediatek,mt8183-mmsys", "syscon"
+-- #clock-cells: Must be 1
+-
+-For the clock control, the mmsys controller uses the common clk binding from
+-Documentation/devicetree/bindings/clock/clock-bindings.txt
+-The available clocks are defined in dt-bindings/clock/mt*-clk.h.
+-
+-Example:
+-
+-mmsys: syscon@14000000 {
+-	compatible = "mediatek,mt8173-mmsys", "syscon";
+-	reg = <0 0x14000000 0 0x1000>;
+-	#clock-cells = <1>;
+-};
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+new file mode 100644
+index 000000000000..a419da33e10b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/arm/mediatek/mediatek,mmsys.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: MediaTek mmsys controller
++
++maintainers:
++  - Matthias Brugger <matthias.bgg@gmail.com>
++
++description:
++  The MediaTek mmsys system controller provides clock control, routing control,
++  and miscellaneous control in mmsys partition.
++
++properties:
++  $nodename:
++    pattern: "^syscon@[0-9a-f]+$"
++
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - mediatek,mt2701-mmsys
++              - mediatek,mt2712-mmsys
++              - mediatek,mt6765-mmsys
++              - mediatek,mt6779-mmsys
++              - mediatek,mt6797-mmsys
++              - mediatek,mt8167-mmsys
++              - mediatek,mt8173-mmsys
++              - mediatek,mt8183-mmsys
++          - const: syscon
++      - items:
++          - const: mediatek,mt7623-mmsys
++          - const: mediatek,mt2701-mmsys
++          - const: syscon
++
++  reg:
++    maxItems: 1
++
++  "#clock-cells":
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - "#clock-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    mmsys: syscon@14000000 {
++        compatible = "mediatek,mt8173-mmsys", "syscon";
++        reg = <0x14000000 0x1000>;
++        #clock-cells = <1>;
++    };
+-- 
+2.31.1
+
