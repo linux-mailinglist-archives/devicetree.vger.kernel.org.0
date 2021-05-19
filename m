@@ -2,156 +2,390 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E03AB388C46
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 13:02:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14FD4388C6D
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 13:12:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241948AbhESLDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 07:03:54 -0400
-Received: from mail-ua1-f51.google.com ([209.85.222.51]:42572 "EHLO
-        mail-ua1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229720AbhESLDx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 07:03:53 -0400
-Received: by mail-ua1-f51.google.com with SMTP id 14so4285641uac.9;
-        Wed, 19 May 2021 04:02:32 -0700 (PDT)
+        id S1346196AbhESLNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 07:13:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52326 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346165AbhESLNA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 07:13:00 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E9D9C061761
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 04:11:39 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id p7so9842761wru.10
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 04:11:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=Vc8qJg9NmyT5ZEGfIcNUqKz3BJwvE15c53tr2iQnxUA=;
+        b=Ic7eZmPZ6/e2jgfkov/tZpcd1TKjFXlykvq9B2L15Gk/irhrypS5YJPmxzodwiiqsf
+         DJD9hUtVjsuDlye9WDOd/rqu9BIOgAGRJt/NeV1/EVbPYKsvzmAeo4gMd4+/aMQSCMB9
+         3MDn115nESViNS2wHi/2MIm/NMvoAHE5CJRbxFPcAIS7KMyTyO1RL/iuDjHZ9pzXrUJ7
+         FolV404EjuHW6DsUzm+ZVP9eOQjlspWpi4dtyXBwYNfa3i9oHBIhzLcknewOSvrwI2oi
+         WsMBzENlLmvjqiQ58ZhzZ6eE76c+1zGVLXBDhgazh1T8QE3OHPPeDdJvVS6x2rEnDJjM
+         KNMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Iunas8Mi941MyoBN1CHeU8fBTsSG9zGyW/IfHp/dBKQ=;
-        b=DVOXGA3du/p4pMPH+6Qp/NkX3KuwKUi6lLKdUO7z6oZbN0rS5biIFe62PFPjAo1CEg
-         +t+u5XqYoEF7WevkOUi3OTC3lm0rXRQRhuXUGj2rGwL2zB2e2vAcIDzE6AK5tgS6LRcT
-         UtlVI2MShgwFWu4ZKkiQwa76B4/AMw1AJV9VAlW/NESyOzaRx1CTi6EdHAmlqqESZLoq
-         On3+OpvkTje5/+zf/iQ8IlKKvj5FxWtIn1WnsivzyGN+EfikB/pvk5YA5LpZnBVmlQqc
-         pbhJmXJGTV9WL/NnHFhRVy6kDWAYoUdKVRq4+ckazV9SR5f89XdU2TspNKsTrkDa+aJH
-         EhoQ==
-X-Gm-Message-State: AOAM533c5BKFji9/XNx8ct5KuQLfpD69yd50Pmah6XnzZ+GO4Gsrkp+P
-        XMGyrqZGVooVcEEwl98YqzCFLN3rwrVdm71a8vQ=
-X-Google-Smtp-Source: ABdhPJzfzJnySIXsfB7dacrXLzr9y6pkADRFbV1uK4vf3UqKoV0QwMw635//fNsj2Q/inI5WPRKMkzJRADi+erKlXRo=
-X-Received: by 2002:ab0:f5:: with SMTP id 108mr14708228uaj.106.1621422152113;
- Wed, 19 May 2021 04:02:32 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=Vc8qJg9NmyT5ZEGfIcNUqKz3BJwvE15c53tr2iQnxUA=;
+        b=eA3ZySs2nqnIxWQ97o1nTyboB/Fe5MsbknbFX82yD5EkGu00q8YeRK4c3y5gSZI2zH
+         XEKytncD2GqDWGtAl4Ps+A9ajNJcR1bDHmVLgL3Hn9IjOnMsIhnFYQ3jRNrKE5aDtxSU
+         qYjFZBf4cTHe7kyc6y26Ynasg/x+e2+FyBrOsZyKjZpqgBOxIjn7L/vUiLWlus2atX61
+         LQwR2pLTqxvTth4na2rWzTZ6I5Gh8+cKGv9HLLYSF+6LkRpdrAFHHTWjOhNhPn8Uzc1b
+         QzhS/c3YkeeyZyg/cTwwozxhg8FkEq9OrR1pwlWHXK+4xvppWm1/uAzUrVCeX3A0fy7j
+         tqYA==
+X-Gm-Message-State: AOAM532nOTVDDHwA2Kr2wRNryZbJXEXfjbj1fZspxzcabazPNF21sJ46
+        /X2cgT4lKYXo/IKh4+aC38SS9w==
+X-Google-Smtp-Source: ABdhPJx0iXQiXNiDCS1Ed60PcEy+0Zd6RrBCwtbt1gF9HqpKG8BR2R/kGw6g9cV/u+tMrD0iv53JYA==
+X-Received: by 2002:a5d:6d81:: with SMTP id l1mr13732937wrs.17.1621422698035;
+        Wed, 19 May 2021 04:11:38 -0700 (PDT)
+Received: from dell ([91.110.221.215])
+        by smtp.gmail.com with ESMTPSA id q3sm22762845wrr.43.2021.05.19.04.11.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 May 2021 04:11:37 -0700 (PDT)
+Date:   Wed, 19 May 2021 12:11:25 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Robert Marko <robert.marko@sartura.hr>
+Cc:     robh+dt@kernel.org, linus.walleij@linaro.org,
+        bgolaszewski@baylibre.com, jdelvare@suse.com, linux@roeck-us.net,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        luka.perkov@sartura.hr, jmp@epiphyte.org, pmenzel@molgen.mpg.de,
+        buczek@molgen.mpg.de
+Subject: Re: [PATCH 1/6] mfd: Add Delta TN48M CPLD driver
+Message-ID: <20210519111125.GD2403908@dell>
+References: <20210430123511.116057-1-robert.marko@sartura.hr>
 MIME-Version: 1.0
-References: <20210322144848.1065067-1-geert@linux-m68k.org>
- <20210322144848.1065067-3-geert@linux-m68k.org> <fb42abb0e79a57e2aab123468d95ff7e@protonic.nl>
- <CAMuHMdXN9bPnEjXJUWszS5iwuVLBHJV7c+jhBU1t1EXnAnFYig@mail.gmail.com> <a5cf3ba594ab7ba36c1f4d5760796625@protonic.nl>
-In-Reply-To: <a5cf3ba594ab7ba36c1f4d5760796625@protonic.nl>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 19 May 2021 13:02:20 +0200
-Message-ID: <CAMuHMdVZMtJ8nRZXWnNz9U0_GKkUQn2+gkvx+Q=+c5tcfEVHUQ@mail.gmail.com>
-Subject: Re: [PATCH 02/17] dt-bindings: auxdisplay: ht16k33: Document Adafruit
- segment displays
-To:     Robin van der Gracht <robin@protonic.nl>
-Cc:     Rob Herring <robh+dt@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210430123511.116057-1-robert.marko@sartura.hr>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hoi Robin,
+On Fri, 30 Apr 2021, Robert Marko wrote:
 
-On Wed, May 19, 2021 at 12:37 PM Robin van der Gracht <robin@protonic.nl> wrote:
-> On 2021-05-18 16:35, Geert Uytterhoeven wrote:
-> > On Tue, Mar 23, 2021 at 10:12 AM robin <robin@protonic.nl> wrote:
-> >> On 2021-03-22 15:48, Geert Uytterhoeven wrote:
-> >> > The Holtek HT16K33 LED controller is not only used for driving
-> >> > dot-matrix displays, but also for driving segment displays.
-> >> >
-> >> > Document compatible values for the Adafruit 7-segment[1] and
-> >> > 14-segment[2] FeatherWing expansion boards with red displays.
-> >> > According
-> >> > to the schematics, all other Adafruit 7-segment and 14-segment display
-> >> > backpack and FeatherWing expansion boards (including bare boards and
-> >> > boards fitted with displays) are compatible with these two boards.
-> >> > Add a "color" property to support the different color variants.
-> >> >
-> >> > [1] https://www.adafruit.com/product/3108
-> >> > [2] https://www.adafruit.com/product/3130
-> >> >
-> >> > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> >
-> >> > --- a/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-> >> > +++ b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-> >> > @@ -14,14 +14,23 @@ allOf:
-> >> >
-> >> >  properties:
-> >> >    compatible:
-> >> > -    const: holtek,ht16k33
-> >> > +    oneOf:
-> >> > +      - items:
-> >> > +          - const: adafruit,3108  # 0.56" 4-Digit 7-Segment
-> >> > FeatherWing Display (Red)
-> >> > +          - const: holtek,ht16k33
-> >> > +
-> >> > +      - items:
-> >> > +          - const: adafruit,3130  # 0.54" Quad Alphanumeric
-> >> > FeatherWing Display (Red)
-> >> > +          - const: holtek,ht16k33
-> >> > +
-> >> > +      - const: holtek,ht16k33     # Generic 16*8 LED controller with
-> >> > dot-matrix display
-> >> >
-> >> >    reg:
-> >> >      maxItems: 1
-> >> >
-> >> >    refresh-rate-hz:
-> >> >      maxItems: 1
-> >> > -    description: Display update interval in Hertz
-> >> > +    description: Display update interval in Hertz for dot-matrix
-> >> > displays
-> >>
-> >> The above should be included in patch 16
-> >
-> > I disagree: bindings are independent from the driver implementation.
-> >
-> >> >    interrupts:
-> >> >      maxItems: 1
-> >> > @@ -41,10 +50,17 @@ properties:
-> >> >      default: 16
-> >> >      description: Initial brightness level
-> >> >
-> >> > +  color: true
-> >> > +    description:
-> >> > +      Color of the display.  Use one of the LED_COLOR_ID_* prefixed
-> >> > definitions
-> >> > +      from the header include/dt-bindings/leds/common.h.  The default
-> >> > is red.
-> >> > +    minimum: 0
-> >> > +    maximum: 9
-> >> > +    default: 1
-> >> > +
-> >>
-> >> The above should be included in patch 17
-> >
-> > Same here.
->
-> My thought was that one without the other makes no sense. But if it's common
-> practice to create a separate patch for device tree bindings (it's a
-> patch-set
-> after all) than that's fine with me.
+> Delta TN48M switches have a Lattice CPLD that serves
+> multiple purposes including being a GPIO expander.
+> So lets add the MFD core driver for it.
+> 
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> ---
+>  drivers/mfd/Kconfig       |  13 +++
+>  drivers/mfd/Makefile      |   1 +
+>  drivers/mfd/tn48m-cpld.c  | 181 ++++++++++++++++++++++++++++++++++++++
+>  include/linux/mfd/tn48m.h |  30 +++++++
+>  4 files changed, 225 insertions(+)
+>  create mode 100644 drivers/mfd/tn48m-cpld.c
+>  create mode 100644 include/linux/mfd/tn48m.h
+> 
+> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> index b74efa469e90..809041f98d71 100644
+> --- a/drivers/mfd/Kconfig
+> +++ b/drivers/mfd/Kconfig
+> @@ -297,6 +297,19 @@ config MFD_ASIC3
+>  	  This driver supports the ASIC3 multifunction chip found on many
+>  	  PDAs (mainly iPAQ and HTC based ones)
+>  
+> +config MFD_TN48M_CPLD
+> +	tristate "Delta Networks TN48M switch CPLD driver"
+> +	depends on I2C
+> +	select MFD_CORE
+> +	select REGMAP_I2C
+> +	help
+> +	  Select this option to enable support for Delta Networks TN48M switch
+> +	  CPLD. It consists of GPIO and hwmon drivers.
+> +	  CPLD provides GPIOS-s for the SFP slots as well as power supply
+> +	  related information.
+> +	  Driver provides debugfs information about the board model as
+> +	  well as hardware and CPLD revision information.
 
-scripts/checkpatch.pl even has a check for that:
+No need for every sentence to be it's own paragraphs.
 
-    WARN("DT_SPLIT_BINDING_PATCH",
-         "DT binding docs and includes should be a separate patch.
-See: Documentation/devicetree/bindings/submitting-patches.rst\n");
+Please re-align to be a single chunk.
 
-See also rule #5 in the doc referred above:
+>  config PMIC_DA903X
+>  	bool "Dialog Semiconductor DA9030/DA9034 PMIC Support"
+>  	depends on I2C=y
+> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> index 834f5463af28..974663341f08 100644
+> --- a/drivers/mfd/Makefile
+> +++ b/drivers/mfd/Makefile
+> @@ -27,6 +27,7 @@ obj-$(CONFIG_MFD_TI_LP87565)	+= lp87565.o
+>  obj-$(CONFIG_MFD_DAVINCI_VOICECODEC)	+= davinci_voicecodec.o
+>  obj-$(CONFIG_MFD_DM355EVM_MSP)	+= dm355evm_msp.o
+>  obj-$(CONFIG_MFD_TI_AM335X_TSCADC)	+= ti_am335x_tscadc.o
+> +obj-$(CONFIG_MFD_TN48M_CPLD)	+= tn48m-cpld.o
+>  
+>  obj-$(CONFIG_MFD_STA2X11)	+= sta2x11-mfd.o
+>  obj-$(CONFIG_MFD_STMPE)		+= stmpe.o
+> diff --git a/drivers/mfd/tn48m-cpld.c b/drivers/mfd/tn48m-cpld.c
+> new file mode 100644
+> index 000000000000..b84510fb630a
+> --- /dev/null
+> +++ b/drivers/mfd/tn48m-cpld.c
+> @@ -0,0 +1,181 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Delta TN48M CPLD parent driver
+> + *
+> + * Copyright 2020 Sartura Ltd
 
-  5) The Documentation/ portion of the patch should come in the series before
-     the code implementing the binding.
+This is out of date.
 
-Gr{oetje,eeting}s,
+> + * Author: Robert Marko <robert.marko@sartura.hr>
+> + */
+> +
+> +#include <linux/debugfs.h>
+> +#include <linux/i2c.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mfd/core.h>
+> +#include <linux/mfd/tn48m.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/slab.h>
+> +
+> +static const struct mfd_cell tn48m_cell[] = {};
 
-                        Geert
+Please populate this.
+
+Without it, this is not an MFD.
+
+> +static const struct regmap_config tn48m_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = 0x40,
+> +};
+> +
+> +static int hardware_version_show(struct seq_file *s, void *data)
+> +{
+> +	struct tn48m_data *priv = s->private;
+> +	unsigned int regval;
+> +	char *buf;
+> +
+> +	regmap_read(priv->regmap, HARDWARE_VERSION_ID, &regval);
+> +
+> +	switch (FIELD_GET(HARDWARE_VERSION_MASK, regval)) {
+> +	case HARDWARE_VERSION_EVT1:
+> +		buf = "EVT1";
+> +		break;
+> +	case HARDWARE_VERSION_EVT2:
+> +		buf = "EVT2";
+> +		break;
+> +	case HARDWARE_VERSION_DVT:
+> +		buf = "DVT";
+> +		break;
+> +	case HARDWARE_VERSION_PVT:
+> +		buf = "PVT";
+> +		break;
+> +	default:
+> +		buf = "Unknown";
+> +		break;
+> +	}
+> +
+> +	seq_printf(s, "%s\n", buf);
+> +
+> +	return 0;
+> +}
+> +
+
+Please drop this '\n'.
+
+> +DEFINE_SHOW_ATTRIBUTE(hardware_version);
+> +
+> +static int board_id_show(struct seq_file *s, void *data)
+> +{
+> +	struct tn48m_data *priv = s->private;
+> +	unsigned int regval;
+> +	char *buf;
+> +
+> +	regmap_read(priv->regmap, BOARD_ID, &regval);
+> +
+> +	switch (regval) {
+> +	case BOARD_ID_TN48M:
+> +		buf = "TN48M";
+> +		break;
+> +	case BOARD_ID_TN48M_P:
+> +		buf = "TN48-P";
+> +		break;
+> +	default:
+> +		buf = "Unknown";
+> +		break;
+> +	}
+> +
+> +	seq_printf(s, "%s\n", buf);
+> +
+> +	return 0;
+> +}
+> +
+
+Please drop this '\n'.
+
+> +DEFINE_SHOW_ATTRIBUTE(board_id);
+> +
+> +static int code_version_show(struct seq_file *s, void *data)
+> +{
+> +	struct tn48m_data *priv = s->private;
+> +	unsigned int regval;
+> +
+> +	regmap_read(priv->regmap, CPLD_CODE_VERSION, &regval);
+> +
+> +	seq_printf(s, "%d\n", regval);
+> +
+> +	return 0;
+> +}
+> +
+
+Please drop this '\n'.
+
+> +DEFINE_SHOW_ATTRIBUTE(code_version);
+> +
+> +static void tn48m_init_debugfs(struct tn48m_data *data)
+> +{
+> +	data->debugfs_dir = debugfs_create_dir(data->client->name, NULL);
+> +
+> +	debugfs_create_file("hardware_version",
+> +			    0400,
+> +			    data->debugfs_dir,
+> +			    data,
+> +			    &hardware_version_fops);
+> +
+> +	debugfs_create_file("board_id",
+> +			    0400,
+> +			    data->debugfs_dir,
+> +			    data,
+> +			    &board_id_fops);
+> +
+> +	debugfs_create_file("code_version",
+> +			    0400,
+> +			    data->debugfs_dir,
+> +			    data,
+> +			    &code_version_fops);
+> +}
+
+Does S/W actually do anything useful with these files?
+
+Or are they just there for the sake of it?
+
+If the latter, just print them to the kernel log and have done.
+
+> +static int tn48m_probe(struct i2c_client *client)
+> +{
+> +	struct tn48m_data *data;
+
+'ddata' for both please.
+
+> +	int ret;
+> +
+> +	data = devm_kzalloc(&client->dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	data->client = client;
+> +	data->dev = &client->dev;
+> +	i2c_set_clientdata(client, data);
+> +
+> +	data->regmap = devm_regmap_init_i2c(client, &tn48m_regmap_config);
+> +	if (IS_ERR(data->regmap)) {
+> +		dev_err(data->dev, "Failed to allocate regmap\n");
+> +		return PTR_ERR(data->regmap);
+> +	}
+> +
+> +	ret = devm_mfd_add_devices(data->dev, PLATFORM_DEVID_AUTO, tn48m_cell,
+> +				   ARRAY_SIZE(tn48m_cell), NULL, 0, NULL);
+> +	if (ret)
+> +		dev_err(data->dev, "Failed to register sub-devices %d\n", ret);
+> +
+> +	tn48m_init_debugfs(data);
+> +
+> +	return ret;
+> +}
+> +
+> +static int tn48m_remove(struct i2c_client *client)
+> +{
+> +	struct tn48m_data *data = i2c_get_clientdata(client);
+> +
+> +	debugfs_remove_recursive(data->debugfs_dir);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id tn48m_of_match[] = {
+> +	{ .compatible = "delta,tn48m-cpld"},
+
+Missing ' ' before the '}'.
+
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, tn48m_of_match);
+> +
+> +static struct i2c_driver tn48m_driver = {
+> +	.driver = {
+> +		.name = "tn48m-cpld",
+> +		.of_match_table = tn48m_of_match,
+> +	},
+> +	.probe_new	= tn48m_probe,
+> +	.remove		= tn48m_remove,
+> +};
+> +module_i2c_driver(tn48m_driver);
+> +
+> +MODULE_AUTHOR("Robert Marko <robert.marko@sartura.hr>");
+> +MODULE_DESCRIPTION("Delta TN48M CPLD parent driver");
+> +MODULE_LICENSE("GPL");
+> diff --git a/include/linux/mfd/tn48m.h b/include/linux/mfd/tn48m.h
+> new file mode 100644
+> index 000000000000..551c550efa54
+> --- /dev/null
+> +++ b/include/linux/mfd/tn48m.h
+> @@ -0,0 +1,30 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright 2020 Sartura Ltd
+
+Out of date.
+
+> + */
+> +
+> +#ifndef __TN48M_H__
+> +#define __TN48M_H__
+
+Better prefix with MFD.
+
+> +#include <linux/device.h>
+> +#include <linux/regmap.h>
+> +
+> +#define HARDWARE_VERSION_ID	0x0
+> +#define HARDWARE_VERSION_MASK	GENMASK(3, 0)
+> +#define HARDWARE_VERSION_EVT1	0
+> +#define HARDWARE_VERSION_EVT2	1
+> +#define HARDWARE_VERSION_DVT	2
+> +#define HARDWARE_VERSION_PVT	3
+> +#define BOARD_ID		0x1
+> +#define BOARD_ID_TN48M		0xa
+> +#define BOARD_ID_TN48M_P	0xb
+> +#define CPLD_CODE_VERSION	0x2
+> +
+> +struct tn48m_data {
+> +	struct device *dev;
+> +	struct regmap *regmap;
+> +	struct i2c_client *client;
+
+You don't need both 'dev' and 'client'.
+
+> +	struct dentry *debugfs_dir;
+> +};
+> +
+> +#endif
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
