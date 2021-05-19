@@ -2,192 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 512F63895A2
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 20:40:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 546323895A3
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 20:41:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231594AbhESSmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 14:42:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42404 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230285AbhESSmO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 14:42:14 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95391C06175F
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 11:40:54 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id a2so20569507lfc.9
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 11:40:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=3+conjy/whJVCXgr0FijulgXDt7q0A9X2v/c/K8mZP4=;
-        b=avQ+xuQNXS5X/PSWV0PmgbXOGL9DMy2MKzOAnNjMX6GIb2GDjQOD27DQa5xFS4pO6a
-         5/fEgxfzJu60Gm0GQsaEr6JeNmyWACsFkgVcXrcFIP0+c9KYOjov8zx51CQ3k7IK7iv+
-         ZWKNLEMKRsY8bgDeapIV0K8Ovr6Yew9FPgR7QEgrhAT23nOCeYo+WByI+2HlUb7KEAGw
-         PLEoSq4+kAZuQ40tFAkO83H4NHFqonLLUajT/AQm1BQQIzOCpLhwymIK7KuUlg/Fyf+S
-         M1blpZJXnzFrS59Sya383DckvCdMvhcicMnbMyD69sGQPVrrvaUdfRyn8EpxnFu5U8hk
-         CLpw==
+        id S231612AbhESSm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 14:42:28 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:43569 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230285AbhESSm1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 14:42:27 -0400
+Received: by mail-ot1-f41.google.com with SMTP id i12-20020a05683033ecb02903346fa0f74dso1990968otu.10;
+        Wed, 19 May 2021 11:41:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=3+conjy/whJVCXgr0FijulgXDt7q0A9X2v/c/K8mZP4=;
-        b=eNgaiQSyiCBL8+XUrvbIsqA7wznZ6+JaiululERfzI2S7DbDBEM3XIgNMtGj8nq0Bo
-         0TxV0PSkeM9gN068jAUjB1KPGk40eU3NJyXsfTDtRhUCKLQbS/Ol6ahZbOeMyA1KMvPA
-         OE84xc1JVDUHa0BzHzVV3PObIaOGEBOYTSOom0iMrD6wZGB2JbzcFxzZbrmbrbKTg4TM
-         +SShk5aqfgcAknPQ7kt0vzjRtPLl61hVlIwn+e3wfEN56VwhchMtNkmPgygG/+ZaIOsy
-         ApTbrXaCtieRgPEzdoo0zYCOI6pjh5t5VA17IItdj1KrcygEoMYW60RCyhzNzB8n8TyE
-         5C/w==
-X-Gm-Message-State: AOAM530F5RCPG1/aULqTcbaxDRRa+cpBuYul42BnzWDGvQEvTfgRxjnf
-        Xl8NXgzvyEwgRWj+hQ6L+2M=
-X-Google-Smtp-Source: ABdhPJwaYtNFrY5T+jLMFI5B0cuo+DoKS4shQwzJty3J8+daGsHZsWnVPoaokQEP+ZeEYBRI+Fyk3A==
-X-Received: by 2002:a19:cd5:: with SMTP id 204mr611100lfm.390.1621449652884;
-        Wed, 19 May 2021 11:40:52 -0700 (PDT)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id g2sm9229ljn.35.2021.05.19.11.40.51
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Rtf8KMzzJr42v64G2RjuzNWf/9gnkzjTH/NKtoSThvI=;
+        b=l6bUevFSjAPWsLP83CQ46DeOFq8mPGVydCVF/G4gzhFjQmkxsI1sBXBDM1NSW33AJ8
+         XnUrkYZ9uUSDs+XWZeo09X2ehanV85x8hJTeRvKaSB5i6HlqPLSjFE2ZHPrtK/NkMQ05
+         b6TwPdGQamZYDIgeeaZVZH8Te/IYG2EylI8C/EHrX9Y4VSgnchwmuV2BQtNNQfkVOTD6
+         2c6oKQoV4H9rhMYfMLsPdKlmw0hdY3yBMVG3E0rOeEy8nYeyALqaTsuYTce3cCnCOOOP
+         72KQFFR+ApcqRIftw3JOpQpzkqiUG75UDnyK3XnGhOkjuJ60500imrG7vf5o+UecftF0
+         ADlA==
+X-Gm-Message-State: AOAM530cGdE1eaU7mt2f0BbneUdEiS95bEVQaWbpKJjUW5mKbF3Uj0n/
+        eRQnRe5vefSRzoGF7TbS7Q==
+X-Google-Smtp-Source: ABdhPJzKCNKgPqJxkK3ZoO9FffuSqLJK2JvlvJ6vh/99VzIiSeIzxlVQ0Sr+TkVmJPVPrkbVdiu1QQ==
+X-Received: by 2002:a9d:863:: with SMTP id 90mr653159oty.335.1621449667558;
+        Wed, 19 May 2021 11:41:07 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id z6sm90480oiz.39.2021.05.19.11.41.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 May 2021 11:40:52 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH V3 robh dt/next] dt-bindings: mfd: add Broadcom CRU
-Date:   Wed, 19 May 2021 20:40:41 +0200
-Message-Id: <20210519184041.563-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210519082049.30976-1-zajec5@gmail.com>
-References: <20210519082049.30976-1-zajec5@gmail.com>
+        Wed, 19 May 2021 11:41:07 -0700 (PDT)
+Received: (nullmailer pid 3426747 invoked by uid 1000);
+        Wed, 19 May 2021 18:41:05 -0000
+Date:   Wed, 19 May 2021 13:41:05 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Venkata Lakshmi Narayana Gubba <gubbaven@codeaurora.org>
+Cc:     mka@chromium.org, linux-bluetooth@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        hemantg@codeaurora.org, johan.hedberg@gmail.com,
+        rjliao@codeaurora.org, bgodavar@codeaurora.org,
+        abhishekpandit@chromium.org, devicetree@vger.kernel.org,
+        marcel@holtmann.org, hbandi@codeaurora.org
+Subject: Re: [PATCH v4 4/5] dt-bindings: net: bluetooth: Convert Qualcomm BT
+ binding to DT schema
+Message-ID: <20210519184105.GA3426539@robh.at.kernel.org>
+References: <1621355686-29550-1-git-send-email-gubbaven@codeaurora.org>
+ <1621355686-29550-5-git-send-email-gubbaven@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1621355686-29550-5-git-send-email-gubbaven@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On Tue, 18 May 2021 22:04:45 +0530, Venkata Lakshmi Narayana Gubba wrote:
+> Converted Qualcomm Bluetooth binidings to DT schema.
+> 
+> Signed-off-by: Venkata Lakshmi Narayana Gubba <gubbaven@codeaurora.org>
+> ---
+>  .../devicetree/bindings/net/qualcomm-bluetooth.txt |  69 -------------
+>  .../bindings/net/qualcomm-bluetooth.yaml           | 112 +++++++++++++++++++++
+>  2 files changed, 112 insertions(+), 69 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml
+> 
 
-CRU is a block used in e.g. Northstar devices. It can be seen in the
-bcm5301x.dtsi and this binding documents its proper usage.
-
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 Reviewed-by: Rob Herring <robh@kernel.org>
----
-Rob: would you take this patch through your dt/next?
-
-V2: Use complete binding & change additionalProperties to false
-V3: Use clock-controller@ for clocks
-
-NOTICE: this patch is based on top of the linux-next as it requires:
-ac5f8197d15c ("dt-bindings: pinctrl: convert Broadcom Northstar to the json-schema")
-08e9fdfbb224 ("dt-bindings: thermal: brcm,ns-thermal: Convert to the json-schema")
-AND merged git@github.com:Broadcom/stblinux.git devicetree/next as it requires:
-8f711f68cffd ("dt-bindings: clock: brcm, iproc-clocks: convert to the json-schema")
-
-This is reworked version of the
-[PATCH robh next] dt-bindings: bus: add Broadcom CRU
-https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210309142241.16259-1-zajec5@gmail.com/
----
- .../devicetree/bindings/mfd/brcm,cru.yaml     | 86 +++++++++++++++++++
- 1 file changed, 86 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mfd/brcm,cru.yaml
-
-diff --git a/Documentation/devicetree/bindings/mfd/brcm,cru.yaml b/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
-new file mode 100644
-index 000000000000..fc1317ab3226
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
-@@ -0,0 +1,86 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/brcm,cru.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom CRU
-+
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+
-+description: |
-+  Broadcom CRU ("Clock and Reset Unit" or "Central Resource Unit") is a hardware
-+  block grouping smaller blocks. On Broadcom Northstar platform it contains e.g.
-+  clocks, pinctrl, USB PHY and thermal.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - brcm,ns-cru
-+      - const: simple-mfd
-+
-+  reg:
-+    description: CRU registers
-+
-+  ranges: true
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+  pinctrl:
-+    $ref: ../pinctrl/brcm,ns-pinmux.yaml
-+
-+patternProperties:
-+  '^clock-controller@[a-f0-9]+$':
-+    $ref: ../clock/brcm,iproc-clocks.yaml
-+
-+  '^thermal@[a-f0-9]+$':
-+    $ref: ../thermal/brcm,ns-thermal.yaml
-+
-+additionalProperties: false
-+
-+required:
-+  - reg
-+
-+examples:
-+  - |
-+    cru-bus@1800c100 {
-+        compatible = "brcm,ns-cru", "simple-mfd";
-+        reg = <0x1800c100 0x1d0>;
-+        ranges;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        clock-controller@100 {
-+            #clock-cells = <1>;
-+            compatible = "brcm,nsp-lcpll0";
-+            reg = <0x100 0x14>;
-+            clocks = <&osc>;
-+            clock-output-names = "lcpll0", "pcie_phy", "sdio", "ddr_phy";
-+        };
-+
-+        clock-controller@140 {
-+            #clock-cells = <1>;
-+            compatible = "brcm,nsp-genpll";
-+            reg = <0x140 0x24>;
-+            clocks = <&osc>;
-+            clock-output-names = "genpll", "phy", "ethernetclk", "usbclk",
-+                                 "iprocfast", "sata1", "sata2";
-+        };
-+
-+        pinctrl {
-+            compatible = "brcm,bcm4708-pinmux";
-+            offset = <0x1c0>;
-+        };
-+
-+        thermal@2c0 {
-+            compatible = "brcm,ns-thermal";
-+            reg = <0x2c0 0x10>;
-+            #thermal-sensor-cells = <0>;
-+        };
-+    };
--- 
-2.26.2
-
