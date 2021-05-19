@@ -2,135 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91427389457
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 19:03:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3358D389449
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 19:02:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355471AbhESREz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 13:04:55 -0400
-Received: from gecko.sbs.de ([194.138.37.40]:40225 "EHLO gecko.sbs.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1355499AbhESREw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 May 2021 13:04:52 -0400
-X-Greylist: delayed 516 seconds by postgrey-1.27 at vger.kernel.org; Wed, 19 May 2021 13:04:51 EDT
-Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
-        by gecko.sbs.de (8.15.2/8.15.2) with ESMTPS id 14JGsgeg018415
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 19 May 2021 18:54:43 +0200
-Received: from [167.87.3.33] ([167.87.3.33])
-        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 14JGp03V024652;
-        Wed, 19 May 2021 18:51:00 +0200
-Subject: Re: [PATCH] arm64: dts: ti: k3-am65-iot2050-common: Disable mailbox
- nodes
-To:     Suman Anna <s-anna@ti.com>, Nishanth Menon <nm@ti.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20210514212016.3153-1-s-anna@ti.com>
-From:   Jan Kiszka <jan.kiszka@siemens.com>
-Message-ID: <a595cfc5-1338-b93b-c7fc-9dd7eeee9e2d@siemens.com>
-Date:   Wed, 19 May 2021 18:50:59 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
-MIME-Version: 1.0
-In-Reply-To: <20210514212016.3153-1-s-anna@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1355437AbhESRDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 13:03:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48584 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240979AbhESRDs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 13:03:48 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BBA2C061760
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 10:02:27 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id j14so13040464wrq.5
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 10:02:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=GbhOm1lXC1PstzpfY9MX2mKhRg7fjTmm4mMZicIr7gI=;
+        b=TdvzMycRkiHyUf6eIw0R9u4l2tciZ/wkB0+oFTWvaGpg12nfK0Z5fc8jXkRHkLb22n
+         /N985mQ4z+PkSXA0E0afppp/UVemowULrfQSclSCVhxjcI+cmremSIfcwEGU9jBYtG3y
+         FQv5Q3xMHOBUQCjhrVDfogbmxIoIwKBzuU79Hm6DkdeG8orRIGBr0VvxJl/Y11Z5X7u1
+         NTeGGjUmKEkMmoiv3NzLwolTqyPCD/slii2TdoAlY7bRt1WPmY24TeaKsJGQd9yQIZWF
+         CJN5/Fbvx/nAXVVnwtykSK//C03rx68CR9CNbf/sGPFBW2/rdmxfrOgyhwa5MR0i5yd/
+         9gQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=GbhOm1lXC1PstzpfY9MX2mKhRg7fjTmm4mMZicIr7gI=;
+        b=t5oqE5C01VFZ3dY/Cdbfc392rX75wfGR4j+9w5ZlqZQPEB51m28uA0hb6pLdPK4xJK
+         h2itB3sSobKwwUBk3ArKH9OwQCd93x3EK9E/4AI+/zAheDKx/5+snh8e1yvLlwPM6eIu
+         m/EiZNpJd9UUgPb9ejtNpv7Y0SPzw9dtteGzgET9sVvlql2g7vteR9RBJTHXkNj6feUT
+         mXvtxoqGjzJXcS6p8ndZvpHIDCYNJJphRElIPr3gI0hGzJHm4Vi1gFZdBzufVWzREGt2
+         pN9tUv+ZY8kA3sYPBzQWbusZrSn50iIJ7EG/3n1cmJYvGg9otCSUFIAuy4p9bYrT4HsL
+         kwqA==
+X-Gm-Message-State: AOAM530GwPw2idSs7//VAXvxPVgy5A8rMQFHBJOrlxNJJSpSN47TBFUZ
+        qX09K01GhOWVU2gmBuQCzz0tyQ==
+X-Google-Smtp-Source: ABdhPJxps07sVqyP2VIY5CpiZD68Qc4v7iu0Wf/ZrAS1/9xjae5+KT5YntS4cejJogbcsFnD4PP+Lw==
+X-Received: by 2002:adf:f14d:: with SMTP id y13mr15781747wro.261.1621443746098;
+        Wed, 19 May 2021 10:02:26 -0700 (PDT)
+Received: from lmecxl0524.home (2a01cb058b850800205e07f10870202e.ipv6.abo.wanadoo.fr. [2a01:cb05:8b85:800:205e:7f1:870:202e])
+        by smtp.gmail.com with ESMTPSA id q1sm6390561wmq.48.2021.05.19.10.02.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 May 2021 10:02:25 -0700 (PDT)
+From:   Etienne Carriere <etienne.carriere@linaro.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Etienne Carriere <etienne.carriere@linaro.org>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH 2/3] dt-bindings: arm: OP-TEE as transport channel for SCMI messages
+Date:   Wed, 19 May 2021 19:01:57 +0200
+Message-Id: <20210519170158.27586-2-etienne.carriere@linaro.org>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210519170158.27586-1-etienne.carriere@linaro.org>
+References: <20210519170158.27586-1-etienne.carriere@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14.05.21 23:20, Suman Anna wrote:
-> There are no sub-mailbox devices defined currently for both the
-> IOT2050 boards. These are usually dictated by the firmwares running
-> on the R5F remote processors and the applications they provide.
-> Defining the actual sub-mailboxes will also dictate the interrupts
-> the clusters will use for interrupts on the Cortex-A53 cores.
-> 
-> Disable all of the Mailbox clusters until the sub-mailboxes are
-> defined and used. This fixes the warnings around the missing
-> interrupts with the upcoming conversion of the OMAP Mailbox binding
-> to YAML format.
-> 
-> Signed-off-by: Suman Anna <s-anna@ti.com>
-> ---
-> Hi Nishanth,
-> 
-> I will be posting the conversion of the OMAP Mailbox binding to YAML
-> sometime next week to deal with the current dtbs_check warnings seen
-> with these nodes on all K3 SoCs. It is kinda of a chicken and egg
-> problem w.r.t when you want all warnings gone, and this is in
-> preparation towards that. It also follows anyway the expected style
-> for Mailbox unless you add the usable mailbox sub-device nodes and
-> the interrupts they use.
-> 
-> regards
-> Suman
-> 
->  .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> index de763ca9251c..f4ec9ed52939 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> @@ -653,3 +653,51 @@ &pcie1_rc {
->  &pcie1_ep {
->  	status = "disabled";
->  };
-> +
-> +&mailbox0_cluster0 {
-> +	status = "disabled";
-> +};
-> +
-> +&mailbox0_cluster1 {
-> +	status = "disabled";
-> +};
-> +
-> +&mailbox0_cluster2 {
-> +	status = "disabled";
-> +};
-> +
-> +&mailbox0_cluster3 {
-> +	status = "disabled";
-> +};
-> +
-> +&mailbox0_cluster4 {
-> +	status = "disabled";
-> +};
-> +
-> +&mailbox0_cluster5 {
-> +	status = "disabled";
-> +};
-> +
-> +&mailbox0_cluster6 {
-> +	status = "disabled";
-> +};
-> +
-> +&mailbox0_cluster7 {
-> +	status = "disabled";
-> +};
-> +
-> +&mailbox0_cluster8 {
-> +	status = "disabled";
-> +};
-> +
-> +&mailbox0_cluster9 {
-> +	status = "disabled";
-> +};
-> +
-> +&mailbox0_cluster10 {
-> +	status = "disabled";
-> +};
-> +
-> +&mailbox0_cluster11 {
-> +	status = "disabled";
-> +};
-> 
+Introduce compatible "linaro,scmi-optee" for SCMI transport channel
+based on an OP-TEE service invocation.
 
-Acked-by: Jan Kiszka <jan.kiszka@siemens.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
+---
+ Documentation/devicetree/bindings/arm/arm,scmi.txt | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-Thanks,
-Jan
-
+diff --git a/Documentation/devicetree/bindings/arm/arm,scmi.txt b/Documentation/devicetree/bindings/arm/arm,scmi.txt
+index 667d58e0a659..7658f16b3f35 100644
+--- a/Documentation/devicetree/bindings/arm/arm,scmi.txt
++++ b/Documentation/devicetree/bindings/arm/arm,scmi.txt
+@@ -14,10 +14,11 @@ Required properties:
+ 
+ The scmi node with the following properties shall be under the /firmware/ node.
+ 
+-- compatible : shall be "arm,scmi" or "arm,scmi-smc" for smc/hvc transports
+-- mboxes: List of phandle and mailbox channel specifiers. It should contain
+-	  exactly one or two mailboxes, one for transmitting messages("tx")
+-	  and another optional for receiving the notifications("rx") if
++- compatible : shall be "arm,scmi" or "arm,scmi-smc" for smc/hvc transports,
++	  or "linaro,scmi-optee" for OP-TEE transport.
++- mboxes: List of phandle and mailbox channel specifiers. When used, it should
++	  contain exactly one or two mailboxes, one for transmitting messages
++	  ("tx") and another optional for receiving the notifications("rx") if
+ 	  supported.
+ - shmem : List of phandle pointing to the shared memory(SHM) area as per
+ 	  generic mailbox client binding.
 -- 
-Siemens AG, T RDA IOT
-Corporate Competence Center Embedded Linux
+2.17.1
+
