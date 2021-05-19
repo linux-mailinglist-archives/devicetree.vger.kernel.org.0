@@ -2,212 +2,343 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D71173887DF
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 08:57:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01F45388817
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 09:23:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236154AbhESG7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 02:59:01 -0400
-Received: from mail-am6eur05on2050.outbound.protection.outlook.com ([40.107.22.50]:5632
-        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S233136AbhESG7B (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 May 2021 02:59:01 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SfsMtYtP12/BslW96ncTm2mz+TNOnfkchcRQ2+vXRklpAOV245kKbrjkB/LPD6AlWGcynpxLVPhNjlVtL9wM8o5yLcAR4eEEvinekFywpAe5htQv01ZhbXhnZlZigWDIX96ZbmavF5nlP0tGsA2zTYYh5gF342l5il5yJm/5IExytf8WwYH2283EBe4DGfxI3sCTeyou8kBOqSBAh9wafOF4j9gaPMMhuyFnr0xZiZjuwZbf4wGUUa7F0miJXkBUOMDbjVru7upIH7Bmt1cQCW7z3K2fCagZTcJPuvspozmNtgitWpDlDTilImM5hPbyKvIgYLgA4p5J2+wB0UxP6A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Uh/dsgrKgUmuWpW0Yp1lZifN4jsd59dU0Ak/wKEmWCA=;
- b=TltjW0YmkVGJoLQhCFYCNrmAD0sCtqg94fpN1hNZ9rTwNQvEFnWWY760R4UzwLJE5GPj1BgJbBv2gSkeLebyCvRjUYQlfr0SfJYDlhoIy7g+cJyc0Dwy1qh/eIdmkufMsTpHfI5r5185G6F0i0ppHoW2FS5Kc6b1inZKz0dwZhDN296JMjJyClfBQRy3enu/XW5HNbjOcObYCaqsJNVb6d9ZVLVXGYVHsfN5prR0/JzXbuLRl+TbKzRrRFFGNu3wDgaghx2xiXkEHPUJfn6KIr1rzbZItTcxMogn8jMf81PYyxR++ON0GbcUxuIPlMV/F4nk0W1y5QUbmRhBPBD/Tg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Uh/dsgrKgUmuWpW0Yp1lZifN4jsd59dU0Ak/wKEmWCA=;
- b=QW9fwzZCAwGeyTSEeodFo3bngydN4sSH9vYFHeipFHmTXEGxUBOqGOTi2s63zUUE7mnhffOGK0dRXc5qbIlZMgefBJIBWUAPZOVFyi467KhzF4quattt300+H+MeEYs/4Lw0oC1IpabMjJvEF2FBGMhHhpBzReG6Zl+x/uspeCY=
-Received: from AM5PR04MB3137.eurprd04.prod.outlook.com (2603:10a6:206:c::18)
- by AM7PR04MB7144.eurprd04.prod.outlook.com (2603:10a6:20b:11b::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.28; Wed, 19 May
- 2021 06:57:40 +0000
-Received: from AM5PR04MB3137.eurprd04.prod.outlook.com
- ([fe80::31a9:4de7:806f:93eb]) by AM5PR04MB3137.eurprd04.prod.outlook.com
- ([fe80::31a9:4de7:806f:93eb%5]) with mapi id 15.20.4129.032; Wed, 19 May 2021
- 06:57:40 +0000
-From:   Mirela Rabulea <mirela.rabulea@nxp.com>
-To:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "G.n. Zhou" <guoniu.zhou@nxp.com>
-CC:     dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "paul.kocialkowski@bootlin.com" <paul.kocialkowski@bootlin.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        Robert Chiras <robert.chiras@nxp.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        Peng Fan <peng.fan@nxp.com>,
-        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        "ezequiel@collabora.com" <ezequiel@collabora.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Subject: Re: [PATCH v11] arm64: dts: imx8qxp: Add jpeg encoder/decoder nodes
-Thread-Topic: [PATCH v11] arm64: dts: imx8qxp: Add jpeg encoder/decoder nodes
-Thread-Index: AQHXTHCCspdn7uu1Vkql7Vb4OqhcSKrqX6KA
-Date:   Wed, 19 May 2021 06:57:39 +0000
-Message-ID: <a51f5e8733638cf962afd170d50ca0b19ddfcc2c.camel@nxp.com>
-References: <20210519053323.27194-1-mirela.rabulea@oss.nxp.com>
-In-Reply-To: <20210519053323.27194-1-mirela.rabulea@oss.nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-authentication-results: lists.infradead.org; dkim=none (message not signed)
- header.d=none;lists.infradead.org; dmarc=none action=none
- header.from=nxp.com;
-x-originating-ip: [86.124.171.30]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 02d0c999-a26d-4332-ce9d-08d91a9364ae
-x-ms-traffictypediagnostic: AM7PR04MB7144:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM7PR04MB71447267560AB34201F5DA3E8F2B9@AM7PR04MB7144.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: slB/FMJvgz4Madv8yxkc77sfjKB5c+ritT9qXXspCxAyyMFXL/WX1CJo9Xp5HT8a59pW2cyOXxHpBycWxfr6t9JYrc/4qhouOLiZhL4fpOHfajX4KthmCZAHUkCs/n9sb+fi/QcUp0OmpSIdrwOTYr0+Jb6wU2+z3G327INcw1vNkp7T62M8yW59+V2jGLAmFkeLSNDls3zm5O+/CVGmfIwWTW7klgxC5ZfyCvl7rIA+nY2xM4C3IdPjDs+YcEwkxosbctJLJ8xBsL2LtIbKjZgWOHQ5Q/8mM78gX9uoxE9BucXLpb4YzU/yuETyIvi6QU2rml6X3k+uDfiHv967gogBOCMPIGQDx6D+HS91PjN7DZ/JoqwHtRDXQ3NFDcMqAqY0Fjuyf9LmgYRWWHDC8V5MYT8LOw5oQPqDiicTV/VM/GuPaksK9UNomE5Lt35EZLdLAHfOU8EHQlTCXNfE+LsoIFAUDkWCefEZ+nBHHlY5oWG67msqmAkCoszXHjUMzSakdD5p9kAcW4S8SKUipGelapsr0TTRTPo8Yv13qxjQEUh0tS2/IJLtXhM6Qdbz1soPwOH7tT+JLhgaUCzDQTzspSKb1wVp4ckIJqBAX7n0vBuNclnQV5hdKnhv7YS7RieoKrN2bVXbpog5q4IKQm54WAxtF3i5Uz6ycvTxGUI=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM5PR04MB3137.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(39860400002)(136003)(376002)(346002)(366004)(36756003)(66476007)(38100700002)(91956017)(83380400001)(76116006)(64756008)(66556008)(122000001)(66946007)(66446008)(5660300002)(316002)(110136005)(2616005)(4326008)(6506007)(478600001)(86362001)(8676002)(8936002)(44832011)(54906003)(26005)(186003)(7416002)(2906002)(6512007)(6636002)(71200400001)(6486002)(99106002)(32563001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?SkhHWTFiU3hNZHZ6NkJxekQ3OE1uQ1BkWFB6OVNPdW41TThUcXZkenovQkZq?=
- =?utf-8?B?YmQ5Y044cnRTQzJuWDlZUXYzRGVlcC91MUlmUEc5M0NsbE9CbW1KWjlPY0Iv?=
- =?utf-8?B?dHR1R2owZWI4clNEV1lKbTdvMGhvVzRMTmZaZVZTOXBscDBuYVJ5WlFvRW5I?=
- =?utf-8?B?UTFpWktjbld0RWcxL1l1Ri9uM3dkTW1pU0xmVkRhVHAxYlZhL0t4RUZiQjdz?=
- =?utf-8?B?alphUG9ZVVJ6Q05LKzQ5U1BUUmhxZ1AyNVdraDMwbzFBOFpwZlhVc1V1TTJL?=
- =?utf-8?B?Tk1tMGtsSjdnQnZ2UCtNUHpWTjZhRUpBMkVuL0lTOUhWS0hXOWpMMnQ4bE5O?=
- =?utf-8?B?R1RSOUlOWmtUZTgycmdZUkMvbm1USUJ0VTAzK0F1YXBFNUVjM1B0M01NTm9i?=
- =?utf-8?B?U0RTTmtiWi9sSDJTeUJGNWc2akpQZGc4elJ0d0dnUkNrK3ovRHNybllMcTRN?=
- =?utf-8?B?YzVRdkMyMlVWQm9VTDZ5dE5xOXpiSkFWQ0dDVGVrMEFRQ2w5dFBjdG5BZk9v?=
- =?utf-8?B?cFA3M241UVFQNzFNbWdteUxtTFEyZkkwOVBYcWhBYXFOMit5RnhUWkczM0lt?=
- =?utf-8?B?aXlCd1hnbWlmUmJ6NUhoR3ZNVzk2VEtvUExkV2JvU0FXaU5UMmpGRkovcVBs?=
- =?utf-8?B?cnc5UWRGRlI1VWRtM1FkS3Bya0tpZkxoVXYwQVZPVlNxM3N0dkk4K2NxQVho?=
- =?utf-8?B?ZmtNUWJGc0lZdERycG9kcVNucW81SktLWmNsVnpkNmY0N1hGbDg2d1JOaDVU?=
- =?utf-8?B?SkFzN2JNQXRLNUVSUk1lVGJjc2VRLzZNVEhFM24xaUl4YWQwSjE4R2U0eEdl?=
- =?utf-8?B?bUJ3ZlJIeFpOdzhWQWhpTE1TaHlqS09Yam1TZXA0Rk9QR0tWbEt3TkhvNS9G?=
- =?utf-8?B?WEZLS1dBK25VemhtZUpOREZ6dXZrU1RDWm1lKzkyOSs0eVplMlJ0VzM4N01u?=
- =?utf-8?B?TGkrdEdveGlUcmQ5d3ZFc0htOHdWMjFzdTkvVHNaa21jSFFib203SFIwWWJl?=
- =?utf-8?B?bEkzMHQ3Q05rbVpaYlJya3h0TGxPQWphTlRjY3g5dG1ySm5HdVdrSEZaZ1R2?=
- =?utf-8?B?MklIalg0ZlpWaG5TOHJ6eHNpRlhFOGh0NmxSSERxMG9La2UxejBiMTRFV1hL?=
- =?utf-8?B?TmsvMXBtc0pVSVJaU1BmbXRNeHQxQ0ZpZlREQVY4VDBMOUNySEpQcjZqZmhB?=
- =?utf-8?B?V2dMRXhNbEZQZmpjK01Ca0M4K1VQSDFWeVE2NmRWdHZKT1RKNVRNU3FSZmlz?=
- =?utf-8?B?N0NBUnZ3WlB1MlhMbmdEVk50REhEanhKb0QrTVphck5vTTZsSDhwbG8raTdk?=
- =?utf-8?B?ZC9LZUJONVNyV3ZreU5GRlhMUVpDZ0ZGdUxmL05VbGg1cmE0ZG9lendRb3Na?=
- =?utf-8?B?Y09iTEZOWkRFTHdzODVLZEIwRzZXeGRuUERCdUxlTjBqSTNET3NFWGxQWXRB?=
- =?utf-8?B?NVFhWTM0Q0NtYmZmZHRSQTZQbHpCRitMdXJMR3VhQzA3a0kwMVhFQlB0TU5y?=
- =?utf-8?B?TW9oZW94SzE0QmRycnVDdk1mT1crclZNZlZ0WmVHMkVyZGtEcGtTZHpibzZL?=
- =?utf-8?B?Y0VHWDlHQWhONHJrZVhPN0M5YnNyOHZFQ2RFaGxLcFZXTTVoaFd5WXBxR0tW?=
- =?utf-8?B?SURzOHE1WVp5R21uSWlIaUliMHFqTjdlUHdjZmVGMU1QYktNdTRIMERURkdO?=
- =?utf-8?B?b0p3SGZ1ZjFVemNLRnBuWGU2OHRBZ0pnZnJuOWRGWXpiejgveWlkdGRuamhS?=
- =?utf-8?Q?/NO4hDMoGSPhOhx+OH4l+u5vgpqaLLie/6xNthq?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <DC61BC90444179479DDFBC9096F7CED6@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S239964AbhESHX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 03:23:29 -0400
+Received: from mail.hoefle.co ([213.200.254.119]:39714 "EHLO hoefle.co"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240186AbhESHX3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 May 2021 03:23:29 -0400
+X-Greylist: delayed 453 seconds by postgrey-1.27 at vger.kernel.org; Wed, 19 May 2021 03:23:28 EDT
+Received: from [192.168.222.165] (unknown [213.200.254.119])
+        by hoefle.co (Postfix) with ESMTPSA id 574D48A222;
+        Wed, 19 May 2021 09:14:35 +0200 (CEST)
+Subject: Re: Documentation to the Xilinx PSGTR Phy device-tree not clear
+From:   Marco Hoefle <marco@hoefle.co>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Michal Simek <michal.simek@xilinx.com>
+Cc:     devicetree@vger.kernel.org, michael.roeder@avnet.eu
+References: <b54c4397-72a2-4b6e-e6a4-8c4dc6ef2814@hoefle.co>
+ <YGxq4QN7dN+flaDa@pendragon.ideasonboard.com>
+ <7890af82-0aa9-298f-fef6-b1e0e4f0fea4@hoefle.co>
+ <2538e59b-0e94-0162-77ac-63c8eb818cb1@hoefle.co>
+Message-ID: <f071d77f-cc51-fec1-f2b2-ec2069b21710@hoefle.co>
+Date:   Wed, 19 May 2021 09:14:35 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM5PR04MB3137.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 02d0c999-a26d-4332-ce9d-08d91a9364ae
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 May 2021 06:57:40.0158
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: rq23mOUfEWK1JMV9fM+J1idMOsiza5CoNycJbH92Ik07DQYE2iyuty7RveMDLWD+lRwQVBvQtq7+dnUa9VNezQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7144
+In-Reply-To: <2538e59b-0e94-0162-77ac-63c8eb818cb1@hoefle.co>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksDQpwbGVhc2UgaWdub3JlIHRoaXMsIEkgbWlzdGFrZW5seSBzZW50IGl0IGluc3RlYWQgb2Yg
-djEyLg0KDQpSZWdhcmRzLA0KTWlyZWxhDQoNCk9uIFdlZCwgMjAyMS0wNS0xOSBhdCAwODozMyAr
-MDMwMCwgTWlyZWxhIFJhYnVsZWEgKE9TUykgd3JvdGU6DQo+IEZyb206IE1pcmVsYSBSYWJ1bGVh
-IDxtaXJlbGEucmFidWxlYUBueHAuY29tPg0KPiANCj4gQWRkIGR0cyBmb3IgaW1hZ2luZyBzdWJz
-eXRlbSwgaW5jbHVkZSBqcGVnIG5vZGVzIGhlcmUuDQo+IFRlc3RlZCBvbiBpbXg4cXhwIG9ubHks
-IHNob3VsZCB3b3JrIG9uIGlteDhxbSwgYnV0IGl0IHdhcyBub3QgdGVzdGVkLg0KPiANCj4gU2ln
-bmVkLW9mZi1ieTogTWlyZWxhIFJhYnVsZWEgPG1pcmVsYS5yYWJ1bGVhQG54cC5jb20+DQo+IC0t
-LQ0KPiBDaGFuZ2VzIGluIHYxMToNCj4gICBBZHJlc3MgZmVlZGJhY2sgZnJvbSBBaXNoZW5nIERv
-bmc6DQo+ICAgLSBSZW5hbWUgaW1nX2pwZWdfZGVjX2Nsay9pbWdfanBlZ19lbmNfY2xrIHRvDQo+
-IGpwZWdfZGVjX2xwY2cvanBlZ19lbmNfbHBjZyB0byBtYWtlIGl0IHZpc2libGUgaXQncyBscGNn
-IG5vdCBvdGhlcg0KPiB0eXBlIG9mIGNsaw0KPiAgIC0gRHJvcCB0aGUgY2FtZXJhZGV2IG5vZGUs
-IG5vdCBuZWVkZWQgZm9yIGpwZWcNCj4gICAtIE1hdGNoIGFzc2lnbmVkLWNsb2NrcyAmIGFzc2ln
-bmVkLWNsb2NrLXJhdGVzDQo+IA0KPiAgLi4uL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4
-LXNzLWltZy5kdHNpIHwgODINCj4gKysrKysrKysrKysrKysrKysrKw0KPiAgYXJjaC9hcm02NC9i
-b290L2R0cy9mcmVlc2NhbGUvaW14OHF4cC5kdHNpICAgIHwgIDEgKw0KPiAgMiBmaWxlcyBjaGFu
-Z2VkLCA4MyBpbnNlcnRpb25zKCspDQo+ICBjcmVhdGUgbW9kZSAxMDA2NDQgYXJjaC9hcm02NC9i
-b290L2R0cy9mcmVlc2NhbGUvaW14OC1zcy1pbWcuZHRzaQ0KPiANCj4gZGlmZiAtLWdpdCBhL2Fy
-Y2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDgtc3MtaW1nLmR0c2kNCj4gYi9hcmNoL2Fy
-bTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4LXNzLWltZy5kdHNpDQo+IG5ldyBmaWxlIG1vZGUg
-MTAwNjQ0DQo+IGluZGV4IDAwMDAwMDAwMDAwMC4uYzUwOGU1ZDBjOTJiDQo+IC0tLSAvZGV2L251
-bGwNCj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OC1zcy1pbWcuZHRz
-aQ0KPiBAQCAtMCwwICsxLDgyIEBADQo+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BM
-LTIuMCsNCj4gKy8qDQo+ICsgKiBDb3B5cmlnaHQgMjAxOS0yMDIxIE5YUA0KPiArICogWmhvdSBH
-dW9uaXUgPGd1b25pdS56aG91QG54cC5jb20+DQo+ICsgKi8NCj4gK2ltZ19zdWJzeXM6IGJ1c0A1
-ODAwMDAwMCB7DQo+ICsJY29tcGF0aWJsZSA9ICJzaW1wbGUtYnVzIjsNCj4gKwkjYWRkcmVzcy1j
-ZWxscyA9IDwxPjsNCj4gKwkjc2l6ZS1jZWxscyA9IDwxPjsNCj4gKwlyYW5nZXMgPSA8MHg1ODAw
-MDAwMCAweDAgMHg1ODAwMDAwMCAweDEwMDAwMDA+Ow0KPiArDQo+ICsJaW1nX2lwZ19jbGs6IGNs
-b2NrLWltZy1pcGcgew0KPiArCQljb21wYXRpYmxlID0gImZpeGVkLWNsb2NrIjsNCj4gKwkJI2Ns
-b2NrLWNlbGxzID0gPDA+Ow0KPiArCQljbG9jay1mcmVxdWVuY3kgPSA8MjAwMDAwMDAwPjsNCj4g
-KwkJY2xvY2stb3V0cHV0LW5hbWVzID0gImltZ19pcGdfY2xrIjsNCj4gKwl9Ow0KPiArDQo+ICsJ
-aW1nX2pwZWdfZGVjX2xwY2c6IGNsb2NrLWNvbnRyb2xsZXJANTg1ZDAwMDAgew0KPiArCQljb21w
-YXRpYmxlID0gImZzbCxpbXg4cXhwLWxwY2ciOw0KPiArCQlyZWcgPSA8MHg1ODVkMDAwMCAweDEw
-MDAwPjsNCj4gKwkJI2Nsb2NrLWNlbGxzID0gPDE+Ow0KPiArCQljbG9ja3MgPSA8JmltZ19pcGdf
-Y2xrPiwgPCZpbWdfaXBnX2Nsaz47DQo+ICsJCWNsb2NrLWluZGljZXMgPSA8SU1YX0xQQ0dfQ0xL
-XzA+LA0KPiArCQkJCTxJTVhfTFBDR19DTEtfND47DQo+ICsJCWNsb2NrLW91dHB1dC1uYW1lcyA9
-ICJpbWdfanBlZ19kZWNfbHBjZ19jbGsiLA0KPiArCQkJCSAgICAgImltZ19qcGVnX2RlY19scGNn
-X2lwZ19jbGsiOw0KPiArCQlwb3dlci1kb21haW5zID0gPCZwZCBJTVhfU0NfUl9NSlBFR19ERUNf
-TVA+Ow0KPiArCX07DQo+ICsNCj4gKwlpbWdfanBlZ19lbmNfbHBjZzogY2xvY2stY29udHJvbGxl
-ckA1ODVmMDAwMCB7DQo+ICsJCWNvbXBhdGlibGUgPSAiZnNsLGlteDhxeHAtbHBjZyI7DQo+ICsJ
-CXJlZyA9IDwweDU4NWYwMDAwIDB4MTAwMDA+Ow0KPiArCQkjY2xvY2stY2VsbHMgPSA8MT47DQo+
-ICsJCWNsb2NrcyA9IDwmaW1nX2lwZ19jbGs+LCA8JmltZ19pcGdfY2xrPjsNCj4gKwkJY2xvY2st
-aW5kaWNlcyA9IDxJTVhfTFBDR19DTEtfMD4sDQo+ICsJCQkJPElNWF9MUENHX0NMS180PjsNCj4g
-KwkJY2xvY2stb3V0cHV0LW5hbWVzID0gImltZ19qcGVnX2VuY19scGNnX2NsayIsDQo+ICsJCQkJ
-ICAgICAiaW1nX2pwZWdfZW5jX2xwY2dfaXBnX2NsayI7DQo+ICsJCXBvd2VyLWRvbWFpbnMgPSA8
-JnBkIElNWF9TQ19SX01KUEVHX0VOQ19NUD47DQo+ICsJfTsNCj4gKw0KPiArCWpwZWdkZWM6IGpw
-ZWdkZWNANTg0MDAwMDAgew0KPiArCQljb21wYXRpYmxlID0gIm54cCxpbXg4cXhwLWpwZ2RlYyI7
-DQo+ICsJCXJlZyA9IDwweDU4NDAwMDAwIDB4MDAwNTAwMDAgPjsNCj4gKwkJaW50ZXJydXB0cyA9
-IDxHSUNfU1BJIDMwOSBJUlFfVFlQRV9MRVZFTF9ISUdIPiwNCj4gKwkJCSAgICAgPEdJQ19TUEkg
-MzEwIElSUV9UWVBFX0xFVkVMX0hJR0g+LA0KPiArCQkJICAgICA8R0lDX1NQSSAzMTEgSVJRX1RZ
-UEVfTEVWRUxfSElHSD4sDQo+ICsJCQkgICAgIDxHSUNfU1BJIDMxMiBJUlFfVFlQRV9MRVZFTF9I
-SUdIPjsNCj4gKwkJY2xvY2tzID0gPCZpbWdfanBlZ19kZWNfbHBjZyAwPiwNCj4gKwkJCSA8Jmlt
-Z19qcGVnX2RlY19scGNnIDE+Ow0KPiArCQljbG9jay1uYW1lcyA9ICJwZXIiLCAiaXBnIjsNCj4g
-KwkJYXNzaWduZWQtY2xvY2tzID0gPCZpbWdfanBlZ19kZWNfbHBjZyAwPiwNCj4gKwkJCQkgIDwm
-aW1nX2pwZWdfZGVjX2xwY2cgMT47DQo+ICsJCWFzc2lnbmVkLWNsb2NrLXJhdGVzID0gPDIwMDAw
-MDAwMD4sIDwyMDAwMDAwMDA+Ow0KPiArCQlwb3dlci1kb21haW5zID0gPCZwZCBJTVhfU0NfUl9N
-SlBFR19ERUNfTVA+LA0KPiArCQkJCTwmcGQgSU1YX1NDX1JfTUpQRUdfREVDX1MwPiwNCj4gKwkJ
-CQk8JnBkIElNWF9TQ19SX01KUEVHX0RFQ19TMT4sDQo+ICsJCQkJPCZwZCBJTVhfU0NfUl9NSlBF
-R19ERUNfUzI+LA0KPiArCQkJCTwmcGQgSU1YX1NDX1JfTUpQRUdfREVDX1MzPjsNCj4gKwl9Ow0K
-PiArDQo+ICsJanBlZ2VuYzoganBlZ2VuY0A1ODQ1MDAwMCB7DQo+ICsJCWNvbXBhdGlibGUgPSAi
-bnhwLGlteDhxeHAtanBnZW5jIjsNCj4gKwkJcmVnID0gPDB4NTg0NTAwMDAgMHgwMDA1MDAwMCA+
-Ow0KPiArCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMzA1IElSUV9UWVBFX0xFVkVMX0hJR0g+LA0K
-PiArCQkJICAgICA8R0lDX1NQSSAzMDYgSVJRX1RZUEVfTEVWRUxfSElHSD4sDQo+ICsJCQkgICAg
-IDxHSUNfU1BJIDMwNyBJUlFfVFlQRV9MRVZFTF9ISUdIPiwNCj4gKwkJCSAgICAgPEdJQ19TUEkg
-MzA4IElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0KPiArCQljbG9ja3MgPSA8JmltZ19qcGVnX2VuY19s
-cGNnIDA+LA0KPiArCQkJIDwmaW1nX2pwZWdfZW5jX2xwY2cgMT47DQo+ICsJCWNsb2NrLW5hbWVz
-ID0gInBlciIsICJpcGciOw0KPiArCQlhc3NpZ25lZC1jbG9ja3MgPSA8JmltZ19qcGVnX2VuY19s
-cGNnIDA+LA0KPiArCQkJCSAgPCZpbWdfanBlZ19lbmNfbHBjZyAxPjsNCj4gKwkJYXNzaWduZWQt
-Y2xvY2stcmF0ZXMgPSA8MjAwMDAwMDAwPiwgPDIwMDAwMDAwMD47DQo+ICsJCXBvd2VyLWRvbWFp
-bnMgPSA8JnBkIElNWF9TQ19SX01KUEVHX0VOQ19NUD4sDQo+ICsJCQkJPCZwZCBJTVhfU0NfUl9N
-SlBFR19FTkNfUzA+LA0KPiArCQkJCTwmcGQgSU1YX1NDX1JfTUpQRUdfRU5DX1MxPiwNCj4gKwkJ
-CQk8JnBkIElNWF9TQ19SX01KUEVHX0VOQ19TMj4sDQo+ICsJCQkJPCZwZCBJTVhfU0NfUl9NSlBF
-R19FTkNfUzM+Ow0KPiArCX07DQo+ICt9Ow0KPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290
-L2R0cy9mcmVlc2NhbGUvaW14OHF4cC5kdHNpDQo+IGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVl
-c2NhbGUvaW14OHF4cC5kdHNpDQo+IGluZGV4IDFlNmI0OTk1MDkxZS4uMmQ5NTg5MzA5YmQwIDEw
-MDY0NA0KPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4cXhwLmR0c2kN
-Cj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OHF4cC5kdHNpDQo+IEBA
-IC0yNTgsNiArMjU4LDcgQEANCj4gIAl9Ow0KPiAgDQo+ICAJLyogc29ydGVkIGluIHJlZ2lzdGVy
-IGFkZHJlc3MgKi8NCj4gKwkjaW5jbHVkZSAiaW14OC1zcy1pbWcuZHRzaSINCj4gIAkjaW5jbHVk
-ZSAiaW14OC1zcy1hZG1hLmR0c2kiDQo+ICAJI2luY2x1ZGUgImlteDgtc3MtY29ubi5kdHNpIg0K
-PiAgCSNpbmNsdWRlICJpbXg4LXNzLWRkci5kdHNpIg0K
+Hi Laurent & Michal,
+
+I tried to get the PSGTR working on the Ultra96V2 and on the Xilinx 
+ZCU106 Eval Kit.
+
+Unfortunately without success. I believe that the driver cannot be used 
+with either USB3 nor DisplayPort.
+
+The closest I got was:
+
+     1.960568] zynqmp-dpsub fd4a0000.zynqmp-display: failed to get PHY 
+lane 0
+[    1.967565] zynqmp-dpsub: probe of fd4a0000.zynqmp-display failed 
+with error -22
+[    1.978104] xilinx-psgtr fd400000.phy: lane 3 (type 1, protocol 3): 
+PLL lock timeout
+[    1.985847] phy phy-fd400000.phy.3: phy poweron failed --> -110
+[    1.991771] dwc3 fe300000.dwc3: failed to initialize core: -110
+[    1.997742] dwc3: probe of fe300000.dwc3 failed with error -110
+
+I would be surprised if 5.10.x kernel sources can be used without a 
+patch with any of the two subsystems DP / USB3.
+
+For us it means we have to wait until Xilinx releases the next vendor 
+specific linux kernel.
+
+Regards
+
+Marco
+
+
+
+
+
+
+
+On 07.04.21 18:20, Marco Hoefle wrote:
+> Hi Laurent,
+>
+> was the mainline PSGTR driver tested on Hardware? The reason why I am 
+> asking is that no example can be found on any of the Xilinx boards:
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/xilinx 
+>
+>
+> By the way, the test I am doing is for the successor of the
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dts 
+>
+>
+> so the Ultra96 v2.
+>
+> The aim would be to get USB3 and Display Port as well as the free LIMA 
+> driver to work using mainline sources only.
+>
+> Once it works I am happy to write a patch for the mainline dts examples.
+>
+>
+> I am right now stuck at the reference clock node:
+>
+> #include <dt-bindings/clock/xlnx-zynqmp-clk.h>
+> / {
+>     usb0_refclk: usb0_clk {
+>         compatible = "fixed-clock";
+>         #clock-cells = <0>;
+>         clock-frequency = <26000000>;
+>     };
+>     usb1_refclk: usb1_clk {
+>         compatible = "fixed-clock";
+>         #clock-cells = <0>;
+>         clock-frequency = <26000000>;
+>     };
+>     dp_refclk: video_clk {
+>         compatible = "fixed-clock";
+>         #clock-cells = <0>;
+>         clock-frequency = <27000000>;
+>     };
+> };
+>
+>
+> &amba {
+>     /delete-node/zynqmp_phy@fd400000;
+>     psgtr: phy@fd400000 {
+>         compatible = "xlnx,zynqmp-psgtr-v1.1";
+>         status = "okay";
+>         reg = <0x0 0xfd400000 0x0 0x40000>,
+>               <0x0 0xfd3d0000 0x0 0x1000>;
+>         reg-names = "serdes", "siou";
+>         clocks = <&usb0_refclk 0>, <&usb1_refclk 0>, <&dp_refclk 0>;
+>         clock-names = "ref1", "ref2", "ref3";
+>         #phy-cells = <4>;
+>     };
+> };
+>
+>
+>
+> &usb0 {
+>     status = "okay";
+> };
+>
+>
+> &dwc3_0 {
+>     status = "okay";
+>     dr_mode = "peripheral";
+>     phy-names = "usb3-phy";
+> /*    phys = <&lane2 4 0 0 26000000>; */ /* This is how it works on 
+> the Xilinx 5.4 Kernel */
+>     phys = <&psgtr 2 PHY_TYPE_USB3 0 0>; /* arg0 -> lane number, arg1 
+> -> PHY type (PHY_TYPE_USB3), arg2 -> Phy instance, arg3 -> refclock 
+> number */
+>     maximum-speed = "super-speed";
+> };
+>
+>
+>
+>
+>
+> This results in (added some kprintfs):
+>
+> [    1.973314] xilinx-psgtr fd400000.phy: Here: 780, args->args[0] = 2
+> [    1.979584] xilinx-psgtr fd400000.phy: Here: 780, args->args[1] = 4
+> [    1.985853] xilinx-psgtr fd400000.phy: Here: 780, args->args[2] = 0
+> [    1.992121] xilinx-psgtr fd400000.phy: Here: 780, args->args[3] = 0
+> [    1.998382] xilinx-psgtr fd400000.phy: HERE:784, lane number 2
+> [    2.004208] xilinx-psgtr fd400000.phy: HERE: 792, phy_type 4
+> [    2.009859] xilinx-psgtr fd400000.phy: HERE: 802, ref clock number 0
+> [    2.016203] xilinx-psgtr fd400000.phy: Invalid reference clock 
+> number 0
+> [    2.022864] Unable to handle kernel NULL pointer dereference at 
+> virtual address 0000000000000004
+> [    2.031646] Mem abort info:
+> [    2.034423]   ESR = 0x96000005
+> [    2.037467]   EC = 0x25: DABT (current EL), IL = 32 bits
+> [    2.042771]   SET = 0, FnV = 0
+> [    2.045816]   EA = 0, S1PTW = 0
+> [    2.048949] Data abort info:
+> [    2.051823]   ISV = 0, ISS = 0x00000005
+> [    2.055650]   CM = 0, WnR = 0
+> [    2.058606] [0000000000000004] user address but active_mm is swapper
+> [    2.064952] Internal error: Oops: 96000005 [#1] SMP
+> [    2.069812] Modules linked in:
+> [    2.072864] CPU: 1 PID: 30 Comm: kworker/1:1 Not tainted 
+> 5.10.26-xilinx-v2020.1-dirty #19
+> [    2.081026] Hardware name: Avnet-Silica Ultra96 Rev2 Marco 
+> 2021-03-30 (DT)
+> [    2.087899] Workqueue: events deferred_probe_work_func
+> [    2.093025] pstate: 60000005 (nZCv daif -PAN -UAO -TCO BTYPE=--)
+> [    2.099026] pc : xpsgtr_phy_init+0x288/0x6d0
+> [    2.103283] lr : xpsgtr_phy_init+0x24/0x6d0
+> [    2.107448] sp : ffffffc010f7b6b0
+> [    2.110746] x29: ffffffc010f7b6b0 x28: ffffff8001586f00
+> [    2.116049] x27: 0000000000000001 x26: ffffff8001697010
+> [    2.121353] x25: 0000000000000000 x24: 0000000000000000
+> [    2.126656] x23: ffffffc011300200 x22: ffffff8001c1e280
+> [    2.131960] x21: ffffff8001c1e298 x20: ffffff8001c1e280
+> [    2.137263] x19: ffffff8001c1e2f8 x18: 0000000000000000
+> [    2.142567] x17: 0000000000000000 x16: 0000000000000000
+> [    2.147871] x15: ffffff8001713530 x14: ffffffffffffffff
+> [    2.153174] x13: ffffff80023eea1c x12: 0000000000000038
+> [    2.158477] x11: 0101010101010101 x10: 0000000000002094
+> [    2.163781] x9 : ff312d78676f2d2f x8 : 7f7f7f7f7f7f7f7f
+> [    2.169084] x7 : 2f2f2f2f3363652c x6 : 0000000000000080
+> [    2.174388] x5 : ffffff8001c1e280 x4 : 0000000000000000
+> [    2.179691] x3 : 0000000000000000 x2 : 0000000000010008
+> [    2.184995] x1 : ffffffc011190008 x0 : ffffff8001c1e280
+> [    2.190299] Call trace:
+> [    2.192731]  xpsgtr_phy_init+0x288/0x6d0
+> [    2.196645]  phy_init+0x6c/0xc8
+>
+> Any Idea what I am doing wrong?
+>
+> Thanks
+>
+> Marco
+>
+>
+>
+> On 06.04.21 19:24, Marco Hoefle wrote:
+>> Hello Laurent,
+>>
+>> thanks for your quick reply.
+>>
+>> On 06.04.21 16:06, Laurent Pinchart wrote:
+>>> Hi Marco,
+>>>
+>>> On Tue, Apr 06, 2021 at 03:54:06PM +0200, Marco Hoefle wrote:
+>>>> Hi,
+>>>>
+>>>> we try to port the mainline Kernel to a Xilinx board.
+>>>>
+>>>> The default peripherals do work. The blocking point now is the zynqmp
+>>>> psgtr driver.
+>>>>
+>>>> The mainline documentation can be found here:
+>>>>
+>>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml 
+>>>>
+>>>>
+>>>> It is lacking a complete example on how to wire up a peripheral phy 
+>>>> with
+>>>> the PS GTR driver.
+>>>>
+>>>>
+>>>> The one in the Xilinx tree for Kernel 5.4 contains an example which is
+>>>> missing in the mainline documentation in my opinion:
+>>>>
+>>>> https://github.com/Xilinx/linux-xlnx/blob/4ecd768dea75a0cc0bea91069a570981aa700744/Documentation/devicetree/bindings/phy/phy-zynqmp.txt 
+>>>>
+>>>>
+>>>>
+>>>> It seems the PHY handle mechanism has changed and the "old" Xilinx way
+>>>> doesn't work anymore.
+>>>>
+>>>> This was the previous way to "marry" the PS GTR driver with the USB 3
+>>>> driver:
+>>>>
+>>>>          serdes: zynqmp_phy@fd400000 {
+>>>>               compatible = "xlnx,zynqmp-psgtr-v1.1";
+>>>>               status = "disabled";
+>>>>               reg = <0x0 0xfd400000 0x0 0x40000>,
+>>>>                     <0x0 0xfd3d0000 0x0 0x1000>;
+>>>>               reg-names = "serdes", "siou";
+>>>>               nvmem-cells = <&soc_revision>;
+>>>>               nvmem-cell-names = "soc_revision";
+>>>>               resets = <&zynqmp_reset ZYNQMP_RESET_SATA>, 
+>>>> <&zynqmp_reset ZYNQMP_RESET_USB0_CORERESET>,
+>>>>                    <&zynqmp_reset ZYNQMP_RESET_USB1_CORERESET>, 
+>>>> <&zynqmp_reset ZYNQMP_RESET_USB0_HIBERRESET>,
+>>>>                    <&zynqmp_reset ZYNQMP_RESET_USB1_HIBERRESET>, 
+>>>> <&zynqmp_reset ZYNQMP_RESET_USB0_APB>,
+>>>>                    <&zynqmp_reset ZYNQMP_RESET_USB1_APB>, 
+>>>> <&zynqmp_reset ZYNQMP_RESET_DP>,
+>>>>                    <&zynqmp_reset ZYNQMP_RESET_GEM0>, 
+>>>> <&zynqmp_reset ZYNQMP_RESET_GEM1>,
+>>>>                    <&zynqmp_reset ZYNQMP_RESET_GEM2>, 
+>>>> <&zynqmp_reset ZYNQMP_RESET_GEM3>;
+>>>>               reset-names = "sata_rst", "usb0_crst", "usb1_crst",
+>>>>                         "usb0_hibrst", "usb1_hibrst", "usb0_apbrst",
+>>>>                         "usb1_apbrst", "dp_rst", "gem0_rst",
+>>>>                         "gem1_rst", "gem2_rst", "gem3_rst";
+>>>>               lane0: lane0 {
+>>>>                   #phy-cells = <4>;
+>>>>               };
+>>>>               lane1: lane1 {
+>>>>                   #phy-cells = <4>;
+>>>>               };
+>>>>               lane2: lane2 {
+>>>>                   #phy-cells = <4>;
+>>>>               };
+>>>>               lane3: lane3 {
+>>>>                   #phy-cells = <4>;
+>>>>               };
+>>> The nvmem and reset properties, as well as the lane sub-nodes, are not
+>>> needed with the mainline driver.
+>> Ok, thanks for the hints.
+>>>>           };
+>>>>
+>>>>
+>>>> &dwc3_0 {
+>>>>       status = "okay";
+>>>>       dr_mode = "peripheral";
+>>>>       phy-names = "usb3-phy";
+>>>>       phys = <&lane2 4 0 0 26000000>;
+>>>>       maximum-speed = "super-speed";
+>>>> };
+>>> A PHY consumer example is indeed missing, but doesn't this belong to 
+>>> the
+>>> consumer DT bindings instead ?
+>>>
+>> I agree. However, I think the Xilinx driver needs to be handled 
+>> differently. I looked for example at the Rockchip device tree using 
+>> the same USB 3.0 driver (dwc3-of-simple) as Xilinx:
+>>
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/rockchip/rk3399.dtsi 
+>>
+>>
+>> I believe that some device tree nodes need to be added when using the 
+>> PSGTR driver and the DWC3 driver.
+>>
+>> Looking at 
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/phy/xilinx/phy-zynqmp.c#n756 
+>> :
+>>
+>> Lane number, PHY type and Reference Clock needs to be supplied somehow.
+>>
+>> Previously this was done that way:
+>>
+>> phys = <&lane2 4 0 0 26000000>;
+>>
+>> Now this are not numbers anymore but references I believe.
+>>
+>>
+>> BR
+>>
+>> Marco
+>>
+>>
+-- 
+______________________
+
+Marco Höfle
+Kappelen 11
+CH-⁠5706 Boniswil
+Tel.: +41 78 790 93 62
+
