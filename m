@@ -2,104 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DAFD4389359
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 18:13:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 940F6389361
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 18:13:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355061AbhESQOT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 12:14:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55404 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241563AbhESQON (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 May 2021 12:14:13 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 94A756124C;
-        Wed, 19 May 2021 16:12:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621440773;
-        bh=8fQfEqfjHd5ROSfi7Ib1dYC3Bl8NkSkPnnM0Z3H+Q9c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sWsCgfdChN1RgmC/16u9YCH70nrcWUYnNuTKVwncmZ8kmNP4tUhKXygVugSa+goX6
-         UzDtv5/IwlGtnMvpIK6ZlzfnkoIDfr5k6vmp38drb9Nx2FL9ILnEWE+dbgFcdHAoVd
-         TYvzZP3td1oeh9LWG78niMOoFVdifnBl4xg0fe0oZebIvKdU7ZbADPEWENeayB6T/M
-         0IGcxIGNqAx4pBfXHGGn6QMa5opskkJZwU764muaTTfsx/8HJUOGBxAozBF5pTQ1Wp
-         9CGzN+396KN1AupmwLqnW1G+982PnU/1mAeucGMGCuPZHhMFehJbf/cw6n6RBvWu6i
-         QA6Yxq1yHg7Dw==
-Date:   Wed, 19 May 2021 17:12:07 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Sander Vanheule <sander@svanheule.net>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/7] regmap: Add MDIO bus support
-Message-ID: <20210519161207.GF4224@sirena.org.uk>
-References: <cover.1621279162.git.sander@svanheule.net>
- <63b99a2fec2c4ea3c461d59d451af8d675ecf312.1621279162.git.sander@svanheule.net>
+        id S1354579AbhESQOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 12:14:43 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:35915 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1354944AbhESQOe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 12:14:34 -0400
+Received: from mail-qt1-f199.google.com ([209.85.160.199])
+        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1ljOos-0008P8-09
+        for devicetree@vger.kernel.org; Wed, 19 May 2021 16:13:14 +0000
+Received: by mail-qt1-f199.google.com with SMTP id z9-20020a05622a0609b02901f30a4fcf9bso6166087qta.4
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 09:13:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=eS+z7fWf9ik7UiPFy0EbImNsC/jTSa8AjK2vvxy5tQE=;
+        b=BqutA10Vr4Bw+yPDWfD5fkIhmywKQFyuP3VciLDWLLxO/gHao3x0Va1E9Zbjif6fxG
+         5GifZUjYv5yjzQU35iR1IY8FP8dI/vYyOdErcjm1ebPBxXWlNggBpDV3i4XMATCBMaGl
+         6nrm1XYlCBsAlkxB5TpLDPxZzOSGE4ADK2U0ROjyNJ+LHbnst1gWHnJWWyoC12V2onAT
+         giQolLQeSIPCt4FUgiHLVTIzRF6C+D8PIu8Nk0xJZBjQTVYYXeicInf1xb6hcItA/1CD
+         EGVfM6DGrlgHvPlz1PT0goQhxflVHQAKoP0PX3oCHYFgBGQ/LaK+ZwnjKknNYmLjK17e
+         ZRPw==
+X-Gm-Message-State: AOAM5318k0USjHJ9OvJabUcwc5JytWQ2bFLMzW9DTyoG/rzSfO6MRKVJ
+        Ci4+YnZaWW/CeAkeqlEymz7wETCyi/dSgY4J+VMljakG2CNzs+IEpP/jOqjJBeTlKC7ivbc0ogj
+        D3+tF2nAxoQ4xQS/Buc3ENlDXDrgwKctvXe0yw0w=
+X-Received: by 2002:a05:620a:13a6:: with SMTP id m6mr77877qki.370.1621440793085;
+        Wed, 19 May 2021 09:13:13 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzUghUkKBDIuGvqx1Nu07luWzepugYJj1I5VtklAhOR9KibnL6Cutz0I3Szhxs1G5QJhQj6OA==
+X-Received: by 2002:a05:620a:13a6:: with SMTP id m6mr77852qki.370.1621440792900;
+        Wed, 19 May 2021 09:13:12 -0700 (PDT)
+Received: from [192.168.1.4] ([45.237.48.3])
+        by smtp.gmail.com with ESMTPSA id f1sm83218qkl.93.2021.05.19.09.13.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 May 2021 09:13:12 -0700 (PDT)
+Subject: Re: [linux-nfc] [PATCH v2 2/2] nfc: s3fwrn5: i2c: Enable optional
+ clock from device tree
+To:     Stephan Gerhold <stephan@gerhold.net>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-nfc@lists.01.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Bongsu Jeon <bongsu.jeon@samsung.com>,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20210519091613.7343-1-stephan@gerhold.net>
+ <20210519091613.7343-2-stephan@gerhold.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <86461091-617b-62ec-a9e5-2aec337d69ce@canonical.com>
+Date:   Wed, 19 May 2021 12:13:05 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fwqqG+mf3f7vyBCB"
-Content-Disposition: inline
-In-Reply-To: <63b99a2fec2c4ea3c461d59d451af8d675ecf312.1621279162.git.sander@svanheule.net>
-X-Cookie: There's no time like the pleasant.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210519091613.7343-2-stephan@gerhold.net>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 19/05/2021 05:16, Stephan Gerhold wrote:
+> S3FWRN5 depends on a clock input ("XI" pin) to function properly.
+> Depending on the hardware configuration this could be an always-on
+> oscillator or some external clock that must be explicitly enabled.
+> 
+> So far we assumed that the clock is always-on.
+> Make the driver request an (optional) clock from the device tree
+> and make sure the clock is running before starting S3FWRN5.
+> 
+> Note: S3FWRN5 asserts "GPIO2" whenever it needs the clock input to
+> function correctly. On some hardware configurations, GPIO2 is
+> connected directly to an input pin of the external clock provider
+> (e.g. the main PMIC of the SoC). In that case, it can automatically
+> AND the clock enable bit and clock request from S3FWRN5 so that
+> the clock is actually only enabled when needed.
+> 
+> It is also conceivable that on some other hardware configuration
+> S3FWRN5's GPIO2 might be connected as a regular GPIO input
+> of the SoC. In that case, follow-up patches could extend the
+> driver to request the GPIO, set up an interrupt and only enable
+> the clock when requested by S3FWRN5.
+> 
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> ---
+> This allows NFC to work properly on the Samsung Galaxy A3/A5 (2015).
+> 
+> Changes in v2: Rewrite commit message and comment based on discussion
+> 
+>   Note: I tried to explain the setup a bit better but dropped most of
+>         the explanations about the exact configuration on the Samsung
+>         Galaxy A5. I think the HW-specific details were more confusing
+>         than helping. :)
+> 
+> v1: https://lore.kernel.org/netdev/20210518133935.571298-2-stephan@gerhold.net/
+> ---
+>  drivers/nfc/s3fwrn5/i2c.c | 30 ++++++++++++++++++++++++++++--
+>  1 file changed, 28 insertions(+), 2 deletions(-)
+> 
 
---fwqqG+mf3f7vyBCB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-On Mon, May 17, 2021 at 09:28:03PM +0200, Sander Vanheule wrote:
-> Basic support for MDIO bus access. Support only includes clause-22
-> register access, with 5-bit addresses, and 16-bit wide registers.
-
-The following changes since commit 6efb943b8616ec53a5e444193dccf1af9ad627b5:
-
-  Linux 5.13-rc1 (2021-05-09 14:17:44 -0700)
-
-are available in the Git repository at:
-
-  https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regmap.git tags/regmap-mdio
-
-for you to fetch changes up to 1f89d2fe16072a74b34bdb895160910091427891:
-
-  regmap: Add MDIO bus support (2021-05-19 14:19:10 +0100)
-
-----------------------------------------------------------------
-regmap: Add MDIO bus support
-
-----------------------------------------------------------------
-Sander Vanheule (1):
-      regmap: Add MDIO bus support
-
- drivers/base/regmap/Kconfig       |  6 ++++-
- drivers/base/regmap/Makefile      |  1 +
- drivers/base/regmap/regmap-mdio.c | 57 +++++++++++++++++++++++++++++++++++++++
- include/linux/regmap.h            | 36 +++++++++++++++++++++++++
- 4 files changed, 99 insertions(+), 1 deletion(-)
- create mode 100644 drivers/base/regmap/regmap-mdio.c
-
---fwqqG+mf3f7vyBCB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmClONYACgkQJNaLcl1U
-h9DEyAgAhLtOW2RwtejyDmNG0G2NxCwbumYlKtwRJ4USHi4YE890YMR1SJEkB/qa
-48NRiLSHSw0dF9RV5hbywYtsu5OJBNSLDQqQwKCRxPJiWqcJ5YDVewmuoslp8tmb
-ymwAjo4KYw1u6o49jbrIQVysanOTRborGn55KgPzynnZnsjfCIG1CdBHr9VdrJ57
-25K2R787VjniFzaN91llWsAYlXoHa+5EwwxJzThg/KJGuaLhCnFS+4eB35UkfQcr
-vMpFNF6jhqV6JX5nx0InhREUFmzo3l7yxfkWOADIXAj03HhZ7xKrbVG/pDtaNwvK
-uwSsLGcenwVz8XBzPRUwbGMrsW/h8g==
-=gp6K
------END PGP SIGNATURE-----
-
---fwqqG+mf3f7vyBCB--
+Best regards,
+Krzysztof
