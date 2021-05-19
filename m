@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80A7438894E
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 10:24:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AE7438895E
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 10:27:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237155AbhESIZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 04:25:20 -0400
-Received: from www.linuxtv.org ([130.149.80.248]:37952 "EHLO www.linuxtv.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233139AbhESIZU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 May 2021 04:25:20 -0400
-Received: from mchehab by www.linuxtv.org with local (Exim 4.92)
-        (envelope-from <mchehab@linuxtv.org>)
-        id 1ljH1q-00AYzK-Kq; Wed, 19 May 2021 07:54:06 +0000
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Date:   Wed, 19 May 2021 07:51:40 +0000
-Subject: [git:media_stage/master] media: ARM: dts: sama5d4: enable Hantro G1 VDEC
-To:     linuxtv-commits@linuxtv.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Emil Velikov <emil.velikov@collabora.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org
-Mail-followup-to: linux-media@vger.kernel.org
-Forward-to: linux-media@vger.kernel.org
-Reply-to: linux-media@vger.kernel.org
-Message-Id: <E1ljH1q-00AYzK-Kq@www.linuxtv.org>
+        id S245036AbhESI2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 04:28:52 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:46532 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244827AbhESI2u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 04:28:50 -0400
+Received: from twspam01.aspeedtech.com (localhost [127.0.0.2] (may be forged))
+        by twspam01.aspeedtech.com with ESMTP id 14J7tLBS034026;
+        Wed, 19 May 2021 15:55:21 +0800 (GMT-8)
+        (envelope-from jamin_lin@aspeedtech.com)
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 14J7q2pj033695;
+        Wed, 19 May 2021 15:52:02 +0800 (GMT-8)
+        (envelope-from jamin_lin@aspeedtech.com)
+Received: from localhost.localdomain (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 19 May
+ 2021 16:04:38 +0800
+From:   Jamin Lin <jamin_lin@aspeedtech.com>
+To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        "Andrew Jeffery" <andrew@aj.id.au>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Rayn Chen <rayn_chen@aspeedtech.com>,
+        "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/ASPEED I2C DRIVER" <openbmc@lists.ozlabs.org>
+CC:     <ryan_chen@aspeedtech.com>, <chiawei_wang@aspeedtech.com>,
+        <troy_lee@aspeedtech.com>, <steven_lee@aspeedtech.com>,
+        <jamin_lin@aspeedtech.com>
+Subject: [PATCH 0/3] i2c: aspeed: avoid new registers definition of AST2600
+Date:   Wed, 19 May 2021 16:04:26 +0800
+Message-ID: <20210519080436.18975-1-jamin_lin@aspeedtech.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 14J7q2pj033695
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an automatic generated email to let you know that the following patch were queued:
+Jamin Lin (3):
+  i2c: aspeed: avoid new registers definition of AST2600
+  ARM: dts: aspeed: Add node for AST2600 I2C
+  dt-bindings: aspeed-i2c: Convert txt to yaml format
 
-Subject: media: ARM: dts: sama5d4: enable Hantro G1 VDEC
-Author:  Emil Velikov <emil.velikov@collabora.com>
-Date:    Thu Apr 1 16:43:36 2021 +0200
+ .../devicetree/bindings/i2c/aspeed,i2c.yaml   | 89 +++++++++++++++++++
+ .../devicetree/bindings/i2c/i2c-aspeed.txt    | 49 ----------
+ arch/arm/boot/dts/aspeed-g6.dtsi              |  8 ++
+ drivers/i2c/busses/i2c-aspeed.c               | 22 +++++
+ 4 files changed, 119 insertions(+), 49 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
 
-Add the SAMA5D4 VDEC module which comprises Hantro G1 video decoder
-core.
+-- 
+2.17.1
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>
-Cc: devicetree@vger.kernel.org
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-Signed-off-by: Emil Velikov <emil.velikov@collabora.com>
-Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-
- arch/arm/boot/dts/sama5d4.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
-
----
-
-diff --git a/arch/arm/boot/dts/sama5d4.dtsi b/arch/arm/boot/dts/sama5d4.dtsi
-index 05c55875835d..e47e1ca63043 100644
---- a/arch/arm/boot/dts/sama5d4.dtsi
-+++ b/arch/arm/boot/dts/sama5d4.dtsi
-@@ -101,6 +101,13 @@
- 			ranges = <0 0x100000 0x2400>;
- 		};
- 
-+		vdec0: vdec@300000 {
-+			compatible = "microchip,sama5d4-vdec";
-+			reg = <0x00300000 0x100000>;
-+			interrupts = <19 IRQ_TYPE_LEVEL_HIGH 4>;
-+			clocks = <&pmc PMC_TYPE_PERIPHERAL 19>;
-+		};
-+
- 		usb0: gadget@400000 {
- 			compatible = "atmel,sama5d3-udc";
- 			reg = <0x00400000 0x100000
