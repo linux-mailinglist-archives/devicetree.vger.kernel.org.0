@@ -2,86 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64504388CB1
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 13:23:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A098388D09
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 13:38:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350362AbhESLY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 07:24:59 -0400
-Received: from foss.arm.com ([217.140.110.172]:60902 "EHLO foss.arm.com"
+        id S239861AbhESLkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 07:40:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57436 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1350438AbhESLYv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 May 2021 07:24:51 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4BFB4101E;
-        Wed, 19 May 2021 04:23:30 -0700 (PDT)
-Received: from bogus (unknown [10.57.72.88])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5A0133F719;
-        Wed, 19 May 2021 04:23:28 -0700 (PDT)
-Date:   Wed, 19 May 2021 12:23:18 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Rob Herring <robh@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, Sudeep Holla <sudeep.holla@arm.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Hector Yuan <hector.yuan@mediatek.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: Re: [PATCH v4] dt-bindings: dvfs: Add support for generic
- performance domains
-Message-ID: <20210519112308.umxriuv75onuwvmc@bogus>
-References: <20210517155458.1016707-1-sudeep.holla@arm.com>
- <CAL_JsqK6B40D8dRu8KoOsx6eSzRXx6KsSEu5mjDokPEAy+p4oA@mail.gmail.com>
+        id S238729AbhESLkK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 May 2021 07:40:10 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 262B16135C;
+        Wed, 19 May 2021 11:38:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1621424330;
+        bh=k/Cg9sewf2pkY+aL3nTGRGRyuIzL36As8fq/44gs3p8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qzPdydjcUfeOykNZheQQnJDPKkW9Qxg/no1An7urX76zfKoL3hh9DRo2y1vbZZSQm
+         fqzsWtma40gSFTfnmxz8alZimnwP9kN9+RYVZIgnI25s2sF6wDJLmmBYPTJ+a59ELN
+         +xVpqCC7jGvHwnanB4ARmxQ2Vq5ulKbYOWs6AkL9kKCH03tsU1gpfufCH9KsJVerEi
+         uQ2XURB+CYswSjqZi8l13+nFykbL9i43jgwwzXFuZ8dcg5Ff9krVSGO/e7bONpvgco
+         335RXegYI0aKV8LDBl551QxhLkJVo0En9XgK8qbfqAtfnJhS3whauXNqOzuHsru1+u
+         ZuSQV34YzMlCQ==
+Date:   Wed, 19 May 2021 12:38:05 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Jaroslav Kysela <perex@perex.cz>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Takashi Iwai <tiwai@suse.com>, Ion Agorria <ion@agorria.com>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: Question about Tegra UCMs
+Message-ID: <20210519113805.GA4224@sirena.org.uk>
+References: <20210518001356.19227-1-digetx@gmail.com>
+ <20210518001356.19227-3-digetx@gmail.com>
+ <20210518180949.GA949047@robh.at.kernel.org>
+ <20210518183455.GE4358@sirena.org.uk>
+ <92cef674-c454-e08c-b44d-d8c08b1e8ccf@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="AqsLC8rIMeq19msA"
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqK6B40D8dRu8KoOsx6eSzRXx6KsSEu5mjDokPEAy+p4oA@mail.gmail.com>
+In-Reply-To: <92cef674-c454-e08c-b44d-d8c08b1e8ccf@gmail.com>
+X-Cookie: There's no time like the pleasant.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 17, 2021 at 02:17:05PM -0500, Rob Herring wrote:
-> On Mon, May 17, 2021 at 10:55 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
-> >
-> > The CLKSCREW attack [0] exposed security vulnerabilities in energy management
-> > implementations where untrusted software had direct access to clock and
-> > voltage hardware controls. In this attack, the malicious software was able to
-> > place the platform into unsafe overclocked or undervolted configurations. Such
-> > configurations then enabled the injection of predictable faults to reveal
-> > secrets.
-> >
-> > Many Arm-based systems used to or still use voltage regulator and clock
-> > frameworks in the kernel. These frameworks allow callers to independently
-> > manipulate frequency and voltage settings. Such implementations can render
-> > systems susceptible to this form of attack.
-> >
-> > Attacks such as CLKSCREW are now being mitigated by not having direct and
-> > independent control of clock and voltage in the kernel and moving that
-> > control to a trusted entity, such as the SCP firmware or secure world
-> > firmware/software which are to perform sanity checking on the requested
-> > performance levels, thereby preventing any attempted malicious programming.
-> >
-> > With the advent of such an abstraction, there is a need to replace the
-> > generic clock and regulator bindings used by such devices with a generic
-> > performance domains bindings.
-> >
-> > [0] https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/tang
-> >
-> > Link: https://lore.kernel.org/r/20201116181356.804590-1-sudeep.holla@arm.com
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
-> > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Thanks Rob.
+--AqsLC8rIMeq19msA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Viresh,
+On Wed, May 19, 2021 at 01:31:28AM +0300, Dmitry Osipenko wrote:
 
-I noticed I haven't cc-ed linux-pm list, do you need me to post there or
-are you happy to pick it up from here when Hector's mediatek cpufreq drivers
-using this are ready to be merged ?
+> Mark, could you please help me to understand the UCM naming scheme that ALSA uses..
 
---
-Regards,
-Sudeep
+I have no real idea, sorry.  Most of my userspace work has been with
+Android which doesn't use UCM.
+
+> IIUC, the "ucm2/Tegra/codec_name" scheme [2] that the current ALSA UCM
+> uses simply doesn't work at all. Is there anything on the kernel side
+> that I could change to get a working naming scheme? If yes, I may try
+> to do something about it in the v2, thanks in advance.
+
+Could you elaborate on the way in which it simply doesn't work at all?
+I'd expect there to be something in there that first tries to match on
+something to do with the specific hardware platform to take account of
+plastics differences but that'd be a userspace change.
+
+Please fix your mail client to word wrap within paragraphs at something
+substantially less than 80 columns.  Doing this makes your messages much
+easier to read and reply to.
+
+--AqsLC8rIMeq19msA
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmCk+JwACgkQJNaLcl1U
+h9Dt2Af8D6yTsMzAGTj7KbTr3xEXsDs6SVhpitdY5ohrWjYu32XSNoSMCKHZhj5Z
+BXK41d7eh8QTN02078sBrifJ2e5KGpw191xaDKiBDOeMF/pdX4QLMHoNqF0PGUc5
+QaBvfT+ZltEUPmq1cjmCFnhXSlkYKekLXx32KIfEX/+xussTbHVqMb1TWdAwUTZx
+n8pj+NvXNNpnJDozUWtNcRxykvzDqG2wzmdUygn+IEcRC/6XZYngAqDSPE+7Z+id
+/Gl0FzIHhXYf5w5skQV5NhqMpaXwag613VnPwtWWNUvqgWMsP1K3pSx2aC4jSdaK
+qJa1qzIIHMbq4qlkl5GMl8bba2Mp8g==
+=0Y2O
+-----END PGP SIGNATURE-----
+
+--AqsLC8rIMeq19msA--
