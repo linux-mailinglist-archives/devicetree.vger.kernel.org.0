@@ -2,64 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41507388C9F
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 13:20:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64504388CB1
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 13:23:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346140AbhESLWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 07:22:09 -0400
-Received: from foss.arm.com ([217.140.110.172]:60700 "EHLO foss.arm.com"
+        id S1350362AbhESLY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 07:24:59 -0400
+Received: from foss.arm.com ([217.140.110.172]:60902 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1350009AbhESLWI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 May 2021 07:22:08 -0400
+        id S1350438AbhESLYv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 May 2021 07:24:51 -0400
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0BFDE101E;
-        Wed, 19 May 2021 04:20:49 -0700 (PDT)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4BFB4101E;
+        Wed, 19 May 2021 04:23:30 -0700 (PDT)
 Received: from bogus (unknown [10.57.72.88])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B17BC3F719;
-        Wed, 19 May 2021 04:20:47 -0700 (PDT)
-Date:   Wed, 19 May 2021 12:20:41 +0100
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5A0133F719;
+        Wed, 19 May 2021 04:23:28 -0700 (PDT)
+Date:   Wed, 19 May 2021 12:23:18 +0100
 From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Hector Yuan <hector.yuan@mediatek.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
+To:     Rob Herring <robh@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, Sudeep Holla <sudeep.holla@arm.com>,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Hector Yuan <hector.yuan@mediatek.com>,
         Viresh Kumar <viresh.kumar@linaro.org>,
-        devicetree@vger.kernel.org
+        Bjorn Andersson <bjorn.andersson@linaro.org>
 Subject: Re: [PATCH v4] dt-bindings: dvfs: Add support for generic
  performance domains
-Message-ID: <20210519112041.olwl35irvcbjxrka@bogus>
+Message-ID: <20210519112308.umxriuv75onuwvmc@bogus>
 References: <20210517155458.1016707-1-sudeep.holla@arm.com>
- <1621284311.383362.3157708.nullmailer@robh.at.kernel.org>
+ <CAL_JsqK6B40D8dRu8KoOsx6eSzRXx6KsSEu5mjDokPEAy+p4oA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1621284311.383362.3157708.nullmailer@robh.at.kernel.org>
+In-Reply-To: <CAL_JsqK6B40D8dRu8KoOsx6eSzRXx6KsSEu5mjDokPEAy+p4oA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Mon, May 17, 2021 at 02:17:05PM -0500, Rob Herring wrote:
+> On Mon, May 17, 2021 at 10:55 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
+> >
+> > The CLKSCREW attack [0] exposed security vulnerabilities in energy management
+> > implementations where untrusted software had direct access to clock and
+> > voltage hardware controls. In this attack, the malicious software was able to
+> > place the platform into unsafe overclocked or undervolted configurations. Such
+> > configurations then enabled the injection of predictable faults to reveal
+> > secrets.
+> >
+> > Many Arm-based systems used to or still use voltage regulator and clock
+> > frameworks in the kernel. These frameworks allow callers to independently
+> > manipulate frequency and voltage settings. Such implementations can render
+> > systems susceptible to this form of attack.
+> >
+> > Attacks such as CLKSCREW are now being mitigated by not having direct and
+> > independent control of clock and voltage in the kernel and moving that
+> > control to a trusted entity, such as the SCP firmware or secure world
+> > firmware/software which are to perform sanity checking on the requested
+> > performance levels, thereby preventing any attempted malicious programming.
+> >
+> > With the advent of such an abstraction, there is a need to replace the
+> > generic clock and regulator bindings used by such devices with a generic
+> > performance domains bindings.
+> >
+> > [0] https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/tang
+> >
+> > Link: https://lore.kernel.org/r/20201116181356.804590-1-sudeep.holla@arm.com
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+> > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-On Mon, May 17, 2021 at 03:45:11PM -0500, Rob Herring wrote:
+Thanks Rob.
 
-[...]
+Viresh,
 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/dvfs/performance-domain.example.dt.yaml:0:0: /example-0/performance-controller@12340000: failed to match any schema with compatible: ['qcom,cpufreq-hw']
->
-> See https://patchwork.ozlabs.org/patch/1479615
-
-IIUC, such errors due to the fact that the compatible used in the example
-is not in any yaml schema(as it is still in the old txt format). I also
-assume such errors are allowed until the transition is complete and I
-need not fix anything as part of this patch ?
+I noticed I haven't cc-ed linux-pm list, do you need me to post there or
+are you happy to pick it up from here when Hector's mediatek cpufreq drivers
+using this are ready to be merged ?
 
 --
 Regards,
