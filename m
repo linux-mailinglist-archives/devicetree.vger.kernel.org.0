@@ -2,47 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A37B38934D
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 18:11:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D80C4389351
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 18:11:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355124AbhESQMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 12:12:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54128 "EHLO mail.kernel.org"
+        id S1355137AbhESQMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 12:12:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54452 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240705AbhESQMb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 May 2021 12:12:31 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D6CA061355;
-        Wed, 19 May 2021 16:11:10 +0000 (UTC)
+        id S1355152AbhESQMl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 May 2021 12:12:41 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 208EC61244;
+        Wed, 19 May 2021 16:11:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621440671;
-        bh=xTy/Z0GXKhDJm4r3n9vxQVK4GxEQwjIqEQe1+BWxNFo=;
+        s=k20201202; t=1621440681;
+        bh=ZL3psb3b/PFz1Seul7gHnQyH1SZ87FzQ+4g1uiKv7xI=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=riazGgZJNcaxswy0wwNdiqqBW25ua7bRFFnVlyeWKAjCHsIsJo0/NM0nxi0sCMie9
-         1if8H8ifExM7aOxY3SFcnnVEAdJ5Y2HrRG+2xQBWMEisAhwQTB/G2bbe0eiXDI37w6
-         sGm5EcVd9sZqu41Rrh8L8xSh2srTaHqMdMa/8zDvLD2RV83DWc4S4FO3amjSVZ7SdC
-         ZOtOgKr80SvnOyKU4tYDw9K9ahwa1XxosJHA3RNcQNnje40rFFopMDBAWPB6V/8dDS
-         N2oC8gSRFCWM3TXIbNRhEpH37kb6EtBI4ABKwPqa22jkngb7q0RpoUbGknSRVo8hMv
-         l7QgDupOuFvEQ==
+        b=oYJ2Kb8A5KEl78y977KlTupYWeDNOcVNuHyAC89B/yEt/vCLvaKUiB42OqAEKJiEX
+         wpm2zlEGZttK8mFaDxA5K7X3gArZ0dFM9/v2Pshq2IhFbu4SMHCY0yqtg0Q6s0KKSw
+         MQgPxbPJH2aJHbasFWHdQJHtJH50w+cycBj11lZnLU+DSRzkuE4ls61AWfTEWSh7qI
+         SCTTTYJH2Q6dqHsKQ4hgw73j62cc3VRponStdt+opayu1YOPbnHP/Ku+J0qAT0P6EH
+         DieMU9d7DQV8I0U4qyHDtcINyKeIG4t3/GD28qBzANhQ1gyZuMB7tnGoAO+UFBRwcY
+         BMMxDx7clLNTA==
 From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Sander Vanheule <sander@svanheule.net>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        devicetree@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        Lee Jones <lee.jones@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, Michael Walle <michael@walle.cc>,
-        linux-leds@vger.kernel.org,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>
-Subject: Re: (subset) [PATCH v2 0/7] RTL8231 GPIO expander support
-Date:   Wed, 19 May 2021 17:10:13 +0100
-Message-Id: <162144031656.37163.14427082237323398944.b4-ty@kernel.org>
+To:     alsa-devel@alsa-project.org, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: sound: wm8750: convert to the json-schema
+Date:   Wed, 19 May 2021 17:10:17 +0100
+Message-Id: <162144027323.37060.7346923502506402074.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <cover.1621279162.git.sander@svanheule.net>
-References: <cover.1620735871.git.sander@svanheule.net> <cover.1621279162.git.sander@svanheule.net>
+In-Reply-To: <20210512205926.780-1-zajec5@gmail.com>
+References: <20210512205926.780-1-zajec5@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -50,32 +43,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 May 2021 21:28:02 +0200, Sander Vanheule wrote:
-> The RTL8231 GPIO and LED expander can be configured for use as an MDIO or SMI
-> bus device. Currently only the MDIO mode is supported, although SMI mode
-> support should be fairly straightforward, once an SMI bus driver is available.
-> 
-> Provided features by the RTL8231:
->   - Up to 37 GPIOs
->     - Configurable drive strength: 8mA or 4mA (currently unsupported)
->     - Input debouncing on high GPIOs (currently unsupported)
->   - Up to 88 LEDs in multiple scan matrix groups
->     - On, off, or one of six toggling intervals
->     - "single-color mode": 2×36 single color LEDs + 8 bi-color LEDs
->     - "bi-color mode": (12 + 2×6) bi-color LEDs + 24 single color LEDs
->   - Up to one PWM output (currently unsupported)
->     - Fixed duty cycle, 8 selectable frequencies (1.2kHz - 4.8kHz)
-> 
-> [...]
+On Wed, 12 May 2021 22:59:26 +0200, Rafał Miłecki wrote:
+> This helps validating DTS files.
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regmap.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
 Thanks!
 
-[1/7] regmap: Add MDIO bus support
-      commit: 1f89d2fe16072a74b34bdb895160910091427891
+[1/1] dt-bindings: sound: wm8750: convert to the json-schema
+      commit: 11480dbfe1d59eaa6382864acc476e7621b1da4c
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
