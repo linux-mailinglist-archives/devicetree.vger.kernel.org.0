@@ -2,89 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FD1E3891C9
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 16:46:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 972E33891E8
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 16:50:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243150AbhESOry (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 10:47:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45462 "EHLO
+        id S242696AbhESOvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 10:51:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239741AbhESOry (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 10:47:54 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05266C061761
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 07:46:34 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id c14so12531639wrx.3
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 07:46:33 -0700 (PDT)
+        with ESMTP id S1354807AbhESOvy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 10:51:54 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 227AAC061761
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 07:50:33 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id h4so14295698wrt.12
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 07:50:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=qcih1ZsB54IYnpGJlyvkpoeAatFrfT168mDlUAbVXbc=;
-        b=ZtflBpiFzxk9IT9dvQLhj9zAX07ZOfwvbA/SbHogb7zqkB2Fz2wBOyx04jcdgoMnhR
-         gtU55xkk+MqmEvBL27AxoxAWzkbfwlfrlMjcRDPD/+1gMbBah6cGyS7nnlqa7MJm31N4
-         qfI9xRe+I5hdagUQo++vkAvuF/oZicXRoRk/0egqw5P8AiVaMt0n68i1PCFFxOX/xNDm
-         tqSIQmyan48kAtXOqtIrPvZUJMvCmK8ecONHAwhi+G/9q+FqJ3gkSpoQbcrGkLDRFxv+
-         kZjvm9gYTzXRoJeDB3BfkXBb7lG77g8e6AfI8UCTD/RwtRC6XFvuvKBDXpQDVj8rkGUB
-         SEyA==
+        bh=Bju2/0eN1crwRy8NW0NKdt4SusccnUyH2kNJFGpO3Gg=;
+        b=BQ0wb+l4eU5E6LXYCwaarjsAw6yPlLu9W6EiabgI+nO22I+6DV/bIxaDS5Kc/NkZ9z
+         g5ArK3rjoggNB6rgNnxcGpn/MDh4rC5iJIQ9ptEO8ZIDJRbQovG88q8caw+Iw6Vo1K/7
+         cT6j1A7d/Eqf0dtlUKxAkQlsICEjFzHrEor1ZLrZez3sN2dN8okRW2WLGn5Q5NeWtXzQ
+         BJOx2fdWrlKwYPfZMPpDbIKMzFHZFm7Y9A1ibD6cMHShxytE94HxUt/iCqnMUXkl7Aev
+         yPWcWLE7bC3e/1CIkS0QDIbZBE0Tuctn6mGNoYgfbMZKEz7pgUAF6QgCLssN+Kyx/SjJ
+         3Zqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=qcih1ZsB54IYnpGJlyvkpoeAatFrfT168mDlUAbVXbc=;
-        b=k6kOb0o993Tw8GzhpG1ouIjd5DhVUo1hXV8MzKH9Y0xST4pITRrbiBL5hS+uqBz6Ut
-         KXqNbNG7Rr4OLX6ImUt6Ite9R7+vkzkfq4dw7XHar+cLjGKT6A8METehCtw9KPOpVsDL
-         6zMWt+Egdd4HGtXMX8f0WmqQzB+sfDoMRrDs10CLa1F+tutOGLD4n8BGkGkv5GCm/VYW
-         FDsZQ9gHYQItImOHwC9aPimKa0vp5Vv9DcD9HsAJdYOB4rykDqdbgdVnuc49RIKc9FNE
-         QeP0gBiaNOQ0Cman5ZjAkxNgEJF+gGsYLz3UbGLnu4hS1h23GPVKT5Ajsc/eOvfax7cr
-         rQKw==
-X-Gm-Message-State: AOAM5339CR+8jyiv7utgLnprwW1XQwJtrLcK6Mm6r0lyyAN8/Tlz0aSU
-        LStUIapmL/poSQOl2ziJHv9dlg==
-X-Google-Smtp-Source: ABdhPJyIt8eL6wfcj/xZA/0YCPZS/2JzPSNbt554efDjHPLXgMAWowEbrZ1/KMI0hS6vR3gARlmFxw==
-X-Received: by 2002:adf:ffd2:: with SMTP id x18mr15161346wrs.144.1621435592655;
-        Wed, 19 May 2021 07:46:32 -0700 (PDT)
+        bh=Bju2/0eN1crwRy8NW0NKdt4SusccnUyH2kNJFGpO3Gg=;
+        b=ArvlSER3/4isqhcN3FmD5S0vi/tyueMnTEAx3Hzn93JHnb+CN+DUZP1o8TonyIaxR7
+         K9QrUeRIgItmABz/uzGpCygGJT0zWtl+tkWoiBvyxKkgTXWI4OGOJ2nRCWDdGH13mbYP
+         d+x+Bi7FZDQpaQ+m3H+MKZcnvZhzefVSxbOmANW22z2Thu//9x1+M+IfFsBoiBuvkNVe
+         9PqxOGwfsnBSg5NzWzMin7rt2o6Tj8eC03twljig4hlobo185ZvgnYfF4K8Kn/2lGmf8
+         K5Ch8VeknJ5Z6zdcW2GWY9OKSX65xCfgChw/Wo38oO/7K8tmHJYNHpBnfxF7XhaSKm6U
+         XS2A==
+X-Gm-Message-State: AOAM532Hl+c0bsV6fyb/KJ0LeEBB9jMDfYOE2Rb2sa07gZUdq/t44IJu
+        1iZVWt+l601Qm6AUfiZ3taxlkA==
+X-Google-Smtp-Source: ABdhPJyiC8K7WnFxsXBX7COv5F4gSgoaz/20+HNO7ys0bYcGX56g68V0qD16NLwnO5bgMXzcNVAHcw==
+X-Received: by 2002:a5d:408f:: with SMTP id o15mr14535482wrp.89.1621435831756;
+        Wed, 19 May 2021 07:50:31 -0700 (PDT)
 Received: from dell ([91.110.221.215])
-        by smtp.gmail.com with ESMTPSA id q13sm24456544wrw.56.2021.05.19.07.46.31
+        by smtp.gmail.com with ESMTPSA id b10sm30501848wrr.27.2021.05.19.07.50.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 May 2021 07:46:32 -0700 (PDT)
-Date:   Wed, 19 May 2021 15:46:30 +0100
+        Wed, 19 May 2021 07:50:31 -0700 (PDT)
+Date:   Wed, 19 May 2021 15:50:29 +0100
 From:   Lee Jones <lee.jones@linaro.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Beomho Seo <beomho.seo@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 3/3] mfd: rt5033: Drop rt5033-battery sub-device
-Message-ID: <20210519144630.GC2549456@dell>
-References: <20210517105113.240379-1-stephan@gerhold.net>
- <20210517105113.240379-4-stephan@gerhold.net>
+To:     cy_huang <u0084500@gmail.com>
+Cc:     lgirdwood@gmail.com, broonie@kernel.org,
+        daniel.thompson@linaro.org, jingoohan1@gmail.com,
+        b.zolnierkie@samsung.com, pavel@ucw.cz, robh+dt@kernel.org,
+        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, cy_huang@richtek.com
+Subject: Re: [PATCH v7 1/4] mfd: rt4831: Adds support for Richtek RT4831
+Message-ID: <20210519145029.GD2549456@dell>
+References: <1621262161-9972-1-git-send-email-u0084500@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210517105113.240379-4-stephan@gerhold.net>
+In-Reply-To: <1621262161-9972-1-git-send-email-u0084500@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 May 2021, Stephan Gerhold wrote:
+On Mon, 17 May 2021, cy_huang wrote:
 
-> The fuel gauge in the RT5033 PMIC (rt5033-battery) has its own I2C bus
-> and interrupt lines. Therefore, it is not part of the MFD device
-> and needs to be specified separately in the device tree.
+> From: ChiYuan Huang <cy_huang@richtek.com>
 > 
-> Cc: Beomho Seo <beomho.seo@samsung.com>
-> Cc: Chanwoo Choi <cw00.choi@samsung.com>
-> Fixes: 0b271258544b ("mfd: rt5033: Add Richtek RT5033 driver core.")
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> This adds support Richtek RT4831 core. It includes four channel WLED driver
+> and Display Bias Voltage outputs.
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
 > ---
->  drivers/mfd/rt5033.c | 3 ---
->  1 file changed, 3 deletions(-)
+> - Send the patch series for the wrong mail subject.
+> 
+> The RT4831 regulator patches are already on main stream, and can be referred to
+> 9351ab8b0cb6 regulator: rt4831: Adds support for Richtek RT4831 DSV regulator
+> 934b05e81862 regulator: rt4831: Adds DT binding document for Richtek RT4831 DSV regulator
+> 
+> since v6
+> - Respin the date from 2020 to 2021.
+> - Rmove the shutdown routine.
+> - Change the macro OF_MFD_CELL to MFD_CELL_OF.
+> 
+> since v5
+> - Rename file name from rt4831-core.c to rt4831.c
+> - Change RICHTEK_VID to RICHTEK_VENDOR_ID.
+> - Change gpio_desc nameing from 'enable' to 'enable_gpio' in probe.
+> - Change variable 'val' to the meaningful name 'chip_id'.
+> - Refine the error log when vendor id is not matched.
+> - Remove of_match_ptr.
+> 
+> since v2
+> - Refine Kconfig descriptions.
+> - Add copyright.
+> - Refine error logs in probe.
+> - Refine comment lines in remove and shutdown.
+> ---
+>  drivers/mfd/Kconfig  |  10 +++++
+>  drivers/mfd/Makefile |   1 +
+>  drivers/mfd/rt4831.c | 115 +++++++++++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 126 insertions(+)
+>  create mode 100644 drivers/mfd/rt4831.c
 
-Acked-by: Lee Jones <lee.jones@linaro.org>
+Applied, thanks.
 
 -- 
 Lee Jones [李琼斯]
