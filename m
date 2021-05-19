@@ -2,141 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D5FA389194
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 16:40:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 654FE389195
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 16:41:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354557AbhESOlx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 10:41:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43602 "EHLO
+        id S1354350AbhESOmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 10:42:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347639AbhESOlP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 10:41:15 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CAF2C06134B
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 07:39:19 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id q15so9589052pgg.12
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 07:39:19 -0700 (PDT)
+        with ESMTP id S1354428AbhESOld (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 10:41:33 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D637C061357
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 07:39:32 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id n2so14368571wrm.0
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 07:39:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Ha/LaDJaWqJqGFUOZ/CIIY7Ny0kkYMvLA61pIJyDFZ0=;
-        b=WLOYc+Zws2OfLaWguoyIkyA1m4y1KdTsBz7yZ364G202kFhg5Cz8wae1i/DUrnQHh1
-         HBeM5YDGHk7LZ98IXVwaHuqR6OYbgMNOt9yY43rqwglS9/2svFr72RgIxvfI7HyIe0vc
-         gBjIwofSIcAXXCjfK7daf+hKjL/Ov9zRgQVvNfI+sW2xNj+oUyJk2cHZDPRxC9d7PyLj
-         AjUBTsoIlgPuTpoNBp/SqFHUBY4G59V5KiNlfdFPX2sWdvG/ykFt3dJY4iHLokwCDR4T
-         VGAL6RoKhXBZn6TUmJxWyNrcHT2Nsxa/gVWl+XiW3yAWyOwzHT03zZTVDjnTVJUYKxxW
-         ez+A==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=brguJP1TRfkhoTJgsl8Q1B6FJtdnvT+9aum6CCLmyKI=;
+        b=BSofIscenrll+wtAbZVziWi2CjNiD3KGjR7g8Y/cQgbk2KYNrwhXwX0fAOCqcTAUcR
+         1m6u35SMvrNsMiN4T4z3PyLe+kwJGHZgg1tpLr6ALjsBgAA1vc8eUIuVTu8y1AdvdWYN
+         gjz5NHThtBnnt5pEUVwRZsnWCSR/6tyn95Mjs3JJnqGSpLAWglu6647iOGUXaz8X8X3D
+         nQ1UDPp0RYP0wc07+vAOqVa9EK3fA84cSEY5woWkFI2dGakoIxGY/RZKuDHhvTjJcxEy
+         OXPKrxh5bmj+3g4Su69PFC1/RHpKc3Syjz87pR2K2UdtrshnNgIBvjGtNLRlOqq4Tz4m
+         RGUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Ha/LaDJaWqJqGFUOZ/CIIY7Ny0kkYMvLA61pIJyDFZ0=;
-        b=hPYzuf5ND6Fa1f+vVlfGEs5buRXR/RhepFx42w075DrMGPO4SVB8beAuIe2kGiIxwf
-         nGvtXAk257CfMpRyWy9zusRmeLe9dipSTr7iRTRcEpyzcqUEsIc2ujUxSnGAUMxPkyXG
-         SPoUZa8sQ1HlO9s+3njL+Xbx5hOADbOBzESritBEvpatYXhN0bGxq9aR0Za1+RnVWiHC
-         HfXXB1WJP+KUCDh69O6GR11j9Mvgza56Xe1u/Ip40fRzQDTu0c8KeQBvQbSJ0mo4YFOM
-         go1RH1KG7NKmaP+sYr/KFaaSXzmfwbMy4TMkh+5whwkynBRh9nQLk8IN+Ptc1fNoIvfh
-         6Ctg==
-X-Gm-Message-State: AOAM533aJD/yi/xOd/7xg7NfNHyrwj3faoRFHXDNZLd9/fDzyuRU2kzz
-        JvTOQM/dv6k/BQaNPYVvLma74w==
-X-Google-Smtp-Source: ABdhPJy6oYXhdskz+Yn8nt3Y0Tv5dRWI5TVs9gHJNz0N7OYXa/C/ddOSJ9Mb0VgSbzLMrAfiYCZtuQ==
-X-Received: by 2002:aa7:8588:0:b029:28e:dfa1:e31a with SMTP id w8-20020aa785880000b029028edfa1e31amr10952488pfn.77.1621435158778;
-        Wed, 19 May 2021 07:39:18 -0700 (PDT)
-Received: from localhost.localdomain.name ([122.177.135.250])
-        by smtp.gmail.com with ESMTPSA id o24sm9239515pgl.55.2021.05.19.07.39.12
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=brguJP1TRfkhoTJgsl8Q1B6FJtdnvT+9aum6CCLmyKI=;
+        b=JEuAHP5sgg8uu2i67N+atnYlEZuUvsFP/LN7sUDp0NNSWUUDgmR3vCtPD3eO8seSFg
+         Fp0E+Y6WgrzZtZDja0O6Wxs+VVvqq52CIigfDJVm8p/OHwxbWvVxLHG/RV8/XkNM/2dj
+         qIo/ErplHbPA2/Fowlu6+UGA4aJAiywlx3eVLOwuuX9gDThxwY0yl6p0IWM7Ba6eMI8o
+         alZFhAVQlqHFQgQbvmyxkloEMYW/ZCX1EBIav7FZMuPA9LdCBEUDFEu7l1PzTeFMnFKT
+         Qm0bDbQeOBJFxxpRq14vua08KLQ9ZtoUhL64xHqfrn+rC1L2h1CE5WeleBhxateEhA27
+         DHNQ==
+X-Gm-Message-State: AOAM531q2JqedvWMoiIM5L935+LIKQU26EBi7TYeL4xha8HpQDJACh7C
+        GkCwIfHouGpk3zY4NzgigxX8eA==
+X-Google-Smtp-Source: ABdhPJz09XPcH5af8DhPokNsIK+NhdlGR/EmcisNcRXKH1/9rm4wA0gp+EyQCV9V7mZI2l2AMaDP2Q==
+X-Received: by 2002:a05:6000:104a:: with SMTP id c10mr15035593wrx.45.1621435170708;
+        Wed, 19 May 2021 07:39:30 -0700 (PDT)
+Received: from dell ([91.110.221.215])
+        by smtp.gmail.com with ESMTPSA id c15sm25760443wro.21.2021.05.19.07.39.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 May 2021 07:39:18 -0700 (PDT)
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     bhupesh.sharma@linaro.org,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bhupesh.linux@gmail.com
-Subject: [PATCH v3 17/17] arm64/dts: qcom: sm8250: Add dt entries to support crypto engine.
-Date:   Wed, 19 May 2021 20:07:00 +0530
-Message-Id: <20210519143700.27392-18-bhupesh.sharma@linaro.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210519143700.27392-1-bhupesh.sharma@linaro.org>
-References: <20210519143700.27392-1-bhupesh.sharma@linaro.org>
+        Wed, 19 May 2021 07:39:30 -0700 (PDT)
+Date:   Wed, 19 May 2021 15:39:28 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        lgirdwood@gmail.com, pierre-louis.bossart@linux.intel.com,
+        tiwai@suse.com, heiko@sntech.de, robh+dt@kernel.org,
+        perex@perex.cz, jbx6244@gmail.com, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, maccraft123mc@gmail.com,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH v11 1/4] mfd: Add Rockchip rk817 audio CODEC support
+Message-ID: <20210519143928.GG2415519@dell>
+References: <20210515025749.11291-1-macroalpha82@gmail.com>
+ <20210515025749.11291-2-macroalpha82@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210515025749.11291-2-macroalpha82@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add crypto engine (CE) and CE BAM related nodes and definitions to
-"sm8250.dtsi".
+On Fri, 14 May 2021, Chris Morgan wrote:
 
-Cc: Thara Gopinath <thara.gopinath@linaro.org>
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Andy Gross <agross@kernel.org>
-Cc: Herbert Xu <herbert@gondor.apana.org.au>
-Cc: David S. Miller <davem@davemloft.net>
-Cc: Stephen Boyd <sboyd@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>
-Cc: Vinod Koul <vkoul@kernel.org>
-Cc: dmaengine@vger.kernel.org
-Cc: linux-clk@vger.kernel.org
-Cc: linux-crypto@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: bhupesh.linux@gmail.com
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Add rk817 codec support cell to rk808 mfd driver.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Tested-by: Maciej Matuszczyk <maccraft123mc@gmail.com>
+> ---
+>  drivers/mfd/rk808.c       | 83 +++++++++++++++++++++++++++++++++++++++
+>  include/linux/mfd/rk808.h | 81 ++++++++++++++++++++++++++++++++++++++
+>  2 files changed, 164 insertions(+)
+> 
+> diff --git a/drivers/mfd/rk808.c b/drivers/mfd/rk808.c
+> index ad923dd4e007..b94f805719a6 100644
+> --- a/drivers/mfd/rk808.c
+> +++ b/drivers/mfd/rk808.c
+> @@ -65,6 +65,7 @@ static bool rk817_is_volatile_reg(struct device *dev, unsigned int reg)
+>  	switch (reg) {
+>  	case RK817_SECONDS_REG ... RK817_WEEKS_REG:
+>  	case RK817_RTC_STATUS_REG:
+> +	case RK817_CODEC_DTOP_LPT_SRST:
+>  	case RK817_INT_STS_REG0:
+>  	case RK817_INT_STS_REG1:
+>  	case RK817_INT_STS_REG2:
+> @@ -163,6 +164,9 @@ static const struct mfd_cell rk817s[] = {
+>  		.num_resources = ARRAY_SIZE(rk817_rtc_resources),
+>  		.resources = &rk817_rtc_resources[0],
+>  	},
+> +	{
+> +		.name = "rk817-codec",
+> +	},
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 4c0de12aaba6..6700d609a7b8 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -3796,6 +3796,34 @@ cpufreq_hw: cpufreq@18591000 {
- 
- 			#freq-domain-cells = <1>;
- 		};
-+
-+		cryptobam: dma@1dc4000 {
-+			compatible = "qcom,bam-v1.7.0";
-+			reg = <0 0x01dc4000 0 0x24000>;
-+			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
-+			#dma-cells = <1>;
-+			qcom,ee = <0>;
-+			qcom,controlled-remotely = <1>;
-+			iommus = <&apps_smmu 0x584 0x0011>,
-+				 <&apps_smmu 0x586 0x0011>,
-+				 <&apps_smmu 0x594 0x0011>,
-+				 <&apps_smmu 0x596 0x0011>;
-+			interconnects = <&aggre2_noc MASTER_CRYPTO_CORE_0 &mc_virt SLAVE_EBI_CH0>;
-+			interconnect-names = "memory";
-+		};
-+
-+		crypto: crypto@1dfa000 {
-+			compatible = "qcom,sm8250-qce";
-+			reg = <0 0x01dfa000 0 0x6000>;
-+			dmas = <&cryptobam 4>, <&cryptobam 5>;
-+			dma-names = "rx", "tx";
-+			iommus = <&apps_smmu 0x584 0x0011>,
-+				 <&apps_smmu 0x586 0x0011>,
-+				 <&apps_smmu 0x594 0x0011>,
-+				 <&apps_smmu 0x596 0x0011>;
-+			interconnects = <&aggre2_noc MASTER_CRYPTO_CORE_0 &mc_virt SLAVE_EBI_CH0>;
-+			interconnect-names = "memory";
-+		};
- 	};
- 
- 	timer {
+This should be on a single line please.
+
+Once fixed, please apply my:
+
+For my own reference (apply this as-is to your sign-off block):
+
+  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+
 -- 
-2.31.1
-
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
