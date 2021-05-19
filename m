@@ -2,91 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1FA5388398
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 02:10:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FC203883AF
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 02:19:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352239AbhESALS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 May 2021 20:11:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45196 "EHLO
+        id S234823AbhESAUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 May 2021 20:20:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233435AbhESALR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 20:11:17 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5625C06175F
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 17:09:58 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id q7so15015334lfr.6
-        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 17:09:58 -0700 (PDT)
+        with ESMTP id S234731AbhESAUj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 May 2021 20:20:39 -0400
+Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA173C061760
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 17:19:19 -0700 (PDT)
+Received: by mail-qv1-xf30.google.com with SMTP id o59so5957087qva.1
+        for <devicetree@vger.kernel.org>; Tue, 18 May 2021 17:19:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OuTM33XGtLwqa8MYciwrkAYfeQ5kekKTaJ8lI00J+rs=;
-        b=h8O4DrZRkEIKrl/XUr78Ts7Z+5uTUkSBm2b+5q8n1o1rP5eMEsqe3JLY0RoalrthmN
-         hFx904A+BhryeG5r014WnM3Ppb3ppkCbzLzH2yCCxevVIGIPrbxabKc4WEHvr1hDjdWq
-         L/LVrgMDOlTc5LLNV02Y5nFswYHoZ5VQBrw1jc/Tr9If50zwJx+P5Y1yCzBki5O9QmoV
-         jpsuQe/Le47+ZzAJ/OtWbMAAmrQXUAz2S+vcQfsEzEf0wfD0P5OU6toS75gEFj6v1Ew9
-         9iBMry8hXEIvXdyzwh28L1Lk442e7oC4GWrHMsdBUKtvG15pRphJ+Qpmq6lB9ynjNzuZ
-         ZBnA==
+        d=marek-ca.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=ya4sSOjySMHGjVVWLWrWfBjZGU/UNkNaSi2rQLK5WkI=;
+        b=dgR0jZfPugb1vJ6AMdf0SFLrD7qlnWMdO85o1cRnR++JEcxOi464/LprwILu/TDG1T
+         GXfq4n65XTy653sRWBW4Gmm3Eq2RPYoMdVC5VmtnEhr6JQFnvZWRrhoqcfMJDtBLGCvH
+         CnF2K+6XwGU+dd7cbE1e5b7JsS1ek7cABHLqn+Qp30zp7C3Cfa/GB2mH78GutSI6zTDF
+         qShfcvujoAF2FX3OndvJmtB3GMacy1AZypxOqK0Zhq9LuedC/a0SmvlbSU+HYXCIGCsx
+         L9Zw2G1BSmTNkwGxDtd17hOSrFoUA8o5F2p5UezVPI7VuhpQXaRUENPAyMSHz8/RxG7a
+         HTPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OuTM33XGtLwqa8MYciwrkAYfeQ5kekKTaJ8lI00J+rs=;
-        b=tm+7xaDZT1GkFQyD3A2h3ptZwTZILhR70Rf5mE/q9LhXZ5KlQpJQbI91qRPt27jhwa
-         mcFTyUbUfUkEb94L7CZXGzQgsH8GbmYLfrcpc26lsZUovcfHU4Eri1wzIub33MHulJx5
-         FF9VaeswNdMbLBpRIiKOePs3ofO3GmKBPzxrfdzr+Ne26K1KbxauJMGECtoZ21+J1f+w
-         NHFrIHqTi8MzUNEpefgGLFghtQSOxfTWUgx7vZfndN9Rb6Ma2LFiOKlAob1w4LGhQBPo
-         Dhtl9mIbPsv7/QyXtOK/GhQNm8gpSAtaoFyWxYj0Lx8hf2Xejef8Ha7P8c/eCf0WGogu
-         QOnA==
-X-Gm-Message-State: AOAM533D30tyvCjW/poC8Wtz8Sb8Vt+SYs1v3tfc0zvw7k9i1ipK52T9
-        pFXPxCi+mDL/DrD68y18eLe94czkkRJwvYffolMrjSN8nWhLGg==
-X-Google-Smtp-Source: ABdhPJzXvwNyBIFBAGkgV+vqz4OfOm7bjiZHvKaE/3qxTD4SKunmkPBqDuIYym7TgM9jIoYc0T7bA2xvseQYyURg98U=
-X-Received: by 2002:a19:b0b:: with SMTP id 11mr5814348lfl.291.1621382997090;
- Tue, 18 May 2021 17:09:57 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=ya4sSOjySMHGjVVWLWrWfBjZGU/UNkNaSi2rQLK5WkI=;
+        b=JJuf5Hb7ysSNA6cQ62ePMsdcc/YmXc+fXRSiNoOuF4VWILwb4smAQ48I4b+GdBGnKz
+         0PrcZjPHBmIpyoI3Gt2Pnjn9aAYOzt6BjMOnVwc1ACKZLUtYnHM7YTK+hjXX70nSwRIo
+         oMxa8rXvi7obVD7+Q5TOc/utlaqdT1Uv7zd0RMxMW3ianR3cEXNQs0mi+0s7D4VfD/99
+         b2e6pS0zzhJIliVY2smB6haMu2f3FoRXxSiVWZE3XEvZyD0GnGo17RwegpIctnGB85YL
+         +PXC+UOXBvZSjx5Oi2CYWU4XzSbcc6zE0SpE2f9jHe88UfJa4zmvwMDRCfq1D3DNlakk
+         M7fA==
+X-Gm-Message-State: AOAM530MQ9y/UBidi0kPClVM6iqJRNEaG9quP0WqOCaqbQy/GUbZJkgL
+        wsMgeEFTWVJsRlB9On9ypSwdyg==
+X-Google-Smtp-Source: ABdhPJwYXbSRGZh4yAsyxeZTUi/2xCvEgR/QeTo+ZBXTGsrF34zvxgnmkdi2Js6f+e2PAkuYw9il+g==
+X-Received: by 2002:a0c:eed4:: with SMTP id h20mr9086949qvs.40.1621383558985;
+        Tue, 18 May 2021 17:19:18 -0700 (PDT)
+Received: from localhost.localdomain (modemcable068.184-131-66.mc.videotron.ca. [66.131.184.68])
+        by smtp.gmail.com with ESMTPSA id i9sm14998529qtg.18.2021.05.18.17.19.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 May 2021 17:19:18 -0700 (PDT)
+From:   Jonathan Marek <jonathan@marek.ca>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v2 2/2] dt-bindings: clock: add QCOM SM8350 display clock bindings
+Date:   Tue, 18 May 2021 20:18:02 -0400
+Message-Id: <20210519001802.1863-2-jonathan@marek.ca>
+X-Mailer: git-send-email 2.26.1
+In-Reply-To: <20210519001802.1863-1-jonathan@marek.ca>
+References: <20210519001802.1863-1-jonathan@marek.ca>
 MIME-Version: 1.0
-References: <20210426024533.20840-1-zhiyong.tao@mediatek.com> <20210426024533.20840-2-zhiyong.tao@mediatek.com>
-In-Reply-To: <20210426024533.20840-2-zhiyong.tao@mediatek.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 19 May 2021 02:09:45 +0200
-Message-ID: <CACRpkdaLhR9HgYNPZ_SQ-wi7RfpeT7iapXUfqf=bAwo05MBZqA@mail.gmail.com>
-Subject: Re: [PATCH v7] pinctrl: mediatek: add rsel setting on MT8195
-To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>, srv_heupstream@mediatek.com,
-        hui.liu@mediatek.com, huang eddie <eddie.huang@mediatek.com>,
-        Biao Huang <biao.huang@mediatek.com>,
-        Hongzhou Yang <hongzhou.yang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 26, 2021 at 4:45 AM Zhiyong Tao <zhiyong.tao@mediatek.com> wrote:
+Add sm8350 DISPCC bindings, which are simply a symlink to the sm8250
+bindings. Update the documentation with the new compatible.
 
-> This patch provides rsel setting on MT8195.
->
-> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
+Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml       | 6 ++++--
+ include/dt-bindings/clock/qcom,dispcc-sm8350.h              | 1 +
+ 2 files changed, 5 insertions(+), 2 deletions(-)
+ create mode 120000 include/dt-bindings/clock/qcom,dispcc-sm8350.h
 
-I am suspicious about this patch, sorry for taking so long to answer.
+diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
+index 0cdf53f41f84..8f414642445e 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
+@@ -4,24 +4,26 @@
+ $id: http://devicetree.org/schemas/clock/qcom,dispcc-sm8x50.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Qualcomm Display Clock & Reset Controller Binding for SM8150/SM8250
++title: Qualcomm Display Clock & Reset Controller Binding for SM8150/SM8250/SM8350
+ 
+ maintainers:
+   - Jonathan Marek <jonathan@marek.ca>
+ 
+ description: |
+   Qualcomm display clock control module which supports the clocks, resets and
+-  power domains on SM8150 and SM8250.
++  power domains on SM8150/SM8250/SM8350.
+ 
+   See also:
+     dt-bindings/clock/qcom,dispcc-sm8150.h
+     dt-bindings/clock/qcom,dispcc-sm8250.h
++    dt-bindings/clock/qcom,dispcc-sm8350.h
+ 
+ properties:
+   compatible:
+     enum:
+       - qcom,sm8150-dispcc
+       - qcom,sm8250-dispcc
++      - qcom,sm8350-dispcc
+ 
+   clocks:
+     items:
+diff --git a/include/dt-bindings/clock/qcom,dispcc-sm8350.h b/include/dt-bindings/clock/qcom,dispcc-sm8350.h
+new file mode 120000
+index 000000000000..0312b4544acb
+--- /dev/null
++++ b/include/dt-bindings/clock/qcom,dispcc-sm8350.h
+@@ -0,0 +1 @@
++qcom,dispcc-sm8250.h
+\ No newline at end of file
+-- 
+2.26.1
 
-First explain what "rsel" means, because with no explanation I
-suspect it means "rail select" which is what we already have the
-existing generic property PIN_CONFIG_POWER_SOURCE
-and power-source = <> in DT for.
-
-Also add the custom properties to:
-Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
-(separate patch)
-
-Yours,
-Linus Walleij
