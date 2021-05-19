@@ -2,179 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 854A0389120
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 16:36:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21F4A389128
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 16:37:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242266AbhESOh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 10:37:59 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:45016 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348218AbhESOh6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 10:37:58 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id BB3AEBA7;
-        Wed, 19 May 2021 16:36:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1621434996;
-        bh=4WNnDYwWQ9KxLCfoxwzFzT4oBs1jTEj0bUz9/kkQ+3w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Lq7JZAVlX5YixRbW3QnwLt07h9evlbvsEW6+AsLY+OaaVkMEU9xiFthkIgA5p55DS
-         YyNHtLc/4wDxw9LTj6AdV4EH6n0Tn+wkD5ikF3FJdVH2oQapa+3zka8chMQFuA0TtY
-         YZtYQMPruLqrf4TjyE1KxRShX6QM20pNZraAbgx4=
-Date:   Wed, 19 May 2021 17:36:35 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S1348233AbhESOip (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 10:38:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43164 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347786AbhESOio (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 10:38:44 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BAC7C061760
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 07:37:24 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id o17-20020a17090a9f91b029015cef5b3c50so3603104pjp.4
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 07:37:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nZMq8xWSXZHjYFFX9U2EDQv78qoTWHbTqwBMbdQQv0s=;
+        b=lVsbFM6aeHV9QO0yMWIoUEsFvuZICTWzjhH06XiLX53vIJd5fOltlBQU1AsHgkhC7b
+         GU7k6gSGN0lQBG7GaWR3AXAnUcQMwsq433ErObGTb6pDseELCOfit4GmF45i6IK022NF
+         M+m7ctX0SDRhPS+HjsgbUljOhedYqSDTR0Pi7DN1iY821hWBTzJRccUOL7JfRceTEhVm
+         WiUIbNY+lmeBWXgJiDm5Bwzu0VW1qgp0cDMdjjim4TeuzJzCwjGTtf4WhgkqrvH6NwRG
+         gT/bcRL0+NO+q5WxqSE5QH4O5aVBTDe0mV1ytUVtiFZLkjVcha+EmZ/cETYMz3SYJzbG
+         gh5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nZMq8xWSXZHjYFFX9U2EDQv78qoTWHbTqwBMbdQQv0s=;
+        b=qhYcc7Y7M+rc3mMcVKf5l4bAvYOQ4ZFCXDiMMnFDOZPtV+69VIsqdQsTvNfFHKGe9d
+         ZwQQHPT/yrqPbxAxksKGfyeJjEgLsIA22V7hkbNBDXJES7INDe7OaL/kyp5EybWW5sq4
+         DNxIPJEg8sKfV2hsVzSTN/6YNn7JOYA4htxuieRnhgtSd1jcnyHamFYE/ObHWME0/lZp
+         Efhf5Y+2qyBOv+slTuABIm19rx5ulAYU9q6sXlAkCMw3pQNlkxLpOCIBGdlR7rDOb5xn
+         k6lm+7AbH4JNim9FxwPWVxSsFR5XgU9JB0uLHEwAEDDioMAB6uojQR1JKRXyddg5YuGY
+         I2bw==
+X-Gm-Message-State: AOAM532GXS8GfjhInCFOuC2U15mux+o+pRyHTMvPY375usFPOaHBNC/c
+        p6A+KO6j3cFioINc54oMnTmYBg==
+X-Google-Smtp-Source: ABdhPJx1AAoohm3tZC2APaKhDLsi3QklihlNmlo84V+Pzp/Q+nnZSaKyM1DsUUTiJWfa4t751iNqNg==
+X-Received: by 2002:a17:90a:f87:: with SMTP id 7mr12090307pjz.38.1621435043946;
+        Wed, 19 May 2021 07:37:23 -0700 (PDT)
+Received: from localhost.localdomain.name ([122.177.135.250])
+        by smtp.gmail.com with ESMTPSA id o24sm9239515pgl.55.2021.05.19.07.37.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 May 2021 07:37:23 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     bhupesh.sharma@linaro.org,
+        Thara Gopinath <thara.gopinath@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: media: renesas,imr: Convert to json-schema
-Message-ID: <YKUic3pypkSOwvTy@pendragon.ideasonboard.com>
-References: <353c2d181ceb6a5dfc553f88a201c6b18ee6914d.1621429265.git.geert+renesas@glider.be>
+        Andy Gross <agross@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bhupesh.linux@gmail.com
+Subject: [PATCH v3 00/17] Enable Qualcomm Crypto Engine on sm8250
+Date:   Wed, 19 May 2021 20:06:43 +0530
+Message-Id: <20210519143700.27392-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <353c2d181ceb6a5dfc553f88a201c6b18ee6914d.1621429265.git.geert+renesas@glider.be>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Changes since v2:
+=================
+- v2 can be seen here: https://lore.kernel.org/dmaengine/20210505213731.538612-1-bhupesh.sharma@linaro.org/
+- Drop a couple of patches from v1, which tried to address the defered
+  probing of qce driver in case bam dma driver is not yet probed.
+  Replace it instead with a single (simpler) patch [PATCH 16/17].
+- Convert bam dma and qce crypto dt-bindings to YAML.
+- Addressed review comments from Thara, Bjorn, Vinod and Rob.
 
-Thank you for the patch.
+Changes since v1:
+=================
+- v1 can be seen here: https://lore.kernel.org/linux-arm-msm/20210310052503.3618486-1-bhupesh.sharma@linaro.org/ 
+- v1 did not work well as reported earlier by Dmitry, so v2 contains the following
+  changes/fixes:
+  ~ Enable the interconnect path b/w BAM DMA and main memory first
+    before trying to access the BAM DMA registers.
+  ~ Enable the interconnect path b/w qce crytpo and main memory first
+    before trying to access the qce crypto registers.
+  ~ Make sure to document the required and optional properties for both
+    BAM DMA and qce crypto drivers.
+  ~ Add a few debug related print messages in case the qce crypto driver
+    passes or fails to probe.
+  ~ Convert the qce crypto driver probe to a defered one in case the BAM DMA
+    or the interconnect driver(s) (needed on specific Qualcomm parts) are not
+    yet probed.
 
-On Wed, May 19, 2021 at 03:01:43PM +0200, Geert Uytterhoeven wrote:
-> Convert the Renesas R-Car Image Renderer Tree binding documentation to
-> json-schema.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> I have listed Sergei as the maintainer, as he wrote the original
-> bindings.  Sergei: Please scream if this is inappropriate ;-)
-> ---
->  .../devicetree/bindings/media/renesas,imr.txt | 31 ---------
->  .../bindings/media/renesas,imr.yaml           | 66 +++++++++++++++++++
->  2 files changed, 66 insertions(+), 31 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/renesas,imr.txt
->  create mode 100644 Documentation/devicetree/bindings/media/renesas,imr.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/renesas,imr.txt b/Documentation/devicetree/bindings/media/renesas,imr.txt
-> deleted file mode 100644
-> index b0614153ed3682eb..0000000000000000
-> --- a/Documentation/devicetree/bindings/media/renesas,imr.txt
-> +++ /dev/null
-> @@ -1,31 +0,0 @@
-> -Renesas R-Car Image Renderer (Distortion Correction Engine)
-> ------------------------------------------------------------
-> -
-> -The image renderer, or the distortion correction engine, is a drawing processor
-> -with a simple instruction system capable of referencing video capture data or
-> -data in an external memory as 2D texture data and performing texture mapping
-> -and drawing with respect to any shape that is split into triangular objects.
-> -
-> -Required properties:
-> -
-> -- compatible: "renesas,<soctype>-imr-lx4", "renesas,imr-lx4" as a fallback for
-> -  the image renderer light extended 4 (IMR-LX4) found in the R-Car gen3 SoCs,
-> -  where the examples with <soctype> are:
-> -  - "renesas,r8a7795-imr-lx4" for R-Car H3,
-> -  - "renesas,r8a7796-imr-lx4" for R-Car M3-W.
-> -- reg: offset and length of the register block;
-> -- interrupts: single interrupt specifier;
-> -- clocks: single clock phandle/specifier pair;
-> -- power-domains: power domain phandle/specifier pair;
-> -- resets: reset phandle/specifier pair.
-> -
-> -Example:
-> -
-> -	imr-lx4@fe860000 {
-> -		compatible = "renesas,r8a7795-imr-lx4", "renesas,imr-lx4";
-> -		reg = <0 0xfe860000 0 0x2000>;
-> -		interrupts = <GIC_SPI 192 IRQ_TYPE_LEVEL_HIGH>;
-> -		clocks = <&cpg CPG_MOD 823>;
-> -		power-domains = <&sysc R8A7795_PD_A3VC>;
-> -		resets = <&cpg 823>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/media/renesas,imr.yaml b/Documentation/devicetree/bindings/media/renesas,imr.yaml
-> new file mode 100644
-> index 0000000000000000..ea4579209e81660f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/renesas,imr.yaml
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/renesas,imr.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas R-Car Image Renderer (Distortion Correction Engine)
-> +
-> +maintainers:
-> +  - Sergei Shtylyov <sergei.shtylyov@gmail.com>
-> +
-> +description:
-> +  The image renderer, or the distortion correction engine, is a drawing
-> +  processor with a simple instruction system capable of referencing video
-> +  capture data or data in an external memory as 2D texture data and performing
-> +  texture mapping and drawing with respect to any shape that is split into
-> +  triangular objects.
+Qualcomm crypto engine is also available on sm8250 SoC.
+It supports hardware accelerated algorithms for encryption
+and authentication. It also provides support for aes, des, 3des
+encryption algorithms and sha1, sha256, hmac(sha1), hmac(sha256)
+authentication algorithms.
 
-I'd add a blank line between paragraphs.
+Tested the enabled crypto algorithms with cryptsetup test utilities
+on sm8250-mtp and RB5 board (see [1]) and also with crypto self-tests,
+including the fuzz tests (CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y).
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+While at it, also make a minor fix in 'sdm845.dtsi', to make
+sure it confirms with the other .dtsi files which expose
+crypto nodes on qcom SoCs.
 
-> +  The image renderer light extended 4 (IMR-LX4) is found in R-Car Gen3 SoCs.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - renesas,r8a7795-imr-lx4 # R-Car H3
-> +          - renesas,r8a7796-imr-lx4 # R-Car M3-W
-> +      - const: renesas,imr-lx4      # R-Car Gen3
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - power-domains
-> +  - resets
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/r8a7795-cpg-mssr.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/power/r8a7795-sysc.h>
-> +
-> +    imr-lx4@fe860000 {
-> +            compatible = "renesas,r8a7795-imr-lx4", "renesas,imr-lx4";
-> +            reg = <0xfe860000 0x2000>;
-> +            interrupts = <GIC_SPI 192 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks = <&cpg CPG_MOD 823>;
-> +            power-domains = <&sysc R8A7795_PD_A3VC>;
-> +            resets = <&cpg 823>;
-> +    };
+Note that this series is rebased on AEAD fixes from Thara (see [2]).
+This is required for all of the fuzz tests to work.
+
+[1]. https://linux.die.net/man/8/cryptsetup
+[2]. https://lore.kernel.org/linux-crypto/20210429150707.3168383-5-thara.gopinath@linaro.org/T/
+
+Cc: Thara Gopinath <thara.gopinath@linaro.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Andy Gross <agross@kernel.org>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>
+Cc: David S. Miller <davem@davemloft.net>
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>
+Cc: Vinod Koul <vkoul@kernel.org>
+Cc: dmaengine@vger.kernel.org
+Cc: linux-clk@vger.kernel.org
+Cc: linux-crypto@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: bhupesh.linux@gmail.com
+ 
+Bhupesh Sharma (14):
+  dt-bindings: qcom-bam: Convert binding to YAML
+  dt-bindings: qcom-bam: Add 'interconnects' & 'interconnect-names' to
+    optional properties
+  dt-bindings: qcom-bam: Add 'iommus' to required properties
+  dt-bindings: qcom-qce: Convert bindings to yaml
+  dt-bindings: qcom-qce: Add 'interconnects' and move 'clocks' to
+    optional properties
+  dt-bindings: qcom-qce: Add 'iommus' to required properties
+  arm64/dts: qcom: sdm845: Use RPMH_CE_CLK macro directly
+  dt-bindings: crypto : Add new compatible strings for qcom-qce
+  arm64/dts: qcom: Use new compatibles for crypto nodes
+  crypto: qce: Add new compatibles for qce crypto driver
+  crypto: qce: Print a failure msg in case probe() fails
+  crypto: qce: Convert the device found dev_dbg() to dev_info()
+  crypto: qce: Defer probing if BAM dma channel is not yet initialized
+  arm64/dts: qcom: sm8250: Add dt entries to support crypto engine.
+
+Thara Gopinath (3):
+  dma: qcom: bam_dma: Add support to initialize interconnect path
+  crypto: qce: core: Add support to initialize interconnect path
+  crypto: qce: core: Make clocks optional
+
+ .../devicetree/bindings/crypto/qcom-qce.txt   |  25 ----
+ .../devicetree/bindings/crypto/qcom-qce.yaml  |  92 +++++++++++++++
+ .../devicetree/bindings/dma/qcom_bam_dma.txt  |  50 --------
+ .../devicetree/bindings/dma/qcom_bam_dma.yaml | 110 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi         |   2 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |   6 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  28 +++++
+ drivers/crypto/qce/core.c                     | 110 ++++++++++++------
+ drivers/crypto/qce/core.h                     |   3 +
+ drivers/dma/qcom/bam_dma.c                    |  10 ++
+ 10 files changed, 322 insertions(+), 114 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/crypto/qcom-qce.txt
+ create mode 100644 Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+ delete mode 100644 Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
+ create mode 100644 Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
 
 -- 
-Regards,
+2.31.1
 
-Laurent Pinchart
