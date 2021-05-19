@@ -2,77 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EBE14388D41
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 13:51:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CD5D388D4C
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 13:53:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242263AbhESLwl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 07:52:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38192 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229508AbhESLwl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 May 2021 07:52:41 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2870F61004;
-        Wed, 19 May 2021 11:51:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621425081;
-        bh=LCwFHlTJz0AnhSIerE3Ypbcem+GyVUtPZIRox34DFCc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jvJA9bhD60fanAxFRRSCd5doEJf5pimls4dgs5HDoeW+zNLu05yisjNGd/1sM0Xoq
-         FoCdexWd5aAmw3LqmQ55Cu977areu0jQNwm6ahpJb0OSTAZ3sQLRNWUGNiLc2jX/N0
-         v6yIVx71ePnzFxSJFNEb0Szua5EWRwqhmFZUJNcKnyZFEcrfcFs6xx0YnGutWGNJAK
-         eVB7NaDjZu9wHNrCk5t/0B8uERi8PZoBuEa3roq3qVMCgd0QlFCjP7COOL8ipvZMK2
-         f7hgOGuJNiqPK/DOcxbBlrM+lqOlZz0ytNi+a/qp0dilVzkTwqheCiXoPxNiTmeXUW
-         Hrq0PgBZRKUpw==
-Date:   Wed, 19 May 2021 12:50:36 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH] dt-bindings: sound: wm8750: convert to the json-schema
-Message-ID: <20210519115036.GB4224@sirena.org.uk>
-References: <20210512205926.780-1-zajec5@gmail.com>
- <20210518185511.GF4358@sirena.org.uk>
- <edc9e00f-1074-8a9b-1666-ba4a0b9a08f6@gmail.com>
+        id S1352712AbhESLy6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 07:54:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33972 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1352672AbhESLy6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 07:54:58 -0400
+Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67E7DC061760
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 04:53:37 -0700 (PDT)
+Received: by mail-il1-x132.google.com with SMTP id k4so8275121ili.4
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 04:53:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=UW7fZiIlXVfl0Qc0/A9Hj0P585Ftj5tVT/omHdWRq4I=;
+        b=xLPFHrobZa2WtMv3ql7wPlAv5Tlyo5PmflSYyt63GdY1dJxV6q/++PoWUU73Vm8I8Q
+         XhykK9d/2gYBEup6fAwa2XK+Umf9GBrejU/zdN/Q5H/8/Fgml0iNnb1gBdWV8iOy8P1v
+         VJBUZDNw3f4iM+zvum6Yav1e8S+RzjRmzu0EQdDYM46bamsvc9oBTDOc27AOk9ZJPMzN
+         hX73g9wxPHDs13xqAScfxHl1X2NLKl1zx/r5cxUNm2PlXAJ2UXr+O1mvsXUmJHXY/j3m
+         t340Ij6y4xra8yVLLznQQEYhjk9BsM/rX0jQObGJQmoKKyBeJyAiwsCqGdNfZvj/t9ir
+         +/cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=UW7fZiIlXVfl0Qc0/A9Hj0P585Ftj5tVT/omHdWRq4I=;
+        b=tylvVPPOZoiH4k2TvQIpGhv197gzzjDdN7P6FF3grHamC/DovPxd1TKn0T9jX6oMgV
+         qcRKCiBY0GBFLXTC2PUFuLihAjCYAfHjVlt3Bms4u+9HJ9C9Qg7V0d7HzvSy8/3XbZvE
+         Bkkwe5xvXHC0RaNuUiuzCZEuOCxtp8P7SiyuhP8r6q8SDHPxgOl65+yvHCSpUTgOA7ex
+         t+iGtgfJCrq4yDSc3QlQVlX44jweTWPkmjjZYu9ZVkX3XOZNxqeFFCRY48HBQ0h1vZCw
+         /9CChqv2Li0hR4CwAM9eAgcaDZWFUDHRuHD6lf09KVKtRnxTiesKkL146nQAUz8D0IgC
+         x9iA==
+X-Gm-Message-State: AOAM530xo2dCBjrKSGnfkSkyhDSuwnboCLGXj93j4XAHE21UQKIcF6nF
+        tU7Ph3FZOftYVpQ7jnrbGrfgi/uJNwxJNJZFHmC4Jw==
+X-Google-Smtp-Source: ABdhPJyagVuDl87Slxx3PuzN9OBL7HrQnUxrISgaMw3Gc9dfiRyYygGFfRlU4U4XUgvEtNonmfbMHU8PypFnnAmBhHo=
+X-Received: by 2002:a92:cf45:: with SMTP id c5mr10915199ilr.182.1621425216452;
+ Wed, 19 May 2021 04:53:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="VrqPEDrXMn8OVzN4"
-Content-Disposition: inline
-In-Reply-To: <edc9e00f-1074-8a9b-1666-ba4a0b9a08f6@gmail.com>
-X-Cookie: There's no time like the pleasant.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20210430123511.116057-1-robert.marko@sartura.hr> <af4923ef1ed0693fcd67d7986348b164@walle.cc>
+In-Reply-To: <af4923ef1ed0693fcd67d7986348b164@walle.cc>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Wed, 19 May 2021 13:53:25 +0200
+Message-ID: <CA+HBbNHCnpg9qCzZbT9KVNqX-daC68iaJKNdyEf7do3w98miWw@mail.gmail.com>
+Subject: Re: [PATCH 1/6] mfd: Add Delta TN48M CPLD driver
+To:     Michael Walle <michael@walle.cc>
+Cc:     Lee Jones <lee.jones@linaro.org>, robh+dt@kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        bgolaszewski@baylibre.com, jdelvare@suse.com,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, Luka Perkov <luka.perkov@sartura.hr>,
+        jmp@epiphyte.org, Paul Menzel <pmenzel@molgen.mpg.de>,
+        Donald Buczek <buczek@molgen.mpg.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, May 6, 2021 at 6:34 PM Michael Walle <michael@walle.cc> wrote:
+>
+> Hi Robert,
+>
+> Am 2021-04-30 14:35, schrieb Robert Marko:
+> > Delta TN48M switches have a Lattice CPLD that serves
+> > multiple purposes including being a GPIO expander.
+> > So lets add the MFD core driver for it.
+>
+> Did you have a look at mfd/simple-mfd-i2c.c?
 
---VrqPEDrXMn8OVzN4
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Michael,
 
-On Tue, May 18, 2021 at 11:45:17PM +0200, Rafa=C5=82 Mi=C5=82ecki wrote:
+Yes, that was my first idea but we have a requirement to expose CPLD
+information via debugfs as there are userspace applications using it.
+And simple-mfd-i2c does not allow us to do so.
 
-> Oops, "ASoC: " prefix is quite unique, no many subsystems use any prefix
-> before the "dt-bindings:". I didn't think of checking that, sorry.
+Regards,
+Robert
+>
+> -michael
 
-It's also the sound: bit - it's not just that you got things a
-surprising way round.
 
---VrqPEDrXMn8OVzN4
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmCk+4sACgkQJNaLcl1U
-h9AJjAf/arnLlf/QBgia7MxKUszY2GV6AlQuBaX3RFaxvBPFUhX3FsqF8m+9D4PM
-VPsHUuIt9luyJsWpcJlvO3Mcf6jgpN5oGXrsaarWBOisHRqTOlKI5MNfYTKkIRDC
-uyGtWyZgthH7hL/B7N7bb143vCslHTgdeKpaj28noyHpRKbbIBIjMfkEV1ncsyPK
-yTeum7FEPhnUbKp5TCYDMP1yRdx3BiPeqmwHYXpw1k8WA3yvTpp6Yniu5gbCE4yK
-RZhGjDQhR7p38ydRVdAyYeASHzPxUCu91Porj2xls2rd28Ajd16vXycQ14m1C0aJ
-tmU0CNiNJuu+ymevujLUl7inomCTow==
-=Inyw
------END PGP SIGNATURE-----
-
---VrqPEDrXMn8OVzN4--
+-- 
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
