@@ -2,91 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B260C3899BB
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 01:18:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF72A3899D4
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 01:27:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229734AbhESXUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 19:20:18 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:40068 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229465AbhESXUS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 May 2021 19:20:18 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1ljVSo-0003K0-IG; Thu, 20 May 2021 01:18:54 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Johan Jonker <jbx6244@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-phy@lists.infradead.org,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Vinod <vkoul@kernel.org>, Shawn Lin <shawn.lin@rock-chips.com>,
-        David Wu <david.wu@rock-chips.com>,
-        Liang Chen <cl@rock-chips.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Tao Huang <huangtao@rock-chips.com>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Jianqun Xu <jay.xu@rock-chips.com>
-Subject: Re: (subset) [PATCH v5 0/4] convert grf.txt to YAML
-Date:   Thu, 20 May 2021 01:18:53 +0200
-Message-ID: <3206265.usfYGdeWWP@diego>
-In-Reply-To: <CAL_JsqLbumF-x8yAO2C5wTG5cDpVmgFdqADrEDguQ-ZidMj25g@mail.gmail.com>
-References: <20210512122346.9463-1-jbx6244@gmail.com> <162101023435.2009214.882597722137585064.b4-ty@sntech.de> <CAL_JsqLbumF-x8yAO2C5wTG5cDpVmgFdqADrEDguQ-ZidMj25g@mail.gmail.com>
+        id S230093AbhESX3M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 19:29:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51200 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229518AbhESX3L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 19:29:11 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB143C06175F
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 16:27:50 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id a2so21583511lfc.9
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 16:27:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=JJEJbgRPnMBu2f8ndkVjFvRlGE1bDrbkWqaeWQqS4qg=;
+        b=bmyI9zT7D6VywVO0FZYWVtTHDbNrUjUkXVxolFMUdDeEnMBLdC7WLCM/qVZf0gLrkB
+         38HpWU/YBYXIVw+em1s8JK6FdLxutwITf2ueNcN/OWecZUzx/KS1Owa3erdFfzZ+6Hav
+         wu04qZHdyorG6YixuVe8bV4KC7/lhYqGR6n4nUKIVpoy/qnlZLarxH5nK/Dvrv4Thd9v
+         z/rT9lCJaKw1mGQhS78Y3ElvmGHjB0ZaByGVboZCovpnGqQbItihDjlHUJa7jbsm5Kni
+         axIuR+6wNTXGZ4a/azftCRWKmCsWltEhdasogAMhU6AALm/SucRIVdDJ3C+/LAocPs+Y
+         Gahw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JJEJbgRPnMBu2f8ndkVjFvRlGE1bDrbkWqaeWQqS4qg=;
+        b=bu20pOMJW9XL/W3JVFkHLg8LRjqMlygKg4LAA9nJlRRsxNwJLl2qqoFwp22VbfWPQ3
+         KMGjN6y/3N7+KADM1lvtuz/LeS63S6Me/OlM+hT9OufbBt0WJBHnxTJ7RjWlGJXAEKd6
+         H/n51dc05JBRK/HdxQbgXrEVxjsFci04J6gE6iCjY9c/EUKqVSDckhpcmhNBjPrwiZ/M
+         A8/WWDfa6aZYbJZ/jia8CtFotlCwQVDBCCaaM9CfjtAHNQH9zvtAXafBvlQICESPFu3Q
+         AEzqGr6yG3xMTXUVHF5K6tbSEqpyis+coEgMB/SDT1fCb1px06iGwqoOAku3hptFtfJH
+         egQQ==
+X-Gm-Message-State: AOAM532gz8DckRMFSYKMkOmqEDfzK9ONWsgGuGRYMhtuRBOBvjN5Kf39
+        Z9a5KhqwhlEYjD0+FdzBKl7ViuBbLAgB0bysnux+BQ==
+X-Google-Smtp-Source: ABdhPJz/cPPzI7GxXKzBS+Gom60rdG2Gq8Pyt5scUUUDZl7Es1gZjna7v+VwnSx19MRL4DcKqfOm3IcmAfkZkzaM/VM=
+X-Received: by 2002:a05:6512:1185:: with SMTP id g5mr584031lfr.586.1621466869121;
+ Wed, 19 May 2021 16:27:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20210508142000.85116-1-kettenis@openbsd.org> <20210508142000.85116-2-kettenis@openbsd.org>
+ <20210510141955.GA58072@robh.at.kernel.org> <5612be5a12568600@bloch.sibelius.xs4all.nl>
+In-Reply-To: <5612be5a12568600@bloch.sibelius.xs4all.nl>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 20 May 2021 01:27:37 +0200
+Message-ID: <CACRpkdYPsL+5ZN3WOovwqkGydaGoJZCskwMkT6rhZ1BYpYVgrw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: Add DT bindings for apple,pinctrl
+To:     Mark Kettenis <mark.kettenis@xs4all.nl>
+Cc:     Rob Herring <robh@kernel.org>, kettenis@openbsd.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Hector Martin <marcan@marcan.st>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 19. Mai 2021, 17:17:44 CEST schrieb Rob Herring:
-> On Fri, May 14, 2021 at 11:37 AM Heiko Stuebner <heiko@sntech.de> wrote:
+On Mon, May 10, 2021 at 7:06 PM Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
+> > From: Rob Herring <robh@kernel.org>
+
+> > > +properties:
+> > > +  compatible:
+> > > +    items:
+> > > +      - const: apple,t8103-pinctrl
+> > > +      - const: apple,pinctrl
 > >
-> > On Wed, 12 May 2021 14:23:42 +0200, Johan Jonker wrote:
-> > > Changed V5:
-> > >   changed compatibles for rk3066/rk3188
-> > >   add rockchip-usb-phy.yaml
-> > >   move and restyle grf nodes rk3066/rk3188
-> > >   remove applied patches
-> > >
-> > > Changed V4:
-> > >   revert separate schemas for each 'if' subset
-> > >   add additionalProperties
-> > >   move properties to top level
-> > >
-> > > [...]
-> >
-> > Applied, thanks!
-> >
-> > [2/4] dt-bindings: soc: rockchip: convert grf.txt to YAML
-> >       commit: f2ffa8f9e32d38f5c37e3c61c5b02d434057f3db
-> 
-> Patch 1 is a dependency of this, so now linux-next is broken.
+> > A genericish fallback is maybe questionable for pinctrl. That's not
+> > often the same from one SoC to the next.
+>
+> Krzysztof raised a similar point.  It seems that Apple isn't in the
+> habit of changing this aspect of their SoCs.
 
-dang ... I've dropped the patch and recreated the for-next
-branch, so hopefully this will go away with the next run.
+Rob what's your stance on this? Does it need to be changed?
+Else I'll apply the patch.
 
-I'll reapply it once the phy-yaml gets applied.
-
-Sorry the breakage
-Heiko
-
-> 
-> > [3/4] ARM: dts: rockchip: move and restyle grf nodes rk3066/rk3188
-> >       commit: a082a4ba218457fd52256e4357184b58d3fcaa49
-> > [4/4] arm64: dts: rename grf-gpio nodename in rk3328.dtsi
-> >       commit: 19486fe587b8ed17daf87a6419b51e3a65ce565c
-> >
-> > Best regards,
-> > --
-> > Heiko Stuebner <heiko@sntech.de>
-> 
-
-
-
-
+Yours,
+Linus Walleij
