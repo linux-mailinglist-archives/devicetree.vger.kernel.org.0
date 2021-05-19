@@ -2,190 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18F0E388940
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 10:21:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F17D388A40
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 11:10:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244795AbhESIWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 04:22:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41720 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237547AbhESIW3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 04:22:29 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39DDFC06175F
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 01:21:10 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id p20so14592806ljj.8
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 01:21:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=q8re41+GyYyaAtW7tdomzdW8y0f/Cg8ezYe2LoT6rpI=;
-        b=DKRL1xeadorw4AxqR3eZifT+8xEyxTnhgodb1V9Q0TI39DwMeOiajFv/aSqtT3ltIf
-         WPiDzkdV3dnlUdd+M9yg+2iiTtvaX5PJtRrriAdXyP01Wt2/udzLsk3TLLwQ1yHtTt7u
-         KjBKDfMyTRj1g0gyDBA9OBwfTFL3orBiPv5YirBdsFJns4rVmmkU5TIsW7+7ULwvvVqA
-         lkrD3OdVattp7rg1gESs0vO5ztbYBuGlp3FxTDU9to5WOeK+bDrJHfytMXCDO5GmsUIr
-         ymYkJuk8gTZUy8gADJEzgcWBopHQ4waPLQMSctVofloKtJR0PHnFtPY4JH2/+mVOArcK
-         JGRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=q8re41+GyYyaAtW7tdomzdW8y0f/Cg8ezYe2LoT6rpI=;
-        b=pmjUC1Gn0NRakat6RB6w6mYbfoiSQnifIo+TOCNFHuC1/P+PYLBZeiyPvDPNOwxUMt
-         zfmwaiuNV8EaESKGnzxBZd+eepnDCT/UH3UyZXbyflQtq9410vXYo/JhWeh4McnMOUP5
-         +xSlLGXML7PiyzPpCqSrPqlHCvhJpJn30AZiPniK9Mo8D+99JugjCXb1EDRlnWS+dVnA
-         GKHbPtr9rG4izuu9PxZPzQtmkhCXapZubkVrOBzovDEtAD6uvuThOJ2M1J8M6tpLDqNs
-         q10StZ0c+K0UCy7rBlBBFSV4q1cdT3FxUve0wc7qGKqVKFFPqueHUq51rios1jRiRNAi
-         fPqg==
-X-Gm-Message-State: AOAM533fR9tg6ppqPjGcXoJkR2bprLbw2OdCoDTA8/mcqtSKSigCdSG+
-        F2d+GSTNyf0BpDnI2MEZHdA=
-X-Google-Smtp-Source: ABdhPJzi6docidfDKpO3zNk98y2FYglQs/RXL5mnqFqtbSykTkwq56APwNjb5j492CXzJ47Cjvjvbg==
-X-Received: by 2002:a2e:b895:: with SMTP id r21mr7978425ljp.369.1621412468620;
-        Wed, 19 May 2021 01:21:08 -0700 (PDT)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id q2sm601456lfd.84.2021.05.19.01.21.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 May 2021 01:21:08 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2 robh dt/next] dt-bindings: mfd: add Broadcom CRU
-Date:   Wed, 19 May 2021 10:20:49 +0200
-Message-Id: <20210519082049.30976-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210415062839.11713-1-zajec5@gmail.com>
-References: <20210415062839.11713-1-zajec5@gmail.com>
+        id S1344603AbhESJMB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 05:12:01 -0400
+Received: from tux.runtux.com ([176.9.82.136]:34290 "EHLO tux.runtux.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1344736AbhESJKm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 May 2021 05:10:42 -0400
+X-Greylist: delayed 506 seconds by postgrey-1.27 at vger.kernel.org; Wed, 19 May 2021 05:10:40 EDT
+Received: from localhost (localhost [127.0.0.1])
+        by tux.runtux.com (Postfix) with ESMTP id 282A16EFFE;
+        Wed, 19 May 2021 11:00:49 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at tux.runtux.com
+Received: from tux.runtux.com ([127.0.0.1])
+        by localhost (tux2.runtux.com [127.0.0.1]) (amavisd-new, port 10026)
+        with LMTP id klkjuXpH5xQ4; Wed, 19 May 2021 11:00:48 +0200 (CEST)
+Received: from bee.priv.zoo (62-99-217-90.static.upcbusiness.at [62.99.217.90])
+        (Authenticated sender: postmaster@runtux.com)
+        by tux.runtux.com (Postfix) with ESMTPSA id 076366EF98;
+        Wed, 19 May 2021 11:00:47 +0200 (CEST)
+Received: by bee.priv.zoo (Postfix, from userid 1002)
+        id 4F7DA46E; Wed, 19 May 2021 11:00:47 +0200 (CEST)
+Date:   Wed, 19 May 2021 11:00:47 +0200
+From:   Ralf Schlatterbeck <rsc@runtux.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Willy Tarreau <w@1wt.eu>, Lars Poeschel <poeschel@lemonage.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/1] auxdisplay: Add I2C gpio expander example
+Message-ID: <20210519090047.e63d2im5vgskqpcs@runtux.com>
+References: <20210106113730.k5qveshjgcd57kgx@runtux.com>
+ <20210106113929.fizyg6fcsmsntkiy@runtux.com>
+ <CANiq72=Cfv=Qo2fs+HDjUc8pV37mL326SDS5JpGotUfHLwK_rQ@mail.gmail.com>
+ <CAMuHMdUW3U6DVkHp3xiHFzvRUDJ1FwTNCnBWp5LCuDGxhds9wg@mail.gmail.com>
+ <CANiq72mCFwYnbynQgwNGTt0mzo_rMrnQfpinz6DrPttFxUpyNQ@mail.gmail.com>
+ <20210517152035.GA2581887@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210517152035.GA2581887@robh.at.kernel.org>
+X-ray:  beware
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On Mon, May 17, 2021 at 10:20:35AM -0500, Rob Herring wrote:
+> Now it warns in linux-next:
+> 
+> Documentation/devicetree/bindings/auxdisplay/hit,hd44780.example.dts:52.18-62.11: Warning (unit_address_vs_reg): /example-1/i2c@2000: node has a unit name, but no reg or ranges property
 
-CRU is a block used in e.g. Northstar devices. It can be seen in the
-bcm5301x.dtsi and this binding documents its proper usage.
+[I'm the author of that patch]
+Can someone point me to the documentation of how to check a single
+example against the dt schemata? I think I had that figured out how to
+run the dt-checks over the whole tree in january but didn't bother with
+warnings since the whole devtree was riddled with warnings at the time.
+Docs on how to quickly check for warnings/errors would help me a lot. My
+naive usage of dt-validate on an example yields a traceback, I've opened
+a report on github because I think that even with gross mis-usage the
+tool shouldn't traceback...
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-V2: Use complete binding & change additionalProperties to false
-
-NOTICE: this patch is based on top of the linux-next as it requires:
-ac5f8197d15c ("dt-bindings: pinctrl: convert Broadcom Northstar to the json-schema")
-08e9fdfbb224 ("dt-bindings: thermal: brcm,ns-thermal: Convert to the json-schema")
-AND merged git@github.com:Broadcom/stblinux.git devicetree/next as it requires:
-8f711f68cffd ("dt-bindings: clock: brcm, iproc-clocks: convert to the json-schema")
-
-This is reworked version of the
-[PATCH robh next] dt-bindings: bus: add Broadcom CRU
-https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210309142241.16259-1-zajec5@gmail.com/
----
- .../devicetree/bindings/mfd/brcm,cru.yaml     | 89 +++++++++++++++++++
- 1 file changed, 89 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mfd/brcm,cru.yaml
-
-diff --git a/Documentation/devicetree/bindings/mfd/brcm,cru.yaml b/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
-new file mode 100644
-index 000000000000..d92424cc8226
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
-@@ -0,0 +1,89 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/brcm,cru.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom CRU
-+
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+
-+description: |
-+  Broadcom CRU ("Clock and Reset Unit" or "Central Resource Unit") is a hardware
-+  block grouping smaller blocks. On Broadcom Northstar platform it contains e.g.
-+  clocks, pinctrl, USB PHY and thermal.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - brcm,ns-cru
-+      - const: simple-mfd
-+
-+  reg:
-+    description: CRU registers
-+
-+  ranges: true
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+  pinctrl:
-+    $ref: ../pinctrl/brcm,ns-pinmux.yaml
-+
-+patternProperties:
-+  '^lcpll0@[a-f0-9]+$':
-+    $ref: ../clock/brcm,iproc-clocks.yaml
-+
-+  '^genpll@[a-f0-9]+$':
-+    $ref: ../clock/brcm,iproc-clocks.yaml
-+
-+  '^thermal@[a-f0-9]+$':
-+    $ref: ../thermal/brcm,ns-thermal.yaml
-+
-+additionalProperties: false
-+
-+required:
-+  - reg
-+
-+examples:
-+  - |
-+    cru-bus@1800c100 {
-+        compatible = "brcm,ns-cru", "simple-mfd";
-+        reg = <0x1800c100 0x1d0>;
-+        ranges;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        lcpll0@100 {
-+            #clock-cells = <1>;
-+            compatible = "brcm,nsp-lcpll0";
-+            reg = <0x100 0x14>;
-+            clocks = <&osc>;
-+            clock-output-names = "lcpll0", "pcie_phy", "sdio", "ddr_phy";
-+        };
-+
-+        genpll@140 {
-+            #clock-cells = <1>;
-+            compatible = "brcm,nsp-genpll";
-+            reg = <0x140 0x24>;
-+            clocks = <&osc>;
-+            clock-output-names = "genpll", "phy", "ethernetclk", "usbclk",
-+                                 "iprocfast", "sata1", "sata2";
-+        };
-+
-+        pinctrl {
-+            compatible = "brcm,bcm4708-pinmux";
-+            offset = <0x1c0>;
-+        };
-+
-+        thermal@2c0 {
-+            compatible = "brcm,ns-thermal";
-+            reg = <0x2c0 0x10>;
-+            #thermal-sensor-cells = <0>;
-+        };
-+    };
+Thanks for your help and pointers.
+Ralf
 -- 
-2.26.2
-
+Dr. Ralf Schlatterbeck                  Tel:   +43/2243/26465-16
+Open Source Consulting                  www:   www.runtux.com
+Reichergasse 131, A-3411 Weidling       email: office@runtux.com
