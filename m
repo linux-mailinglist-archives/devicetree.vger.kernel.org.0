@@ -2,69 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ABAB389320
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 17:58:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E41B8389328
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 17:59:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355034AbhESQAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 12:00:09 -0400
-Received: from youngberry.canonical.com ([91.189.89.112]:35239 "EHLO
+        id S1355046AbhESQAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 12:00:55 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:35268 "EHLO
         youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355032AbhESQAJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 12:00:09 -0400
-Received: from mail-qt1-f197.google.com ([209.85.160.197])
+        with ESMTP id S1355064AbhESQAo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 12:00:44 -0400
+Received: from mail-qv1-f71.google.com ([209.85.219.71])
         by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
         (Exim 4.93)
         (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1ljOau-0007Bz-7d
-        for devicetree@vger.kernel.org; Wed, 19 May 2021 15:58:48 +0000
-Received: by mail-qt1-f197.google.com with SMTP id 1-20020aed31010000b029019d1c685840so10205070qtg.3
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 08:58:48 -0700 (PDT)
+        id 1ljObT-0007Ed-Cq
+        for devicetree@vger.kernel.org; Wed, 19 May 2021 15:59:23 +0000
+Received: by mail-qv1-f71.google.com with SMTP id c5-20020a0ca9c50000b02901aede9b5061so10701650qvb.14
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 08:59:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=pyV2d2Dm7FbLW6jpU1vNqIjLufpoIxq3GNUEX32r3y8=;
-        b=f6N0KKajtbtXHGykDrjC4B1ytZckmDZCBHySO47zzfrZtA6udEFwQRw4qNNAwjy2Gk
-         gfVCpXZ8djTHj3NUpZSJoKZDHJbQzJrSrbUMLJF+PrI5qF3L+nIGfzy1r9iMOfnxug2e
-         HmPNcNcEOI2m9UBlEn2sUGlEECnjAj9bRjKMeac3e4WA3AGoJN+7e7yKnLbDSBcdTXqd
-         SF/n0h57n94f15Xa790feDp2aJNYZNIlp748ty+/F5G5Ojy/ubbTgKQBx/L2MYCMVW+2
-         VdCRhzKVHNUprjdVy1fvm7Z0uPi5eR1foec6bqfWOnyyk3biq51Mn8vqkibI/NCzMZv4
-         NEQw==
-X-Gm-Message-State: AOAM532Mq3/CUFpaAFS0nvOOzxDPP2XRXscLw7DsW2QVVkTWSL2Egaj1
-        dbw9G2uBpHAvM9mlU6nLaS2uK8C37Lrskd+n1MYM0B6ZAsjKlqHWzGdRv6fpsWgUsjHnpqYxNaF
-        62d9jvu+dR8ji5hJP5UlaGJfsGL99EzRUgOovfiE=
-X-Received: by 2002:ac8:7303:: with SMTP id x3mr66814qto.271.1621439927340;
-        Wed, 19 May 2021 08:58:47 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyxKfWZ9Hkx87AFnUL08UP+63a3AXZ8GTgf1NHuUoE14S1QmoHmuzXJprpkAAEkUZ/aGGa1tA==
-X-Received: by 2002:ac8:7303:: with SMTP id x3mr66800qto.271.1621439927143;
-        Wed, 19 May 2021 08:58:47 -0700 (PDT)
+        bh=PnooPKSwa6SmA/H8X8W7wHWC0547PfU+gn/DWorwdGQ=;
+        b=QEd3entfD+nNLFpBy00yiNHKcuAO6rmpQkTmw0pVIPzRVsPQmX+p/BPY+urbWhNLEW
+         BhyM5cmLD8q1mn6nitwJu7xybQ/PMeGQ48RPAOEOYujN2gcOEvk9HwNsB+5TDvV5QI1/
+         PmaQSjFN/7S0Sed1Uz2M66bjxcB2fdDX3Cf/KC3cDfcKch9KmqzjfauX/t+xxxXiRTWy
+         JMuA27fYYO0JfW/HnotVsC4BOhT8HpWIiWKJbx1/rNsO0p7DRmhqnlAvm3qaIxfdiYXS
+         rCHZoYsFr1eFoxAVLZRWMIkTgmZg/InzyzoXGFdEGuXU43BF2C7p03qFDnp0DhNqGBJd
+         oDXQ==
+X-Gm-Message-State: AOAM530H1alQSSZ9Z8eiHB8jNu7yOe5L+IVXqv7x95FufJi5GGqJthgD
+        GpItnK679yagE/uYfN42mkkRoR3/hHHI3g6vhgKWJgTTFQ2pAAqd7kU1m0+QbF7AgiQeCXZIA+I
+        z0OQQ3ayZOasGYYltDrCu28E0XxFWJHmr15ETkW8=
+X-Received: by 2002:ac8:5dce:: with SMTP id e14mr77881qtx.183.1621439962545;
+        Wed, 19 May 2021 08:59:22 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxGwuwn46qYHy7r79lyImK37z9ZMvzPgbLiPqex86I0vyobhhsRXb3Fod9XlHot7MGdUrlG5A==
+X-Received: by 2002:ac8:5dce:: with SMTP id e14mr77836qtx.183.1621439962143;
+        Wed, 19 May 2021 08:59:22 -0700 (PDT)
 Received: from [192.168.1.4] ([45.237.48.3])
-        by smtp.gmail.com with ESMTPSA id r62sm46061qkc.128.2021.05.19.08.58.45
+        by smtp.gmail.com with ESMTPSA id g15sm72470qka.49.2021.05.19.08.59.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 May 2021 08:58:46 -0700 (PDT)
-Subject: Re: [linux-nfc] Re: [PATCH 2/2] nfc: s3fwrn5: i2c: Enable optional
- clock from device tree
+        Wed, 19 May 2021 08:59:21 -0700 (PDT)
+Subject: Re: [linux-nfc] [PATCH v2 1/2] dt-bindings: net: nfc: s3fwrn5: Add
+ optional clock
 To:     Stephan Gerhold <stephan@gerhold.net>,
-        Bongsu Jeon <bongsu.jeon@samsung.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-nfc@lists.01.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-nfc@lists.01.org,
         netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20210518133935.571298-1-stephan@gerhold.net>
- <20210518133935.571298-2-stephan@gerhold.net>
- <ac04821e-359d-aaaa-7e07-280156f64036@canonical.com>
- <YKPWgSnz7STV4u+c@gerhold.net>
- <8b14159f-dca9-a213-031f-83ab2b3840a4@canonical.com>
- <YKTHXzUhcYa5YJIs@gerhold.net>
+        linux-kernel@vger.kernel.org,
+        Bongsu Jeon <bongsu.jeon@samsung.com>,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20210519091613.7343-1-stephan@gerhold.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <10b3a50e-877c-d5b1-3e35-e5dff4ef53d8@canonical.com>
-Date:   Wed, 19 May 2021 11:58:38 -0400
+Message-ID: <c1f02515-a86a-7293-b884-52c388ea70e3@canonical.com>
+Date:   Wed, 19 May 2021 11:59:06 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <YKTHXzUhcYa5YJIs@gerhold.net>
+In-Reply-To: <20210519091613.7343-1-stephan@gerhold.net>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -72,100 +68,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/05/2021 04:07, Stephan Gerhold wrote:
-> On Tue, May 18, 2021 at 11:25:55AM -0400, Krzysztof Kozlowski wrote:
->> On 18/05/2021 11:00, Stephan Gerhold wrote:
->>> On Tue, May 18, 2021 at 10:30:43AM -0400, Krzysztof Kozlowski wrote:
->>>> On 18/05/2021 09:39, Stephan Gerhold wrote:
->>>>> s3fwrn5 has a NFC_CLK_REQ output GPIO, which is asserted whenever
->>>>> the clock is needed for the current operation. This GPIO can be either
->>>>> connected directly to the clock provider, or must be monitored by
->>>>> this driver.
->>>>>
->>>>> As an example for the first case, on many Qualcomm devices the
->>>>> NFC clock is provided by the main PMIC. The clock can be either
->>>>> permanently enabled (clocks = <&rpmcc RPM_SMD_BB_CLK2>) or enabled
->>>>> only when requested through a special input pin on the PMIC
->>>>> (clocks = <&rpmcc RPM_SMD_BB_CLK2_PIN>).
->>>>>
->>>>> On the Samsung Galaxy A3/A5 (2015, Qualcomm MSM8916) this mechanism
->>>>> is used with S3FWRN5's NFC_CLK_REQ output GPIO to enable the clock
->>>>> only when necessary. However, to make that work the s3fwrn5 driver
->>>>> must keep the RPM_SMD_BB_CLK2_PIN clock enabled.
->>>>
->>>> This contradicts the code. You wrote that pin should be kept enabled
->>>> (somehow... by driver? by it's firmware?) but your code requests the
->>>> clock from provider.
->>>>
->>>
->>> Yeah, I see how that's a bit confusing. Let me try to explain it a bit
->>> better. So the Samsung Galaxy A5 (2015) has a "S3FWRN5XS1-YF30", some
->>> variant of S3FWRN5 I guess. That S3FWRN5 has a "XI" and "XO" pin in the
->>> schematics. "XO" seems to be floating, but "XI" goes to "BB_CLK2"
->>> on PM8916 (the main PMIC).
->>>
->>> Then, there is "GPIO2/NFC_CLK_REQ" on the S3FWRN5. This goes to
->>> GPIO_2_NFC_CLK_REQ on PM8916. (Note: I'm talking about two different
->>> GPIO2 here, one on S3FWRN5 and one on PM8916, they just happen to have
->>> the same number...)
->>>
->>> So in other words, S3FWRN5 gets some clock from BB_CLK2 on PM8916,
->>> and can tell PM8916 that it needs the clock via GPIO2/NFC_CLK_REQ.
->>>
->>> Now the confusing part is that the rpmcc/clk-smd-rpm driver has two
->>> clocks that represent BB_CLK2 (see include/dt-bindings/clock/qcom,rpmcc.h):
->>>
->>>   - RPM_SMD_BB_CLK2
->>>   - RPM_SMD_BB_CLK2_PIN
->>>
->>> (There are also *_CLK2_A variants but they are even more confusing
->>>  and not needed here...)
->>>
->>> Those end up in different register settings in PM8916. There is one bit
->>> to permanently enable BB_CLK2 (= RPM_SMD_BB_CLK2), and one bit to enable
->>> BB_CLK2 based on the status of GPIO_2_NFC_CLK_REQ on PM8916
->>> (= RPM_SMD_BB_CLK2_PIN).
->>>
->>> So there is indeed some kind of "AND" inside PM8916 (the register bit
->>> and "NFC_CLK_REQ" input pin). To make that "AND" work I need to make
->>> some driver (here: the s3fwrn5 driver) enable the clock so the register
->>> bit in PM8916 gets set.
->>
->> Thanks for the explanation, it sounds good. The GPIO2 (or how you call
->> it NFC_CLK_REQ) on S3FWRN5 looks like non-configurable from Linux point
->> of view. Probably the device firmware plays with it always or at least
->> handles it in an unknown way for us.
->>
+On 19/05/2021 05:16, Stephan Gerhold wrote:
+> On some systems, S3FWRN5 depends on having an external clock enabled
+> to function correctly. Allow declaring that clock in the device tree.
 > 
-> FWIW, I was looking at some more s3fwrn5 code yesterday and came
-> across this (in s3fwrn5_nci_rf_configure()):
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> ---
+> Changes in v2: Minor change in commit message only
+> v1: https://lore.kernel.org/netdev/20210518133935.571298-1-stephan@gerhold.net/
+> ---
+>  .../devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml         | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> 	/* Set default clock configuration for external crystal */
-> 	fw_cfg.clk_type = 0x01;
-> 	fw_cfg.clk_speed = 0xff;
-> 	fw_cfg.clk_req = 0xff;
-> 	ret = nci_prop_cmd(info->ndev, NCI_PROP_FW_CFG,
-> 		sizeof(fw_cfg), (__u8 *)&fw_cfg);
-> 	if (ret < 0)
-> 		goto out;
-> 
-> It does look quite suspiciously like that configures how s3fwrn5 expects
-> the clock and possibly (fw_cfg.clk_req?) how GPIO2 behaves. But it's not
-> particularly useful without some documentation for the magic numbers.
 
-Right, without documentation of FW protocol there is not much we can
-deduct here. There is no proof even that the comment matches actual code.
 
-Dear Bongsu,
-Maybe you could share some details about clock selection?
-
-> 
-> Personally, I just skip all firmware/RF configuration (which works thanks
-> to commit 4fb7b98c7be3 ("nfc: s3fwrn5: skip the NFC bootloader mode")).
-> That way, S3FWRN5 just continues using the proper configuration
-> that was loaded by the vendor drivers at some point. :)
-
-But isn't that configuration lost after power off?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
 
 Best regards,
