@@ -2,97 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A186389197
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 16:41:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D24513891A9
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 16:44:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354258AbhESOmg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 10:42:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43566 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354455AbhESOmE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 10:42:04 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EAF7C06138D
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 07:39:59 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id z19-20020a7bc7d30000b029017521c1fb75so3619126wmk.0
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 07:39:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=pUl/PDtyE06AGaUOVVOSgM6u9E5gD62PhUnqij8b4GA=;
-        b=Xh0ZPv2ZA0iIOHxdny9BbgczhC75uldbin22zXLJGsUVkzDT74YHAUORAmwunVI7dO
-         1ZSInzcNwn5W9OCI+DRtq43J+rHPAQAtjeXWIjjc+YHsMOcfCb0AX0iQNQp3dFx4amAV
-         UCiOlSarrf6hGXfWltEp1sZGgA3Z01FCl2ud4avN1JCJRkh2gk3pQL8TH8ZI7Vpk95yn
-         CTjj34VwMu3lKXRCgUtd+VGTgePWM+wwOmwvs9RPWA/UVEP37jG4pBSFaxd9UCmUH8+O
-         UntqKF3ex/1cubUDxpxD+PkeUQI4oJzkTsjeVqBH/6IJG0HgOlisPxZgiOwTqPnd92Ld
-         Jv+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=pUl/PDtyE06AGaUOVVOSgM6u9E5gD62PhUnqij8b4GA=;
-        b=oEN7iKwGOHixFMlj+wuywjzZoew/dJ0elRbf3DMiJ5TAPZGoow6GLdIV8zSzFWK65S
-         YNhNXgqAUELFpRdPXahB995HrA/bUhqMwH4NZOElF/JAACPRdweLnvz4PT4IR+KUKQTZ
-         wPYBZt5jjCpZjJfxy4Wou87stEMJnsmGogy9lFI+ZL2PMT28lP/KT4d/uGxgPE8GHAdv
-         dJTp4rnaQBSzbTs+esbUvS8iPuYzGi5UiXBvoCRVBNqnOFw3qQtnJ5DIXJ2HOfwppgjD
-         Eoo+wI00WmstFiP8ySslIpAoib/FTvT1Fy6FaoE9kKSdYHt3zQYnXlRNkafVg8Ad8J8R
-         bHjg==
-X-Gm-Message-State: AOAM531sIvZdP3Piga2oz/FhPRgTYYLLon4ZcLEpOlT3+XHm1q+HuOzt
-        IncFfnFXuLHfhrjnAGJfrhRtcA==
-X-Google-Smtp-Source: ABdhPJyst0ljQrlv1Es78T/vHYG8kLHpsdD73B7dbX3o4KuF1SW42FcIYG8H6rYBKR+qegLl34td8w==
-X-Received: by 2002:a7b:ce8d:: with SMTP id q13mr11355217wmj.109.1621435198003;
-        Wed, 19 May 2021 07:39:58 -0700 (PDT)
-Received: from dell ([91.110.221.215])
-        by smtp.gmail.com with ESMTPSA id w20sm9489272wmc.44.2021.05.19.07.39.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 May 2021 07:39:57 -0700 (PDT)
-Date:   Wed, 19 May 2021 15:39:55 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
-        lgirdwood@gmail.com, pierre-louis.bossart@linux.intel.com,
-        tiwai@suse.com, heiko@sntech.de, robh+dt@kernel.org,
-        perex@perex.cz, jbx6244@gmail.com, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, maccraft123mc@gmail.com,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v11 3/4] dt-bindings: Add Rockchip rk817 audio CODEC
- support
-Message-ID: <20210519143955.GH2415519@dell>
-References: <20210515025749.11291-1-macroalpha82@gmail.com>
- <20210515025749.11291-4-macroalpha82@gmail.com>
+        id S1354612AbhESOpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 10:45:23 -0400
+Received: from netrider.rowland.org ([192.131.102.5]:42719 "HELO
+        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with SMTP id S1348494AbhESOpR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 10:45:17 -0400
+Received: (qmail 1166961 invoked by uid 1000); 19 May 2021 10:43:56 -0400
+Date:   Wed, 19 May 2021 10:43:56 -0400
+From:   Alan Stern <stern@rowland.harvard.edu>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-usb@vger.kernel.org, Peter Chen <peter.chen@kernel.org>,
+        linux-kernel@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Al Cooper <alcooperx@gmail.com>,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH v10 2/5] USB: misc: Add onboard_usb_hub driver
+Message-ID: <20210519144356.GB1165692@rowland.harvard.edu>
+References: <20210511225223.550762-1-mka@chromium.org>
+ <20210511155152.v10.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+ <YKPz7a68duMyXU5x@google.com>
+ <20210518194511.GA1137841@rowland.harvard.edu>
+ <YKQ0XxhIWaN37HMr@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210515025749.11291-4-macroalpha82@gmail.com>
+In-Reply-To: <YKQ0XxhIWaN37HMr@google.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 May 2021, Chris Morgan wrote:
-
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Tue, May 18, 2021 at 02:40:47PM -0700, Matthias Kaehlcke wrote:
 > 
-> Create dt-binding documentation to document rk817 codec.
-> New property name of rockchip,mic-in-differential added to control if
-> the microphone is in differential mode or not.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> Tested-by: Maciej Matuszczyk <maccraft123mc@gmail.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/mfd/rk808.txt         | 188 ++++++++++++++++++
->  1 file changed, 188 insertions(+)
+> Could you also have a look at "[4/5] usb: host: xhci-plat:
+> Create platform device for onboard hubs in probe()"
+> (https://lore.kernel.org/patchwork/patch/1425453/)? It's a
+> relatively short patch that creates the platform device for
+> the driver from xhci-plat as you suggested in the v4
+> discussion.
 
-For my own reference (apply this as-is to your sign-off block):
+I'm not the maintainer for xhci-related drivers.
 
-  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+However, there is at least one thing about this patch which looks 
+suspicious: Adding the onboard_hub_dev pointer to struct usb_hcd instead 
+of to struct xhci_plat_priv, where it would make a lot more sense.
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+It's also worth mentioning that this approach won't work at all when the 
+onboard hub is not at the top level (its parent isn't the root hub), or 
+when more than one onboard hubs are connected to the same root hub.
+
+Alan Stern
