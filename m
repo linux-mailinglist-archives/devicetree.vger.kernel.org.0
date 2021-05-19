@@ -2,168 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A56738990F
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 00:04:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 485C638991C
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 00:11:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229543AbhESWFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 18:05:45 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:37387 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229455AbhESWFp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 18:05:45 -0400
-Received: by mail-ot1-f51.google.com with SMTP id v19-20020a0568301413b0290304f00e3d88so13125083otp.4;
-        Wed, 19 May 2021 15:04:23 -0700 (PDT)
+        id S229465AbhESWMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 18:12:35 -0400
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:40854 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229455AbhESWMf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 18:12:35 -0400
+Received: by mail-ot1-f53.google.com with SMTP id 80-20020a9d08560000b0290333e9d2b247so2593087oty.7;
+        Wed, 19 May 2021 15:11:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=4Qxjx7gPKuv7WGl/fdRuh5TjzSYI1WNwx1W5A71DrYw=;
-        b=LF66X4cfA6qJf6mkXYQ4yxn/q0MiaIFHpOmLDRxVHBz7UhP2H9RGHQrA2HbzURBw8X
-         9cRlcplZ0ljdbxmJdLDF1C0WJ8XjSD1EiV10zAJcDTR6jtT1EknwIznrSeh3TgkoUDox
-         KB/BQtgPtM+iygGlw5MknOKWwWMKNVGHOSE/o3PouJsLBPNLYsCqSsjmVrcFocJWFJXN
-         jF4UHgmV+xd2MdvhBBYvFEQytCg6A1IRkqnsL8QHmxtydjbwuIurHEgQcmy0HdvsM46+
-         BP6fncTTwzHe0DS/N3ycWEW7aTbOidXWrJH+ERh1pIBOFhCcDlFswU/CHSq1AuuSNCz0
-         9h7w==
-X-Gm-Message-State: AOAM530Q12xz+GdsYeG4RUiGmzdnngKltjBM/ihuqnw8MbMC2Fbuj+mr
-        qzhD9k70NqRAfe4kQfWvPg==
-X-Google-Smtp-Source: ABdhPJxNQG8BfqDgptett9J/WmF6f63g6IaewjwZ5C5UO1H0AxgNr1cBxWbDBUOwYk8H8qTcx7FSGg==
-X-Received: by 2002:a9d:57cd:: with SMTP id q13mr1384580oti.23.1621461863492;
-        Wed, 19 May 2021 15:04:23 -0700 (PDT)
+        bh=PHQQpS2EvBsKOZih9h34Kkl6JWS3zX+JZhU1E+mE6WA=;
+        b=aLlZTC6NXLGTlTClq9h3qDfpwwM9McTLR8IdvklE43p5G4cenyvCF0/0QpkJyeND9h
+         5bvmMCnwtWXSnjgqLCA9BfNDIQ5ifvNAfDNyxmLPdungMNK1xBiSm+TCuPUcEDM37GsQ
+         Yrkr4OdSHr8qwXoP8DCoK7GPF4DR+BD9Zt9s7vqGTowUeSfIl0Mo4BUTpQvLFCZ0Qdpt
+         jmqxMZb+0+XZk4G8w1ECFQRNyxZ0pYXX5ssvgBdrxA0wbjWY/3x2L3Mo6e9rwnBpXYK6
+         ndAi+3uM6/oLbglohWe+zwpN6ogq4Tqez+9H57vNvSaclpecwSA1LVXkMN576mT115Y4
+         1N5w==
+X-Gm-Message-State: AOAM533pm4KFvOzp/pg+E2Gz5WxZHCzI8xpq8/rilluA7gnaO1a1+jqa
+        1kZ3fIE9I4l2L22gICBrNkSk3MfqVA==
+X-Google-Smtp-Source: ABdhPJz7e+i1WTOlR4EGjINAE5Fn0AvSykqtdCL1EYOngHXvnGv4VUW/+ZC3Z+ER7MlQrH05OjCFXQ==
+X-Received: by 2002:a9d:ef6:: with SMTP id 109mr1420027otj.74.1621462273409;
+        Wed, 19 May 2021 15:11:13 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x31sm228279ota.24.2021.05.19.15.04.21
+        by smtp.gmail.com with ESMTPSA id y34sm232289ota.16.2021.05.19.15.11.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 May 2021 15:04:22 -0700 (PDT)
-Received: (nullmailer pid 3741422 invoked by uid 1000);
-        Wed, 19 May 2021 22:04:21 -0000
-Date:   Wed, 19 May 2021 17:04:21 -0500
+        Wed, 19 May 2021 15:11:11 -0700 (PDT)
+Received: (nullmailer pid 3751945 invoked by uid 1000);
+        Wed, 19 May 2021 22:11:10 -0000
+Date:   Wed, 19 May 2021 17:11:10 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Fabien Parent <fparent@baylibre.com>
-Cc:     Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>, mkorpershoek@baylibre.com,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: rng: mediatek: convert to yaml schema
-Message-ID: <20210519220421.GA3738290@robh.at.kernel.org>
-References: <20210518112250.2146819-1-fparent@baylibre.com>
+To:     Olivier Dautricourt <olivier.dautricourt@orolia.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Stefan Roese <sr@denx.de>
+Subject: Re: [PATCH v5 1/3] dt-bindings: dma: add schema for altera-msgdma
+Message-ID: <20210519221110.GA3751894@robh.at.kernel.org>
+References: <7d77772f49b978e3d52d3815b8743fe54c816994.1621343877.git.olivier.dautricourt@orolia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210518112250.2146819-1-fparent@baylibre.com>
+In-Reply-To: <7d77772f49b978e3d52d3815b8743fe54c816994.1621343877.git.olivier.dautricourt@orolia.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 18, 2021 at 01:22:49PM +0200, Fabien Parent wrote:
-> Convert the RNG binding for MediaTek to use YAML schema.
+On Tue, 18 May 2021 15:23:34 +0200, Olivier Dautricourt wrote:
+> add yaml schema for Altera mSGDMA bindings in devicetree.
 > 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> Reviewed-by: Stefan Roese <sr@denx.de>
+> Signed-off-by: Olivier Dautricourt <olivier.dautricourt@orolia.com>
 > ---
->  .../devicetree/bindings/rng/mtk-rng.txt       | 22 --------
->  .../devicetree/bindings/rng/mtk-rng.yaml      | 53 +++++++++++++++++++
->  2 files changed, 53 insertions(+), 22 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/rng/mtk-rng.txt
->  create mode 100644 Documentation/devicetree/bindings/rng/mtk-rng.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/rng/mtk-rng.txt b/Documentation/devicetree/bindings/rng/mtk-rng.txt
-> deleted file mode 100644
-> index dfdcb5cd2ea8..000000000000
-> --- a/Documentation/devicetree/bindings/rng/mtk-rng.txt
-> +++ /dev/null
-> @@ -1,22 +0,0 @@
-> -Device-Tree bindings for Mediatek random number generator
-> -found in MediaTek SoC family
-> -
-> -Required properties:
-> -- compatible	    : Should be
-> -			"mediatek,mt7622-rng", 	"mediatek,mt7623-rng" : for MT7622
-> -			"mediatek,mt7629-rng",  "mediatek,mt7623-rng" : for MT7629
-> -			"mediatek,mt7623-rng" : for MT7623
-> -			"mediatek,mt8516-rng", "mediatek,mt7623-rng" : for MT8516
-> -- clocks	    : list of clock specifiers, corresponding to
-> -		      entries in clock-names property;
-> -- clock-names	    : Should contain "rng" entries;
-> -- reg 		    : Specifies base physical address and size of the registers
-> -
-> -Example:
-> -
-> -rng: rng@1020f000 {
-> -	compatible = "mediatek,mt7623-rng";
-> -	reg = <0 0x1020f000 0 0x1000>;
-> -	clocks = <&infracfg CLK_INFRA_TRNG>;
-> -	clock-names = "rng";
-> -};
-> diff --git a/Documentation/devicetree/bindings/rng/mtk-rng.yaml b/Documentation/devicetree/bindings/rng/mtk-rng.yaml
-> new file mode 100644
-> index 000000000000..d9731f0ae47d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rng/mtk-rng.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/rng/mtk-rng.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: MediaTek Random number generator
-> +
-> +maintainers:
-> +  - Sean Wang <sean.wang@mediatek.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - mediatek,mt7623-rng
-> +      - items:
-> +          - const: mediatek,mt7622-rng
-> +          - const: mediatek,mt7623-rng
-> +      - items:
-> +          - const: mediatek,mt7629-rng
-> +          - const: mediatek,mt7623-rng
-> +      - items:
-> +          - const: mediatek,mt8516-rng
-> +          - const: mediatek,mt7623-rng
-
-The last 3 can be:
-
-- items:
-    - enum:
-        - mediatek,mt7622-rng
-        - mediatek,mt7629-rng
-        - mediatek,mt8516-rng
-    - const: mediatek,mt7623-rng
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: rng
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/mt2701-clk.h>
-> +    rng: rng@1020f000 {
-> +            compatible = "mediatek,mt7623-rng";
-> +            reg = <0x1020f000 0x1000>;
-> +            clocks = <&infracfg CLK_INFRA_TRNG>;
-> +            clock-names = "rng";
-> +    };
-> -- 
-> 2.31.1
+> Notes:
+>     Changes in v2:
+>      - fix reg size in dt example
+>      - fix dt_binding check warning
+>      - add list in MAINTAINERS entry
 > 
+>     Changes from v2 to v3:
+>      none
+> 
+>     Changes from v3 to v4:
+>      none
+> 
+>     Changes from v4 to v5:
+>         as per Rob's comments:
+>             - change compatible field from 'altr,msgdma' to
+>               'altr,socfpga-msgdma' to indicate that it's compatible
+>                with altera socfpga family.
+>             - describe each region separately
+>             - remove maxItems/minItems for reg section.
+>         as per Vinod's comments:
+>             - separate MAINTAINERS editing in another commit
+>             - remove description for #dma-cells
+> 
+>  .../devicetree/bindings/dma/altr,msgdma.yaml  | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/altr,msgdma.yaml
+> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
