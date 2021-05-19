@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CF0738909A
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 16:19:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10724389099
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 16:19:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239857AbhESOUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 10:20:47 -0400
-Received: from szxga04-in.huawei.com ([45.249.212.190]:4684 "EHLO
-        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240129AbhESOUq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 10:20:46 -0400
-Received: from dggems702-chm.china.huawei.com (unknown [172.30.72.58])
-        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4FlZg95mFRz1BPK3;
-        Wed, 19 May 2021 22:16:37 +0800 (CST)
+        id S239148AbhESOUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 10:20:46 -0400
+Received: from szxga05-in.huawei.com ([45.249.212.191]:4536 "EHLO
+        szxga05-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239857AbhESOUp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 10:20:45 -0400
+Received: from dggems703-chm.china.huawei.com (unknown [172.30.72.59])
+        by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4FlZgB4Hq3zsRRP;
+        Wed, 19 May 2021 22:16:38 +0800 (CST)
 Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggems702-chm.china.huawei.com (10.3.19.179) with Microsoft SMTP Server
+ dggems703-chm.china.huawei.com (10.3.19.180) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Wed, 19 May 2021 22:19:23 +0800
+ 15.1.2176.2; Wed, 19 May 2021 22:19:24 +0800
 Received: from thunder-town.china.huawei.com (10.174.177.72) by
  dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
@@ -34,9 +34,9 @@ To:     Manivannan Sadhasivam <mani@kernel.org>,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
         devicetree <devicetree@vger.kernel.org>
 CC:     Zhen Lei <thunder.leizhen@huawei.com>
-Subject: [PATCH 1/4] arm64: dts: bitmain: normalize the node name of the UART devices
-Date:   Wed, 19 May 2021 22:19:11 +0800
-Message-ID: <20210519141914.8044-2-thunder.leizhen@huawei.com>
+Subject: [PATCH 2/4] arm64: dts: broadcom: normalize the node name of the UART devices
+Date:   Wed, 19 May 2021 22:19:12 +0800
+Message-ID: <20210519141914.8044-3-thunder.leizhen@huawei.com>
 X-Mailer: git-send-email 2.26.0.windows.1
 In-Reply-To: <20210519141914.8044-1-thunder.leizhen@huawei.com>
 References: <20210519141914.8044-1-thunder.leizhen@huawei.com>
@@ -56,40 +56,49 @@ Change the node name of the UART devices to match
 
 Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
 ---
- arch/arm64/boot/dts/bitmain/bm1880.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/bitmain/bm1880.dtsi b/arch/arm64/boot/dts/bitmain/bm1880.dtsi
-index 53a9b76057aa..22a200fb07d2 100644
---- a/arch/arm64/boot/dts/bitmain/bm1880.dtsi
-+++ b/arch/arm64/boot/dts/bitmain/bm1880.dtsi
-@@ -184,7 +184,7 @@
+diff --git a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
+index 2ffb2c92182a..7b04dfe67bef 100644
+--- a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
++++ b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
+@@ -470,7 +470,7 @@
  			status = "disabled";
  		};
  
--		uart1: serial@5801A000 {
-+		uart1: serial@5801a000 {
+-		uart0: uart@100000 {
++		uart0: serial@100000 {
+ 			device_type = "serial";
  			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x5801a000 0x0 0x2000>;
- 			clocks = <&clk BM1880_CLK_UART_500M>,
-@@ -197,7 +197,7 @@
+ 			reg = <0x00100000 0x1000>;
+@@ -481,7 +481,7 @@
  			status = "disabled";
  		};
  
--		uart2: serial@5801C000 {
-+		uart2: serial@5801c000 {
+-		uart1: uart@110000 {
++		uart1: serial@110000 {
+ 			device_type = "serial";
  			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x5801c000 0x0 0x2000>;
- 			clocks = <&clk BM1880_CLK_UART_500M>,
-@@ -210,7 +210,7 @@
+ 			reg = <0x00110000 0x1000>;
+@@ -492,7 +492,7 @@
  			status = "disabled";
  		};
  
--		uart3: serial@5801E000 {
-+		uart3: serial@5801e000 {
+-		uart2: uart@120000 {
++		uart2: serial@120000 {
+ 			device_type = "serial";
  			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x5801e000 0x0 0x2000>;
- 			clocks = <&clk BM1880_CLK_UART_500M>,
+ 			reg = <0x00120000 0x1000>;
+@@ -503,7 +503,7 @@
+ 			status = "disabled";
+ 		};
+ 
+-		uart3: uart@130000 {
++		uart3: serial@130000 {
+ 			device_type = "serial";
+ 			compatible = "snps,dw-apb-uart";
+ 			reg = <0x00130000 0x1000>;
 -- 
 2.21.1
 
