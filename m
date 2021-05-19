@@ -2,75 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F17D388A40
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 11:10:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17F22388A21
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 11:05:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344603AbhESJMB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 05:12:01 -0400
-Received: from tux.runtux.com ([176.9.82.136]:34290 "EHLO tux.runtux.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1344736AbhESJKm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 May 2021 05:10:42 -0400
-X-Greylist: delayed 506 seconds by postgrey-1.27 at vger.kernel.org; Wed, 19 May 2021 05:10:40 EDT
-Received: from localhost (localhost [127.0.0.1])
-        by tux.runtux.com (Postfix) with ESMTP id 282A16EFFE;
-        Wed, 19 May 2021 11:00:49 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at tux.runtux.com
-Received: from tux.runtux.com ([127.0.0.1])
-        by localhost (tux2.runtux.com [127.0.0.1]) (amavisd-new, port 10026)
-        with LMTP id klkjuXpH5xQ4; Wed, 19 May 2021 11:00:48 +0200 (CEST)
-Received: from bee.priv.zoo (62-99-217-90.static.upcbusiness.at [62.99.217.90])
-        (Authenticated sender: postmaster@runtux.com)
-        by tux.runtux.com (Postfix) with ESMTPSA id 076366EF98;
-        Wed, 19 May 2021 11:00:47 +0200 (CEST)
-Received: by bee.priv.zoo (Postfix, from userid 1002)
-        id 4F7DA46E; Wed, 19 May 2021 11:00:47 +0200 (CEST)
-Date:   Wed, 19 May 2021 11:00:47 +0200
-From:   Ralf Schlatterbeck <rsc@runtux.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Willy Tarreau <w@1wt.eu>, Lars Poeschel <poeschel@lemonage.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/1] auxdisplay: Add I2C gpio expander example
-Message-ID: <20210519090047.e63d2im5vgskqpcs@runtux.com>
-References: <20210106113730.k5qveshjgcd57kgx@runtux.com>
- <20210106113929.fizyg6fcsmsntkiy@runtux.com>
- <CANiq72=Cfv=Qo2fs+HDjUc8pV37mL326SDS5JpGotUfHLwK_rQ@mail.gmail.com>
- <CAMuHMdUW3U6DVkHp3xiHFzvRUDJ1FwTNCnBWp5LCuDGxhds9wg@mail.gmail.com>
- <CANiq72mCFwYnbynQgwNGTt0mzo_rMrnQfpinz6DrPttFxUpyNQ@mail.gmail.com>
- <20210517152035.GA2581887@robh.at.kernel.org>
+        id S233812AbhESJG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 05:06:58 -0400
+Received: from 82-65-109-163.subs.proxad.net ([82.65.109.163]:41212 "EHLO
+        luna.linkmauve.fr" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231341AbhESJG5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 05:06:57 -0400
+Received: by luna.linkmauve.fr (Postfix, from userid 1000)
+        id 587E5F40645; Wed, 19 May 2021 11:05:35 +0200 (CEST)
+From:   Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org
+Cc:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
+        Ash Logan <ash@heyquark.com>,
+        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.ne@posteo.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/4] =?UTF-8?q?nvmem:=20nintendo-otp:=20Add=20new=20driver?= =?UTF-8?q?=20for=20the=20Wii=20and=20Wii=C2=A0U=20OTP?=
+Date:   Wed, 19 May 2021 11:05:22 +0200
+Message-Id: <20210519090525.1788-2-linkmauve@linkmauve.fr>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210519090525.1788-1-linkmauve@linkmauve.fr>
+References: <20210519090525.1788-1-linkmauve@linkmauve.fr>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210517152035.GA2581887@robh.at.kernel.org>
-X-ray:  beware
-User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 17, 2021 at 10:20:35AM -0500, Rob Herring wrote:
-> Now it warns in linux-next:
-> 
-> Documentation/devicetree/bindings/auxdisplay/hit,hd44780.example.dts:52.18-62.11: Warning (unit_address_vs_reg): /example-1/i2c@2000: node has a unit name, but no reg or ranges property
+This OTP is read-only and contains various keys used by the console to
+decrypt, encrypt or verify various pieces of storage.
 
-[I'm the author of that patch]
-Can someone point me to the documentation of how to check a single
-example against the dt schemata? I think I had that figured out how to
-run the dt-checks over the whole tree in january but didn't bother with
-warnings since the whole devtree was riddled with warnings at the time.
-Docs on how to quickly check for warnings/errors would help me a lot. My
-naive usage of dt-validate on an example yields a traceback, I've opened
-a report on github because I think that even with gross mis-usage the
-tool shouldn't traceback...
+Its size depends on the console, it is 128 bytes on the Wii and
+1024 bytes on the Wii U (split into eight 128 bytes banks).
 
-Thanks for your help and pointers.
-Ralf
+It can be used directly by writing into one register and reading from
+the other one, without any additional synchronisation.
+
+Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+---
+ drivers/nvmem/Kconfig        |  11 ++++
+ drivers/nvmem/Makefile       |   2 +
+ drivers/nvmem/nintendo-otp.c | 115 +++++++++++++++++++++++++++++++++++
+ 3 files changed, 128 insertions(+)
+ create mode 100644 drivers/nvmem/nintendo-otp.c
+
+diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
+index dd2019006838..dd6196e49b2d 100644
+--- a/drivers/nvmem/Kconfig
++++ b/drivers/nvmem/Kconfig
+@@ -107,6 +107,17 @@ config MTK_EFUSE
+ 	  This driver can also be built as a module. If so, the module
+ 	  will be called efuse-mtk.
+ 
++config NVMEM_NINTENDO_OTP
++	tristate "Nintendo Wii and Wii U OTP Support"
++	help
++	  This is a driver to expose the OTP on a Nintendo Wii or Wii U.
++
++	  This memory contains common and per-console keys, signatures and
++	  related data required to access peripherals.
++
++	  This driver can also be built as a module. If so, the module
++	  will be called nvmem-nintendo-otp.
++
+ config QCOM_QFPROM
+ 	tristate "QCOM QFPROM Support"
+ 	depends on ARCH_QCOM || COMPILE_TEST
+diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
+index bbea1410240a..dcbbde35b6a8 100644
+--- a/drivers/nvmem/Makefile
++++ b/drivers/nvmem/Makefile
+@@ -23,6 +23,8 @@ obj-$(CONFIG_NVMEM_LPC18XX_OTP)	+= nvmem_lpc18xx_otp.o
+ nvmem_lpc18xx_otp-y		:= lpc18xx_otp.o
+ obj-$(CONFIG_NVMEM_MXS_OCOTP)	+= nvmem-mxs-ocotp.o
+ nvmem-mxs-ocotp-y		:= mxs-ocotp.o
++obj-$(CONFIG_NVMEM_NINTENDO_OTP)	+= nvmem-nintendo-otp.o
++nvmem-nintendo-otp-y		:= nintendo-otp.o
+ obj-$(CONFIG_MTK_EFUSE)		+= nvmem_mtk-efuse.o
+ nvmem_mtk-efuse-y		:= mtk-efuse.o
+ obj-$(CONFIG_QCOM_QFPROM)	+= nvmem_qfprom.o
+diff --git a/drivers/nvmem/nintendo-otp.c b/drivers/nvmem/nintendo-otp.c
+new file mode 100644
+index 000000000000..de6f5d7c10ef
+--- /dev/null
++++ b/drivers/nvmem/nintendo-otp.c
+@@ -0,0 +1,115 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Nintendo Wii and Wii U OTP driver
++ *
++ * Copyright (C) 2021 Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
++ */
++
++#include <linux/device.h>
++#include <linux/io.h>
++#include <linux/module.h>
++#include <linux/mod_devicetable.h>
++#include <linux/nvmem-provider.h>
++#include <linux/of_device.h>
++#include <linux/platform_device.h>
++
++#define HW_OTPCMD  0
++#define HW_OTPDATA 4
++#define OTP_READ   0x80000000
++
++struct nintendo_otp_priv {
++	void __iomem *regs;
++};
++
++struct nintendo_otp_devtype_data {
++	const char *name;
++	unsigned int num_banks;
++};
++
++static const struct nintendo_otp_devtype_data hollywood_otp_data = {
++	.name = "wii-otp",
++	.num_banks = 1,
++};
++
++static const struct nintendo_otp_devtype_data latte_otp_data = {
++	.name = "wiiu-otp",
++	.num_banks = 8,
++};
++
++static int nintendo_otp_reg_read(void *context,
++				 unsigned int reg, void *_val, size_t bytes)
++{
++	struct nintendo_otp_priv *priv = context;
++	u32 *val = _val;
++	int words = bytes >> 2;
++	u32 bank, addr;
++
++	while (words--) {
++		bank = (reg << 1) & ~0xff;
++		addr = (reg >> 2) & 0x1f;
++		iowrite32be(OTP_READ | bank | addr, priv->regs + HW_OTPCMD);
++		*val++ = ioread32be(priv->regs + HW_OTPDATA);
++		reg += 4;
++	}
++
++	return 0;
++}
++
++static const struct of_device_id nintendo_otp_of_table[] = {
++	{ .compatible = "nintendo,hollywood-otp", .data = &hollywood_otp_data },
++	{ .compatible = "nintendo,latte-otp", .data = &latte_otp_data },
++	{/* sentinel */},
++};
++MODULE_DEVICE_TABLE(of, nintendo_otp_of_table);
++
++static int nintendo_otp_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	const struct of_device_id *of_id =
++		of_match_device(nintendo_otp_of_table, dev);
++	struct resource *res;
++	struct nvmem_device *nvmem;
++	struct nintendo_otp_priv *priv;
++
++	struct nvmem_config config = {
++		.stride = 4,
++		.word_size = 4,
++		.reg_read = nintendo_otp_reg_read,
++		.read_only = true,
++		.root_only = true,
++	};
++
++	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
++
++	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
++	priv->regs = devm_ioremap_resource(dev, res);
++	if (IS_ERR(priv->regs))
++		return PTR_ERR(priv->regs);
++
++	if (of_id->data) {
++		const struct nintendo_otp_devtype_data *data = of_id->data;
++		config.name = data->name;
++		config.size = data->num_banks * 128;
++	}
++
++	config.dev = dev;
++	config.priv = priv;
++
++	nvmem = devm_nvmem_register(dev, &config);
++
++	return PTR_ERR_OR_ZERO(nvmem);
++}
++
++static struct platform_driver nintendo_otp_driver = {
++	.probe = nintendo_otp_probe,
++	.driver = {
++		.name = "nintendo-otp",
++		.of_match_table = nintendo_otp_of_table,
++	},
++};
++module_platform_driver(nintendo_otp_driver);
++MODULE_AUTHOR("Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>");
++MODULE_DESCRIPTION("Nintendo Wii and Wii U OTP driver");
++MODULE_LICENSE("GPL v2");
 -- 
-Dr. Ralf Schlatterbeck                  Tel:   +43/2243/26465-16
-Open Source Consulting                  www:   www.runtux.com
-Reichergasse 131, A-3411 Weidling       email: office@runtux.com
+2.31.1
+
