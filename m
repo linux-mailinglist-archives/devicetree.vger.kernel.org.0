@@ -2,196 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E459F3892EA
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 17:47:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ABAB389320
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 17:58:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237944AbhESPsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 11:48:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59548 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231948AbhESPsV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 11:48:21 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F0A8C06175F;
-        Wed, 19 May 2021 08:47:02 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A7F9DBA7;
-        Wed, 19 May 2021 17:46:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1621439219;
-        bh=SV82KYXCt/yhIoUavxJdGfzficwpdfZ/IMJ5IePuVEg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IyMt6zIKpB4JK2Gw/yE7ZROfbKndHwzBt582k10n+Nm7HtysefFuB2V4jEC/7OgBQ
-         xTzN1PeGg1IPUP0gaQOXw5DxCJhuDTbSxUYondXXAIwODszzg/bOOIurcuyklHZsgI
-         kAzT4YRpO6PgyWDVLKMN/6+SPGvin3Xa4gPQA4rA=
-Date:   Wed, 19 May 2021 18:46:58 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-media@vger.kernel.org, marex@denx.de, p.zabel@pengutronix.de,
-        rmfrfs@gmail.com, robh@kernel.org, slongerbeam@gmail.com
-Subject: Re: [PATCH 00/23] media: imx: imx7-mipi-csis: Add i.MX8MM support /
- imx8mq support
-Message-ID: <YKUy8gu3Jc3VDy5i@pendragon.ideasonboard.com>
-References: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
- <20210504155939.1194369-1-martin.kepplinger@puri.sm>
- <YKBRXesDsXk9K15J@pendragon.ideasonboard.com>
- <1da3de6c879474b814f4d820ca5eb5ba07174a26.camel@puri.sm>
- <YKRmhSn65fiqshsp@pendragon.ideasonboard.com>
- <7f922c8b3d4396c00ba15ad99dd572699f4b69b1.camel@puri.sm>
+        id S1355034AbhESQAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 12:00:09 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:35239 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1355032AbhESQAJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 12:00:09 -0400
+Received: from mail-qt1-f197.google.com ([209.85.160.197])
+        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1ljOau-0007Bz-7d
+        for devicetree@vger.kernel.org; Wed, 19 May 2021 15:58:48 +0000
+Received: by mail-qt1-f197.google.com with SMTP id 1-20020aed31010000b029019d1c685840so10205070qtg.3
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 08:58:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=pyV2d2Dm7FbLW6jpU1vNqIjLufpoIxq3GNUEX32r3y8=;
+        b=f6N0KKajtbtXHGykDrjC4B1ytZckmDZCBHySO47zzfrZtA6udEFwQRw4qNNAwjy2Gk
+         gfVCpXZ8djTHj3NUpZSJoKZDHJbQzJrSrbUMLJF+PrI5qF3L+nIGfzy1r9iMOfnxug2e
+         HmPNcNcEOI2m9UBlEn2sUGlEECnjAj9bRjKMeac3e4WA3AGoJN+7e7yKnLbDSBcdTXqd
+         SF/n0h57n94f15Xa790feDp2aJNYZNIlp748ty+/F5G5Ojy/ubbTgKQBx/L2MYCMVW+2
+         VdCRhzKVHNUprjdVy1fvm7Z0uPi5eR1foec6bqfWOnyyk3biq51Mn8vqkibI/NCzMZv4
+         NEQw==
+X-Gm-Message-State: AOAM532Mq3/CUFpaAFS0nvOOzxDPP2XRXscLw7DsW2QVVkTWSL2Egaj1
+        dbw9G2uBpHAvM9mlU6nLaS2uK8C37Lrskd+n1MYM0B6ZAsjKlqHWzGdRv6fpsWgUsjHnpqYxNaF
+        62d9jvu+dR8ji5hJP5UlaGJfsGL99EzRUgOovfiE=
+X-Received: by 2002:ac8:7303:: with SMTP id x3mr66814qto.271.1621439927340;
+        Wed, 19 May 2021 08:58:47 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyxKfWZ9Hkx87AFnUL08UP+63a3AXZ8GTgf1NHuUoE14S1QmoHmuzXJprpkAAEkUZ/aGGa1tA==
+X-Received: by 2002:ac8:7303:: with SMTP id x3mr66800qto.271.1621439927143;
+        Wed, 19 May 2021 08:58:47 -0700 (PDT)
+Received: from [192.168.1.4] ([45.237.48.3])
+        by smtp.gmail.com with ESMTPSA id r62sm46061qkc.128.2021.05.19.08.58.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 May 2021 08:58:46 -0700 (PDT)
+Subject: Re: [linux-nfc] Re: [PATCH 2/2] nfc: s3fwrn5: i2c: Enable optional
+ clock from device tree
+To:     Stephan Gerhold <stephan@gerhold.net>,
+        Bongsu Jeon <bongsu.jeon@samsung.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-nfc@lists.01.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20210518133935.571298-1-stephan@gerhold.net>
+ <20210518133935.571298-2-stephan@gerhold.net>
+ <ac04821e-359d-aaaa-7e07-280156f64036@canonical.com>
+ <YKPWgSnz7STV4u+c@gerhold.net>
+ <8b14159f-dca9-a213-031f-83ab2b3840a4@canonical.com>
+ <YKTHXzUhcYa5YJIs@gerhold.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <10b3a50e-877c-d5b1-3e35-e5dff4ef53d8@canonical.com>
+Date:   Wed, 19 May 2021 11:58:38 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
+In-Reply-To: <YKTHXzUhcYa5YJIs@gerhold.net>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7f922c8b3d4396c00ba15ad99dd572699f4b69b1.camel@puri.sm>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+On 19/05/2021 04:07, Stephan Gerhold wrote:
+> On Tue, May 18, 2021 at 11:25:55AM -0400, Krzysztof Kozlowski wrote:
+>> On 18/05/2021 11:00, Stephan Gerhold wrote:
+>>> On Tue, May 18, 2021 at 10:30:43AM -0400, Krzysztof Kozlowski wrote:
+>>>> On 18/05/2021 09:39, Stephan Gerhold wrote:
+>>>>> s3fwrn5 has a NFC_CLK_REQ output GPIO, which is asserted whenever
+>>>>> the clock is needed for the current operation. This GPIO can be either
+>>>>> connected directly to the clock provider, or must be monitored by
+>>>>> this driver.
+>>>>>
+>>>>> As an example for the first case, on many Qualcomm devices the
+>>>>> NFC clock is provided by the main PMIC. The clock can be either
+>>>>> permanently enabled (clocks = <&rpmcc RPM_SMD_BB_CLK2>) or enabled
+>>>>> only when requested through a special input pin on the PMIC
+>>>>> (clocks = <&rpmcc RPM_SMD_BB_CLK2_PIN>).
+>>>>>
+>>>>> On the Samsung Galaxy A3/A5 (2015, Qualcomm MSM8916) this mechanism
+>>>>> is used with S3FWRN5's NFC_CLK_REQ output GPIO to enable the clock
+>>>>> only when necessary. However, to make that work the s3fwrn5 driver
+>>>>> must keep the RPM_SMD_BB_CLK2_PIN clock enabled.
+>>>>
+>>>> This contradicts the code. You wrote that pin should be kept enabled
+>>>> (somehow... by driver? by it's firmware?) but your code requests the
+>>>> clock from provider.
+>>>>
+>>>
+>>> Yeah, I see how that's a bit confusing. Let me try to explain it a bit
+>>> better. So the Samsung Galaxy A5 (2015) has a "S3FWRN5XS1-YF30", some
+>>> variant of S3FWRN5 I guess. That S3FWRN5 has a "XI" and "XO" pin in the
+>>> schematics. "XO" seems to be floating, but "XI" goes to "BB_CLK2"
+>>> on PM8916 (the main PMIC).
+>>>
+>>> Then, there is "GPIO2/NFC_CLK_REQ" on the S3FWRN5. This goes to
+>>> GPIO_2_NFC_CLK_REQ on PM8916. (Note: I'm talking about two different
+>>> GPIO2 here, one on S3FWRN5 and one on PM8916, they just happen to have
+>>> the same number...)
+>>>
+>>> So in other words, S3FWRN5 gets some clock from BB_CLK2 on PM8916,
+>>> and can tell PM8916 that it needs the clock via GPIO2/NFC_CLK_REQ.
+>>>
+>>> Now the confusing part is that the rpmcc/clk-smd-rpm driver has two
+>>> clocks that represent BB_CLK2 (see include/dt-bindings/clock/qcom,rpmcc.h):
+>>>
+>>>   - RPM_SMD_BB_CLK2
+>>>   - RPM_SMD_BB_CLK2_PIN
+>>>
+>>> (There are also *_CLK2_A variants but they are even more confusing
+>>>  and not needed here...)
+>>>
+>>> Those end up in different register settings in PM8916. There is one bit
+>>> to permanently enable BB_CLK2 (= RPM_SMD_BB_CLK2), and one bit to enable
+>>> BB_CLK2 based on the status of GPIO_2_NFC_CLK_REQ on PM8916
+>>> (= RPM_SMD_BB_CLK2_PIN).
+>>>
+>>> So there is indeed some kind of "AND" inside PM8916 (the register bit
+>>> and "NFC_CLK_REQ" input pin). To make that "AND" work I need to make
+>>> some driver (here: the s3fwrn5 driver) enable the clock so the register
+>>> bit in PM8916 gets set.
+>>
+>> Thanks for the explanation, it sounds good. The GPIO2 (or how you call
+>> it NFC_CLK_REQ) on S3FWRN5 looks like non-configurable from Linux point
+>> of view. Probably the device firmware plays with it always or at least
+>> handles it in an unknown way for us.
+>>
+> 
+> FWIW, I was looking at some more s3fwrn5 code yesterday and came
+> across this (in s3fwrn5_nci_rf_configure()):
+> 
+> 	/* Set default clock configuration for external crystal */
+> 	fw_cfg.clk_type = 0x01;
+> 	fw_cfg.clk_speed = 0xff;
+> 	fw_cfg.clk_req = 0xff;
+> 	ret = nci_prop_cmd(info->ndev, NCI_PROP_FW_CFG,
+> 		sizeof(fw_cfg), (__u8 *)&fw_cfg);
+> 	if (ret < 0)
+> 		goto out;
+> 
+> It does look quite suspiciously like that configures how s3fwrn5 expects
+> the clock and possibly (fw_cfg.clk_req?) how GPIO2 behaves. But it's not
+> particularly useful without some documentation for the magic numbers.
 
-On Wed, May 19, 2021 at 05:21:11PM +0200, Martin Kepplinger wrote:
-> Am Mittwoch, dem 19.05.2021 um 04:14 +0300 schrieb Laurent Pinchart:
-> > On Tue, May 18, 2021 at 04:39:00PM +0200, Martin Kepplinger wrote:
-> > > Am Sonntag, dem 16.05.2021 um 01:55 +0300 schrieb Laurent Pinchart:
-> > > > On Tue, May 04, 2021 at 05:59:39PM +0200, Martin Kepplinger wrote:
-> > > > > hi Laurent, again thanks a lot for posting this series! I can't fully test
-> > > > > it, but base my work for imx8mq on it now. imx8mq includes
-> > > > > yet another mipi phy version than this and below is some very rough testing
-> > > > > code. it's not at all something I sign-off on but my following
-> > > > > problem is based on it.
-> > > > 
-> > > > Unless I'm mistaken, the CSI-2 receiver in the i.MX8MQ is a completely
-> > > > different device. I wouldn't try to support it in the imx7-mipi-csis
-> > > > driver, but in a separate driver.
-> > > > 
-> > > > >  * configured to use both staging csi drivers
-> > > > >  * the csi bridge driver at least streams frames together with the
-> > > > > nxp "yav" mipi driver
-> > > > > 
-> > > > > media-ctl -p now says the output below, so one link from mipi to
-> > > > > csi is missing.
-> > > > > 
-> > > > > Note that
-> > > > > 
-> > > > > media-ctl --set-v4l2 "'csi':0 [fmt:SBGGR10/640x480]"
-> > > > > works in that it changes the configured format below, but
-> > > > > 
-> > > > > media-ctl -l "'imx7-mipi-csis.0':1" -> "'csi':0[1]"
-> > > > > doesn't create said missing link.
-> > > > 
-> > > > media-ctl can't create links, it can only enable or disable them. Link
-> > > > creation is the prerogative of drivers.
-> > > > 
-> > > > > Do I maybe use that wrongly? If now, does anything come to mind that would
-> > > > > be missing specifically?
-> > > > 
-> > > > The link should be created by the call to media_create_pad_link() in
-> > > > imx_media_capture_device_register(). You'll need to figure out if the
-> > > > function is called and returns an error early, or if it doesn't get
-> > > > called at all, and why.
-> > > > 
-> > > > > When trying to stream anyway (if that makes sense), I get the
-> > > > > following:
-> > > > > 
-> > > > > [ 2008.377470] capture_start_streaming: starting
-> > > > > [ 2008.381883] capture_find_format: calling imx_media_find_mbus_format with code 0x2006
-> > > > > [ 2008.389671] imx7-csi 30a90000.csi1_bridge: capture_validate_fmt: capture_find_format err
-> > > > > [ 2008.397794] imx7-csi 30a90000.csi1_bridge: capture_validate_fmt: capture_find_format found colorspace 0x1 != 0x0
-> > > > > [ 2008.407999] imx7-csi 30a90000.csi1_bridge: capture format not valid: -32
-> > > > > 
-> > > > > and if I ignore that (because I'm not yet sure whether that is specific to
-> > > > > platforms including an IPU), I get a WARN_ON from vb2_start_streaming()
-> > > > 
-> > > > That I have a fix for, I'll post it as part of an imx7-media-csi
-> > > > series.
-> > > 
-> > > Hi Laurent,
-> > > 
-> > > You haven't posted that fix you're talking about, right?
-> > 
-> > Correct. It's now fixed (see "[PATCH] media: imx: imx7-media-csi: Fix
-> > buffer return upon stream start failure", I've CC'ed you).
-> > 
-> > > The below
-> > > driver (attached; I'll send it as patches after I successfully tested
-> > > myself, and cleanup and fixes obviously)
-> > 
-> > Don't forget the DT bindings at that point :-)
-> > 
-> > > results in the same situation I described above:
-> > > 
-> > > * missing link from mipi (entity 10) -> csi (entity 1):
-> > 
-> > The link is supposed to be created by
-> > v4l2_create_fwnode_links_to_pad(),
-> > called from imx7_csi_notify_bound(). Could you trace the calls and
-> > figure out what goes wrong ?
-> 
-> that bound callback imx7_csi_notify_bound() is called only once during
-> probe: v4l2_create_fwnode_links_to_pad() returns 0 and
-> imx7_csi_async_register() returns success too.
+Right, without documentation of FW protocol there is not much we can
+deduct here. There is no proof even that the comment matches actual code.
 
-What subdev is it called for (I assume the imx8mq-mipi-csis.0) ? Have
-you traced inside the function to see why it doesn't create links ?
+Dear Bongsu,
+Maybe you could share some details about clock selection?
 
-> (the imx8mq mipi driver probes successfully, independently, a few ms
-> before the above, the sensor driver a few ms after that)
 > 
-> So nothing obviously going wrong during probe(). that's the call trace
-> in imx7_csi_notify_bound() :
-> 
-> [    5.992126] Call trace:
-> [    5.992129]  dump_backtrace+0x0/0x1e4
-> [    5.992149]  show_stack+0x24/0x30
-> [    5.992155]  dump_stack+0xd0/0x12c
-> [    5.992163]  imx7_csi_notify_bound+0x78/0x8c [imx7_media_csi]
-> [    5.992182]  v4l2_async_match_notify+0x58/0x1b0 [videodev]
-> [    5.992262]  v4l2_async_notifier_try_all_subdevs+0x60/0xd0 [videodev]
-> [    5.992316]  v4l2_async_match_notify+0x130/0x1b0 [videodev]
-> [    5.992370]  v4l2_async_register_subdev+0x98/0x1f0 [videodev]
-> [    5.992424]  imx7_csi_probe+0x2c8/0x310 [imx7_media_csi]
-> [    5.992436]  platform_probe+0x74/0xe4
-> [    5.992446]  really_probe+0xf0/0x510
-> [    5.992453]  driver_probe_device+0xfc/0x170
-> [    5.992458]  device_driver_attach+0xcc/0xd4
-> [    5.992464]  __driver_attach+0xb0/0x17c
-> [    5.992469]  bus_for_each_dev+0x7c/0xe0
-> [    5.992478]  driver_attach+0x30/0x40
-> [    5.992483]  bus_add_driver+0x154/0x250
-> [    5.992490]  driver_register+0x84/0x140
-> [    5.992496]  __platform_driver_register+0x34/0x40
-> [    5.992502]  imx7_csi_driver_init+0x2c/0x1000 [imx7_media_csi]
-> [    5.992515]  do_one_initcall+0x50/0x2d0
-> [    5.992522]  do_init_module+0x60/0x274
-> [    5.992532]  load_module+0x2078/0x2450
-> [    5.992539]  __do_sys_finit_module+0xbc/0x130
-> [    5.992547]  __arm64_sys_finit_module+0x2c/0x3c
-> [    5.992555]  el0_svc_common.constprop.0+0x68/0x130
-> [    5.992565]  do_el0_svc+0x28/0x34
-> [    5.992571]  el0_svc+0x2c/0x54
-> [    5.992580]  el0_sync_handler+0x1a4/0x1b0
-> [    5.992587]  el0_sync+0x174/0x180
-> 
-> 
-> btw, my test is:
-> 
-> v4l2-ctl -d "/dev/v4l/by-path/platform-30a90000.csi1_bridge-video-
-> index0" --set-fmt-video=width=640,height=480 --stream-mmap --stream-
-> to=test.raw --stream-count=1
-> 
-> and that (probably because of the missing link) fails with
-> 
-> VIDIOC_STREAMON returned -1 (No such device)
-> 
-> which is in the kernel:
-> 
-> imx7-csi 30a90000.csi1_bridge: pipeline start failed with -19
+> Personally, I just skip all firmware/RF configuration (which works thanks
+> to commit 4fb7b98c7be3 ("nfc: s3fwrn5: skip the NFC bootloader mode")).
+> That way, S3FWRN5 just continues using the proper configuration
+> that was loaded by the vendor drivers at some point. :)
 
-Let's fix the missing link first.
+But isn't that configuration lost after power off?
 
--- 
-Regards,
 
-Laurent Pinchart
+Best regards,
+Krzysztof
