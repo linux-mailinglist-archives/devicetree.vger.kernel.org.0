@@ -2,71 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D6C7389263
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 17:19:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8DA0389272
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 17:21:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354427AbhESPUi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 11:20:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53504 "EHLO mail.kernel.org"
+        id S1346838AbhESPWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 11:22:39 -0400
+Received: from comms.puri.sm ([159.203.221.185]:38620 "EHLO comms.puri.sm"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1354419AbhESPUh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 May 2021 11:20:37 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0F9516135A;
-        Wed, 19 May 2021 15:19:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621437558;
-        bh=ek7ca1h69ksdnof3kTbnE34ns9CTK6Kd0/3Q9dV7oCo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=caGHyOlML+2gJz5Fw3FWG2LVBgVVPhdq+fQJO8AIVBzHI9CeoxCxtzQnbwDzRVtCX
-         H1+0+aeNGnPqNt1eZ9cci+AzZv0P+jxmy0Yk5wjH+3/2nyKk+BfoaWaIkh1bYa6F6s
-         g6ghXC8e9UXw5IjlGtjZVmzy5q/UdrS0gOP+s6qsd/8Avjq9o5kcyHzjgsym9cwrzD
-         +j4NRhxg0pp58AGt15DGVqjhPa2eT/8Tr99gKcffkOzevJ29nXjOQ6FMRX36x/qbyS
-         jiOY4O5Q5sdf9lgIopIWVj8h2fUHCcEfT7SNYvIKGLxe4j8EmxZLVPfvDOttstD4qr
-         /KbpvzrYyhkew==
-Received: by mail-ej1-f51.google.com with SMTP id u21so20462904ejo.13;
-        Wed, 19 May 2021 08:19:17 -0700 (PDT)
-X-Gm-Message-State: AOAM533bSK4sxN5vgGZBSk8qVYe7deyEMjFnVvOeN7cJsbyZEHbKBslo
-        t+1xqIrWRPGW4r4N1PazhIhtETbjqc0hEsGtxQ==
-X-Google-Smtp-Source: ABdhPJzEPDsTeXH9wfUOGmX1QdjLMS8b6BNkCsHTvdukqPqic12xvjdutFYNRM0Nm5ZWgqy3SvkT0ZR9ivjct617yrU=
-X-Received: by 2002:a17:907:724b:: with SMTP id ds11mr2971920ejc.108.1621437556674;
- Wed, 19 May 2021 08:19:16 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210518165658.12764-1-jbx6244@gmail.com> <20210518165658.12764-2-jbx6244@gmail.com>
-In-Reply-To: <20210518165658.12764-2-jbx6244@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 19 May 2021 10:19:05 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+Re978VJ8-2FV0zM6A0dS-jmsR8hUAV+gQWXgW7BoJtg@mail.gmail.com>
-Message-ID: <CAL_Jsq+Re978VJ8-2FV0zM6A0dS-jmsR8hUAV+gQWXgW7BoJtg@mail.gmail.com>
-Subject: Re: [PATCH v6 1/4] dt-bindings: phy: convert rockchip-usb-phy.txt to YAML
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     "heiko@sntech.de" <heiko@sntech.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod <vkoul@kernel.org>, linux-phy@lists.infradead.org,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+        id S1346830AbhESPWj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 May 2021 11:22:39 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id EB5B5E0219;
+        Wed, 19 May 2021 08:21:18 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id RnkFYZg_m4lq; Wed, 19 May 2021 08:21:17 -0700 (PDT)
+Message-ID: <7f922c8b3d4396c00ba15ad99dd572699f4b69b1.camel@puri.sm>
+Subject: Re: [PATCH 00/23] media: imx: imx7-mipi-csis: Add i.MX8MM support /
+ imx8mq support
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, marex@denx.de, p.zabel@pengutronix.de,
+        rmfrfs@gmail.com, robh@kernel.org, slongerbeam@gmail.com
+Date:   Wed, 19 May 2021 17:21:11 +0200
+In-Reply-To: <YKRmhSn65fiqshsp@pendragon.ideasonboard.com>
+References: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
+         <20210504155939.1194369-1-martin.kepplinger@puri.sm>
+         <YKBRXesDsXk9K15J@pendragon.ideasonboard.com>
+         <1da3de6c879474b814f4d820ca5eb5ba07174a26.camel@puri.sm>
+         <YKRmhSn65fiqshsp@pendragon.ideasonboard.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3-1 
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 18, 2021 at 11:57 AM Johan Jonker <jbx6244@gmail.com> wrote:
->
-> Current dts files with Rockchip 'usbphy' nodes are manually verified.
-> In order to automate this process rockchip-usb-phy.txt has to be
-> converted to YAML.
->
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
->
-> Changed V6
->   remove some #phy-cells
-> ---
->  .../devicetree/bindings/phy/rockchip-usb-phy.txt   | 52 --------------
->  .../devicetree/bindings/phy/rockchip-usb-phy.yaml  | 81 ++++++++++++++++++++++
->  2 files changed, 81 insertions(+), 52 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/phy/rockchip-usb-phy.txt
->  create mode 100644 Documentation/devicetree/bindings/phy/rockchip-usb-phy.yaml
+Am Mittwoch, dem 19.05.2021 um 04:14 +0300 schrieb Laurent Pinchart:
+> Hi Martin,
+> 
+> On Tue, May 18, 2021 at 04:39:00PM +0200, Martin Kepplinger wrote:
+> > Am Sonntag, dem 16.05.2021 um 01:55 +0300 schrieb Laurent Pinchart:
+> > > On Tue, May 04, 2021 at 05:59:39PM +0200, Martin Kepplinger
+> > > wrote:
+> > > > hi Laurent, again thanks a lot for posting this series! I can't
+> > > > fully test
+> > > > it, but base my work for imx8mq on it now. imx8mq includes
+> > > > yet another mipi phy version than this and below is some very
+> > > > rough testing
+> > > > code. it's not at all something I sign-off on but my following
+> > > > problem is based on it.
+> > > 
+> > > Unless I'm mistaken, the CSI-2 receiver in the i.MX8MQ is a
+> > > completely
+> > > different device. I wouldn't try to support it in the imx7-mipi-
+> > > csis
+> > > driver, but in a separate driver.
+> > > 
+> > > >  * configured to use both staging csi drivers
+> > > >  * the csi bridge driver at least streams frames together with
+> > > > the
+> > > > nxp "yav" mipi driver
+> > > > 
+> > > > media-ctl -p now says the output below, so one link from mipi
+> > > > to
+> > > > csi is missing.
+> > > > 
+> > > > Note that
+> > > > 
+> > > > media-ctl --set-v4l2 "'csi':0 [fmt:SBGGR10/640x480]"
+> > > > works in that it changes the configured format below, but
+> > > > 
+> > > > media-ctl -l "'imx7-mipi-csis.0':1" -> "'csi':0[1]"
+> > > > doesn't create said missing link.
+> > > 
+> > > media-ctl can't create links, it can only enable or disable them.
+> > > Link
+> > > creation is the prerogative of drivers.
+> > > 
+> > > > Do I maybe use that wrongly? If now, does anything come to mind
+> > > > that would
+> > > > be missing specifically?
+> > > 
+> > > The link should be created by the call to media_create_pad_link()
+> > > in
+> > > imx_media_capture_device_register(). You'll need to figure out if
+> > > the
+> > > function is called and returns an error early, or if it doesn't
+> > > get
+> > > called at all, and why.
+> > > 
+> > > > When trying to stream anyway (if that makes sense), I get the
+> > > > following:
+> > > > 
+> > > > [ 2008.377470] capture_start_streaming: starting
+> > > > [ 2008.381883] capture_find_format: calling
+> > > > imx_media_find_mbus_format with code 0x2006
+> > > > [ 2008.389671] imx7-csi 30a90000.csi1_bridge:
+> > > > capture_validate_fmt: capture_find_format err
+> > > > [ 2008.397794] imx7-csi 30a90000.csi1_bridge:
+> > > > capture_validate_fmt: capture_find_format found colorspace 0x1
+> > > > != 0x0
+> > > > [ 2008.407999] imx7-csi 30a90000.csi1_bridge: capture format
+> > > > not valid: -32
+> > > > 
+> > > > and if I ignore that (because I'm not yet sure whether that is
+> > > > specific to
+> > > > platforms including an IPU), I get a WARN_ON from
+> > > > vb2_start_streaming()
+> > > 
+> > > That I have a fix for, I'll post it as part of an imx7-media-csi
+> > > series.
+> > 
+> > Hi Laurent,
+> > 
+> > You haven't posted that fix you're talking about, right?
+> 
+> Correct. It's now fixed (see "[PATCH] media: imx: imx7-media-csi: Fix
+> buffer return upon stream start failure", I've CC'ed you).
+> 
+> > The below
+> > driver (attached; I'll send it as patches after I successfully
+> > tested
+> > myself, and cleanup and fixes obviously)
+> 
+> Don't forget the DT bindings at that point :-)
+> 
+> > results in the same situation I described above:
+> > 
+> > * missing link from mipi (entity 10) -> csi (entity 1):
+> 
+> The link is supposed to be created by
+> v4l2_create_fwnode_links_to_pad(),
+> called from imx7_csi_notify_bound(). Could you trace the calls and
+> figure out what goes wrong ?
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+that bound callback imx7_csi_notify_bound() is called only once during
+probe: v4l2_create_fwnode_links_to_pad() returns 0 and
+imx7_csi_async_register() returns success too.
+
+(the imx8mq mipi driver probes successfully, independently, a few ms
+before the above, the sensor driver a few ms after that)
+
+So nothing obviously going wrong during probe(). that's the call trace
+in imx7_csi_notify_bound() :
+
+[    5.992126] Call trace:
+[    5.992129]  dump_backtrace+0x0/0x1e4
+[    5.992149]  show_stack+0x24/0x30
+[    5.992155]  dump_stack+0xd0/0x12c
+[    5.992163]  imx7_csi_notify_bound+0x78/0x8c [imx7_media_csi]
+[    5.992182]  v4l2_async_match_notify+0x58/0x1b0 [videodev]
+[    5.992262]  v4l2_async_notifier_try_all_subdevs+0x60/0xd0
+[videodev]
+[    5.992316]  v4l2_async_match_notify+0x130/0x1b0 [videodev]
+[    5.992370]  v4l2_async_register_subdev+0x98/0x1f0 [videodev]
+[    5.992424]  imx7_csi_probe+0x2c8/0x310 [imx7_media_csi]
+[    5.992436]  platform_probe+0x74/0xe4
+[    5.992446]  really_probe+0xf0/0x510
+[    5.992453]  driver_probe_device+0xfc/0x170
+[    5.992458]  device_driver_attach+0xcc/0xd4
+[    5.992464]  __driver_attach+0xb0/0x17c
+[    5.992469]  bus_for_each_dev+0x7c/0xe0
+[    5.992478]  driver_attach+0x30/0x40
+[    5.992483]  bus_add_driver+0x154/0x250
+[    5.992490]  driver_register+0x84/0x140
+[    5.992496]  __platform_driver_register+0x34/0x40
+[    5.992502]  imx7_csi_driver_init+0x2c/0x1000 [imx7_media_csi]
+[    5.992515]  do_one_initcall+0x50/0x2d0
+[    5.992522]  do_init_module+0x60/0x274
+[    5.992532]  load_module+0x2078/0x2450
+[    5.992539]  __do_sys_finit_module+0xbc/0x130
+[    5.992547]  __arm64_sys_finit_module+0x2c/0x3c
+[    5.992555]  el0_svc_common.constprop.0+0x68/0x130
+[    5.992565]  do_el0_svc+0x28/0x34
+[    5.992571]  el0_svc+0x2c/0x54
+[    5.992580]  el0_sync_handler+0x1a4/0x1b0
+[    5.992587]  el0_sync+0x174/0x180
+
+
+btw, my test is:
+
+v4l2-ctl -d "/dev/v4l/by-path/platform-30a90000.csi1_bridge-video-
+index0" --set-fmt-video=width=640,height=480 --stream-mmap --stream-
+to=test.raw --stream-count=1
+
+and that (probably because of the missing link) fails with
+
+VIDIOC_STREAMON returned -1 (No such device)
+
+which is in the kernel:
+
+imx7-csi 30a90000.csi1_bridge: pipeline start failed with -19
+
