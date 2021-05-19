@@ -2,54 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80D0F38967A
-	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 21:20:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6729389696
+	for <lists+devicetree@lfdr.de>; Wed, 19 May 2021 21:24:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231253AbhESTV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 15:21:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51310 "EHLO
+        id S232001AbhESTZj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 15:25:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbhESTV1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 15:21:27 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83F61C06175F;
-        Wed, 19 May 2021 12:20:07 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id c17so10595345pfn.6;
-        Wed, 19 May 2021 12:20:07 -0700 (PDT)
+        with ESMTP id S231642AbhESTZi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 15:25:38 -0400
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C901AC06175F;
+        Wed, 19 May 2021 12:24:18 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id 10so10615338pfl.1;
+        Wed, 19 May 2021 12:24:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=uMIDYXiQCge+lCPg7jWJZVlhfPYt5aTIXixKF3xFdtw=;
-        b=Yg91ASxZAaNzg/r8+0Ydre6wM45Ae3A1iPokHrBnYytUGLfpFnHdf3IFz8HESX0/2+
-         g821YtdozGCEBqe5IWPqRoORjgSuvSUsnUJvkFHQmi1Z8EyDysdL0ajJwNlL5xiTuXsv
-         wFEKThjSNrz9xGLrgbp/gM/UJUw8aKgxniG4Yn3LJ2CAh4MiM/s09DXVGVwgC1M7Lc1O
-         mqFqDRB1Z5q6tLXZhXMkex5oVmrXUvI0/xcrkwhwr72xMCAoZJcgyVejktim5H+sPgp9
-         TLPqhl56m5cKFfFNduokObt8ZVxO6KXBoFBtUzi8i8SumVh20RnjYnxygdSMJ5gi3qzx
-         uvlg==
+        bh=47JQ73C0NJdLVL+El8Yu9LZib8r+sSTJ+nf9zBKe9o0=;
+        b=CToMN5sVOeaSvxsFwh30mnX1cEfbujdvLOsJoVGXyNK5xIClhHeY9+5gjOfAEdXX3G
+         eU6qVJByg68kQ/w6JlnavFgIe+nfjuKKhbAsZxJHLIoUmLJC+FNQXwfuXltAASilweQx
+         t+08hp5u1PLu1TqToQLVPh129PwSHFiJcf7M+I2aRakLaRJ2reqCHrxjRIjxuLTiBnzU
+         obYFCXVysXAW0hEOj/ZFRzKi1W/0ELgGhGTgBKGpo2iX5m/PP/BptzsrBt+DoXhRmi5/
+         WDDfuoHSDbRwV59E2nqJbeAwXtBih5h7WjHhxwWGM7Qsk3IgYQx+mCus3GhZ5jZ2T7eK
+         2tug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=uMIDYXiQCge+lCPg7jWJZVlhfPYt5aTIXixKF3xFdtw=;
-        b=Dc3geLcgqBcQfWkwlO1vYuYn3/4o9akM2C0EzLHeC5tMz0mxGNk3uAntlFh/O3s4+o
-         HOTfsh9GKXRBX6Jt3hm95tC/igb2Hrv/nzK6kdkjOvpXQcz21smeaBc7XONbWmAyNxYc
-         HQM6dhqR16hLxw8+5n5DaTg4V2rQlx6uZnHI6J3l1SfxfC3rK9vvOSU0gRwawWTZ2Irk
-         f7DZAC77y/PC4SWxj5OwgbReHYK74sTitv66gxcK2MhB5ZFcEO6ECJXX+8+WdNexKO/d
-         C6pLyVZMCPW9q+hunoAHVRSupKB7sJtnp4mDIlIkEJVYMLNYV/NqIOfEQz6tI2EPIVVF
-         IgNg==
-X-Gm-Message-State: AOAM5300hlkX+sMiuvhTYB2ZdO4JL4q5RIBDr66w6RxGKvRgtYAnpEeM
-        YyF0SI69CfVx6ef0JLGtlRs=
-X-Google-Smtp-Source: ABdhPJylNyq7yX8wc3qiI92uMNP4dk54r6bNs8/LZR+DzeCwuyO2pJ1p5Agdk04xE/qvY5oPdEYXRQ==
-X-Received: by 2002:aa7:90d4:0:b029:28e:b912:acf with SMTP id k20-20020aa790d40000b029028eb9120acfmr661343pfk.43.1621452007052;
-        Wed, 19 May 2021 12:20:07 -0700 (PDT)
+        bh=47JQ73C0NJdLVL+El8Yu9LZib8r+sSTJ+nf9zBKe9o0=;
+        b=TKo7nIav/nqB6mXQ/T9bwuNvs1/SJVrqXkxETd4rwbjYPcgnNJSxr2AAKz+Nkey+Kd
+         WIZj+8KlP9k3FCBx8ENQc3hJ8CU9SxelAwkdxov8wAimf2BK6nmuKqp35IkM+mkPthCs
+         Rv0xA2tW1Ekb9KMAU79zsQ/efg7LL8GO9ZbbRrkwfErjnvdepMXZSGfbfeuS4NZqwMck
+         HfkQ2bjv6VgQt6mQKB9G28/aeFhTf9DkoQA8bH22XWUJH+UpEHRGlaVPcxQJJxJiaPRU
+         NOeY1w+VOIg5VZQ39O+w5sN6BRLEQUxkRL57ZaMAXz0jkTGQqm1assGyoDiHLla9syGY
+         PsVA==
+X-Gm-Message-State: AOAM532rt81gqcW0VIoVKqZ1wYJxWO/PhBPLWzH32xXcrX1siYa2teEs
+        IapKJqfnqSlBatDzZkrDAIQ=
+X-Google-Smtp-Source: ABdhPJzJyhu29XiaIUqubYuVceyIJwVsMCRuIXu8+2duk9EuCth6A3fkL6TVyZT/YsIkYQB5Otc01Q==
+X-Received: by 2002:a62:1d52:0:b029:2dd:ee:1439 with SMTP id d79-20020a621d520000b02902dd00ee1439mr573310pfd.57.1621452258195;
+        Wed, 19 May 2021 12:24:18 -0700 (PDT)
 Received: from [10.230.29.202] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id m5sm109361pgl.75.2021.05.19.12.20.01
+        by smtp.gmail.com with ESMTPSA id gj21sm4690007pjb.49.2021.05.19.12.24.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 May 2021 12:20:06 -0700 (PDT)
-Subject: Re: [PATCH v7 07/15] swiotlb: Update is_swiotlb_active to add a
- struct device argument
+        Wed, 19 May 2021 12:24:17 -0700 (PDT)
+Subject: Re: [PATCH v7 02/15] swiotlb: Refactor swiotlb_create_debugfs
 To:     Claire Chang <tientzu@chromium.org>,
         Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
         Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
@@ -85,14 +84,14 @@ Cc:     benh@kernel.crashing.org, paulus@samba.org,
         matthew.auld@intel.com, rodrigo.vivi@intel.com,
         thomas.hellstrom@linux.intel.com
 References: <20210518064215.2856977-1-tientzu@chromium.org>
- <20210518064215.2856977-8-tientzu@chromium.org>
+ <20210518064215.2856977-3-tientzu@chromium.org>
 From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <6cae5ffa-f31b-ba08-c2cf-4a3dd76afb3b@gmail.com>
-Date:   Wed, 19 May 2021 12:20:00 -0700
+Message-ID: <d4a3ee6d-55be-1a60-9092-66b444dc9dda@gmail.com>
+Date:   Wed, 19 May 2021 12:24:11 -0700
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Firefox/78.0 Thunderbird/78.10.2
 MIME-Version: 1.0
-In-Reply-To: <20210518064215.2856977-8-tientzu@chromium.org>
+In-Reply-To: <20210518064215.2856977-3-tientzu@chromium.org>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -103,8 +102,8 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 5/17/2021 11:42 PM, Claire Chang wrote:
-> Update is_swiotlb_active to add a struct device argument. This will be
-> useful later to allow for restricted DMA pool.
+> Split the debugfs creation to make the code reusable for supporting
+> different bounce buffer pools, e.g. restricted DMA pool.
 > 
 > Signed-off-by: Claire Chang <tientzu@chromium.org>
 
