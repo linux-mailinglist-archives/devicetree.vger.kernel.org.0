@@ -2,80 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 967D638B01C
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 15:34:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C37D38B039
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 15:42:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231748AbhETNgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 09:36:19 -0400
-Received: from foss.arm.com ([217.140.110.172]:51538 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231634AbhETNgT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 May 2021 09:36:19 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AC4F611D4;
-        Thu, 20 May 2021 06:34:57 -0700 (PDT)
-Received: from bogus (unknown [10.57.72.88])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C84A63F73B;
-        Thu, 20 May 2021 06:34:55 -0700 (PDT)
-Date:   Thu, 20 May 2021 14:34:48 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Jens Wiklander <jens.wiklander@linaro.org>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Devicetree List <devicetree@vger.kernel.org>, arve@google.com,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Andrew Walbran <qwandor@google.com>,
-        David Hartley <dhh@qti.qualcomm.com>,
-        Achin Gupta <Achin.Gupta@arm.com>,
-        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
-        Marc Bonnici <marc.bonnici@arm.com>
-Subject: Re: [PATCH v6 0/6] firmware: Add initial support for Arm FF-A
-Message-ID: <20210520133448.GA919377@bogus>
-References: <20210505093843.3308691-1-sudeep.holla@arm.com>
- <CAHUa44Fk_u9tFp=C6FdUhYeSZ-wAcmAaEqx9j=eJXtxD10G=Ug@mail.gmail.com>
+        id S237927AbhETNnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 09:43:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44272 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239828AbhETNmu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 09:42:50 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FA5FC06138D
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 06:41:26 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id b15-20020a17090a550fb029015dad75163dso5316300pji.0
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 06:41:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=lCDY3zqYN0TPm8XTDIr+feSz7CGQpYBusVmFxZWqbvU=;
+        b=aYWpmcG5UzZYC+GcETZKyG/HHk9fPzAE6LU8/INOkQM5UZ1Yhm8j3OhGzZW0NjogHI
+         q6fDF14+qqS3G+/gwiAo1S32FwPnRb/jZ5dOYjR720kR4CywTZk3la+dZv9d+wZcsSTN
+         OBVzV8pjjA1u/jk4Ut+OypKVCJjV7ozSUeMhM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=lCDY3zqYN0TPm8XTDIr+feSz7CGQpYBusVmFxZWqbvU=;
+        b=B131Kqu08EA+Bx28eUKqyH2l4lXyLJEGqpQiDi19OJnzmuGX2rDGikKpaO1/WjXXrF
+         PsqQTDG15Aobwcv7oMIyBVpVlxMQGJ9KaBz183LFEEXopUhK56bUwJlibzRyBuitW16m
+         pwlicnK7IpXieI0uXjCddKnqMIosZXYx5jlnV4kEuPS/15tbbvczpwTO7xQJ4AC4J29K
+         Iag6w0mtXwDesyu4/HpJvTUJVllsrEgLAw7naNw1P+M91AYIogFbBX0ejVa4JTqFK+Da
+         N27pXqOs7lrSydpdFFni68Qaj7rKuWT14XrBgAEat8t01CnaQwxf9fjiTCVyAja1bViv
+         68WA==
+X-Gm-Message-State: AOAM532d6wnfDEOrsuchQtLVdPhGbGkeOQU4/bDfaik/mW2Yxv29/JEa
+        b21d1z0Ikb/gk+UCmxz1JC3Ttw==
+X-Google-Smtp-Source: ABdhPJxIYFp3eVKeAwRaBfZhep5/uA8j/WMPoEzhG5E+LYHkc9EzY3M3ZpacSfZlKO4VgWPceDGyhg==
+X-Received: by 2002:a17:903:189:b029:f1:d67a:5168 with SMTP id z9-20020a1709030189b02900f1d67a5168mr5966517plg.82.1621518085625;
+        Thu, 20 May 2021 06:41:25 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:3d5d:d560:9fb4:d9d1])
+        by smtp.gmail.com with UTF8SMTPSA id k21sm2111284pgb.56.2021.05.20.06.41.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 May 2021 06:41:25 -0700 (PDT)
+Date:   Thu, 20 May 2021 06:41:23 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Alan Stern <stern@rowland.harvard.edu>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-usb@vger.kernel.org, Peter Chen <peter.chen@kernel.org>,
+        linux-kernel@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Al Cooper <alcooperx@gmail.com>,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH v10 2/5] USB: misc: Add onboard_usb_hub driver
+Message-ID: <YKZnA2bifn346bPa@google.com>
+References: <20210511225223.550762-1-mka@chromium.org>
+ <20210511155152.v10.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+ <YKPz7a68duMyXU5x@google.com>
+ <20210518194511.GA1137841@rowland.harvard.edu>
+ <YKQ0XxhIWaN37HMr@google.com>
+ <20210519144356.GB1165692@rowland.harvard.edu>
+ <YKWaJdrpj1ixx9+v@google.com>
+ <20210520020521.GB1186755@rowland.harvard.edu>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAHUa44Fk_u9tFp=C6FdUhYeSZ-wAcmAaEqx9j=eJXtxD10G=Ug@mail.gmail.com>
+In-Reply-To: <20210520020521.GB1186755@rowland.harvard.edu>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 20, 2021 at 03:20:46PM +0200, Jens Wiklander wrote:
-> On Wed, May 5, 2021 at 11:38 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
-> >
-> > Hi all,
-> >
-> > This is very basic implementation for in-kernel support for Arm FF-A
-> > specification.
-> >
-> > Arm Firmware Framework for Armv8-A specification[1] describes a software
-> > architecture that provides mechanism to utilise the virtualization
-> > extension to isolate software images and describes interfaces that
-> > standardize communication between the various software images. This
-> > includes communication between images in the Secure and Normal world.
-> >
-> > The main idea here is to create FFA device to establish any communication
-> > with a secure partition. This is currently tested with OPTEE(with changes
-> > to OPTEE driver adding FFA as transport)
-> >
-> > The series can be fetched from [2]
-> >
-> > --
-> > Regards,
-> > Sudeep
-> >
-> > [1] https://developer.arm.com/documentation/den0077/latest
-> > [2] git://git.kerniel.org/pub/scm/linux/kernel/git/sudeep.holla/linux.git v5.13/ffa
+On Wed, May 19, 2021 at 10:05:21PM -0400, Alan Stern wrote:
+> On Wed, May 19, 2021 at 04:07:17PM -0700, Matthias Kaehlcke wrote:
+> > On Wed, May 19, 2021 at 10:43:56AM -0400, Alan Stern wrote:
+> > > On Tue, May 18, 2021 at 02:40:47PM -0700, Matthias Kaehlcke wrote:
+> > > > 
+> > > > Could you also have a look at "[4/5] usb: host: xhci-plat:
+> > > > Create platform device for onboard hubs in probe()"
+> > > > (https://lore.kernel.org/patchwork/patch/1425453/)? It's a
+> > > > relatively short patch that creates the platform device for
+> > > > the driver from xhci-plat as you suggested in the v4
+> > > > discussion.
+> > > 
+> > > I'm not the maintainer for xhci-related drivers.
+> > > 
+> > > However, there is at least one thing about this patch which looks 
+> > > suspicious: Adding the onboard_hub_dev pointer to struct usb_hcd instead 
+> > > of to struct xhci_plat_priv, where it would make a lot more sense.
+> > 
+> > I can move it to struct usb_hcd if that's preferred
 > 
-> Tested OK with my OP-TEE driver patches on top of 755e78187c4e
-> ("firmware: arm_ffa: Add support for MEM_* interfaces"), which is the
-> latest on the v5.13/ffa branch above.
-> 
-> Tested-by: Jens Wiklander <jens.wiklander@linaro.org>
-> 
+> Thinko: The patch already has it in struct usb_hcd.  I suggested moving 
+> it to struct xhci_plat_priv.
 
-Thanks Jens for testing, much appreciated!
-
--- 
-Regards,
-Sudeep
+Ah, didn't actively recall to which struct I added it to, it has been a
+while since I wrote that patch ;-) Agreed that struct xhci_plat_priv is
+a better place.
