@@ -2,108 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E8FF389E3A
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 08:49:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6A9F389E4C
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 08:51:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230355AbhETGuz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 02:50:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36838 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229681AbhETGuz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 02:50:55 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B1C2C06175F
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 23:49:33 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id n2so16468126wrm.0
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 23:49:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=E1ZuZRCTlz6/Ws9j0pRH14oGlY9lvvE2LqjzptzYfhQ=;
-        b=axSDBqF3Sq8wkc0WbH3CZY6xm95L5mDZQFgCfOftPV9fglwEx33FuoeYTqysdF5CgO
-         gvOAGVJZQq0bB6/K5ulo+fN8Xt1eZcfui9dS+YxqacaFmgLBTh8mXE30GkWIW8mG4gop
-         b0nJpOKu1eMSEZ+P+wGt5ZABOMNItvm0iPiYRFJv+CJh5SovDDgyJ0JY0nRv5zqoWaqy
-         itEp92jB45oI7wAH/FQlDEMKw9mTUrE2qbi7R+h0oBTAjQISeI9YlMa4waCbqKrl2PPq
-         C/dmLBHaaav0k/lPwIQGhyye7uVNYzDQItA2FuQSU7y1eFiI9/+9GnlGjOgxZzuX/enh
-         EoGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=E1ZuZRCTlz6/Ws9j0pRH14oGlY9lvvE2LqjzptzYfhQ=;
-        b=PC6QyxnW9KzTIcRdY97galEjjtfcjZpYEpgRkEUyUak9ZzGIbnPKwTWR18SZHkb4jr
-         LyLYKL5AiMmSmz32zQ0V9nkoJyHEK30ZM7jZ9nddagJ2eYpEMlB1zXioXQXgIAUL6AhD
-         xX2WnYM7Y8w8kaXMpNWBl8iw5cs4bMF+E1OgU8Ct5wXiLSgMpP8CEB4/PzVh+5JlGiGs
-         rDQasqFPk9X0fGdCXCdqaTSMH58asZDVYGB8f9UvagDvIVR5yQLVuf9+j5SwqyaGVfXv
-         hdWDznj0Xvt0BkMbKCoW5VSkhhAs091WHpoaoOsqSFeT6WAeC5y9Vxn9KH7iTDGCj6ui
-         qsJg==
-X-Gm-Message-State: AOAM530sg1jLgfCL7WfBO5URjCDQ/uxIuHEhtRwesHMIaUlonX0Q9Qnb
-        rK6RHooyxOlACIhSjnZ1eZ2XGA==
-X-Google-Smtp-Source: ABdhPJwd6qF+Ay8hmUhZ+42UEFFkMLo1dBf7iN0NlNPKX5LqdOy5Y71JWAqSVW/tw0t9av+hXvaRNw==
-X-Received: by 2002:a5d:4b08:: with SMTP id v8mr2606935wrq.122.1621493372212;
-        Wed, 19 May 2021 23:49:32 -0700 (PDT)
-Received: from dell ([91.110.221.215])
-        by smtp.gmail.com with ESMTPSA id p2sm1930764wrj.10.2021.05.19.23.49.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 May 2021 23:49:31 -0700 (PDT)
-Date:   Thu, 20 May 2021 07:49:29 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Robert Marko <robert.marko@sartura.hr>, robh+dt@kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        bgolaszewski@baylibre.com, jdelvare@suse.com,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, Luka Perkov <luka.perkov@sartura.hr>,
-        jmp@epiphyte.org, Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>
-Subject: Re: [PATCH 1/6] mfd: Add Delta TN48M CPLD driver
-Message-ID: <20210520064929.GM2549456@dell>
-References: <20210430123511.116057-1-robert.marko@sartura.hr>
- <af4923ef1ed0693fcd67d7986348b164@walle.cc>
- <CA+HBbNHCnpg9qCzZbT9KVNqX-daC68iaJKNdyEf7do3w98miWw@mail.gmail.com>
- <0f28cabf858154842819935000f32bc2@walle.cc>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0f28cabf858154842819935000f32bc2@walle.cc>
+        id S229681AbhETGxO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 02:53:14 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:35323 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229534AbhETGxN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 May 2021 02:53:13 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id A3D105806A2;
+        Thu, 20 May 2021 02:51:52 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute3.internal (MEProxy); Thu, 20 May 2021 02:51:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm2; bh=zDP1gHyDrszLLnytgrAGtVNqgUC22fE
+        HUxnVJ2tMd80=; b=fKKhcjnhxfcH7inJWHHa3A0cIBqtVrGLLK8jvG+xfQwIGzm
+        bGWCJ44WwNzxCF8LGPZUi65ZCXMXngS1vsTDxRdzfol8lD1dHuEgpGgLFUv9et3w
+        OJ3SvDac4cFKl1d7U4KAW2HknDt9WnjR5lilUFmxt7UivlHmLCBNVRQ0rFBG7VIe
+        MPr81VVcR/4DXrgGz2OxplRAzjFOAF7sk4Mxuyq2BW9MNTqMXg8E4Tr5s9Hh4K+I
+        fhKGLqpgj3uPGGyuTpf+qRwBXHoFPH+p5EEwPLW4xD7Um5nvemR5/YNTyXBK4HZ6
+        vOopsIqr5AfTTY+Z7OWeQGGotHKC657w6JynXNQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=zDP1gH
+        yDrszLLnytgrAGtVNqgUC22fEHUxnVJ2tMd80=; b=nAwBxIw/gsRIXpTw1UBOVP
+        2Qq3iNRZx42+ZO6l/9j8pz7ZpUVp5GbYOpu37WNhVzijYTZEBDErWpvzF08KJUGI
+        bvojQ4a3ccg4GMH8ZquVURmoeKaswm8PjRsRN1dXLtZTbplRLB2op9ouPYF/gpvt
+        4q70LvH15smlxFOg5nsaRnwygHe0wnCyUY90s5uQcxTpTqCEdN7dbyGmAviBClId
+        wSw9kirQU4DPrXwLnCQB52FfIKIX4IxhctXuTiuS+iQRTabR6Sb3BIRoPSUQQK8d
+        pi8vxz33I3vi+0mQYJ1NJznWJ9Dx/ZWKVGxJCG6xdTZ/VNBv708Cp3OAizS5Ux2w
+        ==
+X-ME-Sender: <xms:BwemYIWE9ShKCRcIHlIT8n11f3DDJKr76ap4kBC_n_PjMwlNNa1ckw>
+    <xme:BwemYMkGK86YIf_wNEDeQijxAtKrFcWPwOXq3WkMNCTMQZwITAPU5uPXQhBY8Z5eC
+    kUIVLUcLkm0bETAjg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdejtddguddugecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehn
+    ughrvgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtf
+    frrghtthgvrhhnpeduffdtvdevkeffgfetffffueevgeejleeghfffjedthedthfelgfek
+    fefhfeekieenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuih
+    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgr
+    uh
+X-ME-Proxy: <xmx:BwemYMbRFvfVszlZL3_K6ezre0UAozJvK9U_t6x18uxp2Um6fFn-Rw>
+    <xmx:BwemYHWhmhBEUTF23J-0nzWeWbqJ7TUsu4J-RskfyAbMEDbetvyFog>
+    <xmx:BwemYCmhBYnhkVznydHBegbLzOyq4s3YjENph1GV2_dPWNluMg04Ng>
+    <xmx:CAemYIneiAhMNiKkCrRH-Gg0uc6EV9XAMtfTjAEQ68MxtKZH8ggN0Q>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 9E230A004B5; Thu, 20 May 2021 02:51:51 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-448-gae190416c7-fm-20210505.004-gae190416
+Mime-Version: 1.0
+Message-Id: <5b549fee-63b1-4c05-a1d6-f6a13e235e1e@www.fastmail.com>
+In-Reply-To: <20210510054213.1610760-1-andrew@aj.id.au>
+References: <20210510054213.1610760-1-andrew@aj.id.au>
+Date:   Thu, 20 May 2021 16:21:31 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     openipmi-developer@lists.sourceforge.net, openbmc@lists.ozlabs.org,
+        "Corey Minyard" <minyard@acm.org>
+Cc:     devicetree@vger.kernel.org, "Tomer Maimon" <tmaimon77@gmail.com>,
+        linux-aspeed@lists.ozlabs.org,
+        "Avi Fishman" <avifishman70@gmail.com>,
+        "Patrick Venture" <venture@google.com>,
+        linux-kernel@vger.kernel.org, "Tali Perry" <tali.perry1@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
+        linux-arm-kernel@lists.infradead.org,
+        "Benjamin Fair" <benjaminfair@google.com>,
+        "Arnd Bergmann" <arnd@arndb.de>, "Zev Weiss" <zweiss@equinix.com>
+Subject: Re: [PATCH v3 00/16] ipmi: Allow raw access to KCS devices
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 19 May 2021, Michael Walle wrote:
+Hi Corey,
 
-> Hi,
+On Mon, 10 May 2021, at 15:11, Andrew Jeffery wrote:
+> Hello,
 > 
-> Am 2021-05-19 13:53, schrieb Robert Marko:
-> > On Thu, May 6, 2021 at 6:34 PM Michael Walle <michael@walle.cc> wrote:
-> > > Am 2021-04-30 14:35, schrieb Robert Marko:
-> > > > Delta TN48M switches have a Lattice CPLD that serves
-> > > > multiple purposes including being a GPIO expander.
-> > > > So lets add the MFD core driver for it.
-> > > 
-> > > Did you have a look at mfd/simple-mfd-i2c.c?
-> > 
-> > Yes, that was my first idea but we have a requirement to expose CPLD
-> > information via debugfs as there are userspace applications using it.
-> > And simple-mfd-i2c does not allow us to do so.
+> This is the 3rd spin of the series refactoring the keyboard-controller-style
+> device drivers in the IPMI subsystem.
 > 
-> Mh, last time Lee wasn't very fond of having a driver that just populates
-> sub-drivers while doing almost nothing itself. See
-> https://lore.kernel.org/lkml/20200605065709.GD3714@dell/
+> v2 can be found (in two parts because yay patch workflow mistakes) at:
+> 
+> Cover letter:
+> https://lore.kernel.org/linux-arm-kernel/20210319061952.145040-1-andrew@aj.id.au/
+> 
+> Patches:
+> https://lore.kernel.org/linux-arm-kernel/20210319062752.145730-1-andrew@aj.id.au/
+> 
+> Several significant changes in v3:
+> 
+> 1. The series is rebased onto v5.13-rc1
+> 
+> 2. v5.13-rc1 includes Chiawei's patches reworking the LPC devicetree bindings,
+>    so they're no-longer required in the series.
+> 
+> 3. After some discussion with Arnd[1] and investigating the serio subsystem,
+>    I've replaced the "raw" KCS driver (patch 16/21 in v2) with a serio adaptor
+>    (patch 11/16 in this series). The adaptor allows us to take advantage of the
+>    existing chardevs provided by serio.
+> 
+> [1] 
+> https://lore.kernel.org/linux-arm-kernel/37e75b07-a5c6-422f-84b3-54f2bea0b917@www.fastmail.com/
+> 
+> Finally, I've also addressed Zev Weiss' review comments where I thought it was
+> required. These comments covered a lot of minor issues across (almost) all the
+> patches, so it's best to review from a clean slate rather than attempt to review
+> the differences between spins.
 
-Right.  I still feel that way.
+I backported this series for OpenBMC and posting those patches provoked
+some feedback:
 
-> That being said, I'd also like to expose our CPLD version, but until now
-> haven't found a good solution.
+* A bug identified in patch 9/18 for the Nuvoton driver where we enable
+  the OBE interrupt:
 
-Why though?  Does S/W *need* it?
+https://lore.kernel.org/openbmc/HK2PR03MB4371F006185ADBBF812A5892AE509@HK2PR03MB4371.apcprd03.prod.outlook.com/
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+* A discussion on patch 10/18 about lifting the single-open constraint
+
+https://lore.kernel.org/openbmc/CAPnigKku-EjOnV9gsmnXzH=XZxSU78iLeccNbsK8k2_4b4UwSg@mail.gmail.com/
+
+I need to do a v4 to fix the bug in the Nuvoton driver. Did you have any
+feedback for the remaining patches or thoughts on the discussions linked
+above?  I'd like to incorporate whatever I can into the series before
+respinning.
+
+Cheers,
+
+Andrew
