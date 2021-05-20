@@ -2,157 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D85D38AE8D
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 14:39:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC8C438AE56
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 14:33:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232873AbhETMlG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 08:41:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57986 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234963AbhETMlA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 08:41:00 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16469C03CCDB
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 04:57:41 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id o127so9007033wmo.4
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 04:57:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=CRX2JtlP6roZDHRvtYOLEAQ/K5VUocF6cJ1EiMMZE2U=;
-        b=cYQfOTbe1R2YmUfbEIaXJO8PkRspZ9kSS+W9Meup0D9UVVDtZ6bGiv0OXWB5dkarTv
-         kVZMww/qtdQ4hu/w+bNmO6Cn8IcFtFUSORexjjuuNP58NT6IVsgCWWpMC3imbC9SXm0x
-         rW74+V4mmk4hAOP1f9J90lI1ab7VCcfWQ26HWYat2ijJvHRn5tjNVqB2t8BtZaJGRTte
-         HqyTus9JJr5+lV4APOF32ptIdSw5NKYJLcmDSqcn38Tne2nZmPDYh+VwvmSMFLE9mlyh
-         kt8UTYgnrx1znWStbWzE2+9NMAYweDwA0nIXoYctl1Has6yCZ2AgZRJj1B0o75eJ1J+G
-         AGiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=CRX2JtlP6roZDHRvtYOLEAQ/K5VUocF6cJ1EiMMZE2U=;
-        b=OWKykQRgD1erx4Gc1fiIEvSmykhgFfJjUz14aDtIzVui6Z2Jlpfr5G83rr39vhg64T
-         CxUdB/yGqprjc27z4Z+umIJwCYKRcYaNBuaydy/zpgrUT5C9kprImSrkB4r1ELY+Y4+V
-         Giy16bG+6KgAgX1of5rCknKqte+dUc5o7dH8hKUv9+Nvhsy8xsvNArmCRxdNougGv1ju
-         I8LC3qQCUZSBtbo2khtr/jxql/bA7FZDw/fDk4cUnAyz5FaXAgyDZS/i9olYPQcbp/m1
-         Nbyl7qKd+/j247hkUoL+ddXCLjX5jBtN0iYhb4LEz8hd5pn5xAwBrCCHfjwAi6yg5v9q
-         5ESg==
-X-Gm-Message-State: AOAM531RLuCVBggWOrcFQSS79LHSujBsaGkCb6wDBxHEW+VkaD6n01dw
-        oLglnBqihWzTMIQbkZncOlz4qA==
-X-Google-Smtp-Source: ABdhPJwg7SvNLg4qlgXj4qZQTDO7gV78Dm+ivYeKMl+4ggpfyfpwNFiEnX0P3s8pNwRORC7FVUwz8Q==
-X-Received: by 2002:a1c:1dcf:: with SMTP id d198mr3223262wmd.40.1621511859655;
-        Thu, 20 May 2021 04:57:39 -0700 (PDT)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id z12sm3179803wmc.5.2021.05.20.04.57.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 May 2021 04:57:39 -0700 (PDT)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     miquel.raynal@bootlin.com, richard@nod.at, robh+dt@kernel.org,
-        vigneshr@ti.com, linus.walleij@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org, Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH] dt_bindings: mtd: partitions: redboot: convert to YAML
-Date:   Thu, 20 May 2021 11:57:32 +0000
-Message-Id: <20210520115732.1276569-1-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+        id S235550AbhETMfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 08:35:12 -0400
+Received: from mga14.intel.com ([192.55.52.115]:40582 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236467AbhETMe6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 May 2021 08:34:58 -0400
+IronPort-SDR: xNyF7BnA0sfzqeRborUJpS50Ukj3lR6AilMBTTQU+wzwC1b65BFmBDmXV7iCtdJJeuQX4PTj+Z
+ zHDFLjGZWq5w==
+X-IronPort-AV: E=McAfee;i="6200,9189,9989"; a="200915678"
+X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; 
+   d="scan'208";a="200915678"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2021 05:33:36 -0700
+IronPort-SDR: YPSVAAhCNqWnrl03Khe1at6noFmJbazD2tO2C08UqTvwyl8miudcz6Eae7wNh9YY+h1msFXqt3
+ MeBj/VRPwjPA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; 
+   d="scan'208";a="543512173"
+Received: from kuha.fi.intel.com ([10.237.72.162])
+  by fmsmga001.fm.intel.com with SMTP; 20 May 2021 05:33:32 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Thu, 20 May 2021 15:33:32 +0300
+Date:   Thu, 20 May 2021 15:33:32 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Li Jun <jun.li@nxp.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org,
+        gregkh@linuxfoundation.org, linux@roeck-us.net,
+        linux-usb@vger.kernel.org, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/4] usb: typec: add typec orientation switch support via
+ mux controller
+Message-ID: <YKZXHG7BSSZssiBg@kuha.fi.intel.com>
+References: <1621408490-23811-1-git-send-email-jun.li@nxp.com>
+ <1621408490-23811-4-git-send-email-jun.li@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1621408490-23811-4-git-send-email-jun.li@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Converts mtd/partitions/redboot-fis.txt to YAML.
+On Wed, May 19, 2021 at 03:14:49PM +0800, Li Jun wrote:
+> Some dedicated mux block can use existing mux controller as a
+> mux provider, typec port as a consumer to select channel for
+> orientation switch, this can be an alternate way to current
+> typec_switch interface.
+> 
+> Signed-off-by: Li Jun <jun.li@nxp.com>
+> ---
+>  drivers/usb/typec/class.c     | 26 +++++++++++++++++++++++++-
+>  drivers/usb/typec/class.h     |  2 ++
+>  drivers/usb/typec/mux.c       | 34 ++++++++++++++++++++++++++++++++++
+>  include/linux/usb/typec_mux.h |  4 ++++
+>  4 files changed, 65 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/usb/typec/class.c b/drivers/usb/typec/class.c
+> index a29bf2c32233..1bb0275e6204 100644
+> --- a/drivers/usb/typec/class.c
+> +++ b/drivers/usb/typec/class.c
+> @@ -1601,6 +1601,7 @@ static void typec_release(struct device *dev)
+>  	ida_simple_remove(&typec_index_ida, port->id);
+>  	ida_destroy(&port->mode_ids);
+>  	typec_switch_put(port->sw);
+> +	typec_mux_control_switch_put(port->mux_control_switch);
+>  	typec_mux_put(port->mux);
+>  	kfree(port->cap);
+>  	kfree(port);
+> @@ -1816,6 +1817,13 @@ int typec_set_orientation(struct typec_port *port,
+>  	if (ret)
+>  		return ret;
+>  
+> +	if (!port->sw) {
+> +		ret = typec_mux_control_switch_set(port->mux_control_switch,
+> +				port->mux_control_switch_states[orientation]);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+>  	port->orientation = orientation;
+>  	sysfs_notify(&port->dev.kobj, NULL, "orientation");
+>  	kobject_uevent(&port->dev.kobj, KOBJ_CHANGE);
+> @@ -1991,7 +1999,7 @@ struct typec_port *typec_register_port(struct device *parent,
+>  				       const struct typec_capability *cap)
+>  {
+>  	struct typec_port *port;
+> -	int ret;
+> +	int ret = 0;
+>  	int id;
+>  
+>  	port = kzalloc(sizeof(*port), GFP_KERNEL);
+> @@ -2068,6 +2076,22 @@ struct typec_port *typec_register_port(struct device *parent,
+>  		return ERR_PTR(ret);
+>  	}
+>  
+> +	if (!port->sw) {
+> +		/* Try to get typec switch via general mux controller */
+> +		port->mux_control_switch = typec_mux_control_switch_get(&port->dev);
+> +		if (IS_ERR(port->mux_control_switch))
+> +			ret = PTR_ERR(port->mux_control_switch);
+> +		else if (port->mux_control_switch)
+> +			ret = device_property_read_u32_array(&port->dev,
+> +					"mux-control-switch-states",
+> +					port->mux_control_switch_states,
+> +					3);
+> +		if (ret) {
+> +			put_device(&port->dev);
+> +			return ERR_PTR(ret);
+> +		}
+> +	}
 
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
- .../bindings/mtd/partitions/redboot-fis.txt   | 27 ------------
- .../bindings/mtd/partitions/redboot-fis.yaml  | 42 +++++++++++++++++++
- 2 files changed, 42 insertions(+), 27 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mtd/partitions/redboot-fis.txt
- create mode 100644 Documentation/devicetree/bindings/mtd/partitions/redboot-fis.yaml
+Why not just do that inside fwnode_typec_switch_get() and handle the
+whole thing in drivers/usb/typec/mux.c (or in its own file if you
+prefer)?
 
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/redboot-fis.txt b/Documentation/devicetree/bindings/mtd/partitions/redboot-fis.txt
-deleted file mode 100644
-index fd0ebe4e3415..000000000000
---- a/Documentation/devicetree/bindings/mtd/partitions/redboot-fis.txt
-+++ /dev/null
-@@ -1,27 +0,0 @@
--RedBoot FLASH Image System (FIS) Partitions
--===========================================
--
--The FLASH Image System (FIS) directory is a flash description
--format closely associated with the RedBoot boot loader.
--
--It uses one single flash eraseblock in the flash to store an index of
--all images in the flash.
--
--This block size will vary depending on flash but is typically
--32 KB in size.
--
--Required properties:
--- compatible : (required) must be "redboot-fis"
--- fis-index-block : (required) a index to the eraseblock containing
--  the FIS directory on this device. On a flash memory with 32KB
--  eraseblocks, 0 means the first eraseblock at 0x00000000, 1 means the
--  second eraseblock at 0x00008000 and so on.
--
--Example:
--
--flash@0 {
--	partitions {
--		compatible = "redboot-fis";
--		fis-index-block = <0>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/redboot-fis.yaml b/Documentation/devicetree/bindings/mtd/partitions/redboot-fis.yaml
-new file mode 100644
-index 000000000000..61e08be984b0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/partitions/redboot-fis.yaml
-@@ -0,0 +1,42 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mtd/partitions/redboot-fis.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: RedBoot FLASH Image System (FIS) Partitions
-+
-+description: The FLASH Image System (FIS) directory is a flash description
-+    format closely associated with the RedBoot boot loader.
-+    It uses one single flash eraseblock in the flash to store an index of
-+    all images in the flash.
-+    This block size will vary depending on flash but is typically
-+    32 KB in size.
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+properties:
-+  compatible:
-+    const: redboot-fis
-+
-+  fis-index-block:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: a index to the eraseblock containing the FIS directory on this
-+      device. On a flash memory with 32KB eraseblocks, 0 means the first
-+      eraseblock at 0x00000000, 1 means the second eraseblock at 0x00008000 and so on.
-+
-+required:
-+  - compatible
-+  - fis-index-block
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    flash@0 {
-+      partitions {
-+        compatible = "redboot-fis";
-+        fis-index-block = <0>;
-+      };
-+    };
+You'll just need to register a "wrapper" Type-C switch object for the
+OF mux controller, but that should not be a problem. That way you
+don't need to export any new functions, touch this file or anything
+else.
+
+
+thanks,
+
 -- 
-2.26.3
-
+heikki
