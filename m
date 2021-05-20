@@ -2,141 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 262B0389BDA
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 05:29:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 421A8389BEA
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 05:35:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230014AbhETDbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 23:31:11 -0400
-Received: from szxga04-in.huawei.com ([45.249.212.190]:4690 "EHLO
-        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbhETDbL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 23:31:11 -0400
-Received: from dggems706-chm.china.huawei.com (unknown [172.30.72.58])
-        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4FlwCB1z6mz16QGL;
-        Thu, 20 May 2021 11:27:02 +0800 (CST)
-Received: from dggpemm500009.china.huawei.com (7.185.36.225) by
- dggems706-chm.china.huawei.com (10.3.19.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Thu, 20 May 2021 11:29:48 +0800
-Received: from [10.174.185.226] (10.174.185.226) by
- dggpemm500009.china.huawei.com (7.185.36.225) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Thu, 20 May 2021 11:29:48 +0800
-Subject: Re: [PATCH v2] iommu/of: Fix pci_request_acs() before enumerating PCI
- devices
-To:     Rob Herring <robh@kernel.org>
-CC:     <will@kernel.org>, <joro@8bytes.org>, <frowand.list@gmail.com>,
-        <helgaas@kernel.org>, <gregkh@linuxfoundation.org>,
-        <iommu@lists.linux-foundation.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <xieyingtai@huawei.com>
-References: <1621257425-37856-1-git-send-email-wangxingang5@huawei.com>
- <20210519191450.GA3469078@robh.at.kernel.org>
-From:   Xingang Wang <wangxingang5@huawei.com>
-Message-ID: <cd453893-3e3b-93ec-b826-9103677ac4f5@huawei.com>
-Date:   Thu, 20 May 2021 11:29:47 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+        id S229554AbhETDgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 23:36:38 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:45066 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229531AbhETDgi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 23:36:38 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 14K3JA4S041222;
+        Thu, 20 May 2021 11:19:11 +0800 (GMT-8)
+        (envelope-from jamin_lin@aspeedtech.com)
+Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 20 May
+ 2021 11:31:48 +0800
+Date:   Thu, 20 May 2021 11:31:41 +0800
+From:   Jamin Lin <jamin_lin@aspeedtech.com>
+To:     Joel Stanley <joel@jms.id.au>
+CC:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Rayn Chen <rayn_chen@aspeedtech.com>,
+        "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/ASPEED I2C DRIVER" <openbmc@lists.ozlabs.org>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        "ChiaWei Wang" <chiawei_wang@aspeedtech.com>,
+        Troy Lee <troy_lee@aspeedtech.com>,
+        Steven Lee <steven_lee@aspeedtech.com>
+Subject: Re: [PATCH 1/3] i2c: aspeed: avoid new registers definition of
+ AST2600
+Message-ID: <20210520033140.GA3656@aspeedtech.com>
+References: <20210519080436.18975-1-jamin_lin@aspeedtech.com>
+ <20210519080436.18975-2-jamin_lin@aspeedtech.com>
+ <CACPK8XdNXiGMQZOtsfMMK+w_PSvO20XT8B9MG+rGhdjYoV4ZuQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210519191450.GA3469078@robh.at.kernel.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.185.226]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- dggpemm500009.china.huawei.com (7.185.36.225)
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <CACPK8XdNXiGMQZOtsfMMK+w_PSvO20XT8B9MG+rGhdjYoV4ZuQ@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 14K3JA4S041222
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2021/5/20 3:14, Rob Herring wrote:
-> On Mon, May 17, 2021 at 01:17:05PM +0000, Wang Xingang wrote:
->> From: Xingang Wang <wangxingang5@huawei.com>
->>
->> When booting with devicetree, the pci_request_acs() is called after the
->> enumeration and initialization of PCI devices, thus the ACS is not
->> enabled. This patch add check for IOMMU in of_core_init(), and call
->> pci_request_acs() when iommu is detected, making sure that the ACS will
->> be enabled.
->>
->> Fixes: 6bf6c24720d33 ("iommu/of: Request ACS from the PCI core when
->> configuring IOMMU linkage")
->> Signed-off-by: Xingang Wang <wangxingang5@huawei.com>
->> ---
->>   drivers/iommu/of_iommu.c | 1 -
->>   drivers/of/base.c        | 9 ++++++++-
->>   2 files changed, 8 insertions(+), 2 deletions(-)
->>
->> Change log:
->> v1->v2:
->>   - remove pci_request_acs() in of_iommu_configure
->>   - check and call pci_request_acs() in of_core_init()
->>
->> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
->> index a9d2df001149..54a14da242cc 100644
->> --- a/drivers/iommu/of_iommu.c
->> +++ b/drivers/iommu/of_iommu.c
->> @@ -205,7 +205,6 @@ const struct iommu_ops *of_iommu_configure(struct device *dev,
->>   			.np = master_np,
->>   		};
->>   
->> -		pci_request_acs();
->>   		err = pci_for_each_dma_alias(to_pci_dev(dev),
->>   					     of_pci_iommu_init, &info);
->>   	} else {
->> diff --git a/drivers/of/base.c b/drivers/of/base.c
->> index 48e941f99558..95cd8f0e5435 100644
->> --- a/drivers/of/base.c
->> +++ b/drivers/of/base.c
->> @@ -24,6 +24,7 @@
->>   #include <linux/of.h>
->>   #include <linux/of_device.h>
->>   #include <linux/of_graph.h>
->> +#include <linux/pci.h>
->>   #include <linux/spinlock.h>
->>   #include <linux/slab.h>
->>   #include <linux/string.h>
->> @@ -166,7 +167,7 @@ void __of_phandle_cache_inv_entry(phandle handle)
->>   void __init of_core_init(void)
->>   {
->>   	struct device_node *np;
->> -
->> +	bool of_iommu_detect = false;
->>   
->>   	/* Create the kset, and register existing nodes */
->>   	mutex_lock(&of_mutex);
->> @@ -180,6 +181,12 @@ void __init of_core_init(void)
->>   		__of_attach_node_sysfs(np);
->>   		if (np->phandle && !phandle_cache[of_phandle_cache_hash(np->phandle)])
->>   			phandle_cache[of_phandle_cache_hash(np->phandle)] = np;
->> +
->> +		/* Detect IOMMU and make sure ACS will be enabled */
->> +		if (!of_iommu_detect && of_get_property(np, "iommu-map", NULL)) {
->> +			of_iommu_detect = true;
->> +			pci_request_acs();
->> +		}
+The 05/19/2021 22:59, Joel Stanley wrote:
+> On Wed, 19 May 2021 at 08:05, Jamin Lin <jamin_lin@aspeedtech.com> wrote:
+> >
+> > The register definition between AST2600 A2 and A3 is different.
+> > This patch avoid new registers definition of AST2600 to use
+> > this driver. We will submit the path for the new registers
+> > definition of AST2600.
 > 
-> Private DT internal init code doesn't seem like the right place for
-> this. If this needs to be ordered WRT PCI device enumeration, then
-> somewhere in the PCI host bridge or bus init code seems like the right
-> place to me.
+> The AST2600 v9 datasheet says that bit 2 selects between old and new
+> register sets, and that the old register set is the default.
 > 
-> Also, shouldn't this be conditional on 'iommu-map' being in the host
-> bridge or a parent or ??? rather than just any iommu-map anywhere in the
-> DT.
+> Has the default changed for the A3?, and the datasheet is incorrect?
 > 
+> Does the A3 still support the old register set?
+> 
+We suggest user to use the new i2c driver for AST2600 and we will sumbit
+it. This driver is used to AST2500 and AST2400 SOCs. Change this
+driver to check global register of i2c to avoid user build the wrong driver. 
 
-Thanks for your suggestion, I will fix this and move the modification to 
-procedure of pci_host_common_probe(), and before pci_host_probe().
-
->>   	}
->>   	mutex_unlock(&of_mutex);
->>   
->> -- 
->> 2.19.1
->>
-> .
-> 
+> >
+> > Signed-off-by: Jamin Lin <jamin_lin@aspeedtech.com>
+> > ---
+> >  drivers/i2c/busses/i2c-aspeed.c | 22 ++++++++++++++++++++++
+> >  1 file changed, 22 insertions(+)
+> >
+> > diff --git a/drivers/i2c/busses/i2c-aspeed.c b/drivers/i2c/busses/i2c-aspeed.c
+> > index 724bf30600d6..007309077d9f 100644
+> > --- a/drivers/i2c/busses/i2c-aspeed.c
+> > +++ b/drivers/i2c/busses/i2c-aspeed.c
+> > @@ -19,14 +19,20 @@
+> >  #include <linux/irqchip/chained_irq.h>
+> >  #include <linux/irqdomain.h>
+> >  #include <linux/kernel.h>
+> > +#include <linux/mfd/syscon.h>
+> >  #include <linux/module.h>
+> >  #include <linux/of_address.h>
+> >  #include <linux/of_irq.h>
+> >  #include <linux/of_platform.h>
+> >  #include <linux/platform_device.h>
+> > +#include <linux/regmap.h>
+> >  #include <linux/reset.h>
+> >  #include <linux/slab.h>
+> >
+> > +/* I2C Global Registers */
+> > +/* 0x0c : I2CG Global Control Register (AST2500)  */
+> > +#define ASPEED_I2CG_GLOBAL_CTRL_REG                    0x0c
+> > +
+> >  /* I2C Register */
+> >  #define ASPEED_I2C_FUN_CTRL_REG                                0x00
+> >  #define ASPEED_I2C_AC_TIMING_REG1                      0x04
+> > @@ -973,6 +979,22 @@ static int aspeed_i2c_probe_bus(struct platform_device *pdev)
+> >         struct resource *res;
+> >         int irq, ret;
+> >
+> > +       if (of_device_is_compatible(pdev->dev.of_node,
+> > +                                   "aspeed,ast2600-i2c-bus")) {
+> > +               u32 global_ctrl;
+> > +               struct regmap *gr_regmap;
+> > +
+> > +               gr_regmap = syscon_regmap_lookup_by_compatible("aspeed,ast2600-i2c-global");
+> > +
+> > +               if (IS_ERR(gr_regmap)) {
+> > +                       ret = PTR_ERR(gr_regmap);
+> > +               } else {
+> > +                       regmap_read(gr_regmap, ASPEED_I2CG_GLOBAL_CTRL_REG, &global_ctrl);
+> > +                       if (global_ctrl & BIT(2))
+> > +                               return -EIO;
+> > +               }
+> > +       }
+> > +
+> >         bus = devm_kzalloc(&pdev->dev, sizeof(*bus), GFP_KERNEL);
+> >         if (!bus)
+> >                 return -ENOMEM;
+> > --
+> > 2.17.1
+> >
