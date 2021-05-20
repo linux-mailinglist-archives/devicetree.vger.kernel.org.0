@@ -2,181 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FF40389E15
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 08:40:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E8FF389E3A
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 08:49:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230359AbhETGmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 02:42:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34830 "EHLO
+        id S230355AbhETGuz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 02:50:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230350AbhETGmI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 02:42:08 -0400
-Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2707C06175F
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 23:40:47 -0700 (PDT)
-Received: by mail-il1-x131.google.com with SMTP id m1so12606401ilg.10
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 23:40:47 -0700 (PDT)
+        with ESMTP id S229681AbhETGuz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 02:50:55 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B1C2C06175F
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 23:49:33 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id n2so16468126wrm.0
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 23:49:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=oIhFsW3yOUmKSioHfdtl49xT1nsW2ymAOSCthcMXiio=;
-        b=lM9veaUv42y4nXibj1lGSdifgvjsNbUKUEol+uJziWw6kVRwnZkDD52tXqcK/vhasS
-         PUDj92pN5vsIbUfabcqexhaZYlSojZJ1wq1mzK9ZTms/+1Va4jsCnNJ6mu4u4DoMsmtY
-         16/lsdYHKt3Z41zBC1z7c65B0IdsqOKp+QHbc=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=E1ZuZRCTlz6/Ws9j0pRH14oGlY9lvvE2LqjzptzYfhQ=;
+        b=axSDBqF3Sq8wkc0WbH3CZY6xm95L5mDZQFgCfOftPV9fglwEx33FuoeYTqysdF5CgO
+         gvOAGVJZQq0bB6/K5ulo+fN8Xt1eZcfui9dS+YxqacaFmgLBTh8mXE30GkWIW8mG4gop
+         b0nJpOKu1eMSEZ+P+wGt5ZABOMNItvm0iPiYRFJv+CJh5SovDDgyJ0JY0nRv5zqoWaqy
+         itEp92jB45oI7wAH/FQlDEMKw9mTUrE2qbi7R+h0oBTAjQISeI9YlMa4waCbqKrl2PPq
+         C/dmLBHaaav0k/lPwIQGhyye7uVNYzDQItA2FuQSU7y1eFiI9/+9GnlGjOgxZzuX/enh
+         EoGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=oIhFsW3yOUmKSioHfdtl49xT1nsW2ymAOSCthcMXiio=;
-        b=ua1Iwx+qArezYUJ2l/tnePVdNpoOspGWU/Iss8K1xSx+nWq547QHNzOK4502LRk0ud
-         ciTtg6YNT+fY5IqUUdLXoa42cKLunxTOwAOER9yAXc87VMeQSHV9lNNy8kZX4KeSN5HV
-         XwP0tS8mZtXZedOZOsZzPzyf447skM+rQp3huMuhK7gK9oXe1enoJVeGN19MRd9VwWqN
-         x/t24SIjWv6Kx5EUfEnx9we2o8qKOkoGoykTz2uxdsH34YFUMykhoU++3NhphpV5+Mrv
-         NCv01wZBx+y6+dli7VibzPidbPePCXzoQOFv1wUbAMOTxGtru9jaIHUh2IU3VNSLTCy5
-         F0xQ==
-X-Gm-Message-State: AOAM531uxRIPZpxx38xd0kO9M2E8Z7ZI34yaA3Bw67zQw+6xZERlNbiX
-        sTn60dq26uZRuyuX7thjEIAGAWi5fetUnw==
-X-Google-Smtp-Source: ABdhPJyt6cqxaItn16968IcNB5SFWNsCiJxirRQfNmHQ5B49aUM9ZLjHOGTxYspivwNjIONFXAqJwg==
-X-Received: by 2002:a05:6e02:13a8:: with SMTP id h8mr3216589ilo.82.1621492846771;
-        Wed, 19 May 2021 23:40:46 -0700 (PDT)
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com. [209.85.166.174])
-        by smtp.gmail.com with ESMTPSA id i7sm2005021ilb.67.2021.05.19.23.40.45
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 May 2021 23:40:46 -0700 (PDT)
-Received: by mail-il1-f174.google.com with SMTP id l15so2678410ilh.1
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 23:40:45 -0700 (PDT)
-X-Received: by 2002:a5d:8c82:: with SMTP id g2mr3632711ion.34.1621492834046;
- Wed, 19 May 2021 23:40:34 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=E1ZuZRCTlz6/Ws9j0pRH14oGlY9lvvE2LqjzptzYfhQ=;
+        b=PC6QyxnW9KzTIcRdY97galEjjtfcjZpYEpgRkEUyUak9ZzGIbnPKwTWR18SZHkb4jr
+         LyLYKL5AiMmSmz32zQ0V9nkoJyHEK30ZM7jZ9nddagJ2eYpEMlB1zXioXQXgIAUL6AhD
+         xX2WnYM7Y8w8kaXMpNWBl8iw5cs4bMF+E1OgU8Ct5wXiLSgMpP8CEB4/PzVh+5JlGiGs
+         rDQasqFPk9X0fGdCXCdqaTSMH58asZDVYGB8f9UvagDvIVR5yQLVuf9+j5SwqyaGVfXv
+         hdWDznj0Xvt0BkMbKCoW5VSkhhAs091WHpoaoOsqSFeT6WAeC5y9Vxn9KH7iTDGCj6ui
+         qsJg==
+X-Gm-Message-State: AOAM530sg1jLgfCL7WfBO5URjCDQ/uxIuHEhtRwesHMIaUlonX0Q9Qnb
+        rK6RHooyxOlACIhSjnZ1eZ2XGA==
+X-Google-Smtp-Source: ABdhPJwd6qF+Ay8hmUhZ+42UEFFkMLo1dBf7iN0NlNPKX5LqdOy5Y71JWAqSVW/tw0t9av+hXvaRNw==
+X-Received: by 2002:a5d:4b08:: with SMTP id v8mr2606935wrq.122.1621493372212;
+        Wed, 19 May 2021 23:49:32 -0700 (PDT)
+Received: from dell ([91.110.221.215])
+        by smtp.gmail.com with ESMTPSA id p2sm1930764wrj.10.2021.05.19.23.49.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 May 2021 23:49:31 -0700 (PDT)
+Date:   Thu, 20 May 2021 07:49:29 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     Robert Marko <robert.marko@sartura.hr>, robh+dt@kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        bgolaszewski@baylibre.com, jdelvare@suse.com,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, Luka Perkov <luka.perkov@sartura.hr>,
+        jmp@epiphyte.org, Paul Menzel <pmenzel@molgen.mpg.de>,
+        Donald Buczek <buczek@molgen.mpg.de>
+Subject: Re: [PATCH 1/6] mfd: Add Delta TN48M CPLD driver
+Message-ID: <20210520064929.GM2549456@dell>
+References: <20210430123511.116057-1-robert.marko@sartura.hr>
+ <af4923ef1ed0693fcd67d7986348b164@walle.cc>
+ <CA+HBbNHCnpg9qCzZbT9KVNqX-daC68iaJKNdyEf7do3w98miWw@mail.gmail.com>
+ <0f28cabf858154842819935000f32bc2@walle.cc>
 MIME-Version: 1.0
-References: <20210518064215.2856977-1-tientzu@chromium.org>
- <20210518064215.2856977-2-tientzu@chromium.org> <170a54f2-be20-ec29-1d7f-3388e5f928c6@gmail.com>
-In-Reply-To: <170a54f2-be20-ec29-1d7f-3388e5f928c6@gmail.com>
-From:   Claire Chang <tientzu@chromium.org>
-Date:   Thu, 20 May 2021 14:40:23 +0800
-X-Gmail-Original-Message-ID: <CALiNf2-9fRbH3Xs=fA+N1iRztFxeC0iTsyOSZFe=F42uwXS0Sg@mail.gmail.com>
-Message-ID: <CALiNf2-9fRbH3Xs=fA+N1iRztFxeC0iTsyOSZFe=F42uwXS0Sg@mail.gmail.com>
-Subject: Re: [PATCH v7 01/15] swiotlb: Refactor swiotlb init functions
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        grant.likely@arm.com, xypron.glpk@gmx.de,
-        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
-        bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
-        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
-        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
-        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
-        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
-        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
-        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
-        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0f28cabf858154842819935000f32bc2@walle.cc>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 20, 2021 at 2:50 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
->
->
->
-> On 5/17/2021 11:42 PM, Claire Chang wrote:
-> > Add a new function, swiotlb_init_io_tlb_mem, for the io_tlb_mem struct
-> > initialization to make the code reusable.
-> >
-> > Note that we now also call set_memory_decrypted in swiotlb_init_with_tbl.
-> >
-> > Signed-off-by: Claire Chang <tientzu@chromium.org>
-> > ---
-> >  kernel/dma/swiotlb.c | 51 ++++++++++++++++++++++----------------------
-> >  1 file changed, 25 insertions(+), 26 deletions(-)
-> >
-> > diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
-> > index 8ca7d505d61c..d3232fc19385 100644
-> > --- a/kernel/dma/swiotlb.c
-> > +++ b/kernel/dma/swiotlb.c
-> > @@ -168,9 +168,30 @@ void __init swiotlb_update_mem_attributes(void)
-> >       memset(vaddr, 0, bytes);
-> >  }
-> >
-> > -int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
-> > +static void swiotlb_init_io_tlb_mem(struct io_tlb_mem *mem, phys_addr_t start,
-> > +                                 unsigned long nslabs, bool late_alloc)
-> >  {
-> > +     void *vaddr = phys_to_virt(start);
-> >       unsigned long bytes = nslabs << IO_TLB_SHIFT, i;
-> > +
-> > +     mem->nslabs = nslabs;
-> > +     mem->start = start;
-> > +     mem->end = mem->start + bytes;
-> > +     mem->index = 0;
-> > +     mem->late_alloc = late_alloc;
-> > +     spin_lock_init(&mem->lock);
-> > +     for (i = 0; i < mem->nslabs; i++) {
-> > +             mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
-> > +             mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
-> > +             mem->slots[i].alloc_size = 0;
-> > +     }
-> > +
-> > +     set_memory_decrypted((unsigned long)vaddr, bytes >> PAGE_SHIFT);
-> > +     memset(vaddr, 0, bytes);
->
-> You are doing an unconditional set_memory_decrypted() followed by a
-> memset here, and then:
->
-> > +}
-> > +
-> > +int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
-> > +{
-> >       struct io_tlb_mem *mem;
-> >       size_t alloc_size;
-> >
-> > @@ -186,16 +207,8 @@ int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
-> >       if (!mem)
-> >               panic("%s: Failed to allocate %zu bytes align=0x%lx\n",
-> >                     __func__, alloc_size, PAGE_SIZE);
-> > -     mem->nslabs = nslabs;
-> > -     mem->start = __pa(tlb);
-> > -     mem->end = mem->start + bytes;
-> > -     mem->index = 0;
-> > -     spin_lock_init(&mem->lock);
-> > -     for (i = 0; i < mem->nslabs; i++) {
-> > -             mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
-> > -             mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
-> > -             mem->slots[i].alloc_size = 0;
-> > -     }
-> > +
-> > +     swiotlb_init_io_tlb_mem(mem, __pa(tlb), nslabs, false);
->
-> You convert this call site with swiotlb_init_io_tlb_mem() which did not
-> do the set_memory_decrypted()+memset(). Is this okay or should
-> swiotlb_init_io_tlb_mem() add an additional argument to do this
-> conditionally?
+On Wed, 19 May 2021, Michael Walle wrote:
 
-I'm actually not sure if this it okay. If not, will add an additional
-argument for it.
+> Hi,
+> 
+> Am 2021-05-19 13:53, schrieb Robert Marko:
+> > On Thu, May 6, 2021 at 6:34 PM Michael Walle <michael@walle.cc> wrote:
+> > > Am 2021-04-30 14:35, schrieb Robert Marko:
+> > > > Delta TN48M switches have a Lattice CPLD that serves
+> > > > multiple purposes including being a GPIO expander.
+> > > > So lets add the MFD core driver for it.
+> > > 
+> > > Did you have a look at mfd/simple-mfd-i2c.c?
+> > 
+> > Yes, that was my first idea but we have a requirement to expose CPLD
+> > information via debugfs as there are userspace applications using it.
+> > And simple-mfd-i2c does not allow us to do so.
+> 
+> Mh, last time Lee wasn't very fond of having a driver that just populates
+> sub-drivers while doing almost nothing itself. See
+> https://lore.kernel.org/lkml/20200605065709.GD3714@dell/
 
-> --
-> Florian
+Right.  I still feel that way.
+
+> That being said, I'd also like to expose our CPLD version, but until now
+> haven't found a good solution.
+
+Why though?  Does S/W *need* it?
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
