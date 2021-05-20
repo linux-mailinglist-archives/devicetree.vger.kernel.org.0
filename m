@@ -2,74 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D72638B83A
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 22:19:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6553138B8A4
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 22:56:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235638AbhETUUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 16:20:25 -0400
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:41758 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233159AbhETUUZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 16:20:25 -0400
-Received: by mail-oi1-f180.google.com with SMTP id c3so17572103oic.8
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 13:19:02 -0700 (PDT)
+        id S229686AbhETU5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 16:57:43 -0400
+Received: from mail-oo1-f48.google.com ([209.85.161.48]:39513 "EHLO
+        mail-oo1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229678AbhETU5n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 16:57:43 -0400
+Received: by mail-oo1-f48.google.com with SMTP id f22-20020a4aeb160000b029021135f0f404so1042468ooj.6
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 13:56:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=R7/rd/XXcRprZTdwLFRUnNo6LqNUm7moCuh27q1I0Tc=;
-        b=HNbhZLNfmQOwYUlhROL3/6VjR1BIVFsc8q/LxsCrTAuZu7uR5NX+m5hZ0HJBqPrnwC
-         ZXQHAPZkFiH/Su1cV1xfp1xwgOq/e01lNR20vijB0BofVQckvIU9xOQZ9XzhDAl75iZ6
-         Td5jetaJ/Z3BjSIaiwanTXVpavBNUwXyoD30wfDxeHpUf9gD4X3XvlP0LEA05bIAPpe5
-         c4GVnuolUpPVauApUYLiFT9zAuP0DsQ5q9PUisFr3X0gz1qT3t761cNWhkh/4rwT+16O
-         Yu13u6YCxJbjwn6TJ3yWzih+k97xX6hJNMZAIrFygaUpXnkLB05A+XCGhf6Pmhg5p9ot
-         M6gg==
-X-Gm-Message-State: AOAM533wBJKzK6QqLsHT2Z6IwyfSP/PDrO7Jmrgwaexs7KzYvgv1/RYF
-        7+zyK1ElmpR9+DsdLddwAaDX0F7fEg==
-X-Google-Smtp-Source: ABdhPJzYLwUKxDtzLfBEJX0Ulepy9eb5Z28h4pKcQ1o5pwvwbUEfhYQE/oYWQss3csvk9NctimXhFw==
-X-Received: by 2002:aca:db41:: with SMTP id s62mr4366961oig.167.1621541942189;
-        Thu, 20 May 2021 13:19:02 -0700 (PDT)
+        bh=l4I9W+oQyUB0gGtJVJXQlMSy/Pup9jiF/aG4pznxFn0=;
+        b=tc4b0c9DD1FVaW5QxGeFkZfQVCotP4otPIlrA/SQA+HguwKSHGnIcx8BtPwIu3PBdj
+         yiwcLycGjlA7S9RbMp2LmAOUrn0FtjIIJivHMDvoSogRy/QmCu7BGkKeAZXnm05D0IK3
+         tPqAz2FgIUIIKdyhu/VbcYn5aVOpgOG8O5sX/P/8Cf6RzdRiiOCJ9mCB5oIs2y1sLgFi
+         kOUZ9DZ+TpkTqaAfHeD1Bta9/39LKGaDtJ7DEWg/MidkW0CvRMHDPPJ78EUhE53qKAov
+         M5qjhRUMfXkot9SoHdpDAsh/z2V8SW5/9j3A2g2atfbn1NlEMUabNuA0zlj4+jfDFv4x
+         G/Nw==
+X-Gm-Message-State: AOAM531u2aQ6DYWyHNjG8MYQ0E3ucFC1rxIEcqxMHTmdfRXrfO0eUbwT
+        9QlpfeQbD3o4kGWCq1gRAg==
+X-Google-Smtp-Source: ABdhPJyyMEBBBaasIm9Wg/4whAtyNFr7C3CLW9p5Ga2XlkhiT1kUH75c2bv8f8zbQmLoBfL/v4dEsQ==
+X-Received: by 2002:a4a:b301:: with SMTP id m1mr3620456ooo.7.1621544180334;
+        Thu, 20 May 2021 13:56:20 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w4sm896729otl.21.2021.05.20.13.19.00
+        by smtp.gmail.com with ESMTPSA id u13sm763117oop.40.2021.05.20.13.56.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 May 2021 13:19:01 -0700 (PDT)
-Received: (nullmailer pid 1882128 invoked by uid 1000);
-        Thu, 20 May 2021 20:19:00 -0000
-Date:   Thu, 20 May 2021 15:19:00 -0500
+        Thu, 20 May 2021 13:56:19 -0700 (PDT)
+Received: (nullmailer pid 1949863 invoked by uid 1000);
+        Thu, 20 May 2021 20:56:18 -0000
+Date:   Thu, 20 May 2021 15:56:18 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: arm: scu: Convert to json-schema
-Message-ID: <20210520201900.GA1882069@robh.at.kernel.org>
-References: <c5c36fb952675df4b9c9834d53a21fb58f391e86.1621522979.git.geert+renesas@glider.be>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Helmut Grohne <helmut.grohne@intenta.de>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Michal Simek <monstr@monstr.eu>,
+        Amit Kumar Mahapatra <akumarma@xilinx.com>,
+        Srinivas Goud <sgoud@xilinx.com>,
+        Siva Durga Prasad Paladugu <sivadur@xilinx.com>
+Subject: Re: [PATCH v20 18/19] dt-bindings: mtd: pl353-nand: Describe this
+ hardware controller
+Message-ID: <20210520205618.GA1900624@robh.at.kernel.org>
+References: <20210519182636.1110080-1-miquel.raynal@bootlin.com>
+ <20210519182636.1110080-19-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c5c36fb952675df4b9c9834d53a21fb58f391e86.1621522979.git.geert+renesas@glider.be>
+In-Reply-To: <20210519182636.1110080-19-miquel.raynal@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 20 May 2021 17:03:40 +0200, Geert Uytterhoeven wrote:
-> Convert the ARM Snoop Control Unit (SCU) Device Tree binding
-> documentation to json-schema.
+On Wed, May 19, 2021 at 08:26:35PM +0200, Miquel Raynal wrote:
+> Add a yaml description of this NAND controller which is described as a
+> subnode of the SMC bus.
 > 
-> Document required properties.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
-> I have listed Linus as the maintainer, as he wrote the original
-> bindings.  Linus: Please scream if this is inappropriate ;-)
-> ---
->  .../devicetree/bindings/arm/arm,scu.yaml      | 46 +++++++++++++++++++
->  Documentation/devicetree/bindings/arm/scu.txt | 28 -----------
->  .../devicetree/bindings/arm/ux500/boards.txt  |  2 +-
->  3 files changed, 47 insertions(+), 29 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/arm/arm,scu.yaml
->  delete mode 100644 Documentation/devicetree/bindings/arm/scu.txt
+>  .../bindings/mtd/arm,pl353-nand-r2p1.yaml     | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml b/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
+> new file mode 100644
+> index 000000000000..609726ed72de
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
+> @@ -0,0 +1,45 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/arm,pl353-nand-r2p1.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: PL353 NAND Controller device tree bindings
+> +
+> +allOf:
+> +  - $ref: "nand-controller.yaml"
+> +
+> +maintainers:
+> +  - Miquel Raynal <miquel.raynal@bootlin.com>
+> +  - Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - arm,pl353-nand-r2p1
+> +
+> +  reg:
+> +    items:
+> +      - items:
+> +        - description: CS with regard to the parent ranges property
+> +        - description: Offset of the memory region requested by the device
+> +        - description: Length of the memory region requested by the device
+> +
+> +  "#address-cells": true
+> +  "#size-cells": true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: true
 
-Applied, thanks!
+unevaluatedProperties: false
+
+> +
+> +examples:
+> +  - |
+> +    nand0: nand-controller@0,0 {
+> +      compatible = "arm,pl353-nand-r2p1";
+> +      reg = <0 0 0x1000000>;
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +    };
+> -- 
+> 2.27.0
+> 
