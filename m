@@ -2,146 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E1CE38B47C
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 18:41:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8003138B48C
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 18:45:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233121AbhETQmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 12:42:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39864 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232796AbhETQmm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 May 2021 12:42:42 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5C3AF61019;
-        Thu, 20 May 2021 16:41:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621528881;
-        bh=awSiHVeGzJRRHkeF4CGvWgRsRaK/KjYATUm/abbBIIc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Fi2TL2WZCTo1uvMAEA9rSm5JD213/Ei7uNCAJHL8SRqDbEP49pI++0Clls5LR3/Q1
-         4udZS4786wBjfgzZMwLktVrRYPi7FAjfr/1ncvX6uVOd01B8mfNT3X/QDh9KndeljF
-         Q1QNDeiFQxFGIK+3uPJ1yXhgeG4pteTt4nPgfIGNvOwkGXbBQcDUS5TWOBrzk0TQsB
-         pj0gpCnbWw1JUrY0FOGZ1dKQ9pG/OKpbU8wwzn8/4kE2wh4C0p0OxCHsQ9TY+X4TUA
-         872xohX/ATEO0eI8xZcXt+mMciUR5oj0NWX0szkHW364EcbI91tmgrJy+3J8E6G45X
-         +bjuyZoYPX3Vg==
-Received: by mail-ed1-f54.google.com with SMTP id w12so12425845edx.1;
-        Thu, 20 May 2021 09:41:21 -0700 (PDT)
-X-Gm-Message-State: AOAM530R1d+4/+yx1yFLHX1LAcHmRbch+1bAZUj9T64iOWUDlm2pcwFr
-        fKdRixiOuWst25qUhdBiqwHOt/Rl13Dh4Vmkdw==
-X-Google-Smtp-Source: ABdhPJzNfOK9kMEcPqLpjClyB2Nr76A4rY18B920Fi6CuDkCnEo31srKm0zLPRVv1WnY7X/FVdtqNPP5rdt+j7avqNw=
-X-Received: by 2002:a05:6402:c7:: with SMTP id i7mr6095866edu.194.1621528879987;
- Thu, 20 May 2021 09:41:19 -0700 (PDT)
+        id S234914AbhETQrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 12:47:03 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:53156 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234736AbhETQrD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 12:47:03 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14KGjTb3116863;
+        Thu, 20 May 2021 11:45:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1621529129;
+        bh=ar+iPQ1/8NxPUYY4fTBEgCHV1SMvzpJowN5ylUJ6nJg=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=GNWPm9QUN26UMRYau81WjRPWqtjgrUKtkwJ8JREEg131wlDsg5C4Ism/5Fmg9hujV
+         fQ7J9E3UWpHakRFGNSpWix5iYzR5fbPviOJGb+p52ZcR/z8dvnKyklc9UdmcaGE+ha
+         iRXyXHaV2Vz8+JjWYUpWjo6VCSvqnum3Ha9aXukY=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14KGjTfM108843
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 20 May 2021 11:45:29 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 20
+ May 2021 11:45:28 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 20 May 2021 11:45:28 -0500
+Received: from [10.250.32.40] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14KGjS2T031441;
+        Thu, 20 May 2021 11:45:28 -0500
+Subject: Re: [PATCH] dt-bindings: mailbox: Convert omap-mailbox.txt binding to
+ YAML
+To:     Rob Herring <robh@kernel.org>
+CC:     Jassi Brar <jaswinder.singh@linaro.org>,
+        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20210518172022.10562-1-s-anna@ti.com>
+ <c666919f-cc10-3ca5-a1e3-5062c260e827@ti.com>
+ <20210520000831.GA3927464@robh.at.kernel.org>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <f60764c8-9100-0c8d-96d6-76689ed8acc6@ti.com>
+Date:   Thu, 20 May 2021 11:45:28 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210511090122.6995-1-a-govindraju@ti.com> <20210517221513.GA3263368@robh.at.kernel.org>
- <e239365e-35d7-694a-55cc-7dabfa66b108@ti.com>
-In-Reply-To: <e239365e-35d7-694a-55cc-7dabfa66b108@ti.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 20 May 2021 11:41:07 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKM5unmiXdYBzM9xfEETfTVTF9RMXPuT7Lb7w0cnwd1mw@mail.gmail.com>
-Message-ID: <CAL_JsqKM5unmiXdYBzM9xfEETfTVTF9RMXPuT7Lb7w0cnwd1mw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: gpio: gpio-davinci: Convert to json-schema
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Keerthy <j-keerthy@ti.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210520000831.GA3927464@robh.at.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 18, 2021 at 9:13 AM Aswath Govindraju <a-govindraju@ti.com> wrote:
->
->
-> Hi Rob,
->
-> On 18/05/21 3:45 am, Rob Herring wrote:
-> > On Tue, May 11, 2021 at 02:31:20PM +0530, Aswath Govindraju wrote:
-> >> Convert gpio-davinci dt-binding documentation from txt to yaml format.
-> >>
-> >> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> >> ---
-> >>  .../devicetree/bindings/gpio/gpio-davinci.txt | 167 ---------------
-> >>  .../bindings/gpio/gpio-davinci.yaml           | 193 ++++++++++++++++++
-> >>  MAINTAINERS                                   |   2 +-
-> >>  3 files changed, 194 insertions(+), 168 deletions(-)
-> >>  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-davinci.txt
-> >>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-davinci.yaml
-> >>
->
-> [...]
->
-> >> +properties:
-> >> +  compatible:
-> >> +    oneOf:
-> >> +      - items:
-> >> +          - enum:
-> >> +              - ti,k2g-gpio
-> >> +              - ti,am654-gpio
-> >> +              - ti,j721e-gpio
-> >> +              - ti,am64-gpio
-> >> +          - const: ti,keystone-gpio
-> >> +
-> >> +      - items:
-> >> +          - const: ti,dm6441-gpio
-> >> +      - items:
-> >> +          - const: ti,keystone-gpio
-> >
-> > These 2 can be expressed as an 'enum'.
->
-> I will change this.
->
-> >
-> >> +
-> >> +  reg:
-> >> +    maxItems: 1
-> >> +    description:
-> >> +      Physical base address of the controller and the size of memory mapped registers.
-> >
-> > Drop. That's every 'reg' property.
-> >
->
-> I'll drop this.
->
-> >> +
-> >> +  gpio-controller: true
-> >> +
-> >> +  gpio-ranges: true
-> >> +
-> >> +  gpio-line-names:
-> >> +    description: strings describing the names of each gpio line.
-> >
-> > Any constraints like min/max number of lines?
-> >
->
-> The max number of lines will be equal to ti,ngpio. Is there any way to
-> equate maxItems to the a property value in json schema ?
+On 5/19/21 7:08 PM, Rob Herring wrote:
+> On Wed, May 19, 2021 at 10:14:14AM -0500, Suman Anna wrote:
+>> On 5/18/21 12:20 PM, Suman Anna wrote:
+>>> Convert the current OMAP Mailbox binding from text format to YAML
+>>> format/DT schema, and delete the legacy text binding file.
+>>>
+>>> The new YAML binding conversion is an updated version compared to
+>>> the original. The descriptions for certain properties have been
+>>> improved to provide more clarity. Constraints are added to the
+>>> properties 'ti,mbox-num-users', 'ti,mbox-num-fifos' and 'interrupts'.
+>>> The 'ti,hwmods' is a legacy property and is retained only to reflect
+>>> the existing usage on some older OMAP2 and OMAP3 platforms.
+>>>
+>>> All the existing examples have also been updated to reflect the
+>>> latest dts nodes (ti,hwmods removed from OMAP4 and AM33xx examples,
+>>> and interrupts value updated for AM65x SoCs).
+>>>
+>>> Signed-off-by: Suman Anna <s-anna@ti.com>
+>>> ---
+>>> Hi,
+>>>
+>>> This patch does fix a number of dtbs_check warnings seen around OMAP Mailbox
+>>> nodes with the latest kernel. There are few left-over warnings when just
+>>> this patch is used on v5.13-rc1 or next-20210518. I have posted a separate
+>>> fix for a warning on TI K3 SoCs [1], and will be posting a separate cleanup
+>>> series for OMAP2+ SoCs. The dts patches can be picked up independently
+>>> of this patch.
+>>
+>> FYI, All the dtbs_check warnings will be gone with [1] and the OMAP2+ cleanup
+>> series [2].
+> 
+> Nice, though it is a moving target. :) Is that still true with the 
+> undocumented compatible checks that's been added? 
 
-There have been discussions about something like that for json-schema,
-but nothing yet AFAIK. Is there a max for ti,ngpio? Nothing means
-2^32. Surely there's something less than that. You can always adjust
-the max later.
+[1] is acked, so will definitely get picked up for the next merge window. Should
+hit next sometime in the next couple of days.
 
-> >> +
-> >> +  "#gpio-cells":
-> >> +    const: 2
-> >> +    description:
-> >> +      first cell is the pin number and second cell is used to specify optional parameters (unused).
-> >> +
-> >> +  interrupts:
-> >> +    description:
-> >> +      Array of GPIO interrupt number. Only banked or unbanked IRQs are supported at a time.
-> >
-> > Needs constraints. How many items and what are they?
->
-> Here also the maximum number of interrupts is equal to ti,ngpio in
-> unbanked interrupts case. Same as above is there anyway to equate
-> maxItems to ti,ngpio property in json schma ? If not, then what would be
-> the best way to handle this ?
+I didn't exactly understand your second comment, but no new compatibles were
+added. The existing nodes are already in compliance with the constraints I added
+(so that's strictly binding enforcements). These constraints are almost all on
+legacy SoCs, so these do not pose any issues.
 
-Banked means 1 combined interrupt?
+Most of the generated warnings stem from me adding a pattern for the child nodes
+in the binding, and [2] is mostly just renaming these node names.
+
+Tony,
+Do you have/foresee any concerns with the patches in [2]?
+
+regards
+Suman
+
+[1]
+https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210514212016.3153-1-s-anna@ti.com/
+[2] https://patchwork.kernel.org/project/linux-omap/list/?series=484489
+
