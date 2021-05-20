@@ -2,166 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BE4238B502
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 19:13:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97C3338B52C
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 19:29:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231561AbhETRO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 13:14:57 -0400
-Received: from lb1-smtp-cloud9.xs4all.net ([194.109.24.22]:42395 "EHLO
-        lb1-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235395AbhETRO4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 May 2021 13:14:56 -0400
-Received: from copland.sibelius.xs4all.nl ([83.163.83.176])
-        by smtp-cloud9.xs4all.net with ESMTP
-        id jmEWllugRVN4kjmEnlB7e8; Thu, 20 May 2021 19:13:33 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
-        t=1621530813; bh=bsnO8l7SUux3m+SAtpyvVWCiju520gKsdmdg7rdmmrE=;
-        h=From:To:Subject:Date:Message-Id:MIME-Version:From:Subject;
-        b=KxS05xaly9ZvujaygNM0NoxTadoOmsnWpdNVPTKvhOKK1lhlb+griG+eNEj5/ou6T
-         A+gewrnZ6T/zZ8dfDGiCgYlICAyZuQxe7UEfCxUUdIap2YChhKumNEbG4SqvYr2gTE
-         zKf+1L32mKKPcXbczVzg2IhUTEJngdLmgQhcV40bb8+E1w9yGfjVgt2iMVPjh8wMIT
-         0MaS/jLbmMANj0FXeHnexmi2W4jhi9uDWSGYJerslQUvYMacjNK6vpfaa4U06R6tVu
-         0glhqWsJDnvkR9mXL0vUVhC9Pg9gO2S7ImD1kEPEp/RbmH4HuJCXhmDWIsbNERfiM4
-         bKW1NC1mSYXUw==
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     devicetree@vger.kernel.org
-Cc:     Mark Kettenis <kettenis@openbsd.org>,
-        Hector Martin <marcan@marcan.st>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        id S232542AbhETRay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 13:30:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40312 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231680AbhETRax (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 13:30:53 -0400
+Received: from the.earth.li (the.earth.li [IPv6:2a00:1098:86:4d:c0ff:ee:15:900d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0D51C061574;
+        Thu, 20 May 2021 10:29:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=earth.li;
+         s=the; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject
+        :To:From:Date:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=mMEfjWXMu5RnzNk39JglHJcBoTbUJzKRcpQGIP+KGe8=; b=oEzLz7cTpV89g1ZcaKbpdYgdB8
+        +LVc19tWMtzS7UoQXmeqjZKoG1jfeQAT2sZOZT1qkeCRWl6rnb8sCU4Tdx/qrOgGyIwuregVNf6tu
+        Gb6LjUYs77TBd5Snu/OQEB4wfSBNVevPcr3iJOuZQ4tj3WXbCx8siMrWT1kB+deSPfpSCKGxTNnuU
+        sAKy6IDUf565Y/tBWPy9Q1Jk6aj6AAdxZkp8mBhEvcpJgb0cZESeEoo79tvDgLJoAgnK/DjIhKIgK
+        ydj2UWoW8YvT3vin16Q1EZ9U/PBwVypm8xrxi7Qz10g1pBrxndt9+argJvccfIF31qdpIvfoo2xAw
+        sNRJeyCQ==;
+Received: from noodles by the.earth.li with local (Exim 4.92)
+        (envelope-from <noodles@earth.li>)
+        id 1ljmUC-0003qw-Kg; Thu, 20 May 2021 18:29:28 +0100
+Date:   Thu, 20 May 2021 18:29:28 +0100
+From:   Jonathan McDowell <noodles@earth.li>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] arm64: apple: Add pinctrl nodes
-Date:   Thu, 20 May 2021 19:13:07 +0200
-Message-Id: <20210520171310.772-3-mark.kettenis@xs4all.nl>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210520171310.772-1-mark.kettenis@xs4all.nl>
-References: <20210520171310.772-1-mark.kettenis@xs4all.nl>
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/5] ARM: dts: qcom: Enable various devices for IPQ806x /
+ RB3011
+Message-ID: <cover.1621531633.git.noodles@earth.li>
+References: <cover.1621097174.git.noodles@earth.li>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CMAE-Envelope: MS4xfNue/EHJcQ/3kj0ETzEOtiBUroVlXyBrziKGnpC8nRodkb00C8I36JbQZDWTmOsY6b7bJHCrcJFrOnEqNS/6vch8FbCAPC3K5M3pjsDGEv6tuaZla31w
- /QfYCqbCuQhXoH6TFWtSvxctE+j/KD3SpwQtIYkYW7wJQZiQbNI72SdycMX9cLsMp9ZiT9FB+4JUPbuiphuVyl33W4gJU3hiefPuHcpbofHQRjRJVoRdrutZ
- O54j/D2SZR0gqJuuTjKRSW7P5eI264/mJD/UVxkEpOHAHCPF2LyKBMK8AGetVKtzQABlRvNjQPWMPnI6W+Z8iSh46Qo92mWLdKAjOJ4CF/mOPFfASeRkMzVf
- gVv1AcVp3jbZoCwBG74+lM8D1MQSVVRRIeSeWdWEleIS9lKZCaOS4RifU6POdwqpo+xz1bB0SIO46lGX6sDzrlUz6SNPc8YeCCz5hdKA7BGB/ZZnVxgHxI74
- TCi/9fi2TYReSpDI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1621097174.git.noodles@earth.li>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Mark Kettenis <kettenis@openbsd.org>
+This series adds various devices (NAND, USB, tsens, L2CC, RPM) which
+have either recently gained mainline drivers, or just failed to be
+previously added, to the DTS for the IPQ806x platform. It then enables
+them for the MikroTik RB3011 platform, where they have all been tested.
 
-Add pinctrl nodes corresponding to the gpio,t8101 nodes in the
-Apple device tree for the Mac mini (M1, 2020).
+I've done the additions to the main IPQ806x DTS as separate commits for
+each logical set, and then a single wholesale set of changes for the
+RB3011 to turn everything on. Happy to squash to 1/2 commits or split
+out further if desired.
 
-Clock references are left out at the moment and will be added once
-the appropriate bindings have been settled upon.
+v2:
+  Fix ADM label to "dma-controller"
+  Drop spurious "syscon" on GCC for tsens changes
 
-Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
----
- arch/arm64/boot/dts/apple/t8103.dtsi | 83 ++++++++++++++++++++++++++++
- 1 file changed, 83 insertions(+)
+Jonathan McDowell (5):
+  ARM: dts: qcom: Add ADM DMA + NAND definitions to ipq806x
+  ARM: dts: qcom: Add tsens details to ipq806x
+  ARM: dts: qcom: Add USB port definitions to ipq806x
+  ARM: dts: qcom: add L2CC and RPM for IPQ8064
+  ARM: dts: qcom: Enable NAND + USB for RB3011
 
-diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-index a1e22a2ea2e5..503a76fc30e6 100644
---- a/arch/arm64/boot/dts/apple/t8103.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-@@ -9,6 +9,7 @@
- 
- #include <dt-bindings/interrupt-controller/apple-aic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/pinctrl/apple.h>
- 
- / {
- 	compatible = "apple,t8103", "apple,arm-platform";
-@@ -131,5 +132,87 @@ aic: interrupt-controller@23b100000 {
- 			interrupt-controller;
- 			reg = <0x2 0x3b100000 0x0 0x8000>;
- 		};
-+
-+		pinctrl_ap: pinctrl@23c100000 {
-+			compatible = "apple,t8103-pinctrl", "apple,pinctrl";
-+			reg = <0x2 0x3c100000 0x0 0x100000>;
-+
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&pinctrl_ap 0 0 212>;
-+
-+			interrupt-controller;
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 190 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 191 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 192 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 193 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 194 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 195 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 196 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			pcie_pins: pcie-pins {
-+				pinmux = <APPLE_PINMUX(150, 1)>,
-+					 <APPLE_PINMUX(151, 1)>,
-+					 <APPLE_PINMUX(32, 1)>;
-+			};
-+		};
-+
-+		pinctrl_aop: pinctrl@24a820000 {
-+			compatible = "apple,t8103-pinctrl", "apple,pinctrl";
-+			reg = <0x2 0x4a820000 0x0 0x4000>;
-+
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&pinctrl_aop 0 0 42>;
-+
-+			interrupt-controller;
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 268 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 269 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 270 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 271 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 272 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 273 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 274 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
-+		pinctrl_nub: pinctrl@23d1f0000 {
-+			compatible = "apple,t8103-pinctrl", "apple,pinctrl";
-+			reg = <0x2 0x3d1f0000 0x0 0x4000>;
-+
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&pinctrl_nub 0 0 23>;
-+
-+			interrupt-controller;
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 330 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 331 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 332 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 333 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 334 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 335 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 336 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
-+		pinctrl_smc: pinctrl@23e820000 {
-+			compatible = "apple,t8103-pinctrl", "apple,pinctrl";
-+			reg = <0x2 0x3e820000 0x0 0x4000>;
-+
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&pinctrl_smc 0 0 16>;
-+
-+			interrupt-controller;
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 391 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 392 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 393 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 394 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 395 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 396 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 397 IRQ_TYPE_LEVEL_HIGH>;
-+		};
- 	};
- };
+ arch/arm/boot/dts/qcom-ipq8064-rb3011.dts |  58 +++
+ arch/arm/boot/dts/qcom-ipq8064.dtsi       | 425 ++++++++++++++++++++++
+ 2 files changed, 483 insertions(+)
+
 -- 
-2.31.1
+2.20.1
 
