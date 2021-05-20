@@ -2,156 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7CDD38B768
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 21:22:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD03038B7B5
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 21:43:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235914AbhETTX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 15:23:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49140 "EHLO mail.kernel.org"
+        id S233051AbhETTpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 15:45:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52062 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236838AbhETTX2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 May 2021 15:23:28 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 157956105A;
-        Thu, 20 May 2021 19:22:07 +0000 (UTC)
+        id S232281AbhETTpI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 May 2021 15:45:08 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1E47A611AD;
+        Thu, 20 May 2021 19:43:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621538527;
-        bh=pGj2m21Rr+RedlO3zLbZQ5wKNm5upkIVwCyZCTL3B9k=;
+        s=k20201202; t=1621539827;
+        bh=73nbHnhpJNgAbifU9hXlRY1DATQcRHcdWdwBjdW6tk4=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=DR8vXQti4Bohj4xOM6/m2X1atmGoljVVLkFdIBBK5fZXIpPyGtMc39lKURvUPueaj
-         dJvjy+/kkXeeccvCa3WIw47WoTPLXne8CArTSUtHWrPvsK97xgRsnvmddBlWd+89LB
-         k/hWLmf7jAbshtEjLwUy7Vo92ZKvuF6fTHUGNS4XlBruDC81g4LCUJxqVDZMLUOFQB
-         2naTIhBbey/krvwRiL3c6X4muxpNNKhPN5e5oiWG6JmQF5J2E5ORqZnoU6jRApANjt
-         I8p2VorD9UgSyKYQmVVU23BvWNbOa/8hM0cwpjpG6oX+lvB8EDGK8ubXDOo9cNn91T
-         dqeccufeGsabg==
-Received: by mail-ej1-f49.google.com with SMTP id u21so26963288ejo.13;
-        Thu, 20 May 2021 12:22:06 -0700 (PDT)
-X-Gm-Message-State: AOAM530E1UJY2DnRWvpW+yntaXlw1+ubIEnfz+R8K5YiJlXKNKS3+XJ5
-        DKJPB7l/xPmW1CoRTsDdF072ovBQrmMpqNYxoQ==
-X-Google-Smtp-Source: ABdhPJxUYGX9fGlR21dCfAS6UFpl3PZ3Xg3sofjrWFaR6sA8n+7gw/W9/kl0GkjNISyhZAYmu+po9iwLSFeAtV5X/08=
-X-Received: by 2002:a17:907:76e8:: with SMTP id kg8mr5885360ejc.130.1621538525633;
- Thu, 20 May 2021 12:22:05 -0700 (PDT)
+        b=gMHxwv0ugV/o17GM1VJva4HUo4kFiuY3Y4kXoFU9oncZZDo9SfeimMJKfYct1HjQr
+         6WDdFrWqPYe/vnZ31b2MizdizExI36Q9lYEhhA+ySkckTUCadw8qNbXrbamIjLfXwi
+         ANpHHGA7AiD+54RJ+bJzW55tdvi+oXaVTdFgORcMQxBMvRhf9JLpj54EFghXcLbQNg
+         b8vqKTsjmVZ5lY8maMJIu9ibMyUb8OKxUO6AJxeebNUn95FOdXhpsu+IvQgg2cx8H9
+         fcpjZSmxTfBIFsuh2RHydYD9/3c86rTQz9yvkdEYor2cDQVgKKW628p0V4y+VTRMXw
+         o1y7PYcp/0kTQ==
+Received: by mail-ej1-f45.google.com with SMTP id z12so25656335ejw.0;
+        Thu, 20 May 2021 12:43:47 -0700 (PDT)
+X-Gm-Message-State: AOAM5300He4RLh1UbDZOdEIKYqR33Lld/vD5/lqlokcWnSNlbtsChU28
+        WBZvxiX/WjbfJlE3mu91MBvWNTrk9oxqH9z4Tw==
+X-Google-Smtp-Source: ABdhPJxK+MDKBXNCLITq63R0druO7RKK0WX1t1gie3ckEZF4lT+iXiBdCn2YfACqb3jR32XZ+WZ1d9hisRFtqcMJLkk=
+X-Received: by 2002:a17:906:1d0a:: with SMTP id n10mr6189266ejh.341.1621539825668;
+ Thu, 20 May 2021 12:43:45 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210518172022.10562-1-s-anna@ti.com> <c666919f-cc10-3ca5-a1e3-5062c260e827@ti.com>
- <20210520000831.GA3927464@robh.at.kernel.org> <f60764c8-9100-0c8d-96d6-76689ed8acc6@ti.com>
-In-Reply-To: <f60764c8-9100-0c8d-96d6-76689ed8acc6@ti.com>
+References: <20210517155458.1016707-1-sudeep.holla@arm.com>
+ <1621284311.383362.3157708.nullmailer@robh.at.kernel.org> <20210519112041.olwl35irvcbjxrka@bogus>
+In-Reply-To: <20210519112041.olwl35irvcbjxrka@bogus>
 From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 20 May 2021 14:21:54 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLxmGHK_AEdth3M7Uhw4+A+2wNTzw_j74tRLjfp6z+UXg@mail.gmail.com>
-Message-ID: <CAL_JsqLxmGHK_AEdth3M7Uhw4+A+2wNTzw_j74tRLjfp6z+UXg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mailbox: Convert omap-mailbox.txt binding to YAML
-To:     Suman Anna <s-anna@ti.com>
-Cc:     Jassi Brar <jaswinder.singh@linaro.org>,
-        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        devicetree@vger.kernel.org,
-        linux-omap <linux-omap@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Date:   Thu, 20 May 2021 14:43:34 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK-LpDQWh9RsLsGPEQ53n6s0+Q7ioVikSm1jZuoCWAgnA@mail.gmail.com>
+Message-ID: <CAL_JsqK-LpDQWh9RsLsGPEQ53n6s0+Q7ioVikSm1jZuoCWAgnA@mail.gmail.com>
+Subject: Re: [PATCH v4] dt-bindings: dvfs: Add support for generic performance domains
+To:     Sudeep Holla <sudeep.holla@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Hector Yuan <hector.yuan@mediatek.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 20, 2021 at 11:45 AM Suman Anna <s-anna@ti.com> wrote:
+On Wed, May 19, 2021 at 6:20 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
 >
-> On 5/19/21 7:08 PM, Rob Herring wrote:
-> > On Wed, May 19, 2021 at 10:14:14AM -0500, Suman Anna wrote:
-> >> On 5/18/21 12:20 PM, Suman Anna wrote:
-> >>> Convert the current OMAP Mailbox binding from text format to YAML
-> >>> format/DT schema, and delete the legacy text binding file.
-> >>>
-> >>> The new YAML binding conversion is an updated version compared to
-> >>> the original. The descriptions for certain properties have been
-> >>> improved to provide more clarity. Constraints are added to the
-> >>> properties 'ti,mbox-num-users', 'ti,mbox-num-fifos' and 'interrupts'.
-> >>> The 'ti,hwmods' is a legacy property and is retained only to reflect
-> >>> the existing usage on some older OMAP2 and OMAP3 platforms.
-> >>>
-> >>> All the existing examples have also been updated to reflect the
-> >>> latest dts nodes (ti,hwmods removed from OMAP4 and AM33xx examples,
-> >>> and interrupts value updated for AM65x SoCs).
-> >>>
-> >>> Signed-off-by: Suman Anna <s-anna@ti.com>
-> >>> ---
-> >>> Hi,
-> >>>
-> >>> This patch does fix a number of dtbs_check warnings seen around OMAP Mailbox
-> >>> nodes with the latest kernel. There are few left-over warnings when just
-> >>> this patch is used on v5.13-rc1 or next-20210518. I have posted a separate
-> >>> fix for a warning on TI K3 SoCs [1], and will be posting a separate cleanup
-> >>> series for OMAP2+ SoCs. The dts patches can be picked up independently
-> >>> of this patch.
-> >>
-> >> FYI, All the dtbs_check warnings will be gone with [1] and the OMAP2+ cleanup
-> >> series [2].
+> Hi Rob,
+>
+> On Mon, May 17, 2021 at 03:45:11PM -0500, Rob Herring wrote:
+>
+> [...]
+>
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > >
-> > Nice, though it is a moving target. :) Is that still true with the
-> > undocumented compatible checks that's been added?
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > Documentation/devicetree/bindings/dvfs/performance-domain.example.dt.yaml:0:0: /example-0/performance-controller@12340000: failed to match any schema with compatible: ['qcom,cpufreq-hw']
+> >
+> > See https://patchwork.ozlabs.org/patch/1479615
 >
-> [1] is acked, so will definitely get picked up for the next merge window. Should
-> hit next sometime in the next couple of days.
->
-> I didn't exactly understand your second comment, but no new compatibles were
-> added. The existing nodes are already in compliance with the constraints I added
-> (so that's strictly binding enforcements). These constraints are almost all on
-> legacy SoCs, so these do not pose any issues.
+> IIUC, such errors due to the fact that the compatible used in the example
+> is not in any yaml schema(as it is still in the old txt format). I also
+> assume such errors are allowed until the transition is complete and I
+> need not fix anything as part of this patch ?
 
-When you say 'All the dtbs_check warnings', you mean *all* or just all
-the mailbox ones. I read as the former, but I guess from the prior
-paragraph and the links you are talking about, it's just mailbox
-warnings.
+Not allowed because I can't turn this check on by default until we get
+rid of the existing 80 or so. But it is a new check and Viresh already
+applied, so oh well.
 
-Overall, this is what TI 32-bit warnings look like:
-
-Processing (am3|am4|am5|dra|keystone|omap|compulab|logicpd|elpida|motorola-cpcap|twl|da|dm):
-warnings: 60358
-undocumented compat: 3195
-
-This comes from my CI job[1]. The warnings aren't deduplicated, so 1
-SoC warning expands to N board warnings. Only 3879 unique warnings. :)
-
-The top warnings are:
-
-arch/arm/boot/dts/(am3|am4|am5|dra|keystone|omap|compulab|logicpd|elpida|motorola-cpcap|twl|da|dm):60358:3879:3195
-    253  segment@0: 'anyOf' conditional failed, one must be fixed:
-    253  segment@0: $nodename:0: 'segment@0' does not match '^bus(@[0-9a-f]+)?$'
-    140  segment@200000: 'anyOf' conditional failed, one must be fixed:
-    140  segment@200000: $nodename:0: 'segment@200000' does not match
-'^bus(@[0-9a-f]+)?$'
-    128 0:0: /ocp/target-module@56000000: failed to match any schema
-with compatible: ['ti,sysc-omap4', 'ti,sysc']
-    128 0:0: /ocp/target-module@50000000: failed to match any schema
-with compatible: ['ti,sysc-omap2', 'ti,sysc']
-    128 0:0: /ocp/interconnect@48000000/segment@0/target-module@60000:
-failed to match any schema with compatible: ['ti,sysc-omap2',
-'ti,sysc']
-    114 0:0: /ocp@68000000/target-module@49032000: failed to match any
-schema with compatible: ['ti,sysc-omap2-timer', 'ti,sysc']
-    114 0:0: /ocp@68000000/target-module@48320000: failed to match any
-schema with compatible: ['ti,sysc-omap2', 'ti,sysc']
-    114 0:0: /ocp@68000000/target-module@48318000: failed to match any
-schema with compatible: ['ti,sysc-omap2-timer', 'ti,sysc']
-    114 0:0: /ocp@68000000/target-module@48304000: failed to match any
-schema with compatible: ['ti,sysc-omap2-timer', 'ti,sysc']
-    114 0:0: /ocp@68000000/target-module@480a0000: failed to match any
-schema with compatible: ['ti,sysc-omap2', 'ti,sysc']
-    114 0:0: /ocp@68000000/target-module@48056000: failed to match any
-schema with compatible: ['ti,sysc-omap2', 'ti,sysc']
-    114 0:0: /ocp@68000000/l4@48000000/scm@2000/scm_conf@270/pbias_regulator@2b0:
-failed to match any schema with compatible: ['ti,pbias-omap3',
-'ti,pbias-omap']
-    114 0:0: /ocp@68000000/l4@48000000/scm@2000/pinmux@a00: failed to
-match any schema with compatible: ['ti,omap3-padconf',
-'pinctrl-single']
-    114 0:0: /ocp@68000000/l4@48000000/scm@2000/pinmux@30: failed to
-match any schema with compatible: ['ti,omap3-padconf',
-'pinctrl-single']
-    112 0:0: /opp-table: failed to match any schema with compatible:
-['operating-points-v2-ti-cpu']
-    111  segment@100000: 'anyOf' conditional failed, one must be fixed:
-    111  segment@100000: $nodename:0: 'segment@100000' does not match
-'^bus(@[0-9a-f]+)?$'
-    108 0:0: /soc: failed to match any schema with compatible: ['ti,omap-infra']
+BTW, one of the 80 is 'operating-points-v2' compatible. Hint, hint.
 
 Rob
-
-[1] https://gitlab.com/robherring/linux-dt/-/jobs/1261951514
