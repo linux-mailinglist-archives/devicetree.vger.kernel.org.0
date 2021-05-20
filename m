@@ -2,84 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F21F38AD2E
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 13:56:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4609038ADC5
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 14:14:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242820AbhETL5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 07:57:52 -0400
-Received: from szxga05-in.huawei.com ([45.249.212.191]:4558 "EHLO
-        szxga05-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240915AbhETL4I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 07:56:08 -0400
-Received: from dggems706-chm.china.huawei.com (unknown [172.30.72.59])
-        by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4Fm7Pp45bbzqTpd;
-        Thu, 20 May 2021 19:51:58 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggems706-chm.china.huawei.com (10.3.19.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Thu, 20 May 2021 19:54:45 +0800
-Received: from thunder-town.china.huawei.com (10.174.177.72) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Thu, 20 May 2021 19:54:44 +0800
-From:   Zhen Lei <thunder.leizhen@huawei.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        linux-serial <linux-serial@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-CC:     Zhen Lei <thunder.leizhen@huawei.com>
-Subject: [PATCH 2/2] dt-bindings: serial: pl011: Avoid matching device tree nodes of variant pl011 drivers
-Date:   Thu, 20 May 2021 19:54:40 +0800
-Message-ID: <20210520115440.8259-3-thunder.leizhen@huawei.com>
-X-Mailer: git-send-email 2.26.0.windows.1
-In-Reply-To: <20210520115440.8259-1-thunder.leizhen@huawei.com>
-References: <20210520115440.8259-1-thunder.leizhen@huawei.com>
+        id S236184AbhETMQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 08:16:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52558 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232048AbhETMQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 08:16:07 -0400
+Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7394C00366C
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 03:56:43 -0700 (PDT)
+Received: by mail-io1-xd35.google.com with SMTP id k132so2510211iof.4
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 03:56:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ZggdLxEioYSmHsAN6HdiHwkaCdjjLY0f9eAD0updRrw=;
+        b=gwOq7/3pH8V/2gE94ERMNXP3mpo89c0EaBoRdYiv3gQh0NZ5AsxXUlDYWYADOZtuiZ
+         AlzMofkhhVaVjJ70OpmgP0FVwr7nsJnfFINio4WNaXSn3f5ULLZUP3fRrz6qWMb+4xnr
+         7+bOE3u0k24UY8a0FiD3P94RywWnjtlyjXWaA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZggdLxEioYSmHsAN6HdiHwkaCdjjLY0f9eAD0updRrw=;
+        b=b2b9vbqS58cXSONTHCkG3oIRcWgJD6+pnggfku33UCF+rDPQsPkBdMkrmPRfbxUzrI
+         eDE+0noRRixDFsa0sJruB867WJwba2M1fh+WdccJB67ObM4zmjsYsXsd8FQ+aNQkFvNF
+         TEKSMqA1q5z7LkRcz47NW4btU9WZs+rjP+q0B+Pxr3t32V5dTmQmgTdcCCucEu4717aW
+         IAqPpaCA1hpOc+hNf1IUJl3c4L8s9jU9DhHvzcR9Iw6c9LKF9HKXIIG1EuI9RLiJjd8E
+         Di+wFIRZ6efYPi9o5ose7WcXQt2tWSIdxI0TP0GqHLqrwG6s1x85SjlR/SnIhoudpe6H
+         nW4A==
+X-Gm-Message-State: AOAM532ByU2dSXcOqW56JWX/Wx1owetI6AiRV7jEZ1G6zv15wV+udIx6
+        3UQUhcNRZxBVixtk58fdupVcwMzKLq0tbnd9qOlVpQ==
+X-Google-Smtp-Source: ABdhPJwsRXryrVBLrnfEAhDRXkJWRvO5y68qKTU37qReKB6ekDFRs2lFm7STxXVQpa9ZsaRZSseo6EjW/Uv6Q9RgDH0=
+X-Received: by 2002:a5e:c742:: with SMTP id g2mr4887060iop.40.1621508202940;
+ Thu, 20 May 2021 03:56:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.174.177.72]
-X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
+References: <20210507131406.2224177-1-hsinyi@chromium.org>
+In-Reply-To: <20210507131406.2224177-1-hsinyi@chromium.org>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Thu, 20 May 2021 18:56:16 +0800
+Message-ID: <CAJMQK-is=wOWGL-bETEcp=shcnrGdWFh4FbzHWCTEYjg-Zk0Dw@mail.gmail.com>
+Subject: Re: [PATCH v21 0/5] add power control in i2c
+To:     Wolfram Sang <wsa@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     linux-i2c <linux-i2c@vger.kernel.org>,
+        Qii Wang <qii.wang@mediatek.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Brown <broonie@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>,
+        Arnd Bergmann <arnd@arndb.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is a variant driver of pl011, which may have a compatible string
-written as: "arm,sbsa-uart", "arm,pl011". Because it contains "arm,pl011",
-so the corresponding device tree nodes are also checked by this YAML file.
-As a result, many flase warnings similar to the following are reported:
+On Fri, May 7, 2021 at 9:14 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+>
+> Although in the most platforms, the power of eeprom
+> and i2c are alway on, some platforms disable the
+> eeprom and i2c power in order to meet low power request.
+>
+> This patch add the pm_runtime ops to control power to
+> support all platforms.
+>
 
-arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dt.yaml:
- serial@21c0000: compatible:0: 'arm,pl011' was expected
- serial@21c0000: compatible:1: 'arm,primecell' was expected
+Hi maintainers,
 
-Change to only check the device tree nodes that are matched exactly.
+Gentle ping on the thread. (the 4th patch is already picked) Thanks.
 
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
----
- Documentation/devicetree/bindings/serial/pl011.yaml | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/serial/pl011.yaml b/Documentation/devicetree/bindings/serial/pl011.yaml
-index 5ea00f8a283d..3683e4567645 100644
---- a/Documentation/devicetree/bindings/serial/pl011.yaml
-+++ b/Documentation/devicetree/bindings/serial/pl011.yaml
-@@ -16,9 +16,9 @@ allOf:
- select:
-   properties:
-     compatible:
--      contains:
--        enum:
--          - arm,pl011
-+      items:
-+        - const: arm,pl011
-+        - const: arm,primecell
-   required:
-     - compatible
- 
--- 
-2.21.1
-
-
+> Changes since v20:
+>  - fix regulator check logic in suspend/resume.
+>
+> Changes since v19:
+>  - resend v19 with fix tag added.
+>
+> Changes since v18:
+>  - Fix a function name conflict with drivers/gpu/drm/i915/selftests/i915_gem.c
+>
+> Changes since v17:
+>  - Add a patch to fix unbalanced regulator disabling.
+>  - Add dts patch.
+>
+> Changes since v16:
+>  - request regulator in device instead of in the core.
+>  - control regulator only if it's provided.
+>
+> Changes since v15:
+>  - Squash the fix[1] for v15.
+> [1] https://patchwork.ozlabs.org/project/linux-i2c/patch/20200522101327.13456-1-m.szyprowski@samsung.com/
+>
+> Changes since v14:
+>  - change the return value in normal condition
+>  - access the variable after NULL pointer checking
+>  - add ack tag
+>
+> Changes since v13:
+>  - fixup some logic error
+>
+> Changes since v12:
+>  - rebase onto v5.7-rc1
+>  - change the property description in binding
+>
+> Changes since v11:
+>  - use suspend_late/resume_early instead of suspend/resume
+>  - rebase onto v5.6-rc1
+>
+> Changes since v10:
+>  - fixup some worng codes
+>
+> Changes since v9:
+>  - fixup build error
+>  - remove redundant code
+>
+> Changes since v8:
+>  - fixup some wrong code
+>  - remove redundant message
+>
+> [... snip ...]
+>
+>
+> Bibby Hsieh (1):
+>   i2c: core: support bus regulator controlling in adapter
+>
+> Hsin-Yi Wang (4):
+>   dt-binding: i2c: mt65xx: add vbus-supply property
+>   i2c: mediatek: mt65xx: add optional vbus-supply
+>   misc: eeprom: at24: check suspend status before disable regulator
+>   arm64: dts: mt8183: add supply name for eeprom
+>
+>  .../devicetree/bindings/i2c/i2c-mt65xx.txt    |  1 +
+>  .../dts/mediatek/mt8183-kukui-kakadu.dtsi     |  4 +
+>  .../dts/mediatek/mt8183-kukui-kodama.dtsi     |  4 +
+>  .../boot/dts/mediatek/mt8183-kukui-krane.dtsi |  4 +
+>  drivers/i2c/busses/i2c-mt65xx.c               |  7 ++
+>  drivers/i2c/i2c-core-base.c                   | 95 +++++++++++++++++++
+>  drivers/misc/eeprom/at24.c                    |  6 +-
+>  include/linux/i2c.h                           |  2 +
+>  8 files changed, 121 insertions(+), 2 deletions(-)
+>
+> --
+> 2.31.1.607.g51e8a6a459-goog
+>
