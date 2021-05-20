@@ -2,174 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 396A938AE1E
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 14:24:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A76738AE4A
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 14:33:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233637AbhETMZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 08:25:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54126 "EHLO
+        id S234021AbhETMeE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 08:34:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232832AbhETMZR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 08:25:17 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 441FBC0AF782
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 04:21:14 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id z19-20020a7bc7d30000b029017521c1fb75so5204443wmk.0
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 04:21:14 -0700 (PDT)
+        with ESMTP id S233751AbhETMdz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 08:33:55 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AA3FC0E1EF6
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 04:39:35 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id i17so17283524wrq.11
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 04:39:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=I1s2g7mZiKD+3vqbYSRNmdSX/CMtcVBGAGHbX0P5N+Y=;
-        b=dQXS0Q9+oZRSBGRK9IhEcny+g10qxP56m7wQL+S2aq4svKPeRJkuV1BHZlLHSQNs1B
-         woNjvZXc2ckEW/Kl8q78BIRa6upPdqxeGocCHpS5/JL53eYZErgAtR6zBZar3EdqH6NN
-         xVOlHbRmDlUXGA8OK5xXHyFW0p/B68RYExjov+c0N9uX9Jn/ZhoFGf2UZ7KhmceSQofR
-         mUdNAG992HfUBXokhiuWG/b0q5QIpRtAcKir4Dtrigr6OuWcm5VQ8IdB/EodtZwe5FOU
-         5zDqO3qxJBRWkX/8OUMSffv6if7yrcPbxGjzY6vJ8axrb4YjVBpe3HFM4YEnxqVeLccs
-         BO6g==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=rOR/bE6KeQ5HZ3FZ82kLVJ7uz1OxpfmHwQwUe9gKcNs=;
+        b=NZr70dRmEM0JMXAWO6zmUcOkBIe/qjOpjpzp1IaGbh67LHHyOvFaZLweiqdQEHPrX4
+         GKtci8trVgcHmMkHT0ee0RghnbnilbIgQS2Sed9iDBJQgTZOFW+1YRdteD1w74NcRetM
+         C0la3E2/beovJg27Nec9wf6h4nj4YeWhB4X9vBVeBFDZQ4HxqIxirJ7mVIDkqXmQxPMM
+         tYXKwMLhG0M/Dg0izKm3UlokCh2KSlXruugL1CYzBiREmC8ZIo2oLkcQ3uQrW+OfQ0dP
+         GHvKtCzUXRrvY98J5VB7AiRn3RGl3/iB+XVt1PKRSjGby02HopKbxcOR+zoHJKggOdRx
+         YBcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=I1s2g7mZiKD+3vqbYSRNmdSX/CMtcVBGAGHbX0P5N+Y=;
-        b=tQdK/U8OBYzFsVpjzdOiUlyrgyYOrvt6vCer1yN7S1El3hO1bG5nPyUsh6eGfsAA+a
-         MXfU1gpndY4HT43nstCe4ZTYQhk3JEIgeGd6NTCeSefnwpvBaD0oQ7neqVuoUxQye3Gj
-         lsDgczcOwxcJxUxNxbviu0uWp8zZ6qbPFHB0bmJPo4GfrJjVvHfMahhJrBajYO3Eub3p
-         gKG9qXsI4rj108D9Tth/xUOBfFVSlxupIaY8d2CVmVj9CIiqtDOHFcsLr46Cht0bf2D6
-         jlCFDkWgR6tVrUyklMj+OZCto1V4pktGSJFRczdUBZoIS/jksPQzjSdCvtXuLfkPOCIQ
-         sErA==
-X-Gm-Message-State: AOAM532reuchiuRlBrt1FgUOaLxkldATHIcEpIQcX0WT3zpdRx24TVhY
-        fhVyupz6jBsAUuKu0max07Do6A==
-X-Google-Smtp-Source: ABdhPJwgZ2Uy9gIUoGlppdjJs1r6s6YTR4PaEUrIYWth4zddJArej2XDwuX9NSmnvHi6LOsm7bcw/Q==
-X-Received: by 2002:a05:600c:2301:: with SMTP id 1mr3600762wmo.180.1621509672880;
-        Thu, 20 May 2021 04:21:12 -0700 (PDT)
-Received: from localhost.localdomain ([88.160.162.107])
-        by smtp.gmail.com with ESMTPSA id o11sm2756646wrq.93.2021.05.20.04.21.12
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=rOR/bE6KeQ5HZ3FZ82kLVJ7uz1OxpfmHwQwUe9gKcNs=;
+        b=O0n1qsl6jpS6tb2eTpUbRf/1Bqi0dLfFPrMcf+MDGk1Ok3TXNP9VCCKEoez7mSizGQ
+         zwzwQBQjR+zn55EuntjY3hIOHtzT8gduIx7vWQdA9nnIcslK6cvEnhVyQx9fm96TQYz6
+         LUQm3tgXMc7YBzkmJqpJGtoaRpziAINNlSzY3c+0O83PyVqFwwvjk8E/fOC6aGI9H0ej
+         shz6Xc7/TYgGablxU1yfe42Mucv7qMksSHAvok0d0QXHaQ6qKIR/Doq/k5P88TiHErb/
+         u0MuyRmFW/3/NpskZdEqn9OYJI176G46hu+VqKqwLIc5P6Xkoi5VqRJybqC9NWbsBwZ4
+         /zyQ==
+X-Gm-Message-State: AOAM5330YDQEqGYV3ZQoWrXTjNstHux4aNidrcvG61otVOM7vpCT5+/h
+        6Ed0suR09Xg5T4bIZeV1dIxrgQ==
+X-Google-Smtp-Source: ABdhPJyXeIV+dQjn1qVkcKlSbCmMspSSPlaH/0NkZU7TQGJqPfLIDWDnR2nLd0Zd8vmh/3KNV26pBw==
+X-Received: by 2002:adf:e607:: with SMTP id p7mr3813981wrm.358.1621510773767;
+        Thu, 20 May 2021 04:39:33 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id d3sm2934456wrs.41.2021.05.20.04.39.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 May 2021 04:21:12 -0700 (PDT)
-From:   Fabien Parent <fparent@baylibre.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     mkorpershoek@baylibre.com, Fabien Parent <fparent@baylibre.com>,
+        Thu, 20 May 2021 04:39:33 -0700 (PDT)
+Date:   Thu, 20 May 2021 13:39:30 +0200
+From:   LABBE Corentin <clabbe@baylibre.com>
+To:     Eric Biggers <ebiggers@kernel.org>
+Cc:     davem@davemloft.net, herbert@gondor.apana.org.au,
+        linus.walleij@linaro.org, linux@armlinux.org.uk,
+        robh+dt@kernel.org, ulli.kroll@googlemail.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/4] arm64: dts: mediatek: mt8192: fix i2c node names
-Date:   Thu, 20 May 2021 13:21:05 +0200
-Message-Id: <20210520112106.77190-4-fparent@baylibre.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210520112106.77190-1-fparent@baylibre.com>
-References: <20210520112106.77190-1-fparent@baylibre.com>
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/5] crypto: add gemini/sl3516 crypto driver
+Message-ID: <YKZKchyUeeQwedXF@Red>
+References: <20210518151655.125153-1-clabbe@baylibre.com>
+ <YKVbW8T92bY3NG4u@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <YKVbW8T92bY3NG4u@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the i2c node names to be compliant to the YAML schema. The
-I2C node name should match the following pattern: "^i2c@[0-9a-f]+$".
+Le Wed, May 19, 2021 at 11:39:23AM -0700, Eric Biggers a écrit :
+> On Tue, May 18, 2021 at 03:16:50PM +0000, Corentin Labbe wrote:
+> > The gemini SL3516 SoC has a crypto IP.
+> > This serie had support for it.
+> > 
+> 
+> Please describe how this was tested.
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
----
+Sorry I forgot to write it.
+It was tested with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y.
+Furthermore, it survives hours and gigs of write/read to a luks2 using xts(ecb-aes-sl3516).
 
-v2: New patch
+I forgot also to write on performance, which is quite good.
+On a luks2 partition (2To with bs=4096), a fsck comes from 14m26(without CE) to 8m48(with CE).
+So it is really usefull.
 
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+With bs=512, the performance is similar with software.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index 9757138a8bbd..684e8e32af16 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -436,7 +436,7 @@ nor_flash: spi@11234000 {
- 			status = "disable";
- 		};
- 
--		i2c3: i2c3@11cb0000 {
-+		i2c3: i2c@11cb0000 {
- 			compatible = "mediatek,mt8192-i2c";
- 			reg = <0 0x11cb0000 0 0x1000>,
- 			      <0 0x10217300 0 0x80>;
-@@ -449,7 +449,7 @@ i2c3: i2c3@11cb0000 {
- 			status = "disabled";
- 		};
- 
--		i2c7: i2c7@11d00000 {
-+		i2c7: i2c@11d00000 {
- 			compatible = "mediatek,mt8192-i2c";
- 			reg = <0 0x11d00000 0 0x1000>,
- 			      <0 0x10217600 0 0x180>;
-@@ -462,7 +462,7 @@ i2c7: i2c7@11d00000 {
- 			status = "disabled";
- 		};
- 
--		i2c8: i2c8@11d01000 {
-+		i2c8: i2c@11d01000 {
- 			compatible = "mediatek,mt8192-i2c";
- 			reg = <0 0x11d01000 0 0x1000>,
- 			      <0 0x10217780 0 0x180>;
-@@ -475,7 +475,7 @@ i2c8: i2c8@11d01000 {
- 			status = "disabled";
- 		};
- 
--		i2c9: i2c9@11d02000 {
-+		i2c9: i2c@11d02000 {
- 			compatible = "mediatek,mt8192-i2c";
- 			reg = <0 0x11d02000 0 0x1000>,
- 			      <0 0x10217900 0 0x180>;
-@@ -488,7 +488,7 @@ i2c9: i2c9@11d02000 {
- 			status = "disabled";
- 		};
- 
--		i2c1: i2c1@11d20000 {
-+		i2c1: i2c@11d20000 {
- 			compatible = "mediatek,mt8192-i2c";
- 			reg = <0 0x11d20000 0 0x1000>,
- 			      <0 0x10217100 0 0x80>;
-@@ -501,7 +501,7 @@ i2c1: i2c1@11d20000 {
- 			status = "disabled";
- 		};
- 
--		i2c2: i2c2@11d21000 {
-+		i2c2: i2c@11d21000 {
- 			compatible = "mediatek,mt8192-i2c";
- 			reg = <0 0x11d21000 0 0x1000>,
- 			      <0 0x10217180 0 0x180>;
-@@ -514,7 +514,7 @@ i2c2: i2c2@11d21000 {
- 			status = "disabled";
- 		};
- 
--		i2c4: i2c4@11d22000 {
-+		i2c4: i2c@11d22000 {
- 			compatible = "mediatek,mt8192-i2c";
- 			reg = <0 0x11d22000 0 0x1000>,
- 			      <0 0x10217380 0 0x180>;
-@@ -527,7 +527,7 @@ i2c4: i2c4@11d22000 {
- 			status = "disabled";
- 		};
- 
--		i2c5: i2c5@11e00000 {
-+		i2c5: i2c@11e00000 {
- 			compatible = "mediatek,mt8192-i2c";
- 			reg = <0 0x11e00000 0 0x1000>,
- 			      <0 0x10217500 0 0x80>;
-@@ -540,7 +540,7 @@ i2c5: i2c5@11e00000 {
- 			status = "disabled";
- 		};
- 
--		i2c0: i2c0@11f00000 {
-+		i2c0: i2c@11f00000 {
- 			compatible = "mediatek,mt8192-i2c";
- 			reg = <0 0x11f00000 0 0x1000>,
- 			      <0 0x10217080 0 0x80>;
-@@ -553,7 +553,7 @@ i2c0: i2c0@11f00000 {
- 			status = "disabled";
- 		};
- 
--		i2c6: i2c6@11f01000 {
-+		i2c6: i2c@11f01000 {
- 			compatible = "mediatek,mt8192-i2c";
- 			reg = <0 0x11f01000 0 0x1000>,
- 			      <0 0x10217580 0 0x80>;
--- 
-2.31.1
+Regards
 
