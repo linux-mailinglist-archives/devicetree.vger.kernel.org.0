@@ -2,99 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A596389BCA
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 05:19:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 262B0389BDA
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 05:29:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229554AbhETDVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 23:21:02 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:45377 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbhETDVC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 23:21:02 -0400
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 14K33WIl039595;
-        Thu, 20 May 2021 11:03:32 +0800 (GMT-8)
-        (envelope-from jamin_lin@aspeedtech.com)
-Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 20 May
- 2021 11:16:09 +0800
-Date:   Thu, 20 May 2021 11:16:08 +0800
-From:   Jamin Lin <jamin_lin@aspeedtech.com>
+        id S230014AbhETDbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 23:31:11 -0400
+Received: from szxga04-in.huawei.com ([45.249.212.190]:4690 "EHLO
+        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229531AbhETDbL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 23:31:11 -0400
+Received: from dggems706-chm.china.huawei.com (unknown [172.30.72.58])
+        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4FlwCB1z6mz16QGL;
+        Thu, 20 May 2021 11:27:02 +0800 (CST)
+Received: from dggpemm500009.china.huawei.com (7.185.36.225) by
+ dggems706-chm.china.huawei.com (10.3.19.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Thu, 20 May 2021 11:29:48 +0800
+Received: from [10.174.185.226] (10.174.185.226) by
+ dggpemm500009.china.huawei.com (7.185.36.225) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Thu, 20 May 2021 11:29:48 +0800
+Subject: Re: [PATCH v2] iommu/of: Fix pci_request_acs() before enumerating PCI
+ devices
 To:     Rob Herring <robh@kernel.org>
-CC:     Brendan Higgins <brendanhiggins@google.com>,
-        Steven Lee <steven_lee@aspeedtech.com>,
-        Rayn Chen <rayn_chen@aspeedtech.com>,
-        "Benjamin Herrenschmidt" <benh@kernel.crashing.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
-        "ChiaWei Wang" <chiawei_wang@aspeedtech.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Ryan Chen <ryan_chen@aspeedtech.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "moderated list:ARM/ASPEED I2C DRIVER" <openbmc@lists.ozlabs.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list" <linux-kernel@vger.kernel.org>,
-        Troy Lee <troy_lee@aspeedtech.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 3/3] dt-bindings: aspeed-i2c: Convert txt to yaml format
-Message-ID: <20210520031608.GA3601@aspeedtech.com>
-References: <20210519080436.18975-1-jamin_lin@aspeedtech.com>
- <20210519080436.18975-4-jamin_lin@aspeedtech.com>
- <1621438164.132520.3134233.nullmailer@robh.at.kernel.org>
+CC:     <will@kernel.org>, <joro@8bytes.org>, <frowand.list@gmail.com>,
+        <helgaas@kernel.org>, <gregkh@linuxfoundation.org>,
+        <iommu@lists.linux-foundation.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <xieyingtai@huawei.com>
+References: <1621257425-37856-1-git-send-email-wangxingang5@huawei.com>
+ <20210519191450.GA3469078@robh.at.kernel.org>
+From:   Xingang Wang <wangxingang5@huawei.com>
+Message-ID: <cd453893-3e3b-93ec-b826-9103677ac4f5@huawei.com>
+Date:   Thu, 20 May 2021 11:29:47 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <1621438164.132520.3134233.nullmailer@robh.at.kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [192.168.100.253]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 14K33WIl039595
+In-Reply-To: <20210519191450.GA3469078@robh.at.kernel.org>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.185.226]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ dggpemm500009.china.huawei.com (7.185.36.225)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 05/19/2021 15:29, Rob Herring wrote:
-> On Wed, 19 May 2021 16:04:29 +0800, Jamin Lin wrote:
-> > Add global-reg node for AST2600. Document the properties for
-> > "aspeed,ast2600-i2c-global" compatible node.
-> > 
-> > Signed-off-by: Jamin Lin <jamin_lin@aspeedtech.com>
-> > ---
-> >  .../devicetree/bindings/i2c/aspeed,i2c.yaml   | 89 +++++++++++++++++++
-> >  .../devicetree/bindings/i2c/i2c-aspeed.txt    | 49 ----------
-> >  2 files changed, 89 insertions(+), 49 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
-> > 
+
+
+On 2021/5/20 3:14, Rob Herring wrote:
+> On Mon, May 17, 2021 at 01:17:05PM +0000, Wang Xingang wrote:
+>> From: Xingang Wang <wangxingang5@huawei.com>
+>>
+>> When booting with devicetree, the pci_request_acs() is called after the
+>> enumeration and initialization of PCI devices, thus the ACS is not
+>> enabled. This patch add check for IOMMU in of_core_init(), and call
+>> pci_request_acs() when iommu is detected, making sure that the ACS will
+>> be enabled.
+>>
+>> Fixes: 6bf6c24720d33 ("iommu/of: Request ACS from the PCI core when
+>> configuring IOMMU linkage")
+>> Signed-off-by: Xingang Wang <wangxingang5@huawei.com>
+>> ---
+>>   drivers/iommu/of_iommu.c | 1 -
+>>   drivers/of/base.c        | 9 ++++++++-
+>>   2 files changed, 8 insertions(+), 2 deletions(-)
+>>
+>> Change log:
+>> v1->v2:
+>>   - remove pci_request_acs() in of_iommu_configure
+>>   - check and call pci_request_acs() in of_core_init()
+>>
+>> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+>> index a9d2df001149..54a14da242cc 100644
+>> --- a/drivers/iommu/of_iommu.c
+>> +++ b/drivers/iommu/of_iommu.c
+>> @@ -205,7 +205,6 @@ const struct iommu_ops *of_iommu_configure(struct device *dev,
+>>   			.np = master_np,
+>>   		};
+>>   
+>> -		pci_request_acs();
+>>   		err = pci_for_each_dma_alias(to_pci_dev(dev),
+>>   					     of_pci_iommu_init, &info);
+>>   	} else {
+>> diff --git a/drivers/of/base.c b/drivers/of/base.c
+>> index 48e941f99558..95cd8f0e5435 100644
+>> --- a/drivers/of/base.c
+>> +++ b/drivers/of/base.c
+>> @@ -24,6 +24,7 @@
+>>   #include <linux/of.h>
+>>   #include <linux/of_device.h>
+>>   #include <linux/of_graph.h>
+>> +#include <linux/pci.h>
+>>   #include <linux/spinlock.h>
+>>   #include <linux/slab.h>
+>>   #include <linux/string.h>
+>> @@ -166,7 +167,7 @@ void __of_phandle_cache_inv_entry(phandle handle)
+>>   void __init of_core_init(void)
+>>   {
+>>   	struct device_node *np;
+>> -
+>> +	bool of_iommu_detect = false;
+>>   
+>>   	/* Create the kset, and register existing nodes */
+>>   	mutex_lock(&of_mutex);
+>> @@ -180,6 +181,12 @@ void __init of_core_init(void)
+>>   		__of_attach_node_sysfs(np);
+>>   		if (np->phandle && !phandle_cache[of_phandle_cache_hash(np->phandle)])
+>>   			phandle_cache[of_phandle_cache_hash(np->phandle)] = np;
+>> +
+>> +		/* Detect IOMMU and make sure ACS will be enabled */
+>> +		if (!of_iommu_detect && of_get_property(np, "iommu-map", NULL)) {
+>> +			of_iommu_detect = true;
+>> +			pci_request_acs();
+>> +		}
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> Private DT internal init code doesn't seem like the right place for
+> this. If this needs to be ordered WRT PCI device enumeration, then
+> somewhere in the PCI host bridge or bus init code seems like the right
+> place to me.
 > 
-> yamllint warnings/errors:
+> Also, shouldn't this be conditional on 'iommu-map' being in the host
+> bridge or a parent or ??? rather than just any iommu-map anywhere in the
+> DT.
 > 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/i2c/aspeed,i2c.example.dt.yaml:0:0: /example-0/i2c-global-regs@0: failed to match any schema with compatible: ['aspeed,ast2600-i2c-global', 'syscon']
+
+Thanks for your suggestion, I will fix this and move the modification to 
+procedure of pci_host_common_probe(), and before pci_host_probe().
+
+>>   	}
+>>   	mutex_unlock(&of_mutex);
+>>   
+>> -- 
+>> 2.19.1
+>>
+> .
 > 
-> See https://patchwork.ozlabs.org/patch/1480769
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
->
-Thanks for your review.
-yes, I did not add "DT_CHECKER_FLAGS" to check my patch.
-I will re-sent this patch.
-Thanks
