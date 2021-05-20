@@ -2,186 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78B5338A5B3
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 12:20:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3339F38A921
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 12:58:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235999AbhETKSy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 06:18:54 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:64104 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235744AbhETKQt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 06:16:49 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1621505727; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=RimnFyHnEwmSSWhM/3E14U80346pavoF8LlaOtDcD8Y=;
- b=BmEDj1VAc1p3Ddv4RB9fPnKa5vln7RRWFpHbBEi9WBTGP7uSuiwqWou9ygSrij9Guw0sx/5t
- CdWzhvGcbf9mHbekgHEkmFODs3S0oxprre04EwOVCzykzIXHuV4mVQyNkau9MKVz8HE5RjzJ
- iAgTwtDUk1nXmxoptkF2Lb27ITM=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 60a636b8c4456bc0f1d46041 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 20 May 2021 10:15:20
- GMT
-Sender: pmaliset=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 550CFC00914; Thu, 20 May 2021 10:15:19 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: pmaliset)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 12116C4314A;
-        Thu, 20 May 2021 10:15:15 +0000 (UTC)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 20 May 2021 15:45:15 +0530
-From:   Prasad Malisetty <pmaliset@codeaurora.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        mgautam@codeaurora.org, swboyd@chromium.org, dianders@chromium.org,
-        mka@chromium.org
-Subject: Re: [PATCH] PCIe: qcom: Add support to control pipe clk mux
-In-Reply-To: <20210509023547.GJ2484@yoga>
-References: <1620520860-8589-1-git-send-email-pmaliset@codeaurora.org>
- <20210509023547.GJ2484@yoga>
-Message-ID: <3447606ba9ade9d578c609838e63dbb3@codeaurora.org>
-X-Sender: pmaliset@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+        id S235210AbhETK6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 06:58:12 -0400
+Received: from comms.puri.sm ([159.203.221.185]:51006 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238798AbhETKz4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 May 2021 06:55:56 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 690D7DFF7B;
+        Thu, 20 May 2021 03:54:34 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 8j1nm7JO3W3I; Thu, 20 May 2021 03:54:33 -0700 (PDT)
+Message-ID: <f1d44bbd85edf547bc2b7c758b5e822e08cc80d0.camel@puri.sm>
+Subject: Re: [PATCH 00/23] media: imx: imx7-mipi-csis: Add i.MX8MM support /
+ imx8mq support
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, marex@denx.de, p.zabel@pengutronix.de,
+        rmfrfs@gmail.com, robh@kernel.org, slongerbeam@gmail.com
+Date:   Thu, 20 May 2021 12:54:27 +0200
+In-Reply-To: <YKUy8gu3Jc3VDy5i@pendragon.ideasonboard.com>
+References: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
+         <20210504155939.1194369-1-martin.kepplinger@puri.sm>
+         <YKBRXesDsXk9K15J@pendragon.ideasonboard.com>
+         <1da3de6c879474b814f4d820ca5eb5ba07174a26.camel@puri.sm>
+         <YKRmhSn65fiqshsp@pendragon.ideasonboard.com>
+         <7f922c8b3d4396c00ba15ad99dd572699f4b69b1.camel@puri.sm>
+         <YKUy8gu3Jc3VDy5i@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3-1 
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-05-09 08:05, Bjorn Andersson wrote:
-> On Sat 08 May 19:41 CDT 2021, Prasad Malisetty wrote:
+Am Mittwoch, dem 19.05.2021 um 18:46 +0300 schrieb Laurent Pinchart:
+> Hi Martin,
 > 
->> PCIe driver needs to toggle between bi_tcxo and phy pipe
->> clock as part of its LPM sequence. This is done by setting
->> pipe_clk/ref_clk_src as parent of pipe_clk_src after phy init
->> 
->> Dependent on below change:
->> 
->> 	https://lore.kernel.org/patchwork/patch/1422499/
+> On Wed, May 19, 2021 at 05:21:11PM +0200, Martin Kepplinger wrote:
+> > Am Mittwoch, dem 19.05.2021 um 04:14 +0300 schrieb Laurent
+> > Pinchart:
+> > > On Tue, May 18, 2021 at 04:39:00PM +0200, Martin Kepplinger
+> > > wrote:
+> > > > Am Sonntag, dem 16.05.2021 um 01:55 +0300 schrieb Laurent
+> > > > Pinchart:
+> > > > > On Tue, May 04, 2021 at 05:59:39PM +0200, Martin Kepplinger
+> > > > > wrote:
+> > > > > > hi Laurent, again thanks a lot for posting this series! I
+> > > > > > can't fully test
+> > > > > > it, but base my work for imx8mq on it now. imx8mq includes
+> > > > > > yet another mipi phy version than this and below is some
+> > > > > > very rough testing
+> > > > > > code. it's not at all something I sign-off on but my
+> > > > > > following
+> > > > > > problem is based on it.
+> > > > > 
+> > > > > Unless I'm mistaken, the CSI-2 receiver in the i.MX8MQ is a
+> > > > > completely
+> > > > > different device. I wouldn't try to support it in the imx7-
+> > > > > mipi-csis
+> > > > > driver, but in a separate driver.
+> > > > > 
+> > > > > >  * configured to use both staging csi drivers
+> > > > > >  * the csi bridge driver at least streams frames together
+> > > > > > with the
+> > > > > > nxp "yav" mipi driver
+> > > > > > 
+> > > > > > media-ctl -p now says the output below, so one link from
+> > > > > > mipi to
+> > > > > > csi is missing.
+> > > > > > 
+> > > > > > Note that
+> > > > > > 
+> > > > > > media-ctl --set-v4l2 "'csi':0 [fmt:SBGGR10/640x480]"
+> > > > > > works in that it changes the configured format below, but
+> > > > > > 
+> > > > > > media-ctl -l "'imx7-mipi-csis.0':1" -> "'csi':0[1]"
+> > > > > > doesn't create said missing link.
+> > > > > 
+> > > > > media-ctl can't create links, it can only enable or disable
+> > > > > them. Link
+> > > > > creation is the prerogative of drivers.
+> > > > > 
+> > > > > > Do I maybe use that wrongly? If now, does anything come to
+> > > > > > mind that would
+> > > > > > be missing specifically?
+> > > > > 
+> > > > > The link should be created by the call to
+> > > > > media_create_pad_link() in
+> > > > > imx_media_capture_device_register(). You'll need to figure
+> > > > > out if the
+> > > > > function is called and returns an error early, or if it
+> > > > > doesn't get
+> > > > > called at all, and why.
+> > > > > 
+> > > > > > When trying to stream anyway (if that makes sense), I get
+> > > > > > the
+> > > > > > following:
+> > > > > > 
+> > > > > > [ 2008.377470] capture_start_streaming: starting
+> > > > > > [ 2008.381883] capture_find_format: calling
+> > > > > > imx_media_find_mbus_format with code 0x2006
+> > > > > > [ 2008.389671] imx7-csi 30a90000.csi1_bridge:
+> > > > > > capture_validate_fmt: capture_find_format err
+> > > > > > [ 2008.397794] imx7-csi 30a90000.csi1_bridge:
+> > > > > > capture_validate_fmt: capture_find_format found colorspace
+> > > > > > 0x1 != 0x0
+> > > > > > [ 2008.407999] imx7-csi 30a90000.csi1_bridge: capture
+> > > > > > format not valid: -32
+> > > > > > 
+> > > > > > and if I ignore that (because I'm not yet sure whether that
+> > > > > > is specific to
+> > > > > > platforms including an IPU), I get a WARN_ON from
+> > > > > > vb2_start_streaming()
+> > > > > 
+> > > > > That I have a fix for, I'll post it as part of an imx7-media-
+> > > > > csi
+> > > > > series.
+> > > > 
+> > > > Hi Laurent,
+> > > > 
+> > > > You haven't posted that fix you're talking about, right?
+> > > 
+> > > Correct. It's now fixed (see "[PATCH] media: imx: imx7-media-csi:
+> > > Fix
+> > > buffer return upon stream start failure", I've CC'ed you).
+> > > 
+> > > > The below
+> > > > driver (attached; I'll send it as patches after I successfully
+> > > > tested
+> > > > myself, and cleanup and fixes obviously)
+> > > 
+> > > Don't forget the DT bindings at that point :-)
+> > > 
+> > > > results in the same situation I described above:
+> > > > 
+> > > > * missing link from mipi (entity 10) -> csi (entity 1):
+> > > 
+> > > The link is supposed to be created by
+> > > v4l2_create_fwnode_links_to_pad(),
+> > > called from imx7_csi_notify_bound(). Could you trace the calls
+> > > and
+> > > figure out what goes wrong ?
+> > 
+> > that bound callback imx7_csi_notify_bound() is called only once
+> > during
+> > probe: v4l2_create_fwnode_links_to_pad() returns 0 and
+> > imx7_csi_async_register() returns success too.
 > 
-> In what way is this change to the driver dependent on the addition of
-> the node to DT?
-> 
-I will move this patch to DT series patches in next version.
->> 
->> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
->> ---
->>  drivers/pci/controller/dwc/pcie-qcom.c | 23 ++++++++++++++++++++++-
->>  1 file changed, 22 insertions(+), 1 deletion(-)
->> 
->> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c 
->> b/drivers/pci/controller/dwc/pcie-qcom.c
->> index 8a7a300..a9f69e8 100644
->> --- a/drivers/pci/controller/dwc/pcie-qcom.c
->> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
->> @@ -9,6 +9,7 @@
->>   */
->> 
->>  #include <linux/clk.h>
->> +#include <linux/clk-provider.h>
-> 
-> Can you help me see why this is needed?
-> 
-Its needed for set_parent function prototype.
->>  #include <linux/crc8.h>
->>  #include <linux/delay.h>
->>  #include <linux/gpio/consumer.h>
->> @@ -166,6 +167,9 @@ struct qcom_pcie_resources_2_7_0 {
->>  	struct regulator_bulk_data supplies[2];
->>  	struct reset_control *pci_reset;
->>  	struct clk *pipe_clk;
->> +	struct clk *pipe_clk_src;
->> +	struct clk *pipe_ext_src;
->> +	struct clk *ref_clk_src;
->>  };
->> 
->>  union qcom_pcie_resources {
->> @@ -1168,7 +1172,19 @@ static int qcom_pcie_get_resources_2_7_0(struct 
->> qcom_pcie *pcie)
->>  		return ret;
->> 
->>  	res->pipe_clk = devm_clk_get(dev, "pipe");
->> -	return PTR_ERR_OR_ZERO(res->pipe_clk);
->> +	if (IS_ERR(res->pipe_clk))
->> +		return PTR_ERR(res->pipe_clk);
->> +
->> +	res->pipe_clk_src = devm_clk_get(dev, "pipe_src");
->> +	if (IS_ERR(res->pipe_clk_src))
-> 
-> How does this not fail on existing targets?
-I will add platform check in next version.
-> 
->> +		return PTR_ERR(res->pipe_clk_src);
->> +
->> +	res->pipe_ext_src = devm_clk_get(dev, "pipe_ext");
->> +	if (IS_ERR(res->pipe_ext_src))
->> +		return PTR_ERR(res->pipe_ext_src);
->> +
->> +	res->ref_clk_src = devm_clk_get(dev, "ref");
->> +	return PTR_ERR_OR_ZERO(res->ref_clk_src);
->>  }
->> 
->>  static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
->> @@ -1255,6 +1271,11 @@ static void qcom_pcie_deinit_2_7_0(struct 
->> qcom_pcie *pcie)
->>  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
->>  {
->>  	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
->> +	struct dw_pcie *pci = pcie->pci;
->> +	struct device *dev = pci->dev;
->> +
->> +	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280"))
-> 
-> Why is this specific to sc7280?
-> 
-Newer targets including sc7280 require changing pipe-clk mux to switch 
-between pipe_clk and XO for GDSC enable.
+> What subdev is it called for (I assume the imx8mq-mipi-csis.0) ? Have
+> you traced inside the function to see why it doesn't create links ?
 
->> +		clk_set_parent(res->pipe_clk_src, res->pipe_ext_src);
+I fixed mipi -> csi link. I had the DT port descriptions for mipi csi
+wrong.
+
+now, just because I think it makes sense, I do:
+
+media-ctl --set-v4l2 "'csi':0 [fmt:SGBRG10/640x480 colorspace:raw]"
+
+which now prints:
+
+Device topology
+- entity 1: csi (2 pads, 2 links)
+            type V4L2 subdev subtype Unknown flags 0
+            device node name /dev/v4l-subdev0
+	pad0: Sink
+		[fmt:SGBRG10_1X10/640x480 field:none colorspace:raw
+xfer:none ycbcr:601 quantization:full-range]
+		<- "imx8mq-mipi-csis.0":1 [ENABLED,IMMUTABLE]
+	pad1: Source
+		[fmt:SGBRG10_1X10/640x480 field:none colorspace:raw
+xfer:none ycbcr:601 quantization:full-range]
+		-> "csi capture":0 [ENABLED,IMMUTABLE]
+
+- entity 4: csi capture (1 pad, 1 link)
+            type Node subtype V4L flags 0
+            device node name /dev/video1
+	pad0: Sink
+		<- "csi":1 [ENABLED,IMMUTABLE]
+
+- entity 10: imx8mq-mipi-csis.0 (2 pads, 2 links)
+             type V4L2 subdev subtype Unknown flags 0
+             device node name /dev/v4l-subdev1
+	pad0: Sink
+		<- "hi846 2-0020":0 []
+	pad1: Source
+		-> "csi":0 [ENABLED,IMMUTABLE]
+
+- entity 15: hi846 2-0020 (1 pad, 1 link)
+             type V4L2 subdev subtype Sensor flags 0
+             device node name /dev/v4l-subdev2
+	pad0: Source
+		[fmt:SGBRG10_1X10/640x480 field:none colorspace:raw]
+		-> "imx8mq-mipi-csis.0":0 []
+
+> > 
+> > btw, my test is:
+> > 
+> > v4l2-ctl -d "/dev/v4l/by-path/platform-30a90000.csi1_bridge-video-
+> > index0" --set-fmt-video=width=640,height=480 --stream-mmap --
+> > stream-
+> > to=test.raw --stream-count=1
+> > 
+> > and that (probably because of the missing link) fails with
+> > 
+> > VIDIOC_STREAMON returned -1 (No such device)
+> > 
+> > which is in the kernel:
+> > 
+> > imx7-csi 30a90000.csi1_bridge: pipeline start failed with -19
 > 
-> The naming here is not obvious to me, but I think you're going to use
-> this to set parent of gcc_pcie_0_pipe_clk_src to pcie_0_pipe_clk?
+> Let's fix the missing link first.
 > 
-> But in the commit message you're talking about switching back and forth
-> between the pipe clock and tcxo, can you please help me understand 
-> where
-> this is happening?
-> 
-Shall I add the naming convention for above clocks "pipe_clk_mux and 
-pcie_0_pipe_clk_src" .
-Switching between pipe clk and tcxo are added in suspend/resume 
-callbacks. I will update the commit message
-in next version.
-> 
-> PS. The new clocks should be mentioned in the binding.
-> 
-> Regards,
-> Bjorn
-> 
->> 
->>  	return clk_prepare_enable(res->pipe_clk);
->>  }
->> --
->> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
->> Forum,
->> a Linux Foundation Collaborative Project
->> 
+
+But now when trying to stream a frame, the error is:
+
+Because of:
+
+media bus code not compatible with the pixel format set on the video
+node: 1 != 0
+
+I get :
+
+imx7-csi 30a90000.csi1_bridge: capture format not valid
+
+which becomes for userspace:
+
+VIDIOC_STREAMON returned -1 (Broken pipe)
+
+Could that be a "user-problem" because "fmt" is not exactly the same
+everywhere? Also, the sensor entity pad is not yet ENABLED...
+
+(media-ctl is still very new to me, sorry if that's dumb questions now)
+
+                          martin
+
+
