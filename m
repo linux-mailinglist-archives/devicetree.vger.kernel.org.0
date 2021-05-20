@@ -2,81 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5009389C2D
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 05:54:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE21E389C33
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 05:56:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230312AbhETD4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 23:56:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54108 "EHLO
+        id S230105AbhETD5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 23:57:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230253AbhETD4H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 23:56:07 -0400
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3BBEC061574
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 20:54:45 -0700 (PDT)
-Received: by mail-pg1-x52a.google.com with SMTP id q15so10892070pgg.12
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 20:54:45 -0700 (PDT)
+        with ESMTP id S230014AbhETD5r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 23:57:47 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39121C06175F
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 20:56:26 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id kr9so354558pjb.5
+        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 20:56:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=KZRGLyGlYpZs7oxsD7Yo4EaDAarVQQHn0bIE9uF59k0=;
-        b=Ly58M6479wTJyMHgE/6HMIPI0JxrknZ0fzRgcXjYd901K5hE5hOsQRHLlQDZKU2mm/
-         Go6sZo1IAf0ujxCsdN7quwS0hKJcPynecIsUnIG9UHdWaAEqd7S9LhgXOOIJOFCpDNOi
-         0fJAZPSVjh3v6/0ATh/cK5GKKy+YkQn6wIqAxY1wmZTjYh1aC7pUvANmGFfo+92t8f/A
-         21yTv7cGt5Yog3FxYrZA2bGzdGfTKfRAwD9ji1hia+uUf/f7emVMNm6LBNaSPoyoSr1u
-         ahRt8jPCFsy+PPmXWrujwPuoiEDEezqOODAReKr09YjdeFutZXjQwR8uCfJhA/cA9m7w
-         u1Jg==
+        bh=po4uQOPMb2vlHYmlr9YHEFFwM3Cu/99nzbQP8WwI5lA=;
+        b=QA2gT1MQUF6M1toXCLbBIu346gFBWM2+MW4S6+iOCrftmZ9J9H6x/wOB7FEGqXedgw
+         TsyB2746ddL7IozzQ4uUKW5spTp9bbxpp5GWvQGG/QByDCNc7dwsWrsmeLAhiZh2wjRB
+         xGu2cndaRm50Eze5PR/Ykkdgq7BNRdQHT7BNCsJceMQftYTLT8WhVtrjKpDOErlml/hV
+         xkmp948hPsMEX01dI+vp51mgYJbySMDiQwgT9oJUZiwNtyQfTbX062DXhuQpW9tESltX
+         xuygOdF4raqwfyzMzuJBPN9VtL37DxDzYOHl/URYwvp4J+IUdN1EHq9eKzYPj9Zozh5/
+         3dtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=KZRGLyGlYpZs7oxsD7Yo4EaDAarVQQHn0bIE9uF59k0=;
-        b=q97l5pRDZN7eCIV+BaS7viQuEpEDu9QOAzxCXDUcwyOQk6RH3YT2TJX2CnbRXnwqjW
-         SkHU9H2d9seQnlK3knw0BnNmy66h4qRwX0n/IxDqDICr8LmTDuo3XLtnU47GXdMssYoy
-         6tqS8S0ajLecc6qSkA35HXcmJyiqZ70vIfISZSOZqLMrS0j3Un6feuPL9mfgX4Fyi7DC
-         g8HNNXQjJMhYCDQXB3z9e+xumUjuiw+5draIIN5X0FckThMeNSV0Patvoc9Ao2QSnm+m
-         Hfu0jico9Xdv5mnLW6hLhE0OvBi9rFiVa+VafSAQYK86iOQgxAeUQOhQC1OTn3krRc5N
-         j7VA==
-X-Gm-Message-State: AOAM531K2JQPvKAKQJGY+5/hsLR0RptZEd/2Rhpp5HuAGjsuy3LRyziQ
-        s8lj/eAU3bH/xminf8VLoUyfSg==
-X-Google-Smtp-Source: ABdhPJztS1QqD1LiTXn/SocQZq9tDzxtlj38Ux6iQAOUyHioscpcGVHK6n78sJUY0NNB19zVqkoY1Q==
-X-Received: by 2002:a63:2444:: with SMTP id k65mr2447534pgk.1.1621482885418;
-        Wed, 19 May 2021 20:54:45 -0700 (PDT)
+        bh=po4uQOPMb2vlHYmlr9YHEFFwM3Cu/99nzbQP8WwI5lA=;
+        b=WJpBYboq9ic+mUaRwbJx6ErklF50Y8duD33XvMEBMHZzGxirXBBZSNYGv3UwCC8rpo
+         k1LokmZ9FBqGAcdzbwFEorvYuSlXboce1MxBUdRKAxu3sPIDWHumPxrfx7bMBG4OPcKZ
+         jiuEGeWM9ZK+MThrScLMUB0AnEtiVB39eO0qAUuQ+aSkJtB9SUaaLQxlnAdhXSgxsDFh
+         6PZLIXb06z7ieIAt/Nb5dZazRldyeaZt0aIN1qM0K0VfFyBxReqLbeep2+W0u7Y6dR5V
+         s1kmOvo0A0PYT8hcnIhjSl86n7nNyswANBVZBRH+cuwwwxr3ueoDzej5uFFIt3e6DQBZ
+         4FHA==
+X-Gm-Message-State: AOAM532e3ylcRN2ekT2oBGYFCyfCcI/mY28GmzHdqXHrQlrGGlSuvuBJ
+        cUCzgMLZqFs0Sn6nbhDFtETeuw==
+X-Google-Smtp-Source: ABdhPJzLrj2GgWWPuAohBxvwb17XdNk9prc3xA0DJgRsykC+2R2crjPg0lGmRQCkouKu1bT0psKqVQ==
+X-Received: by 2002:a17:902:db09:b029:f4:8d37:8d12 with SMTP id m9-20020a170902db09b02900f48d378d12mr3529028plx.52.1621482985771;
+        Wed, 19 May 2021 20:56:25 -0700 (PDT)
 Received: from localhost ([136.185.154.93])
-        by smtp.gmail.com with ESMTPSA id b15sm672895pfi.100.2021.05.19.20.54.44
+        by smtp.gmail.com with ESMTPSA id a10sm5221770pjs.39.2021.05.19.20.56.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 May 2021 20:54:44 -0700 (PDT)
-Date:   Thu, 20 May 2021 09:24:42 +0530
+        Wed, 19 May 2021 20:56:24 -0700 (PDT)
+Date:   Thu, 20 May 2021 09:26:22 +0530
 From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Hector Yuan <hector.yuan@mediatek.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: Re: [PATCH v4] dt-bindings: dvfs: Add support for generic
- performance domains
-Message-ID: <20210520035442.qvpsonhifozzrspo@vireshk-i7>
-References: <20210517155458.1016707-1-sudeep.holla@arm.com>
- <CAL_JsqK6B40D8dRu8KoOsx6eSzRXx6KsSEu5mjDokPEAy+p4oA@mail.gmail.com>
- <20210519112308.umxriuv75onuwvmc@bogus>
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     bjorn.andersson@linaro.org, dianders@chromium.org,
+        mka@chromium.org, sboyd@kernel.org, agross@kernel.org,
+        robh+dt@kernel.org, rjw@rjwysocki.net,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] cpufreq: blacklist SC7280 in cpufreq-dt-platdev
+Message-ID: <20210520035622.e276tqpl4gg5fxhk@vireshk-i7>
+References: <1620807083-5451-1-git-send-email-sibis@codeaurora.org>
+ <1620807083-5451-2-git-send-email-sibis@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210519112308.umxriuv75onuwvmc@bogus>
+In-Reply-To: <1620807083-5451-2-git-send-email-sibis@codeaurora.org>
 User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-05-21, 12:23, Sudeep Holla wrote:
-> I noticed I haven't cc-ed linux-pm list, do you need me to post there or
-> are you happy to pick it up from here when Hector's mediatek cpufreq drivers
-> using this are ready to be merged ?
+On 12-05-21, 13:41, Sibi Sankar wrote:
+> Add SC7280 to cpufreq-dt-platdev blacklist since the actual scaling is
+> handled by the 'qcom-cpufreq-hw' driver.
+> 
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+> ---
+>  drivers/cpufreq/cpufreq-dt-platdev.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-dt-platdev.c
+> index 5e07065ec22f..345418b8250e 100644
+> --- a/drivers/cpufreq/cpufreq-dt-platdev.c
+> +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
+> @@ -137,6 +137,7 @@ static const struct of_device_id blacklist[] __initconst = {
+>  	{ .compatible = "qcom,msm8996", },
+>  	{ .compatible = "qcom,qcs404", },
+>  	{ .compatible = "qcom,sc7180", },
+> +	{ .compatible = "qcom,sc7280", },
+>  	{ .compatible = "qcom,sdm845", },
+>  
+>  	{ .compatible = "st,stih407", },
 
-Applied. Thanks.
+Applied 1/2. Thanks.
+
+What do you want to do for 2/2 ? Go through my tree? need an update ?
 
 -- 
 viresh
