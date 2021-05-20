@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FAA638AE08
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 14:21:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEADE38AE04
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 14:21:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232533AbhETMXM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 08:23:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53564 "EHLO
+        id S232474AbhETMXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 08:23:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231717AbhETMXI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 08:23:08 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C0AAC028030
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 04:17:03 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id l11-20020a05600c4f0bb029017a7cd488f5so2340140wmq.0
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 04:17:03 -0700 (PDT)
+        with ESMTP id S232053AbhETMXG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 08:23:06 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D43F5C09F5F4
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 04:17:04 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id u4-20020a05600c00c4b02901774b80945cso5170208wmm.3
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 04:17:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=yx+H6sGvKvZ1+h7/FHdbh/ExAGjj5lQ+jgoR4DDOZ70=;
-        b=H8QxOOSaBCTdMFu68ay2mgGLL1LN0CBNKCF8GtN/bctB2bS9jC5Y5CEpGVTPCropIE
-         K6NQgmolkq35WNpQiS1w+vAuky69CLhY1/L0rQqVYI4jgfK5M77g35On91XRrcQ8FAix
-         Bpp2QASmxtI5NZ9Xwss0C9pLRIE40OXwHovZcRcYfhlijfoNu5agaV/cLmttOE89bl/r
-         dItwI2J7LYKBwn1OpG0AvsDogWsS4jjq+76V6y0VcZ+5ZIRnAfOke5FFXcdJWsqH2Db9
-         v31JDgmD55hfZW3pJLLj8IZzQW8xfN/RhISkSsu95HnxzudVWO04/ADStXPXHQLlt4Do
-         qwWg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=FFbC/8AD0LOFNwNu9BRgUtFruC/G1IwePtG3av6RsOY=;
+        b=k1LNclxtiP6W7x7zqryjIF2j1zX5LVI89E2F+ZC0OosAJK+edKHkMljCHDcNA4W6r9
+         oo4eZKxNjGjNVEJ8BFhLlpoqnPMwuEiPyWw0EOz4IxxVlKUgsrlswX/caR97z6QS70oV
+         NZ3/faNHyMCstTucEuXIupFp8etwQE4J3yqi0J69jZcU0Mx7BKVpa2T7q24WhNiKWtvb
+         PU5LpeN250fH9rB8YtK5Dy/MNYmxcDZJKb5GKWG8MkZ5EEWxsJ6BFLPncstIQhXlrfUP
+         vHUQIPzmn+0TEAFURxP+OL/A4Cij2M4dnT2BPNlHbT0nR+8xyCyGrpl/dPtQmw2IqIcV
+         nkXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=yx+H6sGvKvZ1+h7/FHdbh/ExAGjj5lQ+jgoR4DDOZ70=;
-        b=uFNMU0yQhH90egSRDioh05sTFi/S3B7r9+qf2sPhotVl/XIHGeqdj3FgpeiT4W+Yk3
-         vQ+BjI055GpOl80KPB4bUYjhjNzeF1pMG+ZdKuOg5nbaxOGow3CntHpzYxXMK48PP8Rm
-         Q8s/2I9fpL/InO8ESKFDyBVUd+Gpb0lxk/vWc2lFkPxBAkumfJvlf663mKerLev222Vk
-         goFEmkBfBUwaMNu8pcybIeirrRfGZwbwUHZ+ShXzj2me3GZpiY5W7HtKb4yDHYj4HzUu
-         fItGLoRT+493AcEIyVGL/ixMj/cqifWZUz0VmmAf03DA4ZVAaJTX5mz2W/VbstBu7rg7
-         EQOw==
-X-Gm-Message-State: AOAM531seqzflukoy+AHXlhEPQ3lTOmAvny5m2n3vpQql5wGXalI4ktM
-        +mj6H5BRrgLyPZUhdd6e1b80JTn6XKmW/g==
-X-Google-Smtp-Source: ABdhPJyl/rBzjv6gpMQ32Rtdhwde6u6dVWQkPtQQ3xivTTNnE168I4ovRNuIuNkAaXjhralPvS5OPg==
-X-Received: by 2002:a05:600c:3553:: with SMTP id i19mr2397972wmq.159.1621509421823;
-        Thu, 20 May 2021 04:17:01 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=FFbC/8AD0LOFNwNu9BRgUtFruC/G1IwePtG3av6RsOY=;
+        b=cwRduNJP7trnP8iY+KGTbwSkcHpcwvIWTAFGqAEbtj+rQTaZyyYzSo7kaj04RcrH20
+         0JXNiyGRw15MAjLFNb2NHIAiaoJXSpxEJMk0rH4eUF3wDfQiqh5SAQkZV02t5s3KHs5m
+         U0lEyOJhR4CA/quJQ+RkhBVGSyBSg/j8UoyiWPFRCRWBn4l2NK9vI2yX6Z/pGhHbvHty
+         LD9isLs6WzyBPo4DaSozHL9vq8nSqLKktRJo4lRxSHUpTRyvmzCpCf82o7FNHqGglKSB
+         5q8eEM9//xTHjz51v30yq4mJrLL3GbfVgyF40EuX+6v7EbZgn8zF+7O40peifqZHvW/H
+         7dOg==
+X-Gm-Message-State: AOAM532pVDEFnMq+eG73HV61aUaJYLCLhRywqlP12j83HNycVrdP5ist
+        OxnzXTsiStbgnxVJG6ecKlQUZQ==
+X-Google-Smtp-Source: ABdhPJy170kk8Q53GOuLn6l2Mf+w5xTtNMkRzkP4oBTF3ZetnMbI5rV9xgKJjjvpwPsSs4pLxpDMAw==
+X-Received: by 2002:a1c:4d01:: with SMTP id o1mr3222583wmh.42.1621509423424;
+        Thu, 20 May 2021 04:17:03 -0700 (PDT)
 Received: from localhost.localdomain ([88.160.162.107])
-        by smtp.gmail.com with ESMTPSA id a19sm2310757wmb.40.2021.05.20.04.17.00
+        by smtp.gmail.com with ESMTPSA id a19sm2310757wmb.40.2021.05.20.04.17.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 May 2021 04:17:01 -0700 (PDT)
+        Thu, 20 May 2021 04:17:02 -0700 (PDT)
 From:   Fabien Parent <fparent@baylibre.com>
 To:     Matt Mackall <mpm@selenic.com>,
         Herbert Xu <herbert@gondor.apana.org.au>,
@@ -57,116 +57,40 @@ Cc:     mkorpershoek@baylibre.com, Fabien Parent <fparent@baylibre.com>,
         linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: rng: mediatek: convert to yaml schema
-Date:   Thu, 20 May 2021 13:16:55 +0200
-Message-Id: <20210520111656.66017-1-fparent@baylibre.com>
+Subject: [PATCH v2 2/2] dt-bindings: rng: mediatek: add mt8365 to mtk rng binding
+Date:   Thu, 20 May 2021 13:16:56 +0200
+Message-Id: <20210520111656.66017-2-fparent@baylibre.com>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210520111656.66017-1-fparent@baylibre.com>
+References: <20210520111656.66017-1-fparent@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the RNG binding for MediaTek to use YAML schema.
+Add RNG binding for MT8365 SoC.
 
 Signed-off-by: Fabien Parent <fparent@baylibre.com>
 ---
 
-v2: Write the compatibles in a more compact way
+v2: Write the compatible in a more compact way
 
- .../devicetree/bindings/rng/mtk-rng.txt       | 22 --------
- .../devicetree/bindings/rng/mtk-rng.yaml      | 53 +++++++++++++++++++
- 2 files changed, 53 insertions(+), 22 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/rng/mtk-rng.txt
- create mode 100644 Documentation/devicetree/bindings/rng/mtk-rng.yaml
+ Documentation/devicetree/bindings/rng/mtk-rng.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/rng/mtk-rng.txt b/Documentation/devicetree/bindings/rng/mtk-rng.txt
-deleted file mode 100644
-index dfdcb5cd2ea8..000000000000
---- a/Documentation/devicetree/bindings/rng/mtk-rng.txt
-+++ /dev/null
-@@ -1,22 +0,0 @@
--Device-Tree bindings for Mediatek random number generator
--found in MediaTek SoC family
--
--Required properties:
--- compatible	    : Should be
--			"mediatek,mt7622-rng", 	"mediatek,mt7623-rng" : for MT7622
--			"mediatek,mt7629-rng",  "mediatek,mt7623-rng" : for MT7629
--			"mediatek,mt7623-rng" : for MT7623
--			"mediatek,mt8516-rng", "mediatek,mt7623-rng" : for MT8516
--- clocks	    : list of clock specifiers, corresponding to
--		      entries in clock-names property;
--- clock-names	    : Should contain "rng" entries;
--- reg 		    : Specifies base physical address and size of the registers
--
--Example:
--
--rng: rng@1020f000 {
--	compatible = "mediatek,mt7623-rng";
--	reg = <0 0x1020f000 0 0x1000>;
--	clocks = <&infracfg CLK_INFRA_TRNG>;
--	clock-names = "rng";
--};
 diff --git a/Documentation/devicetree/bindings/rng/mtk-rng.yaml b/Documentation/devicetree/bindings/rng/mtk-rng.yaml
-new file mode 100644
-index 000000000000..4be5fc3c1409
---- /dev/null
+index 4be5fc3c1409..61888e07bda0 100644
+--- a/Documentation/devicetree/bindings/rng/mtk-rng.yaml
 +++ b/Documentation/devicetree/bindings/rng/mtk-rng.yaml
-@@ -0,0 +1,53 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/rng/mtk-rng.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: MediaTek Random number generator
-+
-+maintainers:
-+  - Sean Wang <sean.wang@mediatek.com>
-+
-+properties:
-+  $nodename:
-+    pattern: "^rng@[0-9a-f]+$"
-+
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - mediatek,mt7623-rng
-+      - items:
-+          - enum:
-+              - mediatek,mt7622-rng
-+              - mediatek,mt7629-rng
-+              - mediatek,mt8516-rng
-+          - const: mediatek,mt7623-rng
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: rng
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/mt2701-clk.h>
-+    rng: rng@1020f000 {
-+            compatible = "mediatek,mt7623-rng";
-+            reg = <0x1020f000 0x1000>;
-+            clocks = <&infracfg CLK_INFRA_TRNG>;
-+            clock-names = "rng";
-+    };
+@@ -21,6 +21,7 @@ properties:
+           - enum:
+               - mediatek,mt7622-rng
+               - mediatek,mt7629-rng
++              - mediatek,mt8365-rng
+               - mediatek,mt8516-rng
+           - const: mediatek,mt7623-rng
+ 
 -- 
 2.31.1
 
