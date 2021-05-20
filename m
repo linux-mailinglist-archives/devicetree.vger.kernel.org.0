@@ -2,501 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 791EA38ABE8
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 13:32:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D13E838AC07
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 13:32:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238962AbhETL37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 07:29:59 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.168]:13617 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241470AbhETL1h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 07:27:37 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1621509959; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=QdQGoosK5eEGMVA7/yRACZ9FVNifkr2uaBXA7X7Fj3OUsXRJbh+zR7z4IE+3p0Eas6
-    CNQz0YCIJwZmu252OcgfzTuZWtvB54AAHBDz7XkmEnuhIt1nqROWlyE5mAms/2t1uRu0
-    BZEzs4M/S8/ktMUjCFOCh+F0j14y/sG4kB2c4iDnNzuDxYrBYUMqittnzsTXHnDDjj3R
-    +mhTCMZfeze9JjlIbehMeww8pjAop2IxEsmUbDtZ6Ab3q5N3cTCsBlvSpnAserwGJyJ3
-    ktj29lpXAp/SIuPmFxYI0gKZ5Jc9rcqMYKA2wyg3npHHt4QyVHcu7uqIKi6t2a6QfwxC
-    XO7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1621509959;
-    s=strato-dkim-0002; d=strato.com;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=kw7a0RxRU8YCQxK+PGjEsWQ+2SyP8ysJNAGd1toqkRU=;
-    b=JOqd3gOjtOceKjce8HTx5vhrkN2R9RNMIqTbFZxxmPvla3sYc11B/mnSoCB0jgv9gd
-    P124nFmo/68HVcAgvidQNAKYeWgMFQ1ySSRglRkAf7h3rXnowzEs/d1+4JPf4bsXRBMv
-    jXD5k5JNL0yc5kuhDsi19SyIWUYroxbgai1m5haeTKq/7Fj5lQQjpiSozw7tMim7ygJ2
-    toAYDj5Dq8ffQ0NbxLKMIRxUe9vZH6VDt09IEJcu0VOtfujlXfxGf9F3NJN7ToPH4y/i
-    NcgXC0Xq10sYFg0UGQebpH4+K1tXcV9oTrgbmaulM3SmO+9+5HPe0N8otBjNT9+amI3A
-    3UEg==
-ARC-Authentication-Results: i=1; strato.com;
-    dkim=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1621509959;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=kw7a0RxRU8YCQxK+PGjEsWQ+2SyP8ysJNAGd1toqkRU=;
-    b=dkkH2e80pHsdqIHfpu2NF6Y/RUIHJpIJfrotYbqA39RC5pWzdEEIoy5+UgV21C8r+S
-    IVCN1XUvE59KvbwbjN7AkWUbOU0AbZDHc26yk2c/bzEuCgoKKfZOcuG8Y/s3hF0EfUqI
-    1VbXcuokhYlYgIdfUE+NxAXs7jF3GBe1ZTkuvcHCfVSZ5Mu54YfQ6Ce6Qk92rwRVU1kv
-    IkXq8nOI4+nj0skjqiWRoBEXECk3Im76MZOohi1GzkRFRyycpzlRPSwIw0sOVLEBMV6T
-    kCDaODFIomYoBT9DSez2KPaihvtnSvt9RjjZ7BSNcWIdGsD1Pz//DQ87mX0U+eSdfZBC
-    OG2Q==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxB4G6FtFQ="
-X-RZG-CLASS-ID: mo00
-Received: from droid..
-    by smtp.strato.de (RZmta 47.26.1 DYNA|AUTH)
-    with ESMTPSA id 400bd8x4KBPw22Y
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Thu, 20 May 2021 13:25:58 +0200 (CEST)
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Chanwoo Choi <cw00.choi@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH 6/6] extcon: sm5502: Add support for SM5504
-Date:   Thu, 20 May 2021 13:23:34 +0200
-Message-Id: <20210520112334.129556-7-stephan@gerhold.net>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210520112334.129556-1-stephan@gerhold.net>
-References: <20210520112334.129556-1-stephan@gerhold.net>
+        id S240842AbhETLcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 07:32:25 -0400
+Received: from mail-eopbgr1310128.outbound.protection.outlook.com ([40.107.131.128]:62488
+        "EHLO APC01-SG2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S236335AbhETLaY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 May 2021 07:30:24 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=l+jmUuFPt1KQ3lwwkQnzoHFZpBqplpg3MSKUkJeiknu76LH1VMeM3y0yYROMDmOsTWh92HfL1ebW7Gr+UBWqvKgPVxa0gF5XfC0LCKOtqYW5VQjanHLgO576DLcUzea0A27ZGAtrB7jou/+QLXDHsOF1R160rY2vZY6Xu0b2bYO1UOcTtVamJ0apKKuyCH5W2LQPcuXzjJaaN5I7EhhQFipxQ+RP5bkVlwp+U6FhVbE8CLO5niWcvqW7Z6fxr+Cmo9VlcPc+Uuv80xiYVW6R6OD2wk6k/F1sI3AHgXUyVoZTMBGzEyh8AccTm5UVeV78fiS8V0rk64ZdVsVgoekMrQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Gs7zI1JsXrqyljc3mFMjF+/D3mgAIJn+TVqdI5LubsU=;
+ b=m5RRUSGVx/pK3UNvho3E2IrQyXwGTe8fTMp0AWDwnk0NQm4inSQ6gZZdVk3aTFaHFo49w8CrmjcBCGISrym+zyVFSGjmejifNxSubK4KfTBlS9YltcdX2r5+gAciGgOKCtEhdpC+D8o+lgYzgslUcifnHKu/t/57Poattuu3VUX8DkGcmMXobRWf/+1ot0P+E8fWlTparrcr9b35AWD1aV/H2Wk0ZTu9OvyjsEgiUUDqf6GX995DzOtTsCuQLKgzxA2w2MLOxxRKw3UpvaHjEKUDaoDrcJYiiIenfg7vKm8nh7FHl/RkL8xoZSXRrITPE/XSCaUfwWLYLGRwCUUcjQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Gs7zI1JsXrqyljc3mFMjF+/D3mgAIJn+TVqdI5LubsU=;
+ b=2q20Be2gXHHYTJoBfxaeEbHhGH66Xv/jAi7vCxDnyJMH9ddgdZ6XFHxWO2PovGiynUPYriyB2FO8dcUkjYLtyYJ33rO9gMwNe37jYB4wVgiE3HhEO8GpyiRcfT9VeO70FXBUmwsgjRNUNTrV6w9974M2j0YUJx+H7ZFA8LDd1Tr2eaVvoie4nAEHhQeEqqVYkKgFa3AHQ/TagyK26ykm+NW7OoU9v7S2mYPN2DpEe4hbW42zM2dC9/pFwtbmd3Vg2s4d1MZ4a1nrn7hT/PgGlUV+jdgYWIZiYLt1aFBGQxf+mJMgWOvlYaxqD5QI5jhnqxl54njRJhiyvlYxccSFbw==
+Received: from HK0PR06MB3380.apcprd06.prod.outlook.com (2603:1096:203:82::18)
+ by HK0PR06MB3124.apcprd06.prod.outlook.com (2603:1096:203:8b::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.26; Thu, 20 May
+ 2021 11:28:59 +0000
+Received: from HK0PR06MB3380.apcprd06.prod.outlook.com
+ ([fe80::2984:f1bd:e1f9:5ed6]) by HK0PR06MB3380.apcprd06.prod.outlook.com
+ ([fe80::2984:f1bd:e1f9:5ed6%7]) with mapi id 15.20.4129.033; Thu, 20 May 2021
+ 11:28:58 +0000
+From:   Ryan Chen <ryan_chen@aspeedtech.com>
+To:     Joel Stanley <joel@jms.id.au>,
+        Quan Nguyen <quan@os.amperecomputing.com>
+CC:     Corey Minyard <minyard@acm.org>, Rob Herring <robh+dt@kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "openipmi-developer@lists.sourceforge.net" 
+        <openipmi-developer@lists.sourceforge.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>
+Subject: RE: [PATCH v3 3/7] i2c: aspeed: Fix unhandled Tx done with NAK
+Thread-Topic: [PATCH v3 3/7] i2c: aspeed: Fix unhandled Tx done with NAK
+Thread-Index: AQHXTIPiaDlIMxFG4EScG2hlz3/zyKrrdFqAgADIwhA=
+Date:   Thu, 20 May 2021 11:28:58 +0000
+Message-ID: <HK0PR06MB3380D7B693922C3D6B3C14F0F22A9@HK0PR06MB3380.apcprd06.prod.outlook.com>
+References: <20210519074934.20712-1-quan@os.amperecomputing.com>
+ <20210519074934.20712-4-quan@os.amperecomputing.com>
+ <CACPK8XeFsuEXeCvG9DC0z+tiri6ptjOFOXe3x+COEZTVqUbVFg@mail.gmail.com>
+In-Reply-To: <CACPK8XeFsuEXeCvG9DC0z+tiri6ptjOFOXe3x+COEZTVqUbVFg@mail.gmail.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: jms.id.au; dkim=none (message not signed)
+ header.d=none;jms.id.au; dmarc=none action=none header.from=aspeedtech.com;
+x-originating-ip: [211.20.114.70]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 14e8e689-ba9d-4bca-1087-08d91b827608
+x-ms-traffictypediagnostic: HK0PR06MB3124:
+x-microsoft-antispam-prvs: <HK0PR06MB31242AF71CFB022423C4E75BF22A9@HK0PR06MB3124.apcprd06.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: FV1IVRyFZ2jDKwCfATrk1HSRZcvRJkSp45XkhlPITmJfN31iJz+3R2QdkGdJ+VAz3gIBK7kR8+h4ynqeSmPsfXgo4Qqv8QQehPOc2o5JqKqELBA+sfeFOqNO8Oocl0+qnz4ITQ9u2Fv4uTTDGdfEiZxBtkwK6sUtH2TPe5Lkg558JpDuJRDMHUDP/VBoj+kUneHLTgBomo/ej5bzAmpeeZ7bXwBRwVVKUvb3r2IxogyYoT2GJibYucX76bn89PvFp2mwUPDeBWDRkgLvmttb2wIp91/8SrH2/Gx6/uHSNtiKt8t8JeiRkd1IkYK59HbXEaH2kdy+YiKbMfez250wOc/rMP0Q3bFt1wCYblzj7x7a4xLNPFUeMtsmaoVpMztGKMLsBX3pMMIR66wyafOzIl9hN5Qi+pL808opkVQ1TJaf2JTfOAIh9M5lexpGvr22FEOhlmNRaFzSsTIh9b9Lzs2kxK0OnGBc58uNqZ/x1FKYhRZJfb0QJlcI2YRXghB4DL7p5pSRIHipK5RCpG8ZVWTjJtmblybfdaBukidTp0o4K630V/2q7qyezg5H8sH2zMUN8F5Ew0+nWuXIujIxXFSF+SVdnyLvO24pVi59rsc=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3380.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(376002)(346002)(39850400004)(366004)(396003)(8936002)(86362001)(9686003)(2906002)(7416002)(478600001)(55016002)(8676002)(66946007)(83380400001)(76116006)(66446008)(53546011)(64756008)(110136005)(66476007)(55236004)(7696005)(54906003)(26005)(66556008)(52536014)(71200400001)(33656002)(38100700002)(6506007)(186003)(5660300002)(122000001)(316002)(4326008);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?MVlSSVZiMnlPRm1iQmxhaXZWbFluM2dxSmhWYU9mamZwTWp5bjZiK2lkYzVk?=
+ =?utf-8?B?NENHbWNGVXJxam9ib0lXTk0zM1UvUC8wVHVXV0xuU09iQ2p6YXdpNVhUVmhO?=
+ =?utf-8?B?ZXNhTFlqWDlGd1FVNE83aDhvbVhoL3FjSS9hWFR0MUwrMTRaN1VVTytTVzVN?=
+ =?utf-8?B?ZXNWcTJhejNleVBEWi9DT29mMGRPQUZpNUQwMEdBQzc2QTdJeGIrYWdUYVBP?=
+ =?utf-8?B?R2F2RW1xT0dmdE5HalRIQjFxb21nSVNncFpEUWM1M001QklwcUYxY2ZOOTA0?=
+ =?utf-8?B?VnZzQlhtYk9ZKzEwamhIN0Q1bUNUWWRGcHNuV1NUdkJVeDByc1VEMldHTUFX?=
+ =?utf-8?B?a0M1bk1adWcydUdHV3c3M2YwMUZUWEY0TmhmTXN4VVN1K2NJeXpBYWY2OXdm?=
+ =?utf-8?B?b2Q1NnpsTHVZZGhFR3R0eU12aVNXMlJCek1rNENaUFNOZWhkTFppMjV3b1Iw?=
+ =?utf-8?B?b2lLMS9obnlQVEJWZ1JZNUV0V0FOVlpVM01vSUltL21iczhRSmwxc0dTZGkr?=
+ =?utf-8?B?OXlScVZ5T2h5cnc2aWpkYlNYYmxaa0dvNXE2bGpBN3VIL0V4SGt2S0R0eDZ6?=
+ =?utf-8?B?UkFmZHBobVJoUUloZlMwQ3VCcG80K1h4UHA2aFQ5cWh1bGVVbmhCa3FtZzBN?=
+ =?utf-8?B?d0habWRjYVhFYVh4Z3I2ZFVkbVp1cXdzM2tBMkttaXMrcXFTV2pJYTNvMkNs?=
+ =?utf-8?B?aUVWZndXaitoV0pPMFJLOC9nZ0taTUhVTXR2MzBNVm5reXVyU01IQzZSZ3VW?=
+ =?utf-8?B?ME1nWVdlRjZVWStqeG1jVnJTdHBaWVlVSnpIVjVEMzNMOTdCSFJqV1U3b2xq?=
+ =?utf-8?B?OHd0RllwY2VFRzV1aCtyYk50Z0Zra0dUVlFVaUZyTGVDaHM5b3FTcEozTlM3?=
+ =?utf-8?B?dzBrb25YQktEcmQ4T2RwdW9SZjZLdEF6SEk1WXpSZFRiSnV5Q2swbEJwUGU4?=
+ =?utf-8?B?NUpIK290alZrT25uSlFKbHVKOFQ1b2tDZGRRYkRscHBCeEVVQ2E0Qmw0dmg5?=
+ =?utf-8?B?Ni9NSnBjdHZla1o0UDR6T2QzWTRWei9lOUNkcWN5czRUWjZicWFYa0k5NFBR?=
+ =?utf-8?B?RmpFa2ZxNnYvVDF2eGR0Q01tZjUxMlZTQmMvWjZnNWJua1RkVG9rKzFFUFpZ?=
+ =?utf-8?B?SlV6NWdKVG9raUZXL2NUL2JCNmxTaDExMStBUm5YV0FmMVdwTEFYYmJtSTdW?=
+ =?utf-8?B?eHJ4dFo2Y2lLUXNxTitIQTFBanRyR05iTXN0ajZYZ1Z4M2g5eHBmemRQNG9I?=
+ =?utf-8?B?dyszWmNDNzk3L1UyQmNTdWdzN21LV1g0RjhDU2RtaTE2UktsbXMzRWljbzVa?=
+ =?utf-8?B?TlA5NW9tcnozMDk1b3hMUUdFb2JFQVE3L0NBeFVtUGtOV0pnNkZiWmhZL1N6?=
+ =?utf-8?B?U1I5SExXU3BNSXFucVVRSW1nWXpYeXBKOWJzbHl5SEhEcldDWlVhdzlOdGEz?=
+ =?utf-8?B?ajdrRVBhVko2TEpjM1VlVWFHRjdWT2Q2Z1RWRVdkOWp0NGZ4RGQ5aGVPOTJs?=
+ =?utf-8?B?a2FkYjRzK0psbXpvZHFPZTdRdnMxcHEvQ0FoZkFqeEVHNG41S2ppRS9sWSs1?=
+ =?utf-8?B?QkZ4WnZMMkFrMlNxTDhIaERyT0VWbWNlNnRMQytLSlJDQ2hPWUVQZzBmQkVX?=
+ =?utf-8?B?MXNUL0JUOTJKVXd3cVZzZ0laT1dKSlM5bUIzaEdiTGVGM0d3Z1NvNXhVNXR0?=
+ =?utf-8?B?RHdpVjRvVTlvVUtmaUYvWmxoL1VwYTl2SlJOWmpudm1XazQ4WktWN0k1ZzRE?=
+ =?utf-8?Q?uAh4iNIpCJTI6wIOVh9wp5+R50C8jvivZe1Ae/+?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3380.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 14e8e689-ba9d-4bca-1087-08d91b827608
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 May 2021 11:28:58.7845
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: r8gnCH5KT6kR+bRAhCTJ16lv6e+O/P966Mlc0iGjg/TTvDLJ5kxWOdE0n0eFo52GSZXLLevR+ttA7agYPIuQNw/7Pey/qeX+VlGsqUFhMwQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK0PR06MB3124
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SM5504 is another MUIC from Silicon Mitus that is fairly similar
-to SM5502. They seem to use the same register set, but:
-
-  - SM5504 has some additional bits in SM5502_REG_CONTROL
-  - SM5504 has a quite different set of interrupts
-  - SM5504 reports USB OTG as dev_type1 = BIT(0) instead of BIT(7)
-
-Overall it's minor and we can support this using the existing
-enum sm5502_types plus a few switch/if statements.
-
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
----
-Interestingly enough the register set (and especially the interrupts)
-also look *very* similar to Richtek RT8973A (extcon-rt8973a) but
-I didn't investigate this further.
-
-Note that the changes in this patch are mostly based on guesswork
-based on a SM5504 driver from Nitin Chaudhary [1] used in some Samsung
-vendor kernels, since I was not able to find a public datasheet for SM5504.
-
-[1]: https://github.com/NitinChaudharyUSC/MSM8x16_8x26/blob/master/drivers/misc/sm5504.c
----
- drivers/extcon/Kconfig         |   2 +-
- drivers/extcon/extcon-sm5502.c | 164 +++++++++++++++++++++++++++++----
- drivers/extcon/extcon-sm5502.h |  79 ++++++++++++++++
- 3 files changed, 228 insertions(+), 17 deletions(-)
-
-diff --git a/drivers/extcon/Kconfig b/drivers/extcon/Kconfig
-index e3db936becfd..c69d40ae5619 100644
---- a/drivers/extcon/Kconfig
-+++ b/drivers/extcon/Kconfig
-@@ -154,7 +154,7 @@ config EXTCON_RT8973A
- 	  from abnormal high input voltage (up to 28V).
- 
- config EXTCON_SM5502
--	tristate "Silicon Mitus SM5502 EXTCON support"
-+	tristate "Silicon Mitus SM5502/SM5504 EXTCON support"
- 	depends on I2C
- 	select IRQ_DOMAIN
- 	select REGMAP_I2C
-diff --git a/drivers/extcon/extcon-sm5502.c b/drivers/extcon/extcon-sm5502.c
-index 9f40bb9f1f81..9d8f208c68cc 100644
---- a/drivers/extcon/extcon-sm5502.c
-+++ b/drivers/extcon/extcon-sm5502.c
-@@ -40,6 +40,7 @@ struct sm5502_muic_info {
- 	struct i2c_client *i2c;
- 	struct regmap *regmap;
- 
-+	enum sm5502_types type;
- 	struct regmap_irq_chip_data *irq_data;
- 	struct muic_irq *muic_irqs;
- 	unsigned int num_muic_irqs;
-@@ -90,6 +91,33 @@ static struct reg_data sm5502_reg_data[] = {
- 	},
- };
- 
-+/* Default value of SM5504 register to bring up MUIC device. */
-+static struct reg_data sm5504_reg_data[] = {
-+	{
-+		.reg = SM5502_REG_RESET,
-+		.val = SM5502_REG_RESET_MASK,
-+		.invert = true,
-+	}, {
-+		.reg = SM5502_REG_INTMASK1,
-+		.val = SM5504_REG_INTM1_ATTACH_MASK
-+			| SM5504_REG_INTM1_DETACH_MASK,
-+		.invert = false,
-+	}, {
-+		.reg = SM5502_REG_INTMASK2,
-+		.val = SM5504_REG_INTM2_RID_CHG_MASK
-+			| SM5504_REG_INTM2_UVLO_MASK
-+			| SM5504_REG_INTM2_POR_MASK,
-+		.invert = true,
-+	}, {
-+		.reg = SM5502_REG_CONTROL,
-+		.val = SM5502_REG_CONTROL_MANUAL_SW_MASK
-+			| SM5504_REG_CONTROL_CHGTYP_MASK
-+			| SM5504_REG_CONTROL_USBCHDEN_MASK
-+			| SM5504_REG_CONTROL_ADC_EN_MASK,
-+		.invert = true,
-+	},
-+};
-+
- /* List of detectable cables */
- static const unsigned int sm5502_extcon_cable[] = {
- 	EXTCON_USB,
-@@ -198,6 +226,55 @@ static const struct regmap_irq_chip sm5502_muic_irq_chip = {
- 	.num_irqs		= ARRAY_SIZE(sm5502_irqs),
- };
- 
-+/* List of supported interrupt for SM5504 */
-+static struct muic_irq sm5504_muic_irqs[] = {
-+	{ SM5504_IRQ_INT1_ATTACH,	"muic-attach" },
-+	{ SM5504_IRQ_INT1_DETACH,	"muic-detach" },
-+	{ SM5504_IRQ_INT1_CHG_DET,	"muic-chg-det" },
-+	{ SM5504_IRQ_INT1_DCD_OUT,	"muic-dcd-out" },
-+	{ SM5504_IRQ_INT1_OVP_EVENT,	"muic-ovp-event" },
-+	{ SM5504_IRQ_INT1_CONNECT,	"muic-connect" },
-+	{ SM5504_IRQ_INT1_ADC_CHG,	"muic-adc-chg" },
-+	{ SM5504_IRQ_INT2_RID_CHG,	"muic-rid-chg" },
-+	{ SM5504_IRQ_INT2_UVLO,		"muic-uvlo" },
-+	{ SM5504_IRQ_INT2_POR,		"muic-por" },
-+	{ SM5504_IRQ_INT2_OVP_FET,	"muic-ovp-fet" },
-+	{ SM5504_IRQ_INT2_OCP_LATCH,	"muic-ocp-latch" },
-+	{ SM5504_IRQ_INT2_OCP_EVENT,	"muic-ocp-event" },
-+	{ SM5504_IRQ_INT2_OVP_OCP_EVENT, "muic-ovp-ocp-event" },
-+};
-+
-+/* Define interrupt list of SM5504 to register regmap_irq */
-+static const struct regmap_irq sm5504_irqs[] = {
-+	/* INT1 interrupts */
-+	{ .reg_offset = 0, .mask = SM5504_IRQ_INT1_ATTACH_MASK, },
-+	{ .reg_offset = 0, .mask = SM5504_IRQ_INT1_DETACH_MASK, },
-+	{ .reg_offset = 0, .mask = SM5504_IRQ_INT1_CHG_DET_MASK, },
-+	{ .reg_offset = 0, .mask = SM5504_IRQ_INT1_DCD_OUT_MASK, },
-+	{ .reg_offset = 0, .mask = SM5504_IRQ_INT1_OVP_MASK, },
-+	{ .reg_offset = 0, .mask = SM5504_IRQ_INT1_CONNECT_MASK, },
-+	{ .reg_offset = 0, .mask = SM5504_IRQ_INT1_ADC_CHG_MASK, },
-+
-+	/* INT2 interrupts */
-+	{ .reg_offset = 1, .mask = SM5504_IRQ_INT2_RID_CHG_MASK,},
-+	{ .reg_offset = 1, .mask = SM5504_IRQ_INT2_UVLO_MASK, },
-+	{ .reg_offset = 1, .mask = SM5504_IRQ_INT2_POR_MASK, },
-+	{ .reg_offset = 1, .mask = SM5504_IRQ_INT2_OVP_FET_MASK, },
-+	{ .reg_offset = 1, .mask = SM5504_IRQ_INT2_OCP_LATCH_MASK, },
-+	{ .reg_offset = 1, .mask = SM5504_IRQ_INT2_OCP_EVENT_MASK, },
-+	{ .reg_offset = 1, .mask = SM5504_IRQ_INT2_OVP_OCP_EVENT_MASK, },
-+};
-+
-+static const struct regmap_irq_chip sm5504_muic_irq_chip = {
-+	.name			= "sm5504",
-+	.status_base		= SM5502_REG_INT1,
-+	.mask_base		= SM5502_REG_INTMASK1,
-+	.mask_invert		= false,
-+	.num_regs		= 2,
-+	.irqs			= sm5504_irqs,
-+	.num_irqs		= ARRAY_SIZE(sm5504_irqs),
-+};
-+
- /* Define regmap configuration of SM5502 for I2C communication  */
- static bool sm5502_muic_volatile_reg(struct device *dev, unsigned int reg)
- {
-@@ -276,9 +353,14 @@ static int sm5502_muic_set_path(struct sm5502_muic_info *info,
- /* Return cable type of attached or detached accessories */
- static unsigned int sm5502_muic_get_cable_type(struct sm5502_muic_info *info)
- {
--	unsigned int cable_type, adc, dev_type1;
-+	unsigned int cable_type, adc, dev_type1, otg_dev_type1;
- 	int ret;
- 
-+	if (info->type == TYPE_SM5504)
-+		otg_dev_type1 = SM5504_REG_DEV_TYPE1_USB_OTG_MASK;
-+	else
-+		otg_dev_type1 = SM5502_REG_DEV_TYPE1_USB_OTG_MASK;
-+
- 	/* Read ADC value according to external cable or button */
- 	ret = regmap_read(info->regmap, SM5502_REG_ADC, &adc);
- 	if (ret) {
-@@ -301,11 +383,9 @@ static unsigned int sm5502_muic_get_cable_type(struct sm5502_muic_info *info)
- 			return ret;
- 		}
- 
--		switch (dev_type1) {
--		case SM5502_REG_DEV_TYPE1_USB_OTG_MASK:
-+		if (dev_type1 == otg_dev_type1) {
- 			cable_type = SM5502_MUIC_ADC_GROUND_USB_OTG;
--			break;
--		default:
-+		} else {
- 			dev_dbg(info->dev,
- 				"cannot identify the cable type: adc(0x%x), dev_type1(0x%x)\n",
- 				adc, dev_type1);
-@@ -358,6 +438,11 @@ static unsigned int sm5502_muic_get_cable_type(struct sm5502_muic_info *info)
- 			return ret;
- 		}
- 
-+		if (dev_type1 == otg_dev_type1) {
-+			cable_type = SM5502_MUIC_ADC_OPEN_USB_OTG;
-+			break;
-+		}
-+
- 		switch (dev_type1) {
- 		case SM5502_REG_DEV_TYPE1_USB_SDP_MASK:
- 			cable_type = SM5502_MUIC_ADC_OPEN_USB;
-@@ -365,9 +450,6 @@ static unsigned int sm5502_muic_get_cable_type(struct sm5502_muic_info *info)
- 		case SM5502_REG_DEV_TYPE1_DEDICATED_CHG_MASK:
- 			cable_type = SM5502_MUIC_ADC_OPEN_TA;
- 			break;
--		case SM5502_REG_DEV_TYPE1_USB_OTG_MASK:
--			cable_type = SM5502_MUIC_ADC_OPEN_USB_OTG;
--			break;
- 		default:
- 			dev_dbg(info->dev,
- 				"cannot identify the cable type: adc(0x%x)\n",
-@@ -497,6 +579,34 @@ static int sm5502_parse_irq(struct sm5502_muic_info *info, int irq_type)
- 	return 0;
- }
- 
-+static int sm5504_parse_irq(struct sm5502_muic_info *info, int irq_type)
-+{
-+	switch (irq_type) {
-+	case SM5504_IRQ_INT1_ATTACH:
-+		info->irq_attach = true;
-+		break;
-+	case SM5504_IRQ_INT1_DETACH:
-+		info->irq_detach = true;
-+		break;
-+	case SM5504_IRQ_INT1_CHG_DET:
-+	case SM5504_IRQ_INT1_DCD_OUT:
-+	case SM5504_IRQ_INT1_OVP_EVENT:
-+	case SM5504_IRQ_INT1_CONNECT:
-+	case SM5504_IRQ_INT1_ADC_CHG:
-+	case SM5504_IRQ_INT2_RID_CHG:
-+	case SM5504_IRQ_INT2_UVLO:
-+	case SM5504_IRQ_INT2_POR:
-+	case SM5504_IRQ_INT2_OVP_FET:
-+	case SM5504_IRQ_INT2_OCP_LATCH:
-+	case SM5504_IRQ_INT2_OCP_EVENT:
-+	case SM5504_IRQ_INT2_OVP_OCP_EVENT:
-+	default:
-+		break;
-+	}
-+
-+	return 0;
-+}
-+
- static irqreturn_t sm5502_muic_irq_handler(int irq, void *data)
- {
- 	struct sm5502_muic_info *info = data;
-@@ -506,7 +616,10 @@ static irqreturn_t sm5502_muic_irq_handler(int irq, void *data)
- 		if (irq == info->muic_irqs[i].virq)
- 			irq_type = info->muic_irqs[i].irq;
- 
--	ret = sm5502_parse_irq(info, irq_type);
-+	if (info->type == TYPE_SM5504)
-+		ret = sm5504_parse_irq(info, irq_type);
-+	else
-+		ret = sm5502_parse_irq(info, irq_type);
- 	if (ret < 0) {
- 		dev_warn(info->dev, "cannot handle is interrupt:%d\n",
- 				    irq_type);
-@@ -565,6 +678,7 @@ static void sm5502_init_dev_type(struct sm5502_muic_info *info)
- static int sm5022_muic_i2c_probe(struct i2c_client *i2c)
- {
- 	struct device_node *np = i2c->dev.of_node;
-+	const struct regmap_irq_chip *irq_chip;
- 	struct sm5502_muic_info *info;
- 	int i, ret, irq_flags;
- 
-@@ -579,10 +693,26 @@ static int sm5022_muic_i2c_probe(struct i2c_client *i2c)
- 	info->dev = &i2c->dev;
- 	info->i2c = i2c;
- 	info->irq = i2c->irq;
--	info->muic_irqs = sm5502_muic_irqs;
--	info->num_muic_irqs = ARRAY_SIZE(sm5502_muic_irqs);
--	info->reg_data = sm5502_reg_data;
--	info->num_reg_data = ARRAY_SIZE(sm5502_reg_data);
-+	info->type = (enum sm5502_types)device_get_match_data(info->dev);
-+
-+	switch (info->type) {
-+	case TYPE_SM5502:
-+		irq_chip = &sm5502_muic_irq_chip;
-+		info->muic_irqs = sm5502_muic_irqs;
-+		info->num_muic_irqs = ARRAY_SIZE(sm5502_muic_irqs);
-+		info->reg_data = sm5502_reg_data;
-+		info->num_reg_data = ARRAY_SIZE(sm5502_reg_data);
-+		break;
-+	case TYPE_SM5504:
-+		irq_chip = &sm5504_muic_irq_chip;
-+		info->muic_irqs = sm5504_muic_irqs;
-+		info->num_muic_irqs = ARRAY_SIZE(sm5504_muic_irqs);
-+		info->reg_data = sm5504_reg_data;
-+		info->num_reg_data = ARRAY_SIZE(sm5504_reg_data);
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
- 
- 	mutex_init(&info->mutex);
- 
-@@ -598,8 +728,8 @@ static int sm5022_muic_i2c_probe(struct i2c_client *i2c)
- 
- 	/* Support irq domain for SM5502 MUIC device */
- 	irq_flags = IRQF_TRIGGER_FALLING | IRQF_ONESHOT | IRQF_SHARED;
--	ret = devm_regmap_add_irq_chip(info->dev, info->regmap, info->irq, irq_flags,
--				       0, &sm5502_muic_irq_chip, &info->irq_data);
-+	ret = devm_regmap_add_irq_chip(info->dev, info->regmap, info->irq,
-+				       irq_flags, 0, irq_chip, &info->irq_data);
- 	if (ret != 0) {
- 		dev_err(info->dev, "failed to request IRQ %d: %d\n",
- 				    info->irq, ret);
-@@ -660,7 +790,8 @@ static int sm5022_muic_i2c_probe(struct i2c_client *i2c)
- }
- 
- static const struct of_device_id sm5502_dt_match[] = {
--	{ .compatible = "siliconmitus,sm5502-muic" },
-+	{ .compatible = "siliconmitus,sm5502-muic", .data = (void *)TYPE_SM5502 },
-+	{ .compatible = "siliconmitus,sm5504-muic", .data = (void *)TYPE_SM5504 },
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, sm5502_dt_match);
-@@ -692,6 +823,7 @@ static SIMPLE_DEV_PM_OPS(sm5502_muic_pm_ops,
- 
- static const struct i2c_device_id sm5502_i2c_id[] = {
- 	{ "sm5502", TYPE_SM5502 },
-+	{ "sm5504", TYPE_SM5504 },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, sm5502_i2c_id);
-diff --git a/drivers/extcon/extcon-sm5502.h b/drivers/extcon/extcon-sm5502.h
-index ce1f1ec310c4..0ce00274ed86 100644
---- a/drivers/extcon/extcon-sm5502.h
-+++ b/drivers/extcon/extcon-sm5502.h
-@@ -10,6 +10,7 @@
- 
- enum sm5502_types {
- 	TYPE_SM5502,
-+	TYPE_SM5504,
- };
- 
- /* SM5502 registers */
-@@ -93,6 +94,13 @@ enum sm5502_reg {
- #define SM5502_REG_CONTROL_RAW_DATA_MASK	(0x1 << SM5502_REG_CONTROL_RAW_DATA_SHIFT)
- #define SM5502_REG_CONTROL_SW_OPEN_MASK		(0x1 << SM5502_REG_CONTROL_SW_OPEN_SHIFT)
- 
-+#define SM5504_REG_CONTROL_CHGTYP_SHIFT		5
-+#define SM5504_REG_CONTROL_USBCHDEN_SHIFT	6
-+#define SM5504_REG_CONTROL_ADC_EN_SHIFT		7
-+#define SM5504_REG_CONTROL_CHGTYP_MASK		(0x1 << SM5504_REG_CONTROL_CHGTYP_SHIFT)
-+#define SM5504_REG_CONTROL_USBCHDEN_MASK	(0x1 << SM5504_REG_CONTROL_USBCHDEN_SHIFT)
-+#define SM5504_REG_CONTROL_ADC_EN_MASK		(0x1 << SM5504_REG_CONTROL_ADC_EN_SHIFT)
-+
- #define SM5502_REG_INTM1_ATTACH_SHIFT		0
- #define SM5502_REG_INTM1_DETACH_SHIFT		1
- #define SM5502_REG_INTM1_KP_SHIFT		2
-@@ -123,6 +131,36 @@ enum sm5502_reg {
- #define SM5502_REG_INTM2_STUCK_KEY_RCV_MASK	(0x1 << SM5502_REG_INTM2_STUCK_KEY_RCV_SHIFT)
- #define SM5502_REG_INTM2_MHL_MASK		(0x1 << SM5502_REG_INTM2_MHL_SHIFT)
- 
-+#define SM5504_REG_INTM1_ATTACH_SHIFT		0
-+#define SM5504_REG_INTM1_DETACH_SHIFT		1
-+#define SM5504_REG_INTM1_CHG_DET_SHIFT		2
-+#define SM5504_REG_INTM1_DCD_OUT_SHIFT		3
-+#define SM5504_REG_INTM1_OVP_EVENT_SHIFT	4
-+#define SM5504_REG_INTM1_CONNECT_SHIFT		5
-+#define SM5504_REG_INTM1_ADC_CHG_SHIFT		6
-+#define SM5504_REG_INTM1_ATTACH_MASK		(0x1 << SM5504_REG_INTM1_ATTACH_SHIFT)
-+#define SM5504_REG_INTM1_DETACH_MASK		(0x1 << SM5504_REG_INTM1_DETACH_SHIFT)
-+#define SM5504_REG_INTM1_CHG_DET_MASK		(0x1 << SM5504_REG_INTM1_CHG_DET_SHIFT)
-+#define SM5504_REG_INTM1_DCD_OUT_MASK		(0x1 << SM5504_REG_INTM1_DCD_OUT_SHIFT)
-+#define SM5504_REG_INTM1_OVP_EVENT_MASK		(0x1 << SM5504_REG_INTM1_OVP_EVENT_SHIFT)
-+#define SM5504_REG_INTM1_CONNECT_MASK		(0x1 << SM5504_REG_INTM1_CONNECT_SHIFT)
-+#define SM5504_REG_INTM1_ADC_CHG_MASK		(0x1 << SM5504_REG_INTM1_ADC_CHG_SHIFT)
-+
-+#define SM5504_REG_INTM2_RID_CHG_SHIFT		0
-+#define SM5504_REG_INTM2_UVLO_SHIFT		1
-+#define SM5504_REG_INTM2_POR_SHIFT		2
-+#define SM5504_REG_INTM2_OVP_FET_SHIFT		4
-+#define SM5504_REG_INTM2_OCP_LATCH_SHIFT	5
-+#define SM5504_REG_INTM2_OCP_EVENT_SHIFT	6
-+#define SM5504_REG_INTM2_OVP_OCP_EVENT_SHIFT	7
-+#define SM5504_REG_INTM2_RID_CHG_MASK		(0x1 << SM5504_REG_INTM2_RID_CHG_SHIFT)
-+#define SM5504_REG_INTM2_UVLO_MASK		(0x1 << SM5504_REG_INTM2_UVLO_SHIFT)
-+#define SM5504_REG_INTM2_POR_MASK		(0x1 << SM5504_REG_INTM2_POR_SHIFT)
-+#define SM5504_REG_INTM2_OVP_FET_MASK		(0x1 << SM5504_REG_INTM2_OVP_FET_SHIFT)
-+#define SM5504_REG_INTM2_OCP_LATCH_MASK		(0x1 << SM5504_REG_INTM2_OCP_LATCH_SHIFT)
-+#define SM5504_REG_INTM2_OCP_EVENT_MASK		(0x1 << SM5504_REG_INTM2_OCP_EVENT_SHIFT)
-+#define SM5504_REG_INTM2_OVP_OCP_EVENT_MASK	(0x1 << SM5504_REG_INTM2_OVP_OCP_EVENT_SHIFT)
-+
- #define SM5502_REG_ADC_SHIFT			0
- #define SM5502_REG_ADC_MASK			(0x1f << SM5502_REG_ADC_SHIFT)
- 
-@@ -199,6 +237,9 @@ enum sm5502_reg {
- #define SM5502_REG_DEV_TYPE1_DEDICATED_CHG_MASK		(0x1 << SM5502_REG_DEV_TYPE1_DEDICATED_CHG_SHIFT)
- #define SM5502_REG_DEV_TYPE1_USB_OTG_MASK		(0x1 << SM5502_REG_DEV_TYPE1_USB_OTG_SHIFT)
- 
-+#define SM5504_REG_DEV_TYPE1_USB_OTG_SHIFT		0
-+#define SM5504_REG_DEV_TYPE1_USB_OTG_MASK		(0x1 << SM5504_REG_DEV_TYPE1_USB_OTG_SHIFT)
-+
- #define SM5502_REG_DEV_TYPE2_JIG_USB_ON_SHIFT		0
- #define SM5502_REG_DEV_TYPE2_JIG_USB_OFF_SHIFT		1
- #define SM5502_REG_DEV_TYPE2_JIG_UART_ON_SHIFT		2
-@@ -277,4 +318,42 @@ enum sm5502_irq {
- #define SM5502_IRQ_INT2_STUCK_KEY_RCV_MASK	BIT(4)
- #define SM5502_IRQ_INT2_MHL_MASK		BIT(5)
- 
-+/* SM5504 Interrupts */
-+enum sm5504_irq {
-+	/* INT1 */
-+	SM5504_IRQ_INT1_ATTACH,
-+	SM5504_IRQ_INT1_DETACH,
-+	SM5504_IRQ_INT1_CHG_DET,
-+	SM5504_IRQ_INT1_DCD_OUT,
-+	SM5504_IRQ_INT1_OVP_EVENT,
-+	SM5504_IRQ_INT1_CONNECT,
-+	SM5504_IRQ_INT1_ADC_CHG,
-+
-+	/* INT2 */
-+	SM5504_IRQ_INT2_RID_CHG,
-+	SM5504_IRQ_INT2_UVLO,
-+	SM5504_IRQ_INT2_POR,
-+	SM5504_IRQ_INT2_OVP_FET,
-+	SM5504_IRQ_INT2_OCP_LATCH,
-+	SM5504_IRQ_INT2_OCP_EVENT,
-+	SM5504_IRQ_INT2_OVP_OCP_EVENT,
-+
-+	SM5504_IRQ_NUM,
-+};
-+
-+#define SM5504_IRQ_INT1_ATTACH_MASK		BIT(0)
-+#define SM5504_IRQ_INT1_DETACH_MASK		BIT(1)
-+#define SM5504_IRQ_INT1_CHG_DET_MASK		BIT(2)
-+#define SM5504_IRQ_INT1_DCD_OUT_MASK		BIT(3)
-+#define SM5504_IRQ_INT1_OVP_MASK		BIT(4)
-+#define SM5504_IRQ_INT1_CONNECT_MASK		BIT(5)
-+#define SM5504_IRQ_INT1_ADC_CHG_MASK		BIT(6)
-+#define SM5504_IRQ_INT2_RID_CHG_MASK		BIT(0)
-+#define SM5504_IRQ_INT2_UVLO_MASK		BIT(1)
-+#define SM5504_IRQ_INT2_POR_MASK		BIT(2)
-+#define SM5504_IRQ_INT2_OVP_FET_MASK		BIT(4)
-+#define SM5504_IRQ_INT2_OCP_LATCH_MASK		BIT(5)
-+#define SM5504_IRQ_INT2_OCP_EVENT_MASK		BIT(6)
-+#define SM5504_IRQ_INT2_OVP_OCP_EVENT_MASK	BIT(7)
-+
- #endif /*  __LINUX_EXTCON_SM5502_H */
--- 
-2.31.1
-
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBKb2VsIFN0YW5sZXkgPGpvZWxA
+am1zLmlkLmF1Pg0KPiBTZW50OiBUaHVyc2RheSwgTWF5IDIwLCAyMDIxIDc6MjkgQU0NCj4gVG86
+IFF1YW4gTmd1eWVuIDxxdWFuQG9zLmFtcGVyZWNvbXB1dGluZy5jb20+OyBSeWFuIENoZW4NCj4g
+PHJ5YW5fY2hlbkBhc3BlZWR0ZWNoLmNvbT4NCj4gQ2M6IENvcmV5IE1pbnlhcmQgPG1pbnlhcmRA
+YWNtLm9yZz47IFJvYiBIZXJyaW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+Ow0KPiBBbmRyZXcgSmVm
+ZmVyeSA8YW5kcmV3QGFqLmlkLmF1PjsgQnJlbmRhbiBIaWdnaW5zDQo+IDxicmVuZGFuaGlnZ2lu
+c0Bnb29nbGUuY29tPjsgQmVuamFtaW4gSGVycmVuc2NobWlkdA0KPiA8YmVuaEBrZXJuZWwuY3Jh
+c2hpbmcub3JnPjsgV29sZnJhbSBTYW5nIDx3c2FAa2VybmVsLm9yZz47IFBoaWxpcHAgWmFiZWwN
+Cj4gPHAuemFiZWxAcGVuZ3V0cm9uaXguZGU+OyBvcGVuaXBtaS1kZXZlbG9wZXJAbGlzdHMuc291
+cmNlZm9yZ2UubmV0Ow0KPiBkZXZpY2V0cmVlIDxkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZz47
+IExpbnV4IEFSTQ0KPiA8bGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnPjsgbGlu
+dXgtYXNwZWVkDQo+IDxsaW51eC1hc3BlZWRAbGlzdHMub3psYWJzLm9yZz47IExpbnV4IEtlcm5l
+bCBNYWlsaW5nIExpc3QNCj4gPGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc+OyBsaW51eC1p
+MmNAdmdlci5rZXJuZWwub3JnOyBPcGVuIFNvdXJjZQ0KPiBTdWJtaXNzaW9uIDxwYXRjaGVzQGFt
+cGVyZWNvbXB1dGluZy5jb20+OyBQaG9uZyBWbw0KPiA8cGhvbmdAb3MuYW1wZXJlY29tcHV0aW5n
+LmNvbT47IFRoYW5nIFEgLiBOZ3V5ZW4NCj4gPHRoYW5nQG9zLmFtcGVyZWNvbXB1dGluZy5jb20+
+OyBPcGVuQk1DIE1haWxsaXN0DQo+IDxvcGVuYm1jQGxpc3RzLm96bGFicy5vcmc+DQo+IFN1Ympl
+Y3Q6IFJlOiBbUEFUQ0ggdjMgMy83XSBpMmM6IGFzcGVlZDogRml4IHVuaGFuZGxlZCBUeCBkb25l
+IHdpdGggTkFLDQo+IA0KPiBSeWFuLCBjYW4geW91IHBsZWFzZSByZXZpZXcgdGhpcyBjaGFuZ2U/
+DQo+IA0KPiBPbiBXZWQsIDE5IE1heSAyMDIxIGF0IDA3OjUwLCBRdWFuIE5ndXllbg0KPiA8cXVh
+bkBvcy5hbXBlcmVjb21wdXRpbmcuY29tPiB3cm90ZToNCj4gPg0KPiA+IEl0IGlzIG9ic2VydmVk
+IHRoYXQgaW4gbm9ybWFsIGNvbmRpdGlvbiwgd2hlbiB0aGUgbGFzdCBieXRlIHNlbnQgYnkNCj4g
+PiBzbGF2ZSwgdGhlIFR4IERvbmUgd2l0aCBOQUsgaXJxIHdpbGwgcmFpc2UuDQo+ID4gQnV0IGl0
+IGlzIGFsc28gb2JzZXJ2ZWQgdGhhdCBzb21ldGltZXMgbWFzdGVyIGlzc3VlcyBuZXh0IHRyYW5z
+YWN0aW9uDQo+ID4gdG9vIHF1aWNrIHdoaWxlIHRoZSBzbGF2ZSBpcnEgaGFuZGxlciBpcyBub3Qg
+eWV0IGludm9rZWQgYW5kIFR4IERvbmUNCj4gPiB3aXRoIE5BSyBpcnEgb2YgbGFzdCBieXRlIG9m
+IHByZXZpb3VzIFJFQUQgUFJPQ0VTU0VEIHdhcyBub3QgYWNrJ2VkLg0KPiA+IFRoaXMgVHggRG9u
+ZSB3aXRoIE5BSyBpcnEgaXMgcmFpc2VkIHRvZ2V0aGVyIHdpdGggdGhlIFNsYXZlIE1hdGNoIGFu
+ZA0KPiA+IFJ4IERvbmUgaXJxIG9mIHRoZSBuZXh0IGNvbWluZyB0cmFuc2FjdGlvbiBmcm9tIG1h
+c3Rlci4NCj4gPiBVbmZvcnR1bmF0ZWx5LCB0aGUgY3VycmVudCBzbGF2ZSBpcnEgaGFuZGxlciBo
+YW5kbGVzIHRoZSBTbGF2ZSBNYXRjaA0KPiA+IGFuZCBSeCBEb25lIG9ubHkgaW4gaGlnaGVyIHBy
+aW9yaXR5IGFuZCBpZ25vcmUgdGhlIFR4IERvbmUgd2l0aCBOQUssDQo+ID4gY2F1c2luZyB0aGUg
+Y29tcGxhaW4gYXMgYmVsb3c6DQo+ID4gImFzcGVlZC1pMmMtYnVzIDFlNzhhMDQwLmkyYy1idXM6
+IGlycSBoYW5kbGVkICE9IGlycS4gZXhwZWN0ZWQNCj4gPiAweDAwMDAwMDg2LCBidXQgd2FzIDB4
+MDAwMDAwODQiDQo+ID4NCj4gPiBUaGlzIGNvbW1pdCBoYW5kbGVzIHRoaXMgY2FzZSBieSBlbWl0
+dGluZyBhIFNsYXZlIFN0b3AgZXZlbnQgZm9yIHRoZQ0KPiA+IFR4IERvbmUgd2l0aCBOQUsgYmVm
+b3JlIHByb2Nlc3NpbmcgU2xhdmUgTWF0Y2ggYW5kIFJ4IERvbmUgZm9yIHRoZQ0KPiA+IGNvbWlu
+ZyB0cmFuc2FjdGlvbiBmcm9tIG1hc3Rlci4NCj4gDQo+IEl0IHNvdW5kcyBsaWtlIHRoaXMgcGF0
+Y2ggaXMgaW5kZXBlbmRlbnQgb2YgdGhlIHJlc3Qgb2YgdGhlIHNlcmllcywgYW5kIGNhbiBnbyBp
+bg0KPiBvbiBpdCdzIG93bi4gUGxlYXNlIHNlbmQgaXQgc2VwYXJhdGVseSB0byB0aGUgaTJjIG1h
+aW50YWluZXJzIGFuZCBhZGQgYSBzdWl0YWJsZQ0KPiBGaXhlcyBsaW5lLCBzdWNoIGFzOg0KPiAN
+Cj4gICBGaXhlczogZjllYjkxMzUwYmIyICgiaTJjOiBhc3BlZWQ6IGFkZGVkIHNsYXZlIHN1cHBv
+cnQgZm9yIEFzcGVlZCBJMkMNCj4gZHJpdmVyIikNCj4gDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5
+OiBRdWFuIE5ndXllbiA8cXVhbkBvcy5hbXBlcmVjb21wdXRpbmcuY29tPg0KPiA+IC0tLQ0KPiA+
+IHYzOg0KPiA+ICAgKyBGaXJzdCBpbnRyb2R1Y2UgaW4gdjMgW1F1YW5dDQo+ID4NCj4gPiAgZHJp
+dmVycy9pMmMvYnVzc2VzL2kyYy1hc3BlZWQuYyB8IDUgKysrKysNCj4gPiAgMSBmaWxlIGNoYW5n
+ZWQsIDUgaW5zZXJ0aW9ucygrKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvaTJjL2J1
+c3Nlcy9pMmMtYXNwZWVkLmMNCj4gPiBiL2RyaXZlcnMvaTJjL2J1c3Nlcy9pMmMtYXNwZWVkLmMg
+aW5kZXggNzI0YmYzMDYwMGQ2Li4zZmIzN2MzZjIzZDQNCj4gPiAxMDA2NDQNCj4gPiAtLS0gYS9k
+cml2ZXJzL2kyYy9idXNzZXMvaTJjLWFzcGVlZC5jDQo+ID4gKysrIGIvZHJpdmVycy9pMmMvYnVz
+c2VzL2kyYy1hc3BlZWQuYw0KPiA+IEBAIC0yNTQsNiArMjU0LDExIEBAIHN0YXRpYyB1MzIgYXNw
+ZWVkX2kyY19zbGF2ZV9pcnEoc3RydWN0DQo+ID4gYXNwZWVkX2kyY19idXMgKmJ1cywgdTMyIGly
+cV9zdGF0dXMpDQo+ID4NCj4gPiAgICAgICAgIC8qIFNsYXZlIHdhcyByZXF1ZXN0ZWQsIHJlc3Rh
+cnQgc3RhdGUgbWFjaGluZS4gKi8NCj4gPiAgICAgICAgIGlmIChpcnFfc3RhdHVzICYgQVNQRUVE
+X0kyQ0RfSU5UUl9TTEFWRV9NQVRDSCkgew0KPiANCj4gQ2FuIHlvdSBleHBsYWluIHdoeSB5b3Ug
+bmVlZCB0byBkbyB0aGlzIGhhbmRpbmcgaW5zaWRlIHRoZSBTTEFWRV9NQVRDSA0KPiBjYXNlPw0K
+PiANCj4gQ291bGQgeW91IGluc3RlYWQgbW92ZSB0aGUgVFhfTkFLIGhhbmRsaW5nIHRvIGJlIGFi
+b3ZlIHRoZSBTTEFWRV9NQVRDSA0KPiBjYXNlPw0KPiANCj4gPiArICAgICAgICAgICAgICAgaWYg
+KGlycV9zdGF0dXMgJiBBU1BFRURfSTJDRF9JTlRSX1RYX05BSyAmJg0KPiA+ICsgICAgICAgICAg
+ICAgICAgICAgYnVzLT5zbGF2ZV9zdGF0ZSA9PQ0KPiA+ICsgQVNQRUVEX0kyQ19TTEFWRV9SRUFE
+X1BST0NFU1NFRCkgew0KPiANCj4gRWl0aGVyIHdheSwgdGhpcyBuZWVkcyBhIGNvbW1lbnQgdG8g
+ZXhwbGFpbiB3aGF0IHdlJ3JlIHdvcmtpbmcgYXJvdW5kLg0KPiANCj4gPiArICAgICAgICAgICAg
+ICAgICAgICAgICBpcnFfaGFuZGxlZCB8PSBBU1BFRURfSTJDRF9JTlRSX1RYX05BSzsNCj4gPiAr
+ICAgICAgICAgICAgICAgICAgICAgICBpMmNfc2xhdmVfZXZlbnQoc2xhdmUsIEkyQ19TTEFWRV9T
+VE9QLA0KPiAmdmFsdWUpOw0KDQpBY2NvcmRpbmcgdGhlIHBhdGNoIGFzc3VtZSBzbGF2ZSByZWNl
+aXZlIFRYX05BSyB3aWxsIGJlIGdvIHRvIFNMQVZFX1NUT1Agc3RhdGU/DQoNCj4gPiArICAgICAg
+ICAgICAgICAgfQ0KPiA+ICAgICAgICAgICAgICAgICBpcnFfaGFuZGxlZCB8PSBBU1BFRURfSTJD
+RF9JTlRSX1NMQVZFX01BVENIOw0KPiA+ICAgICAgICAgICAgICAgICBidXMtPnNsYXZlX3N0YXRl
+ID0gQVNQRUVEX0kyQ19TTEFWRV9TVEFSVDsNCj4gPiAgICAgICAgIH0NCj4gPiAtLQ0KPiA+IDIu
+MjguMA0KPiA+DQo=
