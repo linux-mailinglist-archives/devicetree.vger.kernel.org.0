@@ -2,130 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6553138B8A4
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 22:56:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9355938B8C8
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 23:08:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229686AbhETU5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 16:57:43 -0400
-Received: from mail-oo1-f48.google.com ([209.85.161.48]:39513 "EHLO
-        mail-oo1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229678AbhETU5n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 16:57:43 -0400
-Received: by mail-oo1-f48.google.com with SMTP id f22-20020a4aeb160000b029021135f0f404so1042468ooj.6
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 13:56:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=l4I9W+oQyUB0gGtJVJXQlMSy/Pup9jiF/aG4pznxFn0=;
-        b=tc4b0c9DD1FVaW5QxGeFkZfQVCotP4otPIlrA/SQA+HguwKSHGnIcx8BtPwIu3PBdj
-         yiwcLycGjlA7S9RbMp2LmAOUrn0FtjIIJivHMDvoSogRy/QmCu7BGkKeAZXnm05D0IK3
-         tPqAz2FgIUIIKdyhu/VbcYn5aVOpgOG8O5sX/P/8Cf6RzdRiiOCJ9mCB5oIs2y1sLgFi
-         kOUZ9DZ+TpkTqaAfHeD1Bta9/39LKGaDtJ7DEWg/MidkW0CvRMHDPPJ78EUhE53qKAov
-         M5qjhRUMfXkot9SoHdpDAsh/z2V8SW5/9j3A2g2atfbn1NlEMUabNuA0zlj4+jfDFv4x
-         G/Nw==
-X-Gm-Message-State: AOAM531u2aQ6DYWyHNjG8MYQ0E3ucFC1rxIEcqxMHTmdfRXrfO0eUbwT
-        9QlpfeQbD3o4kGWCq1gRAg==
-X-Google-Smtp-Source: ABdhPJyyMEBBBaasIm9Wg/4whAtyNFr7C3CLW9p5Ga2XlkhiT1kUH75c2bv8f8zbQmLoBfL/v4dEsQ==
-X-Received: by 2002:a4a:b301:: with SMTP id m1mr3620456ooo.7.1621544180334;
-        Thu, 20 May 2021 13:56:20 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u13sm763117oop.40.2021.05.20.13.56.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 May 2021 13:56:19 -0700 (PDT)
-Received: (nullmailer pid 1949863 invoked by uid 1000);
-        Thu, 20 May 2021 20:56:18 -0000
-Date:   Thu, 20 May 2021 15:56:18 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Helmut Grohne <helmut.grohne@intenta.de>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>,
-        Michal Simek <monstr@monstr.eu>,
-        Amit Kumar Mahapatra <akumarma@xilinx.com>,
-        Srinivas Goud <sgoud@xilinx.com>,
-        Siva Durga Prasad Paladugu <sivadur@xilinx.com>
-Subject: Re: [PATCH v20 18/19] dt-bindings: mtd: pl353-nand: Describe this
- hardware controller
-Message-ID: <20210520205618.GA1900624@robh.at.kernel.org>
-References: <20210519182636.1110080-1-miquel.raynal@bootlin.com>
- <20210519182636.1110080-19-miquel.raynal@bootlin.com>
+        id S230021AbhETVJv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 17:09:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40178 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229971AbhETVJs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 May 2021 17:09:48 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 865D561353;
+        Thu, 20 May 2021 21:08:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1621544907;
+        bh=LG9V/TQafsoAsE88DwTNEoOzd9py69hLE9jxEkJQCPU=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=EbMNMGWokIwMGVWGnzQ6B+yMcpTNPUl9VU02RDoGJAUjKWfdRVyoIus65bfiMQnbL
+         L1micb+F1YUSYQHmtXAt84+JpWWAT8CmSMPTIw4YdENcJ9zrsL2t0s0w7wzHWP/o70
+         7KwKB+7x1U4vOs/vG5TpIuoFRxXWQmihTEnUFAk2gQd8nvU5VA7Z/iFoBJSy9OnxTa
+         Ez6fNGw1yupI+1xIpvwgYzUbkIM8b+E10bDeOW6ucfcXROjM0IhsL8lPQyBi5kj58T
+         PvncV6jUEBkpvh2Yi9TbRV6Hr8XAbSOnKrjLqzkRvDz9/ozc6UiQBSMisTnlNNOFfg
+         ZMdvDdS0F5v2w==
+From:   Mark Brown <broonie@kernel.org>
+To:     linux-imx@nxp.com, perex@perex.cz,
+        linux-arm-kernel@lists.infradead.org, nicoleotsuka@gmail.com,
+        festevam@gmail.com, shawnguo@kernel.org, Xiubo.Lee@gmail.com,
+        alsa-devel@alsa-project.org, timur@kernel.org,
+        s.hauer@pengutronix.de, Shengjiu Wang <shengjiu.wang@nxp.com>,
+        robh+dt@kernel.org, kernel@pengutronix.de,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, lgirdwood@gmail.com, tiwai@suse.com
+Cc:     Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: imx-card: Add binding doc for imx sound card
+Date:   Thu, 20 May 2021 22:08:06 +0100
+Message-Id: <162154465460.5161.5323165215525240615.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <1621247488-21412-1-git-send-email-shengjiu.wang@nxp.com>
+References: <1621247488-21412-1-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210519182636.1110080-19-miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 19, 2021 at 08:26:35PM +0200, Miquel Raynal wrote:
-> Add a yaml description of this NAND controller which is described as a
-> subnode of the SMC bus.
-> 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
->  .../bindings/mtd/arm,pl353-nand-r2p1.yaml     | 45 +++++++++++++++++++
->  1 file changed, 45 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml b/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
-> new file mode 100644
-> index 000000000000..609726ed72de
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
-> @@ -0,0 +1,45 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mtd/arm,pl353-nand-r2p1.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: PL353 NAND Controller device tree bindings
-> +
-> +allOf:
-> +  - $ref: "nand-controller.yaml"
-> +
-> +maintainers:
-> +  - Miquel Raynal <miquel.raynal@bootlin.com>
-> +  - Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - arm,pl353-nand-r2p1
-> +
-> +  reg:
-> +    items:
-> +      - items:
-> +        - description: CS with regard to the parent ranges property
-> +        - description: Offset of the memory region requested by the device
-> +        - description: Length of the memory region requested by the device
-> +
-> +  "#address-cells": true
-> +  "#size-cells": true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: true
+On Mon, 17 May 2021 18:31:27 +0800, Shengjiu Wang wrote:
+> Imx-card is a new added machine driver for supporting
+> ak4458/ak5558/ak5552/ak4497 codec on i.MX platforms. But these
+> DAC/ADCs are not only supported codecs. This machine driver is
+> designed to be a more common machine driver for i.MX platform,
+> it can support widely cpu dai interface and codec dai interface.
 
-unevaluatedProperties: false
+Applied to
 
-> +
-> +examples:
-> +  - |
-> +    nand0: nand-controller@0,0 {
-> +      compatible = "arm,pl353-nand-r2p1";
-> +      reg = <0 0 0x1000000>;
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +    };
-> -- 
-> 2.27.0
-> 
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/2] ASoC: dt-bindings: imx-card: Add binding doc for imx sound card
+      commit: 623cd9cfcac522647e3624e48bf0661a39e8502a
+[2/2] ASoC: imx-card: Add imx-card machine driver
+      commit: aa736700f42fa0813e286ca2f9274ffaa25163b9
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
