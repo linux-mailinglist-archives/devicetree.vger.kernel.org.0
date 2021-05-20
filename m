@@ -2,102 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3E58389ECD
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 09:20:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5D06389F05
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 09:41:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229534AbhETHWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 03:22:08 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:35612 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229547AbhETHWH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 May 2021 03:22:07 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1621495247; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=PP6IRISXRQzdWCOwZo0gJ9sYB3zmjjObt7BhwdjZXt0=;
- b=oNrRpDaIMYgwFvtfLdGJsVktXZaPviM/W9bNZoErlsKrP0wkl/iRSg51iJAoPiZm2p97iagq
- RRNmTLUByUxGurTmRCvYqJmCAb97u5P0SrgGFoEPj1zOm4WUVY3osJfJgFk/SEgcIlOam8BG
- 1tFzVIrNBEXJzDmajrdXlxZECv4=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 60a60db47b5af81b5cfc34c1 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 20 May 2021 07:20:20
- GMT
-Sender: sibis=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 59D8FC4323A; Thu, 20 May 2021 07:20:20 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 846B7C433F1;
-        Thu, 20 May 2021 07:20:18 +0000 (UTC)
+        id S229953AbhETHnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 03:43:01 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.50]:27876 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229534AbhETHnA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 03:43:00 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1621496496; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=BZJ2ojaz7EzRNPbBXf6KeBTVCa9n0us/ZnsLcbgQT5Zg/mzDhIhn/zcnDGQ13/52pz
+    TLDEs5qImHT0evesDyYVOi43NqV/I/6KPDYvj+WkZuA1xiuZqJ0LdAYWvTlx6sUS741a
+    12XyYoEIZCiY9jrrVS3vv/+Dyvoqoz+8poV1u+zm9xTvz1IqRJJU7YNzGbixGBve7ZOS
+    bPQDgPsnGdDQssHJKsQgOgbfNoxMfUXjs37gcTbpCQSu6hyBBLHH8tH+fts8RcBjE4cr
+    G1y3XdB+x0/284eJSRWNDwkwqHqWZvLh5CdSGBPSfzKYrZDs1SQ4/urdSoyxPh+12fXD
+    p7gg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1621496496;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=/AB8rpzWcGGrvWhsgbSoWj2+H6i9d45l8uVGIOA0RAI=;
+    b=cdTA9oxqBfz6CXyYqNOp5OTgu4I+ca6lEoS9I9qadsBz2aOmUrOsNITsQOodqlk3nH
+    NJ3p38RGFtN2gM7fBV4nojXOKV1Ux09M0ClfsHHtP/hh5ZDdfxdUuHdqomoFyjFLljB9
+    q2ETnUBFlVuRihj2iLL+c6fvKqxZxVCqcPWnmS3puYwmDVPzYExrPswX4Zps77Btveq4
+    BeYlT/MKjvhRcyArVRxO8aCejI3mtesQ7OYQU/+7ChHnFg5lFhVD4KSjjAO4Y+q8Tp3c
+    4qt6xcFL/7ocxDaXvat1f7XTdJsh9XnznBkHzJ+Ab4ESkjk5Gs+8EpPfnI+WqFZQWNmY
+    560A==
+ARC-Authentication-Results: i=1; strato.com;
+    dkim=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1621496496;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=/AB8rpzWcGGrvWhsgbSoWj2+H6i9d45l8uVGIOA0RAI=;
+    b=iyLpKJEs6v8QsGMhEn73OPCITDSHGQy5shXqJq8FccU39QzJJaqkgNpF9MJ+OWbfIE
+    a/pmDpPjnY+odCaRmgIKL2L913S4D4ERxc2cOnRoXpHOFfR249BEXcq4q99yOv6UVQ1H
+    dMb13c0ApzCkCmcY9MCKE93pfvaNO2FZGoFnLQymUJgZ3Bv3I6Zfun/hw+02hLP4cB6z
+    gCVUuREmjB29sI53FQYICnCyihmDQnc3l3R2PLaHJKnUzEJKKLAvumkPUxXBLLGKeXHV
+    GXwwYsX2v+2H5Z8ge4JhGv84Zu8u/2Z51KBdXdHW8gOLay8V37m12DQCPvRCPF32DXZf
+    aDdg==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j6IcfMBg=="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.26.1 DYNA|AUTH)
+    with ESMTPSA id 400bd8x4K7fZ0Rw
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Thu, 20 May 2021 09:41:35 +0200 (CEST)
+Date:   Thu, 20 May 2021 09:41:31 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Bongsu Jeon <bongsu.jeon@samsung.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-nfc@lists.01.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [linux-nfc] Re: [PATCH 2/2] nfc: s3fwrn5: i2c: Enable optional
+ clock from device tree
+Message-ID: <YKYSq5WTeZyMIZYn@gerhold.net>
+References: <20210518133935.571298-1-stephan@gerhold.net>
+ <20210518133935.571298-2-stephan@gerhold.net>
+ <ac04821e-359d-aaaa-7e07-280156f64036@canonical.com>
+ <YKPWgSnz7STV4u+c@gerhold.net>
+ <8b14159f-dca9-a213-031f-83ab2b3840a4@canonical.com>
+ <YKTHXzUhcYa5YJIs@gerhold.net>
+ <10b3a50e-877c-d5b1-3e35-e5dff4ef53d8@canonical.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 20 May 2021 12:50:18 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     bjorn.andersson@linaro.org, dianders@chromium.org,
-        mka@chromium.org, sboyd@kernel.org, agross@kernel.org,
-        robh+dt@kernel.org, rjw@rjwysocki.net,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] cpufreq: blacklist SC7280 in cpufreq-dt-platdev
-In-Reply-To: <20210520035622.e276tqpl4gg5fxhk@vireshk-i7>
-References: <1620807083-5451-1-git-send-email-sibis@codeaurora.org>
- <1620807083-5451-2-git-send-email-sibis@codeaurora.org>
- <20210520035622.e276tqpl4gg5fxhk@vireshk-i7>
-Message-ID: <6f5b1d0992243ff5d71362f463a5f1cf@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <10b3a50e-877c-d5b1-3e35-e5dff4ef53d8@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-05-20 09:26, Viresh Kumar wrote:
-> On 12-05-21, 13:41, Sibi Sankar wrote:
->> Add SC7280 to cpufreq-dt-platdev blacklist since the actual scaling is
->> handled by the 'qcom-cpufreq-hw' driver.
->> 
->> Reviewed-by: Douglas Anderson <dianders@chromium.org>
->> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
->> ---
->>  drivers/cpufreq/cpufreq-dt-platdev.c | 1 +
->>  1 file changed, 1 insertion(+)
->> 
->> diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c 
->> b/drivers/cpufreq/cpufreq-dt-platdev.c
->> index 5e07065ec22f..345418b8250e 100644
->> --- a/drivers/cpufreq/cpufreq-dt-platdev.c
->> +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
->> @@ -137,6 +137,7 @@ static const struct of_device_id blacklist[] 
->> __initconst = {
->>  	{ .compatible = "qcom,msm8996", },
->>  	{ .compatible = "qcom,qcs404", },
->>  	{ .compatible = "qcom,sc7180", },
->> +	{ .compatible = "qcom,sc7280", },
->>  	{ .compatible = "qcom,sdm845", },
->> 
->>  	{ .compatible = "st,stih407", },
+On Wed, May 19, 2021 at 11:58:38AM -0400, Krzysztof Kozlowski wrote:
+> > 
+> > Personally, I just skip all firmware/RF configuration (which works thanks
+> > to commit 4fb7b98c7be3 ("nfc: s3fwrn5: skip the NFC bootloader mode")).
+> > That way, S3FWRN5 just continues using the proper configuration
+> > that was loaded by the vendor drivers at some point. :)
 > 
-> Applied 1/2. Thanks.
+> But isn't that configuration lost after power off?
 > 
-> What do you want to do for 2/2 ? Go through my tree? need an update ?
 
-Lets skip pulling in 2/2 for now. It depends
-on a few other changes to land first and the
-cpufreq node for sc7280 needs a re-spin.
+I don't know exactly but I don't think it's lost. At least the firmware
+and rfreg configuration seem to be preserved since I've never provided
+the driver with the necessary firmware. It just works without :)
 
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
+Stephan
