@@ -2,95 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AEADE38AE04
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 14:21:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E07D38AE1B
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 14:24:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232474AbhETMXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 08:23:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54134 "EHLO
+        id S233381AbhETMZV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 08:25:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232053AbhETMXG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 08:23:06 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D43F5C09F5F4
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 04:17:04 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id u4-20020a05600c00c4b02901774b80945cso5170208wmm.3
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 04:17:04 -0700 (PDT)
+        with ESMTP id S232697AbhETMZP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 08:25:15 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89FEDC0AE13C
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 04:21:10 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id t206so8968631wmf.0
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 04:21:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=FFbC/8AD0LOFNwNu9BRgUtFruC/G1IwePtG3av6RsOY=;
-        b=k1LNclxtiP6W7x7zqryjIF2j1zX5LVI89E2F+ZC0OosAJK+edKHkMljCHDcNA4W6r9
-         oo4eZKxNjGjNVEJ8BFhLlpoqnPMwuEiPyWw0EOz4IxxVlKUgsrlswX/caR97z6QS70oV
-         NZ3/faNHyMCstTucEuXIupFp8etwQE4J3yqi0J69jZcU0Mx7BKVpa2T7q24WhNiKWtvb
-         PU5LpeN250fH9rB8YtK5Dy/MNYmxcDZJKb5GKWG8MkZ5EEWxsJ6BFLPncstIQhXlrfUP
-         vHUQIPzmn+0TEAFURxP+OL/A4Cij2M4dnT2BPNlHbT0nR+8xyCyGrpl/dPtQmw2IqIcV
-         nkXg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hkbd3ZNvjGsOfD3AtfBISF0Ql1q34vUavLh2tmeeXiY=;
+        b=AbuR8D31D0aEydN9/qBTqKVe762diEtY52hlBCNUqPOBMR1/4MruCFDWdmypmSvYlx
+         mjXBc56vIghamZhnPYqYkTblnJmeGyYXEk5+zM013Cniioh2svZjE2a2Yg+gdNhJ2Gkw
+         AFueyd3oABPgMAPqKW/B2RRrPWpi2h8J3fG56vYLjllgEPoi+2Su3aO5I8pAjTvHHXUn
+         h/b9OQXH4XgRx3C0+rHXKlB4hIKGzl9i8K5VYNVoovqKM9eLUAabQaSuzmmXg5g8JIRT
+         orAeQgRTIg6ATo/vZX4mwx9kHLmUs6yx2R1qkzKvs3uy3NR3B6oFy5p0dhR1BVxTHxNc
+         1HhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=FFbC/8AD0LOFNwNu9BRgUtFruC/G1IwePtG3av6RsOY=;
-        b=cwRduNJP7trnP8iY+KGTbwSkcHpcwvIWTAFGqAEbtj+rQTaZyyYzSo7kaj04RcrH20
-         0JXNiyGRw15MAjLFNb2NHIAiaoJXSpxEJMk0rH4eUF3wDfQiqh5SAQkZV02t5s3KHs5m
-         U0lEyOJhR4CA/quJQ+RkhBVGSyBSg/j8UoyiWPFRCRWBn4l2NK9vI2yX6Z/pGhHbvHty
-         LD9isLs6WzyBPo4DaSozHL9vq8nSqLKktRJo4lRxSHUpTRyvmzCpCf82o7FNHqGglKSB
-         5q8eEM9//xTHjz51v30yq4mJrLL3GbfVgyF40EuX+6v7EbZgn8zF+7O40peifqZHvW/H
-         7dOg==
-X-Gm-Message-State: AOAM532pVDEFnMq+eG73HV61aUaJYLCLhRywqlP12j83HNycVrdP5ist
-        OxnzXTsiStbgnxVJG6ecKlQUZQ==
-X-Google-Smtp-Source: ABdhPJy170kk8Q53GOuLn6l2Mf+w5xTtNMkRzkP4oBTF3ZetnMbI5rV9xgKJjjvpwPsSs4pLxpDMAw==
-X-Received: by 2002:a1c:4d01:: with SMTP id o1mr3222583wmh.42.1621509423424;
-        Thu, 20 May 2021 04:17:03 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hkbd3ZNvjGsOfD3AtfBISF0Ql1q34vUavLh2tmeeXiY=;
+        b=EApOClxzwCw35YYcsTvckZ779pf2IE3o4EeJgvSXCWdaEfkdbMvjOCXqmxxBC+y56d
+         HVOkGg12DKDjfwXJQboKA96PqtnnvlXjfdKTSHU1Oqa5p1W4IaJJj348w/U5N09fVJoF
+         e58pbvtNn5ey0odr+hwwmH3UmVqjFHob9MOQtsZl/TZs4/meJQ9TybrQHF0NqlBFEsW2
+         8iO4e8Y27WzF6a8KiSqYZnCG5UsdUqgia0HsxnSM7gY+0S8hhzQ1iLU+AzFqdehR5NIZ
+         eSDvzcwiHZ04OlWgVljwz/6KyQmX4AEkUarcqaDm+aeLTJNXNYuIYzC6jRe2XdqRTnN0
+         1zcQ==
+X-Gm-Message-State: AOAM531/9aafhuNEXQoEI2zd15OhTm3cutYutiu8AVyTi0jKq7rYGN8B
+        /mhZudMtfjejLowtdHqq9I5S1WL3jcJllg==
+X-Google-Smtp-Source: ABdhPJy+OPM9ZufNRM9UA5H8yhwkRCjRB2XrMMPH+JnjStcV7z59I2irWFSKsO0DLI6rCBvVPUaCSw==
+X-Received: by 2002:a7b:c24a:: with SMTP id b10mr3511825wmj.157.1621509669146;
+        Thu, 20 May 2021 04:21:09 -0700 (PDT)
 Received: from localhost.localdomain ([88.160.162.107])
-        by smtp.gmail.com with ESMTPSA id a19sm2310757wmb.40.2021.05.20.04.17.02
+        by smtp.gmail.com with ESMTPSA id o11sm2756646wrq.93.2021.05.20.04.21.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 May 2021 04:17:02 -0700 (PDT)
+        Thu, 20 May 2021 04:21:08 -0700 (PDT)
 From:   Fabien Parent <fparent@baylibre.com>
-To:     Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>
+To:     Qii Wang <qii.wang@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
 Cc:     mkorpershoek@baylibre.com, Fabien Parent <fparent@baylibre.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: rng: mediatek: add mt8365 to mtk rng binding
-Date:   Thu, 20 May 2021 13:16:56 +0200
-Message-Id: <20210520111656.66017-2-fparent@baylibre.com>
+Subject: [PATCH v2 1/4] dt-bindings: i2c: i2c-mt65xx: convert doc to yaml schema format
+Date:   Thu, 20 May 2021 13:21:02 +0200
+Message-Id: <20210520112106.77190-1-fparent@baylibre.com>
 X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210520111656.66017-1-fparent@baylibre.com>
-References: <20210520111656.66017-1-fparent@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add RNG binding for MT8365 SoC.
+Convert the binding documentation for i2c-mt65xx driver to the
+YAML schema format.
 
 Signed-off-by: Fabien Parent <fparent@baylibre.com>
 ---
 
-v2: Write the compatible in a more compact way
+v2:
+	* write compatibles in a more compact way
+	* set the node pattern to be "^i2c@[0-9a-f]+$" instead of
+		"^i2c[0-9]*@[0-9a-f]+"$
 
- Documentation/devicetree/bindings/rng/mtk-rng.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/i2c/i2c-mt65xx.txt    | 49 ----------
+ .../devicetree/bindings/i2c/i2c-mt65xx.yaml   | 93 +++++++++++++++++++
+ 2 files changed, 93 insertions(+), 49 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
 
-diff --git a/Documentation/devicetree/bindings/rng/mtk-rng.yaml b/Documentation/devicetree/bindings/rng/mtk-rng.yaml
-index 4be5fc3c1409..61888e07bda0 100644
---- a/Documentation/devicetree/bindings/rng/mtk-rng.yaml
-+++ b/Documentation/devicetree/bindings/rng/mtk-rng.yaml
-@@ -21,6 +21,7 @@ properties:
-           - enum:
-               - mediatek,mt7622-rng
-               - mediatek,mt7629-rng
-+              - mediatek,mt8365-rng
-               - mediatek,mt8516-rng
-           - const: mediatek,mt7623-rng
- 
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
+deleted file mode 100644
+index 7f0194fdd0cc..000000000000
+--- a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
++++ /dev/null
+@@ -1,49 +0,0 @@
+-* MediaTek's I2C controller
+-
+-The MediaTek's I2C controller is used to interface with I2C devices.
+-
+-Required properties:
+-  - compatible: value should be either of the following.
+-      "mediatek,mt2701-i2c", "mediatek,mt6577-i2c": for MediaTek MT2701
+-      "mediatek,mt2712-i2c": for MediaTek MT2712
+-      "mediatek,mt6577-i2c": for MediaTek MT6577
+-      "mediatek,mt6589-i2c": for MediaTek MT6589
+-      "mediatek,mt6797-i2c", "mediatek,mt6577-i2c": for MediaTek MT6797
+-      "mediatek,mt7622-i2c": for MediaTek MT7622
+-      "mediatek,mt7623-i2c", "mediatek,mt6577-i2c": for MediaTek MT7623
+-      "mediatek,mt7629-i2c", "mediatek,mt2712-i2c": for MediaTek MT7629
+-      "mediatek,mt8173-i2c": for MediaTek MT8173
+-      "mediatek,mt8183-i2c": for MediaTek MT8183
+-      "mediatek,mt8192-i2c": for MediaTek MT8192
+-      "mediatek,mt8516-i2c", "mediatek,mt2712-i2c": for MediaTek MT8516
+-  - reg: physical base address of the controller and dma base, length of memory
+-    mapped region.
+-  - interrupts: interrupt number to the cpu.
+-  - clock-div: the fixed value for frequency divider of clock source in i2c
+-    module. Each IC may be different.
+-  - clocks: clock name from clock manager
+-  - clock-names: Must include "main" and "dma", "arb" is for multi-master that
+-    one bus has more than two i2c controllers, if enable have-pmic need include
+-    "pmic" extra.
+-
+-Optional properties:
+-  - clock-frequency: Frequency in Hz of the bus when transfer, the default value
+-    is 100000.
+-  - mediatek,have-pmic: platform can control i2c form special pmic side.
+-    Only mt6589 and mt8135 support this feature.
+-  - mediatek,use-push-pull: IO config use push-pull mode.
+-
+-Example:
+-
+-	i2c0: i2c@1100d000 {
+-			compatible = "mediatek,mt6577-i2c";
+-			reg = <0x1100d000 0x70>,
+-			      <0x11000300 0x80>;
+-			interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_LOW>;
+-			clock-frequency = <400000>;
+-			mediatek,have-pmic;
+-			clock-div = <16>;
+-			clocks = <&i2c0_ck>, <&ap_dma_ck>;
+-			clock-names = "main", "dma";
+-	};
+-
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
+new file mode 100644
+index 000000000000..41cedb4930de
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
+@@ -0,0 +1,93 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/i2c/i2c-mt65xx.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: MediaTek I2C Controller
++
++maintainers:
++  - Qii Wang <qii.wang@mediatek.com>
++  - Matthias Brugger <matthias.bgg@gmail.com>
++
++allOf:
++  - $ref: /schemas/i2c/i2c-controller.yaml#
++
++properties:
++  $nodename:
++    pattern: "^i2c@[0-9a-f]+$"
++
++  compatible:
++    oneOf:
++      - enum:
++          - mediatek,mt2712-i2c
++          - mediatek,mt6577-i2c
++          - mediatek,mt6589-i2c
++          - mediatek,mt7622-i2c
++          - mediatek,mt8173-i2c
++          - mediatek,mt8183-i2c
++          - mediatek,mt8192-i2c
++      - items:
++          - enum:
++              - mediatek,mt2701-i2c
++              - mediatek,mt6797-i2c
++              - mediatek,mt7623-i2c
++          - const: mediatek,mt6577-i2c
++      - items:
++          - enum:
++              - mediatek,mt7629-i2c
++              - mediatek,mt8516-i2c
++          - const: mediatek,mt2712-i2c
++
++  clocks:
++    minItems: 2
++    maxItems: 4
++    items:
++      - description: Controller clock
++      - description: DMA clock
++      - description: ARB clock for multi-master when a bus has more than
++          one i2c controllers
++      - description: PMIC clock. Only when mediatek,have-pmic is set.
++
++  clock-names:
++    minItems: 2
++    maxItems: 4
++    items:
++      - const: main
++      - const: dma
++      - const: arb
++      - const: pmic
++
++  mediatek,have-pmic:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: Platform can control I2C from the PMIC
++
++  mediatek,use-push-pull:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: IO config use push-pull mode.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - clock-div
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    i2c0: i2c@1100d000 {
++            compatible = "mediatek,mt6577-i2c";
++            reg = <0x1100d000 0x70>,
++                  <0x11000300 0x80>;
++            interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_LOW>;
++            clock-frequency = <400000>;
++            mediatek,have-pmic;
++            clock-div = <16>;
++            clocks = <&i2c0_ck>, <&ap_dma_ck>;
++            clock-names = "main", "dma";
++    };
 -- 
 2.31.1
 
