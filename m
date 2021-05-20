@@ -2,202 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14F5A38B5EF
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 20:22:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60AC138B5F3
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 20:24:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234395AbhETSYL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 14:24:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58564 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231544AbhETSYL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 May 2021 14:24:11 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4DBD9610A8
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 18:22:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621534969;
-        bh=VmQxTpf1IGJ5EqzESn2imv8cICKZVczppj/rQDnnMYk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=M0f+W2aEZdiquRkb7CnJLminMKYR+5W4fJ8MprPn1HQdr6DgyIIYP/Zc+BKSEUNJu
-         LB9W76N09JXA/6ih0bEafylEdHpnlFAkGYEYNdf9fTAySxXyhb0sW6K94M8t/NLOVq
-         kmutPZSJoSa5CcpUkui7sgKpIuGaclDpD3Jxr3oPJxqvjKxgfA59rOpYGzT5diKvgk
-         lV/N08M4Twfd6ixAuE/X6fFeXQSd96tqwNEq7Nmv2rc13hRXK+g+/bPWe6kUD7HPmJ
-         onAUSLEK48yAh8zm9NN1C5HoIUSllAs4ZP1noxMVVfA5IotMe4ezUBsWBr0nX/ItQl
-         Q4ScOKH3/eqgw==
-Received: by mail-ej1-f44.google.com with SMTP id n2so26772193ejy.7
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 11:22:49 -0700 (PDT)
-X-Gm-Message-State: AOAM53354AKOo2fTOv19/jpMHedcODf/QAieNwQUEWU407PB41oP5gpD
-        8ldx5RMpdZBnhen67Q/VYEEWZHhOi8letdv5Eg==
-X-Google-Smtp-Source: ABdhPJyUmApm8VhLJyPrb4CsqlvMDEvt+vyOSNBcwarspynx+U1/090M7NwXwy4MzcpkiXTAYALc+SNajuTUBfEAAns=
-X-Received: by 2002:a17:907:76b8:: with SMTP id jw24mr5984918ejc.359.1621534967859;
- Thu, 20 May 2021 11:22:47 -0700 (PDT)
+        id S231546AbhETSZo convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 20 May 2021 14:25:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52776 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234989AbhETSZo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 14:25:44 -0400
+Received: from cascadia.aikidev.net (cascadia.aikidev.net [IPv6:2600:3c01:e000:267:0:a171:de7:c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3C45FC061574;
+        Thu, 20 May 2021 11:24:22 -0700 (PDT)
+Received: from localhost (97-120-1-76.ptld.qwest.net [97.120.1.76])
+        (Authenticated sender: vagrant@aikidev.net)
+        by cascadia.aikidev.net (Postfix) with ESMTPSA id C9AC71ACD4;
+        Thu, 20 May 2021 11:24:19 -0700 (PDT)
+From:   Vagrant Cascadian <vagrant@reproducible-builds.org>
+To:     Salvatore Bonaccorso <carnil@debian.org>,
+        Maxime Ripard <maxime@cerno.tech>
+Cc:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>,
+        "B.R. Oake" <broake@mailfence.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Chen-Yu Tsai <wens@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: sun8i: h3: orangepi-plus: Fix Ethernet PHY mode
+In-Reply-To: <YKQm/F+JIjf/YUHm@eldamar.lan>
+References: <1243888060.510560.1612783497400@ichabod.co-bxl>
+ <20210210150118.ly252i37eykayrcb@gilmour>
+ <1719200956.433094.1613199092092@ichabod.co-bxl>
+ <6612268.HtAl026vyE@jernej-laptop> <YKFPGC2qBMipQPbd@eldamar.lan>
+ <87o8dawhy3.fsf@yucca> <20210518150652.zxj56bljjeq3ogln@gilmour>
+ <YKQiws6yP35QIpJd@eldamar.lan> <YKQm/F+JIjf/YUHm@eldamar.lan>
+Date:   Thu, 20 May 2021 11:24:18 -0700
+Message-ID: <87a6opqn59.fsf@ponder>
 MIME-Version: 1.0
-References: <20210519082049.30976-1-zajec5@gmail.com> <20210519184041.563-1-zajec5@gmail.com>
-In-Reply-To: <20210519184041.563-1-zajec5@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 20 May 2021 13:22:36 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+zUa-KdCEVJ6qdLeSu6QUGFkTy6O-HC_=_zxFUhfON8Q@mail.gmail.com>
-Message-ID: <CAL_Jsq+zUa-KdCEVJ6qdLeSu6QUGFkTy6O-HC_=_zxFUhfON8Q@mail.gmail.com>
-Subject: Re: [PATCH V3 robh dt/next] dt-bindings: mfd: add Broadcom CRU
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Linus Walleij <linus.walleij@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 19, 2021 at 1:40 PM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com> =
-wrote:
+On 2021-05-18, Salvatore Bonaccorso wrote:
+> On Tue, May 18, 2021 at 10:25:40PM +0200, Salvatore Bonaccorso wrote:
+>> On Tue, May 18, 2021 at 05:06:52PM +0200, Maxime Ripard wrote:
+>> > On Sun, May 16, 2021 at 01:18:44PM -0700, Vagrant Cascadian wrote:
+>> > > On 2021-05-16, Salvatore Bonaccorso wrote:
+>> > > > On Sat, Feb 13, 2021 at 09:51:17AM +0100, Jernej Škrabec wrote:
+>> > > >> Let me first explain that it was oversight on my side not noticing initials in 
+>> > > >> your SoB tag. But since the issue was raised by Maxime, I didn't follow up.
+>> > > >> 
+>> > > >> Dne sobota, 13. februar 2021 ob 07:51:32 CET je B.R. Oake napisal(a):
+>> > > >> > On Wed Feb 10 at 16:01:18 CET 2021, Maxime Ripard wrote:
+>> > > >> > > Unfortunately we can't take this patch as is, this needs to be your real
+>> > > >> > > name, see:
+>> > > >> > > https://www.kernel.org/doc/html/latest/process/submitting-patches.html#de
+>> > > >> > > veloper-s-certificate-of-origin-1-1
+>> > > >> > Dear Maxime,
+>> > > >> > 
+>> > > >> > Thank you very much for considering my contribution and for all your
+>> > > >> > work on supporting sunxi-based hardware; I appreciate it.
+>> > > >> > 
+>> > > >> > Thank you for referring me to the Developer's Certificate of Origin, but
+>> > > >> > I had already read it before submitting (I had to do so in order to know
+>> > > >> > what I was saying by "Signed-off-by:") and I do certify what it says.
+>> > > >> > 
+>> > > >> > Looking through recent entries in the commit log of the mainline kernel,
+>> > > >> > I see several patches from authors such as:
+>> > > >> > 
+>> > > >> >   H.J. Lu <hjl.tools@gmail.com>
+>> > > >> >   B K Karthik <karthik.bk2000@live.com>
+>> > > >> >   JC Kuo <jckuo@nvidia.com>
+>> > > >> >   EJ Hsu <ejh@nvidia.com>
+>> > > >> >   LH Lin <lh.lin@mediatek.com>
+>> > > >> >   KP Singh <kpsingh@kernel.org>
+>> > > >> >   Karthik B S <karthik.b.s@intel.com>
+>> > > >> >   Shreyas NC <shreyas.nc@intel.com>
+>> > > >> >   Vandana BN <bnvandana@gmail.com>
+>> > > >> > 
+>> > > >> > so I believe names of this form are in fact acceptable, even if the
+>> > > >> > style might seem a little old-fashioned to some.
+>> > > >> 
+>> > > >> Speaking generally, not only for this case, prior art arguments rarely hold, 
+>> > > >> because:
+>> > > >> - it might be oversight,
+>> > > >> - it might be a bad practice, which should not be followed in new 
+>> > > >> contributions,
+>> > > >> - different maintainers have different point of view on same thing,
+>> > > >> - maintainer wants to adapt new practice or steer subsystem in new direction
+>> > > >> 
+>> > > >> > 
+>> > > >> > I would like to add that I have met many people with names such as C.J.,
+>> > > >> > A A, TC, MG, etc. That is what everybody calls them and it would be
+>> > > >> > natural for them to sign themselves that way. Some of them might want to
+>> > > >> > contribute to Linux some day, and I think it would be a great shame and
+>> > > >> > a loss to all of us if they were discouraged from doing so by reading
+>> > > >> > our conversation in the archives and concluding that any contribution
+>> > > >> > from them, however small, would be summarily refused simply because of
+>> > > >> > their name. Please could you ensure that does not happen?
+>> > > >> 
+>> > > >> The link you posted says following:
+>> > > >> "using your real name (sorry, no pseudonyms or anonymous contributions.)"
+>> > > >> 
+>> > > >> I believe that real name means no initials, no matter what people are 
+>> > > >> accustomed to. From my point of view, CJ is pseudonym derived from real name.
+>> > > >> 
+>> > > >> This is not the first time that fix of SoB tag was requested, you can find such 
+>> > > >> requests in ML archives.
+>> > > 
+>> > > I'm sure this isn't the first time this sort of thing has been brought
+>> > > up on this subject, but I feel obliged to mention:
+>> > > 
+>> > >   https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/
+>> > > 
+>> > > This seems to be blocked on culturally dependent perception of what
+>> > > looks like a "real name" as opposed to any technical grounds.
+>> > > 
+>> > > What is the goal of the "real name" in Signed-off-by actually trying to
+>> > > achieve?
+>> > 
+>> > https://www.kernel.org/doc/html/latest/process/submitting-patches.html#developer-s-certificate-of-origin-1-1
+>> > 
+>> > I'm not the one making the rules, sorry
+>> 
+>> Would it be technically possible to do the following: Based on the
+>> downstream report we receved in Debian in
+>> https://bugs.debian.org/988574 wrap up the same patch (I guess I will
+>> need to use another commit message wording) and resubmit with my own
+>> SoB with my downstream hat on and say a Tested-by from Vagrant? So we
+>> are not blocked on the SoB issue from this original post of the change
+>> to apply to arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts ?
 >
-> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> Here is an attempt to do that and coming from
+> https://bugs.debian.org/988574 for the change change submission.
 >
-> CRU is a block used in e.g. Northstar devices. It can be seen in the
-> bcm5301x.dtsi and this binding documents its proper usage.
+> Regards,
+> Salvatore
 >
-> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> From 93c335c997d6386fc5cb7b9c5621b9b9725de20e Mon Sep 17 00:00:00 2001
+> From: Salvatore Bonaccorso <carnil@debian.org>
+> Date: Tue, 18 May 2021 22:33:49 +0200
+> Subject: [PATCH] ARM: dts: sun8i: h3: orangepi-plus: Fix ethernet phy-mode
+>
+> Commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e rx/tx delay
+> config") sets the RX/TX delay according to the phy-mode property in the
+> device tree. For the Orange Pi Plus board this is "rgmii", which is the
+> wrong setting.
+>
+> Following the example of a900cac3750b ("ARM: dts: sun7i: a20: bananapro:
+> Fix ethernet phy-mode") the phy-mode is changed to "rgmii-id" which gets
+> the Ethernet working again on this board.
+>
+> Fixes: bbc4d71d6354 ("net: phy: realtek: fix rtl8211e rx/tx delay config")
+> Reported-by: Vagrant Cascadian <vagrant@reproducible-builds.org>
+> Link: https://bugs.debian.org/988574
+> Signed-off-by: Salvatore Bonaccorso <carnil@debian.org>
+
+Seems worth crediting the original reporter "B.R. Oake"
+<broake@mailfence.com> with a Reported-by as well?
+
+
+live well,
+  vagrant
+
 > ---
-> Rob: would you take this patch through your dt/next?
-
-I can't, I don't have the dependencies. It looks like 08e9fdfbb224 is
-already upstream. For ac5f8197d15c, I could get a stable branch from
-Linus, but I can't take some random github branch. Even if I got a
-stable branch for that, that's a lot of extra work for me for 1 patch
-compared to waiting til next cycle.
-
-My suggestion is get a stable branch/tag from Linus, merge that into
-the Broadcom branch and then apply this patch. Though really, Linus
-needed to know the dependency when applying the patch if he doesn't
-rebase his tree. (I realize the dependency probably happened because
-of the review).
-
+>  arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> V2: Use complete binding & change additionalProperties to false
-> V3: Use clock-controller@ for clocks
->
-> NOTICE: this patch is based on top of the linux-next as it requires:
-> ac5f8197d15c ("dt-bindings: pinctrl: convert Broadcom Northstar to the js=
-on-schema")
-> 08e9fdfbb224 ("dt-bindings: thermal: brcm,ns-thermal: Convert to the json=
--schema")
-> AND merged git@github.com:Broadcom/stblinux.git devicetree/next as it req=
-uires:
-> 8f711f68cffd ("dt-bindings: clock: brcm, iproc-clocks: convert to the jso=
-n-schema")
->
-> This is reworked version of the
-> [PATCH robh next] dt-bindings: bus: add Broadcom CRU
-> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/2021030914=
-2241.16259-1-zajec5@gmail.com/
-> ---
->  .../devicetree/bindings/mfd/brcm,cru.yaml     | 86 +++++++++++++++++++
->  1 file changed, 86 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/brcm,cru.yaml
->
-> diff --git a/Documentation/devicetree/bindings/mfd/brcm,cru.yaml b/Docume=
-ntation/devicetree/bindings/mfd/brcm,cru.yaml
-> new file mode 100644
-> index 000000000000..fc1317ab3226
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
-> @@ -0,0 +1,86 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/brcm,cru.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom CRU
-> +
-> +maintainers:
-> +  - Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> +
-> +description: |
-> +  Broadcom CRU ("Clock and Reset Unit" or "Central Resource Unit") is a =
-hardware
-> +  block grouping smaller blocks. On Broadcom Northstar platform it conta=
-ins e.g.
-> +  clocks, pinctrl, USB PHY and thermal.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - brcm,ns-cru
-> +      - const: simple-mfd
-> +
-> +  reg:
-> +    description: CRU registers
-> +
-> +  ranges: true
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +  pinctrl:
-> +    $ref: ../pinctrl/brcm,ns-pinmux.yaml
-> +
-> +patternProperties:
-> +  '^clock-controller@[a-f0-9]+$':
-> +    $ref: ../clock/brcm,iproc-clocks.yaml
-> +
-> +  '^thermal@[a-f0-9]+$':
-> +    $ref: ../thermal/brcm,ns-thermal.yaml
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    cru-bus@1800c100 {
-> +        compatible =3D "brcm,ns-cru", "simple-mfd";
-> +        reg =3D <0x1800c100 0x1d0>;
-> +        ranges;
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <1>;
-> +
-> +        clock-controller@100 {
-> +            #clock-cells =3D <1>;
-> +            compatible =3D "brcm,nsp-lcpll0";
-> +            reg =3D <0x100 0x14>;
-> +            clocks =3D <&osc>;
-> +            clock-output-names =3D "lcpll0", "pcie_phy", "sdio", "ddr_ph=
-y";
-> +        };
-> +
-> +        clock-controller@140 {
-> +            #clock-cells =3D <1>;
-> +            compatible =3D "brcm,nsp-genpll";
-> +            reg =3D <0x140 0x24>;
-> +            clocks =3D <&osc>;
-> +            clock-output-names =3D "genpll", "phy", "ethernetclk", "usbc=
-lk",
-> +                                 "iprocfast", "sata1", "sata2";
-> +        };
-> +
-> +        pinctrl {
-> +            compatible =3D "brcm,bcm4708-pinmux";
-> +            offset =3D <0x1c0>;
-> +        };
-> +
-> +        thermal@2c0 {
-> +            compatible =3D "brcm,ns-thermal";
-> +            reg =3D <0x2c0 0x10>;
-> +            #thermal-sensor-cells =3D <0>;
-> +        };
-> +    };
-> --
-> 2.26.2
->
+> diff --git a/arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts b/arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts
+> index 97f497854e05..d05fa679dcd3 100644
+> --- a/arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts
+> +++ b/arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts
+> @@ -85,7 +85,7 @@ &emac {
+>  	pinctrl-0 = <&emac_rgmii_pins>;
+>  	phy-supply = <&reg_gmac_3v3>;
+>  	phy-handle = <&ext_rgmii_phy>;
+> -	phy-mode = "rgmii";
+> +	phy-mode = "rgmii-id";
+>  
+>  	status = "okay";
+>  };
+> -- 
+> 2.31.1
