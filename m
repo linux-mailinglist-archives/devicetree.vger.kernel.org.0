@@ -2,118 +2,311 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1971538AFAC
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 15:08:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9070338AFB0
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 15:08:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242994AbhETNJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 09:09:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36458 "EHLO
+        id S239625AbhETNKC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 09:10:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243599AbhETNJW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 09:09:22 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17044C061359
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 06:03:00 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id j14so15852898wrq.5
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 06:03:00 -0700 (PDT)
+        with ESMTP id S242074AbhETNJl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 09:09:41 -0400
+Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAA82C061235
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 06:04:21 -0700 (PDT)
+Received: by mail-io1-xd29.google.com with SMTP id e17so3962419iol.7
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 06:04:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=RujbwDaYHFW5IRTsBmUkuqcLlODQklcnrNzBpulfars=;
-        b=Hez+1QvK3f6pRKDh5FTV2p7JSR2zoExN4Cl3/Dx2cllg9rc5e79U3aAIccTzfU8ZRu
-         2c+QRasDl48g2C4Q2+oMxxYXmZOZ+RiBi0DqdUrpHYIXR3ZNaAszYihACj3KRGupUaAk
-         /YgdpPOB8KeLk/rd9SqzBZtTgtVGXz7sI/k8Ucwoh0at5mSCzTp1gwYLYDj4vXkVzSp1
-         rZoDsrHEB97HWq7fFGd/JZN1L3Vidu9aKKWsutkCux7LfQbcNw5UwUqo6G6yXwVvffMW
-         zqzhkTFwuEvlsGPTPO5LJCAvl/qle/ZcsnPyuYYOY6UaGi+C7Hi9zdZMDRih2surH53f
-         ypjg==
+        d=poorly.run; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LaILeXDQ0boA1j3FLO8VWLh6qerXlZqRCMq60RpzKEc=;
+        b=RLn3xKHobOFvZGz0ghTnYHK5Te1heylHLZDMRa3NHzie16L+RemZXJOUMR8pspyJeI
+         SpSZLpUvz2zfoewTkT/8c4ogotCfIxI9BrwEyqbR/i39/NSX+/ddum+nIx8nPzvEf46F
+         1Qyv2f8KAfkNMh/WLc9+XBJQbYYB4fbxfiOS8XBmRo5c3fctrNHps/D01fWHNCinljpR
+         hQFc7DDzlf55fLKCo2BIkR122dc5qMbMYuu09BSUEfNmMOCwyENSOh4fUgItIcy6I0v8
+         oGS+REV9VRblzjm7xKQuuOImHJXunvMud7pkMdkW1Xn9RQZ/TudNEtnKlmd+fkZ+Cony
+         9ZeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=RujbwDaYHFW5IRTsBmUkuqcLlODQklcnrNzBpulfars=;
-        b=DtoQoZ3MeVuxtIKZf1iU67oFz8aopyHpYdRYM5gGNJwyrEhkb26CGi5yn8pBGTE8K+
-         cViyUcB3pdq3DgjKNYQXPHtlBGhlMVSlMLx422QvdYl01+SUa8sR2au+fnVLMGSNgQ9a
-         AQNeUGWGqKDx1wY3bEQaYvr61tfsIwyI4f/DAeuKd8F/SYzhQ/CJoO91LgDzRDv0GnnS
-         VKh1SbwtTfv07Jve9TuMGexirXmw89q6dHoxr9jlz9q4cY5S4TRkfFjJw0cfyE9C3dU0
-         3LW/mCUvaVNMfyUooYNJHsejZD3/lFfYpYyW8rrxsX2iHIIlqntFC3tH2KN5pz6yW4+F
-         /j6A==
-X-Gm-Message-State: AOAM530R9xuWup9jmJpH0Q0xvmXi8fZDo26QUtnep89ltqZ+m1aZzlQx
-        0A0W1Zjm9vqG5HT/eLarkwAeTw==
-X-Google-Smtp-Source: ABdhPJzX3bmOQ9LWAQDKQedPbmuDcmKqA23EagI44Yp+34fGVp8IMK0lCgDStoMI83fJxNiQ6DdA1A==
-X-Received: by 2002:adf:f10c:: with SMTP id r12mr4281511wro.26.1621515778718;
-        Thu, 20 May 2021 06:02:58 -0700 (PDT)
-Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
-        by smtp.googlemail.com with ESMTPSA id o21sm2949976wrf.91.2021.05.20.06.02.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 May 2021 06:02:57 -0700 (PDT)
-Date:   Thu, 20 May 2021 15:02:55 +0200
-From:   LABBE Corentin <clabbe@baylibre.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>, SoC Team <soc@kernel.org>,
-        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 4/5] ARM: gemini: add device tree for edimax NS2502
-Message-ID: <YKZd/+zHlKwag2bs@Red>
-References: <20210517193205.691147-1-clabbe@baylibre.com>
- <20210517193205.691147-5-clabbe@baylibre.com>
- <CACRpkdY3c4uvo1zbEgNW0meF-4P8be_nmoOEQAHP5V+GXgoG=A@mail.gmail.com>
- <YKOO8UxdmZBjYbt4@Red>
- <CACRpkdYqaoggyBO9=fdi2iUh9O0Y_jT5jnc7+qbE9HzEWK57Sg@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LaILeXDQ0boA1j3FLO8VWLh6qerXlZqRCMq60RpzKEc=;
+        b=Rv0WQYf76OKUZESwm2Qmb9+JvZI3cY/B4NgEpi0gmsgt065wJwCBPuar8DPnME4zFv
+         MQfRTt7RXc/6/0GU0io84Nlbj5ZWL8qHRgZHO/rgxoHpQXvMJBaKeh+QHKVmA5CTwylv
+         JWx5IEs0VZ8SREPeQwPaG+tmpsRrQZz97xdcBWNBP/2vPsxjdTEGjJjgKajVJ165ZWhv
+         KfsGS9oQo6GWBRp9Joikv7OMFY3HwJxhv54jpqO9YgFe1esgYR4rn8xf2+yVgufkMLDm
+         YRYbemqSgvv5A9C+R4zmJHLbNr298e9yZUM9DnSATRq382lL+J0//WavRynQRtTut0CN
+         Gjpw==
+X-Gm-Message-State: AOAM533BPfGd6u9Ja3hwCtPZfkkjgzcNT0fYvUdzTdif5GBNQUU7giqV
+        pq3Zf5+nMqLCHD4IBYoewWGh2l9UT5G0XymxHpZIig==
+X-Google-Smtp-Source: ABdhPJwfNwnUIs9JCwBhNCCzuYKrbU6/EOU4x7fJTdO30hXcwWQCXXe29GQIVa9BkbOHDSpYhHQrhZMscQ9WkDc7cmU=
+X-Received: by 2002:a5d:9959:: with SMTP id v25mr5618382ios.85.1621515860195;
+ Thu, 20 May 2021 06:04:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACRpkdYqaoggyBO9=fdi2iUh9O0Y_jT5jnc7+qbE9HzEWK57Sg@mail.gmail.com>
+References: <20210429042834.1127456-1-hsinyi@chromium.org>
+In-Reply-To: <20210429042834.1127456-1-hsinyi@chromium.org>
+From:   Sean Paul <sean@poorly.run>
+Date:   Thu, 20 May 2021 09:03:44 -0400
+Message-ID: <CAMavQK+QTaG0Bgb7cYw=mvKcyaQo4FKPYJPSppUx=CZvo_QJeg@mail.gmail.com>
+Subject: Re: [PATCH v6 1/3] gpu: drm: separate panel orientation property
+ creating and value setting
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Wed, May 19, 2021 at 01:17:59AM +0200, Linus Walleij a écrit :
-> On Tue, May 18, 2021 at 11:55 AM LABBE Corentin <clabbe@baylibre.com> wrote:
-> > Le Tue, May 18, 2021 at 01:46:20AM +0200, Linus Walleij a écrit :
-> 
-> > > Is the FIS broken since you hardcode the partitions?
-> > >
-> > > Doesn't this work:
-> > >
-> > > partitions {
-> > >     compatible = "redboot-fis";
-> > >     /* Eraseblock at 0x7e0000 */
-> > >     fis-index-block = <0xfc>;
-> > > };
-> > >
-> > > (Needs CONFIG_MTD_REDBOOT_PARTS)
-> >
-> > No it does not.
-> >
-> > physmap-flash 30000000.flash: no enabled pin control state
-> > physmap-flash 30000000.flash: no disabled pin control state
-> > physmap-flash 30000000.flash: initialized Gemini-specific physmap control
-> > physmap-flash 30000000.flash: physmap platform flash device: [mem 0x30000000-0x331fffff]
-> > 30000000.flash: Found 1 x16 devices at 0x0 in 16-bit bank. Manufacturer ID 0x000001 Chip ID 0x002201
-> > number of CFI chips: 1
-> > Searching for RedBoot partition table in 30000000.flash at offset 0x1fe0000
-> > No RedBoot partition table detected in 30000000.flash
-> > Searching for RedBoot partition table in 30000000.flash at offset 0x1fe0000
-> > No RedBoot partition table detected in 30000000.flash
-> 
-> Hm since it searches at 0x1fe0000 that's where it thinks the last
-> eraseblock is so the erase blocks are 0x20000 (128KB).
-> 
-> FIS at 0x7e0000 should be erase block
-> 0x7e0000/0x20000 = 0x3f
-> 
-> Can you test fis-index-block = <0x3f> and see what happens?
-> 
+On Thu, Apr 29, 2021 at 12:28 AM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+>
+> drm_dev_register() sets connector->registration_state to
+> DRM_CONNECTOR_REGISTERED and dev->registered to true. If
+> drm_connector_set_panel_orientation() is first called after
+> drm_dev_register(), it will fail several checks and results in following
+> warning.
+>
+> Add a function to create panel orientation property and set default value
+> to UNKNOWN, so drivers can call this function to init the property earlier
+> , and let the panel set the real value later.
+>
+> [    4.480976] ------------[ cut here ]------------
+> [    4.485603] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:45 __drm_mode_object_add+0xb4/0xbc
+> <snip>
+> [    4.609772] Call trace:
+> [    4.612208]  __drm_mode_object_add+0xb4/0xbc
+> [    4.616466]  drm_mode_object_add+0x20/0x2c
+> [    4.620552]  drm_property_create+0xdc/0x174
+> [    4.624723]  drm_property_create_enum+0x34/0x98
+> [    4.629241]  drm_connector_set_panel_orientation+0x64/0xa0
+> [    4.634716]  boe_panel_get_modes+0x88/0xd8
+> [    4.638802]  drm_panel_get_modes+0x2c/0x48
+> [    4.642887]  panel_bridge_get_modes+0x1c/0x28
+> [    4.647233]  drm_bridge_connector_get_modes+0xa0/0xd4
+> [    4.652273]  drm_helper_probe_single_connector_modes+0x218/0x700
+> [    4.658266]  drm_mode_getconnector+0x1b4/0x45c
+> [    4.662699]  drm_ioctl_kernel+0xac/0x128
+> [    4.666611]  drm_ioctl+0x268/0x410
+> [    4.670002]  drm_compat_ioctl+0xdc/0xf0
+> [    4.673829]  __arm64_compat_sys_ioctl+0xc8/0x100
+> [    4.678436]  el0_svc_common+0xf4/0x1c0
+> [    4.682174]  do_el0_svc_compat+0x28/0x3c
+> [    4.686088]  el0_svc_compat+0x10/0x1c
+> [    4.689738]  el0_sync_compat_handler+0xa8/0xcc
+> [    4.694171]  el0_sync_compat+0x178/0x180
+> [    4.698082] ---[ end trace b4f2db9d9c88610b ]---
+> [    4.702721] ------------[ cut here ]------------
+> [    4.707329] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:243 drm_object_attach_property+0x48/0xb8
+> <snip>
+> [    4.833830] Call trace:
+> [    4.836266]  drm_object_attach_property+0x48/0xb8
+> [    4.840958]  drm_connector_set_panel_orientation+0x84/0xa0
+> [    4.846432]  boe_panel_get_modes+0x88/0xd8
+> [    4.850516]  drm_panel_get_modes+0x2c/0x48
+> [    4.854600]  panel_bridge_get_modes+0x1c/0x28
+> [    4.858946]  drm_bridge_connector_get_modes+0xa0/0xd4
+> [    4.863984]  drm_helper_probe_single_connector_modes+0x218/0x700
+> [    4.869978]  drm_mode_getconnector+0x1b4/0x45c
+> [    4.874410]  drm_ioctl_kernel+0xac/0x128
+> [    4.878320]  drm_ioctl+0x268/0x410
+> [    4.881711]  drm_compat_ioctl+0xdc/0xf0
+> [    4.885536]  __arm64_compat_sys_ioctl+0xc8/0x100
+> [    4.890142]  el0_svc_common+0xf4/0x1c0
+> [    4.893879]  do_el0_svc_compat+0x28/0x3c
+> [    4.897791]  el0_svc_compat+0x10/0x1c
+> [    4.901441]  el0_sync_compat_handler+0xa8/0xcc
+> [    4.905873]  el0_sync_compat+0x178/0x180
+> [    4.909783] ---[ end trace b4f2db9d9c88610c ]---
+>
 
-With 0x7F it works.
++intel-gfx for i915 changes
 
-When testing, I found that fis-index-block was ignored. I just sent a patch fixing this.
+Reviewed-by: Sean Paul <seanpaul@chromium.org>
 
-Regards
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> ---
+> v6, v5:
+> don't create property in set_panel_orientation.
+>
+> v4, v3:
+> create property in dsi driver and set value in panel.
+>
+> v2:
+> create property in connector init
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20210426051848.2600890-1-hsinyi@chromium.org/
+>
+> v1:
+> set panel orientation in dsi driver
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20210409045314.3420733-1-hsinyi@chromium.org/
+> ---
+>  drivers/gpu/drm/drm_connector.c         | 58 ++++++++++++++++++-------
+>  drivers/gpu/drm/i915/display/icl_dsi.c  |  1 +
+>  drivers/gpu/drm/i915/display/intel_dp.c |  1 +
+>  drivers/gpu/drm/i915/display/vlv_dsi.c  |  1 +
+>  include/drm/drm_connector.h             |  2 +
+>  5 files changed, 47 insertions(+), 16 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> index 7631f76e7f34..7189baaabf41 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -1210,7 +1210,7 @@ static const struct drm_prop_enum_list dp_colorspaces[] = {
+>   *     INPUT_PROP_DIRECT) will still map 1:1 to the actual LCD panel
+>   *     coordinates, so if userspace rotates the picture to adjust for
+>   *     the orientation it must also apply the same transformation to the
+> - *     touchscreen input coordinates. This property is initialized by calling
+> + *     touchscreen input coordinates. This property value is set by calling
+>   *     drm_connector_set_panel_orientation() or
+>   *     drm_connector_set_panel_orientation_with_quirk()
+>   *
+> @@ -2173,8 +2173,8 @@ EXPORT_SYMBOL(drm_connector_set_vrr_capable_property);
+>   * @connector: connector for which to set the panel-orientation property.
+>   * @panel_orientation: drm_panel_orientation value to set
+>   *
+> - * This function sets the connector's panel_orientation and attaches
+> - * a "panel orientation" property to the connector.
+> + * This function sets the connector's panel_orientation value. If the property
+> + * doesn't exist, it will return an error.
+>   *
+>   * Calling this function on a connector where the panel_orientation has
+>   * already been set is a no-op (e.g. the orientation has been overridden with
+> @@ -2205,19 +2205,11 @@ int drm_connector_set_panel_orientation(
+>         info->panel_orientation = panel_orientation;
+>
+>         prop = dev->mode_config.panel_orientation_property;
+> -       if (!prop) {
+> -               prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
+> -                               "panel orientation",
+> -                               drm_panel_orientation_enum_list,
+> -                               ARRAY_SIZE(drm_panel_orientation_enum_list));
+> -               if (!prop)
+> -                       return -ENOMEM;
+> -
+> -               dev->mode_config.panel_orientation_property = prop;
+> -       }
+> +       if (WARN_ON(!prop))
+> +               return -EINVAL;
+>
+> -       drm_object_attach_property(&connector->base, prop,
+> -                                  info->panel_orientation);
+> +       drm_object_property_set_value(&connector->base, prop,
+> +                                     info->panel_orientation);
+>         return 0;
+>  }
+>  EXPORT_SYMBOL(drm_connector_set_panel_orientation);
+> @@ -2225,7 +2217,7 @@ EXPORT_SYMBOL(drm_connector_set_panel_orientation);
+>  /**
+>   * drm_connector_set_panel_orientation_with_quirk -
+>   *     set the connector's panel_orientation after checking for quirks
+> - * @connector: connector for which to init the panel-orientation property.
+> + * @connector: connector for which to set the panel-orientation property.
+>   * @panel_orientation: drm_panel_orientation value to set
+>   * @width: width in pixels of the panel, used for panel quirk detection
+>   * @height: height in pixels of the panel, used for panel quirk detection
+> @@ -2252,6 +2244,40 @@ int drm_connector_set_panel_orientation_with_quirk(
+>  }
+>  EXPORT_SYMBOL(drm_connector_set_panel_orientation_with_quirk);
+>
+> +/**
+> + * drm_connector_init_panel_orientation_property -
+> + *     create the connector's panel orientation property
+> + *
+> + * This function attaches a "panel orientation" property to the connector
+> + * and initializes its value to DRM_MODE_PANEL_ORIENTATION_UNKNOWN.
+> + *
+> + * The value of the property can be set by drm_connector_set_panel_orientation()
+> + * or drm_connector_set_panel_orientation_with_quirk() later.
+> + *
+> + * Returns:
+> + * Zero on success, negative errno on failure.
+> + */
+> +int drm_connector_init_panel_orientation_property(
+> +       struct drm_connector *connector)
+> +{
+> +       struct drm_device *dev = connector->dev;
+> +       struct drm_property *prop;
+> +
+> +       prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
+> +                       "panel orientation",
+> +                       drm_panel_orientation_enum_list,
+> +                       ARRAY_SIZE(drm_panel_orientation_enum_list));
+> +       if (!prop)
+> +               return -ENOMEM;
+> +
+> +       dev->mode_config.panel_orientation_property = prop;
+> +       drm_object_attach_property(&connector->base, prop,
+> +                                  DRM_MODE_PANEL_ORIENTATION_UNKNOWN);
+> +
+> +       return 0;
+> +}
+> +EXPORT_SYMBOL(drm_connector_init_panel_orientation_property);
+> +
+>  int drm_connector_set_obj_prop(struct drm_mode_object *obj,
+>                                     struct drm_property *property,
+>                                     uint64_t value)
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+> index 9282978060b0..5ac4538e4283 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -1903,6 +1903,7 @@ static void icl_dsi_add_properties(struct intel_connector *connector)
+>
+>         connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
+>
+> +       drm_connector_init_panel_orientation_property(&connector->base);
+>         drm_connector_set_panel_orientation_with_quirk(&connector->base,
+>                                 intel_dsi_get_panel_orientation(connector),
+>                                 connector->panel.fixed_mode->hdisplay,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index a5231ac3443a..f1d664e5abb2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5263,6 +5263,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+>         intel_panel_setup_backlight(connector, pipe);
+>
+>         if (fixed_mode) {
+> +               drm_connector_init_panel_orientation_property(connector);
+>                 drm_connector_set_panel_orientation_with_quirk(connector,
+>                                 dev_priv->vbt.orientation,
+>                                 fixed_mode->hdisplay, fixed_mode->vdisplay);
+> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> index 9bee99fe5495..853855482af1 100644
+> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> @@ -1632,6 +1632,7 @@ static void vlv_dsi_add_properties(struct intel_connector *connector)
+>
+>                 connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
+>
+> +               drm_connector_init_panel_orientation_property(&connector->base);
+>                 drm_connector_set_panel_orientation_with_quirk(
+>                                 &connector->base,
+>                                 intel_dsi_get_panel_orientation(connector),
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index 1922b278ffad..4396c1c4a5db 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -1696,6 +1696,8 @@ int drm_connector_set_panel_orientation_with_quirk(
+>         struct drm_connector *connector,
+>         enum drm_panel_orientation panel_orientation,
+>         int width, int height);
+> +int drm_connector_init_panel_orientation_property(
+> +       struct drm_connector *connector);
+>  int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
+>                                           int min, int max);
+>
+> --
+> 2.31.1.498.g6c1eba8ee3d-goog
+>
