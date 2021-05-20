@@ -2,97 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A68B38B262
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 17:01:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F36638B274
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 17:03:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231376AbhETPDJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 11:03:09 -0400
-Received: from mail-vs1-f54.google.com ([209.85.217.54]:46986 "EHLO
-        mail-vs1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231330AbhETPDH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 11:03:07 -0400
-Received: by mail-vs1-f54.google.com with SMTP id q6so4490171vsp.13;
-        Thu, 20 May 2021 08:01:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=90v/0p7/QeqsVm7sdtO9eTLLi/cOP7TH9xelXYgqHPI=;
-        b=PvnB74FX7Mg98K15lWC+ZZSU7wQfl4K6OUkGDLo9mAdrN1RKWiic5g0+sTixNpdB0g
-         YmsXn9qwoFqA4HO7U44BtnReNrL2SDhMsUUy2gdXQmVUWcPj/bVbDVZveeDnXkLApdWs
-         pVFZxug136WOXfuQ3jowzEZoqx6YX3XQj2osuvM78YOeqNItpO80MjdbsiEavcPg4Jb4
-         X36F84KKzLm1u/GrjCg/VELKlMpnNQ56/JjS665Ias5PIBGcuFaBcKC1t0OGPdjw0Y1N
-         bm+BIGex5liF1eIo94d+TImihEw1hiostEBgt5wUA1VufhED02FOyEiqoWOaEEZJY6SU
-         7gAw==
-X-Gm-Message-State: AOAM531X3e4R7u6l1wNaZ2I8040HmLkLz0qgpA7EK6K/luqYGUYjPFJ7
-        LhHi5m9bbb00eLHfQozkqT6L3C7M2Wo/K4VJGlM=
-X-Google-Smtp-Source: ABdhPJzjHxh5zy1BiXpMwHIh1Fk3akLbzGJK4h7jyM1wblAEyFSKkG+uSCDAZFFQ7yOQSCFfSFTKHvcynXaK4GxQXNQ=
-X-Received: by 2002:a05:6102:392:: with SMTP id m18mr4592452vsq.40.1621522904921;
- Thu, 20 May 2021 08:01:44 -0700 (PDT)
+        id S231986AbhETPFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 11:05:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35320 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231470AbhETPFI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 11:05:08 -0400
+Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8C27C061574
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 08:03:46 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:9cc6:7165:bcc2:1e70])
+        by xavier.telenet-ops.be with bizsmtp
+        id 733j2500A31btb90133jnS; Thu, 20 May 2021 17:03:45 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1ljkD8-007XoC-Pl; Thu, 20 May 2021 17:03:42 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1ljkD8-009FfY-7C; Thu, 20 May 2021 17:03:42 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: arm: scu: Convert to json-schema
+Date:   Thu, 20 May 2021 17:03:40 +0200
+Message-Id: <c5c36fb952675df4b9c9834d53a21fb58f391e86.1621522979.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <3ccc0cf5319f56e230ee3b8a009f8d63afb114c1.1621521847.git.geert+renesas@glider.be>
-In-Reply-To: <3ccc0cf5319f56e230ee3b8a009f8d63afb114c1.1621521847.git.geert+renesas@glider.be>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 20 May 2021 17:01:33 +0200
-Message-ID: <CAMuHMdUwOMZy_vFH8QwCxuhy7UCvOX8sw_87CLLueiJdfbkuFw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: timer: arm,twd: Convert to json-schema
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Watchdog Mailing List <linux-watchdog@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 20, 2021 at 4:45 PM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
-> Convert the ARM Timer-Watchdog Device Tree binding documentation to
-> json-schema.  As the old binding document actually contained two
-> bindings, it is split in two document: one for the timer part, and one
-> for the watchdog part.
->
-> Document missing properties.
-> Update examples to match reality.
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> I have listed Marc as the maintainer, as he wrote the original bindings.
-> Marc: Please scream if this is inappropriate ;-)
-> ---
->  .../bindings/timer/arm,twd-timer.yaml         | 56 +++++++++++++++++++
->  .../devicetree/bindings/timer/arm,twd.txt     | 53 ------------------
->  .../bindings/watchdog/arm,twd-wdt.yaml        | 50 +++++++++++++++++
+Convert the ARM Snoop Control Unit (SCU) Device Tree binding
+documentation to json-schema.
 
-Bummer, forgot to update a reference.  Feel free to apply this fix
+Document required properties.
 
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+I have listed Linus as the maintainer, as he wrote the original
+bindings.  Linus: Please scream if this is inappropriate ;-)
+---
+ .../devicetree/bindings/arm/arm,scu.yaml      | 46 +++++++++++++++++++
+ Documentation/devicetree/bindings/arm/scu.txt | 28 -----------
+ .../devicetree/bindings/arm/ux500/boards.txt  |  2 +-
+ 3 files changed, 47 insertions(+), 29 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/arm,scu.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/scu.txt
+
+diff --git a/Documentation/devicetree/bindings/arm/arm,scu.yaml b/Documentation/devicetree/bindings/arm/arm,scu.yaml
+new file mode 100644
+index 0000000000000000..dae2aa27e641b7d6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/arm,scu.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/arm,scu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ARM Snoop Control Unit (SCU)
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: |
++  As part of the MPCore complex, Cortex-A5 and Cortex-A9 are provided
++  with a Snoop Control Unit. The register range is usually 256 (0x100)
++  bytes.
++
++  References:
++    - Cortex-A9: see DDI0407E Cortex-A9 MPCore Technical Reference Manual
++      Revision r2p0
++    - Cortex-A5: see DDI0434B Cortex-A5 MPCore Technical Reference Manual
++      Revision r0p1
++    - ARM11 MPCore: see DDI0360F ARM 11 MPCore Processor Technical Reference
++      Manial Revision r2p0
++
++properties:
++  compatible:
++    enum:
++      - arm,cortex-a9-scu
++      - arm,cortex-a5-scu
++      - arm,arm11mp-scu
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    scu@a0410000 {
++            compatible = "arm,cortex-a9-scu";
++            reg = <0xa0410000 0x100>;
++    };
+diff --git a/Documentation/devicetree/bindings/arm/scu.txt b/Documentation/devicetree/bindings/arm/scu.txt
+deleted file mode 100644
+index 74d0a780ce511998..0000000000000000
+--- a/Documentation/devicetree/bindings/arm/scu.txt
++++ /dev/null
+@@ -1,28 +0,0 @@
+-* ARM Snoop Control Unit (SCU)
+-
+-As part of the MPCore complex, Cortex-A5 and Cortex-A9 are provided
+-with a Snoop Control Unit. The register range is usually 256 (0x100)
+-bytes.
+-
+-References:
+-
+-- Cortex-A9: see DDI0407E Cortex-A9 MPCore Technical Reference Manual
+-  Revision r2p0
+-- Cortex-A5: see DDI0434B Cortex-A5 MPCore Technical Reference Manual
+-  Revision r0p1
+-- ARM11 MPCore: see DDI0360F ARM 11 MPCore Processor Technical Reference
+-  Manial Revision r2p0
+-
+-- compatible : Should be:
+-	"arm,cortex-a9-scu"
+-	"arm,cortex-a5-scu"
+-	"arm,arm11mp-scu"
+-
+-- reg : Specify the base address and the size of the SCU register window.
+-
+-Example:
+-
+-scu@a0410000 {
+-	compatible = "arm,cortex-a9-scu";
+-	reg = <0xa0410000 0x100>;
+-};
+diff --git a/Documentation/devicetree/bindings/arm/ux500/boards.txt b/Documentation/devicetree/bindings/arm/ux500/boards.txt
+index 5a7e6f712623bb5d..18d55532d31eb1e7 100644
 --- a/Documentation/devicetree/bindings/arm/ux500/boards.txt
 +++ b/Documentation/devicetree/bindings/arm/ux500/boards.txt
-@@ -26,7 +26,7 @@ interrupt-controller:
-        see binding for interrupt-controller/arm,gic.txt
-
- timer:
--       see binding for timer/arm,twd.txt
-+       see binding for timer/arm,twd-timer.yaml
-
- clocks:
-        see binding for clocks/ux500.txt
-
-or wait for v2.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+@@ -20,7 +20,7 @@ during retention, system won't boot without this):
+ 	compatible = "ste,dbx500-backupram"
+ 
+ scu:
+-	see binding for arm/scu.txt
++	see binding for arm/arm,scu.yaml
+ 
+ interrupt-controller:
+ 	see binding for interrupt-controller/arm,gic.txt
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.25.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
