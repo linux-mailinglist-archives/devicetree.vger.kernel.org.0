@@ -2,168 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50D8938AFCF
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 15:21:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 312BB38AFF0
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 15:25:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234697AbhETNWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 09:22:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39582 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236204AbhETNWU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 09:22:20 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69E04C061574
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 06:20:58 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id y14so15571050wrm.13
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 06:20:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hrt4rXbdgKZiXCgVRf8MpghHthsSrMiTOwxhkdmcdTQ=;
-        b=nLGDj7iwxrQWE6tK8pSces4KzEl4qc8H4g5A4B01oWH6xOcUEP4v7D8J5w/Se5xq3Q
-         p+uHiNwR8rD7cJH+9w0/I6dl1sDDDeWVuzlqF3p5T43CDw7uL8IXLDTVxyiLVEXC5R4K
-         K7G94l3O0iuikaoh23UJPd1OJAHKsWrYmvMtjfVSTjZ3/IO2TYl+QP4BGaQRVz5TGKJY
-         AzTdSLT30/Q8kTA+XyvBVBMLczEPz52gE6mQ+FqZJ5u4oVeq3kG1WOYX6Bb2niXEu4HA
-         SZzWWHiOswHsvGdnTdzkIbnjx4IT3iZ/F6AJ8OhJ7ExDRn0oKPo+DkjCGO5Pm4leor2v
-         rFUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hrt4rXbdgKZiXCgVRf8MpghHthsSrMiTOwxhkdmcdTQ=;
-        b=avSz5xkV+Po0XORvV0vDwc3I7UQfA+9q6TUiCRRDgD8KKvupzlJkHkvUw57OUxMIcJ
-         HKGLZ8VZtISCoAOog6iTw5v9Fl4dEj4bgzQM+JH+HBKK8XJTlk/nyiD6yxlBEaAiCXfJ
-         nt+OmPyEacfUaULDq7cu0hYaLEdfs9p2KfL1K5Bug7/yZXTsBk8dF1r39Qed6J/9bJcP
-         gD3/C0vdvXZDWgZWzeBy0cw0Dwnb4QUp8xYshmgTOwyu4+gRNlTf1Hq7ilXylZ2W+nPd
-         TBTLUZZXckrXRdGwJWQHtGpnCosZTXdJqzHiWJc41QxOxZhlSvNewUuepuv7cbGCPMyq
-         pwpg==
-X-Gm-Message-State: AOAM531aMJoDzg5vUdbdP4xsdtmznTUAfVs56j4yXTjZ7yK6y2kppHJ6
-        2IyCM8nGCoQuV/RD534eEjyXcfLMXJLMgZJPeFxVnw==
-X-Google-Smtp-Source: ABdhPJz1c4OCAGvBQbwVKk+zWE94i+Fc3/ecwkVVarWRKDvIshxSZcvA2uuEY7eNIzRCFguGdVu2xPy+W240MxFZF+0=
-X-Received: by 2002:adf:cd8c:: with SMTP id q12mr4169832wrj.43.1621516856958;
- Thu, 20 May 2021 06:20:56 -0700 (PDT)
+        id S233324AbhETN0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 09:26:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48036 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231733AbhETN0m (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 May 2021 09:26:42 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D44566135A;
+        Thu, 20 May 2021 13:25:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1621517120;
+        bh=ZGR0d1utfxvQm3s0niYerfupf8fQvgD1F1Vf6QEpFTQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=IXW65ZzioDVPpl+gzUyMI7M0QoFYoDQ0n55Jigm9jcR1TrXz764f5RO555kqg1dgS
+         +59mcs5flYcU+0f1rFAoFe9rsMmFbdg6NdLm97gxNtobggpXUyFZrdolLMEiypJY5E
+         cKA3ALOxntTIfnBmr94MP95KzRU7w2Qj4WyArEzPGceHu6fcpBcJSUAzuhQEjeBIC0
+         HCw/kXVbZsToel77d5YBHK4zxdRsL9rbmbT6u1XtU4j4JiCqI9OMV5lsQbSElz+NJ/
+         sU4yw79M9FHu5fq9GK62cYcRgvw6/MUSq8M0chxk840k/b5ooVe+7hT0pbretYqesF
+         MjgN9G723EnIw==
+Received: by mail-ej1-f45.google.com with SMTP id i7so7449408ejc.5;
+        Thu, 20 May 2021 06:25:20 -0700 (PDT)
+X-Gm-Message-State: AOAM53030A9e5BQg0z0iBIVmjylPcFjc9VRSAWkjfT7X7/XH8knMDu3/
+        RFXWKnG0wf6rD3wgU4NpBylvngu/JHaHhi0T6g==
+X-Google-Smtp-Source: ABdhPJyYRw8Cvw8jFOxekcPR1d+Gtnv+Q16LLY5HiWSVWHW/5gWy/2iRMsHIUVSQpFkOEVzkI/Xk0CeumJ0LRI12PjY=
+X-Received: by 2002:a17:907:724b:: with SMTP id ds11mr4688567ejc.108.1621517119203;
+ Thu, 20 May 2021 06:25:19 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210505093843.3308691-1-sudeep.holla@arm.com>
-In-Reply-To: <20210505093843.3308691-1-sudeep.holla@arm.com>
-From:   Jens Wiklander <jens.wiklander@linaro.org>
-Date:   Thu, 20 May 2021 15:20:46 +0200
-Message-ID: <CAHUa44Fk_u9tFp=C6FdUhYeSZ-wAcmAaEqx9j=eJXtxD10G=Ug@mail.gmail.com>
-Subject: Re: [PATCH v6 0/6] firmware: Add initial support for Arm FF-A
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Devicetree List <devicetree@vger.kernel.org>, arve@google.com,
-        Andrew Walbran <qwandor@google.com>,
-        David Hartley <dhh@qti.qualcomm.com>,
-        Achin Gupta <Achin.Gupta@arm.com>,
-        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
-        Marc Bonnici <marc.bonnici@arm.com>
+References: <20210517200907.1459182-1-dianders@chromium.org>
+ <20210517130450.v7.3.I98bf729846c37c4c143f6ab88b1e299280e2fe26@changeid>
+ <20210519200156.GA3535665@robh.at.kernel.org> <CAD=FV=XNaB8fVvwwHPgo8wPmG3EmJ68u_3o8qpPXn4YobNokAA@mail.gmail.com>
+In-Reply-To: <CAD=FV=XNaB8fVvwwHPgo8wPmG3EmJ68u_3o8qpPXn4YobNokAA@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 20 May 2021 08:25:06 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL9p1nOQs5V5xN167E860Gm+3dTRaOwpv2X+AP=cM1Q_g@mail.gmail.com>
+Message-ID: <CAL_JsqL9p1nOQs5V5xN167E860Gm+3dTRaOwpv2X+AP=cM1Q_g@mail.gmail.com>
+Subject: Re: [PATCH v7 03/10] dt-bindings: drm/bridge: ti-sn65dsi86: Add
+ aux-bus child
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+        Lyude Paul <lyude@redhat.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Linus W <linus.walleij@linaro.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Rob Clark <robdclark@chromium.org>,
+        Steev Klimaszewski <steev@kali.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 5, 2021 at 11:38 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
+On Wed, May 19, 2021 at 4:06 PM Doug Anderson <dianders@chromium.org> wrote:
 >
-> Hi all,
+> Hi,
 >
-> This is very basic implementation for in-kernel support for Arm FF-A
-> specification.
+> On Wed, May 19, 2021 at 1:02 PM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Mon, May 17, 2021 at 01:09:00PM -0700, Douglas Anderson wrote:
+> > > We want to be able to list an eDP panel as a child of a ti-sn65dsi86
+> > > node to represent the fact that the panel is connected to the bridge's
+> > > DP AUX bus. Though the panel and the bridge chip are connected in
+> > > several ways, the DP AUX bus is the primary control interface between
+> > > the two and thus makes the most sense to model in device tree
+> > > hierarchy.
+> > >
+> > > Listing a panel in this way makes it possible for the panel driver to
+> > > easily get access to the DP AUX bus that it resides on, which can be
+> > > useful to help in auto-detecting the panel and for turning on various
+> > > bits.
+> > >
+> > > NOTE: it's still possible to continue using the bridge chip and point
+> > > to a panel that _isn't_ listed as a child of the bridge chip (since
+> > > it's worked that way previously), but that should be deprecated since
+> > > there is no downside to listing the panel under the bridge chip.
+> > >
+> > > The idea for this bus's design was hashed out over IRC [1].
+> > >
+> > > [1] https://people.freedesktop.org/~cbrill/dri-log/?channel=dri-devel&date=2021-05-11
+> > >
+> > > Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> > > ---
+> > > Possibly we might want something fancier that could be included by
+> > > other eDP controller bindings. If we want to do this, I'd love to be
+> > > pointed at a good example to follow.
+> > >
+> > > Changes in v7:
+> > > - ti-sn65dsi86: Add aux-bus child patch new for v7.
+> > >
+> > >  .../bindings/display/bridge/ti,sn65dsi86.yaml | 22 ++++++++++++++++++-
+> > >  1 file changed, 21 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
+> > > index 26932d2e86ab..51f5a29e216c 100644
+> > > --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
+> > > +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
+> > > @@ -70,6 +70,11 @@ properties:
+> > >      const: 1
+> > >      description: See ../../pwm/pwm.yaml for description of the cell formats.
+> > >
+> > > +  aux-bus:
+> >
+> > As this is a node:
+> >
+> > type: object
+> >
+> > > +    description:
+> > > +      It is recommended that you place your panel under the aux-bus node
+> > > +      here to represent the control hierarchy.
+> > > +
+> > >    ports:
+> > >      $ref: /schemas/graph.yaml#/properties/ports
+> > >
+> > > @@ -201,11 +206,26 @@ examples:
+> > >
+> > >            port@1 {
+> > >              reg = <1>;
+> > > -            endpoint {
+> > > +            sn65dsi86_out: endpoint {
+> > >                remote-endpoint = <&panel_in_edp>;
+> > >              };
+> > >            };
+> > >          };
+> > > +
+> > > +        aux-bus {
+> > > +          panel {
+> >
+> > We should perhaps have a separate aux-bus schema.
 >
-> Arm Firmware Framework for Armv8-A specification[1] describes a software
-> architecture that provides mechanism to utilise the virtualization
-> extension to isolate software images and describes interfaces that
-> standardize communication between the various software images. This
-> includes communication between images in the Secure and Normal world.
+> Yeah. Before spending lots of time digging into how to do this I
+> wanted to see if anyone was going to give me a big-old NAK on the
+> whole approach. ;-)
 >
-> The main idea here is to create FFA device to establish any communication
-> with a secure partition. This is currently tested with OPTEE(with changes
-> to OPTEE driver adding FFA as transport)
+> I guess I'd make a file called "dp-aux-bus.yaml" (maybe right under
+> bindings/display?) and then I'd include it like this:
 >
-> The series can be fetched from [2]
->
-> --
-> Regards,
-> Sudeep
->
-> [1] https://developer.arm.com/documentation/den0077/latest
-> [2] git://git.kerniel.org/pub/scm/linux/kernel/git/sudeep.holla/linux.git v5.13/ffa
+> aux-bus:
+>   $ref: "../dp-aux-bus.yaml#"
 
-Tested OK with my OP-TEE driver patches on top of 755e78187c4e
-("firmware: arm_ffa: Add support for MEM_* interfaces"), which is the
-latest on the v5.13/ffa branch above.
+Right.
 
-Tested-by: Jens Wiklander <jens.wiklander@linaro.org>
+> > Something should
+> > define the child node is 'panel' and nothing else.
+>
+> At the moment the code also requires that the node name is 'aux-bus'.
+> Any objections to that?
 
-Cheers,
-Jens
+No. There's 2 ways to do that. The above does and adding $nodename in
+dp-aux-bus.yaml will. The latter also means the schema will be applied
+automatically to any node named 'aux-bus'. That means the schema will
+be applied twice unless you have 'select: false'. The main advantage
+of the latter case is it gets applied even without all the users
+converted to schema.
 
+> > Though perhaps
+> > connectors are valid too?
+>
+> They might be. We could always add it later?
 
->
->
-> v5->v6:
->         - Dropped DT dependecy completely and use the discovery APIs for
->           adding FFA partitions on the bus. They is some workaround added
->           as v1.0 doesn't provide UUID as part of the discovery APIs which
->           is used to match the devices and driver on FFA bus.
->         - Extended SMCCC v1.2 API to support full set of input and output
->           registers.
->         - Couple of minor bug fixes found as part of testing
->
-> v4->v5:
->         - Fixed couple of comments in DT bindings
->         - Moved to use native version of RXTX_MAP call, fixed vm_id param
->           to RXTX_UNMAP, dropped couple of unused confusingly named macros
->           (can be added back with correct name when we need to use them)
->
-> v3->v4:
->         - Added support to allow partitions to set 32bit only mode
->         - Addressed all the comments from Jens Wiklander
->
-> v2->v3:
->         - Dropped hypervisor partitions and userspace support as it is
->           no longer in the list of requirements
->         - Moved away from ioctl style interface for in-kernel users as
->           there is no need to keep in sync with userspace anymore
->         - Some kerneldoc fixes as pointed out in earlier reviews
->
-> v1->v2:
->         - Moved userspace code to a separate unit, will move to separate
->           module. Still working on minimizing initcall dependencies and
->           exported functions to reuse some of the code.
->         - Fixed couple of minor issues pointed out
->         - Dropped ASYNC send message as I haven't been able to test
->
-> Sudeep Holla (6):
->   arm64: smccc: Add support for SMCCCv1.2 extended input/output registers
->   firmware: arm_ffa: Add initial FFA bus support for device enumeration
->   firmware: arm_ffa: Add initial Arm FFA driver support
->   firmware: arm_ffa: Add support for SMCCC as transport to FFA driver
->   firmware: arm_ffa: Setup in-kernel users of FFA partitions
->   firmware: arm_ffa: Add support for MEM_* interfaces
->
->  MAINTAINERS                       |   7 +
->  arch/arm64/kernel/asm-offsets.c   |   9 +
->  arch/arm64/kernel/smccc-call.S    |  57 +++
->  drivers/firmware/Kconfig          |   1 +
->  drivers/firmware/Makefile         |   1 +
->  drivers/firmware/arm_ffa/Kconfig  |  21 +
->  drivers/firmware/arm_ffa/Makefile |   6 +
->  drivers/firmware/arm_ffa/bus.c    | 210 +++++++++
->  drivers/firmware/arm_ffa/common.h |  31 ++
->  drivers/firmware/arm_ffa/driver.c | 719 ++++++++++++++++++++++++++++++
->  drivers/firmware/arm_ffa/smccc.c  |  39 ++
->  include/linux/arm-smccc.h         |  55 +++
->  include/linux/arm_ffa.h           | 266 +++++++++++
->  13 files changed, 1422 insertions(+)
->  create mode 100644 drivers/firmware/arm_ffa/Kconfig
->  create mode 100644 drivers/firmware/arm_ffa/Makefile
->  create mode 100644 drivers/firmware/arm_ffa/bus.c
->  create mode 100644 drivers/firmware/arm_ffa/common.h
->  create mode 100644 drivers/firmware/arm_ffa/driver.c
->  create mode 100644 drivers/firmware/arm_ffa/smccc.c
->  create mode 100644 include/linux/arm_ffa.h
->
-> --
-> 2.25.1
->
+Sure.
+
+Rob
