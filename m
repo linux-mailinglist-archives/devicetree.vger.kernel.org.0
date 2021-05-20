@@ -2,114 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1957438B8D2
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 23:14:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A44B38B90F
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 23:40:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230033AbhETVPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 17:15:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34962 "EHLO
+        id S230288AbhETVlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 17:41:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230030AbhETVPj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 17:15:39 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30FFEC061574
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 14:14:18 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id kr9so1755371pjb.5
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 14:14:18 -0700 (PDT)
+        with ESMTP id S230257AbhETVlu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 17:41:50 -0400
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54EFAC061574
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 14:40:27 -0700 (PDT)
+Received: by mail-qv1-xf2a.google.com with SMTP id q6so9425404qvb.2
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 14:40:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=JDuRhdD0c+I8x9p2xseG7EsWF35hPeDyR9fNC7DqgL0=;
-        b=ChvS/XCpiCjagokqDdvJr+aJoJuu4cFnMUg2lcjpmf6uYamCI71lziN+fHQ7mbexEj
-         itAg6b8BvXH4iwtz3uFLDaAGfP8hb4NFtgZCiC9azDp+lk5A5wrSjjbJaErvsVZdJzeQ
-         fWUwfNUsxb0z3kUN5Zud/t8V1s546c+98Bu+g=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ZIgxNeJtIZOCUu26nn+aGqgcAu9hM+yO4Nw/eB0jBeE=;
+        b=OQqXZJQ0WQrHpmGQhIiwMtNefwOL7yYcMbOia1kGiGWxNB3k8j/ikmE+Pgtt0Cqjuu
+         tmIdpKxL+hf08loIQOk+J8Fh/l4KYpp/jV7K+vvTqq+etwPRC5CLRJyHvtMQIRVdxm29
+         pSHqTAtKSinj4v9l/XhymSogCplDJ2+uHGogE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=JDuRhdD0c+I8x9p2xseG7EsWF35hPeDyR9fNC7DqgL0=;
-        b=aFsYIzpdugoW5yf+8XEjRsZH7hvZ0INZ66241YgNqfVPI/Bh41mV4NQEbbN4VdJl61
-         OvUE4I6sMwkLVYI/Yxuw0zjL6/BGVTIKjMi2qO5Rpt9IifNlbOdK5dOM5c3AvJaXr8s0
-         iwy/Co5THPa37zfwBUVUSGn//IXjQau8Z2H+AYoytOKo6XXH0W8hkJT4nJhVKWmgOMMD
-         2IFWSLyRtLOtQwKnMw07W1QIsh4XxxdKu0hbDJUtKdNUtBzojhcteG2kz47ssbmZdd4c
-         Hf6twrYUxVia9rgMMV8lBwnVo7HUvcybtp0xgl49V6L7TtJLgqg+ChWYPPWisuTuHZBB
-         17eg==
-X-Gm-Message-State: AOAM531vdF/qbauflfELsCWCaJbR0aIsp8u92Vtrv+i3AX71oI+QqDlw
-        O+bRUD7NIBQ8+dunHoU+r0Q0aQ==
-X-Google-Smtp-Source: ABdhPJxRARguFLWFtqDDIo6kBbex1/oE8L/Z6VvTahbOh853k3DU7m91wAjdpyBTkBpmnu3t2dcjog==
-X-Received: by 2002:a17:90b:1955:: with SMTP id nk21mr7314169pjb.208.1621545257677;
-        Thu, 20 May 2021 14:14:17 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:7ac6:cb3b:191b:54f3])
-        by smtp.gmail.com with UTF8SMTPSA id c19sm2125745pfo.150.2021.05.20.14.14.16
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZIgxNeJtIZOCUu26nn+aGqgcAu9hM+yO4Nw/eB0jBeE=;
+        b=M8RhF2PxIydkmKWCLK/XbTmJ0dQ+Bj7sm8DY5zHEE2EDbLxk+t9vFLm2FTWNr83Glq
+         U1kxt02Nk47PpAYYpiNdCXqwj61q02FncSTsK9VRkX1+hkMQG1KDkMk/8x5gEKQxsexn
+         KGName+Cpu6h8tq5FaQ2lvlNv5IQVlLt7uxZcAU+5//D2KgdPjZn98piGw19WxSsgWGc
+         bS9miarGyllMlibe65OJCEfjEaf403sEK2bGNN6cBAwiaJ+9UfFNdU5iaBMEAsL5hflE
+         tVdS4SsmrYv+/57SWTitGZhrY6zgUzxz1ue3G526b9d7rWMIeHGzzfBe4yPNc9+tCfAF
+         XQBw==
+X-Gm-Message-State: AOAM532Wr7fRfEzfqX7BytoTG8zhegEcurlkrLc/7lCET5+VKh8BETJG
+        N33S3Af5tmi0TWmBqm6y5N74pss49nRnug==
+X-Google-Smtp-Source: ABdhPJzqZX/pMBWwTqe09tISEPb0UbV3mWg1wLucuKx34CI53ujxWkqtOUOzQFSN/jolkziJ/TvU0g==
+X-Received: by 2002:ad4:4a34:: with SMTP id n20mr8183864qvz.15.1621546826200;
+        Thu, 20 May 2021 14:40:26 -0700 (PDT)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
+        by smtp.gmail.com with ESMTPSA id m4sm3081122qtg.21.2021.05.20.14.40.25
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 May 2021 14:14:17 -0700 (PDT)
-Date:   Thu, 20 May 2021 14:14:15 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Alan Stern <stern@rowland.harvard.edu>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-usb@vger.kernel.org, Peter Chen <peter.chen@kernel.org>,
-        linux-kernel@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Al Cooper <alcooperx@gmail.com>,
-        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: Re: [PATCH v10 2/5] USB: misc: Add onboard_usb_hub driver
-Message-ID: <YKbRJylHrDiuSRGH@google.com>
-References: <20210511225223.550762-1-mka@chromium.org>
- <20210511155152.v10.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
- <YKPz7a68duMyXU5x@google.com>
- <20210518194511.GA1137841@rowland.harvard.edu>
- <YKQ0XxhIWaN37HMr@google.com>
- <20210519144356.GB1165692@rowland.harvard.edu>
- <YKWaJdrpj1ixx9+v@google.com>
- <20210520020521.GB1186755@rowland.harvard.edu>
- <YKZnA2bifn346bPa@google.com>
+        Thu, 20 May 2021 14:40:25 -0700 (PDT)
+Received: by mail-yb1-f171.google.com with SMTP id 191so18869067ybn.7
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 14:40:25 -0700 (PDT)
+X-Received: by 2002:a25:80d4:: with SMTP id c20mr10916531ybm.345.1621546824581;
+ Thu, 20 May 2021 14:40:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YKZnA2bifn346bPa@google.com>
+References: <20210513122429.25295-1-srivasam@codeaurora.org> <CAE-0n51jjHWSFiip-utVKjAQbaJuj+oKq0GPLgw2q2mG_9B=eg@mail.gmail.com>
+In-Reply-To: <CAE-0n51jjHWSFiip-utVKjAQbaJuj+oKq0GPLgw2q2mG_9B=eg@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 20 May 2021 14:40:13 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Uzg+a6ZrinAnq_=29103JPs0=oWTa3VkfTUbPRkvGyjw@mail.gmail.com>
+Message-ID: <CAD=FV=Uzg+a6ZrinAnq_=29103JPs0=oWTa3VkfTUbPRkvGyjw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: Add wakeup delay for adau codec
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Judy Hsiao <judyhsiao@chromium.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 20, 2021 at 06:41:23AM -0700, Matthias Kaehlcke wrote:
-> On Wed, May 19, 2021 at 10:05:21PM -0400, Alan Stern wrote:
-> > On Wed, May 19, 2021 at 04:07:17PM -0700, Matthias Kaehlcke wrote:
-> > > On Wed, May 19, 2021 at 10:43:56AM -0400, Alan Stern wrote:
-> > > > On Tue, May 18, 2021 at 02:40:47PM -0700, Matthias Kaehlcke wrote:
-> > > > > 
-> > > > > Could you also have a look at "[4/5] usb: host: xhci-plat:
-> > > > > Create platform device for onboard hubs in probe()"
-> > > > > (https://lore.kernel.org/patchwork/patch/1425453/)? It's a
-> > > > > relatively short patch that creates the platform device for
-> > > > > the driver from xhci-plat as you suggested in the v4
-> > > > > discussion.
-> > > > 
-> > > > I'm not the maintainer for xhci-related drivers.
-> > > > 
-> > > > However, there is at least one thing about this patch which looks 
-> > > > suspicious: Adding the onboard_hub_dev pointer to struct usb_hcd instead 
-> > > > of to struct xhci_plat_priv, where it would make a lot more sense.
-> > > 
-> > > I can move it to struct usb_hcd if that's preferred
-> > 
-> > Thinko: The patch already has it in struct usb_hcd.  I suggested moving 
-> > it to struct xhci_plat_priv.
-> 
-> Ah, didn't actively recall to which struct I added it to, it has been a
-> while since I wrote that patch ;-)
+Hi,
 
-> Agreed that struct xhci_plat_priv is a better place.
 
-Or not, xhci_plat_priv is optional, which doesn't make it a good candidate
-for holding a field that could be used by any xHCI controller.
+On Mon, May 17, 2021 at 3:44 PM Stephen Boyd <swboyd@chromium.org> wrote:
+>
+> Quoting Srinivasa Rao Mandadapu (2021-05-13 05:24:29)
+> > Add wakeup delay for fixing PoP noise during capture begin.
+> >
+> > Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+> > Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+> > index 4c6e433c8226..3eb8550da1fc 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+> > @@ -23,6 +23,7 @@ / {
+> >         adau7002: audio-codec-1 {
+> >                 compatible = "adi,adau7002";
+> >                 IOVDD-supply = <&pp1800_l15a>;
+> > +               wakeup-delay-ms = <15>;
+>
+> Is this part of the binding?
 
-Should I move the field to struct xhci_hcd instead?
+It doesn't seem to be, but it's supported by the code. It's also in
+the generic "dmic" bindings. The bindings are pre-yaml. Seems like
+someone needs to take charge and clean those up, but I'm not sure we
+need to block this patch on it?
+
+Though I'm not an expert on audio stuff, assuming that this works OK
+I'm fine with:
+
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+
+-Doug
