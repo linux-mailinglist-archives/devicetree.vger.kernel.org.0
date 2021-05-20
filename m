@@ -2,86 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4879D389ED8
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 09:22:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A76C7389ECA
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 09:20:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230361AbhETHXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 03:23:36 -0400
-Received: from mailgw02.mediatek.com ([216.200.240.185]:58961 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230102AbhETHXf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 03:23:35 -0400
-X-UUID: 061f921aa6cc47a083df4dae5b853384-20210520
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=ZQ3X2kKIVdd7QGc0Obd6FYCQ+lslLAxE4v/TzH04zFg=;
-        b=EJhtKMJHSLLT7k+TjsgkVYl5TweyxXs7MXcMNVdXRMnyOQxzmuKghYKfKjn6JwLDo1+MD9EAGJJeX2oGS0nY+U3rRYxYZ1Zp4z0Bz0VgSWFQ9a0NGv3hycwnnfYhxtYYiGKu6o1O5ruGvUiA8BvYG+aAOPbrwrBvXshmqREB1RE=;
-X-UUID: 061f921aa6cc47a083df4dae5b853384-20210520
-Received: from mtkcas66.mediatek.inc [(172.29.193.44)] by mailgw02.mediatek.com
-        (envelope-from <landen.chao@mediatek.com>)
-        (musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 828172061; Thu, 20 May 2021 00:22:12 -0700
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- MTKMBS62DR.mediatek.inc (172.29.94.18) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 20 May 2021 00:13:21 -0700
-Received: from mtksdccf07 (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 20 May 2021 15:13:20 +0800
-Message-ID: <0adde34f936a2dafca40b06b408d82afe0852327.camel@mediatek.com>
-Subject: Re: [PATCH net-next v2 1/4] net: phy: add MediaTek Gigabit Ethernet
- PHY driver
-From:   Landen Chao <landen.chao@mediatek.com>
-To:     DENG Qingfang <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>
-CC:     "David S. Miller" <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "Jakub Kicinski" <kuba@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
+        id S229953AbhETHVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 03:21:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54886 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229547AbhETHVh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 May 2021 03:21:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 981BF610CB;
+        Thu, 20 May 2021 07:20:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1621495216;
+        bh=WwbYgrhlIKqs0+H7q1qB+/RjJEU6KFhz7NlZxbWY6xE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mhA1iYXw9ta2tC34JfxHHePHZetDXh4z8I7KoM75S1uerx5ZJOsbvazoPHa/UfMau
+         0rfD5jQLX5e/CrQTu4aFso7kT6hf/v5SnDqFNinNrEgpABlQmDdBQpSXClikp5Tutx
+         knuu5Dd0ZXCyCno/Og/w8TO5XPJMqx3eigRTHl5W7P/u+7ZHyo1UWvOgAkYGVuvxOn
+         zPTbeve/4K9bbvBqGMukqLOXxkZL6nBRIu0+hTn7WZkYbQ0LbHXAvHEdrGbUgPpQc1
+         l/Knxfs32t1FRcQ4Qibo8n3h+uftKx3EM2dZglvNRX+a+yFPlVgEWfxOLxJEhHBaVw
+         dv6bPE1W5kM3Q==
+Date:   Thu, 20 May 2021 12:50:12 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     skakit@codeaurora.org
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-staging@lists.linux.dev>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, Weijie Gao <weijie.gao@mediatek.com>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        =?ISO-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>,
-        "Frank Wunderlich" <frank-w@public-files.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>
-Date:   Thu, 20 May 2021 15:13:20 +0800
-In-Reply-To: <20210520023828.3261270-1-dqfext@gmail.com>
-References: <20210519033202.3245667-1-dqfext@gmail.com>
-         <20210519033202.3245667-2-dqfext@gmail.com> <YKW0acoyM+5rVp0X@lunn.ch>
-         <20210520023828.3261270-1-dqfext@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org
+Subject: Re: [RESEND PATCH V4 3/8] arm64: dts: qcom: pm7325: Add pm7325 base
+ dts file
+Message-ID: <YKYNrKFrGQlfUf4S@vkoul-mobl.Dlink>
+References: <1621318822-29332-1-git-send-email-skakit@codeaurora.org>
+ <1621318822-29332-4-git-send-email-skakit@codeaurora.org>
+ <YKOpE1V25rdDj4Tk@vkoul-mobl.Dlink>
+ <YKPua2M6t9yIJ5uy@google.com>
+ <52d277a8598277716f37ad0c1f724845@codeaurora.org>
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <52d277a8598277716f37ad0c1f724845@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDIxLTA1LTIwIGF0IDEwOjM4ICswODAwLCBERU5HIFFpbmdmYW5nIHdyb3RlOg0K
-PiBPbiBUaHUsIE1heSAyMCwgMjAyMSBhdCAwMjo1OToyMUFNICswMjAwLCBBbmRyZXcgTHVubiB3
-cm90ZToNCj4gPiA+ICtzdGF0aWMgdm9pZCBtdGtfZ2VwaHlfY29uZmlnX2luaXQoc3RydWN0IHBo
-eV9kZXZpY2UgKnBoeWRldikNCj4gPiA+ICt7DQo+ID4gPiArCS8qIERpc2FibGUgRUVFICovDQo+
-ID4gPiArCXBoeV93cml0ZV9tbWQocGh5ZGV2LCBNRElPX01NRF9BTiwgTURJT19BTl9FRUVfQURW
-LCAwKTsNCj4gPiANCj4gPiBJcyBFRUUgYnJva2VuIG9uIHRoaXMgUEhZPyBPciBpcyB0aGlzIGp1
-c3QgdG8gZ2V0IGl0IGludG8gYSBkZWZpbmVkDQo+ID4gc3RhdGU/DQo+IA0KPiBBcyBJIHNhaWQg
-aW4gY29tbWl0IG1lc3NhZ2UsIHRoZSBpbml0aWFsaXphdGlvbiAoaW5jbHVkaW5nIEVFRSkgaXMN
-Cj4gZnJvbSB0aGUgdmVuZG9yIGRyaXZlci4NCj4gSSBoYXZlIGFsc28gdGVzdGVkIGl0IHdpdGgg
-RUVFIGVuYWJsZWQgYnkgZGVmYXVsdCBvbiBvbmUgb2YgbXkgQVBzLA0KPiBhbmQgZ290IG9jY2Fz
-aW9uYWwgbGluayBkcm9wcy4NCj4gDQoNCkVFRSBvZiB0aGUgMTAteWVhci1vbGQgTVQ3NTMwIGlu
-dGVybmFsIGdlcGh5IGhhcyBtYW55IElPVCBwcm9ibGVtcywgc28NCml0IGlzIHJlY29tbWVuZGVk
-IHRvIGRpc2FibGUgaXRzIEVFRS4NCkVFRSBvZiB0aGUgTVQ3NTMxIGludGVybmFsIGdlcGh5IGhh
-cyBiZWVuIHVwZGF0ZWQsIGJ1dCBpdCBpcyBub3QgeWV0DQp3aWRlbHkgdXNlZC4NClRoZXJlZm9y
-ZSwgRUVFIGlzIGRpc2FibGVkIGluIHZlbmRvciBkcml2ZXIuDQoNCkxhbmRlbg0KPiA+IE90aGVy
-d2lzZQ0KPiA+IA0KPiA+IFJldmlld2VkLWJ5OiBBbmRyZXcgTHVubiA8YW5kcmV3QGx1bm4uY2g+
-DQo+ID4gDQo+ID4gICAgIEFuZHJldw0K
+On 20-05-21, 12:02, skakit@codeaurora.org wrote:
+> On 2021-05-18 22:12, Matthias Kaehlcke wrote:
+> > On Tue, May 18, 2021 at 05:16:27PM +0530, Vinod Koul wrote:
+> > > On 18-05-21, 11:50, satya priya wrote:
+> > > > Add base DTS file for pm7325 along with GPIOs and temp-alarm nodes.
+> > > >
+> > > > Signed-off-by: satya priya <skakit@codeaurora.org>
+> > > > Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> > > > ---
+> > > > Changes in RESEND V4:
+> > > >  - No Changes.
+> > > >
+> > > >  arch/arm64/boot/dts/qcom/pm7325.dtsi | 53 ++++++++++++++++++++++++++++++++++++
+> > > >  1 file changed, 53 insertions(+)
+> > > >  create mode 100644 arch/arm64/boot/dts/qcom/pm7325.dtsi
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/qcom/pm7325.dtsi b/arch/arm64/boot/dts/qcom/pm7325.dtsi
+> > > > new file mode 100644
+> > > > index 0000000..e7f64a9
+> > > > --- /dev/null
+> > > > +++ b/arch/arm64/boot/dts/qcom/pm7325.dtsi
+> > > > @@ -0,0 +1,53 @@
+> > > > +// SPDX-License-Identifier: BSD-3-Clause
+> > > > +// Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> > > > +
+> > > > +#include <dt-bindings/interrupt-controller/irq.h>
+> > > > +#include <dt-bindings/spmi/spmi.h>
+> > > > +
+> > > > +&spmi_bus {
+> > > > +	pm7325: pmic@1 {
+> > > > +		compatible = "qcom,pm7325", "qcom,spmi-pmic";
+> > > 
+> > > where is qcom,pm7325 documented?
+> 
+> > 
+> > good point, I missed that one.
+> > 
+> 
+> Actually this point was discussed during V2(
+> https://lore.kernel.org/patchwork/patch/1406186/#1607321 ).
+> As far as I understand it is not mandatory to add "qcom,pm7325" as we are
+> adding "qcom,spmi-pmic". It is just a good to have change.
+> I could not find the documentation for pm8350c, pmk8350 and pmr735a as well.
 
+Yes that is a miss too, IMO all of these should be added to
+Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt or the yaml
+file replacing this
+
+Thanks
+-- 
+~Vinod
