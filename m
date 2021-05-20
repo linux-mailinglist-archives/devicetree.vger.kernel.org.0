@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1379389DD7
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 08:25:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC9F1389DF8
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 08:32:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230224AbhETG04 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 02:26:56 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:33857 "EHLO
+        id S230343AbhETGda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 02:33:30 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:28875 "EHLO
         so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230484AbhETG0z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 02:26:55 -0400
+        with ESMTP id S229676AbhETGd3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 02:33:29 -0400
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1621491935; h=Message-ID: References: In-Reply-To: Subject:
+ s=smtp; t=1621492329; h=Message-ID: References: In-Reply-To: Subject:
  Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=ZvljEfjgHImzFCUS9ix2qhLabTsKyDhyS23O+8X/0vI=;
- b=i6M65IQ3EhYROdEZJq8WgLgjEpHbt0h864budc5tmzVUOYsgAal3afim8Pi4uxUacpg8filc
- ZeOmILyo5xL6TVCLA5ocFuL2OAygaXcoD0dQ3oBkbx+7YiN2ix6GUjAGRYfeg8uGXiHSVFQf
- FBHJBlFdBMBg62nZicS6D5XZJ2A=
+ MIME-Version: Sender; bh=RN9lgRAgMkbnuV8dyfImkunBot4H1ttLFkBzjmJVfK4=;
+ b=uvrA359Ct03CknBLQ4RLA/Axq1Sp4oB5KM9aSGPmRjuot3en2pOXhpFi2BQEh1Jb1YSkYlYw
+ i5Buz0yCBuGWwMsK7ihrmlCqvuG+F5yG8tVcZkMKX1W0tVj2n1xhSH4bKLK3PDrzJeXte5Yl
+ g0tQhwhwfpTUb+JBiBmaNJMokEo=
 X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 60a600cd0d60c09896d70e69 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 20 May 2021 06:25:17
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 60a602617b5af81b5ce0b7f5 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 20 May 2021 06:32:01
  GMT
 Sender: skakit=codeaurora.org@mg.codeaurora.org
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id C3212C43144; Thu, 20 May 2021 06:25:16 +0000 (UTC)
+        id 5134DC4338A; Thu, 20 May 2021 06:32:01 +0000 (UTC)
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
         aws-us-west-2-caf-mail-1.web.codeaurora.org
 X-Spam-Level: 
@@ -38,39 +38,37 @@ Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
         (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id D8FCBC433F1;
-        Thu, 20 May 2021 06:25:15 +0000 (UTC)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 71E51C433F1;
+        Thu, 20 May 2021 06:32:00 +0000 (UTC)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
 Content-Transfer-Encoding: 7bit
-Date:   Thu, 20 May 2021 11:55:15 +0530
+Date:   Thu, 20 May 2021 12:02:00 +0530
 From:   skakit@codeaurora.org
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+To:     Matthias Kaehlcke <mka@chromium.org>, Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, kgunda@codeaurora.org
-Subject: Re: [RESEND PATCH V4 2/8] arm64: dts: qcom: sc7280: Add thermal-zones
- node
-In-Reply-To: <YKPq84r7soE0yjMA@google.com>
+Subject: Re: [RESEND PATCH V4 3/8] arm64: dts: qcom: pm7325: Add pm7325 base
+ dts file
+In-Reply-To: <YKPua2M6t9yIJ5uy@google.com>
 References: <1621318822-29332-1-git-send-email-skakit@codeaurora.org>
- <1621318822-29332-3-git-send-email-skakit@codeaurora.org>
- <YKOog43JZghth3Np@vkoul-mobl.Dlink> <YKPq84r7soE0yjMA@google.com>
-Message-ID: <f7d2584dfd69d514c8f2aed053204b66@codeaurora.org>
+ <1621318822-29332-4-git-send-email-skakit@codeaurora.org>
+ <YKOpE1V25rdDj4Tk@vkoul-mobl.Dlink> <YKPua2M6t9yIJ5uy@google.com>
+Message-ID: <52d277a8598277716f37ad0c1f724845@codeaurora.org>
 X-Sender: skakit@codeaurora.org
 User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
-
-On 2021-05-18 21:57, Matthias Kaehlcke wrote:
-> On Tue, May 18, 2021 at 05:14:03PM +0530, Vinod Koul wrote:
+On 2021-05-18 22:12, Matthias Kaehlcke wrote:
+> On Tue, May 18, 2021 at 05:16:27PM +0530, Vinod Koul wrote:
 >> On 18-05-21, 11:50, satya priya wrote:
->> > Add thermal-zones node for SC7280 SoC.
+>> > Add base DTS file for pm7325 along with GPIOs and temp-alarm nodes.
 >> >
 >> > Signed-off-by: satya priya <skakit@codeaurora.org>
 >> > Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
@@ -78,35 +76,63 @@ On 2021-05-18 21:57, Matthias Kaehlcke wrote:
 >> > Changes in RESEND V4:
 >> >  - No Changes.
 >> >
->> >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 +++
->> >  1 file changed, 3 insertions(+)
+>> >  arch/arm64/boot/dts/qcom/pm7325.dtsi | 53 ++++++++++++++++++++++++++++++++++++
+>> >  1 file changed, 53 insertions(+)
+>> >  create mode 100644 arch/arm64/boot/dts/qcom/pm7325.dtsi
 >> >
->> > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> > index 2cc4785..2a7d488 100644
->> > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> > @@ -1125,4 +1125,7 @@
->> >  			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
->> >  			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
->> >  	};
+>> > diff --git a/arch/arm64/boot/dts/qcom/pm7325.dtsi b/arch/arm64/boot/dts/qcom/pm7325.dtsi
+>> > new file mode 100644
+>> > index 0000000..e7f64a9
+>> > --- /dev/null
+>> > +++ b/arch/arm64/boot/dts/qcom/pm7325.dtsi
+>> > @@ -0,0 +1,53 @@
+>> > +// SPDX-License-Identifier: BSD-3-Clause
+>> > +// Copyright (c) 2021, The Linux Foundation. All rights reserved.
 >> > +
->> > +	thermal_zones: thermal-zones {
->> > +	};
+>> > +#include <dt-bindings/interrupt-controller/irq.h>
+>> > +#include <dt-bindings/spmi/spmi.h>
+>> > +
+>> > +&spmi_bus {
+>> > +	pm7325: pmic@1 {
+>> > +		compatible = "qcom,pm7325", "qcom,spmi-pmic";
 >> 
->> Empty node..? what am i missing here...
-> 
-> The 'thermal-zones' node with the SoC thermal zones is usually created
-> in the <soc>.dtsi, however it doesn't exist yet. The 'Add DT bindings
-> and device tree nodes for TSENS in SC7280' series
-> (https://patchwork.kernel.org/project/linux-arm-msm/list/?series=478225)
-> is creating it, but the series hasn't landed yet.
-> 
-> The node is needed by other patches in this series that add non-SoC
-> thermal zones. Hence either an empty node needs to be added (for now)
-> or this series should 'officially' depend on the TSENS series mentioned
-> above.
+>> where is qcom,pm7325 documented?
 
-I will add the dependency in cover letter and drop this patch.
+> 
+> good point, I missed that one.
+> 
+
+Actually this point was discussed during V2( 
+https://lore.kernel.org/patchwork/patch/1406186/#1607321 ).
+As far as I understand it is not mandatory to add "qcom,pm7325" as we 
+are adding "qcom,spmi-pmic". It is just a good to have change.
+I could not find the documentation for pm8350c, pmk8350 and pmr735a as 
+well.
+
+>> > +		reg = <0x1 SPMI_USID>;
+>> > +		#address-cells = <1>;
+>> > +		#size-cells = <0>;
+>> > +
+>> > +		pm7325_temp_alarm: temp-alarm@a00 {
+>> > +			compatible = "qcom,spmi-temp-alarm";
+>> > +			reg = <0xa00>;
+>> > +			interrupts = <0x1 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+>> > +			#thermal-sensor-cells = <0>;
+>> > +		};
+>> > +
+>> > +		pm7325_gpios: gpios@8800 {
+>> > +			compatible = "qcom,pm7325-gpio", "qcom,spmi-gpio";
+>> 
+>> where is qcom,pm7325-gpio documented?
+> 
+> It's added by the 'Add GPIO support for PM7325' series
+> (https://patchwork.kernel.org/project/linux-arm-msm/list/?series=481133)
+> 
+> The binding change was acked by Rob and the code by Bjorn, so it can be
+> expected to land, but it would still be good to mention the dependency
+> explicitly.
+
+The binding patch is applied now.
 
 Thanks,
 Satya Priya
