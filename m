@@ -2,137 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E435389E71
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 08:57:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E102F389EA5
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 09:08:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230409AbhETG7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 02:59:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38754 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230383AbhETG7D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 02:59:03 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8D66C061760
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 23:57:41 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id y184-20020a1ce1c10000b02901769b409001so4538123wmg.3
-        for <devicetree@vger.kernel.org>; Wed, 19 May 2021 23:57:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=h0fXYIN2E5J54+ZmwB3JHOzFpG3abb+viSfy+a5rRgw=;
-        b=kYsHClz4ZtHy58wi/PZc8Bs4XDjVdchu3qYDz74eF+jeJ1IcvezLu7xBX3SUAex/Fr
-         WRUwd9s2agikUezDuM7gyKY2QxMlrLnZTlsDcy1M4boya7xjTOK59F46hBC+jvIwWu0d
-         DFOLKIjh5BIRKyLLbT3RC4x+k/ZXWrPBdTtqfwz1EhkqD0TTzux7YHxOCCWkc6zKwQHo
-         gc8B8Yq5nFGgMo+tad28yqUrL4ZTghKDfSsJrZxgEALJ6dXRavaUnUTCWklWorJuFaga
-         ocs1ZtX9yll7uVmZyp6noJWyThvG6AQmR8evtXzzvXuPzyxSjT6YhKwQsjXcrv0cFjY9
-         /FjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=h0fXYIN2E5J54+ZmwB3JHOzFpG3abb+viSfy+a5rRgw=;
-        b=Eud6qmiV2v/fanGtbkVANrR4mUzIVQdXz6n4WGTnwvIE3ulKnuWlWbvJXkKGeUTJo1
-         cNPr3ExnsTDgzvMptNKezCEZSyEY/HpDxOAhGX+avDsW1diAzHRou04z6NPVRZFtdl+H
-         sf/p7gLubxu0cZCe42w3fVzcHEJTuifVHjqYcYpifQ5bhTJJTIJIgitATrN43teXNYeC
-         GPIYc0eS83z86BbIfmHEVBD5NqU1NYtdcqYY+nstvPjvrQYRrHf8CvxE/2+NlXsnTWUc
-         y/voXVqmASvYgKwtxwhPmVPkqHvbNjzEAzvYHRt1puyTb70HgGlojwaDTD48pQhHDl7x
-         ICZw==
-X-Gm-Message-State: AOAM530G8swxBRjBVHoqtYWo+orKfBSJni4LR2WkGCfQswQS2fnOKr92
-        hSg7wK9yBooOPNfviqN4jDtalg==
-X-Google-Smtp-Source: ABdhPJwfHhX3Uc2t1nICQjEObP1SNmCR/vpanAyfFKJX+C5RLOD3pJjV/DqCSibv78lHl+kI5oJEjA==
-X-Received: by 2002:a1c:9dc3:: with SMTP id g186mr2053326wme.47.1621493860351;
-        Wed, 19 May 2021 23:57:40 -0700 (PDT)
-Received: from localhost ([2a01:cb19:826e:8e00:a45f:260c:febd:73ce])
-        by smtp.gmail.com with ESMTPSA id w12sm1928423wrt.16.2021.05.19.23.57.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 May 2021 23:57:39 -0700 (PDT)
-From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-To:     kernel test robot <lkp@intel.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     kbuild-all@lists.01.org, Fabien Parent <fparent@baylibre.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] Input: mtk-pmic-keys - add support for MT6358
-In-Reply-To: <202105200248.VC2Rdk6B-lkp@intel.com>
-References: <20210512152648.39961-4-mkorpershoek@baylibre.com>
- <202105200248.VC2Rdk6B-lkp@intel.com>
-Date:   Thu, 20 May 2021 08:57:38 +0200
-Message-ID: <87sg2h28pp.fsf@baylibre.com>
+        id S230102AbhETHJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 03:09:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49196 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229953AbhETHJs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 May 2021 03:09:48 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4D3BA6124C;
+        Thu, 20 May 2021 07:08:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1621494506;
+        bh=vyLAtGMQO50f0B4tMr5Ie5sS01PDBidzS4f5U/kcH0c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QzFFmI833N9MqnAa0zU/wo10tSYWPpia43R/LYQTyx3FZ56KR4kMxNdUIVNQJoMuB
+         HLbOBNCyXqoaKQkHYU8UJxZsV2v02G/vmCSvGhmd/C4+9kf69aY3ZMioQ5LZOjqM61
+         /bmTZE++IYBqyef549TPG1f3bP5T2q92L3gRTWHw=
+Date:   Thu, 20 May 2021 09:08:24 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     =?utf-8?B?SmnFmcOt?= Prchal <jiri.prchal@aksignal.cz>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Christian Eggers <ceggers@arri.de>,
+        Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH v4 4/4] nvmem: eeprom: at25: export FRAM serial num
+Message-ID: <YKYK6HlQYHBPPCKq@kroah.com>
+References: <20210520054714.8736-1-jiri.prchal@aksignal.cz>
+ <20210520054714.8736-5-jiri.prchal@aksignal.cz>
+ <YKX5Iqm3AoCXsDV6@kroah.com>
+ <f0951762-8067-e353-f585-2cb17f7be134@aksignal.cz>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f0951762-8067-e353-f585-2cb17f7be134@aksignal.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, May 20, 2021 at 08:56:39AM +0200, Jiří Prchal wrote:
+> Here I'm completlly lost:
+> 
+> On 20. 05. 21 7:52, Greg Kroah-Hartman wrote:
+> > On Thu, May 20, 2021 at 07:47:14AM +0200, Jiri Prchal wrote:
+> > > This exports serial number of FRAM in sysfs file named "sernum".
+> > > Formatted in hex, each byte separated by space.
+> > > Example:
+> > > $ cat /sys/class/spi_master/spi0/spi0.0/sernum
+> > 
+> > No new Documentation/ABI/ entry for this?
+> No, should I do and how / where?
 
-kernel test robot <lkp@intel.com> writes:
+All sysfs files need a Documentation/ABI/ entry.
 
-> Hi Mattijs,
->
-> Thank you for the patch! Yet something to improve:
->
-> [auto build test ERROR on input/next]
-> [also build test ERROR on v5.13-rc2 next-20210519]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch]
->
-> url:    https://github.com/0day-ci/linux/commits/Mattijs-Korpershoek/input-MT6358-PMIC-button-support/20210513-001558
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-> config: s390-randconfig-r014-20210519 (attached as .config)
-> compiler: s390-linux-gcc (GCC) 9.3.0
-> reproduce (this is a W=1 build):
->         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->         chmod +x ~/bin/make.cross
->         # https://github.com/0day-ci/linux/commit/74aae2763d0c259046aa7079a46ba0dfe1995e37
->         git remote add linux-review https://github.com/0day-ci/linux
->         git fetch --no-tags linux-review Mattijs-Korpershoek/input-MT6358-PMIC-button-support/20210513-001558
->         git checkout 74aae2763d0c259046aa7079a46ba0dfe1995e37
->         # save the attached .config to linux build tree
->         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross ARCH=s390 
->
-> If you fix the issue, kindly add following tag as appropriate
-> Reported-by: kernel test robot <lkp@intel.com>
->
-> All errors (new ones prefixed by >>):
->
->>> drivers/input/keyboard/mtk-pmic-keys.c:80:22: error: 'MT6358_TOPSTATUS' undeclared here (not in a function); did you mean 'MT6397_OCSTATUS0'?
->       80 |   MTK_PMIC_KEYS_REGS(MT6358_TOPSTATUS,
->          |                      ^~~~~~~~~~~~~~~~
->    drivers/input/keyboard/mtk-pmic-keys.c:47:14: note: in definition of macro 'MTK_PMIC_KEYS_REGS'
->       47 |  .deb_reg  = _deb_reg,  \
->          |              ^~~~~~~~
->>> drivers/input/keyboard/mtk-pmic-keys.c:85:18: error: 'MT6358_TOP_RST_MISC' undeclared here (not in a function); did you mean 'MT6397_TOP_RST_MISC'?
->       85 |  .pmic_rst_reg = MT6358_TOP_RST_MISC,
->          |                  ^~~~~~~~~~~~~~~~~~~
->          |                  MT6397_TOP_RST_MISC
-This build failure is expected.
-As written in the cover letter, this depends on [1]
+> > > +static ssize_t sernum_show(struct device *dev, struct device_attribute *attr, char *buf)
+> > > +{
+> > > +	struct at25_data *at25;
+> > > +	int i;
+> > > +
+> > > +	at25 = dev_get_drvdata(dev);
+> > > +	for (i = 0; i < FM25_SN_LEN; i++)
+> > > +		buf += sprintf(buf, "%02x ", at25->sernum[i]);
+> > > +	sprintf(--buf, "\n");
+> > > +	return (3 * i);
+> > 
+> > No, that is not how sysfs files work, sorry.  They are "one value per
+> > file".  This looks like multiple values in the same file, why not just
+> > one file per "sernum"?
+> It's formatted by spaces. It's one long number like MAC addr, so is better
+> to expose it as hex string without spaces? Or like MAC separated by colon?
 
-[1] has been applied to the mfd tree but it's not part of v5.13-rc2
+Why format it at all?  Just dump out the whole thing as a string.
 
-[1] https://lore.kernel.org/r/20210506094116.638527-1-mkorpershoek@baylibre.com
+But who is going to care about this?  What tool will be reading it and
+what will it be for?  The Documentation/ABI/ entry would help explain
+all of this.
 
->
->
-> vim +80 drivers/input/keyboard/mtk-pmic-keys.c
->
->     77	
->     78	static const struct mtk_pmic_regs mt6358_regs = {
->     79		.keys_regs[MTK_PMIC_PWRKEY_INDEX] =
->   > 80			MTK_PMIC_KEYS_REGS(MT6358_TOPSTATUS,
->     81			0x2, MT6358_PSC_TOP_INT_CON0, 0x5),
->     82		.keys_regs[MTK_PMIC_HOMEKEY_INDEX] =
->     83			MTK_PMIC_KEYS_REGS(MT6358_TOPSTATUS,
->     84			0x8, MT6358_PSC_TOP_INT_CON0, 0xa),
->   > 85		.pmic_rst_reg = MT6358_TOP_RST_MISC,
->     86	};
->     87	
->
-> ---
-> 0-DAY CI Kernel Test Service, Intel Corporation
-> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+> > > +	/* Export the FM25 serial number */
+> > > +	if (at25->has_sernum) {
+> > > +		err = device_create_file(&spi->dev, &dev_attr_sernum);
+> > 
+> > You just raced with userspace and lost :(
+> ?
+> > 
+> > Please do this correctly, by setting the driver group if you need a file
+> > like this.
+> Any example, please?
+
+Loads, see any platform driver that sets the dev_groups pointer.
+
+thanks,
+
+greg k-h
