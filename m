@@ -2,172 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7358438AF88
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 15:03:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1971538AFAC
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 15:08:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243339AbhETNEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 09:04:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34516 "EHLO
+        id S242994AbhETNJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 09:09:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237416AbhETNEZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 09:04:25 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44D12C04C078;
-        Thu, 20 May 2021 05:37:11 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 67842D41;
-        Thu, 20 May 2021 14:37:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1621514229;
-        bh=Z8+koyrFSsNxPvJAIRmysNgWsSYVKHA1qVL+EiUQQtQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WjTmnKzYqPaRJEruiSnE2YLogXqkkyxS6pMxRcu9mNSRl+sZGzsYAhUefTiMqRs/r
-         JIM0F2QXSo/nWibIr5bkChLEoBgkiv6W78NW8MFiu2iHa6XFa4gPZOuP384qfl398z
-         2TfCVsJfkD2Gb8mqc4lE4D7FoPaKsDOfPXtBoUB4=
-Date:   Thu, 20 May 2021 15:37:07 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-media@vger.kernel.org, marex@denx.de, p.zabel@pengutronix.de,
-        rmfrfs@gmail.com, robh@kernel.org, slongerbeam@gmail.com
-Subject: Re: [PATCH 00/23] media: imx: imx7-mipi-csis: Add i.MX8MM support /
- imx8mq support
-Message-ID: <YKZX8z1Vb0PAYk+G@pendragon.ideasonboard.com>
-References: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
- <20210504155939.1194369-1-martin.kepplinger@puri.sm>
- <YKBRXesDsXk9K15J@pendragon.ideasonboard.com>
- <1da3de6c879474b814f4d820ca5eb5ba07174a26.camel@puri.sm>
- <YKRmhSn65fiqshsp@pendragon.ideasonboard.com>
- <7f922c8b3d4396c00ba15ad99dd572699f4b69b1.camel@puri.sm>
- <YKUy8gu3Jc3VDy5i@pendragon.ideasonboard.com>
- <f1d44bbd85edf547bc2b7c758b5e822e08cc80d0.camel@puri.sm>
+        with ESMTP id S243599AbhETNJW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 09:09:22 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17044C061359
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 06:03:00 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id j14so15852898wrq.5
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 06:03:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=RujbwDaYHFW5IRTsBmUkuqcLlODQklcnrNzBpulfars=;
+        b=Hez+1QvK3f6pRKDh5FTV2p7JSR2zoExN4Cl3/Dx2cllg9rc5e79U3aAIccTzfU8ZRu
+         2c+QRasDl48g2C4Q2+oMxxYXmZOZ+RiBi0DqdUrpHYIXR3ZNaAszYihACj3KRGupUaAk
+         /YgdpPOB8KeLk/rd9SqzBZtTgtVGXz7sI/k8Ucwoh0at5mSCzTp1gwYLYDj4vXkVzSp1
+         rZoDsrHEB97HWq7fFGd/JZN1L3Vidu9aKKWsutkCux7LfQbcNw5UwUqo6G6yXwVvffMW
+         zqzhkTFwuEvlsGPTPO5LJCAvl/qle/ZcsnPyuYYOY6UaGi+C7Hi9zdZMDRih2surH53f
+         ypjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=RujbwDaYHFW5IRTsBmUkuqcLlODQklcnrNzBpulfars=;
+        b=DtoQoZ3MeVuxtIKZf1iU67oFz8aopyHpYdRYM5gGNJwyrEhkb26CGi5yn8pBGTE8K+
+         cViyUcB3pdq3DgjKNYQXPHtlBGhlMVSlMLx422QvdYl01+SUa8sR2au+fnVLMGSNgQ9a
+         AQNeUGWGqKDx1wY3bEQaYvr61tfsIwyI4f/DAeuKd8F/SYzhQ/CJoO91LgDzRDv0GnnS
+         VKh1SbwtTfv07Jve9TuMGexirXmw89q6dHoxr9jlz9q4cY5S4TRkfFjJw0cfyE9C3dU0
+         3LW/mCUvaVNMfyUooYNJHsejZD3/lFfYpYyW8rrxsX2iHIIlqntFC3tH2KN5pz6yW4+F
+         /j6A==
+X-Gm-Message-State: AOAM530R9xuWup9jmJpH0Q0xvmXi8fZDo26QUtnep89ltqZ+m1aZzlQx
+        0A0W1Zjm9vqG5HT/eLarkwAeTw==
+X-Google-Smtp-Source: ABdhPJzX3bmOQ9LWAQDKQedPbmuDcmKqA23EagI44Yp+34fGVp8IMK0lCgDStoMI83fJxNiQ6DdA1A==
+X-Received: by 2002:adf:f10c:: with SMTP id r12mr4281511wro.26.1621515778718;
+        Thu, 20 May 2021 06:02:58 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id o21sm2949976wrf.91.2021.05.20.06.02.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 May 2021 06:02:57 -0700 (PDT)
+Date:   Thu, 20 May 2021 15:02:55 +0200
+From:   LABBE Corentin <clabbe@baylibre.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>, SoC Team <soc@kernel.org>,
+        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 4/5] ARM: gemini: add device tree for edimax NS2502
+Message-ID: <YKZd/+zHlKwag2bs@Red>
+References: <20210517193205.691147-1-clabbe@baylibre.com>
+ <20210517193205.691147-5-clabbe@baylibre.com>
+ <CACRpkdY3c4uvo1zbEgNW0meF-4P8be_nmoOEQAHP5V+GXgoG=A@mail.gmail.com>
+ <YKOO8UxdmZBjYbt4@Red>
+ <CACRpkdYqaoggyBO9=fdi2iUh9O0Y_jT5jnc7+qbE9HzEWK57Sg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <f1d44bbd85edf547bc2b7c758b5e822e08cc80d0.camel@puri.sm>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdYqaoggyBO9=fdi2iUh9O0Y_jT5jnc7+qbE9HzEWK57Sg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
-
-On Thu, May 20, 2021 at 12:54:27PM +0200, Martin Kepplinger wrote:
-> Am Mittwoch, dem 19.05.2021 um 18:46 +0300 schrieb Laurent Pinchart:
-> > On Wed, May 19, 2021 at 05:21:11PM +0200, Martin Kepplinger wrote:
-> > > Am Mittwoch, dem 19.05.2021 um 04:14 +0300 schrieb Laurent Pinchart:
-> > > > On Tue, May 18, 2021 at 04:39:00PM +0200, Martin Kepplinger wrote:
-> > > > > Am Sonntag, dem 16.05.2021 um 01:55 +0300 schrieb Laurent Pinchart:
-> > > > > > On Tue, May 04, 2021 at 05:59:39PM +0200, Martin Kepplinger wrote:
-
-[snip]
-
-> I fixed mipi -> csi link. I had the DT port descriptions for mipi csi
-> wrong.
-
-\o/
-
-> now, just because I think it makes sense, I do:
+Le Wed, May 19, 2021 at 01:17:59AM +0200, Linus Walleij a écrit :
+> On Tue, May 18, 2021 at 11:55 AM LABBE Corentin <clabbe@baylibre.com> wrote:
+> > Le Tue, May 18, 2021 at 01:46:20AM +0200, Linus Walleij a écrit :
 > 
-> media-ctl --set-v4l2 "'csi':0 [fmt:SGBRG10/640x480 colorspace:raw]"
+> > > Is the FIS broken since you hardcode the partitions?
+> > >
+> > > Doesn't this work:
+> > >
+> > > partitions {
+> > >     compatible = "redboot-fis";
+> > >     /* Eraseblock at 0x7e0000 */
+> > >     fis-index-block = <0xfc>;
+> > > };
+> > >
+> > > (Needs CONFIG_MTD_REDBOOT_PARTS)
+> >
+> > No it does not.
+> >
+> > physmap-flash 30000000.flash: no enabled pin control state
+> > physmap-flash 30000000.flash: no disabled pin control state
+> > physmap-flash 30000000.flash: initialized Gemini-specific physmap control
+> > physmap-flash 30000000.flash: physmap platform flash device: [mem 0x30000000-0x331fffff]
+> > 30000000.flash: Found 1 x16 devices at 0x0 in 16-bit bank. Manufacturer ID 0x000001 Chip ID 0x002201
+> > number of CFI chips: 1
+> > Searching for RedBoot partition table in 30000000.flash at offset 0x1fe0000
+> > No RedBoot partition table detected in 30000000.flash
+> > Searching for RedBoot partition table in 30000000.flash at offset 0x1fe0000
+> > No RedBoot partition table detected in 30000000.flash
 > 
-> which now prints:
+> Hm since it searches at 0x1fe0000 that's where it thinks the last
+> eraseblock is so the erase blocks are 0x20000 (128KB).
 > 
-> Device topology
-> - entity 1: csi (2 pads, 2 links)
->             type V4L2 subdev subtype Unknown flags 0
->             device node name /dev/v4l-subdev0
-> 	pad0: Sink
-> 		[fmt:SGBRG10_1X10/640x480 field:none colorspace:raw xfer:none ycbcr:601 quantization:full-range]
-> 		<- "imx8mq-mipi-csis.0":1 [ENABLED,IMMUTABLE]
-> 	pad1: Source
-> 		[fmt:SGBRG10_1X10/640x480 field:none colorspace:raw xfer:none ycbcr:601 quantization:full-range]
-> 		-> "csi capture":0 [ENABLED,IMMUTABLE]
+> FIS at 0x7e0000 should be erase block
+> 0x7e0000/0x20000 = 0x3f
 > 
-> - entity 4: csi capture (1 pad, 1 link)
->             type Node subtype V4L flags 0
->             device node name /dev/video1
-> 	pad0: Sink
-> 		<- "csi":1 [ENABLED,IMMUTABLE]
+> Can you test fis-index-block = <0x3f> and see what happens?
 > 
-> - entity 10: imx8mq-mipi-csis.0 (2 pads, 2 links)
->              type V4L2 subdev subtype Unknown flags 0
->              device node name /dev/v4l-subdev1
-> 	pad0: Sink
-> 		<- "hi846 2-0020":0 []
-> 	pad1: Source
-> 		-> "csi":0 [ENABLED,IMMUTABLE]
 
-This subdev doesn't seem to report formats on its sink and source pads,
-which is weird. I've had a quick look at the .get_fmt() and .set_fmt()
-implementations in the code you've posted, and they're wrong. They
-shouldn't pass the calls to the source subdev with v4l2_subdev_call(),
-they should instead implement get and set format on this subdev. You can
-look at the imx7-mipi-csis driver to see how that's done. Once you'll
-have fixed this, you'll have to set the format on each pad with
-media-ctl to make sure formats through the pipeline match.
+With 0x7F it works.
 
-The only location where you imx8mq-mipi-csis driver should use
-v4l2_subdev_call() is in .s_stream(), to propagate the operation to the
-source.
+When testing, I found that fis-index-block was ignored. I just sent a patch fixing this.
 
-By the way, I'd replace every occurence of "csis" with "csi2" in your
-driver. The name "csis" in the i.MX7 driver comes from the CSI-2 RX IP
-core that is named CSIS. That's not the case on the i.MX8QM.
-
-> - entity 15: hi846 2-0020 (1 pad, 1 link)
->              type V4L2 subdev subtype Sensor flags 0
->              device node name /dev/v4l-subdev2
-> 	pad0: Source
-> 		[fmt:SGBRG10_1X10/640x480 field:none colorspace:raw]
-> 		-> "imx8mq-mipi-csis.0":0 []
-
-You need to enable this link, the following should do
-
-media-ctl -l "'hi846 2-0020':0 -> 'imx8mq-mipi-csis.0':0 [1]"
-
-> > > btw, my test is:
-> > > 
-> > > v4l2-ctl -d "/dev/v4l/by-path/platform-30a90000.csi1_bridge-video-index0"
-> > > --set-fmt-video=width=640,height=480 --stream-mmap
-> > > --stream-to=test.raw --stream-count=1
-> > > 
-> > > and that (probably because of the missing link) fails with
-> > > 
-> > > VIDIOC_STREAMON returned -1 (No such device)
-> > > 
-> > > which is in the kernel:
-> > > 
-> > > imx7-csi 30a90000.csi1_bridge: pipeline start failed with -19
-> > 
-> > Let's fix the missing link first.
-> 
-> But now when trying to stream a frame, the error is:
-> 
-> Because of:
-> 
-> media bus code not compatible with the pixel format set on the video
-> node: 1 != 0
-> 
-> I get :
-> 
-> imx7-csi 30a90000.csi1_bridge: capture format not valid
-> 
-> which becomes for userspace:
-> 
-> VIDIOC_STREAMON returned -1 (Broken pipe)
-> 
-> Could that be a "user-problem" because "fmt" is not exactly the same
-> everywhere? Also, the sensor entity pad is not yet ENABLED...
-
-There's a combination of kernel-side issues (as detailed above) and
-userspace issues (also as detailed above :-)).
-
-> (media-ctl is still very new to me, sorry if that's dumb questions now)
-
-It's not dumb at all.
-
--- 
-Regards,
-
-Laurent Pinchart
+Regards
