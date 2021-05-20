@@ -2,97 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F075E38AE83
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 14:38:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7358438AF88
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 15:03:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239373AbhETMkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 08:40:10 -0400
-Received: from mga09.intel.com ([134.134.136.24]:6545 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239135AbhETMjy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 May 2021 08:39:54 -0400
-IronPort-SDR: vE8WcZtrCrcTjIE5PEWjCUbLYtv7sXtQnGCDNVJyKUYDexyfdh+kDYAmff2CU1fhwgD2TcE7JF
- a2EZqdmbicfQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9989"; a="201257831"
-X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; 
-   d="scan'208";a="201257831"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2021 05:38:27 -0700
-IronPort-SDR: vODqdqNTJRCpwnFsLFb39h9FJnSH/sqSv4Tg8/+8I++DYG7SDZn2TNIjvs+e76CFl/kQs7kDPh
- DHczPk+fcEIQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; 
-   d="scan'208";a="543513280"
-Received: from kuha.fi.intel.com ([10.237.72.162])
-  by fmsmga001.fm.intel.com with SMTP; 20 May 2021 05:38:22 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Thu, 20 May 2021 15:38:21 +0300
-Date:   Thu, 20 May 2021 15:38:21 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Li Jun <jun.li@nxp.com>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org,
-        gregkh@linuxfoundation.org, linux@roeck-us.net,
-        linux-usb@vger.kernel.org, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/4] usb: typec: use typec cap fwnode's of_node for typec
- port
-Message-ID: <YKZYPSsjSnp3tb/j@kuha.fi.intel.com>
-References: <1621408490-23811-1-git-send-email-jun.li@nxp.com>
- <1621408490-23811-3-git-send-email-jun.li@nxp.com>
+        id S243339AbhETNEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 09:04:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34516 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237416AbhETNEZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 09:04:25 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44D12C04C078;
+        Thu, 20 May 2021 05:37:11 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 67842D41;
+        Thu, 20 May 2021 14:37:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1621514229;
+        bh=Z8+koyrFSsNxPvJAIRmysNgWsSYVKHA1qVL+EiUQQtQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WjTmnKzYqPaRJEruiSnE2YLogXqkkyxS6pMxRcu9mNSRl+sZGzsYAhUefTiMqRs/r
+         JIM0F2QXSo/nWibIr5bkChLEoBgkiv6W78NW8MFiu2iHa6XFa4gPZOuP384qfl398z
+         2TfCVsJfkD2Gb8mqc4lE4D7FoPaKsDOfPXtBoUB4=
+Date:   Thu, 20 May 2021 15:37:07 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, marex@denx.de, p.zabel@pengutronix.de,
+        rmfrfs@gmail.com, robh@kernel.org, slongerbeam@gmail.com
+Subject: Re: [PATCH 00/23] media: imx: imx7-mipi-csis: Add i.MX8MM support /
+ imx8mq support
+Message-ID: <YKZX8z1Vb0PAYk+G@pendragon.ideasonboard.com>
+References: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
+ <20210504155939.1194369-1-martin.kepplinger@puri.sm>
+ <YKBRXesDsXk9K15J@pendragon.ideasonboard.com>
+ <1da3de6c879474b814f4d820ca5eb5ba07174a26.camel@puri.sm>
+ <YKRmhSn65fiqshsp@pendragon.ideasonboard.com>
+ <7f922c8b3d4396c00ba15ad99dd572699f4b69b1.camel@puri.sm>
+ <YKUy8gu3Jc3VDy5i@pendragon.ideasonboard.com>
+ <f1d44bbd85edf547bc2b7c758b5e822e08cc80d0.camel@puri.sm>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1621408490-23811-3-git-send-email-jun.li@nxp.com>
+In-Reply-To: <f1d44bbd85edf547bc2b7c758b5e822e08cc80d0.camel@puri.sm>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 19, 2021 at 03:14:48PM +0800, Li Jun wrote:
-> Asssign typec cap fwnode's of_node to typec port, then we can use
-> typec port device to get properties from its OF.
+Hi Martin,
+
+On Thu, May 20, 2021 at 12:54:27PM +0200, Martin Kepplinger wrote:
+> Am Mittwoch, dem 19.05.2021 um 18:46 +0300 schrieb Laurent Pinchart:
+> > On Wed, May 19, 2021 at 05:21:11PM +0200, Martin Kepplinger wrote:
+> > > Am Mittwoch, dem 19.05.2021 um 04:14 +0300 schrieb Laurent Pinchart:
+> > > > On Tue, May 18, 2021 at 04:39:00PM +0200, Martin Kepplinger wrote:
+> > > > > Am Sonntag, dem 16.05.2021 um 01:55 +0300 schrieb Laurent Pinchart:
+> > > > > > On Tue, May 04, 2021 at 05:59:39PM +0200, Martin Kepplinger wrote:
+
+[snip]
+
+> I fixed mipi -> csi link. I had the DT port descriptions for mipi csi
+> wrong.
+
+\o/
+
+> now, just because I think it makes sense, I do:
 > 
-> Signed-off-by: Li Jun <jun.li@nxp.com>
-> ---
->  drivers/usb/typec/class.c | 2 ++
->  1 file changed, 2 insertions(+)
+> media-ctl --set-v4l2 "'csi':0 [fmt:SGBRG10/640x480 colorspace:raw]"
 > 
-> diff --git a/drivers/usb/typec/class.c b/drivers/usb/typec/class.c
-> index b9429c9f65f6..a29bf2c32233 100644
-> --- a/drivers/usb/typec/class.c
-> +++ b/drivers/usb/typec/class.c
-> @@ -8,6 +8,7 @@
->  
->  #include <linux/module.h>
->  #include <linux/mutex.h>
-> +#include <linux/of.h>
->  #include <linux/property.h>
->  #include <linux/slab.h>
->  #include <linux/usb/pd_vdo.h>
-> @@ -2049,6 +2050,7 @@ struct typec_port *typec_register_port(struct device *parent,
->  	port->dev.class = &typec_class;
->  	port->dev.parent = parent;
->  	port->dev.fwnode = cap->fwnode;
-> +	port->dev.of_node = to_of_node(cap->fwnode);
->  	port->dev.type = &typec_port_dev_type;
->  	dev_set_name(&port->dev, "port%d", id);
->  	dev_set_drvdata(&port->dev, cap->driver_data);
+> which now prints:
+> 
+> Device topology
+> - entity 1: csi (2 pads, 2 links)
+>             type V4L2 subdev subtype Unknown flags 0
+>             device node name /dev/v4l-subdev0
+> 	pad0: Sink
+> 		[fmt:SGBRG10_1X10/640x480 field:none colorspace:raw xfer:none ycbcr:601 quantization:full-range]
+> 		<- "imx8mq-mipi-csis.0":1 [ENABLED,IMMUTABLE]
+> 	pad1: Source
+> 		[fmt:SGBRG10_1X10/640x480 field:none colorspace:raw xfer:none ycbcr:601 quantization:full-range]
+> 		-> "csi capture":0 [ENABLED,IMMUTABLE]
+> 
+> - entity 4: csi capture (1 pad, 1 link)
+>             type Node subtype V4L flags 0
+>             device node name /dev/video1
+> 	pad0: Sink
+> 		<- "csi":1 [ENABLED,IMMUTABLE]
+> 
+> - entity 10: imx8mq-mipi-csis.0 (2 pads, 2 links)
+>              type V4L2 subdev subtype Unknown flags 0
+>              device node name /dev/v4l-subdev1
+> 	pad0: Sink
+> 		<- "hi846 2-0020":0 []
+> 	pad1: Source
+> 		-> "csi":0 [ENABLED,IMMUTABLE]
 
-No. I think this is what you want to do:
+This subdev doesn't seem to report formats on its sink and source pads,
+which is weird. I've had a quick look at the .get_fmt() and .set_fmt()
+implementations in the code you've posted, and they're wrong. They
+shouldn't pass the calls to the source subdev with v4l2_subdev_call(),
+they should instead implement get and set format on this subdev. You can
+look at the imx7-mipi-csis driver to see how that's done. Once you'll
+have fixed this, you'll have to set the format on each pad with
+media-ctl to make sure formats through the pipeline match.
 
-diff --git a/drivers/mux/core.c b/drivers/mux/core.c
-index 1fb22388e7e07..e30e8504c1d6d 100644
---- a/drivers/mux/core.c
-+++ b/drivers/mux/core.c
-@@ -424,7 +424,7 @@ static struct mux_chip *of_find_mux_chip_by_node(struct device_node *np)
-  */
- struct mux_control *mux_control_get(struct device *dev, const char *mux_name)
- {
--       struct device_node *np = dev->of_node;
-+       struct device_node *np = to_of_node(dev_fwnode(dev));
-        struct of_phandle_args args;
-        struct mux_chip *mux_chip;
-        unsigned int controller;
+The only location where you imx8mq-mipi-csis driver should use
+v4l2_subdev_call() is in .s_stream(), to propagate the operation to the
+source.
 
-thanks,
+By the way, I'd replace every occurence of "csis" with "csi2" in your
+driver. The name "csis" in the i.MX7 driver comes from the CSI-2 RX IP
+core that is named CSIS. That's not the case on the i.MX8QM.
+
+> - entity 15: hi846 2-0020 (1 pad, 1 link)
+>              type V4L2 subdev subtype Sensor flags 0
+>              device node name /dev/v4l-subdev2
+> 	pad0: Source
+> 		[fmt:SGBRG10_1X10/640x480 field:none colorspace:raw]
+> 		-> "imx8mq-mipi-csis.0":0 []
+
+You need to enable this link, the following should do
+
+media-ctl -l "'hi846 2-0020':0 -> 'imx8mq-mipi-csis.0':0 [1]"
+
+> > > btw, my test is:
+> > > 
+> > > v4l2-ctl -d "/dev/v4l/by-path/platform-30a90000.csi1_bridge-video-index0"
+> > > --set-fmt-video=width=640,height=480 --stream-mmap
+> > > --stream-to=test.raw --stream-count=1
+> > > 
+> > > and that (probably because of the missing link) fails with
+> > > 
+> > > VIDIOC_STREAMON returned -1 (No such device)
+> > > 
+> > > which is in the kernel:
+> > > 
+> > > imx7-csi 30a90000.csi1_bridge: pipeline start failed with -19
+> > 
+> > Let's fix the missing link first.
+> 
+> But now when trying to stream a frame, the error is:
+> 
+> Because of:
+> 
+> media bus code not compatible with the pixel format set on the video
+> node: 1 != 0
+> 
+> I get :
+> 
+> imx7-csi 30a90000.csi1_bridge: capture format not valid
+> 
+> which becomes for userspace:
+> 
+> VIDIOC_STREAMON returned -1 (Broken pipe)
+> 
+> Could that be a "user-problem" because "fmt" is not exactly the same
+> everywhere? Also, the sensor entity pad is not yet ENABLED...
+
+There's a combination of kernel-side issues (as detailed above) and
+userspace issues (also as detailed above :-)).
+
+> (media-ctl is still very new to me, sorry if that's dumb questions now)
+
+It's not dumb at all.
 
 -- 
-heikki
+Regards,
+
+Laurent Pinchart
