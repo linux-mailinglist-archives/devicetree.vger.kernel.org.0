@@ -2,228 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9434838A01B
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 10:49:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EA0538A0AE
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 11:18:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231315AbhETIuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 04:50:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42218 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231303AbhETIuS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 May 2021 04:50:18 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3F29561244;
-        Thu, 20 May 2021 08:48:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1621500536;
-        bh=MtLvufPCTN8q/1o45ANjRCEMkTxznK6fKZwgjXsAMi4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=D138oCKE8iwobQsABqTqqRUhZX50iyyZy+Zj6+Jcni313tCnMVpDxzYTTqZ/UzeOJ
-         0e47vVoBfuiC0glko6Rr6BXu9sA9tYYsztZO3GhmjktHxmGM153GNwo7Aj2yOGLj8E
-         wE/NGnUHFjJelEClVnCFgV65ga1IfJU7sRRxFJKA=
-Date:   Thu, 20 May 2021 10:48:54 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Nava kishore Manne <nava.manne@xilinx.com>
-Cc:     robh+dt@kernel.org, michal.simek@xilinx.com, mdf@kernel.org,
-        trix@redhat.com, arnd@arndb.de, rajan.vaja@xilinx.com,
-        amit.sunil.dhamne@xilinx.com, tejas.patel@xilinx.com,
-        zou_wei@huawei.com, lakshmi.sai.krishna.potthuri@xilinx.com,
-        ravi.patel@xilinx.com, iwamatsu@nigauri.org,
-        wendy.liang@xilinx.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-fpga@vger.kernel.org, git@xilinx.com,
-        chinnikishore369@gmail.com,
-        Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-Subject: Re: [PATCH v6 4/4] fpga: versal-fpga: Add versal fpga manager driver
-Message-ID: <YKYidhc25e4SIwNi@kroah.com>
-References: <20210520080954.1393-1-nava.manne@xilinx.com>
- <20210520080954.1393-5-nava.manne@xilinx.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210520080954.1393-5-nava.manne@xilinx.com>
+        id S230478AbhETJTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 05:19:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42272 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230458AbhETJTx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 05:19:53 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2F2AC061574;
+        Thu, 20 May 2021 02:18:31 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id u21so24085721ejo.13;
+        Thu, 20 May 2021 02:18:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=+rOdv3KCbiUqd8c0X4RWj5P62xfZFWST/dV9i1ux5cU=;
+        b=rViVNkW33eI09Q16b9eoNOV7URSgw7l1JyZaIpZi5hSs1Ws1YCcu8vrnrOiWJ+AKz9
+         sAHS8ho3n+vvdPBqeYaViZj9WDy//M8yZAHFyTnXs9aASvQ1cfE+wP0IephC8JK1KDU8
+         +Cb0VmpoUAt3PxD6zvfjPkGeVN3Q9L9OmtYZex9TGaPtfpvGg/wjYD7KXtwnpsoKWtIi
+         MU4JBUJdKPll7+nbn9NbCjsgTbgS4Ao/ZIjbokoiAHMV3RArlZHIbOCG81uewniq9RJH
+         CIlRVadEzj6tkNlBTMd6LhFAhkJexIwVU0HHRzUpqkk28c6mGV8SVUqdIZMC/4Ytq/jP
+         WyRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=+rOdv3KCbiUqd8c0X4RWj5P62xfZFWST/dV9i1ux5cU=;
+        b=ppBl9KsIo4OAITujluKBGUExecJWFAng5DI9Z3oOXp8YHe2v3HiQ0YtM+V+BYZY7mf
+         4D27jd9ZOkXSANhJwjy5eUzGXS9Hpu6nP5oWKBb0C5DIcd2tYIHSCM2SNVo7AglUeAxN
+         WrcXw9MtZ7ixwwiCTNPV83/nKd6McIxPvAMI5Zti3xvuvJ0nVvgqKvECnLEGL1O2eocX
+         jXcyUAiGinuC4BPVNshJwBTkBlu1E7WXZr1OcfNfR7nWTviyI2swqD/dsLaFaGzdpu2r
+         ISJYefLcP6dj5wt3PwkptxwIYHKs1jkUVqceJ7sc8Lg52MxDX/TN7M1+osrXIAxiQc5p
+         onEQ==
+X-Gm-Message-State: AOAM530wKtznaQxt/L6ep0L2FmoEL2rP/VZOkT8p3FUM3zbtzAhcrD19
+        qul3KACDgNYuHCCn3Rz2sL4=
+X-Google-Smtp-Source: ABdhPJyLPLLmdyBirFVZH929Ha5LVQZZMccLL7QdF84RzeWpqUovUNhhouA4eTKFHHQouKxrBE2vYA==
+X-Received: by 2002:a17:907:1b06:: with SMTP id mp6mr3802773ejc.292.1621502310300;
+        Thu, 20 May 2021 02:18:30 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id n8sm1069746ejl.0.2021.05.20.02.18.28
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 20 May 2021 02:18:29 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1] ARM: dts: rockchip: move mmc aliases to board dts on rk3066/rk3188
+Date:   Thu, 20 May 2021 11:18:22 +0200
+Message-Id: <20210520091822.28491-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 20, 2021 at 01:39:54PM +0530, Nava kishore Manne wrote:
-> Add support for Xilinx Versal FPGA manager.
-> 
-> PDI source type can be DDR, OCM, QSPI flash etc..
-> But driver allocates memory always from DDR, Since driver supports only
-> DDR source type.
-> 
-> Signed-off-by: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
-> Reviewed-by: Moritz Fischer <mdf@kernel.org>
-> ---
-> Changes for v2:
->                 -Updated the Fpga Mgr registrations call's
->                  to 5.11
->                 -Fixed some minor coding issues as suggested by
->                  Moritz.
-> Changes for v3:
->                 -Rewritten the Versal fpga Kconfig contents.
-> Changes for v4:
->                 -Rebased the changes on linux-next.
->                  No functional changes.
-> Changes for v5:
->                 -None.
-> Changes for v6:
->                 -None.
-> 
->  drivers/fpga/Kconfig       |   9 +++
->  drivers/fpga/Makefile      |   1 +
->  drivers/fpga/versal-fpga.c | 117 +++++++++++++++++++++++++++++++++++++
->  3 files changed, 127 insertions(+)
->  create mode 100644 drivers/fpga/versal-fpga.c
-> 
-> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
-> index 33e15058d0dc..92c20b92357a 100644
-> --- a/drivers/fpga/Kconfig
-> +++ b/drivers/fpga/Kconfig
-> @@ -234,4 +234,13 @@ config FPGA_MGR_ZYNQMP_FPGA
->  	  to configure the programmable logic(PL) through PS
->  	  on ZynqMP SoC.
->  
-> +config FPGA_MGR_VERSAL_FPGA
-> +	tristate "Xilinx Versal FPGA"
-> +	depends on ARCH_ZYNQMP || COMPILE_TEST
-> +	help
-> +	  Select this option to enable FPGA manager driver support for
-> +	  Xilinx Versal SoC. This driver uses the firmware interface to
-> +	  configure the programmable logic(PL).
-> +
-> +	  To compile this as a module, choose M here.
->  endif # FPGA
-> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
-> index 18dc9885883a..0bff783d1b61 100644
-> --- a/drivers/fpga/Makefile
-> +++ b/drivers/fpga/Makefile
-> @@ -18,6 +18,7 @@ obj-$(CONFIG_FPGA_MGR_TS73XX)		+= ts73xx-fpga.o
->  obj-$(CONFIG_FPGA_MGR_XILINX_SPI)	+= xilinx-spi.o
->  obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)	+= zynq-fpga.o
->  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)	+= zynqmp-fpga.o
-> +obj-$(CONFIG_FPGA_MGR_VERSAL_FPGA)      += versal-fpga.o
->  obj-$(CONFIG_ALTERA_PR_IP_CORE)         += altera-pr-ip-core.o
->  obj-$(CONFIG_ALTERA_PR_IP_CORE_PLAT)    += altera-pr-ip-core-plat.o
->  
-> diff --git a/drivers/fpga/versal-fpga.c b/drivers/fpga/versal-fpga.c
-> new file mode 100644
-> index 000000000000..5744e44f981d
-> --- /dev/null
-> +++ b/drivers/fpga/versal-fpga.c
-> @@ -0,0 +1,117 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2019-2021 Xilinx, Inc.
-> + */
-> +
-> +#include <linux/dma-mapping.h>
-> +#include <linux/fpga/fpga-mgr.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of_address.h>
-> +#include <linux/string.h>
-> +#include <linux/firmware/xlnx-zynqmp.h>
-> +
-> +/**
-> + * struct versal_fpga_priv - Private data structure
-> + * @dev:	Device data structure
-> + */
-> +struct versal_fpga_priv {
-> +	struct device *dev;
-> +};
+As suggested by Arnd Bergmann, the newly added mmc aliases
+should be board specific, so move them from the general dtsi
+to the individual boards.
 
-Don't you have this pointer already?  What device is this exactly and
-why does it differ from the structure it currently lives in?
+Suggested-by: Arnd Bergmann <arnd@kernel.org>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ arch/arm/boot/dts/rk3066a-bqcurie2.dts   | 5 +++++
+ arch/arm/boot/dts/rk3066a-marsboard.dts  | 4 ++++
+ arch/arm/boot/dts/rk3066a-mk808.dts      | 5 +++++
+ arch/arm/boot/dts/rk3066a-rayeager.dts   | 6 ++++++
+ arch/arm/boot/dts/rk3188-bqedison2qc.dts | 6 ++++++
+ arch/arm/boot/dts/rk3188-px3-evb.dts     | 5 +++++
+ arch/arm/boot/dts/rk3188-radxarock.dts   | 4 ++++
+ arch/arm/boot/dts/rk3xxx.dtsi            | 3 ---
+ 8 files changed, 35 insertions(+), 3 deletions(-)
 
-> +
-> +static int versal_fpga_ops_write_init(struct fpga_manager *mgr,
-> +				      struct fpga_image_info *info,
-> +				      const char *buf, size_t size)
-> +{
-> +	return 0;
-> +}
+diff --git a/arch/arm/boot/dts/rk3066a-bqcurie2.dts b/arch/arm/boot/dts/rk3066a-bqcurie2.dts
+index eba7a1344..390aa33cd 100644
+--- a/arch/arm/boot/dts/rk3066a-bqcurie2.dts
++++ b/arch/arm/boot/dts/rk3066a-bqcurie2.dts
+@@ -12,6 +12,11 @@
+ 	model = "bq Curie 2";
+ 	compatible = "mundoreader,bq-curie2", "rockchip,rk3066a";
+ 
++	aliases {
++		mmc0 = &mmc0;
++		mmc1 = &mmc1;
++	};
++
+ 	memory@60000000 {
+ 		device_type = "memory";
+ 		reg = <0x60000000 0x40000000>;
+diff --git a/arch/arm/boot/dts/rk3066a-marsboard.dts b/arch/arm/boot/dts/rk3066a-marsboard.dts
+index 6b121658d..a66d915aa 100644
+--- a/arch/arm/boot/dts/rk3066a-marsboard.dts
++++ b/arch/arm/boot/dts/rk3066a-marsboard.dts
+@@ -10,6 +10,10 @@
+ 	model = "MarsBoard RK3066";
+ 	compatible = "haoyu,marsboard-rk3066", "rockchip,rk3066a";
+ 
++	aliases {
++		mmc0 = &mmc0;
++	};
++
+ 	memory@60000000 {
+ 		device_type = "memory";
+ 		reg = <0x60000000 0x40000000>;
+diff --git a/arch/arm/boot/dts/rk3066a-mk808.dts b/arch/arm/boot/dts/rk3066a-mk808.dts
+index 5fe74c097..a90729f6c 100644
+--- a/arch/arm/boot/dts/rk3066a-mk808.dts
++++ b/arch/arm/boot/dts/rk3066a-mk808.dts
+@@ -10,6 +10,11 @@
+ 	model = "Rikomagic MK808";
+ 	compatible = "rikomagic,mk808", "rockchip,rk3066a";
+ 
++	aliases {
++		mmc0 = &mmc0;
++		mmc1 = &mmc1;
++	};
++
+ 	chosen {
+ 		stdout-path = "serial2:115200n8";
+ 	};
+diff --git a/arch/arm/boot/dts/rk3066a-rayeager.dts b/arch/arm/boot/dts/rk3066a-rayeager.dts
+index a73e8900c..12b2e59ae 100644
+--- a/arch/arm/boot/dts/rk3066a-rayeager.dts
++++ b/arch/arm/boot/dts/rk3066a-rayeager.dts
+@@ -11,6 +11,12 @@
+ 	model = "Rayeager PX2";
+ 	compatible = "chipspark,rayeager-px2", "rockchip,rk3066a";
+ 
++	aliases {
++		mmc0 = &mmc0;
++		mmc1 = &mmc1;
++		mmc2 = &emmc;
++	};
++
+ 	memory@60000000 {
+ 		device_type = "memory";
+ 		reg = <0x60000000 0x40000000>;
+diff --git a/arch/arm/boot/dts/rk3188-bqedison2qc.dts b/arch/arm/boot/dts/rk3188-bqedison2qc.dts
+index 66a0ff196..85d3fce01 100644
+--- a/arch/arm/boot/dts/rk3188-bqedison2qc.dts
++++ b/arch/arm/boot/dts/rk3188-bqedison2qc.dts
+@@ -13,6 +13,12 @@
+ 	model = "BQ Edison2 Quad-Core";
+ 	compatible = "mundoreader,bq-edison2qc", "rockchip,rk3188";
+ 
++	aliases {
++		mmc0 = &mmc0;
++		mmc1 = &mmc1;
++		mmc2 = &emmc;
++	};
++
+ 	memory@60000000 {
+ 		device_type = "memory";
+ 		reg = <0x60000000 0x80000000>;
+diff --git a/arch/arm/boot/dts/rk3188-px3-evb.dts b/arch/arm/boot/dts/rk3188-px3-evb.dts
+index c32e1d441..39c60426c 100644
+--- a/arch/arm/boot/dts/rk3188-px3-evb.dts
++++ b/arch/arm/boot/dts/rk3188-px3-evb.dts
+@@ -11,6 +11,11 @@
+ 	model = "Rockchip PX3-EVB";
+ 	compatible = "rockchip,px3-evb", "rockchip,px3", "rockchip,rk3188";
+ 
++	aliases {
++		mmc0 = &mmc0;
++		mmc1 = &emmc;
++	};
++
+ 	chosen {
+ 		stdout-path = "serial2:115200n8";
+ 	};
+diff --git a/arch/arm/boot/dts/rk3188-radxarock.dts b/arch/arm/boot/dts/rk3188-radxarock.dts
+index b0fef82c0..36c0945f4 100644
+--- a/arch/arm/boot/dts/rk3188-radxarock.dts
++++ b/arch/arm/boot/dts/rk3188-radxarock.dts
+@@ -11,6 +11,10 @@
+ 	model = "Radxa Rock";
+ 	compatible = "radxa,rock", "rockchip,rk3188";
+ 
++	aliases {
++		mmc0 = &mmc0;
++	};
++
+ 	memory@60000000 {
+ 		device_type = "memory";
+ 		reg = <0x60000000 0x80000000>;
+diff --git a/arch/arm/boot/dts/rk3xxx.dtsi b/arch/arm/boot/dts/rk3xxx.dtsi
+index d473552e8..f9bbc2424 100644
+--- a/arch/arm/boot/dts/rk3xxx.dtsi
++++ b/arch/arm/boot/dts/rk3xxx.dtsi
+@@ -21,9 +21,6 @@
+ 		i2c2 = &i2c2;
+ 		i2c3 = &i2c3;
+ 		i2c4 = &i2c4;
+-		mshc0 = &emmc;
+-		mshc1 = &mmc0;
+-		mshc2 = &mmc1;
+ 		serial0 = &uart0;
+ 		serial1 = &uart1;
+ 		serial2 = &uart2;
+-- 
+2.11.0
 
-If you don't need this, why include it?
-
-> +
-> +static int versal_fpga_ops_write(struct fpga_manager *mgr,
-> +				 const char *buf, size_t size)
-> +{
-> +	struct versal_fpga_priv *priv;
-> +	dma_addr_t dma_addr = 0;
-> +	char *kbuf;
-> +	int ret;
-> +
-> +	priv = mgr->priv;
-> +
-> +	kbuf = dma_alloc_coherent(priv->dev, size, &dma_addr, GFP_KERNEL);
-> +	if (!kbuf)
-> +		return -ENOMEM;
-> +
-> +	memcpy(kbuf, buf, size);
-> +
-> +	wmb(); /* ensure all writes are done before initiate FW call */
-
-What "writes"?  The memcpy above?  Are you _SURE_ that really is correct
-here?  This feels wrong.
-
-> +
-> +	ret = zynqmp_pm_load_pdi(PDI_SRC_DDR, dma_addr);
-
-If this needs some sort of barrier, shouldn't it be in this call?
-
-> +
-> +	dma_free_coherent(priv->dev, size, kbuf, dma_addr);
-> +
-> +	return ret;
-> +}
-> +
-> +static int versal_fpga_ops_write_complete(struct fpga_manager *mgr,
-> +					  struct fpga_image_info *info)
-> +{
-> +	return 0;
-> +}
-
-Again, why have it if it does nothing?
-
-> +
-> +static enum fpga_mgr_states versal_fpga_ops_state(struct fpga_manager *mgr)
-> +{
-> +	return FPGA_MGR_STATE_UNKNOWN;
-> +}
-
-Again, is this needed?  If so, then the fpga_manager core needs to be
-fixed up :)
-
-> +static const struct fpga_manager_ops versal_fpga_ops = {
-> +	.state = versal_fpga_ops_state,
-> +	.write_init = versal_fpga_ops_write_init,
-> +	.write = versal_fpga_ops_write,
-> +	.write_complete = versal_fpga_ops_write_complete,
-> +};
-> +
-> +static int versal_fpga_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct versal_fpga_priv *priv;
-> +	struct fpga_manager *mgr;
-> +	int ret;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->dev = dev;
-
-You save a pointer to a reference counted structure, without
-incrementing the reference count.  What could go wrong?  :)
-
-You are getting lucky here, but as stated above, why do you need this
-pointer?
-
-thanks,
-
-greg k-h
