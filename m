@@ -2,76 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87E25389A4F
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 02:06:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE0F4389A55
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 02:08:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229525AbhETAHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 May 2021 20:07:18 -0400
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:41683 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbhETAHS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 20:07:18 -0400
-Received: by mail-ot1-f43.google.com with SMTP id 36-20020a9d0ba70000b02902e0a0a8fe36so13319747oth.8;
-        Wed, 19 May 2021 17:05:58 -0700 (PDT)
+        id S229953AbhETAJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 May 2021 20:09:54 -0400
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:37648 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229498AbhETAJy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 May 2021 20:09:54 -0400
+Received: by mail-oi1-f178.google.com with SMTP id h9so14802629oih.4;
+        Wed, 19 May 2021 17:08:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=+/HHwpUG4DYqY1wOYcmevFTpDYTTWuP4aLIe9OEyOIE=;
-        b=mc7iP3+OX0PRNnXBD+gsju0zPliruJbY2OhGodC8b6dKM7SI5XTjLuMMjLbA2KnB/B
-         u0rXcGn3i/SqovEsflMvm8mg90Ko/H77PPpe9m1awI0JgV2JO+JJZAxxKEKpp+VqVM4H
-         qTpjklGYs/kdfkSkH4mVg6bOJve/aCDrfEreDPPAxI5wiWKj8YFbR5OH6hbjxyQxwwnK
-         42BpomRf2sHHlSo75q3cz5W8GrMKKkoclLdZfTH4P/Y50W59iT4neIto/C8dfinR4vwo
-         zsFFZpUOfnMM0hIllqGTiXdEELwSy747fX33P11EnS0WOjlVNnA+PtHZk7S4hx8SD9cZ
-         MXHw==
-X-Gm-Message-State: AOAM530d3iyg6yjXGgyrWksdgbNv+sF39wxzl+qC1g/P0pmY9rM2hE5+
-        oFLczejzYj1BmZVc5VUvtQ==
-X-Google-Smtp-Source: ABdhPJw5gex1OFhEgIpWnHy7lFKkRi3NhLOnuaVuAAlbkZZf7bbRmy2hkqeJlyFMuVyUw1rpIxJDmQ==
-X-Received: by 2002:a9d:37e2:: with SMTP id x89mr1786329otb.352.1621469157717;
-        Wed, 19 May 2021 17:05:57 -0700 (PDT)
+        bh=LA4RgeyD3HBeU9haOJcHqZbHzNulNwVKdsYPjskFaXI=;
+        b=P1ohxCDIQdi9TlfS5aJKUlRR4cvw+pPVw9tc54mGScgfnk2oeS2PT+eQ8rzLkawBEV
+         ux02KTVSomRAIZ0Phr8Ak5EsmvG5UFMUlYZNEGgeahQvGBIYj59aRFsGyOOtOKMkUQ1g
+         n8BRD3qjmU5vK7v21rWzg2wB/A7oFtHKewRUuRViHc9tQp875QeNmqTAeTx0en6eC7tX
+         kCjq5SFvJWdhfT0cltraos+xytqier/X2exymHQHPgfOLU/w1D1zwQS7/FAkTnWtx7ZY
+         ps99+1CZlxAQBsL5SFydUVqdApr+ikkn4Eno+tWQVIw8iMsRcVAwK2ZIVHjVS7aWXG4H
+         jRog==
+X-Gm-Message-State: AOAM530icYAJHGkM2d7LRslCG2ZAGJa0yfpeGfhQ2/Psw/wWBrM1ZmLe
+        zFDJskTCYvXzl4JbCp9jjw==
+X-Google-Smtp-Source: ABdhPJwo9+35nzzqwNWun7jp8klMbqnND6YGdhcLUbjnrU4T1+etIuW7axuQ8uah2B1e9vHTdZ/AKw==
+X-Received: by 2002:aca:1e0c:: with SMTP id m12mr1470259oic.100.1621469313361;
+        Wed, 19 May 2021 17:08:33 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r10sm245097oic.4.2021.05.19.17.05.55
+        by smtp.gmail.com with ESMTPSA id x5sm261513otg.76.2021.05.19.17.08.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 May 2021 17:05:56 -0700 (PDT)
-Received: (nullmailer pid 3927287 invoked by uid 1000);
-        Thu, 20 May 2021 00:05:55 -0000
-Date:   Wed, 19 May 2021 19:05:55 -0500
+        Wed, 19 May 2021 17:08:32 -0700 (PDT)
+Received: (nullmailer pid 3931357 invoked by uid 1000);
+        Thu, 20 May 2021 00:08:31 -0000
+Date:   Wed, 19 May 2021 19:08:31 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, heiko@sntech.de,
-        linux-rockchip@lists.infradead.org, linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, kishon@ti.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org, vkoul@kernel.org
-Subject: Re: [PATCH v6 2/4] dt-bindings: phy: rename phy nodename in
- phy-rockchip-inno-usb2.yaml
-Message-ID: <20210520000555.GA3927257@robh.at.kernel.org>
-References: <20210518165658.12764-1-jbx6244@gmail.com>
- <20210518165658.12764-3-jbx6244@gmail.com>
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Jassi Brar <jaswinder.singh@linaro.org>,
+        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: mailbox: Convert omap-mailbox.txt binding
+ to YAML
+Message-ID: <20210520000831.GA3927464@robh.at.kernel.org>
+References: <20210518172022.10562-1-s-anna@ti.com>
+ <c666919f-cc10-3ca5-a1e3-5062c260e827@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210518165658.12764-3-jbx6244@gmail.com>
+In-Reply-To: <c666919f-cc10-3ca5-a1e3-5062c260e827@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 May 2021 18:56:56 +0200, Johan Jonker wrote:
-> The pattern: "^(|usb-|usb2-|usb3-|pci-|pcie-|sata-)phy(@[0-9a-f,]+)*$"
-> in phy-provider.yaml has required "#phy-cells" for phy nodes.
-> The "phy-cells" in rockchip-inno-usb2 nodes are located in subnodes.
-> Rename the nodename to pattern "usb2phy@[0-9a-f]+$" to prevent
-> notifications. Remove unneeded "#phy-cells" from parent node.
-> Also sort example.
+On Wed, May 19, 2021 at 10:14:14AM -0500, Suman Anna wrote:
+> On 5/18/21 12:20 PM, Suman Anna wrote:
+> > Convert the current OMAP Mailbox binding from text format to YAML
+> > format/DT schema, and delete the legacy text binding file.
+> > 
+> > The new YAML binding conversion is an updated version compared to
+> > the original. The descriptions for certain properties have been
+> > improved to provide more clarity. Constraints are added to the
+> > properties 'ti,mbox-num-users', 'ti,mbox-num-fifos' and 'interrupts'.
+> > The 'ti,hwmods' is a legacy property and is retained only to reflect
+> > the existing usage on some older OMAP2 and OMAP3 platforms.
+> > 
+> > All the existing examples have also been updated to reflect the
+> > latest dts nodes (ti,hwmods removed from OMAP4 and AM33xx examples,
+> > and interrupts value updated for AM65x SoCs).
+> > 
+> > Signed-off-by: Suman Anna <s-anna@ti.com>
+> > ---
+> > Hi,
+> > 
+> > This patch does fix a number of dtbs_check warnings seen around OMAP Mailbox
+> > nodes with the latest kernel. There are few left-over warnings when just
+> > this patch is used on v5.13-rc1 or next-20210518. I have posted a separate
+> > fix for a warning on TI K3 SoCs [1], and will be posting a separate cleanup
+> > series for OMAP2+ SoCs. The dts patches can be picked up independently
+> > of this patch.
 > 
-> make ARCH=arm dtbs_check
-> DT_SCHEMA_FILES=~/.local/lib/python3.5/site-packages/dtschema/schemas/
-> phy/phy-provider.yaml
-> 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
->  .../devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml       | 11 +++--------
->  Documentation/devicetree/bindings/soc/rockchip/grf.yaml       |  4 ++--
->  2 files changed, 5 insertions(+), 10 deletions(-)
-> 
+> FYI, All the dtbs_check warnings will be gone with [1] and the OMAP2+ cleanup
+> series [2].
 
-Acked-by: Rob Herring <robh@kernel.org>
+Nice, though it is a moving target. :) Is that still true with the 
+undocumented compatible checks that's been added? 
+
+Rob
