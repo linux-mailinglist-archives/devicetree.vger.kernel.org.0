@@ -2,387 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADE7A38AF9F
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 15:06:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAC0938AFC9
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 15:18:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232447AbhETNH3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 09:07:29 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:33067 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243420AbhETNHU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 09:07:20 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1621515959; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=JPtC60RO41+P3OoBocVeVFv4X8kpV/bjSY64w/T+SJ4=;
- b=mLfFt1wGBE/2C5Hp/tVVmUl+eJX3YaGhDkPkHBvUU3AiHEj0F01Cps3QFOZmA9rDrVQU+i/V
- y2XgA8ydYk4NCHavXcTLBAC4ywuopO5wXrYC/f68Fa0QEBt8BjJVbFASRovgvAdWRWMOJ9ON
- D+a+K5E0abJaX013mg8hF0HdWjI=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 60a65e95d1aee7698dcb4b16 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 20 May 2021 13:05:25
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 0BAEBC43146; Thu, 20 May 2021 13:05:24 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=ham autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 44FD9C43143;
-        Thu, 20 May 2021 13:05:23 +0000 (UTC)
+        id S232498AbhETNTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 09:19:53 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:54948 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232048AbhETNTv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 09:19:51 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14KDINWt024415;
+        Thu, 20 May 2021 08:18:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1621516704;
+        bh=p8siWvPgn0JnO9HX8NwOfzd3HcBfDidAJFOIef3h5PQ=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=DFEUU/F5mgy2/kxC/e8YIJTt1QScZ8hXyXD+hga89s2lcfNYYCr9SXgVSFf02ItSW
+         iighND7gOlnnyYOIv+i7i1bVBaU+rN6+/ss8gEkJO3Uu2/lDEYkOTnfhsL45+DPBuL
+         6DVkXmEVbDUjeAX9fZGPhTo7A6bryd9bIJy/sGLg=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14KDIN4u089905
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 20 May 2021 08:18:23 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 20
+ May 2021 08:18:23 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 20 May 2021 08:18:23 -0500
+Received: from [10.250.234.58] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14KDIKk5051020;
+        Thu, 20 May 2021 08:18:21 -0500
+Subject: Re: [PATCH 1/4] arm64: dts: ti: k3-j721e-main: Fix external refclk
+ input to SERDES
+To:     Nishanth Menon <nm@ti.com>
+CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+References: <20210512151209.27560-1-kishon@ti.com>
+ <20210512151209.27560-2-kishon@ti.com>
+ <20210512185157.q5sr2xqf3w5igfte@imagines>
+ <68c95cf1-84fa-2194-7bb1-e3c60e7f1fc0@ti.com>
+ <20210513140137.5uvftgtsku3xfobz@engraving>
+ <81b7dc76-0918-0a95-5715-cf701e638bbe@ti.com>
+ <20210517140519.4ltzvw3k74z72urz@dingo>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <3529e35f-0bef-fd8c-515a-6d4552f2467d@ti.com>
+Date:   Thu, 20 May 2021 18:48:19 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+In-Reply-To: <20210517140519.4ltzvw3k74z72urz@dingo>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Date:   Thu, 20 May 2021 18:35:23 +0530
-From:   skakit@codeaurora.org
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        kgunda@codeaurora.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH V3 3/3] dt-bindings: pinctrl: qcom-pmic-gpio: Convert qcom
- pmic gpio bindings to YAML
-In-Reply-To: <20210518005531.GA3539579@robh.at.kernel.org>
-References: <1620817988-18809-1-git-send-email-skakit@codeaurora.org>
- <1620817988-18809-4-git-send-email-skakit@codeaurora.org>
- <20210518005531.GA3539579@robh.at.kernel.org>
-Message-ID: <68ccd08a4aa89582aa499f510ea4b1a6@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-05-18 06:25, Rob Herring wrote:
-> On Wed, May 12, 2021 at 04:43:08PM +0530, satya priya wrote:
->> Convert Qualcomm PMIC GPIO bindings from .txt to .yaml format.
->> 
->> Signed-off-by: satya priya <skakit@codeaurora.org>
->> ---
->> Changes in V3:
->>  - As per Rob's comments fixed bot erros.
->>  - Moved this patch to end of the series so that other patches are not
->>    blocked on this.
->> 
->> Changes in V4:
->>  - As per Rob's comments, added maxItems for reg and interrupts.
->>    Added reference of "pinmux-node.yaml" and "pincfg-node.yaml".
->>    Made 'additionalProperties' as false.
->> 
->>  .../devicetree/bindings/pinctrl/qcom,pmic-gpio.txt | 288 
->> ---------------------
->>  .../bindings/pinctrl/qcom,pmic-gpio.yaml           | 245 
->> ++++++++++++++++++
->>  2 files changed, 245 insertions(+), 288 deletions(-)
->>  delete mode 100644 
->> Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
->>  create mode 100644 
->> Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> 
-> 
->> diff --git 
->> a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml 
->> b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
->> new file mode 100644
->> index 0000000..85381a0
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
->> @@ -0,0 +1,245 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/pinctrl/qcom,pmic-gpio.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm PMIC GPIO block
->> +
->> +maintainers:
->> +  - Bjorn Andersson <bjorn.andersson@sonymobile.com>
->> +
->> +description: |
->> +  This binding describes the GPIO block(s) found in the 8xxx series 
->> of
->> +  PMIC's from Qualcomm.
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - enum:
->> +          - qcom,pm8005-gpio
->> +          - qcom,pm8018-gpio
->> +          - qcom,pm8038-gpio
->> +          - qcom,pm8058-gpio
->> +          - qcom,pm8916-gpio
->> +          - qcom,pm8917-gpio
->> +          - qcom,pm8921-gpio
->> +          - qcom,pm8941-gpio
->> +          - qcom,pm8950-gpio
->> +          - qcom,pm8994-gpio
->> +          - qcom,pm8998-gpio
->> +          - qcom,pma8084-gpio
->> +          - qcom,pmi8950-gpio
->> +          - qcom,pmi8994-gpio
->> +          - qcom,pmi8998-gpio
->> +          - qcom,pms405-gpio
->> +          - qcom,pm660-gpio
->> +          - qcom,pm660l-gpio
->> +          - qcom,pm8150-gpio
->> +          - qcom,pm8150b-gpio
->> +          - qcom,pm6150-gpio
->> +          - qcom,pm6150l-gpio
->> +          - qcom,pmx55-gpio
->> +          - qcom,pm7325-gpio
->> +          - qcom,pm8350c-gpio
->> +          - qcom,pmk8350-gpio
->> +          - qcom,pmr735a-gpio
->> +
->> +      - enum:
->> +          - qcom,spmi-gpio
->> +          - qcom,ssbi-gpio
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    minItems: 1
->> +    maxItems: 44
-> 
-> Please say something about what the 1-44 interrupts are if you can't
-> define each one.
-> 
+Hi Nishanth,
 
-Okay, will add the description back.
+On 17/05/21 7:35 pm, Nishanth Menon wrote:
+> On 14:00-20210517, Kishon Vijay Abraham I wrote:
+>> Hi Nishanth,
+>>
+>> On 13/05/21 7:31 pm, Nishanth Menon wrote:
+>>> On 17:41-20210513, Kishon Vijay Abraham I wrote:
+>>>> Hi Nishanth,
+>>>>
+>>>> On 13/05/21 12:21 am, Nishanth Menon wrote:
+>>>>> On 20:42-20210512, Kishon Vijay Abraham I wrote:
+>>>>>> Rename the external refclk inputs to the SERDES from
+>>>>>> dummy_cmn_refclk/dummy_cmn_refclk1 to cmn_refclk/cmn_refclk1
+>>>>>> respectively. Also move the external refclk DT nodes outside the
+>>>>>> cbass_main DT node. Since in j721e common processor board, only the
+>>>>>> cmn_refclk1 is connected to 100MHz clock, fix the clock frequency.
+>>>>>>
+>>>>>> Fixes: afd094ebe69f ("arm64: dts: ti: k3-j721e-main: Add WIZ and SERDES PHY nodes")
+>>>>>
+>>>>> Assume we want this part of 5.13 fixes?
+>>>>
+>>>> This doesn't fix any functionality. Okay for me to go in 5.14 along with
+>>>> the rest of the series.
+>>>
+>>>
+>>>>>
+>>>>>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+>>>>>> ---
+>>>>>>  .../dts/ti/k3-j721e-common-proc-board.dts     |  4 ++
+>>>>>>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 58 ++++++++++---------
+>>>>>>  2 files changed, 34 insertions(+), 28 deletions(-)
+>>>>>>
+>>>>>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+>>>>>> index 60764366e22b..86f7ab511ee8 100644
+>>>>>> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+>>>>>> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+>>>>>> @@ -635,6 +635,10 @@
+>>>>>>  	status = "disabled";
+>>>>>>  };
+>>>>>>  
+>>>>>> +&cmn_refclk1 {
+>>>>>> +	clock-frequency = <100000000>;
+>>>>>> +};
+>>>>>> +
+>>>>>>  &serdes0 {
+>>>>>>  	serdes0_pcie_link: link@0 {
+>>>>>>  		reg = <0>;
+>>>>>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+>>>>>> index c2aa45a3ac79..002a0c1520ee 100644
+>>>>>> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+>>>>>> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+>>>>>> @@ -8,6 +8,20 @@
+>>>>>>  #include <dt-bindings/mux/mux.h>
+>>>>>>  #include <dt-bindings/mux/ti-serdes.h>
+>>>>>>  
+>>>>>> +/ {
+>>>>>> +	cmn_refclk: cmn-refclk {
+>>>>>> +		#clock-cells = <0>;
+>>>>>> +		compatible = "fixed-clock";
+>>>>>> +		clock-frequency = <0>;
+>>>>>> +	};
+>>>>>> +
+>>>>>> +	cmn_refclk1: cmn-refclk1 {
+>>>>>
+>>>>> Just curious: why cant we use the standard nodenames with clock?
+>>>>
+>>>> We can use standard names here. Is there any defined nodename for
+>>>> clocks? clk or clock? Don't see $nodename defined for clocks in
+>>>> dt-schema repository.
+>>>
+>>> Looking at the fixed-clock example, lets go with clock
+>>
+>> Since I have two clocks here adding clock@0 and clock@1 introduces the
+>> following error.
+>> /home/a0393678/repos/linux-wip/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml:
+>> /: clock@0: 'anyOf' conditional failed, one must be fixed:
+>>         'reg' is a required property
+>>         'ranges' is a required property
+>>
+>> The current "fixed-clock" binding doesn't allow adding "reg" property.
+>> We'll stick to non standard names? or do you think the binding has to be
+>> fixed?
+> 
+> Look at other fixed-clock examples in other arm64 examples
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/freescale/imx8mm.dtsi#n147
+> is a good one.. Binding is fine, IMHO.
 
->> +
->> +  '#interrupt-cells':
->> +    const: 2
->> +
->> +  interrupt-controller: true
->> +
->> +  gpio-controller: true
->> +
->> +  gpio-ranges:
->> +    maxItems: 1
->> +
->> +  '#gpio-cells':
->> +    const: 2
->> +    description: |
->> +        The first cell will be used to define gpio number and the
->> +        second denotes the flags for this gpio
->> +
->> +  gpio-keys:
->> +    type: object
->> +    properties:
->> +      volume-keys:
->> +        type: object
->> +        anyOf:
->> +          - $ref: "pinmux-node.yaml"
->> +          - $ref: "pincfg-node.yaml"
->> +        properties:
->> +          pins:
->> +            description: |
->> +                List of gpio pins affected by the properties 
->> specified in
->> +                this subnode.  Valid pins are
->> +                     - gpio1-gpio4 for pm8005
->> +                     - gpio1-gpio6 for pm8018
->> +                     - gpio1-gpio12 for pm8038
->> +                     - gpio1-gpio40 for pm8058
->> +                     - gpio1-gpio4 for pm8916
->> +                     - gpio1-gpio38 for pm8917
->> +                     - gpio1-gpio44 for pm8921
->> +                     - gpio1-gpio36 for pm8941
->> +                     - gpio1-gpio8 for pm8950 (hole on gpio3)
->> +                     - gpio1-gpio22 for pm8994
->> +                     - gpio1-gpio26 for pm8998
->> +                     - gpio1-gpio22 for pma8084
->> +                     - gpio1-gpio2 for pmi8950
->> +                     - gpio1-gpio10 for pmi8994
->> +                     - gpio1-gpio12 for pms405 (holes on gpio1, gpio9
->> +                                                and gpio10)
->> +                     - gpio1-gpio10 for pm8150 (holes on gpio2, 
->> gpio5,
->> +                                                gpio7 and gpio8)
->> +                     - gpio1-gpio12 for pm8150b (holes on gpio3, 
->> gpio4
->> +                                                 and gpio7)
->> +                     - gpio1-gpio12 for pm8150l (hole on gpio7)
->> +                     - gpio1-gpio10 for pm6150
->> +                     - gpio1-gpio12 for pm6150l
->> +                     - gpio1-gpio10 for pm7325
->> +                     - gpio1-gpio9 for pm8350c
->> +                     - gpio1-gpio4 for pmk8350
->> +                     - gpio1-gpio4 for pmr735a
->> +
->> +            items:
->> +              pattern: "^gpio([0-9]+)$"
->> +
->> +          function:
->> +            description: |
->> +                Specify the alternative function to be configured for 
->> the
->> +                specified pins.
-> 
-> No need to redescribe a common property.
-> 
+Ah Thanks. It only has to be prefixed with clock-.
 
-okay, will remove.
-
->> +            items:
->> +              - enum:
->> +                  - normal
->> +                  - paired
->> +                  - func1
->> +                  - func2
->> +                  - dtest1
->> +                  - dtest2
->> +                  - dtest3
->> +                  - dtest4
->> +                  - func3  # supported by LV/MV GPIO subtypes
->> +                  - func4  # supported by LV/MV GPIO subtypes
->> +
->> +          bias-disable: true
->> +
->> +          bias-pull-down: true
->> +
->> +          bias-pull-up: true
->> +
->> +          qcom,pull-up-strength:
->> +            $ref: /schemas/types.yaml#/definitions/uint32
->> +            description: |
->> +                Specifies the strength to use for pull up, if 
->> selected.
->> +                Valid values are defined in
->> +                <dt-bindings/pinctrl/qcom,pmic-gpio.h>
->> +                If this property is omitted 30uA strength will be 
->> used
->> +                if pull up is selected
->> +
->> +          bias-high-impedance: true
->> +
->> +          input-enable: true
->> +
->> +          output-high: true
->> +
->> +          output-low: true
->> +
->> +          power-source: true
->> +
->> +          qcom,drive-strength:
->> +            $ref: /schemas/types.yaml#/definitions/uint32
->> +            description: |
->> +                Selects the drive strength for the specified pins
->> +                Valid drive strength values are defined in
->> +                <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> 
-> Please define the constraints here.
-> 
-
-Okay.
-
->> +
->> +          drive-push-pull: true
->> +
->> +          drive-open-drain: true
->> +
->> +          drive-open-source: true
->> +
->> +          qcom,analog-pass:
->> +            $ref: /schemas/types.yaml#/definitions/flag
->> +            description: |
->> +                The specified pins are configured in
->> +                analog-pass-through mode.
->> +
->> +          qcom,atest:
->> +            $ref: /schemas/types.yaml#/definitions/uint32
->> +            description: |
->> +                Selects ATEST rail to route to GPIO when it's
->> +                configured in analog-pass-through mode.
->> +            enum: [1 2 3 4]
-> 
-> enum: [ 1, 2, 3, 4 ]
-> 
-
-Okay.
-
->> +
->> +          qcom,dtest-buffer:
->> +            $ref: /schemas/types.yaml#/definitions/uint32
->> +            description: |
->> +                Selects DTEST rail to route to GPIO when it's
->> +                configured as digital input.
->> +            enum: [1 2 3 4]
-> 
-> Ditto.
-> 
->> +
->> +        required:
->> +          - pins
->> +          - function
->> +
->> +        additionalProperties: false
->> +
->> +additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
->> +
->> +    pm8921_gpio: gpio@150 {
->> +      compatible = "qcom,pm8921-gpio", "qcom,ssbi-gpio";
->> +      reg = <0x150 0x160>;
->> +      interrupts = <192 1>, <193 1>, <194 1>,
->> +                   <195 1>, <196 1>, <197 1>,
->> +                   <198 1>, <199 1>, <200 1>,
->> +                   <201 1>, <202 1>, <203 1>,
->> +                   <204 1>, <205 1>, <206 1>,
->> +                   <207 1>, <208 1>, <209 1>,
->> +                   <210 1>, <211 1>, <212 1>,
->> +                   <213 1>, <214 1>, <215 1>,
->> +                   <216 1>, <217 1>, <218 1>,
->> +                   <219 1>, <220 1>, <221 1>,
->> +                   <222 1>, <223 1>, <224 1>,
->> +                   <225 1>, <226 1>, <227 1>,
->> +                   <228 1>, <229 1>, <230 1>,
->> +                   <231 1>, <232 1>, <233 1>,
->> +                   <234 1>, <235 1>;
->> +
->> +      gpio-controller;
->> +      #gpio-cells = <2>;
->> +
->> +      pm8921_gpio_keys: gpio-keys {
->> +        volume-keys {
->> +          pins = "gpio20", "gpio21";
->> +          function = "normal";
->> +
->> +          input-enable;
->> +          bias-pull-up;
->> +          drive-push-pull;
->> +          qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
->> +          power-source = <PM8921_GPIO_S4>;
->> +        };
->> +      };
->> +    };
->> +...
->> --
->> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
->> member
->> of Code Aurora Forum, hosted by The Linux Foundation
->> 
+Thanks
+Kishon
