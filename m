@@ -2,100 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D97A38B95A
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 00:03:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A202A38B97E
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 00:32:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231194AbhETWEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 18:04:31 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:34647 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230270AbhETWEa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 18:04:30 -0400
-Received: by mail-ot1-f48.google.com with SMTP id u25-20020a0568302319b02902ac3d54c25eso16285649ote.1;
-        Thu, 20 May 2021 15:03:09 -0700 (PDT)
+        id S231501AbhETWdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 18:33:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52414 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230145AbhETWds (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 18:33:48 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C570DC061574
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 15:32:26 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id c15so21698067ljr.7
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 15:32:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=majFJUgE6kbtYjouc7u3aeKZBiY0X2qXxJpyVqBgA4I=;
+        b=XnpflCukL3R8O7gOwis5wc0/1nMU+hWZZD/NxnL5PK9KubcLSaxNlLa6ludwyULWKU
+         +vofbgqXilPhT8p5D7380JWthBPiUSIonE/sPEY4TEHJLTWYf4miV7b79WgrORtoj6y5
+         w6WF7Nie7BRZBhtZv5V1Yqa+Iva/DT1D+INgcy9+yECEI8/965ED+t91hx66ocib8qUY
+         hip3V/kf+An7ywyS2DEUasoGzJrYOVgGGUY4G6Dv7cybkpoNudYOgvbMLo/tNKUAWLwR
+         G7mzQbciqu0jJcRpPcY3Rsr7ci8xihgA3CjapxKTFwMugd7xlWPTxddiVyJtDopdJ0hP
+         nc8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=fTSRjsOcuZx8pYPM4Y1kMmkhvEZ09jKFF24Yv3fC00A=;
-        b=H+G9gIGTg0BvZLee2lSN+fx5fcHXS9Gf45tz5U8JlnnXxZeWeWUNGA+7cICfNKXono
-         8Bp6E1CIrj3gV7NEw+NrD5P0Tu4GzMyMPYxEogY4fXLz5TNIesaBKOVkJhzFnnMYZDzf
-         P5i3DOAb1ysXLMPRHn3Qs8q525HnjFJKjVAjwR65D+UPt5VsYnedPr/Al0E0JTeaNwsa
-         7hbKDgtz7WHOpliGnC4n638DDvhvXYnbFarvo2UWlpsyIuSr7yh8oXK6Ipcghn2HGxH5
-         47xQtRpgAueJVPd1F/QqHpWLcciOwifediSq0L4dFj0/9jHBBZZZwTKi65m3dW9YAeta
-         qh4Q==
-X-Gm-Message-State: AOAM530+o5Fwtr8CX9GCLljcm7thn+1+4F0qkVonIEM9mzMdj6EmOusI
-        qI2X5c0cMZsHZrSxy+uuVw==
-X-Google-Smtp-Source: ABdhPJwtAU3l1c6DBNoU2f0LgsDgxOJkyUKiPWVnTMvPY2Qx9BfZ0T12uREJKY4gARMRp8ykv2eAJw==
-X-Received: by 2002:a9d:e88:: with SMTP id 8mr5249701otj.239.1621548188615;
-        Thu, 20 May 2021 15:03:08 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n13sm799982oov.30.2021.05.20.15.03.06
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=majFJUgE6kbtYjouc7u3aeKZBiY0X2qXxJpyVqBgA4I=;
+        b=T5ZQKlCFKv6z+ManPG14POPDrec9ndVtLf0w5gAex1AD905UD+BULusg6BMjep4yEp
+         5f+aS4RgG7VizeR+mJAit6P7ocSbjXtnCzam//9A+4MzexGRKkOGYXNgyGMwPk4coaS2
+         dacZUXlePcUMWZ4QkzslVdFUjgoLQ6E1y2dMUft8dibaNL2yRGL+iKghdCkXeIoI2Rdq
+         GeWnyjelpm2CFF0ZQ7Yq8yNAXz9ooHyqQs9SQ/nGtB3SD+qymW4m+AVKjCEtLosvCqHW
+         4zQXe3m2t9H84TcmJfE0fYhBWg+SGQtLH6FFIF/zDFnK57LLdsWNHlh4tbGRx/y2AY8g
+         hNWg==
+X-Gm-Message-State: AOAM53258WlM3r1v4k2TZkBFrL2SDa/3JnxwpCTvGDSmv+z5E/seR3wg
+        UcbFH4Qt+ndUm6vX4JUnYEPDfA==
+X-Google-Smtp-Source: ABdhPJySxea32IryZZXKK44bywgabA7MVFR3Z6YYXVM/KzLOwd96DOIKwwjHb+k4xis1eFqfutSUQA==
+X-Received: by 2002:a2e:8ec5:: with SMTP id e5mr4661883ljl.325.1621549945045;
+        Thu, 20 May 2021 15:32:25 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id v1sm419601lfg.141.2021.05.20.15.32.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 May 2021 15:03:07 -0700 (PDT)
-Received: (nullmailer pid 2071988 invoked by uid 1000);
-        Thu, 20 May 2021 22:03:06 -0000
-Date:   Thu, 20 May 2021 17:03:06 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
-        iommu@lists.linux-foundation.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] dt-bindings: reserved-memory: Document memory
- region specifier
-Message-ID: <20210520220306.GA1976116@robh.at.kernel.org>
-References: <20210423163234.3651547-1-thierry.reding@gmail.com>
- <20210423163234.3651547-2-thierry.reding@gmail.com>
+        Thu, 20 May 2021 15:32:24 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     linux-crypto@vger.kernel.org,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Corentin Labbe <clabbe@baylibre.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Imre Kaloz <kaloz@openwrt.org>,
+        Krzysztof Halasa <khalasa@piap.pl>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 2/3 v2] crypto: ixp4xx: Add DT bindings
+Date:   Fri, 21 May 2021 00:30:20 +0200
+Message-Id: <20210520223020.731925-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210423163234.3651547-2-thierry.reding@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 23, 2021 at 06:32:30PM +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> Reserved memory region phandle references can be accompanied by a
-> specifier that provides additional information about how that specific
-> reference should be treated.
-> 
-> One use-case is to mark a memory region as needing an identity mapping
-> in the system's IOMMU for the device that references the region. This is
-> needed for example when the bootloader has set up hardware (such as a
-> display controller) to actively access a memory region (e.g. a boot
-> splash screen framebuffer) during boot. The operating system can use the
-> identity mapping flag from the specifier to make sure an IOMMU identity
-> mapping is set up for the framebuffer before IOMMU translations are
-> enabled for the display controller.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  .../reserved-memory/reserved-memory.txt       | 21 +++++++++++++++++++
->  include/dt-bindings/reserved-memory.h         |  8 +++++++
->  2 files changed, 29 insertions(+)
->  create mode 100644 include/dt-bindings/reserved-memory.h
+This adds device tree bindings for the ixp4xx crypto engine.
 
-Sorry for being slow on this. I have 2 concerns.
+Cc: Corentin Labbe <clabbe@baylibre.com>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v1->v2:
+- Drop the phandle to self, just add an NPE instance number
+  instead.
+- Add the crypto node to the NPE binding.
+- Move the example over to the NPE binding where it appears
+  in context.
+---
+ .../bindings/crypto/intel,ixp4xx-crypto.yaml  | 46 +++++++++++++++++++
+ ...ntel,ixp4xx-network-processing-engine.yaml | 13 +++++-
+ 2 files changed, 58 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml
 
-First, this creates an ABI issue. A DT with cells in 'memory-region' 
-will not be understood by an existing OS. I'm less concerned about this 
-if we address that with a stable fix. (Though I'm pretty sure we've 
-naively added #?-cells in the past ignoring this issue.)
+diff --git a/Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml b/Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml
+new file mode 100644
+index 000000000000..79e9d23be1f4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2018 Linaro Ltd.
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/crypto/intel,ixp4xx-crypto.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Intel IXP4xx cryptographic engine
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: |
++  The Intel IXP4xx cryptographic engine makes use of the IXP4xx NPE
++  (Network Processing Engine). Since it is not a device on its own
++  it is defined as a subnode of the NPE, if crypto support is
++  available on the platform.
++
++properties:
++  compatible:
++    const: intel,ixp4xx-crypto
++
++  intel,npe:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 0
++    maximum: 3
++    description: phandle to the NPE this ethernet instance is using
++      and the instance to use in the second cell
++
++  queue-rx:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    maxItems: 1
++    description: phandle to the RX queue on the NPE
++
++  queue-txready:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    maxItems: 1
++    description: phandle to the TX READY queue on the NPE
++
++required:
++  - compatible
++  - intel,npe
++  - queue-rx
++  - queue-txready
++
++additionalProperties: false
+diff --git a/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml b/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
+index 1bd2870c3a9c..add46ae6c461 100644
+--- a/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
++++ b/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
+@@ -30,6 +30,10 @@ properties:
+       - description: NPE1 register range
+       - description: NPE2 register range
+ 
++  crypto:
++    type: object
++    description: optional node for the embedded crypto engine
++
+ required:
+   - compatible
+   - reg
+@@ -38,8 +42,15 @@ additionalProperties: false
+ 
+ examples:
+   - |
+-    npe@c8006000 {
++    npe: npe@c8006000 {
+          compatible = "intel,ixp4xx-network-processing-engine";
+          reg = <0xc8006000 0x1000>, <0xc8007000 0x1000>, <0xc8008000 0x1000>;
++
++         crypto {
++             compatible = "intel,ixp4xx-crypto";
++             intel,npe = <2>;
++             queue-rx = <&qmgr 30>;
++             queue-txready = <&qmgr 29>;
++         };
+     };
+ ...
+-- 
+2.31.1
 
-Second, it could be the bootloader setting up the reserved region. If a 
-node already has 'memory-region', then adding more regions is more 
-complicated compared to adding new properties. And defining what each 
-memory-region entry is or how many in schemas is impossible.
-
-Both could be addressed with a new property. Perhaps something like 
-'iommu-memory-region = <&phandle>;'. I think the 'iommu' prefix is 
-appropriate given this is entirely because of the IOMMU being in the 
-mix. I might feel differently if we had other uses for cells, but I 
-don't really see it in this case. 
-
-Rob
