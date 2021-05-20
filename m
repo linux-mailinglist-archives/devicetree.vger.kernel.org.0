@@ -2,60 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74622389EAC
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 09:08:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4879D389ED8
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 09:22:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230525AbhETHKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 03:10:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49514 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230460AbhETHKL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 May 2021 03:10:11 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C21CA6124C;
-        Thu, 20 May 2021 07:08:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1621494530;
-        bh=/hvP4vNjX4gtYC9WWzk/yQSQZPjYP3EYj+Eiaj4tT54=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aLq19CMOvIwuUBOxvgt+NT+VBwGljc5C/YxPv+pwiFukdg1hWlcA66JU9rsdXm/ZV
-         SdvyOQXV27Fv2H84PPWuvIhZUo7IXO7KYvUJOE1zybZSBQT7bEKOC2XGtB9Bor4D17
-         wfPC+4WV62xM3o00uPh4r+d854Cp4OCOq6B7laXw=
-Date:   Thu, 20 May 2021 09:08:48 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     =?utf-8?B?SmnFmcOt?= Prchal <jiri.prchal@aksignal.cz>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        id S230361AbhETHXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 03:23:36 -0400
+Received: from mailgw02.mediatek.com ([216.200.240.185]:58961 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230102AbhETHXf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 03:23:35 -0400
+X-UUID: 061f921aa6cc47a083df4dae5b853384-20210520
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=ZQ3X2kKIVdd7QGc0Obd6FYCQ+lslLAxE4v/TzH04zFg=;
+        b=EJhtKMJHSLLT7k+TjsgkVYl5TweyxXs7MXcMNVdXRMnyOQxzmuKghYKfKjn6JwLDo1+MD9EAGJJeX2oGS0nY+U3rRYxYZ1Zp4z0Bz0VgSWFQ9a0NGv3hycwnnfYhxtYYiGKu6o1O5ruGvUiA8BvYG+aAOPbrwrBvXshmqREB1RE=;
+X-UUID: 061f921aa6cc47a083df4dae5b853384-20210520
+Received: from mtkcas66.mediatek.inc [(172.29.193.44)] by mailgw02.mediatek.com
+        (envelope-from <landen.chao@mediatek.com>)
+        (musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 828172061; Thu, 20 May 2021 00:22:12 -0700
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ MTKMBS62DR.mediatek.inc (172.29.94.18) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 20 May 2021 00:13:21 -0700
+Received: from mtksdccf07 (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 20 May 2021 15:13:20 +0800
+Message-ID: <0adde34f936a2dafca40b06b408d82afe0852327.camel@mediatek.com>
+Subject: Re: [PATCH net-next v2 1/4] net: phy: add MediaTek Gigabit Ethernet
+ PHY driver
+From:   Landen Chao <landen.chao@mediatek.com>
+To:     DENG Qingfang <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>
+CC:     "David S. Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Christian Eggers <ceggers@arri.de>,
-        Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH v4 1/4] nvmem: eeprom: at25: add support for FRAM
-Message-ID: <YKYLAIrRJPks51yx@kroah.com>
-References: <20210520054714.8736-1-jiri.prchal@aksignal.cz>
- <20210520054714.8736-2-jiri.prchal@aksignal.cz>
- <YKX5aaV3DGvIm8RP@kroah.com>
- <81420093-7af6-bed3-eee7-38be125a67e4@aksignal.cz>
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-staging@lists.linux.dev>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, Weijie Gao <weijie.gao@mediatek.com>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        =?ISO-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>,
+        "Frank Wunderlich" <frank-w@public-files.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+Date:   Thu, 20 May 2021 15:13:20 +0800
+In-Reply-To: <20210520023828.3261270-1-dqfext@gmail.com>
+References: <20210519033202.3245667-1-dqfext@gmail.com>
+         <20210519033202.3245667-2-dqfext@gmail.com> <YKW0acoyM+5rVp0X@lunn.ch>
+         <20210520023828.3261270-1-dqfext@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <81420093-7af6-bed3-eee7-38be125a67e4@aksignal.cz>
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 20, 2021 at 08:54:52AM +0200, Jiří Prchal wrote:
-> 
-> On 20. 05. 21 7:53, Greg Kroah-Hartman wrote:
-> > On Thu, May 20, 2021 at 07:47:11AM +0200, Jiri Prchal wrote:
-> > > Added enum and string for FRAM to expose it as "fram".
-> > 
-> > documentation???
-> > 
-> Hi Greg,
-> please help me, you mean more explanation in commit message?
+T24gVGh1LCAyMDIxLTA1LTIwIGF0IDEwOjM4ICswODAwLCBERU5HIFFpbmdmYW5nIHdyb3RlOg0K
+PiBPbiBUaHUsIE1heSAyMCwgMjAyMSBhdCAwMjo1OToyMUFNICswMjAwLCBBbmRyZXcgTHVubiB3
+cm90ZToNCj4gPiA+ICtzdGF0aWMgdm9pZCBtdGtfZ2VwaHlfY29uZmlnX2luaXQoc3RydWN0IHBo
+eV9kZXZpY2UgKnBoeWRldikNCj4gPiA+ICt7DQo+ID4gPiArCS8qIERpc2FibGUgRUVFICovDQo+
+ID4gPiArCXBoeV93cml0ZV9tbWQocGh5ZGV2LCBNRElPX01NRF9BTiwgTURJT19BTl9FRUVfQURW
+LCAwKTsNCj4gPiANCj4gPiBJcyBFRUUgYnJva2VuIG9uIHRoaXMgUEhZPyBPciBpcyB0aGlzIGp1
+c3QgdG8gZ2V0IGl0IGludG8gYSBkZWZpbmVkDQo+ID4gc3RhdGU/DQo+IA0KPiBBcyBJIHNhaWQg
+aW4gY29tbWl0IG1lc3NhZ2UsIHRoZSBpbml0aWFsaXphdGlvbiAoaW5jbHVkaW5nIEVFRSkgaXMN
+Cj4gZnJvbSB0aGUgdmVuZG9yIGRyaXZlci4NCj4gSSBoYXZlIGFsc28gdGVzdGVkIGl0IHdpdGgg
+RUVFIGVuYWJsZWQgYnkgZGVmYXVsdCBvbiBvbmUgb2YgbXkgQVBzLA0KPiBhbmQgZ290IG9jY2Fz
+aW9uYWwgbGluayBkcm9wcy4NCj4gDQoNCkVFRSBvZiB0aGUgMTAteWVhci1vbGQgTVQ3NTMwIGlu
+dGVybmFsIGdlcGh5IGhhcyBtYW55IElPVCBwcm9ibGVtcywgc28NCml0IGlzIHJlY29tbWVuZGVk
+IHRvIGRpc2FibGUgaXRzIEVFRS4NCkVFRSBvZiB0aGUgTVQ3NTMxIGludGVybmFsIGdlcGh5IGhh
+cyBiZWVuIHVwZGF0ZWQsIGJ1dCBpdCBpcyBub3QgeWV0DQp3aWRlbHkgdXNlZC4NClRoZXJlZm9y
+ZSwgRUVFIGlzIGRpc2FibGVkIGluIHZlbmRvciBkcml2ZXIuDQoNCkxhbmRlbg0KPiA+IE90aGVy
+d2lzZQ0KPiA+IA0KPiA+IFJldmlld2VkLWJ5OiBBbmRyZXcgTHVubiA8YW5kcmV3QGx1bm4uY2g+
+DQo+ID4gDQo+ID4gICAgIEFuZHJldw0K
 
-No, I mean you need to document user/kernel apis that you add in
-Documentation/ABI/ please.
-
-thanks,
-
-greg k-h
