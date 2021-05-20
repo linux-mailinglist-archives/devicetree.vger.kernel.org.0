@@ -2,96 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5D06389F05
-	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 09:41:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FC6E389F80
+	for <lists+devicetree@lfdr.de>; Thu, 20 May 2021 10:10:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229953AbhETHnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 03:43:01 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.50]:27876 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229534AbhETHnA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 03:43:00 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1621496496; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=BZJ2ojaz7EzRNPbBXf6KeBTVCa9n0us/ZnsLcbgQT5Zg/mzDhIhn/zcnDGQ13/52pz
-    TLDEs5qImHT0evesDyYVOi43NqV/I/6KPDYvj+WkZuA1xiuZqJ0LdAYWvTlx6sUS741a
-    12XyYoEIZCiY9jrrVS3vv/+Dyvoqoz+8poV1u+zm9xTvz1IqRJJU7YNzGbixGBve7ZOS
-    bPQDgPsnGdDQssHJKsQgOgbfNoxMfUXjs37gcTbpCQSu6hyBBLHH8tH+fts8RcBjE4cr
-    G1y3XdB+x0/284eJSRWNDwkwqHqWZvLh5CdSGBPSfzKYrZDs1SQ4/urdSoyxPh+12fXD
-    p7gg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1621496496;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=/AB8rpzWcGGrvWhsgbSoWj2+H6i9d45l8uVGIOA0RAI=;
-    b=cdTA9oxqBfz6CXyYqNOp5OTgu4I+ca6lEoS9I9qadsBz2aOmUrOsNITsQOodqlk3nH
-    NJ3p38RGFtN2gM7fBV4nojXOKV1Ux09M0ClfsHHtP/hh5ZDdfxdUuHdqomoFyjFLljB9
-    q2ETnUBFlVuRihj2iLL+c6fvKqxZxVCqcPWnmS3puYwmDVPzYExrPswX4Zps77Btveq4
-    BeYlT/MKjvhRcyArVRxO8aCejI3mtesQ7OYQU/+7ChHnFg5lFhVD4KSjjAO4Y+q8Tp3c
-    4qt6xcFL/7ocxDaXvat1f7XTdJsh9XnznBkHzJ+Ab4ESkjk5Gs+8EpPfnI+WqFZQWNmY
-    560A==
-ARC-Authentication-Results: i=1; strato.com;
-    dkim=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1621496496;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=/AB8rpzWcGGrvWhsgbSoWj2+H6i9d45l8uVGIOA0RAI=;
-    b=iyLpKJEs6v8QsGMhEn73OPCITDSHGQy5shXqJq8FccU39QzJJaqkgNpF9MJ+OWbfIE
-    a/pmDpPjnY+odCaRmgIKL2L913S4D4ERxc2cOnRoXpHOFfR249BEXcq4q99yOv6UVQ1H
-    dMb13c0ApzCkCmcY9MCKE93pfvaNO2FZGoFnLQymUJgZ3Bv3I6Zfun/hw+02hLP4cB6z
-    gCVUuREmjB29sI53FQYICnCyihmDQnc3l3R2PLaHJKnUzEJKKLAvumkPUxXBLLGKeXHV
-    GXwwYsX2v+2H5Z8ge4JhGv84Zu8u/2Z51KBdXdHW8gOLay8V37m12DQCPvRCPF32DXZf
-    aDdg==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j6IcfMBg=="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.26.1 DYNA|AUTH)
-    with ESMTPSA id 400bd8x4K7fZ0Rw
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Thu, 20 May 2021 09:41:35 +0200 (CEST)
-Date:   Thu, 20 May 2021 09:41:31 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Bongsu Jeon <bongsu.jeon@samsung.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-nfc@lists.01.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [linux-nfc] Re: [PATCH 2/2] nfc: s3fwrn5: i2c: Enable optional
- clock from device tree
-Message-ID: <YKYSq5WTeZyMIZYn@gerhold.net>
-References: <20210518133935.571298-1-stephan@gerhold.net>
- <20210518133935.571298-2-stephan@gerhold.net>
- <ac04821e-359d-aaaa-7e07-280156f64036@canonical.com>
- <YKPWgSnz7STV4u+c@gerhold.net>
- <8b14159f-dca9-a213-031f-83ab2b3840a4@canonical.com>
- <YKTHXzUhcYa5YJIs@gerhold.net>
- <10b3a50e-877c-d5b1-3e35-e5dff4ef53d8@canonical.com>
+        id S231175AbhETILp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 04:11:45 -0400
+Received: from mail-dm6nam12on2066.outbound.protection.outlook.com ([40.107.243.66]:47616
+        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230440AbhETILn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 May 2021 04:11:43 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QuD0+aRQs7vrSjL3bnKl/VdCywdYY+cIcuEcgfEi7QdDWr8mjNj5riDr0ENGuAJZSHoo54ho+COpUVXx1oR5chQlaoLrUd5kGob8pCbRdZO3tg7rm0J28pm/VE0IFpnPWgyDLtXw/1So6voLn+GdPmqTrb3JF0ErgypONieZMNWVj8hHLXCduAOqH5Kld+UMM2v1eqqPA0I9jIF4RIpPYkhowgp5KpshL/0YtsLKhRNMS/qTHXxy2arITVyydaPZVJBcVx6+xWcdNG3S5W0wE0a9G3zHW8WIjFF/K94xAr5XqdEE/sY06NCnjel1PZ03UZ1tneh+Wcz9fcFYrcgfKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ud2CfySseDKCiEm5wBtLLIkMBfkwfUEfPnldtmZ09Hw=;
+ b=NQAc63188DQgVLjENsdfXqdpzJfLaXDjxk9mC6+lDufzDDp41o1SkCRgvZmMRszeHrPvFscpFyx6V7hpkEVH0kVfX+Nf9DtcgNRhCl0IZi2NHGWhaFKTD1HBJZ/I+AsKGkbG4tTWaOhcIWwoFFH5FN5vNKIZJbJQ/gl0VXrRUKai4PkYoUsrNLUKmm8nnwwRxTwVk/ZqmaPlMAyjhpoR/CdSAmRzp4qhX+Q9nXUYLnumNuBTVDtTkcOJI0pR/atvzwvXMyTeVPhGNFqcwJJXehvVRSG76Bw0WQNMVmFJ7DnY8UNlLOcCJeNTTemuUJIBTQKSomd/PpO83b+f/Kq+Ig==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ud2CfySseDKCiEm5wBtLLIkMBfkwfUEfPnldtmZ09Hw=;
+ b=ABRJ8xhN339bequhylQWoOj+GA4rznT3+SGRVImZkkydcu9knuukg7GsJoUeSAQPpN15eRrtc0tPz9oZEZjCaBQrwUxPvoeRMiCu0/C2+ZvvFNMwEXqutMoEI1wIyzVpqdqyQMlFcz6RQpxn3beEpO68rjWjV5ZSyoVJzP8/BdI=
+Received: from SA0PR11CA0100.namprd11.prod.outlook.com (2603:10b6:806:d1::15)
+ by MN2PR02MB5824.namprd02.prod.outlook.com (2603:10b6:208:116::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.26; Thu, 20 May
+ 2021 08:10:18 +0000
+Received: from SN1NAM02FT0024.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:806:d1:cafe::1a) by SA0PR11CA0100.outlook.office365.com
+ (2603:10b6:806:d1::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.33 via Frontend
+ Transport; Thu, 20 May 2021 08:10:18 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT0024.mail.protection.outlook.com (10.97.5.147) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4129.27 via Frontend Transport; Thu, 20 May 2021 08:10:17 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Thu, 20 May 2021 01:10:03 -0700
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Thu, 20 May 2021 01:10:03 -0700
+Envelope-to: git@xilinx.com,
+ robh+dt@kernel.org,
+ mdf@kernel.org,
+ trix@redhat.com,
+ arnd@arndb.de,
+ gregkh@linuxfoundation.org,
+ zou_wei@huawei.com,
+ iwamatsu@nigauri.org,
+ devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ linux-fpga@vger.kernel.org,
+ chinnikishore369@gmail.com
+Received: from [10.140.6.60] (port=42624 helo=xhdnavam40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <nava.manne@xilinx.com>)
+        id 1ljdko-0007IV-Ad; Thu, 20 May 2021 01:10:02 -0700
+From:   Nava kishore Manne <nava.manne@xilinx.com>
+To:     <robh+dt@kernel.org>, <michal.simek@xilinx.com>, <mdf@kernel.org>,
+        <trix@redhat.com>, <nava.manne@xilinx.com>, <arnd@arndb.de>,
+        <rajan.vaja@xilinx.com>, <gregkh@linuxfoundation.org>,
+        <amit.sunil.dhamne@xilinx.com>, <tejas.patel@xilinx.com>,
+        <zou_wei@huawei.com>, <lakshmi.sai.krishna.potthuri@xilinx.com>,
+        <ravi.patel@xilinx.com>, <iwamatsu@nigauri.org>,
+        <wendy.liang@xilinx.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-fpga@vger.kernel.org>,
+        <git@xilinx.com>, <chinnikishore369@gmail.com>
+Subject: [PATCH v6 0/4]Add Bitstream configuration support for Versal
+Date:   Thu, 20 May 2021 13:39:50 +0530
+Message-ID: <20210520080954.1393-1-nava.manne@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <10b3a50e-877c-d5b1-3e35-e5dff4ef53d8@canonical.com>
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c1a662ed-86d9-45ae-843a-08d91b66b498
+X-MS-TrafficTypeDiagnostic: MN2PR02MB5824:
+X-Microsoft-Antispam-PRVS: <MN2PR02MB5824DEDC45586CC5C89A698EC22A9@MN2PR02MB5824.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: qdvfau9hrpreIIZPC6xQvfgyvGsC5hZRH9nESur18GqfBXDHOsTRpTOzYntVe2Pp35kLt8DMaJ4/5y6Q6kKtDDB7xXO31jwqNC3UhPMj7KPOsNNBwuMN4DY/t8jlREfaBXBrJZzE2xFdA92hMVWlPHUh0UG9qtvAhlWqXacPcUPJbOGaKQ95QH8+4aMjcbLvllwckkBDQ2zbp2nU2nqNssKSm02m0AHPl5tJDk8IwULfIkaxmeqleMoH3qjVOTzCNdA384p6/2SIDx17jfQTzhxqkCyCuqCTLyigpB1rstLDz23ToeKuShnXHT8lgYtpCND8wflg8bC7x7i0ZZKhU3ZgLg7XdZQYozPtdTvLrimMyZ0rTDsmkyBrLH6+R6VwE9I+GIzpQL7zLRCgw8e1/2/rg5wwYqTHvTMg7JCFhcGTNeuneI0bExaCkEra3Fp/zkEY2kHQFpred24av83O/WelCWCUSO6Klod+hQY/DWQUJT1WgHkiFI2GR8AiinQ4Aef0LogCQN3Os8I2t+Ye9vlfg7NJM3FjDq4g672iLUzjZvbb8uhBdoLbY8eGj0wHc4WkI6x4oN+VsrZALTpKENlh/oM7lXSh29MGjxzcUGiH5LICOTtXM+UzPkVMSnNZAERHF+gNEQ2Qd3OhFtYt5RzNuiqH8hubRHn3DPYCq0cMXmCjtjC1eBW4crAlXOWggt2uZfRgGwSHI5MNC0wZl96BIhNQPQ9sxaJ8Ktb5J35yHSJtdiFJ9n7wTv8kzooeAuWMmIGsAicUWfMoUvMCp7wms683K8UlLG4Ed6BPhqmGN/U0RypQ4MnbKJNIcu1Miivmpx1vqekIgjRngjqsS6dBHORPLKkHbt98VNMl8MA=
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(346002)(136003)(39850400004)(396003)(376002)(36840700001)(46966006)(6666004)(8936002)(36756003)(7416002)(82310400003)(8676002)(1076003)(26005)(426003)(966005)(5660300002)(70586007)(70206006)(9786002)(336012)(7696005)(478600001)(7636003)(2616005)(186003)(82740400003)(2906002)(356005)(36860700001)(83380400001)(36906005)(110136005)(47076005)(921005)(316002)(102446001)(2101003)(83996005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 May 2021 08:10:17.9354
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1a662ed-86d9-45ae-843a-08d91b66b498
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0024.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR02MB5824
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 19, 2021 at 11:58:38AM -0400, Krzysztof Kozlowski wrote:
-> > 
-> > Personally, I just skip all firmware/RF configuration (which works thanks
-> > to commit 4fb7b98c7be3 ("nfc: s3fwrn5: skip the NFC bootloader mode")).
-> > That way, S3FWRN5 just continues using the proper configuration
-> > that was loaded by the vendor drivers at some point. :)
-> 
-> But isn't that configuration lost after power off?
-> 
+This series Adds FPGA manager driver support for Xilinx Versal SoC.
+it uses the firmware interface to configure the programmable logic.
 
-I don't know exactly but I don't think it's lost. At least the firmware
-and rfreg configuration seem to be preserved since I've never provided
-the driver with the necessary firmware. It just works without :)
+Changes for v4:
+                -Rebase the patch series on linux-next.
+                https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
-Stephan
+Changes for v5:
+                -Updated binding doc's.
+
+Changes for v6:
+                -Updated firmware binding doc.
+
+Appana Durga Kedareswara rao (1):
+  dt-bindings: fpga: Add binding doc for versal fpga manager
+
+Nava kishore Manne (3):
+  drivers: firmware: Add PDI load API support
+  dt-bindings: firmware: Add bindings for xilinx firmware
+  fpga: versal-fpga: Add versal fpga manager driver
+
+ .../firmware/xilinx/xlnx,zynqmp-firmware.yaml | 102 +++++++++++++++
+ .../bindings/fpga/xlnx,versal-fpga.yaml       |  33 +++++
+ drivers/firmware/xilinx/zynqmp.c              |  17 +++
+ drivers/fpga/Kconfig                          |   9 ++
+ drivers/fpga/Makefile                         |   1 +
+ drivers/fpga/versal-fpga.c                    | 117 ++++++++++++++++++
+ include/linux/firmware/xlnx-zynqmp.h          |  10 ++
+ 7 files changed, 289 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+ create mode 100644 Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml
+ create mode 100644 drivers/fpga/versal-fpga.c
+
+-- 
+2.17.1
+
