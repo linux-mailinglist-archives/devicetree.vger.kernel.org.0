@@ -2,63 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6507838CDCD
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 20:56:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E9E038CE16
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 21:22:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232155AbhEUS5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 14:57:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50752 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230176AbhEUS5m (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 May 2021 14:57:42 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5DF0261183;
-        Fri, 21 May 2021 18:56:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621623379;
-        bh=Jv/o1enaggkq/lL3EEu4cGIArTSMfrnN5S4ybbfdrn8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=DgQiGdDYcsBSsD51HT8upWICryzvHVCSXuU+D+SJSwRp7s7mL9LBNX/7Ic3YlTc43
-         QTSQhIBjdoJR92gnYcoKUO2q6Kd2+R1QNcvnNCwG0UHKEEgYmA1+2FTp7Rn2RsQPw6
-         5O9FCf9HaBjLKnxvOmCYXbElsvQiWV/1zxuqrWWFgCNbOTuZgd9AdxoPXBItXXt9c1
-         xmRYsR7mC9RTk8fxfj5gJJM5pVV0lENDMblJvvlTMjdxCFVphEJmCqpmPm+0x2xElR
-         UEgBHnFmxxr8Yd1BaQohabLNhI/tTAh5XhcgUSFQpkEVfC2FIbvK9kFUjVknf/Ql6g
-         sMJwVS75z9M1Q==
-Received: by mail-ej1-f51.google.com with SMTP id k14so28470742eji.2;
-        Fri, 21 May 2021 11:56:19 -0700 (PDT)
-X-Gm-Message-State: AOAM5315JY5xl7uMqILLNumVMj7aRPoSM6GE2v1cfqSQjUgARzUeD4yh
-        gESyYIv24nMBOKzDV1UCukAMg/hni7s56hgCLg==
-X-Google-Smtp-Source: ABdhPJyOA/13jGroTnau7yXh+uu6HX8nolIudOgr5s9saAVT7HW0mr52LclHUCwHLz5GYwLoKDdzonxkyf9vvfpL9b8=
-X-Received: by 2002:a17:907:78cd:: with SMTP id kv13mr11622619ejc.360.1621623378049;
- Fri, 21 May 2021 11:56:18 -0700 (PDT)
+        id S236228AbhEUTXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 15:23:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51654 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235521AbhEUTXl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 15:23:41 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 236ACC0613ED
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 12:22:18 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id r12so22075087wrp.1
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 12:22:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lCvDZboK+sgJocYbp6i5xIDHmRT6b8Yyjq3esu6gxfo=;
+        b=KjlQFn31EOeR8uVjczSkSfdI1+2/wSmUgLeUJMZgIwr5OzcG7OMv/nIxc6pDVx0FZK
+         tjOxIMTbX/stCi4U5Ettoq39FrFywIaRd2Z0moczt5aKcrJyIikf8Uo39xeJ5nvvqSNP
+         S67Id/Ema54u+5vvMuaPi+gjccOxGTMIVpP2WiegE7t39TEpWStXBXGiWDDWpyuZmRqn
+         MMogny6eDtr8RKXHLnrkblKER3Cuss3rw8D6IVasO2QAQ56XFE+NEYKFOMaWcjwtgAfQ
+         L1Nc+XXyIA4BPvLXoj9qsMtGeHMZNY1tft6B2wKRPjd/ZPoHebtU0TZFA7WxaRf2hNcX
+         8x6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lCvDZboK+sgJocYbp6i5xIDHmRT6b8Yyjq3esu6gxfo=;
+        b=YgkQEOvvSP4b1wWwzjtt5eRUdriMsYVncGSVytd1BJdojIkWybNl6+fiSPAHuzRw8L
+         yZrW86f5yBePUFl7loAPffbbBJhUNMFJhGN+lH1NNLhT1DLyrekpAC9pVK8QYbx79ccM
+         mABHBGmNrwIPsDW5cjKWpJTam73Ey8n4IZf2V5tQoiu66dODTwFrjtgP6S+G+J5AprT8
+         2kiY3mUz9SE5alb8OK28yZ6M7/WuiM5i8aDN5jkCOdhewdLbM7oZaobsndVOZsErKyMf
+         okRbC+NFXSYJfZaLGAmtpbam+OFnlN3udBU5sJtipR2gx3j0kiNkWuMXGYGS7KY65Q1k
+         4/2A==
+X-Gm-Message-State: AOAM532OlwftsCRoseh0YReB3w43RDKU13AkuOF1oNw0RZMnRvQvlLSi
+        pnsN4VtW1US8XG4Ju/l1Hmcc0A==
+X-Google-Smtp-Source: ABdhPJyha3zUIQVEPgrYCfHfXucNDkaW03LrDb+6HEy0gMi5M3PUND53o9t4gxQxxBnnlC8BxpL1sQ==
+X-Received: by 2002:a05:6000:104a:: with SMTP id c10mr11128983wrx.45.1621624936663;
+        Fri, 21 May 2021 12:22:16 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id s1sm478760wmj.8.2021.05.21.12.22.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 May 2021 12:22:15 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     dmitry.torokhov@gmail.com, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-kernel@vger.kernel.org, fabio.estevam@freescale.com,
+        Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH] dt-bindings: input: remove fsl-mma8450 which is handled by trivial-devices
+Date:   Fri, 21 May 2021 19:22:10 +0000
+Message-Id: <20210521192210.12839-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210520115440.8259-1-thunder.leizhen@huawei.com> <20210520115440.8259-2-thunder.leizhen@huawei.com>
-In-Reply-To: <20210520115440.8259-2-thunder.leizhen@huawei.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 21 May 2021 13:56:06 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLi-DD66WUJ=+x8-qq0NZybeuba1OvtRxGLc8-yWmR-Kg@mail.gmail.com>
-Message-ID: <CAL_JsqLi-DD66WUJ=+x8-qq0NZybeuba1OvtRxGLc8-yWmR-Kg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: serial: pl011: Delete an incorrect
- compatible string
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        linux-serial <linux-serial@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 20, 2021 at 6:54 AM Zhen Lei <thunder.leizhen@huawei.com> wrote:
->
-> The compatible strings "zte,zx296702-uart" and "arm,primecell" are a
-> combination, but commit 89d4f98ae90d ("ARM: remove zte zx platform")
-> removes only the former. It is incorrect to match driver pl011 based only
-> on the remaining "arm,primecell". Delete it.
->
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> ---
->  Documentation/devicetree/bindings/serial/pl011.yaml | 9 +++------
->  1 file changed, 3 insertions(+), 6 deletions(-)
+trivial-devices.yaml already provide bindings for fsl-mma8450.
+Since input/fsl-mma8450.txt provides no extra value, lets remove it.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+ .../devicetree/bindings/input/fsl-mma8450.txt        | 12 ------------
+ 1 file changed, 12 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/fsl-mma8450.txt
+
+diff --git a/Documentation/devicetree/bindings/input/fsl-mma8450.txt b/Documentation/devicetree/bindings/input/fsl-mma8450.txt
+deleted file mode 100644
+index 0b96e5737d3a..000000000000
+--- a/Documentation/devicetree/bindings/input/fsl-mma8450.txt
++++ /dev/null
+@@ -1,12 +0,0 @@
+-* Freescale MMA8450 3-Axis Accelerometer
+-
+-Required properties:
+-- compatible : "fsl,mma8450".
+-- reg: the I2C address of MMA8450
+-
+-Example:
+-
+-accelerometer: mma8450@1c {
+-	compatible = "fsl,mma8450";
+-	reg = <0x1c>;
+-};
+-- 
+2.26.3
+
