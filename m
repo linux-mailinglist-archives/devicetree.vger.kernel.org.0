@@ -2,74 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD06738C7AB
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 15:19:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F26D38C7B8
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 15:21:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230408AbhEUNUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 09:20:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42950 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230391AbhEUNUV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 May 2021 09:20:21 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2E1A8613EB;
-        Fri, 21 May 2021 13:18:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621603138;
-        bh=kML0VNwTPmuZzhjwUe6WlLUM6s2hR7O8GQYI8nIVEx4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=bxlk4rI+nT2n2MilrkZEOxmGPpUtz5EM4hIvKviME1p5OqepyQ5kkp+CvAwVT5cAj
-         Ku9puQxIF9brbZ5vJTXmOPmc3eAwU0Um6HuXrJQIMfWiSc0ENOiFOrE3eTi/hekg+7
-         byFXoB0KFQyw6TBddhpvCkFbpkZKU5CDjw4wQqVDDNMZI0IgQa1p7I/zwm4I1+QOYm
-         fq6i3qeZ4iMVGg+ZO1rpctE0+23FuTODinw/xTnV6LYtInrTs+HAGt5/zcrKdOQR/D
-         CqrWl9I1AKZ8JmjwzmXemkdMkVGfzT6ZWZUK1eqlmPNS7llAIuoX3WxG3KGaEhANj6
-         9UtXFKw7LR4Uw==
-Received: by mail-ed1-f52.google.com with SMTP id r11so23232182edt.13;
-        Fri, 21 May 2021 06:18:58 -0700 (PDT)
-X-Gm-Message-State: AOAM531rN32SHrDDQdtzFyrgC08KvuwOnUMNnuk35Enddj7Jf72bsrKa
-        4AFwNIzlsxX+8ivcddzkgfkLYJMkJiWd08P5eA==
-X-Google-Smtp-Source: ABdhPJwmzwbCzIeEFfbyH8umGA8C0KXX6vUz4OS2ROZ9YiW5j/tCvUb0NLoSYwTa9fxOPM6+xMux6sI6PbKiUDMEH5I=
-X-Received: by 2002:a50:c446:: with SMTP id w6mr11114280edf.62.1621603136815;
- Fri, 21 May 2021 06:18:56 -0700 (PDT)
+        id S233787AbhEUNXF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 09:23:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54226 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233878AbhEUNWp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 09:22:45 -0400
+Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9629BC061763
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 06:21:17 -0700 (PDT)
+Received: by mail-il1-x130.google.com with SMTP id c4so835185iln.7
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 06:21:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xbVslEDCXZqr9GQsPgesZninZAO5fJ8cP+O7eR+D2ow=;
+        b=WXHL18usQi6/X1DY0P70c46qL5S/W0CO4eAaoTcpGTnbT5adPqyBw9vIAENH2Q090m
+         2sWijX15tu2g5GCoRwDDMioK+ZndWOGpyIhffX+SG9wieUqydJufYiPiq0UQr7/UXQVd
+         VN6q6iHizBjg56hrlAqExOTzUdMbT1T8+T5O+1G9dapo9RzYr6fPCTUeIEx1iLiitNt0
+         Xjzc4bmq/BbEiwDym1y+pvyt0FsoqE1hCYAu/MRnE/H5tHxyrXUVwGskWJ+uD1gZ+gv/
+         2L8Xb2tO0Fsvep+3LTZBYZnuqz5JRL33oHvlZiNNhVP8Zg4cHALC4U9zTMN01mdcLV9L
+         wHAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xbVslEDCXZqr9GQsPgesZninZAO5fJ8cP+O7eR+D2ow=;
+        b=iQsrh9Mhx5B3Vj1egtvSggP/K/4W0fjaFM/C6/nUVP/zA4Ox03705QLLtetiOe57Oo
+         7gnw9XYOEvjHNSDgUVAms7QAB0c8zJe2qu7cHRCELMLpcYOKhwBuHjlQuWgx1E5UzhW0
+         gN6ESTX0zZyKgQyHKbU9C6CK+Bx7FFpSY4hcxL+i99XyM9KWLjqiEbNUn5m21cPk5Vfe
+         6uCZn0B173WUbqWw9FmSMGsJcTy+DXYurhNdKz+89Dw/vc4Gz1LfU0KrJEN6pRGL0zPL
+         BelQvkM//se/kptu2afOuAs+Dnneti9cqdJuYf667lZsot01gY94Fle2hfqdDtWY03PK
+         8jzg==
+X-Gm-Message-State: AOAM533DSVrXXH3R0J3jK3cfah0aRBxJyofgUmhsJBi3+uGwT2Vc5H+G
+        qbEMMzCOWne1nhqGj+djTkhG1EDt3ytwvaXj6v4MHg==
+X-Google-Smtp-Source: ABdhPJyYDXBEABM+ZMXi1dpuXIBZ6wsLpvjkTRRh4YyhYrRftimgUINWny+L2YfAziSbR/6/cYnnkFB4d9ujQ/51so4=
+X-Received: by 2002:a05:6e02:671:: with SMTP id l17mr11894813ilt.267.1621603276872;
+ Fri, 21 May 2021 06:21:16 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210521124946.3617862-1-vkoul@kernel.org> <20210521124946.3617862-3-vkoul@kernel.org>
-In-Reply-To: <20210521124946.3617862-3-vkoul@kernel.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 21 May 2021 08:18:44 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJqPwkzxVgAfS9VgEXcY=ZH5LOaaxzoPDBzuDxOZ_OLjw@mail.gmail.com>
-Message-ID: <CAL_JsqJqPwkzxVgAfS9VgEXcY=ZH5LOaaxzoPDBzuDxOZ_OLjw@mail.gmail.com>
-Subject: Re: [RFC PATCH 02/13] dt-bindings: msm/dsi: Document Display Stream
- Compression (DSC) parameters
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Abhinav Kumar <abhinavk@codeaurora.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        devicetree@vger.kernel.org
+References: <20210430123511.116057-1-robert.marko@sartura.hr>
+ <20210430123511.116057-3-robert.marko@sartura.hr> <10b67a4dce693f013eccfd6f46ecb4c4@walle.cc>
+In-Reply-To: <10b67a4dce693f013eccfd6f46ecb4c4@walle.cc>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Fri, 21 May 2021 15:21:06 +0200
+Message-ID: <CA+HBbNHikM_8sCrc9FM-z7nUXVLwjpZ=Lg7fKWGbgWGBrfciOg@mail.gmail.com>
+Subject: Re: [PATCH 3/6] gpio: Add Delta TN48M CPLD GPIO driver
+To:     Michael Walle <michael@walle.cc>
+Cc:     Lee Jones <lee.jones@linaro.org>, robh+dt@kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        bgolaszewski@baylibre.com, jdelvare@suse.com,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, Luka Perkov <luka.perkov@sartura.hr>,
+        jmp@epiphyte.org, Paul Menzel <pmenzel@molgen.mpg.de>,
+        Donald Buczek <buczek@molgen.mpg.de>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 21, 2021 at 7:50 AM Vinod Koul <vkoul@kernel.org> wrote:
+On Thu, May 6, 2021 at 6:38 PM Michael Walle <michael@walle.cc> wrote:
 >
-> DSC enables streams to be compressed before we send to panel. This
-> requires DSC enabled encoder and a panel to be present. So we add this
-> information in board DTS and find if DSC can be enabled and the
-> parameters required to configure DSC are added to binding document along
-> with example
+> Am 2021-04-30 14:35, schrieb Robert Marko:
+> > Delta TN48M CPLD is used as a GPIO expander for the SFP GPIOs.
+> >
+> > It is a mix of input only and output only pins.
+> >
+> > Since there is no logical GPIO numbering arbitrary one is used
+> > along dt-bindings to make it humanly readable.
 >
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
->  .../devicetree/bindings/display/msm/dsi.txt       | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
+> Can gpio/gpio-regmap.c be used here? See gpio/gpio-sl28cpld.c
+> for an example.
 
-This is getting converted to schema. Hopefully, v17 will be it. Sigh.
+I suppose it can be used, I need to look into it more to see how could
+translation to register and mask be done with it.
 
-Rob
+I have adapted the driver to work with simple I2C MFD so far.
+
+It still leaves me with a finding the logical way to number the GPIO-s.
+
+Robert
+>
+> -michael
+
+
+
+--
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
