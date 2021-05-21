@@ -2,135 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89C0B38C933
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 16:27:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E77A138C94A
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 16:36:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236650AbhEUO2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 10:28:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41302 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231329AbhEUO2s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 10:28:48 -0400
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D3F8C061574;
-        Fri, 21 May 2021 07:27:25 -0700 (PDT)
-Received: by mail-ot1-x329.google.com with SMTP id 36-20020a9d0ba70000b02902e0a0a8fe36so18145459oth.8;
-        Fri, 21 May 2021 07:27:25 -0700 (PDT)
+        id S231211AbhEUOhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 10:37:51 -0400
+Received: from mail-eopbgr1410127.outbound.protection.outlook.com ([40.107.141.127]:30176
+        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231756AbhEUOht (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 May 2021 10:37:49 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=C/f+S3ybS56dFqObhavMXzJlB5uYMTb2k4UL66HfKGOqtHWF4jtjPMPrXCf3PN49FrQtqy+gTFrLin7sJT52CUAkWY0jVg4LsCVUbNP/hP6YuXmhHq2hYGy66lMwpGuBRAhgZdVxuJLiWkG/V6Eir9Ev6IFxxJ9Dv2belJdLzbE6Fw5SaPRdoSekMRUGAJGt/lnR4wJK08Zo+JOststg36lDNKSXqCJyD6adRtzlwxjAA8s8yeL7bz0qt+hITGPO72rwLh+nEpj0jpEbyrpOMhVD9ARbEBjeOD2FF8hmtYh4s8JWLw8kpCDOCjfK+qgCP7jUQJ2h6dCW/RSO11uJHw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aOvLR2Zb4csnH2C1km4+QzQ1HMHveLF6R34CQ6SrT1Y=;
+ b=njMKGe4P7kigS0luTJxHZN6LZaYY2djZIUKLRtlDjPwid+JPaWb/Mdaolttuxe/vwa1pRv524H4Y4Uzyer5O1auInkkz9Gk+rJqEtJd2XxT1D+KDqGn/2WDd1ATTOc4T9ngqoqYYhq3mAOm2s2f5nAz9j3Q9Qwd7Ew3VGQV5Y1R2hlG2QYqG4bbjhhw2TmX3jqglDHYocluLSQlZqTK74hZkhG2AM2Yt34jEhr7Doh6j7Yog+Mo9U6XgcFeITCqLyGEyVjm893b0Wx8W6mVH05OFhF2We8kERWWCSfiFCf6/PTBGxcfErq39F8vqAbErHlmhXFKYeJ93O0wOXw25sQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=xMj1qXfK8gsMQ7PPQfGr1WuTZEPbUqRoUDWXdTdkR+M=;
-        b=JeE7sdzcEAXWmWfLzJ+PEk/lemZoWz2eLGCOcaqBxiY1YbIkPf+OJXTcwEwMIRcrUY
-         DPD800oG7+TE2jpouIV0xX/T+jiGZ40bwJAE7/GFcrsBcytshIRtYlB9pJfU2TlOsjbH
-         6Kr3ZAD36jFzwUEIHiYcNESYtQOJ8fqPF8pXKVslbMzB1FPjILsts3avlFODx92o9Q+5
-         DIhgq3QQFI3MZ0jDl9FF6J27ujiAT/MMoLS1IfUl/sp1IoM90e6p6TpYCIBLk6w4dKvP
-         NiPXxz0YU8On3E+TL+6qYl+7B4TqTlmzrHylOlWS/gaNwp6HiRI8wQHCuecxJ4C2qjHM
-         Np4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=xMj1qXfK8gsMQ7PPQfGr1WuTZEPbUqRoUDWXdTdkR+M=;
-        b=FYYvLDsvcklO/4GOT26c/rqVbsmc8f0dWFDNwVUa/RI+7Tv0jzbxaA0dGRgC+TpWzU
-         t1QQmzAt9hc1Ipa5jEVENL7zPbE1iEsosyxSTaFKQFODSXUPsrYysgd05O+5v+S40HGx
-         To9ViwjQoVRb5yK/jJWPX5E9f3jBe3kt7qSa6qh6qzhv+o6V5yQjECefH/ECVmGwVu+r
-         fY0hJUPsOiL88X32wL25Od/9fnn/GaHTeJ0WEF47aIF/R95M5P5gdyXnkhTuhIImFBn2
-         NIB39uF66Bs4tAOYjKbQ656Yb1pjc2RvGavmIarwb/X/mzJtnX/WG9FiJYYzyvmnhrEF
-         7qDQ==
-X-Gm-Message-State: AOAM532Qk9T3gIt4aL7xU4vfgpsSVCDOntSJxPzjc246GMUhYxj/91U0
-        g4cbUuiiCzGAyv0LmWVUEBY=
-X-Google-Smtp-Source: ABdhPJxWvWf5bmeC+ab68EWtCWKPccLiRC8nlfaZxh2g6ryciLhgEGn1Jmt+3HCU5nwApUE/IhjPtQ==
-X-Received: by 2002:a05:6830:1e54:: with SMTP id e20mr8681834otj.227.1621607244973;
-        Fri, 21 May 2021 07:27:24 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id p1sm1365607otk.58.2021.05.21.07.27.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 May 2021 07:27:24 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH 1/3] hwmon: (pmbus) Add driver for Delta DPS-920AB PSU
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     jdelvare@suse.com, corbet@lwn.net, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
-        Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>
-References: <20210430132735.127342-1-robert.marko@sartura.hr>
- <20210430134810.GA2714262@roeck-us.net>
- <CA+HBbNH+gQOmu_Ho0ivFuGHdu0zBtOrr1474z+7FA1zmNb4bug@mail.gmail.com>
- <2b990feb-dc26-debb-4f81-430bbc89b51c@roeck-us.net>
- <CA+HBbNHQHqD-wgryaBLZ5M2Lxafb0OwNcbiQJmRQPcZfprmUEg@mail.gmail.com>
- <cfbe487f-8d01-e9b7-0aae-f93a27aff023@roeck-us.net>
- <CA+HBbNHQrZRcz-3qBn1RkqLxOn_+sNH8VKJVihkaaiFoAy=d7g@mail.gmail.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <5a11415f-4c0f-b073-6325-2e9b4078655c@roeck-us.net>
-Date:   Fri, 21 May 2021 07:27:21 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
-MIME-Version: 1.0
-In-Reply-To: <CA+HBbNHQrZRcz-3qBn1RkqLxOn_+sNH8VKJVihkaaiFoAy=d7g@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aOvLR2Zb4csnH2C1km4+QzQ1HMHveLF6R34CQ6SrT1Y=;
+ b=LNkSC5gX9+MkCbVPPrgBL63Ro3vqv+mLDi186DpELft87rvcGiUvoAwUME7r2jz4xw13jYF6pMlF0Nx/4rFcgcg+B2UTDRYi7H96gvN1Kf9+Dse5Shiv7WUq1YeGHZkXhmpBdNwmcypnXgAuawcE4YDB1OrHiJFf/bMg6ezDZlg=
+Received: from OS3PR01MB6593.jpnprd01.prod.outlook.com (2603:1096:604:101::7)
+ by OSAPR01MB1556.jpnprd01.prod.outlook.com (2603:1096:603:31::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.26; Fri, 21 May
+ 2021 14:36:23 +0000
+Received: from OS3PR01MB6593.jpnprd01.prod.outlook.com
+ ([fe80::6c45:c45:40f8:e4a2]) by OS3PR01MB6593.jpnprd01.prod.outlook.com
+ ([fe80::6c45:c45:40f8:e4a2%7]) with mapi id 15.20.4150.025; Fri, 21 May 2021
+ 14:36:23 +0000
+From:   Min Li <min.li.xe@renesas.com>
+To:     Lee Jones <lee.jones@linaro.org>
+CC:     "sameo@linux.intel.com" <sameo@linux.intel.com>,
+        "grant.likely@linaro.org" <grant.likely@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH mfd v1] mfd: Add Renesas Synchronization Management Unit
+ (SMU) support
+Thread-Topic: [PATCH mfd v1] mfd: Add Renesas Synchronization Management Unit
+ (SMU) support
+Thread-Index: AQHXOtSPoxM3P4fkKEmDrY8StfrCU6rqloqAgAONlTA=
+Date:   Fri, 21 May 2021 14:36:23 +0000
+Message-ID: <OS3PR01MB6593794BFE3A4A08C62E708BBA299@OS3PR01MB6593.jpnprd01.prod.outlook.com>
+References: <1619466246-11198-1-git-send-email-min.li.xe@renesas.com>
+ <20210519080807.GH805368@dell>
+In-Reply-To: <20210519080807.GH805368@dell>
+Accept-Language: en-CA, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=none action=none header.from=renesas.com;
+x-originating-ip: [72.140.114.230]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 75abf811-caeb-4893-f23a-08d91c65ce98
+x-ms-traffictypediagnostic: OSAPR01MB1556:
+x-microsoft-antispam-prvs: <OSAPR01MB15566E4A3B46901F3533A666BA299@OSAPR01MB1556.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 7cS/oatnQFfrhs6NpH+vIYwkt6DlvVFMs93zZphFFw9FtIk3fykp1m/e5fdt1grQZkwi4M6mZWPx+dhhgv02He7rI8her4vXBoN4cTDlizkU72DP3GyTAukgGR7c25uHVRaAX1D/EO4oWiVwX+ZvMDE1J2zj7/Zf3TzS4JqeGluzQGxrCdQjB9v5p28R3cqB1PsgD2R4ZNqqYZwG5Li1f7+iS96nfBnElNwknXgGqluLhuCX8XzMC26r9P5QiYkd3ikMSnnqZKwxkI5A4Ylizsx22QCvKHvu4BQrg4G65ncVXsIELLnY35q5DEMu9E0yXeQKDNIIHKBHnCMRKQ34iXFognoFcERiReJ/d0uZem1NqZzikbV8uJAf7UGILK0vhoA/57QoTOX8zGVGM7Mt+rxZ1zkQ7/eFKGfoNGcv+XifsoL6mLI72mnrmP/7UWy/cnghNSeZNaGUJXI+3Vpyd9dmYRKEZ2hrb6MzCJQjoX50TYOVi+GXVjusgMeLfKWPNIaIUSpizEprtBrJw3XYYtJv45TFPUCZMoS9I1viFtAFou+vzfrb+AwcmAOKWelOBe4o+Sr2Iscni0PqVr0d7Wn+QRD97kUfTeFLNqOcHuU=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB6593.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(396003)(39850400004)(136003)(366004)(316002)(76116006)(66446008)(54906003)(66476007)(66946007)(64756008)(66556008)(5660300002)(186003)(26005)(122000001)(6506007)(33656002)(6916009)(478600001)(71200400001)(4326008)(52536014)(38100700002)(7696005)(55016002)(8676002)(8936002)(4744005)(2906002)(86362001)(9686003)(83380400001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?TmlsSWljQytXTnluSEZ5dWtxTXZwZklSM2U2Z2hBTGd3cHFIWUxSbThndjlK?=
+ =?utf-8?B?OGJBMVZQQ2RPV0Fla0Y3K1lRWkQ2TmZTQ3ZQVTR6eldCS2NRbWJKcVlzUTA0?=
+ =?utf-8?B?QlY0L1VDSEVQN3JURWxMa3BTdjFEVTJlbXpsMnRmWVk0UlVyYStRdnpDMUJq?=
+ =?utf-8?B?dWpwU3RGSlo3Z2F6SkoyNGphU1JTYWErWnlRYnh3MnpDdjZhZ0JkbnByWFR2?=
+ =?utf-8?B?QmRaN2xIeTU4YUdkZEJxd0pPcTJzdzdMUFQzWFpRV0F2Q3dmZXhweS9UQStS?=
+ =?utf-8?B?U0pSejIzZk1OYlF2dGhMRlF6UFMxbnBXWWx3ZHgrRHMrTWFwbDlPdURUREtr?=
+ =?utf-8?B?NlJOTFl5WFdmVExFeTNONnZTZks1U0VQWHRTaHdSTFNhcGJJRjcwY09yNnB4?=
+ =?utf-8?B?VjJsb2JpNXlDYTlRNFBGcWowT0NLWHVQTFR6VFFucnJ0Z0FuRUVxL0VqTTdY?=
+ =?utf-8?B?ZFF3Qm1FVWpnWXQzMkpVakdHS2M1RkZnWE9pZFhTMHN2R2g4N1htcXNOUGZl?=
+ =?utf-8?B?RHRMZWtyc0lJNWhYS0k1dlRTYTdIVDNqL1gvblpyb1hTUERKTXZlWTJPem81?=
+ =?utf-8?B?SlBaNmZMR2xhb3JpOXdueVpIUUVXY2VQRmxWcFlUckxwdzI0RWpseEJ3UWdP?=
+ =?utf-8?B?Q1FrSXNrOHl3SEUyMExleDdJQkR3VzczZGhQMEdFYkJlcTI2TDAxcE5vVWRs?=
+ =?utf-8?B?bmpQc1FuZjNmdGh5RWpab1Fja1pPamdaR0tTQ3JndSt6RitHbjlwN1VRQUZz?=
+ =?utf-8?B?RDEycm9NRUlMbGd3S1JJNjhTT0RnSk9NaVc2cjNwblhFM08vVFlVWWFJbm4x?=
+ =?utf-8?B?V0lpVi9xVGtQR3hUVTFNVmRIWHUvSFBtZ3gxbTJ4TEpuajNWL25Vd3JqTEUz?=
+ =?utf-8?B?RmJaZktpa2RGWldMUmc5amxhaE1JYnR4Z3lreFp1NUdncnB4NUE2WHB2VmNS?=
+ =?utf-8?B?aUxnQjFFNW1KMmpyWDdnUlNlS1pqZzBLR0ZXNG5RWlVFTG9XMmZGVng3eTd1?=
+ =?utf-8?B?dnpFWjJmdk94ekR0V0R1M09hYmNBVm0yWS9zTk5ucndpRkM4L2JCOFlXTmZx?=
+ =?utf-8?B?ZHV2MzFWUDRtZGNFRlNZU1hEVkVCSHY4b1N0UGRRcCt0WWNiUHBINk9aRW9O?=
+ =?utf-8?B?NnlpZzJ6STRKeDZ2dTRwTVhpa0t5UUJ6T2RsaFQrR2d6TUZ3ZjN1alpSM2Vi?=
+ =?utf-8?B?R3lMRGxWMTl5N2RaRE1hd0xRWHNENVlKV0V3cWY3bzl4K20xak5jVDRRRGxy?=
+ =?utf-8?B?bmNHeFFWbW9QYVNKS1I0TndsUVo0V3JWejJ1d08vdkNNQ1IxcXlmSUxQNzJZ?=
+ =?utf-8?B?am5CNitEQVE5N0hBaWg4K1ExZGNTdTV5T0x6TDRRZVFZVGJQalg4SEoyZ1Zl?=
+ =?utf-8?B?bXcrcUVFRVNTdmVjaUZEWmR4VU9LUTQrTHdDT1h1cCs0OWtZMklINkM5dnVY?=
+ =?utf-8?B?NDkvUWFvR2dYOU1HK0NGSjMrYjdobkRYcXRDcXZ4c2dZQnV6LysvaXlxU0pm?=
+ =?utf-8?B?QklVUlg5N1NFeWZTS3JHTTFtNWpiK1c4cUp3NWd4L2JoNndydVlxenJVQzlp?=
+ =?utf-8?B?bWEvVWI5SjZDY1JsSVJQRU9oSksrRUM0WXpxTVBLNm8zbURwMVkyUDAyVzZz?=
+ =?utf-8?B?ZTMvTFZJRmk2K1dPRk1mbFBSd1YxY1lIL3BMbDVjNWhBbjdiekExMnFPaWxP?=
+ =?utf-8?B?RUQ5WXJsUGtVL2IwbmpqUnRXUnFiTS95N2YzOEx1bklXQ3dlR0NiaHNvbnU3?=
+ =?utf-8?Q?RqQOP2IHFqfPEcuEEbeKljs0684bKCe0JrajvdB?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB6593.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75abf811-caeb-4893-f23a-08d91c65ce98
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 May 2021 14:36:23.1736
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: qt4FmRb9l2mKlQpY1Tr+R1zk/86qpLSBkHC8jIO6Jc1cZ8UJB3fmm0bkFmSCY3m/B0we+1qzPWJsJEdx76roxA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB1556
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/21/21 5:33 AM, Robert Marko wrote:
-> On Fri, May 21, 2021 at 1:41 PM Guenter Roeck <linux@roeck-us.net> wrote:
->>
->> On 5/21/21 1:36 AM, Robert Marko wrote:
->> [ ... ]
->>>> In this context, I have a hard time finding a reference for
->>>> this power supply. Do you have a datasheet or some other documents
->>>> you can share ?
->>>
->>> Unfortunately, I don't have a datasheet as that would have made this way easier.
->>> It was all based on the vendor "driver" from DENT:
->>> https://github.com/dentproject/dentOS/blob/main/packages/platforms/delta/arm64/tn48m/tn48m-poe/modules/builds/src/arm64-delta-tn48m-poe-psu.c
->>>
->>
->> Ah, so this is not a driver for a power supply from DeltaPSU,
->> but a power supply from Delta Networks Technology Corporation,
->> as used in that company's TN48M-POE switch. That is a world
->> of difference, even though the parent company seems to be the
->> same. I am not sure if, based on this information, the driver
->> should claim to be for "Delta DPS-920AB PSU" in the first place.
-> 
-> It's actually a PSU from Delta Electronics INC, Delta Networks are just using
-> it inside of the Delta Networks TN48M-DN-P switch.
-> I checked the label on the PSU-s.
-
-Ok, thanks. Guess we'll have to live with that.
-
->>
->> Can you run a block read on MFR_MODEL and MFG_SERIAL ?
->> That might give us an idea about the actual manufacturer
->> and model of this power supply.
-> 
-> MFG_SERIAL is just a bunch of 0xf-s, but MFR_MODEL has something.
-> However, the Armada 7040 I2C adapter cannot do block reads although
-> it returns 11 bytes but it's just zeros.
-
-Hmm, it seems more likely that the field is empty. Block read
-isn't really different from other read operations.
-
-Thanks,
-Guenter
-
->>
->> Also, isn't that the same power supply for which you were
->> trying to add another hwmon driver to display some of its
->> status information, obtained from some CPLD ?
-> 
-> This and one more as the non-PoE version of the TN48M-DN switch
-> has a single 150W PSU that does not support PMBus, but the CPLD
-> always provides presence information and Power Good status.
->>
->> Thanks,
->> Guenter
-> 
-> 
-> 
-
+PiA+DQo+ID4gK2NvbmZpZyBNRkRfUlNNVV9JMkMNCj4gPiArCXRyaXN0YXRlICJSZW5lc2FzIFN5
+bmNocm9uaXphdGlvbiBNYW5hZ2VtZW50IFVuaXQgd2l0aCBJMkMiDQo+ID4gKwlkZXBlbmRzIG9u
+IEkyQyAmJiBPRg0KPiA+ICsJZGVwZW5kcyBvbiBNRkRfUlNNVV9TUEk9bg0KPiANCj4gTm90IHN1
+cmUgSSd2ZSBzZWVuIGEgcmVsYXRpb25zaGlwIGxpa2UgdGhpcyBiZWZvcmUuDQo+IA0KPiBEZXZp
+Y2VzIGNhcGFibGUgb2YgU1BJIGFuZCBJMkMgdXN1YWxseSBoYXZlIGEgY29yZSBkcml2ZXIgd2hp
+Y2ggc2VsZWN0cyBvbmUNCj4gb3IgdGhlIG90aGVyLiAgSXQgd2lsbCBhbHNvIHNhdmUgc29tZSBj
+b2RlIGR1cGxpY2F0aW9uIHlvdSBoYXZlIGhlcmUuICBQbGVhc2UNCj4gdGFrZSBhIGxvb2sgYXQg
+c29tZSBvdGhlciBleGFtcGxlcyBpbiB0aGUgTUZEIHN1YnN5c3RlbS4NCg0KDQpIaSBMZWUNCg0K
+VGhhbmtzIGZvciB0YWtpbmcgeW91ciB0aW1lIHRvIHJldmlldyBteSBjb2RlLiBJIHdpbGwgc3Rh
+cnQgd29ya2luZyBvbiB0aGUgY29yZSBkcml2ZXIuIEJ1dA0KS2NvbmZpZyBpdGVtcyB3aWxsIHN0
+YXkgYXMgTUZEX1JTTVVfSTJDIGFuZCBNRkRfUlNNVV9TUEkgbGlrZSB0aGUgZXhpc3Rpbmcgb25l
+cyANCg0KTUZEX01BREVSQV9TUEkNCk1GRF9NQURFUkFfSTJDDQoNCk1GRF9EQTkwNTJfU1BJDQpN
+RkRfREE5MDUyX0kyQw0KDQpNRkRfTUMxM1hYWF9TUEkNCk1GRF9NQzEzWFhYX0kyQw0KDQpNaW4N
+Cg==
