@@ -2,112 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A70138C9A8
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 17:02:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D5FA38C9AC
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 17:02:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237188AbhEUPDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 11:03:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49142 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231261AbhEUPDh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 11:03:37 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F922C061574
-        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 08:02:13 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id x8so21380265wrq.9
-        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 08:02:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=iI+XKzlAf3f1hN1QD2LhQTdtVCnY+TpUzlIH07KWlic=;
-        b=M6JM6cQpNzSU4E1Vl9k/reolNw1UiYOoJbJsRHjoSBHcn0JgpnRdxXZO7U0OZd5+MX
-         HMa80350SnG6Rs09OkcxCsHy3135+dFwKX7PE4z2fy+xFdArgDmwue3OeAvAftMRehl3
-         qaOfNYaXH3yPr6m112hdkADdW8GhVZHuZxwuWLg79jmjo3NCNnX8E4XXpAJa1HxSiX1q
-         xlPQEfym8kXuYVwS+drfoEGZaBUsmZ/3l0gX2yS0su8Dl0Wgv88hWh/y0VYgqcRQD9kt
-         q47jckayZnb6+oKsxp+6vLsDK+aFIixUbrYWiBaJKtKg6wvNuwlac0nPLT2jNWwIy9lN
-         fZRg==
+        id S237227AbhEUPD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 11:03:59 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:47390 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237226AbhEUPD4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 11:03:56 -0400
+Received: from mail-vs1-f71.google.com ([209.85.217.71])
+        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1lk6fX-0004us-Nr
+        for devicetree@vger.kernel.org; Fri, 21 May 2021 15:02:31 +0000
+Received: by mail-vs1-f71.google.com with SMTP id s22-20020a67c3960000b02902364d2f502bso6084488vsj.13
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 08:02:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=iI+XKzlAf3f1hN1QD2LhQTdtVCnY+TpUzlIH07KWlic=;
-        b=YkF5diUr+7cucKiYGbHzUdlM3TTH3u5DyJm5AI4u0j5kADX2yAvzp+1liil9dyc/Az
-         n9zQ/vwA95B0N80S1uJLox4yTgFH6X5zybSQvRnMVxrLhPlOg5lO7i4nPNYTWZ93SuRg
-         Fq2DiD9Jg9gDtiYN41y9FpQzU4ELHml+3yvfi3Lid/Yu2ite05QczMfJ+CbtbQju11T3
-         ukapoe1yRSKXO2MtOQMXb/okfSypZ9jy4PDsJIOmppKaCUP2muldRCDX7/ryrq/wV+RU
-         w05BvZn6Ayd9aTkrJ+8rMugQ/7+mOMsmmahRlukM8Bv6WZvvCa3h4OtA9x1YVearN3zY
-         HcyQ==
-X-Gm-Message-State: AOAM530kbSMcc2TYf7w8VcLP89eAxLENGmJqpth4MLN17RP6vV+tmQIo
-        DnIOryIFCRSz2v88p8nrhHlspWni2mDEmZhM
-X-Google-Smtp-Source: ABdhPJx3tewqTMW2RfQyk1ppEHB80rp4tHkrMil5Fg3e3Y8IOq1vGAesVHoKRYWNKzdZ9Lhw95Taeg==
-X-Received: by 2002:a5d:6485:: with SMTP id o5mr10164241wri.163.1621609331802;
-        Fri, 21 May 2021 08:02:11 -0700 (PDT)
-Received: from dell ([91.110.221.215])
-        by smtp.gmail.com with ESMTPSA id s15sm2904308wrt.54.2021.05.21.08.02.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 May 2021 08:02:11 -0700 (PDT)
-Date:   Fri, 21 May 2021 16:02:09 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Min Li <min.li.xe@renesas.com>
-Cc:     "sameo@linux.intel.com" <sameo@linux.intel.com>,
-        "grant.likely@linaro.org" <grant.likely@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH mfd v1] mfd: Add Renesas Synchronization Management Unit
- (SMU) support
-Message-ID: <20210521150209.GI2549456@dell>
-References: <1619466246-11198-1-git-send-email-min.li.xe@renesas.com>
- <20210519080807.GH805368@dell>
- <OS3PR01MB6593794BFE3A4A08C62E708BBA299@OS3PR01MB6593.jpnprd01.prod.outlook.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=+DCiOMUmNCEbgSGkeFS7cL87hlbtrGvRjWxrSQX4kzE=;
+        b=kl2pO5XDslyLWSdnLROiV9AySMj7xB2fkZ40ZlPUKGBnrcIkttOv6oQ8E9cyXJVL7e
+         taKifVlfKkwlScuT/L8O4oRTJfpvRsJQ3zzw9sD4VNNNS1SQKh9ejNO1lJNnRyeziSre
+         1jwdFLTOKW6kudyiANr9sbdlA/N/TtQmz90TAEkBQPldP1ZbTYmMJfwdWEo1V7JSAReJ
+         jAbUWRFkMNftpYRyfUzYiXPjTQEssGCdX1EtsKRQivkD5TDOZQ1WcLiqosndGBiBW3mV
+         80GlpMj2Eu9K2t3afRS1kV4wEGCqjXQx9ElnmruRaRDOjvVND+8TsNVPOqKJcdRCo4P4
+         0H5A==
+X-Gm-Message-State: AOAM5327h7zh5uwQ4Er4Mda+X5UqNETjBsW4MYPo0SI3AoPPAc9+D3pJ
+        F3+dhiAQej+rYPn3qu8jZi9+c3Qxhpwsh/4nL+JpOw1+4pq54RPFT+3slCvAOEhXgBKbCNB2pO3
+        ZURcnd1IM3kLAKm3x6XIHTAGu/jC3D/MhU9vuND8=
+X-Received: by 2002:a67:2c85:: with SMTP id s127mr10899680vss.7.1621609350806;
+        Fri, 21 May 2021 08:02:30 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwYOKseqJxYk2UWSPChMwThTlFDmszEx95gPDhbTYvYA69GPIuuets65Whjsz6E6dNkOxW1Fw==
+X-Received: by 2002:a67:2c85:: with SMTP id s127mr10899652vss.7.1621609350576;
+        Fri, 21 May 2021 08:02:30 -0700 (PDT)
+Received: from [192.168.1.4] ([45.237.48.6])
+        by smtp.gmail.com with ESMTPSA id f65sm960175vke.43.2021.05.21.08.02.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 May 2021 08:02:30 -0700 (PDT)
+Subject: Re: [linux-nfc] Re: [PATCH 2/2] nfc: s3fwrn5: i2c: Enable optional
+ clock from device tree
+To:     Bongsu Jeon <bongsu.jeon2@gmail.com>
+Cc:     Stephan Gerhold <stephan@gerhold.net>,
+        Bongsu Jeon <bongsu.jeon@samsung.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-nfc@lists.01.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20210518133935.571298-1-stephan@gerhold.net>
+ <20210518133935.571298-2-stephan@gerhold.net>
+ <ac04821e-359d-aaaa-7e07-280156f64036@canonical.com>
+ <YKPWgSnz7STV4u+c@gerhold.net>
+ <8b14159f-dca9-a213-031f-83ab2b3840a4@canonical.com>
+ <YKTHXzUhcYa5YJIs@gerhold.net>
+ <10b3a50e-877c-d5b1-3e35-e5dff4ef53d8@canonical.com>
+ <CACwDmQCQQpLKeaRxfxXYqSty3YhpZ9y7LNxgkKCBQ=YJiAk1cg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <20c1367d-a8c7-603e-2b07-ec3ddcd89a38@canonical.com>
+Date:   Fri, 21 May 2021 11:02:26 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
+In-Reply-To: <CACwDmQCQQpLKeaRxfxXYqSty3YhpZ9y7LNxgkKCBQ=YJiAk1cg@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <OS3PR01MB6593794BFE3A4A08C62E708BBA299@OS3PR01MB6593.jpnprd01.prod.outlook.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 May 2021, Min Li wrote:
-
-> > >
-> > > +config MFD_RSMU_I2C
-> > > +	tristate "Renesas Synchronization Management Unit with I2C"
-> > > +	depends on I2C && OF
-> > > +	depends on MFD_RSMU_SPI=n
-> > 
-> > Not sure I've seen a relationship like this before.
-> > 
-> > Devices capable of SPI and I2C usually have a core driver which selects one
-> > or the other.  It will also save some code duplication you have here.  Please
-> > take a look at some other examples in the MFD subsystem.
+On 20/05/2021 07:40, Bongsu Jeon wrote:
+> On Thu, May 20, 2021 at 12:58 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@canonical.com> wrote:
+>>
+>> On 19/05/2021 04:07, Stephan Gerhold wrote:
+>>> On Tue, May 18, 2021 at 11:25:55AM -0400, Krzysztof Kozlowski wrote:
+>>>> On 18/05/2021 11:00, Stephan Gerhold wrote:
+>>>>> On Tue, May 18, 2021 at 10:30:43AM -0400, Krzysztof Kozlowski wrote:
+>>>>>> On 18/05/2021 09:39, Stephan Gerhold wrote:
+>>>>>>> s3fwrn5 has a NFC_CLK_REQ output GPIO, which is asserted whenever
+>>>>>>> the clock is needed for the current operation. This GPIO can be either
+>>>>>>> connected directly to the clock provider, or must be monitored by
+>>>>>>> this driver.
+>>>>>>>
+>>>>>>> As an example for the first case, on many Qualcomm devices the
+>>>>>>> NFC clock is provided by the main PMIC. The clock can be either
+>>>>>>> permanently enabled (clocks = <&rpmcc RPM_SMD_BB_CLK2>) or enabled
+>>>>>>> only when requested through a special input pin on the PMIC
+>>>>>>> (clocks = <&rpmcc RPM_SMD_BB_CLK2_PIN>).
+>>>>>>>
+>>>>>>> On the Samsung Galaxy A3/A5 (2015, Qualcomm MSM8916) this mechanism
+>>>>>>> is used with S3FWRN5's NFC_CLK_REQ output GPIO to enable the clock
+>>>>>>> only when necessary. However, to make that work the s3fwrn5 driver
+>>>>>>> must keep the RPM_SMD_BB_CLK2_PIN clock enabled.
+>>>>>>
+>>>>>> This contradicts the code. You wrote that pin should be kept enabled
+>>>>>> (somehow... by driver? by it's firmware?) but your code requests the
+>>>>>> clock from provider.
+>>>>>>
+>>>>>
+>>>>> Yeah, I see how that's a bit confusing. Let me try to explain it a bit
+>>>>> better. So the Samsung Galaxy A5 (2015) has a "S3FWRN5XS1-YF30", some
+>>>>> variant of S3FWRN5 I guess. That S3FWRN5 has a "XI" and "XO" pin in the
+>>>>> schematics. "XO" seems to be floating, but "XI" goes to "BB_CLK2"
+>>>>> on PM8916 (the main PMIC).
+>>>>>
+>>>>> Then, there is "GPIO2/NFC_CLK_REQ" on the S3FWRN5. This goes to
+>>>>> GPIO_2_NFC_CLK_REQ on PM8916. (Note: I'm talking about two different
+>>>>> GPIO2 here, one on S3FWRN5 and one on PM8916, they just happen to have
+>>>>> the same number...)
+>>>>>
+>>>>> So in other words, S3FWRN5 gets some clock from BB_CLK2 on PM8916,
+>>>>> and can tell PM8916 that it needs the clock via GPIO2/NFC_CLK_REQ.
+>>>>>
+>>>>> Now the confusing part is that the rpmcc/clk-smd-rpm driver has two
+>>>>> clocks that represent BB_CLK2 (see include/dt-bindings/clock/qcom,rpmcc.h):
+>>>>>
+>>>>>   - RPM_SMD_BB_CLK2
+>>>>>   - RPM_SMD_BB_CLK2_PIN
+>>>>>
+>>>>> (There are also *_CLK2_A variants but they are even more confusing
+>>>>>  and not needed here...)
+>>>>>
+>>>>> Those end up in different register settings in PM8916. There is one bit
+>>>>> to permanently enable BB_CLK2 (= RPM_SMD_BB_CLK2), and one bit to enable
+>>>>> BB_CLK2 based on the status of GPIO_2_NFC_CLK_REQ on PM8916
+>>>>> (= RPM_SMD_BB_CLK2_PIN).
+>>>>>
+>>>>> So there is indeed some kind of "AND" inside PM8916 (the register bit
+>>>>> and "NFC_CLK_REQ" input pin). To make that "AND" work I need to make
+>>>>> some driver (here: the s3fwrn5 driver) enable the clock so the register
+>>>>> bit in PM8916 gets set.
+>>>>
+>>>> Thanks for the explanation, it sounds good. The GPIO2 (or how you call
+>>>> it NFC_CLK_REQ) on S3FWRN5 looks like non-configurable from Linux point
+>>>> of view. Probably the device firmware plays with it always or at least
+>>>> handles it in an unknown way for us.
+>>>>
+>>>
+>>> FWIW, I was looking at some more s3fwrn5 code yesterday and came
+>>> across this (in s3fwrn5_nci_rf_configure()):
+>>>
+>>>       /* Set default clock configuration for external crystal */
+>>>       fw_cfg.clk_type = 0x01;
+>>>       fw_cfg.clk_speed = 0xff;
+>>>       fw_cfg.clk_req = 0xff;
+>>>       ret = nci_prop_cmd(info->ndev, NCI_PROP_FW_CFG,
+>>>               sizeof(fw_cfg), (__u8 *)&fw_cfg);
+>>>       if (ret < 0)
+>>>               goto out;
+>>>
+>>> It does look quite suspiciously like that configures how s3fwrn5 expects
+>>> the clock and possibly (fw_cfg.clk_req?) how GPIO2 behaves. But it's not
+>>> particularly useful without some documentation for the magic numbers.
+>>
+>> Right, without documentation of FW protocol there is not much we can
+>> deduct here. There is no proof even that the comment matches actual code.
+>>
+>> Dear Bongsu,
+>> Maybe you could share some details about clock selection?
 > 
+> These configuration values depend on the HW circuit for NFC.
 > 
-> Hi Lee
+> There are  two types of fw_cfg.clk_type for N5.
+> 0x01 : external XTAL ( don't need to control the clock because XTAL
+> always supplies
+> the NFC clock automatically.)
+> 0x00 : PLL clock (need to control clock. )
 > 
-> Thanks for taking your time to review my code. I will start working on the core driver. But
-> Kconfig items will stay as MFD_RSMU_I2C and MFD_RSMU_SPI like the existing ones 
+> There are three types of fw_cfg.clk_speed for N5.
+> 0xFF : for external XTAL
+> 0x00 : 24M for PLL.
+> 0x01 : 19.12M for PLL.
 > 
-> MFD_MADERA_SPI
-> MFD_MADERA_I2C
+> There are two types of fw_cfg.clk_req for N5.
+> 0xFF: NFC firmware controls CLK Req when NFC needs the external clock.
+> 0xF0: NFC firmware doesn't control CLK Req.
+> 
+>>
+>>>
+>>> Personally, I just skip all firmware/RF configuration (which works thanks
+>>> to commit 4fb7b98c7be3 ("nfc: s3fwrn5: skip the NFC bootloader mode")).
+>>> That way, S3FWRN5 just continues using the proper configuration
+>>> that was loaded by the vendor drivers at some point. :)
+>>
+>> But isn't that configuration lost after power off?
+>>
+> 
+> If you skip all firmware/RF configuration, you can use  the preserved
+> firmware and
+> RF configuration on the chip.
 
-And MFD_MADERA
+Thank you for sharing these details. Much appreciated!
 
-> MFD_DA9052_SPI
-> MFD_DA9052_I2C
 
-And PMIC_DA9052
-
-> MFD_MC13XXX_SPI
-> MFD_MC13XXX_I2C
-
-And MFD_MC13XXX
-
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Best regards,
+Krzysztof
