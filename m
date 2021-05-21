@@ -2,131 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8950B38BC0A
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 03:55:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A5C238BC0C
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 03:55:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237924AbhEUB4j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 21:56:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41326 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237916AbhEUB4h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 21:56:37 -0400
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FCFBC061574
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 18:55:14 -0700 (PDT)
-Received: by mail-qt1-x835.google.com with SMTP id t20so14306001qtx.8
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 18:55:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=fwiHAMDwaEBdHTRR64T2XvPf2rYlFu2icAvRI/d7T1I=;
-        b=zMWi9VKDjUCoAvJ0fA7qzIu2MsoWVDeBz+toiOHCCNEYl9SRV1zn+HZZnTQlJBI6G3
-         H9x8R3l+HXuAVaMlhZZOh8aYmsb/QychwpkNJ+rT/plAh//NKnTiwZ4JrG0EqT8Nrw3W
-         5qhCILVe2T1zUGo3IqVLQ+YcnvzOCmmirl4TsX40HxjFf/qDMGA9pJQYGtne6ew+KnOv
-         CfS79JurOQmmwHJ+WkkI40L4kRXC5mPgHY+rChSCAtOfir1ftsFCfRi2wYoHitQGbIAY
-         5seRnAFc6wpT2/LSFXcCYq8DAnzEkA8iYJbIIDFDwarUSpt5GQiO0oC5mGaN6Ob5rWRF
-         wopA==
+        id S237898AbhEUB5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 21:57:01 -0400
+Received: from mail-oi1-f174.google.com ([209.85.167.174]:33495 "EHLO
+        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237897AbhEUB5A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 21:57:00 -0400
+Received: by mail-oi1-f174.google.com with SMTP id b25so18340908oic.0
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 18:55:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=fwiHAMDwaEBdHTRR64T2XvPf2rYlFu2icAvRI/d7T1I=;
-        b=tgqgd71vqQhhltdO5sIaY9atsUPkKv9dgtUWccov89zZhyu5y/S0KmEYVpqJsO46Km
-         iF+xgQYwb2x97A3HJ+69Kgxl0VCd+oELUFLN5uCS3lTCmBFKR7RbmWxcE+bmeqFHkSB5
-         8iUZpBhYuX0cVDDKVIKnZl24lcaWUSGXHyyV3DdGk3E5FfqTW+BHp7RuXwXQgk1pgkdP
-         S1OTzTbrr2P1jjVehTwm1M6KSWJpSCxoRL1qck7DHhKpVNTAjfsyFAzBd0/UcRNFveLc
-         mMymWiPquUDy4YpTGpYlLHVGMQaNPioVLUUPHlnls0aPCPJMrLw+ZoVAa9rA1ncue/Sp
-         0jUQ==
-X-Gm-Message-State: AOAM530ZAfBXH1+w+pfhK/aKsOM2ZS5eVo8B2xi+tUSyrqm1cbzacD8N
-        tZUPIHxyqckgsYHKXF/ZMxlRcw==
-X-Google-Smtp-Source: ABdhPJwaD9dTnZOk7H0JrFBWu4neTsWggW+sHCNqzVuNjKTsqrhNsiGX410biNoVKSQrHvE+ZvvSeA==
-X-Received: by 2002:ac8:7d0c:: with SMTP id g12mr8974906qtb.224.1621562113144;
-        Thu, 20 May 2021 18:55:13 -0700 (PDT)
-Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.gmail.com with ESMTPSA id t6sm3725006qkh.117.2021.05.20.18.55.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 May 2021 18:55:12 -0700 (PDT)
-Subject: Re: [PATCH v3 14/17] crypto: qce: Print a failure msg in case probe()
- fails
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bhupesh.linux@gmail.com
-References: <20210519143700.27392-1-bhupesh.sharma@linaro.org>
- <20210519143700.27392-15-bhupesh.sharma@linaro.org>
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-Message-ID: <d3fb760c-5c18-8290-86d4-1b582d12b568@linaro.org>
-Date:   Thu, 20 May 2021 21:55:09 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=eE3s3QqZdkbvKfx1bKaiPOzYVck9Xy7IUvgPpJ2b1IE=;
+        b=UhYLK5X4v6V3jdeQ5nW4rbHuSJrCA3J0gw4wOBqHN1H8PqfOQhEncfe0BMDF13a/SF
+         TnoyNb5yaxdSFBT/8cVA6fSkVEDR6+qvn5394VFjlgddzfPCEK5+Y5g9/CAdICvs8+mr
+         YIUgd0zOhwXgkBJdpI51Rjw/sPx9Bi2IJADie9vx+c7jzsHuZZX5c+5JWznNWvLPZZJK
+         jLmjEZdTBhcz4FSZt8OErtIMJP+uRQ7I3LqDXo7hDOZvtsYPhzjv5NhYfWtUpF0B2FV7
+         5xAE7SNSnv/6vsdy0H/uUydnSz/kjzWyB5CSEU5V1KbYDvRK81+eq7XRLH0WlTtxq3ai
+         d72Q==
+X-Gm-Message-State: AOAM530FBUw3brovpO0E/Fg9mTGk5X3E7HLZ+BrLtbSLrDqvWnn119Gr
+        2jlg5USBfeHco5zu2YxXpg==
+X-Google-Smtp-Source: ABdhPJyNZfhFR5v7zIS49YqC4T/tmkoHiYxPx1ZbhTAlxhnLxZJBYEZUHzecjTPWui0a3sNgPBgWMg==
+X-Received: by 2002:aca:d616:: with SMTP id n22mr326045oig.76.1621562137201;
+        Thu, 20 May 2021 18:55:37 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id n17sm919683oij.57.2021.05.20.18.55.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 May 2021 18:55:36 -0700 (PDT)
+Received: (nullmailer pid 2490216 invoked by uid 1000);
+        Fri, 21 May 2021 01:55:35 -0000
+Date:   Thu, 20 May 2021 20:55:35 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Helmut Grohne <helmut.grohne@intenta.de>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Michal Simek <monstr@monstr.eu>,
+        Amit Kumar Mahapatra <akumarma@xilinx.com>,
+        Srinivas Goud <sgoud@xilinx.com>,
+        Siva Durga Prasad Paladugu <sivadur@xilinx.com>
+Subject: Re: [PATCH v20 08/19] dt-binding: memory: pl353-smc: Fix the reg
+ property in the example
+Message-ID: <20210521015535.GA2483864@robh.at.kernel.org>
+References: <20210519182636.1110080-1-miquel.raynal@bootlin.com>
+ <20210519182636.1110080-9-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-In-Reply-To: <20210519143700.27392-15-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210519182636.1110080-9-miquel.raynal@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, May 19, 2021 at 08:26:25PM +0200, Miquel Raynal wrote:
+> The reg property should describe the entire accessible zone, not only
+> the one the driver wants to access. With this in mind, the example
+> should map two regions instead of one to be entirely accurate.
 
+No, not really. The address space is already covered by 'ranges'. Unless 
+you need the range in the arm,pl353-smc-r2p1 driver.
 
-On 5/19/21 10:36 AM, Bhupesh Sharma wrote:
-> Print a failure message (dev_err) in case the qcom qce crypto
-> driver probe() fails.
 > 
-> Cc: Thara Gopinath <thara.gopinath@linaro.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Andy Gross <agross@kernel.org>
-> Cc: Herbert Xu <herbert@gondor.apana.org.au>
-> Cc: David S. Miller <davem@davemloft.net>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: dmaengine@vger.kernel.org
-> Cc: linux-clk@vger.kernel.org
-> Cc: linux-crypto@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: bhupesh.linux@gmail.com
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-
-I kind of felt you can club patch 14 and 15. But it is upto you..
-FWIW,
-
-Reviewed-by: Thara Gopinath <thara.gopinath@linaro.org>
-
-
-Warm Regards
-Thara
-
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
->   drivers/crypto/qce/core.c | 1 +
->   1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/memory-controllers/pl353-smc.txt       | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
-> index 8c3c68ba579e..aecb2cdd79e5 100644
-> --- a/drivers/crypto/qce/core.c
-> +++ b/drivers/crypto/qce/core.c
-> @@ -300,6 +300,7 @@ static int qce_crypto_probe(struct platform_device *pdev)
->   err_clks_core:
->   	clk_disable_unprepare(qce->core);
->   err_out:
-> +	dev_err(dev, "%s failed : %d\n", __func__, ret);
->   	return ret;
->   }
->   
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/pl353-smc.txt b/Documentation/devicetree/bindings/memory-controllers/pl353-smc.txt
+> index 1335b94291ad..9d220d4cb39d 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/pl353-smc.txt
+> +++ b/Documentation/devicetree/bindings/memory-controllers/pl353-smc.txt
+> @@ -27,7 +27,8 @@ Example:
+>  		compatible = "arm,pl353-smc-r2p1", "arm,primecell";
+>  		clock-names = "memclk", "apb_pclk";
+>  		clocks = <&clkc 11>, <&clkc 44>;
+> -		reg = <0xe000e000 0x1000>;
+> +		reg = <0xe000e000 0x0001000>,
+> +		      <0xe1000000 0x5000000>;
+>  		#address-cells = <2>;
+>  		#size-cells = <1>;
+>  		ranges = <0x0 0x0 0xe1000000 0x1000000 /* Nand CS region */
+> -- 
+> 2.27.0
 > 
-
-
