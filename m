@@ -2,184 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FAF338CB0A
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 18:31:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 085D438CB07
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 18:30:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235179AbhEUQcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 12:32:32 -0400
-Received: from szxga05-in.huawei.com ([45.249.212.191]:4575 "EHLO
-        szxga05-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236020AbhEUQc2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 12:32:28 -0400
-Received: from dggems701-chm.china.huawei.com (unknown [172.30.72.59])
-        by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4FmsV52nN2zsSbs;
-        Sat, 22 May 2021 00:28:13 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- dggems701-chm.china.huawei.com (10.3.19.178) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Sat, 22 May 2021 00:31:00 +0800
-Received: from localhost (10.52.125.126) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Fri, 21 May
- 2021 17:30:58 +0100
-Date:   Fri, 21 May 2021 17:29:11 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-CC:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, <kernel@pengutronix.de>,
-        <linux-kernel@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        David Jander <david@protonic.nl>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v5 5/8] dt-bindings: touchscreen: Convert
- resistive-adc-touch binding to json schema
-Message-ID: <20210521172911.00001624@Huawei.com>
-In-Reply-To: <20210521044525.7397-6-o.rempel@pengutronix.de>
-References: <20210521044525.7397-1-o.rempel@pengutronix.de>
-        <20210521044525.7397-6-o.rempel@pengutronix.de>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
+        id S235898AbhEUQcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 12:32:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36700 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231621AbhEUQcN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 May 2021 12:32:13 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E8D03613AF;
+        Fri, 21 May 2021 16:30:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1621614649;
+        bh=Gsz7yuXP5bdGbG2AnmimRSB7YwtOJcRdSaqp/btEGw0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=R1aPYV3AboHfwqgvwSrIYkEOtSq8IJUtLv6v3MnEFHbdTedstbQv/ASUkWkrWLoMB
+         VdAOFsbuD26jPmTnO3v3udF3+iBw1GFAQSDVlZZNkMTbQo4lPzstGVwuct/150lOx6
+         ZmSUtVww6eeMzjcmF97vzYqOhfEziJr8jlAo+wnNbhH/00kSHqzU7Hwshz+hVY7pmz
+         Le+Ko1iXXMIP5llGBfmMUU1FuUSHX7NLtV8Ls9qBCzmbB39r+cJHGe0CozP1yTvKM+
+         iJseRFTMqiY0k5oC/mJwIXJomz+/3k+6orUfUaIW2UH0VBOcH7E9ybmuCa/gavVtFg
+         NsevhRKSHbXgA==
+Received: by mail-ej1-f41.google.com with SMTP id s22so31143304ejv.12;
+        Fri, 21 May 2021 09:30:49 -0700 (PDT)
+X-Gm-Message-State: AOAM533VKRSj6h7kPfi0V1WoEtXq7fuHIgZJO8RckIg1CNB5Fr8fuamF
+        yzCe2UlnNBH6bsB+DbhozwAskhvS6icgnoDbKA==
+X-Google-Smtp-Source: ABdhPJw+7EoEUERdDMupKIrRfpxIOGAi4+3ULLAqX5gbaNn8ZXyzBAgUw9pdrRhJ0k/uWh8i5J7Cjfm4C2xM6j/dGJo=
+X-Received: by 2002:a17:907:76b8:: with SMTP id jw24mr11141962ejc.359.1621614648460;
+ Fri, 21 May 2021 09:30:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.52.125.126]
-X-ClientProxiedBy: lhreml746-chm.china.huawei.com (10.201.108.196) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+References: <20210511090122.6995-1-a-govindraju@ti.com> <20210517221513.GA3263368@robh.at.kernel.org>
+ <861cefe2-7bb6-c435-ab0d-483155852876@ti.com> <CAL_JsqKyuXYJocBMLGXL6aXuK0YnrW7qdLugV2bxdP-LJ=2+cg@mail.gmail.com>
+ <42ec7cbd-1364-8dfe-c652-79b16bb6b87c@ti.com>
+In-Reply-To: <42ec7cbd-1364-8dfe-c652-79b16bb6b87c@ti.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 21 May 2021 11:30:35 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+Ft0V8d_3GJ6cgb2g5uocKL-Xn5WUsfPbn+mFmWHDhuw@mail.gmail.com>
+Message-ID: <CAL_Jsq+Ft0V8d_3GJ6cgb2g5uocKL-Xn5WUsfPbn+mFmWHDhuw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: gpio: gpio-davinci: Convert to json-schema
+To:     Grygorii Strashko <grygorii.strashko@ti.com>
+Cc:     Aswath Govindraju <a-govindraju@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Keerthy <j-keerthy@ti.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 May 2021 06:45:22 +0200
-Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+On Fri, May 21, 2021 at 11:06 AM Grygorii Strashko
+<grygorii.strashko@ti.com> wrote:
+>
+> Hi Rob,
+>
+> On 21/05/2021 15:56, Rob Herring wrote:
+> > On Fri, May 21, 2021 at 3:32 AM Grygorii Strashko
+> > <grygorii.strashko@ti.com> wrote:
+> >>
+> >> Hi Rob, All
+> >>
+> >> On 18/05/2021 01:15, Rob Herring wrote:
+> >>> On Tue, May 11, 2021 at 02:31:20PM +0530, Aswath Govindraju wrote:
+> >>>> Convert gpio-davinci dt-binding documentation from txt to yaml format.
+> >>>>
+> >>>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> >>>> ---
+> >>>>    .../devicetree/bindings/gpio/gpio-davinci.txt | 167 ---------------
+> >>>>    .../bindings/gpio/gpio-davinci.yaml           | 193 ++++++++++++++++++
+> >>>>    MAINTAINERS                                   |   2 +-
+> >>>>    3 files changed, 194 insertions(+), 168 deletions(-)
+> >>>>    delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-davinci.txt
+> >>>>    create mode 100644 Documentation/devicetree/bindings/gpio/gpio-davinci.yaml
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/gpio/gpio-davinci.txt b/Documentation/devicetree/bindings/gpio/gpio-davinci.txt
+> >>>> deleted file mode 100644
+> >>>> index 696ea46227d1..000000000000
+> >>>> --- a/Documentation/devicetree/bindings/gpio/gpio-davinci.txt
+> >>>> +++ /dev/null
+> >>>> @@ -1,167 +0,0 @@
+> >>>> -Davinci/Keystone GPIO controller bindings
+> >>>> -
+> >>>> -Required Properties:
+> >>>> -- compatible: should be "ti,dm6441-gpio": for Davinci da850 SoCs
+> >>>> -                    "ti,keystone-gpio": for Keystone 2 66AK2H/K, 66AK2L,
+> >>>> -                                            66AK2E SoCs
+> >>>> -                    "ti,k2g-gpio", "ti,keystone-gpio": for 66AK2G
+> >>>> -                    "ti,am654-gpio", "ti,keystone-gpio": for TI K3 AM654
+> >>>> -                    "ti,j721e-gpio", "ti,keystone-gpio": for J721E SoCs
+> >>>> -                    "ti,am64-gpio", "ti,keystone-gpio": for AM64 SoCs
+> >>>> -
+> >>
+> >> [...]
+> >>
+> >>>> -};
+> >>>> diff --git a/Documentation/devicetree/bindings/gpio/gpio-davinci.yaml b/Documentation/devicetree/bindings/gpio/gpio-davinci.yaml
+> >>>> new file mode 100644
+> >>>> index 000000000000..1e16172669c7
+> >>>> --- /dev/null
+> >>>> +++ b/Documentation/devicetree/bindings/gpio/gpio-davinci.yaml
+> >>>> @@ -0,0 +1,193 @@
+> >>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>>> +%YAML 1.2
+> >>>> +---
+> >>>> +$id: http://devicetree.org/schemas/gpio/gpio-davinci.yaml#
+> >>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>>> +
+> >>>> +title: GPIO controller for Davinci and keystone devices
+> >>>> +
+> >>>> +maintainers:
+> >>>> +  - Keerthy <j-keerthy@ti.com>
+> >>>> +
+> >>>> +properties:
+> >>>> +  compatible:
+> >>>> +    oneOf:
+> >>>> +      - items:
+> >>>> +          - enum:
+> >>>> +              - ti,k2g-gpio
+> >>>> +              - ti,am654-gpio
+> >>>> +              - ti,j721e-gpio
+> >>>> +              - ti,am64-gpio
+> >>>> +          - const: ti,keystone-gpio
+> >>>> +
+> >>>> +      - items:
+> >>>> +          - const: ti,dm6441-gpio
+> >>>> +      - items:
+> >>>> +          - const: ti,keystone-gpio
+> >>>
+> >>> These 2 can be expressed as an 'enum'.
+> >>>
+> >>>> +
+> >>>> +  reg:
+> >>>> +    maxItems: 1
+> >>>> +    description:
+> >>>> +      Physical base address of the controller and the size of memory mapped registers.
+> >>>
+> >>> Drop. That's every 'reg' property.
+> >>>
+> >>>> +
+> >>>> +  gpio-controller: true
+> >>>> +
+> >>>> +  gpio-ranges: true
+> >>>> +
+> >>>> +  gpio-line-names:
+> >>>> +    description: strings describing the names of each gpio line.
+> >>>
+> >>> Any constraints like min/max number of lines?
+> >>>
+> >>>> +
+> >>>> +  "#gpio-cells":
+> >>>> +    const: 2
+> >>>> +    description:
+> >>>> +      first cell is the pin number and second cell is used to specify optional parameters (unused).
+> >>>> +
+> >>>> +  interrupts:
+> >>>> +    description:
+> >>>> +      Array of GPIO interrupt number. Only banked or unbanked IRQs are supported at a time.
+> >>>
+> >>> Needs constraints. How many items and what are they?
+> >>>
+> >>>> +
+> >>>> +  ti,ngpio:
+> >>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >>>> +    description: The number of GPIO pins supported consecutively.
+> >>>> +    minimum: 1
+> >>>> +
+> >>>> +  ti,davinci-gpio-unbanked:
+> >>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >>>> +    description: The number of GPIOs that have an individual interrupt line to processor.
+> >>>> +    minimum: 0
+> >>>> +
+> >>>> +  clocks:
+> >>>> +    maxItems: 1
+> >>>> +    description:
+> >>>> +      clock-specifier to represent input to the GPIO controller.
+> >>>
+> >>> Drop description.
+> >>>
+> >>>> +
+> >>>> +  clock-names:
+> >>>> +    const: gpio
+> >>>> +
+> >>>> +  interrupt-controller: true
+> >>>> +
+> >>>> +  power-domains:
+> >>>> +    maxItems: 1
+> >>>> +    description:
+> >>>> +      Phandle to the power domain provider node.
+> >>>
+> >>> Drop.
+> >>>
+> >>>> +
+> >>>> +  "#interrupt-cells":
+> >>>> +    const: 2
+> >>>> +
+> >>>> +patternProperties:
+> >>>> +  "-hog$":
+> >>>> +    type: object
+> >>>> +    properties:
+> >>>> +      gpios: true
+> >>>> +      gpio-hog: true
+> >>>> +      input: true
+> >>>> +      output-high: true
+> >>>> +      output-low: true
+> >>>> +      line-name: true
+> >>>> +
+> >>>> +    required:
+> >>>> +      - gpio-hog
+> >>>> +      - gpios
+> >>
+> >> I see that gpio-hog.yaml dtschema has been added.
+> >> Can it be reused here and how?
+> >
+> > It's applied to any node containing 'gpio-hog' property, so all you need is:
+> >
+> > required:
+> >    - gpio-hog
+> >
+> Thanks for you comments. But I'd like to clarify the Hog child node definition - will work as below?
 
-> Convert the resistive-adc-touch binding to DT schema format using json-schema.
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-Looks good to me.
+Yes, but...
 
-Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> patternProperties:
+>    "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
+>      type: object
+>
+>      properties:
+>        gpio-hog: true
 
-> ---
->  .../input/touchscreen/resistive-adc-touch.txt | 33 ---------
->  .../touchscreen/resistive-adc-touch.yaml      | 70 +++++++++++++++++++
->  2 files changed, 70 insertions(+), 33 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.txt
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.txt b/Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.txt
-> deleted file mode 100644
-> index af5223bb5bdd..000000000000
-> --- a/Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.txt
-> +++ /dev/null
-> @@ -1,33 +0,0 @@
-> -Generic resistive touchscreen ADC
-> -
-> -Required properties:
-> -
-> - - compatible: must be "resistive-adc-touch"
-> -The device must be connected to an ADC device that provides channels for
-> -position measurement and optional pressure.
-> -Refer to
-> -https://github.com/devicetree-org/dt-schema/blob/master/schemas/iio/iio-consumer.yaml
-> -for details
-> -
-> - - iio-channels: must have at least two channels connected to an ADC device.
-> -These should correspond to the channels exposed by the ADC device and should
-> -have the right index as the ADC device registers them. These channels
-> -represent the relative position on the "x" and "y" axes.
-> - - iio-channel-names: must have all the channels' names. Mandatory channels
-> -are "x" and "y".
-> -
-> -Optional properties:
-> - - iio-channels: The third channel named "pressure" is optional and can be
-> -used if the ADC device also measures pressure besides position.
-> -If this channel is missing, pressure will be ignored and the touchscreen
-> -will only report position.
-> - - iio-channel-names: optional channel named "pressure".
-> -
-> -Example:
-> -
-> -	resistive_touch: resistive_touch {
-> -		compatible = "resistive-adc-touch";
-> -		touchscreen-min-pressure = <50000>;
-> -		io-channels = <&adc 24>, <&adc 25>, <&adc 26>;
-> -		io-channel-names = "x", "y", "pressure";
-> -	};
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.yaml b/Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.yaml
-> new file mode 100644
-> index 000000000000..38b4cbee9429
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/resistive-adc-touch.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/touchscreen/resistive-adc-touch.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Generic resistive touchscreen ADC
-> +
-> +maintainers:
-> +  - Oleksij Rempel <o.rempel@pengutronix.de>
-> +
-> +description: |
-> +  Generic ADC based resistive touchscreen controller
-> +  The device must be connected to an ADC device that provides channels for
-> +  position measurement and optional pressure.
-> +
-> +allOf:
-> +  - $ref: touchscreen.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: resistive-adc-touch
-> +
-> +  io-channels:
-> +    minItems: 2
-> +    items:
-> +      - description: x
-> +      - description: y
-> +      - description: pressure (optional)
-> +
-> +  io-channel-names:
-> +    oneOf:
-> +      - items:
-> +          - enum: [x, y]
-> +          - enum: [x, y]
-> +      - items:
-> +          - enum: [x, y, pressure]
-> +          - enum: [x, y, pressure]
-> +          - enum: [x, y, pressure]
-> +
-> +  touchscreen-size-x: true
-> +  touchscreen-size-y: true
-> +  touchscreen-fuzz-x: true
-> +  touchscreen-fuzz-y: true
-> +  touchscreen-inverted-x: true
-> +  touchscreen-inverted-y: true
-> +  touchscreen-swapped-x-y: true
-> +  touchscreen-min-pressure: true
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - io-channels
-> +  - io-channel-names
-> +
-> +examples:
-> +  - |
-> +    touchscreen {
-> +      compatible = "resistive-adc-touch";
-> +      io-channels = <&adc 24>, <&adc 25>;
-> +      io-channel-names = "y", "x";
-> +    };
-> +  - |
-> +    touchscreen {
-> +      compatible = "resistive-adc-touch";
-> +      touchscreen-min-pressure = <50000>;
-> +      io-channels = <&adc 24>, <&adc 25>, <&adc 26>;
-> +      io-channel-names = "y", "pressure", "x";
-> +    };
+Don't need this.
 
+>
+>      required:
+>        - gpio-hog
+>
+> In general, patternProperties duplicates $nodename in gpio-hog dtschema.
+
+I'd hope you could be a bit stricter here and only support one form.
+
+Rob
