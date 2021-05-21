@@ -2,141 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEC1538C179
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 10:12:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E747C38C196
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 10:20:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230025AbhEUINj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 04:13:39 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.81]:19214 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229629AbhEUINi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 04:13:38 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1621584692; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=px0a8MPK74qUXfzV5oznTizuZ6wSYWw1PnTyWPCWdSDm/VNlPpcX9mJnG6EcNy9+al
-    IrLqSd+SHTUy+MUh4/hS/NujOZyXCwe5HSxvwd14I4cIgw7AXjiqrNMEjfoNtHxIys+M
-    a14YcQqlLi/YEf8/g4X4ZGU/AalgcmEhdVB1NzRcUZHOqu2GPZZa5cXxBMD4g12p5vTr
-    1ZuiaGzrocf8qKnkp/grY2j8Mk/T8asPYHcGr9U72ssFsDrf0PwyrMIcLvz2THFrDc1E
-    Q0RN+6nMx63661R9AByJ0js93R8df2y6lfNya9k+aTx+RhVCKBFHq6sggs8ml9fW/Mm+
-    GM3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1621584692;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=P7QD5eRHBuT1lh8i7wzUly3dzKODxjJ0OhwZcPAUEZs=;
-    b=qOvPJEGTxcu4ftC0OhXI8oXRU/fO3ZYD1+OJWQuXaRw0/0pVx5jb5rJU6Tdvzny/1t
-    q9kdVB/kSfoQheuv6mQ2ldYRUjTTQWfloUKYv3uVD0uaGqjs/fn7oRNK+GbfNjfg7Xvc
-    oUwGQB8uW6oqv/0EjOr4ISA5eEP8c1nv/XkFEjtEDjcj6fHN0WqmL1pno8Ifjy2Nd4K3
-    NdgKAgA3gzct4XSyv4PdgbwS4wJseRljsozSAgx2sM2h8w9XhYASEBzMbh0TPkqJ1at7
-    r35/EciNY0gCLtIMeKlIFzHsRjCNrgxe50OG6ghPv/pdNOM+7tuATln42+LmxkY73GCk
-    MHaA==
-ARC-Authentication-Results: i=1; strato.com;
-    dkim=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1621584692;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=P7QD5eRHBuT1lh8i7wzUly3dzKODxjJ0OhwZcPAUEZs=;
-    b=DqIzGoyybqPjiuFKLTxGZ6dWr/44ExmlF0FdJwNkGyMj6i0q4h4RS5yv5ONtvUEhMS
-    UB0osp8RELueRhSHyAG5nZgDxXvuGtfICJE1uWislHsnMqjyaoixsw9e0L2IB7+Z3uIW
-    RQtga13/EQTxsVG5KS78sR+Kfez1hbP5UGPbr7omd2Z31kDFcdrTBCDtWtX2TPhwj/eh
-    0XHq1pF8QHpkCFwA9SryKT0kGu9MW/fI/sqNvv1N+EVOA2jnEP92M667faGDxbN8Y4Pz
-    PyaZDAzCgW4Hd4v8hXWa0dly72EjDd9Fi45Fze1iyvh4hrfANIvuems9VscDkHxCxDia
-    JaFQ==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j8IcvEBg=="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.26.1 DYNA|AUTH)
-    with ESMTPSA id 2037acx4L8BW0Pp
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Fri, 21 May 2021 10:11:32 +0200 (CEST)
-Date:   Fri, 21 May 2021 10:11:30 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bhupesh.linux@gmail.com
-Subject: Re: [PATCH v3 03/17] dt-bindings: qcom-bam: Add 'iommus' to required
- properties
-Message-ID: <YKdrMoSFAh1bR3xT@gerhold.net>
-References: <20210519143700.27392-1-bhupesh.sharma@linaro.org>
- <20210519143700.27392-4-bhupesh.sharma@linaro.org>
+        id S230462AbhEUIVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 04:21:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42628 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230424AbhEUIVW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 04:21:22 -0400
+Received: from mail-il1-x134.google.com (mail-il1-x134.google.com [IPv6:2607:f8b0:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4051FC061574
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 01:20:00 -0700 (PDT)
+Received: by mail-il1-x134.google.com with SMTP id h11so17508848ili.9
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 01:20:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=crfUFGTPalD4yXSTJwQEUnL2QL5B6TGLL3FiBmjfI84=;
+        b=2JogOMKudm0mxROFyquyt69B7PYnzHPTbHOAOutNWuvHCNn3QO0xdo4kQDYulHhLJO
+         bd9nIYQCpwjSqq5ZmRwFZnPgIjBvEhZcFWUYbveq4WRMu/1K6tf9Wb0rVi8I0OiQjpdb
+         mDjDZfv4zp2qkyHlwvtnjEg65lJ7IbEGBUX12YnRbEnC6xkpISPNmTK07uryUQKrpRPx
+         SmlQDd/Yyd345vY+kPP3ZDHS+nooBiXHiJkq/TggzOh7sNsJpHOWi9LOdKozkfNVzHUY
+         Q0TE/wsQlGuHq0/FOAfoViEwMoyKOwrVcZ8EGTth3Xgrr1WJX/0H1bUdlPKbZvXvsQka
+         ehfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=crfUFGTPalD4yXSTJwQEUnL2QL5B6TGLL3FiBmjfI84=;
+        b=NVrRxxfkx05EhpgtEK8JSzJxVhUKCoinoqTHG6vFkfM7suVTo/vRs6DjQHIrWFoo6d
+         NmFTb6HwUTGbLfvd0pCzShQJRyd4RKZneoJ2Rxmrabfh9LTEVhG2h2jRj6O2LhO1fPHh
+         A3ngE46AsJP9esMexEdid5G4Qs30jNFEdOCtL9h1HTEB22H31s5s/5hn8oIg47+6BzCf
+         JDk/9RMhXy7EZqmTMWRxmpZODfsYGz0iRO89VvJq7IhPNTWQKjIdJcMGj/+wSxZtK8tw
+         xqcHMaMeKpYAEfkenavCDt5/zMtwJJ3gr3S7zuvxWBfKecL5JFaRa4rE0mt5BrCkEAmw
+         xPgg==
+X-Gm-Message-State: AOAM530c+TYhA5yFwnRiHvfxjlZfxOLIzpK044N0pans6h5dbPGTp6ua
+        pmbsqg4OThfnK+gDvX1nsKjyuOdSUp5SKprz6omYkA==
+X-Google-Smtp-Source: ABdhPJyau7+pJ3utV7hS4AIVYk+mKqhheG8tWJtpEQAkPNa4Ua+zo1rd0NNd6w5BdgqknR/MLa+2U3zQHY+C1Ajm2BI=
+X-Received: by 2002:a92:4b08:: with SMTP id m8mr9882070ilg.183.1621585199636;
+ Fri, 21 May 2021 01:19:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210519143700.27392-4-bhupesh.sharma@linaro.org>
+References: <20210430123511.116057-1-robert.marko@sartura.hr>
+ <af4923ef1ed0693fcd67d7986348b164@walle.cc> <CA+HBbNHCnpg9qCzZbT9KVNqX-daC68iaJKNdyEf7do3w98miWw@mail.gmail.com>
+ <0f28cabf858154842819935000f32bc2@walle.cc> <20210520064929.GM2549456@dell>
+In-Reply-To: <20210520064929.GM2549456@dell>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Fri, 21 May 2021 10:19:49 +0200
+Message-ID: <CA+HBbNG62bJC4ZiH0WRVYnN1AC=J5eJQPo_46tS67xNzP1L0DQ@mail.gmail.com>
+Subject: Re: [PATCH 1/6] mfd: Add Delta TN48M CPLD driver
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Michael Walle <michael@walle.cc>, robh+dt@kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        bgolaszewski@baylibre.com, jdelvare@suse.com,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, Luka Perkov <luka.perkov@sartura.hr>,
+        jmp@epiphyte.org, Paul Menzel <pmenzel@molgen.mpg.de>,
+        Donald Buczek <buczek@molgen.mpg.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, May 20, 2021 at 8:49 AM Lee Jones <lee.jones@linaro.org> wrote:
+>
+> On Wed, 19 May 2021, Michael Walle wrote:
+>
+> > Hi,
+> >
+> > Am 2021-05-19 13:53, schrieb Robert Marko:
+> > > On Thu, May 6, 2021 at 6:34 PM Michael Walle <michael@walle.cc> wrote=
+:
+> > > > Am 2021-04-30 14:35, schrieb Robert Marko:
+> > > > > Delta TN48M switches have a Lattice CPLD that serves
+> > > > > multiple purposes including being a GPIO expander.
+> > > > > So lets add the MFD core driver for it.
+> > > >
+> > > > Did you have a look at mfd/simple-mfd-i2c.c?
+> > >
+> > > Yes, that was my first idea but we have a requirement to expose CPLD
+> > > information via debugfs as there are userspace applications using it.
+> > > And simple-mfd-i2c does not allow us to do so.
+> >
+> > Mh, last time Lee wasn't very fond of having a driver that just populat=
+es
+> > sub-drivers while doing almost nothing itself. See
+> > https://lore.kernel.org/lkml/20200605065709.GD3714@dell/
+>
+> Right.  I still feel that way.
+>
+> > That being said, I'd also like to expose our CPLD version, but until no=
+w
+> > haven't found a good solution.
+>
+> Why though?  Does S/W *need* it?
+Because we have userspace S/W that uses it as the same CPLD is in
+multiple variants of the board but the correct board model is set during
+manufacturing and we can read it from the CPLD.
 
-On Wed, May 19, 2021 at 08:06:46PM +0530, Bhupesh Sharma wrote:
-> Add the missing required property - 'iommus' to the
-> device-tree binding documentation for qcom-bam DMA IP.
-> 
-> This property describes the phandle(s) to apps_smmu node with sid mask.
-> 
-> Cc: Thara Gopinath <thara.gopinath@linaro.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Andy Gross <agross@kernel.org>
-> Cc: Herbert Xu <herbert@gondor.apana.org.au>
-> Cc: David S. Miller <davem@davemloft.net>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: dmaengine@vger.kernel.org
-> Cc: linux-clk@vger.kernel.org
-> Cc: linux-crypto@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: bhupesh.linux@gmail.com
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->  .../devicetree/bindings/dma/qcom_bam_dma.yaml         | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml b/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
-> index d2900616006c..2479862a3654 100644
-> --- a/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
-> @@ -55,6 +55,12 @@ properties:
->    interconnect-names:
->      const: memory
->  
-> +  iommus:
-> +    minItems: 1
-> +    maxItems: 8
-> +    description: |
-> +      phandle to apps_smmu node with sid mask.
-> +
->    qcom,ee:
->      $ref: /schemas/types.yaml#/definitions/uint8
->      description:
-> @@ -81,6 +87,7 @@ required:
->    - clocks
->    - clock-names
->    - "#dma-cells"
-> +  - iommus
+We also have information about PSU1 and PSU2(Some models only)
+power good, whether they are present and some other info that I need
+to expose as these are monitored in userspace.
 
-I don't think we can make this required, older SoCs don't use "iommus"
-for bam_dma.
+I planned to do that via the hwmon driver but according to Guenther they
+are not hwmon attributes and I agree.
 
-arch/arm64/boot/dts/qcom/apq8016-sbc.dt.yaml: dma-controller@7884000: 'iommus' is a required property
-        From schema: Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
+Would it be possible to have a dedicated driver that would only expose
+the required information via debugfs?
+Then I could simply use the simple I2C MFD driver with only a GPIO
+driver on top of it.
 
-Stephan
+Regards,
+Robert
+>
+> --
+> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
+> Senior Technical Lead - Developer Services
+> Linaro.org =E2=94=82 Open source software for Arm SoCs
+> Follow Linaro: Facebook | Twitter | Blog
+
+
+
+--=20
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
