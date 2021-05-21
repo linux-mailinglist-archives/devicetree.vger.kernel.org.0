@@ -2,69 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 763E938CBCC
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 19:17:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 680F638CBE1
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 19:18:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238099AbhEURSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 13:18:34 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:38604 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230194AbhEURSd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 13:18:33 -0400
-Received: by mail-ot1-f44.google.com with SMTP id i14-20020a9d624e0000b029033683c71999so7493259otk.5;
-        Fri, 21 May 2021 10:17:10 -0700 (PDT)
+        id S238156AbhEURTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 13:19:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51696 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238140AbhEURTn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 13:19:43 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB922C0613ED
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 10:18:19 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id c196so12111524oib.9
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 10:18:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=mwxoM60YVpuuxxpLWPRnHvcEPjCapnvSBgj+Dy7snG0=;
+        b=jualahogEVesPIS1gieZtC1DETW5VCcI+hWyJqH0Kdjum2lD+UwbPEbKgqxu7GcmRI
+         pHz3Gd6XgJQGv0HVfnMeiKuAAmPge4eHFybgu34Ra+YEqSSGRQ7w5SNmzzTlkAEn8uJT
+         wSXoTlG2XmtPpOywIe803JpKMa8vjwuDJ7zTX6z1K431z68kCNBsqNKz76tKz43AxutL
+         uDNyXegyJ2L9vg2x5VWLFNkw1+SJF/GTMXvWehvvKArrotqAf2ofM+M4Q1Ib+jAx0B+u
+         +vo7SWqkp9zwx/QWUyhMHfr5OZfjGlHaEoUL/25wAGR0kRG9Q6vLurVTiTzPMlA/r4DF
+         80zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=gWRJRfF5WrMUuECU4YlIjOs9P+KdJ4LyClxNyp4ruw0=;
-        b=Mpab85FW3FKJE7xl1LCGFeRS4V++NOAKifP16fz8Ah/OaZAEuIZ8wfgtga3LOwPr9I
-         sf4wsaiVYlZyBj3rPNePh4dlZQt10Vcq7Km4czVrOtDDEU3ZdPisfIe5u3P4kT359+oc
-         pgC1E42Jg3QitG7hyQ7M9IBrNItBQXRi5EkZSLJHLk9b4P9dvLWyBe2smtFgveHzMAFp
-         U/7NBQ2FUwV5r9WOfdRa0SaOEpp4tqzSBD1NqgHKw8AISH1IkMx12JIZrUyCOD5ISipy
-         5Np6+V3PNMQSqzJ6/OiDrlJIttR4MJB78EavijGJ2H1UXH/HKo/Ud4dIA80G/IrGtOlz
-         kfCA==
-X-Gm-Message-State: AOAM531xL4ZGD/k9RGTne2QK/SuyKEDfupYy3DJ9u2iB5ZYFvrGY9/kA
-        EhK0ceDpHdzU7OmJJdpukGKV3459Sg==
-X-Google-Smtp-Source: ABdhPJzfn2v0kjIRcoekHdll+etbLCHQTJj/xt9xYjIBklx0tvQZNE9QXGRqRYAk1Suqfi9s/oWz2A==
-X-Received: by 2002:a9d:bc3:: with SMTP id 61mr9036884oth.7.1621617430251;
-        Fri, 21 May 2021 10:17:10 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u14sm1253947oif.41.2021.05.21.10.17.08
+        bh=mwxoM60YVpuuxxpLWPRnHvcEPjCapnvSBgj+Dy7snG0=;
+        b=PT/JMPJKbWAjnGSv4cHA5nZOHVobHCrioDf5+ZkyLTNd4GHcseZz4bxR8ihz7dVlTO
+         CF0jrmTqfz+aPX0bl2d8zw7uvR7BkI4LhIYxuRf5g3ZOG52vTO4vbB/5M9+wpDVb/prb
+         ctU9HRdOWWUSTZs7Ztm+h7cETUP1zFwnD9HIJ9agmIugP/Hu8pAglR1ZvDMRK0pOQ6uX
+         w80Z5Rfrc7izDTcAtqId164YD9Q6CMkLCuXvumqU+YOcNC7fjb7YPEp4qhqRUJ211Aki
+         Lm1xTzB5LOhBk3QhoZyn5K5T4FIw0zQ9XOhXKAmQsg4KhamqB0JkMG0q5pYEfyVciHan
+         wp3Q==
+X-Gm-Message-State: AOAM5311m/XoNqYtT+V1cpwlUqeTm9CU7ZFi7Kp3ipdjyMizKYS2LMNW
+        Be2sDnByDkj8nNqb09c3KsSwyw==
+X-Google-Smtp-Source: ABdhPJwgfHYqvQ5wMl38vkWZL9zz0zUQ+NMWGofTkepeO9trJy2uIAEJzA/Kkl4P5rhSVJIkkVUw9w==
+X-Received: by 2002:a05:6808:4c2:: with SMTP id a2mr2930417oie.150.1621617499278;
+        Fri, 21 May 2021 10:18:19 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id w198sm1215089oie.26.2021.05.21.10.18.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 May 2021 10:17:09 -0700 (PDT)
-Received: (nullmailer pid 30750 invoked by uid 1000);
-        Fri, 21 May 2021 17:17:08 -0000
-Date:   Fri, 21 May 2021 12:17:08 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-        linux-input@vger.kernel.org, David Jander <david@protonic.nl>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 3/8] dt-bindings: input: touchscreen: goodix: chnage
- node name to pass validation
-Message-ID: <20210521171708.GA16279@robh.at.kernel.org>
-References: <20210521044525.7397-1-o.rempel@pengutronix.de>
- <20210521044525.7397-4-o.rempel@pengutronix.de>
+        Fri, 21 May 2021 10:18:18 -0700 (PDT)
+Date:   Fri, 21 May 2021 12:18:16 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Krishna Manikandan <mkrishn@codeaurora.org>
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kalyan_t@codeaurora.org,
+        tanmay@codeaurora.org, abhinavk@codeaurora.org,
+        robdclark@gmail.com, swboyd@chromium.org, vinod.koul@linaro.org,
+        dianders@chromium.org, khsieh@codeaurora.org, robh+dt@kernel.org,
+        sean@poorly.run, robh@kernel.org
+Subject: Re: [PATCH v17 3/4] dt-bindings: msm: dsi: add yaml schemas for DSI
+ PHY bindings
+Message-ID: <20210521171816.GD2484@yoga>
+References: <1621592844-6414-1-git-send-email-mkrishn@codeaurora.org>
+ <1621592844-6414-3-git-send-email-mkrishn@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210521044525.7397-4-o.rempel@pengutronix.de>
+In-Reply-To: <1621592844-6414-3-git-send-email-mkrishn@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 21, 2021 at 06:45:20AM +0200, Oleksij Rempel wrote:
-> Change node name from gt928 -> touchscreen to pass dt_binding_check.
+On Fri 21 May 05:27 CDT 2021, Krishna Manikandan wrote:
 
-Well, at least you were consistent on the subject. :)
-
+> Add YAML schema for the device tree bindings for DSI PHY.
 > 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Signed-off-by: Krishna Manikandan <mkrishn@codeaurora.org>
+> 
+> Changes in v1:
+>    - Merge dsi-phy.yaml and dsi-phy-10nm.yaml (Stephen Boyd)
+>    - Remove qcom,dsi-phy-regulator-ldo-mode (Stephen Boyd)
+>    - Add clock cells properly (Stephen Boyd)
+>    - Remove unnecessary decription from clock names (Stephen Boyd)
+>    - Add pin names for the supply entries for 10nm phy which is
+>      used in sc7180 and sdm845 (Stephen Boyd)
+>    - Remove unused header files from examples (Stephen Boyd)
+>    - Drop labels for display nodes and correct node name (Stephen Boyd)
+> 
+> Changes in v2:
+>    - Drop maxItems for clock (Stephen Boyd)
+>    - Add vdds supply pin information for sdm845 (Stephen Boyd)
+>    - Add examples for 14nm, 20nm and 28nm phy yaml files (Stephen Boyd)
+>    - Keep child nodes directly under soc node (Stephen Boyd)
+> 
+> Changes in v3:
+>    - Use a separate yaml file to describe the common properties
+>      for all the dsi phy versions (Stephen Boyd)
+>    - Remove soc from examples (Stephen Boyd)
+>    - Add description for register property
+> 
+> Changes in v4:
+>    - Modify the title for all the phy versions (Stephen Boyd)
+>    - Drop description for all the phy versions (Stephen Boyd)
+>    - Modify the description for register property (Stephen Boyd)
+> 
+> Changes in v5:
+>    - Remove unused properties from common dsi phy file
+>    - Add clock-cells and phy-cells to required property
+>      list (Stephen Boyd)
+> 
+> Changes in v6:
+>    - Add proper compatible string in example
 > ---
->  Documentation/devicetree/bindings/input/touchscreen/goodix.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../bindings/display/msm/dsi-phy-10nm.yaml         | 68 +++++++++++++++++++++
+>  .../bindings/display/msm/dsi-phy-14nm.yaml         | 66 ++++++++++++++++++++
+>  .../bindings/display/msm/dsi-phy-20nm.yaml         | 71 ++++++++++++++++++++++
+>  .../bindings/display/msm/dsi-phy-28nm.yaml         | 68 +++++++++++++++++++++
+>  .../bindings/display/msm/dsi-phy-common.yaml       | 40 ++++++++++++
+>  5 files changed, 313 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/dsi-phy-common.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
+> new file mode 100644
+> index 0000000..4a26bef
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
+> @@ -0,0 +1,68 @@
+> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/msm/dsi-phy-10nm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Display DSI 10nm PHY
+> +
+> +maintainers:
+> +  - Krishna Manikandan <mkrishn@codeaurora.org>
+> +
+> +allOf:
+> +  - $ref: dsi-phy-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: qcom,dsi-phy-10nm
+> +      - const: qcom,dsi-phy-10nm-8998
+> +
+> +  reg:
+> +    items:
+> +      - description: dsi phy register set
+> +      - description: dsi phy lane register set
+> +      - description: dsi pll register set
+> +
+> +  reg-names:
+> +    items:
+> +      - const: dsi_phy
+> +      - const: dsi_phy_lane
+> +      - const: dsi_pll
+> +
+> +  vdds-supply:
+> +    description: |
+> +      Connected to DSI0_MIPI_DSI_PLL_VDDA0P9 pin for sc7180 target and
+> +      connected to VDDA_MIPI_DSI_0_PLL_0P9 pin for sdm845 target
 
-Acked-by: Rob Herring <robh@kernel.org>
+"Reference to the 0.9V supply for the PLL." would have been sufficient.
+
+But overall I think the patch looks good.
+
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+Regards,
+Bjorn
