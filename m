@@ -2,105 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87FF138BBB4
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 03:39:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98E1C38BBB8
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 03:39:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237214AbhEUBkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 21:40:31 -0400
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:38484 "EHLO
-        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233499AbhEUBkb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 21:40:31 -0400
-Received: by mail-oi1-f182.google.com with SMTP id z3so18237557oib.5;
-        Thu, 20 May 2021 18:39:09 -0700 (PDT)
+        id S237251AbhEUBlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 21:41:11 -0400
+Received: from mail-oo1-f47.google.com ([209.85.161.47]:46666 "EHLO
+        mail-oo1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237113AbhEUBlK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 21:41:10 -0400
+Received: by mail-oo1-f47.google.com with SMTP id o14-20020a4a384e0000b029020ec48a2358so2148827oof.13;
+        Thu, 20 May 2021 18:39:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=AHDUWcKLdEreHylbJ6qjwAOsVXEIpsN/MhjQoJ5Ovks=;
-        b=VSPNWc4BtH4pvspYZlNeYojSrkMMrh8cGsdkv/2qM+Qr0thxV1BDcIjYSg5vrCWPQT
-         AQw6Wz6JIojM42UWvF2BiMhHFwYMxgq4iqzG2uoFnO9v2GS2c5tcD5y2ItpBcFgPZ26y
-         mKJR3Mi0nYExuxy2Uoo7K6RwX6rU/Y2PiIg+PxiKsppbfgVYd4guEA4wV28UifbeM3wb
-         jS6tfDp6jzgqCYlU/JkE3zNe0Z0DXdOxg9YSfvTIXr/ZgrV7mQatCtoeKb9GoCt+OISK
-         mIYIpu+cEnfc4Sl+elbA2m7ycelRmcz4ptqK4D2C7oQX5TVY0TKBWvn6vX3iFIPSQoBj
-         1PSQ==
-X-Gm-Message-State: AOAM533n8I5gbv1aoonApoUyGFroYNyhifU9OfT+R5TT48pvsrRasUXv
-        hjFeutQTa9aZtMJ3x9pl9A==
-X-Google-Smtp-Source: ABdhPJy1os/eXheMpifGdqYKraVHyYBNJMLWCtPZfxhLS1bqSNKMrSeUUG53n/h5x7/eyOWVPHzMaw==
-X-Received: by 2002:a05:6808:a87:: with SMTP id q7mr281561oij.38.1621561148841;
-        Thu, 20 May 2021 18:39:08 -0700 (PDT)
+        bh=twIIkTMnAszhUEiU17DepvUWRNVDKbFl4+4yGD34k5k=;
+        b=IFTIgrxA9FhPDyIn2Z/WxKtmcyV5NZg1tPY3chg+OlQgAe6tOCwFRA6L91DpIQxqqA
+         peqhIow9MYjyXDwm8wwnGOmgNJGI9XXM2m34ft9Vg1vrwSRkBxvFGjIRlGwl4PS4zFXn
+         KSJbDy6hp8F4HTd3daoZWh7jIiGXVuHsxXhMqNbrvYwOC0HqxWXn4ukEsKZ2OmnM+OkH
+         CzoNCud0g3cDJFpZt1GZQ9sbzmmDcD2qthU29SlyaGSyByYp2tZtcrIIlhQMtv6Fu2pb
+         Vf+TkYDtxBLipuWtjw1SaAsXqtIuX985iaQIounXPR5J2qLxo0VS7ZCmxpOqCxKIYqxf
+         V7Ww==
+X-Gm-Message-State: AOAM532uDmaaTEf2UQ+33XCUbOwXLxMasW7sJUV9EuSUnsnMfme46K3s
+        gtwed24kmXqOO4hbuIiyTW7NMA4Jkg==
+X-Google-Smtp-Source: ABdhPJywIEAjV6PJzo8otOaFuoJTJP8F5lzBvqeWyHUM5mp/ztXEA4AwjUCsGAT4m4e2e6pn3Bu5gQ==
+X-Received: by 2002:a4a:88f2:: with SMTP id q47mr5943925ooh.30.1621561186891;
+        Thu, 20 May 2021 18:39:46 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v19sm1008850otq.35.2021.05.20.18.39.07
+        by smtp.gmail.com with ESMTPSA id n11sm615941oom.1.2021.05.20.18.39.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 May 2021 18:39:08 -0700 (PDT)
-Received: (nullmailer pid 2459176 invoked by uid 1000);
-        Fri, 21 May 2021 01:39:07 -0000
-Date:   Thu, 20 May 2021 20:39:07 -0500
+        Thu, 20 May 2021 18:39:46 -0700 (PDT)
+Received: (nullmailer pid 2460455 invoked by uid 1000);
+        Fri, 21 May 2021 01:39:45 -0000
+Date:   Thu, 20 May 2021 20:39:45 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
+Cc:     linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
         Samuel Holland <samuel@sholland.org>,
-        Ondrej Jirman <megous@megous.com>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Lee Jones <lee.jones@linaro.org>
-Subject: Re: [PATCH v6 01/17] dt-bindings: mfd: axp20x: Add AXP305 compatible
- (plus optional IRQ)
-Message-ID: <20210521013907.GA2456181@robh.at.kernel.org>
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
+        Chen-Yu Tsai <wens@csie.org>, Icenowy Zheng <icenowy@aosc.io>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@googlegroups.com
+Subject: Re: [PATCH v6 03/17] dt-bindings: rtc: sun6i: Add H616 compatible
+ string
+Message-ID: <20210521013945.GA2460400@robh.at.kernel.org>
 References: <20210519104152.21119-1-andre.przywara@arm.com>
- <20210519104152.21119-2-andre.przywara@arm.com>
+ <20210519104152.21119-4-andre.przywara@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210519104152.21119-2-andre.przywara@arm.com>
+In-Reply-To: <20210519104152.21119-4-andre.przywara@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 19, 2021 at 11:41:36AM +0100, Andre Przywara wrote:
-> The AXP305 PMIC used in AXP805 seems to be fully compatible to the
-> AXP805 PMIC, so add the proper chain of compatible strings.
-> 
-> Also at least on one board (Orangepi Zero2) there is no interrupt line
-> connected to the CPU, so make the "interrupts" property optional.
+On Wed, 19 May 2021 11:41:38 +0100, Andre Przywara wrote:
+> Add the obvious compatible name to the existing RTC binding.
+> The actual RTC part of the device uses a different day/month/year
+> storage scheme, so it's not compatible with the previous devices.
 > 
 > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 > ---
->  Documentation/devicetree/bindings/mfd/axp20x.txt | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-
-Don't you want to convert this to schema? It's one of the last warnings 
-for sunxi IIRC.
+>  .../devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml     | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
 
 Acked-by: Rob Herring <robh@kernel.org>
-
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/axp20x.txt b/Documentation/devicetree/bindings/mfd/axp20x.txt
-> index 4991a6415796..4fd748101e3c 100644
-> --- a/Documentation/devicetree/bindings/mfd/axp20x.txt
-> +++ b/Documentation/devicetree/bindings/mfd/axp20x.txt
-> @@ -26,10 +26,10 @@ Required properties:
->      * "x-powers,axp803"
->      * "x-powers,axp806"
->      * "x-powers,axp805", "x-powers,axp806"
-> +    * "x-powers,axp803", "x-powers,axp805", "x-powers,axp806"
->      * "x-powers,axp809"
->      * "x-powers,axp813"
->  - reg: The I2C slave address or RSB hardware address for the AXP chip
-> -- interrupts: SoC NMI / GPIO interrupt connected to the PMIC's IRQ pin
->  - interrupt-controller: The PMIC has its own internal IRQs
->  - #interrupt-cells: Should be set to 1
->  
-> @@ -43,6 +43,7 @@ more information:
->  			AXP20x/LDO3: software-based implementation
->  
->  Optional properties:
-> +- interrupts: SoC NMI / GPIO interrupt connected to the PMIC's IRQ pin
->  - x-powers,dcdc-freq: defines the work frequency of DC-DC in KHz
->  		      AXP152/20X: range:  750-1875, Default: 1.5 MHz
->  		      AXP22X/8XX: range: 1800-4050, Default: 3   MHz
-> -- 
-> 2.17.5
-> 
