@@ -2,129 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E849A38BBFA
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 03:51:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7241738BBFE
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 03:51:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237837AbhEUBw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 21:52:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40400 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237823AbhEUBw0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 21:52:26 -0400
-Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72CC0C0613ED
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 18:51:04 -0700 (PDT)
-Received: by mail-qt1-x834.google.com with SMTP id s12so5102258qta.3
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 18:51:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=dSie+npZSkADJ7V+ho8kAal6Ij8W1UB//HsiRO+ZSP8=;
-        b=vOzl2Ya9ahmcJE4NCzJ9YVIp8x1hqcye6X09xrg0Q1XTV8b4ot9MTBFjizfbo6YeDj
-         3BSH9eXImPHo7gQFFgYi0Cutw9EYhBYjHozC2AHE3WsVNHNUEAZsA7JD0YFhOrFoYtfU
-         wwcr3xsE0+cWHCX1/nu5s+J2WYyF4QSBCL5S+ku0iP+NQKS8kv4S5NxdpORp8bVpGWqJ
-         Vi9Gr4A3WPJmaYF1XbwkeRpe/253gnG6PCoMlCGKv8R9XiuAHLogdMdU/JLbor/Cky8t
-         AyiIlY6KH2wcXnJIL9J7lUtcAP3E3+o1d/j3GLyWwYmoi0+KyGemqz3Knz4MS4Oizu+6
-         7+ug==
+        id S237839AbhEUBxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 21:53:20 -0400
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:37690 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237820AbhEUBxU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 21:53:20 -0400
+Received: by mail-oi1-f169.google.com with SMTP id h9so18302581oih.4
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 18:51:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=dSie+npZSkADJ7V+ho8kAal6Ij8W1UB//HsiRO+ZSP8=;
-        b=LsDF1Q6C+Sde+O4xi98+otmadh9kexrvaXV3toduz7GeOMYQ6Iwpj+eqL9NA4YDhb5
-         JKBV8Z1B51aq8motslkReAjC8hBPtZ8cJGINtWJkauHYJpz0DXMRMbFBHxHSd8zFt4Mk
-         XgRzpInkwXIFM458dpwYKASxDxUV5i2eg8W6qWJuCbGaVLlnjG+gNpS8u8eEUR/LpIr9
-         CB7MBbVPjziOWe6S+JWpzqZpYnb8sqOKj6/FEtrVh4Z7MphQKwWJOWLT+BKd3t36i4xD
-         PFpN5s+yzrD8WCwQAr5bL6tnhZTeO6iAa4dIYDCglVJxAmrCNiZftm/vKMB9imu5lZmY
-         hR5Q==
-X-Gm-Message-State: AOAM532ei5PMzDiOc2+Vofymq9hHFt+hU+kmkWCwVb/SvUSLmHza4OGd
-        uwJYMGo0IQm3ikt2ADRxMs3LBQ==
-X-Google-Smtp-Source: ABdhPJyfQ8Ksqhw/qYqkxD1Xtxi9JLGZRyD0jjn0+B2XiJN1JfRDZtttRX3iVIqVj3VCjoxF3jfjFQ==
-X-Received: by 2002:ac8:7d56:: with SMTP id h22mr8701787qtb.151.1621561863530;
-        Thu, 20 May 2021 18:51:03 -0700 (PDT)
-Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.gmail.com with ESMTPSA id h23sm3678998qka.22.2021.05.20.18.51.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 May 2021 18:51:03 -0700 (PDT)
-Subject: Re: [PATCH v3 15/17] crypto: qce: Convert the device found dev_dbg()
- to dev_info()
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bhupesh.linux@gmail.com
-References: <20210519143700.27392-1-bhupesh.sharma@linaro.org>
- <20210519143700.27392-16-bhupesh.sharma@linaro.org>
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-Message-ID: <731b0382-9e77-2a3a-cc83-4f1c63e9f8ce@linaro.org>
-Date:   Thu, 20 May 2021 21:50:59 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ebKIpo/U5Im5t5DrUZKKUiU83lrK2yYkjJaZaQ7BQj8=;
+        b=tmlO7reXkQMgifd18T8+cs49C30xfpEEL/I7medKLv4WGH30ItpFIZlj6pZ7PrKV+v
+         69UEtxsXmysLF3b9ai9REk9wi0G5EnURchRY1Zo6wd7L1Rxa2KfO6G4sDOGwP4MNhmmJ
+         aupckUyBTEt4UeG0D8JsV88zUZWdxmiKTLIyN7/alWGqK4AUa5V0xor3pVAAe8hz5jUt
+         XyrU1ofdD14c+E2zWRrfnjOEFPIkobUNxT0EvKjzTFazPQ/4vE6wJFlcsbbpzhFaOIMY
+         QoGFtN7TBLIP0sZ4tgoALln7KWoPk3EKDNSILwADskw1r4HdO7AdFhSpUF0dL6qpOr+w
+         AMjw==
+X-Gm-Message-State: AOAM5307cR1JPz2fSj2No0Ycxur4SKJg/ka8D7tLxr6Qa1D4Ihfm/IjK
+        Ny4gDyxPZrddWoqC0XyWGq0upuNiFw==
+X-Google-Smtp-Source: ABdhPJytGTz21FqcBPIO+itCvblm5s0Ngtzf2eso9fjniOmIpY/TNIAWq6FKMB9qAbqhyET5/v9OmA==
+X-Received: by 2002:aca:d409:: with SMTP id l9mr301812oig.77.1621561917660;
+        Thu, 20 May 2021 18:51:57 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id n17sm917860oij.57.2021.05.20.18.51.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 May 2021 18:51:57 -0700 (PDT)
+Received: (nullmailer pid 2483654 invoked by uid 1000);
+        Fri, 21 May 2021 01:51:55 -0000
+Date:   Thu, 20 May 2021 20:51:55 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Michal Simek <monstr@monstr.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-mtd@lists.infradead.org,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Richard Weinberger <richard@nod.at>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Srinivas Goud <sgoud@xilinx.com>,
+        Siva Durga Prasad Paladugu <sivadur@xilinx.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Amit Kumar Mahapatra <akumarma@xilinx.com>
+Subject: Re: [PATCH v20 01/19] dt-binding: memory: pl353-smc: Rephrase the
+ binding
+Message-ID: <20210521015155.GA2483595@robh.at.kernel.org>
+References: <20210519182636.1110080-1-miquel.raynal@bootlin.com>
+ <20210519182636.1110080-2-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-In-Reply-To: <20210519143700.27392-16-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210519182636.1110080-2-miquel.raynal@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 5/19/21 10:36 AM, Bhupesh Sharma wrote:
-> QCE crypto driver is right now too silent even if the probe() is ok
-> and a valid crypto IP version is found.
+On Wed, 19 May 2021 20:26:18 +0200, Miquel Raynal wrote:
+> Reword this document before converting it to yaml.
 > 
-> Convert the dev_dbg() message to a dev_info() instead.
-> 
-> Cc: Thara Gopinath <thara.gopinath@linaro.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Andy Gross <agross@kernel.org>
-> Cc: Herbert Xu <herbert@gondor.apana.org.au>
-> Cc: David S. Miller <davem@davemloft.net>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: dmaengine@vger.kernel.org
-> Cc: linux-clk@vger.kernel.org
-> Cc: linux-crypto@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: bhupesh.linux@gmail.com
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-
-Reviewed-by: Thara Gopinath <thara.gopinath@linaro.org>
-
-Warm Regards
-Thara
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
->   drivers/crypto/qce/core.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
-> index aecb2cdd79e5..8b3e2b4580c2 100644
-> --- a/drivers/crypto/qce/core.c
-> +++ b/drivers/crypto/qce/core.c
-> @@ -179,7 +179,7 @@ static int qce_check_version(struct qce_device *qce)
->   	 */
->   	qce->pipe_pair_id = qce->dma.rxchan->chan_id >> 1;
->   
-> -	dev_dbg(qce->dev, "Crypto device found, version %d.%d.%d\n",
-> +	dev_info(qce->dev, "Crypto device found, version %d.%d.%d\n",
->   		major, minor, step);
->   
->   	return 0;
+>  .../bindings/memory-controllers/pl353-smc.txt         | 11 +++++------
+>  1 file changed, 5 insertions(+), 6 deletions(-)
 > 
 
-
+Acked-by: Rob Herring <robh@kernel.org>
