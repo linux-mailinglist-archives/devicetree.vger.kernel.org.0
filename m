@@ -2,141 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3B3E38C7FF
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 15:27:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2924138C840
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 15:36:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235450AbhEUN2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 09:28:39 -0400
-Received: from mail-vk1-f174.google.com ([209.85.221.174]:42624 "EHLO
-        mail-vk1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233813AbhEUN2V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 09:28:21 -0400
-Received: by mail-vk1-f174.google.com with SMTP id m129so4284671vkh.9;
-        Fri, 21 May 2021 06:26:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nALjNO1NNzuBgJsBKkuRLfzdmUfp2pocRq1SvmK+pwE=;
-        b=YUJFx5Zmykk5cG0kxcCgQY0g0TaNYgRTnTOEDLcZLbsfElzudVxkBfN/p4W1BBCWAx
-         J4a0JCxtrPS0YKnTmlQuAFoVOMpEcCzBQaBegg3BsWL4V8WzHUAiJkTLV/2UKL1GxvnQ
-         /q7CsSabHnonJqyBHsjIYyJKdMLt8gamDNjMyD8+KrSx6GK8TJWK5sneQXO2OAGqMbfN
-         IqClszA5uXHGTYZ8d9I/oUo+C4kX/2Fm8E7y+/GAOYsbRQHqANYYoef/uyEBL2ez1GZU
-         PBA7qDIazQWIEAvZrDl+LE/wlBhULbnev2xjs61eqmHORxungV5VwOlpmFPPKkmBvzxZ
-         3q3A==
-X-Gm-Message-State: AOAM533PeIEcix13lrA26nenKW2clpCJnAOVMBHofBTa/j9YrPMcZwOn
-        W35+GsqV+wNxSP2MeuYFTV5FaSEJtoYi5cD5110=
-X-Google-Smtp-Source: ABdhPJygoEQwq7jd+zWCduTRNR1S0jH3r5s+WptgfvrzjUs6HpafzgXjDNeh7jnILhWaxTadyffP3VHnsfRzwl6y/KY=
-X-Received: by 2002:a1f:d8c3:: with SMTP id p186mr9636190vkg.1.1621603617121;
- Fri, 21 May 2021 06:26:57 -0700 (PDT)
+        id S235729AbhEUNiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 09:38:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57898 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235424AbhEUNiI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 09:38:08 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 466D6C061574;
+        Fri, 21 May 2021 06:36:45 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A33998D8;
+        Fri, 21 May 2021 15:36:43 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1621604203;
+        bh=/7LiDKPNCKEPt/ohW04Z/i7GwY4oJX/J3kkws7kMW7Y=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jC8P9JDLiVN++EnCB25+lzrmSmukREzXJ9QQDNDMu95dAa1P+iwE3ULQkJlAphswk
+         P7AM2li6SHd2lEYeHq7hy2z2GyMw3wpa+KOc7eVck1GnrOY/82wpBnCp+rZRiEGcXB
+         RwydCMCj7h/swhtx2ptKtnEhE6Sl7LY83ciwVsIA=
+Date:   Fri, 21 May 2021 16:36:41 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, marex@denx.de, p.zabel@pengutronix.de,
+        rmfrfs@gmail.com, robh@kernel.org, slongerbeam@gmail.com
+Subject: Re: [PATCH 00/23] media: imx: imx7-mipi-csis: Add i.MX8MM support /
+ imx8mq support
+Message-ID: <YKe3aQHr+BsJ3ueY@pendragon.ideasonboard.com>
+References: <YKBRXesDsXk9K15J@pendragon.ideasonboard.com>
+ <1da3de6c879474b814f4d820ca5eb5ba07174a26.camel@puri.sm>
+ <YKRmhSn65fiqshsp@pendragon.ideasonboard.com>
+ <7f922c8b3d4396c00ba15ad99dd572699f4b69b1.camel@puri.sm>
+ <YKUy8gu3Jc3VDy5i@pendragon.ideasonboard.com>
+ <f1d44bbd85edf547bc2b7c758b5e822e08cc80d0.camel@puri.sm>
+ <YKZX8z1Vb0PAYk+G@pendragon.ideasonboard.com>
+ <eff48d63017dc4ed1111b7d87a731d587f51885d.camel@puri.sm>
+ <YKeAuGJbr9CorhZR@pendragon.ideasonboard.com>
+ <bd5dc783e39d750693ac2b49050681c5e3088330.camel@puri.sm>
 MIME-Version: 1.0
-References: <20210514192218.13022-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210514192218.13022-11-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20210514192218.13022-11-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 21 May 2021 15:26:45 +0200
-Message-ID: <CAMuHMdXNzvTW920fJ2fKDWe=+CppfRdThKudTh51EW4fY2eRFg@mail.gmail.com>
-Subject: Re: [PATCH 10/16] serial: sh-sci: Add support for RZ/G2L SoC
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Chris Brandt <Chris.Brandt@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <bd5dc783e39d750693ac2b49050681c5e3088330.camel@puri.sm>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+Hi Martin,
 
-On Fri, May 14, 2021 at 9:23 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
->
-> Add serial support for RZ/G2L SoC with earlycon and
-> extended mode register support.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Fri, May 21, 2021 at 01:02:30PM +0200, Martin Kepplinger wrote:
+> Am Freitag, dem 21.05.2021 um 12:43 +0300 schrieb Laurent Pinchart:
+> > On Fri, May 21, 2021 at 11:25:20AM +0200, Martin Kepplinger wrote:
+> > > Am Donnerstag, dem 20.05.2021 um 15:37 +0300 schrieb Laurent Pinchart:
+> > > > On Thu, May 20, 2021 at 12:54:27PM +0200, Martin Kepplinger wrote:
+> > > > > Am Mittwoch, dem 19.05.2021 um 18:46 +0300 schrieb Laurent Pinchart:
+> > > > > > On Wed, May 19, 2021 at 05:21:11PM +0200, Martin Kepplinger wrote:
+> > > > > > > Am Mittwoch, dem 19.05.2021 um 04:14 +0300 schrieb Laurent Pinchart:
+> > > > > > > > On Tue, May 18, 2021 at 04:39:00PM +0200, Martin Kepplinger wrote:
+> > > > > > > > > Am Sonntag, dem 16.05.2021 um 01:55 +0300 schrieb Laurent Pinchart:
+> > > > > > > > > > On Tue, May 04, 2021 at 05:59:39PM +0200, Martin Kepplinger wrote:
+> > > > 
+> > > > [snip]
+> > > > 
+> > > > > I fixed mipi -> csi link. I had the DT port descriptions for
+> > > > > mipi csi wrong.
+> > > > 
+> > > > \o/
+> > > > 
+> > > > > now, just because I think it makes sense, I do:
+> > > > > 
+> > > > > media-ctl --set-v4l2 "'csi':0 [fmt:SGBRG10/640x480
+> > > > > colorspace:raw]"
+> > > > > 
+> > > > > which now prints:
+> > > > > 
+> > > > > Device topology
+> > > > > - entity 1: csi (2 pads, 2 links)
+> > > > >             type V4L2 subdev subtype Unknown flags 0
+> > > > >             device node name /dev/v4l-subdev0
+> > > > >         pad0: Sink
+> > > > >                 [fmt:SGBRG10_1X10/640x480 field:none colorspace:raw xfer:none ycbcr:601 quantization:full-range]
+> > > > >                 <- "imx8mq-mipi-csis.0":1 [ENABLED,IMMUTABLE]
+> > > > >         pad1: Source
+> > > > >                 [fmt:SGBRG10_1X10/640x480 field:none colorspace:raw xfer:none ycbcr:601 quantization:full-range]
+> > > > >                 -> "csi capture":0 [ENABLED,IMMUTABLE]
+> > > > > 
+> > > > > - entity 4: csi capture (1 pad, 1 link)
+> > > > >             type Node subtype V4L flags 0
+> > > > >             device node name /dev/video1
+> > > > >         pad0: Sink
+> > > > >                 <- "csi":1 [ENABLED,IMMUTABLE]
+> > > > > 
+> > > > > - entity 10: imx8mq-mipi-csis.0 (2 pads, 2 links)
+> > > > >              type V4L2 subdev subtype Unknown flags 0
+> > > > >              device node name /dev/v4l-subdev1
+> > > > >         pad0: Sink
+> > > > >                 <- "hi846 2-0020":0 []
+> > > > >         pad1: Source
+> > > > >                 -> "csi":0 [ENABLED,IMMUTABLE]
+> > > > 
+> > > > This subdev doesn't seem to report formats on its sink and source pads,
+> > > > which is weird. I've had a quick look at the .get_fmt() and .set_fmt()
+> > > > implementations in the code you've posted, and they're wrong. They
+> > > > shouldn't pass the calls to the source subdev with v4l2_subdev_call(),
+> > > > they should instead implement get and set format on this subdev. You can
+> > > > look at the imx7-mipi-csis driver to see how that's done. Once you'll
+> > > > have fixed this, you'll have to set the format on each pad with
+> > > > media-ctl to make sure formats through the pipeline match.
+> > > > 
+> > > > The only location where you imx8mq-mipi-csis driver should use
+> > > > v4l2_subdev_call() is in .s_stream(), to propagate the operation to the
+> > > > source.
+> > > > 
+> > > > By the way, I'd replace every occurence of "csis" with "csi2" in your
+> > > > driver. The name "csis" in the i.MX7 driver comes from the CSI-2 RX IP
+> > > > core that is named CSIS. That's not the case on the i.MX8QM.
+> > > > 
+> > > > > - entity 15: hi846 2-0020 (1 pad, 1 link)
+> > > > >              type V4L2 subdev subtype Sensor flags 0
+> > > > >              device node name /dev/v4l-subdev2
+> > > > >         pad0: Source
+> > > > >                 [fmt:SGBRG10_1X10/640x480 field:none colorspace:raw]
+> > > > >                 -> "imx8mq-mipi-csis.0":0 []
+> > > > 
+> > > > You need to enable this link, the following should do
+> > > > 
+> > > > media-ctl -l "'hi846 2-0020':0 -> 'imx8mq-mipi-csis.0':0 [1]"
+> > > 
+> > > ok makes sense, even though I basically just allow a set of formats
+> > > without yet having to configure anything format-specific (I can at
+> > > least use bits-per-pixel later, so it makes sense to have them).
+> > > nevermind. I again append the current driver I use here.
+> > > 
+> > > then I do:
+> > > 
+> > > media-ctl --set-v4l2 "'csi':0 [fmt:SGBRG10/640x480 colorspace:raw]"
+> > > media-ctl --set-v4l2 "'imx8mq-mipi-csi2.0':0 [fmt:SGBRG10/640x480
+> > > colorspace:raw]"
+> > > media-ctl -l "'hi846 2-0020':0 -> 'imx8mq-mipi-csi2.0':0 [1]"
+> > > 
+> > > which gets me:
+> > > 
+> > > Device topology
+> > > - entity 1: csi (2 pads, 2 links)
+> > >             type V4L2 subdev subtype Unknown flags 0
+> > >             device node name /dev/v4l-subdev0
+> > >         pad0: Sink
+> > >                 [fmt:SGBRG10_1X10/640x480 field:none colorspace:raw xfer:none ycbcr:601 quantization:full-range]
+> > >                 <- "imx8mq-mipi-csi2.0":1 [ENABLED,IMMUTABLE]
+> > >         pad1: Source
+> > >                 [fmt:SGBRG10_1X10/640x480 field:none colorspace:raw xfer:none ycbcr:601 quantization:full-range]
+> > >                 -> "csi capture":0 [ENABLED,IMMUTABLE]
+> > > 
+> > > - entity 4: csi capture (1 pad, 1 link)
+> > >             type Node subtype V4L flags 0
+> > >             device node name /dev/video0
+> > >         pad0: Sink
+> > >                 <- "csi":1 [ENABLED,IMMUTABLE]
+> > > 
+> > > - entity 10: imx8mq-mipi-csi2.0 (2 pads, 2 links)
+> > >              type V4L2 subdev subtype Unknown flags 0
+> > >              device node name /dev/v4l-subdev1
+> > >         pad0: Sink
+> > >                 [fmt:SGBRG10_1X10/640x480]
+> > >                 <- "hi846 2-0020":0 [ENABLED]
+> > >         pad1: Source
+> > >                 [fmt:SGBRG10_1X10/640x480]
+> > >                 -> "csi":0 [ENABLED,IMMUTABLE]
+> > > 
+> > > - entity 15: hi846 2-0020 (1 pad, 1 link)
+> > >              type V4L2 subdev subtype Sensor flags 0
+> > >              device node name /dev/v4l-subdev2
+> > >         pad0: Source
+> > >                 [fmt:SGBRG10_1X10/640x480 field:none colorspace:raw]
+> > >                 -> "imx8mq-mipi-csi2.0":0 [ENABLED]
+> > 
+> > This looks better.
+> > 
+> > > but streaming still fails with:
+> > > 
+> > > [  352.255129] imx7-csi 30a90000.csi1_bridge: media bus code not
+> > > compatible with the pixel format set on the video node: 1 != 0
+> > 
+> > What is the capture command line ? Can you trace this (I assume the
+> > message is printed by capture_validate_fmt(), it's not present in
+> > mainline so I don't know what 1 and 0 correspond to, even though I
+> > suspect they would be IPUV3_COLORSPACE_* values) to see why it fails
+> > ?
+> 
+> capture command:
+> 
+> v4l2-ctl -d "/dev/v4l/by-path/platform-30a90000.csi1_bridge-video-
+> index0" --set-fmt-video=width=640,height=480 --stream-mmap --stream-
+> to=test.raw --stream-count=1
+> 
+> I'll have to continue after the weekend, but let's share some logs.
+> Yes, "1 != 0" is from capture_validate_fmt():
+> 
+> priv->vdev.cc->cs != cc->cs
+> 
+> When I print the format the imx_media_find_mbus_format() finds and do:
+> 
+> media-ctl --set-v4l2 "'csi':0 [fmt:SGBRG10/640x480 colorspace:raw]"
+> 
+> I see:
+> 
+> [  184.251144] mc: media_release: Media Release
+> [  184.254397] selected specific mbus code 0 for list nr 0 (fourcc 0x59565955)
+> [  184.264564] selected specific mbus code 0 for list nr 0 (fourcc 0x59565955)
+> [  184.274763] selected specific mbus code 0 for list nr 21 (fourcc 0x36314247)
+> [  184.285102] selected specific mbus code 0 for list nr 21 (fourcc 0x36314247)
+> [  184.295383] selected specific mbus code 0 for list nr 21 (fourcc 0x36314247)
+> [  184.305752] selected specific mbus code 0 for list nr 21 (fourcc 0x36314247)
+> 
+> 21 is the correct bayer format I want, but there's 0, so
+> "MEDIA_BUS_FMT_UYVY8_2X8" found the first 2 times. That is
+> IPUV3_COLORSPACE_YUV (1) while the correct Bayer format 21 is
+> IPUV3_COLORSPACE_RGB (0).
+> 
+> so some format settings not yet correct.
 
-Thanks for your patch!
+You need to specify the capture pixel format to v4l2-ctl. The driver
+defaults to YUYV (I think) otherwise. The CSI bridge will pad data with
+0's on the right, so you need SGBRG16 (if I recall correctly, try
+SGRBG10 if it doesn't work).
 
-> --- a/drivers/tty/serial/sh-sci.c
-> +++ b/drivers/tty/serial/sh-sci.c
-> @@ -306,6 +306,7 @@ static const struct sci_port_params sci_port_params[SCIx_NR_REGTYPES] = {
->                         [SCFDR]         = { 0x0E, 16 },
->                         [SCSPTR]        = { 0x10, 16 },
->                         [SCLSR]         = { 0x12, 16 },
-> +                       [SEMR]          = { 0x14, 8 },
+-- 
+Regards,
 
-This is the parameter section for RZ/T and RZ/A2.  Please update the
-comments above, to say this also applies to RZ/G2L.
-I can confirm the documentation for RZ/T1 and RZ/A2 agrees about the
-existence and behavior of SEMR.
-
->                 },
->                 .fifosize = 16,
->                 .overrun_reg = SCLSR,
-> @@ -2527,6 +2528,8 @@ static void sci_set_termios(struct uart_port *port, struct ktermios *termios,
->                         case 27: smr_val |= SCSMR_SRC_27; break;
->                         }
->                 smr_val |= cks;
-> +               if (sci_getreg(port, SEMR)->size)
-> +                       serial_port_out(port, SEMR, 0);
-
-As this is done in both branches of the if() statement, I think it
-should be moved up.
-
->                 serial_port_out(port, SCSCR, scr_val | s->hscif_tot);
->                 serial_port_out(port, SCSMR, smr_val);
->                 serial_port_out(port, SCBRR, brr);
-> @@ -2561,6 +2564,8 @@ static void sci_set_termios(struct uart_port *port, struct ktermios *termios,
->                 scr_val = s->cfg->scscr & (SCSCR_CKE1 | SCSCR_CKE0);
->                 smr_val |= serial_port_in(port, SCSMR) &
->                            (SCSMR_CKEDG | SCSMR_SRC_MASK | SCSMR_CKS);
-> +               if (sci_getreg(port, SEMR)->size)
-> +                       serial_port_out(port, SEMR, 0);
-
-(else branch)
-
->                 serial_port_out(port, SCSCR, scr_val | s->hscif_tot);
->                 serial_port_out(port, SCSMR, smr_val);
->         }
-> @@ -3170,6 +3175,10 @@ static const struct of_device_id of_sci_match[] = {
->                 .compatible = "renesas,scif-r7s9210",
->                 .data = SCI_OF_DATA(PORT_SCIF, SCIx_RZ_SCIFA_REGTYPE),
->         },
-> +       {
-> +               .compatible = "renesas,scif-r9a07g044",
-> +               .data = SCI_OF_DATA(PORT_SCIF, SCIx_RZ_SCIFA_REGTYPE),
-> +       },
->         /* Family-specific types */
->         {
->                 .compatible = "renesas,rcar-gen1-scif",
-
-The rest looks good to me.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Laurent Pinchart
