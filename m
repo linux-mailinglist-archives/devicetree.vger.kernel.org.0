@@ -2,124 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A28138C66E
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 14:23:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E28F538C68A
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 14:30:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232480AbhEUMYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 08:24:42 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:20952 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229571AbhEUMYl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 08:24:41 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1621599798; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=RLZE+bZ7ki1GXmnh6NsT82bZ77r++gqhEjntmVGOlBs=;
- b=huNyHlHWe0x8+zfKwSniU/JLceb3keWjxepIAxbV8Jx6KE99jG5JvK76IZISDPc/uH99INeF
- 8aH4w9/chb7RzMHduk9Ewvin84DXOBT+/hjGikFkuenAPVf4NU4K0kC5erZkgHzX+i4LngwF
- 5+Eq8ntkiheHPc9y6QPRQX6dXms=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 60a7a620f752fca668c21fe5 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 21 May 2021 12:22:56
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 46DF6C43144; Fri, 21 May 2021 12:22:56 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 03C83C4338A;
-        Fri, 21 May 2021 12:22:54 +0000 (UTC)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 21 May 2021 17:52:54 +0530
-From:   skakit@codeaurora.org
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        id S233200AbhEUMcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 08:32:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56962 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229457AbhEUMcG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 May 2021 08:32:06 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8704D613CB;
+        Fri, 21 May 2021 12:30:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1621600242;
+        bh=WB+fBlPHBnhxEgANiqKZDpv4r2qZ1G7A7Ilm+g9XvYs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NkSYof96n1ni9YaXtJy1dsy3I6eShNepbRidbdb48dgtsc1dJGUnEcgjs+KRX4fyB
+         em5zTqTnwwGiyKjylT3F8q3B4qWsxlR51M2OA/o0WIO1q5x/IzqGLsiVmxH5g6u17w
+         LQp9FVG7oXJkAh7gQyLgz59BrGhOcu1PsUbb23lU=
+Date:   Fri, 21 May 2021 14:30:39 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Alan Stern <stern@rowland.harvard.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-usb@vger.kernel.org, Peter Chen <peter.chen@kernel.org>,
+        linux-kernel@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Al Cooper <alcooperx@gmail.com>,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org
-Subject: Re: [RESEND PATCH V4 3/8] arm64: dts: qcom: pm7325: Add pm7325 base
- dts file
-In-Reply-To: <YKYNrKFrGQlfUf4S@vkoul-mobl.Dlink>
-References: <1621318822-29332-1-git-send-email-skakit@codeaurora.org>
- <1621318822-29332-4-git-send-email-skakit@codeaurora.org>
- <YKOpE1V25rdDj4Tk@vkoul-mobl.Dlink> <YKPua2M6t9yIJ5uy@google.com>
- <52d277a8598277716f37ad0c1f724845@codeaurora.org>
- <YKYNrKFrGQlfUf4S@vkoul-mobl.Dlink>
-Message-ID: <f6086a960c1aa1717125b2c7d7f1f7b3@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+        Christian Lamparter <chunkeey@googlemail.com>,
+        Colin Ian King <colin.king@canonical.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v10 0/5] USB: misc: Add onboard_usb_hub driver
+Message-ID: <YKen70owPqdjy5+a@kroah.com>
+References: <20210511225223.550762-1-mka@chromium.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210511225223.550762-1-mka@chromium.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-05-20 12:50, Vinod Koul wrote:
-> On 20-05-21, 12:02, skakit@codeaurora.org wrote:
->> On 2021-05-18 22:12, Matthias Kaehlcke wrote:
->> > On Tue, May 18, 2021 at 05:16:27PM +0530, Vinod Koul wrote:
->> > > On 18-05-21, 11:50, satya priya wrote:
->> > > > Add base DTS file for pm7325 along with GPIOs and temp-alarm nodes.
->> > > >
->> > > > Signed-off-by: satya priya <skakit@codeaurora.org>
->> > > > Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
->> > > > ---
->> > > > Changes in RESEND V4:
->> > > >  - No Changes.
->> > > >
->> > > >  arch/arm64/boot/dts/qcom/pm7325.dtsi | 53 ++++++++++++++++++++++++++++++++++++
->> > > >  1 file changed, 53 insertions(+)
->> > > >  create mode 100644 arch/arm64/boot/dts/qcom/pm7325.dtsi
->> > > >
->> > > > diff --git a/arch/arm64/boot/dts/qcom/pm7325.dtsi b/arch/arm64/boot/dts/qcom/pm7325.dtsi
->> > > > new file mode 100644
->> > > > index 0000000..e7f64a9
->> > > > --- /dev/null
->> > > > +++ b/arch/arm64/boot/dts/qcom/pm7325.dtsi
->> > > > @@ -0,0 +1,53 @@
->> > > > +// SPDX-License-Identifier: BSD-3-Clause
->> > > > +// Copyright (c) 2021, The Linux Foundation. All rights reserved.
->> > > > +
->> > > > +#include <dt-bindings/interrupt-controller/irq.h>
->> > > > +#include <dt-bindings/spmi/spmi.h>
->> > > > +
->> > > > +&spmi_bus {
->> > > > +	pm7325: pmic@1 {
->> > > > +		compatible = "qcom,pm7325", "qcom,spmi-pmic";
->> > >
->> > > where is qcom,pm7325 documented?
->> 
->> >
->> > good point, I missed that one.
->> >
->> 
->> Actually this point was discussed during V2(
->> https://lore.kernel.org/patchwork/patch/1406186/#1607321 ).
->> As far as I understand it is not mandatory to add "qcom,pm7325" as we 
->> are
->> adding "qcom,spmi-pmic". It is just a good to have change.
->> I could not find the documentation for pm8350c, pmk8350 and pmr735a as 
->> well.
+On Tue, May 11, 2021 at 03:52:18PM -0700, Matthias Kaehlcke wrote:
+> This series adds:
+> - the onboard_usb_hub_driver
+> - glue in the xhci-plat driver to create the onboard_usb_hub
+>   platform device if needed
+> - a device tree binding for the Realtek RTS5411 USB hub controller
+> - device tree changes that add RTS5411 entries for the QCA SC7180
+>   based boards trogdor and lazor
+> - a couple of stubs for platform device functions to avoid
+>   unresolved symbols with certain kernel configs
 > 
-> Yes that is a miss too, IMO all of these should be added to
-> Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt or the yaml
-> file replacing this
+> The main issue the driver addresses is that a USB hub needs to be
+> powered before it can be discovered. For discrete onboard hubs (an
+> example for such a hub is the Realtek RTS5411) this is often solved
+> by supplying the hub with an 'always-on' regulator, which is kind
+> of a hack. Some onboard hubs may require further initialization
+> steps, like changing the state of a GPIO or enabling a clock, which
+> requires even more hacks. This driver creates a platform device
+> representing the hub which performs the necessary initialization.
+> Currently it only supports switching on a single regulator, support
+> for multiple regulators or other actions can be added as needed.
+> Different initialization sequences can be supported based on the
+> compatible string.
 > 
+> Besides performing the initialization the driver can be configured
+> to power the hub off during system suspend. This can help to extend
+> battery life on battery powered devices which have no requirements
+> to keep the hub powered during suspend. The driver can also be
+> configured to leave the hub powered when a wakeup capable USB device
+> is connected when suspending, and power it off otherwise.
 
-Okay, will add those four pmics to qcom,spmi-pmic.txt.
+I get a build error when I apply this series to my tree:
 
-> Thanks
+drivers/usb/misc/onboard_usb_hub.c:273:6: error: redefinition of ‘of_is_onboard_usb_hub’
+  273 | bool of_is_onboard_usb_hub(const struct device_node *np)
+      |      ^~~~~~~~~~~~~~~~~~~~~
+In file included from drivers/usb/misc/onboard_usb_hub.c:21:
+./include/linux/usb/onboard_hub.h:9:20: note: previous definition of ‘of_is_onboard_usb_hub’ with type ‘bool(const struct device_node *)’ {aka ‘_Bool(const struct device_node *)’}
+    9 | static inline bool of_is_onboard_usb_hub(const struct device_node *np)
+      |                    ^~~~~~~~~~~~~~~~~~~~~
+
+Any thoughts?
+
+greg k-h
