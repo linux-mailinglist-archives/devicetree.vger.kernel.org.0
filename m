@@ -2,273 +2,419 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2D7338C109
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 09:54:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31E7E38C164
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 10:09:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234830AbhEUHzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 03:55:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36732 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231709AbhEUHzk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 03:55:40 -0400
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5D48C06138B
-        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 00:54:17 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:18b5:4195:d4ed:57e1])
-        by laurent.telenet-ops.be with bizsmtp
-        id 7KuE2500N46MpxJ01KuECB; Fri, 21 May 2021 09:54:17 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1ljzz3-007iyi-Sq; Fri, 21 May 2021 09:54:13 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1ljzz3-00A3vE-Fw; Fri, 21 May 2021 09:54:13 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Jan Tuerk <jan.tuerk@emtrion.com>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 3/3] dt-bindings: gpio: pcf857x: Convert to json-schema
-Date:   Fri, 21 May 2021 09:54:08 +0200
-Message-Id: <52df0592c81ac000d3f486a9ba5a4d84b0f42c47.1621583562.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1621583562.git.geert+renesas@glider.be>
-References: <cover.1621583562.git.geert+renesas@glider.be>
+        id S236327AbhEUIJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 04:09:09 -0400
+Received: from mx0a-00268f01.pphosted.com ([148.163.148.236]:54200 "EHLO
+        mx0a-00268f01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230101AbhEUIJG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 May 2021 04:09:06 -0400
+X-Greylist: delayed 2915 seconds by postgrey-1.27 at vger.kernel.org; Fri, 21 May 2021 04:08:57 EDT
+Received: from pps.filterd (m0105196.ppops.net [127.0.0.1])
+        by mx0a-00268f01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 14L78L1C030208;
+        Fri, 21 May 2021 07:17:45 GMT
+Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2045.outbound.protection.outlook.com [104.47.66.45])
+        by mx0a-00268f01.pphosted.com with ESMTP id 38nmk9bq3b-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 21 May 2021 07:17:45 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AHE9TL6QaO/EAZy2SYAd4bV0rZB4kHRI6pwdYKYKOdwlpJP2EySu0+ya34wYOqk7sJ23sJE58U5zwKrDYU3bOZHXLb0VweV9jre3c3Ge4DxF4Aj3/vUVr47GPYIdSubmOeyAFmJQALSbb+K8j3X8i20fpQbHjZVaf2114olociLDGqRxI9ezG2um0HwUssnJkseraC/g0O1+M3b18ujJRmQgUUIcdi1uQbrwKbmCSH5vhqnCU6sqgf50DEHzJ79szx/wH4BIx/NHg+UhkJz9TYFaX2f4IhOvKMy5cfZ+F2wjN90UXTFU8w4LUCgZXPLv31fU4Ejuj0bWtQr6r0Xc8w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FuWPqSMK2z4GTpOF6u7YyDZa5evRZDUdYQvHHz+UQnM=;
+ b=joO+z/iKcJnxBN+xfw8321WIFt5LtwRwgCievPx36sJ5HCSJ/MyGd0vbp9dhse+2gipITiFOqB5x/VRIG7YdNZn4wTBpFn90FnF6VrgOIfDA4Tsd070B9w7eLONq/5Aw5GBPFSk1de/Cvrk87TboYZXPs4Abytu7ZCzuSDcuRMYLPV+bZt9hyIYcfPws128mzFzOG5eBpH0kWS0QlXcabOCo7Kv+Ap1PFBGidANOpmTQEHmhyVyI+TCbZ7sSo7MAfrmjhujtr2vkLB0NrzYrXeVHUhezp94hDeQ7tG/xsMtKjsrYNzJzUqjdPwWwEa2hBtovb8xak0ck541+SQfrhQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=equinix.com; dmarc=pass action=none header.from=equinix.com;
+ dkim=pass header.d=equinix.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=equinixinc.onmicrosoft.com; s=selector2-equinixinc-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FuWPqSMK2z4GTpOF6u7YyDZa5evRZDUdYQvHHz+UQnM=;
+ b=B3VgfboRVgyS/IcDlE7oKjhhG92LiIc2jmWbleL5XIFkMNyCe68zRRffYl3wedouLpRwQolxSkvGVSL5nAsZ6oCgv76gh9HNqEnTPryxkmz3g2XfpANZTrGdGhWZWUp9Jjk+099jR4SI+VADtrldY9FKz9HJd9mAclaEukrO88Q=
+Received: from DM5PR04MB0762.namprd04.prod.outlook.com (2603:10b6:3:f3::13) by
+ DM6PR04MB3802.namprd04.prod.outlook.com (2603:10b6:5:ac::27) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4129.28; Fri, 21 May 2021 07:17:43 +0000
+Received: from DM5PR04MB0762.namprd04.prod.outlook.com
+ ([fe80::d9ba:6e7f:b51e:6cab]) by DM5PR04MB0762.namprd04.prod.outlook.com
+ ([fe80::d9ba:6e7f:b51e:6cab%2]) with mapi id 15.20.4129.034; Fri, 21 May 2021
+ 07:17:36 +0000
+From:   Zev Weiss <zweiss@equinix.com>
+To:     Andrew Jeffery <andrew@aj.id.au>
+CC:     "openipmi-developer@lists.sourceforge.net" 
+        <openipmi-developer@lists.sourceforge.net>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "minyard@acm.org" <minyard@acm.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "tmaimon77@gmail.com" <tmaimon77@gmail.com>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "avifishman70@gmail.com" <avifishman70@gmail.com>,
+        "venture@google.com" <venture@google.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "tali.perry1@gmail.com" <tali.perry1@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "chiawei_wang@aspeedtech.com" <chiawei_wang@aspeedtech.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "benjaminfair@google.com" <benjaminfair@google.com>,
+        "arnd@arndb.de" <arnd@arndb.de>
+Subject: Re: [PATCH v3 01/16] ipmi: kcs_bmc_aspeed: Use of match data to
+ extract KCS properties
+Thread-Topic: [PATCH v3 01/16] ipmi: kcs_bmc_aspeed: Use of match data to
+ extract KCS properties
+Thread-Index: AQHXThFgKDybgLEgqkuGSW4h17XPcg==
+Date:   Fri, 21 May 2021 07:17:36 +0000
+Message-ID: <YKdej27PuU1cgaCh@packtop>
+References: <20210510054213.1610760-1-andrew@aj.id.au>
+ <20210510054213.1610760-2-andrew@aj.id.au>
+In-Reply-To: <20210510054213.1610760-2-andrew@aj.id.au>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: aj.id.au; dkim=none (message not signed)
+ header.d=none;aj.id.au; dmarc=none action=none header.from=equinix.com;
+x-originating-ip: [24.181.166.149]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c9b9dcb1-1faf-4392-2d7d-08d91c2882ad
+x-ms-traffictypediagnostic: DM6PR04MB3802:
+x-microsoft-antispam-prvs: <DM6PR04MB380291444BBAE115C2944A43C3299@DM6PR04MB3802.namprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 06zWp9YI4j1Iw4Uj/6f+OZFjBYEXofUBCnscw5Bk9Sj/aQzWb+MU4BTfywCUqZPuCclugaV1x3tFYbhr/KW9qelR1EfY4ikaybXRTrrqu7FjE3Yjs62NjzFsPv8aJE34Rd/YNPBMe9UhpNwSdj4r87KEbMWUx1M88byunzm5CtRh7RPJkWEDAyJQnZJpccA4AegLCyhHvEXY1HTpBo8GGmrQphtMc3ZxVApmjCGspCAHptV6FleDhVa2MUW0l/DiSiY8TQwBR4zPkAioTf/wP6BrMvkWEmotbHDUkhMADXCdl0vphAsX/ltWEbXk0RsZ9+VSqDkJFe5STSJy11/FoeDDHpEeEMyqzyTa5n3hQILae1NREjK4Gu/oHvQJZf3euV6j8yKmxzR8IcigglICPvaijUzlOqBbvvEruE+DiqF9SmVUvpAL6d3Z5zu/PeLfa54uxkzCenvcZk2lxzN489kDavpJcc2PtKXZvXZGLtQlb2ZJcDuOglvsxTS7+Ra1/nUT9WoSeZ1rTrm0SfaE8RDKJwIsX6tPF/hdzn9vKYxzOIL9iZax7inrKhcG4Fuo5sCnVLHyUyDtZKyF9Fbb57Cvv5IL0QRVsfupdml3R9s=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR04MB0762.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(7916004)(346002)(39860400002)(376002)(396003)(366004)(136003)(122000001)(5660300002)(7416002)(478600001)(33716001)(38100700002)(71200400001)(26005)(54906003)(66476007)(66446008)(76116006)(66946007)(8676002)(4326008)(8936002)(6916009)(9686003)(6486002)(2906002)(64756008)(83380400001)(6512007)(186003)(6506007)(86362001)(66556008)(316002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?3w0jKwpP7K39hdWvhpittyB6iUEfNMWFJITJCLd4Mi3nNFDP/c44qjda4sIJ?=
+ =?us-ascii?Q?OObGYX6TsvN/S8cVgVQTxcKQpnisE2HG5AlPCX3Lpe9zRFE/zVZBboCZL358?=
+ =?us-ascii?Q?hsBeeUiBChoFc+j8Sm/1YO73Kj+2JqPV/YGp4UR0mp2k+cjDyUELWVLv6Umw?=
+ =?us-ascii?Q?knpe9mh8s9S04usbcIwRU3vqWlJNOhXoZd/n+g/N5Wvui5IJxTW9eaOi88rb?=
+ =?us-ascii?Q?1eZVijLG4Sg159GYecTukm+RfyuzGaSG73RWudvlq+C5Cl8dtHh4Kb69XSNY?=
+ =?us-ascii?Q?nWKDMfl+/vmGXeWrUdXzL9L29Pz4B7Wmu3ROVWo9UYEO2KzqNXq0w+mJN6MJ?=
+ =?us-ascii?Q?UQDCEZBKZCtgVE7b6HJ29c9vrAV+DH5NBSkXzby3oO4DmNjaHUjDE4p4P3uj?=
+ =?us-ascii?Q?sfohgbSFt1MVas5EVuZg2JdieoW3se0cT79w48vwBAzUS5Kx4PxFM3Q4rwyB?=
+ =?us-ascii?Q?V9JheaHzijjZXAXpA6OPRL0MJ4EJcCPQ/zLRWmrczm6IwmLwCxVOfzHb43UO?=
+ =?us-ascii?Q?PZfu1vgIkRHs9n9jod6zfZcHBCQGSn6yYI/cxrL8Unb68d43QH4/3f8cn4Fi?=
+ =?us-ascii?Q?4cUdYB7urBIMbj0vkBlFfLek5yG9Q2BuUxetq4Ie9EEwDEjWVZWkClpQJkxO?=
+ =?us-ascii?Q?9MVYpvtoRAEraaqWq3YqkuMzVUx8sgTt2Wbp+j5e2dpmmQpJI8+iFg3rkeEk?=
+ =?us-ascii?Q?5OKHst1qF4422OrDumsmXA31aNpPbj4O18bK6u3IBueupDFzx222kY2u8Q5r?=
+ =?us-ascii?Q?9a2p+w0w6Iwn497tIigsUCoV/ADNNVApHHhmZkAC1iZFIAo4T88Zy+O3fjVc?=
+ =?us-ascii?Q?I/+An6JrHGgajAK3F8+Ro8tda6G+ZyklM4+f0Zen75ImTT4usN9BC+BlrKLA?=
+ =?us-ascii?Q?MEKSgd0WRKaZJsvHNHybMiRUQqhikJMkdkqdwYSi51IiS5W6GaGN2HU0S4VK?=
+ =?us-ascii?Q?CoxVS6RhsKf4nrZVRzDa10tClaM2Sn2Ej7jm9Uf18OzKIiiSNTV+wbtcd2qr?=
+ =?us-ascii?Q?GdmdaV8PIvdkIU3knWq/+YA/7xAM2r3dfo8RN6hm82EEViPd/LuDQ28i+kLt?=
+ =?us-ascii?Q?UVdlRuklJnuZl5bqbTS8cy7FSWWlucabT3picKVzvBhnRODnDYkH7nNyBC10?=
+ =?us-ascii?Q?lA/e9n9A6vWwhsgBRpBv1ZEAjQEx03LCkJ4PY4FtOQdWCL3oNkIoy1KwWl38?=
+ =?us-ascii?Q?1a5gduLdn+ly+eiCG6N6MMs3lHLaIlVcc5MlJ4JkFV+GwxGUom6BytHCezqa?=
+ =?us-ascii?Q?0PSENfGQtNpHvDpBaIQhu0/03sdIPSwcB/gwabfkBLx3r+TEBps/lXeKJJui?=
+ =?us-ascii?Q?BNOxkZqogCUFDPXgMJwinF1Xe0VCXyjCIa/Nr0nSzQZk/g=3D=3D?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <AB4E5A37E92E414EB79342395BB51E6C@namprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: equinix.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR04MB0762.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c9b9dcb1-1faf-4392-2d7d-08d91c2882ad
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 May 2021 07:17:36.4733
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 72adb271-2fc7-4afe-a5ee-9de6a59f6bfb
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: uewMUJMmcoza1VUbnhSL0iVDkP9F+RUS5Xw8rzd/Z/dtnNtvzfl8mcrUWRSWcwGwPGQPSi+aLP4HzwDHfRK1eQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR04MB3802
+X-Proofpoint-GUID: jRItMSv_qHD7CJ0cWz79JoKG4mexx2LC
+X-Proofpoint-ORIG-GUID: jRItMSv_qHD7CJ0cWz79JoKG4mexx2LC
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-05-21_03:2021-05-20,2021-05-21 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ clxscore=1011 mlxscore=0 spamscore=0 suspectscore=0 adultscore=0
+ bulkscore=0 mlxlogscore=999 phishscore=0 lowpriorityscore=0
+ impostorscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2104190000 definitions=main-2105210045
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the PCF857x-compatible I/O expanders Device Tree binding
-documentation to json-schema.
+On Mon, May 10, 2021 at 12:41:58AM CDT, Andrew Jeffery wrote:
+>Unpack and remove the aspeed_kcs_probe_of_v[12]() functions to aid
+>rearranging how the private device-driver memory is allocated.
+>
+>Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+>---
+> drivers/char/ipmi/kcs_bmc_aspeed.c | 154 ++++++++++++++---------------
+> 1 file changed, 76 insertions(+), 78 deletions(-)
+>
+>diff --git a/drivers/char/ipmi/kcs_bmc_aspeed.c b/drivers/char/ipmi/kcs_bm=
+c_aspeed.c
+>index eefe362f65f0..c94d36e195be 100644
+>--- a/drivers/char/ipmi/kcs_bmc_aspeed.c
+>+++ b/drivers/char/ipmi/kcs_bmc_aspeed.c
+>@@ -13,6 +13,7 @@
+> #include <linux/module.h>
+> #include <linux/of.h>
+> #include <linux/of_address.h>
+>+#include <linux/of_device.h>
+> #include <linux/platform_device.h>
+> #include <linux/poll.h>
+> #include <linux/regmap.h>
+>@@ -63,6 +64,10 @@ struct aspeed_kcs_bmc {
+> 	struct regmap *map;
+> };
+>
+>+struct aspeed_kcs_of_ops {
+>+	int (*get_channel)(struct platform_device *pdev);
+>+	int (*get_io_address)(struct platform_device *pdev);
+>+};
+>
+> static u8 aspeed_kcs_inb(struct kcs_bmc *kcs_bmc, u32 reg)
+> {
+>@@ -231,13 +236,10 @@ static const struct kcs_ioreg ast_kcs_bmc_ioregs[KCS=
+_CHANNEL_MAX] =3D {
+> 	{ .idr =3D LPC_IDR4, .odr =3D LPC_ODR4, .str =3D LPC_STR4 },
+> };
+>
+>-static struct kcs_bmc *aspeed_kcs_probe_of_v1(struct platform_device *pde=
+v)
+>+static int aspeed_kcs_of_v1_get_channel(struct platform_device *pdev)
+> {
+>-	struct aspeed_kcs_bmc *priv;
+> 	struct device_node *np;
+>-	struct kcs_bmc *kcs;
+> 	u32 channel;
+>-	u32 slave;
+> 	int rc;
+>
+> 	np =3D pdev->dev.of_node;
+>@@ -245,105 +247,79 @@ static struct kcs_bmc *aspeed_kcs_probe_of_v1(struc=
+t platform_device *pdev)
+> 	rc =3D of_property_read_u32(np, "kcs_chan", &channel);
+> 	if ((rc !=3D 0) || (channel =3D=3D 0 || channel > KCS_CHANNEL_MAX)) {
+> 		dev_err(&pdev->dev, "no valid 'kcs_chan' configured\n");
+>-		return ERR_PTR(-EINVAL);
+>+		return -EINVAL;
+> 	}
+>
+>-	kcs =3D kcs_bmc_alloc(&pdev->dev, sizeof(struct aspeed_kcs_bmc), channel=
+);
+>-	if (!kcs)
+>-		return ERR_PTR(-ENOMEM);
+>+	return channel;
+>+}
+>
+>-	priv =3D kcs_bmc_priv(kcs);
+>-	priv->map =3D syscon_node_to_regmap(pdev->dev.parent->of_node);
+>-	if (IS_ERR(priv->map)) {
+>-		dev_err(&pdev->dev, "Couldn't get regmap\n");
+>-		return ERR_PTR(-ENODEV);
+>-	}
+>+static int aspeed_kcs_of_v1_get_io_address(struct platform_device *pdev)
+>+{
+>+	u32 slave;
+>+	int rc;
+>
+>-	rc =3D of_property_read_u32(np, "kcs_addr", &slave);
+>-	if (rc) {
+>+	rc =3D of_property_read_u32(pdev->dev.of_node, "kcs_addr", &slave);
+>+	if (rc || slave > 0xffff) {
+> 		dev_err(&pdev->dev, "no valid 'kcs_addr' configured\n");
+>-		return ERR_PTR(-EINVAL);
+>+		return -EINVAL;
+> 	}
+>
+>-	kcs->ioreg =3D ast_kcs_bmc_ioregs[channel - 1];
+>-	aspeed_kcs_set_address(kcs, slave);
+>-
+>-	return kcs;
+>-}
+>-
+>-static int aspeed_kcs_calculate_channel(const struct kcs_ioreg *regs)
+>-{
+>-	int i;
+>-
+>-	for (i =3D 0; i < ARRAY_SIZE(ast_kcs_bmc_ioregs); i++) {
+>-		if (!memcmp(&ast_kcs_bmc_ioregs[i], regs, sizeof(*regs)))
+>-			return i + 1;
+>-	}
+>-
+>-	return -EINVAL;
+>+	return slave;
+> }
+>
+>-static struct kcs_bmc *aspeed_kcs_probe_of_v2(struct platform_device *pde=
+v)
+>+static int aspeed_kcs_of_v2_get_channel(struct platform_device *pdev)
+> {
+>-	struct aspeed_kcs_bmc *priv;
+> 	struct device_node *np;
+> 	struct kcs_ioreg ioreg;
+>-	struct kcs_bmc *kcs;
+> 	const __be32 *reg;
+>-	int channel;
+>-	u32 slave;
+>-	int rc;
+>+	int i;
+>
+> 	np =3D pdev->dev.of_node;
+>
+> 	/* Don't translate addresses, we want offsets for the regmaps */
+> 	reg =3D of_get_address(np, 0, NULL, NULL);
+> 	if (!reg)
+>-		return ERR_PTR(-EINVAL);
+>+		return -EINVAL;
+> 	ioreg.idr =3D be32_to_cpup(reg);
+>
+> 	reg =3D of_get_address(np, 1, NULL, NULL);
+> 	if (!reg)
+>-		return ERR_PTR(-EINVAL);
+>+		return -EINVAL;
+> 	ioreg.odr =3D be32_to_cpup(reg);
+>
+> 	reg =3D of_get_address(np, 2, NULL, NULL);
+> 	if (!reg)
+>-		return ERR_PTR(-EINVAL);
+>+		return -EINVAL;
+> 	ioreg.str =3D be32_to_cpup(reg);
+>
+>-	channel =3D aspeed_kcs_calculate_channel(&ioreg);
+>-	if (channel < 0)
+>-		return ERR_PTR(channel);
+>-
+>-	kcs =3D kcs_bmc_alloc(&pdev->dev, sizeof(struct aspeed_kcs_bmc), channel=
+);
+>-	if (!kcs)
+>-		return ERR_PTR(-ENOMEM);
+>-
+>-	kcs->ioreg =3D ioreg;
+>-
+>-	priv =3D kcs_bmc_priv(kcs);
+>-	priv->map =3D syscon_node_to_regmap(pdev->dev.parent->of_node);
+>-	if (IS_ERR(priv->map)) {
+>-		dev_err(&pdev->dev, "Couldn't get regmap\n");
+>-		return ERR_PTR(-ENODEV);
+>+	for (i =3D 0; i < ARRAY_SIZE(ast_kcs_bmc_ioregs); i++) {
+>+		if (!memcmp(&ast_kcs_bmc_ioregs[i], &ioreg, sizeof(ioreg)))
+>+			return i + 1;
+> 	}
+>
+>-	rc =3D of_property_read_u32(np, "aspeed,lpc-io-reg", &slave);
+>-	if (rc)
+>-		return ERR_PTR(rc);
+>+	return -EINVAL;
+>+}
+>
+>-	aspeed_kcs_set_address(kcs, slave);
+>+static int aspeed_kcs_of_v2_get_io_address(struct platform_device *pdev)
+>+{
+>+	uint32_t slave;
+>+	int rc;
+>
+>-	return kcs;
+>+	rc =3D of_property_read_u32(pdev->dev.of_node, "aspeed,lpc-io-reg", &sla=
+ve);
+>+	if (rc || slave > 0xffff)
+>+		return -EINVAL;
 
-Document missing compatible values, properties, and gpio hogs.
+The v1 get_io_address() function prints an error in this case; it might
+be nice to do so here as well?  (Ideally maintained/extended as
+appropriate when this function gets adjusted in patch 16.)
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-Perhaps the "ti,pcf8575" construct should be removed, and the few users
-fixed instead?
-
-I have listed Laurent as the maintainer, as he wrote the original
-bindings.  Laurent: Please scream if this is inappropriate ;-)
----
- .../devicetree/bindings/gpio/gpio-pcf857x.txt |  69 ----------
- .../devicetree/bindings/gpio/nxp,pcf8575.yaml | 120 ++++++++++++++++++
- 2 files changed, 120 insertions(+), 69 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-pcf857x.txt
- create mode 100644 Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
-
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-pcf857x.txt b/Documentation/devicetree/bindings/gpio/gpio-pcf857x.txt
-deleted file mode 100644
-index a482455a205b0855..0000000000000000
---- a/Documentation/devicetree/bindings/gpio/gpio-pcf857x.txt
-+++ /dev/null
-@@ -1,69 +0,0 @@
--* PCF857x-compatible I/O expanders
--
--The PCF857x-compatible chips have "quasi-bidirectional" I/O lines that can be
--driven high by a pull-up current source or driven low to ground. This combines
--the direction and output level into a single bit per line, which can't be read
--back. We can't actually know at initialization time whether a line is configured
--(a) as output and driving the signal low/high, or (b) as input and reporting a
--low/high value, without knowing the last value written since the chip came out
--of reset (if any). The only reliable solution for setting up line direction is
--thus to do it explicitly.
--
--Required Properties:
--
--  - compatible: should be one of the following.
--    - "maxim,max7328": For the Maxim MAX7378
--    - "maxim,max7329": For the Maxim MAX7329
--    - "nxp,pca8574": For the NXP PCA8574
--    - "nxp,pca8575": For the NXP PCA8575
--    - "nxp,pca9670": For the NXP PCA9670
--    - "nxp,pca9671": For the NXP PCA9671
--    - "nxp,pca9672": For the NXP PCA9672
--    - "nxp,pca9673": For the NXP PCA9673
--    - "nxp,pca9674": For the NXP PCA9674
--    - "nxp,pca9675": For the NXP PCA9675
--    - "nxp,pcf8574": For the NXP PCF8574
--    - "nxp,pcf8574a": For the NXP PCF8574A
--    - "nxp,pcf8575": For the NXP PCF8575
--
--  - reg: I2C slave address.
--
--  - gpio-controller: Marks the device node as a gpio controller.
--  - #gpio-cells: Should be 2. The first cell is the GPIO number and the second
--    cell specifies GPIO flags, as defined in <dt-bindings/gpio/gpio.h>. Only the
--    GPIO_ACTIVE_HIGH and GPIO_ACTIVE_LOW flags are supported.
--
--Optional Properties:
--
--  - lines-initial-states: Bitmask that specifies the initial state of each
--  line. When a bit is set to zero, the corresponding line will be initialized to
--  the input (pulled-up) state. When the  bit is set to one, the line will be
--  initialized the low-level output state. If the property is not specified
--  all lines will be initialized to the input state.
--
--  The I/O expander can detect input state changes, and thus optionally act as
--  an interrupt controller. When the expander interrupt line is connected all the
--  following properties must be set. For more information please see the
--  interrupt controller device tree bindings documentation available at
--  Documentation/devicetree/bindings/interrupt-controller/interrupts.txt.
--
--  - interrupt-controller: Identifies the node as an interrupt controller.
--  - #interrupt-cells: Number of cells to encode an interrupt source, shall be 2.
--  - interrupts: Interrupt specifier for the controllers interrupt.
--
--
--Please refer to gpio.txt in this directory for details of the common GPIO
--bindings used by client devices.
--
--Example: PCF8575 I/O expander node
--
--	pcf8575: gpio@20 {
--		compatible = "nxp,pcf8575";
--		reg = <0x20>;
--		interrupt-parent = <&irqpin2>;
--		interrupts = <3 0>;
--		gpio-controller;
--		#gpio-cells = <2>;
--		interrupt-controller;
--		#interrupt-cells = <2>;
--	};
-diff --git a/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml b/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
-new file mode 100644
-index 0000000000000000..45034be0f8abc961
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
-@@ -0,0 +1,120 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/nxp,pcf8575.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: PCF857x-compatible I/O expanders
-+
-+maintainers:
-+  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-+
-+description:
-+  The PCF857x-compatible chips have "quasi-bidirectional" I/O lines that can be
-+  driven high by a pull-up current source or driven low to ground. This
-+  combines the direction and output level into a single bit per line, which
-+  can't be read back. We can't actually know at initialization time whether a
-+  line is configured (a) as output and driving the signal low/high, or (b) as
-+  input and reporting a low/high value, without knowing the last value written
-+  since the chip came out of reset (if any). The only reliable solution for
-+  setting up line direction is thus to do it explicitly.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - ti,pcf8575
-+          - const: nxp,pcf8575
-+
-+      - enum:
-+          - maxim,max7328
-+          - maxim,max7329
-+          - nxp,pca8574
-+          - nxp,pca8575
-+          - nxp,pca9670
-+          - nxp,pca9671
-+          - nxp,pca9672
-+          - nxp,pca9673
-+          - nxp,pca9674
-+          - nxp,pca9675
-+          - nxp,pcf8574
-+          - nxp,pcf8574a
-+          - nxp,pcf8575
-+
-+  reg:
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  '#gpio-cells':
-+    const: 2
-+    description:
-+      The first cell is the GPIO number and the second cell specifies GPIO
-+      flags, as defined in <dt-bindings/gpio/gpio.h>. Only the GPIO_ACTIVE_HIGH
-+      and GPIO_ACTIVE_LOW flags are supported.
-+
-+  lines-initial-states:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Bitmask that specifies the initial state of each line.
-+      When a bit is set to zero, the corresponding line will be initialized to
-+      the input (pulled-up) state.
-+      When the  bit is set to one, the line will be initialized to the
-+      low-level output state.
-+      If the property is not specified all lines will be initialized to the
-+      input state.
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 2
-+
-+  wakeup-source: true
-+
-+patternProperties:
-+  "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
-+    type: object
-+
-+    properties:
-+      gpio-hog: true
-+      gpios: true
-+      input: true
-+      output-high: true
-+      output-low: true
-+      line-name: true
-+
-+    required:
-+      - gpio-hog
-+      - gpios
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - gpio-controller
-+  - '#gpio-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            pcf8575: gpio@20 {
-+                    compatible = "nxp,pcf8575";
-+                    reg = <0x20>;
-+                    interrupt-parent = <&irqpin2>;
-+                    interrupts = <3 0>;
-+                    gpio-controller;
-+                    #gpio-cells = <2>;
-+                    interrupt-controller;
-+                    #interrupt-cells = <2>;
-+            };
-+    };
--- 
-2.25.1
-
+>+
+>+	return slave;
+> }
+>
+> static int aspeed_kcs_probe(struct platform_device *pdev)
+> {
+>+	const struct aspeed_kcs_of_ops *ops;
+> 	struct device *dev =3D &pdev->dev;
+>+	struct aspeed_kcs_bmc *priv;
+> 	struct kcs_bmc *kcs_bmc;
+> 	struct device_node *np;
+>-	int rc;
+>+	int rc, channel, addr;
+>
+> 	np =3D dev->of_node->parent;
+> 	if (!of_device_is_compatible(np, "aspeed,ast2400-lpc-v2") &&
+>@@ -352,23 +328,35 @@ static int aspeed_kcs_probe(struct platform_device *=
+pdev)
+> 		dev_err(dev, "unsupported LPC device binding\n");
+> 		return -ENODEV;
+> 	}
+>-
+>-	np =3D dev->of_node;
+>-	if (of_device_is_compatible(np, "aspeed,ast2400-kcs-bmc") ||
+>-	    of_device_is_compatible(np, "aspeed,ast2500-kcs-bmc"))
+>-		kcs_bmc =3D aspeed_kcs_probe_of_v1(pdev);
+>-	else if (of_device_is_compatible(np, "aspeed,ast2400-kcs-bmc-v2") ||
+>-		 of_device_is_compatible(np, "aspeed,ast2500-kcs-bmc-v2"))
+>-		kcs_bmc =3D aspeed_kcs_probe_of_v2(pdev);
+>-	else
+>+	ops =3D of_device_get_match_data(&pdev->dev);
+>+	if (!ops)
+> 		return -EINVAL;
+>
+>-	if (IS_ERR(kcs_bmc))
+>-		return PTR_ERR(kcs_bmc);
+>+	channel =3D ops->get_channel(pdev);
+>+	if (channel < 0)
+>+		return channel;
+>
+>+	kcs_bmc =3D kcs_bmc_alloc(&pdev->dev, sizeof(struct aspeed_kcs_bmc), cha=
+nnel);
+>+	if (!kcs_bmc)
+>+		return -ENOMEM;
+>+
+>+	kcs_bmc->ioreg =3D ast_kcs_bmc_ioregs[channel - 1];
+> 	kcs_bmc->io_inputb =3D aspeed_kcs_inb;
+> 	kcs_bmc->io_outputb =3D aspeed_kcs_outb;
+>
+>+	addr =3D ops->get_io_address(pdev);
+>+	if (addr < 0)
+>+		return addr;
+>+
+>+	priv =3D kcs_bmc_priv(kcs_bmc);
+>+	priv->map =3D syscon_node_to_regmap(pdev->dev.parent->of_node);
+>+	if (IS_ERR(priv->map)) {
+>+		dev_err(&pdev->dev, "Couldn't get regmap\n");
+>+		return -ENODEV;
+>+	}
+>+
+>+	aspeed_kcs_set_address(kcs_bmc, addr);
+>+
+> 	rc =3D aspeed_kcs_config_irq(kcs_bmc, pdev);
+> 	if (rc)
+> 		return rc;
+>@@ -400,11 +388,21 @@ static int aspeed_kcs_remove(struct platform_device =
+*pdev)
+> 	return 0;
+> }
+>
+>+static const struct aspeed_kcs_of_ops of_v1_ops =3D {
+>+	.get_channel =3D aspeed_kcs_of_v1_get_channel,
+>+	.get_io_address =3D aspeed_kcs_of_v1_get_io_address,
+>+};
+>+
+>+static const struct aspeed_kcs_of_ops of_v2_ops =3D {
+>+	.get_channel =3D aspeed_kcs_of_v2_get_channel,
+>+	.get_io_address =3D aspeed_kcs_of_v2_get_io_address,
+>+};
+>+
+> static const struct of_device_id ast_kcs_bmc_match[] =3D {
+>-	{ .compatible =3D "aspeed,ast2400-kcs-bmc" },
+>-	{ .compatible =3D "aspeed,ast2500-kcs-bmc" },
+>-	{ .compatible =3D "aspeed,ast2400-kcs-bmc-v2" },
+>-	{ .compatible =3D "aspeed,ast2500-kcs-bmc-v2" },
+>+	{ .compatible =3D "aspeed,ast2400-kcs-bmc", .data =3D &of_v1_ops },
+>+	{ .compatible =3D "aspeed,ast2500-kcs-bmc", .data =3D &of_v1_ops },
+>+	{ .compatible =3D "aspeed,ast2400-kcs-bmc-v2", .data =3D &of_v2_ops },
+>+	{ .compatible =3D "aspeed,ast2500-kcs-bmc-v2", .data =3D &of_v2_ops },
+> 	{ }
+> };
+> MODULE_DEVICE_TABLE(of, ast_kcs_bmc_match);
+>--=20
+>2.27.0
+>=
