@@ -2,82 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D29D38BD2B
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 06:10:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C407838BD83
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 06:45:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231531AbhEUEL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 00:11:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42478 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbhEUEL5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 00:11:57 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC7DDC061763
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 21:08:38 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id b13-20020a17090a8c8db029015cd97baea9so6431529pjo.0
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 21:08:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=VHyMUInNIJTIhDioOeZEKYgw1nctt2gOjWOJZGWfC44=;
-        b=l1hpR/umYLAioxI5wRR99memYFOF6eJCrV0iNCBLOerms10JUUgGKs1ub7Mib5fehS
-         1awP9vPLNg76tmx4jIVoDpIKaQ9dGe5NhxjBovUbv0zG//jETf4mBIxmcMRDTWZ9/FFI
-         pkoyZbhfRfWkmlHA8p0wL6nJkSEDj3wfwSS8DF2+epNlQ6Yxsa2bs3tL5Ke/KaDl1XFI
-         AgvAycVddrB8xOfzv7fAatWFHEhYEuH6SS9YBl/6ZdDOzEomtrURaJfEc7n2VovJVckU
-         Vw0Sgm7UFXKKrwBwCA21hqS5SF6RbywAvUPXV/RWs0VOom8sIdb7xnU+/O6Ce9uNozvU
-         fRYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=VHyMUInNIJTIhDioOeZEKYgw1nctt2gOjWOJZGWfC44=;
-        b=mj1osEFoxOBvkK5ZJnut3FPQz/5uWCM2ui3BLPsIVAwB26W6MYz/QNZ60QdC7mFRxy
-         tBhIz7NJgzR1paaxrqN+zFCyBeokQcTZPj+wuhrKCmNg4YbTtRy6N5BaQRTFAPW4zbXH
-         CuAObZSF3q+NxgYyY8Ar7jUSpBlEWqNtIZ8Pu3QEN/DtOPDlvRaqLUPz2gWucP5vhdhm
-         FXQAbGuaU2ys2EL6l+plgg/dNiI/QUcUKqVwwBploMUZFHIkox+hNHhOC9llcn+kKtkX
-         10icOkFJCveZM8nRVcheNcrFsSzjQI+vWKzgSMVANQCLfN+GaRAgr92IWIAYSDl0WgpE
-         jlpw==
-X-Gm-Message-State: AOAM533BdJULunMfptDZ7Q8bdihVNqYSPUrw2Qq+JjgholGQ5q1ebw1/
-        XpYFKL8bqDomeoDPVHZKtk8fwQ==
-X-Google-Smtp-Source: ABdhPJz5aUoCodSHgzN7//sM5PwT/Ov9jm7yqB+GNTRt88+r1WjBSxlYxn0IaVUJPb1m+8AX5fmIJA==
-X-Received: by 2002:a17:90a:2:: with SMTP id 2mr8924993pja.107.1621570118404;
-        Thu, 20 May 2021 21:08:38 -0700 (PDT)
-Received: from localhost ([136.185.154.93])
-        by smtp.gmail.com with ESMTPSA id u21sm3063486pfm.89.2021.05.20.21.08.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 May 2021 21:08:37 -0700 (PDT)
-Date:   Fri, 21 May 2021 09:38:34 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Hector Yuan <hector.yuan@mediatek.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4] dt-bindings: dvfs: Add support for generic
- performance domains
-Message-ID: <20210521040834.3rzsjkveoyugfotl@vireshk-i7>
-References: <20210517155458.1016707-1-sudeep.holla@arm.com>
- <1621284311.383362.3157708.nullmailer@robh.at.kernel.org>
- <20210519112041.olwl35irvcbjxrka@bogus>
- <CAL_JsqK-LpDQWh9RsLsGPEQ53n6s0+Q7ioVikSm1jZuoCWAgnA@mail.gmail.com>
+        id S239179AbhEUEqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 00:46:23 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:15665 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239172AbhEUEqW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 00:46:22 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1621572300; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=FkKhmAj2KxsBfO2PULHX8nz2Ss+D1VFGsLcIocuKSRE=;
+ b=hDtrQRBnMJb+92lOO+c2o7JUaECAOUFUZ00DR2euSNKWLD9eAjqyzZ0vcDQ1JTMUbT/+nbhm
+ EwIdgpn9Znoj71zwySHxa5SAw7eOnL5gEPTI5mnXHfPv+1wFTjM7J9XeHfE/KOrcD64iKnoy
+ /kwePc/VTcskWozDJu2R7SJloNg=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
+ 60a73ab9b15734c8f9543f01 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 21 May 2021 04:44:41
+ GMT
+Sender: skakit=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 9D4E6C4338A; Fri, 21 May 2021 04:44:40 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: skakit)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B8F4AC433F1;
+        Fri, 21 May 2021 04:44:39 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqK-LpDQWh9RsLsGPEQ53n6s0+Q7ioVikSm1jZuoCWAgnA@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 21 May 2021 10:14:39 +0530
+From:   skakit@codeaurora.org
+To:     Guru Das Srinagesh <gurus@codeaurora.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        kgunda@codeaurora.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH V3 3/3] dt-bindings: pinctrl: qcom-pmic-gpio: Convert qcom
+ pmic gpio bindings to YAML
+In-Reply-To: <20210513174325.GA13631@codeaurora.org>
+References: <1620817988-18809-1-git-send-email-skakit@codeaurora.org>
+ <1620817988-18809-4-git-send-email-skakit@codeaurora.org>
+ <20210513174325.GA13631@codeaurora.org>
+Message-ID: <e1ca573bc60426e256bbae036ee688a1@codeaurora.org>
+X-Sender: skakit@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20-05-21, 14:43, Rob Herring wrote:
-> Not allowed because I can't turn this check on by default until we get
-> rid of the existing 80 or so. But it is a new check and Viresh already
-> applied, so oh well.
+On 2021-05-13 23:13, Guru Das Srinagesh wrote:
+> On Wed, May 12, 2021 at 04:43:08PM +0530, satya priya wrote:
+>> diff --git 
+>> a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml 
+>> b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
+>> new file mode 100644
+>> index 0000000..85381a0
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
+>> @@ -0,0 +1,245 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pinctrl/qcom,pmic-gpio.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm PMIC GPIO block
+>> +
+>> +maintainers:
+>> +  - Bjorn Andersson <bjorn.andersson@sonymobile.com>
+>> +
+>> +description: |
+>> +  This binding describes the GPIO block(s) found in the 8xxx series 
+>> of
+>> +  PMIC's from Qualcomm.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - enum:
+>> +          - qcom,pm8005-gpio
+> 
+> pm8008 has been missed out in the yaml file during the conversion. 
+> could
+> you please add this as well?
+> 
 
-I can always drop it :)
+Will add it, thanks.
 
--- 
-viresh
+>> +          - qcom,pm8018-gpio
+>> +          - qcom,pm8038-gpio
+>> +          - qcom,pm8058-gpio
+>> +          - qcom,pm8916-gpio
+>> +          - qcom,pm8917-gpio
+>> +          - qcom,pm8921-gpio
+>> +          - qcom,pm8941-gpio
+>> +          - qcom,pm8950-gpio
+>> +          - qcom,pm8994-gpio
+>> +          - qcom,pm8998-gpio
+>> +          - qcom,pma8084-gpio
+>> +          - qcom,pmi8950-gpio
+>> +          - qcom,pmi8994-gpio
+>> +          - qcom,pmi8998-gpio
+>> +          - qcom,pms405-gpio
+>> +          - qcom,pm660-gpio
+>> +          - qcom,pm660l-gpio
+>> +          - qcom,pm8150-gpio
+>> +          - qcom,pm8150b-gpio
+>> +          - qcom,pm6150-gpio
+>> +          - qcom,pm6150l-gpio
+>> +          - qcom,pmx55-gpio
+>> +          - qcom,pm7325-gpio
+>> +          - qcom,pm8350c-gpio
+>> +          - qcom,pmk8350-gpio
+>> +          - qcom,pmr735a-gpio
+>> +
+>> +      - enum:
+>> +          - qcom,spmi-gpio
+>> +          - qcom,ssbi-gpio
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    minItems: 1
+>> +    maxItems: 44
+>> +
+>> +  '#interrupt-cells':
+>> +    const: 2
+>> +
+>> +  interrupt-controller: true
+>> +
+>> +  gpio-controller: true
+>> +
+>> +  gpio-ranges:
+>> +    maxItems: 1
+>> +
+>> +  '#gpio-cells':
+>> +    const: 2
+>> +    description: |
+>> +        The first cell will be used to define gpio number and the
+>> +        second denotes the flags for this gpio
+>> +
+>> +  gpio-keys:
+>> +    type: object
+>> +    properties:
+>> +      volume-keys:
+>> +        type: object
+>> +        anyOf:
+>> +          - $ref: "pinmux-node.yaml"
+>> +          - $ref: "pincfg-node.yaml"
+>> +        properties:
+>> +          pins:
+>> +            description: |
+>> +                List of gpio pins affected by the properties 
+>> specified in
+>> +                this subnode.  Valid pins are
+>> +                     - gpio1-gpio4 for pm8005
+> 
+> pm8008 has been missed out in the yaml file during the conversion. 
+> could
+> you please add this as well?
+> 
+>> +                     - gpio1-gpio6 for pm8018
+>> +                     - gpio1-gpio12 for pm8038
+>> +                     - gpio1-gpio40 for pm8058
