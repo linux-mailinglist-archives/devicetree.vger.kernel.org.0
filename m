@@ -2,250 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 620F138C55C
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 13:02:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB78038C5B7
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 13:27:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233602AbhEULEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 07:04:02 -0400
-Received: from comms.puri.sm ([159.203.221.185]:37676 "EHLO comms.puri.sm"
+        id S234992AbhEUL3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 07:29:15 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:13190 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230387AbhEULEB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 May 2021 07:04:01 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 573B2DFD7B;
-        Fri, 21 May 2021 04:02:38 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Z33JWzdz0crk; Fri, 21 May 2021 04:02:37 -0700 (PDT)
-Message-ID: <bd5dc783e39d750693ac2b49050681c5e3088330.camel@puri.sm>
-Subject: Re: [PATCH 00/23] media: imx: imx7-mipi-csis: Add i.MX8MM support /
- imx8mq support
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-media@vger.kernel.org, marex@denx.de, p.zabel@pengutronix.de,
-        rmfrfs@gmail.com, robh@kernel.org, slongerbeam@gmail.com
-Date:   Fri, 21 May 2021 13:02:30 +0200
-In-Reply-To: <YKeAuGJbr9CorhZR@pendragon.ideasonboard.com>
-References: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
-         <20210504155939.1194369-1-martin.kepplinger@puri.sm>
-         <YKBRXesDsXk9K15J@pendragon.ideasonboard.com>
-         <1da3de6c879474b814f4d820ca5eb5ba07174a26.camel@puri.sm>
-         <YKRmhSn65fiqshsp@pendragon.ideasonboard.com>
-         <7f922c8b3d4396c00ba15ad99dd572699f4b69b1.camel@puri.sm>
-         <YKUy8gu3Jc3VDy5i@pendragon.ideasonboard.com>
-         <f1d44bbd85edf547bc2b7c758b5e822e08cc80d0.camel@puri.sm>
-         <YKZX8z1Vb0PAYk+G@pendragon.ideasonboard.com>
-         <eff48d63017dc4ed1111b7d87a731d587f51885d.camel@puri.sm>
-         <YKeAuGJbr9CorhZR@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1 
-Content-Transfer-Encoding: 8bit
+        id S234946AbhEUL2k (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 May 2021 07:28:40 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1621596438; h=References: In-Reply-To: Message-Id: Date:
+ Subject: Cc: To: From: Sender;
+ bh=XiN6L1MeO+B64IIuiD+501RLTj3gtYOoeiM2IkaVmE0=; b=Xv3aWgwMFUS3ZEDMctWNbl6+ClGKUqzr5m4jtZIUdsyJzf50sKbLsJ6PhVSs70UtKIQlSB6p
+ YWuKkiQXHCU5YTmBdbPwoAsliAwt5LKlB4TvXBLtxZ75gnAAbh86J7vxulUp1ISqIFXAfv5X
+ wrF1gw3FXRlZgUZJWeUp7WlIWH8=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 60a798f0b15734c8f92d4eee (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 21 May 2021 11:26:40
+ GMT
+Sender: mkshah=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id DCC8AC433F1; Fri, 21 May 2021 11:26:39 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from mkshah-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: mkshah)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 333E1C433D3;
+        Fri, 21 May 2021 11:26:34 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 333E1C433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=mkshah@codeaurora.org
+From:   Maulik Shah <mkshah@codeaurora.org>
+To:     swboyd@chromium.org, mka@chromium.org, evgreen@chromium.org,
+        bjorn.andersson@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        agross@kernel.org, dianders@chromium.org, linux@roeck-us.net,
+        rnayak@codeaurora.org, lsrao@codeaurora.org,
+        Mahesh Sivasubramanian <msivasub@codeaurora.org>,
+        devicetree@vger.kernel.org, Lina Iyer <ilina@codeaurora.org>,
+        Maulik Shah <mkshah@codeaurora.org>
+Subject: [PATCH v8 1/5] dt-bindings: Introduce SoC sleep stats bindings
+Date:   Fri, 21 May 2021 16:56:07 +0530
+Message-Id: <1621596371-26482-2-git-send-email-mkshah@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1621596371-26482-1-git-send-email-mkshah@codeaurora.org>
+References: <1621596371-26482-1-git-send-email-mkshah@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, dem 21.05.2021 um 12:43 +0300 schrieb Laurent Pinchart:
-> Hi Martin,
-> 
-> On Fri, May 21, 2021 at 11:25:20AM +0200, Martin Kepplinger wrote:
-> > Am Donnerstag, dem 20.05.2021 um 15:37 +0300 schrieb Laurent
-> > Pinchart:
-> > > On Thu, May 20, 2021 at 12:54:27PM +0200, Martin Kepplinger
-> > > wrote:
-> > > > Am Mittwoch, dem 19.05.2021 um 18:46 +0300 schrieb Laurent
-> > > > Pinchart:
-> > > > > On Wed, May 19, 2021 at 05:21:11PM +0200, Martin Kepplinger
-> > > > > wrote:
-> > > > > > Am Mittwoch, dem 19.05.2021 um 04:14 +0300 schrieb Laurent
-> > > > > > Pinchart:
-> > > > > > > On Tue, May 18, 2021 at 04:39:00PM +0200, Martin
-> > > > > > > Kepplinger wrote:
-> > > > > > > > Am Sonntag, dem 16.05.2021 um 01:55 +0300 schrieb
-> > > > > > > > Laurent Pinchart:
-> > > > > > > > > On Tue, May 04, 2021 at 05:59:39PM +0200, Martin
-> > > > > > > > > Kepplinger wrote:
-> > > 
-> > > [snip]
-> > > 
-> > > > I fixed mipi -> csi link. I had the DT port descriptions for
-> > > > mipi
-> > > > csi wrong.
-> > > 
-> > > \o/
-> > > 
-> > > > now, just because I think it makes sense, I do:
-> > > > 
-> > > > media-ctl --set-v4l2 "'csi':0 [fmt:SGBRG10/640x480
-> > > > colorspace:raw]"
-> > > > 
-> > > > which now prints:
-> > > > 
-> > > > Device topology
-> > > > - entity 1: csi (2 pads, 2 links)
-> > > >             type V4L2 subdev subtype Unknown flags 0
-> > > >             device node name /dev/v4l-subdev0
-> > > >         pad0: Sink
-> > > >                 [fmt:SGBRG10_1X10/640x480 field:none
-> > > > colorspace:raw xfer:none ycbcr:601 quantization:full-range]
-> > > >                 <- "imx8mq-mipi-csis.0":1 [ENABLED,IMMUTABLE]
-> > > >         pad1: Source
-> > > >                 [fmt:SGBRG10_1X10/640x480 field:none
-> > > > colorspace:raw xfer:none ycbcr:601 quantization:full-range]
-> > > >                 -> "csi capture":0 [ENABLED,IMMUTABLE]
-> > > > 
-> > > > - entity 4: csi capture (1 pad, 1 link)
-> > > >             type Node subtype V4L flags 0
-> > > >             device node name /dev/video1
-> > > >         pad0: Sink
-> > > >                 <- "csi":1 [ENABLED,IMMUTABLE]
-> > > > 
-> > > > - entity 10: imx8mq-mipi-csis.0 (2 pads, 2 links)
-> > > >              type V4L2 subdev subtype Unknown flags 0
-> > > >              device node name /dev/v4l-subdev1
-> > > >         pad0: Sink
-> > > >                 <- "hi846 2-0020":0 []
-> > > >         pad1: Source
-> > > >                 -> "csi":0 [ENABLED,IMMUTABLE]
-> > > 
-> > > This subdev doesn't seem to report formats on its sink and source
-> > > pads,
-> > > which is weird. I've had a quick look at the .get_fmt() and
-> > > .set_fmt()
-> > > implementations in the code you've posted, and they're wrong.
-> > > They
-> > > shouldn't pass the calls to the source subdev with
-> > > v4l2_subdev_call(),
-> > > they should instead implement get and set format on this subdev.
-> > > You can
-> > > look at the imx7-mipi-csis driver to see how that's done. Once
-> > > you'll
-> > > have fixed this, you'll have to set the format on each pad with
-> > > media-ctl to make sure formats through the pipeline match.
-> > > 
-> > > The only location where you imx8mq-mipi-csis driver should use
-> > > v4l2_subdev_call() is in .s_stream(), to propagate the operation
-> > > to the
-> > > source.
-> > > 
-> > > By the way, I'd replace every occurence of "csis" with "csi2" in
-> > > your
-> > > driver. The name "csis" in the i.MX7 driver comes from the CSI-2
-> > > RX IP
-> > > core that is named CSIS. That's not the case on the i.MX8QM.
-> > > 
-> > > > - entity 15: hi846 2-0020 (1 pad, 1 link)
-> > > >              type V4L2 subdev subtype Sensor flags 0
-> > > >              device node name /dev/v4l-subdev2
-> > > >         pad0: Source
-> > > >                 [fmt:SGBRG10_1X10/640x480 field:none
-> > > > colorspace:raw]
-> > > >                 -> "imx8mq-mipi-csis.0":0 []
-> > > 
-> > > You need to enable this link, the following should do
-> > > 
-> > > media-ctl -l "'hi846 2-0020':0 -> 'imx8mq-mipi-csis.0':0 [1]"
-> > 
-> > ok makes sense, even though I basically just allow a set of formats
-> > without yet having to configure anything format-specific (I can at
-> > least use bits-per-pixel later, so it makes sense to have them).
-> > nevermind. I again append the current driver I use here.
-> > 
-> > then I do:
-> > 
-> > media-ctl --set-v4l2 "'csi':0 [fmt:SGBRG10/640x480 colorspace:raw]"
-> > media-ctl --set-v4l2 "'imx8mq-mipi-csi2.0':0 [fmt:SGBRG10/640x480
-> > colorspace:raw]"
-> > media-ctl -l "'hi846 2-0020':0 -> 'imx8mq-mipi-csi2.0':0 [1]"
-> > 
-> > which gets me:
-> > 
-> > Device topology
-> > - entity 1: csi (2 pads, 2 links)
-> >             type V4L2 subdev subtype Unknown flags 0
-> >             device node name /dev/v4l-subdev0
-> >         pad0: Sink
-> >                 [fmt:SGBRG10_1X10/640x480 field:none colorspace:raw
-> > xfer:none ycbcr:601 quantization:full-range]
-> >                 <- "imx8mq-mipi-csi2.0":1 [ENABLED,IMMUTABLE]
-> >         pad1: Source
-> >                 [fmt:SGBRG10_1X10/640x480 field:none colorspace:raw
-> > xfer:none ycbcr:601 quantization:full-range]
-> >                 -> "csi capture":0 [ENABLED,IMMUTABLE]
-> > 
-> > - entity 4: csi capture (1 pad, 1 link)
-> >             type Node subtype V4L flags 0
-> >             device node name /dev/video0
-> >         pad0: Sink
-> >                 <- "csi":1 [ENABLED,IMMUTABLE]
-> > 
-> > - entity 10: imx8mq-mipi-csi2.0 (2 pads, 2 links)
-> >              type V4L2 subdev subtype Unknown flags 0
-> >              device node name /dev/v4l-subdev1
-> >         pad0: Sink
-> >                 [fmt:SGBRG10_1X10/640x480]
-> >                 <- "hi846 2-0020":0 [ENABLED]
-> >         pad1: Source
-> >                 [fmt:SGBRG10_1X10/640x480]
-> >                 -> "csi":0 [ENABLED,IMMUTABLE]
-> > 
-> > - entity 15: hi846 2-0020 (1 pad, 1 link)
-> >              type V4L2 subdev subtype Sensor flags 0
-> >              device node name /dev/v4l-subdev2
-> >         pad0: Source
-> >                 [fmt:SGBRG10_1X10/640x480 field:none
-> > colorspace:raw]
-> >                 -> "imx8mq-mipi-csi2.0":0 [ENABLED]
-> 
-> This looks better.
-> 
-> > but streaming still fails with:
-> > 
-> > [  352.255129] imx7-csi 30a90000.csi1_bridge: media bus code not
-> > compatible with the pixel format set on the video node: 1 != 0
-> 
-> What is the capture command line ? Can you trace this (I assume the
-> message is printed by capture_validate_fmt(), it's not present in
-> mainline so I don't know what 1 and 0 correspond to, even though I
-> suspect they would be IPUV3_COLORSPACE_* values) to see why it fails
-> ?
+From: Mahesh Sivasubramanian <msivasub@codeaurora.org>
 
-capture command:
+Add device binding documentation for Qualcomm Technologies, Inc. (QTI)
+SoC sleep stats driver. The driver is used for displaying SoC sleep
+statistic maintained by Always On Processor or Resource Power Manager.
 
-v4l2-ctl -d "/dev/v4l/by-path/platform-30a90000.csi1_bridge-video-
-index0" --set-fmt-video=width=640,height=480 --stream-mmap --stream-
-to=test.raw --stream-count=1
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
+Signed-off-by: Lina Iyer <ilina@codeaurora.org>
+Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+---
+ .../bindings/soc/qcom/soc-sleep-stats.yaml         | 48 ++++++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
 
-I'll have to continue after the weekend, but let's share some logs.
-Yes, "1 != 0" is from capture_validate_fmt():
-
-priv->vdev.cc->cs != cc->cs
-
-When I print the format the imx_media_find_mbus_format() finds and do:
-
-media-ctl --set-v4l2 "'csi':0 [fmt:SGBRG10/640x480 colorspace:raw]"
-
-I see:
-
-[  184.251144] mc: media_release: Media Release
-[  184.254397] selected specific mbus code 0 for list nr 0 (fourcc
-0x59565955)
-[  184.264564] selected specific mbus code 0 for list nr 0 (fourcc
-0x59565955)
-[  184.274763] selected specific mbus code 0 for list nr 21 (fourcc
-0x36314247)
-[  184.285102] selected specific mbus code 0 for list nr 21 (fourcc
-0x36314247)
-[  184.295383] selected specific mbus code 0 for list nr 21 (fourcc
-0x36314247)
-[  184.305752] selected specific mbus code 0 for list nr 21 (fourcc
-0x36314247)
-
-21 is the correct bayer format I want, but there's 0, so
-"MEDIA_BUS_FMT_UYVY8_2X8" found the first 2 times. That is
-IPUV3_COLORSPACE_YUV (1) while the correct Bayer format 21 is
-IPUV3_COLORSPACE_RGB (0).
-
-so some format settings not yet correct.
+diff --git a/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+new file mode 100644
+index 0000000..9078c4f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/qcom/soc-sleep-stats.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Technologies, Inc. (QTI) SoC sleep stats bindings
++
++maintainers:
++  - Maulik Shah <mkshah@codeaurora.org>
++  - Lina Iyer <ilina@codeaurora.org>
++
++description:
++  Always On Processor/Resource Power Manager maintains statistics of the SoC
++  sleep modes involving powering down of the rails and oscillator clock.
++
++  Statistics includes SoC sleep mode type, number of times low power mode were
++  entered, time of last entry, time of last exit and accumulated sleep duration.
++
++properties:
++  compatible:
++    enum:
++      - qcom,rpmh-sleep-stats
++      - qcom,rpm-sleep-stats
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  # Example of rpmh sleep stats
++  - |
++    rpmh-sleep-stats@c3f0000 {
++      compatible = "qcom,rpmh-sleep-stats";
++      reg = <0x0c3f0000 0x400>;
++    };
++  # Example of rpm sleep stats
++  - |
++    rpm-sleep-stats@4690000 {
++      compatible = "qcom,rpm-sleep-stats";
++      reg = <0x04690000 0x400>;
++    };
++...
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
 
