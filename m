@@ -2,277 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03A9B38CB3D
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 18:42:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF5DE38CB5A
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 18:55:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233011AbhEUQn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 12:43:59 -0400
-Received: from szxga06-in.huawei.com ([45.249.212.32]:3648 "EHLO
-        szxga06-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237702AbhEUQn6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 12:43:58 -0400
-Received: from dggems705-chm.china.huawei.com (unknown [172.30.72.59])
-        by szxga06-in.huawei.com (SkyGuard) with ESMTP id 4Fmslx3T9FzmXVx;
-        Sat, 22 May 2021 00:40:13 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- dggems705-chm.china.huawei.com (10.3.19.182) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Sat, 22 May 2021 00:42:30 +0800
-Received: from localhost (10.52.125.126) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Fri, 21 May
- 2021 17:42:27 +0100
-Date:   Fri, 21 May 2021 17:40:41 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-CC:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <kernel@pengutronix.de>,
-        <linux-kernel@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        David Jander <david@protonic.nl>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v5 8/8] Input: resistive-adc-touch: add support for z1
- and z2 channels
-Message-ID: <20210521174041.000040da@Huawei.com>
-In-Reply-To: <20210521044525.7397-9-o.rempel@pengutronix.de>
-References: <20210521044525.7397-1-o.rempel@pengutronix.de>
-        <20210521044525.7397-9-o.rempel@pengutronix.de>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
+        id S237843AbhEUQ4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 12:56:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46304 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237802AbhEUQ4T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 12:56:19 -0400
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 802D0C0613ED;
+        Fri, 21 May 2021 09:54:55 -0700 (PDT)
+Received: by mail-yb1-xb35.google.com with SMTP id y2so28316233ybq.13;
+        Fri, 21 May 2021 09:54:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=qNDhTrL0N439MhCKg5eDpr3/xHuRHa7DwSQYNtIdcTc=;
+        b=WwdqXcgkSphVGeoYQlwRAjESqehVHk0iWq4Hwnz7H3YB9/GZzb75+r6bEGjrTtxd5y
+         fHmyW12pXz0H0J38qTEh5DVLXJPLPjxK7eDSM9BSM/OY4QcSiLfMjiMHaT8lNCn9ZCZQ
+         LdUfN3LPQNTCCWG0bUIgoGtxLdjnPnrEqhEYdr48aKDzNm6AbjeP1Ya/VyfGoy8E3Omd
+         ZSZKpZdII0x+uSWvYiBBMxnLf01qzYYioqVEYlr74q2OBgKNneIBb8R+VNjvFO9C+kju
+         zeo/+/BCxzlIOzUH0ieeLtpcVMdtxif1ksyL6v+I2C9YXsr7IR+clK/KvLMcBUT2cpjk
+         SVFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qNDhTrL0N439MhCKg5eDpr3/xHuRHa7DwSQYNtIdcTc=;
+        b=Xy4LDMgY/52pL3FI4tEYmBqGo7K73h1SnvVZQ9dx5xol4bZEjBmetFGJi0uBVRQLh1
+         stb5pxwdU4EMSNpsboszkKAATKP6GkM1/n0JLVANUZcg264eDGXbLUd9vTHFhxSXs+vN
+         nyyn/kVUc6AVQgIzKYik9cGrsfW077x3YKfWptf49kBPSzUTAIxiy+QpdDUdkqKAkZN1
+         1ZsGCoUJKDWvDVqK65xm5u8k2teJVvQFmAsvB0r9N9zs8sphkqC6YrtXdRJQK3RNuZr4
+         HfuYoFG0NodwP1eNvn0rt7OPnmFsd9+JYwY4cRVRI2p7Hp03xuIcaXaKw0hwoCfOBtD+
+         tg+A==
+X-Gm-Message-State: AOAM530s3q1GTtG/SxJ4tDj4LJoXcfPM+C3EluxKlXEfdHyB2N1Mfpz6
+        DqcZXYGHIncyFwNMWCOOs/4GMJQ9mXxE/O76dnUKa2iu5JkA6Q==
+X-Google-Smtp-Source: ABdhPJxONwR6QDdA9LeS1LweNBya46DuCsYhueVEKoLegPrTeGkUQu8Juviv7rZjLX7+D4hzR13IAdqfWFpN2ysDQ3A=
+X-Received: by 2002:a25:358a:: with SMTP id c132mr16256369yba.179.1621616093932;
+ Fri, 21 May 2021 09:54:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.52.125.126]
-X-ClientProxiedBy: lhreml746-chm.china.huawei.com (10.201.108.196) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+References: <20210514192218.13022-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20210514192218.13022-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdU40pLb3LvEghkT0pryLtHdXj+U1R7Y7L6-_6euVohyUw@mail.gmail.com>
+In-Reply-To: <CAMuHMdU40pLb3LvEghkT0pryLtHdXj+U1R7Y7L6-_6euVohyUw@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Fri, 21 May 2021 17:54:28 +0100
+Message-ID: <CA+V-a8tFsAO2yYqURT1gYS14_Eax1VqJ1YbgcnfZADtOMLXFMA@mail.gmail.com>
+Subject: Re: [PATCH 01/16] dt-bindings: arm: renesas: Document Renesas RZ/G2UL SoC
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 May 2021 06:45:25 +0200
-Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+Hi Geert,
 
-> This patch adds support for the z1 and z2 channels. These are used to
-> calculate the applied pressure. As there is no common order of the
-> individual channels of a resistive touch ADC, support for
-> io-channel-names is added (although the DT bindings stated the
-> driver already supports these).
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+Thank you for the review.
 
-One minor comment inline, but otherwise looks good to me.
-Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+On Fri, May 21, 2021 at 2:23 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Fri, May 14, 2021 at 9:23 PM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > Add device tree bindings documentation for Renesas RZ/G2UL SoC.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- a/Documentation/devicetree/bindings/arm/renesas.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/renesas.yaml
+> > @@ -302,6 +302,12 @@ properties:
+> >                - renesas,rzn1d400-db # RZN1D-DB (RZ/N1D Demo Board for the RZ/N1D 400 pins package)
+> >            - const: renesas,r9a06g032
+> >
+> > +      - description: RZ/G2UL (R9A07G043)
+> > +        items:
+> > +          - enum:
+> > +              - renesas,r9a07g043u11 # Single Cortex-A55 RZ/G2UL
+>
+> Is there any specific reason you're including the final "1", unlike the
+> RZ/G2{L,LC} binding?
+>
+To be consistent with the RZ/G2L family of SoC's "1" is appended to
+the compatible string.
 
-Would be nice at some point to make this handle channels that
-aren't 16 bits, but that can be a job for another day.
+> As RZ/G2UL is always single-core, perhaps this compatible value can be
+> dropped?
+>
+Do agree with you.
 
-Jonathan
+> > +          - const: renesas,r9a07g043
+> > +
+> >  additionalProperties: true
+>
+> For now, there are no users of this binding?
+> I assume you're posting it already, as RZ/G2UL is pin-compatible with RZ/G2LC,
+> and thus can be used interchangeably on the G2L SOM?
+> However, the DTS board part in this series is for RZ/G2L, not RZ/GLC?
+>
+Intention here is to start with RZ/G2L SoC first  so that the core
+changes (pinctrl/CPG) hit upstream and for the rest of the SoC's it
+will be followed up.
 
-> ---
->  .../input/touchscreen/resistive-adc-touch.c   | 142 ++++++++++++++++--
->  1 file changed, 128 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/input/touchscreen/resistive-adc-touch.c b/drivers/input/touchscreen/resistive-adc-touch.c
-> index e50af30183f4..fa90005b7bc9 100644
-> --- a/drivers/input/touchscreen/resistive-adc-touch.c
-> +++ b/drivers/input/touchscreen/resistive-adc-touch.c
-> @@ -20,7 +20,18 @@
->  
->  #define DRIVER_NAME					"resistive-adc-touch"
->  #define GRTS_DEFAULT_PRESSURE_MIN			50000
-> +#define GRTS_DEFAULT_PRESSURE_MAX			65535
->  #define GRTS_MAX_POS_MASK				GENMASK(11, 0)
-> +#define GRTS_MAX_CHANNELS				4
-> +
-> +enum grts_ch_type {
-> +	GRTS_CH_NONE = 0,
-> +	GRTS_CH_X,
-> +	GRTS_CH_Y,
-> +	GRTS_CH_PRESSURE,
-> +	GRTS_CH_Z1,
-> +	GRTS_CH_Z2,
-> +};
->  
->  /**
->   * struct grts_state - generic resistive touch screen information struct
-> @@ -33,24 +44,61 @@
->   */
->  struct grts_state {
->  	u32				pressure_min;
-> +	u32				x_plate_ohms;
->  	bool				pressure;
->  	struct iio_channel		*iio_chans;
->  	struct iio_cb_buffer		*iio_cb;
->  	struct input_dev		*input;
->  	struct touchscreen_properties	prop;
-> +	u8				ch[GRTS_MAX_CHANNELS];
->  };
->  
->  static int grts_cb(const void *data, void *private)
->  {
->  	const u16 *touch_info = data;
->  	struct grts_state *st = private;
-> -	unsigned int x, y, press = 0x0;
-> +	unsigned int x, y, press = 0, z1 = 0, z2;
-> +	unsigned int Rt, i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(st->ch) && st->ch[i] != GRTS_CH_NONE; i++) {
-> +		switch (st->ch[i]) {
-> +		case GRTS_CH_X:
-> +			x = touch_info[i];
-> +			break;
-> +		case GRTS_CH_Y:
-> +			y = touch_info[i];
-> +			break;
-> +		case GRTS_CH_PRESSURE:
-> +			press = touch_info[i];
-> +			break;
-> +		case GRTS_CH_Z1:
-> +			z1 = touch_info[i];
-> +			break;
-> +		case GRTS_CH_Z2:
-> +			z2 = touch_info[i];
-> +			break;
-> +		case GRTS_CH_NONE:
+Cheers,
+Prabhakar
 
-Loop condition above prevents this.   I guess you might get a warning though
-so if this is just warning suppression then add a comment to say so to
-make sure it isn't removed.
-
-> +			break;
-> +		}
-> +	}
->  
-> -	/* channel data coming in buffer in the order below */
-> -	x = touch_info[0];
-> -	y = touch_info[1];
-> -	if (st->pressure)
-> -		press = touch_info[2];
-> +	if (z1) {
-> +		Rt = z2;
-> +		Rt -= z1;
-> +		Rt *= st->x_plate_ohms;
-> +		Rt = DIV_ROUND_CLOSEST(Rt, 16);
-> +		Rt *= x;
-> +		Rt /= z1;
-> +		Rt = DIV_ROUND_CLOSEST(Rt, 256);
-> +		/*
-> +		 * On increased pressure the resistance (Rt) is decreasing
-> +		 * so, convert values to make it looks as real pressure.
-> +		 */
-> +		if (Rt < GRTS_DEFAULT_PRESSURE_MAX)
-> +			press = GRTS_DEFAULT_PRESSURE_MAX - Rt;
-> +		else
-> +			press = 0;
-> +	}
->  
->  	if ((!x && !y) || (st->pressure && (press < st->pressure_min))) {
->  		/* report end of touch */
-> @@ -94,12 +142,77 @@ static void grts_disable(void *data)
->  	iio_channel_release_all_cb(data);
->  }
->  
-> +static int grts_get_properties(struct grts_state *st, struct device *dev)
-> +{
-> +	int idx, error;
-> +
-> +	idx = device_property_match_string(dev, "io-channel-names", "x");
-> +	if (idx < 0)
-> +		return idx;
-> +
-> +	if (idx >= ARRAY_SIZE(st->ch))
-> +		return -EOVERFLOW;
-> +
-> +	st->ch[idx] = GRTS_CH_X;
-> +
-> +	idx = device_property_match_string(dev, "io-channel-names", "y");
-> +	if (idx < 0)
-> +		return idx;
-> +
-> +	if (idx >= ARRAY_SIZE(st->ch))
-> +		return -EOVERFLOW;
-> +
-> +	st->ch[idx] = GRTS_CH_Y;
-> +
-> +	/* pressure is optional */
-> +	idx = device_property_match_string(dev, "io-channel-names", "pressure");
-> +	if (idx >= 0) {
-> +		if (idx >= ARRAY_SIZE(st->ch))
-> +			return -EOVERFLOW;
-> +
-> +		st->ch[idx] = GRTS_CH_PRESSURE;
-> +		st->pressure = true;
-> +
-> +		return 0;
-> +	}
-> +
-> +	/* if no pressure is defined, try optional z1 + z2 */
-> +	idx = device_property_match_string(dev, "io-channel-names", "z1");
-> +	if (idx < 0)
-> +		return 0;
-> +
-> +	if (idx >= ARRAY_SIZE(st->ch))
-> +		return -EOVERFLOW;
-> +
-> +	st->ch[idx] = GRTS_CH_Z1;
-> +
-> +	/* if z1 is provided z2 is not optional */
-> +	idx = device_property_match_string(dev, "io-channel-names", "z2");
-> +	if (idx < 0)
-> +		return idx;
-> +
-> +	if (idx >= ARRAY_SIZE(st->ch))
-> +		return -EOVERFLOW;
-> +
-> +	st->ch[idx] = GRTS_CH_Z2;
-> +	st->pressure = true;
-> +
-> +	error = device_property_read_u32(dev,
-> +					 "touchscreen-x-plate-ohms",
-> +					 &st->x_plate_ohms);
-> +	if (error) {
-> +		dev_err(dev, "can't get touchscreen-x-plate-ohms property\n");
-> +		return error;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int grts_probe(struct platform_device *pdev)
->  {
->  	struct grts_state *st;
->  	struct input_dev *input;
->  	struct device *dev = &pdev->dev;
-> -	struct iio_channel *chan;
->  	int error;
->  
->  	st = devm_kzalloc(dev, sizeof(struct grts_state), GFP_KERNEL);
-> @@ -115,12 +228,13 @@ static int grts_probe(struct platform_device *pdev)
->  		return error;
->  	}
->  
-> -	chan = &st->iio_chans[0];
-> -	st->pressure = false;
-> -	while (chan && chan->indio_dev) {
-> -		if (!strcmp(chan->channel->datasheet_name, "pressure"))
-> -			st->pressure = true;
-> -		chan++;
-> +	if (!device_property_present(dev, "io-channel-names"))
-> +		return -ENODEV;
-> +
-> +	error = grts_get_properties(st, dev);
-> +	if (error) {
-> +		dev_err(dev, "Failed to parse properties\n");
-> +		return error;
->  	}
->  
->  	if (st->pressure) {
-> @@ -148,7 +262,7 @@ static int grts_probe(struct platform_device *pdev)
->  	input_set_abs_params(input, ABS_Y, 0, GRTS_MAX_POS_MASK - 1, 0, 0);
->  	if (st->pressure)
->  		input_set_abs_params(input, ABS_PRESSURE, st->pressure_min,
-> -				     0xffff, 0, 0);
-> +				     GRTS_DEFAULT_PRESSURE_MAX, 0, 0);
->  
->  	input_set_capability(input, EV_KEY, BTN_TOUCH);
->  
-
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-devel for v5.14, after the above have been
+> resolved.
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
