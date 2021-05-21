@@ -2,97 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 234ED38CE9A
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 22:06:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6A4B38CF2F
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 22:40:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232459AbhEUUHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 16:07:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33272 "EHLO
+        id S229519AbhEUUmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 16:42:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232060AbhEUUHe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 16:07:34 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28378C06138B
-        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 13:06:11 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id p6so11555586plr.11
-        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 13:06:11 -0700 (PDT)
+        with ESMTP id S229623AbhEUUmU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 16:42:20 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F47FC061574
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 13:40:57 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id u7so3036039plq.4
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 13:40:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=H+EzPeqojY+93vhWBpwnSXdlNpKsgPbELWuAjK3Y1rE=;
-        b=ZKsR/+AaHphumaUwqUjftBqQdZqI0fzRobWZ89qGnV4MsIOLuKgdPwcj4rFcxggq4g
-         jXLviS+mwisd5u8tm5ff1KmYPgd7yeqwP5quL6XcMjPQGuoBiIU2QAnOD70t1FBmAiTz
-         1k1BTysLubdKWE54yPxyxqIru7BueK4OI/B7A=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=LifjFlNevEXf+WuKNhiQrz3mqG/Jd9zYX3dDwRq7SGk=;
+        b=WCaKMjCsxiNGPZhMpMhVU+dPqE4x64hY/0Q7f9YFw6kUF+nlWrIZRB4A0iTRNNISbp
+         teG/wWKXFuvqlcTXIzIseoGpjJd/fWkFMTQDHv1srK6OEtQtYOYI34Vk0HeF7llHWa0e
+         d8SLV49fKteEREhUmvRzjV0I+Z8HEDPO/n6Q6nWUOpyjiX/aC5ZsdOJlrSWuQh29ms40
+         HTEfArJFtY8IMdY/ooVcNzb31so73/cXORp9jXo34QFD+NuPICLBsFXNvDlQZeYlUwCC
+         7XQYZbN9T4ziR1vFqKfMcjhKewTYLCVJIRQte5lCUSglut+uCKf2tSM5bzpl7fK1xgR4
+         4x2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=H+EzPeqojY+93vhWBpwnSXdlNpKsgPbELWuAjK3Y1rE=;
-        b=PfmwIHx3vzwX0g54yipNgay23NmwtvLMDl2wwFCCLgO6ca/qph6Fay8EuUrY4QX6qE
-         +0XMQy3hpVqpoeVrd6yx4jcXv/gU+DryaDdWe/T4oTCNbjTTnDbJNo81kn5pWamQr9C2
-         f2Kc98UoY39pED1Wwe2PBh/3qTFPH5b7S8kBqGd5ZfMZmWI46uvsDXWmYcT0339bD6LS
-         NSvCJ+Lo6FLJ6xnshSaqalgNvF2Zh+ofBTIAPcQ2lBpinwBlzmMQG4CTlJ5CAAdRphO+
-         XYK4F0alQiJZlnkU23En35cyelHhdkWXdiQluQK9p3L278wm8naBomTutmKrXM5fuHMS
-         3IMQ==
-X-Gm-Message-State: AOAM531u3NjGLvd0N9eJJxKC2/pDVcpssvA/YbskYUT8CIEKlvAQx71k
-        aB+UzEocuqtnk/jsXjQJHR988w==
-X-Google-Smtp-Source: ABdhPJysX2rMH4lavP2VsfLuOs5VOzf6pzH8FUyZzMjCMiAkn90xzeiXrvFoo1P5k6r8OnEA7EDUVg==
-X-Received: by 2002:a17:902:f704:b029:f4:228d:4dca with SMTP id h4-20020a170902f704b02900f4228d4dcamr14024654plo.26.1621627570751;
-        Fri, 21 May 2021 13:06:10 -0700 (PDT)
-Received: from sujitka-glaptop.hsd1.ca.comcast.net ([2601:646:8e00:b2f0:22bd:8c3f:584d:d265])
-        by smtp.gmail.com with ESMTPSA id z19sm4550614pjn.0.2021.05.21.13.06.09
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=LifjFlNevEXf+WuKNhiQrz3mqG/Jd9zYX3dDwRq7SGk=;
+        b=VmUpVuVSwTRT1iowUY+WcONYiQ5ospb9uhmBtb1ULsGltV0RB3dLaoAO1cmD8kc3kZ
+         sqUgbe66LcDTwzkl1bugwLlyXtL/8uk5HzSToJ0fhx2YUVvOtpqH0IKupEDixtAOYS3G
+         lFzbKQSBHsuBHewzMP0/j5zCIZ7vWXwxXPgp8sak+7KJkg+LpY3kMrQkMklN1jHEbJ3J
+         7dY6GLmgO2Mbb3ysusbzPYNHELk++Zgsz0cWeYEHrcaKH6LdN0LT6JIclgZHC+40u1Hw
+         XAkk7jhOlUtVOWgxNmTsAME4DPTFbrlcp3yf1ndoSw5CutW0IzKZMxhvXT7FfK25Yheh
+         J06g==
+X-Gm-Message-State: AOAM530PetSIweqi+jQKo+k0jymb1T4umAb8P/us2hzE60Glt0JZ9RGL
+        cziASrJyFza5Wk0D24oxyozw9Bv559rDmw==
+X-Google-Smtp-Source: ABdhPJxoCN0sZ9yBL76WTujQukSyTuxAZKG4LMMR29tS9iSt6lYMoSjrF+QXe4OKP2DdBPh2ERv24w==
+X-Received: by 2002:a17:902:34f:b029:ef:3d14:1c27 with SMTP id 73-20020a170902034fb02900ef3d141c27mr14083008pld.65.1621629656594;
+        Fri, 21 May 2021 13:40:56 -0700 (PDT)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id d10sm4878429pfo.65.2021.05.21.13.40.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 May 2021 13:06:10 -0700 (PDT)
-From:   Sujit Kautkar <sujitka@chromium.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Sibi Sankar <sibis@codeaurora.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sujit Kautkar <sujitka@chromium.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/2] arm64: dts: qcom: sc7180: trogdor: SD-card GPIO pin set bias-pull up
-Date:   Fri, 21 May 2021 13:05:29 -0700
-Message-Id: <20210521130511.v1.2.I52f30ddfe62041b7e6c3c362f0ad8f695ac28224@changeid>
-X-Mailer: git-send-email 2.31.1.818.g46aad6cb9e-goog
-In-Reply-To: <20210521200529.1991729-1-sujitka@chromium.org>
-References: <20210521200529.1991729-1-sujitka@chromium.org>
+        Fri, 21 May 2021 13:40:55 -0700 (PDT)
+Date:   Fri, 21 May 2021 14:40:53 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: k3-r5f: Update bindings
+ for AM64x SoCs
+Message-ID: <20210521204053.GA1011163@xps15>
+References: <20210327143117.1840-1-s-anna@ti.com>
+ <20210327143117.1840-2-s-anna@ti.com>
+ <8948a30c-1a2f-1fb0-05bb-37be9c02c5d5@ti.com>
+ <ff8edffb-d926-9641-740b-2c292139aa07@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ff8edffb-d926-9641-740b-2c292139aa07@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Trogdor board does not have external pull-up for cd-gpio. Set this pin
-to internal pull-up for sleep config to avoid frequent regulator toggle
-events.
+Hi suman,
 
-This change is aligned with Qualcomm's DT change posted at:
-https://patchwork.kernel.org/patch/11675347/
+On Wed, May 12, 2021 at 09:47:44PM -0500, Suman Anna wrote:
+> Hi Rob,
+> 
+> On 4/19/21 8:55 AM, Suman Anna wrote:
+> > Hi Rob,
+> > 
+> > On 3/27/21 9:31 AM, Suman Anna wrote:
+> >> The K3 AM64x SoCs have two dual-core Arm R5F clusters/subsystems, with
+> >> 2 R5F cores each, both in the MAIN voltage domain.
+> >>
+> >> These clusters are a revised IP version compared to those present on
+> >> J721E and J7200 SoCs, and supports a new "Single-CPU" mode instead of
+> >> LockStep mode. Update the K3 R5F remoteproc bindings with the compatible
+> >> info relevant to these R5F clusters/subsystems on K3 AM64x SoCs.
+> >>
+> >> Signed-off-by: Suman Anna <s-anna@ti.com>
+> >> ---
+> >> v2: No changes
+> >>
+> >>  .../bindings/remoteproc/ti,k3-r5f-rproc.yaml  | 31 ++++++++++++++++---
+> > 
+> > Looks like this patch has fallen through the cracks, can you please review and
+> > give your ack for this patch so that Bjorn can pick up the series for 5.13?
+> 
+> Gentle reminder, do you have any comments on this patch. Appreciate your ack so
+> that we can get this in for 5.14?
 
-Signed-off-by: Sujit Kautkar <sujitka@chromium.org>
----
+If memory serves me well Rob indicated that he would not review or comment on
+bindings related to multi-core remote processors.  On the flip side he also
+mentioned that he would not object to their presence.  And since this is an
+increment to an existing binding rather than a new one, I think it is fair for
+us to pick it up.  
 
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Rob - please intervene if my recollections are not accurate and accept my honest
+apologies.  Otherwise: 
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index d128a0ed6ad3a..330deb4967ca2 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -1638,7 +1638,7 @@ pinconf-data {
- 
- 		pinconf-sd-cd {
- 			pins = "gpio69";
--			bias-disable;
-+			bias-pull-up;
- 			drive-strength = <2>;
- 		};
- 	};
--- 
-2.31.1.818.g46aad6cb9e-goog
+Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>  
 
+> 
+> regards
+> Suman
+> 
+> > 
+> > regards
+> > Suman
+> > 
+> >>  1 file changed, 26 insertions(+), 5 deletions(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
+> >> index d905d614502b..130fbaacc4b1 100644
+> >> --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
+> >> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
+> >> @@ -14,8 +14,12 @@ description: |
+> >>    processor subsystems/clusters (R5FSS). The dual core cluster can be used
+> >>    either in a LockStep mode providing safety/fault tolerance features or in a
+> >>    Split mode providing two individual compute cores for doubling the compute
+> >> -  capacity. These are used together with other processors present on the SoC
+> >> -  to achieve various system level goals.
+> >> +  capacity on most SoCs. These are used together with other processors present
+> >> +  on the SoC to achieve various system level goals.
+> >> +
+> >> +  AM64x SoCs do not support LockStep mode, but rather a new non-safety mode
+> >> +  called "Single-CPU" mode, where only Core0 is used, but with ability to use
+> >> +  Core1's TCMs as well.
+> >>  
+> >>    Each Dual-Core R5F sub-system is represented as a single DTS node
+> >>    representing the cluster, with a pair of child DT nodes representing
+> >> @@ -33,6 +37,7 @@ properties:
+> >>        - ti,am654-r5fss
+> >>        - ti,j721e-r5fss
+> >>        - ti,j7200-r5fss
+> >> +      - ti,am64-r5fss
+> >>  
+> >>    power-domains:
+> >>      description: |
+> >> @@ -56,11 +61,12 @@ properties:
+> >>  
+> >>    ti,cluster-mode:
+> >>      $ref: /schemas/types.yaml#/definitions/uint32
+> >> -    enum: [0, 1]
+> >>      description: |
+> >>        Configuration Mode for the Dual R5F cores within the R5F cluster.
+> >> -      Should be either a value of 1 (LockStep mode) or 0 (Split mode),
+> >> -      default is LockStep mode if omitted.
+> >> +      Should be either a value of 1 (LockStep mode) or 0 (Split mode) on
+> >> +      most SoCs (AM65x, J721E, J7200), default is LockStep mode if omitted;
+> >> +      and should be either a value of 0 (Split mode) or 2 (Single-CPU mode)
+> >> +      on AM64x SoCs, default is Split mode if omitted.
+> >>  
+> >>  # R5F Processor Child Nodes:
+> >>  # ==========================
+> >> @@ -97,6 +103,7 @@ patternProperties:
+> >>            - ti,am654-r5f
+> >>            - ti,j721e-r5f
+> >>            - ti,j7200-r5f
+> >> +          - ti,am64-r5f
+> >>  
+> >>        reg:
+> >>          items:
+> >> @@ -198,6 +205,20 @@ patternProperties:
+> >>  
+> >>      unevaluatedProperties: false
+> >>  
+> >> +if:
+> >> +  properties:
+> >> +    compatible:
+> >> +      enum:
+> >> +        - ti,am64-r5fss
+> >> +then:
+> >> +  properties:
+> >> +    ti,cluster-mode:
+> >> +      enum: [0, 2]
+> >> +else:
+> >> +  properties:
+> >> +    ti,cluster-mode:
+> >> +      enum: [0, 1]
+> >> +
+> >>  required:
+> >>    - compatible
+> >>    - power-domains
+> >>
+> > 
+> 
