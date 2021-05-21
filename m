@@ -2,99 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCC8538CFD7
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 23:23:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDFFB38CFE6
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 23:29:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229956AbhEUVYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 17:24:45 -0400
-Received: from youngberry.canonical.com ([91.189.89.112]:56523 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229988AbhEUVYi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 17:24:38 -0400
-Received: from mail-ua1-f69.google.com ([209.85.222.69])
-        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1lkCbw-00019E-LD
-        for devicetree@vger.kernel.org; Fri, 21 May 2021 21:23:12 +0000
-Received: by mail-ua1-f69.google.com with SMTP id b34-20020ab014250000b02901eb696c5fbaso7991838uae.22
-        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 14:23:12 -0700 (PDT)
+        id S229794AbhEUVao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 17:30:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52266 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229624AbhEUVao (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 17:30:44 -0400
+Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B325C061574
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 14:29:20 -0700 (PDT)
+Received: by mail-oo1-xc2d.google.com with SMTP id j26-20020a4adf5a0000b029020eac899f76so3100738oou.7
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 14:29:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=zwLYpS9p+8pJmcHuXNBolppRUtNsTbIPmp+o6UQN8KY=;
+        b=QtSBZYDh6GXubEPHb5E6TM+CGkEttGlt5INDzQJsT5WtE/0MFFvJhO7gbj3+Q4VeqP
+         Gra4TjrLaTsgPaETf4ffiTizTTRX6QPUdE9WKtw9XQoyJ6h70L7k1R6T81ghVNTBziD7
+         R3uada59gAbc3/ENK6NowtwkdkjnmhqV9mfXemPzQJzZDnM7lBSpB/4csFqbGTLhO+Xx
+         LxCryxs3M7PUB1zri84mcdXv5MDouCR5BQ0ymA5H2+N7NhciVn0NdFe8GY0fT2Karlmq
+         ysO9amHItoswmTqNRVDqi2LLuIWx8bhO6LQHf6iz32OyhKvY5PzoYvlD/hZtNaNE07ij
+         BPwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=fROMD6BYmf3h06oRhpwPZGf5qSe1v9Tji/Vc0NCzaJs=;
-        b=txvYkIpOa7aaUXZxZxQnBLx/+GyappqEk6YSdZxytKGU4Dmn2WPrC41frOPk1xx3TU
-         gxIUZdpK8+3uIlfRgnIQ3KmafR7rftWLwszWyw0gVtOmLwBiI0zudxY8WLISfitbtZdf
-         SI9D+D5+yfbZLGD7Dm642eDZZ5jroVYzegJlcCDI4Loodsii93PCsB/0r46FaK5PnHiV
-         gIw3QJdryBrlkdvDShycTDbQHJANbXGm3fFn4LeLJuiHmVcvQb3bXRPuDcF/1OBWJfZv
-         o62Vm1QjUqoVmCH4/Eh0Myisgr9ksN/7c6uIvDsmLlMFphdAC23GZZAw7i4hfcwzky65
-         BkhA==
-X-Gm-Message-State: AOAM531CbdA4lfiHYskJiEC8Wyu7niu/Jb2Ib4RqsMWdgW3sod+rbqBw
-        LsnekQJlh30ndSzb8UV7eKV7FcjNtmCjWKfqRmcpdObM/SXmeJClCumFe8/ky2LHSozvjrmOMS9
-        KA6vSyKrAGyi14f6mud/zDdX7qKm3sZjEDcMKiqM=
-X-Received: by 2002:a67:2c57:: with SMTP id s84mr13304958vss.32.1621632191789;
-        Fri, 21 May 2021 14:23:11 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzAkzP0vI6cvbwXWhDnOK8BKrtLOqAAl/3T8yacV2iIbe5gMjJbANDaWCWgPJfJiZWzKX/R1Q==
-X-Received: by 2002:a67:2c57:: with SMTP id s84mr13304943vss.32.1621632191648;
-        Fri, 21 May 2021 14:23:11 -0700 (PDT)
-Received: from [192.168.1.4] ([45.237.48.5])
-        by smtp.gmail.com with ESMTPSA id r12sm825043uao.6.2021.05.21.14.23.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 May 2021 14:23:11 -0700 (PDT)
-Subject: Re: [PATCH v1 10/13] memory: tegra30-emc: Use
- devm_tegra_core_dev_init_opp_table()
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        =?UTF-8?Q?Nikola_Milosavljevi=c4=87?= <mnidza@outlook.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Paul Fertser <fercerpav@gmail.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>
-Cc:     linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        Nathan Chancellor <nathan@kernel.org>,
-        linux-clk@vger.kernel.org
-References: <20210520230751.26848-1-digetx@gmail.com>
- <20210520230751.26848-11-digetx@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <670d0d27-867a-7a1a-db58-692429ec30d6@canonical.com>
-Date:   Fri, 21 May 2021 17:23:09 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=zwLYpS9p+8pJmcHuXNBolppRUtNsTbIPmp+o6UQN8KY=;
+        b=XZgmek38bkqmpWGi0gZGO82+HUTb+Puv4YpqcDUkzmw+MOOwtvrGyAjx18muI6AmBx
+         6phS1uHXTfByTioKd88Nw4m+jblt042iistmtpTHE0ql5z+C5TBk+tvNnzTfBAXTLdr7
+         e0hRuaz3KvMk9y+ie4uvVlw4LXTxE8kGdL+C2xH1KP2RAmHcJL3SNQAILiCnwbga1Yg8
+         1ZRxtex4xMqdiK1hBtBDiO5FGY0mV+4hiMm5YtJeSo0YShfRrcMfPCsdJDB2YBzOaRKE
+         tc3hZFQB59OrEC0Zf2H2EwznSB7C8D48Q73PQ/3MSo4v9G4JCG1ZfMNmF3lCydMElM//
+         1A/Q==
+X-Gm-Message-State: AOAM530e1N4XtkWjkyWf3cThwX1ZeEBV0dvfQVHfYxu38PUbVtEFz8J1
+        dDPo3zxNlTIsvG9GIWCLtXvkNA==
+X-Google-Smtp-Source: ABdhPJz3VBmFLhgkEFqyEA6f6S120M4rxSxkrTuWLk6tRMZx5/wC8POdyrzrinnm98ZUs5b0qJv3/A==
+X-Received: by 2002:a4a:4581:: with SMTP id y123mr9685400ooa.33.1621632559601;
+        Fri, 21 May 2021 14:29:19 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id x31sm1531434ota.24.2021.05.21.14.29.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 May 2021 14:29:19 -0700 (PDT)
+Date:   Fri, 21 May 2021 16:29:16 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Krishna Manikandan <mkrishn@codeaurora.org>,
+        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kalyan_t@codeaurora.org,
+        tanmay@codeaurora.org, abhinavk@codeaurora.org,
+        robdclark@gmail.com, vinod.koul@linaro.org, dianders@chromium.org,
+        khsieh@codeaurora.org, robh+dt@kernel.org, sean@poorly.run,
+        robh@kernel.org
+Subject: Re: [PATCH v17 1/4] dt-bindings: msm: disp: add yaml schemas for DPU
+ bindings
+Message-ID: <20210521212916.GG2484@yoga>
+References: <1621592844-6414-1-git-send-email-mkrishn@codeaurora.org>
+ <20210521160029.GA2484@yoga>
+ <CAE-0n53y2_icuPf+j8hd1hGyWRbD2V0Fye+aGSe0M9zku_0DOA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210520230751.26848-11-digetx@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAE-0n53y2_icuPf+j8hd1hGyWRbD2V0Fye+aGSe0M9zku_0DOA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/05/2021 19:07, Dmitry Osipenko wrote:
-> Use common devm_tegra_core_dev_init_opp_table() helper for the OPP table
-> initialization.
+On Fri 21 May 15:51 CDT 2021, Stephen Boyd wrote:
+
+> Quoting Bjorn Andersson (2021-05-21 09:00:29)
+> > On Fri 21 May 05:27 CDT 2021, Krishna Manikandan wrote:
+> > > diff --git a/Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml b/Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml
+> > [..]
+> > > +      ports:
+> > > +        $ref: /schemas/graph.yaml#/properties/ports
+> > > +        description: |
+> > > +          Contains the list of output ports from DPU device. These ports
+> > > +          connect to interfaces that are external to the DPU hardware,
+> > > +          such as DSI, DP etc. Each output port contains an endpoint that
+> > > +          describes how it is connected to an external interface.
+> > > +
+> > > +        properties:
+> > > +          port@0:
+> > > +            $ref: /schemas/graph.yaml#/properties/port
+> > > +            description: DPU_INTF1 (DSI1)
+> > > +
+> > > +          port@2:
+> > > +            $ref: /schemas/graph.yaml#/properties/port
+> > > +            description: DPU_INTF0 (DP)
+> >
+> > Why is port@0 INTF1 and why is port@2 INTF0? In the binding you're
+> > translating the two ports that are described are 0 and 1, representing
+> > INTF1 and INTF2, or DSI1 and DSI2, respectively.
+> >
+> > Further more, I have a need for somehow describing the pairing of 4 DP
+> > INTFs (INTF 0, 3, 4 and 5) and how they are connected to the 3+1 DP+eDP
+> > controllers.
+> >
+> > Downstream this seems to be handled by adding cell-index to the DP
+> > controllers and then matching that against the numbering in the driver's
+> > INTF array. But rather than adding cell-index to map this, can't we
+> > define that the port index is the INTF-number here?
+> >
+> >
+> > This would obviously break compatibility with existing DTBs, but we
+> > could start by doing it selectively for the new compatibles, fix up the
+> > existing dts files and then drop the selective application after 1 or 2
+> > LTS releases.
 > 
-> Tested-by: Peter Geis <pgwipeout@gmail.com> # Ouya T30
-> Tested-by: Matt Merhar <mattmerhar@protonmail.com> # Ouya T30
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  drivers/memory/tegra/tegra30-emc.c | 48 +++---------------------------
->  1 file changed, 4 insertions(+), 44 deletions(-)
-> 
+> I requested that the existing DT not change a while ago when the DP
+> interface was being added to this binding. Is it possible to figure out
+> what interface it is that the port is for from the binding? It feels
+> like the problem is that the driver wants to look through the graph and
+> make connectors for each one, but it doesn't know what type of connector
+> to make.
 
+Today there's a single priv->dp pointer which is initialized as the one
+and only displayport controller component is bound.
+_dpu_kms_set_encoder_mode() has no knowledge about which interface this
+single controller is attached to, so dpu_encoder_setup_display() will
+always just pick INTF_DP index 0.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+So in its current form if your single DP port isn't sitting on the
+platform's first DP INTF you need to hack dpu_hw_catalog and remove the
+previous ones.
 
+But with my desire to reuse the DP controller code for eDP, and the fact
+that I have 3 DP controllers in my laptop we need something more.
 
-Best regards,
-Krzysztof
+But after considering my proposal further I realized that it is too
+static for my use case anyway. SC8180x has INTF 0 and 4 are wired to
+the DP controllers associated with the two primary USB ports and then
+INTF 3 is dynamically switched between them for MST purposes.
+
+So using port indices would prevent me from doing this dynamic dance.
+
+Regards,
+Bjorn
