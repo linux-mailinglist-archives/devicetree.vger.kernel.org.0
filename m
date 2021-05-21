@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD0A238C5B3
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 13:27:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1A1F38C5AF
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 13:27:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235015AbhEUL2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 07:28:45 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:39238 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234821AbhEUL2a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 07:28:30 -0400
+        id S234753AbhEUL2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 07:28:33 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:37757 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234767AbhEUL2Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 May 2021 07:28:25 -0400
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1621596427; h=References: In-Reply-To: Message-Id: Date:
+ s=smtp; t=1621596422; h=References: In-Reply-To: Message-Id: Date:
  Subject: Cc: To: From: Sender;
- bh=u0y4HQUfFt4dARBk/Is99x1H8Dqbx452Pw4HODHGHcg=; b=J65Ag7hex6IqxytQ09XcfX0uEi0fmlUHjjPOgM/sO9M4AnOTTIOmXDYGQYm0YXbPecaxvujI
- 2LUc0yUjlpyW5jEFC0DBXwADjyDiyCSR2TqLMcM/JPXAH7vq3OtHcrfXBR4mxVxhaFWU3+ua
- 8hfuzRExoSMPxxFN106i/Vy8GHc=
-X-Mailgun-Sending-Ip: 198.61.254.9
+ bh=yORL87zvs/JIbf2DwMLuAJGpDpo+Yql7ebK1r5sG3kM=; b=FDOfAwS7QZ4eCyXnMuYzcsQGxhC81VwLscAsKGXb90rzJibOo0JW4HhoUlQ1e71kCTQKmK9o
+ 46ZPivQwxQ/4s8e7PPHlgxdO/vCJDZIsW4HO+sYi9FnY9yKD3I2qVVCvgvhGPzRPd/q4OvGT
+ PFanhcYrspJeVxHzve6/S2FEFlY=
+X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 60a798f85f788b52a5ca4b6f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 21 May 2021 11:26:48
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 60a799010d60c09896712434 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 21 May 2021 11:26:57
  GMT
 Sender: mkshah=codeaurora.org@mg.codeaurora.org
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id E025CC43143; Fri, 21 May 2021 11:26:48 +0000 (UTC)
+        id C5360C4338A; Fri, 21 May 2021 11:26:56 +0000 (UTC)
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
         aws-us-west-2-caf-mail-1.web.codeaurora.org
 X-Spam-Level: 
@@ -37,9 +37,9 @@ Received: from mkshah-linux.qualcomm.com (unknown [202.46.22.19])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
         (Authenticated sender: mkshah)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8476CC433F1;
-        Fri, 21 May 2021 11:26:44 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 8476CC433F1
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D57C1C43217;
+        Fri, 21 May 2021 11:26:52 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D57C1C43217
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=mkshah@codeaurora.org
 From:   Maulik Shah <mkshah@codeaurora.org>
@@ -49,9 +49,9 @@ Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         agross@kernel.org, dianders@chromium.org, linux@roeck-us.net,
         rnayak@codeaurora.org, lsrao@codeaurora.org,
         Maulik Shah <mkshah@codeaurora.org>, devicetree@vger.kernel.org
-Subject: [PATCH v8 3/5] arm64: dts: qcom: sc7180: Enable SoC sleep stats
-Date:   Fri, 21 May 2021 16:56:09 +0530
-Message-Id: <1621596371-26482-4-git-send-email-mkshah@codeaurora.org>
+Subject: [PATCH v8 5/5] arm64: dts: qcom: sc7280: Enable SoC sleep stats
+Date:   Fri, 21 May 2021 16:56:11 +0530
+Message-Id: <1621596371-26482-6-git-send-email-mkshah@codeaurora.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1621596371-26482-1-git-send-email-mkshah@codeaurora.org>
 References: <1621596371-26482-1-git-send-email-mkshah@codeaurora.org>
@@ -66,25 +66,24 @@ Also update the reg size of aoss_qmp device to 0x400.
 
 Cc: devicetree@vger.kernel.org
 Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 7 ++++++-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 7 ++++++-
  1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 6228ba2..889d04d 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -3215,7 +3215,7 @@
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 2cc4785..47afca8 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -827,7 +827,7 @@
  
  		aoss_qmp: power-controller@c300000 {
- 			compatible = "qcom,sc7180-aoss-qmp";
+ 			compatible = "qcom,sc7280-aoss-qmp";
 -			reg = <0 0x0c300000 0 0x100000>;
 +			reg = <0 0x0c300000 0 0x400>;
- 			interrupts = <GIC_SPI 389 IRQ_TYPE_EDGE_RISING>;
- 			mboxes = <&apss_shared 0>;
- 
-@@ -3223,6 +3223,11 @@
+ 			interrupts-extended = <&ipcc IPCC_CLIENT_AOP
+ 						     IPCC_MPROC_SIGNAL_GLINK_QMP
+ 						     IRQ_TYPE_EDGE_RISING>;
+@@ -838,6 +838,11 @@
  			#power-domain-cells = <1>;
  		};
  
