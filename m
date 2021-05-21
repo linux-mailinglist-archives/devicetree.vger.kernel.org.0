@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EFCE38C14E
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 10:06:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1219638C152
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 10:06:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232744AbhEUIH7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 04:07:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39574 "EHLO
+        id S235992AbhEUIII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 04:08:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229807AbhEUIH7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 04:07:59 -0400
+        with ESMTP id S235452AbhEUIIH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 04:08:07 -0400
 Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0862C061574
-        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 01:06:36 -0700 (PDT)
-Received: by mail-io1-xd2a.google.com with SMTP id k132so5683580iof.4
-        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 01:06:36 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FC71C061763
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 01:06:44 -0700 (PDT)
+Received: by mail-io1-xd2a.google.com with SMTP id e17so6756979iol.7
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 01:06:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=RT+JgsYt45829ZHd2BYc40XqO99OHa9pHrzKSSD5j9A=;
-        b=kLDJ66UxJgXBhTlXqQcr4bzo/A2l5Q8HqghhVGTZn1NhjtsLvIntyyuByjyK72XJiV
-         EguZV7WiHzjL9tIOuUpIheqlo/zIR7fCiXRdRsiM9XgCDiG83jwTK8jfkfWII0aiEc+B
-         XLW4AK2y3GYblWpuR0WfCpTNh59ZKDqfw+BUVoJ2NPRJ9b+p4M7w32T5SIS0ZEyI8iTF
-         uZuzVOQ6hRqrSmIIzBC73CSBQ6vQkLdiJzGnB1y4VMW6hz66G7NvqwOFP97s21DQ5hvw
-         VPRizS0txzrgGhqLjoUKanc3unVj53BjOFJS5QE2/1UNWd370D6MHF3o4TDKN7Pdd7uN
-         yxAA==
+        bh=6v2xJJNz+8HWwlmw70n+P9Pe4twee3C0WXLKPwPDcwQ=;
+        b=toHvOupgQlvnzTBQKiq/TXqrmEEJULGhFpWLVs2IjH/4pc+gBTPWSyg2tgw0Cc9UgP
+         5+xi9qDR2o9BROfVhs3/pUtTnk25OV3Ss34DTIGPFY/is9wTapmxNHYdq8Ih4iNeeo96
+         w0Uh6QQrhxyfLaMO/MRMHiEpxwbjN9/x+/eAUC0vArQTdWwu/NXuQpzTSfQCE86C93Zf
+         mpI0a//FVwGKmR7jxyU80AEm7Mcx0hXwz2Z5G/Sg/8Gtla2HiE+rJNFabZhICOAjPdJ9
+         wmbSkxFpk5Ygw+ybK21UleGsHjKBUTHsM4wnczGkHTYJ6oK0xls1bbblKJXAtU2rKu36
+         t1Ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=RT+JgsYt45829ZHd2BYc40XqO99OHa9pHrzKSSD5j9A=;
-        b=bqRsgHdx+abVuMcC6AUl/6qM0X4ehXrOKLo+bqpXT7y7msOG6aWtvcXrXGgy8y6dqH
-         WPX8Uo8X+hfxSR/CSjI37GRGYBs/2LbFQ3pgp+UATttYP6mve/4vKDPZIvip+A6lvSHz
-         xc/s3ufiV7QhFfQyZjzDgZU3L6T5yz1utSYtkAxpl8SJ2v5vKBPwtkymJlqv+AtOGR2g
-         l3lsT0RhDALL/G/kzw2evjTpk4RJrzQSV6swK7LDph6mO5NDK5+28krAeK+Lj9eWnaUj
-         aWld2VjUvDuMbhLmnWC5+usW4sogi+u8PbGcYg78BzVZRwlK7B/gDX0Gv0PskWpLTRVt
-         5ReQ==
-X-Gm-Message-State: AOAM53209ugTk+i1IzyRZ2PwBvTg6YRhJusAzeEGxKOLvAWah2RyRJNb
-        fcDeNyRjcgrmpTHZ2uIFJr0Q6VE15e4hvp6AlqM/fQ==
-X-Google-Smtp-Source: ABdhPJzli/TP6ekzSUzbblqRjUcznUEUpI63eE2KDBygtddGTKqTJLATk1eu/Q+8mrD9doz5sb8hrdaLnSgi1Azv0y0=
-X-Received: by 2002:a05:6638:3010:: with SMTP id r16mr2626171jak.126.1621584396061;
- Fri, 21 May 2021 01:06:36 -0700 (PDT)
+        bh=6v2xJJNz+8HWwlmw70n+P9Pe4twee3C0WXLKPwPDcwQ=;
+        b=LDtsR8zckNbtMi9I6f2e0td5IYIOhED/IUzUh/nf8zxEEGCEJQaH+0EIwdkww5hl8N
+         0YSkyyGbzljIQO/3vk52+eUBHckaB+h2z+x4k1NmYZ5gXBf2BdTr5qRA6eRGSBv72zRK
+         45jegXTEoPCq483mhWQnHii516NtbVGoDSjaMFaBCHPsnmVvJIhAsTy23p6qDzI3vIwb
+         7DMG4ILrSiPRWljKvyrruyp7BmmCCLBPfRMh1Nvb/smtynfwaiQY71DZKFvZdwPm1kqA
+         hiMDYEdCupSl1ZcsbowGQxnl+McgkDyOwfcBJa+GvWdvZ5scQboyQdFVuAJcivqusbaj
+         kKSA==
+X-Gm-Message-State: AOAM532snK9OdWncIvayirvV8PjuImFOrtn7RnA2nbcrNfzy9NfpOHMr
+        GuEcXhkqVNniSRApRRngvHPumMbY6XSKcdhudcpYNg==
+X-Google-Smtp-Source: ABdhPJzWY2Pt+BD2l8jM9elECsKBOWmC/DwlAg5MCJ39ci2ZGyWFsesNN6ULPRe8pZX7cOH6JaRW0bkog+XrNt6P3XU=
+X-Received: by 2002:a5d:9744:: with SMTP id c4mr10567537ioo.76.1621584403538;
+ Fri, 21 May 2021 01:06:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210521070139.20644-1-irui.wang@mediatek.com> <20210521070139.20644-6-irui.wang@mediatek.com>
-In-Reply-To: <20210521070139.20644-6-irui.wang@mediatek.com>
+References: <20210521070139.20644-1-irui.wang@mediatek.com> <20210521070139.20644-7-irui.wang@mediatek.com>
+In-Reply-To: <20210521070139.20644-7-irui.wang@mediatek.com>
 From:   Tzung-Bi Shih <tzungbi@google.com>
-Date:   Fri, 21 May 2021 16:06:25 +0800
-Message-ID: <CA+Px+wXOKM6y4aHsHTGOiT-VJJ=wzghNDiKSkgaxiefhs+mO3A@mail.gmail.com>
-Subject: Re: [PATCH v4,5/6] media: mtk-vcodec: Add MT8192 H264 venc driver
+Date:   Fri, 21 May 2021 16:06:32 +0800
+Message-ID: <CA+Px+wU+6AtcFLxAHrEXOK=E+LhwM2iX0R0JOgBvv-xzGO=Bcw@mail.gmail.com>
+Subject: Re: [PATCH v4,6/6] media: mtk-vcodec: Support MT8192 H264 4K encoding
 To:     Irui Wang <irui.wang@mediatek.com>
 Cc:     Alexandre Courbot <acourbot@chromium.org>,
         Hans Verkuil <hverkuil-cisco@xs4all.nl>,
@@ -82,9 +82,20 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On Fri, May 21, 2021 at 3:02 PM Irui Wang <irui.wang@mediatek.com> wrote:
->
-> Add MT8192 venc driver's compatible and device private data.
->
-> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+>         fsize->type = V4L2_FRMSIZE_TYPE_STEPWISE;
+> -       fsize->stepwise = mtk_venc_framesizes;
+> +       fsize->stepwise =
+> +               (ctx->dev->enc_capability & MTK_VENC_4K_CAPABILITY_ENABLE) ?
+> +               mtk_venc_4k_framesizes : mtk_venc_hd_framesizes;
 
-Reviewed-by: Tzung-Bi Shih <tzungbi@google.com>
+Use a normal if .. else .. is more readable.
+
+> @@ -1210,6 +1231,9 @@ int mtk_vcodec_enc_ctrls_setup(struct mtk_vcodec_ctx *ctx)
+>  {
+>         const struct v4l2_ctrl_ops *ops = &mtk_vcodec_enc_ctrl_ops;
+>         struct v4l2_ctrl_handler *handler = &ctx->ctrl_hdl;
+> +       const u8 h264_max_level =
+> +               (ctx->dev->enc_capability & MTK_VENC_4K_CAPABILITY_ENABLE) ?
+> +               V4L2_MPEG_VIDEO_H264_LEVEL_5_1 : V4L2_MPEG_VIDEO_H264_LEVEL_4_2;
+
+Again, I would like it to be a normal if .. else ..
