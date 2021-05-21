@@ -2,170 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 44E3438BC15
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 03:57:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B17AA38BC14
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 03:57:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237991AbhEUB7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 21:59:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41920 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237982AbhEUB7J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 21:59:09 -0400
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63BB1C0613CE
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 18:57:46 -0700 (PDT)
-Received: by mail-qt1-x832.google.com with SMTP id g8so6796735qtp.4
-        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 18:57:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=buMCqeHtuyOXGkkJdrNGUndmaHGXH2/Q3tPpeh7Q5cA=;
-        b=hT2PUE9pbBqC/T2A7RTVjvJ1O766UgLwHeIEZJM8DBHFPqQBoZn8X4MrbGh2wDjIak
-         tcQQyXqdxHneAQLSty9xqo4R7U3vAfuTcByWCRfTcpMwL+h+zgGhm6xhwOAmJKTspVh0
-         +Jk+y2ArCyP5RdULKTjGO67uFJblHvxvZe34rNye+fxoYZhbqtvE3cl0VtF1Q66oPrHe
-         DhfKfaugXta1FsdxFteRefQBZKm8Fdh1oQVMScrykfCe/oUgtkssJ0CjqaF3ad+AHMQb
-         VLSPXzoMFg/1m3/Sx+8J+mJNiwPaVoZGETobFfr4tcJdCAn8u9NL7Hh1Max4vfPTsRLX
-         oDug==
+        id S237998AbhEUB7O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 21:59:14 -0400
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:40625 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237991AbhEUB7K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 21:59:10 -0400
+Received: by mail-ot1-f54.google.com with SMTP id 80-20020a9d08560000b0290333e9d2b247so6123149oty.7
+        for <devicetree@vger.kernel.org>; Thu, 20 May 2021 18:57:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=buMCqeHtuyOXGkkJdrNGUndmaHGXH2/Q3tPpeh7Q5cA=;
-        b=uFJjQepDBoTwl1kK1QmR68YdEOAcbpzlHcQLZXeA1E0IerJPMbDh6JNIbZJJe/BDEY
-         GbY+tyX0H6Y6k3GjjyRV/v8UxWndnGhB3kFkJbIKo4Rfe6NQpRiMAmhZEkXVTR8x7B+o
-         2CWQQUxrKGJbs6m1aw+7jH3DpNywvDCJMEwwFZErsFkDSYD+bQ7pS9zm6e4fPTJY+bGm
-         dUL66j0PBkhMEJc79xCVFo/NoxBuje8D762UNewUR5k2pOKi63O8p9qldhBR+kJ31xEi
-         afUaKSh5AHT76f1JIhcom2zBpLRi7wfMjTFT/faOWLZVSc7YROY5XHoraHoRxPZ2Y9Iv
-         n5Cw==
-X-Gm-Message-State: AOAM5322DjJlUnVQfXHU85Xifh7ZDKBK4zh/MO09UHfow0tjgNScs6HY
-        2ua7BQ9ytJyxiM9Jw2pJ41DkzQ==
-X-Google-Smtp-Source: ABdhPJxWquzOWfEHbrPOV1dhDOji1d36s6wy7ft8gWYN4OvhvNr2UmKZNm1DSRqV1XmS5MeSzLDKUg==
-X-Received: by 2002:ac8:5396:: with SMTP id x22mr8556084qtp.170.1621562265469;
-        Thu, 20 May 2021 18:57:45 -0700 (PDT)
-Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.gmail.com with ESMTPSA id p11sm3365920qtl.82.2021.05.20.18.57.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 May 2021 18:57:45 -0700 (PDT)
-Subject: Re: [PATCH v3 16/17] crypto: qce: Defer probing if BAM dma channel is
- not yet initialized
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9L7pKcvqI0fsrhbEbHnXQEuzxdv5ou6NPrrXgllc7Dk=;
+        b=h74irAd7u4L/JrL/DKABIyZMH3lmBjdlIwPITyjOCjND9jQ6d0YfXzuhSy0wmn8TFx
+         QSPVTxiktb27bL76YCGKVB+lZye07735OMhWW3k+rgaXW4an9LvF6Tgi+oERYNuoPEPk
+         H3kSmNaU6bowmtANJLT6YazRS80LQamD0qbwR+Ijfi5y1HysbqXhjlUrUNLuTOfLvgcA
+         2gbPCf8vSWTIM5Zm11BxuziPqky7cPpvun5/ZNNvE2LUOaRppC8qM6L7bZu5Cb7yY9aE
+         45MISxJ/Cq5lY/1l5UvkW1NWihQ1gqTS9Mhgy6CX4uEWVqjDhaTIiksX+AIaYSs4fuxa
+         dX1g==
+X-Gm-Message-State: AOAM533v5VmfEQEdCVAzUdQG7WZHAaqrgR6iNKc404uVPRhFLbkFgY9m
+        GunL3CLx7K+AZn53q4xNUg==
+X-Google-Smtp-Source: ABdhPJyaGIey5VcnOZaNjzuo/5KXRneEgguzjndJceFStXPXWdk4ti/MCiRd7D2fvjVBthWd77/V9g==
+X-Received: by 2002:a9d:5a12:: with SMTP id v18mr5900711oth.306.1621562267864;
+        Thu, 20 May 2021 18:57:47 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id l9sm913590oou.43.2021.05.20.18.57.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 May 2021 18:57:47 -0700 (PDT)
+Received: (nullmailer pid 2494214 invoked by uid 1000);
+        Fri, 21 May 2021 01:57:46 -0000
+Date:   Thu, 20 May 2021 20:57:46 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Amit Kumar Mahapatra <akumarma@xilinx.com>,
+        devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Srinivas Goud <sgoud@xilinx.com>,
+        Siva Durga Prasad Paladugu <sivadur@xilinx.com>,
+        Michal Simek <monstr@monstr.eu>, linux-mtd@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bhupesh.linux@gmail.com
-References: <20210519143700.27392-1-bhupesh.sharma@linaro.org>
- <20210519143700.27392-17-bhupesh.sharma@linaro.org>
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-Message-ID: <ca0e576d-0231-d1a8-06c5-e85f0706c993@linaro.org>
-Date:   Thu, 20 May 2021 21:57:38 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Richard Weinberger <richard@nod.at>,
+        Helmut Grohne <helmut.grohne@intenta.de>
+Subject: Re: [PATCH v20 02/19] dt-binding: memory: pl353-smc: Document the
+ range property
+Message-ID: <20210521015746.GA2494157@robh.at.kernel.org>
+References: <20210519182636.1110080-1-miquel.raynal@bootlin.com>
+ <20210519182636.1110080-3-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-In-Reply-To: <20210519143700.27392-17-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210519182636.1110080-3-miquel.raynal@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 5/19/21 10:36 AM, Bhupesh Sharma wrote:
-> Since the Qualcomm qce crypto driver needs the BAM dma driver to be
-> setup first (to allow crypto operations), it makes sense to defer
-> the qce crypto driver probing in case the BAM dma driver is not yet
-> probed.
+On Wed, 19 May 2021 20:26:19 +0200, Miquel Raynal wrote:
+> The ranges property is missing in the description while actually used in
+> the example. This property is actually needed, so mention it.
 > 
-> Move the code leg requesting dma channels earlier in the
-> probe() flow. This fixes the qce probe failure issues when both qce
-> and BMA dma are compiled as static part of the kernel.
-
-So, I do not understand what issue you faced with the current code 
-ordering. When bam dma is not initialized, qce_dma_request will fail and
-rest the error path kicks in.
-To me the correct ordering for enabling a driver is to turn on clocks 
-and interconnect before requesting for dma. Unless, there is a specific 
-issue, I will ask for that order to be maintained.
-
-Warm Regards
-Thara
-
-> 
-> Cc: Thara Gopinath <thara.gopinath@linaro.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Andy Gross <agross@kernel.org>
-> Cc: Herbert Xu <herbert@gondor.apana.org.au>
-> Cc: David S. Miller <davem@davemloft.net>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: dmaengine@vger.kernel.org
-> Cc: linux-clk@vger.kernel.org
-> Cc: linux-crypto@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: bhupesh.linux@gmail.com
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
->   drivers/crypto/qce/core.c | 16 +++++++++-------
->   1 file changed, 9 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
-> index 8b3e2b4580c2..207221d5b996 100644
-> --- a/drivers/crypto/qce/core.c
-> +++ b/drivers/crypto/qce/core.c
-> @@ -218,6 +218,14 @@ static int qce_crypto_probe(struct platform_device *pdev)
->   	if (ret < 0)
->   		goto err_out;
->   
-> +	/* qce driver requires BAM dma driver to be setup first.
-> +	 * In case the dma channel are not set yet, this check
-> +	 * helps use to return -EPROBE_DEFER earlier.
-> +	 */
-> +	ret = qce_dma_request(qce->dev, &qce->dma);
-> +	if (ret)
-> +		return ret;
-> +
->   	qce->mem_path = devm_of_icc_get(qce->dev, "memory");
->   	if (IS_ERR(qce->mem_path))
->   		return dev_err_probe(dev, PTR_ERR(qce->mem_path),
-> @@ -269,10 +277,6 @@ static int qce_crypto_probe(struct platform_device *pdev)
->   			goto err_clks_iface;
->   	}
->   
-> -	ret = qce_dma_request(qce->dev, &qce->dma);
-> -	if (ret)
-> -		goto err_clks;
-> -
->   	ret = qce_check_version(qce);
->   	if (ret)
->   		goto err_clks;
-> @@ -287,12 +291,10 @@ static int qce_crypto_probe(struct platform_device *pdev)
->   
->   	ret = qce_register_algs(qce);
->   	if (ret)
-> -		goto err_dma;
-> +		goto err_clks;
->   
->   	return 0;
->   
-> -err_dma:
-> -	qce_dma_release(&qce->dma);
->   err_clks:
->   	clk_disable_unprepare(qce->bus);
->   err_clks_iface:
+>  .../devicetree/bindings/memory-controllers/pl353-smc.txt         | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-
+Reviewed-by: Rob Herring <robh@kernel.org>
