@@ -2,41 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 734C838C35C
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 11:38:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B7BC38C37A
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 11:40:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230358AbhEUJkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 05:40:06 -0400
-Received: from muru.com ([72.249.23.125]:58448 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229457AbhEUJkF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 May 2021 05:40:05 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 2BA2080C0;
-        Fri, 21 May 2021 09:38:47 +0000 (UTC)
-Date:   Fri, 21 May 2021 12:38:39 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Dario Binacchi <dariobin@libero.it>
-Cc:     linux-kernel@vger.kernel.org,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: osd3358-sm-red: group in the same phandle all
- its properties
-Message-ID: <YKd/n2AAy+OFe4Bp@atomide.com>
-References: <20210428164026.17850-1-dariobin@libero.it>
+        id S236819AbhEUJmJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 05:42:09 -0400
+Received: from lucky1.263xmail.com ([211.157.147.131]:50470 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236802AbhEUJmH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 05:42:07 -0400
+Received: from localhost (unknown [192.168.167.32])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 63FC9BA13F;
+        Fri, 21 May 2021 17:40:31 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED: 0
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from localhost.localdomain (unknown [124.126.19.250])
+        by smtp.263.net (postfix) whith ESMTP id P30810T139673781389056S1621590030498168_;
+        Fri, 21 May 2021 17:40:30 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <e63f602441e10634e28226d0f633528c>
+X-RL-SENDER: zhaoxiao@uniontech.com
+X-SENDER: zhaoxiao@uniontech.com
+X-LOGIN-NAME: zhaoxiao@uniontech.com
+X-FST-TO: robh+dt@kernel.org
+X-RCPT-COUNT: 9
+X-SENDER-IP: 124.126.19.250
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   zhaoxiao <zhaoxiao@uniontech.com>
+To:     robh+dt@kernel.org, tsbogend@alpha.franken.de
+Cc:     maoxiaochuan@loongson.cn, jiaxun.yang@flygoat.com,
+        zhangqing@loongson.cn, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        zhaoxiao <zhaoxiao@uniontech.com>
+Subject: [PATCH 0/5] mips: dts: loongson: fix DTC unit name warnings 
+Date:   Fri, 21 May 2021 17:40:23 +0800
+Message-Id: <cover.1621586643.git.zhaoxiao@uniontech.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210428164026.17850-1-dariobin@libero.it>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Dario Binacchi <dariobin@libero.it> [210428 19:40]:
-> Having a single phandle reference for rtc0, mmc0 and am335x_pinmux makes
-> the DTS well-ordered and therefore more readable.
+*** BLURB HERE ***
 
-Applying into omap-for-v5.14/dt thanks.
+zhaoxiao (5):
+  mips: dts: loongson: fix DTC unit name warnings
+  mips: dts: loongson: fix DTC unit name warnings
+  mips: dts: loongson: fix DTC unit name warnings
+  mips: dts: loongson: fix DTC unit name warnings
+  mips: dts: loongson: fix DTC unit name warnings
 
-Tony
+ arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi       | 2 +-
+ arch/mips/boot/dts/loongson/loongson64g-package.dtsi     | 4 ++--
+ arch/mips/boot/dts/loongson/loongson64v_4core_virtio.dts | 2 +-
+ arch/mips/boot/dts/loongson/ls7a-pch.dtsi                | 2 +-
+ arch/mips/boot/dts/loongson/rs780e-pch.dtsi              | 2 +-
+ 5 files changed, 6 insertions(+), 6 deletions(-)
+
+-- 
+2.20.1
+
+
+
