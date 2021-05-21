@@ -2,118 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B1C538C697
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 14:33:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18BCE38C6D9
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 14:50:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233631AbhEUMfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 08:35:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43494 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231946AbhEUMfP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 08:35:15 -0400
-Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7681EC061574
-        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 05:33:51 -0700 (PDT)
-Received: by mail-il1-x12c.google.com with SMTP id j30so18061635ila.5
-        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 05:33:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tpO6BIafvD2hOCNXTJTJbtzAGKrAMZzzslSK25ZL87w=;
-        b=O0c08Mfv2KTImi7bgzIVhWaZMR7FSlJWcaqlFhMKrnjMPnoCz7h+I/1brPipWvfsDj
-         IWZqHVGAg+LfkeBYcm3sbhYZqjSiBoQ7k01GVTuKsrLB+pZCXtQM7HwCsCfI6+9bzoS7
-         TUVoyenbOVEedRMxaPySsKW2YXfG4wzAWVsLULlUkL1w7hghJGu+EP3pvJdrPJmDhZu1
-         ed06B+6r3NK6eMphIIu3gX+B5BlVfTc3wgelFxwAsdHrt5TUSWvwX+B3G0RU0H3tVdY2
-         WwDLrv1IYiNm6FrQLkJ//hxJxvsPS9xSDGpF7DRu3OB1+XH+YIZs5aKcan2tQfwnRF51
-         YgXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tpO6BIafvD2hOCNXTJTJbtzAGKrAMZzzslSK25ZL87w=;
-        b=R1ORiAgwbRg30TksLst5fUzSa+R2iAXaW2aPmr+cxmILo4hL2QrZldDNamy9/4WIrF
-         zli4xiUSEKkft7MVSB3TQUUSurYE4OcBjDdZs/av2Ws5BXFsfcNnVoUOF2kI9ta26Yww
-         vIOT+PC7zmlwf4KpQiZ5mUN2i+K1IqRBYKLJBcT94td/+XWneGQ8cOLSLJqmDqCv7vuu
-         D573acdRubDjmXeakHgZUWkWEQMDIwjADI+KDOyoGdaq0BrjG4PUgLSImopFEe7ca4qQ
-         DKsX9eHYK8t06yQksLVg3FPi6SzBsplh+RCaY+P4FNZdLzNZnfiQtPKpY6zPBnB5EyMq
-         jC9A==
-X-Gm-Message-State: AOAM530MxHGXE2Kng4LVlbrL0aeIpWiXiIZHtm0wTm6b388cT4qFnadG
-        o8A8O6ty0WvZIdXNL5HuYEdv8hrp2qhOIv0ot/joB+j6hzdB1iTS
-X-Google-Smtp-Source: ABdhPJxnXV24GGdA/oMAE68kFxV347dqFM2SrBXQKlXkrt3n9gC2hqcXRd9ei71zrCSIRiuv9RB/zXFx3G6D5ZkAPUA=
-X-Received: by 2002:a05:6e02:1e05:: with SMTP id g5mr12352076ila.134.1621600430826;
- Fri, 21 May 2021 05:33:50 -0700 (PDT)
+        id S233375AbhEUMvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 08:51:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33464 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230081AbhEUMvW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 May 2021 08:51:22 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id AE40E6128A;
+        Fri, 21 May 2021 12:49:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1621601399;
+        bh=G6ouIauR05ZjrZdPDoLSgmtuQODfUpudDe0dhIJwxGg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=RXyaAIs4G0Wi1Rot89jVxURym/6ZQSoS/jdA8GQctBWZDIgCvsVVQWExpQBN9oF+K
+         HMEy6DtuwtA6mmNjtELemlALcpBAOWrRfq0gKd47AjhhQKIsWMoN/FdlBHSBno+/xr
+         TP8FSI0GuhTUqrUYr0x6VMucqe0fv1oI9+6/NhuDPGdnxds2iSVdZuEU11Pubs3wou
+         B1fv4Y2XlkPjG9D5BQvEPUxQZH5x8p+vXQb6P8HR+IbcJQiD/tMogtphEyCoIeb9ED
+         LyqRj+2W2RVnyqc06wU879N3lQAw5wOoMnk8E/o+Ucla6GsnhUJQ0PVqfM4M3dwkpW
+         ZsgAu2R9CDXkQ==
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Rob Clark <robdclark@gmail.com>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [RFC PATCH 00/13] drm/msm: Add Display Stream Compression Support
+Date:   Fri, 21 May 2021 18:19:29 +0530
+Message-Id: <20210521124946.3617862-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-References: <20210430132735.127342-1-robert.marko@sartura.hr>
- <20210430134810.GA2714262@roeck-us.net> <CA+HBbNH+gQOmu_Ho0ivFuGHdu0zBtOrr1474z+7FA1zmNb4bug@mail.gmail.com>
- <2b990feb-dc26-debb-4f81-430bbc89b51c@roeck-us.net> <CA+HBbNHQHqD-wgryaBLZ5M2Lxafb0OwNcbiQJmRQPcZfprmUEg@mail.gmail.com>
- <cfbe487f-8d01-e9b7-0aae-f93a27aff023@roeck-us.net>
-In-Reply-To: <cfbe487f-8d01-e9b7-0aae-f93a27aff023@roeck-us.net>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Fri, 21 May 2021 14:33:39 +0200
-Message-ID: <CA+HBbNHQrZRcz-3qBn1RkqLxOn_+sNH8VKJVihkaaiFoAy=d7g@mail.gmail.com>
-Subject: Re: [PATCH 1/3] hwmon: (pmbus) Add driver for Delta DPS-920AB PSU
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     jdelvare@suse.com, corbet@lwn.net, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
-        Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 21, 2021 at 1:41 PM Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On 5/21/21 1:36 AM, Robert Marko wrote:
-> [ ... ]
-> >> In this context, I have a hard time finding a reference for
-> >> this power supply. Do you have a datasheet or some other documents
-> >> you can share ?
-> >
-> > Unfortunately, I don't have a datasheet as that would have made this way easier.
-> > It was all based on the vendor "driver" from DENT:
-> > https://github.com/dentproject/dentOS/blob/main/packages/platforms/delta/arm64/tn48m/tn48m-poe/modules/builds/src/arm64-delta-tn48m-poe-psu.c
-> >
->
-> Ah, so this is not a driver for a power supply from DeltaPSU,
-> but a power supply from Delta Networks Technology Corporation,
-> as used in that company's TN48M-POE switch. That is a world
-> of difference, even though the parent company seems to be the
-> same. I am not sure if, based on this information, the driver
-> should claim to be for "Delta DPS-920AB PSU" in the first place.
+Display Stream Compression (DSC) compresses the display stream in host which
+is later decoded by panel. This series enables this for Qualcomm msm driver.
+This was tested on Google Pixel3 phone which use LGE SW43408 panel.
 
-It's actually a PSU from Delta Electronics INC, Delta Networks are just using
-it inside of the Delta Networks TN48M-DN-P switch.
-I checked the label on the PSU-s.
->
-> Can you run a block read on MFR_MODEL and MFG_SERIAL ?
-> That might give us an idea about the actual manufacturer
-> and model of this power supply.
+The changes include adding DT properties for DSC then hardware blocks support
+required in DPU1 driver and support in encoder. We also add support in DSI
+and introduce required topology changes.
 
-MFG_SERIAL is just a bunch of 0xf-s, but MFR_MODEL has something.
-However, the Armada 7040 I2C adapter cannot do block reads although
-it returns 11 bytes but it's just zeros.
->
-> Also, isn't that the same power supply for which you were
-> trying to add another hwmon driver to display some of its
-> status information, obtained from some CPLD ?
+In order for panel to set the DSC parameters we add dsc in drm_panel and set
+it from the msm driver.
 
-This and one more as the non-PoE version of the TN48M-DN switch
-has a single 150W PSU that does not support PMBus, but the CPLD
-always provides presence information and Power Good status.
->
-> Thanks,
-> Guenter
+Complete changes which enable this for Pixel3 along with panel driver (not
+part of this series) and DT changes can be found at:
+git.linaro.org/people/vinod.koul/kernel.git pixel/dsc_rfc
 
+Comments welcome!
 
+Vinod Koul (13):
+  drm/dsc: Add dsc pps header init function
+  dt-bindings: msm/dsi: Document Display Stream Compression (DSC)
+    parameters
+  drm/msm/dsi: add support for dsc data
+  drm/msm/disp/dpu1: Add support for DSC
+  drm/msm/disp/dpu1: Add support for DSC in pingpong block
+  drm/msm/disp/dpu1: Add DSC support in RM
+  drm/msm/disp/dpu1: Add DSC for SDM845 to hw_catalog
+  drm/msm/disp/dpu1: Add DSC support in hw_ctl
+  drm/msm/disp/dpu1: Don't use DSC with mode_3d
+  drm/msm/disp/dpu1: Add support for DSC in encoder
+  drm/msm/disp/dpu1: Add support for DSC in topology
+  drm/msm/dsi: Add support for DSC configuration
+  drm/msm/dsi: Pass DSC params to drm_panel
+
+ .../devicetree/bindings/display/msm/dsi.txt   |  15 +
+ drivers/gpu/drm/drm_dsc.c                     |  11 +
+ drivers/gpu/drm/msm/Makefile                  |   1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c   | 204 +++++++++++-
+ .../gpu/drm/msm/disp/dpu1/dpu_encoder_phys.h  |  11 +
+ .../drm/msm/disp/dpu1/dpu_encoder_phys_cmd.c  |   2 +
+ .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    |  22 ++
+ .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |  26 ++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c    |  12 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h    |   2 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_dsc.c    | 221 +++++++++++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_dsc.h    |  79 +++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h   |  13 +
+ .../gpu/drm/msm/disp/dpu1/dpu_hw_pingpong.c   |  32 ++
+ .../gpu/drm/msm/disp/dpu1/dpu_hw_pingpong.h   |  14 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h       |   1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_rm.c        |  32 ++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_rm.h        |   1 +
+ drivers/gpu/drm/msm/dsi/dsi.xml.h             |  10 +
+ drivers/gpu/drm/msm/dsi/dsi_host.c            | 293 +++++++++++++++++-
+ drivers/gpu/drm/msm/msm_drv.h                 |  32 ++
+ include/drm/drm_dsc.h                         |  16 +
+ include/drm/drm_panel.h                       |   7 +
+ 23 files changed, 1043 insertions(+), 14 deletions(-)
+ create mode 100644 drivers/gpu/drm/msm/disp/dpu1/dpu_hw_dsc.c
+ create mode 100644 drivers/gpu/drm/msm/disp/dpu1/dpu_hw_dsc.h
 
 -- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+2.26.3
+
