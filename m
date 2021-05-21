@@ -2,100 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C440838BB40
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 03:07:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F2FB38BB67
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 03:14:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235871AbhEUBIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 May 2021 21:08:36 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:37855 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235398AbhEUBIf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 May 2021 21:08:35 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id D0ED2580B35;
-        Thu, 20 May 2021 21:07:10 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute3.internal (MEProxy); Thu, 20 May 2021 21:07:10 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm2; bh=VqniBBYHeMtICu1bEyH03RfWAVnT/MX
-        E1EJ8GYbbaIU=; b=qS/t6oHcnBbQftMtJ0RQdmwgJfF+Viz1BLmU3fi7QLkzVBL
-        G0GMtJyc6L4tFuQIPl+SKBRuZRuAOOD9asnynSm1NhcKd2WBbiV/narmumRmd+2d
-        tZ1jAjs420Na9JZBvlEIROdhokOBLmFzdabEg1a0RkDQgCsJ8dbwG4eW60DPf4nt
-        bG8g3l31xwWMDvJmZ/FbND2x5B9FJdRyJlsa5dTqA9B5QJlZwXB3Dxzb9zQ+AGyF
-        1qJDNIrYYcdt1af/qxmvMrnwvP27xpaKoq8pmhrdr0qjdVs1z3E846W7o7K0sZx7
-        D2m88vjQCfTih0jydx7oMTUUrmgil8tXE9/5aLw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=VqniBB
-        YHeMtICu1bEyH03RfWAVnT/MXE1EJ8GYbbaIU=; b=ey5WlOZouTBGAdwhFpqyzX
-        jbGaUDMWEilCQk5crTx1sAnyUyraXVS7iCKyWbPFh6rStxCQrtN2ThiQMVy+jyIW
-        ZJ1lldtYvzqhrvLPELLGjiKjii1LEpbFkg5LbzxEhaIx7zrZZoEA9OlEOxZDzC2l
-        961TW0xLy4PafDCGlCyjBZIREoJcUrD+KkDO1NV0vn5Lh/HpwQrokKoe/yt0U/hy
-        c0w9pMQpw+bSrRTJyxL90PDlXCtwUkVLspU01fdEitFeaaB8z9bDDhYwM9YynjEN
-        Z8z1VFdaaCOFCrTs+8NnTHDpByL+YYTqX89yYgmtcjXAgP8E8SRxwlCwgNvdJBlA
-        ==
-X-ME-Sender: <xms:vQenYEIlsXuZBh4Yd4jeD___tJ3sNEw0cMzWi9klSCRxzlEYs4XL0Q>
-    <xme:vQenYEJFtK67hGFzbyFHqtVueQvPwkgOzgFBD29Lvk0FZQz7bYp9HKGuODgUH4oaN
-    VYjtE7XaMiMo5L-NQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdejvddgfeekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
-    grthhtvghrnhepuddttdekueeggedvtddtueekiedutdfguedutdefieeuteefieelteet
-    vddthfeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    eprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:vQenYEshM2WB1_vWyH7_F5KCi6YeBvaFRFvtM2OA3UoLEU00G82U-w>
-    <xmx:vQenYBb7tQZSWWjOXowm6behOalL5Jh-nik9VtRZn73PPsVBzOMvQA>
-    <xmx:vQenYLZwnSMmEAXUSfAey6_wY7lzAO0A2xTw4Hz1a9bESlS1zncCow>
-    <xmx:vgenYJBE1A-ARSFCTP7n6FYY5LDfREejcxH6pZe5IDaBGeWq_R1G6Q>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 122C7A004B1; Thu, 20 May 2021 21:07:08 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-448-gae190416c7-fm-20210505.004-gae190416
-Mime-Version: 1.0
-Message-Id: <8fc49b36-256e-47ff-8834-bc60fb7a2450@www.fastmail.com>
-In-Reply-To: <20210520101346.16772-4-steven_lee@aspeedtech.com>
-References: <20210520101346.16772-1-steven_lee@aspeedtech.com>
- <20210520101346.16772-4-steven_lee@aspeedtech.com>
-Date:   Fri, 21 May 2021 10:36:07 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Steven Lee" <steven_lee@aspeedtech.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Joel Stanley" <joel@jms.id.au>,
-        "Adrian Hunter" <adrian.hunter@intel.com>,
-        "Ulf Hansson" <ulf.hansson@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        "open list" <linux-kernel@vger.kernel.org>,
-        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>
-Cc:     "Ryan Chen" <ryan_chen@aspeedtech.com>,
-        "Chin-Ting Kuo" <chin-ting_kuo@aspeedtech.com>,
-        "Hongwei Zhang" <Hongweiz@ami.com>
-Subject: =?UTF-8?Q?Re:_[PATCH_v4_3/3]_mmc:_sdhci-of-aspeed:_Configure_the_SDHCIs_?=
- =?UTF-8?Q?as_specified_by_the_devicetree.?=
-Content-Type: text/plain
+        id S236384AbhEUBQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 May 2021 21:16:00 -0400
+Received: from netrider.rowland.org ([192.131.102.5]:57075 "HELO
+        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with SMTP id S236140AbhEUBP7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 May 2021 21:15:59 -0400
+Received: (qmail 1224919 invoked by uid 1000); 20 May 2021 21:14:36 -0400
+Date:   Thu, 20 May 2021 21:14:36 -0400
+From:   Alan Stern <stern@rowland.harvard.edu>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-usb@vger.kernel.org, Peter Chen <peter.chen@kernel.org>,
+        linux-kernel@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Al Cooper <alcooperx@gmail.com>,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH v10 2/5] USB: misc: Add onboard_usb_hub driver
+Message-ID: <20210521011436.GA1224757@rowland.harvard.edu>
+References: <20210511225223.550762-1-mka@chromium.org>
+ <20210511155152.v10.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+ <YKPz7a68duMyXU5x@google.com>
+ <20210518194511.GA1137841@rowland.harvard.edu>
+ <YKQ0XxhIWaN37HMr@google.com>
+ <20210519144356.GB1165692@rowland.harvard.edu>
+ <YKWaJdrpj1ixx9+v@google.com>
+ <20210520020521.GB1186755@rowland.harvard.edu>
+ <YKZnA2bifn346bPa@google.com>
+ <YKbRJylHrDiuSRGH@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YKbRJylHrDiuSRGH@google.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On Thu, 20 May 2021, at 19:43, Steven Lee wrote:
-> The hardware provides capability configuration registers for each SDHCI
-> in the global configuration space for the SD controller. Writes to the
-> global capability registers are mirrored to the capability registers in
-> the associated SDHCI. Configuration of the capabilities must be written
-> through the mirror registers prior to initialisation of the SDHCI.
+On Thu, May 20, 2021 at 02:14:15PM -0700, Matthias Kaehlcke wrote:
+> On Thu, May 20, 2021 at 06:41:23AM -0700, Matthias Kaehlcke wrote:
+> > On Wed, May 19, 2021 at 10:05:21PM -0400, Alan Stern wrote:
+> > > On Wed, May 19, 2021 at 04:07:17PM -0700, Matthias Kaehlcke wrote:
+> > > > On Wed, May 19, 2021 at 10:43:56AM -0400, Alan Stern wrote:
+> > > > > On Tue, May 18, 2021 at 02:40:47PM -0700, Matthias Kaehlcke wrote:
+> > > > > > 
+> > > > > > Could you also have a look at "[4/5] usb: host: xhci-plat:
+> > > > > > Create platform device for onboard hubs in probe()"
+> > > > > > (https://lore.kernel.org/patchwork/patch/1425453/)? It's a
+> > > > > > relatively short patch that creates the platform device for
+> > > > > > the driver from xhci-plat as you suggested in the v4
+> > > > > > discussion.
+> > > > > 
+> > > > > I'm not the maintainer for xhci-related drivers.
+> > > > > 
+> > > > > However, there is at least one thing about this patch which looks 
+> > > > > suspicious: Adding the onboard_hub_dev pointer to struct usb_hcd instead 
+> > > > > of to struct xhci_plat_priv, where it would make a lot more sense.
+> > > > 
+> > > > I can move it to struct usb_hcd if that's preferred
+> > > 
+> > > Thinko: The patch already has it in struct usb_hcd.  I suggested moving 
+> > > it to struct xhci_plat_priv.
+> > 
+> > Ah, didn't actively recall to which struct I added it to, it has been a
+> > while since I wrote that patch ;-)
 > 
-> Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+> > Agreed that struct xhci_plat_priv is a better place.
+> 
+> Or not, xhci_plat_priv is optional, which doesn't make it a good candidate
+> for holding a field that could be used by any xHCI controller.
 
-Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
+You could always allocate an xhci_plat_priv structure in cases where an 
+onboard-hub device is present, if one doesn't exist already.
+
+> Should I move the field to struct xhci_hcd instead?
+
+That's another option.
+
+Look, I'm not the person you should be asking about this.  What I say 
+doesn't matter -- you need to get approval from Mathias Nyman, the 
+xhci-hcd maintainer.
+
+Alan Stern
