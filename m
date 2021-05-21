@@ -2,220 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2D3F38C662
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 14:21:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A28138C66E
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 14:23:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232037AbhEUMXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 08:23:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40760 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230358AbhEUMXA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 08:23:00 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BE6FC0613CE
-        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 05:21:36 -0700 (PDT)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1lk49k-0001uY-5Z; Fri, 21 May 2021 14:21:32 +0200
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1lk49i-0000NB-Rf; Fri, 21 May 2021 14:21:30 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Subject: [PATCH v1] ASoC: dt-bindings: Convert imx-audmux binding to json schema
-Date:   Fri, 21 May 2021 14:21:29 +0200
-Message-Id: <20210521122129.1371-1-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.29.2
+        id S232480AbhEUMYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 08:24:42 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:20952 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229571AbhEUMYl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 08:24:41 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1621599798; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=RLZE+bZ7ki1GXmnh6NsT82bZ77r++gqhEjntmVGOlBs=;
+ b=huNyHlHWe0x8+zfKwSniU/JLceb3keWjxepIAxbV8Jx6KE99jG5JvK76IZISDPc/uH99INeF
+ 8aH4w9/chb7RzMHduk9Ewvin84DXOBT+/hjGikFkuenAPVf4NU4K0kC5erZkgHzX+i4LngwF
+ 5+Eq8ntkiheHPc9y6QPRQX6dXms=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 60a7a620f752fca668c21fe5 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 21 May 2021 12:22:56
+ GMT
+Sender: skakit=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 46DF6C43144; Fri, 21 May 2021 12:22:56 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: skakit)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 03C83C4338A;
+        Fri, 21 May 2021 12:22:54 +0000 (UTC)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 21 May 2021 17:52:54 +0530
+From:   skakit@codeaurora.org
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org
+Subject: Re: [RESEND PATCH V4 3/8] arm64: dts: qcom: pm7325: Add pm7325 base
+ dts file
+In-Reply-To: <YKYNrKFrGQlfUf4S@vkoul-mobl.Dlink>
+References: <1621318822-29332-1-git-send-email-skakit@codeaurora.org>
+ <1621318822-29332-4-git-send-email-skakit@codeaurora.org>
+ <YKOpE1V25rdDj4Tk@vkoul-mobl.Dlink> <YKPua2M6t9yIJ5uy@google.com>
+ <52d277a8598277716f37ad0c1f724845@codeaurora.org>
+ <YKYNrKFrGQlfUf4S@vkoul-mobl.Dlink>
+Message-ID: <f6086a960c1aa1717125b2c7d7f1f7b3@codeaurora.org>
+X-Sender: skakit@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the imx-audmux binding to DT schema format using json-schema
+On 2021-05-20 12:50, Vinod Koul wrote:
+> On 20-05-21, 12:02, skakit@codeaurora.org wrote:
+>> On 2021-05-18 22:12, Matthias Kaehlcke wrote:
+>> > On Tue, May 18, 2021 at 05:16:27PM +0530, Vinod Koul wrote:
+>> > > On 18-05-21, 11:50, satya priya wrote:
+>> > > > Add base DTS file for pm7325 along with GPIOs and temp-alarm nodes.
+>> > > >
+>> > > > Signed-off-by: satya priya <skakit@codeaurora.org>
+>> > > > Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+>> > > > ---
+>> > > > Changes in RESEND V4:
+>> > > >  - No Changes.
+>> > > >
+>> > > >  arch/arm64/boot/dts/qcom/pm7325.dtsi | 53 ++++++++++++++++++++++++++++++++++++
+>> > > >  1 file changed, 53 insertions(+)
+>> > > >  create mode 100644 arch/arm64/boot/dts/qcom/pm7325.dtsi
+>> > > >
+>> > > > diff --git a/arch/arm64/boot/dts/qcom/pm7325.dtsi b/arch/arm64/boot/dts/qcom/pm7325.dtsi
+>> > > > new file mode 100644
+>> > > > index 0000000..e7f64a9
+>> > > > --- /dev/null
+>> > > > +++ b/arch/arm64/boot/dts/qcom/pm7325.dtsi
+>> > > > @@ -0,0 +1,53 @@
+>> > > > +// SPDX-License-Identifier: BSD-3-Clause
+>> > > > +// Copyright (c) 2021, The Linux Foundation. All rights reserved.
+>> > > > +
+>> > > > +#include <dt-bindings/interrupt-controller/irq.h>
+>> > > > +#include <dt-bindings/spmi/spmi.h>
+>> > > > +
+>> > > > +&spmi_bus {
+>> > > > +	pm7325: pmic@1 {
+>> > > > +		compatible = "qcom,pm7325", "qcom,spmi-pmic";
+>> > >
+>> > > where is qcom,pm7325 documented?
+>> 
+>> >
+>> > good point, I missed that one.
+>> >
+>> 
+>> Actually this point was discussed during V2(
+>> https://lore.kernel.org/patchwork/patch/1406186/#1607321 ).
+>> As far as I understand it is not mandatory to add "qcom,pm7325" as we 
+>> are
+>> adding "qcom,spmi-pmic". It is just a good to have change.
+>> I could not find the documentation for pm8350c, pmk8350 and pmr735a as 
+>> well.
+> 
+> Yes that is a miss too, IMO all of these should be added to
+> Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt or the yaml
+> file replacing this
+> 
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- .../devicetree/bindings/sound/imx-audmux.txt  |  28 -----
- .../devicetree/bindings/sound/imx-audmux.yaml | 119 ++++++++++++++++++
- 2 files changed, 119 insertions(+), 28 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/imx-audmux.txt
- create mode 100644 Documentation/devicetree/bindings/sound/imx-audmux.yaml
+Okay, will add those four pmics to qcom,spmi-pmic.txt.
 
-diff --git a/Documentation/devicetree/bindings/sound/imx-audmux.txt b/Documentation/devicetree/bindings/sound/imx-audmux.txt
-deleted file mode 100644
-index 2db4dcbee1b9..000000000000
---- a/Documentation/devicetree/bindings/sound/imx-audmux.txt
-+++ /dev/null
-@@ -1,28 +0,0 @@
--Freescale Digital Audio Mux (AUDMUX) device
--
--Required properties:
--
--  - compatible		: "fsl,imx21-audmux" for AUDMUX version firstly used
--			  on i.MX21, or "fsl,imx31-audmux" for the version
--			  firstly used on i.MX31.
--
--  - reg			: Should contain AUDMUX registers location and length.
--
--An initial configuration can be setup using child nodes.
--
--Required properties of optional child nodes:
--
--  - fsl,audmux-port	: Integer of the audmux port that is configured by this
--			  child node.
--
--  - fsl,port-config	: List of configuration options for the specific port.
--			  For imx31-audmux and above, it is a list of tuples
--			  <ptcr pdcr>. For imx21-audmux it is a list of pcr
--			  values.
--
--Example:
--
--audmux@21d8000 {
--	compatible = "fsl,imx6q-audmux", "fsl,imx31-audmux";
--	reg = <0x021d8000 0x4000>;
--};
-diff --git a/Documentation/devicetree/bindings/sound/imx-audmux.yaml b/Documentation/devicetree/bindings/sound/imx-audmux.yaml
-new file mode 100644
-index 000000000000..6078ce13bd46
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/imx-audmux.yaml
-@@ -0,0 +1,119 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/imx-audmux.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale Digital Audio Mux device
-+
-+maintainers:
-+  - Oleksij Rempel <o.rempel@pengutronix.de>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+        - enum:
-+          - fsl,imx27-audmux
-+        - const: fsl,imx21-audmux
-+      - items:
-+        - enum:
-+          - fsl,imx25-audmux
-+          - fsl,imx35-audmux
-+          - fsl,imx50-audmux
-+          - fsl,imx51-audmux
-+          - fsl,imx53-audmux
-+          - fsl,imx6q-audmux
-+          - fsl,imx6sl-audmux
-+          - fsl,imx6sll-audmux
-+          - fsl,imx6sx-audmux
-+        - const: fsl,imx31-audmux
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: audmux
-+
-+patternProperties:
-+  "^mux-[0-9a-z]*$":
-+    type: object
-+    properties:
-+      fsl,audmux-port:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description: |
-+          Integer of the audmux port that is configured by this child node
-+
-+      fsl,port-config:
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        description: |
-+          List of configuration options for the specific port.
-+          For imx31-audmux and above, it is a list of tuples ptcr pdcr.
-+          For imx21-audmux it is a list of pcr values.
-+
-+    required:
-+      - fsl,audmux-port
-+      - fsl,port-config
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    audmux@21d8000 {
-+        compatible = "fsl,imx6q-audmux", "fsl,imx31-audmux";
-+        reg = <0x021d8000 0x4000>;
-+    };
-+  - |
-+    audmux@10016000 {
-+        compatible = "fsl,imx27-audmux", "fsl,imx21-audmux";
-+        reg = <0x10016000 0x1000>;
-+        clocks = <&clks 1>;
-+        clock-names = "audmux";
-+
-+        mux-ssi0 {
-+            fsl,audmux-port = <0>;
-+            fsl,port-config = <0xcb205000>;
-+        };
-+
-+        mux-pins4 {
-+            fsl,audmux-port = <2>;
-+            fsl,port-config = <0x00001000>;
-+        };
-+    };
-+  - |
-+    #include <dt-bindings/sound/fsl-imx-audmux.h>
-+    audmux@21d8000 {
-+        compatible = "fsl,imx6q-audmux", "fsl,imx31-audmux";
-+        reg = <0x021d8000 0x4000>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_audmux>;
-+
-+        mux-ssi1 {
-+            fsl,audmux-port = <0>;
-+            fsl,port-config = <
-+                IMX_AUDMUX_V2_PTCR_SYN		0
-+                IMX_AUDMUX_V2_PTCR_TFSEL(2)	0
-+                IMX_AUDMUX_V2_PTCR_TCSEL(2)	0
-+                IMX_AUDMUX_V2_PTCR_TFSDIR	0
-+                IMX_AUDMUX_V2_PTCR_TCLKDIR      IMX_AUDMUX_V2_PDCR_RXDSEL(2)
-+              >;
-+        };
-+
-+        mux-pins3 {
-+            fsl,audmux-port = <2>;
-+            fsl,port-config = <
-+                IMX_AUDMUX_V2_PTCR_SYN          IMX_AUDMUX_V2_PDCR_RXDSEL(0)
-+                0                               IMX_AUDMUX_V2_PDCR_TXRXEN
-+              >;
-+        };
-+    };
--- 
-2.29.2
-
+> Thanks
