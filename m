@@ -2,92 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C319F38C789
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 15:12:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD06738C7AB
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 15:19:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232837AbhEUNN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 09:13:59 -0400
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:45793 "EHLO
-        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232050AbhEUNN5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 09:13:57 -0400
-Received: by mail-oi1-f182.google.com with SMTP id w127so15765899oig.12;
-        Fri, 21 May 2021 06:12:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=F5/FDLp99kYvDUFQHD2N7h0ExV2sVgHTRXMIb5zlU0A=;
-        b=JRUIuLhpwYK5Hk1RPhAH2otIXsDsRFsCK0G7mv98PYKNWbvuBc8CvXy31g6HudXWtf
-         c8cw3xYNOEuMii9vlXR4niBHv5KS/kng4BaiVmS6jEJsvcK4t0MsI8QPnmv+D9kTfBIC
-         ZoNA5mqbxZpf/BXnq9fOHA8JSPBlJLdcvG9pY0Uv1n5MXguY0HiismToPKxAE1t2YlaQ
-         glk3QKuZmZYnHgXdjC9G7jkMzCMyTu7pQvybSQViGqIPwdn0RtWuvrMUh7iBVVZ6rWkA
-         0oAGHlvKVEKMBRXn/nIvbC7BaFBMfmUpRhHMLWuDlFT0upKcuP0ejoO6hdWa9lkhQOSf
-         QvBg==
-X-Gm-Message-State: AOAM530L6UJ219BV1SbehsOakxnSq5Q8BtzGqIS2uJXHXcr3uzVJ59+O
-        rCCo1BpufN1yaAxtGXj1KRHAYeZo4Q==
-X-Google-Smtp-Source: ABdhPJy6cVgU2la1V7JAKJtCsrt8M8thmK+xhj1dCw7mcPs57IkquhQXoo9A6yq0bJujKlFT+Zp4Hg==
-X-Received: by 2002:aca:4fc2:: with SMTP id d185mr2073811oib.123.1621602754559;
-        Fri, 21 May 2021 06:12:34 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id q22sm1235945otl.11.2021.05.21.06.12.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 May 2021 06:12:33 -0700 (PDT)
-Received: (nullmailer pid 3780504 invoked by uid 1000);
-        Fri, 21 May 2021 13:12:32 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20210521122129.1371-1-o.rempel@pengutronix.de>
-References: <20210521122129.1371-1-o.rempel@pengutronix.de>
-Subject: Re: [PATCH v1] ASoC: dt-bindings: Convert imx-audmux binding to json schema
-Date:   Fri, 21 May 2021 08:12:32 -0500
-Message-Id: <1621602752.149998.3780503.nullmailer@robh.at.kernel.org>
+        id S230408AbhEUNUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 09:20:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42950 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230391AbhEUNUV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 May 2021 09:20:21 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2E1A8613EB;
+        Fri, 21 May 2021 13:18:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1621603138;
+        bh=kML0VNwTPmuZzhjwUe6WlLUM6s2hR7O8GQYI8nIVEx4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=bxlk4rI+nT2n2MilrkZEOxmGPpUtz5EM4hIvKviME1p5OqepyQ5kkp+CvAwVT5cAj
+         Ku9puQxIF9brbZ5vJTXmOPmc3eAwU0Um6HuXrJQIMfWiSc0ENOiFOrE3eTi/hekg+7
+         byFXoB0KFQyw6TBddhpvCkFbpkZKU5CDjw4wQqVDDNMZI0IgQa1p7I/zwm4I1+QOYm
+         fq6i3qeZ4iMVGg+ZO1rpctE0+23FuTODinw/xTnV6LYtInrTs+HAGt5/zcrKdOQR/D
+         CqrWl9I1AKZ8JmjwzmXemkdMkVGfzT6ZWZUK1eqlmPNS7llAIuoX3WxG3KGaEhANj6
+         9UtXFKw7LR4Uw==
+Received: by mail-ed1-f52.google.com with SMTP id r11so23232182edt.13;
+        Fri, 21 May 2021 06:18:58 -0700 (PDT)
+X-Gm-Message-State: AOAM531rN32SHrDDQdtzFyrgC08KvuwOnUMNnuk35Enddj7Jf72bsrKa
+        4AFwNIzlsxX+8ivcddzkgfkLYJMkJiWd08P5eA==
+X-Google-Smtp-Source: ABdhPJwmzwbCzIeEFfbyH8umGA8C0KXX6vUz4OS2ROZ9YiW5j/tCvUb0NLoSYwTa9fxOPM6+xMux6sI6PbKiUDMEH5I=
+X-Received: by 2002:a50:c446:: with SMTP id w6mr11114280edf.62.1621603136815;
+ Fri, 21 May 2021 06:18:56 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210521124946.3617862-1-vkoul@kernel.org> <20210521124946.3617862-3-vkoul@kernel.org>
+In-Reply-To: <20210521124946.3617862-3-vkoul@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 21 May 2021 08:18:44 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJqPwkzxVgAfS9VgEXcY=ZH5LOaaxzoPDBzuDxOZ_OLjw@mail.gmail.com>
+Message-ID: <CAL_JsqJqPwkzxVgAfS9VgEXcY=ZH5LOaaxzoPDBzuDxOZ_OLjw@mail.gmail.com>
+Subject: Re: [RFC PATCH 02/13] dt-bindings: msm/dsi: Document Display Stream
+ Compression (DSC) parameters
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Rob Clark <robdclark@gmail.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 May 2021 14:21:29 +0200, Oleksij Rempel wrote:
-> Convert the imx-audmux binding to DT schema format using json-schema
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+On Fri, May 21, 2021 at 7:50 AM Vinod Koul <vkoul@kernel.org> wrote:
+>
+> DSC enables streams to be compressed before we send to panel. This
+> requires DSC enabled encoder and a panel to be present. So we add this
+> information in board DTS and find if DSC can be enabled and the
+> parameters required to configure DSC are added to binding document along
+> with example
+>
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
 > ---
->  .../devicetree/bindings/sound/imx-audmux.txt  |  28 -----
->  .../devicetree/bindings/sound/imx-audmux.yaml | 119 ++++++++++++++++++
->  2 files changed, 119 insertions(+), 28 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/imx-audmux.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/imx-audmux.yaml
-> 
+>  .../devicetree/bindings/display/msm/dsi.txt       | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+This is getting converted to schema. Hopefully, v17 will be it. Sigh.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/sound/imx-audmux.yaml:16:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/sound/imx-audmux.yaml:17:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
-./Documentation/devicetree/bindings/sound/imx-audmux.yaml:20:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/sound/imx-audmux.yaml:21:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
-
-dtschema/dtc warnings/errors:
-
-See https://patchwork.ozlabs.org/patch/1482202
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Rob
