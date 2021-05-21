@@ -2,217 +2,329 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09C3B38C740
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 14:57:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2704438C74E
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 14:59:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231377AbhEUM6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 08:58:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37218 "EHLO mail.kernel.org"
+        id S230290AbhEUNAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 09:00:31 -0400
+Received: from foss.arm.com ([217.140.110.172]:46724 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232290AbhEUM6A (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 May 2021 08:58:00 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CB1FF613D8;
-        Fri, 21 May 2021 12:56:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621601797;
-        bh=nLiWIiuQ0kxuVgZbeKOWUyyPgYrR77UCzFAel1jg22c=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=GWyNqRI73z76a3BP9cwhI1q4Y2hipTP6tw1R5/sCn21TJVTrA/u3S3/8OmIuokl/p
-         7lhzcQXLFM7jnJb1M6CwO/lMY58asJZn02RBlqMc2p+S6Ff2SyzdLqDJ/n6qlF0YnC
-         zrdXsEan6JTyXOxKqqHt5Pzd20nDEyZS5JK1+CUTbSpjdMCocMiKeSLgS/A7Dae1vP
-         IfwiX9FcCA1jZyxxjuDaNIhsAPXDPVoK17dQrkVfTC+FDbqtHE/Oj3z46pBzeXt9oy
-         X0OA0gCIoUkjxPIGYB3+VDpUU9KVO/t8gmExjUrW6+FlwNWXdavIPXYiTM9r96iawz
-         EKd8+0iy5bwQw==
-Received: by mail-ej1-f44.google.com with SMTP id et19so23273786ejc.4;
-        Fri, 21 May 2021 05:56:37 -0700 (PDT)
-X-Gm-Message-State: AOAM530LqUzEJjDG2TSEQpSMs71whYBkcHLzYSJxgcKEjDXYLv/mNp5N
-        o1cjdpNviEUrorV7U5GtfX6aKyrGr2qJnr2h4g==
-X-Google-Smtp-Source: ABdhPJzGaRvL+nvTQl0kfwM8PUcvI9A4QA9o8klAsKUu1HJYM2XvDEwapQ8O+ycaVUA1fNgEjfi/YaJxUfqe3vlaai0=
-X-Received: by 2002:a17:907:76e8:: with SMTP id kg8mr9610299ejc.130.1621601796326;
- Fri, 21 May 2021 05:56:36 -0700 (PDT)
+        id S230196AbhEUNAa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 May 2021 09:00:30 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C2CD311B3;
+        Fri, 21 May 2021 05:59:06 -0700 (PDT)
+Received: from [10.57.73.64] (unknown [10.57.73.64])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EA5FF3F719;
+        Fri, 21 May 2021 05:59:04 -0700 (PDT)
+Subject: Re: [PATCH v5 3/4] iommu: rockchip: Add internal ops to handle
+ variants
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
+        heiko@sntech.de, xxm@rock-chips.com
+Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20210521083637.3221304-1-benjamin.gaignard@collabora.com>
+ <20210521083637.3221304-4-benjamin.gaignard@collabora.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <e709c99c-02c4-69e1-0ae1-f12da9b2f915@arm.com>
+Date:   Fri, 21 May 2021 13:58:59 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-References: <20210511090122.6995-1-a-govindraju@ti.com> <20210517221513.GA3263368@robh.at.kernel.org>
- <861cefe2-7bb6-c435-ab0d-483155852876@ti.com>
-In-Reply-To: <861cefe2-7bb6-c435-ab0d-483155852876@ti.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 21 May 2021 07:56:24 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKyuXYJocBMLGXL6aXuK0YnrW7qdLugV2bxdP-LJ=2+cg@mail.gmail.com>
-Message-ID: <CAL_JsqKyuXYJocBMLGXL6aXuK0YnrW7qdLugV2bxdP-LJ=2+cg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: gpio: gpio-davinci: Convert to json-schema
-To:     Grygorii Strashko <grygorii.strashko@ti.com>
-Cc:     Aswath Govindraju <a-govindraju@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Keerthy <j-keerthy@ti.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210521083637.3221304-4-benjamin.gaignard@collabora.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 21, 2021 at 3:32 AM Grygorii Strashko
-<grygorii.strashko@ti.com> wrote:
->
-> Hi Rob, All
->
-> On 18/05/2021 01:15, Rob Herring wrote:
-> > On Tue, May 11, 2021 at 02:31:20PM +0530, Aswath Govindraju wrote:
-> >> Convert gpio-davinci dt-binding documentation from txt to yaml format.
-> >>
-> >> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> >> ---
-> >>   .../devicetree/bindings/gpio/gpio-davinci.txt | 167 ---------------
-> >>   .../bindings/gpio/gpio-davinci.yaml           | 193 ++++++++++++++++++
-> >>   MAINTAINERS                                   |   2 +-
-> >>   3 files changed, 194 insertions(+), 168 deletions(-)
-> >>   delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-davinci.txt
-> >>   create mode 100644 Documentation/devicetree/bindings/gpio/gpio-davinci.yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/gpio/gpio-davinci.txt b/Documentation/devicetree/bindings/gpio/gpio-davinci.txt
-> >> deleted file mode 100644
-> >> index 696ea46227d1..000000000000
-> >> --- a/Documentation/devicetree/bindings/gpio/gpio-davinci.txt
-> >> +++ /dev/null
-> >> @@ -1,167 +0,0 @@
-> >> -Davinci/Keystone GPIO controller bindings
-> >> -
-> >> -Required Properties:
-> >> -- compatible: should be "ti,dm6441-gpio": for Davinci da850 SoCs
-> >> -                    "ti,keystone-gpio": for Keystone 2 66AK2H/K, 66AK2L,
-> >> -                                            66AK2E SoCs
-> >> -                    "ti,k2g-gpio", "ti,keystone-gpio": for 66AK2G
-> >> -                    "ti,am654-gpio", "ti,keystone-gpio": for TI K3 AM654
-> >> -                    "ti,j721e-gpio", "ti,keystone-gpio": for J721E SoCs
-> >> -                    "ti,am64-gpio", "ti,keystone-gpio": for AM64 SoCs
-> >> -
->
-> [...]
->
-> >> -};
-> >> diff --git a/Documentation/devicetree/bindings/gpio/gpio-davinci.yaml b/Documentation/devicetree/bindings/gpio/gpio-davinci.yaml
-> >> new file mode 100644
-> >> index 000000000000..1e16172669c7
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/gpio/gpio-davinci.yaml
-> >> @@ -0,0 +1,193 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/gpio/gpio-davinci.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: GPIO controller for Davinci and keystone devices
-> >> +
-> >> +maintainers:
-> >> +  - Keerthy <j-keerthy@ti.com>
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    oneOf:
-> >> +      - items:
-> >> +          - enum:
-> >> +              - ti,k2g-gpio
-> >> +              - ti,am654-gpio
-> >> +              - ti,j721e-gpio
-> >> +              - ti,am64-gpio
-> >> +          - const: ti,keystone-gpio
-> >> +
-> >> +      - items:
-> >> +          - const: ti,dm6441-gpio
-> >> +      - items:
-> >> +          - const: ti,keystone-gpio
-> >
-> > These 2 can be expressed as an 'enum'.
-> >
-> >> +
-> >> +  reg:
-> >> +    maxItems: 1
-> >> +    description:
-> >> +      Physical base address of the controller and the size of memory mapped registers.
-> >
-> > Drop. That's every 'reg' property.
-> >
-> >> +
-> >> +  gpio-controller: true
-> >> +
-> >> +  gpio-ranges: true
-> >> +
-> >> +  gpio-line-names:
-> >> +    description: strings describing the names of each gpio line.
-> >
-> > Any constraints like min/max number of lines?
-> >
-> >> +
-> >> +  "#gpio-cells":
-> >> +    const: 2
-> >> +    description:
-> >> +      first cell is the pin number and second cell is used to specify optional parameters (unused).
-> >> +
-> >> +  interrupts:
-> >> +    description:
-> >> +      Array of GPIO interrupt number. Only banked or unbanked IRQs are supported at a time.
-> >
-> > Needs constraints. How many items and what are they?
-> >
-> >> +
-> >> +  ti,ngpio:
-> >> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >> +    description: The number of GPIO pins supported consecutively.
-> >> +    minimum: 1
-> >> +
-> >> +  ti,davinci-gpio-unbanked:
-> >> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >> +    description: The number of GPIOs that have an individual interrupt line to processor.
-> >> +    minimum: 0
-> >> +
-> >> +  clocks:
-> >> +    maxItems: 1
-> >> +    description:
-> >> +      clock-specifier to represent input to the GPIO controller.
-> >
-> > Drop description.
-> >
-> >> +
-> >> +  clock-names:
-> >> +    const: gpio
-> >> +
-> >> +  interrupt-controller: true
-> >> +
-> >> +  power-domains:
-> >> +    maxItems: 1
-> >> +    description:
-> >> +      Phandle to the power domain provider node.
-> >
-> > Drop.
-> >
-> >> +
-> >> +  "#interrupt-cells":
-> >> +    const: 2
-> >> +
-> >> +patternProperties:
-> >> +  "-hog$":
-> >> +    type: object
-> >> +    properties:
-> >> +      gpios: true
-> >> +      gpio-hog: true
-> >> +      input: true
-> >> +      output-high: true
-> >> +      output-low: true
-> >> +      line-name: true
-> >> +
-> >> +    required:
-> >> +      - gpio-hog
-> >> +      - gpios
->
-> I see that gpio-hog.yaml dtschema has been added.
-> Can it be reused here and how?
+On 2021-05-21 09:36, Benjamin Gaignard wrote:
+> Add internal ops to be able to handle incoming variant v2.
+> The goal is to keep the overall structure of the framework but
+> to allow to add the evolution of this hardware block.
+> 
+> The ops are global for a SoC because iommu domains are not
+> attached to a specific devices if they are for a virtuel device like
+> drm. Use a global variable shouldn't be since SoC usually doesn't
+> embedded different versions of the iommu hardware block.
+> If that happen one day a WARN_ON will be displayed at probe time.
 
-It's applied to any node containing 'gpio-hog' property, so all you need is:
+IMO it would be a grievous error if such a "virtual device" ever gets 
+near the IOMMU API, so personally I wouldn't use that as a justification 
+for anything :)
 
-required:
-  - gpio-hog
+FWIW you should be OK to handle things on a per-instance basis, it just 
+means you have to defer some of the domain setup to .attach_dev time, 
+like various other drivers do. That said, there's nothing wrong with the 
+global if we do expect instances to be consistent across any given 
+Rockchip SoC (and my gut feeling is that we probably should).
+
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> ---
+> version 5:
+>   - Use of_device_get_match_data()
+>   - Add internal ops inside the driver
+> 
+>   drivers/iommu/rockchip-iommu.c | 69 ++++++++++++++++++++++++----------
+>   1 file changed, 50 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iommu.c
+> index 7a2932772fdf..e7b9bcf174b1 100644
+> --- a/drivers/iommu/rockchip-iommu.c
+> +++ b/drivers/iommu/rockchip-iommu.c
+> @@ -19,6 +19,7 @@
+>   #include <linux/iopoll.h>
+>   #include <linux/list.h>
+>   #include <linux/mm.h>
+> +#include <linux/module.h>
+
+This seems to be an unrelated and unnecessary change.
+
+>   #include <linux/init.h>
+>   #include <linux/of.h>
+>   #include <linux/of_iommu.h>
+> @@ -96,6 +97,14 @@ static const char * const rk_iommu_clocks[] = {
+>   	"aclk", "iface",
+>   };
+>   
+> +struct rk_iommu_ops {
+> +	phys_addr_t (*pt_address)(u32 dte);
+> +	u32 (*mk_dtentries)(dma_addr_t pt_dma);
+> +	u32 (*mk_ptentries)(phys_addr_t page, int prot);
+> +	phys_addr_t (*dte_addr_phys)(phys_addr_t addr);
+> +	u32 pt_address_mask;
+> +};
+> +
+>   struct rk_iommu {
+>   	struct device *dev;
+>   	void __iomem **bases;
+> @@ -116,6 +125,7 @@ struct rk_iommudata {
+>   };
+>   
+>   static struct device *dma_dev;
+> +static const struct rk_iommu_ops *rk_ops;
+>   
+>   static inline void rk_table_flush(struct rk_iommu_domain *dom, dma_addr_t dma,
+>   				  unsigned int count)
+> @@ -215,11 +225,6 @@ static inline u32 rk_mk_dte(dma_addr_t pt_dma)
+>   #define RK_PTE_PAGE_READABLE      BIT(1)
+>   #define RK_PTE_PAGE_VALID         BIT(0)
+>   
+> -static inline phys_addr_t rk_pte_page_address(u32 pte)
+> -{
+> -	return (phys_addr_t)pte & RK_PTE_PAGE_ADDRESS_MASK;
+> -}
+> -
+>   static inline bool rk_pte_is_page_valid(u32 pte)
+>   {
+>   	return pte & RK_PTE_PAGE_VALID;
+> @@ -451,7 +456,7 @@ static int rk_iommu_force_reset(struct rk_iommu *iommu)
+>   		rk_iommu_write(iommu->bases[i], RK_MMU_DTE_ADDR, DTE_ADDR_DUMMY);
+>   
+>   		dte_addr = rk_iommu_read(iommu->bases[i], RK_MMU_DTE_ADDR);
+> -		if (dte_addr != (DTE_ADDR_DUMMY & RK_DTE_PT_ADDRESS_MASK)) {
+> +		if (dte_addr != (DTE_ADDR_DUMMY & rk_ops->pt_address_mask)) {
+
+Nit: might it make more sense to do something like:
+
+		dte_addr = rk_ops->pt_address(... DTE_ADDR_DUMMY);
+		rk_iommu_write(... dte_addr)
+		if (rk_iommu_read(...) != dte_addr)
+
+so that you don't need to bother defining ->pt_address_mask for just 
+this one sanity-check?
+
+>   			dev_err(iommu->dev, "Error during raw reset. MMU_DTE_ADDR is not functioning\n");
+>   			return -EFAULT;
+>   		}
+> @@ -470,6 +475,11 @@ static int rk_iommu_force_reset(struct rk_iommu *iommu)
+>   	return 0;
+>   }
+>   
+> +static inline phys_addr_t rk_dte_addr_phys(phys_addr_t addr)
+
+The argument type here should be u32, since it's a DTE, not a physical 
+address...
+
+> +{
+> +	return addr;
+> +}
+> +
+>   static void log_iova(struct rk_iommu *iommu, int index, dma_addr_t iova)
+>   {
+>   	void __iomem *base = iommu->bases[index];
+> @@ -489,7 +499,7 @@ static void log_iova(struct rk_iommu *iommu, int index, dma_addr_t iova)
+>   	page_offset = rk_iova_page_offset(iova);
+>   
+>   	mmu_dte_addr = rk_iommu_read(base, RK_MMU_DTE_ADDR);
+> -	mmu_dte_addr_phys = (phys_addr_t)mmu_dte_addr;
+> +	mmu_dte_addr_phys = rk_ops->dte_addr_phys((phys_addr_t)mmu_dte_addr);
+
+...and the cast here should not be here, since it *is* the conversion 
+that the called function is supposed to be performing.
+
+>   	dte_addr_phys = mmu_dte_addr_phys + (4 * dte_index);
+>   	dte_addr = phys_to_virt(dte_addr_phys);
+> @@ -498,14 +508,14 @@ static void log_iova(struct rk_iommu *iommu, int index, dma_addr_t iova)
+>   	if (!rk_dte_is_pt_valid(dte))
+>   		goto print_it;
+>   
+> -	pte_addr_phys = rk_dte_pt_address(dte) + (pte_index * 4);
+> +	pte_addr_phys = rk_ops->pt_address(dte) + (pte_index * 4);
+>   	pte_addr = phys_to_virt(pte_addr_phys);
+>   	pte = *pte_addr;
+>   
+>   	if (!rk_pte_is_page_valid(pte))
+>   		goto print_it;
+>   
+> -	page_addr_phys = rk_pte_page_address(pte) + page_offset;
+> +	page_addr_phys = rk_ops->pt_address(pte) + page_offset;
+>   	page_flags = pte & RK_PTE_PAGE_FLAGS_MASK;
+>   
+>   print_it:
+> @@ -601,13 +611,13 @@ static phys_addr_t rk_iommu_iova_to_phys(struct iommu_domain *domain,
+>   	if (!rk_dte_is_pt_valid(dte))
+>   		goto out;
+>   
+> -	pt_phys = rk_dte_pt_address(dte);
+> +	pt_phys = rk_ops->pt_address(dte);
+>   	page_table = (u32 *)phys_to_virt(pt_phys);
+>   	pte = page_table[rk_iova_pte_index(iova)];
+>   	if (!rk_pte_is_page_valid(pte))
+>   		goto out;
+>   
+> -	phys = rk_pte_page_address(pte) + rk_iova_page_offset(iova);
+> +	phys = rk_ops->pt_address(pte) + rk_iova_page_offset(iova);
+>   out:
+>   	spin_unlock_irqrestore(&rk_domain->dt_lock, flags);
+>   
+> @@ -679,14 +689,14 @@ static u32 *rk_dte_get_page_table(struct rk_iommu_domain *rk_domain,
+>   		return ERR_PTR(-ENOMEM);
+>   	}
+>   
+> -	dte = rk_mk_dte(pt_dma);
+> +	dte = rk_ops->mk_dtentries(pt_dma);
+>   	*dte_addr = dte;
+>   
+>   	rk_table_flush(rk_domain, pt_dma, NUM_PT_ENTRIES);
+>   	rk_table_flush(rk_domain,
+>   		       rk_domain->dt_dma + dte_index * sizeof(u32), 1);
+>   done:
+> -	pt_phys = rk_dte_pt_address(dte);
+> +	pt_phys = rk_ops->pt_address(dte);
+>   	return (u32 *)phys_to_virt(pt_phys);
+>   }
+>   
+> @@ -728,7 +738,7 @@ static int rk_iommu_map_iova(struct rk_iommu_domain *rk_domain, u32 *pte_addr,
+>   		if (rk_pte_is_page_valid(pte))
+>   			goto unwind;
+>   
+> -		pte_addr[pte_count] = rk_mk_pte(paddr, prot);
+> +		pte_addr[pte_count] = rk_ops->mk_ptentries(paddr, prot);
+>   
+>   		paddr += SPAGE_SIZE;
+>   	}
+> @@ -750,7 +760,7 @@ static int rk_iommu_map_iova(struct rk_iommu_domain *rk_domain, u32 *pte_addr,
+>   			    pte_count * SPAGE_SIZE);
+>   
+>   	iova += pte_count * SPAGE_SIZE;
+> -	page_phys = rk_pte_page_address(pte_addr[pte_count]);
+> +	page_phys = rk_ops->pt_address(pte_addr[pte_count]);
+>   	pr_err("iova: %pad already mapped to %pa cannot remap to phys: %pa prot: %#x\n",
+>   	       &iova, &page_phys, &paddr, prot);
+>   
+> @@ -785,7 +795,8 @@ static int rk_iommu_map(struct iommu_domain *domain, unsigned long _iova,
+>   	dte_index = rk_domain->dt[rk_iova_dte_index(iova)];
+>   	pte_index = rk_iova_pte_index(iova);
+>   	pte_addr = &page_table[pte_index];
+> -	pte_dma = rk_dte_pt_address(dte_index) + pte_index * sizeof(u32);
+> +
+> +	pte_dma = rk_ops->pt_address(dte_index) + pte_index * sizeof(u32);
+>   	ret = rk_iommu_map_iova(rk_domain, pte_addr, pte_dma, iova,
+>   				paddr, size, prot);
+>   
+> @@ -821,7 +832,7 @@ static size_t rk_iommu_unmap(struct iommu_domain *domain, unsigned long _iova,
+>   		return 0;
+>   	}
+>   
+> -	pt_phys = rk_dte_pt_address(dte);
+> +	pt_phys = rk_ops->pt_address(dte);
+>   	pte_addr = (u32 *)phys_to_virt(pt_phys) + rk_iova_pte_index(iova);
+>   	pte_dma = pt_phys + rk_iova_pte_index(iova) * sizeof(u32);
+>   	unmap_size = rk_iommu_unmap_iova(rk_domain, pte_addr, pte_dma, size);
+> @@ -1037,7 +1048,7 @@ static void rk_iommu_domain_free(struct iommu_domain *domain)
+>   	for (i = 0; i < NUM_DT_ENTRIES; i++) {
+>   		u32 dte = rk_domain->dt[i];
+>   		if (rk_dte_is_pt_valid(dte)) {
+> -			phys_addr_t pt_phys = rk_dte_pt_address(dte);
+> +			phys_addr_t pt_phys = rk_ops->pt_address(dte);
+>   			u32 *page_table = phys_to_virt(pt_phys);
+>   			dma_unmap_single(dma_dev, pt_phys,
+>   					 SPAGE_SIZE, DMA_TO_DEVICE);
+> @@ -1138,6 +1149,15 @@ static int rk_iommu_probe(struct platform_device *pdev)
+>   	iommu->dev = dev;
+>   	iommu->num_mmu = 0;
+>   
+> +	if (!rk_ops)
+> +		rk_ops = of_device_get_match_data(dev);
+> +
+> +	/*
+> +	 * That should not happen unless different versions of the
+> +	 * hardware block are embedded the same SoC
+> +	 */
+> +	WARN_ON(rk_ops != of_device_get_match_data(dev));
+
+Nit: calling of_device_get_match_data() twice seems rather untidy - how 
+about something like:
+
+	ops = of_device_get_match_data(dev);
+	if (!rk_ops)
+		rk_ops = ops;
+	else if (WARN_ON(rk_ops != ops))
+		return -EINVAL;
+
+Either way I think it would be good to treat unexpected inconsistentcy 
+as an actual error, rather than second-guessing the DT and carrying on 
+under the assumption the device is something other than it claimed to be.
+
+> +
+>   	iommu->bases = devm_kcalloc(dev, num_res, sizeof(*iommu->bases),
+>   				    GFP_KERNEL);
+>   	if (!iommu->bases)
+> @@ -1277,10 +1297,21 @@ static const struct dev_pm_ops rk_iommu_pm_ops = {
+>   				pm_runtime_force_resume)
+>   };
+>   
+> +static struct rk_iommu_ops iommu_data_ops_v1 = {
+> +	.pt_address = &rk_dte_pt_address,
+> +	.mk_dtentries = &rk_mk_dte,
+> +	.mk_ptentries = &rk_mk_pte,
+> +	.dte_addr_phys = &rk_dte_addr_phys,
+> +	.pt_address_mask = RK_DTE_PT_ADDRESS_MASK,
+> +};
+> +
+>   static const struct of_device_id rk_iommu_dt_ids[] = {
+> -	{ .compatible = "rockchip,iommu" },
+> +	{	.compatible = "rockchip,iommu",
+> +		.data = &iommu_data_ops_v1,
+> +	},
+>   	{ /* sentinel */ }
+>   };
+> +MODULE_DEVICE_TABLE(of, rk_iommu_dt_ids);
+
+As before, unrelated and unnecessary since this driver is still bool in 
+the Kconfig. If you do want to support modular builds you'll also need 
+to ensure rk_iommu_ops.owner is set, but do it all as a separate patch 
+please.
+
+Thanks,
+Robin.
+
+>   
+>   static struct platform_driver rk_iommu_driver = {
+>   	.probe = rk_iommu_probe,
+> 
