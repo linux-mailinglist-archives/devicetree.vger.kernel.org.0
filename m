@@ -2,133 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E77A138C94A
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 16:36:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9B0038C960
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 16:42:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231211AbhEUOhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 10:37:51 -0400
-Received: from mail-eopbgr1410127.outbound.protection.outlook.com ([40.107.141.127]:30176
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231756AbhEUOht (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 May 2021 10:37:49 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C/f+S3ybS56dFqObhavMXzJlB5uYMTb2k4UL66HfKGOqtHWF4jtjPMPrXCf3PN49FrQtqy+gTFrLin7sJT52CUAkWY0jVg4LsCVUbNP/hP6YuXmhHq2hYGy66lMwpGuBRAhgZdVxuJLiWkG/V6Eir9Ev6IFxxJ9Dv2belJdLzbE6Fw5SaPRdoSekMRUGAJGt/lnR4wJK08Zo+JOststg36lDNKSXqCJyD6adRtzlwxjAA8s8yeL7bz0qt+hITGPO72rwLh+nEpj0jpEbyrpOMhVD9ARbEBjeOD2FF8hmtYh4s8JWLw8kpCDOCjfK+qgCP7jUQJ2h6dCW/RSO11uJHw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aOvLR2Zb4csnH2C1km4+QzQ1HMHveLF6R34CQ6SrT1Y=;
- b=njMKGe4P7kigS0luTJxHZN6LZaYY2djZIUKLRtlDjPwid+JPaWb/Mdaolttuxe/vwa1pRv524H4Y4Uzyer5O1auInkkz9Gk+rJqEtJd2XxT1D+KDqGn/2WDd1ATTOc4T9ngqoqYYhq3mAOm2s2f5nAz9j3Q9Qwd7Ew3VGQV5Y1R2hlG2QYqG4bbjhhw2TmX3jqglDHYocluLSQlZqTK74hZkhG2AM2Yt34jEhr7Doh6j7Yog+Mo9U6XgcFeITCqLyGEyVjm893b0Wx8W6mVH05OFhF2We8kERWWCSfiFCf6/PTBGxcfErq39F8vqAbErHlmhXFKYeJ93O0wOXw25sQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
+        id S234644AbhEUOoN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 10:44:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44720 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236123AbhEUOoE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 10:44:04 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEAD6C061763
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 07:42:40 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id c196so11653451oib.9
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 07:42:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aOvLR2Zb4csnH2C1km4+QzQ1HMHveLF6R34CQ6SrT1Y=;
- b=LNkSC5gX9+MkCbVPPrgBL63Ro3vqv+mLDi186DpELft87rvcGiUvoAwUME7r2jz4xw13jYF6pMlF0Nx/4rFcgcg+B2UTDRYi7H96gvN1Kf9+Dse5Shiv7WUq1YeGHZkXhmpBdNwmcypnXgAuawcE4YDB1OrHiJFf/bMg6ezDZlg=
-Received: from OS3PR01MB6593.jpnprd01.prod.outlook.com (2603:1096:604:101::7)
- by OSAPR01MB1556.jpnprd01.prod.outlook.com (2603:1096:603:31::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.26; Fri, 21 May
- 2021 14:36:23 +0000
-Received: from OS3PR01MB6593.jpnprd01.prod.outlook.com
- ([fe80::6c45:c45:40f8:e4a2]) by OS3PR01MB6593.jpnprd01.prod.outlook.com
- ([fe80::6c45:c45:40f8:e4a2%7]) with mapi id 15.20.4150.025; Fri, 21 May 2021
- 14:36:23 +0000
-From:   Min Li <min.li.xe@renesas.com>
-To:     Lee Jones <lee.jones@linaro.org>
-CC:     "sameo@linux.intel.com" <sameo@linux.intel.com>,
-        "grant.likely@linaro.org" <grant.likely@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH mfd v1] mfd: Add Renesas Synchronization Management Unit
- (SMU) support
-Thread-Topic: [PATCH mfd v1] mfd: Add Renesas Synchronization Management Unit
- (SMU) support
-Thread-Index: AQHXOtSPoxM3P4fkKEmDrY8StfrCU6rqloqAgAONlTA=
-Date:   Fri, 21 May 2021 14:36:23 +0000
-Message-ID: <OS3PR01MB6593794BFE3A4A08C62E708BBA299@OS3PR01MB6593.jpnprd01.prod.outlook.com>
-References: <1619466246-11198-1-git-send-email-min.li.xe@renesas.com>
- <20210519080807.GH805368@dell>
-In-Reply-To: <20210519080807.GH805368@dell>
-Accept-Language: en-CA, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: linaro.org; dkim=none (message not signed)
- header.d=none;linaro.org; dmarc=none action=none header.from=renesas.com;
-x-originating-ip: [72.140.114.230]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 75abf811-caeb-4893-f23a-08d91c65ce98
-x-ms-traffictypediagnostic: OSAPR01MB1556:
-x-microsoft-antispam-prvs: <OSAPR01MB15566E4A3B46901F3533A666BA299@OSAPR01MB1556.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 7cS/oatnQFfrhs6NpH+vIYwkt6DlvVFMs93zZphFFw9FtIk3fykp1m/e5fdt1grQZkwi4M6mZWPx+dhhgv02He7rI8her4vXBoN4cTDlizkU72DP3GyTAukgGR7c25uHVRaAX1D/EO4oWiVwX+ZvMDE1J2zj7/Zf3TzS4JqeGluzQGxrCdQjB9v5p28R3cqB1PsgD2R4ZNqqYZwG5Li1f7+iS96nfBnElNwknXgGqluLhuCX8XzMC26r9P5QiYkd3ikMSnnqZKwxkI5A4Ylizsx22QCvKHvu4BQrg4G65ncVXsIELLnY35q5DEMu9E0yXeQKDNIIHKBHnCMRKQ34iXFognoFcERiReJ/d0uZem1NqZzikbV8uJAf7UGILK0vhoA/57QoTOX8zGVGM7Mt+rxZ1zkQ7/eFKGfoNGcv+XifsoL6mLI72mnrmP/7UWy/cnghNSeZNaGUJXI+3Vpyd9dmYRKEZ2hrb6MzCJQjoX50TYOVi+GXVjusgMeLfKWPNIaIUSpizEprtBrJw3XYYtJv45TFPUCZMoS9I1viFtAFou+vzfrb+AwcmAOKWelOBe4o+Sr2Iscni0PqVr0d7Wn+QRD97kUfTeFLNqOcHuU=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB6593.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(396003)(39850400004)(136003)(366004)(316002)(76116006)(66446008)(54906003)(66476007)(66946007)(64756008)(66556008)(5660300002)(186003)(26005)(122000001)(6506007)(33656002)(6916009)(478600001)(71200400001)(4326008)(52536014)(38100700002)(7696005)(55016002)(8676002)(8936002)(4744005)(2906002)(86362001)(9686003)(83380400001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?TmlsSWljQytXTnluSEZ5dWtxTXZwZklSM2U2Z2hBTGd3cHFIWUxSbThndjlK?=
- =?utf-8?B?OGJBMVZQQ2RPV0Fla0Y3K1lRWkQ2TmZTQ3ZQVTR6eldCS2NRbWJKcVlzUTA0?=
- =?utf-8?B?QlY0L1VDSEVQN3JURWxMa3BTdjFEVTJlbXpsMnRmWVk0UlVyYStRdnpDMUJq?=
- =?utf-8?B?dWpwU3RGSlo3Z2F6SkoyNGphU1JTYWErWnlRYnh3MnpDdjZhZ0JkbnByWFR2?=
- =?utf-8?B?QmRaN2xIeTU4YUdkZEJxd0pPcTJzdzdMUFQzWFpRV0F2Q3dmZXhweS9UQStS?=
- =?utf-8?B?U0pSejIzZk1OYlF2dGhMRlF6UFMxbnBXWWx3ZHgrRHMrTWFwbDlPdURUREtr?=
- =?utf-8?B?NlJOTFl5WFdmVExFeTNONnZTZks1U0VQWHRTaHdSTFNhcGJJRjcwY09yNnB4?=
- =?utf-8?B?VjJsb2JpNXlDYTlRNFBGcWowT0NLWHVQTFR6VFFucnJ0Z0FuRUVxL0VqTTdY?=
- =?utf-8?B?ZFF3Qm1FVWpnWXQzMkpVakdHS2M1RkZnWE9pZFhTMHN2R2g4N1htcXNOUGZl?=
- =?utf-8?B?RHRMZWtyc0lJNWhYS0k1dlRTYTdIVDNqL1gvblpyb1hTUERKTXZlWTJPem81?=
- =?utf-8?B?SlBaNmZMR2xhb3JpOXdueVpIUUVXY2VQRmxWcFlUckxwdzI0RWpseEJ3UWdP?=
- =?utf-8?B?Q1FrSXNrOHl3SEUyMExleDdJQkR3VzczZGhQMEdFYkJlcTI2TDAxcE5vVWRs?=
- =?utf-8?B?bmpQc1FuZjNmdGh5RWpab1Fja1pPamdaR0tTQ3JndSt6RitHbjlwN1VRQUZz?=
- =?utf-8?B?RDEycm9NRUlMbGd3S1JJNjhTT0RnSk9NaVc2cjNwblhFM08vVFlVWWFJbm4x?=
- =?utf-8?B?V0lpVi9xVGtQR3hUVTFNVmRIWHUvSFBtZ3gxbTJ4TEpuajNWL25Vd3JqTEUz?=
- =?utf-8?B?RmJaZktpa2RGWldMUmc5amxhaE1JYnR4Z3lreFp1NUdncnB4NUE2WHB2VmNS?=
- =?utf-8?B?aUxnQjFFNW1KMmpyWDdnUlNlS1pqZzBLR0ZXNG5RWlVFTG9XMmZGVng3eTd1?=
- =?utf-8?B?dnpFWjJmdk94ekR0V0R1M09hYmNBVm0yWS9zTk5ucndpRkM4L2JCOFlXTmZx?=
- =?utf-8?B?ZHV2MzFWUDRtZGNFRlNZU1hEVkVCSHY4b1N0UGRRcCt0WWNiUHBINk9aRW9O?=
- =?utf-8?B?NnlpZzJ6STRKeDZ2dTRwTVhpa0t5UUJ6T2RsaFQrR2d6TUZ3ZjN1alpSM2Vi?=
- =?utf-8?B?R3lMRGxWMTl5N2RaRE1hd0xRWHNENVlKV0V3cWY3bzl4K20xak5jVDRRRGxy?=
- =?utf-8?B?bmNHeFFWbW9QYVNKS1I0TndsUVo0V3JWejJ1d08vdkNNQ1IxcXlmSUxQNzJZ?=
- =?utf-8?B?am5CNitEQVE5N0hBaWg4K1ExZGNTdTV5T0x6TDRRZVFZVGJQalg4SEoyZ1Zl?=
- =?utf-8?B?bXcrcUVFRVNTdmVjaUZEWmR4VU9LUTQrTHdDT1h1cCs0OWtZMklINkM5dnVY?=
- =?utf-8?B?NDkvUWFvR2dYOU1HK0NGSjMrYjdobkRYcXRDcXZ4c2dZQnV6LysvaXlxU0pm?=
- =?utf-8?B?QklVUlg5N1NFeWZTS3JHTTFtNWpiK1c4cUp3NWd4L2JoNndydVlxenJVQzlp?=
- =?utf-8?B?bWEvVWI5SjZDY1JsSVJQRU9oSksrRUM0WXpxTVBLNm8zbURwMVkyUDAyVzZz?=
- =?utf-8?B?ZTMvTFZJRmk2K1dPRk1mbFBSd1YxY1lIL3BMbDVjNWhBbjdiekExMnFPaWxP?=
- =?utf-8?B?RUQ5WXJsUGtVL2IwbmpqUnRXUnFiTS95N2YzOEx1bklXQ3dlR0NiaHNvbnU3?=
- =?utf-8?Q?RqQOP2IHFqfPEcuEEbeKljs0684bKCe0JrajvdB?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=5Z2KkwCEfM/BotE4mJLxeXlSEUL4YCagVaLjGTvy9fg=;
+        b=vT57+LogiFiec6wgtvPzqP6wwylRI+H3RY7Yz247iK9wZws/fiqF12NsNQp4BqIbHZ
+         TDsvykaL9rSu62USDGS+LufAkxWR5hZ2ykz2EInJ7msEAyM2gVjcr9qjIN/Cp8j29bpO
+         jR9+fo3hhoUy6JsiZ162qXXS8bw4fZMF0lTzImjiXJtxTKdIrmnWz62BDhUqU4EUkLA6
+         nz+Ry/eundYbkEnNQp38dxhU17Tk27tiv9Lk1WRlLhNzrqhXwtRywi7nQrgeSjmeL2Tu
+         OuJM5VVMAW9jE4krg+HwJP/K42KgoBH4IylPXbHa1Rm3mXZDljPnh1sw2/sIqbdyWaLY
+         tiqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=5Z2KkwCEfM/BotE4mJLxeXlSEUL4YCagVaLjGTvy9fg=;
+        b=buWCajjlukRSgCpsWV9cOAE8HjBaSTvVBP+nLe5GzBRuIjMvfn9s9zCdg9bx9noUI4
+         LGu/5xHBVD9ZjMT0ijPCwwATtZ/GTcbwbx8/uc9jy6mOHp72RJE7v9w9EL3JnQ63laHh
+         5mxoBAWMJm5L7OKSzikXMSh82lIsEXwJTwZ7W3Q8FZkaEpPtyF5AhLdaUAgXBDnavvj7
+         M/C+IJqBk71cA6iGJeZ1+CYm53bFSmKAehGnJcFFxQ2sFEKxxtZDEedEt4+NPtrPcGfJ
+         uQQvA+8pyodf2A9dLu/Grl/8uQuhxZF2xs/XX9WzjtkIq4C0m52Bhh+CtEKe9JYiTc8Z
+         0vCQ==
+X-Gm-Message-State: AOAM530LgGCxW+OMf5FpSZ3La/Bb/RXaq4Wof0hbQYa0jYsWudrjt7bT
+        HkZ0dmGY8WiHEa0oqX9/7Z2geA==
+X-Google-Smtp-Source: ABdhPJwnIJOU+D/nOQmEzRVwv3lT8IqqVtQca3zuNpPqbOdtvyDqSMrLplRNdstZzXFnadfmsqO24Q==
+X-Received: by 2002:aca:2417:: with SMTP id n23mr2376892oic.111.1621608159986;
+        Fri, 21 May 2021 07:42:39 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id r10sm1164085oic.4.2021.05.21.07.42.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 May 2021 07:42:39 -0700 (PDT)
+Date:   Fri, 21 May 2021 09:42:37 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Rob Clark <robdclark@gmail.com>, linux-arm-msm@vger.kernel.org,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH 02/13] dt-bindings: msm/dsi: Document Display Stream
+ Compression (DSC) parameters
+Message-ID: <20210521144237.GZ2484@yoga>
+References: <20210521124946.3617862-1-vkoul@kernel.org>
+ <20210521124946.3617862-3-vkoul@kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB6593.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 75abf811-caeb-4893-f23a-08d91c65ce98
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 May 2021 14:36:23.1736
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qt4FmRb9l2mKlQpY1Tr+R1zk/86qpLSBkHC8jIO6Jc1cZ8UJB3fmm0bkFmSCY3m/B0we+1qzPWJsJEdx76roxA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB1556
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210521124946.3617862-3-vkoul@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiA+DQo+ID4gK2NvbmZpZyBNRkRfUlNNVV9JMkMNCj4gPiArCXRyaXN0YXRlICJSZW5lc2FzIFN5
-bmNocm9uaXphdGlvbiBNYW5hZ2VtZW50IFVuaXQgd2l0aCBJMkMiDQo+ID4gKwlkZXBlbmRzIG9u
-IEkyQyAmJiBPRg0KPiA+ICsJZGVwZW5kcyBvbiBNRkRfUlNNVV9TUEk9bg0KPiANCj4gTm90IHN1
-cmUgSSd2ZSBzZWVuIGEgcmVsYXRpb25zaGlwIGxpa2UgdGhpcyBiZWZvcmUuDQo+IA0KPiBEZXZp
-Y2VzIGNhcGFibGUgb2YgU1BJIGFuZCBJMkMgdXN1YWxseSBoYXZlIGEgY29yZSBkcml2ZXIgd2hp
-Y2ggc2VsZWN0cyBvbmUNCj4gb3IgdGhlIG90aGVyLiAgSXQgd2lsbCBhbHNvIHNhdmUgc29tZSBj
-b2RlIGR1cGxpY2F0aW9uIHlvdSBoYXZlIGhlcmUuICBQbGVhc2UNCj4gdGFrZSBhIGxvb2sgYXQg
-c29tZSBvdGhlciBleGFtcGxlcyBpbiB0aGUgTUZEIHN1YnN5c3RlbS4NCg0KDQpIaSBMZWUNCg0K
-VGhhbmtzIGZvciB0YWtpbmcgeW91ciB0aW1lIHRvIHJldmlldyBteSBjb2RlLiBJIHdpbGwgc3Rh
-cnQgd29ya2luZyBvbiB0aGUgY29yZSBkcml2ZXIuIEJ1dA0KS2NvbmZpZyBpdGVtcyB3aWxsIHN0
-YXkgYXMgTUZEX1JTTVVfSTJDIGFuZCBNRkRfUlNNVV9TUEkgbGlrZSB0aGUgZXhpc3Rpbmcgb25l
-cyANCg0KTUZEX01BREVSQV9TUEkNCk1GRF9NQURFUkFfSTJDDQoNCk1GRF9EQTkwNTJfU1BJDQpN
-RkRfREE5MDUyX0kyQw0KDQpNRkRfTUMxM1hYWF9TUEkNCk1GRF9NQzEzWFhYX0kyQw0KDQpNaW4N
-Cg==
+On Fri 21 May 07:49 CDT 2021, Vinod Koul wrote:
+
+> DSC enables streams to be compressed before we send to panel. This
+> requires DSC enabled encoder and a panel to be present. So we add this
+> information in board DTS and find if DSC can be enabled and the
+> parameters required to configure DSC are added to binding document along
+> with example
+> 
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  .../devicetree/bindings/display/msm/dsi.txt       | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/dsi.txt b/Documentation/devicetree/bindings/display/msm/dsi.txt
+> index b9a64d3ff184..83d2fb92267e 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dsi.txt
+> +++ b/Documentation/devicetree/bindings/display/msm/dsi.txt
+> @@ -48,6 +48,13 @@ Optional properties:
+>  - pinctrl-n: the "sleep" pinctrl state
+>  - ports: contains DSI controller input and output ports as children, each
+>    containing one endpoint subnode.
+> +- qcom,mdss-dsc-enabled: Display Stream Compression (DSC) is enabled
+> +- qcom,mdss-slice-height: DSC slice height in pixels
+> +- qcom,mdss-slice-width: DSC slice width in pixels
+> +- qcom,mdss-slice-per-pkt: DSC slices per packet
+> +- qcom,mdss-bit-per-component: DSC bits per component
+> +- qcom,mdss-bit-per-pixel: DSC bits per pixel
+> +- qcom,mdss-block-prediction-enable: Block prediction mode of DSC enabled
+>  
+>    DSI Endpoint properties:
+>    - remote-endpoint: For port@0, set to phandle of the connected panel/bridge's
+> @@ -188,6 +195,14 @@ Example:
+>  		qcom,master-dsi;
+>  		qcom,sync-dual-dsi;
+>  
+> +		qcom,mdss-dsc-enabled;
+
+To me the activation of DSC seems to be a property of the panel.
+
+> +		qcom,mdss-slice-height = <16>;
+> +		qcom,mdss-slice-width = <540>;
+> +		qcom,mdss-slice-per-pkt = <1>;
+> +		qcom,mdss-bit-per-component = <8>;
+> +		qcom,mdss-bit-per-pixel = <8>;
+> +		qcom,mdss-block-prediction-enable;
+
+Which of these properties relates to the DSC encoder and what needs to
+be agreed with the sink? Can't we derive e.g. bpp from the information
+we have from the attached panel already?
+
+Regards,
+Bjorn
+
+> +
+>  		qcom,mdss-mdp-transfer-time-us = <12000>;
+>  
+>  		pinctrl-names = "default", "sleep";
+> -- 
+> 2.26.3
+> 
