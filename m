@@ -2,87 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 568D538CE38
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 21:35:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEBA238CE3A
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 21:35:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236107AbhEUThL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 15:37:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54670 "EHLO
+        id S238176AbhEUThN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 15:37:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234456AbhEUThL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 15:37:11 -0400
+        with ESMTP id S237981AbhEUThM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 15:37:12 -0400
 Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 018DAC0613CE
-        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 12:35:47 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id l18-20020a1c79120000b0290181c444b2d0so1163711wme.5
-        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 12:35:47 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D45CCC0613CE
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 12:35:48 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id b7so11097499wmh.5
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 12:35:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=KMPp6HPzP/Z/gUwGloJk24nCk2wzxJtGMMbT5lZO+5o=;
-        b=q1qKnsjkZUrocABLo94M7Hfw0Q7xLmCXEJswBta33OeEFvzutzEaY9xoT1T+mItREq
-         3fPyLqWGAoDivCgVX7+dD1C6Tkisml4vr0JMQapDFKzOfeKKlUSeO1RJkZlyfaFxpF0A
-         91c9hhlCDThf4iJZJZKu0bXo7aVlOMrhkz1L3ihcYO0Z6FdUJCthypZEGlWewKGjnJWy
-         OHwKzXqjXh76G0lwVuIf40ZSL3fJPGJhSn7flrN30Ue+HFiDHI5YBqYgB3DFUM6F7lS6
-         kaUFFkDwr+gk7+Mt6Zyf8xGxWkYWyISjdvNnFJTTr7oIi7xBmA7910geunzd1atRUyA1
-         e3Ew==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Hz8CwoiYMaTS14+pfnf5r1Rj5kC/ac6/jRZnXzFOTd4=;
+        b=ZAKhk2ugxfIoHADMSW/5unSj798vH+NMOOuIKguE4SgxKdurGDK4MiOZJeJ+hyB2xK
+         2WNVP/E5RYwUk33+VbzzTcx89p0SMxa6DdYM5lo01u6nLxS+yoqbI4/NtayKrgNl9mx/
+         MfMY+I7fuYs6ODZACLSyZdN2jwI8BAjoNlTVUKn/QN5i2oWbcl/WjVZtIkvvMGC/WgiT
+         3A5BZAyZLwe98lfSxyaFECsmVIlaXiPwciGrHCeA4ros6BPHcSXMlrUrF2Nplp6Kof+r
+         GhLE+utXD/juV/m4rUF1kPMumi1IPobfDNVVQ6b19pAve0DfB/VfhWlaJwQINf8kZJaV
+         mgng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=KMPp6HPzP/Z/gUwGloJk24nCk2wzxJtGMMbT5lZO+5o=;
-        b=Sc+GPrg2JXgEFsYFpkGs6JV8LPcKzIa5dkfAD6Lns8ju7Wfn7Qjq3w3BAIU07lVqYG
-         fYHjjJUPswMv7VFyP3hWFCljSAr2IgR5O4ygbYQqYNpnF5uEbPSUs6CAr0p6AxEc4PJ/
-         8rfwZxEx/5sIYDDTZE6RqjhOurg3dduvHQCcuStwoQLMB1MVgYchr3ZWXty2/Pl5KCVQ
-         AixEkD/eq2LT/vATKwG+/MYjUbKGtxHwFojduf9iSATkH/jxDhcu885mnpT53/+8vJ6X
-         s1KKNiOD/Wae8eWx11pMS0Vo4Rc+OHyPRWCBjRZyAfKQMsAdwme7L1zgbHsYZLXtYAOp
-         oygQ==
-X-Gm-Message-State: AOAM532hDrZVJRInNYO2OvVyoUwwQeyaiJjhuJ6oyhwAIHAJw1x507mK
-        0GbQJKHNIMVdOlHl6hs6YTneqg==
-X-Google-Smtp-Source: ABdhPJwgUxMVnXG+KcLbTk+NgdIdXciecDGOurZpwiGKz40ow2N6m4Rhfg37a+KsIJwMbKuRim59SA==
-X-Received: by 2002:a7b:c459:: with SMTP id l25mr9805966wmi.15.1621625746546;
-        Fri, 21 May 2021 12:35:46 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Hz8CwoiYMaTS14+pfnf5r1Rj5kC/ac6/jRZnXzFOTd4=;
+        b=jOHT6yAZ/EZ+7Pm1/0PwDwJhR/6hvvYHghSCcR4OtRLL0RTQH/16g76YoBshwiK4Te
+         ofhK2ai4f/bGXCJZ7Xf5VxL50dFz0JbhObKbzNYwhcwXdeqJA+IS2VerXsCse4a81ABK
+         fT0xFiNXs39IuMdwzeQXkaJwFjL1DlWGGzSwLenKTw/gcamuTpjK5TMEv0RSCdzK/Frz
+         3/ueiX8vqLKKdB0fDV3aB/mR0OQLMykRJyl7mVd9IKVBsvee3+nhU/gGqIx8a2bPswz7
+         v2huRxqWavxBQ9zoEVyUmpN+hcS9sRnP+QjEYw/Z857nAoWgS5mjQTNnC8UVdBse5ywv
+         7oNw==
+X-Gm-Message-State: AOAM533fYXsnPkNicIAtauX61h2ejnZAx6uDzyAUp+4eifyGmlfErCsD
+        hXvE+u8C8TAZZn0tANTZnjrBoA==
+X-Google-Smtp-Source: ABdhPJx47lgx32TwSiNmMqnhwY66ySsEo6fosW0nBDItiU0dED10Z6lcjs5WOq3yq5/3HqaLgPYkpw==
+X-Received: by 2002:a1c:2985:: with SMTP id p127mr10272304wmp.165.1621625747362;
+        Fri, 21 May 2021 12:35:47 -0700 (PDT)
 Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id k11sm479694wmj.1.2021.05.21.12.35.45
+        by smtp.googlemail.com with ESMTPSA id k11sm479694wmj.1.2021.05.21.12.35.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 May 2021 12:35:46 -0700 (PDT)
+        Fri, 21 May 2021 12:35:47 -0700 (PDT)
 From:   Corentin Labbe <clabbe@baylibre.com>
 To:     linus.walleij@linaro.org, robh+dt@kernel.org,
         ulli.kroll@googlemail.com
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH 1/2] ARM: dts: gemini-dlink-dns-313: rename gpio-i2c to i2c
-Date:   Fri, 21 May 2021 19:35:39 +0000
-Message-Id: <20210521193540.16164-1-clabbe@baylibre.com>
+Subject: [PATCH 2/2] ARM: dts: gemini-dlink-dir-685: rename gpio-i2c to i2c
+Date:   Fri, 21 May 2021 19:35:40 +0000
+Message-Id: <20210521193540.16164-2-clabbe@baylibre.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210521193540.16164-1-clabbe@baylibre.com>
+References: <20210521193540.16164-1-clabbe@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This fixes dtcheck warning:
-arch/arm/boot/dts/gemini-dlink-dns-313.dt.yaml: gpio-i2c: $nodename:0: 'gpio-i2c' does not match '^i2c(@.*)?'
+gemini-dlink-dir-685.dt.yaml: gpio-i2c: $nodename:0: 'gpio-i2c' does not match '^i2c(@.*)?'
+From schema: /usr/src/linux-next/Documentation/devicetree/bindings/i2c/i2c-gpio.yaml
 
 Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 ---
- arch/arm/boot/dts/gemini-dlink-dns-313.dts | 2 +-
+ arch/arm/boot/dts/gemini-dlink-dir-685.dts | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/gemini-dlink-dns-313.dts b/arch/arm/boot/dts/gemini-dlink-dns-313.dts
-index 34597f21647b..89de8e5145a8 100644
---- a/arch/arm/boot/dts/gemini-dlink-dns-313.dts
-+++ b/arch/arm/boot/dts/gemini-dlink-dns-313.dts
-@@ -82,7 +82,7 @@ fan0: gpio-fan {
- 
- 
- 	/* Global Mixed-Mode Technology G751 mounted on GPIO I2C */
+diff --git a/arch/arm/boot/dts/gemini-dlink-dir-685.dts b/arch/arm/boot/dts/gemini-dlink-dir-685.dts
+index 111313af04c2..c79a2a02dd6b 100644
+--- a/arch/arm/boot/dts/gemini-dlink-dir-685.dts
++++ b/arch/arm/boot/dts/gemini-dlink-dir-685.dts
+@@ -169,7 +169,7 @@ map0 {
+ 	 * The touchpad input is connected to a GPIO bit-banged
+ 	 * I2C bus.
+ 	 */
 -	gpio-i2c {
 +	i2c {
  		compatible = "i2c-gpio";
- 		sda-gpios = <&gpio0 15 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
- 		scl-gpios = <&gpio0 16 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
+ 		/* Collides with ICE */
+ 		sda-gpios = <&gpio0 5 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
 -- 
 2.26.3
 
