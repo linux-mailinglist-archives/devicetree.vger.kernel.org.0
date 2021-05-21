@@ -2,137 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B38D738CB97
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 19:10:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEACC38CB9E
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 19:11:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229597AbhEURLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 13:11:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49818 "EHLO
+        id S238016AbhEURNC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 13:13:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229565AbhEURLk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 13:11:40 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26996C061574;
-        Fri, 21 May 2021 10:10:16 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id y36so11810403ybi.11;
-        Fri, 21 May 2021 10:10:16 -0700 (PDT)
+        with ESMTP id S231451AbhEURNB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 13:13:01 -0400
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FD59C0613CE
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 10:11:38 -0700 (PDT)
+Received: by mail-ot1-x336.google.com with SMTP id n32-20020a9d1ea30000b02902a53d6ad4bdso18654603otn.3
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 10:11:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6PyJIHGnDYh6P31ntK4ge2w93dHWPRrD4kywlBEOeWc=;
-        b=kALmOtFCp+8NprW7sjYSuh7FbN7jOmHzc2LDU3WTB83s3Tg15h10xuq0HhjkatVjHN
-         ysLXDhTTxfvqOXFePbKR+zQixXEbSZhmvXlJ6JIs1lx/ciOHRkCcrz2WCP+pBeTRd8g9
-         wYYmb1xlOf8P3fOsC9XEGH+OD5R6cEDya+2sxrtlUfi6qQvGouMs5IMsBIntZxIL6gQJ
-         uk/+bl5osdAZNliiL71LhljwO15vgpd27tKxbk2xr7h1fK7nxGf12d2kVvgRD1uVSHnf
-         LKUAHNNO8DSPdaZ7Owpd+g3IJBxUkNEWzarO7NXMN7d2as1G0BKVOf1E3gu69nxi2WjE
-         +aeQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=e9JeVn1G8IdnIeIesci3+Ayk5EovOq0M3s+2FeKNFK0=;
+        b=pvPG2IpXF0bJcf/z/J6X/Jv/vHW0axAut+lT9rP4IJIFi/HUxPlCmpuFAhpJqpu8Qm
+         UKWNsaKRLrau75GJcP1RCp9U6Bjer9Z9dXkVlW74husfn10xGO2KrszYfsxXxprr0EXz
+         Q2X7i3RQzM2yfE8HcE4/cfKQAUwL2f62pg9Q0FhUV3JfqIc6uD4J9EW7h4TLe5UwbpdY
+         Ra3rqKrtZRBn9HfWadnIHfQ7Dz/cBqOK+eNhoShTmjYFetUdRqVcXACMtXFJFVv6gm2H
+         /lpBq543BSbByfrbXjd1cCNvgLCnoxoVovGQfv96UBW+qBRctQ0R7dbuxielpsvbVPP/
+         Qqng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6PyJIHGnDYh6P31ntK4ge2w93dHWPRrD4kywlBEOeWc=;
-        b=RS6HVqZZVOzl2i0lJ6J4Tkd6btAMHVELzYD7xRDmIpgIEp6Sm4ihS+FFevLU2hOl6C
-         pPjLEYF+JtpfgrX8cXk9IzVyBY7vrb1+iRtL4ibbOqv74HY5bD9OzNPGTFMXXUTYzPY2
-         vEnZQYwwCGrms7rfttWqL/I/uAjBa6E3cZ5LSThQQet7PJ5/WgN/1I1/eUxiayGsLeBH
-         vlxPYuNqUMqBiFOcXn+2WGozPamKJ+gaTaV4ab9r+Sp1QtyhQjbqNCRO1s7EBpzFsimZ
-         9DRx2JozOGDT6FwagwSMGh8nUl2MTM5mdVrnr2mY1wmWcVe/u9x3vwzy1dTNGjHDspLp
-         W+wg==
-X-Gm-Message-State: AOAM532hd7rl0rusXlJm0q9/7XoUQnxhn+OWFXPsnRPn+Ajq8q9h0+BW
-        VpAgA/OOiWVAayXn1IByCmrbnJMJ9gKPOjdm/tcjUncyNQmrbw==
-X-Google-Smtp-Source: ABdhPJyOXBxBWPxL6sPBpuZzkIVbeixOcFk8AsstI46d5WBRX0C/zS1v0WAX4R7QQeEIpFsdCA9NPbGJ0Mjs72+mE44=
-X-Received: by 2002:a5b:54a:: with SMTP id r10mr16608668ybp.476.1621617015403;
- Fri, 21 May 2021 10:10:15 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=e9JeVn1G8IdnIeIesci3+Ayk5EovOq0M3s+2FeKNFK0=;
+        b=LzZ69ofL6DiLTv+c9i+TCjsWsAdp36fWS3l2AVYKlJEFy/QB+a8kJ/00UFUINRCLSN
+         /kb2rz8i90KUn60hziHs5Kq1mJ2nTwsP792FDbOiY7AFk+aWI+I/aWQbgy4pfS6FdsBf
+         tjDB5sAWVHEHvGRLjXeWRz0B0BGsIutHJTbvOrMupIm4fOkgKiKf4NY2hDr0LUf4ezsM
+         yaEtqRVF7A99qme9uRtXut5OXyLyOkFi9jKQxSK53uIT56ErXxBOgDCcyOClv9hhmgR+
+         ZbftHc1vvikl/k69soLmOzK3sV4OAUhDcBXv52kegjFXzWq91QTzWoUkM6B5LHT6pnUv
+         6jww==
+X-Gm-Message-State: AOAM533Hqe8UbhBkw3PAwk0npes95HbDXQHt4ALgjEc9D9BI2362T8fv
+        Gc62GNvF0lgXUFbHAoqyc/PFPQ==
+X-Google-Smtp-Source: ABdhPJyr6YEiNQNOwzD5WfXzXxLiSfPTTV2nKIC0FlJZRbbESbv1j2UsCVQtzVFeDjV+o96hBm31nQ==
+X-Received: by 2002:a9d:453:: with SMTP id 77mr9684827otc.31.1621617097435;
+        Fri, 21 May 2021 10:11:37 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id e26sm1209578oig.9.2021.05.21.10.11.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 May 2021 10:11:36 -0700 (PDT)
+Date:   Fri, 21 May 2021 12:11:34 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Krishna Manikandan <mkrishn@codeaurora.org>
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kalyan_t@codeaurora.org,
+        tanmay@codeaurora.org, abhinavk@codeaurora.org,
+        robdclark@gmail.com, swboyd@chromium.org, vinod.koul@linaro.org,
+        dianders@chromium.org, khsieh@codeaurora.org, robh+dt@kernel.org,
+        sean@poorly.run, robh@kernel.org
+Subject: Re: [PATCH v17 1/4] dt-bindings: msm: disp: add yaml schemas for DPU
+ bindings
+Message-ID: <20210521171134.GB2484@yoga>
+References: <1621592844-6414-1-git-send-email-mkrishn@codeaurora.org>
+ <20210521160029.GA2484@yoga>
 MIME-Version: 1.0
-References: <20210514192218.13022-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210514192218.13022-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdXdATYWRGL9PMkR_Fj-m-E5GUuPbHq0hZ_Mh=ceedF=RA@mail.gmail.com>
-In-Reply-To: <CAMuHMdXdATYWRGL9PMkR_Fj-m-E5GUuPbHq0hZ_Mh=ceedF=RA@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 21 May 2021 18:09:49 +0100
-Message-ID: <CA+V-a8uNB-RyyweQ--vjdiA1NRB7_-VRYBPq9YUxFT4pFRTKBA@mail.gmail.com>
-Subject: Re: [PATCH 02/16] dt-bindings: arm: renesas: Document Renesas
- RZ/G2{L,LC} SoC variants
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210521160029.GA2484@yoga>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+On Fri 21 May 11:00 CDT 2021, Bjorn Andersson wrote:
 
-Thank you for the review.
-
-On Fri, May 21, 2021 at 2:23 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hii Prabhakar,
->
-> On Fri, May 14, 2021 at 9:23 PM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > Add device tree bindings documentation for Renesas RZ/G2{L,LC}
-> > SoC variants.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
->
-> > --- a/Documentation/devicetree/bindings/arm/renesas.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/renesas.yaml
-> > @@ -308,6 +308,15 @@ properties:
-> >                - renesas,r9a07g043u11 # Single Cortex-A55 RZ/G2UL
-> >            - const: renesas,r9a07g043
-> >
-> > +      - description: RZ/G2{L,LC} (R9A07G044)
-> > +        items:
-> > +          - enum:
-> > +              - renesas,r9a07g044c1 # Single Cortex-A55 RZ/G2LC
-> > +              - renesas,r9a07g044c2 # Dual Cortex-A55 RZ/G2LC
-> > +              - renesas,r9a07g044l1 # Single Cortex-A55 RZ/G2L
-> > +              - renesas,r9a07g044l2 # Dual Cortex-A55 RZ/G2L
->
-> Given the LSI DEVID is the same for all four, and presumably they're
-> thus the same die with different packaging, do we need these four
-> compatible values?
->
-Yes the LSI DEVID is the same for all the above, so as to
-differentiate between each SoC's, these compatible strings are added.
-* For example some IP blocks which are present on RZ/G2L aren't
-present in RZ/G2LC.
-* Adding this to DTS gives an opportunity to stop booting if the wrong
-DTB is loaded into the board.
-
-Cheers,
-Prabhakar
-
-> > +          - const: renesas,r9a07g044
+> On Fri 21 May 05:27 CDT 2021, Krishna Manikandan wrote:
+> > diff --git a/Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml b/Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml
+> [..]
+> > +      ports:
+> > +        $ref: /schemas/graph.yaml#/properties/ports
+> > +        description: |
+> > +          Contains the list of output ports from DPU device. These ports
+> > +          connect to interfaces that are external to the DPU hardware,
+> > +          such as DSI, DP etc. Each output port contains an endpoint that
+> > +          describes how it is connected to an external interface.
 > > +
-> >  additionalProperties: true
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+> > +        properties:
+> > +          port@0:
+> > +            $ref: /schemas/graph.yaml#/properties/port
+> > +            description: DPU_INTF1 (DSI1)
+> > +
+> > +          port@2:
+> > +            $ref: /schemas/graph.yaml#/properties/port
+> > +            description: DPU_INTF0 (DP)
+> 
+> Why is port@0 INTF1 and why is port@2 INTF0? In the binding you're
+> translating the two ports that are described are 0 and 1, representing
+> INTF1 and INTF2, or DSI1 and DSI2, respectively.
+> 
+> Further more, I have a need for somehow describing the pairing of 4 DP
+> INTFs (INTF 0, 3, 4 and 5) and how they are connected to the 3+1 DP+eDP
+> controllers.
+> 
+> Downstream this seems to be handled by adding cell-index to the DP
+> controllers and then matching that against the numbering in the driver's
+> INTF array. But rather than adding cell-index to map this, can't we
+> define that the port index is the INTF-number here?
+> 
+> 
+> This would obviously break compatibility with existing DTBs, but we
+> could start by doing it selectively for the new compatibles, fix up the
+> existing dts files and then drop the selective application after 1 or 2
+> LTS releases.
+> 
+
+In a chat with Rob I realized that my feedback here is unrelated to the
+yaml conversion and any conclusions of this discussion should be a
+separate patch anyways.
+
+So with the two style issues below resolve you have my:
+
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+[..]
+> > +examples:
+[..]
+> > +                   ports {
+> > +                           #address-cells = <1>;
+> > +                           #size-cells = <0>;
+> > +
+> > +                           port@0 {
+> > +                                   reg = <0>;
+> > +                                   dpu_intf1_out: endpoint {
+> > +                                                  remote-endpoint = <&dsi0_in>;
+> > +                                   };
+> > +                           };
+> > +
+> > +                            port@2 {
+> > +                                    reg = <2>;
+> > +                                    dpu_intf0_out: endpoint {
+> > +                                                   remote-endpoint = <&dp_in>;
+> > +                                    };
+> > +                            };
+> 
+> The indentation is inconsistent among the ports.
+> 
+> > +                   };
+> > +         };
+> > +    };
+> > +...
+> > diff --git a/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml b/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
+[..]
+> > +      operating-points-v2: true
+> 
+> You have a blank line between all other properties, but not here.
+> 
+> > +      ports:
+
+Regards,
+Bjorn
