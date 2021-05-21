@@ -2,131 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CAAF38CD2C
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 20:21:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98FA638CD52
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 20:24:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232500AbhEUSXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 14:23:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37976 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231726AbhEUSXA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 14:23:00 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DC7AC061574;
-        Fri, 21 May 2021 11:21:37 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id w1so17377578ybt.1;
-        Fri, 21 May 2021 11:21:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SNr1AlAWjbURkDNkMBPm+j+8zno+WRBAtQ1awt0lpEk=;
-        b=CuIVR6FG7TvH+3ts4H/CBIy+7p4gVqF+12mC7QjIPhVQMrYeaQB5u9BUUqtAwOlZxq
-         CFffa5JMcwhnW85h5rL1rGXL1ZKKWK9UW3mLtgI5L+WeJ1Oi2/mfmJNjJx1x0GXCF4FW
-         fpJrc3pFkUFv9LavWfngX76Xz1ncT8njudk+fgz30FLdUshXfsH1j7IO4Tl10Da/HG5Y
-         KHovnY0aG0msX+l/MBSnZt+kQHYEkjQ7VPIU0ALo3T96D0XNEpyo8+7osA/l0kUpQjew
-         aKPQzJHedalkyAVH0ePaD4fAvlSaiJwECeuSBMieEjVKsi1j6n30ZLb/SyP0FsMQMupT
-         PPIQ==
+        id S238963AbhEUSZf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 14:25:35 -0400
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:37792 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238940AbhEUSZ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 14:25:29 -0400
+Received: by mail-ot1-f43.google.com with SMTP id v19-20020a0568301413b0290304f00e3d88so18850139otp.4;
+        Fri, 21 May 2021 11:24:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SNr1AlAWjbURkDNkMBPm+j+8zno+WRBAtQ1awt0lpEk=;
-        b=S/nTQ703Shf5s7Gn8q1EYnJCEoOOkeRhjf+xnaVWr77VZsS5k0CUaqTuyDWFhxL2q2
-         0HFIx6clbqYiiYBNV1qVgKYoJ81pLKqZW+0ZjqkuSoFXOTrzMaYpTFsJGRc5+EKTNstG
-         T0nLntItJm31crFxke8EPyYHHeV79AsQh6VGnbcQaAhjQy5tqZsuGYfyOmKrEkJi1XSU
-         vFTfTHGgAo/H5FG7RWKawcqrg1oEjRDrPa2sjRmSTCS4g4OZhK1hEeNkNryec/4VBGVi
-         IjxHaED1H1eyF9nM4exuXQSjZxnSVtpShEhkCsSJjfTT7VCgz4aexoXGfmeLzw0QjfXL
-         SqrQ==
-X-Gm-Message-State: AOAM530/gk7nzJQv9nvP6ueAp/L83Nkz8nwY6NPUYYhXx5+Yr0o/32T9
-        wrhgiafABwPYQPZA02ArP5F4X/S8id3lGDNWhf0=
-X-Google-Smtp-Source: ABdhPJwX+TyzvMJ9UQaDzoql/G/nXuhsMgzOlaA/l19HXtJIJObl0NNIu4fY7nFzH71NwlvdiTvFhXOCboQHbbnbvlU=
-X-Received: by 2002:a25:f20f:: with SMTP id i15mr16055169ybe.119.1621621296645;
- Fri, 21 May 2021 11:21:36 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210514192218.13022-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210514192218.13022-17-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdXZEB6JretasVj7xpN2Gbp2y9dHh_Eiq03BEevRK8Zy9Q@mail.gmail.com>
-In-Reply-To: <CAMuHMdXZEB6JretasVj7xpN2Gbp2y9dHh_Eiq03BEevRK8Zy9Q@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 21 May 2021 19:21:10 +0100
-Message-ID: <CA+V-a8s+nae_PaHXo2=1Ongyxv_V_NJphKVJoX_WJHnukYPPxw@mail.gmail.com>
-Subject: Re: [PATCH 16/16] arm64: dts: renesas: Add initial device tree for
- RZ/G2L SMARC EVK
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=M4QX6algtyH9gp6amFadSRByvGetkxKzfRSL1H+K+/U=;
+        b=dZEBWLB7i97uJhGOXEvv+Z/vHAvr4LJkatbPmPWfo/GQ8XvCwDhG4UOWGxg2jlD++V
+         ZpeUOr+k+5/npqypz1v9csH6VnwysvYTGUzmhQXP9efbSlIL/PRa07SWVILopE5hcKZk
+         EzqhcrYHEQCRPSuEP9d4Nu/jbapjEYmYiqbVIplvm9PpEKIcoVsTTl0y6N88+uNMMyg/
+         JW1tNyjzZf8dikHsp88q5sDK6Y1UNlxDbYegDQxYnKUmaZ5bi2PcWDt28a0APf8wVXQH
+         v0BNkbTciYpFGiurSDdb4nJv1Pf3NFqtB4rrfOkI/LTd3Y+/smuVwhb+l9xC0wwm+0SS
+         uCWw==
+X-Gm-Message-State: AOAM532OrtSH9UmJ9EDhraO6gun2LWIOct1MWA/aU5daHle7YBiarL1N
+        LlDQ/RKlz6t7PZzZ9gAjdE+/JO+dOw==
+X-Google-Smtp-Source: ABdhPJwUvx6WTekj9uYPxR7A/4oGbDYAgyfdI2nVf7dJuc994Lp+MYYuUcF7UyWjvLf9ApJ6oufM3A==
+X-Received: by 2002:a9d:51c7:: with SMTP id d7mr9244199oth.51.1621621445985;
+        Fri, 21 May 2021 11:24:05 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id t26sm1442453otc.23.2021.05.21.11.24.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 May 2021 11:24:05 -0700 (PDT)
+Received: (nullmailer pid 151912 invoked by uid 1000);
+        Fri, 21 May 2021 18:24:03 -0000
+Date:   Fri, 21 May 2021 13:24:03 -0500
+From:   Rob Herring <robh@kernel.org>
 To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Jan Tuerk <jan.tuerk@emtrion.com>,
+        Shawn Guo <shawnguo@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 3/3] dt-bindings: gpio: pcf857x: Convert to json-schema
+Message-ID: <20210521182403.GA50332@robh.at.kernel.org>
+References: <cover.1621583562.git.geert+renesas@glider.be>
+ <52df0592c81ac000d3f486a9ba5a4d84b0f42c47.1621583562.git.geert+renesas@glider.be>
+ <CACRpkdbQE1-WgD_BBkHx9DvJ=GfW7-PCoF-73TKGpgh4c6Epxw@mail.gmail.com>
+ <CAMuHMdUqAwTSJuPXxJWgXGX1Hb=WLR3QtEm+RuhbyivFA5fUKA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdUqAwTSJuPXxJWgXGX1Hb=WLR3QtEm+RuhbyivFA5fUKA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-
-Thank you for the review.
-
-On Fri, May 21, 2021 at 4:41 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Fri, May 14, 2021 at 9:24 PM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > Add basic support for RZ/G2L SMARC EVK (based on R9A07G044L2):
-> > - memory
-> > - External input clock
-> > - SCIF
+On Fri, May 21, 2021 at 12:23:47PM +0200, Geert Uytterhoeven wrote:
+> Hi Linus,
+> 
+> On Fri, May 21, 2021 at 12:04 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+> > On Fri, May 21, 2021 at 9:54 AM Geert Uytterhoeven
+> > <geert+renesas@glider.be> wrote:
+> > > Convert the PCF857x-compatible I/O expanders Device Tree binding
+> > > documentation to json-schema.
+> > >
+> > > Document missing compatible values, properties, and gpio hogs.
+> > >
+> > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > --- a/arch/arm64/boot/dts/renesas/Makefile
-> > +++ b/arch/arm64/boot/dts/renesas/Makefile
-> > @@ -62,3 +62,5 @@ dtb-$(CONFIG_ARCH_R8A77990) += r8a77990-ebisu.dtb
-> >  dtb-$(CONFIG_ARCH_R8A77995) += r8a77995-draak.dtb
+> > (...)
+> > > Perhaps the "ti,pcf8575" construct should be removed, and the few users
+> > > fixed instead?
 > >
-> >  dtb-$(CONFIG_ARCH_R8A779A0) += r8a779a0-falcon.dtb
-> > +
-> > +dtb-$(CONFIG_ARCH_R9A07G044L) += r9a07g044l2-smarc.dtb
-> > diff --git a/arch/arm64/boot/dts/renesas/g2l-smarc.dtsi b/arch/arm64/boot/dts/renesas/g2l-smarc.dtsi
-> > new file mode 100644
-> > index 000000000000..9b95d73fb798
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/renesas/g2l-smarc.dtsi
->
-> rzg2l-smarc?
->
-Agreed will do.
+> > You would rather list it as deprecated I think?
+> > It is ABI...
+> 
+> All DTS files use the "nxp,pcf8575" fallback, except for
+> arch/x86/platform/ce4100/falconfalls.dts.
+> The latter ain't working with Linux, as the Linux driver doesn't
+> match against "ti,pcf8575"...
 
-Cheers,
-Prabhakar
+Perhaps can it just be removed?
 
-> The rest looks good to me (taking into account compatible value
-> discussions).
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+> 
+> > > +  gpio-controller: true
+> >
+> > So this is implicitly using the generic schema in
+> > /dtschema/schemas/gpio/gpio.yaml
+> 
+> if you leave it out:
+> 
+>     Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml: ignoring,
+> error in schema: properties
+>     warning: no schema found in file:
+> Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
+>     Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml:
+> properties: 'gpio-controller' is a dependency of '#gpio-cells'
+>     from schema $id: http://devicetree.org/meta-schemas/gpios.yaml#
+> 
+> > > +  lines-initial-states:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    description:
+> > > +      Bitmask that specifies the initial state of each line.
+> > > +      When a bit is set to zero, the corresponding line will be initialized to
+> > > +      the input (pulled-up) state.
+> > > +      When the  bit is set to one, the line will be initialized to the
+> > > +      low-level output state.
+> > > +      If the property is not specified all lines will be initialized to the
+> > > +      input state.
+> >
+> > Is this something we standardized or something that should
+> > actually be a custom "nxp," property we just missed it?
+> > (Looks like the latter... oh well, now it is there.)
+> 
+> Too late for an "nxp," prefix.
+> See the NOTE in drivers/gpio/gpio-pcf857x.c:
+> 
+>         /* NOTE:  these chips have strange "quasi-bidirectional" I/O pins.
+>          * We can't actually know whether a pin is configured (a) as output
+>          * and driving the signal low, or (b) as input and reporting a low
+>          * value ... without knowing the last value written since the chip
+>          * came out of reset (if any).  We can't read the latched output.
+>          *
+>          * In short, the only reliable solution for setting up pin direction
+>          * is to do it explicitly.  The setup() method can do that, but it
+>          * may cause transient glitching since it can't know the last value
+>          * written (some pins may need to be driven low).
+>          *
+>          * Using n_latch avoids that trouble.  When left initialized to zero,
+>          * our software copy of the "latch" then matches the chip's all-ones
+>          * reset state.  Otherwise it flags pins to be driven low.
+>          */
+> 
+> > > +patternProperties:
+> > > +  "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
+> > > +    type: object
+> >
+> > But this is already in
+> > /dtschema/schemas/gpio/gpio-hog.yaml
+> > for nodename, isn't that where it properly belongs?
+> >
+> > I'm however confused here Rob will know what to do.
+
+This one is a bit odd.
+
+> If we leave this out, something still has to refer to it?
+> I see no other binding doing that...
+
+It's selected by 'gpio-hog' being present, but here you need to make 
+sure that's the case.
+
+And I would hope you could define the node name to be just 1 of the 2 
+cases.
+
+Rob
