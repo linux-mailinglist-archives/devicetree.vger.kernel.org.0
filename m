@@ -2,237 +2,337 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2924138C840
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 15:36:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3333138C86D
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 15:39:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235729AbhEUNiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 09:38:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57898 "EHLO
+        id S236059AbhEUNkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 09:40:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235424AbhEUNiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 09:38:08 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 466D6C061574;
-        Fri, 21 May 2021 06:36:45 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A33998D8;
-        Fri, 21 May 2021 15:36:43 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1621604203;
-        bh=/7LiDKPNCKEPt/ohW04Z/i7GwY4oJX/J3kkws7kMW7Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jC8P9JDLiVN++EnCB25+lzrmSmukREzXJ9QQDNDMu95dAa1P+iwE3ULQkJlAphswk
-         P7AM2li6SHd2lEYeHq7hy2z2GyMw3wpa+KOc7eVck1GnrOY/82wpBnCp+rZRiEGcXB
-         RwydCMCj7h/swhtx2ptKtnEhE6Sl7LY83ciwVsIA=
-Date:   Fri, 21 May 2021 16:36:41 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-media@vger.kernel.org, marex@denx.de, p.zabel@pengutronix.de,
-        rmfrfs@gmail.com, robh@kernel.org, slongerbeam@gmail.com
-Subject: Re: [PATCH 00/23] media: imx: imx7-mipi-csis: Add i.MX8MM support /
- imx8mq support
-Message-ID: <YKe3aQHr+BsJ3ueY@pendragon.ideasonboard.com>
-References: <YKBRXesDsXk9K15J@pendragon.ideasonboard.com>
- <1da3de6c879474b814f4d820ca5eb5ba07174a26.camel@puri.sm>
- <YKRmhSn65fiqshsp@pendragon.ideasonboard.com>
- <7f922c8b3d4396c00ba15ad99dd572699f4b69b1.camel@puri.sm>
- <YKUy8gu3Jc3VDy5i@pendragon.ideasonboard.com>
- <f1d44bbd85edf547bc2b7c758b5e822e08cc80d0.camel@puri.sm>
- <YKZX8z1Vb0PAYk+G@pendragon.ideasonboard.com>
- <eff48d63017dc4ed1111b7d87a731d587f51885d.camel@puri.sm>
- <YKeAuGJbr9CorhZR@pendragon.ideasonboard.com>
- <bd5dc783e39d750693ac2b49050681c5e3088330.camel@puri.sm>
+        with ESMTP id S236308AbhEUNkU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 09:40:20 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01231C06138A;
+        Fri, 21 May 2021 06:38:56 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: benjamin.gaignard)
+        with ESMTPSA id 197B71F41986
+Subject: Re: [PATCH v5 3/4] iommu: rockchip: Add internal ops to handle
+ variants
+To:     Robin Murphy <robin.murphy@arm.com>, joro@8bytes.org,
+        will@kernel.org, robh+dt@kernel.org, heiko@sntech.de,
+        xxm@rock-chips.com
+Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20210521083637.3221304-1-benjamin.gaignard@collabora.com>
+ <20210521083637.3221304-4-benjamin.gaignard@collabora.com>
+ <e709c99c-02c4-69e1-0ae1-f12da9b2f915@arm.com>
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Message-ID: <bd01aa12-0c0f-5aa4-a0fb-e81cf51786df@collabora.com>
+Date:   Fri, 21 May 2021 15:38:51 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+In-Reply-To: <e709c99c-02c4-69e1-0ae1-f12da9b2f915@arm.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <bd5dc783e39d750693ac2b49050681c5e3088330.camel@puri.sm>
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
 
-On Fri, May 21, 2021 at 01:02:30PM +0200, Martin Kepplinger wrote:
-> Am Freitag, dem 21.05.2021 um 12:43 +0300 schrieb Laurent Pinchart:
-> > On Fri, May 21, 2021 at 11:25:20AM +0200, Martin Kepplinger wrote:
-> > > Am Donnerstag, dem 20.05.2021 um 15:37 +0300 schrieb Laurent Pinchart:
-> > > > On Thu, May 20, 2021 at 12:54:27PM +0200, Martin Kepplinger wrote:
-> > > > > Am Mittwoch, dem 19.05.2021 um 18:46 +0300 schrieb Laurent Pinchart:
-> > > > > > On Wed, May 19, 2021 at 05:21:11PM +0200, Martin Kepplinger wrote:
-> > > > > > > Am Mittwoch, dem 19.05.2021 um 04:14 +0300 schrieb Laurent Pinchart:
-> > > > > > > > On Tue, May 18, 2021 at 04:39:00PM +0200, Martin Kepplinger wrote:
-> > > > > > > > > Am Sonntag, dem 16.05.2021 um 01:55 +0300 schrieb Laurent Pinchart:
-> > > > > > > > > > On Tue, May 04, 2021 at 05:59:39PM +0200, Martin Kepplinger wrote:
-> > > > 
-> > > > [snip]
-> > > > 
-> > > > > I fixed mipi -> csi link. I had the DT port descriptions for
-> > > > > mipi csi wrong.
-> > > > 
-> > > > \o/
-> > > > 
-> > > > > now, just because I think it makes sense, I do:
-> > > > > 
-> > > > > media-ctl --set-v4l2 "'csi':0 [fmt:SGBRG10/640x480
-> > > > > colorspace:raw]"
-> > > > > 
-> > > > > which now prints:
-> > > > > 
-> > > > > Device topology
-> > > > > - entity 1: csi (2 pads, 2 links)
-> > > > >             type V4L2 subdev subtype Unknown flags 0
-> > > > >             device node name /dev/v4l-subdev0
-> > > > >         pad0: Sink
-> > > > >                 [fmt:SGBRG10_1X10/640x480 field:none colorspace:raw xfer:none ycbcr:601 quantization:full-range]
-> > > > >                 <- "imx8mq-mipi-csis.0":1 [ENABLED,IMMUTABLE]
-> > > > >         pad1: Source
-> > > > >                 [fmt:SGBRG10_1X10/640x480 field:none colorspace:raw xfer:none ycbcr:601 quantization:full-range]
-> > > > >                 -> "csi capture":0 [ENABLED,IMMUTABLE]
-> > > > > 
-> > > > > - entity 4: csi capture (1 pad, 1 link)
-> > > > >             type Node subtype V4L flags 0
-> > > > >             device node name /dev/video1
-> > > > >         pad0: Sink
-> > > > >                 <- "csi":1 [ENABLED,IMMUTABLE]
-> > > > > 
-> > > > > - entity 10: imx8mq-mipi-csis.0 (2 pads, 2 links)
-> > > > >              type V4L2 subdev subtype Unknown flags 0
-> > > > >              device node name /dev/v4l-subdev1
-> > > > >         pad0: Sink
-> > > > >                 <- "hi846 2-0020":0 []
-> > > > >         pad1: Source
-> > > > >                 -> "csi":0 [ENABLED,IMMUTABLE]
-> > > > 
-> > > > This subdev doesn't seem to report formats on its sink and source pads,
-> > > > which is weird. I've had a quick look at the .get_fmt() and .set_fmt()
-> > > > implementations in the code you've posted, and they're wrong. They
-> > > > shouldn't pass the calls to the source subdev with v4l2_subdev_call(),
-> > > > they should instead implement get and set format on this subdev. You can
-> > > > look at the imx7-mipi-csis driver to see how that's done. Once you'll
-> > > > have fixed this, you'll have to set the format on each pad with
-> > > > media-ctl to make sure formats through the pipeline match.
-> > > > 
-> > > > The only location where you imx8mq-mipi-csis driver should use
-> > > > v4l2_subdev_call() is in .s_stream(), to propagate the operation to the
-> > > > source.
-> > > > 
-> > > > By the way, I'd replace every occurence of "csis" with "csi2" in your
-> > > > driver. The name "csis" in the i.MX7 driver comes from the CSI-2 RX IP
-> > > > core that is named CSIS. That's not the case on the i.MX8QM.
-> > > > 
-> > > > > - entity 15: hi846 2-0020 (1 pad, 1 link)
-> > > > >              type V4L2 subdev subtype Sensor flags 0
-> > > > >              device node name /dev/v4l-subdev2
-> > > > >         pad0: Source
-> > > > >                 [fmt:SGBRG10_1X10/640x480 field:none colorspace:raw]
-> > > > >                 -> "imx8mq-mipi-csis.0":0 []
-> > > > 
-> > > > You need to enable this link, the following should do
-> > > > 
-> > > > media-ctl -l "'hi846 2-0020':0 -> 'imx8mq-mipi-csis.0':0 [1]"
-> > > 
-> > > ok makes sense, even though I basically just allow a set of formats
-> > > without yet having to configure anything format-specific (I can at
-> > > least use bits-per-pixel later, so it makes sense to have them).
-> > > nevermind. I again append the current driver I use here.
-> > > 
-> > > then I do:
-> > > 
-> > > media-ctl --set-v4l2 "'csi':0 [fmt:SGBRG10/640x480 colorspace:raw]"
-> > > media-ctl --set-v4l2 "'imx8mq-mipi-csi2.0':0 [fmt:SGBRG10/640x480
-> > > colorspace:raw]"
-> > > media-ctl -l "'hi846 2-0020':0 -> 'imx8mq-mipi-csi2.0':0 [1]"
-> > > 
-> > > which gets me:
-> > > 
-> > > Device topology
-> > > - entity 1: csi (2 pads, 2 links)
-> > >             type V4L2 subdev subtype Unknown flags 0
-> > >             device node name /dev/v4l-subdev0
-> > >         pad0: Sink
-> > >                 [fmt:SGBRG10_1X10/640x480 field:none colorspace:raw xfer:none ycbcr:601 quantization:full-range]
-> > >                 <- "imx8mq-mipi-csi2.0":1 [ENABLED,IMMUTABLE]
-> > >         pad1: Source
-> > >                 [fmt:SGBRG10_1X10/640x480 field:none colorspace:raw xfer:none ycbcr:601 quantization:full-range]
-> > >                 -> "csi capture":0 [ENABLED,IMMUTABLE]
-> > > 
-> > > - entity 4: csi capture (1 pad, 1 link)
-> > >             type Node subtype V4L flags 0
-> > >             device node name /dev/video0
-> > >         pad0: Sink
-> > >                 <- "csi":1 [ENABLED,IMMUTABLE]
-> > > 
-> > > - entity 10: imx8mq-mipi-csi2.0 (2 pads, 2 links)
-> > >              type V4L2 subdev subtype Unknown flags 0
-> > >              device node name /dev/v4l-subdev1
-> > >         pad0: Sink
-> > >                 [fmt:SGBRG10_1X10/640x480]
-> > >                 <- "hi846 2-0020":0 [ENABLED]
-> > >         pad1: Source
-> > >                 [fmt:SGBRG10_1X10/640x480]
-> > >                 -> "csi":0 [ENABLED,IMMUTABLE]
-> > > 
-> > > - entity 15: hi846 2-0020 (1 pad, 1 link)
-> > >              type V4L2 subdev subtype Sensor flags 0
-> > >              device node name /dev/v4l-subdev2
-> > >         pad0: Source
-> > >                 [fmt:SGBRG10_1X10/640x480 field:none colorspace:raw]
-> > >                 -> "imx8mq-mipi-csi2.0":0 [ENABLED]
-> > 
-> > This looks better.
-> > 
-> > > but streaming still fails with:
-> > > 
-> > > [  352.255129] imx7-csi 30a90000.csi1_bridge: media bus code not
-> > > compatible with the pixel format set on the video node: 1 != 0
-> > 
-> > What is the capture command line ? Can you trace this (I assume the
-> > message is printed by capture_validate_fmt(), it's not present in
-> > mainline so I don't know what 1 and 0 correspond to, even though I
-> > suspect they would be IPUV3_COLORSPACE_* values) to see why it fails
-> > ?
-> 
-> capture command:
-> 
-> v4l2-ctl -d "/dev/v4l/by-path/platform-30a90000.csi1_bridge-video-
-> index0" --set-fmt-video=width=640,height=480 --stream-mmap --stream-
-> to=test.raw --stream-count=1
-> 
-> I'll have to continue after the weekend, but let's share some logs.
-> Yes, "1 != 0" is from capture_validate_fmt():
-> 
-> priv->vdev.cc->cs != cc->cs
-> 
-> When I print the format the imx_media_find_mbus_format() finds and do:
-> 
-> media-ctl --set-v4l2 "'csi':0 [fmt:SGBRG10/640x480 colorspace:raw]"
-> 
-> I see:
-> 
-> [  184.251144] mc: media_release: Media Release
-> [  184.254397] selected specific mbus code 0 for list nr 0 (fourcc 0x59565955)
-> [  184.264564] selected specific mbus code 0 for list nr 0 (fourcc 0x59565955)
-> [  184.274763] selected specific mbus code 0 for list nr 21 (fourcc 0x36314247)
-> [  184.285102] selected specific mbus code 0 for list nr 21 (fourcc 0x36314247)
-> [  184.295383] selected specific mbus code 0 for list nr 21 (fourcc 0x36314247)
-> [  184.305752] selected specific mbus code 0 for list nr 21 (fourcc 0x36314247)
-> 
-> 21 is the correct bayer format I want, but there's 0, so
-> "MEDIA_BUS_FMT_UYVY8_2X8" found the first 2 times. That is
-> IPUV3_COLORSPACE_YUV (1) while the correct Bayer format 21 is
-> IPUV3_COLORSPACE_RGB (0).
-> 
-> so some format settings not yet correct.
+Le 21/05/2021 à 14:58, Robin Murphy a écrit :
+> On 2021-05-21 09:36, Benjamin Gaignard wrote:
+>> Add internal ops to be able to handle incoming variant v2.
+>> The goal is to keep the overall structure of the framework but
+>> to allow to add the evolution of this hardware block.
+>>
+>> The ops are global for a SoC because iommu domains are not
+>> attached to a specific devices if they are for a virtuel device like
+>> drm. Use a global variable shouldn't be since SoC usually doesn't
+>> embedded different versions of the iommu hardware block.
+>> If that happen one day a WARN_ON will be displayed at probe time.
+>
+> IMO it would be a grievous error if such a "virtual device" ever gets 
+> near the IOMMU API, so personally I wouldn't use that as a 
+> justification for anything :)
+>
+> FWIW you should be OK to handle things on a per-instance basis, it 
+> just means you have to defer some of the domain setup to .attach_dev 
+> time, like various other drivers do. That said, there's nothing wrong 
+> with the global if we do expect instances to be consistent across any 
+> given Rockchip SoC (and my gut feeling is that we probably should).
 
-You need to specify the capture pixel format to v4l2-ctl. The driver
-defaults to YUYV (I think) otherwise. The CSI bridge will pad data with
-0's on the right, so you need SGBRG16 (if I recall correctly, try
-SGRBG10 if it doesn't work).
+I have tried that solution first but drm device appear to but such "virtual device" so I had to use the global.
 
--- 
-Regards,
+I send a v6 to fix your others remarks.
 
-Laurent Pinchart
+Thanks for your advice.
+
+Benjamin
+
+>
+>> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+>> ---
+>> version 5:
+>>   - Use of_device_get_match_data()
+>>   - Add internal ops inside the driver
+>>
+>>   drivers/iommu/rockchip-iommu.c | 69 ++++++++++++++++++++++++----------
+>>   1 file changed, 50 insertions(+), 19 deletions(-)
+>>
+>> diff --git a/drivers/iommu/rockchip-iommu.c 
+>> b/drivers/iommu/rockchip-iommu.c
+>> index 7a2932772fdf..e7b9bcf174b1 100644
+>> --- a/drivers/iommu/rockchip-iommu.c
+>> +++ b/drivers/iommu/rockchip-iommu.c
+>> @@ -19,6 +19,7 @@
+>>   #include <linux/iopoll.h>
+>>   #include <linux/list.h>
+>>   #include <linux/mm.h>
+>> +#include <linux/module.h>
+>
+> This seems to be an unrelated and unnecessary change.
+>
+>>   #include <linux/init.h>
+>>   #include <linux/of.h>
+>>   #include <linux/of_iommu.h>
+>> @@ -96,6 +97,14 @@ static const char * const rk_iommu_clocks[] = {
+>>       "aclk", "iface",
+>>   };
+>>   +struct rk_iommu_ops {
+>> +    phys_addr_t (*pt_address)(u32 dte);
+>> +    u32 (*mk_dtentries)(dma_addr_t pt_dma);
+>> +    u32 (*mk_ptentries)(phys_addr_t page, int prot);
+>> +    phys_addr_t (*dte_addr_phys)(phys_addr_t addr);
+>> +    u32 pt_address_mask;
+>> +};
+>> +
+>>   struct rk_iommu {
+>>       struct device *dev;
+>>       void __iomem **bases;
+>> @@ -116,6 +125,7 @@ struct rk_iommudata {
+>>   };
+>>     static struct device *dma_dev;
+>> +static const struct rk_iommu_ops *rk_ops;
+>>     static inline void rk_table_flush(struct rk_iommu_domain *dom, 
+>> dma_addr_t dma,
+>>                     unsigned int count)
+>> @@ -215,11 +225,6 @@ static inline u32 rk_mk_dte(dma_addr_t pt_dma)
+>>   #define RK_PTE_PAGE_READABLE      BIT(1)
+>>   #define RK_PTE_PAGE_VALID         BIT(0)
+>>   -static inline phys_addr_t rk_pte_page_address(u32 pte)
+>> -{
+>> -    return (phys_addr_t)pte & RK_PTE_PAGE_ADDRESS_MASK;
+>> -}
+>> -
+>>   static inline bool rk_pte_is_page_valid(u32 pte)
+>>   {
+>>       return pte & RK_PTE_PAGE_VALID;
+>> @@ -451,7 +456,7 @@ static int rk_iommu_force_reset(struct rk_iommu 
+>> *iommu)
+>>           rk_iommu_write(iommu->bases[i], RK_MMU_DTE_ADDR, 
+>> DTE_ADDR_DUMMY);
+>>             dte_addr = rk_iommu_read(iommu->bases[i], RK_MMU_DTE_ADDR);
+>> -        if (dte_addr != (DTE_ADDR_DUMMY & RK_DTE_PT_ADDRESS_MASK)) {
+>> +        if (dte_addr != (DTE_ADDR_DUMMY & rk_ops->pt_address_mask)) {
+>
+> Nit: might it make more sense to do something like:
+>
+>         dte_addr = rk_ops->pt_address(... DTE_ADDR_DUMMY);
+>         rk_iommu_write(... dte_addr)
+>         if (rk_iommu_read(...) != dte_addr)
+>
+> so that you don't need to bother defining ->pt_address_mask for just 
+> this one sanity-check?
+>
+>>               dev_err(iommu->dev, "Error during raw reset. 
+>> MMU_DTE_ADDR is not functioning\n");
+>>               return -EFAULT;
+>>           }
+>> @@ -470,6 +475,11 @@ static int rk_iommu_force_reset(struct rk_iommu 
+>> *iommu)
+>>       return 0;
+>>   }
+>>   +static inline phys_addr_t rk_dte_addr_phys(phys_addr_t addr)
+>
+> The argument type here should be u32, since it's a DTE, not a physical 
+> address...
+>
+>> +{
+>> +    return addr;
+>> +}
+>> +
+>>   static void log_iova(struct rk_iommu *iommu, int index, dma_addr_t 
+>> iova)
+>>   {
+>>       void __iomem *base = iommu->bases[index];
+>> @@ -489,7 +499,7 @@ static void log_iova(struct rk_iommu *iommu, int 
+>> index, dma_addr_t iova)
+>>       page_offset = rk_iova_page_offset(iova);
+>>         mmu_dte_addr = rk_iommu_read(base, RK_MMU_DTE_ADDR);
+>> -    mmu_dte_addr_phys = (phys_addr_t)mmu_dte_addr;
+>> +    mmu_dte_addr_phys = 
+>> rk_ops->dte_addr_phys((phys_addr_t)mmu_dte_addr);
+>
+> ...and the cast here should not be here, since it *is* the conversion 
+> that the called function is supposed to be performing.
+>
+>>       dte_addr_phys = mmu_dte_addr_phys + (4 * dte_index);
+>>       dte_addr = phys_to_virt(dte_addr_phys);
+>> @@ -498,14 +508,14 @@ static void log_iova(struct rk_iommu *iommu, 
+>> int index, dma_addr_t iova)
+>>       if (!rk_dte_is_pt_valid(dte))
+>>           goto print_it;
+>>   -    pte_addr_phys = rk_dte_pt_address(dte) + (pte_index * 4);
+>> +    pte_addr_phys = rk_ops->pt_address(dte) + (pte_index * 4);
+>>       pte_addr = phys_to_virt(pte_addr_phys);
+>>       pte = *pte_addr;
+>>         if (!rk_pte_is_page_valid(pte))
+>>           goto print_it;
+>>   -    page_addr_phys = rk_pte_page_address(pte) + page_offset;
+>> +    page_addr_phys = rk_ops->pt_address(pte) + page_offset;
+>>       page_flags = pte & RK_PTE_PAGE_FLAGS_MASK;
+>>     print_it:
+>> @@ -601,13 +611,13 @@ static phys_addr_t rk_iommu_iova_to_phys(struct 
+>> iommu_domain *domain,
+>>       if (!rk_dte_is_pt_valid(dte))
+>>           goto out;
+>>   -    pt_phys = rk_dte_pt_address(dte);
+>> +    pt_phys = rk_ops->pt_address(dte);
+>>       page_table = (u32 *)phys_to_virt(pt_phys);
+>>       pte = page_table[rk_iova_pte_index(iova)];
+>>       if (!rk_pte_is_page_valid(pte))
+>>           goto out;
+>>   -    phys = rk_pte_page_address(pte) + rk_iova_page_offset(iova);
+>> +    phys = rk_ops->pt_address(pte) + rk_iova_page_offset(iova);
+>>   out:
+>>       spin_unlock_irqrestore(&rk_domain->dt_lock, flags);
+>>   @@ -679,14 +689,14 @@ static u32 *rk_dte_get_page_table(struct 
+>> rk_iommu_domain *rk_domain,
+>>           return ERR_PTR(-ENOMEM);
+>>       }
+>>   -    dte = rk_mk_dte(pt_dma);
+>> +    dte = rk_ops->mk_dtentries(pt_dma);
+>>       *dte_addr = dte;
+>>         rk_table_flush(rk_domain, pt_dma, NUM_PT_ENTRIES);
+>>       rk_table_flush(rk_domain,
+>>                  rk_domain->dt_dma + dte_index * sizeof(u32), 1);
+>>   done:
+>> -    pt_phys = rk_dte_pt_address(dte);
+>> +    pt_phys = rk_ops->pt_address(dte);
+>>       return (u32 *)phys_to_virt(pt_phys);
+>>   }
+>>   @@ -728,7 +738,7 @@ static int rk_iommu_map_iova(struct 
+>> rk_iommu_domain *rk_domain, u32 *pte_addr,
+>>           if (rk_pte_is_page_valid(pte))
+>>               goto unwind;
+>>   -        pte_addr[pte_count] = rk_mk_pte(paddr, prot);
+>> +        pte_addr[pte_count] = rk_ops->mk_ptentries(paddr, prot);
+>>             paddr += SPAGE_SIZE;
+>>       }
+>> @@ -750,7 +760,7 @@ static int rk_iommu_map_iova(struct 
+>> rk_iommu_domain *rk_domain, u32 *pte_addr,
+>>                   pte_count * SPAGE_SIZE);
+>>         iova += pte_count * SPAGE_SIZE;
+>> -    page_phys = rk_pte_page_address(pte_addr[pte_count]);
+>> +    page_phys = rk_ops->pt_address(pte_addr[pte_count]);
+>>       pr_err("iova: %pad already mapped to %pa cannot remap to phys: 
+>> %pa prot: %#x\n",
+>>              &iova, &page_phys, &paddr, prot);
+>>   @@ -785,7 +795,8 @@ static int rk_iommu_map(struct iommu_domain 
+>> *domain, unsigned long _iova,
+>>       dte_index = rk_domain->dt[rk_iova_dte_index(iova)];
+>>       pte_index = rk_iova_pte_index(iova);
+>>       pte_addr = &page_table[pte_index];
+>> -    pte_dma = rk_dte_pt_address(dte_index) + pte_index * sizeof(u32);
+>> +
+>> +    pte_dma = rk_ops->pt_address(dte_index) + pte_index * sizeof(u32);
+>>       ret = rk_iommu_map_iova(rk_domain, pte_addr, pte_dma, iova,
+>>                   paddr, size, prot);
+>>   @@ -821,7 +832,7 @@ static size_t rk_iommu_unmap(struct 
+>> iommu_domain *domain, unsigned long _iova,
+>>           return 0;
+>>       }
+>>   -    pt_phys = rk_dte_pt_address(dte);
+>> +    pt_phys = rk_ops->pt_address(dte);
+>>       pte_addr = (u32 *)phys_to_virt(pt_phys) + rk_iova_pte_index(iova);
+>>       pte_dma = pt_phys + rk_iova_pte_index(iova) * sizeof(u32);
+>>       unmap_size = rk_iommu_unmap_iova(rk_domain, pte_addr, pte_dma, 
+>> size);
+>> @@ -1037,7 +1048,7 @@ static void rk_iommu_domain_free(struct 
+>> iommu_domain *domain)
+>>       for (i = 0; i < NUM_DT_ENTRIES; i++) {
+>>           u32 dte = rk_domain->dt[i];
+>>           if (rk_dte_is_pt_valid(dte)) {
+>> -            phys_addr_t pt_phys = rk_dte_pt_address(dte);
+>> +            phys_addr_t pt_phys = rk_ops->pt_address(dte);
+>>               u32 *page_table = phys_to_virt(pt_phys);
+>>               dma_unmap_single(dma_dev, pt_phys,
+>>                        SPAGE_SIZE, DMA_TO_DEVICE);
+>> @@ -1138,6 +1149,15 @@ static int rk_iommu_probe(struct 
+>> platform_device *pdev)
+>>       iommu->dev = dev;
+>>       iommu->num_mmu = 0;
+>>   +    if (!rk_ops)
+>> +        rk_ops = of_device_get_match_data(dev);
+>> +
+>> +    /*
+>> +     * That should not happen unless different versions of the
+>> +     * hardware block are embedded the same SoC
+>> +     */
+>> +    WARN_ON(rk_ops != of_device_get_match_data(dev));
+>
+> Nit: calling of_device_get_match_data() twice seems rather untidy - 
+> how about something like:
+>
+>     ops = of_device_get_match_data(dev);
+>     if (!rk_ops)
+>         rk_ops = ops;
+>     else if (WARN_ON(rk_ops != ops))
+>         return -EINVAL;
+>
+> Either way I think it would be good to treat unexpected inconsistentcy 
+> as an actual error, rather than second-guessing the DT and carrying on 
+> under the assumption the device is something other than it claimed to be.
+>
+>> +
+>>       iommu->bases = devm_kcalloc(dev, num_res, sizeof(*iommu->bases),
+>>                       GFP_KERNEL);
+>>       if (!iommu->bases)
+>> @@ -1277,10 +1297,21 @@ static const struct dev_pm_ops 
+>> rk_iommu_pm_ops = {
+>>                   pm_runtime_force_resume)
+>>   };
+>>   +static struct rk_iommu_ops iommu_data_ops_v1 = {
+>> +    .pt_address = &rk_dte_pt_address,
+>> +    .mk_dtentries = &rk_mk_dte,
+>> +    .mk_ptentries = &rk_mk_pte,
+>> +    .dte_addr_phys = &rk_dte_addr_phys,
+>> +    .pt_address_mask = RK_DTE_PT_ADDRESS_MASK,
+>> +};
+>> +
+>>   static const struct of_device_id rk_iommu_dt_ids[] = {
+>> -    { .compatible = "rockchip,iommu" },
+>> +    {    .compatible = "rockchip,iommu",
+>> +        .data = &iommu_data_ops_v1,
+>> +    },
+>>       { /* sentinel */ }
+>>   };
+>> +MODULE_DEVICE_TABLE(of, rk_iommu_dt_ids);
+>
+> As before, unrelated and unnecessary since this driver is still bool 
+> in the Kconfig. If you do want to support modular builds you'll also 
+> need to ensure rk_iommu_ops.owner is set, but do it all as a separate 
+> patch please.
+>
+> Thanks,
+> Robin.
+>
+>>     static struct platform_driver rk_iommu_driver = {
+>>       .probe = rk_iommu_probe,
+>>
+>
