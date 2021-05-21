@@ -2,164 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AADB38C8AE
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 15:51:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DD9638C8F4
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 16:10:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232475AbhEUNxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 09:53:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33250 "EHLO
+        id S235279AbhEUOLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 10:11:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231758AbhEUNxD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 09:53:03 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBB45C061574
-        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 06:51:40 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id y14so19079089wrm.13
-        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 06:51:40 -0700 (PDT)
+        with ESMTP id S233556AbhEUOLY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 10:11:24 -0400
+Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F2E5C061574;
+        Fri, 21 May 2021 07:10:00 -0700 (PDT)
+Received: by mail-io1-xd29.google.com with SMTP id k132so6651873iof.4;
+        Fri, 21 May 2021 07:10:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=FoMElIb6Izgq7UZS50abk10HVNabRz/+764pqMn/JqU=;
-        b=CLRCB/Mbb5LgIbp3HOvQxnrbgHS+bKMVfkyBTqp6NKWhozzynf9yluLagrU3GqKpeu
-         m6HjbjBuOZHO6lrzim1FHhS9RRrM8m5wkxK0H/LBmdTNqrJkJh2U1ynk12Nxp+yiQFqI
-         ifxAWvGfMOzN6TZHgIKtK1hxGieLVr7asIAaJSA2NCTcX/6ujDAMAFWVpXq0jjOM7Goc
-         yMlMZ/aNdcjKFXain9COtjN0j4DEM4uGUiHkaxGLJ6lVHY0rn6nAc+Vp8YlF895JOciF
-         vv2U05Piae+I1uE6pZdK/xj7huLLFifIsq5s2QDzX4+WzgW50gkAzY3wxmkYL6RaJ5Sr
-         IZVw==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rgp+As3KlbEBKSyVtxsdvRFYlyX0rJUqDcyGgOG4188=;
+        b=rCvHAT1e9N+Z+rjcivIbW+yWiuaTrYUO4h7otm2/sRCHaUk8pHxU4B3+PkmI3d0ZRJ
+         2tAzBYA0FogjgbAW9UHIPwWHSJqgoogcJk+KIxo9bKBoFrhp5PDLOIkEL9pExfV5qjoo
+         WgzhYo/qWms4xYCdozWOV/TKQivldqCSJmrbLDXIAazejM/OtE+9GQCH4nacmJzStpjG
+         BjJf4OjkQJ44BYLrYcH1vgch1bc9kA1cg2kKmfMtI/+126z7oFd71CzcEoYOufDuYUy2
+         yk0jOfGH+/6HiIgsfUp30JWLGgCVUWja0/QtiKJ8pn7eVEIIW2BgHxpDpAUalZn3IwKh
+         vAUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=FoMElIb6Izgq7UZS50abk10HVNabRz/+764pqMn/JqU=;
-        b=Qb+aZ+gJFDC1PHRnlasU8GccuE7KI+UbjWCSPDG7dQdA1klhftmMNztvhhNYn1lIbV
-         yxISj0GjoxRGWO25SbHTYqaOjm53R3f+fdu+AngBodaSbPdmef1F0LvhJcmYL+E/GYGh
-         WDfwzp+826v6nn2ZaheSoto0H2ScVew5V7ZDtfQb6xzSN0AMev0OpdElI6RQEmumHh+I
-         rjESaxpRfCZi0AGGq0kmaYW8Gx3CuWLabZJlrjEpAlYW1R1gplnQ0B2Bc7IZ2xR4Q7x3
-         Kii2IaQT2Qj5CYMUbqWQNNfViAleq/j6utz3skeaxtIyTpyUJ1fbruPItZi9HIKmCtcU
-         3M/w==
-X-Gm-Message-State: AOAM530b66p7dpYTEdsucQp2dW1Hal77onZjA4fL6oF13fBXU/eo//Sq
-        MolMRgMqk65Y7BSSXfcPOyCHvg==
-X-Google-Smtp-Source: ABdhPJx9xSuKQ62LE/28tjl5IJOkDRAgdB+i5aV0N3ZjddgaHxOc1hhhp/80oCXec1SfZiTopcMIhg==
-X-Received: by 2002:a5d:44cb:: with SMTP id z11mr9919832wrr.159.1621605099373;
-        Fri, 21 May 2021 06:51:39 -0700 (PDT)
-Received: from dell ([91.110.221.215])
-        by smtp.gmail.com with ESMTPSA id x2sm6001300wmj.3.2021.05.21.06.51.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 May 2021 06:51:38 -0700 (PDT)
-Date:   Fri, 21 May 2021 14:51:37 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH V3 robh dt/next] dt-bindings: mfd: add Broadcom CRU
-Message-ID: <20210521135137.GG2549456@dell>
-References: <20210519082049.30976-1-zajec5@gmail.com>
- <20210519184041.563-1-zajec5@gmail.com>
- <CAL_Jsq+zUa-KdCEVJ6qdLeSu6QUGFkTy6O-HC_=_zxFUhfON8Q@mail.gmail.com>
- <20210521071221.GU2549456@dell>
- <273988f1-7180-572e-f9e2-4218637d0353@gmail.com>
- <20210521073150.GA2549456@dell>
- <CAL_JsqJKjW9J20z-W2vB1K7C7WKVS=TeDfq468=gH7i4UFUg=g@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rgp+As3KlbEBKSyVtxsdvRFYlyX0rJUqDcyGgOG4188=;
+        b=bMoRJJI/2q1nWU+pUZDfna3VUH34dGYpuw78JefGPYcls95IyuOBAJrLsCVHXo/W9K
+         2KBgB7Oiuvzs3SCV4aKfN28eV9UKg4M9FggpxC4aDU/V7ttEyhAod77f/6GhCB07Je3y
+         mnhOy0La2MToybsWV3/wLi9gNbU0H+LHolyUdgsCgV1TiNlR1oPZRClJMudfIocFK53g
+         39ePn9gSvOTbpx9itQE59H/Jc4BLXcUaJxs0JX+lMPXOkyISbjQkng0+88US5gaKJnTr
+         rKbSckP1NHlKRlvPObwjpcQddZr7UDmfKZQ7R6ueHXbeOPnTS1xRn0JzlOZJIUaOhPE3
+         e65w==
+X-Gm-Message-State: AOAM530CI9uNd9T//gYt4wEM1VtwRCDxkCZKzb4HlziO68wvdaRs29Bm
+        7Ec4X2GRwN7NCtTPqacrQgDRS9f3UQTIKsEjTbrpWHqL
+X-Google-Smtp-Source: ABdhPJx963ZKIoMW0yX6SSKHV7v9iBzcVj51DKJpySvD2v+xqvtzSsBZXXpCXXZJOjbXRyJqMGA75GXapMiUzwK9shY=
+X-Received: by 2002:a05:6602:14c8:: with SMTP id b8mr11637904iow.209.1621606199837;
+ Fri, 21 May 2021 07:09:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqJKjW9J20z-W2vB1K7C7WKVS=TeDfq468=gH7i4UFUg=g@mail.gmail.com>
+References: <20210521124946.3617862-1-vkoul@kernel.org>
+In-Reply-To: <20210521124946.3617862-1-vkoul@kernel.org>
+From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Date:   Fri, 21 May 2021 08:09:49 -0600
+Message-ID: <CAOCk7Nqep_Db+z3fr5asHZ1u0j8+6fKkPFs2Ai8CbA_zGqV6ZA@mail.gmail.com>
+Subject: Re: [Freedreno] [RFC PATCH 00/13] drm/msm: Add Display Stream
+ Compression Support
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Rob Clark <robdclark@gmail.com>, DTML <devicetree@vger.kernel.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        David Airlie <airlied@linux.ie>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        freedreno <freedreno@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 May 2021, Rob Herring wrote:
+On Fri, May 21, 2021 at 6:50 AM Vinod Koul <vkoul@kernel.org> wrote:
+>
+> Display Stream Compression (DSC) compresses the display stream in host which
+> is later decoded by panel. This series enables this for Qualcomm msm driver.
+> This was tested on Google Pixel3 phone which use LGE SW43408 panel.
+>
+> The changes include adding DT properties for DSC then hardware blocks support
+> required in DPU1 driver and support in encoder. We also add support in DSI
+> and introduce required topology changes.
+>
+> In order for panel to set the DSC parameters we add dsc in drm_panel and set
+> it from the msm driver.
+>
+> Complete changes which enable this for Pixel3 along with panel driver (not
+> part of this series) and DT changes can be found at:
+> git.linaro.org/people/vinod.koul/kernel.git pixel/dsc_rfc
+>
+> Comments welcome!
 
-> On Fri, May 21, 2021 at 2:31 AM Lee Jones <lee.jones@linaro.org> wrote:
-> >
-> > On Fri, 21 May 2021, Rafał Miłecki wrote:
-> >
-> > > On 21.05.2021 09:12, Lee Jones wrote:
-> > > > On Thu, 20 May 2021, Rob Herring wrote:
-> > > >
-> > > > > On Wed, May 19, 2021 at 1:40 PM Rafał Miłecki <zajec5@gmail.com> wrote:
-> > > > > >
-> > > > > > From: Rafał Miłecki <rafal@milecki.pl>
-> > > > > >
-> > > > > > CRU is a block used in e.g. Northstar devices. It can be seen in the
-> > > > > > bcm5301x.dtsi and this binding documents its proper usage.
-> > > > > >
-> > > > > > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> > > > > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > > > > ---
-> > > > > > Rob: would you take this patch through your dt/next?
-> > > > >
-> > > > > I can't, I don't have the dependencies. It looks like 08e9fdfbb224 is
-> > > > > already upstream. For ac5f8197d15c, I could get a stable branch from
-> > > > > Linus, but I can't take some random github branch. Even if I got a
-> > > > > stable branch for that, that's a lot of extra work for me for 1 patch
-> > > > > compared to waiting til next cycle.
-> > > > >
-> > > > > My suggestion is get a stable branch/tag from Linus, merge that into
-> > > > > the Broadcom branch and then apply this patch. Though really, Linus
-> > > > > needed to know the dependency when applying the patch if he doesn't
-> > > > > rebase his tree. (I realize the dependency probably happened because
-> > > > > of the review).
-> > > > >
-> > > > > >
-> > > > > > V2: Use complete binding & change additionalProperties to false
-> > > > > > V3: Use clock-controller@ for clocks
-> > > > > >
-> > > > > > NOTICE: this patch is based on top of the linux-next as it requires:
-> > > > > > ac5f8197d15c ("dt-bindings: pinctrl: convert Broadcom Northstar to the json-schema")
-> > > > > > 08e9fdfbb224 ("dt-bindings: thermal: brcm,ns-thermal: Convert to the json-schema")
-> > > > > > AND merged git@github.com:Broadcom/stblinux.git devicetree/next as it requires:
-> > > > > > 8f711f68cffd ("dt-bindings: clock: brcm, iproc-clocks: convert to the json-schema")
-> > > > > >
-> > > > > > This is reworked version of the
-> > > > > > [PATCH robh next] dt-bindings: bus: add Broadcom CRU
-> > > > > > https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210309142241.16259-1-zajec5@gmail.com/
-> > > > > > ---
-> > > > > >   .../devicetree/bindings/mfd/brcm,cru.yaml     | 86 +++++++++++++++++++
-> > > > > >   1 file changed, 86 insertions(+)
-> > > > > >   create mode 100644 Documentation/devicetree/bindings/mfd/brcm,cru.yaml
-> > > >
-> > > > What's the dependency here?  It's a new file that doesn't reference anything.
-> > >
-> > > Without dependencies it will cause warnings for those running "dt_binding_check".
-> >
-> > No one runs that, it's full of warnings. ;)
-> 
-> That's dtbs_check on dts files which is full of warnings.
-> dt_binding_check for the schema does not have warnings (well, there's
-> a couple typically because either the bindings aren't reviewed or the
-> dependencies are ignored).
-> 
-> > > I didn't find it critical so I thought Rob can take in on a promise of
-> > > what is queued for the next release. It appears Rob has more strict
-> > > rules so I'll just have to wait for stuff to land in Linus's tree :)
-> 
-> I care less if other trees break as long as linux-next doesn't.
-> 
-> > Rob isn't the one taking the patch. :D
-> >
-> > I'll apply it in a few days, unless Rob shouts real-loud!
-> 
-> I've said it before, MFD and their child bindings need to be applied
-> in 1 tree. If you can't make that happen, then don't apply binding
-> patches.
+This feels backwards to me.  I've only skimmed this series, and the DT
+changes didn't come through for me, so perhaps I have an incomplete
+view.
 
-I'm not aware of MFD patches applied anywhere else.
+DSC is not MSM specific.  There is a standard for it.  Yet it looks
+like everything is implemented in a MSM specific way, and then pushed
+to the panel.  So, every vendor needs to implement their vendor
+specific way to get the DSC info, and then push it to the panel?
+Seems wrong, given there is an actual standard for this feature.
 
-AFAIK, they all come through me.
+Additionally, we define panel properties (resolution, BPP, etc) at the
+panel, and have the display drivers pull it from the panel.  However,
+for DSC, you do the reverse (define it in the display driver, and push
+it to the panel).  If the argument is that DSC properties can be
+dynamic, well, so can resolution.  Every panel for MSM MTPs supports
+multiple resolutions, yet we define that with the panel in Linux.
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Finally, I haven't seen the DT bits, but I'm concerned about using DT
+for this.  It inherently excludes ACPI systems.  You appear to have
+sdm845 support in this series, but what about ACPI boot on the Lenovo
+C630 for example?  Or any of the 8cx laptops?  We don't read the panel
+resolution, etc from DT, so why the DSC?
+
+I'm glad that work is being done to add DSC to Linux, it's something I
+struggled with when working on the 8998 mtp, and I realize this is a
+bit of a drive-by review.  However, it seems like there should be a
+better way.
+
+>
+> Vinod Koul (13):
+>   drm/dsc: Add dsc pps header init function
+>   dt-bindings: msm/dsi: Document Display Stream Compression (DSC)
+>     parameters
+>   drm/msm/dsi: add support for dsc data
+>   drm/msm/disp/dpu1: Add support for DSC
+>   drm/msm/disp/dpu1: Add support for DSC in pingpong block
+>   drm/msm/disp/dpu1: Add DSC support in RM
+>   drm/msm/disp/dpu1: Add DSC for SDM845 to hw_catalog
+>   drm/msm/disp/dpu1: Add DSC support in hw_ctl
+>   drm/msm/disp/dpu1: Don't use DSC with mode_3d
+>   drm/msm/disp/dpu1: Add support for DSC in encoder
+>   drm/msm/disp/dpu1: Add support for DSC in topology
+>   drm/msm/dsi: Add support for DSC configuration
+>   drm/msm/dsi: Pass DSC params to drm_panel
+>
+>  .../devicetree/bindings/display/msm/dsi.txt   |  15 +
+>  drivers/gpu/drm/drm_dsc.c                     |  11 +
+>  drivers/gpu/drm/msm/Makefile                  |   1 +
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c   | 204 +++++++++++-
+>  .../gpu/drm/msm/disp/dpu1/dpu_encoder_phys.h  |  11 +
+>  .../drm/msm/disp/dpu1/dpu_encoder_phys_cmd.c  |   2 +
+>  .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    |  22 ++
+>  .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |  26 ++
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c    |  12 +-
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h    |   2 +
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_dsc.c    | 221 +++++++++++++
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_dsc.h    |  79 +++++
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h   |  13 +
+>  .../gpu/drm/msm/disp/dpu1/dpu_hw_pingpong.c   |  32 ++
+>  .../gpu/drm/msm/disp/dpu1/dpu_hw_pingpong.h   |  14 +
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h       |   1 +
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_rm.c        |  32 ++
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_rm.h        |   1 +
+>  drivers/gpu/drm/msm/dsi/dsi.xml.h             |  10 +
+>  drivers/gpu/drm/msm/dsi/dsi_host.c            | 293 +++++++++++++++++-
+>  drivers/gpu/drm/msm/msm_drv.h                 |  32 ++
+>  include/drm/drm_dsc.h                         |  16 +
+>  include/drm/drm_panel.h                       |   7 +
+>  23 files changed, 1043 insertions(+), 14 deletions(-)
+>  create mode 100644 drivers/gpu/drm/msm/disp/dpu1/dpu_hw_dsc.c
+>  create mode 100644 drivers/gpu/drm/msm/disp/dpu1/dpu_hw_dsc.h
+>
+> --
+> 2.26.3
+>
+> _______________________________________________
+> Freedreno mailing list
+> Freedreno@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/freedreno
