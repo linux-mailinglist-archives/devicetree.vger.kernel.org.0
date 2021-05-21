@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18BCE38C6D9
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 14:50:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C721838C6E2
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 14:50:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233375AbhEUMvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 08:51:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33464 "EHLO mail.kernel.org"
+        id S234319AbhEUMvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 08:51:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33630 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230081AbhEUMvW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 May 2021 08:51:22 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id AE40E6128A;
-        Fri, 21 May 2021 12:49:54 +0000 (UTC)
+        id S230081AbhEUMvb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 May 2021 08:51:31 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 14B946128A;
+        Fri, 21 May 2021 12:50:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621601399;
-        bh=G6ouIauR05ZjrZdPDoLSgmtuQODfUpudDe0dhIJwxGg=;
-        h=From:To:Cc:Subject:Date:From;
-        b=RXyaAIs4G0Wi1Rot89jVxURym/6ZQSoS/jdA8GQctBWZDIgCvsVVQWExpQBN9oF+K
-         HMEy6DtuwtA6mmNjtELemlALcpBAOWrRfq0gKd47AjhhQKIsWMoN/FdlBHSBno+/xr
-         TP8FSI0GuhTUqrUYr0x6VMucqe0fv1oI9+6/NhuDPGdnxds2iSVdZuEU11Pubs3wou
-         B1fv4Y2XlkPjG9D5BQvEPUxQZH5x8p+vXQb6P8HR+IbcJQiD/tMogtphEyCoIeb9ED
-         LyqRj+2W2RVnyqc06wU879N3lQAw5wOoMnk8E/o+Ucla6GsnhUJQ0PVqfM4M3dwkpW
-         ZsgAu2R9CDXkQ==
+        s=k20201202; t=1621601408;
+        bh=evW5pHUN/T4rGcgEYxzNl0VVIeE5qNWtjDjSxJvpPkQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=swpkH1OlMp8m3dC3Op2knzSP+7dNpwV+GLpnTqKTP6Rv9cOr4ZuDrQg1RerHShygz
+         GWLDF2inM+t6mnDbG2UCW7r6z/TwN1q7YgMWTOaDoVRGulMbiBXG8zG4/5b91XLUTP
+         rDwf1hQ18aLr1h+gRkhRnfQT8Lqeyrv1Hyxyq9Mt1y1Imwn3MLM8ZTGY/hqHpwX4uB
+         TeSq+8VtHdoDVNt4FL7T80PylE2tHdIJvqLYj8bApZz92UPSMmy3eukhXnaatygXaK
+         Jd9UQgB4pJ7MrivQRrAButxeohwGiHLp1cdP/JL73buJlKi0PQaKtPGYBKrDtL3LMS
+         uVKjiCutUDDQg==
 From:   Vinod Koul <vkoul@kernel.org>
 To:     Rob Clark <robdclark@gmail.com>
 Cc:     linux-arm-msm@vger.kernel.org,
@@ -35,76 +35,62 @@ Cc:     linux-arm-msm@vger.kernel.org,
         linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org
-Subject: [RFC PATCH 00/13] drm/msm: Add Display Stream Compression Support
-Date:   Fri, 21 May 2021 18:19:29 +0530
-Message-Id: <20210521124946.3617862-1-vkoul@kernel.org>
+Subject: [RFC PATCH 02/13] dt-bindings: msm/dsi: Document Display Stream Compression (DSC) parameters
+Date:   Fri, 21 May 2021 18:19:31 +0530
+Message-Id: <20210521124946.3617862-3-vkoul@kernel.org>
 X-Mailer: git-send-email 2.26.3
+In-Reply-To: <20210521124946.3617862-1-vkoul@kernel.org>
+References: <20210521124946.3617862-1-vkoul@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Display Stream Compression (DSC) compresses the display stream in host which
-is later decoded by panel. This series enables this for Qualcomm msm driver.
-This was tested on Google Pixel3 phone which use LGE SW43408 panel.
+DSC enables streams to be compressed before we send to panel. This
+requires DSC enabled encoder and a panel to be present. So we add this
+information in board DTS and find if DSC can be enabled and the
+parameters required to configure DSC are added to binding document along
+with example
 
-The changes include adding DT properties for DSC then hardware blocks support
-required in DPU1 driver and support in encoder. We also add support in DSI
-and introduce required topology changes.
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
+---
+ .../devicetree/bindings/display/msm/dsi.txt       | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-In order for panel to set the DSC parameters we add dsc in drm_panel and set
-it from the msm driver.
-
-Complete changes which enable this for Pixel3 along with panel driver (not
-part of this series) and DT changes can be found at:
-git.linaro.org/people/vinod.koul/kernel.git pixel/dsc_rfc
-
-Comments welcome!
-
-Vinod Koul (13):
-  drm/dsc: Add dsc pps header init function
-  dt-bindings: msm/dsi: Document Display Stream Compression (DSC)
-    parameters
-  drm/msm/dsi: add support for dsc data
-  drm/msm/disp/dpu1: Add support for DSC
-  drm/msm/disp/dpu1: Add support for DSC in pingpong block
-  drm/msm/disp/dpu1: Add DSC support in RM
-  drm/msm/disp/dpu1: Add DSC for SDM845 to hw_catalog
-  drm/msm/disp/dpu1: Add DSC support in hw_ctl
-  drm/msm/disp/dpu1: Don't use DSC with mode_3d
-  drm/msm/disp/dpu1: Add support for DSC in encoder
-  drm/msm/disp/dpu1: Add support for DSC in topology
-  drm/msm/dsi: Add support for DSC configuration
-  drm/msm/dsi: Pass DSC params to drm_panel
-
- .../devicetree/bindings/display/msm/dsi.txt   |  15 +
- drivers/gpu/drm/drm_dsc.c                     |  11 +
- drivers/gpu/drm/msm/Makefile                  |   1 +
- drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c   | 204 +++++++++++-
- .../gpu/drm/msm/disp/dpu1/dpu_encoder_phys.h  |  11 +
- .../drm/msm/disp/dpu1/dpu_encoder_phys_cmd.c  |   2 +
- .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    |  22 ++
- .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |  26 ++
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c    |  12 +-
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h    |   2 +
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_dsc.c    | 221 +++++++++++++
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_dsc.h    |  79 +++++
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h   |  13 +
- .../gpu/drm/msm/disp/dpu1/dpu_hw_pingpong.c   |  32 ++
- .../gpu/drm/msm/disp/dpu1/dpu_hw_pingpong.h   |  14 +
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h       |   1 +
- drivers/gpu/drm/msm/disp/dpu1/dpu_rm.c        |  32 ++
- drivers/gpu/drm/msm/disp/dpu1/dpu_rm.h        |   1 +
- drivers/gpu/drm/msm/dsi/dsi.xml.h             |  10 +
- drivers/gpu/drm/msm/dsi/dsi_host.c            | 293 +++++++++++++++++-
- drivers/gpu/drm/msm/msm_drv.h                 |  32 ++
- include/drm/drm_dsc.h                         |  16 +
- include/drm/drm_panel.h                       |   7 +
- 23 files changed, 1043 insertions(+), 14 deletions(-)
- create mode 100644 drivers/gpu/drm/msm/disp/dpu1/dpu_hw_dsc.c
- create mode 100644 drivers/gpu/drm/msm/disp/dpu1/dpu_hw_dsc.h
-
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi.txt b/Documentation/devicetree/bindings/display/msm/dsi.txt
+index b9a64d3ff184..83d2fb92267e 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi.txt
++++ b/Documentation/devicetree/bindings/display/msm/dsi.txt
+@@ -48,6 +48,13 @@ Optional properties:
+ - pinctrl-n: the "sleep" pinctrl state
+ - ports: contains DSI controller input and output ports as children, each
+   containing one endpoint subnode.
++- qcom,mdss-dsc-enabled: Display Stream Compression (DSC) is enabled
++- qcom,mdss-slice-height: DSC slice height in pixels
++- qcom,mdss-slice-width: DSC slice width in pixels
++- qcom,mdss-slice-per-pkt: DSC slices per packet
++- qcom,mdss-bit-per-component: DSC bits per component
++- qcom,mdss-bit-per-pixel: DSC bits per pixel
++- qcom,mdss-block-prediction-enable: Block prediction mode of DSC enabled
+ 
+   DSI Endpoint properties:
+   - remote-endpoint: For port@0, set to phandle of the connected panel/bridge's
+@@ -188,6 +195,14 @@ Example:
+ 		qcom,master-dsi;
+ 		qcom,sync-dual-dsi;
+ 
++		qcom,mdss-dsc-enabled;
++		qcom,mdss-slice-height = <16>;
++		qcom,mdss-slice-width = <540>;
++		qcom,mdss-slice-per-pkt = <1>;
++		qcom,mdss-bit-per-component = <8>;
++		qcom,mdss-bit-per-pixel = <8>;
++		qcom,mdss-block-prediction-enable;
++
+ 		qcom,mdss-mdp-transfer-time-us = <12000>;
+ 
+ 		pinctrl-names = "default", "sleep";
 -- 
 2.26.3
 
