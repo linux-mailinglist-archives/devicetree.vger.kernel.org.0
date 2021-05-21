@@ -2,621 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4383838BF5F
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 08:30:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA08238BF64
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 08:32:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232502AbhEUGcL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 02:32:11 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:54349 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231895AbhEUGcK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 02:32:10 -0400
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 20 May 2021 23:30:48 -0700
-X-QCInternal: smtphost
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 20 May 2021 23:30:45 -0700
-X-QCInternal: smtphost
-Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 21 May 2021 12:00:21 +0530
-Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
-        id C99974F23; Fri, 21 May 2021 12:00:19 +0530 (IST)
-From:   satya priya <skakit@codeaurora.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     kgunda@codeaurora.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, satya priya <skakit@codeaurora.org>
-Subject: [PATCH V4] dt-bindings: pinctrl: qcom-pmic-gpio: Convert qcom pmic gpio bindings to YAML
-Date:   Fri, 21 May 2021 12:00:15 +0530
-Message-Id: <1621578615-4613-1-git-send-email-skakit@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S232561AbhEUGdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 02:33:52 -0400
+Received: from mail-vi1eur05on2052.outbound.protection.outlook.com ([40.107.21.52]:54241
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231895AbhEUGd2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 May 2021 02:33:28 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YGJS006PFSplTKYwPxuHTSj4sguOjyisL9jnYR5ZLMBtT1gfu1D+VFpEeX/GhOjgvnQNs0LCHx1rcCRakyEwJ0aWHnQFKAbzyKUlcGEl2R4A0/nOzf2U1Y168neIgnXImIt/Dys0jz4u9U6cm68cLQ5IZrIaFzAe4AD03UompVZA+JnNiO/VnvFRlqyTMPGDv0aWqEJL429dQZu4L3ABYRPLtEw2MjiNOnpjqgyOrxJgBu+5GjMarUy9AV5a/avIf+hvTzgIa6A40CC2uok3fRVsMJpl5em7iC+tHMHuc/Mfs3HOJ8ewQnltIC9tCq9fiyxbQBO9egiadvjGewu5Kg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MDg5DLvoqMW/wsRlGZ228UzdXIOOlpjwN/zG6Iz6fSc=;
+ b=aTSQ8W9j16lyOb3om+u/TzgT4z29yg+V8q88K7+9ZTdx9fx+nEJoS48savcfqV15OPhFoThyvMp82ER52pPWtXxtkMe6JgFlgTUe0nBdnEP35RDX7Q0D67CP6oehEPlc9tykZ/LPsy2v1EATQDQKyfPzlCPxiQye5GZLA3ztaMRCiyrDxmwc5tQcPfkNUgr+ntExpASBHRILyOsGh1eF5rJ5bR08t12na0cKnnBN9FaiXQMoKXS9UyGuxukFXpn5CxlAZjQs7nmvZ2n0cNkNgWkT1fXJXiPbO7ajaV3CRztFIE+YnyHM+pAdlQJNhozEpyz/nRs1cCkuevwbpHI5zg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MDg5DLvoqMW/wsRlGZ228UzdXIOOlpjwN/zG6Iz6fSc=;
+ b=qWLGDQ3HC0UYcvdUM6dr3Wj4K1zXLhRdtBybfSJKPk0Mntu0v7VL/pBhD3IhFdBJKtNsqueXQAis/LGGYAxXf+0ip9epsBrM2MF+CsfZhtfed3IlTo5Kgx3fS0/ilL9BgTamADxKoCv5Q09rGKysJ/yEboQf5czTQRFYJa8KMJE=
+Received: from AM6PR04MB4966.eurprd04.prod.outlook.com (2603:10a6:20b:2::14)
+ by AM6PR04MB5701.eurprd04.prod.outlook.com (2603:10a6:20b:a5::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.29; Fri, 21 May
+ 2021 06:32:03 +0000
+Received: from AM6PR04MB4966.eurprd04.prod.outlook.com
+ ([fe80::b10a:ad0:a6f5:db9b]) by AM6PR04MB4966.eurprd04.prod.outlook.com
+ ([fe80::b10a:ad0:a6f5:db9b%2]) with mapi id 15.20.4129.034; Fri, 21 May 2021
+ 06:32:03 +0000
+From:   Aisheng Dong <aisheng.dong@nxp.com>
+To:     Clark Wang <xiaoning.wang@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>
+CC:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH V2 06/18] ARM64: dts: imx8: change i2c irq number to
+ non-combined
+Thread-Topic: [PATCH V2 06/18] ARM64: dts: imx8: change i2c irq number to
+ non-combined
+Thread-Index: AQHXKtilUkfTwCE7IkGvoaoEYmSS/6rtv2uw
+Date:   Fri, 21 May 2021 06:32:03 +0000
+Message-ID: <AM6PR04MB4966604A846E815BAD8EC7C480299@AM6PR04MB4966.eurprd04.prod.outlook.com>
+References: <20210406113306.2633595-1-xiaoning.wang@nxp.com>
+ <20210406113306.2633595-7-xiaoning.wang@nxp.com>
+In-Reply-To: <20210406113306.2633595-7-xiaoning.wang@nxp.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: nxp.com; dkim=none (message not signed)
+ header.d=none;nxp.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.67]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e9403ad4-65e7-494e-e22e-08d91c22259c
+x-ms-traffictypediagnostic: AM6PR04MB5701:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM6PR04MB570192279D3FD683E36B7C5D80299@AM6PR04MB5701.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2958;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: aeWpDtDHMf4Svbyl6tofnsf+vUtXewKEmywFp9n/ZH2MqEg02UFXrGy+bFcO7BcQ987QD0EBEp/vETWpGxAHs0AB7zkpY1YvYrVjwNhi9uaqyxVFZJrakRbwEWlc424VHYwtaHlYsCNx98r70heHYczI8fB1Fsd0wuXcotHha2CHlIAWbakT7TbFQK9+xLFKmUVePxuuowbjCj7wkI3KxZOumrK2+MA71XTCrE57S/JUQKZXI4EoHOoNj1XsLY6ZD5zJt3guf4mVVhaJcUC7rwF9XT+RVDDK3HO5mv6kmfjdJgUKxPZvBBU/HcFcUmeuaci9mHb2eaNFlwmZhvnl56fL52GCr/NJFDlEGUsy4j665lisZ/xGxiPpmgySCejpMMcT9V7DRYjC1OKuO/s8D4CO5zylHvdg8+SWBd/XQ1oBdVgMPRQpdvZI4FqenWP9BQqKJ0KWWf2sTO4shgmt3qwoWuT7BVuNfT37Uu1tTbu1gvlo8+qcL8YnPKLsVyrV3QmbGUNltRDYJB4Ufqij46/hQ4mS+J71pdsEa19ZH3qNZHY9bniZwqt3adTzRbLZ+r2lKerchbOD2K52+jb3MiBteQGKh9F3DRm/CuGZIdw=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4966.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(346002)(376002)(136003)(39860400002)(396003)(2906002)(44832011)(52536014)(6506007)(122000001)(9686003)(8936002)(478600001)(7696005)(8676002)(55016002)(38100700002)(64756008)(5660300002)(71200400001)(26005)(83380400001)(76116006)(66556008)(110136005)(54906003)(316002)(186003)(66446008)(86362001)(4326008)(66476007)(33656002)(66946007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?bzN4QWxESnhYOGJZZ0dDNm5ZRFlSbHQyZzQ4eGQ1amswMDBPeGJ4TFJIRzJK?=
+ =?utf-8?B?ZFB3RU1wTFFTLzFRMldJWmlGNi9qbVc0SXVrOWdZNWFETUFWOFdIRytaUGlL?=
+ =?utf-8?B?azJIcnNvTmhEZVZkMWlwR0lzY0NCdDE3WnZNaGlsd2pGR29JblRJNHV6bUVp?=
+ =?utf-8?B?VFNIN3FRbUUxUFZObS82NGNZWHZqQitlc2xkaHNEL3F5OXpUTy9EeStLMlla?=
+ =?utf-8?B?azcyOXJ1REMvczk1L3VMY1M2RlhXdTZEWHAxZVlVMkl5M25Rd3VJZVhHdmdP?=
+ =?utf-8?B?U1RlRjVNdkRKMEdvbThFZ0ppMi9xR2NOUktTbmgzR3g1SFZicFY3d3I2TjNq?=
+ =?utf-8?B?Uzc5Q1R1dDBrZHE2LzZHWHIvQy8vNjVRWGpTekFsWkFkRktsSU1Rd2oySG1q?=
+ =?utf-8?B?S244aitZeUtDOFhkRzZzNnpmMnk4cC90YVVSNW5KVitOcFBIRStMZFNZV3dK?=
+ =?utf-8?B?ZlpPYm96bDdJak42SDZCSTZYdFR5L0g4TVgwZWZlTklCR0V3T0RJeWFBeDdD?=
+ =?utf-8?B?ajA2cmh2ZEEybElaSmdQV3RzdjhuWi9ydU1Eb2dQS1hjeDNrQUVndWRuUmZs?=
+ =?utf-8?B?YzBaZ3ZUQVI3Q2xPTUxjRnNrYVVFdjZWdEN0Tjk5R0c5L0pBWm5FdEVUZ3Zt?=
+ =?utf-8?B?L0tFN2k2dDlhL2w3ZUtzR1NyOTh6Z2hNY0gxcjdOanNzOFp1cTFTckQrWWVy?=
+ =?utf-8?B?aU13T1FUa2F3RStKT1E3SFpQSlNnQU1EOFZ6OWZKZFllMFNVZDFEdldmdkY2?=
+ =?utf-8?B?RzkwblNwSEk2TDdQKzFubldCSjAyRVZDclA5SkJlSkhuVGc5UVdReVNmLzZW?=
+ =?utf-8?B?L0JRQWhPUVc4b0wza1RUMEhOS0VOdzNVOUlkSXhYOTd3OFUwMTNCNVFKTk05?=
+ =?utf-8?B?NXIxV0hxckxmYlBWampzckxhcmdLTjBXK2hBd3pGak92anVCNWlNNmh3azcx?=
+ =?utf-8?B?elVNTW9KNGJSUFJFZWRiMmFyenUwdE5iQlFEbURMSFY2T0dsTGtrcEVmY3hG?=
+ =?utf-8?B?ZCtqWjhJdVR2WWtBdkVGODFFcjEvcldBemhSb0VkbGNyZHQ4eG1nSm9ONXYz?=
+ =?utf-8?B?Tlp0eVdSWE10b1hNbjZMMTNKZk96eDVUSmhsZTVqUzhveHFuSkU1NDNhYVRW?=
+ =?utf-8?B?d3pzZmJ3a2JvRGc2Z2RKWFBsUmhnQVN1RVBuVzlacjRHV2o4cXhsVUJFanZZ?=
+ =?utf-8?B?RklzeWlSTE1pM2daYlhITE1XT0JzaEVQdmxXZ3I3MWlEaithUVlvUjUwekVJ?=
+ =?utf-8?B?UXlkbFpFSTc2U09KUUVOR0xPU1d1WmdFdWUvZWpmV1hXQ0tmREU0SWtPWE9M?=
+ =?utf-8?B?UlgycUp1akNKS0l4QlprT2RCeHp5R2xZOUZoZnJ0djd6elMzMm10bkV2a21X?=
+ =?utf-8?B?TS94QzdENkhsOXdHR0YrbGsrdUtRQmxxaVh6T0hQVzFnemloVk1vMzhwa1M5?=
+ =?utf-8?B?ekJ3VFFHY2F5NGx5ekI0ektmLzdWcXNHczcwY0NHSlRsWEZaL3phdWwwMDlu?=
+ =?utf-8?B?ZmJPZDBsUlA5UXlqR2FrbnAvZFZmbFFqWi9rK3UrMjhaa0tuRDdhMkREMXJr?=
+ =?utf-8?B?TGJkVEJKc3lPTlJ5dHF4bXZQd3JlM1crVW80bUlJcDYzTk1UdWh0REFPZUNo?=
+ =?utf-8?B?cjhrT29IaENaVld6Z3M3eE51d0VZVkVxS1BOeGxidnB5VzNVRGsyVlZLNmh4?=
+ =?utf-8?B?bjZQNmEzWlYxZjJiOGlOVFo0cGRVVkRGTGs3QWh6UEhBNTZGekdMa0gydDZP?=
+ =?utf-8?Q?OL04wK/WqM58zFGT7a2yA/pGfW0usQqpg31+r41?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4966.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9403ad4-65e7-494e-e22e-08d91c22259c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 May 2021 06:32:03.4400
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: B+mP9ofQ4AWzmn0sXxVipey203NLdMlYYuuLay5OKpY5esXm172xaCMHn0Wnh27wez97QQHwA9hobkSKrQ6Mrw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB5701
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Qualcomm PMIC GPIO bindings from .txt to .yaml format.
-
-Signed-off-by: satya priya <skakit@codeaurora.org>
----
-Changes in V2:
- - As per Rob's comments fixed bot erros.
- - Moved this patch to end of the series so that other patches are not
-   blocked on this.
-
-Changes in V3:
- - As per Rob's comments, added maxItems for reg and interrupts.
-   Added reference of "pinmux-node.yaml" and "pincfg-node.yaml".
-   Made 'additionalProperties' as false.
-
-Changes in V4:
- - As per Rob's comments, added description for interrupts, defined
-   constraints for "qcom,drive-strength", dropped description for function
-   property.
-
- .../devicetree/bindings/pinctrl/qcom,pmic-gpio.txt | 286 ---------------------
- .../bindings/pinctrl/qcom,pmic-gpio.yaml           | 256 ++++++++++++++++++
- 2 files changed, 256 insertions(+), 286 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
- create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
-deleted file mode 100644
-index f6a97605..0000000
---- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
-+++ /dev/null
-@@ -1,286 +0,0 @@
--Qualcomm PMIC GPIO block
--
--This binding describes the GPIO block(s) found in the 8xxx series of
--PMIC's from Qualcomm.
--
--- compatible:
--	Usage: required
--	Value type: <string>
--	Definition: must be one of:
--		    "qcom,pm8005-gpio"
--		    "qcom,pm8018-gpio"
--		    "qcom,pm8038-gpio"
--		    "qcom,pm8058-gpio"
--		    "qcom,pm8916-gpio"
--		    "qcom,pm8917-gpio"
--		    "qcom,pm8921-gpio"
--		    "qcom,pm8941-gpio"
--		    "qcom,pm8950-gpio"
--		    "qcom,pm8994-gpio"
--		    "qcom,pm8998-gpio"
--		    "qcom,pma8084-gpio"
--		    "qcom,pmi8950-gpio"
--		    "qcom,pmi8994-gpio"
--		    "qcom,pmi8998-gpio"
--		    "qcom,pms405-gpio"
--		    "qcom,pm660-gpio"
--		    "qcom,pm660l-gpio"
--		    "qcom,pm8150-gpio"
--		    "qcom,pm8150b-gpio"
--		    "qcom,pm8350-gpio"
--		    "qcom,pm8350b-gpio"
--		    "qcom,pm8350c-gpio"
--		    "qcom,pmk8350-gpio"
--		    "qcom,pmr735a-gpio"
--		    "qcom,pmr735b-gpio"
--		    "qcom,pm6150-gpio"
--		    "qcom,pm6150l-gpio"
--		    "qcom,pm8008-gpio"
--		    "qcom,pmx55-gpio"
--
--		    And must contain either "qcom,spmi-gpio" or "qcom,ssbi-gpio"
--		    if the device is on an spmi bus or an ssbi bus respectively
--
--- reg:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: Register base of the GPIO block and length.
--
--- interrupts:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: Must contain an array of encoded interrupt specifiers for
--		    each available GPIO
--
--- gpio-controller:
--	Usage: required
--	Value type: <none>
--	Definition: Mark the device node as a GPIO controller
--
--- #gpio-cells:
--	Usage: required
--	Value type: <u32>
--	Definition: Must be 2;
--		    the first cell will be used to define gpio number and the
--		    second denotes the flags for this gpio
--
--Please refer to ../gpio/gpio.txt and ../interrupt-controller/interrupts.txt for
--a general description of GPIO and interrupt bindings.
--
--Please refer to pinctrl-bindings.txt in this directory for details of the
--common pinctrl bindings used by client devices, including the meaning of the
--phrase "pin configuration node".
--
--The pin configuration nodes act as a container for an arbitrary number of
--subnodes. Each of these subnodes represents some desired configuration for a
--pin or a list of pins. This configuration can include the
--mux function to select on those pin(s), and various pin configuration
--parameters, as listed below.
--
--
--SUBNODES:
--
--The name of each subnode is not important; all subnodes should be enumerated
--and processed purely based on their content.
--
--Each subnode only affects those parameters that are explicitly listed. In
--other words, a subnode that lists a mux function but no pin configuration
--parameters implies no information about any pin configuration parameters.
--Similarly, a pin subnode that describes a pullup parameter implies no
--information about e.g. the mux function.
--
--The following generic properties as defined in pinctrl-bindings.txt are valid
--to specify in a pin configuration subnode:
--
--- pins:
--	Usage: required
--	Value type: <string-array>
--	Definition: List of gpio pins affected by the properties specified in
--		    this subnode.  Valid pins are:
--		    gpio1-gpio4 for pm8005
--		    gpio1-gpio6 for pm8018
--		    gpio1-gpio12 for pm8038
--		    gpio1-gpio40 for pm8058
--		    gpio1-gpio4 for pm8916
--		    gpio1-gpio38 for pm8917
--		    gpio1-gpio44 for pm8921
--		    gpio1-gpio36 for pm8941
--		    gpio1-gpio8 for pm8950 (hole on gpio3)
--		    gpio1-gpio22 for pm8994
--		    gpio1-gpio26 for pm8998
--		    gpio1-gpio22 for pma8084
--		    gpio1-gpio2 for pmi8950
--		    gpio1-gpio10 for pmi8994
--		    gpio1-gpio12 for pms405 (holes on gpio1, gpio9 and gpio10)
--		    gpio1-gpio10 for pm8150 (holes on gpio2, gpio5, gpio7
--					     and gpio8)
--		    gpio1-gpio12 for pm8150b (holes on gpio3, gpio4, gpio7)
--		    gpio1-gpio12 for pm8150l (hole on gpio7)
--		    gpio1-gpio10 for pm8350
--		    gpio1-gpio8 for pm8350b
--		    gpio1-gpio9 for pm8350c
--		    gpio1-gpio4 for pmk8350
--		    gpio1-gpio4 for pmr735a
--		    gpio1-gpio4 for pmr735b
--		    gpio1-gpio10 for pm6150
--		    gpio1-gpio12 for pm6150l
--		    gpio1-gpio2 for pm8008
--		    gpio1-gpio11 for pmx55 (holes on gpio3, gpio7, gpio10
--					    and gpio11)
--
--- function:
--	Usage: required
--	Value type: <string>
--	Definition: Specify the alternative function to be configured for the
--		    specified pins.  Valid values are:
--		    "normal",
--		    "paired",
--		    "func1",
--		    "func2",
--		    "dtest1",
--		    "dtest2",
--		    "dtest3",
--		    "dtest4",
--		    And following values are supported by LV/MV GPIO subtypes:
--		    "func3",
--		    "func4"
--
--- bias-disable:
--	Usage: optional
--	Value type: <none>
--	Definition: The specified pins should be configured as no pull.
--
--- bias-pull-down:
--	Usage: optional
--	Value type: <none>
--	Definition: The specified pins should be configured as pull down.
--
--- bias-pull-up:
--	Usage: optional
--	Value type: <empty>
--	Definition: The specified pins should be configured as pull up.
--
--- qcom,pull-up-strength:
--	Usage: optional
--	Value type: <u32>
--	Definition: Specifies the strength to use for pull up, if selected.
--		    Valid values are; as defined in
--		    <dt-bindings/pinctrl/qcom,pmic-gpio.h>:
--		    1: 30uA                     (PMIC_GPIO_PULL_UP_30)
--		    2: 1.5uA                    (PMIC_GPIO_PULL_UP_1P5)
--		    3: 31.5uA                   (PMIC_GPIO_PULL_UP_31P5)
--		    4: 1.5uA + 30uA boost       (PMIC_GPIO_PULL_UP_1P5_30)
--		    If this property is omitted 30uA strength will be used if
--		    pull up is selected
--
--- bias-high-impedance:
--	Usage: optional
--	Value type: <none>
--	Definition: The specified pins will put in high-Z mode and disabled.
--
--- input-enable:
--	Usage: optional
--	Value type: <none>
--	Definition: The specified pins are put in input mode.
--
--- output-high:
--	Usage: optional
--	Value type: <none>
--	Definition: The specified pins are configured in output mode, driven
--		    high.
--
--- output-low:
--	Usage: optional
--	Value type: <none>
--	Definition: The specified pins are configured in output mode, driven
--		    low.
--
--- power-source:
--	Usage: optional
--	Value type: <u32>
--	Definition: Selects the power source for the specified pins. Valid
--		    power sources are defined per chip in
--		    <dt-bindings/pinctrl/qcom,pmic-gpio.h>
--
--- qcom,drive-strength:
--	Usage: optional
--	Value type: <u32>
--	Definition: Selects the drive strength for the specified pins. Value
--		    drive strengths are:
--		    0: no (PMIC_GPIO_STRENGTH_NO)
--		    1: high (PMIC_GPIO_STRENGTH_HIGH) 0.9mA @ 1.8V - 1.9mA @ 2.6V
--		    2: medium (PMIC_GPIO_STRENGTH_MED) 0.6mA @ 1.8V - 1.25mA @ 2.6V
--		    3: low (PMIC_GPIO_STRENGTH_LOW) 0.15mA @ 1.8V - 0.3mA @ 2.6V
--		    as defined in <dt-bindings/pinctrl/qcom,pmic-gpio.h>
--
--- drive-push-pull:
--	Usage: optional
--	Value type: <none>
--	Definition: The specified pins are configured in push-pull mode.
--
--- drive-open-drain:
--	Usage: optional
--	Value type: <none>
--	Definition: The specified pins are configured in open-drain mode.
--
--- drive-open-source:
--	Usage: optional
--	Value type: <none>
--	Definition: The specified pins are configured in open-source mode.
--
--- qcom,analog-pass:
--	Usage: optional
--	Value type: <none>
--	Definition: The specified pins are configured in analog-pass-through mode.
--
--- qcom,atest:
--	Usage: optional
--	Value type: <u32>
--	Definition: Selects ATEST rail to route to GPIO when it's configured
--		    in analog-pass-through mode.
--		    Valid values are 1-4 corresponding to ATEST1 to ATEST4.
--
--- qcom,dtest-buffer:
--	Usage: optional
--	Value type: <u32>
--	Definition: Selects DTEST rail to route to GPIO when it's configured
--		    as digital input.
--		    Valid values are 1-4 corresponding to DTEST1 to DTEST4.
--
--Example:
--
--	pm8921_gpio: gpio@150 {
--		compatible = "qcom,pm8921-gpio", "qcom,ssbi-gpio";
--		reg = <0x150 0x160>;
--		interrupts = <192 1>, <193 1>, <194 1>,
--			     <195 1>, <196 1>, <197 1>,
--			     <198 1>, <199 1>, <200 1>,
--			     <201 1>, <202 1>, <203 1>,
--			     <204 1>, <205 1>, <206 1>,
--			     <207 1>, <208 1>, <209 1>,
--			     <210 1>, <211 1>, <212 1>,
--			     <213 1>, <214 1>, <215 1>,
--			     <216 1>, <217 1>, <218 1>,
--			     <219 1>, <220 1>, <221 1>,
--			     <222 1>, <223 1>, <224 1>,
--			     <225 1>, <226 1>, <227 1>,
--			     <228 1>, <229 1>, <230 1>,
--			     <231 1>, <232 1>, <233 1>,
--			     <234 1>, <235 1>;
--
--		gpio-controller;
--		#gpio-cells = <2>;
--
--		pm8921_gpio_keys: gpio-keys {
--			volume-keys {
--				pins = "gpio20", "gpio21";
--				function = "normal";
--
--				input-enable;
--				bias-pull-up;
--				drive-push-pull;
--				qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
--				power-source = <PM8921_GPIO_S4>;
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-new file mode 100644
-index 0000000..d9024eb
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-@@ -0,0 +1,256 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/qcom,pmic-gpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm PMIC GPIO block
-+
-+maintainers:
-+  - Bjorn Andersson <bjorn.andersson@sonymobile.com>
-+
-+description: |
-+  This binding describes the GPIO block(s) found in the 8xxx series of
-+  PMIC's from Qualcomm.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - qcom,pm8005-gpio
-+          - qcom,pm8018-gpio
-+          - qcom,pm8038-gpio
-+          - qcom,pm8058-gpio
-+          - qcom,pm8916-gpio
-+          - qcom,pm8917-gpio
-+          - qcom,pm8921-gpio
-+          - qcom,pm8941-gpio
-+          - qcom,pm8950-gpio
-+          - qcom,pm8994-gpio
-+          - qcom,pm8998-gpio
-+          - qcom,pma8084-gpio
-+          - qcom,pmi8950-gpio
-+          - qcom,pmi8994-gpio
-+          - qcom,pmi8998-gpio
-+          - qcom,pms405-gpio
-+          - qcom,pm660-gpio
-+          - qcom,pm660l-gpio
-+          - qcom,pm8150-gpio
-+          - qcom,pm8150b-gpio
-+          - qcom,pm8350-gpio
-+          - qcom,pm8350b-gpio
-+          - qcom,pm8350c-gpio
-+          - qcom,pmk8350-gpio
-+          - qcom,pm6150-gpio
-+          - qcom,pm6150l-gpio
-+          - qcom,pm7325-gpio
-+          - qcom,pmr735a-gpio
-+          - qcom,pmr735b-gpio
-+          - qcom,pm8008-gpio
-+          - qcom,pmx55-gpio
-+
-+      - enum:
-+          - qcom,spmi-gpio
-+          - qcom,ssbi-gpio
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 44
-+    description: |
-+        Must contain an array of encoded interrupt specifiers for
-+        each available GPIO
-+
-+  '#interrupt-cells':
-+    const: 2
-+
-+  interrupt-controller: true
-+
-+  gpio-controller: true
-+
-+  gpio-ranges:
-+    maxItems: 1
-+
-+  '#gpio-cells':
-+    const: 2
-+    description: |
-+        The first cell will be used to define gpio number and the
-+        second denotes the flags for this gpio
-+
-+  gpio-keys:
-+    type: object
-+    properties:
-+      volume-keys:
-+        type: object
-+        anyOf:
-+          - $ref: "pinmux-node.yaml"
-+          - $ref: "pincfg-node.yaml"
-+        properties:
-+          pins:
-+            description: |
-+                List of gpio pins affected by the properties specified in
-+                this subnode.  Valid pins are
-+                     - gpio1-gpio4 for pm8005
-+                     - gpio1-gpio6 for pm8018
-+                     - gpio1-gpio12 for pm8038
-+                     - gpio1-gpio40 for pm8058
-+                     - gpio1-gpio4 for pm8916
-+                     - gpio1-gpio38 for pm8917
-+                     - gpio1-gpio44 for pm8921
-+                     - gpio1-gpio36 for pm8941
-+                     - gpio1-gpio8 for pm8950 (hole on gpio3)
-+                     - gpio1-gpio22 for pm8994
-+                     - gpio1-gpio26 for pm8998
-+                     - gpio1-gpio22 for pma8084
-+                     - gpio1-gpio2 for pmi8950
-+                     - gpio1-gpio10 for pmi8994
-+                     - gpio1-gpio12 for pms405 (holes on gpio1, gpio9
-+                                                and gpio10)
-+                     - gpio1-gpio10 for pm8150 (holes on gpio2, gpio5,
-+                                                gpio7 and gpio8)
-+                     - gpio1-gpio12 for pm8150b (holes on gpio3, gpio4
-+                                                 and gpio7)
-+                     - gpio1-gpio12 for pm8150l (hole on gpio7)
-+                     - gpio1-gpio10 for pm8350
-+                     - gpio1-gpio8 for pm8350b
-+                     - gpio1-gpio9 for pm8350c
-+                     - gpio1-gpio4 for pmk8350
-+                     - gpio1-gpio10 for pm6150
-+                     - gpio1-gpio12 for pm6150l
-+                     - gpio1-gpio10 for pm7325
-+                     - gpio1-gpio4 for pmr735a
-+                     - gpio1-gpio4 for pmr735b
-+                     - gpio1-gpio2 for pm8008
-+                     - gpio1-gpio11 for pmx55 (holes on gpio3, gpio7, gpio10
-+                                                and gpio11)
-+
-+            items:
-+              pattern: "^gpio([0-9]+)$"
-+
-+          function:
-+            items:
-+              - enum:
-+                  - normal
-+                  - paired
-+                  - func1
-+                  - func2
-+                  - dtest1
-+                  - dtest2
-+                  - dtest3
-+                  - dtest4
-+                  - func3  # supported by LV/MV GPIO subtypes
-+                  - func4  # supported by LV/MV GPIO subtypes
-+
-+          bias-disable: true
-+
-+          bias-pull-down: true
-+
-+          bias-pull-up: true
-+
-+          qcom,pull-up-strength:
-+            $ref: /schemas/types.yaml#/definitions/uint32
-+            description: |
-+                Specifies the strength to use for pull up, if selected.
-+                Valid values are defined in
-+                <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-+                If this property is omitted 30uA strength will be used
-+                if pull up is selected
-+
-+          bias-high-impedance: true
-+
-+          input-enable: true
-+
-+          output-high: true
-+
-+          output-low: true
-+
-+          power-source: true
-+
-+          qcom,drive-strength:
-+            $ref: /schemas/types.yaml#/definitions/uint32
-+            description: |
-+                Selects the drive strength for the specified pins
-+                Valid drive strength values are defined in
-+                <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-+            enum: [0, 1, 2, 3]
-+
-+          drive-push-pull: true
-+
-+          drive-open-drain: true
-+
-+          drive-open-source: true
-+
-+          qcom,analog-pass:
-+            $ref: /schemas/types.yaml#/definitions/flag
-+            description: |
-+                The specified pins are configured in
-+                analog-pass-through mode.
-+
-+          qcom,atest:
-+            $ref: /schemas/types.yaml#/definitions/uint32
-+            description: |
-+                Selects ATEST rail to route to GPIO when it's
-+                configured in analog-pass-through mode.
-+            enum: [1, 2, 3, 4]
-+
-+          qcom,dtest-buffer:
-+            $ref: /schemas/types.yaml#/definitions/uint32
-+            description: |
-+                Selects DTEST rail to route to GPIO when it's
-+                configured as digital input.
-+            enum: [1, 2, 3, 4]
-+
-+        required:
-+          - pins
-+          - function
-+
-+        additionalProperties: false
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+examples:
-+  - |
-+    #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-+
-+    pm8921_gpio: gpio@150 {
-+      compatible = "qcom,pm8921-gpio", "qcom,ssbi-gpio";
-+      reg = <0x150 0x160>;
-+      interrupts = <192 1>, <193 1>, <194 1>,
-+                   <195 1>, <196 1>, <197 1>,
-+                   <198 1>, <199 1>, <200 1>,
-+                   <201 1>, <202 1>, <203 1>,
-+                   <204 1>, <205 1>, <206 1>,
-+                   <207 1>, <208 1>, <209 1>,
-+                   <210 1>, <211 1>, <212 1>,
-+                   <213 1>, <214 1>, <215 1>,
-+                   <216 1>, <217 1>, <218 1>,
-+                   <219 1>, <220 1>, <221 1>,
-+                   <222 1>, <223 1>, <224 1>,
-+                   <225 1>, <226 1>, <227 1>,
-+                   <228 1>, <229 1>, <230 1>,
-+                   <231 1>, <232 1>, <233 1>,
-+                   <234 1>, <235 1>;
-+
-+      gpio-controller;
-+      #gpio-cells = <2>;
-+
-+      pm8921_gpio_keys: gpio-keys {
-+        volume-keys {
-+          pins = "gpio20", "gpio21";
-+          function = "normal";
-+
-+          input-enable;
-+          bias-pull-up;
-+          drive-push-pull;
-+          qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
-+          power-source = <PM8921_GPIO_S4>;
-+        };
-+      };
-+    };
-+...
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-of Code Aurora Forum, hosted by The Linux Foundation
-
+PiBGcm9tOiBDbGFyayBXYW5nIDx4aWFvbmluZy53YW5nQG54cC5jb20+DQo+IFNlbnQ6IFR1ZXNk
+YXksIEFwcmlsIDYsIDIwMjEgNzozMyBQTQ0KPiANCj4gQ29tYmluZWQgaW50ZXJydXB0IG51bWJl
+ciBtYXkgY2F1c2UgdW5leGNlcHRlZCBpcnEgZXZlbnQgd2hlbiB1c2luZyBETUENCj4gYW5kIHRv
+byBtYW55IGludGVycnVwdHMgd2lsbCBiZSBnZW5lcmF0ZWQuDQo+IFNvIGNoYW5nZSBhbGwgaTJj
+IGludGVycnVwdHMgbnVtYmVyIHRvIG5vbi1jb21iaW5lZCBmb3IgaW14OHF4cC84cW0vOGR4bC4N
+Cg0KU3RpbGwgbm8gbXg4ZHhsIHN1cHBvcnQgaW4gdXBzdHJlYW0sIEkgZ3Vlc3MgaW14OCBpcyBl
+bm91Z2guDQpCVFcsIHBscyBjaGFuZ2luZyB0aWxlIGZvcm1hdCBhcyBiZWxvdyBhcyBwb2ludGVk
+IGJ5IFNoYXduIGluIGFub3RoZXIgcGF0Y2g6DQphcm02NDogZHRzOiB4eHh4DQoNCk90aGVyd2lz
+ZToNClJldmlld2VkLWJ5OiBEb25nIEFpc2hlbmcgPGFpc2hlbmcuZG9uZ0BueHAuY29tPg0KDQpS
+ZWdhcmRzDQpBaXNoZW5nDQoNCj4gDQo+IFNpZ25lZC1vZmYtYnk6IENsYXJrIFdhbmcgPHhpYW9u
+aW5nLndhbmdAbnhwLmNvbT4NCj4gLS0tDQo+IFYyIGNoYW5nZXM6DQo+ICAtIE5ldyBwYXRjaCBh
+ZGRlZCBpbiBWMg0KPiAtLS0NCj4gIGFyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDgt
+c3MtZG1hLmR0c2kgfCA4ICsrKystLS0tDQo+ICAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25z
+KCspLCA0IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9k
+dHMvZnJlZXNjYWxlL2lteDgtc3MtZG1hLmR0c2kNCj4gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2Zy
+ZWVzY2FsZS9pbXg4LXNzLWRtYS5kdHNpDQo+IGluZGV4IGI1ZWQxMmEwNjUzOC4uOWJhNTdmMDQ4
+NTliIDEwMDY0NA0KPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4LXNz
+LWRtYS5kdHNpDQo+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDgtc3Mt
+ZG1hLmR0c2kNCj4gQEAgLTExMCw3ICsxMTAsNyBAQCB1YXJ0M19scGNnOiBjbG9jay1jb250cm9s
+bGVyQDVhNDkwMDAwIHsNCj4gDQo+ICAJaTJjMDogaTJjQDVhODAwMDAwIHsNCj4gIAkJcmVnID0g
+PDB4NWE4MDAwMDAgMHg0MDAwPjsNCj4gLQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIyMCBJUlFf
+VFlQRV9MRVZFTF9ISUdIPjsNCj4gKwkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDM0MCBJUlFfVFlQ
+RV9MRVZFTF9ISUdIPjsNCj4gIAkJaW50ZXJydXB0LXBhcmVudCA9IDwmZ2ljPjsNCj4gIAkJY2xv
+Y2tzID0gPCZpMmMwX2xwY2cgSU1YX0xQQ0dfQ0xLXzA+LA0KPiAgCQkJIDwmaTJjMF9scGNnIElN
+WF9MUENHX0NMS180PjsNCj4gQEAgLTEyMyw3ICsxMjMsNyBAQCBpMmMwOiBpMmNANWE4MDAwMDAg
+ew0KPiANCj4gIAlpMmMxOiBpMmNANWE4MTAwMDAgew0KPiAgCQlyZWcgPSA8MHg1YTgxMDAwMCAw
+eDQwMDA+Ow0KPiAtCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMjIxIElSUV9UWVBFX0xFVkVMX0hJ
+R0g+Ow0KPiArCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMzQxIElSUV9UWVBFX0xFVkVMX0hJR0g+
+Ow0KPiAgCQlpbnRlcnJ1cHQtcGFyZW50ID0gPCZnaWM+Ow0KPiAgCQljbG9ja3MgPSA8JmkyYzFf
+bHBjZyBJTVhfTFBDR19DTEtfMD4sDQo+ICAJCQkgPCZpMmMxX2xwY2cgSU1YX0xQQ0dfQ0xLXzQ+
+Ow0KPiBAQCAtMTM2LDcgKzEzNiw3IEBAIGkyYzE6IGkyY0A1YTgxMDAwMCB7DQo+IA0KPiAgCWky
+YzI6IGkyY0A1YTgyMDAwMCB7DQo+ICAJCXJlZyA9IDwweDVhODIwMDAwIDB4NDAwMD47DQo+IC0J
+CWludGVycnVwdHMgPSA8R0lDX1NQSSAyMjIgSVJRX1RZUEVfTEVWRUxfSElHSD47DQo+ICsJCWlu
+dGVycnVwdHMgPSA8R0lDX1NQSSAzNDIgSVJRX1RZUEVfTEVWRUxfSElHSD47DQo+ICAJCWludGVy
+cnVwdC1wYXJlbnQgPSA8JmdpYz47DQo+ICAJCWNsb2NrcyA9IDwmaTJjMl9scGNnIElNWF9MUENH
+X0NMS18wPiwNCj4gIAkJCSA8JmkyYzJfbHBjZyBJTVhfTFBDR19DTEtfND47DQo+IEBAIC0xNDks
+NyArMTQ5LDcgQEAgaTJjMjogaTJjQDVhODIwMDAwIHsNCj4gDQo+ICAJaTJjMzogaTJjQDVhODMw
+MDAwIHsNCj4gIAkJcmVnID0gPDB4NWE4MzAwMDAgMHg0MDAwPjsNCj4gLQkJaW50ZXJydXB0cyA9
+IDxHSUNfU1BJIDIyMyBJUlFfVFlQRV9MRVZFTF9ISUdIPjsNCj4gKwkJaW50ZXJydXB0cyA9IDxH
+SUNfU1BJIDM0MyBJUlFfVFlQRV9MRVZFTF9ISUdIPjsNCj4gIAkJaW50ZXJydXB0LXBhcmVudCA9
+IDwmZ2ljPjsNCj4gIAkJY2xvY2tzID0gPCZpMmMzX2xwY2cgSU1YX0xQQ0dfQ0xLXzA+LA0KPiAg
+CQkJIDwmaTJjM19scGNnIElNWF9MUENHX0NMS180PjsNCj4gLS0NCj4gMi4yNS4xDQoNCg==
