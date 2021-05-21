@@ -2,93 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E9E038CE16
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 21:22:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE1F838CE1A
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 21:25:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236228AbhEUTXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 15:23:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51654 "EHLO
+        id S238167AbhEUT0r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 15:26:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235521AbhEUTXl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 15:23:41 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 236ACC0613ED
-        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 12:22:18 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id r12so22075087wrp.1
-        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 12:22:18 -0700 (PDT)
+        with ESMTP id S237264AbhEUT0q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 15:26:46 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3C7FC0613CE
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 12:25:21 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id f6-20020a1c1f060000b0290175ca89f698so7977197wmf.5
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 12:25:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=lCvDZboK+sgJocYbp6i5xIDHmRT6b8Yyjq3esu6gxfo=;
-        b=KjlQFn31EOeR8uVjczSkSfdI1+2/wSmUgLeUJMZgIwr5OzcG7OMv/nIxc6pDVx0FZK
-         tjOxIMTbX/stCi4U5Ettoq39FrFywIaRd2Z0moczt5aKcrJyIikf8Uo39xeJ5nvvqSNP
-         S67Id/Ema54u+5vvMuaPi+gjccOxGTMIVpP2WiegE7t39TEpWStXBXGiWDDWpyuZmRqn
-         MMogny6eDtr8RKXHLnrkblKER3Cuss3rw8D6IVasO2QAQ56XFE+NEYKFOMaWcjwtgAfQ
-         L1Nc+XXyIA4BPvLXoj9qsMtGeHMZNY1tft6B2wKRPjd/ZPoHebtU0TZFA7WxaRf2hNcX
-         8x6w==
+        bh=IUpZxMNv8nwPbOXuGZx5ywp7pLldARPhu40BNs9tpc8=;
+        b=AxZh5dKx5V16u/rO9OQp1AEAdrJa0Tkbq95EcvKZ5xajGf5JoTovxHEUNjosu11+CQ
+         wv2EvUFjAAxzBh9QSVJYzA3m1HUfLbDXXCL9KYuz6V/Zd+tCH9qCJbHixRPu00ZG6nis
+         NQ3csUt0VhFNiJApoLR+R62LaQUMCZFhnaU51Uwok9KJiRsf0Y3fimy8oqT0Ewn91zgf
+         eXo5st7YaKsDnXPYIzMUr5ZmMprJpPdaqgOXjiyW+6BndneVgu2NnhzbV2/v4JeJ6ITJ
+         RVUJE26IULkAbjShJrHwWl7x8yX4rLBEZleIQ5n8oBRsDpu6IqIGRtrdNHpKQnEDRnvc
+         H6Hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=lCvDZboK+sgJocYbp6i5xIDHmRT6b8Yyjq3esu6gxfo=;
-        b=YgkQEOvvSP4b1wWwzjtt5eRUdriMsYVncGSVytd1BJdojIkWybNl6+fiSPAHuzRw8L
-         yZrW86f5yBePUFl7loAPffbbBJhUNMFJhGN+lH1NNLhT1DLyrekpAC9pVK8QYbx79ccM
-         mABHBGmNrwIPsDW5cjKWpJTam73Ey8n4IZf2V5tQoiu66dODTwFrjtgP6S+G+J5AprT8
-         2kiY3mUz9SE5alb8OK28yZ6M7/WuiM5i8aDN5jkCOdhewdLbM7oZaobsndVOZsErKyMf
-         okRbC+NFXSYJfZaLGAmtpbam+OFnlN3udBU5sJtipR2gx3j0kiNkWuMXGYGS7KY65Q1k
-         4/2A==
-X-Gm-Message-State: AOAM532OlwftsCRoseh0YReB3w43RDKU13AkuOF1oNw0RZMnRvQvlLSi
-        pnsN4VtW1US8XG4Ju/l1Hmcc0A==
-X-Google-Smtp-Source: ABdhPJyha3zUIQVEPgrYCfHfXucNDkaW03LrDb+6HEy0gMi5M3PUND53o9t4gxQxxBnnlC8BxpL1sQ==
-X-Received: by 2002:a05:6000:104a:: with SMTP id c10mr11128983wrx.45.1621624936663;
-        Fri, 21 May 2021 12:22:16 -0700 (PDT)
+        bh=IUpZxMNv8nwPbOXuGZx5ywp7pLldARPhu40BNs9tpc8=;
+        b=WUr3IOXMpHN5kU86ZMXz4jkARIGgseEqXrW+8AIbeCcLQUA2dJD+Nb6O+32B2B2CUs
+         THFPCCzTdTTC1NUhOX724sEcCnEDuSUNes4s93bf0bxVfYmtSl8srVyPkElZl1N/Yu2r
+         GjqRvASRqgw2fZzNLJTQTLd2O+tXnu7SmxKKkKSUXDhJ5ZDAOCLt85janVM9B2TG2svO
+         czEvBdnQGyXPahAsz77D9si1QS0lZIXlq65tKfm3OS6C9/hn3XoigB1SfBTZRlMffNmb
+         ke66gf1YYQu9vok8F0kzr7sV0qP+Ommdg1Gj3+EjFsJePFO9fbv9rfjXeHShBoCIOkxN
+         oD2A==
+X-Gm-Message-State: AOAM530P29A+jdSu3VWgxEJRlMpfXbfwDxoCIYll8mf/8zqMLamvR/y4
+        ooYAJS3VW9yzzByl+NNWYm7IMT7415kIcQ==
+X-Google-Smtp-Source: ABdhPJxKOkqj/EFi3l2CI6tmyvTqRQ9yfrCurUYciL/ubmVxnGaTQT1Zuc+k3vXZX71xJKA/EarJqw==
+X-Received: by 2002:a05:600c:4a23:: with SMTP id c35mr10565278wmp.130.1621625120204;
+        Fri, 21 May 2021 12:25:20 -0700 (PDT)
 Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id s1sm478760wmj.8.2021.05.21.12.22.15
+        by smtp.googlemail.com with ESMTPSA id b10sm3657592wrr.27.2021.05.21.12.25.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 May 2021 12:22:15 -0700 (PDT)
+        Fri, 21 May 2021 12:25:19 -0700 (PDT)
 From:   Corentin Labbe <clabbe@baylibre.com>
-To:     dmitry.torokhov@gmail.com, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-kernel@vger.kernel.org, fabio.estevam@freescale.com,
+To:     robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH] dt-bindings: input: remove fsl-mma8450 which is handled by trivial-devices
-Date:   Fri, 21 May 2021 19:22:10 +0000
-Message-Id: <20210521192210.12839-1-clabbe@baylibre.com>
+Subject: [PATCH] dt-bindings: trivial-devices: remove compatible handled by other schema
+Date:   Fri, 21 May 2021 19:25:05 +0000
+Message-Id: <20210521192505.13441-1-clabbe@baylibre.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-trivial-devices.yaml already provide bindings for fsl-mma8450.
-Since input/fsl-mma8450.txt provides no extra value, lets remove it.
+Remove gmt,g751 dallas,ds1775 dallas,ds75 maxim,max6625 national,lm75 ti,tmp275
+from trivial-devices since there are handled by hwmon/lm75.yaml
+
+Remove skyworks,sky81452 handled by mfd/sky81452.txt
+Remove nuvoton,npct601 handled by security/tpm/tpm-i2c.txt
+Remove maxim,max1237 handled by iio/adc/maxim,max1238.yaml
+Remove adi,adt7461 and adt7461 handled by hwmon/lm90.txt
+Remove dlg,da9063 handled by mfd/da9063.txt
 
 Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 ---
- .../devicetree/bindings/input/fsl-mma8450.txt        | 12 ------------
- 1 file changed, 12 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/input/fsl-mma8450.txt
+ .../devicetree/bindings/trivial-devices.yaml  | 24 -------------------
+ 1 file changed, 24 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/input/fsl-mma8450.txt b/Documentation/devicetree/bindings/input/fsl-mma8450.txt
-deleted file mode 100644
-index 0b96e5737d3a..000000000000
---- a/Documentation/devicetree/bindings/input/fsl-mma8450.txt
-+++ /dev/null
-@@ -1,12 +0,0 @@
--* Freescale MMA8450 3-Axis Accelerometer
--
--Required properties:
--- compatible : "fsl,mma8450".
--- reg: the I2C address of MMA8450
--
--Example:
--
--accelerometer: mma8450@1c {
--	compatible = "fsl,mma8450";
--	reg = <0x1c>;
--};
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 4e92792f9153..d01c4211bda4 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -39,10 +39,6 @@ properties:
+           - adi,adp5585-02
+             # Analog Devices ADP5589 Keypad Decoder and I/O Expansion
+           - adi,adp5589
+-            # +/-1C TDM Extended Temp Range I.C
+-          - adi,adt7461
+-            # +/-1C TDM Extended Temp Range I.C
+-          - adt7461
+             # AMS iAQ-Core VOC Sensor
+           - ams,iaq-core
+             # i2c serial eeprom  (24cxx)
+@@ -65,14 +61,10 @@ properties:
+           - dallas,ds1631
+             # Total-Elapsed-Time Recorder with Alarm
+           - dallas,ds1682
+-            # Tiny Digital Thermometer and Thermostat
+-          - dallas,ds1775
+             # CPU Peripheral Monitor
+           - dallas,ds1780
+             # CPU Supervisor with Nonvolatile Memory and Programmable I/O
+           - dallas,ds4510
+-            # Digital Thermometer and Thermostat
+-          - dallas,ds75
+             # 1/4 Brick DC/DC Regulated Power Module
+           - delta,q54sj108a2
+             # Devantech SRF02 ultrasonic ranger in I2C mode
+@@ -83,8 +75,6 @@ properties:
+           - devantech,srf10
+             # DA9053: flexible system level PMIC with multicore support
+           - dlg,da9053
+-            # DA9063: system PMIC for quad-core application processors
+-          - dlg,da9063
+             # DMARD05: 3-axis I2C Accelerometer
+           - domintech,dmard05
+             # DMARD06: 3-axis I2C Accelerometer
+@@ -107,8 +97,6 @@ properties:
+           - mps,mp2888
+             # Monolithic Power Systems Inc. multi-phase controller mp2975
+           - mps,mp2975
+-            # G751: Digital Temperature Sensor and Thermal Watchdog with Two-Wire Interface
+-          - gmt,g751
+             # Infineon IR36021 digital POL buck controller
+           - infineon,ir36021
+             # Infineon IR38064 Voltage Regulator
+@@ -139,8 +127,6 @@ properties:
+           - maxim,ds1803-050
+             # 100 kOhm digital potentiometer with I2C interface
+           - maxim,ds1803-100
+-            # Low-Power, 4-/12-Channel, 2-Wire Serial, 12-Bit ADCs
+-          - maxim,max1237
+             # 10-bit 10 kOhm linear programable voltage divider
+           - maxim,max5481
+             # 10-bit 50 kOhm linear programable voltage divider
+@@ -151,8 +137,6 @@ properties:
+           - maxim,max5484
+             # PECI-to-I2C translator for PECI-to-SMBus/I2C protocol conversion
+           - maxim,max6621
+-            # 9-Bit/12-Bit Temperature Sensors with I²C-Compatible Serial Interface
+-          - maxim,max6625
+             # 3-Channel Remote Temperature Sensor
+           - maxim,max31730
+             # mCube 3-axis 8-bit digital accelerometer
+@@ -235,8 +219,6 @@ properties:
+           - miramems,da311
+             # Temperature sensor with integrated fan control
+           - national,lm63
+-            # I2C TEMP SENSOR
+-          - national,lm75
+             # Serial Interface ACPI-Compatible Microprocessor System Hardware Monitor
+           - national,lm80
+             # Serial Interface ACPI-Compatible Microprocessor System Hardware Monitor
+@@ -247,8 +229,6 @@ properties:
+           - national,lm92
+             # i2c trusted platform module (TPM)
+           - nuvoton,npct501
+-            # i2c trusted platform module (TPM2)
+-          - nuvoton,npct601
+             # Nuvoton Temperature Sensor
+           - nuvoton,w83773g
+             # OKI ML86V7667 video decoder
+@@ -275,8 +255,6 @@ properties:
+           - sgx,vz89x
+             # Relative Humidity and Temperature Sensors
+           - silabs,si7020
+-            # Skyworks SKY81452: Six-Channel White LED Driver with Touch Panel Bias Supply
+-          - skyworks,sky81452
+             # Socionext SynQuacer TPM MMIO module
+           - socionext,synquacer-tpm-mmio
+             # i2c serial eeprom  (24cxx)
+@@ -305,8 +283,6 @@ properties:
+           - ti,tmp102
+             # Low Power Digital Temperature Sensor with SMBUS/Two Wire Serial Interface
+           - ti,tmp103
+-            # Digital Temperature Sensor
+-          - ti,tmp275
+             # TI Dual channel DCAP+ multiphase controller TPS53676 with AVSBus
+           - ti,tps53676
+             # TI Dual channel DCAP+ multiphase controller TPS53679
 -- 
 2.26.3
 
