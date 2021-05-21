@@ -2,202 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B54B38C88B
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 15:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AADB38C8AE
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 15:51:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236075AbhEUNnk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 09:43:40 -0400
-Received: from foss.arm.com ([217.140.110.172]:47784 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236297AbhEUNng (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 May 2021 09:43:36 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 305F611B3;
-        Fri, 21 May 2021 06:42:13 -0700 (PDT)
-Received: from [10.57.73.64] (unknown [10.57.73.64])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6EE9B3F73B;
-        Fri, 21 May 2021 06:42:11 -0700 (PDT)
-Subject: Re: [PATCH v5 4/4] iommu: rockchip: Add support for iommu v2
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
-        heiko@sntech.de, xxm@rock-chips.com
-Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20210521083637.3221304-1-benjamin.gaignard@collabora.com>
- <20210521083637.3221304-5-benjamin.gaignard@collabora.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <e094347e-5396-dd2c-dad5-79e17feb96a3@arm.com>
-Date:   Fri, 21 May 2021 14:42:06 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        id S232475AbhEUNxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 09:53:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33250 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231758AbhEUNxD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 09:53:03 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBB45C061574
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 06:51:40 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id y14so19079089wrm.13
+        for <devicetree@vger.kernel.org>; Fri, 21 May 2021 06:51:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=FoMElIb6Izgq7UZS50abk10HVNabRz/+764pqMn/JqU=;
+        b=CLRCB/Mbb5LgIbp3HOvQxnrbgHS+bKMVfkyBTqp6NKWhozzynf9yluLagrU3GqKpeu
+         m6HjbjBuOZHO6lrzim1FHhS9RRrM8m5wkxK0H/LBmdTNqrJkJh2U1ynk12Nxp+yiQFqI
+         ifxAWvGfMOzN6TZHgIKtK1hxGieLVr7asIAaJSA2NCTcX/6ujDAMAFWVpXq0jjOM7Goc
+         yMlMZ/aNdcjKFXain9COtjN0j4DEM4uGUiHkaxGLJ6lVHY0rn6nAc+Vp8YlF895JOciF
+         vv2U05Piae+I1uE6pZdK/xj7huLLFifIsq5s2QDzX4+WzgW50gkAzY3wxmkYL6RaJ5Sr
+         IZVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=FoMElIb6Izgq7UZS50abk10HVNabRz/+764pqMn/JqU=;
+        b=Qb+aZ+gJFDC1PHRnlasU8GccuE7KI+UbjWCSPDG7dQdA1klhftmMNztvhhNYn1lIbV
+         yxISj0GjoxRGWO25SbHTYqaOjm53R3f+fdu+AngBodaSbPdmef1F0LvhJcmYL+E/GYGh
+         WDfwzp+826v6nn2ZaheSoto0H2ScVew5V7ZDtfQb6xzSN0AMev0OpdElI6RQEmumHh+I
+         rjESaxpRfCZi0AGGq0kmaYW8Gx3CuWLabZJlrjEpAlYW1R1gplnQ0B2Bc7IZ2xR4Q7x3
+         Kii2IaQT2Qj5CYMUbqWQNNfViAleq/j6utz3skeaxtIyTpyUJ1fbruPItZi9HIKmCtcU
+         3M/w==
+X-Gm-Message-State: AOAM530b66p7dpYTEdsucQp2dW1Hal77onZjA4fL6oF13fBXU/eo//Sq
+        MolMRgMqk65Y7BSSXfcPOyCHvg==
+X-Google-Smtp-Source: ABdhPJx9xSuKQ62LE/28tjl5IJOkDRAgdB+i5aV0N3ZjddgaHxOc1hhhp/80oCXec1SfZiTopcMIhg==
+X-Received: by 2002:a5d:44cb:: with SMTP id z11mr9919832wrr.159.1621605099373;
+        Fri, 21 May 2021 06:51:39 -0700 (PDT)
+Received: from dell ([91.110.221.215])
+        by smtp.gmail.com with ESMTPSA id x2sm6001300wmj.3.2021.05.21.06.51.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 May 2021 06:51:38 -0700 (PDT)
+Date:   Fri, 21 May 2021 14:51:37 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivek Unune <npcomplete13@gmail.com>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH V3 robh dt/next] dt-bindings: mfd: add Broadcom CRU
+Message-ID: <20210521135137.GG2549456@dell>
+References: <20210519082049.30976-1-zajec5@gmail.com>
+ <20210519184041.563-1-zajec5@gmail.com>
+ <CAL_Jsq+zUa-KdCEVJ6qdLeSu6QUGFkTy6O-HC_=_zxFUhfON8Q@mail.gmail.com>
+ <20210521071221.GU2549456@dell>
+ <273988f1-7180-572e-f9e2-4218637d0353@gmail.com>
+ <20210521073150.GA2549456@dell>
+ <CAL_JsqJKjW9J20z-W2vB1K7C7WKVS=TeDfq468=gH7i4UFUg=g@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210521083637.3221304-5-benjamin.gaignard@collabora.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqJKjW9J20z-W2vB1K7C7WKVS=TeDfq468=gH7i4UFUg=g@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-05-21 09:36, Benjamin Gaignard wrote:
-> This second version of the hardware block has a different bits
-> mapping for page table entries.
-> Add the ops matching to this new mapping.
-> Define a new compatible to distinguish it from the first version.
+On Fri, 21 May 2021, Rob Herring wrote:
+
+> On Fri, May 21, 2021 at 2:31 AM Lee Jones <lee.jones@linaro.org> wrote:
+> >
+> > On Fri, 21 May 2021, Rafał Miłecki wrote:
+> >
+> > > On 21.05.2021 09:12, Lee Jones wrote:
+> > > > On Thu, 20 May 2021, Rob Herring wrote:
+> > > >
+> > > > > On Wed, May 19, 2021 at 1:40 PM Rafał Miłecki <zajec5@gmail.com> wrote:
+> > > > > >
+> > > > > > From: Rafał Miłecki <rafal@milecki.pl>
+> > > > > >
+> > > > > > CRU is a block used in e.g. Northstar devices. It can be seen in the
+> > > > > > bcm5301x.dtsi and this binding documents its proper usage.
+> > > > > >
+> > > > > > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> > > > > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > > > > ---
+> > > > > > Rob: would you take this patch through your dt/next?
+> > > > >
+> > > > > I can't, I don't have the dependencies. It looks like 08e9fdfbb224 is
+> > > > > already upstream. For ac5f8197d15c, I could get a stable branch from
+> > > > > Linus, but I can't take some random github branch. Even if I got a
+> > > > > stable branch for that, that's a lot of extra work for me for 1 patch
+> > > > > compared to waiting til next cycle.
+> > > > >
+> > > > > My suggestion is get a stable branch/tag from Linus, merge that into
+> > > > > the Broadcom branch and then apply this patch. Though really, Linus
+> > > > > needed to know the dependency when applying the patch if he doesn't
+> > > > > rebase his tree. (I realize the dependency probably happened because
+> > > > > of the review).
+> > > > >
+> > > > > >
+> > > > > > V2: Use complete binding & change additionalProperties to false
+> > > > > > V3: Use clock-controller@ for clocks
+> > > > > >
+> > > > > > NOTICE: this patch is based on top of the linux-next as it requires:
+> > > > > > ac5f8197d15c ("dt-bindings: pinctrl: convert Broadcom Northstar to the json-schema")
+> > > > > > 08e9fdfbb224 ("dt-bindings: thermal: brcm,ns-thermal: Convert to the json-schema")
+> > > > > > AND merged git@github.com:Broadcom/stblinux.git devicetree/next as it requires:
+> > > > > > 8f711f68cffd ("dt-bindings: clock: brcm, iproc-clocks: convert to the json-schema")
+> > > > > >
+> > > > > > This is reworked version of the
+> > > > > > [PATCH robh next] dt-bindings: bus: add Broadcom CRU
+> > > > > > https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210309142241.16259-1-zajec5@gmail.com/
+> > > > > > ---
+> > > > > >   .../devicetree/bindings/mfd/brcm,cru.yaml     | 86 +++++++++++++++++++
+> > > > > >   1 file changed, 86 insertions(+)
+> > > > > >   create mode 100644 Documentation/devicetree/bindings/mfd/brcm,cru.yaml
+> > > >
+> > > > What's the dependency here?  It's a new file that doesn't reference anything.
+> > >
+> > > Without dependencies it will cause warnings for those running "dt_binding_check".
+> >
+> > No one runs that, it's full of warnings. ;)
 > 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> ---
-> version 5:
->   - Use internal ops to support v2 hardware block
->   - Use GENMASK macro.
->   - Keep rk_dte_pt_address() and rk_dte_pt_address_v2() separated
->     because I believe that is more readable like this.
->   - Do not duplicate code.
+> That's dtbs_check on dts files which is full of warnings.
+> dt_binding_check for the schema does not have warnings (well, there's
+> a couple typically because either the bindings aren't reviewed or the
+> dependencies are ignored).
 > 
->   drivers/iommu/rockchip-iommu.c | 78 ++++++++++++++++++++++++++++++++++
->   1 file changed, 78 insertions(+)
+> > > I didn't find it critical so I thought Rob can take in on a promise of
+> > > what is queued for the next release. It appears Rob has more strict
+> > > rules so I'll just have to wait for stuff to land in Linus's tree :)
 > 
-> diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iommu.c
-> index e7b9bcf174b1..23253a2f269e 100644
-> --- a/drivers/iommu/rockchip-iommu.c
-> +++ b/drivers/iommu/rockchip-iommu.c
-> @@ -189,6 +189,33 @@ static inline phys_addr_t rk_dte_pt_address(u32 dte)
->   	return (phys_addr_t)dte & RK_DTE_PT_ADDRESS_MASK;
->   }
->   
-> +/*
-> + * In v2:
-> + * 31:12 - PT address bit 31:0
-> + * 11: 8 - PT address bit 35:32
-> + *  7: 4 - PT address bit 39:36
-> + *  3: 1 - Reserved
-> + *     0 - 1 if PT @ PT address is valid
-> + */
-> +#define RK_DTE_PT_ADDRESS_MASK_V2 GENMASK_ULL(31, 4)
-> +#define DTE_HI_MASK1	GENMASK(11, 8)
-> +#define DTE_HI_MASK2	GENMASK(7, 4)
-> +#define DTE_HI_SHIFT1	24 /* shift bit 8 to bit 32 */
-> +#define DTE_HI_SHIFT2	32 /* shift bit 4 to bit 36 */
-
-Nit: no harm in doing "#define DTE_HI_SHIFT1 (32 - 8)" etc. for maximum 
-clarity if you want.
-
-> +#define PAGE_DESC_HI_MASK1	GENMASK_ULL(39, 36)
-> +#define PAGE_DESC_HI_MASK2	GENMASK_ULL(35, 32)
-> +
-> +static inline phys_addr_t rk_dte_pt_address_v2(u32 dte)
-> +{
-> +	u64 dte_v2 = dte;
-> +
-> +	dte_v2 = ((dte_v2 & DTE_HI_MASK2) << DTE_HI_SHIFT2) |
-> +		 ((dte_v2 & DTE_HI_MASK1) << DTE_HI_SHIFT1) |
-> +		 (dte_v2 & RK_DTE_PT_ADDRESS_MASK);
-> +
-> +	return (phys_addr_t)dte_v2;
-> +}
-> +
->   static inline bool rk_dte_is_pt_valid(u32 dte)
->   {
->   	return dte & RK_DTE_PT_VALID;
-> @@ -199,6 +226,15 @@ static inline u32 rk_mk_dte(dma_addr_t pt_dma)
->   	return (pt_dma & RK_DTE_PT_ADDRESS_MASK) | RK_DTE_PT_VALID;
->   }
->   
-> +static inline u32 rk_mk_dte_v2(dma_addr_t pt_dma)
-> +{
-> +	pt_dma = (pt_dma & RK_DTE_PT_ADDRESS_MASK) |
-> +		 ((pt_dma & PAGE_DESC_HI_MASK1) >> DTE_HI_SHIFT1) |
-> +		 (pt_dma & PAGE_DESC_HI_MASK2) >> DTE_HI_SHIFT2;
-> +
-> +	return (pt_dma & RK_DTE_PT_ADDRESS_MASK_V2) | RK_DTE_PT_VALID;
-> +}
-> +
->   /*
->    * Each PTE has a Page address, some flags and a valid bit:
->    * +---------------------+---+-------+-+
-> @@ -240,6 +276,29 @@ static u32 rk_mk_pte(phys_addr_t page, int prot)
->   	return page | flags | RK_PTE_PAGE_VALID;
->   }
->   
-> +/*
-> + * In v2:
-> + * 31:12 - Page address bit 31:0
-> + *  11:9 - Page address bit 34:32
-> + *   8:4 - Page address bit 39:35
-> + *     3 - Security
-> + *     2 - Readable
-> + *     1 - Writable
-> + *     0 - 1 if Page @ Page address is valid
-> + */
-> +#define RK_PTE_PAGE_READABLE_V2      BIT(2)
-> +#define RK_PTE_PAGE_WRITABLE_V2      BIT(1)
-> +
-> +static u32 rk_mk_pte_v2(phys_addr_t page, int prot)
-> +{
-> +	u32 flags = 0;
-> +
-> +	flags |= (prot & IOMMU_READ) ? RK_PTE_PAGE_READABLE_V2 : 0;
-> +	flags |= (prot & IOMMU_WRITE) ? RK_PTE_PAGE_WRITABLE_V2 : 0;
-> +
-> +	return rk_mk_dte_v2(page) | flags ;
-> +}
-> +
->   static u32 rk_mk_pte_invalid(u32 pte)
->   {
->   	return pte & ~RK_PTE_PAGE_VALID;
-> @@ -480,6 +539,14 @@ static inline phys_addr_t rk_dte_addr_phys(phys_addr_t addr)
->   	return addr;
->   }
->   
-> +#define DT_HI_MASK GENMASK_ULL(39, 32)
-> +#define DT_SHIFT   28
-> +
-> +static inline phys_addr_t rk_dte_addr_phys_v2(phys_addr_t addr)
-> +{
-> +	return (addr & RK_DTE_PT_ADDRESS_MASK) | ((addr & DT_HI_MASK) << DT_SHIFT);
-> +}
-
-Are we missing something overall? AFAICS the DT_HI_MASK bits of 
-RK_MMU_DTE_ADDR will never actually be used, since rk_iommu_enable() 
-just writes the value of dt_dma directly...
-
-> +
->   static void log_iova(struct rk_iommu *iommu, int index, dma_addr_t iova)
->   {
->   	void __iomem *base = iommu->bases[index];
-> @@ -1305,10 +1372,21 @@ static struct rk_iommu_ops iommu_data_ops_v1 = {
->   	.pt_address_mask = RK_DTE_PT_ADDRESS_MASK,
->   };
->   
-> +static struct rk_iommu_ops iommu_data_ops_v2 = {
-> +	.pt_address = &rk_dte_pt_address_v2,
-> +	.mk_dtentries = &rk_mk_dte_v2,
-> +	.mk_ptentries = &rk_mk_pte_v2,
-> +	.dte_addr_phys = &rk_dte_addr_phys_v2,
-> +	.pt_address_mask = RK_DTE_PT_ADDRESS_MASK_V2,
-> +};
-> +
->   static const struct of_device_id rk_iommu_dt_ids[] = {
->   	{	.compatible = "rockchip,iommu",
->   		.data = &iommu_data_ops_v1,
->   	},
-> +	{	.compatible = "rockchip,rk3568-iommu",
-> +		.data = &iommu_data_ops_v2,
-> +	},
->   	{ /* sentinel */ }
->   };
->   MODULE_DEVICE_TABLE(of, rk_iommu_dt_ids);
+> I care less if other trees break as long as linux-next doesn't.
 > 
+> > Rob isn't the one taking the patch. :D
+> >
+> > I'll apply it in a few days, unless Rob shouts real-loud!
+> 
+> I've said it before, MFD and their child bindings need to be applied
+> in 1 tree. If you can't make that happen, then don't apply binding
+> patches.
 
-...and I'll bet the reason it appears to work is that we also never 
-actually set the IOMMU device's DMA masks anywhere, so what happens in 
-practice is that even if pagetable pages are allocated above 32 bits 
-they'll just get bounced by the DMA mapping ops and gradually fill up 
-the SWIOTLB buffer. That's something you're liable to have a bad time 
-with under real-world usage ;)
+I'm not aware of MFD patches applied anywhere else.
 
-The overall cleanup is *so* much better though, thanks for that!
+AFAIK, they all come through me.
 
-Robin.
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
