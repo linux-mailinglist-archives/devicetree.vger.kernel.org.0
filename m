@@ -2,176 +2,283 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 892B138C1F9
-	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 10:36:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02DB338C209
+	for <lists+devicetree@lfdr.de>; Fri, 21 May 2021 10:37:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233141AbhEUIiQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 04:38:16 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:59484 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229581AbhEUIiP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 04:38:15 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: benjamin.gaignard)
-        with ESMTPSA id BEF4F1F43E90
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-To:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
-        heiko@sntech.de, xxm@rock-chips.com, robin.murphy@arm.com
-Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Subject: [PATCH v5 4/4] iommu: rockchip: Add support for iommu v2
-Date:   Fri, 21 May 2021 10:36:37 +0200
-Message-Id: <20210521083637.3221304-5-benjamin.gaignard@collabora.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210521083637.3221304-1-benjamin.gaignard@collabora.com>
-References: <20210521083637.3221304-1-benjamin.gaignard@collabora.com>
+        id S232119AbhEUIjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 04:39:17 -0400
+Received: from mga02.intel.com ([134.134.136.20]:62594 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232778AbhEUIjR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 May 2021 04:39:17 -0400
+IronPort-SDR: 9Lc72ltXXW2q36slIVOMRw03XHD6TmWDu61vfm3/XtCvl0ERB6I+fWJ6gJk4/6B1rnP9DJTZ/d
+ KJSH7KZLI2Dw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9990"; a="188564604"
+X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; 
+   d="scan'208,223";a="188564604"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 May 2021 01:37:53 -0700
+IronPort-SDR: qgMJYNKVtOaHCK1dtgiG/0afWug4IsKXp1ouCpLf+HfRkApptGX9RJBpRFUZifRbOIC3oZwuMy
+ 5HbLYPtN6pIg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; 
+   d="scan'208,223";a="543967207"
+Received: from kuha.fi.intel.com ([10.237.72.162])
+  by fmsmga001.fm.intel.com with SMTP; 21 May 2021 01:37:50 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 21 May 2021 11:37:47 +0300
+Date:   Fri, 21 May 2021 11:37:47 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Li Jun <jun.li@nxp.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org,
+        gregkh@linuxfoundation.org, linux@roeck-us.net,
+        linux-usb@vger.kernel.org, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/4] usb: typec: add typec orientation switch support via
+ mux controller
+Message-ID: <YKdxW8SFntFYcyv+@kuha.fi.intel.com>
+References: <1621408490-23811-1-git-send-email-jun.li@nxp.com>
+ <1621408490-23811-4-git-send-email-jun.li@nxp.com>
+ <YKZXHG7BSSZssiBg@kuha.fi.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/mixed; boundary="uREGkeqe8ZkjR5cd"
+Content-Disposition: inline
+In-Reply-To: <YKZXHG7BSSZssiBg@kuha.fi.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This second version of the hardware block has a different bits
-mapping for page table entries.
-Add the ops matching to this new mapping.
-Define a new compatible to distinguish it from the first version.
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+--uREGkeqe8ZkjR5cd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi,
+
+On Thu, May 20, 2021 at 03:33:36PM +0300, Heikki Krogerus wrote:
+> Why not just do that inside fwnode_typec_switch_get() and handle the
+> whole thing in drivers/usb/typec/mux.c (or in its own file if you
+> prefer)?
+> 
+> You'll just need to register a "wrapper" Type-C switch object for the
+> OF mux controller, but that should not be a problem. That way you
+> don't need to export any new functions, touch this file or anything
+> else.
+
+I wrote a bit of code just to see how that would look. I'm attaching
+you the hack I made. I guess something like that would not be too bad.
+A wrapper is probable always a bit clumsy, but I'm not sure that in
+this case it's a huge problem. Of course if there are any better
+ideas, let's here them :-)
+
+
+thanks,
+
+-- 
+heikki
+
+--uREGkeqe8ZkjR5cd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment;
+	filename="0001-usb-typec-mux-Add-wrapper-for-OF-mux-controllers-tha.patch"
+
+From bdd63f82788fe95e056ed85ece939e41cfb862ad Mon Sep 17 00:00:00 2001
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Date: Fri, 21 May 2021 10:42:23 +0300
+Subject: [PATCH] usb: typec: mux: Add wrapper for OF mux controllers that
+ handle orientation
+
+Interim. Experiment only.
+
+Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 ---
-version 5:
- - Use internal ops to support v2 hardware block
- - Use GENMASK macro.
- - Keep rk_dte_pt_address() and rk_dte_pt_address_v2() separated
-   because I believe that is more readable like this.
- - Do not duplicate code.
+ drivers/usb/typec/Makefile |  1 +
+ drivers/usb/typec/mux.c    | 13 +++--
+ drivers/usb/typec/mux.h    | 15 ++++++
+ drivers/usb/typec/of_mux.c | 97 ++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 122 insertions(+), 4 deletions(-)
+ create mode 100644 drivers/usb/typec/of_mux.c
 
- drivers/iommu/rockchip-iommu.c | 78 ++++++++++++++++++++++++++++++++++
- 1 file changed, 78 insertions(+)
-
-diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iommu.c
-index e7b9bcf174b1..23253a2f269e 100644
---- a/drivers/iommu/rockchip-iommu.c
-+++ b/drivers/iommu/rockchip-iommu.c
-@@ -189,6 +189,33 @@ static inline phys_addr_t rk_dte_pt_address(u32 dte)
- 	return (phys_addr_t)dte & RK_DTE_PT_ADDRESS_MASK;
- }
+diff --git a/drivers/usb/typec/Makefile b/drivers/usb/typec/Makefile
+index a0adb8947a301..d85231b2fe10b 100644
+--- a/drivers/usb/typec/Makefile
++++ b/drivers/usb/typec/Makefile
+@@ -1,6 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0
+ obj-$(CONFIG_TYPEC)		+= typec.o
+ typec-y				:= class.o mux.o bus.o port-mapper.o
++typec-$(MULTIPLEXER)		+= of_mux.o
+ obj-$(CONFIG_TYPEC)		+= altmodes/
+ obj-$(CONFIG_TYPEC_TCPM)	+= tcpm/
+ obj-$(CONFIG_TYPEC_UCSI)	+= ucsi/
+diff --git a/drivers/usb/typec/mux.c b/drivers/usb/typec/mux.c
+index 9da22ae3006c9..282622276d97b 100644
+--- a/drivers/usb/typec/mux.c
++++ b/drivers/usb/typec/mux.c
+@@ -63,6 +63,9 @@ struct typec_switch *fwnode_typec_switch_get(struct fwnode_handle *fwnode)
  
-+/*
-+ * In v2:
-+ * 31:12 - PT address bit 31:0
-+ * 11: 8 - PT address bit 35:32
-+ *  7: 4 - PT address bit 39:36
-+ *  3: 1 - Reserved
-+ *     0 - 1 if PT @ PT address is valid
-+ */
-+#define RK_DTE_PT_ADDRESS_MASK_V2 GENMASK_ULL(31, 4)
-+#define DTE_HI_MASK1	GENMASK(11, 8)
-+#define DTE_HI_MASK2	GENMASK(7, 4)
-+#define DTE_HI_SHIFT1	24 /* shift bit 8 to bit 32 */
-+#define DTE_HI_SHIFT2	32 /* shift bit 4 to bit 36 */
-+#define PAGE_DESC_HI_MASK1	GENMASK_ULL(39, 36)
-+#define PAGE_DESC_HI_MASK2	GENMASK_ULL(35, 32)
+ 	sw = fwnode_connection_find_match(fwnode, "orientation-switch", NULL,
+ 					  typec_switch_match);
++	if (!sw)
++		sw = of_switch_register(fwnode);
 +
-+static inline phys_addr_t rk_dte_pt_address_v2(u32 dte)
-+{
-+	u64 dte_v2 = dte;
-+
-+	dte_v2 = ((dte_v2 & DTE_HI_MASK2) << DTE_HI_SHIFT2) |
-+		 ((dte_v2 & DTE_HI_MASK1) << DTE_HI_SHIFT1) |
-+		 (dte_v2 & RK_DTE_PT_ADDRESS_MASK);
-+
-+	return (phys_addr_t)dte_v2;
-+}
-+
- static inline bool rk_dte_is_pt_valid(u32 dte)
+ 	if (!IS_ERR_OR_NULL(sw))
+ 		WARN_ON(!try_module_get(sw->dev.parent->driver->owner));
+ 
+@@ -78,10 +81,12 @@ EXPORT_SYMBOL_GPL(fwnode_typec_switch_get);
+  */
+ void typec_switch_put(struct typec_switch *sw)
  {
- 	return dte & RK_DTE_PT_VALID;
-@@ -199,6 +226,15 @@ static inline u32 rk_mk_dte(dma_addr_t pt_dma)
- 	return (pt_dma & RK_DTE_PT_ADDRESS_MASK) | RK_DTE_PT_VALID;
+-	if (!IS_ERR_OR_NULL(sw)) {
+-		module_put(sw->dev.parent->driver->owner);
+-		put_device(&sw->dev);
+-	}
++	if (IS_ERR_OR_NULL(sw))
++		return;
++
++	module_put(sw->dev.parent->driver->owner);
++	of_switch_unregister(sw);
++	put_device(&sw->dev);
  }
+ EXPORT_SYMBOL_GPL(typec_switch_put);
  
-+static inline u32 rk_mk_dte_v2(dma_addr_t pt_dma)
-+{
-+	pt_dma = (pt_dma & RK_DTE_PT_ADDRESS_MASK) |
-+		 ((pt_dma & PAGE_DESC_HI_MASK1) >> DTE_HI_SHIFT1) |
-+		 (pt_dma & PAGE_DESC_HI_MASK2) >> DTE_HI_SHIFT2;
-+
-+	return (pt_dma & RK_DTE_PT_ADDRESS_MASK_V2) | RK_DTE_PT_VALID;
-+}
-+
- /*
-  * Each PTE has a Page address, some flags and a valid bit:
-  * +---------------------+---+-------+-+
-@@ -240,6 +276,29 @@ static u32 rk_mk_pte(phys_addr_t page, int prot)
- 	return page | flags | RK_PTE_PAGE_VALID;
- }
+diff --git a/drivers/usb/typec/mux.h b/drivers/usb/typec/mux.h
+index 4fd9426ee44f6..c99caab766313 100644
+--- a/drivers/usb/typec/mux.h
++++ b/drivers/usb/typec/mux.h
+@@ -5,8 +5,11 @@
  
-+/*
-+ * In v2:
-+ * 31:12 - Page address bit 31:0
-+ *  11:9 - Page address bit 34:32
-+ *   8:4 - Page address bit 39:35
-+ *     3 - Security
-+ *     2 - Readable
-+ *     1 - Writable
-+ *     0 - 1 if Page @ Page address is valid
-+ */
-+#define RK_PTE_PAGE_READABLE_V2      BIT(2)
-+#define RK_PTE_PAGE_WRITABLE_V2      BIT(1)
-+
-+static u32 rk_mk_pte_v2(phys_addr_t page, int prot)
-+{
-+	u32 flags = 0;
-+
-+	flags |= (prot & IOMMU_READ) ? RK_PTE_PAGE_READABLE_V2 : 0;
-+	flags |= (prot & IOMMU_WRITE) ? RK_PTE_PAGE_WRITABLE_V2 : 0;
-+
-+	return rk_mk_dte_v2(page) | flags ;
-+}
-+
- static u32 rk_mk_pte_invalid(u32 pte)
- {
- 	return pte & ~RK_PTE_PAGE_VALID;
-@@ -480,6 +539,14 @@ static inline phys_addr_t rk_dte_addr_phys(phys_addr_t addr)
- 	return addr;
- }
+ #include <linux/usb/typec_mux.h>
  
-+#define DT_HI_MASK GENMASK_ULL(39, 32)
-+#define DT_SHIFT   28
++struct of_switch;
 +
-+static inline phys_addr_t rk_dte_addr_phys_v2(phys_addr_t addr)
-+{
-+	return (addr & RK_DTE_PT_ADDRESS_MASK) | ((addr & DT_HI_MASK) << DT_SHIFT);
-+}
-+
- static void log_iova(struct rk_iommu *iommu, int index, dma_addr_t iova)
- {
- 	void __iomem *base = iommu->bases[index];
-@@ -1305,10 +1372,21 @@ static struct rk_iommu_ops iommu_data_ops_v1 = {
- 	.pt_address_mask = RK_DTE_PT_ADDRESS_MASK,
+ struct typec_switch {
+ 	struct device dev;
++	struct of_switch *osw;
+ 	typec_switch_set_fn_t set;
  };
  
-+static struct rk_iommu_ops iommu_data_ops_v2 = {
-+	.pt_address = &rk_dte_pt_address_v2,
-+	.mk_dtentries = &rk_mk_dte_v2,
-+	.mk_ptentries = &rk_mk_pte_v2,
-+	.dte_addr_phys = &rk_dte_addr_phys_v2,
-+	.pt_address_mask = RK_DTE_PT_ADDRESS_MASK_V2,
+@@ -18,4 +21,16 @@ struct typec_mux {
+ #define to_typec_switch(_dev_) container_of(_dev_, struct typec_switch, dev)
+ #define to_typec_mux(_dev_) container_of(_dev_, struct typec_mux, dev)
+ 
++#ifdef CONFIG_MULTIPLEXER
++struct typec_switch *of_switch_register(struct fwnode_handle *fwnode);
++void of_switch_unregister(struct typec_switch *sw);
++#else
++static inline struct typec_switch *of_switch_register(struct fwnode_handle *fwnode)
++{
++	return NULL;
++}
++
++static inline void of_switch_unregister(struct typec_switch *sw) { }
++#endif /* MULTIPLEXER */
++
+ #endif /* __USB_TYPEC_MUX__ */
+diff --git a/drivers/usb/typec/of_mux.c b/drivers/usb/typec/of_mux.c
+new file mode 100644
+index 0000000000000..48686a92331d7
+--- /dev/null
++++ b/drivers/usb/typec/of_mux.c
+@@ -0,0 +1,97 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Wrapper for mux controllers handling orientation
++ *
++ * Copyright (C) 2021 Intel Corporation
++ */
++
++#include <linux/device.h>
++#include <linux/slab.h>
++#include <linux/of.h>
++#include <linux/mux/consumer.h>
++#include <linux/usb/typec_mux.h>
++
++#include "mux.h"
++
++struct of_switch {
++	struct mux_control *mc;
++	unsigned int state[3];
 +};
 +
- static const struct of_device_id rk_iommu_dt_ids[] = {
- 	{	.compatible = "rockchip,iommu",
- 		.data = &iommu_data_ops_v1,
- 	},
-+	{	.compatible = "rockchip,rk3568-iommu",
-+		.data = &iommu_data_ops_v2,
-+	},
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, rk_iommu_dt_ids);
++static int of_switch_set(struct typec_switch *sw, enum typec_orientation orientation)
++{
++	int ret;
++
++	/* Checking has the switch been unregistered - just not released yet */
++	if (!sw->osw)
++		return -ENODEV;
++
++	ret = mux_control_deselect(sw->osw->mc);
++	if (ret)
++		return ret;
++
++	return mux_control_select(sw->osw->mc, sw->osw->state[orientation]);
++}
++
++struct typec_switch *of_switch_register(struct fwnode_handle *fwnode)
++{
++	struct typec_switch_desc desc;
++	struct typec_switch *sw;
++	struct mux_control *mc;
++	unsigned int state[3];
++	struct of_switch *osw;
++	int ret;
++
++	if (!fwnode_property_present(fwnode, "mux-control-names"))
++		return NULL;
++
++	ret = fwnode_property_read_u32_array(fwnode, "mux-control-switch-states",
++					     state, 3);
++	if (ret)
++		return ERR_PTR(ret);
++
++	desc.fwnode = fwnode;
++	desc.set = of_switch_set;
++	desc.name = fwnode_get_name(fwnode);
++	desc.drvdata = NULL;
++
++	sw = typec_switch_register(NULL, &desc);
++	if (IS_ERR(sw))
++		return sw;
++
++	sw->dev.of_node = to_of_node(fwnode);
++
++	mc = mux_control_get(&sw->dev, "typec-orientation-switch");
++	if (IS_ERR_OR_NULL(mc)) {
++		typec_switch_unregister(sw);
++		if (IS_ERR(mc))
++			return ERR_CAST(mc);
++		return ERR_PTR(-ENODEV);
++	}
++
++	osw = kzalloc(sizeof(osw), GFP_KERNEL);
++	if (!osw) {
++		typec_switch_unregister(sw);
++		mux_control_put(mc);
++		return ERR_PTR(-ENOMEM);
++	}
++
++	memcpy(osw->state, state, sizeof(unsigned int) * 3);
++	osw->mc = mc;
++	sw->osw = osw;
++
++	return sw;
++}
++
++void of_switch_unregister(struct typec_switch *sw)
++{
++	struct of_switch *osw = sw->osw;
++
++	if (!osw)
++		return;
++
++	sw->osw = NULL;
++	typec_switch_unregister(sw);
++	mux_control_put(osw->mc);
++	kfree(osw);
++}
 -- 
-2.25.1
+2.30.2
 
+
+--uREGkeqe8ZkjR5cd--
