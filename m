@@ -2,43 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81B5638D2B3
-	for <lists+devicetree@lfdr.de>; Sat, 22 May 2021 02:55:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D59038D30D
+	for <lists+devicetree@lfdr.de>; Sat, 22 May 2021 04:32:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230318AbhEVA4X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 May 2021 20:56:23 -0400
-Received: from mail-eopbgr60047.outbound.protection.outlook.com ([40.107.6.47]:8461
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230280AbhEVA4W (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 May 2021 20:56:22 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fPCmZr9sFIXa3L3THMWh3YDIAp67lXfUZIKrNxUOz0DstgsmwAf79fz0t74UxywtCwN0fg7FtDTzOifWHuDXmC0wFgodIdBW7blrfvdtc6Gcz9eUYwPO0UO2tc5m7YTd0icDEwzlMdV207B1hR2wRXgYenzUWJ/HPPUdV6Vwsur5Fu2/7OJmeDq/IrRKjByD3apOialicR/RaHNm0hdGXvGfpogdUW5SoyTvx1uWAq/UHbl4Ht+oX8JxY9rrC7SZpgri4UuZMhZ/vAZ0vnlWFQqbCvRXZJ9gUI+j1GfpIrrQCOXht0SFFAdmKkPzEAhYhTKMy3Cn2z17WInXZF9FhA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A7RLsnn5/HRHLtJDxI1jvRtrXjk54f/aYp7FFNq9k74=;
- b=iOVg8eksJs9aukO3VBl7cGw2lq9wfxuQ8c5PAQ6TxwOLcEs1zgKms4NISbJhYw3tEc70YlMrzzk7QuKcxEnwsjWg5JAuAh20GiizeSGHH7gkAd1sgd/bpTJAkB2Pn3JpDyBorl0nor8Bjdvzl8/ygFUNBwN4W74jCpFMJ3377VBlJrsQwFFPlhOM4pqjYdjVIkNA7LnuwnTWDBEpCshmDH9nzuPKuFsUrVRIYwOpaRW9e8pStWASB2FYHWSGMakmf5exsccyMe57RF57F57XtK4Dwq2Go6ad33Rshnd0GwEZxNEoaezKdJ2ugzFJrWjKXtSq1gSSxTMTCBao3sDtTA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A7RLsnn5/HRHLtJDxI1jvRtrXjk54f/aYp7FFNq9k74=;
- b=ZJd24envZTxX+izHU125vg4RRcCo86X0DiYNWHWfqLYVptYhEONbldYi0zJ1OynT73doIHyKMdK28W8VTndcJsKU3gUOYcjAq8yhLgd+YEl9j9oMam+y8HHnchAo+msRjygpknVlT//JPKOTLgrUXX2IkmAc/oTqRjVbKUSXHBQ=
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
- by DB8PR04MB6618.eurprd04.prod.outlook.com (2603:10a6:10:10e::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.28; Sat, 22 May
- 2021 00:54:56 +0000
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::45b9:c993:87ec:9a64]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::45b9:c993:87ec:9a64%8]) with mapi id 15.20.4129.036; Sat, 22 May 2021
- 00:54:56 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     Adam Ford <aford173@gmail.com>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        id S230488AbhEVCd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 May 2021 22:33:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34852 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230447AbhEVCd4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 May 2021 22:33:56 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 902D9C061574;
+        Fri, 21 May 2021 19:32:31 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id c20so33166942ejm.3;
+        Fri, 21 May 2021 19:32:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bHH470bkXqJd95/yYGo/ipPVf6TM8AxakgkU87EHL6U=;
+        b=gQdf//VAsShinxC/gEtaq6+VWcE96uebHoGes+gcs+wDpQKvAN/bysCDImZYFZJYBr
+         HgUKFkM3ZzF9CtygsNvy1pFBoQqyfnfORSh2vCdX77ocCNJpjeQaJwVk4Pcf9bWfzPJV
+         8d+F1X1eTvqspbAs0aq7KNy6wD83FjESxa31jyEiBg/SjuUBlyk1FNA7NW8d/6/MhU/q
+         +PG2WLM7b+8h+aTIcQXk5nmW3Sq7du8m4LOgbZ7W9/+JnaB6N5uX+wyw13qO9mxRKuU3
+         ytOZa+leZrY2+SzJtoHUTIe602puZKpVAjn1EmZTN2guWucVMDAnXU5DiEeVSb3Pf9wt
+         NtJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bHH470bkXqJd95/yYGo/ipPVf6TM8AxakgkU87EHL6U=;
+        b=GSOH+vYYKXTh9hpot3DJdX/e2VdnCIJWmPlYUXRa4Ncn4NYz61Qiswqr7sQnfIqc57
+         qr+5LC7AwqhbjZCAWrWEjeMMchh/TqSv00/6cDq9no7tjLEw9hBu3KZ2omeucVAZLJsb
+         DwxABznvOJeGd4A5kWxn0zLbGlC9PhvlrAYUShcgSS26O/Zr+lAJnjXtV5kRx6HBeEdg
+         G7dGquNIgRkp5ufipSRM4SxDzh8sCllo2mMwJWkFjotecB9jrYxlvBQ/JnV80Z3YjC4d
+         cQwbQ3wUgGHC7xCGIJ3k7GwPyEmW0dfKbjulFwkffLDd84AR4n/s/okTcIMqk78OVitm
+         LVEA==
+X-Gm-Message-State: AOAM531loZp9uorfoVEUh3QTXXfN4nm+FrDut8JtEpXe01QddrHmyT+w
+        hpMDywdAyzuCM9jISju1auoPxJX+c35MKdP04hE=
+X-Google-Smtp-Source: ABdhPJziNsufNd1c6s8I/DiTbQXx9V7K2wIcfqmrmU1OPXr7r3/wOzV46EWNnMiZFWPPbLshDKq+w8lB46HP9LfmuF4=
+X-Received: by 2002:a17:906:22c6:: with SMTP id q6mr12892230eja.275.1621650749995;
+ Fri, 21 May 2021 19:32:29 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210521105919.20167-1-peng.fan@oss.nxp.com> <CAHCN7xJRN3W8pu+eALrv35rsQEDe9We9T5Ej=M0Et_ZuFe7vng@mail.gmail.com>
+ <DB6PR0402MB276010E5B7C2318C8DC2685188289@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+In-Reply-To: <DB6PR0402MB276010E5B7C2318C8DC2685188289@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Fri, 21 May 2021 21:32:18 -0500
+Message-ID: <CAHCN7xLTjE82EnzRXW84e_Lm63+hxfOeFXSdoZmVe6ujs3F2Pw@mail.gmail.com>
+Subject: Re: [PATCH V5 0/4] soc: imx: add i.MX BLK-CTL support
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Sascha Hauer <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
@@ -46,7 +62,7 @@ CC:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Philipp Zabel <p.zabel@pengutronix.de>,
         Lucas Stach <l.stach@pengutronix.de>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        =?utf-8?B?R3VpZG8gR8O8bnRoZXI=?= <agx@sigxcpu.org>,
+        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
         Marek Vasut <marex@denx.de>,
         Andrey Smirnov <andrew.smirnov@gmail.com>,
         devicetree <devicetree@vger.kernel.org>,
@@ -55,169 +71,150 @@ CC:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Jacky Bai <ping.bai@nxp.com>,
         Schrempf Frieder <frieder.schrempf@kontron.de>,
         Abel Vesa <abel.vesa@nxp.com>
-Subject: RE: [PATCH V5 0/4] soc: imx: add i.MX BLK-CTL support
-Thread-Topic: [PATCH V5 0/4] soc: imx: add i.MX BLK-CTL support
-Thread-Index: AQHXTivYvjigSv6Ln0ykHSUT474sdqruEhmAgACa4hA=
-Date:   Sat, 22 May 2021 00:54:56 +0000
-Message-ID: <DB6PR0402MB276010E5B7C2318C8DC2685188289@DB6PR0402MB2760.eurprd04.prod.outlook.com>
-References: <20210521105919.20167-1-peng.fan@oss.nxp.com>
- <CAHCN7xJRN3W8pu+eALrv35rsQEDe9We9T5Ej=M0Et_ZuFe7vng@mail.gmail.com>
-In-Reply-To: <CAHCN7xJRN3W8pu+eALrv35rsQEDe9We9T5Ej=M0Et_ZuFe7vng@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [92.121.68.129]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 2cacd605-ec89-4abd-40ec-08d91cbc37d8
-x-ms-traffictypediagnostic: DB8PR04MB6618:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB8PR04MB661892FD5C30AF83EF225CB888289@DB8PR04MB6618.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: B3pPS+I+6AUlvZvg/XtA/SPRzK4jr8xx3CWckAApAnaTAndOU5zCwPLJfNtuV1gDD3m/vkwG0sXXm9k64fJAs7eDnE+RGYAjkVU9WAwwstm0YDFk9OhDv/qtx8OpfthnhLGLGH93+QDxbCgYrfVeC09uLEsNg9c/uAKK5mmL/AK21hBRvmLxLctGKj44rWmKuXqOUhk9uc05P1mrIkPLWEzY62ZDZF1Jjh70GlOhsmJGAn8pS+4t5/h+TWcrFvDNLMuDeClbG/M3fVOIU+ftHQ5ORSpZ7ePsIAX2T72TDg9ahtCE+by0egjCeoGeDjXufmTgMzuM6l2LqAvtAjeFQrHt8w0dVnR68YzFWZq9lVqO+VHksIx2IeX0s9aEgNV9yUM8u+NChAAhw4G1x3JJhtEgvPnQM0UavtzKiLbi89wZIMkQ+r1tL3uR+UhRjBedN/z12UUuZiuoARQn7HVIF1lMaq8Mge0Gwm0b5RGNiHpPbmUft6m9pZkH8Br8YQhr6AQFO3fcaTgR7LcRxkXFUF5UatKClsQGHWayOkT5VUsOZEcXcuMn4zfhzVrrnTPor3pMTZrbYiDaDqiL2QBNN8VKQ+J3k0B/J/iyMdCc0eU=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(136003)(39850400004)(346002)(396003)(376002)(66946007)(86362001)(44832011)(64756008)(66446008)(66556008)(66476007)(122000001)(7416002)(38100700002)(5660300002)(71200400001)(33656002)(4326008)(478600001)(52536014)(76116006)(8936002)(53546011)(26005)(9686003)(2906002)(186003)(316002)(110136005)(6506007)(83380400001)(7696005)(8676002)(54906003)(55016002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?dFk3UWhGUEk1Q0wzVFNWQnFBSlFJY0FMTS9pMktIWFJCS0tCVG0rVkI1cFIy?=
- =?utf-8?B?bXZmRGd2WWZPeDVxTStlcEh3eHBiSnlSMnl6dmNYZ2lSZEh2YW1HQVU2KzR0?=
- =?utf-8?B?c2VDQ2c0RzcxYi9mWkJLMzUzUVZmR3ZqUGNWV1FZY3VkT1ZBMG5FeDlXc1Nl?=
- =?utf-8?B?bHhNWG9MVDg1N0VnWWVnSkJNalFVWC9MTDZmY1RWZlgyL3BkZ29qcXNqWC96?=
- =?utf-8?B?bmhpVEMvVnBITTJRRE1pWkIrYjFNVElzQkNnQkJNNzVBMkNuWW5EUWNWTmFp?=
- =?utf-8?B?TmdKdVhmTTA2UkNpajJFK2IwVjJ4MGhiQll2OHIwNWxkQXRiYVBudU44NHQ4?=
- =?utf-8?B?dXdzaVBqMG9iaDU0VFl5T2E1U2lsZkJJc1JEVy9pa05vRzZiaXFsK0dSaThw?=
- =?utf-8?B?Um0vQzNCQUpUNUtjeG9EWHFyalpyNGMrc09SNDhNa1NtcGsxZEpIZjlPZUM2?=
- =?utf-8?B?eW9mMEozUjBHb2NDTDRCaEhzU0J2MjRHbDVINWdFaVZ4QytoQWNmOXdQdCtx?=
- =?utf-8?B?KzBzMG9QMEFZLzhmR3ZLd0c4RlFDMVFjMUtvZmRSdGp4TStVc3k0RU1RSHNW?=
- =?utf-8?B?eWVIVzNWOU54aDNRN2MwS0RBT1o3ek9WR3krNFUyb1B1WFh4ZWlseU95UmJ4?=
- =?utf-8?B?S3B2bE5TV2l0YTMyMmJhaUpIVG5RdW5GQXB4MW5aRm5EbkxuaURaT25vbmQr?=
- =?utf-8?B?NW1FK2ZzK2NURWF1WFh5VmY5bHFPWjVET3JBcnJRN0xmV09DNy9jQ296TlBq?=
- =?utf-8?B?UStuMjkybWNwT0NKYk9MamJoZXNBNmk4YjhFTjFJVG5za0FiYVpkUk9NVHM1?=
- =?utf-8?B?cTlRTVdicnU1ZkoxS2xoanRSWDJhQlM3YUxUT1M0cEZSeW5vdXVzNzE3T1lN?=
- =?utf-8?B?dmpZNWtaMUg0TCtsMEdQdWdhcFpSTGs5RnpsY1lJVUJhM1g3VjJLMmRidUdZ?=
- =?utf-8?B?VW90WXRRVjV1VVVwQ0laOGJKemp1OHQ4UUlSUzRmdUtCUmpZVU4rSFlWMUdT?=
- =?utf-8?B?bTZOaG9PcWp6dUJXNXZLMDV1am1HcVFIZTFoSks0bllxTUNHTG1wVnU4aGZp?=
- =?utf-8?B?KytEYVh2ZzRIWkdYSGgrNEFhTkhvRSt6QUsvQWFsN0JGTWkxdWllc1FGY3da?=
- =?utf-8?B?b1N3c1kyYUR1MG9NRzU4SWU5N2MwcmU1ZGdwemhTdms4dDlKL1UxSEF6d2Za?=
- =?utf-8?B?ZklIWnRwYmNFdVE0R2JReG42T3k1T2ZTWlNtOVE5NWNmQjduRmU2MTNlVmJ5?=
- =?utf-8?B?Y2lTa2lkYVhZYlkzeDJZeGxyOTZ0TGduT0JxNXU5V1RhT1VFTzgrVUVlWjJK?=
- =?utf-8?B?ZGFEcElSR3VSMUd5c3VwK0cvS1dHaEZUTWF3TnBWN1RGWUNPNGowTHg2SnE2?=
- =?utf-8?B?YXFNS1NhT3diYXZZRy9jVkVucTRUYVVzT1ROTFVDb0g0K0FJZTRlMDRZcmt5?=
- =?utf-8?B?NUhGa0x1UUVRdTB4emVnREV1OGFERUF0UDdNdmVHN09BMTh4cmVxS1pNV0c1?=
- =?utf-8?B?ZHR4bXJhUkZXYWdTNWt1Z2NBWW1NL2ZiWG93UUxua0FrRDFXNzk5ZTR0eXd5?=
- =?utf-8?B?blZ4RThsN1JuUU5KRktzb0hOTU9tRU5uWGdROWVCVVJCMG9iVGdXUGZoM2hi?=
- =?utf-8?B?blZ0OUFzKzNzSEs0UHkyRHUrTnpqTkw0dit4ZWtZTFZvWWMzZnk4cTgrL3lr?=
- =?utf-8?B?Q3JWOHRvSjhUMkc1dnlqSHVhU0Q0QWljeDZIS3M5QW0ydzlVdVVOVWNzSVN2?=
- =?utf-8?Q?5J2Jm6KaQ0VAlIQp7P6WaImCe8y2eF804cKmT0I?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2cacd605-ec89-4abd-40ec-08d91cbc37d8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 May 2021 00:54:56.4565
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fLQ8PnRVElEPqbq7JGa4lN+jgfAmGlwcV2nIzVxs0Q6Rp17eeEW/FS+tCOZqnd8ksihfVfyvoXPCwN/nrbjnMA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6618
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiBTdWJqZWN0OiBSZTogW1BBVENIIFY1IDAvNF0gc29jOiBpbXg6IGFkZCBpLk1YIEJMSy1DVEwg
-c3VwcG9ydA0KPiANCj4gT24gRnJpLCBNYXkgMjEsIDIwMjEgYXQgNToyNyBBTSBQZW5nIEZhbiAo
-T1NTKSA8cGVuZy5mYW5Ab3NzLm54cC5jb20+DQo+IHdyb3RlOg0KPiA+DQo+ID4gRnJvbTogUGVu
-ZyBGYW4gPHBlbmcuZmFuQG54cC5jb20+DQo+ID4NCj4gPiBWNToNCj4gPiAgUmV3b3JrIHRoZSBi
-bGstY3RsIGRyaXZlciB0byBsZXQgc3ViLVBHQyB1c2UgYmxrLWN0bCBhcyBwYXJlbnQgcG93ZXIN
-Cj4gPiBkb21haW4gdG8gZml4IHRoZSBwb3RlbnRpYWwgaGFuZHNoYWtlIGlzc3VlLg0KPiA+ICBJ
-IHN0aWxsIGtlZXAgUi1iL0EtYiB0YWcgZm9yIFBhdGNoIDEsMiw0LCBzaW5jZSB2ZXJ5IG1pbm9y
-IGNoYW5nZXMgIEkNCj4gPiBvbmx5IGRyb3AgUi1iIHRhZyBmb3IgUGF0Y2ggMywgc2luY2UgaXQg
-aGFzIGJpZyBjaGFuZ2UuDQo+ID4gIEFuIGV4YW1wbGUsIHRoZSBwZ2NfbWlwaSBub3QgdGFrZSBw
-Z2NfZGlzcG1peCBhcyBwYXJlbnQ6DQo+ID4NCj4gPiAgICAgICAgIHBnY19kaXNwbWl4OiBwb3dl
-ci1kb21haW5AMTAgew0KPiA+ICAgICAgICAgICAgICAgICAjcG93ZXItZG9tYWluLWNlbGxzID0g
-PDA+Ow0KPiA+ICAgICAgICAgICAgICAgICByZWcgPSA8SU1YOE1NX1BPV0VSX0RPTUFJTl9ESVNQ
-TUlYPjsNCj4gPiAgICAgICAgICAgICAgICAgY2xvY2tzID0gPCZjbGsgSU1YOE1NX0NMS19ESVNQ
-X1JPT1Q+LA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICA8JmNsayBJTVg4TU1fQ0xLX0RJ
-U1BfQVhJX1JPT1Q+LA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICA8JmNsayBJTVg4TU1f
-Q0xLX0RJU1BfQVBCX1JPT1Q+Ow0KPiA+ICAgICAgICAgfTsNCj4gPg0KPiA+ICAgICAgICAgcGdj
-X21pcGk6IHBvd2VyLWRvbWFpbkAxMSB7DQo+ID4gICAgICAgICAgICAgICAgICNwb3dlci1kb21h
-aW4tY2VsbHMgPSA8MD47DQo+ID4gICAgICAgICAgICAgICAgIHJlZyA9IDxJTVg4TU1fUE9XRVJf
-RE9NQUlOX01JUEk+Ow0KPiA+ICAgICAgICAgICAgICAgICBwb3dlci1kb21haW5zID0gPCZkaXNw
-bWl4X2Jsa19jdGwNCj4gPiBJTVg4TU1fQkxLX0NUTF9QRF9ESVNQTUlYX0JVUz47DQo+IA0KPiBX
-aXRoIHRoaXMgY2hhbmdlLCBJIGdldCBhIGJ1bmNoIG9mIGVycm9ycyBvbiBib290LiAgVGhlIGxp
-c3Qgb2YgcG93ZXItZG9tYWlucw0KPiBhcHBlYXIgY29ycmVjdCBvbiB0aGUgc3VyZmFjZSwgYnV0
-IGl0IGFsc28gaGFzIHRyb3VibGUgd2FraW5nIGZyb20gc2xlZXAuDQo+IA0KPiBbICAgIDAuNjk1
-OTQ3XSBpbXg4bW0tYmxrLWN0bCBpbXgtZGlzcG1peC1ibGstY3RsLjA6IGludmFsaWQgcmVzb3Vy
-Y2UNCj4gWyAgICAwLjcwMjg0OV0gaW14OG1tLWJsay1jdGw6IHByb2JlIG9mIGlteC1kaXNwbWl4
-LWJsay1jdGwuMCBmYWlsZWQNCj4gd2l0aCBlcnJvciAtMjINCj4gWyAgICAwLjcxMTI1OV0gaW14
-OG1tLWJsay1jdGwgaW14LWRpc3BtaXgtYmxrLWN0bC4xOiBpbnZhbGlkIHJlc291cmNlDQo+IFsg
-ICAgMC43MTY0NTFdIGlteDhtbS1ibGstY3RsOiBwcm9iZSBvZiBpbXgtZGlzcG1peC1ibGstY3Rs
-LjEgZmFpbGVkDQo+IHdpdGggZXJyb3IgLTIyDQo+IFsgICAgMC43MjQ4NTZdIGlteDhtbS1ibGst
-Y3RsIGlteC1kaXNwbWl4LWJsay1jdGwuMjogaW52YWxpZCByZXNvdXJjZQ0KPiBbICAgIDAuNzMw
-MDk3XSBpbXg4bW0tYmxrLWN0bDogcHJvYmUgb2YgaW14LWRpc3BtaXgtYmxrLWN0bC4yIGZhaWxl
-ZA0KPiB3aXRoIGVycm9yIC0yMg0KPiBbICAgIDAuNzM4Mzk4XSBpbXg4bW0tYmxrLWN0bCBpbXgt
-ZGlzcG1peC1ibGstY3RsLjM6IGludmFsaWQgcmVzb3VyY2UNCj4gWyAgICAwLjc0Mzc0N10gaW14
-OG1tLWJsay1jdGw6IHByb2JlIG9mIGlteC1kaXNwbWl4LWJsay1jdGwuMyBmYWlsZWQNCj4gd2l0
-aCBlcnJvciAtMjINCg0KSXQgaXMganVzdCB0aGUgaW14OG1tLWJsay1jdGwgZHJpdmVyIG1hdGNo
-ZXMgd2l0aCB0aGUgbmV3IGNyZWF0ZWQNCmNoaWxkIGRldmljZSwgYmVjYXVzZSB0aGUgY2hpbGQg
-ZGV2aWNlIHBvaW50cyB0aGUgb2Zfbm9kZSBvZiB0aGUgcGFyZW50DQpkZXZpY2UuDQpCdXQgdGhp
-cyBlcnJvciB3aWxsIG5vdCBhZmZlY3QgZnVuY3Rpb25hbGl0eS4NCkknbGwgcmVzb2x2ZSB0aGlz
-IGlzc3VlIGFuZCBzZW5kIG91dCB2Ni4NCj4gDQo+IElmIEkgaGF2ZSBhIHdyb25nIGRldmljZSB0
-cmVlIGNvbmZpZ3VyYXRpb24sIGNhbiB5b3UgcGxlYXNlIHBvc3QgYW4gdXBkYXRlZA0KPiBkZXZp
-Y2UgdHJlZT8gIEkgZG9uJ3QgdGhpbmsgYW4gb2ZmaWNpYWwgcGF0Y2ggZm9yIG9yaWdpbmFsIHBn
-YydzIHdlcmUgcHVzaGVkIGFzDQo+IHBhcnQgb2YgZWl0aGVyIHNlcmllcy4gSSB1c2VkIHRoaXMg
-ZS1tYWlsIGFzIHRoZSBwYXRjaCB0byBlbmFibGUgdGhlIGJsay1jdGwuDQoNCkRvIHlvdSBoYXZl
-IGFuIGRldmljZSB0cmVlLCBJIGNvdWxkIGdpdmUgYSBsb29rLg0KDQpSZWdhcmRzLA0KUGVuZy4N
-Cg0KPiANCj4gdGhhbmtzLA0KPiANCj4gYWRhbQ0KPiANCj4gPiAgICAgICAgIH07DQo+ID4NCj4g
-PiAgICAgICAgIGRpc3BtaXhfYmxrX2N0bDogY2xvY2stY29udHJvbGxlckAzMmUyODAwMCB7DQo+
-ID4gICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAiZnNsLGlteDhtbS1kaXNwbWl4LWJsay1j
-dGwiLCAic3lzY29uIjsNCj4gPiAgICAgICAgICAgICAgICAgcmVnID0gPDB4MzJlMjgwMDAgMHgx
-MDA+Ow0KPiA+ICAgICAgICAgICAgICAgICAjcG93ZXItZG9tYWluLWNlbGxzID0gPDE+Ow0KPiA+
-ICAgICAgICAgICAgICAgICBwb3dlci1kb21haW5zID0gPCZwZ2NfZGlzcG1peD4sIDwmcGdjX21p
-cGk+Ow0KPiA+ICAgICAgICAgICAgICAgICBwb3dlci1kb21haW4tbmFtZXMgPSAiZGlzcG1peCIs
-ICJtaXBpIjsNCj4gPiAgICAgICAgICAgICAgICAgY2xvY2tzID0gPCZjbGsgSU1YOE1NX0NMS19E
-SVNQX1JPT1Q+LCA8JmNsaw0KPiBJTVg4TU1fQ0xLX0RJU1BfQVhJX1JPT1Q+LA0KPiA+ICAgICAg
-ICAgICAgICAgICAgICAgICAgICA8JmNsayBJTVg4TU1fQ0xLX0RJU1BfQVBCX1JPT1Q+Ow0KPiA+
-ICAgICAgICAgfTsNCj4gPg0KPiA+IFY0Og0KPiA+ICBBZGQgUi1iIHRhZw0KPiA+ICBUeXBvIGZp
-eA0KPiA+ICBVcGRhdGUgdGhlIHBvd2VyIGRvbWFpbiBtYWNybyBuYW1lcyBQZXIgQWJlbCBhbmQg
-RnJpZWRlcg0KPiA+DQo+ID4gVjM6DQo+ID4gIEFkZCBleHBsYWluYXRpb24gZm9yIG5vdCBsaXN0
-aW5nIGl0ZW1zIGluIHBhdGNoIDIgY29tbWl0IGxvZyBQZXIgUm9iLg0KPiA+ICBBZGRyZXNzZWQg
-Y29tbWVudHMgZnJvbSBMdWNhcyBhbmQgRnJpZWRlciBvbiBwYXRjaCBbMyw0XS4NCj4gPiAgQSBm
-ZXcgY29tbWVudHMgZnJvbSBKYWNreSB3YXMgaWdub3JlZCwgYmVjYXVzZSBmb2xsb3dpbmcgZ3Bj
-djINCj4gPiBjb2Rpbmcgc3R5bGUuDQo+ID4NCj4gPiBWMjoNCj4gPiAgRml4IHlhbWwgY2hlY2sg
-ZmFpbHVyZS4NCj4gPg0KPiA+IFByZXZpb3VzbHkgdGhlcmUgaXMgYW4gZWZmb3J0IGZyb20gQWJl
-bCB0aGF0IHRha2UgQkxLLUNUTCBhcyBjbG9jaw0KPiA+IHByb3ZpZGVyLCBidXQgaXQgdHVybnMg
-b3V0IHRoYXQgdGhlcmUgaXMgQS9CIGxvY2sgaXNzdWUgYW5kIHdlIGFyZSBub3QNCj4gPiBhYmxl
-IHJlc29sdmUgdGhhdC4NCj4gPg0KPiA+IFBlciBkaXNjdXNzIHdpdGggTHVjYXMgYW5kIEphY2t5
-LCB3ZSBtYWRlIGFuIGFncmVlbWVudCB0aGF0IHRha2UNCj4gPiBCTEstQ1RMIGFzIGEgcG93ZXIg
-ZG9tYWluIHByb3ZpZGVyIGFuZCB1c2UgR1BDJ3MgZG9tYWluIGFzIHBhcmVudCwgdGhlDQo+ID4g
-Y29uc3VtZXIgbm9kZSB0YWtlIEJMSy1DVEwgYXMgcG93ZXIgZG9tYWluIGlucHV0Lg0KPiA+DQo+
-ID4gVGhpcyBwYXRjaHNldCBoYXMgYmVlbiB0ZXN0ZWQgb24gaS5NWDhNTSBFVksgYm9hcmQsIGJ1
-dCBvbmUgaGFjayBpcw0KPiA+IG5vdCBpbmNsdWRlZCBpbiB0aGUgcGF0Y2hzZXQgaXMgdGhhdCB0
-aGUgRElTUE1JWCBCTEstQ1RMDQo+ID4gTUlQSV9NL1NfUkVTRVQgbm90IGltcGxlbWVudGVkLiBQ
-ZXIgTHVjYXMsIHdlIHdpbGwgZmluYWxseSBoYXZlIGEgTUlQSQ0KPiA+IERQSFkgZHJpdmVyLCBz
-byBmaW5lIHRvIGxlYXZlIGl0Lg0KPiA+DQo+ID4gVGhhbmtzIGZvciBMdWNhcydzIHN1Z2dlc3Rp
-b24sIEZyaWVkZXIgU2NocmVtcGYgZm9yIGNvbGxlY3RpbmcgYWxsIHRoZQ0KPiA+IHBhdGNoZXMs
-IEFiZWwncyBwcmV2aW91cyBCTEstQ1RMIHdvcmssIEphY2t5IEJhaSBvbiBoZWxwIGRlYnVnIGlz
-c3Vlcy4NCj4gPg0KPiA+DQo+ID4gUGVuZyBGYW4gKDQpOg0KPiA+ICAgZHQtYmluZGluZ3M6IHBv
-d2VyOiBBZGQgZGVmaW5lcyBmb3IgaS5NWDhNTSBCTEstQ1RMIHBvd2VyIGRvbWFpbnMNCj4gPiAg
-IERvY3VtZW50YXRpb246IGJpbmRpbmdzOiBjbGs6IEFkZCBiaW5kaW5ncyBmb3IgaS5NWCBCTEtf
-Q1RMDQo+ID4gICBzb2M6IGlteDogQWRkIGdlbmVyaWMgYmxrLWN0bCBkcml2ZXINCj4gPiAgIHNv
-YzogaW14OiBBZGQgYmxrLWN0bCBkcml2ZXIgZm9yIGkuTVg4TU0NCj4gPg0KPiA+ICAuLi4vYmlu
-ZGluZ3Mvc29jL2lteC9mc2wsaW14LWJsay1jdGwueWFtbCAgICAgfCAgNjYgKysrKw0KPiA+ICBk
-cml2ZXJzL3NvYy9pbXgvTWFrZWZpbGUgICAgICAgICAgICAgICAgICAgICAgfCAgIDIgKy0NCj4g
-PiAgZHJpdmVycy9zb2MvaW14L2Jsay1jdGwtaW14OG1tLmMgICAgICAgICAgICAgIHwgMTM5ICsr
-KysrKysrDQo+ID4gIGRyaXZlcnMvc29jL2lteC9ibGstY3RsLmMgICAgICAgICAgICAgICAgICAg
-ICB8IDMxMQ0KPiArKysrKysrKysrKysrKysrKysNCj4gPiAgZHJpdmVycy9zb2MvaW14L2Jsay1j
-dGwuaCAgICAgICAgICAgICAgICAgICAgIHwgIDg1ICsrKysrDQo+ID4gIGluY2x1ZGUvZHQtYmlu
-ZGluZ3MvcG93ZXIvaW14OG1tLXBvd2VyLmggICAgICB8ICAxMyArDQo+ID4gIDYgZmlsZXMgY2hh
-bmdlZCwgNjE1IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkgIGNyZWF0ZSBtb2RlIDEwMDY0
-NA0KPiA+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb2MvaW14L2ZzbCxpbXgt
-YmxrLWN0bC55YW1sDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL3NvYy9pbXgvYmxr
-LWN0bC1pbXg4bW0uYyAgY3JlYXRlIG1vZGUNCj4gPiAxMDA2NDQgZHJpdmVycy9zb2MvaW14L2Js
-ay1jdGwuYyAgY3JlYXRlIG1vZGUgMTAwNjQ0DQo+ID4gZHJpdmVycy9zb2MvaW14L2Jsay1jdGwu
-aA0KPiA+DQo+ID4gLS0NCj4gPiAyLjMwLjANCj4gPg0K
+On Fri, May 21, 2021 at 7:54 PM Peng Fan <peng.fan@nxp.com> wrote:
+>
+> > Subject: Re: [PATCH V5 0/4] soc: imx: add i.MX BLK-CTL support
+> >
+> > On Fri, May 21, 2021 at 5:27 AM Peng Fan (OSS) <peng.fan@oss.nxp.com>
+> > wrote:
+> > >
+> > > From: Peng Fan <peng.fan@nxp.com>
+> > >
+> > > V5:
+> > >  Rework the blk-ctl driver to let sub-PGC use blk-ctl as parent power
+> > > domain to fix the potential handshake issue.
+> > >  I still keep R-b/A-b tag for Patch 1,2,4, since very minor changes  I
+> > > only drop R-b tag for Patch 3, since it has big change.
+> > >  An example, the pgc_mipi not take pgc_dispmix as parent:
+> > >
+> > >         pgc_dispmix: power-domain@10 {
+> > >                 #power-domain-cells = <0>;
+> > >                 reg = <IMX8MM_POWER_DOMAIN_DISPMIX>;
+> > >                 clocks = <&clk IMX8MM_CLK_DISP_ROOT>,
+> > >                          <&clk IMX8MM_CLK_DISP_AXI_ROOT>,
+> > >                          <&clk IMX8MM_CLK_DISP_APB_ROOT>;
+> > >         };
+> > >
+> > >         pgc_mipi: power-domain@11 {
+> > >                 #power-domain-cells = <0>;
+> > >                 reg = <IMX8MM_POWER_DOMAIN_MIPI>;
+> > >                 power-domains = <&dispmix_blk_ctl
+> > > IMX8MM_BLK_CTL_PD_DISPMIX_BUS>;
+> >
+> > With this change, I get a bunch of errors on boot.  The list of power-domains
+> > appear correct on the surface, but it also has trouble waking from sleep.
+> >
+> > [    0.695947] imx8mm-blk-ctl imx-dispmix-blk-ctl.0: invalid resource
+> > [    0.702849] imx8mm-blk-ctl: probe of imx-dispmix-blk-ctl.0 failed
+> > with error -22
+> > [    0.711259] imx8mm-blk-ctl imx-dispmix-blk-ctl.1: invalid resource
+> > [    0.716451] imx8mm-blk-ctl: probe of imx-dispmix-blk-ctl.1 failed
+> > with error -22
+> > [    0.724856] imx8mm-blk-ctl imx-dispmix-blk-ctl.2: invalid resource
+> > [    0.730097] imx8mm-blk-ctl: probe of imx-dispmix-blk-ctl.2 failed
+> > with error -22
+> > [    0.738398] imx8mm-blk-ctl imx-dispmix-blk-ctl.3: invalid resource
+> > [    0.743747] imx8mm-blk-ctl: probe of imx-dispmix-blk-ctl.3 failed
+> > with error -22
+>
+> It is just the imx8mm-blk-ctl driver matches with the new created
+> child device, because the child device points the of_node of the parent
+> device.
+> But this error will not affect functionality.
+> I'll resolve this issue and send out v6.
+> >
+> > If I have a wrong device tree configuration, can you please post an updated
+> > device tree?  I don't think an official patch for original pgc's were pushed as
+> > part of either series. I used this e-mail as the patch to enable the blk-ctl.
+>
+> Do you have an device tree, I could give a look.
+
+I have a git repo where I've been collecting the various power domain
+patches.  I have updated the imx8mn blk-ctl and device trees as well
+in that same repo.
+
+https://github.com/aford173/linux/blob/linux-5.13.y-aford/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+
+thanks for looking at this.
+
+adam
+>
+> Regards,
+> Peng.
+>
+> >
+> > thanks,
+> >
+> > adam
+> >
+> > >         };
+> > >
+> > >         dispmix_blk_ctl: clock-controller@32e28000 {
+> > >                 compatible = "fsl,imx8mm-dispmix-blk-ctl", "syscon";
+> > >                 reg = <0x32e28000 0x100>;
+> > >                 #power-domain-cells = <1>;
+> > >                 power-domains = <&pgc_dispmix>, <&pgc_mipi>;
+> > >                 power-domain-names = "dispmix", "mipi";
+> > >                 clocks = <&clk IMX8MM_CLK_DISP_ROOT>, <&clk
+> > IMX8MM_CLK_DISP_AXI_ROOT>,
+> > >                          <&clk IMX8MM_CLK_DISP_APB_ROOT>;
+> > >         };
+> > >
+> > > V4:
+> > >  Add R-b tag
+> > >  Typo fix
+> > >  Update the power domain macro names Per Abel and Frieder
+> > >
+> > > V3:
+> > >  Add explaination for not listing items in patch 2 commit log Per Rob.
+> > >  Addressed comments from Lucas and Frieder on patch [3,4].
+> > >  A few comments from Jacky was ignored, because following gpcv2
+> > > coding style.
+> > >
+> > > V2:
+> > >  Fix yaml check failure.
+> > >
+> > > Previously there is an effort from Abel that take BLK-CTL as clock
+> > > provider, but it turns out that there is A/B lock issue and we are not
+> > > able resolve that.
+> > >
+> > > Per discuss with Lucas and Jacky, we made an agreement that take
+> > > BLK-CTL as a power domain provider and use GPC's domain as parent, the
+> > > consumer node take BLK-CTL as power domain input.
+> > >
+> > > This patchset has been tested on i.MX8MM EVK board, but one hack is
+> > > not included in the patchset is that the DISPMIX BLK-CTL
+> > > MIPI_M/S_RESET not implemented. Per Lucas, we will finally have a MIPI
+> > > DPHY driver, so fine to leave it.
+> > >
+> > > Thanks for Lucas's suggestion, Frieder Schrempf for collecting all the
+> > > patches, Abel's previous BLK-CTL work, Jacky Bai on help debug issues.
+> > >
+> > >
+> > > Peng Fan (4):
+> > >   dt-bindings: power: Add defines for i.MX8MM BLK-CTL power domains
+> > >   Documentation: bindings: clk: Add bindings for i.MX BLK_CTL
+> > >   soc: imx: Add generic blk-ctl driver
+> > >   soc: imx: Add blk-ctl driver for i.MX8MM
+> > >
+> > >  .../bindings/soc/imx/fsl,imx-blk-ctl.yaml     |  66 ++++
+> > >  drivers/soc/imx/Makefile                      |   2 +-
+> > >  drivers/soc/imx/blk-ctl-imx8mm.c              | 139 ++++++++
+> > >  drivers/soc/imx/blk-ctl.c                     | 311
+> > ++++++++++++++++++
+> > >  drivers/soc/imx/blk-ctl.h                     |  85 +++++
+> > >  include/dt-bindings/power/imx8mm-power.h      |  13 +
+> > >  6 files changed, 615 insertions(+), 1 deletion(-)  create mode 100644
+> > > Documentation/devicetree/bindings/soc/imx/fsl,imx-blk-ctl.yaml
+> > >  create mode 100644 drivers/soc/imx/blk-ctl-imx8mm.c  create mode
+> > > 100644 drivers/soc/imx/blk-ctl.c  create mode 100644
+> > > drivers/soc/imx/blk-ctl.h
+> > >
+> > > --
+> > > 2.30.0
+> > >
