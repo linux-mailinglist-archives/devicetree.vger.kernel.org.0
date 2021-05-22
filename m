@@ -2,192 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39CCD38D690
-	for <lists+devicetree@lfdr.de>; Sat, 22 May 2021 19:01:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2252F38D69F
+	for <lists+devicetree@lfdr.de>; Sat, 22 May 2021 19:26:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231309AbhEVRCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 May 2021 13:02:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54856 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231299AbhEVRCv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 May 2021 13:02:51 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16611C061574
-        for <devicetree@vger.kernel.org>; Sat, 22 May 2021 10:01:26 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id v8so29342454lft.8
-        for <devicetree@vger.kernel.org>; Sat, 22 May 2021 10:01:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=2cWMWt6l1K/FKK4PMngOirfi0Lo5LlcuDK06p3mrXkw=;
-        b=drlak+cfCEu6nlbXAljLk1Y0mrM5HuORnJowV1Dl3MMY3N0q+zSBNhJRDdKrdatGV5
-         dEPaS7WWn5jejafZ3hJrJv+MPzsMd/VaEcGKSmAaCsT+kt2+8ap3rkkAYu8mphZjQhxt
-         D0adSI+8To4awcpUP7Gv/umf6vrgOYrlsptBJ+0FjGZTb5n5R/L4V+iBr3n3TQvOHO9D
-         xA5tSjPQN4FM8ljKFE6evjGSzMaRjLLNKcXF3scEB8/ZW70SvH+KpjKaFQuDrXEbPVEC
-         K1Xd5TlK1PgWT3Uz3cE7Npaolm5RKrDoTUHjkt4GwFiFF8+/Qv1+K7PH3eTNW5kNx/w/
-         P/tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=2cWMWt6l1K/FKK4PMngOirfi0Lo5LlcuDK06p3mrXkw=;
-        b=OaAGZPK8Doe3dj5/Es6+/do/OjLDkG5uLSZCeEnXLj4j+8li3PiBLzampYqP4siBCr
-         DJkVtyKbHhgj+0Zp30fGD9O2PCSeeoHb9XBpz51wWTV0Us95SvcnoLKP8ardzU1JKqfp
-         0KzaBQVAfHyiWTfw+rfAp9y1T9Zo16i36bg7M+Tmxu8lXD74l7g/b9bCH9M8O6DGsEOD
-         QRD5Wvp2b8ApJg+5GCQrYb/eGuCWrZKkOE5f1JXC/ZhzGqkc3Iz6kSrF3ni9/UbLCuhH
-         KbAU8j2HW7qQeYa0iQ91oeHpTfvK6qV6OyvRRAAMkRQogn3p8DTW3888U+WprOrzEfUG
-         SJTg==
-X-Gm-Message-State: AOAM533jHTRF0pVoZeXCxQExFPmlFtkDPB5ztmQzTd9ZvKe9HUvPe35p
-        /3rSSxOTPqY/c+svLzYtkQdxNA==
-X-Google-Smtp-Source: ABdhPJzVsBkjhvVTSyU21VZiODTytLTnG5QM/grVgTYVEmggqmIyK697G6bd8+FTxTGFRbbokqTfnQ==
-X-Received: by 2002:ac2:533a:: with SMTP id f26mr5810752lfh.424.1621702884294;
-        Sat, 22 May 2021 10:01:24 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id u15sm958870lfs.67.2021.05.22.10.01.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 May 2021 10:01:24 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     linux-crypto@vger.kernel.org,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Corentin Labbe <clabbe@baylibre.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Imre Kaloz <kaloz@openwrt.org>,
-        Krzysztof Halasa <khalasa@piap.pl>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 2/3 v3] crypto: ixp4xx: Add DT bindings
-Date:   Sat, 22 May 2021 18:59:12 +0200
-Message-Id: <20210522165913.915100-2-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210522165913.915100-1-linus.walleij@linaro.org>
-References: <20210522165913.915100-1-linus.walleij@linaro.org>
+        id S231316AbhEVR1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 May 2021 13:27:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46774 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231314AbhEVR1f (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 22 May 2021 13:27:35 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C47926100C;
+        Sat, 22 May 2021 17:26:08 +0000 (UTC)
+Date:   Sat, 22 May 2021 18:27:30 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     linux-iio@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Peter Rosin <peda@axentia.se>
+Cc:     devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH 1/1] dt-bindings: iio: multiplexer: Convert
+ io-channel-mux bindings to DT schema
+Message-ID: <20210522182730.695a8611@jic23-huawei>
+In-Reply-To: <20210522112908.1611389-3-jic23@kernel.org>
+References: <20210522112908.1611389-1-jic23@kernel.org>
+        <20210522112908.1611389-3-jic23@kernel.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the ixp4xx crypto engine.
+On Sat, 22 May 2021 12:29:08 +0100
+Jonathan Cameron <jic23@kernel.org> wrote:
 
-Cc: Corentin Labbe <clabbe@baylibre.com>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v2->v3:
-- Use the reg property to set the NPE instance number for
-  the crypto engine.
-- Add address-cells and size-cells to the NPE bindings
-  consequently.
-- Use a patternProperty to match the cryto engine child
-  "crypto@N".
-- Define as crypto@2 in the example.
-- Describe the usage of the queue instance cell for the
-  queue manager phandles.
-ChangeLog v1->v2:
-- Drop the phandle to self, just add an NPE instance number
-  instead.
-- Add the crypto node to the NPE binding.
-- Move the example over to the NPE binding where it appears
-  in context.
----
- .../bindings/crypto/intel,ixp4xx-crypto.yaml  | 46 +++++++++++++++++++
- ...ntel,ixp4xx-network-processing-engine.yaml | 21 +++++++++
- 2 files changed, 67 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> 
+> Straight conversion of the txt file using the mux-consumer.yaml
+> binding now that is available.
+> 
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Cc: Peter Rosin <peda@axentia.se>
+> Cc: Rob Herring <robh@kernel.org>
+oops, accidental earlier version included here. Look at the other patch 1/1!
 
-diff --git a/Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml b/Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml
-new file mode 100644
-index 000000000000..9df2062e4816
---- /dev/null
-+++ b/Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2018 Linaro Ltd.
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/crypto/intel,ixp4xx-crypto.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Intel IXP4xx cryptographic engine
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+  The Intel IXP4xx cryptographic engine makes use of the IXP4xx NPE
-+  (Network Processing Engine). Since it is not a device on its own
-+  it is defined as a subnode of the NPE, if crypto support is
-+  available on the platform.
-+
-+properties:
-+  compatible:
-+    const: intel,ixp4xx-crypto
-+
-+  reg:
-+    minimum: 0
-+    maximum: 3
-+    description: instance number to the NPE this crypto engine is using
-+
-+  queue-rx:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    maxItems: 1
-+    description: phandle to the RX queue on the NPE, the cell describing
-+      the queue instance to be used.
-+
-+  queue-txready:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    maxItems: 1
-+    description: phandle to the TX READY queue on the NPE, the cell describing
-+      the queue instance to be used.
-+
-+required:
-+  - compatible
-+  - reg
-+  - queue-rx
-+  - queue-txready
-+
-+additionalProperties: false
-diff --git a/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml b/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
-index 1bd2870c3a9c..8b2eaf835b66 100644
---- a/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
-+++ b/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
-@@ -30,6 +30,18 @@ properties:
-       - description: NPE1 register range
-       - description: NPE2 register range
- 
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "^crypto@[0-7]+$":
-+    $ref: /schemas/crypto/intel,ixp4xx-crypto.yaml#
-+    type: object
-+    description: Optional node for the embedded crypto engine
-+
- required:
-   - compatible
-   - reg
-@@ -41,5 +53,14 @@ examples:
-     npe@c8006000 {
-          compatible = "intel,ixp4xx-network-processing-engine";
-          reg = <0xc8006000 0x1000>, <0xc8007000 0x1000>, <0xc8008000 0x1000>;
-+         #address-cells = <1>;
-+         #size-cells = <0>;
-+
-+         crypto@2 {
-+             compatible = "intel,ixp4xx-crypto";
-+             reg = <2>;
-+             queue-rx = <&qmgr 30>;
-+             queue-txready = <&qmgr 29>;
-+         };
-     };
- ...
--- 
-2.31.1
+J
+> ---
+>  .../iio/multiplexer/io-channel-mux.txt        | 39 ----------
+>  .../iio/multiplexer/io-channel-mux.yaml       | 71 +++++++++++++++++++
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 72 insertions(+), 40 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/multiplexer/io-channel-mux.txt b/Documentation/devicetree/bindings/iio/multiplexer/io-channel-mux.txt
+> deleted file mode 100644
+> index d2b3105dba67..000000000000
+> --- a/Documentation/devicetree/bindings/iio/multiplexer/io-channel-mux.txt
+> +++ /dev/null
+> @@ -1,39 +0,0 @@
+> -I/O channel multiplexer bindings
+> -
+> -If a multiplexer is used to select which hardware signal is fed to
+> -e.g. an ADC channel, these bindings describe that situation.
+> -
+> -Required properties:
+> -- compatible : "io-channel-mux"
+> -- io-channels : Channel node of the parent channel that has multiplexed
+> -		input.
+> -- io-channel-names : Should be "parent".
+> -- #address-cells = <1>;
+> -- #size-cells = <0>;
+> -- mux-controls : Mux controller node to use for operating the mux
+> -- channels : List of strings, labeling the mux controller states.
+> -
+> -For each non-empty string in the channels property, an io-channel will
+> -be created. The number of this io-channel is the same as the index into
+> -the list of strings in the channels property, and also matches the mux
+> -controller state. The mux controller state is described in
+> -../mux/mux-controller.yaml
+> -
+> -Example:
+> -	mux: mux-controller {
+> -		compatible = "gpio-mux";
+> -		#mux-control-cells = <0>;
+> -
+> -		mux-gpios = <&pioA 0 GPIO_ACTIVE_HIGH>,
+> -			    <&pioA 1 GPIO_ACTIVE_HIGH>;
+> -	};
+> -
+> -	adc-mux {
+> -		compatible = "io-channel-mux";
+> -		io-channels = <&adc 0>;
+> -		io-channel-names = "parent";
+> -
+> -		mux-controls = <&mux>;
+> -
+> -		channels = "sync", "in", "system-regulator";
+> -	};
+> diff --git a/Documentation/devicetree/bindings/iio/multiplexer/io-channel-mux.yaml b/Documentation/devicetree/bindings/iio/multiplexer/io-channel-mux.yaml
+> new file mode 100644
+> index 000000000000..37382b85f2b8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/multiplexer/io-channel-mux.yaml
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/multiplexer/io-channel-mux.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: I/O channel multiplexer bindings
+> +
+> +maintainers:
+> +  - Peter Rosin <peda@axentia.se>
+> +
+> +description: |
+> +  If a multiplexer is used to select which hardware signal is fed to
+> +  e.g. an ADC channel, these bindings describe that situation.
+> +
+> +  For each non-empty string in the channels property, an io-channel will be
+> +  created. The number of this io-channel is the same as the index into the list
+> +  of strings in the channels property, and also matches the mux controller
+> +  state. The mux controller state is described in
+> +  Documentation/device-tree/bindings/mux/mux-controller.yaml
+> +
+> +properties:
+> +
+> +  compatible:
+> +    const: "io-channel-mux"
+> +
+> +  io-channels:
+> +    maxItems: 1
+> +    description: Channel node of the parent channel that has multiplexed input.
+> +
+> +  io-channel-names:
+> +    const: "parent"
+> +
+> +  mux-controls:
+> +    $ref: "../../mux/mux-consumer.yaml"
+> +  mux-control-names: true
+> +
+> +  channels:
+> +    $ref: /schemas/types.yaml#/definitions/string-array
+> +    description:
+> +      List of strings, labeling the mux controller states.
+> +
+> +required:
+> +  - compatible
+> +  - io-channels
+> +  - io-channel-names
+> +  - mux-controls
+> +  - channels
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    mux: mux-controller {
+> +      compatible = "gpio-mux";
+> +      #mux-control-cells = <0>;
+> +
+> +      mux-gpios = <&pioA 0 GPIO_ACTIVE_HIGH>,
+> +                  <&pioA 1 GPIO_ACTIVE_HIGH>;
+> +    };
+> +
+> +    adc-mux {
+> +      compatible = "io-channel-mux";
+> +      io-channels = <&adc 0>;
+> +      io-channel-names = "parent";
+> +
+> +      mux-controls = <&mux>;
+> +      channels = "sync", "in", "system-regulator";
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index fc771d2aacef..eba1687688a5 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -8858,7 +8858,7 @@ IIO MULTIPLEXER
+>  M:	Peter Rosin <peda@axentia.se>
+>  L:	linux-iio@vger.kernel.org
+>  S:	Maintained
+> -F:	Documentation/devicetree/bindings/iio/multiplexer/io-channel-mux.txt
+> +F:	Documentation/devicetree/bindings/iio/multiplexer/io-channel-mux.yaml
+>  F:	drivers/iio/multiplexer/iio-mux.c
+>  
+>  IIO SCMI BASED DRIVER
 
