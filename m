@@ -2,96 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3014C38D4EE
-	for <lists+devicetree@lfdr.de>; Sat, 22 May 2021 11:51:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 527A938D513
+	for <lists+devicetree@lfdr.de>; Sat, 22 May 2021 12:23:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230298AbhEVJwi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 May 2021 05:52:38 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:22039 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230207AbhEVJwi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 May 2021 05:52:38 -0400
-X-UUID: 3be9b6b4c9af4c8db00d7a7d7cefbdf7-20210522
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=aaYsqkqjYTO4Peo/NYX1DMDat+z2Uuc/qMNttr4MZeA=;
-        b=Fg9RpcwLKseJ7ImoKxodQ6n9ZuR94Ch71aS4tAV2bCqKvgfN88D6IpPZN0CixsHZoI02Wv6sibe+d+c3RbEfxiuxyR+vnH8tzrP9X1QTw9at/44hSO0pNH0dy/bvbTa4qvP6QukMXoKERqEQNeSTtvW/hrd4AHOyIREwDbIwF8M=;
-X-UUID: 3be9b6b4c9af4c8db00d7a7d7cefbdf7-20210522
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 878822936; Sat, 22 May 2021 17:51:11 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N2.mediatek.inc
- (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sat, 22 May
- 2021 17:51:00 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 22 May 2021 17:50:59 +0800
-Message-ID: <1621677059.2894.14.camel@mhfsdcap03>
-Subject: Re: [PATCH v4,3/6] media: mtk-vcodec: Support 4GB~8GB range iova
- space for venc
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Tzung-Bi Shih <tzungbi@google.com>
-CC:     Irui Wang <irui.wang@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        "Tiffany Lin" <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        "Longfei Wang" <longfei.wang@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Sat, 22 May 2021 17:50:59 +0800
-In-Reply-To: <CA+Px+wXkn2ih0JdgKBOoHZU1=QqO=vE1MAP5tauHvRe=rtjg7g@mail.gmail.com>
-References: <20210521070139.20644-1-irui.wang@mediatek.com>
-         <20210521070139.20644-4-irui.wang@mediatek.com>
-         <CA+Px+wXkn2ih0JdgKBOoHZU1=QqO=vE1MAP5tauHvRe=rtjg7g@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S230232AbhEVKZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 May 2021 06:25:00 -0400
+Received: from szxga05-in.huawei.com ([45.249.212.191]:4584 "EHLO
+        szxga05-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230186AbhEVKZA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 May 2021 06:25:00 -0400
+Received: from dggems703-chm.china.huawei.com (unknown [172.30.72.58])
+        by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4FnKHd4vySzsRvj;
+        Sat, 22 May 2021 18:20:45 +0800 (CST)
+Received: from dggpeml500008.china.huawei.com (7.185.36.147) by
+ dggems703-chm.china.huawei.com (10.3.19.180) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Sat, 22 May 2021 18:23:34 +0800
+Received: from localhost.localdomain (10.67.165.24) by
+ dggpeml500008.china.huawei.com (7.185.36.147) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Sat, 22 May 2021 18:23:33 +0800
+From:   Hao Fang <fanghao11@huawei.com>
+To:     <xuwei5@hisilicon.com>, <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <prime.zeng@hisilicon.com>, <fanghao11@huawei.com>
+Subject: [PATCH] arm64: dts: hisilicon: use the correct HiSilicon copyright
+Date:   Sat, 22 May 2021 18:20:32 +0800
+Message-ID: <1621678832-14924-1-git-send-email-fanghao11@huawei.com>
+X-Mailer: git-send-email 2.8.1
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: D209C5D26ECC073ABCE984EEC7E77BD5AD0A4CF1B0D8E0187A280BECBD0F64C82000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain
+X-Originating-IP: [10.67.165.24]
+X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
+ dggpeml500008.china.huawei.com (7.185.36.147)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDIxLTA1LTIxIGF0IDE2OjA2ICswODAwLCBUenVuZy1CaSBTaGloIHdyb3RlOg0K
-PiBPbiBGcmksIE1heSAyMSwgMjAyMSBhdCAzOjAyIFBNIElydWkgV2FuZyA8aXJ1aS53YW5nQG1l
-ZGlhdGVrLmNvbT4gd3JvdGU6DQo+ID4gKyAgICAgICBpZiAob2ZfZ2V0X3Byb3BlcnR5KHBkZXYt
-PmRldi5vZl9ub2RlLCAiZG1hLXJhbmdlcyIsIE5VTEwpKQ0KPiA+ICsgICAgICAgICAgICAgICBk
-bWFfc2V0X21hc2tfYW5kX2NvaGVyZW50KCZwZGV2LT5kZXYsIERNQV9CSVRfTUFTSygzNCkpOw0K
-PiA+ICsNCj4gDQo+IEZyb20geW91ciBwcmV2aW91cyBkdC1iaW5kaW5ncyBwYXRjaFsxXSwgaXQg
-aGFzIDQgYmFua3MuDQo+ID4gMH40RzsgNEd+OEc7IDhHfjEyRzsgMTJHfjE2Ry4NCj4gDQo+IEJ1
-dCwgdGhlIGNvZGUgdHJlYXRzIGl0IGFzIGEgYm9vbGVhbi4gIEkuZS4gMH40R0IgaWYgbm9uLWV4
-aXN0ZW50Ow0KPiBvdGhlcndpc2UsIDRHQn44R0IuDQoNCkhlcmUgRE1BX0JJVF9NQVNLKDM0KSBt
-ZWFucyBkbWEgYWRkcmVzcyBzdXBwb3J0IDM0Yml0cygxNkdCKS4NCg0KVGhlIGNvZGUgaXMgb2sg
-Zm9yIG1lLiBPbmx5IHRoZSBjb21taXQgbWVzc2FnZSBzaG91bGQgbm90IHNheSA0Ry04Ry4gaXQN
-CmNvdWxkIGJlIHNvbWV0aGluZyBsaWtlOg0KDQpVc2UgdGhlIGRtYV9zZXRfbWFza19hbmRfY29o
-ZXJlbnQgaGVscGVyIHRvIHNldCB2ZW5jIERNQSBiaXQgbWFzayB0bw0Kc3VwcG9ydCAzNGJpdHMg
-aW92YSBzcGFjZSgxNkdCKSB0aGF0IHRoZSBtdDgxOTIgaW9tbXUgSFcgc3VwcG9ydC4gV2hvbGUN
-CnRoZSBpb3ZhIHJhbmdlIHNlcGFyYXRlIHRvIDB+NEcvNEd+OEcvOEd+MTJHLzEyR34xNkcsIFJl
-Z2FyZGluZyB3aGljaA0KaW92YSByYW5nZSBWRU5DIGFjdHVhbGx5IGxvY2F0ZSwgaXQgZGVwZW5k
-IG9uIHRoZSBkbWEtcmFuZ2VzIHByb3BlcnR5IG9mDQp0aGUgdmVuYyBkdHNpIG5vZGUuDQoNCj4g
-DQo+IFsxXTogaHR0cHM6Ly9wYXRjaHdvcmsubGludXh0di5vcmcvcHJvamVjdC9saW51eC1tZWRp
-YS9wYXRjaC8yMDIxMDUyMTA3MDEzOS4yMDY0NC0zLWlydWkud2FuZ0BtZWRpYXRlay5jb20vDQo+
-IA0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBM
-aW51eC1tZWRpYXRlayBtYWlsaW5nIGxpc3QNCj4gTGludXgtbWVkaWF0ZWtAbGlzdHMuaW5mcmFk
-ZWFkLm9yZw0KPiBodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
-bnV4LW1lZGlhdGVrDQoNCg==
+s/Hisilicon/HiSilicon/.
+It should use capital S, according to the official website
+https://www.hisilicon.com/en.
+
+Signed-off-by: Hao Fang <fanghao11@huawei.com>
+---
+ arch/arm64/boot/dts/hisilicon/hi3660-coresight.dtsi | 2 +-
+ arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts   | 2 +-
+ arch/arm64/boot/dts/hisilicon/hi3660.dtsi           | 2 +-
+ arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts   | 2 +-
+ arch/arm64/boot/dts/hisilicon/hi3670.dtsi           | 2 +-
+ arch/arm64/boot/dts/hisilicon/hi6220-coresight.dtsi | 2 +-
+ arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts      | 2 +-
+ arch/arm64/boot/dts/hisilicon/hi6220.dtsi           | 2 +-
+ arch/arm64/boot/dts/hisilicon/hip05-d02.dts         | 2 +-
+ arch/arm64/boot/dts/hisilicon/hip05.dtsi            | 2 +-
+ arch/arm64/boot/dts/hisilicon/hip06-d03.dts         | 2 +-
+ arch/arm64/boot/dts/hisilicon/hip06.dtsi            | 2 +-
+ arch/arm64/boot/dts/hisilicon/hip07-d05.dts         | 2 +-
+ arch/arm64/boot/dts/hisilicon/hip07.dtsi            | 2 +-
+ include/dt-bindings/pinctrl/hisi.h                  | 2 +-
+ 15 files changed, 15 insertions(+), 15 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/hisilicon/hi3660-coresight.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660-coresight.dtsi
+index d607f2f..79a55a0f 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi3660-coresight.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hi3660-coresight.dtsi
+@@ -3,7 +3,7 @@
+ /*
+  * dtsi for Hisilicon Hi3660 Coresight
+  *
+- * Copyright (C) 2016-2018 Hisilicon Ltd.
++ * Copyright (C) 2016-2018 HiSilicon Ltd.
+  *
+  * Author: Wanglai Shi <shiwanglai@hisilicon.com>
+  *
+diff --git a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
+index 963300e..f68580d 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
++++ b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
+@@ -2,7 +2,7 @@
+ /*
+  * dts file for Hisilicon HiKey960 Development Board
+  *
+- * Copyright (C) 2016, Hisilicon Ltd.
++ * Copyright (C) 2016, HiSilicon Ltd.
+  *
+  */
+ 
+diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
+index cab89dc..f1ec87c 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
+@@ -2,7 +2,7 @@
+ /*
+  * dts file for Hisilicon Hi3660 SoC
+  *
+- * Copyright (C) 2016, Hisilicon Ltd.
++ * Copyright (C) 2016, HiSilicon Ltd.
+  */
+ 
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
+index 7f9f988..d8abf44 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
++++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
+@@ -2,7 +2,7 @@
+ /*
+  * dts file for Hisilicon HiKey970 Development Board
+  *
+- * Copyright (C) 2016, Hisilicon Ltd.
++ * Copyright (C) 2016, HiSilicon Ltd.
+  * Copyright (C) 2018, Linaro Ltd.
+  *
+  */
+diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
+index 8830795..20698cf 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
+@@ -2,7 +2,7 @@
+ /*
+  * dts file for Hisilicon Hi3670 SoC
+  *
+- * Copyright (C) 2016, Hisilicon Ltd.
++ * Copyright (C) 2016, HiSilicon Ltd.
+  * Copyright (C) 2018, Linaro Ltd.
+  */
+ 
+diff --git a/arch/arm64/boot/dts/hisilicon/hi6220-coresight.dtsi b/arch/arm64/boot/dts/hisilicon/hi6220-coresight.dtsi
+index 7b3010f..3f387f4 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi6220-coresight.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hi6220-coresight.dtsi
+@@ -2,7 +2,7 @@
+ /*
+  * dtsi file for Hisilicon Hi6220 coresight
+  *
+- * Copyright (C) 2017 Hisilicon Ltd.
++ * Copyright (C) 2017 HiSilicon Ltd.
+  *
+  * Author: Pengcheng Li <lipengcheng8@huawei.com>
+  *         Leo Yan <leo.yan@linaro.org>
+diff --git a/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts b/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
+index 91d0867..3df2afb 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
++++ b/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
+@@ -2,7 +2,7 @@
+ /*
+  * dts file for Hisilicon HiKey Development Board
+  *
+- * Copyright (C) 2015, Hisilicon Ltd.
++ * Copyright (C) 2015, HiSilicon Ltd.
+  *
+  */
+ 
+diff --git a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+index d426c6c..dde9371 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+@@ -2,7 +2,7 @@
+ /*
+  * dts file for Hisilicon Hi6220 SoC
+  *
+- * Copyright (C) 2015, Hisilicon Ltd.
++ * Copyright (C) 2015, HiSilicon Ltd.
+  */
+ 
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+diff --git a/arch/arm64/boot/dts/hisilicon/hip05-d02.dts b/arch/arm64/boot/dts/hisilicon/hip05-d02.dts
+index 369b69b..40f3e00 100644
+--- a/arch/arm64/boot/dts/hisilicon/hip05-d02.dts
++++ b/arch/arm64/boot/dts/hisilicon/hip05-d02.dts
+@@ -2,7 +2,7 @@
+ /**
+  * dts file for Hisilicon D02 Development Board
+  *
+- * Copyright (C) 2014,2015 Hisilicon Ltd.
++ * Copyright (C) 2014,2015 HiSilicon Ltd.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/hisilicon/hip05.dtsi b/arch/arm64/boot/dts/hisilicon/hip05.dtsi
+index 4aed8d4..7b2abd1 100644
+--- a/arch/arm64/boot/dts/hisilicon/hip05.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hip05.dtsi
+@@ -2,7 +2,7 @@
+ /**
+  * dts file for Hisilicon D02 Development Board
+  *
+- * Copyright (C) 2014,2015 Hisilicon Ltd.
++ * Copyright (C) 2014,2015 HiSilicon Ltd.
+  */
+ 
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+diff --git a/arch/arm64/boot/dts/hisilicon/hip06-d03.dts b/arch/arm64/boot/dts/hisilicon/hip06-d03.dts
+index 9f4a930..35af5d3 100644
+--- a/arch/arm64/boot/dts/hisilicon/hip06-d03.dts
++++ b/arch/arm64/boot/dts/hisilicon/hip06-d03.dts
+@@ -2,7 +2,7 @@
+ /**
+  * dts file for Hisilicon D03 Development Board
+  *
+- * Copyright (C) 2016 Hisilicon Ltd.
++ * Copyright (C) 2016 HiSilicon Ltd.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/hisilicon/hip06.dtsi b/arch/arm64/boot/dts/hisilicon/hip06.dtsi
+index 7deca5f..70d7732 100644
+--- a/arch/arm64/boot/dts/hisilicon/hip06.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hip06.dtsi
+@@ -2,7 +2,7 @@
+ /**
+  * dts file for Hisilicon D03 Development Board
+  *
+- * Copyright (C) 2016 Hisilicon Ltd.
++ * Copyright (C) 2016 HiSilicon Ltd.
+  */
+ 
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+diff --git a/arch/arm64/boot/dts/hisilicon/hip07-d05.dts b/arch/arm64/boot/dts/hisilicon/hip07-d05.dts
+index 81a2312..c3df678 100644
+--- a/arch/arm64/boot/dts/hisilicon/hip07-d05.dts
++++ b/arch/arm64/boot/dts/hisilicon/hip07-d05.dts
+@@ -2,7 +2,7 @@
+ /**
+  * dts file for Hisilicon D05 Development Board
+  *
+- * Copyright (C) 2016 Hisilicon Ltd.
++ * Copyright (C) 2016 HiSilicon Ltd.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/hisilicon/hip07.dtsi b/arch/arm64/boot/dts/hisilicon/hip07.dtsi
+index 2172d80..6baf6a6 100644
+--- a/arch/arm64/boot/dts/hisilicon/hip07.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hip07.dtsi
+@@ -2,7 +2,7 @@
+ /**
+  * dts file for Hisilicon D05 Development Board
+  *
+- * Copyright (C) 2016 Hisilicon Ltd.
++ * Copyright (C) 2016 HiSilicon Ltd.
+  */
+ 
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+diff --git a/include/dt-bindings/pinctrl/hisi.h b/include/dt-bindings/pinctrl/hisi.h
+index 0359bfd..93064c7 100644
+--- a/include/dt-bindings/pinctrl/hisi.h
++++ b/include/dt-bindings/pinctrl/hisi.h
+@@ -1,7 +1,7 @@
+ /*
+  * This header provides constants for hisilicon pinctrl bindings.
+  *
+- * Copyright (c) 2015 Hisilicon Limited.
++ * Copyright (c) 2015 HiSilicon Limited.
+  * Copyright (c) 2015 Linaro Limited.
+  *
+  * This program is free software; you can redistribute it and/or modify
+-- 
+2.8.1
 
