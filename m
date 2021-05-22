@@ -2,282 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25CFC38D5F4
-	for <lists+devicetree@lfdr.de>; Sat, 22 May 2021 15:10:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60FD238D615
+	for <lists+devicetree@lfdr.de>; Sat, 22 May 2021 15:57:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231228AbhEVNMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 May 2021 09:12:06 -0400
-Received: from mail-am6eur05on2067.outbound.protection.outlook.com ([40.107.22.67]:12256
-        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231216AbhEVNMD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 22 May 2021 09:12:03 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dC0PMzRkT+UnMhnyTxIUbu7S3/kbIbl/nuQ4B6kptm2XDiB05D5mW1QXAAxVb5+1loYxt8qx/y2JLHkDXQtBiNFijJK6UflpEb1tkbHkQ8h3xQnj7KV2NauL1aR1VQEMfc1iTk0Wq8kNblPa8yBxtV2sf7oMxBg2OFMGxcUokjdbflYzpCDdB8BdhaqXD/+uJckUvuKy2FKzb7DqY+D/3auhIHkM1yEbQQXrfd14YDgkiHS/4jXjxUGKR6x8g/nTy6PW72mSAwQ9Sp7OMC2meyWC0Je3adb2kwzYf0XDZjkNEf4kRNE/vrFvy7tzspiL2zB6ztg2dA89HAhpHj/Lcw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Gm8D7o9Zkhoyic+N9lE/S6Kr9IT/0CYNpO5BdIwHQps=;
- b=mUW5tnNDKUF9YgFkie68nmaUJC/mqFrQmmFeEIDl97siCrpyg2SkUOyI+lRxzTQfw65qBcCiFFbave+W+l0z5o0wy3YJnUB4OUB01/6Dhh/NuAcF+pLQLSrCFMxIxtKUpmlrVMBPfIwqNkkCpX6J5SEMwfe2iP0CxikMo2LNNBieaIu/KRSxtsRUYmbsN/BQ8N/ZO/FtZxgsj9zthh+D+VPFZgSwDav4xA5F45caapYTBVx5hdsluF6eRutu8JjQApTkx4+unelRaeawXs20sibH6Phsum7laxnp62Bp4v8rGNXylsUvcwFTW07zLZk7XH7Bpl+UsWlUkbRGcdjaBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Gm8D7o9Zkhoyic+N9lE/S6Kr9IT/0CYNpO5BdIwHQps=;
- b=HLWB9d3FtoX2AkMtVT9+TNNQ42VvWF8z30r8+ohqqOb/3MYPYAwn0DP15hYXkiPPzMMOz8xhFRZS4yjTbdlcNpA9vhPgRhqUgiqTQVKjONcErvpGVRGtpgMxh2ckeG8TyoY13S3L6999kou3EemWpUYxNhgdgjSP+1Kg8TVStro=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=oss.nxp.com;
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
- by DB8PR04MB5658.eurprd04.prod.outlook.com (2603:10a6:10:b2::32) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.27; Sat, 22 May
- 2021 13:10:36 +0000
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::45b9:c993:87ec:9a64]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::45b9:c993:87ec:9a64%8]) with mapi id 15.20.4150.027; Sat, 22 May 2021
- 13:10:36 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        p.zabel@pengutronix.de, l.stach@pengutronix.de, krzk@kernel.org,
-        agx@sigxcpu.org, marex@denx.de, andrew.smirnov@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, ping.bai@nxp.com,
-        frieder.schrempf@kontron.de, aford173@gmail.com, abel.vesa@nxp.com,
-        Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH V6 4/4] soc: imx: Add blk-ctl driver for i.MX8MM
-Date:   Sat, 22 May 2021 21:42:49 +0800
-Message-Id: <20210522134249.15322-5-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210522134249.15322-1-peng.fan@oss.nxp.com>
-References: <20210522134249.15322-1-peng.fan@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.71]
-X-ClientProxiedBy: SG2PR04CA0155.apcprd04.prod.outlook.com (2603:1096:4::17)
- To DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from linux-1xn6.ap.freescale.net (119.31.174.71) by SG2PR04CA0155.apcprd04.prod.outlook.com (2603:1096:4::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.23 via Frontend Transport; Sat, 22 May 2021 13:10:31 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 22182090-b4a6-4148-b23f-08d91d22fd30
-X-MS-TrafficTypeDiagnostic: DB8PR04MB5658:
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB8PR04MB56589EFC00EABE2381065760C9289@DB8PR04MB5658.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:366;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DsPx6XkFdd8QH+B8fJ1nm3GW51R4iyarGeOt3ImkGJIxdlHb3RoA/U9Uzy4sAo8k2bne99NeJqGJWIurF+k37N3fKCL+qaCHJ897M74kR9h8Cy5sDsOnpXszT7a4V6NKiIKILKuWW/RwQoB+2g9x/KANHy7dXkOAOjvNUDSv8ouRwK1my/xv/bIR4sJ8cmkoA+5HBUzN4Bx6ZzRaEOMuO42ijcGpTB1+8PsIyGK8GdSXcEHnPLzqZJhPNxr3xUvCZOfC5dW/HtilK3gsUrSKJ4Z9O37UZEHxSTFKQvjoTWII0bxqWKXB9mSPBLWbyC/5S14nTgJUcu01YbfcD+nwg6gM/jKg5ku9ADSjqWL3EUqeTgbCYqOBjm2tItWe8qycKPJiY73Y4eAwQWLAL+B532CrGIiNSiHaslsOziqxg4w6dBrDJW0AkomZtXnp5BVht6QgmL3qs40PsbpYezTxL9yUtqtHYULykDQ17P0f8FweeBdVFEAIjwjrOwqQNeZ7hFEN3rRjidSm/BLmRyCeQK25CwCiBfb6qYZl9KPfgHeNsHdAiR1uhn01qcSF9+rvE9Bq8Bz68OBi/gby7duZK3lYDBUhgcBsK9O9W91YYfoZOz1kw79zofpM2iQfjW3HS/UZnH4UTnsLOV8bCAGntmbl27R9bWYLjgSh4nHXYjg=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(366004)(396003)(39860400002)(136003)(6506007)(66946007)(16526019)(66476007)(66556008)(186003)(4326008)(8936002)(26005)(52116002)(6512007)(38350700002)(38100700002)(83380400001)(5660300002)(478600001)(1076003)(8676002)(956004)(2616005)(316002)(86362001)(2906002)(6486002)(6666004)(7416002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?UhwCWWYqMFrF71MwN63++wOvG7e91WvmAUVaDfKX0EfbsvhmitavXcegxzae?=
- =?us-ascii?Q?jl4VipdcMCpxURudFyTB8e4K8JSb64PUwjQkQbv5aGiJ1pwuA3WdwtcfH5Y9?=
- =?us-ascii?Q?hd+eycTsKWtLMsR0YZomXAgPmOEj15rKia9LzKJlm5EtjYZZtT5LEe40fQJZ?=
- =?us-ascii?Q?F/3e+Mw8i8//buCVDHohGxNAw8uZYiTTtQ2fVWHLCvKc9QiPdOU4afcS/u5k?=
- =?us-ascii?Q?CTEOmVacU4E50bK6bjM4oR4L2qPVKoZhIHaXQVRhvjQ90g9e6ZFvI+3rZiC6?=
- =?us-ascii?Q?ajOIFVNkIJFcgKobn81B9Xl2ARfHu8SC/4uIuaZTtNAwv5N5BgJJSpM/kRrh?=
- =?us-ascii?Q?tSUctlbPgKmx83pj7QXwWc+aR9zdXTrotJQjGHwXJQRoe/31Xo8qU2MxultB?=
- =?us-ascii?Q?e8eN/tYFApS4PyvT8Du86ClLsIlvpQSBGOaJRkPn7hoHIC2mltvl1iMp+nmz?=
- =?us-ascii?Q?n7LffN239mQoA+NaIcddJxZz8OdM7TThWhUFuHFNM6L+wiJfTEGqmt7S5Teh?=
- =?us-ascii?Q?L6hhCO+Z3bbRhC8hXyYwwpfiq2c8/ZZVBF1ORGZDEyAkgCtTDRHwkTegxzXV?=
- =?us-ascii?Q?6CIWfoqBWmMoCIywPE67Lw5zhNYgMpB7tzwjf4omtzO8OJk7hhlCK8akzRZQ?=
- =?us-ascii?Q?KrYMEezovNFMPX6MDaArtyNky67RTLeXTUjVwZhp03s/iY5yC0C9zzpMZ0yl?=
- =?us-ascii?Q?PmrpxlMjV2jQ27rTTTQTHDdyiR8w2VCcetiZ25I2VLdMsO+RMLGr6EzUvZaf?=
- =?us-ascii?Q?bYwpbHXcXqwzOwFz9EBIMjLrhen8qIlZh7QHg0nxNsxCfcFYboqBZZWXQI9u?=
- =?us-ascii?Q?r0VyOa4Spc3HXhjsxNSCVrJPSWi81m3xjfBgVeOUKLQ40iRQJfSDCzzv66eH?=
- =?us-ascii?Q?fXiCh02a4hN63vzIEYq/IfHhrzxXxJFTCk2uId81toRYpkusHqnc128uyosK?=
- =?us-ascii?Q?cvM6nBCEFheUPfAo+1Z6Es/Y/wNV75RJcBcP3Cg/hfarMDVJYXETMy5Jk9Ms?=
- =?us-ascii?Q?V5ZA43obhaelLJklpFBsdNvyQxmvg+F1xnowwnnEgWe3FYYRz7KYjSLU9VJ0?=
- =?us-ascii?Q?hM56Q1E731LOAniJxIrOo5v4bN1n0AIqP1+HOqOUeYF5Xe60fhOB2y8UoFWm?=
- =?us-ascii?Q?VliqltBWmlqpRHq0QzLLe9sYMKWTLUfJlaRiKS9jQXfLun/FgZN4U43ezUb8?=
- =?us-ascii?Q?K16sJY8tFFdf3DSD88VhcGlrwkiO3Sr04NU0rJi7g/amFlG+U5KXIJoDZa3u?=
- =?us-ascii?Q?rIK6/VD6HJO71uJQfiqEZDymeRqfLUbvKIj9ltsvEYTvlMmYSWoUVXsMNtZW?=
- =?us-ascii?Q?thhEMudV/38tBLV+cDrN5YCX?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 22182090-b4a6-4148-b23f-08d91d22fd30
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2021 13:10:36.5735
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jwpluOGRDMageS+HF7nshHgF36XcBESM2LI8Zu3l4G/mUPDWJttDf4xtk0MO3KC6vL04NsKoYHA+qHC9EYk74Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB5658
+        id S231296AbhEVN7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 May 2021 09:59:06 -0400
+Received: from sibelius.xs4all.nl ([83.163.83.176]:51824 "EHLO
+        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231325AbhEVN6z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 May 2021 09:58:55 -0400
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id c4a205f5;
+        Sat, 22 May 2021 15:57:27 +0200 (CEST)
+Date:   Sat, 22 May 2021 15:57:27 +0200 (CEST)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Robin Murphy <robin.murphy@arm.com>, sven@svenpeter.dev
+Cc:     devicetree@vger.kernel.org, maz@kernel.org, arnd@arndb.de,
+        kettenis@openbsd.org, marcan@marcan.st, bhelgaas@google.com,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <be890747-5f6d-8a7d-3e20-db58463028b1@arm.com> (message from
+        Robin Murphy on Tue, 18 May 2021 15:10:01 +0100)
+Subject: Re: [PATCH 1/2] dt-bindings: pci: Add DT bindings for apple,pcie
+References: <20210516211851.74921-1-mark.kettenis@xs4all.nl>
+ <20210516211851.74921-2-mark.kettenis@xs4all.nl> <be890747-5f6d-8a7d-3e20-db58463028b1@arm.com>
+Message-ID: <5612ef8f8dd80e4d@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+> From: Robin Murphy <robin.murphy@arm.com>
+> Date: Tue, 18 May 2021 15:10:01 +0100
 
-The i.MX8MM SoC has dispmix BLK-CTL and vpumix BLK-CTL, so we add
-that support in this driver.
+Hi Robin,
 
-Reviewed-by: Abel Vesa <abel.vesa@nxp.com>
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- drivers/soc/imx/Makefile         |   2 +-
- drivers/soc/imx/blk-ctl-imx8mm.c | 139 +++++++++++++++++++++++++++++++
- 2 files changed, 140 insertions(+), 1 deletion(-)
- create mode 100644 drivers/soc/imx/blk-ctl-imx8mm.c
+> On 2021-05-16 22:18, Mark Kettenis wrote:
+> > From: Mark Kettenis <kettenis@openbsd.org>
+> > 
+> > The Apple PCIe host controller is a PCIe host controller with
+> > multiple root ports present in Apple ARM SoC platforms, including
+> > various iPhone and iPad devices and the "Apple Silicon" Macs.
+> > 
+> > Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
+> > ---
+> >   .../devicetree/bindings/pci/apple,pcie.yaml   | 150 ++++++++++++++++++
+> >   MAINTAINERS                                   |   1 +
+> >   2 files changed, 151 insertions(+)
+> >   create mode 100644 Documentation/devicetree/bindings/pci/apple,pcie.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pci/apple,pcie.yaml b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
+> > new file mode 100644
+> > index 000000000000..af3c9f64e380
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
+> > @@ -0,0 +1,150 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pci/apple,pcie.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Apple PCIe host controller
+> > +
+> > +maintainers:
+> > +  - Mark Kettenis <kettenis@openbsd.org>
+> > +
+> > +description: |
+> > +  The Apple PCIe host controller is a PCIe host controller with
+> > +  multiple root ports present in Apple ARM SoC platforms, including
+> > +  various iPhone and iPad devices and the "Apple Silicon" Macs.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/pci/pci-bus.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - const: apple,t8103-pcie
+> > +      - const: apple,pcie
+> > +
+> > +  reg:
+> > +    minItems: 4
+> > +    maxItems: 6
+> > +
+> > +  reg-names:
+> > +    minItems: 4
+> > +    maxItems: 7
+> > +    items:
+> > +      - const: ecam
+> > +      - const: rc
+> > +      - const: phy
+> > +      - const: port0
+> > +      - const: port1
+> > +      - const: port2
+> > +
+> > +  ranges:
+> > +    minItems: 2
+> > +    maxItems: 2
+> > +
+> > +  interrupts:
+> > +    minItems: 3
+> > +    maxItems: 3
+> > +
+> > +  msi-ranges:
+> > +    description:
+> > +      A list of pairs <intid span>, where "intid" is the first
+> > +      interrupt number that can be used as an MSI, and "span" the size
+> > +      of that range.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > +    items:
+> > +      minItems: 2
+> > +      maxItems: 2
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - bus-range
+> > +  - interrupts
+> > +  - msi-controller
+> > +  - msi-parent
+> > +  - msi-ranges
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/apple-aic.h>
+> > +    #include <dt-bindings/pinctrl/apple.h>
+> > +
+> > +    soc {
+> > +      #address-cells = <2>;
+> > +      #size-cells = <2>;
+> > +
+> > +      pcie0: pcie@690000000 {
+> > +        compatible = "apple,t8103-pcie", "apple,pcie";
+> > +        device_type = "pci";
+> > +
+> > +        reg = <0x6 0x90000000 0x0 0x1000000>,
+> > +              <0x6 0x80000000 0x0 0x4000>,
+> > +              <0x6 0x8c000000 0x0 0x4000>,
+> > +              <0x6 0x81000000 0x0 0x8000>,
+> > +              <0x6 0x82000000 0x0 0x8000>,
+> > +              <0x6 0x83000000 0x0 0x8000>;
+> > +        reg-names = "ecam", "rc", "phy", "port0", "port1", "port2";
+> > +
+> > +        interrupt-parent = <&aic>;
+> > +        interrupts = <AIC_IRQ 695 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <AIC_IRQ 698 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <AIC_IRQ 701 IRQ_TYPE_LEVEL_HIGH>;
+> > +
+> > +        msi-controller;
+> > +        msi-parent = <&pcie0>;
+> > +        msi-ranges = <704 32>;
+> > +
+> > +        iommu-map = <0x0 &dart0 0x8000 0x100>,
+> > +                    <0x100 &dart0 0x100 0x100>,
+> > +                    <0x200 &dart1 0x200 0x100>,
+> > +                    <0x300 &dart2 0x300 0x100>;
+> > +        iommu-map-mask = <0xff00>;
+> 
+> This doesn't quite add up - if the mask is ignoring the bottom 8 bits, 
+> then each of those map entries is describing one single ID mapping, not 256.
+> 
+> > +        bus-range = <0 7>;
+> 
+> Given that the iommu-map only covers buses 0-3, what happens to traffic 
+> from buses 4-7?
 
-diff --git a/drivers/soc/imx/Makefile b/drivers/soc/imx/Makefile
-index d3d2b49a386c..c260b962f495 100644
---- a/drivers/soc/imx/Makefile
-+++ b/drivers/soc/imx/Makefile
-@@ -4,4 +4,4 @@ obj-$(CONFIG_ARCH_MXC) += soc-imx.o
- endif
- obj-$(CONFIG_HAVE_IMX_GPC) += gpc.o
- obj-$(CONFIG_IMX_GPCV2_PM_DOMAINS) += gpcv2.o
--obj-$(CONFIG_SOC_IMX8M) += soc-imx8m.o blk-ctl.o
-+obj-$(CONFIG_SOC_IMX8M) += soc-imx8m.o blk-ctl.o blk-ctl-imx8mm.o
-diff --git a/drivers/soc/imx/blk-ctl-imx8mm.c b/drivers/soc/imx/blk-ctl-imx8mm.c
-new file mode 100644
-index 000000000000..59443588f892
---- /dev/null
-+++ b/drivers/soc/imx/blk-ctl-imx8mm.c
-@@ -0,0 +1,139 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2021 NXP
-+ */
-+
-+#include <dt-bindings/clock/imx8mm-clock.h>
-+#include <dt-bindings/power/imx8mm-power.h>
-+#include <linux/clk.h>
-+#include <linux/err.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/of_address.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+#include <linux/types.h>
-+#include <linux/pm_domain.h>
-+#include <linux/regmap.h>
-+
-+#include "blk-ctl.h"
-+
-+#define MEDIA_BLK_BUS_RSTN_BLK_SYNC_SFT_EN			BIT(6)
-+#define MEDIA_BLK_MIPI_DSI_I_PRESETN_SFT_EN			BIT(5)
-+#define MEDIA_BLK_MIPI_CSI_I_PRESETN_SFT_EN			BIT(4)
-+#define MEDIA_BLK_CAMERA_PIXEL_RESET_N_SFT_EN			BIT(3)
-+#define MEDIA_BLK_CSI_BRIDGE_SFT_EN				GENMASK(2, 0)
-+
-+#define MEDIA_BLK_BUS_PD_MASK					BIT(12)
-+#define MEDIA_BLK_MIPI_CSI_PD_MASK				GENMASK(11, 10)
-+#define MEDIA_BLK_MIPI_DSI_PD_MASK				GENMASK(9, 8)
-+#define MEDIA_BLK_LCDIF_PD_MASK					GENMASK(7, 6)
-+#define MEDIA_BLK_CSI_BRIDGE_PD_MASK				GENMASK(5, 0)
-+
-+static struct imx_blk_ctl_hw imx8mm_dispmix_blk_ctl_pds[] = {
-+	IMX_BLK_CTL_PD("CSI_BRIDGE", NULL, IMX8MM_BLK_CTL_PD_DISPMIX_CSI_BRIDGE, 0x4,
-+		       MEDIA_BLK_CSI_BRIDGE_PD_MASK, 0, MEDIA_BLK_CSI_BRIDGE_SFT_EN,
-+		       IMX_BLK_CTL_PD_RESET),
-+	IMX_BLK_CTL_PD("LCDIF", NULL, IMX8MM_BLK_CTL_PD_DISPMIX_LCDIF, 0x4,
-+		       MEDIA_BLK_LCDIF_PD_MASK, -1, -1, 0),
-+	IMX_BLK_CTL_PD("MIPI_DSI", "mipi", IMX8MM_BLK_CTL_PD_DISPMIX_MIPI_DSI, 0x4,
-+		       MEDIA_BLK_MIPI_DSI_PD_MASK, 0, MEDIA_BLK_MIPI_DSI_I_PRESETN_SFT_EN,
-+		       IMX_BLK_CTL_PD_RESET),
-+	IMX_BLK_CTL_PD("MIPI_CSI", "mipi", IMX8MM_BLK_CTL_PD_DISPMIX_MIPI_CSI, 0x4,
-+		       MEDIA_BLK_MIPI_CSI_PD_MASK, 0,
-+		       MEDIA_BLK_MIPI_CSI_I_PRESETN_SFT_EN | MEDIA_BLK_CAMERA_PIXEL_RESET_N_SFT_EN,
-+		       IMX_BLK_CTL_PD_RESET),
-+	IMX_BLK_CTL_PD("DISPMIX_BUS", "dispmix", IMX8MM_BLK_CTL_PD_DISPMIX_BUS, 0x4,
-+		       MEDIA_BLK_BUS_PD_MASK, 0, MEDIA_BLK_BUS_RSTN_BLK_SYNC_SFT_EN,
-+		       IMX_BLK_CTL_PD_HANDSHAKE | IMX_BLK_CTL_PD_RESET)
-+};
-+
-+static struct imx_blk_ctl_hw imx8mm_vpumix_blk_ctl_pds[] = {
-+	IMX_BLK_CTL_PD("VPU_BLK_CTL_G2", "vpu-g2", IMX8MM_BLK_CTL_PD_VPU_G2, 0x4,
-+		       BIT(0), 0, BIT(0), IMX_BLK_CTL_PD_RESET),
-+	IMX_BLK_CTL_PD("VPU_BLK_CTL_G1", "vpu-g1", IMX8MM_BLK_CTL_PD_VPU_G1, 0x4,
-+		       BIT(1), 0, BIT(1), IMX_BLK_CTL_PD_RESET),
-+	IMX_BLK_CTL_PD("VPU_BLK_CTL_H1", "vpu-h1", IMX8MM_BLK_CTL_PD_VPU_H1, 0x4,
-+		       BIT(2), 0, BIT(2), IMX_BLK_CTL_PD_RESET),
-+	IMX_BLK_CTL_PD("VPU_BLK_CTL_BUS", "vpumix", IMX8MM_BLK_CTL_PD_VPU_BUS, 0x4,
-+		       BIT(2), 0, BIT(2), IMX_BLK_CTL_PD_HANDSHAKE | IMX_BLK_CTL_PD_RESET)
-+};
-+
-+static const struct regmap_config imx8mm_blk_ctl_regmap_config = {
-+	.reg_bits		= 32,
-+	.reg_stride		= 4,
-+	.val_bits		= 32,
-+	.max_register		= 0x30,
-+	.fast_io		= true,
-+};
-+
-+static const struct imx_blk_ctl_dev_data imx8mm_vpumix_blk_ctl_dev_data = {
-+	.pds = imx8mm_vpumix_blk_ctl_pds,
-+	.pds_num = ARRAY_SIZE(imx8mm_vpumix_blk_ctl_pds),
-+	.max_num = IMX8MM_BLK_CTL_PD_VPU_MAX,
-+	.hw_hsk = &imx8mm_vpumix_blk_ctl_pds[3],
-+	.config = imx8mm_blk_ctl_regmap_config,
-+	.name = "imx-vpumix-blk-ctl",
-+};
-+
-+static const struct imx_blk_ctl_dev_data imx8mm_dispmix_blk_ctl_dev_data = {
-+	.pds = imx8mm_dispmix_blk_ctl_pds,
-+	.pds_num = ARRAY_SIZE(imx8mm_dispmix_blk_ctl_pds),
-+	.max_num = IMX8MM_BLK_CTL_PD_DISPMIX_MAX,
-+	.hw_hsk = &imx8mm_dispmix_blk_ctl_pds[4],
-+	.config = imx8mm_blk_ctl_regmap_config,
-+	.name = "imx-dispmix-blk-ctl",
-+};
-+
-+static int imx8mm_blk_ctl_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	const struct imx_blk_ctl_dev_data *dev_data = of_device_get_match_data(dev);
-+	struct regmap *regmap;
-+	struct imx_blk_ctl *ctl;
-+	void __iomem *base;
-+
-+	ctl = devm_kzalloc(dev, sizeof(*ctl), GFP_KERNEL);
-+	if (!ctl)
-+		return -ENOMEM;
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	regmap = devm_regmap_init_mmio(dev, base, &dev_data->config);
-+	if (IS_ERR(regmap))
-+		return PTR_ERR(regmap);
-+
-+	ctl->regmap = regmap;
-+	ctl->dev = dev;
-+	mutex_init(&ctl->lock);
-+
-+	ctl->num_clks = devm_clk_bulk_get_all(dev, &ctl->clks);
-+	if (ctl->num_clks < 0)
-+		return ctl->num_clks;
-+
-+	dev_set_drvdata(dev, ctl);
-+	ctl->dev_data = dev_data;
-+
-+	return imx_blk_ctl_register(dev);
-+}
-+
-+static const struct of_device_id imx_blk_ctl_of_match[] = {
-+	{ .compatible = "fsl,imx8mm-vpumix-blk-ctl", .data = &imx8mm_vpumix_blk_ctl_dev_data },
-+	{ .compatible = "fsl,imx8mm-dispmix-blk-ctl", .data = &imx8mm_dispmix_blk_ctl_dev_data },
-+	{ /* Sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, imx_blk_ctl_of_match);
-+
-+static struct platform_driver imx_blk_ctl_driver = {
-+	.probe = imx8mm_blk_ctl_probe,
-+	.driver = {
-+		.name = "imx8mm-blk-ctl",
-+		.of_match_table = of_match_ptr(imx_blk_ctl_of_match),
-+		.pm = &imx_blk_ctl_pm_ops,
-+	},
-+};
-+module_platform_driver(imx_blk_ctl_driver);
--- 
-2.30.0
+Yes, that probably needs a little bit of thought.
 
+The hardware is somewhat "interesting".  The PCIe host bridge has (up
+to) three ports.  Each port is associated with its own IOMMU/DART.
+Each port provides mapping logic that maps the RID to an SID.  There
+are 16 mapping registers for the PCIe host bridge that connects the
+onboard devices and 64 mapping registers for the PCIe host bridges
+that are asociated with the Thunderbolt ports.
+
+If no mappings are enabled, it seems that all RIDs get mapped to SID
+0.  The Apple firmware doesn't enable any mappings and my U-Boot code
+doesn't change it either.
+
+The Corellium folks in their port chose a 1:1 mapping from bus number
+to SID and that is what the example above came from.  Both my U-Boot
+driver and my OpenBSD actually ignore the SID and install the same
+IOMMU translation table for all the SIDs.  That's probably good enough
+for U-Boot as long as we don't enable the Thunderbolt ports.  But for
+the OS itself a bit more control is certainly desirable.
+
+Would it be reasonable to allow the device tree some flexibility in
+specifying the desired iommu mapping and let the OS PCIe host bride
+driver program the RID to SID mappings to match what's specified in
+the "iommu-map" and "iommu-map-mask" properties?
+
+Or is it better to just pick a mapping scheme like Corellium did and
+make that part of the DT binding?
+
+Thanks,
+
+Mark
+
+> > +        #address-cells = <3>;
+> > +        #size-cells = <2>;
+> > +        ranges = <0x43000000 0x6 0xa0000000 0x6 0xa0000000 0x0 0x20000000>,
+> > +                 <0x02000000 0x0 0xc0000000 0x6 0xc0000000 0x0 0x40000000>;
+> > +
+> > +        clocks = <&pcie_core_clk>, <&pcie_aux_clk>, <&pcie_ref_clk>;
+> > +        pinctrl-0 = <&pcie_pins>;
+> > +        pinctrl-names = "default";
+> > +
+> > +        pci@0,0 {
+> > +          device_type = "pci";
+> > +          reg = <0x0 0x0 0x0 0x0 0x0>;
+> > +          reset-gpios = <&pinctrl_ap 152 0>;
+> > +          max-link-speed = <2>;
+> > +
+> > +          #address-cells = <3>;
+> > +          #size-cells = <2>;
+> > +          ranges;
+> > +        };
+> > +
+> > +        pci@1,0 {
+> > +          device_type = "pci";
+> > +          reg = <0x800 0x0 0x0 0x0 0x0>;
+> > +          reset-gpios = <&pinctrl_ap 153 0>;
+> > +          max-link-speed = <2>;
+> > +
+> > +          #address-cells = <3>;
+> > +          #size-cells = <2>;
+> > +          ranges;
+> > +        };
+> > +
+> > +        pci@2,0 {
+> > +          device_type = "pci";
+> > +          reg = <0x1000 0x0 0x0 0x0 0x0>;
+> > +          reset-gpios = <&pinctrl_ap 33 0>;
+> > +          max-link-speed = <1>;
+> > +
+> > +          #address-cells = <3>;
+> > +          #size-cells = <2>;
+> > +          ranges;
+> > +        };
+> > +      };
+> > +    };
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 7327c9b778f1..789d79315485 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -1654,6 +1654,7 @@ C:	irc://chat.freenode.net/asahi-dev
+> >   T:	git https://github.com/AsahiLinux/linux.git
+> >   F:	Documentation/devicetree/bindings/arm/apple.yaml
+> >   F:	Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
+> > +F:	Documentation/devicetree/bindings/pci/apple,pcie.yaml
+> >   F:	Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
+> >   F:	arch/arm64/boot/dts/apple/
+> >   F:	drivers/irqchip/irq-apple-aic.c
+> > 
+> 
