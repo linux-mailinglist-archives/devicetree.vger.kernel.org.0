@@ -2,855 +2,625 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FA5B38D708
-	for <lists+devicetree@lfdr.de>; Sat, 22 May 2021 20:46:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B405738D76E
+	for <lists+devicetree@lfdr.de>; Sat, 22 May 2021 22:51:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231345AbhEVSri convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sat, 22 May 2021 14:47:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54978 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231252AbhEVSrh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 22 May 2021 14:47:37 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 105F361182;
-        Sat, 22 May 2021 18:46:06 +0000 (UTC)
-Date:   Sat, 22 May 2021 19:47:29 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     =?UTF-8?B?SsOzenNlZiBIb3J2w6F0aA==?= <info@ministro.hu>
-Cc:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexandru Ardelean <aardelean@deviqon.com>,
-        Alexandru Ardelean <ardeleanalex@gmail.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Saravanan Sekar <sravanhome@gmail.com>,
-        Tomislav Denis <tomislav.denis@avl.com>,
-        Gene Chen <gene_chen@richtek.com>,
-        Alex Dewar <alex.dewar90@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] iio: adc: driver for texas instruments ads7142
-Message-ID: <20210522194729.3221998e@jic23-huawei>
-In-Reply-To: <20210519165045.GA3176@dev>
-References: <9f9c64ca70f80d8a024ea66e3963350e35f27c1d.1621105931.git.info@ministro.hu>
-        <20210516122840.22cab9b5@jic23-huawei>
-        <20210516190751.GB16211@dev>
-        <20210517102804.00002ff8@Huawei.com>
-        <20210519165045.GA3176@dev>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S231408AbhEVUxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 May 2021 16:53:20 -0400
+Received: from mail-eopbgr130042.outbound.protection.outlook.com ([40.107.13.42]:43781
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231390AbhEVUxU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 22 May 2021 16:53:20 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ToYFMRmASdsfvwFpoGXMFwvfDZaYabOnNpwMua7oquCXSqPFWDKM5GVX9Pio3ZRHtpGLL7gw8FKsBL9fRtGf81s8c0hcHr4NJ/kX+nWrCnwyijoiubI6cM4P93IGHAnRVS5QoLkTPuuWI2Ctrs6ihP0oRQ//L7RYYdRQFk04FNhlpyztBxCrAikZzlSmFRr60bSaKckcGDaGNwLHwbPpk0JSfyMnEwKCXEjwTv8ZHyptSPLSD0GTRCIBPdzfwTcarb9080ruvG8spGMheLx2p6+dwKEgLDKfaiUcIB7X+KzUWUmx8vvFWnB7vuOhpgWxKNK4k5e3J3NFi8eMeL2gsA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=32QaBIHVXyBLjq69N3IOUPX7pQ8TTOSw1RHYD/G8gOk=;
+ b=i9iMl4Nmw15Dxuidws7xodH0PMP2AGMkaEwfqq1zI8O0h4t142xD8WeOUZR/UC413/VqYqlEgnS6AbHMhLjTsza7sdL9p/jYZOuLnqnnz+IOfFKdEir1soZEiwUFTjzOaheZZPutcbqGeiFEMyld1JZQlo7CD/wAldnlu9/vDBJDNyo+X+uxTiVzvpMLUADmO4GkkoNKW1OnNdKScT60cvQIyEfOxMSNcS+ZI9lyXonfQaAGhJo54cdyDEu29I/6y5A9swg1s43NYAjM/0I/DVtfnTAFsgEQgMVU1IOqNQ2SEelcdxDV2YGCqbWhChs2PA4+AvEfb2lZBITO2/+3wQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=32QaBIHVXyBLjq69N3IOUPX7pQ8TTOSw1RHYD/G8gOk=;
+ b=W5DuH/LKuPL8hWTrbaNI381sUmAUrN4UVTrD1LmhXNI/W79OtGklsFE05e9wJUgnsmyez+3g6kbIwHWxo01Yq2RGIwYECbQIFUkquUZQrRP4/WV6ix2wLvzWgQ9vV4TsKEFParDNGOx6TH+e0gVAHwgy14IJebEopLk7F9iPvLw=
+Authentication-Results: geanix.com; dkim=none (message not signed)
+ header.d=none;geanix.com; dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8774.eurprd04.prod.outlook.com (2603:10a6:10:2e1::21)
+ by DU2PR04MB8582.eurprd04.prod.outlook.com (2603:10a6:10:2d9::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.23; Sat, 22 May
+ 2021 20:51:51 +0000
+Received: from DU2PR04MB8774.eurprd04.prod.outlook.com
+ ([fe80::285f:56e6:a248:1c78]) by DU2PR04MB8774.eurprd04.prod.outlook.com
+ ([fe80::285f:56e6:a248:1c78%5]) with mapi id 15.20.4150.027; Sat, 22 May 2021
+ 20:51:51 +0000
+From:   Han Xu <han.xu@nxp.com>
+To:     sean@geanix.com, han.xu@nxp.com, miquel.raynal@bootlin.com,
+        richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] mtd: nand: raw: gpmi: new bch geometry settings
+Date:   Sat, 22 May 2021 15:51:35 -0500
+Message-Id: <20210522205136.19465-1-han.xu@nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-Originating-IP: [70.112.23.252]
+X-ClientProxiedBy: SA9PR13CA0154.namprd13.prod.outlook.com
+ (2603:10b6:806:28::9) To DU2PR04MB8774.eurprd04.prod.outlook.com
+ (2603:10a6:10:2e1::21)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from umbrella.lan (70.112.23.252) by SA9PR13CA0154.namprd13.prod.outlook.com (2603:10b6:806:28::9) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.11 via Frontend Transport; Sat, 22 May 2021 20:51:49 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 6195452f-e8f2-4a97-b0c6-08d91d636c9a
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8582:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DU2PR04MB8582BCEBDA1816B9547A226A97289@DU2PR04MB8582.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: VICzWPwCceKMd/7Ywkot7hGByalsw0DES/NgqjbVUTnlLjuY3yBEy+mi6n63KGP4FHZU/WTWCYL/EYUihG1bsSQeY72A/o0SN6YAJa/TJZflfbiNw/lhoz61lj8jz6lMHyi6In3rZ//tj4kYbWBwi8GRFi9NFhR51YjudZ0cL8z5O1zPR5gHGhIx9BHFItZZR2UsQ6EexLguZQBmPKPotbFE/+V80BhqXhzPDPu09PJDbqWKUvgDv1QdSDnvSMGxU287FQQ+rAF29LaI5iXtop14MCaqIJookNvBKybhDEklqFhlBbPgmZ7SWLVvcxW3FBbwIJzmAWFodPG6ddg08Y8blZg71oDgVuAFkTBt9qqvcNIJA8DHv6RC+4nOzueKZnf2SVC2fnG18qwzp1sBQguovurgS3D9mqiqgqAyfE84juCue2tRBYBRwECdzcpryAulD0kQ49bc3gkniTUn+ellHCXEXL8h8vrilHCD3/uWsBY6/3UFqRlZUOnDkiSRHHCXNr7hJqDQ7eS64w+xwIYQvRS8I3KeRkdtXC2dEl7trI3IEDPY/POwRSb9TDHyhj2Y/PhaA72arkyZu4Mi1jchlrGyE6nsWUAqfw43Emj4muuDr8WDd8muH/62j8QO+2YVHAr8ZC8dOI2q7oW9WKUeTSO5Fg3mkf179gDd7/4=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8774.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(136003)(366004)(396003)(346002)(39850400004)(4326008)(83380400001)(8676002)(6666004)(5660300002)(86362001)(186003)(36756003)(30864003)(6486002)(6512007)(8886007)(8936002)(66556008)(66476007)(2616005)(44832011)(16526019)(26005)(52116002)(1076003)(956004)(38350700002)(66946007)(478600001)(2906002)(316002)(6506007)(38100700002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?r+24RkYaOQOdDJoGJGGvHJNI5HOgpljrfWrfAupHEWBfSE6IxUHGypdI3Tq1?=
+ =?us-ascii?Q?W6kabR7XB7m8pbbwbKom+2ZXLn7CzHPH0QDnWUeCZMCFQazBHUAO7JVKnDQV?=
+ =?us-ascii?Q?XumXcKKQusU69X1h9loQ2zwrbD4pIs4fc73Lt+DtCk1ay2MmAR+ESF2X17HX?=
+ =?us-ascii?Q?joR/anFmUq0vFu0NebZ3uxJ6yXh7A4TJ4hDRtc5T/kV+P8yDw0OWWgcfRo2L?=
+ =?us-ascii?Q?cvpBkhpYiCQSQ/xEuRd5abOcXhseWQ8Nat1nlQ7QyPH33ataOPBQVXQ4LZbm?=
+ =?us-ascii?Q?Ci2F6gGyR5w2CT0RnKRpGKMFUDw6m3jWrDaVOuKfxrbNavsMYW3p3/aUyKSh?=
+ =?us-ascii?Q?J4YzWlo+GJM6OCsDZVoiz576GQPv9wShr0YgJZunw75tQuL4rxoCg3WLB6xV?=
+ =?us-ascii?Q?lbGZySGkjd0VfOiM44tdNqzlP+XFtFfD8yrVAq2xWMC6wMzons5mTq/7N+s/?=
+ =?us-ascii?Q?aRy4IWOrulYLOb/rH1K2fUlkTsod4I1je+AdRPPCjrhNKJ/idbSBzl05En5O?=
+ =?us-ascii?Q?v5lDVgzcOxcSoMBdFNQ9Bh/IV6WXV0+fcatNpRpBkIw1CvTG23pygsaLmGx7?=
+ =?us-ascii?Q?Uc3YxZJRnofYhw54nqjudirvc1N3qfYlmIrWtGIJk6Tjb19r1U67WwgLY68q?=
+ =?us-ascii?Q?hUxUJg35KIxZxs6qjRDEs0ozmQvBm9Knf7O9hTRtE/T2W4ZUJjX26DgBteO1?=
+ =?us-ascii?Q?yFVXRIv+MkN0rz2dCLT1eb7i+jseupFopM57Ykb2l71mna0Umx2BGgCs3xyA?=
+ =?us-ascii?Q?R3lqiCrJcPXNNYizW6TyOeJsmF/vQ9pcYqcffzP7fxGvayO/VVIJAlkGoGvF?=
+ =?us-ascii?Q?jtPHQ+nk1J2/ezypP03WZihkGGDh909Pe+3o8YhfQ0sZxVJihGzgFbxOY/Ya?=
+ =?us-ascii?Q?3UEzzCny0MyogxjLJ9LMrakUx6V7N2fbgNFXalPi2rFCotTcYiZbDlpt++15?=
+ =?us-ascii?Q?Aueu376nBsy3VYvbpKFgFJatuHk/ai8vCuCMmHERPWql6yvd6dWhCwwmPAlx?=
+ =?us-ascii?Q?EeZuyQ1+nTcfYOJlnUcFQkYwudLYyf47GGfPEJjsiZWiV5rFuJ7OgR8Oz2T+?=
+ =?us-ascii?Q?j3UECO74kikj3O41g+jwRvmcwYPnycoZibLz3vJJjZw4HFpCaAUv6RhwVLm1?=
+ =?us-ascii?Q?s5hESXy1gwqy89ojYYGHVzFAh4vOPMuBT0jPJe2yEWS6kTeW8O7mWuj8rmtN?=
+ =?us-ascii?Q?P812Mc4747t/c9m6FMSJWi4ceCXR5CgjRj8TwIpJg6whaOyTEkjFAYowtw4S?=
+ =?us-ascii?Q?eO0n40BZf+sQpMVkyTdG60W4QGi4m+c9L4IFkHWM16xDduWuDye/LN/0Tq4E?=
+ =?us-ascii?Q?JqV7dccKnpnuZTI3Tb6IXeC9?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6195452f-e8f2-4a97-b0c6-08d91d636c9a
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8774.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2021 20:51:51.3777
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: WrmeEt2Q55cncolNR0h59houn26WiyvqlFLlShJNy6VLuV+dHEj0rxu3Q5Htg8Qj
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8582
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 19 May 2021 16:50:46 +0000
-József Horváth <info@ministro.hu> wrote:
+The code change updates the gpmi driver bch geometry settings, the NAND
+chips required minimum ecc strength and step size will be the default
+value. It also proposes a new way to set bch geometry for large oob NAND
+and provides an option to keep the legacy bch geometry setting for
+backward compatibility.
 
-> On Mon, May 17, 2021 at 10:28:04AM +0100, Jonathan Cameron wrote:
-> > On Sun, 16 May 2021 19:07:55 +0000
-> > József Horváth <info@ministro.hu> wrote:
-> >   
-> > > On Sun, May 16, 2021 at 12:28:40PM +0100, Jonathan Cameron wrote:  
-> > > > On Sun, 16 May 2021 07:30:35 +0000
-> > > > Jozsef Horvath <info@ministro.hu> wrote:
-> > > >     
-> > > > > This is an iio driver for
-> > > > >  Texas Instruments ADS7142 dual-channel, programmable sensor monitor.    
-> > > > 
-> > > > Hi,
-> > > > 
-> > > > Note I review in reverse, so it's possible my comments will make more
-> > > > sense read in that direction!
-> > > > 
-> > > > Various comments inline, but mostly this seems to be coming together nicely!
-> > > > 
-> > > > Jonathan    
-> > > > > 
-> > > > > All of the data buffer modes, supported by the device are selectable
-> > > > >  over sysfs:
-> > > > >   /sys/bus/iio/devices/iio:deviceX/buffer_mode
-> > > > > 
-> > > > > Data buffer operation modes:
-> > > > >   - start_burst:    
-> > > > 
-> > > > I'd like to see a lot of this info in the ABI docs.  Not the internals
-> > > > part but the 'what needs to be configured' element.
-> > > > 
-> > > > Some of the flow related stuff should go in the driver itself.
-> > > > It's non obvious and no one reads patch descriptions after the code has
-> > > > merged! 
-> > > >     
-> > > 
-> > > Ok, I'll write a more detailed description with configuration
-> > >  requirements
-> > >   
-> > > >     
-> > > > >     In triggered buffer preenable hook: not relevant.
-> > > > >     In trigger handler: the driver selects the autonomous monitoring
-> > > > >       (see chapter 7.4.3 in datasheet) operation mode,
-> > > > > 	  configures the channels in sequencer as specified by
-> > > > >       sysfs(scan_elements/in_voltageY_en),
-> > > > > 	  sets the data buffer mode to "Start Burst Mode",
-> > > > >       then starts the conversion.
-> > > > >     In irq handler: the driver pushes the conversion results received
-> > > > >       from the device to the buffer,
-> > > > >       then restarts the conversion like in trigger handler.
-> > > > >     Both IRQ and trigger are required to support this mode.
-> > > > >     See chapter 7.4.3.2.1 "Autonomous Mode with Start Burst"
-> > > > >     in datasheet.    
-> > > >     
-> > > > >   - stop_burst:
-> > > > >     In triggered buffer preenable hook: the driver selects the
-> > > > >       autonomous monitoring (see chapter 7.4.3 in datasheet)
-> > > > >       operation mode,
-> > > > >       configures the channels in sequencer as
-> > > > >       specified by sysfs(scan_elements/in_voltageY_en),
-> > > > > 	  sets the data buffer mode to "Stop Burst Mode",
-> > > > >       then starts the conversion.
-> > > > >     In trigger handler: the driver pushes the conversion results received
-> > > > >       from the device to the buffer,
-> > > > > 	  then restarts the conversion like in preenable hook.
-> > > > >     In irq handler: not relevant.
-> > > > >     Trigger is required to support this mode.
-> > > > >     See chapter 7.4.3.2.2 "Autonomous Mode with Stop Burst"
-> > > > >     in datasheet.    
-> > > >     
-> > > > >   - pre_alert:
-> > > > >     In triggered buffer preenable hook: the driver selects the autonomous
-> > > > >       monitoring (see chapter 7.4.3 in datasheet) operation mode,
-> > > > >       configures the channels in sequencer
-> > > > >         as specified by sysfs(scan_elements/in_voltageY_en),
-> > > > >       configures the digital window comparator and alert flags,
-> > > > > 	  sets the data buffer mode to "Pre Alert Data Mode",
-> > > > >       then starts the conversion.
-> > > > >     In trigger handler: not relevant.
-> > > > >     In irq handler: the driver pushes the conversion results received
-> > > > >       from the device to the buffer,
-> > > > >       then restarts the conversion like in preenable hook.
-> > > > >     IRQ is required to support this mode.
-> > > > >     See chapter 7.4.3.1.1 "Autonomous Mode with Pre Alert Data"
-> > > > >     in datasheet
-> > > > >   - post_alert:
-> > > > >     The operations are same like in pre_alert mode,
-> > > > >       except the data buffer mode selection, the selected mode is
-> > > > >       "Post Alert Data Mode".
-> > > > >     See chapter 7.4.3.1.2 "Autonomous Mode with Post Alert Data"
-> > > > >     in datasheet    
-> > > > 
-> > > > Impressive you got all these to work reasonably cleanly.  My only
-> > > > remaining question on this stuff is whether we can do anything that
-> > > > looks 'more standard' to enable the use of these with general purpose
-> > > > code.
-> > > > 
-> > > > The last two could be implemented as a trigger, be it one that can only
-> > > > be used by this device.  So you would select the mode by picking the
-> > > > relevant trigger.
-> > > > 
-> > > > However I can't see any similar way of supporting the start and stop burst
-> > > > modes. So for now at least perhaps this is the best we can do (and it
-> > > > won't be too painful to support this as a legacy interface if we do later
-> > > > figure out a nice generic interface).
-> > > > 
-> > > > 
-> > > > I would like to think longer term about whether we can come up with
-> > > > some standard ABI for these 'burst' capture devices. We have another one
-> > > > in staging (adis16240) that has been there a long time as we never
-> > > > managed to make progress on the interface.
-> > > > 
-> > > > Looking briefly at that device, I do note that it supports somewhere
-> > > > between your pre_alert and post_alert (X samples before event, so
-> > > > many samples after).  Maybe we want to think about an alert mode
-> > > > and use a separate control to set the 'where' part relative to
-> > > > the alert mode?
-> > > > 
-> > > > It is hard to define general ABI with 2 devices however, so perhaps
-> > > > we should stick with what you have and can always add an "alert"
-> > > > buffer mode as needed for a new device. 
-> > > >     
-> > > 
-> > > I think we can say that, all of general purpose ADCs, pressure, light, accel etc.
-> > >  sensors supports "virtual" start_burst mode with at least 1 element FIFO per channel.
-> > >  Flow:
-> > >   1. in trigger, the host issues a start conversion request to device,
-> > >      then polls or "wait" IRQ/conv rdy signal
-> > >   2. device do the job, then report the state of end of operation, somehow...
-> > >   3. the completion handler moves the conversion result to buffer
-> > > 
-> > >  Here is some device with real start_burst like support (not complete list):
-> > >   accel/adxl345
-> > >     datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL345.pdf
-> > >     see: Table 22. FIFO Mode: FIFO collects up to 32 values...
-> > >   accel/bmc150-accel
-> > >     datasheet: https://hu.mouser.com/datasheet/2/783/BST-BMC150-DS000-1509560.pdf
-> > >     see: 5.1 FIFO Operating Modes: FIFO Mode
-> > >     note: obsolate
-> > >   accel/bmi088-accel
-> > >     datasheet: https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi088-ds001.pdf
-> > >     see: 4.9.1 FIFO operating modes: FIFO or stop-at-full mode
-> > >   gyro/bmg160
-> > >     datasheet: https://hu.mouser.com/datasheet/2/783/BST-BMG160-DS000-1509613.pdf
-> > >     see: 5.1 FIFO Operating Modes: FIFO Mode
-> > >     note: obsolete
-> > >   health/max30100
-> > >     datasheet: https://datasheets.maximintegrated.com/en/ds/MAX30100.pdf
-> > >     see: FIFO (0x02–0x05)
-> > >     note: this mode is very close to start_burst mode of ti-ads7141
-> > > 
-> > >  The current generalized triggered_buffer API covers this mode completely.  
-> > 
-> > Not quite.  The triggered buffer API covers the one scan mode only (fifo depth 1).
-> > It doesn't in general cover using a trigger to start fifo capture.  We have talked about
-> > adding this layered trigger approach before (conceptually it is one trigger starting
-> > a hardware trigger that we can't see), but not done it yet.  The reason
-> > for this restriction is that most triggers can also be used to drive additional
-> > sensors (so capture from N devices at roughly the same time + at the same
-> > frequency).  We do have a few devices which provide their own triggers limited
-> > to local use as a means of selecting modes like this (often complex ADCs like
-> > the stm32 ones where a bunch of other signals in the SoC can be used to
-> > autonomously start capture of a scan).
-> > 
-> > Mostly the fifo mode on the above devices is implemented without a trigger.
-> > Triggers being attached makes them fall back into a 1 entry fifo so it is
-> > one trigger per scan.
-> > 
-> > It might be possible to safely adapt the semantics of this mode to support
-> > such capture using existing interfaces, but we need to be very careful not
-> > to break existing ABI assumptions.
-> >  
-> 
-> It's clear now, for me.
-> The problem we are facing is how can we represent a more than one element FIFO
->  scan collection, we can call this "capture".
-> You are right, the industrialio-buffer is not covers this requirement, we dontt
->  know, where the received scan line came from.
+- For the legacy bch geometry settings
+The driver uses legacy bch geometry settings if explicitly enabled it in
+DT with fsl, legacy-bch-geometry flag, or the NAND chips are too old
+that do NOT provide any required ecc info.
 
-Do we need to know that?  Normally if we have scan's triggered from different
-sources they should be in different buffers.
+The legacy_set_geometry() sets the data chunk size(step_size) larger
+than oob size to make sure BBM locates in data chunk, then set the
+maximum ecc stength oob can hold. It always use unbalanced ECC layout,
+which ecc0 will cover both meta and data0 chunk.
 
-> The "item" definition in the capture context:
->  One item in the capture is one or multiple lines of scans.
-> 
-> This problem is very similar to capturing images from a video device.
-> The solution what I'm thinking for, is close to videobuf2 queued buffer
->  mechanism(videobuf2-v4l2.c).
+This algorithm can NOT provide strong enough ecc for some NAND chips,
+such as some 8K+744 MLC NAND. We still leave it here just for backward
+compatibility and als for some quite old version NAND chips support. It
+should be en/disabled in both u-boot and kernel at the same time.
 
-Somewhat similar indeed, though with potential for variable sized frames (taking
-the analogy too far perhaps).
+- For the large oob bch geometry settings
+This type of setting will be used for NAND chips, which oob size is
+larger than 1024B OR NAND required step size is small than oob size,
+the general idea is,
 
-> 
-> I think this kind of operation and the required configuration can be managed via sysfs,
->  but there is some useful IOCTL's for video buffer configuration/allocation
->  (VIDIOC_QBUF, VIDIOC_DQBUF), and pointer exchange between user and system
->  is faster and better for the high speed capture devices than copying from kernel to user,
->  and we can define/make similar IOCTL's over iio char device.
+    1.Try all ECC strength from the minimum value required by NAND chip
+      to the maximum one that works, any ECC makes the BBM locate in
+      data chunk can be eligible.
 
-A bunch of drivers already do this, but not with an explicit trigger, except in the
-case of stm32 where IIRC we have triggers that in turn allow other triggers to be
-set for them (so chaining of triggers).  Also, the dma buffer system works entirely
-on this basis (but again, is not normally associated with a trigger because there
-is no advantage in exposing that signal to userspace).
+    2.If none of them works, using separate ECC for meta, which will add
+      one extra ecc with the same ECC strength as other data chunks.
+      This extra ECC can guarantee BBM located in data chunk, also we
+      need to check if oob can afford it.
 
-So I think the only small addition we need here is to define an interface that makes
-it clear the trigger is starting a "batch" of scans rather than just a single scan.
+- For all other common cases
+set the bch geometry by chip required strength and step size, which uses
+the minimum ecc strength chip required.
 
-Perhaps have a current_batch_trigger sysfs attribute or something like that?
+Signed-off-by: Han Xu <han.xu@nxp.com>
+---
+ drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.c | 262 ++++++++++++++++++---
+ drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.h |  12 +-
+ 2 files changed, 231 insertions(+), 43 deletions(-)
 
-
-> 
-> The new ABI name could be: industrialio-capture.
-> 
-> > > 
-> > > Some of sensors under iio supports stop_burst mode with FIFO.
-> > >  Flow could be:
-> > >   1. in somewhere(probably buffer_{pre,post} enable), the host configures the FIFO
-> > >      then starts conversion
-> > >   2. in trigger, the host reads FIFO content,
-> > >      then push the result to buffer,
-> > >      then restart the conversion or not, it depends of application/device etc.
-> > > 
-> > >  Here is some device with stop_burst like support (not complete list):
-> > >   accel/adxl345
-> > >     datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL345.pdf
-> > >     see: Table 22. Stream Mode: FIFO holds the last 32 data values...
-> > >   accel/bmc150-accel
-> > >     datasheet: https://hu.mouser.com/datasheet/2/783/BST-BMC150-DS000-1509560.pdf
-> > >     see: 5.1 FIFO Operating Modes: Stream Mode
-> > >     note: obsolate
-> > >   accel/bmi088-accel
-> > >     datasheet: https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi088-ds001.pdf
-> > >     see: 4.9.1 FIFO operating modes: STREAM mode
-> > >   gyro/bmg160
-> > >     datasheet: https://hu.mouser.com/datasheet/2/783/BST-BMG160-DS000-1509613.pdf
-> > >     see: 5.1 FIFO Operating Modes: STREAM mode
-> > >     note: obsolete  
-> > 
-> > Agreed this could be done, though I'm not convinced it makes that much sense.  The main
-> > operating mode for these sensors in that mode is likely to be using a fifo watermark
-> > - the aim being to never drop data.  The biggest exception to this would be very high
-> > speed devices where there is no hope of reading the data out without dropping, so
-> > you are looking for a very high frequency dataset of a short time period.
-> > 
-> > So could do it, but I'm not sure many driver authors would implement it.
-> > 
-> > From a proposal point of view, you are suggesting implementing in the drivers anyway
-> > so we can definitely support it for devices that care.
-> >   
-> > > 
-> > > Some of sensors under iio supports {pre,post}_alert or we can call near_{event,trigger}
-> > >   or {before,after,around}_{event,trigger} with FIFO.
-> > >  Flow could be:
-> > >   1. in configure_fifo hook(see below), the host configures the device FIFO mode/size
-> > >   2. in {pre,post}enable hook, the host starts conversion
-> > >   3. in IRQ handler, the host reads FIFO content,
-> > >      then push the result to buffer, and reports events to user,
-> > >      then restart the conversion or not, it depends of application/device etc.
-> > > 
-> > >  Here is some device (not complete list):
-> > >   accel/adxl345
-> > >     datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL345.pdf
-> > >     see: Table 22. Trigger Mode: When triggered by the trigger bit...
-> > >     note: as I understand the datasheet, this mode can be pre or post alert too,
-> > >      it depends of the value of FIFO_CTL[4:0](Samples Bits)
-> > >   staging/accel/adis16240
-> > >   adc/ti-ads7142
-> > > 
-> > > Overall, not only 2 devices, but many devices are affected under iio,
-> > >  and I think in addition to "buffer_mode", the FIFO configuration should
-> > >  also be included this ABI. And here, I think, the fifo_mode is a better name than buffer_mode.
-> > > 
-> > > Here is my suggestion:
-> > > 
-> > > This should be configured with buffered mode.
-> > > 
-> > > enum iio_chan_info_enum {
-> > > ...
-> > > 	IIO_CHAN_INFO_CALIBAMBIENT,
-> > > +	IIO_CHAN_INFO_FIFOSIZE,
-> > > };
-> > > 
-> > > IIO_CHAN_INFO_FIFOSIZE: a new sysfs entry comes up under /sys/bus/iio/devices/iio:deviceX/
-> > >  with "fifosize" postfix. This will be per device property mostly.  
-> > 
-> > Add this to the hwfifo_ attributes that are already defined. 
-> > This is going to be per buffer rather than per channel so should
-> > be something like bufferX/hwfifo_length 
-> > 
-> >   
-> > > 
-> > > +enum iio_fifo_mode {
-> > > +	IIO_FIFO_MODE_START_BURST,
-> > > +	IIO_FIFO_MODE_STOP_BURST,
-> > > +	IIO_FIFO_MODE_BEFORE_EVENT,
-> > > +	IIO_FIFO_MODE_AFTER_EVENT,
-> > > +	IIO_FIFO_MODE_AROUND_EVENT,
-> > > +};  
-> > 
-> > Can we collapse the 3 event cases to
-> > IIO_FIFO_MODE_EVENT then
-> > provide separate controls around 
-> > hfifo_event_prescans
-> > hfifo_event_postscans
-> > (not sure on that naming!)
-> > and use normal rules that any IIO write may effect other attributes
-> > + _available attributes to specify what range these can take.
-> > 
-> > Obviously would make the internals of drivers a little more complex
-> > but would avoid an odd corner case where a device supports a fully
-> > flexible AROUND_EVENT that can also == BEFORE_EVENT or AFTER_EVENT
-> > depending on the settings.
-> >   
-> > > 
-> > > struct iio_buffer_setup_ops {
-> > > 	int (*preenable)(struct iio_dev *);
-> > > 	int (*postenable)(struct iio_dev *);
-> > > 	int (*predisable)(struct iio_dev *);
-> > > 	int (*postdisable)(struct iio_dev *);
-> > > 	bool (*validate_scan_mask)(struct iio_dev *indio_dev,
-> > > 				   const unsigned long *scan_mask);
-> > > +	int fifo_mode_mask;
-> > > +	int (*configure_fifo)(struct iio_dev*);
-> > > };
-> > > 
-> > > If the device supports any of iio_fifo_mode, it can be configured with fifo_mode_mask.
-> > > If fifo_mode_mask have any flags, two new sysfs entry comes up
-> > >  /sys/bus/iio/devices/iio:deviceX/buffer/fifo_mode
-> > >  /sys/bus/iio/devices/iio:deviceX/buffer/fifo_mode_available  
-> > 
-> > bufferY/hwfifo_mode* but otherwise agreed..
-> >   
-> > > I dont think, different fifo modes will be configurable by channel in the future,
-> > >  but in that case, fifo_mode_mask_separate, etc can be added.  
-> > 
-> > No chance of it by definition.  A buffer is a set of scans run together, if
-> > individual channels can have different options for this, they are in different
-> > buffers.
-> >   
-> > > 
-> > > The new configure_fifo hook could be called before preenable hook.  
-> > 
-> > Hmm. Maybe, or perhaps for now we leave it as a job for preenable/postenable
-> > and see how a number of drivers end up looking.  I'm not 100% sure we need
-> > an additional callback for this.   There is a reasonable argument
-> > we should think about pulling the sysfs stuff for hwfifo_ setup
-> > into the core, but there is no rush to do that either.
-> >   
-> > > 
-> > > I think this can cover the requirements for a while.  
-> > 
-> > Nice explanation and I agree it should work.
-> > 
-> >   
-> > >   
-> > > >     
-> > > > > 
-> > > > > The in_voltageY_raw can be used, if the buffering mode is not enabled
-> > > > >  in sysfs(buffer/enable).
-> > > > >  The driver initiates a single conversion in the device for each
-> > > > >  read request(in_voltageY_raw).
-> > > > >  This is a one-shot conversion.
-> > > > >  See chapter 7.4.2.2 "Manual Mode with AUTO Sequence" in datasheet.
-> > > > > 
-> > > > > Datasheet: https://www.ti.com/lit/ds/symlink/ads7142.pdf
-> > > > > 
-> > > > > Signed-off-by: Jozsef Horvath <info@ministro.hu>    
-> > > >     
-> > > > > ---
-> > > > > 
-> > > > > changes v1
-> > > > >   - All of the buffer opertaion modes
-> > > > >     (pre_alert, post_alert, start_burst, stop_burst)
-> > > > > 	are added
-> > > > >   - Added triggered buffer
-> > > > >   - Added buffer operation mode selection sysfs support
-> > > > >   - Redundant parameters (ti,threshold-rising, etc.)
-> > > > >     are removed
-> > > > >   - Supply name changed(vref -> avdd)
-> > > > >   - Added dvdd supply
-> > > > >   - Added device sampling rate calculation
-> > > > >   - Use device-managed functions for regulator, iio device register
-> > > > >     and triggered buffer
-> > > > > 
-> > > > > changes v2
-> > > > >   - Unreachable statements removed
-> > > > >   - ti_ads7142_buffered_setup_and_start returns without error when
-> > > > >     pre/post alert mode is selected, but no thresh_{rising/falling}
-> > > > >     enabled on any channel. Fixed with return -EINVAL in the case above.
-> > > > >   - Stylistical changes
-> > > > >   - devm_regulator_get return value error/NULL handling.
-> > > > >   - "ti,prealert-count" parameter added, just for completeness.
-> > > > > ---
-> > > > >  .../ABI/testing/sysfs-bus-iio-adc-ti-ads7142  |   11 +
-> > > > >  MAINTAINERS                                   |    7 +
-> > > > >  drivers/iio/adc/Kconfig                       |   13 +
-> > > > >  drivers/iio/adc/Makefile                      |    1 +
-> > > > >  drivers/iio/adc/ti-ads7142.c                  | 1461 +++++++++++++++++
-> > > > >  5 files changed, 1493 insertions(+)
-> > > > >  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-ti-ads7142
-> > > > >  create mode 100644 drivers/iio/adc/ti-ads7142.c
-> > > > > 
-> > > > > diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-ti-ads7142 b/Documentation/ABI/testing/sysfs-bus-iio-adc-ti-ads7142
-> > > > > new file mode 100644
-> > > > > index 000000000000..485017235f4a
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/ABI/testing/sysfs-bus-iio-adc-ti-ads7142
-> > > > > @@ -0,0 +1,11 @@
-> > > > > +What:		/sys/bus/iio/devices/iio:deviceX/buffer_mode_available
-> > > > > +Date:		May 2021
-> > > > > +KernelVersion:	5.13
-> > > > > +Contact:	info@ministro.hu
-> > > > > +Description: 	List all available buffer_mode settings.    
-> > > > 
-> > > > List them out with detailed explanation of what each one does + how it interacts
-> > > > with the trigger etc.
-> > > >     
-> > > 
-> > > Ok, I'll do that.
-> > >   
-> > > > > +
-> > > > > +What:		/sys/bus/iio/devices/iio:deviceX/buffer_mode
-> > > > > +Date:		May 2021
-> > > > > +KernelVersion:	5.13
-> > > > > +Contact:	info@ministro.hu
-> > > > > +Description: 	Sets up the device data buffer mode.  
-> > 
-> > ...
-> >   
-> > > > > +#include <linux/iio/triggered_buffer.h>
-> > > > > +
-> > > > > +#define TI_ADS7142_NAME					"ads7142"
-> > > > > +
-> > > > > +#define TI_ADS7142_DATA_VALID_TIMEOUT			100
-> > > > > +
-> > > > > +/* Opcodes for commands */
-> > > > > +/* General */
-> > > > > +#define TI_ADS7142_OC_GENERAL				0x00    
-> > > > 
-> > > > the names of the defines are fairly self explanatory. I'd drop the comments
-> > > > unless you think they add a lot.  (Keep the Opcodes for commands line though
-> > > > as OC isn't obvious).
-> > > >     
-> > > 
-> > > I tried to follow the structure and names like in datasheet  
-> > 
-> > Sure, just saying you don't need the comments for most of this
-> > /* Single Register Read */ is obviously from SINGLE_REG_READ
-> > 
-> > All comments like this end up doing is bit rotting so only use
-> > them if they add significant value.
-> >   
-> > >   
-> > > > > +/* Single Register Read */
-> > > > > +#define TI_ADS7142_OC_SINGLE_REG_READ			0x10
-> > > > > +/* Single Register Write */
-> > > > > +#define TI_ADS7142_OC_SINGLE_REG_WRITE			0x08
-> > > > > +/* Single Bit Set */
-> > > > > +#define TI_ADS7142_OC_SET_BIT				0x18
-> > > > > +/* Single Bit Clear */
-> > > > > +#define TI_ADS7142_OC_CLEAR_BIT				0x20
-> > > > > +/* Block Register Read */
-> > > > > +#define TI_ADS7142_OC_BLOCK_READ			0x30
-> > > > > +/* Block Register Write */
-> > > > > +#define TI_ADS7142_OC_BLOCK_WRITE			0x28
-> > > > > +  
-> > 
-> > ...
-> > 
-> > ...
-> >   
-> > > > > +
-> > > > > +static int ti_ads7142_hys_set(struct iio_dev *indio_dev, int channel,
-> > > > > +			      int hysteresis)
-> > > > > +{
-> > > > > +	struct i2c_client *client = to_i2c_client(indio_dev->dev.parent);
-> > > > > +	int ret;
-> > > > > +
-> > > > > +	if (hysteresis < 0 || hysteresis > TI_ADS7142_HYSTERESIS_MSK)
-> > > > > +		return -EINVAL;
-> > > > > +
-> > > > > +	ret = ti_ads7142_reg_write(client, TI_ADS7142_DWC_HYS_CH0 + channel,
-> > > > > +				   hysteresis & TI_ADS7142_HYSTERESIS_MSK);    
-> > > > 
-> > > > I'd suggest either a cache of current value, or even better think about using
-> > > > regmap to handle all the caching for you.
-> > > >     
-> > > 
-> > > I'll use regmap.  
-> > 
-> > I'm not sure how it will interact with the fact not everything on this
-> > device is register based, but good to give it a quick go and see what
-> > it looks like.
-> >  
-> 
-> As I see, I have to use dvm_regmap_init with custom regmap_bus and config.
-> I'll try and, we will see it. I see some devices(ads7924, ads7138, ads7128,
->  tla2528, ...) with similar I2C protocol, maybe worth it to do. 
->  
-> > >   
-> >   
-> > > > > +		goto seq_start;
-> > > > > +
-> > > > > +	/*
-> > > > > +	 * Pre and post alert settings
-> > > > > +	 */
-> > > > > +	ret = ti_ads7142_reg_write(client, TI_ADS7142_PRE_ALT_EVT_CNT,
-> > > > > +				   priv->config.prealert_count &
-> > > > > +				   TI_ADS7142_PRE_ALT_EVT_CNT_MSK);
-> > > > > +	if (ret)
-> > > > > +		return ret;
-> > > > > +
-> > > > > +	ret = ti_ads7142_reg_write(client, TI_ADS7142_ALT_LOW_FLAGS,
-> > > > > +				   TI_ADS7142_ALT_LOW_FLAGS_CH0
-> > > > > +				   | TI_ADS7142_ALT_LOW_FLAGS_CH1);
-> > > > > +	if (ret)
-> > > > > +		return ret;
-> > > > > +
-> > > > > +	ret = ti_ads7142_reg_write(client, TI_ADS7142_ALT_HIGH_FLAGS,
-> > > > > +				   TI_ADS7142_ALT_HIGH_FLAGS_CH0
-> > > > > +				   | TI_ADS7142_ALT_HIGH_FLAGS_CH1);
-> > > > > +	if (ret)
-> > > > > +		return ret;
-> > > > > +
-> > > > > +	for_each_set_bit(i, indio_dev->active_scan_mask,
-> > > > > +			 indio_dev->masklength) {
-> > > > > +		channel = ti_ads7142_address2channel(indio_dev, i);
-> > > > > +		if (!channel)
-> > > > > +			return -ENODEV;
-> > > > > +
-> > > > > +		ret = ti_ads7142_hth_set(indio_dev, channel->channel,
-> > > > > +					 channel->config.high_threshold);
-> > > > > +		if (ret)
-> > > > > +			return ret;
-> > > > > +
-> > > > > +		ret = ti_ads7142_lth_set(indio_dev, channel->channel,
-> > > > > +					 channel->config.low_threshold);
-> > > > > +		if (ret)
-> > > > > +			return ret;
-> > > > > +
-> > > > > +		ret = ti_ads7142_hys_set(indio_dev, channel->channel,
-> > > > > +					 channel->config.hysteresis);
-> > > > > +		if (ret)
-> > > > > +			return ret;
-> > > > > +
-> > > > > +		if (channel->config.alert_low ||
-> > > > > +		    channel->config.alert_high) {
-> > > > > +			alert_ch |= 1 << channel->channel;
-> > > > > +		}    
-> > > > 
-> > > > It's unusual to only have events enable if the buffer is also enabled.
-> > > > Is there any way we can allow an events only configuration?
-> > > > If not, fair enough but we may need to think about whether we need some
-> > > > extra documentation around that.
-> > > >     
-> > > 
-> > > I think, without threshold value/enable, the pre/post alert is pointless.
-> > > I'll explain it in docs  
-> > 
-> > Ah. So these basically exist to give control over the events.
-> > Definitely needs documentation.
-> > 
-> > We also need some way of linking the buffer back to the particular
-> > event.  That may need some thought.  If we have a device that supports
-> > N events but only one is used to trigger pre / post alert, then we need
-> > to be able to specify which.   Could do that by providing triggers to
-> > represent the different available events (only useable by this driver)
-> >   
-> 
-> Could we extend the buffer items with meta info? (timestamp is now exists).
-
-Yes, it's possible, but it isn't easy to define in a generic fashion and
-that would be a requirement for any additional metadata.
-
-Note we need to keep to fixed size scans, so meta data that is only sometimes
-present could only be handled via a level of indirection.  Basically you'd
-have some sort of metadata buffer index, that points to a separate kfifo or
-similar with metadata.  Metadata you can have for every scan is easier
-to handle, or where you don't mind wasting a bit of space.
-
-However, I'm not sure it's needed here.  Can you have more than one trigger
-event enabled at the same time?  If you can, do you actually care what caused
-the event (in a fashion that can't be trivially established from the data?)
-If it was an over event, you'd expect the relevant data point to be over
-the limit for example.
+diff --git a/drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.c b/drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.c
+index 4d08e4ab5c1b..bb061205679d 100644
+--- a/drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.c
++++ b/drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.c
+@@ -218,7 +218,8 @@ static void gpmi_dump_info(struct gpmi_nand_data *this)
+ 		"ECC Strength           : %u\n"
+ 		"Page Size in Bytes     : %u\n"
+ 		"Metadata Size in Bytes : %u\n"
+-		"ECC Chunk Size in Bytes: %u\n"
++		"ECC Chunk0 Size in Bytes: %u\n"
++		"ECC Chunkn Size in Bytes: %u\n"
+ 		"ECC Chunk Count        : %u\n"
+ 		"Payload Size in Bytes  : %u\n"
+ 		"Auxiliary Size in Bytes: %u\n"
+@@ -229,7 +230,8 @@ static void gpmi_dump_info(struct gpmi_nand_data *this)
+ 		geo->ecc_strength,
+ 		geo->page_size,
+ 		geo->metadata_size,
+-		geo->ecc_chunk_size,
++		geo->ecc_chunk0_size,
++		geo->ecc_chunkn_size,
+ 		geo->ecc_chunk_count,
+ 		geo->payload_size,
+ 		geo->auxiliary_size,
+@@ -251,6 +253,37 @@ static inline bool gpmi_check_ecc(struct gpmi_nand_data *this)
+ 	return geo->ecc_strength <= this->devdata->bch_max_ecc_strength;
+ }
  
-> 
-> > > > > +static int ti_ads7142_buffered_collect(struct iio_dev *indio_dev,
-> > > > > +				       int *channel_collected)
-> > > > > +{
-> > > > > +	struct ti_ads7142_priv *priv = iio_priv(indio_dev);
-> > > > > +	struct i2c_client *client = to_i2c_client(indio_dev->dev.parent);
-> > > > > +	int scan_channel_count;
-> > > > > +	int have_valid_data;
-> > > > > +	int data_valid;
-> > > > > +	u16 data_buffer;
-> > > > > +	u16 buffer[TI_ADS7142_CHANNEL_COUNT];
-> > > > > +	u8 seq_channels = 0;
-> > > > > +	int channel_address;
-> > > > > +	int value;
-> > > > > +	int i, j;
-> > > > > +	int ret;
-> > > > > +
-> > > > > +	scan_channel_count = bitmap_weight(indio_dev->active_scan_mask,
-> > > > > +					   indio_dev->masklength);
-> > > > > +	if (!scan_channel_count)
-> > > > > +		return -EINVAL;
-> > > > > +
-> > > > > +	for_each_set_bit(i, indio_dev->active_scan_mask,
-> > > > > +			 indio_dev->masklength) {
-> > > > > +		seq_channels |= 1 << i;
-> > > > > +	}    
-> > > > 
-> > > > Kernel style is no brackets around a single line statement like this.
-> > > > Also, isn't this duplicating the active_scan_mask?
-> > > >     
-> > > 
-> > > You are right, this is redundancy
-> > >   
-> > > > > +
-> > > > > +	do {
-> > > > > +		memset(priv->scan_data, 0x00, indio_dev->scan_bytes);    
-> > > > 
-> > > > This should be unnecessary as the priv data is kzalloc'd in the first place, so
-> > > > all we can do here is leak old timestamps or channel values (actually timestamps
-> > > > can't leak anyway because either we write it or it never goes in the buffer, but
-> > > > that's harder to explain ;)
-> > > >     
-> > > 
-> > > Ok, I'll remove it
-> > >   
-> > > >     
-> > > > > +		have_valid_data = 0;
-> > > > > +		for (i = 0; i < scan_channel_count; i++) {
-> > > > > +			ret = ti_ads7142_data_buffer_read(client,
-> > > > > +							  sizeof(data_buffer),
-> > > > > +							  &data_buffer);
-> > > > > +			if (ret)
-> > > > > +				return ret;
-> > > > > +			data_buffer = be16_to_cpu(data_buffer);    
-> > > > 
-> > > > Definitely preferred to have two local variables when doing endian conversions
-> > > > Lets use track what endian a particular one is.  Not to mention you'll get
-> > > > static checker warnings on this as it stands.
-> > > >    
-> > > 
-> > > I'll correct this. Thank you for explanation
-> > >    
-> > > >     
-> > > > > +			data_valid = data_buffer & 1;
-> > > > > +			if (!data_valid) {
-> > > > > +				ret = -ENOENT;
-> > > > > +				break;
-> > > > > +			}
-> > > > > +
-> > > > > +			channel_address = (data_buffer >> 1) & 0x7;    
-> > > > 
-> > > > FIELD_GET() perhaps?
-> > > >     
-> > > > > +			if (!(seq_channels & 1 << channel_address)) {    
-> > > > 
-> > > > test_bit()    
-> > > 
-> > > Ok, I'll do that
-> > >   
-> > > >     
-> > > > > +				dev_err(indio_dev->dev.parent,
-> > > > > +					"%s: invalid channel address(%d)",
-> > > > > +					__func__, channel_address);
-> > > > > +				return -EIO;
-> > > > > +			}
-> > > > > +
-> > > > > +			value = data_buffer >> 4;
-> > > > > +			buffer[channel_address] = value;
-> > > > > +			have_valid_data = 1;
-> > > > > +			if (channel_collected)
-> > > > > +				*channel_collected |= 1 << channel_address;
-> > > > > +		}
-> > > > > +
-> > > > > +		if (!have_valid_data)
-> > > > > +			continue;
-> > > > > +
-> > > > > +		j = 0;
-> > > > > +		for_each_set_bit(i, indio_dev->active_scan_mask,
-> > > > > +				 indio_dev->masklength) {    
-> > > > 
-> > > > This confuses me somewhat.  The code above appears to suggest that you will only
-> > > > be reading the entries you want anyway, so why can you not just fill scan_data
-> > > > directly in that loop?
-> > > >     
-> > > 
-> > > This is because the buffer[] indexed with channel_address value, reported by the device
-> > >  for the conversion result, and if only the AIN1 selected for scanning, the conversion
-> > >  result goes to buffer[1], but scan_bytes in this case is 2, so the
-> > >  iio_push_to_buffers_with_timestamp will shows the priv->scan_data[0] to the user.  
-> > 
-> > But the choice to put the channel into the location referenced by channel_address
-> > is made in this code.   You could store it directly into priv->scan_data[0] where
-> > you currently put it into buffer[1], just need to use a similar j++ type pattern
-> > to what you have here in the above loop rather than this one.  
-> 
-> You are right.
-> 
-> >   
-> > >   
-> > > > > +			priv->scan_data[j] = buffer[i];
-> > > > > +			j++;
-> > > > > +		}
-> > > > > +		iio_push_to_buffers_with_timestamp(indio_dev, priv->scan_data,
-> > > > > +						   iio_get_time_ns(indio_dev));
-> > > > > +	} while (data_valid);
-> > > > > +
-> > > > > +	return ret;
-> > > > > +}  
-> > ...
-> >   
-> > > > > +	if (priv->config.buffer_mode == TI_ADS7142_BUFFM_START_BURST ||
-> > > > > +	    priv->config.buffer_mode == TI_ADS7142_BUFFM_STOP_BURST) {
-> > > > > +		ret = ti_ads7142_buffered_setup_and_start(indio_dev);
-> > > > > +		if (ret) {
-> > > > > +			dev_err(indio_dev->dev.parent,
-> > > > > +				"%s: error(%d) when starting %s mode",
-> > > > > +				__func__, ret,
-> > > > > +				ti_ads7142_buffer_modes[priv->config.buffer_mode]);
-> > > > > +			goto err_unlock;    
-> > > > 
-> > > > What code to return when you get an error in an interrupt handler is always
-> > > > an interesting question.   However, in this case we've handled the interrupt, but
-> > > > not restarted capture.  Returning IRQ_NONE doesn't feel right.
-> > > >     
-> > > 
-> > > You are right, but who knows what happends with the device.
-> > > In this case, what about iio_trigger_notify_done? It reenables the pollfunc.  
-> > 
-> > Yup. Though in that case we will just end up stuck rather than potentially 
-> > triggering misleading spurious interrupt messages in the log.
-> > 
-> > There isn't really a right answer for this though.
-> >  
-> 
-> Ok, I'll change dev_err's to dev_dbg, and skip iio_trigger_notify_done
->  in case of error.
->  
-> > >   
-> > > > > +		}
-> > > > > +	}
-> > > > > +
-> > > > > +	mutex_unlock(&priv->lock);
-> > > > > +	iio_trigger_notify_done(indio_dev->trig);
-> > > > > +
-> > > > > +	return IRQ_HANDLED;
-> > > > > +
-> > > > > +err_unlock:
-> > > > > +	mutex_unlock(&priv->lock);
-> > > > > +	return IRQ_NONE;
-> > > > > +}
-> > > > > +  
-> > 
-> > Fun device and interesting driver :)
-> >   
-> 
-> It seems, it raised more questions than I thought. I started this driver because
->  I needed a super mini, low-power ADC and I developed the pre_alert mode support
->  just for fun.
-> The problems we are facing are very interesting for me.
-> 
-> My plan:
-> 1. I would complete this driver as is.
-
-Great.
-
-> 2. I would start working on industrialio-capture
->   - I'll add capture support to ti-ads7142 driver
->   - I'll add capture(DMA) support to ti_am335x_adc driver
->     (I have an am3359 devkit on my shelf.)
->   These two example will show, how simple is to add capture support :)
-
-As mentioned I think a small addition to the interface will work for this,
-without confusing the existing ABI or really introducing any new concepts
-(we have too many concepts in IIO already!)
-
-For the am335x, I would want to understand the usecase that isn't fulfilled
-by existing capture mechanism.  I don't recall it having a threshold driven
-start / stop, so it might be a stretch to argue in favour of something that
-could just be implemented as normal buffer enable / disable signals from
-userspace.
-
-> 3. I would extend the industrialio-buffer with event metadata
-
-That one is hard to do, because the description of metadata tends to be
-have a huge space.  We've had it come up quite a few times, and no
-workable proposals yet. (Actually I'm not sure it ever got beyond the
-level of questions you have here :)
-
-> > Jonathan  
-> 
-> 
-> Thank you
-> 
-> Best regards
-> József
++static inline bool bbm_in_data_chunk(struct gpmi_nand_data *this,
++			unsigned int *chunk_num)
++{
++	struct bch_geometry *geo = &this->bch_geometry;
++	struct nand_chip *chip = &this->nand;
++	struct mtd_info *mtd = nand_to_mtd(chip);
++	unsigned int i, j;
++
++	if (geo->ecc_chunk0_size != geo->ecc_chunkn_size) {
++		dev_err(this->dev, "The size of chunk0 must equal to chunkn\n");
++		return false;
++	}
++
++	i = (mtd->writesize * 8 - geo->metadata_size * 8) /
++		(geo->gf_len * geo->ecc_strength +
++			geo->ecc_chunkn_size * 8);
++
++	j = (mtd->writesize * 8 - geo->metadata_size * 8) -
++		(geo->gf_len * geo->ecc_strength +
++			geo->ecc_chunkn_size * 8) * i;
++
++	if (j < geo->ecc_chunkn_size * 8) {
++		*chunk_num = i+1;
++		dev_dbg(this->dev, "Set ecc to %d and bbm in chunk %d\n",
++				geo->ecc_strength, *chunk_num);
++		return true;
++	}
++
++	return false;
++}
++
+ /*
+  * If we can get the ECC information from the nand chip, we do not
+  * need to calculate them ourselves.
+@@ -280,13 +313,14 @@ static int set_geometry_by_ecc_info(struct gpmi_nand_data *this,
+ 			nanddev_get_ecc_requirements(&chip->base)->step_size);
+ 		return -EINVAL;
+ 	}
+-	geo->ecc_chunk_size = ecc_step;
++	geo->ecc_chunk0_size = ecc_step;
++	geo->ecc_chunkn_size = ecc_step;
+ 	geo->ecc_strength = round_up(ecc_strength, 2);
+ 	if (!gpmi_check_ecc(this))
+ 		return -EINVAL;
+ 
+ 	/* Keep the C >= O */
+-	if (geo->ecc_chunk_size < mtd->oobsize) {
++	if (geo->ecc_chunkn_size < mtd->oobsize) {
+ 		dev_err(this->dev,
+ 			"unsupported nand chip. ecc size: %d, oob size : %d\n",
+ 			ecc_step, mtd->oobsize);
+@@ -296,7 +330,7 @@ static int set_geometry_by_ecc_info(struct gpmi_nand_data *this,
+ 	/* The default value, see comment in the legacy_set_geometry(). */
+ 	geo->metadata_size = 10;
+ 
+-	geo->ecc_chunk_count = mtd->writesize / geo->ecc_chunk_size;
++	geo->ecc_chunk_count = mtd->writesize / geo->ecc_chunkn_size;
+ 
+ 	/*
+ 	 * Now, the NAND chip with 2K page(data chunk is 512byte) shows below:
+@@ -399,6 +433,132 @@ static inline int get_ecc_strength(struct gpmi_nand_data *this)
+ 	return round_down(ecc_strength, 2);
+ }
+ 
++static int set_geometry_for_large_oob(struct gpmi_nand_data *this)
++{
++	struct bch_geometry *geo = &this->bch_geometry;
++	struct nand_chip *chip = &this->nand;
++	struct mtd_info *mtd = nand_to_mtd(chip);
++	const struct nand_ecc_props *requirements =
++		nanddev_get_ecc_requirements(&chip->base);
++	unsigned int block_mark_bit_offset;
++	unsigned int max_ecc;
++	unsigned int bbm_chunk;
++	unsigned int i;
++
++	/* sanity check for the minimum ecc nand required */
++	if (!(requirements->strength > 0 &&
++	      requirements->step_size > 0))
++		return -EINVAL;
++	geo->ecc_strength = requirements->strength;
++
++	/* check if platform can support this nand */
++	if (!gpmi_check_ecc(this)) {
++		dev_err(this->dev,
++			"unsupported NAND chip, minimum ecc required %d\n",
++			geo->ecc_strength);
++		return -EINVAL;
++	}
++
++	/* calculate the maximum ecc platform can support*/
++	geo->metadata_size = 10;
++	geo->gf_len = 14;
++	geo->ecc_chunk0_size = 1024;
++	geo->ecc_chunkn_size = 1024;
++	geo->ecc_chunk_count = mtd->writesize / geo->ecc_chunkn_size;
++	max_ecc = min(get_ecc_strength(this),
++		      this->devdata->bch_max_ecc_strength);
++
++	/* search a supported ecc strength that makes bbm */
++	/* located in data chunk  */
++	geo->ecc_strength = requirements->strength;
++	while (!(geo->ecc_strength > max_ecc)) {
++		if (bbm_in_data_chunk(this, &bbm_chunk))
++			goto geo_setting;
++		geo->ecc_strength += 2;
++	}
++
++	/* if none of them works, keep using the minimum ecc */
++	/* nand required but changing ecc page layout  */
++	geo->ecc_strength = requirements->strength;
++	/* add extra ecc for meta data */
++	geo->ecc_chunk0_size = 0;
++	geo->ecc_chunk_count = (mtd->writesize / geo->ecc_chunkn_size) + 1;
++	geo->ecc_for_meta = 1;
++	/* check if oob can afford this extra ecc chunk */
++	if (mtd->oobsize * 8 < geo->metadata_size * 8 +
++	    geo->gf_len * geo->ecc_strength * geo->ecc_chunk_count) {
++		dev_err(this->dev, "unsupported NAND chip with new layout\n");
++		return -EINVAL;
++	}
++
++	/* calculate in which chunk bbm located */
++	bbm_chunk = (mtd->writesize * 8 - geo->metadata_size * 8 -
++		     geo->gf_len * geo->ecc_strength) /
++		     (geo->gf_len * geo->ecc_strength +
++		     geo->ecc_chunkn_size * 8) + 1;
++
++geo_setting:
++
++	geo->page_size = mtd->writesize + geo->metadata_size +
++		(geo->gf_len * geo->ecc_strength * geo->ecc_chunk_count) / 8;
++	geo->payload_size = mtd->writesize;
++
++	/*
++	 * The auxiliary buffer contains the metadata and the ECC status. The
++	 * metadata is padded to the nearest 32-bit boundary. The ECC status
++	 * contains one byte for every ECC chunk, and is also padded to the
++	 * nearest 32-bit boundary.
++	 */
++	geo->auxiliary_status_offset = ALIGN(geo->metadata_size, 4);
++	geo->auxiliary_size = ALIGN(geo->metadata_size, 4)
++				    + ALIGN(geo->ecc_chunk_count, 4);
++
++	if (!this->swap_block_mark)
++		return 0;
++
++	/* calculate the number of ecc chunk behind the bbm */
++	i = (mtd->writesize / geo->ecc_chunkn_size) - bbm_chunk + 1;
++
++	block_mark_bit_offset = mtd->writesize * 8 -
++		(geo->ecc_strength * geo->gf_len * (geo->ecc_chunk_count - i)
++		+ geo->metadata_size * 8);
++
++	geo->block_mark_byte_offset = block_mark_bit_offset / 8;
++	geo->block_mark_bit_offset  = block_mark_bit_offset % 8;
++
++	dev_dbg(this->dev, "BCH Geometry :\n"
++		"GF length              : %u\n"
++		"ECC Strength           : %u\n"
++		"Page Size in Bytes     : %u\n"
++		"Metadata Size in Bytes : %u\n"
++		"ECC Chunk0 Size in Bytes: %u\n"
++		"ECC Chunkn Size in Bytes: %u\n"
++		"ECC Chunk Count        : %u\n"
++		"Payload Size in Bytes  : %u\n"
++		"Auxiliary Size in Bytes: %u\n"
++		"Auxiliary Status Offset: %u\n"
++		"Block Mark Byte Offset : %u\n"
++		"Block Mark Bit Offset  : %u\n"
++		"Block Mark in chunk	: %u\n"
++		"Ecc for Meta data	: %u\n",
++		geo->gf_len,
++		geo->ecc_strength,
++		geo->page_size,
++		geo->metadata_size,
++		geo->ecc_chunk0_size,
++		geo->ecc_chunkn_size,
++		geo->ecc_chunk_count,
++		geo->payload_size,
++		geo->auxiliary_size,
++		geo->auxiliary_status_offset,
++		geo->block_mark_byte_offset,
++		geo->block_mark_bit_offset,
++		bbm_chunk,
++		geo->ecc_for_meta);
++
++	return 0;
++}
++
+ static int legacy_set_geometry(struct gpmi_nand_data *this)
+ {
+ 	struct bch_geometry *geo = &this->bch_geometry;
+@@ -407,6 +567,7 @@ static int legacy_set_geometry(struct gpmi_nand_data *this)
+ 	unsigned int status_size;
+ 	unsigned int block_mark_bit_offset;
+ 
++	dev_warn(this->dev, "use legacy bch geometry\n");
+ 	/*
+ 	 * The size of the metadata can be changed, though we set it to 10
+ 	 * bytes now. But it can't be too large, because we have to save
+@@ -418,13 +579,15 @@ static int legacy_set_geometry(struct gpmi_nand_data *this)
+ 	geo->gf_len = 13;
+ 
+ 	/* The default for chunk size. */
+-	geo->ecc_chunk_size = 512;
+-	while (geo->ecc_chunk_size < mtd->oobsize) {
+-		geo->ecc_chunk_size *= 2; /* keep C >= O */
++	geo->ecc_chunk0_size = 512;
++	geo->ecc_chunkn_size = 512;
++	while (geo->ecc_chunkn_size < mtd->oobsize) {
++		geo->ecc_chunk0_size *= 2; /* keep C >= O */
++		geo->ecc_chunkn_size *= 2; /* keep C >= O */
+ 		geo->gf_len = 14;
+ 	}
+ 
+-	geo->ecc_chunk_count = mtd->writesize / geo->ecc_chunk_size;
++	geo->ecc_chunk_count = mtd->writesize / geo->ecc_chunkn_size;
+ 
+ 	/* We use the same ECC strength for all chunks. */
+ 	geo->ecc_strength = get_ecc_strength(this);
+@@ -514,24 +677,23 @@ static int legacy_set_geometry(struct gpmi_nand_data *this)
+ static int common_nfc_set_geometry(struct gpmi_nand_data *this)
+ {
+ 	struct nand_chip *chip = &this->nand;
++	struct mtd_info *mtd = nand_to_mtd(&this->nand);
+ 	const struct nand_ecc_props *requirements =
+ 		nanddev_get_ecc_requirements(&chip->base);
+ 
+-	if (chip->ecc.strength > 0 && chip->ecc.size > 0)
+-		return set_geometry_by_ecc_info(this, chip->ecc.strength,
+-						chip->ecc.size);
+-
+-	if ((of_property_read_bool(this->dev->of_node, "fsl,use-minimum-ecc"))
+-				|| legacy_set_geometry(this)) {
+-		if (!(requirements->strength > 0 && requirements->step_size > 0))
+-			return -EINVAL;
++	/* first check if need to use legacy bch geometry settings */
++	if ((!(requirements->strength > 0 && requirements->step_size > 0) &&
++	    mtd->oobsize < 1024) ||
++	    of_property_read_bool(this->dev->of_node, "fsl,legacy-bch-geometry"))
++		return legacy_set_geometry(this);
+ 
+-		return set_geometry_by_ecc_info(this,
+-						requirements->strength,
+-						requirements->step_size);
+-	}
++	/* then check if need to set bch geometry for large oob nand */
++	if (mtd->oobsize > 1024 || requirements->step_size < mtd->oobsize)
++		return set_geometry_for_large_oob(this);
+ 
+-	return 0;
++	/* set bch geometry by nand chip minimum required strength & step size*/
++	return set_geometry_by_ecc_info(this, requirements->strength,
++					requirements->step_size);
+ }
+ 
+ /* Configures the geometry for BCH.  */
+@@ -806,7 +968,7 @@ static int gpmi_raw_len_to_len(struct gpmi_nand_data *this, int raw_len)
+ 	 * we are passed in exec_op. Calculate the data length from it.
+ 	 */
+ 	if (this->bch)
+-		return ALIGN_DOWN(raw_len, this->bch_geometry.ecc_chunk_size);
++		return ALIGN_DOWN(raw_len, this->bch_geometry.ecc_chunkn_size);
+ 	else
+ 		return raw_len;
+ }
+@@ -1212,7 +1374,7 @@ static int gpmi_count_bitflips(struct nand_chip *chip, void *buf, int first,
+ 
+ 			/* Read ECC bytes into our internal raw_buffer */
+ 			offset = nfc_geo->metadata_size * 8;
+-			offset += ((8 * nfc_geo->ecc_chunk_size) + eccbits) * (i + 1);
++			offset += ((8 * nfc_geo->ecc_chunkn_size) + eccbits) * (i + 1);
+ 			offset -= eccbits;
+ 			bitoffset = offset % 8;
+ 			eccbytes = DIV_ROUND_UP(offset + eccbits, 8);
+@@ -1249,16 +1411,16 @@ static int gpmi_count_bitflips(struct nand_chip *chip, void *buf, int first,
+ 			if (i == 0) {
+ 				/* The first block includes metadata */
+ 				flips = nand_check_erased_ecc_chunk(
+-						buf + i * nfc_geo->ecc_chunk_size,
+-						nfc_geo->ecc_chunk_size,
++						buf + i * nfc_geo->ecc_chunkn_size,
++						nfc_geo->ecc_chunkn_size,
+ 						eccbuf, eccbytes,
+ 						this->auxiliary_virt,
+ 						nfc_geo->metadata_size,
+ 						nfc_geo->ecc_strength);
+ 			} else {
+ 				flips = nand_check_erased_ecc_chunk(
+-						buf + i * nfc_geo->ecc_chunk_size,
+-						nfc_geo->ecc_chunk_size,
++						buf + i * nfc_geo->ecc_chunkn_size,
++						nfc_geo->ecc_chunkn_size,
+ 						eccbuf, eccbytes,
+ 						NULL, 0,
+ 						nfc_geo->ecc_strength);
+@@ -1287,20 +1449,21 @@ static void gpmi_bch_layout_std(struct gpmi_nand_data *this)
+ 	struct bch_geometry *geo = &this->bch_geometry;
+ 	unsigned int ecc_strength = geo->ecc_strength >> 1;
+ 	unsigned int gf_len = geo->gf_len;
+-	unsigned int block_size = geo->ecc_chunk_size;
++	unsigned int block0_size = geo->ecc_chunk0_size;
++	unsigned int blockn_size = geo->ecc_chunkn_size;
+ 
+ 	this->bch_flashlayout0 =
+ 		BF_BCH_FLASH0LAYOUT0_NBLOCKS(geo->ecc_chunk_count - 1) |
+ 		BF_BCH_FLASH0LAYOUT0_META_SIZE(geo->metadata_size) |
+ 		BF_BCH_FLASH0LAYOUT0_ECC0(ecc_strength, this) |
+ 		BF_BCH_FLASH0LAYOUT0_GF(gf_len, this) |
+-		BF_BCH_FLASH0LAYOUT0_DATA0_SIZE(block_size, this);
++		BF_BCH_FLASH0LAYOUT0_DATA0_SIZE(block0_size, this);
+ 
+ 	this->bch_flashlayout1 =
+ 		BF_BCH_FLASH0LAYOUT1_PAGE_SIZE(geo->page_size) |
+ 		BF_BCH_FLASH0LAYOUT1_ECCN(ecc_strength, this) |
+ 		BF_BCH_FLASH0LAYOUT1_GF(gf_len, this) |
+-		BF_BCH_FLASH0LAYOUT1_DATAN_SIZE(block_size, this);
++		BF_BCH_FLASH0LAYOUT1_DATAN_SIZE(blockn_size, this);
+ }
+ 
+ static int gpmi_ecc_read_page(struct nand_chip *chip, uint8_t *buf,
+@@ -1383,9 +1546,22 @@ static int gpmi_ecc_read_subpage(struct nand_chip *chip, uint32_t offs,
+ 		}
+ 	}
+ 
++	/*
++	 * if there is an ECC dedicate for meta:
++	 * - need to add an extra ECC size when calculating col and page_size,
++	 *   if the meta size is NOT zero.
++	 * - chunk0 size need to set to the same size as other chunks,
++	 *   if the meta size is zero.
++	 */
++
+ 	meta = geo->metadata_size;
+ 	if (first) {
+-		col = meta + (size + ecc_parity_size) * first;
++		if (geo->ecc_for_meta)
++			col = meta + ecc_parity_size
++				+ (size + ecc_parity_size) * first;
++		else
++			col = meta + (size + ecc_parity_size) * first;
++
+ 		meta = 0;
+ 		buf = buf + first * size;
+ 	}
+@@ -1393,19 +1569,27 @@ static int gpmi_ecc_read_subpage(struct nand_chip *chip, uint32_t offs,
+ 	ecc_parity_size = geo->gf_len * geo->ecc_strength / 8;
+ 
+ 	n = last - first + 1;
+-	page_size = meta + (size + ecc_parity_size) * n;
++
++	if (geo->ecc_for_meta && meta)
++		page_size = meta + ecc_parity_size
++			+ (size + ecc_parity_size) * n;
++	else
++		page_size = meta + (size + ecc_parity_size) * n;
++
+ 	ecc_strength = geo->ecc_strength >> 1;
+ 
+-	this->bch_flashlayout0 = BF_BCH_FLASH0LAYOUT0_NBLOCKS(n - 1) |
++	this->bch_flashlayout0 = BF_BCH_FLASH0LAYOUT0_NBLOCKS(
++		(geo->ecc_for_meta ? n : n - 1)) |
+ 		BF_BCH_FLASH0LAYOUT0_META_SIZE(meta) |
+ 		BF_BCH_FLASH0LAYOUT0_ECC0(ecc_strength, this) |
+ 		BF_BCH_FLASH0LAYOUT0_GF(geo->gf_len, this) |
+-		BF_BCH_FLASH0LAYOUT0_DATA0_SIZE(geo->ecc_chunk_size, this);
++		BF_BCH_FLASH0LAYOUT0_DATA0_SIZE((geo->ecc_for_meta ?
++		0 : geo->ecc_chunk0_size), this);
+ 
+ 	this->bch_flashlayout1 = BF_BCH_FLASH0LAYOUT1_PAGE_SIZE(page_size) |
+ 		BF_BCH_FLASH0LAYOUT1_ECCN(ecc_strength, this) |
+ 		BF_BCH_FLASH0LAYOUT1_GF(geo->gf_len, this) |
+-		BF_BCH_FLASH0LAYOUT1_DATAN_SIZE(geo->ecc_chunk_size, this);
++		BF_BCH_FLASH0LAYOUT1_DATAN_SIZE(geo->ecc_chunkn_size, this);
+ 
+ 	this->bch = true;
+ 
+@@ -1577,7 +1761,7 @@ static int gpmi_ecc_read_page_raw(struct nand_chip *chip, uint8_t *buf,
+ 	struct mtd_info *mtd = nand_to_mtd(chip);
+ 	struct gpmi_nand_data *this = nand_get_controller_data(chip);
+ 	struct bch_geometry *nfc_geo = &this->bch_geometry;
+-	int eccsize = nfc_geo->ecc_chunk_size;
++	int eccsize = nfc_geo->ecc_chunkn_size;
+ 	int eccbits = nfc_geo->ecc_strength * nfc_geo->gf_len;
+ 	u8 *tmp_buf = this->raw_buffer;
+ 	size_t src_bit_off;
+@@ -1662,7 +1846,7 @@ static int gpmi_ecc_write_page_raw(struct nand_chip *chip, const uint8_t *buf,
+ 	struct mtd_info *mtd = nand_to_mtd(chip);
+ 	struct gpmi_nand_data *this = nand_get_controller_data(chip);
+ 	struct bch_geometry *nfc_geo = &this->bch_geometry;
+-	int eccsize = nfc_geo->ecc_chunk_size;
++	int eccsize = nfc_geo->ecc_chunkn_size;
+ 	int eccbits = nfc_geo->ecc_strength * nfc_geo->gf_len;
+ 	u8 *tmp_buf = this->raw_buffer;
+ 	uint8_t *oob = chip->oob_poi;
+@@ -2036,7 +2220,7 @@ static int gpmi_init_last(struct gpmi_nand_data *this)
+ 	ecc->read_oob_raw = gpmi_ecc_read_oob_raw;
+ 	ecc->write_oob_raw = gpmi_ecc_write_oob_raw;
+ 	ecc->engine_type = NAND_ECC_ENGINE_TYPE_ON_HOST;
+-	ecc->size	= bch_geo->ecc_chunk_size;
++	ecc->size	= bch_geo->ecc_chunkn_size;
+ 	ecc->strength	= bch_geo->ecc_strength;
+ 	mtd_set_ooblayout(mtd, &gpmi_ooblayout_ops);
+ 
+diff --git a/drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.h b/drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.h
+index fdc5ed7de083..e612f5c22293 100644
+--- a/drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.h
++++ b/drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.h
+@@ -30,9 +30,9 @@ struct resources {
+  * @page_size:                The size, in bytes, of a physical page, including
+  *                            both data and OOB.
+  * @metadata_size:            The size, in bytes, of the metadata.
+- * @ecc_chunk_size:           The size, in bytes, of a single ECC chunk. Note
+- *                            the first chunk in the page includes both data and
+- *                            metadata, so it's a bit larger than this value.
++ * @ecc_chunk0_size:          The size, in bytes, of a first ECC chunk.
++ * @ecc_chunkn_size:          The size, in bytes, of a single ECC chunk after
++ *                            the first chunk in the page.
+  * @ecc_chunk_count:          The number of ECC chunks in the page,
+  * @payload_size:             The size, in bytes, of the payload buffer.
+  * @auxiliary_size:           The size, in bytes, of the auxiliary buffer.
+@@ -42,19 +42,23 @@ struct resources {
+  *                            which the underlying physical block mark appears.
+  * @block_mark_bit_offset:    The bit offset into the ECC-based page view at
+  *                            which the underlying physical block mark appears.
++ * @ecc_for_meta:             The flag to indicate if there is a dedicate ecc
++ *                            for meta.
+  */
+ struct bch_geometry {
+ 	unsigned int  gf_len;
+ 	unsigned int  ecc_strength;
+ 	unsigned int  page_size;
+ 	unsigned int  metadata_size;
+-	unsigned int  ecc_chunk_size;
++	unsigned int  ecc_chunk0_size;
++	unsigned int  ecc_chunkn_size;
+ 	unsigned int  ecc_chunk_count;
+ 	unsigned int  payload_size;
+ 	unsigned int  auxiliary_size;
+ 	unsigned int  auxiliary_status_offset;
+ 	unsigned int  block_mark_byte_offset;
+ 	unsigned int  block_mark_bit_offset;
++	unsigned int  ecc_for_meta; /* ECC for meta data */
+ };
+ 
+ /**
+-- 
+2.17.1
 
