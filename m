@@ -2,49 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BEBB38D620
-	for <lists+devicetree@lfdr.de>; Sat, 22 May 2021 16:10:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF69738D630
+	for <lists+devicetree@lfdr.de>; Sat, 22 May 2021 16:46:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230336AbhEVOL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 May 2021 10:11:57 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47272 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230301AbhEVOLx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 22 May 2021 10:11:53 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 85C8561176;
-        Sat, 22 May 2021 14:10:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621692628;
-        bh=H4qnApTos5x3+TgMDimpnbGQABU8Hn3nnvMg0d7M5/0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=l5t02FrNMH9gynwz2kSBgHbA+hN3vSurXOu62jvbAxuxm41AT7yq9srM12K/YRN9t
-         wWF0OX9DQW0fH5mjlO5f3GJVWtI1MC8CXN2INu929+/ownPAU4c/VaekpEM7/EnT4C
-         bqePbw2nE5WSVYyz20500G+tGbfGaP+nsRxE7WoqUHjd68n5IZnRarih0GJn/LaquL
-         5VC092nTnYbICI5cdIF65/qo0Hk39s9wdl10As3ronHDQioXlY8fG73UQGo/3tVrOt
-         5SxvTtPDxOWQels5CGxh97cfWXkQx+j5kDJkNtIm4/QQcpwoVV2NfocvXBaywtIoI6
-         YwEe3UtmtyNvw==
-Date:   Sat, 22 May 2021 22:10:20 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        shengjiu.wang@gmail.com
-Subject: Re: [PATCH] ARM: dts: imx7d-sdb: Add HDMI audio sound card
-Message-ID: <20210522141020.GF8194@dragon>
-References: <1619664755-12631-1-git-send-email-shengjiu.wang@nxp.com>
+        id S230492AbhEVOrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 May 2021 10:47:51 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:35787 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230489AbhEVOrv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 22 May 2021 10:47:51 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id D0EE0580548;
+        Sat, 22 May 2021 10:46:25 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Sat, 22 May 2021 10:46:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        subject:to:cc:references:from:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm2; bh=l
+        +A4yTvicWmupzboZaUYCZiVaO0UIe5ScpESUsU9qVg=; b=mwHxG35kMgCv7LB1q
+        m93yPspC9iIzIASxKMhRZY1PR8SrosB/MEsjWl4gSBI/JdqPGpa6FuMTsgIiAfmI
+        YzcaAdan8ZtJ62q+q/Bc6u6WLJFy7Ll3nD2//RqnaI/LmDnQT8d9FUxr4KBtH5Aq
+        kSMzbC1/IrxXkwWEG9gttRmEfB5uMoGPeJB89QCsKnUmrgUzWgHid8s0UGjDJQah
+        DZ8K9q4ZO3+k0U9XkySSvPnwGVYHaDFLT6/2iS6ozm6Kice/zU7Lx8LOts5JfRr+
+        VkU0qSgF5vxQNvueWpEe6+Erc+razb106C0+GvS6uySIgG//rx3sPaAxshpkP038
+        s8sAA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; bh=l+A4yTvicWmupzboZaUYCZiVaO0UIe5ScpESUsU9q
+        Vg=; b=iyAe4uF97inD6q5ixipJ+wohnSaIU0vpOgaqTbb9qhER7he1xfsSQsST5
+        FfTT471rBYOLmhMPq50VrLdjulb+EWRly8UVHItfjEPTtOJwgvzmRCwreiC+XnnR
+        dT/ZIwssiN+AvtoTBh+v+oV0u/hijmmhJYHxSFXbEPAyF8Ln4UaE4Y4LaZBFJuNK
+        788Cto/lEqgvKlIPBsUHC15V8fRKixJhUQj5sbRM6l4maXDlHpyvwCr6A45dMECF
+        L/cDdaaNlZ7vWKmidBmIPRV9dPBD5YMgRpP49qUgSDSPKbDSgVDht1/kYFRp/l+A
+        /fX4qA43zzt9GdPhLrMtAj7dU+kHQ==
+X-ME-Sender: <xms:QBmpYJjkpcFS2_wmtrqZSvtpo3bySRLsojU_b8LHqP2TTcUaPhogZw>
+    <xme:QBmpYOAAGVPZMl09HHqrIcap2pjOC_232fNRDnZUdN1-E4IYv0bijB8LmqPWtRxSN
+    Ms_ZhJ03KB0u3JefA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdejhedgkeduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvfhfhkffffgggjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepgfevffetleehffejueekvdekvdeitdehveegfeekheeuieeiueet
+    uefgtedtgeegnecukfhppedufeeirdefvddrieefrddvgedvnecuvehluhhsthgvrhfuih
+    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghn
+    ugdrohhrgh
+X-ME-Proxy: <xmx:QBmpYJH3Tt5O3b2M96vRFL50wX_Wt_3hlqUzCXyvK8IX6sDkYXFHCA>
+    <xmx:QBmpYOQam9bpn4SgZ4Ah3aUlcHYFuOhrgdTWld995fbQ1VODx1qCCg>
+    <xmx:QBmpYGwPp3iT1KdpmG90bNgtnGAhN5X2Q3tDhsu5UtdE2gjYwA9U6A>
+    <xmx:QRmpYLpU4P3ia9SLLd4VKUaYzW3tpJvYn37TKMBl2XKtPL07Hy5c5Q>
+Received: from [192.168.18.153] (unknown [136.32.63.242])
+        by mail.messagingengine.com (Postfix) with ESMTPA;
+        Sat, 22 May 2021 10:46:23 -0400 (EDT)
+Subject: Re: [PATCH v6 01/17] dt-bindings: mfd: axp20x: Add AXP305 compatible
+ (plus optional IRQ)
+To:     Andre Przywara <andre.przywara@arm.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
+        Ondrej Jirman <megous@megous.com>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Lee Jones <lee.jones@linaro.org>
+References: <20210519104152.21119-1-andre.przywara@arm.com>
+ <20210519104152.21119-2-andre.przywara@arm.com>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <7ebfaef7-5cf2-e60c-99ef-4275c873e72d@sholland.org>
+Date:   Sat, 22 May 2021 09:46:23 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1619664755-12631-1-git-send-email-shengjiu.wang@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20210519104152.21119-2-andre.przywara@arm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 29, 2021 at 10:52:35AM +0800, Shengjiu Wang wrote:
-> Add HDMI audio sound card, the interface is sii902x.
-> 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+On 5/19/21 5:41 AM, Andre Przywara wrote:
+> The AXP305 PMIC used in AXP805 seems to be fully compatible to the
+                  ^^^^^^^^^^^^^^
+Typo? Do you mean "used with the H616 SoC"?
 
-Applied, thanks.
+> AXP805 PMIC, so add the proper chain of compatible strings.
+> 
+> Also at least on one board (Orangepi Zero2) there is no interrupt line
+> connected to the CPU, so make the "interrupts" property optional.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/axp20x.txt | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/axp20x.txt b/Documentation/devicetree/bindings/mfd/axp20x.txt
+> index 4991a6415796..4fd748101e3c 100644
+> --- a/Documentation/devicetree/bindings/mfd/axp20x.txt
+> +++ b/Documentation/devicetree/bindings/mfd/axp20x.txt
+> @@ -26,10 +26,10 @@ Required properties:
+>      * "x-powers,axp803"
+>      * "x-powers,axp806"
+>      * "x-powers,axp805", "x-powers,axp806"
+> +    * "x-powers,axp803", "x-powers,axp805", "x-powers,axp806"
+                   ^^^^^^
+This should be x-powers,axp305.
+
+Regards,
+Samuel
+
+>      * "x-powers,axp809"
+>      * "x-powers,axp813"
+>  - reg: The I2C slave address or RSB hardware address for the AXP chip
+> -- interrupts: SoC NMI / GPIO interrupt connected to the PMIC's IRQ pin
+>  - interrupt-controller: The PMIC has its own internal IRQs
+>  - #interrupt-cells: Should be set to 1
+>  
+> @@ -43,6 +43,7 @@ more information:
+>  			AXP20x/LDO3: software-based implementation
+>  
+>  Optional properties:
+> +- interrupts: SoC NMI / GPIO interrupt connected to the PMIC's IRQ pin
+>  - x-powers,dcdc-freq: defines the work frequency of DC-DC in KHz
+>  		      AXP152/20X: range:  750-1875, Default: 1.5 MHz
+>  		      AXP22X/8XX: range: 1800-4050, Default: 3   MHz
+> 
+
