@@ -2,348 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5669E38D432
-	for <lists+devicetree@lfdr.de>; Sat, 22 May 2021 09:32:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3014C38D4EE
+	for <lists+devicetree@lfdr.de>; Sat, 22 May 2021 11:51:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229985AbhEVHeA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 May 2021 03:34:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43476 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229979AbhEVHd7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 May 2021 03:33:59 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EEEAC061574;
-        Sat, 22 May 2021 00:32:35 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id l11-20020a05600c4f0bb029017a7cd488f5so5660973wmq.0;
-        Sat, 22 May 2021 00:32:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=WSZ2Q/Y0q3YRoddUYp+sP5TJC5PcpIK6WETfZxBFk8g=;
-        b=S36AzcFneWYjgWZT59ihXTAK+LkYSOW5PWkjWRW5kvQX/up+Zw2MMnKfZCsqjKiWfU
-         5b5+NJZC3Mk17kisI1gjNIJKRIkx8N+GLPTWvxX8BHgpRxnNgwkaeSNYkxgAhbCcDBFK
-         oEXEUnfUq15COqKjGEHx1QV/3Y8P4MUiO4mD6NyAhhjy1P55IgReSZCnN4V9xCi7FD7C
-         rQWCZQUIbwbJ5AbM1FfqeVONHmRrScOYoXCHrEibgK9E9634kLf1bewF8Rz0FPI7pRzb
-         gTr4Wv4HppqwZK27PMCD5kgkdgKgaaGzwwEmsDtUEHlO2NQ3mOQcU2L90JlyEenwzEX2
-         Bq8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=WSZ2Q/Y0q3YRoddUYp+sP5TJC5PcpIK6WETfZxBFk8g=;
-        b=RgcD+VaHAfZjUZ0OvtrlUoUN6qNfnWhybxWvwa8H9TZlnDudhOgBX9hP3i1g+1ReWX
-         4rJiaKNtQbiZ1xIaQt8xjMxgMflyMfpZoL8yZ6c4LFey38rYMzOyhMI/+Jr8CTvuGqzE
-         eeYGu33DncnmuNm0P98YS29DQhNDu+3ZKGoelrm9Lyqk5+vuAYrjp8R8mQl0qDkE2sVP
-         lf8AjTOO3a6FgzXdw9mjqZu5ibdIDEKRq1sIcsDqAPnW3/wTrcHdZ80xz5hLwLuBg4vC
-         CtgGtC3twiZl0iH73Xkb50xsrq1ei7/LsnugYg2fzHQ5ztgEzshPGHfkteeeLMHTIl11
-         X02A==
-X-Gm-Message-State: AOAM533eYe0IGWk9ZWxoJDbrO3/pfCUXgVXb4ORanrn4dZBZsy72gN7M
-        zZtL6WibSOTgeGq/FMFD3DY=
-X-Google-Smtp-Source: ABdhPJzmdmK4dbOlCeYSEwnLB+uxVeYDgFALbpxtajo9rW3Iq3FbBNNEZOoOQJ8hYYL+VY6+KXa9CQ==
-X-Received: by 2002:a1c:cc05:: with SMTP id h5mr12243907wmb.92.1621668753769;
-        Sat, 22 May 2021 00:32:33 -0700 (PDT)
-Received: from kista.localnet (cpe-86-58-17-133.cable.triera.net. [86.58.17.133])
-        by smtp.gmail.com with ESMTPSA id n6sm1669727wmq.34.2021.05.22.00.32.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 May 2021 00:32:33 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Andre Przywara <andre.przywara@arm.com>
-Cc:     Rob Herring <robh@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
-        Samuel Holland <samuel@sholland.org>,
-        Ondrej Jirman <megous@megous.com>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 17/17] arm64: dts: allwinner: h616: Add X96 Mate TV box support
-Date:   Sat, 22 May 2021 09:32:32 +0200
-Message-ID: <2338288.Zx76mVtT47@kista>
-In-Reply-To: <20210519104152.21119-18-andre.przywara@arm.com>
-References: <20210519104152.21119-1-andre.przywara@arm.com> <20210519104152.21119-18-andre.przywara@arm.com>
+        id S230298AbhEVJwi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 May 2021 05:52:38 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:22039 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230207AbhEVJwi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 May 2021 05:52:38 -0400
+X-UUID: 3be9b6b4c9af4c8db00d7a7d7cefbdf7-20210522
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=aaYsqkqjYTO4Peo/NYX1DMDat+z2Uuc/qMNttr4MZeA=;
+        b=Fg9RpcwLKseJ7ImoKxodQ6n9ZuR94Ch71aS4tAV2bCqKvgfN88D6IpPZN0CixsHZoI02Wv6sibe+d+c3RbEfxiuxyR+vnH8tzrP9X1QTw9at/44hSO0pNH0dy/bvbTa4qvP6QukMXoKERqEQNeSTtvW/hrd4AHOyIREwDbIwF8M=;
+X-UUID: 3be9b6b4c9af4c8db00d7a7d7cefbdf7-20210522
+Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 878822936; Sat, 22 May 2021 17:51:11 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N2.mediatek.inc
+ (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sat, 22 May
+ 2021 17:51:00 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 22 May 2021 17:50:59 +0800
+Message-ID: <1621677059.2894.14.camel@mhfsdcap03>
+Subject: Re: [PATCH v4,3/6] media: mtk-vcodec: Support 4GB~8GB range iova
+ space for venc
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Tzung-Bi Shih <tzungbi@google.com>
+CC:     Irui Wang <irui.wang@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        "Tiffany Lin" <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        "Longfei Wang" <longfei.wang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Sat, 22 May 2021 17:50:59 +0800
+In-Reply-To: <CA+Px+wXkn2ih0JdgKBOoHZU1=QqO=vE1MAP5tauHvRe=rtjg7g@mail.gmail.com>
+References: <20210521070139.20644-1-irui.wang@mediatek.com>
+         <20210521070139.20644-4-irui.wang@mediatek.com>
+         <CA+Px+wXkn2ih0JdgKBOoHZU1=QqO=vE1MAP5tauHvRe=rtjg7g@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-TM-SNTS-SMTP: D209C5D26ECC073ABCE984EEC7E77BD5AD0A4CF1B0D8E0187A280BECBD0F64C82000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andre!
-
-Dne sreda, 19. maj 2021 ob 12:41:52 CEST je Andre Przywara napisal(a):
-> The X96 Mate is an Allwinner H616 based TV box, featuring:
->   - Four ARM Cortex-A53 cores, Mali-G31 MP2 GPU
->   - 2GiB/4GiB RAM (fully usable!)
->   - 16/32/64GiB eMMC
->   - 100Mbps Ethernet (via embedded AC200 EPHY, not yet supported)
->   - Unsupported Allwinner WiFi chip
->   - 2 x USB 2.0 host ports
->   - HDMI port
->   - IR receiver
->   - 5V/2A DC power supply via barrel plug
-> 
-> For more information see: https://linux-sunxi.org/X96_Mate
-> 
-> Add a basic devicetree for it, with SD card, eMMC and USB working, as
-> well as serial and the essential peripherals, like the AXP PMIC.
-> 
-> This DT is somewhat minimal, and should work on many other similar TV
-> boxes with the Allwinner H616 chip.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
->  .../dts/allwinner/sun50i-h616-x96-mate.dts    | 201 ++++++++++++++++++
->  2 files changed, 202 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/
-allwinner/Makefile
-> index 9ba4b5d92657..370d24ebaacf 100644
-> --- a/arch/arm64/boot/dts/allwinner/Makefile
-> +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> @@ -37,3 +37,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
-> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts b/arch/
-arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-> new file mode 100644
-> index 000000000000..b960bb310289
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-> @@ -0,0 +1,201 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> +/*
-> + * Copyright (C) 2021 Arm Ltd.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sun50i-h616.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
-> +	model = "X96 Mate";
-> +	compatible = "hechuang,x96-mate", "allwinner,sun50i-h616";
-
-Please document compatible.
-
-Best regards,
-Jernej
-
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	reg_vcc5v: vcc5v {
-> +		/* board wide 5V supply directly from the DC input */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc-5v";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +	};
-> +};
-> +
-> +&ehci0 {
-> +	status = "okay";
-> +};
-> +
-> +&ehci2 {
-> +	status = "okay";
-> +};
-> +
-> +&ir {
-> +	status = "okay";
-> +};
-> +
-> +&mmc0 {
-> +	vmmc-supply = <&reg_dcdce>;
-> +	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-> +	bus-width = <4>;
-> +	status = "okay";
-> +};
-> +
-> +&mmc2 {
-> +	vmmc-supply = <&reg_dcdce>;
-> +	vqmmc-supply = <&reg_bldo1>;
-> +	bus-width = <8>;
-> +	non-removable;
-> +	cap-mmc-hw-reset;
-> +	mmc-hs200-1_8v;
-> +	status = "okay";
-> +};
-> +
-> +&ohci0 {
-> +	status = "okay";
-> +};
-> +
-> +&ohci2 {
-> +	status = "okay";
-> +};
-> +
-> +&r_rsb {
-> +	status = "okay";
-> +
-> +	axp305: pmic@745 {
-> +		compatible = "x-powers,axp305", "x-powers,axp805",
-> +			     "x-powers,axp806";
-> +		interrupt-controller;
-> +		#interrupt-cells = <1>;
-> +		reg = <0x745>;
-> +
-> +		x-powers,self-working-mode;
-> +		vina-supply = <&reg_vcc5v>;
-> +		vinb-supply = <&reg_vcc5v>;
-> +		vinc-supply = <&reg_vcc5v>;
-> +		vind-supply = <&reg_vcc5v>;
-> +		vine-supply = <&reg_vcc5v>;
-> +		aldoin-supply = <&reg_vcc5v>;
-> +		bldoin-supply = <&reg_vcc5v>;
-> +		cldoin-supply = <&reg_vcc5v>;
-> +
-> +		regulators {
-> +			reg_aldo1: aldo1 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = 
-<3300000>;
-> +				regulator-max-microvolt = 
-<3300000>;
-> +				regulator-name = "vcc-sys";
-> +			};
-> +
-> +			/* Enabled by the Android BSP */
-> +			reg_aldo2: aldo2 {
-> +				regulator-min-microvolt = 
-<3300000>;
-> +				regulator-max-microvolt = 
-<3300000>;
-> +				regulator-name = "vcc3v3-ext";
-> +				status = "disabled";
-> +			};
-> +
-> +			/* Enabled by the Android BSP */
-> +			reg_aldo3: aldo3 {
-> +				regulator-min-microvolt = 
-<3300000>;
-> +				regulator-max-microvolt = 
-<3300000>;
-> +				regulator-name = "vcc3v3-ext2";
-> +				status = "disabled";
-> +			};
-> +
-> +			reg_bldo1: bldo1 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = 
-<1800000>;
-> +				regulator-max-microvolt = 
-<1800000>;
-> +				regulator-name = "vcc1v8";
-> +			};
-> +
-> +			/* Enabled by the Android BSP */
-> +			reg_bldo2: bldo2 {
-> +				regulator-min-microvolt = 
-<1800000>;
-> +				regulator-max-microvolt = 
-<1800000>;
-> +				regulator-name = "vcc1v8-2";
-> +				status = "disabled";
-> +			};
-> +
-> +			bldo3 {
-> +				/* unused */
-> +			};
-> +
-> +			bldo4 {
-> +				/* unused */
-> +			};
-> +
-> +			cldo1 {
-> +				regulator-min-microvolt = 
-<2500000>;
-> +				regulator-max-microvolt = 
-<2500000>;
-> +				regulator-name = "vcc2v5";
-> +			};
-> +
-> +			cldo2 {
-> +				/* unused */
-> +			};
-> +
-> +			cldo3 {
-> +				/* unused */
-> +			};
-> +
-> +			reg_dcdca: dcdca {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = 
-<810000>;
-> +				regulator-max-microvolt = 
-<1080000>;
-> +				regulator-name = "vdd-cpu";
-> +			};
-> +
-> +			reg_dcdcc: dcdcc {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = 
-<810000>;
-> +				regulator-max-microvolt = 
-<1080000>;
-> +				regulator-name = "vdd-gpu-sys";
-> +			};
-> +
-> +			reg_dcdcd: dcdcd {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = 
-<1360000>;
-> +				regulator-max-microvolt = 
-<1360000>;
-> +				regulator-name = "vdd-dram";
-> +			};
-> +
-> +			reg_dcdce: dcdce {
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = 
-<3300000>;
-> +				regulator-max-microvolt = 
-<3300000>;
-> +				regulator-name = "vcc-eth-mmc";
-> +			};
-> +
-> +			sw {
-> +				/* unused */
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&uart0_ph_pins>;
-> +	status = "okay";
-> +};
-> +
-> +&usbotg {
-> +	dr_mode = "host";	/* USB A type receptable */
-> +	status = "okay";
-> +};
-> +
-> +&usbphy {
-> +	status = "okay";
-> +};
-> -- 
-> 2.17.5
-> 
-> 
-
+T24gRnJpLCAyMDIxLTA1LTIxIGF0IDE2OjA2ICswODAwLCBUenVuZy1CaSBTaGloIHdyb3RlOg0K
+PiBPbiBGcmksIE1heSAyMSwgMjAyMSBhdCAzOjAyIFBNIElydWkgV2FuZyA8aXJ1aS53YW5nQG1l
+ZGlhdGVrLmNvbT4gd3JvdGU6DQo+ID4gKyAgICAgICBpZiAob2ZfZ2V0X3Byb3BlcnR5KHBkZXYt
+PmRldi5vZl9ub2RlLCAiZG1hLXJhbmdlcyIsIE5VTEwpKQ0KPiA+ICsgICAgICAgICAgICAgICBk
+bWFfc2V0X21hc2tfYW5kX2NvaGVyZW50KCZwZGV2LT5kZXYsIERNQV9CSVRfTUFTSygzNCkpOw0K
+PiA+ICsNCj4gDQo+IEZyb20geW91ciBwcmV2aW91cyBkdC1iaW5kaW5ncyBwYXRjaFsxXSwgaXQg
+aGFzIDQgYmFua3MuDQo+ID4gMH40RzsgNEd+OEc7IDhHfjEyRzsgMTJHfjE2Ry4NCj4gDQo+IEJ1
+dCwgdGhlIGNvZGUgdHJlYXRzIGl0IGFzIGEgYm9vbGVhbi4gIEkuZS4gMH40R0IgaWYgbm9uLWV4
+aXN0ZW50Ow0KPiBvdGhlcndpc2UsIDRHQn44R0IuDQoNCkhlcmUgRE1BX0JJVF9NQVNLKDM0KSBt
+ZWFucyBkbWEgYWRkcmVzcyBzdXBwb3J0IDM0Yml0cygxNkdCKS4NCg0KVGhlIGNvZGUgaXMgb2sg
+Zm9yIG1lLiBPbmx5IHRoZSBjb21taXQgbWVzc2FnZSBzaG91bGQgbm90IHNheSA0Ry04Ry4gaXQN
+CmNvdWxkIGJlIHNvbWV0aGluZyBsaWtlOg0KDQpVc2UgdGhlIGRtYV9zZXRfbWFza19hbmRfY29o
+ZXJlbnQgaGVscGVyIHRvIHNldCB2ZW5jIERNQSBiaXQgbWFzayB0bw0Kc3VwcG9ydCAzNGJpdHMg
+aW92YSBzcGFjZSgxNkdCKSB0aGF0IHRoZSBtdDgxOTIgaW9tbXUgSFcgc3VwcG9ydC4gV2hvbGUN
+CnRoZSBpb3ZhIHJhbmdlIHNlcGFyYXRlIHRvIDB+NEcvNEd+OEcvOEd+MTJHLzEyR34xNkcsIFJl
+Z2FyZGluZyB3aGljaA0KaW92YSByYW5nZSBWRU5DIGFjdHVhbGx5IGxvY2F0ZSwgaXQgZGVwZW5k
+IG9uIHRoZSBkbWEtcmFuZ2VzIHByb3BlcnR5IG9mDQp0aGUgdmVuYyBkdHNpIG5vZGUuDQoNCj4g
+DQo+IFsxXTogaHR0cHM6Ly9wYXRjaHdvcmsubGludXh0di5vcmcvcHJvamVjdC9saW51eC1tZWRp
+YS9wYXRjaC8yMDIxMDUyMTA3MDEzOS4yMDY0NC0zLWlydWkud2FuZ0BtZWRpYXRlay5jb20vDQo+
+IA0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBM
+aW51eC1tZWRpYXRlayBtYWlsaW5nIGxpc3QNCj4gTGludXgtbWVkaWF0ZWtAbGlzdHMuaW5mcmFk
+ZWFkLm9yZw0KPiBodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
+bnV4LW1lZGlhdGVrDQoNCg==
 
