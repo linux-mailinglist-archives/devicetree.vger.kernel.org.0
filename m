@@ -2,104 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D33C638DC3A
-	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 19:44:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CB3338DCE9
+	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 22:39:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231857AbhEWRp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 May 2021 13:45:56 -0400
-Received: from first.geanix.com ([116.203.34.67]:42540 "EHLO first.geanix.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231853AbhEWRpz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 23 May 2021 13:45:55 -0400
-Received: from [192.168.16.66] (unknown [185.233.254.173])
-        by first.geanix.com (Postfix) with ESMTPSA id 0C510464730;
-        Sun, 23 May 2021 17:44:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=geanix.com; s=first;
-        t=1621791867; bh=r90inEtjWd9AjzY5mLdqb1g/jrp5nd0OK1t03R2zr1M=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To;
-        b=DWC3igPN4m9tG/hWAMwhYXra7xLIrJE3w4T6RUnDm5mVmPm027GGiA2vi8McWge7D
-         wnFq/E9Ib/oHHSL79sShU3e1PhAiov9S2vcupr9ckm3SOwO6CGf29FPhdEoQFphC7c
-         jNZMTUaA3JIuuhRRW9QHdU+QBeKJHkSEkGZMviLEHJsPELRUhZmdPRhowzLI/7Jb2/
-         55U4riTZpYkVJyt3q6BfR6HdMgZeGwsr0D3y+dkK+O9jZ8IdxNNxc3PX+Vl4wUyZvc
-         og8wrQz4BUb2JReFprJv2MCyn4GjjZ3hdQgNw3kqZGaYS8UWb3zzuj/pKktKQ7Bp0q
-         AmuBiyQ7DRliw==
-Subject: Re: [PATCH 1/2] mtd: nand: raw: gpmi: new bch geometry settings
-To:     Han Xu <han.xu@nxp.com>, miquel.raynal@bootlin.com, richard@nod.at,
-        vigneshr@ti.com, robh+dt@kernel.org
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org
-References: <20210522205136.19465-1-han.xu@nxp.com>
-From:   Sean Nyekjaer <sean@geanix.com>
-Message-ID: <13c975bc-b37b-8708-9ac7-acdc62ef7108@geanix.com>
-Date:   Sun, 23 May 2021 19:44:26 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        id S232050AbhEWUk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 May 2021 16:40:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48466 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232035AbhEWUk1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 May 2021 16:40:27 -0400
+Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B224AC061574;
+        Sun, 23 May 2021 13:39:00 -0700 (PDT)
+Received: from TimeMachine.localdomain (bband-dyn255.178-41-232.t-com.sk [178.41.232.255])
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 2B9421F6AF;
+        Sun, 23 May 2021 22:32:09 +0200 (CEST)
+From:   Martin Botka <martin.botka@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        konrad.dybcio@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org,
+        Martin Botka <martin.botka@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 01/2] dt-bindings: clk: qcom: gcc-sm6125: Document SM6125 GCC driver
+Date:   Sun, 23 May 2021 22:31:59 +0200
+Message-Id: <20210523203202.691900-1-martin.botka@somainline.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210522205136.19465-1-han.xu@nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=4.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        URIBL_BLOCKED autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on 93bd6fdb21b5
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/05/2021 22.51, Han Xu wrote:
-> The code change updates the gpmi driver bch geometry settings, the NAND
-> chips required minimum ecc strength and step size will be the default
-> value. It also proposes a new way to set bch geometry for large oob NAND
-> and provides an option to keep the legacy bch geometry setting for
-> backward compatibility.
+Signed-off-by: Martin Botka <martin.botka@somainline.org>
+---
+ .../bindings/clock/qcom,gcc-sm6125.yaml       | 72 +++++++++++++++++++
+ 1 file changed, 72 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sm6125.yaml
 
-This will break all existing devicetree's. (this happened to us with the same style already merged u-boot patch)
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sm6125.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sm6125.yaml
+new file mode 100644
+index 000000000000..f7198370a1b9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sm6125.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/qcom,gcc-sm6125.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Global Clock & Reset Controller Binding for SM6125
++
++maintainers:
++  - Konrad Dybcio <konrad.dybcio@somainline.org>
++
++description: |
++  Qualcomm global clock control module which supports the clocks, resets and
++  power domains on SM6125.
++
++  See also:
++  - dt-bindings/clock/qcom,gcc-sm6125.h
++
++properties:
++  compatible:
++    const: qcom,gcc-sm6125
++
++  clocks:
++    items:
++      - description: Board XO source
++      - description: Sleep clock source
++
++  clock-names:
++    items:
++      - const: bi_tcxo
++      - const: sleep_clk
++
++  '#clock-cells':
++    const: 1
++
++  '#reset-cells':
++    const: 1
++
++  '#power-domain-cells':
++    const: 1
++
++  reg:
++    maxItems: 1
++
++  protected-clocks:
++    description:
++      Protected clock specifier list as per common clock binding.
++
++required:
++  - compatible
++  - clocks
++  - clock-names
++  - reg
++  - '#clock-cells'
++  - '#reset-cells'
++  - '#power-domain-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,rpmh.h>
++    clock-controller@1400000 {
++    compatible = "qcom,gcc-sm6125";
++      reg = <0x01400000 0x1f0000>;
++      #clock-cells = <1>;
++      #reset-cells = <1>;
++      #power-domain-cells = <1>;
++      clock-names = "bi_tcxo", "sleep_clk";
++      clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>, <&sleep_clk>;
++    };
++...
+-- 
+2.31.1
 
-> 
-> - For the legacy bch geometry settings
-> The driver uses legacy bch geometry settings if explicitly enabled it in
-> DT with fsl, legacy-bch-geometry flag, or the NAND chips are too old
-> that do NOT provide any required ecc info.
-
-NAND's are providing the minimum required ecc, the now legacy method
-actually gives more ecc bits and quite cheap when using hw ecc.
-
-> 
-> The legacy_set_geometry() sets the data chunk size(step_size) larger
-> than oob size to make sure BBM locates in data chunk, then set the
-> maximum ecc stength oob can hold. It always use unbalanced ECC layout,
-> which ecc0 will cover both meta and data0 chunk.
-> 
-> This algorithm can NOT provide strong enough ecc for some NAND chips,
-> such as some 8K+744 MLC NAND. We still leave it here just for backward
-> compatibility and als for some quite old version NAND chips support. It
-> should be en/disabled in both u-boot and kernel at the same time.
-> 
-> - For the large oob bch geometry settings
-> This type of setting will be used for NAND chips, which oob size is
-> larger than 1024B OR NAND required step size is small than oob size,
-> the general idea is,
-> 
->     1.Try all ECC strength from the minimum value required by NAND chip
->       to the maximum one that works, any ECC makes the BBM locate in
->       data chunk can be eligible.
-> 
->     2.If none of them works, using separate ECC for meta, which will add
->       one extra ecc with the same ECC strength as other data chunks.
->       This extra ECC can guarantee BBM located in data chunk, also we
->       need to check if oob can afford it.
-> 
-> - For all other common cases
-> set the bch geometry by chip required strength and step size, which uses
-> the minimum ecc strength chip required.
-> 
-> Signed-off-by: Han Xu <han.xu@nxp.com>
-
-One further point, u-boot older than v2020.04 will not be aligned with the way ecc bits is
-calculated with this patch applied(without the legacy option set).
-
-It's quite a mess :/
-I would recommend to use the legacy mode as default, and add the new style as "modern" option.
-(Also in u-boot)
-
-/Sean
