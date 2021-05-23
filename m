@@ -2,105 +2,287 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7687438D7DC
-	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 02:01:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D907738D81E
+	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 03:52:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231446AbhEWADG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 May 2021 20:03:06 -0400
-Received: from foss.arm.com ([217.140.110.172]:35602 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231433AbhEWADG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 22 May 2021 20:03:06 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8ECB21042;
-        Sat, 22 May 2021 17:01:40 -0700 (PDT)
-Received: from slackpad.fritz.box (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CADBD3F73B;
-        Sat, 22 May 2021 17:01:38 -0700 (PDT)
-Date:   Sun, 23 May 2021 01:01:24 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
-        Ondrej Jirman <megous@megous.com>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Lee Jones <lee.jones@linaro.org>
-Subject: Re: [PATCH v6 01/17] dt-bindings: mfd: axp20x: Add AXP305
- compatible (plus optional IRQ)
-Message-ID: <20210523010124.2fb56fa5@slackpad.fritz.box>
-In-Reply-To: <7ebfaef7-5cf2-e60c-99ef-4275c873e72d@sholland.org>
-References: <20210519104152.21119-1-andre.przywara@arm.com>
-        <20210519104152.21119-2-andre.przywara@arm.com>
-        <7ebfaef7-5cf2-e60c-99ef-4275c873e72d@sholland.org>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
+        id S231534AbhEWByN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 May 2021 21:54:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57376 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231495AbhEWByM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 May 2021 21:54:12 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44EB8C061574;
+        Sat, 22 May 2021 18:52:47 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0EB362A8;
+        Sun, 23 May 2021 03:52:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1621734763;
+        bh=MeOIR/VQKQIpx1pLUK5IeuUXY2aDFHrvihkPRaJYFvU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QpZmQZ7mQ6+lSdPPFTMsYGjrK0Q3PL9mFkRieKu2iZ8Na0gvGdSPg686dCGltRxfB
+         ZkPLbuFRS9xFrkY0UI9Jvzj2KHk7ncdOAkojJDUQi5Gl09Etq6c4CgqSRf+RewuHOR
+         jNU6jxG8ESi9mqawleYj5wBkg/fpdPi5YpWb1r34=
+Date:   Sun, 23 May 2021 04:52:39 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Jan Tuerk <jan.tuerk@emtrion.com>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/3] dt-bindings: gpio: pcf857x: Convert to json-schema
+Message-ID: <YKm1Z4/xULSzuoVV@pendragon.ideasonboard.com>
+References: <cover.1621583562.git.geert+renesas@glider.be>
+ <52df0592c81ac000d3f486a9ba5a4d84b0f42c47.1621583562.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <52df0592c81ac000d3f486a9ba5a4d84b0f42c47.1621583562.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 22 May 2021 09:46:23 -0500
-Samuel Holland <samuel@sholland.org> wrote:
+Hi Geert,
 
-> On 5/19/21 5:41 AM, Andre Przywara wrote:
-> > The AXP305 PMIC used in AXP805 seems to be fully compatible to the  
->                   ^^^^^^^^^^^^^^
-> Typo? Do you mean "used with the H616 SoC"?
-
-Ouch, yes. And even more embarrassingly Chen-Yu pointed that out already
-in the previous version. Same for the compatible string.
-
-Thanks for having a look!
-
-Cheers,
-Andre
-
+On Fri, May 21, 2021 at 09:54:08AM +0200, Geert Uytterhoeven wrote:
+> Convert the PCF857x-compatible I/O expanders Device Tree binding
+> documentation to json-schema.
 > 
-> > AXP805 PMIC, so add the proper chain of compatible strings.
-> > 
-> > Also at least on one board (Orangepi Zero2) there is no interrupt line
-> > connected to the CPU, so make the "interrupts" property optional.
-> > 
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >  Documentation/devicetree/bindings/mfd/axp20x.txt | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/axp20x.txt b/Documentation/devicetree/bindings/mfd/axp20x.txt
-> > index 4991a6415796..4fd748101e3c 100644
-> > --- a/Documentation/devicetree/bindings/mfd/axp20x.txt
-> > +++ b/Documentation/devicetree/bindings/mfd/axp20x.txt
-> > @@ -26,10 +26,10 @@ Required properties:
-> >      * "x-powers,axp803"
-> >      * "x-powers,axp806"
-> >      * "x-powers,axp805", "x-powers,axp806"
-> > +    * "x-powers,axp803", "x-powers,axp805", "x-powers,axp806"  
->                    ^^^^^^
-> This should be x-powers,axp305.
+> Document missing compatible values, properties, and gpio hogs.
 > 
-> Regards,
-> Samuel
-> 
-> >      * "x-powers,axp809"
-> >      * "x-powers,axp813"
-> >  - reg: The I2C slave address or RSB hardware address for the AXP chip
-> > -- interrupts: SoC NMI / GPIO interrupt connected to the PMIC's IRQ pin
-> >  - interrupt-controller: The PMIC has its own internal IRQs
-> >  - #interrupt-cells: Should be set to 1
-> >  
-> > @@ -43,6 +43,7 @@ more information:
-> >  			AXP20x/LDO3: software-based implementation
-> >  
-> >  Optional properties:
-> > +- interrupts: SoC NMI / GPIO interrupt connected to the PMIC's IRQ pin
-> >  - x-powers,dcdc-freq: defines the work frequency of DC-DC in KHz
-> >  		      AXP152/20X: range:  750-1875, Default: 1.5 MHz
-> >  		      AXP22X/8XX: range: 1800-4050, Default: 3   MHz
-> >   
-> 
-> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> Perhaps the "ti,pcf8575" construct should be removed, and the few users
+> fixed instead?
 
+Given that the driver doesn't match against it, that could be done, if
+you're confident enough that there's no difference between the TI and
+NXP versions that would need to be taken into account.
+
+> I have listed Laurent as the maintainer, as he wrote the original
+> bindings.  Laurent: Please scream if this is inappropriate ;-)
+
+I'm sure I'll regret it later, but I don't mind :-)
+
+> ---
+>  .../devicetree/bindings/gpio/gpio-pcf857x.txt |  69 ----------
+>  .../devicetree/bindings/gpio/nxp,pcf8575.yaml | 120 ++++++++++++++++++
+>  2 files changed, 120 insertions(+), 69 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-pcf857x.txt
+>  create mode 100644 Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-pcf857x.txt b/Documentation/devicetree/bindings/gpio/gpio-pcf857x.txt
+> deleted file mode 100644
+> index a482455a205b0855..0000000000000000
+> --- a/Documentation/devicetree/bindings/gpio/gpio-pcf857x.txt
+> +++ /dev/null
+> @@ -1,69 +0,0 @@
+> -* PCF857x-compatible I/O expanders
+> -
+> -The PCF857x-compatible chips have "quasi-bidirectional" I/O lines that can be
+> -driven high by a pull-up current source or driven low to ground. This combines
+> -the direction and output level into a single bit per line, which can't be read
+> -back. We can't actually know at initialization time whether a line is configured
+> -(a) as output and driving the signal low/high, or (b) as input and reporting a
+> -low/high value, without knowing the last value written since the chip came out
+> -of reset (if any). The only reliable solution for setting up line direction is
+> -thus to do it explicitly.
+> -
+> -Required Properties:
+> -
+> -  - compatible: should be one of the following.
+> -    - "maxim,max7328": For the Maxim MAX7378
+> -    - "maxim,max7329": For the Maxim MAX7329
+> -    - "nxp,pca8574": For the NXP PCA8574
+> -    - "nxp,pca8575": For the NXP PCA8575
+> -    - "nxp,pca9670": For the NXP PCA9670
+> -    - "nxp,pca9671": For the NXP PCA9671
+> -    - "nxp,pca9672": For the NXP PCA9672
+> -    - "nxp,pca9673": For the NXP PCA9673
+> -    - "nxp,pca9674": For the NXP PCA9674
+> -    - "nxp,pca9675": For the NXP PCA9675
+> -    - "nxp,pcf8574": For the NXP PCF8574
+> -    - "nxp,pcf8574a": For the NXP PCF8574A
+> -    - "nxp,pcf8575": For the NXP PCF8575
+> -
+> -  - reg: I2C slave address.
+> -
+> -  - gpio-controller: Marks the device node as a gpio controller.
+> -  - #gpio-cells: Should be 2. The first cell is the GPIO number and the second
+> -    cell specifies GPIO flags, as defined in <dt-bindings/gpio/gpio.h>. Only the
+> -    GPIO_ACTIVE_HIGH and GPIO_ACTIVE_LOW flags are supported.
+> -
+> -Optional Properties:
+> -
+> -  - lines-initial-states: Bitmask that specifies the initial state of each
+> -  line. When a bit is set to zero, the corresponding line will be initialized to
+> -  the input (pulled-up) state. When the  bit is set to one, the line will be
+> -  initialized the low-level output state. If the property is not specified
+> -  all lines will be initialized to the input state.
+> -
+> -  The I/O expander can detect input state changes, and thus optionally act as
+> -  an interrupt controller. When the expander interrupt line is connected all the
+> -  following properties must be set. For more information please see the
+> -  interrupt controller device tree bindings documentation available at
+> -  Documentation/devicetree/bindings/interrupt-controller/interrupts.txt.
+> -
+> -  - interrupt-controller: Identifies the node as an interrupt controller.
+> -  - #interrupt-cells: Number of cells to encode an interrupt source, shall be 2.
+> -  - interrupts: Interrupt specifier for the controllers interrupt.
+> -
+> -
+> -Please refer to gpio.txt in this directory for details of the common GPIO
+> -bindings used by client devices.
+> -
+> -Example: PCF8575 I/O expander node
+> -
+> -	pcf8575: gpio@20 {
+> -		compatible = "nxp,pcf8575";
+> -		reg = <0x20>;
+> -		interrupt-parent = <&irqpin2>;
+> -		interrupts = <3 0>;
+> -		gpio-controller;
+> -		#gpio-cells = <2>;
+> -		interrupt-controller;
+> -		#interrupt-cells = <2>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml b/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
+> new file mode 100644
+> index 0000000000000000..45034be0f8abc961
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
+> @@ -0,0 +1,120 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/nxp,pcf8575.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: PCF857x-compatible I/O expanders
+> +
+> +maintainers:
+> +  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> +
+> +description:
+> +  The PCF857x-compatible chips have "quasi-bidirectional" I/O lines that can be
+> +  driven high by a pull-up current source or driven low to ground. This
+> +  combines the direction and output level into a single bit per line, which
+> +  can't be read back. We can't actually know at initialization time whether a
+> +  line is configured (a) as output and driving the signal low/high, or (b) as
+> +  input and reporting a low/high value, without knowing the last value written
+> +  since the chip came out of reset (if any). The only reliable solution for
+> +  setting up line direction is thus to do it explicitly.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - ti,pcf8575
+> +          - const: nxp,pcf8575
+> +
+> +      - enum:
+> +          - maxim,max7328
+> +          - maxim,max7329
+> +          - nxp,pca8574
+> +          - nxp,pca8575
+> +          - nxp,pca9670
+> +          - nxp,pca9671
+> +          - nxp,pca9672
+> +          - nxp,pca9673
+> +          - nxp,pca9674
+> +          - nxp,pca9675
+> +          - nxp,pcf8574
+> +          - nxp,pcf8574a
+> +          - nxp,pcf8575
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +    description:
+> +      The first cell is the GPIO number and the second cell specifies GPIO
+> +      flags, as defined in <dt-bindings/gpio/gpio.h>. Only the GPIO_ACTIVE_HIGH
+> +      and GPIO_ACTIVE_LOW flags are supported.
+> +
+> +  lines-initial-states:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Bitmask that specifies the initial state of each line.
+> +      When a bit is set to zero, the corresponding line will be initialized to
+> +      the input (pulled-up) state.
+> +      When the  bit is set to one, the line will be initialized to the
+> +      low-level output state.
+> +      If the property is not specified all lines will be initialized to the
+> +      input state.
+
+The line wrapping is weird.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  '#interrupt-cells':
+> +    const: 2
+> +
+> +  wakeup-source: true
+> +
+> +patternProperties:
+> +  "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
+> +    type: object
+> +
+> +    properties:
+> +      gpio-hog: true
+> +      gpios: true
+> +      input: true
+> +      output-high: true
+> +      output-low: true
+> +      line-name: true
+> +
+> +    required:
+> +      - gpio-hog
+> +      - gpios
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - gpio-controller
+> +  - '#gpio-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            pcf8575: gpio@20 {
+> +                    compatible = "nxp,pcf8575";
+> +                    reg = <0x20>;
+> +                    interrupt-parent = <&irqpin2>;
+> +                    interrupts = <3 0>;
+> +                    gpio-controller;
+> +                    #gpio-cells = <2>;
+> +                    interrupt-controller;
+> +                    #interrupt-cells = <2>;
+> +            };
+> +    };
+
+-- 
+Regards,
+
+Laurent Pinchart
