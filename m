@@ -2,84 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31DEE38D825
-	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 03:55:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B94838D831
+	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 04:02:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231531AbhEWB4j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 May 2021 21:56:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57924 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231495AbhEWB4j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 May 2021 21:56:39 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0206BC061574;
-        Sat, 22 May 2021 18:55:14 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 877AD89A;
-        Sun, 23 May 2021 03:55:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1621734912;
-        bh=lIHG9XdMCsPizWjhBdh9flUm6yNe69HSqjnRPgAdvn4=;
+        id S231508AbhEWCDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 May 2021 22:03:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40062 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231495AbhEWCDz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 22 May 2021 22:03:55 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 87CED610CB;
+        Sun, 23 May 2021 02:02:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1621735350;
+        bh=cczRYZfUGppkbAXuhdRD6zwKWAX9/aP6TkYfeWlDzJU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NuKuwKCJEhOhOIwRa1jSp1EREag6jf/N2MAOvY0/Rr3fCBYkvXRd4leOum0wJzOnm
-         Tdd3ZfN0RjrW830uVDd5526YaS0n8hXWe1VGxAiQnJd7ChtvjAGaPJv4nRtdDtK/I0
-         zC2QlMV2JJYh5yUsvGzQ1Q0OX6CLV4cxv9cTCJBQ=
-Date:   Sun, 23 May 2021 04:55:10 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
+        b=JV1CRppCec+UJrtyTqTJm3lty798sjsgBym2QDnAHU0yco/f+1Yq+C7FI5lz47BnC
+         zdAVqTfUacwupp/FWSRSYdSjqfbZ55c/jZL8OjotCX3GtnQwliJHvhg/btPUJlx696
+         lKXe37Q0Jhx5cMwchHVk0vmRL5VQphjgQ/PJPjQbU891DHYEXlgtFja+HwiNgWfaOp
+         f2chkRTLwNVzWj7Ia7AvfxQ5x92/iEWSmTjcLsmfmL6QAmT1TSEyK7nQfgi8FbnvQw
+         2dBgW23ZHQPj8Z/Q/q9qgvShaCQ1ad6g38eIvT66W3M3smd/JFjHBpYQG/CvqAiLfY
+         0qIjgquL4bMeg==
+Date:   Sun, 23 May 2021 10:02:22 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Jan Tuerk <jan.tuerk@emtrion.com>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/3] ARM: dts: imx: emcon-avari: Fix nxp,pca8574
- #gpio-cells
-Message-ID: <YKm1/hFtNmS6rPiu@pendragon.ideasonboard.com>
-References: <cover.1621583562.git.geert+renesas@glider.be>
- <6cd916fc8c0a133cd216eee06cac86716b66eff4.1621583562.git.geert+renesas@glider.be>
+        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: imx6dl-yapp4: Use aliases to set custom MMC
+ device indexes
+Message-ID: <20210523020222.GG8194@dragon>
+References: <1619790795-8375-1-git-send-email-michal.vokac@ysoft.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <6cd916fc8c0a133cd216eee06cac86716b66eff4.1621583562.git.geert+renesas@glider.be>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1619790795-8375-1-git-send-email-michal.vokac@ysoft.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-
-Thank you for the patch.
-
-On Fri, May 21, 2021 at 09:54:07AM +0200, Geert Uytterhoeven wrote:
-> According to the DT bindings, #gpio-cells must be two.
+On Fri, Apr 30, 2021 at 03:53:15PM +0200, Michal Vokáč wrote:
+> Until commit fa2d0aa96941 ("mmc: core: Allow setting slot index via
+> device tree alias") was introduced, our usdhc3 and usdhc4 devices
+> were enumerated as mmc0 and mmc1. The mmc1 device is used to boot/update
+> the board and its name must be fixed.
 > 
-> Fixes: 63e71fedc07c4ece ("ARM: dts: Add support for emtrion emCON-MX6 series")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> ---
->  arch/arm/boot/dts/imx6qdl-emcon-avari.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> With the referenced commit, aliases from imx6qdl.dtsi took effect.
+> Override the aliases to get back the original device indexes.
 > 
-> diff --git a/arch/arm/boot/dts/imx6qdl-emcon-avari.dtsi b/arch/arm/boot/dts/imx6qdl-emcon-avari.dtsi
-> index 828cf3e39784afd6..c4e146f3341bb85d 100644
-> --- a/arch/arm/boot/dts/imx6qdl-emcon-avari.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-emcon-avari.dtsi
-> @@ -126,7 +126,7 @@ boardid: gpio@3a {
->  		compatible = "nxp,pca8574";
->  		reg = <0x3a>;
->  		gpio-controller;
-> -		#gpio-cells = <1>;
-> +		#gpio-cells = <2>;
->  	};
->  };
->  
+> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
 
--- 
-Regards,
-
-Laurent Pinchart
+Applied, thanks.
