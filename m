@@ -2,81 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0107E38D894
-	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 05:50:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1574138D911
+	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 07:08:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231549AbhEWDvY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 May 2021 23:51:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52912 "EHLO mail.kernel.org"
+        id S231445AbhEWFJj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 May 2021 01:09:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48998 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231534AbhEWDvX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 22 May 2021 23:51:23 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5B80C61175;
-        Sun, 23 May 2021 03:49:56 +0000 (UTC)
+        id S229895AbhEWFJj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 May 2021 01:09:39 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 712AC61152;
+        Sun, 23 May 2021 05:08:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621741797;
-        bh=cVG1RavaakT/pbgpnySkkEFeSCJvpy6r1jIbJQU+Z3c=;
+        s=k20201202; t=1621746493;
+        bh=mK9yzIz9e41aFiFE7aqOnNe3xw+SCXc3aojjA07+SNA=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lSMN7xUmw98yGP3zS5SiXFGjJf6T4YWGxdDwiZorcjGUKhn+55do0WwRYCimOJD+f
-         o1hhDZ4BkqrEJD2MSXDeg8ytM9cdqXRVnDEkjz9Mqgj9Wv16X4MxlnOmE9aHjKJC/T
-         dtv/McBBHjwAa2WrYKfk7M/caxH4agkTKN5LvaKvRFSQa/HVWcGmxw/G2we8TmU730
-         9WHc42cHIU0Q4GEqCreXWBf01+7f0M6ze+b+aSm2VJs4ev7K55BFa9NL9qEyx5BhXp
-         COIylFS+nmXa9B9KdAxKxXMgCSofj9C82Y7tgmFTFDFR+fT7Qhs4gQqx86+6KyoKyD
-         y0OyqncsCGygg==
-Date:   Sun, 23 May 2021 11:49:53 +0800
+        b=RLHV9FViMuX5A/QWzz5cTafYZDgTFVbbwCrDQRlNKC1ZB4OBZ3vmuBsE2Onoyy8Hh
+         IyHCEvv7JIKmMg837uaOIEi9NuuDmlGitEn5BT+asZJS81/H6lKH0YxnsstmaDzeNh
+         U7gN6XbK68v/AY6uUZhLIM589hmhTa0v0Sg4mH09PsifoMa3G+faltKn7DP8eX1UwD
+         NU+t1D5jpxYWIigC/GapU5o35/SV8IrQzP+zRmdPTyZmGX/tqP+ORghb6rEqCi3Xll
+         1JeNiqaOo43YVglypl2O9E5YeArWKBWv7sYWngOcIJXh5MYTv+BnNFKf8zn4K/Gs7w
+         PMEnUY2R6W3cw==
+Date:   Sun, 23 May 2021 13:08:08 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND] ARM: dts: imx6dl-yapp4: Configure the OLED
- display segment offset
-Message-ID: <20210523034952.GU8194@dragon>
-References: <1620813314-30803-1-git-send-email-michal.vokac@ysoft.com>
+To:     Michael Walle <michael@walle.cc>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 0/2] arm64: dts: freescale: sl28: fix RGMII
+Message-ID: <20210523050807.GV8194@dragon>
+References: <20210514185553.10095-1-michael@walle.cc>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1620813314-30803-1-git-send-email-michal.vokac@ysoft.com>
+In-Reply-To: <20210514185553.10095-1-michael@walle.cc>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 12, 2021 at 11:55:14AM +0200, Michal Vokáč wrote:
-> The imx6dl-yapp4 platform uses a GE-LX012864FWPP3N0000 OLED display.
-> The display consist of a 128x64 OLED panel and a SSD1305 controller.
+On Fri, May 14, 2021 at 08:55:51PM +0200, Michael Walle wrote:
+> This fixes the RGMII on the sl28 boards. While the network port was
+> actually working it is still out-of-spec.
 > 
-> The OLED panel resolution is 128x64 but the built-in controller default
-> resolution is 132x64. To display properly a segment offset needs to be
-> configured.
+> Please note, that this is split into two patches because each one fixes
+> a different commit.
 > 
-> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
-
-Why are you resending?  Please state reason when you resend.
-
-
-Shawn
-
-> ---
->  arch/arm/boot/dts/imx6dl-yapp4-common.dtsi | 1 +
->  1 file changed, 1 insertion(+)
+> Changes since v1:
+>   - use different subjects for the two patches. I didn't use sl28-varN
+> 	because I'd like to keep "sl28:" for all the sl28 related patches.
 > 
-> diff --git a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi b/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
-> index 51972c85e207..111d4d331f98 100644
-> --- a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
-> +++ b/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
-> @@ -373,6 +373,7 @@
->  		solomon,height = <64>;
->  		solomon,width = <128>;
->  		solomon,page-offset = <0>;
-> +		solomon,col-offset = <4>;
->  		solomon,prechargep2 = <15>;
->  		reset-gpios = <&gpio_oled 1 GPIO_ACTIVE_LOW>;
->  		vbat-supply = <&sw2_reg>;
-> -- 
-> 2.1.4
-> 
+> Michael Walle (2):
+>   arm64: dts: freescale: sl28: var4: fix RGMII clock and voltage
+>   arm64: dts: freescale: sl28: var1: fix RGMII clock and voltage
+
+Applied both, thanks.
