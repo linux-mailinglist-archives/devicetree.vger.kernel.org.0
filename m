@@ -2,57 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0E0E38D926
-	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 07:42:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEE4D38D933
+	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 08:00:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231386AbhEWFnt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 May 2021 01:43:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38700 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229895AbhEWFnt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 23 May 2021 01:43:49 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id EA8F4611CB;
-        Sun, 23 May 2021 05:42:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621748543;
-        bh=addO/W7zGFpJqIz6D31aDifsIcltUXG1VfcyZkyOm+Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=r+rmQfz72kNXSLghJNf7MAQPeF3TaS+2jQ30gsLipXFz3p89mWtI9bap40GlEQFgq
-         VSYunLmLiGWd8w1bLXPJglKWUOosIdmR9C2PqqY/lDWOLgaIWc52W8Mtft/xhTIOGI
-         2ea3Yg0Odor5bcn/4+9iP+cR81ctOqc/NtSGPszy5WOdj1ked1O476BNFD5tDTbmfT
-         U9X4nMbc9Gh6/AUcAwFTxfTxRMA2iNIQiOU49afii+mdTzS5CR0nDxMtiNe4Pgt3Wi
-         zmaoAAjdu0ctYUkOuSHw+OwovdbG8JZ656I8jlp6fYdtZyfHNNQjOrdCl8byvS9Hw2
-         Gj9u93XLySftg==
-Date:   Sun, 23 May 2021 13:42:17 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
+        id S231584AbhEWGBp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 May 2021 02:01:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54936 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231583AbhEWGBo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 May 2021 02:01:44 -0400
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2706C06138A
+        for <devicetree@vger.kernel.org>; Sat, 22 May 2021 23:00:16 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id q67so1114100pfb.4
+        for <devicetree@vger.kernel.org>; Sat, 22 May 2021 23:00:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=mBfopW5d3IJHx9JAp5B2XG/55RVDXUQjqthuHE97u5E=;
+        b=oSUc4Et4QiFnyKSiNcVYAevijCAa18konknMw+/Lyxctxi3kgxrEgTSu1LTwF9pE3G
+         n5Jgq/loSBV/hHtGZrogeyBTsK1V81mxjKeBnwk/sIetldbBf/6C3vndCA7XKnZbD7XK
+         jEDEisMicrEHkQHgy0LNOIoNIuekH2Xl9q1lzrLHbsb407nv0Ji8Xa0WL2m0JueaBK2A
+         iSNrWBQ71UDRv1PvPh7Ggw4p2yZ0qWYirBwsnk8WU3PkSuh/O5jbOld8jbvcKLKVypYD
+         vGxwEIL8vEEJ0jhq85FHQfwHSo5CywoWZjK1VxuZtC5jc9gEEm4uyu5iSMGTYEfL/UWC
+         TrLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=mBfopW5d3IJHx9JAp5B2XG/55RVDXUQjqthuHE97u5E=;
+        b=iKUCEuJBcDRCCYMm6W4UW+jt8h471DOpgpWvk+5RgHzDS4KJgh6eBYjkz503jCDrCF
+         rvBnR22d+fCToLFbJNwUBIrcp3qdXzo7bJi6DcOs8+AfdfocfgNNN5sJGPmXbb300vuK
+         TYjKyUS5kG1XDdhqSeQa5M2Qwd6tlvXr1N4n1SRr9LHXGvSJBuTxU0xf4wxM0M69VlL/
+         XUaoErRggegme9Ne+5Tee17DLwjJi3HhXuMFUYYjhZk95eKEkntUJEkngBABfC0y8rtR
+         BNtL4UZIjKTirp8xMwnfM2O3yBSdoBKbbjfKYTHqXp5/nmuWCDUCZLw2cJ/3rUoAlzAm
+         gOpA==
+X-Gm-Message-State: AOAM5312XAbLxgirWow/zjDTP4xON1bs+Ypiq/gaSTgPA7XNOuGPmwGm
+        fHiNkCc4PTyi51dlAoCszN4jHw==
+X-Google-Smtp-Source: ABdhPJzfwtxQNO5KyXLzrphaldJNDNvilmz5Qk2gCNQ8wt6N4NdfsbWD59wj/nRMo4RZdWAFOj66gQ==
+X-Received: by 2002:a63:5c1:: with SMTP id 184mr7420865pgf.75.1621749616457;
+        Sat, 22 May 2021 23:00:16 -0700 (PDT)
+Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id y20sm7267931pfn.164.2021.05.22.23.00.13
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sat, 22 May 2021 23:00:15 -0700 (PDT)
+Date:   Sun, 23 May 2021 14:00:10 +0800
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Jassi Brar <jassisinghbrar@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Jan Tuerk <jan.tuerk@emtrion.com>, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/3] ARM: dts: imx: emcon-avari: Fix nxp,pca8574
- #gpio-cells
-Message-ID: <20210523054217.GB8194@dragon>
-References: <cover.1621583562.git.geert+renesas@glider.be>
- <6cd916fc8c0a133cd216eee06cac86716b66eff4.1621583562.git.geert+renesas@glider.be>
+        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Benjamin Li <benl@squareup.com>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] mailbox: qcom: Add MSM8939 APCS support
+Message-ID: <20210523060009.GA29015@dragon>
+References: <20210503081334.17143-1-shawn.guo@linaro.org>
+ <20210503081334.17143-3-shawn.guo@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <6cd916fc8c0a133cd216eee06cac86716b66eff4.1621583562.git.geert+renesas@glider.be>
+In-Reply-To: <20210503081334.17143-3-shawn.guo@linaro.org>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 21, 2021 at 09:54:07AM +0200, Geert Uytterhoeven wrote:
-> According to the DT bindings, #gpio-cells must be two.
+On Mon, May 03, 2021 at 04:13:34PM +0800, Shawn Guo wrote:
+> MSM8939 has 3 APCS instances for Cluster0 (little cores), Cluster1 (big
+> cores) and CCI (Cache Coherent Interconnect).  Although only APCS of
+> Cluster0 and Cluster1 have IPC bits, each of 3 APCS has A53PLL clock
+> control bits.  That said, we need to register 3 'qcom-apcs-msm8916-clk'
+> devices to instantiate all 3 clocks.  Let's use PLATFORM_DEVID_AUTO
+> rather than PLATFORM_DEVID_NONE for platform_device_register_data()
+> call.  Otherwise, the second A53PLL clock registration will fail due
+> to duplicate device name.
 > 
-> Fixes: 63e71fedc07c4ece ("ARM: dts: Add support for emtrion emCON-MX6 series")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> [    0.519657] sysfs: cannot create duplicate filename '/bus/platform/devices/qcom-apcs-msm8916-clk'
+> ...
+> [    0.661158] qcom_apcs_ipc b111000.mailbox: failed to register APCS clk
+> 
+> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Applied, thanks.
+Hi Jassi,
+
+Any comment on this patch?
+
+Shawn
+
+> ---
+>  drivers/mailbox/qcom-apcs-ipc-mailbox.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/mailbox/qcom-apcs-ipc-mailbox.c b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+> index f25324d03842..1699ec38bc3b 100644
+> --- a/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+> +++ b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+> @@ -132,7 +132,7 @@ static int qcom_apcs_ipc_probe(struct platform_device *pdev)
+>  	if (apcs_data->clk_name) {
+>  		apcs->clk = platform_device_register_data(&pdev->dev,
+>  							  apcs_data->clk_name,
+> -							  PLATFORM_DEVID_NONE,
+> +							  PLATFORM_DEVID_AUTO,
+>  							  NULL, 0);
+>  		if (IS_ERR(apcs->clk))
+>  			dev_err(&pdev->dev, "failed to register APCS clk\n");
+> @@ -158,6 +158,7 @@ static const struct of_device_id qcom_apcs_ipc_of_match[] = {
+>  	{ .compatible = "qcom,ipq6018-apcs-apps-global", .data = &ipq6018_apcs_data },
+>  	{ .compatible = "qcom,ipq8074-apcs-apps-global", .data = &ipq8074_apcs_data },
+>  	{ .compatible = "qcom,msm8916-apcs-kpss-global", .data = &msm8916_apcs_data },
+> +	{ .compatible = "qcom,msm8939-apcs-kpss-global", .data = &msm8916_apcs_data },
+>  	{ .compatible = "qcom,msm8994-apcs-kpss-global", .data = &msm8994_apcs_data },
+>  	{ .compatible = "qcom,msm8996-apcs-hmss-global", .data = &msm8996_apcs_data },
+>  	{ .compatible = "qcom,msm8998-apcs-hmss-global", .data = &msm8998_apcs_data },
+> -- 
+> 2.17.1
+> 
