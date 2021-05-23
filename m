@@ -2,210 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B833838DD9E
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 00:54:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B0A438DDB1
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 01:13:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232002AbhEWWzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 May 2021 18:55:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49834 "EHLO
+        id S232002AbhEWXPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 May 2021 19:15:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231979AbhEWWzn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 May 2021 18:55:43 -0400
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93310C061574
-        for <devicetree@vger.kernel.org>; Sun, 23 May 2021 15:54:16 -0700 (PDT)
-Received: by mail-ot1-x333.google.com with SMTP id n3-20020a9d74030000b029035e65d0a0b8so2105997otk.9
-        for <devicetree@vger.kernel.org>; Sun, 23 May 2021 15:54:16 -0700 (PDT)
+        with ESMTP id S231980AbhEWXPR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 May 2021 19:15:17 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A92EC061574;
+        Sun, 23 May 2021 16:13:49 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id w7so17766816lji.6;
+        Sun, 23 May 2021 16:13:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to;
-        bh=1K/Zf6qVFEuzf3LeeUWAQu7y8CgaCqs3dPr1inenPpI=;
-        b=bYyk8FSfT1TV7UPs81TdtN0954QCJeCRzD7K0EVI+uGfyiPaYKGqlEg9VcNPFobDZT
-         K7yUNwmnlXYrwbHLyx7KXSi0kufc2cCzDekTyd3wgQMi6NT4/zuHNPGL/5EumWXT2Lnr
-         qtVK+3VcB4PdJWIvq5vjekqXuQzzkAXFQaoxQ=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9TDs1IAuMTt6gby5ta7NVUMJ5XPCBAna36AQ7KVr83o=;
+        b=lyrKSMXHrbOdnfD1gaEYeGAfa2LIOGMcOtHP+USmjM/zk0CRAJfZ2wcH3SwVPwLz8R
+         /i5F7C2o+x5JWZL8U242sJbwwiaJmiyWmXbf+fvYtZ3OydpbHr8dpIOXJ/811XMGyaXi
+         dg9CxqhX6o0pFm32CjAa7k57osEM9hYTdQdfA3mT4ecIXamq+qcN8N/B6HU1qw5SiUM/
+         JvesnZsb+N8sLjH0JmZnGAplu6FJngT32y0rjcU99RNkL+xmpK3it5j7x0XD4iNitlh9
+         pLGTKIdaLawBkALufqo1THA11G0SlPDc7GpNN9k6mY+VBl7QWZFelFl56lNLrdha0TzO
+         VjGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to;
-        bh=1K/Zf6qVFEuzf3LeeUWAQu7y8CgaCqs3dPr1inenPpI=;
-        b=I+G81337TdUIFeJnTjS7ZSwN96bZGrAKJacxw5j6WhG7SSwrePY6sQkdZXKNqN5T0u
-         2SEGcV4cKrmOEPmYGOJDq3K6wNU5Fz7spW5mF3fkyHRymxiXXgL6Rb9Xll10kjH8qzGb
-         SsHVGZMzQtHdfosz3kAxvyBBGEs1APDxZsSY+RvCdXVE9+62MDmaPtNGSCOfYofxYJok
-         s+eRBWThJ67FCAjENVMAmekZzhWhjTAR/xgB+AixiCW8Mdvc2AdbG4TrFlOpotxZ5J6L
-         72hX9COF01zSrN7C/qy7T/Ehgyk7G840PmPujuw7gXFsv0vM+lZuE5fDAj8Rrv2pdTIE
-         kUpA==
-X-Gm-Message-State: AOAM53198MHCYn6uyDK+AEilFYu29F5HZXJTmLkZEzCkpfrzIiJTU8rd
-        0hAFysEU1VhFINJeYp9XezdJxFbCXszyhUChIkbbQg==
-X-Google-Smtp-Source: ABdhPJwoYoaR/C8nMh9n9rgeiaHd67jqnTMUKs8Z677FXDRZSbmeYGkUrXidIn9y95tLonGCJVOJSVXEF+TuV6VuoiA=
-X-Received: by 2002:a05:6830:1f51:: with SMTP id u17mr3389243oth.25.1621810455819;
- Sun, 23 May 2021 15:54:15 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Sun, 23 May 2021 15:54:15 -0700
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9TDs1IAuMTt6gby5ta7NVUMJ5XPCBAna36AQ7KVr83o=;
+        b=aYf8Ov2kecDzjF3CM3WIwHq4F228ig5B8XxqzY+9qWDGW7NyJ4NkayWHcE15hKKTaU
+         bVM1/gVl6PaqDltL4h+TQPv0k+mweRuNcOzggBwUNPoIL2CB0xV68AC06tjLYA98/hZS
+         SauTFGJeTygxYIagP5FfvrWzHsBv3jKBrjiGfd3iPhQudwyGbstYrMDGOjPw1txEz3OO
+         Wvn/YcJiMSo8RGKCOTPr3qQs/bqFbjvWN6TR+I2t6V2ofF25wLen6mvC/4d25JaYykO5
+         tliHf1pI0JUEzyLv8ICnxPV3wEM4PdG/zoeGjlIMrIlGI3cH4+3lnbgT4MipSBpyyltX
+         5zHA==
+X-Gm-Message-State: AOAM532HI6+BBN5BAY47L8biSl1IpO7+mC7Qzg8Twp/l6alqnZJyhPtj
+        apQ2pIvxDxqvqHNqIBk9L1A=
+X-Google-Smtp-Source: ABdhPJyIl0e0RtyHHomQK9YyIH1PJZ8hNKhrksCU8b/rx2eg8Sm5HzEg0cBbW8tHO22veni57ChuMw==
+X-Received: by 2002:a2e:850d:: with SMTP id j13mr14926426lji.19.1621811626771;
+        Sun, 23 May 2021 16:13:46 -0700 (PDT)
+Received: from localhost.localdomain (109-252-193-110.dynamic.spd-mgts.ru. [109.252.193.110])
+        by smtp.gmail.com with ESMTPSA id p7sm1268619lfr.184.2021.05.23.16.13.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 23 May 2021 16:13:46 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
+        =?UTF-8?q?Nikola=20Milosavljevi=C4=87?= <mnidza@outlook.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Matt Merhar <mattmerhar@protonmail.com>,
+        Paul Fertser <fercerpav@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>
+Cc:     linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Nathan Chancellor <nathan@kernel.org>,
+        linux-clk@vger.kernel.org
+Subject: [PATCH v2 00/14] NVIDIA Tegra memory and power management changes for 5.14
+Date:   Mon, 24 May 2021 02:13:21 +0300
+Message-Id: <20210523231335.8238-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <20210520142432.29869-1-srivasam@codeaurora.org>
-References: <20210520142432.29869-1-srivasam@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Sun, 23 May 2021 15:54:15 -0700
-Message-ID: <CAE-0n50A18vru2bXQuQTq==J5bGQEzw4uUYv9qG7rNB5uk19jw@mail.gmail.com>
-Subject: Re: [PATCH v2] ASoC: qcom: lpass-cpu: Fix pop noise during audio
- capture begin
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        judyhsiao@chromium.org, lgirdwood@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        perex@perex.cz, plai@codeaurora.org, robh+dt@kernel.org,
-        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org,
-        tiwai@suse.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2021-05-20 07:24:32)
-> This patch fixes PoP noise of around 15ms observed during audio capture begin.
-> Enables BCLK and LRCLK in snd_soc_dai_ops prepare call for introducing some delay
-> before capture start and clock enable.
->
-> Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+This series:
 
-The SoB chain is weird. If Judy is first then Judy should show up with a
+  1. Adds CPU/core voltage bump before system is rebooted.
+  2. Adds new devm_tegra_core_dev_init_opp_table() helper and switches
+     Tegra memory drivers to use it.
+  3. Adds compile-testing support to the Tegra memory drivers.
+  4. Adds Tegra SoC core power domain support.
 
-From: Judy Hsiao <judyhsiao@chromium.org>
+Changelog:
 
-initially. Otherwise, it's a Co-developed-by: tag that should be after
-the SoB line.
+v2: - Added more clk stubs that should fix build error reported by the
+      kernel bot to v1 for the T210 memory driver.
 
-> ---
-> Changes Since V1:
->         -- Enableed BCLK and LRCLK in dai ops prepare API instead of startup API
->         -- Added comments
->
->  sound/soc/qcom/lpass-cpu.c | 48 ++++++++++++++++++++++++++++++++++++--
->  1 file changed, 46 insertions(+), 2 deletions(-)
->
-> diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
-> index c62d2612e8f5..c5bb3f16d25f 100644
-> --- a/sound/soc/qcom/lpass-cpu.c
-> +++ b/sound/soc/qcom/lpass-cpu.c
-> @@ -93,9 +93,18 @@ static void lpass_cpu_daiops_shutdown(struct snd_pcm_substream *substream,
->                 struct snd_soc_dai *dai)
->  {
->         struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
-> +       struct lpaif_i2sctl *i2sctl = drvdata->i2sctl;
-> +       unsigned int id = dai->driver->id;
->
->         clk_disable_unprepare(drvdata->mi2s_osr_clk[dai->driver->id]);
-> -       clk_unprepare(drvdata->mi2s_bit_clk[dai->driver->id]);
-> +       /* To ensure BCLK/LRCLK disabled even in device node validation.
-> +         Will not impact if disabled in trigger suspend */
+    - Added r-b from Krzysztof Kozlowski to the memory patches.
 
-/*
- * Can you use proper kernel doc multi-line notation please?
- */
+    - Added back voltage restore on detaching of coupled regulators to
+      the T20 regulator coupler which previously got missed by accident.
 
-And also, can we point to the function that is not impacted by "trigger
-suspend"? Is that lpass_cpu_daiops_trigger()?
+    - Added new patch:
 
-> +       if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
-> +               regmap_fields_write(i2sctl->spken, id, LPAIF_I2SCTL_SPKEN_DISABLE);
-> +       else
-> +               regmap_fields_write(i2sctl->micen, id, LPAIF_I2SCTL_MICEN_DISABLE);
-> +
-> +       clk_disable_unprepare(drvdata->mi2s_bit_clk[dai->driver->id]);
->  }
->
->  static int lpass_cpu_daiops_hw_params(struct snd_pcm_substream *substream,
-> @@ -275,6 +284,8 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
->         case SNDRV_PCM_TRIGGER_START:
->         case SNDRV_PCM_TRIGGER_RESUME:
->         case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
-> +               /* To ensure lpass BCLK/LRCLK is enabled during
-> +                       device resume. Will not impact if enabled in prepare */
->                 if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
->                         ret = regmap_fields_write(i2sctl->spken, id,
->                                                  LPAIF_I2SCTL_SPKEN_ENABLE);
-> @@ -296,6 +307,8 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
->         case SNDRV_PCM_TRIGGER_STOP:
->         case SNDRV_PCM_TRIGGER_SUSPEND:
->         case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
-> +               /* To ensure lpass BCLK/LRCLK is disabled during
-> +                       device suspend */
->                 if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
->                         ret = regmap_fields_write(i2sctl->spken, id,
->                                                  LPAIF_I2SCTL_SPKEN_DISABLE);
-> @@ -308,19 +321,50 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
->                                 ret);
->
->                 clk_disable(drvdata->mi2s_bit_clk[dai->driver->id]);
-> -
-> +               break;
-> +       default:
+        regulator: core: Detach coupled regulator before coupling count is dropped
 
-It confuses me that we're adding 'default' now. Why? Is some define not
-handled already? Why not use that define instead of 'default' so it is
-explicit what is being handled? How is it even related to this patch?
+      It fixes skipped voltage balancing on detaching of regulators which I
+      happened to notice due to the recent regression of the MAX77620 driver
+      that made driver to re-probe and detach coupled regulators.
 
->                 break;
->         }
->
->         return ret;
->  }
->
-> +static int lpass_cpu_daiops_prepare(struct snd_pcm_substream *substream,
-> +               struct snd_soc_dai *dai)
-> +{
-> +       struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
-> +       struct lpaif_i2sctl *i2sctl = drvdata->i2sctl;
-> +       unsigned int id = dai->driver->id;
-> +       int ret = -EINVAL;
+v1: - Merged previous patches into this single series.
 
-ret will be assigned in the else though? Why assign it and then reassign
-it?
+    - Added ack from Rob Herring to the core domain DT binding patch.
 
-> +       /* To ensure lpass BCLK/LRCLK is enabled bit before
-> +          playback/capture data flow starts */
-> +       if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
-> +               ret = regmap_fields_write(i2sctl->spken, id, LPAIF_I2SCTL_SPKEN_ENABLE);
-> +       else
-> +               ret = regmap_fields_write(i2sctl->micen, id, LPAIF_I2SCTL_MICEN_ENABLE);
-> +
-> +       if (ret)
-> +               dev_err(dai->dev, "error writing to i2sctl reg: %d\n",
-> +              ret);
+    - Implemented suggestions that were given by Krzysztof Kozlowski:
 
-Why do we keep trying here instead of returning an error?
+        - Factored out soc_is_tegra() stub into standalone patch.
+        - Updated tags of the "Fix compilation warnings on 64bit platforms"
+          patch, added reported-by from lkp robot and removed suggested-by
+          from Nathan Chancellor.
+        - Switched to use use BIT() macro.
 
-> +
-> +       ret = clk_enable(drvdata->mi2s_bit_clk[id]);
-> +
-> +       if (ret) {
-> +               dev_err(dai->dev, "error in enabling mi2s bit clk: %d\n", ret);
-> +               clk_disable(drvdata->mi2s_osr_clk[id]);
-> +               return ret;
-> +       }
-> +       return 0;
+    - Added r-b from Krzysztof Kozlowski to "Enable compile testing for
+      all drivers" patch.
 
-Could be
+    - Added r-b from Nathan Chancellor.
 
-	return ret;
+    - Dropped voltage floor/ceiling from devm_tegra_core_dev_init_opp_table()
+      since only memory drivers now need to initialize voltage vote and they
+      don't need floor/ceil. This was suggested by Viresh Kumar.
 
+Dmitry Osipenko (14):
+  regulator: core: Add regulator_sync_voltage_rdev()
+  regulator: core: Detach coupled regulator before coupling count is
+    dropped
+  soc/tegra: regulators: Bump voltages on system reboot
+  soc/tegra: Add stub for soc_is_tegra()
+  soc/tegra: Add devm_tegra_core_dev_init_opp_table()
+  soc/tegra: fuse: Add stubs needed for compile-testing
+  clk: tegra: Add stubs needed for compile-testing
+  memory: tegra: Fix compilation warnings on 64bit platforms
+  memory: tegra: Enable compile testing for all drivers
+  memory: tegra20-emc: Use devm_tegra_core_dev_init_opp_table()
+  memory: tegra30-emc: Use devm_tegra_core_dev_init_opp_table()
+  dt-bindings: soc: tegra-pmc: Document core power domain
+  soc/tegra: pmc: Add core power domain
+  soc/tegra: regulators: Support core domain state syncing
 
-> +}
-> +
-> +
+ .../arm/tegra/nvidia,tegra20-pmc.yaml         |  35 +++++
+ drivers/memory/tegra/Kconfig                  |  16 +-
+ drivers/memory/tegra/tegra124-emc.c           |   4 +-
+ drivers/memory/tegra/tegra20-emc.c            |  48 +-----
+ drivers/memory/tegra/tegra30-emc.c            |  52 +------
+ drivers/regulator/core.c                      |  37 ++++-
+ drivers/soc/tegra/Kconfig                     |  14 ++
+ drivers/soc/tegra/common.c                    |  97 ++++++++++++
+ drivers/soc/tegra/pmc.c                       | 143 ++++++++++++++++++
+ drivers/soc/tegra/regulators-tegra20.c        |  97 +++++++++++-
+ drivers/soc/tegra/regulators-tegra30.c        |  96 +++++++++++-
+ include/linux/clk/tegra.h                     |  82 +++++++---
+ include/linux/regulator/driver.h              |   1 +
+ include/soc/tegra/common.h                    |  38 +++++
+ include/soc/tegra/fuse.h                      |  20 ++-
+ 15 files changed, 650 insertions(+), 130 deletions(-)
 
-Nitpick: Why two newlines?
+-- 
+2.30.2
 
->  const struct snd_soc_dai_ops asoc_qcom_lpass_cpu_dai_ops = {
->         .set_sysclk     = lpass_cpu_daiops_set_sysclk,
->         .startup        = lpass_cpu_daiops_startup,
->         .shutdown       = lpass_cpu_daiops_shutdown,
->         .hw_params      = lpass_cpu_daiops_hw_params,
->         .trigger        = lpass_cpu_daiops_trigger,
-> +       .prepare        = lpass_cpu_daiops_prepare,
->  };
