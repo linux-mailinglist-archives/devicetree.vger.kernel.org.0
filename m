@@ -2,97 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 186B638DB48
-	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 15:43:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9284D38DBAC
+	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 17:54:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231761AbhEWNok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 May 2021 09:44:40 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:49090 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231758AbhEWNoj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 May 2021 09:44:39 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 94D4D2A8;
-        Sun, 23 May 2021 15:43:11 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1621777391;
-        bh=e9WKWb2u3+bpo7AIMrf2X78HJQYY6mY097rfyST6qt0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EtkwcOFMp67WVI6LFBd3yW+lKPIAfwhrC4MSKjlEWMLHuUx8hawBg3tsvh3JqcEzw
-         C0xtWWaNK9ZcPH5e68CEvhKn+rbY9uNF+cJO2m0URx2RClftIwICJ+aUPQPLTdhvxF
-         EZLU3wd3MJ1oGFfyt9iZJ6i3e1C/11c000aVkZzA=
-Date:   Sun, 23 May 2021 16:43:08 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Randy Dunlap <rdunlap@infradead.org>
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] OF: of_address: clean up OF stub functions
-Message-ID: <YKpb7CBAGqpmFS7P@pendragon.ideasonboard.com>
-References: <20210523022807.5193-1-rdunlap@infradead.org>
+        id S231815AbhEWPzk convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 23 May 2021 11:55:40 -0400
+Received: from guitar.tcltek.co.il ([192.115.133.116]:52801 "EHLO
+        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231789AbhEWPzk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 May 2021 11:55:40 -0400
+Received: from tarshish (unknown [10.0.8.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx.tkos.co.il (Postfix) with ESMTPS id D1FC0440583;
+        Sun, 23 May 2021 18:54:26 +0300 (IDT)
+References: <70ced827689b7ab35d8f3b07db8d9ccd1489e3e2.1621410526.git.baruch@tkos.co.il>
+ <20210522213524.lnb5bds5hvv2f2zi@pengutronix.de>
+User-agent: mu4e 1.4.15; emacs 27.1
+From:   Baruch Siach <baruch@tkos.co.il>
+To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Balaji Prakash J <bjagadee@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Marko <robert.marko@sartura.hr>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH 1/3] pwm: driver for qualcomm ipq6018 pwm block
+In-reply-to: <20210522213524.lnb5bds5hvv2f2zi@pengutronix.de>
+Date:   Sun, 23 May 2021 18:54:08 +0300
+Message-ID: <87zgwltpi7.fsf@tarshish>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210523022807.5193-1-rdunlap@infradead.org>
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Randy,
+Hi Uwe,
 
-Thank you for the patch.
+Thanks for your review comments.
 
-On Sat, May 22, 2021 at 07:28:07PM -0700, Randy Dunlap wrote:
-> Adjust <linux/of_address.h> so that stubs are present when
-> CONFIG_OF is not set *or* OF is set but OF_ADDRESS is not set.
-> 
-> This eliminates 2 build errors on arch/s390/ when HAS_IOMEM
-> is not set (so OF_ADDRESS is not set).
-> I.e., it provides a stub for of_iomap() when one was previously
-> not provided as well as removing some duplicate stubs.
-> 
-> s390-linux-ld: drivers/irqchip/irq-al-fic.o: in function `al_fic_init_dt':
-> irq-al-fic.c:(.init.text+0x7a): undefined reference to `of_iomap'
-> s390-linux-ld: drivers/clocksource/timer-of.o: in function `timer_of_init':
-> timer-of.c:(.init.text+0xa4): undefined reference to `of_iomap'
-> 
-> Tested with many randconfig builds, but there could still be some
-> hidden problem here.
-> 
-> Fixes: 4acf4b9cd453 ("of: move of_address_to_resource and of_iomap declarations from sparc")
-> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: devicetree@vger.kernel.org
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  include/linux/of_address.h |    6 +-----
->  1 file changed, 1 insertion(+), 5 deletions(-)
-> 
-> --- linux-next-20210521.orig/include/linux/of_address.h
-> +++ linux-next-20210521/include/linux/of_address.h
-> @@ -106,11 +106,7 @@ static inline bool of_dma_is_coherent(st
->  }
->  #endif /* CONFIG_OF_ADDRESS */
->  
-> -#ifdef CONFIG_OF
-> -extern int of_address_to_resource(struct device_node *dev, int index,
-> -				  struct resource *r);
-> -void __iomem *of_iomap(struct device_node *node, int index);
-> -#else
-> +#if defined(CONFIG_OF) && !defined(CONFIG_OF_ADDRESS) || !defined(CONFIG_OF)
+On Sun, May 23 2021, Uwe Kleine-König wrote:
+> On Wed, May 19, 2021 at 10:48:44AM +0300, Baruch Siach wrote:
+>> Driver for the PWM block in Qualcomm IPQ6018 line of SoCs. Based on
+>> driver from downstream Codeaurora kernel tree. Removed support for older
+>> (V1) variants because I have no access to that hardware.
+>> 
+>> Tested on IPQ6010 based hardware.
+>> 
+>> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
 
-Parentheses would help making the precedence order clear.
+[...]
 
-On sparc, CONFIG_OF is set, CONFIG_OF_ADDRESS isn't, and
-of_address_to_resource() is provided by arch code. You'll stub it out
-here, which doesn't seem correct to me.
+>> +static void ipq_pwm_disable(struct pwm_chip *chip, struct pwm_device *pwm)
+>> +{
+>> +	struct ipq_pwm_chip *ipq_chip = to_ipq_pwm_chip(pwm->chip);
+>> +	unsigned offset = ipq_pwm_reg_offset(pwm, PWM_CFG_REG1);
+>> +	unsigned long val;
+>> +
+>> +	val = readl(ipq_chip->mem + offset);
+>> +	val |= PWM_UPDATE;
+>
+> What is the effect of this register bit?
+>
+> Does the output become inactive or does it freeze at state that happens
+> to be emitted when the ENABLE bit is removed?
 
->  static inline int of_address_to_resource(struct device_node *dev, int index,
->  					 struct resource *r)
->  {
+I don't know. PWM does not work when this bit is not set here. The
+original downstream driver[1] does not set this bit on disable. But it
+also enables PWM unconditionally on .config. I added the 'enabled' check
+in .config, and then PWM stopped working even when enabled later. It was
+only by accident (excess copy/paste) that I found this workaround.
+
+A comment on the original code says that PWM_UPDATE is "auto cleared".
+This is evidently not true on my hardware (IPQ6010). This might be true
+for older variants of this PWM block. Unfortunately, I have no access to
+hardware documentation.
+
+[1] https://source.codeaurora.org/quic/qsdk/oss/kernel/linux-ipq-5.4/tree/drivers/pwm/pwm-ipq.c?h=NHSS.QSDK.11.4.1.r1&id=9e4627b7088b0c06ddd910c8770274d26613de9e
+
+baruch
 
 -- 
-Regards,
-
-Laurent Pinchart
+                                                     ~. .~   Tk Open Systems
+=}------------------------------------------------ooO--U--Ooo------------{=
+   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
