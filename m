@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D905238DCF4
-	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 22:45:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 294F238DD0E
+	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 23:10:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231979AbhEWUrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 May 2021 16:47:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49942 "EHLO
+        id S232002AbhEWVLv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 May 2021 17:11:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231990AbhEWUq6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 May 2021 16:46:58 -0400
+        with ESMTP id S231997AbhEWVLv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 May 2021 17:11:51 -0400
 Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [IPv6:2001:4b7a:2000:18::167])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6A3DC061756;
-        Sun, 23 May 2021 13:45:31 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74526C061756
+        for <devicetree@vger.kernel.org>; Sun, 23 May 2021 14:10:24 -0700 (PDT)
 Received: from TimeMachine.localdomain (bband-dyn255.178-41-232.t-com.sk [178.41.232.255])
-        by m-r2.th.seeweb.it (Postfix) with ESMTPA id EC6B63E7E6;
-        Sun, 23 May 2021 22:45:29 +0200 (CEST)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPA id C26A33E7AE;
+        Sun, 23 May 2021 23:10:22 +0200 (CEST)
 From:   Martin Botka <martin.botka@somainline.org>
 Cc:     ~postmarketos/upstreaming@lists.sr.ht,
         konrad.dybcio@somainline.org,
@@ -25,18 +25,15 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht,
         Martin Botka <martin.botka@somainline.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>
-Subject: [PATCH 2/2] arch: arm64: dts: qcom: Add support for Sony Xperia 10II
-Date:   Sun, 23 May 2021 22:45:17 +0200
-Message-Id: <20210523204519.704120-2-martin.botka@somainline.org>
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH V2 1/2] dt-bindings: clk: qcom: gcc-sm6125: Document SM6125 GCC driver
+Date:   Sun, 23 May 2021 23:10:13 +0200
+Message-Id: <20210523211016.726736-1-martin.botka@somainline.org>
 X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210523204519.704120-1-martin.botka@somainline.org>
-References: <20210523204519.704120-1-martin.botka@somainline.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 To:     unlisted-recipients:; (no To-header on input)
@@ -44,144 +41,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commits add support for Sony Xperia 10II based on the SM6125 SoC.
-
-Currently working features:
-- dmesg output to bootloader preconfigured display
-- USB
-- eMMC
-- Volume down button
+Document the newly added SM6125 GCC driver.
 
 Signed-off-by: Martin Botka <martin.botka@somainline.org>
 ---
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../qcom/sm6125-sony-xperia-seine-pdx201.dts  | 105 ++++++++++++++++++
- 2 files changed, 106 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+Changes in V2:
+Add commit description.
+ .../bindings/clock/qcom,gcc-sm6125.yaml       | 72 +++++++++++++++++++
+ 1 file changed, 72 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sm6125.yaml
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 456502aeee49..5a70dd9593c2 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -69,6 +69,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-oneplus-enchilada.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-oneplus-fajita.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-beryllium.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-sony-xperia-seine-pdx201.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-hdk.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-hdk.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sm6125.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sm6125.yaml
 new file mode 100644
-index 000000000000..b1d6de430273
+index 000000000000..f7198370a1b9
 --- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-@@ -0,0 +1,105 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2021, Martin Botka <martin.botka@somainline.org>
-+ */
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sm6125.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/qcom,gcc-sm6125.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/dts-v1/;
++title: Qualcomm Global Clock & Reset Controller Binding for SM6125
 +
-+#include "sm6125.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/input/gpio-keys.h>
++maintainers:
++  - Konrad Dybcio <konrad.dybcio@somainline.org>
 +
-+/ {
-+	/* required for bootloader to select correct board */
-+	qcom,msm-id = <394 0x10000>; /* sm6125 v1 */
-+	qcom,board-id = <34 0>;
++description: |
++  Qualcomm global clock control module which supports the clocks, resets and
++  power domains on SM6125.
 +
-+	model = "Sony Xperia 10 II";
-+	compatible = "sony,pdx201", "qcom,sm6125";
++  See also:
++  - dt-bindings/clock/qcom,gcc-sm6125.h
 +
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
++properties:
++  compatible:
++    const: qcom,gcc-sm6125
 +
-+		framebuffer0: framebuffer@5c000000 {
-+			compatible = "simple-framebuffer";
-+			reg = <0 0x5c000000 0 (2520 * 1080 * 4)>;
-+			width = <1080>;
-+			height = <2520>;
-+			stride = <(1080 * 4)>;
-+			format = "a8r8g8b8";
-+		};
-+	};
++  clocks:
++    items:
++      - description: Board XO source
++      - description: Sleep clock source
 +
-+	extcon_usb: extcon-usb {
-+		compatible = "linux,extcon-usb-gpio";
-+		id-gpio = <&tlmm 102 GPIO_ACTIVE_HIGH>;
-+	};
++  clock-names:
++    items:
++      - const: bi_tcxo
++      - const: sleep_clk
 +
-+	gpio_keys {
-+		status = "okay";
-+		compatible = "gpio-keys";
-+		input-name = "gpio-keys";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		autorepeat;
++  '#clock-cells':
++    const: 1
 +
-+		vol_dn {
-+			label = "Volume Down";
-+			gpios = <&tlmm 47 GPIO_ACTIVE_LOW>;
-+			linux,input-type = <1>;
-+			linux,code = <KEY_VOLUMEDOWN>;
-+			gpio-key,wakeup;
-+			debounce-interval = <15>;
-+		};
-+	};
-+	
-+	reserved_memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		debug_mem: memory@ffb00000 {
-+			reg = <0x0 0xffb00000 0x0 0xc0000>;
-+			no-map;
-+		};
++  '#reset-cells':
++    const: 1
 +
-+		last_log_mem: memory@ffbc0000 {
-+			reg = <0x0 0xffbc0000 0x0 0x80000>;
-+			no-map;
-+		};
++  '#power-domain-cells':
++    const: 1
 +
-+		pstore_mem: ramoops@ffc00000 {
-+			compatible = "ramoops";
-+			reg = <0x0 0xffc40000 0x0 0xc0000>;
-+			record-size = <0x1000>;
-+			console-size = <0x40000>;
-+			msg-size = <0x20000 0x20000>;
-+		};
++  reg:
++    maxItems: 1
 +
-+		cmdline_mem: memory@ffd00000 {
-+			reg = <0x0 0xffd40000 0x0 0x1000>;
-+			no-map;
-+		};
-+	};
-+};
++  protected-clocks:
++    description:
++      Protected clock specifier list as per common clock binding.
 +
-+&hsusb_phy1 {
-+	status = "okay";
-+};
++required:
++  - compatible
++  - clocks
++  - clock-names
++  - reg
++  - '#clock-cells'
++  - '#reset-cells'
++  - '#power-domain-cells'
 +
-+&sdhc_1 {
-+	status = "okay";
-+};
++additionalProperties: false
 +
-+&tlmm {
-+	gpio-reserved-ranges = <22 2>, <28 6>;
-+};
-+
-+&usb3 {
-+	status = "okay";
-+};
-+
-+&usb3_dwc3 {
-+	extcon = <&extcon_usb>;
-+};
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,rpmh.h>
++    clock-controller@1400000 {
++    compatible = "qcom,gcc-sm6125";
++      reg = <0x01400000 0x1f0000>;
++      #clock-cells = <1>;
++      #reset-cells = <1>;
++      #power-domain-cells = <1>;
++      clock-names = "bi_tcxo", "sleep_clk";
++      clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>, <&sleep_clk>;
++    };
++...
 -- 
 2.31.1
 
