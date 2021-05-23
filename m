@@ -2,220 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 319D438DC36
-	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 19:39:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D33C638DC3A
+	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 19:44:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231893AbhEWRko (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 May 2021 13:40:44 -0400
-Received: from mx3.wp.pl ([212.77.101.10]:31879 "EHLO mx3.wp.pl"
+        id S231857AbhEWRp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 May 2021 13:45:56 -0400
+Received: from first.geanix.com ([116.203.34.67]:42540 "EHLO first.geanix.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231854AbhEWRkn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 23 May 2021 13:40:43 -0400
-Received: (wp-smtpd smtp.wp.pl 31298 invoked from network); 23 May 2021 19:39:14 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=1024a;
-          t=1621791554; bh=7wmUz3k8RukIl4+/pAGl0IQkKLcUdLrZ31fCJy0Ab3w=;
-          h=From:To:Cc:Subject;
-          b=BPrcf6H8wpI5F6ObS8czOeRLqHZfDuBBaTiK2131YFWiyOMTup2vCS80lohcglsKl
-           Ud6ci/bhTFhvUvAC6nRVLLi4glMwxVgeBW5NuDf5cQlyHlF/vZQ5y7ENflTTtR7duu
-           rmu5QSmzC1jUrEJXZWk9xWgUss6hYlo07bNI1VsU=
-Received: from riviera.nat.ds.pw.edu.pl (HELO LAPTOP-OLEK.lan) (olek2@wp.pl@[194.29.137.1])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <linus.walleij@linaro.org>; 23 May 2021 19:39:14 +0200
-From:   Aleksander Jan Bajkowski <olek2@wp.pl>
-To:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        robh+dt@kernel.org, john@phrozen.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Aleksander Jan Bajkowski <olek2@wp.pl>
-Subject: [PATCH v3] dt-bindings: gpio: stp: convert to json-schema
-Date:   Sun, 23 May 2021 19:39:10 +0200
-Message-Id: <20210523173910.661598-1-olek2@wp.pl>
-X-Mailer: git-send-email 2.30.2
+        id S231853AbhEWRpz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 May 2021 13:45:55 -0400
+Received: from [192.168.16.66] (unknown [185.233.254.173])
+        by first.geanix.com (Postfix) with ESMTPSA id 0C510464730;
+        Sun, 23 May 2021 17:44:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=geanix.com; s=first;
+        t=1621791867; bh=r90inEtjWd9AjzY5mLdqb1g/jrp5nd0OK1t03R2zr1M=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To;
+        b=DWC3igPN4m9tG/hWAMwhYXra7xLIrJE3w4T6RUnDm5mVmPm027GGiA2vi8McWge7D
+         wnFq/E9Ib/oHHSL79sShU3e1PhAiov9S2vcupr9ckm3SOwO6CGf29FPhdEoQFphC7c
+         jNZMTUaA3JIuuhRRW9QHdU+QBeKJHkSEkGZMviLEHJsPELRUhZmdPRhowzLI/7Jb2/
+         55U4riTZpYkVJyt3q6BfR6HdMgZeGwsr0D3y+dkK+O9jZ8IdxNNxc3PX+Vl4wUyZvc
+         og8wrQz4BUb2JReFprJv2MCyn4GjjZ3hdQgNw3kqZGaYS8UWb3zzuj/pKktKQ7Bp0q
+         AmuBiyQ7DRliw==
+Subject: Re: [PATCH 1/2] mtd: nand: raw: gpmi: new bch geometry settings
+To:     Han Xu <han.xu@nxp.com>, miquel.raynal@bootlin.com, richard@nod.at,
+        vigneshr@ti.com, robh+dt@kernel.org
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org
+References: <20210522205136.19465-1-han.xu@nxp.com>
+From:   Sean Nyekjaer <sean@geanix.com>
+Message-ID: <13c975bc-b37b-8708-9ac7-acdc62ef7108@geanix.com>
+Date:   Sun, 23 May 2021 19:44:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-WP-DKIM-Status: good (id: wp.pl)                                      
-X-WP-MailID: e5217d7682c23998965cbfa6554822b8
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 0000000 [wXMU]                               
+In-Reply-To: <20210522205136.19465-1-han.xu@nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.1 required=4.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        URIBL_BLOCKED autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on 93bd6fdb21b5
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Lantiq STP Device Tree binding documentation to json-schema.
-Add the missing pinctrl property to the example. Add missing lantiq,phy3
-and lantiq,phy4 bindings for xRX300 and xRX330 SoCs.
+On 22/05/2021 22.51, Han Xu wrote:
+> The code change updates the gpmi driver bch geometry settings, the NAND
+> chips required minimum ecc strength and step size will be the default
+> value. It also proposes a new way to set bch geometry for large oob NAND
+> and provides an option to keep the legacy bch geometry setting for
+> backward compatibility.
 
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
----
-Changes since v2:
- - Changed phy numbering in description of pattern Properties. Numbering
-   should start with 1. 
-Changes since v1:
- - Renamed node to gpio.
- - Dropped default pinctrl from this binding.
- - Converted lantiq,phyX to patternProperties.
----
- .../bindings/gpio/gpio-stp-xway.txt           |  42 --------
- .../bindings/gpio/gpio-stp-xway.yaml          | 101 ++++++++++++++++++
- 2 files changed, 101 insertions(+), 42 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-stp-xway.txt
- create mode 100644 Documentation/devicetree/bindings/gpio/gpio-stp-xway.yaml
+This will break all existing devicetree's. (this happened to us with the same style already merged u-boot patch)
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-stp-xway.txt b/Documentation/devicetree/bindings/gpio/gpio-stp-xway.txt
-deleted file mode 100644
-index 78458adbf4b7..000000000000
---- a/Documentation/devicetree/bindings/gpio/gpio-stp-xway.txt
-+++ /dev/null
-@@ -1,42 +0,0 @@
--Lantiq SoC Serial To Parallel (STP) GPIO controller
--
--The Serial To Parallel (STP) is found on MIPS based Lantiq socs. It is a
--peripheral controller used to drive external shift register cascades. At most
--3 groups of 8 bits can be driven. The hardware is able to allow the DSL modem
--to drive the 2 LSBs of the cascade automatically.
--
--
--Required properties:
--- compatible : Should be "lantiq,gpio-stp-xway"
--- reg : Address and length of the register set for the device
--- #gpio-cells : Should be two.  The first cell is the pin number and
--  the second cell is used to specify optional parameters (currently
--  unused).
--- gpio-controller : Marks the device node as a gpio controller.
--
--Optional properties:
--- lantiq,shadow : The default value that we shall assume as already set on the
--  shift register cascade.
--- lantiq,groups : Set the 3 bit mask to select which of the 3 groups are enabled
--  in the shift register cascade.
--- lantiq,dsl : The dsl core can control the 2 LSBs of the gpio cascade. This 2 bit
--  property can enable this feature.
--- lantiq,phy1 : The gphy1 core can control 3 bits of the gpio cascade.
--- lantiq,phy2 : The gphy2 core can control 3 bits of the gpio cascade.
--- lantiq,rising : use rising instead of falling edge for the shift register
--
--Example:
--
--gpio1: stp@e100bb0 {
--	compatible = "lantiq,gpio-stp-xway";
--	reg = <0xE100BB0 0x40>;
--	#gpio-cells = <2>;
--	gpio-controller;
--
--	lantiq,shadow = <0xffff>;
--	lantiq,groups = <0x7>;
--	lantiq,dsl = <0x3>;
--	lantiq,phy1 = <0x7>;
--	lantiq,phy2 = <0x7>;
--	/* lantiq,rising; */
--};
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-stp-xway.yaml b/Documentation/devicetree/bindings/gpio/gpio-stp-xway.yaml
-new file mode 100644
-index 000000000000..7d817d84c434
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/gpio-stp-xway.yaml
-@@ -0,0 +1,101 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/gpio-stp-xway.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Lantiq SoC Serial To Parallel (STP) GPIO controller
-+
-+description: |
-+  The Serial To Parallel (STP) is found on MIPS based Lantiq socs. It is a
-+  peripheral controller used to drive external shift register cascades. At most
-+  3 groups of 8 bits can be driven. The hardware is able to allow the DSL modem
-+  and Ethernet PHYs to drive some bytes of the cascade automatically.
-+
-+maintainers:
-+  - John Crispin <john@phrozen.org>
-+
-+properties:
-+  $nodename:
-+    pattern: "^gpio@[0-9a-f]+$"
-+
-+  compatible:
-+    const: lantiq,gpio-stp-xway
-+
-+  reg:
-+    description:
-+      Address and length of the register set for the device.
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  "#gpio-cells":
-+    description:
-+      The first cell is the pin number and the second cell is used to specify
-+      consumer flags.
-+    const: 2
-+
-+  lantiq,shadow:
-+    description:
-+      The default value that we shall assume as already set on the
-+      shift register cascade.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0x000000
-+    maximum: 0xffffff
-+
-+  lantiq,groups:
-+    description:
-+      Set the 3 bit mask to select which of the 3 groups are enabled
-+      in the shift register cascade.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0x0
-+    maximum: 0x7
-+
-+  lantiq,dsl:
-+    description:
-+      The dsl core can control the 2 LSBs of the gpio cascade. This 2 bit
-+      property can enable this feature.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0x0
-+    maximum: 0x3
-+
-+patternProperties:
-+  "lantiq,phy[1-4]":
-+    description:
-+      The gphy core can control 3 bits of the gpio cascade. In the xRX200 family
-+      phy[1-2] are available, in xRX330 phy[1-3] and in XRX330 phy[1-4].
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0x0
-+    maximum: 0x7
-+
-+  lantiq,rising:
-+    description:
-+      Use rising instead of falling edge for the shift register.
-+    type: boolean
-+
-+required:
-+  - compatible
-+  - reg
-+  - gpio-controller
-+  - "#gpio-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    gpio@e100bb0 {
-+        compatible = "lantiq,gpio-stp-xway";
-+        reg = <0xE100BB0 0x40>;
-+        #gpio-cells = <2>;
-+        gpio-controller;
-+
-+        pinctrl-0 = <&stp_pins>;
-+        pinctrl-names = "default";
-+
-+        lantiq,shadow = <0xffffff>;
-+        lantiq,groups = <0x7>;
-+        lantiq,dsl = <0x3>;
-+        lantiq,phy1 = <0x7>;
-+        lantiq,phy2 = <0x7>;
-+    };
-+...
--- 
-2.30.2
+> 
+> - For the legacy bch geometry settings
+> The driver uses legacy bch geometry settings if explicitly enabled it in
+> DT with fsl, legacy-bch-geometry flag, or the NAND chips are too old
+> that do NOT provide any required ecc info.
 
+NAND's are providing the minimum required ecc, the now legacy method
+actually gives more ecc bits and quite cheap when using hw ecc.
+
+> 
+> The legacy_set_geometry() sets the data chunk size(step_size) larger
+> than oob size to make sure BBM locates in data chunk, then set the
+> maximum ecc stength oob can hold. It always use unbalanced ECC layout,
+> which ecc0 will cover both meta and data0 chunk.
+> 
+> This algorithm can NOT provide strong enough ecc for some NAND chips,
+> such as some 8K+744 MLC NAND. We still leave it here just for backward
+> compatibility and als for some quite old version NAND chips support. It
+> should be en/disabled in both u-boot and kernel at the same time.
+> 
+> - For the large oob bch geometry settings
+> This type of setting will be used for NAND chips, which oob size is
+> larger than 1024B OR NAND required step size is small than oob size,
+> the general idea is,
+> 
+>     1.Try all ECC strength from the minimum value required by NAND chip
+>       to the maximum one that works, any ECC makes the BBM locate in
+>       data chunk can be eligible.
+> 
+>     2.If none of them works, using separate ECC for meta, which will add
+>       one extra ecc with the same ECC strength as other data chunks.
+>       This extra ECC can guarantee BBM located in data chunk, also we
+>       need to check if oob can afford it.
+> 
+> - For all other common cases
+> set the bch geometry by chip required strength and step size, which uses
+> the minimum ecc strength chip required.
+> 
+> Signed-off-by: Han Xu <han.xu@nxp.com>
+
+One further point, u-boot older than v2020.04 will not be aligned with the way ecc bits is
+calculated with this patch applied(without the legacy option set).
+
+It's quite a mess :/
+I would recommend to use the legacy mode as default, and add the new style as "modern" option.
+(Also in u-boot)
+
+/Sean
