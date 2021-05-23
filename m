@@ -2,120 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AEE4D38D933
-	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 08:00:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 568FA38D93F
+	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 08:06:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231584AbhEWGBp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 May 2021 02:01:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54936 "EHLO
+        id S231634AbhEWGIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 May 2021 02:08:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231583AbhEWGBo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 May 2021 02:01:44 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2706C06138A
-        for <devicetree@vger.kernel.org>; Sat, 22 May 2021 23:00:16 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id q67so1114100pfb.4
-        for <devicetree@vger.kernel.org>; Sat, 22 May 2021 23:00:16 -0700 (PDT)
+        with ESMTP id S231551AbhEWGIJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 May 2021 02:08:09 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 142A2C06138C
+        for <devicetree@vger.kernel.org>; Sat, 22 May 2021 23:06:42 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id pi6-20020a17090b1e46b029015cec51d7cdso9329405pjb.5
+        for <devicetree@vger.kernel.org>; Sat, 22 May 2021 23:06:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=mBfopW5d3IJHx9JAp5B2XG/55RVDXUQjqthuHE97u5E=;
-        b=oSUc4Et4QiFnyKSiNcVYAevijCAa18konknMw+/Lyxctxi3kgxrEgTSu1LTwF9pE3G
-         n5Jgq/loSBV/hHtGZrogeyBTsK1V81mxjKeBnwk/sIetldbBf/6C3vndCA7XKnZbD7XK
-         jEDEisMicrEHkQHgy0LNOIoNIuekH2Xl9q1lzrLHbsb407nv0Ji8Xa0WL2m0JueaBK2A
-         iSNrWBQ71UDRv1PvPh7Ggw4p2yZ0qWYirBwsnk8WU3PkSuh/O5jbOld8jbvcKLKVypYD
-         vGxwEIL8vEEJ0jhq85FHQfwHSo5CywoWZjK1VxuZtC5jc9gEEm4uyu5iSMGTYEfL/UWC
-         TrLw==
+        bh=bbVkNXXuvs00kg1wmTW0NePOJ70agDM+7kVTDiM2Rwk=;
+        b=EKhN/IEEn8ucPc2kMoCtJMvTI7FFyrCH7TGPMxFYn8KnblpCdKYH3iZ24Bk5AA7g93
+         oMKKY7iFhGENTLKCrc1NfV6HbkIk2Ap7gaq5uxaX9xYO+bl69c87lAy8NlvRld+KqXjF
+         TF2Eg/S37ZvAV000stQ/oIgFg6b6yy/7YZp3VIe196TqEFTMm8ECF+B/Etl2FAdt0ZM1
+         vabwnNsF58zji8ADC99oTEbA/yxZY8HQwh7IdmOuDssyeutxJS0cWzk0uVt2lDE7/E7+
+         Cf3unbnsy1Bzq9GDTSMaInhhlEMuXmYUSK05kS2NR9WEUjU5bMApmaGjCgPPZHA957mm
+         fQdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=mBfopW5d3IJHx9JAp5B2XG/55RVDXUQjqthuHE97u5E=;
-        b=iKUCEuJBcDRCCYMm6W4UW+jt8h471DOpgpWvk+5RgHzDS4KJgh6eBYjkz503jCDrCF
-         rvBnR22d+fCToLFbJNwUBIrcp3qdXzo7bJi6DcOs8+AfdfocfgNNN5sJGPmXbb300vuK
-         TYjKyUS5kG1XDdhqSeQa5M2Qwd6tlvXr1N4n1SRr9LHXGvSJBuTxU0xf4wxM0M69VlL/
-         XUaoErRggegme9Ne+5Tee17DLwjJi3HhXuMFUYYjhZk95eKEkntUJEkngBABfC0y8rtR
-         BNtL4UZIjKTirp8xMwnfM2O3yBSdoBKbbjfKYTHqXp5/nmuWCDUCZLw2cJ/3rUoAlzAm
-         gOpA==
-X-Gm-Message-State: AOAM5312XAbLxgirWow/zjDTP4xON1bs+Ypiq/gaSTgPA7XNOuGPmwGm
-        fHiNkCc4PTyi51dlAoCszN4jHw==
-X-Google-Smtp-Source: ABdhPJzfwtxQNO5KyXLzrphaldJNDNvilmz5Qk2gCNQ8wt6N4NdfsbWD59wj/nRMo4RZdWAFOj66gQ==
-X-Received: by 2002:a63:5c1:: with SMTP id 184mr7420865pgf.75.1621749616457;
-        Sat, 22 May 2021 23:00:16 -0700 (PDT)
+        bh=bbVkNXXuvs00kg1wmTW0NePOJ70agDM+7kVTDiM2Rwk=;
+        b=EZDRFIbtdE9L/qbE8vSp1iw+epcE3ezUqrIM1RaARQrWPFyn8AoQ6qa+97M8dwuvkE
+         iQgtYdw9nPFYdzwkCvhUwG/SoqFyJGI3kQ7rQ5c0mx/45NbdkBhBrXbAVl/WC4swfKwu
+         /z+ui1W78vH88dGljLIgQ3NnPSQ6Mv5pXQ4sZJuy/SMAnD3nV7ntAmmC5GogCgT5zSPu
+         6Lm4aYjAdYTexFn3GqJyAPw36BJ9iMt5fkzfRiKPUJfcHWlLLb7FwMzBbo9s+JxrJ0s2
+         1DBCB9nvedUJ89UBJKLHM6fW2vugaMS1OC87eTEtuVPX8LSvN8QjbF2h6rhm6eT2gK45
+         Z1dw==
+X-Gm-Message-State: AOAM531a0XNayaMXcoZacxK1+Cu7lCTr/XHMXl16CfdAwId6y655nK+P
+        gxoEvISvnsLl4Wj4oHzSKoNDDw==
+X-Google-Smtp-Source: ABdhPJxh6WeuHEv6gwxD9/kjJ2L0haPbr+6jWPGSMs++xnAQGZrM7RPHx8y37vVl06rkgkzX4CpMBA==
+X-Received: by 2002:a17:90a:5309:: with SMTP id x9mr8657357pjh.111.1621750001434;
+        Sat, 22 May 2021 23:06:41 -0700 (PDT)
 Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id y20sm7267931pfn.164.2021.05.22.23.00.13
+        by smtp.gmail.com with ESMTPSA id m191sm8367175pga.88.2021.05.22.23.06.38
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Sat, 22 May 2021 23:00:15 -0700 (PDT)
-Date:   Sun, 23 May 2021 14:00:10 +0800
+        Sat, 22 May 2021 23:06:41 -0700 (PDT)
+Date:   Sun, 23 May 2021 14:06:34 +0800
 From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Jassi Brar <jassisinghbrar@gmail.com>
+To:     Kalle Valo <kvalo@codeaurora.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Benjamin Li <benl@squareup.com>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] mailbox: qcom: Add MSM8939 APCS support
-Message-ID: <20210523060009.GA29015@dragon>
-References: <20210503081334.17143-1-shawn.guo@linaro.org>
- <20210503081334.17143-3-shawn.guo@linaro.org>
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
+Subject: Re: [PATCH v3] brcmfmac: support parse country code map from DT
+Message-ID: <20210523060633.GC29015@dragon>
+References: <20210417075428.2671-1-shawn.guo@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210503081334.17143-3-shawn.guo@linaro.org>
+In-Reply-To: <20210417075428.2671-1-shawn.guo@linaro.org>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 03, 2021 at 04:13:34PM +0800, Shawn Guo wrote:
-> MSM8939 has 3 APCS instances for Cluster0 (little cores), Cluster1 (big
-> cores) and CCI (Cache Coherent Interconnect).  Although only APCS of
-> Cluster0 and Cluster1 have IPC bits, each of 3 APCS has A53PLL clock
-> control bits.  That said, we need to register 3 'qcom-apcs-msm8916-clk'
-> devices to instantiate all 3 clocks.  Let's use PLATFORM_DEVID_AUTO
-> rather than PLATFORM_DEVID_NONE for platform_device_register_data()
-> call.  Otherwise, the second A53PLL clock registration will fail due
-> to duplicate device name.
+On Sat, Apr 17, 2021 at 03:54:28PM +0800, Shawn Guo wrote:
+> With any regulatory domain requests coming from either user space or
+> 802.11 IE (Information Element), the country is coded in ISO3166
+> standard.  It needs to be translated to firmware country code and
+> revision with the mapping info in settings->country_codes table.
+> Support populate country_codes table by parsing the mapping from DT.
 > 
-> [    0.519657] sysfs: cannot create duplicate filename '/bus/platform/devices/qcom-apcs-msm8916-clk'
-> ...
-> [    0.661158] qcom_apcs_ipc b111000.mailbox: failed to register APCS clk
+> The BRCMF_BUSTYPE_SDIO bus_type check gets separated from general DT
+> validation, so that country code can be handled as general part rather
+> than SDIO bus specific one.
 > 
 > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+> ---
+> Changes for v3:
+>  - Add missing terminating '\n' in brcmf_dbg(INFO, ...) format string.
 
-Hi Jassi,
+Hi Kalle,
 
-Any comment on this patch?
+Any comments on this version?
 
 Shawn
 
-> ---
->  drivers/mailbox/qcom-apcs-ipc-mailbox.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+
 > 
-> diff --git a/drivers/mailbox/qcom-apcs-ipc-mailbox.c b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-> index f25324d03842..1699ec38bc3b 100644
-> --- a/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-> +++ b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-> @@ -132,7 +132,7 @@ static int qcom_apcs_ipc_probe(struct platform_device *pdev)
->  	if (apcs_data->clk_name) {
->  		apcs->clk = platform_device_register_data(&pdev->dev,
->  							  apcs_data->clk_name,
-> -							  PLATFORM_DEVID_NONE,
-> +							  PLATFORM_DEVID_AUTO,
->  							  NULL, 0);
->  		if (IS_ERR(apcs->clk))
->  			dev_err(&pdev->dev, "failed to register APCS clk\n");
-> @@ -158,6 +158,7 @@ static const struct of_device_id qcom_apcs_ipc_of_match[] = {
->  	{ .compatible = "qcom,ipq6018-apcs-apps-global", .data = &ipq6018_apcs_data },
->  	{ .compatible = "qcom,ipq8074-apcs-apps-global", .data = &ipq8074_apcs_data },
->  	{ .compatible = "qcom,msm8916-apcs-kpss-global", .data = &msm8916_apcs_data },
-> +	{ .compatible = "qcom,msm8939-apcs-kpss-global", .data = &msm8916_apcs_data },
->  	{ .compatible = "qcom,msm8994-apcs-kpss-global", .data = &msm8994_apcs_data },
->  	{ .compatible = "qcom,msm8996-apcs-hmss-global", .data = &msm8996_apcs_data },
->  	{ .compatible = "qcom,msm8998-apcs-hmss-global", .data = &msm8998_apcs_data },
+>  .../wireless/broadcom/brcm80211/brcmfmac/of.c | 57 ++++++++++++++++++-
+>  1 file changed, 55 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+> index a7554265f95f..2f7bc3a70c65 100644
+> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+> @@ -12,12 +12,59 @@
+>  #include "common.h"
+>  #include "of.h"
+>  
+> +static int brcmf_of_get_country_codes(struct device *dev,
+> +				      struct brcmf_mp_device *settings)
+> +{
+> +	struct device_node *np = dev->of_node;
+> +	struct brcmfmac_pd_cc_entry *cce;
+> +	struct brcmfmac_pd_cc *cc;
+> +	int count;
+> +	int i;
+> +
+> +	count = of_property_count_strings(np, "brcm,ccode-map");
+> +	if (count < 0) {
+> +		/* The property is optional, so return success if it doesn't
+> +		 * exist. Otherwise propagate the error code.
+> +		 */
+> +		return (count == -EINVAL) ? 0 : count;
+> +	}
+> +
+> +	cc = devm_kzalloc(dev, sizeof(*cc) + count * sizeof(*cce), GFP_KERNEL);
+> +	if (!cc)
+> +		return -ENOMEM;
+> +
+> +	cc->table_size = count;
+> +
+> +	for (i = 0; i < count; i++) {
+> +		const char *map;
+> +
+> +		cce = &cc->table[i];
+> +
+> +		if (of_property_read_string_index(np, "brcm,ccode-map",
+> +						  i, &map))
+> +			continue;
+> +
+> +		/* String format e.g. US-Q2-86 */
+> +		if (sscanf(map, "%2c-%2c-%d", cce->iso3166, cce->cc,
+> +			   &cce->rev) != 3)
+> +			brcmf_err("failed to read country map %s\n", map);
+> +		else
+> +			brcmf_dbg(INFO, "%s-%s-%d\n", cce->iso3166, cce->cc,
+> +				  cce->rev);
+> +	}
+> +
+> +	settings->country_codes = cc;
+> +
+> +	return 0;
+> +}
+> +
+>  void brcmf_of_probe(struct device *dev, enum brcmf_bus_type bus_type,
+>  		    struct brcmf_mp_device *settings)
+>  {
+>  	struct brcmfmac_sdio_pd *sdio = &settings->bus.sdio;
+>  	struct device_node *root, *np = dev->of_node;
+>  	int irq;
+> +	int err;
+>  	u32 irqf;
+>  	u32 val;
+>  
+> @@ -43,8 +90,14 @@ void brcmf_of_probe(struct device *dev, enum brcmf_bus_type bus_type,
+>  		of_node_put(root);
+>  	}
+>  
+> -	if (!np || bus_type != BRCMF_BUSTYPE_SDIO ||
+> -	    !of_device_is_compatible(np, "brcm,bcm4329-fmac"))
+> +	if (!np || !of_device_is_compatible(np, "brcm,bcm4329-fmac"))
+> +		return;
+> +
+> +	err = brcmf_of_get_country_codes(dev, settings);
+> +	if (err)
+> +		brcmf_err("failed to get OF country code map (err=%d)\n", err);
+> +
+> +	if (bus_type != BRCMF_BUSTYPE_SDIO)
+>  		return;
+>  
+>  	if (of_property_read_u32(np, "brcm,drive-strength", &val) == 0)
 > -- 
 > 2.17.1
 > 
