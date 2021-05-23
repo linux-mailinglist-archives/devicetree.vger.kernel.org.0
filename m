@@ -2,91 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9284D38DBAC
-	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 17:54:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D59038DC2A
+	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 19:24:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231815AbhEWPzk convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 23 May 2021 11:55:40 -0400
-Received: from guitar.tcltek.co.il ([192.115.133.116]:52801 "EHLO
-        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231789AbhEWPzk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 23 May 2021 11:55:40 -0400
-Received: from tarshish (unknown [10.0.8.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx.tkos.co.il (Postfix) with ESMTPS id D1FC0440583;
-        Sun, 23 May 2021 18:54:26 +0300 (IDT)
-References: <70ced827689b7ab35d8f3b07db8d9ccd1489e3e2.1621410526.git.baruch@tkos.co.il>
- <20210522213524.lnb5bds5hvv2f2zi@pengutronix.de>
-User-agent: mu4e 1.4.15; emacs 27.1
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Balaji Prakash J <bjagadee@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH 1/3] pwm: driver for qualcomm ipq6018 pwm block
-In-reply-to: <20210522213524.lnb5bds5hvv2f2zi@pengutronix.de>
-Date:   Sun, 23 May 2021 18:54:08 +0300
-Message-ID: <87zgwltpi7.fsf@tarshish>
+        id S231931AbhEWRZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 May 2021 13:25:43 -0400
+Received: from mx4.wp.pl ([212.77.101.12]:22048 "EHLO mx4.wp.pl"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231926AbhEWRZm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 May 2021 13:25:42 -0400
+Received: (wp-smtpd smtp.wp.pl 10112 invoked from network); 23 May 2021 19:24:11 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=1024a;
+          t=1621790651; bh=RJx2/dYy5rKglmcq3ciiPxaS8A88JNvbT9Qw3cpTdfE=;
+          h=From:To:Cc:Subject;
+          b=kgKsPUNyxgfo0Hd4BCd+NaD2NjTr+tVSkyiWAsmtOIos99w7wD5OGCMlnTnCzM/m3
+           +FhC/rOpJea3ojj2z+FSD6B/Hyyz3Qm4iAavpncpunf58ROxwhiyjIWLpR7GofIFTH
+           VFaeG/GqrC3WR83WpluO4QWg7VbdWjrRx7TWLPwI=
+Received: from riviera.nat.ds.pw.edu.pl (HELO LAPTOP-OLEK.lan) (olek2@wp.pl@[194.29.137.1])
+          (envelope-sender <olek2@wp.pl>)
+          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
+          for <linus.walleij@linaro.org>; 23 May 2021 19:24:11 +0200
+From:   Aleksander Jan Bajkowski <olek2@wp.pl>
+To:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        robh+dt@kernel.org, john@phrozen.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Aleksander Jan Bajkowski <olek2@wp.pl>
+Subject: [PATCH v2] dt-bindings: gpio: stp: convert to json-schema
+Date:   Sun, 23 May 2021 19:24:05 +0200
+Message-Id: <20210523172405.660171-1-olek2@wp.pl>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
+X-WP-DKIM-Status: good (id: wp.pl)                                      
+X-WP-MailID: 4296720f8b63bf972cc73ea2edb1742d
+X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
+X-WP-SPAM: NO 0000000 [IXME]                               
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Uwe,
+Convert the Lantiq STP Device Tree binding documentation to json-schema.
+Add the missing pinctrl property to the example. Add missing lantiq,phy3
+and lantiq,phy4 bindings for xRX300 and xRX330 SoCs.
 
-Thanks for your review comments.
+Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+---
+Changes since v1:
+ - Rename note to gpio.
+ - Drop default pinctrl from this binding.
+ - Convert lantiq,phyX to patternProperties.
+---
+ .../bindings/gpio/gpio-stp-xway.txt           |  42 --------
+ .../bindings/gpio/gpio-stp-xway.yaml          | 101 ++++++++++++++++++
+ 2 files changed, 101 insertions(+), 42 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-stp-xway.txt
+ create mode 100644 Documentation/devicetree/bindings/gpio/gpio-stp-xway.yaml
 
-On Sun, May 23 2021, Uwe Kleine-König wrote:
-> On Wed, May 19, 2021 at 10:48:44AM +0300, Baruch Siach wrote:
->> Driver for the PWM block in Qualcomm IPQ6018 line of SoCs. Based on
->> driver from downstream Codeaurora kernel tree. Removed support for older
->> (V1) variants because I have no access to that hardware.
->> 
->> Tested on IPQ6010 based hardware.
->> 
->> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
-
-[...]
-
->> +static void ipq_pwm_disable(struct pwm_chip *chip, struct pwm_device *pwm)
->> +{
->> +	struct ipq_pwm_chip *ipq_chip = to_ipq_pwm_chip(pwm->chip);
->> +	unsigned offset = ipq_pwm_reg_offset(pwm, PWM_CFG_REG1);
->> +	unsigned long val;
->> +
->> +	val = readl(ipq_chip->mem + offset);
->> +	val |= PWM_UPDATE;
->
-> What is the effect of this register bit?
->
-> Does the output become inactive or does it freeze at state that happens
-> to be emitted when the ENABLE bit is removed?
-
-I don't know. PWM does not work when this bit is not set here. The
-original downstream driver[1] does not set this bit on disable. But it
-also enables PWM unconditionally on .config. I added the 'enabled' check
-in .config, and then PWM stopped working even when enabled later. It was
-only by accident (excess copy/paste) that I found this workaround.
-
-A comment on the original code says that PWM_UPDATE is "auto cleared".
-This is evidently not true on my hardware (IPQ6010). This might be true
-for older variants of this PWM block. Unfortunately, I have no access to
-hardware documentation.
-
-[1] https://source.codeaurora.org/quic/qsdk/oss/kernel/linux-ipq-5.4/tree/drivers/pwm/pwm-ipq.c?h=NHSS.QSDK.11.4.1.r1&id=9e4627b7088b0c06ddd910c8770274d26613de9e
-
-baruch
-
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-stp-xway.txt b/Documentation/devicetree/bindings/gpio/gpio-stp-xway.txt
+deleted file mode 100644
+index 78458adbf4b7..000000000000
+--- a/Documentation/devicetree/bindings/gpio/gpio-stp-xway.txt
++++ /dev/null
+@@ -1,42 +0,0 @@
+-Lantiq SoC Serial To Parallel (STP) GPIO controller
+-
+-The Serial To Parallel (STP) is found on MIPS based Lantiq socs. It is a
+-peripheral controller used to drive external shift register cascades. At most
+-3 groups of 8 bits can be driven. The hardware is able to allow the DSL modem
+-to drive the 2 LSBs of the cascade automatically.
+-
+-
+-Required properties:
+-- compatible : Should be "lantiq,gpio-stp-xway"
+-- reg : Address and length of the register set for the device
+-- #gpio-cells : Should be two.  The first cell is the pin number and
+-  the second cell is used to specify optional parameters (currently
+-  unused).
+-- gpio-controller : Marks the device node as a gpio controller.
+-
+-Optional properties:
+-- lantiq,shadow : The default value that we shall assume as already set on the
+-  shift register cascade.
+-- lantiq,groups : Set the 3 bit mask to select which of the 3 groups are enabled
+-  in the shift register cascade.
+-- lantiq,dsl : The dsl core can control the 2 LSBs of the gpio cascade. This 2 bit
+-  property can enable this feature.
+-- lantiq,phy1 : The gphy1 core can control 3 bits of the gpio cascade.
+-- lantiq,phy2 : The gphy2 core can control 3 bits of the gpio cascade.
+-- lantiq,rising : use rising instead of falling edge for the shift register
+-
+-Example:
+-
+-gpio1: stp@e100bb0 {
+-	compatible = "lantiq,gpio-stp-xway";
+-	reg = <0xE100BB0 0x40>;
+-	#gpio-cells = <2>;
+-	gpio-controller;
+-
+-	lantiq,shadow = <0xffff>;
+-	lantiq,groups = <0x7>;
+-	lantiq,dsl = <0x3>;
+-	lantiq,phy1 = <0x7>;
+-	lantiq,phy2 = <0x7>;
+-	/* lantiq,rising; */
+-};
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-stp-xway.yaml b/Documentation/devicetree/bindings/gpio/gpio-stp-xway.yaml
+new file mode 100644
+index 000000000000..999bd06e6b1c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/gpio-stp-xway.yaml
+@@ -0,0 +1,101 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/gpio-stp-xway.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Lantiq SoC Serial To Parallel (STP) GPIO controller
++
++description: |
++  The Serial To Parallel (STP) is found on MIPS based Lantiq socs. It is a
++  peripheral controller used to drive external shift register cascades. At most
++  3 groups of 8 bits can be driven. The hardware is able to allow the DSL modem
++  and Ethernet PHYs to drive some bytes of the cascade automatically.
++
++maintainers:
++  - John Crispin <john@phrozen.org>
++
++properties:
++  $nodename:
++    pattern: "^gpio@[0-9a-f]+$"
++
++  compatible:
++    const: lantiq,gpio-stp-xway
++
++  reg:
++    description:
++      Address and length of the register set for the device.
++    maxItems: 1
++
++  gpio-controller: true
++
++  "#gpio-cells":
++    description:
++      The first cell is the pin number and the second cell is used to specify
++      consumer flags.
++    const: 2
++
++  lantiq,shadow:
++    description:
++      The default value that we shall assume as already set on the
++      shift register cascade.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 0x000000
++    maximum: 0xffffff
++
++  lantiq,groups:
++    description:
++      Set the 3 bit mask to select which of the 3 groups are enabled
++      in the shift register cascade.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 0x0
++    maximum: 0x7
++
++  lantiq,dsl:
++    description:
++      The dsl core can control the 2 LSBs of the gpio cascade. This 2 bit
++      property can enable this feature.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 0x0
++    maximum: 0x3
++
++patternProperties:
++  "lantiq,phy[1-4]":
++    description:
++      The gphy core can control 3 bits of the gpio cascade. On xRX200 family there
++      are available gphy[0-1]. On xRX300 gphy[0-2], on xRX330 gphy[0-3].
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 0x0
++    maximum: 0x7
++
++  lantiq,rising:
++    description:
++      Use rising instead of falling edge for the shift register.
++    type: boolean
++
++required:
++  - compatible
++  - reg
++  - gpio-controller
++  - "#gpio-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    gpio@e100bb0 {
++        compatible = "lantiq,gpio-stp-xway";
++        reg = <0xE100BB0 0x40>;
++        #gpio-cells = <2>;
++        gpio-controller;
++
++        pinctrl-0 = <&stp_pins>;
++        pinctrl-names = "default";
++
++        lantiq,shadow = <0xffffff>;
++        lantiq,groups = <0x7>;
++        lantiq,dsl = <0x3>;
++        lantiq,phy1 = <0x7>;
++        lantiq,phy2 = <0x7>;
++    };
++...
 -- 
-                                                     ~. .~   Tk Open Systems
-=}------------------------------------------------ooO--U--Ooo------------{=
-   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
+2.30.2
+
