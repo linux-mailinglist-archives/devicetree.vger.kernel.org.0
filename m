@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B94838D831
-	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 04:02:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C007F38D838
+	for <lists+devicetree@lfdr.de>; Sun, 23 May 2021 04:20:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231508AbhEWCDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 May 2021 22:03:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40062 "EHLO mail.kernel.org"
+        id S231513AbhEWCVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 May 2021 22:21:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51230 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231495AbhEWCDz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 22 May 2021 22:03:55 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 87CED610CB;
-        Sun, 23 May 2021 02:02:28 +0000 (UTC)
+        id S231495AbhEWCVv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 22 May 2021 22:21:51 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 56C92600D1;
+        Sun, 23 May 2021 02:20:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621735350;
-        bh=cczRYZfUGppkbAXuhdRD6zwKWAX9/aP6TkYfeWlDzJU=;
+        s=k20201202; t=1621736426;
+        bh=u7HTH9S9ACY+hVT9Ovfm/QbReRAQQfkwl0oBvq9HU6U=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JV1CRppCec+UJrtyTqTJm3lty798sjsgBym2QDnAHU0yco/f+1Yq+C7FI5lz47BnC
-         zdAVqTfUacwupp/FWSRSYdSjqfbZ55c/jZL8OjotCX3GtnQwliJHvhg/btPUJlx696
-         lKXe37Q0Jhx5cMwchHVk0vmRL5VQphjgQ/PJPjQbU891DHYEXlgtFja+HwiNgWfaOp
-         f2chkRTLwNVzWj7Ia7AvfxQ5x92/iEWSmTjcLsmfmL6QAmT1TSEyK7nQfgi8FbnvQw
-         2dBgW23ZHQPj8Z/Q/q9qgvShaCQ1ad6g38eIvT66W3M3smd/JFjHBpYQG/CvqAiLfY
-         0qIjgquL4bMeg==
-Date:   Sun, 23 May 2021 10:02:22 +0800
+        b=Vx2DCXQTjHR+YAZBrasXd7UhBzbnAn4RMT8wU4QG34GPFREXAcdOqKX76+8CWn9Ns
+         p74vHYXkK24spK0eQWVq5Bfi/g0dHv0r1gkjv0JkcsV/mlNPIY1fcyizLXJJJSen4O
+         nU4tuTpcLxcwdfW6yV2pyQaY8amfDKW/JsaMhFC9nO4xLaMwggRptqzzBFbOGFTHMY
+         9+OBBGrobuP/yNXWEeEhayR5+St3QGyqFtIbyUOUMa6CkGQZP04Irt8IiebLpzC1iK
+         BW1ruPyjinSsls/hSSdltSWvKuleESv4wA1SjlQdinXPNJuM3RxhcDAQYalsQdKVgB
+         2L1aY6gYED6Wg==
+Date:   Sun, 23 May 2021 10:20:18 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: imx6dl-yapp4: Use aliases to set custom MMC
- device indexes
-Message-ID: <20210523020222.GG8194@dragon>
-References: <1619790795-8375-1-git-send-email-michal.vokac@ysoft.com>
+To:     dillon.minfei@gmail.com
+Cc:     festevam@gmail.com, s.riedmueller@phytec.de,
+        matthias.schiffer@ew.tq-group.com, leoyang.li@nxp.com,
+        arnd@arndb.de, olof@lixom.net, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, prabhakar.csengg@gmail.com,
+        mchehab@kernel.org, mchehab+huawei@kernel.org,
+        krzysztof.kozlowski@canonical.com, krzk@kernel.org,
+        robh+dt@kernel.org, linux@rempel-privat.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH v5 1/4] dt-bindings: add dasheng vendor prefix
+Message-ID: <20210523022010.GH8194@dragon>
+References: <1620104993-5850-1-git-send-email-dillon.minfei@gmail.com>
+ <1620104993-5850-2-git-send-email-dillon.minfei@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1619790795-8375-1-git-send-email-michal.vokac@ysoft.com>
+In-Reply-To: <1620104993-5850-2-git-send-email-dillon.minfei@gmail.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 30, 2021 at 03:53:15PM +0200, Michal Vokáč wrote:
-> Until commit fa2d0aa96941 ("mmc: core: Allow setting slot index via
-> device tree alias") was introduced, our usdhc3 and usdhc4 devices
-> were enumerated as mmc0 and mmc1. The mmc1 device is used to boot/update
-> the board and its name must be fixed.
+On Tue, May 04, 2021 at 01:09:50PM +0800, dillon.minfei@gmail.com wrote:
+> From: Dillon Min <dillon.minfei@gmail.com>
 > 
-> With the referenced commit, aliases from imx6qdl.dtsi took effect.
-> Override the aliases to get back the original device indexes.
+> Add vendor prefix for DaSheng, Inc.
 > 
-> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+> Signed-off-by: Dillon Min <dillon.minfei@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Acked-by: Rob Herring <robh@kernel.org>
 
 Applied, thanks.
