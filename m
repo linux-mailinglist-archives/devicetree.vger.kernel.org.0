@@ -2,114 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CE1D38F0E4
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 18:08:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3644E38ECCF
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 17:24:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236371AbhEXQGp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 12:06:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53168 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236733AbhEXQEg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 12:04:36 -0400
-Received: from mail-vk1-xa36.google.com (mail-vk1-xa36.google.com [IPv6:2607:f8b0:4864:20::a36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 119F3C026BD2
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 08:15:15 -0700 (PDT)
-Received: by mail-vk1-xa36.google.com with SMTP id 15so5751359vkn.11
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 08:15:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2hiXKO119GSaKQpX+psN+usfMuDJQ/GOJx+xCi36V10=;
-        b=U/Ic0oyql6VSf1zMHtEy4mFLp+v9j8wB4h0j/Vp8yHCVYnaly6d7tpSDvlo8G1uHBG
-         onMLvowml45t3Phb7Bu7NbF6vxIoTKOpA8zY6VOsOpeZPNaRe3LNzlYisU6IV8eLRjaT
-         +IRU0yWNE2MZiNO9ukMoaEt1eOKN9HLESVPHk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2hiXKO119GSaKQpX+psN+usfMuDJQ/GOJx+xCi36V10=;
-        b=Z7SAYGhA9YRr2muePvl41bW2UoE4Hh1GjwZsjwKSb3gENrcRSFbnEGVVXpzXdDDGQE
-         DU4+aiWmQvlvq9OUYX3FAfppEzrh61VNXb1ehKbGJm9+p3/06Y53FSJiUsuTwCiBIeen
-         DU3Hhl7wGAAl2f+jum8z1IY2GkkE0OvmkV1aZqfwBRxFZbsaUT3jJZxqUXzExirwmZQc
-         gT5TnT8ykjjo50r84Fb948mBZ1X1913Z4yIzmgvSTz9rlXQ9NHxvfEbQI4PoQ9jZBRhr
-         j+yxzCnK0OBTTp1akkR5tNnEJ84f+/DLWu752gWwUaRN39FfXBqT0yNiSvLG6ZpAAb3X
-         tpbA==
-X-Gm-Message-State: AOAM532BcbJRamSRtdEJicbfvttABo1xjCZj7zjfILvjzT4ePM33YK8d
-        nY7Lsaxz+/WCXedrTCr5o68ryB7RVSj8CA==
-X-Google-Smtp-Source: ABdhPJxcWrdtwrlVsNeXP/Af1jpMV0Dx9/uSRKqbZ1unaz4GXMyPO67wvN3tBPBLytbLnFWaoMwrHw==
-X-Received: by 2002:a1f:3816:: with SMTP id f22mr21463701vka.17.1621869313598;
-        Mon, 24 May 2021 08:15:13 -0700 (PDT)
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
-        by smtp.gmail.com with ESMTPSA id z26sm1888010uav.8.2021.05.24.08.15.11
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 May 2021 08:15:11 -0700 (PDT)
-Received: by mail-vs1-f48.google.com with SMTP id s15so14414021vsi.4
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 08:15:11 -0700 (PDT)
-X-Received: by 2002:a05:6102:3239:: with SMTP id x25mr21095761vsf.47.1621869311242;
- Mon, 24 May 2021 08:15:11 -0700 (PDT)
+        id S233640AbhEXPZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 11:25:15 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:48844 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234990AbhEXPW1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 11:22:27 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14OFK6vK118394;
+        Mon, 24 May 2021 10:20:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1621869606;
+        bh=kGpI6I5BF57mdUVw4YFYiV1QGy9tp4KteKS2TI1W130=;
+        h=From:To:CC:Subject:Date;
+        b=LNsXPz0XeHyzStqOkKh2FV8gIcdY6KI0G586Rtp6cABgmFnjseLhYgfvlWDDGMf8z
+         Vb1f6dFLa4q3or333sxmTRcHqw9VpIdxm/Yes/76G76mOWl9l9W1pRIyHzG9uHpyvh
+         5Na3a2o6kVOqnAhj+IDA5QZFo/L7dZrK2KO3/Atg=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14OFK6Zq129447
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 24 May 2021 10:20:06 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 24
+ May 2021 10:20:05 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 24 May 2021 10:20:05 -0500
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14OFJv26055198;
+        Mon, 24 May 2021 10:19:58 -0500
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Lokesh Vutla <lokeshvutla@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, Keerthy <j-keerthy@ti.com>,
+        David Lechner <david@lechnology.com>,
+        Sekhar Nori <nsekhar@ti.com>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v3 0/2] dt-bindings: gpio: davinci:  Convert to json-schema
+Date:   Mon, 24 May 2021 20:49:52 +0530
+Message-ID: <20210524151955.8008-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20210517200907.1459182-1-dianders@chromium.org> <2536404ca2ab0e7b785a104ec6b4efb48943a438.camel@redhat.com>
-In-Reply-To: <2536404ca2ab0e7b785a104ec6b4efb48943a438.camel@redhat.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 24 May 2021 08:14:59 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WqM6fTuk3g4Rt9D+Fn=P1aUQwM3Cjz-K2BXurMB2AQ5A@mail.gmail.com>
-Message-ID: <CAD=FV=WqM6fTuk3g4Rt9D+Fn=P1aUQwM3Cjz-K2BXurMB2AQ5A@mail.gmail.com>
-Subject: Re: [PATCH v7 00/10] drm: Fix EDID reading on ti-sn65dsi86 by
- introducing the DP AUX bus
-To:     Lyude Paul <lyude@redhat.com>
-Cc:     Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Linus W <linus.walleij@linaro.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Andy Gross <agross@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Convert the davinci GPIO device tree binding documentation to json-schema.
+The GPIO hog node names are defined to end with a 'hog' suffix.
 
-On Fri, May 21, 2021 at 4:07 PM Lyude Paul <lyude@redhat.com> wrote:
->
-> For patches 5, and 6:
->
-> Reviewed-by: Lyude Paul <lyude@redhat.com>
->
-> This week got really busy so I wasn't able to look at the rest of them, but next
-> week is going to be a lot less busy so I should be able to look at them then
+All existing GPIO hogs are fixed to follow above naming convention
+before changing the binding to avoid dtbs_check warnings.
 
-Thanks for your review on the two patches and for letting me know your
-plans. I know that I still need to spin the bindings patches with Rob
-Herring's feedback, but I won't do that until I know you're done
-reviewing just to avoid spamming everyone an extra time. Assuming no
-emergency comes around and slams me, I should be able to react/respond
-fairly quickly this week M-Th, though I'm taking Friday off.
+changes since v2:
+- Used gpio-hog.yaml for gpio-hog property
+- Added constraints on gpio-hog node name
+- Corrected the gpio hog dt node names to align
+  with the dt-schema
 
-BTW: if anyone reading this happens to have 10 minutes, I'd sorta like
-to get patch #1 in this series landed sooner rather than later and
-it's a dead-simple fix. If I see a review of that one, I'll apply it
-to drm-misc before sending out the next version of the series. ;-)
+changes since v1:
+- combined the individual compatible properties into one enum
+- added maxItems and minItems properties for gpio-line-names and
+  interrupts
+- updated the description of interrupts property
+- removed the description for properties that are general
+- updated the pattern property for gpio hog to indicate any sort
+  node name based on its usage
+- corrected the example wakeup gpio node name
 
--Doug
+Aswath Govindraju (2):
+  ARM: dts: da850-lego-ev3: align GPIO hog names with dt-schema
+  dt-bindings: gpio: gpio-davinci: Convert to json-schema
+
+ .../devicetree/bindings/gpio/gpio-davinci.txt | 167 ----------------
+ .../bindings/gpio/gpio-davinci.yaml           | 186 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ arch/arm/boot/dts/da850-lego-ev3.dts          |  10 +-
+ 4 files changed, 192 insertions(+), 173 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-davinci.txt
+ create mode 100644 Documentation/devicetree/bindings/gpio/gpio-davinci.yaml
+
+-- 
+2.17.1
+
