@@ -2,227 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D842638F1F8
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 19:05:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02EF438F253
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 19:36:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233161AbhEXRGp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 13:06:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39750 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233152AbhEXRGp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 13:06:45 -0400
-Received: from mail-ua1-x92c.google.com (mail-ua1-x92c.google.com [IPv6:2607:f8b0:4864:20::92c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4468DC06138A
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 10:05:17 -0700 (PDT)
-Received: by mail-ua1-x92c.google.com with SMTP id b1so321298uap.3
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 10:05:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=eZESf2+UaWJEsGgPUeGFqkYRrVF4ir0zTy9O8j+JZj0=;
-        b=F7m/3fCzNq2FjVowZE3b6kOUYNK0yc/QidlGDaLPRVfmD9v1gRRu7OVOrRBpTgyBAq
-         RN6dpQp83jnaFaGvshIYnM+xXVDEAHcTxHRfUPB/SmG3IQsfVTPBnvWXIelgpaqEIIRp
-         RbgRetkJQ+yYYTmV5IcLZ929/NeBfAGKyLUmXky1ShOLjOahGqBcLXtVlRg11DvEYpYd
-         eIADl4LA6Dvl82BB+Ief4vDAB6PximvEmlgWhpWBcG4HyoBXvYyA9llRubapIvYM1pJi
-         IwFJz0jr7NufaHk0RMW3QO5k29azEzEUM8yNELd2fPWiK5/1i9kbxxYnfWv9zDUII/Nj
-         ggDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eZESf2+UaWJEsGgPUeGFqkYRrVF4ir0zTy9O8j+JZj0=;
-        b=LiXTT8IAZuJrr3GI35DS1Htxc7fsn4S3md7ZmuZxdozKHgfoFbYxZZcq3xvjVf0klX
-         sRM6cvCU7gLh0REnuHHmSuV2CWP1UwacrwaQkE2OzASyXbr9ot1TwVfsbpYeqbDOdJaL
-         bbt0/lVX8va6nQ9uVLXDWMOaqmSSB2Viz1QMJeqSmmBXn+KkTjTtiuU9OMLd3yVTp07A
-         UcrPNyXxtIprIolnwoxqBkBlW+xtrK8JcjC+2qan0BRqNejcjXBDf1nOxQGmd9JDin+w
-         n0uRbQjuSS8sxhwXA9cFmZv4UiWmkyVVHvcd3tQqOEgj0jeLafiZu0OQlcczcyjPhZPh
-         E1JQ==
-X-Gm-Message-State: AOAM531jfRmxoaBkPkRspZtz4HiskEq9bETiD1wJY9nlTkomTNg4hTdJ
-        6NPCX8dGx0LjGFQSPt++vnX3vKWRtra6gkWJj1lDIg==
-X-Google-Smtp-Source: ABdhPJwVnMsBxavUG6WhLD7276brAnw7avHoO4W5DwCb7iPsdb9pe0vuL7T8bKsnZFn6ouLaui6EqThOSbhN4pDxRHE=
-X-Received: by 2002:ab0:d8f:: with SMTP id i15mr4749618uak.104.1621875916371;
- Mon, 24 May 2021 10:05:16 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210523231335.8238-1-digetx@gmail.com> <20210523231335.8238-14-digetx@gmail.com>
-In-Reply-To: <20210523231335.8238-14-digetx@gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 24 May 2021 19:04:40 +0200
-Message-ID: <CAPDyKFrto2cosX3Ben_QWCYVqgeoF1Yv=8gEx4Y86WNyjeHvdg@mail.gmail.com>
-Subject: Re: [PATCH v2 13/14] soc/tegra: pmc: Add core power domain
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        =?UTF-8?Q?Nikola_Milosavljevi=C4=87?= <mnidza@outlook.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Paul Fertser <fercerpav@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Nathan Chancellor <nathan@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S233191AbhEXRhm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 13:37:42 -0400
+Received: from sibelius.xs4all.nl ([83.163.83.176]:61984 "EHLO
+        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233112AbhEXRhl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 13:37:41 -0400
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id c4427888;
+        Mon, 24 May 2021 19:36:10 +0200 (CEST)
+Date:   Mon, 24 May 2021 19:36:10 +0200 (CEST)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     shawnguo@kernel.org, leoyang.li@nxp.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        thunder.leizhen@huawei.com
+In-Reply-To: <20210524035244.8677-1-thunder.leizhen@huawei.com> (message from
+        Zhen Lei on Mon, 24 May 2021 11:52:44 +0800)
+Subject: Re: [PATCH 1/1] arm64: dts: lx2160a: Normalize the compatible string of
+ "arm, sbsa-uart"
+References: <20210524035244.8677-1-thunder.leizhen@huawei.com>
+Message-ID: <5612f2cad25a3041@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 May 2021 at 01:13, Dmitry Osipenko <digetx@gmail.com> wrote:
->
-> NVIDIA Tegra SoCs have multiple power domains, each domain corresponds
-> to an external SoC power rail. Core power domain covers vast majority of
-> hardware blocks within a Tegra SoC. The voltage of a power domain should
-> be set to a level which satisfies all devices within the power domain.
-> Add support for the core power domain which controls voltage state of the
-> domain. This allows us to support system-wide DVFS on Tegra20-210 SoCs.
-> The PMC powergate domains now are sub-domains of the core domain, this
-> requires device-tree updating, older DTBs are unaffected.
->
-> Tested-by: Peter Geis <pgwipeout@gmail.com> # Ouya T30
-> Tested-by: Paul Fertser <fercerpav@gmail.com> # PAZ00 T20
-> Tested-by: Nicolas Chauvet <kwizart@gmail.com> # PAZ00 T20 and TK1 T124
-> Tested-by: Matt Merhar <mattmerhar@protonmail.com> # Ouya T30
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> From: Zhen Lei <thunder.leizhen@huawei.com>
+> Date: Mon, 24 May 2021 11:52:44 +0800
+> Content-Type: text/plain; charset="us-ascii"
+> 
+> The compatible string of ARM SBSA defined generic UART needs to contain
+> only "arm,sbsa-uart" and does not need to contain "arm,pl011". Otherwise,
+> the pl011.yaml will check it and falsely report many warnings similar to
+> the following:
+> 
+> arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dt.yaml:
+>  serial@21c0000: compatible:0: 'arm,pl011' was expected
+>  serial@21c0000: compatible:1: 'arm,primecell' was expected
+> 
+> Delete the redundant "arm,pl011" to fix it.
 
-[...]
+According to its reference manual, the LX2160A has a full PL011
+implementation.  So I think this is the wrong "fix".
 
-> +
-> +static int tegra_pmc_core_pd_add(struct tegra_pmc *pmc, struct device_node *np)
-> +{
-> +       static struct lock_class_key tegra_core_domain_lock_class;
-> +       struct generic_pm_domain *genpd;
-> +       const char *rname = "core";
-> +       int err;
-> +
-> +       genpd = devm_kzalloc(pmc->dev, sizeof(*genpd), GFP_KERNEL);
-> +       if (!genpd)
-> +               return -ENOMEM;
-> +
-> +       genpd->name = np->name;
-> +       genpd->set_performance_state = tegra_pmc_core_pd_set_performance_state;
-> +       genpd->opp_to_performance_state = tegra_pmc_core_pd_opp_to_performance_state;
-> +
-> +       err = devm_pm_opp_set_regulators(pmc->dev, &rname, 1);
-> +       if (err)
-> +               return dev_err_probe(pmc->dev, err,
-> +                                    "failed to set core OPP regulator\n");
-> +
-> +       err = pm_genpd_init(genpd, NULL, false);
-> +       if (err) {
-> +               dev_err(pmc->dev, "failed to init core genpd: %d\n", err);
-> +               return err;
-> +       }
-> +
-> +       /*
-> +        * We have a "PMC pwrgate -> Core" hierarchy of the power domains
-> +        * where PMC needs to resume and change performance (voltage) of the
-> +        * Core domain from the PMC GENPD on/off callbacks, hence we need
-> +        * to annotate the lock in order to remove confusion from the
-> +        * lockdep checker when a nested access happens.
-> +        */
-
-Can you elaborate a bit more on this?
-
-Are you saying that when the child domain (PMC pwrgate) gets powered
-off, you want to drop its aggregated votes it may hold for the
-performance state, as otherwise it may affect the parent domain (core
-domain)?
-
-I guess this would be a valid scenario to optimize for, especially if
-you have more than one child domain of the core power domain, right?
-
-If you have only one child domain, would it be sufficient to assign
-->power_on|off() callbacks for the core domain and deal with the
-performance stare votes from there instead?
-
-> +       lockdep_set_class(&genpd->mlock, &tegra_core_domain_lock_class);
-> +
-> +       err = of_genpd_add_provider_simple(np, genpd);
-> +       if (err) {
-> +               dev_err(pmc->dev, "failed to add core genpd: %d\n", err);
-> +               goto remove_genpd;
-> +       }
-> +
-> +       return 0;
-> +
-> +remove_genpd:
-> +       pm_genpd_remove(genpd);
-> +
-> +       return err;
-> +}
-
-[...]
-
-> +static void tegra_pmc_sync_state(struct device *dev)
-> +{
-> +       int err;
-> +
-> +       pmc->core_domain_state_synced = true;
-> +
-> +       /* this is a no-op if core regulator isn't used */
-> +       mutex_lock(&pmc->powergates_lock);
-> +       err = dev_pm_opp_sync_regulators(dev);
-> +       mutex_unlock(&pmc->powergates_lock);
-> +
-> +       if (err)
-> +               dev_err(dev, "failed to sync regulators: %d\n", err);
-> +}
-> +
-
-Nitpick.
-
-Would you mind splitting the "sync_state" thingy out into a separate
-patch on top of $subject patch?
-
-I think it would be nice, especially since it shares a function via
-include/soc/tegra/common.h - that would make it clear to what part
-that belongs to.
-
->  static struct platform_driver tegra_pmc_driver = {
->         .driver = {
->                 .name = "tegra-pmc",
-> @@ -3680,6 +3822,7 @@ static struct platform_driver tegra_pmc_driver = {
->  #if defined(CONFIG_PM_SLEEP) && defined(CONFIG_ARM)
->                 .pm = &tegra_pmc_pm_ops,
->  #endif
-> +               .sync_state = tegra_pmc_sync_state,
->         },
->         .probe = tegra_pmc_probe,
->  };
-> diff --git a/include/soc/tegra/common.h b/include/soc/tegra/common.h
-> index af41ad80ec21..135a6956a18c 100644
-> --- a/include/soc/tegra/common.h
-> +++ b/include/soc/tegra/common.h
-> @@ -23,6 +23,8 @@ struct tegra_core_opp_params {
->  #ifdef CONFIG_ARCH_TEGRA
->  bool soc_is_tegra(void);
->
-> +bool tegra_soc_core_domain_state_synced(void);
-> +
->  int devm_tegra_core_dev_init_opp_table(struct device *dev,
->                                        struct tegra_core_opp_params *params);
->  #else
-> @@ -31,6 +33,11 @@ static inline bool soc_is_tegra(void)
->         return false;
->  }
->
-> +static inline bool tegra_soc_core_domain_state_synced(void)
-> +{
-> +       return false;
-> +}
-> +
->  static inline int
->  devm_tegra_core_dev_init_opp_table(struct device *dev,
->                                    struct tegra_core_opp_params *params)
-
-Kind regards
-Uffe
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> index 4fcc869c21a4..417546616d85 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> @@ -920,7 +920,7 @@
+>  		};
+>  
+>  		uart0: serial@21c0000 {
+> -			compatible = "arm,sbsa-uart","arm,pl011";
+> +			compatible = "arm,sbsa-uart";
+>  			reg = <0x0 0x21c0000 0x0 0x1000>;
+>  			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+>  			current-speed = <115200>;
+> @@ -928,7 +928,7 @@
+>  		};
+>  
+>  		uart1: serial@21d0000 {
+> -			compatible = "arm,sbsa-uart","arm,pl011";
+> +			compatible = "arm,sbsa-uart";
+>  			reg = <0x0 0x21d0000 0x0 0x1000>;
+>  			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
+>  			current-speed = <115200>;
+> @@ -936,7 +936,7 @@
+>  		};
+>  
+>  		uart2: serial@21e0000 {
+> -			compatible = "arm,sbsa-uart","arm,pl011";
+> +			compatible = "arm,sbsa-uart";
+>  			reg = <0x0 0x21e0000 0x0 0x1000>;
+>  			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
+>  			current-speed = <115200>;
+> @@ -944,7 +944,7 @@
+>  		};
+>  
+>  		uart3: serial@21f0000 {
+> -			compatible = "arm,sbsa-uart","arm,pl011";
+> +			compatible = "arm,sbsa-uart";
+>  			reg = <0x0 0x21f0000 0x0 0x1000>;
+>  			interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
+>  			current-speed = <115200>;
+> -- 
+> 2.21.1
+> 
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
