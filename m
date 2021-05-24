@@ -2,137 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A92A938E23B
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 10:23:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D704F38E29F
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 10:48:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232387AbhEXIZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 04:25:07 -0400
-Received: from polaris.svanheule.net ([84.16.241.116]:55372 "EHLO
-        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232279AbhEXIZG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 04:25:06 -0400
-Received: from [IPv6:2a02:a03f:eafb:ee01:cbcc:e481:3e58:4db1] (unknown [IPv6:2a02:a03f:eafb:ee01:cbcc:e481:3e58:4db1])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sander@svanheule.net)
-        by polaris.svanheule.net (Postfix) with ESMTPSA id 9DDD6202DEE;
-        Mon, 24 May 2021 10:23:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-        s=mail1707; t=1621844617;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=uOEL5PVKTSUVqkse2nPy0LK4tHDeHxRnITwOHkYlUW8=;
-        b=rqSTd/u4vzlzBctH2x2b+Ywq6+PBJXlKX09/61rlwGcukDMom3rzHQIF2HFoNf1RS4gzwH
-        kJsdq9Cm4gvMxI3rpEloPpZjl9Sn861VEXq3qmkK20JWnzVZMnoOmehF5paEaMoS9HKpfh
-        n3i/gRp+zCcIscFKFjUiZc4J1fJ5DVnUWZcNVOFBCy0aPEOGVTpUFEmoYjl4A+Yz5MXgnT
-        PSTIs9wPUen+mefNSF6Y83gSHEcvMJib7B2ftSh15c9Wnyr+rKG4uWUDo7vFbPmG3buL4A
-        MwEC2I5Ajz8DZWetaWNjvugtwJFh0O64eTdXKHLNH7O9O6tmOhUrt6RdbomGOQ==
-Message-ID: <cb8593ab7a70528528bae3de45e33fae68a9ec1c.camel@svanheule.net>
-Subject: Re: [PATCH v3 4/6] mfd: Add RTL8231 core device
-From:   Sander Vanheule <sander@svanheule.net>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        kernel test robot <lkp@intel.com>
-Date:   Mon, 24 May 2021 10:23:35 +0200
-In-Reply-To: <CAHp75VcbRKGYSJZK_Rg969-Uck=h+8byWt0B3MtQJDqwbdf2sw@mail.gmail.com>
-References: <cover.1621809029.git.sander@svanheule.net>
-         <6d14b72bc545a818675d99c8e91e99c96cc3e286.1621809029.git.sander@svanheule.net>
-         <CAHp75VcbRKGYSJZK_Rg969-Uck=h+8byWt0B3MtQJDqwbdf2sw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+        id S232362AbhEXIuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 04:50:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39794 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232433AbhEXIuK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 04:50:10 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80A98C061756
+        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 01:48:42 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id p7so23943120wru.10
+        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 01:48:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=T0Klvg/FSrb8SCc53K65JSRhutNFINCGv3YACvznWOY=;
+        b=h8z0eUTGOInpV5Ca67KyakhslJZT0QJQ5BZP6cvAmlwttykRnVKloIXoqpQjQbs+Xr
+         poV0N6H//49KgGH9WIx90WwtlI6pP+mqcZq4yYlTvrb5HlnJpa47/EqVnd1YjgaOOctv
+         ygr738zsR54dyRezCJsw17zqZ1Du0rSY6lZvCkthefn8t2jOy6nCK6NfKgN3gpndTGNS
+         drqzD2bBBfzuPPJHoNQf145KzhEa/IYd4QKf/iJX+TU21LwbHb6utsK9e5+QLJbNaTUR
+         X8y2yLeZ/7shLB9rJKGXKU/+2ERN4JFlAnQ8Z/IXcoYEOOU22agfWXSsy0iOjO4xQc0a
+         HweA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=T0Klvg/FSrb8SCc53K65JSRhutNFINCGv3YACvznWOY=;
+        b=hJkSccTutWvebvJiw2HVtf/tN4jobmSmGbkiL84W8FhYneNe1U/Tuxt48SvFPZs239
+         WnBU9WIyz0aXsj0F6Q/kn3Zn5VaHRHS0q2Go+M1vaxKhoQYu9BHo6i6TA5S8ZnZAeQW6
+         lsEMNFews5OQH2WKDeXp+8AXMaQpdcFs19JD4qdcB8i/oPxwjMqN7eg5QepB8lKER2GX
+         LVE+fZ6TzJ+HdJbf2eGR2l/R37aklAasapRFvr0yByB0UYUWIq4qvPRS+07Lb5TguHA4
+         nxsCTJcr0VhmCgWwarJOuBTUYpkX+i8r0pVwhhhnJBFWJGAxF8po/Xb6ul6Hc651PhRc
+         ntUw==
+X-Gm-Message-State: AOAM532GCSzVoDyMqE9e6jVNUuD6wxn09+FoS/z3z6yKDB+rnoPlNHDF
+        2BVo8NDYPOVR9IFwnNvvJJo8Iw==
+X-Google-Smtp-Source: ABdhPJyJ2gcNefbeLfe6t0ysjHd+wh6CTcXC/KA3fGUGoIQTUXLgQAZD7vZaO+Dm42N/DOGJcaqHFw==
+X-Received: by 2002:a5d:45c6:: with SMTP id b6mr20964972wrs.333.1621846121134;
+        Mon, 24 May 2021 01:48:41 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.gmail.com with ESMTPSA id x206sm4034548wmx.47.2021.05.24.01.48.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 May 2021 01:48:40 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     broonie@kernel.org
+Cc:     robh@kernel.org, devicetree@vger.kernel.org, perex@perex.cz,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        lgirdwood@gmail.com,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v7 0/9] ASoC: codecs: add wcd938x support
+Date:   Mon, 24 May 2021 09:48:19 +0100
+Message-Id: <20210524084828.12787-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+This patchset adds support for Qualcomm WCD938X codec.
 
-On Mon, 2021-05-24 at 11:02 +0300, Andy Shevchenko wrote:
-> On Mon, May 24, 2021 at 1:34 AM Sander Vanheule <sander@svanheule.net> wrote:
-> > 
-> > The RTL8231 is implemented as an MDIO device, and provides a regmap
-> > interface for register access by the core and child devices.
-> > 
-> > The chip can also be a device on an SMI bus, an I2C-like bus by Realtek.
-> > Since kernel support for SMI is limited, and no real-world SMI
-> > implementations have been encountered for this device, this is currently
-> > unimplemented. The use of the regmap interface should make any future
-> > support relatively straightforward.
-> > 
-> > After reset, all pins are muxed to GPIO inputs before the pin drivers
-> > are enabled. This is done to prevent accidental system resets, when a
-> > pin is connected to the parent SoC's reset line.
-> 
-> ...
-> 
-> > [missing MDIO_BUS dependency, provided via REGMAP_MDIO]
-> > Reported-by: kernel test robot <lkp@intel.com>
-> 
-> What does this fix? Shouldn't it have a Fixes tag? (Yes, I know that
-> you answered in the other email, but here is a hint: before settling
-> these kinds of things do not send a new version. Instead of speeding
-> up the review you are closer to the chance to have this been not
-> applied for v5.14 at all)
-> 
+Qualcomm WCD9380/WCD9385 Codec is a standalone Hi-Fi audio codec IC
+connected over SoundWire. This device has two SoundWire devices, RX and
+TX respectively supporting 4 x ADCs, ClassH, Ear, Aux PA, 2xHPH,
+7 x TX diff inputs, 8 DMICs and MBHC.
 
-I'll drop this from the commit message, if this isn't appropriate without a
-Fixes-tag (which I can't provide anyway).
+Eventhough this device has two SoundWire devices, only tx device has
+access to main codec Control/Status Registers!
+
+For codec driver to be functional it would need both tx and rx Soundwire devices
+to be up and this is taken care by using device component framework and device-links
+are used to ensure proper pm dependencies. Ex tx does not enter suspend
+before rx or codec is suspended.
+
+This patchset along with other SoundWire patches on the list
+have been tested on SM8250 MTP device.
+
+Thanks,
+srini
+
+Changes since v6:
+- Removed unnecessary maxItems from qcom,tx/rx-device property as suggested by RobH.
 
 
-> ...
-> 
-> > +       /* SOFT_RESET bit self-clears when done */
-> > +       regmap_update_bits(map, RTL8231_REG_PIN_HI_CFG,
-> > +               RTL8231_PIN_HI_CFG_SOFT_RESET,
-> > RTL8231_PIN_HI_CFG_SOFT_RESET);
-> 
-> > +       usleep_range(1000, 10000);
-> 
-> It's strange to see this big range of minimum and maximum sleep.
-> Usually the ratio should not be bigger than ~3-4 between the values.
+Srinivas Kandagatla (9):
+  ASoC: dt-bindings: wcd938x: add bindings for wcd938x
+  ASoC: codecs: wcd-clsh: add new version support
+  ASoC: codecs: wcd938x: add basic driver
+  ASoC: dt-bindings: wcd938x-sdw: add bindings for wcd938x-sdw
+  ASoC: codecs: wcd938x-sdw: add SoundWire driver
+  ASoC: codecs: wcd938x: add basic controls
+  ASoC: codecs: wcd938x: add playback dapm widgets
+  ASoC: codecs: wcd938x: add capture dapm widgets
+  ASoC: codecs: wcd938x: add audio routing
 
-I could also change this from a usleep to a polling loop that checks (with a
-loop limit) if the reset bit has self-cleared already. 
+ .../bindings/sound/qcom,wcd938x-sdw.yaml      |   70 +
+ .../bindings/sound/qcom,wcd938x.yaml          |  146 +
+ sound/soc/codecs/Kconfig                      |   13 +
+ sound/soc/codecs/Makefile                     |    4 +
+ sound/soc/codecs/wcd-clsh-v2.c                |  348 +-
+ sound/soc/codecs/wcd-clsh-v2.h                |   16 +
+ sound/soc/codecs/wcd938x-sdw.c                |  298 ++
+ sound/soc/codecs/wcd938x.c                    | 3753 +++++++++++++++++
+ sound/soc/codecs/wcd938x.h                    |  705 ++++
+ 9 files changed, 5343 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd938x-sdw.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd938x.yaml
+ create mode 100644 sound/soc/codecs/wcd938x-sdw.c
+ create mode 100644 sound/soc/codecs/wcd938x.c
+ create mode 100644 sound/soc/codecs/wcd938x.h
 
-The datasheet that I have doesn't mention how fast it should self-clear. So I
-checked, and it appears to be done after one loop iteration already. So,
-certainly faster than the current usleep.
-
-Would a polling loop (with maybe like max. 10 iterations) be a good alternative
-for you?
-
-> 
-> ...
-> 
-> > +       regmap_write(map, RTL8231_REG_PIN_MODE0, 0xffff);
-> > +       regmap_write(map, RTL8231_REG_GPIO_DIR0, 0xffff);
-> > +       regmap_write(map, RTL8231_REG_PIN_MODE1, 0xffff);
-> > +       regmap_write(map, RTL8231_REG_GPIO_DIR1, 0xffff);
-> 
-> GENMASK() ?
-> Actually it seems it deserves a special definition like
-> 
-> ..._ALL_PIN_MASK  GENMASK(15, 0)
-
-Ok, I'll add the extra macro to clarify the intent of the values.
-
-
-Best,
-Sander
-
+-- 
+2.21.0
 
