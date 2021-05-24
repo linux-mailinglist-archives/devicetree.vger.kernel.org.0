@@ -2,81 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08FFE38F5B8
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 00:40:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9296C38F5CF
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 00:48:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229547AbhEXWlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 18:41:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59068 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbhEXWlt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 18:41:49 -0400
-X-Greylist: delayed 37745 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 24 May 2021 15:40:20 PDT
-Received: from mx3.securetransport.de (mx3.securetransport.de [IPv6:2a01:4f8:c0c:92be::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C9F2AC061574;
-        Mon, 24 May 2021 15:40:20 -0700 (PDT)
-Received: from mail.dh-electronics.com (business-24-134-97-169.pool2.vodafone-ip.de [24.134.97.169])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx3.securetransport.de (Postfix) with ESMTPSA id F244B5DDF7;
-        Tue, 25 May 2021 00:39:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
-        s=dhelectronicscom; t=1621895942;
-        bh=xwD6Nrkylw4njEWCELAKyW9hzOGunu13drEcZOsC9Fw=;
-        h=From:To:CC:Subject:Date:From;
-        b=bw2WaAFqGziWDIFf2XbPvye7NJp1o/WHer8P6uHuEamrYNw18EbE1Fad/Y8qs4mTE
-         5tTPm7aGoGFh3YAGve8TGAtL8OaQ51P0PRyZMdY2Df/m3VgZ1MDL4DGfFn4c9JFHxY
-         H7Hk+5o8/fcaWKQOdPC6wB7C3Nx1lKlhFQ5afZBGtKLWO1eyN2aGZYmBVZ3jSXhL2X
-         vLCY0MUZHkHU+841FISOhFgSmF2z0K4DURlaKmP7CnyRWlAb1jkQdEWYeCS7KS7JsV
-         2DpLqor7t804RsJdEGjhpMR9YOAv3fXjsVYkNyr8k450muM4rm8MrwxSqRf5IFmwqs
-         ygo9bHncYnA0A==
-Received: from DHPWEX01.DH-ELECTRONICS.ORG (2001:470:76a7:2::30) by
- DHPWEX01.DH-ELECTRONICS.ORG (2001:470:76a7:2::30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.858.12; Tue, 25 May 2021 00:38:49 +0200
-Received: from DHPWEX01.DH-ELECTRONICS.ORG ([fe80::6ced:fa7f:9a9c:e579]) by
- DHPWEX01.DH-ELECTRONICS.ORG ([fe80::6ced:fa7f:9a9c:e579%6]) with mapi id
- 15.02.0858.012; Tue, 25 May 2021 00:38:49 +0200
-From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
-To:     'Fabio Estevam' <festevam@gmail.com>
-CC:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        kernel <kernel@dh-electronics.com>
-Subject: RE: [PATCH] dt-bindings: arm: fsl: Add DHCOM PicoITX and DHCOM DRC02
- boards [Klartext]
-Thread-Topic: [PATCH] dt-bindings: arm: fsl: Add DHCOM PicoITX and DHCOM DRC02
- boards [Klartext]
-Thread-Index: AddQ7WhkHZZwXTrRQNCfV75QCGvecw==
-Date:   Mon, 24 May 2021 22:38:49 +0000
-Message-ID: <4964298a8d264dafaa807c43bab5d174@dh-electronics.com>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.64.2.18]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S229610AbhEXWty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 18:49:54 -0400
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:35802 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229651AbhEXWty (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 18:49:54 -0400
+Received: by mail-oi1-f176.google.com with SMTP id v22so28542240oic.2;
+        Mon, 24 May 2021 15:48:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=KpKDmmYFy0WymhW++fAl7+6dJhCoWfgKM1MbYWz2Ja0=;
+        b=n4wwH1uIkcj5iikHrDD60fGOWUII/6kSCSeU6vzhzoZuZeMZlw6jysBTeiQ8AxEt1V
+         Bpu1hQ6CPNSed0gwRgMNWJfNM4jCqVrFT2IvrblwoRHI4nkhSerfpqcxmk8em1m5R3SS
+         a0olMzyfUyXmWJLBXfpE9rNmLGX2F+NrVOoJbLqGmGwUlSelw7h/L1mhTqzTlXEBbkru
+         O1y4c++lLHmTEy9abgkLnEqRvP8St4wLoKKFYnNUR0gjQQ+gxWuQAlRgeMkQb7ilPCH9
+         x4bh6B+8TDjFHWnGU1LTkbifFb2DvaKIE2gx3hMAAGGc8S5bE/Pc6CR1pQScJruDdGgu
+         C8VA==
+X-Gm-Message-State: AOAM532/RKcykr77jj52UqTuuiikClTlnTlO4NXX/ZDk8gsuQMSqT3w9
+        32Kh3GVPN7MNGWyBavDIuA6I54dIXg==
+X-Google-Smtp-Source: ABdhPJz5h2oM8aTFPJKI31HulznG3xW2XN9lU0oXrZlOIYquqz8vF2erRkrzWxbLCYco4ih9DhrhXw==
+X-Received: by 2002:a05:6808:4cf:: with SMTP id a15mr886196oie.78.1621896494189;
+        Mon, 24 May 2021 15:48:14 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id c19sm2881987oiw.7.2021.05.24.15.48.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 May 2021 15:48:13 -0700 (PDT)
+Received: (nullmailer pid 1314077 invoked by uid 1000);
+        Mon, 24 May 2021 22:48:12 -0000
+Date:   Mon, 24 May 2021 17:48:12 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krishna Manikandan <mkrishn@codeaurora.org>
+Cc:     robh+dt@kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, khsieh@codeaurora.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        abhinavk@codeaurora.org, tanmay@codeaurora.org,
+        freedreno@lists.freedesktop.org, swboyd@chromium.org,
+        devicetree@vger.kernel.org, vinod.koul@linaro.org,
+        kalyan_t@codeaurora.org, bjorn.andersson@linaro.org,
+        sean@poorly.run
+Subject: Re: [PATCH v18 2/4] dt-bindings: msm: dsi: add yaml schemas for DSI
+ bindings
+Message-ID: <20210524224812.GA1314047@robh.at.kernel.org>
+References: <1621856653-10649-1-git-send-email-mkrishn@codeaurora.org>
+ <1621856653-10649-2-git-send-email-mkrishn@codeaurora.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1621856653-10649-2-git-send-email-mkrishn@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogRmFiaW8gRXN0ZXZhbSA8ZmVzdGV2YW1AZ21haWwuY29tPg0KU2VudDogTW9uZGF5LCBN
-YXkgMjQsIDIwMjEgMzowMyBQTQ0KPiANCj4gSGkgQ2hyaXN0b3BoLA0KPg0KDQpIaSBGYWJpbywN
-Cg0KPiANCj4gT24gTW9uLCBNYXkgMjQsIDIwMjEgYXQgOToxNyBBTSBDaHJpc3RvcGggTmllZGVy
-bWFpZXINCj4gPGNuaWVkZXJtYWllckBkaC1lbGVjdHJvbmljcy5jb20+IHdyb3RlOg0KPiANCj4+
-ICsgICAgICAtIGRlc2NyaXB0aW9uOiBpLk1YNlMgREhDT00gRFJDMDIgQm9hcmQNCj4+ICsgICAg
-ICAgIGl0ZW1zOg0KPj4gKyAgICAgICAgICAtIGNvbnN0OiBkaCxpbXg2cy1kaGNvbS1kcmMwMg0K
-Pj4gKyAgICAgICAgICAtIGNvbnN0OiBkaCxpbXg2cy1kaGNvbS1zb20NCj4+ICsgICAgICAgICAg
-LSBjb25zdDogZnNsLGlteDZzDQo+IA0KPiBXZSBkb24ndCBoYXZlIGFuIGZzbCxpbXg2cyBjb21w
-YXRpYmxlIGZvciB0aGUgaS5NWDYgU29sbyB2YXJpYW50LiBXZQ0KPiBqdXN0IHVzZSBmc2wsaW14
-NmRsIGluc3RlYWQuDQoNCk15IHRob3VnaHQgd2FzIHRvIGJlIGZ1dHVyZSBwcm9vZi4gSWYgdGhl
-cmUgaXMgbm8gbWF0Y2ggd2l0aCB0aGUgU29sbyBub3csDQppdCB3aWxsIGZhbGwgYmFjayB0byB0
-aGUgaS5NWDYgRHVhbExpdGUuIFRoYXQgaXMgd2h5IEkgYWRkZWQgYm90aCBmc2wsaW14NnMNCmFu
-ZCBmc2wsaW14NmRsIGluIHRoaXMgb3JkZXIuDQoNClNob3VsZCBJIHJlbW92ZSB0aGUgbGluZSB3
-aXRoIGZzbCxpbXg2cz8NCg0KUmVnYXJkcw0KQ2hyaXN0b3BoDQo=
+On Mon, 24 May 2021 17:14:11 +0530, Krishna Manikandan wrote:
+> Add YAML schema for the device tree bindings for DSI
+> 
+> Signed-off-by: Krishna Manikandan <mkrishn@codeaurora.org>
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> ---
+> Changes in v1:
+>     - Separate dsi controller bindings to a separate patch (Stephen Boyd)
+>     - Merge dsi-common-controller.yaml and dsi-controller-main.yaml to
+>       a single file (Stephen Boyd)
+>     - Drop supply entries and definitions from properties (Stephen Boyd)
+>     - Modify phy-names property for dsi controller (Stephen Boyd)
+>     - Remove boolean from description (Stephen Boyd)
+>     - Drop pinctrl properties as they are standard entries (Stephen Boyd)
+>     - Modify the description for ports property and keep the reference
+>       to the generic binding where this is defined (Stephen Boyd)
+>     - Add description to clock names (Stephen Boyd)
+>     - Correct the indendation (Stephen Boyd)
+>     - Drop the label for display dt nodes and correct the node
+>       name (Stephen Boyd)
+> 
+> Changes in v2:
+>     - Drop maxItems for clock (Stephen Boyd)
+>     - Drop qcom,mdss-mdp-transfer-time-us as it is not used in upstream
+>       dt file (Stephen Boyd)
+>     - Keep child node directly under soc node (Stephen Boyd)
+>     - Drop qcom,sync-dual-dsi as it is not used in upstream dt
+> 
+> Changes in v3:
+>     - Add description for register property (Stephen Boyd)
+> 
+> Changes in v4:
+>     - Add maxItems for phys property (Stephen Boyd)
+>     - Add maxItems for reg property (Stephen Boyd)
+>     - Add reference for data-lanes property (Stephen Boyd)
+>     - Remove soc from example (Stephen Boyd)
+> 
+> Changes in v5:
+>     - Modify title and description (Stephen Boyd)
+>     - Add required properties for ports node (Stephen Boyd)
+>     - Add data-lanes in the example (Stephen Boyd)
+>     - Drop qcom,master-dsi property (Stephen Boyd)
+> 
+> Changes in v6:
+>     - Add required properties for port@0, port@1 and corresponding
+>       endpoints (Stephen Boyd)
+>     - Add address-cells and size-cells for ports (Stephen Boyd)
+>     - Use additionalProperties instead of unevaluatedProperties (Stephen Boyd)
+> 
+> Changes in v7:
+>     - Add reference for ports and data-lanes (Rob Herring)
+>     - Add maxItems and minItems for data-lanes (Rob Herring)
+> 
+> Changes in v8:
+>     - Drop common properties and description from ports (Rob Herring)
+>     - Add reference for endpoint (Rob Herring)
+>     - Add correct reference for data-lanes (Rob Herring)
+>     - Drop common properties from required list for ports (Rob Herring)
+> 
+> Changes in v9:
+>     - Drop reference for data-lanes (Rob Herring)
+>     - Add unevaluatedProperties for endpoint (Rob Herring)
+> 
+>  .../bindings/display/msm/dsi-controller-main.yaml  | 185 +++++++++++++++
+>  .../devicetree/bindings/display/msm/dsi.txt        | 249 ---------------------
+>  2 files changed, 185 insertions(+), 249 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/msm/dsi.txt
+> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
