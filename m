@@ -2,87 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CC8A38E60E
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 14:00:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B9C338E61D
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 14:02:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232855AbhEXMCP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 08:02:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48624 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232692AbhEXMCA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 May 2021 08:02:00 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 001376128D;
-        Mon, 24 May 2021 12:00:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621857632;
-        bh=aB67jAoUabmrvPvNeu2p/bIDSS6GeTv8dUedzFdTyQE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=gnu8Okowfm1deDMXO9mUDGl1Pxv2OsnBgPk6dJ4dCeQVojlY0yoj+Rf4ryUdk+PxJ
-         J72crv7UY/xkyQqAVllGhqtowxpgBNxRb3XbrSAraQ2pc7ANUFseM8LGQIfXEKjKRZ
-         799DpI/UYRByCgyiiaHwLnnMGpJEDdGh/BAdy/832YlzBZGLAiKJsSzLxLwRV3B77w
-         JP4QcTCnDRtvv8JNT7fVf3r3BOnCrWWcnQcRXkl6w31Vp7Oj+sqwuTQNtRD0+3itSQ
-         xByaiY0eDbdmfsqkAptAJEwqTmk6xj8Sf+L2twxqlTDJJGNlIwC7SfrFmKzgiHl6qy
-         hWOAJ6Fo1FDkA==
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org
-Subject: Re: [PATCH 0/3] ASoC: rsnd: add D3 support
-Date:   Mon, 24 May 2021 12:59:57 +0100
-Message-Id: <162185746497.49382.1963607123568169981.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <87y2c4oe3y.wl-kuninori.morimoto.gx@renesas.com>
-References: <87y2c4oe3y.wl-kuninori.morimoto.gx@renesas.com>
+        id S232476AbhEXMD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 08:03:57 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:37177 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232711AbhEXMDv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 May 2021 08:03:51 -0400
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 56F05580389;
+        Mon, 24 May 2021 08:02:23 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Mon, 24 May 2021 08:02:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=ZIvaBg3AS0bbGAJOf0B9r0173eR
+        WkVY0e/Omll3dxIY=; b=BKJhzwUEpZHsChORCSs1KfnqZozEp6mUSuppZXiP3xq
+        og4CUa4fdSAivnSPXZJWN/JKdEzfopJ7+G6XDonVnvwj5C3FNCcQR2Mj6GxGbHP8
+        uINRZ97dcHlfT1+5VFUtQeo/377bVmHF++pNNb8k8otkHnkrai5HEYdaSrYO0B+H
+        Y/tD/KL71GOtATGvJbErG/am+v1hPrB+JObgug0sFCAW34AyW9HRaSWMj43tjAeU
+        ruPo4DwOWDivFiyeZLSNj/Hl6Ns4xxzZInoz2gQxBx1QLxEMM1UINmwvsOlxdVQ5
+        NZ9agZvdstKSmVaJQbNB75Eu1GLqleCUKCWSnrF13kA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=ZIvaBg
+        3AS0bbGAJOf0B9r0173eRWkVY0e/Omll3dxIY=; b=bGYtk68+Wp9vhQPyVAk8HL
+        i4r8QnkbgOq5eft3VCTYxZzNiA4sdfS7tBQloqYFP2SfKhcZAypRo/X/gXVuCM6u
+        1DpDyPy7AASuBC29TGs5aPdsj8vlwpggpWllFtnRWQTW77UJAXiEilcesEil/TzH
+        t8wOKGpkuVKV/aJDW6zTd6WfdRNElCdw405eUuWR51VCLfhAzoSHvwFijQbt0Lgd
+        7LkCa/CeipSLe8BwihvOOYxCAQ0bh2wp7UqLoGRuJhPaIUjH0w6S7r+frXL+x9hy
+        9bFTENuodp8H35XY9mzWO9ex0RQejHVRZhdvw9XYwdDShCVMMVrDr6UloYbouoDA
+        ==
+X-ME-Sender: <xms:zZWrYIm498JknHrSD4mgO0Dpcn5qiPVpM-N9py3MIqpbk6__JMT8oQ>
+    <xme:zZWrYH3Ehsct838tmS2mPU488CkmmHT5sqhENa3TVasKwcw6ap7WQqhHQnTaeCCop
+    256851YoERSqBGSIwg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdejledggeekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:zZWrYGpPhomkH0AMiIrovgUkTbskZnhmjzoZsp6BQ2nLmCWxBKQ31Q>
+    <xmx:zZWrYEl4JKAmRekOp0CBBRFGsvTGqWCD-9xAEXgGfAKfZAh0D7X5FA>
+    <xmx:zZWrYG2RKGEmB0pkRDtmGdLQqvc-g75NE__IhSgodjJNMCl8pIzUHQ>
+    <xmx:z5WrYEw9XPA3Jhk2YqDLUY5H-5VDnRVUhf-HniMu19il2sYEj7T39A>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA;
+        Mon, 24 May 2021 08:02:21 -0400 (EDT)
+Date:   Mon, 24 May 2021 14:02:20 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Rob Herring <robh@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
+        Samuel Holland <samuel@sholland.org>,
+        Ondrej Jirman <megous@megous.com>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 14/17] arm64: dts: allwinner: Add Allwinner H616 .dtsi
+ file
+Message-ID: <20210524120220.j73xwq7n5qbaxs4r@gilmour>
+References: <20210519104152.21119-1-andre.przywara@arm.com>
+ <20210519104152.21119-15-andre.przywara@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="sox4cvhyosn2bo3r"
+Content-Disposition: inline
+In-Reply-To: <20210519104152.21119-15-andre.przywara@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24 May 2021 15:11:29 +0900, Kuninori Morimoto wrote:
-> These adds R-Car D3 support for rsnd driver.
-> [1/3] is tidyup patch for dt-bindings (not only for D3).
-> [2/3], [3/3] are for R-Car D3.
-> 
-> Kuninori Morimoto (3):
->   ASoC: dt-bindings: renesas: rsnd: tidyup properties
->   ASoC: rsnd: tidyup loop on rsnd_adg_clk_query()
->   ASoC: rsnd: add null CLOCKIN support
-> 
-> [...]
 
-Applied to
+--sox4cvhyosn2bo3r
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Hi,
 
-Thanks!
+On Wed, May 19, 2021 at 11:41:49AM +0100, Andre Przywara wrote:
+> This (relatively) new SoC is similar to the H6, but drops the (broken)
+> PCIe support and the USB 3.0 controller. It also gets the management
+> controller removed, which in turn removes *some*, but not all of the
+> devices formerly dedicated to the ARISC (CPUS).
+> And while there is still the extra sunxi interrupt controller, the
+> package lacks the corresponding NMI pin, so no interrupts for the PMIC.
+>=20
+> USB is a bit tricky: host controller 0, 1 and 3 depend on some help from
+> controller and PHY 2, so we need to include one reset line and one
+> clock gate from HCI 2 into every other HCI node, plus need some nasty
+> quirk.
+>=20
+> The reserved memory node is actually handled by Trusted Firmware now,
+> but U-Boot fails to propagate this to a separately loaded DTB, so we
+> keep it in here for now, until U-Boot learns to do this properly.
+>=20
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-[1/3] ASoC: dt-bindings: renesas: rsnd: tidyup properties
-      commit: 17c2d247ddd231199e682b0a7fda42fe46c2c07b
-[2/3] ASoC: rsnd: tidyup loop on rsnd_adg_clk_query()
-      commit: cf9d5c6619fadfc41cf8f5154cb990cc38e3da85
-[3/3] ASoC: rsnd: add null CLOCKIN support
-      commit: d6956a7dde6fbf843da117f8b69cc512101fdea2
+As far as I can see, the IOMMU hasn't changed between the H6 and the
+H616, so it would be worth enabling
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Maxime
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+--sox4cvhyosn2bo3r
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+-----BEGIN PGP SIGNATURE-----
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYKuVzAAKCRDj7w1vZxhR
+xQ+tAP9TNLccFu5O4mWKvowHiezII3G2D6JMxCJJWRPCJh1mVQD9ExAK80a7U4NK
+dYRCuyWYq6rDScshGrpZClp8eVpAdQo=
+=aG0v
+-----END PGP SIGNATURE-----
 
-Thanks,
-Mark
+--sox4cvhyosn2bo3r--
