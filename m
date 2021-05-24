@@ -2,177 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DEC9038E5F7
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 13:58:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB86838E60B
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 14:00:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232656AbhEXL7x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 07:59:53 -0400
-Received: from mga12.intel.com ([192.55.52.136]:34307 "EHLO mga12.intel.com"
+        id S232880AbhEXMCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 08:02:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48582 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232655AbhEXL7u (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 May 2021 07:59:50 -0400
-IronPort-SDR: FmqsQ1cEFuT3HqTWeIZqzagyoiZ6NJZ30fy4tJ5rR2UNT+kvuCiFBtkjKbH7JpIHRaqUaAO6mL
- YZvPX/aW19mQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9993"; a="181554276"
-X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; 
-   d="scan'208";a="181554276"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 May 2021 04:58:22 -0700
-IronPort-SDR: 4IBRetXDxZ50QwbeWsviWwqU83blhCKwTI8JL36Pi9uICZrNtsMTCY7iFTuJolqssnI66U8bxr
- F8T8xlZL7tDQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; 
-   d="scan'208";a="632599108"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
-  by fmsmga005.fm.intel.com with ESMTP; 24 May 2021 04:58:22 -0700
-Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Mon, 24 May 2021 04:58:21 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4
- via Frontend Transport; Mon, 24 May 2021 04:58:21 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.41) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.4; Mon, 24 May 2021 04:58:21 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CxPc58N6eUulkm5BGcTR2jQtZEzsCvU7+p3CMjdAb+kZOqlLZ3m7wvfvUwpjgP61GVnJFY5pa+hVVYsTh664hNQ6APJLR4ii/OmOMVB0L4Id5CShEMdTzUQvdWmJixh/ZrYCZoKLOyW2Rr0NfSfdSSFXBrKjX59sdmfprX/Hl97Lgncb4pk4xLUoFbpAht2cuaqVyqVk0xD3SN9zdrSkAZj5PxNh1FkTGYcuImuxilB2zld4OVTOCi27fiuioyZk2z4/vFEzNbrf2Tj04x0A00eF93C+WRj2SJ/gg6m3paYCrwS6c3lAt4gI08rH6H3l+da3GpdqedmpdQNuYBH6yQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ptg2qyVCrURzZZk6+caCXIT3/PYNQlpBUg4AIMynbr4=;
- b=jOCw9UZ+A0V6E6IrnFKE7Q88ajmRvIUwUqsABPIym7FgWEXJGcke4vcRHa18ncGBzvbyFljNUNtRPzTjpp7ukPdBQGm0c4K3soCp5kKI8Vp68B67Uimp1fYUB47ddAujPkin+zFRNMv7h7L4PMDPgYZLZJ0+dBlNB6LtjhO54eoRSUeNyKcE/xfCyi4I59JdSCUeVF6Sv36tNocmMiVZdE0oRheMwUgT06GYWE7HC+DgWl6mhGmu+qCjr52xODhAbYpn976rJJkXi5UuzHEEyEoBquRFVGWvi/MscKrf23QclqBTq0SmYYO055AuQ8d3oMgCE8Fx1xH36b5lRDa1Lg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ptg2qyVCrURzZZk6+caCXIT3/PYNQlpBUg4AIMynbr4=;
- b=q4ovhlekSoy5Q4pA3ajr7CuXCCnH81/6J6tKLnIKGSf9/mOocf93ruO9pOCFyiMMtC1MO4S8v1G18SpkW7LrgUOcxg9alFYQ3a7v1Sh/5t588aza3sM887akrBVEKnfBKGTgKy2IoOfPKQMtHhOxRN91aBF85vQmJasoDaXOuP8=
-Received: from PH0PR11MB5595.namprd11.prod.outlook.com (2603:10b6:510:e5::16)
- by PH0PR11MB5641.namprd11.prod.outlook.com (2603:10b6:510:d6::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.26; Mon, 24 May
- 2021 11:58:19 +0000
-Received: from PH0PR11MB5595.namprd11.prod.outlook.com
- ([fe80::e07a:5095:a1a3:2667]) by PH0PR11MB5595.namprd11.prod.outlook.com
- ([fe80::e07a:5095:a1a3:2667%4]) with mapi id 15.20.4150.027; Mon, 24 May 2021
- 11:58:19 +0000
-From:   "Thokala, Srikanth" <srikanth.thokala@intel.com>
-To:     =?utf-8?B?S3J6eXN6dG9mIFdpbGN6ecWEc2tp?= <kw@linux.com>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "mgross@linux.intel.com" <mgross@linux.intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>,
-        "Sangannavar, Mallikarjunappa" 
-        <mallikarjunappa.sangannavar@intel.com>
-Subject: RE: [PATCH v9 2/2] PCI: keembay: Add support for Intel Keem Bay
-Thread-Topic: [PATCH v9 2/2] PCI: keembay: Add support for Intel Keem Bay
-Thread-Index: AQHXS7R0SyffA1wN50iRs2LKxNotJqryeDaAgAAUMkA=
-Date:   Mon, 24 May 2021 11:58:19 +0000
-Message-ID: <PH0PR11MB5595DDC966EF6BFE3B9A921885269@PH0PR11MB5595.namprd11.prod.outlook.com>
-References: <20210518150050.7427-1-srikanth.thokala@intel.com>
- <20210518150050.7427-3-srikanth.thokala@intel.com>
- <20210524103027.GA244904@rocinante.localdomain>
-In-Reply-To: <20210524103027.GA244904@rocinante.localdomain>
-Accept-Language: en-IN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-authentication-results: linux.com; dkim=none (message not signed)
- header.d=none;linux.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [136.185.183.223]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7d9357d7-e9b7-4b83-768d-08d91eab38fa
-x-ms-traffictypediagnostic: PH0PR11MB5641:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <PH0PR11MB56418F63A777ABA62A07203385269@PH0PR11MB5641.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +8pHNuziOBeW3NoWKf1iebHsOnLcohaVMMkKE/jweVxLR6pqtlH/mdh/UY4Xt07XYrJo9lHpSEglANCQBsnTBadmtOg8cxjB2OF7b5ElzBdiSdHd47xDhWTieFogcfiXKGnXgzVTbwgtVM4eN9Rd4+CyNv2Vvx7+RA4gfSMGCPVSC8dVnhp4Ee6rG5pv6p59qFGfnQBy+MPkkSfWKZY5i1celaBkxhSPya8efJXNdzY2YRhxgMREUdvVLEmH16bmMI8cSI1LI9Z724Teu9qJjdbiumNIlwJYa7eCYYAm9GnX3JNV0VsXMRSNBznS5j+xcNQM3MVaBZz25hINSvjK6pUeRFdDlVdTsOSZ1ZeTwPST1xrq2juZRQAmCnUsLZ4AplwVCsxin+IMNWOLYzji0+Zo4GjFPFCH74YSHGt0rh6FV1vS8du14eSlC8CLcsHOuz8FXbRUDbE5sXqbjWB8D8Pr5NWHYr6Xg2N8MYGsbGMhuxi5WnQCgvH+fKwbLsHZ3vdb3vt+yJFhTte1BRAeXo/Z8xm/jXI0tlBj43k49m4rh+jsi1OFv9ZZU6h4FwpPmLJCaJYySqaV43+1rELsUlvclJV7/nOuGFDNHoj0lwY=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR11MB5595.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(346002)(136003)(376002)(366004)(39860400002)(478600001)(9686003)(86362001)(2906002)(55016002)(64756008)(83380400001)(66556008)(186003)(66446008)(66476007)(33656002)(66946007)(52536014)(76116006)(38100700002)(122000001)(66574015)(26005)(53546011)(54906003)(6506007)(5660300002)(8676002)(8936002)(316002)(6916009)(4326008)(71200400001)(7696005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?N2dDa0pOSTkwbi84M21UWERiZUxxN01mNElNZFJCUnByaDlsRFNOOTRIa25O?=
- =?utf-8?B?TzFpT3hvcnhqTmpwWWoydHV5NWI0bVFncDIxV2hOVUsvMGw1REJrb2pjSXJo?=
- =?utf-8?B?Ykt6U2Z5SjVUNFR0b0s4K05BQVZWZjRYUnlVa3FKVnZ4YWlyKy8zQWhQdE1p?=
- =?utf-8?B?ZzUxRW1iTmZuZml5am9Kam13dEhqV2FwVkhxcnR5aWpSc2diQ0Q5Nkw0cURn?=
- =?utf-8?B?YWg0cjNYM2Q2bXYrTWZHNVFnWTVoR0pPMVpmRnZucmRwR2tjK0g3Wnc2akZw?=
- =?utf-8?B?bzM5K1kzcUFHRDVZYlFHcVlUK3krU3ZCci9qRUs0U0g1b0pDU3I4a3dNVlp3?=
- =?utf-8?B?SDArdVlPZnZyWWVuYWV3SE1WSWhuYlNaSytUUWV1YUluS2xMWVFMRzJPVGhX?=
- =?utf-8?B?bG1KZzJuYmJKMWVidVJsTUpkWUkwSjFrQTlFZE01OXRTTnVMOEVwdlUrMWxW?=
- =?utf-8?B?RnBOOC94MUR2MEh2eEp6bUtHOVlFaEhwWHBZMTNRVlV1bm0weHlIYzNrK0s4?=
- =?utf-8?B?RHdjU0ozeFFnTWNzOUYydllXN0tBc2tNaXZySGlYdmNybnFqVnhsRzFxZitv?=
- =?utf-8?B?WWN5QXp2bTd3by9OVk5rK25UZUp3Uzk3Qzl3TytFamQrRWZTVkVEZ3h5TE5Z?=
- =?utf-8?B?K3hGVmtSeE9vRmlMTHhobFc5dFJjOXNyOFZqYTluVWlpOXo3S01POHNmMmdK?=
- =?utf-8?B?N3o4MGpZcWdUVTE3eWNUMWJoNlgxMTM5VVBRcTBDWmVoRmhpa2trcmFDMjJl?=
- =?utf-8?B?cFlqOTRLYzJtTVpReTJOT2l5WDhFVzdtdjVKUTRyK2h6aHdxOU1XZEFvT2xw?=
- =?utf-8?B?cFRUSHNDd21wRXFPMmNsd0xENHZBUllCLzR1VVg2NXlWNGF0WVpWc3UvMEpB?=
- =?utf-8?B?dGxnNzZxNTZxMWtsYkNqRkxOZjZPbitGWmtzY0FlVjBoSHBtemtwTjdMK0dC?=
- =?utf-8?B?U052VW91WVNGTmswMHNjK0ZRTy82SGtNMXR2WXErdTl3VUpySVlSVzdNY0Ew?=
- =?utf-8?B?WnBkcEkrRDRpRkpXTEUzQkI3ckJQYVFXby92YUVhYWRuemJad2VYekRlaU8w?=
- =?utf-8?B?ZEVUQllWMnQ2aEphYWZPazY2VzYrbTNFeGZRT0FJVEk1U0tMQ0pibGNXeWN2?=
- =?utf-8?B?NjBKWUh3NEloVkZmWHR0QXR2WHlvSTI5NUhKM3RQQXJlYlNiSzZ1K3FqV2Zl?=
- =?utf-8?B?TWJManFUdm5SZTkwOFUzaks2WFNvTHZydUZFNzE3UmJlRVNvaG1tOWZTUlFj?=
- =?utf-8?B?d1NQN2dUU1JNcXR4eEJiUDFVaUZOdzRHbGd0VzlxYTQwVGREQlR2cjk0S1Vt?=
- =?utf-8?B?SHg4NnNCMTg4UVNoQk9lR096d1VKQ1ZrNE44a1JnRDRaQ0dpenc0STJxRVlp?=
- =?utf-8?B?SUZkREIvQVZCRkNPWnhNNmhWNktHMnJmWVlQTHBNajhicFNXQUJDczZrRy9r?=
- =?utf-8?B?MWxQSlFNYmEvR1FSWUJCWXlSU0FycEtaTm9UL1BKanVmZmlRbFdrWThTNGNw?=
- =?utf-8?B?M1ZackV3ZUdwWDBTZGxHaWY4Skt5enUxUXFNVnd2WXpwS2RlamJGS251aXp4?=
- =?utf-8?B?MWoySWJlSlFDUWVkMmIrRUJGV3I0QkJra0dteW12ZHBIWDhXdFJ2U2MwcW9Y?=
- =?utf-8?B?Q1YzSzZxaWk1ZjVYcjR3d3dBaFdCeUFJeXhrSWs4bDFtQ0NLczhoWWpKMllh?=
- =?utf-8?B?OEZlaUtkamhLL3FUdXhqdnoyU1VXZ21tQ0l3Y1JtVE8vR1I1a2NjTzA2aVQw?=
- =?utf-8?Q?iTksboIXtVVUEEbeFXELX2Z+HecZODemlGLoL1E?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S232849AbhEXMB7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 May 2021 08:01:59 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6B9936128B;
+        Mon, 24 May 2021 12:00:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1621857629;
+        bh=I/AnOl07xJ78/MlMBrSL4ZrBn/VkAl/y+yaLeCLFMGQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=QvkNw20K223eZiCt9lDwQbruNbPbC126q+a7an9hF/N2qZwgV03A5DoBemDvFntN7
+         TdavodDp4gl8ZZeysenWiG/rFwFVvZuiD2ucvjc9s6ghrFT5VKwyov2camHoQSvVBc
+         4qV11Ugwj87M5vlPKiQlzwEMploNia+14zLDjGHTrhTbfGouGcnim4w1pMzSoCWzlw
+         hncJuw39vN4rrMHTd1ZGv3jKeBApYZvB/qdMqFWa+RRXUCDxPNADAzjDpep5yww9Tr
+         oKg+dQJuMZmp7Pt9kY0la8pOAzWw5eEAzHzBs2hOTUzsgE/KxZSZd+3d7G72eB1JIc
+         KDyRHmbC7GRgQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Mark Brown <broonie@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Vincent Knecht <vincent.knecht@mailoo.org>,
+        phone-devel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Liam Girdwood <lgirdwood@gmail.com>
+Subject: Re: [PATCH RFC 1/2] ASoC: dt-bindings: codecs: Add bindings for nxp, tfa989x
+Date:   Mon, 24 May 2021 12:59:56 +0100
+Message-Id: <162185746496.49382.12917440362021007479.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210513104129.36583-1-stephan@gerhold.net>
+References: <20210513104129.36583-1-stephan@gerhold.net>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5595.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d9357d7-e9b7-4b83-768d-08d91eab38fa
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 May 2021 11:58:19.3138
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: yn12Y8Y4825mi64dA/lG4cMdlWa3jPR3dq+NnQ8w4h+Jx8hz2r5QHehZNJ7M8jCS+z1j4aw2e/shzsSIiR15L7OquA9VPcIrvRDUQtkeHnU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5641
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgS3J6eXN6dG9mLA0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEty
-enlzenRvZiBXaWxjennFhHNraSA8a3dAbGludXguY29tPg0KPiBTZW50OiBNb25kYXksIE1heSAy
-NCwgMjAyMSA0OjAwIFBNDQo+IFRvOiBUaG9rYWxhLCBTcmlrYW50aCA8c3Jpa2FudGgudGhva2Fs
-YUBpbnRlbC5jb20+DQo+IENjOiByb2JoK2R0QGtlcm5lbC5vcmc7IGxvcmVuem8ucGllcmFsaXNp
-QGFybS5jb207IGxpbnV4LQ0KPiBwY2lAdmdlci5rZXJuZWwub3JnOyBkZXZpY2V0cmVlQHZnZXIu
-a2VybmVsLm9yZzsNCj4gYW5kcml5LnNoZXZjaGVua29AbGludXguaW50ZWwuY29tOyBtZ3Jvc3NA
-bGludXguaW50ZWwuY29tOyBSYWphDQo+IFN1YnJhbWFuaWFuLCBMYWtzaG1pIEJhaSA8bGFrc2ht
-aS5iYWkucmFqYS5zdWJyYW1hbmlhbkBpbnRlbC5jb20+Ow0KPiBTYW5nYW5uYXZhciwgTWFsbGlr
-YXJqdW5hcHBhIDxtYWxsaWthcmp1bmFwcGEuc2FuZ2FubmF2YXJAaW50ZWwuY29tPg0KPiBTdWJq
-ZWN0OiBSZTogW1BBVENIIHY5IDIvMl0gUENJOiBrZWVtYmF5OiBBZGQgc3VwcG9ydCBmb3IgSW50
-ZWwgS2VlbSBCYXkNCj4gDQo+IEhpIFNyaWthbnRoLA0KPiANCj4gRXZlcnl0aGluZyBsb29rcyB2
-ZXJ5IGdvb2QhDQo+IA0KPiBbLi4uXQ0KPiA+ICsJcmV0ID0gZGV2bV9hZGRfYWN0aW9uX29yX3Jl
-c2V0KGRldiwNCj4gPiArCQkJCSAgICAgICAodm9pZCgqKSh2b2lkICopKWNsa19kaXNhYmxlX3Vu
-cHJlcGFyZSwNCj4gPiArCQkJCSAgICAgICBjbGspOw0KPiBbLi4uXQ0KPiANCj4gSnVzdCBhIHNt
-YWxsIG5vdGUgKG5vIG5lZWQgdG8gY2hhbmdlIGFueXRoaW5nKSBhYm91dCB0aGUgYWJvdmUuICBT
-b21lDQo+IGRyaXZlcnMgYWRkIGEgc21hbGwgd3JhcHBlciBmdW5jdGlvbiBhcm91bmQgdGhlIGNs
-a19kaXNhYmxlX3VucHJlcGFyZSgpDQo+IHRvIGF2b2lkIGhhdmluZyB0byBkbyB0aGlzIGNhc2Ug
-YWJvdmUgd2hpY2ggaXMgYWxzbyBlYXNpZXIgdG8gcmVhZCBhcw0KPiBhIHJlc3VsdC4gIEJ1dCwg
-dGhpcyBpcyBqdXN0IGEgbWF0dGVyIG9mIHdoZXRoZXIgaXQncyBuZWVkZWQgKGUuZy4sIHNvbWUN
-Cj4gZXh0cmEgc3RlcHMgd291bGQgYmUgbmVlZGVkIHRvIGRpc2FibGUgY2xvY2tzLCBldGMuKSBh
-bmQgcGVyc29uYWwNCj4gcHJlZmVyZW5jZS4NCg0KSSB3aWxsIG1ha2UgYSBub3RlIG9mIHlvdXIg
-c3VnZ2VzdGlvbiwgdGhhbmsgeW91Lg0KDQo+IA0KPiBUaGFuayB5b3UgZm9yIHdvcmtpbmcgb24g
-dGhpcyENCj4gDQo+IFJldmlld2VkLWJ5OiBLcnp5c3p0b2YgV2lsY3p5xYRza2kgPGt3QGxpbnV4
-LmNvbT4NCg0KVGhhbmsgeW91LCBLcnp5c3p0b2YsIGZvciB0aGUgIlJldmlld2VkLWJ5Ii4NCg0K
-U3Jpa2FudGgNCg0KPiANCj4gCUtyenlzenRvZg0K
+On Thu, 13 May 2021 12:41:28 +0200, Stephan Gerhold wrote:
+> NXP/Goodix TFA989X (TFA1) amplifiers are controlled via an I2C bus.
+> Add simple device tree bindings that describe how to set them up
+> in the device tree.
+> 
+> Right now only nxp,tfa9895 is supported but this will be extended
+> to at least nxp,tfa9897 in the near future.
+
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/2] ASoC: dt-bindings: codecs: Add bindings for nxp, tfa989x
+      commit: 17ba36b704692a433d38cb230e99ec333ecd14a2
+[2/2] ASoC: codecs: Add driver for NXP/Goodix TFA989x (TFA1) amplifiers
+      commit: af00978a0a06bab60bd5adf54a65ea69d19ce35d
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
