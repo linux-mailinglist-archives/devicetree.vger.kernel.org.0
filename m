@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40E7738E0E3
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 08:12:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFDB138E0E4
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 08:12:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232235AbhEXGNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 02:13:37 -0400
+        id S232128AbhEXGNm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 02:13:42 -0400
 Received: from relmlor1.renesas.com ([210.160.252.171]:22021 "EHLO
         relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S232128AbhEXGNh (ORCPT
+        by vger.kernel.org with ESMTP id S232120AbhEXGNl (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 May 2021 02:13:37 -0400
-Date:   24 May 2021 15:12:09 +0900
+        Mon, 24 May 2021 02:13:41 -0400
+Date:   24 May 2021 15:12:14 +0900
 X-IronPort-AV: E=Sophos;i="5.82,319,1613401200"; 
-   d="scan'208";a="82217454"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 24 May 2021 15:12:09 +0900
+   d="scan'208";a="82217464"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 24 May 2021 15:12:14 +0900
 Received: from mercury.renesas.com (unknown [10.166.252.133])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id ADDE141BEAD2;
-        Mon, 24 May 2021 15:12:09 +0900 (JST)
-Message-ID: <87v978oe2u.wl-kuninori.morimoto.gx@renesas.com>
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 2D130400D0C2;
+        Mon, 24 May 2021 15:12:14 +0900 (JST)
+Message-ID: <87tumsoe2p.wl-kuninori.morimoto.gx@renesas.com>
 From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Subject: [PATCH 2/3] ASoC: rsnd: tidyup loop on rsnd_adg_clk_query()
+Subject: [PATCH 3/3] ASoC: rsnd: add null CLOCKIN support
 User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
 To:     Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
@@ -40,40 +40,73 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
-commit 06e8f5c842f2d ("ASoC: rsnd: don't call clk_get_rate() under
-atomic context") used saved clk_rate, thus for_each_rsnd_clk()
-is no longer needed. This patch fixes it.
+Some Renesas SoC doesn't have full CLOCKIN.
+This patch add null_clk, and accepts it.
 
-Fixes: 06e8f5c842f2d ("ASoC: rsnd: don't call clk_get_rate() under atomic context")
 Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 ---
- sound/soc/sh/rcar/adg.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ sound/soc/sh/rcar/adg.c | 33 +++++++++++++++++++++++++++++++--
+ 1 file changed, 31 insertions(+), 2 deletions(-)
 
 diff --git a/sound/soc/sh/rcar/adg.c b/sound/soc/sh/rcar/adg.c
-index f7773c41085b..a0b5bd5a7464 100644
+index a0b5bd5a7464..134549b16e0a 100644
 --- a/sound/soc/sh/rcar/adg.c
 +++ b/sound/soc/sh/rcar/adg.c
-@@ -290,7 +290,6 @@ static void rsnd_adg_set_ssi_clk(struct rsnd_mod *ssi_mod, u32 val)
- int rsnd_adg_clk_query(struct rsnd_priv *priv, unsigned int rate)
- {
- 	struct rsnd_adg *adg = rsnd_priv_to_adg(priv);
--	struct clk *clk;
- 	int i;
- 	int sel_table[] = {
- 		[CLKA] = 0x1,
-@@ -303,10 +302,9 @@ int rsnd_adg_clk_query(struct rsnd_priv *priv, unsigned int rate)
- 	 * find suitable clock from
- 	 * AUDIO_CLKA/AUDIO_CLKB/AUDIO_CLKC/AUDIO_CLKI.
- 	 */
--	for_each_rsnd_clk(clk, adg, i) {
-+	for (i = 0; i < CLKMAX; i++)
- 		if (rate == adg->clk_rate[i])
- 			return sel_table[i];
--	}
+@@ -3,8 +3,8 @@
+ // Helper routines for R-Car sound ADG.
+ //
+ //  Copyright (C) 2013  Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+-
+ #include <linux/clk-provider.h>
++#include <linux/clkdev.h>
+ #include "rsnd.h"
  
- 	/*
- 	 * find divided clock from BRGA/BRGB
+ #define CLKA	0
+@@ -389,6 +389,30 @@ void rsnd_adg_clk_control(struct rsnd_priv *priv, int enable)
+ 	}
+ }
+ 
++#define NULL_CLK "rsnd_adg_null"
++static struct clk *rsnd_adg_null_clk_get(struct rsnd_priv *priv)
++{
++	static struct clk_hw *hw;
++	struct device *dev = rsnd_priv_to_dev(priv);
++
++	if (!hw) {
++		struct clk_hw *_hw;
++		int ret;
++
++		_hw = clk_hw_register_fixed_rate_with_accuracy(dev, NULL_CLK, NULL, 0, 0, 0);
++		if (IS_ERR(_hw))
++			return NULL;
++
++		ret = of_clk_add_hw_provider(dev->of_node, of_clk_hw_simple_get, _hw);
++		if (ret < 0)
++			clk_hw_unregister_fixed_rate(_hw);
++
++		hw = _hw;
++	}
++
++	return clk_hw_get_clk(hw, NULL_CLK);
++}
++
+ static void rsnd_adg_get_clkin(struct rsnd_priv *priv,
+ 			       struct rsnd_adg *adg)
+ {
+@@ -398,7 +422,12 @@ static void rsnd_adg_get_clkin(struct rsnd_priv *priv,
+ 	for (i = 0; i < CLKMAX; i++) {
+ 		struct clk *clk = devm_clk_get(dev, clk_name[i]);
+ 
+-		adg->clk[i] = IS_ERR(clk) ? NULL : clk;
++		if (IS_ERR(clk))
++			clk = rsnd_adg_null_clk_get(priv);
++		if (IS_ERR(clk))
++			dev_err(dev, "no adg clock (%s)\n", clk_name[i]);
++
++		adg->clk[i] = clk;
+ 	}
+ }
+ 
 -- 
 2.25.1
 
