@@ -2,140 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2640738DF14
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 04:09:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2C6238DF18
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 04:12:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231867AbhEXCLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 May 2021 22:11:01 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:20356 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231765AbhEXCLB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 May 2021 22:11:01 -0400
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 14O1u15C074956;
-        Mon, 24 May 2021 09:56:01 +0800 (GMT-8)
-        (envelope-from jamin_lin@aspeedtech.com)
-Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 24 May
- 2021 10:08:54 +0800
-Date:   Mon, 24 May 2021 10:08:47 +0800
-From:   Jamin Lin <jamin_lin@aspeedtech.com>
-To:     Zev Weiss <zweiss@equinix.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        "Andrew Jeffery" <andrew@aj.id.au>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/ASPEED I2C DRIVER" <openbmc@lists.ozlabs.org>,
-        Steven Lee <steven_lee@aspeedtech.com>,
-        ChiaWei Wang <chiawei_wang@aspeedtech.com>,
-        Troy Lee <troy_lee@aspeedtech.com>,
-        Ryan Chen <ryan_chen@aspeedtech.com>
-Subject: Re: [PATCH 1/3] i2c: aspeed: avoid new registers definition of
- AST2600
-Message-ID: <20210524020846.GB2591@aspeedtech.com>
-References: <20210519080436.18975-1-jamin_lin@aspeedtech.com>
- <20210519080436.18975-2-jamin_lin@aspeedtech.com>
- <YKVg2Kfbex3DYbNI@packtop>
+        id S232098AbhEXCNg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 May 2021 22:13:36 -0400
+Received: from szxga05-in.huawei.com ([45.249.212.191]:5526 "EHLO
+        szxga05-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231765AbhEXCNg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 May 2021 22:13:36 -0400
+Received: from dggems704-chm.china.huawei.com (unknown [172.30.72.60])
+        by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4FpLHd6kfhzkY69;
+        Mon, 24 May 2021 10:09:17 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggems704-chm.china.huawei.com (10.3.19.181) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Mon, 24 May 2021 10:12:07 +0800
+Received: from [127.0.0.1] (10.174.177.72) by dggpemm500006.china.huawei.com
+ (7.185.36.236) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Mon, 24 May
+ 2021 10:12:07 +0800
+Subject: Re: [PATCH 2/2] dt-bindings: serial: pl011: Avoid matching device
+ tree nodes of variant pl011 drivers
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        linux-serial <linux-serial@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+References: <20210520115440.8259-1-thunder.leizhen@huawei.com>
+ <20210520115440.8259-3-thunder.leizhen@huawei.com>
+ <CAL_Jsq+XYATKC=y+=wFHtfVB634Mb_Y5xC969UMyDc4Z9W8x4A@mail.gmail.com>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <63a68e34-6778-c543-bb37-1cce94d8e4a0@huawei.com>
+Date:   Mon, 24 May 2021 10:12:05 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
+In-Reply-To: <CAL_Jsq+XYATKC=y+=wFHtfVB634Mb_Y5xC969UMyDc4Z9W8x4A@mail.gmail.com>
 Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <YKVg2Kfbex3DYbNI@packtop>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [192.168.100.253]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 14O1u15C074956
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.177.72]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 05/19/2021 19:02, Zev Weiss wrote:
-> On Wed, May 19, 2021 at 03:04:27AM CDT, Jamin Lin wrote:
-> >The register definition between AST2600 A2 and A3 is different.
-> >This patch avoid new registers definition of AST2600 to use
-> >this driver. We will submit the path for the new registers
-> >definition of AST2600.
-> >
-> >Signed-off-by: Jamin Lin <jamin_lin@aspeedtech.com>
-> >---
-> > drivers/i2c/busses/i2c-aspeed.c | 22 ++++++++++++++++++++++
-> > 1 file changed, 22 insertions(+)
-> >
-> >diff --git a/drivers/i2c/busses/i2c-aspeed.c b/drivers/i2c/busses/i2c-aspeed.c
-> >index 724bf30600d6..007309077d9f 100644
-> >--- a/drivers/i2c/busses/i2c-aspeed.c
-> >+++ b/drivers/i2c/busses/i2c-aspeed.c
-> >@@ -19,14 +19,20 @@
-> > #include <linux/irqchip/chained_irq.h>
-> > #include <linux/irqdomain.h>
-> > #include <linux/kernel.h>
-> >+#include <linux/mfd/syscon.h>
-> > #include <linux/module.h>
-> > #include <linux/of_address.h>
-> > #include <linux/of_irq.h>
-> > #include <linux/of_platform.h>
-> > #include <linux/platform_device.h>
-> >+#include <linux/regmap.h>
-> > #include <linux/reset.h>
-> > #include <linux/slab.h>
-> >
-> >+/* I2C Global Registers */
-> >+/* 0x0c : I2CG Global Control Register (AST2500)  */
-> >+#define ASPEED_I2CG_GLOBAL_CTRL_REG			0x0c
-> >+
-> > /* I2C Register */
-> > #define ASPEED_I2C_FUN_CTRL_REG				0x00
-> > #define ASPEED_I2C_AC_TIMING_REG1			0x04
-> >@@ -973,6 +979,22 @@ static int aspeed_i2c_probe_bus(struct platform_device *pdev)
-> > 	struct resource *res;
-> > 	int irq, ret;
-> >
-> >+	if (of_device_is_compatible(pdev->dev.of_node,
-> >+				    "aspeed,ast2600-i2c-bus")) {
-> >+		u32 global_ctrl;
-> >+		struct regmap *gr_regmap;
-> >+
-> >+		gr_regmap = syscon_regmap_lookup_by_compatible("aspeed,ast2600-i2c-global");
-> >+
-> >+		if (IS_ERR(gr_regmap)) {
-> >+			ret = PTR_ERR(gr_regmap);
-> >+		} else {
-> >+			regmap_read(gr_regmap, ASPEED_I2CG_GLOBAL_CTRL_REG, &global_ctrl);
-> >+			if (global_ctrl & BIT(2))
-> >+				return -EIO;
+
+
+On 2021/5/22 2:54, Rob Herring wrote:
+> On Thu, May 20, 2021 at 6:54 AM Zhen Lei <thunder.leizhen@huawei.com> wrote:
+>>
+>> There is a variant driver of pl011, which may have a compatible string
+>> written as: "arm,sbsa-uart", "arm,pl011". Because it contains "arm,pl011",
+>> so the corresponding device tree nodes are also checked by this YAML file.
+>> As a result, many flase warnings similar to the following are reported:
+>>
+>> arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dt.yaml:
+>>  serial@21c0000: compatible:0: 'arm,pl011' was expected
+>>  serial@21c0000: compatible:1: 'arm,primecell' was expected
 > 
-> A macro definition might be a bit nicer than a raw BIT(2) here I'd
-> think.
-Will modify 
+> The DT is wrong. The h/w is either a PL011 or it isn't. If it is, then
+> the compatible should be '"arm,pl011", "arm,primecell"'. There is no
+> point in making it 'arm,sbsa-uart' as the PL011 (and OS support for
+> it) predate SBSA (by a lot). If it is not a PL011 and only the SBSA
+> subset, then it should be "arm,sbsa-uart".
+
+Yes, I agree. I'll send a patch to fix the freescale's dts.
+
+arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi:923:                 compatible = "arm,sbsa-uart","arm,pl011";
+arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi:931:                 compatible = "arm,sbsa-uart","arm,pl011";
+arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi:939:                 compatible = "arm,sbsa-uart","arm,pl011";
+arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi:947:                 compatible = "arm,sbsa-uart","arm,pl011";
+arch/arm64/boot/dts/hisilicon/hip07.dtsi:1242:                      compatible = "arm,sbsa-uart";
+
+
 > 
-> Also, it seems a bit unfortunate to just bail on the device entirely if
-> we find this bit set (seems like a good way for a bootloader to
-> inadvertently DoS the kernel), though I guess poking global syscon bits
-> in the bus probe function might not be ideal.  Could/should we consider
-> some module-level init code to ensure that bit is cleared?
+> Rob
 > 
+> .
 > 
-We use syscon API to get the global register of i2c not the specific i2c
-bus.
-Can you describe it more detail?
-Thanks-Jamin
-> Zev
-> 
-> >+		}
-> >+	}
-> >+
-> > 	bus = devm_kzalloc(&pdev->dev, sizeof(*bus), GFP_KERNEL);
-> > 	if (!bus)
-> > 		return -ENOMEM;
-> >-- 
-> >2.17.1
-> >
+
