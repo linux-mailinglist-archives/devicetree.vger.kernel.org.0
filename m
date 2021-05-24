@@ -2,338 +2,271 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32CAA38E144
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 09:01:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29A6E38E162
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 09:17:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232238AbhEXHC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 03:02:29 -0400
-Received: from mail-dm6nam12on2040.outbound.protection.outlook.com ([40.107.243.40]:7008
-        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
+        id S232371AbhEXHSi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 03:18:38 -0400
+Received: from mail-vi1eur05on2075.outbound.protection.outlook.com ([40.107.21.75]:5280
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232120AbhEXHC2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 May 2021 03:02:28 -0400
+        id S232339AbhEXHSh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 May 2021 03:18:37 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EGNwRuUh+8HGtlVrFz+cIgJkvcT90RPY7Bs4DoT9SfrwJ2O4YkS2SV1PqTgjVrUt0SJgqIUSkhj4X5EjJLUN2ib29pPik1OmdvVJurnkahDSx/NF/PmiJDdvkRaEsmk3a4dHxkeN60pHIHfBrkXy3huBkjdkXJUGRawmNE2IeefCLWkobrBjxFTeWImgK5YhC6L5qo3bzzRnjddUF4+nyQxF9UhMvDNLMCXXq1B5xEZU0Q2uXJrU0fQVLmNAd8WG6Tr6lCVyvSKIkBCstzVKq86TjGMG/DYQwwOqbGoEtuG1EXpQheGyaJGD22SUT3xUeeAlytgrCYInfs9TcyY6JQ==
+ b=EmqiGbfOj/Ujns2iD6cQlfMxtILPhgex1PexXboxQML9giRDYegrcLmb1ttJ/iKB5hfzx5gOm2Z7OiP2vYzTyyTujDH/j0zrIB4jZ4Sjb3+Cig9ZczVd6maZBgTUxuvUNqlhYfaYJAxJhDuF/ImEUvB56zTB67/jS08jMLMXqveWkZp+/WYVmiyiFlmOUBum3oxPLlpWz4EcyTw6MwIusHHb5odeY9lt9HpCFM9av6unmYacIi4Vhraslf13NQBjhqrle3rVbdPyt89S7mLRzNK48S7w30UZ6BPBZOGDbWTzCqf1X/GRk/CNMyulTmyd8HJx1eY5XxHPzMPaZQ595Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jU8HbE4NuAyN1xUGZFGzQPcMUNo+aEWm46VFc1nd8o4=;
- b=MukY0y2EIAa5SgnATUa/Z0McaGShqI09IqZkk0Phl+qg1a+eQIO9iYLDYdg4A43w4TG+EeuHGCbodJPbdf+07BiWwGT9tiu8LK7MXWCorVBZ2YPjjbz4v3796CVAJ2oSI7Bv/KQ9GinguekS8inWddMuRCmJlEOTSHNrJmdv20xssjoj7mhQZht/fk95AHuIKSpkP/m6zLk7P1zvuO7NI05qVPtmS09uaiy83sp8+Gy03quvaAmo+oFL4zMfa/09NR2R/OWshYfgpD91QkSCDH00tG104hg7+AXXI1ShjRuZOnuht9sRrm2GIlQjcVYTK+dk9tDlUcQKroHjBiflEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=linutronix.de smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ bh=gCFJJo1bVSaYGkmUmhEb5eTV5jHFtziF0zqRh1gXz1E=;
+ b=kBsEznpgrFk2LaQf/tCn5lDeAv59rqVw8Ffq77XhYw9Rb6n+sPg84WtZuXQiaKKRV50PjPzuDtbaBtO7ewGrQgcl0dw6WK62cbIk5QbWvfOSOMpT0Fr+TegHbuDspl29bVJHH1Ae623t7JTl0l6JMtHMSJnZmUo23Zctrujbhe4DeEDoOP5oUjdQOi9q2EKYFojkJzkpkGGaDC7MZ0J22pzRpqgAPjx1R9MYds/42JN80WlP1uS9HXUOjayYrCVmwLpFUVGlso/peOrxUHhtiqRwghAlVM3QXaWbbxETqrREH7wdgG7w/TUuO/rLFX6sI54JapxM3vizg0BEjCcHGA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jU8HbE4NuAyN1xUGZFGzQPcMUNo+aEWm46VFc1nd8o4=;
- b=oOBaEbv9P/8SNXKyLIN+xnYKpAQYJtuAkuVzps+/pxnCI38DaWLc32i26w7CoNy6HG4oyCxAOO3H6VK1kc+HIYgP997Boa7oxJHS5P8dmRrDKtMxRjQlmUL+7pTJCmfxJxXktGz5enIuThGT6nz4uxVdi12Qrd72itDIDGOnLeg=
-Received: from DM6PR13CA0056.namprd13.prod.outlook.com (2603:10b6:5:134::33)
- by MN2PR02MB6446.namprd02.prod.outlook.com (2603:10b6:208:118::11) with
+ bh=gCFJJo1bVSaYGkmUmhEb5eTV5jHFtziF0zqRh1gXz1E=;
+ b=VDyDWONn/fJSBqIwlZA3l4VOJRQy2B2vPZci07sv60vzBoUn5FwdwFhS+HdHZKEvX7oIaBUyYlU5JB1aDty0K68FXUzrudgwOFKEjHj2m61tDt9/HKLdinJv953wTM9sZvPHY3wmqodKxlkAFE+b61S5rJ09EgdGHOSj290cdeE=
+Received: from AM5PR04MB3137.eurprd04.prod.outlook.com (2603:10a6:206:c::18)
+ by AM6PR04MB4759.eurprd04.prod.outlook.com (2603:10a6:20b:9::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.23; Mon, 24 May
- 2021 07:00:58 +0000
-Received: from DM3NAM02FT016.eop-nam02.prod.protection.outlook.com
- (2603:10b6:5:134:cafe::3e) by DM6PR13CA0056.outlook.office365.com
- (2603:10b6:5:134::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.11 via Frontend
- Transport; Mon, 24 May 2021 07:00:58 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; linutronix.de; dkim=none (message not signed)
- header.d=none;linutronix.de; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- DM3NAM02FT016.mail.protection.outlook.com (10.13.4.77) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4129.27 via Frontend Transport; Mon, 24 May 2021 07:00:57 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Mon, 24 May 2021 00:00:55 -0700
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Mon, 24 May 2021 00:00:55 -0700
-Envelope-to: tglx@linutronix.de,
- lee.jones@linaro.org,
- daniel.lezcano@linaro.org,
- linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- alvaro.gamez@hazent.com,
- u.kleine-koenig@pengutronix.de,
- thierry.reding@gmail.com,
- robh+dt@kernel.org,
- devicetree@vger.kernel.org,
- linux-pwm@vger.kernel.org,
- sean.anderson@seco.com
-Received: from [172.30.17.109] (port=46096)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1ll4a6-0007D0-Ub; Mon, 24 May 2021 00:00:55 -0700
-To:     Sean Anderson <sean.anderson@seco.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        <linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
-CC:     Alvaro Gamez <alvaro.gamez@hazent.com>,
-        <linux-kernel@vger.kernel.org>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.27; Mon, 24 May
+ 2021 07:17:07 +0000
+Received: from AM5PR04MB3137.eurprd04.prod.outlook.com
+ ([fe80::31a9:4de7:806f:93eb]) by AM5PR04MB3137.eurprd04.prod.outlook.com
+ ([fe80::31a9:4de7:806f:93eb%5]) with mapi id 15.20.4150.027; Mon, 24 May 2021
+ 07:17:07 +0000
+From:   Mirela Rabulea <mirela.rabulea@nxp.com>
+To:     "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-References: <20210511191239.774570-1-sean.anderson@seco.com>
- <20210511191239.774570-2-sean.anderson@seco.com>
- <d4bb7b5d-9f38-cf60-fb0b-18f8e0ca2b1e@xilinx.com>
- <5f960034-174d-0ed8-9f52-3d5fde90e16a@seco.com>
- <9f227f96-a310-0fbd-fd34-91eb386306b9@xilinx.com>
- <7a06cf46-0f85-1edb-ca08-abd7b2543ad9@seco.com>
- <41542760-3967-4f9a-0f0c-1206e03ff494@xilinx.com>
- <d206a399-454e-d9c5-e2d3-337d098ed7aa@seco.com>
-From:   Michal Simek <michal.simek@xilinx.com>
-Subject: Re: [PATCH v3 2/2] clocksource: Add support for Xilinx AXI Timer
-Message-ID: <2296d4e5-717a-0470-d487-e0924cf6c076@xilinx.com>
-Date:   Mon, 24 May 2021 09:00:51 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
-MIME-Version: 1.0
-In-Reply-To: <d206a399-454e-d9c5-e2d3-337d098ed7aa@seco.com>
-Content-Type: text/plain; charset="utf-8"
+        "ezequiel@collabora.com" <ezequiel@collabora.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "G.n. Zhou" <guoniu.zhou@nxp.com>
+CC:     dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "paul.kocialkowski@bootlin.com" <paul.kocialkowski@bootlin.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        Peng Fan <peng.fan@nxp.com>,
+        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Subject: Re: [PATCH v13 2/2] arm64: dts: imx: Add jpeg encoder/decoder nodes
+Thread-Topic: [PATCH v13 2/2] arm64: dts: imx: Add jpeg encoder/decoder nodes
+Thread-Index: AQHXT08lZrgmjiZOP069Zd77XqoFn6rx+wUAgAA/9wA=
+Date:   Mon, 24 May 2021 07:17:07 +0000
+Message-ID: <e4c174afd7c55c56c68afbe69276b41c3f574964.camel@nxp.com>
+References: <20210522211055.15988-1-mirela.rabulea@oss.nxp.com>
+         <20210522211055.15988-3-mirela.rabulea@oss.nxp.com>
+         <DB9PR04MB8477D8F7DC86E67F74D5D9F780269@DB9PR04MB8477.eurprd04.prod.outlook.com>
+In-Reply-To: <DB9PR04MB8477D8F7DC86E67F74D5D9F780269@DB9PR04MB8477.eurprd04.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c488ce47-49bc-4852-6a3f-08d91e81aeb8
-X-MS-TrafficTypeDiagnostic: MN2PR02MB6446:
-X-Microsoft-Antispam-PRVS: <MN2PR02MB64461EA0A34F0C3B7DA8A3FAC6269@MN2PR02MB6446.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lpEhtf/MEKV1LSZeIh9PtFm4UmblXqhpB2rqAWQn6oT+YWVGdYXhyRWzs4a+m8hIdGoQLpbDR8+6LmC3wtnpA5BiGugVRG7JWcbat3jf1dzQVRdkOhTYT4bdYQXWzWOuijEG4gaFRJ937xHtwybJ+moyt0jBA29Y+xFIDEVfH54WZ7/LzgEOwVY8Bitn+Tzs5wv2M83Jv6VTHRHo80mpHfI0p4bTXyey0ynElWCkqPQeAc0IqKkm7h6T+8vZPPuor+D/Q6gX0dS9grSZ1DdtCYkpHH8HVT42j2jgxHQFZwrQW5m6DMJs9xhhLyhNRri4/W4nybUDVk5YFvaY5jruMCD4ZSIvqtBuwXNT+LLaF4FIezPBfT+f9f+RmldyRBDHNHWChIgEPowz0bCY0qResp8xf+CAEtqvI7RDdsbm2vj4Nstjnm27rhnuNV6jm12cGrwGIh7aIE3F+szFxuUu8TJCHk43/w+EGGrEPZt0BYIrx6uEg7Yb/E1+Hd29/cqSesJ7b+dJCEiIQgJY/0370rmCNAkg4DAYYhVQyClzWFIfqoY94v35wlXs6jCc92d/OGlEHB3EONN/gtMZ+SNgW1/OwcRfyGnWeQci6SWKYiCItHEU9OGx8j5ib6bDraFNiHOxH9CbQTXYjNC9vG3Btnw7YH5zs+4u1I3iC0cBE1OH2HyFN5x4bOls9Vw2pVEnBS1J07E1mfwMpXSv91LmO+8+ydNJEJ3LPkErYVOE0rgwyeBwKBNuHRLG1wCWTyE9ruS+NbOFwvYsV+spGfc55E3bn4mK16IXiEbs4nLL1BYNof14F8K3Ptxr2035XR/+/UYIPG6IgOaEkZ9c+Bv3kg==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(396003)(376002)(39850400004)(136003)(346002)(46966006)(36840700001)(336012)(8676002)(9786002)(478600001)(6666004)(4326008)(82740400003)(8936002)(70586007)(36756003)(70206006)(2616005)(44832011)(26005)(426003)(54906003)(53546011)(7636003)(966005)(5660300002)(186003)(356005)(31696002)(47076005)(110136005)(36860700001)(83380400001)(36906005)(7416002)(316002)(82310400003)(31686004)(2906002)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 May 2021 07:00:57.9602
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+authentication-results: lists.infradead.org; dkim=none (message not signed)
+ header.d=none;lists.infradead.org; dmarc=none action=none
+ header.from=nxp.com;
+x-originating-ip: [86.124.171.30]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a6d9666a-eab4-47eb-1a80-08d91e83f08c
+x-ms-traffictypediagnostic: AM6PR04MB4759:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM6PR04MB47597A1752D547B4000F531A8F269@AM6PR04MB4759.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1247;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Euh4FZMKiA0zpBKkYFjAeEzHQ9keq4obYAWko7L8bCbQu5qo5g5kTaXSR1XfPBokmrMoGRACSiJe9aVfrD4NTMZrMh9NMseEIcysXzqraTXj8w5xe8zJicJSLy+CJPWYJclNw8+iJhdkv+USNuRJ6rksSvggoRUv3vR8lgyUeWwhXe0Y8bR6BpETdbONnXMLvFAklNTxmV4tSOYoeoT6z+QkeTgQtFiEu0KrBIohcQJXGMYv+J9uMV6pND1Rb4/zaOKR4qkFiJxB0uZ7dO/8S67p5A3G6F1EAEUwrha/f+/OW8aRdTt+AYZhKhtsM/EjqZLoKubmw3Z4I0Ix+Bc44iNR9G5IfhLELycFXPXXAU1JKiLecE9HqiKGzgpoohUQg2V2A9RjSnHu+mCRT3cUPZiRNfK/oz0ywzKeJEcr41eV02yuUGms2MIXSv/R64BfGrzQ980sk3CNQq7BKkRnFcPNrYKSDI/Eu5+Scw0bWr/6v7mb6Uiej40MbXbBYvfMpT7KmDkchz26xM5+PQj0xPfszKxFM4SzL0F/fuFnH3S79jE/dBWXebtRg2yZhba5Lf4jzU3MckXaHW2jJCjqem/lET/0zrD2Uqc6KLJOoWQsigKbs8Z4mKOjQZEL/fbaI0yxEzFjp6T3Ys4qJiSBWA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM5PR04MB3137.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(366004)(376002)(39860400002)(136003)(396003)(5660300002)(8936002)(6512007)(478600001)(38100700002)(26005)(186003)(110136005)(53546011)(54906003)(36756003)(8676002)(83380400001)(122000001)(66446008)(91956017)(2616005)(6486002)(66556008)(316002)(6636002)(6506007)(66946007)(2906002)(44832011)(71200400001)(64756008)(7416002)(4326008)(66476007)(86362001)(76116006)(99106002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?ZTNnTlZhL09zdE90bS9IODdiTHBQZ0NEcXZVdTFZWUFLVUE4em9EQWh5dW5B?=
+ =?utf-8?B?VkFpcjVyb0g5OEJCeTFqUXdOWlFEV1RFTml2WklTZnV0RXRwWFFyY1FKNlBu?=
+ =?utf-8?B?NVZlcURRWTM2M3I4SlM2YjI4SG1BRWhRVXUwbU9mRGM0bHFOeEhLMTN4YitT?=
+ =?utf-8?B?RUkxZE4wTmFWcjJVK1NndUhsR293c2h1RVdpcTFXb0VVWEZxOVJWM1hBcFBh?=
+ =?utf-8?B?SDE0NXdlWTJRYXJXMzhmU2NRK0JqUkJhUnFPaGtybGFHMWNlKzJqN1ZjWkxP?=
+ =?utf-8?B?OTJ2L2NzeC8yUVpJQ2thRzJjbkNFeC9ZL1J1UkpxbGhiR1NkOUdBSXJRUXU3?=
+ =?utf-8?B?blBJRVNobVBUS2czQStVWEhjZ1VETnRmTTdEK0E0eTVEUG1kRE9wSTlDR28x?=
+ =?utf-8?B?ZnZtL0pzVmwxSlRhY0ljUlc2SzVuY1NnaUtDeEVQaU5vRzZwdk5kUmE3T1Jk?=
+ =?utf-8?B?Wm1qL2w0bmF3UVd3T1VWT2NmWWxuTm1xSXoxaml3Zjh4T2JaYlNrVVp0VWFS?=
+ =?utf-8?B?aldLL0hwZDE1elRFTHZlTS81bWxtNVJlL0JGengwWTRzUy9KdWltRUEyeVc4?=
+ =?utf-8?B?ekdvU2Y0OWpxUDNHa1ZodnJHL1o0YlJKU3hWcFAxeU9ncy9MUDR2Q2JpQnFZ?=
+ =?utf-8?B?eDM5cHVjeWRnanljdXdXNkpReitZU29DRlRSQ29CVDlOVmJkeVVIMDFyRk0x?=
+ =?utf-8?B?cVZxb3o3OFZVSmh0Zlp2SFpFalFXaHkwWkVXZXYvVURpekRCSFJsM1VoaVBK?=
+ =?utf-8?B?VjVJMGxTRlNweW10Y1JyejVMcjQ5OXZSdEM4U2dkTmJjZGZ2UlBmbk9nemdF?=
+ =?utf-8?B?RXJVc013UmREeGI3Wmd3TjUranZDYjAvMlNPVkkxckdveVlIbVJMZjJzS3VC?=
+ =?utf-8?B?UXJCTDh0c2ZRdnozUWRDSTJLcUE0L2ZyUlg3UWRpUjVmaDBHMVgvWnhQbmhp?=
+ =?utf-8?B?bWkydTlqRGRSNzhYQ2JMcjdSYWZIMXJGbXJsUk1tblkvTGh0MFF2c25sQVBa?=
+ =?utf-8?B?ZmxOdFRpeE1YUm9WdkcwSnExbmdFeFYxVG5lNzdYY0J4RFJkRDlmNzlkNFA2?=
+ =?utf-8?B?TFAzbkVUSUJ5TW9SS2ZiSUJMM254cms3OXZPWW1NUVZ5NXBROURSV05TYkRE?=
+ =?utf-8?B?cmZ3Smk2dDNybWIyZzU0Z1d5RVl3MCs4ckZGcXRSVnozNDFXdDJ4dmVteEp2?=
+ =?utf-8?B?eEdodExUZXdwKzVKR1FYTEI4U1NvSnNlUWFuZTUrRWxFb3YrWStxNzNHek1Y?=
+ =?utf-8?B?L3lZcm1qZDhsVHpFUWZENEczeVI5MnNucWJoREJHY3paQkgxcDdHaFJ6TmxL?=
+ =?utf-8?B?Qm9kcUNkRHJkRWE4YXc1Yk1hT0pxa1ZSTk5hcSsyS1d1SmhXdWxmNXRmMFZP?=
+ =?utf-8?B?N0tjTGhlVkZSZTRmZmZJbFZzVk0rLzBQZXp0WnRSYjlqRWhOTVF6emxCNFEv?=
+ =?utf-8?B?bjVXVTJFU1JFTVA0T2N6Mk1CQTJ3UDdlaTlTNVN0N3FUZUtkeFA0QUZLRWJC?=
+ =?utf-8?B?S1J2c2sxdUFGaUNMazVEWmhMRHVFaDR6SnkzbDU2c1k5SUVKS0hRbDF3R1FY?=
+ =?utf-8?B?REJyRVNLREtUUjRVZWJCa1B5ME5KRXdEUlJzQ2xoZG4veVlsMjZtdWVTZkZq?=
+ =?utf-8?B?bUw1OGVRUzNNRXN6VTdEd0o3bUoxZkplY1lIc2hmb2M0c2FxZkhyTjBUTFo5?=
+ =?utf-8?B?U0FTTTRKUnlrN0MybVFMcWhFL09tRlRzbzl0S3RVN3dMR2NXVWNEMmd5TlpJ?=
+ =?utf-8?Q?162AupQphc5jbC+VUTPwQT/wpZ2uByUeLE+5KTh?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <1D247A4D42EAA640B6495C1813620118@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM5PR04MB3137.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a6d9666a-eab4-47eb-1a80-08d91e83f08c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 May 2021 07:17:07.2929
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c488ce47-49bc-4852-6a3f-08d91e81aeb8
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT016.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR02MB6446
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: HVkYmm7PwGHelscQKtt1y+yf1Uk4E2pRLji8RuvHzcsAIxqbmjLTNohs59P3QtEadHryjJX4s3hpi/zO3V2Zig==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB4759
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 5/20/21 10:13 PM, Sean Anderson wrote:
-> 
-> 
-> On 5/19/21 3:24 AM, Michal Simek wrote:
->>
->>
->> On 5/18/21 12:15 AM, Sean Anderson wrote:
->>>
->>>
->>> On 5/17/21 3:54 AM, Michal Simek wrote:
->>>>
->>>>
->>>> On 5/14/21 4:40 PM, Sean Anderson wrote:
->>>>>
->>>>>
->>>>> On 5/14/21 4:59 AM, Michal Simek wrote:
->>>>>>
->>>>>>
->>>>>> On 5/11/21 9:12 PM, Sean Anderson wrote:
->>>>>>> This adds generic clocksource and clockevent support for Xilinx
->>>>> LogiCORE IP
->>>>>>> AXI soft timers commonly found on Xilinx FPGAs. This timer is
-> also the
->>>>>>> primary timer for Microblaze processors. This commit also adds
->>>>> support for
->>>>>>> configuring this timer as a PWM (though this could be split off if
->>>>>>> necessary). This whole driver lives in clocksource because it is
->>>>> primarily
->>>>>>> clocksource stuff now (even though it started out as a PWM
-> driver). I
->>>>> think
->>>>>>> teasing apart the driver would not be worth it since they share so
->>> many
->>>>>>> functions.
->>>>>>>
->>>>>>> This driver configures timer 0 (which is always present) as a
->>>>> clocksource,
->>>>>>> and timer 1 (which might be missing) as a clockevent. I don't
-> know if
->>>>> this
->>>>>>> is the correct priority for these timers, or whether we should be
->>>>> using a
->>>>>>> more dynamic allocation scheme.
->>>>>>>
->>>>>>> At the moment clock control is very basic: we just enable the clock
->>>>> during
->>>>>>> probe and pin the frequency. In the future, someone could add
-> support
->>>>> for
->>>>>>> disabling the clock when not in use. Cascade mode is also
-> unsupported.
->>>>>>>
->>>>>>> This driver was written with reference to Xilinx DS764 for v1.03.a
->>> [1].
->>>>>>>
->>>>>>> [1]
->>>>>
->>>
-> https://www.xilinx.com/support/documentation/ip_documentation/axi_timer/v1_03_a/axi_timer_ds764.pdf
-> 
->>>
->>>>>
->>>>>>>
->>>>>>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
->>>>>>> ---
->>>>>>> Please let me know if I should organize this differently or if it
->>> should
->>>>>>> be broken up.
->>>>>>>
->>>>>>> Changes in v3:
->>>>>>> - Add clockevent and clocksource support
->>>>>>> - Rewrite probe to only use a device_node, since timers may need
-> to be
->>>>>>>        initialized before we have proper devices. This does bloat
-> the
->>>>> code a bit
->>>>>>>        since we can no longer rely on helpers such as dev_err_probe.
->>> We also
->>>>>>>        cannot rely on device resources being free'd on failure,
-> so we
->>>>> must free
->>>>>>>        them manually.
->>>>>>> - We now access registers through xilinx_timer_(read|write). This
->>>>> allows us
->>>>>>>        to deal with endianness issues, as originally seen in the
->>> microblaze
->>>>>>>        driver. CAVEAT EMPTOR: I have not tested this on big-endian!
->>>>>>> - Remove old microblaze driver
->>>>>>>
->>>>>>> Changes in v2:
->>>>>>> - Don't compile this module by default for arm64
->>>>>>> - Add dependencies on COMMON_CLK and HAS_IOMEM
->>>>>>> - Add comment explaining why we depend on !MICROBLAZE
->>>>>>> - Add comment describing device
->>>>>>> - Rename TCSR_(SET|CLEAR) to TCSR_RUN_(SET|CLEAR)
->>>>>>> - Use NSEC_TO_SEC instead of defining our own
->>>>>>> - Use TCSR_RUN_MASK to check if the PWM is enabled, as suggested by
->>> Uwe
->>>>>>> - Cast dividends to u64 to avoid overflow
->>>>>>> - Check for over- and underflow when calculating TLR
->>>>>>> - Set xilinx_pwm_ops.owner
->>>>>>> - Don't set pwmchip.base to -1
->>>>>>> - Check range of xlnx,count-width
->>>>>>> - Ensure the clock is always running when the pwm is registered
->>>>>>> - Remove debugfs file :l
->>>>>>> - Report errors with dev_error_probe
->>>>>>>
->>>>>>>       arch/microblaze/kernel/Makefile    |   2 +-
->>>>>>>       arch/microblaze/kernel/timer.c     | 326 ---------------
->>>>>>>       drivers/clocksource/Kconfig        |  15 +
->>>>>>>       drivers/clocksource/Makefile       |   1 +
->>>>>>>       drivers/clocksource/timer-xilinx.c | 650
->>> +++++++++++++++++++++++++++++
->>>>>>>       5 files changed, 667 insertions(+), 327 deletions(-)
->>>>>>>       delete mode 100644 arch/microblaze/kernel/timer.c
->>>>>>>       create mode 100644 drivers/clocksource/timer-xilinx.c
->>>>>>
->>>>>> I don't think this is the right way to go.
->>>>>> The first patch should be move current timer driver from
-> microblaze to
->>>>>> generic location and then apply patches on the top based on what you
->>> are
->>>>>> adding/fixing to be able to review every change separately.
->>>>>> When any issue happens it can be bisected and exact patch is
->>> identified.
->>>>>> With this way we will end up in this patch and it will take a lot of
->>>>>> time to find where that problem is.
->>>>>
->>>>> What parts would you like to see split? Fundamentally, this current
->>>>> patch is a reimplementation of the driver. I think the only reasonable
->>>>> split would be to add PWM support in a separate patch.
->>>>>
->>>>> I do not think that genericizing the microblaze timer driver is an
->>>>> integral part of adding PWM support. This is especially since you seem
->>>>> opposed to using existing devicetree properties to inform the
-> driver. I
->>>>> am inclined to just add a patch adding a check for '#-pwm-cells' to
-> the
->>>>> existing driver and otherwise leave it untouched.
->>>>
->>>> As I said I think the patches should be like this.
->>>> 1. Cover existing DT binding based on current code.
->>>> 2. Move time out of arch/microblaze to drivers/clocksource/ and even
->>>> enable it via Kconfig just for Microblaze.
->>>> 3. Remove dependency on Microblaze and enable build for others. I have
->>>> seen at least one cpuinfo.cpu_clock_freq assignment. This code can be
->>>> likely completely removed or deprecate.
->>>
->>> This could be deprecated, but cannot be removed since existing device
->>> trees (e.g. qemu) have neither clocks nor clock-frequency properties.
->>
->> Rob: Do we have any obligation to keep properties for other projects?
->>
->>
->>>> 4. Make driver as module
->>>> 5. Do whatever changes you want before adding pwm support
->>>> 6. Extend DT binding doc for PWM support
->>>> 7. Add PWM support
->>>
->>> Frankly, I am inclined to just leave the microblaze timer as-is. The PWM
->>> driver is completely independent. I have already put too much effort
-> into
->>> this driver, and I don't have the energy to continue working on the
->>> microblaze timer.
->>
->> I understand. I am actually using axi timer as pwm driver in one of my
->> project but never had time to upstream it because of couple of steps
-> above.
->> We need to do it right based on steps listed above. If this is too much
->> work it will have to wait. I will NACK all attempts to add separate
->> driver for IP which we already support in the tree.
-> 
-> 1. Many timers have separate clocksource and PWM drivers. E.g. samsung,
->    renesas TPU, etc. It is completely reasonable to keep separate
->    drivers for these purposes. There is no Linux requirement that each
->    device have only one driver, especially if it has multiple functions
->    or ways to be configured.
-
-It doesn't mean that it was done properly and correctly. Code
-duplication is bad all the time.
-
-> 2. If you want to do work on a driver, I'm all for it. However, if you
->    have not yet submitted that work to the list, you should not gate
->    other work behind it. Saying that X feature must be gated behind Y
->    *even if X works completely independently of Y* is just stifling
->    development.
-
-I gave you guidance how I think this should be done. I am not gating you
-from this work. Your patch is not working on Microblaze arch which is
-what I maintain. And I don't want to go the route that we will have two
-drivers for the same IP without integration. We were there in past and
-it is just pain.
-I am expecting that PWM guys will guide how this should be done
-properly. I haven't heard any guidance on this yet.
-Thierry/Uwe: Any comment?
-
-
-> 3. There is a clear desire for a PWM driver for this device. You, I, and
->    Alvaro have all written separate drivers for this device because we
->    want to use it as a PWM. By preventing merging this driver, you are
->    encouraging duplicate effort by the next person who wants to use this
->    device as a PWM, and sees that there is no driver in the tree.
-
-We should do it cleanly that it will be easy to maintain which is not by
-creating two separate drivers or by switching to completely new driver.
-
-Thanks,
-Michal
+SGkgQWlzaGVuZywgRXplcXVpZWwsDQoNCk9uIE1vbiwgMjAyMS0wNS0yNCBhdCAwMzoyOCArMDAw
+MCwgQWlzaGVuZyBEb25nIHdyb3RlOg0KPiA+IEZyb206IE1pcmVsYSBSYWJ1bGVhIChPU1MpIDxt
+aXJlbGEucmFidWxlYUBvc3MubnhwLmNvbT4NCj4gPiBTZW50OiBTdW5kYXksIE1heSAyMywgMjAy
+MSA1OjExIEFNDQo+ID4gU3ViamVjdDogW1BBVENIIHYxMyAyLzJdIGFybTY0OiBkdHM6IGlteDog
+QWRkIGpwZWcgZW5jb2Rlci9kZWNvZGVyDQo+ID4gbm9kZXMNCj4gPiANCj4gDQo+IHMvaW14L2lt
+eDgNCg0KT2ssIEknbGwgdXNlIGlteDggaW4gcGF0Y2ggc3ViamVjdC4NCg0KPiANCj4gPiANCj4g
+PiBBZGQgZHRzIGZvciBpbWFnaW5nIHN1YnN5dGVtLCBpbmNsdWRlIGpwZWcgbm9kZXMgaGVyZS4N
+Cj4gPiBUZXN0ZWQgb24gaW14OHF4cC9xbS4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBNaXJl
+bGEgUmFidWxlYSA8bWlyZWxhLnJhYnVsZWFAbnhwLmNvbT4NCj4gPiAtLS0NCj4gPiBDaGFuZ2Vz
+IGluIHYxMzoNCj4gPiAgIEFkcmVzcyBmZWVkYmFjayBmcm9tIEFpc2hlbmcgRG9uZyBhbmQgdXBk
+YXRlIHRoZSBjb21taXQgbWVzc2FnZToNCj4gPiAgIC0gTW92ZSBqcGVnIGNvbXBhdGlibGVzIGZy
+b20gaW14OC1zcy1pbWcuZHRzaSB0byBpbXg4cXhwLXNzLQ0KPiA+IGltZy5kdHNpDQo+ID4gICAt
+IEFkZCBpbXg4cW0tc3MtaW1nLmR0c2kgZm9yIGkuTVg4UU0NCj4gPiANCj4gPiAgLi4uL2FybTY0
+L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4LXNzLWltZy5kdHNpIHwgODANCj4gPiArKysrKysrKysr
+KysrKysrKysrDQo+ID4gIC4uLi9ib290L2R0cy9mcmVlc2NhbGUvaW14OHFtLXNzLWltZy5kdHNp
+ICAgICB8IDEyICsrKw0KPiA+ICBhcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4cW0u
+ZHRzaSAgICAgfCAgMiArDQo+ID4gIC4uLi9ib290L2R0cy9mcmVlc2NhbGUvaW14OHF4cC1zcy1p
+bWcuZHRzaSAgICB8IDEzICsrKw0KPiA+ICBhcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9p
+bXg4cXhwLmR0c2kgICAgfCAgMiArDQo+ID4gIDUgZmlsZXMgY2hhbmdlZCwgMTA5IGluc2VydGlv
+bnMoKykNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNj
+YWxlL2lteDgtc3MtaW1nLmR0c2kNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtNjQv
+Ym9vdC9kdHMvZnJlZXNjYWxlL2lteDhxbS1zcy0NCj4gPiBpbWcuZHRzaQ0KPiA+ICBjcmVhdGUg
+bW9kZSAxMDA2NDQgYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OHF4cC1zcy0NCj4g
+PiBpbWcuZHRzaQ0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2Zy
+ZWVzY2FsZS9pbXg4LXNzLWltZy5kdHNpDQo+ID4gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVz
+Y2FsZS9pbXg4LXNzLWltZy5kdHNpDQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRl
+eCAwMDAwMDAwMDAwMDAuLjRiODQ1NmJiNDcxMg0KPiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysg
+Yi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4LXNzLWltZy5kdHNpDQo+ID4gQEAg
+LTAsMCArMSw4MCBAQA0KPiA+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMCsN
+Cj4gPiArLyoNCj4gPiArICogQ29weXJpZ2h0IDIwMTktMjAyMSBOWFANCj4gPiArICogWmhvdSBH
+dW9uaXUgPGd1b25pdS56aG91QG54cC5jb20+DQo+ID4gKyAqLw0KPiA+ICtpbWdfc3Vic3lzOiBi
+dXNANTgwMDAwMDAgew0KPiA+ICsJY29tcGF0aWJsZSA9ICJzaW1wbGUtYnVzIjsNCj4gPiArCSNh
+ZGRyZXNzLWNlbGxzID0gPDE+Ow0KPiA+ICsJI3NpemUtY2VsbHMgPSA8MT47DQo+ID4gKwlyYW5n
+ZXMgPSA8MHg1ODAwMDAwMCAweDAgMHg1ODAwMDAwMCAweDEwMDAwMDA+Ow0KPiA+ICsNCj4gPiAr
+CWltZ19pcGdfY2xrOiBjbG9jay1pbWctaXBnIHsNCj4gPiArCQljb21wYXRpYmxlID0gImZpeGVk
+LWNsb2NrIjsNCj4gPiArCQkjY2xvY2stY2VsbHMgPSA8MD47DQo+ID4gKwkJY2xvY2stZnJlcXVl
+bmN5ID0gPDIwMDAwMDAwMD47DQo+ID4gKwkJY2xvY2stb3V0cHV0LW5hbWVzID0gImltZ19pcGdf
+Y2xrIjsNCj4gPiArCX07DQo+ID4gKw0KPiA+ICsJanBlZ2RlYzoganBlZ2RlY0A1ODQwMDAwMCB7
+DQo+IA0KPiBOb2RlIHNob3VsZCBiZSBkaXNhYmxlZCBieSBkZWZhdWx0Lg0KPiBBbmQgZW5hYmxl
+IGl0IGluIGJvYXJkIGR0cyBpbmNsdWRpbmcgTFBDRy4NCg0KQXQgdmVyc2lvbiB2NSBvZiB0aGlz
+IHBhdGNoLCB0aGUgbm9kZSB3YXMgZGlzYWJsZWQgYnkgZGVmYXVsdCwgYW5kIEkNCnJlY2VpdmVk
+IHRoaXMgZmVlZGJhY2sgZnJvbSBFemVxdWllbCBHYXJjaWE6DQoNCiJQdXJlIG1lbW9yeS10by1t
+ZW1vcnkgYXJlIHR5cGljYWxseSBub3QgZW5hYmxlZCBwZXItYm9hcmQsIGJ1dCBqdXN0DQpwZXIt
+cGxhdGZvcm0uDQpTbyB5b3UgY2FuIGRyb3AgdGhlIGRpc2FibGVkIHN0YXR1cyBoZXJlLiINCg0K
+U28sIGluIHY2IEkgbWFkZSBpdCBlbmFibGVkIGJ5IGRlZmF1bHQuDQoNCkFueSBzdHJvbmcgcmVh
+c29ucyBmb3IgZW5hYmxlZC9kaXNhYmxlZCBwZXIgcGxhdGZvcm0/DQoNClRoYW5rcywNCk1pcmVs
+YQ0KDQo+IA0KPiA+ICsJCXJlZyA9IDwweDU4NDAwMDAwIDB4MDAwNTAwMDAgPjsNCj4gPiArCQlp
+bnRlcnJ1cHRzID0gPEdJQ19TUEkgMzA5IElSUV9UWVBFX0xFVkVMX0hJR0g+LA0KPiA+ICsJCQkg
+ICAgIDxHSUNfU1BJIDMxMCBJUlFfVFlQRV9MRVZFTF9ISUdIPiwNCj4gPiArCQkJICAgICA8R0lD
+X1NQSSAzMTEgSVJRX1RZUEVfTEVWRUxfSElHSD4sDQo+ID4gKwkJCSAgICAgPEdJQ19TUEkgMzEy
+IElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0KPiA+ICsJCWNsb2NrcyA9IDwmaW1nX2pwZWdfZGVjX2xw
+Y2cgSU1YX0xQQ0dfQ0xLXzA+LA0KPiA+ICsJCQkgPCZpbWdfanBlZ19kZWNfbHBjZyBJTVhfTFBD
+R19DTEtfND47DQo+ID4gKwkJY2xvY2stbmFtZXMgPSAicGVyIiwgImlwZyI7DQo+ID4gKwkJYXNz
+aWduZWQtY2xvY2tzID0gPCZpbWdfanBlZ19kZWNfbHBjZyBJTVhfTFBDR19DTEtfMD4sDQo+ID4g
+KwkJCQkgIDwmaW1nX2pwZWdfZGVjX2xwY2cgSU1YX0xQQ0dfQ0xLXzQ+Ow0KPiA+ICsJCWFzc2ln
+bmVkLWNsb2NrLXJhdGVzID0gPDIwMDAwMDAwMD4sIDwyMDAwMDAwMDA+Ow0KPiA+ICsJCXBvd2Vy
+LWRvbWFpbnMgPSA8JnBkIElNWF9TQ19SX01KUEVHX0RFQ19NUD4sDQo+ID4gKwkJCQk8JnBkIElN
+WF9TQ19SX01KUEVHX0RFQ19TMD4sDQo+ID4gKwkJCQk8JnBkIElNWF9TQ19SX01KUEVHX0RFQ19T
+MT4sDQo+ID4gKwkJCQk8JnBkIElNWF9TQ19SX01KUEVHX0RFQ19TMj4sDQo+ID4gKwkJCQk8JnBk
+IElNWF9TQ19SX01KUEVHX0RFQ19TMz47DQo+ID4gKwl9Ow0KPiA+ICsNCj4gPiArCWpwZWdlbmM6
+IGpwZWdlbmNANTg0NTAwMDAgew0KPiANCj4gRGl0dG8NCj4gDQo+ID4gKwkJcmVnID0gPDB4NTg0
+NTAwMDAgMHgwMDA1MDAwMCA+Ow0KPiA+ICsJCWludGVycnVwdHMgPSA8R0lDX1NQSSAzMDUgSVJR
+X1RZUEVfTEVWRUxfSElHSD4sDQo+ID4gKwkJCSAgICAgPEdJQ19TUEkgMzA2IElSUV9UWVBFX0xF
+VkVMX0hJR0g+LA0KPiA+ICsJCQkgICAgIDxHSUNfU1BJIDMwNyBJUlFfVFlQRV9MRVZFTF9ISUdI
+PiwNCj4gPiArCQkJICAgICA8R0lDX1NQSSAzMDggSVJRX1RZUEVfTEVWRUxfSElHSD47DQo+ID4g
+KwkJY2xvY2tzID0gPCZpbWdfanBlZ19lbmNfbHBjZyBJTVhfTFBDR19DTEtfMD4sDQo+ID4gKwkJ
+CSA8JmltZ19qcGVnX2VuY19scGNnIElNWF9MUENHX0NMS180PjsNCj4gPiArCQljbG9jay1uYW1l
+cyA9ICJwZXIiLCAiaXBnIjsNCj4gPiArCQlhc3NpZ25lZC1jbG9ja3MgPSA8JmltZ19qcGVnX2Vu
+Y19scGNnIElNWF9MUENHX0NMS18wPiwNCj4gPiArCQkJCSAgPCZpbWdfanBlZ19lbmNfbHBjZyBJ
+TVhfTFBDR19DTEtfND47DQo+ID4gKwkJYXNzaWduZWQtY2xvY2stcmF0ZXMgPSA8MjAwMDAwMDAw
+PiwgPDIwMDAwMDAwMD47DQo+ID4gKwkJcG93ZXItZG9tYWlucyA9IDwmcGQgSU1YX1NDX1JfTUpQ
+RUdfRU5DX01QPiwNCj4gPiArCQkJCTwmcGQgSU1YX1NDX1JfTUpQRUdfRU5DX1MwPiwNCj4gPiAr
+CQkJCTwmcGQgSU1YX1NDX1JfTUpQRUdfRU5DX1MxPiwNCj4gPiArCQkJCTwmcGQgSU1YX1NDX1Jf
+TUpQRUdfRU5DX1MyPiwNCj4gPiArCQkJCTwmcGQgSU1YX1NDX1JfTUpQRUdfRU5DX1MzPjsNCj4g
+PiArCX07DQo+ID4gKw0KPiA+ICsJaW1nX2pwZWdfZGVjX2xwY2c6IGNsb2NrLWNvbnRyb2xsZXJA
+NTg1ZDAwMDAgew0KPiANCj4gRGl0dG8NCj4gDQo+ID4gKwkJY29tcGF0aWJsZSA9ICJmc2wsaW14
+OHF4cC1scGNnIjsNCj4gPiArCQlyZWcgPSA8MHg1ODVkMDAwMCAweDEwMDAwPjsNCj4gPiArCQkj
+Y2xvY2stY2VsbHMgPSA8MT47DQo+ID4gKwkJY2xvY2tzID0gPCZpbWdfaXBnX2Nsaz4sIDwmaW1n
+X2lwZ19jbGs+Ow0KPiA+ICsJCWNsb2NrLWluZGljZXMgPSA8SU1YX0xQQ0dfQ0xLXzA+LA0KPiA+
+ICsJCQkJPElNWF9MUENHX0NMS180PjsNCj4gPiArCQljbG9jay1vdXRwdXQtbmFtZXMgPSAiaW1n
+X2pwZWdfZGVjX2xwY2dfY2xrIiwNCj4gPiArCQkJCSAgICAgImltZ19qcGVnX2RlY19scGNnX2lw
+Z19jbGsiOw0KPiA+ICsJCXBvd2VyLWRvbWFpbnMgPSA8JnBkIElNWF9TQ19SX01KUEVHX0RFQ19N
+UD47DQo+ID4gKwl9Ow0KPiA+ICsNCj4gPiArCWltZ19qcGVnX2VuY19scGNnOiBjbG9jay1jb250
+cm9sbGVyQDU4NWYwMDAwIHsNCj4gPiArCQljb21wYXRpYmxlID0gImZzbCxpbXg4cXhwLWxwY2ci
+Ow0KPiANCj4gRGl0dG8NCj4gDQo+IE90aGVyd2lzZSwgSSdtIGZpbmUgd2l0aCB0aGlzIHBhdGNo
+Lg0KPiANCj4gPiArCQlyZWcgPSA8MHg1ODVmMDAwMCAweDEwMDAwPjsNCj4gPiArCQkjY2xvY2st
+Y2VsbHMgPSA8MT47DQo+ID4gKwkJY2xvY2tzID0gPCZpbWdfaXBnX2Nsaz4sIDwmaW1nX2lwZ19j
+bGs+Ow0KPiA+ICsJCWNsb2NrLWluZGljZXMgPSA8SU1YX0xQQ0dfQ0xLXzA+LA0KPiA+ICsJCQkJ
+PElNWF9MUENHX0NMS180PjsNCj4gPiArCQljbG9jay1vdXRwdXQtbmFtZXMgPSAiaW1nX2pwZWdf
+ZW5jX2xwY2dfY2xrIiwNCj4gPiArCQkJCSAgICAgImltZ19qcGVnX2VuY19scGNnX2lwZ19jbGsi
+Ow0KPiA+ICsJCXBvd2VyLWRvbWFpbnMgPSA8JnBkIElNWF9TQ19SX01KUEVHX0VOQ19NUD47DQo+
+ID4gKwl9Ow0KPiA+ICt9Ow0KPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2Zy
+ZWVzY2FsZS9pbXg4cW0tc3MtaW1nLmR0c2kNCj4gPiBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJl
+ZXNjYWxlL2lteDhxbS1zcy1pbWcuZHRzaQ0KPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4g
+aW5kZXggMDAwMDAwMDAwMDAwLi43NzY0YjQxNDZlMGENCj4gPiAtLS0gL2Rldi9udWxsDQo+ID4g
+KysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OHFtLXNzLWltZy5kdHNpDQo+
+ID4gQEAgLTAsMCArMSwxMiBAQA0KPiA+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BM
+LTIuMCsNCj4gPiArLyoNCj4gPiArICogQ29weXJpZ2h0IDIwMjEgTlhQDQo+ID4gKyAqLw0KPiA+
+ICsNCj4gPiArJmpwZWdkZWMgew0KPiA+ICsJY29tcGF0aWJsZSA9ICJueHAsaW14OHFtLWpwZ2Rl
+YyIsICJueHAsaW14OHF4cC1qcGdkZWMiOyB9Ow0KPiA+ICsNCj4gPiArJmpwZWdlbmMgew0KPiA+
+ICsJY29tcGF0aWJsZSA9ICJueHAsaW14OHFtLWpwZ2RlYyIsICJueHAsaW14OHF4cC1qcGdlbmMi
+OyB9Ow0KPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4
+cW0uZHRzaQ0KPiA+IGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OHFtLmR0c2kN
+Cj4gPiBpbmRleCAxMmNkMDU5YjMzOWIuLmFlYmJlMmI4NGFhMSAxMDA2NDQNCj4gPiAtLS0gYS9h
+cmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4cW0uZHRzaQ0KPiA+ICsrKyBiL2FyY2gv
+YXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhxbS5kdHNpDQo+ID4gQEAgLTE2NiwxMSArMTY2
+LDEzIEBADQo+ID4gIAl9Ow0KPiA+IA0KPiA+ICAJLyogc29ydGVkIGluIHJlZ2lzdGVyIGFkZHJl
+c3MgKi8NCj4gPiArCSNpbmNsdWRlICJpbXg4LXNzLWltZy5kdHNpIg0KPiA+ICAJI2luY2x1ZGUg
+ImlteDgtc3MtZG1hLmR0c2kiDQo+ID4gIAkjaW5jbHVkZSAiaW14OC1zcy1jb25uLmR0c2kiDQo+
+ID4gIAkjaW5jbHVkZSAiaW14OC1zcy1sc2lvLmR0c2kiDQo+ID4gIH07DQo+ID4gDQo+ID4gKyNp
+bmNsdWRlICJpbXg4cW0tc3MtaW1nLmR0c2kiDQo+ID4gICNpbmNsdWRlICJpbXg4cW0tc3MtZG1h
+LmR0c2kiDQo+ID4gICNpbmNsdWRlICJpbXg4cW0tc3MtY29ubi5kdHNpIg0KPiA+ICAjaW5jbHVk
+ZSAiaW14OHFtLXNzLWxzaW8uZHRzaSINCj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290
+L2R0cy9mcmVlc2NhbGUvaW14OHF4cC1zcy1pbWcuZHRzaQ0KPiA+IGIvYXJjaC9hcm02NC9ib290
+L2R0cy9mcmVlc2NhbGUvaW14OHF4cC1zcy1pbWcuZHRzaQ0KPiA+IG5ldyBmaWxlIG1vZGUgMTAw
+NjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAwMDAwLi4zYTA4NzMxNzU5MWQNCj4gPiAtLS0gL2Rldi9u
+dWxsDQo+ID4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OHF4cC1zcy1p
+bWcuZHRzaQ0KPiA+IEBAIC0wLDAgKzEsMTMgQEANCj4gPiArLy8gU1BEWC1MaWNlbnNlLUlkZW50
+aWZpZXI6IEdQTC0yLjArDQo+ID4gKy8qDQo+ID4gKyAqIENvcHlyaWdodCAyMDIxIE5YUA0KPiA+
+ICsgKglEb25nIEFpc2hlbmcgPGFpc2hlbmcuZG9uZ0BueHAuY29tPg0KPiA+ICsgKi8NCj4gPiAr
+DQo+ID4gKyZqcGVnZGVjIHsNCj4gPiArCWNvbXBhdGlibGUgPSAibnhwLGlteDhxeHAtanBnZGVj
+IjsNCj4gPiArfTsNCj4gPiArDQo+ID4gKyZqcGVnZW5jIHsNCj4gPiArCWNvbXBhdGlibGUgPSAi
+bnhwLGlteDhxeHAtanBnZW5jIjsNCj4gPiArfTsNCj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02
+NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OHF4cC5kdHNpDQo+ID4gYi9hcmNoL2FybTY0L2Jvb3Qv
+ZHRzL2ZyZWVzY2FsZS9pbXg4cXhwLmR0c2kNCj4gPiBpbmRleCAxZTZiNDk5NTA5MWUuLmE2MjVm
+YjZiZGM2MiAxMDA2NDQNCj4gPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9p
+bXg4cXhwLmR0c2kNCj4gPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4
+cXhwLmR0c2kNCj4gPiBAQCAtMjU4LDEyICsyNTgsMTQgQEANCj4gPiAgCX07DQo+ID4gDQo+ID4g
+IAkvKiBzb3J0ZWQgaW4gcmVnaXN0ZXIgYWRkcmVzcyAqLw0KPiA+ICsJI2luY2x1ZGUgImlteDgt
+c3MtaW1nLmR0c2kiDQo+ID4gIAkjaW5jbHVkZSAiaW14OC1zcy1hZG1hLmR0c2kiDQo+ID4gIAkj
+aW5jbHVkZSAiaW14OC1zcy1jb25uLmR0c2kiDQo+ID4gIAkjaW5jbHVkZSAiaW14OC1zcy1kZHIu
+ZHRzaSINCj4gPiAgCSNpbmNsdWRlICJpbXg4LXNzLWxzaW8uZHRzaSINCj4gPiAgfTsNCj4gPiAN
+Cj4gPiArI2luY2x1ZGUgImlteDhxeHAtc3MtaW1nLmR0c2kiDQo+ID4gICNpbmNsdWRlICJpbXg4
+cXhwLXNzLWFkbWEuZHRzaSINCj4gPiAgI2luY2x1ZGUgImlteDhxeHAtc3MtY29ubi5kdHNpIg0K
+PiA+ICAjaW5jbHVkZSAiaW14OHF4cC1zcy1sc2lvLmR0c2kiDQo+ID4gLS0NCj4gPiAyLjE3LjEN
+Cj4gDQo+IA0K
