@@ -2,100 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04F4338DED2
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 03:16:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDD0738DEFD
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 03:53:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232124AbhEXBRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 May 2021 21:17:37 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:38693 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232067AbhEXBRg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 May 2021 21:17:36 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1621818969; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=Jy34EtJAVoCMCPxGf5DCNJ6akcTQGePHMmxcOPshkGQ=;
- b=a36pD0k9J4lCyq7I1oaAFJ7GutulvUKeYS8OA7Sd46yuMGXQQYe/5hYebHbo+SJOkACc1pJ8
- vTCJj+byuAD7yoX6OJ0aG8oD/qjJLd/FjzNrPCYruIXNYFDlatvD1rA65i4mMVliaNPU+uUk
- 3nrLfqHcacwyhz4oxs+XBaKVLGY=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 60aafe442bff04e53b4a837b (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 24 May 2021 01:15:48
- GMT
-Sender: sibis=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 320C7C43217; Mon, 24 May 2021 01:15:48 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7B642C433F1;
-        Mon, 24 May 2021 01:15:47 +0000 (UTC)
+        id S232129AbhEXBzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 May 2021 21:55:20 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:13328 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231765AbhEXBzU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 May 2021 21:55:20 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 14O1eLhp073824;
+        Mon, 24 May 2021 09:40:21 +0800 (GMT-8)
+        (envelope-from jamin_lin@aspeedtech.com)
+Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 24 May
+ 2021 09:53:14 +0800
+Date:   Mon, 24 May 2021 09:53:11 +0800
+From:   Jamin Lin <jamin_lin@aspeedtech.com>
+To:     Tao Ren <rentao.bupt@gmail.com>
+CC:     Joel Stanley <joel@jms.id.au>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        "moderated list:ARM/ASPEED I2C DRIVER" <openbmc@lists.ozlabs.org>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Rayn Chen <rayn_chen@aspeedtech.com>,
+        "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+        Steven Lee <steven_lee@aspeedtech.com>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 1/3] i2c: aspeed: avoid new registers definition of
+ AST2600
+Message-ID: <20210524015310.GA2591@aspeedtech.com>
+References: <20210519080436.18975-1-jamin_lin@aspeedtech.com>
+ <20210519080436.18975-2-jamin_lin@aspeedtech.com>
+ <CACPK8XdNXiGMQZOtsfMMK+w_PSvO20XT8B9MG+rGhdjYoV4ZuQ@mail.gmail.com>
+ <20210520033140.GA3656@aspeedtech.com>
+ <20210521020033.GB19153@taoren-ubuntu-R90MNF91>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 24 May 2021 06:45:47 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     Sujit Kautkar <sujitka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Move rmtfs memory region
-In-Reply-To: <20210514113430.1.Ic2d032cd80424af229bb95e2c67dd4de1a70cb0c@changeid>
-References: <20210514113430.1.Ic2d032cd80424af229bb95e2c67dd4de1a70cb0c@changeid>
-Message-ID: <b2c386fd5881c452e0a18438c3f98787@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20210521020033.GB19153@taoren-ubuntu-R90MNF91>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 14O1eLhp073824
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Sujit,
-
-Thanks for the patch!
-
-On 2021-05-15 00:04, Sujit Kautkar wrote:
-> Move rmtfs memory region so that it does not overlap with system
-> RAM (kernel data) when KAsan is enabled. This puts rmtfs right
-> after mba_mem which is not supposed to increase beyond 0x94600000
+The 05/21/2021 02:00, Tao Ren wrote:
+> Hi Jamin,
 > 
-
-Reviewed-by: Sibi Sankar <sibis@codeaurora.org>
-
-> Signed-off-by: Sujit Kautkar <sujitka@chromium.org>
-> ---
+> On Thu, May 20, 2021 at 11:31:41AM +0800, Jamin Lin wrote:
+> > The 05/19/2021 22:59, Joel Stanley wrote:
+> > > On Wed, 19 May 2021 at 08:05, Jamin Lin <jamin_lin@aspeedtech.com> wrote:
+> > > >
+> > > > The register definition between AST2600 A2 and A3 is different.
+> > > > This patch avoid new registers definition of AST2600 to use
+> > > > this driver. We will submit the path for the new registers
+> > > > definition of AST2600.
+> > > 
+> > > The AST2600 v9 datasheet says that bit 2 selects between old and new
+> > > register sets, and that the old register set is the default.
+> > > 
+> > > Has the default changed for the A3?, and the datasheet is incorrect?
+> > > 
+> > > Does the A3 still support the old register set?
+> > > 
+> > We suggest user to use the new i2c driver for AST2600 and we will sumbit
+> > it. This driver is used to AST2500 and AST2400 SOCs. Change this
+> > driver to check global register of i2c to avoid user build the wrong driver. 
 > 
->  arch/arm64/boot/dts/qcom/sc7180-idp.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> If I understand correctly, the answer implies old register set is still
+> supported in A3 although aspeed suggest people using the new driver/mode?
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> index e77a7926034a7..afe0f9c258164 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> @@ -45,7 +45,7 @@ chosen {
+> Can you please share more context behind the suggestion? Such as new
+> register mode has better performance? Or some known issues that were
+> deteted in old mode are fixed in new register mode?
+>
+Yes, AST2600 A1, A2 and A3 support both old and new register set. The difference
+between old and new register set are the register address and supported registers.
+User can choose to use both old and new register set. However, ASPEED would like to 
+change new register set by default for AST2600.
+Thanks-Jamin
 > 
->  /* Increase the size from 2MB to 8MB */
->  &rmtfs_mem {
-> -	reg = <0x0 0x84400000 0x0 0x800000>;
-> +	reg = <0x0 0x94600000 0x0 0x800000>;
->  };
+> Cheers,
 > 
->  / {
-
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
+> Tao
