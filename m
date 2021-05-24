@@ -2,116 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC04F38F505
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 23:39:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2420A38F5A0
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 00:29:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233652AbhEXVlI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 17:41:08 -0400
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:36584 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232746AbhEXVlI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 17:41:08 -0400
-Received: by mail-oi1-f179.google.com with SMTP id t24so12873260oiw.3;
-        Mon, 24 May 2021 14:39:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=8EGEl7TG/OkXyYvTFTnYpNtZYItc7Ibtk58MX5Yvvac=;
-        b=EsuUyQrWCFBLodvFUzvoPrOj0eR2zhrlYHq9TQ5Jj8+223iNt+kSiCBN4A96N8cxwM
-         /TwhVNKC6NmcubA2PI6gREnWkU8pFwNQ6NtcTdPvOT8ydjeBK3gWvPHJWolzI+JfXmuM
-         AIsqT/IFkL9p6aeNuxq+Mq3uPC5I49PjdUUCVGTLwDvi4RAP6QrWI+aY/NSWb6m0a6WW
-         PwO6n5JYVHJidxiedbiLDO9F8l6LM4pbN3XbGoWwGAcrbZZK3Q6JWkBYz9CNalw6xzTH
-         NuEeEGvYibMJJoe2b70SNng0kTit/2qfvhjzAo9C3RwLEodW2Ei8Qvx2QigDU7zlyKnR
-         ov+Q==
-X-Gm-Message-State: AOAM533vRXfySb66dT+ZfBTFFBC7cteOc+e67N7pXOaolSXDxu1zn917
-        0xZl3jweCYVNh3ctNTc+kQ==
-X-Google-Smtp-Source: ABdhPJwYW1PGk1nOYYfJL+LLY33B9ICBMmggB/IFaQAFndprOIMUrK3hAiyVrJgxuHcyXB+e5yOfsw==
-X-Received: by 2002:aca:4a8b:: with SMTP id x133mr12455802oia.124.1621892379373;
-        Mon, 24 May 2021 14:39:39 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w6sm3359352otj.5.2021.05.24.14.39.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 May 2021 14:39:38 -0700 (PDT)
-Received: (nullmailer pid 1190597 invoked by uid 1000);
-        Mon, 24 May 2021 21:39:35 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Martin Botka <martin.botka@somainline.org>
-Cc:     marijn.suijten@somainline.org, konrad.dybcio@somainline.org,
-        Andy Gross <agross@kernel.org>, linux-gpio@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        angelogioacchino.delregno@somainline.org,
-        linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>
-In-Reply-To: <20210523211809.734107-1-martin.botka@somainline.org>
-References: <20210523211809.734107-1-martin.botka@somainline.org>
-Subject: Re: [PATCH V2 1/2] dt-bindings: pinctrl: qcom: sm6125: Document SM6125 pinctrl driver
-Date:   Mon, 24 May 2021 16:39:35 -0500
-Message-Id: <1621892375.422017.1190596.nullmailer@robh.at.kernel.org>
+        id S229540AbhEXWbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 18:31:18 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:41549 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229539AbhEXWbR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 18:31:17 -0400
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 84AD5FF802;
+        Mon, 24 May 2021 22:29:45 +0000 (UTC)
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        dri-devel@lists.freedesktop.org, kernel@collabora.com,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        linux-rtc@vger.kernel.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Saravana Kannan <saravanak@google.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCHv2 0/5] Support for GE B1x5v2 and B1x5Pv2
+Date:   Tue, 25 May 2021 00:29:43 +0200
+Message-Id: <162189535932.209674.9024031320724831491.b4-ty@bootlin.com>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210428222953.235280-1-sebastian.reichel@collabora.com>
+References: <20210428222953.235280-1-sebastian.reichel@collabora.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 23 May 2021 23:18:06 +0200, Martin Botka wrote:
-> Document the newly added SM6125 pinctrl driver
+On Thu, 29 Apr 2021 00:29:48 +0200, Sebastian Reichel wrote:
+> This series adds support for another General Electric patient
+> monitor series (similar to existing Bx50v3), which is based on
+> i.MX6DL using Congatec's QMX6 module.
 > 
-> Signed-off-by: Martin Botka <martin.botka@somainline.org>
-> ---
-> Changes in V2:
-> Add commit description
->  .../bindings/pinctrl/qcom,sm6125-pinctrl.yaml | 161 ++++++++++++++++++
->  1 file changed, 161 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
+> The module uses an I2C RTC to provide the i.MX6 32768 Hz clock,
+> so it's important to keep it enabled. Not doing so results in
+> incorrect timings of watchdog and i.MX6 RTC. The bootloader
+> enables the watchdog, so disabling the clock results in system
+> reboot. [0]
 > 
+> [...]
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Applied, thanks!
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml:122:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
+[1/5] rtc: m41t80: add support for fixed clock
+      commit: f765e349c3e1f2e676ad4bd61197216b26976022
 
-dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.example.dts'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 45, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 421, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 109, in get_single_data
-    node = self.composer.get_single_node()
-  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
-  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 848, in _ruamel_yaml.CParser._compose_sequence_node
-  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-ruamel.yaml.scanner.ScannerError: while scanning a block scalar
-  in "<unicode string>", line 120, column 5
-found a tab character where an indentation space is expected
-  in "<unicode string>", line 122, column 1
-make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml:  while scanning a block scalar
-  in "<unicode string>", line 120, column 5
-found a tab character where an indentation space is expected
-  in "<unicode string>", line 122, column 1
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml: ignoring, error parsing file
-warning: no schema found in file: ./Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
-make: *** [Makefile:1416: dt_binding_check] Error 2
-
-See https://patchwork.ozlabs.org/patch/1482532
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Best regards,
+-- 
+Alexandre Belloni <alexandre.belloni@bootlin.com>
