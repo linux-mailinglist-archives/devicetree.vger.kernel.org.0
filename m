@@ -2,303 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC63A38F2B2
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 20:01:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3060338F2F1
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 20:28:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233399AbhEXSDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 14:03:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52666 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233244AbhEXSDW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 14:03:22 -0400
-Received: from mail-ua1-x935.google.com (mail-ua1-x935.google.com [IPv6:2607:f8b0:4864:20::935])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0658DC06138A
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 11:01:54 -0700 (PDT)
-Received: by mail-ua1-x935.google.com with SMTP id c6so9063991uat.0
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 11:01:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6Yts7qQiY5cVw+gZuSHeCN8lE/arX6Qto1/OwLEXAhQ=;
-        b=H8BM+oDJsRf44M+gFJkkX2QGVohKPWVfWWJU1mhWKhdIAEex/y5Apwy3ws0LA6RZyi
-         6WnwtyNXX+DOUwTZSzorRoijv7lG0bmMnBRaGIkcCaoKmNIIngJHaeJm+gWvkADlTnX6
-         SMrzNlrJWO25a0iSaOrEJWWo0PzSp6eAMvxpc7k7v4OrARj2Fg/NJkS9tYYMhFlE7frh
-         pBipM/2BBB75n9EseQ9DXqjJrBVWZ9eTAUPph4y3yvHa4C6eDqQyrVxDSBnh3sLXG2JK
-         BlL8LVo2mGZLNKqM8rm1n8F4ahX4fi67nCHB5iam3AIvB7K97PmRBIlxzXzwAX/EqoGm
-         qLgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6Yts7qQiY5cVw+gZuSHeCN8lE/arX6Qto1/OwLEXAhQ=;
-        b=XqUnYIwusMp8aYr4A6fdPSzXY3492yjOpEIwnDGYpVPZ+SmzL7XDcufFtbwhpeABy2
-         P3BymJrY8zsICBAHZrzlWDq1+UexhlWeobAryLhFsbbRtzjc4yOMbY33maYSbj092+cP
-         kJQFd0VQydFd+lk/kaUV1CW4/O0irdpTBkDn+VSWYY3HBgStKTueEvuHkTwCqZyFInIW
-         chOTRuiMcAtnduD3FUn7i3RmnOEEhtsW83I8HhKXbJH0HMS4xBXW/f/J7SMIkdSF1lls
-         NctLeEDHN1WP38wkzrf9AfIZdLkBvoh1p8Dj6JIBeqxykBj8PHmHGNZ3D6smheQzw5Y/
-         Masw==
-X-Gm-Message-State: AOAM533zD8YQPu+5Yw5qjOI3t+SkWIa3m/ouAN2elbPhQnEwOEnz34sL
-        nAUkfRnl0Qmd2agcJ+HNcJ5ojXI/fVgo6wrXxaDq789Js+f8iYbI
-X-Google-Smtp-Source: ABdhPJzldT2KtNW5LanITjVVU8o7Tu39YI61SMrwMRReheJzUy03Rj2D1eZAzB04TnuGNIFPO+/hkePdl+GMFf+OCc0=
-X-Received: by 2002:a9f:24b4:: with SMTP id 49mr14197782uar.100.1621879313042;
- Mon, 24 May 2021 11:01:53 -0700 (PDT)
+        id S232901AbhEXS31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 14:29:27 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:47003 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232516AbhEXS31 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 May 2021 14:29:27 -0400
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.nyi.internal (Postfix) with ESMTP id B0D1D581E71;
+        Mon, 24 May 2021 14:27:58 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Mon, 24 May 2021 14:27:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=TEx4O6ipWrArrkHEgj4N9wKNBP
+        467wEwYrYzP9bsXl4=; b=JGpKssTkczo2LEipwnIpKsb9b00UPb8fx4nR/pDIob
+        TefJxALlW0AWRbJF8gntLMZ+wASO1d/a23xW/HGZxJ9qGMo/UaXATyFuJNugAHm8
+        6h0gLc+9NaBoJGFUMWBLEhC3aVlHLWADuS+AG6HOX9efDb8AqgF4eOScC1flp2Se
+        J+SudZ8REsuESSJWD5OKtupUke0ys1/vg6tW8FGanYxQ/oz1IsW5fihyL1M349vL
+        Ec8fHmN16b6KLedkJEyOr4Z8fCKybUsImSumEqo0VZqxPHKiFPf+Mtf8HN65Ab/a
+        mSMNGqA1z4QODvh8f86Rz8tQdNJ8jVyPwOOKgc50L+ig==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=TEx4O6ipWrArrkHEg
+        j4N9wKNBP467wEwYrYzP9bsXl4=; b=WTD7xNyH66Yh9X1b9Cil1pRWGo81M4aWV
+        Weqg+LRz8rHA+5LEt1NVvuI7wYf9wUbCS++RgjjQGwTqmFQOkzDe6BaBWgUiNTwE
+        M4BPjKMazaWjDFkfPwr91upisHFy6afeklh+ijU7Qz/xS705dj89EW58IO85mh++
+        g6TVmzyi4ROWJY9Tqq+QyP9Z7Dw+dqNpMoWWvT25/My4xrFCQ/nx3ECnraPL6Pmb
+        b+P9+HVuv5bb1HCCmyN8JaReRz2iVolrbgGi1v1eWtKEQQvs+QdRK8patKKST5vv
+        U0Lo3l/v2KccFuQ0E3MG9ONBbGXwV1+6Jp5GtYH9JFnoUY0nUyN3A==
+X-ME-Sender: <xms:LfCrYAFK4WeeTLy7mY23INcFpwE4MLHOjNaiEe_Zavt3Io7oYlth3Q>
+    <xme:LfCrYJWESwLW8mfIRukzZJ4PYcLflplKGemElamOZhWgGYNmNjPYBC41Jhils3tjh
+    Pon37VdNec-Rq_zkOU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdejledguddvjecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepufhvvghnucfr
+    vghtvghruceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrghtthgvrh
+    hnpeeugfelkedvtdejffefjeehveelfeevkefgudduhfeghfefgedtheevjeefffffgfen
+    ucfkphepudejiedrudelledrvdduuddruddvgeenucevlhhushhtvghrufhiiigvpedtne
+    curfgrrhgrmhepmhgrihhlfhhrohhmpehsvhgvnhesshhvvghnphgvthgvrhdruggvvh
+X-ME-Proxy: <xmx:LfCrYKKpATqYV7Tul45AUl7Mx2Ii5M5O1GTvqvrPyRms2H-fFCULgA>
+    <xmx:LfCrYCEyWFMath51u7OA4q5IrQ_fYyrOt2yvK_Ym9rk5sgfMvZl23A>
+    <xmx:LfCrYGXCRsoCoRyMsnPceca2MBpxk0jVSAFvIQDH4KCBeh56J47bDQ>
+    <xmx:LvCrYKo-1pJTXCEjpYa405FXPDMWnYzHOhNH34GJ8qnnjpt2SyQmfA>
+Received: from photon.s7r42.com (ip-176-199-211-124.hsi06.unitymediagroup.de [176.199.211.124])
+        by mail.messagingengine.com (Postfix) with ESMTPA;
+        Mon, 24 May 2021 14:27:54 -0400 (EDT)
+From:   Sven Peter <sven@svenpeter.dev>
+To:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Hector Martin <marcan@marcan.st>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Arnd Bergmann <arnd@kernel.org>
+Subject: [PATCH 0/3] Apple M1 clock gate driver
+Date:   Mon, 24 May 2021 20:27:42 +0200
+Message-Id: <20210524182745.22923-1-sven@svenpeter.dev>
+X-Mailer: git-send-email 2.30.1 (Apple Git-130)
 MIME-Version: 1.0
-References: <20210517130823.796963-1-anup.patel@wdc.com> <20210517130823.796963-6-anup.patel@wdc.com>
-In-Reply-To: <20210517130823.796963-6-anup.patel@wdc.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 24 May 2021 20:01:16 +0200
-Message-ID: <CAPDyKFpxx-jBbL4o_iJCcivFL2ei5a7PcWVfUaBmLu-q89Mkjg@mail.gmail.com>
-Subject: Re: [RFC PATCH v4 5/8] cpuidle: Factor-out power domain related code
- from PSCI domain driver
-To:     Anup Patel <anup.patel@wdc.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Sandeep Tripathy <milun.tripathy@gmail.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Liush <liush@allwinnertech.com>,
-        Anup Patel <anup@brainfault.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-riscv@lists.infradead.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 May 2021 at 15:10, Anup Patel <anup.patel@wdc.com> wrote:
->
-> The generic power domain related code in PSCI domain driver is largely
-> independent of PSCI and can be shared with RISC-V SBI domain driver
-> hence we factor-out this code into dt_idle_genpd.c and dt_idle_genpd.h.
->
-> Signed-off-by: Anup Patel <anup.patel@wdc.com>
 
-This is clearly a big step in the right direction. Just a couple minor
-things, see more below.
+Hi,
 
-Note that, I have a couple of patches in the pipe for the
-cpuidle-psci-domain driver (not ready to be posted). I need a couple
-of more days to confirm this restructuring still makes sense beyond
-these potential new changes. I will let you know as soon as I can with
-the outcome.
+This series adds support for the clock gates present in Apple's SoCs such as
+the M1.
 
-[...]
+These SoCs have various clock gates for their peripherals usually located in
+one or two MMIO regions. Each clock gate is a single 32 bit register which
+contains bits for the requested and the actual mode. The mode is represented by
+four bits. We however only care about "everything enabled" (0b1111) and
+"everything disabled" (0b000) for now. The other modes are probably different
+low-power states which don't even seem to be used by MacOS. The actual power
+management is located in a different region (and probably handled by a separate
+processor on the M1).
 
-> diff --git a/drivers/cpuidle/dt_idle_genpd.c b/drivers/cpuidle/dt_idle_genpd.c
+Additionally, these clocks have a topology that is usually specified in Apple's
+Device Tree. As far as I can tell most Linux drivers seem to encode this topology
+directly in the source code though. Despite this, we would still like to encode
+the topology in the device tree itself:
 
-I think it would be a good idea to add a new section for this to the
-MAINTAINERS file. Perhaps a "DT IDLE DOMAIN" section? Or perhaps you
-have another idea?
+Apple seems to only change HW blocks when they have a very good reason and even
+then they seem to keep the changes minimal. This specific clock gate MMIO block
+has already been used in the Apple A7 released in 2013. The only differences
+since then are the available clocks (which can be identified by a simple offset)
+and their topology.
 
-In any case, I am happy to continue with maintenance of this code,
-even in the new restructured form.
+It's likely that Apple will still use this block in future SoCs as well. By
+encoding the clock gate topology inside the device tree as well we can use a
+single driver and only need updates to the device tree once they are released.
+This might allow end users to already run their favorite distribution by just
+updating the bootloader with a new device tree instead of having to wait until
+the new topology is integrated into their distro kernel.
 
-> new file mode 100644
-> index 000000000000..5a901773db60
-> --- /dev/null
-> +++ b/drivers/cpuidle/dt_idle_genpd.c
-> @@ -0,0 +1,182 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * PM domains for CPUs via genpd.
-> + *
-> + * Copyright (C) 2019 Linaro Ltd.
-> + * Author: Ulf Hansson <ulf.hansson@linaro.org>
-> + *
-> + * Copyright (c) 2021 Western Digital Corporation or its affiliates.
-> + */
-> +
-> +#define pr_fmt(fmt) "dt-idle-genpd: " fmt
-> +
-> +#include <linux/cpu.h>
-> +#include <linux/device.h>
-> +#include <linux/kernel.h>
-> +#include <linux/pm_domain.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/slab.h>
-> +#include <linux/string.h>
-> +
-> +#include "dt_idle_genpd.h"
-> +
-> +static int dt_pd_parse_state_nodes(
-> +                       int (*parse_state)(struct device_node *, u32 *),
-> +                       struct genpd_power_state *states, int state_count)
-> +{
-> +       int i, ret;
-> +       u32 state, *state_buf;
-> +
-> +       for (i = 0; i < state_count; i++) {
-> +               ret = parse_state(to_of_node(states[i].fwnode), &state);
-> +               if (ret)
-> +                       goto free_state;
-> +
-> +               state_buf = kmalloc(sizeof(u32), GFP_KERNEL);
-> +               if (!state_buf) {
-> +                       ret = -ENOMEM;
-> +                       goto free_state;
-> +               }
-> +               *state_buf = state;
-> +               states[i].data = state_buf;
-> +       }
-> +
-> +       return 0;
-> +
-> +free_state:
-> +       i--;
-> +       for (; i >= 0; i--)
-> +               kfree(states[i].data);
-> +       return ret;
-> +}
-> +
-> +static int dt_pd_parse_states(struct device_node *np,
-> +                       int (*parse_state)(struct device_node *, u32 *),
-> +                       struct genpd_power_state **states,
-> +                       int *state_count)
-> +{
-> +       int ret;
-> +
-> +       /* Parse the domain idle states. */
-> +       ret = of_genpd_parse_idle_states(np, states, state_count);
-> +       if (ret)
-> +               return ret;
-> +
-> +       /* Fill out the dt specifics for each found state. */
-> +       ret = dt_pd_parse_state_nodes(parse_state, *states, *state_count);
-> +       if (ret)
-> +               kfree(*states);
-> +
-> +       return ret;
-> +}
-> +
-> +static void dt_pd_free_states(struct genpd_power_state *states,
-> +                             unsigned int state_count)
-> +{
-> +       int i;
-> +
-> +       for (i = 0; i < state_count; i++)
-> +               kfree(states[i].data);
-> +       kfree(states);
-> +}
-> +
-> +void dt_pd_free(struct generic_pm_domain *pd)
-> +{
-> +       dt_pd_free_states(pd->states, pd->state_count);
-> +       kfree(pd->name);
-> +       kfree(pd);
-> +}
-> +EXPORT_SYMBOL_GPL(dt_pd_free);
-> +
-> +struct generic_pm_domain *dt_pd_alloc(struct device_node *np,
-> +                       int (*parse_state)(struct device_node *, u32 *))
-> +{
-> +       struct generic_pm_domain *pd;
-> +       struct genpd_power_state *states = NULL;
-> +       int ret, state_count = 0;
-> +
-> +       pd = kzalloc(sizeof(*pd), GFP_KERNEL);
-> +       if (!pd)
-> +               goto out;
-> +
-> +       pd->name = kasprintf(GFP_KERNEL, "%pOF", np);
-> +       if (!pd->name)
-> +               goto free_pd;
-> +
-> +       /*
-> +        * Parse the domain idle states and let genpd manage the state selection
-> +        * for those being compatible with "domain-idle-state".
-> +        */
-> +       ret = dt_pd_parse_states(np, parse_state, &states, &state_count);
-> +       if (ret)
-> +               goto free_name;
-> +
-> +       pd->free_states = dt_pd_free_states;
-> +       pd->name = kbasename(pd->name);
-> +       pd->states = states;
-> +       pd->state_count = state_count;
-> +
-> +       pr_debug("alloc PM domain %s\n", pd->name);
-> +       return pd;
-> +
-> +free_name:
-> +       kfree(pd->name);
-> +free_pd:
-> +       kfree(pd);
-> +out:
-> +       pr_err("failed to alloc PM domain %pOF\n", np);
-> +       return NULL;
-> +}
-> +EXPORT_SYMBOL_GPL(dt_pd_alloc);
-> +
-> +int dt_pd_init_topology(struct device_node *np)
-> +{
-> +       struct device_node *node;
-> +       struct of_phandle_args child, parent;
-> +       int ret;
-> +
-> +       for_each_child_of_node(np, node) {
-> +               if (of_parse_phandle_with_args(node, "power-domains",
-> +                                       "#power-domain-cells", 0, &parent))
-> +                       continue;
-> +
-> +               child.np = node;
-> +               child.args_count = 0;
-> +               ret = of_genpd_add_subdomain(&parent, &child);
-> +               of_node_put(parent.np);
-> +               if (ret) {
-> +                       of_node_put(node);
-> +                       return ret;
-> +               }
-> +       }
-> +
-> +       return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(dt_pd_init_topology);
+Additionally, the driver itself can be kept very simple and not much code needs
+to be duplicated and then updated for each new SoC between various consumers of
+these device tree nodes (Linux, u-boot, and OpenBSD for now).
 
-May I suggest that we stick to dt_idle_* as the prefix for all of the
-exported functions in this file. Static functions can just skip the
-prefix altogether.
 
-> +
-> +struct device *dt_idle_genpd_attach_cpu(int cpu, const char *name)
-> +{
-> +       struct device *dev;
-> +
-> +       dev = dev_pm_domain_attach_by_name(get_cpu_device(cpu), name);
-> +       if (IS_ERR_OR_NULL(dev))
-> +               return dev;
-> +
-> +       pm_runtime_irq_safe(dev);
-> +       if (cpu_online(cpu))
-> +               pm_runtime_get_sync(dev);
-> +
-> +       dev_pm_syscore_device(dev, true);
-> +
-> +       return dev;
-> +}
-> +EXPORT_SYMBOL_GPL(dt_idle_genpd_attach_cpu);
-> +
-> +void dt_idle_genpd_detach_cpu(struct device *dev)
-> +{
-> +       if (IS_ERR_OR_NULL(dev))
-> +               return;
-> +
-> +       dev_pm_domain_detach(dev, false);
-> +}
-> +EXPORT_SYMBOL_GPL(dt_idle_genpd_detach_cpu);
+This series therefore creates a single device tree node for each clock gate.
+This unfortunately maps a whole page out of which only a single register will
+be used for each node.
 
-Again, a minor comment on the naming of the functions. How about
-skipping "genpd" in the prefix, thus just dt_idle_attach|detach_cpu()?
+The other alternative I considered was to create a syscon/simple-mfd node
+and have the clock nodes as children. The gates would then use a regmap which
+would only require a single entry in the pagetable for all clocks. I decided
+against this option since the clock gate MMIO region actually isn't a
+multi-function device.
 
-[...]
+I'll also gladly implement other solutions - especially if there is a way to
+keep the clock toplogy inside the device tree without having to create a
+pagetable entry for every single clock node.
 
-Kind regards
-Uffe
+Best,
+
+
+Sven
+
+Sven Peter (3):
+  dt-bindings: clock: add DT bindings for apple,gate-clock
+  clk: add support for gate clocks on Apple SoCs
+  arm64: apple: add uart gate clocks
+
+ .../bindings/clock/apple,gate-clock.yaml      |  60 +++++++
+ MAINTAINERS                                   |   2 +
+ arch/arm64/boot/dts/apple/t8103.dtsi          |  36 ++++-
+ drivers/clk/Kconfig                           |  12 ++
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/clk-apple-gate.c                  | 152 ++++++++++++++++++
+ 6 files changed, 262 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/apple,gate-clock.yaml
+ create mode 100644 drivers/clk/clk-apple-gate.c
+
+-- 
+2.25.1
+
