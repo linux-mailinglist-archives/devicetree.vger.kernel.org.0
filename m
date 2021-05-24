@@ -2,252 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4914F38E6DB
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 14:46:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1137238E6E3
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 14:48:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232389AbhEXMru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 08:47:50 -0400
-Received: from ns.lynxeye.de ([87.118.118.114]:34444 "EHLO lynxeye.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232424AbhEXMru (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 May 2021 08:47:50 -0400
-Received: by lynxeye.de (Postfix, from userid 501)
-        id 57178E74217; Mon, 24 May 2021 14:45:51 +0200 (CEST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on lynxeye.de
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=3.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=ham version=3.3.1
-Received: from astat.fritz.box (a89-183-24-20.net-htp.de [89.183.24.20])
-        by lynxeye.de (Postfix) with ESMTPA id 15BA1E74225;
-        Mon, 24 May 2021 14:45:47 +0200 (CEST)
-From:   Lucas Stach <dev@lynxeye.de>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "Lukas F . Hartmann" <lukas@mntre.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
-Subject: [PATCH v3 4/4] arm64: dts: imx8mq: add support for MNT Reform2
-Date:   Mon, 24 May 2021 14:45:36 +0200
-Message-Id: <20210524124536.27854-4-dev@lynxeye.de>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210524124536.27854-1-dev@lynxeye.de>
-References: <20210524124536.27854-1-dev@lynxeye.de>
+        id S232734AbhEXMtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 08:49:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37906 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232512AbhEXMtc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 08:49:32 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAAF0C061574;
+        Mon, 24 May 2021 05:48:03 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id g18so19092218pfr.2;
+        Mon, 24 May 2021 05:48:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zNATQPXCHqo6W4bfJlq6Weg8Cm+bnIyKUInS/JSGSD4=;
+        b=pc/qu/BkCRzgodJu5jz5PuyodDFdWvuGyD+UCZSpVRBhzwClgBPCJKnUGI1wPv7Qel
+         68cm5mM1fFSfBOkUfeN1OCYLj0O2iKwVdavJnU84Dp9Z6dN6UTDk0FnRdPJTwHzy+VKS
+         FXhEbaUxi3J4xYMdvgaPKtr5Q5xzPHWRXuRQSXSOmofQxscpnF5v9t2AIzlXFMoi5Yzd
+         o98g5LqXSvCv2jxyod3wqdlcBwNnIyICL1G2Sy14+l/qmA/VNRhQeFYwGQONCE0gbz9x
+         cA39If1DVwY+12SS/jmVGh8nu0WtPS1uQzZcW3zHYBeb7fdbrY7bnKkg8Y2U/ooxwwyL
+         KSjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zNATQPXCHqo6W4bfJlq6Weg8Cm+bnIyKUInS/JSGSD4=;
+        b=dVbAyugZRrGa023hLTGrMeLXkq0ORP2keGqPGjawRktEYO8NnKMRckyM/ixuc6DGpv
+         kBQS6ZHxEVtkUTqy0iuoBspIM+pVWJ7gC9gg86hJeQXbHi6Z1dN/c9xbIXztvWtYIEoW
+         CxHrXvYa6NfuRE/4Piy70cBbWjzDx0fU/I6GYg9KHf+JdRIYlGD64UrwKMnSmmfXSnyy
+         yFXkKaHBEFwrfq6ck2+O3UJZ4rc/gZGe8FyfapshWIa9ec4VYo8TrF/IbTn1UgpQD/t3
+         btipPZg0b9nVVgHGsw+mh9JeneQbt3a2ODTI82r1mVu8BMb8JB+7WBc4dO489yFzs4o/
+         NCDQ==
+X-Gm-Message-State: AOAM530Ni+WeCe5N2m++IrppBm2pHSCm/X8pz4k9mczOzO9jkgrb/7uu
+        gqpoHAX3/HPkqLvsXJBnNb1fN0sqgDyuFVXDOhM=
+X-Google-Smtp-Source: ABdhPJzWplVZVVHOiJEAAS61tTN++D2R0EqzKEkFqB224r/OOVXTz3cs88eBTzYTf5+Z2EKbRy/M1PHbZ4Ix5rAwV3o=
+X-Received: by 2002:a63:b507:: with SMTP id y7mr5986931pge.74.1621860483387;
+ Mon, 24 May 2021 05:48:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <cover.1621809029.git.sander@svanheule.net> <213ab7580a1d3229d32f7aac67bf4e828612153a.1621809029.git.sander@svanheule.net>
+ <CAHp75VdoSfO3Y9Lf+fcoG2=Rb+SBJKq+B0tG+gS7TaHUmN-iYg@mail.gmail.com> <08375439546c04d32b158c20fb59446c3bbafb46.camel@svanheule.net>
+In-Reply-To: <08375439546c04d32b158c20fb59446c3bbafb46.camel@svanheule.net>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 24 May 2021 15:47:47 +0300
+Message-ID: <CAHp75VfbdmHPsscHOAnH-WjGyWF-8V_00FjQu1PD+xFLcUytig@mail.gmail.com>
+Subject: Re: [PATCH v3 6/6] leds: Add support for RTL8231 LED scan matrix
+To:     Sander Vanheule <sander@svanheule.net>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds a basic devicetree for the MNT Reform2 DIY laptop. Not all
-of the board periperals are enabled yet, as some of them still require
-kernel patches to work properly. The nodes for those peripherals will
-be added as soon as the required patches are upstream.
+On Mon, May 24, 2021 at 3:04 PM Sander Vanheule <sander@svanheule.net> wrote:
+> On Mon, 2021-05-24 at 13:24 +0300, Andy Shevchenko wrote:
+> > On Mon, May 24, 2021 at 1:34 AM Sander Vanheule <sander@svanheule.net> wrote:
 
-The following has been tested to work:
-- UART console
-- SD card
-- eMMC
-- Gigabit Ethernet
-- USB (internal Keyboard, Mouse, external ports)
-- M.2 PCIe port
+...
 
-Co-developed-by: Lukas F. Hartmann <lukas@mntre.com>
-Signed-off-by: Lucas Stach <dev@lynxeye.de>
----
-v2: Fix checkpatch complaints.
-v3:
-- split out binding
-- move status to end of usb node property list
-- rename RTC node name to generic name
----
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../boot/dts/freescale/imx8mq-mnt-reform2.dts | 164 ++++++++++++++++++
- 2 files changed, 165 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts
+> > > +       if (ret != 2)
+> > > +               return -ENODEV;
+> >
+> > I would say -EINVAL, but -ENODEV is similarly okay.
+>
+> Any specific reason you think EINVAL is more appropriate than ENODEV?
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 44890d56c194..e45c8f9c8912 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -54,6 +54,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-devkit.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-r2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-r3.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-r4.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mq-mnt-reform2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-nitrogen.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-phanbell.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-pico-pi.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts b/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts
-new file mode 100644
-index 000000000000..099b0472db5d
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts
-@@ -0,0 +1,164 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/*
-+ * Copyright 2019-2021 MNT Research GmbH
-+ * Copyright 2021 Lucas Stach <dev@lynxeye.de>
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mq-nitrogen-som.dtsi"
-+
-+/ {
-+	model = "MNT Reform 2";
-+	compatible = "mntre,reform2", "boundary,imx8mq-nitrogen8m-som", "fsl,imx8mq";
-+
-+	pcie1_refclk: clock-pcie1-refclk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <100000000>;
-+	};
-+
-+	reg_main_5v: regulator-main-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	reg_main_3v3: regulator-main-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	reg_main_usb: regulator-main-usb {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB_PWR";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&reg_main_5v>;
-+	};
-+};
-+
-+&fec1 {
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	status = "okay";
-+
-+	rtc@68 {
-+		compatible = "nxp,pcf8523";
-+		reg = <0x68>;
-+	};
-+};
-+
-+&pcie1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pcie1>;
-+	reset-gpio = <&gpio3 23 GPIO_ACTIVE_LOW>;
-+	clocks = <&clk IMX8MQ_CLK_PCIE2_ROOT>,
-+		 <&clk IMX8MQ_CLK_PCIE2_AUX>,
-+		 <&clk IMX8MQ_CLK_PCIE2_PHY>,
-+		 <&pcie1_refclk>;
-+	clock-names = "pcie", "pcie_aux", "pcie_phy", "pcie_bus";
-+	status = "okay";
-+};
-+
-+&reg_1p8v {
-+	vin-supply = <&reg_main_5v>;
-+};
-+
-+&reg_snvs {
-+	vin-supply = <&reg_main_5v>;
-+};
-+
-+&reg_arm_dram {
-+	vin-supply = <&reg_main_5v>;
-+};
-+
-+&reg_dram_1p1v {
-+	vin-supply = <&reg_main_5v>;
-+};
-+
-+&reg_soc_gpu_vpu {
-+	vin-supply = <&reg_main_5v>;
-+};
-+
-+&snvs_rtc {
-+	status = "disabled";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	status = "okay";
-+};
-+
-+&usb3_phy0 {
-+	vbus-supply = <&reg_main_usb>;
-+	status = "okay";
-+};
-+
-+&usb3_phy1 {
-+	vbus-supply = <&reg_main_usb>;
-+	status = "okay";
-+};
-+
-+&usb_dwc3_0 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usb_dwc3_1 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usdhc2 {
-+	assigned-clocks = <&clk IMX8MQ_CLK_USDHC2>;
-+	assigned-clock-rates = <200000000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc2>;
-+	vqmmc-supply = <&reg_main_3v3>;
-+	vmmc-supply = <&reg_main_3v3>;
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_I2C3_SCL_I2C3_SCL			0x4000007f
-+			MX8MQ_IOMUXC_I2C3_SDA_I2C3_SDA			0x4000007f
-+		>;
-+	};
-+
-+	pinctrl_pcie1: pcie1grp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_SAI5_RXD2_GPIO3_IO23		0x16
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_UART2_RXD_UART2_DCE_RX		0x45
-+			MX8MQ_IOMUXC_UART2_TXD_UART2_DCE_TX		0x45
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_SD2_CLK_USDHC2_CLK			0x83
-+			MX8MQ_IOMUXC_SD2_CMD_USDHC2_CMD			0xc3
-+			MX8MQ_IOMUXC_SD2_DATA0_USDHC2_DATA0		0xc3
-+			MX8MQ_IOMUXC_SD2_DATA1_USDHC2_DATA1		0xc3
-+			MX8MQ_IOMUXC_SD2_DATA2_USDHC2_DATA2		0xc3
-+			MX8MQ_IOMUXC_SD2_DATA3_USDHC2_DATA3		0xc3
-+		>;
-+	};
-+};
+My logic is that the initial values (from resource provider) are incorrect.
+But as I said, I'm fine with either.
+
+...
+
+> > > +       int err;
+> >
+> > ret or err? Be consistent across a single driver.
+>
+> I had first used 'err' for both fwnode_property_count_u32() and
+> fwnode_property_read_u32_array(). The former returns "actual count or error
+> code", while the latter is only "error code". And I found it weird to read the
+> code as "does error code equal 2", if I used 'err' as variable name.
+>
+> I've split this up:
+>  * addr_count for fwnode_property_count_u32's result
+>  * err for fwnode_property_read_u32_array's result
+>
+> Since addr_count is only used before err is touched, I guess the compiler will
+> optimize this out anyway?
+
+Usually we do this pattern (and it seems you missed the point, name of
+variable is ret in some functions and err in the rest):
+
+err /* ret */ = foo();
+if (err < 0)
+  return err;
+count = err;
+
 -- 
-2.31.1
-
+With Best Regards,
+Andy Shevchenko
