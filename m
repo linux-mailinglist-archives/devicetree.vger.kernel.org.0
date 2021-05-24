@@ -2,77 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C687B38E70B
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 15:03:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4C9538E7B3
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 15:32:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232483AbhEXNEd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 09:04:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41304 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232424AbhEXNEc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 09:04:32 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04E69C061574;
-        Mon, 24 May 2021 06:03:03 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id a4so18660421ljd.5;
-        Mon, 24 May 2021 06:03:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5lJlGnGduEocetJmBQ8Pfu4ZGwFw5g0I5XxXSnQKbns=;
-        b=WuhoXzsNTFdGt6yOYF0aPTz5hHdsp6ZiWkmKgDxO3MVQwfNGYxNW+hGTOG9fdL/gfI
-         C3QfQVCBXWzm62Mknn6a8G86OsDsHNA6bpeWZdNs2g5K66ojHY1WGVqXHw4YiBFIb3nL
-         aimQqo88abVN2TFIOlH265ht7+gnspJlmzj8K+NvFl/JFqbquxthw+yaupJDLfvpnAyw
-         eHhdRX1hkCoqpeHXrJl8YBYcAukyt8PvmJgjUzuo6jLypyG2WOZWgkIc9Wd3HXfm0uX9
-         RbTutaVuYnhxIC+TzCyMShBYeUwr7oNShgnyFnUHXPSYAYPC0WSaSZMetTxVfVcS/PD9
-         7cXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5lJlGnGduEocetJmBQ8Pfu4ZGwFw5g0I5XxXSnQKbns=;
-        b=COjCad8PJB+ATgMDxFAsD3I9VYrfkCTrbRcc9br406/9JMoL+SHqTTWQoDvlISAnYj
-         9a66UepSFc6e/HAagHXtyBYJFJBDHHT6KenkEqm7+YOZ7sl17HbFXK8FaeBEAFtFuHuC
-         2xidLgfEiN1LRPzM6lx+Vit7QS9GosEo6HuhzU2xTsX4r5MnhJa54lcJ4gX4xOZVq6b2
-         zuaWgM9CAkGozjrL3KEKiGIp4R+5IXNA4ICEfYAdiVt3EAU6d0AisL3N1aSMuynwz4NI
-         KD6jOoSpax1z4PR3JY9Q5Qbr1pfZqnQhV7MrTDB1qOOUZStRCqlCz060Pyf1gVpf6Hm+
-         mSTg==
-X-Gm-Message-State: AOAM530eKZipcTzjVPfjbsXmLuoIZtD5B/5W8qAoQWQN4Fwvo5peQ575
-        M1vYQaY4Yt+5/RiNNYLk55ZNk1YclBS1Whw/y6M=
-X-Google-Smtp-Source: ABdhPJyxEA2qIFK5BzLlM+kPNZZWRQXtWZclbcEyf2ds/9GJF/CQcWrRmqsQE01OLy8mfcF1aO2qvAscAjTbfHHIGj0=
-X-Received: by 2002:a05:651c:604:: with SMTP id k4mr16638962lje.121.1621861381299;
- Mon, 24 May 2021 06:03:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210524120917.6573-1-cniedermaier@dh-electronics.com>
-In-Reply-To: <20210524120917.6573-1-cniedermaier@dh-electronics.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 24 May 2021 10:02:50 -0300
-Message-ID: <CAOMZO5D7P8Ae0zuyDbQhFAz6F4iRcoVW0euz2oCcK+CRHH5OMA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: arm: fsl: Add DHCOM PicoITX and DHCOM DRC02 boards
-To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
+        id S232401AbhEXNeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 09:34:12 -0400
+Received: from mx2.suse.de ([195.135.220.15]:45482 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232536AbhEXNeL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 May 2021 09:34:11 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1621863162; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=fngeBbRzIW6nlJ53AZGy5yxd7oCB3Cr2B2bVvOTUNdc=;
+        b=XTyEwbIZBGXyQcJK6Alb1Wiun1N6b43M0EZsGKCU22bwWVwRBNktzmdkcWvTz3ad/p9PoK
+        M9Nthn86LE95WVBDq6aSSOCSv0JnCjegq9IlOiyBGSZZrcQFRJFr+PWdqPYEfxVTRk0wc1
+        KvV6oOwsR56UpbcrEkYoI9Gy/ceEriI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1621863162;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=fngeBbRzIW6nlJ53AZGy5yxd7oCB3Cr2B2bVvOTUNdc=;
+        b=PhvcpzL9yDwab/l7WMWp5NGSwCfEkMCdsnH49mgihRYhe9cK6xFP41ULq8nDq1f4UMxcLM
+        Mw4JT63AGD1u4uAQ==
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 5E791AB6D;
+        Mon, 24 May 2021 13:32:42 +0000 (UTC)
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, kernel@dh-electronics.com
-Content-Type: text/plain; charset="UTF-8"
+        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org
+References: <20210516230551.12469-1-afaerber@suse.de>
+ <20210516230551.12469-4-afaerber@suse.de> <87h7j1vhq7.wl-maz@kernel.org>
+From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
+Organization: SUSE Software Solutions Germany GmbH
+Subject: Re: [PATCH 3/9] arm64: dts: rockchip: Prepare Rockchip RK1808
+Message-ID: <7ef183f1-00f8-13c4-1fd3-eae9e0bbf74c@suse.de>
+Date:   Mon, 24 May 2021 15:32:41 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
+MIME-Version: 1.0
+In-Reply-To: <87h7j1vhq7.wl-maz@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christoph,
+On 17.05.21 11:21, Marc Zyngier wrote:
+> On Mon, 17 May 2021 00:05:45 +0100,
+> Andreas Färber <afaerber@suse.de> wrote:
+>>
+>> Add an initial Device Tree for Rockchip RK1808 SoC.
+>> Based on shipping TB-RK1808M0 DTB.
+>>
+>> Signed-off-by: Andreas Färber <afaerber@suse.de>
+>> ---
+>>  arch/arm64/boot/dts/rockchip/rk1808.dtsi | 203 +++++++++++++++++++++++
+>>  1 file changed, 203 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/rockchip/rk1808.dtsi
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk1808.dtsi b/arch/arm64/boot/dts/rockchip/rk1808.dtsi
+>> new file mode 100644
+>> index 000000000000..af2b51afda7d
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/rockchip/rk1808.dtsi
+[...]
+>> +		gic: interrupt-controller@ff100000 {
+>> +			compatible = "arm,gic-v3";
+>> +			reg = <0xff100000 0x10000>, /* GICD */
+>> +			      <0xff140000 0xc0000>, /* GICR */
+> 
+> This is obviously wrong. You have two CPUs, and yet describe a range
+> that spans 6. I guess this is a copy paste from rk3399 again?
 
-On Mon, May 24, 2021 at 9:17 AM Christoph Niedermaier
-<cniedermaier@dh-electronics.com> wrote:
+Not on my part at least. As indicated, these numbers are what ships in
+the DTB on the RK1808 card, as per dtc -I dtb -O dts. Could be a mistake
+by Rockchip, of course.
 
-> +      - description: i.MX6S DHCOM DRC02 Board
-> +        items:
-> +          - const: dh,imx6s-dhcom-drc02
-> +          - const: dh,imx6s-dhcom-som
-> +          - const: fsl,imx6s
+Are you suggesting 0xc0000/6*2 = 0x40000 for two CPUs here?
+Works as bad as before - investigation still ongoing with latest next.
 
-We don't have an fsl,imx6s compatible for the i.MX6 Solo variant. We
-just use fsl,imx6dl instead.
+As for "obviously": The GICv3 YAML binding has no description for me to
+validate those numbers: "GIC Redistributors (GICR), one range per
+redistributor region" - says nothing about correlation to number of CPUs
+or size per CPU, and the examples are not explaining either: 0x200000
+has no number of CPUs associated, and by my calculation 0x800000 for 32
+CPUs results in 0x40000 per CPU; but then again the examples also have
+GICC etc. at diverging 0x2000 size.
+
+>> +			      <0xff300000 0x10000>, /* GICC */
+>> +			      <0xff310000 0x10000>, /* GICH */
+>> +			      <0xff320000 0x10000>; /* GICV */
+>> +			interrupt-controller;
+>> +			#interrupt-cells = <3>;
+>> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+>> +			#address-cells = <1>;
+>> +			#size-cells = <1>;
+>> +			ranges;
+>> +
+>> +			gic_its: msi-controller@ff120000 {
+>> +				compatible = "arm,gic-v3-its";
+>> +				reg = <0xff120000 0x20000>;
+>> +				msi-controller;
+>> +				#msi-cells = <1>;
+>> +			};
+> 
+> What uses the ITS?
+
+DT-wise seemingly only the __symbols__ table (named just "its" there, I
+notice), so we could drop (or rename) the label if you prefer.
+
+Regards,
+Andreas
+
+-- 
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+GF: Felix Imendörffer
+HRB 36809 (AG Nürnberg)
