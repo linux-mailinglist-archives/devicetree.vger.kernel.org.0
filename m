@@ -2,115 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B794A38F453
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 22:25:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A52238F4C6
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 23:13:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233210AbhEXU0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 16:26:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56994 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232676AbhEXU0k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 16:26:40 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8848C061574;
-        Mon, 24 May 2021 13:25:10 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id c15so35252316ljr.7;
-        Mon, 24 May 2021 13:25:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=g9hgNwmOuDP5DthgeuaSKULnhUo7ubNRfZKms1Tzv8E=;
-        b=uK3ppJAGePAn590fa0VNgjuAvFP6VPLQ4E6Zcop0dEpa33bKhMkltSH1KrnoPw2liA
-         gzgY5alIPL4LDkf8ok2by6JZRu0bedLT7p8Gq1Im66WB3yfmDtjZ26R/zsfeVyyOQSUL
-         o/JCpoMy58arwwyhOlPq4nU8vzCyJad12WNXBajLRRYL1Q59ZxRLi9CKbI8zfa43cwia
-         cCm+ATVNeB0rxXMvb36poYjerFWKlBawfzoOrEDXXf3EWMNdwag92wvRYQzFwKMjSvP3
-         yhwfWuDuJVFaz968/q84ArWT0H72LPXY3kWvqhMEC7ocOFHXwj+Vtc5Yamkw4B+uu5KW
-         mQYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=g9hgNwmOuDP5DthgeuaSKULnhUo7ubNRfZKms1Tzv8E=;
-        b=OUCUPs3N6S48yohq4uHpJCez7jX6NkYIOAX6adPHTWOfXoUrXLbWmBbNTQ4eM3xsdM
-         LstcaDB7iQiWa+AfuDzt1nrvHQnyQuVB+QCFlzYO7c5vDkYcADZM8mwP63gYGKIHyAJ2
-         1b7fnTYAHF7do5RFWEsm8993kKPXhmGXIsAb2rk5PNHWCrSw8cdBYNB4SqOgt7VOggh0
-         /4cBeqE1GJ8nIGUgsBYHA3BeDKebhZVhuY0JuDmtL5UB61pg6EnTwIv6yvOBTkOQMyW/
-         lcuJEg2KCIohF/Iqo4L9JZ3H2vdrdfzLnkPr6a9khQEhcPeydBzIUfJNQNswvBaW745d
-         hAhg==
-X-Gm-Message-State: AOAM53072oR2Gnns+kJW7cN6NQ+Zi3CAMxvNGL9C56E6eYniH/UcX5my
-        Fr9ALqZv7XW35jmieYtD9BQfS8SYuYs=
-X-Google-Smtp-Source: ABdhPJwIo76DFE3Csz9R+vPmfQuF0txDCYX+lFv5TGE4as15O/HmFYS80FS1l9HZDl3DZ5jfU1mC5Q==
-X-Received: by 2002:a2e:95c6:: with SMTP id y6mr18642398ljh.155.1621887909009;
-        Mon, 24 May 2021 13:25:09 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-193-110.dynamic.spd-mgts.ru. [109.252.193.110])
-        by smtp.googlemail.com with ESMTPSA id x68sm1508832lff.92.2021.05.24.13.25.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 May 2021 13:25:08 -0700 (PDT)
-Subject: Re: [PATCH v2 13/14] soc/tegra: pmc: Add core power domain
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        =?UTF-8?Q?Nikola_Milosavljevi=c4=87?= <mnidza@outlook.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Paul Fertser <fercerpav@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Nathan Chancellor <nathan@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>
-References: <20210523231335.8238-1-digetx@gmail.com>
- <20210523231335.8238-14-digetx@gmail.com>
- <CAPDyKFrto2cosX3Ben_QWCYVqgeoF1Yv=8gEx4Y86WNyjeHvdg@mail.gmail.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <65f65cb9-a25f-9c2c-2902-7e1776d66661@gmail.com>
-Date:   Mon, 24 May 2021 23:25:07 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S233326AbhEXVOh convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 24 May 2021 17:14:37 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:43672 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233278AbhEXVOh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 May 2021 17:14:37 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1llHsk-0008Me-To; Mon, 24 May 2021 23:13:02 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Andreas =?ISO-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Marc Zyngier <maz@kernel.org>
+Cc:     linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/9] arm64: dts: rockchip: Prepare Rockchip RK1808
+Date:   Mon, 24 May 2021 23:13:03 +0200
+Message-ID: <3998020.X9hSmTKtgW@diego>
+In-Reply-To: <87fsycw41m.wl-maz@kernel.org>
+References: <20210516230551.12469-1-afaerber@suse.de> <7ef183f1-00f8-13c4-1fd3-eae9e0bbf74c@suse.de> <87fsycw41m.wl-maz@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <CAPDyKFrto2cosX3Ben_QWCYVqgeoF1Yv=8gEx4Y86WNyjeHvdg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-24.05.2021 20:04, Ulf Hansson Ð¿Ð¸ÑˆÐµÑ‚:
->> +static void tegra_pmc_sync_state(struct device *dev)
->> +{
->> +       int err;
->> +
->> +       pmc->core_domain_state_synced = true;
->> +
->> +       /* this is a no-op if core regulator isn't used */
->> +       mutex_lock(&pmc->powergates_lock);
->> +       err = dev_pm_opp_sync_regulators(dev);
->> +       mutex_unlock(&pmc->powergates_lock);
->> +
->> +       if (err)
->> +               dev_err(dev, "failed to sync regulators: %d\n", err);
->> +}
->> +
-> Nitpick.
+Am Montag, 24. Mai 2021, 17:21:41 CEST schrieb Marc Zyngier:
+> On Mon, 24 May 2021 14:32:41 +0100,
+> Andreas Färber <afaerber@suse.de> wrote:
+> > 
+> > On 17.05.21 11:21, Marc Zyngier wrote:
+> > > On Mon, 17 May 2021 00:05:45 +0100,
+> > > Andreas Färber <afaerber@suse.de> wrote:
+> > >>
+> > >> Add an initial Device Tree for Rockchip RK1808 SoC.
+> > >> Based on shipping TB-RK1808M0 DTB.
+> > >>
+> > >> Signed-off-by: Andreas Färber <afaerber@suse.de>
+> > >> ---
+> > >>  arch/arm64/boot/dts/rockchip/rk1808.dtsi | 203 +++++++++++++++++++++++
+> > >>  1 file changed, 203 insertions(+)
+> > >>  create mode 100644 arch/arm64/boot/dts/rockchip/rk1808.dtsi
+> > >>
+> > >> diff --git a/arch/arm64/boot/dts/rockchip/rk1808.dtsi b/arch/arm64/boot/dts/rockchip/rk1808.dtsi
+> > >> new file mode 100644
+> > >> index 000000000000..af2b51afda7d
+> > >> --- /dev/null
+> > >> +++ b/arch/arm64/boot/dts/rockchip/rk1808.dtsi
+> > [...]
+> > >> +		gic: interrupt-controller@ff100000 {
+> > >> +			compatible = "arm,gic-v3";
+> > >> +			reg = <0xff100000 0x10000>, /* GICD */
+> > >> +			      <0xff140000 0xc0000>, /* GICR */
+> > > 
+> > > This is obviously wrong. You have two CPUs, and yet describe a range
+> > > that spans 6. I guess this is a copy paste from rk3399 again?
+> > 
+> > Not on my part at least. As indicated, these numbers are what ships in
+> > the DTB on the RK1808 card, as per dtc -I dtb -O dts. Could be a mistake
+> > by Rockchip, of course.
+> > 
+> > Are you suggesting 0xc0000/6*2 = 0x40000 for two CPUs here?  Works
+> > as bad as before - investigation still ongoing with latest next.
+> > 
+> > As for "obviously": The GICv3 YAML binding has no description for me to
+> > validate those numbers: "GIC Redistributors (GICR), one range per
+> > redistributor region" - says nothing about correlation to number of CPUs
+> > or size per CPU, and the examples are not explaining either: 0x200000
+> > has no number of CPUs associated, and by my calculation 0x800000 for 32
+> > CPUs results in 0x40000 per CPU; but then again the examples also have
+> > GICC etc. at diverging 0x2000 size.
 > 
-> Would you mind splitting the "sync_state" thingy out into a separate
-> patch on top of $subject patch?
+> The GICv3/v4 architecture spec does apply, and you should really have
+> a look at what these sizes mean. What is the value of copy-pasting
+> things without understanding it the first place?
 > 
-> I think it would be nice, especially since it shares a function via
-> include/soc/tegra/common.h - that would make it clear to what part
-> that belongs to.
+> > 
+> > >> +			      <0xff300000 0x10000>, /* GICC */
+> > >> +			      <0xff310000 0x10000>, /* GICH */
+> > >> +			      <0xff320000 0x10000>; /* GICV */
+> > >> +			interrupt-controller;
+> > >> +			#interrupt-cells = <3>;
+> > >> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> > >> +			#address-cells = <1>;
+> > >> +			#size-cells = <1>;
+> > >> +			ranges;
+> > >> +
+> > >> +			gic_its: msi-controller@ff120000 {
+> > >> +				compatible = "arm,gic-v3-its";
+> > >> +				reg = <0xff120000 0x20000>;
+> > >> +				msi-controller;
+> > >> +				#msi-cells = <1>;
+> > >> +			};
+> > > 
+> > > What uses the ITS?
+> > 
+> > DT-wise seemingly only the __symbols__ table (named just "its" there, I
+> > notice), so we could drop (or rename) the label if you prefer.
 > 
+> No, I am asking *what* uses the ITS. Is it just dangling without any
+> user? No PCI bus making use of it?
 
-I'll split it in v3. Thank you for the review.
+just 2ct, as far as I remember the rk1808 does have a PCIe controller.
+And the datasheet [0] does agree with my memory it seems
+
+
+Heiko
+
+[0] http://opensource.rock-chips.com/images/4/43/Rockchip_RK1808_Datasheet_V1.2_20190527.pdf
+
+
