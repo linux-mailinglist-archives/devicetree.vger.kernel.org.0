@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5826638E5CD
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 13:48:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 739DD38E5DD
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 13:53:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232666AbhEXLuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 07:50:17 -0400
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:38229 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232476AbhEXLuP (ORCPT
+        id S232494AbhEXLy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 07:54:27 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:47907 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232110AbhEXLy1 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 May 2021 07:50:15 -0400
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id 7984B5C00DD;
-        Mon, 24 May 2021 07:48:47 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Mon, 24 May 2021 07:48:47 -0400
+        Mon, 24 May 2021 07:54:27 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 0A88E5819C9;
+        Mon, 24 May 2021 07:52:59 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Mon, 24 May 2021 07:52:59 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=M4uM525A9EdEenfyxCSJtV/Cbcv
-        IXk+39bR9IA9px/U=; b=iMu3Rv0rHb3pir9dfEXjv6ff2o1LbLMJjM64SZCAU8x
-        5YQKepeJfH4e6PoWcGl+pozTWs+QlylG39XiORO4inBCY6Et564KBwJHTCgjtA7K
-        2w0gf93w11s9HqEgcK+mhDPKYqYJMizGG+0pJFn2q7VUcdWbKL+k06vga+rRi88K
-        DYuMeHuf0kyL+mu1jPemf38HYoZO2uqH+RbXUE3Z4HibFNhYyj8iUSGKMrjDrzNd
-        sLx2UUrcKppEz3ntnPiysZe/7QrLHuglMZyefUAUgmoMUVhHKphdBcgJSo6QU5sR
-        lM50elpIGGE3g7LlKIAARXDAbCU4gyl+rlesmazkb4Q==
+        :content-type:in-reply-to; s=fm2; bh=ddz0tcBZgmkT/3hhpfbba4g3NSo
+        MMo+qdHQ5L1UgRU8=; b=vWx8W6fmH/naMYdG5IF03h95a7zlcw8npvdQr7+/mIs
+        5yN0tE7Y0DBge0dxEwz+I0PVp2AmOXdlW93ScrRXWTU3FiLWdtaviGzN2fZChutI
+        /X69WoiKM8+z/Oh8o9Nj+d9FsbwpfswHVKzUE52U4kxjV2HzaBs5SV8/N+QrMhNP
+        FW4ABjbNjpABEovuvOEv65dVjj/vcIgR5KgyVpKFQoEkqm18rdgEaL7jXBo6mh0h
+        Nn3Mf3t5o2Orl+1f9s3gzwXs8urZ5/S7dFxhKsRxD18iunNGqSEeo0Fr3LSr2TMA
+        oYeijGArOOSjcDKIRS9k4dTPRETyjtQjT0LYImzknDQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=M4uM52
-        5A9EdEenfyxCSJtV/CbcvIXk+39bR9IA9px/U=; b=bswJFF6a1D0WyWPTe8CpsT
-        NP/Bob8ujcHOUY5RlnKWpWqLElVFegnizJtBU+lRZxmW1w0MvQRkFc79FuoEhAvA
-        C1kJwy1ic9sqPvl2t0HDhnS9wd0qlHnN3yw4q/WPkYSpfOgVfaJb8w5ytpzZexgA
-        yqQIXxUoMcMw9dBQ1B9OAPZidWDKTuZiB7woaAJG8fvcwyYKJ5nHL/gxNgoOfOCO
-        VpBS2gFCASvFIJELJFCjHXIqQpYgVdWfJk+cBOlqZMh15/eHMqDLC3LfIzaCSYgU
-        8UanokcIVa46kbqZELbKWrPNJrbdXf8iDS76BG6ZmYwUBTqgB680Vy7+u1bnsmYQ
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=ddz0tc
+        BZgmkT/3hhpfbba4g3NSoMMo+qdHQ5L1UgRU8=; b=S9v7N3gXwGyhvpQR2XWJJM
+        +N+h/WflGyGWMl1/EbHxRbgi5bii84c2+5RNZZrC/7ZPZTmArOKjGW7q5zaYuI94
+        rRnAW27S5W/UX+W2RYHKZbZJqHvZlPK7CAyWbd00u4WUpT6Qp7YkQTa4QJ8ODcGG
+        7/1kPQ3nJV536Z6yysCkgXpW5nyCPLPG7R3B63ItFkMD/yXgtQhSpQ4JuEKBagyv
+        0VaoRaKYarSLWo8q7+oA6Zg6BH2hrZHOiFGQrIlhjKJO8YXFy1Zci4cYKzzkHQ1o
+        HHJBd4yMYnFncrOHts3Qhl5iBVJQNGbeGYYNOCy9UNIqT+4vBxZ0YqKuIgyJUnqA
         ==
-X-ME-Sender: <xms:npKrYCJlDHx4cjgsUHnRtbxk3cCjyFNEMCSeffxlb2akbKC9GoVo7g>
-    <xme:npKrYKK3cfOr3r34JkXL_dETk1Q7kWa_bSHZh39P1hEHWiKh1QJQ_0BBCjVtLxQIt
-    6Q-Ba1ph1D0XU62fxY>
+X-ME-Sender: <xms:mZOrYCjjEaSG__fIYfMms9Q1ZJDnPkB5e4PRkfL8OdMjBF2m7z-CRQ>
+    <xme:mZOrYDDEiU5XkJYFzmuyHlO76w3xY6gW8_uzqBYE7-TGiKKkL0yjSLIP9E9DAzMxF
+    2WuV_a-ySAKUL4D9E0>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdejledggeeiucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
@@ -48,95 +48,70 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdejledggeeiucetufdoteggod
     htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
     gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
     frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:npKrYCsUH49U1F8x0TFg08IF39GvQvUKoLdeqTEzRHZBugKJ8df8jg>
-    <xmx:npKrYHak4QJRgP6B1DG26CVYBX9GCj2agLrBig1vPZHkFuJp917dUA>
-    <xmx:npKrYJbO4CBCosN0qrOnGH9UfqZK4rihhZ1pwquqim21F09g7rgyDA>
-    <xmx:n5KrYIU7wE7lfz739K4RSLbdMW2XXDQ_Q3xl0FVYbV5jwf0X1Jb7AQ>
+X-ME-Proxy: <xmx:mZOrYKEAjKpP2rKOOiqk_UwpXU6lnldtrTPI_b4mkcex6nHNtgvp6A>
+    <xmx:mZOrYLRWfN2TentfjRPO3lkIr8tQwq8DZE580GScoTXfthjd1-Fzjw>
+    <xmx:mZOrYPxmCkZ9XBAKZq08jMhchuRYQQtz-jjOMlZzewytu3-l1zPJTQ>
+    <xmx:m5OrYELO6d68Zbop3zu1BsL1W3CZWpxePMV8xpjp6A31RL5dnunNSA>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
         by mail.messagingengine.com (Postfix) with ESMTPA;
-        Mon, 24 May 2021 07:48:46 -0400 (EDT)
-Date:   Mon, 24 May 2021 13:48:43 +0200
+        Mon, 24 May 2021 07:52:57 -0400 (EDT)
+Date:   Mon, 24 May 2021 13:52:54 +0200
 From:   Maxime Ripard <maxime@cerno.tech>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: display: ssd1307fb: Convert to json-schema
-Message-ID: <20210524114843.ihhgdhup7crskf4j@gilmour>
-References: <20210518075131.1463091-1-geert@linux-m68k.org>
- <20210518143317.yy2sxxnd7yt6cyrx@gilmour>
- <CAMuHMdXKaLpLL5Q1FnjHJ5kbs=+9Mm-QHXZp1i3M4zNr7G=e_w@mail.gmail.com>
+To:     dri-devel@lists.freedesktop.org,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Eric Anholt <eric@anholt.net>,
+        bcm-kernel-feedback-list@broadcom.com, Ray Jui <rjui@broadcom.com>,
+        devicetree@vger.kernel.org, Scott Branden <sbranden@broadcom.com>,
+        linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-rpi-kernel@lists.infradead.org,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 0/4] drm/vc4: Add support for the BCM2711 VEC
+Message-ID: <20210524115254.ifjtledccze2ueos@gilmour>
+References: <20210520150344.273900-1-maxime@cerno.tech>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="kawgr3kfamzs2jih"
+        protocol="application/pgp-signature"; boundary="ykg4l6l5w6w2sirq"
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdXKaLpLL5Q1FnjHJ5kbs=+9Mm-QHXZp1i3M4zNr7G=e_w@mail.gmail.com>
+In-Reply-To: <20210520150344.273900-1-maxime@cerno.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---kawgr3kfamzs2jih
+--ykg4l6l5w6w2sirq
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi
+On Thu, May 20, 2021 at 05:03:40PM +0200, Maxime Ripard wrote:
+> Hi,
+>=20
+> The composite output in the BCM2711 is dealt using the VEC. While the ear=
+lier
+> SoCs were properly supported, it wasn't functional on the BCM2711. Add the
+> needed support from the RPi downstream kernel.
+>=20
+> Maxime
 
-On Tue, May 18, 2021 at 04:49:45PM +0200, Geert Uytterhoeven wrote:
-> On Tue, May 18, 2021 at 4:33 PM Maxime Ripard <maxime@cerno.tech> wrote:
-> > On Tue, May 18, 2021 at 09:51:31AM +0200, Geert Uytterhoeven wrote:
-> > > Convert the Solomon SSD1307 Framebuffer Device Tree binding
-> > > documentation to json-schema.
-> > >
-> > > Fix the spelling of the "pwms" property.
-> > > Document default values.
-> > > Make properties with default values not required.
-> > >
-> > > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> > > ---
-> > > I have listed Maxime as the maintainer, as he wrote the original driv=
-er
-> > > and bindings.  Maxime: Please scream if this is inappropriate ;-)
-> >
-> > Fine by me :)
->=20
-> Thanks!
->=20
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
->=20
-> > > +  solomon,dclk-div:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    minimum: 1
-> > > +    maximum: 16
-> > > +    description:
-> > > +      Clock divisor. The default value is controller-dependent.
-> >
-> > I guess we could document the default using an if / else statement?
->=20
-> While clk-div has only two different defaults, dclk-frq has different
-> defaults for each of the 4 variants supported.
->=20
-> Do you think it's worthwhile doing that? All upstream DTS files lack
-> these properties, thus use the default values.
-
-I'd say it's even more important if everyone relies on it :)
+Applied patches 1-3 to drm-misc-next
 
 Maxime
 
---kawgr3kfamzs2jih
+--ykg4l6l5w6w2sirq
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYKuSmwAKCRDj7w1vZxhR
-xQUrAQDztdpV83mKelLkQAL8eURDG6cd9gD/7Ntvbg03LHwmWQD+JLtjeb3ucmns
-yhOJHM5mokmAm7CAdDYGH4BhqetBzw0=
-=C6df
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYKuTlgAKCRDj7w1vZxhR
+xWjLAQDLX/sHQD+jkjAd/Zn718/CwW+EIPefPc5zOy1TC0ktUwEAgPalmAbaIPW1
+5FiL1xD5zn2aBZ2Tqbon037NVt74sws=
+=0UQA
 -----END PGP SIGNATURE-----
 
---kawgr3kfamzs2jih--
+--ykg4l6l5w6w2sirq--
