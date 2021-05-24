@@ -2,225 +2,359 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F25938E3D7
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 12:20:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 285F738E3E6
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 12:20:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232433AbhEXKVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 06:21:54 -0400
-Received: from mail-bn8nam08on2139.outbound.protection.outlook.com ([40.107.100.139]:53536
-        "EHLO NAM04-BN8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232426AbhEXKVy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 May 2021 06:21:54 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HQrP0ldsgS3hvEv2pIw2pvqG/yCg2IFc4AF+ufrGdpMjjuPDf8Q2LO54k9hrHKzs0Hup+ReOBQCPlLuurVT/LWeH6f2+HCTIVewSRuNllkT85cg0/khElOi1qXp3WFWbz6uMx+tz+LGLMYJ+rEesaScPIQPdehWpli4wRhqo6//OPJz1zerzdNBiJYFhNbN2/IwmESofdZoKVGK0gKFNWQ6xTgCUcRIlVS7IBE95PxKhwSeEWLuLEuzXWETe53jhMRHC8QGgqJiGDzCCrDsX7JuPZ8EfS//HjVlClMpmxzdmFSZFkHllE0LxCtDpx97uPZ+qSRThP2TkEz5z9TPB7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=04EolnKMFloxx7kfhpCzsHCe0LNLSQ6q8fACLQSUCjo=;
- b=RSfW7plvebREg2IgzUodn3R+iMljPrwH+eXQ/q/ycY7jb5bhJpxbpsAHB7iMcOkWwjRlig7DHPQRWWT3cPjZWs+aRLMgDKyMIxWRHL3yoliIF/FumPh/1xBk1H5GWyQagww63VI4BSCc1NWC3mm9WiOW3smQnwzziUJt9kYaqAdsg0T8vv8dk7XhffjnTSnA9m5oZ5274nH5j/rhFeWUKX+tVDzojyE2i6YZNsc+FMi6fTrWHEcL+Jiusp3S8DfFwdHwgcuApdr49wgzTGCeYUu0ODzS3p4h6glLzvckHR6d8zFaXmd9YTqN9V7UKj3rCQgfeHo2dkWgKh7etkRYhQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=os.amperecomputing.com; dkim=pass
- header.d=os.amperecomputing.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=os.amperecomputing.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=04EolnKMFloxx7kfhpCzsHCe0LNLSQ6q8fACLQSUCjo=;
- b=aZZltRPUAwrhDSAU+v5pnkSv/JOKZJAIgVdn2ku0+Qv/8ejingl4FsNttYhEQFWlA+6XQOKGPtpQ2Gur8s6cr/3SMGj1zbCDmeXIUxK7SQuMG3nRXk5iONLG0E8JIU6UD7CvySuVptIWZ2Zc41ThNFN+jDD7b/T0Y2GoZ55FHQQ=
-Authentication-Results: lists.ozlabs.org; dkim=none (message not signed)
- header.d=none;lists.ozlabs.org; dmarc=none action=none
- header.from=os.amperecomputing.com;
-Received: from MW2PR0102MB3482.prod.exchangelabs.com (2603:10b6:302:c::32) by
- MWHPR0101MB3070.prod.exchangelabs.com (2603:10b6:301:32::14) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4150.27; Mon, 24 May 2021 10:20:22 +0000
-Received: from MW2PR0102MB3482.prod.exchangelabs.com
- ([fe80::1905:a396:9968:3a5]) by MW2PR0102MB3482.prod.exchangelabs.com
- ([fe80::1905:a396:9968:3a5%5]) with mapi id 15.20.4150.027; Mon, 24 May 2021
- 10:20:22 +0000
-Subject: Re: [PATCH v3 5/7] i2c: aspeed: Add aspeed_set_slave_busy()
-To:     Ryan Chen <ryan_chen@aspeedtech.com>,
-        Corey Minyard <minyard@acm.org>,
+        id S232422AbhEXKWZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 06:22:25 -0400
+Received: from guitar.tcltek.co.il ([192.115.133.116]:53084 "EHLO
+        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232609AbhEXKWW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 May 2021 06:22:22 -0400
+Received: from tarshish.tkos.co.il (unknown [10.0.8.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mx.tkos.co.il (Postfix) with ESMTPS id D89AC44094B;
+        Mon, 24 May 2021 13:21:05 +0300 (IDT)
+From:   Baruch Siach <baruch@tkos.co.il>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>
+Cc:     Baruch Siach <baruch@tkos.co.il>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Balaji Prakash J <bjagadee@codeaurora.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "openipmi-developer@lists.sourceforge.net" 
-        <openipmi-developer@lists.sourceforge.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>
-Cc:     Open Source Submission <patches@amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>
-References: <20210519074934.20712-1-quan@os.amperecomputing.com>
- <20210519074934.20712-6-quan@os.amperecomputing.com>
- <HK0PR06MB3380FD2B7649CFB48BEA2D4FF2269@HK0PR06MB3380.apcprd06.prod.outlook.com>
-From:   Quan Nguyen <quan@os.amperecomputing.com>
-Message-ID: <1648966e-3e45-9661-c5dc-5ac2f40e2581@os.amperecomputing.com>
-Date:   Mon, 24 May 2021 17:20:01 +0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.10.2
-In-Reply-To: <HK0PR06MB3380FD2B7649CFB48BEA2D4FF2269@HK0PR06MB3380.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [118.69.219.201]
-X-ClientProxiedBy: HK2PR03CA0066.apcprd03.prod.outlook.com
- (2603:1096:202:17::36) To MW2PR0102MB3482.prod.exchangelabs.com
- (2603:10b6:302:c::32)
+        Robert Marko <robert.marko@sartura.hr>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 1/3] pwm: driver for qualcomm ipq6018 pwm block
+Date:   Mon, 24 May 2021 13:20:42 +0300
+Message-Id: <ea071bbcab92d4a296c7aee5d72de0427676847a.1621851644.git.baruch@tkos.co.il>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [10.38.33.138] (118.69.219.201) by HK2PR03CA0066.apcprd03.prod.outlook.com (2603:1096:202:17::36) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.12 via Frontend Transport; Mon, 24 May 2021 10:20:17 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 13d70335-c9c8-408b-b4fc-08d91e9d89cd
-X-MS-TrafficTypeDiagnostic: MWHPR0101MB3070:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MWHPR0101MB3070B010D224C97BD865C6D1F2269@MWHPR0101MB3070.prod.exchangelabs.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cjDGj7mJAaYPnP+aajisEYx61Mr/EtGunQHgf/J6VEAPNbmY4Jz8O+mRelhuxdPVLAhdxIAQKz3EVuBuyf+W6BwEtfBuiaTxY/V6yTPzurhXjwuMSMaBbPHD8UX3cS2wrOtc1BGzOx5XRZ4IfnNd5Gp5eo8yxBbN3l3H3hbGKuYJVAmSlIcjzEmKNpD9qukUgF0rv8w1u4C/P5AfJQ9Hare4OxNXlqiEamn8igShNXoi31M1zC5nC/NGpiNSWfKMLGvnMh6+SwEX8xkW275yJVV6Lz1LTnoFBrWmU7W5cCgrKSulBYpH/KKlDfK/faPeQZimf4UaVrqLxFqNgJ4JKmkVlbySsfqxmy7V6seC+ZVuKaFWQFpQrv/quxhf4GgZuBI7ivXUk+XzWh+07FzAQfThQn0h2ZxAd9rSfD51TyeSngF7I5Vmo3qwJsHJTqw2R8cLpAx42AaN7eSRKe/z3rav04M9LC3Enm9m5R6u2loLtDLfLrL9MO2cUZtZEwkWXSRLENCV9/qiXQzSDJUYGENjsVD+Mp7soyNLCEuNQ1Nkmlpjg/Gtrv06TMQ4LHuWDs2Q+Yvc6ebuZTsk81qMws6sqO4/PkFIfuyuUD3KWZ8RkP4RY39N/ujepa1G9hObbJ1dxU2wvtcfkiCNWlLiQ5Bl9Ob4uoNdHNFJSlrAop/U3yQGZlgO89vmv6D3vlLVnshhb1eliHn+4F7KjS42q60fZLQOS8lWJl306kurylM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW2PR0102MB3482.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(396003)(136003)(366004)(39850400004)(4326008)(8676002)(110136005)(921005)(316002)(5660300002)(16576012)(31696002)(2906002)(26005)(31686004)(86362001)(54906003)(8936002)(956004)(52116002)(16526019)(186003)(6486002)(2616005)(66946007)(66476007)(38350700002)(66556008)(53546011)(83380400001)(6666004)(38100700002)(7416002)(478600001)(43740500002)(45980500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?ZVlPdW5zWHVWTGpTU1FhY1NaNTNacTJQaG1JWVVPU0IrT3A1Z0tzTU13Snli?=
- =?utf-8?B?OEJxYVIrZFBIOXVOa2JaS3hwTDhqaDZ3OUNsbDVKa1lKeXFBOWJJSEQvNUNY?=
- =?utf-8?B?RnBuWk5ReGJFZ2oxbnF3OC96blVFYzBkV2RQeDZWQmdWVmtvTlNabkViZjJ3?=
- =?utf-8?B?TmlNQnlaelN2RzNGZ1VEVTRPQmFoSzVnbHpmbDd4T3RjaXh4VlFUNFNScXJJ?=
- =?utf-8?B?QkNSVjgrcGtNVkxVSVZIMDRmT0VoVTRBSGp2WkE4aGZKd0RIek96NkV2UDF3?=
- =?utf-8?B?Q3ZJNFBtTXVPdTNwK1kxeFRSQUNNYjRuWlBTL0RBRzV2aUlMRUtMaEZzLzNl?=
- =?utf-8?B?aEVGWnBxQVo0STFZQmd3WFB0Mi9QZXFZY1pGVElSQXJ5SlRPN3Z3bDRVUThV?=
- =?utf-8?B?dTJBbFdUVVRuN1RxYXpSc2tzTWt0eFRzWnBVcUY0eFdFT1FOV0JJTTFKN2d0?=
- =?utf-8?B?YTh3bmZSR3VUb1drSGFFNmIxWjkxVkp3WnY2WnpFVU1XR2hLUGIwQTVVWFo4?=
- =?utf-8?B?VldsYUYyWU9nZjhFdW1GNkQvaHRHZWxKODlCRXZaeEM5ZXJlVlNEZnpkSFZ4?=
- =?utf-8?B?MmpUY05XQVQ5aUlxMmNGNUlLS3FlcjAvMlJVL0JycHltYWp6MGJXVkZJNzZp?=
- =?utf-8?B?WEQ0bTFoQ0hNY1A2RjFtY2tKdE50c0YxUGZ4eFBCYjltakZ3dmc3ZDhvelpv?=
- =?utf-8?B?dUFPaDI3WmUrWXRKdmR1bm9rWlljY1dPVTRtaE81Mm44UTkrSnVUWlRobzRP?=
- =?utf-8?B?bmFib05oYlo2UHluWmtBT1pic0ZjNGFDNDI1ay8ydzNLM25tc3VGNU00Q0VD?=
- =?utf-8?B?dWluU0thREdyekd2ZVgybVA0VE9NbkExaFdYU3JNNHQ4Rnc4N08rK0RycGIx?=
- =?utf-8?B?ZTJPd1p1K1I0NlhjMHdUUm1sbWVCYjR2QTgzYUV6RzVsVlhEUk9Ic0hQUmpi?=
- =?utf-8?B?Mi9BN0o3RmhPdmdhTVZLQmtCUExOaXFnT1daRG5XYzZyOVdoajVyN2RLMHFK?=
- =?utf-8?B?RlIvbzZRZ2NDVmd6bDdkWU9MemRiaHJ4UERpM0VJdnU4Y3U3Q0J5TGdOekJ2?=
- =?utf-8?B?UzNacmN4SlozVVJ2L051TkNQNTFKYlVUVjVoTGJTcUhOWEVURlNDcUJsQXF6?=
- =?utf-8?B?K0FaU3p5aUpjSkw3Z2hLd0pTejBRZHVBOGVGYm5DUVY1T3psZThacENrN2pz?=
- =?utf-8?B?MDkzNmpnSW1QeDZwWVFJdVZTT2JMUHFJWmcrM1plTEtrbXJ4Z3dJdmFzQi91?=
- =?utf-8?B?eEtJU21aaWQzUDVQWFIrZTFIUFdnaDZhQy9jUXJaOEo2U0lWWmlwZUc2WVZ6?=
- =?utf-8?B?Ump4THJPVG5TdWk1cUFnMVJvS1FiZHA3ZG9SK0owNDZaRDBITURoQ28vYlBG?=
- =?utf-8?B?SHR0NzN3UHBDTzJBZVdqVk1aVVNwV2NMcmJuVW9vc0VYeHNQUlNTT1o0RXZW?=
- =?utf-8?B?OEl1TnhMRG5yVGZ2RzBzTHNpVHA2RVgwZVNsQkc4N2Q0QWtkb2NEU2JlN0VC?=
- =?utf-8?B?amxGa3lDUllJTFFrNXgvUmVHUVdMTkE0Vy9VYzNSOWRSOXFNVjZIZmplMHdw?=
- =?utf-8?B?ZDVkcjNEL0pOa3BZTGk2bk1aTUZ0KzZ6cmVieG5tSUVzaDJ2bWNZTG12c2xB?=
- =?utf-8?B?eFlYOXo0ck91NlZDMm9SWUVlK3ZZVkttdjJWbDRIaGF0dHZmblRjdzhiMFM3?=
- =?utf-8?B?aXAzazZqaWVERmNzYUJpNlJKeDI1MGhrdUtWNTRXTXlFNGUyUFRWZDlCSXk4?=
- =?utf-8?Q?L9Xtgj67MC+ybcDy9SjdImwoAY/FDfQQgs8NgMT?=
-X-OriginatorOrg: os.amperecomputing.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 13d70335-c9c8-408b-b4fc-08d91e9d89cd
-X-MS-Exchange-CrossTenant-AuthSource: MW2PR0102MB3482.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 May 2021 10:20:22.3822
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XXKY/v9q6d4HRZ8LTHDEb12j647QEWofjzMo1FUkYsP2VV10y9tE8nF6oJb7sb+ySQoGRKtWORx/Hnqi+AE1qoNcZNorhNrn3gYpfDSj4WI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR0101MB3070
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/05/2021 17:06, Ryan Chen wrote:
->> -----Original Message-----
->> From: openbmc
->> <openbmc-bounces+ryan_chen=aspeedtech.com@lists.ozlabs.org> On Behalf
->> Of Quan Nguyen
->> Sent: Wednesday, May 19, 2021 3:50 PM
->> To: Corey Minyard <minyard@acm.org>; Rob Herring <robh+dt@kernel.org>;
->> Joel Stanley <joel@jms.id.au>; Andrew Jeffery <andrew@aj.id.au>; Brendan
->> Higgins <brendanhiggins@google.com>; Benjamin Herrenschmidt
->> <benh@kernel.crashing.org>; Wolfram Sang <wsa@kernel.org>; Philipp Zabel
->> <p.zabel@pengutronix.de>; openipmi-developer@lists.sourceforge.net;
->> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
->> linux-aspeed@lists.ozlabs.org; linux-kernel@vger.kernel.org;
->> linux-i2c@vger.kernel.org
->> Cc: Open Source Submission <patches@amperecomputing.com>; Thang Q .
->> Nguyen <thang@os.amperecomputing.com>; Phong Vo
->> <phong@os.amperecomputing.com>; openbmc@lists.ozlabs.org
->> Subject: [PATCH v3 5/7] i2c: aspeed: Add aspeed_set_slave_busy()
->>
->> Slave i2c device on AST2500 received a lot of slave irq while it is busy
->> processing the response. To handle this case, adds and exports
->> aspeed_set_slave_busy() for controller to temporary stop slave irq while slave
->> is handling the response, and re-enable them again when the response is ready.
->>
->> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
->> ---
->> v3:
->>    + First introduce in v3 [Quan]
->>
->>   drivers/i2c/busses/i2c-aspeed.c | 20 ++++++++++++++++++++
->>   1 file changed, 20 insertions(+)
->>
->> diff --git a/drivers/i2c/busses/i2c-aspeed.c b/drivers/i2c/busses/i2c-aspeed.c
->> index b2e9c8f0ddf7..9926d04831a2 100644
->> --- a/drivers/i2c/busses/i2c-aspeed.c
->> +++ b/drivers/i2c/busses/i2c-aspeed.c
->> @@ -944,6 +944,26 @@ static int aspeed_i2c_init(struct aspeed_i2c_bus
->> *bus,
->>   	return 0;
->>   }
->>
->> +#if IS_ENABLED(CONFIG_I2C_SLAVE)
->> +void aspeed_set_slave_busy(struct i2c_adapter *adap, bool busy) {
->> +	struct aspeed_i2c_bus *bus = i2c_get_adapdata(adap);
->> +	unsigned long current_mask, flags;
->> +
->> +	spin_lock_irqsave(&bus->lock, flags);
->> +
->> +	current_mask = readl(bus->base + ASPEED_I2C_INTR_CTRL_REG);
-> Hello
-> 	Where the bus->base to be remap?
-> 
+Driver for the PWM block in Qualcomm IPQ6018 line of SoCs. Based on
+driver from downstream Codeaurora kernel tree. Removed support for older
+(V1) variants because I have no access to that hardware.
 
-Hi Ryan,
+Tested on IPQ6010 based hardware.
 
-In "[PATCH v3 6/7] ipmi: ssif_bmc: Add Aspeed SSIF BMC driver", the 
-->priv is retrieved by calling i2c_get_adapdata(client->adapter). And in 
-aspeed_set_ssif_bmc_status(), call the exported aspeed_set_slave_busy() 
-using ->priv pointer as code below.
+Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+---
+v2:
 
-+extern void aspeed_set_slave_busy(struct i2c_adapter *adap, bool busy);
-+static void aspeed_set_ssif_bmc_status(struct ssif_bmc_ctx *ssif_bmc, 
-unsigned int status)
+Address Uwe Kleine-König review comments:
+
+  Fix period calculation when out of range
+
+  Don't set period larger than requested
+
+  Remove PWM disable on configuration change
+
+  Implement .apply instead of non-atomic .config/.enable/.disable
+
+  Don't modify PWM on .request/.free
+
+  Check pwm_div underflow
+
+  Fix various code and comment formatting issues
+
+Other changes:
+
+  Use u64 divisor safe division
+
+  Remove now empty .request/.free
+---
+ drivers/pwm/Kconfig   |  12 +++
+ drivers/pwm/Makefile  |   1 +
+ drivers/pwm/pwm-ipq.c | 238 ++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 251 insertions(+)
+ create mode 100644 drivers/pwm/pwm-ipq.c
+
+diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+index 9a4f66ae8070..54ef62a27bdc 100644
+--- a/drivers/pwm/Kconfig
++++ b/drivers/pwm/Kconfig
+@@ -260,6 +260,18 @@ config PWM_INTEL_LGM
+ 	  To compile this driver as a module, choose M here: the module
+ 	  will be called pwm-intel-lgm.
+ 
++config PWM_IPQ
++	tristate "IPQ PWM support"
++	depends on ARCH_QCOM || COMPILE_TEST
++	depends on HAVE_CLK && HAS_IOMEM
++	help
++	  Generic PWM framework driver for IPQ PWM block which supports
++	  4 pwm channels. Each of the these channels can be configured
++	  independent of each other.
++
++	  To compile this driver as a module, choose M here: the module
++	  will be called pwm-ipq.
++
+ config PWM_IQS620A
+ 	tristate "Azoteq IQS620A PWM support"
+ 	depends on MFD_IQS62X || COMPILE_TEST
+diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+index 6374d3b1d6f3..73eb955dea1d 100644
+--- a/drivers/pwm/Makefile
++++ b/drivers/pwm/Makefile
+@@ -22,6 +22,7 @@ obj-$(CONFIG_PWM_IMX1)		+= pwm-imx1.o
+ obj-$(CONFIG_PWM_IMX27)		+= pwm-imx27.o
+ obj-$(CONFIG_PWM_IMX_TPM)	+= pwm-imx-tpm.o
+ obj-$(CONFIG_PWM_INTEL_LGM)	+= pwm-intel-lgm.o
++obj-$(CONFIG_PWM_IPQ)		+= pwm-ipq.o
+ obj-$(CONFIG_PWM_IQS620A)	+= pwm-iqs620a.o
+ obj-$(CONFIG_PWM_JZ4740)	+= pwm-jz4740.o
+ obj-$(CONFIG_PWM_KEEMBAY)	+= pwm-keembay.o
+diff --git a/drivers/pwm/pwm-ipq.c b/drivers/pwm/pwm-ipq.c
+new file mode 100644
+index 000000000000..cedbd682a5c7
+--- /dev/null
++++ b/drivers/pwm/pwm-ipq.c
+@@ -0,0 +1,238 @@
++// SPDX-License-Identifier: BSD-3-Clause OR GPL-2.0
++/*
++ * Copyright (c) 2016-2017, 2020 The Linux Foundation. All rights reserved.
++ */
++
++#include <linux/module.h>
++#include <linux/platform_device.h>
++#include <linux/pwm.h>
++#include <linux/clk.h>
++#include <linux/io.h>
++#include <linux/math64.h>
++#include <linux/of_device.h>
++
++#define CLK_SRC_FREQ		(100*1000*1000)
++#define MAX_PWM_DEVICES		4
++
++/*
++ * Enable bit is set to enable output toggling in pwm device.
++ * Update bit is set to reflect the changed divider and high duration
++ * values in register.
++ */
++#define PWM_ENABLE		0x80000000
++#define PWM_UPDATE		0x40000000
++
++/* The frequency range supported is 1Hz to 100MHz */
++#define MIN_PERIOD_NS	10
++#define MAX_PERIOD_NS	1000000000
++
++/*
++ * The max value specified for each field is based on the number of bits
++ * in the pwm control register for that field
++ */
++#define MAX_PWM_CFG		0xFFFF
++
++#define PWM_CTRL_HI_SHIFT	16
++
++#define PWM_CFG_REG0 0 /*PWM_DIV PWM_HI*/
++#define PWM_CFG_REG1 1 /*ENABLE UPDATE PWM_PRE_DIV*/
++
++struct ipq_pwm_chip {
++	struct pwm_chip chip;
++	struct clk *clk;
++	void __iomem *mem;
++};
++
++static struct ipq_pwm_chip *to_ipq_pwm_chip(struct pwm_chip *chip)
 +{
-+	if (status & SSIF_BMC_BUSY)
-+		aspeed_set_slave_busy((struct i2c_adapter *)ssif_bmc->priv, true);
-+	else if (status & SSIF_BMC_READY)
-+		aspeed_set_slave_busy((struct i2c_adapter *)ssif_bmc->priv, false);
++	return container_of(chip, struct ipq_pwm_chip, chip);
 +}
 +
-+static int ssif_bmc_probe(struct i2c_client *client, const struct 
-i2c_device_id *id)
++static unsigned ipq_pwm_reg_offset(struct pwm_device *pwm, unsigned reg)
 +{
-+	struct ssif_bmc_ctx *ssif_bmc;
++	return ((pwm->hwpwm * 2) + reg) * 4;
++}
 +
-+	ssif_bmc = ssif_bmc_alloc(client, 0);
-+	if (IS_ERR(ssif_bmc))
-+		return PTR_ERR(ssif_bmc);
++static void config_div_and_duty(struct pwm_device *pwm, int pre_div,
++			unsigned long long pwm_div, unsigned long period_ns,
++			unsigned long long duty_ns)
++{
++	unsigned long hi_dur;
++	unsigned long long quotient;
++	unsigned long val = 0;
++	struct ipq_pwm_chip *ipq_chip = to_ipq_pwm_chip(pwm->chip);
 +
-+	ssif_bmc->priv = i2c_get_adapdata(client->adapter);
-+	ssif_bmc->set_ssif_bmc_status = aspeed_set_ssif_bmc_status;
++	/*
++	 * high duration = pwm duty * (pwm div + 1)
++	 * pwm duty = duty_ns / period_ns
++	 */
++	quotient = (pwm_div + 1) * duty_ns;
++	hi_dur = div64_u64(quotient, period_ns);
++
++	val |= ((hi_dur & MAX_PWM_CFG) << PWM_CTRL_HI_SHIFT);
++	val |= (pwm_div & MAX_PWM_CFG);
++	writel(val, ipq_chip->mem + ipq_pwm_reg_offset(pwm, PWM_CFG_REG0));
++	val = pre_div & MAX_PWM_CFG;
++	writel(val, ipq_chip->mem + ipq_pwm_reg_offset(pwm, PWM_CFG_REG1));
++}
++
++static int ipq_pwm_enable(struct pwm_device *pwm)
++{
++	struct ipq_pwm_chip *ipq_chip = to_ipq_pwm_chip(pwm->chip);
++	unsigned offset = ipq_pwm_reg_offset(pwm, PWM_CFG_REG1);
++	unsigned long val;
++
++	val = readl(ipq_chip->mem + offset);
++	val |= PWM_ENABLE | PWM_UPDATE;
++	writel(val, ipq_chip->mem + offset);
 +
 +	return 0;
 +}
-
-- Quan
-
-
++
++static void ipq_pwm_disable(struct pwm_device *pwm)
++{
++	struct ipq_pwm_chip *ipq_chip = to_ipq_pwm_chip(pwm->chip);
++	unsigned offset = ipq_pwm_reg_offset(pwm, PWM_CFG_REG1);
++	unsigned long val;
++
++	val = readl(ipq_chip->mem + offset);
++	val |= PWM_UPDATE;
++	val &= ~PWM_ENABLE;
++	writel(val, ipq_chip->mem + offset);
++}
++
++static int ipq_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
++			 const struct pwm_state *state)
++{
++	struct ipq_pwm_chip *ipq_chip = to_ipq_pwm_chip(chip);
++	unsigned long freq;
++	int pre_div, close_pre_div, close_pwm_div;
++	int pwm_div;
++	long long diff;
++	unsigned long rate = clk_get_rate(ipq_chip->clk);
++	unsigned long min_diff = rate;
++	uint64_t fin_ps;
++	u64 period_ns, duty_ns;
++
++	if (state->period < MIN_PERIOD_NS)
++		return -ERANGE;
++
++	period_ns = min_t(u64, state->period, MAX_PERIOD_NS);
++	duty_ns = min_t(u64, state->duty_cycle, period_ns);
++
++	/* freq in Hz for period in nano second*/
++	freq = NSEC_PER_SEC / period_ns;
++	fin_ps = div64_u64(NSEC_PER_SEC * 1000, rate);
++	close_pre_div = MAX_PWM_CFG;
++	close_pwm_div = MAX_PWM_CFG;
++
++	for (pre_div = 0; pre_div <= MAX_PWM_CFG; pre_div++) {
++		pwm_div = DIV64_U64_ROUND_CLOSEST(period_ns * 1000,
++						  fin_ps * (pre_div + 1));
++		pwm_div--;
++		if (pwm_div < 0 || pwm_div > MAX_PWM_CFG)
++			continue;
++
++		diff = ((uint64_t)freq * (pre_div + 1) * (pwm_div + 1))
++			- (uint64_t)rate;
++
++		if (diff < 0) /* period larger than requested */
++			continue;
++		if (diff == 0) { /* bingo */
++			close_pre_div = pre_div;
++			close_pwm_div = pwm_div;
++			break;
++		}
++		if (diff < min_diff) {
++			min_diff = diff;
++			close_pre_div = pre_div;
++			close_pwm_div = pwm_div;
++		}
++	}
++
++	/* config divider values for the closest possible frequency */
++	config_div_and_duty(pwm, close_pre_div, close_pwm_div,
++			    period_ns, duty_ns);
++	if (state->enabled)
++		ipq_pwm_enable(pwm);
++	else
++		ipq_pwm_disable(pwm);
++
++	return 0;
++}
++
++static struct pwm_ops ipq_pwm_ops = {
++	.apply = ipq_pwm_apply,
++	.owner = THIS_MODULE,
++};
++
++static int ipq_pwm_probe(struct platform_device *pdev)
++{
++	struct ipq_pwm_chip *pwm;
++	struct device *dev;
++	int ret;
++
++	dev = &pdev->dev;
++	pwm = devm_kzalloc(dev, sizeof(*pwm), GFP_KERNEL);
++	if (!pwm)
++		return -ENOMEM;
++
++	platform_set_drvdata(pdev, pwm);
++
++	pwm->mem = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(pwm->mem))
++		return PTR_ERR(pwm->mem);
++
++	pwm->clk = devm_clk_get(dev, "core");
++	if (IS_ERR(pwm->clk))
++		return PTR_ERR(pwm->clk);
++
++	ret = clk_set_rate(pwm->clk, CLK_SRC_FREQ);
++	if (ret)
++		return ret;
++	ret = clk_prepare_enable(pwm->clk);
++	if (ret)
++		return ret;
++
++	pwm->chip.dev = dev;
++	pwm->chip.ops = &ipq_pwm_ops;
++	pwm->chip.npwm = MAX_PWM_DEVICES;
++
++	ret = pwmchip_add(&pwm->chip);
++	if (ret < 0) {
++		dev_err_probe(dev, ret, "pwmchip_add() failed\n");
++		clk_disable_unprepare(pwm->clk);
++		return ret;
++	}
++
++	return 0;
++}
++
++static int ipq_pwm_remove(struct platform_device *pdev)
++{
++	struct ipq_pwm_chip *pwm = platform_get_drvdata(pdev);
++
++	pwmchip_remove(&pwm->chip);
++
++	return 0;
++}
++
++static const struct of_device_id pwm_ipq_dt_match[] = {
++	{ .compatible = "qcom,pwm-ipq6018", },
++	{}
++};
++MODULE_DEVICE_TABLE(of, pwm_ipq_dt_match);
++
++static struct platform_driver ipq_pwm_driver = {
++	.driver = {
++		.name = "ipq-pwm",
++		.owner = THIS_MODULE,
++		.of_match_table = pwm_ipq_dt_match,
++	},
++	.probe = ipq_pwm_probe,
++	.remove = ipq_pwm_remove,
++};
++
++module_platform_driver(ipq_pwm_driver);
++
++MODULE_LICENSE("Dual BSD/GPL");
+-- 
+2.30.2
 
