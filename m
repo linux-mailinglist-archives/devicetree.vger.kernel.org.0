@@ -2,197 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 539AA38E3AF
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 12:07:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CD7838E3CF
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 12:19:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232597AbhEXKI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 06:08:26 -0400
-Received: from mail-eopbgr1310127.outbound.protection.outlook.com ([40.107.131.127]:62932
-        "EHLO APC01-SG2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232621AbhEXKIS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 May 2021 06:08:18 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KulFYzE+YpKeODk2HXzzBItSCA/jY02TAkNKtRCel4OZqW4zllfubuHIuStkiv8YwabWFTK/yd4Wf5JxijpOK35Fc3wi9TuR9RKVSuNb0rgZcXtzhCp+s6UxxvsoH29AL/Uc9aEXi22VI7j95EcmfxDgxRSmpXooigrJR5JE8zuHo/dFQo1q/S3Y4ILxfjk5XvF7esKRnmCd/XQYTa83iifi9PsrOhPsKJZFoaDS6m67VqglNXglQJiIBn42zbWUt31H4L+kBHgVFoKWJ3iBIq6FqbRZ5h7YPX1gkRXPwrJ+6BHCyexKccHNJ4S4XiHln/RGC72pdaG4nqmIqwnDQA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bgKXfjbtHrW06do2INpix45cXQhlTD+/5X9lSQ/LKOI=;
- b=Qu5g9Y8L1PIfngCplOBwC+RiFC07yPO4gftzqMeSA8G3bV2c3+rZCNgDoufAgN46VsDEYhVike9BUtQgcmF608oY1k4Pur+7buHQ9YihDdzCQXtPuz07dyyuIn29Y6fMT4qdApTBCl+tBAyP0EBGKkvktpSuR12mMnsDiPx2Nnk74bOPYbaPM9el0x7v3OFER9VraD2bG6zpVwTI2vKVEHgQW3uFmd0ii0/L65gREQtmkAzLdsJAdTURyDgXCam8sEGlDwxwMMFqDsA7kec5Jbw22A/rryRNESgQnSIMURyj694ketb7XEvIjcjbhQVfBlufJXmpe/XJRH3MkXR2Zw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bgKXfjbtHrW06do2INpix45cXQhlTD+/5X9lSQ/LKOI=;
- b=mKIABpaQJ9fha0ZxZ8kWPcrrOFHCg5+8W/kaIa4BNXL/d1RRkKEIE6OLELHQuqyDWxp60DORcCaaj+/S4QtIhXItQXaoq2fl1X6RA70HOJRxYqG80bZw/X3p/uHnRE/72ggapP0eZLmzA0MLfryYykEaRa+R3C+jPzoY7JKcrML0Zr/qnx4FtWQh2p1oLNyuMAx1Rrzh/FJTOXro/nsU2fH/haxysGdsAllSNi/yN5gq5Uz/fVoyZLUUJlsZyVtW5LN2rzSrSFSnA6n1Pg6ndG/4lvyxMVPebulWS/0jxp9uOm6OQ+8tlIGM1bBjhWV97p4h68QzAS07kpNh/FP8DA==
-Received: from HK0PR06MB3380.apcprd06.prod.outlook.com (2603:1096:203:82::18)
- by HK0PR06MB2578.apcprd06.prod.outlook.com (2603:1096:203:63::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.26; Mon, 24 May
- 2021 10:06:13 +0000
-Received: from HK0PR06MB3380.apcprd06.prod.outlook.com
- ([fe80::ec25:881b:f113:93dc]) by HK0PR06MB3380.apcprd06.prod.outlook.com
- ([fe80::ec25:881b:f113:93dc%6]) with mapi id 15.20.4150.027; Mon, 24 May 2021
- 10:06:12 +0000
-From:   Ryan Chen <ryan_chen@aspeedtech.com>
-To:     Quan Nguyen <quan@os.amperecomputing.com>,
-        Corey Minyard <minyard@acm.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "openipmi-developer@lists.sourceforge.net" 
-        <openipmi-developer@lists.sourceforge.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>
-CC:     Open Source Submission <patches@amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>
-Subject: RE: [PATCH v3 5/7] i2c: aspeed: Add aspeed_set_slave_busy()
-Thread-Topic: [PATCH v3 5/7] i2c: aspeed: Add aspeed_set_slave_busy()
-Thread-Index: AQHXTIQCISnhT+/XbEiDVKSu2FVXwqryb5QA
-Date:   Mon, 24 May 2021 10:06:12 +0000
-Message-ID: <HK0PR06MB3380FD2B7649CFB48BEA2D4FF2269@HK0PR06MB3380.apcprd06.prod.outlook.com>
-References: <20210519074934.20712-1-quan@os.amperecomputing.com>
- <20210519074934.20712-6-quan@os.amperecomputing.com>
-In-Reply-To: <20210519074934.20712-6-quan@os.amperecomputing.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: os.amperecomputing.com; dkim=none (message not signed)
- header.d=none;os.amperecomputing.com; dmarc=none action=none
- header.from=aspeedtech.com;
-x-originating-ip: [211.20.114.70]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 15891d5d-64cb-4472-997b-08d91e9b8f7a
-x-ms-traffictypediagnostic: HK0PR06MB2578:
-x-microsoft-antispam-prvs: <HK0PR06MB2578D54E9D2E885BBACD3DA4F2269@HK0PR06MB2578.apcprd06.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4125;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: xom3LaH8GLXnegelyBcJAh4PtCc2f+BAWkARviG2EF+DCzep+Qpo/TCAy9sxPAdPz4NtvVh3aFCj0S9pYi7QEGxXWD+CdEKPS1RwK2NchFrP8kfqugWrfy02RYxQNAuZKotyUJf84Hg/amK5SFeDy/FwRGKA5V4MlDQSQUPGDCqj1UdTs0ZIPOqQJYhXk521rVD4GBNnLJ248N3BCMOJRgZdzh+5CpDxcGIdiyesOUfxrNJ7CI2wXQrbTYCq1SUSny4nYM6S3nWVlHSoKedfwt7ZnOycsnC3SAIOaDp8OP9Qq5ju6P7jiPYDbAEaeECisNHpe2RthBKDS0SQrHL3Q+UlZEU4QESx7q8yWJJuUiMG234fCNunnS4lAEr/OJO2k6zc3KCr1iqa80PRrbzBMUqyejxMsm2xgv6aWQ9DJoszSO8v6t+/gr8MfwXl5RgZwVDVkl7Ij/N+7zblgTV/zdOhvIog3wNXNc4jRXbWOcZlgb95ewj80x3w91bSlu9Y4ZsCXH2RZXydKBzYSM7FLe7zBFPX9fHj1Osz2ej608fVU2cGBtRUaAQk8t0oBZxvRJSwYAfeXu+w72qIYiGPPFl12YTITLJLHotjn81rnmHQ3ujW+W8GCqAAzNFCJyFRRGnk50WFoJIjWxDjkcUbyA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3380.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(136003)(376002)(396003)(366004)(39840400004)(64756008)(66556008)(66476007)(5660300002)(66446008)(122000001)(66946007)(38100700002)(52536014)(83380400001)(6506007)(53546011)(7696005)(8676002)(54906003)(2906002)(110136005)(9686003)(55016002)(86362001)(76116006)(316002)(186003)(7416002)(71200400001)(26005)(55236004)(8936002)(33656002)(921005)(4326008)(478600001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?PPO+fGFyzZV+5lPUa5JDaIo2Ap4ueUslNsfwg6vpaPwvlwL6gLXN55rwXiT8?=
- =?us-ascii?Q?qtWWL67Y8wtEcaQ8ihs9cFk9oy/2en406bsm4Y3H2E37Wr51U0qac74U8jML?=
- =?us-ascii?Q?QhQlZXT2DerybVgTyMRHjRV8eTtiwDELkwETBp5ySRyNGgWmnpDJpS4rWcK2?=
- =?us-ascii?Q?gp1eBt5ujiQ6nPlL1xgTMDSB80hWAX+wa+JrfndZ0e2zYV9o1WSUF/Qy8B7D?=
- =?us-ascii?Q?Lp1AjKPfQRYLmxvzD6qW6J9BupjBoYNKKV/SrzbJcLf6+xKekLuYYJTaBfEd?=
- =?us-ascii?Q?mmgC3yq27ZmeZwQXjFgkN+IcAUXV2R3JqAUihwfAw+f245zqvl2Zn+QY2G+P?=
- =?us-ascii?Q?AXgRTUP762ktrfipdIIAbnI4Fa6bLzbzdx3xvoRlABcd9VzTEg+TENcvyW/4?=
- =?us-ascii?Q?TvLYm4g/YsDmPynntwNApcz2pnVpNecjYGDC0MNleitdWWCctGRh/WN+iThm?=
- =?us-ascii?Q?4FplFFncTBo7aO0jwinjyT8B5cCgWoVn1WENdzcZH+ngZuFByfV5d3GXAn5x?=
- =?us-ascii?Q?ONQX/8Fdl94mPmYlce8P5zoM1PKRUvka54ZbycZYhpznD0X/M87QMXxUY2Dj?=
- =?us-ascii?Q?oteQ8DwT2fqSjMWBi1ESiyAbMDi6ybHakBwBJPDg5WvtiDXG6O2CRGYuQkx5?=
- =?us-ascii?Q?J8RuhOGjR7OxoixLC/TBBUwU8NBZ/EtBzXIWJxjQsPqWt3UE+318E2odPS8i?=
- =?us-ascii?Q?MN4DkCecexhacRn82WGGpK1DNmxQ9eBhLYVYOcjT9LCRFvxuGVzFqmub2KEj?=
- =?us-ascii?Q?QDoAeYOhjz5kygkLk1CqOLMfIDToi0DdMqWFzLSUZ2co80O8FN0keQmg063T?=
- =?us-ascii?Q?gQThjicS0RfLauTpMCIZi/lXImcun3CkrmToxpsaIttL9U+OnMg8+3lIkUH9?=
- =?us-ascii?Q?yCgk0RZc7y4DaicLdCtcM6O3ZYWa3i3IUXrSQUlQd7ADp4quoI/f666xOE9m?=
- =?us-ascii?Q?MyFo6qEAJRCT66W+Xr/UMLFWFTQepcWVeIfBQIdooi4u1lE+TTarKSpUqDXY?=
- =?us-ascii?Q?Ejqg29lIPeJ/2l4uieQxFJeRzEabm2FT+spotnVmpnbcisj+BhfYtY1JwC+r?=
- =?us-ascii?Q?THw300np5XF/NIinqlxOXVn9nEfHmgIz+rzsiJpDeju+ftgEiwa+MuCWIT9y?=
- =?us-ascii?Q?76AG1obRAvG1Lc1KmjKrI3TqQdM0i0nZiTK2CJwAUUq8uSGck1BLjeIrFqyM?=
- =?us-ascii?Q?yJiKksOhp5uBeYHM0KA8ZCiqL32DngxhUF0Nx9ZBg847/fkEPtkb5YV6bE1v?=
- =?us-ascii?Q?HLnGIvWUz/pfLIJ/5nj31ldEQucTs5QXIvjYb/faMyj4yQyPjjKfWNERLRSe?=
- =?us-ascii?Q?IOVpFNxU7SbP3lDRQUCTbXas?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S232563AbhEXKUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 06:20:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60040 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232546AbhEXKUf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 06:20:35 -0400
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68900C061574;
+        Mon, 24 May 2021 03:19:07 -0700 (PDT)
+Received: by mail-pf1-x42f.google.com with SMTP id q25so2418091pfn.1;
+        Mon, 24 May 2021 03:19:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7P3rbw20QtIx2EZ/I5Mr6iPXXPT7ZlUKHnawyS02Flo=;
+        b=RhqivdwEmZWNijDNmcq07SRQuMeVT/LKWaR1UdAItNS6PGGD2UOXMvh2CJNENYCqm9
+         40tIg2Et2nRMQnbILw8C3x/1RsvkQLBzOrmRHJ05N+nQccfgYYYZ9jHBh4A6C8jxbfAV
+         /vXPKq/QCuIlJLuZuXDkYBqLfI98RFls1t9ORJEY0WhkvF1GeBZIHA9EOs+nJciVlJQG
+         zRTpV4INuoo8BX7tXIyz/VbZKkhx5qtZLasI/Cc+TeDgje5EiEh+3F49eZ8LgMcUp/WY
+         aMIWBgFV0ZZLCg5yolEwJSvNvv4k5lfblV5eeQ7unFqkbtv6OBairw4D/9qdqScr+JfN
+         6nNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7P3rbw20QtIx2EZ/I5Mr6iPXXPT7ZlUKHnawyS02Flo=;
+        b=JTkgSnJbi/FpxX2ntVu7vXGsqadukyJzl8dIhb5BlSBVwKnC/7+7xPsIoOXJgcswEQ
+         YBnBhyLs13Ei2NpulRnmxWRsEozPOcinn/U4/EjPCj4E+DElIOzwIxim+2plq/U6+DGd
+         friGMCJxldbpxQ6JnyVTz293n/A8d7gd2iT0l25rBIwS82FaFHQyD2pljEQkbL07pxjS
+         O1zhy3xjrD8hT6xAtV6J8iQM1Jxu1H5dj6Cq1JSrOaSe4h0ojaV2oPYp6zY5b9ZWF7qn
+         4eDhWJsIAnhMLRCHXsYkh0FuX3en8klX9SzjlzGPo09LvlKgfJgVON/Cr7sR6FtK68ER
+         Ayeg==
+X-Gm-Message-State: AOAM5312AsC1DqHcWYa0A2Pu2GsDIR915rpD370jbIujJcawyP2xtjmO
+        RbV0Vfo/LJ/1QVwK71KCwswF4JJT2csLPMfpnE0=
+X-Google-Smtp-Source: ABdhPJxgBLi5YvLSVwx0GwgcoKPWvL1t+1Uyu/4O7lPdzNvjMHnfPdtr+B5VevOc7ChDFnyA0QNB/7ipxUN9pRxzPlE=
+X-Received: by 2002:a63:4145:: with SMTP id o66mr12921437pga.4.1621851546868;
+ Mon, 24 May 2021 03:19:06 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3380.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 15891d5d-64cb-4472-997b-08d91e9b8f7a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 May 2021 10:06:12.3787
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: sbBdAaZ51nKhGZs8WzKlOktVxQiWOvGlFqgQDyi+0ESoYkIoSk2Bs5LqTojL3p+p91y6Lowk4YDx5vg+RRrLt6pnUjG2KhmX/H2opbf4/EE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK0PR06MB2578
+References: <cover.1621809029.git.sander@svanheule.net> <6d14b72bc545a818675d99c8e91e99c96cc3e286.1621809029.git.sander@svanheule.net>
+ <CAHp75VcbRKGYSJZK_Rg969-Uck=h+8byWt0B3MtQJDqwbdf2sw@mail.gmail.com> <cb8593ab7a70528528bae3de45e33fae68a9ec1c.camel@svanheule.net>
+In-Reply-To: <cb8593ab7a70528528bae3de45e33fae68a9ec1c.camel@svanheule.net>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 24 May 2021 13:18:50 +0300
+Message-ID: <CAHp75VfVNJSuiErRYNLvUrCytWXwzos5Uj87Hj+bSBee7p2YfQ@mail.gmail.com>
+Subject: Re: [PATCH v3 4/6] mfd: Add RTL8231 core device
+To:     Sander Vanheule <sander@svanheule.net>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        kernel test robot <lkp@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> -----Original Message-----
-> From: openbmc
-> <openbmc-bounces+ryan_chen=3Daspeedtech.com@lists.ozlabs.org> On Behalf
-> Of Quan Nguyen
-> Sent: Wednesday, May 19, 2021 3:50 PM
-> To: Corey Minyard <minyard@acm.org>; Rob Herring <robh+dt@kernel.org>;
-> Joel Stanley <joel@jms.id.au>; Andrew Jeffery <andrew@aj.id.au>; Brendan
-> Higgins <brendanhiggins@google.com>; Benjamin Herrenschmidt
-> <benh@kernel.crashing.org>; Wolfram Sang <wsa@kernel.org>; Philipp Zabel
-> <p.zabel@pengutronix.de>; openipmi-developer@lists.sourceforge.net;
-> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> linux-aspeed@lists.ozlabs.org; linux-kernel@vger.kernel.org;
-> linux-i2c@vger.kernel.org
-> Cc: Open Source Submission <patches@amperecomputing.com>; Thang Q .
-> Nguyen <thang@os.amperecomputing.com>; Phong Vo
-> <phong@os.amperecomputing.com>; openbmc@lists.ozlabs.org
-> Subject: [PATCH v3 5/7] i2c: aspeed: Add aspeed_set_slave_busy()
->=20
-> Slave i2c device on AST2500 received a lot of slave irq while it is busy
-> processing the response. To handle this case, adds and exports
-> aspeed_set_slave_busy() for controller to temporary stop slave irq while =
-slave
-> is handling the response, and re-enable them again when the response is r=
-eady.
->=20
-> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
-> ---
-> v3:
->   + First introduce in v3 [Quan]
->=20
->  drivers/i2c/busses/i2c-aspeed.c | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
->=20
-> diff --git a/drivers/i2c/busses/i2c-aspeed.c b/drivers/i2c/busses/i2c-asp=
-eed.c
-> index b2e9c8f0ddf7..9926d04831a2 100644
-> --- a/drivers/i2c/busses/i2c-aspeed.c
-> +++ b/drivers/i2c/busses/i2c-aspeed.c
-> @@ -944,6 +944,26 @@ static int aspeed_i2c_init(struct aspeed_i2c_bus
-> *bus,
->  	return 0;
->  }
->=20
-> +#if IS_ENABLED(CONFIG_I2C_SLAVE)
-> +void aspeed_set_slave_busy(struct i2c_adapter *adap, bool busy) {
-> +	struct aspeed_i2c_bus *bus =3D i2c_get_adapdata(adap);
-> +	unsigned long current_mask, flags;
-> +
-> +	spin_lock_irqsave(&bus->lock, flags);
-> +
-> +	current_mask =3D readl(bus->base + ASPEED_I2C_INTR_CTRL_REG);
-Hello=20
-	Where the bus->base to be remap?
+On Mon, May 24, 2021 at 11:23 AM Sander Vanheule <sander@svanheule.net> wrote:
+> On Mon, 2021-05-24 at 11:02 +0300, Andy Shevchenko wrote:
+> > On Mon, May 24, 2021 at 1:34 AM Sander Vanheule <sander@svanheule.net> wrote:
 
-> +	if (busy)
-> +		current_mask &=3D ~(ASPEED_I2CD_INTR_RX_DONE |
-> ASPEED_I2CD_INTR_SLAVE_MATCH);
-> +	else
-> +		current_mask |=3D ASPEED_I2CD_INTR_RX_DONE |
-> ASPEED_I2CD_INTR_SLAVE_MATCH;
-> +	writel(current_mask, bus->base + ASPEED_I2C_INTR_CTRL_REG);
-> +
-> +	spin_unlock_irqrestore(&bus->lock, flags); }
-> +EXPORT_SYMBOL_GPL(aspeed_set_slave_busy);
-> +#endif
-> +
->  static int aspeed_i2c_reset(struct aspeed_i2c_bus *bus)  {
->  	struct platform_device *pdev =3D to_platform_device(bus->dev);
-> --
-> 2.28.0
+...
 
+> > > +       usleep_range(1000, 10000);
+> >
+> > It's strange to see this big range of minimum and maximum sleep.
+> > Usually the ratio should not be bigger than ~3-4 between the values.
+>
+> I could also change this from a usleep to a polling loop that checks (with a
+> loop limit) if the reset bit has self-cleared already.
+>
+> The datasheet that I have doesn't mention how fast it should self-clear. So I
+> checked, and it appears to be done after one loop iteration already. So,
+> certainly faster than the current usleep.
+>
+> Would a polling loop (with maybe like max. 10 iterations) be a good alternative
+> for you?
+
+I guess it's the right way to go. Just check the iopoll.h for helpers.
+Also regmap has regmap_read_poll_timeout().
+
+-- 
+With Best Regards,
+Andy Shevchenko
