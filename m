@@ -2,77 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CCF738E860
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 16:11:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C59C38E872
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 16:12:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232985AbhEXOMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 10:12:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56962 "EHLO
+        id S233086AbhEXONa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 10:13:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232999AbhEXOMs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 10:12:48 -0400
-Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDCBFC061756
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 07:11:18 -0700 (PDT)
-Received: by mail-vs1-xe36.google.com with SMTP id q6so10092119vsp.13
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 07:11:18 -0700 (PDT)
+        with ESMTP id S233041AbhEXONR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 10:13:17 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3036BC06138B
+        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 07:11:49 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id j10so40831328lfb.12
+        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 07:11:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=kY6jyrsjJi+HRe/mQv1siQhxLxlSd/Eu9JyaCf+aU6s=;
-        b=IXs1jXps0iRBX4YK9sEw4oHXipJS2Vdcqg8JktkfHSIi5jU2oVnIJyIAzOS7eZcYNw
-         o5mQqMSbTrVSYXiNmkgb0meO+JonZ1dPBDOVINXK2+9ItmqFWGyVdMbhgZwgJLiArKJQ
-         vme5ZxZkosQY3pAdTR1TV4i1TkPBo7lCLx8I1moZEsxTAtfhMYwytO4EnwYpgJ88/bO5
-         Inh2i9pYEld/fb+HBFPhty7+WIUSjWjNfL1o9SWOmWowtK+9L75wswYYxZdw2SC0KmgP
-         BCf8MKMOK6BGch3AhVUMN0zBUIOqiKqKbaiOu9JBcy6MXM3W/dcOrvoTlR9yF5TcNblt
-         jVig==
+        bh=/yZGsZDGj6VwJI2huNhq3QoEWnA9XjvVe/EfZq4y7IU=;
+        b=pbgNUmfpmE+TUnwYGWa4+Cr8UT5p+RNDrrQf6fokKwwro+TbWKERs2VaUCqCAqsBxA
+         I5TWFMPioWQdKlL+6MfKFR/wp6EmqQGuoA1C+6bhCqfstK6RzS/ZhkqYuPyoxo8WbNBc
+         XlsOS3fFXH+dAkql4342osYDPx8Ey7GqFptWyAYbp/ASsmyS6WraUNbATVAUcgzJWo/K
+         T6rVcFOxsVeIqWjoSbjOdE7Eb1irD5xl1pBziojPDGreqr1x00ExHeA284yUpteD6x6y
+         euIdJh+5pr5YNBBWZJPQM0Fvc9Dg+KbpX6mRFnYuB28NPTOIu37uncKP0J3Z/9GJZ8gM
+         63ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=kY6jyrsjJi+HRe/mQv1siQhxLxlSd/Eu9JyaCf+aU6s=;
-        b=ZNBoesL4RIQKkRK12r0/EuqR9S843cVUt4cm8W2pwTQ36wIs/zjwxf4z5Dgp0druZm
-         gIHBHAYQRtkY9jZ7Z0Tg/FW1O73rjFEjZ8StvhW6HZWTfQJZNqF8IPGGaW/dPsYP62MP
-         Vl9elOSkICs94aIrRac20Q+lMNoUnAUAMVuJP8OsqoFcmh6wTOJmCnRkYtiu+cN1fiY0
-         0C5TVPA61tmejsCoKRZhugUU1CZscvxSxYWtitKzlSy/oHg2viSpcUeDBOUMcibu16ia
-         I029lSZXHbh/SbTymeBKDQfdj/ygW0180obwpLgm+2Je8kurE9ipzIySmrqzPC4y5cvT
-         eDDg==
-X-Gm-Message-State: AOAM533ekqwdLuve3GEg00BH90vXwoW57jDY5SBkonVrJhaYvqDUDFjf
-        OgOVBoVH8VohvzAsLSUshcoPbS4nvY3I75bcZp/SMw==
-X-Google-Smtp-Source: ABdhPJzy5pWzjYOdI2C/JAdvDJO42gMZKBOGSCRG9HkPRjrjrvdlF4IEcTEM2E/bQlE0mUc+P4Djeej/ypqMDjf5eb0=
-X-Received: by 2002:a05:6102:7c1:: with SMTP id y1mr22086341vsg.34.1621865478143;
- Mon, 24 May 2021 07:11:18 -0700 (PDT)
+        bh=/yZGsZDGj6VwJI2huNhq3QoEWnA9XjvVe/EfZq4y7IU=;
+        b=t5gG3FCgHlPp/8dftjhFaV+ucYYlALWewLK8vJcv18mkAySM9dt+LX1ze87YX23G9A
+         qkAnNi3loj/M6+LSVSc2qOseE8j+tEk5sZiOLhIs53YOVUJ3vhMtfFQ0lXp5AOvNjn3y
+         wZPfjAvERxflbxNSKv1SH0KnT327Iv2yOVibvrMXe/9OMWAth+l5Y+BcLyCwVLSMZCOy
+         vy1yqER/mGdT3iISYs/WhGMeoWe92cvv71lfOzI7KQlM7dHiUy8ZhJoW4pq5VltE3Y8y
+         XH/E9NCCI56L/4VtSAdjb+h7otmc6iglmzTSfMpsg6eqB5ad7Q1rVo98yag47s0q6xgr
+         FjHA==
+X-Gm-Message-State: AOAM533l7WQf/lm6153BR4INXwEXtwEDFl7kBi8kHGh0aTkUWJMQifLw
+        iMkH7MGtPweNplig+ED84G7ur6OgsjM9BKHZRg4kNQ==
+X-Google-Smtp-Source: ABdhPJw3DDszILd4fOwSk02DmS3LBF/6L9iWayO0ZEI9oK+oW8u6lCsJSES4QzzosVigXKy0dhQfIFXD4tnEHBmlMEw=
+X-Received: by 2002:a05:6512:49b:: with SMTP id v27mr11106312lfq.29.1621865507531;
+ Mon, 24 May 2021 07:11:47 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210519153712.3146025-1-robh@kernel.org>
-In-Reply-To: <20210519153712.3146025-1-robh@kernel.org>
+References: <20210524073308.9328-1-steven_lee@aspeedtech.com> <20210524073308.9328-5-steven_lee@aspeedtech.com>
+In-Reply-To: <20210524073308.9328-5-steven_lee@aspeedtech.com>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 24 May 2021 16:10:40 +0200
-Message-ID: <CAPDyKFq-dFj2sS3gsh=oBywmoTKkxojYCq8B8Gn5kXyEiFChKA@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: mmc: Clean-up examples to match
- documented bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>
+Date:   Mon, 24 May 2021 16:11:08 +0200
+Message-ID: <CAPDyKFqd+ZdPVuFKf-C7ztQp_aH9HOXByq6qwykkdU9Aku3pAA@mail.gmail.com>
+Subject: Re: [PATCH v5 4/4] mmc: sdhci-of-aspeed: Configure the SDHCIs as
+ specified by the devicetree.
+To:     Steven Lee <steven_lee@aspeedtech.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
+        Hongweiz@ami.com, ryan_chen@aspeedtech.com,
+        chin-ting_kuo@aspeedtech.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 19 May 2021 at 17:37, Rob Herring <robh@kernel.org> wrote:
+On Mon, 24 May 2021 at 09:33, Steven Lee <steven_lee@aspeedtech.com> wrote:
 >
-> The "sdhci" compatible is not documented though used as a fallback in a
-> few cases. It is also not supported by a Linux driver. Just remove the
-> example as part of ridding examples of undocumented bindings.
+> The hardware provides capability configuration registers for each SDHCI
+> in the global configuration space for the SD controller. Writes to the
+> global capability registers are mirrored to the capability registers in
+> the associated SDHCI. Configuration of the capabilities must be written
+> through the mirror registers prior to initialisation of the SDHCI.
 >
-> The "brcm,bcm43xx-fmac" compatible is also not documented. Update the
-> example to use one of the correct ones, "brcm,bcm4329-fmac", instead and
-> use a device class based nodename.
->
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Cc: linux-mmc@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+> Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
+> Reviewed-by: Joel Stanley <joel@jms.id.au>
 
 Applied for next, thanks!
 
@@ -81,51 +90,89 @@ Uffe
 
 
 > ---
-> v2:
->  - Also fix "brcm,bcm43xx-fmac" example
+>  drivers/mmc/host/sdhci-of-aspeed.c | 48 ++++++++++++++++++++++++++++++
+>  1 file changed, 48 insertions(+)
 >
->  .../bindings/mmc/mmc-controller.yaml          | 20 ++-----------------
->  1 file changed, 2 insertions(+), 18 deletions(-)
+> diff --git a/drivers/mmc/host/sdhci-of-aspeed.c b/drivers/mmc/host/sdhci-of-aspeed.c
+> index d001c51074a0..65b5685f6c15 100644
+> --- a/drivers/mmc/host/sdhci-of-aspeed.c
+> +++ b/drivers/mmc/host/sdhci-of-aspeed.c
+> @@ -31,6 +31,11 @@
+>  #define   ASPEED_SDC_S0_PHASE_OUT_EN   GENMASK(1, 0)
+>  #define   ASPEED_SDC_PHASE_MAX         31
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> index e141330c1114..646ae768d625 100644
-> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> @@ -357,22 +357,6 @@ dependencies:
->  additionalProperties: true
+> +/* SDIO{10,20} */
+> +#define ASPEED_SDC_CAP1_1_8V           (0 * 32 + 26)
+> +/* SDIO{14,24} */
+> +#define ASPEED_SDC_CAP2_SDR104         (1 * 32 + 1)
+> +
+>  struct aspeed_sdc {
+>         struct clk *clk;
+>         struct resource *res;
+> @@ -72,6 +77,37 @@ struct aspeed_sdhci {
+>         const struct aspeed_sdhci_phase_desc *phase_desc;
+>  };
 >
->  examples:
-> -  - |
-> -    mmc@ab000000 {
-> -        compatible = "sdhci";
-> -        reg = <0xab000000 0x200>;
-> -        interrupts = <23>;
-> -        bus-width = <4>;
-> -        cd-gpios = <&gpio 69 0>;
-> -        cd-inverted;
-> -        wp-gpios = <&gpio 70 0>;
-> -        max-frequency = <50000000>;
-> -        keep-power-in-suspend;
-> -        wakeup-source;
-> -        mmc-pwrseq = <&sdhci0_pwrseq>;
-> -        clk-phase-sd-hs = <63>, <72>;
-> -    };
-> -
->    - |
->      mmc3: mmc@1c12000 {
->          #address-cells = <1>;
-> @@ -385,9 +369,9 @@ examples:
->          non-removable;
->          mmc-pwrseq = <&sdhci0_pwrseq>;
+> +/*
+> + * The function sets the mirror register for updating
+> + * capbilities of the current slot.
+> + *
+> + *   slot | capability  | caps_reg | mirror_reg
+> + *   -----|-------------|----------|------------
+> + *     0  | CAP1_1_8V   | SDIO140  |   SDIO10
+> + *     0  | CAP2_SDR104 | SDIO144  |   SDIO14
+> + *     1  | CAP1_1_8V   | SDIO240  |   SDIO20
+> + *     1  | CAP2_SDR104 | SDIO244  |   SDIO24
+> + */
+> +static void aspeed_sdc_set_slot_capability(struct sdhci_host *host, struct aspeed_sdc *sdc,
+> +                                          int capability, bool enable, u8 slot)
+> +{
+> +       u32 mirror_reg_offset;
+> +       u32 cap_val;
+> +       u8 cap_reg;
+> +
+> +       if (slot > 1)
+> +               return;
+> +
+> +       cap_reg = capability / 32;
+> +       cap_val = sdhci_readl(host, 0x40 + (cap_reg * 4));
+> +       if (enable)
+> +               cap_val |= BIT(capability % 32);
+> +       else
+> +               cap_val &= ~BIT(capability % 32);
+> +       mirror_reg_offset = ((slot + 1) * 0x10) + (cap_reg * 4);
+> +       writel(cap_val, sdc->regs + mirror_reg_offset);
+> +}
+> +
+>  static void aspeed_sdc_configure_8bit_mode(struct aspeed_sdc *sdc,
+>                                            struct aspeed_sdhci *sdhci,
+>                                            bool bus8)
+> @@ -328,6 +364,7 @@ static inline int aspeed_sdhci_calculate_slot(struct aspeed_sdhci *dev,
+>  static int aspeed_sdhci_probe(struct platform_device *pdev)
+>  {
+>         const struct aspeed_sdhci_pdata *aspeed_pdata;
+> +       struct device_node *np = pdev->dev.of_node;
+>         struct sdhci_pltfm_host *pltfm_host;
+>         struct aspeed_sdhci *dev;
+>         struct sdhci_host *host;
+> @@ -372,6 +409,17 @@ static int aspeed_sdhci_probe(struct platform_device *pdev)
 >
-> -        brcmf: bcrmf@1 {
-> +        brcmf: wifi@1 {
->              reg = <1>;
-> -            compatible = "brcm,bcm43xx-fmac";
-> +            compatible = "brcm,bcm4329-fmac";
->              interrupt-parent = <&pio>;
->              interrupts = <10 8>;
->              interrupt-names = "host-wake";
+>         sdhci_get_of_property(pdev);
+>
+> +       if (of_property_read_bool(np, "mmc-hs200-1_8v") ||
+> +           of_property_read_bool(np, "sd-uhs-sdr104")) {
+> +               aspeed_sdc_set_slot_capability(host, dev->parent, ASPEED_SDC_CAP1_1_8V,
+> +                                              true, slot);
+> +       }
+> +
+> +       if (of_property_read_bool(np, "sd-uhs-sdr104")) {
+> +               aspeed_sdc_set_slot_capability(host, dev->parent, ASPEED_SDC_CAP2_SDR104,
+> +                                              true, slot);
+> +       }
+> +
+>         pltfm_host->clk = devm_clk_get(&pdev->dev, NULL);
+>         if (IS_ERR(pltfm_host->clk))
+>                 return PTR_ERR(pltfm_host->clk);
 > --
-> 2.27.0
+> 2.17.1
 >
