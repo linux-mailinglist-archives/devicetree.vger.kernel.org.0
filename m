@@ -2,197 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BC9A38EE6F
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 17:49:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8118238EF5C
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 17:56:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233922AbhEXPu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 11:50:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49510 "EHLO
+        id S234942AbhEXP5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 11:57:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234319AbhEXPtA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 11:49:00 -0400
-Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15B2BC0611E4
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 08:03:05 -0700 (PDT)
-Received: from [IPv6:2a02:a03f:eafb:ee01:cbcc:e481:3e58:4db1] (unknown [IPv6:2a02:a03f:eafb:ee01:cbcc:e481:3e58:4db1])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sander@svanheule.net)
-        by polaris.svanheule.net (Postfix) with ESMTPSA id 01655202FCC;
-        Mon, 24 May 2021 17:03:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-        s=mail1707; t=1621868583;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=8MATKxCuMn4nkMdLEuLNhFbcf7uVicrwkqafbfBr9eg=;
-        b=1h53zmIIMaFpLm4CSRKhMGwEBDMHczUNgRi0S+mgn2cg4jIRuqHA9E11lLejd8xVPw3y0r
-        BdsHMs+YEKMrTqNfFIzLlo79yq+1hPDmgCFABw9f3MbWd/dVY4tnDPRzeemS9QlUStFCM7
-        rywfeCIxAKl67kegIngCVN9nsd7oJWwuTzjMyet9NAKK9takN6OR/pq/XT+rIYyccekHDI
-        auY7viemnNLEK2mM3KLw9r53Pn5BPe5Bh/31yAAx4wOkNYsIkMjv14OPMh1+YBzZcBZCM2
-        oFqoaW+PtFNM5/52cp7sGAybshVAGUa8QZIWEdYUe870KAjmF2TqBZoT3Q8jkQ==
-Message-ID: <8f96b24d782e5bdeabf5370ccf3475794d0c2818.camel@svanheule.net>
-Subject: Re: [PATCH v3 0/6] RTL8231 GPIO expander support
-From:   Sander Vanheule <sander@svanheule.net>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Date:   Mon, 24 May 2021 17:03:01 +0200
-In-Reply-To: <CAHp75Vf_dAfoMmziVLkEQ2Yr-e7Cj5=61ua5Q05Cyz-pLwVjpw@mail.gmail.com>
-References: <cover.1620735871.git.sander@svanheule.net>
-         <cover.1621809029.git.sander@svanheule.net> <YKr9G3EfrM34gCsL@lunn.ch>
-         <CAHp75VewCw8ES_9S48qmeCtSXMkGWt0s4iub0Fu4ZuwWANHpaQ@mail.gmail.com>
-         <02bbf73ea8a14119247f07a677993aad2f45b088.camel@svanheule.net>
-         <CAHp75Vf_dAfoMmziVLkEQ2Yr-e7Cj5=61ua5Q05Cyz-pLwVjpw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+        with ESMTP id S234136AbhEXP4Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 11:56:16 -0400
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6C8CC0610D5
+        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 08:08:18 -0700 (PDT)
+Received: by mail-oi1-x232.google.com with SMTP id c3so27316976oic.8
+        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 08:08:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Qd2GGNOqjcoVwR9/InTy3gHaTefuQ8PzIzZm4PfwF+Q=;
+        b=pHUsCN/IDaId/ipsKoG3ZrMYVpOUrGYrLef0xTZtQqyz5XEMvN+lSpLTWg7jqjs6Jg
+         8wJ0pQL7+XaAsnBMSaWQCy7vQ/ZJnhOkVL0wp8RSeBJ7P47eTtE07yeR4+A6SNbbViAa
+         iet9G/GM1FfaXkBxAschybOUCLj4dh8QNh+vYyRua3BmM2eulhIfr9X1rl0wIRCwsWd+
+         pISDWphupk3cSrSJvfwLRLkVetuRq3bdIaT1ju8SB684mx/GMUIuCsIkN5+XbviAupjL
+         9P0mdNOzaKLEQ+SZt9yQ2d8SL3naZn+5M6s/xOz5hGkwU900zBI4ruNo/Nh5jzk7aRTk
+         Bqjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Qd2GGNOqjcoVwR9/InTy3gHaTefuQ8PzIzZm4PfwF+Q=;
+        b=CbWdd/h9NhrKKjNBwGJFzzY9uYp96kjS5cTGqszenE/jV0Ll73CnuD8pAFhXKgPo6W
+         LuMTbsRpB46NqhFCZXtjpo2k67FCQlPCpY93H4XcHCdhNCPUu/zU/fkJ6JEgXQZuwQFN
+         GfPdL2NY/yGqKYUlb2xIJAPOolV1vjHwxa5dsgywz8UpNcCiOt2S4VkuJ1CXI7YlhXaT
+         KZFsRCeiHyX6fC9zWM+bGtyphpm0gOMCcYh6GwXUaVrY5QpBkePJBtGfUGaHNmYFV2+I
+         nXfmWubNZMnyi1AR3L/CRcGZ/C1c+YucLAFwqB8pVb7rhMBzO97s3BG7oGxLvkxSHd//
+         vkNw==
+X-Gm-Message-State: AOAM533BlVa2xvOUiALhN4YAI9lXv/as9CnTPqd9iuKK4GdZiVAk8CQX
+        tTuDUxkVk42/4E14c7exrkT4NtZOS3qXvw==
+X-Google-Smtp-Source: ABdhPJzQwEXxT63vulS4Mr1iXuUiQVfsntslWby9WpFJQ1i6LL+g6rwKWyZorlvtptAuR0hvccJ5Xg==
+X-Received: by 2002:aca:230e:: with SMTP id e14mr11102837oie.58.1621868898078;
+        Mon, 24 May 2021 08:08:18 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id n11sm2564001oom.1.2021.05.24.08.08.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 May 2021 08:08:17 -0700 (PDT)
+Date:   Mon, 24 May 2021 10:08:15 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Rob Clark <robdclark@gmail.com>, linux-arm-msm@vger.kernel.org,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH 02/13] dt-bindings: msm/dsi: Document Display Stream
+ Compression (DSC) parameters
+Message-ID: <20210524150815.GH2484@yoga>
+References: <20210521124946.3617862-1-vkoul@kernel.org>
+ <20210521124946.3617862-3-vkoul@kernel.org>
+ <20210521144237.GZ2484@yoga>
+ <YKtWM+BYeIA+P+55@vkoul-mobl.Dlink>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YKtWM+BYeIA+P+55@vkoul-mobl.Dlink>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2021-05-24 at 15:54 +0300, Andy Shevchenko wrote:
-> On Mon, May 24, 2021 at 2:41 PM Sander Vanheule <sander@svanheule.net> wrote:
-> > On Mon, 2021-05-24 at 10:53 +0300, Andy Shevchenko wrote:
-> > > On Mon, May 24, 2021 at 4:11 AM Andrew Lunn <andrew@lunn.ch> wrote:
-> 
-> ...
-> 
-> > > > > Changes since v2:
-> > > > >   - MDIO regmap support was merged, so patch is dropped here
-> > > > 
-> > > > Do you have any idea how this will get merged. It sounds like one of
-> > > > the Maintainers will need a stable branch of regmap.
+On Mon 24 May 02:30 CDT 2021, Vinod Koul wrote:
+
+> On 21-05-21, 09:42, Bjorn Andersson wrote:
+> > On Fri 21 May 07:49 CDT 2021, Vinod Koul wrote:
+> > 
+> > > DSC enables streams to be compressed before we send to panel. This
+> > > requires DSC enabled encoder and a panel to be present. So we add this
+> > > information in board DTS and find if DSC can be enabled and the
+> > > parameters required to configure DSC are added to binding document along
+> > > with example
 > > > 
-> > > This is not a problem if Mark provides an immutable branch to pull from.
-> > 
-> > Mark has a tag (regmap-mdio) for this patch:
-> > https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regmap.git/tag/?h=regmap-mdio
-> 
-> Also works but you have to provide this information in the cover letter.
-> 
-
-Ok, I will add the link to the cover letter for the next version. Does it need
-to be in a Link-tag, or can just be a reference?
-
-
-> ...
-> 
-> > > > >   - Introduce GPIO regmap quirks to set output direction first
-> > > > 
-> > > > I thought you had determined it was possible to set output before
-> > > > direction?
+> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > > ---
+> > >  .../devicetree/bindings/display/msm/dsi.txt       | 15 +++++++++++++++
+> > >  1 file changed, 15 insertions(+)
 > > > 
-> > > Same thoughts when I saw an updated version of that patch. My
-> > > anticipation was to not see it at all.
+> > > diff --git a/Documentation/devicetree/bindings/display/msm/dsi.txt b/Documentation/devicetree/bindings/display/msm/dsi.txt
+> > > index b9a64d3ff184..83d2fb92267e 100644
+> > > --- a/Documentation/devicetree/bindings/display/msm/dsi.txt
+> > > +++ b/Documentation/devicetree/bindings/display/msm/dsi.txt
+> > > @@ -48,6 +48,13 @@ Optional properties:
+> > >  - pinctrl-n: the "sleep" pinctrl state
+> > >  - ports: contains DSI controller input and output ports as children, each
+> > >    containing one endpoint subnode.
+> > > +- qcom,mdss-dsc-enabled: Display Stream Compression (DSC) is enabled
+> > > +- qcom,mdss-slice-height: DSC slice height in pixels
+> > > +- qcom,mdss-slice-width: DSC slice width in pixels
+> > > +- qcom,mdss-slice-per-pkt: DSC slices per packet
+> > > +- qcom,mdss-bit-per-component: DSC bits per component
+> > > +- qcom,mdss-bit-per-pixel: DSC bits per pixel
+> > > +- qcom,mdss-block-prediction-enable: Block prediction mode of DSC enabled
+> > >  
+> > >    DSI Endpoint properties:
+> > >    - remote-endpoint: For port@0, set to phandle of the connected panel/bridge's
+> > > @@ -188,6 +195,14 @@ Example:
+> > >  		qcom,master-dsi;
+> > >  		qcom,sync-dual-dsi;
+> > >  
+> > > +		qcom,mdss-dsc-enabled;
 > > 
-> > The two devices I've been trying to test the behaviour on are:
-> >  * Netgear GS110TPP: has an RTL8231 with three LEDs, each driven via a pin
-> >    configured as (active-low) GPIO. The LEDs are easy for a quick visual
-> > check.
-> >  * Zyxel GS1900-8: RTL8231 used for the front panel button, and an active-
-> > low
-> >    GPIO used to hard reset the main SoC (an RTL8380). I've modified this
-> > board
-> >    to change some of the strapping pin values, but testing with the jumpers
-> > and
-> >    pull-up/down resistors is a bit more tedious.
-> > 
-> > On the Netgear, I tested the following with and without the quirk:
-> > 
-> >    # Set as OUT-LOW twice, to avoid the quirk. Always turns the LED on
-> >    gpioset 1 32=0; gpioset 1 32=0
-> >    # Get value to change to input, turns the LED off (high impedance)
-> >    # Will return 1 due to (weak) internal pull-up
-> >    gpioget 1 32
-> >    # Set as OUT-HIGH, should result in LED off
-> >    # When the quirk is disabled, the LED turns on (i.e. old OUT-LOW value)
-> >    # When the quirk is enabled, the LED remains off (i.e. correct OUT-HIGH
-> > value)
-> >    gpioset 1 32=1
-> > 
-> > Now, what's confusing (to me) is that the inverse doesn't depend on the
-> > quirk:
-> > 
-> >    # Set as OUT-HIGH twice
-> >    gpioset 1 32=1; gpioset 1 32=1
-> >    # Change to high-Z
-> >    gpioget 1 32
-> >    # Set to OUT-LOW, always results in LED on, with or without quirk
-> >    gpioset 1 32=0
-> > 
-> > Any idea why this would be (or appear) broken on the former case, but not on
-> > the
-> > latter?
+> > To me the activation of DSC seems to be a property of the panel.
 > 
-> GPIO tools for the shell are context-less. Can you reproduce this with
-> the legacy sysfs interface?
+> I think there are three parts to the problem
+> 1. Panel needs to support it
+
+In the case of DP there's bits to be read in the panel to figure this
+out, for DSI panels this seems like a property that the panel (driver)
+should know about.
+
+> 2. Host needs to support it
+
+Right, so this needs to be known by the driver. My suggestion is that we
+derive it from the compatible or from the HW version.
+
+> 3. Someone needs to decide to use when both the above conditions are
+> met.
 > 
-> > I was trying to reproduce this behaviour on the Zyxel, but using the
-> > strapping
-> > pins that are also used to configure the device's address. So perhaps the
-> > pull-
-> > ups/-downs were confusing the results. Using a separate pin on the Zyxel's
-> > RTL8231, I've now been able to confirm the same behaviour as on the Netgear,
-> > including capturing the resulting glitch (with my simple logic analyser)
-> > when
-> > enabling the quirk in the first test case.
+> There are cases where above 1, 2 will be satisfied, but we might be okay
+> without DSC too.. so how to decide when to do DSC :)
+> 
+
+Can we describe those cases? E.g. is it because enabling DSC would not
+cause a reduction in clock speed that's worth the effort? Or do we only
+use DSC for DSI when it allows us to squeeze everything into a single
+link?
+
+Regards,
+Bjorn
+
+> I feel it is more of a system property. And I also think that these
+> parameters here are host configuration and not really for panel...
+> 
 > > 
-> > I hope this explains why I've still included the quirk in this revision. If
-> > not,
-> > please let me know what isn't clear.
+> > > +		qcom,mdss-slice-height = <16>;
+> > > +		qcom,mdss-slice-width = <540>;
+> > > +		qcom,mdss-slice-per-pkt = <1>;
+> > > +		qcom,mdss-bit-per-component = <8>;
+> > > +		qcom,mdss-bit-per-pixel = <8>;
+> > > +		qcom,mdss-block-prediction-enable;
+> > 
+> > Which of these properties relates to the DSC encoder and what needs to
+> > be agreed with the sink? Can't we derive e.g. bpp from the information
+> > we have from the attached panel already?
 > 
-> Do you possess a schematic of either of the devices and a link to the
-> RTL datasheet (Btw, if it's publicly available, or you have a link
-> that will ask for necessary sign-in it would be nice to include the
-> link to it as a Datasheet: tag)?
-
-Sadly, I don't. Most of the info we have comes from code archives of switch
-vendors (Zyxel, Cisco etc). Boards need to be reverse engineered, and the few
-leaked datasheets that can be found on the internet aren't exactly thick in
-information.
-
-The RTL8231 datasheet is actually quite useful, but makes no mention of the
-output value isse. Since this isn't an official resource, I don't think it would
-be appropriate to link it via a Datasheet: tag.
-https://github.com/libc0607/Realtek_switch_hacking/blob/files/RTL8231_Datasheet_
-1.2.pdf
-
-Looking at the datasheet again, I came up with a... terrible hack to work around
-the output value issue.
-
-The chip also has GPIO_INVERT registers that I hadn't used until now, because
-the logical inversion is handled in the kernel. However, these inversion
-registers only apply to the output values. So, I could implement glitch-free
-output behaviour in the following way:
- * After chip reset, and before enabling the output driver (MFD initialisation):
-    - Mux all pins as GPIO
-    - Change all pins to outputs, so the data registers (0x1c-0x1e) become writable
-    - Write value 0 to all pins
-    - Change all pins to GPI to change them into high-Z
- * In the pinctrl/gpio driver:
-    - Use data registers as input-only
-    - Use inversion register to determine output value (can be written any time)
-
-The above gives glitch-free outputs, but the values that are read back (when
-configured as output), come from the data registers. They should now be coming
-from the inversion (reg_set_base) registers, but the code prefers to use the
-data registers (reg_dat_base).
-
-
-Best,
-Sander
-
+> Let me go back and check on this a bit more
+> 
+> Thanks
+> -- 
+> ~Vinod
