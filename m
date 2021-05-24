@@ -2,113 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA88238F331
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 20:46:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B07738F37C
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 21:09:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233080AbhEXSrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 14:47:52 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:35746 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232746AbhEXSrw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 14:47:52 -0400
-Received: by mail-ot1-f47.google.com with SMTP id 69-20020a9d0a4b0000b02902ed42f141e1so26164544otg.2;
-        Mon, 24 May 2021 11:46:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=zUHC5bIhrZ72gMSo4YDUSPpMzPen1n8QrM3EpHdTPCU=;
-        b=ZN9WSq4Ga2k7jF584kZKj3f1EySb3V/oP5BiP5nd01ZSTOTOQ6kkWuxTWniEEt5R2N
-         TpsCnKeESFlrCcshNYGi1BO4yXN1ziwKvU/M1ZA7N9h0zV1G/boDMiM2igfMKMMqIFP9
-         v3oYN3cAyG7F4wHwnCDB9CTl7yJ7LehoX7ZfUvTBEV0WJTehYAXhkpFeuUd98EChnf4K
-         OUjoIFyIdYrlvDhRZB5iF6DfQ63QlGo779SABpc7whQhZFJB6FNkZkBP0hy05V7t2c/x
-         9++OIgaRt/b4CsFzg2wAA6hM0uqRIz4Bnzm+37nl1rAXtVxS3VeT7acPuec1crjoT0Qa
-         +4eQ==
-X-Gm-Message-State: AOAM530sTyNhrgJFJQnF8zYRsLMi+o+jn9MYqrMS+8/wdAB0RtJ/meX9
-        4HdKbIzuSGkgj1etWr6F7Q==
-X-Google-Smtp-Source: ABdhPJxdAi4fhbZzkOm6+CuFnI7z6/7DvcD5YO0qHwvEi3e5MRZ55z5rLH5D3pwhDjCNUsZ/1ZsHdQ==
-X-Received: by 2002:a05:6830:1042:: with SMTP id b2mr19873646otp.120.1621881982575;
-        Mon, 24 May 2021 11:46:22 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 77sm3178951otc.54.2021.05.24.11.46.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 May 2021 11:46:21 -0700 (PDT)
-Received: (nullmailer pid 437764 invoked by uid 1000);
-        Mon, 24 May 2021 18:46:20 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Martin Botka <martin.botka@somainline.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        konrad.dybcio@somainline.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andy Gross <agross@kernel.org>, marijn.suijten@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20210523204415.703081-1-martin.botka@somainline.org>
-References: <20210523204415.703081-1-martin.botka@somainline.org>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom: sm6125: Document SM6125 pinctrl driver
-Date:   Mon, 24 May 2021 13:46:20 -0500
-Message-Id: <1621881980.447955.437763.nullmailer@robh.at.kernel.org>
+        id S233167AbhEXTKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 15:10:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39728 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232983AbhEXTKu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 15:10:50 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABDC5C061574;
+        Mon, 24 May 2021 12:09:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+        Content-ID:Content-Description:In-Reply-To:References;
+        bh=/VQWjIwAzHQh3Hpp53y0A3SY+AUfYTrfEWM/VxGYUe0=; b=Bz49qLh/S2GWj6SErpe+gPEMPB
+        30rSJ01ZvV/reybb3yg46bz8hO8mSVIXzKsFe3yrNyWBqmms+vkYvch7fqHRlVs3FEA9awb47cQi+
+        ZJzfklkvYNoCEKhN6fsCiY5vVwbPoeb5PatsxyLn+H1bdZIEe9VHiqoSUtUUg6ZA2PlXYiGDaqJMs
+        gXQgWXDpOO16N1Bi8qeQsNMcHea1ksiuiOaLPfxc6yUKzbdHXgefAyCI1ujVBpgjmhD5h327rCxtq
+        meCroFQvcGHd/2+wpP3rr0DgcK3QXeAuijeK3hSutOJ1rH8HmcvFUsimL7DdGxyaiA7CWQlTTY/5i
+        awse3h7A==;
+Received: from [2601:1c0:6280:3f0::7376] (helo=bombadil.infradead.org)
+        by bombadil.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
+        id 1llFx1-001boq-QW; Mon, 24 May 2021 19:09:20 +0000
+From:   Randy Dunlap <rdunlap@infradead.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     Randy Dunlap <rdunlap@infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        kernel test robot <lkp@intel.com>
+Subject: [PATCH v2] OF: of_address: clean up OF stub & extern functions
+Date:   Mon, 24 May 2021 12:09:19 -0700
+Message-Id: <20210524190919.2616-1-rdunlap@infradead.org>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 23 May 2021 22:44:13 +0200, Martin Botka wrote:
-> Signed-off-by: Martin Botka <martin.botka@somainline.org>
-> ---
->  .../bindings/pinctrl/qcom,sm6125-pinctrl.yaml | 161 ++++++++++++++++++
->  1 file changed, 161 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
-> 
+Adjust <linux/of_address.h> so that stubs are present when
+CONFIG_OF is not set *or* OF is set but OF_ADDRESS is not set.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+This eliminates 2 build errors on arch/s390/ when HAS_IOMEM
+is not set (so OF_ADDRESS is not set).
+I.e., it provides a stub for of_iomap() when one was previously
+not provided as well as removing some duplicate externs.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml:122:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
+s390-linux-ld: drivers/irqchip/irq-al-fic.o: in function `al_fic_init_dt':
+irq-al-fic.c:(.init.text+0x7a): undefined reference to `of_iomap'
+s390-linux-ld: drivers/clocksource/timer-of.o: in function `timer_of_init':
+timer-of.c:(.init.text+0xa4): undefined reference to `of_iomap'
 
-dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.example.dts'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 45, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 421, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 109, in get_single_data
-    node = self.composer.get_single_node()
-  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
-  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 848, in _ruamel_yaml.CParser._compose_sequence_node
-  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-ruamel.yaml.scanner.ScannerError: while scanning a block scalar
-  in "<unicode string>", line 120, column 5
-found a tab character where an indentation space is expected
-  in "<unicode string>", line 122, column 1
-make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml:  while scanning a block scalar
-  in "<unicode string>", line 120, column 5
-found a tab character where an indentation space is expected
-  in "<unicode string>", line 122, column 1
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml: ignoring, error parsing file
-warning: no schema found in file: ./Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
-make: *** [Makefile:1416: dt_binding_check] Error 2
+Tested with many randconfig builds, but there could still be some
+hidden problem here.
 
-See https://patchwork.ozlabs.org/patch/1482519
+Fixes: 4acf4b9cd453 ("of: move of_address_to_resource and of_iomap declarations from sparc")
+Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Frank Rowand <frowand.list@gmail.com>
+Cc: devicetree@vger.kernel.org
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Reported-by: kernel test robot <lkp@intel.com>
+---
+v2: handle SPARC as a special case since it provides its own versions of
+    of_address_to_resource() and of_iomap();
+    fix build errors reported by lkp/ktr and address comments from Laurent;
+    do more randconfig build testing;
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+ include/linux/of_address.h |   11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+--- linux-next-20210524.orig/include/linux/of_address.h
++++ linux-next-20210524/include/linux/of_address.h
+@@ -106,11 +106,12 @@ static inline bool of_dma_is_coherent(st
+ }
+ #endif /* CONFIG_OF_ADDRESS */
+ 
+-#ifdef CONFIG_OF
++#ifdef CONFIG_SPARC /* SPARC has its own versions of these */
+ extern int of_address_to_resource(struct device_node *dev, int index,
+ 				  struct resource *r);
+-void __iomem *of_iomap(struct device_node *node, int index);
+-#else
++extern void __iomem *of_iomap(struct device_node *device, int index);
++#else /* !CONFIG_SPARC */
++#if (defined(CONFIG_OF) && !defined(CONFIG_OF_ADDRESS)) || !defined(CONFIG_OF)
+ static inline int of_address_to_resource(struct device_node *dev, int index,
+ 					 struct resource *r)
+ {
+@@ -121,7 +122,9 @@ static inline void __iomem *of_iomap(str
+ {
+ 	return NULL;
+ }
+-#endif
++#endif /* (defined(CONFIG_OF) && !defined(CONFIG_OF_ADDRESS)) || !defined(CONFIG_OF) */
++#endif /* CONFIG_SPARC */
++
+ #define of_range_parser_init of_pci_range_parser_init
+ 
+ #if defined(CONFIG_OF_ADDRESS) && defined(CONFIG_PCI)
