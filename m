@@ -2,88 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9666638E325
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 11:18:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAE5738E367
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 11:35:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232483AbhEXJUR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 05:20:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46646 "EHLO
+        id S232422AbhEXJgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 05:36:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232313AbhEXJUR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 05:20:17 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F3B2C061756
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 02:18:48 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id p39so4005335pfw.8
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 02:18:48 -0700 (PDT)
+        with ESMTP id S232396AbhEXJgc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 05:36:32 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B285BC061574
+        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 02:35:04 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id l18-20020a1c79120000b0290181c444b2d0so4050491wme.5
+        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 02:35:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=0c5Qxjp+4tL19l2WuaML9jbCExKjLNfzcff3PqhK+VE=;
-        b=h6aeeuYGuMndMeWE+tDnkHaFLWogpyi0c/FjQoc8wSMIdgESd1urJM9QEg454F/5qA
-         nsK+XL02e94ks6Ow+C3qCU1cWazB1c/RcK0eL7zt0ZG7THaIUM+tII/H6fGBmKVIxzA5
-         ze6RcWJrILiN3M0ZBwYrxZ9N6gMBkmTtwaSYTIKk9wpW24qmqR6gUmQSwLfKktktNO/k
-         1Kpa1iQnqx7w0JEOSJ4UY/A+OyqY+hFMUGAGIN8XUHQ7wg+a6tXpFTUyhsOWijG+v/i4
-         CJyeIlRdWYUHHfZATciNR2WziCr3Zw1l/vOQvzR6zegUblt31P5bNzTFUa7sIgw1wxQd
-         MSqg==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=62PaeGm/tBJ//uGzYHNPfzzgrMdbT7h0TiIpVr9Cdhw=;
+        b=oQTQ2EZXiqyQF23C+25JhSVHZpnMy1UlC/iAjYjDU735seJre1JC5UDfqK3Fphitf2
+         LPpLz98GFdYTpeyVUHrCPkQHSQORehwA8nzL57nF56H/13kWRsF8F2Qij7/3LMbZ+XSV
+         TPLUkOr73fIjwcGwCmmtcQf4XlAjAUjkWppdeJsdqG7QzqcuDvgl4KLAeYRKZTST5BLs
+         uUzvxmewHR3agPx27h0hVMcAenRJeFAn2UqT38E7VPTwCTzI9j+ifDlU6g0IqrJDgLBr
+         a6rPKGXu9TueSWkFkZMs/kI7TucgAe786TbD+uYsJoe3KHwH6KwWPe4BfpFpfCovJCQw
+         6Kew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=0c5Qxjp+4tL19l2WuaML9jbCExKjLNfzcff3PqhK+VE=;
-        b=Ygj957EF/2xpeON1GaxcOOoJ49nu79U5yFX1SHTRCMxBgMlM/9fwM06dGVdURb8DQE
-         oJ3I8ZaNKgDqoP/aUNiEJI9Oh8D5pVZ1PwPijJLeJ/8AFayF48dmsJIMM5GqOy8cQPI/
-         ffM8B5eCm7Y0LUb/hG030cSXvs+GeAbkL8BZqWQ4EcSCOtIXXnTdBL3trGveV4genD1v
-         j7irvlEJw4EjB3jiVpNwqj685USAVqEAff4E+x4ywTjFQqPeKInJjY7Q3l6EZ1F03o0L
-         XHd6LvFwi7cKd9ZDmKJTldIQ55rPVoGLmJfRm28s9P2/LDoG/9hXTrdlslah8HEpAFvb
-         OqFA==
-X-Gm-Message-State: AOAM533S5bUnv+jiE4j0rRfyWucS6C1Z47gVLqHKb9HYmxKeG0ZFhDUB
-        RG5yTzAApdhJPpgJrb1kCmEeDA==
-X-Google-Smtp-Source: ABdhPJzP2RUqZymnC2lnFHYSor1AieszJZmgrX4DEQ4so867X8K+jZMC2gm2x7if1QXdo4oFdo6teQ==
-X-Received: by 2002:a63:8f15:: with SMTP id n21mr12327462pgd.366.1621847928173;
-        Mon, 24 May 2021 02:18:48 -0700 (PDT)
-Received: from localhost ([136.185.154.93])
-        by smtp.gmail.com with ESMTPSA id p8sm10169150pfw.165.2021.05.24.02.18.47
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=62PaeGm/tBJ//uGzYHNPfzzgrMdbT7h0TiIpVr9Cdhw=;
+        b=EpGo4s3FXLA+96f2kw0rtOlwZX/TbGj73SXDixcmyh5QUlnmFIkk/t/BpxHBMF7bvp
+         ynHgc67VYfuq+4xSQgrhotmXrvqZbKl2+PQ3HG7g7pyrn0dlxzK/Hj8YndyFHvKhJf94
+         +MAubvIxOYDD7CJb8DxWOqQnDQL35zp3nKwz03xPum17zcPisS3CpYsm9wc54LqIzwxo
+         0Mlno0g4vEnJgB4AqS/BA2jtyBZkk2IW+Gfmr0NLoG86nfGq4niy+trJ19qGylBoUlF+
+         0/DGhO5Zm4uUu5T7vNbu2tc8qz/sAP/3JnGM+OxXgLzuIahvRr30wrWpWVZxPP1WiXCo
+         j5vA==
+X-Gm-Message-State: AOAM531tQsRgO1dQ1d9Ej4iqZdPQwdnAwBzKqf8wdXrNWWRvMZPFkXSG
+        2xryi22ADhK5q7Qpo+514FPjxw==
+X-Google-Smtp-Source: ABdhPJxHI5iSFZNJeQGs9c4fFwSfr366nLRLlKUkhGpSdqZSTLuYpYtZnagbzMC1XSzVri4QPcPqFQ==
+X-Received: by 2002:a05:600c:35cc:: with SMTP id r12mr18373680wmq.157.1621848903248;
+        Mon, 24 May 2021 02:35:03 -0700 (PDT)
+Received: from jackdaw.baylibre.com (82-65-169-74.subs.proxad.net. [82.65.169.74])
+        by smtp.googlemail.com with ESMTPSA id p6sm7317267wma.4.2021.05.24.02.35.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 May 2021 02:18:47 -0700 (PDT)
-Date:   Mon, 24 May 2021 14:48:45 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Hector Yuan <hector.yuan@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, wsd_upstream@mediatek.com
-Subject: Re: [PATCH v10] cpufreq: mediatek-hw: Add support for Mediatek
- cpufreq HW driver
-Message-ID: <20210524091845.wlikxun3x2qou7zs@vireshk-i7>
-References: <1609222629-2979-1-git-send-email-hector.yuan@mediatek.com>
+        Mon, 24 May 2021 02:35:02 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH] ASoC: meson: gx-card: fix sound-dai dt schema
+Date:   Mon, 24 May 2021 11:34:48 +0200
+Message-Id: <20210524093448.357140-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.32.0.rc0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1609222629-2979-1-git-send-email-hector.yuan@mediatek.com>
-User-Agent: NeoMutt/20180716-391-311a52
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29-12-20, 14:17, Hector Yuan wrote:
-> The CPUfreq HW present in some Mediatek chipsets offloads the steps necessary for changing the frequency of CPUs. 
-> The driver implements the cpufreq driver interface for this hardware engine. 
-> This patch depends on MT6779 DTS patchset[1] submitted by Hanks Chen.
-> 
-> >From v8 to v9, there are three more modifications.
-> 1. Based on patchset[2], align binding with scmi for performance domain.
-> 2. Add the CPUFREQ fast switch function support and define DVFS latency.
-> 3. Based on patchser[3], add energy model API parameter for mW.
+There is a fair amount of warnings when running 'make dtbs_check' with
+amlogic,gx-sound-card.yaml.
 
-Hi Hector,
+Ex:
+arch/arm64/boot/dts/amlogic/meson-gxm-q200.dt.yaml: sound: dai-link-0:sound-dai:0:1: missing phandle tag in 0
+arch/arm64/boot/dts/amlogic/meson-gxm-q200.dt.yaml: sound: dai-link-0:sound-dai:0:2: missing phandle tag in 0
+arch/arm64/boot/dts/amlogic/meson-gxm-q200.dt.yaml: sound: dai-link-0:sound-dai:0: [66, 0, 0] is too long
 
-You can refresh this series based on the patch from Sudeep:
+The reason is that the sound-dai phandle provided has cells, and in such
+case the schema should use 'phandle-array' instead of 'phandle'.
 
-https://lore.kernel.org/linux-devicetree/20210517155458.1016707-1-sudeep.holla@arm.com/
+Fixes: fd00366b8e41 ("ASoC: meson: gx: add sound card dt-binding documentation")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ .../devicetree/bindings/sound/amlogic,gx-sound-card.yaml      | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
+index db61f0731a20..2e35aeaa8781 100644
+--- a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
++++ b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
+@@ -57,7 +57,7 @@ patternProperties:
+           rate
+ 
+       sound-dai:
+-        $ref: /schemas/types.yaml#/definitions/phandle
++        $ref: /schemas/types.yaml#/definitions/phandle-array
+         description: phandle of the CPU DAI
+ 
+     patternProperties:
+@@ -71,7 +71,7 @@ patternProperties:
+ 
+         properties:
+           sound-dai:
+-            $ref: /schemas/types.yaml#/definitions/phandle
++            $ref: /schemas/types.yaml#/definitions/phandle-array
+             description: phandle of the codec DAI
+ 
+         required:
 -- 
-viresh
+2.32.0.rc0
+
