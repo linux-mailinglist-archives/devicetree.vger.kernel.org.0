@@ -2,178 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 733D038EEC9
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 17:54:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A22B38F14C
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 18:13:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234001AbhEXPzS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 11:55:18 -0400
-Received: from mx0a-00069f02.pphosted.com ([205.220.165.32]:49764 "EHLO
-        mx0a-00069f02.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235199AbhEXPzC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 May 2021 11:55:02 -0400
-Received: from pps.filterd (m0246629.ppops.net [127.0.0.1])
-        by mx0b-00069f02.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 14OFVodS005312;
-        Mon, 24 May 2021 15:51:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : references : content-type : in-reply-to :
- mime-version; s=corp-2020-01-29;
- bh=ANT5xKW4nx9m49D6/G8fs6o+OuyuuDORxrGpmun4OaE=;
- b=qrHgrHMxhsaF79ZYG/kLlxpYPZVP4f+0Z+b18LeoJSWSx9YeuGQ8XtIHf4YmV5tJ8jEm
- wKNa7q0c1VUC9ewublNDludWoJ030qKy6ECaKENS+S2x07OmSU8YG+BfNBZEInFLYEBJ
- gHGlfVqOFRVX+yMgpTU59cWsKgebxhaf/Q/vD0ly10EAmhVaBE2FABLCaEE57qX0cWhj
- 8lQ0BKBx3Zp0XJwQ1cNH2TsisPKNn6vrVqU1IlP/4EBriQWhRUCwDjMMQ9xZ+iwsD7/6
- HKH5UkdWS+DoxN3WMrAGq7YjgP3G6dq1rCrUc5mX5GLRumpFMx4/VsFUPTIOTIi6K5Pf Dg== 
-Received: from oracle.com (userp3020.oracle.com [156.151.31.79])
-        by mx0b-00069f02.pphosted.com with ESMTP id 38r267r8mt-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 24 May 2021 15:51:29 +0000
-Received: from userp3020.oracle.com (userp3020.oracle.com [127.0.0.1])
-        by pps.podrdrct (8.16.0.36/8.16.0.36) with SMTP id 14OFlg7X024516;
-        Mon, 24 May 2021 15:51:28 GMT
-Received: from nam04-bn8-obe.outbound.protection.outlook.com (mail-bn8nam08lp2048.outbound.protection.outlook.com [104.47.74.48])
-        by userp3020.oracle.com with ESMTP id 38qbqrbpx4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 24 May 2021 15:51:27 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BHh0pj5ZxiT6YLjthu35y50e/lVzAGsa6PPkJf7HWbnxfw+iTaQfD98asDhw56/aF2Ssdx1kNirBcf2OMT97qkcWwEnB8EpyW8PvzaLL77u/ilkzzIRb7sdDVHKUV+LetcRwz+w0tACsMm7NfcqrY69HgfpWGfVJaKXIPg0El38fX8IoghQwoGzRcw3fqfl37J5nkwLq9ptDmJs9+uil163icWL3ICiYQdYWq6t4FTAMkfLjQVVAwdGR7vGHv6jUXR9Wef8sSNTe1ZHkJKAPZt5ARkX243QhHu3kQJSiLceIbw6zEWLwqQxmGGpVJrG+Qi6+4in3G/8xDIPbyO3zkw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ANT5xKW4nx9m49D6/G8fs6o+OuyuuDORxrGpmun4OaE=;
- b=OAeqYh0f58V6IHL07eBrGHgQtKQMwhJ+cvnN6gbcy/AmzrjSD0fpF3y57dU/hVpsxKeUK7w9M1hLHfut4tsYajBxnJY94efai/gcO5TUihbkIn1bzBKnwRK93rbB0sRl/qg9VCLYNq1zL5AKUNyQ8tegrfwAAvR6I6lyr3NOAGsQ5XhR+UEqdLeM0q1ftvej6Xh6JqhmtkJuUs5IlFk9eeDyC0jQeFy39V7tebh3BKrQX8/zbc0BUovYXZExHr9MlxhtM97o1R28dhG4ojvOXCUwim4WhVq+Hf41pIvqYzlTqyfABJYlYAQw59ZiCD9qYAROLgil0cHlMvNtqPwZxw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ANT5xKW4nx9m49D6/G8fs6o+OuyuuDORxrGpmun4OaE=;
- b=dfaZOae0bFVaquGcd68p7COHf7NSnMoK+q5vEUfpruHVPdGCrSde54IdgopJb/+t5XxGdHvyUxuuxW76oxZ/xZXqsZTguhBaFsx9K+Uh0hAXVDiCICJntr//mWTrUy6AwQUmpYmcJhbPYBm2bFXngVLZdmqCWTfKPnQVhlpz+/w=
-Authentication-Results: chromium.org; dkim=none (message not signed)
- header.d=none;chromium.org; dmarc=none action=none header.from=oracle.com;
-Received: from BYAPR10MB2999.namprd10.prod.outlook.com (2603:10b6:a03:85::27)
- by BYAPR10MB3096.namprd10.prod.outlook.com (2603:10b6:a03:151::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.26; Mon, 24 May
- 2021 15:51:23 +0000
-Received: from BYAPR10MB2999.namprd10.prod.outlook.com
- ([fe80::8111:d8f1:c262:808d]) by BYAPR10MB2999.namprd10.prod.outlook.com
- ([fe80::8111:d8f1:c262:808d%6]) with mapi id 15.20.4150.027; Mon, 24 May 2021
- 15:51:23 +0000
-Date:   Mon, 24 May 2021 11:51:15 -0400
-From:   Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
-To:     Claire Chang <tientzu@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        grant.likely@arm.com, xypron.glpk@gmx.de,
-        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
-        bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
+        id S233838AbhEXQPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 12:15:21 -0400
+Received: from vern.gendns.com ([98.142.107.122]:43838 "EHLO vern.gendns.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237025AbhEXQOR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 May 2021 12:14:17 -0400
+X-Greylist: delayed 1212 seconds by postgrey-1.27 at vger.kernel.org; Mon, 24 May 2021 12:14:16 EDT
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=mu76QB4BKzjBdZu1ybVuQhnhYDd8LEq/NCibHuc/NpI=; b=QT3nO2BecZHEyvyRTzcV140qNW
+        wnc8wO8/dZnmXj7LljHXe6bvyvzEfV5wOW/crRLjTIH8UVfV2EQVQCJdmiUqzUuHVyYTr/fZOTRE1
+        zBxYfK7KKHs/76InpIy1G9nI6orSo3NCLB89p8N3RQ7tC4MMBBNSlHdmdEHDtZt6f4BOXCBjEsPCI
+        vzDkhuw5GUs0LQByGyYPZsrtemtE96Kwl1DKqQpIzNDGSMjQhbMvwFQw8YsLyvQrxBbZ34Guayc4L
+        W11hjip8t/a/xYIpwTf924GIkAdGXiLxisXslMjDreIhNu8dCfYwYVSPilkRys+uM2LFgTTyFM/Wo
+        p4pZ2Ilw==;
+Received: from [2600:1700:4830:165f::fb2] (port=33546)
+        by vern.gendns.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <david@lechnology.com>)
+        id 1llCsV-0002Ll-5n; Mon, 24 May 2021 11:52:30 -0400
+Subject: Re: [PATCH v3 1/2] ARM: dts: da850-lego-ev3: align GPIO hog names
+ with dt-schema
+To:     Aswath Govindraju <a-govindraju@ti.com>
+Cc:     Lokesh Vutla <lokeshvutla@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
-        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
-        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
-        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
-        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
-        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
-        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
-        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com
-Subject: Re: [PATCH v7 05/15] swiotlb: Add a new get_io_tlb_mem getter
-Message-ID: <YKvLc9onyqdsINP7@0xbeefdead.lan>
-References: <20210518064215.2856977-1-tientzu@chromium.org>
- <20210518064215.2856977-6-tientzu@chromium.org>
- <CALiNf28ke3c91Y7xaHUgvJePKXqYA7UmsYJV9yaeZc3-4Lzs8Q@mail.gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CALiNf28ke3c91Y7xaHUgvJePKXqYA7UmsYJV9yaeZc3-4Lzs8Q@mail.gmail.com>
-X-Originating-IP: [130.44.160.152]
-X-ClientProxiedBy: BL1PR13CA0025.namprd13.prod.outlook.com
- (2603:10b6:208:256::30) To BYAPR10MB2999.namprd10.prod.outlook.com
- (2603:10b6:a03:85::27)
+        Rob Herring <robh+dt@kernel.org>, Keerthy <j-keerthy@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20210524151955.8008-1-a-govindraju@ti.com>
+ <20210524151955.8008-2-a-govindraju@ti.com>
+From:   David Lechner <david@lechnology.com>
+Message-ID: <4fbab5e8-f957-0927-c9fd-3127ae30b746@lechnology.com>
+Date:   Mon, 24 May 2021 10:52:25 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from 0xbeefdead.lan (130.44.160.152) by BL1PR13CA0025.namprd13.prod.outlook.com (2603:10b6:208:256::30) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.11 via Frontend Transport; Mon, 24 May 2021 15:51:17 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 27d633d6-6886-4ffa-a44a-08d91ecbc7c4
-X-MS-TrafficTypeDiagnostic: BYAPR10MB3096:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BYAPR10MB30962A69BA3EEA748AD71B7989269@BYAPR10MB3096.namprd10.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2733;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +N83Gd+vIa6HFf9GGeGnQWALIhCS11sTuVASeml3ScVVX4kKnQ90+wmWu14xkc2kHAqM1eBMxPhJwGeSP1ybhcQrmrrji/5Yh7NI5AKUXOSH//YUcD6OdkMRAPXEUco7bX2XJlO026ptDlGszXsM+Qa8JjiU6tmYWji57vfTiq/orKeqqgLkQHHAbtjWkRyI55C7TsR9l0l/uGNPf2zuLhmtdqFq7BbjIeQdl0xyufGalOxjj9196lHp1FNjL/SqzSY7fuqeTDLezHQhjzsoYnQed+4S+L2XK93PL6Ztq780tsZ493ifPS/HCl5OePy8j0a77gIgGXbjYuB6dL7SOtjhjltMz5UNPpwNpFBtRPA6YEzQkVsYU2+C+mRoaDQLRUApxKvPMxyhVlgCmur+apUde+Z1cur4qY3HGPq8MNusIwBdSQXjy3MqoIrHAg1GzcilGenGQEIBP9M6Pp2FxeOcLajvKTZnSFz4rx5xSzOSb/3jU4rboTLnN2THtqpEAIu7J8uMBHd7w2LwkCDrb3jSHbbbADhvIT7ZgOKjYwPZzUYaXrCfDQ0xqAz4K1HYih6FqE/23ProZp2orcZc565JO1gB+og9ZYUOk8XLtb9Tlxo8Ch+pQ2nGiyYPQefAwCCY2HafKeS577/MPO3p3e89ufUhQsTgLk375bvPYqE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR10MB2999.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(366004)(376002)(346002)(136003)(39860400002)(8936002)(8886007)(9686003)(4326008)(66946007)(66556008)(66476007)(52116002)(5660300002)(36756003)(2906002)(6506007)(7366002)(6916009)(7406005)(8676002)(7696005)(7416002)(316002)(4744005)(956004)(186003)(26005)(16526019)(54906003)(38100700002)(38350700002)(86362001)(478600001)(55016002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?oo36w6L3PwdgG9nBNqyN8WBm2OiXwQ483HbbfXjA5xY9AczPozaEoVkR4yfg?=
- =?us-ascii?Q?zPCJY/w1sw6eV/0nk7eRpYHNzc4hCTjl8JUJcnX4BZhXwaPlqkM7aS+QPTKo?=
- =?us-ascii?Q?qI7C8haJTOXJh1eYTxkF64beSG/lXI9LtquWwRHsYot3B7TnIKK7JxJkBOEU?=
- =?us-ascii?Q?jex4r6FRmWgSalUFUAiS/BosSJcYPT4O+BUqIPg20Tt2M/R/gRoaEgIrKarm?=
- =?us-ascii?Q?2QW5ufRML0QU6582vWejdu4B2ed+ng64wCsojkX2RdUissmkr22DCRol05KR?=
- =?us-ascii?Q?O5svXcOsJTPtKdnznmuJBT/qKUsG+pM3hfYP9bCsZfx7mP76i2WwZyyUa89L?=
- =?us-ascii?Q?P2LUjGZkt6NhNSfkmgknUZfE2uf13dl34AxWqw8yrNnskWa80CJNWj/s3v+k?=
- =?us-ascii?Q?JiLlJszvn+zi6iZxd0aL5PhkJXVKSIiDbKf2p258OMmg04Z9GIlN8GKcydI6?=
- =?us-ascii?Q?YDKtjkq1sbYlaNhe/i1SLA70JOFp1kG3S3hrLptP+NNmLl5QOCe0EE4JNX0U?=
- =?us-ascii?Q?uxw+nslQVakkslnuc2Obq4izZ9RniboX9QsNmT2/w8chqFD7fvq/+S181GFQ?=
- =?us-ascii?Q?zC/5MXz0QLqyN3bDkLG3fdrzqV4sZbYDWpt4rmayhVS7Drui1B+duAY1RGuK?=
- =?us-ascii?Q?ahnSToT+WLZyeq5h+e8lzNlmBptd6o2wWy+QE7ayMzWQPSjmBSqTcd2QCvNI?=
- =?us-ascii?Q?eYb3yRAEt4AqYqjJ1svN+KQ1sJhzlNyGOtJ63Gq/bfpXy0wfxy/XVCdvwF8i?=
- =?us-ascii?Q?IsYjdxlVZAxbWdyCz9IJowF45rNCNxb0OGtaqs7L99BRJWZkJ5wLqCG87Z7P?=
- =?us-ascii?Q?SDNpGOfFSQvG2E/uBgZZpf+ETp/pkk3U4yfsL2DuubLUrNC62S8vmGXZC1SP?=
- =?us-ascii?Q?AbhY2VlH5coloSgcUmuOG+bOzuJdJM+Ta6iG3/A7rsu5TD1aGBfRZ4/IpbEm?=
- =?us-ascii?Q?cB6yPsjhd/D5j7EDbXHu25ujKcNPvGD1YiDrCEAHHZkq1ZnPiktcyMZMiXog?=
- =?us-ascii?Q?BlcrNxx1ptCLXNa9EBkgxPR6C5FEGY/rqokiWWCqvHvxWv7rKEFTvmN4tPMZ?=
- =?us-ascii?Q?2HZpCcGL7R3M77OMDGBuPY8uz2AbQ6Gvwwp0eoe994DjRE9rzCPEh1IganGQ?=
- =?us-ascii?Q?VgT4GwAgR6pZGeQDAh6/bi/Rw4KsW1rxYU+oTxQ9GcwvoWRNiF3tQGyv5EvJ?=
- =?us-ascii?Q?GDPsI2BGsOyLmqo2suSJAwDu9AheDXYoPMQ+EWv3hnFMywAbDJudvbtJ3v4+?=
- =?us-ascii?Q?BOO1BjKfpBgL5nFsIgwXDKrXjYXHTl010/nKw44YQHT31Je6nbYgVC7pXSWA?=
- =?us-ascii?Q?aoEzv4EB4ztnyFFtarSDv7i/?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 27d633d6-6886-4ffa-a44a-08d91ecbc7c4
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR10MB2999.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 May 2021 15:51:23.0272
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DxAllPJF1Dj9LN1/8w73nsJA1i57Xgng16mblVk0eANUe4Km8DzVt6OxfeczoB8PyL61CptsY18dgcIG9dyUCg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR10MB3096
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9993 signatures=668682
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 phishscore=0 bulkscore=0
- mlxlogscore=999 malwarescore=0 spamscore=0 suspectscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2104190000
- definitions=main-2105240095
-X-Proofpoint-ORIG-GUID: sc6PYAtMB6pfPEa5xGNcqSGSSBmqt-Er
-X-Proofpoint-GUID: sc6PYAtMB6pfPEa5xGNcqSGSSBmqt-Er
+In-Reply-To: <20210524151955.8008-2-a-govindraju@ti.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - vern.gendns.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lechnology.com
+X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 18, 2021 at 02:51:52PM +0800, Claire Chang wrote:
-> Still keep this function because directly using dev->dma_io_tlb_mem
-> will cause issues for memory allocation for existing devices. The pool
-> can't support atomic coherent allocation so we need to distinguish the
-> per device pool and the default pool in swiotlb_alloc.
+On 5/24/21 10:19 AM, Aswath Govindraju wrote:
+> The GPIO hog dt-schema node naming convention expect GPIO hogs node names
+> to end with a 'hog' suffix.
+> 
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> ---
 
-This above should really be rolled in the commit. You can prefix it by
-"The reason it was done this way was because directly using .."
+Acked-by: David Lechner <david@lechnology.com>
 
 
