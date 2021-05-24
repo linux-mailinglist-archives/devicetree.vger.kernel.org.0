@@ -2,260 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6012E38DE49
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 01:56:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5541238DE69
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 02:36:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232167AbhEWX6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 May 2021 19:58:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35438 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232137AbhEWX6H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 May 2021 19:58:07 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A13B6C06138A;
-        Sun, 23 May 2021 16:56:38 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id b26so22035219lfq.4;
-        Sun, 23 May 2021 16:56:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=SZjslNJj0RrvMEBltMfpTerrLG/TtMo8+YaLhqfm6kQ=;
-        b=VHGfKQeD5DEVYG9/7bqRxsUqwRkh1peG1GhTmILCWbDJezl5ACdD1+ZypwzgY9Y/ov
-         4w5EkjNuRX2/0xvcDA2WHkKd3gYxB4x0dVJvyDRBE58GpDg9kNGVQXHRZCSDMEZfoIUD
-         2007ERvoRrCmRslHscWMo8H1s6zWgU07H0MoYTCQzd72SOhqaPm9/aYPNhvi1cRCX8oF
-         dXAVwkHZJjrJBvRuLKjcSAAOehArhU0N3+RplQ+ImSi9BcCPkGe0nlKkb3LcX5TdTqPe
-         JpCnhRs4oyhf14u6PQC0HTnXzXhPLQG1/xPYJxFaDB16njlmiaZKTZqR352mpsOHYNqC
-         SS+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=SZjslNJj0RrvMEBltMfpTerrLG/TtMo8+YaLhqfm6kQ=;
-        b=IRoFwGHyvDvvfkkTcpPeyuaxzXNfRzppSvNpVdtB2uXCPHdnz8WRZsRAL7Ou3qx1A8
-         OCEPlBO3BMbaazQpYwieZQEREWKp6x0PlV5rsCIcK3YfOz8FZNm4o6f891kHMhnMzvly
-         vD1IJtCInym1TgDMKmUTAzv5hKGaBddPwVYqwCnFOyuuLPwUPCUIIHqbtEM2vPfETmRK
-         IjBVysLYMOHBDuKqgr8X6TcdLRu2NuN5WwugTKfEiNDe6+SYLTx9H6hxvZEp9tEiBqcE
-         4M7Gy1eic1ZFnBC41+nrw9OnJ7nAnuV6C0pmK7eQqECU0s8FpccEPCbvXbgAaPfYJ3N6
-         mldg==
-X-Gm-Message-State: AOAM531gGNhRpmCe5UfWK/z2n7ULaomDwa0GUCrB6bTzowSD1apon+vg
-        Cu9vTXWp0iWHQfn79l2qytM=
-X-Google-Smtp-Source: ABdhPJz34PfRmncVj1km4qFInTQvlWxQpf3C3erhxrfDRu0zzc54ylbOCFTpiH8MDp/QJwu+pbhecQ==
-X-Received: by 2002:a19:495b:: with SMTP id l27mr9261746lfj.230.1621814197047;
-        Sun, 23 May 2021 16:56:37 -0700 (PDT)
-Received: from localhost.localdomain (109-252-193-110.dynamic.spd-mgts.ru. [109.252.193.110])
-        by smtp.gmail.com with ESMTPSA id h4sm1092987lfv.247.2021.05.23.16.56.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 May 2021 16:56:36 -0700 (PDT)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Andreas Westman Dorcsak <hedmoo@yahoo.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Ihor Didenko <tailormoon@rambler.ru>,
-        Ion Agorria <ion@agorria.com>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH v2 7/7] ARM: tegra: Add SoC thermal sensor to Tegra30 device-trees
-Date:   Mon, 24 May 2021 02:56:20 +0300
-Message-Id: <20210523235620.31538-8-digetx@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210523235620.31538-1-digetx@gmail.com>
-References: <20210523235620.31538-1-digetx@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S232060AbhEXAhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 May 2021 20:37:51 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:36527 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232058AbhEXAhv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 May 2021 20:37:51 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id A26B35802E4;
+        Sun, 23 May 2021 20:36:23 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute3.internal (MEProxy); Sun, 23 May 2021 20:36:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm2; bh=zkdYOgBr6Su2ai8/JFeN24jFqNEfx2N
+        9VN/bHqPBWM8=; b=I1UgvuBWfB/H3UC2DCeyOvtYsiu44FCeM+ceMlNQh86h/rQ
+        VH3oGHRSQZE0ESXyx5gleiDHAc+RQ2+DnK0aZu3tq5fh6KAseOuXmloxARAqUV66
+        VHbUuprYslYzYg4o9o/6iuxZgENs+w/NX+6dfJ/zKphutE1aaZjGqhz9RTdIgAwi
+        q/UoPr66PSotyBmtus5RHQOteW1qU3/YUcNvKtwkXOefEXTfoMou/DKRij0oefqS
+        H3jArk5UBD0sMRcCoQWxd6TX1S8B2npJ9TUknbkOYXbsYZ5abIN3m/9wIiV+mInD
+        EBvEZqWKPIE4iKchSiOI2ZDjgMuFaXzGvnH9r4w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=zkdYOg
+        Br6Su2ai8/JFeN24jFqNEfx2N9VN/bHqPBWM8=; b=n9NkXkhXcEEkTg2EhGUS7A
+        axzagLdcosddoN2VOIizkliicbXB2tK1hic9l4puTgRUWdS/5Q8nqsUE8zeJx3hd
+        Q+h6slEB/0q6AfR1uMV5NCth1yE2qHyy/aUa1ESklQxyXCKftAqXw7JtZgBVHR3M
+        9EaaoYs1OiTjmyDdCIqs2EjtJbyY0XiWDiAm06D/uAjLgLzdVorBXKUw03wWSBiX
+        tg6/8PmsesX5bisK1b1GAQfhOjZno1/C5ilMBWFIV750nBMfYspETlENVKIroN3M
+        Wiun7ETMFWKsXiyGDuZfFJUf/n0HTbKonLDUzQKTo0QxRKwCzVO/XNhQ86dp+D4Q
+        ==
+X-ME-Sender: <xms:BPWqYA1T02O_wgqkUUutE61gLIrFB5ABfOtV2F9pdY9mVoKbS9csHg>
+    <xme:BPWqYLEmintilSSGkp4bvbEkkObYCPDS6s3mfqOwUOK-SYzz8JfVmqR99ePVPtPKX
+    EuqaGw5Vwgrzv_swg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdejkedgtdehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
+    grthhtvghrnhephefhfeekgfekudevheffheeihedujeefjeevjeefudfgfeeutdeuvdeh
+    hfevueffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    eprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:BPWqYI7XIdnyYpc88GTK0x4feDcqV4tnMSUyq8Qa-j1rTkYdYUPNyg>
+    <xmx:BPWqYJ3H3frTV1PdvXsy9fo1aPhhCnKBZhYdIrYZJ-wu6HkMElJCiA>
+    <xmx:BPWqYDHQxHjwgSFZ0HZuD6L0ydZzNpJqCTNCQvNNektIjgHhihqIEQ>
+    <xmx:B_WqYDG5gJFy-RimBvuKtngX-3bz9X1LqNiHKDisST7-L-CX6BqcLg>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id B59E0A004B1; Sun, 23 May 2021 20:36:20 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-448-gae190416c7-fm-20210505.004-gae190416
+Mime-Version: 1.0
+Message-Id: <e0803983-a385-4972-9dcb-404b2006f674@www.fastmail.com>
+In-Reply-To: <20210521173616.GK2921206@minyard.net>
+References: <20210510054213.1610760-1-andrew@aj.id.au>
+ <20210521173616.GK2921206@minyard.net>
+Date:   Mon, 24 May 2021 10:06:00 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Corey Minyard" <minyard@acm.org>
+Cc:     openipmi-developer@lists.sourceforge.net, openbmc@lists.ozlabs.org,
+        devicetree@vger.kernel.org, "Tomer Maimon" <tmaimon77@gmail.com>,
+        linux-aspeed@lists.ozlabs.org,
+        "Avi Fishman" <avifishman70@gmail.com>,
+        "Patrick Venture" <venture@google.com>,
+        linux-kernel@vger.kernel.org, "Tali Perry" <tali.perry1@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
+        linux-arm-kernel@lists.infradead.org,
+        "Benjamin Fair" <benjaminfair@google.com>,
+        "Arnd Bergmann" <arnd@arndb.de>, "Zev Weiss" <zweiss@equinix.com>
+Subject: Re: [PATCH v3 00/16] ipmi: Allow raw access to KCS devices
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the on-chip SoC thermal sensor to Tegra30 device-trees. Now CPU
-temperature reporting and thermal throttling is available on all Tegra30
-devices universally.
+Hi Corey,
 
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- arch/arm/boot/dts/tegra30-ouya.dts | 16 +++++
- arch/arm/boot/dts/tegra30.dtsi     | 93 ++++++++++++++++++++++++++++--
- 2 files changed, 105 insertions(+), 4 deletions(-)
+On Sat, 22 May 2021, at 03:06, Corey Minyard wrote:
+> On Mon, May 10, 2021 at 03:11:57PM +0930, Andrew Jeffery wrote:
+> > Hello,
+> > 
+> > This is the 3rd spin of the series refactoring the keyboard-controller-style
+> > device drivers in the IPMI subsystem.
+> 
+> This is a nice set of cleanups outside of just allowing raw access.
+> I'll let you handle Zev's comments and a few of mine.
 
-diff --git a/arch/arm/boot/dts/tegra30-ouya.dts b/arch/arm/boot/dts/tegra30-ouya.dts
-index e767ac227a81..d792ce5c64c0 100644
---- a/arch/arm/boot/dts/tegra30-ouya.dts
-+++ b/arch/arm/boot/dts/tegra30-ouya.dts
-@@ -468,6 +468,22 @@ map1 {
- 				};
- 			};
- 		};
-+
-+		tsensor-channel0 {
-+			trips {
-+				dvfs-alert {
-+					temperature = <70000>;
-+				};
-+
-+				cpu-div2-throttle {
-+					temperature = <75000>;
-+				};
-+
-+				soc-critical {
-+					temperature = <90000>;
-+				};
-+			};
-+		};
- 	};
- 
- 	vdd_12v_in: vdd_12v_in {
-diff --git a/arch/arm/boot/dts/tegra30.dtsi b/arch/arm/boot/dts/tegra30.dtsi
-index c577c191be4b..6becbadef210 100644
---- a/arch/arm/boot/dts/tegra30.dtsi
-+++ b/arch/arm/boot/dts/tegra30.dtsi
-@@ -5,6 +5,7 @@
- #include <dt-bindings/pinctrl/pinctrl-tegra.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/soc/tegra-pmc.h>
-+#include <dt-bindings/thermal/thermal.h>
- 
- #include "tegra30-peripherals-opp.dtsi"
- 
-@@ -800,6 +801,21 @@ fuse@7000f800 {
- 		reset-names = "fuse";
- 	};
- 
-+	tsensor: tsensor@70014000 {
-+		compatible = "nvidia,tegra30-tsensor";
-+		reg = <0x70014000 0x500>;
-+		interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&tegra_car TEGRA30_CLK_TSENSOR>;
-+		resets = <&tegra_car TEGRA30_CLK_TSENSOR>;
-+
-+		assigned-clocks = <&tegra_car TEGRA30_CLK_TSENSOR>;
-+		assigned-clock-parents = <&tegra_car TEGRA30_CLK_CLK_M>;
-+		assigned-clock-rates = <500000>;
-+
-+		#thermal-sensor-cells = <1>;
-+		#cooling-cells = <2>;
-+	};
-+
- 	hda@70030000 {
- 		compatible = "nvidia,tegra30-hda";
- 		reg = <0x70030000 0x10000>;
-@@ -1062,32 +1078,36 @@ cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
--		cpu@0 {
-+		cpu0: cpu@0 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a9";
- 			reg = <0>;
- 			clocks = <&tegra_car TEGRA30_CLK_CCLK_G>;
-+			#cooling-cells = <2>;
- 		};
- 
--		cpu@1 {
-+		cpu1: cpu@1 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a9";
- 			reg = <1>;
- 			clocks = <&tegra_car TEGRA30_CLK_CCLK_G>;
-+			#cooling-cells = <2>;
- 		};
- 
--		cpu@2 {
-+		cpu2: cpu@2 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a9";
- 			reg = <2>;
- 			clocks = <&tegra_car TEGRA30_CLK_CCLK_G>;
-+			#cooling-cells = <2>;
- 		};
- 
--		cpu@3 {
-+		cpu3: cpu@3 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a9";
- 			reg = <3>;
- 			clocks = <&tegra_car TEGRA30_CLK_CCLK_G>;
-+			#cooling-cells = <2>;
- 		};
- 	};
- 
-@@ -1102,4 +1122,69 @@ pmu {
- 				     <&{/cpus/cpu@2}>,
- 				     <&{/cpus/cpu@3}>;
- 	};
-+
-+	thermal-zones {
-+		tsensor-channel0 {
-+			polling-delay-passive = <1000>; /* milliseconds */
-+			polling-delay = <5000>; /* milliseconds */
-+
-+			thermal-sensors = <&tsensor 0>;
-+
-+			trips {
-+				level1_trip: dvfs-alert {
-+					/* throttle at 67C until temperature drops to 66.8C */
-+					temperature = <67000>;
-+					hysteresis = <200>;
-+					type = "passive";
-+				};
-+
-+				level2_trip: cpu-div2-throttle {
-+					/* hardware CPU x2 freq throttle at 70C */
-+					temperature = <70000>;
-+					hysteresis = <200>;
-+					type = "hot";
-+				};
-+
-+				soc-critical {
-+					/* hardware shut down at 80C */
-+					temperature = <80000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&level1_trip>;
-+					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&actmon THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+
-+				map1 {
-+					trip = <&level2_trip>;
-+					cooling-device = <&tsensor THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+
-+		tsensor-channel1 {
-+			status = "disabled";
-+
-+			polling-delay-passive = <1000>; /* milliseconds */
-+			polling-delay = <0>; /* milliseconds */
-+
-+			thermal-sensors = <&tsensor 1>;
-+
-+			trips {
-+				dvfs-alert {
-+					temperature = <80000>;
-+					hysteresis = <200>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+	};
- };
--- 
-2.30.2
+Thanks for taking the time to review the series. I'll address the 
+comments from you both in v4.
 
+> 
+> I almost hate to ask this, but would there be value in allowing the BT
+> driver to use this abstract interface? 
+
+Hmm. Possibly, but it's not something I've looked at yet. If we did 
+want to go down that path I don't think it would be too difficult, but 
+I don't have a need to touch the BT side of it right now.
+
+> Or maybe it would be just too
+> hard to get a common abstraction, more work than it's worth.  It's
+> surprising that more people don't want BT as it's vastly superior to
+> KCS.  
+
+For bulk data, certainly. However for the use-cases I have I'm using 
+the KCS interface as a control channel that isn't data intensive. 
+Interrupts, a small command set (256 values are more than enough) and a 
+status byte are all I'm really after, so BT is more than I need.
+
+Plus for the systems I'm working on we're still using BT for in-band 
+IPMI while we transition to MCTP/PLDM. The current BT implementation is 
+working fine for that :)
+
+Cheers,
+
+Andrew
