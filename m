@@ -2,28 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51D6E38E0EF
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 08:17:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40E7738E0E3
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 08:12:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232120AbhEXGSf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 02:18:35 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:31276 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S231605AbhEXGSf (ORCPT
+        id S232235AbhEXGNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 02:13:37 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:22021 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S232128AbhEXGNh (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 May 2021 02:18:35 -0400
-X-Greylist: delayed 302 seconds by postgrey-1.27 at vger.kernel.org; Mon, 24 May 2021 02:18:35 EDT
-Date:   24 May 2021 15:12:04 +0900
+        Mon, 24 May 2021 02:13:37 -0400
+Date:   24 May 2021 15:12:09 +0900
 X-IronPort-AV: E=Sophos;i="5.82,319,1613401200"; 
-   d="scan'208";a="82038446"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 24 May 2021 15:12:04 +0900
+   d="scan'208";a="82217454"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 24 May 2021 15:12:09 +0900
 Received: from mercury.renesas.com (unknown [10.166.252.133])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id A63DD400D0C2;
-        Mon, 24 May 2021 15:12:04 +0900 (JST)
-Message-ID: <87wnrooe2z.wl-kuninori.morimoto.gx@renesas.com>
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id ADDE141BEAD2;
+        Mon, 24 May 2021 15:12:09 +0900 (JST)
+Message-ID: <87v978oe2u.wl-kuninori.morimoto.gx@renesas.com>
 From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Subject: [PATCH 1/3] ASoC: dt-bindings: renesas: rsnd: tidyup properties
+Subject: [PATCH 2/3] ASoC: rsnd: tidyup loop on rsnd_adg_clk_query()
 User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
 To:     Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
@@ -41,55 +40,40 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
-1) resets/reset-names needs minItems
-2) It can use ports, not only port
-3) It is not using audio-graph properties
+commit 06e8f5c842f2d ("ASoC: rsnd: don't call clk_get_rate() under
+atomic context") used saved clk_rate, thus for_each_rsnd_clk()
+is no longer needed. This patch fixes it.
 
-Without this patch, we will get warnings
-
+Fixes: 06e8f5c842f2d ("ASoC: rsnd: don't call clk_get_rate() under atomic context")
 Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 ---
- .../devicetree/bindings/sound/renesas,rsnd.yaml        | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+ sound/soc/sh/rcar/adg.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-index 605de3a5847f..ee936d1aa724 100644
---- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-+++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-@@ -86,9 +86,11 @@ properties:
-   power-domains: true
+diff --git a/sound/soc/sh/rcar/adg.c b/sound/soc/sh/rcar/adg.c
+index f7773c41085b..a0b5bd5a7464 100644
+--- a/sound/soc/sh/rcar/adg.c
++++ b/sound/soc/sh/rcar/adg.c
+@@ -290,7 +290,6 @@ static void rsnd_adg_set_ssi_clk(struct rsnd_mod *ssi_mod, u32 val)
+ int rsnd_adg_clk_query(struct rsnd_priv *priv, unsigned int rate)
+ {
+ 	struct rsnd_adg *adg = rsnd_priv_to_adg(priv);
+-	struct clk *clk;
+ 	int i;
+ 	int sel_table[] = {
+ 		[CLKA] = 0x1,
+@@ -303,10 +302,9 @@ int rsnd_adg_clk_query(struct rsnd_priv *priv, unsigned int rate)
+ 	 * find suitable clock from
+ 	 * AUDIO_CLKA/AUDIO_CLKB/AUDIO_CLKC/AUDIO_CLKI.
+ 	 */
+-	for_each_rsnd_clk(clk, adg, i) {
++	for (i = 0; i < CLKMAX; i++)
+ 		if (rate == adg->clk_rate[i])
+ 			return sel_table[i];
+-	}
  
-   resets:
-+    minItems: 1
-     maxItems: 11
- 
-   reset-names:
-+    minItems: 1
-     maxItems: 11
- 
-   clocks:
-@@ -110,6 +112,13 @@ properties:
-         - pattern: '^dvc\.[0-1]$'
-         - pattern: '^clk_(a|b|c|i)$'
- 
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+    properties:
-+      port(@[0-9a-f]+)?:
-+        $ref: audio-graph-port.yaml#
-+        unevaluatedProperties: false
-+
-   port:
-     $ref: audio-graph-port.yaml#
-     unevaluatedProperties: false
-@@ -257,7 +266,6 @@ required:
-   - "#sound-dai-cells"
- 
- allOf:
--  - $ref: audio-graph.yaml#
-   - if:
-       properties:
-         compatible:
+ 	/*
+ 	 * find divided clock from BRGA/BRGB
 -- 
 2.25.1
 
