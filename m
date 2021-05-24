@@ -2,226 +2,323 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E7F138E6CD
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 14:44:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35C5738E6D9
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 14:46:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232491AbhEXMpw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 08:45:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37042 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232662AbhEXMpu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 08:45:50 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CE5EC06138A;
-        Mon, 24 May 2021 05:44:22 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id x188so20743893pfd.7;
-        Mon, 24 May 2021 05:44:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DxrUgJ4P1Hl+jB24qHb/sYVF9wtCZ3rUg5c8mUV/Efc=;
-        b=ZdXjBdS0S0eLpt+aVPNkW7J1iKz1ix2kUzAYqQzRXnQedO3e+gNJkKO6sP1wEmo4PN
-         nGTe9eIKHz1Tcic6QX/g3JNSCXQ+2JLESY/o4EyYNjevXHkbGLaMBjR0+oxJEj52Mq/j
-         G/gdHEfFFDOMFZZyfnGsLAW7BmzIJkenhfl45Tg3Ns6MxrEZZjmyMnmcNwm6m0NbFm6Y
-         XrRSWmrLOsq21xRXBzRSTa2bonfb4XzwvjrJB0ZqMU/NmdysQ3w8CZ9gFMsFz4Jj3tyY
-         8VdkV7qjmCmGIkrekYWp1zidHhBN0TuQ/M2X7uMxE4PqlACFpOK8/tiKVCX5Vl9n+6mR
-         GdYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DxrUgJ4P1Hl+jB24qHb/sYVF9wtCZ3rUg5c8mUV/Efc=;
-        b=lkycpuueL5Saf/tNbCQYRnrig7i3BNDlhHgi+XHPCSOFB6RHcgVKgCLikagwzT/0Mk
-         njKWi622snTBCYXfwRfU8yeg+tMlbPAtYYqVsmp+9el7abyaAhRtQz6SIV3fVsELcPTm
-         6EStcFtvDZ75syl/7lw0GSPqU2wYFAvNwM6q+6o+Z73y32VDDCf5P9oDcMmvZLDKPlES
-         E4DyhMtowUC1o9k/Hxf8rzcDio9lkZAB3jBuDY30d4oDeY2X7Qc4WpoC8vTvl/61uUYF
-         i36KPLnQSe9vNu3u47HL9xosdj5J/VR+ulozLioNC+/+f1eqZtljikshUEaVvIX42kR/
-         p9Ug==
-X-Gm-Message-State: AOAM533BdaI/fxYEaSKBmPpAc/lt3TmpYuy5LBco5zVjhI4uK6JDpPhh
-        3eF+OJgT7+/QcKWtwkZNo8GHy+E7RTN3DIUJK/hPxpE9gQQ=
-X-Google-Smtp-Source: ABdhPJxQ/Kvbe+h3uMQfotQ/d+9ylbVYIGO1bnDIIj99JyfaOWwF4RMN05Cmt32zx+TloBVrG7Ezw4puxS1JRvzxsRY=
-X-Received: by 2002:a62:bd07:0:b029:2df:2c0a:d5e9 with SMTP id
- a7-20020a62bd070000b02902df2c0ad5e9mr24155743pff.7.1621860261581; Mon, 24 May
- 2021 05:44:21 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210524120539.3267145-1-robert.marko@sartura.hr> <20210524120539.3267145-2-robert.marko@sartura.hr>
-In-Reply-To: <20210524120539.3267145-2-robert.marko@sartura.hr>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 24 May 2021 15:44:05 +0300
-Message-ID: <CAHp75VfuLVWLK1m8f3kRdiVHcZFAvZ3iXmNM1awqZjxN_xeOKQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] gpio: Add Delta TN48M CPLD GPIO driver
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        id S232409AbhEXMrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 08:47:49 -0400
+Received: from ns.lynxeye.de ([87.118.118.114]:34433 "EHLO lynxeye.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232512AbhEXMrt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 May 2021 08:47:49 -0400
+Received: by lynxeye.de (Postfix, from userid 501)
+        id 8B1C4E7422A; Mon, 24 May 2021 14:45:49 +0200 (CEST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on lynxeye.de
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=3.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=ham version=3.3.1
+Received: from astat.fritz.box (a89-183-24-20.net-htp.de [89.183.24.20])
+        by lynxeye.de (Postfix) with ESMTPA id E1FB0E74211;
+        Mon, 24 May 2021 14:45:45 +0200 (CEST)
+From:   Lucas Stach <dev@lynxeye.de>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Fabio Estevam <festevam@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
-        Paul Menzel <pmenzel@molgen.mpg.de>, buczek@molgen.mpg.de
-Content-Type: text/plain; charset="UTF-8"
+        NXP Linux Team <linux-imx@nxp.com>,
+        "Lukas F . Hartmann" <lukas@mntre.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
+Subject: [PATCH v3 1/4] arm64: dts: imx8mq: add Nitrogen8 SoM
+Date:   Mon, 24 May 2021 14:45:33 +0200
+Message-Id: <20210524124536.27854-1-dev@lynxeye.de>
+X-Mailer: git-send-email 2.31.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 24, 2021 at 3:06 PM Robert Marko <robert.marko@sartura.hr> wrote:
->
-> Delta TN48M CPLD is used as a GPIO expander for the SFP GPIOs.
->
-> It is a mix of input only and output only pins.
+This adds the description of the Nitrogen8 System on Module. The module
+is quite simple with only a few (almost) fixed regulators and a eMMC
+on-board.
 
-LGTM!
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+The eMMC is currently limited to 50MHz modes via the pinctrl, as the board
+has not wired up the data strobe line, which prevents HS400 mode from
+working. As both the controller and the eMMC support this mode, it is
+automatically selected when we allow the faster modes, leading to failing
+transfers. Until we have a proper solution to only disable HS400 mode,
+keep the eMMC at the slow bus modes.
 
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> ---
-> Changes in v2:
-> * Rewrite to use simple I2C MFD and GPIO regmap
-> * Drop DT bindings for pin numbering
->
->  drivers/gpio/Kconfig      | 12 ++++++
->  drivers/gpio/Makefile     |  1 +
->  drivers/gpio/gpio-tn48m.c | 89 +++++++++++++++++++++++++++++++++++++++
->  3 files changed, 102 insertions(+)
->  create mode 100644 drivers/gpio/gpio-tn48m.c
->
-> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-> index 1dd0ec6727fd..46caf72960e6 100644
-> --- a/drivers/gpio/Kconfig
-> +++ b/drivers/gpio/Kconfig
-> @@ -1332,6 +1332,18 @@ config GPIO_TIMBERDALE
->         help
->         Add support for the GPIO IP in the timberdale FPGA.
->
-> +config GPIO_TN48M_CPLD
-> +       tristate "Delta Networks TN48M switch CPLD GPIO driver"
-> +       depends on MFD_TN48M_CPLD
-> +       select GPIO_REGMAP
-> +       help
-> +         This enables support for the GPIOs found on the Delta
-> +         Networks TN48M switch CPLD.
-> +         They are used for inputs and outputs on the SFP slots.
-> +
-> +         This driver can also be built as a module. If so, the
-> +         module will be called gpio-tn48m.
-> +
->  config GPIO_TPS65086
->         tristate "TI TPS65086 GPO"
->         depends on MFD_TPS65086
-> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-> index d7c81e1611a4..07fa6419305f 100644
-> --- a/drivers/gpio/Makefile
-> +++ b/drivers/gpio/Makefile
-> @@ -147,6 +147,7 @@ obj-$(CONFIG_GPIO_TEGRA186)         += gpio-tegra186.o
->  obj-$(CONFIG_GPIO_TEGRA)               += gpio-tegra.o
->  obj-$(CONFIG_GPIO_THUNDERX)            += gpio-thunderx.o
->  obj-$(CONFIG_GPIO_TIMBERDALE)          += gpio-timberdale.o
-> +obj-$(CONFIG_GPIO_TN48M_CPLD)          += gpio-tn48m.o
->  obj-$(CONFIG_GPIO_TPIC2810)            += gpio-tpic2810.o
->  obj-$(CONFIG_GPIO_TPS65086)            += gpio-tps65086.o
->  obj-$(CONFIG_GPIO_TPS65218)            += gpio-tps65218.o
-> diff --git a/drivers/gpio/gpio-tn48m.c b/drivers/gpio/gpio-tn48m.c
-> new file mode 100644
-> index 000000000000..41484c002826
-> --- /dev/null
-> +++ b/drivers/gpio/gpio-tn48m.c
-> @@ -0,0 +1,89 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Delta TN48M CPLD GPIO driver
-> + *
-> + * Copyright 2021 Sartura Ltd
-> + *
-> + * Author: Robert Marko <robert.marko@sartura.hr>
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/gpio/driver.h>
-> +#include <linux/gpio/regmap.h>
-> +#include <linux/kernel.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +enum tn48m_gpio_type {
-> +       TN48M_SFP_TX_DISABLE = 1,
-> +       TN48M_SFP_PRESENT,
-> +       TN48M_SFP_LOS,
-> +};
-> +
-> +static int tn48m_gpio_probe(struct platform_device *pdev)
-> +{
-> +       struct gpio_regmap_config config = {0};
-> +       enum tn48m_gpio_type type;
-> +       struct regmap *regmap;
-> +       u32 base;
-> +       int ret;
-> +
-> +       if (!pdev->dev.parent)
-> +               return -ENODEV;
-> +
-> +       type = (uintptr_t)device_get_match_data(&pdev->dev);
-> +       if (!type)
-> +               return -ENODEV;
-> +
-> +       ret = device_property_read_u32(&pdev->dev, "reg", &base);
-> +       if (ret)
-> +               return -EINVAL;
-> +
-> +       regmap = dev_get_regmap(pdev->dev.parent, NULL);
-> +       if (!regmap)
-> +               return -ENODEV;
-> +
-> +       config.regmap = regmap;
-> +       config.parent = &pdev->dev;
-> +       config.ngpio = 4;
-> +
-> +       switch (type) {
-> +       case TN48M_SFP_TX_DISABLE:
-> +               config.reg_set_base = base;
-> +               break;
-> +       case TN48M_SFP_PRESENT:
-> +               config.reg_dat_base = base;
-> +               break;
-> +       case TN48M_SFP_LOS:
-> +               config.reg_dat_base = base;
-> +               break;
-> +       default:
-> +               dev_err(&pdev->dev, "unknown type %d\n", type);
-> +               return -ENODEV;
-> +       }
-> +
-> +       return PTR_ERR_OR_ZERO(devm_gpio_regmap_register(&pdev->dev, &config));
-> +}
-> +
-> +static const struct of_device_id tn48m_gpio_of_match[] = {
-> +       { .compatible = "delta,tn48m-gpio-sfp-tx-disable", .data = (void *)TN48M_SFP_TX_DISABLE },
-> +       { .compatible = "delta,tn48m-gpio-sfp-present", .data = (void *)TN48M_SFP_PRESENT },
-> +       { .compatible = "delta,tn48m-gpio-sfp-los", .data = (void *)TN48M_SFP_LOS },
-> +       { }
-> +};
-> +MODULE_DEVICE_TABLE(of, tn48m_gpio_of_match);
-> +
-> +static struct platform_driver tn48m_gpio_driver = {
-> +       .driver = {
-> +               .name = "delta-tn48m-gpio",
-> +               .of_match_table = tn48m_gpio_of_match,
-> +       },
-> +       .probe = tn48m_gpio_probe,
-> +};
-> +module_platform_driver(tn48m_gpio_driver);
-> +
-> +MODULE_AUTHOR("Robert Marko <robert.marko@sartura.hr>");
-> +MODULE_DESCRIPTION("Delta TN48M CPLD GPIO driver");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.31.1
->
+Signed-off-by: Lucas Stach <dev@lynxeye.de>
+---
+v2:
+- remove 100/200MHz pinctrl states for usdhc1
+- rename i2c nodes
+---
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ .../dts/freescale/imx8mq-nitrogen-som.dtsi    | 242 ++++++++++++++++++
+ 2 files changed, 243 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-nitrogen-som.dtsi
 
-
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 297c87f45db8..15519cc2d2c0 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -730,6 +730,7 @@ properties:
+         items:
+           - enum:
+               - boundary,imx8mq-nitrogen8m # i.MX8MQ NITROGEN Board
++              - boundary,imx8mq-nitrogen8m-som # i.MX8MQ NITROGEN SoM
+               - einfochips,imx8mq-thor96  # i.MX8MQ Thor96 Board
+               - fsl,imx8mq-evk            # i.MX8MQ EVK Board
+               - google,imx8mq-phanbell    # Google Coral Edge TPU
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-nitrogen-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-nitrogen-som.dtsi
+new file mode 100644
+index 000000000000..7f20d9b9ffb3
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mq-nitrogen-som.dtsi
+@@ -0,0 +1,242 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright 2018 Boundary Devices
++ * Copyright 2021 Lucas Stach <dev@lynxeye.de>
++ */
++
++#include "imx8mq.dtsi"
++
++/ {
++	model = "Boundary Devices i.MX8MQ Nitrogen8M";
++	compatible = "boundary,imx8mq-nitrogen8m-som", "fsl,imx8mq";
++
++	chosen {
++		stdout-path = &uart1;
++	};
++
++	reg_1p8v: regulator-fixed-1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "1P8V";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
++
++	reg_snvs: regulator-fixed-snvs {
++		compatible = "regulator-fixed";
++		regulator-name = "VDD_SNVS";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++};
++
++&{/opp-table/opp-800000000} {
++	opp-microvolt = <1000000>;
++};
++
++&{/opp-table/opp-1000000000} {
++	opp-microvolt = <1000000>;
++};
++
++&A53_0 {
++	cpu-supply = <&reg_arm_dram>;
++};
++
++&A53_1 {
++	cpu-supply = <&reg_arm_dram>;
++};
++
++&A53_2 {
++	cpu-supply = <&reg_arm_dram>;
++};
++
++&A53_3 {
++	cpu-supply = <&reg_arm_dram>;
++};
++
++&fec1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_fec1>;
++	phy-mode = "rgmii-id";
++	phy-handle = <&ethphy0>;
++	fsl,magic-packet;
++
++	mdio {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		ethphy0: ethernet-phy@4 {
++			compatible = "ethernet-phy-ieee802.3-c22";
++			reg = <4>;
++			interrupt-parent = <&gpio1>;
++			interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
++		};
++	};
++};
++
++&i2c1 {
++	clock-frequency = <400000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c1>;
++	status = "okay";
++
++	i2c-mux@70 {
++		compatible = "nxp,pca9546";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_i2c1_pca9546>;
++		reg = <0x70>;
++		reset-gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		i2c1a: i2c@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			reg_arm_dram: regulator@60 {
++				compatible = "fcs,fan53555";
++				reg = <0x60>;
++				regulator-name = "VDD_ARM_DRAM_1V";
++				regulator-min-microvolt = <1000000>;
++				regulator-max-microvolt = <1000000>;
++				regulator-always-on;
++			};
++		};
++
++		i2c1b: i2c@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			reg_dram_1p1v: regulator@60 {
++				compatible = "fcs,fan53555";
++				reg = <0x60>;
++				regulator-name = "NVCC_DRAM_1P1V";
++				regulator-min-microvolt = <1100000>;
++				regulator-max-microvolt = <1100000>;
++				regulator-always-on;
++			};
++		};
++
++		i2c1c: i2c@2 {
++			reg = <2>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			reg_soc_gpu_vpu: regulator@60 {
++				compatible = "fcs,fan53555";
++				reg = <0x60>;
++				regulator-name = "VDD_SOC_GPU_VPU";
++				regulator-min-microvolt = <900000>;
++				regulator-max-microvolt = <900000>;
++				regulator-always-on;
++			};
++		};
++
++		i2c1d: i2c@3 {
++			reg = <3>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
++	};
++};
++
++&pgc_gpu {
++	power-supply = <&reg_soc_gpu_vpu>;
++};
++
++&pgc_vpu {
++	power-supply = <&reg_soc_gpu_vpu>;
++};
++
++&uart1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart1>;
++	status = "okay";
++};
++
++&usdhc1 {
++	assigned-clocks = <&clk IMX8MQ_CLK_USDHC1>;
++	assigned-clock-rates = <400000000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_usdhc1>;
++	vqmmc-supply = <&reg_1p8v>;
++	vmmc-supply = <&reg_snvs>;
++	bus-width = <8>;
++	non-removable;
++	no-sdio;
++	no-sd;
++	status = "okay";
++};
++
++&wdog1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_wdog>;
++	fsl,ext-reset-output;
++	status = "okay";
++};
++
++&iomuxc {
++	pinctrl_fec1: fec1grp {
++		fsl,pins = <
++			MX8MQ_IOMUXC_ENET_MDC_ENET1_MDC			0x3
++			MX8MQ_IOMUXC_ENET_MDIO_ENET1_MDIO		0x23
++			MX8MQ_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
++			MX8MQ_IOMUXC_ENET_TXC_ENET1_RGMII_TXC		0x1f
++			MX8MQ_IOMUXC_ENET_TD0_ENET1_RGMII_TD0		0x1f
++			MX8MQ_IOMUXC_ENET_TD1_ENET1_RGMII_TD1		0x1f
++			MX8MQ_IOMUXC_ENET_TD2_ENET1_RGMII_TD2		0x1f
++			MX8MQ_IOMUXC_ENET_TD3_ENET1_RGMII_TD3		0x1f
++			MX8MQ_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
++			MX8MQ_IOMUXC_ENET_RXC_ENET1_RGMII_RXC		0x91
++			MX8MQ_IOMUXC_ENET_RD0_ENET1_RGMII_RD0		0x91
++			MX8MQ_IOMUXC_ENET_RD1_ENET1_RGMII_RD1		0x91
++			MX8MQ_IOMUXC_ENET_RD2_ENET1_RGMII_RD2		0x91
++			MX8MQ_IOMUXC_ENET_RD3_ENET1_RGMII_RD3		0x91
++			MX8MQ_IOMUXC_GPIO1_IO09_GPIO1_IO9		0x19
++			MX8MQ_IOMUXC_GPIO1_IO11_GPIO1_IO11		0x59
++		>;
++	};
++
++	pinctrl_i2c1: i2c1grp {
++		fsl,pins = <
++			MX8MQ_IOMUXC_I2C1_SCL_I2C1_SCL			0x4000007f
++			MX8MQ_IOMUXC_I2C1_SDA_I2C1_SDA			0x4000007f
++		>;
++	};
++
++	pinctrl_i2c1_pca9546: i2c1-pca9546grp {
++		fsl,pins = <
++			MX8MQ_IOMUXC_GPIO1_IO08_GPIO1_IO8		0x49
++		>;
++	};
++
++	pinctrl_uart1: uart1grp {
++		fsl,pins = <
++			MX8MQ_IOMUXC_UART1_RXD_UART1_DCE_RX		0x45
++			MX8MQ_IOMUXC_UART1_TXD_UART1_DCE_TX		0x45
++		>;
++	};
++
++	pinctrl_usdhc1: usdhc1grp {
++		fsl,pins = <
++			MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK			0x83
++			MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD			0xc3
++			MX8MQ_IOMUXC_SD1_DATA0_USDHC1_DATA0		0xc3
++			MX8MQ_IOMUXC_SD1_DATA1_USDHC1_DATA1		0xc3
++			MX8MQ_IOMUXC_SD1_DATA2_USDHC1_DATA2		0xc3
++			MX8MQ_IOMUXC_SD1_DATA3_USDHC1_DATA3		0xc3
++			MX8MQ_IOMUXC_SD1_DATA4_USDHC1_DATA4		0xc3
++			MX8MQ_IOMUXC_SD1_DATA5_USDHC1_DATA5		0xc3
++			MX8MQ_IOMUXC_SD1_DATA6_USDHC1_DATA6		0xc3
++			MX8MQ_IOMUXC_SD1_DATA7_USDHC1_DATA7		0xc3
++			MX8MQ_IOMUXC_SD1_RESET_B_USDHC1_RESET_B		0xc1
++		>;
++	};
++
++	pinctrl_wdog: wdoggrp {
++		fsl,pins = <
++			MX8MQ_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B		0xc6
++		>;
++	};
++};
 -- 
-With Best Regards,
-Andy Shevchenko
+2.31.1
+
