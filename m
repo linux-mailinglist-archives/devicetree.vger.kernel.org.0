@@ -2,100 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DFD738E66E
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 14:16:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F7D038E675
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 14:18:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232409AbhEXMSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 08:18:24 -0400
-Received: from mx3.securetransport.de ([116.203.31.6]:35838 "EHLO
-        mx3.securetransport.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232300AbhEXMSX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 08:18:23 -0400
-X-Greylist: delayed 344 seconds by postgrey-1.27 at vger.kernel.org; Mon, 24 May 2021 08:18:23 EDT
-Received: from mail.dh-electronics.com (business-24-134-97-169.pool2.vodafone-ip.de [24.134.97.169])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx3.securetransport.de (Postfix) with ESMTPSA id 1BBDF5DCCC;
-        Mon, 24 May 2021 14:10:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
-        s=dhelectronicscom; t=1621858253;
-        bh=wR5m3pbatZZrpyCn/nOoDkXkVnEDm6B6QbUt2U8ZtSg=;
-        h=From:To:CC:Subject:Date:From;
-        b=OX7Q3ikXhX1h/PY/87Q64ilAZI1KuCcwlAfT+4vhspebisUl1t8F8sgnLOBJJWdWM
-         rOPi4484IeyI3qTyZoIttgzLMmWNQR1HMZad9pJIvGudKzrEe5wk1dfgxvoqCpUik0
-         EtXWKJAJDyTBdbJtYtA6Am61eJTXUnra3qrjXISZHQKw6DxoTKwnBmUZSl4n8r8a3w
-         kAnZP1gL3eNSdypEKM7ibv0N6uqsyqpYjiVRDvlUblz4KDAyc7yuqvsWVnvB2vHYUn
-         7AX6gMe/vEDqLL4ddTjQOm+WeEHkyEVUifBaLlsEMmLVIFMRH6CnmbVNSEbj24BB2O
-         x9n1fNzpWcf7g==
-Received: from DHPWEX01.DH-ELECTRONICS.ORG (2001:470:76a7:2::30) by
- DHPWEX01.DH-ELECTRONICS.ORG (2001:470:76a7:2::30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.858.12; Mon, 24 May 2021 14:10:37 +0200
-Received: from localhost.localdomain (172.16.51.17) by
- DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.12
- via Frontend Transport; Mon, 24 May 2021 14:10:37 +0200
-From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
-To:     <devicetree@vger.kernel.org>
-CC:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, <kernel@dh-electronics.com>
-Subject: [PATCH] dt-bindings: arm: fsl: Add DHCOM PicoITX and DHCOM DRC02 boards
-Date:   Mon, 24 May 2021 14:09:17 +0200
-Message-ID: <20210524120917.6573-1-cniedermaier@dh-electronics.com>
-X-Mailer: git-send-email 2.11.0
-X-klartext: yes
+        id S232371AbhEXMTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 08:19:35 -0400
+Received: from mail-lf1-f41.google.com ([209.85.167.41]:36503 "EHLO
+        mail-lf1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232409AbhEXMTe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 08:19:34 -0400
+Received: by mail-lf1-f41.google.com with SMTP id m11so40416009lfg.3;
+        Mon, 24 May 2021 05:18:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=qHHwYpnZdXBduLX77qXsMzrBNcDpuZOBYfiZAoU4g70=;
+        b=ahto/4SqdE+9wdg9ve4RXSn1sm3Mtk5NlcyAKI0Y7kmBCT748H39KeCln5j/e1gWd/
+         y5RFQcjOudkMyrq4fv9cZ4BMJMkgSMrp+24FblkVKbTaQW5NYSTSfwCgBTUn/GG4PuHK
+         71zklwa5LjNqunSHMvk7H11sjZcWX/wgxsAFN+DRPg/cC9nit1uyruQJ8hJRBgvj7Xau
+         CguDpimq5G5GwVm2lFAYkXI3msCUbfjjs4a1VKqgTkqGEZg+o2En20basF0rSJOTOrMR
+         RXZtctv+iwP9dPldInUCHUFQvABNIjLrczz7MCnaAuUFpQIEfAl5sdu3LzxXKs0Jc+8W
+         eyTQ==
+X-Gm-Message-State: AOAM533V2B/cSnAIk8uAaxz9Kbnta9Qui6+5k4blW9rWCDFvN2B39EnH
+        6Ds2J83dljWjCWi3PR8omMs=
+X-Google-Smtp-Source: ABdhPJyULdcqpPJP33cxbf0HmCP8CNypXmxiOd+IXj6RPrqkpOssPHXh/1dbZwYSfzDExkbSAqz9Rw==
+X-Received: by 2002:ac2:5f04:: with SMTP id 4mr10116074lfq.557.1621858685076;
+        Mon, 24 May 2021 05:18:05 -0700 (PDT)
+Received: from rocinante.localdomain ([95.155.85.46])
+        by smtp.gmail.com with ESMTPSA id p7sm1415873lfr.184.2021.05.24.05.18.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 May 2021 05:18:04 -0700 (PDT)
+Date:   Mon, 24 May 2021 14:18:03 +0200
+From:   Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To:     "Thokala, Srikanth" <srikanth.thokala@intel.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>,
+        "Sangannavar, Mallikarjunappa" 
+        <mallikarjunappa.sangannavar@intel.com>
+Subject: Re: [PATCH v9 2/2] PCI: keembay: Add support for Intel Keem Bay
+Message-ID: <20210524121803.GC244904@rocinante.localdomain>
+References: <20210518150050.7427-1-srikanth.thokala@intel.com>
+ <20210518150050.7427-3-srikanth.thokala@intel.com>
+ <20210524103027.GA244904@rocinante.localdomain>
+ <PH0PR11MB5595DDC966EF6BFE3B9A921885269@PH0PR11MB5595.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <PH0PR11MB5595DDC966EF6BFE3B9A921885269@PH0PR11MB5595.namprd11.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DH electronics DHCOM PicoITX and DHCOM DRC02 boards.
+Hi Srikanth,
 
-Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
-Cc: robh+dt@kernel.org
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: kernel@dh-electronics.com
-To: devicetree@vger.kernel.org
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+[...]
+> > Reviewed-by: Krzysztof Wilczyński <kw@linux.com>
+> 
+> Thank you, Krzysztof, for the "Reviewed-by".
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index fce2a8670b49..afbdea078abb 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -407,6 +407,12 @@ properties:
-           - const: dfi,fs700e-m60
-           - const: fsl,imx6dl
- 
-+      - description: i.MX6DL DHCOM PicoITX Board
-+        items:
-+          - const: dh,imx6dl-dhcom-picoitx
-+          - const: dh,imx6dl-dhcom-som
-+          - const: fsl,imx6dl
-+
-       - description: i.MX6DL Gateworks Ventana Boards
-         items:
-           - enum:
-@@ -458,6 +464,13 @@ properties:
-           - const: toradex,colibri_imx6dl          # Colibri iMX6 Module
-           - const: fsl,imx6dl
- 
-+      - description: i.MX6S DHCOM DRC02 Board
-+        items:
-+          - const: dh,imx6s-dhcom-drc02
-+          - const: dh,imx6s-dhcom-som
-+          - const: fsl,imx6s
-+          - const: fsl,imx6dl
-+
-       - description: i.MX6SL based Boards
-         items:
-           - enum:
--- 
-2.11.0
+Thank you for working on the driver. :)
 
+	Krzysztof
