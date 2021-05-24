@@ -2,93 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ADC738E4D4
-	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 13:07:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E17A838E527
+	for <lists+devicetree@lfdr.de>; Mon, 24 May 2021 13:14:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232676AbhEXLIs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 07:08:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42670 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232643AbhEXLIq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 07:08:46 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E48F1C06138E
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 04:07:18 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id r12so28099006wrp.1
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 04:07:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=1RUP68I3HwNhuXkqx8NfMcQ+Gf4uaCrCeHBt2iSVUE0=;
-        b=e0P9PDIDn59yFnHeDut/LBVMSKTB+WulaHlndXolRHicxhZ3f9Qk0xoRkiXowaNubX
-         8PP4jIbq2eo4TfxpoK1Ua1Uc1vYNRi6GBhXl8ImK4K8uF4yPn4fCIsZ+I+fURcsFXHfo
-         hYqLJip34CignAkIoGkCWMlXrvT7kKVbqfzadC+MBKr7z4fOf90Vxw7P6+SVH/QpjX36
-         JYOvW6NpUEo29tYON124o+Az8Mqv1Yr2v1TVWcvfvbqNECAyCnfw1lxUXOPqeDzw5GR6
-         MLhdSk0XxwNY8guO8PA+yQTZuiIK8fE9TO6YhN4k/AE6wf/+ci9G1xPbcPfLSU/w12vM
-         TJlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1RUP68I3HwNhuXkqx8NfMcQ+Gf4uaCrCeHBt2iSVUE0=;
-        b=YN9qeZuPoB0IRXqQocIfc8wb8LjyhT8DzyVfsz50xPxOwYWO16tURwMFeDjzeaBsXe
-         EUmn1b5M6Xx1vJTPlFPIrTexQeyzVq21Q1RX26diW2eU0jZq3hGtM0OwHp8/R0/6lrjT
-         nG/gPD8u3AwoOVhKKXz6p+3PrJXbj7WR/O5QwKOx3RaF9um/pc5NYyG+IFlLsC42529k
-         yw4WvZ0ankLhDETuBlyPMfJCLO1/9sFUIpNMk5whndri8dpO+Mpy/HBeVakfcWJEGLME
-         5r54oznBCqaOpw/m2YANm/vmI9OjX3EOOqrYPvAuc78aGT2yqlShXfJEsi0cRIu9KP78
-         APMg==
-X-Gm-Message-State: AOAM531XDj0K2L6ruWMV82sfgg8rvyMmMpLvpdFd+kv97UihPBcXsR9Z
-        QZJX+oHUZnT8QdlO53PPISxH1bZAThh39A==
-X-Google-Smtp-Source: ABdhPJzi9GLp/45oFFd8/DlCNBsAgZZOYebEDhB5FTTfCuIOj2L150Qtq6d1rT7Po8grL9X5EPpd0g==
-X-Received: by 2002:a05:6000:50d:: with SMTP id a13mr20798928wrf.130.1621854437515;
-        Mon, 24 May 2021 04:07:17 -0700 (PDT)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id x4sm7590978wmj.17.2021.05.24.04.07.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 May 2021 04:07:17 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     broonie@kernel.org
-Cc:     robh@kernel.org, devicetree@vger.kernel.org, perex@perex.cz,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        lgirdwood@gmail.com,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v2 4/4] ASoC: qcom: sdm845: add jack support for WCD934x
-Date:   Mon, 24 May 2021 12:07:00 +0100
-Message-Id: <20210524110700.27077-5-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20210524110700.27077-1-srinivas.kandagatla@linaro.org>
-References: <20210524110700.27077-1-srinivas.kandagatla@linaro.org>
+        id S232692AbhEXLPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 07:15:51 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:43865 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232547AbhEXLPo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 07:15:44 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 14OB0oks024990;
+        Mon, 24 May 2021 19:00:50 +0800 (GMT-8)
+        (envelope-from steven_lee@aspeedtech.com)
+Received: from slee-VirtualBox.localdomain (192.168.100.253) by
+ TWMBX02.aspeed.com (192.168.0.24) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 24 May 2021 19:13:44 +0800
+From:   Steven Lee <steven_lee@aspeedtech.com>
+To:     Andrew Jeffery <andrew@aj.id.au>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        "moderated list:ASPEED PINCTRL DRIVERS" 
+        <linux-aspeed@lists.ozlabs.org>,
+        "moderated list:ASPEED PINCTRL DRIVERS" <openbmc@lists.ozlabs.org>,
+        "open list:ASPEED PINCTRL DRIVERS" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+CC:     <steven_lee@aspeedtech.com>, <Hongweiz@ami.com>,
+        <ryan_chen@aspeedtech.com>, <billy_tsai@aspeedtech.com>
+Subject: [PATCH v1 0/3] pinctrl: pinctrl-g6: Add the 2nd sgpio
+Date:   Mon, 24 May 2021 19:13:34 +0800
+Message-ID: <20210524111338.16049-1-steven_lee@aspeedtech.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 14OB0oks024990
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- sound/soc/qcom/sdm845.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+AST2600 has 2 SGPIO master interfaces one with 128 pins and another one
+has 80 pins, it also supports 2 SGPIO slave interfaces.
+However, there is only the first sgpio master/slave interface defined in
+dtsi and pinctrl driver.
+The patch series adds the second SGPIO master and slave interfaces
+in dt-bindings, dtsi and pinctrl driver.
 
-diff --git a/sound/soc/qcom/sdm845.c b/sound/soc/qcom/sdm845.c
-index 153e9b2de0b5..0adfc5708949 100644
---- a/sound/soc/qcom/sdm845.c
-+++ b/sound/soc/qcom/sdm845.c
-@@ -288,6 +288,14 @@ static int sdm845_dai_init(struct snd_soc_pcm_runtime *rtd)
- 			snd_soc_dai_set_sysclk(codec_dai, 0,
- 					       WCD934X_DEFAULT_MCLK_RATE,
- 					       SNDRV_PCM_STREAM_PLAYBACK);
-+
-+			rval = snd_soc_component_set_jack(codec_dai->component,
-+							  &pdata->jack, NULL);
-+			if (rval != 0 && rval != -ENOTSUPP) {
-+				dev_warn(card->dev, "Failed to set jack: %d\n", rval);
-+				return rval;
-+			}
-+
- 		}
- 		break;
- 	default:
+Please help to review.
+
+Thanks,
+Steven
+
+Steven Lee (3):
+  dt-bindings: pinctrl: Update enum for adding SGPM2 and SGPS2
+  ARM: dts: aspeed-g6: Add pinctrl settings
+  pinctrl: pinctrl-aspeed-g6: Add sgpio pinctrl settings
+
+ .../pinctrl/aspeed,ast2600-pinctrl.yaml       | 10 ++++----
+ arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi      | 10 ++++++++
+ drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c    | 24 +++++++++++++++----
+ drivers/pinctrl/aspeed/pinmux-aspeed.h        |  9 +++++++
+ 4 files changed, 44 insertions(+), 9 deletions(-)
+
 -- 
-2.21.0
+2.17.1
 
