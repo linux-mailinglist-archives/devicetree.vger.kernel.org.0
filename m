@@ -2,73 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C832939026E
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 15:27:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 922AA39028F
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 15:32:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233354AbhEYN2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 09:28:49 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:59042 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S233355AbhEYN1b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 09:27:31 -0400
-X-UUID: 11007fb991924249a90a875ccd6eb898-20210525
-X-UUID: 11007fb991924249a90a875ccd6eb898-20210525
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <chun-jie.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 789548595; Tue, 25 May 2021 21:25:58 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 25 May 2021 21:25:57 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 25 May 2021 21:25:56 +0800
-From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        id S233176AbhEYNeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 09:34:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34370 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233195AbhEYNeY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 09:34:24 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 591FCC061756
+        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 06:32:54 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id gb21-20020a17090b0615b029015d1a863a91so13254153pjb.2
+        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 06:32:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+QStyVVPj08Hs4Si7JrnO3JRYDXcCrB3sX1OrxqUj6E=;
+        b=glWhvmrqEcb9c3Lo7vJ3WE3ir+QPGpMWWBFnPXE9hLJOJTXfPlbjF2FgGETlA/XE5/
+         Zyy5GD1yTysqlKA58aUGOKw1oEH7xVVQ8SCOZA6sUtUOEmXseMAgJDjx6/4n1F5GvYbI
+         v0EorIQkQwHd2RrTqjO2wnyIgCCtFAelYDWBI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+QStyVVPj08Hs4Si7JrnO3JRYDXcCrB3sX1OrxqUj6E=;
+        b=s7WHKlJ5lUIPo6oTOGO0GY2eJwSFWX+FQyfirSKaAfo94miUjNYvBvasaDjYSrKB+l
+         0H7w3T1i3MfrW2mEfLgzpH4TG55OxdoV4HufxpOpXsTMOUP63B568gMvGtanab73V2Ih
+         XRa7oDs+ajnfRxxeWqQDjzhnLOmDQnORvCKC1lPR0GV/HgIzmEegK2cTAPbnF+ubVkSv
+         hJVjZ2pCNKCtsLfIaxXRgbVovEMEJV4KMhqstKjf8IWl1feOe+R5lgi3sDiPdkQI/Pln
+         x9fb6k5/9LBV33QsijtX/tEB6s/zkBsan7nNK3WjoGGtPFWiGODEpPG/BflBZjl9PDp4
+         kjzQ==
+X-Gm-Message-State: AOAM5321xymo9XT619BanKetxRAKhl7U24m0QTbxQlJfcWqAD3qONSRq
+        EdNpYj1c/tY7r90JHddV3f2Ayw==
+X-Google-Smtp-Source: ABdhPJwgPpHU9r7rGU5NSJSRK4go5ONu7biquF7SbK5A+rDT6ceU0lEwS2a9O6Q72iATpRjzZYu0Bw==
+X-Received: by 2002:a17:902:f541:b029:f0:7088:95e2 with SMTP id h1-20020a170902f541b02900f0708895e2mr30885254plf.84.1621949573821;
+        Tue, 25 May 2021 06:32:53 -0700 (PDT)
+Received: from senozhatsky.flets-east.jp ([2409:10:2e40:5100:4dc5:c248:c4d5:68b8])
+        by smtp.gmail.com with ESMTPSA id jz7sm2103317pjb.32.2021.05.25.06.32.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 May 2021 06:32:52 -0700 (PDT)
+From:   Sergey Senozhatsky <senozhatsky@chromium.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>,
-        "chun-jie . chen" <chun-jie.chen@mediatek.com>
-Subject: [v3 2/2] arm64: dts: mediatek: Correct UART0 bus clock of MT8192
-Date:   Tue, 25 May 2021 21:24:59 +0800
-Message-ID: <20210525132459.8741-3-chun-jie.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210525132459.8741-1-chun-jie.chen@mediatek.com>
-References: <20210525132459.8741-1-chun-jie.chen@mediatek.com>
+        Stephen Boyd <swboyd@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Tomasz Figa <tfiga@chromium.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Sergey Senozhatsky <senozhatsky@chromium.org>
+Subject: [PATCH] arm64: dts: qcom: remove camera_mem region
+Date:   Tue, 25 May 2021 22:32:42 +0900
+Message-Id: <20210525133242.188603-1-senozhatsky@chromium.org>
+X-Mailer: git-send-email 2.32.0.rc0.204.g9fa02ecfa5-goog
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-infra_uart0 clock is the real one what uart0 uses as bus clock.
+qcom camera driver allocates the ICP firmware memory
+dynamically, so the carveout region is unnecessary.
 
-Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
-Signed-off-by: chun-jie.chen <chun-jie.chen@mediatek.com>
+Signed-off-by: Sergey Senozhatsky <senozhatsky@chromium.org>
 ---
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 5 -----
+ 1 file changed, 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index ffd0fe331bdc..7daa97199dd0 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -327,7 +327,7 @@
- 				     "mediatek,mt6577-uart";
- 			reg = <0 0x11002000 0 0x1000>;
- 			interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH 0>;
--			clocks = <&clk26m>, <&clk26m>;
-+			clocks = <&clk26m>, <&infracfg CLK_INFRA_UART0>;
- 			clock-names = "baud", "bus";
- 			status = "disabled";
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+index 24d293ef56d7..b89e6f78fd20 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+@@ -64,11 +64,6 @@ mpss_mem: memory@86000000 {
+ 			no-map;
  		};
+ 
+-		camera_mem: memory@8ec00000 {
+-			reg = <0x0 0x8ec00000 0x0 0x500000>;
+-			no-map;
+-		};
+-
+ 		venus_mem: memory@8f600000 {
+ 			reg = <0 0x8f600000 0 0x500000>;
+ 			no-map;
 -- 
-2.18.0
+2.32.0.rc0.204.g9fa02ecfa5-goog
 
