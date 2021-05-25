@@ -2,100 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4706738FBF4
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 09:46:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E04138FC07
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 09:55:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231865AbhEYHsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 03:48:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40240 "EHLO
+        id S231532AbhEYH50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 03:57:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231708AbhEYHsW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 03:48:22 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFF19C06138A
-        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 00:46:52 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id m18so1376526wrv.2
-        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 00:46:52 -0700 (PDT)
+        with ESMTP id S231477AbhEYH5Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 03:57:25 -0400
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94244C061574;
+        Tue, 25 May 2021 00:55:54 -0700 (PDT)
+Received: by mail-qv1-xf36.google.com with SMTP id eb9so15548944qvb.6;
+        Tue, 25 May 2021 00:55:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=v55P6S5W7xrOd/7SzhygqC9B4BMec90s1TTSAj2EVxE=;
-        b=JajTsqVKIfsWuZ1YrQXqPuTRbCnCPA8rGan8mjq6zPyXX2H4MFK5L3fnVH7R22ucVi
-         1SYgnolIifkRimEssKJG31YS1HT2fFeZB3zvVt3J9IaFtNnJSThrbl5Yf+TGlZVd59ta
-         D+8wOIOStaAQaJ8ifPspoDD77EDjnSSMhTZGTE+EcuAClrkId1vNjEeWZIXmbYNIqMRu
-         bWqGjVzBQd+FBecuDWce1Pw2msLiJK67HHr2EGDzSkjMeJs9U583NdjCRPKI9Od2S2rZ
-         NDe6OmegGTq7eTb5/TiycCAdK/52GDNoVy+6/062Qq3HZUE4GW8Xp5US/V23Wv48k1Pk
-         29lQ==
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=yl4OCRlRmcAtp5Couav0LI2ZiZLwzvAGoLktfuL2BPk=;
+        b=AZs9vA371763Gt7PV8In9Cx/J9OiUAch5VP0Sc2PnnEWWKI08ikfd74b21FiQi4joK
+         0sz79A9TnJGs2gvhDQVg+fmWnlBgL2GFBnsuS6S/h1zbC02JbK6CR0432QCsDm7SkF8g
+         UXDaV8qyfYeb5ErooVY6JkwTj+M5LdtBxAQ3U=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=v55P6S5W7xrOd/7SzhygqC9B4BMec90s1TTSAj2EVxE=;
-        b=cxekbmqc05Fae9G9LOgXSvJRUqtD2j+SLesChqZG32SBfvgKivgQFThbt4dOsS5YFo
-         1D0abiGFYukLkPm5aRcj0kfdkoGf6IIZWemuHMFSmkE9WiMyqr1L9t7Ycv4HBGRwwVbZ
-         XF1UYk2EHol8JcCuEv8oxIqNSb7Yn5gIkfse1K/CN0momhja7GtYyfuZA31shm8GbL94
-         xr62QXkdAsfnSpMUIM5dDJr12J2YDfVOZXYVyH3KwyGuL0y4JnOnBg2p41J4vlYFXS0Q
-         WqejK9CKbvGik3ZpI73l8gCtKBB+/ZAiRF6Ej2ToRwXlVrH00uXOgbSODRLhzZtEz9Ft
-         6DFQ==
-X-Gm-Message-State: AOAM531XuFb3rL6NhYl1HacoCNmdzZiWiaMlnL74mdf3Q3Lo8ooO/z89
-        5MfZ4s3arwOpoQKJjJhsT8nmLg==
-X-Google-Smtp-Source: ABdhPJxra+VdD0HTsZR+c2d1us85Dq8lMeLNrROWhWra+R6dRK5Bqzi5HZanKgKfTsSKdJMTHwMgdg==
-X-Received: by 2002:a5d:4408:: with SMTP id z8mr26244243wrq.2.1621928811370;
-        Tue, 25 May 2021 00:46:51 -0700 (PDT)
-Received: from dell ([91.110.221.223])
-        by smtp.gmail.com with ESMTPSA id y6sm1749432wmy.23.2021.05.25.00.46.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 May 2021 00:46:50 -0700 (PDT)
-Date:   Tue, 25 May 2021 08:46:49 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Robert Marko <robert.marko@sartura.hr>, linus.walleij@linaro.org,
-        bgolaszewski@baylibre.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        luka.perkov@sartura.hr, jmp@epiphyte.org, pmenzel@molgen.mpg.de,
-        buczek@molgen.mpg.de
-Subject: Re: [PATCH v2 3/4] dt-bindings: mfd: Add Delta TN48M CPLD drivers
- bindings
-Message-ID: <20210525074649.GC4005783@dell>
-References: <20210524120539.3267145-1-robert.marko@sartura.hr>
- <20210524120539.3267145-3-robert.marko@sartura.hr>
- <20210524230940.GA1350504@robh.at.kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yl4OCRlRmcAtp5Couav0LI2ZiZLwzvAGoLktfuL2BPk=;
+        b=CbdPMy/dp/GbAXpfhxpoSriSh8eS0wGRCFEqeAbCN/CDlrAPTOHP/KAO44nUFGuK2z
+         zqxGQsGNSpZmePNt0LkVRooSwrdhO23cqplysNYYiAE7ubbyfqNUsWKtuZBja1BYxmtX
+         udfi31Pmzqx72MnAJGzq9xV8LYQAwc7La/12uQrHNIMZNHHKGqVmMU3hvQq8OMwO9j2O
+         29y/KQIc0qRXGvrkydSQvaMm0vnvUNushryL1WQWcj9RapE6hwwe1ODFcUAXO4Y8ACQY
+         bkuGykOr0HN1UbWSO91qH5p+jEpNQxypMn0dR0I/+ZGXsQ+QofQUJWObhtYKBWS2B6eU
+         +5vA==
+X-Gm-Message-State: AOAM5313Pu3j4yvptJ9d0PmGdQChtxpCM1g+eDWN1l1lvUYfH1Os3wH3
+        4WGnqavlvqVLjxkuC0p4kytaPBU5Q0oqTA54XrI=
+X-Google-Smtp-Source: ABdhPJxi5BWYfe16W3K0oHvA+q/LdZiEoyQtjgpmU0M0/vawIdezpEoM84VyVuPMltZpChZ6PxBTLvdvGvuScxGL3IE=
+X-Received: by 2002:ad4:5fcb:: with SMTP id jq11mr35355630qvb.61.1621929353765;
+ Tue, 25 May 2021 00:55:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210524230940.GA1350504@robh.at.kernel.org>
+References: <20210524073308.9328-1-steven_lee@aspeedtech.com>
+In-Reply-To: <20210524073308.9328-1-steven_lee@aspeedtech.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 25 May 2021 07:55:41 +0000
+Message-ID: <CACPK8XcfvUQD5xwb=2Va5Sr+bmaWfJMZkh61HK1=J1qLYc84zQ@mail.gmail.com>
+Subject: Re: [PATCH v5 0/4] mmc: sdhci-of-aspeed: Support toggling SD bus signal
+To:     Steven Lee <steven_lee@aspeedtech.com>,
+        Andrew Jeffery <andrew@aj.id.au>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
+        Hongwei Zhang <Hongweiz@ami.com>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 May 2021, Rob Herring wrote:
+On Mon, 24 May 2021 at 07:33, Steven Lee <steven_lee@aspeedtech.com> wrote:
+>
+> AST2600-A2 EVB has the reference design for enabling SD bus
+> power and toggling SD bus signal voltage between 3.3v and 1.8v by
+> GPIO regulators.
+> This patch series adds sdhci node and gpio regulators in a new dts file
+> for AST2600-A2 EVB.
+> The description of the reference design of AST2600-A2 EVB is added
+> in the new dts file.
+>
+> This patch also include a helper for updating AST2600 sdhci capability
+> registers.
 
-> On Mon, May 24, 2021 at 02:05:38PM +0200, Robert Marko wrote:
-> > Add binding documents for the Delta TN48M CPLD drivers.
-> > 
-> > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > ---
-> > Changes in v2:
-> > * Implement MFD as a simple I2C MFD
-> > * Add GPIO bindings as separate
-> 
-> I don't understand why this changed. This doesn't look like an MFD to 
-> me. Make your binding complete if there are missing functions. 
-> Otherwise, stick with what I already ok'ed.
+The device trees look good:
 
-Right.  What else, besides GPIO, does this do?
+Reviewed-by: Joel Stanley <joel@jms.id.au>
 
-> >  .../bindings/gpio/delta,tn48m-gpio.yaml       | 42 ++++++++++
-> >  .../bindings/mfd/delta,tn48m-cpld.yaml        | 81 +++++++++++++++++++
-> >  2 files changed, 123 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
+I've applied patches 1-3 to the aspeed tree for v5.14. I made a little
+fix to patch 3 as it needed to add the new device tree to the
+makefile.
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+When I was testing on my A2 EVB I saw this:
+
+[    1.436219] sdhci-aspeed 1e750100.sdhci: Requested out of range
+phase tap 192 for 9 degrees of phase compensation at 1562500Hz,
+clamping to tap 15
+[    1.450913] sdhci-aspeed 1e750100.sdhci: Requested out of range
+phase tap 963 for 45 degrees of phase compensation at 1562500Hz,
+clamping to tap 15
+
+Do you know what is happening there?
+
+Cheers,
+
+Joel
