@@ -2,150 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F127138F6BF
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 02:03:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6FE038F6D7
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 02:10:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230138AbhEYAFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 20:05:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49542 "EHLO
+        id S229668AbhEYAMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 20:12:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230175AbhEYAEn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 20:04:43 -0400
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41647C06135B
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 17:02:56 -0700 (PDT)
-Received: by mail-pg1-x534.google.com with SMTP id 29so10206203pgu.11
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 17:02:56 -0700 (PDT)
+        with ESMTP id S229503AbhEYAMV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 20:12:21 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C871C061574;
+        Mon, 24 May 2021 17:10:51 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id b26so27081329lfq.4;
+        Mon, 24 May 2021 17:10:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=3qFLOaUCi0WYGUyCmLqrEif6mRJ8u8fFU7Zgh2OGms8=;
-        b=mG7J209zaQCJJxhHTB1kgkaUN3lotKNwZl1qpb1B/7puBZWLYE/M/Qfnt2cDUWNCig
-         nQOFY4Tftu9/1Xin+yQPRW+462ofrPtvfh28OYEXR3PCHAZc0rU+82eOZNUDK/1bTBdB
-         MCazDzs5CjxFNsJfJlRr+KIhYqs55qaaH5NAY=
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=t47JtVy6KStbnEN3bYR8XchCG9158eP6cF4birDMKa0=;
+        b=G/U0nPV1Xjr3193n014viIGgNkMnhsWpnLKWnb900gKF1JBYt1cCdfOrjwhttWtrOF
+         XdajzNZL52kbVvmEwxUM8iG0sP22GIUcK5pQA5SXS0Pu9cmq1n4H/tvyvrrZQNqypXKF
+         yzDSgOzur70gjqARQOhXZD7SO1iyj5aaqbaeoTczxwguTxghgJUyhkR8WaYaR+vNA54q
+         BJZ8dk2SbcggfZfokwpz9Om0/Ee7FxT88canLXZycqxFyVdwqWz4DmRZFqp43Q944d+d
+         vonC4tkfYl4uFveq1EFNg660ZjzQLSm0ZJP7mnd/v7SwPR/3n1rkVIlhBzJQxbu9mUs3
+         5c7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=3qFLOaUCi0WYGUyCmLqrEif6mRJ8u8fFU7Zgh2OGms8=;
-        b=ZMYoaVJ5iOUMoKTgElSg5uAAWcJH/PH7iVLZ+TtBmsQyMjVbt6Jj/ZY88yide0Ltqj
-         xlpzO2apW1JL6PtrI+DkiFWRu0WbWx+Ivggo10baGtbsoUJmw3tdDn4rnh0TI7yPNB0F
-         h9k083OiATy2vvjLr7lHmXG64LtZJgFuoQRXzwQ30rHt+8wBwdIj1Fc3t3hmUbFF3VeX
-         MHV6ibX2Bi+uuEzuljPUO5YyeJQsgiDxZdqzSpR/gcMFgVE/4i3yR/zQetC5yUAobd3Q
-         oWBRu+Zw8onx14xMYnOsMcPCRb49sapRDSFesElgj3Xrd26D1Gr6nYz5GYRuEKbJQSrR
-         FB/g==
-X-Gm-Message-State: AOAM530/cZaU/zqdfw7IaRu4FL1TAwzW6J3wvnSIPUJelsOkA1l7G2xV
-        OgVtB1S0XNiN64i0a4kjdGWfBQ==
-X-Google-Smtp-Source: ABdhPJx5C+8zTuLTjxVJMS4EPDr7rRNr7Ky/FS6RudZXZZvp+t4FXELkMogHFv7NbjC/xJ97iP4p3w==
-X-Received: by 2002:a63:6f4e:: with SMTP id k75mr16304849pgc.434.1621900975692;
-        Mon, 24 May 2021 17:02:55 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:26d1:4df0:7cdf:ce13])
-        by smtp.gmail.com with ESMTPSA id f18sm10696741pjh.55.2021.05.24.17.02.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 May 2021 17:02:55 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     linux-arm-msm@vger.kernel.org, Linus W <linus.walleij@linaro.org>,
-        Lyude Paul <lyude@redhat.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>, robdclark@chromium.org,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thierry Reding <treding@nvidia.com>,
-        dri-devel@lists.freedesktop.org,
-        Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v8 11/11] arm64: dts: qcom: sc7180-trogdor: Move panel under the bridge chip
-Date:   Mon, 24 May 2021 17:01:59 -0700
-Message-Id: <20210524165920.v8.11.Ibdb7735fb1844561b902252215a69526a14f9abd@changeid>
-X-Mailer: git-send-email 2.31.1.818.g46aad6cb9e-goog
-In-Reply-To: <20210525000159.3384921-1-dianders@chromium.org>
-References: <20210525000159.3384921-1-dianders@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=t47JtVy6KStbnEN3bYR8XchCG9158eP6cF4birDMKa0=;
+        b=NlRjmiaWCH9R2oAA5MCarwmYJ4sDRCeHFPoBtj8+FDCLIvTyRrr6XrQEySbb2xO/dU
+         k6qrQQkHPm8LUWFM8mRACsD3C5aKBzysEqr4SLVAEuieCBtsOl42P2ndXDOSOoEK9vz/
+         dw+FvN2vW9UcHyh/xuxanDo+QXgjUjKq6CWrkl2WSxjXal09r9moNa+SXWU9NoeoKiU6
+         w4DBL6ZHRWkGXM0jECke0aSYfouklPIJP+ufDqkEls7kMbbmkK4lU02h0sLsj0/Xxuo1
+         VGSccFQvIYc4HxPE2WbdOsAFYDLzxImgH1fvyJuowfXPkkJd8Vj2iDcTX1Mbfcxabvlz
+         47Lg==
+X-Gm-Message-State: AOAM533ugiBp2eZJZvk5HnII0hUiguiQ9SCwFBwdvua6Dlzl6dryUI57
+        BvZ6eaQodMio19zilQ7RggLkirkQe3YzsbUzYeg=
+X-Google-Smtp-Source: ABdhPJzd004l0A4EycAUS1IJ/n71pXJaFU/sj8ALH0v9m4OuRqvXaFqbFRo+GeHTcMOWIixGW7oPbxFa7kz4HLNZj7k=
+X-Received: by 2002:a05:6512:1031:: with SMTP id r17mr11948626lfr.583.1621901449531;
+ Mon, 24 May 2021 17:10:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <4964298a8d264dafaa807c43bab5d174@dh-electronics.com>
+In-Reply-To: <4964298a8d264dafaa807c43bab5d174@dh-electronics.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 24 May 2021 21:10:38 -0300
+Message-ID: <CAOMZO5CaK5mJpDp7-ak3Q08ErWrfBQ-xCgOPpqD+rH_yT1Ok8Q@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: arm: fsl: Add DHCOM PicoITX and DHCOM DRC02
+ boards [Klartext]
+To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        kernel <kernel@dh-electronics.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Putting the panel under the bridge chip (under the aux-bus node)
-allows the panel driver to get access to the DP AUX bus, enabling all
-sorts of fabulous new features.
+Hi Christoph,
 
-While we're at this, get rid of a level of hierarchy for the panel
-node. It doesn't need "ports / port" and can just have a "port" child.
+On Mon, May 24, 2021 at 7:39 PM Christoph Niedermaier
+<cniedermaier@dh-electronics.com> wrote:
 
-For Linux, this patch has a hard requirement on the patches adding DP
-AUX bus support to the ti-sn65dsi86 bridge chip driver. See the patch
-("drm/bridge: ti-sn65dsi86: Add support for the DP AUX bus").
+> My thought was to be future proof. If there is no match with the Solo now,
+> it will fall back to the i.MX6 DualLite. That is why I added both fsl,imx6s
+> and fsl,imx6dl in this order.
+>
+> Should I remove the line with fsl,imx6s?
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
----
+Yes, please.
 
-(no changes since v7)
-
-Changes in v7:
-- Panel now under bridge chip instead of getting a link to ddc-i2c
-
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 30 ++++++++++----------
- 1 file changed, 15 insertions(+), 15 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 24d293ef56d7..c76afd857b54 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -260,21 +260,6 @@ max98357a: audio-codec-0 {
- 		#sound-dai-cells = <0>;
- 	};
- 
--	panel: panel {
--		/* Compatible will be filled in per-board */
--		power-supply = <&pp3300_dx_edp>;
--		backlight = <&backlight>;
--		hpd-gpios = <&sn65dsi86_bridge 2 GPIO_ACTIVE_HIGH>;
--
--		ports {
--			port {
--				panel_in_edp: endpoint {
--					remote-endpoint = <&sn65dsi86_out>;
--				};
--			};
--		};
--	};
--
- 	pwmleds {
- 		compatible = "pwm-leds";
- 		keyboard_backlight: keyboard-backlight {
-@@ -674,6 +659,21 @@ sn65dsi86_out: endpoint {
- 				};
- 			};
- 		};
-+
-+		aux-bus {
-+			panel: panel {
-+				/* Compatible will be filled in per-board */
-+				power-supply = <&pp3300_dx_edp>;
-+				backlight = <&backlight>;
-+				hpd-gpios = <&sn65dsi86_bridge 2 GPIO_ACTIVE_HIGH>;
-+
-+				port {
-+					panel_in_edp: endpoint {
-+						remote-endpoint = <&sn65dsi86_out>;
-+					};
-+				};
-+			};
-+		};
- 	};
- };
- 
--- 
-2.31.1.818.g46aad6cb9e-goog
-
+Thanks
