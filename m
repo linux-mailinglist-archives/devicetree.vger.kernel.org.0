@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ABE2838F6A2
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 02:02:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F28DD38F6A5
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 02:02:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230021AbhEYAER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 20:04:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49490 "EHLO
+        id S230051AbhEYAEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 20:04:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229962AbhEYAEM (ORCPT
+        with ESMTP id S229986AbhEYAEM (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 20:04:12 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C297DC061756
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 17:02:41 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id d16so22156848pfn.12
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 17:02:41 -0700 (PDT)
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A237FC061344
+        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 17:02:43 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id v13-20020a17090abb8db029015f9f7d7290so821915pjr.0
+        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 17:02:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=frU/MIzwrtJawHtHpJ2wMhHOm//TNBEwf1FFx7azP48=;
-        b=RmPVDYwmFaVUEaUke1HUVctixj/lUivUYphXkuYDtAk2my9OzGNqfTwHBMTLZMNOpk
-         FThVamNIUDasehzHdFesXrMfpwPU/okm50gJ8OvAN9rDUM0qs9FXPfeR9vSh50LvQc48
-         d5KOkGBjoOibcmUz6TNVaZHIQBk3BKVIvqTk8=
+        bh=W9Fdpfj9PL4rvEigmb2QGhmwBANHPAlZSGnNvCdFiZM=;
+        b=ZPl93bbbxQFUkDwjKcmU98GmeBrylXCNPRli/XHIx3pbVK62kq/iQdMuWLu6LZFEnf
+         zRqfB+dYNMxsnhABbMeRlPT4j9wT29e5h54MD2dwAa9cZptK1E98OWj9Td7NExrV0yJM
+         IktKCVr6X1wGQXA9YvDNTr6sDvOI8BYtm1Jlc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=frU/MIzwrtJawHtHpJ2wMhHOm//TNBEwf1FFx7azP48=;
-        b=EsCjWZdS3WKOH/HFu7u/oARrrH2vGfvsSd1ExF1fyxalUEzklYSLDhWBvM/4zCEXfo
-         SNPWr3s24pfeYddpRjYkdl+eHwj6nvbCrmU07SP1OaZDy6rH7CsJGIH1yyE3EWUmmW9u
-         XCvcYvTjFTIFFaYyKalQpgbQ3Pk2ezlywMo4OUakuE7nNFNwLUspWPC5RDrFWDI/3lWQ
-         aWqtTxeJI8P5GeOcvw4bYxZLdkaOQsdKmDzvuU5TP1sKuJymwXXAWWnUv0EQPIouIDMi
-         4mFeHz5+7+l7PSj5RPGr4Ow7EQg99h+mZ94d3Efo9xXjaAjxkC7QpLxTIpTqfvVCXlCA
-         Zd1A==
-X-Gm-Message-State: AOAM530ZmvHFQjfjJdhgViYbfztALwtkJGEBWvMEExWj55mfNeT5mF2K
-        iBcPAmBV87VsyFqHhnpXbADdfg==
-X-Google-Smtp-Source: ABdhPJz7TwoVvVpbGA4bqbTOwnQj4Q0UDCsunLiUBQEUrWd8K6cpvy/AslaHNQRurgVp+feNQF2Vow==
-X-Received: by 2002:aa7:8201:0:b029:27b:9b59:8676 with SMTP id k1-20020aa782010000b029027b9b598676mr26655853pfi.47.1621900961353;
-        Mon, 24 May 2021 17:02:41 -0700 (PDT)
+        bh=W9Fdpfj9PL4rvEigmb2QGhmwBANHPAlZSGnNvCdFiZM=;
+        b=GcXB9JY0at3EuyYlUCivf8at7dGmkhwgNJJZ7aVhvtBiNId4P40KsvhrhWo5eNGIHL
+         GPNLXeM9/WkQvTwJR6EV5asl8oEykZ4BdYCNVlHHh7fpxd/seszxDuKX/PongwNl957+
+         AYPXWV4xXSQLHXPa90w3O3R9sn4xLxnycWtrOl5VLXHojTVRdmuxeDZpubZlhq94UjEx
+         o9mMcPbOgstfMHzxrmI4dNpjbS7HBFkxbSt6/JkHQKANtbMgE8qqsln0NwQV5IQFrAMc
+         1PKebjxC5pkUHqGIomJ+OLaBTUbwx1FY2xY2w1pWQZXJe3ETtbrfuQM60/k0x+2BX136
+         d3Ng==
+X-Gm-Message-State: AOAM532WrtR29LGqbF/4Fsf4IMMO9TCvWL7mugQALyTGMKBXnbYxpOiw
+        8znZAa9qBMjZji0Tr8ajtWa4Ag==
+X-Google-Smtp-Source: ABdhPJzEA6lrzK1TzhErfu2B21yXgIxTQg8HxrClwB7kEktuahte8BwRcwy/TibwPGUVkNDM7PvZAw==
+X-Received: by 2002:a17:902:d643:b029:ef:62cd:eeed with SMTP id y3-20020a170902d643b02900ef62cdeeedmr28061200plh.42.1621900963170;
+        Mon, 24 May 2021 17:02:43 -0700 (PDT)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:26d1:4df0:7cdf:ce13])
-        by smtp.gmail.com with ESMTPSA id f18sm10696741pjh.55.2021.05.24.17.02.39
+        by smtp.gmail.com with ESMTPSA id f18sm10696741pjh.55.2021.05.24.17.02.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 May 2021 17:02:41 -0700 (PDT)
+        Mon, 24 May 2021 17:02:42 -0700 (PDT)
 From:   Douglas Anderson <dianders@chromium.org>
 To:     Andrzej Hajda <a.hajda@samsung.com>,
         Neil Armstrong <narmstrong@baylibre.com>,
@@ -62,13 +62,11 @@ Cc:     linux-arm-msm@vger.kernel.org, Linus W <linus.walleij@linaro.org>,
         Douglas Anderson <dianders@chromium.org>,
         Daniel Vetter <daniel@ffwll.ch>,
         David Airlie <airlied@linux.ie>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sandeep Panda <spanda@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v8 03/11] dt-bindings: drm/bridge: ti-sn65dsi86: Add aux-bus child
-Date:   Mon, 24 May 2021 17:01:51 -0700
-Message-Id: <20210524165920.v8.3.I98bf729846c37c4c143f6ab88b1e299280e2fe26@changeid>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v8 04/11] dt-bindings: drm/aux-bus: Add an example
+Date:   Mon, 24 May 2021 17:01:52 -0700
+Message-Id: <20210524165920.v8.4.I79c7ed8815a07d285dd3b38e680e980d1024dbf1@changeid>
 X-Mailer: git-send-email 2.31.1.818.g46aad6cb9e-goog
 In-Reply-To: <20210525000159.3384921-1-dianders@chromium.org>
 References: <20210525000159.3384921-1-dianders@chromium.org>
@@ -78,46 +76,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch ("dt-bindings: drm: Introduce the DP AUX bus") talks about
-how using the DP AUX bus is better than learning how to slice
-bread. Let's add it to the ti-sn65dsi86 bindings.
+Now that we have an eDP controller that lists aux-bus, we can safely
+add an example to the aux-bus bindings.
+
+NOTE: this example is just a copy of the one in the 'ti-sn65dsi86'
+one. It feels useful to have the example in both places simply because
+it's important to document the interaction between the two bindings in
+both places.
 
 Signed-off-by: Douglas Anderson <dianders@chromium.org>
 ---
 
 Changes in v8:
-- ti-sn65dsi86 references the new aux bus bindings.
+- Separate DP AUX bus binding is new for v8.
 
-Changes in v7:
-- ti-sn65dsi86: Add aux-bus child patch new for v7.
+ .../bindings/display/dp-aux-bus.yaml          | 65 +++++++++++++++++++
+ 1 file changed, 65 insertions(+)
 
- .../bindings/display/bridge/ti,sn65dsi86.yaml | 20 ++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
-index 26932d2e86ab..4007f36d04ba 100644
---- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
-@@ -70,6 +70,9 @@ properties:
-     const: 1
-     description: See ../../pwm/pwm.yaml for description of the cell formats.
+diff --git a/Documentation/devicetree/bindings/display/dp-aux-bus.yaml b/Documentation/devicetree/bindings/display/dp-aux-bus.yaml
+index 5e4afe9f98fb..43494d2a32a1 100644
+--- a/Documentation/devicetree/bindings/display/dp-aux-bus.yaml
++++ b/Documentation/devicetree/bindings/display/dp-aux-bus.yaml
+@@ -35,3 +35,68 @@ additionalProperties: false
  
-+  aux-bus:
-+    $ref: ../dp-aux-bus.yaml#
+ required:
+   - panel
 +
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
- 
-@@ -201,11 +204,26 @@ examples:
- 
-           port@1 {
-             reg = <1>;
--            endpoint {
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,rpmh.h>
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      bridge@2d {
++        compatible = "ti,sn65dsi86";
++        reg = <0x2d>;
++
++        interrupt-parent = <&tlmm>;
++        interrupts = <10 IRQ_TYPE_LEVEL_HIGH>;
++
++        enable-gpios = <&tlmm 102 GPIO_ACTIVE_HIGH>;
++
++        vpll-supply = <&src_pp1800_s4a>;
++        vccio-supply = <&src_pp1800_s4a>;
++        vcca-supply = <&src_pp1200_l2a>;
++        vcc-supply = <&src_pp1200_l2a>;
++
++        clocks = <&rpmhcc RPMH_LN_BB_CLK2>;
++        clock-names = "refclk";
++
++        no-hpd;
++
++        ports {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          port@0 {
++            reg = <0>;
++            endpoint {
++              remote-endpoint = <&dsi0_out>;
++            };
++          };
++
++          port@1 {
++            reg = <1>;
 +            sn65dsi86_out: endpoint {
-               remote-endpoint = <&panel_in_edp>;
-             };
-           };
-         };
++              remote-endpoint = <&panel_in_edp>;
++            };
++          };
++        };
 +
 +        aux-bus {
 +          panel {
@@ -133,9 +164,8 @@ index 26932d2e86ab..4007f36d04ba 100644
 +            };
 +          };
 +        };
-       };
-     };
-   - |
++      };
++    };
 -- 
 2.31.1.818.g46aad6cb9e-goog
 
