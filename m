@@ -2,257 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08F0938FE1C
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 11:48:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00E8338FE25
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 11:49:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232724AbhEYJsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 05:48:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39308 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232726AbhEYJsh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 05:48:37 -0400
-Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B91F8C061756
-        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 02:47:06 -0700 (PDT)
-Received: by mail-il1-x135.google.com with SMTP id o9so27623359ilh.6
-        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 02:47:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cUGBb9Nuz8Xoj3kAXm6SJkXHbdtiAWLMyMVIUPF0e+k=;
-        b=tXAvy2rUjaA/yn2VqRzlngFafRWSBYXcxK53bHo58H6bHXIA3nGuphf4P6mPdCzJv6
-         /EuvaHAjoxuuDALYzs2MT6Hc8eoaoOfO4Z3uNpJSXuXXD7/hY6p7MWkdiWr7MXIQi1Ut
-         LFe3+jMw/IjbTFoyU3SyY/PWkSpsRYt/hmGz0y9kfV1tYxeBDF55RGngF5sZNBrWi/Ue
-         +dWlH0cxxXBocSQRioYMPbR2kaLW7rf5LqDqNRsP8NFdIowmxVYjIEQqJTrMYS4KHbbf
-         3cdZJJszHbASCsoImlWrQSCmAMWaWpTzKrxHxGmYErfYwuGXmrqbciC8QRpCRYfoQHtU
-         kMSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cUGBb9Nuz8Xoj3kAXm6SJkXHbdtiAWLMyMVIUPF0e+k=;
-        b=kCXqBy9xq4j8ENLh3nGvhoogI4zMLYNtJ3lHgQyuoAuj2dJIiMjxAEYEjVIP+Elk1G
-         hSUek0UYnDaoEjE23df5o/o+UzpzBZq9FC9ZdAFBTzbcSLarhR/7fgncQLD5n7bMsabX
-         nsA4pEoaeYmPjCAta+xAypxakQeCkuQWvY7Un9MOPxDpNQkXGwP5IO4GJs02q4hSnQ9U
-         Kwj2tbF2I9oJQwlm/17l8a3aeve7PKV7rjBi8XBwbXkoV7Dr5cV9NP9DmcjfUX7iXZXf
-         7VP0EbgENTffqqJqkjT1eo4ZZcAJKzCbyGqtWRSbvnDT8JferdKNLHjNqsmWcEaG+Med
-         N1Rg==
-X-Gm-Message-State: AOAM53333/6e2hjAq8cBzbiGKhOAJFdvIZQ8RmbqNGGj6J92AuZZe6BU
-        LeAvvaMThHTPaBNHWmCOgUY+A6Shp3CwFDcX6GMDCQ==
-X-Google-Smtp-Source: ABdhPJweMWKKIG7qU+vbGo3+7fkyn0w8YHmgKBta9CywoRVWNa290QSgR1wPx3+oPWCxslVvZCuraQ2NImCsR4PL/00=
-X-Received: by 2002:a92:cf45:: with SMTP id c5mr21928713ilr.182.1621936026090;
- Tue, 25 May 2021 02:47:06 -0700 (PDT)
+        id S232597AbhEYJue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 05:50:34 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:44440 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232545AbhEYJue (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 05:50:34 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 14P9ZLSX049551;
+        Tue, 25 May 2021 17:35:21 +0800 (GMT-8)
+        (envelope-from steven_lee@aspeedtech.com)
+Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 25 May
+ 2021 17:48:19 +0800
+Date:   Tue, 25 May 2021 17:48:16 +0800
+From:   Steven Lee <steven_lee@aspeedtech.com>
+To:     Joel Stanley <joel@jms.id.au>
+CC:     Andrew Jeffery <andrew@aj.id.au>, Rob Herring <robh+dt@kernel.org>,
+        "Adrian Hunter" <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
+        "Hongwei Zhang" <Hongweiz@ami.com>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+Subject: Re: [PATCH v5 0/4] mmc: sdhci-of-aspeed: Support toggling SD bus
+ signal
+Message-ID: <20210525094815.GA8757@aspeedtech.com>
+References: <20210524073308.9328-1-steven_lee@aspeedtech.com>
+ <CACPK8XcfvUQD5xwb=2Va5Sr+bmaWfJMZkh61HK1=J1qLYc84zQ@mail.gmail.com>
 MIME-Version: 1.0
-References: <20210524120539.3267145-1-robert.marko@sartura.hr>
- <20210524120539.3267145-3-robert.marko@sartura.hr> <20210524230940.GA1350504@robh.at.kernel.org>
-In-Reply-To: <20210524230940.GA1350504@robh.at.kernel.org>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Tue, 25 May 2021 11:46:55 +0200
-Message-ID: <CA+HBbNHb71n7GPCPWMivOV5U0RGQnwT054y6U0grQ8Hr=d9geQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: mfd: Add Delta TN48M CPLD drivers bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        bgolaszewski@baylibre.com, Lee Jones <lee.jones@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Luka Perkov <luka.perkov@sartura.hr>,
-        jmp@epiphyte.org, Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <CACPK8XcfvUQD5xwb=2Va5Sr+bmaWfJMZkh61HK1=J1qLYc84zQ@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 14P9ZLSX049551
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 25, 2021 at 1:09 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, May 24, 2021 at 02:05:38PM +0200, Robert Marko wrote:
-> > Add binding documents for the Delta TN48M CPLD drivers.
+The 05/25/2021 15:55, Joel Stanley wrote:
+> On Mon, 24 May 2021 at 07:33, Steven Lee <steven_lee@aspeedtech.com> wrote:
 > >
-> > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > ---
-> > Changes in v2:
-> > * Implement MFD as a simple I2C MFD
-> > * Add GPIO bindings as separate
->
-> I don't understand why this changed. This doesn't look like an MFD to
-> me. Make your binding complete if there are missing functions.
-> Otherwise, stick with what I already ok'ed.
-
-It changed because the custom driver was dropped at Lee Jones-es request,
-and simple-mfd-i2c is now used.
-
->
+> > AST2600-A2 EVB has the reference design for enabling SD bus
+> > power and toggling SD bus signal voltage between 3.3v and 1.8v by
+> > GPIO regulators.
+> > This patch series adds sdhci node and gpio regulators in a new dts file
+> > for AST2600-A2 EVB.
+> > The description of the reference design of AST2600-A2 EVB is added
+> > in the new dts file.
 > >
-> >  .../bindings/gpio/delta,tn48m-gpio.yaml       | 42 ++++++++++
-> >  .../bindings/mfd/delta,tn48m-cpld.yaml        | 81 +++++++++++++++++++
-> >  2 files changed, 123 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml b/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
-> > new file mode 100644
-> > index 000000000000..aca646aecb12
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
-> > @@ -0,0 +1,42 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/gpio/delta,tn48m-gpio.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Delta Networks TN48M CPLD GPIO controller
-> > +
-> > +maintainers:
-> > +  - Robert Marko <robert.marko@sartura.hr>
-> > +
-> > +description: |
-> > +  This module is part of the Delta TN48M multi-function device. For more
-> > +  details see ../mfd/delta,tn48m-cpld.yaml.
-> > +
-> > +  GPIO controller module provides GPIO-s for the SFP slots.
-> > +  It is split into 3 controllers, one output only for the SFP TX disable
-> > +  pins, one input only for the SFP present pins and one input only for
-> > +  the SFP LOS pins.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - delta,tn48m-gpio-sfp-tx-disable
-> > +      - delta,tn48m-gpio-sfp-present
-> > +      - delta,tn48m-gpio-sfp-los
->
-> The function of the 'general purpose' IO should not be encoded into the
-> compatible name. Is each instance.
+> > This patch also include a helper for updating AST2600 sdhci capability
+> > registers.
+> 
+> The device trees look good:
+> 
+> Reviewed-by: Joel Stanley <joel@jms.id.au>
+> 
+> I've applied patches 1-3 to the aspeed tree for v5.14. I made a little
+> fix to patch 3 as it needed to add the new device tree to the
+> makefile.
+> 
 
-They are not general-purpose, they are hard-wired pins.
-This is how the driver knows whether its output or input only,
-and it's been reviewed by Andy Shevchenko.
-It was weird for me as well, but that is how GPIO regmap works.
+Thanks!
 
-It was modeled by the sl28cpld GPIO driver as well as the rest of the docs
-as that CPLD has similar features supported to what this initial support does.
->
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#gpio-cells":
-> > +    const: 2
-> > +
-> > +  gpio-controller: true
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - "#gpio-cells"
-> > +  - gpio-controller
-> > +
-> > +additionalProperties: false
-> > diff --git a/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml b/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
-> > new file mode 100644
-> > index 000000000000..055e09129f86
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
-> > @@ -0,0 +1,81 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mfd/delta,tn48m-cpld.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Delta Networks TN48M CPLD controller
-> > +
-> > +maintainers:
-> > +  - Robert Marko <robert.marko@sartura.hr>
-> > +
-> > +description: |
-> > +  Lattice CPLD onboard the TN48M switches is used for system
-> > +  management.
-> > +
-> > +  It provides information about the hardware model, revision,
-> > +  PSU status etc.
-> > +
-> > +  It is also being used as a GPIO expander for the SFP slots.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: delta,tn48m-cpld
-> > +
-> > +  reg:
-> > +    description:
-> > +      I2C device address.
-> > +    maxItems: 1
-> > +
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 0
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - "#address-cells"
-> > +  - "#size-cells"
-> > +
-> > +patternProperties:
-> > +  "^gpio(@[0-9a-f]+)?$":
-> > +    $ref: ../gpio/delta,tn48m-gpio.yaml
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        cpld@41 {
-> > +            compatible = "delta,tn48m-cpld";
-> > +            reg = <0x41>;
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> > +
-> > +            gpio@31 {
-> > +                compatible = "delta,tn48m-gpio-sfp-tx-disable";
-> > +                reg = <0x31>;
->
-> Encode the register address into the gpio cells.
-Do you have an example of that?
-I have modeled this on sl28cpld GPIO driver which does the same thing
-as it's the easiest way and simply reusing standard properties.
->
-> > +                gpio-controller;
-> > +                #gpio-cells = <2>;
-> > +            };
-> > +
-> > +            gpio@3a {
-> > +                compatible = "delta,tn48m-gpio-sfp-present";
-> > +                reg = <0x3a>;
-> > +                gpio-controller;
-> > +                #gpio-cells = <2>;
-> > +            };
-> > +
-> > +            gpio@40 {
-> > +                compatible = "delta,tn48m-gpio-sfp-los";
-> > +                reg = <0x40>;
-> > +                gpio-controller;
-> > +                #gpio-cells = <2>;
-> > +            };
-> > +        };
-> > +    };
-> > --
-> > 2.31.1
-> >
+> When I was testing on my A2 EVB I saw this:
+> 
+> [    1.436219] sdhci-aspeed 1e750100.sdhci: Requested out of range
+> phase tap 192 for 9 degrees of phase compensation at 1562500Hz,
+> clamping to tap 15
+> [    1.450913] sdhci-aspeed 1e750100.sdhci: Requested out of range
+> phase tap 963 for 45 degrees of phase compensation at 1562500Hz,
+> clamping to tap 15
+> 
+> Do you know what is happening there?
+> 
 
+Per MMC spec, eMMC bus speed is set as legacy mode(0~26MHz) at startup of
+eMMC initializtion flow. Clock phase calculation is triggered in set_clock()
+and it calculates taps based on phase_deg(<9>, <225>) in the dts file and the
+current speed(1562500Hz), which causes the warning message you mentioned.
+As the phase_deg in the dts file should be calculated with 100MHz.
 
+https://lkml.org/lkml/2021/5/24/95
 
--- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+But after some initialization flow, eMMC bus speed will be set to
+correct speed(100MHz).
+Clock phase calculation will be triggered again to get correct taps.
+
+> Cheers,
+> 
+> Joel
