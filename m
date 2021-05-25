@@ -2,140 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6292738F7CC
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 04:00:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0039438F7DC
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 04:04:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229988AbhEYCCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 22:02:06 -0400
-Received: from szxga04-in.huawei.com ([45.249.212.190]:5692 "EHLO
-        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229550AbhEYCCF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 22:02:05 -0400
-Received: from dggems701-chm.china.huawei.com (unknown [172.30.72.59])
-        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4Fpxzp1F9Hz1BRJs;
-        Tue, 25 May 2021 09:57:42 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggems701-chm.china.huawei.com (10.3.19.178) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Tue, 25 May 2021 10:00:32 +0800
-Received: from [127.0.0.1] (10.174.177.72) by dggpemm500006.china.huawei.com
- (7.185.36.236) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Tue, 25 May
- 2021 10:00:32 +0800
-Subject: Re: [PATCH 1/1] arm64: dts: lx2160a: Normalize the compatible string
- of "arm, sbsa-uart"
-To:     Mark Kettenis <mark.kettenis@xs4all.nl>
-CC:     <shawnguo@kernel.org>, <leoyang.li@nxp.com>, <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-References: <20210524035244.8677-1-thunder.leizhen@huawei.com>
- <5612f2cad25a3041@bloch.sibelius.xs4all.nl>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <52e44070-3b6f-b8ee-2f23-6059517755a8@huawei.com>
-Date:   Tue, 25 May 2021 10:00:30 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S230033AbhEYCGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 22:06:21 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:29125 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230024AbhEYCGV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 22:06:21 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 14P1pJMg007540;
+        Tue, 25 May 2021 09:51:19 +0800 (GMT-8)
+        (envelope-from jamin_lin@aspeedtech.com)
+Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 25 May
+ 2021 10:04:16 +0800
+Date:   Tue, 25 May 2021 10:04:13 +0800
+From:   Jamin Lin <jamin_lin@aspeedtech.com>
+To:     Joel Stanley <joel@jms.id.au>
+CC:     Tao Ren <rentao.bupt@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        "moderated list:ARM/ASPEED I2C DRIVER" <openbmc@lists.ozlabs.org>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Rayn Chen <rayn_chen@aspeedtech.com>,
+        "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+        Steven Lee <steven_lee@aspeedtech.com>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 1/3] i2c: aspeed: avoid new registers definition of
+ AST2600
+Message-ID: <20210525020412.GA2489@aspeedtech.com>
+References: <20210519080436.18975-1-jamin_lin@aspeedtech.com>
+ <20210519080436.18975-2-jamin_lin@aspeedtech.com>
+ <CACPK8XdNXiGMQZOtsfMMK+w_PSvO20XT8B9MG+rGhdjYoV4ZuQ@mail.gmail.com>
+ <20210520033140.GA3656@aspeedtech.com>
+ <20210521020033.GB19153@taoren-ubuntu-R90MNF91>
+ <20210524015310.GA2591@aspeedtech.com>
+ <CACPK8Xd5HTNAR8MpQPWGp+-t9ixz2r3JYDjr6jUS+9ExyB94zg@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <5612f2cad25a3041@bloch.sibelius.xs4all.nl>
 Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.174.177.72]
-X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
+Content-Disposition: inline
+In-Reply-To: <CACPK8Xd5HTNAR8MpQPWGp+-t9ixz2r3JYDjr6jUS+9ExyB94zg@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 14P1pJMg007540
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2021/5/25 1:36, Mark Kettenis wrote:
->> From: Zhen Lei <thunder.leizhen@huawei.com>
->> Date: Mon, 24 May 2021 11:52:44 +0800
->> Content-Type: text/plain; charset="us-ascii"
->>
->> The compatible string of ARM SBSA defined generic UART needs to contain
->> only "arm,sbsa-uart" and does not need to contain "arm,pl011". Otherwise,
->> the pl011.yaml will check it and falsely report many warnings similar to
->> the following:
->>
->> arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dt.yaml:
->>  serial@21c0000: compatible:0: 'arm,pl011' was expected
->>  serial@21c0000: compatible:1: 'arm,primecell' was expected
->>
->> Delete the redundant "arm,pl011" to fix it.
+The 05/24/2021 02:34, Joel Stanley wrote:
+> On Mon, 24 May 2021 at 01:53, Jamin Lin <jamin_lin@aspeedtech.com> wrote:
+> >
+> > The 05/21/2021 02:00, Tao Ren wrote:
+> > > Hi Jamin,
+> > >
+> > > On Thu, May 20, 2021 at 11:31:41AM +0800, Jamin Lin wrote:
+> > > > The 05/19/2021 22:59, Joel Stanley wrote:
+> > > > > On Wed, 19 May 2021 at 08:05, Jamin Lin <jamin_lin@aspeedtech.com> wrote:
+> > > > > >
+> > > > > > The register definition between AST2600 A2 and A3 is different.
+> > > > > > This patch avoid new registers definition of AST2600 to use
+> > > > > > this driver. We will submit the path for the new registers
+> > > > > > definition of AST2600.
+> > > > >
+> > > > > The AST2600 v9 datasheet says that bit 2 selects between old and new
+> > > > > register sets, and that the old register set is the default.
+> > > > >
+> > > > > Has the default changed for the A3?, and the datasheet is incorrect?
+> > > > >
+> > > > > Does the A3 still support the old register set?
+> > > > >
+> > > > We suggest user to use the new i2c driver for AST2600 and we will sumbit
+> > > > it. This driver is used to AST2500 and AST2400 SOCs. Change this
+> > > > driver to check global register of i2c to avoid user build the wrong driver.
+> > >
+> > > If I understand correctly, the answer implies old register set is still
+> > > supported in A3 although aspeed suggest people using the new driver/mode?
+> > >
+> > > Can you please share more context behind the suggestion? Such as new
+> > > register mode has better performance? Or some known issues that were
+> > > deteted in old mode are fixed in new register mode?
+> > >
+> > Yes, AST2600 A1, A2 and A3 support both old and new register set. The difference
+> > between old and new register set are the register address and supported registers.
+> > User can choose to use both old and new register set. However, ASPEED would like to
+> > change new register set by default for AST2600.
 > 
-> According to its reference manual, the LX2160A has a full PL011
-> implementation.  So I think this is the wrong "fix".
-
-No, No, Please refer: https://www.spinics.net/lists/devicetree/msg424054.html
-
-Now the "arm,sbsa-uart" driver is mixed with amba-pl011.c，It's impossible
-"arm,pl011" is loaded but "arm,sbsa-uart" is not loaded. So it makes no sense
-to append "arm, pl011" to the end of the compatible string as an alternative
-driver.
-
-drivers/tty/serial/amba-pl011.c:2784:       { .compatible = "arm,sbsa-uart", },
-
-
+> We can certainly make the driver for the new register set the default
+> for AST2600 when the new driver is merged.
 > 
->> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->> ---
->>  arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 8 ++++----
->>  1 file changed, 4 insertions(+), 4 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
->> index 4fcc869c21a4..417546616d85 100644
->> --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
->> @@ -920,7 +920,7 @@
->>  		};
->>  
->>  		uart0: serial@21c0000 {
->> -			compatible = "arm,sbsa-uart","arm,pl011";
->> +			compatible = "arm,sbsa-uart";
->>  			reg = <0x0 0x21c0000 0x0 0x1000>;
->>  			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
->>  			current-speed = <115200>;
->> @@ -928,7 +928,7 @@
->>  		};
->>  
->>  		uart1: serial@21d0000 {
->> -			compatible = "arm,sbsa-uart","arm,pl011";
->> +			compatible = "arm,sbsa-uart";
->>  			reg = <0x0 0x21d0000 0x0 0x1000>;
->>  			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
->>  			current-speed = <115200>;
->> @@ -936,7 +936,7 @@
->>  		};
->>  
->>  		uart2: serial@21e0000 {
->> -			compatible = "arm,sbsa-uart","arm,pl011";
->> +			compatible = "arm,sbsa-uart";
->>  			reg = <0x0 0x21e0000 0x0 0x1000>;
->>  			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
->>  			current-speed = <115200>;
->> @@ -944,7 +944,7 @@
->>  		};
->>  
->>  		uart3: serial@21f0000 {
->> -			compatible = "arm,sbsa-uart","arm,pl011";
->> +			compatible = "arm,sbsa-uart";
->>  			reg = <0x0 0x21f0000 0x0 0x1000>;
->>  			interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
->>  			current-speed = <115200>;
->> -- 
->> 2.21.1
->>
->>
->>
->> _______________________________________________
->> linux-arm-kernel mailing list
->> linux-arm-kernel@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
->>
+> I disagree that we should introduce a run time check to fail to probe
+> the old driver. Please do not merge this patch.
 > 
-> .
+> Please focus your effort on getting the new driver merged instead.
 > 
+> Cheers,
+> 
+> Joel
 
+Thanks for your suggestion. I will submit the new i2c driver for AST2600
+soon.
+Jamin
