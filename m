@@ -2,128 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01C9A390732
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 19:12:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2772039073F
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 19:14:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233520AbhEYRNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 13:13:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56002 "EHLO
+        id S233605AbhEYRQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 13:16:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233442AbhEYRNg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 13:13:36 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07CDDC061574;
-        Tue, 25 May 2021 10:12:07 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id f22so15741005pfn.0;
-        Tue, 25 May 2021 10:12:07 -0700 (PDT)
+        with ESMTP id S233593AbhEYRQT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 13:16:19 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00C94C061574
+        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 10:14:48 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id u11so30961485oiv.1
+        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 10:14:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Wug7rsiCIoTV/mZ0CpjWys7g8dsVFdTX2MANuBYOeF8=;
-        b=j5J+1I6go75C0rL5DZ/yFaE5o0QkohMaSCU1vjEaOV1AtR6pcAc5gNjUvB17djNNQ1
-         2gvE0MyqghIfkjLRR+LdEenK+lNOiF4OvLKLXOWJX8EfOKJ9jzM6/o3bVo5BSrHNI/ST
-         mGYjYFCFeQgq+K66UsfQ8RhkpbkuYy/c3msAZe/BLDCh8I0PpW/pfjsS9YR6RUaE65U7
-         kCG7I4gPeHTLLFtEFvzfy3zqqglljWhayDWUTZN8w2VoaMljkvSpRX5IPyXu1V1swh8m
-         1rDYUXUrse58w7/ANmpImgfOVpVx93OmrZEkrJ2ets2mhICxVmelTYNiclKij3LZ2K27
-         hJQw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=UMrYaCknsZ9gnGhoqmMmsH4nd1WboOXoSjeEdSMCQs4=;
+        b=ftfvDnRgHPDxriwA4tTcY2o2Q4HsZfPdEYMzQhs5uEikNq96E+dPdgNRChF4bAJ7lt
+         gIZJsUoyDg5kzVVfcW2SAZuHlzA2ywibrKjRLmb1/BJdvUzqdxzT+2CUnXkbXHJWEHH7
+         xB0fROhXCehX/NqjeOxfHiIwitidswNG9G18cbEMpRk/dFgWYqoeL8lRFhLF/Sy38qjF
+         VnZUXQINZKODxvW+VS0gVlR+bGHqfQ4YTKqKrttoa5AhlS/96lVwJ+vjhv8+UfEM9Byi
+         fAKYtSxb33+8phZntntIEGv3m44TDaSOfy8Kck0m5A1MWRYVpOdTmq8vbPJkP6OfQwYd
+         Ztnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Wug7rsiCIoTV/mZ0CpjWys7g8dsVFdTX2MANuBYOeF8=;
-        b=rC1kQ3+A4IhGtrTXoQoLR7AEpklEzcJnKjoPmIvTRscCufak1B6kFpnF259yN0jZlW
-         +Z3slgWirM9hIfIiVAHT1sHyhg4n9beMnTeqHHFZ+jb26MbT3oFv5ebLSIbad6s4xdRv
-         AegaFqczwZY+88nuLj80A250jVo5jIWp/YnXyOcdGBJNwYfrTgvzJqIx5pr91/jHJ6nq
-         t1xjzrc8aLruxm1Cv0Nv1Fp+1CpMQuGcrT3spdZJFrALTod9Qo+S79KNuFcAZLgG0zQl
-         IN9XQF4G9Qhl8d6i3b470okEY0OqNGqfNLUjLT5JslP0BSOhYPrxGSAOiV/vTEXmKik+
-         gOHQ==
-X-Gm-Message-State: AOAM5330v7lwR2DNRziofQRwmM0XTK9xnBQNQV6giy4Ooh+QHh9ANQvl
-        n/dPp85zU5lAciXOiUZzQcR9uDi/ExhgAiNf7VI=
-X-Google-Smtp-Source: ABdhPJyynW/kmX1WZueKX4wBCXN+ebQo7Ihvp73ZcZbrbyogaAdSMs5P/7nrQUTcjc487cJf4U12mLZwIRdljIeJ1nY=
-X-Received: by 2002:a63:79c3:: with SMTP id u186mr20155532pgc.203.1621962726418;
- Tue, 25 May 2021 10:12:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1620735871.git.sander@svanheule.net> <cover.1621809029.git.sander@svanheule.net>
- <YKr9G3EfrM34gCsL@lunn.ch> <CAHp75VewCw8ES_9S48qmeCtSXMkGWt0s4iub0Fu4ZuwWANHpaQ@mail.gmail.com>
- <02bbf73ea8a14119247f07a677993aad2f45b088.camel@svanheule.net>
- <CAHp75Vf_dAfoMmziVLkEQ2Yr-e7Cj5=61ua5Q05Cyz-pLwVjpw@mail.gmail.com>
- <8f96b24d782e5bdeabf5370ccf3475794d0c2818.camel@svanheule.net> <CAHp75VfzEwVGR7ttdcKzirPDN8oUFw1uTDXPFE=P=9+S3CAFYQ@mail.gmail.com>
-In-Reply-To: <CAHp75VfzEwVGR7ttdcKzirPDN8oUFw1uTDXPFE=P=9+S3CAFYQ@mail.gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 25 May 2021 20:11:50 +0300
-Message-ID: <CAHp75VfCBtcQX4rvmQnRMquM0k7ZBqOgZN15Z7TFNSO60SB9TA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/6] RTL8231 GPIO expander support
-To:     Sander Vanheule <sander@svanheule.net>
-Cc:     Andrew Lunn <andrew@lunn.ch>, Pavel Machek <pavel@ucw.cz>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=UMrYaCknsZ9gnGhoqmMmsH4nd1WboOXoSjeEdSMCQs4=;
+        b=FMAAwjntDi0qHqmqz4Zz+JD1TtSI4QUSc5CZuud7Ul97yNCaunIcGqHJAZWbmdKsxg
+         3i0JzTov6tvKQ2WcIIwPlcA/UQDOJT/YYpA5QQ9Kn9Akeyr6P4Kj0YsTmg4mmDli19NY
+         hUVThufZxWEDPd9/2HOoAbbbX3sJaori++kojZi8h41HCUeVASF9cJFqAEtiF28ETXIF
+         EDJ0b7Gqf0KJtMT4CqwfV5mnYVrYhuY8VfQEU4j4S9+ceq3lM8fsdJBqlH5ncNa0V8qo
+         cB3OKjtLVd0to22kzeWDxaXUZqv5dN7gXQxZbSFp2o9j3k4cjdNLkpSBrIaITNVBD6cN
+         Hx9g==
+X-Gm-Message-State: AOAM531LyFMrkOS5F/AG17gXS0Jm0DNLaJq8TR+hnewx8mAhyMwEaiVM
+        cPCe02K3T++JseDoQQ/wfSmGeg==
+X-Google-Smtp-Source: ABdhPJwoxAXZyJQSiKouIg7L2awZGjV7IjT/50t/5yu17UNzRYnH2+hZ+ySLcF1jiFYUIX2Jlb3jGg==
+X-Received: by 2002:aca:30cd:: with SMTP id w196mr3505764oiw.167.1621962888344;
+        Tue, 25 May 2021 10:14:48 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id m66sm2805314oia.28.2021.05.25.10.14.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 May 2021 10:14:47 -0700 (PDT)
+Date:   Tue, 25 May 2021 12:14:45 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Will Deacon <will@kernel.org>
+Cc:     Rob Clark <robdclark@gmail.com>, Eric Anholt <eric@anholt.net>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        Sean Paul <sean@poorly.run>,
+        Jordan Crouse <jcrouse@codeaurora.org>,
+        Robin Murphy <robin.murphy@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Joerg Roedel <joro@8bytes.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH 1/2] iommu/arm-smmu-qcom: Skip the TTBR1 quirk for db820c.
+Message-ID: <YK0whQrWpehkxTrL@builder.lan>
+References: <20210326231303.3071950-1-eric@anholt.net>
+ <20210329144729.GB4203@willie-the-truck>
+ <CAF6AEGugpEk396DVtWX=W+uf3p-wcgBfCSpSLWGQJE1vKpJ4aw@mail.gmail.com>
+ <20210330093432.GB5281@willie-the-truck>
+ <CAF6AEGvCCWvmRBhzY4MsdzgwfJ+GF2AUOS-_NTyhM8wtnDzY2Q@mail.gmail.com>
+ <20210330153050.GB6567@willie-the-truck>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210330153050.GB6567@willie-the-truck>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 24, 2021 at 7:30 PM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
-> On Mon, May 24, 2021 at 6:03 PM Sander Vanheule <sander@svanheule.net> wrote:
-> > On Mon, 2021-05-24 at 15:54 +0300, Andy Shevchenko wrote:
+On Tue 30 Mar 10:31 CDT 2021, Will Deacon wrote:
 
-...
+> On Tue, Mar 30, 2021 at 08:03:36AM -0700, Rob Clark wrote:
+> > On Tue, Mar 30, 2021 at 2:34 AM Will Deacon <will@kernel.org> wrote:
+> > >
+> > > On Mon, Mar 29, 2021 at 09:02:50PM -0700, Rob Clark wrote:
+> > > > On Mon, Mar 29, 2021 at 7:47 AM Will Deacon <will@kernel.org> wrote:
+> > > > >
+> > > > > On Fri, Mar 26, 2021 at 04:13:02PM -0700, Eric Anholt wrote:
+> > > > > > db820c wants to use the qcom smmu path to get HUPCF set (which keeps
+> > > > > > the GPU from wedging and then sometimes wedging the kernel after a
+> > > > > > page fault), but it doesn't have separate pagetables support yet in
+> > > > > > drm/msm so we can't go all the way to the TTBR1 path.
+> > > > >
+> > > > > What do you mean by "doesn't have separate pagetables support yet"? The
+> > > > > compatible string doesn't feel like the right way to determine this.
+> > > >
+> > > > the compatible string identifies what it is, not what the sw
+> > > > limitations are, so in that regard it seems right to me..
+> > >
+> > > Well it depends on what "doesn't have separate pagetables support yet"
+> > > means. I can't tell if it's a hardware issue, a firmware issue or a driver
+> > > issue.
+> > 
+> > Just a driver issue (and the fact that currently we don't have
+> > physical access to a device... debugging a5xx per-process-pgtables by
+> > pushing untested things to the CI farm is kind of a difficult way to
+> > work)
+> 
+> But then in that case, this is using the compatible string to identify a
+> driver issue, no?
+> 
 
-> > Sadly, I don't. Most of the info we have comes from code archives of switch
-> > vendors (Zyxel, Cisco etc). Boards need to be reverse engineered, and the few
-> > leaked datasheets that can be found on the internet aren't exactly thick in
-> > information.
-> >
-> > The RTL8231 datasheet is actually quite useful, but makes no mention of the
-> > output value isse. Since this isn't an official resource, I don't think it would
-> > be appropriate to link it via a Datasheet: tag.
-> > https://github.com/libc0607/Realtek_switch_hacking/blob/files/RTL8231_Datasheet_
-> > 1.2.pdf
-> >
-> > Looking at the datasheet again, I came up with a... terrible hack to work around
-> > the output value issue.
-> >
-> > The chip also has GPIO_INVERT registers that I hadn't used until now, because
-> > the logical inversion is handled in the kernel. However, these inversion
-> > registers only apply to the output values. So, I could implement glitch-free
-> > output behaviour in the following way:
-> >  * After chip reset, and before enabling the output driver (MFD initialisation):
-> >     - Mux all pins as GPIO
-> >     - Change all pins to outputs,
->
-> No. no, no. This is much worse than the glitches. You never know what
-> the hardware is connected there and it's potential breakage (on hw
-> level) possible.
->
-> >  so the data registers (0x1c-0x1e) become writable
-> >     - Write value 0 to all pins
-> >     - Change all pins to GPI to change them into high-Z
-> >  * In the pinctrl/gpio driver:
-> >     - Use data registers as input-only
-> >     - Use inversion register to determine output value (can be written any time)
-> >
-> > The above gives glitch-free outputs, but the values that are read back (when
-> > configured as output), come from the data registers. They should now be coming
-> > from the inversion (reg_set_base) registers, but the code prefers to use the
-> > data registers (reg_dat_base).
->
-> Lemme read the datasheet and see if I find any clue for the hw behaviour.
+No the compatible addition identifies the hardware, the implementation
+then uses this information to know that it needs to behave "differently"
+on this platform.
 
-Thank you for your patience!
+When/if someone decides to add the necessary support in the driver they
+can remove the driver quirk, but it doesn't invalidate the specific
+compatible.
 
-Have you explored the possibility of using En_Sync_GPIO?
-
--- 
-With Best Regards,
-Andy Shevchenko
+Regards,
+Bjorn
