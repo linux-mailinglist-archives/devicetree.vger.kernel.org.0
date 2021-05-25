@@ -2,146 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCD3A390C8B
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 01:00:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2BE2390C9B
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 01:01:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231924AbhEYXBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 19:01:42 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:48719 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230097AbhEYXBi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 May 2021 19:01:38 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 08757580F64;
-        Tue, 25 May 2021 19:00:04 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute3.internal (MEProxy); Tue, 25 May 2021 19:00:04 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm2; bh=k2E6Xl2OGkKHi1Co9wKE/zYBcsaaJtP
-        CLHu3XoEVoQ0=; b=r+Ba5JSfHnYEVlp/TkUTUnYG03Qko6M6XZGkGlDC6YcunKf
-        BHWlxaBLNmYkqWyR36EMS+hW/z3uQfM439RN4++ABiAzQDLFOAAiWudJRqpxMH6J
-        lkEwppBtDbcXRzKaTCSFVxcQh8EB+kzSbOJ2EqdmCyy4PLXeT5N1CbAxRADLCIde
-        er8+tAw/sdHdbJnOxoeSjdGuVqB8/VU4vGiVg8uN51zalxvra21PM5iF5CVK4Qbw
-        IodHaj4AY2mY+DCsicOEWt/mTq9vWpYx+gnghHgrDkNIRoT31CkeOSs8nBTL3Rl7
-        pirZlfhAYnHp+cF+29zgtjTMAb9aRshlz5O90xQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=k2E6Xl
-        2OGkKHi1Co9wKE/zYBcsaaJtPCLHu3XoEVoQ0=; b=j/tvEBgcYT6NruAOEo3pmY
-        NFb2EXKVliDobySmbPRtNYOyV1iIUzK1TKy4x/RWO85Ehi7yeLPyWjPT/4LqJ5kM
-        tT75MNO8RJ+xkmG+WE+sT9aS42wi9qbN7S8B0X6+bEQy7+MabqEKyiwiDbcARWBS
-        zU3jptQswjST6QeAGjqNYjREgPUmk8A+o5cQbIF/NyYA9eVxmV3V3XNmKNko3mWh
-        lOsBOW5wpb0TdeO7+BUvROO+GKlOUgUqI3+UhDkpp0w1cux/ESh4hDeaXWzUjNwo
-        t0iLJ1dmo+WjC7Tub1KqwQrTSMOQHH+fAV5IPXOiUTjvbbg7wmsV3YJE/hQAGSKw
-        ==
-X-ME-Sender: <xms:coGtYGCUw_IwHteOiD36wp6XozWVtIrqrZEQR6pmnzy2hZWcm0s56g>
-    <xme:coGtYAiJCmUqHCyBkbEi-cGrKurmv-_JD49TRsgimGYLHezCwQ6Q8tluCrAoXDN1H
-    tiQCitaXuXEu-iTeA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdekvddgudeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
-    grthhtvghrnhepkeekteekuddvffeigeetkeegudduffejfffguedvveffvdekheeivdet
-    hefftefhnecuffhomhgrihhnpehlkhhmlhdrohhrghenucevlhhushhtvghrufhiiigvpe
-    dtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghu
-X-ME-Proxy: <xmx:coGtYJngWbcMwKlahILBMLZx3vkNJjDejNejGHrMeWeEqwvPh7m-9w>
-    <xmx:coGtYEyD_dC7VoMgHak49JjdCvUWccHAklJzntTLHG7mlGK5DGQ41g>
-    <xmx:coGtYLTzOu7698bAdzm07BYsxnElSqI1BLC96NBw9gLMSRUbnR4TMA>
-    <xmx:dIGtYDYUKATlHWFKXDhHESTfJoCiGjHfn1sIw-EOM3IEM8KuwvywoQ>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 159C4A00079; Tue, 25 May 2021 19:00:02 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-448-gae190416c7-fm-20210505.004-gae190416
-Mime-Version: 1.0
-Message-Id: <e95c5263-d50f-4316-bb93-e14449559b1b@www.fastmail.com>
-In-Reply-To: <CACPK8XfdYAcx=RX07hf1ar8A7th8G8390exvKbgh92X=ov8u2A@mail.gmail.com>
-References: <20210524073308.9328-1-steven_lee@aspeedtech.com>
- <CACPK8XcfvUQD5xwb=2Va5Sr+bmaWfJMZkh61HK1=J1qLYc84zQ@mail.gmail.com>
- <20210525094815.GA8757@aspeedtech.com>
- <CACPK8XfdYAcx=RX07hf1ar8A7th8G8390exvKbgh92X=ov8u2A@mail.gmail.com>
-Date:   Wed, 26 May 2021 08:29:41 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Joel Stanley" <joel@jms.id.au>,
-        "Steven Lee" <steven_lee@aspeedtech.com>
-Cc:     "Rob Herring" <robh+dt@kernel.org>,
-        "Adrian Hunter" <adrian.hunter@intel.com>,
-        "Ulf Hansson" <ulf.hansson@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        "open list" <linux-kernel@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
-        "Hongwei Zhang" <Hongweiz@ami.com>,
-        "Ryan Chen" <ryan_chen@aspeedtech.com>,
-        "Chin-Ting Kuo" <chin-ting_kuo@aspeedtech.com>
-Subject: =?UTF-8?Q?Re:_[PATCH_v5_0/4]_mmc:_sdhci-of-aspeed:_Support_toggling_SD_b?=
- =?UTF-8?Q?us_signal?=
-Content-Type: text/plain
+        id S230175AbhEYXD0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 19:03:26 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:54140 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230103AbhEYXD0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 May 2021 19:03:26 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1llg3b-00070s-VH; Wed, 26 May 2021 01:01:52 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Ezequiel Garcia <ezequiel@collabora.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, Alex Bee <knaerzche@gmail.com>
+Cc:     Alex Bee <knaerzche@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-staging@lists.linux.dev
+Subject: Re: [PATCH 00/10] Add support for older Rockchip SoCs to V4L2 hantro and rkvdec drivers
+Date:   Wed, 26 May 2021 01:01:51 +0200
+Message-ID: <38327082.10thIPus4b@diego>
+In-Reply-To: <20210525152225.154302-1-knaerzche@gmail.com>
+References: <20210525152225.154302-1-knaerzche@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Alex,
 
-
-On Tue, 25 May 2021, at 22:26, Joel Stanley wrote:
-> On Tue, 25 May 2021 at 09:48, Steven Lee <steven_lee@aspeedtech.com> wrote:
-> >
-> > The 05/25/2021 15:55, Joel Stanley wrote:
-> > > When I was testing on my A2 EVB I saw this:
-> > >
-> > > [    1.436219] sdhci-aspeed 1e750100.sdhci: Requested out of range
-> > > phase tap 192 for 9 degrees of phase compensation at 1562500Hz,
-> > > clamping to tap 15
-> > > [    1.450913] sdhci-aspeed 1e750100.sdhci: Requested out of range
-> > > phase tap 963 for 45 degrees of phase compensation at 1562500Hz,
-> > > clamping to tap 15
-> > >
-> > > Do you know what is happening there?
-> > >
-> >
-> > Per MMC spec, eMMC bus speed is set as legacy mode(0~26MHz) at startup of
-> > eMMC initializtion flow. Clock phase calculation is triggered in set_clock()
-> > and it calculates taps based on phase_deg(<9>, <225>) in the dts file and the
-> > current speed(1562500Hz), which causes the warning message you mentioned.
-> > As the phase_deg in the dts file should be calculated with 100MHz.
-> >
-> > https://lkml.org/lkml/2021/5/24/95
-> >
-> > But after some initialization flow, eMMC bus speed will be set to
-> > correct speed(100MHz).
-> > Clock phase calculation will be triggered again to get correct taps.
+Am Dienstag, 25. Mai 2021, 17:22:15 CEST schrieb Alex Bee:
+> Hi list,
 > 
-> Thanks for the explanation. I added another debug print and I can see
-> it doing what you describe:
+> this series adds support for older Rockchip SoCs (RK3036, RK3066, RK3188
+> and RK322x) to the existing V4L2 video decoder/-encoder drivers - namely
+> hantro and rkvdec.
+> They can be used as-is or with very little modifications.
 > 
-> [    1.465904] sdhci-aspeed 1e750100.sdhci: Requested out of range
-> phase tap 192 for 9 degrees of phase compensation at 1562500Hz,
-> clamping to tap 15
-> [    1.480598] sdhci-aspeed 1e750100.sdhci: rate 1562500 phase 9 tap 15
-> [    1.490316] sdhci-aspeed 1e750100.sdhci: Requested out of range
-> phase tap 963 for 45 degrees of phase compensation at 1562500Hz,
-> clamping to tap 15
-> [    1.505077] sdhci-aspeed 1e750100.sdhci: rate 1562500 phase 45 tap 15
-> [    1.515059] sdhci-aspeed 1e750100.sdhci: rate 100000000 phase 9 tap 3
-> [    1.524886] sdhci-aspeed 1e750100.sdhci: rate 100000000 phase 45 tap 15
-> [    1.534904] sdhci-aspeed 1e750100.sdhci: rate 100000000 phase 9 tap 3
-> [    1.544713] sdhci-aspeed 1e750100.sdhci: rate 100000000 phase 45 tap 15
+> In preparation to that patches 1-3 add power-controller support for RK3036
+> and RK322x, since both drivers rely on pm. The drivers for them exist
+> already in the common Rockchip pm driver, they just haven't be added to
+> the device trees yet.
+
+on first glance, looks good. Just a small ordering nit, if you need to resend
+the series for other reasons:
+
+Please try to order patches like:
+(1) dt-binding - compatible addition
+(2) driver patches
+(3) devicetree node patches
+
+That makes it way easier to keep track of dependencies when glancing at
+the series. Like for patches 1+2, I need to wait for Lee to apply (or Ack) the
+binding addition in patch 3.
+
+Same for the hantro devicetree additions, that need to wait for both
+bindings (and driver) changes to get applied to the media tree.
+
+Thanks
+Heiko
+
+
 > 
-> We should change the "out of range" message to be dev_dbg, as it is
-> expected on a normal boot.
+> Thanks for your feedback,
+> Alex.
+> 
+> Alex Bee (10):
+>   ARM: dts: rockchip: add power controller for RK322x
+>   ARM: dts: rockchip: add power controller for RK3036
+>   dt-bindings: mfd: syscon: add Rockchip RK3036/RK3228 qos compatibles
+>   media: hantro: add support for Rockchip RK3066
+>   media: hantro: add support for Rockchip RK3036
+>   ARM: dts: rockchip: add vpu nodes for RK3066 and RK3188
+>   ARM: dts: rockchip: add vpu node for RK322x
+>   media: dt-bindings: media: rockchip-vpu: add new compatibles
+>   ARM: dts: rockchip: add vdec node for RK322x
+>   media: dt-bindings: media: rockchip-vdec: add RK3228 compatible
+> 
+>  .../bindings/media/rockchip,vdec.yaml         |  10 +-
+>  .../bindings/media/rockchip-vpu.yaml          |  33 +++-
+>  .../devicetree/bindings/mfd/syscon.yaml       |   2 +
+>  arch/arm/boot/dts/rk3036.dtsi                 |  51 ++++++
+>  arch/arm/boot/dts/rk3066a.dtsi                |   4 +
+>  arch/arm/boot/dts/rk3188.dtsi                 |   5 +
+>  arch/arm/boot/dts/rk322x.dtsi                 | 139 ++++++++++++++-
+>  arch/arm/boot/dts/rk3xxx.dtsi                 |  12 ++
+>  drivers/staging/media/hantro/hantro_drv.c     |   2 +
+>  drivers/staging/media/hantro/hantro_hw.h      |   2 +
+>  drivers/staging/media/hantro/rk3288_vpu_hw.c  | 165 ++++++++++++++++++
+>  11 files changed, 414 insertions(+), 11 deletions(-)
+> 
+> 
+> base-commit: 5d765451c2409e63563fa6a3e8005bd03ab9e82f
+> 
 
-I would think the issue is rather that we shouldn't be applying a phase 
-correction for a bus speed that isn't what the correction was specified 
-for.
 
-Let me look at this a bit further.
 
-Andrew
+
