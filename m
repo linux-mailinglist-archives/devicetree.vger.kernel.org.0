@@ -2,124 +2,310 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2772039073F
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 19:14:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 196DD390755
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 19:18:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233605AbhEYRQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 13:16:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56620 "EHLO
+        id S233653AbhEYRUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 13:20:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233593AbhEYRQT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 13:16:19 -0400
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00C94C061574
-        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 10:14:48 -0700 (PDT)
-Received: by mail-oi1-x22d.google.com with SMTP id u11so30961485oiv.1
-        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 10:14:48 -0700 (PDT)
+        with ESMTP id S230138AbhEYRUD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 13:20:03 -0400
+Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDE8EC061574
+        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 10:18:32 -0700 (PDT)
+Received: by mail-qk1-x729.google.com with SMTP id h20so15649724qko.11
+        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 10:18:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=UMrYaCknsZ9gnGhoqmMmsH4nd1WboOXoSjeEdSMCQs4=;
-        b=ftfvDnRgHPDxriwA4tTcY2o2Q4HsZfPdEYMzQhs5uEikNq96E+dPdgNRChF4bAJ7lt
-         gIZJsUoyDg5kzVVfcW2SAZuHlzA2ywibrKjRLmb1/BJdvUzqdxzT+2CUnXkbXHJWEHH7
-         xB0fROhXCehX/NqjeOxfHiIwitidswNG9G18cbEMpRk/dFgWYqoeL8lRFhLF/Sy38qjF
-         VnZUXQINZKODxvW+VS0gVlR+bGHqfQ4YTKqKrttoa5AhlS/96lVwJ+vjhv8+UfEM9Byi
-         fAKYtSxb33+8phZntntIEGv3m44TDaSOfy8Kck0m5A1MWRYVpOdTmq8vbPJkP6OfQwYd
-         Ztnw==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6v3/K1Horl9SzTXgWoFkj2TvOradDTOxmu9THwCEwjc=;
+        b=C1XEb01J2q5ACqxInSKk5etkR6HPE/kt5stCFZ0XupxgQtbXQn8AB/H2pOcgPxn/3E
+         HS5Z548DsRJPPDFfpt3VFCFch9BYB4EtQU1i5osTAshhMc4EcKlEqRoRQ7+68wmukGVK
+         UgFdUKAMBpoMvSE/nORWhzuAvj5gCz9SoKtZQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=UMrYaCknsZ9gnGhoqmMmsH4nd1WboOXoSjeEdSMCQs4=;
-        b=FMAAwjntDi0qHqmqz4Zz+JD1TtSI4QUSc5CZuud7Ul97yNCaunIcGqHJAZWbmdKsxg
-         3i0JzTov6tvKQ2WcIIwPlcA/UQDOJT/YYpA5QQ9Kn9Akeyr6P4Kj0YsTmg4mmDli19NY
-         hUVThufZxWEDPd9/2HOoAbbbX3sJaori++kojZi8h41HCUeVASF9cJFqAEtiF28ETXIF
-         EDJ0b7Gqf0KJtMT4CqwfV5mnYVrYhuY8VfQEU4j4S9+ceq3lM8fsdJBqlH5ncNa0V8qo
-         cB3OKjtLVd0to22kzeWDxaXUZqv5dN7gXQxZbSFp2o9j3k4cjdNLkpSBrIaITNVBD6cN
-         Hx9g==
-X-Gm-Message-State: AOAM531LyFMrkOS5F/AG17gXS0Jm0DNLaJq8TR+hnewx8mAhyMwEaiVM
-        cPCe02K3T++JseDoQQ/wfSmGeg==
-X-Google-Smtp-Source: ABdhPJwoxAXZyJQSiKouIg7L2awZGjV7IjT/50t/5yu17UNzRYnH2+hZ+ySLcF1jiFYUIX2Jlb3jGg==
-X-Received: by 2002:aca:30cd:: with SMTP id w196mr3505764oiw.167.1621962888344;
-        Tue, 25 May 2021 10:14:48 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id m66sm2805314oia.28.2021.05.25.10.14.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 May 2021 10:14:47 -0700 (PDT)
-Date:   Tue, 25 May 2021 12:14:45 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Will Deacon <will@kernel.org>
-Cc:     Rob Clark <robdclark@gmail.com>, Eric Anholt <eric@anholt.net>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6v3/K1Horl9SzTXgWoFkj2TvOradDTOxmu9THwCEwjc=;
+        b=UQ5SJym1vvWVMTYBGAKFJriwUpUN4YeC3ALliTZhAYMwUhbUgFDV//r7MAUHi2GKR/
+         xjq83jiSLe3JhU7iCBKfNbZQyaRWFuxZNVAg4Rj7tXwdmj9GkD7HdI9Kzyq5xn0ux4p3
+         Hiy3GdsVvkHz2zJBbdI6tgujdRSYJOqQTvU3Axg8DdacwDPipH4xYa0BxXn6d3okNalA
+         ak633MmUFwsWHtAE9CxTFFqBl0VdTLMtw7IbSdgZYjknkEr9AeAMAvB9aCwOerWFmcgU
+         sSnnepFLVmN8kB3QhCjeWJ7nxj4hwEWsiQ6nEkThY0WAkzTYO9MBphCI5Wm/4YqFz6NL
+         mxIg==
+X-Gm-Message-State: AOAM530AjaB+HD6ZqQ/MRr92rYriPKKy8FNi1FBqCD9eWFuw+dI4s6WV
+        ML7djm7A9EpP49di3aUQSPunugSlAhRMtA==
+X-Google-Smtp-Source: ABdhPJxD6aAoyE5x1I6Y9GTk+wUaG9mtCX4Pj+WQsUI/PRTp1e3pdJzxVmmCs8KcHdv0dY0xwxqXCA==
+X-Received: by 2002:a37:b185:: with SMTP id a127mr14699975qkf.172.1621963111070;
+        Tue, 25 May 2021 10:18:31 -0700 (PDT)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id s5sm13789257qkg.88.2021.05.25.10.18.29
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 May 2021 10:18:29 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id y2so44045847ybq.13
+        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 10:18:29 -0700 (PDT)
+X-Received: by 2002:a25:dcc:: with SMTP id 195mr15421822ybn.343.1621963108523;
+ Tue, 25 May 2021 10:18:28 -0700 (PDT)
+MIME-Version: 1.0
+References: <1621927831-29471-1-git-send-email-rajeevny@codeaurora.org> <1621927831-29471-2-git-send-email-rajeevny@codeaurora.org>
+In-Reply-To: <1621927831-29471-2-git-send-email-rajeevny@codeaurora.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 25 May 2021 10:18:15 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WzQ0Oc=e3kmNeBZUA+P1soKhBk8zt7bG1gqJ-Do-Tq_w@mail.gmail.com>
+Message-ID: <CAD=FV=WzQ0Oc=e3kmNeBZUA+P1soKhBk8zt7bG1gqJ-Do-Tq_w@mail.gmail.com>
+Subject: Re: [v4 1/4] drm/panel-simple: Add basic DPCD backlight support
+To:     Rajeev Nandan <rajeevny@codeaurora.org>
+Cc:     y@qualcomm.com, dri-devel <dri-devel@lists.freedesktop.org>,
         linux-arm-msm <linux-arm-msm@vger.kernel.org>,
         freedreno <freedreno@lists.freedesktop.org>,
-        Sean Paul <sean@poorly.run>,
-        Jordan Crouse <jcrouse@codeaurora.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] iommu/arm-smmu-qcom: Skip the TTBR1 quirk for db820c.
-Message-ID: <YK0whQrWpehkxTrL@builder.lan>
-References: <20210326231303.3071950-1-eric@anholt.net>
- <20210329144729.GB4203@willie-the-truck>
- <CAF6AEGugpEk396DVtWX=W+uf3p-wcgBfCSpSLWGQJE1vKpJ4aw@mail.gmail.com>
- <20210330093432.GB5281@willie-the-truck>
- <CAF6AEGvCCWvmRBhzY4MsdzgwfJ+GF2AUOS-_NTyhM8wtnDzY2Q@mail.gmail.com>
- <20210330153050.GB6567@willie-the-truck>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210330153050.GB6567@willie-the-truck>
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rob Clark <robdclark@gmail.com>, Lyude Paul <lyude@redhat.com>,
+        Jani Nikula <jani.nikula@intel.com>,
+        Rob Herring <robh@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        Sean Paul <seanpaul@chromium.org>,
+        Kalyan Thota <kalyan_t@codeaurora.org>, mkrishn@codeaurora.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 30 Mar 10:31 CDT 2021, Will Deacon wrote:
+Hi,
 
-> On Tue, Mar 30, 2021 at 08:03:36AM -0700, Rob Clark wrote:
-> > On Tue, Mar 30, 2021 at 2:34 AM Will Deacon <will@kernel.org> wrote:
-> > >
-> > > On Mon, Mar 29, 2021 at 09:02:50PM -0700, Rob Clark wrote:
-> > > > On Mon, Mar 29, 2021 at 7:47 AM Will Deacon <will@kernel.org> wrote:
-> > > > >
-> > > > > On Fri, Mar 26, 2021 at 04:13:02PM -0700, Eric Anholt wrote:
-> > > > > > db820c wants to use the qcom smmu path to get HUPCF set (which keeps
-> > > > > > the GPU from wedging and then sometimes wedging the kernel after a
-> > > > > > page fault), but it doesn't have separate pagetables support yet in
-> > > > > > drm/msm so we can't go all the way to the TTBR1 path.
-> > > > >
-> > > > > What do you mean by "doesn't have separate pagetables support yet"? The
-> > > > > compatible string doesn't feel like the right way to determine this.
-> > > >
-> > > > the compatible string identifies what it is, not what the sw
-> > > > limitations are, so in that regard it seems right to me..
-> > >
-> > > Well it depends on what "doesn't have separate pagetables support yet"
-> > > means. I can't tell if it's a hardware issue, a firmware issue or a driver
-> > > issue.
-> > 
-> > Just a driver issue (and the fact that currently we don't have
-> > physical access to a device... debugging a5xx per-process-pgtables by
-> > pushing untested things to the CI farm is kind of a difficult way to
-> > work)
-> 
-> But then in that case, this is using the compatible string to identify a
-> driver issue, no?
-> 
+On Tue, May 25, 2021 at 12:31 AM Rajeev Nandan <rajeevny@codeaurora.org> wrote:
+>
+> @@ -171,6 +172,19 @@ struct panel_desc {
+>
+>         /** @connector_type: LVDS, eDP, DSI, DPI, etc. */
+>         int connector_type;
+> +
+> +       /**
+> +        * @uses_dpcd_backlight: Panel supports eDP dpcd backlight control.
+> +        *
+> +        * Set true, if the panel supports backlight control over eDP AUX channel
+> +        * using DPCD registers as per VESA's standard.
+> +        */
+> +       bool uses_dpcd_backlight;
+> +};
+> +
+> +struct edp_backlight {
+> +       struct backlight_device *dev;
 
-No the compatible addition identifies the hardware, the implementation
-then uses this information to know that it needs to behave "differently"
-on this platform.
+Can you pick a name other than "dev". In my mind "dev" means you've
+got a "struct device" or a "struct device *".
 
-When/if someone decides to add the necessary support in the driver they
-can remove the driver quirk, but it doesn't invalidate the specific
-compatible.
 
-Regards,
-Bjorn
+> +       struct drm_edp_backlight_info info;
+>  };
+>
+>  struct panel_simple {
+> @@ -194,6 +208,8 @@ struct panel_simple {
+>
+>         struct edid *edid;
+>
+> +       struct edp_backlight *edp_bl;
+> +
+
+I don't think you need to add this pointer. See below for details, but
+basically the backlight device should be in base.backlight. Any code
+that needs the containing structure can use the standard
+"container_of" syntax.
+
+
+>         struct drm_display_mode override_mode;
+>
+>         enum drm_panel_orientation orientation;
+> @@ -330,10 +346,14 @@ static void panel_simple_wait(ktime_t start_ktime, unsigned int min_ms)
+>  static int panel_simple_disable(struct drm_panel *panel)
+>  {
+>         struct panel_simple *p = to_panel_simple(panel);
+> +       struct edp_backlight *bl = p->edp_bl;
+>
+>         if (!p->enabled)
+>                 return 0;
+>
+> +       if (p->desc->uses_dpcd_backlight && bl)
+> +               drm_edp_backlight_disable(p->aux, &bl->info);
+> +
+
+It feels like this shouldn't be needed. I would have expected that
+your backlight should be in 'panel->backlight'. Then
+drm_panel_enable() will call backlight_enable() on your backlight
+automatically after calling the panel's enable function.
+
+
+>         if (p->desc->delay.disable)
+>                 msleep(p->desc->delay.disable);
+>
+> @@ -496,6 +516,7 @@ static int panel_simple_prepare(struct drm_panel *panel)
+>  static int panel_simple_enable(struct drm_panel *panel)
+>  {
+>         struct panel_simple *p = to_panel_simple(panel);
+> +       struct edp_backlight *bl = p->edp_bl;
+>
+>         if (p->enabled)
+>                 return 0;
+> @@ -505,6 +526,10 @@ static int panel_simple_enable(struct drm_panel *panel)
+>
+>         panel_simple_wait(p->prepared_time, p->desc->delay.prepare_to_enable);
+>
+> +       if (p->desc->uses_dpcd_backlight && bl)
+> +               drm_edp_backlight_enable(p->aux, &bl->info,
+> +                                        bl->dev->props.brightness);
+> +
+
+Similar to disable, this shouldn't be needed.
+
+
+>         p->enabled = true;
+>
+>         return 0;
+> @@ -565,6 +590,59 @@ static const struct drm_panel_funcs panel_simple_funcs = {
+>         .get_timings = panel_simple_get_timings,
+>  };
+>
+> +static int edp_backlight_update_status(struct backlight_device *bd)
+> +{
+> +       struct panel_simple *p = bl_get_data(bd);
+> +       struct edp_backlight *bl = p->edp_bl;
+> +
+> +       if (!p->enabled)
+> +               return 0;
+> +
+> +       return drm_edp_backlight_set_level(p->aux, &bl->info, bd->props.brightness);
+
+I notice that the "nouveau" driver grabs a whole pile of locks around
+this. Do we need some of those? I guess perhaps checking "p->enabled"
+isn't so valid without holding some of those locks.
+
+Actually, I guess you probably can't look at "p->enabled" anyway if
+this gets moved out of panel-simple as I'm suggesting.
+
+...but do you even need something like this check? Shouldn't it be
+handled by the fact that drm_panel will handle enabling/disabling the
+backlight at the right times?
+
+
+> +}
+> +
+> +static const struct backlight_ops edp_backlight_ops = {
+> +       .update_status = edp_backlight_update_status,
+> +};
+> +
+> +static int edp_backlight_register(struct device *dev, struct panel_simple *panel)
+> +{
+> +       struct edp_backlight *bl;
+> +       struct backlight_properties props = { 0 };
+> +       u16 current_level;
+> +       u8 current_mode;
+> +       u8 edp_dpcd[EDP_DISPLAY_CTL_CAP_SIZE];
+> +       int ret;
+> +
+> +       bl = devm_kzalloc(dev, sizeof(*bl), GFP_KERNEL);
+> +       if (!bl)
+> +               return -ENOMEM;
+> +
+> +       ret = drm_dp_dpcd_read(panel->aux, DP_EDP_DPCD_REV, edp_dpcd,
+> +                              EDP_DISPLAY_CTL_CAP_SIZE);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       ret = drm_edp_backlight_init(panel->aux, &bl->info, 0, edp_dpcd,
+> +                                    &current_level, &current_mode);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       props.type = BACKLIGHT_RAW;
+> +       props.brightness = current_level;
+> +       props.max_brightness = bl->info.max;
+> +
+> +       bl->dev = devm_backlight_device_register(dev, "edp_backlight",
+> +                                               dev, panel,
+> +                                               &edp_backlight_ops, &props);
+> +       if (IS_ERR(bl->dev))
+> +               return PTR_ERR(bl->dev);
+> +
+> +       panel->edp_bl = bl;
+> +
+> +       return 0;
+> +}
+> +
+
+I expect there to be quite a bit of pushback to putting this directly
+into panel-simple. How about if you move edp_backlight_register() into
+drm_panel.c, parallel to drm_panel_of_backlight(). Maybe you'd call it
+drm_panel_dp_aux_backlight() to make it look symmetric?
+
+If you do that then the amount of code / complexity being added to
+"simple" panel is quite small. I think it would just come down to
+adding the boolean flag and the patch to probe that you have below.
+
+Actually, now that I think about it, you could maybe even get by
+_without_ the boolean flag? I think you could use these rules
+(untested!):
+
+1. Call drm_panel_of_backlight() always, just like we do today. If a
+backlight was specified in the device tree then we should use it.
+
+2. If no backlight was specified in the device tree then, I believe,
+drm_panel_of_backlight() will return with no errors but will have
+panel->backlight set to NULL.
+
+3. If there was no backlight specified in the device tree and you have
+the DP AUX channel and drm_edp_backlight_supported() then create a DP
+AUX backlight.
+
+The one feature that wouldn't be supported by the above would be
+"DP_EDP_BACKLIGHT_AUX_PWM_PRODUCT_CAP". Presumably that's fine. If
+someone later wants to figure out how to solve that then they can.
+
+
+>  static struct panel_desc panel_dpi;
+>
+>  static int panel_dpi_probe(struct device *dev,
+> @@ -796,9 +874,24 @@ static int panel_simple_probe(struct device *dev, const struct panel_desc *desc,
+>
+>         drm_panel_init(&panel->base, dev, &panel_simple_funcs, connector_type);
+>
+> -       err = drm_panel_of_backlight(&panel->base);
+> -       if (err)
+> -               goto disable_pm_runtime;
+> +       if (panel->desc->uses_dpcd_backlight) {
+> +               if (!panel->aux) {
+> +                       dev_err(dev, "edp backlight needs DP aux\n");
+> +                       err = -EINVAL;
+> +                       goto disable_pm_runtime;
+> +               }
+> +
+> +               err = edp_backlight_register(dev, panel);
+> +               if (err) {
+> +                       dev_err(dev, "failed to register edp backlight %d\n", err);
+> +                       goto disable_pm_runtime;
+> +               }
+> +
+> +       } else {
+
+nit: get rid of the blank line above the "} else {"
+
+
+> +               err = drm_panel_of_backlight(&panel->base);
+> +               if (err)
+> +                       goto disable_pm_runtime;
+> +       }
+
+See above where I'm suggesting some different logic. Specifically:
+always try the drm_panel_of_backlight() call and then fallback to the
+AUX backlight if "panel->base.backlight" is NULL and "panel->aux" is
+not NULL.
+
+-Doug
