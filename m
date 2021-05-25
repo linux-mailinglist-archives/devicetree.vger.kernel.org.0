@@ -2,80 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6FE038F6D7
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 02:10:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DFB338F6DD
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 02:12:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229668AbhEYAMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 20:12:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51358 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229503AbhEYAMV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 20:12:21 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C871C061574;
-        Mon, 24 May 2021 17:10:51 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id b26so27081329lfq.4;
-        Mon, 24 May 2021 17:10:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=t47JtVy6KStbnEN3bYR8XchCG9158eP6cF4birDMKa0=;
-        b=G/U0nPV1Xjr3193n014viIGgNkMnhsWpnLKWnb900gKF1JBYt1cCdfOrjwhttWtrOF
-         XdajzNZL52kbVvmEwxUM8iG0sP22GIUcK5pQA5SXS0Pu9cmq1n4H/tvyvrrZQNqypXKF
-         yzDSgOzur70gjqARQOhXZD7SO1iyj5aaqbaeoTczxwguTxghgJUyhkR8WaYaR+vNA54q
-         BJZ8dk2SbcggfZfokwpz9Om0/Ee7FxT88canLXZycqxFyVdwqWz4DmRZFqp43Q944d+d
-         vonC4tkfYl4uFveq1EFNg660ZjzQLSm0ZJP7mnd/v7SwPR/3n1rkVIlhBzJQxbu9mUs3
-         5c7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=t47JtVy6KStbnEN3bYR8XchCG9158eP6cF4birDMKa0=;
-        b=NlRjmiaWCH9R2oAA5MCarwmYJ4sDRCeHFPoBtj8+FDCLIvTyRrr6XrQEySbb2xO/dU
-         k6qrQQkHPm8LUWFM8mRACsD3C5aKBzysEqr4SLVAEuieCBtsOl42P2ndXDOSOoEK9vz/
-         dw+FvN2vW9UcHyh/xuxanDo+QXgjUjKq6CWrkl2WSxjXal09r9moNa+SXWU9NoeoKiU6
-         w4DBL6ZHRWkGXM0jECke0aSYfouklPIJP+ufDqkEls7kMbbmkK4lU02h0sLsj0/Xxuo1
-         VGSccFQvIYc4HxPE2WbdOsAFYDLzxImgH1fvyJuowfXPkkJd8Vj2iDcTX1Mbfcxabvlz
-         47Lg==
-X-Gm-Message-State: AOAM533ugiBp2eZJZvk5HnII0hUiguiQ9SCwFBwdvua6Dlzl6dryUI57
-        BvZ6eaQodMio19zilQ7RggLkirkQe3YzsbUzYeg=
-X-Google-Smtp-Source: ABdhPJzd004l0A4EycAUS1IJ/n71pXJaFU/sj8ALH0v9m4OuRqvXaFqbFRo+GeHTcMOWIixGW7oPbxFa7kz4HLNZj7k=
-X-Received: by 2002:a05:6512:1031:: with SMTP id r17mr11948626lfr.583.1621901449531;
- Mon, 24 May 2021 17:10:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <4964298a8d264dafaa807c43bab5d174@dh-electronics.com>
-In-Reply-To: <4964298a8d264dafaa807c43bab5d174@dh-electronics.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 24 May 2021 21:10:38 -0300
-Message-ID: <CAOMZO5CaK5mJpDp7-ak3Q08ErWrfBQ-xCgOPpqD+rH_yT1Ok8Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: arm: fsl: Add DHCOM PicoITX and DHCOM DRC02
- boards [Klartext]
-To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        kernel <kernel@dh-electronics.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S229547AbhEYAOZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 20:14:25 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:39317 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229543AbhEYAOZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 May 2021 20:14:25 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 241CA58094E;
+        Mon, 24 May 2021 20:12:56 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute3.internal (MEProxy); Mon, 24 May 2021 20:12:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm2; bh=d2zEUntdeXJWYmAyxI56N4QgHdNvMV1
+        cDqrmFJTjfjI=; b=OqoVhqH34YPXVFKBrbOk5IpHlbe7l5x4hc+UB7WirS4hk1Y
+        uECLjyU3QdbrJ/w9qRZpAMMyiX6qFeBkMj3Zvteq9Emp6smH/4EQgimOSOjtQOL1
+        CFH5gfBnflZgn+nCi4lhhgX/8gBA8jUII+O477YbmKiYUkhhLRGz0m0wzZ1qkepo
+        DvyqDPIB7Rmk4eS7VdOvnnxiioIkfX1rrVaEYxy+/531D1+BqnMqCWM/Q2LHQIRq
+        Y9lhN5XwuBYTXYiWo/POsT233pRHtITR0BxZV3EaYJjxod2sM3b8p1ZrCHiHFQwy
+        LuWDJ3cY3QtifTayq8YiT/nyxREB2C3UWdGk28A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=d2zEUn
+        tdeXJWYmAyxI56N4QgHdNvMV1cDqrmFJTjfjI=; b=LTO/qW8Bh92w5dNv4wEW7I
+        yfnmJcWmUK7o4xwKs2OjWsPssTZwlyXKJsqMrXfqaVRdz2JQKWK8CEyFZwrZMixE
+        pSjQqduFdiKSEHOGGo8Mqz5J6kEyUr8/mEnup4O3/BAO5lJM3jz81LR65BWti0di
+        f5u57AXxwdk2J/Vtiqxb1E5RhtJR085o4RXyxxcjcF/0tQwyYtelPJLhkj287PA5
+        OF+b90rF+KdMoty+nKCrnUTaoBAVG+EvEHxZhg2e6LkT03JR0+tKsdZv8aCOoehn
+        W0eT5UbJWJXNOEf8Z4pr2XULBLz18vORHBlTRsMQS4gB1ikVCGEOA8iq9D+c6LiA
+        ==
+X-ME-Sender: <xms:BkGsYIWqNsTm0RtQUheqhfTZRQT3WjUD4-ioUsfLFEcDy7PtILV0nQ>
+    <xme:BkGsYMk0DHlWx6Dmqe4WVJ1vJm-uytKQ2uSctVOBHtGMkD_UY6VHIwABgNrwb_XuD
+    GXDrH9WRy2mbJmBhQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdektddgvdelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
+    grthhtvghrnhepuddttdekueeggedvtddtueekiedutdfguedutdefieeuteefieelteet
+    vddthfeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    eprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:BkGsYMZnS3AQ3qYwKmWfErRADHhKKXU6snwuTx69BCgwVr2pJSy-tA>
+    <xmx:BkGsYHV_wjLFaYg6IWAYYaG6yi2BsuBX3jw3WXK39XF-DecmfpzM0g>
+    <xmx:BkGsYCknc428lZrWC-SoqlbGAnSq8ZB-dOibbIK9pjxIn9ckfrFBNA>
+    <xmx:CEGsYIkc_GmiuK4K_lEx0qSvm7sntUu5YfES1dDLd4Ue6BbRMU6-ZQ>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id ACC11A00079; Mon, 24 May 2021 20:12:54 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-448-gae190416c7-fm-20210505.004-gae190416
+Mime-Version: 1.0
+Message-Id: <9a290af6-522f-4055-bd26-e5818cc97bcb@www.fastmail.com>
+In-Reply-To: <20210524154119.GN2921206@minyard.net>
+References: <20210510054213.1610760-1-andrew@aj.id.au>
+ <20210510054213.1610760-6-andrew@aj.id.au>
+ <20210521171412.GI2921206@minyard.net>
+ <79f3c6d1-1f74-46ec-99a0-37faf11517b6@www.fastmail.com>
+ <20210524154119.GN2921206@minyard.net>
+Date:   Tue, 25 May 2021 09:42:34 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Corey Minyard" <minyard@acm.org>
+Cc:     devicetree@vger.kernel.org, "Tomer Maimon" <tmaimon77@gmail.com>,
+        linux-aspeed@lists.ozlabs.org,
+        "Avi Fishman" <avifishman70@gmail.com>,
+        "Patrick Venture" <venture@google.com>, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, "Tali Perry" <tali.perry1@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Arnd Bergmann" <arnd@arndb.de>,
+        openipmi-developer@lists.sourceforge.net,
+        "Zev Weiss" <zweiss@equinix.com>,
+        "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
+        linux-arm-kernel@lists.infradead.org,
+        "Benjamin Fair" <benjaminfair@google.com>
+Subject: =?UTF-8?Q?Re:_[Openipmi-developer]_[PATCH_v3_05/16]_ipmi:_kcs=5Fbmc:_Tur?=
+ =?UTF-8?Q?n_the_driver_data-structures_inside-out?=
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christoph,
 
-On Mon, May 24, 2021 at 7:39 PM Christoph Niedermaier
-<cniedermaier@dh-electronics.com> wrote:
 
-> My thought was to be future proof. If there is no match with the Solo now,
-> it will fall back to the i.MX6 DualLite. That is why I added both fsl,imx6s
-> and fsl,imx6dl in this order.
->
-> Should I remove the line with fsl,imx6s?
+On Tue, 25 May 2021, at 01:11, Corey Minyard wrote:
+> On Mon, May 24, 2021 at 10:23:36AM +0930, Andrew Jeffery wrote:
+> > 
+> > 
+> > On Sat, 22 May 2021, at 02:44, Corey Minyard wrote:
+> > > On Mon, May 10, 2021 at 03:12:02PM +0930, Andrew Jeffery wrote:
+> > > > Make the KCS device drivers responsible for allocating their own memory.
+> > > > 
+> > > > Until now the private data for the device driver was allocated internal
+> > > > to the private data for the chardev interface. This coupling required
+> > > > the slightly awkward API of passing through the struct size for the
+> > > > driver private data to the chardev constructor, and then retrieving a
+> > > > pointer to the driver private data from the allocated chardev memory.
+> > > > 
+> > > > In addition to being awkward, the arrangement prevents the
+> > > > implementation of alternative userspace interfaces as the device driver
+> > > > private data is not independent.
+> > > > 
+> > > > Peel a layer off the onion and turn the data-structures inside out by
+> > > > exploiting container_of() and embedding `struct kcs_device` in the
+> > > > driver private data.
+> > > 
+> > > All in all a very nice cleanup.  A few nits inline.
+> > > 
+> > > > 
+> > > > Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+> > > > Reviewed-by: Zev Weiss <zweiss@equinix.com>
+> > > > ---
+> > > >  drivers/char/ipmi/kcs_bmc.c           | 19 +++++++--
+> > > >  drivers/char/ipmi/kcs_bmc.h           | 12 ++----
+> > > >  drivers/char/ipmi/kcs_bmc_aspeed.c    | 56 +++++++++++++------------
+> > > >  drivers/char/ipmi/kcs_bmc_cdev_ipmi.c | 60 ++++++++++++++++++---------
+> > > >  drivers/char/ipmi/kcs_bmc_npcm7xx.c   | 37 ++++++++++-------
+> > > >  5 files changed, 111 insertions(+), 73 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/char/ipmi/kcs_bmc.c b/drivers/char/ipmi/kcs_bmc.c
+> > > > index ef5c48ffe74a..83da681bf49e 100644
+> > > > --- a/drivers/char/ipmi/kcs_bmc.c
+> > > > +++ b/drivers/char/ipmi/kcs_bmc.c
+> > > > @@ -44,12 +44,23 @@ int kcs_bmc_handle_event(struct kcs_bmc *kcs_bmc)
+> > > >  }
+> > > >  EXPORT_SYMBOL(kcs_bmc_handle_event);
+> > > >  
+> > > > -struct kcs_bmc *kcs_bmc_ipmi_alloc(struct device *dev, int sizeof_priv, u32 channel);
+> > > > -struct kcs_bmc *kcs_bmc_alloc(struct device *dev, int sizeof_priv, u32 channel)
+> > > > +int kcs_bmc_ipmi_add_device(struct kcs_bmc *kcs_bmc);
+> > > 
+> > > The above (and it's remove function) should be in an include file.
+> > 
+> > This is a short-term hack while I'm refactoring the code. It goes away 
+> > in a later patch when we switch to using an ops struct.
+> > 
+> > I didn't move it to a header as it's an implementation detail at the 
+> > end of the day. I see headers as describing a public interface, and in 
+> > the bigger picture this function isn't part of the public API. But 
+> > maybe it's too tricky by half. My approach here generated some 
+> > discussion with Zev as well.
+> > 
+> > > 
+> > > > +void kcs_bmc_add_device(struct kcs_bmc *kcs_bmc)
+> > > 
+> > > This should return an error so the probe can be failed and cleaned up
+> > > and so confusing message don't get printed after this in one case.
+> > 
+> > Hmm. I did this because the end result of the series is that we can 
+> > have multiple chardev interfaces in distinct modules exposing the one 
+> > KCS device in the one kernel. If more than one of the chardev modules 
+> > is configured in and one of them fails to initialise themselves with 
+> > respect to the device driver I didn't think it was right to fail the 
+> > probe of the device driver (and thus remove any chardev interfaces that 
+> > did succeed to initialise against it).
+> > 
+> > But this does limit the usefulness of the device driver instance in the 
+> > case that only one of the chardev interfaces is configured in and it 
+> > fails to initialise.
+> > 
+> > So I think we need to decide on the direction before I adjust the 
+> > interface here. The patches are architected around the idea of multiple 
+> > chardevs being configured in to the kernel build and all are exposed at 
+> > runtime.
+> 
+> Ok, I understand.  The host IPMI driver will attempt to start all
+> interfaces, if none fail to come up it will return an error, but if any
+> come up it will not return an error.  So it's a similar situation.
 
-Yes, please.
+That sounds reasonable. I'll implement this strategy.
 
-Thanks
+> 
+> I stole that from something else, but I can't remember what.  I don't
+> know what the best policy is, really, that was kind of a compromise and
+> nobody has complained about it.
+> 
+> I will say that the success print in aspeed_kcs_probe() needs to not
+> happen if there is a failure, though.
+
+With the strategy you outlined above that's easy enough.
+
+Thanks,
+
+Andrew
