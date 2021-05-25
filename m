@@ -2,136 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BDEF7390950
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 20:59:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 330A0390968
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 21:08:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232467AbhEYTAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 15:00:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52272 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232133AbhEYTA3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 15:00:29 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10274C061574
-        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 11:58:58 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id f6-20020a1c1f060000b0290175ca89f698so14088662wmf.5
-        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 11:58:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=snejp.pl; s=gmail;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=8mM61n6haCOPYKT0uk3Vaaoz2Rq5OIS/VFjKZ/8DiPo=;
-        b=iYtIELMuHyUMHy71jvmpu8UrBEnOgFz5Tcl7WRo598rq3axDQ7ix08JCuxYBX4LfAi
-         EJGhBl9JjHkTRMFT8PJmOPM7hdf783D/s8WBgP/qlPmyPh+5NvndnmfPTsd2ocHhW9IC
-         6r8EwICYb9kPpMniZd7Jzzwt1Qdm8Y2S89DfjriIDubn/mUPStVza2ALmKlCey2KAY9f
-         Wm6ncZ6I7AR7wv8kn3qCVIUTtSrBwnopcRs3M6S97lXf3am0uLgJeW7U3gnGY6M41YOU
-         mYnxhXdX5ALUxDLj9uoo6MqvlwZjzkDi7BGjPNZOwUiC/JbChQLOGXhknd/T9ECz9gf9
-         Wqrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=8mM61n6haCOPYKT0uk3Vaaoz2Rq5OIS/VFjKZ/8DiPo=;
-        b=YJVHQ+NbNEoEsN5kGCvFNdLsKe4SUoupwaNryv/LKDMUjFtIT1VnO5V4sJG/Opx9dX
-         COfmNwejvgNsvciJQ/139TSxBlyWRUahcTl4dreyxBJR2fv9k6mzdP5TSb4Kk77vesNy
-         RBAoW+q62idDgvGOoxOIjGA25Q/dWoqM53pDGMbImiyK1zO5o+pyKPPHtUrxhjPdL33f
-         ETEkNr4Vw+gScVn3yUozX4Akyt8vtFeI6fdGaAODPpyNnUsaxwhqwotfo0gPrortA1PC
-         4DgILEtBxL1fRvXnT4eEYbo2wtKS3eJ31M1VBDH4nOK7tGz4RL+SQIqNfeu+mIbhhQdk
-         1SvA==
-X-Gm-Message-State: AOAM532KC5IZxlr8wr0i+LEED/B2bx1fwFdccpsGGovTbE+XYex6C2mS
-        BLA562s1kGkQGGFCY81MqQMXHg==
-X-Google-Smtp-Source: ABdhPJxbeuikEsL5QQeCEG36XpcOAFH9+FD27Wr7VKH2eWH0g1Ume27Xzfb9jOffpBAmqEy+ERKTCQ==
-X-Received: by 2002:a1c:2645:: with SMTP id m66mr5090134wmm.145.1621969136487;
-        Tue, 25 May 2021 11:58:56 -0700 (PDT)
-Received: from PackardBell (public-gprs171801.centertel.pl. [46.134.10.90])
-        by smtp.googlemail.com with ESMTPSA id v18sm20350733wro.18.2021.05.25.11.58.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 May 2021 11:58:56 -0700 (PDT)
-Received: from localhost (PackardBell [local])
-        by PackardBell (OpenSMTPD) with ESMTPA id e44e7e8f;
-        Tue, 25 May 2021 18:58:52 +0000 (UTC)
-Date:   Tue, 25 May 2021 20:58:52 +0200
-From:   Bartosz Dudziak <bartosz.dudziak@snejp.pl>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        David Sterba <dsterba@suse.com>, Jens Axboe <axboe@kernel.dk>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH 2/2] cpuidle: qcom: Add SPM register data for APQ8026 and
- MSM8226
-Message-ID: <20210525185852.GA2416@PackardBell>
-References: <20210513150150.51464-1-bartosz.dudziak@snejp.pl>
- <20210513150150.51464-2-bartosz.dudziak@snejp.pl>
- <YJ1u3syIquKRyuv2@gerhold.net>
+        id S232096AbhEYTKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 15:10:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45804 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230029AbhEYTKT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 May 2021 15:10:19 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7A4376140E;
+        Tue, 25 May 2021 19:08:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1621969729;
+        bh=erpKjGqAF4AJzuEwJKCEvWLbw/VoBc5b49WkYqtFinA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=i/OslaSNt1f+WuDzqwZneA+WCVy7F4O2r4E6SxvQqyzVtvoONE8Oms6MxSsMIgNtq
+         Qla5P5gNkT3gVba+Pzicj25w7ka950Z+uebbJHXlNkOiGcof0B+yODgiRtIIRhWvpn
+         Y+XhO/LPekhPoxrMqOcEwCg8xQjBoheTspChn8XnAAs/htgGxFBMwXcP/Wkt21EYSp
+         +1zhoegPIDbPbh/GCcLaEkMAzz/FMWRebCpoYlACVzxSmcCk8fwrfvkFboLa0xNXYs
+         xPbJEJi1K58DRU0iVbUL9FeuhDiW2OYDxt9jKnMKhMuABq2wnXb5OhFFurF1B67L87
+         +wg2M+zrDp4xQ==
+Date:   Tue, 25 May 2021 21:08:46 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     cl@rock-chips.com
+Cc:     heiko@sntech.de, robh+dt@kernel.org, jagan@amarulasolutions.com,
+        wens@csie.org, uwe@kleine-koenig.org, mail@david-bauer.net,
+        jbx6244@gmail.com, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        jensenhuang@friendlyarm.com, michael@amarulasolutions.com,
+        cnsztl@gmail.com, devicetree@vger.kernel.org,
+        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+        gregkh@linuxfoundation.org, linux-serial@vger.kernel.org,
+        linux-i2c@vger.kernel.org, jay.xu@rock-chips.com,
+        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
+        zhangqing@rock-chips.com, huangtao@rock-chips.com,
+        wim@linux-watchdog.org, linux@roeck-us.net, jamie@jamieiles.com,
+        linux-watchdog@vger.kernel.org, maz@kernel.org
+Subject: Re: [PATCH v4 01/10] dt-bindings: i2c: i2c-rk3x: add description for
+ rk3568
+Message-ID: <YK1LPjhjci5jejsD@kunai>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>, cl@rock-chips.com,
+        heiko@sntech.de, robh+dt@kernel.org, jagan@amarulasolutions.com,
+        wens@csie.org, uwe@kleine-koenig.org, mail@david-bauer.net,
+        jbx6244@gmail.com, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        jensenhuang@friendlyarm.com, michael@amarulasolutions.com,
+        cnsztl@gmail.com, devicetree@vger.kernel.org,
+        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+        gregkh@linuxfoundation.org, linux-serial@vger.kernel.org,
+        linux-i2c@vger.kernel.org, jay.xu@rock-chips.com,
+        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
+        zhangqing@rock-chips.com, huangtao@rock-chips.com,
+        wim@linux-watchdog.org, linux@roeck-us.net, jamie@jamieiles.com,
+        linux-watchdog@vger.kernel.org, maz@kernel.org
+References: <20210429081151.17558-1-cl@rock-chips.com>
+ <20210429081151.17558-2-cl@rock-chips.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="NCc2q0vIdyd+dXz5"
 Content-Disposition: inline
-In-Reply-To: <YJ1u3syIquKRyuv2@gerhold.net>
+In-Reply-To: <20210429081151.17558-2-cl@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Thu, May 13, 2021 at 08:24:30PM +0200, Stephan Gerhold wrote:
-> Hi,
-> 
-> On Thu, May 13, 2021 at 05:01:50PM +0200, Bartosz Dudziak wrote:
-> > Add APQ8026 and MSM8226 SoCs register data to SPM AVS Wrapper 2 (SAW2)
-> > power controller driver.
-> > 
-> > Signed-off-by: Bartosz Dudziak <bartosz.dudziak@snejp.pl>
-> > ---
-> >  drivers/cpuidle/cpuidle-qcom-spm.c | 16 ++++++++++++++++
-> >  1 file changed, 16 insertions(+)
-> > 
-> > diff --git a/drivers/cpuidle/cpuidle-qcom-spm.c b/drivers/cpuidle/cpuidle-qcom-spm.c
-> > index adf91a6e4d..9711a98d68 100644
-> > --- a/drivers/cpuidle/cpuidle-qcom-spm.c
-> > +++ b/drivers/cpuidle/cpuidle-qcom-spm.c
-> > @@ -87,6 +87,18 @@ static const struct spm_reg_data spm_reg_8974_8084_cpu  = {
-> >  	.start_index[PM_SLEEP_MODE_SPC] = 3,
-> >  };
-> >  
-> > +/* SPM register data for 8026, 8226 */
-> > +static const struct spm_reg_data spm_reg_8x26_cpu  = {
-> > +	.reg_offset = spm_reg_offset_v2_1,
-> > +	.spm_cfg = 0x0,
-> > +	.spm_dly = 0x3C102800,
-> > +	.seq = { 0x60, 0x03, 0x60, 0x0B, 0x0F, 0x20, 0x10, 0x80, 0x30, 0x90,
-> > +		0x5B, 0x60, 0x03, 0x60, 0x3B, 0x76, 0x76, 0x0B, 0x94, 0x5B,
-> > +		0x80, 0x10, 0x26, 0x30, 0x0F },
-> > +	.start_index[PM_SLEEP_MODE_STBY] = 0,
-> > +	.start_index[PM_SLEEP_MODE_SPC] = 5,
-> > +};
-> > +
-> >  static const u8 spm_reg_offset_v1_1[SPM_REG_NR] = {
-> >  	[SPM_REG_CFG]		= 0x08,
-> >  	[SPM_REG_SPM_CTL]	= 0x20,
-> > @@ -259,6 +271,10 @@ static struct spm_driver_data *spm_get_drv(struct platform_device *pdev,
-> >  }
-> >  
-> >  static const struct of_device_id spm_match_table[] = {
-> > +	{ .compatible = "qcom,apq8026-saw2-v2.1-cpu",
-> > +	  .data = &spm_reg_8x26_cpu },
-> > +	{ .compatible = "qcom,msm8226-saw2-v2.1-cpu",
-> > +	  .data = &spm_reg_8x26_cpu },
-> 
-> What is the reason for having a separate compatible for APQ8026?
-> 
-> If the difference between MSM8226 and APQ8026 is similar to other qcom
-> SoCs (just lack of modem), both will end up using the same device tree
-> include anyway. Then it's easier to have both use qcom,msm8226-saw2-v2.1-cpu.
-> 
-> Thanks,
-> Stephan
+--NCc2q0vIdyd+dXz5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-You are right. There is no reason to have a seperate APQ8026 compatible because
-it will share the MSM8226 device tree. I will send later a v2 patch with only
-"qcom,msm8226-saw2-v2.1-cpu" option.
+On Thu, Apr 29, 2021 at 04:11:42PM +0800, cl@rock-chips.com wrote:
+> From: Liang Chen <cl@rock-chips.com>
+>=20
+> add "rockchip,rk3568-i2c", "rockchip,rk3399-i2c" for i2c nodes on
+> a rk3568 platform to i2c-rk3x.yaml.
+>=20
+> Signed-off-by: Liang Chen <cl@rock-chips.com>
 
-Thanks,
-Bartosz 
+Applied to for-next, thanks!
+
+
+--NCc2q0vIdyd+dXz5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmCtSz4ACgkQFA3kzBSg
+KbbpaQ//ZFjmjk57xuPgcUkyVTPY3RLZE602/1iQ5IizdQa2vaxkuYrwoSSg4oH5
+TUhCcfrs3oUrEq0ZvFeHevoBcxNqsz/2V2vEpUqGscwRtJnVVEoWwfWpLEZyp33k
+8XPx/kEWyoiT8vqV8ZCz2kjEbBYxhZ3JESKGU7Jp3hhGTEE7i3OwKzokRgm05bXY
+HRT6XvhR5rQ96Rc4j5YhEAchhDbAnS6TOhUGRzIQlgR/nKZXFUlCIwfozjdpBS+D
+THbvK5W3hDqaSkt5y1ff0hujh/NZGl4jU3cOokSLnO+RdOPIZy833SenTp00VYU7
+MmK4iB5ZI/wKOgTrJ3k3BlEzvrDZLfWyD9ZFa8dnuDR6yiDigOKv8osaGuHYopIF
+fJ2QSMFZ8D0vSEc1nus1Jq5bEacIfMo2ZanOB6ZkImaDKfqajhHaMrNNE0eyhGT0
+dSnsyBDSwRKDQdkGFGV3zeCYaYCs9i+Rv5ep6CwbgvfO9pLo7xnMHBK5+qFJIcv3
+t/vm6cvy26GAUJEMP86XnWKnZirNLexFvfBFjXsg6qpwSjux1dfM8GjSBuLMkbSZ
+Xe0h3C+IfThm2AsHc7LuEXMpiEZ0tlcCkW+vSgr9DG6viM7MLLgQeg3gwxvOAHLb
+EWSrivI969UDnwVqd+Ebq8Yjs7vxjfgNCfflbxXOytLmSRkS9KU=
+=OqI6
+-----END PGP SIGNATURE-----
+
+--NCc2q0vIdyd+dXz5--
