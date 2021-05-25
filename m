@@ -2,95 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9475D3907BE
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 19:33:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94AEE3907FC
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 19:42:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230306AbhEYRe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 13:34:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60828 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233922AbhEYReK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 13:34:10 -0400
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57735C061574
-        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 10:32:37 -0700 (PDT)
-Received: by mail-oi1-x232.google.com with SMTP id v22so31037010oic.2
-        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 10:32:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=xhyQbxQiIDbXKL8bcaq+cdxjGQpKczxyo6wQp2aZBcw=;
-        b=CLTda6dWa1UGW9Rl6A2/5lV5NXjgFZw25Cr1ZVCzPihAvyRfrnFEObTQh2aHR7HBZ3
-         3nlxjfjikttkpTelUrmu6eEiChgGt0c+wN40+C2WZb4CGmFIJNZ2psRcyxjPzoVjC2Yy
-         3DuBQWzb+XsdAxE4eOXSrseDyNHqbL4GZ+rHbuk7BcSEBNfCTahR8HpFzjWkDWsGPeAr
-         /1KzfAKd220GP0Z3+KLNP09L2Mz2exIcUvyHzEA8hy4xHtienNwAuA1xO5ZOIITp11FL
-         yjhVrN1v9s10Hij9+QxKsKxjsOqZ8KyYbWKXOfOISI14X5rZ3V1BOPqiD+2MW7R0DdT3
-         TJAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=xhyQbxQiIDbXKL8bcaq+cdxjGQpKczxyo6wQp2aZBcw=;
-        b=SYTHAYgcc5bDQN+YOf9j9NZx6jToSWr87R/LNPVTb1WQN/Mv94EB9qf9pSBnr75iK3
-         mlhRtIPj26oqG+TC87c71tw6CawX/eLa7R0hTl4VqqOFAh2yCIgqXITYG9HVrl+TSw97
-         X1UFW4aR+RGj0cvZHrYSdVlN0eJcPCx70kaJH+4pjCHjkYgUF4vo8Xl5hYyR8fw3NOCo
-         gbN+dGZZNx7/aV8FhYYApJ+y9m9DTJ4fM95R+jfAut2G8yi8e0CZSTJQwcCjuO/86PQC
-         Z0a6hQr76kthV5jL8Xb/FTr+jSedSdv6w82PYi1LKow/TygXkfyYfe//YFmy6mNEOWJC
-         BbUw==
-X-Gm-Message-State: AOAM532Q1D85BLcCLeIQqZQ6OkxA/CPFr0QxUw5UgsFG3NsJnaDgKWBW
-        VYmvx3J2/5+y5juVwUwz7Hqv+A==
-X-Google-Smtp-Source: ABdhPJxqoozHJJ7wjj4F9r2dlkRutJ2w2JsSMNksb6X/yS+btuBXBvfHz7L+Q6xWYdVSOrT1Tt7ZPA==
-X-Received: by 2002:aca:c64a:: with SMTP id w71mr3777569oif.44.1621963956700;
-        Tue, 25 May 2021 10:32:36 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id k7sm3666171ood.36.2021.05.25.10.32.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 May 2021 10:32:36 -0700 (PDT)
-Date:   Tue, 25 May 2021 12:32:34 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Felipe Balbi <balbi@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Felipe Balbi <felipe.balbi@microsoft.com>
-Subject: Re: [PATCH] arm64: dts: qcom: add initial device-tree for Microsoft
- Surface Duo
-Message-ID: <YK00sn1fvCrtVQaJ@builder.lan>
-References: <20210510120547.1315536-1-balbi@kernel.org>
- <20210511044312.GK2484@yoga>
- <87wns5g0c6.fsf@kernel.org>
+        id S230353AbhEYRna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 13:43:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60904 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229976AbhEYRn3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 May 2021 13:43:29 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id F1E5161400;
+        Tue, 25 May 2021 17:41:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1621964519;
+        bh=dOArAgu7ZC4cRYJFEGVi56ncg4H0XnoVUko1P1dIZn8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=kAdF+LoXT11CuF1cPHOzYW1U0M8ChNl0RIvW5F5tmBSOJ/0Zz8FrZQSY6J4Q3diHR
+         hgaUMXW5ejvQia/hozy3hbbyrkdpjOfs3heLX61ZG8H3VgKM4ZUWsPaqrxgsivkbpC
+         6e6Or3oQ7/Zou9F6iMQLY2jf0rhRSOXI5O305K8jE+mEtE3w8/MOJ0tcPAzqD8ChRS
+         D6vMfBOwJbwv4fLGvUUg3EaCwLf7WZYHYzWIw4Ng8kA/DlBVwEh7FzaB54gSSPIqUE
+         PjOAwu+HvnsXgIcT+ihHqaCnXtTsekgnFWoNtoJKV7+QtNtOg8wDOmj+yIKibJkCMl
+         xsWK3rPRNcNhQ==
+Received: by mail-ed1-f44.google.com with SMTP id r11so37180912edt.13;
+        Tue, 25 May 2021 10:41:58 -0700 (PDT)
+X-Gm-Message-State: AOAM531lzpVPgtm1hl6Hmo9i2Ly9YuwuwEYWX6lI8R/QW2XwbF1duUOz
+        rEuURmWQRXGB4a/lga33oCW4IOULXgx4zstBAw==
+X-Google-Smtp-Source: ABdhPJzLJeb1QNBqzEiRLC8bN1RXJUTLRhZ4rPY1kCOuA7jctny5RqRboDeLgsBZKUAq1VQNAVUj3UzKlSCwkNqwaVg=
+X-Received: by 2002:a05:6402:c7:: with SMTP id i7mr33618826edu.194.1621964517456;
+ Tue, 25 May 2021 10:41:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87wns5g0c6.fsf@kernel.org>
+References: <20210524182745.22923-1-sven@svenpeter.dev>
+In-Reply-To: <20210524182745.22923-1-sven@svenpeter.dev>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 25 May 2021 12:41:45 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKqpSQbdj_Crc-LSc12700kyFFkMTU29BDY2bwGNLXn9A@mail.gmail.com>
+Message-ID: <CAL_JsqKqpSQbdj_Crc-LSc12700kyFFkMTU29BDY2bwGNLXn9A@mail.gmail.com>
+Subject: Re: [PATCH 0/3] Apple M1 clock gate driver
+To:     Sven Peter <sven@svenpeter.dev>
+Cc:     devicetree@vger.kernel.org, linux-clk <linux-clk@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Arnd Bergmann <arnd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 11 May 03:07 CDT 2021, Felipe Balbi wrote:
-> Bjorn Andersson <bjorn.andersson@linaro.org> writes:
-> >> diff --git a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-[..]
-> >> +&remoteproc_adsp {
-> >> +	status = "okay";
-> >> +	firmware-name = "qcom/sm8150/adsp.mdt";
-> >
-> > For platforms where we have a Dragonboard or similar we push the
-> > test-signed firmware to qcom/<platform>/. I presume that the Duo
-> > wouldn't run on the test-signed firmware.
-> >
-> > So I think it's better to make this qcom/sm8150/ms-duo/adsp.mdt...from
-> > the start.
-> 
-> ms-duo would look odd. How about qcom/sm8150/microsoft/adsp.mdt?
-> 
+On Mon, May 24, 2021 at 1:28 PM Sven Peter <sven@svenpeter.dev> wrote:
+>
+>
+> Hi,
+>
+> This series adds support for the clock gates present in Apple's SoCs such as
+> the M1.
+>
+> These SoCs have various clock gates for their peripherals usually located in
+> one or two MMIO regions. Each clock gate is a single 32 bit register which
+> contains bits for the requested and the actual mode. The mode is represented by
+> four bits. We however only care about "everything enabled" (0b1111) and
+> "everything disabled" (0b000) for now. The other modes are probably different
+> low-power states which don't even seem to be used by MacOS. The actual power
+> management is located in a different region (and probably handled by a separate
+> processor on the M1).
+>
+> Additionally, these clocks have a topology that is usually specified in Apple's
+> Device Tree. As far as I can tell most Linux drivers seem to encode this topology
+> directly in the source code though. Despite this, we would still like to encode
+> the topology in the device tree itself:
 
-Sounds good to me.
+We only define leaf clocks primarily. There's some exceptions such as
+if PLLs are a separate h/w block. The reason for this is because
+typical SoCs have 100s of just leaf clocks. If we tried to model
+everything, it would never be complete nor correct. Actually, we did
+try that at first.
 
-I do prefer using the non-split firmware package though (i.e. .mbn), if
-you don't have it you can repack the .mdt + .bNN files using
+> Apple seems to only change HW blocks when they have a very good reason and even
+> then they seem to keep the changes minimal. This specific clock gate MMIO block
+> has already been used in the Apple A7 released in 2013. The only differences
+> since then are the available clocks (which can be identified by a simple offset)
+> and their topology.
 
-https://github.com/andersson/pil-squasher
+Clock gates are easy. What about muxes, dividers, etc.?
 
-Regards,
-Bjorn
+> It's likely that Apple will still use this block in future SoCs as well. By
+> encoding the clock gate topology inside the device tree as well we can use a
+> single driver and only need updates to the device tree once they are released.
+> This might allow end users to already run their favorite distribution by just
+> updating the bootloader with a new device tree instead of having to wait until
+> the new topology is integrated into their distro kernel.
+>
+> Additionally, the driver itself can be kept very simple and not much code needs
+> to be duplicated and then updated for each new SoC between various consumers of
+> these device tree nodes (Linux, u-boot, and OpenBSD for now).
+>
+>
+> This series therefore creates a single device tree node for each clock gate.
+> This unfortunately maps a whole page out of which only a single register will
+> be used for each node.
+>
+> The other alternative I considered was to create a syscon/simple-mfd node
+> and have the clock nodes as children. The gates would then use a regmap which
+> would only require a single entry in the pagetable for all clocks. I decided
+> against this option since the clock gate MMIO region actually isn't a
+> multi-function device.
+
+I would do a single node per mmio region with the register offset (or
+offset / 4) being the clock id. This can still support new SoCs easily
+if you have a fallback compatible. If you want/need to get all the
+clocks, just walk the DT 'clocks' properties and extract all the IDs.
+
+Rob
