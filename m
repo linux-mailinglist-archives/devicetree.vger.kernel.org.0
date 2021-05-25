@@ -2,108 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00E8338FE25
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 11:49:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D48C38FE8A
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 12:12:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232597AbhEYJue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 05:50:34 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:44440 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232545AbhEYJue (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 05:50:34 -0400
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 14P9ZLSX049551;
-        Tue, 25 May 2021 17:35:21 +0800 (GMT-8)
-        (envelope-from steven_lee@aspeedtech.com)
-Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 25 May
- 2021 17:48:19 +0800
-Date:   Tue, 25 May 2021 17:48:16 +0800
-From:   Steven Lee <steven_lee@aspeedtech.com>
-To:     Joel Stanley <joel@jms.id.au>
-CC:     Andrew Jeffery <andrew@aj.id.au>, Rob Herring <robh+dt@kernel.org>,
-        "Adrian Hunter" <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
-        "Hongwei Zhang" <Hongweiz@ami.com>,
-        Ryan Chen <ryan_chen@aspeedtech.com>,
-        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-Subject: Re: [PATCH v5 0/4] mmc: sdhci-of-aspeed: Support toggling SD bus
- signal
-Message-ID: <20210525094815.GA8757@aspeedtech.com>
-References: <20210524073308.9328-1-steven_lee@aspeedtech.com>
- <CACPK8XcfvUQD5xwb=2Va5Sr+bmaWfJMZkh61HK1=J1qLYc84zQ@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <CACPK8XcfvUQD5xwb=2Va5Sr+bmaWfJMZkh61HK1=J1qLYc84zQ@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [192.168.100.253]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 14P9ZLSX049551
+        id S230013AbhEYKNe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 06:13:34 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:58726 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230052AbhEYKN1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 06:13:27 -0400
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 25 May 2021 03:11:58 -0700
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 25 May 2021 03:11:56 -0700
+X-QCInternal: smtphost
+Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 25 May 2021 15:41:25 +0530
+Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
+        id 5899E2270; Tue, 25 May 2021 15:41:24 +0530 (IST)
+From:   satya priya <skakit@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     mka@chromium.org, Lee Jones <lee.jones@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org,
+        satya priya <skakit@codeaurora.org>
+Subject: [PATCH V5 00/11] Add PMIC DT files for sc7280
+Date:   Tue, 25 May 2021 15:40:55 +0530
+Message-Id: <1621937466-1502-1-git-send-email-skakit@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 05/25/2021 15:55, Joel Stanley wrote:
-> On Mon, 24 May 2021 at 07:33, Steven Lee <steven_lee@aspeedtech.com> wrote:
-> >
-> > AST2600-A2 EVB has the reference design for enabling SD bus
-> > power and toggling SD bus signal voltage between 3.3v and 1.8v by
-> > GPIO regulators.
-> > This patch series adds sdhci node and gpio regulators in a new dts file
-> > for AST2600-A2 EVB.
-> > The description of the reference design of AST2600-A2 EVB is added
-> > in the new dts file.
-> >
-> > This patch also include a helper for updating AST2600 sdhci capability
-> > registers.
-> 
-> The device trees look good:
-> 
-> Reviewed-by: Joel Stanley <joel@jms.id.au>
-> 
-> I've applied patches 1-3 to the aspeed tree for v5.14. I made a little
-> fix to patch 3 as it needed to add the new device tree to the
-> makefile.
-> 
+This series depends on https://patchwork.kernel.org/project/linux-arm-msm/list/?series=478225
+which adds therml-zones node.
 
-Thanks!
+Changes in V2:
+ - As per Matthias comments:
+   - I've Split the patch into per-PMIC patches and one sc7280 patch
+   - Removed 2nd critical point, thermal-governer property
+   - s/pm8325_tz/pm7325_temp_alarm and s/pm7325_temp_alarm/pm7325_thermal
+   - Fixed few other minor errors.
 
-> When I was testing on my A2 EVB I saw this:
-> 
-> [    1.436219] sdhci-aspeed 1e750100.sdhci: Requested out of range
-> phase tap 192 for 9 degrees of phase compensation at 1562500Hz,
-> clamping to tap 15
-> [    1.450913] sdhci-aspeed 1e750100.sdhci: Requested out of range
-> phase tap 963 for 45 degrees of phase compensation at 1562500Hz,
-> clamping to tap 15
-> 
-> Do you know what is happening there?
-> 
+ - As per Bjorn's comments, replaced '_' with '-' in node names and moved
+   DT files inclusion to board dts.
 
-Per MMC spec, eMMC bus speed is set as legacy mode(0~26MHz) at startup of
-eMMC initializtion flow. Clock phase calculation is triggered in set_clock()
-and it calculates taps based on phase_deg(<9>, <225>) in the dts file and the
-current speed(1562500Hz), which causes the warning message you mentioned.
-As the phase_deg in the dts file should be calculated with 100MHz.
+Changes in V3:
+  - As per Matthias comments, changed commit text, modified critical interrupt
+    node name like <name>-crit for all pmics.
+  - Moved pmk8350_vadc channel nodes to idp dts, as it is not guaranteed that
+    a board with the pmk8350 will always have the other 3 PMICs
 
-https://lkml.org/lkml/2021/5/24/95
+Changes in V4:
+ - PMR735A and PM8350C PMICS are used in sm8350 SoC. Added thermal_zones label
+   for thermal-zones node to avoid compilation error while using the phandle
+   in pmic dt files.
+ - As per Matthias comments:
+  - Changed commit text for pmk8350 pmic patch
+  - Moved the header files inclusion for the on die tempertures of PMICs from
+    pmk8350 dt file to sc7280-idp dts
+  - Changed commit text and made a dedicated patch to include pmic dt files
+    for sc7280-idp
+  - Made separate patches for on die temp channel nodes and for adding thermal-
+    zones node in sc7280 SoC dtsi
 
-But after some initialization flow, eMMC bus speed will be set to
-correct speed(100MHz).
-Clock phase calculation will be triggered again to get correct taps.
+satya priya (11):
+  arm64: dts: qcom: sm8350: Add label for thermal-zones node
+  arm64: dts: qcom: pm7325: Add pm7325 base dts file
+  arm64: dts: qcom: pm8350c: Add temp-alarm support
+  arm64: dts: qcom: pm8350c: Correct the GPIO node
+  arm64: dts: qcom: pmr735a: Add temp-alarm support
+  arm64: dts: qcom: pmr735a: Correct the GPIO node
+  arm64: dts: qcom: pmk8350: Add peripherals for pmk8350
+  arm64: dts: qcom: pmk8350: Correct the GPIO node
+  arm64: dts: qcom: sc7280: Include PMIC DT files for sc7280-idp
+  arm64: dts: qcom: sc7280: Add ADC channel nodes for PMIC temperatures
+    to sc7280-idp
+  mfd: qcom-spmi-pmic: Add support for four variants
 
-> Cheers,
-> 
-> Joel
+ .../devicetree/bindings/mfd/qcom,spmi-pmic.txt     |  4 ++
+ arch/arm64/boot/dts/qcom/pm7325.dtsi               | 53 ++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/pm8350c.dtsi              | 32 ++++++++++++-
+ arch/arm64/boot/dts/qcom/pmk8350.dtsi              | 51 ++++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/pmr735a.dtsi              | 32 ++++++++++++-
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts            | 34 ++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi               |  2 +-
+ 7 files changed, 204 insertions(+), 4 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/pm7325.dtsi
+
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
+
