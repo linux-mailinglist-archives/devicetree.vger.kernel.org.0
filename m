@@ -2,126 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DD6F390523
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 17:20:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA60E39052A
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 17:22:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229962AbhEYPW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 11:22:26 -0400
-Received: from mail-eopbgr1410113.outbound.protection.outlook.com ([40.107.141.113]:43419
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230306AbhEYPWZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 May 2021 11:22:25 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MvteSDfyT7JqKtVKCKTWmpOSqp8fl8RXsdCWwO8Hqb9wlkAyMFXYnBOHsOrTWPBrYff+iYK5PuENgJSEDuUZsmJvqzKtI1ZUnC7IdATf8dNk1hwZU6Dfjy54VWyOPfSy2acuaKKi27iAr/S6Hglx+ViV58oY3LuA020ot4tvuPmq4EHQ+YHREPbgYqrN97S4S+IiMmOs4nS+ySZ2jTHKYOgwj4XzuYdtq1hSZKf1VeEu3w652IlgPJ4LfEszQ7WcapdQLjhv5to4rTyGoY55CsJgqwp6Fy+PyyxJMnNnnh4GQJKyVAO1/JNQ0Yhhl/1mTwG1FacEhZH7T3R8+m8r0A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/n1gxk6C4v6974RgQX6YUjnaSCL+4dJ9sXBmLcq9sJc=;
- b=aVDDsOjQ6/Aq5FXmEQCEobCQjSEDQmao6oI1DSEvqRh6hzGjk2W/svlQL4OGyoQc2WZ0pOdDL3FOAl9dxpS7q3FSqdo2kFFZ6KAiDW6eB2ntrirmjJSIiz6Y0Mcbc2aTJ5xNnYbPl52cIjCqaedzskEGQBvpGpoPc1IxJ3DJ1/LHCmgklaystidBZYM5RdpvntOZWR4FmsEeZW9fFBN0QBspPIxo4MouZjRNeL2nrzvucePRTH5vBNqNvmOsskNay/cL212OX6Q7dI4Ck9hhuoPBYX6FJ3cowGKBX1muyvXUqNqeZOoUPZzf2zyMD/xf8ZfYof3U20cBnd8h4ZGmsA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
+        id S231326AbhEYPYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 11:24:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59676 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230240AbhEYPYW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 11:24:22 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8667C061574;
+        Tue, 25 May 2021 08:22:50 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id l1so47948208ejb.6;
+        Tue, 25 May 2021 08:22:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/n1gxk6C4v6974RgQX6YUjnaSCL+4dJ9sXBmLcq9sJc=;
- b=o8S+IqFGrciZGPyABIahxg9MMr1VCTTWfHWLmrTPjTz3yHCdCtSjbOjf1TaIO0XE19ADGPubSpJ3oCxuHLEdaTyT3qxsl6uGgbcpfCEfzEYHUp04IL0+X5UGJUKcPg4gx0tCmfLerYI4MEuNBNBuppyAeQr2fbXwtKhC3/oqnxs=
-Received: from OS3PR01MB6593.jpnprd01.prod.outlook.com (2603:1096:604:101::7)
- by OSAPR01MB2020.jpnprd01.prod.outlook.com (2603:1096:603:19::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.23; Tue, 25 May
- 2021 15:20:51 +0000
-Received: from OS3PR01MB6593.jpnprd01.prod.outlook.com
- ([fe80::6c45:c45:40f8:e4a2]) by OS3PR01MB6593.jpnprd01.prod.outlook.com
- ([fe80::6c45:c45:40f8:e4a2%7]) with mapi id 15.20.4150.027; Tue, 25 May 2021
- 15:20:51 +0000
-From:   Min Li <min.li.xe@renesas.com>
-To:     Lee Jones <lee.jones@linaro.org>
-CC:     "sameo@linux.intel.com" <sameo@linux.intel.com>,
-        "grant.likely@linaro.org" <grant.likely@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH mfd v1] mfd: Add Renesas Synchronization Management Unit
- (SMU) support
-Thread-Topic: [PATCH mfd v1] mfd: Add Renesas Synchronization Management Unit
- (SMU) support
-Thread-Index: AQHXOtSPoxM3P4fkKEmDrY8StfrCU6rqloqAgAnkEuA=
-Date:   Tue, 25 May 2021 15:20:51 +0000
-Message-ID: <OS3PR01MB6593170DE2814540F6C3F900BA259@OS3PR01MB6593.jpnprd01.prod.outlook.com>
-References: <1619466246-11198-1-git-send-email-min.li.xe@renesas.com>
- <20210519080807.GH805368@dell>
-In-Reply-To: <20210519080807.GH805368@dell>
-Accept-Language: en-CA, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: linaro.org; dkim=none (message not signed)
- header.d=none;linaro.org; dmarc=none action=none header.from=renesas.com;
-x-originating-ip: [72.140.114.230]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ee48e726-418e-4672-9b8e-08d91f90aedf
-x-ms-traffictypediagnostic: OSAPR01MB2020:
-x-microsoft-antispam-prvs: <OSAPR01MB2020BA04E28913A52CEA46AFBA259@OSAPR01MB2020.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: fD9YctodoH921A7TlPdvQt4OAYZ9QUZZn6q3l7/K2P1bDRoxm6lpVIfW3fM098aw9CSLNYxeIQOytjIDBqtpnLaZM77j9ju8pP28tBQKaPQnVNbZZcsX4MFPbFlGvGJ8eE14HASzr3FlVWeWgnWph1T4PRv9oWLv+PdafmcynL4o+HH74Vzq2TV0CHy8mYgyoJNWg9eCYA3N38nL42YBnanP2ochooOiNqIbdh7AdlHsLhjnap4J/C3whX8ZOOlUL34yzVtmVllIxdkCUzwasxDhj/htnjFt3muKXqk1vhVklnQR8F5n3zEUe6Wn77tWiBtfcpjKSIFZ9u8obvYzztpACW71cI5D/rVEoOmzr/zBHPMOx+QdRSumc+zQ39KSibwdCSv9QOF9tMHEAo0glh2timlN5EBUc0PYP+RUNGhnoqPQCPOXpkAF52FcmxV6U3E8X2jYvtL/vx70P6t4+JZULj7YO/9pHBla4DnsFGNRdZBFM3P29+aheJFhmcb1wIg//JaR1xpp13TaCekrlYMxTjUv27cEXRZCFk/YB75zs3KE6YJqt3PQtCA6RM1l52K/8aa6/7roIA0pRdSRdJDyU3WzNDOsv0jszifBmZA=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB6593.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(346002)(366004)(136003)(39850400004)(376002)(6506007)(66446008)(7696005)(86362001)(2906002)(33656002)(26005)(66476007)(122000001)(55016002)(64756008)(6916009)(5660300002)(52536014)(478600001)(38100700002)(4744005)(66556008)(71200400001)(4326008)(316002)(54906003)(9686003)(76116006)(8936002)(186003)(66946007)(8676002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?MFJ4NVBFQjYzUlV4VGVoMW9RS09FNDdJdDNLcjQ1aWR6aXBVT0FmN1BUVTI5?=
- =?utf-8?B?dlg2QzBaTDdNNjA5Wm5aNDMza3NwU2ZvYzBXNXBMZHZOR25ySGlHamxIVk1Y?=
- =?utf-8?B?djV3UTMwTFVpNEdXTjdoZjgzRjU1N0JsYnBVY2V4ajJjZ0NSeXlaWXVJQWJF?=
- =?utf-8?B?VjMvSUg3ckpDMGdJMFdjYVoyRUk2dEYxS1U4NGZLYVkwdmVlVThoNmNJYUJZ?=
- =?utf-8?B?VXI1ZXN1azRvMGNoSis4MXNsajR3bkU3Wm5PQm56di9pTTZ5dFVCVGNJWW9U?=
- =?utf-8?B?R2c3QmkxZHRTYkFQeFBlcTNPQVlxN0VVUlFoRlFRclhiaS9KdWlKR0xuNG5Q?=
- =?utf-8?B?STRLNkdOMVRzN0FzeG5La0cwbDFQRzRUZFdyRER6dEtZS2RTaDJVcTROVmZ0?=
- =?utf-8?B?R014dThSWkNhSHp6QjNxNnpkbkNVTHQxeDVkSUdPR25hNlR6clJvcXJydmN1?=
- =?utf-8?B?dlNVdGgyT3JpcXdqWEJpd0R6VzJxanlBVzR5YmxsN2ZRajliVXN3aWZ5aEFq?=
- =?utf-8?B?MW5QdmF2NVY4NEw5ODlmcU1yN2d5MG9tWEp1WlFhL21odzUvR250WFlSeDd2?=
- =?utf-8?B?Q3llK3FmUFg4VHErbGl6cFUvL3hqbVV0WW1DU1NKT1RvK0V5dTAzTUFOdk5C?=
- =?utf-8?B?VHF6RUlwUXJnU0Fsd2loS3AyVlcrd0kwbDZSblNvNllQZ25QZUVGYkxmazRl?=
- =?utf-8?B?U21HcjQxc2VBVE1IR0ZsVXVKZXBjWXBObittNnQycDUreHRrS0M5Y1JORGRX?=
- =?utf-8?B?Rm1yRFJ1TFhZMWV5cGMvT21OMHRvZUdMdnNlMWJrM1dzRlhxWGdOekh0M0k3?=
- =?utf-8?B?cFVTTXZFczVtaVVDdnRGeGZzcm5wSUVSeFdmZCsxSXJSM2hCSS94a0x6bmpm?=
- =?utf-8?B?ZERhOGRQTHhFR1FBMmFaKzZWYVZDT3ZSQVRaOW5KbUJHcVYzZEhSb0xmZk9n?=
- =?utf-8?B?eWh2aWZrWUJxbkFPRFR5MC9FcWNPcVl5RW02UGV2aFIxMWxpQ1JIMGkxUEtp?=
- =?utf-8?B?Q2FxaTN0Z29ML1hRbVEyOGtsSjY2YkczT1RSZlJMWWtSUlA2cit6YXVheTlY?=
- =?utf-8?B?RjVzcEdiMTkvUUVwUnZLdmROaVQ2Rm5ucmtiOGtQcXZaWURlMXBZUXhCZkxX?=
- =?utf-8?B?dkRBSHN2V3JNbGZwRXBva21ZRGREQzVubllpdWIyYTEvRVdYeHowWFJYSHV2?=
- =?utf-8?B?bjZQWjFtWUE5MFh2VmpKMXNxYkVvcUhFWTQvSFkzQnoyNTFraFBFendPYjVS?=
- =?utf-8?B?a2dJWEhtZm5tb1BPWWxnWkhaWXdYdFkwUTNYdHRmOU10WUR2TGRZTDQ2TWl5?=
- =?utf-8?B?WVNKcVRoVGZGR0VYUlNZQjd2Ry8zUHkrMEp1ZjY2N0I3a1RuR2RtT0puVjY2?=
- =?utf-8?B?d1BwT2ZoV0lONEprVzdCbkZQS3JDVysyT3lqelRsU2lCOGtzYnExV1puTUJB?=
- =?utf-8?B?UmJYMjU1emYrT0tYR3piMVpPM2t0L3lSQkl4aUZqdm1sMXoya2FZeDlOK0Rz?=
- =?utf-8?B?NkFETmxzTHNpM21kT0hXQmNFaWVJOTc2QmpHelNpRkVKWEFjTmdVMTNWS1Vq?=
- =?utf-8?B?REkvSUk1TnZlYTRPaW9jQkw4SlpkQlVXMDF2MHEwYmxONlV4R2xSaTRSWTk3?=
- =?utf-8?B?WGxNcGFqR1dNa2ZLc3o5WFNyRm5VSXc3eDU4Ny85WWkxSjhGYjB4SjNreTF0?=
- =?utf-8?B?UCtvc3UxemVPYWRyU2dBdUtDVXNXd1hxVmJFd3A5L3VDZTNNdnU5UDhlc0pX?=
- =?utf-8?Q?Lsisn+CzcGSrpb9XcT3ADy7kH/vg/Qk9o7A/P4/?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rJhAY+6M6l3lkNZ5wHTPFgZbqVZ72qbN/7DTJLowWC4=;
+        b=D/LO853/p6Nl37MX49Fv/VQHdZCSBjh0mK2hmYEGzTVGI7snRZimKGM834bmy4vYTj
+         dZFlcoOPLWyfmzdu3Zqh6IaluSV7CBbOMicdhaqDmjd7J34UUpk2g+IjgpFokjxIDecH
+         gF89kI6Q2YpxP7PjrAa81O9MnaZPR8QDCfYxngngpXVO2TjDLUjlDus4+/DcwHh4jO2w
+         nV3lxcssUfiUCrYwhWoEPg77KPE/YU27CRg8DRNd2wiPzg2CwokxnwsMLqE4QaCjQ7at
+         RFDWwKKhDEjXvladAm3hbPOZkZTZ57qJ8CY6Ck5kfDFel+YVdV/s+O6x9POV53uO2DQQ
+         iZag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rJhAY+6M6l3lkNZ5wHTPFgZbqVZ72qbN/7DTJLowWC4=;
+        b=kge4KfvR43t7WW94M0LHWJzkyX3Lyo6Y5rKM5l1wq7JNfYTC9C62QZUIdUEnxVETl9
+         DdRKeBMA2I/9nOc4iuQUpW07e+ZynzCVUglG3Y+9eVWv56XqvbK2enG/JB+Oy8HYdhwn
+         FwLI/AoWlRnjRaMVGVxA18S/8R2RhwD6L0Wg6fVy+WvVv05la1Rf8m9fmyVae0s3s4Sg
+         /2XlBDW/qoXR7919qdGIllDjFuTK11fJ3uYD1utSQo53gNQfRT8CZa2qApiZttuPW4wt
+         h/vV81HfiIsZiwLb/iGpIKNw3p4zSKuACg9nj6K85ZrhqCLKgccw+5xuZSHveKaVrBnv
+         0jAA==
+X-Gm-Message-State: AOAM532h7BjZTOEa85QB5IueBanC7eLKEQPD1oSgy56RzLtwN+naCqRm
+        kbVVErx5oU/86N1Y/fLnfA==
+X-Google-Smtp-Source: ABdhPJzn83Td5nrvizOLNmEZVYvMJ+nRANBC4XkmMo16bcPJDx0FE2Y1K6MCW69SZLYQ5kRroa8O8w==
+X-Received: by 2002:a17:906:f20e:: with SMTP id gt14mr28847790ejb.368.1621956169435;
+        Tue, 25 May 2021 08:22:49 -0700 (PDT)
+Received: from localhost.localdomain ([2a02:810b:f40:e00:b55:da44:4fe2:2760])
+        by smtp.googlemail.com with ESMTPSA id e23sm11212945eds.2.2021.05.25.08.22.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 May 2021 08:22:48 -0700 (PDT)
+From:   Alex Bee <knaerzche@gmail.com>
+To:     Ezequiel Garcia <ezequiel@collabora.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     Alex Bee <knaerzche@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-staging@lists.linux.dev
+Subject: [PATCH 00/10] Add support for older Rockchip SoCs to V4L2 hantro and rkvdec drivers
+Date:   Tue, 25 May 2021 17:22:15 +0200
+Message-Id: <20210525152225.154302-1-knaerzche@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB6593.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ee48e726-418e-4672-9b8e-08d91f90aedf
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 May 2021 15:20:51.7644
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Ip4sWZfX2OaK2kZSOvx4H6ydKDS+eooyOQhjwRGhGL0RmRl9D3d8yKRmuvyNZGAn8l3xPCH9YcdTeat79zrcmA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB2020
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiANCj4gPiArLyogQ3VycmVudCBtZmQgZGV2aWNlIGluZGV4ICovDQo+ID4gK3N0YXRpYyBhdG9t
-aWNfdCByc211X25kZXZzID0gQVRPTUlDX0lOSVQoMCk7DQo+IA0KPiBDb3VudGluZy9pbmRleGlu
-ZyB0aGlzIHdheSBpcyBnZW5lcmFsbHkgbm90IGdvb2QvcmVxdWlyZWQuDQo+IA0KDQpIaSBMZWUN
-Cg0KU2luY2UgdGhlcmUgY291bGQgYmUgbW9yZSB0aGFuIG9uZSBkZXZpY2VzIGF0dGFjaGVkIHRv
-IHRoZSBzeXN0ZW0sIEkgYW0gdXNpbmcgdGhpcyBjb3VudGVyIHRvIHRyYWNrIHRoZSBpbmRleCBv
-ZiBlYWNoIGRldmljZS4NCkhvdyB3b3VsZCB5b3Ugc3VnZ2VzdCB0byBkbyBpdD8gVGhhbmtzDQoN
-Ck1pbg0K
+Hi list,
+
+this series adds support for older Rockchip SoCs (RK3036, RK3066, RK3188
+and RK322x) to the existing V4L2 video decoder/-encoder drivers - namely
+hantro and rkvdec.
+They can be used as-is or with very little modifications.
+
+In preparation to that patches 1-3 add power-controller support for RK3036
+and RK322x, since both drivers rely on pm. The drivers for them exist
+already in the common Rockchip pm driver, they just haven't be added to
+the device trees yet.
+
+Thanks for your feedback,
+Alex.
+
+Alex Bee (10):
+  ARM: dts: rockchip: add power controller for RK322x
+  ARM: dts: rockchip: add power controller for RK3036
+  dt-bindings: mfd: syscon: add Rockchip RK3036/RK3228 qos compatibles
+  media: hantro: add support for Rockchip RK3066
+  media: hantro: add support for Rockchip RK3036
+  ARM: dts: rockchip: add vpu nodes for RK3066 and RK3188
+  ARM: dts: rockchip: add vpu node for RK322x
+  media: dt-bindings: media: rockchip-vpu: add new compatibles
+  ARM: dts: rockchip: add vdec node for RK322x
+  media: dt-bindings: media: rockchip-vdec: add RK3228 compatible
+
+ .../bindings/media/rockchip,vdec.yaml         |  10 +-
+ .../bindings/media/rockchip-vpu.yaml          |  33 +++-
+ .../devicetree/bindings/mfd/syscon.yaml       |   2 +
+ arch/arm/boot/dts/rk3036.dtsi                 |  51 ++++++
+ arch/arm/boot/dts/rk3066a.dtsi                |   4 +
+ arch/arm/boot/dts/rk3188.dtsi                 |   5 +
+ arch/arm/boot/dts/rk322x.dtsi                 | 139 ++++++++++++++-
+ arch/arm/boot/dts/rk3xxx.dtsi                 |  12 ++
+ drivers/staging/media/hantro/hantro_drv.c     |   2 +
+ drivers/staging/media/hantro/hantro_hw.h      |   2 +
+ drivers/staging/media/hantro/rk3288_vpu_hw.c  | 165 ++++++++++++++++++
+ 11 files changed, 414 insertions(+), 11 deletions(-)
+
+
+base-commit: 5d765451c2409e63563fa6a3e8005bd03ab9e82f
+-- 
+2.27.0
+
