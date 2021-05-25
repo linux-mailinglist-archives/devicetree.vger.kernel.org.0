@@ -2,170 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 752ED38F8F1
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 05:43:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53ABF38F8FA
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 05:46:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230290AbhEYDov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 23:44:51 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:37241 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230048AbhEYDov (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 May 2021 23:44:51 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id D975C581067;
-        Mon, 24 May 2021 23:43:21 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute3.internal (MEProxy); Mon, 24 May 2021 23:43:21 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm2; bh=4OSDcQRIgeJvUR6YkXF9RW8Fj9oUfyB
-        5OADbIA+ihAs=; b=EgHAIM2ewDKVBJ1eZkfW9zSEpyuTMtlv8fDo57x8cdsgwlO
-        3QwFCvRGdsWx45rM3kJjoJdeqp2uP14BVWP9GrZBrcwKye8i7e2JpYNG0ApbcxJh
-        Nu+2G6CuOIQ3OrApoe7gtYfXNOj/Hb5Cjw4Du+euTKL5TPfY4q3sQPMnoRck+seE
-        m07DXGjW5OWZ1uqrAq0VInQhjrHTkqUKSY+M9QY5cpTrkIY/vR7j3LBntkNz/8bb
-        JqNX1EWlVvtl0uqQAEpIf+kkABfmbFxeBmplGA+oc+tXSiKBqdb93JbQuP9PKjku
-        qVi+Wz+RgbOgIDkunqszy/fQpONSsS+RdNb+BgQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=4OSDcQ
-        RIgeJvUR6YkXF9RW8Fj9oUfyB5OADbIA+ihAs=; b=umrZGZO7KBuJyKjhTIF2op
-        nql+kYOKgBkvUA1Wnd3MY1AjmWieu7KaenpItIRFu2UF5QfpD1SJsV2rJgbE1jUH
-        1aWqsNc9Ucy9oV0rhp71OwqeJTX9jOHI3QAxaIRwa35oLpAvbsgasTUGUjpWMw6y
-        zntj7UcmrXDq9BV6O3NEFTZpAHZj0Y8NWwJ0e1eTc0AZfocu2I4iT/EE4PJYAaek
-        1KEGCC2YdVdJGoSqkC6HGUjikWDCtcoHS+d1arrRubRrTfu34t/XjeTbyIqRR96L
-        /IRdUvL8iMcgAOwBs48+2UgCN7zzT/ZxzkjwOyPB6ZkX4WYVxdkmegOH8puYMjiQ
-        ==
-X-ME-Sender: <xms:WHKsYA9qwyxDlhhBiQboRhkSagcYygupj_dw4icwuoKz6cmzEuPJ9A>
-    <xme:WHKsYIu-R7Du1sRdwvvwpWbFCQYWv5L7q4bVqTzxs8TlXKUswy4nussTQPzH0p-G-
-    zcNOctDUznRg5Omfg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdektddgjedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
-    grthhtvghrnhepuddttdekueeggedvtddtueekiedutdfguedutdefieeuteefieelteet
-    vddthfeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    eprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:WHKsYGBbQa0-aYPcgH6s7QhYQA0bm0yWDmtow98-VmSoShrBgaJKOw>
-    <xmx:WHKsYAeUTz4Q-ida5gyHzH6ZFcJ6QarFnWfFoFrz-IsSCPmn-DyhnQ>
-    <xmx:WHKsYFMVmMta0paUoPgozmWpDRVTL-5p9sEdEwCKPesGWYX4B3C4-g>
-    <xmx:WXKsYGGiyjuPSUEGhi0sE3yNiPYkYEcDm54VBMz3_4ij6sMO9LB2HA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 2CE55A00079; Mon, 24 May 2021 23:43:20 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-448-gae190416c7-fm-20210505.004-gae190416
-Mime-Version: 1.0
-Message-Id: <b38cf7e0-6cce-4cb3-8bb7-d711b1fe6eb2@www.fastmail.com>
-In-Reply-To: <20210525030254.GA23525@aspeedtech.com>
-References: <20210524111338.16049-1-steven_lee@aspeedtech.com>
- <20210524111338.16049-4-steven_lee@aspeedtech.com>
- <43b00f2e-4381-4899-b561-da9a24347f8b@www.fastmail.com>
- <20210525030254.GA23525@aspeedtech.com>
-Date:   Tue, 25 May 2021 13:12:59 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Steven Lee" <steven_lee@aspeedtech.com>
-Cc:     "Linus Walleij" <linus.walleij@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Joel Stanley" <joel@jms.id.au>,
-        "moderated list:ASPEED PINCTRL DRIVERS" 
-        <linux-aspeed@lists.ozlabs.org>,
-        "moderated list:ASPEED PINCTRL DRIVERS" <openbmc@lists.ozlabs.org>,
-        "open list:ASPEED PINCTRL DRIVERS" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list" <linux-kernel@vger.kernel.org>,
-        "Hongwei Zhang" <Hongweiz@ami.com>,
-        "Ryan Chen" <ryan_chen@aspeedtech.com>,
-        "Billy Tsai" <billy_tsai@aspeedtech.com>
-Subject: =?UTF-8?Q?Re:_[PATCH_v1_3/3]_pinctrl:_pinctrl-aspeed-g6:_Add_sgpio_pinct?=
- =?UTF-8?Q?rl_settings?=
-Content-Type: text/plain
+        id S230345AbhEYDro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 23:47:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42854 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230048AbhEYDrn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 23:47:43 -0400
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7048C061574;
+        Mon, 24 May 2021 20:46:14 -0700 (PDT)
+Received: by mail-pg1-x52c.google.com with SMTP id 27so20349962pgy.3;
+        Mon, 24 May 2021 20:46:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=y9wnl7d6pRDoIXMa5h4mXaUllCK4xoz1xJ5yVUVeTMM=;
+        b=uW6YjY7ix8PwtpYIBkWmFCI6HB+CTUM4qg3JvQymoQKupk0Cmhj9x/vpiwo5ytDFzW
+         nv9dgt2LIWXc4yFxNyBDzLJgssuYdm4UlKH8tNLAJuJTQXggJDjKVnvapmm8mbSo2uxr
+         gJkDK02aP+CAjBw07cfOP7qY0Q9wTCvJzkXO/CQrf9H+MA1PDG+CyxljKqH4Czp0rC/7
+         WhXjLWt5Ijr2VTLegaxsTcnv4Ft1cb3gLxXXLhulzj7R6QzbFqtQcz2FYh0VSnh9NScE
+         ogQbCFZG6OGgRktk3whm6KkUzLGFKOsIsYvRegKJe4KgL1N2kqTN66zcBgpT56jbeEY7
+         6pXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=y9wnl7d6pRDoIXMa5h4mXaUllCK4xoz1xJ5yVUVeTMM=;
+        b=PPI+A8nLyb3kWXgcKuG8G+RdJ+Yw/Kog7FHWRzj6Rk0nA+WypKg6oDJPA/6tZSB8OW
+         Hr71fNRXy5PQuARjjb5LmgAQMoOuB9YfivTNRhqUTjLC3xd/kMgjowxIG86akZNgjbuT
+         N3RZh7fSVN+Hj5wpeHgJxK+3j/m3Mie9OCXmmyO/F2vuxzrFFjAwMz/4wJZ2hP5N9SQF
+         aSMdM18iZYe7559f0bT/9V47vq6QnZ4XERhkNLAihiQrk2SXystemfbAig21giMm958E
+         vvpbxlTjqtCf2JstIm7aQiSeJwKddjuSa9l/npBGmV8Oo8WmN+OAt87UsE49UwthDd2e
+         Dmhw==
+X-Gm-Message-State: AOAM532EfCt2uGt0I8DvwMvr+jlsQdh91qkfuMNbYHpoyOQXBqVt4fa3
+        2IeOJalstmyneEQ1guVi2MQ=
+X-Google-Smtp-Source: ABdhPJzhWauyvU55ldRmF1oSSm19HFo9knnG0RpC6i8VKjQYeGX6pQJya7VOMbOohRzMHL1MAsuTCw==
+X-Received: by 2002:aa7:8d46:0:b029:2de:75aa:1964 with SMTP id s6-20020aa78d460000b02902de75aa1964mr28282121pfe.61.1621914374201;
+        Mon, 24 May 2021 20:46:14 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:870d:a395:9098:674])
+        by smtp.gmail.com with ESMTPSA id o14sm2140358pfd.1.2021.05.24.20.46.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 May 2021 20:46:13 -0700 (PDT)
+Date:   Mon, 24 May 2021 20:46:10 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        David Jander <david@protonic.nl>,
+        Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de
+Subject: Re: [PATCH v5 4/8] dt-bindings: touchscreen: validate nodename
+Message-ID: <YKxzAgVrNjNdHnoJ@google.com>
+References: <20210521044525.7397-1-o.rempel@pengutronix.de>
+ <20210521044525.7397-5-o.rempel@pengutronix.de>
+ <20210521171823.GA33003@robh.at.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210521171823.GA33003@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On Tue, 25 May 2021, at 12:32, Steven Lee wrote:
-> The 05/25/2021 08:54, Andrew Jeffery wrote:
-> > Hi Steven,
+On Fri, May 21, 2021 at 12:18:23PM -0500, Rob Herring wrote:
+> On Fri, 21 May 2021 06:45:21 +0200, Oleksij Rempel wrote:
+> > Validate touchscreen nodes. Make sure it is named touchscreen*.
 > > 
-> > On Mon, 24 May 2021, at 20:43, Steven Lee wrote:
-> > > AST2600 supports 2 SGPIO master interfaces and 2 SGPIO slave interfaces.
-> > > Current pinctrl driver only define the first sgpio master and slave
-> > > interfaces.
-> > > The sencond SGPIO master and slave interfaces should be added in
-> > > pinctrl driver as well.
-> > > 
-> > > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
-> > > ---
-> > >  drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c | 24 ++++++++++++++++++----
-> > >  drivers/pinctrl/aspeed/pinmux-aspeed.h     |  9 ++++++++
-> > >  2 files changed, 29 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c 
-> > > b/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
-> > > index 5c1a109842a7..d0e9ab9d1a9c 100644
-> > > --- a/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
-> > > +++ b/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
-> > > @@ -46,8 +46,10 @@
-> > >  #define SCU620		0x620 /* Disable GPIO Internal Pull-Down #4 */
-> > >  #define SCU634		0x634 /* Disable GPIO Internal Pull-Down #5 */
-> > >  #define SCU638		0x638 /* Disable GPIO Internal Pull-Down #6 */
-> > > +#define SCU690		0x690 /* Multi-function Pin Control #24 */
-> > >  #define SCU694		0x694 /* Multi-function Pin Control #25 */
-> > >  #define SCU69C		0x69C /* Multi-function Pin Control #27 */
-> > > +#define SCU6D0		0x6D0 /* Multi-function Pin Control #29 */
-> > >  #define SCUC20		0xC20 /* PCIE configuration Setting Control */
-> > >  
-> > >  #define ASPEED_G6_NR_PINS 256
-> > > @@ -81,13 +83,17 @@ FUNC_GROUP_DECL(I2C12, L26, K24);
-> > >  #define K26 4
-> > >  SIG_EXPR_LIST_DECL_SESG(K26, MACLINK1, MACLINK1, SIG_DESC_SET(SCU410, 4));
-> > >  SIG_EXPR_LIST_DECL_SESG(K26, SCL13, I2C13, SIG_DESC_SET(SCU4B0, 4));
-> > > -PIN_DECL_2(K26, GPIOA4, MACLINK1, SCL13);
-> > > +SIG_EXPR_LIST_DECL_SESG(K26, SGPS2CK, SGPS2, SIG_DESC_SET(SCU690, 4));
-> > > +SIG_EXPR_LIST_DECL_SESG(K26, SGPM2CLK, SGPM2, SIG_DESC_SET(SCU6D0, 4));
-> > > +PIN_DECL_4(K26, GPIOA4, SGPM2CLK, SGPS2CK, MACLINK1, SCL13);
-> > 
-> > Is this the right priority order? Looking at the Multi-Function Pin 
-> > Mapping and Control table, function 1 is MACLINK1,
-> > function 2 is SCL13, function 3 is SGPS2CK, and I assume function 4 
-> > would be SGPM2CLK, except it's not documented in the table in v9 of the 
-> > datasheet (I hope it will be documented?).
-> > 
-> > If function 1 is the highest priority (which is what all the Aspeed 
-> > pinctrl drivers assume), then this should be:
-> > 
-> > PIN_DECL_4(K26, GPIOA4, MACLINK1, SCL13, SGPS2CK, SGPM2CLK);
-> > 
-> > Anyway, one of several things could be at fault here:
-> > 
-> > 1. I've made a wrong assumption about the priority order in how I've 
-> > implemented pinctrl support for Aspeed SoCs
-> > 
-> > 2. The Multi-Function Pin Mapping and Control table is out of date and 
-> > needs to be fixed (which it already does as it doesn't list SGPM2CLK).
-> > 
-> > 3. The patch needs to align with the assumptions of the Aspeed pinctrl 
-> > support.
-> > 
-> > I don't think it's 1 as I haven't heard of any issues where we are 
-> > getting incorrect behaviour because of pinmux. I don't think it's 2 as 
-> > this patch makes a non-linear change to the ordering. So my hunch is
-> > the issue is 3, that the patch is putting the signals in the wrong order.
-> > In this case, you want the PIN_DECL_4(...) I outlined above.
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > ---
+> >  .../devicetree/bindings/input/touchscreen/touchscreen.yaml     | 3 +++
+> >  1 file changed, 3 insertions(+)
 > > 
 > 
-> Yes, you are right. Per discussion with the designer, the priority order is
-> MACLINK1 > SCL13 > SGPS2CK > SGPM2CLK
-> 
-> We will add the information in the v10 datasheet.
+> Acked-by: Rob Herring <robh@kernel.org>
 
-Great. Thanks Steven.
+These bindings are used for devices other than touchscreens (touchpads
+and other touch controllers that are not touchscreens), so forcing them
+to be named "touchscreen*" is wrong. In fact, I'd like to allow using
+"touch-*" property names as aliases for "touchscreen-*" properties.
 
-Andrew
+Thanks.
+
+-- 
+Dmitry
