@@ -2,80 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D7BB390A4B
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 22:06:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37BBA390AC5
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 22:53:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231689AbhEYUH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 16:07:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39296 "EHLO
+        id S233420AbhEYUzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 16:55:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229595AbhEYUH4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 16:07:56 -0400
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62E81C061574;
-        Tue, 25 May 2021 13:06:24 -0700 (PDT)
-Received: by mail-pg1-x52c.google.com with SMTP id 6so23621642pgk.5;
-        Tue, 25 May 2021 13:06:24 -0700 (PDT)
+        with ESMTP id S233401AbhEYUzH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 16:55:07 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 811D3C061756
+        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 13:53:37 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id g6-20020a17090adac6b029015d1a9a6f1aso2432825pjx.1
+        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 13:53:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=hrmAyf4ekB8FpoHtyNAMAZhBlwYB6oLMGVhprZSO18c=;
-        b=fYNcnKcCLJRao2bFYyvroRFzvd90Tw9noB6EwiHO2huhVZKsPGIltNkWhksA1b+dd0
-         M2v+MZGiNxcNvfBagrTHPkglpfKqLvZswqlMNahoFc2ZPYNqPiXTWK5RyLtNLb0Kojuh
-         nbkqaQOkd/rRXM1mnJx1H9aa9PxlBF2OW85TmiD4TcJetxOqPx7m3fGJ1YRE+4LumPwp
-         o/uTV6kkZ3XDoo7vb8kamyBE2LurBAH9DzdRe6HY+iRzRVm1ZqwdY5o8K/SmuASEWPI9
-         Aj/expcKyb6yBG5qzYuzzc8uaTJL4Ouru/aut7S0K7lvmDLfV+FBNxAZrCO4xF3i2yru
-         ocFg==
+        bh=tIAv9q4qLMF9mMN+ph7ydFzOpO0QgW0WRe87Hw6QYDQ=;
+        b=hkAlWTTJk4/FJ/yKAHYsGNz0qU64nirtMh9NWBLf0lT0/dc+l6icLZoNqPDeYodsqf
+         8y/GvAm4J6WytmJay2Tq/QUGw4FBlUjt3LAjbF4u+rUxsz0ZwN8xLPIgsrfDjTgzE/Gs
+         Map/nJp8UibwrjhII2/vp73zt0TklL9KYX+V4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=hrmAyf4ekB8FpoHtyNAMAZhBlwYB6oLMGVhprZSO18c=;
-        b=B2UA0j+T6XTBFk9VrK8syM68fCcqHdrYvoJZUNzWOZsLkYYNnF2c6Pf+QrhFAo0H7h
-         PDCl/HsykyOXp/0hl7RnGCKd2ZJgl3mqZyoQbwaG/cTwqmxldyEpWjkEZZiwO/2u2EAf
-         Do6hhZg0An1yAgOCtBpj0xioepwdo6ZOIJAZswtAsMn+qdUHBBWkJqrKMaUyenbfohks
-         XZgAIrkyXX71l5pqWvAJo9ZoqWI13tkSO7v23yjQ/l5BSHx8qB3tQJdL0O/gfaxvkPFj
-         cTNQWUn6QHGsgeu9sNX+kSRM9piAi0Jlrk5kTV4vbsXm/eoKCSYdDUx2lWVj5Ybu511j
-         V/6w==
-X-Gm-Message-State: AOAM533Bq8bLr9bFThVKijx+uEjKwipZyhyIbSN07z52DMxA3BAJkOL8
-        dlX974ZvlI+4znwYrKl1Hq4=
-X-Google-Smtp-Source: ABdhPJw505JxwnUALZ6tQJnxKexnvtJwEXchT7PYHpC8VmXCsUQaCt5MWOLf3ak1KCrUtxOBEufFJw==
-X-Received: by 2002:a63:3342:: with SMTP id z63mr20893123pgz.187.1621973183863;
-        Tue, 25 May 2021 13:06:23 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:b993:67d5:4c88:1ac9])
-        by smtp.gmail.com with ESMTPSA id lj13sm2639925pjb.3.2021.05.25.13.06.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 May 2021 13:06:22 -0700 (PDT)
-Date:   Tue, 25 May 2021 13:06:19 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-        linux-input@vger.kernel.org, David Jander <david@protonic.nl>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 0/4] add z1 and z2 channels support for
- resistive-adc-touch driver
-Message-ID: <YK1Yu3k7alGWqEX7@google.com>
-References: <20210525054634.9134-1-o.rempel@pengutronix.de>
+        bh=tIAv9q4qLMF9mMN+ph7ydFzOpO0QgW0WRe87Hw6QYDQ=;
+        b=mxc0CLDoIOor7wro+/1cenaLlE5n1Slh0gwVRmBuxTqgU8hCAE2t5k1etpcoofZpOK
+         u82GGWNcn1a3Ir6jMYfOEPEgV8OoIRNuuUpbvvmnYFJbFUWM1uHTb6jzeF0CfaVDPwJ7
+         2CknQeGCKuIBtBuIbHNdGUMIEzw5GZkiAViwm4AIDYYObhS/JyUuaeZBE68u+U7sARNv
+         5K4Z+J4/vdPffpHoqGz7MnBGHt7UcJmjBJxIG25qvPk01uD/Q05grpYgEDaa7TrMf235
+         +90w7xh8zyFT/OLL3fGTR/srCFp5fCbS3mJucEhxyBl+B+vOfQpG9Uf7me0Kg6Uur1mf
+         1IIw==
+X-Gm-Message-State: AOAM5318B4c7qCFIT6i2snH0M3ARU+pk7pcGx2gDyC2WL6bO+N6DoOuf
+        iH7ilJdf6oPsAdNqkadZnBVPAA==
+X-Google-Smtp-Source: ABdhPJxa3klkCfxmqKIpzVxFM+qftyX2CphZ0FS1Hzri9Xnq0gJD9IThjTpIMEkzc6oYQZzgO3ARYA==
+X-Received: by 2002:a17:90b:19c2:: with SMTP id nm2mr258043pjb.18.1621976017018;
+        Tue, 25 May 2021 13:53:37 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:ab0:bbc9:a71:2916])
+        by smtp.gmail.com with UTF8SMTPSA id p19sm11980116pgi.59.2021.05.25.13.53.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 May 2021 13:53:36 -0700 (PDT)
+Date:   Tue, 25 May 2021 13:53:35 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org
+Subject: Re: [PATCH V5 04/11] arm64: dts: qcom: pm8350c: Correct the GPIO node
+Message-ID: <YK1jz+h39OIZRH5F@google.com>
+References: <1621937466-1502-1-git-send-email-skakit@codeaurora.org>
+ <1621937466-1502-5-git-send-email-skakit@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210525054634.9134-1-o.rempel@pengutronix.de>
+In-Reply-To: <1621937466-1502-5-git-send-email-skakit@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Oleksij,
+On Tue, May 25, 2021 at 03:40:59PM +0530, satya priya wrote:
+> Add gpio ranges and correct the compatible to add
+> "qcom,spmi-gpio" as this pmic is on spmi bus.
+> 
+> Signed-off-by: satya priya <skakit@codeaurora.org>
+> ---
+> Changes in V5:
+>  - This is split from patch [3/11] and added newly in V5.
 
-On Tue, May 25, 2021 at 07:46:30AM +0200, Oleksij Rempel wrote:
-> changes v6:
-> - drop other DT changes
-> - add more Reviewed-by tags
-> - remove redundant GRTS_CH_NONE check
+isn't the split from patch [4/8]?
 
-Applied the lot, thank you.
+https://patchwork.kernel.org/project/linux-arm-msm/patch/1621318822-29332-5-git-send-email-skakit@codeaurora.org/
 
--- 
-Dmitry
+>  arch/arm64/boot/dts/qcom/pm8350c.dtsi | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/pm8350c.dtsi b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
+> index f926508..e1b75ae 100644
+> --- a/arch/arm64/boot/dts/qcom/pm8350c.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
+> @@ -21,9 +21,10 @@
+>  		};
+>  
+>  		pm8350c_gpios: gpio@8800 {
+> -			compatible = "qcom,pm8350c-gpio";
+> +			compatible = "qcom,pm8350c-gpio", "qcom,spmi-gpio";
+>  			reg = <0x8800>;
+>  			gpio-controller;
+> +			gpio-ranges = <&pm8350c_gpios 0 0 9>;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
