@@ -2,117 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 94AEE3907FC
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 19:42:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 518823907FE
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 19:42:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230353AbhEYRna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 13:43:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60904 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229976AbhEYRn3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 May 2021 13:43:29 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F1E5161400;
-        Tue, 25 May 2021 17:41:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621964519;
-        bh=dOArAgu7ZC4cRYJFEGVi56ncg4H0XnoVUko1P1dIZn8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=kAdF+LoXT11CuF1cPHOzYW1U0M8ChNl0RIvW5F5tmBSOJ/0Zz8FrZQSY6J4Q3diHR
-         hgaUMXW5ejvQia/hozy3hbbyrkdpjOfs3heLX61ZG8H3VgKM4ZUWsPaqrxgsivkbpC
-         6e6Or3oQ7/Zou9F6iMQLY2jf0rhRSOXI5O305K8jE+mEtE3w8/MOJ0tcPAzqD8ChRS
-         D6vMfBOwJbwv4fLGvUUg3EaCwLf7WZYHYzWIw4Ng8kA/DlBVwEh7FzaB54gSSPIqUE
-         PjOAwu+HvnsXgIcT+ihHqaCnXtTsekgnFWoNtoJKV7+QtNtOg8wDOmj+yIKibJkCMl
-         xsWK3rPRNcNhQ==
-Received: by mail-ed1-f44.google.com with SMTP id r11so37180912edt.13;
-        Tue, 25 May 2021 10:41:58 -0700 (PDT)
-X-Gm-Message-State: AOAM531lzpVPgtm1hl6Hmo9i2Ly9YuwuwEYWX6lI8R/QW2XwbF1duUOz
-        rEuURmWQRXGB4a/lga33oCW4IOULXgx4zstBAw==
-X-Google-Smtp-Source: ABdhPJzLJeb1QNBqzEiRLC8bN1RXJUTLRhZ4rPY1kCOuA7jctny5RqRboDeLgsBZKUAq1VQNAVUj3UzKlSCwkNqwaVg=
-X-Received: by 2002:a05:6402:c7:: with SMTP id i7mr33618826edu.194.1621964517456;
- Tue, 25 May 2021 10:41:57 -0700 (PDT)
+        id S230142AbhEYRn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 13:43:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34978 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229976AbhEYRn6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 13:43:58 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A66ACC061756
+        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 10:42:28 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id ne24-20020a17090b3758b029015f2dafecb0so12428342pjb.4
+        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 10:42:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=1LMzOQ6+6ac4DFrNM4H4DzBnGvXNX1b50v8NC4P1lBs=;
+        b=BE/GG9Z/NXu7m9YM5e6u1l7oetX08lvY69gn3S4WObyiIprElhwMJFxRb/3w0rS0WP
+         ILi/Q17Zws9RuwTT7b3Z0Pye+MhCu+QGrJKLlET2u9W0dHp4Fl4UgJFZ/nfsDdJe7CGm
+         uL/MdbkeZpsHmyfXOAjFMK4Q5ci07WgjKGGXk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=1LMzOQ6+6ac4DFrNM4H4DzBnGvXNX1b50v8NC4P1lBs=;
+        b=NRWf8Z3uDhK3mQ1rwuRB5qgfoad8ejA8WHGxCy7PqgJUgc1UwlzaO4zG/KJyueNZ9+
+         EyZGhQylV3VTRaPCZ/qLNVYkGhb/c3nVBxBS+JWlym+nrahb15+MqOqKoJ5jVme0hj3w
+         DJknnr3ceVNbPUr/nUaxXbaUqwvyLvnno5tq/m9wKa3WrnmoLtvndOXrGJu48qdikz+L
+         /IHQqVj6YXyN8uWqsQXjF8vg0iomFTbYjd/MpAjcHmwdXsbhyXLX0IBzgqbLNDv5/WPg
+         NyRy+LjGN+fKmiaNIFr+/uk44EztIHQm8ojOQvD9KZoounXbRb6QVHOlh2CpbetNDLGn
+         bhIw==
+X-Gm-Message-State: AOAM532nl53CZtGWU2SC+K0nW1/QaqV+nyeQKBKeJPdSloEMtrEms+zA
+        9Hpc4+hZPzU5rzhAF5b0/I4Ubg==
+X-Google-Smtp-Source: ABdhPJyA1ui0ylTVhiYxdLOqLS28ZsWlyNXkebBUTtc2C+tO7Ah8y7HTYwy8rOi4Wsvea8p/lSZoGw==
+X-Received: by 2002:a17:903:22cd:b029:f4:d923:89a9 with SMTP id y13-20020a17090322cdb02900f4d92389a9mr31750260plg.52.1621964548172;
+        Tue, 25 May 2021 10:42:28 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:ab0:bbc9:a71:2916])
+        by smtp.gmail.com with UTF8SMTPSA id s6sm2488105pjr.29.2021.05.25.10.42.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 May 2021 10:42:27 -0700 (PDT)
+Date:   Tue, 25 May 2021 10:42:25 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Alan Stern <stern@rowland.harvard.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-usb@vger.kernel.org, Peter Chen <peter.chen@kernel.org>,
+        linux-kernel@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Al Cooper <alcooperx@gmail.com>,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Christian Lamparter <chunkeey@googlemail.com>,
+        Colin Ian King <colin.king@canonical.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v10 0/5] USB: misc: Add onboard_usb_hub driver
+Message-ID: <YK03AVRfbRJUGd0X@google.com>
+References: <20210511225223.550762-1-mka@chromium.org>
+ <YKen70owPqdjy5+a@kroah.com>
 MIME-Version: 1.0
-References: <20210524182745.22923-1-sven@svenpeter.dev>
-In-Reply-To: <20210524182745.22923-1-sven@svenpeter.dev>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 25 May 2021 12:41:45 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKqpSQbdj_Crc-LSc12700kyFFkMTU29BDY2bwGNLXn9A@mail.gmail.com>
-Message-ID: <CAL_JsqKqpSQbdj_Crc-LSc12700kyFFkMTU29BDY2bwGNLXn9A@mail.gmail.com>
-Subject: Re: [PATCH 0/3] Apple M1 clock gate driver
-To:     Sven Peter <sven@svenpeter.dev>
-Cc:     devicetree@vger.kernel.org, linux-clk <linux-clk@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Hector Martin <marcan@marcan.st>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Arnd Bergmann <arnd@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YKen70owPqdjy5+a@kroah.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 24, 2021 at 1:28 PM Sven Peter <sven@svenpeter.dev> wrote:
->
->
-> Hi,
->
-> This series adds support for the clock gates present in Apple's SoCs such as
-> the M1.
->
-> These SoCs have various clock gates for their peripherals usually located in
-> one or two MMIO regions. Each clock gate is a single 32 bit register which
-> contains bits for the requested and the actual mode. The mode is represented by
-> four bits. We however only care about "everything enabled" (0b1111) and
-> "everything disabled" (0b000) for now. The other modes are probably different
-> low-power states which don't even seem to be used by MacOS. The actual power
-> management is located in a different region (and probably handled by a separate
-> processor on the M1).
->
-> Additionally, these clocks have a topology that is usually specified in Apple's
-> Device Tree. As far as I can tell most Linux drivers seem to encode this topology
-> directly in the source code though. Despite this, we would still like to encode
-> the topology in the device tree itself:
+On Fri, May 21, 2021 at 02:30:39PM +0200, Greg Kroah-Hartman wrote:
+> On Tue, May 11, 2021 at 03:52:18PM -0700, Matthias Kaehlcke wrote:
+> > This series adds:
+> > - the onboard_usb_hub_driver
+> > - glue in the xhci-plat driver to create the onboard_usb_hub
+> >   platform device if needed
+> > - a device tree binding for the Realtek RTS5411 USB hub controller
+> > - device tree changes that add RTS5411 entries for the QCA SC7180
+> >   based boards trogdor and lazor
+> > - a couple of stubs for platform device functions to avoid
+> >   unresolved symbols with certain kernel configs
+> > 
+> > The main issue the driver addresses is that a USB hub needs to be
+> > powered before it can be discovered. For discrete onboard hubs (an
+> > example for such a hub is the Realtek RTS5411) this is often solved
+> > by supplying the hub with an 'always-on' regulator, which is kind
+> > of a hack. Some onboard hubs may require further initialization
+> > steps, like changing the state of a GPIO or enabling a clock, which
+> > requires even more hacks. This driver creates a platform device
+> > representing the hub which performs the necessary initialization.
+> > Currently it only supports switching on a single regulator, support
+> > for multiple regulators or other actions can be added as needed.
+> > Different initialization sequences can be supported based on the
+> > compatible string.
+> > 
+> > Besides performing the initialization the driver can be configured
+> > to power the hub off during system suspend. This can help to extend
+> > battery life on battery powered devices which have no requirements
+> > to keep the hub powered during suspend. The driver can also be
+> > configured to leave the hub powered when a wakeup capable USB device
+> > is connected when suspending, and power it off otherwise.
+> 
+> I get a build error when I apply this series to my tree:
+> 
+> drivers/usb/misc/onboard_usb_hub.c:273:6: error: redefinition of ‘of_is_onboard_usb_hub’
+>   273 | bool of_is_onboard_usb_hub(const struct device_node *np)
+>       |      ^~~~~~~~~~~~~~~~~~~~~
+> In file included from drivers/usb/misc/onboard_usb_hub.c:21:
+> ./include/linux/usb/onboard_hub.h:9:20: note: previous definition of ‘of_is_onboard_usb_hub’ with type ‘bool(const struct device_node *)’ {aka ‘_Bool(const struct device_node *)’}
+>     9 | static inline bool of_is_onboard_usb_hub(const struct device_node *np)
+>       |                    ^~~~~~~~~~~~~~~~~~~~~
+> 
+> Any thoughts?
 
-We only define leaf clocks primarily. There's some exceptions such as
-if PLLs are a separate h/w block. The reason for this is because
-typical SoCs have 100s of just leaf clocks. If we tried to model
-everything, it would never be complete nor correct. Actually, we did
-try that at first.
+That function keeps haunting me in different ways ...
 
-> Apple seems to only change HW blocks when they have a very good reason and even
-> then they seem to keep the changes minimal. This specific clock gate MMIO block
-> has already been used in the Apple A7 released in 2013. The only differences
-> since then are the available clocks (which can be identified by a simple offset)
-> and their topology.
+I suspect this was a build with CONFIG_COMPILE_TEST=y. The driver is
+compiled for such a config and has the actual implementation, however
+the header defines the static inline unless CONFIG_USB_ONBOARD_HUB=y/m.
 
-Clock gates are easy. What about muxes, dividers, etc.?
-
-> It's likely that Apple will still use this block in future SoCs as well. By
-> encoding the clock gate topology inside the device tree as well we can use a
-> single driver and only need updates to the device tree once they are released.
-> This might allow end users to already run their favorite distribution by just
-> updating the bootloader with a new device tree instead of having to wait until
-> the new topology is integrated into their distro kernel.
->
-> Additionally, the driver itself can be kept very simple and not much code needs
-> to be duplicated and then updated for each new SoC between various consumers of
-> these device tree nodes (Linux, u-boot, and OpenBSD for now).
->
->
-> This series therefore creates a single device tree node for each clock gate.
-> This unfortunately maps a whole page out of which only a single register will
-> be used for each node.
->
-> The other alternative I considered was to create a syscon/simple-mfd node
-> and have the clock nodes as children. The gates would then use a regmap which
-> would only require a single entry in the pagetable for all clocks. I decided
-> against this option since the clock gate MMIO region actually isn't a
-> multi-function device.
-
-I would do a single node per mmio region with the register offset (or
-offset / 4) being the clock id. This can still support new SoCs easily
-if you have a fallback compatible. If you want/need to get all the
-clocks, just walk the DT 'clocks' properties and extract all the IDs.
-
-Rob
+I realized earlier that the driver doesn't really need to include the
+header, and planned to remove it in the next version, which might be
+the most practical solution.
