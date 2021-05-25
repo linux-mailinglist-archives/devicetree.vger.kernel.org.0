@@ -2,189 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E87D3900B0
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 14:16:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 778D13900CF
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 14:22:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232426AbhEYMRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 08:17:37 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:46242 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232370AbhEYMRd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 08:17:33 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: benjamin.gaignard)
-        with ESMTPSA id 8632F1F422EA
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-To:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
-        heiko@sntech.de, xxm@rock-chips.com, robin.murphy@arm.com
-Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Subject: [PATCH v7 4/4] iommu: rockchip: Add support for iommu v2
-Date:   Tue, 25 May 2021 14:15:51 +0200
-Message-Id: <20210525121551.606240-5-benjamin.gaignard@collabora.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210525121551.606240-1-benjamin.gaignard@collabora.com>
-References: <20210525121551.606240-1-benjamin.gaignard@collabora.com>
+        id S232583AbhEYMXj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 08:23:39 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.52]:21036 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232591AbhEYMXa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 08:23:30 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1621945276; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=OKz07d+O49cqaMLeo/Rt7OD7MqYPrAKU03s+8gNlSVU96SLZmQ8S/wv0TIUBG9KhpB
+    ynd+LE+9tFAluCp/VbLhRqIq3uBWdpl+9pjXXYHNwhqf8U46aFVhbdSIMNSH8beaBsPg
+    PEdRlBEd4pIF57/sDmbGKPNsnZemPSC9mYSXPr8gmpTHkBa9QuzgHm6ilXkrNUROw4Sr
+    dsT4cxzSZ7nkqre0yHn+IZtrOJ89L4MWaEeELboHpJMhgBBvJGMw/46eTIoremm4dC9I
+    ZukxRUOcarkYb0WPZ+DZbNW0nsVu81GmdMSqmMQpZfeZVZ87jJy7YkibBYJsu/LG/uUK
+    0fYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1621945276;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=KV/2nj4skug8FbuclXnVJfsWZvYOWwsCbnrR2X4xTMY=;
+    b=Fdgxu++gjLGjLMJaYda5lA2SWNo4+nrCv1h86dC8iH6vafkFEYtipZHdryp/KtPW1i
+    nzBquWhY8+Wcy6tl4JtDOhHwXwNGhcpRMKRabHWFbpROT7dm4RH5qEwalXpboHxxKGSY
+    UkL7lSPjl6JsgxW3rOa968wPE2rp35DI4mJcrAUFL2jEY3YkUUnK5/5pAcp5ZqPcBviN
+    Vw5rqRRuv59t0ZupaoUGhz7Pu2rvKzUN1zXypa7l08juk858nbSWHgihsm21AfsRDM0f
+    7JsHK5zswLMq1Bwcy5Fikxd7uMIOprg4qTmPd3xlTN+FrAGxhDVZfgSEqIpRx03pcVRK
+    Eg0Q==
+ARC-Authentication-Results: i=1; strato.com;
+    dkim=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1621945276;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=KV/2nj4skug8FbuclXnVJfsWZvYOWwsCbnrR2X4xTMY=;
+    b=qjZrdFBsYZjJqBRakBJdI0cX1ZSjquKrj6VTfArcU/QZgj6kplyeEzAq946s4Z5/c6
+    2og8jZ3HPA+n9zaj52l1PyllfX30Lg1cpDJjwqZRgPgQ8/eFPmIl+/tbCuSaSRbjpTcJ
+    9jqr8iWPLQPsWgYNftHKL3gTEkytVDmA3kjjmSFqgUIKKQfnDXlG4uigztm5uTOOqncL
+    +MZMsiwXOHDkDk02vzjMbly7GNbZQStlqSIRco0SAmrvgqotPfSsVSX1FoBjP5g0N1pB
+    QfJ4ldiQX/n4tq1LQ+SldTbpQavbjQcMjj2a5r7o9y4ov7WUvbf0dYxg6Y/PyX/DR4rJ
+    QH6g==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j9Icyp"
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.26.2 DYNA|AUTH)
+    with ESMTPSA id 6078a4x4PCLF0Xv
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Tue, 25 May 2021 14:21:15 +0200 (CEST)
+Date:   Tue, 25 May 2021 14:20:59 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Bartosz Dudziak <bartosz.dudziak@snejp.pl>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Russell King <linux@armlinux.org.uk>,
+        David Sterba <dsterba@suse.com>, Jens Axboe <axboe@kernel.dk>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Kumar Gala <galak@codeaurora.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] arm: qcom: Add SMP support for Cortex-A7
+Message-ID: <YKzrq8V4c2HScgP4@gerhold.net>
+References: <20210513153442.52941-1-bartosz.dudziak@snejp.pl>
+ <20210513153442.52941-3-bartosz.dudziak@snejp.pl>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210513153442.52941-3-bartosz.dudziak@snejp.pl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This second version of the hardware block has a different bits
-mapping for page table entries.
-Add the ops matching to this new mapping.
-Define a new compatible to distinguish it from the first version.
+Hi,
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
----
-version 7:
- - Set dma_bit_mask field.
- - Add rk_dma_addr_dte_v2 function
+On Thu, May 13, 2021 at 05:34:42PM +0200, Bartosz Dudziak wrote:
+> Implement support for Cortex-A7 CPU release sequence.
+> 
+> Signed-off-by: Bartosz Dudziak <bartosz.dudziak@snejp.pl>
+> ---
+>  arch/arm/mach-qcom/platsmp.c | 72 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+> 
+> diff --git a/arch/arm/mach-qcom/platsmp.c b/arch/arm/mach-qcom/platsmp.c
+> index 630a038f45..10780bf14a 100644
+> --- a/arch/arm/mach-qcom/platsmp.c
+> +++ b/arch/arm/mach-qcom/platsmp.c
+> @@ -29,6 +29,7 @@
+>  #define COREPOR_RST		BIT(5)
+>  #define CORE_RST		BIT(4)
+>  #define L2DT_SLP		BIT(3)
+> +#define CORE_MEM_CLAMP		BIT(1)
+>  #define CLAMP			BIT(0)
+>  
+>  #define APC_PWR_GATE_CTL	0x14
+> @@ -75,6 +76,63 @@ static int scss_release_secondary(unsigned int cpu)
+>  	return 0;
+>  }
+>  
+> +static int cortex_a7_release_secondary(unsigned int cpu)
+> +{
+> +	int ret = 0;
+> +	void __iomem *reg;
+> +	struct device_node *cpu_node, *acc_node;
+> +	u32 reg_val;
+> +
+> +	cpu_node = of_get_cpu_node(cpu, NULL);
+> +	if (!cpu_node)
+> +		return -ENODEV;
+> +
+> +	acc_node = of_parse_phandle(cpu_node, "qcom,acc", 0);
+> +	if (!acc_node) {
+> +		ret = -ENODEV;
+> +		goto out_acc;
+> +	}
+> +
+> +	reg = of_iomap(acc_node, 0);
+> +	if (!reg) {
+> +		ret = -ENOMEM;
+> +		goto out_acc_map;
+> +	}
+> +
+> +	/* Put the CPU into reset. */
+> +	reg_val = CORE_RST | COREPOR_RST | CLAMP | CORE_MEM_CLAMP;
+> +	writel(reg_val, reg + APCS_CPU_PWR_CTL);
+> +
+> +	/* Turn on the BHS, set the BHS_CNT to 16 XO clock cycles */
+> +	writel(BHS_EN | (0x10 << BHS_CNT_SHIFT), reg + APC_PWR_GATE_CTL);
+> +	/* Wait for the BHS to settle */
+> +	udelay(2);
+> +
+> +	reg_val &= ~CORE_MEM_CLAMP;
+> +	writel(reg_val, reg + APCS_CPU_PWR_CTL);
+> +
+> +	reg_val |= L2DT_SLP;
+> +	writel(reg_val, reg + APCS_CPU_PWR_CTL);
+> +	udelay(2);
+> +
+> +	reg_val = (reg_val | BIT(17)) & ~CLAMP;
+> +	writel(reg_val, reg + APCS_CPU_PWR_CTL);
+> +	udelay(2);
+> +
+> +	/* Release CPU out of reset and bring it to life. */
+> +	reg_val &= ~(CORE_RST | COREPOR_RST);
+> +	writel(reg_val, reg + APCS_CPU_PWR_CTL);
+> +	reg_val |= CORE_PWRD_UP;
+> +	writel(reg_val, reg + APCS_CPU_PWR_CTL);
+> +
 
-version 5:
- - Use internal ops to support v2 hardware block
- - Use GENMASK macro.
- - Keep rk_dte_pt_address() and rk_dte_pt_address_v2() separated
-   because I believe that is more readable like this.
- - Do not duplicate code.
+I think you forgot to add
 
- drivers/iommu/rockchip-iommu.c | 84 +++++++++++++++++++++++++++++++++-
- 1 file changed, 82 insertions(+), 2 deletions(-)
+	iounmap(reg);
 
-diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iommu.c
-index bd2cf7f08c71..edd05e488aa7 100644
---- a/drivers/iommu/rockchip-iommu.c
-+++ b/drivers/iommu/rockchip-iommu.c
-@@ -189,6 +189,33 @@ static inline phys_addr_t rk_dte_pt_address(u32 dte)
- 	return (phys_addr_t)dte & RK_DTE_PT_ADDRESS_MASK;
- }
- 
-+/*
-+ * In v2:
-+ * 31:12 - PT address bit 31:0
-+ * 11: 8 - PT address bit 35:32
-+ *  7: 4 - PT address bit 39:36
-+ *  3: 1 - Reserved
-+ *     0 - 1 if PT @ PT address is valid
-+ */
-+#define RK_DTE_PT_ADDRESS_MASK_V2 GENMASK_ULL(31, 4)
-+#define DTE_HI_MASK1	GENMASK(11, 8)
-+#define DTE_HI_MASK2	GENMASK(7, 4)
-+#define DTE_HI_SHIFT1	24 /* shift bit 8 to bit 32 */
-+#define DTE_HI_SHIFT2	32 /* shift bit 4 to bit 36 */
-+#define PAGE_DESC_HI_MASK1	GENMASK_ULL(39, 36)
-+#define PAGE_DESC_HI_MASK2	GENMASK_ULL(35, 32)
-+
-+static inline phys_addr_t rk_dte_pt_address_v2(u32 dte)
-+{
-+	u64 dte_v2 = dte;
-+
-+	dte_v2 = ((dte_v2 & DTE_HI_MASK2) << DTE_HI_SHIFT2) |
-+		 ((dte_v2 & DTE_HI_MASK1) << DTE_HI_SHIFT1) |
-+		 (dte_v2 & RK_DTE_PT_ADDRESS_MASK);
-+
-+	return (phys_addr_t)dte_v2;
-+}
-+
- static inline bool rk_dte_is_pt_valid(u32 dte)
- {
- 	return dte & RK_DTE_PT_VALID;
-@@ -199,6 +226,15 @@ static inline u32 rk_mk_dte(dma_addr_t pt_dma)
- 	return (pt_dma & RK_DTE_PT_ADDRESS_MASK) | RK_DTE_PT_VALID;
- }
- 
-+static inline u32 rk_mk_dte_v2(dma_addr_t pt_dma)
-+{
-+	pt_dma = (pt_dma & RK_DTE_PT_ADDRESS_MASK) |
-+		 ((pt_dma & PAGE_DESC_HI_MASK1) >> DTE_HI_SHIFT1) |
-+		 (pt_dma & PAGE_DESC_HI_MASK2) >> DTE_HI_SHIFT2;
-+
-+	return (pt_dma & RK_DTE_PT_ADDRESS_MASK_V2) | RK_DTE_PT_VALID;
-+}
-+
- /*
-  * Each PTE has a Page address, some flags and a valid bit:
-  * +---------------------+---+-------+-+
-@@ -240,6 +276,29 @@ static u32 rk_mk_pte(phys_addr_t page, int prot)
- 	return page | flags | RK_PTE_PAGE_VALID;
- }
- 
-+/*
-+ * In v2:
-+ * 31:12 - Page address bit 31:0
-+ *  11:9 - Page address bit 34:32
-+ *   8:4 - Page address bit 39:35
-+ *     3 - Security
-+ *     2 - Readable
-+ *     1 - Writable
-+ *     0 - 1 if Page @ Page address is valid
-+ */
-+#define RK_PTE_PAGE_READABLE_V2      BIT(2)
-+#define RK_PTE_PAGE_WRITABLE_V2      BIT(1)
-+
-+static u32 rk_mk_pte_v2(phys_addr_t page, int prot)
-+{
-+	u32 flags = 0;
-+
-+	flags |= (prot & IOMMU_READ) ? RK_PTE_PAGE_READABLE_V2 : 0;
-+	flags |= (prot & IOMMU_WRITE) ? RK_PTE_PAGE_WRITABLE_V2 : 0;
-+
-+	return rk_mk_dte_v2(page) | flags;
-+}
-+
- static u32 rk_mk_pte_invalid(u32 pte)
- {
- 	return pte & ~RK_PTE_PAGE_VALID;
-@@ -480,9 +539,19 @@ static inline phys_addr_t rk_dte_addr_phys(u32 addr)
- 	return (phys_addr_t)addr;
- }
- 
--static inline u32 rk_dma_addr_dte(dma_addr_t dt_dma)
-+#define DT_HI_MASK GENMASK_ULL(39, 32)
-+#define DT_SHIFT   28
-+
-+static inline phys_addr_t rk_dte_addr_phys_v2(u32 addr)
-+{
-+	return (phys_addr_t)(addr & RK_DTE_PT_ADDRESS_MASK) |
-+	       ((addr & DT_HI_MASK) << DT_SHIFT);
-+}
-+
-+static inline u32 rk_dma_addr_dte_v2(dma_addr_t dt_dma)
- {
--	return dt_dma;
-+	return (dt_dma & RK_DTE_PT_ADDRESS_MASK) |
-+	       ((dt_dma & DT_HI_MASK) >> DT_SHIFT);
- }
- 
- static void log_iova(struct rk_iommu *iommu, int index, dma_addr_t iova)
-@@ -1316,11 +1385,22 @@ static struct rk_iommu_ops iommu_data_ops_v1 = {
- 	.dma_bit_mask = DMA_BIT_MASK(32),
- };
- 
-+static struct rk_iommu_ops iommu_data_ops_v2 = {
-+	.pt_address = &rk_dte_pt_address_v2,
-+	.mk_dtentries = &rk_mk_dte_v2,
-+	.mk_ptentries = &rk_mk_pte_v2,
-+	.dte_addr_phys = &rk_dte_addr_phys_v2,
-+	.dma_addr_dte = &rk_dma_addr_dte_v2,
-+	.dma_bit_mask = DMA_BIT_MASK(40),
-+};
- 
- static const struct of_device_id rk_iommu_dt_ids[] = {
- 	{	.compatible = "rockchip,iommu",
- 		.data = &iommu_data_ops_v1,
- 	},
-+	{	.compatible = "rockchip,rk3568-iommu",
-+		.data = &iommu_data_ops_v2,
-+	},
- 	{ /* sentinel */ }
- };
- 
--- 
-2.25.1
+here :)
 
+> +out_acc_map:
+> +	of_node_put(acc_node);
+> +out_acc:
+> +	of_node_put(cpu_node);
+> +
+> +	return ret;
+> +}
+> +
+>  static int kpssv1_release_secondary(unsigned int cpu)
+>  {
+>  	int ret = 0;
+> @@ -281,6 +339,11 @@ static int msm8660_boot_secondary(unsigned int cpu, struct task_struct *idle)
+>  	return qcom_boot_secondary(cpu, scss_release_secondary);
+>  }
+>  
+> +static int cortex_a7_boot_secondary(unsigned int cpu, struct task_struct *idle)
+> +{
+> +	return qcom_boot_secondary(cpu, cortex_a7_release_secondary);
+> +}
+> +
+>  static int kpssv1_boot_secondary(unsigned int cpu, struct task_struct *idle)
+>  {
+>  	return qcom_boot_secondary(cpu, kpssv1_release_secondary);
+> @@ -315,6 +378,15 @@ static const struct smp_operations smp_msm8660_ops __initconst = {
+>  };
+>  CPU_METHOD_OF_DECLARE(qcom_smp, "qcom,gcc-msm8660", &smp_msm8660_ops);
+>  
+> +static const struct smp_operations qcom_smp_cortex_a7_ops __initconst = {
+> +	.smp_prepare_cpus	= qcom_smp_prepare_cpus,
+> +	.smp_boot_secondary	= cortex_a7_boot_secondary,
+> +#ifdef CONFIG_HOTPLUG_CPU
+> +	.cpu_die		= qcom_cpu_die,
+> +#endif
+> +};
+> +CPU_METHOD_OF_DECLARE(qcom_smp_cortex_a7, "qcom,cpss-acc", &qcom_smp_cortex_a7_ops);
+> +
+
+I'm a bit curious about the name "CPSS". Is that something you came up
+with yourself similar to KPSS? There is a slight naming collision here
+with the "Chip peripheral subsystem" (CPSS) on APQ8064E (Snapdragon 600),
+see https://developer.qualcomm.com/download/sd600/snapdragon-600-device-spec.pdf
+
+Thanks,
+Stephan
