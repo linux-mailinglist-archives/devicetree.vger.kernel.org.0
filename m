@@ -2,130 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EA66390766
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 19:20:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9475D3907BE
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 19:33:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229595AbhEYRWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 13:22:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57834 "EHLO
+        id S230306AbhEYRe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 13:34:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233789AbhEYRVn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 13:21:43 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB120C06138D
-        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 10:20:13 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id d78so23260574pfd.10
-        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 10:20:13 -0700 (PDT)
+        with ESMTP id S233922AbhEYReK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 13:34:10 -0400
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57735C061574
+        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 10:32:37 -0700 (PDT)
+Received: by mail-oi1-x232.google.com with SMTP id v22so31037010oic.2
+        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 10:32:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=0ZW710WMTVU/rhTJ9pJrGtoEN8Es/IYU5eqz2cSniTw=;
-        b=mPofpo9R1ZIS4mJ0nVfiAZhXVI6DrKYvTqiOwseJSvaXOLIhH0qVRYDdGN1k4si3JL
-         E4jUzXe/n8Sn1ZNGaRqlAM8S2KZuID2uFBkgxr/IboVp1NR6PC9lbxeq+gyeyPVmKGXI
-         gdqBB2bdWt4JGUOgh1gBrwCIGZthH9pFR0YEY=
+        bh=xhyQbxQiIDbXKL8bcaq+cdxjGQpKczxyo6wQp2aZBcw=;
+        b=CLTda6dWa1UGW9Rl6A2/5lV5NXjgFZw25Cr1ZVCzPihAvyRfrnFEObTQh2aHR7HBZ3
+         3nlxjfjikttkpTelUrmu6eEiChgGt0c+wN40+C2WZb4CGmFIJNZ2psRcyxjPzoVjC2Yy
+         3DuBQWzb+XsdAxE4eOXSrseDyNHqbL4GZ+rHbuk7BcSEBNfCTahR8HpFzjWkDWsGPeAr
+         /1KzfAKd220GP0Z3+KLNP09L2Mz2exIcUvyHzEA8hy4xHtienNwAuA1xO5ZOIITp11FL
+         yjhVrN1v9s10Hij9+QxKsKxjsOqZ8KyYbWKXOfOISI14X5rZ3V1BOPqiD+2MW7R0DdT3
+         TJAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=0ZW710WMTVU/rhTJ9pJrGtoEN8Es/IYU5eqz2cSniTw=;
-        b=FwpiKKPKTVvcTffEogziIWwalbsrCIr8vqyaowODzv+TOVHKrnYLurCOJLc0vDCBKK
-         8VwYDdN/IBHPcwIJtjG4J3mttp0tchC0soJUIKwrYzMfmCLPWiMZxpIHb4l6qAkiGDxB
-         Qj8md3V4rk0v2Cq23j9tZ+Sm0XmfriMwVW2hoy4eTgLrdCdZ846ayeYtP14IXIw8ta6L
-         GCljeH4Pl/FCW3QoyzUWmhh5AKUPHMHet1RVPjIyZ2vxr5xGePK+UaCdNqyxzDSlY21s
-         1zHfGQkupalCjDkpDVmjPX+5u1wzU8jjBjSf2ORb5dT7WT8FHUZWaYrIxeB3Ab7jFbTq
-         6BIg==
-X-Gm-Message-State: AOAM533v+uLO8s560J5EjiLllGTkCop6bYDYpwHIv8jgmjClyCG7nOBc
-        CIvELqK8IdOPX1Tl8XanPun8sg==
-X-Google-Smtp-Source: ABdhPJyHqhVZhAfLCXQWGfWxKqDYqNm0Zw6XXmhbL7ULffsKvJ0KsmowTifw2htA6udPXNE7d9aa1g==
-X-Received: by 2002:a05:6a00:234f:b029:2c4:b8d6:843 with SMTP id j15-20020a056a00234fb02902c4b8d60843mr30995973pfj.71.1621963213212;
-        Tue, 25 May 2021 10:20:13 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:ab0:bbc9:a71:2916])
-        by smtp.gmail.com with UTF8SMTPSA id o24sm14593603pgl.55.2021.05.25.10.20.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 May 2021 10:20:12 -0700 (PDT)
-Date:   Tue, 25 May 2021 10:20:10 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Alan Stern <stern@rowland.harvard.edu>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-usb@vger.kernel.org, Peter Chen <peter.chen@kernel.org>,
-        linux-kernel@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Al Cooper <alcooperx@gmail.com>,
-        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: Re: [PATCH v10 2/5] USB: misc: Add onboard_usb_hub driver
-Message-ID: <YK0xyi+LjIeRAKI9@google.com>
-References: <20210511155152.v10.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
- <YKPz7a68duMyXU5x@google.com>
- <20210518194511.GA1137841@rowland.harvard.edu>
- <YKQ0XxhIWaN37HMr@google.com>
- <20210519144356.GB1165692@rowland.harvard.edu>
- <YKWaJdrpj1ixx9+v@google.com>
- <20210520020521.GB1186755@rowland.harvard.edu>
- <YKZnA2bifn346bPa@google.com>
- <YKbRJylHrDiuSRGH@google.com>
- <20210521011436.GA1224757@rowland.harvard.edu>
+        bh=xhyQbxQiIDbXKL8bcaq+cdxjGQpKczxyo6wQp2aZBcw=;
+        b=SYTHAYgcc5bDQN+YOf9j9NZx6jToSWr87R/LNPVTb1WQN/Mv94EB9qf9pSBnr75iK3
+         mlhRtIPj26oqG+TC87c71tw6CawX/eLa7R0hTl4VqqOFAh2yCIgqXITYG9HVrl+TSw97
+         X1UFW4aR+RGj0cvZHrYSdVlN0eJcPCx70kaJH+4pjCHjkYgUF4vo8Xl5hYyR8fw3NOCo
+         gbN+dGZZNx7/aV8FhYYApJ+y9m9DTJ4fM95R+jfAut2G8yi8e0CZSTJQwcCjuO/86PQC
+         Z0a6hQr76kthV5jL8Xb/FTr+jSedSdv6w82PYi1LKow/TygXkfyYfe//YFmy6mNEOWJC
+         BbUw==
+X-Gm-Message-State: AOAM532Q1D85BLcCLeIQqZQ6OkxA/CPFr0QxUw5UgsFG3NsJnaDgKWBW
+        VYmvx3J2/5+y5juVwUwz7Hqv+A==
+X-Google-Smtp-Source: ABdhPJxqoozHJJ7wjj4F9r2dlkRutJ2w2JsSMNksb6X/yS+btuBXBvfHz7L+Q6xWYdVSOrT1Tt7ZPA==
+X-Received: by 2002:aca:c64a:: with SMTP id w71mr3777569oif.44.1621963956700;
+        Tue, 25 May 2021 10:32:36 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id k7sm3666171ood.36.2021.05.25.10.32.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 May 2021 10:32:36 -0700 (PDT)
+Date:   Tue, 25 May 2021 12:32:34 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Felipe Balbi <balbi@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Felipe Balbi <felipe.balbi@microsoft.com>
+Subject: Re: [PATCH] arm64: dts: qcom: add initial device-tree for Microsoft
+ Surface Duo
+Message-ID: <YK00sn1fvCrtVQaJ@builder.lan>
+References: <20210510120547.1315536-1-balbi@kernel.org>
+ <20210511044312.GK2484@yoga>
+ <87wns5g0c6.fsf@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210521011436.GA1224757@rowland.harvard.edu>
+In-Reply-To: <87wns5g0c6.fsf@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 20, 2021 at 09:14:36PM -0400, Alan Stern wrote:
-> On Thu, May 20, 2021 at 02:14:15PM -0700, Matthias Kaehlcke wrote:
-> > On Thu, May 20, 2021 at 06:41:23AM -0700, Matthias Kaehlcke wrote:
-> > > On Wed, May 19, 2021 at 10:05:21PM -0400, Alan Stern wrote:
-> > > > On Wed, May 19, 2021 at 04:07:17PM -0700, Matthias Kaehlcke wrote:
-> > > > > On Wed, May 19, 2021 at 10:43:56AM -0400, Alan Stern wrote:
-> > > > > > On Tue, May 18, 2021 at 02:40:47PM -0700, Matthias Kaehlcke wrote:
-> > > > > > > 
-> > > > > > > Could you also have a look at "[4/5] usb: host: xhci-plat:
-> > > > > > > Create platform device for onboard hubs in probe()"
-> > > > > > > (https://lore.kernel.org/patchwork/patch/1425453/)? It's a
-> > > > > > > relatively short patch that creates the platform device for
-> > > > > > > the driver from xhci-plat as you suggested in the v4
-> > > > > > > discussion.
-> > > > > > 
-> > > > > > I'm not the maintainer for xhci-related drivers.
-> > > > > > 
-> > > > > > However, there is at least one thing about this patch which looks 
-> > > > > > suspicious: Adding the onboard_hub_dev pointer to struct usb_hcd instead 
-> > > > > > of to struct xhci_plat_priv, where it would make a lot more sense.
-> > > > > 
-> > > > > I can move it to struct usb_hcd if that's preferred
-> > > > 
-> > > > Thinko: The patch already has it in struct usb_hcd.  I suggested moving 
-> > > > it to struct xhci_plat_priv.
-> > > 
-> > > Ah, didn't actively recall to which struct I added it to, it has been a
-> > > while since I wrote that patch ;-)
-> > 
-> > > Agreed that struct xhci_plat_priv is a better place.
-> > 
-> > Or not, xhci_plat_priv is optional, which doesn't make it a good candidate
-> > for holding a field that could be used by any xHCI controller.
+On Tue 11 May 03:07 CDT 2021, Felipe Balbi wrote:
+> Bjorn Andersson <bjorn.andersson@linaro.org> writes:
+> >> diff --git a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
+[..]
+> >> +&remoteproc_adsp {
+> >> +	status = "okay";
+> >> +	firmware-name = "qcom/sm8150/adsp.mdt";
+> >
+> > For platforms where we have a Dragonboard or similar we push the
+> > test-signed firmware to qcom/<platform>/. I presume that the Duo
+> > wouldn't run on the test-signed firmware.
+> >
+> > So I think it's better to make this qcom/sm8150/ms-duo/adsp.mdt...from
+> > the start.
 > 
-> You could always allocate an xhci_plat_priv structure in cases where an 
-> onboard-hub device is present, if one doesn't exist already.
-
-that's an option, thanks for the suggestion.
-
-> > Should I move the field to struct xhci_hcd instead?
+> ms-duo would look odd. How about qcom/sm8150/microsoft/adsp.mdt?
 > 
-> That's another option.
-> 
-> Look, I'm not the person you should be asking about this.  What I say 
-> doesn't matter -- you need to get approval from Mathias Nyman, the 
-> xhci-hcd maintainer.
 
-ok, thanks
+Sounds good to me.
+
+I do prefer using the non-split firmware package though (i.e. .mbn), if
+you don't have it you can repack the .mdt + .bNN files using
+
+https://github.com/andersson/pil-squasher
+
+Regards,
+Bjorn
