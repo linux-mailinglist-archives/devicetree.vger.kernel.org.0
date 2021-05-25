@@ -2,90 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7C2D390939
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 20:50:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C36D6390946
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 20:53:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231663AbhEYSva (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 14:51:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50228 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231565AbhEYSv3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 14:51:29 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05A8BC061574;
-        Tue, 25 May 2021 11:50:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
-        Subject:Sender:Reply-To:Content-ID:Content-Description;
-        bh=NQ4epcrwJLnOn+Z5Q+JRgBByAlxt8NqaS+qzYMfwous=; b=0+HeAohaTk3nEUm+5ikX4z2xXZ
-        pa6BBSNrXg/D5oWNrR7H0eNcBmJ15laH9jpkcRa/eSa/hVmR6+ScJJX4188g5DyY+GGkfUPRskWSg
-        Z//pXv63+3UihPJKDOC+rMdn1JC89WXVoWeTeSButOCPLLxto6v34QdPCB5J8/emxxucbXr7tqOz2
-        swx6abJ1xdthzoXwZHXDQIXN5xEyJ4uBag220nRUYG1BmGaBM9TQY4KeG2MwmcqjGVljjaBCX5UjF
-        pbNasIRHzeoMOyuBo3/W5Yr+rWX2Rzr74Onqg8cBrgrCbAJCrzmTxeAt0+pcedO8+Mbpm9+/HGMFr
-        IH4H8ybA==;
-Received: from [2601:1c0:6280:3f0::7376]
-        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1llc7m-007QcW-VP; Tue, 25 May 2021 18:49:55 +0000
-Subject: Re: [PATCH 2/3] watchdog: Add Mstar MSC313e WDT driver
-To:     Romain Perier <romain.perier@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Daniel Palmer <daniel@0x0f.com>,
-        Mohammed Billoo <mohammed.billoo@gmail.com>,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        id S232203AbhEYSzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 14:55:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43926 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230388AbhEYSzD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 May 2021 14:55:03 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id AC84C61249;
+        Tue, 25 May 2021 18:53:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1621968813;
+        bh=Vo99kUxBCLhUsq21AlO6qIr3MZcklMd0c23VpmegcA8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Hhf613AJxgVBTJQjDAdMJmFd3rJwuv4Ii8BoiJF1kCVg0h8SNI0SiVKdO5EBEwlvN
+         fs6u+TAbUCkXNrBX+o1pu0wxWadTSyE9YytR94bCy2Fn8Jg1yEBQR39aua6+dzPSTR
+         xXZ/RdDav8uTSRr3XzDJx/vqYLCkDYSqdkAGhh3xePqK+dP7UkaV1NtRQIohltS/M7
+         jmPv9Ay0tKzc8PcjIRfnQ3bxETCRUjz/fWRZiy3WkwnKMjx7+Y+lwBcnMqrBZmJ6qs
+         Nm7+zCyqeFWoUiFnHHrW+QOQRxmYGJbMB3rF+NePez0TTpQ4Xj01Sl/eg9I8ABBl85
+         OfZ142TpiQenQ==
+Date:   Tue, 25 May 2021 20:53:28 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     andriy.shevchenko@linux.intel.com, andy.shevchenko@gmail.com,
+        robh+dt@kernel.org, mpe@ellerman.id.au, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
         linux-kernel@vger.kernel.org
-References: <20210525184449.57703-1-romain.perier@gmail.com>
- <20210525184449.57703-3-romain.perier@gmail.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <dfb1173d-7564-9386-10bf-5151ef284635@infradead.org>
-Date:   Tue, 25 May 2021 11:49:53 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+Subject: Re: [PATCH v3 0/4] P2040/P2041 i2c recovery erratum
+Message-ID: <YK1HqE+3ILtGXZ7E@kunai>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        andriy.shevchenko@linux.intel.com, andy.shevchenko@gmail.com,
+        robh+dt@kernel.org, mpe@ellerman.id.au, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org
+References: <20210511212052.27242-1-chris.packham@alliedtelesis.co.nz>
 MIME-Version: 1.0
-In-Reply-To: <20210525184449.57703-3-romain.perier@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="W57BUIfsg4rs7b9z"
+Content-Disposition: inline
+In-Reply-To: <20210511212052.27242-1-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On 5/25/21 11:44 AM, Romain Perier wrote:
-> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-> index 355100dad60a..f53634ea0de6 100644
-> --- a/drivers/watchdog/Kconfig
-> +++ b/drivers/watchdog/Kconfig
-> @@ -980,6 +980,19 @@ config VISCONTI_WATCHDOG
->  	  Say Y here to include support for the watchdog timer in Toshiba
->  	  Visconti SoCs.
->  
-> +config MSC313E_WATCHDOG
-> +	tristate "MStar MSC313e watchdog"
-> +	depends on ARCH_MSTARV7 || COMPILE_TEST
-> +	depends on OF
-> +	select WATCHDOG_CORE
-> +	help
-> +	  Say Y here to include support for the Watchdog timer embedded
-> +	  into MStar MSC313e chips. This will reboot your system when the
-> +	  timeout is reached.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called msc313e_wdt.
+--W57BUIfsg4rs7b9z
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-AFAIK, you don't need the "depends on OF" line since
-the of*.h headers provide stubs for the cases of CONFIG_OF
-and/or CONFIG_OF_ADDRESS not set/enabled.
+On Wed, May 12, 2021 at 09:20:48AM +1200, Chris Packham wrote:
+> The P2040/P2041 has an erratum where the i2c recovery scheme
+> documented in the reference manual (and currently implemented
+> in the i2c-mpc.c driver) does not work. The errata document
+> provides an alternative that does work. This series implements
+> that alternative and uses a property in the devicetree to
+> decide when the alternative mechanism is needed.
 
-Not having that line would also make COMPILE_TEST more effective.
+The series looks good to me. Usually, I don't take DTS patches. This
+time I'd make an exception and apply all patches to for-current because
+this is clearly a bugfix. For that, I'd need an ack from PPC
+maintainers. Could I have those for patches 2+3?
 
-Can Rob or anyone else comment on this?
 
-thanks.
--- 
-~Randy
+--W57BUIfsg4rs7b9z
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmCtR6gACgkQFA3kzBSg
+KbZuaQ//WkcVkNyZUdGvvwmOqCjhTLKY+laTTGgsaTSk6mdr7k1pgoYlBwKGi/h8
+sVux/PUF+h2L9lSFv/+sQQg6VNxS2BuOUr2xc1/ljEqikmXaOpgnV0i7rAkZIi1D
+NRz+Qu+ZFnHqbVT7TJyoSx8+GZPCkff2pbZA1bUo0pHcbAdKAwmXjPu7LL4xlGhX
+N9vzUJHJsDnAdIjGLC+SvdY30qMVTg3lUPsE2o4q2uITKMCfm//agEu9Y4dXXUps
+JoDG0DWjaJrQ53SsrPaPTakLazMpLUZZ9SGz6gqtuW31vjm9wB3WITAVewKQ1jRk
+1ktMRnJed3Mh+6ZNgLckK9QJjPmkF6P9CiAf4ibAP3DBkV6xWBJW95PdohTAQT+B
+G3bk/yj+m8cmRCsH5Tmm6bWeXG2b0nUD9VISWH+qI7xT1+HuUu/Ge8hcGy1qTkgb
+meX0Ywh7RbuaU1PNqzQOQPsZJn7qwhD0s3vLQZ0F+H8r3FiJVzlAAX7TSiG80EYL
+4mE4SsI+OXznMelivT0oxn7XZfTIJTaoU2oi/CzjQZXW8k+lsY1YQK6QENP/FKzA
+GgR4mgkbLlAyHxD3FxrYuC5T5rA714VBWL3Ba2CZ9q/H7Aq21ropRM4FrjPshJL5
+1+U6dNj7obyPprt3iGUqFoLS4S+Bg3wfM2GDKspl8UnBj00Cj1w=
+=yzK0
+-----END PGP SIGNATURE-----
+
+--W57BUIfsg4rs7b9z--
