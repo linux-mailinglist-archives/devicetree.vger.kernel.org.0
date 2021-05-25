@@ -2,108 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A436F39071C
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 19:06:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01C9A390732
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 19:12:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233324AbhEYRHc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 13:07:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54644 "EHLO
+        id S233520AbhEYRNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 13:13:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233178AbhEYRHb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 13:07:31 -0400
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93F21C06138A
-        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 10:06:00 -0700 (PDT)
-Received: by mail-ot1-x32e.google.com with SMTP id t10-20020a05683022eab0290304ed8bc759so29248204otc.12
-        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 10:06:00 -0700 (PDT)
+        with ESMTP id S233442AbhEYRNg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 13:13:36 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07CDDC061574;
+        Tue, 25 May 2021 10:12:07 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id f22so15741005pfn.0;
+        Tue, 25 May 2021 10:12:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=LBiWZXaIrz//b8Qdmr6+FgoMBjYgiBG1upZviLq9k1k=;
-        b=Ysu3kljB/I0AjkP3oAgIfLYdr8YdisQu0OSz1pvZv0q+Dn2gcFi3zeoRrQMyG9SyPR
-         jFB+2LW0DFLrW+f0Qn8jHIYwXolYzSlkAX0W6DkNmC0lsbqe5J4HSl2iPyEHN28BDJkg
-         tB7yuY9duaLepYO+0AADYrO6OwqJLiuSDoriTYvZPqSnguG2ZWRD6xQol4VcTsxMLHbZ
-         OW7hteS7nflKneLPs+fguLrl3UgLNab7Prg784RSY+a7LKgqpFP5iaMHc/dMwQZ4VChk
-         eVBDkkNpxlFL3sXY1KBCQ11QaIn0qtgTaUXhLbKZXIxnIY8boAZGLJBzQrwQsy3B5w/j
-         wDXg==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Wug7rsiCIoTV/mZ0CpjWys7g8dsVFdTX2MANuBYOeF8=;
+        b=j5J+1I6go75C0rL5DZ/yFaE5o0QkohMaSCU1vjEaOV1AtR6pcAc5gNjUvB17djNNQ1
+         2gvE0MyqghIfkjLRR+LdEenK+lNOiF4OvLKLXOWJX8EfOKJ9jzM6/o3bVo5BSrHNI/ST
+         mGYjYFCFeQgq+K66UsfQ8RhkpbkuYy/c3msAZe/BLDCh8I0PpW/pfjsS9YR6RUaE65U7
+         kCG7I4gPeHTLLFtEFvzfy3zqqglljWhayDWUTZN8w2VoaMljkvSpRX5IPyXu1V1swh8m
+         1rDYUXUrse58w7/ANmpImgfOVpVx93OmrZEkrJ2ets2mhICxVmelTYNiclKij3LZ2K27
+         hJQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LBiWZXaIrz//b8Qdmr6+FgoMBjYgiBG1upZviLq9k1k=;
-        b=NBr2B9jaWINEIC2KQ5C9FR2sUyuO7848V81AqRjeNcBcVHZdBjpl0V+OTFozokeI44
-         ULrBtekINtgIjw72by3TMexlcLchq6mP4H0xyzMl39lQ8HkggSgiuwj6dlw/6ojFazUH
-         4l/XPFabdHAeDMI9TYjPAP+613dOzSLcUsnu6UYcI6myVd3IrVt5ZsjIQAWoTOsV99Zu
-         nlePUS1VV12ebz9GYtB+MHVdhUnpHe58Y1qPYR+WWMqSFZAxRZvaOao5B6+nt5GlKYgO
-         pJTvPUUOzrbuPAE6NOTQzpTw6JKSVtlThcEiItJAlfPecSzNKk90rJ9MuBgwq07Cv8uY
-         /JLw==
-X-Gm-Message-State: AOAM53230hj8e/xqhpom57VL2nPp8g1k5SBgWuDW83i80Pw7Q8971fyP
-        LJR6+D++O1Ab7LhlEbFXyI0Scg==
-X-Google-Smtp-Source: ABdhPJxHRD/LI5AsXb0JLCjTEcz/D/iT6mOagaeshO4aAuDaoV2kB5ZpQ1HPFS2IxEQzo1DZ5J2Wxg==
-X-Received: by 2002:a05:6830:1e21:: with SMTP id t1mr22335831otr.100.1621962359745;
-        Tue, 25 May 2021 10:05:59 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id f21sm3573508oou.24.2021.05.25.10.05.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 May 2021 10:05:59 -0700 (PDT)
-Date:   Tue, 25 May 2021 12:05:57 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Lee Jones <lee.jones@linaro.org>,
-        satya priya <skakit@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        mka@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        kgunda@codeaurora.org
-Subject: Re: [PATCH V5 11/11] mfd: qcom-spmi-pmic: Add support for four
- variants
-Message-ID: <YK0udV1Wbm4Hvk72@builder.lan>
-References: <1621937466-1502-1-git-send-email-skakit@codeaurora.org>
- <1621937466-1502-12-git-send-email-skakit@codeaurora.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Wug7rsiCIoTV/mZ0CpjWys7g8dsVFdTX2MANuBYOeF8=;
+        b=rC1kQ3+A4IhGtrTXoQoLR7AEpklEzcJnKjoPmIvTRscCufak1B6kFpnF259yN0jZlW
+         +Z3slgWirM9hIfIiVAHT1sHyhg4n9beMnTeqHHFZ+jb26MbT3oFv5ebLSIbad6s4xdRv
+         AegaFqczwZY+88nuLj80A250jVo5jIWp/YnXyOcdGBJNwYfrTgvzJqIx5pr91/jHJ6nq
+         t1xjzrc8aLruxm1Cv0Nv1Fp+1CpMQuGcrT3spdZJFrALTod9Qo+S79KNuFcAZLgG0zQl
+         IN9XQF4G9Qhl8d6i3b470okEY0OqNGqfNLUjLT5JslP0BSOhYPrxGSAOiV/vTEXmKik+
+         gOHQ==
+X-Gm-Message-State: AOAM5330v7lwR2DNRziofQRwmM0XTK9xnBQNQV6giy4Ooh+QHh9ANQvl
+        n/dPp85zU5lAciXOiUZzQcR9uDi/ExhgAiNf7VI=
+X-Google-Smtp-Source: ABdhPJyynW/kmX1WZueKX4wBCXN+ebQo7Ihvp73ZcZbrbyogaAdSMs5P/7nrQUTcjc487cJf4U12mLZwIRdljIeJ1nY=
+X-Received: by 2002:a63:79c3:: with SMTP id u186mr20155532pgc.203.1621962726418;
+ Tue, 25 May 2021 10:12:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1621937466-1502-12-git-send-email-skakit@codeaurora.org>
+References: <cover.1620735871.git.sander@svanheule.net> <cover.1621809029.git.sander@svanheule.net>
+ <YKr9G3EfrM34gCsL@lunn.ch> <CAHp75VewCw8ES_9S48qmeCtSXMkGWt0s4iub0Fu4ZuwWANHpaQ@mail.gmail.com>
+ <02bbf73ea8a14119247f07a677993aad2f45b088.camel@svanheule.net>
+ <CAHp75Vf_dAfoMmziVLkEQ2Yr-e7Cj5=61ua5Q05Cyz-pLwVjpw@mail.gmail.com>
+ <8f96b24d782e5bdeabf5370ccf3475794d0c2818.camel@svanheule.net> <CAHp75VfzEwVGR7ttdcKzirPDN8oUFw1uTDXPFE=P=9+S3CAFYQ@mail.gmail.com>
+In-Reply-To: <CAHp75VfzEwVGR7ttdcKzirPDN8oUFw1uTDXPFE=P=9+S3CAFYQ@mail.gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 25 May 2021 20:11:50 +0300
+Message-ID: <CAHp75VfCBtcQX4rvmQnRMquM0k7ZBqOgZN15Z7TFNSO60SB9TA@mail.gmail.com>
+Subject: Re: [PATCH v3 0/6] RTL8231 GPIO expander support
+To:     Sander Vanheule <sander@svanheule.net>
+Cc:     Andrew Lunn <andrew@lunn.ch>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 25 May 05:11 CDT 2021, satya priya wrote:
+On Mon, May 24, 2021 at 7:30 PM Andy Shevchenko
+<andy.shevchenko@gmail.com> wrote:
+> On Mon, May 24, 2021 at 6:03 PM Sander Vanheule <sander@svanheule.net> wrote:
+> > On Mon, 2021-05-24 at 15:54 +0300, Andy Shevchenko wrote:
 
-> Add support for pm8350c, pmk8350, pm7325 and pmr735a PMICS.
-> 
+...
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Sadly, I don't. Most of the info we have comes from code archives of switch
+> > vendors (Zyxel, Cisco etc). Boards need to be reverse engineered, and the few
+> > leaked datasheets that can be found on the internet aren't exactly thick in
+> > information.
+> >
+> > The RTL8231 datasheet is actually quite useful, but makes no mention of the
+> > output value isse. Since this isn't an official resource, I don't think it would
+> > be appropriate to link it via a Datasheet: tag.
+> > https://github.com/libc0607/Realtek_switch_hacking/blob/files/RTL8231_Datasheet_
+> > 1.2.pdf
+> >
+> > Looking at the datasheet again, I came up with a... terrible hack to work around
+> > the output value issue.
+> >
+> > The chip also has GPIO_INVERT registers that I hadn't used until now, because
+> > the logical inversion is handled in the kernel. However, these inversion
+> > registers only apply to the output values. So, I could implement glitch-free
+> > output behaviour in the following way:
+> >  * After chip reset, and before enabling the output driver (MFD initialisation):
+> >     - Mux all pins as GPIO
+> >     - Change all pins to outputs,
+>
+> No. no, no. This is much worse than the glitches. You never know what
+> the hardware is connected there and it's potential breakage (on hw
+> level) possible.
+>
+> >  so the data registers (0x1c-0x1e) become writable
+> >     - Write value 0 to all pins
+> >     - Change all pins to GPI to change them into high-Z
+> >  * In the pinctrl/gpio driver:
+> >     - Use data registers as input-only
+> >     - Use inversion register to determine output value (can be written any time)
+> >
+> > The above gives glitch-free outputs, but the values that are read back (when
+> > configured as output), come from the data registers. They should now be coming
+> > from the inversion (reg_set_base) registers, but the code prefers to use the
+> > data registers (reg_dat_base).
+>
+> Lemme read the datasheet and see if I find any clue for the hw behaviour.
 
-@Lee, will you take this patch through the mfd tree?
+Thank you for your patience!
 
-Regards,
-Bjorn
+Have you explored the possibility of using En_Sync_GPIO?
 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
-> ---
-> Changes in V5:
->  - Newly added in V5 to add documentation support for pmics of this series.
-> 
->  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
-> index 79367a4..5ef79bf 100644
-> --- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
-> +++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
-> @@ -34,6 +34,10 @@ Required properties:
->                     "qcom,pm8998",
->                     "qcom,pmi8998",
->                     "qcom,pm8005",
-> +                   "qcom,pm8350c",
-> +                   "qcom,pmk8350",
-> +                   "qcom,pm7325",
-> +                   "qcom,pmr735a",
->                     or generalized "qcom,spmi-pmic".
->  - reg:             Specifies the SPMI USID slave address for this device.
->                     For more information see:
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-> of Code Aurora Forum, hosted by The Linux Foundation
-> 
+-- 
+With Best Regards,
+Andy Shevchenko
