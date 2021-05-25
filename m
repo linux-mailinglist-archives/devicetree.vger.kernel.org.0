@@ -2,95 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C74233908DE
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 20:23:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03BD53908E1
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 20:23:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232034AbhEYSYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 14:24:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44222 "EHLO
+        id S232244AbhEYSZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 14:25:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229704AbhEYSYq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 14:24:46 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39318C061574
-        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 11:23:15 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id h3so4522440wmq.3
-        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 11:23:15 -0700 (PDT)
+        with ESMTP id S230361AbhEYSY6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 14:24:58 -0400
+Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1120FC061574
+        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 11:23:28 -0700 (PDT)
+Received: by mail-oo1-xc34.google.com with SMTP id q17-20020a4a33110000b029020ebab0e615so5474659ooq.8
+        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 11:23:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=hSZqZuABEzIvON8ojKdkELp1gOSuX/1cHHTTz9t4Xgw=;
-        b=BXGwq6vDLk02vGw0975Wfa6RDPf6ZeJxD19pr+uk0NXQfD4E7T94BDGcujZo1/AdUX
-         W7wbYbWIKX4Y6yki71HDjZEmre932CVI7D01kOwX+KJI2PS6hgaixTiOMLt4OVniz4EN
-         JBvpFgB8rUPiQGC5+7WF+HoSc0hruFJG98/rbDsncHr5UtPg/sbYmiGc5quq0MukEmRZ
-         Z9r/CpozbSCvK5Vq5ZjixVZzAcN8R+GnpL7w2bhBzI6WMZuRIwuIlpnyxpVywtk8EdAs
-         O3YmGHQlZBaB9hv8Y2MrNcb1/k0Evl8muNs5UsajOx2fdwzkCXFmBnQzllrluuEkytEr
-         qJ1w==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=yLrEWP7K8W4M2KTxVp15RNvgy39Wo8hmbcRL1UT8wm4=;
+        b=V9VWUnK0dVgC8ThICcYWKUrpc5Ij5G7O5GkEJ4p5ENwYCzL0XraIlL7+V2VympArHu
+         fYoHb2HG1xYjs/HlXUnTUzDNQpLmw6k7RH93cL7rct8xz60XNId/S1K64RwtwiDtmbk8
+         LPGbMKWTzXm/fhJM3V+0HuZgmj18yzuR5qlB4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=hSZqZuABEzIvON8ojKdkELp1gOSuX/1cHHTTz9t4Xgw=;
-        b=O1MmDDg65oSQrElimcUKcmd/qtQy2huIv9bM6Sazm1aw3YfQQf7Bf2UXJayjiOW2/7
-         O6ZGRM2s8koe9iCuD9hvMyKiTpXN1o/Xb4SCOFjAxyTEvXx09keV41FzGWXIfjIg56zM
-         wIMw3rFulUxiuFcHCTTfpJPo1wiKabsOvd1CGrFZtgtLxRRonCRjSvkKPRDltuKtN/wv
-         oXecxwviFXdCsfcvwQFmjpf25gDEt4vGA7tmx4HvE7JUnFVKjGUWx8Yl5uHn5uixQART
-         OckyC2S4W0vtHHBazGj9MKHeUXvpCnyhuf9Q2sgHpwwMSkID2Bp9acot+BtUGSMtbkK3
-         bHFQ==
-X-Gm-Message-State: AOAM5314XBXtN0dPjhx68cnZ4PNSAzMdKVQFKTSNF04hcXECbhfY7TWL
-        hIJcGBZNz0VunJH+BHOEyo/dxQ==
-X-Google-Smtp-Source: ABdhPJzFzDFyTevYMtBDV0/rex1lDMsYaD5IAdYaJw4DgVU/+RI82ttETzAiyCDf+z03EVE5SawnPw==
-X-Received: by 2002:a1c:b384:: with SMTP id c126mr25214598wmf.110.1621966993714;
-        Tue, 25 May 2021 11:23:13 -0700 (PDT)
-Received: from dell ([91.110.221.223])
-        by smtp.gmail.com with ESMTPSA id i5sm17414871wrw.29.2021.05.25.11.23.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 May 2021 11:23:13 -0700 (PDT)
-Date:   Tue, 25 May 2021 19:23:11 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Min Li <min.li.xe@renesas.com>
-Cc:     "sameo@linux.intel.com" <sameo@linux.intel.com>,
-        "grant.likely@linaro.org" <grant.likely@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH mfd v1] mfd: Add Renesas Synchronization Management Unit
- (SMU) support
-Message-ID: <20210525182311.GE4005783@dell>
-References: <1619466246-11198-1-git-send-email-min.li.xe@renesas.com>
- <20210519080807.GH805368@dell>
- <OS3PR01MB6593170DE2814540F6C3F900BA259@OS3PR01MB6593.jpnprd01.prod.outlook.com>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=yLrEWP7K8W4M2KTxVp15RNvgy39Wo8hmbcRL1UT8wm4=;
+        b=XA+nC9JpwSDMd9Zkrp9SnHPf1qrNN4BmgntNt2wp9Um4sT0/m/0h5R1G4cJdFxXIa2
+         mkFSa0l6LFWqgnV+RxYHJcPMDZzk9ht2veosIxoaqIBJc/YEYHH0mTN9xidIVi1mK8X7
+         2ZNv8SZnZyGjhPqd6Z0N7spCBdJiK+SnKEiUqacvmEMmZGbib65pfKEoOH9Nsx8Nn/Vl
+         G0Nd19ZP+3jUxncM2r7tzdG5aKyfkw0sa9Gl9+eWRs1h2s26Se9CBr/ELjg5T05+iJyr
+         a1fulnwON1yGX4qrs92IAFm1g5OHkih1wtOu4DLmeWqQIWGvLj8HWoJ3qUfS9cUl6yTB
+         PQhg==
+X-Gm-Message-State: AOAM532FzwkrUOwMAXXBvL7ivMEiFmE6J84Ub9QGCs7sF75oCxpThuSx
+        VxiXQCzjCOOslzuYaLrb+f1uYb8T7FCzm8nUg3AdQg==
+X-Google-Smtp-Source: ABdhPJzqb/cUXWaFHPYbdlIHfd8m3yBFhec5Kh8+qcA+mY/y8sl8WzknhKEePGCSuaCP9Qxhq6MTXD6I9in9Oh14XbU=
+X-Received: by 2002:a05:6820:169:: with SMTP id k9mr8907033ood.92.1621967007509;
+ Tue, 25 May 2021 11:23:27 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 25 May 2021 14:23:27 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <OS3PR01MB6593170DE2814540F6C3F900BA259@OS3PR01MB6593.jpnprd01.prod.outlook.com>
+In-Reply-To: <20210525133242.188603-1-senozhatsky@chromium.org>
+References: <20210525133242.188603-1-senozhatsky@chromium.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Tue, 25 May 2021 14:23:27 -0400
+Message-ID: <CAE-0n53MvSNZ+EZDLMzTzvvnQ-GZq8g29qxcEXQ-h9s-eQJ4Wg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: remove camera_mem region
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sergey Senozhatsky <senozhatsky@chromium.org>,
+        Tomasz Figa <tfiga@chromium.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 May 2021, Min Li wrote:
+Quoting Sergey Senozhatsky (2021-05-25 06:32:42)
+> qcom camera driver allocates the ICP firmware memory
+> dynamically, so the carveout region is unnecessary.
+>
+> Signed-off-by: Sergey Senozhatsky <senozhatsky@chromium.org>
+> ---
 
-> > 
-> > > +/* Current mfd device index */
-> > > +static atomic_t rsmu_ndevs = ATOMIC_INIT(0);
-> > 
-> > Counting/indexing this way is generally not good/required.
-> > 
-> 
-> Hi Lee
-> 
-> Since there could be more than one devices attached to the system, I am using this counter to track the index of each device.
-> How would you suggest to do it? Thanks
-
-Why do you need to track how many there are?
-
-We don't usually do that at all.
-
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
