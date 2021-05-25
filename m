@@ -2,113 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6297138F897
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 05:14:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C3A738F88C
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 05:12:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230218AbhEYDQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 23:16:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35900 "EHLO
+        id S229598AbhEYDNl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 23:13:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229575AbhEYDQO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 23:16:14 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10B35C061574
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 20:14:45 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id ml1-20020a17090b3601b029015f9b1ebce0so3102657pjb.5
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 20:14:45 -0700 (PDT)
+        with ESMTP id S230059AbhEYDNk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 23:13:40 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9C90C061756
+        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 20:12:10 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id s19so28978680oic.7
+        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 20:12:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ibLnJElvlxlVpclpJPUNJ2cC/oiUOQSOujwiFR/Tp+s=;
-        b=UieisilkjhqvCv5TM4Uhta7TWRN2Fo+qizEnyHuJxA4va8bXfSD+rLVykfuHhWprMs
-         LshPVy4dFsoXIkmd56qov4ggYtlL759ArIJ4nJdiIlOu+d8oU3Tdh/1w/BJ1fDxfpbcA
-         V3s9TTUmNV6cOGqUjcXpB0nmY9PGjsUH8vbqY=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=LzZi3Q25vKg3XhS1Ic0lRTfT6eSF+5WUdcs1/J6hy2Y=;
+        b=KiZ7geh13gcARZT8mSzJFcrIk05fkvTTjIk8CLSHiGYBxiybxhUD1F0ZuRHi56V9S0
+         UMUccQgfUbA4cGGs5yqNLckMrl5KIDcdm7bjjFr0HI7/YCX5wkf7vRb4nWhpo7ccywpH
+         tOWVylQII31yvzek/fzTMlJPc/mBectQvhwumZg/NXiEG30Qb1ks2ngB1BLw8KBPUofY
+         lDHlfDQd/aDqCzf+RI/gsRXwwrkKk+kS4kEE5RlmBvSoeazJ4Tt/adeEo8sLE0dkIjr7
+         P7posTi86TqIcQcUctDyQiJAZdvqW2CM/pt085lwuuwFlQS8FOC2YtNMajwX6JfvupYi
+         UUeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ibLnJElvlxlVpclpJPUNJ2cC/oiUOQSOujwiFR/Tp+s=;
-        b=PfcXutqDpBa1ynZLhxVPzO4bW76bkIqo7Mt9/93gyR3jqilVUBqUFIZoUyhwYhL7Je
-         P4AGHJlFC7c3MdfE8pNdnK3cgNwukReEe0inuWEq3vTHuXBtl9fTAqW3V5g6RWdq/XAn
-         84kDMEQb5pb+Ar/c8y+KVbksI+ZdCGltZRp5rAvDg2ai6sXq4by40r/ISGTYXHS+m/r5
-         KyMOVFqOLoNSwNfxZFIsa5rLqXeqd7TChoEYjnsmsCgSEJnUKzOaOPbxQmBYBxUvDs/6
-         ob66n7FiqlLFafLdn2fuNITeSj10vCkmL+aIP67OrBH7vkpP6j2ZrS6A8Y5DjnWbfzT9
-         9Dbg==
-X-Gm-Message-State: AOAM531JCOuNWXnBez9vuRNIgMlvAxdLDiVy+SipbQwupTRpIapJov8O
-        8caaCIW//mZg+heL3VyzkypyJcfcKzVeSw==
-X-Google-Smtp-Source: ABdhPJycvCfV/y2P1cjYUibXHWDAz05HIW6QgcNmTOVuh2xZilQ0Y4r4oCrTT20SihTjfKioUdNBDA==
-X-Received: by 2002:a17:90a:3041:: with SMTP id q1mr2482900pjl.191.1621912484389;
-        Mon, 24 May 2021 20:14:44 -0700 (PDT)
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com. [209.85.215.182])
-        by smtp.gmail.com with ESMTPSA id b9sm11801506pfo.107.2021.05.24.20.14.43
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 May 2021 20:14:43 -0700 (PDT)
-Received: by mail-pg1-f182.google.com with SMTP id m124so21583079pgm.13
-        for <devicetree@vger.kernel.org>; Mon, 24 May 2021 20:14:43 -0700 (PDT)
-X-Received: by 2002:a05:6e02:b:: with SMTP id h11mr18955732ilr.18.1621912124990;
- Mon, 24 May 2021 20:08:44 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=LzZi3Q25vKg3XhS1Ic0lRTfT6eSF+5WUdcs1/J6hy2Y=;
+        b=dNSwj2TWVTemiVkAj2yKvgtYwjSL4ZaeeT32lWasTkyQquveO3hr9tGbotAdFLhw8b
+         4gEYbMWKNmrXwwoBJF+O7I8E8UHXPd0y2HoPzIHzwHYEIZU4o1s3ml2Pay2T+vrd6cqc
+         nqD/ow48QQTcgOMsSn1BndZyPv2DuUyFw7gFVpu/DEIWrWqNO1gyrBrLYbMJG2NA3hwu
+         p5TlmaWYW2WYXEhg9ty/15cZox5e8RmmhT0usli9UZyCbMMiqo8C2hvJWEQ26SrKIDoD
+         r88y9gQpq379IG0rCBVp6uxpEnqzB5vRDL1hOGGRLQXALUrwgvbmAeO+qPBPTOyvWFpO
+         0rUQ==
+X-Gm-Message-State: AOAM531BeI5+epUD5IhRw0vCe2OqjhCo0ujaa08jCy1PKT4ke6xmr7Eu
+        tMas4Cxylk3eJiWHFRpe76iijg==
+X-Google-Smtp-Source: ABdhPJwfVJOo2UBAigec/ToH+3zn+ksCtwT3t0kun5HoEK1TJkhAS70gURQ1MwmEquyuXN0SmW90vQ==
+X-Received: by 2002:a05:6808:997:: with SMTP id a23mr1397330oic.129.1621912330250;
+        Mon, 24 May 2021 20:12:10 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id a6sm1130940oon.20.2021.05.24.20.12.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 May 2021 20:12:09 -0700 (PDT)
+Date:   Mon, 24 May 2021 22:12:07 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Martin Botka <martin.botka@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        konrad.dybcio@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V2 2/2] clk: qcom: Add SM6125 (TRINKET) GCC driver
+Message-ID: <YKxrB3xIIqtxXPzf@yoga>
+References: <20210523211016.726736-1-martin.botka@somainline.org>
+ <20210523211016.726736-2-martin.botka@somainline.org>
 MIME-Version: 1.0
-References: <20210518064215.2856977-1-tientzu@chromium.org>
- <20210518064215.2856977-6-tientzu@chromium.org> <CALiNf28ke3c91Y7xaHUgvJePKXqYA7UmsYJV9yaeZc3-4Lzs8Q@mail.gmail.com>
- <YKvLc9onyqdsINP7@0xbeefdead.lan>
-In-Reply-To: <YKvLc9onyqdsINP7@0xbeefdead.lan>
-From:   Claire Chang <tientzu@chromium.org>
-Date:   Tue, 25 May 2021 11:08:34 +0800
-X-Gmail-Original-Message-ID: <CALiNf28=fn5r_O8ET0TNM6cS7WO0mwXiMzR5z=eJXmNKFWKdzA@mail.gmail.com>
-Message-ID: <CALiNf28=fn5r_O8ET0TNM6cS7WO0mwXiMzR5z=eJXmNKFWKdzA@mail.gmail.com>
-Subject: Re: [PATCH v7 05/15] swiotlb: Add a new get_io_tlb_mem getter
-To:     Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        grant.likely@arm.com, xypron.glpk@gmx.de,
-        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
-        bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
-        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
-        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
-        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
-        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
-        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
-        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
-        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210523211016.726736-2-martin.botka@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 24, 2021 at 11:51 PM Konrad Rzeszutek Wilk
-<konrad.wilk@oracle.com> wrote:
->
-> On Tue, May 18, 2021 at 02:51:52PM +0800, Claire Chang wrote:
-> > Still keep this function because directly using dev->dma_io_tlb_mem
-> > will cause issues for memory allocation for existing devices. The pool
-> > can't support atomic coherent allocation so we need to distinguish the
-> > per device pool and the default pool in swiotlb_alloc.
->
-> This above should really be rolled in the commit. You can prefix it by
-> "The reason it was done this way was because directly using .."
->
+On Sun 23 May 16:10 CDT 2021, Martin Botka wrote:
 
-Will add it.
+> From: Konrad Dybcio <konrad.dybcio@somainline.org>
+> 
+> Add the clocks supported in global clock controller, which clock the
+> peripherals like BLSPs, SDCC, USB, MDSS etc. Register all the clocks
+> to the clock framework for the clients to be able to request for them.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+
+This looks quite good to me, just two small things below.
+
+> diff --git a/drivers/clk/qcom/gcc-sm6125.c b/drivers/clk/qcom/gcc-sm6125.c
+[..]
+> +static struct clk_alpha_pll gpll0_out_early = {
+> +	.offset = 0x0,
+> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
+> +	.clkr = {
+> +		.enable_reg = 0x79000,
+> +		.enable_mask = BIT(0),
+> +		.hw.init = &(struct clk_init_data){
+> +			.name = "gpll0_out_early",
+> +			.parent_data = &(const struct clk_parent_data){
+> +				.fw_name = "bi_tcxo",
+> +				.name = "bi_tcxo",
+
+For new drivers we don't need to rely on global name lookup, so just
+keep fw_name for the external clocks.
+
+> +			},
+> +			.num_parents = 1,
+> +			.ops = &clk_alpha_pll_ops,
+> +		},
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor gpll0_out_aux2 = {
+> +	.mult = 1,
+> +	.div = 2,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "gpll0_out_aux2",
+> +		.parent_data = &(const struct clk_parent_data){
+> +			.hw = &gpll0_out_early.clkr.hw,
+> +		},
+> +		.num_parents = 1,
+> +		.ops = &clk_fixed_factor_ops,
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor gpll0_out_main = {
+> +	.mult = 1,
+> +	.div = 2,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "gpll0_out_main",
+> +		.parent_data = &(const struct clk_parent_data){
+
+Please use parent_hws instead when referencing a single hw in the same
+driver.
+
+> +			.hw = &gpll0_out_early.clkr.hw,
+> +		},
+> +		.num_parents = 1,
+> +		.ops = &clk_fixed_factor_ops,
+> +	},
+> +};
+> +
+
+Regards,
+Bjorn
