@@ -2,105 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E04138FC07
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 09:55:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBA7038FC1E
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 10:08:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231532AbhEYH50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 03:57:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42214 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231477AbhEYH5Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 03:57:25 -0400
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94244C061574;
-        Tue, 25 May 2021 00:55:54 -0700 (PDT)
-Received: by mail-qv1-xf36.google.com with SMTP id eb9so15548944qvb.6;
-        Tue, 25 May 2021 00:55:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=yl4OCRlRmcAtp5Couav0LI2ZiZLwzvAGoLktfuL2BPk=;
-        b=AZs9vA371763Gt7PV8In9Cx/J9OiUAch5VP0Sc2PnnEWWKI08ikfd74b21FiQi4joK
-         0sz79A9TnJGs2gvhDQVg+fmWnlBgL2GFBnsuS6S/h1zbC02JbK6CR0432QCsDm7SkF8g
-         UXDaV8qyfYeb5ErooVY6JkwTj+M5LdtBxAQ3U=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yl4OCRlRmcAtp5Couav0LI2ZiZLwzvAGoLktfuL2BPk=;
-        b=CbdPMy/dp/GbAXpfhxpoSriSh8eS0wGRCFEqeAbCN/CDlrAPTOHP/KAO44nUFGuK2z
-         zqxGQsGNSpZmePNt0LkVRooSwrdhO23cqplysNYYiAE7ubbyfqNUsWKtuZBja1BYxmtX
-         udfi31Pmzqx72MnAJGzq9xV8LYQAwc7La/12uQrHNIMZNHHKGqVmMU3hvQq8OMwO9j2O
-         29y/KQIc0qRXGvrkydSQvaMm0vnvUNushryL1WQWcj9RapE6hwwe1ODFcUAXO4Y8ACQY
-         bkuGykOr0HN1UbWSO91qH5p+jEpNQxypMn0dR0I/+ZGXsQ+QofQUJWObhtYKBWS2B6eU
-         +5vA==
-X-Gm-Message-State: AOAM5313Pu3j4yvptJ9d0PmGdQChtxpCM1g+eDWN1l1lvUYfH1Os3wH3
-        4WGnqavlvqVLjxkuC0p4kytaPBU5Q0oqTA54XrI=
-X-Google-Smtp-Source: ABdhPJxi5BWYfe16W3K0oHvA+q/LdZiEoyQtjgpmU0M0/vawIdezpEoM84VyVuPMltZpChZ6PxBTLvdvGvuScxGL3IE=
-X-Received: by 2002:ad4:5fcb:: with SMTP id jq11mr35355630qvb.61.1621929353765;
- Tue, 25 May 2021 00:55:53 -0700 (PDT)
+        id S232046AbhEYIJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 04:09:28 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:11254 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231949AbhEYIIw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 May 2021 04:08:52 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1621929987; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=/kEnPjhJjqrbSkYAOsYKI4/+SBWF5gUGEh00EhIqOGA=;
+ b=UpfJkATGR20z6P+OgbJmWOnUi+fTDcWs0rYOvPj1UXgN31/F757wtKHRzmv4gh7d+YJnqwWD
+ V2ntxLtrzJSDSgKNs16c0lldlmO3aBxaDtIy/ZZTQemvgVKdHunTfpc2r2YIcY81DZNwPpEl
+ fSFxMfu8T+GjgioiJYTth0L/EZ8=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 60acaf3ec229adfeff7af9b6 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 25 May 2021 08:03:10
+ GMT
+Sender: rajeevny=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 6703FC4360C; Tue, 25 May 2021 08:03:10 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: rajeevny)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 82687C433D3;
+        Tue, 25 May 2021 08:03:08 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210524073308.9328-1-steven_lee@aspeedtech.com>
-In-Reply-To: <20210524073308.9328-1-steven_lee@aspeedtech.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Tue, 25 May 2021 07:55:41 +0000
-Message-ID: <CACPK8XcfvUQD5xwb=2Va5Sr+bmaWfJMZkh61HK1=J1qLYc84zQ@mail.gmail.com>
-Subject: Re: [PATCH v5 0/4] mmc: sdhci-of-aspeed: Support toggling SD bus signal
-To:     Steven Lee <steven_lee@aspeedtech.com>,
-        Andrew Jeffery <andrew@aj.id.au>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 25 May 2021 13:33:08 +0530
+From:   rajeevny@codeaurora.org
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
-        Hongwei Zhang <Hongweiz@ami.com>,
-        Ryan Chen <ryan_chen@aspeedtech.com>,
-        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Rob Clark <robdclark@gmail.com>, mkrishn@codeaurora.org,
+        Kalyan Thota <kalyan_t@codeaurora.org>,
+        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        Sean Paul <seanpaul@chromium.org>,
+        Jani Nikula <jani.nikula@linux.intel.com>,
+        Lyude Paul <lyude@redhat.com>,
+        "Lankhorst, Maarten" <maarten.lankhorst@intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Andrzej Hajda <a.hajda@samsung.com>
+Subject: Re: [v3 1/2] dt-bindings: backlight: add DisplayPort aux backlight
+In-Reply-To: <CAD=FV=XPDLn187AR06xzChwT1Y0pCeQmRvhO_MjEoMoabXwybg@mail.gmail.com>
+References: <1619416756-3533-1-git-send-email-rajeevny@codeaurora.org>
+ <1619416756-3533-2-git-send-email-rajeevny@codeaurora.org>
+ <20210429180435.GA1385465@robh.at.kernel.org>
+ <CAD=FV=V-kdySH5Pp-Fb-PRYk60Ha_UOTXJHcvMp+uV3P1oo7Uw@mail.gmail.com>
+ <78c4bd291bd4a17ae2a1d02d0217de43@codeaurora.org>
+ <CAD=FV=XW90L6or8NKA-Rjjp3s3fRno1xSkD+X0PA1rTyeKgpMw@mail.gmail.com>
+ <c867b2e59e90899e6c1648e06f5f9cd2@codeaurora.org>
+ <CAD=FV=XBb9zs=ZGG-Ky8=_is20L1O6pJ-xBV1k5cF6-vL78pgA@mail.gmail.com>
+ <CAD=FV=XPDLn187AR06xzChwT1Y0pCeQmRvhO_MjEoMoabXwybg@mail.gmail.com>
+Message-ID: <3fbad05fd1e944ed3e0d493d1f5470e6@codeaurora.org>
+X-Sender: rajeevny@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 May 2021 at 07:33, Steven Lee <steven_lee@aspeedtech.com> wrote:
->
-> AST2600-A2 EVB has the reference design for enabling SD bus
-> power and toggling SD bus signal voltage between 3.3v and 1.8v by
-> GPIO regulators.
-> This patch series adds sdhci node and gpio regulators in a new dts file
-> for AST2600-A2 EVB.
-> The description of the reference design of AST2600-A2 EVB is added
-> in the new dts file.
->
-> This patch also include a helper for updating AST2600 sdhci capability
-> registers.
+Hi,
 
-The device trees look good:
+On 18-05-2021 01:51, Doug Anderson wrote:
+> Hi,
+> 
+> On Tue, May 11, 2021 at 4:17 PM Doug Anderson <dianders@chromium.org> 
+> wrote:
+>> 
+>> Hi,
+>> 
+>> On Tue, May 11, 2021 at 11:12 AM <rajeevny@codeaurora.org> wrote:
+>> >
+>> > On 01-05-2021 03:08, Doug Anderson wrote:
+>> > > Hi,
+>> > >
+>> > > On Fri, Apr 30, 2021 at 8:10 AM <rajeevny@codeaurora.org> wrote:
+>> > >>
+>> > >> On 30-04-2021 02:33, Doug Anderson wrote:
+>> > >> > Hi,
+>> > >> >
+>> > >> > On Thu, Apr 29, 2021 at 11:04 AM Rob Herring <robh@kernel.org> wrote:
+>> > >> >>
+>> > >> >> On Mon, Apr 26, 2021 at 11:29:15AM +0530, Rajeev Nandan wrote:
+>> > >> >> > Add bindings for DisplayPort aux backlight driver.
+>> > >> >> >
+>> > >> >> > Changes in v2:
+>> > >> >> > - New
+>> > >> >> >
+>> > >> >> > Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
+>> > >> >> > ---
+>> > >> >> >  .../bindings/leds/backlight/dp-aux-backlight.yaml  | 49 ++++++++++++++++++++++
+>> > >> >> >  1 file changed, 49 insertions(+)
+>> > >> >> >  create mode 100644 Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
+>> > >> >> >
+>> > >> >> > diff --git a/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
+>> > >> >> > new file mode 100644
+>> > >> >> > index 00000000..0fa8bf0
+>> > >> >> > --- /dev/null
+>> > >> >> > +++ b/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
+>> > >> >> > @@ -0,0 +1,49 @@
+>> > >> >> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> > >> >> > +%YAML 1.2
+>> > >> >> > +---
+>> > >> >> > +$id: http://devicetree.org/schemas/leds/backlight/dp-aux-backlight.yaml#
+>> > >> >> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> > >> >> > +
+>> > >> >> > +title: DisplayPort aux backlight driver bindings
+>> > >> >> > +
+>> > >> >> > +maintainers:
+>> > >> >> > +  - Rajeev Nandan <rajeevny@codeaurora.org>
+>> > >> >> > +
+>> > >> >> > +description:
+>> > >> >> > +  Backlight driver to control the brightness over DisplayPort aux channel.
+>> > >> >> > +
+>> > >> >> > +allOf:
+>> > >> >> > +  - $ref: common.yaml#
+>> > >> >> > +
+>> > >> >> > +properties:
+>> > >> >> > +  compatible:
+>> > >> >> > +    const: dp-aux-backlight
+>> > >> >> > +
+>> > >> >> > +  ddc-i2c-bus:
+>> > >> >> > +    $ref: /schemas/types.yaml#/definitions/phandle
+>> > >> >> > +    description:
+>> > >> >> > +      A phandle to the system I2C controller connected to the DDC bus used
+>> > >> >> > +      for the DisplayPort AUX channel.
+>> > >> >> > +
+>> > >> >> > +  enable-gpios:
+>> > >> >> > +    maxItems: 1
+>> > >> >> > +    description: GPIO specifier for backlight enable pin.
+>> > >> >> > +
+>> > >> >> > +  max-brightness: true
+>> > >> >> > +
+>> > >> >> > +required:
+>> > >> >> > +  - compatible
+>> > >> >> > +  - ddc-i2c-bus
+>> > >> >> > +
+>> > >> >> > +additionalProperties: false
+>> > >> >> > +
+>> > >> >> > +examples:
+>> > >> >> > +  - |
+>> > >> >> > +    backlight {
+>> > >> >> > +        compatible = "dp-aux-backlight";
+>> > >> >> > +        ddc-i2c-bus = <&sn65dsi86_bridge>;
+>> > >> >> > +        enable-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
+>> > >> >>
+>> > >> >> So the DDC bus is connected to a backlight and also a panel? This
+>> > >> >> binding is not reflecting the h/w, but rather what you want for some
+>> > >> >> driver.
+>> > >> >>
+>> > >> >> There's only one thing here and that's an eDP panel which supports
+>> > >> >> backlight control via DP aux channel. You can figure all that out from
+>> > >> >> the panel's compatible and/or reading the EDID.
+>> > >> >>
+>> > >> >> You might also be interested in this thread:
+>> > >> >>
+>> > >> >> https://lore.kernel.org/lkml/YIKsDtjcIHGNvW0u@orome.fritz.box/
+>> > >> >
+>> > >> > I think Rajeev needs to rework everything anyway as per:
+>> > >> >
+>> > >> > https://lore.kernel.org/r/87zgxl5qar.fsf@intel.com
+>> > >> >
+>> > >> > ...but you're right that it makes sense not to model the backlight as
+>> > >> > a separate node in the device tree. The panel driver can handle
+>> > >> > setting up the backlight.
+>> > >> >
+>> > >> > -Doug
+>> > >>
+>> > >> It was not a good idea to create a separate backlight driver and use
+>> > >> ddc-i2c-bus to get access to DP aux. I am working to move the code
+>> > >> to the panel driver and to utilize the new DRM helper functions
+>> > >> (drm_edp_backlight_*) Lyude has added [1].
+>> > >>
+>> > >> To use these helper functions, the panel driver should have access to
+>> > >> the
+>> > >> "struct drm_dp_aux *". The simple-panel has a "ddc-i2c-bus" property
+>> > >> to give the panel access to the DDC bus and is currently being used to
+>> > >> get the EDID from the panel. Can I use the same ddc bus i2c_adapter to
+>> > >> get
+>> > >> the "struct drm_dp_aux *"?
+>> > >>
+>> > >> As per the suggestion [2], I get the "struct drm_dp_aux *" from the
+>> > >> i2c_adapter of ddc bus (maybe I didn't understand the suggestion
+>> > >> correctly),
+>> > >> and, it turned out, the way I have implemented is not the right way
+>> > >> [3].
+>> > >> So, I am afraid to use the same method in the panel driver.
+>> > >>
+>> > >>
+>> > >> [1] https://lore.kernel.org/dri-devel/871rb5bcf9.fsf@intel.com/
+>> > >> [2] https://www.spinics.net/lists/dri-devel/msg295429.html
+>> > >> [3]
+>> > >> https://lore.kernel.org/dri-devel/20210426111116.4lc3ekxjugjr3oho@maple.lan/
+>> > >
+>> > > So it's definitely up to maintainers, not me. ...but I guess I would
+>> > > have expected something like a new property called "ddc-aux-bus". Then
+>> > > you'd have to create a new API call called something like
+>> > > "of_find_ddc_aux_adapter_by_node()" that would allow you to find it.
+>> > >
+>> >
+>> > To implement the first suggestion, I can think of the following way
+>> > to get the "struct drm_dp_aux" in the panel_simple_probe function:
+>> >
+>> > - Create a new panel-simple DT property "ddc-aux-bus", a phandle to the
+>> > platform device that implements the AUX channel.
+>> >
+>> > - Create a global list of drm_dp_aux in drm_dp_helper.c. Initialize list
+>> > head
+>> > in drm_dp_aux_init(), add the drm_dp_aux onto the list in
+>> > drm_dp_aux_register().
+>> > Similarly, remove the drm_dp_aux from list in drm_dp_aux_unregister().
+>> >
+>> > - Create a new function of_drm_find_dp_aux_by_node() to get the expected
+>> > drm_dp_aux from this global list.
+>> >
+>> > Please let me know your views on this implementation.
+>> 
+>> BTW: a bunch of discussion today on IRC:
+>> 
+>> https://people.freedesktop.org/~cbrill/dri-log/?channel=dri-devel&highlight_names=&date=2021-05-11&show_html=true
+> 
+> To finish adding breadcrumbs to those playing at home, v7 of my patch
+> series should get the AUX channel to the panel device:
+> 
+> https://lore.kernel.org/r/20210517200907.1459182-1-dianders@chromium.org/
+> 
+> Assuming that people don't hate that solution it may be a good things
+> for you to build your patches atop. :-)
+> 
+> -Doug
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
+Thank you, for all your suggestions.
 
-I've applied patches 1-3 to the aspeed tree for v5.14. I made a little
-fix to patch 3 as it needed to add the new device tree to the
-makefile.
+I have posted the new patch series (v4) on top of the above series. 
+Please check:
+https://lore.kernel.org/dri-devel/1621927831-29471-1-git-send-email-rajeevny@codeaurora.org/
 
-When I was testing on my A2 EVB I saw this:
 
-[    1.436219] sdhci-aspeed 1e750100.sdhci: Requested out of range
-phase tap 192 for 9 degrees of phase compensation at 1562500Hz,
-clamping to tap 15
-[    1.450913] sdhci-aspeed 1e750100.sdhci: Requested out of range
-phase tap 963 for 45 degrees of phase compensation at 1562500Hz,
-clamping to tap 15
+Thanks,
+Rajeev
 
-Do you know what is happening there?
 
-Cheers,
-
-Joel
