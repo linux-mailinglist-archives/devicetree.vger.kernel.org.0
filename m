@@ -2,122 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3676F38F759
-	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 03:08:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B986938F7C4
+	for <lists+devicetree@lfdr.de>; Tue, 25 May 2021 03:56:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229940AbhEYBJV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 May 2021 21:09:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35852 "EHLO
+        id S229652AbhEYB5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 May 2021 21:57:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229873AbhEYBJT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 21:09:19 -0400
-Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AA54C06138E;
-        Mon, 24 May 2021 18:07:50 -0700 (PDT)
-Received: by mail-il1-x133.google.com with SMTP id l15so21500731iln.8;
-        Mon, 24 May 2021 18:07:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=pVif8BOmdy7xXqArUgQhM4hL5Kyfy23SPGVr8JCHGd4=;
-        b=ZXlpfF1SmYcGXtVsHK4PQL1yVyTJotz4FBHSHXc9WT8Msi3aoeP5WG6X6WQE8lmTt4
-         fPUQJbBApnXxcrPJnZG3GSVXsKukSdFe0WwhDWegOI/IOqkfBDaR8qFRrLfmw9JkDoh6
-         +ZRRebPW9hmNQvAxQvBo9Nz+Fh874OwU7wwOpiNRJ7EnDT4qvKuwIb0Zwe1rkX5fFAFn
-         JqspsnlWDvksgWqUhxhbZIXuN/ho1dmidAEiRn3aBOSU4Mg6pKbPOGSZPssHau+huSzu
-         wP3vUDgEqUQJ95h/Dp6LBkGQj0PrstEDj2DJUXZRZfI1YsiL94ZsKcyxU1dbRDZaJc73
-         7ubw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=pVif8BOmdy7xXqArUgQhM4hL5Kyfy23SPGVr8JCHGd4=;
-        b=Bq2Djp6G4gH3ouuCEq/kM4W1evPtFpiB9WOoKBPSx+4P/sg+zBZErNTEePUsPMBJNY
-         7YnoFBWezSVXup9O0FBA0qmavPWPM78H5yX8IHMiCms2I8/cy+6MGVHeqawp9v5jZrND
-         L2IMa+gzli5abJVbYB+A51F3YAfScfzxnKqRsfzMNjcNJkgo/qvcW1+EGgpFT6CMssqf
-         uN/iw5Y+guitJwNzir/8f1RelTEOsVaSd3UD8NiG7G1/3iXrcZlvFTN3k/vqnONswxkm
-         3HZCnqwoYMoGGzlxA17g2FeHWjCDRJbuGjDEq6/hxOfn3dCKOxwthEYqgbS6zYDXc5J+
-         t4WQ==
-X-Gm-Message-State: AOAM532U+cvFc0Fxn0cYuFD4KOT17N/heZeRsh8lMFh3L6f16jTBgQTo
-        dgMjcVfV/u9WS/5OGzpsb6s=
-X-Google-Smtp-Source: ABdhPJyLtpDPaYyrDPzdTTrR5wI1NKr9M9FWvlRAlfBWIQ6OG5JC5JwMd/AjMGkIx1HbLmbvBClWXA==
-X-Received: by 2002:a92:c74b:: with SMTP id y11mr20601316ilp.302.1621904869422;
-        Mon, 24 May 2021 18:07:49 -0700 (PDT)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:599b:b8c7:b3a9:9f1d])
-        by smtp.gmail.com with ESMTPSA id w20sm12318413ilj.16.2021.05.24.18.07.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 May 2021 18:07:49 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 5/5] arm64: dts: imx8mn: Add GPU node
-Date:   Mon, 24 May 2021 20:07:32 -0500
-Message-Id: <20210525010732.115562-6-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210525010732.115562-1-aford173@gmail.com>
-References: <20210525010732.115562-1-aford173@gmail.com>
+        with ESMTP id S229550AbhEYB5j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 May 2021 21:57:39 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 267B8C061574;
+        Mon, 24 May 2021 18:56:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+        Subject:Sender:Reply-To:Content-ID:Content-Description;
+        bh=JIPErQUyisH0HpDDiUm0SZk1nmoFpmh5vdb6lgAqhWE=; b=asNHHyg9DLfTbvsXWy7tB1ux3v
+        muiW/yT1sugvu23RBd/SUM7ciu+WzfsBFeLxrC1Bqb4AIbzm1wQF37zXHoOJ80XziZqYdwkrZh1FM
+        X0E+7P0cVBWLHQjstXfvQSQbxOjGDWBg1MMNbV/rLSw3RyrBWAWTdn/HQPCdnn9PRW0Yp/YX1F6RJ
+        99dtyjFJJg3tNuLEqSh8ybkKhv0BGl4FZP66XFvEy+mU/fOF96FofzAD7+K+8NyQcJYdwVrufZ5R9
+        0o1GpmDWdFu47uS/YP9dzkiQteptrzaIRQoq5XnkYZ+1cADxVlTjCVU2Ak0YdS+nmDD0X1uTimvCp
+        xOV5Z0DA==;
+Received: from [2601:1c0:6280:3f0::7376]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
+        id 1llMIj-002pHi-KS; Tue, 25 May 2021 01:56:09 +0000
+Subject: Re: [PATCH v2] OF: of_address: clean up OF stub & extern functions
+To:     kernel test robot <lkp@intel.com>, linux-kernel@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <20210524190919.2616-1-rdunlap@infradead.org>
+ <202105250652.aSwyXJ3a-lkp@intel.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <e16ec6e1-9699-9146-8516-7b792d0b959d@infradead.org>
+Date:   Mon, 24 May 2021 18:56:08 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <202105250652.aSwyXJ3a-lkp@intel.com>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the documentation from NXP, the i.MX8M Nano has a
-Vivante GC7000 Ultra Lite as its GPU core.
+On 5/24/21 4:02 PM, kernel test robot wrote:
+> Hi Randy,
+> 
+> Thank you for the patch! Yet something to improve:
+> 
+> [auto build test ERROR on robh/for-next]
+> [also build test ERROR on linux/master linus/master v5.13-rc3 next-20210524]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
+> 
+> url:    https://github.com/0day-ci/linux/commits/Randy-Dunlap/OF-of_address-clean-up-OF-stub-extern-functions/20210525-031115
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+> config: s390-randconfig-r001-20210524 (attached as .config)
+> compiler: s390-linux-gcc (GCC) 9.3.0
+> reproduce (this is a W=1 build):
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # https://github.com/0day-ci/linux/commit/8a9c54f1437e3af04c6de3b9606b46437ea69a12
+>         git remote add linux-review https://github.com/0day-ci/linux
+>         git fetch --no-tags linux-review Randy-Dunlap/OF-of_address-clean-up-OF-stub-extern-functions/20210525-031115
+>         git checkout 8a9c54f1437e3af04c6de3b9606b46437ea69a12
+>         # save the attached .config to linux build tree
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross ARCH=s390 
+> 
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
 
-With this patch, the Etnaviv driver presents the GPU as:
-   etnaviv-gpu 38000000.gpu: model: GC7000, revision: 6203
+Yes, this patch wasn't expected to fix all of these arch/s390/ build errors.
 
-The stock operating voltage for the i.MX8M Nano is .85V which means
-the GPU needs to run at 400MHz.  For boards where the operating
-voltage is higher, this can be increased.
+Before this patch: (9 undefined symbols)
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+ERROR: modpost: "devm_ioremap_resource" [drivers/crypto/ccree/ccree.ko] undefined!
+ERROR: modpost: "debugfs_create_regset32" [drivers/crypto/ccree/ccree.ko] undefined!
+ERROR: modpost: "devm_ioremap_resource" [drivers/media/rc/ir-hix5hd2.ko] undefined!
+ERROR: modpost: "ioremap" [drivers/pcmcia/pcmcia.ko] undefined!
+ERROR: modpost: "iounmap" [drivers/pcmcia/pcmcia.ko] undefined!
+ERROR: modpost: "devm_platform_ioremap_resource" [drivers/char/xillybus/xillybus_of.ko] undefined!
+ERROR: modpost: "devm_ioremap_resource" [drivers/dma/qcom/hdma.ko] undefined!
+ERROR: modpost: "devm_ioremap_resource" [drivers/dma/qcom/hdma_mgmt.ko] undefined!
+ERROR: modpost: "of_address_to_resource" [drivers/dma/qcom/hdma_mgmt.ko] undefined!
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-index 8b1fb83cb893..8fc5d46d076b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-@@ -1049,6 +1049,31 @@ gpmi: nand-controller@33002000 {
- 			status = "disabled";
- 		};
- 
-+		gpu: gpu@38000000 {
-+			compatible = "vivante,gc";
-+			reg = <0x38000000 0x8000>;
-+			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk IMX8MN_CLK_GPU_AHB>,
-+				<&clk IMX8MN_CLK_GPU_BUS_ROOT>,
-+				<&clk IMX8MN_CLK_GPU_CORE_ROOT>,
-+				<&clk IMX8MN_CLK_GPU_SHADER_DIV>;
-+			clock-names = "reg", "bus", "core", "shader";
-+			assigned-clocks = <&clk IMX8MN_CLK_GPU_CORE_SRC>,
-+					  <&clk IMX8MN_CLK_GPU_SHADER_SRC>,
-+					  <&clk IMX8MN_CLK_GPU_AXI>,
-+					  <&clk IMX8MN_CLK_GPU_AHB>,
-+					  <&clk IMX8MN_GPU_PLL>,
-+					  <&clk IMX8MN_CLK_GPU_CORE_DIV>,
-+					  <&clk IMX8MN_CLK_GPU_SHADER_DIV>;
-+			assigned-clock-parents = <&clk IMX8MN_GPU_PLL_OUT>,
-+						  <&clk IMX8MN_GPU_PLL_OUT>,
-+						  <&clk IMX8MN_SYS_PLL1_800M>,
-+						  <&clk IMX8MN_SYS_PLL1_800M>;
-+			assigned-clock-rates = <0>, <0>, <800000000>, <400000000>, <1200000000>,
-+				<400000000>, <400000000>;
-+			power-domains = <&pgc_gpumix>;
-+		};
-+
- 		gic: interrupt-controller@38800000 {
- 			compatible = "arm,gic-v3";
- 			reg = <0x38800000 0x10000>,
+This patch only affected the last symbol above. And it covers of_iomap()
+in my build testing as well.
+
+After this patch: (8 undefined symbols)
+
+> All errors (new ones prefixed by >>, old ones prefixed by <<):
+> 
+> ERROR: modpost: "devm_ioremap_resource" [drivers/crypto/ccree/ccree.ko] undefined!
+> ERROR: modpost: "debugfs_create_regset32" [drivers/crypto/ccree/ccree.ko] undefined!
+> ERROR: modpost: "devm_ioremap_resource" [drivers/media/rc/ir-hix5hd2.ko] undefined!
+> ERROR: modpost: "ioremap" [drivers/pcmcia/pcmcia.ko] undefined!
+> ERROR: modpost: "iounmap" [drivers/pcmcia/pcmcia.ko] undefined!
+>>> ERROR: modpost: "devm_platform_ioremap_resource" [drivers/char/xillybus/xillybus_of.ko] undefined!
+> ERROR: modpost: "devm_ioremap_resource" [drivers/dma/qcom/hdma.ko] undefined!
+> ERROR: modpost: "devm_ioremap_resource" [drivers/dma/qcom/hdma_mgmt.ko] undefined!
+
+
+I think that all of these arch/s390/ builds undefined symbols when CONFIG_HAS_IOMEM
+is not set are low priority (or no priority) for most people.
+
 -- 
-2.25.1
+~Randy
 
