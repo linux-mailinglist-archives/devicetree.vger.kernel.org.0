@@ -2,166 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A55C39137B
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 11:16:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AEB339138E
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 11:21:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233011AbhEZJRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 05:17:55 -0400
-Received: from mga18.intel.com ([134.134.136.126]:30552 "EHLO mga18.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232849AbhEZJRy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 May 2021 05:17:54 -0400
-IronPort-SDR: JTPGwePUYCuM8b9JKx19Oy5/e1clnksTGygJWwtIRW4YieU3qZq4Fb+x6S7aAJeDvXFWMLkW5W
- if3WSEedvdAQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9995"; a="189797478"
-X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; 
-   d="scan'208";a="189797478"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 May 2021 02:16:22 -0700
-IronPort-SDR: 3J+E7tBnP4OBjc7FWcipnOuxO37Vig80c4ophYKB+ut7Cr1qDwmfYNSz3cldGAsV0b3Op0giZQ
- nApovqSsvFlg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; 
-   d="scan'208";a="547126937"
-Received: from kuha.fi.intel.com ([10.237.72.162])
-  by fmsmga001.fm.intel.com with SMTP; 26 May 2021 02:16:19 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 26 May 2021 12:16:18 +0300
-Date:   Wed, 26 May 2021 12:16:18 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Jun Li <jun.li@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 3/4] usb: typec: add typec orientation switch support via
- mux controller
-Message-ID: <YK4R4q1cZqQDS1qy@kuha.fi.intel.com>
-References: <1621408490-23811-1-git-send-email-jun.li@nxp.com>
- <1621408490-23811-4-git-send-email-jun.li@nxp.com>
- <YKZXHG7BSSZssiBg@kuha.fi.intel.com>
- <YKdxW8SFntFYcyv+@kuha.fi.intel.com>
- <VI1PR04MB593521FEBF947882E6A394D489259@VI1PR04MB5935.eurprd04.prod.outlook.com>
+        id S233217AbhEZJXM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 05:23:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47420 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233213AbhEZJXL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 05:23:11 -0400
+Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61B4DC061574
+        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 02:21:40 -0700 (PDT)
+Received: from [192.168.1.101] (83.6.168.54.neoplus.adsl.tpnet.pl [83.6.168.54])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id CD5873F3BC;
+        Wed, 26 May 2021 11:21:35 +0200 (CEST)
+Subject: Re: [PATCH 7/7] arm64: dts: qcom: Add support for SONY Xperia X
+ Performance / XZ / XZs (msm8996, Tone platform)
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>
+References: <20210525200246.118323-1-konrad.dybcio@somainline.org>
+ <20210525200246.118323-7-konrad.dybcio@somainline.org>
+ <YK3CxHZELSQzz4Dp@builder.lan>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+Message-ID: <3fbf451e-6bab-d72a-1d6b-851ece99c95b@somainline.org>
+Date:   Wed, 26 May 2021 11:21:34 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <VI1PR04MB593521FEBF947882E6A394D489259@VI1PR04MB5935.eurprd04.prod.outlook.com>
+In-Reply-To: <YK3CxHZELSQzz4Dp@builder.lan>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 25, 2021 at 11:46:18AM +0000, Jun Li wrote:
-> Hi Heikki,
-> 
-> > -----Original Message-----
-> > From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> > Sent: Friday, May 21, 2021 4:38 PM
-> > To: Jun Li <jun.li@nxp.com>
-> > Cc: robh+dt@kernel.org; shawnguo@kernel.org; gregkh@linuxfoundation.org;
-> > linux@roeck-us.net; linux-usb@vger.kernel.org; dl-linux-imx
-> > <linux-imx@nxp.com>; devicetree@vger.kernel.org;
-> > linux-arm-kernel@lists.infradead.org
-> > Subject: Re: [PATCH 3/4] usb: typec: add typec orientation switch support
-> > via mux controller
-> > 
-> > Hi,
-> > 
-> > On Thu, May 20, 2021 at 03:33:36PM +0300, Heikki Krogerus wrote:
-> > > Why not just do that inside fwnode_typec_switch_get() and handle the
-> > > whole thing in drivers/usb/typec/mux.c (or in its own file if you
-> > > prefer)?
-> > >
-> > > You'll just need to register a "wrapper" Type-C switch object for the
-> > > OF mux controller, but that should not be a problem. That way you
-> > > don't need to export any new functions, touch this file or anything
-> > > else.
-> > 
-> > I wrote a bit of code just to see how that would look. I'm attaching you
-> > the hack I made. I guess something like that would not be too bad.
-> > A wrapper is probable always a bit clumsy, but I'm not sure that in this
-> > case it's a huge problem. Of course if there are any better ideas, let's
-> > here them :-)
-> 
-> Thanks for your patch, I am pasting the patch as below.
-> 
-> seems we need consider more than that.
-> 
-> diff --git a/drivers/usb/typec/Makefile b/drivers/usb/typec/Makefile
-> index a0adb8947a301..d85231b2fe10b 100644
-> --- a/drivers/usb/typec/Makefile
-> +++ b/drivers/usb/typec/Makefile
-> @@ -1,6 +1,7 @@
->  # SPDX-License-Identifier: GPL-2.0
->  obj-$(CONFIG_TYPEC)		+= typec.o
->  typec-y				:= class.o mux.o bus.o port-mapper.o
-> +typec-$(MULTIPLEXER)		+= of_mux.o
->  obj-$(CONFIG_TYPEC)		+= altmodes/
->  obj-$(CONFIG_TYPEC_TCPM)	+= tcpm/
->  obj-$(CONFIG_TYPEC_UCSI)	+= ucsi/
-> diff --git a/drivers/usb/typec/mux.c b/drivers/usb/typec/mux.c
-> index 9da22ae3006c9..282622276d97b 100644
-> --- a/drivers/usb/typec/mux.c
-> +++ b/drivers/usb/typec/mux.c
-> @@ -63,6 +63,9 @@ struct typec_switch *fwnode_typec_switch_get(struct fwnode_handle *fwnode)
->  
->  	sw = fwnode_connection_find_match(fwnode, "orientation-switch", NULL,
->  					  typec_switch_match);
-> +	if (!sw)
-> +		sw = of_switch_register(fwnode);
-> +
-> 
-> How to support multiple typec_switch_get() for of_mux case?
-> the second call to fwnode_typec_switch_get() will get the switch
-> via fwnode_connection_find_match()? This means we still need
-> a property "orientation-switch" for mux controller node, this
-> seems not the expected way for a mux consumer, even with this
-> property, we will get a EPROBE_DEFER for the first call.
-> 
-> If we use mux_control_get() for multiple caller/consumer, then
-> we need some other device as input.
->   
-> typec_switch object looks to me is a provider, if we create
-> and maintain it in consumer side, I have not come out a better
-> way:-).
+Hi,
 
-Sorry, but can we rewind a bit: Why can't you just register the
-orientation switch from your mux driver and be done with it? You
-should then be able to use OF graph, and no special bindings should
-be needed, no?
 
-If you want to reuse a mux-controller driver, then you do need to
-modify it (but only a little), and what ever mux-controller specific
-bindings there are, you will not use those when the mux supplies the
-orientation switching function, instead you'll use the OF graph for
-that. But surely that is not a problem?
+> BSD license in all the files please.
 
-The mux-controller framework expects the "consumers" of the muxes to
-understand the final function that the mux is used for. The Type-C
-"mux" framework (I should not even talk about muxes with those) works
-the other way around. The driver for the component that supplies the
-orientation switch function must understand that it is handling that
-function, and there is a good reason for doing it that way with the
-USB Type-C switches. The orientation switch for example quite simply
-is _not_ always a mux. In fact, it's seems to be rarely a mux these
-days. With USB4 for example the orientation is handled almost always
-by the first on-board retimer.
+msm8996.dtsi is gpl2-only, so I wasn't sure I can include it..
 
-There are actually also some technical reasons why Hans failed to get
-the mux-controller thing to work, which is the original reason why we
-introduced the dedicated framework for the Type-C "muxes" (I really
-should stop talking about muxes), but I don't remember what was the
-reason.
 
-In any case, to summarise: the orientation switch is a function. A mux
-is a device that can supply that function, and if it does, then the
-driver for it really needs to register the dedicated orientation
-switch.
+>> +};
+>> \ No newline at end of file
+> [..]
 
-thanks,
+Yikes... my mistake
 
--- 
-heikki
+
+>> +#include "pmi8994.dtsi"
+>> +#include <dt-bindings/input/input.h>
+>> +#include <dt-bindings/input/gpio-keys.h>
+> This seems to be unused for now.
+
+Right. I will add the keys in a separate patch, this one is plenty big already.
+
+
+>> +		/*
+>> +		 * Due to an unknown-for-a-few-years regression,
+>> +		 * SDHCI only works on MSM8996 in PIO (lame) mode.
+>> +		 */
+>> +		bootargs = "sdhci.debug_quirks=0x40 sdhci.debug_quirks2=0x4 maxcpus=2";
+> What's up with maxcpus=2? Is this simply because the last 2 are really
+> really slow?
+
+Yeah, I think the L2 and cci being stuck at bl clocks are to blame again.. there was a lot of msm8996 cpufreq work but I am not sure if anybody got it to *actually* work in the end, I'll try to look into this soon(tm)..
+
+
+>> +};
+>> +
+>> +&CPU0 {
+>> +	cpu-supply = <&pmi8994_s11>;
+> Isn't this the supply to the CPU-subsystem-internal LDO that actually
+> feeds the CPU? Is there a benefit to describing this here?
+
+I believe it was related to the cpufreq-dt madness, I will remove this.
+
+
+>> +
+>> +&pm8994_gpios {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pm8994_gpio_1 &pm8994_vol_down_n &pm8994_vol_up_n
+>> +		     &pm8994_cam_snap_n &pm8994_cam_focus_n &pm8994_gpio_6
+>> +		     &pm8994_nfc_dload &pm8994_gpio_8 &pm8994_gpio_9
+>> +		     &pm8994_gpio_nfc_clk &pm8994_gpio_11 &pm8994_gpio_12
+>> +		     &pm8994_ear_en &pm8994_gpio_14 &pm8994_pm_divclk1
+>> +		     &pm8994_pmi_clk &pm8994_gpio_17 &pm8994_rome_sleep
+>> +		     &pm8994_gpio_19 &pm8994_gpio_22>;
+> Shouldn't several of these reference be done from the relevant nodes?
+
+Certainly, but not all peripherals have drivers upstream, and other ones
+
+are hardcoded to their state downstream, and knowing what shady stuff
+
+some vendors do, I'm reluctant to trust the bootloader-default state with
+
+my expensive toys..
+
+
+
+> For the ones that isn't, and that you're not going to ever change I
+> think it would look better to have a single:
+>
+> pm8994_gpios_defaults: default-state {
+> 	nc {
+> 		nc pins...
+> 	};
+>
+> 	vol-up {
+> 		...
+> 	};
+>
+> 	...
+> };
+
+That does look like a good idea, but I also think it would become a big
+
+mess if any of these pins turned out required for some obscure peripheral,
+
+and then I'd have to dig it out of there, re-create the pin definition outside
+
+and I think you know where this is going..
+
+
+> +/*
+> + * For reasons that are currently unknown
+> + * (but probably related to fusb301), USB
+> + * takes about 6 minutes to wake up (nothing
+> + * interesting in kernel logs), but then it
+> + * works as it should.
+> This is funny (but please make it ~80 chars wide).
+
+Eh, Torvalds said 100 is fine :P
+
+
+Konrad
+
