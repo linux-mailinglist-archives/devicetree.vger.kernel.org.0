@@ -2,44 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E0CC8390E6A
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 04:44:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27E9D390E6F
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 04:47:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231465AbhEZCqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 22:46:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41904 "EHLO mail.kernel.org"
+        id S232517AbhEZCsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 22:48:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42894 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230312AbhEZCqX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 May 2021 22:46:23 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1B52261434;
-        Wed, 26 May 2021 02:44:53 +0000 (UTC)
+        id S230312AbhEZCsv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 May 2021 22:48:51 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 47AB361432;
+        Wed, 26 May 2021 02:47:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621997093;
-        bh=rsTIIgQ3nqy4Xh20GrbgV6iG0hbzpPJ4x64TSBbYFzk=;
+        s=k20201202; t=1621997241;
+        bh=sKcmWhJmVsIPdkX6fdFoAIC9r4N6jPGMkT7L2NUL4Sw=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=aUw7bzkvwfXwXcnX0Slx6qwQ0gJAzurxTvY/6anEvxSCUgDNwo6TiL5z/qDcIiN/n
-         W8Qfhw6DQK146YWDr5wnl2Z0wcLGa/Rdr8IHiommUUeoVz55BGbNZVr6RVUS27kgJb
-         Xkci9t+L6u7TfXgsUbCuUD7ynjf9280qRvmGxinoaubF1Cl8z+i4PSCuowzzMqpcnm
-         +/Axvp/3LlZw3A0o5qG0J05BLrtmzO7RzHO+auUKaWCP954siMkCBxjOuMGqbSDq6y
-         Rc4w5RZTU1G9mxAKgETSyqh376Mrgl3pmBwexauhUGsyej6ToClSMvZC/m7vYFOZGT
-         nISKkkisEHaXg==
-Received: by mail-ed1-f51.google.com with SMTP id i13so38657501edb.9;
-        Tue, 25 May 2021 19:44:53 -0700 (PDT)
-X-Gm-Message-State: AOAM5310zGZJhLdKrTo6O7ZkINftFbeqoBOLg2erm2NG1ENCFYnOl1mm
-        wh5y+jD9mhXsmUcsdQojwrRdOR97nbi2eKgOpw==
-X-Google-Smtp-Source: ABdhPJxwO04yl5WZa0+jOnbeZ7drXGaZrOwZtr9HVj+l8GtBtUXQE1ouzcgJ7WJCend58die4B49R8xq/+6Bkf17N/E=
-X-Received: by 2002:a05:6402:4cf:: with SMTP id n15mr36336665edw.162.1621997091699;
- Tue, 25 May 2021 19:44:51 -0700 (PDT)
+        b=Pgk9dH1ZD5Vu8B97z4WJqYgpSwz2kzsBILrAGP4aNFWDu4IFYkHtsZIjUzunj6R0K
+         6S1FoiFpLFYMO+fFxfj4JwAW34UlBxslC5d5p/uVCp3ZCH9qZN3add3eOyiar5S3mR
+         AMo/SJqdpTgVGDArMwefDxbIF6+4uaIjvIw5dXCzyOBzn5zyJIgihs1xXYUhgDKKsl
+         MT1Z022sEHnX3kaxMMK9ArW4LAXqgP+ggyjp4Savpd3OZMSKdrCPzwFbpTjLNUGWxf
+         ON/tkUoCb2JyTILn0eT5jzEvFsZs3yaUPgX8qqYAEk0xbG0DW+IUfIuJ6ubTP2pWeI
+         vHKcCPIwcl07Q==
+Received: by mail-ed1-f45.google.com with SMTP id g7so26492320edm.4;
+        Tue, 25 May 2021 19:47:21 -0700 (PDT)
+X-Gm-Message-State: AOAM530grqEMh853ovuTGrFcps+Q3kq3FDsQYrTrcIDRLvIpQX3hO+l9
+        Cs2IjT0iW+4fe+xim8gv9mkJEEDD1g1jMog0SA==
+X-Google-Smtp-Source: ABdhPJwZ9qhKoR/4aN1yXlD5plSJwQb48VNfGpy4rh2cgs/Z+gzv3xIUzO+FkXgz28nH6QdNiD2ByhbTu7W1IKIoSuY=
+X-Received: by 2002:aa7:ccc6:: with SMTP id y6mr35286163edt.303.1621997239928;
+ Tue, 25 May 2021 19:47:19 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210525121448.30075-1-rex-bc.chen@mediatek.com>
- <20210525121448.30075-2-rex-bc.chen@mediatek.com> <CAAOTY__aasihVxC72f7b_R-=UcR85Z1G9M8TxUS9dBrad-aRxQ@mail.gmail.com>
- <c90629c915bc1c0d2e6b1070939a443ce5f8644c.camel@mediatek.com>
-In-Reply-To: <c90629c915bc1c0d2e6b1070939a443ce5f8644c.camel@mediatek.com>
+References: <20210525121448.30075-1-rex-bc.chen@mediatek.com> <20210525121448.30075-3-rex-bc.chen@mediatek.com>
+In-Reply-To: <20210525121448.30075-3-rex-bc.chen@mediatek.com>
 From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Wed, 26 May 2021 10:44:41 +0800
-X-Gmail-Original-Message-ID: <CAAOTY__3FWA37h5AoK_VR9LhyfHf3dGx2m-2P==2PNOpsxwyJQ@mail.gmail.com>
-Message-ID: <CAAOTY__3FWA37h5AoK_VR9LhyfHf3dGx2m-2P==2PNOpsxwyJQ@mail.gmail.com>
-Subject: Re: [v4,PATCH 1/3] drm/mediatek: dpi dual edge sample mode support
+Date:   Wed, 26 May 2021 10:47:10 +0800
+X-Gmail-Original-Message-ID: <CAAOTY__0EU5Sjo2ygj2tXHk3VTRuyEf+q4cGh3nGN1K1vMkFMw@mail.gmail.com>
+Message-ID: <CAAOTY__0EU5Sjo2ygj2tXHk3VTRuyEf+q4cGh3nGN1K1vMkFMw@mail.gmail.com>
+Subject: Re: [v4,PATCH 2/3] drm/mediatek: config driver data to support dual
+ edge sample
 To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
 Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
@@ -56,51 +55,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rex-BC Chen <rex-bc.chen@mediatek.com> =E6=96=BC 2021=E5=B9=B45=E6=9C=8826=
-=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=889:51=E5=AF=AB=E9=81=93=EF=BC=
+Hi, Rex:
+
+Rex-BC Chen <rex-bc.chen@mediatek.com> =E6=96=BC 2021=E5=B9=B45=E6=9C=8825=
+=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=888:15=E5=AF=AB=E9=81=93=EF=BC=
 =9A
 >
-> Hello CK,
+> Add output_fmts and num_output_fmts value for all configuration.
 >
-> Thanks for your review.
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_dpi.c | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
 >
-> On Wed, 2021-05-26 at 08:01 +0800, Chun-Kuang Hu wrote:
-> > Hi, Rex:
-> >
-> > Rex-BC Chen <rex-bc.chen@mediatek.com> =E6=96=BC 2021=E5=B9=B45=E6=9C=
-=8825=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=888:15=E5=AF=AB=E9=81=93=
-=EF=BC=9A
-> > >
-> > > DPI can sample on falling, rising or both edge.
-> > > When DPI sample the data both rising and falling edge.
-> > > It can reduce half data io pins.
-> > > Use num_output_fmts to determine whether it is dual edge mode.
-> > >
-> > > Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> > > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> > > ---
-> > >  drivers/gpu/drm/mediatek/mtk_dpi.c | 17 ++++++++++++++++-
-> > >  1 file changed, 16 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > > b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > > index bea91c81626e..d3b883c97aaf 100644
-> > > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > > @@ -83,6 +83,7 @@ struct mtk_dpi {
-> > >         struct pinctrl *pinctrl;
-> > >         struct pinctrl_state *pins_gpio;
-> > >         struct pinctrl_state *pins_dpi;
-> > > +       bool ddr_edge_sel;
-> >
-> > I would like to keep output_fmt instead of ddr_edge_sel.
-> > Initialize output_fmt to MEDIA_BUS_FMT_RGB888_1X24 in this patch.
-> >
-> It means that I may initialize output_fmt in probe and set value in
-> mtk_dpi_bridge_atomic_check() of patch[3/3]?
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediate=
+k/mtk_dpi.c
+> index d3b883c97aaf..d6a422986efc 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> @@ -695,10 +695,21 @@ static unsigned int mt8183_calculate_factor(int clo=
+ck)
+>                 return 2;
+>  }
+>
+> +static const u32 mt8173_output_fmts[] =3D {
+> +MEDIA_BUS_FMT_RGB888_1X24,
 
-Yes.
+indent.
 
-> > >         int refcount;
-> > >  };
-> > >
+> +};
+> +
+> +static const u32 mt8183_output_fmts[] =3D {
+> +MEDIA_BUS_FMT_RGB888_2X12_LE,
+> +MEDIA_BUS_FMT_RGB888_2X12_BE,
+
+ditto.
+
+Regards,
+Chun-Kuang.
+
+> +};
+> +
+>  static const struct mtk_dpi_conf mt8173_conf =3D {
+>         .cal_factor =3D mt8173_calculate_factor,
+>         .reg_h_fre_con =3D 0xe0,
+>         .max_clock_khz =3D 300000,
+> +       .output_fmts =3D mt8173_output_fmts,
+> +       .num_output_fmts =3D ARRAY_SIZE(mt8173_output_fmts),
+>  };
+>
+>  static const struct mtk_dpi_conf mt2701_conf =3D {
+> @@ -706,18 +717,24 @@ static const struct mtk_dpi_conf mt2701_conf =3D {
+>         .reg_h_fre_con =3D 0xb0,
+>         .edge_sel_en =3D true,
+>         .max_clock_khz =3D 150000,
+> +       .output_fmts =3D mt8173_output_fmts,
+> +       .num_output_fmts =3D ARRAY_SIZE(mt8173_output_fmts),
+>  };
+>
+>  static const struct mtk_dpi_conf mt8183_conf =3D {
+>         .cal_factor =3D mt8183_calculate_factor,
+>         .reg_h_fre_con =3D 0xe0,
+>         .max_clock_khz =3D 100000,
+> +       .output_fmts =3D mt8183_output_fmts,
+> +       .num_output_fmts =3D ARRAY_SIZE(mt8183_output_fmts),
+>  };
+>
+>  static const struct mtk_dpi_conf mt8192_conf =3D {
+>         .cal_factor =3D mt8183_calculate_factor,
+>         .reg_h_fre_con =3D 0xe0,
+>         .max_clock_khz =3D 150000,
+> +       .output_fmts =3D mt8173_output_fmts,
+> +       .num_output_fmts =3D ARRAY_SIZE(mt8173_output_fmts),
+>  };
+>
+>  static int mtk_dpi_probe(struct platform_device *pdev)
+> --
+> 2.18.0
+>
