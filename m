@@ -2,128 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 414EF391CF9
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 18:23:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02F07391D02
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 18:28:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232197AbhEZQZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 12:25:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59700 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233632AbhEZQZ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 12:25:27 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EB30C061756
-        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 09:23:53 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id d78so1304663pfd.10
-        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 09:23:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=heitbaum.com; s=google;
-        h=date:from:to:cc:subject:message-id:mime-version:content-disposition
-         :user-agent;
-        bh=3gA9VrOSMoB8ARTOwNzx/FAC2RRzo+UnWgujJ7sE+Vg=;
-        b=hw1o6LyKi/Tf03o7XXHTA0hWOc4hDYNPWAW/Qc9380ERy8w49LTljmKfxoB0gWHwzx
-         PLa/V3YzSdTLK9MBsm5cNpaqGoraOfte5yuqBcO1qVewABciVG1V86NIsoyOg8d+HRNy
-         /iAVcoyyjmEkcsYyYkIpXYiAmeLpWWvW7c1Os=
+        id S233629AbhEZQ3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 12:29:37 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:35350 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233212AbhEZQ3c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 12:29:32 -0400
+Received: from mail-vs1-f71.google.com ([209.85.217.71])
+        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1llwNz-0008Sw-QC
+        for devicetree@vger.kernel.org; Wed, 26 May 2021 16:27:59 +0000
+Received: by mail-vs1-f71.google.com with SMTP id d26-20020a67c49a0000b0290245e5a5d320so475075vsk.8
+        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 09:27:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition:user-agent;
-        bh=3gA9VrOSMoB8ARTOwNzx/FAC2RRzo+UnWgujJ7sE+Vg=;
-        b=gRZ2oRyGUsJV5djGv/m35pHrXR673Rfbp3k2l7H75ComKCHzSTpMVTnXQN2nqw5SWr
-         Lk2p6V7zcZhbP89tuutFdxoRKWoha4F587s97Dxld33n0vBAeR+O/J4KTTiINx51f6gI
-         ibhL/q4UgDm+cxp0bU5cfmEZra9uz66LaJ4xb8DJY9wmciCFTEmIg9/41DX9xb+Z/48K
-         9sJ7wVsQdOBtMyDPDspBy+V1/819FrBiND8iJiFP3M/9RfinIroj1jC2egRVVlgbf7Ce
-         2/W4fvZBz3QfskViXSB94DgnudzgxX27zfn77Fa3KsjI4Bs/M6mrJDg7+JPR0p1t9mYI
-         FwxA==
-X-Gm-Message-State: AOAM531bdIuL93O6nSTvK2JE5GrTQscupFCePeP7Xv56MpQpJ271yln1
-        2v345S9dUPSI1FO56RQaWEbOZSAfa25Jh1ps
-X-Google-Smtp-Source: ABdhPJzFZsOE0KGR4DZBTYb44yP9Xh1LSUaSN1gP1C1igJXhUr+iYyvOxYhrBdP+DIoKni43oJxwJw==
-X-Received: by 2002:a63:185c:: with SMTP id 28mr25928416pgy.158.1622046232752;
-        Wed, 26 May 2021 09:23:52 -0700 (PDT)
-Received: from 8bbba9ba63a4 (110-175-118-133.tpgi.com.au. [110.175.118.133])
-        by smtp.gmail.com with ESMTPSA id h6sm1046433pjs.15.2021.05.26.09.23.49
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 26 May 2021 09:23:52 -0700 (PDT)
-Date:   Wed, 26 May 2021 16:23:46 +0000
-From:   Rudi Heitbaum <rudi@heitbaum.com>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-Cc:     broonie@kernel.org, ezequiel@collabora.com, chenjh@rock-chips.com,
-        pgwipeout@gmail.com
-Subject: [PATCH] regulator: fan53555: add back tcs4526
-Message-ID: <20210526162342.GA20@8bbba9ba63a4>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Jv4RCq2GGtpFX/YkIBJQBGSbcUXH9Iixusyba6gZ0pY=;
+        b=s+mfv3dw3gRuF22ZCGhXBjF3FmzHJVhbwk69VOjTt1oZPbH6U10Xakhtsjvo76zH1R
+         Gbojd7sreQqz1s+S5u0Pb791PwGmOc3Y2ZBJo0w+IY+yZlPEmMMIlt194xISe7r0mV+Y
+         QsKYZU3kHa6V1DbQqtIuG8/2sV1GDgKYO9pV2C5gDRujJ/QiJMR10F9XbwlgXfWJfX7z
+         r5CiJz/wir9l0Dx/J/+5UX6XTLRUb+UQ3PZE7ccMDBgxGCq+TzGzJBPVYn7/GAHL1Pot
+         ZpUkgFbwRnYSTbYipk4az4WGLWjBlzfrAtbke/2YR21Og4pis0yfZSPYPZtgri0j0bIm
+         hn/g==
+X-Gm-Message-State: AOAM530W/PXPQtehYiMwPPGVIBdAPZ8iamdXOZu4D57lGFVliVvwDowU
+        dbyyDYDSDQBB9f6oglY1lcC69tQANCUKCXUQBVYn0s3JhMkU3qdA3w/+U2K7adgyLWMK25vjLJp
+        Eq5HzO8jab0kxQZi2pPqyInmnxagHRML2Y8fq/Zs=
+X-Received: by 2002:a1f:c704:: with SMTP id x4mr31787715vkf.9.1622046478121;
+        Wed, 26 May 2021 09:27:58 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxvxkeC5RXrpicrG41l+kp8biprBycXmdMTc4vtLYKtowR0ZjBj7tchNvSJOqK7MNbiF1Ja+A==
+X-Received: by 2002:a1f:c704:: with SMTP id x4mr31787684vkf.9.1622046477867;
+        Wed, 26 May 2021 09:27:57 -0700 (PDT)
+Received: from localhost.localdomain ([45.237.48.4])
+        by smtp.gmail.com with ESMTPSA id m186sm1541501vkh.56.2021.05.26.09.27.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 May 2021 09:27:57 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     "Paul J. Murphy" <paul.j.murphy@intel.com>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [RESEND PATCH] dt-bindings: arm: intel,keembay: limit the dtschema to root node
+Date:   Wed, 26 May 2021 12:27:50 -0400
+Message-Id: <20210526162750.135139-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Krzysztof Kozlowski <krzk@kernel.org>
 
-For rk3399pro boards the tcs4526 regulator supports the vdd_gpu
-regulator. The tcs4526 regulator has a chip id of <0>.
-Add the compatibile tcs,tcs4526  
+The check for the board compatible should be limited only to the root
+node.  Any other nodes with such compatible are not part of this schema
+and should not match.
 
-without this patch, the dmesg output is:
-  fan53555-regulator 0-0010: Chip ID 0 not supported!
-  fan53555-regulator 0-0010: Failed to setup device!
-  fan53555-regulator: probe of 0-0010 failed with error -22
-with this patch, the dmesg output is:
-  vdd_gpu: supplied by vcc5v0_sys
-
-The regulators are described as:
-- Dedicated power management IC TCS4525
-- Lithium battery protection chip TCS4526
-
-This has been tested with a Radxa Rock Pi N10.
-
-Fixes: f9028dcdf589 ("regulator: fan53555: only bind tcs4525 to correct chip id")
-Signed-off-by: Rudi Heitbaum <rudi@heitbaum.com>
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
 ---
- drivers/regulator/fan53555.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/regulator/fan53555.c b/drivers/regulator/fan53555.c
-index 2695be617373..ddab9359ea20 100644
---- a/drivers/regulator/fan53555.c
-+++ b/drivers/regulator/fan53555.c
-@@ -90,6 +90,7 @@ enum {
- };
+Hi Rob,
+
+Can you take it directly?
+
+Best regards,
+Krzysztof
+
+
+---
+ Documentation/devicetree/bindings/arm/intel,keembay.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/intel,keembay.yaml b/Documentation/devicetree/bindings/arm/intel,keembay.yaml
+index 69cd30872928..107e686ab207 100644
+--- a/Documentation/devicetree/bindings/arm/intel,keembay.yaml
++++ b/Documentation/devicetree/bindings/arm/intel,keembay.yaml
+@@ -11,6 +11,8 @@ maintainers:
+   - Daniele Alessandrelli <daniele.alessandrelli@intel.com>
  
- enum {
-+	TCS4525_CHIP_ID_00 = 0,
- 	TCS4525_CHIP_ID_12 = 12,
- };
- 
-@@ -373,6 +374,7 @@ static int fan53555_voltages_setup_silergy(struct fan53555_device_info *di)
- static int fan53526_voltages_setup_tcs(struct fan53555_device_info *di)
- {
- 	switch (di->chip_id) {
-+	case TCS4525_CHIP_ID_00:
- 	case TCS4525_CHIP_ID_12:
- 		di->slew_reg = TCS4525_TIME;
- 		di->slew_mask = TCS_SLEW_MASK;
-@@ -564,6 +566,9 @@ static const struct of_device_id __maybe_unused fan53555_dt_ids[] = {
- 	}, {
- 		.compatible = "tcs,tcs4525",
- 		.data = (void *)FAN53526_VENDOR_TCS
-+	}, {
-+		.compatible = "tcs,tcs4526",
-+		.data = (void *)FAN53526_VENDOR_TCS
- 	},
- 	{ }
- };
-@@ -672,6 +677,9 @@ static const struct i2c_device_id fan53555_id[] = {
- 	}, {
- 		.name = "tcs4525",
- 		.driver_data = FAN53526_VENDOR_TCS
-+	}, {
-+		.name = "tcs4526",
-+		.driver_data = FAN53526_VENDOR_TCS
- 	},
- 	{ },
- };
+ properties:
++  $nodename:
++    const: '/'
+   compatible:
+     items:
+       - enum:
 -- 
-2.29.2
+2.27.0
 
