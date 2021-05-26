@@ -2,400 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C45AC391022
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 07:48:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1C02391051
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 08:06:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229450AbhEZFtc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 01:49:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55172 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232155AbhEZFtc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 01:49:32 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45E4CC061574;
-        Tue, 25 May 2021 22:48:01 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id x18so123859pfi.9;
-        Tue, 25 May 2021 22:48:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=WqRKDzhZ4fOSBmJU9sr2lh1R0zKzFLcyJT98TETpiAg=;
-        b=KbW7xBTpPH9piVicypSazh8EEksGikMS94TEqXJ1S3y8jEQlj9VAI87lJXD6TRbi4+
-         xPOEpGsPclkceMrTEAe/9TXJOK/mRaJVPJIL2dDDtdmXvKkkrj75vVmRIUSiVtAwwEUn
-         77wp7zqjFSwxVoLWNKQILh6W/WjrSrV8zU7JxHEv76QVMP2dRuMxO4zRyU89pEZK4ufN
-         DK02n+PohBKKjYpWyMlss30XgRRxvHeDH8rAh7b4be1ft8u2ky4DWCO0cQyq2S//wAA1
-         YsiLf8gH0FvYSo4bQulUyz+Nqx3Hg0iM2MCt/e0CLB/PQkQBvr2T7IbC0rheZ6k3EVJs
-         BGeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=WqRKDzhZ4fOSBmJU9sr2lh1R0zKzFLcyJT98TETpiAg=;
-        b=cJ3z8mnthG5jGf1emTvZBKfXqQyhx76Ec8QAdb2Xd4QYBxFdK6mVQ5dV/EJNRL8NQ2
-         dsSnzstZ9K6DqCQGK1xfP+sOIKIMorbBwdZ6pXorMp6sy7FomRbkvVSq4Kr+ejex3nm+
-         nWtVp1mlFBJ7afD+8L1R6SoZ9bRG7qjYtzyyIo5sBP/uK2AG4ev7VJTM1bg4LwDUVNJb
-         Ir6caKGDi8Bgz2nQ3OVdRDkygr2/H/2F29eukUJEjivCqXj8UM55d9J0D2rbNTUcu+lo
-         B8yuoC/4KpH0aZHlO0C/t+MKchFrG7LZ1H9Qy7PitEETcMV1sg6LwMi6aYp3yHSWUcFC
-         mrEg==
-X-Gm-Message-State: AOAM532fP3bobuNDpeuvw0txi4G9E2PIokbgIWQ9A4w0wctxXeLZYoF3
-        L6Hx/Lxd/uveX5uq1M+9tj7i57FhCWY=
-X-Google-Smtp-Source: ABdhPJwSrtWLOldSjS/DqVDI6Q5lIakYRIbiI+PxHNAB4YXi3TzjuK9yzZ7sM5H5xJvjS2PSzZfXOw==
-X-Received: by 2002:a63:9d43:: with SMTP id i64mr22641393pgd.205.1622008080712;
-        Tue, 25 May 2021 22:48:00 -0700 (PDT)
-Received: from localhost.localdomain (1-171-3-30.dynamic-ip.hinet.net. [1.171.3.30])
-        by smtp.gmail.com with ESMTPSA id l64sm16446444pgd.20.2021.05.25.22.47.58
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 25 May 2021 22:48:00 -0700 (PDT)
-From:   cy_huang <u0084500@gmail.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, cy_huang@richtek.com,
-        devicetree@vger.kernel.org
-Subject: [PATCH v4 2/2] regulator: rt6160: Add support for Richtek RT6160
-Date:   Wed, 26 May 2021 13:47:48 +0800
-Message-Id: <1622008068-13474-2-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1622008068-13474-1-git-send-email-u0084500@gmail.com>
-References: <1622008068-13474-1-git-send-email-u0084500@gmail.com>
+        id S229553AbhEZGIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 02:08:23 -0400
+Received: from mail-db8eur05on2074.outbound.protection.outlook.com ([40.107.20.74]:19297
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229494AbhEZGIW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 May 2021 02:08:22 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ekCZwxACEa2mezQyuhVrwxIfmU1fCFpDvV6cKh0h94pqRNuC13zcJf3netON178+eWt4Ewle8BwcGLtWe+DE+jB98Nt1YCKCBqSnIKW6AUNl5TPjhG810vFdy8sN40mn9i8sysB+2h2Vg1nupa2SGFhegxXDQj+aAW4QzEmAMHKNUXjrXj19pWoZ2KWK4vNqRNUVd6kJX08a1/NBHh94jrah08GlV+DF1r9qRP5qTjoHYtrUzYq9BkbtfsqXofYlZekdqnMsFy/1qOyQPd9Ync9NaY9ffqJYiPNEX9MLSqTOK5MslubHUg3TcL27wGnrJOQCsYbc575LlF1GZtgQQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/ZluYmQTBhnB7rQ4uKN5WJpm5p0J7eQjizqN7s3pGjA=;
+ b=DVb6D2DbFBugT12RhEkUctvbc0Fw+DBJKFEmNhf6WnPLfSn3tY1bk3MRUNghVHjS0p0a/DzdMxJpIcQemPQJsILnVATCxtGGb3imd934nvUWPvfkiFBSS5oiKfMg0l6HcCguSqJtzIfLS6INO/8C7brt4rZ1V+f8semglUthDWeUACRL26zN5eUkuVZ12Q44n9vE5kG12YxXk0mlxZu1Wa5u9BR2pzX5enodEXvHHF+MydBzHe+v0yX983A2F6mWoA+XogxWL7PjsrI6ee7KsuRIhs3CXkcJE+POvnPYiwYsMkjl2EKvepCPzF1P55hwHohvadS6YX2yGvFCLD339Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/ZluYmQTBhnB7rQ4uKN5WJpm5p0J7eQjizqN7s3pGjA=;
+ b=Xei/Sirzk4qOqRHRihz7T2oADLw69wLD+U9K4LTCkvCEagxYhfcQv5OVPo7dy0SyTJqMOZZ9uiU+xW7JKiJPoIUFJpjK5ai+54Z9AwsQkjQDlM29EIhkLJO6dThj78Gex0h9lQrKPEnqqP/EBvDDKyJ1qUmUsICaEIE7x4ADrE0=
+Authentication-Results: nxp.com; dkim=none (message not signed)
+ header.d=none;nxp.com; dmarc=none action=none header.from=oss.nxp.com;
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
+ by DB8PR04MB6860.eurprd04.prod.outlook.com (2603:10a6:10:112::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.21; Wed, 26 May
+ 2021 06:06:49 +0000
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::45b9:c993:87ec:9a64]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::45b9:c993:87ec:9a64%8]) with mapi id 15.20.4150.027; Wed, 26 May 2021
+ 06:06:49 +0000
+Subject: Re: [PATCH 0/4] mailbox: imx: add i.MX8ULP MU support
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     jassisinghbrar@gmail.com, robh+dt@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, o.rempel@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, aisheng.dong@nxp.com,
+        linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+References: <20210507101926.25631-1-peng.fan@oss.nxp.com>
+Message-ID: <9d4e12dd-6462-5c9a-434a-0104bf943294@oss.nxp.com>
+Date:   Wed, 26 May 2021 14:06:38 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
+In-Reply-To: <20210507101926.25631-1-peng.fan@oss.nxp.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [119.31.174.71]
+X-ClientProxiedBy: SG2PR06CA0126.apcprd06.prod.outlook.com
+ (2603:1096:1:1d::28) To DB6PR0402MB2760.eurprd04.prod.outlook.com
+ (2603:10a6:4:a1::14)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [10.193.102.178] (119.31.174.71) by SG2PR06CA0126.apcprd06.prod.outlook.com (2603:1096:1:1d::28) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.20 via Frontend Transport; Wed, 26 May 2021 06:06:45 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: ad8995da-3989-4a25-8250-08d9200c731a
+X-MS-TrafficTypeDiagnostic: DB8PR04MB6860:
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB8PR04MB686006CB4E60F6FFB44A2B99C9249@DB8PR04MB6860.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Q/8XnEWJ+ILvD/d1MJ64a3McuJNCtawVg9qKrg9L5f3NpCEY2miYr3Fz53tZngJDcFfIa2B0QOSHIx9mdP766oMthN16HOReLb3mAMAUhmbkBJGvxxeuhusXQG4JYGCfKsarkz2H9HYsRPbimooYXLmM+FaYmXoOzy/JGOQqWuruAXl+DgffN0BFcNeMt/MIn47YyAAeN3uWxJf3fYVvujSgCImWP/R5WjC+xKs5URog4+qi7E6/30vyv/wClwRRzRkrUiTlurGkxfKmf7QRlA9M3HwfWu8KbJ1GQ21r0KpsG0PrNWg43Vp5YC3Byt9JXsi/BTvqI5mfrA7BSQcTL15QPIzxiQxPoF7b3dhqn7ljX+g9AfYKvSQEubkgadZl21PgcHNKyJdjeVfQCKn5VUX0mnvXLEpJ7FOqVsblrG36/o+O7o8+1uBQezn24UN3Jv0geLkJdBRdSQXZ012L1LydhUmCp+oNEam0o/um9JMHU61bIkXfub9/6OaFo8zHf7PSdebGP2e+f7Fi6tAgDGl9YoQW0tBJPZiwkOcK6V2VrIPHX+/MEdSYgtsOfkLE/8qcd4+1Tfh69TVPYu7fggfVZsmmuKnDKTpiT1S+6+WXZ1i8FOyVJ1ky5RSf+ir0E2uMEQaBu7Crtr36uZSSf/Mqq0rGuXwBnVxFqQTFpVCzp0PQ91PhfrWfkjm4nr2+bDCgm0EUlorLpQyDwRXetmUZRG/cAOjLGVMOijCgv2M=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(396003)(366004)(136003)(376002)(39850400004)(478600001)(15650500001)(5660300002)(2906002)(38350700002)(38100700002)(4744005)(7416002)(186003)(16526019)(52116002)(6666004)(26005)(956004)(66556008)(2616005)(66946007)(53546011)(66476007)(16576012)(316002)(6486002)(86362001)(8936002)(31686004)(8676002)(83380400001)(4326008)(31696002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?cldYZEEwSlBrZWlpYVg3RTAzY2owaThOb0x1c0lnN2FraWZCMkxOMXJkeThl?=
+ =?utf-8?B?OGM2WG1SVG1oWTRuTjllZXl5SjEyRUFqTGM5NDZ0b0ZGTzAxQ0hNTHp0b0Zw?=
+ =?utf-8?B?bFFDV29HcGdpOW4yOTJlNFlCSWVrZ2hMdkFDbHQrY2d5YWpNYkxjMEZYYVhz?=
+ =?utf-8?B?WXVYZHVRM0Y0YUE5Y055Rmx6TXd3UndKbmc0SmxCaFFlKzlmdWFyM0RYVmpm?=
+ =?utf-8?B?WU5qZS9JWTRCM1FmOUV0N091YWFCTXIwOFRBc29DZUR1N1ZMbU1sdmFMaXJ4?=
+ =?utf-8?B?YTJxNGRXSEk2dFhUSjF3cVJTdjVwcmZzNjZTazBTUFhuOTljY3A0MlNEWUtm?=
+ =?utf-8?B?V2FLa21WMmxpR0pKbjM1bTJ5MldoYXhUWVZRc3drRkZQTWNjU2M2V0hFcmRT?=
+ =?utf-8?B?WlNqMUhZa01hTXJDblpteUY1V2ZlZjVWVUw2ZnByNkNiRTJyak5GV1BMZ3B4?=
+ =?utf-8?B?M0NqeHliaDhIV2l1MExVUVM3aWJXazUvc3JhYm9VMTA3b1QxdEtpa0hCT0RL?=
+ =?utf-8?B?QW5ZaHpsSFd4enV2bFcrMTAzS3VyWEhlTGlCVFZ1eU5SaHhkOHJVaktsTUM4?=
+ =?utf-8?B?SW1sS1lFT1pwQ3pJSEhxV0tTL2pZMmZaRGdMTERIOEhRVitqRVp1YmFrY1BK?=
+ =?utf-8?B?VUlOZjhpR0ZQTEVPT0NlZGMrRU16ejloTElYK0lyTjFXMGljSDgySlBMZUFw?=
+ =?utf-8?B?TUNRSDVra2tOeGFxN0EzbHFhbU4wMk5sU0pIS0E3UnQ5Z0JJRnVrUktJR1pQ?=
+ =?utf-8?B?dVRJZ1Vuek9KK2laMklTTHUrbWVqMnViR3lwRGZ5QXY5ZEE4QVUzTWJsWXEx?=
+ =?utf-8?B?aGxGSk1KTHo2a29aK1RuUVljWmJvRFdUM1RKMy8xbkN1dklDTE05ZkhmV1h3?=
+ =?utf-8?B?enJwVXd5K0ZBbkFhSlc3RVJKMEdHYmpvMkU5NExJOW5VMGJxVGlPdTYwdnZQ?=
+ =?utf-8?B?NnJzZ1cxQXhEWGlXcmNBWUc2WXU2OE1oTUJPeWxrRHQxOTZOMVpBQk9MMndo?=
+ =?utf-8?B?aUxWbEVmL2VCdG9PR2dJZVQ4Q244N2pZdW5JUFVkc21FSUlpb0tsK1QzUHNH?=
+ =?utf-8?B?SW5HQ3IzVEVJSG1US3VKcTNxaHk5Y0lDOEdPM3NYaG91Mk9YeHRXdEFQWGlw?=
+ =?utf-8?B?cmRocHZydUc2QnBqMzdPc0E0TUhWLzk2N3lJbFlnSU1aeXU3Q0dEK2toUmpr?=
+ =?utf-8?B?TStEcGlNWWhsUVpmMllRSSsxaW1HNFRNZFQycXBNMHNMaW9OOS8rMHFhU25a?=
+ =?utf-8?B?VHVqOFRuNzNPN3FrZW10RGJJTFpFUFNpK2ozTzBJNUpRRyszdWlWbnRaRnlS?=
+ =?utf-8?B?dEdTV1VZcE04L1FjamlQLzMwY1V0ZE1lbnVjSldLa21UcnF6UTJoanpNNnYw?=
+ =?utf-8?B?aTB1WTlERi9PTW5aRUNHc2pseEl3UTNIbSs5WjhINDVhN3BTVVFCZnhRT2lv?=
+ =?utf-8?B?b1RHU3A4L0hFQlJPeVdxQ29ZQ21WajZIUmpoQ2VXUEFFdlI2NGZURkYyMlpM?=
+ =?utf-8?B?SUJjQjd2Um15dUNxcGNhaW95WjhaU25FRTRqTEw1cGcxUVkvS2FmbUVoZzBG?=
+ =?utf-8?B?TDAxZHFXQlc5OE1xU2VzbGg4cllFa0t5SmlaTjFaUWxkSEQxVVFESDdLU2pi?=
+ =?utf-8?B?Sm12T3ZzR0NVVDR4NFV1ZVBtdDdjaEg5V0RRTWo4bTZjVTdJblN2cWt1R3hY?=
+ =?utf-8?B?dDkxcS9wOWE5K1FleCs5V0Y3bkw4ZU5mOElKckJrSHBxcGJPY2V6NG1XM3lW?=
+ =?utf-8?Q?5CUZxp1bMYj06OFiWKnqMPwoWgnop+4wEJnlxZs?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ad8995da-3989-4a25-8250-08d9200c731a
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2021 06:06:49.5018
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: lT15XPgaEn/MdzVw0W4WD+asqUM2mPQXzQ/p1PljdwG9adIqGi/leAmxpHJhnHtWhWuQv8PwXGin8Btw87J2LA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6860
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+Hi Jassi, Shawn
 
-Add support for Richtek RT6160 voltage regulator. It can provide up
-to 3A output current within the adjustable voltage from 2025mV
-to 5200mV. It integrate a buckboost converter to support wide input
-voltage range from 2200mV to 5500mV.
+On 2021/5/7 18:19, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> i.MX8ULP generic MU is a different IP compared with previous i.MX chips.
+> It has different register layout and bit position, but the register name
+> and bit definitions are almost same with previous i.MX MU.
+> 
+> So we extend the current imx-mailbox driver to support i.MX8ULP.
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
-since v4
-- Add of_node into regulator_config to fix regulator_get by device tree node parsing.
+Gentle ping.. Except dt-bindings patch get A-b from Rob,no comments.
+Is it ok for you to pick up this patchset?
 
-since v3
-- Use more header file like as of_regulator.h and property.h.
-- Change the parsing string from 'richtek,vsel_active_low' to 'richtek,vsel-active-low'.
-- Use of_get_regulator_init_data to get the regulator init_data.
+Thanks,
+Peng.
 
-since v2
-- Fix W=1 warning for of_device_id.
----
- drivers/regulator/Kconfig            |  11 ++
- drivers/regulator/Makefile           |   1 +
- drivers/regulator/rt6160-regulator.c | 270 +++++++++++++++++++++++++++++++++++
- 3 files changed, 282 insertions(+)
- create mode 100644 drivers/regulator/rt6160-regulator.c
-
-diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-index 9d84d92..4fe7ddc 100644
---- a/drivers/regulator/Kconfig
-+++ b/drivers/regulator/Kconfig
-@@ -1030,6 +1030,17 @@ config REGULATOR_RT5033
- 	  RT5033 PMIC. The device supports multiple regulators like
- 	  current source, LDO and Buck.
- 
-+config REGULATOR_RT6160
-+	tristate "Richtek RT6160 BuckBoost voltage regulator"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  This adds support for voltage regulator in Richtek RT6160.
-+	  This device automatically change voltage output mode from
-+	  Buck or Boost. The mode transistion depend on the input source voltage.
-+	  The wide output range is from 2025mV to 5200mV and can be used on most
-+	  common application scenario.
-+
- config REGULATOR_RTMV20
- 	tristate "RTMV20 Laser Diode Regulator"
- 	depends on I2C
-diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
-index 580b015..5b2c93e 100644
---- a/drivers/regulator/Makefile
-+++ b/drivers/regulator/Makefile
-@@ -124,6 +124,7 @@ obj-$(CONFIG_REGULATOR_ROHM)	+= rohm-regulator.o
- obj-$(CONFIG_REGULATOR_RT4801)	+= rt4801-regulator.o
- obj-$(CONFIG_REGULATOR_RT4831)	+= rt4831-regulator.o
- obj-$(CONFIG_REGULATOR_RT5033)	+= rt5033-regulator.o
-+obj-$(CONFIG_REGULATOR_RT6160)	+= rt6160-regulator.o
- obj-$(CONFIG_REGULATOR_RTMV20)	+= rtmv20-regulator.o
- obj-$(CONFIG_REGULATOR_S2MPA01) += s2mpa01.o
- obj-$(CONFIG_REGULATOR_S2MPS11) += s2mps11.o
-diff --git a/drivers/regulator/rt6160-regulator.c b/drivers/regulator/rt6160-regulator.c
-new file mode 100644
-index 00000000..579e183
---- /dev/null
-+++ b/drivers/regulator/rt6160-regulator.c
-@@ -0,0 +1,270 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/driver.h>
-+#include <linux/regulator/of_regulator.h>
-+
-+#define RT6160_MODE_AUTO	0
-+#define RT6160_MODE_FPWM	1
-+
-+#define RT6160_REG_CNTL		0x01
-+#define RT6160_REG_STATUS	0x02
-+#define RT6160_REG_DEVID	0x03
-+#define RT6160_REG_VSELL	0x04
-+#define RT6160_REG_VSELH	0x05
-+
-+#define RT6160_FPWM_MASK	BIT(3)
-+#define RT6160_RAMPRATE_MASK	GENMASK(1, 0)
-+#define RT6160_VID_MASK		GENMASK(7, 4)
-+#define RT6160_VSEL_MASK	GENMASK(6, 0)
-+#define RT6160_HDSTAT_MASK	BIT(4)
-+#define RT6160_UVSTAT_MASK	BIT(3)
-+#define RT6160_OCSTAT_MASK	BIT(2)
-+#define RT6160_TSDSTAT_MASK	BIT(1)
-+#define RT6160_PGSTAT_MASK	BIT(0)
-+
-+#define RT6160_RAMPRATE_1VMS	0
-+#define RT6160_RAMPRATE_2P5VMS	1
-+#define RT6160_RAMPRATE_5VMS	2
-+#define RT6160_RAMPRATE_10VMS	3
-+#define RT6160_VENDOR_ID	0xA0
-+#define RT6160_VOUT_MINUV	2025000
-+#define RT6160_VOUT_MAXUV	5200000
-+#define RT6160_VOUT_STPUV	25000
-+#define RT6160_N_VOUTS		((RT6160_VOUT_MAXUV - RT6160_VOUT_MINUV) / RT6160_VOUT_STPUV + 1)
-+
-+struct rt6160_priv {
-+	struct regulator_desc desc;
-+	bool vsel_active_low;
-+};
-+
-+static int rt6160_set_mode(struct regulator_dev *rdev, unsigned int mode)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int mode_val;
-+
-+	switch (mode) {
-+	case REGULATOR_MODE_FAST:
-+		mode_val = RT6160_FPWM_MASK;
-+		break;
-+	case REGULATOR_MODE_NORMAL:
-+		mode_val = 0;
-+		break;
-+	default:
-+		dev_err(&rdev->dev, "mode not supported\n");
-+		return -EINVAL;
-+	}
-+
-+	return regmap_update_bits(regmap, RT6160_REG_CNTL, RT6160_FPWM_MASK, mode_val);
-+}
-+
-+static unsigned int rt6160_get_mode(struct regulator_dev *rdev)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int val;
-+	int ret;
-+
-+	ret = regmap_read(regmap, RT6160_REG_CNTL, &val);
-+	if (ret)
-+		return ret;
-+
-+	if (val & RT6160_FPWM_MASK)
-+		return REGULATOR_MODE_FAST;
-+
-+	return REGULATOR_MODE_NORMAL;
-+}
-+
-+static int rt6160_set_suspend_voltage(struct regulator_dev *rdev, int uV)
-+{
-+	struct rt6160_priv *priv = rdev_get_drvdata(rdev);
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int reg = RT6160_REG_VSELH;
-+	int vsel;
-+
-+	vsel = regulator_map_voltage_linear(rdev, uV, uV);
-+	if (vsel < 0)
-+		return vsel;
-+
-+	if (priv->vsel_active_low)
-+		reg = RT6160_REG_VSELL;
-+
-+	return regmap_update_bits(regmap, reg, RT6160_VSEL_MASK, vsel);
-+}
-+
-+static int rt6160_set_ramp_delay(struct regulator_dev *rdev, int ramp_delay)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int ramp_value = RT6160_RAMPRATE_1VMS;
-+
-+	switch (ramp_delay) {
-+	case 1 ... 1000:
-+		ramp_value = RT6160_RAMPRATE_1VMS;
-+		break;
-+	case 1001 ... 2500:
-+		ramp_value = RT6160_RAMPRATE_2P5VMS;
-+		break;
-+	case 2501 ... 5000:
-+		ramp_value = RT6160_RAMPRATE_5VMS;
-+		break;
-+	case 5001 ... 10000:
-+		ramp_value = RT6160_RAMPRATE_10VMS;
-+		break;
-+	default:
-+		dev_warn(&rdev->dev, "ramp_delay %d not supported, setting 1000\n", ramp_delay);
-+	}
-+
-+	return regmap_update_bits(regmap, RT6160_REG_CNTL, RT6160_RAMPRATE_MASK, ramp_value);
-+}
-+
-+static int rt6160_get_error_flags(struct regulator_dev *rdev, unsigned int *flags)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int val, events = 0;
-+	int ret;
-+
-+	ret = regmap_read(regmap, RT6160_REG_STATUS, &val);
-+	if (ret)
-+		return ret;
-+
-+	if (val & (RT6160_HDSTAT_MASK | RT6160_TSDSTAT_MASK))
-+		events |= REGULATOR_ERROR_OVER_TEMP;
-+
-+	if (val & RT6160_UVSTAT_MASK)
-+		events |= REGULATOR_ERROR_UNDER_VOLTAGE;
-+
-+	if (val & RT6160_OCSTAT_MASK)
-+		events |= REGULATOR_ERROR_OVER_CURRENT;
-+
-+	if (val & RT6160_PGSTAT_MASK)
-+		events |= REGULATOR_ERROR_FAIL;
-+
-+	*flags = events;
-+	return 0;
-+}
-+
-+static const struct regulator_ops rt6160_regulator_ops = {
-+	.list_voltage = regulator_list_voltage_linear,
-+	.set_voltage_sel = regulator_set_voltage_sel_regmap,
-+	.get_voltage_sel = regulator_get_voltage_sel_regmap,
-+
-+	.set_mode = rt6160_set_mode,
-+	.get_mode = rt6160_get_mode,
-+	.set_suspend_voltage = rt6160_set_suspend_voltage,
-+	.set_ramp_delay = rt6160_set_ramp_delay,
-+	.get_error_flags = rt6160_get_error_flags,
-+};
-+
-+static unsigned int rt6160_of_map_mode(unsigned int mode)
-+{
-+	if (mode == RT6160_MODE_FPWM)
-+		return REGULATOR_MODE_FAST;
-+	else if (mode == RT6160_MODE_AUTO)
-+		return REGULATOR_MODE_NORMAL;
-+
-+	return REGULATOR_MODE_INVALID;
-+}
-+
-+static bool rt6160_is_accessible_reg(struct device *dev, unsigned int reg)
-+{
-+	if (reg >= RT6160_REG_CNTL && reg <= RT6160_REG_VSELH)
-+		return true;
-+	return false;
-+}
-+
-+static const struct regmap_config rt6160_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = RT6160_REG_VSELH,
-+
-+	.writeable_reg = rt6160_is_accessible_reg,
-+	.readable_reg = rt6160_is_accessible_reg,
-+};
-+
-+static int rt6160_probe(struct i2c_client *i2c)
-+{
-+	struct rt6160_priv *priv;
-+	struct regmap *regmap;
-+	struct gpio_desc *enable_gpio;
-+	struct regulator_config regulator_cfg = {};
-+	struct regulator_dev *rdev;
-+	unsigned int devid;
-+	int ret;
-+
-+	priv = devm_kzalloc(&i2c->dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->vsel_active_low = device_property_present(&i2c->dev, "richtek,vsel-active-low");
-+
-+	enable_gpio = devm_gpiod_get_optional(&i2c->dev, "enable", GPIOD_OUT_HIGH);
-+	if (IS_ERR(enable_gpio)) {
-+		dev_err(&i2c->dev, "Failed to get 'enable' gpio\n");
-+		return PTR_ERR(enable_gpio);
-+	}
-+
-+	regmap = devm_regmap_init_i2c(i2c, &rt6160_regmap_config);
-+	if (IS_ERR(regmap)) {
-+		dev_err(&i2c->dev, "Failed to init regmap\n");
-+		return PTR_ERR(regmap);
-+	}
-+
-+	ret = regmap_read(regmap, RT6160_REG_DEVID, &devid);
-+	if (ret)
-+		return ret;
-+
-+	if ((devid & RT6160_VID_MASK) != RT6160_VENDOR_ID) {
-+		dev_err(&i2c->dev, "VID not correct [0x%02x]\n", devid);
-+		return -ENODEV;
-+	}
-+
-+	priv->desc.name = "rt6160-buckboost";
-+	priv->desc.type = REGULATOR_VOLTAGE;
-+	priv->desc.owner = THIS_MODULE;
-+	priv->desc.min_uV = RT6160_VOUT_MINUV;
-+	priv->desc.uV_step = RT6160_VOUT_STPUV;
-+	priv->desc.vsel_reg = RT6160_REG_VSELH;
-+	priv->desc.vsel_mask = RT6160_VSEL_MASK;
-+	priv->desc.n_voltages = RT6160_N_VOUTS;
-+	priv->desc.of_map_mode = rt6160_of_map_mode;
-+	priv->desc.ops = &rt6160_regulator_ops;
-+	if (priv->vsel_active_low)
-+		priv->desc.vsel_reg = RT6160_REG_VSELL;
-+
-+	regulator_cfg.dev = &i2c->dev;
-+	regulator_cfg.of_node = i2c->dev.of_node;
-+	regulator_cfg.regmap = regmap;
-+	regulator_cfg.driver_data = priv;
-+	regulator_cfg.init_data = of_get_regulator_init_data(&i2c->dev, i2c->dev.of_node,
-+							     &priv->desc);
-+
-+	rdev = devm_regulator_register(&i2c->dev, &priv->desc, &regulator_cfg);
-+	if (IS_ERR(rdev)) {
-+		dev_err(&i2c->dev, "Failed to register regulator\n");
-+		return PTR_ERR(rdev);
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id __maybe_unused rt6160_of_match_table[] = {
-+	{ .compatible = "richtek,rt6160", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, rt6160_of_match_table);
-+
-+static struct i2c_driver rt6160_driver = {
-+	.driver = {
-+		.name = "rt6160",
-+		.of_match_table = rt6160_of_match_table,
-+	},
-+	.probe_new = rt6160_probe,
-+};
-+module_i2c_driver(rt6160_driver);
-+
-+MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
-+MODULE_LICENSE("GPL v2");
--- 
-2.7.4
-
+> 
+> Peng Fan (4):
+>    dt-bindings: mailbox: imx-mu: add i.MX8ULP MU support
+>    mailbox: imx: replace the xTR/xRR array with single register
+>    mailbox: imx: add xSR/xCR register array
+>    mailbox: imx-mailbox: support i.MX8ULP MU
+> 
+>   .../devicetree/bindings/mailbox/fsl,mu.yaml   |   1 +
+>   drivers/mailbox/imx-mailbox.c                 | 196 +++++++++++-------
+>   2 files changed, 123 insertions(+), 74 deletions(-)
+> 
