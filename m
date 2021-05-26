@@ -2,89 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2D55391FDA
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 20:59:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6548C39208D
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 21:07:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235073AbhEZTA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 15:00:58 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:50962 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235002AbhEZTAy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 15:00:54 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14QIxI8L081348;
-        Wed, 26 May 2021 13:59:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1622055558;
-        bh=JLcWqo1gmuLZYUBwMCf24rWQmk458CRJORnK4CRGahE=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=ZQAnaxnyoVwawvoO/mgYv6PGDSOSEGYLVtHvWZIXSKMRzTaQYhGE7FYaRlL+LxCgw
-         0Svj3UJHKOVBtLka4u4058mFXOKyAFTYaFhB9nPYSfwS38lprEEY4qqdgYx+ckQAyx
-         K1ywcUIsmHZj7bf/CZwM47LZv6a6jGWSNa3VshGY=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14QIxICo097251
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 26 May 2021 13:59:18 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 26
- May 2021 13:59:17 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 26 May 2021 13:59:17 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14QIxHAM078148;
-        Wed, 26 May 2021 13:59:17 -0500
-Date:   Wed, 26 May 2021 13:59:17 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>
-CC:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        PCI <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: Re: [PATCH] dt-bindings: PCI: ti,am65: Convert PCIe host/endpoint
- mode dt-bindings to YAML
-Message-ID: <20210526185917.23icpjsuc37x3pae@slashing>
-References: <20210526134708.27887-1-kishon@ti.com>
- <20210526140902.lnk5du5k3b4sny3m@handheld>
- <CAL_Jsq+7AD4WXggRrVVb=HKVmuomda3KVXuC1mcjYwbgnWRUkg@mail.gmail.com>
+        id S232762AbhEZTIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 15:08:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43314 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231968AbhEZTI3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 May 2021 15:08:29 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0DA8A610A8;
+        Wed, 26 May 2021 19:06:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1622056018;
+        bh=ArzjRoIQImcLyGoAFNv7HeB9ZnbpJBh6UdALpi14PnQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=UlIeMsrtCkRRoFYoaTtfuyX12NysJpx7L5iKXkP4Bb6IvhF7skLg91u77ZAebW05t
+         B2waKvnSuRUS8jNXa9GVY9hQtQsvKNn/APfrUnLS34BU+88QCL71u7clW/AyVWaseo
+         KFnn2P86zWG8wULvsJ+2vY1nuk7cMMzpJvggdViF+LgZ5lM3UJzEpAKZe7mpWzZcTK
+         eLacnOlpQ2a2TaEuN7prl+OPFeihBrjjgrY+PKl6ggUaZGz1BHHsa46bXsi1PXHbZX
+         3I7IBv5s/hxMnMofvxMLimBvsY1jvIHEFmxj1VzSQDG2OMClDx0RKOzAysaez98QHM
+         vhKnDm758oh8Q==
+Received: by mail-ej1-f50.google.com with SMTP id k14so4172675eji.2;
+        Wed, 26 May 2021 12:06:57 -0700 (PDT)
+X-Gm-Message-State: AOAM532YYGhzqCXfLO6T0VcvY9YJmbHtTUjMfeBL99tkzLIQ4uJ0n0lb
+        p4lBa37tPeysuUM+6CqdWrj2xeGHM7H1SZxreQ==
+X-Google-Smtp-Source: ABdhPJxgVqvowzsp7TRxZPskdhCkXc6U/QwXmtf8n6OT0fr1FMW8d8o6pwJSfTkwGMCUkgkVWU1/wtp4/1Bdxtw1hnE=
+X-Received: by 2002:a17:907:724b:: with SMTP id ds11mr34749764ejc.108.1622056016641;
+ Wed, 26 May 2021 12:06:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+7AD4WXggRrVVb=HKVmuomda3KVXuC1mcjYwbgnWRUkg@mail.gmail.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20210524190919.2616-1-rdunlap@infradead.org>
+In-Reply-To: <20210524190919.2616-1-rdunlap@infradead.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 26 May 2021 14:06:44 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLCzFN81vbN=Y5hpvW_u=h9oWPSyK6zrO9kXr9pPArt1Q@mail.gmail.com>
+Message-ID: <CAL_JsqLCzFN81vbN=Y5hpvW_u=h9oWPSyK6zrO9kXr9pPArt1Q@mail.gmail.com>
+Subject: Re: [PATCH v2] OF: of_address: clean up OF stub & extern functions
+To:     Randy Dunlap <rdunlap@infradead.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        kernel test robot <lkp@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11:04-20210526, Rob Herring wrote:
+On Mon, May 24, 2021 at 2:09 PM Randy Dunlap <rdunlap@infradead.org> wrote:
+>
+> Adjust <linux/of_address.h> so that stubs are present when
+> CONFIG_OF is not set *or* OF is set but OF_ADDRESS is not set.
+>
+> This eliminates 2 build errors on arch/s390/ when HAS_IOMEM
+> is not set (so OF_ADDRESS is not set).
+> I.e., it provides a stub for of_iomap() when one was previously
+> not provided as well as removing some duplicate externs.
 
-[...]
+Personally, I think we should get rid of HAS_IOMEM or at least most of
+its usage in kconfig. It has little purpose beyond hiding drivers in
+kconfig and mainly for UML though I think UML no longer needs that
+IIRC. (I'm not wild about 'depends on OF' either).
 
-> > > +unevaluatedProperties: false
-> >
-> > Is it possible to lock this down further with additionalProperties: false?
-> 
-> unevaluatedProperties is what we want here.
-> 
-> > I could add some ridiculous property like system-controller; to the
-> > example and the checks wont catch it.
-> 
-> Yes, because unevaluatedProperties is currently unimplemented. Once
-> the upstream jsonschema tool supports it[1], there will be warnings.
-> The other way we could address this is there are $ref resolving tools
-> that flatten schemas.
-> 
-> [1] https://github.com/Julian/jsonschema/issues/613#issuecomment-636026577
+> s390-linux-ld: drivers/irqchip/irq-al-fic.o: in function `al_fic_init_dt':
+> irq-al-fic.c:(.init.text+0x7a): undefined reference to `of_iomap'
+> s390-linux-ld: drivers/clocksource/timer-of.o: in function `timer_of_init':
+> timer-of.c:(.init.text+0xa4): undefined reference to `of_iomap'
+>
+> Tested with many randconfig builds, but there could still be some
+> hidden problem here.
+>
+> Fixes: 4acf4b9cd453 ("of: move of_address_to_resource and of_iomap declarations from sparc")
+> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Reported-by: kernel test robot <lkp@intel.com>
+> ---
+> v2: handle SPARC as a special case since it provides its own versions of
+>     of_address_to_resource() and of_iomap();
+>     fix build errors reported by lkp/ktr and address comments from Laurent;
+>     do more randconfig build testing;
+>
+>  include/linux/of_address.h |   11 +++++++----
+>  1 file changed, 7 insertions(+), 4 deletions(-)
+>
+> --- linux-next-20210524.orig/include/linux/of_address.h
+> +++ linux-next-20210524/include/linux/of_address.h
+> @@ -106,11 +106,12 @@ static inline bool of_dma_is_coherent(st
+>  }
+>  #endif /* CONFIG_OF_ADDRESS */
+>
+> -#ifdef CONFIG_OF
+> +#ifdef CONFIG_SPARC /* SPARC has its own versions of these */
 
+The whole point of CONFIG_OF_ADDRESS is really just for SPARC. So I
+don't really like the mixture of the ifdefs here and in kconfig. It
+looks only more fragile.
 
-Aha.. Thanks.
+Can we drop the HAS_IOMEM dependency from CONFIG_OF_ADDRESS and then
+fix the fallout from that? That would also remove all the other build
+time dependencies on HAS_IOMEM.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+>  extern int of_address_to_resource(struct device_node *dev, int index,
+>                                   struct resource *r);
+> -void __iomem *of_iomap(struct device_node *node, int index);
+> -#else
+> +extern void __iomem *of_iomap(struct device_node *device, int index);
+> +#else /* !CONFIG_SPARC */
+> +#if (defined(CONFIG_OF) && !defined(CONFIG_OF_ADDRESS)) || !defined(CONFIG_OF)
+>  static inline int of_address_to_resource(struct device_node *dev, int index,
+>                                          struct resource *r)
+>  {
+> @@ -121,7 +122,9 @@ static inline void __iomem *of_iomap(str
+>  {
+>         return NULL;
+>  }
+> -#endif
+> +#endif /* (defined(CONFIG_OF) && !defined(CONFIG_OF_ADDRESS)) || !defined(CONFIG_OF) */
+> +#endif /* CONFIG_SPARC */
+> +
+>  #define of_range_parser_init of_pci_range_parser_init
+>
+>  #if defined(CONFIG_OF_ADDRESS) && defined(CONFIG_PCI)
