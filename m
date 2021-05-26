@@ -2,192 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B20339111C
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 08:58:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECABD39111E
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 08:59:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232743AbhEZHAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 03:00:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43036 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232606AbhEZHAT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 03:00:19 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BD6EC061574;
-        Tue, 25 May 2021 23:58:45 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id x8so34640424wrq.9;
-        Tue, 25 May 2021 23:58:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=asQJuRHZZL4WwtmJ8EQ2cq+NU+3PT+sXgIdxpI2y5c0=;
-        b=F385HquhA8pQgP88kNeygvh0iA4qA0eo0+zfUoqUfyb/Ilh8JMYa6v4q/taec07Co3
-         IcuQ+4UdLC1Fk5fSXWoGW3NPbh185kCXOFMIha7dUOAWkaGeSufoZpkzaRT3bmtcdBXf
-         PrVgOxosF71VoQwtFWXl90LSW1bxDNsywtBL9aS060eqarf7+gKSNkCEuyeAjVadnjti
-         mNEhauz0p/7ApXpSDQOluNiSF1mgadOqZ3DR0LTN4+HxlGgOeE1YHO05+bZJ0FZX0hgv
-         zWT9/2Qny0sGMlJpG2MSAWZAY20/vBdLiBXfXR16SGF/ybOFaZXwyxtaQeSYCQVNwRNf
-         oE2A==
+        id S232861AbhEZHAx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 03:00:53 -0400
+Received: from mail-ua1-f53.google.com ([209.85.222.53]:46691 "EHLO
+        mail-ua1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232959AbhEZHAv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 03:00:51 -0400
+Received: by mail-ua1-f53.google.com with SMTP id h26so199219uab.13
+        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 23:59:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=asQJuRHZZL4WwtmJ8EQ2cq+NU+3PT+sXgIdxpI2y5c0=;
-        b=ZZbZjDDNQ5IjvzchAptGeoDCG03zYNwhFxoPzb9IgXkiFCOveciT1jiz66OO3v2ZgB
-         UGVs80hOH3GHa2WpPb6mg8s8qqmTF/KuGWrSJH1sViBExOYKg1QnhTa9e9MffvY3MycW
-         zxIwM1TdeP906CSU14Q36VK4VBpB55hMYt7jIjVCtafuqi1JtYX09MN7Atvh/TjUoh3u
-         kcQHo71DDY4CkZG71aBDPeJa7fUISCIUealgTzQMjpO002vdtXgSeJmCfz2B/TbveJcq
-         s1Tw+OydkA4fvPDfJNSrEDJCdmSwrAEYQCANXRPgXijsOqR1vMc8GNXO+R2ZF/JX4opd
-         jyIw==
-X-Gm-Message-State: AOAM530c1y7cNEUpInFvqP9zHtNnu+2i52eGhSmUGbakJZkN818hrbx5
-        ev13CicHdV6gGvUkzHIWO9Gn6XXoEq4YQv6PgDA=
-X-Google-Smtp-Source: ABdhPJy7ZFxxkadGoPDk+I+el8lclKSv52+ihny8Dho6WcbKbefxAsie+z0FxrKnPLtHJjlxJ55ehC5SZREwPguvS44=
-X-Received: by 2002:a5d:514b:: with SMTP id u11mr30714820wrt.350.1622012323954;
- Tue, 25 May 2021 23:58:43 -0700 (PDT)
+        bh=rbIgMpemtTHbO3qkKfLpmSkVH9ZxGhJc4CNxNEzF53c=;
+        b=l7cnJlQuYHf8LbhNJBB1TdKJEHi/8xG/Fp6fs0pK2e6CK1wnHF753G9wzQgBNtSAk9
+         81pjTSjGA/i8oz+zTuH9gMb/5M9YiRP0lvVzvY8iSl7m/24/jbZ0f2L45RUWgfVjjOkg
+         uKWMJInU1ztR3AQVvL0xE127v1MNVLPEdZkqJI9n8GWll5o46IMgX2NHJWUp8trJqyiI
+         sSvSI3+CmqdnWDoh2zJjSHmL4IrqTh3sKfrs4e0fOusvQRcu6CS4Em9MG+GmgKV1iaVs
+         YnSDsoG53yyBLbdHHQLDaN04itD051VKDnKZyGak2bAVIK/wEKofIKjfDjrwbc3Jno9X
+         1wKQ==
+X-Gm-Message-State: AOAM530rbxzlP0zQmre0yEvnxzjCrssl37aNrr3T9NJW0u8NPkXKuqff
+        FWm5SqkreypM8UhpmOys2cM+sd/HG0TU522O07yRFuzjeMQ=
+X-Google-Smtp-Source: ABdhPJyr2DwGlAerbBy+44CDrneQvQVFvTmw9Cq5QMkNCZYkuk62lkiswIekqmvB9MCX0AIWQ4asPIizvWD4iBpX3nw=
+X-Received: by 2002:ab0:6584:: with SMTP id v4mr3714762uam.100.1622012345211;
+ Tue, 25 May 2021 23:59:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210507101926.25631-1-peng.fan@oss.nxp.com> <20210507101926.25631-3-peng.fan@oss.nxp.com>
-In-Reply-To: <20210507101926.25631-3-peng.fan@oss.nxp.com>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Wed, 26 May 2021 09:58:32 +0300
-Message-ID: <CAEnQRZB25yt7NxUMD22FsuhcOBryo8NS3kJ20xsb0hOvAc10og@mail.gmail.com>
-Subject: Re: [PATCH 2/4] mailbox: imx: replace the xTR/xRR array with single register
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
+References: <87y2c4oe3y.wl-kuninori.morimoto.gx@renesas.com>
+ <87tumsoe2p.wl-kuninori.morimoto.gx@renesas.com> <CAMuHMdXLYvEBE0bVk=8D+GkuaHRUvdTayCQPqTYAkPJEaW8MDQ@mail.gmail.com>
+ <87zgwimnuu.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87zgwimnuu.wl-kuninori.morimoto.gx@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 26 May 2021 08:58:53 +0200
+Message-ID: <CAMuHMdVhnKeztftOJEZhSg8bXArzUDXAmHSMPVfbMamV3ihw+g@mail.gmail.com>
+Subject: Re: [PATCH 3/3] ASoC: rsnd: add null CLOCKIN support
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Oleksij Rempel <o.rempel@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>
+        Jaroslav Kysela <perex@perex.cz>,
+        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 7, 2021 at 3:33 PM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
->
-> From: Peng Fan <peng.fan@nxp.com>
->
-> The xTR/xRR registers are using 4 bytes stride and continuous.
-> Considering we will support more TR and RR registers, use base + idx * 4
-> method to calculate register address, not hardcoding in driver.
->
-Peng, this means that for imx8ul the Tx registers are not continuous
-right? Please make this clear in
-the commit message.
+Hi Morimoto-san,
 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/mailbox/imx-mailbox.c | 28 ++++++++++++++--------------
->  1 file changed, 14 insertions(+), 14 deletions(-)
+On Wed, May 26, 2021 at 12:48 AM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> > I'm not such a big fan of creating dummy clocks.
+> > And what if a future SoC lacks two CLOCKIN pins? Then you'll try to
+> > register a second dummy clock with the same name, which will fail,
+> > presumably?
 >
-> diff --git a/drivers/mailbox/imx-mailbox.c b/drivers/mailbox/imx-mailbox.c
-> index 2543c7b6948b..bd7758c32a80 100644
-> --- a/drivers/mailbox/imx-mailbox.c
-> +++ b/drivers/mailbox/imx-mailbox.c
-> @@ -76,8 +76,8 @@ struct imx_mu_dcfg {
->         int (*tx)(struct imx_mu_priv *priv, struct imx_mu_con_priv *cp, void *data);
->         int (*rx)(struct imx_mu_priv *priv, struct imx_mu_con_priv *cp);
->         void (*init)(struct imx_mu_priv *priv);
-> -       u32     xTR[4];         /* Transmit Registers */
-> -       u32     xRR[4];         /* Receive Registers */
-> +       u32     xTR;            /* Transmit Register0 */
-> +       u32     xRR;            /* Receive Register0 */
->         u32     xSR;            /* Status Register */
->         u32     xCR;            /* Control Register */
->  };
-> @@ -120,7 +120,7 @@ static int imx_mu_generic_tx(struct imx_mu_priv *priv,
+> I think current code will reuse same null_clk for these.
+
+Oh right, I missed the static clk_hw pointer.
+What if you unload the snd-soc-rcar.ko module?
+
+> > This should only be done when the clock does not exist, not in case
+> > of other errors (e.g. -EPROBE_DEFER, which isn't handled yet)?
+> >
+> > As devm_clk_get_optional() already checks for existence, you could use:
+> >
+> >     struct clk *clk = devm_clk_get_optional(dev, clk_name[i]);
+> >     if (!clk)
+> >             clk = rsnd_adg_null_clk_get(priv);
 >
->         switch (cp->type) {
->         case IMX_MU_TYPE_TX:
-> -               imx_mu_write(priv, *arg, priv->dcfg->xTR[cp->idx]);
-> +               imx_mu_write(priv, *arg, priv->dcfg->xTR + cp->idx * 4);
->                 imx_mu_xcr_rmw(priv, IMX_MU_xCR_TIEn(cp->idx), 0);
->                 break;
->         case IMX_MU_TYPE_TXDB:
-> @@ -140,7 +140,7 @@ static int imx_mu_generic_rx(struct imx_mu_priv *priv,
->  {
->         u32 dat;
+> Ah, indeed.
+> Thanks. I will fix it.
 >
-> -       dat = imx_mu_read(priv, priv->dcfg->xRR[cp->idx]);
-> +       dat = imx_mu_read(priv, priv->dcfg->xRR + (cp->idx) * 4);
->         mbox_chan_received_data(cp->chan, (void *)&dat);
+> > But in light of the above (avoiding dummy clocks), it might be more
+> > robust to make sure all code can handle adg->clk[i] = NULL?
 >
->         return 0;
-> @@ -172,7 +172,7 @@ static int imx_mu_scu_tx(struct imx_mu_priv *priv,
->                 }
+> The reason why I don't use adg->clk[i] = NULL is it is using this macro
 >
->                 for (i = 0; i < 4 && i < msg->hdr.size; i++)
-> -                       imx_mu_write(priv, *arg++, priv->dcfg->xTR[i % 4]);
-> +                       imx_mu_write(priv, *arg++, priv->dcfg->xTR + (i % 4) * 4);
->                 for (; i < msg->hdr.size; i++) {
->                         ret = readl_poll_timeout(priv->base + priv->dcfg->xSR,
->                                                  xsr,
-> @@ -182,7 +182,7 @@ static int imx_mu_scu_tx(struct imx_mu_priv *priv,
->                                 dev_err(priv->dev, "Send data index: %d timeout\n", i);
->                                 return ret;
->                         }
-> -                       imx_mu_write(priv, *arg++, priv->dcfg->xTR[i % 4]);
-> +                       imx_mu_write(priv, *arg++, priv->dcfg->xTR + (i % 4) * 4);
->                 }
+>         #define for_each_rsnd_clk(pos, adg, i)          \
+>                 for (i = 0;                             \
+>                      (i < CLKMAX) &&                    \
+>                      ((pos) = adg->clk[i]);             \
+>                      i++)
 >
->                 imx_mu_xcr_rmw(priv, IMX_MU_xCR_TIEn(cp->idx), 0);
-> @@ -204,7 +204,7 @@ static int imx_mu_scu_rx(struct imx_mu_priv *priv,
->         u32 xsr;
+> The loop will stop at (A) if it was
 >
->         imx_mu_xcr_rmw(priv, 0, IMX_MU_xCR_RIEn(0));
-> -       *data++ = imx_mu_read(priv, priv->dcfg->xRR[0]);
-> +       *data++ = imx_mu_read(priv, priv->dcfg->xRR);
->
->         if (msg.hdr.size > sizeof(msg) / 4) {
->                 dev_err(priv->dev, "Maximal message size (%zu bytes) exceeded on RX; got: %i bytes\n", sizeof(msg), msg.hdr.size << 2);
-> @@ -218,7 +218,7 @@ static int imx_mu_scu_rx(struct imx_mu_priv *priv,
->                         dev_err(priv->dev, "timeout read idx %d\n", i);
->                         return ret;
->                 }
-> -               *data++ = imx_mu_read(priv, priv->dcfg->xRR[i % 4]);
-> +               *data++ = imx_mu_read(priv, priv->dcfg->xRR + (i % 4) * 4);
->         }
->
->         imx_mu_xcr_rmw(priv, IMX_MU_xCR_RIEn(0), 0);
-> @@ -564,8 +564,8 @@ static const struct imx_mu_dcfg imx_mu_cfg_imx6sx = {
->         .tx     = imx_mu_generic_tx,
->         .rx     = imx_mu_generic_rx,
->         .init   = imx_mu_init_generic,
-> -       .xTR    = {0x0, 0x4, 0x8, 0xc},
-> -       .xRR    = {0x10, 0x14, 0x18, 0x1c},
-> +       .xTR    = 0x0,
-> +       .xRR    = 0x10,
->         .xSR    = 0x20,
->         .xCR    = 0x24,
->  };
-> @@ -574,8 +574,8 @@ static const struct imx_mu_dcfg imx_mu_cfg_imx7ulp = {
->         .tx     = imx_mu_generic_tx,
->         .rx     = imx_mu_generic_rx,
->         .init   = imx_mu_init_generic,
-> -       .xTR    = {0x20, 0x24, 0x28, 0x2c},
-> -       .xRR    = {0x40, 0x44, 0x48, 0x4c},
-> +       .xTR    = 0x20,
-> +       .xRR    = 0x40,
->         .xSR    = 0x60,
->         .xCR    = 0x64,
->  };
-> @@ -584,8 +584,8 @@ static const struct imx_mu_dcfg imx_mu_cfg_imx8_scu = {
->         .tx     = imx_mu_scu_tx,
->         .rx     = imx_mu_scu_rx,
->         .init   = imx_mu_init_scu,
-> -       .xTR    = {0x0, 0x4, 0x8, 0xc},
-> -       .xRR    = {0x10, 0x14, 0x18, 0x1c},
-> +       .xTR    = 0x0
-> +       .xRR    = 0x10
->         .xSR    = 0x20,
->         .xCR    = 0x24,
->  };
-> --
-> 2.30.0
->
+>         adg->clk[0] = audio_clk_a;
+>         adg->clk[1] = audio_clk_b;
+> (A)     adg->clk[2] = NULL
+>         adg->clk[3] = audio_clk_i;
+
+If you use this macro everywhere, that is easily handled by the
+following variant:
+
+    #define for_each_rsnd_clk(pos, adg, i)          \
+            for (i = 0; (pos) = adg->clk[i], i < CLKMAX; i++)            \
+                    if (pos) {                      \
+                            continue;               \
+                    } else
+
+There are several existing examples of such a construct.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
