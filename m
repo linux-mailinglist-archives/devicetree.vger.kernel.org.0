@@ -2,199 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 459D4391C0B
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 17:31:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1474F391C57
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 17:47:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234615AbhEZPdC convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 26 May 2021 11:33:02 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:57321 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233869AbhEZPc7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 11:32:59 -0400
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 537EF20016;
-        Wed, 26 May 2021 15:31:24 +0000 (UTC)
-Date:   Wed, 26 May 2021 17:31:23 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Han Xu <han.xu@nxp.com>
-Cc:     Sean Nyekjaer <sean@geanix.com>, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] mtd: nand: raw: gpmi: new bch geometry settings
-Message-ID: <20210526173123.1787713b@xps13>
-In-Reply-To: <20210526141700.5gygssig4rnzn6mj@umbrella>
-References: <20210522205136.19465-1-han.xu@nxp.com>
-        <13c975bc-b37b-8708-9ac7-acdc62ef7108@geanix.com>
-        <20210525191308.jlxqvy7khptbuj4z@umbrella>
-        <20210526094136.279976a6@xps13>
-        <20210526141700.5gygssig4rnzn6mj@umbrella>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S234553AbhEZPsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 11:48:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51404 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232537AbhEZPsp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 11:48:45 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85D6FC061574
+        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 08:47:14 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id h20-20020a17090aa894b029015db8f3969eso583607pjq.3
+        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 08:47:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Y5Bgd0Jh4nDL9nxbYQPkXNJczysNVELPbL2b6pe0vik=;
+        b=YZVXRZQbI8i/iFl06Wmwupv7VoVvO+LkA88TmHrBpNc5HmcF+NbaKX2TFhOM610pMQ
+         pXpgHaJo6u7iq0DmOtJuOAjNRelr9HOVxQhnqZ+SPfkU6JyRr//jVwL1GOProkuEm2vu
+         LnRLaWlOMtwbyBSClwdDseICaM6hWrZOwWD68=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Y5Bgd0Jh4nDL9nxbYQPkXNJczysNVELPbL2b6pe0vik=;
+        b=hgSqS75gTRsgAuU0OQzM0o1ttGjOBLQB+0rTCoYXe8/PjBi5ic5F9iE1pkRt8xHjoQ
+         WzoobV77pBjIfFL1mB5cUyGYKP85ba8X8YnPMTYMMvy+EwB9ZwdKXe5PMViVMs2Cm/QD
+         wcLok+yp3LvhxbPDuDduyxckCZ+XkIVK9qep4IkLlgLkTNVGlgwindtGaBEzZUfKe7yp
+         uKZGp7xXqUVQgfDTEe3CGD9PumeDLbKKBXwIf5PHmNydNQIQKMRCymASi9zBZpuFch5U
+         JRFCtuXtO2NW9FbntqKJi+CUAEK+BlckZpZWgexVGbEYQ0VDmNeBkL6txbIXR7SlTsI+
+         +Akw==
+X-Gm-Message-State: AOAM530sYy3SBS/duGLLY6KLU0Ous61PP/fmuyariEe+6mvvOkivqfUl
+        Q6e1rjP46jvyOesR5dtdNGUUSg==
+X-Google-Smtp-Source: ABdhPJwJ7oSD990XEzL/3FSdH74tC6Kpu2hlE7hlvuRBr87zJMb2XZIAZ4P6rxWAAh7RG/1HmDSbnA==
+X-Received: by 2002:a17:902:c213:b029:f0:bbdf:3852 with SMTP id 19-20020a170902c213b02900f0bbdf3852mr36626293pll.56.1622044034046;
+        Wed, 26 May 2021 08:47:14 -0700 (PDT)
+Received: from judyhsiao-p920.tpe.corp.google.com ([2401:fa00:1:10:ef05:d69e:64e4:1d96])
+        by smtp.gmail.com with ESMTPSA id k21sm16830456pgb.56.2021.05.26.08.47.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 May 2021 08:47:13 -0700 (PDT)
+From:   Judy Hsiao <judyhsiao@chromium.org>
+To:     broonie@kernel.org
+Cc:     Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>, dianders@chromium.org,
+        dgreid@chromium.org, cychiang@google.com, tzungbi@chromium.org,
+        swboyd@chromium.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, Judy Hsiao <judyhsiao@chromium.org>
+Subject: [PATCH] ASoC: max98357a: set channels_max to 4
+Date:   Wed, 26 May 2021 23:47:04 +0800
+Message-Id: <20210526154704.114957-1-judyhsiao@chromium.org>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Han,
+Sets channels_max to 4 to support QUAD channel.
 
-Han Xu <han.xu@nxp.com> wrote on Wed, 26 May 2021 09:17:00 -0500:
+Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+---
+ sound/soc/codecs/max98357a.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> On 21/05/26 09:41AM, Miquel Raynal wrote:
-> > Hi Han,
-> > 
-> > Han Xu <han.xu@nxp.com> wrote on Tue, 25 May 2021 14:13:08 -0500:
-> >   
-> > > On 21/05/23 07:44PM, Sean Nyekjaer wrote:  
-> > > > On 22/05/2021 22.51, Han Xu wrote:    
-> > > > > The code change updates the gpmi driver bch geometry settings, the NAND
-> > > > > chips required minimum ecc strength and step size will be the default
-> > > > > value. It also proposes a new way to set bch geometry for large oob NAND
-> > > > > and provides an option to keep the legacy bch geometry setting for
-> > > > > backward compatibility.    
-> > > > 
-> > > > This will break all existing devicetree's. (this happened to us with the same style already merged u-boot patch)
-> > > >     
-> > > > > 
-> > > > > - For the legacy bch geometry settings
-> > > > > The driver uses legacy bch geometry settings if explicitly enabled it in
-> > > > > DT with fsl, legacy-bch-geometry flag, or the NAND chips are too old
-> > > > > that do NOT provide any required ecc info.    
-> > > > 
-> > > > NAND's are providing the minimum required ecc, the now legacy method
-> > > > actually gives more ecc bits and quite cheap when using hw ecc.
-> > > >     
-> > > > > 
-> > > > > The legacy_set_geometry() sets the data chunk size(step_size) larger
-> > > > > than oob size to make sure BBM locates in data chunk, then set the
-> > > > > maximum ecc stength oob can hold. It always use unbalanced ECC layout,
-> > > > > which ecc0 will cover both meta and data0 chunk.
-> > > > > 
-> > > > > This algorithm can NOT provide strong enough ecc for some NAND chips,
-> > > > > such as some 8K+744 MLC NAND. We still leave it here just for backward
-> > > > > compatibility and als for some quite old version NAND chips support. It
-> > > > > should be en/disabled in both u-boot and kernel at the same time.
-> > > > > 
-> > > > > - For the large oob bch geometry settings
-> > > > > This type of setting will be used for NAND chips, which oob size is
-> > > > > larger than 1024B OR NAND required step size is small than oob size,
-> > > > > the general idea is,
-> > > > > 
-> > > > >     1.Try all ECC strength from the minimum value required by NAND chip
-> > > > >       to the maximum one that works, any ECC makes the BBM locate in
-> > > > >       data chunk can be eligible.
-> > > > > 
-> > > > >     2.If none of them works, using separate ECC for meta, which will add
-> > > > >       one extra ecc with the same ECC strength as other data chunks.
-> > > > >       This extra ECC can guarantee BBM located in data chunk, also we
-> > > > >       need to check if oob can afford it.
-> > > > > 
-> > > > > - For all other common cases
-> > > > > set the bch geometry by chip required strength and step size, which uses
-> > > > > the minimum ecc strength chip required.
-> > > > > 
-> > > > > Signed-off-by: Han Xu <han.xu@nxp.com>    
-> > > > 
-> > > > One further point, u-boot older than v2020.04 will not be aligned with the way ecc bits is
-> > > > calculated with this patch applied(without the legacy option set).
-> > > > 
-> > > > It's quite a mess :/
-> > > > I would recommend to use the legacy mode as default, and add the new style as "modern" option.
-> > > > (Also in u-boot)
-> > > > 
-> > > > /Sean    
-> > > 
-> > > 
-> > > Hi Sean,
-> > > 
-> > > I know this change brings mess but the legacy way is wrong. The way it determine
-> > > the data chunk size is arbitrary,  
-> > 
-> > Yes, that's always the case: all default choices are arbitrary in the
-> > Linux kernel, there is actually a lot of logic provided by the core to
-> > handle that, unless the user requires something specific.
-> >   
-> > > take any 8K + 448 (not 744, typo in previous
-> > > comments) Micron NAND chips as example, the legacy way can only provide 16bit
-> > > ecc since data chunk size is set to 512B, but 24b/1K is required by NAND chips.  
-> > 
-> > This means a strength of 32 bits per kilobyte of data vs 24 bits per
-> > kilobyte.
-> >   
-> > > According to the A/B X/Y ecc requirement, this is not acceptable.  
-> > 
-> > What you call the legacy way is even better, the only situation where
-> > it may be an issue is if the NAND chip does not feature enough OOB
-> > bytes to store the ECC codes, which does not seem to be your primary
-> > concern here.  
-> 
-> Hi Miquel,
-> 
-> The legacy ecc strength is fine or even better by average, but it doesn't meet
-> the requirement #2
-> 
-> (1) A / B >= X / Y
-> (2) A >= X
-> 
-> that's my primary concern.
+diff --git a/sound/soc/codecs/max98357a.c b/sound/soc/codecs/max98357a.c
+index 918812763884..c3cf1743caad 100644
+--- a/sound/soc/codecs/max98357a.c
++++ b/sound/soc/codecs/max98357a.c
+@@ -117,7 +117,7 @@ static struct snd_soc_dai_driver max98357a_dai_driver = {
+ 		.rate_min	= 8000,
+ 		.rate_max	= 96000,
+ 		.channels_min	= 1,
+-		.channels_max	= 2,
++		.channels_max	= 4,
+ 	},
+ 	.ops    = &max98357a_dai_ops,
+ };
+-- 
+2.31.0
 
-I understand that (2) might be ideal to meet but is breaking all the
-boards that use this driver really worth the trouble?
-
-Short answer: no. So we need to adapt the calculation for new
-boards/new flash chips/certain geometries at most.
-
-> > > The new implementation might get weak ecc than legacy way in some cases but it
-> > > is safety guaranteed.  
-> > 
-> > What does "safety guaranteed" means?  
-> 
-> set minimum ecc required by nand chip at least meet all requirements
-> 
-> >   
-> > > This reminds me the gpmi raw access mode changes in kernel 3.19, it also changes
-> > > the driver behaviors and makes totally different output compared with older
-> > > versions. I know changes bring mess but we have to accept it at some point
-> > > rather than keep compromising to the wrong way.  
-> > 
-> > How is this an argument? I am usually in favor of moving forward when
-> > there is a real justification, but this does not seem the case, unless
-> > I am understanding it all the wrong way.
-> >   
-> > > The change has been in NXP kernel fork for a while, so quite a few customers are
-> > > using this bch geometry settings. I hope it can be upstreamed, any other things
-> > > I can do may mitigate the imapact?  
-> > 
-> > You are well aware of the upstreaming process, trying to merge
-> > something locally, making it used and then complaining because not
-> > upstreaming it would break your customers really is your own
-> > responsibility.  
-> 
-> Sorry I understand I should try upstreaming it early, so I am still looking for
-> a chance to avoid further divergence.
-> 
-> > 
-> > IMHO the solutions are:
-> > - the current (mainline) default will remain the standard for
-> >   geometries which are already widely supported
-> > - if there are new geometries that must be supported and do not fit
-> >   because of the "legacy" logic, then you may detect that and try
-> >   to fallback to the "modern" way of calculating the ECC
-> >   parameters (or even jump directly to the modern way if the geometry
-> >   really is not currently supported officially)
-> > - if your customers want a specific chunk size/strength when
-> >   rebasing on top of a mainline kernel there are DT properties which do
-> >   that anyway
-> > - follow Sean advice: introduce a property requesting to use the
-> >   'modern' or 'legacy' logic (with a better name than modern) but first
-> >   check with Rob that this if valid.
-
-Another hint: please check the core helpers and use them instead of
-trying to re-invent the wheel: normally just describing the engine
-capabilities and calling a single helper should do the trick. But this
-'new' calculation should only apply to eg. MLC devices or devices with
-specific geometries, not to all devices.
-
-Thanks,
-Miquèl
