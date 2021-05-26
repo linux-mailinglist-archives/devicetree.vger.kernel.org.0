@@ -2,182 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21642391F37
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 20:35:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A61F1391F4F
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 20:41:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232367AbhEZShA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 14:37:00 -0400
-Received: from foss.arm.com ([217.140.110.172]:48630 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235472AbhEZSgy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 May 2021 14:36:54 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 71C47143B;
-        Wed, 26 May 2021 11:35:22 -0700 (PDT)
-Received: from bogus (unknown [10.57.70.210])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AAE623F73B;
-        Wed, 26 May 2021 11:35:20 -0700 (PDT)
-Date:   Wed, 26 May 2021 19:35:15 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     devicetree@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jim Quinlan <jim2101024@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Etienne Carriere <etienne.carriere@linaro.org>,
-        Peter Hilber <peter.hilber@opensynergy.com>
-Subject: Re: [PATCH 8/8] dt-bindings: firmware: arm,scmi: Convert to json
- schema
-Message-ID: <20210526183455.q6wmhm6qjggu65hs@bogus>
-References: <20210526182807.548118-1-sudeep.holla@arm.com>
- <20210526182807.548118-9-sudeep.holla@arm.com>
+        id S235544AbhEZSmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 14:42:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34402 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235564AbhEZSmp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 14:42:45 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE707C061574;
+        Wed, 26 May 2021 11:41:12 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id o18so3442744ybc.8;
+        Wed, 26 May 2021 11:41:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=XFPiHuMmgB1diVIK7dUPVf8VcVw6JsgY/PRpvldEVQ0=;
+        b=qaSvn6PI+8BoBElLj/aK5GPJlL6f774Y24z0S6KncRf915wNgynqgtLORZyoSDVquM
+         SpOjVNqBDwkEZ2pxfIRMa7bMNtMXBCAhSb58WtU1nsfrAT3XIxRjnmVpPjrSzcNSPb7g
+         z5BVFBGZ2KuVuliw9g4hAoOnFHPQ3REKaiRClFkO6tPNNAk89cyfePVQpCAFoUniS/kY
+         qBkTpVtuPjfcLaBWOn0SfYMKBxxlE457FedrsxXevhi0w3n+k4iSGSjSZXPt0npjSAdK
+         agdh4otT1bi2+sYrYgK2WbafJ0hGlfOEO7Mnh3y7O0fxWY9g3RUbW6jIIOMzZysLqpVn
+         a+iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XFPiHuMmgB1diVIK7dUPVf8VcVw6JsgY/PRpvldEVQ0=;
+        b=F7NJCHRJhu4Wvb346pIKdi+yJb8nf1Ox3W+ezfj+l/vAhO7HAjnAOcXHlIvH/LEpHj
+         rif6CHemliJQMCcnoSPaHHNO6NMr9nMLamJa8YjwkHnew+rPlzE670uHQGa8AZF/Ohui
+         2ljW0wcKb3XgqGMgvuBdn0jjkze+mTWD92Xxyo5RuGVuPtHkEOXZ74RB/SCkV0a7kXsZ
+         TDuQVsAtadiQVkEcifzgyKWDzVZ2EcrH0RnWThhWxdyCXSmQeP8va0BeUdJzvQJegGit
+         OHzW0NV3fzGYqi0vTqvsK6PR3tWZG9JYuPhCCvyPlKWWYaGLbS6O+FaeYKX9mNS4bsWl
+         GiMg==
+X-Gm-Message-State: AOAM533711Pe8H1r2ZuF8g8NHmKZEMGQZEAwc9JPcWcqNUlxCMIiJct0
+        xSApm5hy3lVKC1AiO3+nJR+4p+gVJA6AewZBaAk=
+X-Google-Smtp-Source: ABdhPJwT4k6DNHfY5t+fcuHUkZTxoJn64AyHFKIC91gNYP2lNln/V0r4OROotjDGt6+BPUuDXwodmF+VI6cgRZ3t6Zw=
+X-Received: by 2002:a25:3c87:: with SMTP id j129mr53760696yba.141.1622054471905;
+ Wed, 26 May 2021 11:41:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210526182807.548118-9-sudeep.holla@arm.com>
+References: <20210526162342.GA20@8bbba9ba63a4>
+In-Reply-To: <20210526162342.GA20@8bbba9ba63a4>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Wed, 26 May 2021 14:41:00 -0400
+Message-ID: <CAMdYzYpZoKs3P62j02RW-+5BEpqC9JL3apjucTWLWmvNFrOrCg@mail.gmail.com>
+Subject: Re: [PATCH] regulator: fan53555: add back tcs4526
+To:     Rudi Heitbaum <rudi@heitbaum.com>
+Cc:     devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Mark Brown <broonie@kernel.org>,
+        Ezequiel Garcia <ezequiel@collabora.com>, chenjh@rock-chips.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 26, 2021 at 07:28:07PM +0100, Sudeep Holla wrote:
-> Convert the old text format binding for System Control and Management Interface
-> (SCMI) Message Protocol into the new and shiny YAML format.
-> 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Cristian Marussi <cristian.marussi@arm.com>
-> Cc: Florian Fainelli <f.fainelli@gmail.com>
-> Cc: Jim Quinlan <jim2101024@gmail.com>
-> Cc: Etienne Carriere <etienne.carriere@linaro.org>
-> Cc: Peter Hilber <peter.hilber@opensynergy.com>
-> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> ---
->  .../devicetree/bindings/arm/arm,scmi.txt      | 224 ---------------
->  .../bindings/firmware/arm,scmi.yaml           | 270 ++++++++++++++++++
->  2 files changed, 270 insertions(+), 224 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/arm,scmi.txt
->  create mode 100644 Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> 
-> Hi,
-> 
-> I have converted all the bindings except the below regulator part of the
-> binding. This needs to be addressed before merging ofcourse. Just posting
-> the remaining changes to get feedback and also ask suggestion for the below:
-> 
->         scmi_voltage: protocol@17 {
->           reg = <0x17>;
->           regulators {
->             regulator_devX: regulator@0 {
->               reg = <0x0>;
->               regulator-max-microvolt = <3300000>;
->             };
-> 
->             regulator_devY: regulator@9 {
->               reg = <0x9>;
->               regulator-min-microvolt = <500000>;
->               regulator-max-microvolt = <4200000>;
->             };
->           };
->         };
-> 
-> I will reply with things I have tried separately to avoid confusion with this
-> the patch here.
+On Wed, May 26, 2021 at 12:23 PM Rudi Heitbaum <rudi@heitbaum.com> wrote:
 >
+>
+> For rk3399pro boards the tcs4526 regulator supports the vdd_gpu
+> regulator. The tcs4526 regulator has a chip id of <0>.
+> Add the compatibile tcs,tcs4526
+>
+> without this patch, the dmesg output is:
+>   fan53555-regulator 0-0010: Chip ID 0 not supported!
+>   fan53555-regulator 0-0010: Failed to setup device!
+>   fan53555-regulator: probe of 0-0010 failed with error -22
+> with this patch, the dmesg output is:
+>   vdd_gpu: supplied by vcc5v0_sys
+>
+> The regulators are described as:
+> - Dedicated power management IC TCS4525
+> - Lithium battery protection chip TCS4526
+>
+> This has been tested with a Radxa Rock Pi N10.
+>
+> Fixes: f9028dcdf589 ("regulator: fan53555: only bind tcs4525 to correct chip id")
+> Signed-off-by: Rudi Heitbaum <rudi@heitbaum.com>
 
-Below is the patch I have tried. I even started without a separate binding
-for scmi regulator. Irrespective of what I have tried so far, I keep getting
-the same error, I even added '#address-cells' and '#size-cells' to the node
-but makes no difference.
+Considering the TCS4525 wasn't supported prior to its recent addition,
+and the TCS4526 wasn't supported by the driver at all, this isn't a
+fix but a feature addition.
+Binding only to the correct device ID exists for this reason, to
+prevent unsafe voltage setting.
 
-Documentation/devicetree/bindings/firmware/arm,scmi.example.dt.yaml
-Documentation/devicetree/bindings/firmware/arm,scmi.example.dts:62.19-31: Warning (reg_format): /example-0/firmware/scmi/protocol@17/regulators/regulator@0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/firmware/arm,scmi.example.dts:67.19-31: Warning (reg_format): /example-0/firmware/scmi/protocol@17/regulators/regulator@9:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/firmware/arm,scmi.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/firmware/arm,scmi.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/firmware/arm,scmi.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/firmware/arm,scmi.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/firmware/arm,scmi.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/firmware/arm,scmi.example.dts:61.45-64.19: Warning (avoid_default_addr_size): /example-0/firmware/scmi/protocol@17/regulators/regulator@0: Relying on default #address-cells value
-Documentation/devicetree/bindings/firmware/arm,scmi.example.dts:61.45-64.19: Warning (avoid_default_addr_size): /example-0/firmware/scmi/protocol@17/regulators/regulator@0: Relying on default #size-cells value
-Documentation/devicetree/bindings/firmware/arm,scmi.example.dts:66.45-70.19: Warning (avoid_default_addr_size): /example-0/firmware/scmi/protocol@17/regulators/regulator@9: Relying on default #address-cells value
-Documentation/devicetree/bindings/firmware/arm,scmi.example.dts:66.45-70.19: Warning (avoid_default_addr_size): /example-0/firmware/scmi/protocol@17/regulators/regulator@9: Relying on default #size-cells value
-Documentation/devicetree/bindings/firmware/arm,scmi.example.dt.yaml: Warning (unique_unit_address): Failed prerequisite 'avoid_default_addr_size'
-  CHECK   Documentation/devicetree/bindings/firmware/arm,scmi.example.dt.yaml
+I also don't see the TCS4525/TCS4526 regulators in the current
+linux-next device tree for the N10.
 
+> ---
+>  drivers/regulator/fan53555.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/drivers/regulator/fan53555.c b/drivers/regulator/fan53555.c
+> index 2695be617373..ddab9359ea20 100644
+> --- a/drivers/regulator/fan53555.c
+> +++ b/drivers/regulator/fan53555.c
+> @@ -90,6 +90,7 @@ enum {
+>  };
+>
+>  enum {
+> +       TCS4525_CHIP_ID_00 = 0,
+>         TCS4525_CHIP_ID_12 = 12,
 
-Regards,
-Sudeep
+This isn't a TCS4525, but a TCS4526.
 
---->8
+>  };
+>
+> @@ -373,6 +374,7 @@ static int fan53555_voltages_setup_silergy(struct fan53555_device_info *di)
+>  static int fan53526_voltages_setup_tcs(struct fan53555_device_info *di)
+>  {
+>         switch (di->chip_id) {
+> +       case TCS4525_CHIP_ID_00:
+>         case TCS4525_CHIP_ID_12:
+>                 di->slew_reg = TCS4525_TIME;
+>                 di->slew_mask = TCS_SLEW_MASK;
+> @@ -564,6 +566,9 @@ static const struct of_device_id __maybe_unused fan53555_dt_ids[] = {
+>         }, {
+>                 .compatible = "tcs,tcs4525",
+>                 .data = (void *)FAN53526_VENDOR_TCS
+> +       }, {
+> +               .compatible = "tcs,tcs4526",
+> +               .data = (void *)FAN53526_VENDOR_TCS
 
-diff --git c/Documentation/devicetree/bindings/firmware/arm,scmi.yaml i/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-index 36072585fc45..1fe23ef36adf 100644
---- c/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-+++ i/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-@@ -101,6 +101,10 @@ description: |
-       '#thermal-sensor-cells':
-         const: 1
- 
-+  '^regulator@[0-9]+$':
-+    type: object
-+    $ref: "/schemas/regulator/arm,scmi-regulator.yaml#"
-+
- required:
-   - compatible
-   - shmem
-@@ -173,6 +177,21 @@ description: |
- 
-         scmi_voltage: protocol@17 {
-           reg = <0x17>;
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          regulators {
-+            regulator_devX: regulator@0 {
-+              reg = <0x0>;
-+              regulator-max-microvolt = <3300000>;
-+            };
-+
-+            regulator_devY: regulator@9 {
-+              reg = <0x9>;
-+              regulator-min-microvolt = <500000>;
-+              regulator-max-microvolt = <4200000>;
-+            };
-+          };
-         };
-       };
-     };
-diff --git c/Documentation/devicetree/bindings/regulator/arm,scmi-regulator.yaml i/Documentation/devicetree/bindings/regulator/arm,scmi-regulator.yaml
-new file mode 100644
-index 000000000000..2111676e3494
---- /dev/null
-+++ i/Documentation/devicetree/bindings/regulator/arm,scmi-regulator.yaml
-@@ -0,0 +1,27 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/arm,scmi-regulator.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ARM SCMI controlled voltage regulators
-+
-+maintainers:
-+  - Sudeep Holla <sudeep.holla@arm.com>
-+
-+description:
-+  Any property defined as part of the core regulator binding, defined in
-+  regulator.yaml, can also be used.
-+
-+allOf:
-+  - $ref: "regulator.yaml#"
-+
-+properties:
-+  reg:
-+    maxItems: 1
-+    description: Identifier for the voltage regulator.
-+
-+required:
-+  - reg
-+
-+unevaluatedProperties: false
+Since you aren't adding any functional code, is there a particular
+reason you can't just add the chip id and simply use the tcs4525
+compatible?
+This will prevent you from needing to modify the dt-bindings as well.
+
+>         },
+>         { }
+>  };
+> @@ -672,6 +677,9 @@ static const struct i2c_device_id fan53555_id[] = {
+>         }, {
+>                 .name = "tcs4525",
+>                 .driver_data = FAN53526_VENDOR_TCS
+> +       }, {
+> +               .name = "tcs4526",
+> +               .driver_data = FAN53526_VENDOR_TCS
+>         },
+>         { },
+>  };
+> --
+> 2.29.2
+>
