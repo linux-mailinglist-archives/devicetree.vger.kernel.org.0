@@ -2,255 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EA063920CD
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 21:24:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F0E539211A
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 21:48:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232674AbhEZT0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 15:26:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44480 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231321AbhEZT0C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 15:26:02 -0400
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC927C061574;
-        Wed, 26 May 2021 12:24:29 -0700 (PDT)
-Received: by mail-oi1-x22d.google.com with SMTP id y76so2624667oia.6;
-        Wed, 26 May 2021 12:24:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=mMr84wnW79eJ+bLd6qGzg7fkB7rh5OToBUejvhaMQJI=;
-        b=cUPHV+Io0Nsf4MIPPGV6JPdt5NqOOskBJGEx1I/WkMW0nGYdZU48WuSeJm3GamIidT
-         Sy/0/U+Xmd5+2Nk8E0uTtFoZaHHiJazee6qRwCXnx9pw9tkruqPEB4jYR6kv21aAg7VA
-         4kIGjBO+P3xnLFsH6EU4TCAU3Hu7ZjQ5jiogcx7gd8aAgw4oymBjOlOetNEvgPW+/U4X
-         902vgfb8W7OpyXhamNERFfXXbXGehDEUF96W67zxIpCEtRoUf8xW97udmHBQHjv7+VGx
-         +d93zivxGBG+zD5nn9HG7eDpXql1MdFhJdp1XR4/bIW+LAlmRiueJhdOoSFhxeFqKUma
-         qF1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=mMr84wnW79eJ+bLd6qGzg7fkB7rh5OToBUejvhaMQJI=;
-        b=QbavI4OOdFDZdH+9ZqhgSye2PmmjJvB9J9bdzwVHQl+xmDRjiwYxZAzlSvNcta22kh
-         GCZoBtXBZj89nsGt9GjxsmWUTaItArdHiCJ9tVW755uTfI41gz93i+mm0AIDF1owUm7a
-         iQ3ClkelRJfvXut855m1j9zd6NkQ3GT+R+8MwEY3llD06fFRtpEnoa2+QtNQVWQx8LVB
-         Tqd74v3+erLn7gRyNX+1kksMaXlJb/pwqX2T1WnKZsLXWnEdB9+Awr/5L/Hu7x28pT1u
-         PhG+e/dEtIUJNC7QWbkT5w/qD2i0lodpJrdIHwRK5HxVM16lzjSjFr5cgBu/UuhSapgP
-         LXWw==
-X-Gm-Message-State: AOAM5306GsR3kSahiGw9mG7wLm6o9cL6qob1ljyaJB+tOJpLgAfS2GmO
-        GFdy+MwSBQYOshXJ3SxJPN4E+V9pdrpKfq3PSpo=
-X-Google-Smtp-Source: ABdhPJxYd77i/ganESJH9u6Q39LnWFqKNrqRv+AIw77ejduNuBhTpthz6X4nRwHGYXpVAnaqohkCrCgb02MSxBnlhOU=
-X-Received: by 2002:aca:2b17:: with SMTP id i23mr3063425oik.87.1622057069090;
- Wed, 26 May 2021 12:24:29 -0700 (PDT)
+        id S234402AbhEZTuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 15:50:04 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:33176 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231924AbhEZTuA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 15:50:00 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14QJmNEi098993;
+        Wed, 26 May 2021 14:48:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1622058503;
+        bh=jmGUOiH5Kh5C55VfKeVNPLm81ACiT20v+T/oKoj/f74=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To;
+        b=Ja/RAjoOSeiNG3rPH4u+iH3Pt3VA5OC4eiWFHsX+e3JUcb5k0A478zAvu7t0ygKO9
+         0d7XTHHejXa52GnxLOVxquWdjwcr+9nrq+CBqe8FBgOyLWuskuJfRxHfnFh4yrKiBh
+         ApZGtZ8+bBF4xJydSRHcwu4kl7dwBnSvHja5QODk=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14QJmN1v031454
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 26 May 2021 14:48:23 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 26
+ May 2021 14:48:23 -0500
+Received: from DLEE111.ent.ti.com ([fe80::a4a2:21d4:3321:ad11]) by
+ DLEE111.ent.ti.com ([fe80::a4a2:21d4:3321:ad11%17]) with mapi id
+ 15.01.2176.012; Wed, 26 May 2021 14:48:23 -0500
+From:   "Tammana, Gowtham" <g-tammana@ti.com>
+To:     "Anna, Suman" <s-anna@ti.com>,
+        "tony@atomide.com" <tony@atomide.com>,
+        "bcousson@baylibre.com" <bcousson@baylibre.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "Strashko, Grygorii" <grygorii.strashko@ti.com>,
+        "Menon, Nishanth" <nm@ti.com>
+Subject: RE: [PATCH v2] ARM: dts: dra7: Fix duplicate USB4 device node
+Thread-Topic: [PATCH v2] ARM: dts: dra7: Fix duplicate USB4 device node
+Thread-Index: AQHXUlN5Jk6XvXlbc0C/UV9VMQLecKr2YXOA///ASFA=
+Date:   Wed, 26 May 2021 19:48:23 +0000
+Message-ID: <555c768263cc48499b299c0b595fcb94@ti.com>
+References: <20210526172038.17542-1-g-tammana@ti.com>
+ <64bb0e71-dc6d-e21d-cfc0-cfeb787ca7c2@ti.com>
+In-Reply-To: <64bb0e71-dc6d-e21d-cfc0-cfeb787ca7c2@ti.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.250.43.171]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20210525184449.57703-1-romain.perier@gmail.com>
- <20210525184449.57703-3-romain.perier@gmail.com> <5ce3b5a5-1500-0d95-623e-299e7b1eb43b@roeck-us.net>
-In-Reply-To: <5ce3b5a5-1500-0d95-623e-299e7b1eb43b@roeck-us.net>
-From:   Romain Perier <romain.perier@gmail.com>
-Date:   Wed, 26 May 2021 21:24:16 +0200
-Message-ID: <CABgxDo+6fORohKH_VAw4ZuYVUYoGbo=a-Ckmv8Q5QkEtEZWGJQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] watchdog: Add Mstar MSC313e WDT driver
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Mohammed Billoo <mohammed.billoo@gmail.com>,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-
-Le mar. 25 mai 2021 =C3=A0 21:52, Guenter Roeck <linux@roeck-us.net> a =C3=
-=A9crit :
->
-> On 5/25/21 11:44 AM, Romain Perier wrote:
-> > From: Daniel Palmer <daniel@0x0f.com>
-> >
-> > It adds a driver for the IP block handling the watchdog timer found for
-> > Mstar MSC313e SoCs and newer.
-> >
-> > Signed-off-by: Daniel Palmer <daniel@0x0f.com>
-> > Co-developed-by: Romain Perier <romain.perier@gmail.com>
-> > Signed-off-by: Romain Perier <romain.perier@gmail.com>
-> > ---
-> >   MAINTAINERS                    |   1 +
-> >   drivers/watchdog/Kconfig       |  13 +++
-> >   drivers/watchdog/Makefile      |   1 +
-> >   drivers/watchdog/msc313e_wdt.c | 173 ++++++++++++++++++++++++++++++++=
-+
-> >   4 files changed, 188 insertions(+)
-> >   create mode 100644 drivers/watchdog/msc313e_wdt.c
-> >
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index a0f37adb9e64..fcc10c57298c 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -2177,6 +2177,7 @@ F:      arch/arm/mach-mstar/
-> >   F:  drivers/clk/mstar/
-> >   F:  drivers/gpio/gpio-msc313.c
-> >   F:  drivers/pinctrl/pinctrl-msc313.c
-> > +F:   drivers/watchdog/msc313e_wdt.c
-> >   F:  include/dt-bindings/clock/mstar-*
-> >   F:  include/dt-bindings/gpio/msc313-gpio.h
-> >   F:  include/soc/mstar/
-> > diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-> > index 355100dad60a..f53634ea0de6 100644
-> > --- a/drivers/watchdog/Kconfig
-> > +++ b/drivers/watchdog/Kconfig
-> > @@ -980,6 +980,19 @@ config VISCONTI_WATCHDOG
-> >         Say Y here to include support for the watchdog timer in Toshiba
-> >         Visconti SoCs.
-> >
-> > +config MSC313E_WATCHDOG
-> > +     tristate "MStar MSC313e watchdog"
-> > +     depends on ARCH_MSTARV7 || COMPILE_TEST
-> > +     depends on OF
-> > +     select WATCHDOG_CORE
-> > +     help
-> > +       Say Y here to include support for the Watchdog timer embedded
-> > +       into MStar MSC313e chips. This will reboot your system when the
-> > +       timeout is reached.
-> > +
-> > +       To compile this driver as a module, choose M here: the
-> > +       module will be called msc313e_wdt.
-> > +
-> >   # X86 (i386 + ia64 + x86_64) Architecture
-> >
-> >   config ACQUIRE_WDT
-> > diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-> > index a7eade8b4d45..7fa392ae3000 100644
-> > --- a/drivers/watchdog/Makefile
-> > +++ b/drivers/watchdog/Makefile
-> > @@ -92,6 +92,7 @@ obj-$(CONFIG_SPRD_WATCHDOG) +=3D sprd_wdt.o
-> >   obj-$(CONFIG_PM8916_WATCHDOG) +=3D pm8916_wdt.o
-> >   obj-$(CONFIG_ARM_SMC_WATCHDOG) +=3D arm_smc_wdt.o
-> >   obj-$(CONFIG_VISCONTI_WATCHDOG) +=3D visconti_wdt.o
-> > +obj-$(CONFIG_MSC313E_WATCHDOG) +=3D msc313e_wdt.o
-> >
-> >   # X86 (i386 + ia64 + x86_64) Architecture
-> >   obj-$(CONFIG_ACQUIRE_WDT) +=3D acquirewdt.o
-> > diff --git a/drivers/watchdog/msc313e_wdt.c b/drivers/watchdog/msc313e_=
-wdt.c
-> > new file mode 100644
-> > index 000000000000..434259256967
-> > --- /dev/null
-> > +++ b/drivers/watchdog/msc313e_wdt.c
-> > @@ -0,0 +1,173 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * MStar WDT driver
-> > + *
-> > + * Copyright (C) 2019 - 2021 Daniel Palmer
-> > + * Copyright (C) 2021 Romain Perier
-> > + *
-> > + */
-> > +
-> > +#include <linux/platform_device.h>
-> > +#include <linux/of.h>
-> > +#include <linux/of_irq.h>
-> > +#include <linux/module.h>
-> > +#include <linux/watchdog.h>
-> > +#include <linux/io.h>
-> > +#include <linux/clk.h>
-> > +#include <linux/interrupt.h>
->
-> Alphabetic order, please.
-
-Ack, I will fix it.
-
-> Also, please drop unneeded include files.
-> The driver doesn't support interrupts, so any interrupt related
-> include file is unnecessary. I also don't see any devicetree specific
-> code except for of_device_id, and that is declared in mod_devicetable.h,
-> not in an of_xxx.h include file.
-
-Arf, in fact an interrupt was used previously (it triggers when the
-wdt reaches a specific value
-that is not necessarily the value of the initial timeout), but I have
-decided to remove it because
-not really useful. And I have kept some headers, sorry for that. I will fix=
- it.
-
->
-> > +
-> > +#define REG_WDT_CLR                  0x0
-> > +#define REG_WDT_MAX_PRD_L            0x10
-> > +#define REG_WDT_MAX_PRD_H            0x14
-> > +
-> > +#define MSC313E_WDT_DEFAULT_TIMEOUT  30
-> > +/* Supports 1 - 350 sec */
->
-> Doesn't that depend on the clock freqneucy ?
-> More on that see below.
->
-> > +#define MSC313E_WDT_MIN_TIMEOUT              1
-> > +#define MSC313E_WDT_MAX_TIMEOUT              350
-> > +
-> > +static unsigned int timeout;
-> > +
-> > +module_param(timeout, int, 0);
-> > +MODULE_PARM_DESC(timeout, "Watchdog timeout in seconds");
-> > +
-> > +struct msc313e_wdt_priv {
-> > +     void __iomem *base;
-> > +     struct device *dev;
->
-> I don't immediately see where 'dev' is used.
->
-> > +     struct watchdog_device wdev;
-> > +     struct clk *clk;
-> > +};
-> > +
-> > +static int msc313e_wdt_start(struct watchdog_device *wdev)
-> > +{
-> > +     struct msc313e_wdt_priv *priv =3D watchdog_get_drvdata(wdev);
-> > +     u32 timeout;
-> > +     int err;
-> > +
-> > +     err =3D clk_prepare_enable(priv->clk);
-> > +     if (err) {
-> > +             dev_err(priv->dev, "failed to enable clock\n");
->
-> Ah, here. I am not sure if I like that error message - it is going to be
-> persistent and may create a lot of noise if it is ever seen, and pretty m=
-uch
-> useless otherwise. Either case, if you insist on the message, I'd suggest
-> to use wdev->parent.
-
-Honestly ? It is mostly to avoid silent errors, but I can also return
-an error directly, yep (I mean
-just return the error code). The userspace app is supposed to check
-the error code returned by ioctl. No objection
-for removing the message (and so priv->dev too).
-
->
-> > +             return err;
-> > +     }
-> > +     timeout =3D wdev->timeout * clk_get_rate(priv->clk);
->
-> How is it guaranteed that this won't overflow ? The maximum timeout is no=
-t
-> tied to the clock frequency. This will overflow if the clock frequency is
-> above 0xffffffff / 350 =3D 12271335 Hz and the timeout is sufficiently la=
-rge.
->
-
-Ah good catch ! Mhhhhh we could compute max_timeout dynamically
-from the probe function. So, we allow  the maximum possible value just
-before the overflow. The units are different but there is something
-similar in meson_wdt.c  .
-
-Anyway, I will think about it and propose a fix.
-
-
-Thanks,
-Romain
+DQoNCj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IEFubmEsIFN1bWFuDQo+U2Vu
+dDogV2VkbmVzZGF5LCBNYXkgMjYsIDIwMjEgMTowMSBQTQ0KPg0KPkhpIEdvd3RoYW0sDQo+DQo+
+T24gNS8yNi8yMSAxMjoyMCBQTSwgR293dGhhbSBUYW1tYW5hIHdyb3RlOg0KPj4gV2l0aCBbMV0g
+VVNCNCBkZXZpY2Ugbm9kZSBnb3QgZGVmaW5lZCBpbiBkcmE3NHguZHRzaSBmaWxlLiBIb3dldmVy
+LA0KPj4gdGhlcmUgd2FzIGEgcHJpb3IgZGVmaW50aW9uIG9mIHRoZSBzYW1lIGluIFsyXSB3aGlj
+aCBkaWRuJ3QgZ2V0IHJlbW92ZWQNCj4NCj5JIGxpa2UgdGhpcyBhcHByb2FjaCBhbmQgaXMgbW9y
+ZSBpbiBsaW5lIHdpdGggdGhlIG9yaWdpbmFsIG1vdmUgb2YgVVNCNA0KPm5vZGUNCj5pbnRvIGRy
+YTc0eC5kdHNpIGZpbGUuDQo+DQo+TG9va3MgbGlrZSB5b3UgbWl4ZWQgdXAgWzFdIGFuZCBbMl0g
+b3IgSSBtaXN1bmRlcnN0YW5kIHlvdXIgdGVybWlub2xvZ3kuDQoNClllcywgMSBhbmQgMiBnb3Qg
+bWl4ZWQgdXAgaGVyZS4gV2lsbCBwb3N0IGEgdjMuDQoNCj5BbHNvLA0KPmxldCdzIGJlIHByZWNp
+c2UsIGl0IGlzIHRoZSBVU0I0IHRhcmdldC1tb2R1bGUgbm9kZSB0aGF0IGdvdCBkdXBsaWNhdGVk
+IGluDQo+WzJdLA0KPlVTQjQgbm9kZSBhbHdheXMgZXhpc3RlZCBidXQgb3V0c2lkZSBvZiB0aS1z
+eXNjIGNvbnRyb2wgYmVmb3JlIFsyXSBhbmQgZGlkDQo+bm90DQo+Y29uZmxpY3Qgd2l0aCB0aGUg
+dGFyZ2V0LW1vZHVsZSBub2RlIGFkZGVkIGluIFsxXS4NCj4NCj4+IGNhdXNpbmcgYm9vdCBmYWls
+dXJlcy4NCj4NCj5vbiB3aGF0IGJvYXJkcz8gSXMgaXQgYWZmZWN0aW5nIGFsbCBvZiB0aGVtPw0K
+DQpJIGhhdmUgYSBkcmE3LWV2bSBib2FyZCBhbmQgc2VlIGZhaWx1cmUgb24gaXQuIFRoaXMgc2hv
+dWxkIGFsc28gYWZmZWN0DQpEcmE3Ni1ldm0sIGFtNTcyeCBiZWFnbGUgYm9hcmRzLCBhbTU3NHgg
+YXMgdGhleSBhbGwgcHVsbCBpbiBkcmE3NHguZHRzaS4NCldpbGwgbWVudGlvbiB0aGVzZSBpbiB0
+aGUgdjMgdXBkYXRlLg0KDQpUaGFua3MsDQpHb3d0aGFtIA0KDQo+IFVTQjQgbm9kZSBpcyBwcmVz
+ZW50IG9ubHkgaW4gRFJBNzR4IHZhcmlhbnRzIHNvDQo+PiBrZWVwaW5nIHRoZSBlbnRyeSBpbiBk
+cmE3NHguZHRzaSBhbmQgcmVtb3ZpbmcgaXQgZnJvbSB0aGUgdG9wIGxldmVsDQo+PiBpbnRlcmNv
+bm5lY3QgaGllcmFyY2h5IGRyYTctbDQuZHRzaSBmaWxlLg0KPj4NCj4+IFNpbmNlIFVTQjQgaXMg
+b25seSBpbmNsdWRlZCBpbiBEUkE3NHggdmFyaWFudHMsIHJlbW92ZSBpdHMgcmVmZXJlbmNlDQo+
+PiBmb3IgQU01NzE4LCBEUkE3MXggYW5kIERSNzJ4IGJvYXJkcy4NCj4+DQo+PiBbMV06IGNvbW1p
+dCA1NDlmY2UwNjhhMzExICgiQVJNOiBkdHM6IGRyYTc6IEFkZCBsNCBpbnRlcmNvbm5lY3QNCj4+
+IGhpZXJhcmNoeSBhbmQgdGktc3lzYyBkYXRhIikNCj4+IFsyXTogY29tbWl0IGM3YjcyYWJjYTYx
+ZWMgKCJBUk06IE9NQVAyKzogRHJvcCBsZWdhY3kgcGxhdGZvcm0gZGF0YSBmb3INCj4+IGRyYTcg
+ZHdjMyIpDQo+Pg0KPj4gRml4ZXM6IGM3YjcyYWJjYTYxZWMgKCJBUk06IE9NQVAyKzogRHJvcCBs
+ZWdhY3kgcGxhdGZvcm0gZGF0YSBmb3IgZHJhNw0KPmR3YzMiKQ0KPj4gU2lnbmVkLW9mZi1ieTog
+R293dGhhbSBUYW1tYW5hIDxnLXRhbW1hbmFAdGkuY29tPg0KPj4gLS0tDQo+PiB2MjoNCg==
