@@ -2,107 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E569739106F
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 08:11:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DD48391077
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 08:13:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232743AbhEZGNT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 02:13:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60570 "EHLO
+        id S232846AbhEZGOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 02:14:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231597AbhEZGNS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 02:13:18 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90E9AC061574
-        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 23:11:47 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id t193so66469pgb.4
-        for <devicetree@vger.kernel.org>; Tue, 25 May 2021 23:11:47 -0700 (PDT)
+        with ESMTP id S232839AbhEZGOw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 02:14:52 -0400
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48430C061574;
+        Tue, 25 May 2021 23:13:20 -0700 (PDT)
+Received: by mail-pg1-x536.google.com with SMTP id m190so75700pga.2;
+        Tue, 25 May 2021 23:13:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=gbPiSxkPDocMtm20zVFAvhPpgz5/mxvmWnSil/NU8cc=;
-        b=cmzrEfMfXPhpDwTF81sh4RuFzjzZR+AKDtuvb7N5Xo7F7NyF+RT61BO55DhsY6HmQB
-         q2h7zLbPM2pGV7ZbqVeA4DB9dtBdRduEQBlY3jjnirEKvyP5P4cREcQWPoPiL8vIcqy8
-         0N8lL1tdqqqwnqGNFeEBmLdHgp1zGTOE0uuYD/PGrV0l4DuM0aZR8HV/Dmeoiu3rFABX
-         uA6ObrrZ3f/v8lf3g7VXEsk/kDdGo1KP5coisDwVAv7D5TWpc3Iakb/BZB5fNttZEMBZ
-         +QUXyW5n9Ka7/Qlo3s3s6gOa5yO8cRfXZ6eK7rtUbNd9dZ96alctL+Mrhr0fcYOBJLwj
-         YwkA==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=69dcfTu5Rod0MWZh6A/dLucdJd56m6mON5Jg30AVkEw=;
+        b=bB7HCxKQ/O2P1eV233GGZpu1PGtZa3vSijw4+k6fy7YFBiLzqhoCcmNa37ViXSBaHc
+         0FWf0PtxxCxUo8UnhWTmb6AD0HFF3hlIKM/qr9QeSUdawjDnUEZ9G+4w1iqJpyB+dxO6
+         Qux8L3ONsxsWzKNA23O8PvzGzZ/mASpjRuKSYf1cwsfJgatOCtKwLZ71HdEzN3lRLzpO
+         rY0Zw0xniQnQUjK67Dq641Au8z4P5pyaEc76ySucJmPi+wVpfM0a4xhaKO8NJwDtYWeN
+         OLx8FLYEd0YUanY5Y9cn7UrRT/erg+bb2dCF7EklTnwM9v8AzhMsQX4rIhq2n4Bj3smx
+         8PnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=gbPiSxkPDocMtm20zVFAvhPpgz5/mxvmWnSil/NU8cc=;
-        b=ulHUW1GqwfoEcDK9ZXcEyCTAlziGdjBgXNzqpbEwCUOxGq6jvvbq/Mr4NBxJs6SEui
-         /dvd73JGGJ5GZGeYOeHFtlMrHtaiFRHR6e0FSVih6tW6v9D5ZWdpkQ9Yn7VltzeeHwOb
-         fJSljoJMLu9eg4iOntFwqC3KVPWGJ8hp3SuVFnDieVqXip04KmlSYP/Ff8N8ZVIl8+mF
-         PdlQ1I5zTa8p0avdDih54OyntgucHkmfrOelrdhxH4bVg7B28I9m5y+mMMbX0kA4mRIA
-         LghaBowGkXB5Geh6pONPEEZcdoMN7foattEWYZAUi+A10447Ox9i2CYkm2LoTv+2BiXB
-         vJoA==
-X-Gm-Message-State: AOAM533gq2bJQU6ubgud/HQKL3ywFyZn6f67dDOPT56qW7KOQnNAZmv5
-        558+OFrs+YAgRN1cEdC6Lp5dng==
-X-Google-Smtp-Source: ABdhPJwMEHhu/I2taGS0lmYaSUKN7tJ5HDsDPBPTtC01apjOIv0KzmzScNdqLEy7DGo/G+vnUQhfdQ==
-X-Received: by 2002:a62:30c2:0:b029:289:116c:ec81 with SMTP id w185-20020a6230c20000b0290289116cec81mr34147054pfw.42.1622009507172;
-        Tue, 25 May 2021 23:11:47 -0700 (PDT)
-Received: from localhost ([136.185.154.93])
-        by smtp.gmail.com with ESMTPSA id b21sm11842087pfo.47.2021.05.25.23.11.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 May 2021 23:11:46 -0700 (PDT)
-Date:   Wed, 26 May 2021 11:41:44 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Rob Herring <robh@kernel.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Anmar Oueja <anmar.oueja@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] of: unittest: rename overlay source files from .dts
- to .dtso
-Message-ID: <20210526061144.yvoaurpz75a3bsjr@vireshk-i7>
-References: <20210324223713.1334666-1-frowand.list@gmail.com>
- <20210327174035.GA291160@robh.at.kernel.org>
- <3e6710e7-08ac-7d1b-aa69-bcd36f0d932a@gmail.com>
- <CAMuHMdXpGKMi-xv6hZQmmEw0JO=Q0WuvUzwJ2v0O28Tx5uW+sg@mail.gmail.com>
- <d1aefaae-7b12-b5fb-4b97-7230bd52c1be@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d1aefaae-7b12-b5fb-4b97-7230bd52c1be@gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=69dcfTu5Rod0MWZh6A/dLucdJd56m6mON5Jg30AVkEw=;
+        b=kDdciyFmiotDxe83fQ7MoH4JFS5M/QLWOiwNKZ2G5KL6/l0ALtwOAlVpEwInmaV9xt
+         z/rJtygCpEdUFMozcHdEOmi6kRS6PZQwvkgBPU4wHdC8AfSRbzb7F7BcvuoS4+CLYyJJ
+         LD8PNh7DE86EEvgv7ooNCKfzUWXNySNRyHbgQqWgZRLm64dTxKGdTu8JHpZCJLnLQrQW
+         qzGtoY07E4lfVi6FBD7zNuhvXQ9dS62MlR5rWLX/NtjQkNu23H4bBBSrRhfcsnFAYimq
+         iVovaz1ETh9LmufNKOremHAtepfcZK7xry9AGg1vG2lQJXDXgz/Sp9hDFTXIJ3TEL/xa
+         SrKg==
+X-Gm-Message-State: AOAM531w75S3IZd/1lImNIx3APBE2CRcQ9XIb45s65ioHJZdDeP5Sdyo
+        /9/SLsZZPuvn2MFCH//EN98=
+X-Google-Smtp-Source: ABdhPJyE2cflnST4gffTZdWw+CO2OxjusuQppwUuCJAxekq7NVYrawUfE3cKT1VmzFcFmTZWEHUnjg==
+X-Received: by 2002:a62:ae19:0:b029:2d9:11cf:5da7 with SMTP id q25-20020a62ae190000b02902d911cf5da7mr34234067pff.18.1622009599724;
+        Tue, 25 May 2021 23:13:19 -0700 (PDT)
+Received: from localhost.localdomain (1-171-3-30.dynamic-ip.hinet.net. [1.171.3.30])
+        by smtp.gmail.com with ESMTPSA id f14sm14496249pjq.50.2021.05.25.23.13.17
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 25 May 2021 23:13:19 -0700 (PDT)
+From:   cy_huang <u0084500@gmail.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org
+Cc:     cy_huang@richtek.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v1 1/2] regulator: rt6245: Add the binding document for Richtek RT6245
+Date:   Wed, 26 May 2021 14:12:57 +0800
+Message-Id: <1622009578-15577-1-git-send-email-u0084500@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-04-21, 13:54, Frank Rowand wrote:
-> On 4/22/21 3:44 AM, Geert Uytterhoeven wrote:
-> > Hi Frank, Rob,
-> > 
-> > On Mon, Mar 29, 2021 at 9:23 PM Frank Rowand <frowand.list@gmail.com> wrote:
-> >> On 3/27/21 12:40 PM, Rob Herring wrote:
-> >>> On Wed, Mar 24, 2021 at 05:37:13PM -0500, frowand.list@gmail.com wrote:
-> >>>> From: Frank Rowand <frank.rowand@sony.com>
-> >>>>
-> >>>> Add Makefile rule to build .dtbo.o assembly file from overlay .dtso
-> >>>> source file.
-> >>>>
-> >>>> Rename unittest .dts overlay source files to use .dtso suffix.
-> >>>
-> >>> I'm pretty lukewarm on .dtso...
-> >>
-> >> I was originally also, but I'm warming up to it.
-> > 
-> > What's the status of this?
-> 
-> I was planning to resend on top of the upcoming -rc1.
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-Ping.
+Add the binding document for Richtek RT6245.
 
+Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+---
+ .../regulator/richtek,rt6245-regulator.yaml        | 89 ++++++++++++++++++++++
+ 1 file changed, 89 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt6245-regulator.yaml
+
+diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt6245-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt6245-regulator.yaml
+new file mode 100644
+index 00000000..796ceac
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/richtek,rt6245-regulator.yaml
+@@ -0,0 +1,89 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/richtek,rt6245-regulator.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Richtek RT6245 High Current Voltage Regulator
++
++maintainers:
++  - ChiYuan Huang <cy_huang@richtek.com>
++
++description: |
++  The RT6245 is a high-performance, synchronous step-down converter
++  that can deliver up to 14A output current with an input supply
++  voltage range of 4.5V to 17V.
++
++allOf:
++  - $ref: regulator.yaml#
++
++properties:
++  compatible:
++    enum:
++      - richtek,rt6245
++
++  reg:
++    maxItems: 1
++
++  enable-gpios:
++    description: |
++      A connection of the chip 'enable' gpio line. If not provided,
++      it will be treat as a default-on power.
++    maxItems: 1
++
++  richtek,oc-level-select:
++    $ref: "/schemas/types.yaml#/definitions/uint8"
++    enum: [0, 1, 2, 3]
++    description: |
++      Over current level selection. Each respective value means the current
++      limit 8A, 14A, 12A, 10A. If this property is missing then keep in
++      in chip default.
++
++  richtek,ot-level-select:
++    $ref: "/schemas/types.yaml#/definitions/uint8"
++    enum: [0, 1, 2]
++    description: |
++      Over temperature level selection. Each respective value means the degree
++      150'c, 130'c, 170'c. If this property is missing then keep in chip
++      default.
++
++  richtek,pgdly-time-select:
++    $ref: "/schemas/types.yaml#/definitions/uint8"
++    enum: [0, 1, 2, 3]
++    description: |
++      Power good signal delay time selection. Each respective value means the
++      delay time 0us, 10us, 20us, 40us. If this property is missing then keep
++      in chip default.
++
++
++  richtek,switch-freq-select:
++    $ref: "/schemas/types.yaml#/definitions/uint8"
++    enum: [0, 1, 2]
++    description: |
++      Buck switch frequency selection. Each respective value means 400KHz,
++      800KHz, 1200KHz. If this property is missing then keep in chip default.
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      rt6245@34 {
++        compatible = "richtek,rt6245";
++        status = "okay";
++        reg = <0x34>;
++        enable-gpios = <&gpio26 2 0>;
++
++        regulator-name = "rt6245-regulator";
++        regulator-min-microvolt = <437500>;
++        regulator-max-microvolt = <1387500>;
++        regulator-boot-on;
++      };
++    };
 -- 
-viresh
+2.7.4
+
