@@ -2,46 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD5FB391DE8
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 19:21:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C24A5391DEE
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 19:21:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235301AbhEZRXH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 13:23:07 -0400
-Received: from youngberry.canonical.com ([91.189.89.112]:36788 "EHLO
+        id S235168AbhEZRXP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 13:23:15 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:36804 "EHLO
         youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235096AbhEZRWf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 13:22:35 -0400
-Received: from mail-vs1-f72.google.com ([209.85.217.72])
+        with ESMTP id S235178AbhEZRWj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 13:22:39 -0400
+Received: from mail-vs1-f69.google.com ([209.85.217.69])
         by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
         (Exim 4.93)
         (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1llxDL-0003cZ-9j
-        for devicetree@vger.kernel.org; Wed, 26 May 2021 17:21:03 +0000
-Received: by mail-vs1-f72.google.com with SMTP id y13-20020a67d20d0000b02902354e7b1beaso557974vsi.5
-        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 10:21:03 -0700 (PDT)
+        id 1llxDN-0003eF-D1
+        for devicetree@vger.kernel.org; Wed, 26 May 2021 17:21:06 +0000
+Received: by mail-vs1-f69.google.com with SMTP id q16-20020a67d7900000b0290228198e77b6so553480vsj.23
+        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 10:21:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=GmEoQJnYyHa6LUU8eDJ5U1vBJGHUMr9Q2pgbu4Jz5Pw=;
-        b=rTpE84vHGLMkiDXmW/gk0t3YmCiepHM1PJINutYh8i0Nyxp3UxxtPBIai621Q83MpC
-         /p5yYeEVWbEbMiWtOeiXCM9rV0mTMX52LbC2lYbiz+ahEU0Bee+Iie/8TttvhxSPxfBO
-         MzcvuWzWDAjKdusNUluRvmGqYXfOuqgUvGQQCGclsQHWtdru0WdYTVvkaiUWeBu8Lf6r
-         oDhNdvfmw4EcTCoZKGoJ90rsXJuKCyD5QZpcE8vDCJa0JAdeJlWa6BygwtHAwPy40M2l
-         SlCdq2AvMkbTn1D25mbM5sGDy9XHY0DzKmU5YWh33teYcqxXozeSO01ThHKIpAEvmR30
-         Kvww==
-X-Gm-Message-State: AOAM530xRS0lXvAlmfd8thASYp6o8HFyhPAvhfcY6NTTOAp9m15C5sjx
-        hOKgRToSdSEhkFSxOjilrYMVGxz5fNDm/N84roIxA5MZBlyGj/W6Yal8vSY83+UVsH1nyawqaVp
-        pOD+l8vTqZH70uSfURPCQfHppF7CCtUHzdrzqxGM=
-X-Received: by 2002:a05:6102:124d:: with SMTP id p13mr32602221vsg.58.1622049662242;
-        Wed, 26 May 2021 10:21:02 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJx9xh7stKNjLHMO5aPJf5U1x+d8xsFxY3fMgzBN4TM4e3umiNoUIJM1/Sf2sd3i0ilvlipGjw==
-X-Received: by 2002:a05:6102:124d:: with SMTP id p13mr32602180vsg.58.1622049661974;
-        Wed, 26 May 2021 10:21:01 -0700 (PDT)
+        bh=YYv9QSwtcmYn0218F0zCf1aEruGYQ8/WBysY7w5EfCc=;
+        b=jzbNqhY0O1C6rMTvJrLa8BDbT6poHGDTMxC3TU7fUcijY7077eZICvQnycHdwM+tf/
+         V6ipfaoERNpgiS0c02ree4WoKO9MjH7vMME8KhqBeUlU/B2hEtNb9rro50tcf18vlnU1
+         Z5UrluuOTfDZDyGrLjLmj8dFCJvbJqlNQNib348+XL4sRAaDYUnn8cwjtGNBuQhdaOHu
+         uq2vI47q1Pu2gsRbTiB5Jcszl4cxydsBhQeZMMOcALtOSU1KNRM8nP41Da+6dANnU/jv
+         CabrW4+fvgEhGj7oK0HUgbvv6OoB/3I5G1NJ3R4iHPQ3AbbfpMfqD8xX7HVO5qWxtkSg
+         gsPA==
+X-Gm-Message-State: AOAM533aWTwZv4Ot2OmgxQdKJMFBkvngFkH+nBQq1khzCkmC38n4En0R
+        O39xt5z4UHX13j+lbCEHUfbjg7jKcCO2e3l6bVIPuBfXs6dA+OOkdpuM6PeqSSxbK0A00jp1V1/
+        +ch2GHYB5BPnNcpsFuLWxJqjDBSbOtfkSgVm5uI0=
+X-Received: by 2002:ac5:c382:: with SMTP id s2mr31980829vkk.24.1622049664527;
+        Wed, 26 May 2021 10:21:04 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyBWWyrs1VJTSEVr7gNlAWxnMbfMY4X+d68llpnvHKbyCP4O8ma7yU99jBXSJa7bdYyXsWV8g==
+X-Received: by 2002:ac5:c382:: with SMTP id s2mr31980793vkk.24.1622049664379;
+        Wed, 26 May 2021 10:21:04 -0700 (PDT)
 Received: from localhost.localdomain ([45.237.48.6])
-        by smtp.gmail.com with ESMTPSA id u195sm2036032vsc.10.2021.05.26.10.20.59
+        by smtp.gmail.com with ESMTPSA id u195sm2036032vsc.10.2021.05.26.10.21.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 May 2021 10:21:01 -0700 (PDT)
+        Wed, 26 May 2021 10:21:03 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Chanwoo Choi <cw00.choi@samsung.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
@@ -58,10 +58,11 @@ To:     Chanwoo Choi <cw00.choi@samsung.com>,
         linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
         linux-samsung-soc@vger.kernel.org, linux-rtc@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v2 6/7] power: supply: max17042: Do not enforce (incorrect) interrupt trigger type
-Date:   Wed, 26 May 2021 13:20:35 -0400
-Message-Id: <20210526172036.183223-7-krzysztof.kozlowski@canonical.com>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Iskren Chernev <iskren.chernev@gmail.com>
+Subject: [PATCH v2 7/7] power: supply: max17040: Do not enforce (incorrect) interrupt trigger type
+Date:   Wed, 26 May 2021 13:20:36 -0400
+Message-Id: <20210526172036.183223-8-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210526172036.183223-1-krzysztof.kozlowski@canonical.com>
 References: <20210526172036.183223-1-krzysztof.kozlowski@canonical.com>
@@ -77,39 +78,55 @@ Interrupt line can be configured on different hardware in different way,
 even inverted.  Therefore driver should not enforce specific trigger
 type - edge falling - but instead rely on Devicetree to configure it.
 
-The Maxim 17047/77693 datasheets describe the interrupt line as active
+The Maxim 14577/77836 datasheets describe the interrupt line as active
 low with a requirement of acknowledge from the CPU therefore the edge
 falling is not correct.
 
-The interrupt line is shared between PMIC and RTC driver, so using level
-sensitive interrupt is here especially important to avoid races.  With
-an edge configuration in case if first PMIC signals interrupt followed
-shortly after by the RTC, the interrupt might not be yet cleared/acked
-thus the second one would not be noticed.
-
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Acked-by: Iskren Chernev <iskren.chernev@gmail.com>
 
 ---
 
 Changes since v1:
-1. None
+1. Remove the 'flags' variable.
+2. Added ack.
+3. Rebase - the bindings were converted to dtschema.
 ---
- drivers/power/supply/max17042_battery.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../devicetree/bindings/power/supply/maxim,max17040.yaml      | 2 +-
+ drivers/power/supply/max17040_battery.c                       | 4 +---
+ 2 files changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/power/supply/max17042_battery.c b/drivers/power/supply/max17042_battery.c
-index 1d7326cd8fc6..ce2041b30a06 100644
---- a/drivers/power/supply/max17042_battery.c
-+++ b/drivers/power/supply/max17042_battery.c
-@@ -1104,7 +1104,7 @@ static int max17042_probe(struct i2c_client *client,
- 	}
+diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
+index de91cf3f058c..f792d06db413 100644
+--- a/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
++++ b/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
+@@ -89,7 +89,7 @@ examples:
+         reg = <0x36>;
+         maxim,alert-low-soc-level = <10>;
+         interrupt-parent = <&gpio7>;
+-        interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
++        interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
+         wakeup-source;
+       };
+     };
+diff --git a/drivers/power/supply/max17040_battery.c b/drivers/power/supply/max17040_battery.c
+index 1aab868adabf..e80dd9141ae7 100644
+--- a/drivers/power/supply/max17040_battery.c
++++ b/drivers/power/supply/max17040_battery.c
+@@ -361,12 +361,10 @@ static irqreturn_t max17040_thread_handler(int id, void *dev)
+ static int max17040_enable_alert_irq(struct max17040_chip *chip)
+ {
+ 	struct i2c_client *client = chip->client;
+-	unsigned int flags;
+ 	int ret;
  
- 	if (client->irq) {
--		unsigned int flags = IRQF_TRIGGER_FALLING | IRQF_ONESHOT;
-+		unsigned int flags = IRQF_ONESHOT;
+-	flags = IRQF_TRIGGER_FALLING | IRQF_ONESHOT;
+ 	ret = devm_request_threaded_irq(&client->dev, client->irq, NULL,
+-					max17040_thread_handler, flags,
++					max17040_thread_handler, IRQF_ONESHOT,
+ 					chip->battery->desc->name, chip);
  
- 		/*
- 		 * On ACPI systems the IRQ may be handled by ACPI-event code,
+ 	return ret;
 -- 
 2.27.0
 
