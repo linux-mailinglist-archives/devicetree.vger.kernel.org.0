@@ -2,160 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32CD5391F61
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 20:44:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 290F2391F88
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 20:48:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234876AbhEZSqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 14:46:07 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:45760 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234863AbhEZSqG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 14:46:06 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14QIiRDn020347;
-        Wed, 26 May 2021 13:44:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1622054667;
-        bh=8BlVm3DIICP/svEzEeltSo7VktmgriZgvwYWdSKLcYA=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=X6ytcxtollfqmpoeCwnS+P+HPwh9MARwe64OUfSlrHY3+igZud1W+S+5X8FkZcfEn
-         EavwzysaeM88BQJgYAe5ebycfV7lATWYrMJ4OXWAG2p8KrhCJu/SoG7tIW4BpNndWv
-         Z4zFJDxCGoz6lgxgbSnMqoMF2I+nTQQfstNChXTQ=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14QIiR5G100310
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 26 May 2021 13:44:27 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 26
- May 2021 13:44:27 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 26 May 2021 13:44:27 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14QIiR0Z055979;
-        Wed, 26 May 2021 13:44:27 -0500
-Date:   Wed, 26 May 2021 13:44:27 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: Re: [PATCH v3 1/5] arm64: dts: ti: k3-am64-main: Add SERDES DT node
-Message-ID: <20210526184427.wvn4kveus6vgedcs@polio>
-References: <20210526142921.12127-1-kishon@ti.com>
- <20210526142921.12127-2-kishon@ti.com>
+        id S232349AbhEZSuO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 14:50:14 -0400
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:38739 "EHLO
+        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232716AbhEZSuO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 14:50:14 -0400
+Received: by mail-oi1-f170.google.com with SMTP id z3so2515474oib.5;
+        Wed, 26 May 2021 11:48:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HlrEkNbdErQedeYk72SYd9ajDXD8/yDnUV8sRUHNIcc=;
+        b=nFJx7yTuB5pRL0r2/sTbMUfR2Y6HD+GmFiMSf2LxkWa9444prKAeh/tRVr2vjcf6XR
+         Ibrjz1zcPlJr68bTljS/O7cqrPCKU6rnjppV/jVCTDWDzYwf4054WsIK29sTwmRh/M+u
+         3oVzfvjgLvJCJdJH3aFxa2y9//ScZpQ8XplXLPiJuW81FUrJ1uygGUCfYtdq1NRrzi7V
+         M1k0ybwSKRvIcycnRGZtkXMv0JoawlroEzTquWQoJJkhloqlP8e6rj2aVplefI2vpBfj
+         sbIHN8jRQrsa5xkV3osv+E5Q2YsZDhNa71R/qFGB2leq7aXlhkY1NMxkAZkP43C3JP94
+         M/hw==
+X-Gm-Message-State: AOAM533N2bTkUzMypJDWksX1EWiLGLQE4VaOWEVIZ9LvNQu2eEn/7vaY
+        CN6W8w+Fc8NpH+VMfwZVMKuO+ty4IQ==
+X-Google-Smtp-Source: ABdhPJxUDXUCvfpFu6FAogxwQhpINYbOt8kpbltexGcdyKvHsTRvwHT/oAR3BFHN7TMB98kWkwd7Ag==
+X-Received: by 2002:aca:a852:: with SMTP id r79mr2942445oie.21.1622054921636;
+        Wed, 26 May 2021 11:48:41 -0700 (PDT)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id x65sm7224otb.59.2021.05.26.11.48.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 May 2021 11:48:40 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org, Peter Rosin <peda@axentia.se>,
+        Wolfram Sang <wsa@kernel.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-i2c@vger.kernel.org
+Subject: [PATCH v2 0/6] dt-bindings: Convert mux bindings to schema
+Date:   Wed, 26 May 2021 13:48:33 -0500
+Message-Id: <20210526184839.2937899-1-robh@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210526142921.12127-2-kishon@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19:59-20210526, Kishon Vijay Abraham I wrote:
-> AM64 has one SERDES 10G instance. Add SERDES DT node for it.
-> 
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 56 ++++++++++++++++++++++++
->  1 file changed, 56 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> index b2bcbf23eefd..a67f10406a8e 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> @@ -5,6 +5,17 @@
->   * Copyright (C) 2020-2021 Texas Instruments Incorporated - https://www.ti.com/
->   */
->  
-> +#include <dt-bindings/phy/phy-cadence.h>
-> +#include <dt-bindings/phy/phy-ti.h>
-> +
-> +/ {
-> +	serdes_refclk: clock {
-> +		#clock-cells = <0>;
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <0>;
-> +	};
-> +};
-> +
->  &cbass_main {
->  	oc_sram: sram@70000000 {
->  		compatible = "mmio-sram";
-> @@ -18,6 +29,20 @@
->  		};
->  	};
->  
-> +	main_conf: syscon@43000000 {
-> +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
-> +		reg = <0x0 0x43000000 0x0 0x20000>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x0 0x0 0x43000000 0x20000>;
-> +
-> +		serdes_ln_ctrl: mux-controller {
-> +			compatible = "mmio-mux";
+This series converts the mux-controller and some i2c mux bindings to DT
+schema. This was a rabbit hole of trying to fix undocumented (by schema)
+compatibles (enabled by setting DT_CHECKER_FLAGS=-m). So this is mux
+bindings, and then a few others that are used in the mux binding
+examples.
 
-Any idea where the mmio-mux binding is and status?
-I'd rather not pick up a new warning against linux-next
+I ended up converting the MDIO mux bindings[1], and Jonathan did the
+IIO mux[2]. (Thanks!)
 
-> +			#mux-control-cells = <1>;
-> +			mux-reg-masks = <0x4080 0x3>; /* SERDES0 lane0 select */
-> +		};
-> +	};
-> +
->  	gic500: interrupt-controller@1800000 {
->  		compatible = "arm,gic-v3";
->  		#address-cells = <2>;
-> @@ -672,4 +697,35 @@
->  		ti,mbox-num-users = <4>;
->  		ti,mbox-num-fifos = <16>;
->  	};
-> +
-> +	serdes_wiz0: wiz@f000000 {
-> +		compatible = "ti,am64-wiz-10g";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		power-domains = <&k3_pds 162 TI_SCI_PD_EXCLUSIVE>;
-> +		clocks = <&k3_clks 162 0>, <&k3_clks 162 1>, <&serdes_refclk>;
-> +		clock-names = "fck", "core_ref_clk", "ext_ref_clk";
-> +		num-lanes = <1>;
-> +		#reset-cells = <1>;
-> +		#clock-cells = <1>;
-> +		ranges = <0x0f000000 0x0 0x0f000000 0x00010000>;
-> +
-> +		assigned-clocks = <&k3_clks 162 1>;
-> +		assigned-clock-parents = <&k3_clks 162 5>;
-> +
-> +		serdes0: serdes@f000000 {
-> +			compatible = "ti,j721e-serdes-10g";
-> +			reg = <0x0f000000 0x00010000>;
-> +			reg-names = "torrent_phy";
-> +			resets = <&serdes_wiz0 0>;
-> +			reset-names = "torrent_reset";
-> +			clocks = <&serdes_wiz0 TI_WIZ_PLL0_REFCLK>, <&serdes_wiz0 TI_WIZ_PHY_EN_REFCLK>;
-> +			clock-names = "refclk", "phy_en_refclk";
-> +			assigned-clocks = <&serdes_wiz0 TI_WIZ_PLL0_REFCLK>, <&serdes_wiz0 TI_WIZ_PLL1_REFCLK>, <&serdes_wiz0 TI_WIZ_REFCLK_DIG>;
-> +			assigned-clock-parents = <&k3_clks 162 1>, <&k3_clks 162 1>, <&k3_clks 162 1>;
+Rob
 
-Could we line these up to < 100 chars?
+[1] https://lore.kernel.org/r/20210526181411.2888516-1-robh@kernel.org/
+[2] https://lore.kernel.org/r/20210522112908.1611389-2-jic23@kernel.org/
 
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			#clock-cells = <1>;
-> +		};
-> +	};
->  };
-> -- 
-> 2.17.1
-> 
+
+Rob Herring (6):
+  dt-bindings: mfd: ti,j721e-system-controller: Fix mux node errors
+  dt-bindings: rtc: nxp,pcf8563: Convert to DT schema
+  dt-bindings: mux: Convert mux controller bindings to schema
+  dt-bindings: i2c: Convert i2c-mux bindings to DT schema
+  dt-bindings: i2c: i2c-mux-pca954x: Convert to DT schema
+  dt-bindings: i2c: maxim,max9286: Use the i2c-mux.yaml schema
+
+ .../bindings/i2c/i2c-demux-pinctrl.txt        |   2 +-
+ .../devicetree/bindings/i2c/i2c-mux-gpio.txt  |   4 +-
+ .../devicetree/bindings/i2c/i2c-mux-gpmux.txt |  99 ----------
+ .../bindings/i2c/i2c-mux-gpmux.yaml           | 124 ++++++++++++
+ .../bindings/i2c/i2c-mux-ltc4306.txt          |   4 +-
+ .../bindings/i2c/i2c-mux-pca954x.txt          |  74 -------
+ .../bindings/i2c/i2c-mux-pca954x.yaml         | 110 +++++++++++
+ .../bindings/i2c/i2c-mux-pinctrl.txt          |   4 +-
+ .../devicetree/bindings/i2c/i2c-mux-reg.txt   |   4 +-
+ .../devicetree/bindings/i2c/i2c-mux.txt       |  73 -------
+ .../devicetree/bindings/i2c/i2c-mux.yaml      |  87 +++++++++
+ .../iio/multiplexer/io-channel-mux.txt        |   2 +-
+ .../bindings/media/i2c/maxim,max9286.yaml     |  23 +--
+ .../mfd/ti,j721e-system-controller.yaml       |  19 +-
+ .../devicetree/bindings/mtd/ti,am654-hbmc.txt |   2 +-
+ .../devicetree/bindings/mux/adi,adg792a.txt   |   2 +-
+ .../devicetree/bindings/mux/adi,adgs1408.txt  |   2 +-
+ .../devicetree/bindings/mux/gpio-mux.txt      |  69 -------
+ .../devicetree/bindings/mux/gpio-mux.yaml     |  92 +++++++++
+ .../devicetree/bindings/mux/mux-consumer.yaml |  46 +++++
+ .../bindings/mux/mux-controller.txt           | 157 ---------------
+ .../bindings/mux/mux-controller.yaml          | 182 ++++++++++++++++++
+ .../devicetree/bindings/mux/reg-mux.txt       | 129 -------------
+ .../devicetree/bindings/mux/reg-mux.yaml      | 143 ++++++++++++++
+ .../bindings/net/mdio-mux-multiplexer.txt     |   2 +-
+ .../devicetree/bindings/rtc/nxp,pcf8563.yaml  |  56 ++++++
+ .../devicetree/bindings/rtc/pcf8563.txt       |  29 ---
+ 27 files changed, 870 insertions(+), 670 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-mux-gpmux.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-mux-gpmux.yaml
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-mux.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-mux.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mux/gpio-mux.txt
+ create mode 100644 Documentation/devicetree/bindings/mux/gpio-mux.yaml
+ create mode 100644 Documentation/devicetree/bindings/mux/mux-consumer.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mux/mux-controller.txt
+ create mode 100644 Documentation/devicetree/bindings/mux/mux-controller.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mux/reg-mux.txt
+ create mode 100644 Documentation/devicetree/bindings/mux/reg-mux.yaml
+ create mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf8563.yaml
+ delete mode 100644 Documentation/devicetree/bindings/rtc/pcf8563.txt
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.27.0
+
