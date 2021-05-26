@@ -2,150 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A61F1391F4F
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 20:41:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F9BF391F59
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 20:43:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235544AbhEZSmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 14:42:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34402 "EHLO
+        id S233302AbhEZSpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 14:45:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235564AbhEZSmp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 14:42:45 -0400
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE707C061574;
-        Wed, 26 May 2021 11:41:12 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id o18so3442744ybc.8;
-        Wed, 26 May 2021 11:41:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XFPiHuMmgB1diVIK7dUPVf8VcVw6JsgY/PRpvldEVQ0=;
-        b=qaSvn6PI+8BoBElLj/aK5GPJlL6f774Y24z0S6KncRf915wNgynqgtLORZyoSDVquM
-         SpOjVNqBDwkEZ2pxfIRMa7bMNtMXBCAhSb58WtU1nsfrAT3XIxRjnmVpPjrSzcNSPb7g
-         z5BVFBGZ2KuVuliw9g4hAoOnFHPQ3REKaiRClFkO6tPNNAk89cyfePVQpCAFoUniS/kY
-         qBkTpVtuPjfcLaBWOn0SfYMKBxxlE457FedrsxXevhi0w3n+k4iSGSjSZXPt0npjSAdK
-         agdh4otT1bi2+sYrYgK2WbafJ0hGlfOEO7Mnh3y7O0fxWY9g3RUbW6jIIOMzZysLqpVn
-         a+iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XFPiHuMmgB1diVIK7dUPVf8VcVw6JsgY/PRpvldEVQ0=;
-        b=F7NJCHRJhu4Wvb346pIKdi+yJb8nf1Ox3W+ezfj+l/vAhO7HAjnAOcXHlIvH/LEpHj
-         rif6CHemliJQMCcnoSPaHHNO6NMr9nMLamJa8YjwkHnew+rPlzE670uHQGa8AZF/Ohui
-         2ljW0wcKb3XgqGMgvuBdn0jjkze+mTWD92Xxyo5RuGVuPtHkEOXZ74RB/SCkV0a7kXsZ
-         TDuQVsAtadiQVkEcifzgyKWDzVZ2EcrH0RnWThhWxdyCXSmQeP8va0BeUdJzvQJegGit
-         OHzW0NV3fzGYqi0vTqvsK6PR3tWZG9JYuPhCCvyPlKWWYaGLbS6O+FaeYKX9mNS4bsWl
-         GiMg==
-X-Gm-Message-State: AOAM533711Pe8H1r2ZuF8g8NHmKZEMGQZEAwc9JPcWcqNUlxCMIiJct0
-        xSApm5hy3lVKC1AiO3+nJR+4p+gVJA6AewZBaAk=
-X-Google-Smtp-Source: ABdhPJwT4k6DNHfY5t+fcuHUkZTxoJn64AyHFKIC91gNYP2lNln/V0r4OROotjDGt6+BPUuDXwodmF+VI6cgRZ3t6Zw=
-X-Received: by 2002:a25:3c87:: with SMTP id j129mr53760696yba.141.1622054471905;
- Wed, 26 May 2021 11:41:11 -0700 (PDT)
+        with ESMTP id S234178AbhEZSpJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 14:45:09 -0400
+Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81111C061574
+        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 11:43:37 -0700 (PDT)
+Received: from TimeMachine.localdomain (bband-dyn255.178-41-232.t-com.sk [178.41.232.255])
+        by m-r2.th.seeweb.it (Postfix) with ESMTPA id 545173F5D8;
+        Wed, 26 May 2021 20:43:35 +0200 (CEST)
+From:   Martin Botka <martin.botka@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        konrad.dybcio@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Martin Botka <martin.botka@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH V3 1/2] dt-bindings: clk: qcom: gcc-sm6125: Document SM6125 GCC driver
+Date:   Wed, 26 May 2021 20:43:20 +0200
+Message-Id: <20210526184325.675736-1-martin.botka@somainline.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20210526162342.GA20@8bbba9ba63a4>
-In-Reply-To: <20210526162342.GA20@8bbba9ba63a4>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Wed, 26 May 2021 14:41:00 -0400
-Message-ID: <CAMdYzYpZoKs3P62j02RW-+5BEpqC9JL3apjucTWLWmvNFrOrCg@mail.gmail.com>
-Subject: Re: [PATCH] regulator: fan53555: add back tcs4526
-To:     Rudi Heitbaum <rudi@heitbaum.com>
-Cc:     devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ezequiel Garcia <ezequiel@collabora.com>, chenjh@rock-chips.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 26, 2021 at 12:23 PM Rudi Heitbaum <rudi@heitbaum.com> wrote:
->
->
-> For rk3399pro boards the tcs4526 regulator supports the vdd_gpu
-> regulator. The tcs4526 regulator has a chip id of <0>.
-> Add the compatibile tcs,tcs4526
->
-> without this patch, the dmesg output is:
->   fan53555-regulator 0-0010: Chip ID 0 not supported!
->   fan53555-regulator 0-0010: Failed to setup device!
->   fan53555-regulator: probe of 0-0010 failed with error -22
-> with this patch, the dmesg output is:
->   vdd_gpu: supplied by vcc5v0_sys
->
-> The regulators are described as:
-> - Dedicated power management IC TCS4525
-> - Lithium battery protection chip TCS4526
->
-> This has been tested with a Radxa Rock Pi N10.
->
-> Fixes: f9028dcdf589 ("regulator: fan53555: only bind tcs4525 to correct chip id")
-> Signed-off-by: Rudi Heitbaum <rudi@heitbaum.com>
+Document the newly added SM6125 GCC driver.
 
-Considering the TCS4525 wasn't supported prior to its recent addition,
-and the TCS4526 wasn't supported by the driver at all, this isn't a
-fix but a feature addition.
-Binding only to the correct device ID exists for this reason, to
-prevent unsafe voltage setting.
+Signed-off-by: Martin Botka <martin.botka@somainline.org>
+---
+Changes in V2:
+Add commit description.
+Changes in V3:
+Use rpmcc.h instead of rpmh.h
+ .../bindings/clock/qcom,gcc-sm6125.yaml       | 72 +++++++++++++++++++
+ 1 file changed, 72 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sm6125.yaml
 
-I also don't see the TCS4525/TCS4526 regulators in the current
-linux-next device tree for the N10.
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sm6125.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sm6125.yaml
+new file mode 100644
+index 000000000000..f7198370a1b9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sm6125.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/qcom,gcc-sm6125.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Global Clock & Reset Controller Binding for SM6125
++
++maintainers:
++  - Konrad Dybcio <konrad.dybcio@somainline.org>
++
++description: |
++  Qualcomm global clock control module which supports the clocks, resets and
++  power domains on SM6125.
++
++  See also:
++  - dt-bindings/clock/qcom,gcc-sm6125.h
++
++properties:
++  compatible:
++    const: qcom,gcc-sm6125
++
++  clocks:
++    items:
++      - description: Board XO source
++      - description: Sleep clock source
++
++  clock-names:
++    items:
++      - const: bi_tcxo
++      - const: sleep_clk
++
++  '#clock-cells':
++    const: 1
++
++  '#reset-cells':
++    const: 1
++
++  '#power-domain-cells':
++    const: 1
++
++  reg:
++    maxItems: 1
++
++  protected-clocks:
++    description:
++      Protected clock specifier list as per common clock binding.
++
++required:
++  - compatible
++  - clocks
++  - clock-names
++  - reg
++  - '#clock-cells'
++  - '#reset-cells'
++  - '#power-domain-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,rpmcc.h>
++    clock-controller@1400000 {
++    compatible = "qcom,gcc-sm6125";
++      reg = <0x01400000 0x1f0000>;
++      #clock-cells = <1>;
++      #reset-cells = <1>;
++      #power-domain-cells = <1>;
++      clock-names = "bi_tcxo", "sleep_clk";
++      clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>, <&sleep_clk>;
++    };
++...
+-- 
+2.31.1
 
-> ---
->  drivers/regulator/fan53555.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/drivers/regulator/fan53555.c b/drivers/regulator/fan53555.c
-> index 2695be617373..ddab9359ea20 100644
-> --- a/drivers/regulator/fan53555.c
-> +++ b/drivers/regulator/fan53555.c
-> @@ -90,6 +90,7 @@ enum {
->  };
->
->  enum {
-> +       TCS4525_CHIP_ID_00 = 0,
->         TCS4525_CHIP_ID_12 = 12,
-
-This isn't a TCS4525, but a TCS4526.
-
->  };
->
-> @@ -373,6 +374,7 @@ static int fan53555_voltages_setup_silergy(struct fan53555_device_info *di)
->  static int fan53526_voltages_setup_tcs(struct fan53555_device_info *di)
->  {
->         switch (di->chip_id) {
-> +       case TCS4525_CHIP_ID_00:
->         case TCS4525_CHIP_ID_12:
->                 di->slew_reg = TCS4525_TIME;
->                 di->slew_mask = TCS_SLEW_MASK;
-> @@ -564,6 +566,9 @@ static const struct of_device_id __maybe_unused fan53555_dt_ids[] = {
->         }, {
->                 .compatible = "tcs,tcs4525",
->                 .data = (void *)FAN53526_VENDOR_TCS
-> +       }, {
-> +               .compatible = "tcs,tcs4526",
-> +               .data = (void *)FAN53526_VENDOR_TCS
-
-Since you aren't adding any functional code, is there a particular
-reason you can't just add the chip id and simply use the tcs4525
-compatible?
-This will prevent you from needing to modify the dt-bindings as well.
-
->         },
->         { }
->  };
-> @@ -672,6 +677,9 @@ static const struct i2c_device_id fan53555_id[] = {
->         }, {
->                 .name = "tcs4525",
->                 .driver_data = FAN53526_VENDOR_TCS
-> +       }, {
-> +               .name = "tcs4526",
-> +               .driver_data = FAN53526_VENDOR_TCS
->         },
->         { },
->  };
-> --
-> 2.29.2
->
