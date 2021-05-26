@@ -2,90 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39BC3391B09
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 17:01:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E51AD391B17
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 17:04:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235241AbhEZPDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 11:03:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40564 "EHLO
+        id S233554AbhEZPFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 11:05:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235007AbhEZPDH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 11:03:07 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5583C061574;
-        Wed, 26 May 2021 08:01:34 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id k14so2980016eji.2;
-        Wed, 26 May 2021 08:01:34 -0700 (PDT)
+        with ESMTP id S233472AbhEZPFt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 11:05:49 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80CE0C061574;
+        Wed, 26 May 2021 08:04:17 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id r5so3033515lfr.5;
+        Wed, 26 May 2021 08:04:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=3TsWKPNdt5LoO7ABzE313qIQTyyt2VgAPGd6lpsge2o=;
-        b=QasaBuqgJAviAxWemLUq3tt9sSPaR4L8Fl7du+XRFI5CWqkBkwlWLUjZxyNNFm2tAf
-         qj87iQPZKwwNf0iJ5MGm3f1nN08vK788ktlFByVA4HciNJn11C6+2NZvxWlWmjrFUEDl
-         IlRIM7Qk9NYwjeJEZg6nOgIP0qUe6+91Mi8+1C6QdhlQOR/lrupLedBIDYRj4YFuBCAm
-         HhN1GO6lJ4buAyzgdqbOtUkdYpCgQK/Oj5dEhL+qo3KACReDVytiTRwJS1pahqOJ+hGa
-         5QfYp5wx0Xxhr738LOml6BVh/2yHgdwCT/vqqlb/351ynDprJa576zgJ3wSu9V0z7ebJ
-         izwg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=KX3mTJcobyHBIRoKcg4YudqAe4oQ4LVZkBgHwMBLcTs=;
+        b=RkHMB7GpLI3Ptu1yH+DydH3Y9tzPjzR/GFBb9HEJwGUwpJUNe3LS1mKeoNw6TsDHH/
+         cHI3frc4wwcmM17ZBkeoQNCy457/hILrlUWmXVKS7nmatJt4ZB5kj/4pLvcQXam7krg3
+         pMmG+ATXI3oO5fIv3cAqfCoAoyIu5IQ/NWPD0s0QkJFErlGUPAatmLtdS9Ku6eNqI+t3
+         VkZq5QIFDefFYdFWIlX4GpCtyd9WnplNFwe4qWguWqFTYjUNR1fMU2pKezrbtmdmGUoZ
+         nygjStaLJIMdTXWZntJ5yvNZpjUhOu0VJ8e5sPmVxfxcg4oUWRtmF84XKI+NylYu7KyQ
+         pa6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=3TsWKPNdt5LoO7ABzE313qIQTyyt2VgAPGd6lpsge2o=;
-        b=mmC1Fd0Zc38RvNxvZtKegAblpEC7VxFOep6rlcxSHmeHy5ntdyPF5tcD8xmZBKjMla
-         oC7IhYAMe+Rcjzu4cDfIX6tGfVJnOgfEOZlsvTsPinew9qdRElUbiTEp3fvtMneXCV2V
-         ZyhLGkkMFo13clH5C8V3Sytk7jqI8zPjCLYlzlyemBAt4LBcxo0kFAHiv0za9EGRFDzP
-         DEQaTWA+J/ju+mxrCggfhC+ZhNRpDV8nG66dVkiwWRi5Yaef/tbkHWNCdbcFYxdZ6ONu
-         oKozfuaU604HkgkNoP6SI8w4M6Z7FOVJbtV7qlMVTfvdzgUcswE9njvCZrp0ZmDa6rAR
-         O5ig==
-X-Gm-Message-State: AOAM531ObBDNmuFqjyyRH21y3cpHpzGephQ4XUPKVyDqIRtpgUUfQW+A
-        e5EXOmU8qTCuUKTosyzrHqc=
-X-Google-Smtp-Source: ABdhPJw1YXbIQG2PzZoC8F6kWo0NyDwmh3pZ/qDARSKKTklpPFuxXkmoob+CnsW8MeXkG4G7wpAWBQ==
-X-Received: by 2002:a17:906:c30b:: with SMTP id s11mr33876742ejz.486.1622041293205;
-        Wed, 26 May 2021 08:01:33 -0700 (PDT)
-Received: from localhost.localdomain ([188.252.220.224])
-        by smtp.googlemail.com with ESMTPSA id p10sm2045381ejc.14.2021.05.26.08.01.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 May 2021 08:01:32 -0700 (PDT)
-From:   Robert Marko <robimarko@gmail.com>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Robert Marko <robimarko@gmail.com>
-Subject: [PATCH] arm64: dts: ipq8074: disable USB phy by default
-Date:   Wed, 26 May 2021 17:01:25 +0200
-Message-Id: <20210526150125.1816335-1-robimarko@gmail.com>
-X-Mailer: git-send-email 2.31.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=KX3mTJcobyHBIRoKcg4YudqAe4oQ4LVZkBgHwMBLcTs=;
+        b=q5VrRK2psZNIBDROPuVjmNbhNEgjTv2l22cFWt9cRVJMxSEYlueb2OeMGRK2YBpy+Q
+         6aBiYM6rKNctPkvSyhFVcGsDO72mZnunm832YFpDR+XDGxyIJPm25DlI+/5cgZXpOd0L
+         kEInaxqZ25vWw2KK3Vi0RZ9W8GLc8TR2V0hxxd2aE4hB57VyEKYGoIf4FYpKDtxQBtf2
+         QzHRA6fa2zlXs1SeFPuKD0V60CzcqY5wtq6wQn9aWuZMGuz8oWXFkGv2Ein5+hvMJ/zm
+         NQCDWIT3SqNiFAO0K8viuhbu+rYDM6uvLwGQUjLm/+MVM/H5GC0Le/27J8eM0r24O0fC
+         r7Ww==
+X-Gm-Message-State: AOAM532rqZkJFItKs+0ElKdx5wXOFa121dG2dwmChahWE0eeL1G/pv4q
+        IewGFQTh3Ub/IsRzvNj93PGQ1qy1REWkrwhDeJcWkw+Xc+E=
+X-Google-Smtp-Source: ABdhPJy3ZBLNOjbMpjCn4a0MBF0VNId/zr/BBgE8aLdGWjaN41TIVcXKGBZUcgtGtJmTWnJsiRFoocDy1iFt5xfK6KA=
+X-Received: by 2002:ac2:533a:: with SMTP id f26mr2466714lfh.424.1622041455695;
+ Wed, 26 May 2021 08:04:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1622008068-13474-1-git-send-email-u0084500@gmail.com>
+ <1622008068-13474-2-git-send-email-u0084500@gmail.com> <YK4oGB5cZ/DhG5vm@sirena.org.uk>
+In-Reply-To: <YK4oGB5cZ/DhG5vm@sirena.org.uk>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Wed, 26 May 2021 23:04:03 +0800
+Message-ID: <CADiBU393NchfrTmgPApNRqSVrTBGT+bs+H+m2UF_H3tSGLyFVQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] regulator: rt6160: Add support for Richtek RT6160
+To:     Mark Brown <broonie@kernel.org>
+Cc:     lgirdwood@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        cy_huang <cy_huang@richtek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-One of the QUSB USB PHY-s has been left enabled by
-default, this is probably just a mistake as other
-USB PHY-s are disabled by default.
+HI:
 
-It makes no sense to have it enabled by default as
-not all board implement USB ports, so disable it.
+Mark Brown <broonie@kernel.org> =E6=96=BC 2021=E5=B9=B45=E6=9C=8826=E6=97=
+=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=886:50=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Wed, May 26, 2021 at 01:47:48PM +0800, cy_huang wrote:
+>
+> This looks mostly good, a few small issues below:
+>
+> > +static int rt6160_set_suspend_voltage(struct regulator_dev *rdev, int =
+uV)
+> > +{
+> > +     struct rt6160_priv *priv =3D rdev_get_drvdata(rdev);
+> > +     struct regmap *regmap =3D rdev_get_regmap(rdev);
+> > +     unsigned int reg =3D RT6160_REG_VSELH;
+> > +     int vsel;
+> > +
+> > +     vsel =3D regulator_map_voltage_linear(rdev, uV, uV);
+> > +     if (vsel < 0)
+> > +             return vsel;
+> > +
+> > +     if (priv->vsel_active_low)
+> > +             reg =3D RT6160_REG_VSELL;
+> > +
+> > +     return regmap_update_bits(regmap, reg, RT6160_VSEL_MASK, vsel);
+> > +}
+>
+> This seems to just be updating the normal voltage configuration
+> regulator, the suspend mode operations are there for devices that
+> have a hardware suspend mode that's entered as part of the very
+> low level system suspend process.
+>
+There's a independent 'vsel' pin. It depend on user's HW design.
+And that's why there's a 'richtek,vsel_active_low' property.
+Its normal application is to use vsel high active level, and it means
+the opposite level can be used for the suspend voltage
 
-Signed-off-by: Robert Marko <robimarko@gmail.com>
----
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index 555a107959831..20059d0f7d714 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -286,6 +286,7 @@ qusb_phy_0: phy@79000 {
- 			clock-names = "cfg_ahb", "ref";
- 
- 			resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
-+			status = "disabled";
- 		};
- 
- 		qmp_pcie_phy0: phy@84000 {
--- 
-2.31.1
-
+And there're also two voltage registers for vsel level high and low.
+> > +static int rt6160_set_ramp_delay(struct regulator_dev *rdev, int ramp_=
+delay)
+> > +{
+> > +     struct regmap *regmap =3D rdev_get_regmap(rdev);
+> > +     unsigned int ramp_value =3D RT6160_RAMPRATE_1VMS;
+> > +
+> > +     switch (ramp_delay) {
+> > +     case 1 ... 1000:
+> > +             ramp_value =3D RT6160_RAMPRATE_1VMS;
+> > +             break;
+>
+> This looks like it could be converted to regulator_set_ramp_delay_regmap(=
+)
+>
+I didn't notice there's the regulator_set_ramp_delay_regmap API that
+can be used in kernel 5.13.
+Ack in next.
+> > +static unsigned int rt6160_of_map_mode(unsigned int mode)
+> > +{
+> > +     if (mode =3D=3D RT6160_MODE_FPWM)
+> > +             return REGULATOR_MODE_FAST;
+> > +     else if (mode =3D=3D RT6160_MODE_AUTO)
+> > +             return REGULATOR_MODE_NORMAL;
+> > +
+>
+> This would be more idiomatically written as a switch statement.
+>
+Ack in next. Change the if-else to switch case. Thx.
+> > +     enable_gpio =3D devm_gpiod_get_optional(&i2c->dev, "enable", GPIO=
+D_OUT_HIGH);
+> > +     if (IS_ERR(enable_gpio)) {
+> > +             dev_err(&i2c->dev, "Failed to get 'enable' gpio\n");
+> > +             return PTR_ERR(enable_gpio);
+> > +     }
+>
+> There's no other references to enable_gpio?
+>
+The IC is designed for low IQ.
+So from the driver probe, I only need to keep 'enable' pin high.
+Or if user specify the 'enable' gpio, it will block i2c communication,
+register also be reset,
+and add more delay time on enable/disable.
+That's why there's no other references to 'enable' gpio.
+> > +     regmap =3D devm_regmap_init_i2c(i2c, &rt6160_regmap_config);
+> > +     if (IS_ERR(regmap)) {
+> > +             dev_err(&i2c->dev, "Failed to init regmap\n");
+> > +             return PTR_ERR(regmap);
+> > +     }
+>
+> It's better to print the error code to help anyone who runs into
+> issues figure out what's wrong.
+Sure, change it to dev_err(&i2c->dev, "Failed to init regmap (%d)\n",
+PTR_ERR(regmap));
+Ack in next, thx.
