@@ -2,46 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64971391DE4
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 19:21:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD5FB391DE8
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 19:21:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232173AbhEZRXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 13:23:01 -0400
-Received: from youngberry.canonical.com ([91.189.89.112]:36766 "EHLO
+        id S235301AbhEZRXH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 13:23:07 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:36788 "EHLO
         youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234849AbhEZRWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 13:22:33 -0400
-Received: from mail-ua1-f72.google.com ([209.85.222.72])
+        with ESMTP id S235096AbhEZRWf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 13:22:35 -0400
+Received: from mail-vs1-f72.google.com ([209.85.217.72])
         by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
         (Exim 4.93)
         (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1llxDI-0003ae-QI
-        for devicetree@vger.kernel.org; Wed, 26 May 2021 17:21:00 +0000
-Received: by mail-ua1-f72.google.com with SMTP id d22-20020ab031960000b0290223019877e7so1102722uan.11
-        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 10:21:00 -0700 (PDT)
+        id 1llxDL-0003cZ-9j
+        for devicetree@vger.kernel.org; Wed, 26 May 2021 17:21:03 +0000
+Received: by mail-vs1-f72.google.com with SMTP id y13-20020a67d20d0000b02902354e7b1beaso557974vsi.5
+        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 10:21:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=SNm8r3qL/2kiXiJIVKuFq4DIG33CzdI9IizzknKRELw=;
-        b=Qk6dAGV2buEcU1+YxQJb92M5IU+QUe0BNm4ZYy5TYaqBCt87dQUz1jzTik8iUQGVPb
-         Sfhwm0XuFcD3UieZBJLP9qK13kUuDXwQKsSvWLOROO8MM5D2hoRVhPXwStuV2CMmwjgt
-         hej5nDCBw+uh1jC8ZBrZ+H2E6EhwwlHjCnKY09PKr3kfoLWx9HV8g7kDL2SRODM3lmv+
-         w+sLgu2KTnTBaEKdUSKSJF6nk18M3pHe9kC8rV7xnYQ9o2oXpGqT2IdX29/j8FSQNmfv
-         X60NBQ99kN4B3oGTT/3MqbArN2/dtD98Gk6e+pND/BNnuyFNQGqDu8M7FBcyXX83/WWh
-         Qvbg==
-X-Gm-Message-State: AOAM531SYtMlgpaDhED7fx/0WW/8h27DJqewIIsM3ZAI3bhv2Okj3RkK
-        o+uLkQTvcfpAdlLTT+HoDWlXlh0ZwXd5+R/Ock93ap57YoC+1NDdpSAQekBjrnYd18MSEwXY1yc
-        uM4gCvBfRgS9eTet7lNCVT+QZbxDm4mnNI8Si8nU=
-X-Received: by 2002:ab0:6d8c:: with SMTP id m12mr21071488uah.49.1622049659959;
-        Wed, 26 May 2021 10:20:59 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyKbreCdzxPHok0y1tVuHyOgZULUrZT2VgOqfxTb2af4jPjxbiLuaf5zi62GiVO/GnTLXh37w==
-X-Received: by 2002:ab0:6d8c:: with SMTP id m12mr21071448uah.49.1622049659760;
-        Wed, 26 May 2021 10:20:59 -0700 (PDT)
+        bh=GmEoQJnYyHa6LUU8eDJ5U1vBJGHUMr9Q2pgbu4Jz5Pw=;
+        b=rTpE84vHGLMkiDXmW/gk0t3YmCiepHM1PJINutYh8i0Nyxp3UxxtPBIai621Q83MpC
+         /p5yYeEVWbEbMiWtOeiXCM9rV0mTMX52LbC2lYbiz+ahEU0Bee+Iie/8TttvhxSPxfBO
+         MzcvuWzWDAjKdusNUluRvmGqYXfOuqgUvGQQCGclsQHWtdru0WdYTVvkaiUWeBu8Lf6r
+         oDhNdvfmw4EcTCoZKGoJ90rsXJuKCyD5QZpcE8vDCJa0JAdeJlWa6BygwtHAwPy40M2l
+         SlCdq2AvMkbTn1D25mbM5sGDy9XHY0DzKmU5YWh33teYcqxXozeSO01ThHKIpAEvmR30
+         Kvww==
+X-Gm-Message-State: AOAM530xRS0lXvAlmfd8thASYp6o8HFyhPAvhfcY6NTTOAp9m15C5sjx
+        hOKgRToSdSEhkFSxOjilrYMVGxz5fNDm/N84roIxA5MZBlyGj/W6Yal8vSY83+UVsH1nyawqaVp
+        pOD+l8vTqZH70uSfURPCQfHppF7CCtUHzdrzqxGM=
+X-Received: by 2002:a05:6102:124d:: with SMTP id p13mr32602221vsg.58.1622049662242;
+        Wed, 26 May 2021 10:21:02 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx9xh7stKNjLHMO5aPJf5U1x+d8xsFxY3fMgzBN4TM4e3umiNoUIJM1/Sf2sd3i0ilvlipGjw==
+X-Received: by 2002:a05:6102:124d:: with SMTP id p13mr32602180vsg.58.1622049661974;
+        Wed, 26 May 2021 10:21:01 -0700 (PDT)
 Received: from localhost.localdomain ([45.237.48.6])
-        by smtp.gmail.com with ESMTPSA id u195sm2036032vsc.10.2021.05.26.10.20.55
+        by smtp.gmail.com with ESMTPSA id u195sm2036032vsc.10.2021.05.26.10.20.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 May 2021 10:20:58 -0700 (PDT)
+        Wed, 26 May 2021 10:21:01 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Chanwoo Choi <cw00.choi@samsung.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
@@ -59,9 +59,9 @@ To:     Chanwoo Choi <cw00.choi@samsung.com>,
         devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
         linux-samsung-soc@vger.kernel.org, linux-rtc@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v2 5/7] rtc: max77686: Do not enforce (incorrect) interrupt trigger type
-Date:   Wed, 26 May 2021 13:20:34 -0400
-Message-Id: <20210526172036.183223-6-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH v2 6/7] power: supply: max17042: Do not enforce (incorrect) interrupt trigger type
+Date:   Wed, 26 May 2021 13:20:35 -0400
+Message-Id: <20210526172036.183223-7-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210526172036.183223-1-krzysztof.kozlowski@canonical.com>
 References: <20210526172036.183223-1-krzysztof.kozlowski@canonical.com>
@@ -77,8 +77,8 @@ Interrupt line can be configured on different hardware in different way,
 even inverted.  Therefore driver should not enforce specific trigger
 type - edge falling - but instead rely on Devicetree to configure it.
 
-The Maxim 77686 datasheet describes the interrupt line as active low
-with a requirement of acknowledge from the CPU therefore the edge
+The Maxim 17047/77693 datasheets describe the interrupt line as active
+low with a requirement of acknowledge from the CPU therefore the edge
 falling is not correct.
 
 The interrupt line is shared between PMIC and RTC driver, so using level
@@ -94,24 +94,22 @@ Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 Changes since v1:
 1. None
 ---
- drivers/rtc/rtc-max77686.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/power/supply/max17042_battery.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/rtc/rtc-max77686.c b/drivers/rtc/rtc-max77686.c
-index d51cc12114cb..eae7cb9faf1e 100644
---- a/drivers/rtc/rtc-max77686.c
-+++ b/drivers/rtc/rtc-max77686.c
-@@ -717,8 +717,8 @@ static int max77686_init_rtc_regmap(struct max77686_rtc_info *info)
+diff --git a/drivers/power/supply/max17042_battery.c b/drivers/power/supply/max17042_battery.c
+index 1d7326cd8fc6..ce2041b30a06 100644
+--- a/drivers/power/supply/max17042_battery.c
++++ b/drivers/power/supply/max17042_battery.c
+@@ -1104,7 +1104,7 @@ static int max17042_probe(struct i2c_client *client,
+ 	}
  
- add_rtc_irq:
- 	ret = regmap_add_irq_chip(info->rtc_regmap, info->rtc_irq,
--				  IRQF_TRIGGER_FALLING | IRQF_ONESHOT |
--				  IRQF_SHARED, 0, info->drv_data->rtc_irq_chip,
-+				  IRQF_ONESHOT | IRQF_SHARED,
-+				  0, info->drv_data->rtc_irq_chip,
- 				  &info->rtc_irq_data);
- 	if (ret < 0) {
- 		dev_err(info->dev, "Failed to add RTC irq chip: %d\n", ret);
+ 	if (client->irq) {
+-		unsigned int flags = IRQF_TRIGGER_FALLING | IRQF_ONESHOT;
++		unsigned int flags = IRQF_ONESHOT;
+ 
+ 		/*
+ 		 * On ACPI systems the IRQ may be handled by ACPI-event code,
 -- 
 2.27.0
 
