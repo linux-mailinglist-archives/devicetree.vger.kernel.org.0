@@ -2,134 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BDD90391005
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 07:33:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD718391013
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 07:41:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231698AbhEZFea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 01:34:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43366 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231211AbhEZFea (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 May 2021 01:34:30 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 726CF613D6;
-        Wed, 26 May 2021 05:32:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622007179;
-        bh=8SADv53S7VfYOt5xV+Dwg3XKF+qQF9Y0tDVZlWUYjYw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Dh1A73MNy3dXKxMyPww0pLkXFI7oBGKb0GXSuF/T1xsCGN716siTCgW9t08biUp5G
-         1CcCcIaE2rgB+E11zIBg9zTdA051pYW9dDbfOr6hTB0rIdUnsUcAppxON2/LUKceVY
-         zacs4KPRhuf1LydAaWvXtV2jDjKZapzSfSa0L3C/GwX2tjhkZGkpxww6xpVbQY+Qh1
-         gneFXxoxGGP691DAx+y+n9RkmZDrb1w/5qyEgihp7sTw5Feh4/SxBT/xg9eCZFcQMl
-         Y4vTFi9VtVSYzMkhk2eAGQOdrlonr4Dey5NcAfDKtODYSmRZFGqQ39H4M8h/gQGnmg
-         6Qar/KGWoZbZQ==
-Date:   Wed, 26 May 2021 11:02:55 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Clark <robdclark@gmail.com>, linux-arm-msm@vger.kernel.org,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Abhinav Kumar <abhinavk@codeaurora.org>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH 02/13] dt-bindings: msm/dsi: Document Display Stream
- Compression (DSC) parameters
-Message-ID: <YK3dhxJD/10ag1ZQ@vkoul-mobl.Dlink>
-References: <20210521124946.3617862-1-vkoul@kernel.org>
- <20210521124946.3617862-3-vkoul@kernel.org>
- <20210521144237.GZ2484@yoga>
- <YKtWM+BYeIA+P+55@vkoul-mobl.Dlink>
- <20210524150815.GH2484@yoga>
+        id S232056AbhEZFnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 01:43:18 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:56192 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231210AbhEZFnR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 01:43:17 -0400
+Received: from [IPv6:2a00:a040:193:3500:f557:1b29:6904:4855] (unknown [IPv6:2a00:a040:193:3500:f557:1b29:6904:4855])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: dafna)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id CA57E1F427EB;
+        Wed, 26 May 2021 06:41:36 +0100 (BST)
+Subject: Re: [PATCH v5 11/16] drm/mediatek: Get rid of mtk_smi_larb_get/put
+To:     Yong Wu <yong.wu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Evan Green <evgreen@chromium.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Will Deacon <will.deacon@arm.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>, anan.sun@mediatek.com,
+        chao.hao@mediatek.com, ming-fan.chen@mediatek.com,
+        yi.kuo@mediatek.com, eizan@chromium.org, acourbot@chromium.org,
+        CK Hu <ck.hu@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+References: <20210410091128.31823-1-yong.wu@mediatek.com>
+ <20210410091128.31823-12-yong.wu@mediatek.com>
+From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+Message-ID: <6f3bfbeb-e7d4-249e-b4f0-da1825fec461@collabora.com>
+Date:   Wed, 26 May 2021 08:41:33 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210524150815.GH2484@yoga>
+In-Reply-To: <20210410091128.31823-12-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24-05-21, 10:08, Bjorn Andersson wrote:
-> On Mon 24 May 02:30 CDT 2021, Vinod Koul wrote:
+Hi
+
+On 10.04.21 12:11, Yong Wu wrote:
+> MediaTek IOMMU has already added the device_link between the consumer
+> and smi-larb device. If the drm device call the pm_runtime_get_sync,
+> the smi-larb's pm_runtime_get_sync also be called automatically.
 > 
-> > On 21-05-21, 09:42, Bjorn Andersson wrote:
-> > > On Fri 21 May 07:49 CDT 2021, Vinod Koul wrote:
-> > > 
-> > > > DSC enables streams to be compressed before we send to panel. This
-> > > > requires DSC enabled encoder and a panel to be present. So we add this
-> > > > information in board DTS and find if DSC can be enabled and the
-> > > > parameters required to configure DSC are added to binding document along
-> > > > with example
-> > > > 
-> > > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > > > ---
-> > > >  .../devicetree/bindings/display/msm/dsi.txt       | 15 +++++++++++++++
-> > > >  1 file changed, 15 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/display/msm/dsi.txt b/Documentation/devicetree/bindings/display/msm/dsi.txt
-> > > > index b9a64d3ff184..83d2fb92267e 100644
-> > > > --- a/Documentation/devicetree/bindings/display/msm/dsi.txt
-> > > > +++ b/Documentation/devicetree/bindings/display/msm/dsi.txt
-> > > > @@ -48,6 +48,13 @@ Optional properties:
-> > > >  - pinctrl-n: the "sleep" pinctrl state
-> > > >  - ports: contains DSI controller input and output ports as children, each
-> > > >    containing one endpoint subnode.
-> > > > +- qcom,mdss-dsc-enabled: Display Stream Compression (DSC) is enabled
-> > > > +- qcom,mdss-slice-height: DSC slice height in pixels
-> > > > +- qcom,mdss-slice-width: DSC slice width in pixels
-> > > > +- qcom,mdss-slice-per-pkt: DSC slices per packet
-> > > > +- qcom,mdss-bit-per-component: DSC bits per component
-> > > > +- qcom,mdss-bit-per-pixel: DSC bits per pixel
-> > > > +- qcom,mdss-block-prediction-enable: Block prediction mode of DSC enabled
-> > > >  
-> > > >    DSI Endpoint properties:
-> > > >    - remote-endpoint: For port@0, set to phandle of the connected panel/bridge's
-> > > > @@ -188,6 +195,14 @@ Example:
-> > > >  		qcom,master-dsi;
-> > > >  		qcom,sync-dual-dsi;
-> > > >  
-> > > > +		qcom,mdss-dsc-enabled;
-> > > 
-> > > To me the activation of DSC seems to be a property of the panel.
-> > 
-> > I think there are three parts to the problem
-> > 1. Panel needs to support it
+> CC: CK Hu <ck.hu@mediatek.com>
+> CC: Philipp Zabel <p.zabel@pengutronix.de>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> Reviewed-by: Evan Green <evgreen@chromium.org>
+> Acked-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> ---
+>   drivers/gpu/drm/mediatek/mtk_drm_crtc.c     |  9 ------
+>   drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 35 ---------------------
+>   drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h |  1 -
+>   drivers/gpu/drm/mediatek/mtk_drm_drv.c      |  5 +--
+>   4 files changed, 1 insertion(+), 49 deletions(-)
 > 
-> In the case of DP there's bits to be read in the panel to figure this
-> out, for DSI panels this seems like a property that the panel (driver)
-> should know about.
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+> index 971ef58ac1dc..d59353af4019 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+> @@ -10,7 +10,6 @@
+>   #include <linux/soc/mediatek/mtk-mutex.h>
+>   
+>   #include <asm/barrier.h>
+> -#include <soc/mediatek/smi.h>
+>   
+>   #include <drm/drm_atomic.h>
+>   #include <drm/drm_atomic_helper.h>
+> @@ -544,12 +543,6 @@ static void mtk_drm_crtc_atomic_enable(struct drm_crtc *crtc,
+>   
+>   	DRM_DEBUG_DRIVER("%s %d\n", __func__, crtc->base.id);
+>   
+> -	ret = mtk_smi_larb_get(comp->larb_dev);
+> -	if (ret) {
+> -		DRM_ERROR("Failed to get larb: %d\n", ret);
+> -		return;
+> -	}
+> -
+>   	ret = pm_runtime_resume_and_get(comp->dev);
+>   	if (ret < 0)
+>   		DRM_DEV_ERROR(comp->dev, "Failed to enable power domain: %d\n",
+> @@ -557,7 +550,6 @@ static void mtk_drm_crtc_atomic_enable(struct drm_crtc *crtc,
+>   
+>   	ret = mtk_crtc_ddp_hw_init(mtk_crtc);
+>   	if (ret) {
+> -		mtk_smi_larb_put(comp->larb_dev);
+>   		pm_runtime_put(comp->dev);
+>   		return;
+>   	}
+> @@ -594,7 +586,6 @@ static void mtk_drm_crtc_atomic_disable(struct drm_crtc *crtc,
+>   
+>   	drm_crtc_vblank_off(crtc);
+>   	mtk_crtc_ddp_hw_fini(mtk_crtc);
+> -	mtk_smi_larb_put(comp->larb_dev);
+>   	ret = pm_runtime_put(comp->dev);
+>   	if (ret < 0)
+>   		DRM_DEV_ERROR(comp->dev, "Failed to disable power domain: %d\n",
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> index 75bc00e17fc4..6c01492ba4df 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> @@ -449,37 +449,12 @@ unsigned int mtk_drm_find_possible_crtc_by_comp(struct drm_device *drm,
+>   	return ret;
+>   }
+>   
+> -static int mtk_ddp_get_larb_dev(struct device_node *node, struct mtk_ddp_comp *comp,
+> -				struct device *dev)
+> -{
+> -	struct device_node *larb_node;
+> -	struct platform_device *larb_pdev;
+> -
+> -	larb_node = of_parse_phandle(node, "mediatek,larb", 0);
+> -	if (!larb_node) {
+> -		dev_err(dev, "Missing mediadek,larb phandle in %pOF node\n", node);
+> -		return -EINVAL;
+> -	}
+> -
+> -	larb_pdev = of_find_device_by_node(larb_node);
+> -	if (!larb_pdev) {
+> -		dev_warn(dev, "Waiting for larb device %pOF\n", larb_node);
+> -		of_node_put(larb_node);
+> -		return -EPROBE_DEFER;
+> -	}
+> -	of_node_put(larb_node);
+> -	comp->larb_dev = &larb_pdev->dev;
+> -
+> -	return 0;
+> -}
+> -
+>   int mtk_ddp_comp_init(struct device_node *node, struct mtk_ddp_comp *comp,
+>   		      enum mtk_ddp_comp_id comp_id)
+>   {
+>   	struct platform_device *comp_pdev;
+>   	enum mtk_ddp_comp_type type;
+>   	struct mtk_ddp_comp_dev *priv;
+> -	int ret;
+Hi,
 
-Yes panel should know..
+This 'ret' is also used inside `if IS_REACHABLE(CONFIG_MTK_CMDQ)`
+so it  should not be removed.
 
+Thanks,
+Dafna
+
+>   
+>   	if (comp_id < 0 || comp_id >= DDP_COMPONENT_ID_MAX)
+>   		return -EINVAL;
+> @@ -495,16 +470,6 @@ int mtk_ddp_comp_init(struct device_node *node, struct mtk_ddp_comp *comp,
+>   	}
+>   	comp->dev = &comp_pdev->dev;
+>   
+> -	/* Only DMA capable components need the LARB property */
+> -	if (type == MTK_DISP_OVL ||
+> -	    type == MTK_DISP_OVL_2L ||
+> -	    type == MTK_DISP_RDMA ||
+> -	    type == MTK_DISP_WDMA) {
+> -		ret = mtk_ddp_get_larb_dev(node, comp, comp->dev);
+> -		if (ret)
+> -			return ret;
+> -	}
+> -
+>   	if (type == MTK_DISP_BLS ||
+>   	    type == MTK_DISP_CCORR ||
+>   	    type == MTK_DISP_COLOR ||
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
+> index bb914d976cf5..1b582262b682 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
+> @@ -70,7 +70,6 @@ struct mtk_ddp_comp_funcs {
+>   struct mtk_ddp_comp {
+>   	struct device *dev;
+>   	int irq;
+> -	struct device *larb_dev;
+>   	enum mtk_ddp_comp_id id;
+>   	const struct mtk_ddp_comp_funcs *funcs;
+>   };
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> index b013d56d2777..622de47239eb 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> @@ -576,11 +576,8 @@ static int mtk_drm_probe(struct platform_device *pdev)
+>   	pm_runtime_disable(dev);
+>   err_node:
+>   	of_node_put(private->mutex_node);
+> -	for (i = 0; i < DDP_COMPONENT_ID_MAX; i++) {
+> +	for (i = 0; i < DDP_COMPONENT_ID_MAX; i++)
+>   		of_node_put(private->comp_node[i]);
+> -		if (private->ddp_comp[i].larb_dev)
+> -			put_device(private->ddp_comp[i].larb_dev);
+> -	}
+>   	return ret;
+>   }
+>   
 > 
-> > 2. Host needs to support it
-> 
-> Right, so this needs to be known by the driver. My suggestion is that we
-> derive it from the compatible or from the HW version.
-
-Okay
-
-> 
-> > 3. Someone needs to decide to use when both the above conditions are
-> > met.
-> > 
-> > There are cases where above 1, 2 will be satisfied, but we might be okay
-> > without DSC too.. so how to decide when to do DSC :)
-> > 
-> 
-> Can we describe those cases? E.g. is it because enabling DSC would not
-> cause a reduction in clock speed that's worth the effort? Or do we only
-> use DSC for DSI when it allows us to squeeze everything into a single
-> link?
-
-I really dont know how and when we should decide that :-|
-One thing we can do is that if both support then always enable and get
-benefit of getting power and clock speed reduction.
-
-With this, who should have slice and bpp settings, panel or host?
-
-Thanks
--- 
-~Vinod
