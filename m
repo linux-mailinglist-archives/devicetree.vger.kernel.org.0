@@ -2,215 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90F01390E94
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 04:59:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C00C5390E83
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 04:50:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231376AbhEZDAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 23:00:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45482 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231348AbhEZDAv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 May 2021 23:00:51 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4400161432;
-        Wed, 26 May 2021 02:59:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1621997961;
-        bh=1Vi1ujoloi31h2fuTBqvWFO8m+MME1+FdhmIe/4hQ+Y=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=rKedvANRVrz37/9gpYWlfiBK7yVOGeM0429Ejkiwleu2mHk+u6mehxhp+HP47ai6o
-         Jcb08As80Q5nwvnuzXIW0dqV1U/A48EoRCzmZzWvUA66GZ4Hfbhp1VYJE49TqTuFUL
-         +vZzZCP55y1p8IFnuKQNENTXelhvL7bD3bl39smTpD78nMypnQokwFVq0il+GXUNDz
-         TjRO0xBrHlQjXDzw7nxx2k0yBravJNuAirYM/tw5mpTu/8UuokV+7QsKNo3CXmZgZd
-         BCIpYBBASb/a/tQsnx32eIafMDgNYp2ecC9g59eAAv+qMMVHab7O/NVXa8M/ED0RsY
-         jhJcKM2Fl1fcA==
-Received: by mail-ej1-f51.google.com with SMTP id s22so38842ejv.12;
-        Tue, 25 May 2021 19:59:21 -0700 (PDT)
-X-Gm-Message-State: AOAM532RD42wAAEqh1FL6aycEujaczBtkvUuJtnfPP/R0826KNhIg7jI
-        2Fzu3Tg3IZsFTDB6APoZpaO3jg7mtpqRTaaMPw==
-X-Google-Smtp-Source: ABdhPJxTpRaVAcS1iQ8JUak5Isj5SZ8WTpbasCnC3NVQg5nTUIZ8my96cmr6BjhE3jH3wnSKPus1KvnkztIiaHs+46Q=
-X-Received: by 2002:a17:907:1ca1:: with SMTP id nb33mr31304670ejc.75.1621997959809;
- Tue, 25 May 2021 19:59:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210525121448.30075-1-rex-bc.chen@mediatek.com> <20210525121448.30075-4-rex-bc.chen@mediatek.com>
-In-Reply-To: <20210525121448.30075-4-rex-bc.chen@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Wed, 26 May 2021 10:59:09 +0800
-X-Gmail-Original-Message-ID: <CAAOTY__9Emac0Lc=afZMcJzCuO-myJDS--rshMkkrVZr9imSog@mail.gmail.com>
-Message-ID: <CAAOTY__9Emac0Lc=afZMcJzCuO-myJDS--rshMkkrVZr9imSog@mail.gmail.com>
-Subject: Re: [v4,PATCH 3/3] drm/mediatek: dpi: add bus format negotiation
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        id S232180AbhEZCv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 22:51:58 -0400
+Received: from mailout2.samsung.com ([203.254.224.25]:40190 "EHLO
+        mailout2.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231597AbhEZCv5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 May 2021 22:51:57 -0400
+Received: from epcas1p4.samsung.com (unknown [182.195.41.48])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20210526025024epoutp028ed38bbdff5bee33f2aeda5dd22242f7~CfhBkSJfS0882008820epoutp02C
+        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 02:50:24 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20210526025024epoutp028ed38bbdff5bee33f2aeda5dd22242f7~CfhBkSJfS0882008820epoutp02C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1621997424;
+        bh=tyBZ7OFuRi9bEQ8p2rvrGW0NFjmKK4W+w9n1YR0iE+Y=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=RtEMFS6qmpLDpTg3LAZYp87Jh4mu3R8UjhyydBxR663opS8xPuWtZ/qzagH0PEvhA
+         6vt+uqBFihSbE9i1Fy8StmYtFM/msW4o4zYezjDW3eJ3Epg00yk8SYAAlocWU1LtLY
+         x+o0ee3fBp/YyIsUoqUBB+GkG82huqb3OBBwl00c=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas1p3.samsung.com (KnoxPortal) with ESMTP id
+        20210526025023epcas1p3dac4849351c6d4f49c42e87e5ab1a357~CfhAmXhWv2533925339epcas1p3t;
+        Wed, 26 May 2021 02:50:23 +0000 (GMT)
+Received: from epsmges1p2.samsung.com (unknown [182.195.40.155]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4Fqb652NFKz4x9Q1; Wed, 26 May
+        2021 02:50:21 +0000 (GMT)
+Received: from epcas1p2.samsung.com ( [182.195.41.46]) by
+        epsmges1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        7F.0B.09701.D67BDA06; Wed, 26 May 2021 11:50:21 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas1p4.samsung.com (KnoxPortal) with ESMTPA id
+        20210526025019epcas1p48e8136bc939e4fd65cbbf56db4ccb239~Cfg8phb6f2104521045epcas1p4E;
+        Wed, 26 May 2021 02:50:19 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20210526025019epsmtrp2330a7961f7312d554b36506126411e20~Cfg8oiu5q2922929229epsmtrp2x;
+        Wed, 26 May 2021 02:50:19 +0000 (GMT)
+X-AuditID: b6c32a36-631ff700000025e5-9d-60adb76d7f63
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        13.27.08163.B67BDA06; Wed, 26 May 2021 11:50:19 +0900 (KST)
+Received: from [10.113.221.102] (unknown [10.113.221.102]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20210526025019epsmtip2eebbc2657eb498ec01613c5d68bafcd4~Cfg8Xg2nC3137531375epsmtip2J;
+        Wed, 26 May 2021 02:50:19 +0000 (GMT)
+Subject: Re: [PATCH V8 1/8] PM / devfreq: Add cpu based scaling support to
+ passive_governor
+To:     "andrew-sh.cheng" <andrew-sh.cheng@mediatek.com>
+Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Jitao Shi <jitao.shi@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        srv_heupstream@mediatek.com, Sibi Sankar <sibis@codeaurora.org>
+From:   Chanwoo Choi <cw00.choi@samsung.com>
+Organization: Samsung Electronics
+Message-ID: <dd58c29a-35b1-b853-bc4a-3225b21b082a@samsung.com>
+Date:   Wed, 26 May 2021 12:08:43 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
+        Thunderbird/59.0
+MIME-Version: 1.0
+In-Reply-To: <1621995727.29827.1.camel@mtksdaap41>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrPJsWRmVeSWpSXmKPExsWy7bCmnm7u9rUJBi9/cFpsX/+C1WLqwyds
+        FvOPnGO1ONv0ht3i25UOJotNj6+xWlzeNYfN4nLzRUaLz71HGC2WXr/IZNHUYmxxu3EFm8Wb
+        H2eZLM6cvsRq0br3CLvFv2sbWSyuLXzPajH9rpDFxq8eDsIea+atYfS43NfL5LFz1l12j02r
+        Otk87lzbw+axeUm9R8vJ/SweW662s3j0bVnF6HH8xnYmj8+b5AK4o7JtMlITU1KLFFLzkvNT
+        MvPSbZW8g+Od403NDAx1DS0tzJUU8hJzU22VXHwCdN0yc4CeU1IoS8wpBQoFJBYXK+nb2RTl
+        l5akKmTkF5fYKqUWpOQUWBboFSfmFpfmpesl5+daGRoYGJkCFSZkZ+zrbGQpmK5esfzvUfYG
+        xqmKXYycHBICJhKN3/8wdTFycQgJ7GCUWHHnLSuE84lRYsKsqewQzmdGiTvzP7LDtDR8WMEC
+        kdjFKDF5byszhPOeUWLtmo2sIFXCArESv87fYwGxRYA6dsyczQhiMwv0skrMPAS2nE1AS2L/
+        ixtsIDa/gKLE1R+PwWp4Bewkvmx8BBZnEVCVWDC7nRnEFhUIkzi5rQWqRlDi5MwnYPM5BYwk
+        Pt/oYYOYLy5x68l8JghbXmL72zlgx0kIzOaU2DrvKyvECy4SN04vYIGwhSVeHd8C9ZqUxOd3
+        e9kg7GqJlSePsEE0dzBKbNl/AarZWGL/0slAGziANmhKrN+lDxFWlNj5ey7Uk3wS7772sIKU
+        SAjwSnS0CUGUKEtcfnCXCcKWlFjc3sk2gVFpFpJ3ZiF5YRaSF2YhLFvAyLKKUSy1oDg3PbXY
+        sMAIObo3MYJTvpbZDsZJbz/oHWJk4mA8xCjBwawkwnuweW2CEG9KYmVValF+fFFpTmrxIUZT
+        YABPZJYSTc4HZp28knhDUyNjY2MLE0MzU0NDJXHedOfqBCGB9MSS1OzU1ILUIpg+Jg5OqQam
+        VsdrGYWBKY0OO7b89ebU9eX/f79PrV8hzuH5lpq1CYve960LX5Ry6LGxtPaVudWBDq/1/qf3
+        r9OqM55yg9E/XYPpmgJD6lNj089d0vaJfAeWTI6L3LKmyr2Ny5xzm5xr2LHdW44wHJLy4rCa
+        dXD+13oJ2yo12ZPPprIYiP2eMn3rZ603iWa/X807Jsu7c3dx/Gyzb7GXHKa/zvnmuH+CNqNX
+        rOfTXK/8/apRPpXFH+Z2fFl6dxKfobu8xDpdp31X/7/+yT5R0qCEN07utLtfG9fiB5tFy6/e
+        s9w2bY/s/KhbR94Yhq/pfb/OqENz8tTLlxuNm/Mfdj9gfb1qqdaVm+fsuk+l/LPdv4hnfmy6
+        EktxRqKhFnNRcSIAVRKMlYIEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrBIsWRmVeSWpSXmKPExsWy7bCSvG729rUJBh8+CVpsX/+C1WLqwyds
+        FvOPnGO1ONv0ht3i25UOJotNj6+xWlzeNYfN4nLzRUaLz71HGC2WXr/IZNHUYmxxu3EFm8Wb
+        H2eZLM6cvsRq0br3CLvFv2sbWSyuLXzPajH9rpDFxq8eDsIea+atYfS43NfL5LFz1l12j02r
+        Otk87lzbw+axeUm9R8vJ/SweW662s3j0bVnF6HH8xnYmj8+b5AK4o7hsUlJzMstSi/TtErgy
+        9nU2shRMV69Y/vcoewPjVMUuRk4OCQETiYYPK1hAbCGBHYwS736UQsQlJaZdPMrcxcgBZAtL
+        HD5cDFHyllGi4RkbiC0sECvx6/w9sFYRoDE7Zs5m7GLk4mAW6GeVePmjiwnEERJ4xCJxZ8Ia
+        VpAqNgEtif0vboB18wsoSlz98ZgRxOYVsJP4svERWJxFQFViwex2ZhBbVCBMYueSx0wQNYIS
+        J2c+AdvGKWAk8flGD1g9s4C6xJ95l5ghbHGJW0/mM0HY8hLb385hnsAoPAtJ+ywkLbOQtMxC
+        0rKAkWUVo2RqQXFuem6xYYFRXmq5XnFibnFpXrpecn7uJkZw5Gtp7WDcs+qD3iFGJg7GQ4wS
+        HMxKIrwHm9cmCPGmJFZWpRblxxeV5qQWH2KU5mBREue90HUyXkggPbEkNTs1tSC1CCbLxMEp
+        1cBkONe+d7mOhl9xqrrl7+X3f8nP5hHcHG+4w/njzI0/FDQr12kXlkj22q44eZK3vDzo2ubl
+        telPlOdcSJcwuLohWPbR9fNlDL7HFdOy3Qu7H9yRaN2273AE9+fvqu3ru7P2aS59WNtQ0vYw
+        5m7i4855U0RfripwrdmWs/zZ7Bn3jFVuJf1TiBQJvvKywKcykun/zPvlPROvW7xxerBPS3zb
+        w39OF40+6ghMuiD6U2OFbrq3Ttq5r80vGP8mz8nJabC80b7Wqu3335ZXxvx8u2clHTPxurFN
+        znh90LlbqkVBKRWXS24u2jfPttmRsbTxmcal1xfuhPP8OZW1pFxFNd16kvCCaO+pZ0XYb/V7
+        cTIqsRRnJBpqMRcVJwIAHz+jaGsDAAA=
+X-CMS-MailID: 20210526025019epcas1p48e8136bc939e4fd65cbbf56db4ccb239
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20210323113411epcas1p3b4367563007ca91c30201d7fc225bb67
+References: <1616499241-4906-1-git-send-email-andrew-sh.cheng@mediatek.com>
+        <CGME20210323113411epcas1p3b4367563007ca91c30201d7fc225bb67@epcas1p3.samsung.com>
+        <1616499241-4906-2-git-send-email-andrew-sh.cheng@mediatek.com>
+        <233a3bd6-7ab1-5da2-9184-a745eb253d86@samsung.com>
+        <1617177820.15067.1.camel@mtksdaap41>
+        <2ae8604d-0da6-4243-1b92-81b3917d7d48@samsung.com>
+        <cad52436-b291-05bf-236f-7b7cb1fdbbff@samsung.com>
+        <1617195800.18432.3.camel@mtksdaap41>
+        <fbb6c44b-eb77-14ce-9175-3f06030e6e0c@samsung.com>
+        <cfdd3973-e4a7-8c09-8a7e-57118a7a3b9b@samsung.com>
+        <1621995727.29827.1.camel@mtksdaap41>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Rex:
+Hi,
+On 5/26/21 11:22 AM, andrew-sh.cheng wrote:
+> On Thu, 2021-04-08 at 11:47 +0900, Chanwoo Choi wrote:
+>> On 4/1/21 9:16 AM, Chanwoo Choi wrote:
+>>> On 3/31/21 10:03 PM, andrew-sh.cheng wrote:
+>>>> On Wed, 2021-03-31 at 17:35 +0900, Chanwoo Choi wrote:
+>>>>> On 3/31/21 5:27 PM, Chanwoo Choi wrote:
+>>>>>> Hi,
+>>>>>>
+>>>>>> On 3/31/21 5:03 PM, andrew-sh.cheng wrote:
+>>>>>>> On Thu, 2021-03-25 at 17:14 +0900, Chanwoo Choi wrote:
+>>>>>>>> Hi,
+>>>>>>>>
+>>>>>>>> You are missing to add these patches to linux-pm mailing list.
+>>>>>>>> Need to send them to linu-pm ML.
+>>>>>>>>
+>>>>>>>> Also, before received this series, I tried to clean-up these patches
+>>>>>>>> on testing branch[1]. So that I add my comment with my clean-up case.
+>>>>>>>> [1] https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/log/?h=devfreq-testing-passive-gov__;!!CTRNKA9wMg0ARbw!zIrzeDp9vPnm1_SDzVPuzqdHn3zWie9DnfBXaA-j9-CSrVc6aR9_rJQQiw81_CgAPh9XRRs$ 
+>>>>>>>>
+>>>>>>>> And 'Saravana Kannan <skannan@codeaurora.org>' is wrong email address.
+>>>>>>>> Please update the email or drop this email.
+>>>>>>>
+>>>>>>> Hi Chanwoo,
+>>>>>>>
+>>>>>>> Thank you for the advices.
+>>>>>>> I will resend patch v9 (add to linux-pm ML), remove this patch, and note
+>>>>>>> that my patch set base on
+>>>>>>> https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/log/?h=devfreq-testing-passive-gov__;!!CTRNKA9wMg0ARbw!yUlsuxrL5PcbF7o6A9DlCfvoA6w8V8VXKjYIybYyiJg3D0HM-lI2xRuxLUV6b3UJ8WFhg_g$ 
+>>>>>>
+>>>>>> I has not yet test this patch[1] on devfreq-testing-passive-gov branch.
+>>>>>> So that if possible, I'd like you to test your patches with this patch[1] 
+>>>>>> and then if there is no problem, could you send the next patches with patch[1]?
+>>>>>>
+>>>>>> [1]https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/commit/?h=devfreq-testing-passive-gov&id=39c80d11a8f42dd63ecea1e0df595a0ceb83b454__;!!CTRNKA9wMg0ARbw!yUlsuxrL5PcbF7o6A9DlCfvoA6w8V8VXKjYIybYyiJg3D0HM-lI2xRuxLUV6b3UJR2cQqZs$ 
+>>>>>
+>>>>>
+>>>>> Sorry for the confusion. I make the devfreq-testing-passive-gov[1]
+>>>>> branch based on latest devfreq-next branch.
+>>>>> [1] https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/log/?h=devfreq-testing-passive-gov__;!!CTRNKA9wMg0ARbw!yUlsuxrL5PcbF7o6A9DlCfvoA6w8V8VXKjYIybYyiJg3D0HM-lI2xRuxLUV6b3UJ8WFhg_g$ 
+>>>>>
+>>>>> First of all, if possible, I want to test them[1] with your patches in this series.
+>>>>> And then if there are no any problem, please let me know. After confirmed from you,
+>>>>> I'll send the patches of devfreq-testing-passive-gov[1] branch.
+>>>>> How about that?
+>>>>>
+>>>> Hi Chanwoo~
+>>>>
+>>>> We will use this on Google Chrome project.
+>>>> Google Hsin-Yi has test your patch + my patch set v8 [2~8]
+>>>>
+>>>>     make sure cci devfreqs runs with cpufreq.
+>>>>     suspend resume
+>>>>     speedometer2 benchmark
+>>>> It is okay.
+>>>>
+>>>> Please send the patches of devfreq-testing-passive-gov[1] branch.
+>>>>
+>>>> I will send patch v9 base on yours latter.
+>>>
+>>> Thanks for your test. I'll send the patches today.
+>>
+>> I'm sorry for delay because when I tested the patches
+>> for devfreq parent type on Odroid-xu3, there are some problem
+>> related to lazy linking of OPP. So I'm trying to analyze them.
+>> Unfortunately, we need to postpone these patches to next linux
+>> version.
+>>
+> Hi Chanwoo Choi~
+> 
+> It is said that you are busy on another task recently.
+> May I know your plan on this patch?
+> Thank you.
 
-Rex-BC Chen <rex-bc.chen@mediatek.com> =E6=96=BC 2021=E5=B9=B45=E6=9C=8825=
-=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=888:15=E5=AF=AB=E9=81=93=EF=BC=
-=9A
->
-> Add the atomic_get_output_bus_fmts, atomic_get_input_bus_fmts to negotiat=
-e
-> the possible output and input formats for the current mode and monitor,
-> and use the negotiated formats in a basic atomic_check callback.
->
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_dpi.c | 78 ++++++++++++++++++++++++++++--
->  1 file changed, 73 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediate=
-k/mtk_dpi.c
-> index d6a422986efc..667a97470389 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> @@ -540,6 +540,73 @@ static int mtk_dpi_set_display_mode(struct mtk_dpi *=
-dpi,
->         return 0;
->  }
->
-> +static u32 *mtk_dpi_bridge_atomic_get_output_bus_fmts(struct drm_bridge =
-*bridge,
-> +                                       struct drm_bridge_state *bridge_s=
-tate,
-> +                                       struct drm_crtc_state *crtc_state=
-,
-> +                                       struct drm_connector_state *conn_=
-state,
-> +                                       unsigned int *num_output_fmts)
-> +{
-> +       struct mtk_dpi *dpi =3D bridge_to_dpi(bridge);
-> +
-> +       *num_output_fmts =3D 0;
-> +
-> +       if (!dpi->conf->output_fmts)
+Sorry for late work. I have a question.
+When I tested exynos-bus.c with adding the 'required-opp' property
+on odroid-xu3 board. I got some fail about 
 
-print error here because this should not happen.
+When calling _set_required_opps(), always _set_required_opp() returns
+-EBUSY error because of following lazy linking case[1].
 
-> +               return NULL;
-> +
-> +       *num_output_fmts =3D dpi->conf->num_output_fmts;
-> +
-> +       return (u32 *)dpi->conf->output_fmts;
+[1] https://elixir.bootlin.com/linux/v5.13-rc3/source/drivers/opp/core.c#L896
 
-I think you should allocate new buffer for output_fmts because the
-caller would free it.
+/* required-opps not fully initialized yet */
+if (lazy_linking_pending(opp_table))
+	return -EBUSY;  
 
-> +}
-> +
-> +#define MAX_INPUT_SEL_FORMATS  1
-> +
-> +static u32 *mtk_dpi_bridge_atomic_get_input_bus_fmts(struct drm_bridge *=
-bridge,
-> +                                       struct drm_bridge_state *bridge_s=
-tate,
-> +                                       struct drm_crtc_state *crtc_state=
-,
-> +                                       struct drm_connector_state *conn_=
-state,
-> +                                       u32 output_fmt,
-> +                                       unsigned int *num_input_fmts)
-> +{
-> +       u32 *input_fmts;
-> +
-> +       *num_input_fmts =3D 0;
-> +
-> +       input_fmts =3D kcalloc(MAX_INPUT_SEL_FORMATS, sizeof(*input_fmts)=
-,
-> +                            GFP_KERNEL);
-> +       if (!input_fmts)
-> +               return NULL;
-> +
-> +       *num_input_fmts =3D 1;
-> +       input_fmts[0] =3D MEDIA_BUS_FMT_RGB888_1X24;
 
-it seems that MAX_INPUT_SEL_FORMATS has no influence here. Maybe just
-remove MAX_INPUT_SEL_FORMATS, or you should have flexibility here for
-different MAX_INPUT_SEL_FORMATS value.
+For calling dev_pm_opp_of_add_table(), lazy_link_required_opp_table() function
+will be called. But, there is constraint[2]. If is_genpd of opp_table is false,
+driver/opp/of.c cannot resolve the lazy linking issue.
 
-> +
-> +       return input_fmts;
-> +}
-> +
-> +static int mtk_dpi_bridge_atomic_check(struct drm_bridge *bridge,
-> +                                      struct drm_bridge_state *bridge_st=
-ate,
-> +                                      struct drm_crtc_state *crtc_state,
-> +                                      struct drm_connector_state *conn_s=
-tate)
-> +{
-> +       struct mtk_dpi *dpi =3D bridge->driver_private;
-> +       unsigned int out_bus_format;
-> +
-> +       out_bus_format =3D bridge_state->output_bus_cfg.format;
-> +
-> +       dev_dbg(dpi->dev, "input format 0x%04x, output format 0x%04x\n",
-> +               bridge_state->input_bus_cfg.format,
-> +               bridge_state->output_bus_cfg.format);
-> +
-> +       dpi->ddr_edge_sel =3D (out_bus_format =3D=3D MEDIA_BUS_FMT_RGB888=
-_2X12_LE) ?
-> +                          true : false;
+[2]  https://elixir.bootlin.com/linux/v5.13-rc3/source/drivers/opp/of.c#L386
 
-dpi->output_fmt =3D out_bus_format;
+/* Link required OPPs for all OPPs of the newly added OPP table */
+static void lazy_link_required_opp_table(struct opp_table *new_table)
+{
+	struct opp_table *opp_table, *temp, **required_opp_tables;
+	struct device_node *required_np, *opp_np, *required_table_np;
+	struct dev_pm_opp *opp;
+	int i, ret;
 
-Regards,
-Chun-Kuang.
+	/*
+	 * We only support genpd's OPPs in the "required-opps" for now,
+	 * as we don't know much about other cases.
+	 */
+	if (!new_table->is_genpd)
+		return;
 
-> +
-> +       dpi->bit_num =3D MTK_DPI_OUT_BIT_NUM_8BITS;
-> +       dpi->channel_swap =3D MTK_DPI_OUT_CHANNEL_SWAP_RGB;
-> +       dpi->yc_map =3D MTK_DPI_OUT_YC_MAP_RGB;
-> +       dpi->color_format =3D MTK_DPI_COLOR_FORMAT_RGB;
-> +
-> +       return 0;
-> +}
-> +
->  static int mtk_dpi_bridge_attach(struct drm_bridge *bridge,
->                                  enum drm_bridge_attach_flags flags)
->  {
-> @@ -592,6 +659,12 @@ static const struct drm_bridge_funcs mtk_dpi_bridge_=
-funcs =3D {
->         .mode_valid =3D mtk_dpi_bridge_mode_valid,
->         .disable =3D mtk_dpi_bridge_disable,
->         .enable =3D mtk_dpi_bridge_enable,
-> +       .atomic_check =3D mtk_dpi_bridge_atomic_check,
-> +       .atomic_get_output_bus_fmts =3D mtk_dpi_bridge_atomic_get_output_=
-bus_fmts,
-> +       .atomic_get_input_bus_fmts =3D mtk_dpi_bridge_atomic_get_input_bu=
-s_fmts,
-> +       .atomic_duplicate_state =3D drm_atomic_helper_bridge_duplicate_st=
-ate,
-> +       .atomic_destroy_state =3D drm_atomic_helper_bridge_destroy_state,
-> +       .atomic_reset =3D drm_atomic_helper_bridge_reset,
->  };
->
->  void mtk_dpi_start(struct device *dev)
-> @@ -638,11 +711,6 @@ static int mtk_dpi_bind(struct device *dev, struct d=
-evice *master, void *data)
->         }
->         drm_connector_attach_encoder(dpi->connector, &dpi->encoder);
->
-> -       dpi->bit_num =3D MTK_DPI_OUT_BIT_NUM_8BITS;
-> -       dpi->channel_swap =3D MTK_DPI_OUT_CHANNEL_SWAP_RGB;
-> -       dpi->yc_map =3D MTK_DPI_OUT_YC_MAP_RGB;
-> -       dpi->color_format =3D MTK_DPI_COLOR_FORMAT_RGB;
-> -
->         return 0;
->
->  err_cleanup:
-> --
-> 2.18.0
->
+Even if this case, there are no problem on your test case?
+
+-- 
+Best Regards,
+Chanwoo Choi
+Samsung Electronics
