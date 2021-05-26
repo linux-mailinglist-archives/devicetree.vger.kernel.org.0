@@ -2,93 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F179391812
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 14:56:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7B6C3918A6
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 15:21:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234227AbhEZM5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 08:57:43 -0400
-Received: from mail-oo1-f44.google.com ([209.85.161.44]:34782 "EHLO
-        mail-oo1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233075AbhEZM5l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 08:57:41 -0400
-Received: by mail-oo1-f44.google.com with SMTP id i8-20020a4aa1080000b0290201edd785e7so264347ool.1;
-        Wed, 26 May 2021 05:56:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=5TB/SHe/X+zDtrYw2YxYbY1YRqVP38bTz1Qf4xf36SM=;
-        b=io/ZNlJ+8Zd40jnUMwB5lclGk4lzJW9bEQRDaRNhcp3fQX+Y3tAMjteTwrl2b7sZGa
-         y8nzN1MIRsxaZXOVzMUkjVVF3lGFv8ylHDP+lNhVcTLBcNp7Fnx3CGbGo7kz4LWYfGMA
-         GvtdYtUPpMk/9ESzOGdCoQV9Fev46HkI8qJupq04M9HP23ReJO+ZW3DcpqAEMkY/8EBw
-         GKiXMKVzPSapYUjjxH6YjD7vbkg4cRwYG3d7R4XFb961T5qzjVDNPYeg9pgzkRkchGfE
-         aqCKTmjGW/TG/BSFEWt5iKsAodGBf6/mmytCSCJQeLS5/SsDNyS52ctyS6CiXmqg+jvx
-         Jtwg==
-X-Gm-Message-State: AOAM530mUDeyos4AY5adsp9KsFEOhFeZHbecBxEPPT6kjP4Fl1+fUCiR
-        6zCwuU475428AmtC5Se8qA==
-X-Google-Smtp-Source: ABdhPJx/wh7g4D4CYGH7ibtdrflqxgEzKG7CJwLQ7CT974mn8HeUIO7mDRBNtkrVn8LgAfyQ54eYqg==
-X-Received: by 2002:a4a:e715:: with SMTP id y21mr2171382oou.54.1622033769085;
-        Wed, 26 May 2021 05:56:09 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id b19sm3716364oib.46.2021.05.26.05.56.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 May 2021 05:56:07 -0700 (PDT)
-Received: (nullmailer pid 2377037 invoked by uid 1000);
-        Wed, 26 May 2021 12:56:03 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Alex Bee <knaerzche@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
-        Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-staging@lists.linux.dev,
-        Philipp Zabel <p.zabel@pengutronix.de>
-In-Reply-To: <20210525152225.154302-11-knaerzche@gmail.com>
-References: <20210525152225.154302-1-knaerzche@gmail.com> <20210525152225.154302-11-knaerzche@gmail.com>
-Subject: Re: [PATCH 10/10] media: dt-bindings: media: rockchip-vdec: add RK3228 compatible
-Date:   Wed, 26 May 2021 07:56:03 -0500
-Message-Id: <1622033763.779031.2377036.nullmailer@robh.at.kernel.org>
+        id S233389AbhEZNWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 09:22:37 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:50834 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233103AbhEZNW2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 09:22:28 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14QDKnxW024125;
+        Wed, 26 May 2021 08:20:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1622035249;
+        bh=P1FrkOBesN6i909vXX5+SdrU7/euBw9XUDZBquutoGU=;
+        h=From:To:CC:Subject:Date;
+        b=cjhwS9Osd8wp+w+OMa6V3I1vyicPWATQt7y0Q7floF2cfEyRZpJKdrIW2IvPvjqxV
+         4/4YdysQzrOgdaXFzFVfyFG7mSzxaeIBWba4NNbeKOJnMFv2QRbC/kt6lFPURlEe7p
+         KzOJg6MiQvXlErhsgeXR34XZAYJYU7ovcv9m414I=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14QDKnDG046562
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 26 May 2021 08:20:49 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 26
+ May 2021 08:20:49 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 26 May 2021 08:20:49 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14QDKmtw031080;
+        Wed, 26 May 2021 08:20:48 -0500
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+To:     Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+Subject: [PATCH next] arm64: dts: ti: k3-am654x/j721e/j7200-common-proc-board: fix MCU_RGMII1_TXC direction
+Date:   Wed, 26 May 2021 16:20:41 +0300
+Message-ID: <20210526132041.6104-1-grygorii.strashko@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 May 2021 17:22:25 +0200, Alex Bee wrote:
-> Document the RK3228 compatible for rockchip-vdec.
-> Also add the optional assigned-clocks and assigned-clock-rates
-> properties.
-> 
-> Checked with:
-> make ARCH=arm dtbs_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-> 
-> Signed-off-by: Alex Bee <knaerzche@gmail.com>
-> ---
->  .../devicetree/bindings/media/rockchip,vdec.yaml       | 10 +++++++++-
->  1 file changed, 9 insertions(+), 1 deletion(-)
-> 
+The MCU RGMII MCU_RGMII1_TXC pin is defined as input by mistake, although
+this does not make any difference functionality wise it's better to update
+to avoid confusion.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Hence fix MCU RGMII MCU_RGMII1_TXC pin pinmux definitions to be an output
+in K3 am654x/j721e/j7200 board files.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/media/rockchip,vdec.yaml:21:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am654-base-board.dts        | 2 +-
+ arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts | 2 +-
+ arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-dtschema/dtc warnings/errors:
-
-See https://patchwork.ozlabs.org/patch/1483527
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+index eddb2ffb93ca..97c344088483 100644
+--- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+@@ -136,7 +136,7 @@
+ 			AM65X_WKUP_IOPAD(0x007c, PIN_INPUT, 0) /* (L5) MCU_RGMII1_RD2 */
+ 			AM65X_WKUP_IOPAD(0x0080, PIN_INPUT, 0) /* (M6) MCU_RGMII1_RD1 */
+ 			AM65X_WKUP_IOPAD(0x0084, PIN_INPUT, 0) /* (L6) MCU_RGMII1_RD0 */
+-			AM65X_WKUP_IOPAD(0x0070, PIN_INPUT, 0) /* (N1) MCU_RGMII1_TXC */
++			AM65X_WKUP_IOPAD(0x0070, PIN_OUTPUT, 0) /* (N1) MCU_RGMII1_TXC */
+ 			AM65X_WKUP_IOPAD(0x0074, PIN_INPUT, 0) /* (M1) MCU_RGMII1_RXC */
+ 		>;
+ 	};
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+index bedd01b7a32c..d14f3c18b65f 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+@@ -90,7 +90,7 @@
+ 			J721E_WKUP_IOPAD(0x008c, PIN_INPUT, 0) /* MCU_RGMII1_RD2 */
+ 			J721E_WKUP_IOPAD(0x0090, PIN_INPUT, 0) /* MCU_RGMII1_RD1 */
+ 			J721E_WKUP_IOPAD(0x0094, PIN_INPUT, 0) /* MCU_RGMII1_RD0 */
+-			J721E_WKUP_IOPAD(0x0080, PIN_INPUT, 0) /* MCU_RGMII1_TXC */
++			J721E_WKUP_IOPAD(0x0080, PIN_OUTPUT, 0) /* MCU_RGMII1_TXC */
+ 			J721E_WKUP_IOPAD(0x0084, PIN_INPUT, 0) /* MCU_RGMII1_RXC */
+ 		>;
+ 	};
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+index 60764366e22b..351bb84db65b 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+@@ -237,7 +237,7 @@
+ 			J721E_WKUP_IOPAD(0x007c, PIN_INPUT, 0) /* MCU_RGMII1_RD2 */
+ 			J721E_WKUP_IOPAD(0x0080, PIN_INPUT, 0) /* MCU_RGMII1_RD1 */
+ 			J721E_WKUP_IOPAD(0x0084, PIN_INPUT, 0) /* MCU_RGMII1_RD0 */
+-			J721E_WKUP_IOPAD(0x0070, PIN_INPUT, 0) /* MCU_RGMII1_TXC */
++			J721E_WKUP_IOPAD(0x0070, PIN_OUTPUT, 0) /* MCU_RGMII1_TXC */
+ 			J721E_WKUP_IOPAD(0x0074, PIN_INPUT, 0) /* MCU_RGMII1_RXC */
+ 		>;
+ 	};
+-- 
+2.17.1
 
