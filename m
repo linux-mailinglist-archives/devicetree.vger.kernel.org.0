@@ -2,88 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A66B6391810
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 14:56:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91D36391814
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 14:56:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232141AbhEZM5i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 08:57:38 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:40919 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231779AbhEZM5h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 08:57:37 -0400
-Received: by mail-ot1-f54.google.com with SMTP id 80-20020a9d08560000b0290333e9d2b247so890664oty.7;
-        Wed, 26 May 2021 05:56:06 -0700 (PDT)
+        id S234014AbhEZM5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 08:57:45 -0400
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:35818 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233779AbhEZM5n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 08:57:43 -0400
+Received: by mail-oi1-f182.google.com with SMTP id v22so1376068oic.2;
+        Wed, 26 May 2021 05:56:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=WDr90ifdj3u4jYGhMgen8Q6MrQ4gfRqH3T4/ru0a4II=;
-        b=Qj7b8p2dNtsvq7T1B31iBI9d5i0TdoaWEUALhShc1tK1NptnHoHXdgyd0jYcEHBbrb
-         AZkORoRKulecduL2t7ed/jfeE9R6Eay5zOwrgFixYjUANZ+Os9aecNoP2cBjgG7MMV9O
-         aC8Id/hA9AkNBht/VzO2VVKg7KdoB1l9usknDeTKqzJ+kZkbOHvammFCkbKg0Ug6YUgk
-         Lhstell3d2sz8C+vKXuT54zN8+P0oaEx0BvR6Dv+1HHGWSBJrVKwCiMoonyhb1gidVXn
-         lmgv1HfPAvOeLlCet9EH0SqXHaJ892k71yvPm77LBEVt9GRNg90fWWuAuxDtSBzhcbFa
-         AYrw==
-X-Gm-Message-State: AOAM531n1FNe0IKSnNnNHq7LwHHZWLHzKCeHTUrXPkUDIiNFKiBWiiLf
-        0Xb1msmgYGmZr7EIUJtdzw==
-X-Google-Smtp-Source: ABdhPJy3kdIks/OI8CbwKalMBM56yICQjALGsg75Oj3b8ExULJoXEYRQiX3P5w2JcRHh7aqnH9h4qQ==
-X-Received: by 2002:a9d:6d04:: with SMTP id o4mr2124928otp.57.1622033766082;
-        Wed, 26 May 2021 05:56:06 -0700 (PDT)
+        bh=fs7e9A+XJ/srQYYXIBNRC8+bt0OfYmMIoJPIdWXMl4g=;
+        b=d37/VCape08p9aZllka1AxS8CuwZExMdWFQWYjTeFBvZXJ0n0lDEi3teLYn7nVjoRX
+         Cqn+qH+VlRT0AfHAjGKLXSyjZP4n3CUDT1ZcT+zh/QfZmsk2g8z/64xOMWY+Ajg+k2k7
+         xA+4+mEmapCgzfrLOjZaExfo95B/PTGNfh+FdcZx18/2xNUC+BDNeyW8p8xOWPemuFED
+         zNBxRpEwgmqc5/eAz044xQ9jTQc4mDLEF1gO+wLUOsx9HcVx919/FohOcPurFQpmlpIg
+         wAS6HSwz7T19AZk66W58QlMCnxUbOZv0EGUOMuPm0qlMMuKgz5Z3ZuEcPmsck5j4xFoq
+         fblg==
+X-Gm-Message-State: AOAM53069TTUfbgRn98PtqmDaaGP71lIeLihh5RYh5AufdppcRsbpu6g
+        Sr73smUQi6SQfkWigFL5sc6pVbhlYA==
+X-Google-Smtp-Source: ABdhPJz5cSxik7of9vtoK0dE8Ba6tx8iuXcA/g2LpwT/q8f/f+dFRALbWORv7YbDdm7Uk4poIQ50+Q==
+X-Received: by 2002:a05:6808:187:: with SMTP id w7mr1858125oic.108.1622033771014;
+        Wed, 26 May 2021 05:56:11 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x65sm4410986otb.59.2021.05.26.05.56.04
+        by smtp.gmail.com with ESMTPSA id x63sm816645oix.47.2021.05.26.05.56.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 May 2021 05:56:05 -0700 (PDT)
-Received: (nullmailer pid 2377033 invoked by uid 1000);
+        Wed, 26 May 2021 05:56:10 -0700 (PDT)
+Received: (nullmailer pid 2377041 invoked by uid 1000);
         Wed, 26 May 2021 12:56:03 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Alex Bee <knaerzche@gmail.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        linux-rockchip@lists.infradead.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-staging@lists.linux.dev, Lee Jones <lee.jones@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>
-In-Reply-To: <20210525152225.154302-9-knaerzche@gmail.com>
-References: <20210525152225.154302-1-knaerzche@gmail.com> <20210525152225.154302-9-knaerzche@gmail.com>
-Subject: Re: [PATCH 08/10] media: dt-bindings: media: rockchip-vpu: add new compatibles
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>, srv_heupstream@mediatek.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+In-Reply-To: <1622025344-31888-3-git-send-email-hsin-hsiung.wang@mediatek.com>
+References: <1622025344-31888-1-git-send-email-hsin-hsiung.wang@mediatek.com> <1622025344-31888-3-git-send-email-hsin-hsiung.wang@mediatek.com>
+Subject: Re: [PATCH v8 2/4] dt-bindings: spmi: document binding for the Mediatek SPMI controller
 Date:   Wed, 26 May 2021 07:56:03 -0500
-Message-Id: <1622033763.765019.2377032.nullmailer@robh.at.kernel.org>
+Message-Id: <1622033763.799295.2377040.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 May 2021 17:22:23 +0200, Alex Bee wrote:
-> Add compatibles for RK3036, RK3066, RK3188 and RK3228. Also reflect the
-> changes to the additional clocks for RK3066/RK3188.
+On Wed, 26 May 2021 18:35:42 +0800, Hsin-Hsiung Wang wrote:
+> This adds documentation for the SPMI controller found on Mediatek SoCs.
 > 
-> Checked with:
-> make ARCH=arm dtbs_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-> 
-> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
 > ---
->  .../bindings/media/rockchip-vpu.yaml          | 33 ++++++++++++++-----
->  1 file changed, 25 insertions(+), 8 deletions(-)
+> changes since v7:
+> - no change.
+> ---
+>  .../bindings/spmi/mtk,spmi-mtk-pmif.yaml           | 74 ++++++++++++++++++++++
+>  1 file changed, 74 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/media/rockchip-vpu.yaml:20:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/media/rockchip-vpu.yaml:26:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/media/rockchip-vpu.yaml:29:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/media/rockchip-vpu.yaml:54:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/media/rockchip-vpu.yaml:57:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
 
 dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.example.dts:19:18: fatal error: dt-bindings/clock/mt8192-clk.h: No such file or directory
+   19 |         #include <dt-bindings/clock/mt8192-clk.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1416: dt_binding_check] Error 2
 
-See https://patchwork.ozlabs.org/patch/1483524
+See https://patchwork.ozlabs.org/patch/1483989
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
