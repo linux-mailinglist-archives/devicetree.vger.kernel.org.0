@@ -2,135 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FE1A39155B
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 12:50:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74C87391629
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 13:31:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234047AbhEZKwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 06:52:06 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:57548 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233911AbhEZKwG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 06:52:06 -0400
-X-Greylist: delayed 704 seconds by postgrey-1.27 at vger.kernel.org; Wed, 26 May 2021 06:52:04 EDT
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=wsaiMJnVLV41pWxm0Qdhpy4PmimGudL5rbxqlYOE3Xc=; b=S3mF16ZlTsoIf3S/+Lvw1FIHBl
-        3416CziM0S5DcY4EpuwredTPS9uXZlFylvBSlPZ6bBBCWAhZmbKnEjL6t1Ci1baa3M30AdmkyB9QZ
-        9LxxpcDazNgg9LZEcvBKBlBjKoerHt2DVFMBwfdES1VPKsUzE8TLEx+lp/0ULEKjR0Gk=;
-Received: from 94.196.90.140.threembb.co.uk ([94.196.90.140] helo=fitzroy.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1llr7N-005xtN-Nm; Wed, 26 May 2021 10:50:29 +0000
-Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
-        id 3A60CD0581E; Wed, 26 May 2021 11:51:04 +0100 (BST)
-Date:   Wed, 26 May 2021 11:51:04 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     cy_huang <u0084500@gmail.com>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, cy_huang@richtek.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] regulator: rt6160: Add support for Richtek RT6160
-Message-ID: <YK4oGB5cZ/DhG5vm@sirena.org.uk>
-References: <1622008068-13474-1-git-send-email-u0084500@gmail.com>
- <1622008068-13474-2-git-send-email-u0084500@gmail.com>
+        id S233032AbhEZLcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 07:32:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48714 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232103AbhEZLc0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 07:32:26 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E322CC061344
+        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 04:29:00 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id f9so1528860ybo.6
+        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 04:29:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VZJmw4c/w1aJviXBkJs75wOQwEwbtioXuzg9Qv6tv5Y=;
+        b=H0GiLBuoHLyqgHE/J91D74h4OQY++YzDVM96DR7+OsXwVLE5OPl7Hwtl29AZwm/Za7
+         OADlmn1BNwhB8H38M2WUzEXkITgXSGkocLNKbnyEra2+ZT2+K6JOn2wIyzgc1Wnxn93w
+         pkdIKPL7hlrK61sJMSv/AcpJgrd+iY/BUvGx9s3xCVDfK2I6x3WsvydAomSavlqHgn8z
+         vL4x9RIVBPYU4b6WZsBmP5myKyJtjNwXLfnAaSsUxzkQJ2EOCDQPzbZ31GxVRG3Y2bHj
+         dc80iBtM/D5RaDx5VWXcTkbJiJewOe9L1YRILEIRv5an3UAqKKG1FsePeVtBJyUkARjS
+         V+eQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VZJmw4c/w1aJviXBkJs75wOQwEwbtioXuzg9Qv6tv5Y=;
+        b=UHWVkFsupX3WdKGtzBsJqdMNvqV+A6RV60r0rRQBSmykEu86k/giHWSwOD55Cpnb01
+         fhFSmX68iXr95SB6LbUjVenT9ZaMGO1/TVsYoKJwMGM/7edQqHV8FT0AP6Rqar6zq71c
+         uojC64r1qCiJwEpbg7kIZIwfzEsI5CiHdVcgPLDAN+Flw+6k7OHPcys7E44CJxfJfPoV
+         3voaGFWjN6N66qGL1CHPSPWaBp2kcXIqAeZLo2fawr9t9+S2Lj9VLg9fpgPkUu2WjJli
+         VLRNjUhE3jhpWMMn1AT/cYtHDpr1TQgCfrs/2Xas9yml+ywwzk+UBrhz385XGE+F+BMB
+         Jt8w==
+X-Gm-Message-State: AOAM530JP8OIEAlPHgVEb5L4NlzS7eh5qdYeu9QRj/DonAI9goKlX9fC
+        EP35fIQFW/6Vd/UR29+tHzP4OgLSpPazbk/vmslpFw==
+X-Google-Smtp-Source: ABdhPJy1XkJQgfNmWeEbTm94qa+mEuNw5X68zb1bTQxhHHrPdFqHAV8LspcoAQallQ8h0F2T9t906bvCqOGSreByjl0=
+X-Received: by 2002:a25:1804:: with SMTP id 4mr15627151yby.157.1622028540172;
+ Wed, 26 May 2021 04:29:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="YmLY0JB8J0+AArwc"
-Content-Disposition: inline
-In-Reply-To: <1622008068-13474-2-git-send-email-u0084500@gmail.com>
-X-Cookie: Ahead warp factor one, Mr. Sulu.
+References: <20210525175858.11611-1-grygorii.strashko@ti.com> <20210525175858.11611-6-grygorii.strashko@ti.com>
+In-Reply-To: <20210525175858.11611-6-grygorii.strashko@ti.com>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Wed, 26 May 2021 13:28:49 +0200
+Message-ID: <CAMpxmJWWS2dqRW_MPiFQq6c1wqFrKcEUbThZFyHeG1ZpgdGjJw@mail.gmail.com>
+Subject: Re: [PATCH v2 5/5] dt-bindings: gpio: omap: Convert to json-schema
+To:     Grygorii Strashko <grygorii.strashko@ti.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Aswath Govindraju <a-govindraju@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, May 25, 2021 at 7:59 PM Grygorii Strashko
+<grygorii.strashko@ti.com> wrote:
+>
+> Convert the OMAP GPIO Device Tree binding documentation to json-schema.
+> The GPIO hogs node names defined to end with a 'hog' suffix.
+>
+> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
 
---YmLY0JB8J0+AArwc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Applied, thanks!
 
-On Wed, May 26, 2021 at 01:47:48PM +0800, cy_huang wrote:
-
-This looks mostly good, a few small issues below:
-
-> +static int rt6160_set_suspend_voltage(struct regulator_dev *rdev, int uV)
-> +{
-> +	struct rt6160_priv *priv = rdev_get_drvdata(rdev);
-> +	struct regmap *regmap = rdev_get_regmap(rdev);
-> +	unsigned int reg = RT6160_REG_VSELH;
-> +	int vsel;
-> +
-> +	vsel = regulator_map_voltage_linear(rdev, uV, uV);
-> +	if (vsel < 0)
-> +		return vsel;
-> +
-> +	if (priv->vsel_active_low)
-> +		reg = RT6160_REG_VSELL;
-> +
-> +	return regmap_update_bits(regmap, reg, RT6160_VSEL_MASK, vsel);
-> +}
-
-This seems to just be updating the normal voltage configuration
-regulator, the suspend mode operations are there for devices that
-have a hardware suspend mode that's entered as part of the very
-low level system suspend process.
-
-> +static int rt6160_set_ramp_delay(struct regulator_dev *rdev, int ramp_delay)
-> +{
-> +	struct regmap *regmap = rdev_get_regmap(rdev);
-> +	unsigned int ramp_value = RT6160_RAMPRATE_1VMS;
-> +
-> +	switch (ramp_delay) {
-> +	case 1 ... 1000:
-> +		ramp_value = RT6160_RAMPRATE_1VMS;
-> +		break;
-
-This looks like it could be converted to regulator_set_ramp_delay_regmap()
-
-> +static unsigned int rt6160_of_map_mode(unsigned int mode)
-> +{
-> +	if (mode == RT6160_MODE_FPWM)
-> +		return REGULATOR_MODE_FAST;
-> +	else if (mode == RT6160_MODE_AUTO)
-> +		return REGULATOR_MODE_NORMAL;
-> +
-
-This would be more idiomatically written as a switch statement.
-
-> +	enable_gpio = devm_gpiod_get_optional(&i2c->dev, "enable", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(enable_gpio)) {
-> +		dev_err(&i2c->dev, "Failed to get 'enable' gpio\n");
-> +		return PTR_ERR(enable_gpio);
-> +	}
-
-There's no other references to enable_gpio?
-
-> +	regmap = devm_regmap_init_i2c(i2c, &rt6160_regmap_config);
-> +	if (IS_ERR(regmap)) {
-> +		dev_err(&i2c->dev, "Failed to init regmap\n");
-> +		return PTR_ERR(regmap);
-> +	}
-
-It's better to print the error code to help anyone who runs into
-issues figure out what's wrong.
-
---YmLY0JB8J0+AArwc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmCuKBcACgkQJNaLcl1U
-h9Ajigf8DSeMCGtODpLMpfG77Q9MNmwYi8SmOMhdNnFCmgPIMqM5fCAX75eQEiSo
-Rl8CAP9FOt0EH0JwZTBZmS4Yms3bpg/F4C/8j4vYHRY4P38Al+M3XPiTfTx15N26
-a9niXKBRPD2ZFRbf6BlZY8w2+mxs8hRf65u8yRxzxlMxkhhfTbay3GcuA0orKPO4
-9EEPl+5CswXS4Qr3rPQWZEZ3rlWJrn14C+AD73BOTcju8tQxeFKvnNHdE0jLcjJO
-WNjRh/61e2e03drDs79L6LYxZPd05vavk04MdkAI7AWuiFs2HelckpFU7uigSVaf
-LIq+E57TLrd+PbLr6cMxLqf/OCNh9w==
-=8Tzc
------END PGP SIGNATURE-----
-
---YmLY0JB8J0+AArwc--
+Bart
