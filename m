@@ -2,163 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C29A391174
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 09:41:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBFA2391178
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 09:44:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232964AbhEZHnO convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 26 May 2021 03:43:14 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:44161 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232617AbhEZHnM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 03:43:12 -0400
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 80CFDC0012;
-        Wed, 26 May 2021 07:41:37 +0000 (UTC)
-Date:   Wed, 26 May 2021 09:41:36 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Han Xu <han.xu@nxp.com>
-Cc:     Sean Nyekjaer <sean@geanix.com>, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] mtd: nand: raw: gpmi: new bch geometry settings
-Message-ID: <20210526094136.279976a6@xps13>
-In-Reply-To: <20210525191308.jlxqvy7khptbuj4z@umbrella>
-References: <20210522205136.19465-1-han.xu@nxp.com>
-        <13c975bc-b37b-8708-9ac7-acdc62ef7108@geanix.com>
-        <20210525191308.jlxqvy7khptbuj4z@umbrella>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S232971AbhEZHqT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 03:46:19 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:19153 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232617AbhEZHqT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 03:46:19 -0400
+X-UUID: b1893dfb59e64b41aa1cf71a7b9f6fa6-20210526
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=rhis7ZdFLWANZ7b2DBYk1HWn5k7BbGfIhqdHKsjdI6c=;
+        b=i/t8UBBc5C2q4VCptCrrBxH1Q9wSJzuJfy55+XzthiGljpfe9EEBAoWyLQILmGUSrkZVWD4bbLO143bMCyVHElwGA9pKBKtiH+CFOtASIKENwIi3j7o0id5dRSW/Fyjnk4NfR0Y+PpYrTOgiNavtnIvjs1CHpktYXZmDwHW4N2o=;
+X-UUID: b1893dfb59e64b41aa1cf71a7b9f6fa6-20210526
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1411923585; Wed, 26 May 2021 15:44:41 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N2.mediatek.inc
+ (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 26 May
+ 2021 15:44:35 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 26 May 2021 15:44:34 +0800
+Message-ID: <1622015074.22554.7.camel@mhfsdcap03>
+Subject: Re: [PATCH 2/2] PCI: mediatek-gen3: Add support for disable dvfsrc
+ voltage request
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+CC:     Ryder Lee <ryder.lee@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <youlin.pei@mediatek.com>,
+        <chuanjia.liu@mediatek.com>, <qizhong.cheng@mediatek.com>,
+        <sin_jieyang@mediatek.com>, <drinkcat@chromium.org>,
+        <Rex-BC.Chen@mediatek.com>, Krzysztof Wilczyski <kw@linux.com>,
+        <Ryan-JH.Yu@mediatek.com>
+Date:   Wed, 26 May 2021 15:44:34 +0800
+In-Reply-To: <20210514065927.20774-3-jianjun.wang@mediatek.com>
+References: <20210514065927.20774-1-jianjun.wang@mediatek.com>
+         <20210514065927.20774-3-jianjun.wang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+X-TM-SNTS-SMTP: AA820A6B0B6D8B6EB8E0F75C994FDD6EAA37103BB9F953B2506EA02435B992782000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Han,
+SGkgQmpvcm4sIFJvYiwgTG9yZW56bywNCg0KQ291bGQgeW91IHBsZWFzZSBoZWxwIHRvIHRha2Ug
+YSBsb29rIGF0IHRoaXMgcGF0Y2gsIEknbSBub3Qgc3VyZSBpZiB0aGlzDQppcyBhIGdvb2Qgc29s
+dXRpb24sIGFuZCBJIHJlYWxseSBuZWVkIHlvdXIgc3VnZ2VzdGlvbnMuDQoNClRoYW5rcy4NCg0K
+T24gRnJpLCAyMDIxLTA1LTE0IGF0IDE0OjU5ICswODAwLCBKaWFuanVuIFdhbmcgd3JvdGU6DQo+
+IFBDSWUgR2VuMyBQSFkgbGF5ZXIgY2Fubm90IHdvcmsgcHJvcGVybHkgd2hlbiB0aGUgcmVxdWVz
+dGVkIHZvbHRhZ2UNCj4gaXMgbG93ZXIgdGhhbiBhIHNwZWNpZmljIGxldmVsKGUuZy4gMC41NVYs
+IGl0J3MgZGVwZW5kcyBvbg0KPiB0aGUgY2hpcCBtYW51ZmFjdHVyaW5nIHByb2Nlc3MpLg0KPiAN
+Cj4gV2hlbiB0aGUgZHZmc3JjIGZlYXR1cmUgaXMgaW1wbGVtZW50ZWQsIHRoZSByZXF1ZXN0ZWQg
+dm9sdGFnZQ0KPiBtYXkgYmUgcmVkdWNlZCB0byBhIGxvd2VyIGxldmVsIGluIHN1c3BlbmQgbW9k
+ZSwgaGVuY2UgdGhhdA0KPiB0aGUgTUFDIGxheWVyIHdpbGwgYXNzZXJ0IGEgSFcgc2lnbmFsIHRv
+IHJlcXVlc3QgdGhlIGR2ZnNyYw0KPiB0byByYWlzZSB2b2x0YWdlIHRvIG5vcm1hbCBtb2RlLCBh
+bmQgaXQgd2lsbCB3YWl0IHRoZSB2b2x0YWdlDQo+IHJlYWR5IHNpZ25hbCB3aGljaCBpcyBkZXJp
+dmVkIGZyb20gZHZmc3JjIHRvIGRldGVybWluZSB3aGV0aGVyDQo+IHRoZSBMVFNTTSBjYW4gc3Rh
+cnQgbm9ybWFsbHkuDQo+IA0KPiBXaGVuIHRoZSBkdmZzcmMgZmVhdHVyZSBpcyBub3QgaW1wbGVt
+ZW50ZWQsIHRoZSBNQUMgbGF5ZXIgc3RpbGwNCj4gYXNzZXJ0IHRoZSB2b2x0YWdlIHJlcXVlc3Qg
+dG8gZHZmc3JjIHdoZW4gZXhpdCBzdXNwZW5kIG1vZGUsDQo+IGJ1dCB3aWxsIG5vdCByZWNlaXZl
+IHRoZSB2b2x0YWdlIHJlYWR5IHNpZ25hbCwgaW4gdGhpcyBjYXNlLA0KPiB0aGUgTFRTU00gY2Fu
+bm90IHN0YXJ0IG5vcm1hbGx5LCBhbmQgdGhlIFBDSWUgbGluayB3aWxsIGJlIGZhaWxlZC4NCj4g
+DQo+IEFkZCBzdXBwb3J0IGZvciBkaXNhYmxlIGR2ZnNyYyB2b2x0YWdlIHJlcXVlc3QuIElmIHRo
+ZSBwcm9wZXJ0eSBvZg0KPiAiZGlzYWJsZS1kdmZzcmMtdmx0LXJlcSIgaXMgcHJlc2VudGVkIGlu
+IGRldmljZSBub2RlLCB3ZSBhc3N1bWUgdGhhdA0KPiB0aGUgcmVxdWVzdGVkIHZvbHRhZ2UgaXMg
+YWx3YXlzIGhpZ2hlciBlbm91Z2ggdG8ga2VlcCB0aGUgUENJZSBHZW4zDQo+IFBIWSBhY3RpdmUs
+IGFuZCB0aGUgdm9sdGFnZSByZXF1ZXN0IHRvIGR2ZnNyYyBzaG91bGQgYmUgZGlzYWJsZWQuDQo+
+IA0KPiBTaWduZWQtb2ZmLWJ5OiBKaWFuanVuIFdhbmcgPGppYW5qdW4ud2FuZ0BtZWRpYXRlay5j
+b20+DQo+IC0tLQ0KPiAgZHJpdmVycy9wY2kvY29udHJvbGxlci9wY2llLW1lZGlhdGVrLWdlbjMu
+YyB8IDMyICsrKysrKysrKysrKysrKysrKysrKw0KPiAgMSBmaWxlIGNoYW5nZWQsIDMyIGluc2Vy
+dGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL3BjaWUt
+bWVkaWF0ZWstZ2VuMy5jIGIvZHJpdmVycy9wY2kvY29udHJvbGxlci9wY2llLW1lZGlhdGVrLWdl
+bjMuYw0KPiBpbmRleCAyMDE2NWU0YTc1YjIuLmQxODY0MzAzMjE3ZSAxMDA2NDQNCj4gLS0tIGEv
+ZHJpdmVycy9wY2kvY29udHJvbGxlci9wY2llLW1lZGlhdGVrLWdlbjMuYw0KPiArKysgYi9kcml2
+ZXJzL3BjaS9jb250cm9sbGVyL3BjaWUtbWVkaWF0ZWstZ2VuMy5jDQo+IEBAIC02OCw2ICs2OCw5
+IEBADQo+ICAjZGVmaW5lIFBDSUVfTVNJX1NFVF9FTkFCTEVfUkVHCQkweDE5MA0KPiAgI2RlZmlu
+ZSBQQ0lFX01TSV9TRVRfRU5BQkxFCQlHRU5NQVNLKFBDSUVfTVNJX1NFVF9OVU0gLSAxLCAwKQ0K
+PiAgDQo+ICsjZGVmaW5lIFBDSUVfTUlTQ19DVFJMX1JFRwkJMHgzNDgNCj4gKyNkZWZpbmUgUENJ
+RV9ESVNBQkxFX0RWRlNSQ19WTFRfUkVRCUJJVCgxKQ0KPiArDQo+ICAjZGVmaW5lIFBDSUVfTVNJ
+X1NFVF9CQVNFX1JFRwkJMHhjMDANCj4gICNkZWZpbmUgUENJRV9NU0lfU0VUX09GRlNFVAkJMHgx
+MA0KPiAgI2RlZmluZSBQQ0lFX01TSV9TRVRfU1RBVFVTX09GRlNFVAkweDA0DQo+IEBAIC0yOTcs
+NiArMzAwLDM1IEBAIHN0YXRpYyBpbnQgbXRrX3BjaWVfc3RhcnR1cF9wb3J0KHN0cnVjdCBtdGtf
+cGNpZV9wb3J0ICpwb3J0KQ0KPiAgCXZhbCAmPSB+UENJRV9JTlRYX0VOQUJMRTsNCj4gIAl3cml0
+ZWxfcmVsYXhlZCh2YWwsIHBvcnQtPmJhc2UgKyBQQ0lFX0lOVF9FTkFCTEVfUkVHKTsNCj4gIA0K
+PiArCS8qDQo+ICsJICogUENJZSBHZW4zIFBIWSBsYXllciBjYW4gbm90IHdvcmsgcHJvcGVybHkg
+d2hlbiB0aGUgcmVxdWVzdGVkIHZvbHRhZ2UNCj4gKwkgKiBpcyBsb3dlciB0aGFuIGEgc3BlY2lm
+aWMgbGV2ZWwoZS5nLiAwLjU1ViwgaXQncyBkZXBlbmRzIG9uDQo+ICsJICogdGhlIGNoaXAgbWFu
+dWZhY3R1cmluZyBwcm9jZXNzKS4NCj4gKwkgKg0KPiArCSAqIFdoZW4gdGhlIGR2ZnNyYyBmZWF0
+dXJlIGlzIGltcGxlbWVudGVkLCB0aGUgcmVxdWVzdGVkIHZvbHRhZ2UNCj4gKwkgKiBtYXkgYmUg
+cmVkdWNlZCB0byBhIGxvd2VyIGxldmVsIGluIHN1c3BlbmQgbW9kZSwgaGVuY2UgdGhhdA0KPiAr
+CSAqIHRoZSBNQUMgbGF5ZXIgd2lsbCBhc3NlcnQgYSBIVyBzaWduYWwgdG8gcmVxdWVzdCB0aGUg
+ZHZmc3JjDQo+ICsJICogdG8gcmFpc2Ugdm9sdGFnZSB0byBub3JtYWwgbW9kZSwgYW5kIGl0IHdp
+bGwgd2FpdCB0aGUgdm9sdGFnZQ0KPiArCSAqIHJlYWR5IHNpZ25hbCB3aGljaCBpcyBkZXJpdmVk
+IGZyb20gZHZmc3JjIHRvIGRldGVybWluZSB3aGV0aGVyDQo+ICsJICogdGhlIExUU1NNIGNhbiBz
+dGFydCBub3JtYWxseS4NCj4gKwkgKg0KPiArCSAqIFdoZW4gdGhlIGR2ZnNyYyBmZWF0dXJlIGlz
+IG5vdCBpbXBsZW1lbnRlZCwgdGhlIE1BQyBsYXllciBzdGlsbA0KPiArCSAqIGFzc2VydCB0aGUg
+dm9sdGFnZSByZXF1ZXN0IHRvIGR2ZnNyYyB3aGVuIGV4aXQgc3VzcGVuZCBtb2RlLA0KPiArCSAq
+IGJ1dCB3aWxsIG5vdCByZWNlaXZlIHRoZSB2b2x0YWdlIHJlYWR5IHNpZ25hbCwgaW4gdGhpcyBj
+YXNlLA0KPiArCSAqIHRoZSBMVFNTTSBjYW5ub3Qgc3RhcnQgbm9ybWFsbHksIGFuZCB0aGUgUENJ
+ZSBsaW5rIHdpbGwgYmUgZmFpbGVkLg0KPiArCSAqDQo+ICsJICogSWYgdGhlIHByb3BlcnR5IG9m
+ICJkaXNhYmxlLWR2ZnNyYy12bHQtcmVxIiBpcyBwcmVzZW50ZWQNCj4gKwkgKiBpbiBkZXZpY2Ug
+bm9kZSwgd2UgYXNzdW1lIHRoYXQgdGhlIHJlcXVlc3RlZCB2b2x0YWdlIGlzIGFsd2F5cw0KPiAr
+CSAqIGhpZ2hlciBlbm91Z2ggdG8ga2VlcCB0aGUgUENJZSBHZW4zIFBIWSBhY3RpdmUsIGFuZCB0
+aGUgdm9sdGFnZQ0KPiArCSAqIHJlcXVlc3QgdG8gZHZmc3JjIHNob3VsZCBiZSBkaXNhYmxlZC4N
+Cj4gKwkgKi8NCj4gKwl2YWwgPSByZWFkbF9yZWxheGVkKHBvcnQtPmJhc2UgKyBQQ0lFX01JU0Nf
+Q1RSTF9SRUcpOw0KPiArCXZhbCAmPSB+UENJRV9ESVNBQkxFX0RWRlNSQ19WTFRfUkVROw0KPiAr
+CWlmIChvZl9wcm9wZXJ0eV9yZWFkX2Jvb2wocG9ydC0+ZGV2LT5vZl9ub2RlLCAiZGlzYWJsZS1k
+dmZzcmMtdmx0LXJlcSIpKQ0KPiArCQl2YWwgfD0gUENJRV9ESVNBQkxFX0RWRlNSQ19WTFRfUkVR
+Ow0KPiArDQo+ICsJd3JpdGVsKHZhbCwgcG9ydC0+YmFzZSArIFBDSUVfTUlTQ19DVFJMX1JFRyk7
+DQo+ICsNCj4gIAkvKiBBc3NlcnQgYWxsIHJlc2V0IHNpZ25hbHMgKi8NCj4gIAl2YWwgPSByZWFk
+bF9yZWxheGVkKHBvcnQtPmJhc2UgKyBQQ0lFX1JTVF9DVFJMX1JFRyk7DQo+ICAJdmFsIHw9IFBD
+SUVfTUFDX1JTVEIgfCBQQ0lFX1BIWV9SU1RCIHwgUENJRV9CUkdfUlNUQiB8IFBDSUVfUEVfUlNU
+QjsNCg0K
 
-Han Xu <han.xu@nxp.com> wrote on Tue, 25 May 2021 14:13:08 -0500:
-
-> On 21/05/23 07:44PM, Sean Nyekjaer wrote:
-> > On 22/05/2021 22.51, Han Xu wrote:  
-> > > The code change updates the gpmi driver bch geometry settings, the NAND
-> > > chips required minimum ecc strength and step size will be the default
-> > > value. It also proposes a new way to set bch geometry for large oob NAND
-> > > and provides an option to keep the legacy bch geometry setting for
-> > > backward compatibility.  
-> > 
-> > This will break all existing devicetree's. (this happened to us with the same style already merged u-boot patch)
-> >   
-> > > 
-> > > - For the legacy bch geometry settings
-> > > The driver uses legacy bch geometry settings if explicitly enabled it in
-> > > DT with fsl, legacy-bch-geometry flag, or the NAND chips are too old
-> > > that do NOT provide any required ecc info.  
-> > 
-> > NAND's are providing the minimum required ecc, the now legacy method
-> > actually gives more ecc bits and quite cheap when using hw ecc.
-> >   
-> > > 
-> > > The legacy_set_geometry() sets the data chunk size(step_size) larger
-> > > than oob size to make sure BBM locates in data chunk, then set the
-> > > maximum ecc stength oob can hold. It always use unbalanced ECC layout,
-> > > which ecc0 will cover both meta and data0 chunk.
-> > > 
-> > > This algorithm can NOT provide strong enough ecc for some NAND chips,
-> > > such as some 8K+744 MLC NAND. We still leave it here just for backward
-> > > compatibility and als for some quite old version NAND chips support. It
-> > > should be en/disabled in both u-boot and kernel at the same time.
-> > > 
-> > > - For the large oob bch geometry settings
-> > > This type of setting will be used for NAND chips, which oob size is
-> > > larger than 1024B OR NAND required step size is small than oob size,
-> > > the general idea is,
-> > > 
-> > >     1.Try all ECC strength from the minimum value required by NAND chip
-> > >       to the maximum one that works, any ECC makes the BBM locate in
-> > >       data chunk can be eligible.
-> > > 
-> > >     2.If none of them works, using separate ECC for meta, which will add
-> > >       one extra ecc with the same ECC strength as other data chunks.
-> > >       This extra ECC can guarantee BBM located in data chunk, also we
-> > >       need to check if oob can afford it.
-> > > 
-> > > - For all other common cases
-> > > set the bch geometry by chip required strength and step size, which uses
-> > > the minimum ecc strength chip required.
-> > > 
-> > > Signed-off-by: Han Xu <han.xu@nxp.com>  
-> > 
-> > One further point, u-boot older than v2020.04 will not be aligned with the way ecc bits is
-> > calculated with this patch applied(without the legacy option set).
-> > 
-> > It's quite a mess :/
-> > I would recommend to use the legacy mode as default, and add the new style as "modern" option.
-> > (Also in u-boot)
-> > 
-> > /Sean  
-> 
-> 
-> Hi Sean,
-> 
-> I know this change brings mess but the legacy way is wrong. The way it determine
-> the data chunk size is arbitrary,
-
-Yes, that's always the case: all default choices are arbitrary in the
-Linux kernel, there is actually a lot of logic provided by the core to
-handle that, unless the user requires something specific.
-
-> take any 8K + 448 (not 744, typo in previous
-> comments) Micron NAND chips as example, the legacy way can only provide 16bit
-> ecc since data chunk size is set to 512B, but 24b/1K is required by NAND chips.
-
-This means a strength of 32 bits per kilobyte of data vs 24 bits per
-kilobyte.
-
-> According to the A/B X/Y ecc requirement, this is not acceptable.
-
-What you call the legacy way is even better, the only situation where
-it may be an issue is if the NAND chip does not feature enough OOB
-bytes to store the ECC codes, which does not seem to be your primary
-concern here.
-
-> The new implementation might get weak ecc than legacy way in some cases but it
-> is safety guaranteed.
-
-What does "safety guaranteed" means?
-
-> This reminds me the gpmi raw access mode changes in kernel 3.19, it also changes
-> the driver behaviors and makes totally different output compared with older
-> versions. I know changes bring mess but we have to accept it at some point
-> rather than keep compromising to the wrong way.
-
-How is this an argument? I am usually in favor of moving forward when
-there is a real justification, but this does not seem the case, unless
-I am understanding it all the wrong way.
-
-> The change has been in NXP kernel fork for a while, so quite a few customers are
-> using this bch geometry settings. I hope it can be upstreamed, any other things
-> I can do may mitigate the imapact?
-
-You are well aware of the upstreaming process, trying to merge
-something locally, making it used and then complaining because not
-upstreaming it would break your customers really is your own
-responsibility.
-
-IMHO the solutions are:
-- the current (mainline) default will remain the standard for
-  geometries which are already widely supported
-- if there are new geometries that must be supported and do not fit
-  because of the "legacy" logic, then you may detect that and try
-  to fallback to the "modern" way of calculating the ECC
-  parameters (or even jump directly to the modern way if the geometry
-  really is not currently supported officially)
-- if your customers want a specific chunk size/strength when
-  rebasing on top of a mainline kernel there are DT properties which do
-  that anyway
-- follow Sean advice: introduce a property requesting to use the
-  'modern' or 'legacy' logic (with a better name than modern) but first
-  check with Rob that this if valid.
-
-Thanks,
-Miquèl
