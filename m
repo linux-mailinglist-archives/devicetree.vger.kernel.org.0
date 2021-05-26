@@ -2,172 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 646DE3916C8
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 13:57:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 073943916DF
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 14:00:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231321AbhEZL6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 07:58:31 -0400
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:45759 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229800AbhEZL6a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 07:58:30 -0400
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id A297F1BF213;
-        Wed, 26 May 2021 11:56:52 +0000 (UTC)
-Date:   Wed, 26 May 2021 13:56:52 +0200
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-sunxi@googlegroups.com, Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        kevin.lhopital@hotmail.com,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Subject: Re: [PATCH v5 02/16] phy: Distinguish between Rx and Tx for MIPI
- D-PHY with submodes
-Message-ID: <YK43hBmFkyCChvKw@aptenodytes>
-References: <20210115200141.1397785-1-paul.kocialkowski@bootlin.com>
- <20210115200141.1397785-3-paul.kocialkowski@bootlin.com>
- <58d6651d-09c3-2b93-bd5b-1807744b2354@xs4all.nl>
+        id S231241AbhEZMB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 08:01:57 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:58872 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231319AbhEZMB4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 08:01:56 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14QC0Mjl122750;
+        Wed, 26 May 2021 07:00:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1622030422;
+        bh=w+1yG06oMM2gTxx2gryJE3Zg3WgFOgAaSk6Mad9RwTQ=;
+        h=From:To:CC:Subject:Date;
+        b=N58g+pjdInLV1EE+rFcVoS0dR8zR2QEY0wX5k0K9fSvTVzvPrpAIBOztK/ds272NB
+         OcCKTSprCwf7lwTtNzdVzf4qwKJjkNcslj+Uu/r70q3tGroLVrsUd+mnfJYE2gnE0O
+         WG1tfLMrYWc2EgkT9I8NgOx7NjCdoFqScRRxpRik=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14QC0M4Y093725
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 26 May 2021 07:00:22 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 26
+ May 2021 07:00:22 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 26 May 2021 07:00:22 -0500
+Received: from ula0132425.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14QC0J2t108104;
+        Wed, 26 May 2021 07:00:20 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Tony Lindgren <tony@atomide.com>
+CC:     Rob Herring <robh+dt@kernel.org>, <linux-omap@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: [PATCH 1/2] ARM: dts: dra7-l4: Drop ti,omap4-uart entry from UART nodes
+Date:   Wed, 26 May 2021 17:29:55 +0530
+Message-ID: <20210526115956.3065-1-vigneshr@ti.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="UpT672IaWUX8kc9y"
-Content-Disposition: inline
-In-Reply-To: <58d6651d-09c3-2b93-bd5b-1807744b2354@xs4all.nl>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+ti,omap4-uart was kept around to work with legacy omap-serial driver.
+Now that we have completed move to 8250-omap.c drop legacy compatible.
+This will simplify writing YAML schema.
 
---UpT672IaWUX8kc9y
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+---
+ arch/arm/boot/dts/dra7-l4.dtsi | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-Hi,
+diff --git a/arch/arm/boot/dts/dra7-l4.dtsi b/arch/arm/boot/dts/dra7-l4.dtsi
+index 149144cdff35..a750f7829f79 100644
+--- a/arch/arm/boot/dts/dra7-l4.dtsi
++++ b/arch/arm/boot/dts/dra7-l4.dtsi
+@@ -1159,7 +1159,7 @@ SYSC_OMAP2_SOFTRESET |
+ 			ranges = <0x0 0x20000 0x1000>;
+ 
+ 			uart3: serial@0 {
+-				compatible = "ti,dra742-uart", "ti,omap4-uart";
++				compatible = "ti,dra742-uart";
+ 				reg = <0x0 0x100>;
+ 				interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
+ 				clock-frequency = <48000000>;
+@@ -1562,7 +1562,7 @@ SYSC_OMAP2_SOFTRESET |
+ 			ranges = <0x0 0x66000 0x1000>;
+ 
+ 			uart5: serial@0 {
+-				compatible = "ti,dra742-uart", "ti,omap4-uart";
++				compatible = "ti,dra742-uart";
+ 				reg = <0x0 0x100>;
+ 				interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
+ 				clock-frequency = <48000000>;
+@@ -1594,7 +1594,7 @@ SYSC_OMAP2_SOFTRESET |
+ 			ranges = <0x0 0x68000 0x1000>;
+ 
+ 			uart6: serial@0 {
+-				compatible = "ti,dra742-uart", "ti,omap4-uart";
++				compatible = "ti,dra742-uart";
+ 				reg = <0x0 0x100>;
+ 				interrupts = <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>;
+ 				clock-frequency = <48000000>;
+@@ -1626,7 +1626,7 @@ SYSC_OMAP2_SOFTRESET |
+ 			ranges = <0x0 0x6a000 0x1000>;
+ 
+ 			uart1: serial@0 {
+-				compatible = "ti,dra742-uart", "ti,omap4-uart";
++				compatible = "ti,dra742-uart";
+ 				reg = <0x0 0x100>;
+ 				interrupts-extended = <&crossbar_mpu GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>;
+ 				clock-frequency = <48000000>;
+@@ -1658,7 +1658,7 @@ SYSC_OMAP2_SOFTRESET |
+ 			ranges = <0x0 0x6c000 0x1000>;
+ 
+ 			uart2: serial@0 {
+-				compatible = "ti,dra742-uart", "ti,omap4-uart";
++				compatible = "ti,dra742-uart";
+ 				reg = <0x0 0x100>;
+ 				interrupts = <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>;
+ 				clock-frequency = <48000000>;
+@@ -1690,7 +1690,7 @@ SYSC_OMAP2_SOFTRESET |
+ 			ranges = <0x0 0x6e000 0x1000>;
+ 
+ 			uart4: serial@0 {
+-				compatible = "ti,dra742-uart", "ti,omap4-uart";
++				compatible = "ti,dra742-uart";
+ 				reg = <0x0 0x100>;
+ 				interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>;
+ 				clock-frequency = <48000000>;
+@@ -2424,7 +2424,7 @@ SYSC_OMAP2_SOFTRESET |
+ 			ranges = <0x0 0x20000 0x1000>;
+ 
+ 			uart7: serial@0 {
+-				compatible = "ti,dra742-uart", "ti,omap4-uart";
++				compatible = "ti,dra742-uart";
+ 				reg = <0x0 0x100>;
+ 				interrupts = <GIC_SPI 218 IRQ_TYPE_LEVEL_HIGH>;
+ 				clock-frequency = <48000000>;
+@@ -2454,7 +2454,7 @@ SYSC_OMAP2_SOFTRESET |
+ 			ranges = <0x0 0x22000 0x1000>;
+ 
+ 			uart8: serial@0 {
+-				compatible = "ti,dra742-uart", "ti,omap4-uart";
++				compatible = "ti,dra742-uart";
+ 				reg = <0x0 0x100>;
+ 				interrupts = <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>;
+ 				clock-frequency = <48000000>;
+@@ -2484,7 +2484,7 @@ SYSC_OMAP2_SOFTRESET |
+ 			ranges = <0x0 0x24000 0x1000>;
+ 
+ 			uart9: serial@0 {
+-				compatible = "ti,dra742-uart", "ti,omap4-uart";
++				compatible = "ti,dra742-uart";
+ 				reg = <0x0 0x100>;
+ 				interrupts = <GIC_SPI 220 IRQ_TYPE_LEVEL_HIGH>;
+ 				clock-frequency = <48000000>;
+@@ -4530,7 +4530,7 @@ SYSC_OMAP2_SOFTRESET |
+ 			ranges = <0x0 0xb000 0x1000>;
+ 
+ 			uart10: serial@0 {
+-				compatible = "ti,dra742-uart", "ti,omap4-uart";
++				compatible = "ti,dra742-uart";
+ 				reg = <0x0 0x100>;
+ 				interrupts = <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
+ 				clock-frequency = <48000000>;
+-- 
+2.31.1
 
-On Wed 26 May 21, 13:50, Hans Verkuil wrote:
-> On 15/01/2021 21:01, Paul Kocialkowski wrote:
-> > As some D-PHY controllers support both Rx and Tx mode, we need a way for
-> > users to explicitly request one or the other. For instance, Rx mode can
-> > be used along with MIPI CSI-2 while Tx mode can be used with MIPI DSI.
-> >=20
-> > Introduce new MIPI D-PHY PHY submodes to use with PHY_MODE_MIPI_DPHY.
-> > The default (zero value) is kept to Tx so only the rkisp1 driver, which
-> > uses D-PHY in Rx mode, needs to be adapted.
-> >=20
-> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > Acked-by: Helen Koike <helen.koike@collabora.com>
-> > ---
-> >  drivers/media/platform/rockchip/rkisp1/rkisp1-isp.c |  3 ++-
-> >  include/linux/phy/phy-mipi-dphy.h                   | 13 +++++++++++++
-> >  2 files changed, 15 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/media/platform/rockchip/rkisp1/rkisp1-isp.c b/driv=
-ers/media/platform/rockchip/rkisp1/rkisp1-isp.c
-> > index 2e5b57e3aedc..cab261644102 100644
-> > --- a/drivers/media/platform/rockchip/rkisp1/rkisp1-isp.c
-> > +++ b/drivers/media/platform/rockchip/rkisp1/rkisp1-isp.c
-> > @@ -948,7 +948,8 @@ static int rkisp1_mipi_csi2_start(struct rkisp1_isp=
- *isp,
-> > =20
-> >  	phy_mipi_dphy_get_default_config(pixel_clock, isp->sink_fmt->bus_widt=
-h,
-> >  					 sensor->lanes, cfg);
-> > -	phy_set_mode(sensor->dphy, PHY_MODE_MIPI_DPHY);
-> > +	phy_set_mode_ext(cdev->dphy, PHY_MODE_MIPI_DPHY,
-> > +			 PHY_MIPI_DPHY_SUBMODE_RX);
->=20
-> drivers/media/platform/rockchip/rkisp1/rkisp1-isp.c: In function =E2=80=
-=98rkisp1_mipi_csi2_start=E2=80=99:
-> drivers/media/platform/rockchip/rkisp1/rkisp1-isp.c:951:19: error: =E2=80=
-=98cdev=E2=80=99 undeclared (first use in this function)
->   951 |  phy_set_mode_ext(cdev->dphy, PHY_MODE_MIPI_DPHY,
->       |                   ^~~~
->=20
-> Huh?
-
-Oh wow that's quite shameful. Apologies here.
-
-Note that I'll rebase/respin this series. I also remember that it wasn't ve=
-ry
-consensual (on IRC) to use a submode to indicate rx vs tx mode and that
-specifying that in the deivce-tree would be a better fit.
-
-Cheers,
-
-Paul
-
-> Regards,
->=20
-> 	Hans
->=20
-> >  	phy_configure(sensor->dphy, &opts);
-> >  	phy_power_on(sensor->dphy);
-> > =20
-> > diff --git a/include/linux/phy/phy-mipi-dphy.h b/include/linux/phy/phy-=
-mipi-dphy.h
-> > index a877ffee845d..0f57ef46a8b5 100644
-> > --- a/include/linux/phy/phy-mipi-dphy.h
-> > +++ b/include/linux/phy/phy-mipi-dphy.h
-> > @@ -6,6 +6,19 @@
-> >  #ifndef __PHY_MIPI_DPHY_H_
-> >  #define __PHY_MIPI_DPHY_H_
-> > =20
-> > +/**
-> > + * enum phy_mipi_dphy_submode - MIPI D-PHY sub-mode
-> > + *
-> > + * A MIPI D-PHY can be used to transmit or receive data.
-> > + * Since some controllers can support both, the direction to enable is=
- specified
-> > + * with the PHY sub-mode. Transmit is assumed by default with phy_set_=
-mode.
-> > + */
-> > +
-> > +enum phy_mipi_dphy_submode {
-> > +	PHY_MIPI_DPHY_SUBMODE_TX =3D 0,
-> > +	PHY_MIPI_DPHY_SUBMODE_RX,
-> > +};
-> > +
-> >  /**
-> >   * struct phy_configure_opts_mipi_dphy - MIPI D-PHY configuration set
-> >   *
-> >=20
->=20
-
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---UpT672IaWUX8kc9y
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmCuN4QACgkQ3cLmz3+f
-v9G56Qf/VeVonmPZ3GPceNXtCiCz4D3aCK6rystut/m1RJlgBSNwDeUtp1Pb0PK5
-tNuJ63rQ+pUuI0iFSlITn6EEQoUe6ohyMwWHSwajXbNd0hPRo0Td6pxNUpjM0/+Y
-S3g9L9rsAQ191UhXje7YOZnS7baMLQ4Kk6fv86zvzoSZkTFdOcbhgc4O4OhDoOee
-K7vqfkdk1fZdnb2RKoiET9Z2AoIomE6PmrC13LZFImyVQY10zMjmNO55pu9mscU1
-YxtJpIol8m7xmRR77/8W0TMQRx7IhEsNnTEdsI+fCGov8sINrkteVLFLSwl/Y8Kc
-Ql608acppD8E4uziTLEqWfpEyzt5fg==
-=juJ8
------END PGP SIGNATURE-----
-
---UpT672IaWUX8kc9y--
