@@ -2,91 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D1B9390CB5
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 01:05:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA670390D28
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 02:01:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229952AbhEYXGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 May 2021 19:06:42 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:54198 "EHLO gloria.sntech.de"
+        id S229939AbhEZACy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 May 2021 20:02:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44144 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229898AbhEYXGm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 May 2021 19:06:42 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1llg6m-00071l-Fk; Wed, 26 May 2021 01:05:08 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Ezequiel Garcia <ezequiel@collabora.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, Alex Bee <knaerzche@gmail.com>
-Cc:     Alex Bee <knaerzche@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev
-Subject: Re: [PATCH 07/10] ARM: dts: rockchip: add vpu node for RK322x
-Date:   Wed, 26 May 2021 01:05:06 +0200
-Message-ID: <4871345.LM0AJKV5NW@diego>
-In-Reply-To: <20210525152225.154302-8-knaerzche@gmail.com>
-References: <20210525152225.154302-1-knaerzche@gmail.com> <20210525152225.154302-8-knaerzche@gmail.com>
+        id S229685AbhEZACy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 May 2021 20:02:54 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C34F061420;
+        Wed, 26 May 2021 00:01:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1621987283;
+        bh=cMM7Bk50oz+P2FRsUKDbD7UktmnSmO7vUpLohfS5wTI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=hDpQBCLj+QP9gqGVupCLadKq5svYg3I4rmWyMW7TxUaSHQ78Y7UWwGBra3RQvUl0r
+         joGOn/Q2fHAhfFy/BS3KGwz959mnCOySCLMfhjeItWZmltokLa9n9qOsj9bfq6bAEh
+         7NwR7C7Pfdx82TF4rd687hR2/rSlthcAheqSW9bI0tn3HP36G9kvuFxJMSgrMZSRWB
+         c1Zz0+Ze9tyYBE6KkIL55QxgbmJUo0fT2GCzkseLOzhABZhaD3mqkzYyIxUm256w8a
+         6lBFDegViAn5GEkazAN5c5H2NIUjO0+dhRZyaUmSWlKOT9CZjwOF7PdzljqzN5H4bO
+         szodhiBh/7XXA==
+Received: by mail-ed1-f49.google.com with SMTP id t15so38346174edr.11;
+        Tue, 25 May 2021 17:01:23 -0700 (PDT)
+X-Gm-Message-State: AOAM533LhP7kU7QnIIuJJzuU0JjDD8sFQsnmn3CtuyvhhuagFJwcU3mR
+        wFRxlWLOl/JyqJyD97LPQ6impOAUf+80lg/TrA==
+X-Google-Smtp-Source: ABdhPJy1oDnaYpLU8X/cl7NIOPaEIw45IshBooChnuh12l1QRQ8hL/Z2puieZJQRDPdggduT1yMK61LXcza2N49AtaQ=
+X-Received: by 2002:a05:6402:34d5:: with SMTP id w21mr34605470edc.38.1621987282361;
+ Tue, 25 May 2021 17:01:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20210525121448.30075-1-rex-bc.chen@mediatek.com> <20210525121448.30075-2-rex-bc.chen@mediatek.com>
+In-Reply-To: <20210525121448.30075-2-rex-bc.chen@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Wed, 26 May 2021 08:01:11 +0800
+X-Gmail-Original-Message-ID: <CAAOTY__aasihVxC72f7b_R-=UcR85Z1G9M8TxUS9dBrad-aRxQ@mail.gmail.com>
+Message-ID: <CAAOTY__aasihVxC72f7b_R-=UcR85Z1G9M8TxUS9dBrad-aRxQ@mail.gmail.com>
+Subject: Re: [v4,PATCH 1/3] drm/mediatek: dpi dual edge sample mode support
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Jitao Shi <jitao.shi@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 25. Mai 2021, 17:22:22 CEST schrieb Alex Bee:
-> The VPU IP block of RK322x is the same as RK3399 has and the driver can
-> be used as-is.
-> 
-> Add the respective nodes to the device tree.
-> 
-> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+Hi, Rex:
+
+Rex-BC Chen <rex-bc.chen@mediatek.com> =E6=96=BC 2021=E5=B9=B45=E6=9C=8825=
+=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=888:15=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> DPI can sample on falling, rising or both edge.
+> When DPI sample the data both rising and falling edge.
+> It can reduce half data io pins.
+> Use num_output_fmts to determine whether it is dual edge mode.
+>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
 > ---
->  arch/arm/boot/dts/rk322x.dtsi | 13 ++++++++++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/rk322x.dtsi b/arch/arm/boot/dts/rk322x.dtsi
-> index c8095ede7d7a..62d1113b7804 100644
-> --- a/arch/arm/boot/dts/rk322x.dtsi
-> +++ b/arch/arm/boot/dts/rk322x.dtsi
-> @@ -611,6 +611,18 @@ gpu: gpu@20000000 {
->  		status = "disabled";
->  	};
->  
-> +	vpu: video-codec@20020000 {
-> +		compatible = "rockchip,rk3228-vpu", "rockchip,rk3399-vpu";
-> +		reg = <0x20020000 0x800>;
-> +		interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI  9 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-names = "vepu", "vdpu";
-> +		clocks = <&cru ACLK_VPU>, <&cru HCLK_VPU>;
-> +		clock-names = "aclk", "hclk";
-> +		power-domains = <&power RK3228_PD_VPU>;
-> +		iommus = <&vpu_mmu>;
+>  drivers/gpu/drm/mediatek/mtk_dpi.c | 17 ++++++++++++++++-
+>  1 file changed, 16 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediate=
+k/mtk_dpi.c
+> index bea91c81626e..d3b883c97aaf 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> @@ -83,6 +83,7 @@ struct mtk_dpi {
+>         struct pinctrl *pinctrl;
+>         struct pinctrl_state *pins_gpio;
+>         struct pinctrl_state *pins_dpi;
+> +       bool ddr_edge_sel;
 
-NIT: [if you need to resend for other reasons] iommus before power-domains please
+I would like to keep output_fmt instead of ddr_edge_sel.
+Initialize output_fmt to MEDIA_BUS_FMT_RGB888_1X24 in this patch.
 
-> +	};
+>         int refcount;
+>  };
+>
+> @@ -122,6 +123,8 @@ struct mtk_dpi_conf {
+>         u32 reg_h_fre_con;
+>         u32 max_clock_khz;
+>         bool edge_sel_en;
+> +       const u32 *output_fmts;
+> +       u32 num_output_fmts;
+
+Move these to next patch.
+
+>  };
+>
+>  static void mtk_dpi_mask(struct mtk_dpi *dpi, u32 offset, u32 val, u32 m=
+ask)
+> @@ -381,6 +384,16 @@ static void mtk_dpi_config_color_format(struct mtk_d=
+pi *dpi,
+>         }
+>  }
+>
+> +static void mtk_dpi_dual_edge(struct mtk_dpi *dpi)
+> +{
+> +       if (dpi->conf->num_output_fmts > 1) {
+> +               mtk_dpi_mask(dpi, DPI_DDR_SETTING, DDR_EN | DDR_4PHASE,
+> +                            DDR_EN | DDR_4PHASE);
+> +               mtk_dpi_mask(dpi, DPI_OUTPUT_SETTING,
+> +                            dpi->ddr_edge_sel ? EDGE_SEL : 0, EDGE_SEL);
+> +       }
+
+if (dpi->output_fmt =3D=3D MEDIA_BUS_FMT_RGB888_2X12_LE) ||
+   (dpi->output_fmt =3D=3D MEDIA_BUS_FMT_RGB888_2X12_BE) {
+    mtk_dpi_mask(dpi, DPI_DDR_SETTING, DDR_EN | DDR_4PHASE, DDR_EN |
+DDR_4PHASE);
+    mtk_dpi_mask(dpi, DPI_OUTPUT_SETTING,
+                             dpi->output_fmt =3D=3D
+MEDIA_BUS_FMT_RGB888_2X12_LE ? EDGE_SEL : 0, EDGE_SEL);
+} else {
+    mtk_dpi_mask(dpi, DPI_DDR_SETTING, DDR_EN | DDR_4PHASE, 0);
+}
+
+> +}
 > +
->  	vpu_mmu: iommu@20020800 {
->  		compatible = "rockchip,iommu";
->  		reg = <0x20020800 0x100>;
-> @@ -619,7 +631,6 @@ vpu_mmu: iommu@20020800 {
->  		clock-names = "aclk", "iface";
->  		power-domains = <&power RK3228_PD_VPU>;
->  		#iommu-cells = <0>;
-> -		status = "disabled";
->  	};
->  
->  	vdec_mmu: iommu@20030480 {
-> 
+>  static void mtk_dpi_power_off(struct mtk_dpi *dpi)
+>  {
+>         if (WARN_ON(dpi->refcount =3D=3D 0))
+> @@ -455,7 +468,8 @@ static int mtk_dpi_set_display_mode(struct mtk_dpi *d=
+pi,
+>         pll_rate =3D clk_get_rate(dpi->tvd_clk);
+>
+>         vm.pixelclock =3D pll_rate / factor;
+> -       clk_set_rate(dpi->pixel_clk, vm.pixelclock);
+> +       clk_set_rate(dpi->pixel_clk,
+> +                    vm.pixelclock * ((dpi->conf->num_output_fmts > 1) ? =
+2 : 1));
 
+if (dpi->output_fmt =3D=3D MEDIA_BUS_FMT_RGB888_2X12_LE) ||
+   (dpi->output_fmt =3D=3D MEDIA_BUS_FMT_RGB888_2X12_BE)
+    clk_set_rate(dpi->pixel_clk, vm.pixelclock * 2);
+else
+    clk_set_rate(dpi->pixel_clk, vm.pixelclock);
 
-
-
+>         vm.pixelclock =3D clk_get_rate(dpi->pixel_clk);
+>
+>         dev_dbg(dpi->dev, "Got  PLL %lu Hz, pixel clock %lu Hz\n",
+> @@ -519,6 +533,7 @@ static int mtk_dpi_set_display_mode(struct mtk_dpi *d=
+pi,
+>         mtk_dpi_config_yc_map(dpi, dpi->yc_map);
+>         mtk_dpi_config_color_format(dpi, dpi->color_format);
+>         mtk_dpi_config_2n_h_fre(dpi);
+> +       mtk_dpi_dual_edge(dpi);
+>         mtk_dpi_config_disable_edge(dpi);
+>         mtk_dpi_sw_reset(dpi, false);
+>
+> --
+> 2.18.0
+>
