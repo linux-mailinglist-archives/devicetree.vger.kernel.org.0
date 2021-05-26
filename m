@@ -2,143 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A52FE3914B6
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 12:18:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB1AA3914E7
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 12:28:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233841AbhEZKUH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 06:20:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60612 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233839AbhEZKUH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 06:20:07 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D29FC06175F
-        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 03:18:36 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id v13so368478ple.9
-        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 03:18:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=XSi3eEZGuE/2YFaQr+R0aCzKJxfy8VJGKcJVdLww6Hg=;
-        b=VUW/mY1pRYOS0Oz3reGWDXfF/PieVcGzL47ZKVJA2N8+uUA+pwLwgqo6FB4AlpokDY
-         dmamG3lfFC/ErlYruqqd40vWDP9dzd5oaMlBn1S+URR+JSxJDbjRlgKfdwTJmy8Z/N6o
-         A7uZnaQiNjrACXwgQlRNXIaOiPJL7ahEutdh5+UoB4sa7b8apqR6c+k3Y7U5dUmpac1X
-         WWomYVMU8JgIckH0e7JZeExzlpD+Evt3PdMOasAR62yDySoq/3nX0CdvwxL7xQ5sZrBr
-         a8N98IgWtVGVCxrFG/hLNCkUKCRuOMD6TcKcYXVEOAn5U9epaTU5J+/CPh1Lh10HBse/
-         ZFyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=XSi3eEZGuE/2YFaQr+R0aCzKJxfy8VJGKcJVdLww6Hg=;
-        b=WaM5e6FS9V1T+WPz6/d7hoAhDSdzhUO3m1o4mjY7MKCh+qf37db1XO/g9Z+zxzEFUM
-         X66nC8AfX4Vuhu3MAabscIaaaBhA6z4l+yvgROT3P9vMNvrpSW0CW9fBW9kNNu3VzMNh
-         DcUxpPts/UeIYvaa8GywVns65i1mcAN2ar74yswcKZqBgF6NHkIvNvrQVat4Sz90xJzD
-         9XRSOw9xwWNqlYpvVcH46rYKawf9BndLCLmtNNwwKyQpCmGW5NAxBWux2hPDi3Mx6iJX
-         sZhvDa3A3SwGtr+mM3E14Rkbej+lrqmFNxSRfM7dzQzeyJrDMLGL+eudJCseoek5hWpe
-         rjaw==
-X-Gm-Message-State: AOAM533Td5h0z+CTXsTGPN6SIFVuJ64Q1RkK65Rw56A2NR3kWYozxgN+
-        fqz+USyGHdY3+piKE+kbdSAL
-X-Google-Smtp-Source: ABdhPJwuWcSHpObOVOjzCc0SZHP/m4Ox5RQ4y5X0r3eESQIQEwnY+dMPKWw0wFBV9czZ9+5zlyhldA==
-X-Received: by 2002:a17:902:34f:b029:ef:3d14:1c27 with SMTP id 73-20020a170902034fb02900ef3d141c27mr35650682pld.65.1622024315280;
-        Wed, 26 May 2021 03:18:35 -0700 (PDT)
-Received: from work ([120.138.12.4])
-        by smtp.gmail.com with ESMTPSA id p1sm15306479pfp.137.2021.05.26.03.18.31
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 26 May 2021 03:18:34 -0700 (PDT)
-Date:   Wed, 26 May 2021 15:48:30 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Edgar Bernardi Righi <edgar.righi@lsitec.org.br>,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
+        id S233859AbhEZKaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 06:30:06 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:59666 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233830AbhEZKaF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 06:30:05 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: ezequiel)
+        with ESMTPSA id B8FF31F40B01
+Message-ID: <b65236f3b8bbf35411b536df8b260d9f8a9dbd80.camel@collabora.com>
+Subject: Re: [PATCH 05/10] media: hantro: add support for Rockchip RK3036
+From:   Ezequiel Garcia <ezequiel@collabora.com>
+To:     Alex Bee <knaerzche@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/6] clk: actions: Fix bisp_factor_table based clocks on
- Owl S500 SoC
-Message-ID: <20210526101830.GE10723@work>
-References: <cover.1615221459.git.cristian.ciocaltea@gmail.com>
- <13576ddb604a9097603d95cd2605275c20fb2f56.1615221459.git.cristian.ciocaltea@gmail.com>
- <20210316041739.GC1798@thinkpad>
- <20210316183753.GC1111731@BV030612LT>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-staging@lists.linux.dev
+Date:   Wed, 26 May 2021 07:28:23 -0300
+In-Reply-To: <20210525152225.154302-6-knaerzche@gmail.com>
+References: <20210525152225.154302-1-knaerzche@gmail.com>
+         <20210525152225.154302-6-knaerzche@gmail.com>
+Organization: Collabora
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.2-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210316183753.GC1111731@BV030612LT>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 16, 2021 at 08:37:53PM +0200, Cristian Ciocaltea wrote:
-> On Tue, Mar 16, 2021 at 09:47:39AM +0530, Manivannan Sadhasivam wrote:
-> > On Mon, Mar 08, 2021 at 07:18:28PM +0200, Cristian Ciocaltea wrote:
-> > > The following clocks of the Actions Semi Owl S500 SoC have been defined
-> > > to use a shared clock factor table 'bisp_factor_table[]': DE[1-2], VCE,
-> > > VDE, BISP, SENSOR[0-1]
-> > > 
-> > > There are several issues involved in this approach:
-> > > 
-> > > * 'bisp_factor_table[]' describes the configuration of a regular 8-rates
-> > >   divider, so its usage is redundant. Additionally, judging by the BISP
-> > >   clock context, it is incomplete since it maps only 8 out of 12
-> > >   possible entries.
-> > > 
-> > > * The clocks mentioned above are not identical in terms of the available
-> > >   rates, therefore cannot rely on the same factor table. Specifically,
-> > >   BISP and SENSOR* are standard 12-rate dividers so their configuration
-> > >   should rely on a proper clock div table, while VCE and VDE require a
-> > >   factor table that is a actually a subset of the one needed for DE[1-2]
-> > >   clocks.
-> > > 
-> > > Let's fix this by implementing the following:
-> > > 
-> > > * Add new factor tables 'de_factor_table' and 'hde_factor_table' to
-> > >   properly handle DE[1-2], VCE and VDE clocks.
-> > > 
-> > > * Add a common div table 'std12rate_div_table' for BISP and SENSOR[0-1]
-> > >   clocks converted to OWL_COMP_DIV.
-> > > 
-> > > * Drop the now unused 'bisp_factor_table[]'.
-> > > 
-> > 
-> > Nice!
-> > 
-> > > Additionally, since SENSOR[0-1] are not gated, unset the OWL_GATE_HW
-> > > configuration and drop the CLK_IGNORE_UNUSED flag in their definitions.
-> > > 
-> > 
-> > No. You should not screen the functionality exposed by the hw, that's what the
-> > purpose of these CLK_ flags.
-> 
-> I'm not sure I get this, or maybe I wasn't clear enough with my
-> explanation regarding the changes to SENSOR clocks: they are not gated
-> in hardware, hence the statement 'OWL_GATE_HW(CMU_DEVCLKEN0, 14, 0)' 
-> was invalid and I replaced it with '{ 0 }'.
-> 
+Hi Alex,
 
-This clock is gated in hw as per the datasheet. Again, please don't make
-judgements based on the vendor code as it is not upto date with HW. I
-know it is silly but that's how things are...
+Thanks a lot for the patch.
 
-> Additionally, I assumed the 'CLK_IGNORE_UNUSED' flag makes sense only
-> for the gated clocks. Do I miss something?
+On Tue, 2021-05-25 at 17:22 +0200, Alex Bee wrote:
+> RK3036's VPU IP block is the same as RK3288 has, except that it doesn't
+> have an encoder, decoding is supported up to 1920x1088 only and the axi
+> clock can be set to 300 MHz max.
 > 
+> Add a new RK3036 variant which reflect this differences.
+> 
+> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+> ---
+>  drivers/staging/media/hantro/hantro_drv.c    |  1 +
+>  drivers/staging/media/hantro/hantro_hw.h     |  1 +
+>  drivers/staging/media/hantro/rk3288_vpu_hw.c | 49 ++++++++++++++++++++
+>  3 files changed, 51 insertions(+)
+> 
+> diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
+> index 38ea7b24036e..4f3c08e85bb8 100644
+> --- a/drivers/staging/media/hantro/hantro_drv.c
+> +++ b/drivers/staging/media/hantro/hantro_drv.c
+> @@ -490,6 +490,7 @@ static const struct of_device_id of_hantro_match[] = {
+>         { .compatible = "rockchip,rk3328-vpu", .data = &rk3328_vpu_variant, },
+>         { .compatible = "rockchip,rk3288-vpu", .data = &rk3288_vpu_variant, },
+>         { .compatible = "rockchip,rk3066-vpu", .data = &rk3066_vpu_variant, },
+> +       { .compatible = "rockchip,rk3036-vpu", .data = &rk3036_vpu_variant, },
+>  #endif
+>  #ifdef CONFIG_VIDEO_HANTRO_IMX8M
+>         { .compatible = "nxp,imx8mq-vpu", .data = &imx8mq_vpu_variant, },
+> diff --git a/drivers/staging/media/hantro/hantro_hw.h b/drivers/staging/media/hantro/hantro_hw.h
+> index de2bc367a15a..d8d6b0d3c3b3 100644
+> --- a/drivers/staging/media/hantro/hantro_hw.h
+> +++ b/drivers/staging/media/hantro/hantro_hw.h
+> @@ -164,6 +164,7 @@ extern const struct hantro_variant rk3399_vpu_variant;
+>  extern const struct hantro_variant rk3328_vpu_variant;
+>  extern const struct hantro_variant rk3288_vpu_variant;
+>  extern const struct hantro_variant rk3066_vpu_variant;
+> +extern const struct hantro_variant rk3036_vpu_variant;
+>  extern const struct hantro_variant imx8mq_vpu_variant;
+>  extern const struct hantro_variant sama5d4_vdec_variant;
+>  
+> diff --git a/drivers/staging/media/hantro/rk3288_vpu_hw.c b/drivers/staging/media/hantro/rk3288_vpu_hw.c
+> index 29805c4bd92f..c4684df4e012 100644
+> --- a/drivers/staging/media/hantro/rk3288_vpu_hw.c
+> +++ b/drivers/staging/media/hantro/rk3288_vpu_hw.c
+> @@ -174,6 +174,13 @@ static irqreturn_t rk3288_vepu_irq(int irq, void *dev_id)
+>         return IRQ_HANDLED;
+>  }
+>  
+> +static int rk3036_vpu_hw_init(struct hantro_dev *vpu)
+> +{
+> +       /* Bump ACLKs to max. possible freq. to improve performance. */
+> +       clk_set_rate(vpu->clocks[0].clk, RK3066_ACLK_MAX_FREQ);
+> +       return 0;
+> +}
+> +
+>  static int rk3066_vpu_hw_init(struct hantro_dev *vpu)
+>  {
+>         /* Bump ACLKs to max. possible freq. to improve performance. */
+> @@ -209,6 +216,27 @@ static void rk3288_vpu_enc_reset(struct hantro_ctx *ctx)
+>  /*
+>   * Supported codec ops.
+>   */
+> +static const struct hantro_codec_ops rk3036_vpu_codec_ops[] = {
+> +       [HANTRO_MODE_H264_DEC] = {
+> +               .run = hantro_g1_h264_dec_run,
+> +               .reset = hantro_g1_reset,
+> +               .init = hantro_h264_dec_init,
+> +               .exit = hantro_h264_dec_exit,
+> +       },
+> +       [HANTRO_MODE_MPEG2_DEC] = {
+> +               .run = hantro_g1_mpeg2_dec_run,
+> +               .reset = hantro_g1_reset,
+> +               .init = hantro_mpeg2_dec_init,
+> +               .exit = hantro_mpeg2_dec_exit,
+> +       },
+> +       [HANTRO_MODE_VP8_DEC] = {
+> +               .run = hantro_g1_vp8_dec_run,
+> +               .reset = hantro_g1_reset,
+> +               .init = hantro_vp8_dec_init,
+> +               .exit = hantro_vp8_dec_exit,
+> +       },
+> +};
+> +
+>  static const struct hantro_codec_ops rk3066_vpu_codec_ops[] = {
+>         [HANTRO_MODE_JPEG_ENC] = {
+>                 .run = hantro_h1_jpeg_enc_run,
+> @@ -269,6 +297,10 @@ static const struct hantro_codec_ops rk3288_vpu_codec_ops[] = {
+>   * VPU variant.
+>   */
+>  
+> +static const struct hantro_irq rk3036_irqs[] = {
+> +       { "vdpu", hantro_g1_irq },
+> +};
+> +
+>  static const struct hantro_irq rk3288_irqs[] = {
+>         { "vepu", rk3288_vepu_irq },
+>         { "vdpu", hantro_g1_irq },
+> @@ -283,6 +315,23 @@ static const char * const rk3288_clk_names[] = {
+>         "aclk", "hclk"
+>  };
+>  
+> +const struct hantro_variant rk3036_vpu_variant = {
+> +       .dec_offset = 0x400,
 
-CLK_IGNORE_UNUSED is used by the clk framework to essentially skip
-gating the clocks which are turned ON by the bootloader and there is no
-other driver using it. But I think you can remove this flag because
-there is no reason to leave this specific clock to be ON always.
+If it doesn't have an encoder, then you should just
+use dec_offset = 0x0.
 
 Thanks,
-Mani
+Ezequiel
 
-> > Other than that, this patch looks good to me.
-> 
-> Thanks,
-> Cristi
-> 
-> [...]
