@@ -2,83 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3334391298
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 10:43:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C8DB391306
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 10:52:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233126AbhEZIpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 04:45:10 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:47124 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233197AbhEZIpJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 04:45:09 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14Q8hU70106306;
-        Wed, 26 May 2021 03:43:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1622018610;
-        bh=00A4y9iCMVGyxzhvAGt5Fyc166t88jfB0IHPljtczsA=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=T0+lXOl0DBJYbqwCEXt0F5Y3hxqkibuzUtk1IViDThbEqjh22dAYVQl/k3Ko7FQcU
-         rzaFnY8ywvEIcbX5BpQiRWoFOisyYatgEgCY2MofMuSSNtsZlYJKJx5RRZUMiiDRnO
-         dvM0/dDaAgzkdd1HHUXar/tl+G10007yFJGeOiO0=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14Q8hUXJ067219
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 26 May 2021 03:43:30 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 26
- May 2021 03:43:30 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 26 May 2021 03:43:30 -0500
-Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14Q8h75Y049811;
-        Wed, 26 May 2021 03:43:26 -0500
-From:   Lokesh Vutla <lokeshvutla@ti.com>
-To:     <thierry.reding@gmail.com>, <u.kleine-koenig@pengutronix.de>,
-        <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>
-CC:     <tony@atomide.com>, Sekhar Nori <nsekhar@ti.com>,
-        Vignesh R <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
-        <linux-pwm@vger.kernel.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux OMAP Mailing List <linux-omap@vger.kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: [PATCH 4/4] dt-bindings: pwm: pwm-tiehrpwm: Add compatible string for AM64 SoC
-Date:   Wed, 26 May 2021 14:13:06 +0530
-Message-ID: <20210526084306.6534-5-lokeshvutla@ti.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210526084306.6534-1-lokeshvutla@ti.com>
-References: <20210526084306.6534-1-lokeshvutla@ti.com>
+        id S233011AbhEZIx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 04:53:58 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:40617 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232918AbhEZIx6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 04:53:58 -0400
+X-UUID: 6dbda7c56e614858aa7b1275ac30b903-20210526
+X-UUID: 6dbda7c56e614858aa7b1275ac30b903-20210526
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1116983690; Wed, 26 May 2021 16:52:21 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 26 May 2021 16:52:20 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 26 May 2021 16:52:19 +0800
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     <chunkuang.hu@kernel.org>, <matthias.bgg@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Rex-BC Chen <rex-bc.chen@mediatek.com>
+Subject: [v5,PATCH 0/3] mt8183 dpi supports dual edge
+Date:   Wed, 26 May 2021 16:52:16 +0800
+Message-ID: <20210526085219.7582-1-rex-bc.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible string for AM64 SoC in device tree binding.
+v5:
+Remove ddr_edge_sel and use output_fmts to determine
+which edge to be set.
 
-Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
----
- Documentation/devicetree/bindings/pwm/pwm-tiehrpwm.yaml | 1 +
- 1 file changed, 1 insertion(+)
+v4:
+Use output_fmts to determine whether it is dual edge.
+Rebase to v5.13-rc1
 
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-tiehrpwm.yaml b/Documentation/devicetree/bindings/pwm/pwm-tiehrpwm.yaml
-index 84a8d6d38cee..347ba356a3f5 100644
---- a/Documentation/devicetree/bindings/pwm/pwm-tiehrpwm.yaml
-+++ b/Documentation/devicetree/bindings/pwm/pwm-tiehrpwm.yaml
-@@ -22,6 +22,7 @@ properties:
-               - ti,am4372-ehrpwm
-               - ti,dra746-ehrpwm
-               - ti,am654-ehrpwm
-+              - ti,am64-ehrpwm
-           - const: ti,am3352-ehrpwm
- 
-   reg:
+v3:
+Modify clock rate for dual edge setting.
+Add more bridge function.
+
+v2:
+Modify unused code
+
+v1:
+DPI can sample on falling, rising or both edge.
+When DPI sample the data both rising and falling edge.
+It can reduce half data io pins.
+
+Rex-BC Chen (3):
+  [v5] drm/mediatek: dpi dual edge sample mode support
+  [v5] drm/mediatek: config driver data to support dual edge sample
+  [v5] drm/mediatek: dpi: add bus format negotiation
+
+ drivers/gpu/drm/mediatek/mtk_dpi.c | 130 +++++++++++++++++++++++++++--
+ 1 file changed, 124 insertions(+), 6 deletions(-)
+
 -- 
-2.31.1
+2.18.0
 
