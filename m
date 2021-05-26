@@ -2,134 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECCE73911FD
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 10:08:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9E6F39128D
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 10:43:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231960AbhEZIKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 04:10:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58770 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230384AbhEZIKC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 04:10:02 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A709C061574;
-        Wed, 26 May 2021 01:08:29 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id p7so51859wru.10;
-        Wed, 26 May 2021 01:08:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=yVcIsLaop0xFTxRezXJ3MSLuEhLYr+XKBNJbxOwir5s=;
-        b=WYbaBVSv16q5MTWMzaif39kIsCho53bHWXwf9Z/KMlYAAxCZtALxyQhWH7Gg2eWYd7
-         6nIhK9oO6tCBAo0juIZBBzEjU9QtK64YV6Azt2YNR9VGCRWQx1lrkX9agrTnGVlRgrm9
-         2L0hOPcam6w7yvn7vfkiNshrSVNvUNPYw5tRd5UvKNQ/eTdNhO+UIPFdy+wzBGHK1zKf
-         pMBmBj8Fmq6Z1i1B19jl3skq2f//GGGJ/dFr5YkSnFvA9pyH6H2NjU+/QFvFSDZCmawD
-         wMYJ3tL5Sz1ifLpT2cbzTnLzdnoLMICiKJIRQx7o6Yx9zM4Ppfa9XTfAy/B9Wrg5bNqN
-         Uy7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=yVcIsLaop0xFTxRezXJ3MSLuEhLYr+XKBNJbxOwir5s=;
-        b=nxwLYRmO+fqiP2A8DZkLXZUdasGEQr9frxieSS9BDTP0v5V+BjwnD+7d9dTyXzqEcm
-         d/ELzvUQIVePsM2lCeA5e0b0a7iP+VIsuwt65ghupY5CKCvjV/LqWqJcJGem2sjFyNu4
-         omItGAGwL9wx4J/W0Gz1I2GhtMFKuNl+NQhV2No5vQTYv5PsbEjM634O/NljT2noF6NR
-         94hH+uhp3xzfOLIbVhzXQ5DGQC+5nq7jGTMu1gfX5NC7UX5nrazpqr9dQ8LvsuefgULT
-         99TxQwaNoTAarwfC5wCK07U8eeGrZd2DX0b1rIVz9emAcLDohREKa5QyvCH7vW8iPI8h
-         w1YA==
-X-Gm-Message-State: AOAM531BhTgFXHSkKGbuB89JYpzmjZJZHpE1ogseCM8F8pQ+hbK0IziO
-        ZfTTOXSuNcV3v0+jfBdtpUc4sPG7yvG/hFgqjKg=
-X-Google-Smtp-Source: ABdhPJzpuvOh0m7CXA37jLlei4+4VCuO9+LSYcUU5crIHmY5LaVh8NoHsVAadYTaqLaToEjoFwwVSXWkbmaHkBcqU40=
-X-Received: by 2002:a5d:43cb:: with SMTP id v11mr1351884wrr.198.1622016508091;
- Wed, 26 May 2021 01:08:28 -0700 (PDT)
+        id S233114AbhEZIo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 04:44:56 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:44600 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232824AbhEZIoz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 04:44:55 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14Q8hCG9050640;
+        Wed, 26 May 2021 03:43:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1622018592;
+        bh=xz5M2jphu9cJZTHVb9oK3P7dVEJQMjcf/AMHdb2E6So=;
+        h=From:To:CC:Subject:Date;
+        b=kAvvGTL4aZaYQGprqXiRvK5491uhPtiGxmY1AT6YASTxv5mqqem3wAlSsX6/8itgB
+         6Y0n77Igot7TIe+7JMlVBegxt5GDYLZvknCPZy+XJ+ayyXkiAxQFvs68AU+8HVdQMP
+         ZGhjHSv7cGJvFWvrSoUuOehBsenk7qQ0txIScDng=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14Q8hCA9054763
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 26 May 2021 03:43:12 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 26
+ May 2021 03:43:12 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 26 May 2021 03:43:12 -0500
+Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14Q8h75U049811;
+        Wed, 26 May 2021 03:43:07 -0500
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+To:     <thierry.reding@gmail.com>, <u.kleine-koenig@pengutronix.de>,
+        <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>
+CC:     <tony@atomide.com>, Sekhar Nori <nsekhar@ti.com>,
+        Vignesh R <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
+        <linux-pwm@vger.kernel.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linux OMAP Mailing List <linux-omap@vger.kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [PATCH 0/4] dt-bindings: pwm: pwm-tiehrpwm: Convert to json schema
+Date:   Wed, 26 May 2021 14:13:02 +0530
+Message-ID: <20210526084306.6534-1-lokeshvutla@ti.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20210425123607.26537-1-kevin3.tang@gmail.com> <20210425123607.26537-5-kevin3.tang@gmail.com>
- <20210430092249.n75to2das5m6p4zb@gilmour> <CAFPSGXYJxWJDo1cz+kJB8J9YayGx1hYa=04K5OJ3DHh9ifbuRQ@mail.gmail.com>
- <YKI26bZGAA+ZNLLj@8bytes.org> <bc0e3025-60bd-c6b4-117f-592dc1c1a2f0@arm.com> <CAAfSe-ughdeZ7YaVsXuWeGNq-+Q+_z+P=aeKpj957kE6d-hLmQ@mail.gmail.com>
-In-Reply-To: <CAAfSe-ughdeZ7YaVsXuWeGNq-+Q+_z+P=aeKpj957kE6d-hLmQ@mail.gmail.com>
-From:   Chunyan Zhang <zhang.lyra@gmail.com>
-Date:   Wed, 26 May 2021 16:07:51 +0800
-Message-ID: <CAAfSe-sRjSw=7vAX21OPL5+OfLXJNS9RNf8Lg5Hy56LZwPBwCA@mail.gmail.com>
-Subject: Re: [PATCH v5 4/6] drm/sprd: add Unisoc's drm display controller driver
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Joerg Roedel <joro@8bytes.org>, Kevin Tang <kevin3.tang@gmail.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
-        ML dri-devel <dri-devel@lists.freedesktop.org>,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-resend for switching to plain text mode.
+This series:
+- drops a redundant compatible
+- converts tiehrpwn to DT schema format using json-schema
+- Add new compatible for AM64 SoC.
 
-On Wed, 26 May 2021 at 15:59, Chunyan Zhang <zhang.lyra@gmail.com> wrote:
->
-> Hi Robin,
->
-> On Tue, 18 May 2021 at 00:35, Robin Murphy <robin.murphy@arm.com> wrote:
->>
->> On 2021-05-17 10:27, Joerg Roedel wrote:
->> > On Fri, Apr 30, 2021 at 08:20:10PM +0800, Kevin Tang wrote:
->> >> Cc  Robin & Joerg
->> >
->> > This is just some GPU internal MMU being used here, it seems. It doesn=
-'t
->> > use the IOMMU core code, so no Ack needed from the IOMMU side.
->>
->> Except the actual MMU being used is drivers/iommu/sprd_iommu.c - this is
->
-> Yes, it is using drivers/iommu/sprd_iommu.c.
->
->>
->>
->> just the display driver poking directly at the interrupt registers of
->> its associated IOMMU instance.
->
->
-> Actually the display driver is poking its own interrupt registers in whic=
-h some interrupts are caused by using IOMMU, others are purely its own ones=
-:
-> +/* Interrupt control & status bits */
-> +#define BIT_DPU_INT_DONE               BIT(0)
-> +#define BIT_DPU_INT_TE                 BIT(1)
-> +#define BIT_DPU_INT_ERR                        BIT(2)
-> +#define BIT_DPU_INT_UPDATE_DONE                BIT(4)
-> +#define BIT_DPU_INT_VSYNC              BIT(5)
-> +#define BIT_DPU_INT_MMU_VAOR_RD                BIT(16)
-> +#define BIT_DPU_INT_MMU_VAOR_WR                BIT(17)
-> +#define BIT_DPU_INT_MMU_INV_RD         BIT(18)
-> +#define BIT_DPU_INT_MMU_INV_WR         BIT(19)
->
-> From what I see in the product code, along with the information my collea=
-gues told me, these _INT_MMU_ interrupts only need to be dealt with by clie=
-nt devices(i.e. display). IOMMU doesn't even have the INT_STS register for =
-some early products which we're trying to support in the mainstream kernel.
->
->>
->> I still think this is wrong, and that it
->> should be treated as a shared interrupt, with the IOMMU driver handling
->> its own registers and reporting to the client through the standard
->> report_iommu_fault() API, especially since there are apparently more
->> blocks using these IOMMU instances than just the display.
->
-> For the next generation IOMMU, we will handle interrupts in IOMMU drivers=
- like you say here.
-> But like I explained above, we have to leave interrupt handling in the cl=
-ient device driver since the IOMMU we 're using in this display device does=
-n't have an INT_STS register in the IOMMU register range.
->
-> Thanks for the review,
-> Chunyan
->
->>
->> Robin.
+Lokesh Vutla (4):
+  arm: dts: ti: drop usage of redundant compatible
+  dt-bindings: pwm: tiehrpwm: Make clock and clock-names as required
+    properties
+  dt-bindings: pwm: pwm-tiehrpwm: Convert to json schema
+  dt-bindings: pwm: pwm-tiehrpwm: Add compatible string for AM64 SoC
+
+ .../devicetree/bindings/pwm/pwm-tiehrpwm.txt  | 50 --------------
+ .../devicetree/bindings/pwm/pwm-tiehrpwm.yaml | 65 +++++++++++++++++++
+ arch/arm/boot/dts/am33xx-l4.dtsi              |  9 +--
+ arch/arm/boot/dts/am437x-l4.dtsi              | 18 ++---
+ arch/arm/boot/dts/da850.dtsi                  |  6 +-
+ 5 files changed, 76 insertions(+), 72 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-tiehrpwm.txt
+ create mode 100644 Documentation/devicetree/bindings/pwm/pwm-tiehrpwm.yaml
+
+-- 
+2.31.1
+
