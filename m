@@ -2,175 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1C8F391A10
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 16:24:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15E3C391A26
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 16:29:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234579AbhEZOZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 10:25:37 -0400
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:37501 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233883AbhEZOZh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 10:25:37 -0400
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 743A61BF210;
-        Wed, 26 May 2021 14:24:00 +0000 (UTC)
-Date:   Wed, 26 May 2021 16:24:00 +0200
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-sunxi@googlegroups.com
-Cc:     Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Jonathan Corbet <corbet@lwn.net>,
+        id S234642AbhEZObF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 10:31:05 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:41252 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233217AbhEZObE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 10:31:04 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14QETR6L053215;
+        Wed, 26 May 2021 09:29:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1622039367;
+        bh=adwDlqzyFu2w91BOBHgkLr2jlHPCocTpNVgbheqBd1c=;
+        h=From:To:CC:Subject:Date;
+        b=cwaDSoyf5dY9lHi8AZ4FXXlIjL1JkX3SVUkbjsC+pyoxle2UrmNyvXnQT3lR1kVMx
+         PAJ32B/VvuxNelbf9tv3MF4KaPnZt6d8nTgIzl9TEJwtB8QIa4hKNrF0d0VbM9Cj3c
+         Hrl442fcY83PIDp39FDLaSVgLT+ajymobNrkdgkM=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14QETRFA040260
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 26 May 2021 09:29:27 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 26
+ May 2021 09:29:27 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 26 May 2021 09:29:27 -0500
+Received: from a0393678-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14QETMcZ030380;
+        Wed, 26 May 2021 09:29:23 -0500
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        kevin.lhopital@hotmail.com,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH v5 02/16] phy: Distinguish between Rx and Tx for MIPI
- D-PHY with submodes
-Message-ID: <YK5aAL6ciI92ruHs@aptenodytes>
-References: <20210115200141.1397785-1-paul.kocialkowski@bootlin.com>
- <20210115200141.1397785-3-paul.kocialkowski@bootlin.com>
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [PATCH v3 0/5] AM64: EVM/SK: Enable PCIe and USB
+Date:   Wed, 26 May 2021 19:59:16 +0530
+Message-ID: <20210526142921.12127-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="7zgmf44zur7folx5"
-Content-Disposition: inline
-In-Reply-To: <20210115200141.1397785-3-paul.kocialkowski@bootlin.com>
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+AM642 EVM has one PCIe slot (no USB slot) and AM642 SK has one USB slot
+(no PCIe slot).
+AM64 SoC has one SERDES module which can be used by either PCIe or USB.
 
---7zgmf44zur7folx5
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Add DT nodes to represent and enable SERDES/PCIe/USB modules in EVM/SK.
 
-Hi everyone,
+Changes from v2:
+1) Dropped "dt-bindings: mux: Convert reg-mux DT bindings to YAML" as
+it's handled by a different series from Rob
+2) Rename "mux" DT node to a standard "mux-controller" DT node.
 
-On Fri 15 Jan 21, 21:01, Paul Kocialkowski wrote:
-> As some D-PHY controllers support both Rx and Tx mode, we need a way for
-> users to explicitly request one or the other. For instance, Rx mode can
-> be used along with MIPI CSI-2 while Tx mode can be used with MIPI DSI.
->=20
-> Introduce new MIPI D-PHY PHY submodes to use with PHY_MODE_MIPI_DPHY.
-> The default (zero value) is kept to Tx so only the rkisp1 driver, which
-> uses D-PHY in Rx mode, needs to be adapted.
+Changes from v1:
+1) Add a patch to convert reg-mux DT bindings to YAML
+2) Use generic names for clock node names
+3) Remove redundant status = "okay" for serdes_wiz0
 
-I think it was Laurent who brought up on IRC that using a submode is probab=
-ly
-not a correct way to distinguish between Rx and Tx modes.
+Kishon Vijay Abraham I (5):
+  arm64: dts: ti: k3-am64-main: Add SERDES DT node
+  arm64: dts: ti: k3-am64-main: Add PCIe DT node
+  arm64: dts: ti: k3-am642-evm: Enable PCIe and SERDES
+  arm64: dts: ti: k3-am642-sk: Enable USB Super-Speed HOST port
+  arm64: dts: ti: k3-am642-sk: Disable PCIe
 
-Thinking about it again, it feels like selecting the direction at run-time
-would only be relevant if there's D-PHY hardware than can do both Tx and Rx
-*and* that can be muxed to either a MIPI DSI and a CSI-2 controller at
-run-time.
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 102 +++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts  |  30 +++++++
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts   |  43 ++++++++++
+ 3 files changed, 175 insertions(+)
 
-For the Allwinner case, the D-PHY is the same hardware for both but there w=
-ill
-be one instance attached to each controller, not a single shared instance.
-It feels rather unlikely that a device with both MIPI DSI and CSI-2 would o=
-nly
-have one PHY for the two as this wouldn't allow concurrent use of the two
-controllers. Even in a case where there'd be n controllers and m < n
-bi-directional PHYs, it feels safe to assume that a static attribution would
-be sufficient.
-=20
-As a result it feels more relevant to have this distinction in device-tree
-rather than via the PHY API.
+-- 
+2.17.1
 
-What do you think?
-Any suggestion on how this should be represented in device-tree?
-
-Cheers,
-
-Paul
-
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> Acked-by: Helen Koike <helen.koike@collabora.com>
-> ---
->  drivers/media/platform/rockchip/rkisp1/rkisp1-isp.c |  3 ++-
->  include/linux/phy/phy-mipi-dphy.h                   | 13 +++++++++++++
->  2 files changed, 15 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/media/platform/rockchip/rkisp1/rkisp1-isp.c b/driver=
-s/media/platform/rockchip/rkisp1/rkisp1-isp.c
-> index 2e5b57e3aedc..cab261644102 100644
-> --- a/drivers/media/platform/rockchip/rkisp1/rkisp1-isp.c
-> +++ b/drivers/media/platform/rockchip/rkisp1/rkisp1-isp.c
-> @@ -948,7 +948,8 @@ static int rkisp1_mipi_csi2_start(struct rkisp1_isp *=
-isp,
-> =20
->  	phy_mipi_dphy_get_default_config(pixel_clock, isp->sink_fmt->bus_width,
->  					 sensor->lanes, cfg);
-> -	phy_set_mode(sensor->dphy, PHY_MODE_MIPI_DPHY);
-> +	phy_set_mode_ext(cdev->dphy, PHY_MODE_MIPI_DPHY,
-> +			 PHY_MIPI_DPHY_SUBMODE_RX);
->  	phy_configure(sensor->dphy, &opts);
->  	phy_power_on(sensor->dphy);
-> =20
-> diff --git a/include/linux/phy/phy-mipi-dphy.h b/include/linux/phy/phy-mi=
-pi-dphy.h
-> index a877ffee845d..0f57ef46a8b5 100644
-> --- a/include/linux/phy/phy-mipi-dphy.h
-> +++ b/include/linux/phy/phy-mipi-dphy.h
-> @@ -6,6 +6,19 @@
->  #ifndef __PHY_MIPI_DPHY_H_
->  #define __PHY_MIPI_DPHY_H_
-> =20
-> +/**
-> + * enum phy_mipi_dphy_submode - MIPI D-PHY sub-mode
-> + *
-> + * A MIPI D-PHY can be used to transmit or receive data.
-> + * Since some controllers can support both, the direction to enable is s=
-pecified
-> + * with the PHY sub-mode. Transmit is assumed by default with phy_set_mo=
-de.
-> + */
-> +
-> +enum phy_mipi_dphy_submode {
-> +	PHY_MIPI_DPHY_SUBMODE_TX =3D 0,
-> +	PHY_MIPI_DPHY_SUBMODE_RX,
-> +};
-> +
->  /**
->   * struct phy_configure_opts_mipi_dphy - MIPI D-PHY configuration set
->   *
-> --=20
-> 2.30.0
->=20
-
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---7zgmf44zur7folx5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmCuWgAACgkQ3cLmz3+f
-v9FhsAf+LCjDsXEPBS3IEa3r1GuNV4LBCN/X+lLIeNTjDh6K2INIlcpTAQKOFukJ
-SpuPbpbstXPTy9/vCtFP/DlZL1Oh2LO0HtXUlcb3rGEFO+1I4HUlOemAjl4TLbIv
-E0b9iFY1splxVIehgB1+IGh0+OeiFr/d5GegzOggbhxTN9Et1Ag43WAWglT86XcY
-MClLNUG8uVl86H83cFVP2AVzPj4GSmgiydKVcH8mLG6PE7DD3PfH5VzkDb2fAmMg
-uXJGP2qJCEXMAHwz6GFxEDArK22vzR7kzw3VAZWIwnBYP58QW/ifeL4D0Ak1aDbD
-wlmzQmgw2dpbHuESesA/00xaqumugA==
-=/RYX
------END PGP SIGNATURE-----
-
---7zgmf44zur7folx5--
