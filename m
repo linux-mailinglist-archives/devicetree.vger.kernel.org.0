@@ -2,106 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DBB639233F
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 01:30:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CE71392351
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 01:38:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234892AbhEZXcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 19:32:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43020 "EHLO
+        id S234948AbhEZXji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 19:39:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234885AbhEZXcP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 19:32:15 -0400
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 288D0C061760
-        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 16:30:43 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id 69-20020a9d0a4b0000b02902ed42f141e1so2692728otg.2
-        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 16:30:43 -0700 (PDT)
+        with ESMTP id S233517AbhEZXjh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 19:39:37 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1A28C061574;
+        Wed, 26 May 2021 16:38:04 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id j10so3522166edw.8;
+        Wed, 26 May 2021 16:38:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=f5inNoG6a1gTVFSlqHBbHpaamu/nM0OCFBdJlQ1D2b4=;
-        b=XDHTBKkDEJnhJrFGseooYsd4kQeneJs4gHZDUzntBQK2nX6BR0r8RRK/jXNZWJW+yk
-         udmeLGKlob/OFeevQOnF6CU7EhfozmZckYdxCtTP+DXOACzlXL5aTmXAV3BF7ukwf9Dk
-         84BXoMjH5IAWQZYBbtS7ydMQbPoU+NIMEN+JQ=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=msqRgqFp5nTxCgVxwFT3u/oYhUS3myZ12JA80hALidA=;
+        b=Af/o3nP3riejK6SjwqE/sz95Jrpry8tSeySDzbJUA+HVhyx0nS7wRUUM8uOrU94K0j
+         YnnAOwAwXALkSgAUQqRxu5ey+r09rcndtYLZ7m7+iFc3DBL+2CkA0ApArCt/stAN8RgC
+         gjXL2jgY0HrJEVf7upgZ5zUUDRmE4QAVySGuktu3BgyZftI/wLN0NC1naULCApB4WhyJ
+         Q4pXjoolk84cipsvSRRHFSN9h0UWpFzIn1CNMOspEV75mvEn43n5LqkBc30NCJDfVz4u
+         floZhk7XybJjeHJ/8l3Ru+swuvyh/zjxMHeiomdLjB+rGXygtmikMN9lQIEpvBNoiB01
+         PDnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=f5inNoG6a1gTVFSlqHBbHpaamu/nM0OCFBdJlQ1D2b4=;
-        b=JImG1Y8NaSLhI/v2NYKQBq9PdBXs2agsQc/rwWXbWhcUqTt/bKbt8S/Wk/mXbYX08R
-         P0/rrn7yQOWu2cyIFRzCe6vqnvKaUi3ThnjEdlmF8ZdenaFYx5oRqoEoNOkzvp5uiuIi
-         0F4un/byNBSZSE8D7fnB8VdTjyjms0frpqZBdWkRUeGWIRJpC2hyE8fuFmhzmJ02fQly
-         NzGyAOdAQmCt+bLsclH76loNY94dPMrGxKsse0v0yGTx0HLSwBHRoPWDVEZ8KZ+kDmFG
-         xKpb0VQ/QpbC7eGxuQutNzxX/yU/XoUtyhl/b7GgG7AmLiOnzasUFjy/W67SwsJmk+aE
-         zoTg==
-X-Gm-Message-State: AOAM530ZyD3ggo3Kp0U+/FMpcchiGDLda3CkWZSC2LFeOFBOTZj++dT1
-        3mwypA44TCOLeMb+IrVl9wUwqoLQ9cHwbiQJLns3TQ==
-X-Google-Smtp-Source: ABdhPJxUxK7okjBvGfnVz8YwxgspwwpdkerGy69t5hvFu8M6YbAcJcqhes4w84JyUA3Qjzurg3kZlbcmXZenHnLSHts=
-X-Received: by 2002:a05:6830:1556:: with SMTP id l22mr563949otp.34.1622071842580;
- Wed, 26 May 2021 16:30:42 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 26 May 2021 19:30:42 -0400
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=msqRgqFp5nTxCgVxwFT3u/oYhUS3myZ12JA80hALidA=;
+        b=Abc1onSUjsa4JIEDZORoqfIkNQ+e692nnztlmJp9qJO5bDr2dZvBDOSCx6VYmS7Gll
+         q8zVTvVQQvEUEmAaijwXAr/tDnS6rhyqor1s1Ss0K3QfHzzr8tQJkabtqzJZc2aJ+9sT
+         t0ysrtnYrxBjYuiogWF6Q/r1OZdsP2eIVs7ebdZoM7gxbxRAe8gR/8J0rcVB9dvlM2sb
+         g8cSpgNadFOaktfKpQkVofpXq6lcNsD1hVks22v37YFp/9tIjMEj5oME++pgY31jAM/0
+         geWT4Lvsq5NILqVKFVyfOnAUSsl2pfRthIAUHxWbiHMFeMFRW4Ll3pINuC8HcWx6zkaI
+         HUmQ==
+X-Gm-Message-State: AOAM531qJzqrYHbuX3zXH9nLyY/N2mPPEfyxx7CJDiHixJjxqNrby3cv
+        zNbxK0Ez8A1MKeNOSMumJQ==
+X-Google-Smtp-Source: ABdhPJxBEO3pN9mWH42KxreaxywnAA9WNgga47+nXNKMT1SoL9FvuXfoHtJ6EnXrLvwaG5Yckb9dAw==
+X-Received: by 2002:a50:ed13:: with SMTP id j19mr781442eds.190.1622072283316;
+        Wed, 26 May 2021 16:38:03 -0700 (PDT)
+Received: from ?IPv6:2a02:810b:f40:e00:bdfb:c34e:3af8:76da? ([2a02:810b:f40:e00:bdfb:c34e:3af8:76da])
+        by smtp.gmail.com with ESMTPSA id rn2sm207346ejb.45.2021.05.26.16.38.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 May 2021 16:38:02 -0700 (PDT)
+Subject: Re: [PATCH 00/10] Add support for older Rockchip SoCs to V4L2 hantro
+ and rkvdec drivers
+To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-staging@lists.linux.dev,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lee Jones <lee.jones@linaro.org>
+References: <20210525152225.154302-1-knaerzche@gmail.com>
+ <38327082.10thIPus4b@diego>
+From:   Alex Bee <knaerzche@gmail.com>
+Message-ID: <bef97a10-bbc3-c23e-0f0a-bf3ec81293ec@gmail.com>
+Date:   Thu, 27 May 2021 01:38:02 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <1621596371-26482-6-git-send-email-mkshah@codeaurora.org>
-References: <1621596371-26482-1-git-send-email-mkshah@codeaurora.org> <1621596371-26482-6-git-send-email-mkshah@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Wed, 26 May 2021 19:30:42 -0400
-Message-ID: <CAE-0n53-4sLWh9LAX9eqUutc206vq8mnUTPfQKmvvsRPiCiDew@mail.gmail.com>
-Subject: Re: [PATCH v8 5/5] arm64: dts: qcom: sc7280: Enable SoC sleep stats
-To:     Maulik Shah <mkshah@codeaurora.org>, bjorn.andersson@linaro.org,
-        evgreen@chromium.org, mka@chromium.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        agross@kernel.org, dianders@chromium.org, linux@roeck-us.net,
-        rnayak@codeaurora.org, lsrao@codeaurora.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <38327082.10thIPus4b@diego>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Maulik Shah (2021-05-21 04:26:11)
-> Add device node for SoC sleep stats driver which provides various
-> low power mode stats.
->
-> Also update the reg size of aoss_qmp device to 0x400.
->
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
+Hi Heiko, Ezequiel, Rob and List,
 
-Same question as in sc7180.
+thanks for your feedback.
 
+Am 26.05.21 um 01:01 schrieb Heiko Stübner:
+> Hi Alex,
 >
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 2cc4785..47afca8 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -827,7 +827,7 @@
+> Am Dienstag, 25. Mai 2021, 17:22:15 CEST schrieb Alex Bee:
+>> Hi list,
+>>
+>> this series adds support for older Rockchip SoCs (RK3036, RK3066, RK3188
+>> and RK322x) to the existing V4L2 video decoder/-encoder drivers - namely
+>> hantro and rkvdec.
+>> They can be used as-is or with very little modifications.
+>>
+>> In preparation to that patches 1-3 add power-controller support for RK3036
+>> and RK322x, since both drivers rely on pm. The drivers for them exist
+>> already in the common Rockchip pm driver, they just haven't be added to
+>> the device trees yet.
+> on first glance, looks good. Just a small ordering nit, if you need to resend
+> the series for other reasons:
 >
->                 aoss_qmp: power-controller@c300000 {
->                         compatible = "qcom,sc7280-aoss-qmp";
-> -                       reg = <0 0x0c300000 0 0x100000>;
-> +                       reg = <0 0x0c300000 0 0x400>;
->                         interrupts-extended = <&ipcc IPCC_CLIENT_AOP
->                                                      IPCC_MPROC_SIGNAL_GLINK_QMP
->                                                      IRQ_TYPE_EDGE_RISING>;
-> @@ -838,6 +838,11 @@
->                         #power-domain-cells = <1>;
->                 };
+> Please try to order patches like:
+> (1) dt-binding - compatible addition
+> (2) driver patches
+> (3) devicetree node patches
 >
-> +               rpmh-sleep-stats@c3f0000 {
-> +                       compatible = "qcom,rpmh-sleep-stats";
-> +                       reg = <0 0x0c3f0000 0 0x400>;
-> +               };
-> +
->                 spmi_bus: spmi@c440000 {
->                         compatible = "qcom,spmi-pmic-arb";
->                         reg = <0 0x0c440000 0 0x1100>,
-> --
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-> of Code Aurora Forum, hosted by The Linux Foundation
+> That makes it way easier to keep track of dependencies when glancing at
+> the series. Like for patches 1+2, I need to wait for Lee to apply (or Ack) the
+> binding addition in patch 3.
 >
+> Same for the hantro devicetree additions, that need to wait for both
+> bindings (and driver) changes to get applied to the media tree.
+>
+> Thanks
+> Heiko
+>
+>
+>> Thanks for your feedback,
+>> Alex.
+>>
+>> Alex Bee (10):
+>>    ARM: dts: rockchip: add power controller for RK322x
+>>    ARM: dts: rockchip: add power controller for RK3036
+>>    dt-bindings: mfd: syscon: add Rockchip RK3036/RK3228 qos compatibles
+>>    media: hantro: add support for Rockchip RK3066
+>>    media: hantro: add support for Rockchip RK3036
+>>    ARM: dts: rockchip: add vpu nodes for RK3066 and RK3188
+>>    ARM: dts: rockchip: add vpu node for RK322x
+>>    media: dt-bindings: media: rockchip-vpu: add new compatibles
+>>    ARM: dts: rockchip: add vdec node for RK322x
+>>    media: dt-bindings: media: rockchip-vdec: add RK3228 compatible
+>>
+>>   .../bindings/media/rockchip,vdec.yaml         |  10 +-
+>>   .../bindings/media/rockchip-vpu.yaml          |  33 +++-
+>>   .../devicetree/bindings/mfd/syscon.yaml       |   2 +
+>>   arch/arm/boot/dts/rk3036.dtsi                 |  51 ++++++
+>>   arch/arm/boot/dts/rk3066a.dtsi                |   4 +
+>>   arch/arm/boot/dts/rk3188.dtsi                 |   5 +
+>>   arch/arm/boot/dts/rk322x.dtsi                 | 139 ++++++++++++++-
+>>   arch/arm/boot/dts/rk3xxx.dtsi                 |  12 ++
+>>   drivers/staging/media/hantro/hantro_drv.c     |   2 +
+>>   drivers/staging/media/hantro/hantro_hw.h      |   2 +
+>>   drivers/staging/media/hantro/rk3288_vpu_hw.c  | 165 ++++++++++++++++++
+>>   11 files changed, 414 insertions(+), 11 deletions(-)
+>>
+>>
+>> base-commit: 5d765451c2409e63563fa6a3e8005bd03ab9e82f
+>>
+>
+>
+>
+I'll address your comments in v2 - see individual patches for specific 
+replies (if any).
+
+Thanks,
+
+Alex
+
