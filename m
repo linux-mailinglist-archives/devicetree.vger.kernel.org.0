@@ -2,105 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E37D5391D5B
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 18:54:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD37A391D8A
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 19:07:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233324AbhEZQzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 12:55:45 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:51412 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233527AbhEZQzo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 12:55:44 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14QGs8rR035434;
-        Wed, 26 May 2021 11:54:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1622048048;
-        bh=phsL4IoMhofPkv4a5CvgMkrcVPeflbcMwWccMeJ25/c=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=pTQURAg7oy9TdHbEmzrorKiF8vYyz/E28tT7Y42IjAP0pi0zxog4PxbRcrZE+XEHN
-         F8wmG5ZNw2pFcMI1s4XOvfLootK+TYuc+bLEio3Y5Dn+4Xk4mdzLG8RnzQmqZNrQak
-         XS5vS6W3QserfconDpxbYrg7YmR5i1FfOOh3K3Ug=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14QGs8Ut070193
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 26 May 2021 11:54:08 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 26
- May 2021 11:54:08 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 26 May 2021 11:54:08 -0500
-Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14QGruiH097418;
-        Wed, 26 May 2021 11:54:05 -0500
-From:   Lokesh Vutla <lokeshvutla@ti.com>
-To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Device Tree Mailing List <devicetree@vger.kernel.org>,
-        <ssantosh@kernel.org>, Vignesh R <vigneshr@ti.com>,
-        <linux-clk@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Nishanth Menon <nm@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>
-Subject: [PATCH 2/2] clk: keystone: syscon-clk: Add support for AM64 specific ehrpwm-tbclk
-Date:   Wed, 26 May 2021 22:23:56 +0530
-Message-ID: <20210526165356.22690-3-lokeshvutla@ti.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210526165356.22690-1-lokeshvutla@ti.com>
-References: <20210526165356.22690-1-lokeshvutla@ti.com>
+        id S234047AbhEZRIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 13:08:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47042 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233955AbhEZRIb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 May 2021 13:08:31 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5A7C7610C7;
+        Wed, 26 May 2021 17:07:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1622048820;
+        bh=/5VcugHL+khw1Av9i1+1PVNFmsOZEl8NjLawBSDlP1U=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=tMCAv5GB8iRm4614PMmrFM1IoCApZYYaeD/MTjCh29QUg0x4+aMhStkPw/fN5PL7a
+         shV1VOqn7/6Fvcy3fzlBfEQozso+6pj1iqfUheAxHfR/foyfJQnZlA5E0EyKf7P4Ai
+         hWj1brbW45r2rvlX4prHumHDE/MwgY/7sS82WCOdmurmfwqAd2uhY4dPhoaXrnV36L
+         T2NPzXhXyuC0yTh3xUcBcTQr9G2HMuhmPrconfmU/rKZHDHRHKr/5VFslDm7aRfQ2+
+         782yq/l+yluqhk7TWtbrkJv3FOXFpkVBYTSlKTA5inzykmphJtM17DDeqNPK4jpApx
+         /c8DKtm4cr0cw==
+Received: by mail-ej1-f51.google.com with SMTP id gb17so3583801ejc.8;
+        Wed, 26 May 2021 10:07:00 -0700 (PDT)
+X-Gm-Message-State: AOAM5321KUYZMO6ZJUh5QxXoWhXZzTUYp1hcumMIvs79WbmdiZDoRxgk
+        +bKBWBV794NRlEAvGeDWnLtKjilrfE4T190ZuQ==
+X-Google-Smtp-Source: ABdhPJz3Jbsd1cOqT2X7jLaJjATFBV3pu5bwrmQMpaYUSzS2CBAkIMRdaFg1XM6t6d5d2zMUOVInFjwnl57lNPU/3fw=
+X-Received: by 2002:a17:907:724b:: with SMTP id ds11mr34245127ejc.108.1622048818978;
+ Wed, 26 May 2021 10:06:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20210518232858.1535403-1-robh@kernel.org> <20210518232858.1535403-3-robh@kernel.org>
+ <YK1rzHSXC7rNpCpC@piout.net>
+In-Reply-To: <YK1rzHSXC7rNpCpC@piout.net>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 26 May 2021 12:06:47 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+ws5RYcz3AFuc2JgDHx=VL6g5U_HAv8Vwa5nZh_PyO_g@mail.gmail.com>
+Message-ID: <CAL_Jsq+ws5RYcz3AFuc2JgDHx=VL6g5U_HAv8Vwa5nZh_PyO_g@mail.gmail.com>
+Subject: Re: [PATCH 2/6] dt-bindings: rtc: nxp,pcf8563: Convert to DT schema
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     devicetree@vger.kernel.org, Peter Rosin <peda@axentia.se>,
+        Wolfram Sang <wsa@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Roger Quadros <rogerq@ti.com>,
+        Jonathan Cameron <jic23@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AM64 has 9 instances of EPWM modules. And each instance has a clk to
-Timer-Base sub-module that can be controlled by Control module. Update
-the driver with all the 9 instance of clocks associated to
-ti,am64-ehrpwm-tbclk.
+On Tue, May 25, 2021 at 4:27 PM Alexandre Belloni
+<alexandre.belloni@bootlin.com> wrote:
+>
+> Hello,
+>
+> On 18/05/2021 18:28:54-0500, Rob Herring wrote:
+> > Convert the Philips PCF8563/Epson RTC8564 binding to DT schema format.
+> >
+> > Add 'interrupts' as this device has an interrupt which was not
+> > documented, but in use.
+> >
+>
+> It also supports start-year from rtc.yaml.
 
-Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
----
- drivers/clk/keystone/syscon-clk.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+And wakeup-source. I've added both.
 
-diff --git a/drivers/clk/keystone/syscon-clk.c b/drivers/clk/keystone/syscon-clk.c
-index 5b3d36462174..c55a8ec249d1 100644
---- a/drivers/clk/keystone/syscon-clk.c
-+++ b/drivers/clk/keystone/syscon-clk.c
-@@ -149,11 +149,28 @@ static const struct ti_syscon_gate_clk_data am654_clk_data[] = {
- 	{ /* Sentinel */ },
- };
- 
-+static const struct ti_syscon_gate_clk_data am64_clk_data[] = {
-+	TI_SYSCON_CLK_GATE("ehrpwm_tbclk0", 0x0, 0),
-+	TI_SYSCON_CLK_GATE("ehrpwm_tbclk1", 0x4, 0),
-+	TI_SYSCON_CLK_GATE("ehrpwm_tbclk2", 0x8, 0),
-+	TI_SYSCON_CLK_GATE("ehrpwm_tbclk3", 0xc, 0),
-+	TI_SYSCON_CLK_GATE("ehrpwm_tbclk4", 0x10, 0),
-+	TI_SYSCON_CLK_GATE("ehrpwm_tbclk5", 0x14, 0),
-+	TI_SYSCON_CLK_GATE("ehrpwm_tbclk6", 0x18, 0),
-+	TI_SYSCON_CLK_GATE("ehrpwm_tbclk7", 0x1c, 0),
-+	TI_SYSCON_CLK_GATE("ehrpwm_tbclk8", 0x20, 0),
-+	{ /* Sentinel */ },
-+};
-+
- static const struct of_device_id ti_syscon_gate_clk_ids[] = {
- 	{
- 		.compatible = "ti,am654-ehrpwm-tbclk",
- 		.data = &am654_clk_data,
- 	},
-+	{
-+		.compatible = "ti,am64-ehrpwm-tbclk",
-+		.data = &am64_clk_data,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, ti_syscon_gate_clk_ids);
--- 
-2.31.1
-
+Rob
