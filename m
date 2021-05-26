@@ -2,194 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3140392219
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 23:31:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89338392276
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 00:02:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233791AbhEZVcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 17:32:50 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:57990 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233550AbhEZVcs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 17:32:48 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14QLUjWo083494;
-        Wed, 26 May 2021 16:30:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1622064645;
-        bh=FTvZVkn8ZE6UMqlEKzTShsRaAPM+cK0ORtQaLO6Zh7E=;
-        h=From:To:CC:Subject:Date;
-        b=g36iNksh8nH71yVLAFJwXpxLGKh79F50cfgR4c78hruW4KxIXWCLLwuik2iTj1TuX
-         iHksgtdK47wxYK19RonrwXu+Lc/oKXGb1YApBUTBXHRa3cLLF5jk9c5Z+G+JMuO9cT
-         sedC8lnF1Z2SVNFe+B0ECSEJfrp05TdEj9SU+iWQ=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14QLUjJG097632
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 26 May 2021 16:30:45 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 26
- May 2021 16:30:45 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 26 May 2021 16:30:45 -0500
-Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14QLUjGc118939;
-        Wed, 26 May 2021 16:30:45 -0500
-Received: from uda0271916b.dhcp.ti.com (uda0271916b.dhcp.ti.com [128.247.81.224] (may be forged))
-        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 14QLUjXE073919;
-        Wed, 26 May 2021 16:30:45 -0500
-From:   Gowtham Tammana <g-tammana@ti.com>
-To:     Suman Anna <s-anna@ti.com>, <tony@atomide.com>,
-        <bcousson@baylibre.com>
-CC:     <robh+dt@kernel.org>, <linux-omap@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Nisanth Menon <nm@ti.com>, Gowtham Tammana <g-tammana@ti.com>
-Subject: [PATCH v3] ARM: dts: dra7: Fix duplicate USB4 target module node
-Date:   Wed, 26 May 2021 16:30:35 -0500
-Message-ID: <20210526213035.15448-1-g-tammana@ti.com>
-X-Mailer: git-send-email 2.31.1
+        id S233344AbhEZWDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 18:03:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51606 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232221AbhEZWDt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 18:03:49 -0400
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 935EAC06175F
+        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 15:02:17 -0700 (PDT)
+Received: by mail-oi1-x230.google.com with SMTP id c196so3054070oib.9
+        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 15:02:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=+4HllXG54gfe8ZEeglIaINql3dVM8uhOiJune2YdDg8=;
+        b=ebuWdiTfHr5eD4p7IYU/65gQt0cF3VGp6rAyR4yBOGoCFyTDqLM2tUbUT1TkrDXPKf
+         Qc7L82VLVlMGXWFAt8sz3SNbvq3fVznQuriS3lnf9WxsZYQ/J6XMC7QbeYEcEkM+OId3
+         BjsiFUTLl9vPPiVi2Lkkj/HadjMeSD07sanVc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=+4HllXG54gfe8ZEeglIaINql3dVM8uhOiJune2YdDg8=;
+        b=qQlr5GfD7XNJ2mW6imT2fcrje2b6T0Pjqn8XKk1+djm2o7niGjhJjNb1PZhtOqDHWM
+         xCspshp7Hw7U2fphgcn5bwEJEfx8BycTsjOkm5lldN4kvybFfqjFIY6YLpkMu0wthqiC
+         OhEtd5enNTWltcwM9OIc81GTVhTeb56BFjoWcxIA6Ae2WA01sa0wVMI9PsdArHNOTdVF
+         GaXTTt4AyB/klSLH5uyYh+qjtxJvrWeUm/gjMmqi7ynGI82AhKfHQMDkZS+y2FkmLA7b
+         3P3WIVWismgUWtUbsm3hQTB5p35ggonBt/Dx+Lx00afvooRtVmKQMxnKggd9jcPlrita
+         8ejw==
+X-Gm-Message-State: AOAM530z5F9Vp5r1VKv4o8f0W3MosJDMgEGMiOjaxsUUtS+r1PDcPsQQ
+        i+YpO8rdbIihStn5fcZWkOFIMkc9N9rDQSK7wWPkvg==
+X-Google-Smtp-Source: ABdhPJyHRHfa/vjrPgMKmf8sOPM3OqyfmvQhl89FBASFn0gMNY6AQc29rFGhS2QeJiHMNUq/2ErJSZ6cjPiBFiqHKMI=
+X-Received: by 2002:a05:6808:144e:: with SMTP id x14mr3538168oiv.166.1622066536891;
+ Wed, 26 May 2021 15:02:16 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 26 May 2021 18:02:16 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <CAD=FV=XfY3yNnH0ZJiRJQCcw8Rs=RGCntETXofK+5xRACVnDyQ@mail.gmail.com>
+References: <20210520012731.3731314-1-swboyd@chromium.org> <CAD=FV=XfY3yNnH0ZJiRJQCcw8Rs=RGCntETXofK+5xRACVnDyQ@mail.gmail.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Wed, 26 May 2021 18:02:16 -0400
+Message-ID: <CAE-0n50Q17XHF1tp=pk-He0neLY87gerMn-cRvokSiwsBF0X4Q@mail.gmail.com>
+Subject: Re: [PATCH] of/fdt: Don't worry about non-memory region overlap for no-map
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Quentin Perret <qperret@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With [1] USB4 target-module node got defined in dra74x.dtsi file.
-However, the earlier definition in [2] was not removed, and this
-duplication of the target module is causing boot failure on dra74
-variant boards - dra7-evm, beagleboard-x15, beaglebone-ai, dra76-evm,
-am574x-idk.
+Quoting Doug Anderson (2021-05-20 09:17:39)
+> Hi,
+>
+> On Wed, May 19, 2021 at 6:27 PM Stephen Boyd <swboyd@chromium.org> wrote:
+> >
+> > In commit 8a5a75e5e9e5 ("of/fdt: Make sure no-map does not remove
+> > already reserved regions") we returned -EBUSY when trying to mark
+> > regions as no-map when they're in the reserved memory node. This if
+> > condition will still trigger though if the DT has a /memreserve/ that
+> > completely subsumes the no-map memory carveouts in the reserved memory
+> > node. Let's only consider this to be a problem if we're trying to mark a
+> > region as no-map and it is actually memory. If it isn't memory,
+> > presumably it was removed from the memory map via /memreserve/ and thus
+> > can't be mapped anyway.
+> >
+> > This silences a warning seen at boot for me on sc7180-trogdor.dtsi
+> > boards that have /memreserve/ coming from the bootloader and those
+> > reserved regions overlap with the carveouts that we want to use in DT
+> > for other purposes like communicating with remote processors.
+> >
+> > Cc: Douglas Anderson <dianders@chromium.org>
+> > Cc: Nicolas Boichat <drinkcat@chromium.org>
+> > Cc: Quentin Perret <qperret@google.com>
+> > Fixes: 8a5a75e5e9e5 ("of/fdt: Make sure no-map does not remove already reserved regions")
+> > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> > ---
+> >  drivers/of/fdt.c | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> > index ba17a80b8c79..be13b4b6c2d8 100644
+> > --- a/drivers/of/fdt.c
+> > +++ b/drivers/of/fdt.c
+> > @@ -1161,7 +1161,8 @@ int __init __weak early_init_dt_reserve_memory_arch(phys_addr_t base,
+> >                  * If the memory is already reserved (by another region), we
+> >                  * should not allow it to be marked nomap.
+> >                  */
+> > -               if (memblock_is_region_reserved(base, size))
+> > +               if (memblock_is_region_memory(base, size) &&
+> > +                   memblock_is_region_reserved(base, size))
+> >                         return -EBUSY;
+>
+> I'm not an expert on this code, so take review comments w/ a grain of salt.
+>
+> That being said, while the change looks right on the surface, I'm not
+> sure it's 100% right when I dig. The names of
+> memblock_is_region_memory() and memblock_is_region_reserved() make
+> them sound more similar than they actually are. One of the two tests
+> for intersection and the other for "subset of". I think if
+> memblock_is_region_memory() used "intersects" instead of "subset of"
+> then your patch would be correct.
+>
+> Specifically if you've got memory regions:
+>
+> 0x1000 - 0x2000 - memory
+> 0x3000 - 0x4000 - memory
+>
+> Then you check memblock_is_region_memory(0x2800, 0x1000) or
+> memblock_is_region_memory(0x1800, 0x1000) then I think it will return
+> false, right? Because those aren't _subsets_ of memory even though
+> they intersect memory.
+>
+> I don't know if cases like that show up in practice, but it seems
+> better to be safe?
+>
 
-USB4 is only present in DRA74x variants, so keeping the entry in
-dra74x.dtsi and removing it from the top level interconnect hierarchy
-dra7-l4.dtsi file. This change makes the USB4 target module no longer
-visible to AM5718, DRA71x and DRA72x so removing references to it in
-their respective dts files.
+Good point. If the reserved region intersects with memory and "not
+memory" then the check won't be attempted to see if the region
+intersects with a reserved region. I was trying to match the spirit of
+the commit that this is fixing, i.e. trying to only care if the region
+is for kernel memory. At least my read of that commit text led me to
+believe that it was trying to print a warning if we have a big kernel
+image reservation that overlaps with the reserved memory regions in DT.
+Before that patch it would silently allow a no-map region to overlap
+with the kernel image (text/data/heap/bss) and then unmap the kernel,
+ouch! Now it will return -EBUSY and not let the kernel unmap itself.
 
-[1]: commit c7b72abca61ec ("ARM: OMAP2+: Drop legacy platform data for
-dra7 dwc3")
-[2]: commit 549fce068a311 ("ARM: dts: dra7: Add l4 interconnect
-hierarchy and ti-sysc data")
-
-Fixes: c7b72abca61ec ("ARM: OMAP2+: Drop legacy platform data for dra7 dwc3")
-Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
----
-v3:
-  - fixed error in references to the commits
-  - mentioned the boards that failed
-v2:
-  - https://lore.kernel.org/linux-arm-kernel/20210526172038.17542-1-g-tammana@ti.com/
-  - changed reference to commit sha instead of line numbers
-  - added Fixes: tag
-  - moved the defintion to dra74.dtsi as per Suman and Tony review comments
-v1:
-  - https://lore.kernel.org/linux-arm-kernel/20210521211851.14674-1-g-tammana@ti.com/
-
- arch/arm/boot/dts/am5718.dtsi  |  6 +-----
- arch/arm/boot/dts/dra7-l4.dtsi | 22 ----------------------
- arch/arm/boot/dts/dra71x.dtsi  |  4 ----
- arch/arm/boot/dts/dra72x.dtsi  |  4 ----
- arch/arm/boot/dts/dra74x.dtsi  |  2 +-
- 5 files changed, 2 insertions(+), 36 deletions(-)
-
-diff --git a/arch/arm/boot/dts/am5718.dtsi b/arch/arm/boot/dts/am5718.dtsi
-index ebf4d3cc1cfb..6d7530a48c73 100644
---- a/arch/arm/boot/dts/am5718.dtsi
-+++ b/arch/arm/boot/dts/am5718.dtsi
-@@ -17,17 +17,13 @@ / {
-  * VCP1, VCP2
-  * MLB
-  * ISS
-- * USB3, USB4
-+ * USB3
-  */
- 
- &usb3_tm {
- 	status = "disabled";
- };
- 
--&usb4_tm {
--	status = "disabled";
--};
--
- &atl_tm {
- 	status = "disabled";
- };
-diff --git a/arch/arm/boot/dts/dra7-l4.dtsi b/arch/arm/boot/dts/dra7-l4.dtsi
-index 149144cdff35..648d23f7f748 100644
---- a/arch/arm/boot/dts/dra7-l4.dtsi
-+++ b/arch/arm/boot/dts/dra7-l4.dtsi
-@@ -4129,28 +4129,6 @@ usb3: usb@10000 {
- 			};
- 		};
- 
--		usb4_tm: target-module@140000 {		/* 0x48940000, ap 75 3c.0 */
--			compatible = "ti,sysc-omap4", "ti,sysc";
--			reg = <0x140000 0x4>,
--			      <0x140010 0x4>;
--			reg-names = "rev", "sysc";
--			ti,sysc-mask = <SYSC_OMAP4_DMADISABLE>;
--			ti,sysc-midle = <SYSC_IDLE_FORCE>,
--					<SYSC_IDLE_NO>,
--					<SYSC_IDLE_SMART>,
--					<SYSC_IDLE_SMART_WKUP>;
--			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
--					<SYSC_IDLE_NO>,
--					<SYSC_IDLE_SMART>,
--					<SYSC_IDLE_SMART_WKUP>;
--			/* Domains (P, C): l3init_pwrdm, l3init_clkdm */
--			clocks = <&l3init_clkctrl DRA7_L3INIT_USB_OTG_SS4_CLKCTRL 0>;
--			clock-names = "fck";
--			#address-cells = <1>;
--			#size-cells = <1>;
--			ranges = <0x0 0x140000 0x20000>;
--		};
--
- 		target-module@170000 {			/* 0x48970000, ap 21 0a.0 */
- 			compatible = "ti,sysc-omap4", "ti,sysc";
- 			reg = <0x170010 0x4>;
-diff --git a/arch/arm/boot/dts/dra71x.dtsi b/arch/arm/boot/dts/dra71x.dtsi
-index cad0e4a2bd8d..9c270d8f75d5 100644
---- a/arch/arm/boot/dts/dra71x.dtsi
-+++ b/arch/arm/boot/dts/dra71x.dtsi
-@@ -11,7 +11,3 @@
- &rtctarget {
- 	status = "disabled";
- };
--
--&usb4_tm {
--	status = "disabled";
--};
-diff --git a/arch/arm/boot/dts/dra72x.dtsi b/arch/arm/boot/dts/dra72x.dtsi
-index d403acc754b6..f3e934ef7d3e 100644
---- a/arch/arm/boot/dts/dra72x.dtsi
-+++ b/arch/arm/boot/dts/dra72x.dtsi
-@@ -108,7 +108,3 @@ &pcie1_ep {
- &pcie2_rc {
- 	compatible = "ti,dra726-pcie-rc", "ti,dra7-pcie";
- };
--
--&usb4_tm {
--	status = "disabled";
--};
-diff --git a/arch/arm/boot/dts/dra74x.dtsi b/arch/arm/boot/dts/dra74x.dtsi
-index e1850d6c841a..60f2ab8d34d5 100644
---- a/arch/arm/boot/dts/dra74x.dtsi
-+++ b/arch/arm/boot/dts/dra74x.dtsi
-@@ -49,7 +49,7 @@ dsp2_system: dsp_system@41500000 {
- 			reg = <0x41500000 0x100>;
- 		};
- 
--		target-module@48940000 {
-+		usb4_tm: target-module@48940000 {
- 			compatible = "ti,sysc-omap4", "ti,sysc";
- 			reg = <0x48940000 0x4>,
- 			      <0x48940010 0x4>;
--- 
-2.31.1
-
+In my case I have a /memreserve/ region from DT that marks a large
+region as reserved, and then I have a few reserved memory nodes in DT
+that are marked no-map and they fit entirely inside the /memreserve/
+region so they're a "subset of". Let me see if I can devise some way to
+fix both scenarios. My understanding is /memreserve/ is essentially the
+same as no-map in that the kernel doesn't consider the region as memory
+and doesn't map it in the kernel page tables, so this silences a warning
+for me but functionally doesn't change anything.
