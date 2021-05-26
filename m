@@ -2,106 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EBFC390F06
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 05:59:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDD90391005
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 07:33:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229559AbhEZEBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 00:01:01 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:45741 "EHLO m43-7.mailgun.net"
+        id S231698AbhEZFea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 01:34:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43366 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229576AbhEZEBA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 May 2021 00:01:00 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1622001569; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=P0n4WbezbdAK81w1/rPYSPml9/Ly7Y5wITSskDucO7U=;
- b=tSbqHwyqO0fR4xuATddPY4WiMM0KxZJptERfw5o1ldnZLdOuUlyMS92YoRHV+cEHeTQaby6S
- sJHmiYQZxwQq0pL3pqB1v6qo+/uXKVH2VZ2d+7vYnyTxOK0xuTmukniVKeI2A+A+Rkf7nvlw
- yg++zpUmv/F7vjRbnm3e+5p2atk=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 60adc79e2bff04e53bb8554a (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 26 May 2021 03:59:26
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 571AEC4338A; Wed, 26 May 2021 03:59:26 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2A472C433F1;
-        Wed, 26 May 2021 03:59:25 +0000 (UTC)
+        id S231211AbhEZFea (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 May 2021 01:34:30 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 726CF613D6;
+        Wed, 26 May 2021 05:32:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1622007179;
+        bh=8SADv53S7VfYOt5xV+Dwg3XKF+qQF9Y0tDVZlWUYjYw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Dh1A73MNy3dXKxMyPww0pLkXFI7oBGKb0GXSuF/T1xsCGN716siTCgW9t08biUp5G
+         1CcCcIaE2rgB+E11zIBg9zTdA051pYW9dDbfOr6hTB0rIdUnsUcAppxON2/LUKceVY
+         zacs4KPRhuf1LydAaWvXtV2jDjKZapzSfSa0L3C/GwX2tjhkZGkpxww6xpVbQY+Qh1
+         gneFXxoxGGP691DAx+y+n9RkmZDrb1w/5qyEgihp7sTw5Feh4/SxBT/xg9eCZFcQMl
+         Y4vTFi9VtVSYzMkhk2eAGQOdrlonr4Dey5NcAfDKtODYSmRZFGqQ39H4M8h/gQGnmg
+         6Qar/KGWoZbZQ==
+Date:   Wed, 26 May 2021 11:02:55 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Clark <robdclark@gmail.com>, linux-arm-msm@vger.kernel.org,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH 02/13] dt-bindings: msm/dsi: Document Display Stream
+ Compression (DSC) parameters
+Message-ID: <YK3dhxJD/10ag1ZQ@vkoul-mobl.Dlink>
+References: <20210521124946.3617862-1-vkoul@kernel.org>
+ <20210521124946.3617862-3-vkoul@kernel.org>
+ <20210521144237.GZ2484@yoga>
+ <YKtWM+BYeIA+P+55@vkoul-mobl.Dlink>
+ <20210524150815.GH2484@yoga>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 26 May 2021 09:29:25 +0530
-From:   skakit@codeaurora.org
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org
-Subject: Re: [PATCH V5 06/11] arm64: dts: qcom: pmr735a: Correct the GPIO node
-In-Reply-To: <YK1kcVj9iyekNnrj@google.com>
-References: <1621937466-1502-1-git-send-email-skakit@codeaurora.org>
- <1621937466-1502-7-git-send-email-skakit@codeaurora.org>
- <YK1kcVj9iyekNnrj@google.com>
-Message-ID: <f9f929f3bcf41f0188d27a57a79174a3@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210524150815.GH2484@yoga>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-05-26 02:26, Matthias Kaehlcke wrote:
-> On Tue, May 25, 2021 at 03:41:01PM +0530, satya priya wrote:
->> Add gpio ranges and correct the compatible to add
->> "qcom,spmi-gpio" as this pmic is on spmi bus.
->> 
->> Signed-off-by: satya priya <skakit@codeaurora.org>
->> ---
->> Changes in V5:
->>  - This is split from patch [5/11] and added newly in V5.
+On 24-05-21, 10:08, Bjorn Andersson wrote:
+> On Mon 24 May 02:30 CDT 2021, Vinod Koul wrote:
 > 
-> actually it's a split from patch [5/8], right?
+> > On 21-05-21, 09:42, Bjorn Andersson wrote:
+> > > On Fri 21 May 07:49 CDT 2021, Vinod Koul wrote:
+> > > 
+> > > > DSC enables streams to be compressed before we send to panel. This
+> > > > requires DSC enabled encoder and a panel to be present. So we add this
+> > > > information in board DTS and find if DSC can be enabled and the
+> > > > parameters required to configure DSC are added to binding document along
+> > > > with example
+> > > > 
+> > > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > > > ---
+> > > >  .../devicetree/bindings/display/msm/dsi.txt       | 15 +++++++++++++++
+> > > >  1 file changed, 15 insertions(+)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/display/msm/dsi.txt b/Documentation/devicetree/bindings/display/msm/dsi.txt
+> > > > index b9a64d3ff184..83d2fb92267e 100644
+> > > > --- a/Documentation/devicetree/bindings/display/msm/dsi.txt
+> > > > +++ b/Documentation/devicetree/bindings/display/msm/dsi.txt
+> > > > @@ -48,6 +48,13 @@ Optional properties:
+> > > >  - pinctrl-n: the "sleep" pinctrl state
+> > > >  - ports: contains DSI controller input and output ports as children, each
+> > > >    containing one endpoint subnode.
+> > > > +- qcom,mdss-dsc-enabled: Display Stream Compression (DSC) is enabled
+> > > > +- qcom,mdss-slice-height: DSC slice height in pixels
+> > > > +- qcom,mdss-slice-width: DSC slice width in pixels
+> > > > +- qcom,mdss-slice-per-pkt: DSC slices per packet
+> > > > +- qcom,mdss-bit-per-component: DSC bits per component
+> > > > +- qcom,mdss-bit-per-pixel: DSC bits per pixel
+> > > > +- qcom,mdss-block-prediction-enable: Block prediction mode of DSC enabled
+> > > >  
+> > > >    DSI Endpoint properties:
+> > > >    - remote-endpoint: For port@0, set to phandle of the connected panel/bridge's
+> > > > @@ -188,6 +195,14 @@ Example:
+> > > >  		qcom,master-dsi;
+> > > >  		qcom,sync-dual-dsi;
+> > > >  
+> > > > +		qcom,mdss-dsc-enabled;
+> > > 
+> > > To me the activation of DSC seems to be a property of the panel.
+> > 
+> > I think there are three parts to the problem
+> > 1. Panel needs to support it
 > 
+> In the case of DP there's bits to be read in the panel to figure this
+> out, for DSI panels this seems like a property that the panel (driver)
+> should know about.
 
-Right, my bad. I should have mentioned this way to be more clear.
-Thank you for reviewing the patches!
+Yes panel should know..
 
-> https://patchwork.kernel.org/project/linux-arm-msm/patch/1621318822-29332-6-git-send-email-skakit@codeaurora.org/
 > 
->>  arch/arm64/boot/dts/qcom/pmr735a.dtsi | 3 ++-
->>  1 file changed, 2 insertions(+), 1 deletion(-)
->> 
->> diff --git a/arch/arm64/boot/dts/qcom/pmr735a.dtsi 
->> b/arch/arm64/boot/dts/qcom/pmr735a.dtsi
->> index b0a7cd6c0..b4b6ba24 100644
->> --- a/arch/arm64/boot/dts/qcom/pmr735a.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/pmr735a.dtsi
->> @@ -21,9 +21,10 @@
->>  		};
->> 
->>  		pmr735a_gpios: gpio@8800 {
->> -			compatible = "qcom,pmr735a-gpio";
->> +			compatible = "qcom,pmr735a-gpio", "qcom,spmi-gpio";
->>  			reg = <0x8800>;
->>  			gpio-controller;
->> +			gpio-ranges = <&pmr735a_gpios 0 0 4>;
->>  			#gpio-cells = <2>;
->>  			interrupt-controller;
->>  			#interrupt-cells = <2>;
+> > 2. Host needs to support it
 > 
-> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> Right, so this needs to be known by the driver. My suggestion is that we
+> derive it from the compatible or from the HW version.
+
+Okay
+
+> 
+> > 3. Someone needs to decide to use when both the above conditions are
+> > met.
+> > 
+> > There are cases where above 1, 2 will be satisfied, but we might be okay
+> > without DSC too.. so how to decide when to do DSC :)
+> > 
+> 
+> Can we describe those cases? E.g. is it because enabling DSC would not
+> cause a reduction in clock speed that's worth the effort? Or do we only
+> use DSC for DSI when it allows us to squeeze everything into a single
+> link?
+
+I really dont know how and when we should decide that :-|
+One thing we can do is that if both support then always enable and get
+benefit of getting power and clock speed reduction.
+
+With this, who should have slice and bpp settings, panel or host?
+
+Thanks
+-- 
+~Vinod
