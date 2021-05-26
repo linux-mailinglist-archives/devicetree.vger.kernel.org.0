@@ -2,93 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ED1E392378
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 01:57:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70B1B392380
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 01:58:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234624AbhEZX7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 19:59:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48942 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232270AbhEZX7E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 19:59:04 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12606C061574;
-        Wed, 26 May 2021 16:57:32 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id kr9so1698814pjb.5;
-        Wed, 26 May 2021 16:57:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=vuXWeQOw0gNxDi9H3AsJyjBAkLkVaGXioSB0T/4hSkk=;
-        b=B9wjSgTtj1OHe0E/i0VCCnCeYaoeLshR/0ZHSd+xASosoDLJcjGdnjD43sXiq3txgH
-         Gqax0tudJ+4tg6XpXc8pwc7/Upue3S/asxPlpfmEBTmmTvWAk4WZl2xM1EFQwq3Ow/4J
-         6rjFfo05fihsIivHdk8mWTZE/w9/vkmFVrXz21OAnjZeP0yMLDP3hR/QC7/gzP8mz6Hv
-         RvCns1tjN5PKCbng1/+uCo/3mJm+5qdvcZOcq8JJCsXWtLaLpe0gBVg60UvZ3FdagSKy
-         NnzR8mxQI213OfoOMJ8b5IRCanRk7/XchR6uolaTH7CkQBiM9myXdPDxrWlws04hiqk9
-         PvcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vuXWeQOw0gNxDi9H3AsJyjBAkLkVaGXioSB0T/4hSkk=;
-        b=OuqjUTtrtv2y3/oDJR+taCneyFLvkdOFncZOuD4Z4XGAfMcCZbUYGS84a1suyGCiy9
-         nRZoTtWilSDUXoXKeLTNtyPnm2K+9OzWYfI7WFVy/l9Y5Jkx0fbQ9MSVEAU69mNsIcBY
-         zDFw1lMFfu+v1wWEo+015kiO71Zbq/X6uV55K4ID4iHbXmQtQk/YO+ZcFp8gtUih61A0
-         vnj63NU9vSKRYChwdniRr8yqLTP/JWuEBrwkfEHprb0tNbUUJG4Z2UZPGNmK+3x8X1Rn
-         F3MZkG5+2K/fcx77ghPyTNtKM4axysvzLk2EfGRdvvuI5+9vrYgg7BQxuBCuFi6hFtH5
-         Y7gg==
-X-Gm-Message-State: AOAM532Q/ix6N8OHvA57LmvdMvudT8DZruLliPU43VMxmTlMtscErY9b
-        A3ekwyACwtBLGqkP7WHejJs=
-X-Google-Smtp-Source: ABdhPJyos5Ta7JUtMFolbDMts5v3KWcRKTAWkGAes7J7cpxcPydklOVmkWKHjOhvI24Iz+DI3qeJCg==
-X-Received: by 2002:a17:90a:564c:: with SMTP id d12mr6447300pji.136.1622073451421;
-        Wed, 26 May 2021 16:57:31 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:2eca:168c:3933:43bc])
-        by smtp.gmail.com with ESMTPSA id d17sm274242pfq.28.2021.05.26.16.57.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 May 2021 16:57:30 -0700 (PDT)
-Date:   Wed, 26 May 2021 16:57:27 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Javier Martinez Canillas <javier@dowhile0.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH 1/3 v6] Input: cyttsp - Convert bindings to YAML and
- extend
-Message-ID: <YK7gZzQ4u4VWu31m@google.com>
-References: <20210526230352.1433537-1-linus.walleij@linaro.org>
+        id S234564AbhE0AA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 20:00:26 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:32804 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234615AbhE0AA0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 May 2021 20:00:26 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1lm3QE-0004pF-4E; Thu, 27 May 2021 01:58:46 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Ezequiel Garcia <ezequiel@collabora.com>,
+        Alex Bee <knaerzche@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-staging@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-media@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 05/10] media: hantro: add support for Rockchip RK3036
+Date:   Thu, 27 May 2021 01:58:45 +0200
+Message-ID: <3559518.1BCLMh4Saa@diego>
+In-Reply-To: <2640d65e-772b-6af4-f4be-8ed090693c22@gmail.com>
+References: <20210525152225.154302-1-knaerzche@gmail.com> <b65236f3b8bbf35411b536df8b260d9f8a9dbd80.camel@collabora.com> <2640d65e-772b-6af4-f4be-8ed090693c22@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210526230352.1433537-1-linus.walleij@linaro.org>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 27, 2021 at 01:03:50AM +0200, Linus Walleij wrote:
-> This converts the CYTTSP "Cypress TrueTouch Standard Product"
-> to YAML bindings and fixes and adds some things in the process:
+Am Donnerstag, 27. Mai 2021, 01:27:59 CEST schrieb Alex Bee:
+> Hi Ezequiel,
 > 
-> - Rename the bindings file to cypress,cy8ctma340 after the main
->   product in the series.
-> - Add proper compatibles for the two known products:
->   CY8CTMA340 and CY8CTST341.
-> - Deprecate "cypress,cyttsp-spi" and "cypress,cyttsp-i2c"
->   because device compatibles should be named after the
->   hardware and not after which bus they are connected to.
->   The topology implicitly tells us which bus it is and what
->   interface to used.
-> - Add VCPIN and VDD supplies, these are present just like
->   on the CY8CTMA140.
-> 
-> Cc: devicetree@vger.kernel.org
-> Cc: Ferruh Yigit <fery@cypress.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Javier Martinez Canillas <javier@dowhile0.org>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Am 26.05.21 um 12:28 schrieb Ezequiel Garcia:
+> > Hi Alex,
+> >
+> > Thanks a lot for the patch.
+> >
+> > On Tue, 2021-05-25 at 17:22 +0200, Alex Bee wrote:
+> >> RK3036's VPU IP block is the same as RK3288 has, except that it doesn't
+> >> have an encoder, decoding is supported up to 1920x1088 only and the axi
+> >> clock can be set to 300 MHz max.
+> >>
+> >> Add a new RK3036 variant which reflect this differences.
+> >>
+> >> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+> >> ---
+> >>   drivers/staging/media/hantro/hantro_drv.c    |  1 +
+> >>   drivers/staging/media/hantro/hantro_hw.h     |  1 +
+> >>   drivers/staging/media/hantro/rk3288_vpu_hw.c | 49 ++++++++++++++++++++
+> >>   3 files changed, 51 insertions(+)
+> >>
+> >> diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
+> >> index 38ea7b24036e..4f3c08e85bb8 100644
+> >> --- a/drivers/staging/media/hantro/hantro_drv.c
+> >> +++ b/drivers/staging/media/hantro/hantro_drv.c
+> >> @@ -490,6 +490,7 @@ static const struct of_device_id of_hantro_match[] = {
+> >>          { .compatible = "rockchip,rk3328-vpu", .data = &rk3328_vpu_variant, },
+> >>          { .compatible = "rockchip,rk3288-vpu", .data = &rk3288_vpu_variant, },
+> >>          { .compatible = "rockchip,rk3066-vpu", .data = &rk3066_vpu_variant, },
+> >> +       { .compatible = "rockchip,rk3036-vpu", .data = &rk3036_vpu_variant, },
+> >>   #endif
+> >>   #ifdef CONFIG_VIDEO_HANTRO_IMX8M
+> >>          { .compatible = "nxp,imx8mq-vpu", .data = &imx8mq_vpu_variant, },
+> >> diff --git a/drivers/staging/media/hantro/hantro_hw.h b/drivers/staging/media/hantro/hantro_hw.h
+> >> index de2bc367a15a..d8d6b0d3c3b3 100644
+> >> --- a/drivers/staging/media/hantro/hantro_hw.h
+> >> +++ b/drivers/staging/media/hantro/hantro_hw.h
+> >> @@ -164,6 +164,7 @@ extern const struct hantro_variant rk3399_vpu_variant;
+> >>   extern const struct hantro_variant rk3328_vpu_variant;
+> >>   extern const struct hantro_variant rk3288_vpu_variant;
+> >>   extern const struct hantro_variant rk3066_vpu_variant;
+> >> +extern const struct hantro_variant rk3036_vpu_variant;
+> >>   extern const struct hantro_variant imx8mq_vpu_variant;
+> >>   extern const struct hantro_variant sama5d4_vdec_variant;
+> >>   
+> >> diff --git a/drivers/staging/media/hantro/rk3288_vpu_hw.c b/drivers/staging/media/hantro/rk3288_vpu_hw.c
+> >> index 29805c4bd92f..c4684df4e012 100644
+> >> --- a/drivers/staging/media/hantro/rk3288_vpu_hw.c
+> >> +++ b/drivers/staging/media/hantro/rk3288_vpu_hw.c
+> >> @@ -174,6 +174,13 @@ static irqreturn_t rk3288_vepu_irq(int irq, void *dev_id)
+> >>          return IRQ_HANDLED;
+> >>   }
+> >>   
+> >> +static int rk3036_vpu_hw_init(struct hantro_dev *vpu)
+> >> +{
+> >> +       /* Bump ACLKs to max. possible freq. to improve performance. */
+> >> +       clk_set_rate(vpu->clocks[0].clk, RK3066_ACLK_MAX_FREQ);
+> >> +       return 0;
+> >> +}
+> >> +
+> >>   static int rk3066_vpu_hw_init(struct hantro_dev *vpu)
+> >>   {
+> >>          /* Bump ACLKs to max. possible freq. to improve performance. */
+> >> @@ -209,6 +216,27 @@ static void rk3288_vpu_enc_reset(struct hantro_ctx *ctx)
+> >>   /*
+> >>    * Supported codec ops.
+> >>    */
+> >> +static const struct hantro_codec_ops rk3036_vpu_codec_ops[] = {
+> >> +       [HANTRO_MODE_H264_DEC] = {
+> >> +               .run = hantro_g1_h264_dec_run,
+> >> +               .reset = hantro_g1_reset,
+> >> +               .init = hantro_h264_dec_init,
+> >> +               .exit = hantro_h264_dec_exit,
+> >> +       },
+> >> +       [HANTRO_MODE_MPEG2_DEC] = {
+> >> +               .run = hantro_g1_mpeg2_dec_run,
+> >> +               .reset = hantro_g1_reset,
+> >> +               .init = hantro_mpeg2_dec_init,
+> >> +               .exit = hantro_mpeg2_dec_exit,
+> >> +       },
+> >> +       [HANTRO_MODE_VP8_DEC] = {
+> >> +               .run = hantro_g1_vp8_dec_run,
+> >> +               .reset = hantro_g1_reset,
+> >> +               .init = hantro_vp8_dec_init,
+> >> +               .exit = hantro_vp8_dec_exit,
+> >> +       },
+> >> +};
+> >> +
+> >>   static const struct hantro_codec_ops rk3066_vpu_codec_ops[] = {
+> >>          [HANTRO_MODE_JPEG_ENC] = {
+> >>                  .run = hantro_h1_jpeg_enc_run,
+> >> @@ -269,6 +297,10 @@ static const struct hantro_codec_ops rk3288_vpu_codec_ops[] = {
+> >>    * VPU variant.
+> >>    */
+> >>   
+> >> +static const struct hantro_irq rk3036_irqs[] = {
+> >> +       { "vdpu", hantro_g1_irq },
+> >> +};
+> >> +
+> >>   static const struct hantro_irq rk3288_irqs[] = {
+> >>          { "vepu", rk3288_vepu_irq },
+> >>          { "vdpu", hantro_g1_irq },
+> >> @@ -283,6 +315,23 @@ static const char * const rk3288_clk_names[] = {
+> >>          "aclk", "hclk"
+> >>   };
+> >>   
+> >> +const struct hantro_variant rk3036_vpu_variant = {
+> >> +       .dec_offset = 0x400,
+> > If it doesn't have an encoder, then you should just
+> > use dec_offset = 0x0.
+> >
+> > Thanks,
+> > Ezequiel
+> >
+> That would mean, I'd have to adapt the register offset in the device 
+> tree - I'd prefer to keep it in line with the TRM. Unless you insist, 
+> I'd like to keep it this way (It's , btw, the very same for RK3328).
 
-Applied, thank you.
+I'd agree with Alex ... ideally the devicetree should match the block
+register area from the TRM not some internal offset.
+[DT describes hardware etc etc ;-) ]
 
--- 
-Dmitry
+Heiko
+
+
