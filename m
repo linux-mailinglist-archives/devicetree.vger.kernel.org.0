@@ -2,104 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B28753911BA
-	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 10:02:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECCE73911FD
+	for <lists+devicetree@lfdr.de>; Wed, 26 May 2021 10:08:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232667AbhEZIDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 04:03:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57074 "EHLO
+        id S231960AbhEZIKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 04:10:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232587AbhEZIDD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 04:03:03 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1103C061760
-        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 01:01:27 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id l18-20020a1ced120000b029014c1adff1edso14935172wmh.4
-        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 01:01:27 -0700 (PDT)
+        with ESMTP id S230384AbhEZIKC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 04:10:02 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A709C061574;
+        Wed, 26 May 2021 01:08:29 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id p7so51859wru.10;
+        Wed, 26 May 2021 01:08:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=+OokPh00UHNMEVv0qejiACa3XrrZve409QsuoHPQEnI=;
-        b=cp7YMOUMsGBd4BUjWctRmLdA1x65K2vceANEGb4hxYaZ/hP+dWB3NhaN5ZQeKJzL/m
-         Xc+ikkrfBnRtSpyvaKCnAdgHqi8veYfVSBilxTkM2rh4W2Y+sRdY5sy09CRhLUf23IKJ
-         dU3VPyZcI0at/2pKPVxn4+h/m+sxiql7zzf4ercgkTMcJ9rM5ryWcMb2VmmhkF7H1WNi
-         vW11SC4gAJ9og1Fx10anXZTOMq3CccHgdcmWUf7Dxh6x/HGLvaVcPjipS2ju9qIp/pOX
-         /7sdS4Znd3g3T6jjCnrsvUPfBGhJGwj9QwctuIc6l1r/BppbzGvSwgi/aIoTNyMskkr6
-         XB/w==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=yVcIsLaop0xFTxRezXJ3MSLuEhLYr+XKBNJbxOwir5s=;
+        b=WYbaBVSv16q5MTWMzaif39kIsCho53bHWXwf9Z/KMlYAAxCZtALxyQhWH7Gg2eWYd7
+         6nIhK9oO6tCBAo0juIZBBzEjU9QtK64YV6Azt2YNR9VGCRWQx1lrkX9agrTnGVlRgrm9
+         2L0hOPcam6w7yvn7vfkiNshrSVNvUNPYw5tRd5UvKNQ/eTdNhO+UIPFdy+wzBGHK1zKf
+         pMBmBj8Fmq6Z1i1B19jl3skq2f//GGGJ/dFr5YkSnFvA9pyH6H2NjU+/QFvFSDZCmawD
+         wMYJ3tL5Sz1ifLpT2cbzTnLzdnoLMICiKJIRQx7o6Yx9zM4Ppfa9XTfAy/B9Wrg5bNqN
+         Uy7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=+OokPh00UHNMEVv0qejiACa3XrrZve409QsuoHPQEnI=;
-        b=NyruV2Wnry9Q+jDqzYApOkLFBMLRKAuhfwu7YSjM1bj9Yqf3Ij24dr04nSTbcmvQ30
-         Aayav5ZoZZzdahE5a6LCvzDAtHmnX8TU+YiW2QR5reDBQdO2Npme1Ry+AP1dMYIxe2h7
-         wqxCr1gcph/iAEnDFiAuFk2HMMtgmUzZMhpG8T2zSItx4PMq7AARxhZZPTKQABk9G2EZ
-         W7aOxyFqyDGX6ZD+eKtcWbsIRpx7X0hLnwI4U8CtDdSRsbd0whA8xQiiMKFtKEmFfTxf
-         BYgYqG7YBrC0ps3upKKsAq1TLrO1lq/jb909uJOC8Ho0dL6FwQnZt0P7MW8Y+SyhGpHS
-         hhZw==
-X-Gm-Message-State: AOAM532jV7IlpDBhs1vbiDTsLvTTtLv63zGRZ5wCZ6mEQewpfY3mTNv0
-        c2hjcUui3bs+XckVXFwbs+BYxg==
-X-Google-Smtp-Source: ABdhPJyO2V6OIPuzluNbVZmtuvdUumAwztn8IbGm9HmrtQ+2FsQjbilszw8nI19K6dzuDfvkEkJrBw==
-X-Received: by 2002:a05:600c:4ecb:: with SMTP id g11mr2194706wmq.46.1622016086487;
-        Wed, 26 May 2021 01:01:26 -0700 (PDT)
-Received: from dell ([91.110.221.223])
-        by smtp.gmail.com with ESMTPSA id f188sm5255392wmf.24.2021.05.26.01.01.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 May 2021 01:01:25 -0700 (PDT)
-Date:   Wed, 26 May 2021 09:01:24 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Min Li <min.li.xe@renesas.com>
-Cc:     "sameo@linux.intel.com" <sameo@linux.intel.com>,
-        "grant.likely@linaro.org" <grant.likely@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH mfd v1] mfd: Add Renesas Synchronization Management Unit
- (SMU) support
-Message-ID: <20210526080124.GH4005783@dell>
-References: <1619466246-11198-1-git-send-email-min.li.xe@renesas.com>
- <20210519080807.GH805368@dell>
- <OS3PR01MB6593170DE2814540F6C3F900BA259@OS3PR01MB6593.jpnprd01.prod.outlook.com>
- <20210525182311.GE4005783@dell>
- <OS3PR01MB65931F0244E7D2CE6FCB4080BA259@OS3PR01MB6593.jpnprd01.prod.outlook.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=yVcIsLaop0xFTxRezXJ3MSLuEhLYr+XKBNJbxOwir5s=;
+        b=nxwLYRmO+fqiP2A8DZkLXZUdasGEQr9frxieSS9BDTP0v5V+BjwnD+7d9dTyXzqEcm
+         d/ELzvUQIVePsM2lCeA5e0b0a7iP+VIsuwt65ghupY5CKCvjV/LqWqJcJGem2sjFyNu4
+         omItGAGwL9wx4J/W0Gz1I2GhtMFKuNl+NQhV2No5vQTYv5PsbEjM634O/NljT2noF6NR
+         94hH+uhp3xzfOLIbVhzXQ5DGQC+5nq7jGTMu1gfX5NC7UX5nrazpqr9dQ8LvsuefgULT
+         99TxQwaNoTAarwfC5wCK07U8eeGrZd2DX0b1rIVz9emAcLDohREKa5QyvCH7vW8iPI8h
+         w1YA==
+X-Gm-Message-State: AOAM531BhTgFXHSkKGbuB89JYpzmjZJZHpE1ogseCM8F8pQ+hbK0IziO
+        ZfTTOXSuNcV3v0+jfBdtpUc4sPG7yvG/hFgqjKg=
+X-Google-Smtp-Source: ABdhPJzpuvOh0m7CXA37jLlei4+4VCuO9+LSYcUU5crIHmY5LaVh8NoHsVAadYTaqLaToEjoFwwVSXWkbmaHkBcqU40=
+X-Received: by 2002:a5d:43cb:: with SMTP id v11mr1351884wrr.198.1622016508091;
+ Wed, 26 May 2021 01:08:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <OS3PR01MB65931F0244E7D2CE6FCB4080BA259@OS3PR01MB6593.jpnprd01.prod.outlook.com>
+References: <20210425123607.26537-1-kevin3.tang@gmail.com> <20210425123607.26537-5-kevin3.tang@gmail.com>
+ <20210430092249.n75to2das5m6p4zb@gilmour> <CAFPSGXYJxWJDo1cz+kJB8J9YayGx1hYa=04K5OJ3DHh9ifbuRQ@mail.gmail.com>
+ <YKI26bZGAA+ZNLLj@8bytes.org> <bc0e3025-60bd-c6b4-117f-592dc1c1a2f0@arm.com> <CAAfSe-ughdeZ7YaVsXuWeGNq-+Q+_z+P=aeKpj957kE6d-hLmQ@mail.gmail.com>
+In-Reply-To: <CAAfSe-ughdeZ7YaVsXuWeGNq-+Q+_z+P=aeKpj957kE6d-hLmQ@mail.gmail.com>
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+Date:   Wed, 26 May 2021 16:07:51 +0800
+Message-ID: <CAAfSe-sRjSw=7vAX21OPL5+OfLXJNS9RNf8Lg5Hy56LZwPBwCA@mail.gmail.com>
+Subject: Re: [PATCH v5 4/6] drm/sprd: add Unisoc's drm display controller driver
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Kevin Tang <kevin3.tang@gmail.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
+        ML dri-devel <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+resend for switching to plain text mode.
 
-On Tue, 25 May 2021, Min Li wrote:
-> > Why do you need to track how many there are?
-> > 
-> > We don't usually do that at all.
-
-You've cut away all of the context.
-
-Please keep all the context so that we and others know what we're
-referencing.
-
-> It is used to index the mfd_cell array, rsmu_cdev[RSMU_MAX_MFD_DEV]
-
-Why do you need to index the array?
-
-The devices look identical to me.
-
-Just have one entry for each type and register them in a for() loop.
-
-> The index is also used to enumerate the rsmu character device, say /dev/rsmu[0/1/2/3]
-
-You should be able to use platform_id or a similar built-in counting
-mechanism.  There shouldn't be any requirement for you to hand-roll
-your own device counting solution.
-
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+On Wed, 26 May 2021 at 15:59, Chunyan Zhang <zhang.lyra@gmail.com> wrote:
+>
+> Hi Robin,
+>
+> On Tue, 18 May 2021 at 00:35, Robin Murphy <robin.murphy@arm.com> wrote:
+>>
+>> On 2021-05-17 10:27, Joerg Roedel wrote:
+>> > On Fri, Apr 30, 2021 at 08:20:10PM +0800, Kevin Tang wrote:
+>> >> Cc  Robin & Joerg
+>> >
+>> > This is just some GPU internal MMU being used here, it seems. It doesn=
+'t
+>> > use the IOMMU core code, so no Ack needed from the IOMMU side.
+>>
+>> Except the actual MMU being used is drivers/iommu/sprd_iommu.c - this is
+>
+> Yes, it is using drivers/iommu/sprd_iommu.c.
+>
+>>
+>>
+>> just the display driver poking directly at the interrupt registers of
+>> its associated IOMMU instance.
+>
+>
+> Actually the display driver is poking its own interrupt registers in whic=
+h some interrupts are caused by using IOMMU, others are purely its own ones=
+:
+> +/* Interrupt control & status bits */
+> +#define BIT_DPU_INT_DONE               BIT(0)
+> +#define BIT_DPU_INT_TE                 BIT(1)
+> +#define BIT_DPU_INT_ERR                        BIT(2)
+> +#define BIT_DPU_INT_UPDATE_DONE                BIT(4)
+> +#define BIT_DPU_INT_VSYNC              BIT(5)
+> +#define BIT_DPU_INT_MMU_VAOR_RD                BIT(16)
+> +#define BIT_DPU_INT_MMU_VAOR_WR                BIT(17)
+> +#define BIT_DPU_INT_MMU_INV_RD         BIT(18)
+> +#define BIT_DPU_INT_MMU_INV_WR         BIT(19)
+>
+> From what I see in the product code, along with the information my collea=
+gues told me, these _INT_MMU_ interrupts only need to be dealt with by clie=
+nt devices(i.e. display). IOMMU doesn't even have the INT_STS register for =
+some early products which we're trying to support in the mainstream kernel.
+>
+>>
+>> I still think this is wrong, and that it
+>> should be treated as a shared interrupt, with the IOMMU driver handling
+>> its own registers and reporting to the client through the standard
+>> report_iommu_fault() API, especially since there are apparently more
+>> blocks using these IOMMU instances than just the display.
+>
+> For the next generation IOMMU, we will handle interrupts in IOMMU drivers=
+ like you say here.
+> But like I explained above, we have to leave interrupt handling in the cl=
+ient device driver since the IOMMU we 're using in this display device does=
+n't have an INT_STS register in the IOMMU register range.
+>
+> Thanks for the review,
+> Chunyan
+>
+>>
+>> Robin.
