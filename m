@@ -2,628 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06D11392BDF
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 12:33:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0877B392BED
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 12:35:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236091AbhE0KfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 06:35:04 -0400
-Received: from foss.arm.com ([217.140.110.172]:55428 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235950AbhE0KfC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 May 2021 06:35:02 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E51E56D;
-        Thu, 27 May 2021 03:33:27 -0700 (PDT)
-Received: from e120937-lin (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 129293F73D;
-        Thu, 27 May 2021 03:33:25 -0700 (PDT)
-Date:   Thu, 27 May 2021 11:33:23 +0100
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jim Quinlan <jim2101024@gmail.com>,
-        Etienne Carriere <etienne.carriere@linaro.org>,
-        Peter Hilber <peter.hilber@opensynergy.com>
-Subject: Re: [PATCH 8/8] dt-bindings: firmware: arm,scmi: Convert to json
- schema
-Message-ID: <20210527103323.GS28060@e120937-lin>
-References: <20210526182807.548118-1-sudeep.holla@arm.com>
- <20210526182807.548118-9-sudeep.holla@arm.com>
+        id S236200AbhE0KhV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 06:37:21 -0400
+Received: from mail-eopbgr70083.outbound.protection.outlook.com ([40.107.7.83]:61861
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S236157AbhE0KhU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 May 2021 06:37:20 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=D4GvJyrw6dxXro4xAooxAPck4b7ay8HQeBnq08cogYmVYB4+eN2kbO5ZAKa5K30hsT2uGT9W+Pmzc33TjiFFD9vumOnbGdPRT/32LpjjsWt9N6aVsQZ0rcRDcPsfJulIAUANMrKUiA7OxknN5mvG6utJbfTEOYg6eg9Mc468GHyq1DTdAPt+MsRTRLpqjj5q7sHYGq5e7QtcbBSQZgCu59EMGQNC23sLuOsx4n5bm3b/OT+HwoIUo6TMh26je473KH6EEnA+VS/JVrsPLuAdvrjAurJw5i99C2Q6wQJG53CdhGTOJEEix4AmEHk2VTfqT40Lsg+xrjQAN8oJSadIEQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=F16p57xd31urzuNhh+gSwkOxMyPX7yZYB/QxJyACp3c=;
+ b=VFNVwQJ0q92erlt/ZrLnFGL84/V8LtaNpurf85Qi3AEeb1nmmpRoG2gtzTR9aCADhqNgOQSbTVu/rfMnnB96twzdngKDyryhtyvErmbinhM/txAcrr830efWxWCIAX6SDqjEUMqsNrA6krIhW6g+yI5OilS63hgSQuilVzDnqUrZ98RePymLKyhmmuXwFLsWOJ3CUP8TyZYMzlHWyJ/W0dBG+e6FwIOwPwqWJs8L7ozUvcHjVydDd4qyN3fJMulisR0tTu3cpp6xfh3+bnWFv0GvCUmup6kvpLXJF06uiV9zL/OcpVLebWEqlA43OLZg46AVmbW8rnMmZGRvlFiHlA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=fi.rohmeurope.com; dmarc=pass action=none
+ header.from=fi.rohmeurope.com; dkim=pass header.d=fi.rohmeurope.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=rohmsemiconductoreurope.onmicrosoft.com;
+ s=selector1-rohmsemiconductoreurope-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=F16p57xd31urzuNhh+gSwkOxMyPX7yZYB/QxJyACp3c=;
+ b=vDtFlln+G66jvX57J5oY/Db/817xssDhPOfOlq5i3rXXM2SCSSmo629d3Y/X8J/F0gwd2BDPCXBOM438FZwwsDd8dGGC6+r9et+zuphUo5r196bzJaS2WzVCuKeI/vPQ7jf+HbBvI4ddlqeQKqoa27dzMAtfkNvwAyyJ6uxWQkk=
+Received: from DB6PR03MB3160.eurprd03.prod.outlook.com (2603:10a6:6:37::21) by
+ DB9PR03MB7467.eurprd03.prod.outlook.com (2603:10a6:10:22d::14) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4173.21; Thu, 27 May 2021 10:35:44 +0000
+Received: from DB6PR03MB3160.eurprd03.prod.outlook.com
+ ([fe80::d10a:71a9:656c:7d96]) by DB6PR03MB3160.eurprd03.prod.outlook.com
+ ([fe80::d10a:71a9:656c:7d96%3]) with mapi id 15.20.4173.020; Thu, 27 May 2021
+ 10:35:44 +0000
+From:   "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+CC:     "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "sre@kernel.org" <sre@kernel.org>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>,
+        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>
+Subject: Re: [PATCH 0/9] Drop ROHM BD70528 support
+Thread-Topic: [PATCH 0/9] Drop ROHM BD70528 support
+Thread-Index: AQHXUU6g/F3P4WWLe0S0t2z9ZGko1Kr3JXmA
+Date:   Thu, 27 May 2021 10:35:44 +0000
+Message-ID: <de5a85b755799db771616147da36de7d5af17a6f.camel@fi.rohmeurope.com>
+References: <cover.1621937490.git.matti.vaittinen@fi.rohmeurope.com>
+In-Reply-To: <cover.1621937490.git.matti.vaittinen@fi.rohmeurope.com>
+Reply-To: "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+Accept-Language: fi-FI, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.34.4 (3.34.4-1.fc31) 
+authentication-results: fi.rohmeurope.com; dkim=none (message not signed)
+ header.d=none;fi.rohmeurope.com; dmarc=none action=none
+ header.from=fi.rohmeurope.com;
+x-originating-ip: [2001:14ba:16e2:8300::4]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 253d9b00-4e2e-40ea-1976-08d920fb2ee2
+x-ms-traffictypediagnostic: DB9PR03MB7467:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB9PR03MB74673A9AAF6BD7C250BB03F8AD239@DB9PR03MB7467.eurprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 7Kms8aGAQ7384+4Pk2sb9NPQpiskkUfGCmrr1xF6lpkuf56cXuzULm3gBjiwznN1nsxnE8RThpRC6I/O2LV1By4FdQmvXo/t1kh1DMflki/P8bOy/g265YEJv9fFhzoj13u3d/8S7p8ktjDUZ+HWTYyctyY8MTxV7ZCdak3yWBdcH+pHlTo8iSsYhEQl9G8LpZJKzGclM2HRJ+PH72pPrQ2+EV4f0FEiGfR5xEHGy6ZFBmPJUBCbQd41vBJKT/15CNG+e5liApNRlICQfxgFvsGiK2X2SufWZwqOTjqIELpQ9IyMP+KIaHwl/S8kV1D1Qr++X4XLUHIo1ttYY3QKAnTZ2EU31Z/2SBVBP90C9KwoOqK0fEu/PZ/9TrctRsJnJ9OONr1FASBzY1f/6zqVjtihxOqeMn/IpxXDb7WWN9efPj+WOtpGoWhXDkiL4f/cyWlOmU1QbL8GQPsm70t+WgVEkJujXmDt1y9DQzo4/70n7OD8dbqxBane/EY3KRO37Ny7WRdDMqkM5zipB5g6AxPTwwrnjess0MINtqVlYAZZTOrxSB1acUm5gzXyd5DZf/F/vetH738Sc0z7jcmnfXrOmAew8B0xksBSOvP8d1MicxWHcBOtxNFt8OWYJsyf4XCRmFSMPQueFUKgzcOuD1yc42tsrpPuedKVU2Ej3SC+DXqbGYeQM1/AhwIYhbI1jRPGBH7n/do5y2B9LBYQKqTjg3Gm5Ulm/9BhBxi7faE=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR03MB3160.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(366004)(346002)(396003)(39830400003)(376002)(6512007)(6200100001)(316002)(7416002)(37006003)(122000001)(6506007)(6486002)(54906003)(86362001)(8936002)(8676002)(186003)(478600001)(64756008)(66476007)(66556008)(66446008)(91956017)(76116006)(66946007)(2616005)(3450700001)(5660300002)(2906002)(71200400001)(4326008)(38100700002)(6862004)(966005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?N1NHaVllK3kzQWZRN3llNmxWZWpRYlMxYnJrYlNEV0hkeDEyYlh5NFBqWjhO?=
+ =?utf-8?B?SU11STBuSUpKcUkweDFCemNBSGYvLytSQmRLQlEweld6Q0VKTGhyL1MzbktK?=
+ =?utf-8?B?Z1h0ZXVzTVZWN05RdGpUelVKZFM1ZVhUOHcyRWVTd3VLaXp6N2RxaTRTd091?=
+ =?utf-8?B?RE9EUFFrZHBGNWRFTjhFZlZHc1FsVXNlbU5yY3h3T3FRRk9ITTZQN1MyWWVU?=
+ =?utf-8?B?VDZmdWZhR0JEek9HdmdQZmpFcmcybVlCNnpHdGhaV0l4dlg2aU1hMmN5Q0hN?=
+ =?utf-8?B?TjFQZUpsaFhBSXM5eitDcHBMUkZpZm0rVldnL2kybTJlWS9uYWhJU1l2QldR?=
+ =?utf-8?B?Z25LVTZvUjRPMkdKT3gxUWE2UGxWc3JRMlRPN0s4b2l6b1E3T0hKTDhFUTYx?=
+ =?utf-8?B?SWh0ZG9GNW5CWklZdWFjYmtxQmdlS2JtRHBrV25SQ1VjNFhscXFSM2E4YmZS?=
+ =?utf-8?B?Y2tkN2d2dldkZmV2WlY1eUxGVFhGeGE4eDZqMlVCYUE0WDBSUTVmbm1FaGJq?=
+ =?utf-8?B?WGswNzVvbnREUkx6bzhlR3NneDl5L2d2L1BOSnd1ZkFPRlY1SjZic0RRUmE2?=
+ =?utf-8?B?aFZVZ0pJbEl2dkF3VWoydHJYZHQ4QVNPemsvMDlUVTNyN2VpbXAxbndjWk9Q?=
+ =?utf-8?B?b0hHTGV5L1JMekxMdjJKOWo0WklmZE1HTlRGNDVFTVVLUkZBak9wQXdJb0U4?=
+ =?utf-8?B?anRZRzluUEVKc0c0c3YxczM3b0MxRU1jZEJOM3VKU2djVDNaODkzbjdmekNj?=
+ =?utf-8?B?NTJIdjhIRUNTanBUUDEwNFpqRjh2dEtoRkJTN3Awd2lLemticVRWVExCMU83?=
+ =?utf-8?B?OHJjYlJnMm9NdkhZUVNPN1llc0sxWXZKbmUzc2dlL29LbXE2Q0wxYjJtMUNV?=
+ =?utf-8?B?YWQzRTZoL2ZsMXJxbWZ4bHNKMEVncHRMS2JpUWdsVlNoOGxLcjNhQVBoRTRE?=
+ =?utf-8?B?S2RzNlR3dm00c2FiNGEyOVpyaCtLbnpsS1VNWjgwN0t5OThWa0tsYlJOaFN0?=
+ =?utf-8?B?NTl1elhnMmQxMzZ1WFkwRnVreTFwWkhUQUxiTFRDNG1Ub2R4R0J2b09jMHVE?=
+ =?utf-8?B?bXk0bzJmdzNKK2hORVcxdGlqMGNZcWdleVhucEVhU2ltVmpNNVZFTVdZa1RL?=
+ =?utf-8?B?bjI0MnJGcEN4N1M2dk56QU1VVEZUN3NhNEx4YzBsNE9JTGN4ZnVteTNXdkVj?=
+ =?utf-8?B?eFJmMFA2bEJCbkNBZzlWbkkvbmtmSzQxSmVYd2UrTEtHNkJjMnVhOVBMVW1E?=
+ =?utf-8?B?RmE3Y2xqS3JWS1U1NG9jaWVqVjFrNjZlbVdlN1hJc2MyK3l1Z2RBZDdoRTJo?=
+ =?utf-8?B?K3NxSkxscHM2K1FXdnMwREhuTUhYbFZ0YXoyUFREZkMrcE5ITi8rQ3NzRE1h?=
+ =?utf-8?B?SGFzMko0ME9JWERWZ3RGZk4yckU1Sklyd0RNc1JBYjNmUVZwamRoU2o2dkdy?=
+ =?utf-8?B?NkcwWERScVVISk1sNzAxYUNXSEtwMGhhNDdHQUxmZUNadEpxMnNTL3VTSnB6?=
+ =?utf-8?B?TlVKS01ocWZPOGVDYjhabXhJUGtiOHk5YkdqY1BvNWR5NlQ3U1BuSndsNWJB?=
+ =?utf-8?B?YXdJYnppQklpc2hVblhwZ3E1RE13S0g2TzY3WjBKYTBWUG5nV2l6YTZrSyt5?=
+ =?utf-8?B?UXc4RXY3VHdUd2JtN3JmNTNtWmQzaStpQ1Z2eVplWGlabmZZeGNiV1Z0bENt?=
+ =?utf-8?B?MGM1aTNPTVJUNkh1OUIwTVNFS2h3RmxmY20wRk8yUmRPc3ZraVlSeko5cXNu?=
+ =?utf-8?B?ZWVMeVAxMnFyKzZURXlxOU5KeDZ5ZmlKN1ZtTTFKUHVxa1piTjJQRnhtZWFO?=
+ =?utf-8?Q?pDgfp6dgOUEtZQw84eJGfMegHjvVTgMf94Frk=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <66F84A895622BF438BCB4C734C44365C@eurprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210526182807.548118-9-sudeep.holla@arm.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+X-OriginatorOrg: fi.rohmeurope.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR03MB3160.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 253d9b00-4e2e-40ea-1976-08d920fb2ee2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 May 2021 10:35:44.3686
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 94f2c475-a538-4112-b5dd-63f17273d67a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 6WZZWHAZQH7q5QDeGvyqpaoRoEjiyemQrNVLIszf8fxfCvTI1r49nyMykvb3Y4m0W1DM1T1jJdtdP7LBo/p96TTaHnKVO7RanQ5BaobhFg151riaYt6eW7zlW/769nqB
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR03MB7467
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sudeep,
-
-Some feedback down below.
-
-On Wed, May 26, 2021 at 07:28:07PM +0100, Sudeep Holla wrote:
-> Convert the old text format binding for System Control and Management Interface
-> (SCMI) Message Protocol into the new and shiny YAML format.
-> 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Cristian Marussi <cristian.marussi@arm.com>
-> Cc: Florian Fainelli <f.fainelli@gmail.com>
-> Cc: Jim Quinlan <jim2101024@gmail.com>
-> Cc: Etienne Carriere <etienne.carriere@linaro.org>
-> Cc: Peter Hilber <peter.hilber@opensynergy.com>
-> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> ---
->  .../devicetree/bindings/arm/arm,scmi.txt      | 224 ---------------
->  .../bindings/firmware/arm,scmi.yaml           | 270 ++++++++++++++++++
->  2 files changed, 270 insertions(+), 224 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/arm,scmi.txt
->  create mode 100644 Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> 
-> Hi,
-> 
-> I have converted all the bindings except the below regulator part of the
-> binding. This needs to be addressed before merging ofcourse. Just posting
-> the remaining changes to get feedback and also ask suggestion for the below:
-> 
->         scmi_voltage: protocol@17 {
->           reg = <0x17>;
->           regulators {
->             regulator_devX: regulator@0 {
->               reg = <0x0>;
->               regulator-max-microvolt = <3300000>;
->             };
-> 
->             regulator_devY: regulator@9 {
->               reg = <0x9>;
->               regulator-min-microvolt = <500000>;
->               regulator-max-microvolt = <4200000>;
->             };
->           };
->         };
-> 
-> I will reply with things I have tried separately to avoid confusion with this
-> the patch here.
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/arm,scmi.txt b/Documentation/devicetree/bindings/arm/arm,scmi.txt
-> deleted file mode 100644
-> index b7be2000afcb..000000000000
-> --- a/Documentation/devicetree/bindings/arm/arm,scmi.txt
-> +++ /dev/null
-> @@ -1,224 +0,0 @@
-> -System Control and Management Interface (SCMI) Message Protocol
-> -----------------------------------------------------------
-> -
-> -The SCMI is intended to allow agents such as OSPM to manage various functions
-> -that are provided by the hardware platform it is running on, including power
-> -and performance functions.
-> -
-> -This binding is intended to define the interface the firmware implementing
-> -the SCMI as described in ARM document number ARM DEN 0056A ("ARM System Control
-> -and Management Interface Platform Design Document")[0] provide for OSPM in
-> -the device tree.
-> -
-> -Required properties:
-> -
-> -The scmi node with the following properties shall be under the /firmware/ node.
-> -
-> -- compatible : shall be "arm,scmi" or "arm,scmi-smc" for smc/hvc transports
-> -- mboxes: List of phandle and mailbox channel specifiers. It should contain
-> -	  exactly one or two mailboxes, one for transmitting messages("tx")
-> -	  and another optional for receiving the notifications("rx") if
-> -	  supported.
-> -- shmem : List of phandle pointing to the shared memory(SHM) area as per
-> -	  generic mailbox client binding.
-> -- #address-cells : should be '1' if the device has sub-nodes, maps to
-> -	  protocol identifier for a given sub-node.
-> -- #size-cells : should be '0' as 'reg' property doesn't have any size
-> -	  associated with it.
-> -- arm,smc-id : SMC id required when using smc or hvc transports
-> -
-> -Optional properties:
-> -
-> -- mbox-names: shall be "tx" or "rx" depending on mboxes entries.
-> -
-> -- interrupts : when using smc or hvc transports, this optional
-> -	 property indicates that msg completion by the platform is indicated
-> -	 by an interrupt rather than by the return of the smc call. This
-> -	 should not be used except when the platform requires such behavior.
-> -
-> -- interrupt-names : if "interrupts" is present, interrupt-names must also
-> -	 be present and have the value "a2p".
-> -
-> -See Documentation/devicetree/bindings/mailbox/mailbox.txt for more details
-> -about the generic mailbox controller and client driver bindings.
-> -
-> -The mailbox is the only permitted method of calling the SCMI firmware.
-> -Mailbox doorbell is used as a mechanism to alert the presence of a
-> -messages and/or notification.
-> -
-> -Each protocol supported shall have a sub-node with corresponding compatible
-> -as described in the following sections. If the platform supports dedicated
-> -communication channel for a particular protocol, the 3 properties namely:
-> -mboxes, mbox-names and shmem shall be present in the sub-node corresponding
-> -to that protocol.
-> -
-> -Clock/Performance bindings for the clocks/OPPs based on SCMI Message Protocol
-> -------------------------------------------------------------
-> -
-> -This binding uses the common clock binding[1].
-> -
-> -Required properties:
-> -- #clock-cells : Should be 1. Contains the Clock ID value used by SCMI commands.
-> -
-> -Power domain bindings for the power domains based on SCMI Message Protocol
-> -------------------------------------------------------------
-> -
-> -This binding for the SCMI power domain providers uses the generic power
-> -domain binding[2].
-> -
-> -Required properties:
-> - - #power-domain-cells : Should be 1. Contains the device or the power
-> -			 domain ID value used by SCMI commands.
-> -
-> -Regulator bindings for the SCMI Regulator based on SCMI Message Protocol
-> -------------------------------------------------------------
-> -An SCMI Regulator is permanently bound to a well defined SCMI Voltage Domain,
-> -and should be always positioned as a root regulator.
-> -It does not support any current operation.
-> -
-> -SCMI Regulators are grouped under a 'regulators' node which in turn is a child
-> -of the SCMI Voltage protocol node inside the desired SCMI instance node.
-> -
-> -This binding uses the common regulator binding[6].
-> -
-> -Required properties:
-> - - reg : shall identify an existent SCMI Voltage Domain.
-> -
-> -Sensor bindings for the sensors based on SCMI Message Protocol
-> ---------------------------------------------------------------
-> -SCMI provides an API to access the various sensors on the SoC.
-> -
-> -Required properties:
-> -- #thermal-sensor-cells: should be set to 1. This property follows the
-> -			 thermal device tree bindings[3].
-> -
-> -			 Valid cell values are raw identifiers (Sensor ID)
-> -			 as used by the firmware. Refer to  platform details
-> -			 for your implementation for the IDs to use.
-> -
-> -Reset signal bindings for the reset domains based on SCMI Message Protocol
-> -------------------------------------------------------------
-> -
-> -This binding for the SCMI reset domain providers uses the generic reset
-> -signal binding[5].
-> -
-> -Required properties:
-> - - #reset-cells : Should be 1. Contains the reset domain ID value used
-> -		  by SCMI commands.
-> -
-> -[0] http://infocenter.arm.com/help/topic/com.arm.doc.den0056a/index.html
-> -[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
-> -[2] Documentation/devicetree/bindings/power/power-domain.yaml
-> -[3] Documentation/devicetree/bindings/thermal/thermal*.yaml
-> -[4] Documentation/devicetree/bindings/sram/sram.yaml
-> -[5] Documentation/devicetree/bindings/reset/reset.txt
-> -[6] Documentation/devicetree/bindings/regulator/regulator.yaml
-> -
-> -Example:
-> -
-> -sram@50000000 {
-> -	compatible = "mmio-sram";
-> -	reg = <0x0 0x50000000 0x0 0x10000>;
-> -
-> -	#address-cells = <1>;
-> -	#size-cells = <1>;
-> -	ranges = <0 0x0 0x50000000 0x10000>;
-> -
-> -	cpu_scp_lpri: scp-shmem@0 {
-> -		compatible = "arm,scmi-shmem";
-> -		reg = <0x0 0x200>;
-> -	};
-> -
-> -	cpu_scp_hpri: scp-shmem@200 {
-> -		compatible = "arm,scmi-shmem";
-> -		reg = <0x200 0x200>;
-> -	};
-> -};
-> -
-> -mailbox@40000000 {
-> -	....
-> -	#mbox-cells = <1>;
-> -	reg = <0x0 0x40000000 0x0 0x10000>;
-> -};
-> -
-> -firmware {
-> -
-> -	...
-> -
-> -	scmi {
-> -		compatible = "arm,scmi";
-> -		mboxes = <&mailbox 0 &mailbox 1>;
-> -		mbox-names = "tx", "rx";
-> -		shmem = <&cpu_scp_lpri &cpu_scp_hpri>;
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -
-> -		scmi_devpd: protocol@11 {
-> -			reg = <0x11>;
-> -			#power-domain-cells = <1>;
-> -		};
-> -
-> -		scmi_dvfs: protocol@13 {
-> -			reg = <0x13>;
-> -			#clock-cells = <1>;
-> -		};
-> -
-> -		scmi_clk: protocol@14 {
-> -			reg = <0x14>;
-> -			#clock-cells = <1>;
-> -		};
-> -
-> -		scmi_sensors0: protocol@15 {
-> -			reg = <0x15>;
-> -			#thermal-sensor-cells = <1>;
-> -		};
-> -
-> -		scmi_reset: protocol@16 {
-> -			reg = <0x16>;
-> -			#reset-cells = <1>;
-> -		};
-> -
-> -		scmi_voltage: protocol@17 {
-> -			reg = <0x17>;
-> -
-> -			regulators {
-> -				regulator_devX: regulator@0 {
-> -					reg = <0x0>;
-> -					regulator-max-microvolt = <3300000>;
-> -				};
-> -
-> -				regulator_devY: regulator@9 {
-> -					reg = <0x9>;
-> -					regulator-min-microvolt = <500000>;
-> -					regulator-max-microvolt = <4200000>;
-> -				};
-> -
-> -				...
-> -			};
-> -		};
-> -	};
-> -};
-> -
-> -cpu@0 {
-> -	...
-> -	reg = <0 0>;
-> -	clocks = <&scmi_dvfs 0>;
-> -};
-> -
-> -hdlcd@7ff60000 {
-> -	...
-> -	reg = <0 0x7ff60000 0 0x1000>;
-> -	clocks = <&scmi_clk 4>;
-> -	power-domains = <&scmi_devpd 1>;
-> -	resets = <&scmi_reset 10>;
-> -};
-> -
-> -thermal-zones {
-> -	soc_thermal {
-> -		polling-delay-passive = <100>;
-> -		polling-delay = <1000>;
-> -					/* sensor ID */
-> -		thermal-sensors = <&scmi_sensors0 3>;
-> -		...
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> new file mode 100644
-> index 000000000000..36072585fc45
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> @@ -0,0 +1,270 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2021 ARM Ltd.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/firmware/arm,scmi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: System Control and Management Interface (SCMI) Message Protocol bindings
-> +
-> +maintainers:
-> +  - Sudeep Holla <sudeep.holla@arm.com>
-> +
-> +description: |
-> +  The SCMI is intended to allow agents such as OSPM to manage various functions
-> +  that are provided by the hardware platform it is running on, including power
-> +  and performance functions.
-> +
-> +  This binding is intended to define the interface the firmware implementing
-> +  the SCMI as described in ARM document number ARM DEN 0056A ("ARM System Control
-> +  and Management Interface Platform Design Document")[0] provide for OSPM in
-> +  the device tree.
-> +
-> +  [0] http://infocenter.arm.com/help/topic/com.arm.doc.den0056a/index.html
-> +
-> +properties:
-> +  $nodename:
-> +    const: scmi
-> +
-> +  compatible:
-> +    oneOf:
-> +      - description: SCMI compliant firmware with mailbox transport
-> +        items:
-> +          - const: arm,scmi
-> +      - description: SCMI compliant firmware with ARM SMC/HVC transport
-> +        items:
-> +          - const: arm,scmi-smc
-> +
-> +  mbox-names:
-> +    description: |
-> +      Specifies the mailboxes used to communicate with SCMI compliant
-> +      firmware.
-> +    items:
-> +      - const: tx
-> +      - const: rx
-> +
-> +  mboxes:
-> +    description: |
-> +      List of phandle and mailbox channel specifiers. It should contain
-> +      exactly one or two mailboxes, one for transmitting messages("tx")
-> +      and another optional for receiving the notifications("rx") if supported.
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  shmem:
-> +    description: |
-> +      List of phandle pointing to the shared memory(SHM) area, for each
-> +      transport channel specified.
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  '#address-cells':
-> +    description: |
-> +      The address cells maps to protocol identifier for a given sub-node.
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    description: |
-> +      The size cells are not present as 'reg' property doesn't have any
-> +      size associated with it.
-> +    const: 0
-> +
-> +  arm,smc-id:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      SMC id required when using smc or hvc transports
-> +
-> +additionalProperties:
-> +  type: object
-> +
-> +patternProperties:
-> +  '^protocol@[0-9a-f]+$':
-> +    type: object
-> +    description: |
-> +      Each sub-node represents a protocol supported. If the platform
-> +      supports dedicated communication channel for a particular protocol,
-> +      then corresponding transport properties must be present.
-> +
-
-Not sure if it's needed, but maybe a reference or an example to which
-are the transport properties could be useful in this description.
-
-> +    properties:
-> +      reg:
-> +        maxItems: 1
-> +
-
-Shouldn't be expressed that reg is required for these protocol
-patternProperties ? (no sure how though...:D)
-
-> +      '#clock-cells':
-> +        const: 1
-> +
-> +      '#reset-cells':
-> +        const: 1
-> +
-> +      '#power-domain-cells':
-> +        const: 1
-> +
-> +      '#thermal-sensor-cells':
-> +        const: 1
-> +
-
-Maybe it does not matter, but all the info present in the old .txt binding
-about references to external std bindings like:
-
-> -This binding for the SCMI power domain providers uses the generic
-> power
-> -domain binding[2].
-
-is no more reported in yaml. Is it fine ?
-
-> +required:
-> +  - compatible
-> +  - shmem
-
-Indeed shmem is required by chance all the transports defined in this
-binding, but it is not really something generally required, in fact
-virtio transport won't require it.
-
-But I'm not sure if it's better to move it now down under some kind of
-if: arm,scmi|arm,scmi-smc or just do it later when virtio transport binding
-will be defined/introduced.
-
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: arm,scmi
-> +    then:
-> +      required:
-> +        - mboxes
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: arm,scmi-smc
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          description: |
-> +            The interrupt that indicates message completion by the platform
-> +            rather than by the return of the smc call. This should not be used
-> +            except when the platform requires such behavior.
-> +
-> +        interrupt-names:
-> +          const: a2p
-> +
-> +      required:
-> +        - arm,smc-id
-> +
-
-Thanks,
-Cristian
-
-> +examples:
-> +  - |
-> +    firmware {
-> +      scmi {
-> +        compatible = "arm,scmi";
-> +        mboxes = <&mhuB 0 0>,
-> +                 <&mhuB 0 1>;
-> +        mbox-names = "tx", "rx";
-> +        shmem = <&cpu_scp_lpri &cpu_scp_hpri>;
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        scmi_devpd: protocol@11 {
-> +          reg = <0x11>;
-> +          #power-domain-cells = <1>;
-> +        };
-> +
-> +        scmi_dvfs: protocol@13 {
-> +          reg = <0x13>;
-> +          #clock-cells = <1>;
-> +        };
-> +
-> +        scmi_clk: protocol@14 {
-> +          reg = <0x14>;
-> +          #clock-cells = <1>;
-> +        };
-> +
-> +        scmi_sensors: protocol@15 {
-> +          reg = <0x15>;
-> +          #thermal-sensor-cells = <1>;
-> +        };
-> +
-> +        scmi_reset: protocol@16 {
-> +          reg = <0x16>;
-> +          #reset-cells = <1>;
-> +        };
-> +
-> +        scmi_voltage: protocol@17 {
-> +          reg = <0x17>;
-> +        };
-> +      };
-> +    };
-> +
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      sram@50000000 {
-> +        compatible = "mmio-sram";
-> +        reg = <0x0 0x50000000 0x0 0x10000>;
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges = <0 0x0 0x50000000 0x10000>;
-> +
-> +        cpu_scp_lpri: scp-sram-section@0 {
-> +          compatible = "arm,scmi-shmem";
-> +          reg = <0x0 0x200>;
-> +        };
-> +
-> +        cpu_scp_hpri: scp-sram-section@200 {
-> +          compatible = "arm,scmi-shmem";
-> +          reg = <0x200 0x200>;
-> +        };
-> +      };
-> +
-> +      mhuB: mailbox@2b2f0000 {
-> +        #mbox-cells = <2>;
-> +        compatible = "arm,mhu-doorbell", "arm,primecell";
-> +        reg = <0 0x2b2f0000 0 0x1000>;
-> +        interrupts = <0 36 4>, /* LP-NonSecure */
-> +                     <0 35 4>, /* HP-NonSecure */
-> +                     <0 37 4>; /* Secure */
-> +        clocks = <&clock 0 2 1>;
-> +        clock-names = "apb_pclk";
-> +      };
-> +
-> +      gpu@ffe40000 {
-> +        compatible = "amlogic,meson-g12a-mali", "arm,mali-bifrost";
-> +        reg = <0x0 0xffe40000 0x0 0x10000>;
-> +        interrupts = <0 160 4>, <0 161 4>, <0 162 4>;
-> +        interrupt-names = "job", "mmu", "gpu";
-> +        clocks = <&scmi_clk 1>;
-> +        power-domains = <&scmi_devpd 8>;
-> +        resets = <&scmi_reset 0>, <&scmi_reset 1>;
-> +      };
-> +
-> +      display@20930000 {
-> +        compatible = "intel,keembay-display";
-> +        reg = <0x0 0x20930000 0x0 0x3000>;
-> +        reg-names = "lcd";
-> +        interrupts = <0 33 4>;
-> +        clocks = <&scmi_clk 0x83>,
-> +                 <&scmi_clk 0x0>;
-> +        clock-names = "clk_lcd", "clk_pll0";
-> +
-> +        port {
-> +            disp_out: endpoint {
-> +                remote-endpoint = <&dsi_in>;
-> +            };
-> +        };
-> +      };
-> +
-> +      thermal-zones {
-> +        soc-thermal {
-> +          polling-delay-passive = <100>;
-> +          polling-delay = <1000>;
-> +          thermal-sensors = <&scmi_sensors0 3>;
-> +
-> +          trips {
-> +            mpu0_crit: mpu0_crit {
-> +              temperature = <125000>; /* milliCelsius */
-> +              hysteresis = <2000>; /* milliCelsius */
-> +              type = "critical";
-> +            };
-> +          };
-> +        };
-> +      };
-> +    };
-> +
-> +    cpus {
-> +      #size-cells = <0>;
-> +      #address-cells = <2>;
-> +
-> +      cpu@0 {
-> +        device_type = "cpu";
-> +        compatible = "arm,cortex-a57";
-> +        reg = <0x0 0x0>;
-> +        enable-method = "psci";
-> +        clocks = <&scmi_dvfs 0>;
-> +      };
-> +    };
-> +
-> +...
-> -- 
-> 2.25.1
-> 
+DQpPbiBUdWUsIDIwMjEtMDUtMjUgYXQgMTM6MTMgKzAzMDAsIE1hdHRpIFZhaXR0aW5lbiB3cm90
+ZToNCj4gRHJvcCBST0hNIEJENzA1Mjggc3VwcG9ydA0KPiANCj4gVW5mb3J0dW5hdGVseSB0aGVy
+ZSBoYXMgbm90IGJlZW4gYSBiaWcgZGVtYW5kIGZvciBST0hNIEJENzA1MjgNCj4gSUMuIFRoZSBm
+ZXcgdXNlcnMgSSBrbm93IGNvbnRyb2wgUE1JQyBmcm9tIHNlcGFyYXRlIE00LWNvcmUsDQo+IHdo
+aWNoIGlzIG5vdCBydW5uaW5nIExpbnV4LiBJIGFtIG5vdCBhd2FyZSBvZiBhbnkgdXNlcnMgb2Yg
+dGhpcw0KPiBMaW51eCBkcml2ZXIuDQo+IA0KPiBXaGlsZSBJIGRpZCByZWFsbHkgbGlrZSB0aGlz
+IElDIGFuZCB3cml0aW5nIHRoZSBkcml2ZXJzIGZvciBpdCwNCj4gc2VlbXMgbGlrZSB0aGVzZSBk
+cml2ZXJzIGFyZSBiZWNvbWluZyB1c2VsZXNzIGJ1cmRlbi4gU28sIEkgc2VlDQo+IG5vIHBvaW50
+IGluIG1haW50YWluaW5nIHRoZW0uIExldCdzIGp1c3QgZHJvcCB0aGUgZHJpdmVycyBpZg0KPiB0
+aGVyZSBpcyBubyBvYmplY3Rpb25zIHRvIHRoaXMgc2VyaWVzLiA6KA0KPiANCj4gRmV3IG5vdGVz
+Og0KPiANCj4gVGhlIEdQSU8sIHJlZ3VsYXRvciwgcG93ZXItc3VwcGx5IGFuZCB3YXRjaGRvZyBk
+cml2ZXJzIHNob3VsZCBiZQ0KPiBvbmx5IHVzZWQgb24gQkQ3MDUyOCBhbmQgZGVwZW5kIG9uIHRo
+ZSBCRDcwNTI4IE1GRCBLY29uZmlnLiBJIGd1ZXNzDQo+IHRoZSByZW1vdmFsIGNhbiBiZSBpbmRl
+cGVuZGVudGx5IG1lcmdlZCB0byB0aGUgcmVzcGVjdGl2ZSBzdWJzeXN0ZW1zLg0KPiANCj4gVGhl
+IEJENzA1MjggUlRDIGRyaXZlciBpcyBzdGlsbCB1c2VkIGJ5IEJENzE4MTUgYW5kIEJENzE4Mjgg
+LQ0KPiBidXQgdGhlIHdhdGNoZG9nLWhhY2sgY2FuIGJlIHJlbW92ZWQgYW5kIGRyaXZlciBpcyBn
+cmVhdGx5DQo+IHNpbXBsaWZpZWQuIEhvd2V2ZXIsIGl0J3Mgd29ydGggbm90aW5nIHRoYXQgdGhl
+cmUgaXMgZGVwZW5kZW5jeQ0KPiBmcm9tIHRoZSBCRDcwNTI4IFJUQyBkcml2ZXIgdG8gdGhlIGhl
+YWRlciBmaWxlcyAtIHRodXMgdGhlDQo+IFJUQyBkcml2ZXIgY2hhbmdlcyBzaG91bGQgYmUgbWVy
+Z2VkIGJlZm9yZSBNRkQgY2hhbmdlcy4gQWxzbyB0aGUNCj4gQ0xLIGRyaXZlciByZW1haW5zIGlu
+IHVzZSBhbmQgbmVlZHMgdGhlIEJENzA1MjggSUMtdHlwZS4NCj4gDQo+IEFzIGEgZmluYWwgbm90
+ZSAtIEZldyBpbXByb3ZlbWVudHMvZml4ZXMgd2VyZSBqdXN0IGFwcGxpZWQgdG8gdGhlDQo+IHJl
+Z3VsYXRvciB0cmVlIHNvIHRoaXMgc2VyaWVzIGlzIGxpa2VseSB0byBjb25mbGljdC4gU29tZSBm
+aXhlcw0KPiB3ZXJlIGFsc28gYWRkZWQgdG8gUlRDIEtjb25maWcgLSB3aGljaCBtZWFucyBhbHNv
+IHRoZSBSVEMgdHJlZQ0KPiBtYXkgaGF2ZSBjb25mbGljdHMuIFBsZWFzZSBsZXQgbWUga25vdyBp
+ZiB5b3Ugd2lzaCBtZSB0byByZWJhc2UNCj4gdGhpcyBzZXJpZXMgb3IgdGhvc2UgcGF0Y2hlcy4N
+Cg0KQXMgc2hvcnRseSBkaXNjdXNzZWQgd2l0aCBBbGV4YW5kcmUgaGVyZToNCmh0dHBzOi8vbG9y
+ZS5rZXJuZWwub3JnL2xrbWwvWUt6MjVQREwyWjZ2Z3FKdkBwaW91dC5uZXQvDQoNClRoZSBlYXNp
+ZXN0IHdheSB0byBkcm9wIHRoZSBzdXBwb3J0IHdpdGhvdXQgYnJlYWtpbmcgdGhlIGRlcGVuZGVu
+Y2llcw0KYW5kIHdpdGhvdXQgaW50cm9kdWNpbmcgY29uZmxpY3RzIGlzIHRvIGRyb3Agc3VwcG9y
+dCBmcm9tIHN1Yi1kZXZpY2VzDQppbiBvbmUgY3ljbGUgYW5kIHRoZSBNRkQgb25seSBhdCBuZXh0
+IGN5Y2xlLiBTbyBMZWUsIHBsZWFzZSBpZ25vcmUgdGhlDQpNRkQgcGFydCBmb3Igbm93Lg0KDQpJ
+J2xsIHJlYmFzZSB0aGUgUlRDIGFuZCByZWd1bGF0b3IgcGF0Y2hlcyB0byBSVEMgYW5kIHJlZ3Vs
+YXRvciB0cmVlcw0KYW5kIHNlbmQgdGhlbSBhcyBpbmRpdmlkdWFsIHBhdGNoZXMgdG8gTWFyayBh
+bmQgQWxleGFuZHJlLiBJIHRoaW5rIHRoZQ0Kb3RoZXIgc3ViLWRldmljZSBwYXRjaGVzIGFuZCB0
+aGUgRFQgYmluZGluZ3MgcGF0Y2ggc2hvdWxkIGFwcGx5IGNsZWFubHkNCnRvIHRoZSByZXNwZWN0
+aXZlIHRyZWVzLiBQbGVhc2UgbGV0IG1lIGtub3cgaWYgdGhpcyBkb2VzIG5vdCB3b3JrIGZvcg0K
+eW91Lg0KDQpJJ2xsIHJlLXNwaW4gdGhlIE1GRCBwb3J0aW9uIGR1cmluZyB0aGUgbmV4dCBjeWNs
+ZS4NCg0KQmVzdCBSZWdhcmRzDQoJTWF0dGkgVmFpdHRpbmVuDQo=
