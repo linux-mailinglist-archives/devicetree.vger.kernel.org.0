@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 007963928BE
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 09:42:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 431043928C1
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 09:42:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233100AbhE0Hnr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 03:43:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39538 "EHLO
+        id S234922AbhE0Hnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 03:43:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235068AbhE0Hnp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 03:43:45 -0400
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 242F4C061760
-        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 00:42:13 -0700 (PDT)
-Received: by mail-pf1-x42e.google.com with SMTP id x18so2989876pfi.9
-        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 00:42:13 -0700 (PDT)
+        with ESMTP id S235071AbhE0Hns (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 03:43:48 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECD5AC061760
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 00:42:15 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id m124so3049494pgm.13
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 00:42:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=iKPatIdYRxq+Xo6lopop8fgePb2STDXynanM3KtfV2E=;
-        b=UzhS0TSGWLsdtGeMsRR9DXcxIAZf9yxmavKOZAwL5cSNom1Ge/Ba1Uxw/Lg2KECen/
-         iW7Zv/AEndzzyqjRQt6icQYPlYTsLewTmTmaVB52vkI8cdlyq6cNV/gJHPyTlRgk2jlz
-         hxRQdQI2gTCY3qLIN81UKFt5s3KHLP3Vt1TtM=
+        bh=BrbVgIij7R8LbUOrOIBIv2OLNl+Ip/Kqs7kj9XlKJUk=;
+        b=SQtH/jrOEE6kk88cKkvSxsBamCau/HA6LO+WkxXT2OKIUlRPbubDXoPKK/J84DK90z
+         tViLy+vQKnLAJK2PRgLoPMSraWAe08TSrKhWQ84yPmrmIDgjwjiC5qveCCmsX3JtUhaM
+         S3QI3SIPi49owjcScyBxFzBrkyDdvujgOkMaw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=iKPatIdYRxq+Xo6lopop8fgePb2STDXynanM3KtfV2E=;
-        b=QpUaJHnOGPqMdhlXkZZbm3yvLfx6TRPD3HQvRZFQMWRM53zzCXws5HY4sVJEHnNeuW
-         xaPQvGajqwNoLWESb2tQc8ERzOgKgVrt9nbyLeynmdsaR4M7ombxgGTC1RcFvBlARL3i
-         Ty7EPxh5WdNkKZPNG0UUicsezrvNR1yZH8d39lCUNR7GWE18pLhYNjtUS1tvOfUgGXJt
-         vKkGAGpRMLQA/oq6Wjg8iSwh4+PqXwKCwEi9J1cYIvz4sUAlBvPzedrmfYwi9sN0oDuI
-         ClqY/d2FjvlK5ZFhXJTqtZa8WZOw7TKgJcOiDke0KZrQSOEpNPoQ+/JSWOD9SLJH+fxq
-         JlNA==
-X-Gm-Message-State: AOAM533W59xt/wOq0QcqHSw+627HZ5C0L5S7iiBmxeW9xNEEanf8LFZT
-        daWr/yXpRzSX3tezdz5rBbfr/w==
-X-Google-Smtp-Source: ABdhPJySHEslyEih5kQLA88oXODQQ0Wi1oBA6Q/oIq4BZUbKZolgVJv44EvipwhBEGygRsph69B2tQ==
-X-Received: by 2002:aa7:8703:0:b029:2da:b87f:7d38 with SMTP id b3-20020aa787030000b02902dab87f7d38mr2569228pfo.20.1622101332688;
-        Thu, 27 May 2021 00:42:12 -0700 (PDT)
+        bh=BrbVgIij7R8LbUOrOIBIv2OLNl+Ip/Kqs7kj9XlKJUk=;
+        b=HJfRDcRkqVE4K3t4PsbwilWmIHRjhzxTaN7uckhWOxuidcBdBuq5h9XV3tmpqxf7Dt
+         jnu3xMTTFeEY3A1UtRTKx8t4Ebi804jrQO8xJqI5BRXWH+lsXdhCi1PfufP56qQYMIOr
+         zzxgbkE2XGeZkGDJqL06OU5YBTnes11Tp/Xcevt1axBQaqDj/7/lRGmp6jOCxYb/G0Dy
+         TezNifdE3ekuAOXRpAEyc94dbVxRCxaC06Pu4OBpyAwc9vFy/pDScRfDZhYODfS6gPDO
+         qmX4LGkGMxXUCl4RxrCaF3KNsAF1K12tpmR6piq5rOIpfgCeR+UCT+1ngtfN9zDvlomV
+         ISdg==
+X-Gm-Message-State: AOAM531pGvvyrscFwY9grJkjdlu6i9GHnWahev5vP+y3w117hIw1wE7D
+        iLsHlTa+lVz+1bwK9h3dnHXEeMKqvjf0Rg==
+X-Google-Smtp-Source: ABdhPJxuVP5C820VQJBG/Cqe/LBzPydpiOkSUvB5K7U8neoHStr0iUEtdqLCANJ++y7pTtplnH8sHQ==
+X-Received: by 2002:a65:6849:: with SMTP id q9mr2443138pgt.377.1622101335476;
+        Thu, 27 May 2021 00:42:15 -0700 (PDT)
 Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:ece5:55a4:6ad3:d20f])
-        by smtp.gmail.com with ESMTPSA id h24sm1184857pfn.180.2021.05.27.00.42.10
+        by smtp.gmail.com with ESMTPSA id h24sm1184857pfn.180.2021.05.27.00.42.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 May 2021 00:42:12 -0700 (PDT)
+        Thu, 27 May 2021 00:42:15 -0700 (PDT)
 From:   Hsin-Yi Wang <hsinyi@chromium.org>
 To:     dri-devel@lists.freedesktop.org
 Cc:     Robert Foss <robert.foss@linaro.org>,
@@ -58,9 +58,9 @@ Cc:     Robert Foss <robert.foss@linaro.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, intel-gfx@lists.freedesktop.org
-Subject: [PATCH v6 RESEND 2/3] drm/mediatek: init panel orientation property
-Date:   Thu, 27 May 2021 15:42:01 +0800
-Message-Id: <20210527074202.1706724-2-hsinyi@chromium.org>
+Subject: [PATCH v6 RESEND 3/3] arm64: dts: mt8183: Add panel rotation
+Date:   Thu, 27 May 2021 15:42:02 +0800
+Message-Id: <20210527074202.1706724-3-hsinyi@chromium.org>
 X-Mailer: git-send-email 2.31.1.818.g46aad6cb9e-goog
 In-Reply-To: <20210527074202.1706724-1-hsinyi@chromium.org>
 References: <20210527074202.1706724-1-hsinyi@chromium.org>
@@ -70,33 +70,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Init panel orientation property after connector is initialized. Let the
-panel driver decides the orientation value later.
+krane, kakadu, and kodama boards have a default panel rotation.
 
 Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Acked-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
 ---
- drivers/gpu/drm/mediatek/mtk_dsi.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
-index ae403c67cbd9..9da1fd649131 100644
---- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-@@ -964,6 +964,13 @@ static int mtk_dsi_encoder_init(struct drm_device *drm, struct mtk_dsi *dsi)
- 		ret = PTR_ERR(dsi->connector);
- 		goto err_cleanup_encoder;
- 	}
-+
-+	ret = drm_connector_init_panel_orientation_property(dsi->connector);
-+	if (ret) {
-+		DRM_ERROR("Unable to init panel orientation\n");
-+		goto err_cleanup_encoder;
-+	}
-+
- 	drm_connector_attach_encoder(dsi->connector, &dsi->encoder);
- 
- 	return 0;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+index ff56bcfa3370..793cc9501337 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+@@ -263,6 +263,7 @@ panel: panel@0 {
+ 		avee-supply = <&ppvarp_lcd>;
+ 		pp1800-supply = <&pp1800_lcd>;
+ 		backlight = <&backlight_lcd0>;
++		rotation = <270>;
+ 		port {
+ 			panel_in: endpoint {
+ 				remote-endpoint = <&dsi_out>;
 -- 
 2.31.1.818.g46aad6cb9e-goog
 
