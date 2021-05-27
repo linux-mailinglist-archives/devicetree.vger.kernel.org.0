@@ -2,100 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D59453936AD
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 21:53:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA07639372F
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 22:30:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235351AbhE0TzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 15:55:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58808 "EHLO mail.kernel.org"
+        id S235818AbhE0UcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 16:32:22 -0400
+Received: from mx01.ayax.eu ([188.137.98.110]:53964 "EHLO mx01.ayax.eu"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234847AbhE0TzL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 May 2021 15:55:11 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4B37561284;
-        Thu, 27 May 2021 19:53:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622145218;
-        bh=7iGJS3rGmNjwNAFKUj1DAV7UgRQ88ngVvWvNYWXGUKY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LIw+N207MJU9jaPOoUDHNfNm9YvYu35ktrOtPCJxKcQT/1YqLFGLcBIQuoIyV21wE
-         qdQo3sd2Z/qjEExXmJ6C3e9aRcr7liZPN6gpNGps4r5YUqTxylBzwnyMiftJx/92lw
-         saozaZq1DnCDw/y10HPIBqOKIpX7C15IitzaYNNAil8+7AB46MSAD8t86PQPx272yn
-         +LaiTd5YgBPZyNSdw3S5iGiB/udPhs0aDfU5uf1keCJ5LpcdTkh8NjwbbonGDOnyM7
-         PwYlNrYZiiupB0t0t35RXyF6lTrw2BLoBJdQI51pycFHUvh5QKL45VrJaNt13zrlwB
-         5MQ7leL/XfLBw==
-Date:   Thu, 27 May 2021 21:53:34 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Michael Ellerman <mpe@ellerman.id.au>
-Cc:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        andriy.shevchenko@linux.intel.com, andy.shevchenko@gmail.com,
-        robh+dt@kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/4] P2040/P2041 i2c recovery erratum
-Message-ID: <YK/4vuq0o1td4Zhl@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        andriy.shevchenko@linux.intel.com, andy.shevchenko@gmail.com,
-        robh+dt@kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org
-References: <20210511212052.27242-1-chris.packham@alliedtelesis.co.nz>
- <YK1HqE+3ILtGXZ7E@kunai>
- <87zgwigvd6.fsf@mpe.ellerman.id.au>
+        id S235539AbhE0UcV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 May 2021 16:32:21 -0400
+X-Greylist: delayed 1861 seconds by postgrey-1.27 at vger.kernel.org; Thu, 27 May 2021 16:32:19 EDT
+Received: from [192.168.192.146] (port=36442 helo=nx64de-df6d00)
+        by mx01.ayax.eu with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <gszymaszek@short.pl>)
+        id 1lmMAD-0006Ov-L5; Thu, 27 May 2021 21:59:29 +0200
+Date:   Thu, 27 May 2021 21:59:28 +0200
+From:   Grzegorz Szymaszek <gszymaszek@short.pl>
+Cc:     Grzegorz Szymaszek <gszymaszek@short.pl>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Marcin =?utf-8?Q?S=C5=82oniewski?= <marcin.sloniewski@gmail.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH] ARM: dts: stm32: fix stm32mp157c-odyssey card detect pin
+Message-ID: <YK/6IHCBdIU3UBqs@nx64de-df6d00>
+References: <YHH9+Xrn5Quge4Jt@nx64de-df6d00>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="j+byiAwReNWa+GwK"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <87zgwigvd6.fsf@mpe.ellerman.id.au>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YHH9+Xrn5Quge4Jt@nx64de-df6d00>
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Apr 10, 2021 at 09:35:21PM +0200, Grzegorz Szymaszek wrote:
+> The microSD card detect pin is physically connected to the MPU pin PI3.
+> The Device Tree configuration of the card detect pin was wrong—it was
+> set to pin PB7 instead. If such configuration was used, the kernel would
+> hang on “Waiting for root device” when booting from a microSD card.
+> 
+> Signed-off-by: Grzegorz Szymaszek <gszymaszek@short.pl>
+> ---
+>  arch/arm/boot/dts/stm32mp157c-odyssey.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp157c-odyssey.dts b/arch/arm/boot/dts/stm32mp157c-odyssey.dts
+> index a7ffec8f1516..be1dd5e9e744 100644
+> --- a/arch/arm/boot/dts/stm32mp157c-odyssey.dts
+> +++ b/arch/arm/boot/dts/stm32mp157c-odyssey.dts
+> @@ -64,7 +64,7 @@ &sdmmc1 {
+>  	pinctrl-0 = <&sdmmc1_b4_pins_a>;
+>  	pinctrl-1 = <&sdmmc1_b4_od_pins_a>;
+>  	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
+> -	cd-gpios = <&gpiob 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> +	cd-gpios = <&gpioi 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+>  	disable-wp;
+>  	st,neg-edge;
+>  	bus-width = <4>;
+> -- 
+> 2.30.2
+> 
 
---j+byiAwReNWa+GwK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+A gentle ping. FWIW, there was another patch that would deal with the
+same issue:
+<https://st-md-mailman.stormreply.com/pipermail/linux-stm32/2021-April/011132.html>,
+but it took the more radical approach of of replacing cd-gpios with
+broken-cd.
 
-On Wed, May 26, 2021 at 11:02:45AM +1000, Michael Ellerman wrote:
-> Wolfram Sang <wsa@kernel.org> writes:
-> > On Wed, May 12, 2021 at 09:20:48AM +1200, Chris Packham wrote:
-> >> The P2040/P2041 has an erratum where the i2c recovery scheme
-> >> documented in the reference manual (and currently implemented
-> >> in the i2c-mpc.c driver) does not work. The errata document
-> >> provides an alternative that does work. This series implements
-> >> that alternative and uses a property in the devicetree to
-> >> decide when the alternative mechanism is needed.
-> >
-> > The series looks good to me. Usually, I don't take DTS patches. This
-> > time I'd make an exception and apply all patches to for-current because
-> > this is clearly a bugfix. For that, I'd need an ack from PPC
-> > maintainers. Could I have those for patches 2+3?
->=20
-> Yep, done.
-
-Thanks! Series applied to for-current.
-
-
---j+byiAwReNWa+GwK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmCv+L4ACgkQFA3kzBSg
-Kbaccg//U0FSkmTl8Shy+mkH05iCQ7dM++sZ0S6Zn+tMKSW8773bwEJp4nfYEo/d
-FTo5Z5b3tcAXho8jgOf5dY21uTGnXPiExKweICAaxIAbXqVkBzlVN+PoRXQe5PCx
-cqCEkgeyMALeS8CRpprb4Vst5YTX1nld6w/cNPWERphNImNBvV0lqomgU39JmoP5
-3CqeRrBUpjwmpTwX1r+sgfJ797EVAygGd1lWvq9qOnP/oojT94B69s6QDuZrgT3J
-vrzxGkuMZpBFnWTOQuYeYS64UYB7P6/wTas0RU1f4Pfl8wo0Y+JixtjD6kVQbceJ
-6qIOretW5JZOvs9b8Qu10dMMuOij+VnJsHu8kl1CkXupXUCw00qIjL02uqN2tv6V
-49Z3Qd2b8eXBrMIZCN6F09ZiA4Q6uPvhpsqN3WoDi1HqgdTW/DGlzJjtElG75zkW
-4sM/q2u7X95s+zy6KsNHnUrtdjEIKIjTzjDcdW6ZnVHatTVXzRJBqEaN/BZpFRoI
-0WdIEAT7k4LXVSeHR/+5EPYZK74Ltqi2sVJJBu+j3+YG3DvcSwfrTqSuh5N3e+j2
-A4vUewuGZ0uQcXkGNEW9FkDcTax3Em12JALcHNp6p1++i/RRoblFY0xDJI3o5yTh
-hsb5A4L0hPBBrok08lOeW7rjXaQnrABNGss7UatOSHEKcBbR5LY=
-=J+s0
------END PGP SIGNATURE-----
-
---j+byiAwReNWa+GwK--
+-- 
+Grzegorz
