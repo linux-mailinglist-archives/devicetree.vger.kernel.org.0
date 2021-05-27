@@ -2,57 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E5D6392A43
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 11:09:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E0C2392A4E
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 11:13:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235538AbhE0JK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 05:10:59 -0400
-Received: from muru.com ([72.249.23.125]:60950 "EHLO muru.com"
+        id S235620AbhE0JOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 05:14:48 -0400
+Received: from comms.puri.sm ([159.203.221.185]:57980 "EHLO comms.puri.sm"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235475AbhE0JK6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 May 2021 05:10:58 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id F289180A8;
-        Thu, 27 May 2021 09:09:29 +0000 (UTC)
-Date:   Thu, 27 May 2021 12:09:21 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Grygorii Strashko <grygorii.strashko@ti.com>
-Cc:     Gowtham Tammana <g-tammana@ti.com>, Suman Anna <s-anna@ti.com>,
-        bcousson@baylibre.com, robh+dt@kernel.org,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Nisanth Menon <nm@ti.com>
-Subject: Re: [PATCH v3] ARM: dts: dra7: Fix duplicate USB4 target module node
-Message-ID: <YK9hwV8DaC+d4OvV@atomide.com>
-References: <20210526213035.15448-1-g-tammana@ti.com>
- <YK8ykeNA9AsjB89I@atomide.com>
- <bd903d6a-2894-fc39-e431-5dfed04a3604@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bd903d6a-2894-fc39-e431-5dfed04a3604@ti.com>
+        id S230111AbhE0JOr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 May 2021 05:14:47 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 5C2CEE2060;
+        Thu, 27 May 2021 02:12:45 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 9KSI5XCGNRDg; Thu, 27 May 2021 02:12:44 -0700 (PDT)
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     mchehab@kernel.org, robh@kernel.org,
+        krzysztof.kozlowski@canonical.com,
+        laurent.pinchart@ideasonboard.com
+Cc:     kernel@puri.sm, paul.kocialkowski@bootlin.com, shawnx.tu@intel.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Martin Kepplinger <martin.kepplinger@puri.sm>
+Subject: [PATCH v1 0/4] Add support for the Hynix Hi-846 camera
+Date:   Thu, 27 May 2021 11:12:17 +0200
+Message-Id: <20210527091221.3335998-1-martin.kepplinger@puri.sm>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Grygorii Strashko <grygorii.strashko@ti.com> [210527 09:03]:
-> On 27/05/2021 08:48, Tony Lindgren wrote:
-> > But let's keep the target-module@140000 here as it puts it in the right
-> > location rather than directly on the ocp. Let's mark it with
-> > status = "disabled" in dra7-l4.dtsi, and add a comment noting it's only
-> > available on dra74x. So similar to what you had in your v1 patch, except
-> > disabled.
-> 
-> My preference would be not to mix SoC variant specific modules in common module,
-> and fix dra74x instead by placing usb4 node in proper place:
-> 
-> &l4_per3 {						/* 0x48800000 */
-> 	segment@0 {	
-> -->
+hi,
 
-Yeah that's even better, and leaves out status = "disabled".
-Sounds good to me.
+This patchset add support for the SK Hynix Hi-846 CMOS images sensor.
+It includes documentation, dt-bindings and the driver.
 
-Regards,
+best wishes,
 
-Tony
+                              martin
+
+
+Martin Kepplinger (4):
+  dt-bindings: vendor-prefixes: Add SK Hynix Inc.
+  dt-bindings: media: document SK Hynix Hi-846 MIPI CSI-2 8M pixel
+    sensor
+  media: i2c: add driver for the SK Hynix Hi-846 8M pixel camera
+  Documentation: i2c-cardlist: add the Hynix hi846 sensor
+
+ .../admin-guide/media/i2c-cardlist.rst        |    1 +
+ .../bindings/media/i2c/hynix,hi846.yaml       |   99 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ MAINTAINERS                                   |    6 +
+ drivers/media/i2c/Kconfig                     |   13 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/hi846.c                     | 2212 +++++++++++++++++
+ 7 files changed, 2334 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+ create mode 100644 drivers/media/i2c/hi846.c
+
+-- 
+2.30.2
+
