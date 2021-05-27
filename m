@@ -2,128 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF7CA392498
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 03:53:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9174E3924B4
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 04:08:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230330AbhE0BzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 21:55:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46656 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229956AbhE0BzQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 21:55:16 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3604EC061574;
-        Wed, 26 May 2021 18:53:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
-        Subject:Sender:Reply-To:Content-ID:Content-Description;
-        bh=fh/yRMJ1F32aHQNiWA/z1UgKftrEngIdgah6/d6uuZE=; b=Ts7MJv1gUG11Oi6vk5N4467MwP
-        P3yaf93tnzSWSpEXiGQZdR7+pyjsW3rcqufLqrbokUzyfu7BMHuIC1u09iQuYpky2lupZHsoCCLZd
-        eEbTrLSmYg35IIJYbLtfd3Z3T0AU//6lwZ+ogEbw9CXotS6R8jeKuEqIYSUbaHQ+ndZWq28CVVA0J
-        4FonenWk+YSqnrrApIKxw6OZDRV0Gs93tqzKmRP7LDEzwRzJV9njOoaSGK8q6RGvAoARy9CqoDKvb
-        nvj7AHzokjsU+0G4DBWo8qIyef3PF9RUvPqZBhvflNts7mB5XOGk0Zq8ECervQ17k9Y5iIRILVHzb
-        iavVe2TA==;
-Received: from [2601:1c0:6280:3f0::ce7d]
-        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1lm5DR-001cfW-Qt; Thu, 27 May 2021 01:53:41 +0000
-Subject: Re: [PATCH v2] OF: of_address: clean up OF stub & extern functions
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        kernel test robot <lkp@intel.com>
-References: <20210524190919.2616-1-rdunlap@infradead.org>
- <CAL_JsqLCzFN81vbN=Y5hpvW_u=h9oWPSyK6zrO9kXr9pPArt1Q@mail.gmail.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <9e6962f6-5d70-73a0-165b-5a4bfd594b39@infradead.org>
-Date:   Wed, 26 May 2021 18:53:40 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        id S233607AbhE0CKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 22:10:25 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:59533 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S233315AbhE0CKZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 22:10:25 -0400
+X-UUID: 0f10ba085faa4a94b2f2a481eb313bd5-20210527
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=y1NwRKA/u3VyZk5yDpibM8d4jcADHSOdUWDHaiYEFYk=;
+        b=irhwIYjPuRg56l69G4TTPm0KQngtkI4HKyewE63x9Rdo1FRr5ix/Zdt7KD2mDIFn1ys75PqWNpQUEWEFs1xng5nWcC4CBN1VmgKjDCYxW6woOki4hInldDpPBsjDAF0T/koUw9fP9Zfojq/P4OWfFxXxtVc9wen5zWptLGqaiKk=;
+X-UUID: 0f10ba085faa4a94b2f2a481eb313bd5-20210527
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <hsin-hsiung.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 277139762; Thu, 27 May 2021 10:08:51 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 27 May 2021 10:08:49 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 27 May 2021 10:08:49 +0800
+Message-ID: <1622081330.22138.0.camel@mtksdaap41>
+Subject: Re: [PATCH v8 4/4] arm64: dts: mt8192: add spmi node
+From:   Hsin-hsiung Wang <hsin-hsiung.wang@mediatek.com>
+To:     kernel test robot <lkp@intel.com>
+CC:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <kbuild-all@lists.01.org>, <clang-built-linux@googlegroups.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Thu, 27 May 2021 10:08:50 +0800
+In-Reply-To: <202105270021.c336cIqx-lkp@intel.com>
+References: <1622025344-31888-5-git-send-email-hsin-hsiung.wang@mediatek.com>
+         <202105270021.c336cIqx-lkp@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqLCzFN81vbN=Y5hpvW_u=h9oWPSyK6zrO9kXr9pPArt1Q@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/26/21 12:06 PM, Rob Herring wrote:
-> On Mon, May 24, 2021 at 2:09 PM Randy Dunlap <rdunlap@infradead.org> wrote:
->>
->> Adjust <linux/of_address.h> so that stubs are present when
->> CONFIG_OF is not set *or* OF is set but OF_ADDRESS is not set.
->>
->> This eliminates 2 build errors on arch/s390/ when HAS_IOMEM
->> is not set (so OF_ADDRESS is not set).
->> I.e., it provides a stub for of_iomap() when one was previously
->> not provided as well as removing some duplicate externs.
-> 
-> Personally, I think we should get rid of HAS_IOMEM or at least most of
-> its usage in kconfig. It has little purpose beyond hiding drivers in
-> kconfig and mainly for UML though I think UML no longer needs that
-> IIRC. (I'm not wild about 'depends on OF' either).
-
-There are only over 800 of the latter.
-
-> 
->> s390-linux-ld: drivers/irqchip/irq-al-fic.o: in function `al_fic_init_dt':
->> irq-al-fic.c:(.init.text+0x7a): undefined reference to `of_iomap'
->> s390-linux-ld: drivers/clocksource/timer-of.o: in function `timer_of_init':
->> timer-of.c:(.init.text+0xa4): undefined reference to `of_iomap'
->>
->> Tested with many randconfig builds, but there could still be some
->> hidden problem here.
->>
->> Fixes: 4acf4b9cd453 ("of: move of_address_to_resource and of_iomap declarations from sparc")
->> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
->> Cc: Rob Herring <robh+dt@kernel.org>
->> Cc: Frank Rowand <frowand.list@gmail.com>
->> Cc: devicetree@vger.kernel.org
->> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->> Reported-by: kernel test robot <lkp@intel.com>
->> ---
->> v2: handle SPARC as a special case since it provides its own versions of
->>     of_address_to_resource() and of_iomap();
->>     fix build errors reported by lkp/ktr and address comments from Laurent;
->>     do more randconfig build testing;
->>
->>  include/linux/of_address.h |   11 +++++++----
->>  1 file changed, 7 insertions(+), 4 deletions(-)
->>
->> --- linux-next-20210524.orig/include/linux/of_address.h
->> +++ linux-next-20210524/include/linux/of_address.h
->> @@ -106,11 +106,12 @@ static inline bool of_dma_is_coherent(st
->>  }
->>  #endif /* CONFIG_OF_ADDRESS */
->>
->> -#ifdef CONFIG_OF
->> +#ifdef CONFIG_SPARC /* SPARC has its own versions of these */
-> 
-> The whole point of CONFIG_OF_ADDRESS is really just for SPARC. So I
-> don't really like the mixture of the ifdefs here and in kconfig. It
-> looks only more fragile.
-> 
-> Can we drop the HAS_IOMEM dependency from CONFIG_OF_ADDRESS and then
-> fix the fallout from that? That would also remove all the other build
-> time dependencies on HAS_IOMEM.
-
-so change
-config OF_ADDRESS
-	def_bool y
-	depends on !SPARC && (HAS_IOMEM || UML)
-
-to
-config OF_ADDRESS
-	def_bool y
-	depends on !SPARC
-
-
-I'll run some builds and see what all breaks.
-
-thanks.
--- 
-~Randy
+SGksIFNpcnMNClRoYW5rcyBmb3IgdGhlIHJldmlldy4NClRoaXMgc2VyaWVzIGlzIGJhc2VkIG9u
+IENodW4tSmllJ3MgcGF0Y2hlc1sxXS4NCg0KWzFdDQpodHRwczovL3BhdGNod29yay5rZXJuZWwu
+b3JnL3Byb2plY3QvbGludXgtbWVkaWF0ZWsvbGlzdC8/c2VyaWVzPTQ4ODIzOQ0KDQpPbiBUaHUs
+IDIwMjEtMDUtMjcgYXQgMDA6NDYgKzA4MDAsIGtlcm5lbCB0ZXN0IHJvYm90IHdyb3RlOg0KPiBI
+aSBIc2luLUhzaXVuZywNCj4gDQo+IFRoYW5rIHlvdSBmb3IgdGhlIHBhdGNoISBZZXQgc29tZXRo
+aW5nIHRvIGltcHJvdmU6DQo+IA0KPiBbYXV0byBidWlsZCB0ZXN0IEVSUk9SIG9uIHJvYmgvZm9y
+LW5leHRdDQo+IFthbHNvIGJ1aWxkIHRlc3QgRVJST1Igb24gbWVkaWF0ZWsvZm9yLW5leHQgbGlu
+dXMvbWFzdGVyIHY1LjEzLXJjMyBuZXh0LTIwMjEwNTI2XQ0KPiBbSWYgeW91ciBwYXRjaCBpcyBh
+cHBsaWVkIHRvIHRoZSB3cm9uZyBnaXQgdHJlZSwga2luZGx5IGRyb3AgdXMgYSBub3RlLg0KPiBB
+bmQgd2hlbiBzdWJtaXR0aW5nIHBhdGNoLCB3ZSBzdWdnZXN0IHRvIHVzZSAnLS1iYXNlJyBhcyBk
+b2N1bWVudGVkIGluDQo+IGh0dHBzOi8vZ2l0LXNjbS5jb20vZG9jcy9naXQtZm9ybWF0LXBhdGNo
+XQ0KPiANCj4gdXJsOiAgICBodHRwczovL2dpdGh1Yi5jb20vMGRheS1jaS9saW51eC9jb21taXRz
+L0hzaW4tSHNpdW5nLVdhbmcvQWRkLVNQTUktc3VwcG9ydC1mb3ItTWVkaWF0ZWstTVQ2ODczLTgx
+OTItU29DLUlDLzIwMjEwNTI2LTE4MzgwMw0KPiBiYXNlOiAgIGh0dHBzOi8vZ2l0Lmtlcm5lbC5v
+cmcvcHViL3NjbS9saW51eC9rZXJuZWwvZ2l0L3JvYmgvbGludXguZ2l0IGZvci1uZXh0DQo+IGNv
+bmZpZzogYXJtNjQtcmFuZGNvbmZpZy1yMDE2LTIwMjEwNTI2IChhdHRhY2hlZCBhcyAuY29uZmln
+KQ0KPiBjb21waWxlcjogY2xhbmcgdmVyc2lvbiAxMy4wLjAgKGh0dHBzOi8vZ2l0aHViLmNvbS9s
+bHZtL2xsdm0tcHJvamVjdCA5OTE1NWU5MTNlOWJhZDVmN2Y4YTI0N2Y4YmIzYTNmZjNkYTc0YWYx
+KQ0KPiByZXByb2R1Y2UgKHRoaXMgaXMgYSBXPTEgYnVpbGQpOg0KPiAgICAgICAgIHdnZXQgaHR0
+cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2ludGVsL2xrcC10ZXN0cy9tYXN0ZXIvc2Jp
+bi9tYWtlLmNyb3NzIC1PIH4vYmluL21ha2UuY3Jvc3MNCj4gICAgICAgICBjaG1vZCAreCB+L2Jp
+bi9tYWtlLmNyb3NzDQo+ICAgICAgICAgIyBpbnN0YWxsIGFybTY0IGNyb3NzIGNvbXBpbGluZyB0
+b29sIGZvciBjbGFuZyBidWlsZA0KPiAgICAgICAgICMgYXB0LWdldCBpbnN0YWxsIGJpbnV0aWxz
+LWFhcmNoNjQtbGludXgtZ251DQo+ICAgICAgICAgIyBodHRwczovL2dpdGh1Yi5jb20vMGRheS1j
+aS9saW51eC9jb21taXQvNDIzYjRhMTY2MGY1MTU3ZGJhYzU2NmY5YzQ5OGM2MTkyN2YwOTAyMg0K
+PiAgICAgICAgIGdpdCByZW1vdGUgYWRkIGxpbnV4LXJldmlldyBodHRwczovL2dpdGh1Yi5jb20v
+MGRheS1jaS9saW51eA0KPiAgICAgICAgIGdpdCBmZXRjaCAtLW5vLXRhZ3MgbGludXgtcmV2aWV3
+IEhzaW4tSHNpdW5nLVdhbmcvQWRkLVNQTUktc3VwcG9ydC1mb3ItTWVkaWF0ZWstTVQ2ODczLTgx
+OTItU29DLUlDLzIwMjEwNTI2LTE4MzgwMw0KPiAgICAgICAgIGdpdCBjaGVja291dCA0MjNiNGEx
+NjYwZjUxNTdkYmFjNTY2ZjljNDk4YzYxOTI3ZjA5MDIyDQo+ICAgICAgICAgIyBzYXZlIHRoZSBh
+dHRhY2hlZCAuY29uZmlnIHRvIGxpbnV4IGJ1aWxkIHRyZWUNCj4gICAgICAgICBDT01QSUxFUl9J
+TlNUQUxMX1BBVEg9JEhPTUUvMGRheSBDT01QSUxFUj1jbGFuZyBtYWtlLmNyb3NzIEFSQ0g9YXJt
+NjQgDQo+IA0KPiBJZiB5b3UgZml4IHRoZSBpc3N1ZSwga2luZGx5IGFkZCBmb2xsb3dpbmcgdGFn
+IGFzIGFwcHJvcHJpYXRlDQo+IFJlcG9ydGVkLWJ5OiBrZXJuZWwgdGVzdCByb2JvdCA8bGtwQGlu
+dGVsLmNvbT4NCj4gDQo+IEFsbCBlcnJvcnMgKG5ldyBvbmVzIHByZWZpeGVkIGJ5ID4+KToNCj4g
+DQo+ID4+IEVycm9yOiBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5Mi5kdHNpOjI5
+OS4yNC0yNSBzeW50YXggZXJyb3INCj4gICAgRkFUQUwgRVJST1I6IFVuYWJsZSB0byBwYXJzZSBp
+bnB1dCB0cmVlDQo+IA0KPiAtLS0NCj4gMC1EQVkgQ0kgS2VybmVsIFRlc3QgU2VydmljZSwgSW50
+ZWwgQ29ycG9yYXRpb24NCj4gaHR0cHM6Ly9saXN0cy4wMS5vcmcvaHlwZXJraXR0eS9saXN0L2ti
+dWlsZC1hbGxAbGlzdHMuMDEub3JnDQoNCg==
 
