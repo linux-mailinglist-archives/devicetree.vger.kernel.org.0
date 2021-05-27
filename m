@@ -2,166 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70B1B392380
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 01:58:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F4643923AD
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 02:18:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234564AbhE0AA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 20:00:26 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:32804 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234615AbhE0AA0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 May 2021 20:00:26 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1lm3QE-0004pF-4E; Thu, 27 May 2021 01:58:46 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Ezequiel Garcia <ezequiel@collabora.com>,
-        Alex Bee <knaerzche@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-staging@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 05/10] media: hantro: add support for Rockchip RK3036
-Date:   Thu, 27 May 2021 01:58:45 +0200
-Message-ID: <3559518.1BCLMh4Saa@diego>
-In-Reply-To: <2640d65e-772b-6af4-f4be-8ed090693c22@gmail.com>
-References: <20210525152225.154302-1-knaerzche@gmail.com> <b65236f3b8bbf35411b536df8b260d9f8a9dbd80.camel@collabora.com> <2640d65e-772b-6af4-f4be-8ed090693c22@gmail.com>
+        id S233653AbhE0ATl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 20:19:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53574 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233562AbhE0ATk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 20:19:40 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E5A8C061574
+        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 17:18:07 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id o8so4034663ljp.0
+        for <devicetree@vger.kernel.org>; Wed, 26 May 2021 17:18:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5pNc1j9V/0p6zuELiqNdygegiQOxBrIeUuvDW7TcIWY=;
+        b=u1Rl4xfL89iqxQ3I4P3oGZ4wpAe+PBGqDwKdqMyu9mYOVCP4ALL2gPHog/RNWZ1TgA
+         JUC7/WtiRrgGzJNcyAOh6NKGy1vybU5k6WIju9Fu/vqJXYW7nQ2ZkkjqoYOwefdICDWb
+         jivNPY5ydsGtU+CWGSLtZk6oT1qxC2bvWq1l+w+m0TcnmFqMh3i1VbI3KyQ5Xe3Zib/O
+         SCaF/YvlU2sZ5YHCFp6sxgNlRAd/yWt+ZgpKI+V7dFTe5MhTJn9GO2CnrjUqm0QRETw5
+         ZGBz1Kdm2EBcuwT2850nF8W4PNN5as6mET0G8wiBTjSTHd1bOW/dMo8pnrnzntj7iUHd
+         jcuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5pNc1j9V/0p6zuELiqNdygegiQOxBrIeUuvDW7TcIWY=;
+        b=JAG8Qe3pBHdJ3ljXfqjP/nMoDrrZDRA/HQYJaKrwWyTPgyZ0MFT8zza1ypSh8jCXLX
+         KpgcpkT+L9TIU8oyM/2AWw6WS9kIPiSWWRBzhrXu/BgQ1V8a2Y9iNfNLczJDmWyje/xO
+         +xGxShcqFKel2DGcmZ2SCbWU010IrAYOo+MQleM7i7JVQos3Ql38uPoB32PanJoZOA44
+         yUIBBTAFc5smd+aRsN7Gf7iSVHNv6FbHd5Fmm4ZoHpnt+WcGv5SNE36ri8/peWo/GO+g
+         b9n41whnI0lRMrqIJ7KWZ0aeJouJJ44GRoXp9KNofNvwqPDviTQGek+B4pOgaRoLcZTJ
+         rhfg==
+X-Gm-Message-State: AOAM532MMC8RXjVPY3hWoSf8KvkSi/IoQbAuo1LOrFTbIU0fUq1ZGkWY
+        aIXBTyREIW+lwiH0v32Exd3JuRiWg5wnz9rET66vzg==
+X-Google-Smtp-Source: ABdhPJyE/PptaUPKadiYFnKrDVT7amcN42lpe+YkWB2i/2zdRUhO2B3HU8uvdIUr3250T1J7qnllzV/KArMH3sKr7mk=
+X-Received: by 2002:a2e:90c7:: with SMTP id o7mr469746ljg.368.1622074685623;
+ Wed, 26 May 2021 17:18:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20210511090122.6995-1-a-govindraju@ti.com>
+In-Reply-To: <20210511090122.6995-1-a-govindraju@ti.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 27 May 2021 02:17:54 +0200
+Message-ID: <CACRpkdZ829w3p+axRMBxQU7jyeWuyUew5MoFMSkuJ4dzpg9HgA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: gpio: gpio-davinci: Convert to json-schema
+To:     Aswath Govindraju <a-govindraju@ti.com>,
+        Marc Zyngier <maz@kernel.org>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, Keerthy <j-keerthy@ti.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, 27. Mai 2021, 01:27:59 CEST schrieb Alex Bee:
-> Hi Ezequiel,
-> 
-> Am 26.05.21 um 12:28 schrieb Ezequiel Garcia:
-> > Hi Alex,
-> >
-> > Thanks a lot for the patch.
-> >
-> > On Tue, 2021-05-25 at 17:22 +0200, Alex Bee wrote:
-> >> RK3036's VPU IP block is the same as RK3288 has, except that it doesn't
-> >> have an encoder, decoding is supported up to 1920x1088 only and the axi
-> >> clock can be set to 300 MHz max.
-> >>
-> >> Add a new RK3036 variant which reflect this differences.
-> >>
-> >> Signed-off-by: Alex Bee <knaerzche@gmail.com>
-> >> ---
-> >>   drivers/staging/media/hantro/hantro_drv.c    |  1 +
-> >>   drivers/staging/media/hantro/hantro_hw.h     |  1 +
-> >>   drivers/staging/media/hantro/rk3288_vpu_hw.c | 49 ++++++++++++++++++++
-> >>   3 files changed, 51 insertions(+)
-> >>
-> >> diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
-> >> index 38ea7b24036e..4f3c08e85bb8 100644
-> >> --- a/drivers/staging/media/hantro/hantro_drv.c
-> >> +++ b/drivers/staging/media/hantro/hantro_drv.c
-> >> @@ -490,6 +490,7 @@ static const struct of_device_id of_hantro_match[] = {
-> >>          { .compatible = "rockchip,rk3328-vpu", .data = &rk3328_vpu_variant, },
-> >>          { .compatible = "rockchip,rk3288-vpu", .data = &rk3288_vpu_variant, },
-> >>          { .compatible = "rockchip,rk3066-vpu", .data = &rk3066_vpu_variant, },
-> >> +       { .compatible = "rockchip,rk3036-vpu", .data = &rk3036_vpu_variant, },
-> >>   #endif
-> >>   #ifdef CONFIG_VIDEO_HANTRO_IMX8M
-> >>          { .compatible = "nxp,imx8mq-vpu", .data = &imx8mq_vpu_variant, },
-> >> diff --git a/drivers/staging/media/hantro/hantro_hw.h b/drivers/staging/media/hantro/hantro_hw.h
-> >> index de2bc367a15a..d8d6b0d3c3b3 100644
-> >> --- a/drivers/staging/media/hantro/hantro_hw.h
-> >> +++ b/drivers/staging/media/hantro/hantro_hw.h
-> >> @@ -164,6 +164,7 @@ extern const struct hantro_variant rk3399_vpu_variant;
-> >>   extern const struct hantro_variant rk3328_vpu_variant;
-> >>   extern const struct hantro_variant rk3288_vpu_variant;
-> >>   extern const struct hantro_variant rk3066_vpu_variant;
-> >> +extern const struct hantro_variant rk3036_vpu_variant;
-> >>   extern const struct hantro_variant imx8mq_vpu_variant;
-> >>   extern const struct hantro_variant sama5d4_vdec_variant;
-> >>   
-> >> diff --git a/drivers/staging/media/hantro/rk3288_vpu_hw.c b/drivers/staging/media/hantro/rk3288_vpu_hw.c
-> >> index 29805c4bd92f..c4684df4e012 100644
-> >> --- a/drivers/staging/media/hantro/rk3288_vpu_hw.c
-> >> +++ b/drivers/staging/media/hantro/rk3288_vpu_hw.c
-> >> @@ -174,6 +174,13 @@ static irqreturn_t rk3288_vepu_irq(int irq, void *dev_id)
-> >>          return IRQ_HANDLED;
-> >>   }
-> >>   
-> >> +static int rk3036_vpu_hw_init(struct hantro_dev *vpu)
-> >> +{
-> >> +       /* Bump ACLKs to max. possible freq. to improve performance. */
-> >> +       clk_set_rate(vpu->clocks[0].clk, RK3066_ACLK_MAX_FREQ);
-> >> +       return 0;
-> >> +}
-> >> +
-> >>   static int rk3066_vpu_hw_init(struct hantro_dev *vpu)
-> >>   {
-> >>          /* Bump ACLKs to max. possible freq. to improve performance. */
-> >> @@ -209,6 +216,27 @@ static void rk3288_vpu_enc_reset(struct hantro_ctx *ctx)
-> >>   /*
-> >>    * Supported codec ops.
-> >>    */
-> >> +static const struct hantro_codec_ops rk3036_vpu_codec_ops[] = {
-> >> +       [HANTRO_MODE_H264_DEC] = {
-> >> +               .run = hantro_g1_h264_dec_run,
-> >> +               .reset = hantro_g1_reset,
-> >> +               .init = hantro_h264_dec_init,
-> >> +               .exit = hantro_h264_dec_exit,
-> >> +       },
-> >> +       [HANTRO_MODE_MPEG2_DEC] = {
-> >> +               .run = hantro_g1_mpeg2_dec_run,
-> >> +               .reset = hantro_g1_reset,
-> >> +               .init = hantro_mpeg2_dec_init,
-> >> +               .exit = hantro_mpeg2_dec_exit,
-> >> +       },
-> >> +       [HANTRO_MODE_VP8_DEC] = {
-> >> +               .run = hantro_g1_vp8_dec_run,
-> >> +               .reset = hantro_g1_reset,
-> >> +               .init = hantro_vp8_dec_init,
-> >> +               .exit = hantro_vp8_dec_exit,
-> >> +       },
-> >> +};
-> >> +
-> >>   static const struct hantro_codec_ops rk3066_vpu_codec_ops[] = {
-> >>          [HANTRO_MODE_JPEG_ENC] = {
-> >>                  .run = hantro_h1_jpeg_enc_run,
-> >> @@ -269,6 +297,10 @@ static const struct hantro_codec_ops rk3288_vpu_codec_ops[] = {
-> >>    * VPU variant.
-> >>    */
-> >>   
-> >> +static const struct hantro_irq rk3036_irqs[] = {
-> >> +       { "vdpu", hantro_g1_irq },
-> >> +};
-> >> +
-> >>   static const struct hantro_irq rk3288_irqs[] = {
-> >>          { "vepu", rk3288_vepu_irq },
-> >>          { "vdpu", hantro_g1_irq },
-> >> @@ -283,6 +315,23 @@ static const char * const rk3288_clk_names[] = {
-> >>          "aclk", "hclk"
-> >>   };
-> >>   
-> >> +const struct hantro_variant rk3036_vpu_variant = {
-> >> +       .dec_offset = 0x400,
-> > If it doesn't have an encoder, then you should just
-> > use dec_offset = 0x0.
-> >
-> > Thanks,
-> > Ezequiel
-> >
-> That would mean, I'd have to adapt the register offset in the device 
-> tree - I'd prefer to keep it in line with the TRM. Unless you insist, 
-> I'd like to keep it this way (It's , btw, the very same for RK3328).
+On Tue, May 11, 2021 at 11:01 AM Aswath Govindraju <a-govindraju@ti.com> wrote:
 
-I'd agree with Alex ... ideally the devicetree should match the block
-register area from the TRM not some internal offset.
-[DT describes hardware etc etc ;-) ]
+Just a drive-by comment (not your problem right now)
 
-Heiko
+> +      /* HW Interrupts mapped to GPIO pins */
+> +      interrupts = <GIC_SPI 120 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 121 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 122 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 123 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 124 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 125 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 126 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 127 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 128 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 129 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 130 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 131 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 132 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 133 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 134 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 135 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 136 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 137 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 138 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 139 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 140 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 141 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 142 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 143 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 144 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 145 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 146 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 147 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 148 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 149 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 150 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 151 IRQ_TYPE_EDGE_RISING>;
 
+This is quite obviously a hiearchical interrupt controller. I think
+this appeared in the kernel before the GIC could even deal with
+hierarchical IRQs but it should really be fixed to make the platform
+modern.
 
+Yours,
+Linus Walleij
