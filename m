@@ -2,81 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC02D3937C2
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 23:08:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D8EA393811
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 23:41:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233800AbhE0VJf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 17:09:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54378 "EHLO
+        id S229883AbhE0VnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 17:43:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233387AbhE0VJe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 17:09:34 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E633C061574;
-        Thu, 27 May 2021 14:08:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:MIME-Version:
-        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=wrfBx906CAcUfC7KWOT1YXQ50wHppB1mcK+ZUbjeBQo=; b=gLc286LMISIPMTHboduUKQzHIk
-        nZWih5TD9N4LOV0BNOoMJbLspToFUZdGToy0TjJ68OiMDchcomL0qoKL1PPrJdsrItW3iV0c+wUWg
-        RehpL2OYYVdc1DdmyCN6tIscvHMv9iIUY9W3ayKMb1mlLhX0XkkM2pZkZCccaLvPH/Rg=;
-Received: from p200300ccff1430001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff14:3000:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1lmNEP-0005M1-24; Thu, 27 May 2021 23:07:53 +0200
-Received: from andi by aktux with local (Exim 4.92)
-        (envelope-from <andreas@kemnade.info>)
-        id 1lmNEO-0000gy-Oc; Thu, 27 May 2021 23:07:52 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH] ARM: dts: imx6sl: add PXP module
-Date:   Thu, 27 May 2021 23:07:42 +0200
-Message-Id: <20210527210742.2609-1-andreas@kemnade.info>
-X-Mailer: git-send-email 2.29.2
+        with ESMTP id S229753AbhE0Vm7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 17:42:59 -0400
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D03ADC061574
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 14:41:23 -0700 (PDT)
+Received: by mail-qk1-x736.google.com with SMTP id k4so2248720qkd.0
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 14:41:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1zVv1GjmK07EWaIPDoxGxKRBfboRr4vWM9HdAWgd8h8=;
+        b=gFbhrH/lrOqgsguvnI/seGtIdQLXd0j1mB0K0q/fZNVu9/dKg42cRWlvGWBMdLcmsm
+         GR0LhjRyfauN/Us2dCVxfMDz0prbbMtTpZJJjo+6Ee/old3HeprB1ckBgqS2/neIatq6
+         DXeRV+iVk5XYHVkdu0Vcf+TzEWtQYMSmh4Myk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1zVv1GjmK07EWaIPDoxGxKRBfboRr4vWM9HdAWgd8h8=;
+        b=SxaPBVKoEUv/Rhhah0mDomUrI8N79OMIuVutp/FMDnMta1Oh9SlynOeCUnivW2t+od
+         CKoChm82ZHsBQ+17hXRk/Gv+x9QJ/Ps2bea0DFPSA6fqKG3JPbq/X0E9qsc7ebHPRRlm
+         srHc7Trcu9GjZppphRjY+6qzUhHd7sjUx48Rr7yuSVznyziHQRSVNOQCvS+p+tzNYNEc
+         cIiCIs0DDUAznto2vvVhNFPMMBaIKJC2BkOixlemuSOSEF2Xh4/VaKB0xcB/b+0v+pbJ
+         jLXD0voYhDvfJeNjyIoRr5Tg2ieY5EHC2PitJcGR7aWyvwHprxbVbFdTEx9aJ1Na6XGo
+         Idww==
+X-Gm-Message-State: AOAM533iEpo92ZTra9TsGlagrqGCR1cpe2ktGg6uUvkFwvVIW0DqLsaU
+        BJIJ9IAmliph/QFE8oIvlXH1YDH0yyFHrg==
+X-Google-Smtp-Source: ABdhPJwed7ILYNZgAH2SA2KdtaPGjM+h7vPmnF4V6moohFIRE948D7GqdL9dmU+bIEMup07YBWNb4A==
+X-Received: by 2002:a37:5b43:: with SMTP id p64mr626370qkb.131.1622151682728;
+        Thu, 27 May 2021 14:41:22 -0700 (PDT)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id w7sm2088331qtn.91.2021.05.27.14.41.20
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 May 2021 14:41:20 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id f9so2708592ybo.6
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 14:41:20 -0700 (PDT)
+X-Received: by 2002:a25:8191:: with SMTP id p17mr7998436ybk.405.1622151679762;
+ Thu, 27 May 2021 14:41:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Score: -1.0 (-)
+References: <1621927831-29471-1-git-send-email-rajeevny@codeaurora.org>
+ <1621927831-29471-2-git-send-email-rajeevny@codeaurora.org>
+ <CAD=FV=WzQ0Oc=e3kmNeBZUA+P1soKhBk8zt7bG1gqJ-Do-Tq_w@mail.gmail.com> <42db3a26684a5329287d57e1e78d0475@codeaurora.org>
+In-Reply-To: <42db3a26684a5329287d57e1e78d0475@codeaurora.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 27 May 2021 14:41:08 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UuWuKibpT15McweuZ24qxsSAsSvJ3Q2MbZqgw5oggBVQ@mail.gmail.com>
+Message-ID: <CAD=FV=UuWuKibpT15McweuZ24qxsSAsSvJ3Q2MbZqgw5oggBVQ@mail.gmail.com>
+Subject: Re: [v4 1/4] drm/panel-simple: Add basic DPCD backlight support
+To:     Rajeev Nandan <rajeevny@codeaurora.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        mkrishn@codeaurora.org, Sam Ravnborg <sam@ravnborg.org>,
+        Jani Nikula <jani.nikula@intel.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kalyan Thota <kalyan_t@codeaurora.org>,
+        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
+        freedreno <freedreno@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-While the EPDC is optional, all editions have the PXP module, so adding
-it to the corresponding .dtsi
-Information taken from freescale kernel, compared with the
-reference manual and tested by a separate program.
+Hi,
 
-Since it does not depend on external wiring, the
-status = "disabled" is left out here.
+On Thu, May 27, 2021 at 5:21 AM <rajeevny@codeaurora.org> wrote:
+>
+> >> @@ -171,6 +172,19 @@ struct panel_desc {
+> >>
+> >>         /** @connector_type: LVDS, eDP, DSI, DPI, etc. */
+> >>         int connector_type;
+> >> +
+> >> +       /**
+> >> +        * @uses_dpcd_backlight: Panel supports eDP dpcd backlight
+> >> control.
+> >> +        *
+> >> +        * Set true, if the panel supports backlight control over eDP
+> >> AUX channel
+> >> +        * using DPCD registers as per VESA's standard.
+> >> +        */
+> >> +       bool uses_dpcd_backlight;
+> >> +};
+> >> +
+> >> +struct edp_backlight {
+> >> +       struct backlight_device *dev;
+> >
+> > Can you pick a name other than "dev". In my mind "dev" means you've
+> > got a "struct device" or a "struct device *".
+>
+> In the backlight.h "bd" is used for "struct backlight_device". I can use
+> "bd"?
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- arch/arm/boot/dts/imx6sl.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+That would be OK w/ me since it's not "dev". In theory you could also
+call it "base" like panel-simple does with the base class drm_panel,
+but I'll leave that up to you. It's mostly that in my brain "dev" is
+reserved for "struct device" but otherwise I'm pretty flexible.
 
-diff --git a/arch/arm/boot/dts/imx6sl.dtsi b/arch/arm/boot/dts/imx6sl.dtsi
-index 997b96c1c47b..6be83e863f19 100644
---- a/arch/arm/boot/dts/imx6sl.dtsi
-+++ b/arch/arm/boot/dts/imx6sl.dtsi
-@@ -762,8 +762,11 @@
- 			};
- 
- 			pxp: pxp@20f0000 {
-+				compatible = "fsl,imx6sl-pxp", "fsl,imx6ull-pxp";
- 				reg = <0x020f0000 0x4000>;
- 				interrupts = <0 98 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clks IMX6SL_CLK_PXP_AXI>;
-+				clock-names = "axi";
- 			};
- 
- 			epdc: epdc@20f4000 {
--- 
-2.20.1
 
+> >> +       struct drm_edp_backlight_info info;
+> >>  };
+> >>
+> >>  struct panel_simple {
+> >> @@ -194,6 +208,8 @@ struct panel_simple {
+> >>
+> >>         struct edid *edid;
+> >>
+> >> +       struct edp_backlight *edp_bl;
+> >> +
+> >
+> > I don't think you need to add this pointer. See below for details, but
+> > basically the backlight device should be in base.backlight. Any code
+> > that needs the containing structure can use the standard
+> > "container_of" syntax.
+> >
+>
+> The documentation of the "struct drm_panel -> backlight" mentions
+> "backlight is set by drm_panel_of_backlight() and drivers shall not
+> assign it."
+> That's why I was not sure if I should touch that part. Because of this,
+> I added
+> backlight enable/disable calls inside panel_simple_disable/enable().
+
+Fair enough. In my opinion (subject to being overridden by the adults
+in the room), if you move your backlight code into drm_panel.c and
+call it drm_panel_dp_aux_backlight() then it's fair game to use. This
+basically means that it's no longer a "driver" assigning it since it's
+being done in drm_panel.c. ;-) Obviously you'd want to update the
+comment, too...
+
+
+> >> +               err = drm_panel_of_backlight(&panel->base);
+> >> +               if (err)
+> >> +                       goto disable_pm_runtime;
+> >> +       }
+> >
+> > See above where I'm suggesting some different logic. Specifically:
+> > always try the drm_panel_of_backlight() call and then fallback to the
+> > AUX backlight if "panel->base.backlight" is NULL and "panel->aux" is
+> > not NULL.
+>
+> What I understood:
+> 1. Create a new API drm_panel_dp_aux_backlight() in drm_panel.c
+> 1.1. Register DP AUX backlight if "struct drm_dp_aux" is given and
+>      drm_edp_backlight_supported()
+> 2. Create a call back function for backlight ".update_status()" inside
+> drm_panel.c ?
+>    This function should also handle the backlight enable/disable
+> operations.
+> 3. Use the suggested rules to call drm_panel_dp_aux_backlight() as a
+> fallback, if
+>     no backlight is specified in the DT.
+> 4. Remove the @uses_dpcd_backlight flag from panel_desc as this should
+> be auto-detected.
+
+This sounds about right to me.
+
+As per all of my reviews in the DRM subsystem, this is all just my
+opinion and if someone more senior in DRM contradicts me then, of
+course, you might have to change directions. Hopefully that doesn't
+happen but it's always good to give warning...
+
+-Doug
