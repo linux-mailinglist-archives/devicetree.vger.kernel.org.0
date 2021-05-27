@@ -2,93 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E844939293D
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 10:09:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BCD1392976
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 10:23:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235226AbhE0ILI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 04:11:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45882 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235224AbhE0ILH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 04:11:07 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68E2AC061574;
-        Thu, 27 May 2021 01:09:35 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id y202so3049346pfc.6;
-        Thu, 27 May 2021 01:09:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=4JOQDMQ5MrNkV0pXoypIfdZ9ej9lE8plMzguR7gL1n0=;
-        b=fCVBdkC/hlcE+GNGGkR4uOqOIWj+8rVSVLTJgXTJHV2qwZ+yRIIrDzXGNX/E+oBTQ/
-         QeGlHmeDSKFWi5mnNbzEJl9rIr1U3S8c3FWe+hGd96xHAtjoUPf5wBxNhhHDMSH93O5Z
-         d4rB9fENuiiQA1KU04B3OstTXyFhqxdEEIQXJUiVfa/XBWw7vS1//Kv/dy8gXwu48vPo
-         z77LhvU7RauAsplBcKfGFF5R0+R+0seL7mL+TOS1HfhWrVkLuk9r9URSLQbNbuh97o1g
-         VrRyjz24EOsP4tI99J9YS5jpICtPmunCiRpVZPVL/eOKIwvOxUEMZFjcT4sOdKuTCegb
-         BiZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=4JOQDMQ5MrNkV0pXoypIfdZ9ej9lE8plMzguR7gL1n0=;
-        b=r9SV5KyJiLk8TSdOP3X+uU/NxXDDdfoZgoILWFEY6Y8ktk26G5OmrPStDlm6XwwIbh
-         FdxaTwUcYVRD8Zyxp6ticmBwKqQxs57jNXy4pLB1kep6IiFC/lWM1yZ4MphRpKAw9yYz
-         4+tBJ8RngxKpmLkOGGp/F39TWW1dJghgimzUtjhY2XfYZ+ddRN4mZqVq81jQJR8d5liX
-         55n+kI8Zz7jeuZCYbTO3xp9KGiqS6Ja6O5r2lmHWUFZHV8Lvnop4XI2aHMhsKPOBnKcL
-         ifl4tpU3YYkgz1/O8TyfX5i3Rkxs+1TywF2iRg2Qh9xfDChJw0a2lG/6Ms8XgQvOdfJT
-         hpyw==
-X-Gm-Message-State: AOAM530e6Zw68bS7fVyLEzEEpEM5vQEgUhc3DSUJ4q1zs/nkwnF0GTpC
-        7GvGh2RW01zCbvTn9VkV+PbUNgJLngUCBQ==
-X-Google-Smtp-Source: ABdhPJyyFBddDD6f9J6DOv05HPPCjTNyeinjIAfFGt00voOAkCON8yupnyGP28ikePP0g4BCsNB3hg==
-X-Received: by 2002:aa7:9438:0:b029:2df:258e:7f10 with SMTP id y24-20020aa794380000b02902df258e7f10mr2162599pfo.79.1622102975009;
-        Thu, 27 May 2021 01:09:35 -0700 (PDT)
-Received: from lenovo.spreadtrum.com ([117.18.48.102])
-        by smtp.gmail.com with ESMTPSA id t141sm1267362pfc.3.2021.05.27.01.09.32
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 27 May 2021 01:09:34 -0700 (PDT)
-From:   Orson Zhai <orsonzhai@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Saravana Kannan <saravanak@google.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Orson Zhai <orson.zhai@unisoc.com>
-Subject: [PATCH] of: property: Add fw_devlink support for pwms
-Date:   Thu, 27 May 2021 16:09:10 +0800
-Message-Id: <1622102950-31688-1-git-send-email-orsonzhai@gmail.com>
-X-Mailer: git-send-email 2.7.4
+        id S235409AbhE0IYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 04:24:53 -0400
+Received: from mga02.intel.com ([134.134.136.20]:37972 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235359AbhE0IYx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 May 2021 04:24:53 -0400
+IronPort-SDR: Lhi7fOBKCE7Zu6qrkAjKI53zu6LAETiA2EyJT6noTxi/ju0SfQReSgiLtLucNPrAT65AJwFJSe
+ oHDE/KH9KO+Q==
+X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="189799606"
+X-IronPort-AV: E=Sophos;i="5.82,334,1613462400"; 
+   d="scan'208";a="189799606"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2021 01:23:19 -0700
+IronPort-SDR: 6Dbe1S41vi/PfqU5I9/mmPBexyuLn5xnamuBsUggtOZavmdxnAcz9zbcSQ8VReaaTGOg41WoPD
+ zrfDMfkirZjg==
+X-IronPort-AV: E=Sophos;i="5.82,334,1613462400"; 
+   d="scan'208";a="477387908"
+Received: from shao2-debian.sh.intel.com (HELO [10.239.13.11]) ([10.239.13.11])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2021 01:23:17 -0700
+Subject: Re: [kbuild-all] Re: [PATCH v8 4/4] arm64: dts: mt8192: add spmi node
+To:     Hsin-hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        kernel test robot <lkp@intel.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        kbuild-all@lists.01.org, clang-built-linux@googlegroups.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <1622025344-31888-5-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <202105270021.c336cIqx-lkp@intel.com> <1622081330.22138.0.camel@mtksdaap41>
+From:   Rong Chen <rong.a.chen@intel.com>
+Message-ID: <d9a87eca-ae28-8da4-d78e-ae2602201648@intel.com>
+Date:   Thu, 27 May 2021 16:22:03 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <1622081330.22138.0.camel@mtksdaap41>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Orson Zhai <orson.zhai@unisoc.com>
+Hi Hsin-Hsiung,
 
-pwms is often required by backlight in embedded devices. Add device link
-support for pwms as well.
+Thanks for the clarification, the bot can't parse the previous patchset 
+from a link,
+but can get the base from '--base' option in 
+https://git-scm.com/docs/git-format-patch.
 
-Signed-off-by: Orson Zhai <orson.zhai@unisoc.com>
----
- drivers/of/property.c | 2 ++
- 1 file changed, 2 insertions(+)
+Best Regards,
+Rong Chen
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 6c02863..93be977 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1287,6 +1287,7 @@ DEFINE_SIMPLE_PROP(pinctrl6, "pinctrl-6", NULL)
- DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
- DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
- DEFINE_SIMPLE_PROP(remote_endpoint, "remote-endpoint", NULL)
-+DEFINE_SIMPLE_PROP(pwms, "pwms", NULL)
- DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
- DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
- 
-@@ -1371,6 +1372,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_pinctrl7, },
- 	{ .parse_prop = parse_pinctrl8, },
- 	{ .parse_prop = parse_remote_endpoint, .node_not_dev = true, },
-+	{ .parse_prop = parse_pwms, },
- 	{ .parse_prop = parse_gpio_compat, },
- 	{ .parse_prop = parse_interrupts, },
- 	{ .parse_prop = parse_regulators, },
--- 
-2.7.4
+On 5/27/21 10:08 AM, Hsin-hsiung Wang wrote:
+> Hi, Sirs
+> Thanks for the review.
+> This series is based on Chun-Jie's patches[1].
+>
+> [1]
+> https://patchwork.kernel.org/project/linux-mediatek/list/?series=488239
+>
+> On Thu, 2021-05-27 at 00:46 +0800, kernel test robot wrote:
+>> Hi Hsin-Hsiung,
+>>
+>> Thank you for the patch! Yet something to improve:
+>>
+>> [auto build test ERROR on robh/for-next]
+>> [also build test ERROR on mediatek/for-next linus/master v5.13-rc3 next-20210526]
+>> [If your patch is applied to the wrong git tree, kindly drop us a note.
+>> And when submitting patch, we suggest to use '--base' as documented in
+>> https://git-scm.com/docs/git-format-patch]
+>>
+>> url:    https://github.com/0day-ci/linux/commits/Hsin-Hsiung-Wang/Add-SPMI-support-for-Mediatek-MT6873-8192-SoC-IC/20210526-183803
+>> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+>> config: arm64-randconfig-r016-20210526 (attached as .config)
+>> compiler: clang version 13.0.0 (https://github.com/llvm/llvm-project 99155e913e9bad5f7f8a247f8bb3a3ff3da74af1)
+>> reproduce (this is a W=1 build):
+>>          wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>>          chmod +x ~/bin/make.cross
+>>          # install arm64 cross compiling tool for clang build
+>>          # apt-get install binutils-aarch64-linux-gnu
+>>          # https://github.com/0day-ci/linux/commit/423b4a1660f5157dbac566f9c498c61927f09022
+>>          git remote add linux-review https://github.com/0day-ci/linux
+>>          git fetch --no-tags linux-review Hsin-Hsiung-Wang/Add-SPMI-support-for-Mediatek-MT6873-8192-SoC-IC/20210526-183803
+>>          git checkout 423b4a1660f5157dbac566f9c498c61927f09022
+>>          # save the attached .config to linux build tree
+>>          COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross ARCH=arm64
+>>
+>> If you fix the issue, kindly add following tag as appropriate
+>> Reported-by: kernel test robot <lkp@intel.com>
+>>
+>> All errors (new ones prefixed by >>):
+>>
+>>>> Error: arch/arm64/boot/dts/mediatek/mt8192.dtsi:299.24-25 syntax error
+>>     FATAL ERROR: Unable to parse input tree
+>>
+>> ---
+>> 0-DAY CI Kernel Test Service, Intel Corporation
+>> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+> _______________________________________________
+> kbuild-all mailing list -- kbuild-all@lists.01.org
+> To unsubscribe send an email to kbuild-all-leave@lists.01.org
 
