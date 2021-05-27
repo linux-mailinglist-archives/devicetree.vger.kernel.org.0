@@ -2,265 +2,287 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0803392898
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 09:33:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E3C43928BB
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 09:42:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232310AbhE0HfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 03:35:16 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:43083 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229911AbhE0HfP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 May 2021 03:35:15 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1622100822; h=Content-Transfer-Encoding: MIME-Version:
- Message-Id: Date: Subject: Cc: To: From: Sender;
- bh=g3BeoQnr9xVCAC0G+xHoW41EjKH+mcixfOHMkVYyTXM=; b=vIvzpxBybfOslSoItCFkg4cQQ+70vECku1JLyVBqtGst62ii6muyytoEC+PmJHitHwch8Bbh
- gw4/7jryY4ezDD9Ih4ZIYe8WI/DUv1/NbHNXF6W0qpNlg8QUho1R/hDz5UgtVSQONMf8DqGp
- 45a8yuPGBZu1NcCBUUQTW8IqsWI=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 60af4b54f752fca668533335 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 27 May 2021 07:33:40
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 743D3C433D3; Thu, 27 May 2021 07:33:40 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id E1459C433D3;
-        Thu, 27 May 2021 07:33:33 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E1459C433D3
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Subject: [PATCH] Asoc: qcom: Add four speaker support on MI2S secondary
-Date:   Thu, 27 May 2021 13:03:09 +0530
-Message-Id: <20210527073309.28661-1-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.29.0
+        id S235005AbhE0Hnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 03:43:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39522 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229614AbhE0Hnm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 03:43:42 -0400
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83E42C061574
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 00:42:10 -0700 (PDT)
+Received: by mail-pf1-x42e.google.com with SMTP id c12so3001527pfl.3
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 00:42:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iKoyZrvsFP6hj+sTecEKs84BWsddp7iyyNAfS5YrByY=;
+        b=K2es2FAtpGv9fegvJdeh5YP/A0RC9TqvE4FiUuLQ+d2zmZAPotE3JnwGCLTnpT2oJO
+         pTLqwj//EAA5370QnKt5idZr716DsDeIAwj1bCoAhRQhnmQI0DN7wgyP7autSDSLQ/ZA
+         yCwkrVajawz3Iir7PKF7uzIzNHgfb1o+PerWo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iKoyZrvsFP6hj+sTecEKs84BWsddp7iyyNAfS5YrByY=;
+        b=ZTarq4xiHu/2/wHMYQHFYzYyJN3MoLdWZWIKpMdXhqsNCMGRYq/8DBVE14urtnoDqo
+         WTKZtd9CH2PEH0Aq4NvLxYZOwwJWFozT/moMkHWYLPCzp5Z7Z5SZM9IkqUyIVm6yBZqk
+         sAjb4CD5xhItyHgtiDniWgS9WtZ5/KgaBOnttA+mOAHYjUdIFbUq/nP2AZtZdxcgUpoh
+         j2BuDD1U5DirNcp8SnPXg7cDlJ/WZF/HFZOuKOzuE/NIrkn1/dpAkMvVBG6dttMW2BVa
+         2mu0rX8O0s7rmUOdA1t7ubrHFXKUYwh7ffeXFfIHXLFIZSCnChZ1/ENwUeQgatRMG1uA
+         xl0g==
+X-Gm-Message-State: AOAM5338bVosIdXK2sdtWqZM6SlGRNib1t67erTUdj0MB/uVQrM2Za5D
+        nwRJNYyzbTSJua3AdN8F7ODULg==
+X-Google-Smtp-Source: ABdhPJyh8VQ7P/mYb4jkCg+CyiZPlNFyGqOdhZl1TfgjEhu4HrLCi0thLRH2AAf5Ehe9ojNiLBlGIQ==
+X-Received: by 2002:a05:6a00:7c5:b029:2e8:d5f5:9677 with SMTP id n5-20020a056a0007c5b02902e8d5f59677mr2488009pfu.68.1622101329884;
+        Thu, 27 May 2021 00:42:09 -0700 (PDT)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:ece5:55a4:6ad3:d20f])
+        by smtp.gmail.com with ESMTPSA id h24sm1184857pfn.180.2021.05.27.00.42.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 May 2021 00:42:09 -0700 (PDT)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Robert Foss <robert.foss@linaro.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Sean Paul <sean@poorly.run>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, intel-gfx@lists.freedesktop.org
+Subject: [PATCH v6 RESEND 1/3] gpu: drm: separate panel orientation property creating and value setting
+Date:   Thu, 27 May 2021 15:42:00 +0800
+Message-Id: <20210527074202.1706724-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.31.1.818.g46aad6cb9e-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add four speaker support on MI2S secondary block
-by using I2S SD1 line on gpio52 pin, and add channel map
-control support in the lpass-cpu audio driver.
+drm_dev_register() sets connector->registration_state to
+DRM_CONNECTOR_REGISTERED and dev->registered to true. If
+drm_connector_set_panel_orientation() is first called after
+drm_dev_register(), it will fail several checks and results in following
+warning.
 
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Add a function to create panel orientation property and set default value
+to UNKNOWN, so drivers can call this function to init the property earlier
+, and let the panel set the real value later.
+
+[    4.480976] ------------[ cut here ]------------
+[    4.485603] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:45 __drm_mode_object_add+0xb4/0xbc
+<snip>
+[    4.609772] Call trace:
+[    4.612208]  __drm_mode_object_add+0xb4/0xbc
+[    4.616466]  drm_mode_object_add+0x20/0x2c
+[    4.620552]  drm_property_create+0xdc/0x174
+[    4.624723]  drm_property_create_enum+0x34/0x98
+[    4.629241]  drm_connector_set_panel_orientation+0x64/0xa0
+[    4.634716]  boe_panel_get_modes+0x88/0xd8
+[    4.638802]  drm_panel_get_modes+0x2c/0x48
+[    4.642887]  panel_bridge_get_modes+0x1c/0x28
+[    4.647233]  drm_bridge_connector_get_modes+0xa0/0xd4
+[    4.652273]  drm_helper_probe_single_connector_modes+0x218/0x700
+[    4.658266]  drm_mode_getconnector+0x1b4/0x45c
+[    4.662699]  drm_ioctl_kernel+0xac/0x128
+[    4.666611]  drm_ioctl+0x268/0x410
+[    4.670002]  drm_compat_ioctl+0xdc/0xf0
+[    4.673829]  __arm64_compat_sys_ioctl+0xc8/0x100
+[    4.678436]  el0_svc_common+0xf4/0x1c0
+[    4.682174]  do_el0_svc_compat+0x28/0x3c
+[    4.686088]  el0_svc_compat+0x10/0x1c
+[    4.689738]  el0_sync_compat_handler+0xa8/0xcc
+[    4.694171]  el0_sync_compat+0x178/0x180
+[    4.698082] ---[ end trace b4f2db9d9c88610b ]---
+[    4.702721] ------------[ cut here ]------------
+[    4.707329] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:243 drm_object_attach_property+0x48/0xb8
+<snip>
+[    4.833830] Call trace:
+[    4.836266]  drm_object_attach_property+0x48/0xb8
+[    4.840958]  drm_connector_set_panel_orientation+0x84/0xa0
+[    4.846432]  boe_panel_get_modes+0x88/0xd8
+[    4.850516]  drm_panel_get_modes+0x2c/0x48
+[    4.854600]  panel_bridge_get_modes+0x1c/0x28
+[    4.858946]  drm_bridge_connector_get_modes+0xa0/0xd4
+[    4.863984]  drm_helper_probe_single_connector_modes+0x218/0x700
+[    4.869978]  drm_mode_getconnector+0x1b4/0x45c
+[    4.874410]  drm_ioctl_kernel+0xac/0x128
+[    4.878320]  drm_ioctl+0x268/0x410
+[    4.881711]  drm_compat_ioctl+0xdc/0xf0
+[    4.885536]  __arm64_compat_sys_ioctl+0xc8/0x100
+[    4.890142]  el0_svc_common+0xf4/0x1c0
+[    4.893879]  do_el0_svc_compat+0x28/0x3c
+[    4.897791]  el0_svc_compat+0x10/0x1c
+[    4.901441]  el0_sync_compat_handler+0xa8/0xcc
+[    4.905873]  el0_sync_compat+0x178/0x180
+[    4.909783] ---[ end trace b4f2db9d9c88610c ]---
+
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Reviewed-by: Sean Paul <seanpaul@chromium.org>
 ---
- sound/soc/qcom/lpass-cpu.c    | 106 +++++++++++++++++++++++++++++++++-
- sound/soc/qcom/lpass-sc7180.c |   1 +
- sound/soc/qcom/lpass.h        |   5 ++
- 3 files changed, 111 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/drm_connector.c         | 58 ++++++++++++++++++-------
+ drivers/gpu/drm/i915/display/icl_dsi.c  |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c |  1 +
+ drivers/gpu/drm/i915/display/vlv_dsi.c  |  1 +
+ include/drm/drm_connector.h             |  2 +
+ 5 files changed, 47 insertions(+), 16 deletions(-)
 
-diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
-index c62d2612e8f5..88a038a107a7 100644
---- a/sound/soc/qcom/lpass-cpu.c
-+++ b/sound/soc/qcom/lpass-cpu.c
-@@ -28,6 +28,19 @@
- #define LPASS_CPU_I2S_SD2_3_MASK	GENMASK(3, 2)
- #define LPASS_CPU_I2S_SD0_1_2_MASK	GENMASK(2, 0)
- #define LPASS_CPU_I2S_SD0_1_2_3_MASK	GENMASK(3, 0)
-+#define LPASS_CHMAP_IDX_UNKNOWN		-1
-+
-+/*
-+ * Channel maps for multi-channel playbacks on MI2S Secondary, up to 4 n_ch
-+ */
-+static struct snd_pcm_chmap_elem lpass_chmaps[] = {
-+	{ .channels = 2,
-+	  .map = { SNDRV_CHMAP_FL, SNDRV_CHMAP_FR } },
-+	{ .channels = 4,
-+	  .map = { SNDRV_CHMAP_FL, SNDRV_CHMAP_FR,
-+				SNDRV_CHMAP_RL, SNDRV_CHMAP_RR } },
-+	{ }
-+};
+diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+index 7631f76e7f34..7189baaabf41 100644
+--- a/drivers/gpu/drm/drm_connector.c
++++ b/drivers/gpu/drm/drm_connector.c
+@@ -1210,7 +1210,7 @@ static const struct drm_prop_enum_list dp_colorspaces[] = {
+  *	INPUT_PROP_DIRECT) will still map 1:1 to the actual LCD panel
+  *	coordinates, so if userspace rotates the picture to adjust for
+  *	the orientation it must also apply the same transformation to the
+- *	touchscreen input coordinates. This property is initialized by calling
++ *	touchscreen input coordinates. This property value is set by calling
+  *	drm_connector_set_panel_orientation() or
+  *	drm_connector_set_panel_orientation_with_quirk()
+  *
+@@ -2173,8 +2173,8 @@ EXPORT_SYMBOL(drm_connector_set_vrr_capable_property);
+  * @connector: connector for which to set the panel-orientation property.
+  * @panel_orientation: drm_panel_orientation value to set
+  *
+- * This function sets the connector's panel_orientation and attaches
+- * a "panel orientation" property to the connector.
++ * This function sets the connector's panel_orientation value. If the property
++ * doesn't exist, it will return an error.
+  *
+  * Calling this function on a connector where the panel_orientation has
+  * already been set is a no-op (e.g. the orientation has been overridden with
+@@ -2205,19 +2205,11 @@ int drm_connector_set_panel_orientation(
+ 	info->panel_orientation = panel_orientation;
  
- static int lpass_cpu_init_i2sctl_bitfields(struct device *dev,
- 			struct lpaif_i2sctl *i2sctl, struct regmap *map)
-@@ -86,6 +99,9 @@ static int lpass_cpu_daiops_startup(struct snd_pcm_substream *substream,
- 		clk_disable_unprepare(drvdata->mi2s_osr_clk[dai->driver->id]);
- 		return ret;
- 	}
-+	if (drvdata->chmap_info && drvdata->chmap_info->max_channels == 4)
-+		drvdata->chmap_info->chmap = lpass_chmaps;
-+
+ 	prop = dev->mode_config.panel_orientation_property;
+-	if (!prop) {
+-		prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
+-				"panel orientation",
+-				drm_panel_orientation_enum_list,
+-				ARRAY_SIZE(drm_panel_orientation_enum_list));
+-		if (!prop)
+-			return -ENOMEM;
+-
+-		dev->mode_config.panel_orientation_property = prop;
+-	}
++	if (WARN_ON(!prop))
++		return -EINVAL;
+ 
+-	drm_object_attach_property(&connector->base, prop,
+-				   info->panel_orientation);
++	drm_object_property_set_value(&connector->base, prop,
++				      info->panel_orientation);
  	return 0;
  }
- 
-@@ -96,6 +112,7 @@ static void lpass_cpu_daiops_shutdown(struct snd_pcm_substream *substream,
- 
- 	clk_disable_unprepare(drvdata->mi2s_osr_clk[dai->driver->id]);
- 	clk_unprepare(drvdata->mi2s_bit_clk[dai->driver->id]);
-+	drvdata->chmap_idx = LPASS_CHMAP_IDX_UNKNOWN;
+ EXPORT_SYMBOL(drm_connector_set_panel_orientation);
+@@ -2225,7 +2217,7 @@ EXPORT_SYMBOL(drm_connector_set_panel_orientation);
+ /**
+  * drm_connector_set_panel_orientation_with_quirk -
+  *	set the connector's panel_orientation after checking for quirks
+- * @connector: connector for which to init the panel-orientation property.
++ * @connector: connector for which to set the panel-orientation property.
+  * @panel_orientation: drm_panel_orientation value to set
+  * @width: width in pixels of the panel, used for panel quirk detection
+  * @height: height in pixels of the panel, used for panel quirk detection
+@@ -2252,6 +2244,40 @@ int drm_connector_set_panel_orientation_with_quirk(
  }
+ EXPORT_SYMBOL(drm_connector_set_panel_orientation_with_quirk);
  
- static int lpass_cpu_daiops_hw_params(struct snd_pcm_substream *substream,
-@@ -224,9 +241,14 @@ static int lpass_cpu_daiops_hw_params(struct snd_pcm_substream *substream,
- 				ret);
- 			return ret;
- 		}
--		if (channels >= 2)
-+		if (channels >= 2) {
- 			ret = regmap_fields_write(i2sctl->spkmono, id,
- 						 LPAIF_I2SCTL_SPKMONO_STEREO);
-+			if (channels == 4)
-+				drvdata->chmap_idx = 1;
-+			else
-+				drvdata->chmap_idx = 0;
-+		}
- 		else
- 			ret = regmap_fields_write(i2sctl->spkmono, id,
- 						 LPAIF_I2SCTL_SPKMONO_MONO);
-@@ -324,6 +346,84 @@ const struct snd_soc_dai_ops asoc_qcom_lpass_cpu_dai_ops = {
- };
- EXPORT_SYMBOL_GPL(asoc_qcom_lpass_cpu_dai_ops);
- 
-+static int lpass_cpu_chmap_ctl_get(struct snd_kcontrol *kcontrol,
-+				struct snd_ctl_elem_value *ucontrol)
++/**
++ * drm_connector_init_panel_orientation_property -
++ * 	create the connector's panel orientation property
++ *
++ * This function attaches a "panel orientation" property to the connector
++ * and initializes its value to DRM_MODE_PANEL_ORIENTATION_UNKNOWN.
++ *
++ * The value of the property can be set by drm_connector_set_panel_orientation()
++ * or drm_connector_set_panel_orientation_with_quirk() later.
++ *
++ * Returns:
++ * Zero on success, negative errno on failure.
++ */
++int drm_connector_init_panel_orientation_property(
++	struct drm_connector *connector)
 +{
-+	unsigned const char *map;
-+	unsigned int i;
-+	struct snd_pcm_chmap *info = snd_kcontrol_chip(kcontrol);
-+	struct lpass_data *drvdata = info->private_data;
++	struct drm_device *dev = connector->dev;
++	struct drm_property *prop;
 +
-+	if (info->max_channels == 2)
-+		map = &lpass_chmaps[0].map[0];
-+	else if (info->max_channels == 4)
-+		map = &lpass_chmaps[1].map[0];
++	prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
++			"panel orientation",
++			drm_panel_orientation_enum_list,
++			ARRAY_SIZE(drm_panel_orientation_enum_list));
++	if (!prop)
++		return -ENOMEM;
 +
-+	for (i = 0; i < info->max_channels; i++) {
-+		if (drvdata->chmap_idx == LPASS_CHMAP_IDX_UNKNOWN)
-+			ucontrol->value.integer.value[i] = 0;
-+		else
-+			ucontrol->value.integer.value[i] = map[i];
-+	}
++	dev->mode_config.panel_orientation_property = prop;
++	drm_object_attach_property(&connector->base, prop,
++				   DRM_MODE_PANEL_ORIENTATION_UNKNOWN);
 +
 +	return 0;
 +}
++EXPORT_SYMBOL(drm_connector_init_panel_orientation_property);
 +
-+static int lpass_cpu_chmap_ctl_set(struct snd_kcontrol *kcontrol,
-+				struct snd_ctl_elem_value *ucontrol)
-+{
-+	unsigned int i;
-+	struct snd_pcm_chmap *info = snd_kcontrol_chip(kcontrol);
-+	struct lpass_data *drvdata = info->private_data;
-+	unsigned char *map;
-+
-+	if (info->max_channels == 2)
-+		map = &lpass_chmaps[0].map[0];
-+	else if (info->max_channels == 4)
-+		map = &lpass_chmaps[1].map[0];
-+
-+	for (i = 0; i < info->max_channels; i++) {
-+		if (drvdata->chmap_idx == LPASS_CHMAP_IDX_UNKNOWN)
-+			map[i] = 0;
-+		else
-+			map[i] = ucontrol->value.integer.value[i];
-+	}
-+
-+	return 0;
-+}
-+
-+int lpass_cpu_pcm_new(struct snd_soc_pcm_runtime *rtd,
-+			      struct snd_soc_dai *dai)
-+{
-+	int ret;
-+
-+	struct snd_soc_dai_driver *drv = dai->driver;
-+	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
-+
-+	ret =  snd_pcm_add_chmap_ctls(rtd->pcm, SNDRV_PCM_STREAM_PLAYBACK,
-+			snd_pcm_alt_chmaps, drv->playback.channels_max, 0,
-+			&drvdata->chmap_info);
-+	if (ret < 0)
-+		return ret;
-+
-+
-+	/*
-+	 * override handlers
-+	 */
-+	drvdata->chmap_info->private_data = drvdata;
-+	drvdata->chmap_info->kctl->get = lpass_cpu_chmap_ctl_get;
-+	drvdata->chmap_info->kctl->put = lpass_cpu_chmap_ctl_set;
-+
-+	/*
-+	 * default chmap supported is stereo
-+	 */
-+	drvdata->chmap_info->chmap = lpass_chmaps;
-+	drvdata->chmap_idx = LPASS_CHMAP_IDX_UNKNOWN;
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(lpass_cpu_pcm_new);
-+
- int asoc_qcom_lpass_cpu_dai_probe(struct snd_soc_dai *dai)
- {
- 	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
-@@ -856,6 +956,10 @@ int asoc_qcom_lpass_cpu_platform_probe(struct platform_device *pdev)
- 				PTR_ERR(drvdata->mi2s_bit_clk[dai_id]));
- 			return PTR_ERR(drvdata->mi2s_bit_clk[dai_id]);
- 		}
-+		if (drvdata->mi2s_playback_sd_mode[dai_id] == LPAIF_I2SCTL_MODE_QUAD01) {
-+			variant->dai_driver[dai_id].playback.channels_min = 4;
-+			variant->dai_driver[dai_id].playback.channels_max = 4;
-+		}
- 	}
+ int drm_connector_set_obj_prop(struct drm_mode_object *obj,
+ 				    struct drm_property *property,
+ 				    uint64_t value)
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index 9282978060b0..5ac4538e4283 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -1903,6 +1903,7 @@ static void icl_dsi_add_properties(struct intel_connector *connector)
  
- 	/* Allocation for i2sctl regmap fields */
-diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
-index 8c168d3c589e..77a556b27cf0 100644
---- a/sound/soc/qcom/lpass-sc7180.c
-+++ b/sound/soc/qcom/lpass-sc7180.c
-@@ -58,6 +58,7 @@ static struct snd_soc_dai_driver sc7180_lpass_cpu_dai_driver[] = {
- 		},
- 		.probe	= &asoc_qcom_lpass_cpu_dai_probe,
- 		.ops    = &asoc_qcom_lpass_cpu_dai_ops,
-+		.pcm_new = lpass_cpu_pcm_new,
- 	}, {
- 		.id = LPASS_DP_RX,
- 		.name = "Hdmi",
-diff --git a/sound/soc/qcom/lpass.h b/sound/soc/qcom/lpass.h
-index 83b2e08ade06..fb82591d550c 100644
---- a/sound/soc/qcom/lpass.h
-+++ b/sound/soc/qcom/lpass.h
-@@ -76,6 +76,9 @@ struct lpass_data {
- 	/* regmap backed by the low-power audio interface (LPAIF) registers */
- 	struct regmap *lpaif_map;
- 	struct regmap *hdmiif_map;
-+	struct snd_pcm_chmap *chmap_info;
-+
-+	int chmap_idx;
+ 	connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
  
- 	/* interrupts from the low-power audio interface (LPAIF) */
- 	int lpaif_irq;
-@@ -259,5 +262,7 @@ void asoc_qcom_lpass_cpu_platform_shutdown(struct platform_device *pdev);
- int asoc_qcom_lpass_cpu_platform_probe(struct platform_device *pdev);
- int asoc_qcom_lpass_cpu_dai_probe(struct snd_soc_dai *dai);
- extern const struct snd_soc_dai_ops asoc_qcom_lpass_cpu_dai_ops;
-+int lpass_cpu_pcm_new(struct snd_soc_pcm_runtime *rtd,
-+				struct snd_soc_dai *dai);
++	drm_connector_init_panel_orientation_property(&connector->base);
+ 	drm_connector_set_panel_orientation_with_quirk(&connector->base,
+ 				intel_dsi_get_panel_orientation(connector),
+ 				connector->panel.fixed_mode->hdisplay,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index a5231ac3443a..f1d664e5abb2 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5263,6 +5263,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+ 	intel_panel_setup_backlight(connector, pipe);
  
- #endif /* __LPASS_H__ */
+ 	if (fixed_mode) {
++		drm_connector_init_panel_orientation_property(connector);
+ 		drm_connector_set_panel_orientation_with_quirk(connector,
+ 				dev_priv->vbt.orientation,
+ 				fixed_mode->hdisplay, fixed_mode->vdisplay);
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index 9bee99fe5495..853855482af1 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -1632,6 +1632,7 @@ static void vlv_dsi_add_properties(struct intel_connector *connector)
+ 
+ 		connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
+ 
++		drm_connector_init_panel_orientation_property(&connector->base);
+ 		drm_connector_set_panel_orientation_with_quirk(
+ 				&connector->base,
+ 				intel_dsi_get_panel_orientation(connector),
+diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+index 1922b278ffad..4396c1c4a5db 100644
+--- a/include/drm/drm_connector.h
++++ b/include/drm/drm_connector.h
+@@ -1696,6 +1696,8 @@ int drm_connector_set_panel_orientation_with_quirk(
+ 	struct drm_connector *connector,
+ 	enum drm_panel_orientation panel_orientation,
+ 	int width, int height);
++int drm_connector_init_panel_orientation_property(
++	struct drm_connector *connector);
+ int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
+ 					  int min, int max);
+ 
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+2.31.1.818.g46aad6cb9e-goog
 
