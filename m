@@ -2,231 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6383392C05
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 12:41:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 811EA392C12
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 12:43:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236187AbhE0KnR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 06:43:17 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:37427 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236157AbhE0KnQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 May 2021 06:43:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1622112103;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=DyoTEweFTx1lpA7uX8L7ddsbfDTqub/v0D1/rQ9tIVc=;
-        b=MzIjUOtmK+sReJkP/JcMk7hjGwD5/Cbt2xtBoOlAb4Lh6MnfUdOeVQn/86kzaT//mCajfN
-        V3+RkdU/cdXAeWdk0gG4ayB6ra4BsXHT5lJTv+4z7Nzu+9UOjHlQpRgoY8QZ0ifKEpQSm+
-        RRCkEMXYhk0o2voXj+a5rQr9+jl08EQ=
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
- [209.85.208.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-23-FzAACskmOXKwuk-3sN4F3w-1; Thu, 27 May 2021 06:41:42 -0400
-X-MC-Unique: FzAACskmOXKwuk-3sN4F3w-1
-Received: by mail-ed1-f70.google.com with SMTP id q18-20020a0564025192b02903888712212fso81783edd.19
-        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 03:41:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=DyoTEweFTx1lpA7uX8L7ddsbfDTqub/v0D1/rQ9tIVc=;
-        b=cFQBdm8aGOxv6kET6/KkJsYxfw0ojk1aca/6eCoUNsu2UBTSty+o6/SwHW7I12lHMW
-         dFNLQnTzKkS2RPDv4VFRWxH6iftnhCBeSw8iFO5k90/ZGIwuIeqY29zJLobPYh+h1m0a
-         iqjKkmMF3l6r2Bxgzlto8SJnL39290/411mxHTI8PI3Zd0zI6mz+OEEuKDYxG9y0h1O2
-         1rI6LB7sJ7cCBCxbBozLgUZ98QZt+6WkEHVVFNA312kwMk6wljwYm2wpxk2cgXIfHGJN
-         JUwGZPoO595bh78Jqa8PE1lB4/YHY/YyFLVKj3BfEW9KMHHD0ljW8hZVKAA+LuJq0frm
-         arsg==
-X-Gm-Message-State: AOAM533kAtKC9KECNsGcYgjlidyHkGS34pRjfw2HdroPH8vhACr7AI3L
-        fE3FZ1Gv2O6/ItbnwIibpw9RrNXMliCtw3710yr/s6ua4kYu1fdt0h0Fv4uG5JfnZbe99xDEUnn
-        qugGLYIJbpQUmuKlZ+YYYqg==
-X-Received: by 2002:a17:906:6d43:: with SMTP id a3mr3104876ejt.142.1622112100862;
-        Thu, 27 May 2021 03:41:40 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJy/B6NLDpnHprnd+r3zEqXv6WFixw8qwba7jliY2CHxhFvNGGR2p5k490P1utig7Gjm74mdvA==
-X-Received: by 2002:a17:906:6d43:: with SMTP id a3mr3104861ejt.142.1622112100604;
-        Thu, 27 May 2021 03:41:40 -0700 (PDT)
-Received: from x1.localdomain (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl. [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
-        by smtp.gmail.com with ESMTPSA id b9sm872604edt.71.2021.05.27.03.41.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 May 2021 03:41:40 -0700 (PDT)
-Subject: Re: [PATCH v3 0/6] RTL8231 GPIO expander support
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Sander Vanheule <sander@svanheule.net>
-Cc:     Andrew Lunn <andrew@lunn.ch>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <cover.1620735871.git.sander@svanheule.net>
- <cover.1621809029.git.sander@svanheule.net> <YKr9G3EfrM34gCsL@lunn.ch>
- <CAHp75VewCw8ES_9S48qmeCtSXMkGWt0s4iub0Fu4ZuwWANHpaQ@mail.gmail.com>
- <02bbf73ea8a14119247f07a677993aad2f45b088.camel@svanheule.net>
- <CAHp75Vf_dAfoMmziVLkEQ2Yr-e7Cj5=61ua5Q05Cyz-pLwVjpw@mail.gmail.com>
- <8f96b24d782e5bdeabf5370ccf3475794d0c2818.camel@svanheule.net>
- <CAHp75VfzEwVGR7ttdcKzirPDN8oUFw1uTDXPFE=P=9+S3CAFYQ@mail.gmail.com>
- <CAHp75VfCBtcQX4rvmQnRMquM0k7ZBqOgZN15Z7TFNSO60SB9TA@mail.gmail.com>
- <cbfba24a6206ec73ccc844da5d1331959e3f3520.camel@svanheule.net>
- <CAHp75VdhAqFG1WpyMqpvL_W6mFchNd9AyRSV2Zgc1Vk5M6LnCg@mail.gmail.com>
-From:   Hans de Goede <hdegoede@redhat.com>
-Message-ID: <96026395-250a-e6ed-fc12-782c8bc54dc6@redhat.com>
-Date:   Thu, 27 May 2021 12:41:39 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
-MIME-Version: 1.0
-In-Reply-To: <CAHp75VdhAqFG1WpyMqpvL_W6mFchNd9AyRSV2Zgc1Vk5M6LnCg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
+        id S236235AbhE0KpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 06:45:08 -0400
+Received: from mail-bn8nam11on2062.outbound.protection.outlook.com ([40.107.236.62]:39920
+        "EHLO NAM11-BN8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S236157AbhE0KpH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 May 2021 06:45:07 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=evw8jmOxdfoLdHkU7OhISpr9AotBQ6jwde9sGqpQuKQ6fLEIlWJprYPE8SFwm8PvpPlVFilnZWHgoHGM8KsnzCLoAFFwPCs0JT8O6kw83sSVzJbjzn0azGNt5inoIFCN6S1KC6epDEL9wWwZQSBh+XVHVS+SEfJ1Q6Gvkmx7z6FooYuckaHx9DajkOIWepnYlsUwMJ6ZPBB6SSe47w0KT5PZLoi7oISPwqhMCMLOGHCCrXnEpDdsrmpLE7FFi/zZoOi2zTbIkcauJj2nQK6tF8Qciinbnu0nz9FjE6K4tLxDH3jEvly56hpp6HIRemwaU4QfIvqfO+0Nc3h/XZGjWw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0vPLvgddIWKvOcMSqzCaFibILYPissoMyobekvahsAA=;
+ b=FGzi0vntHCTa/sMRUsrjCXXF1xSZAPZd9vCS17368Xr/7YK+cXn9nDlfV5rVo9fYA8MEoBrj3xMAzQrBU1cW1LV2WiK9kVPGt/EL2mNiUajnXodfoZHStID/Ks0sGeuaDjRiuWPFTL6JnVROF9mErfM3nNhjp79E/TbvIYi46EfCozEiAAPAauhNN1tuDoF2QhYLPUeARMK5Ky5uhxzYlT66LAP54J3uSD+YdJ1j9Z8uGgKoxtPY/Hv/qbXKynJOZ/RojKJbodgoKGMJuBiQAJk11/Xlfy40COr1DKfqdWEQU5F5vVMJOX3b8VoqvaWyUhmN0wQahr6YqKKOHwTG9w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
+ dkim=pass header.d=xilinx.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0vPLvgddIWKvOcMSqzCaFibILYPissoMyobekvahsAA=;
+ b=BjCprBh0xNs0fhhFSPUxNEE7FERkA6pg7doaUKc7lTKz2dY6W78i8bZXCcSEEKRnrxL2PzbWeFVG5i742JmOtDBGDCM9t9ZIBdbFKXpqsWBVxtq3GOic67O2fTZ854dF8dVgbdwiMIC9BcRDNgJ72CDxgKY7mP3tu/wGE+XlWd0=
+Received: from MW4PR02MB7332.namprd02.prod.outlook.com (2603:10b6:303:79::18)
+ by MWHPR0201MB3482.namprd02.prod.outlook.com (2603:10b6:301:76::31) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.20; Thu, 27 May
+ 2021 10:43:30 +0000
+Received: from MW4PR02MB7332.namprd02.prod.outlook.com
+ ([fe80::a5e1:28aa:7a36:e6c2]) by MW4PR02MB7332.namprd02.prod.outlook.com
+ ([fe80::a5e1:28aa:7a36:e6c2%6]) with mapi id 15.20.4173.021; Thu, 27 May 2021
+ 10:43:30 +0000
+From:   Nava kishore Manne <navam@xilinx.com>
+To:     Moritz Fischer <mdf@kernel.org>
+CC:     "trix@redhat.com" <trix@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Michal Simek <michals@xilinx.com>,
+        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        git <git@xilinx.com>,
+        "chinnikishore369@gmail.com" <chinnikishore369@gmail.com>
+Subject: RE: [PATCH 1/2] fpga: mgr: Adds secure BitStream loading support
+Thread-Topic: [PATCH 1/2] fpga: mgr: Adds secure BitStream loading support
+Thread-Index: AQHW7UWZwDiwSbkqzUWMwmmZwUyntqozISAAgAgZmKCANxU1wIBrXauAgAFH0bCAGPoWwA==
+Date:   Thu, 27 May 2021 10:43:30 +0000
+Message-ID: <MW4PR02MB733201057C43C9EEC54EF255C2239@MW4PR02MB7332.namprd02.prod.outlook.com>
+References: <20210118025058.10051-1-nava.manne@xilinx.com>
+ <YApf1jlEghbnDFo/@archbook>
+ <MWHPR02MB2623B63A5359BB35B89BF086C2BB9@MWHPR02MB2623.namprd02.prod.outlook.com>
+ <BN6PR02MB2612733F9D85ED6A36BBF801C2989@BN6PR02MB2612.namprd02.prod.outlook.com>
+ <YJlw5fk0ORhioDb4@epycbox.lan>
+ <MWHPR02MB2623E6E6759FA574129901E7C2539@MWHPR02MB2623.namprd02.prod.outlook.com>
+In-Reply-To: <MWHPR02MB2623E6E6759FA574129901E7C2539@MWHPR02MB2623.namprd02.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=xilinx.com;
+x-originating-ip: [149.199.50.128]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 0f029725-8a6c-49b2-62a3-08d920fc44e8
+x-ms-traffictypediagnostic: MWHPR0201MB3482:
+x-ld-processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <MWHPR0201MB34824F1A9FD710436CD17179C2239@MWHPR0201MB3482.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:843;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: kNktENTnfr9SRN1v2vuhEdfXRVziZeGXSmvBHmCT6Wg0NsNbZHQmzEooOQgh4owX0sMWkYl2g4n3+oMpjT5bEePfZ8MgaL3Pij0VqhDdGhJ65YgmejIzz02t/DiDcR+gbHbcx1uEbNv9ZprcW9lBBlI+ak6O5pBDKoPzv5VibUodgBxFvtZTFHxINSYPZ1mcj29SvoCeXS6BwIfc1+hT0+bsnMdC875BiKK4OV33S5sjcXibmoKnKwoj3/N1dC1Z/Xa2pHFZlU7cAIN+5IFWSSIgWGOwqH4kBOtl2ytAPXobOkMddObNy3Bc7e6xrEDYy9vtQI+rS2pv0iWJ/cc7dm9OfI8gbp2z8+SVH4eEWY2ZR3B+HVUvsH8fn7csy+ZC9UZ/9vTyenyeVC8XqhWARiGAEDZ489l9a1/3EgLduQlTfbpqt1ZoOnUex5vmTjdHZOVxb1djn/wbtZ2kgU/tcA8l6rKLGs5DFMHa3FIj7+Pd93Xqb6Nro72aY1+e/caWwqxmdOoHdY7bZfqsI6bjFS1q/CO69Xhi0SGhAuwkoygqbwEIzYluXFoKWWafBevAn3K7G7OnjxyE6xkRmUxClWxOHUeiHmjROgC7nAk7Avo=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW4PR02MB7332.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(396003)(39860400002)(366004)(346002)(376002)(316002)(33656002)(66556008)(122000001)(66476007)(8676002)(38100700002)(8936002)(66946007)(66446008)(83380400001)(6916009)(64756008)(86362001)(71200400001)(2906002)(55016002)(6506007)(53546011)(26005)(478600001)(76116006)(4326008)(7696005)(9686003)(54906003)(52536014)(186003)(5660300002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?3l8dwNNOewDhAxdnNtz5vJaDJIiwL5hZbIQfm08ICalXIsCC5Jz2zqakvjOh?=
+ =?us-ascii?Q?grMQmnlVlmM0NtPJC/R4fefE2j6QVbAe6AMGSdi2K1rNFeTU8SDFqODBVwQm?=
+ =?us-ascii?Q?yqrWN5XwT+H30Womh4JhdAcPe9WerzeXGu/7W3F2OivH+w2CdXcLfmHqA0za?=
+ =?us-ascii?Q?FzWe1+UR8yymRJGc+9uFayXxwu+3hrfQ0Ux3ipQwbdGFZWC68YXlPFQ97v5B?=
+ =?us-ascii?Q?PL7tDboiS2difoft2nes3kob9EKYFvRHVpEzkENYdQNe4yt/tIt1y91TfUcd?=
+ =?us-ascii?Q?6h7YI2VwGvP6UTjv4Bx+8kmqR/R71YAekJ1dOshRPCbwkI3kMxwr8mB4HgbP?=
+ =?us-ascii?Q?5hN7n0S9x1Ymz5J0iFtHCeWoH+EuFqZ9XdxJ3bnHKn/qk6jB/ZomGZqphIoJ?=
+ =?us-ascii?Q?uXNxHaYxxT0D07EPzAfnIjkbSqYILt6B0m4dT4qVlTg9XhRKSO9qGSrwB71b?=
+ =?us-ascii?Q?58WMOvKp33t6wCYETPv3iMNze3BrlyF4YX2/JREQxplUEzTycxYEEBiiHhgC?=
+ =?us-ascii?Q?q9Lw4PXv63h94GVb5IE4/qkDsJivaKtKGe02rEenPIYtSf38khsQM5oSEAs5?=
+ =?us-ascii?Q?NnOZv4PQuuqFAuuMYGOAuZNRUhnkI7U4rEZZnI22FVpHZuhmVjLcoPvqXBRC?=
+ =?us-ascii?Q?UvfWq3j955bUNiipCvLsl3Boemipix1mCwJa94Gx693Y6aU8KBHODHUQ6l9s?=
+ =?us-ascii?Q?6ah8VB7i8GaWuPUI2C7UTl2P6NRiIPJIkEN3EPL8wFdo2PoWM8HsHj4qYcbD?=
+ =?us-ascii?Q?v+xjFyFUGnWYPvG2TNDzPNBKV2sMrVfBYZttv1Zm4GStAbMIfZG79eV2mCDF?=
+ =?us-ascii?Q?iBX0iMKtgPLg30xABNlU4v0qWCoQLiopRxd3S7yfsoO76hfnXO/TRhNV9FAQ?=
+ =?us-ascii?Q?WS/vmnCHOCrLAZxfZiU0J4jATHDhWFrX/0BvpTjrzMX5LmgXrQLmYARgfh1t?=
+ =?us-ascii?Q?BBZJouQn1AiR0fZQrFxgmc/xEajs2lxJRC5ddLK7?=
+x-ms-exchange-antispam-messagedata-1: q3RHf5lpcsxrlVOzlJCMnLH9YOqVlshsXnxhx2bobU+G41cj3oUvAeWj9IlQLPhXrle4OJjFtrpoapcUnVxNeHW1HgTFIe8YoHDEvsLl1Cm7IffaY4jHvMPaPS4fbl/JdK3R8uurotmBmDAmYdt3UmIClaPj0gTXtE3gbKmv7mNAz1R70rA/iTeLtxYFicyAi5hwuctXm6GlVPOW1Bw7PSHY9E2Q5Jc6lo0tPgRrjMqegHsIFoIPVOPrG1uBoYpn8Af9MSirfd4RvOJ7PhvsAqQjVnKarZS3vPgzqy3/NTQzx3diOhVImNDln2yB1yKxv430/w1HzwYB+XokG0JWf2UP
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR02MB7332.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0f029725-8a6c-49b2-62a3-08d920fc44e8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 May 2021 10:43:30.8926
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 511DWmTWM2FYStbi5W2xcgv65yNjGAH74B9iti9NBiO9IvefFWJJipJulIy3xwmaBMAHqEB9O3R0zfO+BzHrPQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR0201MB3482
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Ping!
 
-On 5/27/21 12:38 PM, Andy Shevchenko wrote:
-> +Cc: Hans
-> 
-> Hans, sorry for disturbing you later too much. Here we have "nice"
-> hardware which can't be used in a glitch-free mode (somehow it reminds
-> me lynxpoint, baytrail, cherryview designs). If you have any ideas to
-> share (no need to dive deep or look at it if you have no time), you're
-> welcome.
-
-I'm afraid I've no ideas how to solve this nicely. Documenting the
-issue might be the best we can do.
-
-Regards,
-
-Hans
-
-
-
-> 
-> On Thu, May 27, 2021 at 12:02 AM Sander Vanheule <sander@svanheule.net> wrote:
->>
->> On Tue, 2021-05-25 at 20:11 +0300, Andy Shevchenko wrote:
->>> On Mon, May 24, 2021 at 7:30 PM Andy Shevchenko
->>> <andy.shevchenko@gmail.com> wrote:
->>>> On Mon, May 24, 2021 at 6:03 PM Sander Vanheule <sander@svanheule.net>
->>>> wrote:
->>>>> On Mon, 2021-05-24 at 15:54 +0300, Andy Shevchenko wrote:
->>>
->>> ...
->>>
->>>>> Sadly, I don't. Most of the info we have comes from code archives of
->>>>> switch
->>>>> vendors (Zyxel, Cisco etc). Boards need to be reverse engineered, and the
->>>>> few
->>>>> leaked datasheets that can be found on the internet aren't exactly thick
->>>>> in
->>>>> information.
->>>>>
->>>>> The RTL8231 datasheet is actually quite useful, but makes no mention of
->>>>> the
->>>>> output value isse. Since this isn't an official resource, I don't think it
->>>>> would
->>>>> be appropriate to link it via a Datasheet: tag.
->>>>> https://github.com/libc0607/Realtek_switch_hacking/blob/files/RTL8231_Datasheet_
->>>>> 1.2.pdf
->>>>>
->>>>> Looking at the datasheet again, I came up with a... terrible hack to work
->>>>> around
->>>>> the output value issue.
->>>>>
->>>>> The chip also has GPIO_INVERT registers that I hadn't used until now,
->>>>> because
->>>>> the logical inversion is handled in the kernel. However, these inversion
->>>>> registers only apply to the output values. So, I could implement glitch-
->>>>> free
->>>>> output behaviour in the following way:
->>>>>  * After chip reset, and before enabling the output driver (MFD
->>>>> initialisation):
->>>>>     - Mux all pins as GPIO
->>>>>     - Change all pins to outputs,
->>>>
->>>> No. no, no. This is much worse than the glitches. You never know what
->>>> the hardware is connected there and it's potential breakage (on hw
->>>> level) possible.
->>>>
->>>>>  so the data registers (0x1c-0x1e) become writable
->>>>>     - Write value 0 to all pins
->>>>>     - Change all pins to GPI to change them into high-Z
->>>>>  * In the pinctrl/gpio driver:
->>>>>     - Use data registers as input-only
->>>>>     - Use inversion register to determine output value (can be written any
->>>>> time)
->>>>>
->>>>> The above gives glitch-free outputs, but the values that are read back
->>>>> (when
->>>>> configured as output), come from the data registers. They should now be
->>>>> coming
->>>>> from the inversion (reg_set_base) registers, but the code prefers to use
->>>>> the
->>>>> data registers (reg_dat_base).
->>>>
->>>> Lemme read the datasheet and see if I find any clue for the hw behaviour.
->>>
->>> Thank you for your patience!
->>>
->>> Have you explored the possibility of using En_Sync_GPIO?
->>
->> Got around to testing things.
->>
->> If En_Sync_GPIO is enabled, it's still possible to change the pin direction
->> without also writing the Sync_GPIO bit. So even with the latching, glitches are
->> still produced.
->>
->> As long as Sync_GPIO is not set to latch the new values, it also appears that
->> reads of the data registers result in the current output value, not the new one.
->>
->> As a different test, I've added a pull-down, to make the input level low. Now I
->> see the opposite behaviour as before (with set-value-before-direction):
->>  * OUT-HIGH > IN (low) > OUT-LOW: results in a high level (i.e. old value)
->>  * OUT-HIGH > IN (low) > OUT-HIGH: results in a high level (new/old value)
->>  * OUT-LOW > IN (low) > OUT-HIGH: results in a high level (new value, or toggled
->>    old value?)
->>  * OUT-LOW > IN (low) > OUT-LOW: results in a low level (new/old value)
->>
->> For reference, with a pull-up:
->>  * OUT-HIGH > IN (high) > OUT-HIGH: high result
->>  * OUT-HIGH > IN (high) > OUT-LOW: low result
->>  * OUT-LOW > IN (high) > OUT-HIGH: low result
->>  * OUT-LOW > IN (high) > OUT-LOW: low result
->>
->> I've only tested this with the sysfs interface, so I don't know what the result
->> would be on multiple writes to the data register (during input, but probably not
->> very relevant). Nor have I tested direction changes if the input has changed
->> between two output values.
->>
->> I may have some time tomorrow for more testing, but otherwise it'll have to wait
->> until the weekend. Any other ideas in the meantime?
-> 
-> No ideas so far. In x86 we used to have something similar (baytrail,
-> cherryview, lynxpoint), but it's firmware assisted. I think that this
-> hardware (realtek) is supposed either
-> - to be firmware / bootloader assisted, so in a way that platform is
-> preconfigured when Linux starts and any GPIO request won't be harmful
-> as long as it doesn't change direction on the pins (which is usually
-> guaranteed by DT and corresponding drivers to do the correct things)
-> - be used for glitch-tolerant hardware (LEDs, for example, where
-> nobody usually will noticed 1ms blink)
-> 
-> That said, I have not been convinced we have to quirk gpio-regmap for
-> this one. Just describe the issues with hardware in the accompanying
-> documentation.
-> 
-> But if maintainers or somebody comes with a better / different
-> approach I am all ears.
-> 
+> -----Original Message-----
+> From: Nava kishore Manne <navam@xilinx.com>
+> Sent: Tuesday, May 11, 2021 7:02 PM
+> To: Moritz Fischer <mdf@kernel.org>
+> Cc: trix@redhat.com; robh+dt@kernel.org; Michal Simek
+> <michals@xilinx.com>; linux-fpga@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> kernel@vger.kernel.org; git <git@xilinx.com>; chinnikishore369@gmail.com
+> Subject: RE: [PATCH 1/2] fpga: mgr: Adds secure BitStream loading support
+>=20
+> Hi Moritz,
+>=20
+> Please find my response inline.
+>=20
+> > -----Original Message-----
+> > From: Moritz Fischer <mdf@kernel.org>
+> > Sent: Monday, May 10, 2021 11:14 PM
+> > To: Nava kishore Manne <navam@xilinx.com>
+> > Cc: Moritz Fischer <mdf@kernel.org>; trix@redhat.com;
+> > robh+dt@kernel.org; Michal Simek <michals@xilinx.com>; linux-
+> > fpga@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
+> > kernel@lists.infradead.org; linux-kernel@vger.kernel.org; git
+> > <git@xilinx.com>; chinnikishore369@gmail.com
+> > Subject: Re: [PATCH 1/2] fpga: mgr: Adds secure BitStream loading
+> > support
+> >
+> > On Wed, Mar 03, 2021 at 10:11:51AM +0000, Nava kishore Manne wrote:
+> > > Ping!
+> > >
+> > > > -----Original Message-----
+> > > > From: Nava kishore Manne
+> > > > Sent: Wednesday, January 27, 2021 2:43 PM
+> > > > To: Moritz Fischer <mdf@kernel.org>
+> > > > Cc: trix@redhat.com; robh+dt@kernel.org; Michal Simek
+> > > > <michals@xilinx.com>; linux-fpga@vger.kernel.org;
+> > > > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+> > > > linux- kernel@vger.kernel.org; git <git@xilinx.com>;
+> > > > chinnikishore369@gmail.com
+> > > > Subject: RE: [PATCH 1/2] fpga: mgr: Adds secure BitStream loading
+> > > > support
+> > > >
+> > > > Hi Moritz,
+> > > >
+> > > > 	Thanks for the review.
+> > > > Please find my response inline.
+> > > >
+> > > > > -----Original Message-----
+> > > > > From: Moritz Fischer <mdf@kernel.org>
+> > > > > Sent: Friday, January 22, 2021 10:47 AM
+> > > > > To: Nava kishore Manne <navam@xilinx.com>
+> > > > > Cc: mdf@kernel.org; trix@redhat.com; robh+dt@kernel.org; Michal
+> > > > > Simek <michals@xilinx.com>; linux-fpga@vger.kernel.org;
+> > > > > devicetree@vger.kernel.org;
+> > > > > linux-arm-kernel@lists.infradead.org;
+> > > > > linux- kernel@vger.kernel.org; git <git@xilinx.com>;
+> > > > > chinnikishore369@gmail.com
+> > > > > Subject: Re: [PATCH 1/2] fpga: mgr: Adds secure BitStream
+> > > > > loading support
+> > > > >
+> > > > > On Mon, Jan 18, 2021 at 08:20:57AM +0530, Nava kishore Manne
+> > wrote:
+> > > > > > This commit adds secure flags to the framework to support
+> > > > > > secure BitStream Loading.
+> > > > > >
+> > > > > > Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
+> > > > > > ---
+> > > > > >  drivers/fpga/of-fpga-region.c | 10 ++++++++++
+> > > > > > include/linux/fpga/fpga-mgr.h | 12 ++++++++++++
+> > > > > >  2 files changed, 22 insertions(+)
+> > > > > >
+> > > > > > diff --git a/drivers/fpga/of-fpga-region.c
+> > > > > > b/drivers/fpga/of-fpga-region.c index
+> > > > > > e405309baadc..3a5eb4808888
+> > > > > > 100644
+> > > > > > --- a/drivers/fpga/of-fpga-region.c
+> > > > > > +++ b/drivers/fpga/of-fpga-region.c
+> > > > > > @@ -228,6 +228,16 @@ static struct fpga_image_info
+> > > > > *of_fpga_region_parse_ov(
+> > > > > >  	if (of_property_read_bool(overlay, "encrypted-fpga-config"))
+> > > > > >  		info->flags |=3D FPGA_MGR_ENCRYPTED_BITSTREAM;
+> > > > > >
+> > > > > > +	if (of_property_read_bool(overlay, "userkey-encrypted-fpga-
+> > > > > config"))
+> > > > > > +		info->flags |=3D
+> > > > > FPGA_MGR_USERKEY_ENCRYPTED_BITSTREAM;
+> > > > >
+> > > > > Can this just be encrypted-fpga-config/FPGA_MGR_ENCRYPTED?
+> > > >
+> > > > In Encryption we have two kinds of use case one is Encrypted
+> > > > Bitstream loading with Device-key and Other one is Encrypted
+> > > > Bitstream loading with User-key. To differentiate both the use
+> > > > cases this
+> > Changes are needed.
+> > > >
+> > > > Regards,
+> > > > Navakishore.
+> >
+> > Is this region specific, or could this be a sysfs attribute?
+> >
+>=20
+> These changes are region specific.
+>=20
+> Regards,
+> Navakishore.
 
