@@ -2,150 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EEE43926FD
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 07:48:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6367639272D
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 08:13:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233288AbhE0Ftk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 01:49:40 -0400
-Received: from muru.com ([72.249.23.125]:60878 "EHLO muru.com"
+        id S229614AbhE0GOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 02:14:40 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:40361 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232773AbhE0Ftj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 May 2021 01:49:39 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 51A6980AE;
-        Thu, 27 May 2021 05:48:10 +0000 (UTC)
-Date:   Thu, 27 May 2021 08:48:01 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Gowtham Tammana <g-tammana@ti.com>
-Cc:     Suman Anna <s-anna@ti.com>, bcousson@baylibre.com,
-        robh+dt@kernel.org, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Nisanth Menon <nm@ti.com>
-Subject: Re: [PATCH v3] ARM: dts: dra7: Fix duplicate USB4 target module node
-Message-ID: <YK8ykeNA9AsjB89I@atomide.com>
-References: <20210526213035.15448-1-g-tammana@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210526213035.15448-1-g-tammana@ti.com>
+        id S229647AbhE0GOj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 May 2021 02:14:39 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1622095987; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=aeDa3X9qCUqCdqikvcq0CFihZ9uyr2R7mEqIHkiwHUQ=; b=PzVRNwhhmt8inQi83qy2NmKDQfdn6kP5QI6epbK540xoJzi6W3yOw4Cs/xZgWUFNh4OEKrhu
+ jI0hjtIUStjIgxgK6UP9HUFIijQuwNNhrpmsG30oLWxYGEC8WINOMqjgbiX8x9rt3LBvdvRf
+ UNZYjDpYY5lW6pC7IKgP7qntcB4=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 60af3869c229adfeff8321b8 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 27 May 2021 06:12:57
+ GMT
+Sender: rnayak=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id B8032C4360C; Thu, 27 May 2021 06:12:57 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 113E7C433D3;
+        Thu, 27 May 2021 06:12:53 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 113E7C433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+To:     ulf.hansson@linaro.org, robh+dt@kernel.org,
+        bjorn.andersson@linaro.org, viresh.kumar@linaro.org
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        swboyd@chromium.org, rojay@codeaurora.org,
+        Rajendra Nayak <rnayak@codeaurora.org>
+Subject: [PATCH v2 0/3] PM / Domains: Add support for assigned-performance-states
+Date:   Thu, 27 May 2021 11:42:26 +0530
+Message-Id: <1622095949-2014-1-git-send-email-rnayak@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This is a re-spin of the series that was posted a while back [1]
+with no major changes except for some review feedback from Stephen
+addressed.
 
-* Gowtham Tammana <g-tammana@ti.com> [210526 21:30]:
-> diff --git a/arch/arm/boot/dts/am5718.dtsi b/arch/arm/boot/dts/am5718.dtsi
-> index ebf4d3cc1cfb..6d7530a48c73 100644
-> --- a/arch/arm/boot/dts/am5718.dtsi
-> +++ b/arch/arm/boot/dts/am5718.dtsi
-> @@ -17,17 +17,13 @@ / {
->   * VCP1, VCP2
->   * MLB
->   * ISS
-> - * USB3, USB4
-> + * USB3
->   */
->  
->  &usb3_tm {
->  	status = "disabled";
->  };
->  
-> -&usb4_tm {
-> -	status = "disabled";
-> -};
-> -
->  &atl_tm {
->  	status = "disabled";
->  };
+Back when this was posted, we thought its a good idea if client
+drivers handle this instead of genpd core handling it [2]
+So that lead to another series which handled this in the i2c 
+driver [3], but then it looked like it would be duplication
+of code across drivers and perhaps it should be done some place
+centrally.
 
-The above makes sense as usb4 is only on dra74x and should not be even
-available otherwise.
+The way forward seems like
+1. Get the bindings reviewed from DT folks
+2. Once the bindings are finalized, figure out how to handle this
+centrally without duplication. While this series does it with everything
+handled in genpd core, there are perhaps other ways to do it with genpd
+core exporting some helpers and genpd providers handling some of it with
+callbacks.
 
-> diff --git a/arch/arm/boot/dts/dra7-l4.dtsi b/arch/arm/boot/dts/dra7-l4.dtsi
-> index 149144cdff35..648d23f7f748 100644
-> --- a/arch/arm/boot/dts/dra7-l4.dtsi
-> +++ b/arch/arm/boot/dts/dra7-l4.dtsi
-> @@ -4129,28 +4129,6 @@ usb3: usb@10000 {
->  			};
->  		};
->  
-> -		usb4_tm: target-module@140000 {		/* 0x48940000, ap 75 3c.0 */
-> -			compatible = "ti,sysc-omap4", "ti,sysc";
-> -			reg = <0x140000 0x4>,
-> -			      <0x140010 0x4>;
-> -			reg-names = "rev", "sysc";
-> -			ti,sysc-mask = <SYSC_OMAP4_DMADISABLE>;
-> -			ti,sysc-midle = <SYSC_IDLE_FORCE>,
-> -					<SYSC_IDLE_NO>,
-> -					<SYSC_IDLE_SMART>,
-> -					<SYSC_IDLE_SMART_WKUP>;
-> -			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
-> -					<SYSC_IDLE_NO>,
-> -					<SYSC_IDLE_SMART>,
-> -					<SYSC_IDLE_SMART_WKUP>;
-> -			/* Domains (P, C): l3init_pwrdm, l3init_clkdm */
-> -			clocks = <&l3init_clkctrl DRA7_L3INIT_USB_OTG_SS4_CLKCTRL 0>;
-> -			clock-names = "fck";
-> -			#address-cells = <1>;
-> -			#size-cells = <1>;
-> -			ranges = <0x0 0x140000 0x20000>;
-> -		};
-> -
+----
+Some devices within power-domains with performance states do not
+support DVFS, but still need to vote on a default/static state
+while they are active. Add support for a new device tree property
+which the clients can use to specify this and add support in
+kernel to parse this value and vote.
 
-But let's keep the target-module@140000 here as it puts it in the right
-location rather than directly on the ocp. Let's mark it with
-status = "disabled" in dra7-l4.dtsi, and add a comment noting it's only
-available on dra74x. So similar to what you had in your v1 patch, except
-disabled.
+[1] https://lore.kernel.org/patchwork/patch/1284040/
+[2] https://lore.kernel.org/patchwork/patch/1284042/
+[3] https://lore.kernel.org/patchwork/patch/1356618/
 
-> diff --git a/arch/arm/boot/dts/dra71x.dtsi b/arch/arm/boot/dts/dra71x.dtsi
-> index cad0e4a2bd8d..9c270d8f75d5 100644
-> --- a/arch/arm/boot/dts/dra71x.dtsi
-> +++ b/arch/arm/boot/dts/dra71x.dtsi
-> @@ -11,7 +11,3 @@
->  &rtctarget {
->  	status = "disabled";
->  };
-> -
-> -&usb4_tm {
-> -	status = "disabled";
-> -};
-> diff --git a/arch/arm/boot/dts/dra72x.dtsi b/arch/arm/boot/dts/dra72x.dtsi
-> index d403acc754b6..f3e934ef7d3e 100644
-> --- a/arch/arm/boot/dts/dra72x.dtsi
-> +++ b/arch/arm/boot/dts/dra72x.dtsi
-> @@ -108,7 +108,3 @@ &pcie1_ep {
->  &pcie2_rc {
->  	compatible = "ti,dra726-pcie-rc", "ti,dra7-pcie";
->  };
-> -
-> -&usb4_tm {
-> -	status = "disabled";
-> -};
+Rajendra Nayak (3):
+  dt-bindings: power: Introduce 'assigned-performance-states' property
+  PM / Domains: Add support for 'assigned-performance-states'
+  arm64: dts: sc7180: Add assigned-performance-states for i2c
 
-Then the above change can be kept.
+ .../devicetree/bindings/power/power-domain.yaml    | 50 ++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7180.dtsi               | 24 +++++++++++
+ drivers/base/power/domain.c                        | 27 ++++++++++++
+ include/linux/pm_domain.h                          |  1 +
+ 4 files changed, 102 insertions(+)
 
-> diff --git a/arch/arm/boot/dts/dra74x.dtsi b/arch/arm/boot/dts/dra74x.dtsi
-> index e1850d6c841a..60f2ab8d34d5 100644
-> --- a/arch/arm/boot/dts/dra74x.dtsi
-> +++ b/arch/arm/boot/dts/dra74x.dtsi
-> @@ -49,7 +49,7 @@ dsp2_system: dsp_system@41500000 {
->  			reg = <0x41500000 0x100>;
->  		};
->  
-> -		target-module@48940000 {
-> +		usb4_tm: target-module@48940000 {
->  			compatible = "ti,sysc-omap4", "ti,sysc";
->  			reg = <0x48940000 0x4>,
->  			      <0x48940010 0x4>;
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
 
-And in dra74x.dtsi just set it enabled then :)
-
-Other than that looks good to me.
-
-Regards,
-
-Tony
