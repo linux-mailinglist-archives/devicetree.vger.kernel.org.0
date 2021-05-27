@@ -2,151 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D79F392D18
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 13:50:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C77F392D20
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 13:51:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234253AbhE0Lvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 07:51:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39980 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233633AbhE0Lvk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 07:51:40 -0400
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2EABC061574;
-        Thu, 27 May 2021 04:50:06 -0700 (PDT)
-Received: by mail-yb1-xb34.google.com with SMTP id y2so206388ybq.13;
-        Thu, 27 May 2021 04:50:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=q1kENDG0WR8mOBK1OsInJzP26DtLwlvBt7ZWJLHTsCU=;
-        b=ethVlmFYyKvR07Bfu9hSsFdqECyFYAc27wDmhxhmRy+O+zS8rHtUNJB7sO1v8LJPQt
-         DC5z4Q4kKHt7QZjqLYlovBiZ6pPK/aT4WH7NMKRWWYhXhkO8rK3xNsS9bP9CK1Xv0JCi
-         iBDf+bY5dnYTILyxnI8VvkElAeCJenOPE+XLFrLPtzhkbEFA5R/DoTbKTsROK00sMWWg
-         y9+Ol7/zsRHv1QNWw6ICt+gIfBm33k7j6ZxDZc4wimTtFi1jP9klA/3fRLZNiJmRr87g
-         rptRrDVUyJp9uS1Ue+lfkofBl3dY3EiWwAC36pu7jZD5Efz5vKLULPV3UjsZbhMdB4Jx
-         p9CA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=q1kENDG0WR8mOBK1OsInJzP26DtLwlvBt7ZWJLHTsCU=;
-        b=cFEshztxC4y9RHZ9ISJ2YXas7gRkBNNkQcUBIo9KMtrcH7Q1AMR9pC+WbcWtZmsyLA
-         JEQqvNdfdJ7NwY6b9q9ofCcXzJ8rvNItTlB165mi62VCcuDLfPHIToJdfwGl2fuauPJn
-         yVCTD8cMoS6fY3rHEHQn2FUiw9dlH+Wk9qNq81TC2VzVRHcvNOr9t5PeXHGbkA8/N3zN
-         5VIvfw+E9Wr53yApLMY+pEbUGpqGRK/yZtsqLkSEmxhaLO2dCptYGwGXP7mDoSvycQMo
-         rIYUnoi7uZgvpQYAh+oZ+beLo6Bvcsvtv3Yvut3nPvAhQ9yvyncyBR2XbZuZvWAVdwDG
-         7dPA==
-X-Gm-Message-State: AOAM5339/Gh0ORyIYNV4fITQOqBzI2TGNwZw9ZLx2spMt0XZgTCrrGro
-        YNMf8mzy5ukb+YGgOo2uEThmnI249c6r9N46dRM=
-X-Google-Smtp-Source: ABdhPJyxwMUStrDxwfF3K0zzCJrk3hadYFH3qRVvvtR+hbTLebxhsKoBQApK/1kGsfGE7L5iwcI/D2VUdnoE4W4PhPY=
-X-Received: by 2002:a5b:54a:: with SMTP id r10mr4049339ybp.476.1622116205936;
- Thu, 27 May 2021 04:50:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210514192218.13022-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210514192218.13022-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdXdATYWRGL9PMkR_Fj-m-E5GUuPbHq0hZ_Mh=ceedF=RA@mail.gmail.com>
- <CA+V-a8uNB-RyyweQ--vjdiA1NRB7_-VRYBPq9YUxFT4pFRTKBA@mail.gmail.com> <CAMuHMdWKdrn7ikT_qRrb0pVYxk3g7MgVk+qwJER61gbesQiPHA@mail.gmail.com>
-In-Reply-To: <CAMuHMdWKdrn7ikT_qRrb0pVYxk3g7MgVk+qwJER61gbesQiPHA@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Thu, 27 May 2021 12:49:40 +0100
-Message-ID: <CA+V-a8uB5308YszoxeuTr_3UwXC-BK9bXz58B2iR4kfadTUOjg@mail.gmail.com>
-Subject: Re: [PATCH 02/16] dt-bindings: arm: renesas: Document Renesas
- RZ/G2{L,LC} SoC variants
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
+        id S233824AbhE0LxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 07:53:19 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:48712 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234142AbhE0LxT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 07:53:19 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: ezequiel)
+        with ESMTPSA id 1DCE41F43A46
+Message-ID: <462b8d80447efb6c00e93704914169bceb5adc4d.camel@collabora.com>
+Subject: Re: [PATCH] regulator: fan53555: add back tcs4526
+From:   Ezequiel Garcia <ezequiel@collabora.com>
+To:     Rudi Heitbaum <rudi@heitbaum.com>, Peter Geis <pgwipeout@gmail.com>
+Cc:     devicetree@vger.kernel.org,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Mark Brown <broonie@kernel.org>, chenjh@rock-chips.com
+Date:   Thu, 27 May 2021 08:51:27 -0300
+In-Reply-To: <20210527105943.GA441@7698f5da3a10>
+References: <20210526162342.GA20@8bbba9ba63a4>
+         <CAMdYzYpZoKs3P62j02RW-+5BEpqC9JL3apjucTWLWmvNFrOrCg@mail.gmail.com>
+         <20210527105943.GA441@7698f5da3a10>
+Organization: Collabora
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.2-1 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Hi Rudi,
 
-On Thu, May 27, 2021 at 12:28 PM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Fri, May 21, 2021 at 7:10 PM Lad, Prabhakar
-> <prabhakar.csengg@gmail.com> wrote:
-> > On Fri, May 21, 2021 at 2:23 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > On Fri, May 14, 2021 at 9:23 PM Lad Prabhakar
-> > > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > > > Add device tree bindings documentation for Renesas RZ/G2{L,LC}
-> > > > SoC variants.
-> > > >
-> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > > Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
-> > >
-> > > > --- a/Documentation/devicetree/bindings/arm/renesas.yaml
-> > > > +++ b/Documentation/devicetree/bindings/arm/renesas.yaml
-> > > > @@ -308,6 +308,15 @@ properties:
-> > > >                - renesas,r9a07g043u11 # Single Cortex-A55 RZ/G2UL
-> > > >            - const: renesas,r9a07g043
-> > > >
-> > > > +      - description: RZ/G2{L,LC} (R9A07G044)
-> > > > +        items:
-> > > > +          - enum:
-> > > > +              - renesas,r9a07g044c1 # Single Cortex-A55 RZ/G2LC
-> > > > +              - renesas,r9a07g044c2 # Dual Cortex-A55 RZ/G2LC
-> > > > +              - renesas,r9a07g044l1 # Single Cortex-A55 RZ/G2L
-> > > > +              - renesas,r9a07g044l2 # Dual Cortex-A55 RZ/G2L
-> > >
-> > > Given the LSI DEVID is the same for all four, and presumably they're
-> > > thus the same die with different packaging, do we need these four
-> > > compatible values?
-> > >
-> > Yes the LSI DEVID is the same for all the above, so as to
-> > differentiate between each SoC's, these compatible strings are added.
->
-> OK, especially for single-core versus dual-core, this can be useful,
-> if "integration issues" pop up depending on the number of cores
-> or other functionality being present.
->
-> > * For example some IP blocks which are present on RZ/G2L aren't
-> > present in RZ/G2LC.
->
-> That'll be handled by the .dtsi, right?
->
-Agreed.
+Thanks for the patch.
 
-Cheers,
-Prabhakar
+On Thu, 2021-05-27 at 10:59 +0000, Rudi Heitbaum wrote:
+> On Wed, May 26, 2021 at 02:41:00PM -0400, Peter Geis wrote:
+> > On Wed, May 26, 2021 at 12:23 PM Rudi Heitbaum <rudi@heitbaum.com> wrote:
+> > > 
+> > > 
+> > > For rk3399pro boards the tcs4526 regulator supports the vdd_gpu
+> > > regulator. The tcs4526 regulator has a chip id of <0>.
+> > > Add the compatibile tcs,tcs4526
+> > > 
+> > > without this patch, the dmesg output is:
+> > >   fan53555-regulator 0-0010: Chip ID 0 not supported!
+> > >   fan53555-regulator 0-0010: Failed to setup device!
+> > >   fan53555-regulator: probe of 0-0010 failed with error -22
+> > > with this patch, the dmesg output is:
+> > >   vdd_gpu: supplied by vcc5v0_sys
+> > > 
+> > > The regulators are described as:
+> > > - Dedicated power management IC TCS4525
+> > > - Lithium battery protection chip TCS4526
+> > > 
+> > > This has been tested with a Radxa Rock Pi N10.
+> > > 
+> > > Fixes: f9028dcdf589 ("regulator: fan53555: only bind tcs4525 to correct chip id")
+> > > Signed-off-by: Rudi Heitbaum <rudi@heitbaum.com>
+> > 
+> > Considering the TCS4525 wasn't supported prior to its recent addition,
+> > and the TCS4526 wasn't supported by the driver at all, this isn't a
+> > fix but a feature addition.
+> > Binding only to the correct device ID exists for this reason, to
+> > prevent unsafe voltage setting.
+> 
+> Hi Peter, thanks for the detailed feedback. You are quite right (I had
+> started using the tcs4525 patch as a tcs452x patch. I'll update that in
+> the resubmission.
+> 
+> > I also don't see the TCS4525/TCS4526 regulators in the current
+> > linux-next device tree for the N10.
+> 
+> I have a working rk3399pro-vmarc-som.dtsi that I intend to submit, but
+> wanted to get clarity on the tcs452x first. I have included it at the
+> bottom of this email.
+> 
+> > > ---
+> > >  drivers/regulator/fan53555.c | 8 ++++++++
+> > >  1 file changed, 8 insertions(+)
+> > > 
+> > > diff --git a/drivers/regulator/fan53555.c b/drivers/regulator/fan53555.c
+> > > index 2695be617373..ddab9359ea20 100644
+> > > --- a/drivers/regulator/fan53555.c
+> > > +++ b/drivers/regulator/fan53555.c
+> > > @@ -90,6 +90,7 @@ enum {
+> > >  };
+> > > 
+> > >  enum {
+> > > +       TCS4525_CHIP_ID_00 = 0,
+> > >         TCS4525_CHIP_ID_12 = 12,
+> > 
+> > This isn't a TCS4525, but a TCS4526.
+> 
+> I'll update this to TCS4526_CHIP_ID_00
+> 
+> > >  };
+> > > 
+> > > @@ -373,6 +374,7 @@ static int fan53555_voltages_setup_silergy(struct fan53555_device_info *di)
+> > >  static int fan53526_voltages_setup_tcs(struct fan53555_device_info *di)
+> > >  {
+> > >         switch (di->chip_id) {
+> > > +       case TCS4525_CHIP_ID_00:
+> > >         case TCS4525_CHIP_ID_12:
+> > >                 di->slew_reg = TCS4525_TIME;
+> > >                 di->slew_mask = TCS_SLEW_MASK;
+> > > @@ -564,6 +566,9 @@ static const struct of_device_id __maybe_unused fan53555_dt_ids[] = {
+> > >         }, {
+> > >                 .compatible = "tcs,tcs4525",
+> > >                 .data = (void *)FAN53526_VENDOR_TCS
+> > > +       }, {
+> > > +               .compatible = "tcs,tcs4526",
+> > > +               .data = (void *)FAN53526_VENDOR_TCS
+> > 
+> > Since you aren't adding any functional code, is there a particular
+> > reason you can't just add the chip id and simply use the tcs4525
+> > compatible?
+> > This will prevent you from needing to modify the dt-bindings as well.
+> 
+> In and earlier commit to the BSP kernel the proposal was to rename to
+> tcs452x. ref:
+> https://github.com/CK-LINUX/kernel/commit/b3bbe8018c56362feed1e49c8d243a8dbcdcc07b
+> 
+> I chose to follow the example of silergy,syr827 and silergy,syr828 for
+> tcs4526 (given I made the mistake in assuming that support for tcs4525
+> meant support for tcs4525.) This would maintain consistency of naming of
+> tcs4526 throughout the source. Is that ok?
+> 
+> > >         },
+> > >         { }
+> > >  };
+> > > @@ -672,6 +677,9 @@ static const struct i2c_device_id fan53555_id[] = {
+> > >         }, {
+> > >                 .name = "tcs4525",
+> > >                 .driver_data = FAN53526_VENDOR_TCS
+> > > +       }, {
+> > > +               .name = "tcs4526",
+> > > +               .driver_data = FAN53526_VENDOR_TCS
+> > >         },
+> > >         { },
+> > >  };
+> > > --
+> > > 2.29.2
+> > > 
+> 
+> Below is the draft patch for the dtsi includeing the 2 missing regulators and
+> to enable the GPU on the Radxa Rock Pi N10 which utilises the VMARC RK3399Pro SoM.
+> 
+> This will be submitted seperately to the "tcs4526 regulator" patch.
+> 
+> --- a/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi     2021-05-08 09:11:59.000000000 +0000
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi     2021-05-08 09:11:59.000000000 +0000
+> @@ -57,6 +57,22 @@
+>         pinctrl-0 = <&hdmi_cec>;
+>  };
+>  
+> +&hdmi_sound {
+> +       status = "okay";
+> +};
+> +
+> +&gpu {
+> +       mali-supply = <&vdd_gpu>;
+> +       assigned-clocks = <&cru ACLK_GPU>;
+> +       assigned-clock-rates = <200000000>;
+> +       status = "okay";
+> +       /delete-property/ operating-points-v2;
 
-> > * Adding this to DTS gives an opportunity to stop booting if the wrong
-> > DTB is loaded into the board.
->
-> This only works for SoCs with different LSI DEVIDs.
-> As all four above have the same LSI DEVID, you can only distinguish
-> them by the main compatible value.  It does not protect against
-> loading an RZ/G2LC DTB on an RZ/G2L board or vice versa.
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+As Peter rightly said, this will prevent gpu devfreq from working.
+
+> +};
+> +
+> +&vopl {
+> +       status = "disabled";
+
+Out of curiosity, why disabling the little VOP?
+
+> +};
+> +
+>  &i2c0 {
+>         clock-frequency = <400000>;
+>         i2c-scl-falling-time-ns = <30>;
+> @@ -289,6 +288,50 @@
+>                         };
+>                 };
+>         };
+> +
+> +       vdd_cpu_b: tcs4525@1c {
+> +               compatible = "tcs,tcs4525";
+> +               reg = <0x1c>;
+> +               vin-supply = <&vcc5v0_sys>;
+> +               regulator-compatible = "fan53555-reg";
+
+
+I can be wrong, but I think regulator-compatible is deprecated.
+
+> +               pinctrl-0 = <&vsel1_gpio>;
+> +               vsel-gpios = <&gpio1 RK_PC1 GPIO_ACTIVE_HIGH>;
+
+Is vsel-gpios ever used in the mainline driver?
+
+> +               regulator-name = "vdd_cpu_b";
+> +               regulator-min-microvolt = <712500>;
+> +               regulator-max-microvolt = <1500000>;
+> +               regulator-ramp-delay = <2300>;
+> +               fcs,suspend-voltage-selector = <1>;
+> +               regulator-always-on;
+> +               regulator-boot-on;
+> +               regulator-initial-state = <3>;
+> +               regulator-state-mem {
+> +                       regulator-off-in-suspend;
+> +               };
+> +       };
+> +
+> +       vdd_gpu: tcs4526@10 {
+> +               compatible = "tcs,tcs4526";
+> +               reg = <0x10>;
+> +               vin-supply = <&vcc5v0_sys>;
+> +               regulator-compatible = "fan53555-reg";
+
+Ditto.
+
+> +               pinctrl-0 = <&vsel2_gpio>;
+> +               vsel-gpios = <&gpio1 RK_PB6 GPIO_ACTIVE_HIGH>;
+
+Ditto.
+
+> +               regulator-name = "vdd_gpu";
+> +               regulator-min-microvolt = <735000>;
+> +               regulator-max-microvolt = <1400000>;
+> +               regulator-ramp-delay = <1000>;
+> +               fcs,suspend-voltage-selector = <1>;
+> +               regulator-always-on;
+> +               regulator-boot-on;
+
+Just out of curiosity, is regulator-boot-on really needed for the GPU?
+
+Thanks,
+Ezequiel
+
