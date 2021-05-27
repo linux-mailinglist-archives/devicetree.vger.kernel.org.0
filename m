@@ -2,197 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68612392F9F
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 15:27:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 772E7392F6F
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 15:24:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236455AbhE0N3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 09:29:18 -0400
-Received: from cable.insite.cz ([84.242.75.189]:54993 "EHLO cable.insite.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236492AbhE0N3R (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 May 2021 09:29:17 -0400
-X-Greylist: delayed 604 seconds by postgrey-1.27 at vger.kernel.org; Thu, 27 May 2021 09:29:17 EDT
-Received: from localhost (localhost [127.0.0.1])
-        by cable.insite.cz (Postfix) with ESMTP id F3EDDA1A3D403;
-        Thu, 27 May 2021 15:17:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=ivitera.com; s=mail;
-        t=1622121458; bh=r9xuut7SWjfIRlaeWE/HouvA98YUMcTiEyJQXHqHHGg=;
-        h=Subject:To:References:From:Date:In-Reply-To:From;
-        b=fMb7bZzBvEaI0dEVLsq0fRF9XpyeW7RFeaYWxtADbxyDp1fYP01tEPJTvrzWvKKlB
-         zJLOQ2XQgzOKVXCIjxQSxKP6ce3JGXxcDYyMh5ztDge1EOIvQYT7h22+YMt5IJ+lPn
-         t4Rabbbe6NAAZ0vHVYk1bjw1fwlsQRT68tZDiANg=
-Received: from cable.insite.cz ([84.242.75.189])
-        by localhost (server.insite.cz [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 8zz1Wg9huGKc; Thu, 27 May 2021 15:17:32 +0200 (CEST)
-Received: from [192.168.105.22] (ip28.insite.cz [81.0.237.28])
-        (Authenticated sender: pavel)
-        by cable.insite.cz (Postfix) with ESMTPSA id B7185A1A3D402;
-        Thu, 27 May 2021 15:17:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=ivitera.com; s=mail;
-        t=1622121451; bh=r9xuut7SWjfIRlaeWE/HouvA98YUMcTiEyJQXHqHHGg=;
-        h=Subject:To:References:From:Date:In-Reply-To:From;
-        b=ICocMIJR/hG5MOm9uWU1lg7G+BCOVh7iHs4zMYjCO626S6rs6BfwD3Epsg2iKifMf
-         wd/6/PlNC9uvzliir9te/310G0rc1qL6B6ifFvNI7x3qmE3Ab7M88ov1Y923fFyt8k
-         hJ0V9d1Mn9rFBh4uVNvigK73gx86v0Fe18mByZlk=
-Subject: Re: [PATCH] ARM: dts: bcm283x: increase dwc2's RX FIFO size
-To:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Minas Harutyunyan <hminas@synopsys.com>,
+        id S236373AbhE0NZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 09:25:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33702 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236306AbhE0NZf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 09:25:35 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C10A8C061574;
+        Thu, 27 May 2021 06:24:02 -0700 (PDT)
+Received: from [192.168.1.111] (91-157-208-71.elisa-laajakaista.fi [91.157.208.71])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B4FC2ED;
+        Thu, 27 May 2021 15:23:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1622121837;
+        bh=DV/sXGP9GWQVpqSUl3M/6iG027x7LNyVu3A0F+XjFAE=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=GzEgR5OZO9B2c/tDgu2McnKqP1rwzxOfwVFZRCybS7RqVgX9imDsseE95UMBgkpnY
+         8lQalkoUAEshVFLY9IxI4taN+XGAuJ3KL5Tvw4lTqpkVKvbR33cqz2gjfORQ7jmECs
+         A8vaySUeZxfOR+EuRiQLv7Pcp1ULRj10D1959QPA=
+Subject: Re: [PATCH v2 00/18] CSI2RX support on J721E
+To:     Pratyush Yadav <p.yadav@ti.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org
-References: <e9e7d070-593c-122f-3a5c-2435bb147ab2@ivitera.com>
- <44d8f7e0-b2d0-8547-7367-7a35af68efe6@i2se.com>
-From:   Pavel Hofman <pavel.hofman@ivitera.com>
-Message-ID: <7c2e3e1f-db10-b376-9b87-ef93c8d8289c@ivitera.com>
-Date:   Thu, 27 May 2021 15:17:31 +0200
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Benoit Parrot <bparrot@ti.com>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, dmaengine@vger.kernel.org
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <20210526152308.16525-1-p.yadav@ti.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Message-ID: <83bcd60a-2a45-59b2-8ebe-26ad5d828965@ideasonboard.com>
+Date:   Thu, 27 May 2021 16:23:55 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <44d8f7e0-b2d0-8547-7367-7a35af68efe6@i2se.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20210526152308.16525-1-p.yadav@ti.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stefan,
+Hi Pratyush,
 
-Dne 26. 05. 21 v 19:12 Stefan Wahren napsal(a):
+On 26/05/2021 18:22, Pratyush Yadav wrote:
+> Hi,
 > 
-> Am 13.11.20 um 08:18 schrieb Pavel Hofman:
->> The previous version of the dwc2 overlay set the RX FIFO size to
->> 256 4-byte words. This is not enough for 1024 bytes of the largest
->> isochronous high speed packet allowed, because it doesn't take into
->> account extra space needed by dwc2.
->>
->> RX FIFO's size is calculated based on the following (in 4byte words):
->> - 13 locations for SETUP packets
->>   5*n + 8 for Slave and Buffer DMA mode where n is number of control
->>   endpoints which is 1 on the bcm283x core
->>
->> - 1 location for Global OUT NAK
->>
->> - 2 * 257 locations for status information and the received packet.
->>   Typically two spaces are recommended so that when the previous packet
->>   is being transferred to AHB, the USB can receive the subsequent
->>   packet.
->>
->> - 10 * 1 location for transfer complete status for last packet of each
->>   endpoint. The bcm283x core has 5 IN and 5 OUT EPs
->>
->> - 10 * 1 additional location for EPDisable status for each endpoint
->>
->> - 5 * 2 additional locations are recommended for each OUT endpoint
->>
->> Total is 558 locations.
->>
->> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
->> Signed-off-by: Pavel Hofman <pavel.hofman@ivitera.com>
->> ---
->>  arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi        | 2 +-
->>  arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi | 2 +-
->>  2 files changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi
->> b/arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi
->> index e2fd961..20322de 100644
->> --- a/arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi
->> +++ b/arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi
->> @@ -1,7 +1,7 @@
->>  // SPDX-License-Identifier: GPL-2.0
->>  &usb {
->>  	dr_mode = "otg";
->> -	g-rx-fifo-size = <256>;
->> +	g-rx-fifo-size = <558>;
->>  	g-np-tx-fifo-size = <32>;
->>  	/*
->>  	 * According to dwc2 the sum of all device EP
->> diff --git a/arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi
->> b/arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi
->> index 0ff0e9e..1409d1b 100644
->> --- a/arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi
->> +++ b/arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi
->> @@ -1,7 +1,7 @@
->>  // SPDX-License-Identifier: GPL-2.0
->>  &usb {
->>  	dr_mode = "peripheral";
->> -	g-rx-fifo-size = <256>;
->> +	g-rx-fifo-size = <558>;
+> This series adds support for CSI2 capture on J721E. It includes some
+> fixes to the Cadence CSI2RX driver, adds Rx support to Cadence DPHY
+> driver, and finally adds the TI CSI2RX wrapper driver.
 > 
-> sorry for being late at the party, but this change introduce a
-> regression on Raspberry Pi 4 B:
-> 
-> dwc2 fe980000.usb: dwc2_check_param_tx_fifo_sizes: Invalid parameter
-> g-tx-fifo-size, setting to default average
-> 
-> I known you didn't change the tx fifo size, but there are complex
-> constrains regarding the total fifo size.
-> 
-> Are you able to test this with a mainline kernel (not Raspberry Pi
-> kernel) and send a fix for this?
-> 
->>  	g-np-tx-fifo-size = <32>;
->>  	g-tx-fifo-size = <256 256 512 512 512 768 768>;
->>  };
-> 
+> Tested on TI's J721E with OV5640 sensor.
 
-I think I see the problem.
+I also see this after a few captures:
 
-IIUC the calculations and checks, all g-tx-fifo-size values +
-g-rx-fifo-size + g-np-tx-fifo-size must not exceed total_fifo_size. My
-RPi4 reports the total_fifo_size as 4080 (in
-/sys/kernel/debug/usb/fe980000.usb/hw_params).
-
-Linux mainline
-https://github.com/torvalds/linux/search?p=3&q=g-tx-fifo-size :
-
-The increase in value of g-rx-fifo-size exceeds the limit for the DTSI
-files we patched:
-
-Both bcm283x-rpi-usb-peripheral.dtsi and bcm283x-rpi-usb-otg.dtsi:
-558 + 32 + 256 + 256 + 512 + 512 + 512 + 768 + 768 = 4174 > 4080
-
-while the sum with the previous value of 256 reached just 3872 < 4080.
-
-
-The raspberrypi repo
-https://github.com/raspberrypi/linux/search?q=g-tx-fifo-size :
-
-It has a different mix of the DTSI files
-dwc2-overlay.dts
-upstream-overlay.dts
-upstream-pi4-overlay.dts
-
-all of which define
-g-tx-fifo-size = <512 512 512 512 512 256 256>;
-
-Here the calculation holds:
-558 + 32 + 512 + 512 + 512 + 512 + 512 + 256 + 256 = 3662 < 4080
-
-My RPi4 uses one of these DTSIs, because my
-/sys/kernel/debug/usb/fe980000.usb/params says:
-
-g_rx_fifo_size                : 558
-g_np_tx_fifo_size             : 32
-g_tx_fifo_size[0]             : 0
-g_tx_fifo_size[1]             : 512
-g_tx_fifo_size[2]             : 512
-g_tx_fifo_size[3]             : 512
-g_tx_fifo_size[4]             : 512
-g_tx_fifo_size[5]             : 512
-g_tx_fifo_size[6]             : 256
-g_tx_fifo_size[7]             : 256
-
-
-IIUC the tx_fifo values in bcm283x-rpi-usb-peripheral.dtsi and
-bcm283x-rpi-usb-otg.dtsi files can be lowered to the values used and
-tested (at least by me) in the RPi repo. But this is outside of my
-knowledge, honestly I do not know what is the most appropriate
-distribution of the remaining fifo space among the g_tx_fifo buffers.
-Please can the RPi developers (Phil?) suggest a fix?
-
-Thanks a lot to Stefan and to everyone involved.
-
-Pavel.
+[   84.115503] ------------[ cut here ]------------
+[   84.120144] DMA-API: ti-udma 31150000.dma-controller: mapping sg segment longer than device claims to support [len=1900544] [max=65536]
+[   84.132376] WARNING: CPU: 1 PID: 594 at kernel/dma/debug.c:1172 debug_dma_map_sg+0x304/0x390
+[   84.140804] Modules linked in: ov5640 ti_cal j721e_csi2rx cdns_csi2rx cdns_dphy v4l2_fwnode tidss ti_tfp410 tc358767 display_connector cdns_mhdp8546 panel_simple drm_kms_helper d
+rm drm_panel_orientation_quirks cfbfillrect cfbimgblt cfbcopyarea phy_j721e_wiz phy_cadence_torrent
+[   84.165298] CPU: 1 PID: 594 Comm: cam-mplex.py Not tainted 5.13.0-rc1-00206-g98bb91e95a28-dirty #5
+[   84.174236] Hardware name: Texas Instruments K3 J721E SoC (DT)
+[   84.180051] pstate: 60000005 (nZCv daif -PAN -UAO -TCO BTYPE=--)
+[   84.186041] pc : debug_dma_map_sg+0x304/0x390
+[   84.190383] lr : debug_dma_map_sg+0x304/0x390
+[   84.194725] sp : ffff800014d0f730
+[   84.198026] x29: ffff800014d0f730 x28: ffff000801544680 x27: ffffffffffffffff
+[   84.205148] x26: 0000000000000000 x25: 0000000000000002 x24: 0000000000000001
+[   84.212269] x23: ffff80001163abe0 x22: 0000000000000000 x21: 0000000000000001
+[   84.219390] x20: ffff000801fa3010 x19: ffff0008075c7580 x18: 0000000000000000
+[   84.226510] x17: 0000000000000000 x16: 0000000000000000 x15: 0000000000000030
+[   84.233630] x14: 6e61687420726567 x13: 6e6f6c20746e656d x12: 7420736d69616c63
+[   84.240751] x11: 2065636976656420 x10: ffff8000116b18f8 x9 : ffff8000100eb920
+[   84.247871] x8 : ffff8000116598f8 x7 : ffff8000116b18f8 x6 : 0000000000000001
+[   84.254991] x5 : 0000000000000001 x4 : 0000000000000001 x3 : 0000000000000000
+[   84.262111] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff0008066f8000
+[   84.269230] Call trace:
+[   84.271665]  debug_dma_map_sg+0x304/0x390
+[   84.275660]  dma_map_sg_attrs+0x70/0xb0
+[   84.279486]  drm_gem_map_dma_buf+0x6c/0xf0 [drm]
+[   84.284177]  __map_dma_buf+0x28/0x80
+[   84.287742]  dma_buf_map_attachment+0xe4/0x200
+[   84.292172]  vb2_dc_map_dmabuf+0x3c/0x150
+[   84.296171]  __prepare_dmabuf+0x1dc/0x514
+[   84.300168]  __buf_prepare+0x1a0/0x25c
+[   84.303903]  vb2_core_qbuf+0x3d4/0x72c
+[   84.307638]  vb2_qbuf+0x9c/0xf4
+[   84.310767]  vb2_ioctl_qbuf+0x68/0x7c
+[   84.314416]  v4l_qbuf+0x54/0x70
+[   84.317545]  __video_do_ioctl+0x194/0x400
+[   84.321541]  video_usercopy+0x19c/0x910
+[   84.325362]  video_ioctl2+0x24/0x40
+[   84.328837]  v4l2_ioctl+0x4c/0x70
+[   84.332141]  __arm64_sys_ioctl+0xb4/0xfc
+[   84.336053]  invoke_syscall+0x50/0x120
+[   84.339791]  el0_svc_common.constprop.0+0x68/0x104
+[   84.344569]  do_el0_svc+0x30/0x9c
+[   84.347872]  el0_svc+0x2c/0x54
+[   84.350916]  el0_sync_handler+0x1a8/0x1ac
+[   84.354911]  el0_sync+0x198/0x1c0
+[   84.358215] irq event stamp: 0
+[   84.361256] hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+[   84.367507] hardirqs last disabled at (0): [<ffff80001004fe2c>] copy_process+0x44c/0x1800
+[   84.375667] softirqs last  enabled at (0): [<ffff80001004fe2c>] copy_process+0x44c/0x1800
+[   84.383824] softirqs last disabled at (0): [<0000000000000000>] 0x0
+[   84.390073] ---[ end trace af3448c784059129 ]---
