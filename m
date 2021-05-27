@@ -2,146 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1F55393693
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 21:46:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D59453936AD
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 21:53:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235804AbhE0Trj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 15:47:39 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:35463 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235710AbhE0Trf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 15:47:35 -0400
-Received: by mail-ot1-f54.google.com with SMTP id 69-20020a9d0a4b0000b02902ed42f141e1so1345185otg.2;
-        Thu, 27 May 2021 12:46:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=aaVILIIQRpAt4fcQqCQzkC7Wo1WpArLqF54tXrfeHEk=;
-        b=iA38o8+DaGlZxZIptoJ4OEV7oS9tMKSdQmoE7mYbptLt+EXcqusE/C8WrvDLfOBBMq
-         O8DZygsI1p7R2drzwalspn2vsjCWHoQxazf4SYkg3/weC0dybRAYXDtUr4mmd5shdYz0
-         sA+CbA6ImLGYCQ9w6uUPzYShJkeUoVQTXUnUgSMhHsc0S5JPBsWfFtx1/1q1roYqVITA
-         LVzCoiwhzNPeb1d0EydOG5Grag27YfUzJY0jEMtM8iKrk6Ii0zndBwZegmxH2QJb32Qb
-         vlwPPd1lMdv1GVYS38U4A2TghVR/5OjPrVl5Jwjqy8g/8qYsUy3aoQNMn/SJrrbYQqd+
-         YimA==
-X-Gm-Message-State: AOAM532U8rt1TKiveEwl6zRh94NiwmV6luE+G2MEJQG/ttkKTRo0Ykh5
-        bVAYSOFlW0rM+cC5pVrQayHpuvYPxw==
-X-Google-Smtp-Source: ABdhPJxsAV9DnsZkTkzog9FHmjg+bEejEyf9p9gCoy4QJ0+VWzhuApSAzpE0JKzM+T7GVe6yF2qOIg==
-X-Received: by 2002:a05:6830:1013:: with SMTP id a19mr4045932otp.21.1622144759587;
-        Thu, 27 May 2021 12:45:59 -0700 (PDT)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id m74sm665162oig.33.2021.05.27.12.45.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 May 2021 12:45:58 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
-        linux-pci@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>
-Subject: [PATCH 4/4] of: Merge of_address_to_resource() and of_pci_address_to_resource() implementations
-Date:   Thu, 27 May 2021 14:45:47 -0500
-Message-Id: <20210527194547.1287934-5-robh@kernel.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210527194547.1287934-1-robh@kernel.org>
-References: <20210527194547.1287934-1-robh@kernel.org>
+        id S235351AbhE0TzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 15:55:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58808 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234847AbhE0TzL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 May 2021 15:55:11 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4B37561284;
+        Thu, 27 May 2021 19:53:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1622145218;
+        bh=7iGJS3rGmNjwNAFKUj1DAV7UgRQ88ngVvWvNYWXGUKY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=LIw+N207MJU9jaPOoUDHNfNm9YvYu35ktrOtPCJxKcQT/1YqLFGLcBIQuoIyV21wE
+         qdQo3sd2Z/qjEExXmJ6C3e9aRcr7liZPN6gpNGps4r5YUqTxylBzwnyMiftJx/92lw
+         saozaZq1DnCDw/y10HPIBqOKIpX7C15IitzaYNNAil8+7AB46MSAD8t86PQPx272yn
+         +LaiTd5YgBPZyNSdw3S5iGiB/udPhs0aDfU5uf1keCJ5LpcdTkh8NjwbbonGDOnyM7
+         PwYlNrYZiiupB0t0t35RXyF6lTrw2BLoBJdQI51pycFHUvh5QKL45VrJaNt13zrlwB
+         5MQ7leL/XfLBw==
+Date:   Thu, 27 May 2021 21:53:34 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Michael Ellerman <mpe@ellerman.id.au>
+Cc:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        andriy.shevchenko@linux.intel.com, andy.shevchenko@gmail.com,
+        robh+dt@kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/4] P2040/P2041 i2c recovery erratum
+Message-ID: <YK/4vuq0o1td4Zhl@kunai>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        andriy.shevchenko@linux.intel.com, andy.shevchenko@gmail.com,
+        robh+dt@kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org
+References: <20210511212052.27242-1-chris.packham@alliedtelesis.co.nz>
+ <YK1HqE+3ILtGXZ7E@kunai>
+ <87zgwigvd6.fsf@mpe.ellerman.id.au>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="j+byiAwReNWa+GwK"
+Content-Disposition: inline
+In-Reply-To: <87zgwigvd6.fsf@mpe.ellerman.id.au>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-of_address_to_resource() and of_pci_address_to_resource() are almost the
-same except the former takes an index and the latter takes a BAR number.
-Now that __of_get_address() can take either one, refactor the functions
-to use a common implementation.
 
-Cc: Frank Rowand <frowand.list@gmail.com>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- drivers/of/address.c | 44 ++++++++++++++++++--------------------------
- 1 file changed, 18 insertions(+), 26 deletions(-)
+--j+byiAwReNWa+GwK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index e643f999743a..3b2acca7e363 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -23,9 +23,8 @@
- #define OF_CHECK_COUNTS(na, ns)	(OF_CHECK_ADDR_COUNT(na) && (ns) > 0)
- 
- static struct of_bus *of_match_bus(struct device_node *np);
--static int __of_address_to_resource(struct device_node *dev,
--		const __be32 *addrp, u64 size, unsigned int flags,
--		const char *name, struct resource *r);
-+static int __of_address_to_resource(struct device_node *dev, int index,
-+		int bar_no, struct resource *r);
- static bool of_mmio_is_nonposted(struct device_node *np);
- 
- /* Debug utility */
-@@ -203,17 +202,11 @@ static int of_bus_pci_translate(__be32 *addr, u64 offset, int na)
- int of_pci_address_to_resource(struct device_node *dev, int bar,
- 			       struct resource *r)
- {
--	const __be32	*addrp;
--	u64		size;
--	unsigned int	flags;
- 
- 	if (!IS_ENABLED(CONFIG_PCI))
- 		return -ENOSYS;
- 
--	addrp = of_get_pci_address(dev, bar, &size, &flags);
--	if (addrp == NULL)
--		return -EINVAL;
--	return __of_address_to_resource(dev, addrp, size, flags, NULL, r);
-+	return __of_address_to_resource(dev, -1, bar, r);
- }
- EXPORT_SYMBOL_GPL(of_pci_address_to_resource);
- 
-@@ -804,11 +797,22 @@ static u64 of_translate_ioport(struct device_node *dev, const __be32 *in_addr,
- 	return port;
- }
- 
--static int __of_address_to_resource(struct device_node *dev,
--		const __be32 *addrp, u64 size, unsigned int flags,
--		const char *name, struct resource *r)
-+static int __of_address_to_resource(struct device_node *dev, int index, int bar_no,
-+		struct resource *r)
- {
- 	u64 taddr;
-+	const __be32	*addrp;
-+	u64		size;
-+	unsigned int	flags;
-+	const char	*name = NULL;
-+
-+	addrp = __of_get_address(dev, index, bar_no, &size, &flags);
-+	if (addrp == NULL)
-+		return -EINVAL;
-+
-+	/* Get optional "reg-names" property to add a name to a resource */
-+	if (index >= 0)
-+		of_property_read_string_index(dev, "reg-names",	index, &name);
- 
- 	if (flags & IORESOURCE_MEM)
- 		taddr = of_translate_address(dev, addrp);
-@@ -846,19 +850,7 @@ static int __of_address_to_resource(struct device_node *dev,
- int of_address_to_resource(struct device_node *dev, int index,
- 			   struct resource *r)
- {
--	const __be32	*addrp;
--	u64		size;
--	unsigned int	flags;
--	const char	*name = NULL;
--
--	addrp = of_get_address(dev, index, &size, &flags);
--	if (addrp == NULL)
--		return -EINVAL;
--
--	/* Get optional "reg-names" property to add a name to a resource */
--	of_property_read_string_index(dev, "reg-names",	index, &name);
--
--	return __of_address_to_resource(dev, addrp, size, flags, name, r);
-+	return __of_address_to_resource(dev, index, -1, r);
- }
- EXPORT_SYMBOL_GPL(of_address_to_resource);
- 
--- 
-2.27.0
+On Wed, May 26, 2021 at 11:02:45AM +1000, Michael Ellerman wrote:
+> Wolfram Sang <wsa@kernel.org> writes:
+> > On Wed, May 12, 2021 at 09:20:48AM +1200, Chris Packham wrote:
+> >> The P2040/P2041 has an erratum where the i2c recovery scheme
+> >> documented in the reference manual (and currently implemented
+> >> in the i2c-mpc.c driver) does not work. The errata document
+> >> provides an alternative that does work. This series implements
+> >> that alternative and uses a property in the devicetree to
+> >> decide when the alternative mechanism is needed.
+> >
+> > The series looks good to me. Usually, I don't take DTS patches. This
+> > time I'd make an exception and apply all patches to for-current because
+> > this is clearly a bugfix. For that, I'd need an ack from PPC
+> > maintainers. Could I have those for patches 2+3?
+>=20
+> Yep, done.
 
+Thanks! Series applied to for-current.
+
+
+--j+byiAwReNWa+GwK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmCv+L4ACgkQFA3kzBSg
+Kbaccg//U0FSkmTl8Shy+mkH05iCQ7dM++sZ0S6Zn+tMKSW8773bwEJp4nfYEo/d
+FTo5Z5b3tcAXho8jgOf5dY21uTGnXPiExKweICAaxIAbXqVkBzlVN+PoRXQe5PCx
+cqCEkgeyMALeS8CRpprb4Vst5YTX1nld6w/cNPWERphNImNBvV0lqomgU39JmoP5
+3CqeRrBUpjwmpTwX1r+sgfJ797EVAygGd1lWvq9qOnP/oojT94B69s6QDuZrgT3J
+vrzxGkuMZpBFnWTOQuYeYS64UYB7P6/wTas0RU1f4Pfl8wo0Y+JixtjD6kVQbceJ
+6qIOretW5JZOvs9b8Qu10dMMuOij+VnJsHu8kl1CkXupXUCw00qIjL02uqN2tv6V
+49Z3Qd2b8eXBrMIZCN6F09ZiA4Q6uPvhpsqN3WoDi1HqgdTW/DGlzJjtElG75zkW
+4sM/q2u7X95s+zy6KsNHnUrtdjEIKIjTzjDcdW6ZnVHatTVXzRJBqEaN/BZpFRoI
+0WdIEAT7k4LXVSeHR/+5EPYZK74Ltqi2sVJJBu+j3+YG3DvcSwfrTqSuh5N3e+j2
+A4vUewuGZ0uQcXkGNEW9FkDcTax3Em12JALcHNp6p1++i/RRoblFY0xDJI3o5yTh
+hsb5A4L0hPBBrok08lOeW7rjXaQnrABNGss7UatOSHEKcBbR5LY=
+=J+s0
+-----END PGP SIGNATURE-----
+
+--j+byiAwReNWa+GwK--
