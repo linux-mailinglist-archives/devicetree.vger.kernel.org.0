@@ -2,108 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B4283930C6
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 16:23:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DE9E3930D6
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 16:24:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236489AbhE0OZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 10:25:10 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:37749 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236463AbhE0OZJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 10:25:09 -0400
-Received: by mail-ot1-f51.google.com with SMTP id v19-20020a0568301413b0290304f00e3d88so369518otp.4;
-        Thu, 27 May 2021 07:23:36 -0700 (PDT)
+        id S236366AbhE0OZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 10:25:45 -0400
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:42894 "EHLO
+        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236629AbhE0OZj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 10:25:39 -0400
+Received: by mail-oi1-f170.google.com with SMTP id c196so902841oib.9
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 07:24:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=cAYbEBVO41pPeY8bh55UYX2lkNaNSE4J1N93ZC37MH4=;
-        b=d/zDfJYMMHzzGwxn0k32VXT0HMcDGAW9IU0dXzCAh43nhv8w0EXJUAeYBVTtH5WYP2
-         50yH2qjKeZduKO5NWdKPgXmRPhjJWZ+oidWIQDy0KoL2qe6oyQcJkRJT+kKwsSEwoWoN
-         fQCJB8G1UjsXNZXQorGVRDU1lXLYJr+u7xm6G2A5kCASQGyz2Qfhpz590yUuegbAPivK
-         5ZwCFhghQoX74s3YEOiY6Vj2XoCXI0SthdgBj1X/hYspUQvL4sIXQP3GU8cmPVIScf4Y
-         UiDT5r6uo54D0VtMBQIqCxJifqvGdKPpQVySPgqsllclOO4/yZVf7XZzfUNstDsrhuTI
-         Xh+Q==
-X-Gm-Message-State: AOAM5311DwM/1AcPZIxYeO0OwuwuCgKBt1utYbjSxYBtdnXF0VnhkUws
-        4f+5N519yplmJpgL7Jf7og==
-X-Google-Smtp-Source: ABdhPJwI6N9HRRGnwxmBhqtCjiDJgmQ8vHKe6nUJBYkaRjOWH87S0oYGeVfXuEO4fIChEEkaQUI9NQ==
-X-Received: by 2002:a9d:39e3:: with SMTP id y90mr3093636otb.257.1622125415948;
-        Thu, 27 May 2021 07:23:35 -0700 (PDT)
+        bh=gD2iddxHdKPoF8reFNQITAbMAtgF+meHvlfr1Nrb8Bo=;
+        b=cWUQsrGG1wyNBvEZREBZQOM9wG9x0Lo1RhHRIaAOW7eM+5CIOSyXjblhBbfMBGI1KG
+         olunwdE7PqEddx0tHdV/phHnBaGC2Nd2yKbu89aDnCDjtZ00g/+cp8fTOxG+QuVh3AuN
+         5FP3nwZuMhddyE/+LXijPTjQE5haHHmTeZhN6qfg8+eQmcYAZvQY7s8URVHvQLGwSyPf
+         YbF/GZ0+qqr6IQYpB8hxkT7ywsfWODT9iWuffmgf1Huhx6iRP7Jp9pm23JNA3HSWH5b0
+         qfiLHC1IaNDU8sUmyIirZ5jh0VDPMd5AR23CMmIweTchCG3zKNsQ4Y12i/uzkAW7pysO
+         g59A==
+X-Gm-Message-State: AOAM532T+d129Q3Cwp8+VeL5aq4j5RCqOXmPRBFZ68gsYTm2H19aDDk3
+        E3F63iYn6yOI/ZENZB9hrw==
+X-Google-Smtp-Source: ABdhPJwqbtR2PHUT0PaVMg2Q6VaLzMj8i6vdT+yBgp0djsVdf1ZKDv51Q162A9XiqUNlk12ZOrH56Q==
+X-Received: by 2002:a05:6808:10d6:: with SMTP id s22mr5666137ois.96.1622125446330;
+        Thu, 27 May 2021 07:24:06 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o14sm498437oik.29.2021.05.27.07.23.31
+        by smtp.gmail.com with ESMTPSA id e83sm482190oia.40.2021.05.27.07.24.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 May 2021 07:23:32 -0700 (PDT)
-Received: (nullmailer pid 731794 invoked by uid 1000);
+        Thu, 27 May 2021 07:24:03 -0700 (PDT)
+Received: (nullmailer pid 731788 invoked by uid 1000);
         Thu, 27 May 2021 14:23:27 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Jianqun Xu <jay.xu@rock-chips.com>
-Cc:     devicetree@vger.kernel.org, heiko@sntech.de, lee.jones@linaro.org,
-        linux-rockchip@lists.infradead.org, ulf.hansson@linaro.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org, jbx6244@gmail.com
-In-Reply-To: <20210527082905.1447591-2-jay.xu@rock-chips.com>
-References: <20210527082905.1447591-1-jay.xu@rock-chips.com> <20210527082905.1447591-2-jay.xu@rock-chips.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: soc: rockchip: convert io-domain.txt to YAML
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Cristian Marussi <cristian.marussi@arm.com>,
+        devicetree@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+In-Reply-To: <20210526182807.548118-6-sudeep.holla@arm.com>
+References: <20210526182807.548118-1-sudeep.holla@arm.com> <20210526182807.548118-6-sudeep.holla@arm.com>
+Subject: Re: [PATCH 5/8] dt-bindings: firmware: arm,scpi: Convert to json schema
 Date:   Thu, 27 May 2021 09:23:27 -0500
-Message-Id: <1622125407.801041.731793.nullmailer@robh.at.kernel.org>
+Message-Id: <1622125407.773675.731787.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 27 May 2021 16:29:03 +0800, Jianqun Xu wrote:
-> This patch moves the rockchip-io-domain.txt from power/avs dir to soc
-> dir and rename to io-domain.txt, without any change in the step.
+On Wed, 26 May 2021 19:28:04 +0100, Sudeep Holla wrote:
+> Convert the old text format binding for System Control and Power Interface
+> (SCPI) Message Protocol into the new and shiny YAML format.
 > 
-> Then covert the io-domain.txt to YAML.
-> 
-> Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> Cc: Viresh Kumar <viresh.kumar@linaro.org
+> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
 > ---
-> v2:
-> - first version
->  .../bindings/power/rockchip-io-domain.txt     | 135 ------------------
->  .../bindings/soc/rockchip/io-domain.yaml      |  45 ++++++
->  2 files changed, 45 insertions(+), 135 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/power/rockchip-io-domain.txt
->  create mode 100644 Documentation/devicetree/bindings/soc/rockchip/io-domain.yaml
+>  .../devicetree/bindings/arm/arm,scpi.txt      | 204 -------------
+>  .../bindings/firmware/arm,scpi.yaml           | 284 ++++++++++++++++++
+>  MAINTAINERS                                   |   2 +-
+>  3 files changed, 285 insertions(+), 205 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/arm,scpi.txt
+>  create mode 100644 Documentation/devicetree/bindings/firmware/arm,scpi.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/soc/rockchip/io-domain.yaml:17:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
-./Documentation/devicetree/bindings/soc/rockchip/io-domain.yaml:36:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
 dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/soc/rockchip/io-domain.example.dts'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 45, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 421, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 109, in get_single_data
-    node = self.composer.get_single_node()
-  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
-  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 848, in _ruamel_yaml.CParser._compose_sequence_node
-  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-ruamel.yaml.scanner.ScannerError: while scanning a block scalar
-  in "<unicode string>", line 32, column 5
-found a tab character where an indentation space is expected
-  in "<unicode string>", line 36, column 1
-make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/soc/rockchip/io-domain.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/soc/rockchip/io-domain.yaml:  while scanning a block scalar
-  in "<unicode string>", line 32, column 5
-found a tab character where an indentation space is expected
-  in "<unicode string>", line 36, column 1
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/rockchip/io-domain.yaml: ignoring, error parsing file
-warning: no schema found in file: ./Documentation/devicetree/bindings/soc/rockchip/io-domain.yaml
-make: *** [Makefile:1416: dt_binding_check] Error 2
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/arm,mhu.example.dt.yaml: scpi@2f000000: $nodename:0: 'scpi' was expected
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/arm,mhu.example.dt.yaml: scpi@2f000000: reg: [[0, 788529152, 0, 512]] is not of type 'object'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/arm,mhu.example.dt.yaml: scpi@2f000000: 'shmem' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
 
-See https://patchwork.ozlabs.org/patch/1484505
+See https://patchwork.ozlabs.org/patch/1484217
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
