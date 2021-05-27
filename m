@@ -2,87 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61B0F3925A5
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 05:54:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F7283925C7
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 06:02:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234857AbhE0Dzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 23:55:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45036 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234400AbhE0Dzv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 23:55:51 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55219C061574;
-        Wed, 26 May 2021 20:54:19 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id r5so5870550lfr.5;
-        Wed, 26 May 2021 20:54:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=L4eVoi7/s33wCXEPgSBGhpwxgCCTmTyv4LkXtwgXAw4=;
-        b=IclRlrJlvSK50ZWzvbNFbBmVivcpBeZ09SibluliY1fznAFEVAeq7D59KcSqZrhmqO
-         +zLONf9ajOx+zqpCsT3ACUsxsdFnYrcm96Br7iWosmmuTHCEaTAJR+G7hqGtQsTIPgL+
-         IRiAqlwW5j3i8kfCXAXKP9fKmvJ1WJ7bzlny2iLeCjZmLgCr9YLsHxnxk2KYgwwPst5K
-         OjTOZMRP54UvTC5fHADKzvhi91e9AfEN/D0/fNQpFQVVC5/p1GeBB+levw0fVnK/9KtF
-         sVOj2k+GdWxthEdSf9iDVDctEQl5ySrrONKjM4sHONZ1JywbGfBAQfgiDwDyCzveN2bE
-         pOdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=L4eVoi7/s33wCXEPgSBGhpwxgCCTmTyv4LkXtwgXAw4=;
-        b=KntmTgR1bLkrMMWcDUQ1VCyECncIRMrLtq4Xc2ELmwss303CABtGA3AKOLZrS4hNnx
-         +eOnkw9HTgzi77caOunmGjHjatAL/xA/lMij58/TZuKjzMM8ZJ5yveOwieHuSTCNqKFq
-         GprYm4XrDeW8ubxxMLJaAcfRCkEAmXe/Z5Pay2RKQ4dj2Y6TYxTIO3AbN6zWLtQE/iww
-         kwa9hHXG76tcHjwuIGB/8FJ8+co59l1AOA5fLIytWC6XvNisISkxDkd8Fs9w74zbCVkt
-         9xsRtHA2eqEVrPxMIY1nZIaSOGcH9nwtm5rE2Os8K7txRIOCRZcz/qmlqwuUsz4P3Nid
-         5oKA==
-X-Gm-Message-State: AOAM530ah4FHdD+eboxRgFi7RQTW32VmFpRI5qTLHVh6Ci4590vgNIOO
-        I13KtPLO3Ml3XzRatjBD3ot8BVn+wIGVexeIDuQ=
-X-Google-Smtp-Source: ABdhPJx6ibXv8fhcYnql06th8CLIhWoIJFGMF4SGItogNPa+1e2GgdhfZUCdzDzjerP12kUr4eolFKV+3xGw8P0qPds=
-X-Received: by 2002:ac2:5d29:: with SMTP id i9mr938408lfb.638.1622087657684;
- Wed, 26 May 2021 20:54:17 -0700 (PDT)
-MIME-Version: 1.0
-References: <1622009578-15577-1-git-send-email-u0084500@gmail.com>
- <1622009578-15577-2-git-send-email-u0084500@gmail.com> <YK6RvBD3c38BhJZa@sirena.org.uk>
-In-Reply-To: <YK6RvBD3c38BhJZa@sirena.org.uk>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Thu, 27 May 2021 11:54:06 +0800
-Message-ID: <CADiBU3-KMVYOO_HXWQ7TRHAohBUrUmnyXhZDYfTNjbrk3UgpAQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] regulator: rt6245: Add support for Richtek RT6245
-To:     Mark Brown <broonie@kernel.org>
-Cc:     lgirdwood@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        cy_huang <cy_huang@richtek.com>,
-        lkml <linux-kernel@vger.kernel.org>,
+        id S229657AbhE0EEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 00:04:00 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:57208 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229453AbhE0EEA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 00:04:00 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 14R3moGk084120;
+        Thu, 27 May 2021 11:48:50 +0800 (GMT-8)
+        (envelope-from steven_lee@aspeedtech.com)
+Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 27 May
+ 2021 12:01:53 +0800
+Date:   Thu, 27 May 2021 12:01:47 +0800
+From:   Steven Lee <steven_lee@aspeedtech.com>
+To:     Andrew Jeffery <andrew@aj.id.au>
+CC:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Hongwei Zhang <Hongweiz@ami.com>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Billy Tsai <billy_tsai@aspeedtech.com>
+Subject: Re: [PATCH v1 2/4] ARM: dts: aspeed-g6: Add SGPIO node.
+Message-ID: <20210527040146.GE9971@aspeedtech.com>
+References: <20210526094609.14068-1-steven_lee@aspeedtech.com>
+ <20210526094609.14068-3-steven_lee@aspeedtech.com>
+ <69b31043-957c-40af-9ab9-6bcc63ccdc85@www.fastmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <69b31043-957c-40af-9ab9-6bcc63ccdc85@www.fastmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 14R3moGk084120
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HI,
+The 05/27/2021 09:27, Andrew Jeffery wrote:
+> Hi Steven,
+> 
+> On Wed, 26 May 2021, at 19:16, Steven Lee wrote:
+> > AST2600 supports 2 SGPIO master interfaces one with 128 pins another one
+> > with 80 pins.
+> 
+> Is there any chance the serial GPIO controllers can be explicitly 
+> listed in the Memory Space Allocation Table of the datasheet? Currently 
+> they're covered by the entry for "GPIO Controller (Parallel GPIO)" 
+> which is listed as ranging from 0x1e780000-0x1e7807ff.
+> 
 
-Mark Brown <broonie@kernel.org> =E6=96=BC 2021=E5=B9=B45=E6=9C=8827=E6=97=
-=A5 =E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=882:21=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Wed, May 26, 2021 at 02:12:58PM +0800, cy_huang wrote:
->
-> > +     /* xor checksum for bit 6 to 0 */
-> > +     bit_count =3D __sw_hweight8(code & RT6245_CODE_MASK);
->
-> This doesn't compile with an x86 allmodconfig:
->
-> ERROR: modpost: "__sw_hweight8" [drivers/regulator/rt6245-regulator.ko] u=
-ndefined!
+I've forwarded your suggestion to designers.
+Per the discussion with designers, they may change the
+GPIO controller description of Memory Space Allocation Table to
+"GPIO Controller (including Parallel and Serial GPIO)".
 
-I think I found the problem, x86 only defined __sw_hweight32 and __sw_hweig=
-ht64.
-If user touch hweight8 or 16, it will auto convert to use thest two functio=
-ns.
-And the x86 arch didn't define __sw_hweight8 or __sw_hweight16.
-The best way is to use hweight8 macro and let the macro convert it to
-arch_hweight8
-Ack in next, Thanks for reminding me.
+> Admittedly the details are listed in chapter 41 for the GPIO 
+> Controller, but it would be handy to not have to dig.
+> 
+> > 
+> > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+> > ---
+> >  arch/arm/boot/dts/aspeed-g6.dtsi | 32 ++++++++++++++++++++++++++++++++
+> >  1 file changed, 32 insertions(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
+> > index f96607b7b4e2..556ce9535c22 100644
+> > --- a/arch/arm/boot/dts/aspeed-g6.dtsi
+> > +++ b/arch/arm/boot/dts/aspeed-g6.dtsi
+> > @@ -377,6 +377,38 @@
+> >  				#interrupt-cells = <2>;
+> >  			};
+> >  
+> > +			sgpiom0: sgpiom@1e780500 {
+> > +				#gpio-cells = <2>;
+> > +				gpio-controller;
+> > +				compatible = "aspeed,ast2600-sgpiom";
+> > +				reg = <0x1e780500 0x100>;
+> > +				interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
+> > +				max-ngpios = <128>;
+> 
+> I need to think more about this one.
+> 
+> Andrew
