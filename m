@@ -2,104 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33CD6392F0E
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 15:06:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B40B392F3A
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 15:16:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235943AbhE0NHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 09:07:38 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:48358 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236007AbhE0NHi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 09:07:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=UXGNIaSzoW/C0FndVcq3C1mNY97nbWGbAJ+OPbR6xYY=; b=GTWa8l9C5zkrPNxJlOYo7Hcxy+
-        sxlKtTMD2sjrnxzrzqm69B0IMVgd/fflUJPk9clctfyXy4ceG/M16kogIT6FfB8kwFoXsg7B9uYj2
-        CY+DdYz7iwBSilGJFFAT61J6JNVR9qZGkijAPgAoVxWFgTQcKroVaDxPR+0YSkloPXzQ=;
-Received: from 94.196.90.140.threembb.co.uk ([94.196.90.140] helo=fitzroy.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1lmFhy-006O7I-Kt; Thu, 27 May 2021 13:05:54 +0000
-Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
-        id 1D2C1D0EA33; Thu, 27 May 2021 14:05:53 +0100 (BST)
-Date:   Thu, 27 May 2021 14:05:53 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Ezequiel Garcia <ezequiel@collabora.com>
-Cc:     Rudi Heitbaum <rudi@heitbaum.com>,
-        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        chenjh@rock-chips.com
-Subject: Re: [PATCH] regulator: fan53555: add back tcs4526
-Message-ID: <YK+ZMdD+7uqQwCow@sirena.org.uk>
-References: <20210526162342.GA20@8bbba9ba63a4>
- <CAMdYzYpZoKs3P62j02RW-+5BEpqC9JL3apjucTWLWmvNFrOrCg@mail.gmail.com>
- <20210527105943.GA441@7698f5da3a10>
- <462b8d80447efb6c00e93704914169bceb5adc4d.camel@collabora.com>
+        id S236360AbhE0NSX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 09:18:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60202 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235996AbhE0NSW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 09:18:22 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA805C061574;
+        Thu, 27 May 2021 06:16:48 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id gb17so7969071ejc.8;
+        Thu, 27 May 2021 06:16:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3TKX6UNfeQq3WZk8B3GWpeEI9lZ4hogpPt1mzI6b/B8=;
+        b=Y/dktLEgafQ1yisGN5JQY4g+/sBKCpKIsJ7Y6eIfX3esJO3osva49CIhhDqbCo5s59
+         WB5QLcPJe60vPsB+ex4yFoqZpg5YyZV7WsVLwBgyNly3llcLKRTHzK6cTrL4gSbGyHus
+         fK7JDLdYGHh87Y10M9SYgeDleTmv+G3p26UPoOAowX4/ROg0AscWET3NzVr3Ol+d6+ef
+         CJWN03f1xWNhPOiwCm2rvK/90Zxw3931w/aP3aFQtdiFunkJHQZsqoZPe5xS8qvY5Has
+         o2CKtakT9b5uw56l2s/lLDutkc03KFDZL3+GBYKlPYQIRKtTfeU4HiEuspBVngFU7dow
+         dpXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3TKX6UNfeQq3WZk8B3GWpeEI9lZ4hogpPt1mzI6b/B8=;
+        b=XTb5rKrFIRXDnhBgnIm4Dhzzfj8cABlQgCrsidZ9FrcpUtmmYpbO1B1UZLqFWKkO5k
+         lssRjGEh4X/YLDhfBiUhdHLp93uwlMxKhZVTe2+vd/Fr4oYyp6CPBvyaKna1Zn7B5VQi
+         flfIox+g0+i2gHscnkaBjmot6trB8nxtt5F2GR40LUKl0+2X5dIWjbHH/Gj8SGeMwf9H
+         gGfHMaISvFb/xj6q6T5KSFJtwiEoK8ejpOouiYlzAQJwBMqxHG+Ze6Mq1SIUaU9YvxKY
+         Xf2wGJ7l0iNc0xzfMglBX+B0bXuWndZdbuQdsq9KRl5gmcT2iQg8/7gAMqtwt7apxLb8
+         bIjg==
+X-Gm-Message-State: AOAM532dJK6F6kQubZiB4KGDs4eD64+0oczUPqA45pcdhaPLnfOhxw0N
+        gpwAeAQ8+MQ6IczqU02a0c4=
+X-Google-Smtp-Source: ABdhPJwBVB9+hl2sioh4pL46AM9iKCqMLQa0H3gAXYKW2Szd632xngaLhF46xSoMTLP6IWTG/8X6ag==
+X-Received: by 2002:a17:906:949a:: with SMTP id t26mr3752351ejx.475.1622121407365;
+        Thu, 27 May 2021 06:16:47 -0700 (PDT)
+Received: from localhost.localdomain ([188.24.140.160])
+        by smtp.gmail.com with ESMTPSA id r23sm1104206edq.59.2021.05.27.06.16.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 May 2021 06:16:46 -0700 (PDT)
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Edgar Bernardi Righi <edgar.righi@lsitec.org.br>
+Cc:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 0/6] Improve clock support for Actions S500 SoC
+Date:   Thu, 27 May 2021 16:16:38 +0300
+Message-Id: <cover.1622119892.git.cristian.ciocaltea@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="NyUceJCoDarUvku8"
-Content-Disposition: inline
-In-Reply-To: <462b8d80447efb6c00e93704914169bceb5adc4d.camel@collabora.com>
-X-Cookie: A penny saved has not been spent.
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+While working on a driver to support the Actions Semi Owl Ethernet MAC,
+I found and fixed some issues on the existing implementation of the S500
+SoC clock subsystem and, additionally, I added two missing clocks.
 
---NyUceJCoDarUvku8
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks,
+Cristi
 
-On Thu, May 27, 2021 at 08:51:27AM -0300, Ezequiel Garcia wrote:
-> On Thu, 2021-05-27 at 10:59 +0000, Rudi Heitbaum wrote:
+Changes in v2 (according to Mani's review):
+- Re-added entry "{ 24, 1, 25 }" to sd_factor_table, according to the
+  datasheet (V1.8+), this is a valid divider
+- Re-added OWL_GATE_HW to SENSOR[0-1], according to the datasheet they
+  are gated, even though the vendor implementation states the opposite
+- Reverted the addition of the clock div table for H clock to support the
+  '1' divider (according to the datasheet), even though the vendor
+  implementation marks it as reserved
+- Reordered "nic_clk_mux_p" after "ahbprediv_clk_mux_p" to follow the reg
+  field ordering
+- Rebased patch series on v5.13-rc3
 
-> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0reg =3D <0x1c>;
-> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0vin-supply =3D <&vcc5v0_s=
-ys>;
-> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0regulator-compatible =3D =
-"fan53555-reg";
+Cristian Ciocaltea (6):
+  clk: actions: Fix UART clock dividers on Owl S500 SoC
+  clk: actions: Fix SD clocks factor table on Owl S500 SoC
+  clk: actions: Fix bisp_factor_table based clocks on Owl S500 SoC
+  clk: actions: Fix AHPPREDIV-H-AHB clock chain on Owl S500 SoC
+  dt-bindings: clock: Add NIC and ETHERNET bindings for Actions S500 SoC
+  clk: actions: Add NIC and ETHERNET clock support for Actions S500 SoC
 
-> I can be wrong, but I think regulator-compatible is deprecated.
+ drivers/clk/actions/owl-s500.c               | 92 +++++++++++++-------
+ include/dt-bindings/clock/actions,s500-cmu.h |  6 +-
+ 2 files changed, 65 insertions(+), 33 deletions(-)
 
-Yes.
+-- 
+2.31.1
 
-> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0regulator-ramp-delay =3D =
-<1000>;
-> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0fcs,suspend-voltage-selec=
-tor =3D <1>;
-> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0regulator-always-on;
-> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0regulator-boot-on;
-
-> Just out of curiosity, is regulator-boot-on really needed for the GPU?
-
-It should only be used if it's not possible to read the state of
-the regulator enable from the hardware.
-
-Please delete unneeded context from mails when replying.  Doing this
-makes it much easier to find your reply in the message, helping ensure
-it won't be missed by people scrolling through the irrelevant quoted
-material.
-
---NyUceJCoDarUvku8
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmCvmTAACgkQJNaLcl1U
-h9CX9ggAgzyzUvDEBdNIyiQB7N7iaoLnBcDf4WWsOC8pOpOinrfXGplncFDVXzcz
-jirCOSxb0jLmCwKEMbFrSaOYw2SZuDbVtDDnYwsFBXBmL4wedkU8n0c5eJ5DK88L
-bJ5gToio6MmqIL1Yb9QPI7XsQeEvF/LxN/QzwXr3KqTZeB6hATgg4EqrRNyLjbvS
-Ra7dmlehkgQ6Ym6aL5cTaxFPkffpASi1MnvaUhyEEsbiXTbC+dWmLGovVMRrf6GY
-g4/vglOQe0uuMBGRpoy1s2SRLOSeKcCwZOKoLITxpTsT6YhZw1BDw48o2Vaxzcdb
-up/35XqdtRuBzEDTd/sC9Fv2raCEzQ==
-=vK9F
------END PGP SIGNATURE-----
-
---NyUceJCoDarUvku8--
