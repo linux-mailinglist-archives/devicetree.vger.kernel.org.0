@@ -2,160 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D5C8393729
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 22:28:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86790393735
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 22:33:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235894AbhE0UaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 16:30:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45584 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235620AbhE0UaH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 16:30:07 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD13AC061574;
-        Thu, 27 May 2021 13:28:29 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id v5so2478881ljg.12;
-        Thu, 27 May 2021 13:28:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=NqYnRQaTxL5tyvszsxGbPfsuuX2VyZgfjcuAWAFQ+Dg=;
-        b=T9MJxhFv8kIFsNzoTiFJ/l+HiKuYsEy4elw+OLd+MFgQ0WLMwTDO7lOyAPwrkINVNL
-         RBaZC8YBLwFtZtpLcaYCDZz550Vw89bgCfnss72L+92UkHbjQZjMYkS23Rgf4UjKMs9S
-         HmGKglhHz/cYxJ3JN0pcqAHJhkpzPHZc9YitDyWa5zjgDfRKu/4+uXPb3Kbt7N8b3rn1
-         BvFA/n9ZeXQ3Ae8zkk8+ckhLSQX/X0MjbKWtS0VdI4nAk2C//ApaLowVdGSE1vOzkCXs
-         jy0hFe36Al+WxLNc1o7Kcw6rt/0opxFaPFxXnWQ96/K639hi2ZzCsulorC1N9iv61XAB
-         KpNg==
+        id S235818AbhE0UfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 16:35:06 -0400
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:40683 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235819AbhE0UfE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 16:35:04 -0400
+Received: by mail-ot1-f49.google.com with SMTP id 80-20020a9d08560000b0290333e9d2b247so1447669oty.7
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 13:33:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=NqYnRQaTxL5tyvszsxGbPfsuuX2VyZgfjcuAWAFQ+Dg=;
-        b=MmYXTr64VfE18YS51y54+pfnCxDc9s02USlDFyERJvKzfkwdPxHLBoOehvUYbld4uT
-         6NOjvt8jyJs6qVvkUoRmvtCWG5W58GovGFr4kiq73YrpksQOkTeukGPXtnpHaUgcZVbY
-         MRX6izmJZ8id5fzOijXSdE7MO8ggecNalGcIzTxVyuoCV730BqmT6DM/rcERUbQlZVZw
-         +1umrKSF136xZ7u97sPRyfP/eaud7Md+5xq9ZnJLjzZigT/hgC0gJ482dmuII2XEvp1c
-         XPlCMmhUkMB7E0EaNRwIwShdPd2FghqbPbrkoxB1nNjZQIwWYbPnBtIl9J9xYJ7YJSG1
-         kxoQ==
-X-Gm-Message-State: AOAM532ghj2Q3fwOopqhtm5BUA3yXqA+wSULSl24EXw+6aG4pY9RlECo
-        R8FW0H24CIuAH6uQzBEgDgI=
-X-Google-Smtp-Source: ABdhPJyqrn+i6iV5agtCRklfT2Lk6r4+yOjkamON6rLF7FtlO9QwsS/MDOrBNKW27Kyarn4qv6WJ/w==
-X-Received: by 2002:a2e:bb8a:: with SMTP id y10mr3981127lje.78.1622147308085;
-        Thu, 27 May 2021 13:28:28 -0700 (PDT)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id y5sm264614lfl.20.2021.05.27.13.28.26
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=neTM7k0BTcCRqNpLEncEiA8vBVxatHM1/pWJWEun4K4=;
+        b=NryaBnjej/mXU22lCnzDyz3xj5sgwaTh7aJzXIPkRJ+KYARLnaE/EGB3GSickBsU9J
+         PAEXRHyc4P1FwzQLCv8YbJcoxk22xLeGZyWo2iYYGpSJpxr4earYeRi0xJVNN0GDRWV/
+         8b/2/zAZQPbYMxjyj8V8w+9FOVDqbsega+NPLLHjXvECGL1HBleSbMe37DOB9YLzuhEw
+         7Nsr1+TQzdoOyZuK6JXPizbfC2ZrqNI6V8xIOPqWcGRtemos83gXKuXroB0FvR0lJpjX
+         mDnkKn1OOfmvC2yxh684yOiFf5AqfYyTJzFyo60J7H71cB//JRgjmeDdSgdM1AOQQc/7
+         i5vw==
+X-Gm-Message-State: AOAM5336KGQk9+ci1LteP6RTtfiRgbWVcupYmBTcgHTUnHTkG281eyTq
+        4yz3ifcgw+adtPIHXDsNvA==
+X-Google-Smtp-Source: ABdhPJyzvsvKu5axANduODYLrdJqsZZVFn8s3e5fGfoh1h8RnB95y+CJ8MP236uMdNYTABB/IkXifA==
+X-Received: by 2002:a05:6830:1f52:: with SMTP id u18mr4148044oth.298.1622147610162;
+        Thu, 27 May 2021 13:33:30 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id x5sm683678otg.76.2021.05.27.13.33.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 May 2021 13:28:27 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH net-next] dt-bindings: net: brcm,iproc-mdio: convert to the json-schema
-Date:   Thu, 27 May 2021 22:28:15 +0200
-Message-Id: <20210527202815.14313-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
+        Thu, 27 May 2021 13:33:29 -0700 (PDT)
+Received: (nullmailer pid 1366788 invoked by uid 1000);
+        Thu, 27 May 2021 20:33:27 -0000
+Date:   Thu, 27 May 2021 15:33:27 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>
+Subject: Re: [PATCH 7/8] dt-bindings: firmware: amlogic,scpi: Convert to json
+ schema
+Message-ID: <20210527203327.GA1356362@robh.at.kernel.org>
+References: <20210526182807.548118-1-sudeep.holla@arm.com>
+ <20210526182807.548118-8-sudeep.holla@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210526182807.548118-8-sudeep.holla@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On Wed, May 26, 2021 at 07:28:06PM +0100, Sudeep Holla wrote:
+> Convert/merge the existing text format SCPI binding additions for
+> amlogic,scpi into the common arm,scpi json scheme.
+> 
+> Couple of things to note:
+> "amlogic,meson-gxbb-scpi" is always used with "arm,scpi-pre-1.0"
+>  hence no need for separate "arm,scpi-pre-1.0" standalone entry and
+> "amlogic,meson-gxbb-scpi-sensors" is used always with "arm,scpi-sensors"
+> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+> ---
+>  .../devicetree/bindings/arm/amlogic,scpi.txt      | 15 ---------------
+>  .../devicetree/bindings/firmware/arm,scpi.yaml    |  4 ++++
+>  2 files changed, 4 insertions(+), 15 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/amlogic,scpi.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/amlogic,scpi.txt b/Documentation/devicetree/bindings/arm/amlogic,scpi.txt
+> deleted file mode 100644
+> index ebfe302fb747..000000000000
+> --- a/Documentation/devicetree/bindings/arm/amlogic,scpi.txt
+> +++ /dev/null
+> @@ -1,15 +0,0 @@
+> -System Control and Power Interface (SCPI) Message Protocol
+> -(in addition to the standard binding in [0])
+> -----------------------------------------------------------
+> -Required properties
+> -
+> -- compatible : should be "amlogic,meson-gxbb-scpi"
+> -
+> -Sensor bindings for the sensors based on SCPI Message Protocol
+> ---------------------------------------------------------------
+> -SCPI provides an API to access the various sensors on the SoC.
+> -
+> -Required properties:
+> -- compatible : should be "amlogic,meson-gxbb-scpi-sensors".
+> -
+> -[0] Documentation/devicetree/bindings/arm/arm,scpi.txt
+> diff --git a/Documentation/devicetree/bindings/firmware/arm,scpi.yaml b/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+> index 9c115e9c1536..d1179a4ea4e9 100644
+> --- a/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+> @@ -34,6 +34,7 @@ description: |
+>            to SCPI v1.0
+>          items:
+>            - const: arm,scpi-pre-1.0
+> +          - const: amlogic,meson-gxbb-scpi
 
-This helps validating DTS files.
+This says that compatible should be: "arm,scpi-pre-1.0", "amlogic,meson-gxbb-scpi"
 
-Introduced changes:
-1. Swapped #address-cells and #size-cells values
-2. Renamed node: s/enet-gphy/ethernet-phy@/
+The order would be wrong and you lost supporting 'arm,scpi-pre-1.0' by 
+itself. You want an enum here if it is either one or another items list 
+if it is 2 entries.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- .../bindings/net/brcm,iproc-mdio.txt          | 23 -----------
- .../bindings/net/brcm,iproc-mdio.yaml         | 38 +++++++++++++++++++
- 2 files changed, 38 insertions(+), 23 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/net/brcm,iproc-mdio.txt
- create mode 100644 Documentation/devicetree/bindings/net/brcm,iproc-mdio.yaml
-
-diff --git a/Documentation/devicetree/bindings/net/brcm,iproc-mdio.txt b/Documentation/devicetree/bindings/net/brcm,iproc-mdio.txt
-deleted file mode 100644
-index 8ba9ed11d716..000000000000
---- a/Documentation/devicetree/bindings/net/brcm,iproc-mdio.txt
-+++ /dev/null
-@@ -1,23 +0,0 @@
--* Broadcom iProc MDIO bus controller
--
--Required properties:
--- compatible: should be "brcm,iproc-mdio"
--- reg: address and length of the register set for the MDIO interface
--- #size-cells: must be 1
--- #address-cells: must be 0
--
--Child nodes of this MDIO bus controller node are standard Ethernet PHY device
--nodes as described in Documentation/devicetree/bindings/net/phy.txt
--
--Example:
--
--mdio@18002000 {
--	compatible = "brcm,iproc-mdio";
--	reg = <0x18002000 0x8>;
--	#size-cells = <1>;
--	#address-cells = <0>;
--
--	enet-gphy@0 {
--		reg = <0>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/net/brcm,iproc-mdio.yaml b/Documentation/devicetree/bindings/net/brcm,iproc-mdio.yaml
-new file mode 100644
-index 000000000000..3031395f7e6e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/brcm,iproc-mdio.yaml
-@@ -0,0 +1,38 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/brcm,iproc-mdio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom iProc MDIO bus controller
-+
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+
-+allOf:
-+  - $ref: mdio.yaml#
-+
-+properties:
-+  compatible:
-+    const: brcm,iproc-mdio
-+
-+  reg:
-+    maxItems: 1
-+
-+unevaluatedProperties: false
-+
-+required:
-+  - reg
-+
-+examples:
-+  - |
-+    mdio@18002000 {
-+        compatible = "brcm,iproc-mdio";
-+        reg = <0x18002000 0x8>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ethernet-phy@0 {
-+            reg = <0>;
-+        };
-+    };
--- 
-2.26.2
-
+Rob
