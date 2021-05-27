@@ -2,293 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F548393678
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 21:43:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A930393683
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 21:45:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234641AbhE0TpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 15:45:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35440 "EHLO
+        id S235511AbhE0Tqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 15:46:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229843AbhE0TpS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 15:45:18 -0400
-Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11B8FC061574
-        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 12:43:45 -0700 (PDT)
-Received: by mail-io1-xd34.google.com with SMTP id v9so1708165ion.11
-        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 12:43:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=woUpDlfXR4mgFixHQlzu3N9d4JrzYqmgck+ojtXAOcE=;
-        b=Vx1dHNvUxDpibfzozk5E2MwMR6j994FAog1TWHrt1lKpgIsF+RedhdH5lkjsA2HaGT
-         Szw5/rTGpDDJPUySlaD3SKQ9w8Lq84G1v9WcbIShuI5O1aeAPxrBsX0Q38wOWKQ8REPo
-         PhTLBZ42dBW3sHeJajqV7fM6F5LIRreNEeQa+XgdOH9bRFfgDJsBuxiXt9I3AJrPLuOD
-         YjIHMBk0U1j0BGwdqxaUOTqERCVQpdbN8XY6XMm2k3PHPQXJUjxtzX9zvc5PNmail3p0
-         7jsNor9c7XdRlMUeogqV9KncxYbIMTuhtd46IdU057vI0oVIwpAC0jWpi3963nsrnn62
-         To0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=woUpDlfXR4mgFixHQlzu3N9d4JrzYqmgck+ojtXAOcE=;
-        b=K60eJZvWQl6LlWw8rtMEqu+O9OVvdWt60EjsSWZtwiWHmmf6IBpyygDP3WzZYzYq0z
-         YKejEqWCnr7YNeNfcbmDRUuc880pzQge89NBcbzlAHUDKYj9plfiUzXoZjgsb2pVo8sd
-         LCg3FMXzAMzIIDzkKUIlyfkznJzWmDo0WBfJQ9JS9qkplbBQh1ty0xPBZU/bmtyHlVoM
-         Atax8pQNBZ6WFq31jRsHqHNhkUA3Om64Wuf9poj9crZnmSqifTuUt/lbgUPvIbmF+R2k
-         98wQNICHOHsINSX5eDbQQEGNkLUUQRWVBi2iYkG9rU6kRG0CTXenjJnnYuoDcg+DLVb1
-         oHCg==
-X-Gm-Message-State: AOAM531GfzoKpbF+fobU1vgv8YlCjfw1csIM5+trMqB1swubJLGk17ut
-        XmRBv5GnQC6osBBJAaNjHluX59k7btCdKXUcp0clGQ==
-X-Google-Smtp-Source: ABdhPJxhCk93piRm4uKOt2rat1iWMMX+Rq0dO8beHk993/GMxVRF0WM31pqq+neGlnQ2yP3KZtwKgssyRqSzkHjrHn4=
-X-Received: by 2002:a05:6602:189:: with SMTP id m9mr4116791ioo.88.1622144624409;
- Thu, 27 May 2021 12:43:44 -0700 (PDT)
+        with ESMTP id S235452AbhE0Tqh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 15:46:37 -0400
+Received: from m-r1.th.seeweb.it (m-r1.th.seeweb.it [IPv6:2001:4b7a:2000:18::170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50666C061763
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 12:45:03 -0700 (PDT)
+Received: from localhost.localdomain (83.6.168.57.neoplus.adsl.tpnet.pl [83.6.168.57])
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 5C88F20326;
+        Thu, 27 May 2021 21:44:59 +0200 (CEST)
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+To:     ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arch: arm64: dts: msm8996: Rename speedbin node
+Date:   Thu, 27 May 2021 21:44:54 +0200
+Message-Id: <20210527194455.782108-1-konrad.dybcio@somainline.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <CA+HBbNGU4d4g0JrUKBhj07OsC7=s9qoubxNDi3MxPjmV457C+Q@mail.gmail.com>
- <8152a109-d76d-4f85-9da2-fe0a56c2019f@roeck-us.net> <CA+HBbNGBirE=Po7q5eUeHho0rBATa_ApWLiU_oPXsGN+6U9U+g@mail.gmail.com>
- <CA+HBbNGZ1axZpRy5UwQP_4eZCA32eyPJVcj6xN4i8AhOQMYeTA@mail.gmail.com>
- <493e4da4-8f2b-9856-b538-6e95e3766d5e@roeck-us.net> <CA+HBbNHspA5cZJSHJkLpnP+UODGy7w5i8mKP2NH9JALQ1RqQ_w@mail.gmail.com>
- <7af2d708-7e22-3970-7bf8-1cb23317cb55@roeck-us.net> <CA+HBbNFVKYPAPKkGJiRhW4VmEGX=da8QALNwbVA1gGegF6KPkQ@mail.gmail.com>
- <2ba03d58-a4de-b683-6169-3f12482aa29e@roeck-us.net> <CA+HBbNHp2-a-zgUKRLUQVLcs4qcUim=_75YgVZApH1hRrAaP6w@mail.gmail.com>
- <20210527192657.GA3454023@roeck-us.net>
-In-Reply-To: <20210527192657.GA3454023@roeck-us.net>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Thu, 27 May 2021 21:43:33 +0200
-Message-ID: <CA+HBbNHsgS_ZTf5_n0LDSv=6ztUHJ4sweWJL7=AGeR5nhu6Zrw@mail.gmail.com>
-Subject: Re: [PATCH 1/3] hwmon: (pmbus) Add driver for Delta DPS-920AB PSU
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     jdelvare@suse.com, corbet@lwn.net, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
-        Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 27, 2021 at 9:27 PM Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On Thu, May 27, 2021 at 09:14:03PM +0200, Robert Marko wrote:
-> > On Thu, May 27, 2021 at 6:37 PM Guenter Roeck <linux@roeck-us.net> wrote:
-> > >
-> > > On 5/27/21 7:58 AM, Robert Marko wrote:
-> > > [ ... ]
-> > >
-> > > >>>>>> I tried applying the block support for mv64xx as well:
-> > > >>>>>> https://patchwork.ozlabs.org/project/linux-i2c/patch/20200118115820.9080-1-fuga@studiofuga.com/
-> > > >>>>
-> > > >>>> That patch would be needed, but it looks buggy to me. This chunk:
-> > > >>>>
-> > > >>>> +               drv_data->effective_length = data+1;
-> > > >>>> +               drv_data->bytes_left = data+1;
-> > > >>>> +               drv_data->msg->len = data+1;
-> > > >>>>
-> > > >>>> should be:
-> > > >>>>
-> > > >>>> +               drv_data->effective_length = data+1;
-> > > >>>> +               drv_data->bytes_left = data;
-> > > >>>> +               drv_data->msg->len = data+1;
-> > > >>>>
-> > > >>>> It should also make sure that 'data' is not larger than I2C_SMBUS_BLOCK_MAX,
-> > > >>>> and bail out if it isn't.
-> > > >>>
-> > > >>> Yeah, I did not check the contents, I just saw 2 reviews and tested it
-> > > >>> since it can't hurt.
-> > > >>
-> > > >> That patch doesn't work at all. Make the above change, and also change
-> > > >> the type of effective_length from u32 to int, and try again.
-> > > >
-> > > > I was just looking and it, and doing the changes you recommended make
-> > > > no difference at all.
-> > > >
-> > >
-> > > Is the i2c controller compatible with marvell,mv78230-i2c ?
-> > > The block transfers would not work in that case. Let me know
-> > > and I'll send you a patch that might fix it.
-> >
-> > Yes, the CPU is Armada 7040 and I can see that compatible is
-> > marvell,mv78230-i2c indeed.
-> >
-> > It would be great if you have the patch,
->
-> See below.
+From: Loic Poulain <loic.poulain@linaro.org>
 
-I can confirm that this does indeed enable block reads and
-i2c_smbus_read_block_data()
-works now.
+The speedbin value blown in the efuse is used to determine is used to
+determine the voltage and frequency value for different IPs, including
+GPU, CPUs... So it's really not a gpu specific information.
 
-PMBUS_MFR_ID and PMBUS_MFR_MODEL are indeed populated.
+This patch simply renames 'gpu_speed_bin' node to 'speedbin'.
 
-Regards,
-Robert
+Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+---
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
->
-> Guenter
->
-> ---
-> From 41f6113560e3082293cef6e8f2013e70ee8f54db Mon Sep 17 00:00:00 2001
-> From: Federico Fuga <fuga@studiofuga.com>
-> Date: Sat, 18 Jan 2020 12:58:20 +0100
-> Subject: [PATCH] i2c: mv64xxx: Implement I2C_M_RECV_LEN and
->  I2C_FUNC_SMBUS_READ_BLOCK_DATA
->
-> The i2c_mv64xxx driver doesn't implement the I2C_M_REC_LEN function
-> essential to allow blocks with variable length to be read from an i2c
->  slave.
-> This is needed to implement the SMBus Read Block Data function.
->
-> This patch implements the function by changing the bytes_left and
-> msg len on the fly if the flag is specified.
->
-> It has been successfully tested on Allwinner A33 with a special
-> i2c chip that returns variable length blocks on reading.
->
-> Signed-off-by: Federico Fuga <fuga@studiofuga.com>
-> Acked-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> Link: https://lore.kernel.org/r/20200118115820.9080-1-fuga@studiofuga.com
-> [groeck: Various fixes]
-> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
-> ---
->  drivers/i2c/busses/i2c-mv64xxx.c | 75 ++++++++++++++++++++++++++------
->  1 file changed, 61 insertions(+), 14 deletions(-)
->
-> diff --git a/drivers/i2c/busses/i2c-mv64xxx.c b/drivers/i2c/busses/i2c-mv64xxx.c
-> index 5c8e94b6cdb5..9dda90359966 100644
-> --- a/drivers/i2c/busses/i2c-mv64xxx.c
-> +++ b/drivers/i2c/busses/i2c-mv64xxx.c
-> @@ -341,7 +341,17 @@ static void mv64xxx_i2c_send_start(struct mv64xxx_i2c_data *drv_data)
->  {
->         drv_data->msg = drv_data->msgs;
->         drv_data->byte_posn = 0;
-> -       drv_data->bytes_left = drv_data->msg->len;
-> +
-> +       /*
-> +        * If we should retrieve the length from the buffer, make sure
-> +        * to read enough bytes to avoid sending the STOP bit after
-> +        * the read if the first byte
-> +        */
-> +       if (drv_data->msg->flags & I2C_M_RECV_LEN)
-> +               drv_data->bytes_left = 3;
-> +       else
-> +               drv_data->bytes_left = drv_data->msg->len;
-> +
->         drv_data->aborting = 0;
->         drv_data->rc = 0;
->
-> @@ -350,6 +360,47 @@ static void mv64xxx_i2c_send_start(struct mv64xxx_i2c_data *drv_data)
->                drv_data->reg_base + drv_data->reg_offsets.control);
->  }
->
-> +static void
-> +mv64xxx_i2c_do_send_stop(struct mv64xxx_i2c_data *drv_data)
-> +{
-> +       drv_data->cntl_bits &= ~MV64XXX_I2C_REG_CONTROL_INTEN;
-> +       writel(drv_data->cntl_bits | MV64XXX_I2C_REG_CONTROL_STOP,
-> +              drv_data->reg_base + drv_data->reg_offsets.control);
-> +       drv_data->block = 0;
-> +       if (drv_data->errata_delay)
-> +               udelay(5);
-> +
-> +       wake_up(&drv_data->waitq);
-> +}
-> +
-> +static void
-> +mv64xxx_i2c_do_read_data(struct mv64xxx_i2c_data *drv_data)
-> +{
-> +       u8 data;
-> +
-> +       data = readl(drv_data->reg_base + drv_data->reg_offsets.data);
-> +       drv_data->msg->buf[drv_data->byte_posn++] = data;
-> +
-> +       if (drv_data->msg->flags & I2C_M_RECV_LEN) {
-> +               if (!data || data > I2C_SMBUS_BLOCK_MAX) {
-> +                       /*
-> +                        * FIXME
-> +                        * Abort and report error. Needs to be
-> +                        * verified/tested on real hardware.
-> +                        */
-> +                       drv_data->rc = -EPROTO;
-> +                       mv64xxx_i2c_do_send_stop(drv_data);
-> +                       return;
-> +               }
-> +               drv_data->msg->flags &= ~I2C_M_RECV_LEN;
-> +               drv_data->bytes_left = data;
-> +               drv_data->msg->len = data + 1;
-> +       }
-> +
-> +       writel(drv_data->cntl_bits,
-> +              drv_data->reg_base + drv_data->reg_offsets.control);
-> +}
-> +
->  static void
->  mv64xxx_i2c_do_action(struct mv64xxx_i2c_data *drv_data)
->  {
-> @@ -400,23 +451,13 @@ mv64xxx_i2c_do_action(struct mv64xxx_i2c_data *drv_data)
->                 break;
->
->         case MV64XXX_I2C_ACTION_RCV_DATA:
-> -               drv_data->msg->buf[drv_data->byte_posn++] =
-> -                       readl(drv_data->reg_base + drv_data->reg_offsets.data);
-> -               writel(drv_data->cntl_bits,
-> -                       drv_data->reg_base + drv_data->reg_offsets.control);
-> +               mv64xxx_i2c_do_read_data(drv_data);
->                 break;
->
->         case MV64XXX_I2C_ACTION_RCV_DATA_STOP:
->                 drv_data->msg->buf[drv_data->byte_posn++] =
->                         readl(drv_data->reg_base + drv_data->reg_offsets.data);
-> -               drv_data->cntl_bits &= ~MV64XXX_I2C_REG_CONTROL_INTEN;
-> -               writel(drv_data->cntl_bits | MV64XXX_I2C_REG_CONTROL_STOP,
-> -                       drv_data->reg_base + drv_data->reg_offsets.control);
-> -               drv_data->block = 0;
-> -               if (drv_data->errata_delay)
-> -                       udelay(5);
-> -
-> -               wake_up(&drv_data->waitq);
-> +               mv64xxx_i2c_do_send_stop(drv_data);
->                 break;
->
->         case MV64XXX_I2C_ACTION_INVALID:
-> @@ -680,6 +721,10 @@ mv64xxx_i2c_can_offload(struct mv64xxx_i2c_data *drv_data)
->         if (!drv_data->offload_enabled)
->                 return false;
->
-> +       /* Offload not supported for block data transfers */
-> +       if (msgs[0].flags & I2C_M_RECV_LEN)
-> +               return false;
-> +
->         /*
->          * We can offload a transaction consisting of a single
->          * message, as long as the message has a length between 1 and
-> @@ -697,6 +742,7 @@ mv64xxx_i2c_can_offload(struct mv64xxx_i2c_data *drv_data)
->             mv64xxx_i2c_valid_offload_sz(msgs) &&
->             mv64xxx_i2c_valid_offload_sz(msgs + 1) &&
->             !(msgs[0].flags & I2C_M_RD) &&
-> +           !(msgs[1].flags & I2C_M_RECV_LEN) &&
->             msgs[1].flags & I2C_M_RD)
->                 return true;
->
-> @@ -713,7 +759,8 @@ mv64xxx_i2c_can_offload(struct mv64xxx_i2c_data *drv_data)
->  static u32
->  mv64xxx_i2c_functionality(struct i2c_adapter *adap)
->  {
-> -       return I2C_FUNC_I2C | I2C_FUNC_10BIT_ADDR | I2C_FUNC_SMBUS_EMUL;
-> +       return I2C_FUNC_I2C | I2C_FUNC_10BIT_ADDR |
-> +               I2C_FUNC_SMBUS_READ_BLOCK_DATA | I2C_FUNC_SMBUS_EMUL;
->  }
->
->  static int
-> --
-> 2.25.1
->
-
-
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index 3fc912f587ba..509d5bfec8ad 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -425,7 +425,7 @@ qusb2s_hstx_trim: hstx_trim@24f {
+ 				bits = <1 4>;
+ 			};
+ 
+-			gpu_speed_bin: gpu_speed_bin@133 {
++			speedbin_efuse: speedbin@133 {
+ 				reg = <0x133 0x1>;
+ 				bits = <5 3>;
+ 			};
+@@ -724,7 +724,7 @@ gpu: gpu@b00000 {
+ 			power-domains = <&mmcc GPU_GX_GDSC>;
+ 			iommus = <&adreno_smmu 0>;
+ 
+-			nvmem-cells = <&gpu_speed_bin>;
++			nvmem-cells = <&speedbin_efuse>;
+ 			nvmem-cell-names = "speed_bin";
+ 
+ 			qcom,gpu-quirk-two-pass-use-wfi;
 -- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+2.31.1
+
