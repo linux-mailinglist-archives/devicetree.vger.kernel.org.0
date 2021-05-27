@@ -2,120 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ADC1392479
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 03:42:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF7CA392498
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 03:53:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233040AbhE0Boa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 21:44:30 -0400
-Received: from bilbo.ozlabs.org ([203.11.71.1]:43707 "EHLO ozlabs.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231968AbhE0Bo3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 May 2021 21:44:29 -0400
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 4Fr9Yn31VKz9sPf;
-        Thu, 27 May 2021 11:42:53 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ozlabs.org; s=201707;
-        t=1622079775; bh=ZS8pKZC0rALk5FKsBmqSxc/EGGyl/NL76hCAbd4pK1I=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=K2if7ryyvkECFbijqrSBC1HorlX2a4EFf0OiYKXejMep2456kRglHWDhKjLGO/Lif
-         C0D69pDAXcdaEt0W15tWFhEwohyj+q1QzB52Y1oJEfjBgH6Cw5JZR+vBB02zOpGmzs
-         hLU1GqUgY2+JbAIU2iqMOyQop+8Pot5pt0NmeILVzqvBrYSlj4FmV91eRWogBk6hhp
-         ZLiVlc3drZRE0T+tXtudEINgvV1HZZwIp2Rbg4G6Ovsr5n2xmswHFxs3w2WqO6e6PT
-         i2DAK7+fbIQxKbk/XLTL2C+uRGHUzd/9UxyqjIwWs8iaE/sf6yvqDXNimkP2hBfHXj
-         m1FpKhii4SJQA==
-Message-ID: <f50dec3a8be8f8254321d22d784eba4f5a032887.camel@ozlabs.org>
-Subject: Re: [PATCH v1 1/4] dt-bindings: aspeed-sgpio: Convert txt bindings
- to yaml.
-From:   Jeremy Kerr <jk@ozlabs.org>
-To:     Steven Lee <steven_lee@aspeedtech.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        open list <linux-kernel@vger.kernel.org>
-Cc:     Hongweiz@ami.com, ryan_chen@aspeedtech.com,
-        billy_tsai@aspeedtech.com
-Date:   Thu, 27 May 2021 09:42:51 +0800
-In-Reply-To: <20210526094609.14068-2-steven_lee@aspeedtech.com>
-References: <20210526094609.14068-1-steven_lee@aspeedtech.com>
-         <20210526094609.14068-2-steven_lee@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1 
+        id S230330AbhE0BzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 21:55:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46656 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229956AbhE0BzQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 21:55:16 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3604EC061574;
+        Wed, 26 May 2021 18:53:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+        Subject:Sender:Reply-To:Content-ID:Content-Description;
+        bh=fh/yRMJ1F32aHQNiWA/z1UgKftrEngIdgah6/d6uuZE=; b=Ts7MJv1gUG11Oi6vk5N4467MwP
+        P3yaf93tnzSWSpEXiGQZdR7+pyjsW3rcqufLqrbokUzyfu7BMHuIC1u09iQuYpky2lupZHsoCCLZd
+        eEbTrLSmYg35IIJYbLtfd3Z3T0AU//6lwZ+ogEbw9CXotS6R8jeKuEqIYSUbaHQ+ndZWq28CVVA0J
+        4FonenWk+YSqnrrApIKxw6OZDRV0Gs93tqzKmRP7LDEzwRzJV9njOoaSGK8q6RGvAoARy9CqoDKvb
+        nvj7AHzokjsU+0G4DBWo8qIyef3PF9RUvPqZBhvflNts7mB5XOGk0Zq8ECervQ17k9Y5iIRILVHzb
+        iavVe2TA==;
+Received: from [2601:1c0:6280:3f0::ce7d]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1lm5DR-001cfW-Qt; Thu, 27 May 2021 01:53:41 +0000
+Subject: Re: [PATCH v2] OF: of_address: clean up OF stub & extern functions
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        kernel test robot <lkp@intel.com>
+References: <20210524190919.2616-1-rdunlap@infradead.org>
+ <CAL_JsqLCzFN81vbN=Y5hpvW_u=h9oWPSyK6zrO9kXr9pPArt1Q@mail.gmail.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <9e6962f6-5d70-73a0-165b-5a4bfd594b39@infradead.org>
+Date:   Wed, 26 May 2021 18:53:40 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqLCzFN81vbN=Y5hpvW_u=h9oWPSyK6zrO9kXr9pPArt1Q@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Steven,
+On 5/26/21 12:06 PM, Rob Herring wrote:
+> On Mon, May 24, 2021 at 2:09 PM Randy Dunlap <rdunlap@infradead.org> wrote:
+>>
+>> Adjust <linux/of_address.h> so that stubs are present when
+>> CONFIG_OF is not set *or* OF is set but OF_ADDRESS is not set.
+>>
+>> This eliminates 2 build errors on arch/s390/ when HAS_IOMEM
+>> is not set (so OF_ADDRESS is not set).
+>> I.e., it provides a stub for of_iomap() when one was previously
+>> not provided as well as removing some duplicate externs.
+> 
+> Personally, I think we should get rid of HAS_IOMEM or at least most of
+> its usage in kconfig. It has little purpose beyond hiding drivers in
+> kconfig and mainly for UML though I think UML no longer needs that
+> IIRC. (I'm not wild about 'depends on OF' either).
 
-> SGPIO bindings should be converted as yaml format.
-> In addition to the file conversion, a new property max-ngpios is
-> added in the yaml file as well.
-> The new property is required by the enhanced sgpio driver for
-> making the configuration of the max number of gpio pins more
-> flexible.
+There are only over 800 of the latter.
 
-There are a number of things going on here - you're doing the YAML
-conversion, introducing the max-gpios property, and changing the
-compatible value.
+> 
+>> s390-linux-ld: drivers/irqchip/irq-al-fic.o: in function `al_fic_init_dt':
+>> irq-al-fic.c:(.init.text+0x7a): undefined reference to `of_iomap'
+>> s390-linux-ld: drivers/clocksource/timer-of.o: in function `timer_of_init':
+>> timer-of.c:(.init.text+0xa4): undefined reference to `of_iomap'
+>>
+>> Tested with many randconfig builds, but there could still be some
+>> hidden problem here.
+>>
+>> Fixes: 4acf4b9cd453 ("of: move of_address_to_resource and of_iomap declarations from sparc")
+>> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+>> Cc: Rob Herring <robh+dt@kernel.org>
+>> Cc: Frank Rowand <frowand.list@gmail.com>
+>> Cc: devicetree@vger.kernel.org
+>> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>> Reported-by: kernel test robot <lkp@intel.com>
+>> ---
+>> v2: handle SPARC as a special case since it provides its own versions of
+>>     of_address_to_resource() and of_iomap();
+>>     fix build errors reported by lkp/ktr and address comments from Laurent;
+>>     do more randconfig build testing;
+>>
+>>  include/linux/of_address.h |   11 +++++++----
+>>  1 file changed, 7 insertions(+), 4 deletions(-)
+>>
+>> --- linux-next-20210524.orig/include/linux/of_address.h
+>> +++ linux-next-20210524/include/linux/of_address.h
+>> @@ -106,11 +106,12 @@ static inline bool of_dma_is_coherent(st
+>>  }
+>>  #endif /* CONFIG_OF_ADDRESS */
+>>
+>> -#ifdef CONFIG_OF
+>> +#ifdef CONFIG_SPARC /* SPARC has its own versions of these */
+> 
+> The whole point of CONFIG_OF_ADDRESS is really just for SPARC. So I
+> don't really like the mixture of the ifdefs here and in kconfig. It
+> looks only more fragile.
+> 
+> Can we drop the HAS_IOMEM dependency from CONFIG_OF_ADDRESS and then
+> fix the fallout from that? That would also remove all the other build
+> time dependencies on HAS_IOMEM.
 
-The first two make sense, but may be better split into separate
-changes, so that the YAML conversion is a "linear" change.
+so change
+config OF_ADDRESS
+	def_bool y
+	depends on !SPARC && (HAS_IOMEM || UML)
 
-I'm not clear on why you're changing the compatible value though,
-particularly as you're dropping support for the existing compatible
-value anyway. How about we keep the old one, and use the default of 128
-for cases where max-ngpios is absent? That way, we retain support for
-the existing device trees.
-
-> +  max-ngpios:
-> +    description:
-> +      represents the number of actual hardware-supported GPIOs (ie,
-> +      slots within the clocked serial GPIO data). Since each HW GPIO is both an
-> +      input and an output, we provide max_ngpios * 2 lines on our gpiochip
-> +      device. We also use it to define the split between the inputs and
-> +      outputs; the inputs start at line 0, the outputs start at max_ngpios.
-
-Most of this description is better suited to the ngpios property, which
-controls the number of lines that the gpiochip will expose.
-
-Also, minor nit: max_ngpios -> max-ngpios.
-
-How about something like:
-
-  ngpios:
-    description:
-      Number of GPIO lines to expose. Since each HW GPIO is an input and an
-      output, we provide ngpios * 2 lines on our chip device. We also use it
-      to define the split between the inputs and outputs; the inputs start at
-      line 0, the outputs start at ngpios.
-
-  max-ngpios:
-    description:
-      Represents the number of actual hardware-supported GPIOs (ie, slots within
-      the clocked serial GPIO data), and therefore the maximum value for
-      the ngpios property
-
-> +    minimum: 0
-> +    maximum: 128
-
-Will this be the case for all (future) hardware? Can we leave this
-unbound?
-
-Cheers,
+to
+config OF_ADDRESS
+	def_bool y
+	depends on !SPARC
 
 
-Jeremy
+I'll run some builds and see what all breaks.
+
+thanks.
+-- 
+~Randy
 
