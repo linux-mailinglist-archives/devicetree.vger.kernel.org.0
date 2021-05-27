@@ -2,62 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15C50393337
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 18:10:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D48FD393382
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 18:17:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236267AbhE0QLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 12:11:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43844 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235949AbhE0QLg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 12:11:36 -0400
-Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87495C061760
-        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 09:10:03 -0700 (PDT)
-Received: from [192.168.1.101] (83.6.168.54.neoplus.adsl.tpnet.pl [83.6.168.54])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 201923F116;
-        Thu, 27 May 2021 18:10:00 +0200 (CEST)
-Subject: Re: [PATCH 2/2] video: backlight: qcom-wled: Add PMI8994 compatible
-To:     Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, Jingoo Han <jingoohan1@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        id S236365AbhE0QTI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 12:19:08 -0400
+Received: from foss.arm.com ([217.140.110.172]:59964 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232565AbhE0QTD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 May 2021 12:19:03 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BCE2011D4;
+        Thu, 27 May 2021 09:17:24 -0700 (PDT)
+Received: from bogus (unknown [10.57.70.210])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D8E4E3F719;
+        Thu, 27 May 2021 09:17:22 -0700 (PDT)
+Date:   Thu, 27 May 2021 17:17:12 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Cristian Marussi <cristian.marussi@arm.com>,
+        devicetree@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org
-References: <20210228124106.135812-1-konrad.dybcio@somainline.org>
- <20210228124106.135812-2-konrad.dybcio@somainline.org>
- <20210322161810.biagj2qro66rv4gt@maple.lan> <20210323083935.GF2916463@dell>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-Message-ID: <a81bfa44-ed86-207c-0f8c-c9bbad62733d@somainline.org>
-Date:   Thu, 27 May 2021 18:09:59 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH 5/8] dt-bindings: firmware: arm,scpi: Convert to json
+ schema
+Message-ID: <20210527161702.wzilr4z5tuzqfy5g@bogus>
+References: <20210526182807.548118-1-sudeep.holla@arm.com>
+ <20210526182807.548118-6-sudeep.holla@arm.com>
+ <1622125407.773675.731787.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20210323083935.GF2916463@dell>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1622125407.773675.731787.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Rob,
 
-> Why are you Reviewing/Acking a patch that was applied on the 10th?
+On Thu, May 27, 2021 at 09:23:27AM -0500, Rob Herring wrote:
+> On Wed, 26 May 2021 19:28:04 +0100, Sudeep Holla wrote:
+> > Convert the old text format binding for System Control and Power Interface
+> > (SCPI) Message Protocol into the new and shiny YAML format.
+> > 
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Kevin Hilman <khilman@baylibre.com>
+> > Cc: Neil Armstrong <narmstrong@baylibre.com>
+> > Cc: Jerome Brunet <jbrunet@baylibre.com>
+> > Cc: Viresh Kumar <viresh.kumar@linaro.org
+> > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+> > ---
+> >  .../devicetree/bindings/arm/arm,scpi.txt      | 204 -------------
+> >  .../bindings/firmware/arm,scpi.yaml           | 284 ++++++++++++++++++
+> >  MAINTAINERS                                   |   2 +-
+> >  3 files changed, 285 insertions(+), 205 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/arm/arm,scpi.txt
+> >  create mode 100644 Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+> > 
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/arm,mhu.example.dt.yaml: scpi@2f000000: $nodename:0: 'scpi' was expected
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/arm,mhu.example.dt.yaml: scpi@2f000000: reg: [[0, 788529152, 0, 512]] is not of type 'object'
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/arm,mhu.example.dt.yaml: scpi@2f000000: 'shmem' is a required property
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+> 
+> See https://patchwork.ozlabs.org/patch/1484217
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
+> 
 
-Forgive me if it turns out I'm blind, but I can't see the patch being in either -next, backlight/for-next, or 5.13-rc3. Perhaps it was omitted after all?
+I have fixed this in 6/8. I can merge them but since I wasn't aware of how
+this might get merged, I split the patch. Converting to yaml triggered issue
+with mhu yaml schema as the example is wrong.
 
-
-Konrad
-
+-- 
+Regards,
+Sudeep
