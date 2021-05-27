@@ -2,183 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E4CE393662
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 21:37:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4474C393664
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 21:37:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235109AbhE0Tir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 15:38:47 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:42727 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235065AbhE0Tir (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 15:38:47 -0400
-Received: by mail-ot1-f51.google.com with SMTP id n3-20020a9d74030000b029035e65d0a0b8so1288901otk.9
-        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 12:37:12 -0700 (PDT)
+        id S235065AbhE0Tiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 15:38:51 -0400
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:40636 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234187AbhE0Tiu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 15:38:50 -0400
+Received: by mail-ot1-f43.google.com with SMTP id 80-20020a9d08560000b0290333e9d2b247so1296393oty.7
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 12:37:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=bM7teNdrWGeeKeqjqgBnHJlc51CGMA8O85N2k47LNWU=;
-        b=A7ktCqK2hIhxMfwjg38RFwcaIudh5A7ol3f74pJtxj2A/SxFXhNhq8rh9NCSL+1v9W
-         Ujkp9WOc+t8jjRpuLx6BummI60i4ZXb7gh5AxzoqAmMSHaGn2ND95E4ysf8AsRWQdp4r
-         hYJO95Dcpo/19zDRuMPw5BqnxRvsTHXyvJNUu/CxSe/qGXPJbHETa/oAdjAk0DDR3S0E
-         btxFDRf2/6nfFAYCWXjLiqLNenYoTsq6Qr/zBASgKPZ+0rLsYtNDSq8qoXOkWa47BcVI
-         xfe+los4WAQTkixYsFJC3ZxNYQjVr6NlSnQKCnNl9fjliegd8gIqRDbd+QcMk1WRua0T
-         mpdA==
-X-Gm-Message-State: AOAM533IrJTbiGm2h7TnBzx+PFpBuVJCnomKiX25LzOSILUnhzcxj3Ei
-        GAGABKeS1D0qzUCu5w5AAQ==
-X-Google-Smtp-Source: ABdhPJx2rk5aR8F+8SGi4lpbgHbvMF3hS2pg2ZQp9GUKOHBvp00wBGsABpF8lvv25hTCyEwBuONAig==
-X-Received: by 2002:a05:6830:1e54:: with SMTP id e20mr4116083otj.227.1622144232461;
-        Thu, 27 May 2021 12:37:12 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=ydVf7ZObUZ9d00EfB5ZI51TsSKUWLoqndzojvJxksJI=;
+        b=WUV5+Y/2VTbqEatSdNeQFofPsbKdtc3rpKapipOybdaaIL9C4TyzIftydUJv5/bIjg
+         Jg5fVmvC2yiMs9WlECFZaDtad5FgmiCWNPsr8LxvPw+aWBT75d5wmkjN4U2+vVHLdfuO
+         FyoX+MVLk5XVUyTCDLz+7LcKu3zxovf8qEssoyvL/YGoqqV8Yd0bhhgRZhXJfeSHBMNE
+         QvAtSlNqfD5PH6wykXILTYDTkhjg+7qxxr001fsPPK04DVX0QdRM8TESw99/vnTc51vQ
+         jfAydDHehD5x76k0jvHd9L4ZvLIsrgk+BwcuCMnWlPhdlL2KHAOpY7jn629dFtYTPi9W
+         Cv+A==
+X-Gm-Message-State: AOAM532fmEE01x8pWPkqaEMzeJMdcW7Ll6EQB23bV5CKoE9+mC42B6Bz
+        QvptGxLKNVTlNKPXcBiNqg==
+X-Google-Smtp-Source: ABdhPJzervBtcn0XaaGl+UgFIm39GPEoGp6MshHYI+rdKb4tJQcdTUZxXJdmW/wWTN9+7JUtZ1wG6Q==
+X-Received: by 2002:a9d:12d6:: with SMTP id g80mr4036707otg.107.1622144237034;
+        Thu, 27 May 2021 12:37:17 -0700 (PDT)
 Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id v19sm686961otk.22.2021.05.27.12.37.10
+        by smtp.googlemail.com with ESMTPSA id v19sm686961otk.22.2021.05.27.12.37.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 May 2021 12:37:11 -0700 (PDT)
+        Thu, 27 May 2021 12:37:13 -0700 (PDT)
 From:   Rob Herring <robh@kernel.org>
 To:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Frank Rowand <frowand.list@gmail.com>,
-        iommu@lists.linux-foundation.org
-Subject: [PATCH 1/2] iommu: Remove unused of_get_dma_window()
-Date:   Thu, 27 May 2021 14:37:09 -0500
-Message-Id: <20210527193710.1281746-1-robh@kernel.org>
+        iommu@lists.linux-foundation.org,
+        Robin Murphy <robin.murphy@arm.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Yong Wu <yong.wu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>
+Subject: [PATCH 2/2] iommu: Drop unnecessary of_iommu.h includes
+Date:   Thu, 27 May 2021 14:37:10 -0500
+Message-Id: <20210527193710.1281746-2-robh@kernel.org>
 X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20210527193710.1281746-1-robh@kernel.org>
+References: <20210527193710.1281746-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-of_get_dma_window() was added in 2012 and removed in 2014 in commit
-891846516317 ("memory: Add NVIDIA Tegra memory controller support").
-Remove it and simplify the header to use forward declarations for
-structs rather than includes.
+The only place of_iommu.h is needed is in drivers/of/device.c. Remove it
+from everywhere else.
 
-Cc: Joerg Roedel <joro@8bytes.org>
 Cc: Will Deacon <will@kernel.org>
+Cc: Robin Murphy <robin.murphy@arm.com>
+Cc: Joerg Roedel <joro@8bytes.org>
+Cc: Rob Clark <robdclark@gmail.com>
+Cc: Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Yong Wu <yong.wu@mediatek.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>
+Cc: Jean-Philippe Brucker <jean-philippe@linaro.org>
 Cc: Frank Rowand <frowand.list@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org
 Cc: iommu@lists.linux-foundation.org
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- drivers/iommu/of_iommu.c | 68 ----------------------------------------
- include/linux/of_iommu.h | 17 ++--------
- 2 files changed, 3 insertions(+), 82 deletions(-)
+ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c | 1 -
+ drivers/iommu/arm/arm-smmu/arm-smmu.c       | 1 -
+ drivers/iommu/arm/arm-smmu/qcom_iommu.c     | 1 -
+ drivers/iommu/exynos-iommu.c                | 1 -
+ drivers/iommu/ipmmu-vmsa.c                  | 1 -
+ drivers/iommu/msm_iommu.c                   | 1 -
+ drivers/iommu/mtk_iommu.c                   | 1 -
+ drivers/iommu/mtk_iommu_v1.c                | 1 -
+ drivers/iommu/omap-iommu.c                  | 1 -
+ drivers/iommu/rockchip-iommu.c              | 1 -
+ drivers/iommu/virtio-iommu.c                | 1 -
+ drivers/of/platform.c                       | 1 -
+ 12 files changed, 12 deletions(-)
 
-diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
-index a9d2df001149..5696314ae69e 100644
---- a/drivers/iommu/of_iommu.c
-+++ b/drivers/iommu/of_iommu.c
-@@ -19,74 +19,6 @@
+diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+index 54b2f27b81d4..2ddc3cd5a7d1 100644
+--- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
++++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+@@ -23,7 +23,6 @@
+ #include <linux/msi.h>
+ #include <linux/of.h>
+ #include <linux/of_address.h>
+-#include <linux/of_iommu.h>
+ #include <linux/of_platform.h>
+ #include <linux/pci.h>
+ #include <linux/pci-ats.h>
+diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.c b/drivers/iommu/arm/arm-smmu/arm-smmu.c
+index 6f72c4d208ca..dba15f312cbd 100644
+--- a/drivers/iommu/arm/arm-smmu/arm-smmu.c
++++ b/drivers/iommu/arm/arm-smmu/arm-smmu.c
+@@ -31,7 +31,6 @@
+ #include <linux/of.h>
+ #include <linux/of_address.h>
+ #include <linux/of_device.h>
+-#include <linux/of_iommu.h>
+ #include <linux/pci.h>
+ #include <linux/platform_device.h>
+ #include <linux/pm_runtime.h>
+diff --git a/drivers/iommu/arm/arm-smmu/qcom_iommu.c b/drivers/iommu/arm/arm-smmu/qcom_iommu.c
+index 4294abe389b2..021cf8f65ffc 100644
+--- a/drivers/iommu/arm/arm-smmu/qcom_iommu.c
++++ b/drivers/iommu/arm/arm-smmu/qcom_iommu.c
+@@ -25,7 +25,6 @@
+ #include <linux/of.h>
+ #include <linux/of_address.h>
+ #include <linux/of_device.h>
+-#include <linux/of_iommu.h>
+ #include <linux/platform_device.h>
+ #include <linux/pm.h>
+ #include <linux/pm_runtime.h>
+diff --git a/drivers/iommu/exynos-iommu.c b/drivers/iommu/exynos-iommu.c
+index 7623d8c371f5..d0fbf1d10e18 100644
+--- a/drivers/iommu/exynos-iommu.c
++++ b/drivers/iommu/exynos-iommu.c
+@@ -17,7 +17,6 @@
+ #include <linux/kmemleak.h>
+ #include <linux/list.h>
+ #include <linux/of.h>
+-#include <linux/of_iommu.h>
+ #include <linux/of_platform.h>
+ #include <linux/platform_device.h>
+ #include <linux/pm_runtime.h>
+diff --git a/drivers/iommu/ipmmu-vmsa.c b/drivers/iommu/ipmmu-vmsa.c
+index aaa6a4d59057..51ea6f00db2f 100644
+--- a/drivers/iommu/ipmmu-vmsa.c
++++ b/drivers/iommu/ipmmu-vmsa.c
+@@ -19,7 +19,6 @@
+ #include <linux/iommu.h>
+ #include <linux/of.h>
+ #include <linux/of_device.h>
+-#include <linux/of_iommu.h>
+ #include <linux/of_platform.h>
+ #include <linux/platform_device.h>
+ #include <linux/sizes.h>
+diff --git a/drivers/iommu/msm_iommu.c b/drivers/iommu/msm_iommu.c
+index 7880f307cb2d..3a38352b603f 100644
+--- a/drivers/iommu/msm_iommu.c
++++ b/drivers/iommu/msm_iommu.c
+@@ -18,7 +18,6 @@
+ #include <linux/iommu.h>
+ #include <linux/clk.h>
+ #include <linux/err.h>
+-#include <linux/of_iommu.h>
  
- #define NO_IOMMU	1
- 
--/**
-- * of_get_dma_window - Parse *dma-window property and returns 0 if found.
-- *
-- * @dn: device node
-- * @prefix: prefix for property name if any
-- * @index: index to start to parse
-- * @busno: Returns busno if supported. Otherwise pass NULL
-- * @addr: Returns address that DMA starts
-- * @size: Returns the range that DMA can handle
-- *
-- * This supports different formats flexibly. "prefix" can be
-- * configured if any. "busno" and "index" are optionally
-- * specified. Set 0(or NULL) if not used.
-- */
--int of_get_dma_window(struct device_node *dn, const char *prefix, int index,
--		      unsigned long *busno, dma_addr_t *addr, size_t *size)
--{
--	const __be32 *dma_window, *end;
--	int bytes, cur_index = 0;
--	char propname[NAME_MAX], addrname[NAME_MAX], sizename[NAME_MAX];
--
--	if (!dn || !addr || !size)
--		return -EINVAL;
--
--	if (!prefix)
--		prefix = "";
--
--	snprintf(propname, sizeof(propname), "%sdma-window", prefix);
--	snprintf(addrname, sizeof(addrname), "%s#dma-address-cells", prefix);
--	snprintf(sizename, sizeof(sizename), "%s#dma-size-cells", prefix);
--
--	dma_window = of_get_property(dn, propname, &bytes);
--	if (!dma_window)
--		return -ENODEV;
--	end = dma_window + bytes / sizeof(*dma_window);
--
--	while (dma_window < end) {
--		u32 cells;
--		const void *prop;
--
--		/* busno is one cell if supported */
--		if (busno)
--			*busno = be32_to_cpup(dma_window++);
--
--		prop = of_get_property(dn, addrname, NULL);
--		if (!prop)
--			prop = of_get_property(dn, "#address-cells", NULL);
--
--		cells = prop ? be32_to_cpup(prop) : of_n_addr_cells(dn);
--		if (!cells)
--			return -EINVAL;
--		*addr = of_read_number(dma_window, cells);
--		dma_window += cells;
--
--		prop = of_get_property(dn, sizename, NULL);
--		cells = prop ? be32_to_cpup(prop) : of_n_size_cells(dn);
--		if (!cells)
--			return -EINVAL;
--		*size = of_read_number(dma_window, cells);
--		dma_window += cells;
--
--		if (cur_index++ == index)
--			break;
--	}
--	return 0;
--}
--EXPORT_SYMBOL_GPL(of_get_dma_window);
--
- static int of_iommu_xlate(struct device *dev,
- 			  struct of_phandle_args *iommu_spec)
- {
-diff --git a/include/linux/of_iommu.h b/include/linux/of_iommu.h
-index 16f4b3e87f20..55c1eb300a86 100644
---- a/include/linux/of_iommu.h
-+++ b/include/linux/of_iommu.h
-@@ -2,29 +2,18 @@
- #ifndef __OF_IOMMU_H
- #define __OF_IOMMU_H
- 
--#include <linux/device.h>
--#include <linux/iommu.h>
--#include <linux/of.h>
-+struct device;
-+struct device_node;
-+struct iommu_ops;
- 
- #ifdef CONFIG_OF_IOMMU
- 
--extern int of_get_dma_window(struct device_node *dn, const char *prefix,
--			     int index, unsigned long *busno, dma_addr_t *addr,
--			     size_t *size);
--
- extern const struct iommu_ops *of_iommu_configure(struct device *dev,
- 					struct device_node *master_np,
- 					const u32 *id);
- 
- #else
- 
--static inline int of_get_dma_window(struct device_node *dn, const char *prefix,
--			    int index, unsigned long *busno, dma_addr_t *addr,
--			    size_t *size)
--{
--	return -EINVAL;
--}
--
- static inline const struct iommu_ops *of_iommu_configure(struct device *dev,
- 					 struct device_node *master_np,
- 					 const u32 *id)
+ #include <asm/cacheflush.h>
+ #include <linux/sizes.h>
+diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+index e06b8a0e2b56..6f7c69688ce2 100644
+--- a/drivers/iommu/mtk_iommu.c
++++ b/drivers/iommu/mtk_iommu.c
+@@ -19,7 +19,6 @@
+ #include <linux/mfd/syscon.h>
+ #include <linux/module.h>
+ #include <linux/of_address.h>
+-#include <linux/of_iommu.h>
+ #include <linux/of_irq.h>
+ #include <linux/of_platform.h>
+ #include <linux/platform_device.h>
+diff --git a/drivers/iommu/mtk_iommu_v1.c b/drivers/iommu/mtk_iommu_v1.c
+index 5915d7b38211..778e66f5f1aa 100644
+--- a/drivers/iommu/mtk_iommu_v1.c
++++ b/drivers/iommu/mtk_iommu_v1.c
+@@ -22,7 +22,6 @@
+ #include <linux/list.h>
+ #include <linux/module.h>
+ #include <linux/of_address.h>
+-#include <linux/of_iommu.h>
+ #include <linux/of_irq.h>
+ #include <linux/of_platform.h>
+ #include <linux/platform_device.h>
+diff --git a/drivers/iommu/omap-iommu.c b/drivers/iommu/omap-iommu.c
+index 26e517eb0dd3..91749654fd49 100644
+--- a/drivers/iommu/omap-iommu.c
++++ b/drivers/iommu/omap-iommu.c
+@@ -22,7 +22,6 @@
+ #include <linux/io.h>
+ #include <linux/pm_runtime.h>
+ #include <linux/of.h>
+-#include <linux/of_iommu.h>
+ #include <linux/of_irq.h>
+ #include <linux/of_platform.h>
+ #include <linux/regmap.h>
+diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iommu.c
+index 7a2932772fdf..bb50e015b1d5 100644
+--- a/drivers/iommu/rockchip-iommu.c
++++ b/drivers/iommu/rockchip-iommu.c
+@@ -21,7 +21,6 @@
+ #include <linux/mm.h>
+ #include <linux/init.h>
+ #include <linux/of.h>
+-#include <linux/of_iommu.h>
+ #include <linux/of_platform.h>
+ #include <linux/platform_device.h>
+ #include <linux/pm_runtime.h>
+diff --git a/drivers/iommu/virtio-iommu.c b/drivers/iommu/virtio-iommu.c
+index 7c02481a81b4..d9f46f2c3058 100644
+--- a/drivers/iommu/virtio-iommu.c
++++ b/drivers/iommu/virtio-iommu.c
+@@ -14,7 +14,6 @@
+ #include <linux/interval_tree.h>
+ #include <linux/iommu.h>
+ #include <linux/module.h>
+-#include <linux/of_iommu.h>
+ #include <linux/of_platform.h>
+ #include <linux/pci.h>
+ #include <linux/platform_device.h>
+diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+index 25d448f5af91..74afbb7a4f5e 100644
+--- a/drivers/of/platform.c
++++ b/drivers/of/platform.c
+@@ -17,7 +17,6 @@
+ #include <linux/slab.h>
+ #include <linux/of_address.h>
+ #include <linux/of_device.h>
+-#include <linux/of_iommu.h>
+ #include <linux/of_irq.h>
+ #include <linux/of_platform.h>
+ #include <linux/platform_device.h>
 -- 
 2.27.0
 
