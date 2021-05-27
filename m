@@ -2,158 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C3293934E0
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 19:32:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90E57393522
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 19:49:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235378AbhE0ReJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 13:34:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34432 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234594AbhE0ReI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 13:34:08 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EDADC061761;
-        Thu, 27 May 2021 10:32:35 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id v8so1455323qkv.1;
-        Thu, 27 May 2021 10:32:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=2/+eIfj53POdJuJ8JguUQYMLt/9wKEEN9EHnJYWkESk=;
-        b=S/Gja7fmlHHsR8eaLY1I6aybT/i/8Yx+SQKS9q1/it3rZ6RIRo0nrGXEQ4kyGVa5RR
-         Id6KHsFZfBf8f6oMpbkeqzA8mFVozV61olOkAkxhmEv2MH8E8zQaBIoESe8jmNQD89Ae
-         Pa5JqVYG7I1JpAz5+q+D9lPdcc3+yRVYp1/P57vbewvQX0N+enEA9MBQIklmNTyHW18V
-         ZVt3jhhPk1FB7Xj/xZZ3dQlqotrIXj59gaBoDnkO7/YczX6vZ4Ex/UWDLCk73AXCbAzR
-         WqJVtFZAtygVd1NLfjJwI6g8pvwSw/V0SXPalfP//trgOkZeDFl/61z6FcE0MeMVeLVH
-         Rnvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=2/+eIfj53POdJuJ8JguUQYMLt/9wKEEN9EHnJYWkESk=;
-        b=eZ71b36BB7WiDJKjsrLciKp3FxEjC0o7JJLFULeDReDJLhq4yD6ooVxHzNNnJYgJ4P
-         ON0JKQxiC279ZAsbjGQVSEfASIojSw4bpvTgVCFoJpFWp9KMJUL70TaFx65iJ9pPYDnT
-         XqbJMkxq5QUvf8K2pEatHFnPOl2ZG/F5db9fdJno17++xJGVEaZodZz23bEHt5XTOa28
-         ZwOvdIjW7jIbY7uoyF71SScvG8/r3yzeZ9cSn4aCF/YNLi1OVt2buwl8AHmjV1JNS78C
-         Fqfq+WCG0Tx47fT0tPgaPteo77MMDIL3qwXGKAZFE82bYsZaG8MUH1GPUxnVM3lppEIv
-         oKAw==
-X-Gm-Message-State: AOAM533a/P6gHC1aBnMtWGEw1cKgXUbtHoQmSTmlCYnDkSOu/a5ngt9o
-        3LDuMkBOZriq72lHX5kei0w=
-X-Google-Smtp-Source: ABdhPJzdQG652AQAP0YTwOHv5c/o9mMWwnGJzCKe43yJvGK3vOMx3Q52OQATwhvHrm6OrXAJnWSjlA==
-X-Received: by 2002:a37:65d4:: with SMTP id z203mr4600614qkb.389.1622136754296;
-        Thu, 27 May 2021 10:32:34 -0700 (PDT)
-Received: from localhost.localdomain ([2804:14c:485:504a:a1cb:22e7:5e60:5887])
-        by smtp.gmail.com with ESMTPSA id m15sm1715117qtn.47.2021.05.27.10.32.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 May 2021 10:32:33 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     hverkuil-cisco@xs4all.nl
-Cc:     lars@metafoo.de, matthew.michilot@gmail.com, tharvey@gateworks.com,
-        linux-media@vger.kernel.org, slongerbeam@gmail.com,
-        niklas.soderlund@ragnatech.se, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH 2/2] media: i2c: adv7180: fix adv7280 BT.656-4 compatibility
-Date:   Thu, 27 May 2021 14:32:09 -0300
-Message-Id: <20210527173209.3874124-2-festevam@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210527173209.3874124-1-festevam@gmail.com>
-References: <20210527173209.3874124-1-festevam@gmail.com>
+        id S234486AbhE0RvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 13:51:22 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:59928 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229791AbhE0RvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 13:51:19 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14RHnf5v060411;
+        Thu, 27 May 2021 12:49:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1622137781;
+        bh=sy+bdMzmRE6ELJAGc0+jRguaGKhobAm0nHlog7cKFhY=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=Cm/qmHfRoB9xyrzs/vEAk/pV4L1bDRwkB1X6etgxtG8GgxEL24UFAeHLgja+UYcO3
+         ajCApWId2+l6HlPq3XtYz4bGVXvY313dIfiUYaZyalJxN5tb0+0IedKf32be8r+8Jv
+         EYe/AETFbif+8TykzpKljpz1XRJhX8i9YvEfmrYk=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14RHnfE1094266
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 27 May 2021 12:49:41 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 27
+ May 2021 12:49:40 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 27 May 2021 12:49:40 -0500
+Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14RHnbUu058802;
+        Thu, 27 May 2021 12:49:38 -0500
+Subject: Re: [PATCH] dt-bindings: serial: Move omap-serial.txt to YAML schema
+To:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
+References: <20210527165636.939-1-vigneshr@ti.com>
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+Message-ID: <3760d1e6-2121-323b-d962-60e8291d0bb7@ti.com>
+Date:   Thu, 27 May 2021 20:49:38 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210527165636.939-1-vigneshr@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Matthew Michilot <matthew.michilot@gmail.com>
 
-Captured video would be out of sync when using the adv7280 with
-the BT.656-4 protocol. Certain registers (0x04, 0x31, 0xE6) had to
-be configured properly to ensure BT.656-4 compatibility.
 
-An error in the adv7280 reference manual suggested that EAV/SAV mode
-was enabled by default, however upon inspecting register 0x31, it was
-determined to be disabled by default.
+On 27/05/2021 19:56, Vignesh Raghavendra wrote:
+> Convert serial-omap.txt to YAML schema for better checks and documentation.
+> 
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> ---
+>   .../bindings/serial/omap_serial.txt           |  40 ------
+>   .../bindings/serial/ti,omap4-uart.yaml        | 116 ++++++++++++++++++
+>   2 files changed, 116 insertions(+), 40 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/serial/omap_serial.txt
+>   create mode 100644 Documentation/devicetree/bindings/serial/ti,omap4-uart.yaml
 
-Signed-off-by: Matthew Michilot <matthew.michilot@gmail.com>
-Reviewed-by: Tim Harvey <tharvey@gateworks.com>
-[fabio: Introduce "adv,adv7182-force-bt656-4"]
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
----
-Changes since v1:
-- Only force BT656-4 when the DT property is present.
- drivers/media/i2c/adv7180.c | 30 ++++++++++++++++++++++++++----
- 1 file changed, 26 insertions(+), 4 deletions(-)
+Why omap4? Seems ti,omap-uart.yaml is more suitable.
 
-diff --git a/drivers/media/i2c/adv7180.c b/drivers/media/i2c/adv7180.c
-index 44bb6fe85644..a532df813d74 100644
---- a/drivers/media/i2c/adv7180.c
-+++ b/drivers/media/i2c/adv7180.c
-@@ -94,6 +94,7 @@
- #define ADV7180_REG_SHAP_FILTER_CTL_1	0x0017
- #define ADV7180_REG_CTRL_2		0x001d
- #define ADV7180_REG_VSYNC_FIELD_CTL_1	0x0031
-+#define ADV7180_VSYNC_FIELD_CTL_1_NEWAV 0x12
- #define ADV7180_REG_MANUAL_WIN_CTL_1	0x003d
- #define ADV7180_REG_MANUAL_WIN_CTL_2	0x003e
- #define ADV7180_REG_MANUAL_WIN_CTL_3	0x003f
-@@ -216,6 +217,7 @@ struct adv7180_state {
- 	struct i2c_client	*vpp_client;
- 	const struct adv7180_chip_info *chip_info;
- 	enum v4l2_field		field;
-+	bool			force_bt656_4;
- };
- #define to_adv7180_sd(_ctrl) (&container_of(_ctrl->handler,		\
- 					    struct adv7180_state,	\
-@@ -963,10 +965,26 @@ static int adv7182_init(struct adv7180_state *state)
- 		adv7180_write(state, ADV7180_REG_EXTENDED_OUTPUT_CONTROL, 0x57);
- 		adv7180_write(state, ADV7180_REG_CTRL_2, 0xc0);
- 	} else {
--		if (state->chip_info->flags & ADV7180_FLAG_V2)
--			adv7180_write(state,
--				      ADV7180_REG_EXTENDED_OUTPUT_CONTROL,
--				      0x17);
-+		if (state->chip_info->flags & ADV7180_FLAG_V2) {
-+			if (state->force_bt656_4) {
-+				/* ITU-R BT.656-4 compatible */
-+				adv7180_write(state,
-+					      ADV7180_REG_EXTENDED_OUTPUT_CONTROL,
-+					      ADV7180_EXTENDED_OUTPUT_CONTROL_NTSCDIS);
-+				/* Manually set NEWAVMODE */
-+				adv7180_write(state,
-+					      ADV7180_REG_VSYNC_FIELD_CTL_1,
-+					      ADV7180_VSYNC_FIELD_CTL_1_NEWAV);
-+				/* Manually set V bit end position in NTSC mode */
-+				adv7180_write(state,
-+					     ADV7180_REG_NTSC_V_BIT_END,
-+					     ADV7180_NTSC_V_BIT_END_MANUAL_NVEND);
-+			} else {
-+				adv7180_write(state,
-+					      ADV7180_REG_EXTENDED_OUTPUT_CONTROL,
-+					      0x17);
-+			}
-+		}
- 		else
- 			adv7180_write(state,
- 				      ADV7180_REG_EXTENDED_OUTPUT_CONTROL,
-@@ -1314,6 +1332,7 @@ static int init_device(struct adv7180_state *state)
- static int adv7180_probe(struct i2c_client *client,
- 			 const struct i2c_device_id *id)
- {
-+	struct device_node *np = client->dev.of_node;
- 	struct adv7180_state *state;
- 	struct v4l2_subdev *sd;
- 	int ret;
-@@ -1338,6 +1357,9 @@ static int adv7180_probe(struct i2c_client *client,
- 		return ret;
- 	}
- 
-+	if (of_property_read_bool(np, "adv,adv7182-force-bt656-4"))
-+		state->force_bt656_4 = true;
-+
- 	if (state->chip_info->flags & ADV7180_FLAG_MIPI_CSI2) {
- 		state->csi_client = i2c_new_dummy_device(client->adapter,
- 				ADV7180_DEFAULT_CSI_I2C_ADDR);
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/omap_serial.txt b/Documentation/devicetree/bindings/serial/omap_serial.txt
+> deleted file mode 100644
+> index c2db8cabf2ab..000000000000
+> --- a/Documentation/devicetree/bindings/serial/omap_serial.txt
+> +++ /dev/null
+> @@ -1,40 +0,0 @@
+> -OMAP UART controller
+> -
+
+[...]
+
+> diff --git a/Documentation/devicetree/bindings/serial/ti,omap4-uart.yaml b/Documentation/devicetree/bindings/serial/ti,omap4-uart.yaml
+> new file mode 100644
+> index 000000000000..b3e426c24a9e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/serial/ti,omap4-uart.yaml
+> @@ -0,0 +1,116 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/serial/ti,omap4-uart.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Bindings for 8250 compliant UARTs on TI's OMAP and K3 SoCs
+> +
+> +maintainers:
+> +  - Vignesh Raghavendra <vigneshr@ti.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/serial/serial.yaml#
+> +  - $ref: /schemas/serial/rs485.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - ti,am3352-uart
+> +          - ti,am4372-uart
+> +          - ti,am654-uart
+> +          - ti,dra742-uart
+> +          - ti,omap2-uart
+> +          - ti,omap3-uart
+> +          - ti,omap4-uart
+> +      - items:
+> +          - enum:
+> +              - ti,am64-uart
+> +              - ti,j721e-uart
+> +          - const: ti,am654-uart
+> +
+> +  ti,hwmods:
+> +    description:
+> +      Must be "uart<n>", n being the instance number (1-based)
+> +      This property is applicable only on legacy platforms mainly omap2/3
+> +      and ti81xx and should not be used on other platforms.
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    deprecated: true
+> +
+> +  dmas:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  dma-names:
+> +    items:
+> +      - const: tx
+> +      - const: rx
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
+
+Could you add description for interrupts, pls?
+
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: fclk
+> +
+> +  reg-shift:
+> +    const: 2
+> +  reg-io-width:
+> +    const: 4
+> +
+> +  rts-gpios: true
+> +  cts-gpios: true
+> +  dtr-gpios: true
+> +  dsr-gpios: true
+> +  rng-gpios: true
+> +  dcd-gpios: true
+> +  rs485-rts-delay: true
+> +  rs485-rts-active-low: true
+> +  rs485-rx-during-tx: true
+> +  rs485-rts-active-high: true
+> +  linux,rs485-enabled-at-boot-time: true
+> +  rts-gpio: true
+> +  power-domains: true
+> +  clock-frequency: true
+> +  current-speed: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +if:
+> +  properties:
+> +    compatible:
+> +      oneOf:
+> +        - const: ti,omap2-uart
+> +        - const: ti,omap3-uart
+> +        - const: ti,omap4-uart
+> +
+> +then:
+> +  properties:
+> +    ti,hwmods:
+> +      items:
+> +        - pattern: "^uart([1-9])$"
+> +
+> +else:
+> +  properties:
+> +    ti,hwmods: false
+> +
+> +examples:
+> +  - |
+> +          uart4: serial@49042000 {
+> +                  compatible = "ti,omap3-uart";
+> +                  reg = <0x49042000 0x400>;
+> +                  interrupts = <80>;
+> +                  clock-frequency = <48000000>;
+> +          };
+> 
+
 -- 
-2.25.1
-
+Best regards,
+grygorii
