@@ -2,143 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA4953932BC
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 17:46:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74C623932D4
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 17:49:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236006AbhE0PrK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 11:47:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38074 "EHLO
+        id S233462AbhE0Pt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 11:49:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235989AbhE0PrE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 11:47:04 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47E57C06138F;
-        Thu, 27 May 2021 08:45:30 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id i13so1378763edb.9;
-        Thu, 27 May 2021 08:45:30 -0700 (PDT)
+        with ESMTP id S233512AbhE0Pt5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 11:49:57 -0400
+Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 899B3C061760
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 08:48:23 -0700 (PDT)
+Received: by mail-oo1-xc2a.google.com with SMTP id i8-20020a4aa1080000b0290201edd785e7so218035ool.1
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 08:48:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=gsjMFI5xRh9fU61vc6sGsHQBMH0/Rr505VNY3iesxmo=;
-        b=fFfipLoo0fjZqkr6ftiPIsNGVbJvsb1to+BoH7WpsIIsOOKZRQNS50xCqVTdVMVewb
-         3w+y/WIPOx2EUjAbo0yjhW+oX/vHkWMp/iVKRhcsLG/d4jAPWmSnToVZZZa37XRDle6f
-         8WJYF9JmHck3vxXLK+6dh+ZJL2VHRFe2UeZn1sh0oHn8NSjKfaamKcDatWVeGFAOSwuX
-         mldDwVusy1T3kSGT7GueSEIvz8QO3qzsCu6/7G/NqmTUIYwJyvR6dXuQ9PD3an1bILHd
-         a78bklD2W9SvDiExsDohg2eupQKM3Vxn5el6Wn7mZ9oJcLpzdIESPkcAGN4apot/Wnq1
-         DOyg==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=yfSNFKosPU4+e760gCsV467KYelw7Cbptpl/kDRnoC8=;
+        b=FbtDb/DQyBp+GY9iEqxGg2/FRcFw3WW11uWrvwjePjlW6i8JYevnVBn2UDsOU7Lg4e
+         2Lbr3v2zNcR/lXgM3IBgXUHNWqOehYhHPwgIwFkGQFf4FJFn5zJZ0U9uQfS0vyFX5zJW
+         J1Oo4GZSzfO1mOykRiwvplTV0E3vXFaVdmLPkz13U+hnkRwpXSucSlUQw3Sfy+EymkL+
+         rA5jM7yC3tkJooLA1HfMJ3HhIz7E1dDGptteLT9vZAJD842zrQURe1P/eggjhT7rT3Of
+         jk0aZfKTuhRzXYhKJiCGA/dQcEcsSDsuQNAKVbCjVqvQEKjxkJsaH+/jnkZuAiKM1EfQ
+         Fa1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=gsjMFI5xRh9fU61vc6sGsHQBMH0/Rr505VNY3iesxmo=;
-        b=o/RFgR9eWn3uS/jTvJbTOUFrmXdVwXufsQmXZ4uHIGcooa5SG2dnooTE0Ab5L/XEE+
-         aoqTOZXVTeFJAduMx76eqgHefdHb91MTHM9uPVayRqli1OvjGxzo7LLUc31Qxc7zwNG7
-         z8hHe0htdZqzsYuKRw/Q5ZTusUMgHmcDmf64DgyBNgpbM35ET0vdd4y1cH8gW9OKv5Ap
-         7ZzH68GaecXcIwsTncX+/n61XqfEahUgaZoAuHivi8076heOLoYH3V20tVUT1wO0I3aK
-         eZCjTds8tN9RiiaFGR1muplE9m7r+8hqOWa+IVFRBC6bu7RFxQv0Kvh8FAgKrCAwpfZX
-         yXvg==
-X-Gm-Message-State: AOAM531jF10Df0wugCdSsEAzsX+TZ6xu32TPDk1qQ8hGghUesaPrfLNL
-        vWIxZLVqRPsVv1HFe8Xe/Q==
-X-Google-Smtp-Source: ABdhPJwojdxE0cUsDMAT/63TtWD+CUhu/U6vgBc0kNVyTQ3DbDkSZXqmy0LgBNdCZOymj82MBHn1sQ==
-X-Received: by 2002:a05:6402:2713:: with SMTP id y19mr4744066edd.59.1622130329228;
-        Thu, 27 May 2021 08:45:29 -0700 (PDT)
-Received: from localhost.localdomain ([2a02:810b:f40:e00:fefd:4d98:c981:7f97])
-        by smtp.googlemail.com with ESMTPSA id u6sm1178826ejr.55.2021.05.27.08.45.28
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=yfSNFKosPU4+e760gCsV467KYelw7Cbptpl/kDRnoC8=;
+        b=rUpFDcdv88E6OOkSfsweB/Hf6ShS3LJiUPfCsuMX+8dCKnloCoHCo0RBXw/v8byFM0
+         WfIDJ/m8umAg8pxiNYI1g0brqr0uy7uycuVLTCsRPgLxccd/exrYIeIuNDjYSsq0qfjE
+         Tgytj4Mi7lVapAWTPNZhYmwGuMenV2yy0Yo1E2g0TynhvCjV1Nk6SwGvN3xXhiCHuQnP
+         EINc6j7bN6Xsq4mOZCfxaHsQWi/QN9tBT8OD42+eIxz9xmHCPupgPS4eE1HUw1n7oPgi
+         MvLwrjGKxKmMXqkjblB/QIvucNllIxUqtj1tiGGQ66T6lstCmyMts+wyJ4Uo6pMglYn7
+         Tg1g==
+X-Gm-Message-State: AOAM5330EfKhvtPeP+pfX6s467aGpo26DqsqmNJlpLn+oTPql0QCVn9F
+        APjwtIKFEtfyZ7rL5VVECW7S/g==
+X-Google-Smtp-Source: ABdhPJzyMrFe/vlEUMAHmB0t+9c7Fh3LmqLkK1n4GJOJbCS5aG3EzExhk/Kg2mW8d7RgfqCXHoh/ew==
+X-Received: by 2002:a4a:d4c7:: with SMTP id r7mr3291777oos.85.1622130502878;
+        Thu, 27 May 2021 08:48:22 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id l23sm533270oie.52.2021.05.27.08.48.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 May 2021 08:45:28 -0700 (PDT)
-From:   Alex Bee <knaerzche@gmail.com>
-To:     Ezequiel Garcia <ezequiel@collabora.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Thu, 27 May 2021 08:48:22 -0700 (PDT)
+Date:   Thu, 27 May 2021 10:48:20 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org
-Cc:     Alex Bee <knaerzche@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 12/12] ARM: dts: rockchip: add vpu and vdec node for RK322x
-Date:   Thu, 27 May 2021 17:44:55 +0200
-Message-Id: <20210527154455.358869-13-knaerzche@gmail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210527154455.358869-1-knaerzche@gmail.com>
-References: <20210525152225.154302-1-knaerzche@gmail.com>
- <20210527154455.358869-1-knaerzche@gmail.com>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>
+Subject: Re: [PATCH 7/7] arm64: dts: qcom: Add support for SONY Xperia X
+ Performance / XZ / XZs (msm8996, Tone platform)
+Message-ID: <YK+/RJX2DXvyHh0J@builder.lan>
+References: <20210525200246.118323-1-konrad.dybcio@somainline.org>
+ <20210525200246.118323-7-konrad.dybcio@somainline.org>
+ <YK3CxHZELSQzz4Dp@builder.lan>
+ <3fbf451e-6bab-d72a-1d6b-851ece99c95b@somainline.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3fbf451e-6bab-d72a-1d6b-851ece99c95b@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The VPU and the VDEC IP block of RK322x are the same as RK3399 has and
-the drivers can be used as-is.
+On Wed 26 May 04:21 CDT 2021, Konrad Dybcio wrote:
 
-Add the respective nodes to the device tree.
+> Hi,
+> 
+> 
+> > BSD license in all the files please.
+> 
+> msm8996.dtsi is gpl2-only, so I wasn't sure I can include it..
+> 
 
-Signed-off-by: Alex Bee <knaerzche@gmail.com>
----
+Very good question, I think it's fine, would prefer it that way and will
+be merge it, but ianal.
 
- Changes in v2:
- - squashed previously 2 commits for vdec/vpu
- - moved power-domains property after iommu property
+> 
+> >> +};
+> >> \ No newline at end of file
+> > [..]
+> 
+> Yikes... my mistake
+> 
+> 
+> >> +#include "pmi8994.dtsi"
+> >> +#include <dt-bindings/input/input.h>
+> >> +#include <dt-bindings/input/gpio-keys.h>
+> > This seems to be unused for now.
+> 
+> Right. I will add the keys in a separate patch, this one is plenty big already.
+> 
+> 
+> >> +		/*
+> >> +		 * Due to an unknown-for-a-few-years regression,
+> >> +		 * SDHCI only works on MSM8996 in PIO (lame) mode.
+> >> +		 */
+> >> +		bootargs = "sdhci.debug_quirks=0x40 sdhci.debug_quirks2=0x4 maxcpus=2";
+> > What's up with maxcpus=2? Is this simply because the last 2 are really
+> > really slow?
+> 
+> Yeah, I think the L2 and cci being stuck at bl clocks are to blame
+> again.. there was a lot of msm8996 cpufreq work but I am not sure if
+> anybody got it to *actually* work in the end, I'll try to look into
+> this soon(tm)..
+> 
 
- arch/arm/boot/dts/rk322x.dtsi | 27 +++++++++++++++++++++++++--
- 1 file changed, 25 insertions(+), 2 deletions(-)
+Right, we have some lingering patches on our side for this as well,
+unfortunately I have one db82c0 that gets unstable when we bring the
+last 2 CPUs up to speed.
 
-diff --git a/arch/arm/boot/dts/rk322x.dtsi b/arch/arm/boot/dts/rk322x.dtsi
-index 42033909c606..c0d8f4645937 100644
---- a/arch/arm/boot/dts/rk322x.dtsi
-+++ b/arch/arm/boot/dts/rk322x.dtsi
-@@ -612,6 +612,18 @@ gpu: gpu@20000000 {
- 		status = "disabled";
- 	};
- 
-+	vpu: video-codec@20020000 {
-+		compatible = "rockchip,rk3228-vpu", "rockchip,rk3399-vpu";
-+		reg = <0x20020000 0x800>;
-+		interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI  9 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-names = "vepu", "vdpu";
-+		clocks = <&cru ACLK_VPU>, <&cru HCLK_VPU>;
-+		clock-names = "aclk", "hclk";
-+		iommus = <&vpu_mmu>;
-+		power-domains = <&power RK3228_PD_VPU>;
-+	};
-+
- 	vpu_mmu: iommu@20020800 {
- 		compatible = "rockchip,iommu";
- 		reg = <0x20020800 0x100>;
-@@ -620,7 +632,19 @@ vpu_mmu: iommu@20020800 {
- 		clock-names = "aclk", "iface";
- 		power-domains = <&power RK3228_PD_VPU>;
- 		#iommu-cells = <0>;
--		status = "disabled";
-+	};
-+
-+	vdec: video-codec@20030000 {
-+		compatible = "rockchip,rk3228-vdec", "rockchip,rk3399-vdec";
-+		reg = <0x20030000 0x480>;
-+		interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru ACLK_RKVDEC>, <&cru HCLK_RKVDEC>,
-+			 <&cru SCLK_VDEC_CABAC>, <&cru SCLK_VDEC_CORE>;
-+		clock-names = "axi", "ahb", "cabac", "core";
-+		assigned-clocks = <&cru SCLK_VDEC_CABAC>, <&cru SCLK_VDEC_CORE>;
-+		assigned-clock-rates = <300000000>, <300000000>;
-+		iommus = <&vdec_mmu>;
-+		power-domains = <&power RK3228_PD_RKVDEC>;
- 	};
- 
- 	vdec_mmu: iommu@20030480 {
-@@ -631,7 +655,6 @@ vdec_mmu: iommu@20030480 {
- 		clock-names = "aclk", "iface";
- 		power-domains = <&power RK3228_PD_RKVDEC>;
- 		#iommu-cells = <0>;
--		status = "disabled";
- 	};
- 
- 	vop: vop@20050000 {
--- 
-2.27.0
+I started looking at this and found that some care needs to be taken
+when switching between the lower half and higher half of the frequencies
+(or perhaps it was voltages?) Unfortunately I didn't conclude anything
+in this area, but I would be happy to see this resolved.
 
+> 
+> >> +};
+> >> +
+> >> +&CPU0 {
+> >> +	cpu-supply = <&pmi8994_s11>;
+> > Isn't this the supply to the CPU-subsystem-internal LDO that actually
+> > feeds the CPU? Is there a benefit to describing this here?
+> 
+> I believe it was related to the cpufreq-dt madness, I will remove this.
+> 
+> 
+> >> +
+> >> +&pm8994_gpios {
+> >> +	pinctrl-names = "default";
+> >> +	pinctrl-0 = <&pm8994_gpio_1 &pm8994_vol_down_n &pm8994_vol_up_n
+> >> +		     &pm8994_cam_snap_n &pm8994_cam_focus_n &pm8994_gpio_6
+> >> +		     &pm8994_nfc_dload &pm8994_gpio_8 &pm8994_gpio_9
+> >> +		     &pm8994_gpio_nfc_clk &pm8994_gpio_11 &pm8994_gpio_12
+> >> +		     &pm8994_ear_en &pm8994_gpio_14 &pm8994_pm_divclk1
+> >> +		     &pm8994_pmi_clk &pm8994_gpio_17 &pm8994_rome_sleep
+> >> +		     &pm8994_gpio_19 &pm8994_gpio_22>;
+> > Shouldn't several of these reference be done from the relevant nodes?
+> 
+> Certainly, but not all peripherals have drivers upstream, and other ones
+> 
+> are hardcoded to their state downstream, and knowing what shady stuff
+> 
+> some vendors do, I'm reluctant to trust the bootloader-default state with
+> 
+> my expensive toys..
+> 
+
+I'm in agreement with you that we should vote for these somewhere, so
+I'm fine with us agreeing that they are voted for here for now.
+
+> 
+> 
+> > For the ones that isn't, and that you're not going to ever change I
+> > think it would look better to have a single:
+> >
+> > pm8994_gpios_defaults: default-state {
+> > 	nc {
+> > 		nc pins...
+> > 	};
+> >
+> > 	vol-up {
+> > 		...
+> > 	};
+> >
+> > 	...
+> > };
+> 
+> That does look like a good idea, but I also think it would become a big
+> 
+> mess if any of these pins turned out required for some obscure peripheral,
+> 
+> and then I'd have to dig it out of there, re-create the pin definition outside
+> 
+> and I think you know where this is going..
+> 
+
+But if this happens you need to override the giant pinctrl-0 in such
+device dts and hope that you don't miss any of the entries anyways.
+
+> 
+> > +/*
+> > + * For reasons that are currently unknown
+> > + * (but probably related to fusb301), USB
+> > + * takes about 6 minutes to wake up (nothing
+> > + * interesting in kernel logs), but then it
+> > + * works as it should.
+> > This is funny (but please make it ~80 chars wide).
+> 
+> Eh, Torvalds said 100 is fine :P
+> 
+
+Right, 100 is the new "limit", but 80 is still a good target. What I'm
+opposing is that you wrap at 44.
+
+Thanks,
+Bjorn
