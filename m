@@ -2,87 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FC0C392452
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 03:29:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACC17392464
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 03:38:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233841AbhE0Baj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 May 2021 21:30:39 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:34369 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232861AbhE0Bai (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 21:30:38 -0400
-X-UUID: 8164e5da91a7445f85576216b24389cf-20210527
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=nDV4+Q0St+9RugwqaQ3M5/UdGbXUypt9kmgTr0rwGic=;
-        b=EH7anMN/AJ2UzpVZdnLXGH8vn2tnE4Ir7Gqlc52qyq0NXxoiJfYxRDZ84X7r9x+7Rxb+Lj76rTwK2SGqm+fHSfmDxzP+UxRtTshdgROWraPr1rdLGlw0tHY83g5UZnWpyLY7t6lB+UOfQrpaNAoYNfHJ3GjByAegKNKOU7bve00=;
-X-UUID: 8164e5da91a7445f85576216b24389cf-20210527
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <hsin-hsiung.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 962686196; Thu, 27 May 2021 09:29:03 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 27 May 2021 09:29:01 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 27 May 2021 09:29:01 +0800
-Message-ID: <1622078941.17674.3.camel@mtksdaap41>
-Subject: Re: [PATCH v8 2/4] dt-bindings: spmi: document binding for the
- Mediatek SPMI controller
-From:   Hsin-hsiung Wang <hsin-hsiung.wang@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Stephen Boyd <sboyd@kernel.org>, <srv_heupstream@mediatek.com>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Thu, 27 May 2021 09:29:01 +0800
-In-Reply-To: <1622033763.799295.2377040.nullmailer@robh.at.kernel.org>
-References: <1622025344-31888-1-git-send-email-hsin-hsiung.wang@mediatek.com>
-         <1622025344-31888-3-git-send-email-hsin-hsiung.wang@mediatek.com>
-         <1622033763.799295.2377040.nullmailer@robh.at.kernel.org>
+        id S232982AbhE0Bju (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 May 2021 21:39:50 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:41010 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232262AbhE0Bjt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 May 2021 21:39:49 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: ezequiel)
+        with ESMTPSA id 488FC1F409D7
+Message-ID: <4c92964a1e6396533283072a89ba3acfa934efe3.camel@collabora.com>
+Subject: Re: [PATCH 04/10] media: hantro: add support for Rockchip RK3066
+From:   Ezequiel Garcia <ezequiel@collabora.com>
+To:     Alex Bee <knaerzche@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-staging@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>
+Date:   Wed, 26 May 2021 22:38:04 -0300
+In-Reply-To: <fd0e0872-c661-def7-2c12-a268281bfd9b@gmail.com>
+References: <20210525152225.154302-1-knaerzche@gmail.com>
+         <20210525152225.154302-5-knaerzche@gmail.com>
+         <3b9a076c1c426a14ed10da743fdb86c1bf2eb603.camel@collabora.com>
+         <fd0e0872-c661-def7-2c12-a268281bfd9b@gmail.com>
+Organization: Collabora
 Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+User-Agent: Evolution 3.38.2-1 
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksDQoNCk9uIFdlZCwgMjAyMS0wNS0yNiBhdCAwNzo1NiAtMDUwMCwgUm9iIEhlcnJpbmcgd3Jv
-dGU6DQo+IE9uIFdlZCwgMjYgTWF5IDIwMjEgMTg6MzU6NDIgKzA4MDAsIEhzaW4tSHNpdW5nIFdh
-bmcgd3JvdGU6DQo+ID4gVGhpcyBhZGRzIGRvY3VtZW50YXRpb24gZm9yIHRoZSBTUE1JIGNvbnRy
-b2xsZXIgZm91bmQgb24gTWVkaWF0ZWsgU29Dcy4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBI
-c2luLUhzaXVuZyBXYW5nIDxoc2luLWhzaXVuZy53YW5nQG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0N
-Cj4gPiBjaGFuZ2VzIHNpbmNlIHY3Og0KPiA+IC0gbm8gY2hhbmdlLg0KPiA+IC0tLQ0KPiA+ICAu
-Li4vYmluZGluZ3Mvc3BtaS9tdGssc3BtaS1tdGstcG1pZi55YW1sICAgICAgICAgICB8IDc0ICsr
-KysrKysrKysrKysrKysrKysrKysNCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDc0IGluc2VydGlvbnMo
-KykNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
-aW5ncy9zcG1pL210ayxzcG1pLW10ay1wbWlmLnlhbWwNCj4gPiANCj4gDQo+IE15IGJvdCBmb3Vu
-ZCBlcnJvcnMgcnVubmluZyAnbWFrZSBEVF9DSEVDS0VSX0ZMQUdTPS1tIGR0X2JpbmRpbmdfY2hl
-Y2snDQo+IG9uIHlvdXIgcGF0Y2ggKERUX0NIRUNLRVJfRkxBR1MgaXMgbmV3IGluIHY1LjEzKToN
-Cj4gDQo+IHlhbWxsaW50IHdhcm5pbmdzL2Vycm9yczoNCj4gDQo+IGR0c2NoZW1hL2R0YyB3YXJu
-aW5ncy9lcnJvcnM6DQo+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zcG1pL210
-ayxzcG1pLW10ay1wbWlmLmV4YW1wbGUuZHRzOjE5OjE4OiBmYXRhbCBlcnJvcjogZHQtYmluZGlu
-Z3MvY2xvY2svbXQ4MTkyLWNsay5oOiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5DQo+ICAgIDE5
-IHwgICAgICAgICAjaW5jbHVkZSA8ZHQtYmluZGluZ3MvY2xvY2svbXQ4MTkyLWNsay5oPg0KPiAg
-ICAgICB8ICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn4N
-Cj4gY29tcGlsYXRpb24gdGVybWluYXRlZC4NCj4gbWFrZVsxXTogKioqIFtzY3JpcHRzL01ha2Vm
-aWxlLmxpYjozODA6IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zcG1pL210ayxz
-cG1pLW10ay1wbWlmLmV4YW1wbGUuZHQueWFtbF0gRXJyb3IgMQ0KPiBtYWtlWzFdOiAqKiogV2Fp
-dGluZyBmb3IgdW5maW5pc2hlZCBqb2JzLi4uLg0KPiBtYWtlOiAqKiogW01ha2VmaWxlOjE0MTY6
-IGR0X2JpbmRpbmdfY2hlY2tdIEVycm9yIDINCj4gDQo+IFNlZSBodHRwczovL3BhdGNod29yay5v
-emxhYnMub3JnL3BhdGNoLzE0ODM5ODkNCj4gDQo+IFRoaXMgY2hlY2sgY2FuIGZhaWwgaWYgdGhl
-cmUgYXJlIGFueSBkZXBlbmRlbmNpZXMuIFRoZSBiYXNlIGZvciBhIHBhdGNoDQo+IHNlcmllcyBp
-cyBnZW5lcmFsbHkgdGhlIG1vc3QgcmVjZW50IHJjMS4NCj4gDQo+IElmIHlvdSBhbHJlYWR5IHJh
-biAnbWFrZSBkdF9iaW5kaW5nX2NoZWNrJyBhbmQgZGlkbid0IHNlZSB0aGUgYWJvdmUNCj4gZXJy
-b3IocyksIHRoZW4gbWFrZSBzdXJlICd5YW1sbGludCcgaXMgaW5zdGFsbGVkIGFuZCBkdC1zY2hl
-bWEgaXMgdXAgdG8NCj4gZGF0ZToNCj4gDQo+IHBpcDMgaW5zdGFsbCBkdHNjaGVtYSAtLXVwZ3Jh
-ZGUNCj4gDQo+IFBsZWFzZSBjaGVjayBhbmQgcmUtc3VibWl0Lg0KPiANCg0KVGhhbmtzLiBmb3Ig
-dGhlIHJldmlldy4NClRoaXMgc2VyaWVzIGlzIGJhc2VkIG9uIENodW4tSmllJ3MgcGF0Y2hlc1sx
-XS4NCg0KWzFdDQpodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgtbWVk
-aWF0ZWsvbGlzdC8/c2VyaWVzPTQ4ODIzOQ0KDQo=
+On Thu, 2021-05-27 at 01:22 +0200, Alex Bee wrote:
+> Hi Ezequiel,
+> 
+> thanks for your feedback.
+> 
+> Am 26.05.21 um 12:32 schrieb Ezequiel Garcia:
+> > Hi Alex,
+> > 
+> > Thanks for the patch.
+> > 
+> > On Tue, 2021-05-25 at 17:22 +0200, Alex Bee wrote:
+> > > RK3066's VPU IP block is the predecessor from what RK3288 has.
+> > > The hardware differences are:
+> > >    - supports decoding frame sizes up to 1920x1088 only
+> > >    - doesn't have the 'G1_REG_SOFT_RESET' register
+> > >      (requires another .reset callback for hantro_codec_ops,
+> > >       since writing this register will result in non-working
+> > >       IP block)
+> > >    - has one ACLK/HCLK per vdpu/vepu
+> > >    - ACLKs can be clocked up to 300 MHz only
+> > >    - no MMU
+> > >      (no changes required: CMA will be transparently used)
+> > > 
+> > > Add a new RK3066 variant which reflect this differences. This variant
+> > > can be used for RK3188 as well.
+> > > 
+> > > Signed-off-by: Alex Bee <knaerzche@gmail.com>
+> > > ---
+> > >   drivers/staging/media/hantro/hantro_drv.c    |   1 +
+> > >   drivers/staging/media/hantro/hantro_hw.h     |   1 +
+> > >   drivers/staging/media/hantro/rk3288_vpu_hw.c | 116 +++++++++++++++++++
+> > >   3 files changed, 118 insertions(+)
+> > > 
+> > > diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
+> > > index 2f6b01c7a6a0..38ea7b24036e 100644
+> > > --- a/drivers/staging/media/hantro/hantro_drv.c
+> > > +++ b/drivers/staging/media/hantro/hantro_drv.c
+> > > @@ -489,6 +489,7 @@ static const struct of_device_id of_hantro_match[] = {
+> > >          { .compatible = "rockchip,rk3399-vpu", .data = &rk3399_vpu_variant, },
+> > >          { .compatible = "rockchip,rk3328-vpu", .data = &rk3328_vpu_variant, },
+> > >          { .compatible = "rockchip,rk3288-vpu", .data = &rk3288_vpu_variant, },
+> > > +       { .compatible = "rockchip,rk3066-vpu", .data = &rk3066_vpu_variant, },
+> > >   #endif
+> > >   #ifdef CONFIG_VIDEO_HANTRO_IMX8M
+> > >          { .compatible = "nxp,imx8mq-vpu", .data = &imx8mq_vpu_variant, },
+> > > diff --git a/drivers/staging/media/hantro/hantro_hw.h b/drivers/staging/media/hantro/hantro_hw.h
+> > > index 3d8b53567f16..de2bc367a15a 100644
+> > > --- a/drivers/staging/media/hantro/hantro_hw.h
+> > > +++ b/drivers/staging/media/hantro/hantro_hw.h
+> > > @@ -163,6 +163,7 @@ enum hantro_enc_fmt {
+> > >   extern const struct hantro_variant rk3399_vpu_variant;
+> > >   extern const struct hantro_variant rk3328_vpu_variant;
+> > >   extern const struct hantro_variant rk3288_vpu_variant;
+> > > +extern const struct hantro_variant rk3066_vpu_variant;
+> > >   extern const struct hantro_variant imx8mq_vpu_variant;
+> > >   extern const struct hantro_variant sama5d4_vdec_variant;
+> > >   
+> > > diff --git a/drivers/staging/media/hantro/rk3288_vpu_hw.c b/drivers/staging/media/hantro/rk3288_vpu_hw.c
+> > > index fefd45269e52..29805c4bd92f 100644
+> > > --- a/drivers/staging/media/hantro/rk3288_vpu_hw.c
+> > > +++ b/drivers/staging/media/hantro/rk3288_vpu_hw.c
+> > > @@ -10,8 +10,10 @@
+> > >   
+> > >   #include "hantro.h"
+> > >   #include "hantro_jpeg.h"
+> > > +#include "hantro_g1_regs.h"
+> > >   #include "hantro_h1_regs.h"
+> > >   
+> > > +#define RK3066_ACLK_MAX_FREQ (300 * 1000 * 1000)
+> > >   #define RK3288_ACLK_MAX_FREQ (400 * 1000 * 1000)
+> > >   
+> > >   /*
+> > > @@ -62,6 +64,52 @@ static const struct hantro_fmt rk3288_vpu_postproc_fmts[] = {
+> > >          },
+> > >   };
+> > >   
+> > > +static const struct hantro_fmt rk3066_vpu_dec_fmts[] = {
+> > > +       {
+> > > +               .fourcc = V4L2_PIX_FMT_NV12,
+> > > +               .codec_mode = HANTRO_MODE_NONE,
+> > > +       },
+> > > +       {
+> > > +               .fourcc = V4L2_PIX_FMT_H264_SLICE,
+> > > +               .codec_mode = HANTRO_MODE_H264_DEC,
+> > > +               .max_depth = 2,
+> > > +               .frmsize = {
+> > > +                       .min_width = 48,
+> > > +                       .max_width = 1920,
+> > > +                       .step_width = MB_DIM,
+> > > +                       .min_height = 48,
+> > > +                       .max_height = 1088,
+> > > +                       .step_height = MB_DIM,
+> > > +               },
+> > > +       },
+> > > +       {
+> > > +               .fourcc = V4L2_PIX_FMT_MPEG2_SLICE,
+> > > +               .codec_mode = HANTRO_MODE_MPEG2_DEC,
+> > > +               .max_depth = 2,
+> > > +               .frmsize = {
+> > > +                       .min_width = 48,
+> > > +                       .max_width = 1920,
+> > > +                       .step_width = MB_DIM,
+> > > +                       .min_height = 48,
+> > > +                       .max_height = 1088,
+> > > +                       .step_height = MB_DIM,
+> > > +               },
+> > > +       },
+> > > +       {
+> > > +               .fourcc = V4L2_PIX_FMT_VP8_FRAME,
+> > > +               .codec_mode = HANTRO_MODE_VP8_DEC,
+> > > +               .max_depth = 2,
+> > > +               .frmsize = {
+> > > +                       .min_width = 48,
+> > > +                       .max_width = 1920,
+> > > +                       .step_width = MB_DIM,
+> > > +                       .min_height = 48,
+> > > +                       .max_height = 1088,
+> > > +                       .step_height = MB_DIM,
+> > > +               },
+> > > +       },
+> > > +};
+> > > +
+> > >   static const struct hantro_fmt rk3288_vpu_dec_fmts[] = {
+> > >          {
+> > >                  .fourcc = V4L2_PIX_FMT_NV12,
+> > > @@ -126,6 +174,14 @@ static irqreturn_t rk3288_vepu_irq(int irq, void *dev_id)
+> > >          return IRQ_HANDLED;
+> > >   }
+> > >   
+> > > +static int rk3066_vpu_hw_init(struct hantro_dev *vpu)
+> > > +{
+> > > +       /* Bump ACLKs to max. possible freq. to improve performance. */
+> > > +       clk_set_rate(vpu->clocks[0].clk, RK3066_ACLK_MAX_FREQ);
+> > > +       clk_set_rate(vpu->clocks[0].clk, RK3066_ACLK_MAX_FREQ);
+> > > +       return 0;
+> > > +}
+> > > +
+> > >   static int rk3288_vpu_hw_init(struct hantro_dev *vpu)
+> > >   {
+> > >          /* Bump ACLK to max. possible freq. to improve performance. */
+> > > @@ -133,6 +189,14 @@ static int rk3288_vpu_hw_init(struct hantro_dev *vpu)
+> > >          return 0;
+> > >   }
+> > >   
+> > > +static void rk3066_vpu_dec_reset(struct hantro_ctx *ctx)
+> > > +{
+> > > +       struct hantro_dev *vpu = ctx->dev;
+> > > +
+> > > +       vdpu_write(vpu, G1_REG_INTERRUPT_DEC_IRQ_DIS, G1_REG_INTERRUPT);
+> > > +       vdpu_write(vpu, G1_REG_CONFIG_DEC_CLK_GATE_E, G1_REG_CONFIG);
+> > > +}
+> > > +
+> > >   static void rk3288_vpu_enc_reset(struct hantro_ctx *ctx)
+> > >   {
+> > >          struct hantro_dev *vpu = ctx->dev;
+> > > @@ -145,6 +209,33 @@ static void rk3288_vpu_enc_reset(struct hantro_ctx *ctx)
+> > >   /*
+> > >    * Supported codec ops.
+> > >    */
+> > > +static const struct hantro_codec_ops rk3066_vpu_codec_ops[] = {
+> > > +       [HANTRO_MODE_JPEG_ENC] = {
+> > > +               .run = hantro_h1_jpeg_enc_run,
+> > > +               .reset = rk3288_vpu_enc_reset,
+> > > +               .init = hantro_jpeg_enc_init,
+> > > +               .done = hantro_jpeg_enc_done,
+> > > +               .exit = hantro_jpeg_enc_exit,
+> > > +       },
+> > > +       [HANTRO_MODE_H264_DEC] = {
+> > > +               .run = hantro_g1_h264_dec_run,
+> > > +               .reset = rk3066_vpu_dec_reset,
+> > > +               .init = hantro_h264_dec_init,
+> > > +               .exit = hantro_h264_dec_exit,
+> > > +       },
+> > > +       [HANTRO_MODE_MPEG2_DEC] = {
+> > > +               .run = hantro_g1_mpeg2_dec_run,
+> > > +               .reset = rk3066_vpu_dec_reset,
+> > > +               .init = hantro_mpeg2_dec_init,
+> > > +               .exit = hantro_mpeg2_dec_exit,
+> > > +       },
+> > > +       [HANTRO_MODE_VP8_DEC] = {
+> > > +               .run = hantro_g1_vp8_dec_run,
+> > > +               .reset = rk3066_vpu_dec_reset,
+> > > +               .init = hantro_vp8_dec_init,
+> > > +               .exit = hantro_vp8_dec_exit,
+> > > +       },
+> > > +};
+> > >   
+> > >   static const struct hantro_codec_ops rk3288_vpu_codec_ops[] = {
+> > >          [HANTRO_MODE_JPEG_ENC] = {
+> > > @@ -183,10 +274,35 @@ static const struct hantro_irq rk3288_irqs[] = {
+> > >          { "vdpu", hantro_g1_irq },
+> > >   };
+> > >   
+> > > +static const char * const rk3066_clk_names[] = {
+> > > +       "aclk_vdpu", "hclk_vdpu",
+> > > +       "aclk_vepu", "hclk_vepu"
+> > > +};
+> > > +
+> > >   static const char * const rk3288_clk_names[] = {
+> > >          "aclk", "hclk"
+> > >   };
+> > >   
+> > > +const struct hantro_variant rk3066_vpu_variant = {
+> > > +       .enc_offset = 0x0,
+> > > +       .enc_fmts = rk3288_vpu_enc_fmts,
+> > > +       .num_enc_fmts = ARRAY_SIZE(rk3288_vpu_enc_fmts),
+> > > +       .dec_offset = 0x400,
+> > Having decoder and encoder supported by a single devicetree
+> > node was done for RK3288 to cope with some bug in the hardware
+> > that was effectively linking the decoder and the encoder.
+> > 
+> > AFAIK, Rockchip has fixed this, so unless there's a strong
+> > need, I prefer we keep them separated, with one DT node
+> > for the g1 decoder and one for the h1 encoder.
+> > 
+> > Thanks!
+> > Ezequiel
+> > 
+> I just checked it: despite it looks like we could use the decoder and 
+> encoder separately
+> 
+> (separate clocks for decoder / encoder) the VPU block won't work (SoC 
+> crashes),
+> 
+> if not all 4 clocks are enabled for neither decoding nor encoding.
+> 
+> I'd prefer the other way also, but it seems not possible.
+> 
+
+That's really useful, so it seems it's safer to represent this
+in a single node, given there's at least some degree of sharing
+going on, which the VPU Combo naming suggests anyways :)
+
+Could you add a comment in the code about this clock requirement?
+
+Also, does it make sense to merge rk3288_vpu_hw.c and rk3399_vpu_hw.c
+as just rockchip_vpu_hw.c?
+
+Thanks!
+Ezequiel
 
