@@ -2,379 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7C013926CA
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 07:14:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 379FC3926D8
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 07:25:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233689AbhE0FP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 01:15:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34734 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233563AbhE0FPy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 01:15:54 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F516C061574;
-        Wed, 26 May 2021 22:14:21 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id q67so2751368pfb.4;
-        Wed, 26 May 2021 22:14:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=53Eza6IIWvQZ2+MOVEINVFrLGHYsHFKL8NUyL3HUVbo=;
-        b=a1GK7LxwlITgdFTSY8jjB4JpIkwn0epjP7gGQsOGvv1Qkw9a4Nsx9P6WTKElNmBgnd
-         nAzW9abP1KM+LyD9kwQ2ImHHPYvTb0o8LU/X73nXGb+B14mqVRDDARPd2oXhiRJZxD13
-         FrSWp9HvZTKmHT2oJoPFny1x8fMdEmFeTX4PYhcdNkNFxvkZ+Mi7nYMNREcEl4J0Dmrj
-         n525r/kUaQyRRfhihbp5Ziy+FzjazxF2C/hm9+yvR12UT3je3q3NlwmKGClpOtFXObEx
-         aNwKguYCNv7v0M05IR4YEpY8Hbe+1S2W4No8a2IPjGZULpx3jzL4hlEVXO3jnVu6crSg
-         vNlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=53Eza6IIWvQZ2+MOVEINVFrLGHYsHFKL8NUyL3HUVbo=;
-        b=fXqOi6BbVMHqbWO9aWn1rFkGXnaF/tNs9i6D0wnGCc9ocg29nxAYY64vwcl7crGfDK
-         sh5HsaTcTcklQu4GhelED3t5/rgydIq0DOVReJ/VQHOXrRvYIbl0PsoFpyz206t4wM3O
-         d3k/yziSTQd5w5gibWmRuwqFO0gQ7+PXI2cMwpGcFAJ4uUoefv1gfKR4cDoPNIf9HfEH
-         6Ujr5y/KJFiSaoNtIjs1u0QPdyLZ5YIo8RRFew3r9rn9DAwUdJqW2OG0iaP8W+VLJavg
-         c/e6k2osvZi/qG1D4p7c4FuHzNRqMmiZTnVHcTkpylamG+wSw2R5pYDMd52v49De5HEY
-         RfgQ==
-X-Gm-Message-State: AOAM533SvmAMQABjZn/9bb9kgxL9zcM/rRL0i4/rerC9AMtgpTj12mIA
-        93UvlJC70G9Afc8CCCpiF6OztjQN3Xs=
-X-Google-Smtp-Source: ABdhPJx6DMpJcXYltoQxwwKQb5pMEElNNcPUDRDeRWxnrv/J5Y/CAXDNOyPfyGVBAnzAYnWSoZ7zTQ==
-X-Received: by 2002:a65:550e:: with SMTP id f14mr2071408pgr.160.1622092460864;
-        Wed, 26 May 2021 22:14:20 -0700 (PDT)
-Received: from localhost.localdomain (1-171-23-132.dynamic-ip.hinet.net. [1.171.23.132])
-        by smtp.gmail.com with ESMTPSA id cu2sm706424pjb.43.2021.05.26.22.14.18
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 26 May 2021 22:14:20 -0700 (PDT)
-From:   cy_huang <u0084500@gmail.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org
-Cc:     cy_huang@richtek.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 2/2] regulator: rt6245: Add support for Richtek RT6245
-Date:   Thu, 27 May 2021 13:14:09 +0800
-Message-Id: <1622092449-21461-2-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1622092449-21461-1-git-send-email-u0084500@gmail.com>
-References: <1622092449-21461-1-git-send-email-u0084500@gmail.com>
+        id S233768AbhE0F0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 01:26:54 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:26409 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233848AbhE0F0y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 01:26:54 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1622093122; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=8lksUp1qCJXiBU12bEnLm7XV+ucQTovs88KOZ7ewuHk=;
+ b=Q1kzPKc3aykApYN54B91MEcYzgWeJjNjKXqhGT5NbbHEzT2q4TBJz2RPcjMD8OYvEZINoWUX
+ qGVid9dhYh6OULxUkwp++XjHhEP5qetv93Bter72Mjtz8l7fHcfpCGPWI+dQbqRu+MPeAkpB
+ /SaWO9LNWK//MXUq/w9tSIajTKo=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 60af2d3c5f788b52a57d0099 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 27 May 2021 05:25:16
+ GMT
+Sender: schowdhu=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id E9C15C43460; Thu, 27 May 2021 05:25:15 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: schowdhu)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id BE2ABC433F1;
+        Thu, 27 May 2021 05:25:14 +0000 (UTC)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 27 May 2021 10:55:14 +0530
+From:   schowdhu@codeaurora.org
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>, vkoul@kernel.org
+Subject: Re: [PATCH V4 0/4] Add driver support for Data Capture and Compare
+ Engine(DCC) for SM8150
+In-Reply-To: <cover.1620056206.git.schowdhu@codeaurora.org>
+References: <cover.1620056206.git.schowdhu@codeaurora.org>
+Message-ID: <b6d5e5be63f572ef1db2a055d98fd8c0@codeaurora.org>
+X-Sender: schowdhu@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+On 2021-05-03 21:47, Souradeep Chowdhury wrote:
+> DCC(Data Capture and Compare) is a DMA engine designed for debugging
+> purposes.In case of a system
+> crash or manual software triggers by the user the DCC hardware stores
+> the value at the register
+> addresses which can be used for debugging purposes.The DCC driver
+> provides the user with sysfs
+> interface to configure the register addresses.The options that the DCC
+> hardware provides include
+> reading from registers,writing to registers,first reading and then
+> writing to registers and looping
+> through the values of the same register.
+> 
+> In certain cases a register write needs to be executed for accessing
+> the rest of the registers,
+> also the user might want to record the changing values of a register
+> with time for which he has the
+> option to use the loop feature.
+> 
+> The options mentioned above are exposed to the user by sysfs files
+> once the driver is probed.The
+> details and usage of this sysfs files are documented in
+> Documentation/ABI/testing/sysfs-driver-dcc.
+> 
+> As an example let us consider a couple of debug scenarios where DCC
+> has been proved to be effective
+> for debugging purposes:-
+> 
+> i)TimeStamp Related Issue
+> 
+> On SC7180, there was a coresight timestamp issue where it would
+> occasionally be all 0 instead of proper
+> timestamp values.
+> 
+> Proper timestamp:
+> Idx:3373; ID:10; I_TIMESTAMP : Timestamp.; Updated val =
+> 0x13004d8f5b7aa; CC=0x9e
+> 
+> Zero timestamp:
+> Idx:3387; ID:10; I_TIMESTAMP : Timestamp.; Updated val = 0x0; CC=0xa2
+> 
+> Now this is a non-fatal issue and doesn't need a system reset, but 
+> still needs
+> to be rootcaused and fixed for those who do care about coresight etm 
+> traces.
+> Since this is a timestamp issue, we would be looking for any timestamp 
+> related
+> clocks and such.
+> 
+> o we get all the clk register details from IP documentation and 
+> configure it
+> via DCC config syfs node. Before that we set the current linked list.
+> 
+> /* Set the current linked list */
+> echo 3 > /sys/bus/platform/devices/10a2000.dcc/curr_list
+> 
+> /* Program the linked list with the addresses */
+> echo 0x10c004 > /sys/bus/platform/devices/10a2000.dcc/config
+> echo 0x10c008 > /sys/bus/platform/devices/10a2000.dcc/config
+> echo 0x10c00c > /sys/bus/platform/devices/10a2000.dcc/config
+> echo 0x10c010 > /sys/bus/platform/devices/10a2000.dcc/config
+> ..... and so on for other timestamp related clk registers
+> 
+> /* Other way of specifying is in "addr len" pair, in below case it
+> specifies to capture 4 words starting 0x10C004 */
+> 
+> echo 0x10C004 4 > /sys/bus/platform/devices/10a2000.dcc/config
+> 
+> /* Enable DCC */
+> echo 1 > /sys/bus/platform/devices/10a2000.dcc/enable
+> 
+> /* Run the timestamp test for working case */
+> 
+> /* Send SW trigger */
+> echo 1 > /sys/bus/platform/devices/10a2000.dcc/trigger
+> 
+> /* Read SRAM */
+> cat /dev/dcc_sram > dcc_sram1.bin
+> 
+> /* Run the timestamp test for non-working case */
+> 
+> /* Send SW trigger */
+> echo 1 > /sys/bus/platform/devices/10a2000.dcc/trigger
+> 
+> /* Read SRAM */
+> cat /dev/dcc_sram > dcc_sram2.bin
+> 
+> Get the parser from [1] and checkout the latest branch.
+> 
+> /* Parse the SRAM bin */
+> python dcc_parser.py -s dcc_sram1.bin --v2 -o output/
+> python dcc_parser.py -s dcc_sram2.bin --v2 -o output/
+> 
+> Sample parsed output of dcc_sram1.bin:
+> 
+> <hwioDump version="1">
+>         <timestamp>03/14/21</timestamp>
+>             <generator>Linux DCC Parser</generator>
+>                 <chip name="None" version="None">
+>                 <register address="0x0010c004" value="0x80000000" />
+>                 <register address="0x0010c008" value="0x00000008" />
+>                 <register address="0x0010c00c" value="0x80004220" />
+>                 <register address="0x0010c010" value="0x80000000" />
+>             </chip>
+>     <next_ll_offset>next_ll_offset : 0x1c </next_ll_offset>
+> </hwioDump>
+> 
+> ii)NOC register errors
+> 
+> A particular class of registers called NOC which are functional
+> registers was reporting
+> errors while logging the values.To trace these errors the DCC has been
+> used effectively.
+> The steps followed were similar to the ones mentioned above.
+> In addition to NOC registers a few other dependent registers were
+> configured in DCC to
+> monitor it's values during a crash. A look at the dependent register
+> values revealed that
+> the crash was happening due to a secured access to one of these
+> dependent registers.
+> All these debugging activity and finding the root cause was achieved 
+> using DCC.
+> 
+> DCC parser is available at the following open source location
+> 
+> https://source.codeaurora.org/quic/la/platform/vendor/qcom-opensource/tools/tree/dcc_parser
+> 
+> Changes in v4:
+> 
+> *Implement all the comments on v3 of the patch.
+> *Incorporate code change for handling multiple SoCs.
+> *Incorporate code change for DCC_SRAM content to persist across warm 
+> reboots.
+> *Fixed the issue with the Makefile in v3 of the patch.
+> 
+> Souradeep Chowdhury (4):
+>   dt-bindings: Added the yaml bindings for DCC
+>   soc: qcom: dcc:Add driver support for Data Capture and Compare
+>     unit(DCC)
+>   MAINTAINERS: Add the entry for DCC(Data Capture and Compare) driver
+>     support
+>   arm64: dts: qcom: sm8150: Add Data Capture and Compare(DCC) support
+>     node
+> 
+>  Documentation/ABI/testing/sysfs-driver-dcc         |  114 ++
+>  .../devicetree/bindings/arm/msm/qcom,dcc.yaml      |   40 +
+>  MAINTAINERS                                        |    8 +
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi               |    6 +
+>  drivers/soc/qcom/Kconfig                           |    8 +
+>  drivers/soc/qcom/Makefile                          |    1 +
+>  drivers/soc/qcom/dcc.c                             | 1534 
+> ++++++++++++++++++++
+>  7 files changed, 1711 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-driver-dcc
+>  create mode 100644 
+> Documentation/devicetree/bindings/arm/msm/qcom,dcc.yaml
+>  create mode 100644 drivers/soc/qcom/dcc.c
 
-Richtek RT6245 is a high-performance, synchronous step-down converter
-that can deliver up to 14A output current with an input supply voltage
-range of 4.5V to 17V.
-
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
-since v2
-- Use hweight8 to fix x86 __sw_hweight8 undefined.
----
- drivers/regulator/Kconfig            |   9 ++
- drivers/regulator/Makefile           |   1 +
- drivers/regulator/rt6245-regulator.c | 260 +++++++++++++++++++++++++++++++++++
- 3 files changed, 270 insertions(+)
- create mode 100644 drivers/regulator/rt6245-regulator.c
-
-diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-index 9d84d92..cdec434 100644
---- a/drivers/regulator/Kconfig
-+++ b/drivers/regulator/Kconfig
-@@ -1030,6 +1030,15 @@ config REGULATOR_RT5033
- 	  RT5033 PMIC. The device supports multiple regulators like
- 	  current source, LDO and Buck.
- 
-+config REGULATOR_RT6245
-+	tristate "Richtek RT6245 voltage regulator"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  This adds supprot for Richtek RT6245 voltage regulator.
-+	  It can support up to 14A output current and adjustable output voltage
-+	  from 0.4375V to 1.3875V, per step 12.5mV.
-+
- config REGULATOR_RTMV20
- 	tristate "RTMV20 Laser Diode Regulator"
- 	depends on I2C
-diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
-index 580b015..69668bf 100644
---- a/drivers/regulator/Makefile
-+++ b/drivers/regulator/Makefile
-@@ -124,6 +124,7 @@ obj-$(CONFIG_REGULATOR_ROHM)	+= rohm-regulator.o
- obj-$(CONFIG_REGULATOR_RT4801)	+= rt4801-regulator.o
- obj-$(CONFIG_REGULATOR_RT4831)	+= rt4831-regulator.o
- obj-$(CONFIG_REGULATOR_RT5033)	+= rt5033-regulator.o
-+obj-$(CONFIG_REGULATOR_RT6245)	+= rt6245-regulator.o
- obj-$(CONFIG_REGULATOR_RTMV20)	+= rtmv20-regulator.o
- obj-$(CONFIG_REGULATOR_S2MPA01) += s2mpa01.o
- obj-$(CONFIG_REGULATOR_S2MPS11) += s2mps11.o
-diff --git a/drivers/regulator/rt6245-regulator.c b/drivers/regulator/rt6245-regulator.c
-new file mode 100644
-index 00000000..e4032b0
---- /dev/null
-+++ b/drivers/regulator/rt6245-regulator.c
-@@ -0,0 +1,260 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+
-+#include <linux/bitops.h>
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/driver.h>
-+#include <linux/regulator/of_regulator.h>
-+
-+#define RT6245_VIRT_OCLIMIT	0x00
-+#define RT6245_VIRT_OTLEVEL	0x01
-+#define RT6245_VIRT_PGDLYTIME	0x02
-+#define RT6245_VIRT_SLEWRATE	0x03
-+#define RT6245_VIRT_SWFREQ	0x04
-+#define RT6245_VIRT_VOUT	0x05
-+
-+#define RT6245_VOUT_MASK	GENMASK(6, 0)
-+#define RT6245_CHKSUM_MASK	BIT(7)
-+#define RT6245_CODE_MASK	GENMASK(6, 0)
-+
-+/* HW Enable + Soft start time */
-+#define RT6245_ENTIME_IN_US	5000
-+
-+#define RT6245_RAMPT_UNIT_0P1UV	15625
-+#define RT6245_RAMPT_MAXUV	12500
-+#define RT6245_RAMPT_BASESEL	1
-+
-+#define RT6245_VOUT_MINUV	437500
-+#define RT6245_VOUT_MAXUV	1387500
-+#define RT6245_VOUT_STEPUV	12500
-+#define RT6245_NUM_VOUT		((RT6245_VOUT_MAXUV - RT6245_VOUT_MINUV) / RT6245_VOUT_STEPUV + 1)
-+
-+struct rt6245_priv {
-+	struct gpio_desc *enable_gpio;
-+	bool enable_state;
-+};
-+
-+static int rt6245_set_ramp_delay(struct regulator_dev *rdev, int ramp_delay)
-+{
-+	struct regmap *regmap  = rdev_get_regmap(rdev);
-+	unsigned int ramp_time_scale;
-+
-+	if (ramp_delay == 0 || ramp_delay > RT6245_RAMPT_MAXUV) {
-+		dev_warn(&rdev->dev, "Not in ramp time range %d, set to fastest\n", ramp_delay);
-+		ramp_delay = RT6245_RAMPT_MAXUV;
-+	}
-+
-+	/* ramp_time = max_ramp_time / ramp_time_scale, scale from 1 to 8 */
-+	ramp_delay = max(ramp_delay * 10, RT6245_RAMPT_UNIT_0P1UV);
-+	ramp_time_scale = (RT6245_RAMPT_MAXUV * 10) / ramp_delay;
-+	ramp_time_scale -= RT6245_RAMPT_BASESEL;
-+
-+	return regmap_write(regmap, RT6245_VIRT_SLEWRATE, ramp_time_scale);
-+}
-+
-+static int rt6245_enable(struct regulator_dev *rdev)
-+{
-+	struct rt6245_priv *priv = rdev_get_drvdata(rdev);
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+
-+	if (!priv->enable_gpio)
-+		return 0;
-+
-+	priv->enable_state = true;
-+	gpiod_direction_output(priv->enable_gpio, 1);
-+	usleep_range(RT6245_ENTIME_IN_US, RT6245_ENTIME_IN_US + 1000);
-+
-+	regcache_cache_only(regmap, false);
-+	return regcache_sync(regmap);
-+}
-+
-+static int rt6245_disable(struct regulator_dev *rdev)
-+{
-+	struct rt6245_priv *priv = rdev_get_drvdata(rdev);
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+
-+	if (!priv->enable_gpio)
-+		return -ENOTSUPP;
-+
-+	priv->enable_state = false;
-+	gpiod_direction_output(priv->enable_gpio, 0);
-+
-+	regcache_cache_only(regmap, true);
-+	regcache_mark_dirty(regmap);
-+
-+	return 0;
-+}
-+
-+static int rt6245_is_enabled(struct regulator_dev *rdev)
-+{
-+	struct rt6245_priv *priv = rdev_get_drvdata(rdev);
-+
-+	return priv->enable_state ? 1 : 0;
-+}
-+
-+static const struct regulator_ops rt6245_regulator_ops = {
-+	.list_voltage = regulator_list_voltage_linear,
-+	.set_voltage_sel = regulator_set_voltage_sel_regmap,
-+	.get_voltage_sel = regulator_get_voltage_sel_regmap,
-+	.set_ramp_delay = rt6245_set_ramp_delay,
-+	.enable = rt6245_enable,
-+	.disable = rt6245_disable,
-+	.is_enabled = rt6245_is_enabled,
-+};
-+
-+static const struct regulator_desc rt6245_regulator_desc = {
-+	.name = "rt6245-regulator",
-+	.ops = &rt6245_regulator_ops,
-+	.type = REGULATOR_VOLTAGE,
-+	.min_uV = RT6245_VOUT_MINUV,
-+	.uV_step = RT6245_VOUT_STEPUV,
-+	.n_voltages = RT6245_NUM_VOUT,
-+	.owner = THIS_MODULE,
-+	.vsel_reg = RT6245_VIRT_VOUT,
-+	.vsel_mask = RT6245_VOUT_MASK,
-+};
-+
-+static int rt6245_init_device_properties(struct device *dev)
-+{
-+	struct {
-+		const char *name;
-+		unsigned int reg;
-+	} rt6245_props[] = {
-+		{ "richtek,oc-level-select",  RT6245_VIRT_OCLIMIT },
-+		{ "richtek,ot-level-select", RT6245_VIRT_OTLEVEL },
-+		{ "richtek,pgdly-time-select", RT6245_VIRT_PGDLYTIME },
-+		{ "richtek,switch-freq-select", RT6245_VIRT_SWFREQ }
-+	};
-+	struct regmap *regmap = dev_get_regmap(dev, NULL);
-+	u8 propval;
-+	int i, ret;
-+
-+	for (i = 0; i < ARRAY_SIZE(rt6245_props); i++) {
-+		ret = device_property_read_u8(dev, rt6245_props[i].name, &propval);
-+		if (ret)
-+			continue;
-+
-+		ret = regmap_write(regmap, rt6245_props[i].reg, propval);
-+		if (ret) {
-+			dev_err(dev, "Fail to apply [%s:%d]\n", rt6245_props[i].name, propval);
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int rt6245_reg_write(void *context, unsigned int reg, unsigned int val)
-+{
-+	struct i2c_client *i2c = context;
-+	const u8 func_base[] = { 0x6F, 0x73, 0x78, 0x61, 0x7C, 0 };
-+	unsigned int code, bit_count;
-+
-+	code = func_base[reg];
-+	code += val;
-+
-+	/* xor checksum for bit 6 to 0 */
-+	bit_count = hweight8(code & RT6245_CODE_MASK);
-+	if (bit_count % 2)
-+		code |= RT6245_CHKSUM_MASK;
-+	else
-+		code &= ~RT6245_CHKSUM_MASK;
-+
-+	return i2c_smbus_write_byte(i2c, code);
-+}
-+
-+static const struct reg_default rt6245_reg_defaults[] = {
-+	/* Default over current 14A */
-+	{ RT6245_VIRT_OCLIMIT, 2 },
-+	/* Default over temperature 150'c */
-+	{ RT6245_VIRT_OTLEVEL, 0 },
-+	/* Default power good delay time 10us */
-+	{ RT6245_VIRT_PGDLYTIME, 1 },
-+	/* Default slewrate 12.5mV/uS */
-+	{ RT6245_VIRT_SLEWRATE, 0 },
-+	/* Default switch frequency 800KHz */
-+	{ RT6245_VIRT_SWFREQ, 1 },
-+	/* Default voltage 750mV */
-+	{ RT6245_VIRT_VOUT, 0x19 }
-+};
-+
-+static const struct regmap_config rt6245_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = RT6245_VIRT_VOUT,
-+	.cache_type = REGCACHE_FLAT,
-+	.reg_defaults = rt6245_reg_defaults,
-+	.num_reg_defaults = ARRAY_SIZE(rt6245_reg_defaults),
-+	.reg_write = rt6245_reg_write,
-+};
-+
-+static int rt6245_probe(struct i2c_client *i2c)
-+{
-+	struct rt6245_priv *priv;
-+	struct regmap *regmap;
-+	struct regulator_config regulator_cfg = {};
-+	struct regulator_dev *rdev;
-+	int ret;
-+
-+	priv = devm_kzalloc(&i2c->dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->enable_state = true;
-+
-+	priv->enable_gpio = devm_gpiod_get_optional(&i2c->dev, "enable", GPIOD_OUT_HIGH);
-+	if (IS_ERR(priv->enable_gpio)) {
-+		dev_err(&i2c->dev, "Failed to get 'enable' gpio\n");
-+		return PTR_ERR(priv->enable_gpio);
-+	}
-+	usleep_range(RT6245_ENTIME_IN_US, RT6245_ENTIME_IN_US + 1000);
-+
-+	regmap = devm_regmap_init(&i2c->dev, NULL, i2c, &rt6245_regmap_config);
-+	if (IS_ERR(regmap)) {
-+		dev_err(&i2c->dev, "Failed to initialize the regmap\n");
-+		return PTR_ERR(regmap);
-+	}
-+
-+	ret = rt6245_init_device_properties(&i2c->dev);
-+	if (ret) {
-+		dev_err(&i2c->dev, "Failed to initialize device properties\n");
-+		return ret;
-+	}
-+
-+	regulator_cfg.dev = &i2c->dev;
-+	regulator_cfg.of_node = i2c->dev.of_node;
-+	regulator_cfg.regmap = regmap;
-+	regulator_cfg.driver_data = priv;
-+	regulator_cfg.init_data = of_get_regulator_init_data(&i2c->dev, i2c->dev.of_node,
-+							     &rt6245_regulator_desc);
-+	rdev = devm_regulator_register(&i2c->dev, &rt6245_regulator_desc, &regulator_cfg);
-+	if (IS_ERR(rdev)) {
-+		dev_err(&i2c->dev, "Failed to register regulator\n");
-+		return PTR_ERR(rdev);
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id __maybe_unused rt6245_of_match_table[] = {
-+	{ .compatible = "richtek,rt6245", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, rt6245_of_match_table);
-+
-+static struct i2c_driver rt6245_driver = {
-+	.driver = {
-+		.name = "rt6245",
-+		.of_match_table = rt6245_of_match_table,
-+	},
-+	.probe_new = rt6245_probe,
-+};
-+module_i2c_driver(rt6245_driver);
-+
-+MODULE_AUTHOR("ChiYuan Hwang <cy_huang@richtek.com>");
-+MODULE_DESCRIPTION("Richtek RT6245 Regulator Driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.7.4
+Gentle Ping
 
