@@ -2,77 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B60F1392995
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 10:29:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A7183929BD
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 10:44:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235524AbhE0Iao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 04:30:44 -0400
-Received: from lucky1.263xmail.com ([211.157.147.135]:34916 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235509AbhE0Iao (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 04:30:44 -0400
-Received: from localhost (unknown [192.168.167.235])
-        by lucky1.263xmail.com (Postfix) with ESMTP id B8D3FAC981;
-        Thu, 27 May 2021 16:29:09 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-ABS-CHECKED: 0
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P31748T140095126476544S1622104146775929_;
-        Thu, 27 May 2021 16:29:10 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <1953f266d8f4e49cd1b138fe1e6ffe77>
-X-RL-SENDER: jay.xu@rock-chips.com
-X-SENDER: xjq@rock-chips.com
-X-LOGIN-NAME: jay.xu@rock-chips.com
-X-FST-TO: heiko@sntech.de
-X-RCPT-COUNT: 9
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   Jianqun Xu <jay.xu@rock-chips.com>
-To:     heiko@sntech.de, lee.jones@linaro.org, ulf.hansson@linaro.org,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, jbx6244@gmail.com,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Jianqun Xu <jay.xu@rock-chips.com>
-Subject: [PATCH v2 3/3] dt-bindings: soc: rockchip: add rk3568-pmu-io-domain support
-Date:   Thu, 27 May 2021 16:29:05 +0800
-Message-Id: <20210527082905.1447591-4-jay.xu@rock-chips.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210527082905.1447591-1-jay.xu@rock-chips.com>
-References: <20210527082905.1447591-1-jay.xu@rock-chips.com>
+        id S235560AbhE0Ipj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 04:45:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53812 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235568AbhE0Ipc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 04:45:32 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BE80C06138C
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 01:43:57 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id n2so3914766wrm.0
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 01:43:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=3L68bacZr0PwfRAm8hFSUVoyJv0NBxuRAhL667AuTWc=;
+        b=nDtehq73M+4wZnrQ176gTUypOQxMAGzZCelnnQEMdA4Ue1zkPgmV5Ug2vLEydPtU3e
+         eMf3mTHDAaV15LfakVzjNi5cY7RDxfHOuS7nNga/XElt4NMKG2bJ5F/WwXmG7SL+tvvt
+         uXYNA4oVYp3nx/7qm8bQwKt+ohvE/IBiF37Im/hO0RmY40gMVSVWxlGtE6t7SCy86xIi
+         KL7vPmbghjcDkIOUfXxM+zZwOvyu/usKu0iC68SKUEJgMBGQ74j9pRRg2CQ/cA0k64D/
+         YzqcoCffyAhgqFo175DLeM5qu16yhWz8e4RR28stArmEyWWJdZ+uvQbRwRtscaEHvSN4
+         mWPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=3L68bacZr0PwfRAm8hFSUVoyJv0NBxuRAhL667AuTWc=;
+        b=TknPhfq8DDbruJrxHq8w90VYmnGxDtA/X04WPAZmO/1/qPMe+bBa6UVIwkiYpG/V2c
+         jhnKtfVNAllREjN4/S3L11mfGKhM74YDHHzWcJ0AbUM9SFZrbI5pPfRHA54EchzUsV8I
+         De0ncwW6E19x2FVc+0UuYevktK0U3ZRgfvHCyia7FG6t836f2S6o+qEHeDgMu19BsHfN
+         /V05wcou5ATJjGWu9kQaA97sXftCkLGnWLpbun7VBYO0Sgeh+hCCKCx/ZqrKg+wuq04h
+         HYEoBuH1hJRjvcGEMxPPodDoJP0DkldUAbyYdIGUYKNKfXSVUDhx/kA6OjUZFRB1oj8l
+         LKdg==
+X-Gm-Message-State: AOAM531QuHrSMqkQq/wKmQpoLZzh5brN2xRVZhb2wphsjYYuTwJu9vtS
+        EPBxKiOP9DYIOnvTSUC2/7jQiw==
+X-Google-Smtp-Source: ABdhPJwpUHtR6b1jBYiaOEHNxKmLgkQf8QQbbg9t709yLkdkhRxReXsSbCUv4edxfYoBMyHsZT2+7Q==
+X-Received: by 2002:adf:decf:: with SMTP id i15mr2149088wrn.300.1622105035953;
+        Thu, 27 May 2021 01:43:55 -0700 (PDT)
+Received: from dell ([91.110.221.223])
+        by smtp.gmail.com with ESMTPSA id h67sm2160856wrh.44.2021.05.27.01.43.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 May 2021 01:43:55 -0700 (PDT)
+Date:   Thu, 27 May 2021 09:43:53 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Min Li <min.li.xe@renesas.com>
+Cc:     "sameo@linux.intel.com" <sameo@linux.intel.com>,
+        "grant.likely@linaro.org" <grant.likely@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH mfd v1] mfd: Add Renesas Synchronization Management Unit
+ (SMU) support
+Message-ID: <20210527084353.GJ543307@dell>
+References: <1619466246-11198-1-git-send-email-min.li.xe@renesas.com>
+ <20210519080807.GH805368@dell>
+ <OS3PR01MB659398F1C336CA2A03A0A7EABA249@OS3PR01MB6593.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <OS3PR01MB659398F1C336CA2A03A0A7EABA249@OS3PR01MB6593.jpnprd01.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for rk3568-pmu-io-domain.
+On Wed, 26 May 2021, Min Li wrote:
 
-Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
----
-v2:
-- first version
- Documentation/devicetree/bindings/soc/rockchip/io-domain.yaml | 1 +
- 1 file changed, 1 insertion(+)
+> > 
+> > > +	ret = rsmu_dev_init(rsmu);
+> > > +	mutex_unlock(&rsmu->lock);
+> > > +
+> > > +	if (ret == 0)
+> > > +		dev_info(rsmu->dev, "Probe %s successful\n",
+> > > +			 rsmu_name(rsmu->type));
+> > 
+> > No thank you.  Please remove this.
+> > 
+> Hi Lee
+> 
+> What is the rule for adding informational log in the driver probe function?
 
-diff --git a/Documentation/devicetree/bindings/soc/rockchip/io-domain.yaml b/Documentation/devicetree/bindings/soc/rockchip/io-domain.yaml
-index 2931e0ea8fa8..debfcadd3f2f 100644
---- a/Documentation/devicetree/bindings/soc/rockchip/io-domain.yaml
-+++ b/Documentation/devicetree/bindings/soc/rockchip/io-domain.yaml
-@@ -24,6 +24,7 @@ properties:
-             - rockchip,rk3368-pmu-io-voltage-domain
-             - rockchip,rk3399-io-voltage-domain
-             - rockchip,rk3399-pmu-io-voltage-domain
-+            - rockchip,rk3568-pmu-io-voltage-domain
-             - rockchip,rv1108-io-voltage-domain
-             - rockchip,rv1108-pmu-io-voltage-domain
- 
+The rule generally is 'don't'.
+
+Especially if it doesn't provide any actual information.
+
+Strings are expensive with regards to binary size.
+
 -- 
-2.25.1
-
-
-
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
