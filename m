@@ -2,217 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90E57393522
-	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 19:49:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6944D393615
+	for <lists+devicetree@lfdr.de>; Thu, 27 May 2021 21:14:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234486AbhE0RvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 13:51:22 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:59928 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229791AbhE0RvT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 13:51:19 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14RHnf5v060411;
-        Thu, 27 May 2021 12:49:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1622137781;
-        bh=sy+bdMzmRE6ELJAGc0+jRguaGKhobAm0nHlog7cKFhY=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Cm/qmHfRoB9xyrzs/vEAk/pV4L1bDRwkB1X6etgxtG8GgxEL24UFAeHLgja+UYcO3
-         ajCApWId2+l6HlPq3XtYz4bGVXvY313dIfiUYaZyalJxN5tb0+0IedKf32be8r+8Jv
-         EYe/AETFbif+8TykzpKljpz1XRJhX8i9YvEfmrYk=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14RHnfE1094266
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 27 May 2021 12:49:41 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 27
- May 2021 12:49:40 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 27 May 2021 12:49:40 -0500
-Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14RHnbUu058802;
-        Thu, 27 May 2021 12:49:38 -0500
-Subject: Re: [PATCH] dt-bindings: serial: Move omap-serial.txt to YAML schema
-To:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
-References: <20210527165636.939-1-vigneshr@ti.com>
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-Message-ID: <3760d1e6-2121-323b-d962-60e8291d0bb7@ti.com>
-Date:   Thu, 27 May 2021 20:49:38 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S229732AbhE0TPu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 15:15:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56948 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233218AbhE0TPt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 15:15:49 -0400
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67AC2C061761
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 12:14:15 -0700 (PDT)
+Received: by mail-io1-xd32.google.com with SMTP id n10so1633672ion.8
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 12:14:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ku2NKkULVbfZwyW7jGY6ydjs2MLQ+KhB/I+lldp2vR8=;
+        b=kbTLP7VTAtzKu0qPSneXDSwJ+SF2fSL/prm4RpBt1/7pkLgnCtyWeDXHcP+2dUReDq
+         DqXEU6TnbR19e8kyI8bfOLOnDJCtSqIojsMJA/IyU/y1MxeJ/Lyyio01Ruv/0cHtgGf8
+         xEM7QcsFwf6cI2mS7SkFrDlWJE8ozjdn1dn7+x5xaoV5loIdYS8E5WdFaB+AarbrYpOp
+         EfigtHFPun5x4eyhECCX7xMZtufl7BWQi8rklXV/cpZ5C3YVpbBsJZZZ23XiiaQbQKZt
+         6yukZ4ZNCYzDstjFWYMmk4+TESEJXGwL9PMUAaRhF9Pbn82FIKvilH1tDfhQlC21yhgZ
+         72gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ku2NKkULVbfZwyW7jGY6ydjs2MLQ+KhB/I+lldp2vR8=;
+        b=fLC6cTxUh4p4yxfViAC966sm5vtCND/ht9ok9F2QH9vvxs6yBDR/FfhMSbAS+nN9hu
+         8taGncm4HaB7I3g4S31hZfIkWj4n5wiQ+v97H/tukeJ1sY4bME0WDJS1el7eeU3JVsoU
+         1qjESh/GVqvZGrVaqrDx/AWMutRSl+/6Ubm6jvtuDD3aHznRyWsh1QC9HrnL7Qg4Zj+R
+         hIpPkYNlYqfuCA6AukrS6QqyYrPU/SsF1xNOLnDg1wjIKIq73c0aqf0zCJvymsBis7H/
+         EK8QdOMeHlNfOf2CueKplJ1a97YqF3OOTSVbnE8xJSg9U1p1cFKkgnoNHX82gvkam5Cf
+         wdSw==
+X-Gm-Message-State: AOAM531pACo7S5fmimafNWgJGA9fRprKVT/xXN9HyywFhs68vychaKI9
+        qg1dCb3BYoe7xzO63mn7Juosjv98wHebDGwPA/4hUA==
+X-Google-Smtp-Source: ABdhPJwLK92UjPLV/iWaoOZ28QkNvXI/OHgGYo6GnZV0AE2HhIPjkdcOfaB43SjFHLkJd6rT8y0RK4qJUG+Hdaq3+E0=
+X-Received: by 2002:a02:2a0b:: with SMTP id w11mr4995717jaw.22.1622142854642;
+ Thu, 27 May 2021 12:14:14 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210527165636.939-1-vigneshr@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20210430132735.127342-1-robert.marko@sartura.hr>
+ <20210430134810.GA2714262@roeck-us.net> <CA+HBbNH+gQOmu_Ho0ivFuGHdu0zBtOrr1474z+7FA1zmNb4bug@mail.gmail.com>
+ <2b990feb-dc26-debb-4f81-430bbc89b51c@roeck-us.net> <CA+HBbNHQHqD-wgryaBLZ5M2Lxafb0OwNcbiQJmRQPcZfprmUEg@mail.gmail.com>
+ <2a1a63c7-c9b0-e38d-df1d-7643ad493aba@roeck-us.net> <CA+HBbNF62xzBt2r60qfzn9iveiusLKp6R-T4KU-NgoHaE6c3kQ@mail.gmail.com>
+ <dec7d641-2954-29f0-124b-d0020866bf7b@roeck-us.net> <CA+HBbNGU4d4g0JrUKBhj07OsC7=s9qoubxNDi3MxPjmV457C+Q@mail.gmail.com>
+ <8152a109-d76d-4f85-9da2-fe0a56c2019f@roeck-us.net> <CA+HBbNGBirE=Po7q5eUeHho0rBATa_ApWLiU_oPXsGN+6U9U+g@mail.gmail.com>
+ <CA+HBbNGZ1axZpRy5UwQP_4eZCA32eyPJVcj6xN4i8AhOQMYeTA@mail.gmail.com>
+ <493e4da4-8f2b-9856-b538-6e95e3766d5e@roeck-us.net> <CA+HBbNHspA5cZJSHJkLpnP+UODGy7w5i8mKP2NH9JALQ1RqQ_w@mail.gmail.com>
+ <7af2d708-7e22-3970-7bf8-1cb23317cb55@roeck-us.net> <CA+HBbNFVKYPAPKkGJiRhW4VmEGX=da8QALNwbVA1gGegF6KPkQ@mail.gmail.com>
+ <2ba03d58-a4de-b683-6169-3f12482aa29e@roeck-us.net>
+In-Reply-To: <2ba03d58-a4de-b683-6169-3f12482aa29e@roeck-us.net>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Thu, 27 May 2021 21:14:03 +0200
+Message-ID: <CA+HBbNHp2-a-zgUKRLUQVLcs4qcUim=_75YgVZApH1hRrAaP6w@mail.gmail.com>
+Subject: Re: [PATCH 1/3] hwmon: (pmbus) Add driver for Delta DPS-920AB PSU
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     jdelvare@suse.com, corbet@lwn.net, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
+        Paul Menzel <pmenzel@molgen.mpg.de>,
+        Donald Buczek <buczek@molgen.mpg.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, May 27, 2021 at 6:37 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> On 5/27/21 7:58 AM, Robert Marko wrote:
+> [ ... ]
+>
+> >>>>>> I tried applying the block support for mv64xx as well:
+> >>>>>> https://patchwork.ozlabs.org/project/linux-i2c/patch/20200118115820.9080-1-fuga@studiofuga.com/
+> >>>>
+> >>>> That patch would be needed, but it looks buggy to me. This chunk:
+> >>>>
+> >>>> +               drv_data->effective_length = data+1;
+> >>>> +               drv_data->bytes_left = data+1;
+> >>>> +               drv_data->msg->len = data+1;
+> >>>>
+> >>>> should be:
+> >>>>
+> >>>> +               drv_data->effective_length = data+1;
+> >>>> +               drv_data->bytes_left = data;
+> >>>> +               drv_data->msg->len = data+1;
+> >>>>
+> >>>> It should also make sure that 'data' is not larger than I2C_SMBUS_BLOCK_MAX,
+> >>>> and bail out if it isn't.
+> >>>
+> >>> Yeah, I did not check the contents, I just saw 2 reviews and tested it
+> >>> since it can't hurt.
+> >>
+> >> That patch doesn't work at all. Make the above change, and also change
+> >> the type of effective_length from u32 to int, and try again.
+> >
+> > I was just looking and it, and doing the changes you recommended make
+> > no difference at all.
+> >
+>
+> Is the i2c controller compatible with marvell,mv78230-i2c ?
+> The block transfers would not work in that case. Let me know
+> and I'll send you a patch that might fix it.
+
+Yes, the CPU is Armada 7040 and I can see that compatible is
+marvell,mv78230-i2c indeed.
+
+It would be great if you have the patch,
+Regards
+Robert
+>
+> Guenter
 
 
-On 27/05/2021 19:56, Vignesh Raghavendra wrote:
-> Convert serial-omap.txt to YAML schema for better checks and documentation.
-> 
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> ---
->   .../bindings/serial/omap_serial.txt           |  40 ------
->   .../bindings/serial/ti,omap4-uart.yaml        | 116 ++++++++++++++++++
->   2 files changed, 116 insertions(+), 40 deletions(-)
->   delete mode 100644 Documentation/devicetree/bindings/serial/omap_serial.txt
->   create mode 100644 Documentation/devicetree/bindings/serial/ti,omap4-uart.yaml
-
-Why omap4? Seems ti,omap-uart.yaml is more suitable.
-
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/omap_serial.txt b/Documentation/devicetree/bindings/serial/omap_serial.txt
-> deleted file mode 100644
-> index c2db8cabf2ab..000000000000
-> --- a/Documentation/devicetree/bindings/serial/omap_serial.txt
-> +++ /dev/null
-> @@ -1,40 +0,0 @@
-> -OMAP UART controller
-> -
-
-[...]
-
-> diff --git a/Documentation/devicetree/bindings/serial/ti,omap4-uart.yaml b/Documentation/devicetree/bindings/serial/ti,omap4-uart.yaml
-> new file mode 100644
-> index 000000000000..b3e426c24a9e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/serial/ti,omap4-uart.yaml
-> @@ -0,0 +1,116 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/serial/ti,omap4-uart.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bindings for 8250 compliant UARTs on TI's OMAP and K3 SoCs
-> +
-> +maintainers:
-> +  - Vignesh Raghavendra <vigneshr@ti.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/serial/serial.yaml#
-> +  - $ref: /schemas/serial/rs485.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - ti,am3352-uart
-> +          - ti,am4372-uart
-> +          - ti,am654-uart
-> +          - ti,dra742-uart
-> +          - ti,omap2-uart
-> +          - ti,omap3-uart
-> +          - ti,omap4-uart
-> +      - items:
-> +          - enum:
-> +              - ti,am64-uart
-> +              - ti,j721e-uart
-> +          - const: ti,am654-uart
-> +
-> +  ti,hwmods:
-> +    description:
-> +      Must be "uart<n>", n being the instance number (1-based)
-> +      This property is applicable only on legacy platforms mainly omap2/3
-> +      and ti81xx and should not be used on other platforms.
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    deprecated: true
-> +
-> +  dmas:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  dma-names:
-> +    items:
-> +      - const: tx
-> +      - const: rx
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 2
-
-Could you add description for interrupts, pls?
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: fclk
-> +
-> +  reg-shift:
-> +    const: 2
-> +  reg-io-width:
-> +    const: 4
-> +
-> +  rts-gpios: true
-> +  cts-gpios: true
-> +  dtr-gpios: true
-> +  dsr-gpios: true
-> +  rng-gpios: true
-> +  dcd-gpios: true
-> +  rs485-rts-delay: true
-> +  rs485-rts-active-low: true
-> +  rs485-rx-during-tx: true
-> +  rs485-rts-active-high: true
-> +  linux,rs485-enabled-at-boot-time: true
-> +  rts-gpio: true
-> +  power-domains: true
-> +  clock-frequency: true
-> +  current-speed: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +if:
-> +  properties:
-> +    compatible:
-> +      oneOf:
-> +        - const: ti,omap2-uart
-> +        - const: ti,omap3-uart
-> +        - const: ti,omap4-uart
-> +
-> +then:
-> +  properties:
-> +    ti,hwmods:
-> +      items:
-> +        - pattern: "^uart([1-9])$"
-> +
-> +else:
-> +  properties:
-> +    ti,hwmods: false
-> +
-> +examples:
-> +  - |
-> +          uart4: serial@49042000 {
-> +                  compatible = "ti,omap3-uart";
-> +                  reg = <0x49042000 0x400>;
-> +                  interrupts = <80>;
-> +                  clock-frequency = <48000000>;
-> +          };
-> 
 
 -- 
-Best regards,
-grygorii
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
