@@ -2,224 +2,347 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDB8F39424F
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 14:07:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B64E39425C
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 14:14:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234486AbhE1MId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 08:08:33 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:41008 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230256AbhE1MIc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 08:08:32 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14SC6oFV032378;
-        Fri, 28 May 2021 07:06:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1622203610;
-        bh=tRHNNFt2JHywjRCZ7Ucj/4SrNodlgTnXD+qr/UJVcDs=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=FDIxaK2dSSIQ6KO6CXQhd5IhZXoBpxVnnfr1V60Y5GhWzMMUuXIoe+bJ6bmDTX/pW
-         4SHR+e8jkA2csuQi7/nF08taVzLeqpmVafN3W2vKtEL1mvXWC3hzBty6O+/wSOHuwj
-         k45YZ9QV/Qr5AtSJVuYBnfQN4AiA5OAvJxcXPtWQ=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14SC6ofm005350
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 28 May 2021 07:06:50 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 28
- May 2021 07:06:50 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Fri, 28 May 2021 07:06:50 -0500
-Received: from [10.250.35.153] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14SC6n5q042873;
-        Fri, 28 May 2021 07:06:49 -0500
-Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: k3-r5f: Update bindings
- for AM64x SoCs
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20210327143117.1840-1-s-anna@ti.com>
- <20210327143117.1840-2-s-anna@ti.com>
- <8948a30c-1a2f-1fb0-05bb-37be9c02c5d5@ti.com>
- <ff8edffb-d926-9641-740b-2c292139aa07@ti.com>
- <20210521204053.GA1011163@xps15>
- <911bfb1d-8e66-298a-83ba-998040f5596d@ti.com> <YLBgwkiT9PE3Cu82@builder.lan>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <e98d49c4-78b5-9a49-1f00-a52d20ea3b95@ti.com>
-Date:   Fri, 28 May 2021 07:06:44 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S236661AbhE1MP4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 08:15:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58798 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236666AbhE1MP2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 08:15:28 -0400
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83608C061761
+        for <devicetree@vger.kernel.org>; Fri, 28 May 2021 05:13:11 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:7839:f444:cb37:3ebc])
+        by baptiste.telenet-ops.be with bizsmtp
+        id ACD92500J3gF9cb01CD9rJ; Fri, 28 May 2021 14:13:09 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1lmbMS-00AFAw-UV; Fri, 28 May 2021 14:13:08 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1lmbMS-007ga2-5l; Fri, 28 May 2021 14:13:08 +0200
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+To:     Maxime Ripard <mripard@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-fbdev@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2] dt-bindings: display: ssd1307fb: Convert to json-schema
+Date:   Fri, 28 May 2021 14:13:06 +0200
+Message-Id: <20210528121306.1831931-1-geert@linux-m68k.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <YLBgwkiT9PE3Cu82@builder.lan>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/27/21 10:17 PM, Bjorn Andersson wrote:
-> On Mon 24 May 10:47 CDT 2021, Suman Anna wrote:
-> 
->> On 5/21/21 3:40 PM, Mathieu Poirier wrote:
->>> Hi suman,
->>>
->>> On Wed, May 12, 2021 at 09:47:44PM -0500, Suman Anna wrote:
->>>> Hi Rob,
->>>>
->>>> On 4/19/21 8:55 AM, Suman Anna wrote:
->>>>> Hi Rob,
->>>>>
->>>>> On 3/27/21 9:31 AM, Suman Anna wrote:
->>>>>> The K3 AM64x SoCs have two dual-core Arm R5F clusters/subsystems, with
->>>>>> 2 R5F cores each, both in the MAIN voltage domain.
->>>>>>
->>>>>> These clusters are a revised IP version compared to those present on
->>>>>> J721E and J7200 SoCs, and supports a new "Single-CPU" mode instead of
->>>>>> LockStep mode. Update the K3 R5F remoteproc bindings with the compatible
->>>>>> info relevant to these R5F clusters/subsystems on K3 AM64x SoCs.
->>>>>>
->>>>>> Signed-off-by: Suman Anna <s-anna@ti.com>
->>>>>> ---
->>>>>> v2: No changes
->>>>>>
->>>>>>  .../bindings/remoteproc/ti,k3-r5f-rproc.yaml  | 31 ++++++++++++++++---
->>>>>
->>>>> Looks like this patch has fallen through the cracks, can you please review and
->>>>> give your ack for this patch so that Bjorn can pick up the series for 5.13?
->>>>
->>>> Gentle reminder, do you have any comments on this patch. Appreciate your ack so
->>>> that we can get this in for 5.14?
->>>
->>> If memory serves me well Rob indicated that he would not review or comment on
->>> bindings related to multi-core remote processors.  On the flip side he also
->>> mentioned that he would not object to their presence.  And since this is an
->>> increment to an existing binding rather than a new one, I think it is fair for
->>> us to pick it up.  
->>>
->>> Rob - please intervene if my recollections are not accurate and accept my honest
->>> apologies.  Otherwise: 
->>>
->>> Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org> 
->>>
->>
->> Thank you Mathieu.
->>
->> Bjorn,
->> Is it possible for you to give an immutable branch with just this bindings so we
->> can add the R5F nodes as well and avoid any checkpatch warnings on Nishanth's
->> tree with our K3 dts patches?
->>
-> 
-> Hi Suman,
-> 
-> That sounds rather ambitious, but you can now find this at:
-> https://git.kernel.org/pub/scm/linux/kernel/git/andersson/remoteproc.git/tag/?h=20210327143117.1840-2-s-anna@ti.com
+Convert the Solomon SSD1307 Framebuffer Device Tree binding
+documentation to json-schema.
 
-Thanks a lot Bjorn. Appreciate this a lot.
+Fix the spelling of the "pwms" property.
+Document default values.
+Make properties with default values not required.
 
-regards
-Suman
+Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+v2:
+  - Add Reviewed-by,
+  - Document solomon,dclk-{div,freq} defaults.
+---
+ .../bindings/display/solomon,ssd1307fb.yaml   | 208 ++++++++++++++++++
+ .../devicetree/bindings/display/ssd1307fb.txt |  60 -----
+ 2 files changed, 208 insertions(+), 60 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/ssd1307fb.txt
 
-> 
-> Regards,
-> Bjorn
-> 
->> regards
->> Suman
->>
->>>>
->>>> regards
->>>> Suman
->>>>
->>>>>
->>>>> regards
->>>>> Suman
->>>>>
->>>>>>  1 file changed, 26 insertions(+), 5 deletions(-)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
->>>>>> index d905d614502b..130fbaacc4b1 100644
->>>>>> --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
->>>>>> @@ -14,8 +14,12 @@ description: |
->>>>>>    processor subsystems/clusters (R5FSS). The dual core cluster can be used
->>>>>>    either in a LockStep mode providing safety/fault tolerance features or in a
->>>>>>    Split mode providing two individual compute cores for doubling the compute
->>>>>> -  capacity. These are used together with other processors present on the SoC
->>>>>> -  to achieve various system level goals.
->>>>>> +  capacity on most SoCs. These are used together with other processors present
->>>>>> +  on the SoC to achieve various system level goals.
->>>>>> +
->>>>>> +  AM64x SoCs do not support LockStep mode, but rather a new non-safety mode
->>>>>> +  called "Single-CPU" mode, where only Core0 is used, but with ability to use
->>>>>> +  Core1's TCMs as well.
->>>>>>  
->>>>>>    Each Dual-Core R5F sub-system is represented as a single DTS node
->>>>>>    representing the cluster, with a pair of child DT nodes representing
->>>>>> @@ -33,6 +37,7 @@ properties:
->>>>>>        - ti,am654-r5fss
->>>>>>        - ti,j721e-r5fss
->>>>>>        - ti,j7200-r5fss
->>>>>> +      - ti,am64-r5fss
->>>>>>  
->>>>>>    power-domains:
->>>>>>      description: |
->>>>>> @@ -56,11 +61,12 @@ properties:
->>>>>>  
->>>>>>    ti,cluster-mode:
->>>>>>      $ref: /schemas/types.yaml#/definitions/uint32
->>>>>> -    enum: [0, 1]
->>>>>>      description: |
->>>>>>        Configuration Mode for the Dual R5F cores within the R5F cluster.
->>>>>> -      Should be either a value of 1 (LockStep mode) or 0 (Split mode),
->>>>>> -      default is LockStep mode if omitted.
->>>>>> +      Should be either a value of 1 (LockStep mode) or 0 (Split mode) on
->>>>>> +      most SoCs (AM65x, J721E, J7200), default is LockStep mode if omitted;
->>>>>> +      and should be either a value of 0 (Split mode) or 2 (Single-CPU mode)
->>>>>> +      on AM64x SoCs, default is Split mode if omitted.
->>>>>>  
->>>>>>  # R5F Processor Child Nodes:
->>>>>>  # ==========================
->>>>>> @@ -97,6 +103,7 @@ patternProperties:
->>>>>>            - ti,am654-r5f
->>>>>>            - ti,j721e-r5f
->>>>>>            - ti,j7200-r5f
->>>>>> +          - ti,am64-r5f
->>>>>>  
->>>>>>        reg:
->>>>>>          items:
->>>>>> @@ -198,6 +205,20 @@ patternProperties:
->>>>>>  
->>>>>>      unevaluatedProperties: false
->>>>>>  
->>>>>> +if:
->>>>>> +  properties:
->>>>>> +    compatible:
->>>>>> +      enum:
->>>>>> +        - ti,am64-r5fss
->>>>>> +then:
->>>>>> +  properties:
->>>>>> +    ti,cluster-mode:
->>>>>> +      enum: [0, 2]
->>>>>> +else:
->>>>>> +  properties:
->>>>>> +    ti,cluster-mode:
->>>>>> +      enum: [0, 1]
->>>>>> +
->>>>>>  required:
->>>>>>    - compatible
->>>>>>    - power-domains
->>>>>>
->>>>>
->>>>
->>
+diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+new file mode 100644
+index 0000000000000000..2ed2a7d0ca2fa23e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+@@ -0,0 +1,208 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/solomon,ssd1307fb.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Solomon SSD1307 OLED Controller Framebuffer
++
++maintainers:
++  - Maxime Ripard <mripard@kernel.org>
++
++properties:
++  compatible:
++    enum:
++      - solomon,ssd1305fb-i2c
++      - solomon,ssd1306fb-i2c
++      - solomon,ssd1307fb-i2c
++      - solomon,ssd1309fb-i2c
++
++  reg:
++    maxItems: 1
++
++  pwms:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  vbat-supply:
++    description: The supply for VBAT
++
++  solomon,height:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 16
++    description:
++      Height in pixel of the screen driven by the controller
++
++  solomon,width:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 96
++    description:
++      Width in pixel of the screen driven by the controller
++
++  solomon,page-offset:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 1
++    description:
++      Offset of pages (band of 8 pixels) that the screen is mapped to
++
++  solomon,segment-no-remap:
++    type: boolean
++    description:
++      Display needs normal (non-inverted) data column to segment mapping
++
++  solomon,col-offset:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 0
++    description:
++      Offset of columns (COL/SEG) that the screen is mapped to
++
++  solomon,com-seq:
++    type: boolean
++    description:
++      Display uses sequential COM pin configuration
++
++  solomon,com-lrremap:
++    type: boolean
++    description:
++      Display uses left-right COM pin remap
++
++  solomon,com-invdir:
++    type: boolean
++    description:
++      Display uses inverted COM pin scan direction
++
++  solomon,com-offset:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 0
++    description:
++      Number of the COM pin wired to the first display line
++
++  solomon,prechargep1:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 2
++    description:
++      Length of deselect period (phase 1) in clock cycles
++
++  solomon,prechargep2:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 2
++    description:
++      Length of precharge period (phase 2) in clock cycles.  This needs to be
++      the higher, the higher the capacitance of the OLED's pixels is.
++
++  solomon,dclk-div:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 1
++    maximum: 16
++    description:
++      Clock divisor. The default value is controller-dependent.
++
++  solomon,dclk-frq:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 0
++    maximum: 15
++    description:
++      Clock frequency, higher value means higher frequency.
++      The default value is controller-dependent.
++
++  solomon,lookup-table:
++    $ref: /schemas/types.yaml#/definitions/uint8-array
++    maxItems: 4
++    description:
++      8 bit value array of current drive pulse widths for BANK0, and colors A,
++      B, and C. Each value in range of 31 to 63 for pulse widths of 32 to 64.
++      Color D is always width 64.
++
++  solomon,area-color-enable:
++    type: boolean
++    description:
++      Display uses color mode
++
++  solomon,low-power:
++    type: boolean
++    description:
++      Display runs in low power mode
++
++required:
++  - compatible
++  - reg
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: solomon,ssd1305fb-i2c
++    then:
++      properties:
++        solomon,dclk-div:
++          default: 1
++        solomon,dclk-frq:
++          default: 7
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: solomon,ssd1306fb-i2c
++    then:
++      properties:
++        solomon,dclk-div:
++          default: 1
++        solomon,dclk-frq:
++          default: 8
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: solomon,ssd1307fb-i2c
++    then:
++      properties:
++        solomon,dclk-div:
++          default: 2
++        solomon,dclk-frq:
++          default: 12
++      required:
++        - pwms
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: solomon,ssd1309fb-i2c
++    then:
++      properties:
++        solomon,dclk-div:
++          default: 1
++        solomon,dclk-frq:
++          default: 10
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c1 {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            ssd1307: oled@3c {
++                    compatible = "solomon,ssd1307fb-i2c";
++                    reg = <0x3c>;
++                    pwms = <&pwm 4 3000>;
++                    reset-gpios = <&gpio2 7>;
++            };
++
++            ssd1306: oled@3d {
++                    compatible = "solomon,ssd1306fb-i2c";
++                    reg = <0x3c>;
++                    pwms = <&pwm 4 3000>;
++                    reset-gpios = <&gpio2 7>;
++                    solomon,com-lrremap;
++                    solomon,com-invdir;
++                    solomon,com-offset = <32>;
++                    solomon,lookup-table = /bits/ 8 <0x3f 0x3f 0x3f 0x3f>;
++            };
++    };
+diff --git a/Documentation/devicetree/bindings/display/ssd1307fb.txt b/Documentation/devicetree/bindings/display/ssd1307fb.txt
+deleted file mode 100644
+index 2dcb6d12d1371536..0000000000000000
+--- a/Documentation/devicetree/bindings/display/ssd1307fb.txt
++++ /dev/null
+@@ -1,60 +0,0 @@
+-* Solomon SSD1307 Framebuffer Driver
+-
+-Required properties:
+-  - compatible: Should be "solomon,<chip>fb-<bus>". The only supported bus for
+-    now is i2c, and the supported chips are ssd1305, ssd1306, ssd1307 and
+-    ssd1309.
+-  - reg: Should contain address of the controller on the I2C bus. Most likely
+-         0x3c or 0x3d
+-  - pwm: Should contain the pwm to use according to the OF device tree PWM
+-         specification [0]. Only required for the ssd1307.
+-  - solomon,height: Height in pixel of the screen driven by the controller
+-  - solomon,width: Width in pixel of the screen driven by the controller
+-  - solomon,page-offset: Offset of pages (band of 8 pixels) that the screen is
+-    mapped to.
+-
+-Optional properties:
+-  - reset-gpios: The GPIO used to reset the OLED display, if available. See
+-                 Documentation/devicetree/bindings/gpio/gpio.txt for details.
+-  - vbat-supply: The supply for VBAT
+-  - solomon,segment-no-remap: Display needs normal (non-inverted) data column
+-                              to segment mapping
+-  - solomon,col-offset: Offset of columns (COL/SEG) that the screen is mapped to.
+-  - solomon,com-seq: Display uses sequential COM pin configuration
+-  - solomon,com-lrremap: Display uses left-right COM pin remap
+-  - solomon,com-invdir: Display uses inverted COM pin scan direction
+-  - solomon,com-offset: Number of the COM pin wired to the first display line
+-  - solomon,prechargep1: Length of deselect period (phase 1) in clock cycles.
+-  - solomon,prechargep2: Length of precharge period (phase 2) in clock cycles.
+-                         This needs to be the higher, the higher the capacitance
+-                         of the OLED's pixels is
+-  - solomon,dclk-div: Clock divisor 1 to 16
+-  - solomon,dclk-frq: Clock frequency 0 to 15, higher value means higher
+-                      frequency
+-  - solomon,lookup-table: 8 bit value array of current drive pulse widths for
+-                          BANK0, and colors A, B, and C. Each value in range
+-                          of 31 to 63 for pulse widths of 32 to 64. Color D
+-                          is always width 64.
+-  - solomon,area-color-enable: Display uses color mode
+-  - solomon,low-power. Display runs in low power mode
+-
+-[0]: Documentation/devicetree/bindings/pwm/pwm.txt
+-
+-Examples:
+-ssd1307: oled@3c {
+-        compatible = "solomon,ssd1307fb-i2c";
+-        reg = <0x3c>;
+-        pwms = <&pwm 4 3000>;
+-        reset-gpios = <&gpio2 7>;
+-};
+-
+-ssd1306: oled@3c {
+-        compatible = "solomon,ssd1306fb-i2c";
+-        reg = <0x3c>;
+-        pwms = <&pwm 4 3000>;
+-        reset-gpios = <&gpio2 7>;
+-        solomon,com-lrremap;
+-        solomon,com-invdir;
+-        solomon,com-offset = <32>;
+-        solomon,lookup-table = /bits/ 8 <0x3f 0x3f 0x3f 0x3f>;
+-};
+-- 
+2.25.1
 
