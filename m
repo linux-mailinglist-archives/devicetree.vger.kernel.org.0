@@ -2,105 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FDA1393DFB
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 09:35:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF4CC393E30
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 09:51:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235665AbhE1HhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 03:37:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52668 "EHLO
+        id S233521AbhE1HxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 03:53:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234393AbhE1Hgy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 03:36:54 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6C0FC061574;
-        Fri, 28 May 2021 00:35:14 -0700 (PDT)
-Received: from [192.168.1.111] (91-157-208-71.elisa-laajakaista.fi [91.157.208.71])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 225F58C7;
-        Fri, 28 May 2021 09:35:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1622187313;
-        bh=v59I+aspDAoguV3+zhGsiwb5BmCSVCIir5aArBl3q8A=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=uK7HMacL1qIMoVO4F8224jwEhBdmXzpVqgmoUuTF1ul/7nr9bNUf/jP9PkCSsuNHP
-         Yy5pgtd7DZ6ndlF0gppvq6d6+mUW5Sm9nhfi4Z1R4tTQuSiIWzTb5bDpsbXfgq+3ZS
-         dD/BI6WOtL1f/Qk2sKSs2HrBkiyRN5I2uFW0NHro=
-Subject: Re: [PATCH v2 10/18] media: cadence: csi2rx: Populate subdev devnode
-To:     Pratyush Yadav <p.yadav@ti.com>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Benoit Parrot <bparrot@ti.com>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, dmaengine@vger.kernel.org,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <20210526152308.16525-1-p.yadav@ti.com>
- <20210526152308.16525-11-p.yadav@ti.com>
- <9c38a72c-18e8-1e54-b3b4-85ff5d47857a@ideasonboard.com>
- <20210528072401.2vdrtjdiepnr72vv@ti.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Message-ID: <e36baf77-6de8-595d-b440-92bcfcdd8467@ideasonboard.com>
-Date:   Fri, 28 May 2021 10:35:11 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        with ESMTP id S229608AbhE1HxX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 03:53:23 -0400
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0823FC061574;
+        Fri, 28 May 2021 00:51:48 -0700 (PDT)
+Received: by mail-yb1-xb2b.google.com with SMTP id z38so4335149ybh.5;
+        Fri, 28 May 2021 00:51:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QjtThE/GvdTTwDHRzO7RqKpnpwomxf3ZkcySrQwdFO8=;
+        b=n96WUpjFckScqSNEnzFn0eCPHUzD52Jb779iKMf6j4qX7rctUuS2QMGfQEka+3Aaao
+         gsVWRAKAqq30ZATI9czY8QsgfLhzH56Vv44Rv9nwBY4fQ+zsM5na1I6P9uOlMjmX8pWy
+         AARR1E7AtcEVgxIKPqvby0Yy4FjOX7dc4HrmyLooeiLESkSX9Klv2Evt/AWUI3PILGCR
+         pRz8FplnRR0nt9A4/+vPlQRg3ApKzzmC7ZwUxysTCwZr65xWYXgQAdYrfEGs9IeRukCB
+         qRYZ8gQBEyrxMAvmyW/vQtP3+KipaH6yWHfTIa8n2wFAmSxss13C0G/HNplcR+ji1j2Q
+         EZMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QjtThE/GvdTTwDHRzO7RqKpnpwomxf3ZkcySrQwdFO8=;
+        b=PBTiciQyk3kuxOh7AsZg1lnRircMQDWGyuknajiYNuvM3nz/iI4wLqWCNy0fUuF1Z7
+         fylo8kfZpysU2oA900gS04FMe0i0EyIezMUoi9YnE8eltU1p/s+6BA8hzsy002rsGFUA
+         5GIZMb47038/cJajWULmMFQz8bV3XXjed9gP0BkGHGbbu7fhEkCBcyflAscbZaTEVzdh
+         d02C0IVgT3qwi/FOJGE/dzcin1hm2YLcD0/xAKZDZKpZaE2XlMyM+Po0qfQylCu4BirX
+         N0kUUyJbAfqJaAlvowfUCTXXXtn+guw/htWHdMEET25uBKfR4FUQ8kqsfV7EWr3XUICp
+         gKEQ==
+X-Gm-Message-State: AOAM531Qs3/9eg0NHJ6uLkRkLYMgBqVgQSgLw4bo8RwMNYqOlDrGUfXG
+        EBWCZpLBFfGgWWHYeoT+Xstpev8b7nqRWqAOCWc=
+X-Google-Smtp-Source: ABdhPJwWq5KIWkIdAqgVVIgQeSChmW1pD4dENRG4Yvitazs2XGQp+jjE4SAk+lUsFx4YIMAmVUhb3uFSCgiX1n1lv5U=
+X-Received: by 2002:a25:26c3:: with SMTP id m186mr9924697ybm.47.1622188307294;
+ Fri, 28 May 2021 00:51:47 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210528072401.2vdrtjdiepnr72vv@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210514192218.13022-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20210514192218.13022-14-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdXd==dM2QJN5gg0ka_7-HDQbeKZK66nmyASFJAnsVsSQA@mail.gmail.com>
+In-Reply-To: <CAMuHMdXd==dM2QJN5gg0ka_7-HDQbeKZK66nmyASFJAnsVsSQA@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Fri, 28 May 2021 08:51:21 +0100
+Message-ID: <CA+V-a8vHQLCL+V0f7bKZOKhtgo9_Rsqy_YjBOa_gCvgZMmBLnA@mail.gmail.com>
+Subject: Re: [PATCH 13/16] clk: renesas: Add CPG core wrapper for RZ/G2L SoC
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/05/2021 10:24, Pratyush Yadav wrote:
-> On 28/05/21 10:16AM, Tomi Valkeinen wrote:
->> On 26/05/2021 18:23, Pratyush Yadav wrote:
->>> The devnode can be used by media-ctl and other userspace tools to
->>> perform configurations on the subdev. Without it, media-ctl returns
->>> ENOENT when setting format on the sensor subdev.
->>>
->>> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
->>> ---
->>>
->>> (no changes since v1)
->>>
->>>    drivers/media/platform/cadence/cdns-csi2rx.c | 1 +
->>>    1 file changed, 1 insertion(+)
->>>
->>> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
->>> index 1df21f462f3c..49bed63d5faa 100644
->>> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
->>> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
->>> @@ -613,6 +613,7 @@ static int csi2rx_probe(struct platform_device *pdev)
->>>    	csi2rx->pads[CSI2RX_PAD_SINK].flags = MEDIA_PAD_FL_SINK;
->>>    	for (i = CSI2RX_PAD_SOURCE_STREAM0; i < CSI2RX_PAD_MAX; i++)
->>>    		csi2rx->pads[i].flags = MEDIA_PAD_FL_SOURCE;
->>> +	csi2rx->subdev.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
->>>    	ret = media_entity_pads_init(&csi2rx->subdev.entity, CSI2RX_PAD_MAX,
->>>    				     csi2rx->pads);
->>>
->>
->> I don't understand this one. There's nothing to configure in cdns-csi2rx
->> from userspace, as far as I can see, so why is the dev node needed? And why
->> would the lack of csi2rx dev node cause sensor subdev config to fail?
-> 
-> Sensor config does not fail. But when I run media-ctl to set the format
-> on /dev/media0, I get an error message that comes because the devnode
-> for the bridge does not exist. I was not 100% sure about this patch but
-> I figured if media-ctl expects it then it should be exposed.
-> 
-> I don't mind dropping this patch. Just want to make sure what the right
-> thing to do here is. Should every element of the pipeline have a devnode
-> or not?
+Hi Geert,
 
-Tbh, I don't know. But I don't see why they should have. Also, my test 
-works fine if I remove the devnode here.
+On Thu, May 27, 2021 at 1:04 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Fri, May 14, 2021 at 9:24 PM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > Add CPG core wrapper for RZ/G2L family.
+> >
+> > Based on a patch in the BSP by Binh Nguyen
+> > <binh.nguyen.jz@renesas.com>.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+>
+> > --- /dev/null
+> > +++ b/drivers/clk/renesas/renesas-rzg2l-cpg.c
+>
+> > +static int rzg2l_mod_clock_endisable(struct clk_hw *hw, bool enable)
+> > +{
+> > +       struct mstp_clock *clock = to_mod_clock(hw);
+> > +       struct cpg_mssr_priv *priv = clock->priv;
+> > +       unsigned int reg = MSSR_OFF(clock->bit) * 4;
+>
+> The "* 4" here makes it difficult to review the module clock tables.
+>
+> E.g.
+>
+>        DEF_MOD("gic",          R9A07G044_CLK_GIC600,
+>                                R9A07G044_CLK_P1,
+>                                MSSR(5, BIT(0), (BIT(0) | BIT(1)))),
+>
+> The "5" means the CLK_ON_GIC600 register is at offset CLK_ON_R(5 * 4)
+>  = 0x514.  Removing the "* 4" means you could use
+> "MSSR(0x14, BIT(0), (BIT(0) | BIT(1))" instead.
+>
+> Unless it has unpleasant side effects, I'd even consider putting
+> the full CLK_ON offset there, i.e.
+> "MSSR(0x514, BIT(0), (BIT(0) | BIT(1))" and change the macros like:
+>
+>     #define CLK_ON_R(reg)          (reg)
+>     #define CLK_MON_R(reg)         (0x680 - 0x500 + (reg))
+>
+OK will do that.
 
-What media-ctl parameters did you use which fails?
+> > --- /dev/null
+> > +++ b/drivers/clk/renesas/renesas-rzg2l-cpg.h
+>
+> > +#define CLK_ON_R(reg)          (0x500 + reg)
+> > +#define CLK_MON_R(reg)         (0x680 + reg)
+> > +#define CLK_RST_R(reg)         (0x800 + reg)
+> > +#define CLK_MRST_R(reg)                (0x980 + reg)
+>
+> The last three don't seem to be documented?
+>
+I have asked Chris to send the document across.
 
-  Tomi
+Cheers,
+Prabhakar
