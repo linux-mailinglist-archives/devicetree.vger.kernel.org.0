@@ -2,108 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 233C5394430
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 16:25:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13D02394468
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 16:47:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229949AbhE1O10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 10:27:26 -0400
-Received: from mail-ua1-f45.google.com ([209.85.222.45]:40953 "EHLO
-        mail-ua1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232426AbhE1O10 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 10:27:26 -0400
-Received: by mail-ua1-f45.google.com with SMTP id j2so2215974uak.7;
-        Fri, 28 May 2021 07:25:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=I6AUYDbxGcKMjp7sXFSR6vCeNgCP0VTfXlRJ7azZ9Yc=;
-        b=R2xcStw61XH0kP+f1L+YbumTSxfdw0Y1Kiv2kbOlPGYxeF2DebbxmV6Bg6IcUJD06d
-         x5gDb19eP8dbfa8cYl1fJDB0/HMygX1uORXXZnQ2vdZz+su3jpEzvgXhiVgKmG4oNXIR
-         Aa+NhpHH9u1Piitsp/fVrDeSbUhp5bRYn4zzXaN22zYfY8QVxq8Y8BnMtxUP9e1fJZPK
-         96yYZvFB0DU0xV+fr9crArtjLYWjjEKK3i8JbJl0QyCSR0+KLzgxSHV7/NYa7e08vLRH
-         7YkrQfK0AlTmh1WWJesh28Frj9TWKfwCnted66MQlfPH5YMYwQvNVqCvKKVtmM0WmN8F
-         oxnA==
-X-Gm-Message-State: AOAM530ZJWlX620qm39tCxrvr/IN1pQ0KtXJQqdUPkU0xfkySLXlSZvo
-        toT8DmoacGNucE6k8pLfsIUeu/a6hkb8oZUB9WZbdyJcwG8=
-X-Google-Smtp-Source: ABdhPJzzA0Dh9P7rJswZkR6by0dwxYDrLbI36caf2MZ4Fa1d7tKltSdC+IF8drbLGdzZ03soNoXAFaGO2MFG1a8O4s4=
-X-Received: by 2002:ab0:2242:: with SMTP id z2mr3111908uan.58.1622211951116;
- Fri, 28 May 2021 07:25:51 -0700 (PDT)
+        id S234845AbhE1Os7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 10:48:59 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:55624 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234752AbhE1Os6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 10:48:58 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14SElJBl101735;
+        Fri, 28 May 2021 09:47:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1622213239;
+        bh=JAbiSJamzsBRZ+d4nOMytfKJrNTDLM/S3s38pw9pBpE=;
+        h=From:To:CC:Subject:Date;
+        b=vs+HRah8eh/DM3YfR9nQCw6l6STbGPDZ9HI+UOEBPMhuljAGxoBMwK3xLXlFHcms1
+         5zXdKXrAqlYdMyOZpOYVj0Zl2ZDiybTqie9x6PtuSHRaWqYqtwvhhHE4Mly63XW7bD
+         Ht5tcxZfh5hmDK3153aH+09KgZ3s1upuQ0J8KzSo=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14SElJtQ124345
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 28 May 2021 09:47:19 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 28
+ May 2021 09:47:18 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Fri, 28 May 2021 09:47:19 -0500
+Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14SElIPe033535;
+        Fri, 28 May 2021 09:47:18 -0500
+Received: from localhost ([10.250.35.153])
+        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 14SElIgk005114;
+        Fri, 28 May 2021 09:47:18 -0500
+From:   Suman Anna <s-anna@ti.com>
+To:     Nishanth Menon <nm@ti.com>
+CC:     Lokesh Vutla <lokeshvutla@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
+Subject: [PATCH 0/4] Add R5F nodes on TI K3 AM64x SoCs
+Date:   Fri, 28 May 2021 09:47:14 -0500
+Message-ID: <20210528144718.25132-1-s-anna@ti.com>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
-References: <20210528111049.1804800-1-geert@linux-m68k.org> <YLD5N1OMXFg3yHp9@kunai>
-In-Reply-To: <YLD5N1OMXFg3yHp9@kunai>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 28 May 2021 16:25:39 +0200
-Message-ID: <CAMuHMdXKtbp3zVO6OY3NugVA3wUQjmvy5rLKJPrTjOuYS2wMOg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: i2c: i2c-mux: Remove reset-active-low from
- ssd1307fb examples
-To:     Wolfram Sang <wsa@kernel.org>
-Cc:     Peter Rosin <peda@axentia.se>, Maxime Ripard <mripard@kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
+Hi Nishanth,
 
-On Fri, May 28, 2021 at 4:07 PM Wolfram Sang <wsa@kernel.org> wrote:
-> On Fri, May 28, 2021 at 01:10:49PM +0200, Geert Uytterhoeven wrote:
-> > The "reset-active-low" property was removed from the ssd1307fb bindings
-> > in commit 519b4dba586198ee ("fbdev: ssd1307fb: Remove reset-active-low
-> > from the DT binding document") and from the ssd1307fb binding examples
-> > in commit 7d7e58d30e046d34 ("dt-bindings: display: ssd1307fb: Remove
-> > reset-active-low from examples").
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
->
-> Now we have a conflict with this series from Rob: "[PATCH v2 0/6]
-> dt-bindings: Convert mux bindings to schema"
+The TI K3 R5F remoteproc driver support for the R5F instances on AM64x
+SoCs will be merged for 5.14-rc1, and this series adds the corresponding
+base dt nodes for the R5F remote processors on TI K3 AM64x SoCs. This
+series along with the corresponding driver changes allows to boot these
+processors successfully on applicable TI K3 AM64x EVM and SK boards. The
+series uses previously merged mailbox nodes.
 
-Sorry, I had checked that my patch applies to today's linux-next,
-and wasn't aware of Rob's series.
+The R5Fs on AM64x slightly differ from earlier K3 SoCs in that they support
+a new "Single-CPU" mode. Please see the driver changes cover-letter for
+additional feature differences [1].
 
-> My suggestion would be that Rob adds this on top of his series?
-> Or he provides an immutable branch for me, so I can apply this patch on
-> top then?
+Patches are on top of the latest v5.13-rc1 tag + the AM64 R5F bindings.
+Bjorn has staged a tag from remoteproc tree with just the bindings [2]
+that you can use for merging this series for v5.14. The driver support
+will come through remoteproc tree. The patches follow the same style to
+similar patches added for J7200 SoCs [3]. 
 
-Alternatively, can you just drop the second chunk?
+I have validated the IPC functionality using System Firmware v2021.01a
+and corresponding IPC example firmwares.
 
-> > --- a/Documentation/devicetree/bindings/i2c/i2c-mux-gpio.txt
-> > +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-gpio.txt
-> > @@ -62,7 +62,6 @@ Example:
-> >                               reg = <0x3c>;
-> >                               pwms = <&pwm 4 3000>;
-> >                               reset-gpios = <&gpio2 7 1>;
-> > -                             reset-active-low;
-> >                       };
-> >               };
+regards
+Suman
 
-This one is still valid.
+[1] https://patchwork.kernel.org/project/linux-remoteproc/cover/20210318215842.8196-1-s-anna@ti.com/
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/andersson/remoteproc.git/log/?h=20210327143117.1840-2-s-anna@ti.com 
+[3] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210111184554.6748-1-s-anna@ti.com/
 
-> > --- a/Documentation/devicetree/bindings/i2c/i2c-mux-gpmux.txt
-> > +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-gpmux.txt
-> > @@ -80,7 +80,6 @@ Example:
-> >                               reg = <0x3c>;
-> >                               pwms = <&pwm 4 3000>;
-> >                               reset-gpios = <&gpio2 7 1>;
-> > -                             reset-active-low;
-> >                       };
-> >               };
+Suman Anna (4):
+  arm64: dts: ti: k3-am64-main: Add MAIN domain R5F cluster nodes
+  arm64: dts: ti: k3-am642-evm/sk: Add mailboxes to R5Fs
+  arm64: dts: ti: k3-am642-evm/sk: Add DDR carveout memory nodes for
+    R5Fs
+  arm64: dts: ti: k3-am642-evm/sk: Reserve some on-chip SRAM for R5Fs
 
-This one no longer is, as Rob dropped the example during the conversion.
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi |  84 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts  | 100 +++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts   | 100 +++++++++++++++++++++++
+ 3 files changed, 284 insertions(+)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.30.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
