@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62F0F393A42
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 02:30:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01649393A47
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 02:31:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234964AbhE1Abm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 20:31:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42950 "EHLO
+        id S234438AbhE1AdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 20:33:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234925AbhE1Abl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 20:31:41 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D5F5C061760
-        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 17:30:06 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id i9so2688632lfe.13
-        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 17:30:06 -0700 (PDT)
+        with ESMTP id S233594AbhE1AdD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 20:33:03 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D87A5C061761
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 17:31:28 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id i9so2692686lfe.13
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 17:31:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=cAYxSZ2/LUsSsn8d06yEcKP0Gfca5oqTYVqfarEyY4Q=;
-        b=CGtHb0yWAyWtrKrDJIeR8VvZXgsNXy84JWlXeb19e88ME4csylVRHl7Lcd0FSfDG0h
-         ryKXiFr8u9YGB+o8gN9tyhxz+8cY1mpCam+L8sKlzDjb/42QPB8sNGoba6bPqd9anVEN
-         kxYBVVuI2MpYL5detAHUgrZRAHMV3L25XISvh6/vovNXuIn3BTU2ZD5RJuDCVhmLP+LF
-         aHdccEzIYbbY9D1GDhNCytmG45H5v/JQZyvRqjYzagGmAfhnPFrh4qIu6DsGUN8B55zh
-         wxYwjrkV1MIPbk8KDhuf3kM6wY3c0iOY5tgMqzWgJrnM/Rhk3RniD0Lwb2pb7uCZJZXs
-         UV2g==
+        bh=nACOEvpFPcdmw/HFjZn82A0S5koii2HQf8n4dSZ8kUc=;
+        b=He9atcVUlHOl31CBA9dnNly8sJj3fpy0sjqip4IgivvZiMY6nJj6LKbRS8c4oqRw7w
+         xtlA6u58J+k4wpgTjwAiRfSihTmKOQCh3ku8VwR1DE06L0BRvlY6APIjntzcq4rsW4QU
+         UNdrYzJTU3pPlsnt5W6uZiuAJs0sjALtd/niqUs8SdPeatLGMZPWCSLM9wlQ5aAbqWxj
+         P3buPWbFsHpW/vgtLuLZS1kSUt53VNiXAsvWZs5LEmECxQ0Z2IToJDsSMbafQ0us34wq
+         jQW0gC4Ypn/kYPw7f2anjK5Rkio4nslpi8CehAmR+HZWbpGLAd2DFDO/MBjo7bYA/u87
+         AjlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=cAYxSZ2/LUsSsn8d06yEcKP0Gfca5oqTYVqfarEyY4Q=;
-        b=dq8Vut89lpzyFKnZd8gbH1kgl07iLoC0Z4rqnNWjoOoiH4gdyj+p7yKLHGdJJmosjG
-         qpBsSDQQcoHir7+OmFLncIF+oWh4BRwF/j7xQ2naJF7XCAjj5GAkWHsgRsY3AsxG96K4
-         2ctkr2NYh4URZo9Zb+BZy8yz4/ybTaY8DeNVkOUzgRY1cNa7oXE8vCOn1GQS4k0XEAm+
-         4seWo0AGL2ewzdJWJK50EGasZKUmBhOMC7zXVxbhQLpfrYSQHj4faMrgu5KkRC6ws50I
-         cmxlJwRUwL/ge7klQfNVJngQmLyNkyDvYLab0VJMlpOAr01T1QvJ3wjk8G7SwaXU7XIj
-         t4aw==
-X-Gm-Message-State: AOAM533oLh2sSaRUH0CMEvR/1bRefViCe8hWtCo193IoWS7EZGSSV/hX
-        ooFotRlbpzcH7rqSX8rBBwFF9A/gMIm7VgnrlJVyUA==
-X-Google-Smtp-Source: ABdhPJxjKWZl4nXKcEb8D++9zwhUGTk9lmQJdMjIN1Wc6enAt0Oqdih6wD8S0QT6XSpnKxPCjDnCZ7wSs6HcuOnh1dU=
-X-Received: by 2002:a19:f616:: with SMTP id x22mr3924647lfe.291.1622161804749;
- Thu, 27 May 2021 17:30:04 -0700 (PDT)
+        bh=nACOEvpFPcdmw/HFjZn82A0S5koii2HQf8n4dSZ8kUc=;
+        b=sNsvAfiIfjdTgRrjizXLlEP++Qdy8xJNAUY9Gdhd46keFCqkY5YLFTdT5+fXtQJ4ua
+         BPFrI7AMnCWfHzD22GOArrMNRmzL94TahNHjnLAjE+DvXLgyW2MOBPZnXe3f1LDzwGn5
+         YwvL044FaLava4Uu1+M07pUtLh7I/2p5wT6qj97ToVJfH+UdjeQ6kXDF/rGzcgNdcD4e
+         P6Db2IRrlCgfltmVsEabuyT3vlM9VS4C6sPsbFzB4zZfcV15BQJyiPchuW73ZzTNGwYP
+         EZ39IytSv1Vlmy7ItF8H6tGcuqmpR1akJISbSPWW6UNHcH9B/barjUvnhmrVTVUMcquG
+         m8aQ==
+X-Gm-Message-State: AOAM530DS9hSvCH7nHxWnFEEZo/ydZlh30VwxmHcRpxV1cekjBAYMCRf
+        RnzX4lO6c4+CmdijECKFb23tNxft68FxVCbxj/uGTA==
+X-Google-Smtp-Source: ABdhPJzyNmeLKVoRU1NdOgocbRYiFNBbVgmN0igEpSoGd2uCo/A6lb/ej5LtKxFNhraw8Pjt1blGen8fCMiOv26hz4k=
+X-Received: by 2002:ac2:47e6:: with SMTP id b6mr3909543lfp.649.1622161887248;
+ Thu, 27 May 2021 17:31:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210525000159.3384921-1-dianders@chromium.org> <20210524165920.v8.3.I98bf729846c37c4c143f6ab88b1e299280e2fe26@changeid>
-In-Reply-To: <20210524165920.v8.3.I98bf729846c37c4c143f6ab88b1e299280e2fe26@changeid>
+References: <20210525000159.3384921-1-dianders@chromium.org> <20210524165920.v8.4.I79c7ed8815a07d285dd3b38e680e980d1024dbf1@changeid>
+In-Reply-To: <20210524165920.v8.4.I79c7ed8815a07d285dd3b38e680e980d1024dbf1@changeid>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 28 May 2021 02:29:53 +0200
-Message-ID: <CACRpkdZQ_4OMfUPZj1hXzRzqcfbhnrOHZ42NdP+giKbcz3=2VQ@mail.gmail.com>
-Subject: Re: [PATCH v8 03/11] dt-bindings: drm/bridge: ti-sn65dsi86: Add
- aux-bus child
+Date:   Fri, 28 May 2021 02:31:16 +0200
+Message-ID: <CACRpkdYxAtD09cgVFd=_rusdVcr5LGF=z=mzG-22enhtRK+NBQ@mail.gmail.com>
+Subject: Re: [PATCH v8 04/11] dt-bindings: drm/aux-bus: Add an example
 To:     Douglas Anderson <dianders@chromium.org>
 Cc:     Andrzej Hajda <a.hajda@samsung.com>,
         Neil Armstrong <narmstrong@baylibre.com>,
@@ -70,7 +69,6 @@ Cc:     Andrzej Hajda <a.hajda@samsung.com>,
         Daniel Vetter <daniel@ffwll.ch>,
         David Airlie <airlied@linux.ie>,
         Rob Herring <robh+dt@kernel.org>,
-        Sandeep Panda <spanda@codeaurora.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
         linux-kernel <linux-kernel@vger.kernel.org>
@@ -81,30 +79,18 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Tue, May 25, 2021 at 2:02 AM Douglas Anderson <dianders@chromium.org> wrote:
 
-> The patch ("dt-bindings: drm: Introduce the DP AUX bus") talks about
-> how using the DP AUX bus is better than learning how to slice
-> bread. Let's add it to the ti-sn65dsi86 bindings.
+> Now that we have an eDP controller that lists aux-bus, we can safely
+> add an example to the aux-bus bindings.
+>
+> NOTE: this example is just a copy of the one in the 'ti-sn65dsi86'
+> one. It feels useful to have the example in both places simply because
+> it's important to document the interaction between the two bindings in
+> both places.
 >
 > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-(...)
->      description: See ../../pwm/pwm.yaml for description of the cell formats.>
 
-Just use the full path:
-/schemas/pwm/pwm.yaml
-
-> +  aux-bus:
-> +    $ref: ../dp-aux-bus.yaml#
-
-Use the full path. (Same method as above)
-
-This removes the need for ../../... ....
-
-You do it here:
-
->    ports:
->      $ref: /schemas/graph.yaml#/properties/ports
-
-Other than that I think it looks all right!
+Looks good.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
