@@ -2,211 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98377394745
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 20:53:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D772E394761
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 21:05:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229492AbhE1SzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 14:55:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36038 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbhE1SzQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 14:55:16 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD0D9C06174A
-        for <devicetree@vger.kernel.org>; Fri, 28 May 2021 11:53:40 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id h3so2637806wmq.3
-        for <devicetree@vger.kernel.org>; Fri, 28 May 2021 11:53:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=sRnjHlu4aI2d07hk/HFPTPaAgxVdnLCE3C8ZXGG5N2M=;
-        b=GR+XdjfnGc7awDATahdRGgpVc3XZlj24DkIFTCqOv/jdG8+D2VF1fJbfKqJRxHOQPE
-         0MqykAHqwZKwJHsqwoTNwWTKSrtdfZ5OmXlilQ7s29Op12iKIrhNy5OHfYsBcU+Y4Vij
-         yusZ2ZFWNTJVVbixDJE3rgMiJ7VlCauTGRZ5BLMFPUSGfaG9TU2N0WZ5uJ8HfAcUxJUw
-         Ka/NbqctdlP7JYohp2FFcYZzOXRmgy2RV38rhRy2Z8itOStaoMDmxZmyJYKDg7VfyM+3
-         yArF+nQLAncGtvCNrNWJQcP5BLUvMINdBZgerj3O13Q3S5oRj+6lYXdoRAexh41u8Un2
-         yUzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=sRnjHlu4aI2d07hk/HFPTPaAgxVdnLCE3C8ZXGG5N2M=;
-        b=REHIjnuRlfp+uR9elUtOmpUDaDLc5SP7eKHEU+XVeuIKPfVVGranWuURIdsIJArXta
-         Ox+bSCGVv/mv/7hPH/vNoqOCqjQ+APuLPbXX3Smiw4P63p3OuTCTRfcnnuB8ocpOtFm9
-         o0FHQbHibhyM919QKMx4FYTLtsGWx9nhzJr8n1xKYfa9oLa9piTZWKZHIIsfU5x9mcXT
-         YUuB4EW+x2fNytJHl594WZCY/Hz36l7uQIB1EqtVBxt9RDh8sf4UIea/+bsKPW0VjCr0
-         JI6518xVsGL3jTBYi95RjBBKHxy6Pk0ctmBs6dhpR98rWoSIkwC1wsUwwWUduv4kVM3N
-         lm3g==
-X-Gm-Message-State: AOAM533g6C1aifL4P5fiCP18iSeiOIa59p5hx0tYXJXbRjdLEiuJFbt/
-        o2pyiaxgbr3E6kJF/XCFKZCdFHBpbVUCNg==
-X-Google-Smtp-Source: ABdhPJwxxq+uI4dgtjIx8P+zA4N9jyp6I+iETPE71li/b1mjFZsVC5xCbLewJOQqXIuDEztz8wFL9Q==
-X-Received: by 2002:a1c:e284:: with SMTP id z126mr9720280wmg.108.1622228019204;
-        Fri, 28 May 2021 11:53:39 -0700 (PDT)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id r17sm15772020wmh.25.2021.05.28.11.53.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 May 2021 11:53:38 -0700 (PDT)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     daniel.lezcano@linaro.org, robh+dt@kernel.org, tglx@linutronix.de
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH] dt-bindings: timer: Convert faraday,fttmr010 to yaml
-Date:   Fri, 28 May 2021 18:53:29 +0000
-Message-Id: <20210528185329.1969688-1-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+        id S229492AbhE1THR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 15:07:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33254 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229476AbhE1THP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 May 2021 15:07:15 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 53258613E3;
+        Fri, 28 May 2021 19:05:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1622228740;
+        bh=lqi3vTldrg3lO2uMoy79gkn+ZcxnYUyNsZ59gzqQAQ0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PVpoQi74raVze44HIFtMvfDSSFlIhYshwtx9vF0D/KJKWC0busEzp5ix4pv3953VB
+         RT1kNi4j1auGPUMAsLHR2gecAz8jnQfL2y40jzhDcn8vvtlU6WbbbjjJdWC/BDuBtV
+         CFvXyglRZoHJhKIbTsuAKON9gvZiz8dYr8vb5DXbrwNz1AWmcxMzwg+csCTmjMEIKz
+         RRB4YIeKRIZ0rHH4gd4TOUuHCd3iD90loJdtBwXHLTT1DOOWX7kAsNNRtHN6XA1xZE
+         RG7Xe56Gd0k58/8JALvn0njtw8A8Yr0A5+8Bx8rdcknbJ4nSdkPTy9RFhBWmLjJc35
+         uvXI/sfgKKl6A==
+Date:   Fri, 28 May 2021 21:05:37 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Jean Delvare <khali@linux-fr.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-i2c@vger.kernel.org, Qii Wang <qii.wang@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Brown <broonie@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>,
+        Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH v21 RESEND 1/4] i2c: core: support bus regulator
+ controlling in adapter
+Message-ID: <YLE/ASUV9vNWxKU4@kunai>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jean Delvare <khali@linux-fr.org>, Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-i2c@vger.kernel.org, Qii Wang <qii.wang@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Brown <broonie@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>,
+        Arnd Bergmann <arnd@arndb.de>
+References: <20210527075556.1709140-1-hsinyi@chromium.org>
+ <20210527075556.1709140-2-hsinyi@chromium.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ZcBwgiaQRAiB+3tH"
+Content-Disposition: inline
+In-Reply-To: <20210527075556.1709140-2-hsinyi@chromium.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Converts timer/faraday,fttmr010.txt to yaml.
 
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
- .../bindings/timer/faraday,fttmr010.txt       | 38 --------
- .../bindings/timer/faraday,fttmr010.yaml      | 86 +++++++++++++++++++
- 2 files changed, 86 insertions(+), 38 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
- create mode 100644 Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
+--ZcBwgiaQRAiB+3tH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt b/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
-deleted file mode 100644
-index 3cb2f4c98d64..000000000000
---- a/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
-+++ /dev/null
-@@ -1,38 +0,0 @@
--Faraday Technology timer
--
--This timer is a generic IP block from Faraday Technology, embedded in the
--Cortina Systems Gemini SoCs and other designs.
--
--Required properties:
--
--- compatible : Must be one of
--  "faraday,fttmr010"
--  "cortina,gemini-timer", "faraday,fttmr010"
--  "moxa,moxart-timer", "faraday,fttmr010"
--  "aspeed,ast2400-timer"
--  "aspeed,ast2500-timer"
--  "aspeed,ast2600-timer"
--
--- reg : Should contain registers location and length
--- interrupts : Should contain the three timer interrupts usually with
--  flags for falling edge
--
--Optionally required properties:
--
--- clocks : a clock to provide the tick rate for "faraday,fttmr010"
--- clock-names : should be "EXTCLK" and "PCLK" for the external tick timer
--  and peripheral clock respectively, for "faraday,fttmr010"
--- syscon : a phandle to the global Gemini system controller if the compatible
--  type is "cortina,gemini-timer"
--
--Example:
--
--timer@43000000 {
--	compatible = "faraday,fttmr010";
--	reg = <0x43000000 0x1000>;
--	interrupts = <14 IRQ_TYPE_EDGE_FALLING>, /* Timer 1 */
--		   <15 IRQ_TYPE_EDGE_FALLING>, /* Timer 2 */
--		   <16 IRQ_TYPE_EDGE_FALLING>; /* Timer 3 */
--	clocks = <&extclk>, <&pclk>;
--	clock-names = "EXTCLK", "PCLK";
--};
-diff --git a/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml b/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
-new file mode 100644
-index 000000000000..a495ea80c0fc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
-@@ -0,0 +1,86 @@
-+# SPDX-License-Identifier: (GPL-2.0+)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/faraday,fttmr010.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Faraday Technology timer
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+  This timer is a generic IP block from Faraday Technology, embedded in the
-+  Cortina Systems Gemini SoCs and other designs.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: faraday,fttmr010
-+      - items:
-+          - const: cortina,gemini-timer
-+          - const: faraday,fttmr010
-+      - items:
-+          - const: moxa,moxart-timer
-+          - const: faraday,fttmr010
-+      - const: aspeed,ast2400-timer
-+      - const: aspeed,ast2500-timer
-+      - const: aspeed,ast2600-timer
-+
-+  reg:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 3
-+    description: Should contain the three timer interrupts usually with flags for falling edge
-+
-+  clocks:
-+    minItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: "PCLK"
-+      - const: "EXTCLK"
-+
-+  syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    maxItems: 1
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        items:
-+          - const: cortina,gemini-timer
-+          - const: faraday,fttmr010
-+then:
-+  required:
-+    - syscon
-+else:
-+  properties:
-+    syscon: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    timer@43000000 {
-+      compatible = "faraday,fttmr010";
-+      reg = <0x43000000 0x1000>;
-+      interrupts = <14 IRQ_TYPE_EDGE_FALLING>, /* Timer 1 */
-+                   <15 IRQ_TYPE_EDGE_FALLING>, /* Timer 2 */
-+                   <16 IRQ_TYPE_EDGE_FALLING>; /* Timer 3 */
-+      clocks = <&extclk>, <&pclk>;
-+      clock-names = "PCLK", "EXTCLK";
-+      syscon = <&syscon>;
-+    };
-+...
--- 
-2.31.1
+On Thu, May 27, 2021 at 03:55:53PM +0800, Hsin-Yi Wang wrote:
+> From: Bibby Hsieh <bibby.hsieh@mediatek.com>
+>=20
+> Although in the most platforms, the bus power of i2c
+> are alway on, some platforms disable the i2c bus power
+> in order to meet low power request.
+>=20
+> We can control bulk regulator if it is provided in i2c
+> adapter device.
+>=20
+> Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
+> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 
+It looks good to me. I have to admit, though, that I am not a PM expert,
+but I trust you guys here. Let's apply it and see what happens.
+
+Applied to for-next, thanks!
+
+
+--ZcBwgiaQRAiB+3tH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmCxPv0ACgkQFA3kzBSg
+KbbDAQ/9EHqJnm0ee4GH2yEYDaqegGNIzj7KFvtNQVb9I86E8sJgTda4xocrGxu1
+5y1fUo/jWXBFiQkfZpwSMAKhhh9ZLkFwr/sOInd/HzLoYkg23E1GdXP5qwm1CCtC
+P6mDHQ6q6bjpXnX1y2s1tL9hgc9n0WyUbHw6y5PA5Ecrnc2BphnPUq+eyVm4CcYe
+mIZV40uS2jX7lothPyypA5nAtf2OxplnNrVHpW8QNcg4GcdEfApJikppvOnmH9IT
+K1dY329k2n8wt6qiHKKepLdq+g9fDlaYzw1Rcum+3JIdqzMM4w3h5/hKsBf7YsG4
+hdodoTEKZGg3jbp+bPYSP1igLJtOrSgb18FNpTcG3/paczxkVE2k8+YRBbl4YMfV
+pB6u7AI2QYofPthhQMUCkqR/UC02+i4XE3ayZrOveZ4RBMMtHO2Qx7wC+08gUwnd
+0EFNeUnW5xrSZph7Hsucjfkuu87kY3a4zTCPqgPZblXz5CFCnNT/ko4hgC+ogjRn
+epaQpCFSDFexQZ5YgPJPqFDlItG3sEHfi+mWguGX71grM22x9Mi6MsPQsS8qIe6K
+IUYzYNa0pbEys5dnsYvi8bxG1Ta0kSvA6uBYgAZv6UF/aVj4VY6R4o9Vjz8pMYyz
+8m2Vc5HWoS4swVGOl2ukrixo+yZ4oH8UwIGcNlFRctw7HCyKiPo=
+=W39l
+-----END PGP SIGNATURE-----
+
+--ZcBwgiaQRAiB+3tH--
