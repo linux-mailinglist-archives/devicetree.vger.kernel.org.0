@@ -2,86 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2255393C9F
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 06:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F2A8393CA9
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 07:17:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234608AbhE1FAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 01:00:21 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:50956 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234583AbhE1FAU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 01:00:20 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14S4weTV069199;
-        Thu, 27 May 2021 23:58:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1622177920;
-        bh=j69Eq/1BumC8qYZYJK7gexBx1nLH7uJRoiYi0NY1ejg=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=t+Bdr9EI83oCBT7Q1IKL5Ns7JaLa/6kaXcr8uJkzQWy84ta0VbOFqxZoeZS7okjH5
-         N98QTF7umVX6zDLnsXnGE3LseEVXftfHWCBHA9yPq7lEP88lGXwmrNvUIUSK9N+IHN
-         O7xrRoFVlmKdBsDUzFstzytBheOVx8wrj8qGvqj0=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14S4wei0062149
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 27 May 2021 23:58:40 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 27
- May 2021 23:58:39 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 27 May 2021 23:58:39 -0500
-Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14S4wInC088708;
-        Thu, 27 May 2021 23:58:36 -0500
-From:   Lokesh Vutla <lokeshvutla@ti.com>
-To:     <thierry.reding@gmail.com>, <u.kleine-koenig@pengutronix.de>,
-        <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>
-CC:     <tony@atomide.com>, Sekhar Nori <nsekhar@ti.com>,
-        Vignesh R <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
-        <linux-pwm@vger.kernel.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux OMAP Mailing List <linux-omap@vger.kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: [PATCH v2 4/4] dt-bindings: pwm: pwm-tiehrpwm: Add compatible string for AM64 SoC
-Date:   Fri, 28 May 2021 10:28:17 +0530
-Message-ID: <20210528045817.16618-5-lokeshvutla@ti.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210528045817.16618-1-lokeshvutla@ti.com>
-References: <20210528045817.16618-1-lokeshvutla@ti.com>
+        id S234724AbhE1FSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 01:18:53 -0400
+Received: from gecko.sbs.de ([194.138.37.40]:38791 "EHLO gecko.sbs.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234071AbhE1FSx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 May 2021 01:18:53 -0400
+Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
+        by gecko.sbs.de (8.15.2/8.15.2) with ESMTPS id 14S5H3aE027403
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 28 May 2021 07:17:03 +0200
+Received: from [167.87.36.150] ([167.87.36.150])
+        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 14S59hwp031272;
+        Fri, 28 May 2021 07:09:43 +0200
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am65-main: Add ICSSG MDIO nodes
+To:     Suman Anna <s-anna@ti.com>, Nishanth Menon <nm@ti.com>
+Cc:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20210514224759.9987-1-s-anna@ti.com>
+ <20210514224759.9987-2-s-anna@ti.com>
+From:   Jan Kiszka <jan.kiszka@siemens.com>
+Message-ID: <f1930b9c-1a36-dd82-b276-908375b3e1c8@siemens.com>
+Date:   Fri, 28 May 2021 07:09:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20210514224759.9987-2-s-anna@ti.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible string for AM64 SoC in device tree binding.
-EPWM IP in AM64 does not support High resolution, so named epwm instead
-of ehrpwm in compatible. However IP is till compatible with features
-supported by driver with ti,am3352-ehrpwm compatible.
+On 15.05.21 00:47, Suman Anna wrote:
+> From: Roger Quadros <rogerq@ti.com>
+> 
+> The ICSSGs on K3 AM65x SoCs contain an MDIO controller that can
+> be used to control external PHYs associated with the Industrial
+> Ethernet peripherals within each ICSSG instance. The MDIO module
+> used within the ICSSG is similar to the MDIO Controller used
+> in TI Davinci SoCs. A bus frequency of 1 MHz is chosen for the
+> MDIO operations.
+> 
+> The nodes are added and enabled in the common k3-am65-main.dtsi
+> file by default, and disabled in the existing AM65 board dts
+> files. These nodes need pinctrl lines, and so should be enabled
+> only on boards where they are actually wired and pinned out for
+> ICSSG Ethernet. Any new board dts file should disable these if
+> they are not sure.
+> 
+> Signed-off-by: Roger Quadros <rogerq@ti.com>
+> [s-anna@ti.com: move the disabled status to board dts files]
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> ---
+>  .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 12 ++++++++
+>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi      | 30 +++++++++++++++++++
+>  .../arm64/boot/dts/ti/k3-am654-base-board.dts | 12 ++++++++
+>  3 files changed, 54 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> index de763ca9251c..63140eaba524 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> @@ -653,3 +653,15 @@ &pcie1_rc {
+>  &pcie1_ep {
+>  	status = "disabled";
+>  };
+> +
+> +&icssg0_mdio {
+> +	status = "disabled";
+> +};
+> +
+> +&icssg1_mdio {
+> +	status = "disabled";
+> +};
+> +
+> +&icssg2_mdio {
+> +	status = "disabled";
+> +};
 
-Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
----
- Documentation/devicetree/bindings/pwm/pwm-tiehrpwm.yaml | 1 +
- 1 file changed, 1 insertion(+)
+We will need this here for PRU networking. What would be the impact of
+leaving it enabled already at this stage?
 
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-tiehrpwm.yaml b/Documentation/devicetree/bindings/pwm/pwm-tiehrpwm.yaml
-index 84a8d6d38cee..ee312cb210e6 100644
---- a/Documentation/devicetree/bindings/pwm/pwm-tiehrpwm.yaml
-+++ b/Documentation/devicetree/bindings/pwm/pwm-tiehrpwm.yaml
-@@ -22,6 +22,7 @@ properties:
-               - ti,am4372-ehrpwm
-               - ti,dra746-ehrpwm
-               - ti,am654-ehrpwm
-+              - ti,am64-epwm
-           - const: ti,am3352-ehrpwm
- 
-   reg:
+Jan
+
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> index cb340d1b401f..25ec7aba841a 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> @@ -1051,6 +1051,16 @@ tx_pru0_1: txpru@c000 {
+>  			reg-names = "iram", "control", "debug";
+>  			firmware-name = "am65x-txpru0_1-fw";
+>  		};
+> +
+> +		icssg0_mdio: mdio@32400 {
+> +			compatible = "ti,davinci_mdio";
+> +			reg = <0x32400 0x100>;
+> +			clocks = <&k3_clks 62 3>;
+> +			clock-names = "fck";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			bus_freq = <1000000>;
+> +		};
+>  	};
+>  
+>  	icssg1: icssg@b100000 {
+> @@ -1182,6 +1192,16 @@ tx_pru1_1: txpru@c000 {
+>  			reg-names = "iram", "control", "debug";
+>  			firmware-name = "am65x-txpru1_1-fw";
+>  		};
+> +
+> +		icssg1_mdio: mdio@32400 {
+> +			compatible = "ti,davinci_mdio";
+> +			reg = <0x32400 0x100>;
+> +			clocks = <&k3_clks 63 3>;
+> +			clock-names = "fck";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			bus_freq = <1000000>;
+> +		};
+>  	};
+>  
+>  	icssg2: icssg@b200000 {
+> @@ -1313,5 +1333,15 @@ tx_pru2_1: txpru@c000 {
+>  			reg-names = "iram", "control", "debug";
+>  			firmware-name = "am65x-txpru2_1-fw";
+>  		};
+> +
+> +		icssg2_mdio: mdio@32400 {
+> +			compatible = "ti,davinci_mdio";
+> +			reg = <0x32400 0x100>;
+> +			clocks = <&k3_clks 64 3>;
+> +			clock-names = "fck";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			bus_freq = <1000000>;
+> +		};
+>  	};
+>  };
+> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> index 9e87fb313a54..be905a006a97 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> @@ -537,3 +537,15 @@ &mcasp2 {
+>  &dss {
+>  	status = "disabled";
+>  };
+> +
+> +&icssg0_mdio {
+> +	status = "disabled";
+> +};
+> +
+> +&icssg1_mdio {
+> +	status = "disabled";
+> +};
+> +
+> +&icssg2_mdio {
+> +	status = "disabled";
+> +};
+> 
+
 -- 
-2.31.1
-
+Siemens AG, T RDA IOT
+Corporate Competence Center Embedded Linux
