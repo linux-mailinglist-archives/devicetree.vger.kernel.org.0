@@ -2,51 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13D02394468
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 16:47:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D884A394469
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 16:47:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234845AbhE1Os7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 10:48:59 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:55624 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234752AbhE1Os6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 10:48:58 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14SElJBl101735;
-        Fri, 28 May 2021 09:47:19 -0500
+        id S235065AbhE1OtH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 10:49:07 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:55898 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234752AbhE1OtC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 10:49:02 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14SElOBP048201;
+        Fri, 28 May 2021 09:47:24 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1622213239;
-        bh=JAbiSJamzsBRZ+d4nOMytfKJrNTDLM/S3s38pw9pBpE=;
-        h=From:To:CC:Subject:Date;
-        b=vs+HRah8eh/DM3YfR9nQCw6l6STbGPDZ9HI+UOEBPMhuljAGxoBMwK3xLXlFHcms1
-         5zXdKXrAqlYdMyOZpOYVj0Zl2ZDiybTqie9x6PtuSHRaWqYqtwvhhHE4Mly63XW7bD
-         Ht5tcxZfh5hmDK3153aH+09KgZ3s1upuQ0J8KzSo=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14SElJtQ124345
+        s=ti-com-17Q1; t=1622213244;
+        bh=9LduwMwuGBgXOnZ/6s4cdxyV8j50qug0k9kdrB1zYEY=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=IbiNcBgT57bofkVMFAfGdbocOTcNfStjiY9EsEYbfZ+QzV6faWhrlcbiaEWPbZngE
+         9v4hNvheFAEKWcx1AL346Oo9egmMu+OyR9PtbB5ONWAv12ooHox/T08DQUu4jFiaEV
+         ez+Xxh7kd39z+LPG4quAdXsL/ifq26WrkCawAv/U=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14SElOIf116386
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 28 May 2021 09:47:19 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+        Fri, 28 May 2021 09:47:24 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 28
- May 2021 09:47:18 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ May 2021 09:47:23 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Fri, 28 May 2021 09:47:19 -0500
+ Frontend Transport; Fri, 28 May 2021 09:47:23 -0500
 Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14SElIPe033535;
-        Fri, 28 May 2021 09:47:18 -0500
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14SElNRn080010;
+        Fri, 28 May 2021 09:47:23 -0500
 Received: from localhost ([10.250.35.153])
-        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 14SElIgk005114;
-        Fri, 28 May 2021 09:47:18 -0500
+        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 14SElNE9005127;
+        Fri, 28 May 2021 09:47:23 -0500
 From:   Suman Anna <s-anna@ti.com>
 To:     Nishanth Menon <nm@ti.com>
 CC:     Lokesh Vutla <lokeshvutla@ti.com>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH 0/4] Add R5F nodes on TI K3 AM64x SoCs
-Date:   Fri, 28 May 2021 09:47:14 -0500
-Message-ID: <20210528144718.25132-1-s-anna@ti.com>
+Subject: [PATCH 1/4] arm64: dts: ti: k3-am64-main: Add MAIN domain R5F cluster nodes
+Date:   Fri, 28 May 2021 09:47:15 -0500
+Message-ID: <20210528144718.25132-2-s-anna@ti.com>
 X-Mailer: git-send-email 2.30.1
+In-Reply-To: <20210528144718.25132-1-s-anna@ti.com>
+References: <20210528144718.25132-1-s-anna@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -55,47 +57,138 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
+The AM64x SoCs have 2 dual-core Arm Cortex-R5F processor (R5FSS)
+subsystems/clusters. Both the R5F clusters are present within the
+MAIN domain (MAIN_R5FSS0 & MAIN_R5FSS1). Each of these can be
+configured at boot time to be either run in a new "Single-CPU" mode
+or in an Asymmetric Multi Processing (AMP) fashion in Split-mode.
+The mode is restricted to "Single-CPU" on some devices with the
+appropriate eFuse bit set, but the most common devices support both
+modes. These subsystems have 64 KB each Tightly-Coupled Memory (TCM)
+internal memories for each core split between two banks - ATCM and
+BTCM (further interleaved into two banks). The TCMs of both Cores
+are combined in Single-CPU mode to provide a larger 128 KB of memory.
+The other notable difference is that the TCMs are spaced 1 MB apart
+on these SoCs unlike the existing SoCs.
 
-The TI K3 R5F remoteproc driver support for the R5F instances on AM64x
-SoCs will be merged for 5.14-rc1, and this series adds the corresponding
-base dt nodes for the R5F remote processors on TI K3 AM64x SoCs. This
-series along with the corresponding driver changes allows to boot these
-processors successfully on applicable TI K3 AM64x EVM and SK boards. The
-series uses previously merged mailbox nodes.
+Add the DT nodes for both these MAIN domain R5F cluster/subsystems,
+the two R5F cores are added as child nodes to each of the corresponding
+R5F cluster node. Both the clusters are configured to run in Split mode
+by default, with the ATCMs enabled to allow the R5 cores to execute
+code from DDR with boot-strapping code from ATCM. The inter-processor
+communication between the main A72 cores and these processors is
+achieved through shared memory and Mailboxes.
 
-The R5Fs on AM64x slightly differ from earlier K3 SoCs in that they support
-a new "Single-CPU" mode. Please see the driver changes cover-letter for
-additional feature differences [1].
+The following firmware names are used by default for these cores, and
+can be overridden in a board dts file if desired:
+  MAIN R5FSS0 Core0: am64-main-r5f0_0-fw (both in Single-CPU & Split modes)
+  MAIN R5FSS0 Core1: am64-main-r5f0_1-fw (needed only in Split mode)
+  MAIN R5FSS1 Core0: am64-main-r5f1_0-fw (both in Single-CPU & Split modes)
+  MAIN R5FSS1 Core1: am64-main-r5f1_1-fw (needed only in Split mode)
 
-Patches are on top of the latest v5.13-rc1 tag + the AM64 R5F bindings.
-Bjorn has staged a tag from remoteproc tree with just the bindings [2]
-that you can use for merging this series for v5.14. The driver support
-will come through remoteproc tree. The patches follow the same style to
-similar patches added for J7200 SoCs [3]. 
+NOTE:
+A R5FSS cluster can be configured in "Single-CPU" mode by using a
+value of 2 for the "ti,cluster-mode" property. Value of 1 is not
+permitted (fails the dtbs_check).
 
-I have validated the IPC functionality using System Firmware v2021.01a
-and corresponding IPC example firmwares.
+Signed-off-by: Suman Anna <s-anna@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 84 ++++++++++++++++++++++++
+ 1 file changed, 84 insertions(+)
 
-regards
-Suman
-
-[1] https://patchwork.kernel.org/project/linux-remoteproc/cover/20210318215842.8196-1-s-anna@ti.com/
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/andersson/remoteproc.git/log/?h=20210327143117.1840-2-s-anna@ti.com 
-[3] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210111184554.6748-1-s-anna@ti.com/
-
-Suman Anna (4):
-  arm64: dts: ti: k3-am64-main: Add MAIN domain R5F cluster nodes
-  arm64: dts: ti: k3-am642-evm/sk: Add mailboxes to R5Fs
-  arm64: dts: ti: k3-am642-evm/sk: Add DDR carveout memory nodes for
-    R5Fs
-  arm64: dts: ti: k3-am642-evm/sk: Reserve some on-chip SRAM for R5Fs
-
- arch/arm64/boot/dts/ti/k3-am64-main.dtsi |  84 +++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am642-evm.dts  | 100 +++++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am642-sk.dts   | 100 +++++++++++++++++++++++
- 3 files changed, 284 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+index b2bcbf23eefd..65e34916c717 100644
+--- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+@@ -672,4 +672,88 @@ mailbox0_cluster7: mailbox@29070000 {
+ 		ti,mbox-num-users = <4>;
+ 		ti,mbox-num-fifos = <16>;
+ 	};
++
++	main_r5fss0: r5fss@78000000 {
++		compatible = "ti,am64-r5fss";
++		ti,cluster-mode = <0>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0x78000000 0x00 0x78000000 0x10000>,
++			 <0x78100000 0x00 0x78100000 0x10000>,
++			 <0x78200000 0x00 0x78200000 0x08000>,
++			 <0x78300000 0x00 0x78300000 0x08000>;
++		power-domains = <&k3_pds 119 TI_SCI_PD_EXCLUSIVE>;
++
++		main_r5fss0_core0: r5f@78000000 {
++			compatible = "ti,am64-r5f";
++			reg = <0x78000000 0x00010000>,
++			      <0x78100000 0x00010000>;
++			reg-names = "atcm", "btcm";
++			ti,sci = <&dmsc>;
++			ti,sci-dev-id = <121>;
++			ti,sci-proc-ids = <0x01 0xff>;
++			resets = <&k3_reset 121 1>;
++			firmware-name = "am64-main-r5f0_0-fw";
++			ti,atcm-enable = <1>;
++			ti,btcm-enable = <1>;
++			ti,loczrama = <1>;
++		};
++
++		main_r5fss0_core1: r5f@78200000 {
++			compatible = "ti,am64-r5f";
++			reg = <0x78200000 0x00008000>,
++			      <0x78300000 0x00008000>;
++			reg-names = "atcm", "btcm";
++			ti,sci = <&dmsc>;
++			ti,sci-dev-id = <122>;
++			ti,sci-proc-ids = <0x02 0xff>;
++			resets = <&k3_reset 122 1>;
++			firmware-name = "am64-main-r5f0_1-fw";
++			ti,atcm-enable = <1>;
++			ti,btcm-enable = <1>;
++			ti,loczrama = <1>;
++		};
++	};
++
++	main_r5fss1: r5fss@78400000 {
++		compatible = "ti,am64-r5fss";
++		ti,cluster-mode = <0>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0x78400000 0x00 0x78400000 0x10000>,
++			 <0x78500000 0x00 0x78500000 0x10000>,
++			 <0x78600000 0x00 0x78600000 0x08000>,
++			 <0x78700000 0x00 0x78700000 0x08000>;
++		power-domains = <&k3_pds 120 TI_SCI_PD_EXCLUSIVE>;
++
++		main_r5fss1_core0: r5f@78400000 {
++			compatible = "ti,am64-r5f";
++			reg = <0x78400000 0x00010000>,
++			      <0x78500000 0x00010000>;
++			reg-names = "atcm", "btcm";
++			ti,sci = <&dmsc>;
++			ti,sci-dev-id = <123>;
++			ti,sci-proc-ids = <0x06 0xff>;
++			resets = <&k3_reset 123 1>;
++			firmware-name = "am64-main-r5f1_0-fw";
++			ti,atcm-enable = <1>;
++			ti,btcm-enable = <1>;
++			ti,loczrama = <1>;
++		};
++
++		main_r5fss1_core1: r5f@78600000 {
++			compatible = "ti,am64-r5f";
++			reg = <0x78600000 0x00008000>,
++			      <0x78700000 0x00008000>;
++			reg-names = "atcm", "btcm";
++			ti,sci = <&dmsc>;
++			ti,sci-dev-id = <124>;
++			ti,sci-proc-ids = <0x07 0xff>;
++			resets = <&k3_reset 124 1>;
++			firmware-name = "am64-main-r5f1_1-fw";
++			ti,atcm-enable = <1>;
++			ti,btcm-enable = <1>;
++			ti,loczrama = <1>;
++		};
++	};
+ };
 -- 
 2.30.1
 
