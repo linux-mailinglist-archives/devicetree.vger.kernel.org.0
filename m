@@ -2,99 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 512C4393EBA
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 10:26:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0195A393E76
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 10:13:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236380AbhE1I1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 04:27:43 -0400
-Received: from fgw22-4.mail.saunalahti.fi ([62.142.5.109]:62719 "EHLO
-        fgw22-4.mail.saunalahti.fi" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236388AbhE1I1m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 May 2021 04:27:42 -0400
-X-Greylist: delayed 963 seconds by postgrey-1.27 at vger.kernel.org; Fri, 28 May 2021 04:27:41 EDT
-Received: from darkstar.musicnaut.iki.fi (85-76-82-161-nat.elisa-mobile.fi [85.76.82.161])
-        by fgw22.mail.saunalahti.fi (Halon) with ESMTP
-        id 1822b824-bf8c-11eb-88cb-005056bdf889;
-        Fri, 28 May 2021 11:10:01 +0300 (EEST)
-Date:   Fri, 28 May 2021 11:09:58 +0300
-From:   Aaro Koskinen <aaro.koskinen@iki.fi>
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
-Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-        linux-mm@kvack.org, mark.rutland@arm.com, kevin.tian@intel.com,
-        jacob.jun.pan@linux.intel.com, catalin.marinas@arm.com,
-        joro@8bytes.org, robin.murphy@arm.com, robh+dt@kernel.org,
-        yi.l.liu@intel.com, Jonathan.Cameron@huawei.com,
-        zhangfei.gao@linaro.org, will@kernel.org, christian.koenig@amd.com,
-        baolu.lu@linux.intel.com
-Subject: Re: [PATCH v4 21/26] iommu/arm-smmu-v3: Ratelimit event dump
-Message-ID: <20210528080958.GA60351@darkstar.musicnaut.iki.fi>
-References: <20200224182401.353359-1-jean-philippe@linaro.org>
- <20200224182401.353359-22-jean-philippe@linaro.org>
+        id S234673AbhE1IOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 04:14:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32968 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230187AbhE1IOn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 04:14:43 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 558C7C061574;
+        Fri, 28 May 2021 01:13:09 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id t21so1284339plo.2;
+        Fri, 28 May 2021 01:13:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WFpvdJz81Rofrn0SCvWRF+k7het9w/ooU9Ou53sso1U=;
+        b=RQfAOsj/JemwJemXCE6fis1wMnfcIp6Y+sHLpnm3HOZg1fPMfqMp1raHj6xbFggLAh
+         8qYd7A+Rx+nd9H+HezIX1/GpsOvzukrzIUmLfPhVWEy2BF+rvQFzZGe0bWK1iPWW5m/H
+         6g12Gr3CAV7K6lqgHF/WrxOTTJYOYcQZDpgYTcPVcJuO+eIV8RFqlIcUrnwhxrX8V6ML
+         DlF7euw8OBla2Ur0XBAj8oWru5S7u9BYsOahSqoLX2N8NG+Vi2lDRzqqflDsgZLmCfih
+         pT3pDHNjysGbC2DsFzDC3TSqPB7GAbw7qGdU3SKJwRH2w/vArotIvbRv8fNg88t5id3i
+         +Xig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WFpvdJz81Rofrn0SCvWRF+k7het9w/ooU9Ou53sso1U=;
+        b=BfSS8WFVp2vxwhqFc1NAPunqXfgikNB/7JqZXQDqZSGXSqvDRP/yF6j26APt37Fl4j
+         Pi9EldTBABiTVpQG9EDDvX5SsNtqvsxZjS8MG+HlpI5NauomVx8sSB4CUOeW/dbGNyPs
+         lvkqeYSm3cuwdMkObekJY+TFe0gv7czW9dLSBSSFRL984SCsF0q9iiDcIODxyAMImiVr
+         D23zvht6a/lsmyCm9dOrpVHdJFWtyWHn3hyBLPDESmHh3RbDyvHEH2J9wxw3ynnN9Od+
+         zeICfSkrW+VeSWt2MdLGBRHz8XlEo8WKNxMPrH8na/yXHAQMKmtTfq+DiUe+o/VRjIvD
+         KNZg==
+X-Gm-Message-State: AOAM533rd4uoEM/fvZlZhpkdQxqZdxRRqvMMBoV74MVI53mCdTSq3own
+        rl1sJrVIfBUT4R4Sn73MCS0=
+X-Google-Smtp-Source: ABdhPJz+VoBj7k8vwcL64HR51mNk+YLRUvpLavlP+rVuUsDqQcGrzR7m5IyQvsxLL+ZbK6YMUSBeJw==
+X-Received: by 2002:a17:90a:d90a:: with SMTP id c10mr3032756pjv.209.1622189588876;
+        Fri, 28 May 2021 01:13:08 -0700 (PDT)
+Received: from localhost.localdomain ([2402:7500:46b:3194:b541:419e:4878:8a93])
+        by smtp.gmail.com with ESMTPSA id z18sm3846594pfc.23.2021.05.28.01.13.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 May 2021 01:13:08 -0700 (PDT)
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+To:     sre@kernel.org, matthias.bgg@gmail.com,
+        matti.vaittinen@fi.rohmeurope.com
+Cc:     broonie@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        inux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        rdunlap@infradead.org, gene_chen@richtek.com,
+        Wilma.Wu@mediatek.com, shufan_lee@richtek.com,
+        cy_huang@richtek.com, benjamin.chao@mediatek.com
+Subject: [PATCH v5 0/3] power: supply: mt6360_charger: add MT6360 charger support
+Date:   Fri, 28 May 2021 16:12:57 +0800
+Message-Id: <20210528081300.64759-1-gene.chen.richtek@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200224182401.353359-22-jean-philippe@linaro.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This patch series add MT6360 Charger support contains driver and binding
+document
 
-On Mon, Feb 24, 2020 at 07:23:56PM +0100, Jean-Philippe Brucker wrote:
-> When a device or driver misbehaves, it is possible to receive events
-> much faster than we can print them out. Ratelimit the printing of
-> events.
-> 
-> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+Gene Chen (3)
+ lib: add linear range get selector within
+ dt-bindings: power: Add bindings document for Charger support on MT6360 PMIC
+ power: supply: mt6360_charger: add MT6360 charger support
 
-Tested-by: Aaro Koskinen <aaro.koskinen@nokia.com>
+ Documentation/devicetree/bindings/power/supply/mt6360_charger.yaml |   48 
+ drivers/power/supply/Kconfig                                       |   11 
+ drivers/power/supply/Makefile                                      |    1 
+ drivers/power/supply/mt6360_charger.c                              |  856 ++++++++++
+ include/linux/linear_range.h                                       |    2 
+ lib/linear_ranges.c                                                |   31 
+ 6 files changed, 949 insertions(+)
 
-> During the SVA tests when the device driver didn't properly stop DMA
-> before unbinding, the event queue thread would almost lock-up the server
-> with a flood of event 0xa. This patch helped recover from the error.
+changelogs between v1 & v2
+ - Add binding property with unit and custom name prefix
+ - Remove extcon device, redundant brackets and interrupts
+ - Fix power supply prop "charger type"
 
-I was just debugging a similar case, and this patch was required to
-prevent system from locking up.
+changelogs between v2 & v3
+ - Add register selector to value mapping
 
-Could you please resend this patch independently from the other patches
-in the series, as it seems it's a worthwhile fix and still relevent for
-current kernels. Thanks,
+changelogs between v3 & v4
+ - move pdata vinovp to mt6360_chg_info
+ - remove unuse sysfs attribute
+ - refactor debug log and warning
+ - add power supply prop input voltage limit
 
-A.
+changelogs between v4 & v5
+ - add linear range selector mapping
+ - use linear range to map charger setting
 
-> ---
->  drivers/iommu/arm-smmu-v3.c | 13 ++++++++-----
->  1 file changed, 8 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/iommu/arm-smmu-v3.c b/drivers/iommu/arm-smmu-v3.c
-> index 28f8583cd47b..6a5987cce03f 100644
-> --- a/drivers/iommu/arm-smmu-v3.c
-> +++ b/drivers/iommu/arm-smmu-v3.c
-> @@ -2243,17 +2243,20 @@ static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
->  	struct arm_smmu_device *smmu = dev;
->  	struct arm_smmu_queue *q = &smmu->evtq.q;
->  	struct arm_smmu_ll_queue *llq = &q->llq;
-> +	static DEFINE_RATELIMIT_STATE(rs, DEFAULT_RATELIMIT_INTERVAL,
-> +				      DEFAULT_RATELIMIT_BURST);
->  	u64 evt[EVTQ_ENT_DWORDS];
->  
->  	do {
->  		while (!queue_remove_raw(q, evt)) {
->  			u8 id = FIELD_GET(EVTQ_0_ID, evt[0]);
->  
-> -			dev_info(smmu->dev, "event 0x%02x received:\n", id);
-> -			for (i = 0; i < ARRAY_SIZE(evt); ++i)
-> -				dev_info(smmu->dev, "\t0x%016llx\n",
-> -					 (unsigned long long)evt[i]);
-> -
-> +			if (__ratelimit(&rs)) {
-> +				dev_info(smmu->dev, "event 0x%02x received:\n", id);
-> +				for (i = 0; i < ARRAY_SIZE(evt); ++i)
-> +					dev_info(smmu->dev, "\t0x%016llx\n",
-> +						 (unsigned long long)evt[i]);
-> +			}
->  		}
->  
->  		/*
+
