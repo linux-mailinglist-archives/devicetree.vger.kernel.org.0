@@ -2,332 +2,325 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AFB2393AC0
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 02:54:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F28E1393AB4
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 02:53:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235540AbhE1A4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 20:56:00 -0400
-Received: from mail-bn8nam12on2076.outbound.protection.outlook.com ([40.107.237.76]:50913
-        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
+        id S235968AbhE1AzW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 20:55:22 -0400
+Received: from mail-co1nam11on2135.outbound.protection.outlook.com ([40.107.220.135]:61696
+        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S233878AbhE1Az7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 May 2021 20:55:59 -0400
+        id S235764AbhE1AzU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 May 2021 20:55:20 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IS9QMph3QOFtLh56T+uNK2HAKUWcWefmZ5svaBE8+vhAKI/4A55ZzKQ438R8Ni1YrrMg4D98vJZgwGZrkb49G5Ub4op1YuU2CPX2YEgFMMI9qwbVBF6/+QZtAtUv+LyPVTbSggGh7TOUOYM2Tt+fW+83p1c7BL8RVcWlua2sRl+3xHH7hY6hnshhrVpRhYohhC190Jzj6TFpCtK4WoXiNPhn4rTSuh/LHAKytzPnnuS2Sz3A7gN3SZmkakFrGGpdnkQJylS2p0+AAs/6R1J8TWIymu8n7GWn30/+91inipqEwaSuk8xrjn4IQw5wnXPNvQVPwOhZg4Mpl1YpepXx/g==
+ b=j+JwPwi4bTwclT1DonBN7No/HyQsE2nW0fQNT2Dr6l35CRCSawxfC4elfH8dxrM/SxWewNVnrqsSuJBnsounLsW8qsCv4ij1qDHT9i6HsCkQDwaQW+xwqmwb2a1f/iknNvEJNqy6lgfW90R8Hehnfj1efO7kOPNrkhtxNzXcwuZpAlUhQbQaZQTI5mBYvzyfeCfF5roaCdo+xackDcLe357KmASmYNgJ+OONeC6acGjKpbS00Z27AgKFpKKkZ+p/xaJ+uZpoZX91V4B4s2Tx3rH6vgiOZA1YWJVYObSmP9tVlV9tEZ5rJyvSWqyvhv8cU1m6zbTyzImwoLzSWO1NIg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OE/NR7+2MC0FI9oGGESMUwObnLdpbmsONUEn8sAUUMc=;
- b=hJ9pvYVz1HDUTYYpSHsB1K7VJ+r+vi2iRupLny37OO9Df+k5qFcwtpplKEEMjSxNzgNQQIxro+IMA9HZT0cArt626KgwH6/HbGVmRzqwYiWjJHYB0xJmzL1JJBAq7kkugHDdUD8irLpQH29rFiZwHiooRK8PGBtDi6cHD5MbonRTKHARbhlQNubPqzIJL3T4/lnR9FcHKwlF6ExG8XIbWaPsBwbfTJMPK7JArL0AtOusejK99XXn4FC8jXaMX1ZH4f64xa/6v/tIMNMgx7vf+WwEu7OZPxOMsvNTeDndqAdh1F6urZOzWDQeDkfqrcDIMyKvspfJgOXLqO/d/IjjCw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
+ bh=Q39wZYcnjxMJ+4STf8QsAr2pUVl0olHlxwGASWnb0OQ=;
+ b=JWfRhK8qJCnKz6BnfC3WK9LHBcIOfFhg7Qv+8iZSKQZDFsWBqxwPcuSZbfh6MQywbhSUy1rXboS5FM24hXCWKsXBGbAG7Hn1uJ85/0um0v7wgQVAuT2i43l5zm9sQe9jRr4oBtKDOq/EfircPPzCC6MD0Z/gK3mejkqKTsxeO45Vi1vYY5N9ZsOI95UoHY+bu52VSglXFOfGZMimyhyFg/CW7QI3TwgLVN/pa0NQC1rdDly1TjdYwGeP77IuDHPGw9tLt9Gb/2Lxa3Jtp/TUbWcjCOIj9+tG8TTx+evW6XVgfQg48v/Kt5xYdPfio6e7Rwmnb1PjZwxO4KSdjyK/bQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ d=os.amperecomputing.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OE/NR7+2MC0FI9oGGESMUwObnLdpbmsONUEn8sAUUMc=;
- b=QQAtGVMWWOnOuMx/eagNp3LvlJYVYgHCGSAlQqFYbaB7z9MdmkEr55gbo1hJFXxAK0+cQH63NGHJS4sz1VwDqNkWF1DsxiIpmFqnFwQqEBsgZTLB0NaUXC68/1ny9wZ2uhaLFCqtYLkyBa4XIWLOnEfvH4rANEQb00oAaZmo1x8=
-Received: from SN6PR04CA0084.namprd04.prod.outlook.com (2603:10b6:805:f2::25)
- by DM6PR02MB7065.namprd02.prod.outlook.com (2603:10b6:5:25a::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.22; Fri, 28 May
- 2021 00:54:23 +0000
-Received: from SN1NAM02FT0051.eop-nam02.prod.protection.outlook.com
- (2603:10b6:805:f2:cafe::dd) by SN6PR04CA0084.outlook.office365.com
- (2603:10b6:805:f2::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.21 via Frontend
- Transport; Fri, 28 May 2021 00:54:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- SN1NAM02FT0051.mail.protection.outlook.com (10.97.5.34) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4150.30 via Frontend Transport; Fri, 28 May 2021 00:54:23 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Thu, 27 May 2021 17:54:08 -0700
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Thu, 27 May 2021 17:54:08 -0700
-Envelope-to: mdf@kernel.org,
- robh@kernel.org,
- trix@redhat.com,
- devicetree@vger.kernel.org,
- linux-fpga@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Received: from [172.19.73.109] (port=34046 helo=xsj-xw9400.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <lizhi.hou@xilinx.com>)
-        id 1lmQlM-0003iG-Cl; Thu, 27 May 2021 17:54:08 -0700
-Received: by xsj-xw9400.xilinx.com (Postfix, from userid 21952)
-        id 8945A6032B5; Thu, 27 May 2021 17:50:07 -0700 (PDT)
-From:   Lizhi Hou <lizhi.hou@xilinx.com>
-To:     <linux-kernel@vger.kernel.org>
-CC:     Lizhi Hou <lizhi.hou@xilinx.com>, <linux-fpga@vger.kernel.org>,
-        <maxz@xilinx.com>, <sonal.santan@xilinx.com>, <yliu@xilinx.com>,
-        <michal.simek@xilinx.com>, <stefanos@xilinx.com>,
-        <devicetree@vger.kernel.org>, <trix@redhat.com>, <mdf@kernel.org>,
-        <robh@kernel.org>, Max Zhen <max.zhen@xilinx.com>
-Subject: [PATCH V7 XRT Alveo 20/20] fpga: xrt: Kconfig and Makefile updates for XRT drivers
-Date:   Thu, 27 May 2021 17:49:59 -0700
-Message-ID: <20210528004959.61354-21-lizhi.hou@xilinx.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210528004959.61354-1-lizhi.hou@xilinx.com>
-References: <20210528004959.61354-1-lizhi.hou@xilinx.com>
-MIME-Version: 1.0
+ bh=Q39wZYcnjxMJ+4STf8QsAr2pUVl0olHlxwGASWnb0OQ=;
+ b=iZeNlSaG5MrvjVQQvn7UTEXTgBV/N4RdTmwUki7qe/uEO33taKe86jd5KaOTr6DltEi6Z4II2/HG7xrP9lPWI4VDdJCxfKlXp6s9HV8cgH7nSueqtW50llb9nkI91Tq2Fqfkb87+/w/j6s+l0XksIyG3grpA+n1ko+0tyyqvczk=
+Authentication-Results: lists.ozlabs.org; dkim=none (message not signed)
+ header.d=none;lists.ozlabs.org; dmarc=none action=none
+ header.from=os.amperecomputing.com;
+Received: from MW2PR0102MB3482.prod.exchangelabs.com (2603:10b6:302:c::32) by
+ MW2PR0102MB3483.prod.exchangelabs.com (2603:10b6:302:3::12) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4150.27; Fri, 28 May 2021 00:53:42 +0000
+Received: from MW2PR0102MB3482.prod.exchangelabs.com
+ ([fe80::1905:a396:9968:3a5]) by MW2PR0102MB3482.prod.exchangelabs.com
+ ([fe80::1905:a396:9968:3a5%5]) with mapi id 15.20.4150.027; Fri, 28 May 2021
+ 00:53:42 +0000
+Subject: Re: [PATCH v3 5/7] i2c: aspeed: Add aspeed_set_slave_busy()
+To:     Ryan Chen <ryan_chen@aspeedtech.com>,
+        Corey Minyard <minyard@acm.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "openipmi-developer@lists.sourceforge.net" 
+        <openipmi-developer@lists.sourceforge.net>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>
+Cc:     Open Source Submission <patches@amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>
+References: <20210519074934.20712-1-quan@os.amperecomputing.com>
+ <20210519074934.20712-6-quan@os.amperecomputing.com>
+ <HK0PR06MB3380FD2B7649CFB48BEA2D4FF2269@HK0PR06MB3380.apcprd06.prod.outlook.com>
+ <1648966e-3e45-9661-c5dc-5ac2f40e2581@os.amperecomputing.com>
+ <HK0PR06MB338093E5E0D0DBA9EA7C1168F2269@HK0PR06MB3380.apcprd06.prod.outlook.com>
+ <917237ce-98f8-df5f-32b6-b4145ac47ac9@os.amperecomputing.com>
+ <HK0PR06MB33805BB4A4D35192A0D95E59F2259@HK0PR06MB3380.apcprd06.prod.outlook.com>
+From:   Quan Nguyen <quan@os.amperecomputing.com>
+Message-ID: <14d58497-44e6-265a-af9d-7189379784d5@os.amperecomputing.com>
+Date:   Fri, 28 May 2021 07:53:28 +0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
+ Gecko/20100101 Thunderbird/78.10.2
+In-Reply-To: <HK0PR06MB33805BB4A4D35192A0D95E59F2259@HK0PR06MB3380.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
+X-Originating-IP: [2402:800:623c:5f9b:282b:d89a:b291:5ff0]
+X-ClientProxiedBy: HK2PR02CA0158.apcprd02.prod.outlook.com
+ (2603:1096:201:1f::18) To MW2PR0102MB3482.prod.exchangelabs.com
+ (2603:10b6:302:c::32)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2402:800:623c:5f9b:282b:d89a:b291:5ff0] (2402:800:623c:5f9b:282b:d89a:b291:5ff0) by HK2PR02CA0158.apcprd02.prod.outlook.com (2603:1096:201:1f::18) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.20 via Frontend Transport; Fri, 28 May 2021 00:53:37 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 85b11c6c-0ba8-4f74-6c80-08d9217322cc
-X-MS-TrafficTypeDiagnostic: DM6PR02MB7065:
-X-Microsoft-Antispam-PRVS: <DM6PR02MB706525A9414612EB66D67686A1229@DM6PR02MB7065.namprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-MS-Office365-Filtering-Correlation-Id: 56541955-1b82-4957-d769-08d9217309bf
+X-MS-TrafficTypeDiagnostic: MW2PR0102MB3483:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MW2PR0102MB3483F61DF1DB680F83373446F2229@MW2PR0102MB3483.prod.exchangelabs.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: K7isT1vNETSoddnpKa0pKe2UNFTZyCXqNR0GCx4d9gq1n2iDFTx+IMznK4E2NRI3mp+bm6WVFviXgXCjakqN9fQ9uqKonD4GkAVEsA/GWZHCDFUiEfCpIiTh4erNoXSlSdW1HYAyPqixnZKJV+cZgC+8Qml5Vm11ckJ+A/Z8N9oumswhEXJPFOXtiG0xdK1QT4dEtIyQBKdrKbDqUj9+V5ozEwolUzFgHzwmJx4xt+5oOOH7rxaYSufHPNvn7O7OXoU550Eux+kgjTMGLFzOV9234JrbqBuUFIjV9Z07pNBmWgIpDBdiaHIZ84QYONilOPCKUHLpTMXB0q8jqVc/saOad4td6YCi9dazfDq/1ladjJisdDlwLf+mJoOcgFq28pwz0TskhbuFgPjb8Zm91JxcCLOFEZBUEoIImhomlFhA1WCnaMbY/kUdgxsY5owFeq0AyJTZ3okmveE4Ymf5PsZr4yOU2Y9XQOik75jfd6KiQ04SZFOBPt9y3eI+OHcmHekCFR5Kw7+maygM0QFLSO+opFSJQ6IG1I4UhKKUHXb3sqiXaEeYYbl8SRJXoJcAaViRBASH0IRbGSdtyV7unfiO1/puadWbGItI0f8dV70rZ+THDCSkLOm3RsBPCrpr6qcB3ZZt2o3acXpMHoTtoD5PafkJpshMXNVEtVPwa80=
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(346002)(396003)(376002)(136003)(39850400004)(46966006)(36840700001)(36756003)(5660300002)(82310400003)(478600001)(54906003)(6266002)(316002)(36906005)(8936002)(2906002)(26005)(186003)(6916009)(15650500001)(42186006)(8676002)(107886003)(336012)(2616005)(426003)(6666004)(1076003)(4326008)(44832011)(47076005)(70586007)(70206006)(82740400003)(7636003)(36860700001)(356005)(83380400001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2021 00:54:23.7614
+X-Microsoft-Antispam-Message-Info: VQzJCcvfCQrxkkvs8P4XHa+nh905K/K6TyVMLzOp3rXS5tMFzgSquft8tDlOpfGsohBzRAstqFqRy1m5kkqw5Y57CipvTIufCJN5zcMqH8yhBJuvXmJRC6ktBLVgq1WxTrplIUB9AA7FHuysaV3fNIvI2Tt3dnqosRa2qYoPR3rm0J17d+NcraOCXZYhW4zbKKepagSSj/vZXMz8wWO7BolPdb4hEkeoLxWWF7PmqdpnhZW/quGsgISGD9URE9kn08lepwF9qfKgwkqUJrAmawzNCMmWNbPMeVOywgWQq2icwskSjQa+xrtuzbhQiNMqQPdPcqggwe1FpuNSUPDQitNoVPgDxe2OZme1VZ4z3DTPNf1gmDhTLHL5uknysUWGohteQ14IcoIQnlP87RV66kaZOeEQfGMT2OUblIFmXaw7Q+sLoFL+MciE6SinT3DQwkydVRWthj5I+DpPOg5LqJlGc+pwwl7pVCPSqEXuyqK/M2SAWonsNVKg+CkvGHBcOmJYa8Xkpt2IYk79Maal35Dm0yKRJ+/zHqq+7LtSDU7jJzG7bT/H2Zq8VWqZ58qd10yAde4Fjfv0CEheGBeo8lB/sjGGiIqFaAaQxByTZiHLCSW7OJf9KUE9Zj+aEJaxpqk+haFm4MI3byyHFRFbua2URTFE08PeTm7+V83fLrIjH7u2hLU5QA6vUaYg2atV+SoXbHsJpX990/pz4Gi7lA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW2PR0102MB3482.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(366004)(136003)(39830400003)(396003)(376002)(110136005)(31686004)(5660300002)(4326008)(66946007)(66476007)(38100700002)(83380400001)(6666004)(8936002)(31696002)(478600001)(186003)(54906003)(6486002)(52116002)(2906002)(316002)(16526019)(8676002)(7416002)(86362001)(53546011)(66556008)(921005)(2616005)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?My8xTXBTRkxRdndZcDIvQlEwdlRBdk1vMjA1Z2tXVTVxT29lYzVUdWpVZVdG?=
+ =?utf-8?B?a0lUSzh5MHBFQldub0UxR1kzMGxZV1RaaUk1VkJXY0pLc1RRaVVGR0FPV1BE?=
+ =?utf-8?B?dSsxVk9tdVVOME9jbVF2aVpoVkJlb1NxQTZwVmRnQVNEek5FaGVnSVpGM0lq?=
+ =?utf-8?B?Y2ZEVnNSVW4xaW92ZzlHSWtzVHZQcVJ4WUpZRmxOZFd0OXlTZitNY0ZNUUlo?=
+ =?utf-8?B?VnExWWt2K0tWb1hpT2ZIa2t6NXEvOFlaMkJOTFNGeUl2dHlQRnhFTnlHSGVC?=
+ =?utf-8?B?em9iajlXYy9LbUVhNUV2VldSUERHZTRkQWpEemw2eVBDVmVUa3FvU0ljL0RF?=
+ =?utf-8?B?QllTVGsyMmhhdlk0Y0lUUnZvbXZuWWozdGswK2h1T1dGUnZYOHV3bjhCYzdX?=
+ =?utf-8?B?WnFNSVpuNmRTaTF1bDJ2QkRKTTN6TXppVFZWMkNUNndqK0NkSjNCNmtLRU5T?=
+ =?utf-8?B?L3NYa1d3eHFxSlk2QkdjazVLRmNadkpxM2JrYWVGOVFEYkwweGR1WHdPMFJ4?=
+ =?utf-8?B?MkxKdXd3cUlBYnZyNXdxc1lDRllYYy82QytJOTEzU2ZzMjdlVEx4RWwrUlRJ?=
+ =?utf-8?B?WmhEUG1xMnRCb3RtdXFCaFBrNi9ZVURJM0Nld09MOHM2OXJZbzRoRzJNaEhU?=
+ =?utf-8?B?WDQ2VE52dEJKSnNXcjBXU3lkRVVLbW1XblNMeDg2Vi9sejJNdkFYSFNjWWdv?=
+ =?utf-8?B?Y1FJQzVZRWNXd1lpT3orYUV4a05kSzVDazdlS3VhYitmOE5BeTFnUFlrVmJN?=
+ =?utf-8?B?Uy9hZXFZNTJzWW5IYjBGSWNTYkxYZ3NMOVhTcWl5NnlQdm5MajBqMXpzOWJV?=
+ =?utf-8?B?NDB5VURKZGpnYU9oSUFaR2huMzc2K1hJdVMxSlNYWmJsK1BBZmR3TWF3TkRZ?=
+ =?utf-8?B?ZkQwRmRMUXdLZkd5RjdnQ1Rnd2prNy95MTBtbHVJeEJSRkdsdmkvZVZqLzBO?=
+ =?utf-8?B?UDFZbXNiSit1MDRKcHNIYmtDTkJKOXlHN3F1U0N2WGw3TGg1bWdzRzFJazd2?=
+ =?utf-8?B?VFZ1eHJreDhyZEJkMnNPWm0xb3FYaTNHaURVQ1pjdlVGYVFGMnoyOW1BcmNM?=
+ =?utf-8?B?MXVsL0pSWUVxRGwvampxdVZlOEY2dXZITHpqMGVwY05Xd0xKM0ltc2RGbzhO?=
+ =?utf-8?B?bnRhbzVBSWMrdVJNbk9iL01UOVRlMWJqSmxhMGtJU3BGNHRQVGRBTE1UMGFh?=
+ =?utf-8?B?M2dqNUhSaUtoZVEvMWFHVDlTeE5HcmJlNGk5Z3E2Rk5ZSk5lVE1ZakIyRVJx?=
+ =?utf-8?B?dVBnZGlldThQRjR3YUJ0OEtiQ3dLdHVhRkNtYmNUdjFDQlBVWHM1VzV4QVdj?=
+ =?utf-8?B?SmpzbHdUM2M3MnRzVFFBUlBuYVZKejBEWnNCMkRIeEV6ZncvVWJ3MER4OURi?=
+ =?utf-8?B?NlRCcmFuZE1ONnh5dHJiY0ovQUdtd0R2UmZ0RXVSZ3VpY2ZhQmhHemc3TjV1?=
+ =?utf-8?B?RHVOajRzZFJ0dkF5SjdNVHFkQXlKaVJFTWhWMzQwVnpJN3RzSVR2VXhpNkxM?=
+ =?utf-8?B?WkQ2NmQ2QVdxa1hHVU1zNlhZUDlKaFMrMGlXVkRvaU5ubENTTGhhVkQzQ25B?=
+ =?utf-8?B?LzFNQ29tMEowNGg0TDBjYjFMZDVjNEZBY0tRWXhrMDRWVHJDNTlvRnJseklm?=
+ =?utf-8?B?VkJENlRad0NMUDJ4cDk5b2d0b0RHTnkwdDg3UndvU0ZaWTR4NEk5eXppaHo0?=
+ =?utf-8?B?UXNnTHdscFRJMmF1SDBVWndBRFJVZGUySVRDa2JwdjBjcElwbERSTEZhMFR5?=
+ =?utf-8?B?aW5MN2syeEVBMnNzWXN4bDU0ajFyRXhhMlNKT0lPSTZiUmoyUzdLNWRhM0cw?=
+ =?utf-8?B?cXZVOXArZTRMSUovMVBWMFFla2g3RjVkQnlpcURCaFV1NlZPR1lmMXc3WUhr?=
+ =?utf-8?Q?H6YznKBoMLZGM?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 56541955-1b82-4957-d769-08d9217309bf
+X-MS-Exchange-CrossTenant-AuthSource: MW2PR0102MB3482.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2021 00:53:42.1147
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 85b11c6c-0ba8-4f74-6c80-08d9217322cc
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0051.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB7065
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: oD2YMYBDTiGSDpNXClScmg6UryNON4rslXKi0IYylDbFLhzZut8szT58iaZt3nZbti6Iw5OD6ZJvWiwuUwzvaEchp6BM/x0F17f0ER3YeOI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR0102MB3483
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update fpga Kconfig/Makefile and add Kconfig/Makefile for new drivers.
+On 25/05/2021 17:30, Ryan Chen wrote:
+>> -----Original Message-----
+>> From: Quan Nguyen <quan@os.amperecomputing.com>
+>> Sent: Monday, May 24, 2021 6:49 PM
+>> To: Ryan Chen <ryan_chen@aspeedtech.com>; Corey Minyard
+>> <minyard@acm.org>; Rob Herring <robh+dt@kernel.org>; Joel Stanley
+>> <joel@jms.id.au>; Andrew Jeffery <andrew@aj.id.au>; Brendan Higgins
+>> <brendanhiggins@google.com>; Benjamin Herrenschmidt
+>> <benh@kernel.crashing.org>; Wolfram Sang <wsa@kernel.org>; Philipp Zabel
+>> <p.zabel@pengutronix.de>; openipmi-developer@lists.sourceforge.net;
+>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+>> linux-aspeed@lists.ozlabs.org; linux-kernel@vger.kernel.org;
+>> linux-i2c@vger.kernel.org
+>> Cc: Open Source Submission <patches@amperecomputing.com>; Thang Q .
+>> Nguyen <thang@os.amperecomputing.com>; Phong Vo
+>> <phong@os.amperecomputing.com>; openbmc@lists.ozlabs.org
+>> Subject: Re: [PATCH v3 5/7] i2c: aspeed: Add aspeed_set_slave_busy()
+>>
+>> On 24/05/2021 17:36, Ryan Chen wrote:
+>>>> -----Original Message-----
+>>>> From: Quan Nguyen <quan@os.amperecomputing.com>
+>>>> Sent: Monday, May 24, 2021 6:20 PM
+>>>> To: Ryan Chen <ryan_chen@aspeedtech.com>; Corey Minyard
+>>>> <minyard@acm.org>; Rob Herring <robh+dt@kernel.org>; Joel Stanley
+>>>> <joel@jms.id.au>; Andrew Jeffery <andrew@aj.id.au>; Brendan Higgins
+>>>> <brendanhiggins@google.com>; Benjamin Herrenschmidt
+>>>> <benh@kernel.crashing.org>; Wolfram Sang <wsa@kernel.org>; Philipp
+>>>> Zabel <p.zabel@pengutronix.de>;
+>>>> openipmi-developer@lists.sourceforge.net;
+>>>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+>>>> linux-aspeed@lists.ozlabs.org; linux-kernel@vger.kernel.org;
+>>>> linux-i2c@vger.kernel.org
+>>>> Cc: Open Source Submission <patches@amperecomputing.com>; Thang Q .
+>>>> Nguyen <thang@os.amperecomputing.com>; Phong Vo
+>>>> <phong@os.amperecomputing.com>; openbmc@lists.ozlabs.org
+>>>> Subject: Re: [PATCH v3 5/7] i2c: aspeed: Add aspeed_set_slave_busy()
+>>>>
+>>>> On 24/05/2021 17:06, Ryan Chen wrote:
+>>>>>> -----Original Message-----
+>>>>>> From: openbmc
+>>>>>> <openbmc-bounces+ryan_chen=aspeedtech.com@lists.ozlabs.org> On
+>>>> Behalf
+>>>>>> Of Quan Nguyen
+>>>>>> Sent: Wednesday, May 19, 2021 3:50 PM
+>>>>>> To: Corey Minyard <minyard@acm.org>; Rob Herring
+>>>>>> <robh+dt@kernel.org>; Joel Stanley <joel@jms.id.au>; Andrew Jeffery
+>>>>>> <andrew@aj.id.au>; Brendan Higgins <brendanhiggins@google.com>;
+>>>>>> Benjamin Herrenschmidt <benh@kernel.crashing.org>; Wolfram Sang
+>>>>>> <wsa@kernel.org>; Philipp Zabel <p.zabel@pengutronix.de>;
+>>>>>> openipmi-developer@lists.sourceforge.net;
+>>>>>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+>>>>>> linux-aspeed@lists.ozlabs.org; linux-kernel@vger.kernel.org;
+>>>>>> linux-i2c@vger.kernel.org
+>>>>>> Cc: Open Source Submission <patches@amperecomputing.com>; Thang
+>> Q .
+>>>>>> Nguyen <thang@os.amperecomputing.com>; Phong Vo
+>>>>>> <phong@os.amperecomputing.com>; openbmc@lists.ozlabs.org
+>>>>>> Subject: [PATCH v3 5/7] i2c: aspeed: Add aspeed_set_slave_busy()
+>>>>>>
+>>>>>> Slave i2c device on AST2500 received a lot of slave irq while it is
+>>>>>> busy processing the response. To handle this case, adds and exports
+>>>>>> aspeed_set_slave_busy() for controller to temporary stop slave irq
+>>>>>> while slave is handling the response, and re-enable them again when
+>>>>>> the
+>>>> response is ready.
+>>>>>>
+>>>>>> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
+>>>>>> ---
+>>>>>> v3:
+>>>>>>      + First introduce in v3 [Quan]
+>>>>>>
+>>>>>>     drivers/i2c/busses/i2c-aspeed.c | 20 ++++++++++++++++++++
+>>>>>>     1 file changed, 20 insertions(+)
+>>>>>>
+>>>>>> diff --git a/drivers/i2c/busses/i2c-aspeed.c
+>>>>>> b/drivers/i2c/busses/i2c-aspeed.c index b2e9c8f0ddf7..9926d04831a2
+>>>>>> 100644
+>>>>>> --- a/drivers/i2c/busses/i2c-aspeed.c
+>>>>>> +++ b/drivers/i2c/busses/i2c-aspeed.c
+>>>>>> @@ -944,6 +944,26 @@ static int aspeed_i2c_init(struct
+>>>>>> aspeed_i2c_bus *bus,
+>>>>>>     	return 0;
+>>>>>>     }
+>>>>>>
+>>>>>> +#if IS_ENABLED(CONFIG_I2C_SLAVE)
+>>>>>> +void aspeed_set_slave_busy(struct i2c_adapter *adap, bool busy) {
+>>>>>> +	struct aspeed_i2c_bus *bus = i2c_get_adapdata(adap);
+>>>>>> +	unsigned long current_mask, flags;
+>>>>>> +
+>>>>>> +	spin_lock_irqsave(&bus->lock, flags);
+>>>>>> +
+>>>>>> +	current_mask = readl(bus->base + ASPEED_I2C_INTR_CTRL_REG);
+>>>>> Hello
+>>>>> 	Where the bus->base to be remap?
+>>>>>
+>>>>
+>>>> Hi Ryan,
+>>>>
+>>>> In "[PATCH v3 6/7] ipmi: ssif_bmc: Add Aspeed SSIF BMC driver", the
+>>>> ->priv is retrieved by calling i2c_get_adapdata(client->adapter). And
+>>>> ->in
+>>>> aspeed_set_ssif_bmc_status(), call the exported
+>>>> aspeed_set_slave_busy() using ->priv pointer as code below.
+>>>>
+>>> Yes, I see the probe function " ssif_bmc->priv =
+>> i2c_get_adapdata(client->adapter);" to get priv.
+>>> But my question I don’t see the bus->base address be assigned.
+>>>
+>> Hi Ryan,
+>>
+>> In drivers/i2c/busses/i2c-aspeed.c:
+>> struct aspeed_i2c_bus {
+>>           struct i2c_adapter              adap;
+>>           struct device                   *dev;
+>>           void __iomem                    *base;
+>>           struct reset_control            *rst;
+>>           /* Synchronizes I/O mem access to base. */
+>>           spinlock_t                      lock;
+>>
+>> So when "struct aspeed_i2c_bus *bus = i2c_get_adapdata(adap);", the
+>> bus->base should point to the base of the aspeed_i2c_bus, which is
+>> already initialized by the aspeed i2c bus driver.
+>>
+>> Do I miss something?
+> Hello Quan,
+> 	After study. I think the ssif_bmc_aspeed.c assume the priv data is the same struct.
+> 	That is trick.
+> 	Do we have a better for slave enable/disable call back to implement this?
+> 	If add call back in struct i2c_algorithm; is it workable?
+>>
 
-Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
-Signed-off-by: Max Zhen <max.zhen@xilinx.com>
-Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
-Reviewed-by: Tom Rix <trix@redhat.com>
----
- drivers/Makefile                   |  1 +
- drivers/fpga/Kconfig               |  2 ++
- drivers/fpga/Makefile              |  5 +++++
- drivers/fpga/xrt/Kconfig           |  8 ++++++++
- drivers/fpga/xrt/lib/Kconfig       | 17 +++++++++++++++++
- drivers/fpga/xrt/lib/Makefile      | 30 ++++++++++++++++++++++++++++++
- drivers/fpga/xrt/metadata/Kconfig  | 12 ++++++++++++
- drivers/fpga/xrt/metadata/Makefile | 16 ++++++++++++++++
- drivers/fpga/xrt/mgmt/Kconfig      | 15 +++++++++++++++
- drivers/fpga/xrt/mgmt/Makefile     | 19 +++++++++++++++++++
- 10 files changed, 125 insertions(+)
- create mode 100644 drivers/fpga/xrt/Kconfig
- create mode 100644 drivers/fpga/xrt/lib/Kconfig
- create mode 100644 drivers/fpga/xrt/lib/Makefile
- create mode 100644 drivers/fpga/xrt/metadata/Kconfig
- create mode 100644 drivers/fpga/xrt/metadata/Makefile
- create mode 100644 drivers/fpga/xrt/mgmt/Kconfig
- create mode 100644 drivers/fpga/xrt/mgmt/Makefile
+Hi Ryan,
 
-diff --git a/drivers/Makefile b/drivers/Makefile
-index 5a6d613e868d..e5d64c971463 100644
---- a/drivers/Makefile
-+++ b/drivers/Makefile
-@@ -181,6 +181,7 @@ obj-$(CONFIG_STM)		+= hwtracing/stm/
- obj-$(CONFIG_ANDROID)		+= android/
- obj-$(CONFIG_NVMEM)		+= nvmem/
- obj-$(CONFIG_FPGA)		+= fpga/
-+obj-$(CONFIG_FPGA_XRT_METADATA) += fpga/
- obj-$(CONFIG_FSI)		+= fsi/
- obj-$(CONFIG_TEE)		+= tee/
- obj-$(CONFIG_MULTIPLEXER)	+= mux/
-diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
-index 33e15058d0dc..9b5fa43f3b8f 100644
---- a/drivers/fpga/Kconfig
-+++ b/drivers/fpga/Kconfig
-@@ -234,4 +234,6 @@ config FPGA_MGR_ZYNQMP_FPGA
- 	  to configure the programmable logic(PL) through PS
- 	  on ZynqMP SoC.
- 
-+source "drivers/fpga/xrt/Kconfig"
-+
- endif # FPGA
-diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
-index 18dc9885883a..4b887bf95cb3 100644
---- a/drivers/fpga/Makefile
-+++ b/drivers/fpga/Makefile
-@@ -48,3 +48,8 @@ obj-$(CONFIG_FPGA_DFL_NIOS_INTEL_PAC_N3000)	+= dfl-n3000-nios.o
- 
- # Drivers for FPGAs which implement DFL
- obj-$(CONFIG_FPGA_DFL_PCI)		+= dfl-pci.o
-+
-+# XRT drivers for Alveo
-+obj-$(CONFIG_FPGA_XRT_METADATA)		+= xrt/metadata/
-+obj-$(CONFIG_FPGA_XRT_LIB)		+= xrt/lib/
-+obj-$(CONFIG_FPGA_XRT_XMGMT)		+= xrt/mgmt/
-diff --git a/drivers/fpga/xrt/Kconfig b/drivers/fpga/xrt/Kconfig
-new file mode 100644
-index 000000000000..0e2c59589ddd
---- /dev/null
-+++ b/drivers/fpga/xrt/Kconfig
-@@ -0,0 +1,8 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+#
-+# Xilinx Alveo FPGA device configuration
-+#
-+
-+source "drivers/fpga/xrt/metadata/Kconfig"
-+source "drivers/fpga/xrt/lib/Kconfig"
-+source "drivers/fpga/xrt/mgmt/Kconfig"
-diff --git a/drivers/fpga/xrt/lib/Kconfig b/drivers/fpga/xrt/lib/Kconfig
-new file mode 100644
-index 000000000000..935369fad570
---- /dev/null
-+++ b/drivers/fpga/xrt/lib/Kconfig
-@@ -0,0 +1,17 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+#
-+# XRT Alveo FPGA device configuration
-+#
-+
-+config FPGA_XRT_LIB
-+	tristate "XRT Alveo Driver Library"
-+	depends on HWMON && PCI && HAS_IOMEM
-+	select FPGA_XRT_METADATA
-+	select REGMAP_MMIO
-+	help
-+	  Select this option to enable Xilinx XRT Alveo driver library. This
-+	  library is core infrastructure of XRT Alveo FPGA drivers which
-+	  provides functions for working with device nodes, iteration and
-+	  lookup of platform devices, common interfaces for platform devices,
-+	  plumbing of function call and ioctls between platform devices and
-+	  parent partitions.
-diff --git a/drivers/fpga/xrt/lib/Makefile b/drivers/fpga/xrt/lib/Makefile
-new file mode 100644
-index 000000000000..58563416efbf
---- /dev/null
-+++ b/drivers/fpga/xrt/lib/Makefile
-@@ -0,0 +1,30 @@
-+# SPDX-License-Identifier: GPL-2.0
-+#
-+# Copyright (C) 2020-2021 Xilinx, Inc. All rights reserved.
-+#
-+# Authors: Sonal.Santan@xilinx.com
-+#
-+
-+FULL_XRT_PATH=$(srctree)/$(src)/..
-+FULL_DTC_PATH=$(srctree)/scripts/dtc/libfdt
-+
-+obj-$(CONFIG_FPGA_XRT_LIB) += xrt-lib.o
-+
-+xrt-lib-objs :=			\
-+	lib-drv.o		\
-+	xroot.o			\
-+	xclbin.o		\
-+	subdev.o		\
-+	cdev.o			\
-+	group.o			\
-+	xleaf/vsec.o		\
-+	xleaf/axigate.o		\
-+	xleaf/devctl.o		\
-+	xleaf/icap.o		\
-+	xleaf/clock.o		\
-+	xleaf/clkfreq.o		\
-+	xleaf/ucs.o		\
-+	xleaf/ddr_calibration.o
-+
-+ccflags-y := -I$(FULL_XRT_PATH)/include	 \
-+	-I$(FULL_DTC_PATH)
-diff --git a/drivers/fpga/xrt/metadata/Kconfig b/drivers/fpga/xrt/metadata/Kconfig
-new file mode 100644
-index 000000000000..129adda47e94
---- /dev/null
-+++ b/drivers/fpga/xrt/metadata/Kconfig
-@@ -0,0 +1,12 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+#
-+# XRT Alveo FPGA device configuration
-+#
-+
-+config FPGA_XRT_METADATA
-+	bool "XRT Alveo Driver Metadata Parser"
-+	select LIBFDT
-+	help
-+	  This option provides helper functions to parse Xilinx Alveo FPGA
-+	  firmware metadata. The metadata is in device tree format and the
-+	  XRT driver uses it to discover the HW subsystems behind PCIe BAR.
-diff --git a/drivers/fpga/xrt/metadata/Makefile b/drivers/fpga/xrt/metadata/Makefile
-new file mode 100644
-index 000000000000..14f65ef1595c
---- /dev/null
-+++ b/drivers/fpga/xrt/metadata/Makefile
-@@ -0,0 +1,16 @@
-+# SPDX-License-Identifier: GPL-2.0
-+#
-+# Copyright (C) 2020-2021 Xilinx, Inc. All rights reserved.
-+#
-+# Authors: Sonal.Santan@xilinx.com
-+#
-+
-+FULL_XRT_PATH=$(srctree)/$(src)/..
-+FULL_DTC_PATH=$(srctree)/scripts/dtc/libfdt
-+
-+obj-$(CONFIG_FPGA_XRT_METADATA) += xrt-md.o
-+
-+xrt-md-objs := metadata.o
-+
-+ccflags-y := -I$(FULL_XRT_PATH)/include	\
-+	-I$(FULL_DTC_PATH)
-diff --git a/drivers/fpga/xrt/mgmt/Kconfig b/drivers/fpga/xrt/mgmt/Kconfig
-new file mode 100644
-index 000000000000..31e9e19fffb8
---- /dev/null
-+++ b/drivers/fpga/xrt/mgmt/Kconfig
-@@ -0,0 +1,15 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+#
-+# Xilinx XRT FPGA device configuration
-+#
-+
-+config FPGA_XRT_XMGMT
-+	tristate "Xilinx Alveo Management Driver"
-+	depends on FPGA_XRT_LIB
-+	select FPGA_XRT_METADATA
-+	select FPGA_BRIDGE
-+	select FPGA_REGION
-+	help
-+	  Select this option to enable XRT PCIe driver for Xilinx Alveo FPGA.
-+	  This driver provides interfaces for userspace application to access
-+	  Alveo FPGA device.
-diff --git a/drivers/fpga/xrt/mgmt/Makefile b/drivers/fpga/xrt/mgmt/Makefile
-new file mode 100644
-index 000000000000..16644571b673
---- /dev/null
-+++ b/drivers/fpga/xrt/mgmt/Makefile
-@@ -0,0 +1,19 @@
-+# SPDX-License-Identifier: GPL-2.0
-+#
-+# Copyright (C) 2020-2021 Xilinx, Inc. All rights reserved.
-+#
-+# Authors: Sonal.Santan@xilinx.com
-+#
-+
-+FULL_XRT_PATH=$(srctree)/$(src)/..
-+FULL_DTC_PATH=$(srctree)/scripts/dtc/libfdt
-+
-+obj-$(CONFIG_FPGA_XRT_XMGMT)	+= xrt-mgmt.o
-+
-+xrt-mgmt-objs := root.o		\
-+	   xmgmt-main.o		\
-+	   xrt-mgr.o		\
-+	   xmgmt-main-region.o
-+
-+ccflags-y := -I$(FULL_XRT_PATH)/include		\
-+	-I$(FULL_DTC_PATH)
--- 
-2.27.0
+I dont know which is better, ie: adding callback to struct i2c_algorithm 
+or to struct i2c_adapter.
+I have tried to add generic callback to struct i2c_adapter as below and 
+it works.
+
+diff --git a/include/linux/i2c.h b/include/linux/i2c.h
+index 4e7714c88f95..6e9abf2d6abb 100644
+--- a/include/linux/i2c.h
++++ b/include/linux/i2c.h
+@@ -713,6 +713,10 @@ struct i2c_adapter {
+  	const struct i2c_adapter_quirks *quirks;
+
+  	struct irq_domain *host_notify_domain;
++#if IS_ENABLED(CONFIG_I2C_SLAVE)
++	int (*slave_enable)(struct i2c_adapter *adap);
++	int (*slave_disable)(struct i2c_adapter *adap);
++#endif
+  };
+  #define to_i2c_adapter(d) container_of(d, struct i2c_adapter, dev)
+
+>>>> +extern void aspeed_set_slave_busy(struct i2c_adapter *adap, bool busy);
+>>>> +static void aspeed_set_ssif_bmc_status(struct ssif_bmc_ctx *ssif_bmc,
+>>>> unsigned int status)
+>>>> +{
+>>>> +	if (status & SSIF_BMC_BUSY)
+>>>> +		aspeed_set_slave_busy((struct i2c_adapter *)ssif_bmc->priv, true);
+>>>> +	else if (status & SSIF_BMC_READY)
+>>>> +		aspeed_set_slave_busy((struct i2c_adapter *)ssif_bmc->priv, false); }
+>>>> +
+>>>> +static int ssif_bmc_probe(struct i2c_client *client, const struct
+>>>> i2c_device_id *id)
+>>>> +{
+>>>> +	struct ssif_bmc_ctx *ssif_bmc;
+>>>> +
+>>>> +	ssif_bmc = ssif_bmc_alloc(client, 0);
+>>>> +	if (IS_ERR(ssif_bmc))
+>>>> +		return PTR_ERR(ssif_bmc);
+>>>> +
+>>>> +	ssif_bmc->priv = i2c_get_adapdata(client->adapter);
+>>>> +	ssif_bmc->set_ssif_bmc_status = aspeed_set_ssif_bmc_status;
+>>>> +
+>>>> +	return 0;
+>>>> +}
+>>>>
+>>>> - Quan
+>>>>
+>>>>
+>>>
+> 
 
