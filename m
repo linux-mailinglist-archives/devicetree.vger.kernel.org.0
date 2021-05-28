@@ -2,192 +2,391 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B2D0393B23
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 03:45:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E3FE393BA9
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 04:51:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229835AbhE1Bqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 21:46:34 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:32985 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229749AbhE1Bqe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 21:46:34 -0400
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 14S1VC2k002352;
-        Fri, 28 May 2021 09:31:12 +0800 (GMT-8)
-        (envelope-from jamin_lin@aspeedtech.com)
-Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 28 May
- 2021 09:44:18 +0800
-Date:   Fri, 28 May 2021 09:44:17 +0800
-From:   Jamin Lin <jamin_lin@aspeedtech.com>
-To:     Andrew Jeffery <andrew@aj.id.au>
-CC:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        "Brendan Higgins" <brendanhiggins@google.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Rayn Chen <rayn_chen@aspeedtech.com>,
-        "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/ASPEED I2C DRIVER" <openbmc@lists.ozlabs.org>,
-        Ryan Chen <ryan_chen@aspeedtech.com>,
-        "Chin-Ting Kuo" <chin-ting_kuo@aspeedtech.com>,
-        Troy Lee <troy_lee@aspeedtech.com>,
-        Steven Lee <steven_lee@aspeedtech.com>
-Subject: Re: [PATCH v2 1/1] dt-bindings: aspeed-i2c: Convert txt to yaml
- format
-Message-ID: <20210528014416.GA3195@aspeedtech.com>
-References: <20210527102512.20684-1-jamin_lin@aspeedtech.com>
- <20210527102512.20684-2-jamin_lin@aspeedtech.com>
- <f7df6bb6-762d-4250-a4bc-076cbfc441eb@www.fastmail.com>
+        id S235597AbhE1Cwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 22:52:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46392 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235886AbhE1Cwn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 22:52:43 -0400
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB038C061760
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 19:51:09 -0700 (PDT)
+Received: by mail-ot1-x336.google.com with SMTP id d25-20020a0568300459b02902f886f7dd43so2192648otc.6
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 19:51:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=2KgijiAM4/UXomY9RK9iFgWWGWRQLA4snV9jm2h3EAY=;
+        b=RqAov/uwrzoYCQ9EnajVO5fB2N9Ib5t67JTPpPG405RtomOCUpP0uUFQciXzKYepR6
+         ZSzWKLhJrvqJcleGydNHT3p3yl3lnwWOyVDr0T0YHZporv9YJglWfaJb1KN+RBCwzZgd
+         jfA2vhohVagHbNUuR1h5BrteLMRldldthzRCfi7C/jOo4jOeVCWL6AX6IkOLvheSMXTk
+         4VWkYai/ROhN3AouZcqRAhY0m9mgqI0/MNwpWP3lDBd6snqKBiXOFCSxptoaEbKPZuu5
+         2C57RpWs2GJhWXrWLBXJCjgN1EBCyUq143wcBDwC977SkupikpgMURVUmSoGKaUTip+I
+         vqGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=2KgijiAM4/UXomY9RK9iFgWWGWRQLA4snV9jm2h3EAY=;
+        b=eiAjmjDR9YCRpcS1FzndRp3nbAmKfG0OYBmADHBw7CXIf0Msw7igBlgfM/h3ytXSn2
+         b3O9hr8gMTKbL4THAqTOYe3lfFEMtCc7EzvPn0E3ACo/zhQ4fw6Bgil22/BVQjW1abjz
+         GrFDQC4K56qm9ZMqGLVUjxKcxxYGP6msgpzJ6ntBtZiOaCCbWWMJczEH0FCtTUNbtjNw
+         nmDt6ztdKPEVT40sDt3o00G+w0P2qmY1fo4+m/E5ZFc08hjXKjc8gh8bBsR6Lq/d/THj
+         gLYMf2XQ37dpe6b6f3O2+pdDKSqDAGO7sekWaGA3EXngWH4X+I7zeha+/ewE+r4ArloK
+         O34w==
+X-Gm-Message-State: AOAM533t1vc+S7fPtf70tDwsTm2MaHxMtrlz9+oqTthbeBqpFADm1RNR
+        EP5/R0pkwu9E6YxYnwUbebDOnnStDbZVOA==
+X-Google-Smtp-Source: ABdhPJzdy30myPhIaNXKS0FErpYOTCM59Ir5+k5oKw9X3fpO9+/n1IzWxBXhhbeQOcIlTpLktCXtbA==
+X-Received: by 2002:a05:6830:14d:: with SMTP id j13mr5158396otp.232.1622170269160;
+        Thu, 27 May 2021 19:51:09 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id c18sm884716otm.1.2021.05.27.19.51.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 May 2021 19:51:08 -0700 (PDT)
+Date:   Thu, 27 May 2021 21:51:06 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arch: arm64: dts: msm8996: Add CPU opps
+Message-ID: <YLBamtRq1xgcsDRE@builder.lan>
+References: <20210527194455.782108-1-konrad.dybcio@somainline.org>
+ <20210527194455.782108-2-konrad.dybcio@somainline.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f7df6bb6-762d-4250-a4bc-076cbfc441eb@www.fastmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [192.168.100.253]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 14S1VC2k002352
+In-Reply-To: <20210527194455.782108-2-konrad.dybcio@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 05/27/2021 23:20, Andrew Jeffery wrote:
-> 
-> 
-> On Thu, 27 May 2021, at 19:55, Jamin Lin wrote:
-> > Convert aspeed i2c to yaml.
-> > 
-> > Signed-off-by: Jamin Lin <jamin_lin@aspeedtech.com>
-> > ---
-> >  .../devicetree/bindings/i2c/aspeed,i2c.yaml   | 86 +++++++++++++++++++
-> >  .../devicetree/bindings/i2c/i2c-aspeed.txt    | 49 -----------
-> >  2 files changed, 86 insertions(+), 49 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
-> > 
-> > diff --git a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml 
-> > b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
-> > new file mode 100644
-> > index 000000000000..1f7064d77708
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
-> > @@ -0,0 +1,86 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/i2c/aspeed,i2c.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: ASPEED I2C on the AST24XX, AST25XX, and AST26XX SoCs Device 
-> > Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Rayn Chen <rayn_chen@aspeedtech.com>
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/i2c/i2c-controller.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - aspeed,ast2400-i2c-bus
-> > +      - aspeed,ast2500-i2c-bus
-> > +      - aspeed,ast2600-i2c-bus
-> > +
-> > +  "#size-cells":
-> > +    const: 0
-> > +
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  reg:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +    items:
-> > +      - description: address offset and range of bus
-> > +      - description: address offset and range of bus buffer
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +    description: interrupt number
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +    description:
-> > +      root clock of bus, should reference the APB
-> > +      clock in the second cell
-> > +
-> > +  reset:
-> > +    maxItems: 1
-> > +    description: phandle to reset controller with the reset number in
-> > +      the second cell
-> > +
-> > +  bus-frequency:
-> > +    minimum: 500
-> > +    maximum: 4000000
-> > +    default: 100000
-> > +    description: frequency of the bus clock in Hz defaults to 100 kHz 
-> > when not
-> > +      specified
-> > +
-> > +  multi-master:
-> > +    type: boolean
-> > +    description:
-> > +      states that there is another master active on this bus
-> > +
-> > +required:
-> > +  - reg
-> > +  - compatible
-> > +  - clocks
-> > +  - resets
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/aspeed-clock.h>
-> > +    i2c0: i2c-bus@40 {
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
-> > +      #interrupt-cells = <1>;
-> > +      reg = <0x40 0x40>;
-> > +      compatible = "aspeed,ast2500-i2c-bus";
-> > +      clocks = <&syscon ASPEED_CLK_APB>;
-> > +      resets = <&syscon ASPEED_RESET_I2C>;
-> > +      bus-frequency = <100000>;
-> > +      interrupts = <0>;
-> > +      interrupt-parent = <&i2c_ic>;
-> > +      status = "disabled";
-> > +      /* Does not need pinctrl properties */
-> 
-> Note this actually isn't right and someone (me?) needs to send a patch 
-> to fix the devicetree(s) - the I2C mux properties for bus 0 and 1 just 
-> don't have a group, and so SCL and SDA need to be muxed individually.
-> 
-> I expect we wound up with this comment by a lack of a match for an 
-> erroneous grep.
-> 
-> Andrew
-Understand. Can I change the example as the following or can you give me
-any suggestion?
+On Thu 27 May 14:44 CDT 2021, Konrad Dybcio wrote:
 
-i2c0: i2c-bus@40 {
-  #address-cells = <1>;
-  #size-cells = <0>;
-  #interrupt-cells = <1>;
-  reg = <0x40 0x40>;
-  compatible = "aspeed,ast2500-i2c-bus";
-  clocks = <&syscon ASPEED_CLK_APB>;
-  resets = <&syscon ASPEED_RESET_I2C>;
-  bus-frequency = <100000>;
-  interrupts = <0>;
-  interrupt-parent = <&i2c_ic>;
+> From: Loic Poulain <loic.poulain@linaro.org>
+> 
+> Add the operating points capabilities of the kryo CPUs, that can be
+> used for frequency scaling. There are two differents operating point
+> tables, one for the big cluster and one for the LITTLE cluster.
+> 
+> This frequency scaling support can then be used as a passive cooling
+> device (cpufreq cooling device).
+> 
+> Only add nominal fmax for now, since there is no dynamic control of
+> VDD APC (s11..) which is statically set at its nominal value.
+> 
+> Original patch link: https://patchwork.kernel.org/project/linux-arm-msm/patch/1595253740-29466-6-git-send-email-loic.poulain@linaro.org/
+> 
+> Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+> [konrad: drop the thermals part, rebase and remove spaces within <>]
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 
-Thanks-Jamin
+As reported to Konrad on IRC, booting this causes a lockup before the
+kernel reaches init, on one of my db820c boards. Booting with powersave
+governor makes this board boot fine and I'm able to switch to
+performance after that and at least according to cpufreq we're at full
+speed on all 4 cores. But I haven't done any proper stress of the
+system to narrow it down further...
+
+PS. This was tested with next-20210527, your 3 patches, defconfig and
+CONFIG_QCOM_CLK_APCC_MSM8996=y
+
+Regards,
+Bjorn
+
+> ---
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi | 234 ++++++++++++++++++++++++++
+>  1 file changed, 234 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index 509d5bfec8ad..10e6fecc9e13 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -8,6 +8,7 @@
+>  #include <dt-bindings/clock/qcom,rpmcc.h>
+>  #include <dt-bindings/power/qcom-rpmpd.h>
+>  #include <dt-bindings/soc/qcom,apr.h>
+> +#include <dt-bindings/thermal/thermal.h>
+>  
+>  / {
+>  	interrupt-parent = <&intc>;
+> @@ -44,6 +45,9 @@ CPU0: cpu@0 {
+>  			enable-method = "psci";
+>  			cpu-idle-states = <&CPU_SLEEP_0>;
+>  			capacity-dmips-mhz = <1024>;
+> +			clocks = <&kryocc 0>;
+> +			operating-points-v2 = <&cluster0_opp>;
+> +			#cooling-cells = <2>;
+>  			next-level-cache = <&L2_0>;
+>  			L2_0: l2-cache {
+>  			      compatible = "cache";
+> @@ -58,6 +62,9 @@ CPU1: cpu@1 {
+>  			enable-method = "psci";
+>  			cpu-idle-states = <&CPU_SLEEP_0>;
+>  			capacity-dmips-mhz = <1024>;
+> +			clocks = <&kryocc 0>;
+> +			operating-points-v2 = <&cluster0_opp>;
+> +			#cooling-cells = <2>;
+>  			next-level-cache = <&L2_0>;
+>  		};
+>  
+> @@ -68,6 +75,9 @@ CPU2: cpu@100 {
+>  			enable-method = "psci";
+>  			cpu-idle-states = <&CPU_SLEEP_0>;
+>  			capacity-dmips-mhz = <1024>;
+> +			clocks = <&kryocc 1>;
+> +			operating-points-v2 = <&cluster1_opp>;
+> +			#cooling-cells = <2>;
+>  			next-level-cache = <&L2_1>;
+>  			L2_1: l2-cache {
+>  			      compatible = "cache";
+> @@ -82,6 +92,9 @@ CPU3: cpu@101 {
+>  			enable-method = "psci";
+>  			cpu-idle-states = <&CPU_SLEEP_0>;
+>  			capacity-dmips-mhz = <1024>;
+> +			clocks = <&kryocc 1>;
+> +			operating-points-v2 = <&cluster1_opp>;
+> +			#cooling-cells = <2>;
+>  			next-level-cache = <&L2_1>;
+>  		};
+>  
+> @@ -121,6 +134,227 @@ CPU_SLEEP_0: cpu-sleep-0 {
+>  		};
+>  	};
+>  
+> +	cluster0_opp: opp_table0 {
+> +		compatible = "operating-points-v2-kryo-cpu";
+> +		nvmem-cells = <&speedbin_efuse>;
+> +		opp-shared;
+> +
+> +		/* Nominal fmax for now */
+> +		opp-307200000 {
+> +			opp-hz = /bits/ 64 <307200000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-422400000 {
+> +			opp-hz = /bits/ 64 <422400000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-480000000 {
+> +			opp-hz = /bits/ 64 <480000000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-556800000 {
+> +			opp-hz = /bits/ 64 <556800000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-652800000 {
+> +			opp-hz = /bits/ 64 <652800000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-729600000 {
+> +			opp-hz = /bits/ 64 <729600000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-844800000 {
+> +			opp-hz = /bits/ 64 <844800000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-960000000 {
+> +			opp-hz = /bits/ 64 <960000000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1036800000 {
+> +			opp-hz = /bits/ 64 <1036800000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1113600000 {
+> +			opp-hz = /bits/ 64 <1113600000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1190400000 {
+> +			opp-hz = /bits/ 64 <1190400000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1228800000 {
+> +			opp-hz = /bits/ 64 <1228800000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1324800000 {
+> +			opp-hz = /bits/ 64 <1324800000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1401600000 {
+> +			opp-hz = /bits/ 64 <1401600000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1478400000 {
+> +			opp-hz = /bits/ 64 <1478400000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1593600000 {
+> +			opp-hz = /bits/ 64 <1593600000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +	};
+> +
+> +	cluster1_opp: opp_table1 {
+> +		compatible = "operating-points-v2-kryo-cpu";
+> +		nvmem-cells = <&speedbin_efuse>;
+> +		opp-shared;
+> +
+> +		/* Nominal fmax for now */
+> +		opp-307200000 {
+> +			opp-hz = /bits/ 64 <307200000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-403200000 {
+> +			opp-hz = /bits/ 64 <403200000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-480000000 {
+> +			opp-hz = /bits/ 64 <480000000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-556800000 {
+> +			opp-hz = /bits/ 64 <556800000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-652800000 {
+> +			opp-hz = /bits/ 64 <652800000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-729600000 {
+> +			opp-hz = /bits/ 64 <729600000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-806400000 {
+> +			opp-hz = /bits/ 64 <806400000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-883200000 {
+> +			opp-hz = /bits/ 64 <883200000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-940800000 {
+> +			opp-hz = /bits/ 64 <940800000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1036800000 {
+> +			opp-hz = /bits/ 64 <1036800000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1113600000 {
+> +			opp-hz = /bits/ 64 <1113600000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1190400000 {
+> +			opp-hz = /bits/ 64 <1190400000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1248000000 {
+> +			opp-hz = /bits/ 64 <1248000000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1324800000 {
+> +			opp-hz = /bits/ 64 <1324800000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1401600000 {
+> +			opp-hz = /bits/ 64 <1401600000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1478400000 {
+> +			opp-hz = /bits/ 64 <1478400000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1555200000 {
+> +			opp-hz = /bits/ 64 <1555200000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1632000000 {
+> +			opp-hz = /bits/ 64 <1632000000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1708800000 {
+> +			opp-hz = /bits/ 64 <1708800000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1785600000 {
+> +			opp-hz = /bits/ 64 <1785600000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1824000000 {
+> +			opp-hz = /bits/ 64 <1824000000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1920000000 {
+> +			opp-hz = /bits/ 64 <1920000000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-1996800000 {
+> +			opp-hz = /bits/ 64 <1996800000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-2073600000 {
+> +			opp-hz = /bits/ 64 <2073600000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +		opp-2150400000 {
+> +			opp-hz = /bits/ 64 <2150400000>;
+> +			opp-supported-hw = <0x77>;
+> +			clock-latency-ns = <200000>;
+> +		};
+> +	};
+> +
+>  	firmware {
+>  		scm {
+>  			compatible = "qcom,scm-msm8996";
+> -- 
+> 2.31.1
+> 
