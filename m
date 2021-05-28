@@ -2,112 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13F64393FCE
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 11:23:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 479E5393FEC
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 11:27:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234558AbhE1JYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 05:24:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50940 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230205AbhE1JYn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 May 2021 05:24:43 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 57F896127A;
-        Fri, 28 May 2021 09:23:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622193789;
-        bh=MjONBw7wRUJTyBcaMGUBEu7fsH8mQc/WqqIXCP5czV8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ddzvog6ftfvS2jFuWUTZJrqBMCMsIQ5RnXMAX6ZXWdl51PumQv/6ac+tiArzNG1D0
-         9bwz/Dl/oOt8qKaRnVbtm6zy66cgCK0aC9YH5Ms8IM1H8gWpKWiCimtYDl/oING8zw
-         pRaZkn2OymFwpH7QTMdutQlXEalGJ8+iJFbnStSY+Ry72u40qrQHwjYLiyBICaca7s
-         /HvE8CuONVPdZw+e33Iu1yxoQ8WamgS7EAsoH+GIHTlCezJh2sJcXLJhZrrPXBLBKV
-         AycmSI+1TlaZurn+JlgyFmZXQL4UKAhsLnIfQvKHkF3zTIRGtAcsRefW2Bsi0huYZ8
-         QQCx8meKaYA6A==
-Date:   Fri, 28 May 2021 11:23:06 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        devicetree@vger.kernel.org, Ray Jui <rjui@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Scott Branden <sbranden@broadcom.com>
-Subject: Re: [PATCH] dt-bindings: i2c: brcm,iproc-i2c: convert to the
- json-schema
-Message-ID: <YLC2en7Mj7kurlCd@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        devicetree@vger.kernel.org, Ray Jui <rjui@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Scott Branden <sbranden@broadcom.com>
-References: <20210512160750.15183-1-zajec5@gmail.com>
- <1620844516.523024.204087.nullmailer@robh.at.kernel.org>
+        id S235955AbhE1J2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 05:28:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49884 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235640AbhE1J2a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 05:28:30 -0400
+Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67C72C06174A
+        for <devicetree@vger.kernel.org>; Fri, 28 May 2021 02:26:55 -0700 (PDT)
+Received: by mail-vs1-xe31.google.com with SMTP id x13so1841998vsh.1
+        for <devicetree@vger.kernel.org>; Fri, 28 May 2021 02:26:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lSrNJA8L2mfz3nzO0xWuQ7uzakK2R6vwdeEdePCtnq0=;
+        b=vbGvnUB2ee8gN6kCb1QtHqgW5zdRB/De+4KKFZ3odYzssoqcORAziKqW3t/dl5074O
+         MU02ZAwhTEUhcC5GUqskXZmCEId1/j/GxI7mGj/gxuVqU58+5iq4Y2yDNbcYUTl26J3N
+         tbXjR0gcPStSOp+5QLfk9jCopcLRrqm5guRDC9vvuQFHJtwfckd9Ppz9E1l1wm616a2T
+         ZcZLfN6Qm0Rv2NNVDqP1+Hatk0Lg2TWStZE5z3nPwyCjU0KcgkQIHgBPgHBpFdIUtOgr
+         S30CVnx1+6dBR9MmULejbnwv+VnAT0/VQj2bym9pbKn1rthEPbbuloD9QHkEY4WO8vNo
+         uUZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lSrNJA8L2mfz3nzO0xWuQ7uzakK2R6vwdeEdePCtnq0=;
+        b=B3NYhcUuzs3p17lz+S8ddpC0HrAghHUE3JvL9MjClNKDRwUDlcjVu73eTieBnHol7c
+         SeQ20bE8hk1rIBuN1hnnhOJaMszYkMlOqObZowF5spL9lVcfJo5EAX+iAksptXCM99DO
+         V0QTciz+5Tfly8pzGBzptbrYKZwN3dIbRR18CtQueK3MenmyaguQV+AgX2y8aBAVtTvt
+         T/Gd4QrhC3HTt4XJNDPy2f07QK0IPZCchXfeyWY6Rh/D4RUZWyr+FKVdPsTbl7NB313s
+         HmeQjtvpBYO8JbAEirlgs7f9cJE8e0/RVj3Q5x3Pnp1CkMmr0e2fTmZWnKjym5xt1h3a
+         3vmQ==
+X-Gm-Message-State: AOAM532qVahNqzo7LW3Iv4QfchUUUoikNo4TSs2ADWrkZYqG9M/TdNV7
+        W3ZX3HHZKcCQTgrey7VaDmQmo2QR8b5Pevdeg7/sWg==
+X-Google-Smtp-Source: ABdhPJxnrT+9YO8VN0qWp0ACEUIbWnM1BEz+8iWMoAfJeIBYb9C3q1nJUf5ntroetINW8lgpgRY3na9se5SJiT9rv6Q=
+X-Received: by 2002:a05:6102:7b4:: with SMTP id x20mr6125121vsg.48.1622194014560;
+ Fri, 28 May 2021 02:26:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="sU1nzSdQCIUU5nt7"
-Content-Disposition: inline
-In-Reply-To: <1620844516.523024.204087.nullmailer@robh.at.kernel.org>
+References: <20210517130823.796963-1-anup.patel@wdc.com> <20210517130823.796963-6-anup.patel@wdc.com>
+ <CAPDyKFpxx-jBbL4o_iJCcivFL2ei5a7PcWVfUaBmLu-q89Mkjg@mail.gmail.com>
+ <CAAhSdy1quHePY_HM875LHQgXGKrjm24SzeD5yFJUnqunpcHd8g@mail.gmail.com> <CAPDyKFo9ZjiMBKFwe+F9-s_sReCneO42z8ppsBdkf3=jnarJ5A@mail.gmail.com>
+In-Reply-To: <CAPDyKFo9ZjiMBKFwe+F9-s_sReCneO42z8ppsBdkf3=jnarJ5A@mail.gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri, 28 May 2021 11:26:18 +0200
+Message-ID: <CAPDyKFr9zM1eeXw+ekDsm3ZUZZRnhv_ibBvj2S-Mk9VcVJ3TTA@mail.gmail.com>
+Subject: Re: [RFC PATCH v4 5/8] cpuidle: Factor-out power domain related code
+ from PSCI domain driver
+To:     Anup Patel <anup@brainfault.org>
+Cc:     Anup Patel <anup.patel@wdc.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Sandeep Tripathy <milun.tripathy@gmail.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Liush <liush@allwinnertech.com>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 25 May 2021 at 11:05, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>
+> On Tue, 25 May 2021 at 07:39, Anup Patel <anup@brainfault.org> wrote:
+> >
+> > On Mon, May 24, 2021 at 11:31 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > >
+> > > On Mon, 17 May 2021 at 15:10, Anup Patel <anup.patel@wdc.com> wrote:
+> > > >
+> > > > The generic power domain related code in PSCI domain driver is largely
+> > > > independent of PSCI and can be shared with RISC-V SBI domain driver
+> > > > hence we factor-out this code into dt_idle_genpd.c and dt_idle_genpd.h.
+> > > >
+> > > > Signed-off-by: Anup Patel <anup.patel@wdc.com>
+> > >
+> > > This is clearly a big step in the right direction. Just a couple minor
+> > > things, see more below.
+> > >
+> > > Note that, I have a couple of patches in the pipe for the
+> > > cpuidle-psci-domain driver (not ready to be posted). I need a couple
+> > > of more days to confirm this restructuring still makes sense beyond
+> > > these potential new changes. I will let you know as soon as I can with
+> > > the outcome.
+> >
+> > Sure, I will wait for more comments from you. I was thinking of sending
+> > next revision of patches sometime next week with the renaming of
+> > function names which you suggested.
+>
+> Sounds good, that allows me a few more days this week.
 
---sU1nzSdQCIUU5nt7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I don't have any further comments at this point. It looks good to me,
+but let me have a quick review on the next version before I provide my
+ack.
 
-Hi Rob,
+[...]
 
-> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->=20
-> yamllint warnings/errors:
->=20
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/i2c/brcm,iproc-i2c.example.dt.yaml:0:0:=
- /example-0/i2c@18008000/wm8750@1a: failed to match any schema with compati=
-ble: ['wlf,wm8750']
-
-A generic question:
-
-So sound/wm8750.txt was not converted yet. However, if this conversion
-is fine otherwise, I'd vote to apply it nonetheless because it is one
-conversion less to do then. Alternatively, we could change the example
-to include a simple EEPROM which has an already converted binding doc.
-
-What is the procedure here?
-
-All the best and thanks for your work!
-
-   Wolfram
-
-
---sU1nzSdQCIUU5nt7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmCwtnYACgkQFA3kzBSg
-KbY50g//Z/96gKh+DxM8IicUGujbkEgNAgF6V5iKIFkGtFN83AvfB1uoCcF1vGts
-oSnOdiyYqtFbQi+6rWYqsApEYwywKBdeLNOLvFHMgC9dvbl+pw6Q0URFsl7IvXab
-RWIJFv5FakRdGLRHqE0i2zWkKFjxzuyj32inqpx2HXHF2tQ4UpZnH11lD/oIJqul
-WKG+5fuWNVwjd8hqTca+3fQNyZzOlPyk815JNR5ZUVd3vZ5U+IymIQBc9q0KudgQ
-K5GfP85dVk28vMxzuM5eih6hnCmkaD1WCKeclroesPFIbLnm4LhUANLpMn/lIaEZ
-pfAQoi5NBciVG65up8vFJ6onGBCGh+TsEn05djsJjO2y2qRzpAlz/sGEb/UpyegM
-ZhzSQmvOLn5Ic3PRqCM0ZzGj2UgIglo+rb6wP34j3j4TlTPqpOEsu+hGHuou9+7p
-kP5T9APqYxFmtW/5RHQVxnEjxVxt+7jxSHrfNuVj+iJOiS6epcIWzo28RXna/Cei
-h+Yf03aRWCIx6B64VO6921qJzgROcSgpSSS62EB2xFHHrpzjGzHOLuf58eukjGyb
-NbekCRn6ttQrRAdbxXfnGWX+egDLpvxMKvHPbbFqBtHqZRhLOr47LcO/3/PHEs++
-lBLL+2fqKn0VsvGrPhi6U/pOghA27HdmOJ7jrkj6bGyb1gpFCSE=
-=Ylob
------END PGP SIGNATURE-----
-
---sU1nzSdQCIUU5nt7--
+Kind regards
+Uffe
