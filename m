@@ -2,186 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72D33394A8D
-	for <lists+devicetree@lfdr.de>; Sat, 29 May 2021 07:16:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4839D393C32
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 06:05:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229547AbhE2FSP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 May 2021 01:18:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58274 "EHLO
+        id S229876AbhE1EHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 00:07:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbhE2FSP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 May 2021 01:18:15 -0400
-Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EBA1C061574;
-        Fri, 28 May 2021 22:16:39 -0700 (PDT)
-Received: by ozlabs.org (Postfix, from userid 1007)
-        id 4FsVCR54Q7z9sW4; Sat, 29 May 2021 15:16:35 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-        d=gibson.dropbear.id.au; s=201602; t=1622265395;
-        bh=9W7EP2KVmTGbFSdQ+OaCesEwTE5wg3X5f+H11fjjHHo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MYRRZR8gDpdM+T1L7qJXrL9NouextTi+KmoUDpHAAGF0+KPNAZYgg03mXRW2AjmrE
-         30RGn01woFa3kTAj9fZ7heLva7SPYgn3ZhO2TBTrJQIGlI2YbDVAmPYqlj+DmgC4Cl
-         wjFgU+SPSxnGN5lAidRsCGRBwejY9ZtJXssa30+w=
-Date:   Fri, 28 May 2021 13:45:35 +1000
-From:   David Gibson <david@gibson.dropbear.id.au>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Anmar Oueja <anmar.oueja@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] of: unittest: rename overlay source files from .dts
- to .dtso
-Message-ID: <YLBnX4PeK51YwUJB@yekko>
-References: <20210324223713.1334666-1-frowand.list@gmail.com>
- <20210327174035.GA291160@robh.at.kernel.org>
- <3e6710e7-08ac-7d1b-aa69-bcd36f0d932a@gmail.com>
- <CAMuHMdXpGKMi-xv6hZQmmEw0JO=Q0WuvUzwJ2v0O28Tx5uW+sg@mail.gmail.com>
- <d1aefaae-7b12-b5fb-4b97-7230bd52c1be@gmail.com>
- <20210526061144.yvoaurpz75a3bsjr@vireshk-i7>
- <f651e95b-feef-5c86-edba-d6008bc80b34@gmail.com>
- <YK70Xsl1oXeEQpWZ@yekko>
- <CAMuHMdWdb2s08a=axC+m88gARSA3enOBnczsN59XL2F9yHXXYA@mail.gmail.com>
+        with ESMTP id S229468AbhE1EHE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 00:07:04 -0400
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4C21C061574
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 21:05:30 -0700 (PDT)
+Received: by mail-oi1-x236.google.com with SMTP id t24so3026352oiw.3
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 21:05:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Q4fWiV9oZI2iV6JTdMuKYWY5j+rLJ6Ng0jD/Fbj1XbA=;
+        b=KWrpLYb3IhokqTrBlbd1cWIzosCqk5Ce4UtE3OL1DHqLUAPHhHEPeqSkb2dDC6ZVF7
+         1zySCCMd6VRm4ux7oVAP3Sr/nisN1P7F/Rr0qPti1NDLfTk1XB5OvBN16x6LRlJZVibX
+         6PfDNkjao3aJkMdgho+gsSkyeVUAOIBFCWnjycOaHqni6QfClOz+ZoYaSbREuGxSEpei
+         2HkR9a0LS0ihI5wpjioIkda/RlhnFa56ebLdeZZyc18SJtwhNthMzTXBewKp7a5Qoh3+
+         ZBuaW/YKNhP/CSZwbawoaIhdBzyO6kUlruwmb5bBuU9sxeGmMnMzcEvGHSOBQetoFn+7
+         2HQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Q4fWiV9oZI2iV6JTdMuKYWY5j+rLJ6Ng0jD/Fbj1XbA=;
+        b=oeEINBEw4MQSH1bq6lxXWlumXoxHLahfU7pPJGQd4rknQ2CDT4THKtl3tDCbdvzdQl
+         HyKVlVUvEwjAKv6BuJNsV7YKsfjkawZLLxEvgU/5IHB1N81RghVO7uEtyhJV1wgChynx
+         DlKjDwvjZjbEvU81jQHsvMPIchQIeqFdcYyDnB5sRf3lTvz/stWSDt7MRdl5xQLoWo7o
+         yI3jwbFKeeKtejJHcSttI7xxt78zMDOQFbhMrkRdIiQ0Q+r27MhSZ7c+XuHocmnWsNBf
+         io0c3vR6l/u7J9QN6rFMw+7GAevfZeaKKNFmq3B+dOcm8A5ba7ir0UWY+luf0y9Rcb/K
+         9jBQ==
+X-Gm-Message-State: AOAM531fZ38TKRmknHBcisFfizIqnCcHjjifmvhmjQrKed+xVORvQPI8
+        Wy6NUYCAdp2JX7as3I2PyGsYfg==
+X-Google-Smtp-Source: ABdhPJzdozWx0AvZ7Gm5J2sc0JInMRlr3hIxnpjv2iAlP6aOarGK1nWAVNMYQAFn8biew3cDmYV+tg==
+X-Received: by 2002:aca:2b16:: with SMTP id i22mr7858901oik.121.1622174730227;
+        Thu, 27 May 2021 21:05:30 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id c74sm915591oib.8.2021.05.27.21.05.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 May 2021 21:05:29 -0700 (PDT)
+Date:   Thu, 27 May 2021 23:05:28 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>, mathieu.poirier@linaro.org,
+        robh+dt@kernel.org, ulf.hansson@linaro.org, rjw@rjwysocki.net,
+        agross@kernel.org, ohad@wizery.com, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        rishabhb@codeaurora.org, sidgup@codeaurora.org
+Subject: Re: [PATCH 02/12] soc: qcom: aoss: Drop power domain support
+Message-ID: <YLBsCLNLBlWwoPQj@builder.lan>
+References: <1618574638-5117-1-git-send-email-sibis@codeaurora.org>
+ <1618574638-5117-3-git-send-email-sibis@codeaurora.org>
+ <161871128938.46595.8658084266884500136@swboyd.mtv.corp.google.com>
+ <7adff8e58784bb85ea844ad338bfb19c@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="gmPBfyWAmXOSQLgm"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdWdb2s08a=axC+m88gARSA3enOBnczsN59XL2F9yHXXYA@mail.gmail.com>
+In-Reply-To: <7adff8e58784bb85ea844ad338bfb19c@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue 27 Apr 01:25 CDT 2021, Sibi Sankar wrote:
 
---gmPBfyWAmXOSQLgm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On 2021-04-18 07:31, Stephen Boyd wrote:
+> > Quoting Sibi Sankar (2021-04-16 05:03:48)
+> > > The load state resources are expected to follow the life cycle of the
+> > > remote processor it tracks. However, modeling load state resources as
+> > > power-domains result in them getting turned off during system suspend
+> > > and thereby falling out of sync with the remote processors that are
+> > > still
+> > > on. Fix this by replacing load state resource control through the
+> > > generic
+> > > qmp message send interface instead.
+> > > 
+> > > Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+> > > ---
+> > 
+> > Is it possible to keep this code around for a cycle so that there isn't
+> > the chance that someone is using the deprecated DT bindings with a new
+> > kernel? I worry that ripping the code out will cause them angst.
+> 
+> deprecated bindings with a newer kernel
+> shouldn't cause any problems since it is
+> the driver changes that make AOSS PD
+> mandatory or not. So the newer kernel will
+> just use qmp_send and leave the PD unused.
+> 
 
-On Thu, May 27, 2021 at 09:21:05AM +0200, Geert Uytterhoeven wrote:
-65;6401;1c> On Thu, May 27, 2021 at 3:48 AM David Gibson
-> <david@gibson.dropbear.id.au> wrote:
-> > On Wed, May 26, 2021 at 04:21:48PM -0500, Frank Rowand wrote:
-> > > On 5/26/21 1:11 AM, Viresh Kumar wrote:
-> > > > On 22-04-21, 13:54, Frank Rowand wrote:
-> > > >> On 4/22/21 3:44 AM, Geert Uytterhoeven wrote:
-> > > >>> On Mon, Mar 29, 2021 at 9:23 PM Frank Rowand <frowand.list@gmail.=
-com> wrote:
-> > > >>>> On 3/27/21 12:40 PM, Rob Herring wrote:
-> > > >>>>> On Wed, Mar 24, 2021 at 05:37:13PM -0500, frowand.list@gmail.co=
-m wrote:
-> > > >>>>>> From: Frank Rowand <frank.rowand@sony.com>
-> > > >>>>>>
-> > > >>>>>> Add Makefile rule to build .dtbo.o assembly file from overlay =
-=2Edtso
-> > > >>>>>> source file.
-> > > >>>>>>
-> > > >>>>>> Rename unittest .dts overlay source files to use .dtso suffix.
-> > > >>>>>
-> > > >>>>> I'm pretty lukewarm on .dtso...
-> > > >>>>
-> > > >>>> I was originally also, but I'm warming up to it.
-> > > >>>
-> > > >>> What's the status of this?
-> > > >>
-> > > >> I was planning to resend on top of the upcoming -rc1.
-> > > >
-> > > > Ping.
-> > > >
-> > >
-> > > Thanks for the prod...
-> > >
-> > > The .dtso convention was added to the dtc compiler, then a patch was
-> > > accepted to revert one mention of .dtso ,though there still remains
-> > > two location where .dtbo is still recognized (guess_type_by_name() in
-> > > dtc and the help text of the fdtoverlay program).
-> > >
-> > > It seems that the general .dtso and .dtbo were not popular, so I'm
-> > > going to drop this patch instead of continuing to try to get it
-> > > accepted.
-> >
-> > AFAICT .dtbo is moderately well established, and I think it's a good
-> > convention, since it matters whether a blob is an overlay or base
-> > tree, and it's not trivial to tell which is which.
->=20
-> Indeed.
->=20
-> > .dtso is much more recent,
->=20
-> Is it?
+Maybe I'm missing something in your argument here, but I see two issues:
+* The changes here requires that the new qcom,qmp property is defined,
+  or the qcom_qmp_get() will be unable to find the qmp instance.
+* Between patch 2 and 5 there's no load_state handling.
 
-Well, I wouldn't bet money on it, I just seem to remember encountering
-=2Edtbo for some time before .dtso was mentioned.
+Perhaps we can carry the power-domain handling as a fallback i
+qcom_qmp_get() fails, for a few releases?
 
-> The oldest reference I could find is from May 2015:
-> "[PATCH/RFC] kbuild: Create a rule for building device tree overlay objec=
-ts"
-> https://lore.kernel.org/linux-devicetree/1431431816-24612-1-git-send-emai=
-l-geert+renesas@glider.be/
 
-Hm, I think .dtbo is even older than that, but again, I wouldn't swear
-to it.
+Other than the ordering and backwards compatibility issue I think this
+looks good. So can you please respin this based on the later revision of
+the qmp patch? (And fix Rob's request on the commit message)
 
-> I have always used dtbo/dtso in my published overlays branches,
-> referred from https://elinux.org/R-Car/DT-Overlays, and used by
-> various people.
->=20
-> > and I think there's much less value to it.
->=20
-> IMHO the same reasoning as for dtb vs. dtbo applies to dts vs. dtso.
-> It matters if the resulting blob will be an overlay or base tree,
-> as the blob will have to be called .dtb or .dtbo.
-> As dtc outputs to stdout by default, the caller has to provide the
-> output filename, and thus needs to know.
-> Even if dtc would name the output file based on the presence of
-> "/plugin/" in the input file, the build system still needs to know
-> for dependency tracking.
+https://lore.kernel.org/linux-arm-msm/1620320818-2206-2-git-send-email-deesin@codeaurora.org/
 
-Hm, fair point.  I was thinking of the the /plugin/ tag as the
-distinction, whereas dtb is binary and the distinction isn't even
-marked in the header.  But you're right that even readable text labels
-inside the file don't really help make(1).  So, I retract that
-assertion.
+Regards,
+Bjorn
 
-> We also do have .dts vs. .dtsi.
->=20
-> Gr{oetje,eeting}s,
->=20
->                         Geert
->=20
-
---=20
-David Gibson			| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
-				| _way_ _around_!
-http://www.ozlabs.org/~dgibson
-
---gmPBfyWAmXOSQLgm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEdfRlhq5hpmzETofcbDjKyiDZs5IFAmCwZ10ACgkQbDjKyiDZ
-s5I/sBAA0JKiNiETmfLndzpQT9G9iqQKZ1b5A17zh5AnT4c+615XJR0DjNOyyIE7
-IkVFsq2DyvcNBklAsoocoFDmxXs6pAx15tBn1vmmvJbeFhU2p59hjbdMDIF8Hx47
-ouxt9fnkZTqeQWrUwFXcI7wvQ0xaWn9xySCbzykeql+9NSUbE2czNAiLKWl+NJy3
-Twl7D6fuxpOYIrBRsv4bqAVgTyzYn4LeT21p/EmqDO9MFZUUftjrN8+c27Znz4qt
-+Mq9QlSZkNTD7iGMxG3kjdfS7ExCaR3jZ3Y1oeNyx2n8jqyYw3VIgLOJL1xDGwHJ
-scismnPo/lYJR3muiqOJTyWfuqyCwpqEAUEFU+4NEG31MzhgRSgjKBZfjDi+tmtO
-jP+oBPM8VnSTbnimFee2IIUlkv1QekD1IWoBr2eeOY0PCKsi5Uds0JEAgCTfCuqK
-C87v41BOsNooC+QBaWS5JcAtsX6FDZ4j5YYrEL9+pnOntoOKNnCDlnunolGcgy5q
-HxAM68u+3GixptsgDarFM0pcssXbf8/hglsMlHmLuB1qioCexAMCD7/CXLil+ifZ
-q9fNjRlI7WvUaNy5ldtnHrQatE+Gds9fx8cRPfh0zYAOpIyWp67+MKVHyKWYVmmX
-z+RJdQ1/dF+CNn0nRlFR+QAs4PO4wXWJoIfMci+rKlT/9lANEwk=
-=gl/K
------END PGP SIGNATURE-----
-
---gmPBfyWAmXOSQLgm--
+> > Certainly we have to keep the code in place until DT is updated, so this
+> > patch should come last?
+> 
+> sure I don't mind, as long as it simplifies
+> the merge process.
+> 
+> -- 
+> Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+> a Linux Foundation Collaborative Project.
