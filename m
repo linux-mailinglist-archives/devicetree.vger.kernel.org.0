@@ -2,60 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 095FC393D6D
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 09:05:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 529DC393D71
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 09:05:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234244AbhE1HHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 03:07:10 -0400
-Received: from helcar.hmeau.com ([216.24.177.18]:49854 "EHLO deadmen.hmeau.com"
+        id S234724AbhE1HH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 03:07:26 -0400
+Received: from muru.com ([72.249.23.125]:33154 "EHLO muru.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229574AbhE1HHK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 May 2021 03:07:10 -0400
-Received: from gondobar.mordor.me.apana.org.au ([192.168.128.4] helo=gondobar)
-        by deadmen.hmeau.com with esmtp (Exim 4.92 #5 (Debian))
-        id 1lmWYc-0003HJ-5Y; Fri, 28 May 2021 15:05:22 +0800
-Received: from herbert by gondobar with local (Exim 4.92)
-        (envelope-from <herbert@gondor.apana.org.au>)
-        id 1lmWYR-0005t1-99; Fri, 28 May 2021 15:05:11 +0800
-Date:   Fri, 28 May 2021 15:05:11 +0800
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     davem@davemloft.net, linus.walleij@linaro.org,
-        linux@armlinux.org.uk, robh+dt@kernel.org,
-        ulli.kroll@googlemail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/5] crypto: Add sl3516 crypto engine
-Message-ID: <20210528070511.GA22601@gondor.apana.org.au>
-References: <20210518151655.125153-1-clabbe@baylibre.com>
- <20210518151655.125153-3-clabbe@baylibre.com>
+        id S229574AbhE1HH0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 May 2021 03:07:26 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 6A6D4809F;
+        Fri, 28 May 2021 07:05:56 +0000 (UTC)
+Date:   Fri, 28 May 2021 10:05:47 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Grygorii Strashko <grygorii.strashko@ti.com>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-serial@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Dario Binacchi <dariobin@libero.it>
+Subject: Re: [PATCH] dt-bindings: serial: Move omap-serial.txt to YAML schema
+Message-ID: <YLCWS/+TwSs8HhRG@atomide.com>
+References: <20210527165636.939-1-vigneshr@ti.com>
+ <3760d1e6-2121-323b-d962-60e8291d0bb7@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210518151655.125153-3-clabbe@baylibre.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <3760d1e6-2121-323b-d962-60e8291d0bb7@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 18, 2021 at 03:16:52PM +0000, Corentin Labbe wrote:
->
-> +static int sl3516_ce_cipher_fallback(struct skcipher_request *areq)
-> +{
-> +	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(areq);
-> +	struct sl3516_ce_cipher_tfm_ctx *op = crypto_skcipher_ctx(tfm);
-> +	struct sl3516_ce_cipher_req_ctx *rctx = skcipher_request_ctx(areq);
-> +	struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
-> +	struct sl3516_ce_alg_template *algt;
-> +	int err;
-> +
-> +	algt = container_of(alg, struct sl3516_ce_alg_template, alg.skcipher);
-> +	algt->stat_fb++;
+* Grygorii Strashko <grygorii.strashko@ti.com> [210527 17:49]:
+> 
+> 
+> On 27/05/2021 19:56, Vignesh Raghavendra wrote:
+> > Convert serial-omap.txt to YAML schema for better checks and documentation.
+> > 
+> > Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> > ---
+> >   .../bindings/serial/omap_serial.txt           |  40 ------
+> >   .../bindings/serial/ti,omap4-uart.yaml        | 116 ++++++++++++++++++
+> >   2 files changed, 116 insertions(+), 40 deletions(-)
+> >   delete mode 100644 Documentation/devicetree/bindings/serial/omap_serial.txt
+> >   create mode 100644 Documentation/devicetree/bindings/serial/ti,omap4-uart.yaml
+> 
+> Why omap4? Seems ti,omap-uart.yaml is more suitable.
 
-This fails to build if CRYPTO_DEV_SL3516_DEBUG is off.
+Additionally omap-serial should be deprecated in favor of 8250_omap and
+omap-serial not used at all in general.
 
-Cheers,
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+It seems some folks still stick to omap-serial for legacy reasons when
+using an old .config. That's easy to fix by just changing inittab to
+use ttyS instead of ttyO, the kernel cmdline is already fixed up on
+init to use ttyS, but might as well update the bootloader cmdline too.
+
+But why do we even allow using this driver on newer SoCs when we have
+already planned to deprecate omap-serial.c years before the new SoCs?
+
+I suggest we make omap-serial deprecated for all SoCs, and not even
+allow it for am6, omap-serial.c only lists these:
+
+        { .compatible = "ti,omap2-uart" },
+        { .compatible = "ti,omap3-uart" },
+        { .compatible = "ti,omap4-uart" },
+
+And folks are also using it for some rs485 cases that should just be
+really fixed for 8250_omap instead.. Adding Dario to Cc because of
+these omap-serial patches:
+
+e2a5e8448e73 ("serial: omap: fix rs485 half-duplex filtering")
+45f6b6db53c8 ("serial: omap: don't disable rs485 if rts gpio is missing")
+
+Dario, why not use 8250_omap instead?
+
+Regards,
+
+Tony
