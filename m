@@ -2,83 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 529DC393D71
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 09:05:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D6F8393D99
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 09:17:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234724AbhE1HH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 03:07:26 -0400
-Received: from muru.com ([72.249.23.125]:33154 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229574AbhE1HH0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 May 2021 03:07:26 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 6A6D4809F;
-        Fri, 28 May 2021 07:05:56 +0000 (UTC)
-Date:   Fri, 28 May 2021 10:05:47 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Grygorii Strashko <grygorii.strashko@ti.com>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-serial@vger.kernel.org,
+        id S234964AbhE1HSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 03:18:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48512 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235299AbhE1HSi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 03:18:38 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 654F1C061574;
+        Fri, 28 May 2021 00:17:03 -0700 (PDT)
+Received: from [192.168.1.111] (91-157-208-71.elisa-laajakaista.fi [91.157.208.71])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D034D8C7;
+        Fri, 28 May 2021 09:16:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1622186220;
+        bh=CrcGIprNiWYjyNBEAjRVKsmiWp0B7Zru8OKtl8SwMMk=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=A0eMB83vn68dWs7oY99yf0EZalzsYf95dAS70wN57DUz9ssEnwPExUddDg/5/qlvg
+         1qDRHuQcYJ5YkG9lvGraoXFdT2OEEHmRnlYp3OTJVoCvSa6weUV8pl+eL36HnVc4f4
+         c21rik+TaQd1LNBve6I7psWrPHyNnHuZvSrfQ9kw=
+Subject: Re: [PATCH v2 10/18] media: cadence: csi2rx: Populate subdev devnode
+To:     Pratyush Yadav <p.yadav@ti.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Benoit Parrot <bparrot@ti.com>, linux-media@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Dario Binacchi <dariobin@libero.it>
-Subject: Re: [PATCH] dt-bindings: serial: Move omap-serial.txt to YAML schema
-Message-ID: <YLCWS/+TwSs8HhRG@atomide.com>
-References: <20210527165636.939-1-vigneshr@ti.com>
- <3760d1e6-2121-323b-d962-60e8291d0bb7@ti.com>
+        linux-phy@lists.infradead.org, dmaengine@vger.kernel.org
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <20210526152308.16525-1-p.yadav@ti.com>
+ <20210526152308.16525-11-p.yadav@ti.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Message-ID: <9c38a72c-18e8-1e54-b3b4-85ff5d47857a@ideasonboard.com>
+Date:   Fri, 28 May 2021 10:16:58 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3760d1e6-2121-323b-d962-60e8291d0bb7@ti.com>
+In-Reply-To: <20210526152308.16525-11-p.yadav@ti.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Grygorii Strashko <grygorii.strashko@ti.com> [210527 17:49]:
+On 26/05/2021 18:23, Pratyush Yadav wrote:
+> The devnode can be used by media-ctl and other userspace tools to
+> perform configurations on the subdev. Without it, media-ctl returns
+> ENOENT when setting format on the sensor subdev.
 > 
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> ---
 > 
-> On 27/05/2021 19:56, Vignesh Raghavendra wrote:
-> > Convert serial-omap.txt to YAML schema for better checks and documentation.
-> > 
-> > Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> > ---
-> >   .../bindings/serial/omap_serial.txt           |  40 ------
-> >   .../bindings/serial/ti,omap4-uart.yaml        | 116 ++++++++++++++++++
-> >   2 files changed, 116 insertions(+), 40 deletions(-)
-> >   delete mode 100644 Documentation/devicetree/bindings/serial/omap_serial.txt
-> >   create mode 100644 Documentation/devicetree/bindings/serial/ti,omap4-uart.yaml
+> (no changes since v1)
 > 
-> Why omap4? Seems ti,omap-uart.yaml is more suitable.
+>   drivers/media/platform/cadence/cdns-csi2rx.c | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
+> index 1df21f462f3c..49bed63d5faa 100644
+> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
+> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
+> @@ -613,6 +613,7 @@ static int csi2rx_probe(struct platform_device *pdev)
+>   	csi2rx->pads[CSI2RX_PAD_SINK].flags = MEDIA_PAD_FL_SINK;
+>   	for (i = CSI2RX_PAD_SOURCE_STREAM0; i < CSI2RX_PAD_MAX; i++)
+>   		csi2rx->pads[i].flags = MEDIA_PAD_FL_SOURCE;
+> +	csi2rx->subdev.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+>   
+>   	ret = media_entity_pads_init(&csi2rx->subdev.entity, CSI2RX_PAD_MAX,
+>   				     csi2rx->pads);
+> 
 
-Additionally omap-serial should be deprecated in favor of 8250_omap and
-omap-serial not used at all in general.
+I don't understand this one. There's nothing to configure in cdns-csi2rx 
+from userspace, as far as I can see, so why is the dev node needed? And 
+why would the lack of csi2rx dev node cause sensor subdev config to fail?
 
-It seems some folks still stick to omap-serial for legacy reasons when
-using an old .config. That's easy to fix by just changing inittab to
-use ttyS instead of ttyO, the kernel cmdline is already fixed up on
-init to use ttyS, but might as well update the bootloader cmdline too.
-
-But why do we even allow using this driver on newer SoCs when we have
-already planned to deprecate omap-serial.c years before the new SoCs?
-
-I suggest we make omap-serial deprecated for all SoCs, and not even
-allow it for am6, omap-serial.c only lists these:
-
-        { .compatible = "ti,omap2-uart" },
-        { .compatible = "ti,omap3-uart" },
-        { .compatible = "ti,omap4-uart" },
-
-And folks are also using it for some rs485 cases that should just be
-really fixed for 8250_omap instead.. Adding Dario to Cc because of
-these omap-serial patches:
-
-e2a5e8448e73 ("serial: omap: fix rs485 half-duplex filtering")
-45f6b6db53c8 ("serial: omap: don't disable rs485 if rts gpio is missing")
-
-Dario, why not use 8250_omap instead?
-
-Regards,
-
-Tony
+  Tomi
