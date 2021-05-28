@@ -2,88 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E438393E44
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 09:56:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 512C4393EBA
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 10:26:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235267AbhE1H6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 03:58:11 -0400
-Received: from www.zeus03.de ([194.117.254.33]:48774 "EHLO mail.zeus03.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229940AbhE1H6K (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 May 2021 03:58:10 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=4a1UWrijKizQqJvpr+0ZFECRLopE
-        gw+Uj6Vi9O92d0c=; b=hP1YZ/dAaYXRIyv5tlrdlyaHf5AF/AZ7jmFBI4N1InUW
-        ETf6Fn5LtRX/VQrUwK2znw/VtYtg7jLK9JtCXvSnCLJQi7Tp3cw7/8OqTSqBwBii
-        UiQNHZWOFLro4N7dQYk4dxu/2dPfTtJ35iuE5sIa1+qdFEyi9XFiV+4tEJRZ1es=
-Received: (qmail 2272518 invoked from network); 28 May 2021 09:56:35 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 28 May 2021 09:56:35 +0200
-X-UD-Smtp-Session: l3s3148p1@GJ/6Nl/Dgt4gAwDPXwoXAEGfoBQqamfc
-Date:   Fri, 28 May 2021 09:56:35 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH 5/6] dt-bindings: i2c: renesas,riic: Convert to
- json-schema
-Message-ID: <YLCiM7La9lIKy7Bf@kunai>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Rob Herring <robh@kernel.org>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-References: <cover.1620138454.git.geert+renesas@glider.be>
- <e1bb5790675b6f4a518c6a9cbc22eb7452a2f78c.1620138454.git.geert+renesas@glider.be>
- <20210506205611.GA785508@robh.at.kernel.org>
- <CAMuHMdUh=Cne==VAqv_DRXZpB7cOyRJehaq-mOWQb__DUk1Orw@mail.gmail.com>
+        id S236380AbhE1I1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 04:27:43 -0400
+Received: from fgw22-4.mail.saunalahti.fi ([62.142.5.109]:62719 "EHLO
+        fgw22-4.mail.saunalahti.fi" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236388AbhE1I1m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 May 2021 04:27:42 -0400
+X-Greylist: delayed 963 seconds by postgrey-1.27 at vger.kernel.org; Fri, 28 May 2021 04:27:41 EDT
+Received: from darkstar.musicnaut.iki.fi (85-76-82-161-nat.elisa-mobile.fi [85.76.82.161])
+        by fgw22.mail.saunalahti.fi (Halon) with ESMTP
+        id 1822b824-bf8c-11eb-88cb-005056bdf889;
+        Fri, 28 May 2021 11:10:01 +0300 (EEST)
+Date:   Fri, 28 May 2021 11:09:58 +0300
+From:   Aaro Koskinen <aaro.koskinen@iki.fi>
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
+Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        linux-mm@kvack.org, mark.rutland@arm.com, kevin.tian@intel.com,
+        jacob.jun.pan@linux.intel.com, catalin.marinas@arm.com,
+        joro@8bytes.org, robin.murphy@arm.com, robh+dt@kernel.org,
+        yi.l.liu@intel.com, Jonathan.Cameron@huawei.com,
+        zhangfei.gao@linaro.org, will@kernel.org, christian.koenig@amd.com,
+        baolu.lu@linux.intel.com
+Subject: Re: [PATCH v4 21/26] iommu/arm-smmu-v3: Ratelimit event dump
+Message-ID: <20210528080958.GA60351@darkstar.musicnaut.iki.fi>
+References: <20200224182401.353359-1-jean-philippe@linaro.org>
+ <20200224182401.353359-22-jean-philippe@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="NHQajp+U+fGrk2qL"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdUh=Cne==VAqv_DRXZpB7cOyRJehaq-mOWQb__DUk1Orw@mail.gmail.com>
+In-Reply-To: <20200224182401.353359-22-jean-philippe@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---NHQajp+U+fGrk2qL
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, Feb 24, 2020 at 07:23:56PM +0100, Jean-Philippe Brucker wrote:
+> When a device or driver misbehaves, it is possible to receive events
+> much faster than we can print them out. Ratelimit the printing of
+> events.
+> 
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
 
+Tested-by: Aaro Koskinen <aaro.koskinen@nokia.com>
 
-> > Don't need oneOf here with only 1 entry. Otherwise,
->=20
-> Thanks, dropping for v2.
+> During the SVA tests when the device driver didn't properly stop DMA
+> before unbinding, the event queue thread would almost lock-up the server
+> with a flood of event 0xa. This patch helped recover from the error.
 
-Waiting for v2 here.
+I was just debugging a similar case, and this patch was required to
+prevent system from locking up.
 
+Could you please resend this patch independently from the other patches
+in the series, as it seems it's a worthwhile fix and still relevent for
+current kernels. Thanks,
 
---NHQajp+U+fGrk2qL
-Content-Type: application/pgp-signature; name="signature.asc"
+A.
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmCwojMACgkQFA3kzBSg
-KbYApw//bLXJRANWg/cuJgdRW8B6ruGEN3TzvEj7hKhBkTOoTqQ7jevz9Pq3PQpP
-iUAvUlW3c9zPHjDrKxyClF4u+yjJ5tL6fc9ugerzsegMuJEOySGNDv14rHgacfoA
-4vu3Z0kB8pseaYQhmmb977bA717FHqRVnABTVsTItNkHUJUsFUs1zUB1dSnTW0J4
-mI8uiHCPNhq2+mnuQqKKUl8znBMrIZBMj0nWWRbhKNpeK6aWB7uDhv5IkiQ22Ioj
-cSLqafIqxOcbN5IDXW5uJtwfDdl6n1Hg+SBGiKLZ+f7+yW5qwXvQ/XuoeqAaZU8S
-7looQrVkFqK7R6012KvV/VA/BQehWlRSw9qJVRRYT1SStkoizHVti0UBSX5tDELu
-C50XrR4NMW54Dq5kuLh93PfT1M+or4v7j/UjT2wBKnRrH+lPFfcAj7n0XU2YafL0
-Jog6S+ki3mfflISSZBIZoF2/JwBQ+WYoiaE02Nu8sNaGYFsOD+K49EJaP+4WfHg6
-F79cnLml1O4B2VYTcGx0FaukKkpbmGe++hIHCDIwjtkcR5m06AVTi41LylVGTmt3
-snYDrN4NYKscyNE410RJIdMF+Mc6gwYbKgWXtRjldqRSza2jRkhWVJAwSIj3FPKp
-Zihi9ScGRkRyuaLPf5eYggz+lp/J2Otven0bcU+QwDWitSpBstk=
-=GvxI
------END PGP SIGNATURE-----
-
---NHQajp+U+fGrk2qL--
+> ---
+>  drivers/iommu/arm-smmu-v3.c | 13 ++++++++-----
+>  1 file changed, 8 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/iommu/arm-smmu-v3.c b/drivers/iommu/arm-smmu-v3.c
+> index 28f8583cd47b..6a5987cce03f 100644
+> --- a/drivers/iommu/arm-smmu-v3.c
+> +++ b/drivers/iommu/arm-smmu-v3.c
+> @@ -2243,17 +2243,20 @@ static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
+>  	struct arm_smmu_device *smmu = dev;
+>  	struct arm_smmu_queue *q = &smmu->evtq.q;
+>  	struct arm_smmu_ll_queue *llq = &q->llq;
+> +	static DEFINE_RATELIMIT_STATE(rs, DEFAULT_RATELIMIT_INTERVAL,
+> +				      DEFAULT_RATELIMIT_BURST);
+>  	u64 evt[EVTQ_ENT_DWORDS];
+>  
+>  	do {
+>  		while (!queue_remove_raw(q, evt)) {
+>  			u8 id = FIELD_GET(EVTQ_0_ID, evt[0]);
+>  
+> -			dev_info(smmu->dev, "event 0x%02x received:\n", id);
+> -			for (i = 0; i < ARRAY_SIZE(evt); ++i)
+> -				dev_info(smmu->dev, "\t0x%016llx\n",
+> -					 (unsigned long long)evt[i]);
+> -
+> +			if (__ratelimit(&rs)) {
+> +				dev_info(smmu->dev, "event 0x%02x received:\n", id);
+> +				for (i = 0; i < ARRAY_SIZE(evt); ++i)
+> +					dev_info(smmu->dev, "\t0x%016llx\n",
+> +						 (unsigned long long)evt[i]);
+> +			}
+>  		}
+>  
+>  		/*
