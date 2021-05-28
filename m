@@ -2,99 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBCA43945FC
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 18:41:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46A4239461A
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 18:53:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234677AbhE1QnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 12:43:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34610 "EHLO
+        id S233309AbhE1QzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 12:55:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235570AbhE1QnJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 12:43:09 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43FA6C061574
-        for <devicetree@vger.kernel.org>; Fri, 28 May 2021 09:41:32 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id i9so6151152lfe.13
-        for <devicetree@vger.kernel.org>; Fri, 28 May 2021 09:41:32 -0700 (PDT)
+        with ESMTP id S230337AbhE1QzC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 12:55:02 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F59CC061574;
+        Fri, 28 May 2021 09:53:26 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id l1so6351429ejb.6;
+        Fri, 28 May 2021 09:53:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to:cc;
-        bh=nJ28sBrYVq5NPZP+9HkVmg+0pfidVM4lGOb3m1XFUCk=;
-        b=X+blJsCYVJHPsBE3MoMiD/6kiNj3lE95f/LqFIfWh+vVjyAgNRlfstnba6EiMuDSi1
-         8/jqf8CtqtSgGWji1OQVMNLBL9p2Wrj2KRE9th9IrPlnKbjnnRi2vQGX1CsNCBKS4DlZ
-         WP1LmscVynaWfKUycmeJ/H2Plo+MlheJtcvVtasKd/GX5ECzbHAtMsrRV1apawCV1Dli
-         v9gr+pv+CLqt8TyeGSmoY3+SKEhNYxIpt0P3F4nOFOm29JJRFis7hjM+gcOlHSP1b3nv
-         ylzMcqOOP0zU4zd1er8vHc5FyeUBYCVNz2IoyWFyNsSe5GhD1+23785MwO1FIEMLRMnJ
-         Mpkw==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=8/Q1T7/H3Ga42CpeeXwBtnXyWFCr/Nsv9NyGJyZCOVw=;
+        b=EMVcyf6Vgozn5JaYJzcv45C5rVttjwZhqro7BUHd7I3jakgKq8Pbk7u9QzQGlo5MAD
+         Dk2qFwXmHzAWKZpmpX8mTMlTgCUh5e8M0Nk7GJL8ar5Ok2CraN8y81cNbPrE2vGRTbrH
+         KGHuKPgYre/zEvkyFVKxIXf5edK1SPiaq04y/2nS3EQKznllAGzpPmcaJaxJJTYueipU
+         s7oNVNfnGFb2EZQOoWBsiAbTLe+413OVfW/uCjolzRCxjaXXncFbnhT6agwrdh/HKtWJ
+         qicDai95PQu5/TK8Fx3dccPsg+kEPUX4nY2Ipb+N8VYr0SkT92c0IlyFSA0E9A8g6kRB
+         fcLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-        bh=nJ28sBrYVq5NPZP+9HkVmg+0pfidVM4lGOb3m1XFUCk=;
-        b=jKTF0YX21grqdX+fVlMeJTZ+AWU73RndqYKgLoJGIMMgtoixbI38T1TElBYR4BQ+Yu
-         aZynTIY8nawVo1JSZgMsZppAfTVV257U6Ela4Y37ZO397PTYZt/+SKmNdD2u1nD4AVnu
-         5JHB1a7iqmRfUPFHOZIcGlxVIGEBnFPsZP79slbEFpFIKDxZpgUk/PwYUFYawucyi8SN
-         6MVyRWqZBPl1rzQFPOKEEcgybiQrYps6S6mlLj6/heZXsKK3Qa2zT29yFsvnrcdSgegh
-         5MHg7Q/MAcIstye5Sx8L+4nRO690Xk83iDTPnb/eeQbcT+N9yQgxp5N1jZ6/rLEv0tiJ
-         xz0w==
-X-Gm-Message-State: AOAM533mBGxHh44xSx7p3nJc9aGETMq1mU40uCSWA6L3w/ujkepWTNi8
-        Iz9YQ6C4Qe7sWE8NSwtA1ZBxCSnezjltrisTyDP8ydAfsZ8WXw==
-X-Google-Smtp-Source: ABdhPJyinlBJzVvlFr/VJMbIWReSLmqmyLI2EHWlHI7K42YbPTo4nzuDLY1JSrYOOmwgU+uiywItMmIab4H8IZn4hRY=
-X-Received: by 2002:ac2:424f:: with SMTP id m15mr6106341lfl.223.1622220090605;
- Fri, 28 May 2021 09:41:30 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=8/Q1T7/H3Ga42CpeeXwBtnXyWFCr/Nsv9NyGJyZCOVw=;
+        b=uod3f/ozGvcyo6/DxLUlcR3WDK+3BO7aPi4xVSxYqTrYb/aSIQTspCmro81YIGhEbM
+         ZigznA+G2gho748JGlW0sfI9Vuvzrzz191F2CD63DRGO7mzvOqk/xF3sc5EDUtzkAe+c
+         KIU6abESHayqCeGNSlNCJyNWtTbC2nkJz2842wkrQfiQBRhoDX4evJYAyBDL8M6X79Rb
+         /ThcTqZ+NjOOJaD2SxH4SpOQCxaCT5fCmy55w8sg5oYqj01jkzdkMvTZiUMMucPtQx/2
+         BgAkF1D439BbS8rJ7qcgK/54zMxpjr44b9JG10osgwXAtwqY0Fgml2PY4dcbcHA4HkG2
+         pQNg==
+X-Gm-Message-State: AOAM533xSw+VGKC7aju/xqLy2MTHGTrheGAuJLkUHwMvJOK8p4MaevNW
+        qxkbSN+xCweIcF5XCQ8U/Leh+4jZCWY=
+X-Google-Smtp-Source: ABdhPJw+KFj6oh+Lnn+VyF4bZ3YYAp39NuBtIqWCrkvnE4kOjTZxgBquKlUXFUfzQ3Ajk/jPxTuIHQ==
+X-Received: by 2002:a17:906:6dd0:: with SMTP id j16mr10062452ejt.208.1622220804798;
+        Fri, 28 May 2021 09:53:24 -0700 (PDT)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id l11sm2600520ejd.103.2021.05.28.09.53.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 May 2021 09:53:23 -0700 (PDT)
+Date:   Fri, 28 May 2021 18:54:55 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: reserved-memory: Document memory
+ region specifier
+Message-ID: <YLEgXyLBF8PEFNw2@orome.fritz.box>
+References: <20210423163234.3651547-1-thierry.reding@gmail.com>
+ <20210423163234.3651547-2-thierry.reding@gmail.com>
+ <20210520220306.GA1976116@robh.at.kernel.org>
 MIME-Version: 1.0
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Fri, 28 May 2021 13:41:19 -0300
-Message-ID: <CAOMZO5ADZtnoJQrBf-dZ0OYaYkgT7r4HHYXkUdSB91ZS_=EeqA@mail.gmail.com>
-Subject: make dt_binding_check fails in linux-next
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="Q8VGTr6iP6guEeJM"
+Content-Disposition: inline
+In-Reply-To: <20210520220306.GA1976116@robh.at.kernel.org>
+User-Agent: Mutt/2.0.6 (98f8cb83) (2021-03-06)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-I am trying to run 'make dt_binding_check' in linux-next 20210528 and
-I get the error below.
+--Q8VGTr6iP6guEeJM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Any suggestions?
+On Thu, May 20, 2021 at 05:03:06PM -0500, Rob Herring wrote:
+> On Fri, Apr 23, 2021 at 06:32:30PM +0200, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> >=20
+> > Reserved memory region phandle references can be accompanied by a
+> > specifier that provides additional information about how that specific
+> > reference should be treated.
+> >=20
+> > One use-case is to mark a memory region as needing an identity mapping
+> > in the system's IOMMU for the device that references the region. This is
+> > needed for example when the bootloader has set up hardware (such as a
+> > display controller) to actively access a memory region (e.g. a boot
+> > splash screen framebuffer) during boot. The operating system can use the
+> > identity mapping flag from the specifier to make sure an IOMMU identity
+> > mapping is set up for the framebuffer before IOMMU translations are
+> > enabled for the display controller.
+> >=20
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> >  .../reserved-memory/reserved-memory.txt       | 21 +++++++++++++++++++
+> >  include/dt-bindings/reserved-memory.h         |  8 +++++++
+> >  2 files changed, 29 insertions(+)
+> >  create mode 100644 include/dt-bindings/reserved-memory.h
+>=20
+> Sorry for being slow on this. I have 2 concerns.
+>=20
+> First, this creates an ABI issue. A DT with cells in 'memory-region'=20
+> will not be understood by an existing OS. I'm less concerned about this=
+=20
+> if we address that with a stable fix. (Though I'm pretty sure we've=20
+> naively added #?-cells in the past ignoring this issue.)
 
-Thanks
+A while ago I had proposed adding memory-region*s* as an alternative
+name for memory-region to make the naming more consistent with other
+types of properties (think clocks, resets, gpios, ...). If we added
+that, we could easily differentiate between the "legacy" cases where
+no #memory-region-cells was allowed and the new cases where it was.
 
-$ make dt_binding_check
-  LINT    Documentation/devicetree/bindings
-  CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
-Traceback (most recent call last):
-  File "/home/fabio/.local/bin/dt-doc-validate", line 67, in <module>
-    ret = check_doc(f)
-  File "/home/fabio/.local/bin/dt-doc-validate", line 33, in check_doc
-    for error in
-sorted(dtschema.DTValidator.iter_schema_errors(testtree), key=lambda
-e: e.linecol):
-  File "/home/fabio/.local/lib/python3.8/site-packages/dtschema/lib.py",
-line 723, in iter_schema_errors
-    meta_schema = cls.resolver.resolve_from_url(schema['$schema'])
-KeyError: '$schema'
-  SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
-Traceback (most recent call last):
-  File "/home/fabio/.local/bin/dt-mk-schema", line 38, in <module>
-    schemas = dtschema.process_schemas(args.schemas, core_schema=(not
-args.useronly))
-  File "/home/fabio/.local/lib/python3.8/site-packages/dtschema/lib.py",
-line 587, in process_schemas
-    sch = process_schema(os.path.abspath(filename))
-  File "/home/fabio/.local/lib/python3.8/site-packages/dtschema/lib.py",
-line 568, in process_schema
-    DTValidator.check_schema(schema)
-  File "/home/fabio/.local/lib/python3.8/site-packages/dtschema/lib.py",
-line 738, in check_schema
-    meta_schema = cls.resolver.resolve_from_url(schema['$schema'])
-KeyError: '$schema'
-make[1]: *** [Documentation/devicetree/bindings/Makefile:62:
-Documentation/devicetree/bindings/processed-schema-examples.json]
-Error 1
-make[1]: *** Deleting file
-'Documentation/devicetree/bindings/processed-schema-examples.json'
-make: *** [Makefile:1497: dt_binding_check] Error 2
+> Second, it could be the bootloader setting up the reserved region. If a=
+=20
+> node already has 'memory-region', then adding more regions is more=20
+> complicated compared to adding new properties. And defining what each=20
+> memory-region entry is or how many in schemas is impossible.
+
+It's true that updating the property gets a bit complicated, but it's
+not exactly rocket science. We really just need to splice the array. I
+have a working implemention for this in U-Boot.
+
+For what it's worth, we could run into the same issue with any new
+property that we add. Even if we renamed this to iommu-memory-region,
+it's still possible that a bootloader may have to update this property
+if it already exists (it could be hard-coded in DT, or it could have
+been added by some earlier bootloader or firmware).
+
+> Both could be addressed with a new property. Perhaps something like=20
+> 'iommu-memory-region =3D <&phandle>;'. I think the 'iommu' prefix is=20
+> appropriate given this is entirely because of the IOMMU being in the=20
+> mix. I might feel differently if we had other uses for cells, but I=20
+> don't really see it in this case.=20
+
+I'm afraid that down the road we'll end up with other cases and then we
+might proliferate a number of *-memory-region properties with varying
+prefixes.
+
+I am aware of one other case where we might need something like this: on
+some Tegra SoCs we have audio processors that will access memory buffers
+using a DMA engine. These processors are booted from early firmware
+using firmware from system memory. In order to avoid trashing the
+firmware, we need to reserve memory. We can do this using reserved
+memory nodes. However, the audio DMA engine also uses the SMMU, so we
+need to make sure that the firmware memory is marked as reserved within
+the SMMU. This is similar to the identity mapping case, but not exactly
+the same. Instead of creating a 1:1 mapping, we just want that IOVA
+region to be reserved (i.e. IOMMU_RESV_RESERVED instead of
+IOMMU_RESV_DIRECT{,_RELAXABLE}).
+
+That would also fall into the IOMMU domain, but we can't reuse the
+iommu-memory-region property for that because then we don't have enough
+information to decide which type of reservation we need.
+
+We could obviously make iommu-memory-region take a specifier, but we
+could just as well use memory-regions in that case since we have
+something more generic anyway.
+
+With the #memory-region-cells proposal, we can easily extend the cell in
+the specifier with an additional MEMORY_REGION_IOMMU_RESERVE flag to
+take that other use case into account. If we than also change to the new
+memory-regions property name, we avoid the ABI issue (and we gain a bit
+of consistency while at it).
+
+Thierry
+
+--Q8VGTr6iP6guEeJM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmCxIF0ACgkQ3SOs138+
+s6GgVBAAvM4rKjwwQlq4GSoJz946gpHZ/v8WPH/wvUQcsnFUrNIGJsLNItv+oeNC
+WSP4nCxc4cEhpi0Jl9MUM24e0I9BM1eL5x9t86XdssjF8ElmHeO6uUPL3zKUmhrv
+C94rix/U5H4oDUANv22Fi2GCVAMLjnCRAgz0jOzAmpRnR8CfpGhC8HD9+vsIOuyl
+jr0zb5JdJQntp9KfagD2sxrrMp3bkb3AURhgxvMzu+jMgsjAsg65LxZkrmwfLUOg
+Dt8LDNcbx42zE3ioF+F+fT7mHRfMPsxyAM9dYtFbjeGr4/+vdwEIuySRXW4lY9+U
+j1Lc/M5Fperag6as/U7dGSNutUBzWRJTKe9AmCgJ4+O0Z3GZJCl1ziuUjI7WmMxv
+6E2s5Mg0CImYe4rMFVy065os+saYdiLy4xJy2sjnt71qsa0GMzJ0k8H07E9RYQ9g
+l4RRkfj21qt/PuMAh9TuFewQIJxgVHUmOWFQ/qATYqTGKAmXriVBolY7wO/KuwTe
+zgo8dShCCO92KASb9NFZEqCg9Igi5c+5hzU5oi3tXKG54uCfWnhNn/HVN1viCbzi
+jr1cm5Bn/kj1id1xeHdPKPCIONcDEQYv/slUpRsMo3hTQzgpkxKP5OH7CbAxLo3Y
+/RPDyN8wSreHg3SM97nqYGade6GOZVug0oFC5RoL4oQaU02immw=
+=1rTq
+-----END PGP SIGNATURE-----
+
+--Q8VGTr6iP6guEeJM--
