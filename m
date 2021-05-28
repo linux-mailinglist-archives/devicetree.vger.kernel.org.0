@@ -2,103 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE8D9393EF0
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 10:45:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEE02393EF6
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 10:48:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234926AbhE1Iqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 04:46:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52390 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229950AbhE1Iqp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 May 2021 04:46:45 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5AB1F611C9;
-        Fri, 28 May 2021 08:45:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622191511;
-        bh=fYFdn5ho2n99MVPxiMhhhKy0DgjzCUHcDvcXXBsKMAo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rD90WhtIzLQqd8GvZeAoEFShBhZWR8gc7anxDpfCHaM0DHHNfbcMtSp/flwUD9VGA
-         hQ9kWYK+CX321+68amQtPF7Titq7z233XZ/FAKonkoZMtJwfCEJ7xRPl5GEyNC5C0K
-         InPfD96jr2eL4AUZz7yYVQo7nQhDvZvfvALc9GKhta/N2qfxgNTgWomqjJokPVg9er
-         nOVTn46db5Z1XAKhwMTvK3LzxqZMVJG4CEmVXvOQ63gW8q5GsLFdPFF0IDFY94/ZEn
-         Y/uVBwj43l1Lct4IVX+nEGp49d+hsjKrx+VtKAZxHyV3GGyELKUAWJhKFNUeeFBn0k
-         011NFAS0eu7JQ==
-Date:   Fri, 28 May 2021 10:45:08 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, Peter Rosin <peda@axentia.se>,
-        linux-kernel@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v2 0/6] dt-bindings: Convert mux bindings to schema
-Message-ID: <YLCtlG7covuCWbC4@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        Peter Rosin <peda@axentia.se>, linux-kernel@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-i2c@vger.kernel.org
-References: <20210526184839.2937899-1-robh@kernel.org>
+        id S234510AbhE1Itf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 04:49:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40976 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229878AbhE1Ite (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 04:49:34 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D385C061574
+        for <devicetree@vger.kernel.org>; Fri, 28 May 2021 01:47:59 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id m18so1697505wmq.0
+        for <devicetree@vger.kernel.org>; Fri, 28 May 2021 01:47:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=WikFeXUsmrrkxHoqNQkeIN24f6mCbXXF6hqcFhk6uOo=;
+        b=m3WX96qICHaTwGdy1NTiEy0Bor5LJzIqd0AP7gvFdxjoHxm2NxhtUULDF+9lQOSw3Y
+         wm4U2se5OJH6V8mzypZm1OGQngILCHudP6E82dzKt1S1V5RcsTTE/k4kgMZz4caIIhET
+         Ob9PhEEtEAQYiFx7Z/Sq2yj5GedDe7Px/ozVUTDyZkuGMhGy+jxnlhG6ROQMVvdsWSmp
+         IT2kPqeKN14BTJdDze23+I0GigtrfJ2WrDQE3A1wtx8tzMIIY0iH+GEgVUTcjr/YQ6X/
+         YIRmEy2wgLbQT4CNB9MC6NxyRFy6dATRINmmsosVlGlX6L+7d14bBW4AO7nEJXN3giaj
+         RH8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=WikFeXUsmrrkxHoqNQkeIN24f6mCbXXF6hqcFhk6uOo=;
+        b=ow6uzntGQAfL3ft4/6st1RrqZkAasr7JwJ4NTkRLQQQiT1pmqG9PHyr4zwFTG+oEoP
+         1IVpAsBmyQ/H85VhJpjej6ltaFzLiSXAiCJq7zPhOnBCw6VNFkpClK4BlEmiUslJpvZG
+         48x0XgKM8njVvEDQGcW0CiJ2vmBo92VIX4FeLnMia9cNrIP821n/rJ3G7ZSFi5fTzlBR
+         Sav/5Iax3tOIES8mnda4RDnH3b/CnyzpLSQXfhLAFdZx06ZzknfhFPAii5yII9br7c1Q
+         fQRnoZJv3qhO18bAIUxf7QAxN+RbTGLclZ6xqMA74Ifkf40rPhkDlbKy8lyPNub8CJ3y
+         IyvA==
+X-Gm-Message-State: AOAM533KzeNrjfryc1B3gzzAHm7vedLPyIaiTPk3A/Nr0QYw6yw/h0GP
+        7/kcr/CwuS/1I2vyYXcQ2eR4Bw==
+X-Google-Smtp-Source: ABdhPJy2OXUhLfKhJDP5StESemM6f4/xQULoj6x8UA0x3F5G/hfVlS7HFPZ/uPFHeo3V6lLxbvIwbQ==
+X-Received: by 2002:a05:600c:2219:: with SMTP id z25mr7450903wml.78.1622191677970;
+        Fri, 28 May 2021 01:47:57 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id f8sm5547546wmg.43.2021.05.28.01.47.56
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 28 May 2021 01:47:57 -0700 (PDT)
+Subject: Re: [PATCH v3] ASoC: qcom: lpass-cpu: Fix pop noise during audio
+ capture begin
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org
+References: <20210524142114.18676-1-srivasam@codeaurora.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <9a4bbab8-91a2-f195-b77a-5234d46a2c0a@linaro.org>
+Date:   Fri, 28 May 2021 09:47:56 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="YXYTR02+Qna+X+fE"
-Content-Disposition: inline
-In-Reply-To: <20210526184839.2937899-1-robh@kernel.org>
+In-Reply-To: <20210524142114.18676-1-srivasam@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---YXYTR02+Qna+X+fE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Wed, May 26, 2021 at 01:48:33PM -0500, Rob Herring wrote:
-> This series converts the mux-controller and some i2c mux bindings to DT
-> schema. This was a rabbit hole of trying to fix undocumented (by schema)
-> compatibles (enabled by setting DT_CHECKER_FLAGS=-m). So this is mux
-> bindings, and then a few others that are used in the mux binding
-> examples.
+On 24/05/2021 15:21, Srinivasa Rao Mandadapu wrote:
+> This patch fixes PoP noise of around 15ms observed during audio capture begin.
+> Enables BCLK and LRCLK in snd_soc_dai_ops prepare call for introducing some delay
+> before capture start and clock enable.
+> 
+> Co-developed-by: Judy Hsiao <judyhsiao@chromium.org>
+> Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> ---
+> Changes Since V2:
+> 	-- Updated comments as per linux style
+> 	-- Removed unrelated changes.
+> Changes Since V1:
+> 	-- Enableed BCLK and LRCLK in dai ops prepare API instead of startup API
+> 	-- Added comments
+> 
+>   sound/soc/qcom/lpass-cpu.c | 54 +++++++++++++++++++++++++++++++++++++-
+>   1 file changed, 53 insertions(+), 1 deletion(-)
+> 
+> diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+> index 28c7497344e3..1855eae22aad 100644
+> --- a/sound/soc/qcom/lpass-cpu.c
+> +++ b/sound/soc/qcom/lpass-cpu.c
+> @@ -93,9 +93,21 @@ static void lpass_cpu_daiops_shutdown(struct snd_pcm_substream *substream,
+>   		struct snd_soc_dai *dai)
+>   {
+>   	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
+> +	struct lpaif_i2sctl *i2sctl = drvdata->i2sctl;
+> +	unsigned int id = dai->driver->id;
+>   
+>   	clk_disable_unprepare(drvdata->mi2s_osr_clk[dai->driver->id]);
+> -	clk_unprepare(drvdata->mi2s_bit_clk[dai->driver->id]);
+> +	/*
+> +	 * To ensure BCLK/LRCLK disabled even in device node validation
+> +	 * Will not impact if disabled in lpass_cpu_daiops_trigger()
+> +	 * suspend.
+> +	 */
+> +	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
+> +		regmap_fields_write(i2sctl->spken, id, LPAIF_I2SCTL_SPKEN_DISABLE);
+> +	else
+> +		regmap_fields_write(i2sctl->micen, id, LPAIF_I2SCTL_MICEN_DISABLE);
+> +
+> +	clk_disable_unprepare(drvdata->mi2s_bit_clk[dai->driver->id]);
+>   }
+>   
+>   static int lpass_cpu_daiops_hw_params(struct snd_pcm_substream *substream,
+> @@ -275,6 +287,10 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
+>   	case SNDRV_PCM_TRIGGER_START:
+>   	case SNDRV_PCM_TRIGGER_RESUME:
+>   	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
+> +		/*
+> +		 * To ensure lpass BCLK/LRCLK is enabled during
+> +		 * device resume. Will not impact if enabled in lpass_cpu_daiops_prepare().
+> +		 */
 
-So, I assume this should all go via your tree? That would be fine with
-me. Maybe Peter has some more comments, but for the procedure, here is
-my ack for the I2C parts of this series:
-
-Acked-by: Wolfram Sang <wsa@kernel.org>
+prepare should have already ensured that isn't it?
 
 
---YXYTR02+Qna+X+fE
-Content-Type: application/pgp-signature; name="signature.asc"
+>   		if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
+>   			ret = regmap_fields_write(i2sctl->spken, id,
+>   						 LPAIF_I2SCTL_SPKEN_ENABLE);
+> @@ -296,6 +312,10 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
+>   	case SNDRV_PCM_TRIGGER_STOP:
+>   	case SNDRV_PCM_TRIGGER_SUSPEND:
+>   	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
+> +		/*
+> +		 * To ensure lpass BCLK/LRCLK is disabled during
+> +		 * device suspend.
+> +		 */
+>   		if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
+>   			ret = regmap_fields_write(i2sctl->spken, id,
+>   						 LPAIF_I2SCTL_SPKEN_DISABLE);
+> @@ -315,12 +335,44 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
+>   	return ret;
+>   }
+>   
 
------BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmCwrZMACgkQFA3kzBSg
-KbYt8g//Sw66JcxkYVCJKtd/5gih0ig5lS13n8KG59L2DTU0FBQkGRUM4j+FmgFD
-FtVbRsL3DI2Wh67F0488tfz8l0osF4CxtAwgS7oBmqrIR4dUkG2iwghRyKRb7ONF
-AMuPU84GKO32fBLjb1Vq2R+I/VgXfFeu/SIPsbzX7lOyYsGlSQU2f8TajxTa37xd
-HUx9dwfvPnrSqQSEMVLB3BLNzrBRimGcJDmul6bcYhCDh0of2uK1z6z7XHkGBqw/
-T/W62//sm9MAfmj60mGaDkFOMfJPzuanwzD9TKTJYBDQ/ZQZse5tnzqAPSFEO8KN
-6YJgkhimHg1KhXAydjEFld7FrUqr/upYzUSPv1EloMQp30ZtwOsXQLpNrApGg7R2
-JxJx+nrX6S6Vo7wxHYCeL7JE3zadFZXX5BV3ypguP9SEAW+nwe2VjU7GOqPCmiF0
-HvJCGrfwwUsgoxP5L2vVBS7SdkOtAtV1duhCNC63J9zjcpD2GzaCYkpQrnrIrsHs
-apDb5LwNmOjy2B4wbnM490CgMdnrivEPebkKjHn8G62UGtqZZt1PBxrBG3AQkmnZ
-ALMrB0S4sSzgvDBrmHBv+5KLdjMSL3ucS66oyG6R1+iPz6ITT/kefMWcYViL5Kms
-NIGG3AgLlGC97ZgdBOCaboFMbt3JRAZm+pj7Ipob6qVb6o2AI9M=
-=8rsM
------END PGP SIGNATURE-----
+[Snip ...
+> +static int lpass_cpu_daiops_prepare(struct snd_pcm_substream *substream,
+> +		struct snd_soc_dai *dai)
+> +{
+> +	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
+> +	struct lpaif_i2sctl *i2sctl = drvdata->i2sctl;
+> +	unsigned int id = dai->driver->id;
+> +	int ret;
+> +	/*
+> +	 * To ensure lpass BCLK/LRCLK is enabled bit before
+> +	 * playback/capture data flow starts.
+> +	 */
+> +	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
+> +		ret = regmap_fields_write(i2sctl->spken, id, LPAIF_I2SCTL_SPKEN_ENABLE);
+> +	else
+> +		ret = regmap_fields_write(i2sctl->micen, id, LPAIF_I2SCTL_MICEN_ENABLE);
+> +
+> +	if (ret) {
+> +		dev_err(dai->dev, "error writing to i2sctl reg: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = clk_enable(drvdata->mi2s_bit_clk[id]);
+> +
+> +	if (ret) {
+> +		dev_err(dai->dev, "error in enabling mi2s bit clk: %d\n", ret);
+> +		clk_disable(drvdata->mi2s_osr_clk[id]);
+> +		return ret;
+> +	}
+> +	return 0;
+> +}
+> +
+----]
 
---YXYTR02+Qna+X+fE--
+If prepare is enabling the clk and the i2s enable bits, then why do we 
+need to do the same thing in trigger?
+
+Also the clk enable count is going up twice (once in prepare and 
+trigger) and we can never be able to disable the clk as there is is no 
+corresponding disable for this prepare path.
+
+Also note that prepare can be called multiple times.
+
+--srini
+
+>   const struct snd_soc_dai_ops asoc_qcom_lpass_cpu_dai_ops = {
+>   	.set_sysclk	= lpass_cpu_daiops_set_sysclk,
+>   	.startup	= lpass_cpu_daiops_startup,
+>   	.shutdown	= lpass_cpu_daiops_shutdown,
+>   	.hw_params	= lpass_cpu_daiops_hw_params,
+>   	.trigger	= lpass_cpu_daiops_trigger,
+> +	.prepare	= lpass_cpu_daiops_prepare,
+>   };
+>   EXPORT_SYMBOL_GPL(asoc_qcom_lpass_cpu_dai_ops);
+>   
+> 
