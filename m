@@ -2,222 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18D6A393BD9
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 05:17:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EBA1393BEF
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 05:30:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236318AbhE1DTA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 23:19:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52150 "EHLO
+        id S234228AbhE1DcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 23:32:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236317AbhE1DS7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 23:18:59 -0400
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4A5EC06174A
-        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 20:17:25 -0700 (PDT)
-Received: by mail-oi1-x22d.google.com with SMTP id z3so2930117oib.5
-        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 20:17:25 -0700 (PDT)
+        with ESMTP id S233801AbhE1DcB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 23:32:01 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5965DC061574;
+        Thu, 27 May 2021 20:30:26 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id o17-20020a17090a9f91b029015cef5b3c50so3673218pjp.4;
+        Thu, 27 May 2021 20:30:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Fj6yd4g3TXDmWwf/fK4MDrrZ2Jmwp4JZlzW8aDmDn3Y=;
-        b=zsMQpJ5RdRYryTFtLjl5EbEWvN/bwGgRWNHBN7gYmTygCYZ5R9g/TJlWSVUpADeOaf
-         hezuDxTM8XY0AKG0emXIMEv2rHeP6Xn2qVmHL/Wy+uWstqNX00TG/lXuhXSecLa0CwXU
-         RdVdPKsyqoUBvqNj6pKsM9B/oQnkVu9lw/bALcKx6Ii1AUiJpkX8XGjnF9cukwmudse4
-         BxJTVZ2nhsGHYWcMNsaZCv1cZZXjWIl/7/k50kz74KFOwKBv7c1qGivzhLYYUW47NFRV
-         sCOgHk/YiFCoSMW0b/kWaMFoV9sDiEL4frFnl7SP09ujaH6WyQqG3GF8UGnSnXQs+a6F
-         fUbg==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:mail-followup-to:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=DYyj/O1oTsd8iPKaVYhCgJww9/pqZoeLfUmd7MZl1oU=;
+        b=cPmc8KgOTsg3pE5+BSz6K0jniO74D3kCLW+5AppZpT9ifnfOsjpln4Cel8Y27tyWeW
+         iO9cHjYF8Y1XwS1VdqjjaQGZUpYJXP0z1JO7PjE67PfIabSv2A2Winze59JtFZVLcVFW
+         Yp/MvzIcusBHhYyJWiMnjEvku3/i0zj8KzfQZOiSsUF3MrW1qdp81kPKonzyf1AXfiPg
+         Lk9TjmFtwbTEvfszbm1zmAOrSjhzubKytvF+ojKJsVRRyDuLbmvdnaofbtOduTYd3Cy7
+         m5mawJJb6XaAHauZlejrrYbLu8Nk4s1EbLNf3+8DkULNem6vEnzSRuSUKz+cdYqt1E9T
+         p0lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Fj6yd4g3TXDmWwf/fK4MDrrZ2Jmwp4JZlzW8aDmDn3Y=;
-        b=XB/u50PCjYmzq9nBWVYTs5QhLl980m3v6nEnidtjNoYj4Ofz2hpYJh1Z1RJtTm4PBk
-         +WL3cANPahGsOTUqWUwjV8aIn7w9sLl0sOcCy9BuguDWpK6CxaVaGoJ2ArEDd0kPaxaM
-         aOfIvxI2nQsmVsKMDnx0j5XeqIQhgKIaHLK8uW25kpwMVmPCwVpKu2I2DhFYWH0ql4TF
-         JfZHo0n/XVy78qOiitSfitEZszPP269Cvsx+ZIFtEvWBDrLIMR6YnnAOh/jrdjyXhmtv
-         KdYWrZpse99xmersbFrmnMm1OcRib0WgSSlmXJ2MZ/xU3iMBRzg7H8Z1ZcwbeLoqPecm
-         Y24g==
-X-Gm-Message-State: AOAM531q0+PsZoAynxHSn3Wr8y+HEXvE1Q7m+NOpJb7sJaMUT62sXUJY
-        x7UlPrNB9EVz34vf4jQiNp5LFA==
-X-Google-Smtp-Source: ABdhPJxqRihBpgL6lj+evaoTo7huY41OzFJ14nffnsAKGVI8c/xGw0DoIXBOhbBGoZeejZoxUvA7WA==
-X-Received: by 2002:aca:af8f:: with SMTP id y137mr7422874oie.159.1622171845173;
-        Thu, 27 May 2021 20:17:25 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id h4sm857667ooq.6.2021.05.27.20.17.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 May 2021 20:17:24 -0700 (PDT)
-Date:   Thu, 27 May 2021 22:17:22 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Suman Anna <s-anna@ti.com>
-Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id
+         :mail-followup-to:references:mime-version:content-disposition
+         :in-reply-to:user-agent;
+        bh=DYyj/O1oTsd8iPKaVYhCgJww9/pqZoeLfUmd7MZl1oU=;
+        b=Os/zgquyU9P19V3bgaQIJYJjVnIDPUyHopJI9RI1udv0EwoppQzvgGyuZuQKqS2q4o
+         9A/mMsBaMH2oPpLMw5Q7UGiepF4d4LPoysvXkQRriLj0odkFlr+NJdobDs0XA+a5WTrz
+         kOXoRk1CQ3w8W94panxNHtcTmEkqhRM+tLQQTmdUTwHC2IvglDuDKTDykaryxN7mb2/8
+         qxdF5CQ+XUa+1OkYC5rymCRXFhf0iKAKDgtu9cVyheRdfpjUivTHIxzppXzsRuAHUaXj
+         sRe86blQF1shpxS8ILts3jxIKa41oujHHvaRyJ8Z9zDmSzRAP0yLHN1SLrI7US1RO1oP
+         oZyw==
+X-Gm-Message-State: AOAM530oNSD9UcfJGFmMS7XPkj9ONO1/+j4odrsa3LtfaP3vxUSJXYkc
+        wxHtZ2NowkjdkxK8JvYceuU=
+X-Google-Smtp-Source: ABdhPJwZPI3hO/T0Ck2SsoY0yMUQ5UpwbkRfH2+N+d8eIr44Ev4oXd4X2xtIWgeYpERrVHKj7gzgpg==
+X-Received: by 2002:a17:90a:7e84:: with SMTP id j4mr2040025pjl.101.1622172625917;
+        Thu, 27 May 2021 20:30:25 -0700 (PDT)
+Received: from lenovo ([117.18.48.102])
+        by smtp.gmail.com with ESMTPSA id z2sm2912359pgz.64.2021.05.27.20.30.22
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 27 May 2021 20:30:25 -0700 (PDT)
+Date:   Fri, 28 May 2021 11:30:19 +0800
+From:   Orson Zhai <orsonzhai@gmail.com>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Orson Zhai <orson.zhai@unisoc.com>
+Subject: Re: [PATCH] of: property: Add fw_devlink support for pwms
+Message-ID: <20210528033019.GA11683@lenovo>
+Mail-Followup-To: Saravana Kannan <saravanak@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: k3-r5f: Update bindings
- for AM64x SoCs
-Message-ID: <YLBgwkiT9PE3Cu82@builder.lan>
-References: <20210327143117.1840-1-s-anna@ti.com>
- <20210327143117.1840-2-s-anna@ti.com>
- <8948a30c-1a2f-1fb0-05bb-37be9c02c5d5@ti.com>
- <ff8edffb-d926-9641-740b-2c292139aa07@ti.com>
- <20210521204053.GA1011163@xps15>
- <911bfb1d-8e66-298a-83ba-998040f5596d@ti.com>
+        Frank Rowand <frowand.list@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Orson Zhai <orson.zhai@unisoc.com>
+References: <1622102950-31688-1-git-send-email-orsonzhai@gmail.com>
+ <CAGETcx9w-gYrPQuxOf9qQDwzyi8Bjp7cf_uK=Q5UcKuH+vWVFw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <911bfb1d-8e66-298a-83ba-998040f5596d@ti.com>
+In-Reply-To: <CAGETcx9w-gYrPQuxOf9qQDwzyi8Bjp7cf_uK=Q5UcKuH+vWVFw@mail.gmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 24 May 10:47 CDT 2021, Suman Anna wrote:
-
-> On 5/21/21 3:40 PM, Mathieu Poirier wrote:
-> > Hi suman,
-> > 
-> > On Wed, May 12, 2021 at 09:47:44PM -0500, Suman Anna wrote:
-> >> Hi Rob,
-> >>
-> >> On 4/19/21 8:55 AM, Suman Anna wrote:
-> >>> Hi Rob,
-> >>>
-> >>> On 3/27/21 9:31 AM, Suman Anna wrote:
-> >>>> The K3 AM64x SoCs have two dual-core Arm R5F clusters/subsystems, with
-> >>>> 2 R5F cores each, both in the MAIN voltage domain.
-> >>>>
-> >>>> These clusters are a revised IP version compared to those present on
-> >>>> J721E and J7200 SoCs, and supports a new "Single-CPU" mode instead of
-> >>>> LockStep mode. Update the K3 R5F remoteproc bindings with the compatible
-> >>>> info relevant to these R5F clusters/subsystems on K3 AM64x SoCs.
-> >>>>
-> >>>> Signed-off-by: Suman Anna <s-anna@ti.com>
-> >>>> ---
-> >>>> v2: No changes
-> >>>>
-> >>>>  .../bindings/remoteproc/ti,k3-r5f-rproc.yaml  | 31 ++++++++++++++++---
-> >>>
-> >>> Looks like this patch has fallen through the cracks, can you please review and
-> >>> give your ack for this patch so that Bjorn can pick up the series for 5.13?
-> >>
-> >> Gentle reminder, do you have any comments on this patch. Appreciate your ack so
-> >> that we can get this in for 5.14?
-> > 
-> > If memory serves me well Rob indicated that he would not review or comment on
-> > bindings related to multi-core remote processors.  On the flip side he also
-> > mentioned that he would not object to their presence.  And since this is an
-> > increment to an existing binding rather than a new one, I think it is fair for
-> > us to pick it up.  
-> > 
-> > Rob - please intervene if my recollections are not accurate and accept my honest
-> > apologies.  Otherwise: 
-> > 
-> > Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org> 
-> > 
+On Thu, May 27, 2021 at 02:04:30PM -0700, Saravana Kannan wrote:
+> On Thu, May 27, 2021 at 1:09 AM Orson Zhai <orsonzhai@gmail.com> wrote:
+> >
+> > From: Orson Zhai <orson.zhai@unisoc.com>
+> >
+> > pwms is often required by backlight in embedded devices. Add device link
+> > support for pwms as well.
+> >
+> > Signed-off-by: Orson Zhai <orson.zhai@unisoc.com>
+> > ---
+> >  drivers/of/property.c | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > index 6c02863..93be977 100644
+> > --- a/drivers/of/property.c
+> > +++ b/drivers/of/property.c
+> > @@ -1287,6 +1287,7 @@ DEFINE_SIMPLE_PROP(pinctrl6, "pinctrl-6", NULL)
+> >  DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
+> >  DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
+> >  DEFINE_SIMPLE_PROP(remote_endpoint, "remote-endpoint", NULL)
+> > +DEFINE_SIMPLE_PROP(pwms, "pwms", NULL)
+> >  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
+> >  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+> >
+> > @@ -1371,6 +1372,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
+> >         { .parse_prop = parse_pinctrl7, },
+> >         { .parse_prop = parse_pinctrl8, },
+> >         { .parse_prop = parse_remote_endpoint, .node_not_dev = true, },
+> > +       { .parse_prop = parse_pwms, },
+> >         { .parse_prop = parse_gpio_compat, },
+> >         { .parse_prop = parse_interrupts, },
+> >         { .parse_prop = parse_regulators, },
 > 
-> Thank you Mathieu.
-> 
-> Bjorn,
-> Is it possible for you to give an immutable branch with just this bindings so we
-> can add the R5F nodes as well and avoid any checkpatch warnings on Nishanth's
-> tree with our K3 dts patches?
-> 
+> I already have a local patch for this and "reset" bindings. But I'm
+> holding off on adding support for new properties till fw_devlink=on
+> fully lands in 5.13. Trying to avoid inadvertently adding new
+> dependency issues. For example, the remote_endpoint binding I added to
+> fix one issue caused more dependency issues. So far I've fixed them
+> all.
 
-Hi Suman,
+Got it. Good to know your plan.
 
-That sounds rather ambitious, but you can now find this at:
-https://git.kernel.org/pub/scm/linux/kernel/git/andersson/remoteproc.git/tag/?h=20210327143117.1840-2-s-anna@ti.com
-
-Regards,
-Bjorn
-
-> regards
-> Suman
 > 
-> >>
-> >> regards
-> >> Suman
-> >>
-> >>>
-> >>> regards
-> >>> Suman
-> >>>
-> >>>>  1 file changed, 26 insertions(+), 5 deletions(-)
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
-> >>>> index d905d614502b..130fbaacc4b1 100644
-> >>>> --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
-> >>>> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
-> >>>> @@ -14,8 +14,12 @@ description: |
-> >>>>    processor subsystems/clusters (R5FSS). The dual core cluster can be used
-> >>>>    either in a LockStep mode providing safety/fault tolerance features or in a
-> >>>>    Split mode providing two individual compute cores for doubling the compute
-> >>>> -  capacity. These are used together with other processors present on the SoC
-> >>>> -  to achieve various system level goals.
-> >>>> +  capacity on most SoCs. These are used together with other processors present
-> >>>> +  on the SoC to achieve various system level goals.
-> >>>> +
-> >>>> +  AM64x SoCs do not support LockStep mode, but rather a new non-safety mode
-> >>>> +  called "Single-CPU" mode, where only Core0 is used, but with ability to use
-> >>>> +  Core1's TCMs as well.
-> >>>>  
-> >>>>    Each Dual-Core R5F sub-system is represented as a single DTS node
-> >>>>    representing the cluster, with a pair of child DT nodes representing
-> >>>> @@ -33,6 +37,7 @@ properties:
-> >>>>        - ti,am654-r5fss
-> >>>>        - ti,j721e-r5fss
-> >>>>        - ti,j7200-r5fss
-> >>>> +      - ti,am64-r5fss
-> >>>>  
-> >>>>    power-domains:
-> >>>>      description: |
-> >>>> @@ -56,11 +61,12 @@ properties:
-> >>>>  
-> >>>>    ti,cluster-mode:
-> >>>>      $ref: /schemas/types.yaml#/definitions/uint32
-> >>>> -    enum: [0, 1]
-> >>>>      description: |
-> >>>>        Configuration Mode for the Dual R5F cores within the R5F cluster.
-> >>>> -      Should be either a value of 1 (LockStep mode) or 0 (Split mode),
-> >>>> -      default is LockStep mode if omitted.
-> >>>> +      Should be either a value of 1 (LockStep mode) or 0 (Split mode) on
-> >>>> +      most SoCs (AM65x, J721E, J7200), default is LockStep mode if omitted;
-> >>>> +      and should be either a value of 0 (Split mode) or 2 (Single-CPU mode)
-> >>>> +      on AM64x SoCs, default is Split mode if omitted.
-> >>>>  
-> >>>>  # R5F Processor Child Nodes:
-> >>>>  # ==========================
-> >>>> @@ -97,6 +103,7 @@ patternProperties:
-> >>>>            - ti,am654-r5f
-> >>>>            - ti,j721e-r5f
-> >>>>            - ti,j7200-r5f
-> >>>> +          - ti,am64-r5f
-> >>>>  
-> >>>>        reg:
-> >>>>          items:
-> >>>> @@ -198,6 +205,20 @@ patternProperties:
-> >>>>  
-> >>>>      unevaluatedProperties: false
-> >>>>  
-> >>>> +if:
-> >>>> +  properties:
-> >>>> +    compatible:
-> >>>> +      enum:
-> >>>> +        - ti,am64-r5fss
-> >>>> +then:
-> >>>> +  properties:
-> >>>> +    ti,cluster-mode:
-> >>>> +      enum: [0, 2]
-> >>>> +else:
-> >>>> +  properties:
-> >>>> +    ti,cluster-mode:
-> >>>> +      enum: [0, 1]
-> >>>> +
-> >>>>  required:
-> >>>>    - compatible
-> >>>>    - power-domains
-> >>>>
-> >>>
-> >>
+> So, yeah, temporary Nak for this.
+
+No problem.
+
+-Orson
+
 > 
+> -Saravana
