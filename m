@@ -2,93 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90B2A39447F
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 16:51:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DC7C3944A6
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 16:57:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235511AbhE1Ox2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 10:53:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39964 "EHLO mail.kernel.org"
+        id S236842AbhE1O6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 10:58:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44158 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235068AbhE1Ox2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 May 2021 10:53:28 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A466461077;
-        Fri, 28 May 2021 14:51:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622213513;
-        bh=Lrxe/TMWyvwmf7ygo+QyhMj9j6Pj4RStvX4OYiza9iQ=;
+        id S236551AbhE1O6L (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 May 2021 10:58:11 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 43FA56109F;
+        Fri, 28 May 2021 14:56:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1622213796;
+        bh=9baTcwyVYHyrr3UGzx4nvGBYny1VEy+pk93u4/C9tTM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Pw+ffeGOmaT9kjVirBL6kxSrMaBcn1c6VozdXANZlU9m9w9ZeJ7RFf2hFyuQocw9v
-         U9qrto9vSopKHUgZ3bqgz4faWi7g/NOpgWCfKHpRxc7vBaS5oyqMXOLb4cFnSIojSs
-         23Bc6at18vFjOP6K+qOvcCYJR6om4Joc0NdwFrcEfh8Ya4ie4uIRc4cnUv6HfBv0yp
-         RLAQ6Be9KvG9MpHD9NiuHmcpUr5tRrozk4I3F6mbLC5byHxBmuo1W0mqaxRIWKRSo9
-         OyUJ2Kdv5L1N2URCV3o8lL11z00Y1RQGyXV8TRV1M9zTospTqR6XRTCbcUIaDJdS79
-         rpSKkGsbUE2Kw==
-Date:   Fri, 28 May 2021 16:51:50 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Peter Rosin <peda@axentia.se>, Maxime Ripard <mripard@kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: i2c: i2c-mux: Remove reset-active-low from
- ssd1307fb examples
-Message-ID: <YLEDhlZjJ8aKFzke@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Peter Rosin <peda@axentia.se>, Maxime Ripard <mripard@kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20210528111049.1804800-1-geert@linux-m68k.org>
- <YLD5N1OMXFg3yHp9@kunai>
- <CAMuHMdXKtbp3zVO6OY3NugVA3wUQjmvy5rLKJPrTjOuYS2wMOg@mail.gmail.com>
+        b=oclZbnlf2bwYWO5MjMB1KT11RoV9HJw25FE4iUYWaBV34oM0U0rFlnRdHhKwvNXHU
+         0CPLsVyVwXyW5vUEqs520ROPKy3pgKWKAortq84XD8j+f4J77zEtX2qRHBhOXPK6I7
+         x/r4p1R7bXr3z2v3wRh1tw9FaoULX1KEwPKwT7hU=
+Date:   Fri, 28 May 2021 16:56:33 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, Ian Ray <ian.ray@ge.com>,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCHv3 5/5] misc: gehc-achc: new driver
+Message-ID: <YLEEoV7d0rXn53n0@kroah.com>
+References: <20210528113346.37137-1-sebastian.reichel@collabora.com>
+ <20210528113346.37137-6-sebastian.reichel@collabora.com>
+ <YLDfvD1nLgWqEavS@kroah.com>
+ <20210528140654.ffhetiikhde6seuo@earth.universe>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="3rNw/NSNDxxB1tPO"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdXKtbp3zVO6OY3NugVA3wUQjmvy5rLKJPrTjOuYS2wMOg@mail.gmail.com>
+In-Reply-To: <20210528140654.ffhetiikhde6seuo@earth.universe>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, May 28, 2021 at 04:06:54PM +0200, Sebastian Reichel wrote:
+> > > +	/*
+> > > +	 * The sysfs properties are bound to the dummy device, since the main device already
+> > > +	 * uses drvdata assigned by the spidev driver.
+> > > +	 */
+> > > +	spi_set_drvdata(achc->ezport, achc);
+> > > +	ret = devm_device_add_group(&achc->ezport->dev, &gehc_achc_attr_group);
+> > 
+> > You just raced and lost. Please use the default groups attribute for
+> > your driver instead of this. Or properly attach it to the device some
+> > other way, but what you have done here does not work, sorry.
+> 
+> I've been told the race got fixed from kernel POV?
+> 
+> https://lore.kernel.org/linux-input/20200521055400.GX89269@dtor-ws/
 
---3rNw/NSNDxxB1tPO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Kind of, it's still not good to do this "by hand", the driver core
+should do it for you.
 
+> If this is still an issue, I think most (all?) existing instances of
+> devm_device_add_group() are a problem and it makes sense to have a
+> checkpatch warning for it.
 
-> > Now we have a conflict with this series from Rob: "[PATCH v2 0/6]
-> > dt-bindings: Convert mux bindings to schema"
->=20
-> Sorry, I had checked that my patch applies to today's linux-next,
-> and wasn't aware of Rob's series.
+Yes, I need to just get rid of that call entirely.  I'll sick one of my
+interns on it...
 
-No worries. That's what maintainers are primarily for :)
+thanks,
 
-> Alternatively, can you just drop the second chunk?
-
-That I can do as well.
-
-
---3rNw/NSNDxxB1tPO
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmCxA4YACgkQFA3kzBSg
-KbZYFw/+L24o+zUp0uVd9K0F+ioVDbij5ayNbUe3SFiNb/JAy+UxdtGAL+ypD9qZ
-gDqDVyycN7aYGxWbeMwSAOYjXm/AN5xMqZ79xrKYm6u0WADHR+ptI+LAdUPS1cqW
-EZ37q76ouaD14ixyZQjcsMWg0BzgzMbVBLtCfRAJ8GQe72B1ddDXi8K7GHPELZpU
-rTulM1XWQApClmb4Op47nscLrTxeT4tJEI/1nSVlyieH3gV+J5MDlWp/+tvwnCRa
-5bjcXua4I5OCPrVwSOJiW8C5yUoME513dL06B5Rq6ow91dbOKBMV3ZfGQf6JJpPy
-bSOe7QKhdIInnVH68geYp7GWOw+ZMq/QgR0/8BCpwv5my0bbt8zToir/n3ugQ90G
-Fhi50coKzvvwEvUIsuDxieMC2kJnyIYIGNlRL2vaIaYMbCDoEzQb999CP/tva9gI
-eRuQ0hI/QsYJow3u8uXqaEPrg55+Dd9oWVvZRsStb3cfeVlLRnYhtNQIuydQqrkt
-dXICStBii5RGLGpiN5xo5nHvWZIduQTv/1vE0ZWQZvCo2X1zVI7iFMEgG7vJWCYA
-9LZfNGzpN+gCQ2WNrK+kJPzl0dtXtPQXzJe9o3MvZInzG1kun49mDZK6ti9gvNIK
-brPud1bpiE48PYGQBEHQdpnlB/Csw+jhkVE4ZnlmiYlLjygjeRI=
-=WXzz
------END PGP SIGNATURE-----
-
---3rNw/NSNDxxB1tPO--
+greg k-h
