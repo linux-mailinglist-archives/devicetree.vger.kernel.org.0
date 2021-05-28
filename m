@@ -2,210 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEE02393EF6
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 10:48:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FF2F393F16
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 10:59:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234510AbhE1Itf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 04:49:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40976 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229878AbhE1Ite (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 04:49:34 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D385C061574
-        for <devicetree@vger.kernel.org>; Fri, 28 May 2021 01:47:59 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id m18so1697505wmq.0
-        for <devicetree@vger.kernel.org>; Fri, 28 May 2021 01:47:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=WikFeXUsmrrkxHoqNQkeIN24f6mCbXXF6hqcFhk6uOo=;
-        b=m3WX96qICHaTwGdy1NTiEy0Bor5LJzIqd0AP7gvFdxjoHxm2NxhtUULDF+9lQOSw3Y
-         wm4U2se5OJH6V8mzypZm1OGQngILCHudP6E82dzKt1S1V5RcsTTE/k4kgMZz4caIIhET
-         Ob9PhEEtEAQYiFx7Z/Sq2yj5GedDe7Px/ozVUTDyZkuGMhGy+jxnlhG6ROQMVvdsWSmp
-         IT2kPqeKN14BTJdDze23+I0GigtrfJ2WrDQE3A1wtx8tzMIIY0iH+GEgVUTcjr/YQ6X/
-         YIRmEy2wgLbQT4CNB9MC6NxyRFy6dATRINmmsosVlGlX6L+7d14bBW4AO7nEJXN3giaj
-         RH8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=WikFeXUsmrrkxHoqNQkeIN24f6mCbXXF6hqcFhk6uOo=;
-        b=ow6uzntGQAfL3ft4/6st1RrqZkAasr7JwJ4NTkRLQQQiT1pmqG9PHyr4zwFTG+oEoP
-         1IVpAsBmyQ/H85VhJpjej6ltaFzLiSXAiCJq7zPhOnBCw6VNFkpClK4BlEmiUslJpvZG
-         48x0XgKM8njVvEDQGcW0CiJ2vmBo92VIX4FeLnMia9cNrIP821n/rJ3G7ZSFi5fTzlBR
-         Sav/5Iax3tOIES8mnda4RDnH3b/CnyzpLSQXfhLAFdZx06ZzknfhFPAii5yII9br7c1Q
-         fQRnoZJv3qhO18bAIUxf7QAxN+RbTGLclZ6xqMA74Ifkf40rPhkDlbKy8lyPNub8CJ3y
-         IyvA==
-X-Gm-Message-State: AOAM533KzeNrjfryc1B3gzzAHm7vedLPyIaiTPk3A/Nr0QYw6yw/h0GP
-        7/kcr/CwuS/1I2vyYXcQ2eR4Bw==
-X-Google-Smtp-Source: ABdhPJy2OXUhLfKhJDP5StESemM6f4/xQULoj6x8UA0x3F5G/hfVlS7HFPZ/uPFHeo3V6lLxbvIwbQ==
-X-Received: by 2002:a05:600c:2219:: with SMTP id z25mr7450903wml.78.1622191677970;
-        Fri, 28 May 2021 01:47:57 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id f8sm5547546wmg.43.2021.05.28.01.47.56
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 28 May 2021 01:47:57 -0700 (PDT)
-Subject: Re: [PATCH v3] ASoC: qcom: lpass-cpu: Fix pop noise during audio
- capture begin
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org
-References: <20210524142114.18676-1-srivasam@codeaurora.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <9a4bbab8-91a2-f195-b77a-5234d46a2c0a@linaro.org>
-Date:   Fri, 28 May 2021 09:47:56 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S235072AbhE1JBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 05:01:17 -0400
+Received: from cable.insite.cz ([84.242.75.189]:42769 "EHLO cable.insite.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229911AbhE1JBR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 May 2021 05:01:17 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by cable.insite.cz (Postfix) with ESMTP id EE031A1A3D401;
+        Fri, 28 May 2021 10:59:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=ivitera.com; s=mail;
+        t=1622192379; bh=5j4AXxdOAPeZ/TwLAaKhe7vshMP7p0kxkvPnwi8sT9o=;
+        h=Subject:To:References:From:Date:In-Reply-To:From;
+        b=pQIOpC3OfLOYyIPnphBnWObFM2yK9WkxnSHN/ly3y1IVSkITIyHpo1ny0nhT6/Qtq
+         zj3bWMlQ7TE5tXuxrqjSV4MMQvoIuRRmEf9nGOniid9Np/nTvMZgic0dnArm1H9ggd
+         Olh7sb45lDhFNWxL6p2EynPn43Z47L+0lp3l6hC4=
+Received: from cable.insite.cz ([84.242.75.189])
+        by localhost (server.insite.cz [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id ZutnDJaB4KHQ; Fri, 28 May 2021 10:59:34 +0200 (CEST)
+Received: from [192.168.105.22] (ip28.insite.cz [81.0.237.28])
+        (Authenticated sender: pavel)
+        by cable.insite.cz (Postfix) with ESMTPSA id 088E8A1A3D400;
+        Fri, 28 May 2021 10:59:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=ivitera.com; s=mail;
+        t=1622192374; bh=5j4AXxdOAPeZ/TwLAaKhe7vshMP7p0kxkvPnwi8sT9o=;
+        h=Subject:To:References:From:Date:In-Reply-To:From;
+        b=c5PG5v1RhNcCw7Px+/jt1ahnDHyWh6bANlvG/kqqzdvaM0bupxG1OrLaAyIuns4us
+         xNg2ZD31fM9VlQ4WPcOcm+DIpYeTsFP9d1k1xc2gkEcfEYHT6S78y56iWEYGunIAE3
+         Pu0u12/QupSG2iA3tNBZa1rjrf5H7a6LQcpBPJyM=
+Subject: Re: [PATCH] ARM: dts: bcm283x: increase dwc2's RX FIFO size
+To:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Minas Harutyunyan <hminas@synopsys.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org
+References: <e9e7d070-593c-122f-3a5c-2435bb147ab2@ivitera.com>
+ <44d8f7e0-b2d0-8547-7367-7a35af68efe6@i2se.com>
+ <7c2e3e1f-db10-b376-9b87-ef93c8d8289c@ivitera.com>
+ <f9c90203-a67e-0e33-09a8-f173af63e771@i2se.com>
+From:   Pavel Hofman <pavel.hofman@ivitera.com>
+Message-ID: <a5b12552-1340-aa71-caca-fbef98b8b3e3@ivitera.com>
+Date:   Fri, 28 May 2021 10:59:30 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-In-Reply-To: <20210524142114.18676-1-srivasam@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <f9c90203-a67e-0e33-09a8-f173af63e771@i2se.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dne 27. 05. 21 v 15:47 Stefan Wahren napsal(a):
 
-
-On 24/05/2021 15:21, Srinivasa Rao Mandadapu wrote:
-> This patch fixes PoP noise of around 15ms observed during audio capture begin.
-> Enables BCLK and LRCLK in snd_soc_dai_ops prepare call for introducing some delay
-> before capture start and clock enable.
+>> I think I see the problem.
+>>
+>> IIUC the calculations and checks, all g-tx-fifo-size values +
+>> g-rx-fifo-size + g-np-tx-fifo-size must not exceed total_fifo_size. My
+>> RPi4 reports the total_fifo_size as 4080 (in
+>> /sys/kernel/debug/usb/fe980000.usb/hw_params).
+>>
+>> Linux mainline
+>> https://github.com/torvalds/linux/search?p=3&q=g-tx-fifo-size :
+>>
+>> The increase in value of g-rx-fifo-size exceeds the limit for the DTSI
+>> files we patched:
+>>
+>> Both bcm283x-rpi-usb-peripheral.dtsi and bcm283x-rpi-usb-otg.dtsi:
+>> 558 + 32 + 256 + 256 + 512 + 512 + 512 + 768 + 768 = 4174 > 4080
+>>
+>> while the sum with the previous value of 256 reached just 3872 < 4080.
+>>
+>>
+>> The raspberrypi repo
+>> https://github.com/raspberrypi/linux/search?q=g-tx-fifo-size :
+>>
+>> It has a different mix of the DTSI files
+>> dwc2-overlay.dts
+>> upstream-overlay.dts
+>> upstream-pi4-overlay.dts
+> yes these overlay files are vendor specific and doesn't exist in
+> mainline. The upstream*dts were intended to "simulate" mainline
+> behavior, but unfortunately differ in this case.
+>>
+>> all of which define
+>> g-tx-fifo-size = <512 512 512 512 512 256 256>;
+>>
+>> Here the calculation holds:
+>> 558 + 32 + 512 + 512 + 512 + 512 + 512 + 256 + 256 = 3662 < 4080
+>>
+>> My RPi4 uses one of these DTSIs, because my
+>> /sys/kernel/debug/usb/fe980000.usb/params says:
+>>
+>> g_rx_fifo_size                : 558
+>> g_np_tx_fifo_size             : 32
+>> g_tx_fifo_size[0]             : 0
+>> g_tx_fifo_size[1]             : 512
+>> g_tx_fifo_size[2]             : 512
+>> g_tx_fifo_size[3]             : 512
+>> g_tx_fifo_size[4]             : 512
+>> g_tx_fifo_size[5]             : 512
+>> g_tx_fifo_size[6]             : 256
+>> g_tx_fifo_size[7]             : 256
+>>
+>>
+>> IIUC the tx_fifo values in bcm283x-rpi-usb-peripheral.dtsi and
+>> bcm283x-rpi-usb-otg.dtsi files can be lowered to the values used and
+>> tested (at least by me) in the RPi repo. But this is outside of my
+>> knowledge, honestly I do not know what is the most appropriate
+>> distribution of the remaining fifo space among the g_tx_fifo buffers.
+>> Please can the RPi developers (Phil?) suggest a fix?
 > 
-> Co-developed-by: Judy Hsiao <judyhsiao@chromium.org>
-> Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> ---
-> Changes Since V2:
-> 	-- Updated comments as per linux style
-> 	-- Removed unrelated changes.
-> Changes Since V1:
-> 	-- Enableed BCLK and LRCLK in dai ops prepare API instead of startup API
-> 	-- Added comments
+> As author of the mainline bcm283x-rpi-usb-otg.dtsi i was trying to
+> optimize the fifo sizes for EP 6 and 7. But i don't remember why. So my
+> suggestion for a fix would be:
 > 
->   sound/soc/qcom/lpass-cpu.c | 54 +++++++++++++++++++++++++++++++++++++-
->   1 file changed, 53 insertions(+), 1 deletion(-)
+> g-tx-fifo-size = <256 256 256 512 512 768 768>;
 > 
-> diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
-> index 28c7497344e3..1855eae22aad 100644
-> --- a/sound/soc/qcom/lpass-cpu.c
-> +++ b/sound/soc/qcom/lpass-cpu.c
-> @@ -93,9 +93,21 @@ static void lpass_cpu_daiops_shutdown(struct snd_pcm_substream *substream,
->   		struct snd_soc_dai *dai)
->   {
->   	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
-> +	struct lpaif_i2sctl *i2sctl = drvdata->i2sctl;
-> +	unsigned int id = dai->driver->id;
->   
->   	clk_disable_unprepare(drvdata->mi2s_osr_clk[dai->driver->id]);
-> -	clk_unprepare(drvdata->mi2s_bit_clk[dai->driver->id]);
-> +	/*
-> +	 * To ensure BCLK/LRCLK disabled even in device node validation
-> +	 * Will not impact if disabled in lpass_cpu_daiops_trigger()
-> +	 * suspend.
-> +	 */
-> +	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
-> +		regmap_fields_write(i2sctl->spken, id, LPAIF_I2SCTL_SPKEN_DISABLE);
-> +	else
-> +		regmap_fields_write(i2sctl->micen, id, LPAIF_I2SCTL_MICEN_DISABLE);
-> +
-> +	clk_disable_unprepare(drvdata->mi2s_bit_clk[dai->driver->id]);
->   }
->   
->   static int lpass_cpu_daiops_hw_params(struct snd_pcm_substream *substream,
-> @@ -275,6 +287,10 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
->   	case SNDRV_PCM_TRIGGER_START:
->   	case SNDRV_PCM_TRIGGER_RESUME:
->   	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
-> +		/*
-> +		 * To ensure lpass BCLK/LRCLK is enabled during
-> +		 * device resume. Will not impact if enabled in lpass_cpu_daiops_prepare().
-> +		 */
-
-prepare should have already ensured that isn't it?
-
-
->   		if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
->   			ret = regmap_fields_write(i2sctl->spken, id,
->   						 LPAIF_I2SCTL_SPKEN_ENABLE);
-> @@ -296,6 +312,10 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
->   	case SNDRV_PCM_TRIGGER_STOP:
->   	case SNDRV_PCM_TRIGGER_SUSPEND:
->   	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
-> +		/*
-> +		 * To ensure lpass BCLK/LRCLK is disabled during
-> +		 * device suspend.
-> +		 */
->   		if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
->   			ret = regmap_fields_write(i2sctl->spken, id,
->   						 LPAIF_I2SCTL_SPKEN_DISABLE);
-> @@ -315,12 +335,44 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
->   	return ret;
->   }
->   
-
-
-[Snip ...
-> +static int lpass_cpu_daiops_prepare(struct snd_pcm_substream *substream,
-> +		struct snd_soc_dai *dai)
-> +{
-> +	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
-> +	struct lpaif_i2sctl *i2sctl = drvdata->i2sctl;
-> +	unsigned int id = dai->driver->id;
-> +	int ret;
-> +	/*
-> +	 * To ensure lpass BCLK/LRCLK is enabled bit before
-> +	 * playback/capture data flow starts.
-> +	 */
-> +	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
-> +		ret = regmap_fields_write(i2sctl->spken, id, LPAIF_I2SCTL_SPKEN_ENABLE);
-> +	else
-> +		ret = regmap_fields_write(i2sctl->micen, id, LPAIF_I2SCTL_MICEN_ENABLE);
-> +
-> +	if (ret) {
-> +		dev_err(dai->dev, "error writing to i2sctl reg: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = clk_enable(drvdata->mi2s_bit_clk[id]);
-> +
-> +	if (ret) {
-> +		dev_err(dai->dev, "error in enabling mi2s bit clk: %d\n", ret);
-> +		clk_disable(drvdata->mi2s_osr_clk[id]);
-> +		return ret;
-> +	}
-> +	return 0;
-> +}
-> +
-----]
-
-If prepare is enabling the clk and the i2s enable bits, then why do we 
-need to do the same thing in trigger?
-
-Also the clk enable count is going up twice (once in prepare and 
-trigger) and we can never be able to disable the clk as there is is no 
-corresponding disable for this prepare path.
-
-Also note that prepare can be called multiple times.
-
---srini
-
->   const struct snd_soc_dai_ops asoc_qcom_lpass_cpu_dai_ops = {
->   	.set_sysclk	= lpass_cpu_daiops_set_sysclk,
->   	.startup	= lpass_cpu_daiops_startup,
->   	.shutdown	= lpass_cpu_daiops_shutdown,
->   	.hw_params	= lpass_cpu_daiops_hw_params,
->   	.trigger	= lpass_cpu_daiops_trigger,
-> +	.prepare	= lpass_cpu_daiops_prepare,
->   };
->   EXPORT_SYMBOL_GPL(asoc_qcom_lpass_cpu_dai_ops);
->   
+> But i'm also unsure about the values.
 > 
+
+IIUC this code
+https://github.com/torvalds/linux/blob/master/drivers/usb/dwc2/gadget.c#L4091
+optimizes the FIFO assignment to endpoints. From that I would conclude
+that correct values are specific for each use-case configuration of
+endpoints. Maybe a varied selection (256, 512, 768) is more convenient
+than just 256 and 512. I really do not know what use cases need what TX
+fifo values.
+
+
+BTW perhaps this comment
+https://github.com/torvalds/linux/blob/master/drivers/usb/dwc2/gadget.c#L327
+is a bit misleading since that code does not do the assignment, just
+stores the size distribution to the DPTXFSIZN register, IIUC.
+
+Best regards,
+
+Pavel.
