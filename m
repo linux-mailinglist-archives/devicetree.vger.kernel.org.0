@@ -2,163 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3E93394719
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 20:38:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98377394745
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 20:53:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229488AbhE1SkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 14:40:25 -0400
-Received: from lizzard.sbs.de ([194.138.37.39]:55070 "EHLO lizzard.sbs.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229463AbhE1SkZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 May 2021 14:40:25 -0400
-Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
-        by lizzard.sbs.de (8.15.2/8.15.2) with ESMTPS id 14SIcR71006113
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 28 May 2021 20:38:28 +0200
-Received: from [139.22.36.59] ([139.22.36.59])
-        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 14SIYn0b029435;
-        Fri, 28 May 2021 20:34:49 +0200
-Subject: Re: [PATCH v3] arm64: dts: ti: k3-am65: Add support for UHS-I modes
- in MMCSD1 subsystem
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210511164849.20016-1-a-govindraju@ti.com>
-From:   Jan Kiszka <jan.kiszka@siemens.com>
-Message-ID: <7157b8ca-74e4-b7dd-c069-533db6a1cf0c@siemens.com>
-Date:   Fri, 28 May 2021 20:34:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        id S229492AbhE1SzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 14:55:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36038 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229481AbhE1SzQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 14:55:16 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD0D9C06174A
+        for <devicetree@vger.kernel.org>; Fri, 28 May 2021 11:53:40 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id h3so2637806wmq.3
+        for <devicetree@vger.kernel.org>; Fri, 28 May 2021 11:53:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sRnjHlu4aI2d07hk/HFPTPaAgxVdnLCE3C8ZXGG5N2M=;
+        b=GR+XdjfnGc7awDATahdRGgpVc3XZlj24DkIFTCqOv/jdG8+D2VF1fJbfKqJRxHOQPE
+         0MqykAHqwZKwJHsqwoTNwWTKSrtdfZ5OmXlilQ7s29Op12iKIrhNy5OHfYsBcU+Y4Vij
+         yusZ2ZFWNTJVVbixDJE3rgMiJ7VlCauTGRZ5BLMFPUSGfaG9TU2N0WZ5uJ8HfAcUxJUw
+         Ka/NbqctdlP7JYohp2FFcYZzOXRmgy2RV38rhRy2Z8itOStaoMDmxZmyJYKDg7VfyM+3
+         yArF+nQLAncGtvCNrNWJQcP5BLUvMINdBZgerj3O13Q3S5oRj+6lYXdoRAexh41u8Un2
+         yUzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sRnjHlu4aI2d07hk/HFPTPaAgxVdnLCE3C8ZXGG5N2M=;
+        b=REHIjnuRlfp+uR9elUtOmpUDaDLc5SP7eKHEU+XVeuIKPfVVGranWuURIdsIJArXta
+         Ox+bSCGVv/mv/7hPH/vNoqOCqjQ+APuLPbXX3Smiw4P63p3OuTCTRfcnnuB8ocpOtFm9
+         o0FHQbHibhyM919QKMx4FYTLtsGWx9nhzJr8n1xKYfa9oLa9piTZWKZHIIsfU5x9mcXT
+         YUuB4EW+x2fNytJHl594WZCY/Hz36l7uQIB1EqtVBxt9RDh8sf4UIea/+bsKPW0VjCr0
+         JI6518xVsGL3jTBYi95RjBBKHxy6Pk0ctmBs6dhpR98rWoSIkwC1wsUwwWUduv4kVM3N
+         lm3g==
+X-Gm-Message-State: AOAM533g6C1aifL4P5fiCP18iSeiOIa59p5hx0tYXJXbRjdLEiuJFbt/
+        o2pyiaxgbr3E6kJF/XCFKZCdFHBpbVUCNg==
+X-Google-Smtp-Source: ABdhPJwxxq+uI4dgtjIx8P+zA4N9jyp6I+iETPE71li/b1mjFZsVC5xCbLewJOQqXIuDEztz8wFL9Q==
+X-Received: by 2002:a1c:e284:: with SMTP id z126mr9720280wmg.108.1622228019204;
+        Fri, 28 May 2021 11:53:39 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id r17sm15772020wmh.25.2021.05.28.11.53.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 May 2021 11:53:38 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     daniel.lezcano@linaro.org, robh+dt@kernel.org, tglx@linutronix.de
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH] dt-bindings: timer: Convert faraday,fttmr010 to yaml
+Date:   Fri, 28 May 2021 18:53:29 +0000
+Message-Id: <20210528185329.1969688-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210511164849.20016-1-a-govindraju@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11.05.21 18:48, Aswath Govindraju wrote:
-> UHS-I speed modes are supported in AM65 S.R. 2.0 SoC[1].
-> 
-> Add support by removing the no-1-8-v tag and including the voltage
-> regulator device tree nodes for power cycling.
-> 
-> However, the 4 bit interface of AM65 SR 1.0 cannot be supported at 3.3 V or
-> 1.8 V because of erratas i2025 and i2026 [2]. As the SD card is the primary
-> boot mode for development usecases, continue to enable SD card and disable
-> UHS-I modes in it to minimize any ageing issues happening because of
-> erratas.
-> 
-> k3-am6528-iot2050-basic and k3-am6548-iot2050-advanced boards use S.R. 1.0
-> version of AM65 SoC. Therefore, add no-1-8-v in sdhci1 device tree node of
-> the common iot2050 device tree file.
-> 
-> [1] - https://www.ti.com/lit/ug/spruid7e/spruid7e.pdf, section 12.3.6.1.1
-> [2] - https://www.ti.com/lit/er/sprz452e/sprz452e.pdf
-> 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> ---
-> 
-> changes since v2:
-> - moved the no-1-8-v tag to common iot2050 dtsi file.
-> 
-> changes since v1:
-> - added no-1-8-v tag in sdhci1 dt nodes of k3-am6528-iot2050-basic and
->   k3-am6548-iot2050-advanced boards as they use S.R.1.0 version AM65 SoC.
-> 
->  .../boot/dts/ti/k3-am65-iot2050-common.dtsi   |  1 +
->  arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  1 -
->  .../arm64/boot/dts/ti/k3-am654-base-board.dts | 33 +++++++++++++++++++
->  3 files changed, 34 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> index de763ca9251c..46cc348cd4be 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> @@ -555,6 +555,7 @@
->  	pinctrl-0 = <&main_mmc1_pins_default>;
->  	ti,driver-strength-ohm = <50>;
->  	disable-wp;
-> +	no-1-8-v;
->  };
->  
+Converts timer/faraday,fttmr010.txt to yaml.
 
-Acked-by: Jan Kiszka <jan.kiszka@siemens.com>
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+ .../bindings/timer/faraday,fttmr010.txt       | 38 --------
+ .../bindings/timer/faraday,fttmr010.yaml      | 86 +++++++++++++++++++
+ 2 files changed, 86 insertions(+), 38 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
+ create mode 100644 Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
 
-Jan
-
->  &usb0 {
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> index cb340d1b401f..632f32fce4a1 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> @@ -301,7 +301,6 @@
->  		ti,otap-del-sel = <0x2>;
->  		ti,trm-icp = <0x8>;
->  		dma-coherent;
-> -		no-1-8-v;
->  	};
->  
->  	scm_conf: scm-conf@100000 {
-> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-> index 9e87fb313a54..51c594b4dddb 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-> @@ -91,6 +91,38 @@
->  		#clock-cells = <0>;
->  		clock-frequency = <24000000>;
->  	};
-> +
-> +	evm_12v0: fixedregulator-evm12v0 {
-> +		/* main supply */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "evm_12v0";
-> +		regulator-min-microvolt = <12000000>;
-> +		regulator-max-microvolt = <12000000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	vcc3v3_io: fixedregulator-vcc3v3io {
-> +		/* Output of TPS54334 */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc3v3_io";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&evm_12v0>;
-> +	};
-> +
-> +	vdd_mmc1_sd: fixedregulator-sd {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vdd_mmc1_sd";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		enable-active-high;
-> +		vin-supply = <&vcc3v3_io>;
-> +		gpio = <&pca9554 4 GPIO_ACTIVE_HIGH>;
-> +	};
->  };
->  
->  &wkup_pmx0 {
-> @@ -350,6 +382,7 @@
->   * disable sdhci1
->   */
->  &sdhci1 {
-> +	vmmc-supply = <&vdd_mmc1_sd>;
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&main_mmc1_pins_default>;
->  	ti,driver-strength-ohm = <50>;
-> 
-
+diff --git a/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt b/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
+deleted file mode 100644
+index 3cb2f4c98d64..000000000000
+--- a/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
++++ /dev/null
+@@ -1,38 +0,0 @@
+-Faraday Technology timer
+-
+-This timer is a generic IP block from Faraday Technology, embedded in the
+-Cortina Systems Gemini SoCs and other designs.
+-
+-Required properties:
+-
+-- compatible : Must be one of
+-  "faraday,fttmr010"
+-  "cortina,gemini-timer", "faraday,fttmr010"
+-  "moxa,moxart-timer", "faraday,fttmr010"
+-  "aspeed,ast2400-timer"
+-  "aspeed,ast2500-timer"
+-  "aspeed,ast2600-timer"
+-
+-- reg : Should contain registers location and length
+-- interrupts : Should contain the three timer interrupts usually with
+-  flags for falling edge
+-
+-Optionally required properties:
+-
+-- clocks : a clock to provide the tick rate for "faraday,fttmr010"
+-- clock-names : should be "EXTCLK" and "PCLK" for the external tick timer
+-  and peripheral clock respectively, for "faraday,fttmr010"
+-- syscon : a phandle to the global Gemini system controller if the compatible
+-  type is "cortina,gemini-timer"
+-
+-Example:
+-
+-timer@43000000 {
+-	compatible = "faraday,fttmr010";
+-	reg = <0x43000000 0x1000>;
+-	interrupts = <14 IRQ_TYPE_EDGE_FALLING>, /* Timer 1 */
+-		   <15 IRQ_TYPE_EDGE_FALLING>, /* Timer 2 */
+-		   <16 IRQ_TYPE_EDGE_FALLING>; /* Timer 3 */
+-	clocks = <&extclk>, <&pclk>;
+-	clock-names = "EXTCLK", "PCLK";
+-};
+diff --git a/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml b/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
+new file mode 100644
+index 000000000000..a495ea80c0fc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
+@@ -0,0 +1,86 @@
++# SPDX-License-Identifier: (GPL-2.0+)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/timer/faraday,fttmr010.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Faraday Technology timer
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: |
++  This timer is a generic IP block from Faraday Technology, embedded in the
++  Cortina Systems Gemini SoCs and other designs.
++
++properties:
++  compatible:
++    oneOf:
++      - const: faraday,fttmr010
++      - items:
++          - const: cortina,gemini-timer
++          - const: faraday,fttmr010
++      - items:
++          - const: moxa,moxart-timer
++          - const: faraday,fttmr010
++      - const: aspeed,ast2400-timer
++      - const: aspeed,ast2500-timer
++      - const: aspeed,ast2600-timer
++
++  reg:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 3
++    description: Should contain the three timer interrupts usually with flags for falling edge
++
++  clocks:
++    minItems: 2
++
++  clock-names:
++    items:
++      - const: "PCLK"
++      - const: "EXTCLK"
++
++  syscon:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    maxItems: 1
++
++if:
++  properties:
++    compatible:
++      contains:
++        items:
++          - const: cortina,gemini-timer
++          - const: faraday,fttmr010
++then:
++  required:
++    - syscon
++else:
++  properties:
++    syscon: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    timer@43000000 {
++      compatible = "faraday,fttmr010";
++      reg = <0x43000000 0x1000>;
++      interrupts = <14 IRQ_TYPE_EDGE_FALLING>, /* Timer 1 */
++                   <15 IRQ_TYPE_EDGE_FALLING>, /* Timer 2 */
++                   <16 IRQ_TYPE_EDGE_FALLING>; /* Timer 3 */
++      clocks = <&extclk>, <&pclk>;
++      clock-names = "PCLK", "EXTCLK";
++      syscon = <&syscon>;
++    };
++...
 -- 
-Siemens AG, T RDA IOT
-Corporate Competence Center Embedded Linux
+2.31.1
+
