@@ -2,128 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EBA1393BEF
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 05:30:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72D33394A8D
+	for <lists+devicetree@lfdr.de>; Sat, 29 May 2021 07:16:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234228AbhE1DcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 23:32:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55050 "EHLO
+        id S229547AbhE2FSP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 May 2021 01:18:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233801AbhE1DcB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 23:32:01 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5965DC061574;
-        Thu, 27 May 2021 20:30:26 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id o17-20020a17090a9f91b029015cef5b3c50so3673218pjp.4;
-        Thu, 27 May 2021 20:30:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:mail-followup-to:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=DYyj/O1oTsd8iPKaVYhCgJww9/pqZoeLfUmd7MZl1oU=;
-        b=cPmc8KgOTsg3pE5+BSz6K0jniO74D3kCLW+5AppZpT9ifnfOsjpln4Cel8Y27tyWeW
-         iO9cHjYF8Y1XwS1VdqjjaQGZUpYJXP0z1JO7PjE67PfIabSv2A2Winze59JtFZVLcVFW
-         Yp/MvzIcusBHhYyJWiMnjEvku3/i0zj8KzfQZOiSsUF3MrW1qdp81kPKonzyf1AXfiPg
-         Lk9TjmFtwbTEvfszbm1zmAOrSjhzubKytvF+ojKJsVRRyDuLbmvdnaofbtOduTYd3Cy7
-         m5mawJJb6XaAHauZlejrrYbLu8Nk4s1EbLNf3+8DkULNem6vEnzSRuSUKz+cdYqt1E9T
-         p0lg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id
-         :mail-followup-to:references:mime-version:content-disposition
-         :in-reply-to:user-agent;
-        bh=DYyj/O1oTsd8iPKaVYhCgJww9/pqZoeLfUmd7MZl1oU=;
-        b=Os/zgquyU9P19V3bgaQIJYJjVnIDPUyHopJI9RI1udv0EwoppQzvgGyuZuQKqS2q4o
-         9A/mMsBaMH2oPpLMw5Q7UGiepF4d4LPoysvXkQRriLj0odkFlr+NJdobDs0XA+a5WTrz
-         kOXoRk1CQ3w8W94panxNHtcTmEkqhRM+tLQQTmdUTwHC2IvglDuDKTDykaryxN7mb2/8
-         qxdF5CQ+XUa+1OkYC5rymCRXFhf0iKAKDgtu9cVyheRdfpjUivTHIxzppXzsRuAHUaXj
-         sRe86blQF1shpxS8ILts3jxIKa41oujHHvaRyJ8Z9zDmSzRAP0yLHN1SLrI7US1RO1oP
-         oZyw==
-X-Gm-Message-State: AOAM530oNSD9UcfJGFmMS7XPkj9ONO1/+j4odrsa3LtfaP3vxUSJXYkc
-        wxHtZ2NowkjdkxK8JvYceuU=
-X-Google-Smtp-Source: ABdhPJwZPI3hO/T0Ck2SsoY0yMUQ5UpwbkRfH2+N+d8eIr44Ev4oXd4X2xtIWgeYpERrVHKj7gzgpg==
-X-Received: by 2002:a17:90a:7e84:: with SMTP id j4mr2040025pjl.101.1622172625917;
-        Thu, 27 May 2021 20:30:25 -0700 (PDT)
-Received: from lenovo ([117.18.48.102])
-        by smtp.gmail.com with ESMTPSA id z2sm2912359pgz.64.2021.05.27.20.30.22
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 27 May 2021 20:30:25 -0700 (PDT)
-Date:   Fri, 28 May 2021 11:30:19 +0800
-From:   Orson Zhai <orsonzhai@gmail.com>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
+        with ESMTP id S229456AbhE2FSP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 May 2021 01:18:15 -0400
+Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EBA1C061574;
+        Fri, 28 May 2021 22:16:39 -0700 (PDT)
+Received: by ozlabs.org (Postfix, from userid 1007)
+        id 4FsVCR54Q7z9sW4; Sat, 29 May 2021 15:16:35 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+        d=gibson.dropbear.id.au; s=201602; t=1622265395;
+        bh=9W7EP2KVmTGbFSdQ+OaCesEwTE5wg3X5f+H11fjjHHo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MYRRZR8gDpdM+T1L7qJXrL9NouextTi+KmoUDpHAAGF0+KPNAZYgg03mXRW2AjmrE
+         30RGn01woFa3kTAj9fZ7heLva7SPYgn3ZhO2TBTrJQIGlI2YbDVAmPYqlj+DmgC4Cl
+         wjFgU+SPSxnGN5lAidRsCGRBwejY9ZtJXssa30+w=
+Date:   Fri, 28 May 2021 13:45:35 +1000
+From:   David Gibson <david@gibson.dropbear.id.au>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Anmar Oueja <anmar.oueja@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Orson Zhai <orson.zhai@unisoc.com>
-Subject: Re: [PATCH] of: property: Add fw_devlink support for pwms
-Message-ID: <20210528033019.GA11683@lenovo>
-Mail-Followup-To: Saravana Kannan <saravanak@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Orson Zhai <orson.zhai@unisoc.com>
-References: <1622102950-31688-1-git-send-email-orsonzhai@gmail.com>
- <CAGETcx9w-gYrPQuxOf9qQDwzyi8Bjp7cf_uK=Q5UcKuH+vWVFw@mail.gmail.com>
+        <devicetree@vger.kernel.org>,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] of: unittest: rename overlay source files from .dts
+ to .dtso
+Message-ID: <YLBnX4PeK51YwUJB@yekko>
+References: <20210324223713.1334666-1-frowand.list@gmail.com>
+ <20210327174035.GA291160@robh.at.kernel.org>
+ <3e6710e7-08ac-7d1b-aa69-bcd36f0d932a@gmail.com>
+ <CAMuHMdXpGKMi-xv6hZQmmEw0JO=Q0WuvUzwJ2v0O28Tx5uW+sg@mail.gmail.com>
+ <d1aefaae-7b12-b5fb-4b97-7230bd52c1be@gmail.com>
+ <20210526061144.yvoaurpz75a3bsjr@vireshk-i7>
+ <f651e95b-feef-5c86-edba-d6008bc80b34@gmail.com>
+ <YK70Xsl1oXeEQpWZ@yekko>
+ <CAMuHMdWdb2s08a=axC+m88gARSA3enOBnczsN59XL2F9yHXXYA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="gmPBfyWAmXOSQLgm"
 Content-Disposition: inline
-In-Reply-To: <CAGETcx9w-gYrPQuxOf9qQDwzyi8Bjp7cf_uK=Q5UcKuH+vWVFw@mail.gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <CAMuHMdWdb2s08a=axC+m88gARSA3enOBnczsN59XL2F9yHXXYA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 27, 2021 at 02:04:30PM -0700, Saravana Kannan wrote:
-> On Thu, May 27, 2021 at 1:09 AM Orson Zhai <orsonzhai@gmail.com> wrote:
-> >
-> > From: Orson Zhai <orson.zhai@unisoc.com>
-> >
-> > pwms is often required by backlight in embedded devices. Add device link
-> > support for pwms as well.
-> >
-> > Signed-off-by: Orson Zhai <orson.zhai@unisoc.com>
-> > ---
-> >  drivers/of/property.c | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > index 6c02863..93be977 100644
-> > --- a/drivers/of/property.c
-> > +++ b/drivers/of/property.c
-> > @@ -1287,6 +1287,7 @@ DEFINE_SIMPLE_PROP(pinctrl6, "pinctrl-6", NULL)
-> >  DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
-> >  DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
-> >  DEFINE_SIMPLE_PROP(remote_endpoint, "remote-endpoint", NULL)
-> > +DEFINE_SIMPLE_PROP(pwms, "pwms", NULL)
-> >  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
-> >  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
-> >
-> > @@ -1371,6 +1372,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
-> >         { .parse_prop = parse_pinctrl7, },
-> >         { .parse_prop = parse_pinctrl8, },
-> >         { .parse_prop = parse_remote_endpoint, .node_not_dev = true, },
-> > +       { .parse_prop = parse_pwms, },
-> >         { .parse_prop = parse_gpio_compat, },
-> >         { .parse_prop = parse_interrupts, },
-> >         { .parse_prop = parse_regulators, },
-> 
-> I already have a local patch for this and "reset" bindings. But I'm
-> holding off on adding support for new properties till fw_devlink=on
-> fully lands in 5.13. Trying to avoid inadvertently adding new
-> dependency issues. For example, the remote_endpoint binding I added to
-> fix one issue caused more dependency issues. So far I've fixed them
-> all.
 
-Got it. Good to know your plan.
+--gmPBfyWAmXOSQLgm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> So, yeah, temporary Nak for this.
+On Thu, May 27, 2021 at 09:21:05AM +0200, Geert Uytterhoeven wrote:
+65;6401;1c> On Thu, May 27, 2021 at 3:48 AM David Gibson
+> <david@gibson.dropbear.id.au> wrote:
+> > On Wed, May 26, 2021 at 04:21:48PM -0500, Frank Rowand wrote:
+> > > On 5/26/21 1:11 AM, Viresh Kumar wrote:
+> > > > On 22-04-21, 13:54, Frank Rowand wrote:
+> > > >> On 4/22/21 3:44 AM, Geert Uytterhoeven wrote:
+> > > >>> On Mon, Mar 29, 2021 at 9:23 PM Frank Rowand <frowand.list@gmail.=
+com> wrote:
+> > > >>>> On 3/27/21 12:40 PM, Rob Herring wrote:
+> > > >>>>> On Wed, Mar 24, 2021 at 05:37:13PM -0500, frowand.list@gmail.co=
+m wrote:
+> > > >>>>>> From: Frank Rowand <frank.rowand@sony.com>
+> > > >>>>>>
+> > > >>>>>> Add Makefile rule to build .dtbo.o assembly file from overlay =
+=2Edtso
+> > > >>>>>> source file.
+> > > >>>>>>
+> > > >>>>>> Rename unittest .dts overlay source files to use .dtso suffix.
+> > > >>>>>
+> > > >>>>> I'm pretty lukewarm on .dtso...
+> > > >>>>
+> > > >>>> I was originally also, but I'm warming up to it.
+> > > >>>
+> > > >>> What's the status of this?
+> > > >>
+> > > >> I was planning to resend on top of the upcoming -rc1.
+> > > >
+> > > > Ping.
+> > > >
+> > >
+> > > Thanks for the prod...
+> > >
+> > > The .dtso convention was added to the dtc compiler, then a patch was
+> > > accepted to revert one mention of .dtso ,though there still remains
+> > > two location where .dtbo is still recognized (guess_type_by_name() in
+> > > dtc and the help text of the fdtoverlay program).
+> > >
+> > > It seems that the general .dtso and .dtbo were not popular, so I'm
+> > > going to drop this patch instead of continuing to try to get it
+> > > accepted.
+> >
+> > AFAICT .dtbo is moderately well established, and I think it's a good
+> > convention, since it matters whether a blob is an overlay or base
+> > tree, and it's not trivial to tell which is which.
+>=20
+> Indeed.
+>=20
+> > .dtso is much more recent,
+>=20
+> Is it?
 
-No problem.
+Well, I wouldn't bet money on it, I just seem to remember encountering
+=2Edtbo for some time before .dtso was mentioned.
 
--Orson
+> The oldest reference I could find is from May 2015:
+> "[PATCH/RFC] kbuild: Create a rule for building device tree overlay objec=
+ts"
+> https://lore.kernel.org/linux-devicetree/1431431816-24612-1-git-send-emai=
+l-geert+renesas@glider.be/
 
-> 
-> -Saravana
+Hm, I think .dtbo is even older than that, but again, I wouldn't swear
+to it.
+
+> I have always used dtbo/dtso in my published overlays branches,
+> referred from https://elinux.org/R-Car/DT-Overlays, and used by
+> various people.
+>=20
+> > and I think there's much less value to it.
+>=20
+> IMHO the same reasoning as for dtb vs. dtbo applies to dts vs. dtso.
+> It matters if the resulting blob will be an overlay or base tree,
+> as the blob will have to be called .dtb or .dtbo.
+> As dtc outputs to stdout by default, the caller has to provide the
+> output filename, and thus needs to know.
+> Even if dtc would name the output file based on the presence of
+> "/plugin/" in the input file, the build system still needs to know
+> for dependency tracking.
+
+Hm, fair point.  I was thinking of the the /plugin/ tag as the
+distinction, whereas dtb is binary and the distinction isn't even
+marked in the header.  But you're right that even readable text labels
+inside the file don't really help make(1).  So, I retract that
+assertion.
+
+> We also do have .dts vs. .dtsi.
+>=20
+> Gr{oetje,eeting}s,
+>=20
+>                         Geert
+>=20
+
+--=20
+David Gibson			| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
+				| _way_ _around_!
+http://www.ozlabs.org/~dgibson
+
+--gmPBfyWAmXOSQLgm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEdfRlhq5hpmzETofcbDjKyiDZs5IFAmCwZ10ACgkQbDjKyiDZ
+s5I/sBAA0JKiNiETmfLndzpQT9G9iqQKZ1b5A17zh5AnT4c+615XJR0DjNOyyIE7
+IkVFsq2DyvcNBklAsoocoFDmxXs6pAx15tBn1vmmvJbeFhU2p59hjbdMDIF8Hx47
+ouxt9fnkZTqeQWrUwFXcI7wvQ0xaWn9xySCbzykeql+9NSUbE2czNAiLKWl+NJy3
+Twl7D6fuxpOYIrBRsv4bqAVgTyzYn4LeT21p/EmqDO9MFZUUftjrN8+c27Znz4qt
++Mq9QlSZkNTD7iGMxG3kjdfS7ExCaR3jZ3Y1oeNyx2n8jqyYw3VIgLOJL1xDGwHJ
+scismnPo/lYJR3muiqOJTyWfuqyCwpqEAUEFU+4NEG31MzhgRSgjKBZfjDi+tmtO
+jP+oBPM8VnSTbnimFee2IIUlkv1QekD1IWoBr2eeOY0PCKsi5Uds0JEAgCTfCuqK
+C87v41BOsNooC+QBaWS5JcAtsX6FDZ4j5YYrEL9+pnOntoOKNnCDlnunolGcgy5q
+HxAM68u+3GixptsgDarFM0pcssXbf8/hglsMlHmLuB1qioCexAMCD7/CXLil+ifZ
+q9fNjRlI7WvUaNy5ldtnHrQatE+Gds9fx8cRPfh0zYAOpIyWp67+MKVHyKWYVmmX
+z+RJdQ1/dF+CNn0nRlFR+QAs4PO4wXWJoIfMci+rKlT/9lANEwk=
+=gl/K
+-----END PGP SIGNATURE-----
+
+--gmPBfyWAmXOSQLgm--
