@@ -2,125 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4839D393C32
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 06:05:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB12E393C3F
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 06:12:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229876AbhE1EHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 00:07:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34596 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbhE1EHE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 00:07:04 -0400
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4C21C061574
-        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 21:05:30 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id t24so3026352oiw.3
-        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 21:05:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Q4fWiV9oZI2iV6JTdMuKYWY5j+rLJ6Ng0jD/Fbj1XbA=;
-        b=KWrpLYb3IhokqTrBlbd1cWIzosCqk5Ce4UtE3OL1DHqLUAPHhHEPeqSkb2dDC6ZVF7
-         1zySCCMd6VRm4ux7oVAP3Sr/nisN1P7F/Rr0qPti1NDLfTk1XB5OvBN16x6LRlJZVibX
-         6PfDNkjao3aJkMdgho+gsSkyeVUAOIBFCWnjycOaHqni6QfClOz+ZoYaSbREuGxSEpei
-         2HkR9a0LS0ihI5wpjioIkda/RlhnFa56ebLdeZZyc18SJtwhNthMzTXBewKp7a5Qoh3+
-         ZBuaW/YKNhP/CSZwbawoaIhdBzyO6kUlruwmb5bBuU9sxeGmMnMzcEvGHSOBQetoFn+7
-         2HQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Q4fWiV9oZI2iV6JTdMuKYWY5j+rLJ6Ng0jD/Fbj1XbA=;
-        b=oeEINBEw4MQSH1bq6lxXWlumXoxHLahfU7pPJGQd4rknQ2CDT4THKtl3tDCbdvzdQl
-         HyKVlVUvEwjAKv6BuJNsV7YKsfjkawZLLxEvgU/5IHB1N81RghVO7uEtyhJV1wgChynx
-         DlKjDwvjZjbEvU81jQHsvMPIchQIeqFdcYyDnB5sRf3lTvz/stWSDt7MRdl5xQLoWo7o
-         yI3jwbFKeeKtejJHcSttI7xxt78zMDOQFbhMrkRdIiQ0Q+r27MhSZ7c+XuHocmnWsNBf
-         io0c3vR6l/u7J9QN6rFMw+7GAevfZeaKKNFmq3B+dOcm8A5ba7ir0UWY+luf0y9Rcb/K
-         9jBQ==
-X-Gm-Message-State: AOAM531fZ38TKRmknHBcisFfizIqnCcHjjifmvhmjQrKed+xVORvQPI8
-        Wy6NUYCAdp2JX7as3I2PyGsYfg==
-X-Google-Smtp-Source: ABdhPJzdozWx0AvZ7Gm5J2sc0JInMRlr3hIxnpjv2iAlP6aOarGK1nWAVNMYQAFn8biew3cDmYV+tg==
-X-Received: by 2002:aca:2b16:: with SMTP id i22mr7858901oik.121.1622174730227;
-        Thu, 27 May 2021 21:05:30 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id c74sm915591oib.8.2021.05.27.21.05.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 May 2021 21:05:29 -0700 (PDT)
-Date:   Thu, 27 May 2021 23:05:28 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>, mathieu.poirier@linaro.org,
-        robh+dt@kernel.org, ulf.hansson@linaro.org, rjw@rjwysocki.net,
-        agross@kernel.org, ohad@wizery.com, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dianders@chromium.org,
-        rishabhb@codeaurora.org, sidgup@codeaurora.org
-Subject: Re: [PATCH 02/12] soc: qcom: aoss: Drop power domain support
-Message-ID: <YLBsCLNLBlWwoPQj@builder.lan>
-References: <1618574638-5117-1-git-send-email-sibis@codeaurora.org>
- <1618574638-5117-3-git-send-email-sibis@codeaurora.org>
- <161871128938.46595.8658084266884500136@swboyd.mtv.corp.google.com>
- <7adff8e58784bb85ea844ad338bfb19c@codeaurora.org>
+        id S230205AbhE1ENy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 00:13:54 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:52837 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229774AbhE1ENu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 00:13:50 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 14S3uTIr014580;
+        Fri, 28 May 2021 11:56:29 +0800 (GMT-8)
+        (envelope-from steven_lee@aspeedtech.com)
+Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 28 May
+ 2021 12:09:36 +0800
+Date:   Fri, 28 May 2021 12:09:34 +0800
+From:   Steven Lee <steven_lee@aspeedtech.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+CC:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Hongwei Zhang <Hongweiz@ami.com>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Billy Tsai <billy_tsai@aspeedtech.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: aspeed-sgpio: Convert txt bindings
+ to yaml.
+Message-ID: <20210528040934.GA28403@aspeedtech.com>
+References: <20210527005455.25758-1-steven_lee@aspeedtech.com>
+ <20210527005455.25758-2-steven_lee@aspeedtech.com>
+ <CACRpkdZFcFuT9rdrc8BfEBmhy0--9uLMSJWfr=A+nU117_BT8A@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <7adff8e58784bb85ea844ad338bfb19c@codeaurora.org>
+In-Reply-To: <CACRpkdZFcFuT9rdrc8BfEBmhy0--9uLMSJWfr=A+nU117_BT8A@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 14S3uTIr014580
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 27 Apr 01:25 CDT 2021, Sibi Sankar wrote:
-
-> On 2021-04-18 07:31, Stephen Boyd wrote:
-> > Quoting Sibi Sankar (2021-04-16 05:03:48)
-> > > The load state resources are expected to follow the life cycle of the
-> > > remote processor it tracks. However, modeling load state resources as
-> > > power-domains result in them getting turned off during system suspend
-> > > and thereby falling out of sync with the remote processors that are
-> > > still
-> > > on. Fix this by replacing load state resource control through the
-> > > generic
-> > > qmp message send interface instead.
-> > > 
-> > > Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> > > ---
-> > 
-> > Is it possible to keep this code around for a cycle so that there isn't
-> > the chance that someone is using the deprecated DT bindings with a new
-> > kernel? I worry that ripping the code out will cause them angst.
+The 05/28/2021 07:51, Linus Walleij wrote:
+> On Thu, May 27, 2021 at 2:55 AM Steven Lee <steven_lee@aspeedtech.com> wrote:
 > 
-> deprecated bindings with a newer kernel
-> shouldn't cause any problems since it is
-> the driver changes that make AOSS PD
-> mandatory or not. So the newer kernel will
-> just use qmp_send and leave the PD unused.
+> > SGPIO bindings should be converted as yaml format.
+> > In addition to the file conversion, a new property max-ngpios is
+> > added in the yaml file as well.
+> > The new property is required by the enhanced sgpio driver for
+> > making the configuration of the max number of gpio pins more flexible.
+> >
+> > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+> (...)
+> > +  max-ngpios:
+> > +    description:
+> > +      represents the number of actual hardware-supported GPIOs (ie,
+> > +      slots within the clocked serial GPIO data). Since each HW GPIO is both an
+> > +      input and an output, we provide max_ngpios * 2 lines on our gpiochip
+> > +      device. We also use it to define the split between the inputs and
+> > +      outputs; the inputs start at line 0, the outputs start at max_ngpios.
+> > +    minimum: 0
+> > +    maximum: 128
+> 
+> Why can this not be derived from the compatible value?
+> 
+> Normally there should be one compatible per hardware variant
+> of the block. And this should be aligned with that, should it not?
+> 
+> If this is not the case, maybe more detailed compatible strings
+> are needed, maybe double compatibles with compatible per
+> family and SoC?
 > 
 
-Maybe I'm missing something in your argument here, but I see two issues:
-* The changes here requires that the new qcom,qmp property is defined,
-  or the qcom_qmp_get() will be unable to find the qmp instance.
-* Between patch 2 and 5 there's no load_state handling.
+Thanks for your suggestion.
+I add max-ngpios in dt-bindings as there is ngpios defined in
+dt-bindings, users can get the both max-ngpios and ngpios information
+from dtsi without digging sgpio driver.
 
-Perhaps we can carry the power-domain handling as a fallback i
-qcom_qmp_get() fails, for a few releases?
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/aspeed-g5.dtsi#n354
 
+If adding more detailed compatibles is better, I will add them to sgpio driver
+in V3 patch and remove max-ngpios from dt-bindings.
 
-Other than the ordering and backwards compatibility issue I think this
-looks good. So can you please respin this based on the later revision of
-the qmp patch? (And fix Rob's request on the commit message)
+Since AST2600 has 2 sgpio controller one with 128 pins and another one with 80 pins.
+For supporting max-ngpios in compatibles, 2 platform data for each
+ast2600 sgpio controller as follows are necessary.
 
-https://lore.kernel.org/linux-arm-msm/1620320818-2206-2-git-send-email-deesin@codeaurora.org/
+```
+static const struct aspeed_sgpio_pdata ast2600_sgpiom1_pdata = {
+        .max_ngpios = 128;
+};
+static const struct aspeed_sgpio_pdata ast2600_sgpiom2_pdata = {
+        .max_ngpios = 80;
+};
 
-Regards,
-Bjorn
+{ .compatible = "aspeed,ast2500-sgpio" , .data = &ast2400_sgpio_pdata, },
+{ .compatible = "aspeed,ast2600-sgpiom1", .data = &ast2600_sgpiom1_pdata, },
+{ .compatible = "aspeed,ast2600-sgpiom2", .data = &ast2600_sgpiom2_pdata, },
+```
 
-> > Certainly we have to keep the code in place until DT is updated, so this
-> > patch should come last?
-> 
-> sure I don't mind, as long as it simplifies
-> the merge process.
-> 
-> -- 
-> Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-> a Linux Foundation Collaborative Project.
+Thanks,
+Steven
+
+> Yours,
+> Linus Walleij
