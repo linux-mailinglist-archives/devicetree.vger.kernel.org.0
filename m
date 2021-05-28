@@ -2,91 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE965394580
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 17:57:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E6E73945C1
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 18:21:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234882AbhE1P7T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 11:59:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53064 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234845AbhE1P7R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 11:59:17 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 813EDC061574
-        for <devicetree@vger.kernel.org>; Fri, 28 May 2021 08:57:42 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id y184-20020a1ce1c10000b02901769b409001so2676766wmg.3
-        for <devicetree@vger.kernel.org>; Fri, 28 May 2021 08:57:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=7pmaZyXtM4AylBjc9qEm89kM4k0ziUNZ9Q5i42rDzWM=;
-        b=fvi8pmHmARJkZGgKCqyDKLScFBrSY0l3kaR5OLzc6H+XzE6JnomEzjb4Lc1jf/E4jc
-         UM0nI3C7KwptyQC655UoSunBZG9gbrk0YGE4mzIBphHqOZYZseRPTO8uukKA0STHYKZY
-         mvDgNIIOuJbY7q8Fc3ehl0aIF/Dp6weMxHqunHxo7cH6p1MAaq86Sf3hisazalWXyvey
-         8Bi4lkqy9Lg7Un+OyaNY2M3W7J3Fl0WhL5TkMM9eP11cn8QCO9amdroYt3KuaRHds5WN
-         GSG7wMsXg+UofiVLRRHB8lZWV3HSuEf2/sBtEfm3nvEfYNicHifihx5zby7a9zM7SsUo
-         9CTg==
+        id S235956AbhE1QX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 12:23:29 -0400
+Received: from mail-oo1-f41.google.com ([209.85.161.41]:43878 "EHLO
+        mail-oo1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230243AbhE1QX2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 12:23:28 -0400
+Received: by mail-oo1-f41.google.com with SMTP id e27-20020a056820061bb029020da48eed5cso1055675oow.10;
+        Fri, 28 May 2021 09:21:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=7pmaZyXtM4AylBjc9qEm89kM4k0ziUNZ9Q5i42rDzWM=;
-        b=YBjfcOFwkbsrbMO8kfXlI2p3n2zjP5LMprwS8rRzwsSWUcZwbMX9JA9h0Dc3hohYc5
-         8FigN7QsEDDA6fytuT3ojljnE5fpeO3hlpBt3uYapYx8UIpWFuW9URWFE1Otd2yINT1l
-         R5J2S4PuBLamvCAjRnsu82mdpzW0qrNUdDsEQaqgX4YM+6N+DiKksupoCPmIQ8z/DBVl
-         28CweJevKruRMsaSucwLLWII5ikRu/6b+eEAnjdoaGRlYijWBc3VdXfoHWYP5xTdW3ie
-         GAaSNEo1inOnw2YUmyhyJyCISZ69wPUOUwiUJO2pYD8ZAzhCd0MkvwB01kpjuZCkPtlE
-         km1Q==
-X-Gm-Message-State: AOAM531zIMUKrHkbHERMftxEIrgohOn11J3SGoTP7l46DxyXI17hhpn8
-        OQVASIOR67xhRYzgTPOBgxvv8w==
-X-Google-Smtp-Source: ABdhPJxMTLIJocRenHHTPeek/Fl6d7thRubV729bcfU9aTOyb22v3Hh7R4kffL2OGh/WjkyXRhQ8mg==
-X-Received: by 2002:a7b:c18d:: with SMTP id y13mr11619016wmi.91.1622217460940;
-        Fri, 28 May 2021 08:57:40 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:1d23:2234:5254:8179? ([2a01:e34:ed2f:f020:1d23:2234:5254:8179])
-        by smtp.googlemail.com with ESMTPSA id c6sm7492788wrt.20.2021.05.28.08.57.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 May 2021 08:57:40 -0700 (PDT)
-Subject: Re: [PATCH v2 3/3] dt-bindings: timer: convert rockchip,rk-timer.txt
- to YAML
-To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Ezequiel Garcia <ezequiel@collabora.com>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Rob Herring <robh+dt@kernel.org>, kernel@collabora.com
-References: <20210506111136.3941-1-ezequiel@collabora.com>
- <20210506111136.3941-4-ezequiel@collabora.com> <15819722.JCcGWNJJiE@diego>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <398f8cd1-59cb-369f-0356-85cc1a64bb28@linaro.org>
-Date:   Fri, 28 May 2021 17:57:39 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
-MIME-Version: 1.0
-In-Reply-To: <15819722.JCcGWNJJiE@diego>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=eOXPQ48/DXVLMOpoDbToX5Y11nDnIWdQtOvWb3iJBV8=;
+        b=Rgdy0Jt6gu/TEJfsnH/L7FB7bryqrAEPICSX9JIYKhUc4W16Alnx1yUitIS4cnwQ/J
+         IvXYe/R6m6BUfuyAAUwnR/pvqOlX3Z1YymO4NlLrU2M4ENKS2qtkfYgxdMcL3uFxI1y3
+         oSoxKAxLYZdRLiTYm0P6pvrHxT2e0ERy4Sh2q9Zy+FdEfX7wLcHVtWGFOoOgTQf2E6M/
+         cI+cy/fB+BvREWGvqH5HZ6KBblFj63XtCpfEFhQBFBwH0hOMF65B6fPatkWxNRYRIuJl
+         zHSwKrgFJRjOlC12SlMIeTfYpW5ikjQ3gy3ElSILefOXpTe9WT0CyD/dZRFowc4WKOx1
+         2bpA==
+X-Gm-Message-State: AOAM531iMe1Ff904frx0KRB/aYPSdGItZx0xeMx5kbhoRDS1AsuuPW6+
+        XR7ewzaMIhMWbiuExeotdA==
+X-Google-Smtp-Source: ABdhPJyPlDwwdt8cwOPHjYqDx51qPFnU39rXzfFZt4NHP1klQ0MpX6ssBEjK1u5zsW02weskmbzdmQ==
+X-Received: by 2002:a4a:b4cd:: with SMTP id g13mr7530007ooo.4.1622218913320;
+        Fri, 28 May 2021 09:21:53 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id l23sm1202791oie.52.2021.05.28.09.21.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 May 2021 09:21:51 -0700 (PDT)
+Received: (nullmailer pid 3720613 invoked by uid 1000);
+        Fri, 28 May 2021 16:21:50 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Heiko Schocher <hs@denx.de>
+Cc:     linux-kernel@vger.kernel.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, Richard Weinberger <richard@nod.at>,
+        linux-mtd@lists.infradead.org
+In-Reply-To: <20210528072351.1639575-2-hs@denx.de>
+References: <20210528072351.1639575-1-hs@denx.de> <20210528072351.1639575-2-hs@denx.de>
+Subject: Re: [PATCH v1 1/2] mtd: devices: add devicetree documentation for microchip 48l640
+Date:   Fri, 28 May 2021 11:21:50 -0500
+Message-Id: <1622218910.743539.3720612.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/05/2021 17:56, Heiko Stübner wrote:
-> Hi Daniel,
+On Fri, 28 May 2021 09:23:50 +0200, Heiko Schocher wrote:
+> The Microchip 48l640 is a 8KByte EERAM connected via SPI.
+> Add devicetree bindings documentation.
 > 
-> Am Donnerstag, 6. Mai 2021, 13:11:36 CEST schrieb Ezequiel Garcia:
->> Convert Rockchip Timer dt-bindings to YAML.
->>
->> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+> Signed-off-by: Heiko Schocher <hs@denx.de>
+> ---
+> I must admit that I created the file
 > 
-> can you apply this patch to the timer-tree?
+> Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
+> 
+> by hand, looking into other yaml files...
+> 
+> Is there a way to check such a file to its correctness?
+> 
+>  .../bindings/mtd/microchip,mchp48l640.yaml    | 40 +++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
+> 
 
-Yes
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
+yamllint warnings/errors:
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+dtschema/dtc warnings/errors:
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-doc-validate", line 67, in <module>
+    ret = check_doc(f)
+  File "/usr/local/bin/dt-doc-validate", line 33, in check_doc
+    for error in sorted(dtschema.DTValidator.iter_schema_errors(testtree), key=lambda e: e.linecol):
+  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 723, in iter_schema_errors
+    meta_schema = cls.resolver.resolve_from_url(schema['$schema'])
+KeyError: '$schema'
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/processed-schema-examples.json'
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-mk-schema", line 38, in <module>
+    schemas = dtschema.process_schemas(args.schemas, core_schema=(not args.useronly))
+  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 587, in process_schemas
+    sch = process_schema(os.path.abspath(filename))
+  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 568, in process_schema
+    DTValidator.check_schema(schema)
+  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 738, in check_schema
+    meta_schema = cls.resolver.resolve_from_url(schema['$schema'])
+KeyError: '$schema'
+make[1]: *** [Documentation/devicetree/bindings/Makefile:62: Documentation/devicetree/bindings/processed-schema-examples.json] Error 1
+make: *** [Makefile:1416: dt_binding_check] Error 2
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+See https://patchwork.ozlabs.org/patch/1485038
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
