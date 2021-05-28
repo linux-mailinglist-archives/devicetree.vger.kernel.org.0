@@ -2,94 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01649393A47
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 02:31:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2F78393A53
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 02:37:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234438AbhE1AdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 May 2021 20:33:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43270 "EHLO
+        id S234714AbhE1Aiz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 May 2021 20:38:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233594AbhE1AdD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 20:33:03 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D87A5C061761
-        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 17:31:28 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id i9so2692686lfe.13
-        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 17:31:28 -0700 (PDT)
+        with ESMTP id S233625AbhE1Aiy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 May 2021 20:38:54 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 219E5C061574
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 17:37:19 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 131so3151416ljj.3
+        for <devicetree@vger.kernel.org>; Thu, 27 May 2021 17:37:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=nACOEvpFPcdmw/HFjZn82A0S5koii2HQf8n4dSZ8kUc=;
-        b=He9atcVUlHOl31CBA9dnNly8sJj3fpy0sjqip4IgivvZiMY6nJj6LKbRS8c4oqRw7w
-         xtlA6u58J+k4wpgTjwAiRfSihTmKOQCh3ku8VwR1DE06L0BRvlY6APIjntzcq4rsW4QU
-         UNdrYzJTU3pPlsnt5W6uZiuAJs0sjALtd/niqUs8SdPeatLGMZPWCSLM9wlQ5aAbqWxj
-         P3buPWbFsHpW/vgtLuLZS1kSUt53VNiXAsvWZs5LEmECxQ0Z2IToJDsSMbafQ0us34wq
-         jQW0gC4Ypn/kYPw7f2anjK5Rkio4nslpi8CehAmR+HZWbpGLAd2DFDO/MBjo7bYA/u87
-         AjlQ==
+        bh=7EJyL230sUGJ7FYl8bAskFfDImHioVidSIkfFtVBm5k=;
+        b=QWC+LnGn2/j6JHDZA0b+m4Pn12Zdge4U29CwEBpr60R+aPGYkL5NRw0IbwuZLFLMOq
+         hLu2SlfKLvUZacIP0khm/XRtrGHxL3XEPPhr4WClSZc76Pt8PGrm/xCIf/RAePSyya54
+         w/7X5YmoCKlP3swqK+TWxvEiw67JCtX8J2Jecstbq3oSszUDse+PXxAXcBvqxpevSd9O
+         fakPPnt6XUCMB/+prpyH87uEfvvQZtO006Vq1ao7gNJQDh8t5DxFSvlevNLgacClwEhE
+         td1uhIXAEKRe/v96dK3ZOMMPIG+VHX/Su1rHXXhxuu8PpB9018bWvqU3uznc7/8a3lxZ
+         EBPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=nACOEvpFPcdmw/HFjZn82A0S5koii2HQf8n4dSZ8kUc=;
-        b=sNsvAfiIfjdTgRrjizXLlEP++Qdy8xJNAUY9Gdhd46keFCqkY5YLFTdT5+fXtQJ4ua
-         BPFrI7AMnCWfHzD22GOArrMNRmzL94TahNHjnLAjE+DvXLgyW2MOBPZnXe3f1LDzwGn5
-         YwvL044FaLava4Uu1+M07pUtLh7I/2p5wT6qj97ToVJfH+UdjeQ6kXDF/rGzcgNdcD4e
-         P6Db2IRrlCgfltmVsEabuyT3vlM9VS4C6sPsbFzB4zZfcV15BQJyiPchuW73ZzTNGwYP
-         EZ39IytSv1Vlmy7ItF8H6tGcuqmpR1akJISbSPWW6UNHcH9B/barjUvnhmrVTVUMcquG
-         m8aQ==
-X-Gm-Message-State: AOAM530DS9hSvCH7nHxWnFEEZo/ydZlh30VwxmHcRpxV1cekjBAYMCRf
-        RnzX4lO6c4+CmdijECKFb23tNxft68FxVCbxj/uGTA==
-X-Google-Smtp-Source: ABdhPJzyNmeLKVoRU1NdOgocbRYiFNBbVgmN0igEpSoGd2uCo/A6lb/ej5LtKxFNhraw8Pjt1blGen8fCMiOv26hz4k=
-X-Received: by 2002:ac2:47e6:: with SMTP id b6mr3909543lfp.649.1622161887248;
- Thu, 27 May 2021 17:31:27 -0700 (PDT)
+        bh=7EJyL230sUGJ7FYl8bAskFfDImHioVidSIkfFtVBm5k=;
+        b=BVoigW3SCz8lclcTjg0qBWi0zpiq3jPXRq9f9vi3W8RQtPhe5qIwt7eP39d3d/HpFm
+         rpHbBW8KrlEWHxfDhfWcEMeGj0Ys1QFFOE8HnvOH2CrgFyV7MRz+YXCIZlShgGj3tEkO
+         lAWXuWQcQTMK+ARq9Ts6JvsatHGYsOmlKht5wMhj1A4geLMvjbRlsTTV8e1lKLfn35w6
+         jQFMqM+/OSLeVNfs9ncJbYMsA6/tuWjHHEsFv3SnmoyCMzrS733S4dTxx1CHwNjCwIek
+         BtfkfQi3kSS3bnf5xOGJeiQ/umT0rhgs5Z2T3lWCYRRb+ifiQSVJr8W3djI+W3WI7ch3
+         PYYQ==
+X-Gm-Message-State: AOAM530sPYxEydMhKE7gw60kXE2oqOGhgCT9L23/mIwHkjbr0AQBrr1W
+        h5oySh80tu+Te4N5dIo7N9+e/riQlgiw9gk7PDgspA==
+X-Google-Smtp-Source: ABdhPJzZ6qTV/8JeZnOkzC/1UQEdStXm+k6vCIGjQI9iYGwZP4fJJ3eLK9d6xGFJwMAB/GPG7O4UWGNRWe8oEWK+O3g=
+X-Received: by 2002:a2e:1319:: with SMTP id 25mr4530166ljt.200.1622162237391;
+ Thu, 27 May 2021 17:37:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210525000159.3384921-1-dianders@chromium.org> <20210524165920.v8.4.I79c7ed8815a07d285dd3b38e680e980d1024dbf1@changeid>
-In-Reply-To: <20210524165920.v8.4.I79c7ed8815a07d285dd3b38e680e980d1024dbf1@changeid>
+References: <20210524120539.3267145-1-robert.marko@sartura.hr> <20210524120539.3267145-2-robert.marko@sartura.hr>
+In-Reply-To: <20210524120539.3267145-2-robert.marko@sartura.hr>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 28 May 2021 02:31:16 +0200
-Message-ID: <CACRpkdYxAtD09cgVFd=_rusdVcr5LGF=z=mzG-22enhtRK+NBQ@mail.gmail.com>
-Subject: Re: [PATCH v8 04/11] dt-bindings: drm/aux-bus: Add an example
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        Lyude Paul <lyude@redhat.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thierry Reding <treding@nvidia.com>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
+Date:   Fri, 28 May 2021 02:37:06 +0200
+Message-ID: <CACRpkdbB8JrSGrGpwdoL=H+ZBuQm=a+Za3c7pip9foMKhey03g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] gpio: Add Delta TN48M CPLD GPIO driver
+To:     Robert Marko <robert.marko@sartura.hr>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        luka.perkov@sartura.hr, jmp@epiphyte.org, pmenzel@molgen.mpg.de,
+        buczek@molgen.mpg.de
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 25, 2021 at 2:02 AM Douglas Anderson <dianders@chromium.org> wrote:
+On Mon, May 24, 2021 at 2:05 PM Robert Marko <robert.marko@sartura.hr> wrote:
 
-> Now that we have an eDP controller that lists aux-bus, we can safely
-> add an example to the aux-bus bindings.
+> Delta TN48M CPLD is used as a GPIO expander for the SFP GPIOs.
 >
-> NOTE: this example is just a copy of the one in the 'ti-sn65dsi86'
-> one. It feels useful to have the example in both places simply because
-> it's important to document the interaction between the two bindings in
-> both places.
+> It is a mix of input only and output only pins.
 >
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
 
-Looks good.
+Looks really good!
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
