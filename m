@@ -2,107 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87C0039439A
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 15:51:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DAE63943A1
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 15:56:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236078AbhE1Nx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 09:53:26 -0400
-Received: from www.zeus03.de ([194.117.254.33]:57014 "EHLO mail.zeus03.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236025AbhE1Nx0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 May 2021 09:53:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=nU0ILsvL1e7YkX+Q6Ium0QVVH0WE
-        +8p12XWu7kbQ4Z4=; b=CtOSCC26lJEJAI5FBtolb1D4QokvistWYY7olov2uqRN
-        WrG2R5/92SCcjIGzhHq3FyU6IWx+XVFnhmsSj5ervVvXlOoD7XUqzaFFh2HALiRT
-        bFLtQZTRSEo06Wn48SRTNHcPLxN1t1XJeSPDFcvHVxILH9nngaWZf48t5OKa/9U=
-Received: (qmail 2391605 invoked from network); 28 May 2021 15:51:50 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 28 May 2021 15:51:50 +0200
-X-UD-Smtp-Session: l3s3148p1@cadsLWTDDOEgAwDPXwoXAEGfoBQqamfc
-Date:   Fri, 28 May 2021 15:51:48 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH/RFC 4/6] dt-bindings: i2c: renesas,iic: Convert to
- json-schema
-Message-ID: <YLD1dCO8O6uZppEV@kunai>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
-References: <cover.1620138454.git.geert+renesas@glider.be>
- <ecfaf6be5e8c285db2bcc823bb1dd89931fa5c29.1620138454.git.geert+renesas@glider.be>
- <20210505073327.GE1009@ninjato>
- <CAMuHMdX3jw_Cm4hrg4QLr5H45nydmdbJzd7Rd-HY-rncOoKxvQ@mail.gmail.com>
+        id S236053AbhE1N5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 09:57:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53848 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235379AbhE1N5j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 09:57:39 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB71CC061574;
+        Fri, 28 May 2021 06:56:04 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id c15so5363415ljr.7;
+        Fri, 28 May 2021 06:56:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bu3MQ6DgF0fcfplCjXBBOAim/Uo1qYJNmd9RnH8e+ks=;
+        b=tVF+0kOaRRXhQna7qmOYKGJIdz3n8LS488iOoSBLmTiEfRpf0rxZ5GDdWAw97Amj5b
+         N6XUEXQog0DDfJyMoez4vePANL3E893LsEQIfNfeCneI+hjM0GLI5KoM9FMFwl+INMUq
+         MTFMoDr6e1gx6swr8vrpKxdhFH9oGaoPLVcBcyC7x/z7GPtnKfgfRfOv0zzdfNHADg+m
+         N4IeDRSwBbtS1/iHe+GOa+/hkpWBrPdWGSrLQSONcRFNs2/TeQBK6KolPn1RWeIq+PX9
+         DNu4KSv4smF14u2ueH1JT1pUfTKQRjMtclV9aY1dCqPNXAdhZ3Fqv/Dp5MkJW4/ZlL4n
+         vQyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bu3MQ6DgF0fcfplCjXBBOAim/Uo1qYJNmd9RnH8e+ks=;
+        b=jTc9qa1W7sLJJKcGfMJeOipe/v9zlLi3aTHVgkcEiQsL+1GQh6n4PUL5lUicWiozay
+         swwQNfFWzJ9W+x+KDo6FZnKc7Y+F+NedVemqG4GPXJnVrOcMxKWv8WbvvIaUOiRqnM8X
+         3AK20CeUUS6aqpXDqBGk2IcE1gC1qsGQwbWyZUFqRuGPCne2dEqAWfz5i+9m/Unwr2FL
+         qNWX+DhQzNbNinCnqe2c9RtgTfzxyl51xseUJ3OpxKZbVdVCojuIXs759kPhSqDtRJ5Q
+         MgRep0IsHimr/8bcx+FRA5ERv8nRMzFJJuqmBEN4lWNv/KHJ24b+cOy+tj5Ki+HiO1mo
+         DRRw==
+X-Gm-Message-State: AOAM53192MBFx65Wq6HtLz6TqkpK0NZbxglbtTOJU20zrx7xOPpiUeTH
+        pZrEyQpc6bbp1zsLfUxYvh9H3N40rTRVdjAeDSpTDusxWAM=
+X-Google-Smtp-Source: ABdhPJzdoAyrq+MXYaDETTn9Y5LvOV5jUsKpvHXTLV4U6vofzDvdswL5xJxnJoQQIYuEWUXo8MoedyvPApORUmIN3Rg=
+X-Received: by 2002:a2e:824c:: with SMTP id j12mr6650994ljh.490.1622210163006;
+ Fri, 28 May 2021 06:56:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="5GjH/ziWN9sQFeFH"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdX3jw_Cm4hrg4QLr5H45nydmdbJzd7Rd-HY-rncOoKxvQ@mail.gmail.com>
+References: <20210528072351.1639575-1-hs@denx.de> <20210528072351.1639575-3-hs@denx.de>
+In-Reply-To: <20210528072351.1639575-3-hs@denx.de>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Fri, 28 May 2021 10:55:51 -0300
+Message-ID: <CAOMZO5Cq6BT_46tKGWMoLUvaHEzD-mbEF56S0TzWpQXtXRsVmQ@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] mtd: devices: add support for microchip 48l640 EERAM
+To:     Heiko Schocher <hs@denx.de>
+Cc:     linux-mtd <linux-mtd@lists.infradead.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Heiko,
 
---5GjH/ziWN9sQFeFH
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, May 28, 2021 at 4:26 AM Heiko Schocher <hs@denx.de> wrote:
+>
+> The Microchip 48l640 is a 8KByte EERAM connected via SPI.
+>
+> Signed-off-by: Heiko Schocher <hs@denx.de>
+> ---
+> I tried to use drivers/mtd/devices/mchp23k256.c but this
+> driver does not use any status register and there seems
+> slight differences in registers (no write enable register
+> for example), so I decided to make a new driver.
+>
+> This driver sets the continuous mode bit in Status register,
+> which states you can write continuous ... but after writting
+> 32 bytes the chip goes into an undefined state, so driver now
+> writes data in 32 byte chunks.
+>
+> I also tried to use regmap, but it leads in a lot of more code,
+> and as this chip has only spi interface it makes no sense, or?
+>
+> Tested  this driver on board imx8mp-phyboard-pollux-rdk
+> board, which is already in mainline.
+>
+> Made some tbot tests, which write at random offset random
+> length bytes with dd and and random content. Reread the data
+> after a reboot and compare with the written data. Works fine.
 
-Hi Geert,
+Works for me too on an imx7d based board, thanks:
 
-> In addition, Wolfram tried transmitting something on R-Car H2 from
-> the U-Boot prompt, and noticed the ICINT.ADTE bit is set afterwards,
-> indicating success.
-
-Note that I tested this basic test on E2 as well.
-
-> As the Linux (or other OS?) i2c driver doesn't use automatic
-> transmission, and it's very unlikely it ever will (anyone with a
-> use case?), I'm inclined to simplify, and declare all IIC instances
-> compatible with the generic version.
-> If we ever want to implement support for automatic transmission,
-> we can still differentiate by the SoC-specific compatible values,
-> as they are present anyway, and may have to resort to checking
-> e.g. instance base addresses anyway.
->=20
-> Thoughts? Thanks!
-
-I agree. So, if nobody speaks up in the next days, I will apply this
-patch as is.
-
-Thanks for your investigating!
-
-   Wolfram
-
-
---5GjH/ziWN9sQFeFH
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmCw9XQACgkQFA3kzBSg
-Kba/HhAAtJgl3fiOwtLIOh1PQZjPGi28Q8kpmhka3f4ADiMw/NE8NKiNPPQdyQvU
-5Z4PTqnNUANvgRK5DDdNJmtTwDgnEm74kqmk+ONlu7BaoAbqsXJlcrxzRV0Rrdl4
-qUgxJD6B/m9hKs7yN5a04I7knUvtjRcEQ+mIPfkapDZApPOCfUnY6/InqahteOEl
-1HhNUgTVmAgLzKMm4VMyxXwM39EH2iyAti7l2Iab6lDiu6j/YrVK83ezN2B+EEgq
-oOqRcM/uH8Veucoa3BSnzplw+fwJx9nGDJsTx90OinjUK7WIAxEW3+rPsYNM91OG
-iIqL7cBjAh+ce9pGLUFnir5mu2wMOlRRqclkZ6r5GqAgkK1MxG50BNENXA8bxMx4
-MCAv3EMpTxrc2lJnDNUFPXFIDiyrIF+9WxOy4JvZuvVQa1+Faka+9KoYzfsrrQD4
-PhMs300u5bZm8nkXgu6SdUR3hSHO7eaXQCBHGvhqk6jpzCiWWhJcj0XTHSVRa35/
-cnITW1vQGYAhsv5wf49XDNttxlPIkfWrDRNrph73okanfaAMqYBWovSqkpPFkCIP
-btuleyL8nsC3xpz/qEFqOs6SmR3y23Ur4PKEqIOU5t/c4aIl4DjYx5tUs0c8p9+2
-Q8oBRhwvXDn4TexaWIV6xtK3JWkZ8h10/LvxT2mM99ryU3ukV3k=
-=OhYB
------END PGP SIGNATURE-----
-
---5GjH/ziWN9sQFeFH--
+Tested-by: Fabio Estevam <festevam@denx.de>
