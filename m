@@ -2,120 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB12E393C3F
-	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 06:12:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E659393C8F
+	for <lists+devicetree@lfdr.de>; Fri, 28 May 2021 06:57:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230205AbhE1ENy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 00:13:54 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:52837 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229774AbhE1ENu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 00:13:50 -0400
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 14S3uTIr014580;
-        Fri, 28 May 2021 11:56:29 +0800 (GMT-8)
-        (envelope-from steven_lee@aspeedtech.com)
-Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 28 May
- 2021 12:09:36 +0800
-Date:   Fri, 28 May 2021 12:09:34 +0800
-From:   Steven Lee <steven_lee@aspeedtech.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-CC:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Hongwei Zhang <Hongweiz@ami.com>,
-        Ryan Chen <ryan_chen@aspeedtech.com>,
-        Billy Tsai <billy_tsai@aspeedtech.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: aspeed-sgpio: Convert txt bindings
- to yaml.
-Message-ID: <20210528040934.GA28403@aspeedtech.com>
-References: <20210527005455.25758-1-steven_lee@aspeedtech.com>
- <20210527005455.25758-2-steven_lee@aspeedtech.com>
- <CACRpkdZFcFuT9rdrc8BfEBmhy0--9uLMSJWfr=A+nU117_BT8A@mail.gmail.com>
+        id S234366AbhE1E7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 00:59:31 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:51828 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230299AbhE1E7a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 00:59:30 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14S4vmdk124441;
+        Thu, 27 May 2021 23:57:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1622177868;
+        bh=n0EOad/BgEub5TYrK75niMn95jbCbHIn8nikZ/xeoSA=;
+        h=From:To:CC:Subject:Date;
+        b=ihnHS9jPEOLZxkNrfjo/6Ou2/Eg4Zv6ssfB2NhF1XIdWNKDFWt+3VtBgc0C6PfzBA
+         YpPYwGqElCKmoawQmFOVyVVyFNmGEyNmNXEgaD5RZwcf0eRVqKkL9o0Y8wNFINzlqS
+         u4AZxB1dxOjG9Unr30+tzCNOnfqve9CKt+tNSNfQ=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14S4vml3061307
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 27 May 2021 23:57:48 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 27
+ May 2021 23:57:48 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 27 May 2021 23:57:48 -0500
+Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14S4viJ2087638;
+        Thu, 27 May 2021 23:57:44 -0500
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Device Tree Mailing List <devicetree@vger.kernel.org>,
+        <ssantosh@kernel.org>, Vignesh R <vigneshr@ti.com>,
+        <linux-clk@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [PATCH v2 0/2] clk: keystone: Add support for AM64 specific ehrpwm-tbclk
+Date:   Fri, 28 May 2021 10:27:41 +0530
+Message-ID: <20210528045743.16537-1-lokeshvutla@ti.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <CACRpkdZFcFuT9rdrc8BfEBmhy0--9uLMSJWfr=A+nU117_BT8A@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [192.168.100.253]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 14S3uTIr014580
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 05/28/2021 07:51, Linus Walleij wrote:
-> On Thu, May 27, 2021 at 2:55 AM Steven Lee <steven_lee@aspeedtech.com> wrote:
-> 
-> > SGPIO bindings should be converted as yaml format.
-> > In addition to the file conversion, a new property max-ngpios is
-> > added in the yaml file as well.
-> > The new property is required by the enhanced sgpio driver for
-> > making the configuration of the max number of gpio pins more flexible.
-> >
-> > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
-> (...)
-> > +  max-ngpios:
-> > +    description:
-> > +      represents the number of actual hardware-supported GPIOs (ie,
-> > +      slots within the clocked serial GPIO data). Since each HW GPIO is both an
-> > +      input and an output, we provide max_ngpios * 2 lines on our gpiochip
-> > +      device. We also use it to define the split between the inputs and
-> > +      outputs; the inputs start at line 0, the outputs start at max_ngpios.
-> > +    minimum: 0
-> > +    maximum: 128
-> 
-> Why can this not be derived from the compatible value?
-> 
-> Normally there should be one compatible per hardware variant
-> of the block. And this should be aligned with that, should it not?
-> 
-> If this is not the case, maybe more detailed compatible strings
-> are needed, maybe double compatibles with compatible per
-> family and SoC?
-> 
+This series adds support for AM64 specific ehrpwm Time-base submodule
+clock.
 
-Thanks for your suggestion.
-I add max-ngpios in dt-bindings as there is ngpios defined in
-dt-bindings, users can get the both max-ngpios and ngpios information
-from dtsi without digging sgpio driver.
+Changes since v1:
+- Fixed register offsets and bits for clocks.
+- Update the compatible to ti,am64-epwm-tbclk, as high resolution is not
+  supported in AM64.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/aspeed-g5.dtsi#n354
+Lokesh Vutla (2):
+  dt-bindings: clock: ehrpwm: Add support for AM64 specific compatible
+  clk: keystone: syscon-clk: Add support for AM64 specific ehrpwm-tbclk
 
-If adding more detailed compatibles is better, I will add them to sgpio driver
-in V3 patch and remove max-ngpios from dt-bindings.
+ .../bindings/clock/ti,am654-ehrpwm-tbclk.yaml   |  4 +++-
+ drivers/clk/keystone/syscon-clk.c               | 17 +++++++++++++++++
+ 2 files changed, 20 insertions(+), 1 deletion(-)
 
-Since AST2600 has 2 sgpio controller one with 128 pins and another one with 80 pins.
-For supporting max-ngpios in compatibles, 2 platform data for each
-ast2600 sgpio controller as follows are necessary.
+-- 
+2.31.1
 
-```
-static const struct aspeed_sgpio_pdata ast2600_sgpiom1_pdata = {
-        .max_ngpios = 128;
-};
-static const struct aspeed_sgpio_pdata ast2600_sgpiom2_pdata = {
-        .max_ngpios = 80;
-};
-
-{ .compatible = "aspeed,ast2500-sgpio" , .data = &ast2400_sgpio_pdata, },
-{ .compatible = "aspeed,ast2600-sgpiom1", .data = &ast2600_sgpiom1_pdata, },
-{ .compatible = "aspeed,ast2600-sgpiom2", .data = &ast2600_sgpiom2_pdata, },
-```
-
-Thanks,
-Steven
-
-> Yours,
-> Linus Walleij
