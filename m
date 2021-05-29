@@ -2,105 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1C98394D1E
-	for <lists+devicetree@lfdr.de>; Sat, 29 May 2021 18:26:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21190394D3B
+	for <lists+devicetree@lfdr.de>; Sat, 29 May 2021 18:52:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229774AbhE2Q0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 May 2021 12:26:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32830 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229805AbhE2Q0u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 May 2021 12:26:50 -0400
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84EACC06174A
-        for <devicetree@vger.kernel.org>; Sat, 29 May 2021 09:25:12 -0700 (PDT)
-Received: by mail-oi1-x230.google.com with SMTP id z3so7564144oib.5
-        for <devicetree@vger.kernel.org>; Sat, 29 May 2021 09:25:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=jFAfU25Qj+cRqC0XFUI+YM1/RbEp8mIA/HiLs0SBEww=;
-        b=g9Yqyl1WpDSv/0jO/8xVebd6wKxwc1+dm5MG4cr1gcfh4MVIFuW2eIp16PL+ioaq6b
-         5L5ImayrkmN0Piha2bK33MCQU3H32blsZiLieEi1ooIigoVz+L6cfTU1HGSLnvcxtrHv
-         v08QobuUW7y4BwxG3lspItWjIKotSoSKQQyQAOqiJ/4/y0PAXxzBosA0FMd3d6T6Dg1U
-         Q0JeBHx1LmMoXg//RBbtD375VoYoI5ABs73doALxcRvCAFKoXvWLD/gsfON7XmFt52F1
-         R1wxRFB5cLaFR8fnh9e+VBZYKGjaFuzlgwE6AX8eMdU1BLkzT+Hn0O574yFETWeYl7VQ
-         x1eA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=jFAfU25Qj+cRqC0XFUI+YM1/RbEp8mIA/HiLs0SBEww=;
-        b=nuF1nvV+Q8hanm+oxr04hCHvcjLgDTLpacbpWh70+ZkyLFDPjJ9/72LAuXfqcOzn9M
-         Qn/HOIt8Jich6y10q8pVMtO29EbEhFd2aEOU1vELMnOfiUaNWFmD3YKR2ZgBhfIdOo8t
-         JyNkgaFkIB2HYblBNlH+Lflt1kGmhE/BLzR/Rv++QE3K7y1EA4KyFBS6FW6JsUErRUYD
-         rtN2CbIVrrUn6OBubCdKWtjFnEB4U1+i6mhpc+PDCmZL+MzgZAqvsRSmqJlY/lpFSn2L
-         KfOwIjY2OJomZIQrLKFTz2RGhe4sui4B9cSmtZmvCqtI3FZZuHQ9bVprkMcbGYwXH7ux
-         +9xg==
-X-Gm-Message-State: AOAM533YN/xF8rn/scqQPLw2FVVDGVZAP5g9XeJBj4W3Btl6KZli708X
-        89ddZQLmLZsKNy9H0I3aeTZklQ==
-X-Google-Smtp-Source: ABdhPJzBeIa8BbBikxQvxrQptxn7sm9GORyImFhfYm4PvpYKjjqs0wQnZEDwWHVXmVQL8iJtsNq8vw==
-X-Received: by 2002:aca:488f:: with SMTP id v137mr9350654oia.173.1622305511911;
-        Sat, 29 May 2021 09:25:11 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id e21sm1750706oii.23.2021.05.29.09.25.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 29 May 2021 09:25:11 -0700 (PDT)
-Date:   Sat, 29 May 2021 11:25:09 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     vkoul@kernel.org, kishon@ti.com, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: phy: qcom,qmp: Add binding for SDX55
- PCIe PHY
-Message-ID: <YLJq5R4uMYRDppmv@builder.lan>
-References: <20210427065400.18958-1-manivannan.sadhasivam@linaro.org>
- <20210427065400.18958-2-manivannan.sadhasivam@linaro.org>
+        id S229716AbhE2QyU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 May 2021 12:54:20 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:54358 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229709AbhE2QyU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 May 2021 12:54:20 -0400
+X-UUID: d36b95d10cfa43ceacefe8f41d76215f-20210530
+X-UUID: d36b95d10cfa43ceacefe8f41d76215f-20210530
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <hector.yuan@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1207761083; Sun, 30 May 2021 00:52:42 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Sun, 30 May 2021 00:52:40 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sun, 30 May 2021 00:52:40 +0800
+From:   Hector Yuan <hector.yuan@mediatek.com>
+To:     <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <wsd_upstream@mediatek.com>, <hector.yuan@mediatek.com>
+Subject: [PATCH v12] cpufreq: mediatek-hw: Add support for Mediatek cpufreq HW driver
+Date:   Sun, 30 May 2021 00:52:31 +0800
+Message-ID: <1622307153-3639-1-git-send-email-hector.yuan@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210427065400.18958-2-manivannan.sadhasivam@linaro.org>
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 27 Apr 01:53 CDT 2021, Manivannan Sadhasivam wrote:
+The CPUfreq HW present in some Mediatek chipsets offloads the steps necessary for changing the frequency of CPUs. 
+The driver implements the cpufreq driver interface for this hardware engine. 
 
-> Add devicetree binding for PCIe PHY found in Qcom SDX55 platform.
-> 
+From v11 to v12, there are two modifications.
+1. Based on patchset[1], align binding with scmi for performance domain(latest version).
+2. Shrink binding example wording. 
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+From v8 to v9, there are three more modifications.
+1. Based on patchset[2], align binding with scmi for performance domain.
+2. Add the CPUFREQ fast switch function support and define DVFS latency.
+3. Based on patchser[3], add energy model API parameter for mW.
 
-Regards,
-Bjorn
+From v7 to v8, there are three more patches based on patchset v8[4].
+This patchset is about to register power table to Energy model for EAS and thermal usage.
+1. EM CPU power table
+- Register energy model table for EAS and thermal cooling device usage.
+- Read the coresponding LUT for power table.
+2. SVS initialization
+- The SVS(Smart Voltage Scaling) engine is a hardware which is
+  used to calculate optimized voltage values for CPU power domain.
+  DVFS driver could apply those optimized voltage values to reduce power consumption.
+- Driver will polling if HW engine is done for SVS initialization.
+  After that, driver will read power table and register it to EAS.
+- CPUs must be in power on state when doing SVS. Use pm_qos to block cpu-idle state for SVS initializing.
+3. Cooling device flag
+- Add cooling device flag for thermal
+[1]  https://lore.kernel.org/linux-devicetree/20210517155458.1016707-1-sudeep.holla@arm.com/
+[2]  https://lore.kernel.org/lkml/20201116181356.804590-1-sudeep.holla@arm.com/
+[3]  https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git/commit/?h=linux-next&id=c250d50fe2ce627ca9805d9c8ac11cbbf922a4a6
+[4]  https://lkml.org/lkml/2020/9/23/384
 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> index 626447fee092..d5162d58a479 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> @@ -43,6 +43,7 @@ properties:
->        - qcom,sm8350-qmp-ufs-phy
->        - qcom,sm8350-qmp-usb3-phy
->        - qcom,sm8350-qmp-usb3-uni-phy
-> +      - qcom,sdx55-qmp-pcie-phy
->        - qcom,sdx55-qmp-usb3-uni-phy
->  
->    reg:
-> @@ -301,6 +302,7 @@ allOf:
->              enum:
->                - qcom,sdm845-qhp-pcie-phy
->                - qcom,sdm845-qmp-pcie-phy
-> +              - qcom,sdx55-qmp-pcie-phy
->                - qcom,sm8250-qmp-gen3x1-pcie-phy
->                - qcom,sm8250-qmp-gen3x2-pcie-phy
->                - qcom,sm8250-qmp-modem-pcie-phy
-> -- 
-> 2.25.1
-> 
+
+Hector.Yuan (2):
+  cpufreq: mediatek-hw: Add support for CPUFREQ HW
+  dt-bindings: cpufreq: add bindings for MediaTek cpufreq HW
+
+ .../bindings/cpufreq/cpufreq-mediatek-hw.yaml      |   71 ++++
+ drivers/cpufreq/Kconfig.arm                        |   12 +
+ drivers/cpufreq/Makefile                           |    1 +
+ drivers/cpufreq/mediatek-cpufreq-hw.c              |  370 ++++++++++++++++++++
+ 4 files changed, 454 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
+ create mode 100644 drivers/cpufreq/mediatek-cpufreq-hw.c
