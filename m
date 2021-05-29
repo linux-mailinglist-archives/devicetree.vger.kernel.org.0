@@ -2,208 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 503A33949A3
-	for <lists+devicetree@lfdr.de>; Sat, 29 May 2021 02:40:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 767AB394A29
+	for <lists+devicetree@lfdr.de>; Sat, 29 May 2021 05:38:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229706AbhE2Als (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 May 2021 20:41:48 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:21463 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229704AbhE2Alr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 May 2021 20:41:47 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1622248811; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=QM6qgqrE3mDqgSSOgbJTDeIClx4AEk3FZTtQjZABXeE=; b=vkV7vvRbrBZDjl3LnK+VU+MsnpOvhunQwNXFL2oD/q5GnZZQYDKyQXClpps1/izcsyyPR8XM
- bSEY/QqwpdXtF8Uh5Yca+tWtiGWdwOB0rEGZ3xvNY3vVxkUHe6iWDCLRMIdv1rtuxm29WzzW
- xNYVLRHSL1cxbUUcmEh5jRoa2Xo=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 60b18d6bea2aacd7298ee502 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sat, 29 May 2021 00:40:11
- GMT
-Sender: wcheng=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id DCEEBC4323A; Sat, 29 May 2021 00:40:10 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [10.110.54.185] (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: wcheng)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0CA51C433F1;
-        Sat, 29 May 2021 00:40:08 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 0CA51C433F1
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=wcheng@codeaurora.org
-Subject: Re: [PATCH v8 0/5] Re-introduce TX FIFO resize for larger EP bursting
-To:     balbi@kernel.org, gregkh@linuxfoundation.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org
-Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        jackp@codeaurora.org, Thinh.Nguyen@synopsys.com
-References: <1621410238-31395-1-git-send-email-wcheng@codeaurora.org>
-From:   Wesley Cheng <wcheng@codeaurora.org>
-Message-ID: <56005440-7b3c-1dd7-c0f9-d3d0d0703878@codeaurora.org>
-Date:   Fri, 28 May 2021 17:40:07 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+        id S229547AbhE2Djv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 May 2021 23:39:51 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:51958 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229543AbhE2Djv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 May 2021 23:39:51 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14T3c5lj118921;
+        Fri, 28 May 2021 22:38:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1622259485;
+        bh=P5qgJg7KpA36KsDxZ2B8pLQWTcpCcWDO2HNU4/C3Aho=;
+        h=From:To:CC:Subject:Date;
+        b=a1xzMa4fcnAjjWCnci5oz5UtDslJwHXVhkeQK61+y0cUgeM+VLMN3M74ZjQXfAnib
+         b/VWioUB93qGEwIEpK++GsyTG2SzhCVrpWevnIcSc5Xjw+lf7kcqcCubdXwxm5OAMc
+         Yli/Q56WmYXynuAtX8HXqQiQfjw+ksOXp9MYQjx8=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14T3c4pM001191
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 28 May 2021 22:38:05 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 28
+ May 2021 22:38:04 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Fri, 28 May 2021 22:38:04 -0500
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14T3bwp2022911;
+        Fri, 28 May 2021 22:37:59 -0500
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        Suman Anna <s-anna@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4] arm64: dts: ti: k3-am65: Add support for UHS-I modes in MMCSD1 subsystem
+Date:   Sat, 29 May 2021 09:07:49 +0530
+Message-ID: <20210529033749.6250-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <1621410238-31395-1-git-send-email-wcheng@codeaurora.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Felipe,
+UHS-I speed modes are supported in AM65 S.R. 2.0 SoC[1].
 
-Sorry for the ping, but was just wondering if you had any feedback on
-the latest txfifo resize patch series?  I think I addressed the concerns
-you had about making sure we had enough FIFO size for a composition
-before allowing the configuration to bind with the check_config() API.
-It would ensure at least enough room for 1 max packet size for each EP
-in a configuration before allowing the bind to complete.
+Add support by removing the no-1-8-v tag and including the voltage
+regulator device tree nodes for power cycling.
 
-That way we'd avoid being enumerated w/ the host, and having
-non-functioning endpoints.  We've been testing these changes internally,
-and they are providing a pretty significant boost to our USB throughput
-numbers.
+However, the 4 bit interface of AM65 SR 1.0 cannot be supported at 3.3 V or
+1.8 V because of erratas i2025 and i2026 [2]. As the SD card is the primary
+boot mode for development usecases, continue to enable SD card and disable
+UHS-I modes in it to minimize any ageing issues happening because of
+erratas.
 
-Thanks
-Wesley Cheng
+k3-am6528-iot2050-basic and k3-am6548-iot2050-advanced boards use S.R. 1.0
+version of AM65 SoC. Therefore, add no-1-8-v in sdhci1 device tree node of
+the common iot2050 device tree file.
 
-On 5/19/2021 12:43 AM, Wesley Cheng wrote:
-> Changes in V8:
->  - Rebased to usb-testing
->  - Using devm_kzalloc for adding txfifo property in dwc3-qcom
->  - Removed DWC3 QCOM ACPI property for enabling the txfifo resize
-> 
-> Changes in V7:
->  - Added a new property tx-fifo-max-num for limiting how much fifo space the
->    resizing logic can allocate for endpoints with large burst values.  This
->    can differ across platforms, and tie in closely with overall system latency.
->  - Added recommended checks for DWC32.
->  - Added changes to set the tx-fifo-resize property from dwc3-qcom by default
->    instead of modifying the current DTSI files.
->  - Added comments on all APIs/variables introduced.
->  - Updated the DWC3 YAML to include a better description of the tx-fifo-resize
->    property and added an entry for tx-fifo-max-num.
-> 
-> Changes in V6:
->  - Rebased patches to usb-testing.
->  - Renamed to PATCH series instead of RFC.
->  - Checking for fs_descriptors instead of ss_descriptors for determining the
->    endpoint count for a particular configuration.
->  - Re-ordered patch series to fix patch dependencies.
-> 
-> Changes in V5:
->  - Added check_config() logic, which is used to communicate the number of EPs
->    used in a particular configuration.  Based on this, the DWC3 gadget driver
->    has the ability to know the maximum number of eps utilized in all configs.
->    This helps reduce unnecessary allocation to unused eps, and will catch fifo
->    allocation issues at bind() time.
->  - Fixed variable declaration to single line per variable, and reverse xmas.
->  - Created a helper for fifo clearing, which is used by ep0.c
-> 
-> Changes in V4:
->  - Removed struct dwc3* as an argument for dwc3_gadget_resize_tx_fifos()
->  - Removed WARN_ON(1) in case we run out of fifo space
->  
-> Changes in V3:
->  - Removed "Reviewed-by" tags
->  - Renamed series back to RFC
->  - Modified logic to ensure that fifo_size is reset if we pass the minimum
->    threshold.  Tested with binding multiple FDs requesting 6 FIFOs.
-> 
-> Changes in V2:
->  - Modified TXFIFO resizing logic to ensure that each EP is reserved a
->    FIFO.
->  - Removed dev_dbg() prints and fixed typos from patches
->  - Added some more description on the dt-bindings commit message
-> 
-> Currently, there is no functionality to allow for resizing the TXFIFOs, and
-> relying on the HW default setting for the TXFIFO depth.  In most cases, the
-> HW default is probably sufficient, but for USB compositions that contain
-> multiple functions that require EP bursting, the default settings
-> might not be enough.  Also to note, the current SW will assign an EP to a
-> function driver w/o checking to see if the TXFIFO size for that particular
-> EP is large enough. (this is a problem if there are multiple HW defined
-> values for the TXFIFO size)
-> 
-> It is mentioned in the SNPS databook that a minimum of TX FIFO depth = 3
-> is required for an EP that supports bursting.  Otherwise, there may be
-> frequent occurences of bursts ending.  For high bandwidth functions,
-> such as data tethering (protocols that support data aggregation), mass
-> storage, and media transfer protocol (over FFS), the bMaxBurst value can be
-> large, and a bigger TXFIFO depth may prove to be beneficial in terms of USB
-> throughput. (which can be associated to system access latency, etc...)  It
-> allows for a more consistent burst of traffic, w/o any interruptions, as
-> data is readily available in the FIFO.
-> 
-> With testing done using the mass storage function driver, the results show
-> that with a larger TXFIFO depth, the bandwidth increased significantly.
-> 
-> Test Parameters:
->  - Platform: Qualcomm SM8150
->  - bMaxBurst = 6
->  - USB req size = 256kB
->  - Num of USB reqs = 16
->  - USB Speed = Super-Speed
->  - Function Driver: Mass Storage (w/ ramdisk)
->  - Test Application: CrystalDiskMark
-> 
-> Results:
-> 
-> TXFIFO Depth = 3 max packets
-> 
-> Test Case | Data Size | AVG tput (in MB/s)
-> -------------------------------------------
-> Sequential|1 GB x     | 
-> Read      |9 loops    | 193.60
-> 	  |           | 195.86
->           |           | 184.77
->           |           | 193.60
-> -------------------------------------------
-> 
-> TXFIFO Depth = 6 max packets
-> 
-> Test Case | Data Size | AVG tput (in MB/s)
-> -------------------------------------------
-> Sequential|1 GB x     | 
-> Read      |9 loops    | 287.35
-> 	  |           | 304.94
->           |           | 289.64
->           |           | 293.61
-> -------------------------------------------
-> 
-> Wesley Cheng (5):
->   usb: gadget: udc: core: Introduce check_config to verify USB
->     configuration
->   usb: gadget: configfs: Check USB configuration before adding
->   usb: dwc3: Resize TX FIFOs to meet EP bursting requirements
->   usb: dwc3: dwc3-qcom: Enable tx-fifo-resize property by default
->   arm64: boot: dts: qcom: sm8150: Enable dynamic TX FIFO resize logic
-> 
->  arch/arm64/boot/dts/qcom/sm8150.dtsi |   1 +
->  drivers/usb/dwc3/core.c              |   9 ++
->  drivers/usb/dwc3/core.h              |  15 +++
->  drivers/usb/dwc3/dwc3-qcom.c         |   9 ++
->  drivers/usb/dwc3/ep0.c               |   2 +
->  drivers/usb/dwc3/gadget.c            | 212 +++++++++++++++++++++++++++++++++++
->  drivers/usb/gadget/configfs.c        |  22 ++++
->  drivers/usb/gadget/udc/core.c        |  25 +++++
->  include/linux/usb/gadget.h           |   5 +
->  9 files changed, 300 insertions(+)
-> 
+[1] - https://www.ti.com/lit/ug/spruid7e/spruid7e.pdf, section 12.3.6.1.1
+[2] - https://www.ti.com/lit/er/sprz452e/sprz452e.pdf
 
+Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+Acked-by: Jan Kiszka <jan.kiszka@siemens.com>
+---
+
+KPV test report:
+- https://pastebin.ubuntu.com/p/wnQQTrJZP6/
+
+changes since v3:
+- rebased on top of https://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git/log/?h=ti-k3-dts-next
+- Picked up Jan's ack
+
+changes since v2:
+- moved the no-1-8-v tag to common iot2050 dtsi file.
+
+changes since v1:
+- added no-1-8-v tag in sdhci1 dt nodes of k3-am6528-iot2050-basic and
+  k3-am6548-iot2050-advanced boards as they use S.R.1.0 version AM65 SoC.
+
+ .../boot/dts/ti/k3-am65-iot2050-common.dtsi   |  1 +
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  1 -
+ .../arm64/boot/dts/ti/k3-am654-base-board.dts | 33 +++++++++++++++++++
+ 3 files changed, 34 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+index f4ec9ed52939..d90abda1de84 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+@@ -555,6 +555,7 @@
+ 	pinctrl-0 = <&main_mmc1_pins_default>;
+ 	ti,driver-strength-ohm = <50>;
+ 	disable-wp;
++	no-1-8-v;
+ };
+ 
+ &usb0 {
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+index 6cd3131eb9ff..f97fc00c00ca 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+@@ -301,7 +301,6 @@
+ 		ti,otap-del-sel = <0x2>;
+ 		ti,trm-icp = <0x8>;
+ 		dma-coherent;
+-		no-1-8-v;
+ 	};
+ 
+ 	scm_conf: scm-conf@100000 {
+diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+index 97c344088483..60e43fd7af12 100644
+--- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+@@ -85,6 +85,38 @@
+ 			gpios = <&wkup_gpio0 27 GPIO_ACTIVE_LOW>;
+ 		};
+ 	};
++
++	evm_12v0: fixedregulator-evm12v0 {
++		/* main supply */
++		compatible = "regulator-fixed";
++		regulator-name = "evm_12v0";
++		regulator-min-microvolt = <12000000>;
++		regulator-max-microvolt = <12000000>;
++		regulator-always-on;
++		regulator-boot-on;
++	};
++
++	vcc3v3_io: fixedregulator-vcc3v3io {
++		/* Output of TPS54334 */
++		compatible = "regulator-fixed";
++		regulator-name = "vcc3v3_io";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-always-on;
++		regulator-boot-on;
++		vin-supply = <&evm_12v0>;
++	};
++
++	vdd_mmc1_sd: fixedregulator-sd {
++		compatible = "regulator-fixed";
++		regulator-name = "vdd_mmc1_sd";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-boot-on;
++		enable-active-high;
++		vin-supply = <&vcc3v3_io>;
++		gpio = <&pca9554 4 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ &wkup_pmx0 {
+@@ -327,6 +359,7 @@
+  * disable sdhci1
+  */
+ &sdhci1 {
++	vmmc-supply = <&vdd_mmc1_sd>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&main_mmc1_pins_default>;
+ 	ti,driver-strength-ohm = <50>;
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.17.1
+
