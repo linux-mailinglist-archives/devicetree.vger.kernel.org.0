@@ -2,201 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB395394CC9
-	for <lists+devicetree@lfdr.de>; Sat, 29 May 2021 17:18:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1C98394D1E
+	for <lists+devicetree@lfdr.de>; Sat, 29 May 2021 18:26:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229774AbhE2PTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 May 2021 11:19:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55946 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229693AbhE2PTt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 29 May 2021 11:19:49 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E1759611ED;
-        Sat, 29 May 2021 15:18:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622301493;
-        bh=8FZAeBSWYNo1uOPripW3vsWibTqtzIx9nusBwNbW5qk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Y4jsFM52uPatr2qbrBGe7FELUMHXEyrMQS7O1g5kyhd9IDj1PkFF98rDUMZM/iQJY
-         yerwdeJWmqm7nbRzrfkI4kDQTHvqHqntwbNbJ51/P2wq0j1uPJmzPk6AENIqoclwRK
-         sJ+99l2ahBos2ghPFa9sPHXzSF1WeJCE0BebymdZKi44hVKEDwhnhm5wp0ZUnwE3wr
-         c2ZroN2VRUcfqqXBNT4sFYZTU0JRTT1KK6j2LJbpPsDXiWZQO1gtW/j+wuGHA80vpp
-         yw0sIkFKpakhYh6P/ZQv/vpJ8cJ/vGUVpJcdFFPN0DXVJzmIP5e0jNBz/yRqpoe7gP
-         kNeuxeHaGyjmA==
-Received: by pali.im (Postfix)
-        id 52F23DEA; Sat, 29 May 2021 17:18:10 +0200 (CEST)
-Date:   Sat, 29 May 2021 17:18:10 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "pawel.moll@arm.com" <pawel.moll@arm.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "ijc+devicetree@hellion.org.uk" <ijc+devicetree@hellion.org.uk>,
-        "galak@codeaurora.org" <galak@codeaurora.org>,
-        Michal Simek <michals@xilinx.com>,
-        Soren Brinkmann <sorenb@xilinx.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "tinamdar@apm.com" <tinamdar@apm.com>,
-        "treding@nvidia.com" <treding@nvidia.com>,
-        "rjui@broadcom.com" <rjui@broadcom.com>,
-        "Minghuan.Lian@freescale.com" <Minghuan.Lian@freescale.com>,
-        "m-karicheri2@ti.com" <m-karicheri2@ti.com>,
-        "hauke@hauke-m.de" <hauke@hauke-m.de>,
-        "marc.zyngier@arm.com" <marc.zyngier@arm.com>,
-        "dhdang@apm.com" <dhdang@apm.com>,
-        "sbranden@broadcom.com" <sbranden@broadcom.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        Ravikiran Gummaluri <rgummal@xilinx.com>,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-Subject: Re: [PATCH v12] [PATCH] PCI: Xilinx-NWL-PCIe: Adding support for
- Xilinx NWL PCIe Host Controller
-Message-ID: <20210529151810.lloziy67bq35phdx@pali>
-References: <1457281934-32068-1-git-send-email-bharatku@xilinx.com>
- <20160311215819.GB16257@localhost>
- <8520D5D51A55D047800579B09414719825889095@XAP-PVEXMBX01.xlnx.xilinx.com>
- <20160314170437.GA16729@localhost>
+        id S229774AbhE2Q0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 May 2021 12:26:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32830 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229805AbhE2Q0u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 May 2021 12:26:50 -0400
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84EACC06174A
+        for <devicetree@vger.kernel.org>; Sat, 29 May 2021 09:25:12 -0700 (PDT)
+Received: by mail-oi1-x230.google.com with SMTP id z3so7564144oib.5
+        for <devicetree@vger.kernel.org>; Sat, 29 May 2021 09:25:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=jFAfU25Qj+cRqC0XFUI+YM1/RbEp8mIA/HiLs0SBEww=;
+        b=g9Yqyl1WpDSv/0jO/8xVebd6wKxwc1+dm5MG4cr1gcfh4MVIFuW2eIp16PL+ioaq6b
+         5L5ImayrkmN0Piha2bK33MCQU3H32blsZiLieEi1ooIigoVz+L6cfTU1HGSLnvcxtrHv
+         v08QobuUW7y4BwxG3lspItWjIKotSoSKQQyQAOqiJ/4/y0PAXxzBosA0FMd3d6T6Dg1U
+         Q0JeBHx1LmMoXg//RBbtD375VoYoI5ABs73doALxcRvCAFKoXvWLD/gsfON7XmFt52F1
+         R1wxRFB5cLaFR8fnh9e+VBZYKGjaFuzlgwE6AX8eMdU1BLkzT+Hn0O574yFETWeYl7VQ
+         x1eA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=jFAfU25Qj+cRqC0XFUI+YM1/RbEp8mIA/HiLs0SBEww=;
+        b=nuF1nvV+Q8hanm+oxr04hCHvcjLgDTLpacbpWh70+ZkyLFDPjJ9/72LAuXfqcOzn9M
+         Qn/HOIt8Jich6y10q8pVMtO29EbEhFd2aEOU1vELMnOfiUaNWFmD3YKR2ZgBhfIdOo8t
+         JyNkgaFkIB2HYblBNlH+Lflt1kGmhE/BLzR/Rv++QE3K7y1EA4KyFBS6FW6JsUErRUYD
+         rtN2CbIVrrUn6OBubCdKWtjFnEB4U1+i6mhpc+PDCmZL+MzgZAqvsRSmqJlY/lpFSn2L
+         KfOwIjY2OJomZIQrLKFTz2RGhe4sui4B9cSmtZmvCqtI3FZZuHQ9bVprkMcbGYwXH7ux
+         +9xg==
+X-Gm-Message-State: AOAM533YN/xF8rn/scqQPLw2FVVDGVZAP5g9XeJBj4W3Btl6KZli708X
+        89ddZQLmLZsKNy9H0I3aeTZklQ==
+X-Google-Smtp-Source: ABdhPJzBeIa8BbBikxQvxrQptxn7sm9GORyImFhfYm4PvpYKjjqs0wQnZEDwWHVXmVQL8iJtsNq8vw==
+X-Received: by 2002:aca:488f:: with SMTP id v137mr9350654oia.173.1622305511911;
+        Sat, 29 May 2021 09:25:11 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id e21sm1750706oii.23.2021.05.29.09.25.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 29 May 2021 09:25:11 -0700 (PDT)
+Date:   Sat, 29 May 2021 11:25:09 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     vkoul@kernel.org, kishon@ti.com, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: phy: qcom,qmp: Add binding for SDX55
+ PCIe PHY
+Message-ID: <YLJq5R4uMYRDppmv@builder.lan>
+References: <20210427065400.18958-1-manivannan.sadhasivam@linaro.org>
+ <20210427065400.18958-2-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20160314170437.GA16729@localhost>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20210427065400.18958-2-manivannan.sadhasivam@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday 14 March 2016 12:04:37 Bjorn Helgaas wrote:
-> On Mon, Mar 14, 2016 at 03:51:01PM +0000, Bharat Kumar Gogada wrote:
-> > > On Sun, Mar 06, 2016 at 10:02:14PM +0530, Bharat Kumar Gogada wrote:
-> > > > Adding PCIe Root Port driver for Xilinx PCIe NWL bridge IP.
-> > > 
-> > > > +static bool nwl_pcie_valid_device(struct pci_bus *bus, unsigned int
-> > > > +devfn) {
-> > > > +	struct nwl_pcie *pcie = bus->sysdata;
-> > > > +
-> > > > +	/* Check link,before accessing downstream ports */
-> > > > +	if (bus->number != pcie->root_busno) {
-> > > > +		if (!nwl_pcie_link_up(pcie))
-> > > > +			return false;
-> > > > +	}
-> > > 
-> > > This seems racy.  What if we check, and the link is up, but the
-> > > link goes down before we actually complete the config access?
-> > > 
-> > > I'm suggesting that this check for the link being up might be
-> > > superfluous.
-> 
-> > Without the above check and also if there is no EP then we are getting kernel stack as follows,
+On Tue 27 Apr 01:53 CDT 2021, Manivannan Sadhasivam wrote:
 
-Hello! Now I found this old thread... And I would like to ask, have you
-solved this issue somehow? Because very similar problem I observe with
-pci-aardvark.c, just it cause Synchronous External Abort on CPU.
+> Add devicetree binding for PCIe PHY found in Qcom SDX55 platform.
+> 
 
-> > [    2.654105] PCI host bridge /amba/pcie@fd0e0000 ranges:
-> > [    2.659268]   No bus range found for /amba/pcie@fd0e0000, using [bus 00-ff]
-> > [    2.666195]   MEM 0xe1000000..0xefffffff -> 0xe1000000
-> > [    2.671410] nwl-pcie fd0e0000.pcie: PCI host bridge to bus 0000:00
-> > [    2.677436] pci_bus 0000:00: root bus resource [bus 00-ff]
-> > [    2.682883] pci_bus 0000:00: root bus resource [mem 0xe1000000-0xefffffff]
-> > [    2.690031] Unhandled fault: synchronous external abort (0x96000210) at 0xffffff8000200000
-> > [    2.690036] nwl-pcie fd0e0000.pcie: Slave error
-> > [    2.702582] Internal error: : 96000210 [#1] SMP
-> > [    2.707078] Modules linked in:
-> > [    2.710108] CPU: 3 PID: 1 Comm: swapper/0 Not tainted 4.5.0-rc6+ #5
-> > [    2.716332] Hardware name: ZynqMP (DT)
-> > [    2.720659] task: ffffffc0798bed00 ti: ffffffc0798c0000 task.ti: ffffffc0798c0000
-> > [    2.728102] PC is at pci_generic_config_read+0x38/0x9c
-> > [    2.733202] LR is at pci_generic_config_read+0x1c/0x9c
-> > .......
-> > [    3.322701] [<ffffffc000498b1c>] pci_generic_config_read+0x38/0x9c
-> > [    3.328842] [<ffffffc000498f54>] pci_bus_read_config_dword+0x80/0xb0
-> > [    3.335156] [<ffffffc00049abd4>] pci_bus_read_dev_vendor_id+0x30/0x104
-> > [    3.341643] [<ffffffc00049c5b0>] pci_scan_single_device+0x50/0xc4
-> > [    3.347698] [<ffffffc00049c674>] pci_scan_slot+0x50/0xe8
-> > [    3.352974] [<ffffffc00049d530>] pci_scan_child_bus+0x30/0xd8
-> > [    3.358683] [<ffffffc00049d210>] pci_scan_bridge+0x1fc/0x4ec
-> > [    3.364306] [<ffffffc00049d58c>] pci_scan_child_bus+0x8c/0xd8
-> > [    3.370016] [<ffffffc0004b2d9c>] nwl_pcie_probe+0x6c4/0x8e0
-> > .....
-> > 
-> > > The hardware should do something reasonable with the config access if it
-> > > can't send it down the link.
-> >
-> > When Link is down and H/W gets a ECAM access request for downstream
-> > ports, hardware responds by DECERR (decode error) status on AXI
-> > Interface.
-> 
-> DECERR isn't a PCIe concept, so I assume it's something specific to
-> Xilinx.  In the general case of a PCIe switch, a config access that
-> targets a device where the link is down should cause an Unsupported
-> Request completion (see PCIe spec r3.0, section 2.9.1, quoted below).
-> Possibly your Root Complex turns Unsupported Request completions into
-> DECERR.
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-This looks like same design as with pci aardvark hw. PCIe Unsupported
-Request or Completion Abort is converted to AXI DECERR (or SLVERR)
-which is then reported to CPU. In my case AXI DECERR/SLVERR cause
-Synchronous External Abort on CPU.
+Regards,
+Bjorn
 
->   2.9 Link Status Dependencies
->   2.9.1 Transaction Layer Behavior in DL_Down Status
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
->   DL_Down status indicates that there is no connection with another
->   component on the Link, or that the connection with the other
->   component has been lost and is not recoverable by the Physical or
->   Data Link Layers.
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> index 626447fee092..d5162d58a479 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> @@ -43,6 +43,7 @@ properties:
+>        - qcom,sm8350-qmp-ufs-phy
+>        - qcom,sm8350-qmp-usb3-phy
+>        - qcom,sm8350-qmp-usb3-uni-phy
+> +      - qcom,sdx55-qmp-pcie-phy
+>        - qcom,sdx55-qmp-usb3-uni-phy
+>  
+>    reg:
+> @@ -301,6 +302,7 @@ allOf:
+>              enum:
+>                - qcom,sdm845-qhp-pcie-phy
+>                - qcom,sdm845-qmp-pcie-phy
+> +              - qcom,sdx55-qmp-pcie-phy
+>                - qcom,sm8250-qmp-gen3x1-pcie-phy
+>                - qcom,sm8250-qmp-gen3x2-pcie-phy
+>                - qcom,sm8250-qmp-modem-pcie-phy
+> -- 
+> 2.25.1
 > 
->   For a Downstream Port, DL_Down status is handled by:
->   
->    for Non-Posted Requests, forming completions for any Requests
->    submitted by the device core for Transmission, returning
->    Unsupported Request Completion Status, then discarding the Requests
-> 
-> Linux expects reads with Unsupported Request completion status to
-> return all 1's data to the CPU as in section 2.3.2:
-> 
->   2.3.2 Completion Handling Rules
-> 
->   Read Data Values with UR Completion Status
-> 
->   Some system configuration software depends on reading a data value
->   of all 1’s when a Configuration Read Request is terminated as an
->   Unsupported Request, particularly when probing to determine the
->   existence of a device in the system.  A Root Complex intended for
->   use with software that depends on a read-data value of all 1’s must
->   synthesize this value when UR Completion Status is returned for a
->   Configuration Read Request.
-> 
-> > So without any EP and without this condition, Linux kernel cannot
-> > determine above response from H/W. So the above condition is useful
-> > only when no EP is connected.
-> > 
-> > Now even if the link is up initially, but the link goes down before
-> > we actually complete the config access, then H/W responds by DECERR,
-> > then Linux kernel might throw similar stack. (We haven't observed
-> > this condition yet)
-> 
-> It'd be hard to hit this race unless you added delay in
-> nwl_pcie_map_bus() after nwl_pcie_valid_device(), then removed the
-> device during that delay.
-> 
-> > It looks like we need a different type of hardware response to get
-> > rid of this situation, but it's not easy way.  Have you come across
-> > this/similar kind of problem anywhere else?  Can you suggest if
-> > there is any other way to handle this.
-> 
-> I'm not a hardware designer, so I don't know what to suggest here.
-> The current design does seem like a robustness issue: surprise removal
-> of a device may cause this external abort in rare cases.
-
-With pci aardvark I'm able to reproduce this issue with surprise removal
-of device.
-
-Bharat, have you somehow resolved this issue? Seems that this kind of HW
-design is not rare.
