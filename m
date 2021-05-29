@@ -2,136 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54507394D3E
-	for <lists+devicetree@lfdr.de>; Sat, 29 May 2021 18:52:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60EE7394D47
+	for <lists+devicetree@lfdr.de>; Sat, 29 May 2021 18:56:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229831AbhE2QyZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 May 2021 12:54:25 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:34595 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229809AbhE2QyZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 May 2021 12:54:25 -0400
-X-UUID: db3c99f1919b40569edf4c8d830425ab-20210530
-X-UUID: db3c99f1919b40569edf4c8d830425ab-20210530
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <hector.yuan@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 460399988; Sun, 30 May 2021 00:52:46 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sun, 30 May 2021 00:52:44 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sun, 30 May 2021 00:52:45 +0800
-From:   Hector Yuan <hector.yuan@mediatek.com>
-To:     <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <wsd_upstream@mediatek.com>, <hector.yuan@mediatek.com>
-Subject: [PATCH v12 2/2] dt-bindings: cpufreq: add bindings for MediaTek cpufreq HW
-Date:   Sun, 30 May 2021 00:52:33 +0800
-Message-ID: <1622307153-3639-3-git-send-email-hector.yuan@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1622307153-3639-1-git-send-email-hector.yuan@mediatek.com>
-References: <1622307153-3639-1-git-send-email-hector.yuan@mediatek.com>
+        id S229726AbhE2Q6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 May 2021 12:58:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39784 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229704AbhE2Q6c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 May 2021 12:58:32 -0400
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2154C061574
+        for <devicetree@vger.kernel.org>; Sat, 29 May 2021 09:56:55 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id h9so7652420oih.4
+        for <devicetree@vger.kernel.org>; Sat, 29 May 2021 09:56:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=TL0ghQ1jZ+N25vYlmYekoNjeMxLsqHrEHrhvpAS6snw=;
+        b=KXZZCELtFwWl6XGoyfC+ZeTm3fiDpenSHNmZaztj6D3ViGsej2Th2qt2AVUTvVBp54
+         Ct37WBHhyS2A8XAINn+BsWlHeU1JTRxO1IQRRi7Sh7Sqj2BBZK2Vb3Oy5xMAYWDUDnE9
+         RHd0BIIU8MLAN61JPqjftwdXVxAqWeV1N1scc1LaIIhGJSH6hzEqYk2uI3dM1HiKH5TG
+         7EAWd4ffSXvgOTC+DLd4+HTQmo8ckx/yYvmEPsRw3uGzDcNiH0R0B+eQWHkAVQOiASGg
+         EWCwpWPjSOe09kw28OaoOqVECR0+Gtd6vcjIZeuPabuv0+0EI09p7jjO+erkgd3QiVcj
+         9Q2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=TL0ghQ1jZ+N25vYlmYekoNjeMxLsqHrEHrhvpAS6snw=;
+        b=M4Jf0xQrNNYHGl6KX+F1AfTMUdU3rzuWf8UT0szJElPNsN3uBzou1gc/JTPeArghne
+         6+p3MnFzwS7SUthuIDtShuWWUQ+MVJgSabSDqHmx7ZEt57Hqf82A05zORiEzh5+hbCWL
+         OiaMvyRxwwy99fPu+u96IAxxDbIgRJ4lwpYsFzB3iiSdiKAptSt8DI0QTC/jOzdFIwY5
+         cra2EgZNj5eIQjEfok/5Sh104EyC7CDyf6X1+e759PXb92yrSmG9M6zU74l9ZgeOQAlF
+         0R1aTLZw9WfA5XW92FL0SEYO3ANgBdGyjks2Uxt5ze+IPCS85LN06VxohKkG7uJzru3h
+         gnIw==
+X-Gm-Message-State: AOAM531k4aiDpU+vmzGT/G/x6aopQy1pgrhZtm7VKWtNMXP6LPlVGL5U
+        mi8E2m58gLcjJpOmPMtm+GlW/w==
+X-Google-Smtp-Source: ABdhPJyX+xJFTpUIinSrUq1BYHRBRG2ZRVqFbvDfDmIiDhDVJfbLXZRH2vFsQny3hDGFYrdYpZfNfg==
+X-Received: by 2002:aca:ebc9:: with SMTP id j192mr2811773oih.112.1622307415024;
+        Sat, 29 May 2021 09:56:55 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id e26sm1740963oig.9.2021.05.29.09.56.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 29 May 2021 09:56:54 -0700 (PDT)
+Date:   Sat, 29 May 2021 11:56:52 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Felipe Balbi <balbi@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Felipe Balbi <felipe.balbi@microsoft.com>
+Subject: Re: [PATCH] arm64: dts: qcom: add initial device-tree for Microsoft
+ Surface Duo
+Message-ID: <YLJyVEOhd+r2p+Qm@builder.lan>
+References: <20210510120547.1315536-1-balbi@kernel.org>
+ <20210511044312.GK2484@yoga>
+ <87wns5g0c6.fsf@kernel.org>
+ <YK00sn1fvCrtVQaJ@builder.lan>
+ <874kenb2p7.fsf@kernel.org>
+ <87v9739ibk.fsf@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87v9739ibk.fsf@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "Hector.Yuan" <hector.yuan@mediatek.com>
+On Fri 28 May 07:03 CDT 2021, Felipe Balbi wrote:
 
-Add devicetree bindings for MediaTek HW driver.
+> Felipe Balbi <balbi@kernel.org> writes:
+> 
+> > Bjorn Andersson <bjorn.andersson@linaro.org> writes:
+> >
+> >> On Tue 11 May 03:07 CDT 2021, Felipe Balbi wrote:
+> >>> Bjorn Andersson <bjorn.andersson@linaro.org> writes:
+> >>> >> diff --git a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
+> >> [..]
+> >>> >> +&remoteproc_adsp {
+> >>> >> +	status = "okay";
+> >>> >> +	firmware-name = "qcom/sm8150/adsp.mdt";
+> >>> >
+> >>> > For platforms where we have a Dragonboard or similar we push the
+> >>> > test-signed firmware to qcom/<platform>/. I presume that the Duo
+> >>> > wouldn't run on the test-signed firmware.
+> >>> >
+> >>> > So I think it's better to make this qcom/sm8150/ms-duo/adsp.mdt...from
+> >>> > the start.
+> >>> 
+> >>> ms-duo would look odd. How about qcom/sm8150/microsoft/adsp.mdt?
+> >>> 
+> >>
+> >> Sounds good to me.
+> >>
+> >> I do prefer using the non-split firmware package though (i.e. .mbn), if
+> >> you don't have it you can repack the .mdt + .bNN files using
+> >>
+> >> https://github.com/andersson/pil-squasher
+> >
+> > Cool, I'll check if we have the non-split version and rename the FW
+> > files.
+> 
+> doesn't seem like pil-squasher works with our slpi image. Gives me a
+> 0-byte image :-)
+> 
 
-Signed-off-by: Hector.Yuan <hector.yuan@mediatek.com>
----
- .../bindings/cpufreq/cpufreq-mediatek-hw.yaml      |   71 ++++++++++++++++++++
- 1 file changed, 71 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
+If your files are available somewhere I'd be happy to take a look, if
+not patches are definitely welcome :)
 
-diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
-new file mode 100644
-index 0000000..1aa4d54
---- /dev/null
-+++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
-@@ -0,0 +1,71 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/cpufreq/cpufreq-mediatek-hw.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek's CPUFREQ Bindings
-+
-+maintainers:
-+  - Hector Yuan <hector.yuan@mediatek.com>
-+
-+description:
-+  CPUFREQ HW is a hardware engine used by MediaTek
-+  SoCs to manage frequency in hardware. It is capable of controlling frequency
-+  for multiple clusters.
-+
-+properties:
-+  compatible:
-+    const: mediatek,cpufreq-hw
-+
-+  reg:
-+    minItems: 1
-+    maxItems: 2
-+    description: |
-+      Addresses and sizes for the memory of the
-+      HW bases in each frequency domain.
-+
-+  "#performance-domain-cells":
-+    description:
-+      Number of cells in a performance domain specifier. Typically 0 for nodes
-+      representing a single performance domain and 1 for nodes providing
-+      multiple performance domains (e.g. performance controllers), but can be
-+      any value as specified by device tree binding documentation of particular
-+      provider.
-+    enum: [ 0, 1 ]
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#performance-domain-cells"
-+
-+additionalProperties: true
-+
-+examples:
-+  - |
-+    cpus {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            cpu0: cpu@0 {
-+                device_type = "cpu";
-+                compatible = "arm,cortex-a55";
-+                enable-method = "psci";
-+                performance-domains = <&performance 0>;
-+                reg = <0x000>;
-+            };
-+    };
-+
-+    /* ... */
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        performance: performance-controller@11bc00 {
-+            compatible = "mediatek,cpufreq-hw";
-+            reg = <0 0x0011bc10 0 0x120>, <0 0x0011bd30 0 0x120>;
-+
-+            #performance-domain-cells = <1>;
-+        };
-+    };
--- 
-1.7.9.5
+> I would rather not touch the binaries if I can avoid it, though. Is this
+> a strong requirement to use mbn rather than mdt?
+> 
 
+I've had numerous problems with things such as people upgrading N-1
+files and having issues with the signature check just indicating that
+"something" is wrong. Squashing the files avoid these kind of problems.
+
+But it's not a requirement!
+
+Regards,
+Bjorn
