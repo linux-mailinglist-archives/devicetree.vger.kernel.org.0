@@ -2,124 +2,305 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60EE7394D47
-	for <lists+devicetree@lfdr.de>; Sat, 29 May 2021 18:56:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4180D394D51
+	for <lists+devicetree@lfdr.de>; Sat, 29 May 2021 19:02:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229726AbhE2Q6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 May 2021 12:58:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39784 "EHLO
+        id S229820AbhE2RDx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 May 2021 13:03:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229704AbhE2Q6c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 May 2021 12:58:32 -0400
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2154C061574
-        for <devicetree@vger.kernel.org>; Sat, 29 May 2021 09:56:55 -0700 (PDT)
-Received: by mail-oi1-x22b.google.com with SMTP id h9so7652420oih.4
-        for <devicetree@vger.kernel.org>; Sat, 29 May 2021 09:56:55 -0700 (PDT)
+        with ESMTP id S229798AbhE2RDv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 May 2021 13:03:51 -0400
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88BBCC061760
+        for <devicetree@vger.kernel.org>; Sat, 29 May 2021 10:02:12 -0700 (PDT)
+Received: by mail-oi1-x229.google.com with SMTP id s19so7634303oic.7
+        for <devicetree@vger.kernel.org>; Sat, 29 May 2021 10:02:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=TL0ghQ1jZ+N25vYlmYekoNjeMxLsqHrEHrhvpAS6snw=;
-        b=KXZZCELtFwWl6XGoyfC+ZeTm3fiDpenSHNmZaztj6D3ViGsej2Th2qt2AVUTvVBp54
-         Ct37WBHhyS2A8XAINn+BsWlHeU1JTRxO1IQRRi7Sh7Sqj2BBZK2Vb3Oy5xMAYWDUDnE9
-         RHd0BIIU8MLAN61JPqjftwdXVxAqWeV1N1scc1LaIIhGJSH6hzEqYk2uI3dM1HiKH5TG
-         7EAWd4ffSXvgOTC+DLd4+HTQmo8ckx/yYvmEPsRw3uGzDcNiH0R0B+eQWHkAVQOiASGg
-         EWCwpWPjSOe09kw28OaoOqVECR0+Gtd6vcjIZeuPabuv0+0EI09p7jjO+erkgd3QiVcj
-         9Q2Q==
+        bh=YX+tW+FTPI4PhCb0JGJmARolkT+r0BuTh5B1RHmLPCA=;
+        b=gikF95tMjzLxko3YQAJD6xmwHHJ19UG2kSmPO38r9cF2UgRmenWffgKKaf+rdyTyZ+
+         FBXb7aJ5Ww6AIdB63iwH2BZSl4mNb9DLMnE7CyAcxxUbI7TiNCqXOOis8MNRT11UVHTd
+         adu1EhFml9dA5nJadlkehvfAC9TUF5hlMcIlHWocFKo8WjYMUYsEKBuIQoLbMR/kq8MT
+         mDBpf//IEUmxwYYD922l2J0T2h1XT5rqIincrEZTFwg5ndvB4X+TcmCI/0JCQV4f/T2G
+         +Li42KZgnskrmPEhA24J0A9kBOIeZ+/S3VhUxgfGmOF0l+G0Baxfo+kOhlpxaIxqUQFS
+         Admw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=TL0ghQ1jZ+N25vYlmYekoNjeMxLsqHrEHrhvpAS6snw=;
-        b=M4Jf0xQrNNYHGl6KX+F1AfTMUdU3rzuWf8UT0szJElPNsN3uBzou1gc/JTPeArghne
-         6+p3MnFzwS7SUthuIDtShuWWUQ+MVJgSabSDqHmx7ZEt57Hqf82A05zORiEzh5+hbCWL
-         OiaMvyRxwwy99fPu+u96IAxxDbIgRJ4lwpYsFzB3iiSdiKAptSt8DI0QTC/jOzdFIwY5
-         cra2EgZNj5eIQjEfok/5Sh104EyC7CDyf6X1+e759PXb92yrSmG9M6zU74l9ZgeOQAlF
-         0R1aTLZw9WfA5XW92FL0SEYO3ANgBdGyjks2Uxt5ze+IPCS85LN06VxohKkG7uJzru3h
-         gnIw==
-X-Gm-Message-State: AOAM531k4aiDpU+vmzGT/G/x6aopQy1pgrhZtm7VKWtNMXP6LPlVGL5U
-        mi8E2m58gLcjJpOmPMtm+GlW/w==
-X-Google-Smtp-Source: ABdhPJyX+xJFTpUIinSrUq1BYHRBRG2ZRVqFbvDfDmIiDhDVJfbLXZRH2vFsQny3hDGFYrdYpZfNfg==
-X-Received: by 2002:aca:ebc9:: with SMTP id j192mr2811773oih.112.1622307415024;
-        Sat, 29 May 2021 09:56:55 -0700 (PDT)
+        bh=YX+tW+FTPI4PhCb0JGJmARolkT+r0BuTh5B1RHmLPCA=;
+        b=o3PunwKy+0Y00uJ7VtwUeUCsMdDy09Hl/ycm2v6JXhWJd/qYGj6a46/PBWLov0u3Uk
+         RffHwlWI/tX/WbN/ugqZ2X8nK8S2/kAABHuqYavFhXDXmcKteUjE+9badJ0kVbeYpEr9
+         WQLF17iy7qKU5BIKnMEegNAk4NivA3JlbTE4ej5cGfesYboFL2V+dETX3rZSdFSu5cd7
+         VIOQYF5ENKcthVmL+zfrGqLLOP6qlXKdTiYQRIRp6b+n7qMFGCSBuqlZCJAfldbA0pj2
+         pRmmV82laL3iJ+qooega5OD/sZfKwpqFpr9eQGKlav1PSQV49HR8JegKGWawI30xadyl
+         cEsg==
+X-Gm-Message-State: AOAM532c0eKChwHPXCsMZG3u8dbMzNgpCoqtQy40b2g/GgleJ1NQNbQy
+        ye5ACR6HbDqpC8NwNowF4q9K4A==
+X-Google-Smtp-Source: ABdhPJzjfndC1VKFZJvi1kPtoutJnVZIZ7kUpZVwvoD0J8/S4EiWGwJK7mV91U1hUcQBMFi7F5DqGQ==
+X-Received: by 2002:aca:3c4:: with SMTP id 187mr1956041oid.116.1622307731852;
+        Sat, 29 May 2021 10:02:11 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id e26sm1740963oig.9.2021.05.29.09.56.54
+        by smtp.gmail.com with ESMTPSA id k7sm1832923ood.36.2021.05.29.10.02.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 29 May 2021 09:56:54 -0700 (PDT)
-Date:   Sat, 29 May 2021 11:56:52 -0500
+        Sat, 29 May 2021 10:02:11 -0700 (PDT)
+Date:   Sat, 29 May 2021 12:02:09 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Felipe Balbi <balbi@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Felipe Balbi <felipe.balbi@microsoft.com>
-Subject: Re: [PATCH] arm64: dts: qcom: add initial device-tree for Microsoft
- Surface Duo
-Message-ID: <YLJyVEOhd+r2p+Qm@builder.lan>
-References: <20210510120547.1315536-1-balbi@kernel.org>
- <20210511044312.GK2484@yoga>
- <87wns5g0c6.fsf@kernel.org>
- <YK00sn1fvCrtVQaJ@builder.lan>
- <874kenb2p7.fsf@kernel.org>
- <87v9739ibk.fsf@kernel.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     vkoul@kernel.org, kishon@ti.com, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/3] phy: qcom-qmp: Use phy_status field for the status
+ bit offset
+Message-ID: <YLJzkUZ7t5rL0uJ8@builder.lan>
+References: <20210427065400.18958-1-manivannan.sadhasivam@linaro.org>
+ <20210427065400.18958-3-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87v9739ibk.fsf@kernel.org>
+In-Reply-To: <20210427065400.18958-3-manivannan.sadhasivam@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 28 May 07:03 CDT 2021, Felipe Balbi wrote:
+On Tue 27 Apr 01:53 CDT 2021, Manivannan Sadhasivam wrote:
 
-> Felipe Balbi <balbi@kernel.org> writes:
-> 
-> > Bjorn Andersson <bjorn.andersson@linaro.org> writes:
-> >
-> >> On Tue 11 May 03:07 CDT 2021, Felipe Balbi wrote:
-> >>> Bjorn Andersson <bjorn.andersson@linaro.org> writes:
-> >>> >> diff --git a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-> >> [..]
-> >>> >> +&remoteproc_adsp {
-> >>> >> +	status = "okay";
-> >>> >> +	firmware-name = "qcom/sm8150/adsp.mdt";
-> >>> >
-> >>> > For platforms where we have a Dragonboard or similar we push the
-> >>> > test-signed firmware to qcom/<platform>/. I presume that the Duo
-> >>> > wouldn't run on the test-signed firmware.
-> >>> >
-> >>> > So I think it's better to make this qcom/sm8150/ms-duo/adsp.mdt...from
-> >>> > the start.
-> >>> 
-> >>> ms-duo would look odd. How about qcom/sm8150/microsoft/adsp.mdt?
-> >>> 
-> >>
-> >> Sounds good to me.
-> >>
-> >> I do prefer using the non-split firmware package though (i.e. .mbn), if
-> >> you don't have it you can repack the .mdt + .bNN files using
-> >>
-> >> https://github.com/andersson/pil-squasher
-> >
-> > Cool, I'll check if we have the non-split version and rename the FW
-> > files.
-> 
-> doesn't seem like pil-squasher works with our slpi image. Gives me a
-> 0-byte image :-)
+> In preparation of the support for v4.20 PCIe PHY in SDX55, use a
+> separate "phy_status" field for the status bit offset. This is needed
+> because, the v4.20 PHY uses a different offset for the PHY Status.
+
+Nit. I think "...uses a different bit for..." would be better.
+
 > 
 
-If your files are available somewhere I'd be happy to take a look, if
-not patches are definitely welcome :)
-
-> I would rather not touch the binaries if I can avoid it, though. Is this
-> a strong requirement to use mbn rather than mdt?
-> 
-
-I've had numerous problems with things such as people upgrading N-1
-files and having issues with the signature check just indicating that
-"something" is wrong. Squashing the files avoid these kind of problems.
-
-But it's not a requirement!
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
 Regards,
 Bjorn
+
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp.c | 29 ++++++++++++++++++++++++++++-
+>  1 file changed, 28 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
+> index 9cdebe7f26cb..c9934b2407c4 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
+> @@ -2323,6 +2323,8 @@ struct qmp_phy_cfg {
+>  	unsigned int start_ctrl;
+>  	unsigned int pwrdn_ctrl;
+>  	unsigned int mask_com_pcs_ready;
+> +	/* bit offset of PHYSTATUS in QPHY_PCS_STATUS register */
+> +	unsigned int phy_status;
+>  
+>  	/* true, if PHY has a separate PHY_COM control block */
+>  	bool has_phy_com_ctrl;
+> @@ -2526,6 +2528,7 @@ static const struct qmp_phy_cfg ipq8074_usb3phy_cfg = {
+>  
+>  	.start_ctrl		= SERDES_START | PCS_START,
+>  	.pwrdn_ctrl		= SW_PWRDN,
+> +	.phy_status		= PHYSTATUS,
+>  };
+>  
+>  static const struct qmp_phy_cfg msm8996_pciephy_cfg = {
+> @@ -2551,6 +2554,7 @@ static const struct qmp_phy_cfg msm8996_pciephy_cfg = {
+>  	.start_ctrl		= PCS_START | PLL_READY_GATE_EN,
+>  	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
+>  	.mask_com_pcs_ready	= PCS_READY,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.has_phy_com_ctrl	= true,
+>  	.has_lane_rst		= true,
+> @@ -2580,6 +2584,7 @@ static const struct qmp_phy_cfg msm8996_ufs_cfg = {
+>  
+>  	.start_ctrl		= SERDES_START,
+>  	.pwrdn_ctrl		= SW_PWRDN,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.no_pcs_sw_reset	= true,
+>  };
+> @@ -2606,6 +2611,7 @@ static const struct qmp_phy_cfg msm8996_usb3phy_cfg = {
+>  
+>  	.start_ctrl		= SERDES_START | PCS_START,
+>  	.pwrdn_ctrl		= SW_PWRDN,
+> +	.phy_status		= PHYSTATUS,
+>  };
+>  
+>  static const char * const ipq8074_pciephy_clk_l[] = {
+> @@ -2638,6 +2644,7 @@ static const struct qmp_phy_cfg ipq8074_pciephy_cfg = {
+>  
+>  	.start_ctrl		= SERDES_START | PCS_START,
+>  	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.has_phy_com_ctrl	= false,
+>  	.has_lane_rst		= false,
+> @@ -2670,6 +2677,7 @@ static const struct qmp_phy_cfg sdm845_qmp_pciephy_cfg = {
+>  
+>  	.start_ctrl		= PCS_START | SERDES_START,
+>  	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.has_pwrdn_delay	= true,
+>  	.pwrdn_delay_min	= 995,		/* us */
+> @@ -2698,6 +2706,7 @@ static const struct qmp_phy_cfg sdm845_qhp_pciephy_cfg = {
+>  
+>  	.start_ctrl		= PCS_START | SERDES_START,
+>  	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.has_pwrdn_delay	= true,
+>  	.pwrdn_delay_min	= 995,		/* us */
+> @@ -2736,6 +2745,7 @@ static const struct qmp_phy_cfg sm8250_qmp_gen3x1_pciephy_cfg = {
+>  
+>  	.start_ctrl		= PCS_START | SERDES_START,
+>  	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.has_pwrdn_delay	= true,
+>  	.pwrdn_delay_min	= 995,		/* us */
+> @@ -2774,6 +2784,7 @@ static const struct qmp_phy_cfg sm8250_qmp_gen3x2_pciephy_cfg = {
+>  
+>  	.start_ctrl		= PCS_START | SERDES_START,
+>  	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.is_dual_lane_phy	= true,
+>  	.has_pwrdn_delay	= true,
+> @@ -2803,6 +2814,7 @@ static const struct qmp_phy_cfg qmp_v3_usb3phy_cfg = {
+>  
+>  	.start_ctrl		= SERDES_START | PCS_START,
+>  	.pwrdn_ctrl		= SW_PWRDN,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.has_pwrdn_delay	= true,
+>  	.pwrdn_delay_min	= POWER_DOWN_DELAY_US_MIN,
+> @@ -2834,6 +2846,7 @@ static const struct qmp_phy_cfg sc7180_usb3phy_cfg = {
+>  
+>  	.start_ctrl		= SERDES_START | PCS_START,
+>  	.pwrdn_ctrl		= SW_PWRDN,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.has_pwrdn_delay	= true,
+>  	.pwrdn_delay_min	= POWER_DOWN_DELAY_US_MIN,
+> @@ -2900,6 +2913,7 @@ static const struct qmp_phy_cfg qmp_v3_usb3_uniphy_cfg = {
+>  
+>  	.start_ctrl		= SERDES_START | PCS_START,
+>  	.pwrdn_ctrl		= SW_PWRDN,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.has_pwrdn_delay	= true,
+>  	.pwrdn_delay_min	= POWER_DOWN_DELAY_US_MIN,
+> @@ -2926,6 +2940,7 @@ static const struct qmp_phy_cfg sdm845_ufsphy_cfg = {
+>  
+>  	.start_ctrl		= SERDES_START,
+>  	.pwrdn_ctrl		= SW_PWRDN,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.is_dual_lane_phy	= true,
+>  	.no_pcs_sw_reset	= true,
+> @@ -2953,6 +2968,7 @@ static const struct qmp_phy_cfg msm8998_pciephy_cfg = {
+>  
+>  	.start_ctrl             = SERDES_START | PCS_START,
+>  	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
+> +	.phy_status		= PHYSTATUS,
+>  };
+>  
+>  static const struct qmp_phy_cfg msm8998_usb3phy_cfg = {
+> @@ -2977,6 +2993,7 @@ static const struct qmp_phy_cfg msm8998_usb3phy_cfg = {
+>  
+>  	.start_ctrl             = SERDES_START | PCS_START,
+>  	.pwrdn_ctrl             = SW_PWRDN,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.is_dual_lane_phy       = true,
+>  };
+> @@ -3001,6 +3018,7 @@ static const struct qmp_phy_cfg sm8150_ufsphy_cfg = {
+>  
+>  	.start_ctrl		= SERDES_START,
+>  	.pwrdn_ctrl		= SW_PWRDN,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.is_dual_lane_phy	= true,
+>  };
+> @@ -3027,6 +3045,8 @@ static const struct qmp_phy_cfg sm8150_usb3phy_cfg = {
+>  
+>  	.start_ctrl		= SERDES_START | PCS_START,
+>  	.pwrdn_ctrl		= SW_PWRDN,
+> +	.phy_status		= PHYSTATUS,
+> +
+>  
+>  	.has_pwrdn_delay	= true,
+>  	.pwrdn_delay_min	= POWER_DOWN_DELAY_US_MIN,
+> @@ -3058,6 +3078,7 @@ static const struct qmp_phy_cfg sm8150_usb3_uniphy_cfg = {
+>  
+>  	.start_ctrl		= SERDES_START | PCS_START,
+>  	.pwrdn_ctrl		= SW_PWRDN,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.has_pwrdn_delay	= true,
+>  	.pwrdn_delay_min	= POWER_DOWN_DELAY_US_MIN,
+> @@ -3086,6 +3107,7 @@ static const struct qmp_phy_cfg sm8250_usb3phy_cfg = {
+>  
+>  	.start_ctrl		= SERDES_START | PCS_START,
+>  	.pwrdn_ctrl		= SW_PWRDN,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.has_pwrdn_delay	= true,
+>  	.pwrdn_delay_min	= POWER_DOWN_DELAY_US_MIN,
+> @@ -3117,6 +3139,7 @@ static const struct qmp_phy_cfg sm8250_usb3_uniphy_cfg = {
+>  
+>  	.start_ctrl		= SERDES_START | PCS_START,
+>  	.pwrdn_ctrl		= SW_PWRDN,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.has_pwrdn_delay	= true,
+>  	.pwrdn_delay_min	= POWER_DOWN_DELAY_US_MIN,
+> @@ -3145,6 +3168,7 @@ static const struct qmp_phy_cfg sdx55_usb3_uniphy_cfg = {
+>  
+>  	.start_ctrl		= SERDES_START | PCS_START,
+>  	.pwrdn_ctrl		= SW_PWRDN,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.has_pwrdn_delay	= true,
+>  	.pwrdn_delay_min	= POWER_DOWN_DELAY_US_MIN,
+> @@ -3171,6 +3195,7 @@ static const struct qmp_phy_cfg sm8350_ufsphy_cfg = {
+>  
+>  	.start_ctrl		= SERDES_START,
+>  	.pwrdn_ctrl		= SW_PWRDN,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.is_dual_lane_phy	= true,
+>  };
+> @@ -3197,6 +3222,7 @@ static const struct qmp_phy_cfg sm8350_usb3phy_cfg = {
+>  
+>  	.start_ctrl		= SERDES_START | PCS_START,
+>  	.pwrdn_ctrl		= SW_PWRDN,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.has_pwrdn_delay	= true,
+>  	.pwrdn_delay_min	= POWER_DOWN_DELAY_US_MIN,
+> @@ -3228,6 +3254,7 @@ static const struct qmp_phy_cfg sm8350_usb3_uniphy_cfg = {
+>  
+>  	.start_ctrl		= SERDES_START | PCS_START,
+>  	.pwrdn_ctrl		= SW_PWRDN,
+> +	.phy_status		= PHYSTATUS,
+>  
+>  	.has_pwrdn_delay	= true,
+>  	.pwrdn_delay_min	= POWER_DOWN_DELAY_US_MIN,
+> @@ -3843,7 +3870,7 @@ static int qcom_qmp_phy_power_on(struct phy *phy)
+>  			ready = PCS_READY;
+>  		} else {
+>  			status = pcs + cfg->regs[QPHY_PCS_STATUS];
+> -			mask = PHYSTATUS;
+> +			mask = cfg->phy_status;
+>  			ready = 0;
+>  		}
+>  
+> -- 
+> 2.25.1
+> 
