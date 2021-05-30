@@ -2,154 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DFBD394ED6
-	for <lists+devicetree@lfdr.de>; Sun, 30 May 2021 02:59:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 858C2394FF4
+	for <lists+devicetree@lfdr.de>; Sun, 30 May 2021 09:27:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229756AbhE3BBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 May 2021 21:01:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60106 "EHLO
+        id S229668AbhE3H2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 May 2021 03:28:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229711AbhE3BBS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 May 2021 21:01:18 -0400
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4D1FC061349;
-        Sat, 29 May 2021 17:59:39 -0700 (PDT)
-Received: by mail-qt1-x836.google.com with SMTP id c15so5551032qte.6;
-        Sat, 29 May 2021 17:59:39 -0700 (PDT)
+        with ESMTP id S229550AbhE3H2q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 May 2021 03:28:46 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41BCDC06174A;
+        Sun, 30 May 2021 00:27:08 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id g17so7462655wrs.13;
+        Sun, 30 May 2021 00:27:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=tKiBv8SqRWswr8z7Bsl/7/WuL9D2vpQOGyxVKImo6UE=;
-        b=YD4MojyU5VsvDpuAE927XF5te4GbhcoFFrPKaT7XLIQ+jgV2pu5Stn4oRNMs9Folpl
-         D8Ci35CJBYSGwj5Z3FUxzlEfQe0jKAG7+3fLsZiD4xoUvjY+gi4mZfh8DSwKx+C04WlH
-         ZhGcRMJkOpGQ55O48xFaLJbaP0BciQ1xDAMufHWJLmdarKq2j+dKSx+QWjs5Dtd1X+li
-         wkdEMjveCtrk2X6OXbjcBQHzYqI3mRNQNtzLkn4WhHfc/6DSJHYUelmOiI4DtpyOjsuH
-         kw4uXOwP+fgmc6kpw+Put3FYqO6VryQPD5syJY82QBsuyBcqxx/dpzTtI6G9iMmqamQf
-         cdDA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=K+tVxOYtByP+ndj4vQlqR1yZg+LmRS1nMw/pCh6v4Xw=;
+        b=RrzxUy6Qb5Q0ZZthV/S6OzS3s+/wl4k/zDfVUHsj/iazi823fBgQr3fqe0f6zPQRZ4
+         VWiObSAdCwh9AswfmC+mK5XHgZqdO0jrFZdeaSRgnrpz5D/Ns+0nNdnY+KSEkOO9nLHU
+         O6jPqxXSFEk3u4PU+XQsfEqbiL4fkQWZDDUrR9IoDPJ1Neq7++SDFhzJVWjdy8xzcbg2
+         4OT4Vz5D7czS7EW8KBGFdAybKVjOkRWF69Cw88Ho2van5LvFb8IfJV9PgnjNAnTXgU/n
+         NwjIkcu8N34b9144wb7TAudilm5MP54jk31Dj4zOgcMt+EiiTtd6r/45pxbarZSK1iMw
+         axdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tKiBv8SqRWswr8z7Bsl/7/WuL9D2vpQOGyxVKImo6UE=;
-        b=qqdiLqkWj1GznetlnMT8bAtN0XtxkNnYsMxsS+FNJlj99WfXuxSYJXF0b+Ok9pbS/9
-         Xhj2A1X3GNXEbg10ip6zDiaPyvdwYwhLtTvGHaNDa3FjsM4rAuSKcO730TkuXdjnqLjM
-         Sw72OUqD+L2Ow4qf/7WEYQG/qsMsMhZ03mZNEFcTT6XyqhqPk3Nageq0uQU7eQ9xfxMC
-         zKMixj8lJqWRfE1QOSaL6lGKOjbi2SuAT+zt+13+p8S7542P3yy4PYrAfKCZiqYFbCBH
-         T1upaE2tN0T9PzvC3WwRWVGyWB3MDXDEHRDswMPODjVleTcnwMjJgoiVNQCS/ExoAvZX
-         A1iw==
-X-Gm-Message-State: AOAM533vnyOx7ZdryQbFgJV5meincBuBj9vbLRq2/bhQDPDeTLJhy2sL
-        +f+6PqVQoKsZeKoiygJv0zY=
-X-Google-Smtp-Source: ABdhPJyoKDTAs8PrRuRQCDpoLPMkOr3GOLt6qxRAAEx6R4vsnAgOv91qMLEcUhoiNFxqgBu8vmrj4A==
-X-Received: by 2002:ac8:6699:: with SMTP id d25mr9502077qtp.326.1622336378921;
-        Sat, 29 May 2021 17:59:38 -0700 (PDT)
-Received: from shaak.xiphos.ca (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id z1sm6382601qki.47.2021.05.29.17.59.38
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=K+tVxOYtByP+ndj4vQlqR1yZg+LmRS1nMw/pCh6v4Xw=;
+        b=SkBK9nXucWHVih5SQjtPZfHHT2Dz9n/FCbWqWT4kkaMuJoEReXQRd/ZGp3wDX9lTSO
+         VJ/tEPME90bbbeSpXSkPOo5geCK8UfpGoyrnZFLvte8o9yvjgLsgU/NLEeIU6NoRYCxB
+         1tfDdR3BUNU3dXV/UIRu2gRdISVfpHzD/4sPXTTGTHe3THn2MgiM6482R65A9rI3nMmS
+         Mo8N7XCYD0D2EGMZGxM5Hjqmye0qlKBEWc2NLES5c+j921614fXHS1CMqTy5EkSqAdOL
+         2Bn4/cGF1wPInx0DVTpcL6alyMU/BUC7essIiyLlmM+VM/j+Om/PR3DL7OjzaKCwcIBV
+         piKA==
+X-Gm-Message-State: AOAM532lfSaXqQIcnEgyoC0MtHDSQ3mo7VZekf5hNmL3N2nGp76fgLE7
+        7dZix11lcLoCNOEb/fNuERihpUFiyvYT1g==
+X-Google-Smtp-Source: ABdhPJxqTI6C9nPfZKNb5HL+zD7FQJTLSPwSIKMaSUmBpukJED4EMX0ve01kmkawxCmdvSgh02NByw==
+X-Received: by 2002:a5d:530c:: with SMTP id e12mr2155482wrv.165.1622359624403;
+        Sun, 30 May 2021 00:27:04 -0700 (PDT)
+Received: from debby (176-141-241-253.abo.bbox.fr. [176.141.241.253])
+        by smtp.gmail.com with ESMTPSA id r4sm13515059wre.84.2021.05.30.00.27.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 29 May 2021 17:59:38 -0700 (PDT)
-From:   Liam Beguin <liambeguin@gmail.com>
-To:     liambeguin@gmail.com, peda@axentia.se, jic23@kernel.org,
-        lars@metafoo.de, pmeerw@pmeerw.net
-Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: [PATCH v1 9/9] dt-bindings: iio: afe: add binding for temperature-sense-amplifier
-Date:   Sat, 29 May 2021 20:59:17 -0400
-Message-Id: <20210530005917.20953-10-liambeguin@gmail.com>
-X-Mailer: git-send-email 2.30.1.489.g328c10930387
-In-Reply-To: <20210530005917.20953-1-liambeguin@gmail.com>
-References: <20210530005917.20953-1-liambeguin@gmail.com>
+        Sun, 30 May 2021 00:27:03 -0700 (PDT)
+From:   Romain Perier <romain.perier@gmail.com>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Daniel Palmer <daniel@0x0f.com>,
+        Mohammed Billoo <mohammed.billoo@gmail.com>,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] Add watchdog for Mstar SoCs
+Date:   Sun, 30 May 2021 09:26:42 +0200
+Message-Id: <20210530072645.10379-1-romain.perier@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Liam Beguin <lvb@xiphos.com>
+This patches series adds a new driver for the watchdog found in the Mstar
+MSC313e SoCs and newer. It adds a basic watchdog driver, the
+corresponding devicetree bindings and its documentation.
 
-An ADC is often used to measure other quantities indirectly. This
-binding describe one cases, the measurement of a temperature through a
-voltage sense amplifier such as the LTC2997.
+This work has been co-developed with Daniel Palmer.
 
-Signed-off-by: Liam Beguin <lvb@xiphos.com>
----
- .../iio/afe/temperature-sense-amplifier.yaml  | 55 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 56 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/afe/temperature-sense-amplifier.yaml
+Changes since v1:
+- Dropped "depends OF" from Kconfig (not required)
+- Dropped unneeded include files
+- Re-ordered include files
+- Compute timeout_max dynamically from the probe function to avoid
+  an overflow in _start().
 
-diff --git a/Documentation/devicetree/bindings/iio/afe/temperature-sense-amplifier.yaml b/Documentation/devicetree/bindings/iio/afe/temperature-sense-amplifier.yaml
-new file mode 100644
-index 000000000000..015413cbffbc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/afe/temperature-sense-amplifier.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/afe/temperature-sense-amplifier.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Temperature Sense Amplifier
-+
-+maintainers:
-+  - Liam Beguin <lvb@xiphos.com>
-+
-+description: |
-+  When an io-channel measures the output voltage of a temperature IC such as
-+  the LTC2997, the interesting measurement is almost always the corresponding
-+  temperature, not the voltage output. This binding describes such a circuit.
-+
-+properties:
-+  compatible:
-+    const: temperature-sense-amplifier
-+
-+  io-channels:
-+    maxItems: 1
-+    description: |
-+      Channel node of a voltage io-channel.
-+
-+  '#io-channel-cells':
-+    const: 1
-+
-+  alpha-micro-volts-per-degree:
-+    description: |
-+      Output voltage gain of the temperature IC.
-+
-+  use-kelvin-scale:
-+    type: boolean
-+    description: |
-+      Boolean indicating if alpha uses Kelvin degrees instead of Celsius.
-+
-+additionalProperties: false
-+required:
-+  - compatible
-+  - io-channels
-+  - alpha-micro-volts-per-degree
-+
-+examples:
-+  - |
-+    znq_temp: iio-rescale0 {
-+        compatible = "temperature-sense-amplifier";
-+        #io-channel-cells = <1>;
-+        io-channels = <&temp_adc 3>;
-+
-+        use-kelvin-scale;
-+        alpha-micro-volts-per-degree = <4000>;
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0eb7fcd94b66..f224bd8e6125 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8721,6 +8721,7 @@ L:	linux-iio@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/iio/afe/current-sense-amplifier.yaml
- F:	Documentation/devicetree/bindings/iio/afe/current-sense-shunt.yaml
-+F:	Documentation/devicetree/bindings/iio/afe/temperature-sense-amplifier.yaml
- F:	Documentation/devicetree/bindings/iio/afe/temperature-sense-current.yaml
- F:	Documentation/devicetree/bindings/iio/afe/temperature-sense-rtd.yaml
- F:	Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
+
+Daniel Palmer (1):
+  watchdog: Add Mstar MSC313e WDT driver
+
+Romain Perier (2):
+  Documentation: watchdog: Add Mstar MSC313e WDT devicetree bindings
+    documentation
+  ARM: dts: mstar: Add watchdog device_node definition
+
+ .../bindings/watchdog/msc313e-wdt.yaml        |  40 +++++
+ MAINTAINERS                                   |   1 +
+ arch/arm/boot/dts/mstar-v7.dtsi               |  14 ++
+ drivers/watchdog/Kconfig                      |  12 ++
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/msc313e_wdt.c                | 166 ++++++++++++++++++
+ 6 files changed, 234 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/msc313e-wdt.yaml
+ create mode 100644 drivers/watchdog/msc313e_wdt.c
+
 -- 
-2.30.1.489.g328c10930387
+2.30.2
 
