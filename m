@@ -2,116 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DED763950D1
-	for <lists+devicetree@lfdr.de>; Sun, 30 May 2021 14:18:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05C6D3951D4
+	for <lists+devicetree@lfdr.de>; Sun, 30 May 2021 17:57:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229784AbhE3MUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 May 2021 08:20:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37496 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229683AbhE3MUH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 May 2021 08:20:07 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82ED1C061760
-        for <devicetree@vger.kernel.org>; Sun, 30 May 2021 05:18:29 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id y7so10207699eda.2
-        for <devicetree@vger.kernel.org>; Sun, 30 May 2021 05:18:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=snejp.pl; s=gmail;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=8rN9+/NbxDFN7EMKi+Z7DRElm+PgvMbUeIui3UQMR6I=;
-        b=qJVdOhQHtMcg+2nPv/vNFy9Ol2s/2fBDvHkxS7qc23ky5Z6sptF7e04BeGQYo/NTT+
-         qkiIyDllxMUYjCO9SL1WEKvB12Y/2p7P+vpMY4QiPvZqZP08OPIEXpG2P2TVlKBdrx3L
-         EFhWuG17/6RH1lPyGAWdczyjCBW9xoJQqFRw6lhj0obtJODReqvIBhdsBXEw9GYhkO5R
-         UB5lGWsxYuIV6H64CmiwF2W5CbadHXDxfDstquirPIeHk9JbNjS0xDVsEYtA4VUv5Vl6
-         9VAIGL+pzv0qe3xmLjBQ3VPPd6Ev91AmbomwGHQ+i5KiNrePupsYQW8DjVug3zFlB3sQ
-         A14Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=8rN9+/NbxDFN7EMKi+Z7DRElm+PgvMbUeIui3UQMR6I=;
-        b=tCASgYpBejLcp5FdQ1ZZEiPLrQaAlqSeXc8vRIIurW+jXSBNvixIqx4ax3nVXokZzW
-         cn5ERkY/CpDA8AuwHMeOb1a2uSY7QEoXtnLf3v4eUS35u/1LaaukXBNvFG8WgrOK9MjY
-         0IkNx8rZEC/F86Jfm0YdXnTW9m4mAJV5Ffet2dPVMwe7xBER+IbC3/jVaNNQMYD3FWEQ
-         O3+JiSP/cVv1HBJotk+aaqRbI92spTiuRsGMqOd8tODCuSMN0uM4SqSeBzBKgHgTeU+g
-         /W84ki2Mc4R/v0oAMcTMaMtRAtw8BsoDOmgdFGradW0eobvbKDiZAFiRnuGTUca1Hypo
-         2dYA==
-X-Gm-Message-State: AOAM530Oj/yzkBnFfPoVsYKDpbF8xXqGNWq0Hr2XUlAGcMQt1Pn8BHEI
-        x0sdmL6BMIxK2Ke0Ai3cdsvddhtTT6LLH813Ieg=
-X-Google-Smtp-Source: ABdhPJwrJfzJgeBzJf2MVs93d/Iy62JjyA7TMenbRkTwpJ1DnrPw+H/3Q3hUuR/WmKdoiWA8bPmovw==
-X-Received: by 2002:aa7:cb84:: with SMTP id r4mr20012910edt.187.1622377108156;
-        Sun, 30 May 2021 05:18:28 -0700 (PDT)
-Received: from PackardBell (192038129069.mbb.telenor.dk. [192.38.129.69])
-        by smtp.googlemail.com with ESMTPSA id jx16sm1311662ejc.49.2021.05.30.05.18.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 May 2021 05:18:27 -0700 (PDT)
-Received: from localhost (PackardBell [local])
-        by PackardBell (OpenSMTPD) with ESMTPA id bda84510;
-        Sun, 30 May 2021 12:18:22 +0000 (UTC)
-From:   Bartosz Dudziak <bartosz.dudziak@snejp.pl>
-To:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
-        David Sterba <dsterba@suse.com>, Jens Axboe <axboe@kernel.dk>,
-        Bartosz Dudziak <bartosz.dudziak@snejp.pl>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Kumar Gala <galak@codeaurora.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v2 2/2] cpuidle: qcom: Add SPM register data for MSM8226
-Date:   Sun, 30 May 2021 14:18:03 +0200
-Message-Id: <20210530121803.13102-3-bartosz.dudziak@snejp.pl>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210530121803.13102-1-bartosz.dudziak@snejp.pl>
-References: <20210530121803.13102-1-bartosz.dudziak@snejp.pl>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S229828AbhE3P7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 May 2021 11:59:06 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:2185 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229844AbhE3P7E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 May 2021 11:59:04 -0400
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 30 May 2021 08:57:26 -0700
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 30 May 2021 08:57:24 -0700
+X-QCInternal: smtphost
+Received: from rajeevny-linux.qualcomm.com ([10.204.66.121])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 30 May 2021 21:26:31 +0530
+Received: by rajeevny-linux.qualcomm.com (Postfix, from userid 2363605)
+        id DD66821481; Sun, 30 May 2021 21:26:29 +0530 (IST)
+From:   Rajeev Nandan <rajeevny@codeaurora.org>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Rajeev Nandan <rajeevny@codeaurora.org>,
+        linux-kernel@vger.kernel.org, thierry.reding@gmail.com,
+        sam@ravnborg.org, robdclark@gmail.com, dianders@chromium.org,
+        lyude@redhat.com, jani.nikula@intel.com, robh@kernel.org,
+        laurent.pinchart@ideasonboard.com, a.hajda@samsung.com,
+        daniel.thompson@linaro.org, hoegsberg@chromium.org,
+        abhinavk@codeaurora.org, seanpaul@chromium.org,
+        kalyan_t@codeaurora.org, mkrishn@codeaurora.org
+Subject: [v5 0/5] drm: Support basic DPCD backlight in panel-simple and add a new panel ATNA33XC20
+Date:   Sun, 30 May 2021 21:26:07 +0530
+Message-Id: <1622390172-31368-1-git-send-email-rajeevny@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MSM8226 register data to SPM AVS Wrapper 2 (SAW2) power controller
-driver.
+This series adds the support for the eDP panel that needs the backlight
+controlling over the DP AUX channel using DPCD registers of the panel
+as per the VESA's standard.
 
-Signed-off-by: Bartosz Dudziak <bartosz.dudziak@snejp.pl>
----
- drivers/cpuidle/cpuidle-qcom-spm.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+This series also adds support for the Samsung eDP AMOLED panel that
+needs DP AUX to control the backlight, and introduces new delays in the
+@panel_desc.delay to support this panel.
 
-diff --git a/drivers/cpuidle/cpuidle-qcom-spm.c b/drivers/cpuidle/cpuidle-qcom-spm.c
-index adf91a6e4d..c0e7971da2 100644
---- a/drivers/cpuidle/cpuidle-qcom-spm.c
-+++ b/drivers/cpuidle/cpuidle-qcom-spm.c
-@@ -87,6 +87,18 @@ static const struct spm_reg_data spm_reg_8974_8084_cpu  = {
- 	.start_index[PM_SLEEP_MODE_SPC] = 3,
- };
- 
-+/* SPM register data for 8226 */
-+static const struct spm_reg_data spm_reg_8226_cpu  = {
-+	.reg_offset = spm_reg_offset_v2_1,
-+	.spm_cfg = 0x0,
-+	.spm_dly = 0x3C102800,
-+	.seq = { 0x60, 0x03, 0x60, 0x0B, 0x0F, 0x20, 0x10, 0x80, 0x30, 0x90,
-+		0x5B, 0x60, 0x03, 0x60, 0x3B, 0x76, 0x76, 0x0B, 0x94, 0x5B,
-+		0x80, 0x10, 0x26, 0x30, 0x0F },
-+	.start_index[PM_SLEEP_MODE_STBY] = 0,
-+	.start_index[PM_SLEEP_MODE_SPC] = 5,
-+};
-+
- static const u8 spm_reg_offset_v1_1[SPM_REG_NR] = {
- 	[SPM_REG_CFG]		= 0x08,
- 	[SPM_REG_SPM_CTL]	= 0x20,
-@@ -259,6 +271,8 @@ static struct spm_driver_data *spm_get_drv(struct platform_device *pdev,
- }
- 
- static const struct of_device_id spm_match_table[] = {
-+	{ .compatible = "qcom,msm8226-saw2-v2.1-cpu",
-+	  .data = &spm_reg_8226_cpu },
- 	{ .compatible = "qcom,msm8974-saw2-v2.1-cpu",
- 	  .data = &spm_reg_8974_8084_cpu },
- 	{ .compatible = "qcom,apq8084-saw2-v2.1-cpu",
+This patch series depends on the following two series:
+- Doug's series [1], exposed the DP AUX channel to the panel-simple.
+- Lyude's series [2], introduced new drm helper functions for DPCD
+  backlight.
+
+This series is the logical successor to the series [3].
+
+Changes in v1:
+- Created dpcd backlight helper with very basic functionality, added
+  backlight registration in the ti-sn65dsi86 bridge driver.
+
+Changes in v2:
+- Created a new DisplayPort aux backlight driver and moved the code from
+  drm_dp_aux_backlight.c (v1) to the new driver.
+
+Changes in v3:
+- Fixed module compilation (kernel test bot).
+
+Changes in v4:
+- Added basic DPCD backlight support in panel-simple.
+- Added support for a new Samsung panel ATNA33XC20 that needs DPCD
+  backlight controlling and has a requirement of delays between enable
+  GPIO and regulator.
+
+Changes in v5:
+Addressed review suggestions from Douglas:
+- Created a new API drm_panel_dp_aux_backlight() in drm_panel.c
+- Moved DP AUX backlight functions from panel-simple.c to drm_panel.c
+- panel-simple probe() calls drm_panel_dp_aux_backlight() to create
+  backlight when the backlight phandle is not specified in panel DT
+  and DP AUX channel is present.
+- Added check for drm_edp_backlight_supported() before registering.
+- Removed the @uses_dpcd_backlight flag from panel_desc as this
+  should be auto-detected.
+- Updated comments/descriptions.  
+
+[1] https://lore.kernel.org/dri-devel/20210525000159.3384921-1-dianders@chromium.org/
+[2] https://lore.kernel.org/dri-devel/20210514181504.565252-1-lyude@redhat.com/
+[3] https://lore.kernel.org/dri-devel/1619416756-3533-1-git-send-email-rajeevny@codeaurora.org/
+
+Rajeev Nandan (5):
+  drm/panel: add basic DP AUX backlight support
+  drm/panel-simple: Support DP AUX backlight
+  drm/panel-simple: Support for delays between GPIO & regulator
+  dt-bindings: display: simple: Add Samsung ATNA33XC20
+  drm/panel-simple: Add Samsung ATNA33XC20
+
+ .../bindings/display/panel/panel-simple.yaml       |   2 +
+ drivers/gpu/drm/drm_panel.c                        | 108 +++++++++++++++++++++
+ drivers/gpu/drm/panel/panel-simple.c               |  67 +++++++++++++
+ include/drm/drm_panel.h                            |  15 ++-
+ 4 files changed, 188 insertions(+), 4 deletions(-)
+
 -- 
-2.25.1
+2.7.4
 
