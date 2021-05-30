@@ -2,112 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B0CB394DD8
-	for <lists+devicetree@lfdr.de>; Sat, 29 May 2021 21:24:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 919C0394EC0
+	for <lists+devicetree@lfdr.de>; Sun, 30 May 2021 02:59:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229726AbhE2T0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 May 2021 15:26:22 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:45656 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229718AbhE2T0W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 May 2021 15:26:22 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1622316285; h=In-Reply-To: Content-Type: MIME-Version:
- References: Message-ID: Subject: Cc: To: From: Date: Sender;
- bh=YMDXTcEcKFyLHXnnDZTwwkxpT9FLywcjBpEH0RdgkCY=; b=lgaCL+3oS09udEiT1ygSCmDoAkxrcCYGEbBfdNYI2/K8auuHrrttyGxuvMvruz7zcqZbEExY
- INoOZFU7Kf9ulDLjYiVm5ErplOTdYhXBY5MMKXGcEqv8SpxaiXeG2nHB7kgAFKXK4rklTlic
- dHv58qL9aemKzGzAZ6pRNvPA2S0=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 60b294ebe27c0cc77f208b3b (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sat, 29 May 2021 19:24:27
- GMT
-Sender: jackp=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id F2BF8C4338A; Sat, 29 May 2021 19:24:26 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from jackp-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: jackp)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id A3833C433F1;
-        Sat, 29 May 2021 19:24:25 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A3833C433F1
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=jackp@codeaurora.org
-Date:   Sat, 29 May 2021 12:24:21 -0700
-From:   Jack Pham <jackp@codeaurora.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Wesley Cheng <wcheng@codeaurora.org>, balbi@kernel.org,
-        gregkh@linuxfoundation.org, agross@kernel.org, robh+dt@kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Thinh.Nguyen@synopsys.com
-Subject: Re: [PATCH v8 5/5] arm64: boot: dts: qcom: sm8150: Enable dynamic TX
- FIFO resize logic
-Message-ID: <20210529192420.GA11263@jackp-linux.qualcomm.com>
-References: <1621410238-31395-1-git-send-email-wcheng@codeaurora.org>
- <1621410238-31395-6-git-send-email-wcheng@codeaurora.org>
- <YLJ000lIVhZM5WEV@builder.lan>
+        id S229635AbhE3BBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 May 2021 21:01:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60042 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229585AbhE3BBG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 May 2021 21:01:06 -0400
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F586C061574;
+        Sat, 29 May 2021 17:59:28 -0700 (PDT)
+Received: by mail-qk1-x72d.google.com with SMTP id h20so7992359qko.11;
+        Sat, 29 May 2021 17:59:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=P2CLZOqNCLOtkIGGc1vQejjtBTOblqWdJI35uJ6GHEM=;
+        b=oLj3OrVzAJeJTDNaIB9ap9f47u8UhfYH2tUtIPbay7NZ0dizDnt4cI6VZKSC+ftu3D
+         EwbrrHuIz5Az0Ory3xitFHeFAwoPIWZyZRuBSAuh2Cnlz5OzDfSZSsAsNb6//9mUDcGC
+         iqfFSODikqQ9TJL7HKIMzJWuQzZHaFe3BJoTi74J2gi0abSVrVSOvm+REPD6bbxJKVtb
+         6PKx/x7BsmncXPWcO9K1br04Zaj+6WtFuAqt+GEri5ZDmdcXDDjDt8u6+vVzSvZCmSRm
+         RqtZYRubEdGuoc+G96/0FLT0h1qu3R5jxUPiQcXmSUj84OCEXS68ZnlRXnBf/RXjfhRd
+         E+gQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=P2CLZOqNCLOtkIGGc1vQejjtBTOblqWdJI35uJ6GHEM=;
+        b=VYuXzDKbuGrdYzVBQIt2Sh0+MyLZaNRghxBX5+lrmYddX+4f2/SmaasQ5jEy0tByue
+         Ot9Jbmsn1McUqQcYBu673XyXDZ8LFqMh/nRRLepK94lR0dJ20Afg0rgfAzEhLx3GO9i/
+         XqSEYg0AIamsJmwd73CvkxDbf2tqKKUvfPGtrK+gl8okmS/oUhe6Y0JTjWWKXLGifGxm
+         Xcx8CcBgr5vuQJqyVt2Rb3TtU2hM0rJ1IwWhuAA6bXs5fKCe5vzXtwLlLeMNvTJg8Gz4
+         K2s3TiAkA7M5ENt/v/UvbcLDZvVTlehSe0/RFUGdI8mmWJUYOxKkXJIUnwAoSmT801j/
+         HIkg==
+X-Gm-Message-State: AOAM531ebUQht1ipbRe2oR7fgHEPqkAS9g5Dkh50z/WB1XUpvTww3hho
+        JnFje0blgv3NzUCS3HsoWzY=
+X-Google-Smtp-Source: ABdhPJy3qy2srNk3wMck8+qd9/IC+9becSiOJivle5PpHuILqSb6eoub8E5uMe4h4okvv6cOuGvwnA==
+X-Received: by 2002:a37:7844:: with SMTP id t65mr10546654qkc.429.1622336367456;
+        Sat, 29 May 2021 17:59:27 -0700 (PDT)
+Received: from shaak.xiphos.ca (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id z1sm6382601qki.47.2021.05.29.17.59.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 29 May 2021 17:59:27 -0700 (PDT)
+From:   Liam Beguin <liambeguin@gmail.com>
+To:     liambeguin@gmail.com, peda@axentia.se, jic23@kernel.org,
+        lars@metafoo.de, pmeerw@pmeerw.net
+Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: [PATCH v1 0/9] iio: afe: add temperature rescaling support
+Date:   Sat, 29 May 2021 20:59:08 -0400
+Message-Id: <20210530005917.20953-1-liambeguin@gmail.com>
+X-Mailer: git-send-email 2.30.1.489.g328c10930387
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YLJ000lIVhZM5WEV@builder.lan>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
+From: Liam Beguin <lvb@xiphos.com>
 
-On Sat, May 29, 2021 at 12:07:31PM -0500, Bjorn Andersson wrote:
-> On Wed 19 May 02:43 CDT 2021, Wesley Cheng wrote:
-> 
-> > Enable the flexible TX FIFO resize logic on SM8150.  Using a larger TX FIFO
-> > SZ can help account for situations when system latency is greater than the
-> > USB bus transmission latency.
-> > 
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
-> 
-> Based on my previous request of always adding this for the Qualcomm
-> platforms that supports it, which is implemented in patch 4, I don't see
-> a need for this patch.
-> 
-> Am I missing something?
+Add temperature rescaling support to the IIO Analog Front End driver.
 
-Looks like Wesley had quickly sent a V9 of the series right after V8,
-and the DTSI change is dropped.
+This series adds support for three kinds of temperature front end
+circuits:
+- temperature-sense-rtd for which the resistance is proportional to the
+  temperature
+- temperature-sense-current for which the current is proportional to the
+  temperature
+- temperature-sense-amplifier for which the voltage is proportional to
+  the temperature
 
-https://lore.kernel.org/linux-usb/1621410561-32762-1-git-send-email-wcheng@codeaurora.org/T/#t
+At first I tried to use iio_convert_raw_to_processed() to get more
+precision out of processed values but ran into issues when one of my
+ADCs didn't provide a scale. I tried to address this in first patch.
 
-Thanks,
-Jack
+When adding offset support to iio-rescale, I also noticed that
+iio_read_channel_processed() assumes that the offset is always an
+integer which I tried to address in the second patch.
+If it makes sense to add support for fractional offsets, I could give it
+a try in another series.
 
-> > ---
-> >  arch/arm64/boot/dts/qcom/sm8150.dtsi | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> > index 51235a9..8f532cb 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> > @@ -2275,6 +2275,7 @@
-> >  				iommus = <&apps_smmu 0x140 0>;
-> >  				snps,dis_u2_susphy_quirk;
-> >  				snps,dis_enblslpm_quirk;
-> > +				tx-fifo-resize;
-> >  				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
-> >  				phy-names = "usb2-phy", "usb3-phy";
-> >  			};
+Related to: https://patchwork.kernel.org/project/linux-iio/list/?series=483087
 
+Thanks for your time
+
+Liam Beguin (9):
+  iio: inkern: always apply scale requested by consumer
+  iio: inkern: error out on unsupported offset type
+  iio: afe: rescale: use core to get processed value
+  iio: afe: rescale: add offset support
+  iio: afe: rescale: add support for temperature sensors
+  dt-bindings: iio: afe: update MAINTAINERS file
+  dt-bindings: iio: afe: add binding for temperature-sense-rtd
+  dt-bindings: iio: afe: add binding for temperature-sense-current
+  dt-bindings: iio: afe: add binding for temperature-sense-amplifier
+
+ .../iio/afe/temperature-sense-amplifier.yaml  |  55 +++++
+ .../iio/afe/temperature-sense-current.yaml    |  61 ++++++
+ .../iio/afe/temperature-sense-rtd.yaml        |  65 ++++++
+ MAINTAINERS                                   |   9 +-
+ drivers/iio/afe/iio-rescale.c                 | 190 +++++++++++++++---
+ drivers/iio/inkern.c                          |  12 +-
+ 6 files changed, 354 insertions(+), 38 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/afe/temperature-sense-amplifier.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/afe/temperature-sense-current.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/afe/temperature-sense-rtd.yaml
+
+
+base-commit: 9f4ad9e425a1d3b6a34617b8ea226d56a119a717
 -- 
-The Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.30.1.489.g328c10930387
+
