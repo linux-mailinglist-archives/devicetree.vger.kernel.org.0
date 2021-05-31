@@ -2,126 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54EF03966A0
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 19:13:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DE923966C3
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 19:19:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232720AbhEaRPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 13:15:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51128 "EHLO
+        id S232102AbhEaRVA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 13:21:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233374AbhEaRNu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 13:13:50 -0400
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25661C0431D7
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 08:20:49 -0700 (PDT)
-Received: by mail-oi1-x22f.google.com with SMTP id d21so12564059oic.11
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 08:20:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=vDiqLRd+stLKTmfiIZ/+t8l2ObZwO4uStCLNw0eONeE=;
-        b=rU70Jx0Tu1AeMSbrsJZd6hMbh05hvmblGlAfJDjDlMe5amlLHOnvST+bRRQfrCw8EM
-         Qd9842dMFMFcboy6jC5sh4EHSAwpKUMFaGFEiZ/MqIQXSi6Cd/Sxj9528wWwQNZQGh86
-         PMTfUPSnjRvvOHJ/yWlvwqwpnlACKmVJm9uRhFakwPGsWz2EeD5EilKOTWZqUw5+STpt
-         LXLA+C7PLvNQei6RRzAphgbWj8fXlJ5KGYGYCuhnGN1pLozPwju/y6JZCGGA08GzlWsG
-         qFUMVrbvvub1htNg8R4mNhUsLusJiRcPm3C9vjGQ+br4/fjral4HpW6PUxt+di/q/PMr
-         8UMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vDiqLRd+stLKTmfiIZ/+t8l2ObZwO4uStCLNw0eONeE=;
-        b=tDveEOz7glvWGBWsiOX2VlwdSNfw0Yvc8w/kcB+5F4iILktw9vLVM+hFmKt904InIB
-         RDoZ665HfsB7MqJj2R4dtoL8Cvh8rQ2IbWYfbzVApqnyanDz5X84mBfnLRe7q/ijQ0J4
-         OLjlI8F2GdUkSJs03AiadbuooI807LLl1jOTn7WHxJytfSw8cS50Ost/aMdq5TocxaEg
-         VKZtpmUcSaSUvsYhH21BVsp8j0ACAgyu3OyGgDkkWF74G2VwwoELEQaNxf7JI2wozXqm
-         HQ41pjezVSF+XrYoaWyN6wCwHJfr7KG+6hNw4cjnForHiV/CwOabqKg+InADrJ1EMGU2
-         wC+w==
-X-Gm-Message-State: AOAM530/nK3pda4eqz/Uf3Q8mgnczjF/gBGj5x97LP+bmHTSSJGMJOma
-        neRzGB/Qidm13hmMGYvdUmaiYw==
-X-Google-Smtp-Source: ABdhPJzhu+c+Yxt4w6fUwjAM0yhgeLolRS1rYyxRr79QpCWKidIOwuZM7AzmeDDTPazwIzKy1euv6w==
-X-Received: by 2002:aca:d544:: with SMTP id m65mr14663728oig.73.1622474448489;
-        Mon, 31 May 2021 08:20:48 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id v19sm3186318otk.22.2021.05.31.08.20.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 May 2021 08:20:48 -0700 (PDT)
-Date:   Mon, 31 May 2021 10:20:46 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: Add PMI8996 DTSI file
-Message-ID: <YLT+zsYBEAcLh+k7@builder.lan>
-References: <20210527170409.667255-1-konrad.dybcio@somainline.org>
+        with ESMTP id S231916AbhEaRUW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 13:20:22 -0400
+Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D08FC0431EE
+        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 08:33:31 -0700 (PDT)
+Received: from [IPv6:2a02:a03f:eafb:ee01:86ad:a53c:2e83:dd76] (unknown [IPv6:2a02:a03f:eafb:ee01:86ad:a53c:2e83:dd76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id A9BDE206B6B;
+        Mon, 31 May 2021 17:33:29 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1622475210;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=xiXZatVAB++3a5E7nWSQIMIqvM2fRrnQrEqg5glz/i0=;
+        b=ZIOw1e17uTXiLULKbQJOqFzrCYPbNaJnIwUMlVNBaZ1D7RKUE7EcW92eVBDgxZoO0OL+Gy
+        2+LQe/2laJYBVX2JuBSWrZWEX/UIcWx9mv1myqK5w3ZLN/OY7HyaepuAB0Mjxid+PTyIa9
+        hh4u0W1pFk7EUkyEFLRfLR1qI2JrNDwWc0Z8C5H7G8sMj/Z4lPihomUC4sGhGnUx7xUgEq
+        dVY1aEcQyp+BY4HRBdexLehJcBJ2IGudwvWZfgrm0nirPXvAPo/lA7egj7grZHIz3I3681
+        1baa/NkSeQz84/GSJUu+x8HeDNI+E8rwqSNFIfQX3ODZiauhBvU1313T2xI2kw==
+Message-ID: <272ac6af4a5ba5df4bb085617c9267e5ece61c19.camel@svanheule.net>
+Subject: Re: [PATCH 0/5] RTL8231 GPIO expander support
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Michael Walle <michael@walle.cc>
+Cc:     Hans de Goede <hdegoede@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Date:   Mon, 31 May 2021 17:33:27 +0200
+In-Reply-To: <CAHp75VfOrUBRQH1vrXEwHN4ZPojQfQju-_wp_3djZeozEaatug@mail.gmail.com>
+References: <cover.1620735871.git.sander@svanheule.net>
+         <cover.1621809029.git.sander@svanheule.net> <YKr9G3EfrM34gCsL@lunn.ch>
+         <CAHp75VewCw8ES_9S48qmeCtSXMkGWt0s4iub0Fu4ZuwWANHpaQ@mail.gmail.com>
+         <02bbf73ea8a14119247f07a677993aad2f45b088.camel@svanheule.net>
+         <f03d5cdc958110fc7d95cfc4258dac4e@walle.cc>
+         <84352c93f27d7c8b7afea54f3932020e9cd97d02.camel@svanheule.net>
+         <a644b8fa-c90a-eab6-9cca-08344abec532@redhat.com>
+         <CAHp75VcFmU4rJ6jL204xGFM=s2LV=KQmsV8E75BpuSAZMXBn0w@mail.gmail.com>
+         <c7239e0cbbc9748925410937a914bd8a@walle.cc>
+         <7a9978881e9ec5d4b811fa6e5d355fb6bce6f6d8.camel@svanheule.net>
+         <0047200eecbd7ee480258cc904d6b7ee@walle.cc>
+         <CAHp75VfOrUBRQH1vrXEwHN4ZPojQfQju-_wp_3djZeozEaatug@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210527170409.667255-1-konrad.dybcio@somainline.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 27 May 12:04 CDT 2021, Konrad Dybcio wrote:
-
-> PMI8996 is *almost* the same hardware as PMI8994, say for some annoyances:
+On Mon, 2021-05-31 at 14:16 +0300, Andy Shevchenko wrote:
 > 
-> - Boards equipped with PMI8996 now have to include pmic-id (which wasn't the case before)
-> - Different qpnp-ibb-discharge-resistor value (will be addressed after LABIBB is introduced)
-> - Different inhibit-derating-ua value (will be addressed after BCL is introduced)
-> - Different ramp_up_step value (will be addressed after [if?] QPNP Flash LED is introduced)
 > 
+> On Monday, May 31, 2021, Michael Walle <michael@walle.cc> wrote:
+> > Am 2021-05-31 10:36, schrieb Sander Vanheule:
 
-If I am to support a device that has a pmi8996, I will go
+...
 
-#include "pmi8996.dtsi"
-
-and wonder why it didn't work.
-
-But, I do see the validity in your argumentation in the previous
-revision so I won't object. But I really would like you to describe in
-the commit message why this is different from what people would expect
-to find.
-
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
->  arch/arm64/boot/dts/qcom/pmi8996.dtsi | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/pmi8996.dtsi
+> > > The data register rather appears to be implemented as a read-only (pin
+> > > inputs)
+> > > register and a write-only (pin outputs) register, aliased on the same
+> > > register
+> > > address.
+> > > 
+> > 
+> > Ahh so this makes more sense. If the data register is really write only
+> > regardless of the direction mode, then RMW doesn't make any sense at all.
+> > Please note, that even if regmap caches values, it might be marked as dirty
+> > and it will re-read the values from hardware. So I don't know if that will
+> > help you.
+> > 
+> > So a possible quirk could be
+> >  GPIO_REGMAP_WRITE_ONLY_DATA_REG (or something like that)
+> > 
+> > 
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/pmi8996.dtsi b/arch/arm64/boot/dts/qcom/pmi8996.dtsi
-> new file mode 100644
-> index 000000000000..31b47209e261
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/pmi8996.dtsi
-> @@ -0,0 +1,15 @@
-> +// SPDX-License-Identifier: GPL-2.0
+> Isn’t regmap property to do a such? I don’t think any quirks are needed since hw
+> works as expected.
 
-And BSD please :)
+The HW works as expected, but it is regmap-gpio's assumption that values read
+from reg_set_base reflect the current output value that fails.
 
-Regards,
-Bjorn
+I looked a bit more at the provided interface, to see if this can be done with
+existing regmap functionality.
 
-> +/*
-> + * Copyright (c) 2021, Konrad Dybcio <konrad.dybcio@somainline.org>
-> + */
-> +
-> + /*
-> +  * PMI8996 is a slight modification of PMI8994 with
-> +  * some notable changes, like being the first PMIC
-> +  * whose the bootloader has to check to continue booting
-> +  * and a change to a LABIBB parameter.
-> +  */
-> +
-> +/ {
-> +	qcom,pmic-id = <0x20009 0x10013 0 0>;
-> +};
-> -- 
-> 2.31.1
-> 
+The data registers must not be marked volatile, to ensure cached reads. The pin
+set function can wrap the RMW in regcache_cache_only + regcache_sync, but this
+causes visible glitching on my device.
+
+The pin input values can be read by wrapping the regmap_read in
+regcache_cache_bypass guards.
+
+If only the regmap's internal lock is used, the RMW cycle is no longer atomic.
+Inside the cache_only guards you can't read the input data, and inside the
+cache_bypass guards other register writes cannot be performed, or the cache may
+get out of sync. regcache_sync_region could be used, but maybe we would then
+miss other registers that were updated in the meantime.
+
+Am I missing something here? It seems to me like the regmap interface can't
+really accommodate what's required, unless maybe the rtl8231 regmap users
+perform some manual locking. This all seems terribly complicated compared to
+using an internal output-value cache inside regmap-gpio.
+
+
+Best,
+Sander
+
