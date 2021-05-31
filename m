@@ -2,288 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8786395B1B
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 15:09:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77163395B1F
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 15:14:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231448AbhEaNKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 09:10:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54358 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231327AbhEaNKu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 09:10:50 -0400
-Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29E6DC06174A
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 06:09:11 -0700 (PDT)
-Received: by mail-io1-xd29.google.com with SMTP id r4so11871117iol.6
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 06:09:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9d53VYJFHWARQy9topfwOXbjQ0bIZRs2DU18D2KXAa8=;
-        b=amIdx9qPHSL5wLI1nbQZ3XQsrZhpkI0zTlN46c1MiJfJyU5eO1jrwWRezIfj/rDPg6
-         TiaYdk8FTz+uWVsDZKTqPuY1auR05BHT1vyD+seMqw2beoTOYrFH6vgHlep4UqTULIJp
-         rERhjkD8nzKKuartg5q6uhmTTv9xjMIziMz5tXCFcVp1h9tSANvH5z5bNsnIZUPJR9Br
-         Tji3crAGIfy5v1tagPd2+C9Pi9DR1B440o8B6E+NZwAMQ+pALsGwLv5EgoH6YQyyUpqM
-         Ia0ir2U/jmTrMCvXPiOTKEKH/ktZkizwwcwL4EGbP4fuqVWozmKQUapiUWgnR7+z8Ef/
-         wTLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9d53VYJFHWARQy9topfwOXbjQ0bIZRs2DU18D2KXAa8=;
-        b=OR0CP87GvAX8ecYVV4jGxnMuWNXjP742CaAf95t8Jh4UKs0cPv4B3HtKZeRSBeRhO5
-         blFelzZkbrafqZfjAmXdoVIRvAWC7tsOf84ydoqNM5+DKgszRY9d4gF4FVYtNeRh+E4l
-         uaoT0jKS/kJwOs7aH1P3jiz8s2H7eVT/qzq7ZBAc05xpMH6+mkRJ1gsSpfVfv23hISBI
-         LOqqr4zJMa/TrW4byHP7mZdecRpe0kHNisfMUseJPCVWUf6QaECajBeQN4/Zdc0ab4ia
-         Nj8/IJTPdnCJoTcdX2jVNDy5aoVc5te54f5zkcZEsi+Dg/BdBpB9doTdbPJJIKFoQRhy
-         Y3jA==
-X-Gm-Message-State: AOAM530x7JOziQ0NNSE6op0I/wNiXgkRi5+RXqKrKGwlT1PvqAafJMSI
-        ACUl/PnmrbWCUTw9EQOlB2C0SAMJ7CGLuPO6kmyoAw==
-X-Google-Smtp-Source: ABdhPJw7xwXA7/GIcJxM/KiJnXx1jN8kMpl7N+zYmE+3hheG9YF/E+xnqu1w3ffTL16/kHT8Q9pxRai9SrehIXjyWIo=
-X-Received: by 2002:a02:2a0b:: with SMTP id w11mr21053709jaw.22.1622466550308;
- Mon, 31 May 2021 06:09:10 -0700 (PDT)
+        id S231409AbhEaNQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 09:16:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51868 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231327AbhEaNQP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 May 2021 09:16:15 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1367A60FE8;
+        Mon, 31 May 2021 13:14:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1622466875;
+        bh=ijtUyUMIwjDtjTIX9JOuxobyfw9oYEhVyr+3OgdRpdo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tUVJSxJeeNkOZ4lVAaSuUoCzwFPtldSxUUM2kwe2O1/IPfbQioE3WzDuQgN24EuR2
+         Am/KlWHZh6C0RK1SLOD6X56fT1xXDI7JfK4m5UK/loHshN7vDTReUr/65qGKhCcg/o
+         ss9Jbifvj3oC7w7vjPZsIZGA+HjlpY/hqF8E6sKWDExvRT3tfpNb6HMP3oUFQwiMwv
+         OTCI0ltai+uesmVSLl1mEIBbiQYTbqJIwcP9Y790u+wYlX547hbeik1xovL8vYi+Jd
+         8Kw8tkwoiC5KvukH0kWfyu8TiIKnklvi209rVEBdmha+y1BMn2z7kUbNstGrrZ8gOo
+         6tpx1D27Rrd3g==
+Received: by pali.im (Postfix)
+        id CC1D3B84; Mon, 31 May 2021 15:14:31 +0200 (CEST)
+Date:   Mon, 31 May 2021 15:14:31 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     linux-mips@vger.kernel.org, tsbogend@alpha.franken.de,
+        devicetree@vger.kernel.org, matthias.bgg@gmail.com,
+        john@phrozen.org, bhelgaas@google.com, robh+dt@kernel.org,
+        linux-staging@lists.linux.dev, gregkh@linuxfoundation.org,
+        neil@brown.name, ilya.lipnitskiy@gmail.com,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH 2/4] MIPS: pci: Add driver for MT7621 PCIe controller
+Message-ID: <20210531131431.bzsvmefqdyawmeo2@pali>
+References: <20210515124055.22225-1-sergio.paracuellos@gmail.com>
+ <20210515124055.22225-3-sergio.paracuellos@gmail.com>
 MIME-Version: 1.0
-References: <20210524120539.3267145-1-robert.marko@sartura.hr>
- <20210524120539.3267145-3-robert.marko@sartura.hr> <20210524230940.GA1350504@robh.at.kernel.org>
- <CA+HBbNHb71n7GPCPWMivOV5U0RGQnwT054y6U0grQ8Hr=d9geQ@mail.gmail.com> <CAL_JsqJCrndJpW91i7fbEfzCVPr+k4f-b2gqLRndvUMwSCyCMA@mail.gmail.com>
-In-Reply-To: <CAL_JsqJCrndJpW91i7fbEfzCVPr+k4f-b2gqLRndvUMwSCyCMA@mail.gmail.com>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Mon, 31 May 2021 15:08:59 +0200
-Message-ID: <CA+HBbNFP6JAPaGvmqHT1wRoqQ6yLnrwEJ=Dk+EFGW3uttiEXAA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: mfd: Add Delta TN48M CPLD drivers bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
-        Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210515124055.22225-3-sergio.paracuellos@gmail.com>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 25, 2021 at 11:44 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Tue, May 25, 2021 at 4:47 AM Robert Marko <robert.marko@sartura.hr> wrote:
-> >
-> > On Tue, May 25, 2021 at 1:09 AM Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Mon, May 24, 2021 at 02:05:38PM +0200, Robert Marko wrote:
-> > > > Add binding documents for the Delta TN48M CPLD drivers.
-> > > >
-> > > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > > > ---
-> > > > Changes in v2:
-> > > > * Implement MFD as a simple I2C MFD
-> > > > * Add GPIO bindings as separate
-> > >
-> > > I don't understand why this changed. This doesn't look like an MFD to
-> > > me. Make your binding complete if there are missing functions.
-> > > Otherwise, stick with what I already ok'ed.
-> >
-> > It changed because the custom driver was dropped at Lee Jones-es request,
-> > and simple-mfd-i2c is now used.
->
-> To a certain extent, I don't care about the driver. A binding can't
-> know what an OS wants in terms of structure and driver structure could
-> evolve.
+On Saturday 15 May 2021 14:40:53 Sergio Paracuellos wrote:
+> This patch adds a driver for the PCIe controller of MT7621 SoC.
+> 
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> ---
+>  arch/mips/pci/Makefile     |   1 +
+>  arch/mips/pci/pci-mt7621.c | 624 +++++++++++++++++++++++++++++++++++++
+>  arch/mips/ralink/Kconfig   |   9 +-
+>  3 files changed, 633 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/mips/pci/pci-mt7621.c
+> 
+> diff --git a/arch/mips/pci/Makefile b/arch/mips/pci/Makefile
+> index f3eecc065e5c..178c550739c4 100644
+> --- a/arch/mips/pci/Makefile
+> +++ b/arch/mips/pci/Makefile
+> @@ -24,6 +24,7 @@ obj-$(CONFIG_PCI_AR2315)	+= pci-ar2315.o
+>  obj-$(CONFIG_SOC_AR71XX)	+= pci-ar71xx.o
+>  obj-$(CONFIG_PCI_AR724X)	+= pci-ar724x.o
+>  obj-$(CONFIG_PCI_XTALK_BRIDGE)	+= pci-xtalk-bridge.o
+> +obj-$(CONFIG_PCI_MT7621)	+= pci-mt7621.o
+>  #
+>  # These are still pretty much in the old state, watch, go blind.
+>  #
+> diff --git a/arch/mips/pci/pci-mt7621.c b/arch/mips/pci/pci-mt7621.c
+> new file mode 100644
+> index 000000000000..fe1945819d25
+> --- /dev/null
+> +++ b/arch/mips/pci/pci-mt7621.c
+...
+> +static int mt7621_pcie_enable_ports(struct mt7621_pcie *pcie)
+> +{
+> +	struct device *dev = pcie->dev;
+> +	struct mt7621_pcie_port *port;
+> +	u8 num_slots_enabled = 0;
+> +	u32 slot;
+> +	u32 val;
+> +	int err;
+> +
+> +	/* Setup MEMWIN and IOWIN */
+> +	pcie_write(pcie, 0xffffffff, RALINK_PCI_MEMBASE);
+> +	pcie_write(pcie, pcie->io.start, RALINK_PCI_IOBASE);
+> +
+> +	list_for_each_entry(port, &pcie->ports, list) {
+> +		if (port->enabled) {
+> +			err = clk_prepare_enable(port->clk);
+> +			if (err) {
+> +				dev_err(dev, "enabling clk pcie%d\n", slot);
+> +				return err;
+> +			}
+> +
+> +			mt7621_pcie_enable_port(port);
+> +			dev_info(dev, "PCIE%d enabled\n", port->slot);
+> +			num_slots_enabled++;
+> +		}
+> +	}
+> +
+> +	for (slot = 0; slot < num_slots_enabled; slot++) {
+> +		val = read_config(pcie, slot, PCI_COMMAND);
+> +		val |= PCI_COMMAND_MASTER;
+> +		write_config(pcie, slot, PCI_COMMAND, val);
 
-To a certain degree, I also agree, but in this case, it had to change.
-Otherwise, it would not represent the actual driver and its requirements.
+Hello! Is this part of code correct? Because it looks strange if PCIe
+controller driver automatically enables PCI bus mastering, prior device
+driver initialize itself.
 
-I agree that it was not a true MFD with only one consumer, I have
-added a reset driver
-in v3.
-I was planning on adding it later anyway.
+Moreover kernel has already function pci_set_master() for this purpose
+which is used by device drivers.
 
->
-> > > >  .../bindings/gpio/delta,tn48m-gpio.yaml       | 42 ++++++++++
-> > > >  .../bindings/mfd/delta,tn48m-cpld.yaml        | 81 +++++++++++++++++++
-> > > >  2 files changed, 123 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
-> > > >  create mode 100644 Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml b/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..aca646aecb12
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
-> > > > @@ -0,0 +1,42 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/gpio/delta,tn48m-gpio.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Delta Networks TN48M CPLD GPIO controller
-> > > > +
-> > > > +maintainers:
-> > > > +  - Robert Marko <robert.marko@sartura.hr>
-> > > > +
-> > > > +description: |
-> > > > +  This module is part of the Delta TN48M multi-function device. For more
-> > > > +  details see ../mfd/delta,tn48m-cpld.yaml.
-> > > > +
-> > > > +  GPIO controller module provides GPIO-s for the SFP slots.
-> > > > +  It is split into 3 controllers, one output only for the SFP TX disable
-> > > > +  pins, one input only for the SFP present pins and one input only for
-> > > > +  the SFP LOS pins.
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - delta,tn48m-gpio-sfp-tx-disable
-> > > > +      - delta,tn48m-gpio-sfp-present
-> > > > +      - delta,tn48m-gpio-sfp-los
-> > >
-> > > The function of the 'general purpose' IO should not be encoded into the
-> > > compatible name. Is each instance.
-> >
-> > They are not general-purpose, they are hard-wired pins.
-> > This is how the driver knows whether its output or input only,
->
-> Why does the driver need to know that? The user of the pins (the SFP
-> cage) knows the direction and should configure them the right way.
+So I think this code can confuse some device drivers...
 
-Because the GPIO regmap driver requires this information as well as setting
-the register for the directions it supports, the GPIO core requires it as well.
-You cant allow setting a direction that is not supported as GPIO core
-and other subsystems depend on knowing what directions are supported.
-
->
-> > and it's been reviewed by Andy Shevchenko.
-> > It was weird for me as well, but that is how GPIO regmap works.
-> >
-> > It was modeled by the sl28cpld GPIO driver as well as the rest of the docs
-> > as that CPLD has similar features supported to what this initial support does.
->
-> That one is at least just encoding the programming model, not the
-> connection. Maybe the driver didn't need to know there either, but I
-> can't study everyone's h/w in depth.
-
-Understood, but the driver received 2 reviews and one ACK, so the code is
-good and reviewed.
-
->
-> That one is also 8 GPIOs per instance, not 1.
-
-In this case, it's 4 pins per instance.
-
->
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  "#gpio-cells":
-> > > > +    const: 2
-> > > > +
-> > > > +  gpio-controller: true
-> > > > +
-> > > > +required:
-> > > > +  - compatible
-> > > > +  - reg
-> > > > +  - "#gpio-cells"
-> > > > +  - gpio-controller
-> > > > +
-> > > > +additionalProperties: false
-> > > > diff --git a/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml b/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..055e09129f86
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
-> > > > @@ -0,0 +1,81 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/mfd/delta,tn48m-cpld.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Delta Networks TN48M CPLD controller
-> > > > +
-> > > > +maintainers:
-> > > > +  - Robert Marko <robert.marko@sartura.hr>
-> > > > +
-> > > > +description: |
-> > > > +  Lattice CPLD onboard the TN48M switches is used for system
-> > > > +  management.
-> > > > +
-> > > > +  It provides information about the hardware model, revision,
-> > > > +  PSU status etc.
-> > > > +
-> > > > +  It is also being used as a GPIO expander for the SFP slots.
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    const: delta,tn48m-cpld
-> > > > +
-> > > > +  reg:
-> > > > +    description:
-> > > > +      I2C device address.
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  "#address-cells":
-> > > > +    const: 1
-> > > > +
-> > > > +  "#size-cells":
-> > > > +    const: 0
-> > > > +
-> > > > +required:
-> > > > +  - compatible
-> > > > +  - reg
-> > > > +  - "#address-cells"
-> > > > +  - "#size-cells"
-> > > > +
-> > > > +patternProperties:
-> > > > +  "^gpio(@[0-9a-f]+)?$":
-> > > > +    $ref: ../gpio/delta,tn48m-gpio.yaml
-> > > > +
-> > > > +additionalProperties: false
-> > > > +
-> > > > +examples:
-> > > > +  - |
-> > > > +    i2c {
-> > > > +        #address-cells = <1>;
-> > > > +        #size-cells = <0>;
-> > > > +
-> > > > +        cpld@41 {
-> > > > +            compatible = "delta,tn48m-cpld";
-> > > > +            reg = <0x41>;
-> > > > +            #address-cells = <1>;
-> > > > +            #size-cells = <0>;
-> > > > +
-> > > > +            gpio@31 {
-> > > > +                compatible = "delta,tn48m-gpio-sfp-tx-disable";
-> > > > +                reg = <0x31>;
-> > >
-> > > Encode the register address into the gpio cells.
-> > Do you have an example of that?
->
-> The 'gpio number' in the first cell is totally up to the GPIO provider
-> (really all the cells are and are opaque to the consumer, but GPIO is
-> fairly standardized). So most of the time it's just the bit offset or
-> bit and register offsets when multiple 32-bit registers.
-
-As the GPIO regmap is the ideal use case for using "reg" to get the
-register address
-and the driver itself has received multiple reviews and has been ACK-ed I would
-prefer to leave it as is.
-
-Regards,
-Robert
-
->
-> Rob
-
-
-
--- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+> +		/* configure RC FTS number to 250 when it leaves L0s */
+> +		val = read_config(pcie, slot, PCIE_FTS_NUM);
+> +		val &= ~PCIE_FTS_NUM_MASK;
+> +		val |= PCIE_FTS_NUM_L0(0x50);
+> +		write_config(pcie, slot, PCIE_FTS_NUM, val);
+> +	}
+> +
+> +	return 0;
+> +}
