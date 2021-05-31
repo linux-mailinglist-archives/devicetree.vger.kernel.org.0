@@ -2,101 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F14433958DD
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 12:20:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BAC0395938
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 12:48:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231228AbhEaKV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 06:21:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44558 "EHLO
+        id S231208AbhEaKuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 06:50:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230518AbhEaKVz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 06:21:55 -0400
-Received: from mailserv1.kapsi.fi (mailserv1.kapsi.fi [IPv6:2001:67c:1be8::25:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77BC7C061574;
-        Mon, 31 May 2021 03:20:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=ext.kapsi.fi; s=20161220; h=Subject:Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Sender:
-        Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-        :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=jTxFZ32tnC3Ys9+FwIaxl+M08wou4VWg96vlIkqQ/wA=; b=Zgw1ruXqLsR3QQlE0elhCRhz6M
-        DCk1NqucnKGaOJ4l5VFPh7YhuDZBQMM4wquACWDUUBHo/vQ/sVVsxExh1W9xFs7h0xbKEEVWYz/9C
-        rDgLVslQeXaSEdpM4iP7Z39EqY7Kayy3i9yxibxWqCsol43iFwRjaOnPkLt2OCsK03rv+WLhawFeU
-        TLXUOxqc4AWuTGkbRqRa9TekSyd9Sorx39KKrGkxqNOX461Dlszft8gjn6NUh8BQ4qbFCrYhknyeU
-        UxBtos19lLrGSKTaOMMzaTs7RI/K7pb/uKGTAax8JcEl9KkNYWHKjDvvX5apCS+Lp1GkdptNg3zhZ
-        ehAxhI5A==;
-Received: from 164-105-191-90.dyn.estpak.ee ([90.191.105.164]:55252 helo=[192.168.3.116])
-        by mailserv1.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <maukka@ext.kapsi.fi>)
-        id 1lnf1V-0001sN-3p; Mon, 31 May 2021 13:19:53 +0300
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     sandberg@mailfence.com, bgolaszewski@baylibre.com,
-        geert+renesas@glider.be, linus.walleij@linaro.org,
-        linux-gpio@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        drew@beagleboard.org, kernel test robot <lkp@intel.com>
-References: <20210325122832.119147-1-sandberg@mailfence.com>
- <20210530161333.3996-1-maukka@ext.kapsi.fi>
- <20210530161333.3996-3-maukka@ext.kapsi.fi>
- <CAHp75Vffj=8WKBO23iRxxFmva+SU5u58eBkZfMRyY6GG-6maXg@mail.gmail.com>
- <0307426d-83a3-8c45-e1a6-ffc422780cbb@ext.kapsi.fi>
- <CAHp75VfkyV+2p50c=iK5n4uiv6ptypsqc-GkWi7ZJHTs7Qmr3g@mail.gmail.com>
-From:   Mauri Sandberg <maukka@ext.kapsi.fi>
-Message-ID: <a8301a34-5ce6-6bce-63c9-3a4484a8b20d@ext.kapsi.fi>
-Date:   Mon, 31 May 2021 13:19:51 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+        with ESMTP id S230518AbhEaKuU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 06:50:20 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0880C061574;
+        Mon, 31 May 2021 03:48:39 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id e2so14465783ljk.4;
+        Mon, 31 May 2021 03:48:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lmFfe4/9OHeqy8i0LO2LfJg71Sl9QgC7tBKn0xjdl6s=;
+        b=esvekV/ekFFVolx/NAxmBTCCS8RzRTW6m02M/eySbTEuEfUPIp4NZZQ5+oQ8m2coC+
+         LMhSgM3XKyMUx46Mbf+v0EfRS89GQMyGb9/iCho9e4WBRflKg7yQ2A+tFJNK2+W4kOQ5
+         FFmGga2/lMUKbt+DoYpCye1dWuD6IZRgN8mXZPRATZAVyeas+OoalGSP7JDKZNdOZHm1
+         iOMgO/TA1FeXap7/zC04jdvrSrNE7b1poKKBtFSic5muQn+5vxBbQRC9aNQz8xLmTiiE
+         tlJzYgRNnq8HpcgPABl3x66Is3is9Fxx7T/ijF26vzc3culzw/Ck0WCZc5lSJ5lUUt+A
+         /MGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lmFfe4/9OHeqy8i0LO2LfJg71Sl9QgC7tBKn0xjdl6s=;
+        b=UmBt/WtN7NbJ0wuyx2S2OznY2eL7Wp3vOU9F/4bxSSANDV6Nw/ajT+9Lf95vBI7Iuv
+         GM0A6xT4TdPN+UM3jhDO2wUmChyWtAxk+K9Ev6WOMPthe3ccrd6+SaJtS+YrrqsDPsmr
+         K/NHTaezqmtrNWFnallh7f2M2q8iyNRbtnj1yFoIsuaBzpWxGmEqYCfdDGGuGWkdbuAm
+         NPHZx0XjJNUCYGRkYGD9Hfj2lfPywMF6zFkTV9IjDrfADP/w6WfQBx+hF77G+faaLZ7h
+         EGJquEbrY1usidxLQ9fp0T71qm3wGJ2aV1Vde6oQp238LE0l0dFqwWGaRzXKSDD0WCqV
+         3xWg==
+X-Gm-Message-State: AOAM530LSB6hswfw2LzxNTYZqp7CKMwLdPrX3ChhxcZo1pk12YU91Nom
+        0zFDrYdA+9/5v0JBFSkTLSTeGQdMH1qMq4DBOTU=
+X-Google-Smtp-Source: ABdhPJzLLkD5MNOKZEm9VX06SK3/IgRQ+JyLH0lcamRMlwIJp4ODkDBlG3Bh8Iu9wPulB7c9KZ16Uuvo/g6z2xBK660=
+X-Received: by 2002:a2e:6e13:: with SMTP id j19mr16281103ljc.116.1622458116706;
+ Mon, 31 May 2021 03:48:36 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAHp75VfkyV+2p50c=iK5n4uiv6ptypsqc-GkWi7ZJHTs7Qmr3g@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
-X-SA-Exim-Connect-IP: 90.191.105.164
-X-SA-Exim-Mail-From: maukka@ext.kapsi.fi
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mailserv1.kapsi.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=5.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,TVD_RCVD_IP,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.2
-Subject: Re: [PATCH v4 2/2] gpio: gpio-mux-input: add generic gpio input
- multiplexer
-X-SA-Exim-Version: 4.2.1 (built Tue, 02 Aug 2016 21:08:31 +0000)
-X-SA-Exim-Scanned: Yes (on mailserv1.kapsi.fi)
+References: <20210530204410.676831-1-festevam@gmail.com> <20210530204410.676831-2-festevam@gmail.com>
+ <0e5d7662-245d-d87b-c0bf-3cd0171af527@kontron.de>
+In-Reply-To: <0e5d7662-245d-d87b-c0bf-3cd0171af527@kontron.de>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 31 May 2021 07:48:25 -0300
+Message-ID: <CAOMZO5COoQuoJY-_nEXavSwKWnjmEXw5jOO3+n3ksiuKF0g4AQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] media: i2c: adv7180: Allow the control of the reset pin
+To:     Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-media <linux-media@vger.kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Frieder,
 
-On 30.5.2021 22.38, Andy Shevchenko wrote:
-> On Sun, May 30, 2021 at 10:02 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
->> On 30.5.2021 21.09, Andy Shevchenko wrote:
->>> On Sun, May 30, 2021 at 7:16 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
->>>> Reported-by: kernel test robot <lkp@intel.com>
->>> Is it a fix? Shall we add the Fixes tag?
->> In the v1 a build bot complained about .owner along these lines:
->>
->> --- snip ----
->> If you fix the issue, kindly add following tag as appropriate
->> Reported-by: kernel test robot <lkp@intel.com>
->>
->>
->> cocci warnings: (new ones prefixed by >>)
->>   >> drivers/gpio/gpio-mux-input.c:138:3-8: No need to set .owner here.
->> The core will do it.
->>
->> Please review and possibly fold the followup patch.
->> --- snip ---
->>
->> I removed the .owner attribute in v2 as requested but wasn't really sure
->> whether it was "appropriate"
->> to add the tag so I put it there anyhow. Technically, this does not fix
->> any previous commit.
-> For this kind of thing you may attribute the reporter(s) by mentioning
-> them in the comment lines / cover letter.
-It's there in the patch version notes so the 'Reported-by' was 
-unnecessary. Should it be removed?
-That is, is there a tool sitting somwhere that tries to match reports 
-and their fixes?
+On Mon, May 31, 2021 at 4:02 AM Frieder Schrempf
+<frieder.schrempf@kontron.de> wrote:
 
+> The datasheet specifies a delay of 5 ms between deasserting the PWRDWN and the RESET GPIO. Also this function is named adv7180_set_power_pin() which doesn't fit anymore if we also handle the RESET GPIO here.
+>
+> As I was recently working with the ADV7280-M, I came up with a similar patch: https://git.kontron-electronics.de/linux/linux/-/commit/3619ed166140a0499ada7b14e5f1846a0ed7d18d.
+>
+> What do you think?
+
+Thanks for the review. I will send a v2 using your patch instead of mine.
+
+Thanks,
+
+Fabio Estevam
