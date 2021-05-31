@@ -2,141 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE410395346
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 00:44:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 854583953CB
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 04:00:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229887AbhE3WqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 May 2021 18:46:17 -0400
-Received: from lb2-smtp-cloud8.xs4all.net ([194.109.24.25]:44195 "EHLO
-        lb2-smtp-cloud8.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230006AbhE3WqQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 30 May 2021 18:46:16 -0400
-Received: from copland.sibelius.xs4all.nl ([83.163.83.176])
-        by smtp-cloud8.xs4all.net with ESMTP
-        id nUANlDkLZIpGynUAelJsIg; Mon, 31 May 2021 00:44:36 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
-        t=1622414676; bh=xS8tcoAoXQ7rfnmN3vR74RBJgyU9e6+aspNVHKO9ktk=;
-        h=From:To:Subject:Date:Message-Id:MIME-Version:From:Subject;
-        b=TkcQU1dgiVvL2un05BM81xNwIiivCiP49ex4xsuUJ5ydyerksfvuUKrqQ7iyrU/gY
-         +8WPNjHukPKXHeArf2BMLE9VPt6lhfrsjmwjhLW8HLIZMHjcwiVL1FPBS/IGnh+1W5
-         Pg5BaTmQ3WKjplSinW0xd4Hd31mZKO/6w7JipzW/3P2tKJy44zxq7sJBkmAgu7QwWp
-         +pIvqXBadTDmUSKGVooJ1+u9jJSLQDDABuHLc46V03uI4yRlk0z2GPDnXfE5OsHFMg
-         xWCg1kDLfpVMl35TwrB0064zX3Jv7GK3PdnGiDAeEnMH6qzyNRD0z6QELy/GuYaCfl
-         xT/kCI523gvgA==
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     devicetree@vger.kernel.org
-Cc:     maz@kernel.org, robin.murphy@arm.com,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Hector Martin <marcan@marcan.st>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        id S229976AbhEaCCT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 May 2021 22:02:19 -0400
+Received: from mail-m17639.qiye.163.com ([59.111.176.39]:50862 "EHLO
+        mail-m17639.qiye.163.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229897AbhEaCCT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 May 2021 22:02:19 -0400
+X-Greylist: delayed 539 seconds by postgrey-1.27 at vger.kernel.org; Sun, 30 May 2021 22:02:18 EDT
+Received: from vivo-HP-ProDesk-680-G4-PCI-MT.vivo.xyz (unknown [58.251.74.232])
+        by mail-m17639.qiye.163.com (Hmail) with ESMTPA id 825FF380176;
+        Mon, 31 May 2021 09:51:38 +0800 (CST)
+From:   Wang Qing <wangqing@vivo.com>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: apple: Add PCIe node
-Date:   Mon, 31 May 2021 00:44:01 +0200
-Message-Id: <20210530224404.95917-3-mark.kettenis@xs4all.nl>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210530224404.95917-1-mark.kettenis@xs4all.nl>
-References: <20210530224404.95917-1-mark.kettenis@xs4all.nl>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CMAE-Envelope: MS4xfFmRtx2o8H/8LE3fQg/QQ+gZGAzebIaMe26DrRP04W43Y068UWcZ2PrSxggRBr+OEdBE1iV3d/UB4XZeG0jT+hsZGcDh29DMIWYL2dqYLkYDbJk3yxgV
- ouFFmRzUCJOtLCSPU6CTF91KLyrtJhPQhM1YDqspf5hHOOritGH6vZ0w0YQfQj06pveeKxYrvA/pGBvVJldazPMUOskmv56/O0o2cim/Bw48KgYKpX4hQVd/
- YMoqvCnmesvA7epQoaxptg4i4sKalbH80jRWxaf6nxWkrtg4zCbM3SkCKQhTVs6chock156q5/HuzJ+7Ny1sHJpjI4o6LiQVimswAiN5PTgB1c0Pcw3bjhAS
- JYEgfmnkV4PIQDkAcCKIZ/LmLQnSabQA+CMc+ytquKue56WResWUUlzY758to6V9O3Kxm3hU+BtjTMJkQzkfEp+Ydd6Bm/oTgDadDngWcm8hqcpK4vNbXzrx
- TcjtDfz1bd17hBteeYLNWL7xUVQE+6dIJZvwhtKxkOZzNNZav03sVBCwmGo=
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Wang Qing <wangqing@vivo.com>
+Subject: [PATCH V9,RESEND,0/2] watchdog: mtk: support pre-timeout when the bark irq is available
+Date:   Mon, 31 May 2021 09:51:33 +0800
+Message-Id: <1622425895-32111-1-git-send-email-wangqing@vivo.com>
+X-Mailer: git-send-email 2.7.4
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgYFAkeWUFZS1VLWVdZKFlBSE83V1ktWUFJV1kPCR
+        oVCBIfWUFZGU0YQ1ZMSR1JTR1CTUtMSU9VEwETFhoSFyQUDg9ZV1kWGg8SFR0UWUFZT0tIVUpKS0
+        hKTFVLWQY+
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NiI6ARw5LD8PLxMfFg4RPz5L
+        TUswC09VSlVKTUlJT0lOQ0JCSUtKVTMWGhIXVQwaFRwKEhUcOw0SDRRVGBQWRVlXWRILWUFZTkNV
+        SU5KVUxPVUlISVlXWQgBWUFKTEtDNwY+
+X-HM-Tid: 0a79c01e8f7ed994kuws825ff380176
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Mark Kettenis <kettenis@openbsd.org>
+Use the bark interrupt as the pretimeout notifier if available.
+The pretimeout notification shall occur at timeout-sec/2.
 
-Add node corresponding to the apcie,t8103 node in the
-Apple device tree for the Mac mini (M1, 2020).
+Wang Qing (2):
+  watchdog: mtk: support pre-timeout when the bark irq is available
+  doc: mtk-wdt: support pre-timeout when the bark irq is available
 
-Clock references and DART (IOMMU) references are left out at the
-moment and will be added once the appropriate bindings have been
-settled upon.
+ .../devicetree/bindings/watchdog/mtk-wdt.txt       |  5 ++
+ drivers/watchdog/mtk_wdt.c                         | 77 ++++++++++++++++++++--
+ 2 files changed, 77 insertions(+), 5 deletions(-)
 
-Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
----
- arch/arm64/boot/dts/apple/t8103.dtsi | 63 ++++++++++++++++++++++++++++
- 1 file changed, 63 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-index 503a76fc30e6..cd3ebb940e86 100644
---- a/arch/arm64/boot/dts/apple/t8103.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-@@ -214,5 +214,68 @@ pinctrl_smc: pinctrl@23e820000 {
- 				     <AIC_IRQ 396 IRQ_TYPE_LEVEL_HIGH>,
- 				     <AIC_IRQ 397 IRQ_TYPE_LEVEL_HIGH>;
- 		};
-+
-+		pcie0: pcie@690000000 {
-+			compatible = "apple,t8103-pcie", "apple,pcie";
-+			device_type = "pci";
-+
-+			reg = <0x6 0x90000000 0x0 0x1000000>,
-+			      <0x6 0x80000000 0x0 0x4000>,
-+			      <0x6 0x81000000 0x0 0x8000>,
-+			      <0x6 0x82000000 0x0 0x8000>,
-+			      <0x6 0x83000000 0x0 0x8000>;
-+			reg-names = "config", "rc", "port0", "port1", "port2";
-+
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 695 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 698 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 701 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			msi-controller;
-+			msi-parent = <&pcie0>;
-+			msi-ranges = <704 32>;
-+
-+			bus-range = <0 3>;
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			ranges = <0x43000000 0x6 0xa0000000 0x6 0xa0000000 0x0 0x20000000>,
-+				 <0x02000000 0x0 0xc0000000 0x6 0xc0000000 0x0 0x40000000>;
-+
-+			pinctrl-0 = <&pcie_pins>;
-+			pinctrl-names = "default";
-+
-+			pci@0,0 {
-+				device_type = "pci";
-+				reg = <0x0 0x0 0x0 0x0 0x0>;
-+				reset-gpios = <&pinctrl_ap 152 0>;
-+				max-link-speed = <2>;
-+
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges;
-+			};
-+
-+			pci@1,0 {
-+				device_type = "pci";
-+				reg = <0x800 0x0 0x0 0x0 0x0>;
-+				reset-gpios = <&pinctrl_ap 153 0>;
-+				max-link-speed = <2>;
-+
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges;
-+			};
-+
-+			pci@2,0 {
-+				device_type = "pci";
-+				reg = <0x1000 0x0 0x0 0x0 0x0>;
-+				reset-gpios = <&pinctrl_ap 33 0>;
-+				max-link-speed = <1>;
-+
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges;
-+			};
-+		};
- 	};
- };
 -- 
-2.31.1
+2.7.4
 
