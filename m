@@ -2,103 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E15B8395FDA
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 16:15:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 574EB3960A6
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 16:29:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233143AbhEaOQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 10:16:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40208 "EHLO
+        id S232076AbhEaOam (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 10:30:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233631AbhEaOOf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 10:14:35 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21455C061574;
-        Mon, 31 May 2021 06:41:26 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id c124so6445315qkd.8;
-        Mon, 31 May 2021 06:41:26 -0700 (PDT)
+        with ESMTP id S233874AbhEaO1g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 10:27:36 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45001C08E8AC
+        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 06:47:00 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id l10-20020a17090a150ab0290162974722f2so10807pja.2
+        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 06:47:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:content-transfer-encoding:date:message-id:from:to:cc
-         :subject:references:in-reply-to;
-        bh=XnIBaAJk34SkGPoBRAYrEmSzR77d9Lb1dvFbEISw98E=;
-        b=RaqoFaQs26hbcut6UFNR3n7Y8G5hnJJ9ifDHdcFfkZIiY/NoKJCoaO5yvf90dyE/60
-         CTF12bT3oTfR8L6g0zLO0ZP5hb+LK27eVWmpcxABMU8a3yVGQYtyv7FgBn18MvNwJ3XM
-         wgtAn0V0zuEcMXqzkoxOVjZ48KZaoSJmQ4hkl1DzzwlDxbQlJb2lL3HF9GMqjrW8tG9u
-         YfGiD6uT+ovoYOjk+kWlu0bq5NKswn0p/xdSiAHRHwoGojN3U60vBIHyVIBVe6Zp+uw/
-         I5xLoOwoKAuPaKLpJaj6OvMfDZHrvrxMP4bKCDVE5KE2lfoNntaRJCtOdIiFOoFraBxp
-         Kbug==
+        d=nigauri-org.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vJMi78mWq5HtlB9ulTeayHA8zLqcXh/C4DEKGpxzKBs=;
+        b=tOQcg02H2G99bgAhpIXY4UA4Uxk3AvlreiKnqu2WJXRRuaLDQX9qpJ0527Clrakkls
+         fw9QrHLm6U0vWl7dK/tbGP477df8dt/y9mGRnsHcTh9jwJJ6E6dEe6KGLGIMZTYWrUtv
+         evIsBSNG/SVHFuaQiurGW3Om65552fCExZ/LqZNs2xafD1WNBXLiPyfppOxuYwiamC8j
+         P/yIxdtuS11mFA9abzsxwIUtxHCog6xf5tWIUieN/IBbk2Hu0PmNxvSHYLRAUR76gyqf
+         AzNZ4foUkt+cmR4Tb/If/WVnTik/e9tZoVoP2QeET+tsrCoE3MkGEmkS4PsHeXwLJ2Sz
+         6vcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding:date
-         :message-id:from:to:cc:subject:references:in-reply-to;
-        bh=XnIBaAJk34SkGPoBRAYrEmSzR77d9Lb1dvFbEISw98E=;
-        b=g+UgO1FtBSMdi2yl5caiV9TeZ7A/9MR9TPuVmI9QhDnfTjEd0mgMSOZ5DCcVLLrVFf
-         MVQqgjjmArBgzkTOpR4GprDj13S7vT9hvXnwVdetMER1HS82lhbECRSDRjnxx/7QzTrQ
-         fYqVFSF0clrR+GbcEeq5l27AwO3Z9x2/pSA5pRmH7jIdlpK9+fqKjpbxmpnsJuqbbQwc
-         akpkptpGxuVR9VkFj/AyyICbs77ZPlEHmzsyHwYI9uy4TZoOoDKp/GPYsaQFRx1WSvM4
-         O3aksEtAJmtLPLOSFYALp7oseXw9B2zxlFeGAH19rke+mP7N4xojCnAZXRzVYCTqhqZ2
-         SBpw==
-X-Gm-Message-State: AOAM530A2/ZXh4/VA568igfr4o6YJmFQfL4UNQLOmH5G1v5h1nrR6n2k
-        w33t7FOofPhHUyJJrzWQ/tg=
-X-Google-Smtp-Source: ABdhPJyBkCtf73OguHkU1IGu+i8ZUpuogY4xTBiCsmDv7zS2uScmDJWndQ33sLV71HFky6UbXd18Cw==
-X-Received: by 2002:a05:620a:240c:: with SMTP id d12mr16704188qkn.190.1622468485359;
-        Mon, 31 May 2021 06:41:25 -0700 (PDT)
-Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id f15sm8488007qtg.25.2021.05.31.06.41.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 May 2021 06:41:24 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Mon, 31 May 2021 09:41:24 -0400
-Message-Id: <CBRH2RWDHKFD.20XDGCMHA282F@shaak>
-From:   "Liam Beguin" <liambeguin@gmail.com>
-To:     "Peter Rosin" <peda@axentia.se>, <jic23@kernel.org>,
-        <lars@metafoo.de>, <pmeerw@pmeerw.net>
-Cc:     <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-Subject: Re: [PATCH v1 8/9] dt-bindings: iio: afe: add binding for
- temperature-sense-current
-References: <20210530005917.20953-1-liambeguin@gmail.com>
- <20210530005917.20953-9-liambeguin@gmail.com>
- <9f38ad0a-0a08-458d-b721-f4d424cecc6d@axentia.se>
- <fe79916e-8ea8-5059-fd68-0e0ec621a2e1@axentia.se>
-In-Reply-To: <fe79916e-8ea8-5059-fd68-0e0ec621a2e1@axentia.se>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vJMi78mWq5HtlB9ulTeayHA8zLqcXh/C4DEKGpxzKBs=;
+        b=gOaiBs+KvI/XRWkaSuxlS830SCeCk/iedLG0RIoX/PUSMKtBAIIll8d3yu+QWv3u9O
+         1ysUUwpbROGB0Yjx99GHsesgWgvq9jgRUYzon3rLLG1x0BwrfPtBsR/NXzCKNVNkI6m7
+         hRLTKXXgCiWT1DJDWuF3qPTUjDCSKK8DtmQ3WtejRBhTf31OfX3OG78mShz1YO5IQLsT
+         FrsZwA5mYjJcolN23eleFlRfb4LIg7FEavfBkiEyRf4kzcwKmmfGY9Rxvmavru6gSIwh
+         FEOMdenrHCkzpH2BgFmw/ApvH8gq9F34nbF3CwWfzD3O3uwQ0yK5lkJOWhuLMhwCv1RI
+         VS2A==
+X-Gm-Message-State: AOAM533feMFQ5b6h82Zq0RgS8mgQu7DOXNZzeCXw+UhlnHnh8L9K9n0k
+        MJvzxhH+wN26FwA4nEwvqq+T
+X-Google-Smtp-Source: ABdhPJwz7ahaRAzjNH/I54t0SlMWfy5SJoD/YLCA10mESWScv0fwZ5XZbyaLSrXlauiw4+5Qy2xcgA==
+X-Received: by 2002:a17:902:728e:b029:101:c3b7:a47f with SMTP id d14-20020a170902728eb0290101c3b7a47fmr12962198pll.21.1622468819856;
+        Mon, 31 May 2021 06:46:59 -0700 (PDT)
+Received: from localhost ([2405:6581:5360:1800:7285:c2ff:fec2:8f97])
+        by smtp.gmail.com with ESMTPSA id t7sm11087433pjr.29.2021.05.31.06.46.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 May 2021 06:46:59 -0700 (PDT)
+From:   Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+To:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Subject: [PATCH] dt-bindings: hwmon: Fix typo in TI ADS7828 bindings
+Date:   Mon, 31 May 2021 22:46:55 +0900
+Message-Id: <20210531134655.720462-1-iwamatsu@nigauri.org>
+X-Mailer: git-send-email 2.30.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peter,
+Fix typo in example for DT binding, changed from 'comatible'
+to 'compatible'.
 
-On Mon May 31, 2021 at 4:58 AM EDT, Peter Rosin wrote:
->
->
-> On 2021-05-31 09:28, Peter Rosin wrote:
-> >> +  use-kelvin-scale:
-> >> +    type: boolean
-> >> +    description: |
-> >> +      Boolean indicating if alpha uses Kelvin degrees instead of Cels=
-ius.
-> >=20
-> > It's "kelvin", not "Kelvin degrees", and it's "degrees Celsius".
+Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+---
+ Documentation/devicetree/bindings/hwmon/ti,ads7828.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I'll rephrase the description base on your comment.
-
-I also thought of using alpha-micro-amps-per-degree-celsius and
-alpha-micro-amps-kelvin instead. I don't know if that would be better.
-
-Thanks,
-Liam
-
-> >=20
-> > But what exactly is this property for? We always want degrees Celsius, =
-don't we,
-> > and any offset can be handled...with an offset. No?
->
-> Ahh, I hit send too soon. I now see that you calculate the offset in the
-> driver
-> instead of requiring the devicetree author to do it "by hand".
->
-> Cheers,
-> Peter
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,ads7828.yaml b/Documentation/devicetree/bindings/hwmon/ti,ads7828.yaml
+index 33ee575bb09da1..926be9a29044b2 100644
+--- a/Documentation/devicetree/bindings/hwmon/ti,ads7828.yaml
++++ b/Documentation/devicetree/bindings/hwmon/ti,ads7828.yaml
+@@ -49,7 +49,7 @@ examples:
+         #size-cells = <0>;
+ 
+         adc@48 {
+-            comatible = "ti,ads7828";
++            compatible = "ti,ads7828";
+             reg = <0x48>;
+             vref-supply = <&vref>;
+             ti,differential-input;
+-- 
+2.30.0
 
