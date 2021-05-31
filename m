@@ -2,170 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 481F639612D
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 16:35:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 350CE3962BE
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 16:59:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233652AbhEaOhT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 10:37:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60974 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233071AbhEaOfK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 31 May 2021 10:35:10 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2EC2361C49;
-        Mon, 31 May 2021 13:50:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622469044;
-        bh=2hB1FM6ZqXS6rP1wgN1/iBHGjsSsIUt5rITLK+PQftg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EBJSJzAVAAqwPHVXZpQxMRb+PDJc5H8rfzRyAamo/3Fb+2jxnnrwMJfviLoCWSsPj
-         nAe1YvlbFeZ/MqcLd5mK5UeWno51r3CNGyFzlAkpJ1F1wo8Wt/2nVeKUU18VzEyl4O
-         bgb+obacin2M8crnRRger0lHvz2NcvQvbEfeZNPU5upgmaN4/QNlQ8+PgULWX+dj8b
-         YTIOrYiXArammEpBto6ouJS8g/4kbO1wxAkSiBFX0tNbGfAWo5xrGfibD/ofYrYl6G
-         pXUwATwqzwEqjmKnJa5yrEV6n+mkGkr0IBha2NM6LGwNvjLm4uj7Roi8GwI1BgSBjz
-         tX/mgynY6SvGw==
-Received: by pali.im (Postfix)
-        id B7C04B84; Mon, 31 May 2021 15:50:41 +0200 (CEST)
-Date:   Mon, 31 May 2021 15:50:41 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     "open list:MIPS" <linux-mips@vger.kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        John Crispin <john@phrozen.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-staging@lists.linux.dev,
-        Greg KH <gregkh@linuxfoundation.org>,
-        NeilBrown <neil@brown.name>,
-        Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-pci@vger.kernel.org
-Subject: Re: [PATCH 2/4] MIPS: pci: Add driver for MT7621 PCIe controller
-Message-ID: <20210531135041.42ovpmbwuc3yfkaw@pali>
-References: <20210515124055.22225-1-sergio.paracuellos@gmail.com>
- <20210515124055.22225-3-sergio.paracuellos@gmail.com>
- <20210531131431.bzsvmefqdyawmeo2@pali>
- <CAMhs-H80=7jctPT70rOmcwcqPw+9iUF84_ZCgGr-TKwJ4eB2Lg@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMhs-H80=7jctPT70rOmcwcqPw+9iUF84_ZCgGr-TKwJ4eB2Lg@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+        id S233707AbhEaPAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 11:00:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49188 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234358AbhEaO7U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 10:59:20 -0400
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A4B9C061236;
+        Mon, 31 May 2021 07:03:26 -0700 (PDT)
+Received: by mail-qt1-x829.google.com with SMTP id d12so2372172qtq.4;
+        Mon, 31 May 2021 07:03:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:content-transfer-encoding:date:message-id:to:cc
+         :subject:from:references:in-reply-to;
+        bh=y2MDXnI/OIKxWHEtIFBSOW9PzSGP8Ug1F4tSdphQJdg=;
+        b=GvykXANtw8VwODfnhDd6eSNqTgmVMHdl2GChtd7P16iokl17GMuiHXlIXL5Zn5lZ6P
+         pnXeemIIAHCuI7bxM8HQeoVQ5e+oikH+1ezUR7DSewH4BnqPDrshCeADClbB/xdtT373
+         xQIoOmgNQClnWxioQq2EzG+wp27jqt8NqaJzY4gbGatDlSmScYVs9hcgG66TG0h1phE4
+         Lc7cRjnx40NYIFCn6I1sakLsjsJt7N6EF+Wb82T1hTU3Ge6QBp/QJLCl+rDyrt+z3GGf
+         yyzgQl4brupNSv306IoKOWVybk54BQ/fLwWsWj7WI/r0ZURxx8B6EaP3OaZ1zYAwLONH
+         iCIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:to:cc:subject:from:references:in-reply-to;
+        bh=y2MDXnI/OIKxWHEtIFBSOW9PzSGP8Ug1F4tSdphQJdg=;
+        b=WhFgR3lvokpUH8l9sSIXpqX3axEnZ6h3OeVXLq2clyfz8LZcF9VW0Y8z1LmuMF+gyb
+         D6Vt3gcH7haDPj6OiaRP57ol8attJ3ApFU++3FX6xj/KiOcZhelTBJgG1oXPlO3FW8Jf
+         Oq+nBEQ6QHvjti5fr/ThaoCZGOJVw6Mlp9mWvIKM+IWisFvEbPdxU1BSeU1lxuMfmPKv
+         c1ykvMuOKLVOVOQhvVE+jB3NtDE3U/NVl2o8B4cPgdsQXmknA7CVhvNPZadytttfZoZW
+         YUfZzpSVbi8icFGe7e1MfRdcemGUBnuu9lB3JsDVQHniTsD/ctf8I9D6M879MUgGCyn2
+         TklQ==
+X-Gm-Message-State: AOAM531vMD9k8Dhsx2dxM3KXDeWy4PTBkKAV0kUORXvANfbSgu/nFeRh
+        8RYACg3AFrpes643ERv0Z9g=
+X-Google-Smtp-Source: ABdhPJyimULmdTkrROg5WHI4lKMoCvfT1Ruqp4XVScUneBYoC1x3sQxiHKGLicO9OVy0EtaMiZTKWA==
+X-Received: by 2002:ac8:1483:: with SMTP id l3mr14900526qtj.142.1622469805558;
+        Mon, 31 May 2021 07:03:25 -0700 (PDT)
+Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id 7sm9086249qtu.38.2021.05.31.07.03.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 May 2021 07:03:24 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Mon, 31 May 2021 10:03:23 -0400
+Message-Id: <CBRHJM8ANOSE.2Q5C1FVQS5QOA@shaak>
+To:     "Peter Rosin" <peda@axentia.se>, <jic23@kernel.org>,
+        <lars@metafoo.de>, <pmeerw@pmeerw.net>
+Cc:     <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
+Subject: Re: [PATCH v1 9/9] dt-bindings: iio: afe: add binding for
+ temperature-sense-amplifier
+From:   "Liam Beguin" <liambeguin@gmail.com>
+References: <20210530005917.20953-1-liambeguin@gmail.com>
+ <20210530005917.20953-10-liambeguin@gmail.com>
+ <0286de71-1b04-0956-be4e-f38573c6fea2@axentia.se>
+In-Reply-To: <0286de71-1b04-0956-be4e-f38573c6fea2@axentia.se>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday 31 May 2021 15:39:55 Sergio Paracuellos wrote:
-> Hi Pali,
-> 
-> Thanks for your comments.
-> 
-> On Mon, May 31, 2021 at 3:14 PM Pali Rohár <pali@kernel.org> wrote:
-> >
-> > On Saturday 15 May 2021 14:40:53 Sergio Paracuellos wrote:
-> > > This patch adds a driver for the PCIe controller of MT7621 SoC.
-> > >
-> > > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > > ---
-> > >  arch/mips/pci/Makefile     |   1 +
-> > >  arch/mips/pci/pci-mt7621.c | 624 +++++++++++++++++++++++++++++++++++++
-> > >  arch/mips/ralink/Kconfig   |   9 +-
-> > >  3 files changed, 633 insertions(+), 1 deletion(-)
-> > >  create mode 100644 arch/mips/pci/pci-mt7621.c
-> > >
-> > > diff --git a/arch/mips/pci/Makefile b/arch/mips/pci/Makefile
-> > > index f3eecc065e5c..178c550739c4 100644
-> > > --- a/arch/mips/pci/Makefile
-> > > +++ b/arch/mips/pci/Makefile
-> > > @@ -24,6 +24,7 @@ obj-$(CONFIG_PCI_AR2315)    += pci-ar2315.o
-> > >  obj-$(CONFIG_SOC_AR71XX)     += pci-ar71xx.o
-> > >  obj-$(CONFIG_PCI_AR724X)     += pci-ar724x.o
-> > >  obj-$(CONFIG_PCI_XTALK_BRIDGE)       += pci-xtalk-bridge.o
-> > > +obj-$(CONFIG_PCI_MT7621)     += pci-mt7621.o
-> > >  #
-> > >  # These are still pretty much in the old state, watch, go blind.
-> > >  #
-> > > diff --git a/arch/mips/pci/pci-mt7621.c b/arch/mips/pci/pci-mt7621.c
-> > > new file mode 100644
-> > > index 000000000000..fe1945819d25
-> > > --- /dev/null
-> > > +++ b/arch/mips/pci/pci-mt7621.c
-> > ...
-> > > +static int mt7621_pcie_enable_ports(struct mt7621_pcie *pcie)
-> > > +{
-> > > +     struct device *dev = pcie->dev;
-> > > +     struct mt7621_pcie_port *port;
-> > > +     u8 num_slots_enabled = 0;
-> > > +     u32 slot;
-> > > +     u32 val;
-> > > +     int err;
-> > > +
-> > > +     /* Setup MEMWIN and IOWIN */
-> > > +     pcie_write(pcie, 0xffffffff, RALINK_PCI_MEMBASE);
-> > > +     pcie_write(pcie, pcie->io.start, RALINK_PCI_IOBASE);
-> > > +
-> > > +     list_for_each_entry(port, &pcie->ports, list) {
-> > > +             if (port->enabled) {
-> > > +                     err = clk_prepare_enable(port->clk);
-> > > +                     if (err) {
-> > > +                             dev_err(dev, "enabling clk pcie%d\n", slot);
-> > > +                             return err;
-> > > +                     }
-> > > +
-> > > +                     mt7621_pcie_enable_port(port);
-> > > +                     dev_info(dev, "PCIE%d enabled\n", port->slot);
-> > > +                     num_slots_enabled++;
-> > > +             }
-> > > +     }
-> > > +
-> > > +     for (slot = 0; slot < num_slots_enabled; slot++) {
-> > > +             val = read_config(pcie, slot, PCI_COMMAND);
-> > > +             val |= PCI_COMMAND_MASTER;
-> > > +             write_config(pcie, slot, PCI_COMMAND, val);
-> >
-> > Hello! Is this part of code correct? Because it looks strange if PCIe
-> > controller driver automatically enables PCI bus mastering, prior device
-> > driver initialize itself.
-> >
-> > Moreover kernel has already function pci_set_master() for this purpose
-> > which is used by device drivers.
-> >
-> > So I think this code can confuse some device drivers...
-> 
-> I agree that we have pci_set_master() to be used in pci device driver
-> code. Original controller driver set this bit for enabled slots. Since
-> there is no documentation at all for the PCI in this SoC
+Hi Peter,
 
-I see... this is really a big problem to do any driver development...
+On Mon May 31, 2021 at 3:32 AM EDT, Peter Rosin wrote:
+> Hi!
+>
+> On 2021-05-30 02:59, Liam Beguin wrote:
+> > From: Liam Beguin <lvb@xiphos.com>
+> >=20
+> > An ADC is often used to measure other quantities indirectly. This
+> > binding describe one cases, the measurement of a temperature through a
+> > voltage sense amplifier such as the LTC2997.
+> >=20
+> > Signed-off-by: Liam Beguin <lvb@xiphos.com>
+>
+> What's the significant difference between this and the RTD binding? Does
+> not both simply scale/offset a voltage to a temperature?
+>
 
-> I have
-> maintained the setting in the driver in a cleaner way. See original
-> driver code and the setting here [0]. There is no other reason than
-> that. I am ok with removing this from here and testing with my two
-> devices that everything is still ok if having this setting in the pci
-> controller driver is a real problem.
+The way I looked at it was one binding per sensor type (resistance
+driven, current driven, and voltage driven).
 
-You can run lspci -nnvv with and without PCI_COMMAND_MASTER code and
-then compare outputs.
+Thinking about it more, these three bindings could be factorized into
+one if the user is required to enter parameters "by hand".
 
-Device drivers for sure enable PCI_COMMAND_MASTER at the time when it is
-needed, so it is possible that there would be no difference in lspci
-output.
+These could become something like:
+- sense-gain-mult
+- sense-gain-div
+- sense-offset
 
-> [0]: https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git/tree/drivers/staging/mt7621-pci/pci-mt7621.c?h=v4.18#n676
-> 
-> Best regards,
->     Sergio Paracuellos
-> >
-> > > +             /* configure RC FTS number to 250 when it leaves L0s */
-> > > +             val = read_config(pcie, slot, PCIE_FTS_NUM);
-> > > +             val &= ~PCIE_FTS_NUM_MASK;
-> > > +             val |= PCIE_FTS_NUM_L0(0x50);
-> > > +             write_config(pcie, slot, PCIE_FTS_NUM, val);
-> > > +     }
-> > > +
-> > > +     return 0;
-> > > +}
+I like the idea of having the "datasheet parameters" in the devicetree,
+but this would be a lot more versatile.
+
+What do you think?
+
+Cheers,
+Liam
+
+> Cheers,
+> Peter
+
