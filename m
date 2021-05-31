@@ -2,77 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C11A83955E4
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 09:18:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACB9539560A
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 09:25:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230246AbhEaHUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 03:20:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33328 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230150AbhEaHUE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 31 May 2021 03:20:04 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 391FD61186;
-        Mon, 31 May 2021 07:18:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622445505;
-        bh=NwKJSIDFWeCFMJuw/KCGn/ZQUFJqsq4w0+WD258Sv0Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Ckzb9zbO6Tc674QzI3Gv5MJM2m5giiqLZJCGwIumpgv+pEfbUjU5DJBl0njVWwIlG
-         Kz9Gja4elz+cd1Mg0kkwZAg7I81Jbu3bxE38hkBVAsXfKvRNb0/oWZNXMJYaoIQAjD
-         G9yV1ISamcEsm3JNhyBW5v2HvWJ/20JqtzQEAYeuNzbHRkmhKcQXlyQJAKQlcgzQrO
-         oNKmQy5QOY5FdQnj6uOK7yv3C5ajHpSfbAHURwuYPtLZKNQYbqIFygtHQSHwBRg+PB
-         38Cu2dJLK5jS9+ulPXO6X9ZPDVX3peWgGJKosTJx8wAHRVJYujOuSmcV5A+izxQ6Gq
-         xdwPDdcMKQfeg==
-Date:   Mon, 31 May 2021 12:48:21 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     linux-can@vger.kernel.org, Marc Kleine-Budde <mkl@pengutronix.de>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/3] phy: core: Reword the comment specifying the
- units of max_link_rate to be Mbps
-Message-ID: <YLSNvUDJZ/v6NTuN@vkoul-mobl.Dlink>
-References: <20210510051006.11393-1-a-govindraju@ti.com>
- <20210510051006.11393-2-a-govindraju@ti.com>
+        id S230263AbhEaH1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 03:27:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33140 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230243AbhEaH1D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 03:27:03 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EF7FC061761
+        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 00:25:21 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id b13so15325243ybk.4
+        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 00:25:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7BHnZIGW8dlfXz29SYi4Txt2W/u/uTvUIzT8Fl03vi4=;
+        b=qg7s9p4d8oAYIvK8vQlIe5pB3OADZbEcHuASyXCVSwoyOsOZXuYOhMbrAD/CpWl5dL
+         ctl2bynl4Ns8RgSs9FU2OK61z+lOrI1rl55ZcwmZDg0pXhqU2jaCjGskZ1Yn2+60ctP4
+         ULF+xM0ZzJuOYLjZJYoYba7igcY1FVaFpsPpd5Xel/+TILWj0UvT5uJT9aSEjSyE2BMg
+         A2m/+oZVPPLtCBPWOWhIIfZIe7643jFe4i6oll+DnwVZ10uACOv03JNG2m3feYyk545F
+         67f/MNR+fQDCQuR5m9QgWihJokEZ4HatboLAEy7cfu2mq19iLQxdO43wttertsVBFdYI
+         KuGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7BHnZIGW8dlfXz29SYi4Txt2W/u/uTvUIzT8Fl03vi4=;
+        b=pvP9C2BOwN/ObzZRQjYg0fGPOXmuj1ekkhX1pRu1xv4+xaIjUrAE1rIfqt2ZjlIjMM
+         cHG3uib1QJZBDAUvtqDDC4VsBCtfzEpYESKkcB4nTPTLvqJJVz51Qs+WONO/4cK4yFjx
+         L//WZGfPBYoPb4Oil7r2vxw0ZE0d4dtfoKe4Ai4SdRtSwZd/CBv2Hzo/oBv9XfCtLzA8
+         nWPAyYH99YcrIAyAGSw8NtevRNLP3H6rJevYP+Otuv2+vmcRo5iBY3yV47SilNe8twLI
+         Vq8HrN0Gg5ylRU8Ui8Kv9FdQUfb05Jg+pY9PC85zA6g2aRTjpnLjRIg1P0ProT0GewV0
+         1fWg==
+X-Gm-Message-State: AOAM5325NQxBylRta+m1zDEFFBkaaF4HSqZ9uhSL1LExQVFpkkZjNczm
+        H5p76rfBzW0r8YoKN+MMIzmQvBtZ6/PRsjBzlH4e4A==
+X-Google-Smtp-Source: ABdhPJwgpwJ30Eu6qeDlGXWgZ0BQupK700HoL7AwsmZ6px0iYtASUH8pCuuNNu8HM+R4kX2wy0xooczc3cbX8G+l2e0=
+X-Received: by 2002:a05:6902:1026:: with SMTP id x6mr27757748ybt.23.1622445920359;
+ Mon, 31 May 2021 00:25:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210510051006.11393-2-a-govindraju@ti.com>
+References: <cover.1621809029.git.sander@svanheule.net> <be5ffefa007ee4ebd7d4cec88f5f2fb7cd5b689e.1621809029.git.sander@svanheule.net>
+In-Reply-To: <be5ffefa007ee4ebd7d4cec88f5f2fb7cd5b689e.1621809029.git.sander@svanheule.net>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Mon, 31 May 2021 09:25:09 +0200
+Message-ID: <CAMpxmJX8gw_A36YAg4hTx3bT4-7NGk_KCoEHrKfeVXnJ-01Vsw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/6] gpio: regmap: Add quirk for output data register
+To:     Sander Vanheule <sander@svanheule.net>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10-05-21, 10:40, Aswath Govindraju wrote:
-> In some subsystems (eg. CAN, SPI), the max link rate supported can be less
-> than 1 Mbps and if the unit for max_link_rate is Mbps then it can't be
-> used. Therefore, leave the decision of units to be used, to the producer
-> and consumer.
-> 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> Acked-by: Marc Kleine-Budde <mkl@pengutronix.de>
+On Mon, May 24, 2021 at 12:34 AM Sander Vanheule <sander@svanheule.net> wrote:
+>
+> GPIO chips may not support setting the output value when a pin is
+> configured as an input, although the current implementation assumes this
+> is always possible.
+>
+> Add support for setting pin direction before value. The order defaults
+> to setting the value first, but this can be reversed by setting the
+> GPIO_REGMAP_QUIRK_SET_DIRECTION_FIRST flag in regmap_config.quirks.
+>
+> Signed-off-by: Sander Vanheule <sander@svanheule.net>
 > ---
->  include/linux/phy/phy.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/include/linux/phy/phy.h b/include/linux/phy/phy.h
-> index 0ed434d02196..f3286f4cd306 100644
-> --- a/include/linux/phy/phy.h
-> +++ b/include/linux/phy/phy.h
-> @@ -125,7 +125,7 @@ struct phy_ops {
->  /**
->   * struct phy_attrs - represents phy attributes
->   * @bus_width: Data path width implemented by PHY
-> - * @max_link_rate: Maximum link rate supported by PHY (in Mbps)
-> + * @max_link_rate: Maximum link rate supported by PHY (units to be decided by producer and consumer)
 
-So there are a few users of max_link_rate. It would be better that we
-document all previous users of max_link_rate that unit is in Mbps and
-then modify it here
-
--- 
-~Vinod
+Acked-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
