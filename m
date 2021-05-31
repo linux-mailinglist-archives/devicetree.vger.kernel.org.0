@@ -2,82 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BAC0395938
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 12:48:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBF7F39597B
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 13:12:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231208AbhEaKuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 06:50:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51040 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230518AbhEaKuU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 06:50:20 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0880C061574;
-        Mon, 31 May 2021 03:48:39 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id e2so14465783ljk.4;
-        Mon, 31 May 2021 03:48:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lmFfe4/9OHeqy8i0LO2LfJg71Sl9QgC7tBKn0xjdl6s=;
-        b=esvekV/ekFFVolx/NAxmBTCCS8RzRTW6m02M/eySbTEuEfUPIp4NZZQ5+oQ8m2coC+
-         LMhSgM3XKyMUx46Mbf+v0EfRS89GQMyGb9/iCho9e4WBRflKg7yQ2A+tFJNK2+W4kOQ5
-         FFmGga2/lMUKbt+DoYpCye1dWuD6IZRgN8mXZPRATZAVyeas+OoalGSP7JDKZNdOZHm1
-         iOMgO/TA1FeXap7/zC04jdvrSrNE7b1poKKBtFSic5muQn+5vxBbQRC9aNQz8xLmTiiE
-         tlJzYgRNnq8HpcgPABl3x66Is3is9Fxx7T/ijF26vzc3culzw/Ck0WCZc5lSJ5lUUt+A
-         /MGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lmFfe4/9OHeqy8i0LO2LfJg71Sl9QgC7tBKn0xjdl6s=;
-        b=UmBt/WtN7NbJ0wuyx2S2OznY2eL7Wp3vOU9F/4bxSSANDV6Nw/ajT+9Lf95vBI7Iuv
-         GM0A6xT4TdPN+UM3jhDO2wUmChyWtAxk+K9Ev6WOMPthe3ccrd6+SaJtS+YrrqsDPsmr
-         K/NHTaezqmtrNWFnallh7f2M2q8iyNRbtnj1yFoIsuaBzpWxGmEqYCfdDGGuGWkdbuAm
-         NPHZx0XjJNUCYGRkYGD9Hfj2lfPywMF6zFkTV9IjDrfADP/w6WfQBx+hF77G+faaLZ7h
-         EGJquEbrY1usidxLQ9fp0T71qm3wGJ2aV1Vde6oQp238LE0l0dFqwWGaRzXKSDD0WCqV
-         3xWg==
-X-Gm-Message-State: AOAM530LSB6hswfw2LzxNTYZqp7CKMwLdPrX3ChhxcZo1pk12YU91Nom
-        0zFDrYdA+9/5v0JBFSkTLSTeGQdMH1qMq4DBOTU=
-X-Google-Smtp-Source: ABdhPJzLLkD5MNOKZEm9VX06SK3/IgRQ+JyLH0lcamRMlwIJp4ODkDBlG3Bh8Iu9wPulB7c9KZ16Uuvo/g6z2xBK660=
-X-Received: by 2002:a2e:6e13:: with SMTP id j19mr16281103ljc.116.1622458116706;
- Mon, 31 May 2021 03:48:36 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210530204410.676831-1-festevam@gmail.com> <20210530204410.676831-2-festevam@gmail.com>
- <0e5d7662-245d-d87b-c0bf-3cd0171af527@kontron.de>
-In-Reply-To: <0e5d7662-245d-d87b-c0bf-3cd0171af527@kontron.de>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 31 May 2021 07:48:25 -0300
-Message-ID: <CAOMZO5COoQuoJY-_nEXavSwKWnjmEXw5jOO3+n3ksiuKF0g4AQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] media: i2c: adv7180: Allow the control of the reset pin
-To:     Frieder Schrempf <frieder.schrempf@kontron.de>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-media <linux-media@vger.kernel.org>,
-        Tim Harvey <tharvey@gateworks.com>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
-Content-Type: text/plain; charset="UTF-8"
+        id S231164AbhEaLN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 07:13:59 -0400
+Received: from mx2.suse.de ([195.135.220.15]:53794 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231377AbhEaLN6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 May 2021 07:13:58 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1622459537; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=wQUgSY4rz3LNiUb//EzzPEIDd2bYGy4SsdKMO2yKhCk=;
+        b=Jg8TkqpJmPxnzwU9nLy5k2ZkyDxpxUcbnHV3oQ3GYLXGL6DACgAA6bILLxAVOpQGDI2e0Z
+        /wd1RSFT0hMbwO1lxOiYCd1XV3p0Jyj+K5LTeHtzBQ/nlHEw6qEi3gUDGwlIGld2F6hcts
+        jB6gp9Z5xMDDTv6EomWEsU3zLd22LUo=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1622459537;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=wQUgSY4rz3LNiUb//EzzPEIDd2bYGy4SsdKMO2yKhCk=;
+        b=ehBUeAVypuyQEwZ6y+FElGFCj0XnqTwHWEcfY+UrDlPQYSHfNXMAvWpHPih5M8GaQKQc4k
+        VGqKY71C72V3u3DQ==
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 99925AFC4;
+        Mon, 31 May 2021 11:12:17 +0000 (UTC)
+Date:   Mon, 31 May 2021 13:12:17 +0200
+Message-ID: <s5hzgwb17ji.wl-tiwai@suse.de>
+From:   Takashi Iwai <tiwai@suse.de>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+        dri-devel@lists.freedesktop.org,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree@vger.kernel.org,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Dom Cobley <dom@raspberrypi.com>, linux-doc@vger.kernel.org,
+        Eric Anholt <eric@anholt.net>,
+        Nicolas Saenz Julienne <nsaenzjulienne@kernel.org>,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org,
+        Daniel Vetter <daniel@ffwll.ch>,
+        linux-rpi-kernel@lists.infradead.org,
+        Jonathan Corbet <corbet@lwn.net>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 05/12] ASoC: hdmi-codec: Add a prepare hook
+In-Reply-To: <20210531094213.kuuunk7ytu3q6sq6@gilmour>
+References: <20210525132354.297468-1-maxime@cerno.tech>
+        <20210525132354.297468-6-maxime@cerno.tech>
+        <YK4lWaB6Lx+SPjpF@sirena.org.uk>
+        <20210531094213.kuuunk7ytu3q6sq6@gilmour>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI/1.14.6 (Maruoka)
+ FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 Emacs/25.3
+ (x86_64-suse-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI 1.14.6 - "Maruoka")
+Content-Type: text/plain; charset=US-ASCII
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frieder,
+On Mon, 31 May 2021 11:42:13 +0200,
+Maxime Ripard wrote:
+> 
+> Hi Mark, Takashi,
+> 
+> On Wed, May 26, 2021 at 11:39:21AM +0100, Mark Brown wrote:
+> > On Tue, May 25, 2021 at 03:23:47PM +0200, Maxime Ripard wrote:
+> > > The IEC958 status bit is usually set by the userspace after hw_params
+> > > has been called, so in order to use whatever is set by the userspace, we
+> > > need to implement the prepare hook. Let's add it to the hdmi_codec_ops,
+> > > and mandate that either prepare or hw_params is implemented.
+> > 
+> > Acked-by: Mark Brown <broonie@kernel.org>
+> 
+> It looks like you're both happy with the ALSA/ASoC side, how do you want
+> to get this merged?
+> 
+> There's a build dependency between the DRM bits and the new hook
+> introduced in hdmi-codec, would you be ok with merging it through the
+> drm tree?
 
-On Mon, May 31, 2021 at 4:02 AM Frieder Schrempf
-<frieder.schrempf@kontron.de> wrote:
+Speaking of ALSA core changes, I'm fine with that.
 
-> The datasheet specifies a delay of 5 ms between deasserting the PWRDWN and the RESET GPIO. Also this function is named adv7180_set_power_pin() which doesn't fit anymore if we also handle the RESET GPIO here.
->
-> As I was recently working with the ADV7280-M, I came up with a similar patch: https://git.kontron-electronics.de/linux/linux/-/commit/3619ed166140a0499ada7b14e5f1846a0ed7d18d.
->
-> What do you think?
 
-Thanks for the review. I will send a v2 using your patch instead of mine.
+thanks,
 
-Thanks,
-
-Fabio Estevam
+Takashi
