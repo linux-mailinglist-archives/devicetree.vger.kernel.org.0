@@ -2,134 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62D0B3967FA
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 20:32:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E588E39684D
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 21:21:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232116AbhEaSeL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 14:34:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41144 "EHLO
+        id S231305AbhEaTXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 15:23:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230323AbhEaSeG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 14:34:06 -0400
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A512C06174A
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 11:32:26 -0700 (PDT)
-Received: by mail-ot1-x335.google.com with SMTP id c31-20020a056830349fb02903a5bfa6138bso4933399otu.7
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 11:32:26 -0700 (PDT)
+        with ESMTP id S230308AbhEaTXY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 15:23:24 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57A73C061574;
+        Mon, 31 May 2021 12:21:43 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id e11so16151372ljn.13;
+        Mon, 31 May 2021 12:21:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=BLVV9QZIDXqsvRH7Xti8i3IEgU5Yp6iFY14v7IM7JtI=;
-        b=MZPdaaqoKg5pgZ4tp20ZwnC/hrb4QzW8pbCBBwy9OcoE+kkw5Ec4IkjFjCxFA2Fba5
-         PnnhAKfZz2ginjK+mnQY1QvG29aCxN6JniWAC35aNnas1yzBQumAL26pOWr9qx7cXx1c
-         tDDl5JJ+SJDcfwBRrZZv08ouUk0Y9cWa1zt4Zl/KgsY5shL7m4Ojil9u2k5Aq226JGNc
-         B/7zP3Vmyl94ltaPNgN6bOPYY0fpctqUELcZtj+WSCKbUoQ+pBtPVeGsIAmpOHbanXMG
-         cVd8yXCzA9Bcxgf4H+w1KiU8WyX+r+2hQQMpo2wEKjzVB7gNmRHVprn3Kh97PJtgx2IE
-         BkFw==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=11twWy/ybOBSLZU1GcEMi3/TJsry3p9YUZOb/UBo0SU=;
+        b=FimFuoyvHklH+idplyPIxFbedZS0CGARUdeUAptgg6W+bBA3domtm+elGksLYcJnA7
+         +QGSeKeTyrcx7HaO4vFOLplb2k/8+HDBO1KnTx4I9et9hdwqVEUkv+5MzYJIaKOz+/DG
+         84AR4KRupVSGTonPGKeJ7+Dzs558CZ6HLWqzt5aVoRAIcGh7F0pmcVduA8RKirguS6yz
+         Ios+T0OXt7GNT0SluEWNiQZjBYWd/Y8IEy/PMMcJcdxw+9yyEEw6iNuuYRxctDg6vC0k
+         lloasmwsi8Z1XCQnxggGgYLw+jL7yKBBW8a2l29CitWECtEBiKV2RIN7s1e32qe5Elzx
+         aHGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BLVV9QZIDXqsvRH7Xti8i3IEgU5Yp6iFY14v7IM7JtI=;
-        b=ZqVbdNGG20ks4vURA249dMpfC0jjXN+HokYC7+vgy/frDQd8oGON10KytNQPJq9Um7
-         gl9FEBMXBHR3WhigHllfBwyHrSyMxIcnYgkq9ga/YORHUbWs+Wp2i/gk5jBUmX/hTguO
-         Nzfzyt9zNRhFwO2NqfwYOMm8w5XCn2jDgnFvXUznWL/w62rjUoMLeAJYwM96m23/ZnIf
-         JO+Xj/aTD90PdB6B/MPnXIFkEqEm1EG8kibxUS8/0ZRa3GsXdodgdz8ZAAE5GXLWUcj1
-         64bKUnNEfm+0z259aekPuZGv8zRFqkROMgETfQbghsxlvR/vObO9AjkgcyHRjsPWPoid
-         juAg==
-X-Gm-Message-State: AOAM532sKZM530FJqPzTmTAxQg2uHi0uEzlIo8ky8zDsNYIS4dHN5oDx
-        oDWJtukg2t3JdwXCjHmhevvAuA==
-X-Google-Smtp-Source: ABdhPJy3RxUiZyO4Jq6TccXwQv3j1QISvvAoai3BTT05OZNvSnYVKmbFz13tjj6gBZLJ0uE7KqpD9w==
-X-Received: by 2002:a05:6830:4009:: with SMTP id h9mr18320460ots.313.1622485945260;
-        Mon, 31 May 2021 11:32:25 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id d1sm3274856otu.9.2021.05.31.11.32.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 May 2021 11:32:24 -0700 (PDT)
-Date:   Mon, 31 May 2021 13:32:23 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Sujit Kautkar <sujitka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sc7180: trogdor: SD-card GPIO
- pin set bias-pull up
-Message-ID: <YLUrtzDWn8HnSZ9L@builder.lan>
-References: <20210521215841.2017349-1-sujitka@chromium.org>
- <20210521145824.v2.2.I52f30ddfe62041b7e6c3c362f0ad8f695ac28224@changeid>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=11twWy/ybOBSLZU1GcEMi3/TJsry3p9YUZOb/UBo0SU=;
+        b=PaOf7VvDyauTMCq6IcVAL2Rb4nhh4bF8Q93C5444H02cJ0H7lU3DOnC4L9/1fH4vuy
+         cV2yvFJBdnVxQBl1bXQYoa5nAvYd9JTXJ6zWzvWj3i2+CweA0v04+PtPs4bu04umv1np
+         hPCwrXPN7dfeV5cq5oEImwYNNm20CC/4+m1dzk+LWYTL4pnLd2iNtKa6nn8Oawg2zSnt
+         KTY3MFYbOU07Kq5HDX51nXVesBWHtcLQUoDCT3pXlNmk3dxOjjcoMkaVM2/fW1NCRwNj
+         jff5JzuL7azogPJSiZRhJDC4UCBfqFV4VBWbvXGH8vy8xaAb2xlH7OGAFz64NQyKxUUC
+         22ug==
+X-Gm-Message-State: AOAM532wVwTt1KvlgnEwUVp5IzT3PNrtLQO96XleUMWm/IDWQPBI9rY4
+        ePgdEOIpa4LMumgVqwI6bc+zhgRWiHk=
+X-Google-Smtp-Source: ABdhPJx/kRxSCpofr/cAMAeaupRusSxI0/KdU/jxoRKesHzPj5YkZKWvP41jSRq/xL5vRFLSWEwM2Q==
+X-Received: by 2002:a2e:9c4a:: with SMTP id t10mr18329864ljj.307.1622488901523;
+        Mon, 31 May 2021 12:21:41 -0700 (PDT)
+Received: from [192.168.2.145] (79-139-170-222.dynamic.spd-mgts.ru. [79.139.170.222])
+        by smtp.googlemail.com with ESMTPSA id j4sm58945lfm.217.2021.05.31.12.21.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 May 2021 12:21:41 -0700 (PDT)
+Subject: Re: [PATCH v1 3/7] dt-bindings: devfreq: tegra30-actmon: Convert to
+ schema
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Matt Merhar <mattmerhar@protonmail.com>,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210510211008.30300-1-digetx@gmail.com>
+ <20210510211008.30300-4-digetx@gmail.com> <YLSuHejkyPg+DJ0Y@orome.fritz.box>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <0a447f47-4e8b-120b-8fc5-22764740eb8d@gmail.com>
+Date:   Mon, 31 May 2021 22:21:40 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210521145824.v2.2.I52f30ddfe62041b7e6c3c362f0ad8f695ac28224@changeid>
+In-Reply-To: <YLSuHejkyPg+DJ0Y@orome.fritz.box>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 21 May 16:58 CDT 2021, Sujit Kautkar wrote:
-
-> Trogdor board does not have external pull-up for cd-gpio. Set this pin
-
-This says "Trogdor" specifically, but the diffstats says "all 7180
-devices".
-
-> to internal pull-up for sleep config to avoid frequent regulator toggle
-> events.
+31.05.2021 12:36, Thierry Reding пишет:
+> On Tue, May 11, 2021 at 12:10:04AM +0300, Dmitry Osipenko wrote:
+>> Convert NVIDIA Tegra ACTMON binding to schema.
+>>
+>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>> ---
+>>  .../arm/tegra/nvidia,tegra30-actmon.txt       |  57 ---------
+>>  .../devfreq/nvidia,tegra30-actmon.yaml        | 121 ++++++++++++++++++
+>>  2 files changed, 121 insertions(+), 57 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra30-actmon.txt
+>>  create mode 100644 Documentation/devicetree/bindings/devfreq/nvidia,tegra30-actmon.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra30-actmon.txt b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra30-actmon.txt
+>> deleted file mode 100644
+>> index 897eedfa2bc8..000000000000
+>> --- a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra30-actmon.txt
+>> +++ /dev/null
+>> @@ -1,57 +0,0 @@
+>> -NVIDIA Tegra Activity Monitor
+>> -
+>> -The activity monitor block collects statistics about the behaviour of other
+>> -components in the system. This information can be used to derive the rate at
+>> -which the external memory needs to be clocked in order to serve all requests
+>> -from the monitored clients.
+>> -
+>> -Required properties:
+>> -- compatible: should be "nvidia,tegra<chip>-actmon"
+>> -- reg: offset and length of the register set for the device
+>> -- interrupts: standard interrupt property
+>> -- clocks: Must contain a phandle and clock specifier pair for each entry in
+>> -clock-names. See ../../clock/clock-bindings.txt for details.
+>> -- clock-names: Must include the following entries:
+>> -  - actmon
+>> -  - emc
+>> -- resets: Must contain an entry for each entry in reset-names. See
+>> -../../reset/reset.txt for details.
+>> -- reset-names: Must include the following entries:
+>> -  - actmon
+>> -- operating-points-v2: See ../bindings/opp/opp.txt for details.
+>> -- interconnects: Should contain entries for memory clients sitting on
+>> -                 MC->EMC memory interconnect path.
+>> -- interconnect-names: Should include name of the interconnect path for each
+>> -                      interconnect entry. Consult TRM documentation for
+>> -                      information about available memory clients, see MEMORY
+>> -                      CONTROLLER section.
+>> -
+>> -For each opp entry in 'operating-points-v2' table:
+>> -- opp-supported-hw: bitfield indicating SoC speedo ID mask
+>> -- opp-peak-kBps: peak bandwidth of the memory channel
+>> -
+>> -Example:
+>> -	dfs_opp_table: opp-table {
+>> -		compatible = "operating-points-v2";
+>> -
+>> -		opp@12750000 {
+>> -			opp-hz = /bits/ 64 <12750000>;
+>> -			opp-supported-hw = <0x000F>;
+>> -			opp-peak-kBps = <51000>;
+>> -		};
+>> -		...
+>> -	};
+>> -
+>> -	actmon@6000c800 {
+>> -		compatible = "nvidia,tegra124-actmon";
+>> -		reg = <0x0 0x6000c800 0x0 0x400>;
+>> -		interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+>> -		clocks = <&tegra_car TEGRA124_CLK_ACTMON>,
+>> -			 <&tegra_car TEGRA124_CLK_EMC>;
+>> -		clock-names = "actmon", "emc";
+>> -		resets = <&tegra_car 119>;
+>> -		reset-names = "actmon";
+>> -		operating-points-v2 = <&dfs_opp_table>;
+>> -		interconnects = <&mc TEGRA124_MC_MPCORER &emc>;
+>> -		interconnect-names = "cpu";
+>> -	};
+>> diff --git a/Documentation/devicetree/bindings/devfreq/nvidia,tegra30-actmon.yaml b/Documentation/devicetree/bindings/devfreq/nvidia,tegra30-actmon.yaml
+>> new file mode 100644
+>> index 000000000000..2a940d5d7ab4
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/devfreq/nvidia,tegra30-actmon.yaml
+>> @@ -0,0 +1,121 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/devfreq/nvidia,tegra30-actmon.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: NVIDIA Tegra30 Activity Monitor
+>> +
+>> +maintainers:
+>> +  - Dmitry Osipenko <digetx@gmail.com>
+>> +  - Jon Hunter <jonathanh@nvidia.com>
+>> +  - Thierry Reding <thierry.reding@gmail.com>
+>> +
+>> +description: |
+>> +  The activity monitor block collects statistics about the behaviour of other
+>> +  components in the system. This information can be used to derive the rate at
+>> +  which the external memory needs to be clocked in order to serve all requests
+>> +  from the monitored clients.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - nvidia,tegra30-actmon
+>> +      - nvidia,tegra114-actmon
+>> +      - nvidia,tegra124-actmon
+>> +      - nvidia,tegra210-actmon
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 2
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: actmon
+>> +      - const: emc
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +  reset-names:
+>> +    items:
+>> +      - const: actmon
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  interconnects:
+>> +    minItems: 1
+>> +    maxItems: 12
+>> +
+>> +  interconnect-names:
+>> +    minItems: 1
+>> +    maxItems: 12
+>> +    description:
+>> +      Should include name of the interconnect path for each interconnect
+>> +      entry. Consult TRM documentation for information about available
+>> +      memory clients, see ACTIVITY MONITOR section.
 > 
-> This change is aligned with Qualcomm's DT change posted at:
-> https://patchwork.kernel.org/patch/11675347/
+> This used to be "see MEMORY CONTROLLER section", so I looked at the TRM
+> to see if this was perhaps a fix for an earlier typo, but looking at the
+> TRM (v3) I can't find a section named "ACTIVITY MONITOR".
 > 
+> Should this be changed back to "MEMORY CONTROLLER"?
 
-I'm sorry, but afacit this says that your v2 is Qualcomm's v2 but with
-the change I asked for. If this is the case, then your patch is either
-v3 or you could just mention this below the '---', as I don't see any
-benefit of carrying this in the git history.
-
-Regards,
-Bjorn
-
-> Signed-off-by: Sujit Kautkar <sujitka@chromium.org>
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> ---
-> Changes in v2:
-> - added pull-up for IDP
-> 
-> (no changes since v1)
-> 
->  arch/arm64/boot/dts/qcom/sc7180-idp.dts      | 2 +-
->  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> index 07133e0af581a..0c255edb7f3c3 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> @@ -696,7 +696,7 @@ pinconf-data {
->  
->  		pinconf-sd-cd {
->  			pins = "gpio69";
-> -			bias-disable;
-> +			bias-pull-up;
->  			drive-strength = <2>;
->  		};
->  	};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> index d128a0ed6ad3a..330deb4967ca2 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> @@ -1638,7 +1638,7 @@ pinconf-data {
->  
->  		pinconf-sd-cd {
->  			pins = "gpio69";
-> -			bias-disable;
-> +			bias-pull-up;
->  			drive-strength = <2>;
->  		};
->  	};
-> -- 
-> 2.31.1.818.g46aad6cb9e-goog
-> 
+The "ACTIVITY MONITOR" is documented only in the T124/210 TRMs, the h/w
+modules supported by ACTMON are enumerated there. Both "ACTIVITY
+MONITOR" and "MEMORY CONTROLLER" could be mentioned for completeness.
