@@ -2,109 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE4C7396758
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 19:45:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77083396765
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 19:48:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231890AbhEaRrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 13:47:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58100 "EHLO
+        id S232683AbhEaRtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 13:49:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231913AbhEaRqz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 13:46:55 -0400
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E98A9C0431D7
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 10:15:39 -0700 (PDT)
-Received: by mail-oi1-x22f.google.com with SMTP id x15so12877392oic.13
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 10:15:39 -0700 (PDT)
+        with ESMTP id S232543AbhEaRtZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 13:49:25 -0400
+Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E781C061373
+        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 10:29:08 -0700 (PDT)
+Received: by mail-qv1-xf34.google.com with SMTP id ee9so5836416qvb.8
+        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 10:29:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=iUt8SawagKvadLty0R2egCby5GFPDSWF/2fAwCO1WO8=;
-        b=zSw+AuImUIvbaG+SENdRXVf75DqA+hNVwWWi02Rgo5PKBhnn9yMiEm/Wg+C3cPO98Z
-         5xUYtifNJieL8Ux014tKJTwJw+Ugqddjje4CcWdzLPEjDUsY9WT8cjxDndQ0RQMPTQLU
-         JiQocHzymUCqlCZPZ11qsL9jjzDENFRAgi8Odf4Q32o8QZHyilojAHdcuh712E0L0l4d
-         hANoZ5AYFTnj5PEsCDDpNeHWiDeA1+/UVQsLk5NFkRTJC20yBf/y14DOFkBHNrrKpnai
-         h7/4HVkdWBoc465yU3Rw0ul5KbwaFjkospDokkNum9mGHwkhhYu/6i70QjOledS2Js03
-         yipQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tlJYeynpem95GlivsS9mo23qyjeyOx4+nRXtzT2rN2Y=;
+        b=s4wv2tTLDH82DV92z8R2Bl5VwluiOFIRuiYrCkvxLA5NZbIu6SzQp8EzJPnhAVBcW8
+         74stT22ivUiSh1SEOB6XAQKYrQGdzXAqXZ3w73PRMb0D6mSb0BsCI0E0xr1c8KSdQZdg
+         qpRfoJjsHc8vmpHrYX4q+e9G/Bx5pUBme2uvW41asTo04qmHGlm1hHxC8Maqkds/r3C0
+         xdOGL0dh6BWyoBtiYWjMACnbY2ndmUIERFspcrsfWhznkukwAJZaqn0BYKeGqpuDy9rG
+         cdU/1i5wSKeT3ogiMo2M3Jmf3oeq4vcn9cJzfifEPtiKq7WLgqxBdK8EC8RQgQEyLgv6
+         8qlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iUt8SawagKvadLty0R2egCby5GFPDSWF/2fAwCO1WO8=;
-        b=KNus6hUDlRSDvWv/E8g6XRCOgMdyxo5FfOZMqhkzoMew+5f08BC+bSmB8vSm3kOUfZ
-         zchJxjiK/c6Oc4DeJKhnCcDDQlyhRCXXpZt3Duu3Tw/jdlxIY2FSJCZr8IZZPrHU91Rp
-         hUQnv3DD7I1ekvC4GVDr4q/lXa/LjmNaWFjIyqwCGqNxKVipeI2fM9kNupgZQwMJKK/K
-         +SqTLg/hDcupPcjoQjnPC55H0Ap1uqV92XgCE+OOGzpQtihbeMz3flMAt8h5FDOa0PX/
-         n7JnJTtpTGZWoCf0EUt1DnfI5zG0pWzGO3oym28EjRldXwm54Cs3mRkNFWTdLz8yaFp5
-         Y2dA==
-X-Gm-Message-State: AOAM5313KH9MzL0HHBnEXcgPuMqRqnuLtaN/bgcpcSLc6jqGvlxJH66R
-        h27RuTpOmxzHS08oOLptT1tz2w==
-X-Google-Smtp-Source: ABdhPJyWIyQ2ftS7+5k7U8g5MCX3+iB3x50iEKcUA40a0tLmIrmfe7c3HX3IfCXL7EIIkaYf3pAmtA==
-X-Received: by 2002:a54:4398:: with SMTP id u24mr14750888oiv.81.1622481339198;
-        Mon, 31 May 2021 10:15:39 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id o20sm3155316otl.2.2021.05.31.10.15.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 May 2021 10:15:38 -0700 (PDT)
-Date:   Mon, 31 May 2021 12:15:36 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Judy Hsiao <judyhsiao@chromium.org>
-Cc:     broonie@kernel.org, Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>, dianders@chromium.org,
-        dgreid@chromium.org, cychiang@google.com, judyhsiao@google.com,
-        tzungbi@chromium.org, swboyd@chromium.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180: add lable for secondary mi2s
-Message-ID: <YLUZuP4F1nPWLY5f@builder.lan>
-References: <20210531143557.3975917-1-judyhsiao@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tlJYeynpem95GlivsS9mo23qyjeyOx4+nRXtzT2rN2Y=;
+        b=r6ehLNxWvPLEvHlIm2sLHaFHXM982aUqJdo8Y1bbBkzJft2nWi5SFjvFja68hgTyDD
+         rdHEDL4d0evCWhC40qrSY2tgy5pepJ9LBBFawbqgHqLW5O6iFJ1NqnS3GqFrqrDGLgXA
+         C5E4IXE2l9xLCqVRb8iJZ2CDZzVY0N9zSwbLMy2Gw0NyYdd8HthUBdMVYIvy/rbJJWCa
+         b6BS+J6m6Rcd1qUKzcM1+pEhw8smQlmyAc4R2Jb4JvTWg/vUCG9dYy9mXig2BBIO+MdD
+         YVFGI8NLFMVjbX0L5QmO8p7VsC+3QsvMxCKofYmKeEQDPncI/Oeo0cZ+rkbWm8Ttv/3A
+         9SXg==
+X-Gm-Message-State: AOAM533GPvHAesSA4C5QvPuVtx1jr540GyKKgnh6WREIBdlyVdh57wBD
+        WnI06qTtv9t57Y4RysqgppmOpL3i+y4WKgPJNGgbQA==
+X-Google-Smtp-Source: ABdhPJww25osANxF+wuj9r9EKSJM610gXxVGDaByN1ywimNNxznUIv9NYrcRVbPYupEHXG79B8VOcPxJeDHndpzElyU=
+X-Received: by 2002:ad4:450f:: with SMTP id k15mr18267932qvu.4.1622482147698;
+ Mon, 31 May 2021 10:29:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210531143557.3975917-1-judyhsiao@chromium.org>
+References: <20210407150157.801210-1-dmitry.baryshkov@linaro.org>
+ <20210407150157.801210-5-dmitry.baryshkov@linaro.org> <YLT5gGKP3lUkpmG8@builder.lan>
+In-Reply-To: <YLT5gGKP3lUkpmG8@builder.lan>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 31 May 2021 20:28:56 +0300
+Message-ID: <CAA8EJpqeaLdqT6OpGN7hceL09nLVa9AaUSOu46_g-Cyq6g_RkA@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] arm64: dts: sm8250: move bus clock to mdp node for
+ sm8250 target
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Sean Paul <sean@poorly.run>, Rob Herring <robh+dt@kernel.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <dri-devel@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 31 May 09:35 CDT 2021, Judy Hsiao wrote:
+On Mon, 31 May 2021 at 17:58, Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> On Wed 07 Apr 10:01 CDT 2021, Dmitry Baryshkov wrote:
+>
+> > Move the bus clock to mdp device node,in order to facilitate bus band
+> > width scaling on sm8250 target.
+> >
+> > The parent device MDSS will not vote for bus bw, instead the vote will
+> > be triggered by mdp device node. Since a minimum vote is required to
+> > turn on bus clock, move the clock node to mdp device from where the
+> > votes are requested.
+> >
+>
+> This commit message makes sense for the other commit, where you move the
+> "bus" into the mdp. Do you mind me changing this to:
+>
+> The bus clock is voted by the DPU, so remove it from the MDSS node.
 
-> Adds lable for secondary mi2s to allow overriding.
+I don't mind, please update the commit message as you see fit.
 
-"label" and can you please spell out why you need this override?
+>
+> Regards,
+> Bjorn
+>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sm8250.dtsi | 3 +--
+> >  1 file changed, 1 insertion(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > index 394973e778f7..60fe2eaf06c5 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > @@ -2294,10 +2294,9 @@ mdss: mdss@ae00000 {
+> >                       power-domains = <&dispcc MDSS_GDSC>;
+> >
+> >                       clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> > -                              <&gcc GCC_DISP_HF_AXI_CLK>,
+> >                                <&gcc GCC_DISP_SF_AXI_CLK>,
+> >                                <&dispcc DISP_CC_MDSS_MDP_CLK>;
+> > -                     clock-names = "iface", "bus", "nrt_bus", "core";
+> > +                     clock-names = "iface", "nrt_bus", "core";
+> >
+> >                       assigned-clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>;
+> >                       assigned-clock-rates = <460000000>;
+> > --
+> > 2.30.2
+> >
 
-Regards,
-Bjorn
 
-> 
-> Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> index 24d293ef56d7..2027914a0bed 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> @@ -772,7 +772,7 @@ mi2s@0 {
->  		qcom,capture-sd-lines = <0>;
->  	};
->  
-> -	mi2s@1 {
-> +	secondary_mi2s: mi2s@1 {
->  		reg = <MI2S_SECONDARY>;
->  		qcom,playback-sd-lines = <0>;
->  	};
-> -- 
-> 2.32.0.rc0.204.g9fa02ecfa5-goog
-> 
+
+-- 
+With best wishes
+Dmitry
