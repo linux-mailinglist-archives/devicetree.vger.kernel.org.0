@@ -2,78 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE6A239646B
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 17:56:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 432553966F5
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 19:24:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232358AbhEaP6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 11:58:10 -0400
-Received: from youngberry.canonical.com ([91.189.89.112]:42787 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233322AbhEaP4B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 11:56:01 -0400
-Received: from mail-wr1-f72.google.com ([209.85.221.72])
-        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1lnkF8-0001Fu-FS
-        for devicetree@vger.kernel.org; Mon, 31 May 2021 15:54:18 +0000
-Received: by mail-wr1-f72.google.com with SMTP id c4-20020adfed840000b029011617ea0440so1078899wro.10
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 08:54:18 -0700 (PDT)
+        id S232244AbhEaRZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 13:25:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53292 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232923AbhEaRZm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 13:25:42 -0400
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E166C059CAD
+        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 08:58:10 -0700 (PDT)
+Received: by mail-ot1-x32c.google.com with SMTP id c31-20020a056830349fb02903a5bfa6138bso4552524otu.7
+        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 08:58:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=aSAgxaA5aZxuO/Fv7i81kY3F2ndtVlw1486mt0v683Y=;
+        b=d9hK/wpQccMeIceBxBM5/JlQazT0SQhKi5Xt4XhBKQZuPPlgirwCaSYi/h8rZ4c8B3
+         EuBOVZW+ZK+7ut3mcperjpbjlC1AUIQqw0rolcrGIndRMeWZPisJvjUGCPEL/+42Owss
+         cIB+Edv243X/uheCXretEdFyrkEGWbe9xZGJbSNIBmwy6rXL+nLKq+85Rr2TS2G2Nc7v
+         2kChvFi3qf7oNpnxU5CsnniadmZvnBTLBPdvDLx6pLZoalr51RoVI/OpWZsTwXi7/Jsv
+         9IdsFgcjC3pW3ItHWQ0GaHli4/EzUc/e3nQfgC2xUiTAU96OK57HADQZyI+wZiNiWpyV
+         LDzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=sBsy4F7jKH3SpIbmGFnwxwge6ODZS5L/G/FMfomXAiA=;
-        b=GszvoqW+5jVWp1WeRarVfESiBOtUnjaDLM0z5KFE8+rpJ6FihaYfx4pcF7GME9GbSH
-         aNUFRIX89qlR8KMSw4Yyc7PSEvbOIa09/R/TpUC7soFN602DGFzTlV0lhted+5JCiZTf
-         EF/Eww1GE6xvo3K6jton8xVzX10BByh65a/VnRF+m4W64jC3XDkeQ8LZt1kBbkvRAwaQ
-         vIy4dei7NQwbumjUtxe94xdIayCq3uXMGt1pk+JAZDNjAAn9edN2pRL+s99NXIlMqsGo
-         CUaP+zC5h4CIsjoqa2rJzfvdAfaiQV6j6Wv0DQ/FBgVm1kG062oyPzgBVYYhiSmuPoBl
-         3hBw==
-X-Gm-Message-State: AOAM531+aJrZleLjLqKNWpetTwWAGnWm3A7kp5o1Y1psk099Lboq1fw4
-        VATzjPAguRMzW2rkGYaNikuj5CuEoW+lb/p4bOt7gSpN5vRyLMkW0P/cJC59bQYfb5fAP6S9Byi
-        2Hg/+l/4mer4ZU5MV0M2k/s9ciWi1+n2Ct0eA1EE=
-X-Received: by 2002:a5d:6e04:: with SMTP id h4mr22526590wrz.256.1622476458294;
-        Mon, 31 May 2021 08:54:18 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxc5/XqtsAvzunerv9scOT0vi0T+fqQgLaptB/fTaUryshQ2AateJkvN0M3O1eK/oaFSwSLqg==
-X-Received: by 2002:a5d:6e04:: with SMTP id h4mr22526580wrz.256.1622476458147;
-        Mon, 31 May 2021 08:54:18 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-185-9.adslplus.ch. [188.155.185.9])
-        by smtp.gmail.com with ESMTPSA id u18sm15309089wmj.15.2021.05.31.08.54.17
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=aSAgxaA5aZxuO/Fv7i81kY3F2ndtVlw1486mt0v683Y=;
+        b=Y6Y3UGZ63fj4sMchApsGAbQFIY/KJMcCWItcuopzjYD0rfjvXeauvxSgVqYkKR2P9v
+         5FH4XzM4wO4CzzH+Od6aWYEv7MCUDIwCe8jE/ndzIdkf1pBsI8cLuFx+iAea1vL7tgDx
+         vo+xlrpA4Iw6iMatTg3HO9EHod7intw5jOl+nbJxyJfMSWh/FZ0ctcmU6rGtOTGyJsbJ
+         aZtkfWPMZrNgEO9tRWuje/pZMk0xj7xL0p+xTPShhaJnlG2I3mEtKyYAFBnZiYf5aIRR
+         ZGNFvNUwMOYN1TCxp6c7R40GLiW8mj9fuel/zrEbCG+ggSYmF0bck+DgXC1VPgM5fI0p
+         NqoQ==
+X-Gm-Message-State: AOAM530+ihgo2ercCB8/41j3PejAGPyqSRT0VoPJC9Lbz5liPOM0ViRR
+        GCwBAmO665V3BXpixMMob0bsGQ==
+X-Google-Smtp-Source: ABdhPJyAO/Z7p8bb8qM6OrWOMXYxzOoGfOOK/nOeYXlQOadAPGkjUBA26M+WzbwDRO/EaXBXr6roMw==
+X-Received: by 2002:a05:6830:109a:: with SMTP id y26mr17500206oto.164.1622476689114;
+        Mon, 31 May 2021 08:58:09 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id p9sm514199otl.64.2021.05.31.08.58.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 May 2021 08:54:17 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Timon Baetz <timon.baetz@protonmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: exynos: Disable unused camera input for I9100
-Date:   Mon, 31 May 2021 17:54:13 +0200
-Message-Id: <162247639430.59481.5717460828748837476.b4-ty@canonical.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210530105535.4165-1-timon.baetz@protonmail.com>
-References: <20210530105535.4165-1-timon.baetz@protonmail.com>
+        Mon, 31 May 2021 08:58:08 -0700 (PDT)
+Date:   Mon, 31 May 2021 10:58:06 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Jonathan McDowell <noodles@earth.li>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/5] ARM: dts: qcom: Add USB port definitions to
+ ipq806x
+Message-ID: <YLUHjtLkkp14HEqH@builder.lan>
+References: <cover.1621097174.git.noodles@earth.li>
+ <cover.1621531633.git.noodles@earth.li>
+ <ad2121defc539abdb339b23eef80a8930b5f086e.1621531633.git.noodles@earth.li>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ad2121defc539abdb339b23eef80a8930b5f086e.1621531633.git.noodles@earth.li>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 30 May 2021 10:55:44 +0000, Timon Baetz wrote:
-> As the back camera is not implemented disable the second pair of fimc
-> child nodes as they are not functional. This prevents creating the
-> associated /dev/videoX devices.
+On Thu 20 May 12:30 CDT 2021, Jonathan McDowell wrote:
 
-Applied, thanks!
+> Signed-off-by: Jonathan McDowell <noodles@earth.li>
+> ---
+>  arch/arm/boot/dts/qcom-ipq8064.dtsi | 88 +++++++++++++++++++++++++++++
+>  1 file changed, 88 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> index 9628092217cb..c66859abdfd5 100644
+> --- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> +++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> @@ -1026,6 +1026,94 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		hs_phy_0: hs_phy_0 {
 
-[1/1] ARM: dts: exynos: Disable unused camera input for I9100
-      commit: 135adbbee4c66f89b57519633cbf8c3c35b6c4da
+The node name should be some generic-thing@unit-address, so I fixed up
+all your phys as "phy@100f8800" while applying your patches.
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Thank you,
+Bjorn
+
+> +			compatible = "qcom,ipq806x-usb-phy-hs";
+> +			reg = <0x100f8800 0x30>;
+> +			clocks = <&gcc USB30_0_UTMI_CLK>;
+> +			clock-names = "ref";
+> +			#phy-cells = <0>;
+> +
+> +			status = "disabled";
+> +		};
+> +
+> +		ss_phy_0: ss_phy_0 {
+> +			compatible = "qcom,ipq806x-usb-phy-ss";
+> +			reg = <0x100f8830 0x30>;
+> +			clocks = <&gcc USB30_0_MASTER_CLK>;
+> +			clock-names = "ref";
+> +			#phy-cells = <0>;
+> +
+> +			status = "disabled";
+> +		};
+> +
+> +		usb3_0: usb3@100f8800 {
+> +			compatible = "qcom,dwc3", "syscon";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			reg = <0x100f8800 0x8000>;
+> +			clocks = <&gcc USB30_0_MASTER_CLK>;
+> +			clock-names = "core";
+> +
+> +			ranges;
+> +
+> +			resets = <&gcc USB30_0_MASTER_RESET>;
+> +			reset-names = "master";
+> +
+> +			status = "disabled";
+> +
+> +			dwc3_0: dwc3@10000000 {
+> +				compatible = "snps,dwc3";
+> +				reg = <0x10000000 0xcd00>;
+> +				interrupts = <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>;
+> +				phys = <&hs_phy_0>, <&ss_phy_0>;
+> +				phy-names = "usb2-phy", "usb3-phy";
+> +				dr_mode = "host";
+> +				snps,dis_u3_susphy_quirk;
+> +			};
+> +		};
+> +
+> +		hs_phy_1: hs_phy_1 {
+> +			compatible = "qcom,ipq806x-usb-phy-hs";
+> +			reg = <0x110f8800 0x30>;
+> +			clocks = <&gcc USB30_1_UTMI_CLK>;
+> +			clock-names = "ref";
+> +			#phy-cells = <0>;
+> +		};
+> +
+> +		ss_phy_1: ss_phy_1 {
+> +			compatible = "qcom,ipq806x-usb-phy-ss";
+> +			reg = <0x110f8830 0x30>;
+> +			clocks = <&gcc USB30_1_MASTER_CLK>;
+> +			clock-names = "ref";
+> +			#phy-cells = <0>;
+> +		};
+> +
+> +		usb3_1: usb3@110f8800 {
+> +			compatible = "qcom,dwc3", "syscon";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			reg = <0x110f8800 0x8000>;
+> +			clocks = <&gcc USB30_1_MASTER_CLK>;
+> +			clock-names = "core";
+> +
+> +			ranges;
+> +
+> +			resets = <&gcc USB30_1_MASTER_RESET>;
+> +			reset-names = "master";
+> +
+> +			status = "disabled";
+> +
+> +			dwc3_1: dwc3@11000000 {
+> +				compatible = "snps,dwc3";
+> +				reg = <0x11000000 0xcd00>;
+> +				interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
+> +				phys = <&hs_phy_1>, <&ss_phy_1>;
+> +				phy-names = "usb2-phy", "usb3-phy";
+> +				dr_mode = "host";
+> +				snps,dis_u3_susphy_quirk;
+> +			};
+> +		};
+> +
+>  		vsdcc_fixed: vsdcc-regulator {
+>  			compatible = "regulator-fixed";
+>  			regulator-name = "SDCC Power";
+> -- 
+> 2.20.1
+> 
