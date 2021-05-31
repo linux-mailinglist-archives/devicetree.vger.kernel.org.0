@@ -2,134 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACEBE395AA9
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 14:35:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B510395AEB
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 14:51:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231367AbhEaMhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 08:37:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46720 "EHLO
+        id S231397AbhEaMxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 08:53:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231330AbhEaMhI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 08:37:08 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BE1CC061574;
-        Mon, 31 May 2021 05:35:27 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id y184-20020a1ce1c10000b02901769b409001so6489088wmg.3;
-        Mon, 31 May 2021 05:35:27 -0700 (PDT)
+        with ESMTP id S231330AbhEaMxb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 08:53:31 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF9C4C061574
+        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 05:51:51 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id lz27so16483753ejb.11
+        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 05:51:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=zwFGkSHJb3QbK0O1r+cbPXbjHhDdfq8QipbeGJ1fOyI=;
-        b=H9u+EJTbxOUDRB7aZqbiAz6XCRD2d9ZXwYnYQfUiiLDKopv/9pRUqmKlBjoRcR4Q++
-         JD9OJkynNKK8uAfwhcgarzjbw45vsJI6RNTiQJztcxvs/j/ic/4yqQ9gsd1fEH4kauK3
-         sOm6KbpzX3Oy4WIWiTxIDSW2kbDwqqIOxZ/uMGtIvTgau5Zy0LLoLMbuzLAGI91JuiHs
-         Vbcqfgph8GTLA7zuDB07aydMhIHMP0ZgJDYCCqYOTpz+xbXwHePSSrZOzje234fxLDu7
-         ojy3V1Yzjlm6gwmV+IeSH7xM92PNqUf8slXaeRIYUr1GafNjTD6wJVxxE1dTwx4FxlWC
-         Y42w==
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5rfovGLCK9Yz+7vSUxaJpHcGW+GXYlgTgZ8LhUcz2d4=;
+        b=Dz9VTHpKFzWdXajE6INSvTCz/7/iwn9Zs8EmpCC7EFf2KW2uQydCVrlwv5tCwlVjVL
+         6+9Uke1Fwlmkg9emuqcZopw8rg6NNVlfQYpX7McrkNglSSqKeoUyoIWqo9qQ6g7d7eZa
+         GGKIMPOHmTPrq7A8KSAuvt/JvHVbzoxrj4fG6oj6HZHRmEqEWNlkPfRFFj9UszROyu+J
+         I36YPmo29xRx0WWkJFdxSdh6u2Hcrfijl2RBRPZTlZrDpBbJP4+t5bAvZ+o0vYEg3hTk
+         sDN4YRmmpC0mZv+XyVMgjrTIC6h1GvJp7VQCVH+uXUHcdlDKal18ZB9dykqOS8XQ2jbN
+         qNKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=zwFGkSHJb3QbK0O1r+cbPXbjHhDdfq8QipbeGJ1fOyI=;
-        b=P2jyPUstjuxBQn054yVdwZh+qz9ycBd2sHIuDad0BSdLmbTI0MN4EfNtmJYbGUl3Sv
-         4I9P2RAELe13KR+qAGwuba9hSxSxw2fHVq2VNX1a1LON5Yq28+oiC3zC5FJUT4FOgRF0
-         +M5rfXIU/9kAckJucSZ3OMMPf2Ker3mImWEsPffThrUaDGrxiUZZDY3ben+rwyrrFOQZ
-         lYaqZr1AFBtwEmkiio6oIH3e41Avsqg6KVAHR2swR10aG6fGpN+81CdBGn5DWdWcGU2t
-         PG0rd1kVYenEz9kRnSquhXXWpu/1lieFMea9tag1W99GNZTCJD9tY/pf3Kr9iiAw9IHo
-         8Hdg==
-X-Gm-Message-State: AOAM531Qsbl5yg2VnnWjaAZ0lmyziXMA5Uo0Jf8jlNdCyjclA3DycB2d
-        SpwuJdYk7Bnz+zKHGGKfDd4=
-X-Google-Smtp-Source: ABdhPJwyTc8suT4h0iUXf2aZfNTaToq0xrly/3uwrO9Hi8GjZP5GxTIun5gWsy5RWZafSmDZREHMwg==
-X-Received: by 2002:a7b:cb55:: with SMTP id v21mr13120634wmj.19.1622464526196;
-        Mon, 31 May 2021 05:35:26 -0700 (PDT)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id s5sm15394602wmh.37.2021.05.31.05.35.24
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5rfovGLCK9Yz+7vSUxaJpHcGW+GXYlgTgZ8LhUcz2d4=;
+        b=nvMG+SUA2EYoVTdqG0MPTWcT3WyBdA/kdoH9/VyXKYkiW28/3G5ElP6Xd62EdFw6mm
+         Yx4Tfa9Qw5C/4YfKudF7l7JbTuCUu+dJDxIh3wunmOwE0VQtKDVo459G5VdB8h+4cMpR
+         xE7aszKq7+D65UhCv17PsPX4Mdd1WTkRYMiQJYrhKYvFCLo8BKAbbWzhmzaeRigKc4Qf
+         C8k/+oXXhkd5smewBWp+/3fQ7VHoRDlRE1JoaewRnu/gnJlMzv5i+/sJT679bXhvrqhw
+         FJp3qD11gPRgCoQZAlGY2JwQivF/g/HIjD9kEXy2K2F+0bSxky8EMa25hJ0h7Gy3fWis
+         8Ilg==
+X-Gm-Message-State: AOAM5310eATmiBE+ibSa8Nnz5r5/LMfQIuUtvP2PRqcF3EcY7/3zxs4A
+        JYkMyHLnFx2rwH4FZtN77fgOgA==
+X-Google-Smtp-Source: ABdhPJyZdpYKzaSGcb7CRlJKL1SSI6rpuNmcXd9A6yd2ZAHbgVeJMWthsh+jNqDmnelHf5OrI4WyBQ==
+X-Received: by 2002:a17:907:76b8:: with SMTP id jw24mr22725829ejc.359.1622465510438;
+        Mon, 31 May 2021 05:51:50 -0700 (PDT)
+Received: from localhost.localdomain ([188.252.220.231])
+        by smtp.googlemail.com with ESMTPSA id zb2sm5886898ejb.52.2021.05.31.05.51.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 May 2021 05:35:24 -0700 (PDT)
-Date:   Mon, 31 May 2021 14:36:59 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Paul Fertser <fercerpav@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] soc/tegra: pmc: Add core power domain
-Message-ID: <YLTYayQD7ufuUsXJ@orome.fritz.box>
-References: <20210516231755.24193-1-digetx@gmail.com>
- <20210516231755.24193-3-digetx@gmail.com>
+        Mon, 31 May 2021 05:51:49 -0700 (PDT)
+From:   Robert Marko <robert.marko@sartura.hr>
+To:     lee.jones@linaro.org, linux-kernel@vger.kernel.org,
+        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        linux-gpio@vger.kernel.org, p.zabel@pengutronix.de,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Cc:     luka.perkov@sartura.hr, jmp@epiphyte.org, pmenzel@molgen.mpg.de,
+        buczek@molgen.mpg.de, Robert Marko <robert.marko@sartura.hr>
+Subject: [PATCH v3 1/6] mfd: simple-mfd-i2c: Add Delta TN48M CPLD support
+Date:   Mon, 31 May 2021 14:51:38 +0200
+Message-Id: <20210531125143.257622-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="IwyGpgWj4kOLYU1V"
-Content-Disposition: inline
-In-Reply-To: <20210516231755.24193-3-digetx@gmail.com>
-User-Agent: Mutt/2.0.6 (98f8cb83) (2021-03-06)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Delta TN48M switches have a Lattice CPLD that serves
+multiple purposes including being a GPIO expander.
 
---IwyGpgWj4kOLYU1V
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+So, lets use the simple I2C MFD driver to provide the MFD core.
 
-On Mon, May 17, 2021 at 02:17:54AM +0300, Dmitry Osipenko wrote:
-> NVIDIA Tegra SoCs have multiple power domains, each domain corresponds
-> to an external SoC power rail. Core power domain covers vast majority of
-> hardware blocks within a Tegra SoC. The voltage of a power domain should
-> be set to a level which satisfies all devices within the power domain.
-> Add support for the core power domain which controls voltage state of the
-> domain. This allows us to support system-wide DVFS on Tegra20-210 SoCs.
-> The PMC powergate domains now are sub-domains of the core domain, this
-> requires device-tree updating, older DTBs are unaffected.
->=20
-> Tested-by: Peter Geis <pgwipeout@gmail.com> # Ouya T30
-> Tested-by: Paul Fertser <fercerpav@gmail.com> # PAZ00 T20
-> Tested-by: Nicolas Chauvet <kwizart@gmail.com> # PAZ00 T20 and TK1 T124
-> Tested-by: Matt Merhar <mattmerhar@protonmail.com> # Ouya T30
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  drivers/soc/tegra/Kconfig  |  14 ++++
->  drivers/soc/tegra/pmc.c    | 143 +++++++++++++++++++++++++++++++++++++
->  include/soc/tegra/common.h |   6 ++
->  3 files changed, 163 insertions(+)
+Also add a virtual symbol which pulls in the simple-mfd-i2c driver and
+provide a common symbol on which the subdevice drivers can depend on.
 
-Since this power domain code is all dealt with within the PMC driver,
-and the PMC driver is enabled on all platforms, how about if we avoid
-creating the additional SOC_TEGRA_COMMON kconfig option and instead
-make SOC_TEGRA_PMC list the dependencies?
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+---
+Changes in v2:
+* Drop the custom MFD driver and header
+* Use simple I2C MFD driver
 
-No need to resend, I can make that change when I apply, if you agree.
+ drivers/mfd/Kconfig          | 10 ++++++++++
+ drivers/mfd/simple-mfd-i2c.c |  1 +
+ 2 files changed, 11 insertions(+)
 
-Thierry
+diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+index b74efa469e90..2b5ad314125d 100644
+--- a/drivers/mfd/Kconfig
++++ b/drivers/mfd/Kconfig
+@@ -297,6 +297,16 @@ config MFD_ASIC3
+ 	  This driver supports the ASIC3 multifunction chip found on many
+ 	  PDAs (mainly iPAQ and HTC based ones)
+ 
++config MFD_TN48M_CPLD
++	tristate "Delta Networks TN48M switch CPLD driver"
++	depends on I2C
++	select MFD_SIMPLE_MFD_I2C
++	help
++	  Select this option to enable support for Delta Networks TN48M switch
++	  CPLD. It consists of MFD and GPIO drivers. CPLD provides GPIOS-s
++	  for the SFP slots as well as power supply related information.
++	  SFP support depends on the GPIO driver being selected.
++
+ config PMIC_DA903X
+ 	bool "Dialog Semiconductor DA9030/DA9034 PMIC Support"
+ 	depends on I2C=y
+diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.c
+index 87f684cff9a1..af8e91781417 100644
+--- a/drivers/mfd/simple-mfd-i2c.c
++++ b/drivers/mfd/simple-mfd-i2c.c
+@@ -39,6 +39,7 @@ static int simple_mfd_i2c_probe(struct i2c_client *i2c)
+ 
+ static const struct of_device_id simple_mfd_i2c_of_match[] = {
+ 	{ .compatible = "kontron,sl28cpld" },
++	{ .compatible = "delta,tn48m-cpld" },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, simple_mfd_i2c_of_match);
+-- 
+2.31.1
 
---IwyGpgWj4kOLYU1V
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmC02GkACgkQ3SOs138+
-s6GW9g/8CaH4AWyc7KND08PWD4ZxPmCYNLI/uVuiH3tA0kP8t75NL6N4dcA6PVnm
-7yHcjREEmE0B7L01R1/vs4MNU0zvIfvKVgz78DC5ro6xhsknfgcvyt6gqJapvQl6
-EKdW7mqUjO0SH53jEM+AyyfI2k7M5GiowLz8+u1S2Lwt/CBE+/1Z1+5n5bFaP1b9
-WUjKX0HXAnISBV4raGbejn3TXSQd0ST5SlYNvhG5ERIov03C/5pzoDhoJEM2D7EF
-myf7G/uBpTSUpGENmm0ZvA7ybbaSjguiJ7XpJDMP7Y2KCO3uYkVAOchRKP4PPys/
-qpG4DJXxhhG/snzXyb9LSnsp87pakkhnmQQ6Z8oiN9ojuX3r2zppgHXxPZi996UZ
-juPMW39JVQFgL3Gv4VSk94q/C3hhyfGAcDNiU4JMXYvnQlw/rPkOdvRqMkrG6qLS
-O8LtqufoP0fO9BlnuLCQouuWqLC4yCHP07baUjaoAtJu68TZvkJFhi04ma6bRBC2
-roE5HBKrXlIVNaoHOSt/GJERjB6aVrF9Af9o2CNZyxGKGTCZqMxKTXOgF+LI/MsA
-69BLF0sjQdhiDz/9r3G4z7q4NuiQm0JKt+wkntvr840N0dSxQ4zI7V4CK153T0Yx
-xn1R8Qof2MJmj6KU0CPu/08M83VONsRqr5g2tDXbBHFmjt8lYxs=
-=pWdv
------END PGP SIGNATURE-----
-
---IwyGpgWj4kOLYU1V--
