@@ -2,100 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBF7F39597B
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 13:12:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19E7639598D
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 13:17:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231164AbhEaLN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 07:13:59 -0400
-Received: from mx2.suse.de ([195.135.220.15]:53794 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231377AbhEaLN6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 31 May 2021 07:13:58 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1622459537; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=wQUgSY4rz3LNiUb//EzzPEIDd2bYGy4SsdKMO2yKhCk=;
-        b=Jg8TkqpJmPxnzwU9nLy5k2ZkyDxpxUcbnHV3oQ3GYLXGL6DACgAA6bILLxAVOpQGDI2e0Z
-        /wd1RSFT0hMbwO1lxOiYCd1XV3p0Jyj+K5LTeHtzBQ/nlHEw6qEi3gUDGwlIGld2F6hcts
-        jB6gp9Z5xMDDTv6EomWEsU3zLd22LUo=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1622459537;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=wQUgSY4rz3LNiUb//EzzPEIDd2bYGy4SsdKMO2yKhCk=;
-        b=ehBUeAVypuyQEwZ6y+FElGFCj0XnqTwHWEcfY+UrDlPQYSHfNXMAvWpHPih5M8GaQKQc4k
-        VGqKY71C72V3u3DQ==
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 99925AFC4;
-        Mon, 31 May 2021 11:12:17 +0000 (UTC)
-Date:   Mon, 31 May 2021 13:12:17 +0200
-Message-ID: <s5hzgwb17ji.wl-tiwai@suse.de>
-From:   Takashi Iwai <tiwai@suse.de>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-        dri-devel@lists.freedesktop.org,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dom Cobley <dom@raspberrypi.com>, linux-doc@vger.kernel.org,
-        Eric Anholt <eric@anholt.net>,
-        Nicolas Saenz Julienne <nsaenzjulienne@kernel.org>,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org,
-        Daniel Vetter <daniel@ffwll.ch>,
-        linux-rpi-kernel@lists.infradead.org,
-        Jonathan Corbet <corbet@lwn.net>,
+        id S231164AbhEaLTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 07:19:24 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:55392 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230518AbhEaLTX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 07:19:23 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14VBHV9B113405;
+        Mon, 31 May 2021 06:17:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1622459851;
+        bh=Stgw8M6eouv2Eif5w4ukIcGR2/to17BybWKpiq0aHAc=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=d2ydCGYKKXAk7bmV5z46f++YRiGAeksd6dnVUA29qDwpDbt5QUwwqMCTlpPZtPpAC
+         uFL7H7n73WMotDvvDB6suaM2+GRxizs5x1LamjDiJTBDbBnPlSVh3YvcuwiawoX1AO
+         Dthn1rEPlLgxFxGhgaSWJqeqGPoGqYgFFuPT9Y1k=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14VBHVgE063500
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 31 May 2021 06:17:31 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 31
+ May 2021 06:17:31 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 31 May 2021 06:17:31 -0500
+Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14VBHSZE112040;
+        Mon, 31 May 2021 06:17:29 -0500
+Subject: Re: [PATCH 1/4] arm: dts: ti: drop usage of redundant compatible
+To:     Lokesh Vutla <lokeshvutla@ti.com>, <thierry.reding@gmail.com>,
+        <u.kleine-koenig@pengutronix.de>, <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 05/12] ASoC: hdmi-codec: Add a prepare hook
-In-Reply-To: <20210531094213.kuuunk7ytu3q6sq6@gilmour>
-References: <20210525132354.297468-1-maxime@cerno.tech>
-        <20210525132354.297468-6-maxime@cerno.tech>
-        <YK4lWaB6Lx+SPjpF@sirena.org.uk>
-        <20210531094213.kuuunk7ytu3q6sq6@gilmour>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI/1.14.6 (Maruoka)
- FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 Emacs/25.3
- (x86_64-suse-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI 1.14.6 - "Maruoka")
-Content-Type: text/plain; charset=US-ASCII
+CC:     <tony@atomide.com>, Sekhar Nori <nsekhar@ti.com>,
+        Vignesh R <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
+        <linux-pwm@vger.kernel.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linux OMAP Mailing List <linux-omap@vger.kernel.org>
+References: <20210526084306.6534-1-lokeshvutla@ti.com>
+ <20210526084306.6534-2-lokeshvutla@ti.com>
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+Message-ID: <de96c176-1163-a6c4-54f2-a9924db6f9df@ti.com>
+Date:   Mon, 31 May 2021 14:17:23 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20210526084306.6534-2-lokeshvutla@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 31 May 2021 11:42:13 +0200,
-Maxime Ripard wrote:
-> 
-> Hi Mark, Takashi,
-> 
-> On Wed, May 26, 2021 at 11:39:21AM +0100, Mark Brown wrote:
-> > On Tue, May 25, 2021 at 03:23:47PM +0200, Maxime Ripard wrote:
-> > > The IEC958 status bit is usually set by the userspace after hw_params
-> > > has been called, so in order to use whatever is set by the userspace, we
-> > > need to implement the prepare hook. Let's add it to the hdmi_codec_ops,
-> > > and mandate that either prepare or hw_params is implemented.
-> > 
-> > Acked-by: Mark Brown <broonie@kernel.org>
-> 
-> It looks like you're both happy with the ALSA/ASoC side, how do you want
-> to get this merged?
-> 
-> There's a build dependency between the DRM bits and the new hook
-> introduced in hdmi-codec, would you be ok with merging it through the
-> drm tree?
-
-Speaking of ALSA core changes, I'm fine with that.
 
 
-thanks,
+On 26/05/2021 11:43, Lokesh Vutla wrote:
+> Commit 229110c1aa691 ("ARM: dts: am437x/am33xx/da850: Add new ECAP and
+> EPWM bindings") added ti,am3352-ehrpwm compatible which is similar to
+> ti,am33xx-ehrpwm but without out t,hwmod properties. But with commit
+> 58bfbea5b1c68 ("ARM: dts: am437x/am33xx: Remove hwmod entries for ECAP
+> and EPWM nodes") dropped support for all ti,hwmod for ehrpwm, but
+> missed deprecating ti,am33xx-ehrpwm compatible. So drop ti,am33xx-ehrpwm
+> from DT as it is no longer needed.
+> 
+> ti-ehrpwn driver still support ti,am33xx-ehrpwm in order to maintain
+> backward compatibility.
+> 
+> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
+> ---
+>   .../devicetree/bindings/pwm/pwm-tiehrpwm.txt   | 13 ++++++-------
+>   arch/arm/boot/dts/am33xx-l4.dtsi               |  9 +++------
+>   arch/arm/boot/dts/am437x-l4.dtsi               | 18 ++++++------------
+>   arch/arm/boot/dts/da850.dtsi                   |  6 ++----
+>   4 files changed, 17 insertions(+), 29 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-tiehrpwm.txt b/Documentation/devicetree/bindings/pwm/pwm-tiehrpwm.txt
+> index c7e28f6d28be..e124e41418d8 100644
+> --- a/Documentation/devicetree/bindings/pwm/pwm-tiehrpwm.txt
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-tiehrpwm.txt
+> @@ -2,10 +2,10 @@ TI SOC EHRPWM based PWM controller
+>   
+>   Required properties:
+>   - compatible: Must be "ti,<soc>-ehrpwm".
+> -  for am33xx  - compatible = "ti,am3352-ehrpwm", "ti,am33xx-ehrpwm";
+> -  for am4372  - compatible = "ti,am4372-ehrpwm", "ti-am3352-ehrpwm", "ti,am33xx-ehrpwm";
+> +  for am33xx  - compatible = "ti,am3352-ehrpwm";
+> +  for am4372  - compatible = "ti,am4372-ehrpwm", "ti-am3352-ehrpwm";
+>     for am654   - compatible = "ti,am654-ehrpwm", "ti-am3352-ehrpwm";
+> -  for da850   - compatible = "ti,da850-ehrpwm", "ti-am3352-ehrpwm", "ti,am33xx-ehrpwm";
+> +  for da850   - compatible = "ti,da850-ehrpwm", "ti-am3352-ehrpwm";
+>     for dra746 - compatible = "ti,dra746-ehrpwm", "ti-am3352-ehrpwm";
+>   - #pwm-cells: should be 3. See pwm.yaml in this directory for a description of
+>     the cells format. The only third cell flag supported by this binding is
+> @@ -19,7 +19,7 @@ Optional properties:
+>   Example:
+>   
+>   ehrpwm0: pwm@48300200 { /* EHRPWM on am33xx */
+> -	compatible = "ti,am3352-ehrpwm", "ti,am33xx-ehrpwm";
+> +	compatible = "ti,am3352-ehrpwm";
+>   	#pwm-cells = <3>;
+>   	reg = <0x48300200 0x100>;
+>   	clocks = <&ehrpwm0_tbclk>, <&l4ls_gclk>;
+> @@ -27,16 +27,15 @@ ehrpwm0: pwm@48300200 { /* EHRPWM on am33xx */
+>   };
+>   
+>   ehrpwm0: pwm@48300200 { /* EHRPWM on am4372 */
+> -	compatible = "ti,am4372-ehrpwm", "ti,am3352-ehrpwm", "ti,am33xx-ehrpwm";
+> +	compatible = "ti,am4372-ehrpwm", "ti,am3352-ehrpwm";
+>   	#pwm-cells = <3>;
+>   	reg = <0x48300200 0x80>;
+>   	clocks = <&ehrpwm0_tbclk>, <&l4ls_gclk>;
+>   	clock-names = "tbclk", "fck";
+> -	ti,hwmods = "ehrpwm0";
+>   };
+>   
+>   ehrpwm0: pwm@1f00000 { /* EHRPWM on da850 */
+> -	compatible = "ti,da850-ehrpwm", "ti,am3352-ehrpwm", "ti,am33xx-ehrpwm";
+> +	compatible = "ti,da850-ehrpwm", "ti,am3352-ehrpwm";
+>   	#pwm-cells = <3>;
+>   	reg = <0x1f00000 0x2000>;
+>   };
+> diff --git a/arch/arm/boot/dts/am33xx-l4.dtsi b/arch/arm/boot/dts/am33xx-l4.dtsi
+> index 039a9ab4c7ea..fbf3458ab246 100644
+> --- a/arch/arm/boot/dts/am33xx-l4.dtsi
+> +++ b/arch/arm/boot/dts/am33xx-l4.dtsi
+> @@ -2017,8 +2017,7 @@ eqep0: counter@180 {
+>   				};
+>   
+>   				ehrpwm0: pwm@200 {
+> -					compatible = "ti,am3352-ehrpwm",
+> -						     "ti,am33xx-ehrpwm";
+> +					compatible = "ti,am3352-ehrpwm";
+>   					#pwm-cells = <3>;
+>   					reg = <0x200 0x80>;
+>   					clocks = <&ehrpwm0_tbclk>, <&l4ls_gclk>;
+> @@ -2078,8 +2077,7 @@ eqep1: counter@180 {
+>   				};
+>   
+>   				ehrpwm1: pwm@200 {
+> -					compatible = "ti,am3352-ehrpwm",
+> -						     "ti,am33xx-ehrpwm";
+> +					compatible = "ti,am3352-ehrpwm";
+>   					#pwm-cells = <3>;
+>   					reg = <0x200 0x80>;
+>   					clocks = <&ehrpwm1_tbclk>, <&l4ls_gclk>;
+> @@ -2139,8 +2137,7 @@ eqep2: counter@180 {
+>   				};
+>   
+>   				ehrpwm2: pwm@200 {
+> -					compatible = "ti,am3352-ehrpwm",
+> -						     "ti,am33xx-ehrpwm";
+> +					compatible = "ti,am3352-ehrpwm";
+>   					#pwm-cells = <3>;
+>   					reg = <0x200 0x80>;
+>   					clocks = <&ehrpwm2_tbclk>, <&l4ls_gclk>;
+> diff --git a/arch/arm/boot/dts/am437x-l4.dtsi b/arch/arm/boot/dts/am437x-l4.dtsi
 
-Takashi
+[...]
+
+> diff --git a/arch/arm/boot/dts/da850.dtsi b/arch/arm/boot/dts/da850.dtsi
+> index 7cf31b6e48b7..afdf3d3747ce 100644
+> --- a/arch/arm/boot/dts/da850.dtsi
+> +++ b/arch/arm/boot/dts/da850.dtsi
+> @@ -574,8 +574,7 @@ mmc1: mmc@21b000 {
+>   			status = "disabled";
+>   		};
+>   		ehrpwm0: pwm@300000 {
+> -			compatible = "ti,da850-ehrpwm", "ti,am3352-ehrpwm",
+> -				     "ti,am33xx-ehrpwm";
+> +			compatible = "ti,da850-ehrpwm", "ti,am3352-ehrpwm";
+>   			#pwm-cells = <3>;
+>   			reg = <0x300000 0x2000>;
+>   			clocks = <&psc1 17>, <&ehrpwm_tbclk>;
+> @@ -584,8 +583,7 @@ ehrpwm0: pwm@300000 {
+>   			status = "disabled";
+>   		};
+>   		ehrpwm1: pwm@302000 {
+> -			compatible = "ti,da850-ehrpwm", "ti,am3352-ehrpwm",
+> -				     "ti,am33xx-ehrpwm";
+> +			compatible = "ti,da850-ehrpwm", "ti,am3352-ehrpwm";
+>   			#pwm-cells = <3>;
+>   			reg = <0x302000 0x2000>;
+>   			clocks = <&psc1 17>, <&ehrpwm_tbclk>;
+> 
+
+I think, the DT changes can be split and posted standalone while bindings fixed
+as part of yaml conversation.
+Personally I do not see reasons for separate .txt bindings fix here as ymal conversation just
+reveals inconsistency between DT bindings, DTBs and code which leads to DTBs fix.
+
+But, of course, it's up to Rob first of all.
+
+-- 
+Best regards,
+grygorii
