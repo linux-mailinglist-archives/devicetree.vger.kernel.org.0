@@ -2,220 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D1ED3959FA
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 13:59:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8AF0395A20
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 14:08:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231463AbhEaMAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 08:00:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38558 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231461AbhEaMAu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 08:00:50 -0400
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48102C06174A
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 04:59:10 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id 29so8180849pgu.11
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 04:59:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nigauri-org.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=VBKMfrf99JWaDydMD97VUp77kKrBHAo3mwSgOYKx6mc=;
-        b=t/saIXTf4FHqHLfsP+uKU0qx55g0y18EoDx4qn13idEBQKZ6vhH7omOBBy553vlsEw
-         k3M+6YX3zk5yQZMgrsR6dvLzQUSxqwDE/d4eBddN0HgbvLdqSaWCGGx5XJzPDtxDlvpz
-         KEy4kT21+GRQ3tcYdD7HWxW9q1bWA+KmcZFZsXp9NNzPji14NEnvvD+tqBYTydKlg4fx
-         iHRVNdrD8cxZgXKF4gZ7rsKULZfMq33Q6tclMiTWfD92n4ssWQ6qzArcWJpJ0CCYpdUn
-         VhySdvFYMzX8zYR+8PlqR96amFcRngBbkQ6Z+zPYEAt/7KYk9Wca399crKICVXGoK4H8
-         55Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=VBKMfrf99JWaDydMD97VUp77kKrBHAo3mwSgOYKx6mc=;
-        b=AfUA6qkPWTI7Yfm+LKpOX5cAwmDrPp3+rbsM51ZqZHHcCQ1lT3lc2AKt5Q9sRYO+gh
-         njT9qiBW/FBOL2lqe7gLfSTHcrixXpADsGvx5J/Ek/BSP4MIwNu91Hx4Yh9g0LIYHG2S
-         nd9PlgKr4y5E+KtlxowRqYwljt+x1jOZueBGgvbjEzevVN6o/VXFW8oXkNczIKjg3oqS
-         hQOwBHwfLzWTOdTtmVWfktg9xNOfa7CVdFBSTYlbRS7XcB6XuOR8+eTakaccctrYPXtz
-         dD9lEZS1MQ6aOdzFbIMin/iiGhIoLuxWhYtYzBBkZMUB+Y02uipMdeFWQvrq/2ctyCkF
-         ahfQ==
-X-Gm-Message-State: AOAM533/Cy+aOSW0i55tqbedLUDxfc3hDFk01aTlTzyHEtvil4g5z1rw
-        TNT3HyO8RUhNB69ldA50404y
-X-Google-Smtp-Source: ABdhPJwY3gXkVBqAZgArKVxqDz8RrxrcHIB0WpZ0FR19ZGx5H1TrMdvTp6/tWbh1V9iram4OT0AbtQ==
-X-Received: by 2002:a05:6a00:2282:b029:2db:7cfe:a43b with SMTP id f2-20020a056a002282b02902db7cfea43bmr16480019pfe.34.1622462349775;
-        Mon, 31 May 2021 04:59:09 -0700 (PDT)
-Received: from localhost ([2405:6581:5360:1800:7285:c2ff:fec2:8f97])
-        by smtp.gmail.com with ESMTPSA id g2sm3355444pfv.106.2021.05.31.04.59.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 May 2021 04:59:09 -0700 (PDT)
-From:   Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Subject: [PATCH] dt-bindings: clk: zynqmp: convert bindings to YAML
-Date:   Mon, 31 May 2021 20:58:57 +0900
-Message-Id: <20210531115857.718985-1-iwamatsu@nigauri.org>
-X-Mailer: git-send-email 2.30.0
-MIME-Version: 1.0
+        id S231623AbhEaMKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 08:10:30 -0400
+Received: from comms.puri.sm ([159.203.221.185]:33624 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231578AbhEaMKI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 May 2021 08:10:08 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 55D33E2131;
+        Mon, 31 May 2021 05:07:57 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id elENs-rrkNFz; Mon, 31 May 2021 05:07:56 -0700 (PDT)
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     pavel@ucw.cz, krzysztof.kozlowski@canonical.com,
+        laurent.pinchart@ideasonboard.com, mchehab@kernel.org,
+        paul.kocialkowski@bootlin.com, robh@kernel.org, shawnx.tu@intel.com
+Cc:     devicetree@vger.kernel.org, kernel@puri.sm,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        martin.kepplinger@puri.sm, phone-devel@vger.kernel.org
+Subject: [PATCH v3 0/5] Add support for the Hynix Hi-846 camera
+Date:   Mon, 31 May 2021 14:07:32 +0200
+Message-Id: <20210531120737.168496-1-martin.kepplinger@puri.sm>
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert common clock for Xilinx Zynq MPSoC SoC bindings documentation
-to YAML.
+hi,
 
-Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
----
- .../bindings/clock/xlnx,zynqmp-clk.txt        | 63 ------------------
- .../bindings/clock/xlnx,zynqmp-clk.yaml       | 65 +++++++++++++++++++
- 2 files changed, 65 insertions(+), 63 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
- create mode 100644 Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.yaml
+This patchset adds support for the SK Hynix Hi-846 CMOS images sensor.
+It includes dt-bindings and the driver.
 
-diff --git a/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt b/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
-deleted file mode 100644
-index 391ee1a60bed4a..00000000000000
---- a/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
-+++ /dev/null
-@@ -1,63 +0,0 @@
----------------------------------------------------------------------------
--Device Tree Clock bindings for the Zynq Ultrascale+ MPSoC controlled using
--Zynq MPSoC firmware interface
----------------------------------------------------------------------------
--The clock controller is a h/w block of Zynq Ultrascale+ MPSoC clock
--tree. It reads required input clock frequencies from the devicetree and acts
--as clock provider for all clock consumers of PS clocks.
--
--See clock_bindings.txt for more information on the generic clock bindings.
--
--Required properties:
-- - #clock-cells:	Must be 1
-- - compatible:		Must contain:	"xlnx,zynqmp-clk"
-- - clocks:		List of clock specifiers which are external input
--			clocks to the given clock controller. Please refer
--			the next section to find the input clocks for a
--			given controller.
-- - clock-names:		List of clock names which are exteral input clocks
--			to the given clock controller. Please refer to the
--			clock bindings for more details.
--
--Input clocks for zynqmp Ultrascale+ clock controller:
--
--The Zynq UltraScale+ MPSoC has one primary and four alternative reference clock
--inputs. These required clock inputs are:
-- - pss_ref_clk (PS reference clock)
-- - video_clk (reference clock for video system )
-- - pss_alt_ref_clk (alternative PS reference clock)
-- - aux_ref_clk
-- - gt_crx_ref_clk (transceiver reference clock)
--
--The following strings are optional parameters to the 'clock-names' property in
--order to provide an optional (E)MIO clock source:
-- - swdt0_ext_clk
-- - swdt1_ext_clk
-- - gem0_emio_clk
-- - gem1_emio_clk
-- - gem2_emio_clk
-- - gem3_emio_clk
-- - mio_clk_XX		# with XX = 00..77
-- - mio_clk_50_or_51	#for the mux clock to gem tsu from 50 or 51
--
--
--Output clocks are registered based on clock information received
--from firmware. Output clocks indexes are mentioned in
--include/dt-bindings/clock/xlnx-zynqmp-clk.h.
--
---------
--Example
---------
--
--firmware {
--	zynqmp_firmware: zynqmp-firmware {
--		compatible = "xlnx,zynqmp-firmware";
--		method = "smc";
--		zynqmp_clk: clock-controller {
--			#clock-cells = <1>;
--			compatible = "xlnx,zynqmp-clk";
--			clocks = <&pss_ref_clk>, <&video_clk>, <&pss_alt_ref_clk>, <&aux_ref_clk>, <&gt_crx_ref_clk>;
--			clock-names = "pss_ref_clk", "video_clk", "pss_alt_ref_clk","aux_ref_clk", "gt_crx_ref_clk";
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.yaml b/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.yaml
-new file mode 100644
-index 00000000000000..6f081e7cf24153
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/xlnx,zynqmp-clk.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xilinx Zynq Ultrascale+ MPSoC clock controller Device Tree Bindings
-+
-+maintainers:
-+  - Michal Simek <michal.simek@xilinx.com>
-+
-+description: |
-+  The clock controller is a h/w block of Zynq Ultrascale+ MPSoC clock
-+  tree. It reads required input clock frequencies from the devicetree and acts
-+  as clock provider for all clock consumers of PS clocks.
-+
-+properties:
-+  compatible:
-+    const: xlnx,zynqmp-clk
-+
-+  "#clock-cells":
-+    const: 1
-+
-+  clocks:
-+    description: |
-+      List of clock specifiers which are external input
-+      clocks to the given clock controller.
-+    items:
-+      - description: PS reference clock
-+      - description: reference clock for video system
-+      - description: alternative PS reference clock
-+      - description: auxiliary reference clock
-+      - description: transceiver reference clock
-+
-+  clock-names:
-+    items:
-+      - const: pss_ref_clk
-+      - const: video_clk
-+      - const: pss_alt_ref_clk
-+      - const: aux_ref_clk
-+      - const: gt_crx_ref_clk
-+
-+required:
-+  - compatible
-+  - "#clock-cells"
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    firmware {
-+      zynqmp_firmware: zynqmp-firmware {
-+        compatible = "xlnx,zynqmp-firmware";
-+        method = "smc";
-+        zynqmp_clk: clock-controller {
-+          #clock-cells = <1>;
-+          compatible = "xlnx,zynqmp-clk";
-+          clocks = <&pss_ref_clk>, <&video_clk>, <&pss_alt_ref_clk>, <&aux_ref_clk>, <&gt_crx_ref_clk>;
-+          clock-names = "pss_ref_clk", "video_clk", "pss_alt_ref_clk","aux_ref_clk", "gt_crx_ref_clk";
-+        };
-+      };
-+    };
-+...
+Patches 4 and 5 are basically optional: if i2c-cardlist is deprecated,
+ignore it and act on it appropriately, and the arm64 defconfig is just
+convenience for now.
+
+(I again send v3 a bit early because the Intel kernel test robot still found
+an error in v2)
+
+best wishes,
+
+                              martin
+
+revision history
+----------------
+v3: (thank you, Laurent)
+* use do_div() for divisions
+* reset-gpios DT property name instead of rst-gpios
+* improve the dt-bindings
+* add the phone-devel list
+
+v2:
+sent a bit early due to stupid mistakes
+fix build issues
+fix dtschema issues
+add enable for arm64 defconfig
+https://lore.kernel.org/linux-media/20210530212337.GA15366@duo.ucw.cz/T/#t
+
+v1:
+https://lore.kernel.org/linux-media/20210527091221.3335998-1-martin.kepplinger@puri.sm/
+
+
+Martin Kepplinger (5):
+  dt-bindings: vendor-prefixes: Add SK Hynix Inc.
+  dt-bindings: media: document SK Hynix Hi-846 MIPI CSI-2 8M pixel
+    sensor
+  media: i2c: add driver for the SK Hynix Hi-846 8M pixel camera
+  arm64: defconfig: enable VIDEO_HI846
+  Documentation: i2c-cardlist: add the Hynix hi846 sensor
+
+ .../admin-guide/media/i2c-cardlist.rst        |    1 +
+ .../bindings/media/i2c/hynix,hi846.yaml       |   99 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ MAINTAINERS                                   |    6 +
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/media/i2c/Kconfig                     |   13 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/hi846.c                     | 2138 +++++++++++++++++
+ 8 files changed, 2261 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+ create mode 100644 drivers/media/i2c/hi846.c
+
 -- 
-2.30.0
+2.30.2
 
