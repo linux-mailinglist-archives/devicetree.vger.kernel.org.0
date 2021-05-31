@@ -2,166 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E426A395742
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 10:43:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65708395761
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 10:49:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230335AbhEaIoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 04:44:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50784 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230107AbhEaIog (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 04:44:36 -0400
-Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29A6EC061760
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 01:42:56 -0700 (PDT)
-Received: by mail-io1-xd34.google.com with SMTP id v9so11170187ion.11
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 01:42:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=9Mi3Wc4wHLv8tIa+hLjhTLDdoH9+eOQcDbBHus3jcwY=;
-        b=hmCoSp24fBHkpCJ28/A6H2mG7drh7iE2gbHVnUjd1F1/a3qgfa8Zg5buYb8D+kPRKA
-         vFIN03NL5UJpHITGd5GvRt2B0XSEAd4ecFyCDFA7WEOA0mhkiJdQDdF829F9kuTzdweg
-         AnTkvd2kPIDZJjnUlirre/MzXhHQ1Wjf/n5S4lBrOhMGBjUGBs5hENrV6jnpcdMO3mzM
-         uFwS7sT4URADbSCEQ3RfqHu3QeVJ3+Qbcgq1B6BEAmYglRBWh/QzhYWzSbQHDftubtsn
-         Kkzls7I1UsFqwsYL74ajif2EmBraY2OzRKm77LradLFjvKjm5TF9i1rJAC86RKTIATRn
-         p+cA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=9Mi3Wc4wHLv8tIa+hLjhTLDdoH9+eOQcDbBHus3jcwY=;
-        b=NkSXJ1wiROjrnI6OuYFrj5EHk7fzPHI9tA+JZGBQbwwMvLNFkRfGCc7vubU0IxrHoF
-         KwWWxpCXyryKxZKz4tYq1lQoDcXnvbXZ7l4NW2cnMditxpL34wQitr41MHnr4+WQn56t
-         RfViSi9o46jfqd8a+pW32nhFxFwqZOK1rdISZj/EMSW5v2vhPmXPT8xBfy9EaSLwGgn8
-         CtLgQIKwwzDk1IT7XQdXYzpXXqyTyl5jyLJMIX7GmYD2wbdre2PM3vLC1U2n4SehmyNk
-         sHr41He+9imRKSE/ZN+ULoQUfo7j0Wfs53oHvi1yO7JU9W6ObhKbT1tEylFQkXlmP/t+
-         o8bA==
-X-Gm-Message-State: AOAM533KdYw9HtI8CWN8+2H/eDK1ptAsqUvJOr+65EcQQgNY7KTre6EA
-        7RDzQq39ALSdXebdFB8ZpUdl3oUAvQNUJO3JYuV1zA==
-X-Google-Smtp-Source: ABdhPJyEWiPmm+WC4L8StZTlomC4jIjIdzDIxQp1eeRM1WySUE3xGQ8LMbo3OEoapR/arPt9GZt+Javtp/uLoK2sWmE=
-X-Received: by 2002:a05:6602:189:: with SMTP id m9mr16236035ioo.88.1622450575393;
- Mon, 31 May 2021 01:42:55 -0700 (PDT)
+        id S230315AbhEaIvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 04:51:25 -0400
+Received: from mga18.intel.com ([134.134.136.126]:50519 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230107AbhEaIvY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 May 2021 04:51:24 -0400
+IronPort-SDR: cDv+ARt0tgNV/Bb0P8JMemg8Qv7NnmM8SLYM2qmMl1yaYkc7FavzEavadPYBc3i1zqSTEBXt5T
+ TvwRHQXwz7Vg==
+X-IronPort-AV: E=McAfee;i="6200,9189,10000"; a="190686041"
+X-IronPort-AV: E=Sophos;i="5.83,236,1616482800"; 
+   d="scan'208";a="190686041"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 May 2021 01:49:44 -0700
+IronPort-SDR: Ge5fQOsDibYVgBPzEQW8PDC7z10sMVYxxTJSgayoFfvc3JePxRdwnjKxKLY2P0IEhTC7TGwkmW
+ 2GXxzpK7y5IQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,236,1616482800"; 
+   d="scan'208";a="549351536"
+Received: from kuha.fi.intel.com ([10.237.72.162])
+  by fmsmga001.fm.intel.com with SMTP; 31 May 2021 01:49:41 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 31 May 2021 11:49:40 +0300
+Date:   Mon, 31 May 2021 11:49:40 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Kyle Tso <kyletso@google.com>
+Cc:     linux@roeck-us.net, gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        badhri@google.com, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] usb: typec: tcpm: Correct the responses in SVDM
+ Version 2.0 DFP
+Message-ID: <YLSjJFAkm92VKoJh@kuha.fi.intel.com>
+References: <20210527084419.4164369-1-kyletso@google.com>
+ <20210527084419.4164369-2-kyletso@google.com>
 MIME-Version: 1.0
-References: <20210524120539.3267145-1-robert.marko@sartura.hr>
- <20210524120539.3267145-3-robert.marko@sartura.hr> <20210524230940.GA1350504@robh.at.kernel.org>
- <20210525074649.GC4005783@dell> <CA+HBbNFxCKbitVctbUisuZXJWxaZp0cswNNNTgD0UxQZ1smJbg@mail.gmail.com>
- <20210526075255.GG4005783@dell>
-In-Reply-To: <20210526075255.GG4005783@dell>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Mon, 31 May 2021 10:42:44 +0200
-Message-ID: <CA+HBbNGSH9AvRo0Hwa5pWea94u0LwJt=Kj7gWjSAV9fS5VFr0A@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: mfd: Add Delta TN48M CPLD drivers bindings
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        bgolaszewski@baylibre.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
-        Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210527084419.4164369-2-kyletso@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 26, 2021 at 9:52 AM Lee Jones <lee.jones@linaro.org> wrote:
->
-> On Tue, 25 May 2021, Robert Marko wrote:
->
-> > On Tue, May 25, 2021 at 9:46 AM Lee Jones <lee.jones@linaro.org> wrote:
-> > >
-> > > On Mon, 24 May 2021, Rob Herring wrote:
-> > >
-> > > > On Mon, May 24, 2021 at 02:05:38PM +0200, Robert Marko wrote:
-> > > > > Add binding documents for the Delta TN48M CPLD drivers.
-> > > > >
-> > > > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > > > > ---
-> > > > > Changes in v2:
-> > > > > * Implement MFD as a simple I2C MFD
-> > > > > * Add GPIO bindings as separate
-> > > >
-> > > > I don't understand why this changed. This doesn't look like an MFD =
-to
-> > > > me. Make your binding complete if there are missing functions.
-> > > > Otherwise, stick with what I already ok'ed.
-> > >
-> > > Right.  What else, besides GPIO, does this do?
-> >
-> > It currently does not do anything else as hwmon driver was essentially
-> > NACK-ed for not exposing standard attributes.
->
-> Once this provides more than GPIO capabilities i.e. becomes a proper
-> Multi-Function Device, then it can use the MFD framework.  Until then,
-> it's a GPIO device I'm afraid.
->
-> Are you going to re-author the HWMON driver to conform?
-hwmon cannot be reathored as it has no standard hwmon attributes.
+On Thu, May 27, 2021 at 04:44:17PM +0800, Kyle Tso wrote:
+> In USB PD Spec Rev 3.1 Ver 1.0, section "6.12.5 Applicability of
+> Structured VDM Commands", DFP is allowed and recommended to respond to
+> Discovery Identity with ACK. And in section "6.4.4.2.5.1 Commands other
+> than Attention", NAK should be returned only when receiving Messages
+> with invalid fields, Messages in wrong situation, or unrecognize
+> Messages.
+> 
+> Still keep the original design for SVDM Version 1.0 for backward
+> compatibilities.
+> 
+> Fixes: 193a68011fdc ("staging: typec: tcpm: Respond to Discover Identity commands")
+> Signed-off-by: Kyle Tso <kyletso@google.com>
 
->
-> > The CPLD itself has PSU status-related information, bootstrap related
-> > information,
-> > various resets for the CPU-s, OOB ethernet PHY, information on the exac=
-t board
-> > model it's running etc.
-> >
-> > PSU and model-related info stuff is gonna be exposed via a misc driver
-> > in debugfs as
-> > we have user-space SW depending on that.
-> > I thought we agreed on that as v1 MFD driver was exposing those directl=
-y and
-> > not doing anything else.
->
-> Yes, we agreed that creating an MFD driver just to expose chip
-> attributes was not an acceptable solution.
->
-> > So I moved to use the simple I2C MFD driver, this is all modeled on the=
- sl28cpld
-> > which currently uses the same driver and then GPIO regmap as I do.
-> >
-> > Other stuff like the resets is probably gonna get exposed later when
-> > it's required
-> > to control it directly.
->
-> In order for this driver to tick the MFD box, it's going to need more
-> than one function.
+Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 
-Understood, would a debug driver count or I can expose the resets via
-a reset driver
-as we have a future use for them?
+> ---
+>  drivers/usb/typec/tcpm/tcpm.c | 14 ++++++++++----
+>  1 file changed, 10 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
+> index 9ce8c9af4da5..a1bf0dc5babf 100644
+> --- a/drivers/usb/typec/tcpm/tcpm.c
+> +++ b/drivers/usb/typec/tcpm/tcpm.c
+> @@ -1547,19 +1547,25 @@ static int tcpm_pd_svdm(struct tcpm_port *port, struct typec_altmode *adev,
+>  			if (PD_VDO_VID(p[0]) != USB_SID_PD)
+>  				break;
+>  
+> -			if (PD_VDO_SVDM_VER(p[0]) < svdm_version)
+> +			if (PD_VDO_SVDM_VER(p[0]) < svdm_version) {
+>  				typec_partner_set_svdm_version(port->partner,
+>  							       PD_VDO_SVDM_VER(p[0]));
+> +				svdm_version = PD_VDO_SVDM_VER(p[0]);
+> +			}
+>  
+>  			tcpm_ams_start(port, DISCOVER_IDENTITY);
+> -			/* 6.4.4.3.1: Only respond as UFP (device) */
+> -			if (port->data_role == TYPEC_DEVICE &&
+> +			/*
+> +			 * PD2.0 Spec 6.10.3: respond with NAK as DFP (data host)
+> +			 * PD3.1 Spec 6.4.4.2.5.1: respond with NAK if "invalid field" or
+> +			 * "wrong configuation" or "Unrecognized"
+> +			 */
+> +			if ((port->data_role == TYPEC_DEVICE || svdm_version >= SVDM_VER_2_0) &&
+>  			    port->nr_snk_vdo) {
+>  				/*
+>  				 * Product Type DFP and Connector Type are not defined in SVDM
+>  				 * version 1.0 and shall be set to zero.
+>  				 */
+> -				if (typec_get_negotiated_svdm_version(typec) < SVDM_VER_2_0)
+> +				if (svdm_version < SVDM_VER_2_0)
+>  					response[1] = port->snk_vdo[0] & ~IDH_DFP_MASK
+>  						      & ~IDH_CONN_MASK;
+>  				else
+> -- 
+> 2.31.1.818.g46aad6cb9e-goog
 
-Regards,
-Robert
->
-> > > > >  .../bindings/gpio/delta,tn48m-gpio.yaml       | 42 ++++++++++
-> > > > >  .../bindings/mfd/delta,tn48m-cpld.yaml        | 81 +++++++++++++=
-++++++
-> > > > >  2 files changed, 123 insertions(+)
-> > > > >  create mode 100644 Documentation/devicetree/bindings/gpio/delta,=
-tn48m-gpio.yaml
-> > > > >  create mode 100644 Documentation/devicetree/bindings/mfd/delta,t=
-n48m-cpld.yaml
-> > >
-> >
-> >
-> >
->
-> --
-> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
-> Senior Technical Lead - Developer Services
-> Linaro.org =E2=94=82 Open source software for Arm SoCs
-> Follow Linaro: Facebook | Twitter | Blog
-
-
-
---=20
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+-- 
+heikki
