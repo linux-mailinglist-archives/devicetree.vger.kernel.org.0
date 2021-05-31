@@ -2,293 +2,303 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C44E239543A
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 05:40:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C3693954BA
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 06:40:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230002AbhEaDln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 May 2021 23:41:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40154 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229952AbhEaDlm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 May 2021 23:41:42 -0400
-Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com [IPv6:2607:f8b0:4864:20::c36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60B5BC061574;
-        Sun, 30 May 2021 20:40:02 -0700 (PDT)
-Received: by mail-oo1-xc36.google.com with SMTP id i8-20020a4aa1080000b0290201edd785e7so2495486ool.1;
-        Sun, 30 May 2021 20:40:02 -0700 (PDT)
+        id S229730AbhEaEmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 00:42:04 -0400
+Received: from mail-bn1nam07on2131.outbound.protection.outlook.com ([40.107.212.131]:31046
+        "EHLO NAM02-BN1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229475AbhEaEmD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 May 2021 00:42:03 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LMtNGV4xNBVt8pNmuRuBy2w4h9Q5THzuLVIOVxO/6iYyXEBn/qq/Hak0RzR384qim7bBN01n9Q3wa5CpPDsecVjhwD14Ba1beKoPjQuhqlCapnro4AEY9UDD7xAeY2AsZLQpMXYjEJ6OGgy4aFTCQZrHH+rtGJ3eriodgjarkZcEJAR/K1qmvWGMOXuygFHGKm4f9iv5119JJFf9I0P0+Jxh3Pfo60giaCrOQCQeXTWHebrArjNnGO+PVFu3e8CiID4vYphIDVog4B97DSKhnRltZzAiR6gfgFkXlq9MVzMck1qiRlOqei5MReDEF+mx6fz/bZz8CcXfrXfLoht+hQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ICqXDKhCJ1R/lWVouUO+7Pww7EbhoqngrFqn9ZECIRg=;
+ b=BmnxJdQZilyo6jNbbYMZGenE0HGZmhQ55hmFGJHkH/EU24yEBnUywwzU65uUntdExCdzBTwWLctWoMygiCLG0usczAZLk4JqoqVQafVPO7b6QeeMybjAEzMxcjpGdXvwszr5p81CBS0/6MZqWWQgKVcwd6n7enzv4FHIYsf3LE1OiDETwjdmU7miwdAbg5KiqBraOkJudgniKk+16fAKMlBceuSaYHuq7SXP7bYvJGgL5n63OFJz2uUp1ZT/X4fm5sSNuonRr6L6bULVE2v59AoV4VPJ6Asr5LKKSyiCF0czFrhTV3nY816iYrG1gtPaYAW8rHX0Jni0pl4tL3xG3Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=mxXYMo3kYoIBlfp//omOxKhPJ2kyxaKYPD0IANQv/KU=;
-        b=sYLRZD66eYPYodYjbfx1DTL6jwoHkv9gKAEkWgRxJgBrLBYtU/v5FQsDmM6zJO9ONo
-         gvGl6HHGp/a1sWZ44NSI9kyh5de1pH+Z7l8AyjEDb96hZQtPFYCt+rCDFReXjm5eI2N9
-         hNMYkHOCNKtHy2bybKvS9fmKab2UB+Gm0ux8zSPFrcDdPVJtOaW3omWMsgCOLMEPAifP
-         QCY7jzn5pi+LtaM76zqqdG62kVQ9C8HZwOptnRQTIe8Z39q+T+gXHpvX4wkiplnrhm7/
-         7WFy24MT+NGTiUl/+dG+yyCljW3mXsaR9nMoaxbs6Xj41JGxAs4VaghQv8XrTqIVmS+2
-         bAGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=mxXYMo3kYoIBlfp//omOxKhPJ2kyxaKYPD0IANQv/KU=;
-        b=JBI/g4hAf6dmE5JgIw99GJTY/m90MgRt8ashSjwT/SXag/BnxAr36xrA54APAmttH+
-         CJuqfK9pkjkogxmYCsg7s8rp0uSGYwKayrIgneuKsoFqAFZBYhLEZGYD356q7yILzY1s
-         XYz2fZxxGRY34ddyuIX8SRFYU26pPC0I6Bn5LR22XWKq3FC5B3pzUrwNntyU6Phq542f
-         I99BUus1uyaCL8+3zkTd2/zTICS87e7QfFzdrN/2gowpp7Li2mgYmHxIHfHH3fM3kBv9
-         3qpl+GSZHSF+DLNscTPiqpUaVH2NW3otgt/7Xz5YGNQufd344UhdVUh0Zq0ti6PtVpmo
-         m71w==
-X-Gm-Message-State: AOAM531ekMCZLjDlDvySQtklQ/WvAg/ni4Cqv+f7+GB22LnTZzbRMQw9
-        e3V2pIPPBzAgxTpAW/A5xUsX0H2Hat2B17EFic0=
-X-Google-Smtp-Source: ABdhPJxHaQq7O/4YfTuQPvz65Rn5bpAhlfJl2rVZ+3OrM71kjqwbvZAsfo6GceHMfAi8mYW4i1jeIZObB/ahsdzuojc=
-X-Received: by 2002:a4a:ea19:: with SMTP id x25mr13892859ood.1.1622432401560;
- Sun, 30 May 2021 20:40:01 -0700 (PDT)
+ d=os.amperecomputing.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ICqXDKhCJ1R/lWVouUO+7Pww7EbhoqngrFqn9ZECIRg=;
+ b=syPd1vmJhdQgdKte9QpET1OWxBlUwFRTqL69Eu6xxsIZ+z1q6YsHhzs2uF11SZ1RROzkTFb4amu9aQAz7huOE0KlxlljmWTHzMkunUaCE6fouigAA3Qv40HXpZAcvIlEiRYmTDs9CEu4660v6pF9eqXgkJ8meELVq5+qjjexTk4=
+Authentication-Results: os.amperecomputing.com; dkim=none (message not signed)
+ header.d=none;os.amperecomputing.com; dmarc=none action=none
+ header.from=os.amperecomputing.com;
+Received: from MW2PR0102MB3482.prod.exchangelabs.com (2603:10b6:302:c::32) by
+ CO1PR01MB6614.prod.exchangelabs.com (2603:10b6:303:d9::6) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4173.20; Mon, 31 May 2021 04:40:19 +0000
+Received: from MW2PR0102MB3482.prod.exchangelabs.com
+ ([fe80::7d5f:eca4:a33a:342e]) by MW2PR0102MB3482.prod.exchangelabs.com
+ ([fe80::7d5f:eca4:a33a:342e%5]) with mapi id 15.20.4173.030; Mon, 31 May 2021
+ 04:40:19 +0000
+Subject: Re: [PATCH v4 1/4] dt-bindings: mfd: Add bindings for Ampere Altra
+ SMPro drivers
+From:   Quan Nguyen <quan@os.amperecomputing.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        openbmc@lists.ozlabs.org,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+References: <20210422090843.4614-1-quan@os.amperecomputing.com>
+ <20210422090843.4614-2-quan@os.amperecomputing.com>
+ <20210430201918.GA3806853@robh.at.kernel.org>
+ <52550615-ae38-d88e-a597-29dc9c71755a@os.amperecomputing.com>
+ <ee17c000-6f70-84d9-f7a1-0d30b03dafab@os.amperecomputing.com>
+Message-ID: <aa5997f6-e629-e82b-ea0a-484888c0271f@os.amperecomputing.com>
+Date:   Mon, 31 May 2021 11:40:07 +0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
+ Gecko/20100101 Thunderbird/78.10.2
+In-Reply-To: <ee17c000-6f70-84d9-f7a1-0d30b03dafab@os.amperecomputing.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [2402:800:623c:5f9b:4ce:f00e:7db8:5363]
+X-ClientProxiedBy: HK2PR02CA0128.apcprd02.prod.outlook.com
+ (2603:1096:202:16::12) To MW2PR0102MB3482.prod.exchangelabs.com
+ (2603:10b6:302:c::32)
 MIME-Version: 1.0
-References: <20210528081300.64759-1-gene.chen.richtek@gmail.com>
- <20210528081300.64759-4-gene.chen.richtek@gmail.com> <62cdd2d18839e16686f35f0cf08080e2cb3b1768.camel@fi.rohmeurope.com>
-In-Reply-To: <62cdd2d18839e16686f35f0cf08080e2cb3b1768.camel@fi.rohmeurope.com>
-From:   Gene Chen <gene.chen.richtek@gmail.com>
-Date:   Mon, 31 May 2021 11:39:50 +0800
-Message-ID: <CAE+NS36WuNkQYn8_UvsZaU5Equ9YH+Ya=c_j3cLNhuFnHT_J-g@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] power: supply: mt6360_charger: add MT6360 charger support
-To:     "Vaittinen, Matti" <matti.vaittinen@fi.rohmeurope.com>
-Cc:     sre@kernel.org, Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>, inux-pm@vger.kernel.org,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, ChiYuan Huang <cy_huang@richtek.com>,
-        benjamin.chao@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2402:800:623c:5f9b:4ce:f00e:7db8:5363] (2402:800:623c:5f9b:4ce:f00e:7db8:5363) by HK2PR02CA0128.apcprd02.prod.outlook.com (2603:1096:202:16::12) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.20 via Frontend Transport; Mon, 31 May 2021 04:40:15 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 95e30351-d8ee-4d5e-1676-08d923ee3164
+X-MS-TrafficTypeDiagnostic: CO1PR01MB6614:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <CO1PR01MB6614C976ED4B71941794951CF23F9@CO1PR01MB6614.prod.exchangelabs.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: F+MMYn1rAPV7ME8yj50v/gvCs1wAe1YpSXZrVlSP0u8v4oWsMXg1Hgd8nrzp4h06n01uYDAHhlooEyzzD0FXYIfBipY/aRsdhdjHFekFNSV0yJmeO4/eqQtz3erIFwb2L3izJu2VQQIt6VpHcAWPw1g4CUmSFhh2e8A0Tpi3Rtr9yZ1eJUsqoWVAJZBPI90isNeYQYkkUOMakp133YLQm41f2V39AuPEImJ7fxSfcsCrIWuNmswbUcoHadCSGHWiVYoO6KOPDXRep+F57sAOjrZhjdw1J2PzkHIFgJYgSTmSNp9Psjr8b+3x7hO38jNTuwVZy1ywhC7n2mJk4SfsAa5bKdk1W/jknckDXem2NAS6MUh33NtEQiQJRwywz82ub5ERYDn+hnP8pzOh/5acg9w95X00Z3hB1jvKW+OM0GZFAt+cVDcveiFjA+N3hWTYVl4YQJvcQxFVEhDHRd/K1C5+3cCIJBO5SMhXnGTrqfiV6KHrslzBx1vvU2ihD05s9cshsRO1W5EMHsohJWdEq0FsA/d+0wdRZIXoFwi/sapP4Ovacq889C9f2/bDSmY12MvEx5hrZoLjE+rbO81Hx9DpO8918Pv7Z2Xs9KRh+KvUDBdhzLC1IXU0L9Ihuy4JsBOBSV+Vc5p6e3xrIs4Ex6+Xke/131/V8TtGK21FnQ2EOC6cuGEyAsXfY2oOj1rZiwJdEvtxYNcLgb5WxkPrRzzSPOA/AeaOWlb1DhlwzAPBc4t9S6kVBSxXjGoN+igcdZNsxtiQQ2V0P8l4ldA/OA4+XjRHwy6vBkfUx7uERrY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW2PR0102MB3482.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(376002)(396003)(366004)(39840400004)(346002)(66946007)(83380400001)(38100700002)(86362001)(8676002)(66476007)(54906003)(53546011)(16526019)(8936002)(66556008)(5660300002)(2616005)(966005)(7416002)(6486002)(2906002)(6666004)(478600001)(4326008)(31686004)(316002)(6916009)(52116002)(31696002)(186003)(107886003)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?OGNOR2NXbWZzRFB6RUp4MS9zWUdOS24xYzhVNlhBNmVTNG8rOG9BUWc0SUJW?=
+ =?utf-8?B?cUVhdFpyRnlDVkp1ci9MTFNCUXlNbStEK0xqeDQwdjc0enhmTnNYQTk0S2Jq?=
+ =?utf-8?B?NEpvM1NFU3liZXdRWVFqak9WV2FlSUIyUjhtODljdTNlUW45b3VnMzdqNjQ4?=
+ =?utf-8?B?c3Zmc2w4THBWbzRoU3BxZ1FQcTdsWU1xc3FXWW05dDhQVlVrRkdyTkUwT2xW?=
+ =?utf-8?B?ZWRzMk5RRE9md3I1Nm1IeGhZdWNkNG50dTU5WXFUR2x6Z2ZQdkJvQXpnTFMw?=
+ =?utf-8?B?TVNzcGJHSVNxVm5sb3ZSUVc2NVNNR2VMc1lNdXBLOVFIaWhLYjhYcFZjelIy?=
+ =?utf-8?B?ampMdUdxMGg4QjhnMXc2b0dKLzRoYmI5NzYxV2pJL0F5NzR6OFFnblV2OTdJ?=
+ =?utf-8?B?cVdRV1dmOFhGcDBTSDdPWUNoaGpnM1hsLzUwUnNCVDBxM28yZmlQeElyS0I5?=
+ =?utf-8?B?WmFibFpJOU9vOWFmd2dEMkMwZlRMczRmakFQQkt0eHptL0ErQm91dCswQTFm?=
+ =?utf-8?B?MDNTdjlJWkNsdmh1dWZPUE1CdCtKVzJhQUhOL2loSnAxbjFVRzFEY2N3RDFL?=
+ =?utf-8?B?K2FacmwyTVNmVUt2S0tCOUppNlFVdTAreVBnUSthWVAybjdBcENFUkN3cFZz?=
+ =?utf-8?B?KysydUtTSWQ0SEZqVk16SjdzNU40RHVyMDNuS3pwdzBWbFFzQkFieDRmZTJ0?=
+ =?utf-8?B?NEkyK2svaUZxelhVaGdnd1ppUHBIUlZXa0NQZUlGWTErQVBHaFpBVzUvNjhy?=
+ =?utf-8?B?VytITEVXV2RFcmpRMENJQUF6SEhrVDdNZGdjWVVBbzJQQS9XUFJSZDNycDkz?=
+ =?utf-8?B?ZU5PTnAyNGIrdCt3TFJyY3VPQUZJV2tuT0wyOGZYRzJsWmlNWloxQVBqamFw?=
+ =?utf-8?B?Rm5uME1mR1EwbmRqYXlaYXBNYkl1N05JT2tlWDk1a1VkejBRbmJTYlYxMlBY?=
+ =?utf-8?B?N0tpR1Z3M1FKUFlLQWY5MDhFWlNLbm9WNUxJdFU5MlZtN2ViS0NYWG1OeGZ3?=
+ =?utf-8?B?cVRpR2pWLzF2aGxoQUVxRDFkdkc5bG5GMzFFZDRNUEZ2V2I2eWhuaXV3NDBp?=
+ =?utf-8?B?SDJKWUhLbGNMc0h3WnNBTDlia2Z2L2hDbHlNTXNRUVpKWFdNY3lTMFRMU3FH?=
+ =?utf-8?B?Z3ZvTnBsUUhOaC95WC9KQkQwNVovd0ZEc2E2TVhEY1BuUEJrdDBoM2tiMmhx?=
+ =?utf-8?B?U1dRalcwK01hOS95VWI0WkovWEdIVTF5Rzh6UytzQ0c5b0d5bVRmc3RLYksy?=
+ =?utf-8?B?L2JmUURaUzFtbkgvOWVjQ2RYdExJVjMwTlVjbHFBRXdQejM5UmxCVkE2Qi9Q?=
+ =?utf-8?B?bDlZbytab0JSclo4VTVPVEJZenNBTmZOV3VUK29WdXpSUFkwRnF0TFpYQnd4?=
+ =?utf-8?B?Y3VzaWxiNVBsZ1BxaDYzN2FYTDQwWGNRZlJ6bXF3RDlKOVVoSHVVZjRnSEUv?=
+ =?utf-8?B?QkJtTEhCb1l3cmppdFgvMzJsTmJZQTQ5MlA1NmM2d3MveWJyOTdmdndLcEZn?=
+ =?utf-8?B?NEhLa2NOanFzUnJnRXRIcXYzWThtbDBvT21xeEpaR1pVSzhybWRhM2E1NjBT?=
+ =?utf-8?B?TEdCRDF0MXI0ckVRSFFDWSs2dzB2UlFicFYyZEZNdzZ1TU80dk00UGJUaUtY?=
+ =?utf-8?B?UTU1NmF1ZVB6MUVsWFIzcGdoVHhyVHdmNGtrRk9wNVAybERFNGNBTzNnTllT?=
+ =?utf-8?B?dDk4NjFsM21IUG5xTzBaWlBDM1hva1prNG1GZTdYTS83TVhpZGxodzVWc01U?=
+ =?utf-8?B?OVNXa09UbzE0UURnRVFOV1hrT1RaMEdDMlgxak16UXhMdGxNQjFISk5YR01i?=
+ =?utf-8?B?VHZhamFZZXozZWt6RFM2VEs3MDBKNUJMMStpNGF2SS9vbDhNN0p4YTJ5dVZ1?=
+ =?utf-8?Q?NtZjDbEF6U6TG?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 95e30351-d8ee-4d5e-1676-08d923ee3164
+X-MS-Exchange-CrossTenant-AuthSource: MW2PR0102MB3482.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2021 04:40:19.1075
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wKCTPCKf7A6V3kxPNtYjhJO195sLWSyzuK7ncbN7SnKRfq4Y6LoZ0YZtB4li8nTp4sIRP9IT3KT9MOr/bmkyI2R4A8V2aBBHMM3TkL959ns=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR01MB6614
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
- is is
+On 18/05/2021 06:36, Quan Nguyen wrote:
+> On 05/05/2021 15:44, Quan Nguyen wrote:
+>> On 01/05/2021 03:19, Rob Herring wrote:
+>>> On Thu, Apr 22, 2021 at 04:08:40PM +0700, Quan Nguyen wrote:
+>>>> Adds device tree bindings for SMPro driver found on the Mt.Jade 
+>>>> hardware
+>>>> reference platform with Ampere's Altra Processor family.
+>>>>
+>>>> The SMpro co-processor on Ampere Altra processor family is to monitor
+>>>> and report various data included hwmon-related info, RAS errors, and
+>>>> other miscellaneous information. This parent SMPro MFD driver creates
+>>>> a single simple register map to be shared by all sub-devices and leave
+>>>> all the specific to be handled by the child drivers.
+>>>
+>>> Again, just because you have multiple functions aka MFD, that doesn't
+>>> mean you need child nodes for each function. The only thing you have
+>>> in DT is a register address. Does this vary? If so, how often? How many
+>>> different versions of a DT do you currently or expect to have?
+>>>
+>> Hi Rob,
+>>
+>> Thank you for your review.
+>> I will try to explain what I think below and expect to receive more 
+>> comments to improve these patches. And if any misundertood, please 
+>> help correct me.
+>>
+>> The idea is to keep the SMPro MFD as a simple generic register map and 
+>> expect not to change or to handle any specific in this parent device 
+>> driver. This is why we see the simple_mfd_i2c fit in this case.
+>>
+>> And so, all the specific details will be handled in child devices 
+>> driver and we expect to have child nodes for these child devices. If 
+>> the child node exist we can then add any specific if necessary later.
+>>
+>> One case is that, each socket (ie: the Ampere Altra processor) has it 
+>> own SMPro co-processor instance in form of register map and each 
+>> socket could be either slave or master. Some function may not 
+>> available in slave socket but exist in master socket and we simply 
+>> choose not to define the child node if that function not existed.
+>>
+>> The other case is that if there are multi instances of the same 
+>> function in one SMPro MFD register map, then each instance might need 
+>> to be differentiated by using is own register address or maybe a DT 
+>> property. Then we can simply add them to the node of these instance.
+>>
+>> For your specific questions:
+>>
+>> + Does this vary ?
+>> yes, I think so. The register address in each child nodes may vary if 
+>> the SMPro co-processor firmware change its register map layout or 
+>> maybe other instances of a function added. Child device drivers are 
+>> expected to handle these changes if necessary.
+>>
+>> + About how often ?
+>> I actually can't say how often but the purpose of this SMPro register 
+>> map is to provide the info to the BMC. The BMC will need more info 
+>> from the host so I think changes will be unavoidable.
+>>
+>> Please help with your comments
+>> Thank you,
+>> - Quan
+>>
+> Dear Rob,
+> 
+> do you have any suggestion to improve this patch?
+> 
+> - Quan
 
-Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com> =E6=96=BC 2021=E5=B9=B4=
-5=E6=9C=8828=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=885:47=E5=AF=AB=E9=
-=81=93=EF=BC=9A
->
->
-> On Fri, 2021-05-28 at 16:13 +0800, Gene Chen wrote:
-> > From: Gene Chen <gene_chen@richtek.com>
-> >
-> > Add basic support for the battery charger for MT6360 PMIC
-> >
-> > Signed-off-by: Gene Chen <gene_chen@richtek.com>
-> > ---
-> >  drivers/power/supply/Kconfig          |  11 +
-> >  drivers/power/supply/Makefile         |   1 +
-> >  drivers/power/supply/mt6360_charger.c | 856
-> > ++++++++++++++++++++++++++
-> >  3 files changed, 868 insertions(+)
-> >  create mode 100644 drivers/power/supply/mt6360_charger.c
-> >
-> > diff --git a/drivers/power/supply/Kconfig
-> > b/drivers/power/supply/Kconfig
-> > index e696364126f1..3257b1ad5e36 100644 11
-> > --- a/drivers/power/supply/Kconfig
-> > +++ b/drivers/power/supply/Kconfig
-> > @@ -577,6 +577,17 @@ config CHARGER_MP2629
-> >         Battery charger. This driver provides Battery charger power
-> > management
-> >         functions on the systems.
-> >
-> > +config CHARGER_MT6360
-> > +     tristate "Mediatek MT6360 Charger Driver"
-> > +     depends on MFD_MT6360
-> > +     depends on REGULATOR
-> > +     select LINEAR_RANGES
-> > +     help
-> > +       Say Y here to enable MT6360 Charger Part.
-> > +       The device supports High-Accuracy Voltage/Current Regulation,
-> > +       Average Input Current Regulation, Battery Tempature Sensing,
-> > +       Over-Temperature Protection, DPDM Detection for BC1.2
-> > +
-> >  config CHARGER_QCOM_SMBB
-> >       tristate "Qualcomm Switch-Mode Battery Charger and Boost"
-> >       depends on MFD_SPMI_PMIC || COMPILE_TEST
-> > diff --git a/drivers/power/supply/Makefile
-> > b/drivers/power/supply/Makefile
-> > index a7309a3d1a47..5317fe787149 100644
-> > --- a/drivers/power/supply/Makefile
-> > +++ b/drivers/power/supply/Makefile
-> > @@ -78,6 +78,7 @@ obj-$(CONFIG_CHARGER_MAX77693)      +=3D
-> > max77693_charger.o
-> >  obj-$(CONFIG_CHARGER_MAX8997)        +=3D max8997_charger.o
-> >  obj-$(CONFIG_CHARGER_MAX8998)        +=3D max8998_charger.o
-> >  obj-$(CONFIG_CHARGER_MP2629) +=3D mp2629_charger.o
-> > +obj-$(CONFIG_CHARGER_MT6360) +=3D mt6360_charger.o
-> >  obj-$(CONFIG_CHARGER_QCOM_SMBB)      +=3D qcom_smbb.o
-> >  obj-$(CONFIG_CHARGER_BQ2415X)        +=3D bq2415x_charger.o
-> >  obj-$(CONFIG_CHARGER_BQ24190)        +=3D bq24190_charger.o
-> > diff --git a/drivers/power/supply/mt6360_charger.c
-> > b/drivers/power/supply/mt6360_charger.c
-> > new file mode 100644
-> > index 000000000000..07fa0b3870e0
-> > --- /dev/null
-> > +++ b/drivers/power/supply/mt6360_charger.c
-> > @@ -0,0 +1,856 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (c) 2021 MediaTek Inc.
-> > + */
-> > +
-> > +#include <linux/init.h>
-> > +#include <linux/interrupt.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/linear_range.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/power_supply.h>
-> > +#include <linux/property.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/regulator/driver.h>
-> > +
-> > +#define MT6360_PMU_CHG_CTRL1 0x311
-> > +#define MT6360_PMU_CHG_CTRL2 0x312
-> > +#define MT6360_PMU_CHG_CTRL3 0x313
-> > +#define MT6360_PMU_CHG_CTRL4 0x314
-> > +#define MT6360_PMU_CHG_CTRL5 0x315
-> > +#define MT6360_PMU_CHG_CTRL6 0x316
-> > +#define MT6360_PMU_CHG_CTRL7 0x317
-> > +#define MT6360_PMU_CHG_CTRL8 0x318
-> > +#define MT6360_PMU_CHG_CTRL9 0x319
-> > +#define MT6360_PMU_CHG_CTRL10        0x31A
-> > +#define MT6360_PMU_DEVICE_TYPE       0x322
-> > +#define MT6360_PMU_USB_STATUS1       0x327
-> > +#define MT6360_PMU_CHG_STAT  0x34A
-> > +#define MT6360_PMU_CHG_CTRL19        0x361
-> > +#define MT6360_PMU_FOD_STAT  0x3E7
-> > +
-> > +/* MT6360_PMU_CHG_CTRL1 */
-> > +#define MT6360_FSLP_SHFT     (3)
-> > +#define MT6360_FSLP_MASK     BIT(MT6360_FSLP_SHFT)
-> > +#define MT6360_OPA_MODE_SHFT (0)
-> > +#define MT6360_OPA_MODE_MASK BIT(MT6360_OPA_MODE_SHFT)
-> > +/* MT6360_PMU_CHG_CTRL2 */
-> > +#define MT6360_IINLMTSEL_SHFT        (2)
-> > +#define MT6360_IINLMTSEL_MASK        GENMASK(3, 2)
-> > +/* MT6360_PMU_CHG_CTRL3 */
-> > +#define MT6360_IAICR_SHFT    (2)
-> > +#define MT6360_IAICR_MASK    GENMASK(7, 2)
-> > +#define MT6360_ILIM_EN_MASK  BIT(0)
-> > +/* MT6360_PMU_CHG_CTRL4 */
-> > +#define MT6360_VOREG_SHFT    (1)
-> > +#define MT6360_VOREG_MASK    GENMASK(7, 1)
-> > +/* MT6360_PMU_CHG_CTRL5 */
-> > +#define MT6360_VOBST_MASK    GENMASK(7, 2)
-> > +/* MT6360_PMU_CHG_CTRL6 */
-> > +#define MT6360_VMIVR_SHFT      (1)
-> > +#define MT6360_VMIVR_MASK      GENMASK(7, 1)
-> > +/* MT6360_PMU_CHG_CTRL7 */
-> > +#define MT6360_ICHG_SHFT     (2)
-> > +#define MT6360_ICHG_MASK     GENMASK(7, 2)
-> > +/* MT6360_PMU_CHG_CTRL8 */
-> > +#define MT6360_IPREC_SHFT    (0)
-> > +#define MT6360_IPREC_MASK    GENMASK(3, 0)
-> > +/* MT6360_PMU_CHG_CTRL9 */
-> > +#define MT6360_IEOC_SHFT     (4)
-> > +#define MT6360_IEOC_MASK     GENMASK(7, 4)
-> > +/* MT6360_PMU_CHG_CTRL10 */
-> > +#define MT6360_OTG_OC_MASK   GENMASK(3, 0)
-> > +/* MT6360_PMU_DEVICE_TYPE */
-> > +#define MT6360_USBCHGEN_MASK BIT(7)
-> > +/* MT6360_PMU_USB_STATUS1 */
-> > +#define MT6360_USB_STATUS_SHFT       (4)
-> > +#define MT6360_USB_STATUS_MASK       GENMASK(6, 4)
-> > +/* MT6360_PMU_CHG_STAT */
-> > +#define MT6360_CHG_STAT_SHFT (6)
-> > +#define MT6360_CHG_STAT_MASK GENMASK(7, 6)
-> > +#define MT6360_VBAT_LVL_MASK BIT(5)
-> > +/* MT6360_PMU_CHG_CTRL19 */
-> > +#define MT6360_VINOVP_SHFT   (5)
-> > +#define MT6360_VINOVP_MASK   GENMASK(6, 5)
-> > +/* MT6360_PMU_FOD_STAT */
-> > +#define MT6360_CHRDET_EXT_MASK       BIT(4)
-> > +
-> > +enum {
-> > +     MT6360_RANGE_VMIVR,
-> > +     MT6360_RANGE_ICHG,
-> > +     MT6360_RANGE_VOREG,
-> > +     MT6360_RANGE_AICR,
-> > +     MT6360_RANGE_IPREC,
-> > +     MT6360_RANGE_IEOC,
-> > +     MT6360_RANGE_MAX,
-> > +};
-> > +
-> > +#define MT6360_LINEAR_RANGE(idx, _min, _min_sel, _max_sel, _step)
-> > \
-> > +     [idx] =3D {                                                      =
- \
-> > +             .min =3D _min,
-> > \
-> > +             .min_sel =3D _min_sel,
-> > \
-> > +             .max_sel =3D _max_sel,
-> > \
-> > +             .step =3D _step,
-> > \
-> > +     }
-> >
->
-> Do you think REGULATOR_LINEAR_RANGE() would fit this? Or is the naming
-> a problem there? (Just a minor thing, no need to re-spin for this)
->
+Dear Rob,
 
-Yes, it is fit for this but REGULATOR_LINEAR_RANGE is used for
-regulator which is defined in regulator/driver.h.
-I think it's better to defined ours and add idx for easy to read.
-Is it better to re-use REGULATOR_LINEAR_RANGE?
+I'm sorry it's me again, I'm just hope you could share your thoughts on 
+the DT node for sub-devices using simple-mfd-i2c drivers.
 
-> //snip
->
-> > +static int mt6360_charger_probe(struct platform_device *pdev)
-> > +{
-> > +     struct mt6360_chg_info *mci;
-> > +     struct power_supply_config charger_cfg =3D {};
-> > +     struct regulator_config config =3D { };
-> > +     int ret;
-> > +
-> > +     mci =3D devm_kzalloc(&pdev->dev, sizeof(*mci), GFP_KERNEL);
-> > +     if (!mci)
-> > +             return -ENOMEM;
-> > +
-> > +     mci->dev =3D &pdev->dev;
-> > +     mci->vinovp =3D 6500000;
-> > +     mutex_init(&mci->chgdet_lock);
-> > +     platform_set_drvdata(pdev, mci);
-> > +     INIT_WORK(&mci->chrdet_work, &mt6360_chrdet_work);
->
-> //snip
->
-> > +
-> > +static int mt6360_charger_remove(struct platform_device *pdev)
-> > +{
-> > +     struct mt6360_chg_info *mci =3D platform_get_drvdata(pdev);
-> > +
-> > +     cancel_work_sync(&mci->chrdet_work);
-> > +
-> > +     return 0;
-> > +}
->
-> Just as a note, devm_work_autocancel() should hopefully be included at
-> next cycle. Then you might be able to drop the .remove().
->
+In commit 3abee4579484 ("mfd: Add simple regmap based I2C driver"), 
+there is note that "Once the register map has been successfully 
+initialised, any sub-devices represented by child nodes in Device Tree 
+will be subsequently registered".
 
-ACK, I will replace it, thanks.
+So it seems unavoidable to have DT nodes for sub-devices which uses 
+simple-mfd-i2c. I'm a bit confused if DT nodes in this case should be 
+avoided.
 
-> FWIW:
-> Reviewed-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
->
-> Best Regards
->         Matti Vaittinen
->
+Please see 
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/patch?id=3abee4579484c554961bb0af92a77adc0ebd791d
+
+Thank you,
+- Quan
+
+PS:
+Below is for quick reference:
+
+ From 3abee4579484c554961bb0af92a77adc0ebd791d Mon Sep 17 00:00:00 2001
+From: Michael Walle <michael@walle.cc>
+Date: Mon, 14 Sep 2020 23:43:29 +0200
+Subject: mfd: Add simple regmap based I2C driver
+
+There are I2C devices which contain several different functions but
+doesn't require any special access functions. For these kind of drivers
+an I2C regmap should be enough.
+
+Create an I2C driver which creates an I2C regmap and enumerates its
+children. If a device wants to use this as its MFD core driver, it has
+to add an individual compatible string. It may provide its own regmap
+configuration.
+
+Subdevices can use dev_get_regmap() on the parent to get their regmap
+instance.
+
+Signed-off-by: Michael Walle <michael@walle.cc>
+Signed-off-by: Lee Jones <lee.jones@linaro.org>
+---
+  drivers/mfd/Kconfig          | 12 ++++++++++
+  drivers/mfd/Makefile         |  1 +
+  drivers/mfd/simple-mfd-i2c.c | 56 
+++++++++++++++++++++++++++++++++++++++++++++
+  3 files changed, 69 insertions(+)
+  create mode 100644 drivers/mfd/simple-mfd-i2c.c
+
+diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+index 33df0837ab415..6e1a38944d282 100644
+--- a/drivers/mfd/Kconfig
++++ b/drivers/mfd/Kconfig
+@@ -1162,6 +1162,18 @@ config MFD_SI476X_CORE
+  	  To compile this driver as a module, choose M here: the
+  	  module will be called si476x-core.
+
++config MFD_SIMPLE_MFD_I2C
++	tristate
++	depends on I2C
++	select REGMAP_I2C
++	help
++	  This driver creates a single register map with the intention for it
++	  to be shared by all sub-devices.
++
++	  Once the register map has been successfully initialised, any
++	  sub-devices represented by child nodes in Device Tree will be
++	  subsequently registered.
++
+  config MFD_SM501
+  	tristate "Silicon Motion SM501"
+  	depends on HAS_DMA
+diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+index a60e5f835283e..78d24a3e7c9e5 100644
+--- a/drivers/mfd/Makefile
++++ b/drivers/mfd/Makefile
+@@ -264,3 +264,4 @@ obj-$(CONFIG_MFD_STMFX) 	+= stmfx.o
+  obj-$(CONFIG_MFD_KHADAS_MCU) 	+= khadas-mcu.o
+
+  obj-$(CONFIG_SGI_MFD_IOC3)	+= ioc3.o
++obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)	+= simple-mfd-i2c.o
+diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.c
+new file mode 100644
+index 0000000000000..28e96a246be11
+--- /dev/null
++++ b/drivers/mfd/simple-mfd-i2c.c
+@@ -0,0 +1,56 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Simple MFD - I2C
++ *
++ * This driver creates a single register map with the intention for it 
+to be
++ * shared by all sub-devices.  Children can use their parent's device 
+structure
++ * (dev.parent) in order to reference it.
++ *
++ * Once the register map has been successfully initialised, any sub-devices
++ * represented by child nodes in Device Tree will be subsequently 
+registered.
++ */
++
