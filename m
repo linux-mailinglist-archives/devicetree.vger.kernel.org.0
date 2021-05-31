@@ -2,412 +2,328 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34972396A21
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 01:47:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A1ED396A36
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 01:59:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231637AbhEaXtY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 19:49:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53716 "EHLO
+        id S232448AbhFAABT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 20:01:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231144AbhEaXtY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 19:49:24 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E356C061574;
-        Mon, 31 May 2021 16:47:42 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id jt22so18831136ejb.7;
-        Mon, 31 May 2021 16:47:42 -0700 (PDT)
+        with ESMTP id S232382AbhFAABT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 20:01:19 -0400
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6192C061574
+        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 16:59:37 -0700 (PDT)
+Received: by mail-ot1-x334.google.com with SMTP id t10-20020a05683022eab0290304ed8bc759so12466756otc.12
+        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 16:59:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Nye33/azhY989fSWfDH7wtSEsC0TAbGD11w81JUZxGE=;
-        b=MZb9AkEXGg8B+vuB5Ox/rWWo8pI+apxYeG6/xMNneCyZvWdUuj6h2F8wgggSRCExA8
-         odJt0E1a5TISxeerM5jDT8vaCkjLgCXNLKhyMuzYImoXpKZhrBEYOFKUFw8uUyp86P4N
-         xTgaZNnZpOou+hcOqeIsSHqJ4X7BiR6gLr1LiRwwA+7eXiuf6fFnZ9C++IrMusNP4kIo
-         GtcdUKNNGXmw7Mn+/CuYgV+XNpx/RefKIyY+1vbaFxS+kUrtNWEaolgZAFbHcmDUGPRb
-         sebGlY+JZs2WL4ve7Sa8E8etWVWOoswX7+NA+tG08261iAXdV3ta3/1arR4f2PHNJy5N
-         nxpw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=glM+C18tv5YQVj5/3djZjAFcNCXaUEK5klQIVDIAczU=;
+        b=FMuyAcYFLSWB3uOIDEXlTXhvyUTXUn1bWKFbWiA9bMxsneSTUIiZhdH4xiLRE66ZGF
+         bQdN9UnqSysCily13bWLbN1brLzfam78aahwvSkG5vu0XEI8QLH1jk74UwuLfkaA4HE/
+         Bk2/wykbjD+1mWEUGUQjBpkq68m6Qns5yKA6uPfAIeS01OIcySV8ThmHWeg21pzGkzI/
+         3qSNLYjd+NDFzstSMQGSoUuwbRkLyPyamKTKutFvNS4kAZoDhBcDokkC7Y5Kuu8+963t
+         i7bGgTj2PokolR3bR01Eq9CQCydrq22gJHAYgdXp/LX0zxYU8gI6Glxygj+SztbjO1NS
+         RVcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Nye33/azhY989fSWfDH7wtSEsC0TAbGD11w81JUZxGE=;
-        b=scKh/ZojHPQk1bbS+i1hLptf6AacjkQNsgcY0VlIGD6TLZSiop+Q1h1yVBTUOu2eoI
-         pX96RpKMKiINxf/pi+do6xUiSo2YhRf4KvkAdVZpAT4lZAwIJ76Qi2Rq6CkWhpFxc61D
-         +ZsnkozNSBa740KZpMORQOiQXVi47gamZzbdcOAj9lrsoCB+It19VfHv6g18fN67I3RY
-         V10P8r4BMWLScuB2HH0cYKEBdO30qKpHyYl6DHmcBXH6CUudj3nk9srKAM1PK5BRySPC
-         whrHuSqvKkQYT1OyxDx8k8U0gggWLdIuMxxPRr5sO0Iowmr81UKBGGFCYByK29kyf5GA
-         92sQ==
-X-Gm-Message-State: AOAM5311C7BAQjcpBjuE1J2hOF/LwXsgSVjBJdntAGBZBpWxc7lvIdTX
-        hKF1t8H6luNkmeiovNL7Xd0=
-X-Google-Smtp-Source: ABdhPJwrfEM1+PCKlvcFKnJ2L+EXEx1iN/afVIrMCo9Qw2yPbWxIKObVtxnSVETPIchvgva6+rflyQ==
-X-Received: by 2002:a17:906:bb0e:: with SMTP id jz14mr25124027ejb.285.1622504859889;
-        Mon, 31 May 2021 16:47:39 -0700 (PDT)
-Received: from localhost.localdomain ([188.26.52.84])
-        by smtp.gmail.com with ESMTPSA id um5sm3342658ejb.109.2021.05.31.16.47.38
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=glM+C18tv5YQVj5/3djZjAFcNCXaUEK5klQIVDIAczU=;
+        b=q9G/gMGUA8BLRm9uevRJjCFIH4LwtQFwBAYeL286oIdsQWqQHHxsN3WCeely8sihl3
+         bPbzbwcP+0/P9JaQb/0PAlK3T/qr3sA1Ydr2AN5AngMYCO1zIks6c2O/Va1Aeo7BpojI
+         B+f62dOIRSsX+5IdQN2ZdluNmoMjiMpIDxqdi7hXhRucK+Kg9kUWDdKyymoulpnh4BT5
+         pSEDZaCFUPAE/vG8gLNhYT8jn+vCi9e1u3AKBtWsnujBIInVJIJtNtuXwXVzuEBKx8ee
+         qLsxSWXlX9IHdBI/6VoZ7ojF41PH5T2Kyq2lZY2gkhh9g5SYJoP4QwGEbD+D103lfDlF
+         Zk6g==
+X-Gm-Message-State: AOAM530pHND5X/pC5Qhz+1su9V2TSmx4qqrABivMsA4iA1ucwfukRNdP
+        Q0YyltJZn1mM3ReZtDsvahzqHg==
+X-Google-Smtp-Source: ABdhPJztsKdq6JSZNHeszl+Q7oCjj5gIbagpseiWKtvrPIEIGLWjKmMd9DYYeJyc6j0J7bUepY+lZA==
+X-Received: by 2002:a9d:63cc:: with SMTP id e12mr3725492otl.89.1622505576869;
+        Mon, 31 May 2021 16:59:36 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id y14sm3333029otq.4.2021.05.31.16.59.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 May 2021 16:47:39 -0700 (PDT)
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Jakub Kicinski <kuba@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>
-Subject: [PATCH net-next] dt-bindings: net: dsa: sja1105: convert to YAML schema
-Date:   Tue,  1 Jun 2021 02:47:35 +0300
-Message-Id: <20210531234735.1582031-1-olteanv@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        Mon, 31 May 2021 16:59:36 -0700 (PDT)
+Date:   Mon, 31 May 2021 18:59:34 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Cc:     agross@kernel.org, robh+dt@kernel.org, lgirdwood@gmail.com,
+        broonie@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org, jeffrey.l.hugo@gmail.com
+Subject: Re: [PATCH v5 1/3] soc: qcom: Add support for Core Power Reduction
+ v3, v4 and Hardened
+Message-ID: <YLV4ZnJ8SUbwpatl@builder.lan>
+References: <20210121194051.484209-1-angelogioacchino.delregno@somainline.org>
+ <20210121194051.484209-2-angelogioacchino.delregno@somainline.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210121194051.484209-2-angelogioacchino.delregno@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
+On Thu 21 Jan 13:40 CST 2021, AngeloGioacchino Del Regno wrote:
 
-The following issues exist with the device-specific sja1105,role-mac and
-sja1105,role-phy:
+> This commit introduces a new driver, based on the one for cpr v1,
+> to enable support for the newer Qualcomm Core Power Reduction
+> hardware, known downstream as CPR3, CPR4 and CPRh, and support
+> for MSM8998 and SDM630 CPU power reduction.
+> 
+> In these new versions of the hardware, support for various new
+> features was introduced, including voltage reduction for the GPU,
+> security hardening and a new way of controlling CPU DVFS,
+> consisting in internal communication between microcontrollers,
+> specifically the CPR-Hardened and the Operating State Manager.
+> 
+> The CPR v3, v4 and CPRh are present in a broad range of SoCs,
+> from the mid-range to the high end ones including, but not limited
+> to, MSM8953/8996/8998, SDM630/636/660/845.
 
-(a) the "sja1105" is not a valid vendor prefix and should probably have
-    been "nxp", but
-(b) as per the discussion with Florian here:
-    https://lore.kernel.org/netdev/20210201214515.cx6ivvme2tlquge2@skbuf/
-    more phy-mode values similar to "revmii" can be added which denote
-    that the port is in the role of a PHY (such as "revrmii"), making
-    the sja1105,role-phy redundant. Because there are no upstream users
-    (or any users at all, to my knowledge) of these properties, they
-    could even be removed in a future commit as far as I am concerned.
-(c) when I force-add sja1105,role-phy to a device tree for testing, the
-    patternProperties matching does not work, it results in the following
-    error:
+Why is 845 in this list? I was under the impression that CPR was dealt
+with entirely by firmware starting in 845.
 
-ethernet-switch@2: ethernet-ports:port@1: 'sja1105,role-phy' does not match any of the regexes: 'pinctrl-[0-9]+'
-        From schema: Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
 
-But what's even more interesting is that if I remove the
-"additionalProperties: true" that dsa.yaml has, I get even more
-validation errors coming from patternProperties not matching either,
-from spi-controller.yaml:
+Also, you don't happen to have the 8996 data laying around somewhere?
 
-ethernet-switch@2: 'compatible', 'mdio', 'reg', 'spi-cpol', 'spi-max-frequency' do not match any of the regexes: '^(ethernet-)?ports$', 'pinctrl-[0-9]+'
+> diff --git a/drivers/soc/qcom/cpr3.c b/drivers/soc/qcom/cpr3.c
+[..]
+> +/*
+> + * cpr_get_ring_osc_factor - Get fuse corner ring oscillator factor
+> + *
+> + * Not all threads have different scaling factors for each
+> + * Fuse Corner: if the RO factors are the same for all corners,
+> + * then only one is specified, instead of uselessly repeating
+> + * the same array for FC-times.
+> + * This function checks for the same and gives back the right
+> + * factor for the requested ring oscillator.
+> + *
+> + * Returns: Ring oscillator factor
 
-So... it is probably broken. Rob Herring says here:
-https://lore.kernel.org/linux-spi/20210324181037.GB3320002@robh.at.kernel.org/
+This is almost kerneldoc, how about adding another '*', some parenthesis
+on the function name, short description of the parameters and dropping
+the 's' on Return?
 
-  I'm aware of the issue, but I don't have a solution for this situation.
-  It's a problem anywhere we have a parent or bus binding defining
-  properties for child nodes. For now, I'd just avoid it in the examples
-  and we'll figure out how to deal with actual dts files later.
+> + */
+> +static int cpr_get_ro_factor(const struct cpr_thread_desc *tdesc,
+> +			     int fnum, int ro_idx)
+> +{
+> +	int ro_fnum;
+> +
+> +	if (tdesc->ro_avail_corners == tdesc->num_fuse_corners)
+> +		ro_fnum = fnum;
+> +	else
+> +		ro_fnum = 0;
+> +
+> +	return tdesc->ro_scaling_factor[ro_fnum][ro_idx];
+> +}
+> +
+> +static void cpr_write(struct cpr_thread *thread, u32 offset, u32 value)
+> +{
+> +	writel_relaxed(value, thread->base + offset);
 
-So that's what I did.
+I dislike the fact that we default to the _relaxed() version of
+readl/writel. Can we please switch them for non-relaxed versions, or
+document why they all need to be _relaxed?
 
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
- .../bindings/net/dsa/nxp,sja1105.yaml         | 128 ++++++++++++++
- .../devicetree/bindings/net/dsa/sja1105.txt   | 156 ------------------
- 2 files changed, 128 insertions(+), 156 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/dsa/sja1105.txt
+> +}
+> +
+> +static u32 cpr_read(struct cpr_thread *thread, u32 offset)
+> +{
+> +	return readl_relaxed(thread->base + offset);
+> +}
+> +
+> +static void
+> +cpr_masked_write(struct cpr_thread *thread, u32 offset, u32 mask, u32 value)
+> +{
+> +	u32 val;
+> +
+> +	val = readl_relaxed(thread->base + offset);
+> +	val &= ~mask;
+> +	val |= value & mask;
+> +	writel_relaxed(val, thread->base + offset);
+> +}
+> +
+> +static void cpr_irq_clr(struct cpr_thread *thread)
+> +{
+> +	cpr_write(thread, CPR3_REG_IRQ_CLEAR, CPR3_IRQ_ALL);
+> +}
+> +
+> +static void cpr_irq_clr_nack(struct cpr_thread *thread)
+> +{
+> +	cpr_irq_clr(thread);
+> +	cpr_write(thread, CPR3_REG_CONT_CMD, CPR3_CONT_CMD_NACK);
+> +}
+> +
+> +static void cpr_irq_clr_ack(struct cpr_thread *thread)
+> +{
+> +	cpr_irq_clr(thread);
+> +	cpr_write(thread, CPR3_REG_CONT_CMD, CPR3_CONT_CMD_ACK);
+> +}
+> +
+> +static void cpr_irq_set(struct cpr_thread *thread, u32 int_bits)
+> +{
+> +	/* On CPR-hardened, interrupts are managed by and on firmware */
+> +	if (thread->drv->desc->cpr_type == CTRL_TYPE_CPRH)
+> +		return;
+> +
+> +	cpr_write(thread, CPR3_REG_IRQ_EN, int_bits);
+> +}
+> +
+> +/**
+> + * cpr_ctl_enable - Enable CPR thread
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-new file mode 100644
-index 000000000000..312f859cc40c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-@@ -0,0 +1,128 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/dsa/nxp,sja1105.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP SJA1105 Automotive Ethernet Switch Family Device Tree Bindings
-+
-+description:
-+  The SJA1105 SPI interface requires a CS-to-CLK time (t2 in UM10944.pdf) of at
-+  least one half of t_CLK. At an SPI frequency of 1MHz, this means a minimum
-+  cs_sck_delay of 500ns. Ensuring that this SPI timing requirement is observed
-+  depends on the SPI bus master driver.
-+
-+allOf:
-+  - $ref: "dsa.yaml#"
-+
-+maintainers:
-+  - Vladimir Oltean <vladimir.oltean@nxp.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - nxp,sja1105e
-+      - nxp,sja1105t
-+      - nxp,sja1105p
-+      - nxp,sja1105q
-+      - nxp,sja1105r
-+      - nxp,sja1105s
-+
-+  reg:
-+    maxItems: 1
-+
-+patternProperties:
-+  "^(ethernet-)?ports$":
-+    type: object
-+
-+    patternProperties:
-+      "^(ethernet-)?port@[0-9]+$":
-+        type: object
-+        properties:
-+
-+          # By default (unless otherwise specified) a port is configured as MAC
-+          # if it is driving a PHY (phy-handle is present) or as PHY if it is
-+          # PHY-less (fixed-link specified, presumably because it is connected
-+          # to a MAC). It is suggested to not use these bindings unless an
-+          # explicit override is necessary (for example, if SJA1105 ports are at
-+          # both ends of a MII/RMII PHY-less setup. In that case, one end would
-+          # need to have sja1105,role-mac, and the other sja1105,role-phy).
-+          sja1105,role-mac:
-+            $ref: /schemas/types.yaml#/definitions/flag
-+            description: |
-+                Specifies whether the SJA1105 port is a clock source or sink
-+                for this interface, according to the applicable standard
-+                (applicable for MII and RMII, but not applicable for RGMII
-+                where there are separate TX and RX clocks). In the case of
-+                RGMII it affects the behavior regarding internal delays.
-+                If the port is configured in the role of an RGMII MAC, it will
-+                let the PHY apply internal RGMII delays according to the
-+                phy-mode property, otherwise it will apply the delays itself.
-+
-+          sja1105,role-phy:
-+            $ref: /schemas/types.yaml#/definitions/flag
-+            description:
-+                See sja1105,role-mac.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ethernet-switch@1 {
-+            reg = <0x1>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            compatible = "nxp,sja1105t";
-+
-+            ethernet-ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    phy-handle = <&rgmii_phy6>;
-+                    phy-mode = "rgmii-id";
-+                    reg = <0>;
-+                    /* Implicit "sja1105,role-mac;" */
-+                };
-+
-+                port@1 {
-+                    phy-handle = <&rgmii_phy3>;
-+                    phy-mode = "rgmii-id";
-+                    reg = <1>;
-+                    /* Implicit "sja1105,role-mac;" */
-+                };
-+
-+                port@2 {
-+                    phy-handle = <&rgmii_phy4>;
-+                    phy-mode = "rgmii-id";
-+                    reg = <2>;
-+                    /* Implicit "sja1105,role-mac;" */
-+                };
-+
-+                port@3 {
-+                    phy-mode = "rgmii-id";
-+                    reg = <3>;
-+                };
-+
-+                port@4 {
-+                    ethernet = <&enet2>;
-+                    phy-mode = "rgmii";
-+                    reg = <4>;
-+                    /* Implicit "sja1105,role-phy;" */
-+
-+                    fixed-link {
-+                        speed = <1000>;
-+                        full-duplex;
-+                    };
-+                };
-+            };
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/net/dsa/sja1105.txt b/Documentation/devicetree/bindings/net/dsa/sja1105.txt
-deleted file mode 100644
-index 13fd21074d48..000000000000
---- a/Documentation/devicetree/bindings/net/dsa/sja1105.txt
-+++ /dev/null
-@@ -1,156 +0,0 @@
--NXP SJA1105 switch driver
--=========================
--
--Required properties:
--
--- compatible:
--	Must be one of:
--	- "nxp,sja1105e"
--	- "nxp,sja1105t"
--	- "nxp,sja1105p"
--	- "nxp,sja1105q"
--	- "nxp,sja1105r"
--	- "nxp,sja1105s"
--
--	Although the device ID could be detected at runtime, explicit bindings
--	are required in order to be able to statically check their validity.
--	For example, SGMII can only be specified on port 4 of R and S devices,
--	and the non-SGMII devices, while pin-compatible, are not equal in terms
--	of support for RGMII internal delays (supported on P/Q/R/S, but not on
--	E/T).
--
--Optional properties:
--
--- sja1105,role-mac:
--- sja1105,role-phy:
--	Boolean properties that can be assigned under each port node. By
--	default (unless otherwise specified) a port is configured as MAC if it
--	is driving a PHY (phy-handle is present) or as PHY if it is PHY-less
--	(fixed-link specified, presumably because it is connected to a MAC).
--	The effect of this property (in either its implicit or explicit form)
--	is:
--	- In the case of MII or RMII it specifies whether the SJA1105 port is a
--	  clock source or sink for this interface (not applicable for RGMII
--	  where there is a Tx and an Rx clock).
--	- In the case of RGMII it affects the behavior regarding internal
--	  delays:
--	  1. If sja1105,role-mac is specified, and the phy-mode property is one
--	     of "rgmii-id", "rgmii-txid" or "rgmii-rxid", then the entity
--	     designated to apply the delay/clock skew necessary for RGMII
--	     is the PHY. The SJA1105 MAC does not apply any internal delays.
--	  2. If sja1105,role-phy is specified, and the phy-mode property is one
--	     of the above, the designated entity to apply the internal delays
--	     is the SJA1105 MAC (if hardware-supported). This is only supported
--	     by the second-generation (P/Q/R/S) hardware. On a first-generation
--	     E or T device, it is an error to specify an RGMII phy-mode other
--	     than "rgmii" for a port that is in fixed-link mode. In that case,
--	     the clock skew must either be added by the MAC at the other end of
--	     the fixed-link, or by PCB serpentine traces on the board.
--	These properties are required, for example, in the case where SJA1105
--	ports are at both ends of a MII/RMII PHY-less setup. One end would need
--	to have sja1105,role-mac, while the other sja1105,role-phy.
--
--See Documentation/devicetree/bindings/net/dsa/dsa.txt for the list of standard
--DSA required and optional properties.
--
--Other observations
--------------------
--
--The SJA1105 SPI interface requires a CS-to-CLK time (t2 in UM10944) of at least
--one half of t_CLK. At an SPI frequency of 1MHz, this means a minimum
--cs_sck_delay of 500ns. Ensuring that this SPI timing requirement is observed
--depends on the SPI bus master driver.
--
--Example
---------
--
--Ethernet switch connected via SPI to the host, CPU port wired to enet2:
--
--arch/arm/boot/dts/ls1021a-tsn.dts:
--
--/* SPI controller of the LS1021 */
--&dspi0 {
--	sja1105@1 {
--		reg = <0x1>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--		compatible = "nxp,sja1105t";
--		spi-max-frequency = <4000000>;
--		fsl,spi-cs-sck-delay = <1000>;
--		fsl,spi-sck-cs-delay = <1000>;
--		ports {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			port@0 {
--				/* ETH5 written on chassis */
--				label = "swp5";
--				phy-handle = <&rgmii_phy6>;
--				phy-mode = "rgmii-id";
--				reg = <0>;
--				/* Implicit "sja1105,role-mac;" */
--			};
--			port@1 {
--				/* ETH2 written on chassis */
--				label = "swp2";
--				phy-handle = <&rgmii_phy3>;
--				phy-mode = "rgmii-id";
--				reg = <1>;
--				/* Implicit "sja1105,role-mac;" */
--			};
--			port@2 {
--				/* ETH3 written on chassis */
--				label = "swp3";
--				phy-handle = <&rgmii_phy4>;
--				phy-mode = "rgmii-id";
--				reg = <2>;
--				/* Implicit "sja1105,role-mac;" */
--			};
--			port@3 {
--				/* ETH4 written on chassis */
--				phy-handle = <&rgmii_phy5>;
--				label = "swp4";
--				phy-mode = "rgmii-id";
--				reg = <3>;
--				/* Implicit "sja1105,role-mac;" */
--			};
--			port@4 {
--				/* Internal port connected to eth2 */
--				ethernet = <&enet2>;
--				phy-mode = "rgmii";
--				reg = <4>;
--				/* Implicit "sja1105,role-phy;" */
--				fixed-link {
--					speed = <1000>;
--					full-duplex;
--				};
--			};
--		};
--	};
--};
--
--/* MDIO controller of the LS1021 */
--&mdio0 {
--	/* BCM5464 */
--	rgmii_phy3: ethernet-phy@3 {
--		reg = <0x3>;
--	};
--	rgmii_phy4: ethernet-phy@4 {
--		reg = <0x4>;
--	};
--	rgmii_phy5: ethernet-phy@5 {
--		reg = <0x5>;
--	};
--	rgmii_phy6: ethernet-phy@6 {
--		reg = <0x6>;
--	};
--};
--
--/* Ethernet master port of the LS1021 */
--&enet2 {
--	phy-connection-type = "rgmii";
--	status = "ok";
--	fixed-link {
--		speed = <1000>;
--		full-duplex;
--	};
--};
--- 
-2.25.1
+() after the function name, here an in all kerneldoc comments below.
 
+> + * @thread:     Structure holding CPR thread-specific parameters
+> + */
+> +static void cpr_ctl_enable(struct cpr_thread *thread)
+> +{
+> +	if (thread->drv->enabled && !thread->restarting)
+> +		cpr_masked_write(thread, CPR3_REG_CPR_CTL,
+> +				CPR3_CPR_CTL_LOOP_EN_MASK,
+> +				CPR3_CPR_CTL_LOOP_EN_MASK);
+
+Please wrap this "block" in {}
+
+> +}
+> +
+> +/**
+> + * cpr_ctl_disable - Disable CPR thread
+> + * @thread:     Structure holding CPR thread-specific parameters
+> + */
+> +static void cpr_ctl_disable(struct cpr_thread *thread)
+> +{
+> +	const struct cpr_desc *desc = thread->drv->desc;
+> +
+> +	if (desc->cpr_type != CTRL_TYPE_CPRH) {
+> +		cpr_irq_set(thread, 0);
+> +		cpr_irq_clr(thread);
+> +	}
+> +
+> +	cpr_masked_write(thread, CPR3_REG_CPR_CTL,
+> +			 CPR3_CPR_CTL_LOOP_EN_MASK, 0);
+> +}
+> +
+> +/**
+> + * cpr_ctl_is_enabled - Check if thread is enabled
+> + * @thread:     Structure holding CPR thread-specific parameters
+> + *
+> + * Returns: true if the CPR is enabled, false if it is disabled.
+
+It's supposed to be "Return:"
+
+> + */
+> +static bool cpr_ctl_is_enabled(struct cpr_thread *thread)
+> +{
+> +	u32 reg_val;
+> +
+> +	reg_val = cpr_read(thread, CPR3_REG_CPR_CTL);
+> +	return reg_val & CPR3_CPR_CTL_LOOP_EN_MASK;
+> +}
+> +
+[..]
+> +/**
+> + * cpr_configure - Configure main HW parameters
+> + * @thread: Structure holding CPR thread-specific parameters
+> + *
+> + * This function configures the main CPR hardware parameters, such as
+> + * internal timers (and delays), sensor ownerships, activates and/or
+> + * deactivates cpr-threads and others, as one sequence for all of the
+> + * versions supported in this driver. By design, the function may
+> + * return a success earlier if the sequence for "a previous version"
+> + * has ended.
+> + *
+> + * NOTE: The CPR must be clocked before calling this function!
+
+I think "Context: " is suitable for this type of comments.
+
+> + *
+> + * Returns: Zero for success or negative number on errors.
+> + */
+> +static int cpr_configure(struct cpr_thread *thread)
+> +{
+> +	struct cpr_drv *drv = thread->drv;
+> +	const struct cpr_desc *desc = drv->desc;
+> +	const struct cpr_thread_desc *tdesc = thread->desc;
+> +	u32 val;
+> +	int i;
+> +
+> +	/* Disable interrupt and CPR */
+> +	cpr_irq_set(thread, 0);
+> +	cpr_write(thread, CPR3_REG_CPR_CTL, 0);
+> +
+> +	/* Init and save gcnt */
+> +	drv->gcnt = drv->ref_clk_khz * desc->gcnt_us;
+> +	do_div(drv->gcnt, 1000);
+> +
+> +	/* Program the delay count for the timer */
+> +	val = drv->ref_clk_khz * desc->timer_delay_us;
+> +	do_div(val, 1000);
+> +	if (desc->cpr_type == CTRL_TYPE_CPR3) {
+> +		cpr_write(thread, CPR3_REG_CPR_TIMER_MID_CONT, val);
+> +
+> +		val = drv->ref_clk_khz * desc->timer_updn_delay_us;
+> +		do_div(val, 1000);
+> +		cpr_write(thread, CPR3_REG_CPR_TIMER_UP_DN_CONT, val);
+> +	} else {
+> +		cpr_write(thread, CPR3_REG_CPR_TIMER_AUTO_CONT, val);
+> +	}
+> +	dev_dbg(drv->dev, "Timer count: %#0x (for %d us)\n", val,
+> +		desc->timer_delay_us);
+> +
+> +	/* Program the control register */
+> +	val = desc->idle_clocks << CPR3_CPR_CTL_IDLE_CLOCKS_SHIFT
+> +	    | desc->count_mode << CPR3_CPR_CTL_COUNT_MODE_SHIFT
+> +	    | desc->count_repeat << CPR3_CPR_CTL_COUNT_REPEAT_SHIFT;
+
+I think it's idiomatic to have the | at the end of the previous line,
+rather than start with it. And below you repeat val |=, pick one style
+and stick with that.
+
+> +	cpr_write(thread, CPR3_REG_CPR_CTL, val);
+> +
+> +	/* Configure CPR default step quotients */
+> +	val = tdesc->step_quot_init_min << CPR3_CPR_STEP_QUOT_MIN_SHIFT
+> +	    | tdesc->step_quot_init_max << CPR3_CPR_STEP_QUOT_MAX_SHIFT;
+> +
+> +	cpr_write(thread, CPR3_REG_CPR_STEP_QUOT, val);
+> +
+> +	/*
+> +	 * Configure the CPR sensor ownership always on thread 0
+> +	 * TODO: SDM845 has different ownership for sensors!!
+> +	 */
+> +	for (i = tdesc->sensor_range_start; i < tdesc->sensor_range_end; i++)
+> +		cpr_write(thread, CPR3_REG_SENSOR_OWNER(i), 0);
+> +
+> +	/* Program Consecutive Up & Down */
+> +	val = desc->timer_cons_up << CPR3_THRESH_CONS_UP_SHIFT;
+> +	val |= desc->timer_cons_down << CPR3_THRESH_CONS_DOWN_SHIFT;
+> +	val |= desc->up_threshold << CPR3_THRESH_UP_THRESH_SHIFT;
+> +	val |= desc->down_threshold << CPR3_THRESH_DOWN_THRESH_SHIFT;
+> +	cpr_write(thread, CPR3_REG_THRESH(tdesc->hw_tid), val);
+> +
+> +	/* Mask all ring oscillators for all threads initially */
+> +	cpr_write(thread, CPR3_REG_RO_MASK(tdesc->hw_tid), CPR3_RO_MASK);
+> +
+> +	/* HW Closed-loop control */
+> +	if (desc->cpr_type == CTRL_TYPE_CPR3)
+
+Some {} here and in various places below, please
+
+> +		cpr_write(thread, CPR3_REG_HW_CLOSED_LOOP_DISABLED,
+> +			  !desc->hw_closed_loop_en);
+> +	else
+> +		cpr_masked_write(thread, CPR4_REG_MARGIN_ADJ_CTL,
+> +				CPR4_MARGIN_ADJ_HW_CLOSED_LOOP_EN,
+> +				desc->hw_closed_loop_en ?
+> +				CPR4_MARGIN_ADJ_HW_CLOSED_LOOP_EN : 0);
+
+Regards,
+Bjorn
