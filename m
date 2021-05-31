@@ -2,105 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65708395761
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 10:49:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BB8E395786
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 10:52:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230315AbhEaIvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 04:51:25 -0400
-Received: from mga18.intel.com ([134.134.136.126]:50519 "EHLO mga18.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230107AbhEaIvY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 31 May 2021 04:51:24 -0400
-IronPort-SDR: cDv+ARt0tgNV/Bb0P8JMemg8Qv7NnmM8SLYM2qmMl1yaYkc7FavzEavadPYBc3i1zqSTEBXt5T
- TvwRHQXwz7Vg==
-X-IronPort-AV: E=McAfee;i="6200,9189,10000"; a="190686041"
-X-IronPort-AV: E=Sophos;i="5.83,236,1616482800"; 
-   d="scan'208";a="190686041"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 May 2021 01:49:44 -0700
-IronPort-SDR: Ge5fQOsDibYVgBPzEQW8PDC7z10sMVYxxTJSgayoFfvc3JePxRdwnjKxKLY2P0IEhTC7TGwkmW
- 2GXxzpK7y5IQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,236,1616482800"; 
-   d="scan'208";a="549351536"
-Received: from kuha.fi.intel.com ([10.237.72.162])
-  by fmsmga001.fm.intel.com with SMTP; 31 May 2021 01:49:41 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 31 May 2021 11:49:40 +0300
-Date:   Mon, 31 May 2021 11:49:40 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Kyle Tso <kyletso@google.com>
-Cc:     linux@roeck-us.net, gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        badhri@google.com, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] usb: typec: tcpm: Correct the responses in SVDM
- Version 2.0 DFP
-Message-ID: <YLSjJFAkm92VKoJh@kuha.fi.intel.com>
-References: <20210527084419.4164369-1-kyletso@google.com>
- <20210527084419.4164369-2-kyletso@google.com>
+        id S231192AbhEaIxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 04:53:52 -0400
+Received: from mail-eopbgr00096.outbound.protection.outlook.com ([40.107.0.96]:38468
+        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231184AbhEaIxt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 May 2021 04:53:49 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DCrqwkqyCOlBVbQ/p9ByXmK7slNvaiLVHqHTvi12562hAAJPczuxzdSBZem3TvDx5YBlQDDkrrPMkchl7KvF9GE/w1CNmyvFlam9KwAP11let42R9sg30xBzOpiwSGlRokn1ft1/lLxo/rSHA5docZIePTScbF8zCTMyC2v3IWLFipB7n4xlP2y5K4XijjCf96oanyA00RSsIYy4pfhMEZ1Pq0BOJzeSf3Fq6guf439Na7ci5oLyOk3LG6BYSgtUypSoHRROcTuM0ybyIsu0I3KEq8Y5OgHvkNkHdVjWP1sNTTtB8kOwv9813TME2rQI5qfFmdFR3DP9YyGNF3QVHw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Y60V0No7t75zS4Vly25IvePzf6MQ2Fd1yAUhZ+kMis4=;
+ b=BLdvftz++f1r+XG4s6XjAR01AP0rlPKLrdvZHhsdnPjuxJiLcBPpMJFDYlPlWqMgV+FHCF5v3w6R25Nlycxwpg+6jUpRZ4/R1JBNpQiwhUfi6fen3XrcKkYGXO9lO3dKGTuHCgJtWIEhAoguF/aAZ1N+gEpxv/mlJ45VQk8L9eqC/GNs2J4WGzC0qECQHY9O+hQJg03Chxrc7C28hp6Hy4zDvqrMnZ2ue/0zYNoNEDfln0TZGp5xGozDqDL6/ggm9pZFRxM5SS2iIxzVHG2NfBDgLD17Z5q+BBzwUN/BSN0LO/I0rcwnag5uBqxeOyzPlalPBuGxidF/QlQjpToBkg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
+ dkim=pass header.d=axentia.se; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Y60V0No7t75zS4Vly25IvePzf6MQ2Fd1yAUhZ+kMis4=;
+ b=DLAnKa16lOUlL4KmbXpdqMBcPvFSTQ1o1T0Iy+CwNogdc0lud5DekPZ7+Vb7SJHzNz6VfWQYZok0oNdzQmEWNVmEJXRae1vyzcnverYSg3V1qJ7jWgG6Jyoeq7e39Kl0zQ0uyH4bTOanHGa+mGo1VoYiEEcQhN4RJ7d427lQVSo=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=axentia.se;
+Received: from DB8PR02MB5482.eurprd02.prod.outlook.com (2603:10a6:10:eb::29)
+ by DB7PR02MB4789.eurprd02.prod.outlook.com (2603:10a6:10:28::26) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.22; Mon, 31 May
+ 2021 08:52:07 +0000
+Received: from DB8PR02MB5482.eurprd02.prod.outlook.com
+ ([fe80::d47d:ca8c:4fe6:3908]) by DB8PR02MB5482.eurprd02.prod.outlook.com
+ ([fe80::d47d:ca8c:4fe6:3908%3]) with mapi id 15.20.4173.030; Mon, 31 May 2021
+ 08:52:07 +0000
+Subject: Re: [PATCH v1 4/9] iio: afe: rescale: add offset support
+To:     Liam Beguin <liambeguin@gmail.com>, jic23@kernel.org,
+        lars@metafoo.de, pmeerw@pmeerw.net
+Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+References: <20210530005917.20953-1-liambeguin@gmail.com>
+ <20210530005917.20953-5-liambeguin@gmail.com>
+From:   Peter Rosin <peda@axentia.se>
+Organization: Axentia Technologies AB
+Message-ID: <0769aaae-8925-d943-e57d-c787d560a8dc@axentia.se>
+Date:   Mon, 31 May 2021 10:52:05 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
+In-Reply-To: <20210530005917.20953-5-liambeguin@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [85.229.94.233]
+X-ClientProxiedBy: HE1PR1001CA0012.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:3:f7::22) To DB8PR02MB5482.eurprd02.prod.outlook.com
+ (2603:10a6:10:eb::29)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210527084419.4164369-2-kyletso@google.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.13.3] (85.229.94.233) by HE1PR1001CA0012.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:3:f7::22) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.22 via Frontend Transport; Mon, 31 May 2021 08:52:07 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: cb7fd6b0-71e8-431e-a9cb-08d924115f0f
+X-MS-TrafficTypeDiagnostic: DB7PR02MB4789:
+X-Microsoft-Antispam-PRVS: <DB7PR02MB478905F90E887414526B9CBDBC3F9@DB7PR02MB4789.eurprd02.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: WDuaxYGrIGYlt+P5gNgb/I6GHltrwDx4yroo67YyKab0h0Xb/erIFFSeyLI3pCz2x1p/QwD2iuYwMJYbPYS5+j6wRVZ7Pj4eQ9bGzio1jqWkG2ylJvrFbUWFrcR8dTZBR1lyOU+A2Gc6gx3a2LyiLio74J4DOsegkilz9DRcpZhQqA+Ror2Vpdj4Ada48byFAxJfxMmWrF3KhQ1cV9Oo8x1++UWHenlSPHMfXVNWSfBs23YKUEYW+8H3RW9FJ5lkkXL+lpbM0sY3LXarHq3E2QHmIlvi90DFLL9osh78/uDS1LnqNy/lB6Xyh8EhTe0FEFrqjfCCwGrPDZFxYs8tbcu4yqp9WEkP6t8S/IIVHPUhGRfcyPmWlpK5ugL6JQ+8kSpZRoQBhSWtExXK5JT41TMW5tXqDG45llQHIA/0nxzO/dPl8nAtUY4IKk5hHjKwahkA0pJXcJ2WRzwVy9kzjWCj79XOgUdIDiCRFBdeO2x+F8tEkMhCMa+a85vgzou9ae8xZwxL03RdvI2oZSgtagN98mV4F8auKLIglgW2pAd4B9cpugRAzeXjFied780Y43h9MMTH0wtPQipqeM/eu2Z2MGM96FiBeZTesu946P/NF3c8bWvwu9G2j0nQIzmj2QEVXyJ4n6vl0vIjdW0rrWHSEOV7DAFBdsCMXQDEXraxVHYDK6YIGS72wF384ATv
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR02MB5482.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(39840400004)(366004)(136003)(396003)(376002)(346002)(38100700002)(31686004)(66946007)(2616005)(83380400001)(4326008)(316002)(26005)(36756003)(86362001)(478600001)(66556008)(16576012)(956004)(31696002)(2906002)(53546011)(8936002)(6486002)(16526019)(186003)(8676002)(66476007)(5660300002)(36916002)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QUQxbTR6ZlNRQ21kTzErMjVabC8xMWpvdnIvRFlZbmhPNEZnR2hCR013dTZZ?=
+ =?utf-8?B?VWlZK005K2NiTWtnZ0VSakY0b1QxTEJJQU1RU1RTUjJOcTNWaWZMRW9tclUz?=
+ =?utf-8?B?TEZyYU5JQThGbGRhMjJqS1JKaVluS0hpaGdOL1RZTVFHcGdWZjlPa3F5VGVy?=
+ =?utf-8?B?WU00RHExV0JnalRjenhoQVZ1bFBwcDV5YWFFYllPQzgyd0NrQ1FKSW1EU3Jo?=
+ =?utf-8?B?NjkzWDR2aUNSaXFXOXFhRWdPSzloMUR0dTl1QmJUMnVVVkNZZ2xTemx4eUNa?=
+ =?utf-8?B?ZGRLdGhpQ3BRQVdodzRyaUpxRFFFOGo1R1VEbjlyUXMrdFp3dkFNTnhtYi9M?=
+ =?utf-8?B?S240RzM3MjFCNXB3YkpPRGluYXlnTnNnV3YrbVAyb3YzUlJCbnR0cnFDRzQ1?=
+ =?utf-8?B?d016Lys5OXp2UytkUVF4ZS9nZ0ZkcEdIaGxyaWt4RGpKcHdEdk5XRFIreXBs?=
+ =?utf-8?B?NnNDTlNITnMwc2FXOXRBQThiKzVSZ3FrZmcxSHhQLytwVHhBMGhGQlFZUHBM?=
+ =?utf-8?B?WHNnSXU4QitWWWtlSVlldkJPUG8zVGlLajJBUTN6bU9hc09ab1p4V2hLMVNI?=
+ =?utf-8?B?WTB4YUlwZkhIMUV6WmJieDd3clV6V1g1S3ZaUll0S1hDWXY3aURXazJKVHF5?=
+ =?utf-8?B?MmhSd29LSWMwWm8zc3l4Zkt6VUVmYUtVTjhvTGd5NDd1TWZ4NHFPM3k4bnBJ?=
+ =?utf-8?B?c0FJbGI5dFdtSUsvOXorUHdPdm1YTnhZM1RjbmxaQjcwWUg1Z2Z2M2xmTlBU?=
+ =?utf-8?B?YzFmYmNvY3N4cGxEejE4ckl5UitNQWVQWkFNSkwwNEVtZ0crNXBkVDYrQ2Nx?=
+ =?utf-8?B?SVo2YUZWQ1lpdEd4ZERYRWlobWNzeTlNc3ozUXpTeUpaVFNhUk9BT3d4NVpY?=
+ =?utf-8?B?Q1JqOXNOd0hCcWdFeXVlQU1UU1U1bVp5UnY5NFBvZnRsemI2eVJPcmJ6N1ps?=
+ =?utf-8?B?S3gvd3YrZS80RGM0bUVjdDlkYWpramVLbHQ1eHZZM3RnYWtmUUFRaENYVVF6?=
+ =?utf-8?B?VERCdHR4bWdHdzFCSmdrTXo0U09MdVZCYlNIVW10M0tmN3ExUU15aDRJY004?=
+ =?utf-8?B?RU03M3RPbTlybUdNekgySytvMDZ0cGFyU0xvSzhqUTFIWHNZUnBtbUpCOVpP?=
+ =?utf-8?B?azJLNTZSd01VRjJTc2FSZmlxeUlzVDcvYng0eWlCOWZSZ092c1pRb3RvRW4y?=
+ =?utf-8?B?d0FxaE9zdXFUQ201ME5jZCtRSzZwQ253ZmVjQ2VwMVo2Y2RvU3dKUnVRUVdO?=
+ =?utf-8?B?emw1cVB4UjEyT01EZkpjdlZwcEhhd2VDeGNCOFR5S24yV09hdHlTMjg3TFhP?=
+ =?utf-8?Q?CiGKkKJfeP?=
+X-MS-Exchange-AntiSpam-MessageData-1: 39j/cjmc0bV/j5atOHo6rqLmTOHF8rGmCZ7XgFaM03Q/3CcjGItrB0QrjzwRjQpyxfDWzti0yDKV7zBPG0bFawxQOZGt/5UlxNPBTgvedk0Lb9NnC4UJUf9LEYf4AHE2lJ71uS/coO3TnRGBL6ZHRLoPEUFybsMMvCbmgxBZMtYHKeTWUx6O9NWRnwPETiSJNYvHoUJ13Gr2y3vVcA4mvSCx8i7JohD1FZoTieY4XwB+uoTd/Jg8YwFLLqL2pT37nrSH5ewws7CPbfrLqjYGqjWDzBjLtZT1c/TJ2UImLY3Nv9iJm0f0q3cpy3yZcVJDehjN8RX+nD9di0+1MZZqLjG3
+X-OriginatorOrg: axentia.se
+X-MS-Exchange-CrossTenant-Network-Message-Id: cb7fd6b0-71e8-431e-a9cb-08d924115f0f
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR02MB5482.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2021 08:52:07.8501
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9LkWWzK3u5V2AeklksD2eG65miGZ0Nuyx35BVCbwxs7rcCKWrHA+aDCXn04BnIzs
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR02MB4789
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 27, 2021 at 04:44:17PM +0800, Kyle Tso wrote:
-> In USB PD Spec Rev 3.1 Ver 1.0, section "6.12.5 Applicability of
-> Structured VDM Commands", DFP is allowed and recommended to respond to
-> Discovery Identity with ACK. And in section "6.4.4.2.5.1 Commands other
-> than Attention", NAK should be returned only when receiving Messages
-> with invalid fields, Messages in wrong situation, or unrecognize
-> Messages.
-> 
-> Still keep the original design for SVDM Version 1.0 for backward
-> compatibilities.
-> 
-> Fixes: 193a68011fdc ("staging: typec: tcpm: Respond to Discover Identity commands")
-> Signed-off-by: Kyle Tso <kyletso@google.com>
+Hi!
 
-Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Thanks for the patch!
 
+On 2021-05-30 02:59, Liam Beguin wrote:
+> From: Liam Beguin <lvb@xiphos.com>
+> 
+> This is a preparatory change required for the addition of temperature
+> sensing front ends.
+
+I think this is too simplistic. I think that if the upstream iio-dev has
+an offset, it should be dealt with (i.e. be rescaled). The rescale driver
+cannot ignore such an upstream offset and then throw in some other
+unrelated offset of its own. That would be thoroughly confusing.
+
+Also, I see no reason of expose an offset channel if there is no offset.
+
+Cheers,
+Peter
+
+> Signed-off-by: Liam Beguin <lvb@xiphos.com>
 > ---
->  drivers/usb/typec/tcpm/tcpm.c | 14 ++++++++++----
->  1 file changed, 10 insertions(+), 4 deletions(-)
+>  drivers/iio/afe/iio-rescale.c | 12 ++++++++++--
+>  1 file changed, 10 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
-> index 9ce8c9af4da5..a1bf0dc5babf 100644
-> --- a/drivers/usb/typec/tcpm/tcpm.c
-> +++ b/drivers/usb/typec/tcpm/tcpm.c
-> @@ -1547,19 +1547,25 @@ static int tcpm_pd_svdm(struct tcpm_port *port, struct typec_altmode *adev,
->  			if (PD_VDO_VID(p[0]) != USB_SID_PD)
->  				break;
+> diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-rescale.c
+> index 4d0813b274d1..3bd1f11f21db 100644
+> --- a/drivers/iio/afe/iio-rescale.c
+> +++ b/drivers/iio/afe/iio-rescale.c
+> @@ -31,6 +31,7 @@ struct rescale {
+>  	struct iio_chan_spec_ext_info *ext_info;
+>  	s32 numerator;
+>  	s32 denominator;
+> +	s32 offset;
+>  };
 >  
-> -			if (PD_VDO_SVDM_VER(p[0]) < svdm_version)
-> +			if (PD_VDO_SVDM_VER(p[0]) < svdm_version) {
->  				typec_partner_set_svdm_version(port->partner,
->  							       PD_VDO_SVDM_VER(p[0]));
-> +				svdm_version = PD_VDO_SVDM_VER(p[0]);
-> +			}
+>  static int rescale_read_raw(struct iio_dev *indio_dev,
+> @@ -52,6 +53,10 @@ static int rescale_read_raw(struct iio_dev *indio_dev,
+>  		*val2 = rescale->denominator;
 >  
->  			tcpm_ams_start(port, DISCOVER_IDENTITY);
-> -			/* 6.4.4.3.1: Only respond as UFP (device) */
-> -			if (port->data_role == TYPEC_DEVICE &&
-> +			/*
-> +			 * PD2.0 Spec 6.10.3: respond with NAK as DFP (data host)
-> +			 * PD3.1 Spec 6.4.4.2.5.1: respond with NAK if "invalid field" or
-> +			 * "wrong configuation" or "Unrecognized"
-> +			 */
-> +			if ((port->data_role == TYPEC_DEVICE || svdm_version >= SVDM_VER_2_0) &&
->  			    port->nr_snk_vdo) {
->  				/*
->  				 * Product Type DFP and Connector Type are not defined in SVDM
->  				 * version 1.0 and shall be set to zero.
->  				 */
-> -				if (typec_get_negotiated_svdm_version(typec) < SVDM_VER_2_0)
-> +				if (svdm_version < SVDM_VER_2_0)
->  					response[1] = port->snk_vdo[0] & ~IDH_DFP_MASK
->  						      & ~IDH_CONN_MASK;
->  				else
-> -- 
-> 2.31.1.818.g46aad6cb9e-goog
-
--- 
-heikki
+>  		return IIO_VAL_FRACTIONAL;
+> +	case IIO_CHAN_INFO_OFFSET:
+> +		*val = rescale->offset;
+> +
+> +		return IIO_VAL_INT;
+>  	default:
+>  		return -EINVAL;
+>  	}
+> @@ -119,8 +124,10 @@ static int rescale_configure_channel(struct device *dev,
+>  		return -EINVAL;
+>  	}
+>  
+> -	chan->info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> -		BIT(IIO_CHAN_INFO_SCALE);
+> +	chan->info_mask_separate =
+> +		BIT(IIO_CHAN_INFO_RAW) |
+> +		BIT(IIO_CHAN_INFO_SCALE) |
+> +		BIT(IIO_CHAN_INFO_OFFSET);
+>  
+>  	if (iio_channel_has_available(schan, IIO_CHAN_INFO_RAW))
+>  		chan->info_mask_separate_available |= BIT(IIO_CHAN_INFO_RAW);
+> @@ -280,6 +287,7 @@ static int rescale_probe(struct platform_device *pdev)
+>  	rescale->cfg = of_device_get_match_data(dev);
+>  	rescale->numerator = 1;
+>  	rescale->denominator = 1;
+> +	rescale->offset = 0;
+>  
+>  	ret = rescale->cfg->props(dev, rescale);
+>  	if (ret)
+> 
