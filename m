@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E9E739666D
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 19:05:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54EF03966A0
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 19:13:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234008AbhEaRHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 13:07:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48720 "EHLO
+        id S232720AbhEaRPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 13:15:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232591AbhEaRFH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 13:05:07 -0400
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB61DC068FBE
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 08:16:50 -0700 (PDT)
-Received: by mail-ot1-x331.google.com with SMTP id 36-20020a9d0ba70000b02902e0a0a8fe36so11373166oth.8
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 08:16:50 -0700 (PDT)
+        with ESMTP id S233374AbhEaRNu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 13:13:50 -0400
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25661C0431D7
+        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 08:20:49 -0700 (PDT)
+Received: by mail-oi1-x22f.google.com with SMTP id d21so12564059oic.11
+        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 08:20:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=eJ+dYMSuiwP1+9nN6hX9bLUsV2tE3Lu68y9sPFybEHo=;
-        b=FBuH9Rsn1jK9JXcGAjt4pQtwU4I8YQY1NQlarypgBpZtskjQDIOvheGUUY6AFQsqVZ
-         H1fpSHlDDPruTNjvMzwXMiioYIus/QZerzEoAqMjRZ3Lb5ymU1rGZTLhjxsHaiakboXJ
-         6rtoohTQyZPnU0tD4PZOId/v/V396D46+mYtQ3sW7TubAsL6fCftGrzilcCpAz904BEO
-         vvYbTazYT6oBjoxNjKPAo7lPV7HgEtqlaeih0R+BJlTIHwROqVT4PxKLkUNW1DEMbg42
-         ARbtq/TP9RHm1YY6hF0YfE1k1Od+TOJDgwQKVLih74QziiSPp0G8v43a7DSy1zAlKNhY
-         k8Yw==
+        bh=vDiqLRd+stLKTmfiIZ/+t8l2ObZwO4uStCLNw0eONeE=;
+        b=rU70Jx0Tu1AeMSbrsJZd6hMbh05hvmblGlAfJDjDlMe5amlLHOnvST+bRRQfrCw8EM
+         Qd9842dMFMFcboy6jC5sh4EHSAwpKUMFaGFEiZ/MqIQXSi6Cd/Sxj9528wWwQNZQGh86
+         PMTfUPSnjRvvOHJ/yWlvwqwpnlACKmVJm9uRhFakwPGsWz2EeD5EilKOTWZqUw5+STpt
+         LXLA+C7PLvNQei6RRzAphgbWj8fXlJ5KGYGYCuhnGN1pLozPwju/y6JZCGGA08GzlWsG
+         qFUMVrbvvub1htNg8R4mNhUsLusJiRcPm3C9vjGQ+br4/fjral4HpW6PUxt+di/q/PMr
+         8UMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=eJ+dYMSuiwP1+9nN6hX9bLUsV2tE3Lu68y9sPFybEHo=;
-        b=RE6Jx8lVJT7gKaHVuA3XWYfs8Pt1sCiGcLje3OFMjaWeVzUBgZsWCT5UtngiYbhe+b
-         zIkmifBEXePBqFe6r462OApEliuNqEC9qvmIpMKN8z34ZFx/U9VTmWn/mfdeRHvMQ2cd
-         uz7khz91lJhpV7n0F1kPzTVdKz0GUDh9XbMk3ky7zdy3+kGsRirLH//YCiNXWrBZ1Rgo
-         WbMI7sdAQwG2f444UoULW1hnnlVCzHrswSDR1jFwtTvaBPjIejGc9TOaLgfol+i4UBFK
-         +PRTe6CDHhP1ZaCKX74oyTA6/nSK7vNOnL4Zq0KX8Zls+NfPtWsaLZBoFdTo42SKyrUm
-         oJ0Q==
-X-Gm-Message-State: AOAM530JjHpeNoD9HpFYyD1teXTPTCbRKveICaX7iI47UnbsHCekhK/u
-        MHVadFcaLBIPXwu1GSAO9bAyZA==
-X-Google-Smtp-Source: ABdhPJyGASUipnV6yOcgG/ZyPcO2IslIfjpRJlBl8OAgkcD4GJf/OyADC3dnUHK1WQyRdz/HaCTQ4A==
-X-Received: by 2002:a9d:6ace:: with SMTP id m14mr17167910otq.207.1622474210171;
-        Mon, 31 May 2021 08:16:50 -0700 (PDT)
+        bh=vDiqLRd+stLKTmfiIZ/+t8l2ObZwO4uStCLNw0eONeE=;
+        b=tDveEOz7glvWGBWsiOX2VlwdSNfw0Yvc8w/kcB+5F4iILktw9vLVM+hFmKt904InIB
+         RDoZ665HfsB7MqJj2R4dtoL8Cvh8rQ2IbWYfbzVApqnyanDz5X84mBfnLRe7q/ijQ0J4
+         OLjlI8F2GdUkSJs03AiadbuooI807LLl1jOTn7WHxJytfSw8cS50Ost/aMdq5TocxaEg
+         VKZtpmUcSaSUvsYhH21BVsp8j0ACAgyu3OyGgDkkWF74G2VwwoELEQaNxf7JI2wozXqm
+         HQ41pjezVSF+XrYoaWyN6wCwHJfr7KG+6hNw4cjnForHiV/CwOabqKg+InADrJ1EMGU2
+         wC+w==
+X-Gm-Message-State: AOAM530/nK3pda4eqz/Uf3Q8mgnczjF/gBGj5x97LP+bmHTSSJGMJOma
+        neRzGB/Qidm13hmMGYvdUmaiYw==
+X-Google-Smtp-Source: ABdhPJzhu+c+Yxt4w6fUwjAM0yhgeLolRS1rYyxRr79QpCWKidIOwuZM7AzmeDDTPazwIzKy1euv6w==
+X-Received: by 2002:aca:d544:: with SMTP id m65mr14663728oig.73.1622474448489;
+        Mon, 31 May 2021 08:20:48 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id k20sm3169469otb.15.2021.05.31.08.16.49
+        by smtp.gmail.com with ESMTPSA id v19sm3186318otk.22.2021.05.31.08.20.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 May 2021 08:16:49 -0700 (PDT)
-Date:   Mon, 31 May 2021 10:16:47 -0500
+        Mon, 31 May 2021 08:20:48 -0700 (PDT)
+Date:   Mon, 31 May 2021 10:20:46 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Konrad Dybcio <konrad.dybcio@somainline.org>
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
@@ -56,99 +56,72 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
         Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: Add support for SONY Xperia X
- Performance/XZ/XZs
-Message-ID: <YLT934Geo4KOY7XU@builder.lan>
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: Add PMI8996 DTSI file
+Message-ID: <YLT+zsYBEAcLh+k7@builder.lan>
 References: <20210527170409.667255-1-konrad.dybcio@somainline.org>
- <20210527170409.667255-3-konrad.dybcio@somainline.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210527170409.667255-3-konrad.dybcio@somainline.org>
+In-Reply-To: <20210527170409.667255-1-konrad.dybcio@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu 27 May 12:04 CDT 2021, Konrad Dybcio wrote:
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-[..]
-> +&pm8994_gpios {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pm8994_gpios_defaults>;
-> +	gpio-line-names =
-> +		"NC",
-> +		"VOL_DOWN_N",
-> +		"VOL_UP_N",
-> +		"SNAPSHOT_N",
-> +		"FOCUS_N",
-> +		"NC",
-> +		"NFC_VEN",
-> +		"NC",
-> +		"NC",
-> +		"NC",
-> +		"NC",
-> +		"NC",
-> +		"EAR_EN",
-> +		"NC",
-> +		"PM_DIVCLK1",
-> +		"PMI_CLK",
-> +		"NC",
-> +		"WL_SLEEP_CLK",
-> +		"NC",
-> +		"PMIC_SPON",
-> +		"UIM_BATT_ALARM",
-> +		"PMK_SLEEP_CLK";
-> +
-> +	/*
-> +	 * We don't yet know for sure which GPIOs are of our interest, but what
-> +	 * we do know is that if a vendor sets the pins to a non-default state, there's
-> +	 * probably a reason for it, and just to be on the safe side, we follow suit.
-> +	 */
-> +	pm8994_gpios_defaults: pm8994-gpios-default-state {
-> +		pm8994_gpio1_n: pm8994-gpio1-nc {
 
-Is there a reason for keeping pm8994_gpios_defaults? I presume you won't
-be able to select it, because the associated pins are already busy?
+> PMI8996 is *almost* the same hardware as PMI8994, say for some annoyances:
+> 
+> - Boards equipped with PMI8996 now have to include pmic-id (which wasn't the case before)
+> - Different qpnp-ibb-discharge-resistor value (will be addressed after LABIBB is introduced)
+> - Different inhibit-derating-ua value (will be addressed after BCL is introduced)
+> - Different ramp_up_step value (will be addressed after [if?] QPNP Flash LED is introduced)
+> 
 
-> +			pins = "gpio1";
-> +			function = PMIC_GPIO_FUNC_NORMAL;
-> +			drive-push-pull;
-> +			bias-high-impedance;
-> +		};
-> +
-[..]
-> +&pmi8994_gpios {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pmi8994_gpios_defaults>;
-> +
-> +	gpio-line-names =
-> +		"VIB_LDO_EN",
-> +		"NC",
-> +		"NC",
-> +		"NC",
-> +		"NC",
-> +		"NC",
-> +		"NC",
-> +		"NC",
-> +		"USB_SWITCH_SEL",
-> +		"NC";
-> +
-> +	pmi8994_gpios_defaults: pmi8994-gpios-default-state {
-> +		pmi8994_vib_ldo_en: vib-ldo-en-gpio {
+If I am to support a device that has a pmi8996, I will go
 
-Ditto.
+#include "pmi8996.dtsi"
 
-> +			pins = "gpio1";
-> +			function = PMIC_GPIO_FUNC_NORMAL;
-> +			drive-push-pull;
-> +			output-low;
-> +			bias-disable;
-> +			power-source = <PM8994_GPIO_S4>;
-> +		};
+and wonder why it didn't work.
+
+But, I do see the validity in your argumentation in the previous
+revision so I won't object. But I really would like you to describe in
+the commit message why this is different from what people would expect
+to find.
+
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> ---
+>  arch/arm64/boot/dts/qcom/pmi8996.dtsi | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/pmi8996.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/pmi8996.dtsi b/arch/arm64/boot/dts/qcom/pmi8996.dtsi
+> new file mode 100644
+> index 000000000000..31b47209e261
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/pmi8996.dtsi
+> @@ -0,0 +1,15 @@
+> +// SPDX-License-Identifier: GPL-2.0
+
+And BSD please :)
 
 Regards,
 Bjorn
+
+> +/*
+> + * Copyright (c) 2021, Konrad Dybcio <konrad.dybcio@somainline.org>
+> + */
+> +
+> + /*
+> +  * PMI8996 is a slight modification of PMI8994 with
+> +  * some notable changes, like being the first PMIC
+> +  * whose the bootloader has to check to continue booting
+> +  * and a change to a LABIBB parameter.
+> +  */
+> +
+> +/ {
+> +	qcom,pmic-id = <0x20009 0x10013 0 0>;
+> +};
+> -- 
+> 2.31.1
+> 
