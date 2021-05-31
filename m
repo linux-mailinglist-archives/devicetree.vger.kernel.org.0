@@ -2,225 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1A95395599
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 08:48:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FD103955A2
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 08:51:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230070AbhEaGth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 02:49:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53012 "EHLO
+        id S230111AbhEaGxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 02:53:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230196AbhEaGth (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 02:49:37 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0F4BC061574
-        for <devicetree@vger.kernel.org>; Sun, 30 May 2021 23:47:57 -0700 (PDT)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1lnbiM-00075e-5c; Mon, 31 May 2021 08:47:54 +0200
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1lnbiL-0002Kp-0x; Mon, 31 May 2021 08:47:53 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        Rob Herring <robh@kernel.org>, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Subject: [PATCH v2] ASoC: dt-bindings: Convert imx-audmux binding to json schema
-Date:   Mon, 31 May 2021 08:47:52 +0200
-Message-Id: <20210531064752.8809-1-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.29.2
+        with ESMTP id S230107AbhEaGxE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 02:53:04 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8617AC061574;
+        Sun, 30 May 2021 23:51:24 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id v5so13622954ljg.12;
+        Sun, 30 May 2021 23:51:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=pGbvjsQ37+jhwoTwXSRVtiv0VjHlEBl/iAsUrS7UtXI=;
+        b=hXg5TLxR35V+P8DOvRVcEG4fZVvvgkMDgSuSOBMcnTn80GvFnFcgszCDhOxSY77mw/
+         LUSPlemcexvlbiNL1snPeDN9CvhQXvvrHzVgt79+eJNG8hgV8M8qETubw6zHUNny+pAu
+         xFHMP0u5g6C6hsq77JSYrj+99H6ZLvxNrY41Kw5Ak3ooMouzL4KFS1wprWhfU9wZ2FE2
+         2z+deGsQm+N65n1+0wqxNEmg8sCDq8Fzo8w8oHVUP7jDRPkPGUpgSqmeBd5Z6uZrfvzF
+         GyxJPIuBIccSc0P1C6S1Z5Q3qAZAIvXdGSVXloijnHOGft7zD5mwe69o70ifUlIg1eQt
+         yW3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=pGbvjsQ37+jhwoTwXSRVtiv0VjHlEBl/iAsUrS7UtXI=;
+        b=rht8F4vdlEqimqwJJA8dNOrHrl29st6fkrYPy7WZX/64H5RwzjeA8FU7wPzwy6rQnC
+         kmtmQLzwGYjY7s0jgSHbhJg+vI9fFkgcSQh0qrJYRAHLA3L9+m/l9G5C5Nq0Qb3CCLRs
+         uOJm3HiV5JTJBJGSP8GD0xhkAD5AQyl5kAKFUZBQpDNXqmX4Mxy4nZR/p9h/euLblC+y
+         31U5lBVjgjJh5jd4vIPLY6tLIVLHx4flhsvzQbrCIqHwDrwtyE3WzjD66Vq4FZuKKE7Y
+         RXE3Zgcsbx3AEJqy87POC6NkZ1ZNSSqCSIBTMeDIFZnB4LBvNKNnlju0Pn/FD/06N69x
+         l2SA==
+X-Gm-Message-State: AOAM532165oNvz1WGLt+T2DVAkocl6kV2CUoGSLYxsKEW94cg2XIkOoL
+        vwbMvpdm0DcD+3KhHw58X9I=
+X-Google-Smtp-Source: ABdhPJxjBVD5611rqLkegv8AKexDzJznggK21Mrdxoh24WU8L/02VVAqivz6BhHz4YuOiypc0whS5A==
+X-Received: by 2002:a2e:b0d6:: with SMTP id g22mr15634459ljl.349.1622443882778;
+        Sun, 30 May 2021 23:51:22 -0700 (PDT)
+Received: from [10.0.0.40] (91-155-111-71.elisa-laajakaista.fi. [91.155.111.71])
+        by smtp.gmail.com with ESMTPSA id 12sm1477053lju.41.2021.05.30.23.51.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 30 May 2021 23:51:22 -0700 (PDT)
+Subject: Re: [PATCH v2 11/18] dmaengine: ti: k3-psil-j721e: Add entry for
+ CSI2RX
+To:     Pratyush Yadav <p.yadav@ti.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Benoit Parrot <bparrot@ti.com>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, dmaengine@vger.kernel.org
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <20210526152308.16525-1-p.yadav@ti.com>
+ <20210526152308.16525-12-p.yadav@ti.com>
+From:   =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
+Message-ID: <916ef8c9-e444-afa4-d544-8fa672690fdb@gmail.com>
+Date:   Mon, 31 May 2021 09:51:21 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
+In-Reply-To: <20210526152308.16525-12-p.yadav@ti.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the imx-audmux binding to DT schema format using json-schema
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-changes v2:
-- fix yamllint warnings
 
- .../devicetree/bindings/sound/imx-audmux.txt  |  28 -----
- .../devicetree/bindings/sound/imx-audmux.yaml | 119 ++++++++++++++++++
- 2 files changed, 119 insertions(+), 28 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/imx-audmux.txt
- create mode 100644 Documentation/devicetree/bindings/sound/imx-audmux.yaml
+On 26/05/2021 18:23, Pratyush Yadav wrote:
+> The CSI2RX subsystem uses PSI-L DMA to transfer frames to memory. It can
+> have up to 32 threads but the current driver only supports using one. So
+> add an entry for that one thread.
+> 
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> 
+> ---
+> 
+> Changes in v2:
+> - Add all 64 threads, instead of having only the one thread being
+>   currently used by the driver.
 
-diff --git a/Documentation/devicetree/bindings/sound/imx-audmux.txt b/Documentation/devicetree/bindings/sound/imx-audmux.txt
-deleted file mode 100644
-index 2db4dcbee1b9..000000000000
---- a/Documentation/devicetree/bindings/sound/imx-audmux.txt
-+++ /dev/null
-@@ -1,28 +0,0 @@
--Freescale Digital Audio Mux (AUDMUX) device
--
--Required properties:
--
--  - compatible		: "fsl,imx21-audmux" for AUDMUX version firstly used
--			  on i.MX21, or "fsl,imx31-audmux" for the version
--			  firstly used on i.MX31.
--
--  - reg			: Should contain AUDMUX registers location and length.
--
--An initial configuration can be setup using child nodes.
--
--Required properties of optional child nodes:
--
--  - fsl,audmux-port	: Integer of the audmux port that is configured by this
--			  child node.
--
--  - fsl,port-config	: List of configuration options for the specific port.
--			  For imx31-audmux and above, it is a list of tuples
--			  <ptcr pdcr>. For imx21-audmux it is a list of pcr
--			  values.
--
--Example:
--
--audmux@21d8000 {
--	compatible = "fsl,imx6q-audmux", "fsl,imx31-audmux";
--	reg = <0x021d8000 0x4000>;
--};
-diff --git a/Documentation/devicetree/bindings/sound/imx-audmux.yaml b/Documentation/devicetree/bindings/sound/imx-audmux.yaml
-new file mode 100644
-index 000000000000..dab45c310670
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/imx-audmux.yaml
-@@ -0,0 +1,119 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/imx-audmux.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale Digital Audio Mux device
-+
-+maintainers:
-+  - Oleksij Rempel <o.rempel@pengutronix.de>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - fsl,imx27-audmux
-+          - const: fsl,imx21-audmux
-+      - items:
-+          - enum:
-+              - fsl,imx25-audmux
-+              - fsl,imx35-audmux
-+              - fsl,imx50-audmux
-+              - fsl,imx51-audmux
-+              - fsl,imx53-audmux
-+              - fsl,imx6q-audmux
-+              - fsl,imx6sl-audmux
-+              - fsl,imx6sll-audmux
-+              - fsl,imx6sx-audmux
-+          - const: fsl,imx31-audmux
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: audmux
-+
-+patternProperties:
-+  "^mux-[0-9a-z]*$":
-+    type: object
-+    properties:
-+      fsl,audmux-port:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description: |
-+          Integer of the audmux port that is configured by this child node
-+
-+      fsl,port-config:
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        description: |
-+          List of configuration options for the specific port.
-+          For imx31-audmux and above, it is a list of tuples ptcr pdcr.
-+          For imx21-audmux it is a list of pcr values.
-+
-+    required:
-+      - fsl,audmux-port
-+      - fsl,port-config
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    audmux@21d8000 {
-+        compatible = "fsl,imx6q-audmux", "fsl,imx31-audmux";
-+        reg = <0x021d8000 0x4000>;
-+    };
-+  - |
-+    audmux@10016000 {
-+        compatible = "fsl,imx27-audmux", "fsl,imx21-audmux";
-+        reg = <0x10016000 0x1000>;
-+        clocks = <&clks 1>;
-+        clock-names = "audmux";
-+
-+        mux-ssi0 {
-+            fsl,audmux-port = <0>;
-+            fsl,port-config = <0xcb205000>;
-+        };
-+
-+        mux-pins4 {
-+            fsl,audmux-port = <2>;
-+            fsl,port-config = <0x00001000>;
-+        };
-+    };
-+  - |
-+    #include <dt-bindings/sound/fsl-imx-audmux.h>
-+    audmux@21d8000 {
-+        compatible = "fsl,imx6q-audmux", "fsl,imx31-audmux";
-+        reg = <0x021d8000 0x4000>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_audmux>;
-+
-+        mux-ssi1 {
-+            fsl,audmux-port = <0>;
-+            fsl,port-config = <
-+                IMX_AUDMUX_V2_PTCR_SYN		0
-+                IMX_AUDMUX_V2_PTCR_TFSEL(2)	0
-+                IMX_AUDMUX_V2_PTCR_TCSEL(2)	0
-+                IMX_AUDMUX_V2_PTCR_TFSDIR	0
-+                IMX_AUDMUX_V2_PTCR_TCLKDIR      IMX_AUDMUX_V2_PDCR_RXDSEL(2)
-+              >;
-+        };
-+
-+        mux-pins3 {
-+            fsl,audmux-port = <2>;
-+            fsl,port-config = <
-+                IMX_AUDMUX_V2_PTCR_SYN          IMX_AUDMUX_V2_PDCR_RXDSEL(0)
-+                0                               IMX_AUDMUX_V2_PDCR_TXRXEN
-+              >;
-+        };
-+    };
+How many threads CSI2RX have? 32 (as per commit message) or 64? If I
+recall right, it is 32.
+
+> 
+>  drivers/dma/ti/k3-psil-j721e.c | 73 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+> 
+> diff --git a/drivers/dma/ti/k3-psil-j721e.c b/drivers/dma/ti/k3-psil-j721e.c
+> index 7580870ed746..34e3fc565a37 100644
+> --- a/drivers/dma/ti/k3-psil-j721e.c
+> +++ b/drivers/dma/ti/k3-psil-j721e.c
+> @@ -58,6 +58,14 @@
+>  		},					\
+>  	}
+>  
+> +#define PSIL_CSI2RX(x)					\
+> +	{						\
+> +		.thread_id = x,				\
+> +		.ep_config = {				\
+> +			.ep_type = PSIL_EP_NATIVE,	\
+> +		},					\
+> +	}
+> +
+>  /* PSI-L source thread IDs, used for RX (DMA_DEV_TO_MEM) */
+>  static struct psil_ep j721e_src_ep_map[] = {
+>  	/* SA2UL */
+> @@ -138,6 +146,71 @@ static struct psil_ep j721e_src_ep_map[] = {
+>  	PSIL_PDMA_XY_PKT(0x4707),
+>  	PSIL_PDMA_XY_PKT(0x4708),
+>  	PSIL_PDMA_XY_PKT(0x4709),
+> +	/* CSI2RX */
+> +	PSIL_CSI2RX(0x4940),
+> +	PSIL_CSI2RX(0x4941),
+> +	PSIL_CSI2RX(0x4942),
+> +	PSIL_CSI2RX(0x4943),
+> +	PSIL_CSI2RX(0x4944),
+> +	PSIL_CSI2RX(0x4945),
+> +	PSIL_CSI2RX(0x4946),
+> +	PSIL_CSI2RX(0x4947),
+> +	PSIL_CSI2RX(0x4948),
+> +	PSIL_CSI2RX(0x4949),
+> +	PSIL_CSI2RX(0x494a),
+> +	PSIL_CSI2RX(0x494b),
+> +	PSIL_CSI2RX(0x494c),
+> +	PSIL_CSI2RX(0x494d),
+> +	PSIL_CSI2RX(0x494e),
+> +	PSIL_CSI2RX(0x494f),
+> +	PSIL_CSI2RX(0x4950),
+> +	PSIL_CSI2RX(0x4951),
+> +	PSIL_CSI2RX(0x4952),
+> +	PSIL_CSI2RX(0x4953),
+> +	PSIL_CSI2RX(0x4954),
+> +	PSIL_CSI2RX(0x4955),
+> +	PSIL_CSI2RX(0x4956),
+> +	PSIL_CSI2RX(0x4957),
+> +	PSIL_CSI2RX(0x4958),
+> +	PSIL_CSI2RX(0x4959),
+> +	PSIL_CSI2RX(0x495a),
+> +	PSIL_CSI2RX(0x495b),
+> +	PSIL_CSI2RX(0x495c),
+> +	PSIL_CSI2RX(0x495d),
+> +	PSIL_CSI2RX(0x495e),
+> +	PSIL_CSI2RX(0x495f),
+> +	PSIL_CSI2RX(0x4960),
+> +	PSIL_CSI2RX(0x4961),
+> +	PSIL_CSI2RX(0x4962),
+> +	PSIL_CSI2RX(0x4963),
+> +	PSIL_CSI2RX(0x4964),
+> +	PSIL_CSI2RX(0x4965),
+> +	PSIL_CSI2RX(0x4966),
+> +	PSIL_CSI2RX(0x4967),
+> +	PSIL_CSI2RX(0x4968),
+> +	PSIL_CSI2RX(0x4969),
+> +	PSIL_CSI2RX(0x496a),
+> +	PSIL_CSI2RX(0x496b),
+> +	PSIL_CSI2RX(0x496c),
+> +	PSIL_CSI2RX(0x496d),
+> +	PSIL_CSI2RX(0x496e),
+> +	PSIL_CSI2RX(0x496f),
+> +	PSIL_CSI2RX(0x4970),
+> +	PSIL_CSI2RX(0x4971),
+> +	PSIL_CSI2RX(0x4972),
+> +	PSIL_CSI2RX(0x4973),
+> +	PSIL_CSI2RX(0x4974),
+> +	PSIL_CSI2RX(0x4975),
+> +	PSIL_CSI2RX(0x4976),
+> +	PSIL_CSI2RX(0x4977),
+> +	PSIL_CSI2RX(0x4978),
+> +	PSIL_CSI2RX(0x4979),
+> +	PSIL_CSI2RX(0x497a),
+> +	PSIL_CSI2RX(0x497b),
+> +	PSIL_CSI2RX(0x497c),
+> +	PSIL_CSI2RX(0x497d),
+> +	PSIL_CSI2RX(0x497e),
+> +	PSIL_CSI2RX(0x497f),
+>  	/* CPSW9 */
+>  	PSIL_ETHERNET(0x4a00),
+>  	/* CPSW0 */
+> 
+
 -- 
-2.29.2
-
+Péter
