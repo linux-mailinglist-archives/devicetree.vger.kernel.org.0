@@ -2,96 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9483395BEF
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 15:24:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56C35395C87
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 15:33:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232292AbhEaN0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 09:26:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57334 "EHLO
+        id S232443AbhEaNeA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 09:34:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232112AbhEaNYV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 09:24:21 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D926C061379;
-        Mon, 31 May 2021 06:19:20 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id z19-20020a7bc7d30000b029017521c1fb75so8878448wmk.0;
-        Mon, 31 May 2021 06:19:20 -0700 (PDT)
+        with ESMTP id S232012AbhEaNb7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 09:31:59 -0400
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 489F3C061243;
+        Mon, 31 May 2021 06:23:19 -0700 (PDT)
+Received: by mail-qt1-x82f.google.com with SMTP id a15so7927302qta.0;
+        Mon, 31 May 2021 06:23:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=zvbEIu2BV93FiMImPaqnswLQvA4SrNnXdSGRLdpJ0Bk=;
-        b=gX1I0aHJf1uJyiOaDgIFaMyPs7TD4ai+rzboXtb1MgKyprcQoUBbP7eGjsfd+/SUet
-         6nHhA0puYgKlDQa+6fjK8IUy84+mhHpXuA8XxCi+x4JkYiIqJ4VslP9duTR6OOwDdIAd
-         vhcrJvjBOeezqb69tprlxC+OH5qH9L3xCm0wAoIQbAk+P9zRX5FMxwVtm+1vyXJYhR4F
-         VirveP2J/Zyq2QRuBH56uzFgSLVCMySe37Y2e4CgaSKAC3LAWGlfGGzzjEmdpntEV6Gn
-         YrrLbQvUgs/3BL2D80EPemTnU0B4EVe3ztaFdaXThv1YAF9r2rA9A9QsDvakUMHXeR4i
-         /5Rg==
+        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
+         :from:to:references:in-reply-to;
+        bh=I4OkV6HBXk8qI782g9fzNcEVp/vLpm7v/6N2vazlnC4=;
+        b=N+FH0AXqd0+nJSWQA+Wc+pVJpjOc+9DSbVviIWaCBvC0R00Lu/cxhVqZSUxG/Iqfwh
+         KYPn9HrvIkn5p2v4/SPzRbef+lGiSl/sVe6U6qzhOiuUMJdVk97fEhRBfps4zmQ0HXOu
+         AS7DjcE++ZJUdbAvn1G1dcPP80IWqyVpoEiWQ2AAkccKjpa8B6mXBLFqoTaIGvzTYKjn
+         kWwfBksI9n+oP7fwQrhhsCbPdp+QrJnU3xgisJ7KOxlVlRzqCDqwoSv8YO0zwOqClu8l
+         zPwLDrbHR651G5s+tN2KbPFvV5T/DD2wJQeVibrf15dXdvPO6+07a2i+CE0qwROwgsP7
+         CkmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=zvbEIu2BV93FiMImPaqnswLQvA4SrNnXdSGRLdpJ0Bk=;
-        b=TT7Qxwt9IsxCcCzXkjSUwbamRjcKTSenZtsVvA9DDDB75kj7dPDiPb4i8gbWM8fQ3f
-         deUkFmmBi0X63GYKoydrHjZTEjWgKvC2X5WJ69nRW8DGrkn4uu3ogm5wZA9mJlNs2nvl
-         CuodUOVDrslNKnmy+WMDeY3LePm4jYWsaS16UOPjIcvbPgLO9Z2lfnPizQJbZA+/pidK
-         yW/QVVY7kHHAGEFdItZWQIrdBuFe7FwbMS4/hg2Yfn7eFOnTg5MJc4W6goCOTyPdVnaN
-         9fpNwHatTyeS8tgNqEEW8MseUs1yUVAM1mc1fiVxaUUhrw8HsOR+IdYGEqwEcm+3VpnN
-         1wPw==
-X-Gm-Message-State: AOAM531VgOSfeNWNY/WFaiu0GjZdo0usooIKFbA48ymmx6scybIKEVj8
-        zv6yY9g0jT1Iv1MiQGvoHbI=
-X-Google-Smtp-Source: ABdhPJwaz2rpB7ZomQrsmibZA+4vBuZ4jr9GT8H64wpNHDiHWt3l8SxJ7G7VN/Z0wnkF9YE6gL/hdA==
-X-Received: by 2002:a7b:c013:: with SMTP id c19mr25632250wmb.158.1622467159031;
-        Mon, 31 May 2021 06:19:19 -0700 (PDT)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id c206sm23167296wmf.12.2021.05.31.06.19.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 May 2021 06:19:18 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>
-Cc:     linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH v8 0/9] Couple improvements for Tegra clk driver
-Date:   Mon, 31 May 2021 15:20:53 +0200
-Message-Id: <162246723913.166961.16518962041830449812.b4-ty@nvidia.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210516163041.12818-1-digetx@gmail.com>
-References: <20210516163041.12818-1-digetx@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:cc:subject:from:to:references:in-reply-to;
+        bh=I4OkV6HBXk8qI782g9fzNcEVp/vLpm7v/6N2vazlnC4=;
+        b=ODMxhdMYhsMFqC8/nHzFCYixPFJIwXDq9F3JFCaafOKlTTCuG9ipunZW5xxroJLGQx
+         4PuCOS63v3oFvK9/jIzuN8kEdbqs63AI5ZUyMOUyjlNC5esw2vx+rDVN+VqcPna6eFoX
+         wwUJ7KKATXmY7FX5jUNcLDVidrsVxP5axN5uDbeN2xoFUFx87kAZEk+jA+ioDVN+y5x4
+         fvU/z5W10IQb7+pMYWoKa6zlvb1DMaFbUoTsJUU6xYhMSlVf+TOpJTygD4W1tT4gEETs
+         3TRT4+f+Jr6DIAXJZwgSMLAuK7p0fv87wBm1INR1SOSeNkAg4o58zKbzeZ4hgaIZmwmd
+         ieBg==
+X-Gm-Message-State: AOAM531JRpIHn1DpZECOQDxffn1zNo1SWOUQql6H5hfUiPwbutiC6o2q
+        U8P3p8tRn/O9XJ61iBnV5Bo=
+X-Google-Smtp-Source: ABdhPJxph8pYzSCAdR+SADQDOjDl0zZzaQ1fhe6hAH2tASmc1PIqA4O+iS7QnrSP+itH5xiuwp6Pyg==
+X-Received: by 2002:ac8:594a:: with SMTP id 10mr14525884qtz.293.1622467398465;
+        Mon, 31 May 2021 06:23:18 -0700 (PDT)
+Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id e18sm8356366qtm.73.2021.05.31.06.23.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 May 2021 06:23:17 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Mon, 31 May 2021 09:23:16 -0400
+Message-Id: <CBRGOW9627WA.72JM4KHL5Y84@shaak>
+Cc:     <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
+Subject: Re: [PATCH v1 3/9] iio: afe: rescale: use core to get processed
+ value
+From:   "Liam Beguin" <liambeguin@gmail.com>
+To:     "Peter Rosin" <peda@axentia.se>, <jic23@kernel.org>,
+        <lars@metafoo.de>, <pmeerw@pmeerw.net>
+References: <20210530005917.20953-1-liambeguin@gmail.com>
+ <20210530005917.20953-4-liambeguin@gmail.com>
+ <fb9bde38-6980-4241-6efe-fbad36dd8a2e@axentia.se>
+In-Reply-To: <fb9bde38-6980-4241-6efe-fbad36dd8a2e@axentia.se>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+Hi Peter,
 
-On Sun, 16 May 2021 19:30:32 +0300, Dmitry Osipenko wrote:
-> This series fixes couple minor standalone problems of the Tegra clk
-> driver and adds new features.
-> 
-> Changelog:
-> 
-> v8: - Replaced division with a shift, which was suggested by Michał Mirosław
->       in a comment to "Handle thermal DIV2 CPU frequency throttling" v7 patch.
->       Cortex A9 CPUs don't have hardware divider and shifting is a minor
->       improvement here, nevertheless it's good to have it.
-> 
-> [...]
+On Mon May 31, 2021 at 3:09 AM EDT, Peter Rosin wrote:
+> Hi!
+>
+> Thanks for the patches. However, things have recently changed under your
+> feet.
+> Can you please adjust to
+>
+> https://patchwork.kernel.org/project/linux-iio/list/?series=3D484153
+> https://lore.kernel.org/linux-iio/20210518190201.26657c49@jic23-huawei/T/=
+#m0de421cc9f6bc10bfa2622d65be750aaced3810c
+>
+> and resend?
 
-Applied, thanks!
+Thanks for pointing those out. I'll rebase on the latest -rc and resend.
 
-[9/9] dt-bindings: clock: tegra: Convert to schema
-      commit: c4a41429951890d0bf7c1ef49b1fa1c8dfb1a034
+Liam
 
-Best regards,
--- 
-Thierry Reding <treding@nvidia.com>
+>
+> On 2021-05-30 02:59, Liam Beguin wrote:
+> > From: Liam Beguin <lvb@xiphos.com>
+> >=20
+> > Make use of the IIO core to compute the source channel's processed
+> > value. This reduces duplication and will facilitate the addition of
+> > offsets in the iio-rescale driver.
+>
+> Cheers,
+> Peter
+
