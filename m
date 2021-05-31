@@ -2,136 +2,293 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF07A39540B
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 04:52:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C44E239543A
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 05:40:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230121AbhEaCyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 May 2021 22:54:22 -0400
-Received: from mail-vi1eur05on2059.outbound.protection.outlook.com ([40.107.21.59]:54529
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230091AbhEaCyR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 30 May 2021 22:54:17 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PLVoc7D/HiXU/tLa8RNyTmlciunn1VE7KpeXWoC6GfTJJlH+Z6YeipHwS+9Ps7/Ztnty0U5LISgFDrTq7WYoWUeZav4VJgZDUleVhPkdhijjaN9Hzqm++/zf8k7TIBAVcF8Xv5mT76z8woNIYM4l0M4MqyWaDNXAlkkyuZImPgLyYyd++frt3CwfncQLTIccztsNZbgBvRDS+tJh8Mba68q+817dbow8bEuipZ7bW3xPNQYf7MwWzUB5JfCWMIZ37WziO99lV5ObxLkAHQBCRl0HOpgDRaKt4qk3vLt9sWTMVNod6X60MkyIj2dNrH0pgKBqL3HnJ4R8yWLJGGnniQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9HtJU9ThdFQ2vesv7NRfjzO45qk6p/6vA0zf5wrflbc=;
- b=levy/if7KtkCiRdWdVX7Ko6dHc6RlQPc/Qk5ucYP35qPjZTsMwwbYkbNw13lEPtwQaj3nadHKg23PBHSUB7S8iuotPczpWexmMUFvwuZ9mmxpIYFj6J4NCRbrw+mW9wWC3ng+zmru2VAlWiOpkIoegheNiaBWTrL5lFB9lbBW5acJBMEkA/AMIY6TJmlToDnwiBtHpVp79wxwtzCSYDlYreSPcbXpDQjbPV0BiPazoWjBGd4Tjk/OCZ2AwO1BaPi98+fWovaxCeMGMUl95iNloBtmBWsnPwCfa6dtpfK+Kcgo1wt6x9AZ22VDbzd32HtNwaeVm9GwuS3kyhydn2V/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9HtJU9ThdFQ2vesv7NRfjzO45qk6p/6vA0zf5wrflbc=;
- b=RC8GBoR8FdH4IHRJeT1UVfn8Cni931vveOHsSx829jIwFEW0aEAWfzyH7OTVEYGndeTNs5YhMcaaANzd1fdUOo4dOiP87Z1+c7rPuf5M86OfI5vjv7VWo/P3DcS51dNuTQkLH4v7bcsHB7W0syK8ndP+Lh+F7bdcdlkZSrHOIVw=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
- by AM5PR0401MB2546.eurprd04.prod.outlook.com (2603:10a6:203:38::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.24; Mon, 31 May
- 2021 02:52:25 +0000
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::c5c1:3625:26e4:4276]) by AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::c5c1:3625:26e4:4276%5]) with mapi id 15.20.4173.030; Mon, 31 May 2021
- 02:52:25 +0000
-From:   Ming Qian <ming.qian@nxp.com>
-To:     mchehab@kernel.org, shawnguo@kernel.org, robh+dt@kernel.org,
-        s.hauer@pengutronix.de
-Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 5/5] firmware: imx: scu-pd: imx8q: add vpu mu resources
-Date:   Mon, 31 May 2021 10:51:13 +0800
-Message-Id: <a6606d1676efaee35175d71b16aaecebc62cc996.1622429026.git.ming.qian@nxp.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1622429025.git.ming.qian@nxp.com>
-References: <cover.1622429025.git.ming.qian@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.70]
-X-ClientProxiedBy: MA1PR01CA0160.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a00:71::30) To AM6PR04MB6341.eurprd04.prod.outlook.com
- (2603:10a6:20b:d8::14)
+        id S230002AbhEaDln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 May 2021 23:41:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40154 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229952AbhEaDlm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 May 2021 23:41:42 -0400
+Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com [IPv6:2607:f8b0:4864:20::c36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60B5BC061574;
+        Sun, 30 May 2021 20:40:02 -0700 (PDT)
+Received: by mail-oo1-xc36.google.com with SMTP id i8-20020a4aa1080000b0290201edd785e7so2495486ool.1;
+        Sun, 30 May 2021 20:40:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=mxXYMo3kYoIBlfp//omOxKhPJ2kyxaKYPD0IANQv/KU=;
+        b=sYLRZD66eYPYodYjbfx1DTL6jwoHkv9gKAEkWgRxJgBrLBYtU/v5FQsDmM6zJO9ONo
+         gvGl6HHGp/a1sWZ44NSI9kyh5de1pH+Z7l8AyjEDb96hZQtPFYCt+rCDFReXjm5eI2N9
+         hNMYkHOCNKtHy2bybKvS9fmKab2UB+Gm0ux8zSPFrcDdPVJtOaW3omWMsgCOLMEPAifP
+         QCY7jzn5pi+LtaM76zqqdG62kVQ9C8HZwOptnRQTIe8Z39q+T+gXHpvX4wkiplnrhm7/
+         7WFy24MT+NGTiUl/+dG+yyCljW3mXsaR9nMoaxbs6Xj41JGxAs4VaghQv8XrTqIVmS+2
+         bAGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=mxXYMo3kYoIBlfp//omOxKhPJ2kyxaKYPD0IANQv/KU=;
+        b=JBI/g4hAf6dmE5JgIw99GJTY/m90MgRt8ashSjwT/SXag/BnxAr36xrA54APAmttH+
+         CJuqfK9pkjkogxmYCsg7s8rp0uSGYwKayrIgneuKsoFqAFZBYhLEZGYD356q7yILzY1s
+         XYz2fZxxGRY34ddyuIX8SRFYU26pPC0I6Bn5LR22XWKq3FC5B3pzUrwNntyU6Phq542f
+         I99BUus1uyaCL8+3zkTd2/zTICS87e7QfFzdrN/2gowpp7Li2mgYmHxIHfHH3fM3kBv9
+         3qpl+GSZHSF+DLNscTPiqpUaVH2NW3otgt/7Xz5YGNQufd344UhdVUh0Zq0ti6PtVpmo
+         m71w==
+X-Gm-Message-State: AOAM531ekMCZLjDlDvySQtklQ/WvAg/ni4Cqv+f7+GB22LnTZzbRMQw9
+        e3V2pIPPBzAgxTpAW/A5xUsX0H2Hat2B17EFic0=
+X-Google-Smtp-Source: ABdhPJxHaQq7O/4YfTuQPvz65Rn5bpAhlfJl2rVZ+3OrM71kjqwbvZAsfo6GceHMfAi8mYW4i1jeIZObB/ahsdzuojc=
+X-Received: by 2002:a4a:ea19:: with SMTP id x25mr13892859ood.1.1622432401560;
+ Sun, 30 May 2021 20:40:01 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from lsv11149.swis.cn-sha01.nxp.com (119.31.174.70) by MA1PR01CA0160.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:71::30) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.20 via Frontend Transport; Mon, 31 May 2021 02:52:20 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 19f09893-d8bf-48d8-a612-08d923df1eca
-X-MS-TrafficTypeDiagnostic: AM5PR0401MB2546:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <AM5PR0401MB2546CE8183C61EBEDD50EC5FE73F9@AM5PR0401MB2546.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1201;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: FqaL6zN8t33RDlyA0vcZgbFJGs3g193SzgVigOlPEarxA1X4TQs6wtm4HWFY+EbAQW6QU5T5oPn36CRTZfB+HaE/rb0xExEAK+qi3zyKRgTs7p5rFwPY9p07zjWME3lgFgU4VLvK0tJWDwt2iVQitYPXodO4z9alDmqCXrZgce/ZsE6oKoSGpShbjDD29Mg/q7ImcyGfV0PWpIdK1l3IWInAa6uUCor+JHeyKJZnFryhftgyAgWS9Zm+CHaUtc7is17X7E5O2MGvRU9VsA9nnvqgFIaOKz4c/xZ2lcLcsbdI7Ri5Ppid0RCox8711ec1VaIVTKPCm1fSQnr6UNlMbHIQ431kkmqr3axNeLqajMKX8gGBpo2C+Gb/qBJHrgG/uhj8X/ZxtMbK6aIVIHx/gIn2ZS7kdsas0rclRUAvem7ZoVaXeW4sVPWMwvyhnBgVhwYFqCZsydVj0I/kSO1ieVXBefWJFPIMahTGxgp8jfeH7hkrDbWLdzIC89Fkcnbh6vpHdG9vY9mR8ZNLN0f3vmZ0E5Oj/UulGTldDB8oF8/Mip5Tr1kD6hTLdVNOIb/tUT4gp8n4i0Q9YXQj2qXD3TseYoeKoCy9aIROFNIDm28AkrDO8tMSOOsyFFFC57vg2+qfdSPXWMQkr83jzhGCHuiPU0APf1BSsMalyFfQzRhJABSdJddOG0x+8eCBvIZu
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(346002)(366004)(39860400002)(136003)(5660300002)(4326008)(6666004)(36756003)(16526019)(66946007)(66476007)(66556008)(38350700002)(86362001)(38100700002)(44832011)(186003)(7696005)(2616005)(478600001)(8676002)(4744005)(6486002)(316002)(956004)(2906002)(26005)(7416002)(8936002)(52116002)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?p0QkDQ3iMQcsaCTxphT5MWvSoPO6CUgJ2M8VV5OANWu1C9JMROV5KsviEpfa?=
- =?us-ascii?Q?UF8/0fMlEpy/Vkg1q752vwsc7KtzvhGnULqpbkHoYnMPeHxtkRGCeeyeDQiE?=
- =?us-ascii?Q?ghvUDmohSXB6MEHG6MmkCTnT6T0ORbtHGuedB2Bltr90ZrPtZM22SBznxh+y?=
- =?us-ascii?Q?dmU3MzkkyXuyxqHnKrfyHc15dYXJAoD6CQOy1D/5umAI/Pf8ANjA78Wu39Bf?=
- =?us-ascii?Q?qfBlkjISozAO2GDZGEeF8pGt6oClHkAZwNtS4P0goVVhTe5qhrkPYYbHma0Q?=
- =?us-ascii?Q?zXF1cl2uNbJOBM7fPMOs0Dl/FbYq/Ucz4FWh9GkbqweaMg/JWRTFbZU4w7AU?=
- =?us-ascii?Q?6/6ZPUcURuOjlHzyyiJxtwEhlfXAIgqB3CLjoidoMmo43kqi2EGV1jUEb+ZW?=
- =?us-ascii?Q?jn4u57OiVXhtvzUE5iawDlqKX07o06S0wsLwa7XZssS4qsEMlZVHmVaE7pAu?=
- =?us-ascii?Q?kqYbU9KMVLl0hTcEJ8SBr1RgQbjmXpjtYgnPTyYWEHvRZK2WsEG2NZ187EVV?=
- =?us-ascii?Q?/B73gG6NN/PhkYAmx8ZWRXlrz/osCVDdGpYhTOr4damRlDIaucq9OKcSpY4h?=
- =?us-ascii?Q?WEqg+HA01OxVS2C3VZdLuswg9ENVnbJaeIqAX2gyqAg6F9sH2Sm1hncZDcmF?=
- =?us-ascii?Q?5uZ0dcL0jpjQ8e10dRDgdAmTDniWSmsNsGeFcrug1C2hrAjwbMTccoiA2Wfk?=
- =?us-ascii?Q?NPuUMb4o/5vi4e8uR/WPLCxhNRevlsubYv+yv46TxdyabxVii0bWCn7zOGV6?=
- =?us-ascii?Q?zoPQU0TT64ILxLVl30Gt5K7oJth/LiS678SIF8FzQQHW0Esg0HP9tqfMsTPE?=
- =?us-ascii?Q?Q/oXLBrTTh4U/yGjr1uEpot70goIr5WA+vbWr4dQsY5EeYXBt8wQ0wx4XfNi?=
- =?us-ascii?Q?I3W85IOeN25oyLKm0O3OQTA1a6XQTXTRUooiQ15X6pAFs5rTh21ZLbqrybS2?=
- =?us-ascii?Q?piZRFOPNnxn1+HdV4Oyu5LOcX0D45uw3j5/l/StOcpkXnXDBQ/NaUCVfsQ7i?=
- =?us-ascii?Q?m8En3LIicGXw+T2yC2d25YMKoSCcsvCS502XtyBU78ZAki3WepoTrLpYTtNR?=
- =?us-ascii?Q?f02z16E9oS/gMX7hzF7xv4zUAh++xxyGq94Sds2mPWTgXHMAYlcBuBpbJvdO?=
- =?us-ascii?Q?mrTM/ZLigDn1AQhaZ6yXBMYWyCY1H2aNrdK9jXpSmNgbvzG2ztxMLKkK/0Dd?=
- =?us-ascii?Q?idzHLd21nQIn2E+GMwsUlGmfKzmoC88V1hhkDgoWuUAnnLmVi8ECWM71/Lyt?=
- =?us-ascii?Q?/jFJ9jFZ1y3wHuXQ5VVbKmCv7jkT6nyVpIpOZl8q08rY1+TAhrlD1u3ofJzi?=
- =?us-ascii?Q?BCFPvBMAODkRLkkPFYrptvnt?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 19f09893-d8bf-48d8-a612-08d923df1eca
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2021 02:52:25.3710
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 34VQLRozFgvRXiQSijb48lP/W5gPFBYD/tfFNBdHc3rrPYYrQL3xylbglaEJ4tJJFNtJ0+DHsYBFkEoOG+Dn1A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0401MB2546
+References: <20210528081300.64759-1-gene.chen.richtek@gmail.com>
+ <20210528081300.64759-4-gene.chen.richtek@gmail.com> <62cdd2d18839e16686f35f0cf08080e2cb3b1768.camel@fi.rohmeurope.com>
+In-Reply-To: <62cdd2d18839e16686f35f0cf08080e2cb3b1768.camel@fi.rohmeurope.com>
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+Date:   Mon, 31 May 2021 11:39:50 +0800
+Message-ID: <CAE+NS36WuNkQYn8_UvsZaU5Equ9YH+Ya=c_j3cLNhuFnHT_J-g@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] power: supply: mt6360_charger: add MT6360 charger support
+To:     "Vaittinen, Matti" <matti.vaittinen@fi.rohmeurope.com>
+Cc:     sre@kernel.org, Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>, inux-pm@vger.kernel.org,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, ChiYuan Huang <cy_huang@richtek.com>,
+        benjamin.chao@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-the vpu core depends on the mu resources.
-if they're missed, the vpu can't work.
+ is is
 
-Signed-off-by: Ming Qian <ming.qian@nxp.com>
-Signed-off-by: Shijie Qin <shijie.qin@nxp.com>
-Signed-off-by: Zhou Peng <eagle.zhou@nxp.com>
----
- drivers/firmware/imx/scu-pd.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com> =E6=96=BC 2021=E5=B9=B4=
+5=E6=9C=8828=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=885:47=E5=AF=AB=E9=
+=81=93=EF=BC=9A
+>
+>
+> On Fri, 2021-05-28 at 16:13 +0800, Gene Chen wrote:
+> > From: Gene Chen <gene_chen@richtek.com>
+> >
+> > Add basic support for the battery charger for MT6360 PMIC
+> >
+> > Signed-off-by: Gene Chen <gene_chen@richtek.com>
+> > ---
+> >  drivers/power/supply/Kconfig          |  11 +
+> >  drivers/power/supply/Makefile         |   1 +
+> >  drivers/power/supply/mt6360_charger.c | 856
+> > ++++++++++++++++++++++++++
+> >  3 files changed, 868 insertions(+)
+> >  create mode 100644 drivers/power/supply/mt6360_charger.c
+> >
+> > diff --git a/drivers/power/supply/Kconfig
+> > b/drivers/power/supply/Kconfig
+> > index e696364126f1..3257b1ad5e36 100644 11
+> > --- a/drivers/power/supply/Kconfig
+> > +++ b/drivers/power/supply/Kconfig
+> > @@ -577,6 +577,17 @@ config CHARGER_MP2629
+> >         Battery charger. This driver provides Battery charger power
+> > management
+> >         functions on the systems.
+> >
+> > +config CHARGER_MT6360
+> > +     tristate "Mediatek MT6360 Charger Driver"
+> > +     depends on MFD_MT6360
+> > +     depends on REGULATOR
+> > +     select LINEAR_RANGES
+> > +     help
+> > +       Say Y here to enable MT6360 Charger Part.
+> > +       The device supports High-Accuracy Voltage/Current Regulation,
+> > +       Average Input Current Regulation, Battery Tempature Sensing,
+> > +       Over-Temperature Protection, DPDM Detection for BC1.2
+> > +
+> >  config CHARGER_QCOM_SMBB
+> >       tristate "Qualcomm Switch-Mode Battery Charger and Boost"
+> >       depends on MFD_SPMI_PMIC || COMPILE_TEST
+> > diff --git a/drivers/power/supply/Makefile
+> > b/drivers/power/supply/Makefile
+> > index a7309a3d1a47..5317fe787149 100644
+> > --- a/drivers/power/supply/Makefile
+> > +++ b/drivers/power/supply/Makefile
+> > @@ -78,6 +78,7 @@ obj-$(CONFIG_CHARGER_MAX77693)      +=3D
+> > max77693_charger.o
+> >  obj-$(CONFIG_CHARGER_MAX8997)        +=3D max8997_charger.o
+> >  obj-$(CONFIG_CHARGER_MAX8998)        +=3D max8998_charger.o
+> >  obj-$(CONFIG_CHARGER_MP2629) +=3D mp2629_charger.o
+> > +obj-$(CONFIG_CHARGER_MT6360) +=3D mt6360_charger.o
+> >  obj-$(CONFIG_CHARGER_QCOM_SMBB)      +=3D qcom_smbb.o
+> >  obj-$(CONFIG_CHARGER_BQ2415X)        +=3D bq2415x_charger.o
+> >  obj-$(CONFIG_CHARGER_BQ24190)        +=3D bq24190_charger.o
+> > diff --git a/drivers/power/supply/mt6360_charger.c
+> > b/drivers/power/supply/mt6360_charger.c
+> > new file mode 100644
+> > index 000000000000..07fa0b3870e0
+> > --- /dev/null
+> > +++ b/drivers/power/supply/mt6360_charger.c
+> > @@ -0,0 +1,856 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (c) 2021 MediaTek Inc.
+> > + */
+> > +
+> > +#include <linux/init.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/linear_range.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/power_supply.h>
+> > +#include <linux/property.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/regulator/driver.h>
+> > +
+> > +#define MT6360_PMU_CHG_CTRL1 0x311
+> > +#define MT6360_PMU_CHG_CTRL2 0x312
+> > +#define MT6360_PMU_CHG_CTRL3 0x313
+> > +#define MT6360_PMU_CHG_CTRL4 0x314
+> > +#define MT6360_PMU_CHG_CTRL5 0x315
+> > +#define MT6360_PMU_CHG_CTRL6 0x316
+> > +#define MT6360_PMU_CHG_CTRL7 0x317
+> > +#define MT6360_PMU_CHG_CTRL8 0x318
+> > +#define MT6360_PMU_CHG_CTRL9 0x319
+> > +#define MT6360_PMU_CHG_CTRL10        0x31A
+> > +#define MT6360_PMU_DEVICE_TYPE       0x322
+> > +#define MT6360_PMU_USB_STATUS1       0x327
+> > +#define MT6360_PMU_CHG_STAT  0x34A
+> > +#define MT6360_PMU_CHG_CTRL19        0x361
+> > +#define MT6360_PMU_FOD_STAT  0x3E7
+> > +
+> > +/* MT6360_PMU_CHG_CTRL1 */
+> > +#define MT6360_FSLP_SHFT     (3)
+> > +#define MT6360_FSLP_MASK     BIT(MT6360_FSLP_SHFT)
+> > +#define MT6360_OPA_MODE_SHFT (0)
+> > +#define MT6360_OPA_MODE_MASK BIT(MT6360_OPA_MODE_SHFT)
+> > +/* MT6360_PMU_CHG_CTRL2 */
+> > +#define MT6360_IINLMTSEL_SHFT        (2)
+> > +#define MT6360_IINLMTSEL_MASK        GENMASK(3, 2)
+> > +/* MT6360_PMU_CHG_CTRL3 */
+> > +#define MT6360_IAICR_SHFT    (2)
+> > +#define MT6360_IAICR_MASK    GENMASK(7, 2)
+> > +#define MT6360_ILIM_EN_MASK  BIT(0)
+> > +/* MT6360_PMU_CHG_CTRL4 */
+> > +#define MT6360_VOREG_SHFT    (1)
+> > +#define MT6360_VOREG_MASK    GENMASK(7, 1)
+> > +/* MT6360_PMU_CHG_CTRL5 */
+> > +#define MT6360_VOBST_MASK    GENMASK(7, 2)
+> > +/* MT6360_PMU_CHG_CTRL6 */
+> > +#define MT6360_VMIVR_SHFT      (1)
+> > +#define MT6360_VMIVR_MASK      GENMASK(7, 1)
+> > +/* MT6360_PMU_CHG_CTRL7 */
+> > +#define MT6360_ICHG_SHFT     (2)
+> > +#define MT6360_ICHG_MASK     GENMASK(7, 2)
+> > +/* MT6360_PMU_CHG_CTRL8 */
+> > +#define MT6360_IPREC_SHFT    (0)
+> > +#define MT6360_IPREC_MASK    GENMASK(3, 0)
+> > +/* MT6360_PMU_CHG_CTRL9 */
+> > +#define MT6360_IEOC_SHFT     (4)
+> > +#define MT6360_IEOC_MASK     GENMASK(7, 4)
+> > +/* MT6360_PMU_CHG_CTRL10 */
+> > +#define MT6360_OTG_OC_MASK   GENMASK(3, 0)
+> > +/* MT6360_PMU_DEVICE_TYPE */
+> > +#define MT6360_USBCHGEN_MASK BIT(7)
+> > +/* MT6360_PMU_USB_STATUS1 */
+> > +#define MT6360_USB_STATUS_SHFT       (4)
+> > +#define MT6360_USB_STATUS_MASK       GENMASK(6, 4)
+> > +/* MT6360_PMU_CHG_STAT */
+> > +#define MT6360_CHG_STAT_SHFT (6)
+> > +#define MT6360_CHG_STAT_MASK GENMASK(7, 6)
+> > +#define MT6360_VBAT_LVL_MASK BIT(5)
+> > +/* MT6360_PMU_CHG_CTRL19 */
+> > +#define MT6360_VINOVP_SHFT   (5)
+> > +#define MT6360_VINOVP_MASK   GENMASK(6, 5)
+> > +/* MT6360_PMU_FOD_STAT */
+> > +#define MT6360_CHRDET_EXT_MASK       BIT(4)
+> > +
+> > +enum {
+> > +     MT6360_RANGE_VMIVR,
+> > +     MT6360_RANGE_ICHG,
+> > +     MT6360_RANGE_VOREG,
+> > +     MT6360_RANGE_AICR,
+> > +     MT6360_RANGE_IPREC,
+> > +     MT6360_RANGE_IEOC,
+> > +     MT6360_RANGE_MAX,
+> > +};
+> > +
+> > +#define MT6360_LINEAR_RANGE(idx, _min, _min_sel, _max_sel, _step)
+> > \
+> > +     [idx] =3D {                                                      =
+ \
+> > +             .min =3D _min,
+> > \
+> > +             .min_sel =3D _min_sel,
+> > \
+> > +             .max_sel =3D _max_sel,
+> > \
+> > +             .step =3D _step,
+> > \
+> > +     }
+> >
+>
+> Do you think REGULATOR_LINEAR_RANGE() would fit this? Or is the naming
+> a problem there? (Just a minor thing, no need to re-spin for this)
+>
 
-diff --git a/drivers/firmware/imx/scu-pd.c b/drivers/firmware/imx/scu-pd.c
-index af3d6d9ead28..48bcc9355a7c 100644
---- a/drivers/firmware/imx/scu-pd.c
-+++ b/drivers/firmware/imx/scu-pd.c
-@@ -145,6 +145,10 @@ static const struct imx_sc_pd_range imx8qxp_scu_pd_ranges[] = {
- 	{ "vpu-pid", IMX_SC_R_VPU_PID0, 8, true, 0 },
- 	{ "vpu-dec0", IMX_SC_R_VPU_DEC_0, 1, false, 0 },
- 	{ "vpu-enc0", IMX_SC_R_VPU_ENC_0, 1, false, 0 },
-+	{ "vpu-enc1", IMX_SC_R_VPU_ENC_1, 1, false, 0 },
-+	{ "vpu-mu0", IMX_SC_R_VPU_MU_0, 1, false, 0 },
-+	{ "vpu-mu1", IMX_SC_R_VPU_MU_1, 1, false, 0 },
-+	{ "vpu-mu2", IMX_SC_R_VPU_MU_2, 1, false, 0 },
- 
- 	/* GPU SS */
- 	{ "gpu0-pid", IMX_SC_R_GPU_0_PID0, 4, true, 0 },
--- 
-2.31.1
+Yes, it is fit for this but REGULATOR_LINEAR_RANGE is used for
+regulator which is defined in regulator/driver.h.
+I think it's better to defined ours and add idx for easy to read.
+Is it better to re-use REGULATOR_LINEAR_RANGE?
 
+> //snip
+>
+> > +static int mt6360_charger_probe(struct platform_device *pdev)
+> > +{
+> > +     struct mt6360_chg_info *mci;
+> > +     struct power_supply_config charger_cfg =3D {};
+> > +     struct regulator_config config =3D { };
+> > +     int ret;
+> > +
+> > +     mci =3D devm_kzalloc(&pdev->dev, sizeof(*mci), GFP_KERNEL);
+> > +     if (!mci)
+> > +             return -ENOMEM;
+> > +
+> > +     mci->dev =3D &pdev->dev;
+> > +     mci->vinovp =3D 6500000;
+> > +     mutex_init(&mci->chgdet_lock);
+> > +     platform_set_drvdata(pdev, mci);
+> > +     INIT_WORK(&mci->chrdet_work, &mt6360_chrdet_work);
+>
+> //snip
+>
+> > +
+> > +static int mt6360_charger_remove(struct platform_device *pdev)
+> > +{
+> > +     struct mt6360_chg_info *mci =3D platform_get_drvdata(pdev);
+> > +
+> > +     cancel_work_sync(&mci->chrdet_work);
+> > +
+> > +     return 0;
+> > +}
+>
+> Just as a note, devm_work_autocancel() should hopefully be included at
+> next cycle. Then you might be able to drop the .remove().
+>
+
+ACK, I will replace it, thanks.
+
+> FWIW:
+> Reviewed-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+>
+> Best Regards
+>         Matti Vaittinen
+>
