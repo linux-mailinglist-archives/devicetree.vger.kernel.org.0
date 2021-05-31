@@ -2,174 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88AFD395F9E
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 16:11:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E15B8395FDA
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 16:15:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231836AbhEaON2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 10:13:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39512 "EHLO
+        id S233143AbhEaOQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 10:16:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233145AbhEaOLX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 10:11:23 -0400
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EB46C035433;
-        Mon, 31 May 2021 06:40:07 -0700 (PDT)
-Received: by mail-ot1-x333.google.com with SMTP id r26-20020a056830121ab02902a5ff1c9b81so11084485otp.11;
-        Mon, 31 May 2021 06:40:07 -0700 (PDT)
+        with ESMTP id S233631AbhEaOOf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 10:14:35 -0400
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21455C061574;
+        Mon, 31 May 2021 06:41:26 -0700 (PDT)
+Received: by mail-qk1-x734.google.com with SMTP id c124so6445315qkd.8;
+        Mon, 31 May 2021 06:41:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=ozF7Nw0gMrrvzPjGZChhJPIjE3+nOGNmHfCPhJPHLRQ=;
-        b=AnpSaFAXu0Lf0o787EGCw9Q4WRtBu2uEFo9T3b5CSo+FlZFV4Z7ooh8U9B81yPaMhl
-         1rF05/vSgb0CmLrTmbUykug3Sa7TTVmyYOGQeax7aDnUQ6fBkqFGViKZwAWeOmqzXspv
-         6/HfRqagSQ2G0ZYzATf1HPcZikDpx5IUy9u7vpMq9GmuLToyRSR4Rade8EwrJvfbkaJJ
-         Q7ejJYb76pKVePyQF17TG7i/+k0QHdn2fH2Ifhg3/jPzrSFYGZ4a8a/W37MpeAXEfcLF
-         H3e6fmXYaHs1MnDiMWx/hLvg7LUQvePyZJKCaP2K7+zpVOWJLsfsdjV3hwhEl6hHPDfg
-         GyQg==
+        h=mime-version:content-transfer-encoding:date:message-id:from:to:cc
+         :subject:references:in-reply-to;
+        bh=XnIBaAJk34SkGPoBRAYrEmSzR77d9Lb1dvFbEISw98E=;
+        b=RaqoFaQs26hbcut6UFNR3n7Y8G5hnJJ9ifDHdcFfkZIiY/NoKJCoaO5yvf90dyE/60
+         CTF12bT3oTfR8L6g0zLO0ZP5hb+LK27eVWmpcxABMU8a3yVGQYtyv7FgBn18MvNwJ3XM
+         wgtAn0V0zuEcMXqzkoxOVjZ48KZaoSJmQ4hkl1DzzwlDxbQlJb2lL3HF9GMqjrW8tG9u
+         YfGiD6uT+ovoYOjk+kWlu0bq5NKswn0p/xdSiAHRHwoGojN3U60vBIHyVIBVe6Zp+uw/
+         I5xLoOwoKAuPaKLpJaj6OvMfDZHrvrxMP4bKCDVE5KE2lfoNntaRJCtOdIiFOoFraBxp
+         Kbug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=ozF7Nw0gMrrvzPjGZChhJPIjE3+nOGNmHfCPhJPHLRQ=;
-        b=pICcOiF5M1KMGZ1PhBxmg3A54NT9rLiydxQ796/rR7vNwaQSAGpDP7W3Tp4psj9nFV
-         h0G+ueLN3zZrisvGLahlYjQXyrAyaTMc5VaEeanjqLODnKVXDrDPMBZ2RT80PbE8gGyJ
-         LOxn7OQgQ2lD3MJp5+7fRfedSOfhlrpqW2pzxDprueP8d8knUoJguoaFxzfWjNzAWc02
-         uiFpZxv/h2ETjzeXQWijiNA1hSzTDabvt3GNk2wGB0cWG4wf/8Pg8UQHxTsyQrqzLxrM
-         yy4kPitNYijZPZQzyCLSOTHnRpqIGGI26sarTSJnPDTGhJnyQNnS1o6HWOajCERuznNG
-         MC7w==
-X-Gm-Message-State: AOAM531JPznnn2+GaYQNSyVqhJyuJZKdo8vO2DVP3wcs8ajq4bwqvvHl
-        XMBVrTcHBCcv+yCb8MTqVOdMBZV+0mSlysAo36UWyesMmuWqO/bA
-X-Google-Smtp-Source: ABdhPJzqgggxS8X7nyAo0DAvgmmlEzBHLmjc2yp0dBZreoZQ8hJGpTy1Bhx84M9jYQwuR3EsrX0b409L5yEU267ChAs=
-X-Received: by 2002:a9d:4592:: with SMTP id x18mr7969267ote.74.1622468406360;
- Mon, 31 May 2021 06:40:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210515124055.22225-1-sergio.paracuellos@gmail.com>
- <20210515124055.22225-3-sergio.paracuellos@gmail.com> <20210531131431.bzsvmefqdyawmeo2@pali>
-In-Reply-To: <20210531131431.bzsvmefqdyawmeo2@pali>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Mon, 31 May 2021 15:39:55 +0200
-Message-ID: <CAMhs-H80=7jctPT70rOmcwcqPw+9iUF84_ZCgGr-TKwJ4eB2Lg@mail.gmail.com>
-Subject: Re: [PATCH 2/4] MIPS: pci: Add driver for MT7621 PCIe controller
-To:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
-Cc:     "open list:MIPS" <linux-mips@vger.kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        John Crispin <john@phrozen.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-staging@lists.linux.dev,
-        Greg KH <gregkh@linuxfoundation.org>,
-        NeilBrown <neil@brown.name>,
-        Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-pci@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:from:to:cc:subject:references:in-reply-to;
+        bh=XnIBaAJk34SkGPoBRAYrEmSzR77d9Lb1dvFbEISw98E=;
+        b=g+UgO1FtBSMdi2yl5caiV9TeZ7A/9MR9TPuVmI9QhDnfTjEd0mgMSOZ5DCcVLLrVFf
+         MVQqgjjmArBgzkTOpR4GprDj13S7vT9hvXnwVdetMER1HS82lhbECRSDRjnxx/7QzTrQ
+         fYqVFSF0clrR+GbcEeq5l27AwO3Z9x2/pSA5pRmH7jIdlpK9+fqKjpbxmpnsJuqbbQwc
+         akpkptpGxuVR9VkFj/AyyICbs77ZPlEHmzsyHwYI9uy4TZoOoDKp/GPYsaQFRx1WSvM4
+         O3aksEtAJmtLPLOSFYALp7oseXw9B2zxlFeGAH19rke+mP7N4xojCnAZXRzVYCTqhqZ2
+         SBpw==
+X-Gm-Message-State: AOAM530A2/ZXh4/VA568igfr4o6YJmFQfL4UNQLOmH5G1v5h1nrR6n2k
+        w33t7FOofPhHUyJJrzWQ/tg=
+X-Google-Smtp-Source: ABdhPJyBkCtf73OguHkU1IGu+i8ZUpuogY4xTBiCsmDv7zS2uScmDJWndQ33sLV71HFky6UbXd18Cw==
+X-Received: by 2002:a05:620a:240c:: with SMTP id d12mr16704188qkn.190.1622468485359;
+        Mon, 31 May 2021 06:41:25 -0700 (PDT)
+Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id f15sm8488007qtg.25.2021.05.31.06.41.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 May 2021 06:41:24 -0700 (PDT)
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Mon, 31 May 2021 09:41:24 -0400
+Message-Id: <CBRH2RWDHKFD.20XDGCMHA282F@shaak>
+From:   "Liam Beguin" <liambeguin@gmail.com>
+To:     "Peter Rosin" <peda@axentia.se>, <jic23@kernel.org>,
+        <lars@metafoo.de>, <pmeerw@pmeerw.net>
+Cc:     <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
+Subject: Re: [PATCH v1 8/9] dt-bindings: iio: afe: add binding for
+ temperature-sense-current
+References: <20210530005917.20953-1-liambeguin@gmail.com>
+ <20210530005917.20953-9-liambeguin@gmail.com>
+ <9f38ad0a-0a08-458d-b721-f4d424cecc6d@axentia.se>
+ <fe79916e-8ea8-5059-fd68-0e0ec621a2e1@axentia.se>
+In-Reply-To: <fe79916e-8ea8-5059-fd68-0e0ec621a2e1@axentia.se>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pali,
+Hi Peter,
 
-Thanks for your comments.
+On Mon May 31, 2021 at 4:58 AM EDT, Peter Rosin wrote:
+>
+>
+> On 2021-05-31 09:28, Peter Rosin wrote:
+> >> +  use-kelvin-scale:
+> >> +    type: boolean
+> >> +    description: |
+> >> +      Boolean indicating if alpha uses Kelvin degrees instead of Cels=
+ius.
+> >=20
+> > It's "kelvin", not "Kelvin degrees", and it's "degrees Celsius".
 
-On Mon, May 31, 2021 at 3:14 PM Pali Roh=C3=A1r <pali@kernel.org> wrote:
->
-> On Saturday 15 May 2021 14:40:53 Sergio Paracuellos wrote:
-> > This patch adds a driver for the PCIe controller of MT7621 SoC.
-> >
-> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > ---
-> >  arch/mips/pci/Makefile     |   1 +
-> >  arch/mips/pci/pci-mt7621.c | 624 +++++++++++++++++++++++++++++++++++++
-> >  arch/mips/ralink/Kconfig   |   9 +-
-> >  3 files changed, 633 insertions(+), 1 deletion(-)
-> >  create mode 100644 arch/mips/pci/pci-mt7621.c
-> >
-> > diff --git a/arch/mips/pci/Makefile b/arch/mips/pci/Makefile
-> > index f3eecc065e5c..178c550739c4 100644
-> > --- a/arch/mips/pci/Makefile
-> > +++ b/arch/mips/pci/Makefile
-> > @@ -24,6 +24,7 @@ obj-$(CONFIG_PCI_AR2315)    +=3D pci-ar2315.o
-> >  obj-$(CONFIG_SOC_AR71XX)     +=3D pci-ar71xx.o
-> >  obj-$(CONFIG_PCI_AR724X)     +=3D pci-ar724x.o
-> >  obj-$(CONFIG_PCI_XTALK_BRIDGE)       +=3D pci-xtalk-bridge.o
-> > +obj-$(CONFIG_PCI_MT7621)     +=3D pci-mt7621.o
-> >  #
-> >  # These are still pretty much in the old state, watch, go blind.
-> >  #
-> > diff --git a/arch/mips/pci/pci-mt7621.c b/arch/mips/pci/pci-mt7621.c
-> > new file mode 100644
-> > index 000000000000..fe1945819d25
-> > --- /dev/null
-> > +++ b/arch/mips/pci/pci-mt7621.c
-> ...
-> > +static int mt7621_pcie_enable_ports(struct mt7621_pcie *pcie)
-> > +{
-> > +     struct device *dev =3D pcie->dev;
-> > +     struct mt7621_pcie_port *port;
-> > +     u8 num_slots_enabled =3D 0;
-> > +     u32 slot;
-> > +     u32 val;
-> > +     int err;
-> > +
-> > +     /* Setup MEMWIN and IOWIN */
-> > +     pcie_write(pcie, 0xffffffff, RALINK_PCI_MEMBASE);
-> > +     pcie_write(pcie, pcie->io.start, RALINK_PCI_IOBASE);
-> > +
-> > +     list_for_each_entry(port, &pcie->ports, list) {
-> > +             if (port->enabled) {
-> > +                     err =3D clk_prepare_enable(port->clk);
-> > +                     if (err) {
-> > +                             dev_err(dev, "enabling clk pcie%d\n", slo=
-t);
-> > +                             return err;
-> > +                     }
-> > +
-> > +                     mt7621_pcie_enable_port(port);
-> > +                     dev_info(dev, "PCIE%d enabled\n", port->slot);
-> > +                     num_slots_enabled++;
-> > +             }
-> > +     }
-> > +
-> > +     for (slot =3D 0; slot < num_slots_enabled; slot++) {
-> > +             val =3D read_config(pcie, slot, PCI_COMMAND);
-> > +             val |=3D PCI_COMMAND_MASTER;
-> > +             write_config(pcie, slot, PCI_COMMAND, val);
->
-> Hello! Is this part of code correct? Because it looks strange if PCIe
-> controller driver automatically enables PCI bus mastering, prior device
-> driver initialize itself.
->
-> Moreover kernel has already function pci_set_master() for this purpose
-> which is used by device drivers.
->
-> So I think this code can confuse some device drivers...
+I'll rephrase the description base on your comment.
 
-I agree that we have pci_set_master() to be used in pci device driver
-code. Original controller driver set this bit for enabled slots. Since
-there is no documentation at all for the PCI in this SoC I have
-maintained the setting in the driver in a cleaner way. See original
-driver code and the setting here [0]. There is no other reason than
-that. I am ok with removing this from here and testing with my two
-devices that everything is still ok if having this setting in the pci
-controller driver is a real problem.
+I also thought of using alpha-micro-amps-per-degree-celsius and
+alpha-micro-amps-kelvin instead. I don't know if that would be better.
 
-[0]: https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git/tre=
-e/drivers/staging/mt7621-pci/pci-mt7621.c?h=3Dv4.18#n676
+Thanks,
+Liam
 
-Best regards,
-    Sergio Paracuellos
+> >=20
+> > But what exactly is this property for? We always want degrees Celsius, =
+don't we,
+> > and any offset can be handled...with an offset. No?
 >
-> > +             /* configure RC FTS number to 250 when it leaves L0s */
-> > +             val =3D read_config(pcie, slot, PCIE_FTS_NUM);
-> > +             val &=3D ~PCIE_FTS_NUM_MASK;
-> > +             val |=3D PCIE_FTS_NUM_L0(0x50);
-> > +             write_config(pcie, slot, PCIE_FTS_NUM, val);
-> > +     }
-> > +
-> > +     return 0;
-> > +}
+> Ahh, I hit send too soon. I now see that you calculate the offset in the
+> driver
+> instead of requiring the devicetree author to do it "by hand".
+>
+> Cheers,
+> Peter
+
