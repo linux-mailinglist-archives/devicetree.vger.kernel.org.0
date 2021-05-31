@@ -2,148 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99423395893
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 11:58:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 271793958A8
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 12:02:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231521AbhEaKAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 06:00:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39554 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231410AbhEaJ7o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 05:59:44 -0400
-Received: from mail-qv1-xf49.google.com (mail-qv1-xf49.google.com [IPv6:2607:f8b0:4864:20::f49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E78AC06138C
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 02:57:58 -0700 (PDT)
-Received: by mail-qv1-xf49.google.com with SMTP id j14-20020a0cf30e0000b02902142ba51ef2so8617841qvl.10
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 02:57:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=W/ZrpxpBHa59E8XYEYq7WrlrrlMwkCoGdFKDPln5r9I=;
-        b=h+LdXzHNMvlyWmTjV00XH10yQyrHp/cbSTnjrNjCrlvd6WTWdCRskzJIr3RZ0bZwDi
-         i+1f6koBbVwFtnzExeoQeteaWqrjxi6OdLN+KbS23+T33TKOGN9krGza9vkepKKKcOmG
-         ZYC/bTiES8wamGsdl+tep55YMjCNFd6oeQ2yaRhLCBkVtCgGiFbVjVYFZdwd6H/y4Epw
-         D3j4Nr85GpGYH99tJhQbz578yvgXXeh5DWOqz+2MXI95PQU4JotwwCUVWfDFHiT9Vq+r
-         Q+BbDw9WgMtTTPg2ZHKLC4vxY7dIRV7oZ+A1x4CMqlMgP+F+B+MZorhgQ9xUr9xjVa2I
-         vpkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=W/ZrpxpBHa59E8XYEYq7WrlrrlMwkCoGdFKDPln5r9I=;
-        b=Sw2//G9Sa9LGb1oesW8MpfS2yCcgCbmQ/uETBrdlNrYYsm8QDQtgT2N/gMXFTxSJbC
-         Jy1At+cIoNII2o1pA8d5BTQZ6u3yC/3dyS6OuhBhgmJaKoPi2ujCOyZImsg43MUWDPh3
-         dALpSEmtcmHIoY+iY7P0nZJZ3JOJoFdmrAxaB6PX490YfchwyKOkc+k/F2vKn5HwYUSd
-         5y8jo1pVcwyO4U0Ee29SZHt8KTHJe279FUMlIKDjxKlfToMQYTtrIsa39F2amq7klSZC
-         1SGzVeCEgBkHWU9fcTJ4ceKSY/L3hSbxMnLDsC+ochcHDt/tqETF/HynqbdPTM0AtuFJ
-         uJ7Q==
-X-Gm-Message-State: AOAM530z/3GS8xSRDjJ+PtYO5uAAKsBvcwiaq0V48ONJjmToTGwi/XWC
-        3Kok3hbdMEvJHnO1bnLV65Kh4JLOJz7y
-X-Google-Smtp-Source: ABdhPJxj8jyCEFW3MSz3dHkgjT4DP66xS3ho9fGnpibRmZGESCNmMm3Gkv3gt5vg7cDJX4YRhGvrPZ/73rBl
-X-Received: from kyletso.ntc.corp.google.com ([2401:fa00:fc:202:1330:7a47:8be2:d9b7])
- (user=kyletso job=sendgmr) by 2002:ad4:4e24:: with SMTP id
- dm4mr14084081qvb.33.1622455077166; Mon, 31 May 2021 02:57:57 -0700 (PDT)
-Date:   Mon, 31 May 2021 17:57:37 +0800
-In-Reply-To: <20210531095737.2258642-1-kyletso@google.com>
-Message-Id: <20210531095737.2258642-4-kyletso@google.com>
-Mime-Version: 1.0
-References: <20210531095737.2258642-1-kyletso@google.com>
-X-Mailer: git-send-email 2.32.0.rc0.204.g9fa02ecfa5-goog
-Subject: [PATCH v2 3/3] usb: typec: tcpm: Introduce snk_vdo_v1 for SVDM
- version 1.0
-From:   Kyle Tso <kyletso@google.com>
-To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org
-Cc:     badhri@google.com, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Kyle Tso <kyletso@google.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S230521AbhEaKEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 06:04:15 -0400
+Received: from ssl.serverraum.org ([176.9.125.105]:55769 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230518AbhEaKEO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 06:04:14 -0400
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 8D704221E6;
+        Mon, 31 May 2021 12:02:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1622455352;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=yHnj8ZChpZfQ7rJMK2Ssfqvgsi+pIPIjW/sU2HAAnww=;
+        b=OrhsVzs4VbvB2eQXxVYhdwyrXwP8a0gKdZgKeX4Gq9mG/cevW5xLI2dLOZ1n64MjnNIQFy
+        Z2cuJ+N8iyo02+Dc9HDqYwDkuNJGlpz1XB5VFOvHMT2BatnRlBEQ9LqTcw+ibki4a8ZN68
+        H+1jixWHCNPj2O+kGfHepOOzJa3/Ki8=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Date:   Mon, 31 May 2021 12:02:31 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Sander Vanheule <sander@svanheule.net>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andrew Lunn <andrew@lunn.ch>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 0/6] RTL8231 GPIO expander support
+In-Reply-To: <7a9978881e9ec5d4b811fa6e5d355fb6bce6f6d8.camel@svanheule.net>
+References: <cover.1620735871.git.sander@svanheule.net>
+ <cover.1621809029.git.sander@svanheule.net> <YKr9G3EfrM34gCsL@lunn.ch>
+ <CAHp75VewCw8ES_9S48qmeCtSXMkGWt0s4iub0Fu4ZuwWANHpaQ@mail.gmail.com>
+ <02bbf73ea8a14119247f07a677993aad2f45b088.camel@svanheule.net>
+ <f03d5cdc958110fc7d95cfc4258dac4e@walle.cc>
+ <84352c93f27d7c8b7afea54f3932020e9cd97d02.camel@svanheule.net>
+ <a644b8fa-c90a-eab6-9cca-08344abec532@redhat.com>
+ <CAHp75VcFmU4rJ6jL204xGFM=s2LV=KQmsV8E75BpuSAZMXBn0w@mail.gmail.com>
+ <c7239e0cbbc9748925410937a914bd8a@walle.cc>
+ <7a9978881e9ec5d4b811fa6e5d355fb6bce6f6d8.camel@svanheule.net>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <0047200eecbd7ee480258cc904d6b7ee@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ID Header VDO and Product VDOs defined in USB PD Spec rev 2.0 and
-rev 3.1 are quite different. Add an additional array snk_vdo_v1 and
-send it as the response to the port partner if it only supports SVDM
-version 1.0.
+Am 2021-05-31 10:36, schrieb Sander Vanheule:
+> On Sun, 2021-05-30 at 23:22 +0200, Michael Walle wrote:
+>> Am 2021-05-30 20:16, schrieb Andy Shevchenko:
+>> > On Sun, May 30, 2021 at 7:51 PM Hans de Goede <hdegoede@redhat.com>
+>> > wrote:
+>> > > On 5/30/21 6:19 PM, Sander Vanheule wrote:
+>> > > > As Michael suggested, I tried raw register reads and writes, to eliminate
+>> > > > any
+>> > > > side effects of the intermediate code. I didn't use the ioctls (this isn't
+>> > > > a
+>> > > > netdev), but I found regmap's debugfs write functionality, which allowed
+>> > > > me to
+>> > > > do the same.
+>> > > >
+>> > > > I was trying to reproduce the behaviour I reported earlier, but couldn't.
+>> > > > The
+>> > > > output levels were always the intended ones. At some point I realised that
+>> > > > the
+>> > > > regmap_update_bits function does a read-modify-write, which might shadow
+>> > > > the
+>> > > > actual current output value.
+>> > > > For example:
+>> > > >  * Set output low: current out is low
+>> > > >  * Change to input with pull-up: current out is still low, but DATAx reads
+>> > > > high
+>> > > >  * Set output high: RMW reads a high value (the input), so assumes a write
+>> > > > is
+>> > > >    not necessary, leaving the old output value (low).
+>> > > >
+>> > > > Currently, I see two options:
+>> > > >  * Use regmap_update_bits_base to avoid the lazy RMW behaviour
+>> > > >  * Add a cache for the output data values to the driver, and only use
+>> > > > these
+>> > > >    values to write to the output registers. This would allow keeping lazy
+>> > > > RMW
+>> > > >    behaviour, which may be a benefit on slow busses.
+>> > > >
+>> > > > With either of these implemented, if I set the output value before the
+>> > > > direction, everything works! :-)
+>> > > >
+>> > > > Would you like this to be added to regmap-gpio, or should I revert back to
+>> > > > a
+>> > > > device-specific implementation?
+>> > >
+>> > > Regmap allows you to mark certain ranges as volatile, so that they
+>> > > will not
+>> > > be cached, these GPIO registers containing the current pin value seems
+>> > > like
+>> > > a good candidate for this. This is also necessary to make reading the
+>> > > GPIO
+>> > > work without getting back a stale, cached value.
+>> >
+>> > After all it seems a simple missed proper register configuration in
+>> > the driver for regmap.
+>> > Oh, as usual something easy-to-solve requires tons of time to find it.
+>> > :-)
+>> >
+>> > Sander, I think you may look at gpio-pca953x.c to understand how it
+>> > works (volatility of registers).
+>> 
+>> But as far as I see is the regmap instantiated without a cache?
+> 
+> That's correct, there currently is no cache, although I could add one.
+> 
+> The data register rather appears to be implemented as a read-only (pin 
+> inputs)
+> register and a write-only (pin outputs) register, aliased on the same 
+> register
+> address.
 
-Signed-off-by: Kyle Tso <kyletso@google.com>
-Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
----
-changes since v1:
-- add Acked-by tag
-- merge the assignment to array element 1 into the for loop. No semantic
-  code logic change.
+Ahh so this makes more sense. If the data register is really write only
+regardless of the direction mode, then RMW doesn't make any sense at 
+all.
+Please note, that even if regmap caches values, it might be marked as 
+dirty
+and it will re-read the values from hardware. So I don't know if that 
+will
+help you.
 
- drivers/usb/typec/tcpm/tcpm.c | 40 ++++++++++++++++++++++++-----------
- 1 file changed, 28 insertions(+), 12 deletions(-)
+So a possible quirk could be
+  GPIO_REGMAP_WRITE_ONLY_DATA_REG (or something like that)
 
-diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
-index 617f48cdd90c..ebe490949fa0 100644
---- a/drivers/usb/typec/tcpm/tcpm.c
-+++ b/drivers/usb/typec/tcpm/tcpm.c
-@@ -401,6 +401,8 @@ struct tcpm_port {
- 	unsigned int nr_src_pdo;
- 	u32 snk_pdo[PDO_MAX_OBJECTS];
- 	unsigned int nr_snk_pdo;
-+	u32 snk_vdo_v1[VDO_MAX_OBJECTS];
-+	unsigned int nr_snk_vdo_v1;
- 	u32 snk_vdo[VDO_MAX_OBJECTS];
- 	unsigned int nr_snk_vdo;
- 
-@@ -1589,18 +1591,16 @@ static int tcpm_pd_svdm(struct tcpm_port *port, struct typec_altmode *adev,
- 			 */
- 			if ((port->data_role == TYPEC_DEVICE || svdm_version >= SVDM_VER_2_0) &&
- 			    port->nr_snk_vdo) {
--				/*
--				 * Product Type DFP and Connector Type are not defined in SVDM
--				 * version 1.0 and shall be set to zero.
--				 */
--				if (svdm_version < SVDM_VER_2_0)
--					response[1] = port->snk_vdo[0] & ~IDH_DFP_MASK
--						      & ~IDH_CONN_MASK;
--				else
--					response[1] = port->snk_vdo[0];
--				for (i = 1; i <  port->nr_snk_vdo; i++)
--					response[i + 1] = port->snk_vdo[i];
--				rlen = port->nr_snk_vdo + 1;
-+				if (svdm_version < SVDM_VER_2_0) {
-+					for (i = 0; i < port->nr_snk_vdo_v1; i++)
-+						response[i + 1] = port->snk_vdo_v1[i];
-+					rlen = port->nr_snk_vdo_v1 + 1;
-+
-+				} else {
-+					for (i = 0; i < port->nr_snk_vdo; i++)
-+						response[i + 1] = port->snk_vdo[i];
-+					rlen = port->nr_snk_vdo + 1;
-+				}
- 			}
- 			break;
- 		case CMD_DISCOVER_SVID:
-@@ -5969,6 +5969,22 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
- 			return ret;
- 	}
- 
-+	/* If sink-vdos is found, sink-vdos-v1 is expected for backward compatibility. */
-+	if (port->nr_snk_vdo) {
-+		ret = fwnode_property_count_u32(fwnode, "sink-vdos-v1");
-+		if (ret < 0)
-+			return ret;
-+		else if (ret == 0)
-+			return -ENODATA;
-+
-+		port->nr_snk_vdo_v1 = min(ret, VDO_MAX_OBJECTS);
-+		ret = fwnode_property_read_u32_array(fwnode, "sink-vdos-v1",
-+						     port->snk_vdo_v1,
-+						     port->nr_snk_vdo_v1);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
- 	return 0;
- }
- 
--- 
-2.32.0.rc0.204.g9fa02ecfa5-goog
+I'm not sure if regmap can cache the value for us or if we have to do it
+ourselves.
 
+> As I understand, marking the DATA registers as volatile wouldn't help. 
+> With a
+> cache this would force reads to not use the cache, which is indeed 
+> required for
+> the pin input values (DATA register reads). However, the output values 
+> (DATA
+> register writes) can in fact be cached.
+> Looking at _regmap_update_bits(), marking a register as volatile would 
+> only make
+> a difference if regmap.reg_update_bits is implemented. On an MDIO bus, 
+> this
+> would also be emulated with a lazy RMW (see mdiobus_modify()), which is 
+> why I
+> chose not to implement it for regmap-mdio.
+> 
+> So, I still think the issue lies with the lazy RMW behaviour. The patch 
+> below
+> would force a register update when reg_set_base (the data output 
+> register) and
+> reg_dat_base (the data input register) are identical. Otherwise the two
+> registers are assumed to have conventional RW behaviour. I'm just not 
+> entirely
+> sure gpio-regmap.c is the right place for this.
+> 
+> ---8<---
+> 
+> diff --git a/drivers/gpio/gpio-regmap.c b/drivers/gpio/gpio-regmap.c
+> index 95553734e169..c2fccd19548a 100644
+> --- a/drivers/gpio/gpio-regmap.c
+> +++ b/drivers/gpio/gpio-regmap.c
+> @@ -81,13 +81,16 @@ static void gpio_regmap_set(struct gpio_chip *chip, 
+> unsigned
+> int offset,
+>  {
+>         struct gpio_regmap *gpio = gpiochip_get_data(chip);
+>         unsigned int base = gpio_regmap_addr(gpio->reg_set_base);
+> +       bool force = gpio->reg_set_base == gpio->reg_dat_base;
+
+Ha I've thought of the same thing, but there might be hardware which
+actually mux the data in and data out register. Thus I think we have
+to distiguish between:
+
+  (1) write only data registers
+  (2) muxed data in/data out according to the direction
+
+for (1) we'd have to cache the value (ourselves (?))
+for (2) we'd only need to drop a cached value if we switch directions
+
+>         unsigned int reg, mask;
+> 
+>         gpio->reg_mask_xlate(gpio, base, offset, &reg, &mask);
+>         if (val)
+> -               regmap_update_bits(gpio->regmap, reg, mask, mask);
+> +               regmap_update_bits_base(gpio->regmap, reg, mask, mask, 
+> NULL,
+> +                                       false, force);
+
+mh, I don't see how this will work with a write only register. I seems
+that you might accidentially change the values of the other GPIOs in
+this registers (that is depending on the input of them, because you
+are still doing a RMW).
+
+>         else
+> -               regmap_update_bits(gpio->regmap, reg, mask, 0);
+> +               regmap_update_bits_base(gpio->regmap, reg, mask, 0, 
+> NULL,
+> +                                       false, force);
+>  }
+> 
+>  static void gpio_regmap_set_with_clear(struct gpio_chip *chip,
+
+-michael
