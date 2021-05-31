@@ -2,298 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 498A23964C2
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 18:08:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFE6F396513
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 18:21:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232806AbhEaQKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 12:10:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36986 "EHLO
+        id S233850AbhEaQWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 12:22:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233784AbhEaQIG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 12:08:06 -0400
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53088C08EB06
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 07:43:50 -0700 (PDT)
-Received: by mail-qk1-x72f.google.com with SMTP id i67so11374489qkc.4
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 07:43:50 -0700 (PDT)
+        with ESMTP id S234822AbhEaQT7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 12:19:59 -0400
+Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 599C0C02C3FA;
+        Mon, 31 May 2021 07:51:05 -0700 (PDT)
+Received: by mail-qt1-x830.google.com with SMTP id t20so8063697qtx.8;
+        Mon, 31 May 2021 07:51:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20150623.gappssmtp.com; s=20150623;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=Iyj0FEMDNsQyOiWylgBTlqAR8PKmvOeDZTh/pOMaYAE=;
-        b=xXHRv5yygcu+4HP+rTBpP5725QzrMhZEgW5lM7H1HgrX+L3zEwD/AMPtHbXP1w9vLL
-         X0l0oxGsnndPR6WaxH4hBxGro6aCCxRpOUm3dMkar4R8Hu17q/HWXOTokMkLsI3+r0eH
-         0QbfjM/lAfPtV4oNNOMDNIS55WFRN2w8rnyFbCU2Rq8lrlbRxo7uSwAXtvYicdrXcSDM
-         6J4/YqhzbpSQ3vco0ap5hPq5qg0pdqvL1Al9ehzK+rDjtox2GJ1wqI7fvrclsY3QX0Sh
-         1J58YVpoXdehso4WmPuMRUSHG4a69XmBRoKe3QvyWQr4UzHVECedCA7LYmpSasPehI1j
-         BrhA==
+        d=gmail.com; s=20161025;
+        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
+         :from:to:references:in-reply-to;
+        bh=ssQk50PTKdi25HhTNegK8mdpJbFiFprG9dU8Lz4nRig=;
+        b=tyPc2tC8hY7r94PkE8Tw2rk/SppuuKTHGqtiEHeKdt/jcKIrFvQG5L+hsu2lHNzOqk
+         R0fQ3AD9OK44Y08gaHfts7ZFOiwO+dH/EKNWTH9pfasRkWp9ruJdDFML+OtEoEBY4GCC
+         REIQOWYgucCyDskHwxEmPfl1o2y4GTgl3/OdisSSLQIOORR4HoH3W1/kqn07q+iysPzD
+         1dqT9bt434JnIkGHHwLNPVqovhYDwjJvO4ZV+4huHPglq2ao7ttfmPvE1l0P3SXfzLeg
+         8e2gdPxQjiy4zEUzPyDSZMyvAmXvQHNQmX3DzVtV7MwOZ9LPS33BnR5SpSyoOqTYHJfg
+         x81w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=Iyj0FEMDNsQyOiWylgBTlqAR8PKmvOeDZTh/pOMaYAE=;
-        b=U4ro3GAHAJ68I5K/PkoYjI00w4C9/QrxVqRAkiw7AOtUg14rki/eGe4p7P6YNtRSGW
-         17rCqF4f1+52TLNNUEX+YzAQ39dor8qA+5UbNIEL+TipNSpa50XWjvn0asvcKRttmSXq
-         2qjMRYCmRUo2xKrCqUjWoPu7iSt/aiqiKlGQnwfPUKH1bm0WIir8WuZmu4HK0crQTXYd
-         lo3y4LRjr0s8E+YmOECyw096wxg1IuIcx01n18cjKeANFcQ2WmSfrClyEtFnv6QutdPJ
-         XagjmA49CfhGAeLawa0zJ5EqrFk4Zp+GJZ4NdZEhwWwD1aVm2spar6WI90j1/H1chrQR
-         vLIQ==
-X-Gm-Message-State: AOAM532YLB/2pV8+uvpvS76yNJSN2wPLJAU52DBJz4xBjYbN52FE3f2P
-        XHBnkGI0dQexNIda17bvU1zim17ZculRInVZwIY=
-X-Google-Smtp-Source: ABdhPJzpTeU7aw3RWAK0GUJyYKnUNNgYcE3zvPCrEII4dYajZMDTnJG6Vtr+/gdUXejbNkz5qIBOrg==
-X-Received: by 2002:a05:620a:16b7:: with SMTP id s23mr17205567qkj.388.1622472230125;
-        Mon, 31 May 2021 07:43:50 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain (173-246-12-168.qc.cable.ebox.net. [173.246.12.168])
-        by smtp.gmail.com with ESMTPSA id h8sm8391940qtp.46.2021.05.31.07.43.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 May 2021 07:43:49 -0700 (PDT)
-Message-ID: <707ca6865504c9d37f3806bdc337b50e210373df.camel@ndufresne.ca>
-Subject: Re: [PATCH 1/5] dt-bindings: media: imx8q: add imx video codec
- bindings
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
-        shawnguo@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de
-Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Date:   Mon, 31 May 2021 10:43:48 -0400
-In-Reply-To: <dd2c66ba07a8025da2c377c1b6e46f9d7304c9bc.1622429026.git.ming.qian@nxp.com>
-References: <cover.1622429025.git.ming.qian@nxp.com>
-         <dd2c66ba07a8025da2c377c1b6e46f9d7304c9bc.1622429026.git.ming.qian@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.1 (3.40.1-1.fc34) 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:cc:subject:from:to:references:in-reply-to;
+        bh=ssQk50PTKdi25HhTNegK8mdpJbFiFprG9dU8Lz4nRig=;
+        b=lvGhgDS74zDD+zjS3wveV/80FKeaxNYXr7AQY5YnytYJxdVA5BTIl/ksWLtXm0gqNa
+         PZGN5aP+tMK8zW2d5xU9HmRBumsdaFbVzpAbpjkkkA8z88upRwWTPOITNzdvlm+TF0wb
+         CINMrdfz4QhB0BW61rKlphdfhfQlEnZT/5n64I/FIbDWEZI6rusF8kjC+ucUWN9YPTLs
+         VZRdDFuM0XVdygIr2BFY8Dy94WQuxdRQU3TB4YgOg7/7u+lRDndVbD+9L47yfLyc9LPJ
+         IcuvUsLg4zXpNBLyjsbEG5yotmjnHqEifa301qdE3nl5RuNXNuJdarUek8q5zaS56INj
+         r55g==
+X-Gm-Message-State: AOAM532lPGx00dajnF/tBuz6U0ICFtg857CoJEiEFS/S+Xelou7dEaBC
+        /rEVhIVJD/gn+85Cqtkqj8c=
+X-Google-Smtp-Source: ABdhPJxA5jtSrWweYQVE1RYBNT1/CViJtlqhB9Ezr0lyICULe5bnFyX/C/wzwB+iE6IDto8hPLOa1g==
+X-Received: by 2002:ac8:7f42:: with SMTP id g2mr15278445qtk.73.1622472664501;
+        Mon, 31 May 2021 07:51:04 -0700 (PDT)
+Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id b123sm9541572qke.87.2021.05.31.07.51.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 May 2021 07:51:03 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Mon, 31 May 2021 10:51:03 -0400
+Message-Id: <CBRIK3PI2AMD.3KUD7EI7NJ2EB@shaak>
+Cc:     <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
+Subject: Re: [PATCH v1 4/9] iio: afe: rescale: add offset support
+From:   "Liam Beguin" <liambeguin@gmail.com>
+To:     "Peter Rosin" <peda@axentia.se>, <jic23@kernel.org>,
+        <lars@metafoo.de>, <pmeerw@pmeerw.net>
+References: <20210530005917.20953-1-liambeguin@gmail.com>
+ <20210530005917.20953-5-liambeguin@gmail.com>
+ <0769aaae-8925-d943-e57d-c787d560a8dc@axentia.se>
+ <CBRGZCQWCG6S.676W3VCPMMUH@shaak>
+ <01f8d320-05ae-1178-151a-d0d11a23bb55@axentia.se>
+In-Reply-To: <01f8d320-05ae-1178-151a-d0d11a23bb55@axentia.se>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le lundi 31 mai 2021 à 10:51 +0800, Ming Qian a écrit :
-> Add devicetree binding documentation for IMX8Q Video Processing Unit IP
-> 
-> Signed-off-by: Ming Qian <ming.qian@nxp.com>
-> Signed-off-by: Shijie Qin <shijie.qin@nxp.com>
-> Signed-off-by: Zhou Peng <eagle.zhou@nxp.com>
-> ---
->  .../bindings/media/nxp,imx8q-vpu.yaml         | 201 ++++++++++++++++++
->  1 file changed, 201 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8q-vpu.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8q-vpu.yaml b/Documentation/devicetree/bindings/media/nxp,imx8q-vpu.yaml
-> new file mode 100644
-> index 000000000000..97e428dbfdbe
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx8q-vpu.yaml
-> @@ -0,0 +1,201 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/nxp,imx8q-vpu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP i.MX8Q video encode and decode accelerators
-> +
-> +maintainers:
-> +  - ming_qian <ming.qian@nxp.com>
-> +  - Shijie Qin <shijie.qin@nxp.com>
-> +
-> +description: |-
-> +  The Amphion MXC video encode and decode accelerators present on NXP i.MX8Q SoCs.
+On Mon May 31, 2021 at 10:08 AM EDT, Peter Rosin wrote:
+> On 2021-05-31 15:36, Liam Beguin wrote:
+> > Hi Peter,
+> >=20
+> > On Mon May 31, 2021 at 4:52 AM EDT, Peter Rosin wrote:
+> >> Hi!
+> >>
+> >> Thanks for the patch!
+> >>
+> >> On 2021-05-30 02:59, Liam Beguin wrote:
+> >>> From: Liam Beguin <lvb@xiphos.com>
+> >>>
+> >>> This is a preparatory change required for the addition of temperature
+> >>> sensing front ends.
+> >>
+> >> I think this is too simplistic. I think that if the upstream iio-dev h=
+as
+> >> an offset, it should be dealt with (i.e. be rescaled). The rescale
+> >> driver
+> >> cannot ignore such an upstream offset and then throw in some other
+> >> unrelated offset of its own. That would be thoroughly confusing.
+> >=20
+> > I'm not sure I fully understand. The upstream offset should be dealt
+> > with when calling iio_read_channel_processed().  That was my main
+> > motivation behind using the IIO core to get a processed value.
+>
+> You can rescale a channel with an offset, but without using processed
+> values. I.e. the upstream channel provides raw values, a scale and an
+> offset. The current rescale code ignores the upstream offset. I did not
+> need that when I created the driver, and at a glace it felt "difficult".
+> So I punted.
 
-Hi, thanks for this work. Do you think it would be possible to give a version
-for the Amphion design that is in used ? This is for the posterity and/or if
-some non-NXP vendor needs to use this driver because it picked the same design.
-Though form what I understood, Allegro acquired it, and might not be continuing
-that model, it remains that is nicer if we document as much as we can, to give
-maximum relevance to you rcontribution.
+I understand what you meant now.
 
-> +
-> +allOf:
-> +  - $ref: /schemas/simple-bus.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +        - nxp,imx8qxp-vpu
-> +        - nxp,imx8qm-vpu
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  memory-region:
-> +    description:
-> +      Phandle to a node describing reserved memory used by VPU.
-> +      (see bindings/reserved-memory/reserved-memory.txt)
-> +
-> +  vpu_lpcg:
-> +    description:
-> +      This is vpu Low-Power Clock Gate (LPCG) module.
-> +
-> +  mu_m0:
-> +    description:
-> +      Each vpu core correspond a MU node, which used for communication between
-> +      driver and firmware. Implement via mailbox on driver.
-> +
-> +    vpu_core:
-> +      type: object
-> +      additionalProperties: false
-> +      description:
-> +        Each core correspond a decoder or encoder, need to configure them
-> +        separately.
-> +
-> +      properties:
-> +        compatible:
-> +          oneOf:
-> +            - const: nxp,imx8q-vpu-decoder
-> +            - const: nxp,imx8q-vpu-encoder
-> +
-> +        reg:
-> +          maxItems: 1
-> +
-> +        power-domains:
-> +          maxItems: 1
-> +
-> +        mbox-names:
-> +            - const: tx0
-> +            - const: tx1
-> +            - const: rx
-> +
-> +        mboxes:
-> +          maxItems: 3
-> +          description:
-> +            List of phandle of 2 MU channels for tx, 1 MU channel for rx.
-> +
-> +        boot-region:
-> +          description:
-> +            Phandle to a node describing reserved memory used by firmware
-> +            loading.
-> +
-> +        rpc-region:
-> +          description:
-> +            Phandle to a node describing reserved memory used by RPC shared
-> +            memory between firmware and driver.
-> +
-> +        print-offset:
-> +          description:
-> +            The memory offset from RPC address, used by reserve firmware log.
-> +
-> +        id:
-> +          description: Index of vpu core.
-> +
-> +      required:
-> +      - compatible
-> +      - reg
-> +      - power-domains
-> +      - mbox-names
-> +      - mboxes
-> +      - boot-region
-> +      - rpc-region
-> +      - print-offset
-> +      - id
-> +
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - power-domains
-> +  - memory-region
-> +  - vpu_lpcg
-> +  - mu_m0
-> +  - vpu_core
-> +
-> +examples:
-> +  # Device node example for i.MX8QM platform:
-> +  - |
-> +    #include <dt-bindings/firmware/imx/rsrc.h>
-> +
-> +    vpu: vpu-bus@2c000000 {
-> +      compatible = "nxp,imx8qm-vpu", "simple-bus";
-> +      ranges = <0x2c000000 0x2c000000 0x2000000>;
-> +      reg = <0x2c000000 0x1000000>;
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +      power-domains = <&pd IMX_SC_R_VPU>;
-> +      memory-region = <&vpu_reserved>;
-> +
-> +      vpu_lpcg: clock-controller@2c000000 {
-> +        compatible = "fsl,imx8qxp-lpcg-vpu";
-> +        reg = <0x2c000000 0x2000000>;
-> +        #clock-cells = <1>;
-> +        status = "disabled";
-> +      };
-> +
-> +      mu_m0: mailbox@2d000000 {
-> +        compatible = "fsl,imx6sx-mu";
-> +        reg = <0x2d000000 0x20000>;
-> +        interrupts = <0 472 4>;
-> +        #mbox-cells = <2>;
-> +        power-domains = <&pd IMX_SC_R_VPU_MU_0>;
-> +      };
-> +
-> +      mu1_m0: mailbox@2d020000 {
-> +        compatible = "fsl,imx6sx-mu";
-> +        reg = <0x2d020000 0x20000>;
-> +        interrupts = <0 473 4>;
-> +        #mbox-cells = <2>;
-> +        power-domains = <&pd IMX_SC_R_VPU_MU_1>;
-> +      };
-> +
-> +      mu2_m0: mailbox@2d040000 {
-> +        compatible = "fsl,imx6sx-mu";
-> +        reg = <0x2d040000 0x20000>;
-> +        interrupts = <0 474 4>;
-> +        #mbox-cells = <2>;
-> +        power-domains = <&pd IMX_SC_R_VPU_MU_2>;
-> +      };
-> +
-> +      vpu_core0: vpu_decoder@2d080000 {
-> +        compatible = "nxp,imx8q-vpu-decoder";
-> +        reg = <0x2d080000 0x10000>;
-> +        power-domains = <&pd IMX_SC_R_VPU_DEC_0>;
-> +        mbox-names = "tx0", "tx1", "rx";
-> +        mboxes = <&mu_m0 0 0
-> +                  &mu_m0 0 1
-> +                  &mu_m0 1 0>;
-> +        boot-region = <&decoder_boot>;
-> +        rpc-region = <&decoder_rpc>;
-> +        print-offset = <0x180000>;
-> +        id = <0>;
-> +      };
-> +
-> +      vpu_core1: vpu_encoder@2d090000 {
-> +        compatible = "nxp,imx8q-vpu-encoder";
-> +        reg = <0x2d090000 0x10000>;
-> +        power-domains = <&pd IMX_SC_R_VPU_ENC_0>;
-> +        mbox-names = "tx0", "tx1", "rx";
-> +        mboxes = <&mu1_m0 0 0
-> +                  &mu1_m0 0 1
-> +                  &mu1_m0 1 0>;
-> +        boot-region = <&encoder1_boot>;
-> +        rpc-region = <&encoder1_rpc>;
-> +        print-offset = <0x80000>;
-> +        id = <1>;
-> +      };
-> +
-> +      vpu_core2: vpu_encoder@2d0a0000 {
-> +        reg = <0x2d0a0000 0x10000>;
-> +        compatible = "nxp,imx8q-vpu-encoder";
-> +        power-domains = <&pd IMX_SC_R_VPU_ENC_1>;
-> +        mbox-names = "tx0", "tx1", "rx";
-> +        mboxes = <&mu2_m0 0 0
-> +                  &mu2_m0 0 1
-> +                  &mu2_m0 1 0>;
-> +        boot-region = <&encoder2_boot>;
-> +        rpc-region = <&encoder2_rpc>;
-> +        id = <2>;
-> +      };
-> +    };
-> +
-> +...
+At first, I tried to apply the upstream offset from inside the rescaler.
+As you said it felt difficult and it felt like this must've been
+implemented somewhere else before.
 
+After looking around, I noticed that the code to do that was already
+part of inkern.c and exposed through iio_read_channel_processed().
+If the upstream channel doesn't provide a processed value, the upstream
+offset and scale are automatically applied.
+
+So with the changes in [3/9] the rescaler's raw value becomes the
+upstream channel's processed value.
+
+This seems like an easier and probably cleaner way of adding offset
+support in the rescaler.
+
+Does that make sense?
+
+Cheers,
+Liam
+
+>
+> But if the rescaler is going to start to handle offsets of any kind, it
+> will get very confusing if the upstream offset is ignored. The proper
+> way to do that is not something I have thought deeply about, and I
+> don't know what the proper behavior is. For a processed channel, the
+> offset is baked into the value that is scaled. Maybe the sane thing
+> is to do that for a non-processed channel as well? But that gets a bit
+> ugly, as it is counter to the simplicity, beauty and efficiency of the
+> rescaler driver. In the non-processed case the driver is just adjusting
+> the scale value. But since we are talking about proportional
+> relationships, it should be possible to rescale a non-processed
+> channel with an offset by just adjusting the offset in some way related
+> to the rescale factor. Doing it with integer math is the "difficult"
+> part...
+>
+> Cheers,
+> Peter
 
