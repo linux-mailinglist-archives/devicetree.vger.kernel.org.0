@@ -2,129 +2,294 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7883395625
-	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 09:32:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92FAC395649
+	for <lists+devicetree@lfdr.de>; Mon, 31 May 2021 09:38:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230225AbhEaHeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 03:34:31 -0400
-Received: from mail-am6eur05on2124.outbound.protection.outlook.com ([40.107.22.124]:17505
-        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230070AbhEaHeb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 31 May 2021 03:34:31 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ipEszhDFtIo+5GmMHk+Wg6qF/ZAw2zh13k9ZM6oP45iq7lKTnEWYhQYBMKSXZJ4z3lcu1gsDDGU3KiUg3dWaHTdGyTqYmEqtPC0N0qmdFgnbN5IhnJCUlMfPQJIbUZhKwr31gC2FbCumWmJHC7FNmia2O6hQQz8m8lHIQuAKZ/4qzUl15He+utSzDxleGlwfe+eIVLLcofebF2qii7s/ozr4fYAblJBOIGKh487goE2v+HTPiF1pKk30dHVDuRZPCm/JTOsQdVhvaU9CSScyFf91oTYY6vZoTeGdk8XwiodJY3M2IXcCG1YurLLlwe3D7IdyYYvPQV2RWhoBmhTxPQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KvMR1IE9HKMJzYHipn28pzDrJBrjpPWYeUFLCjeF3i4=;
- b=HA9KqaeAE5NDk0bdQ69Pxj7iYhLmufyRaiPpRbYtuD6n4J9oIPCfsgC8l2CkdfAArAfmxIXMJmFsJ/bH8VMdMl5AF3Bq2AVejDR1YOE6Qjc4Yj5Y+52s/sZrxSEcAhdBZOzP/fcF7HWoWeW1cjIl5SinHywuqeYOOZAcBx4uf9xISBi4kV4YeQNz0p04j+7QsOq1vO78/6F5aDCeF8+TRt1fGpWre1YfX8u9qKBhnqrOcl8XwuBwFCxff2XTFqKgNwyasaYdW/KO3YC+eOc+HQJ21NGEjFcT6Nwdu3ro/taPipsR1ejk9C80+MzEX85lmcHD9h2wfGcPTbRvvsBa2g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
- dkim=pass header.d=axentia.se; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KvMR1IE9HKMJzYHipn28pzDrJBrjpPWYeUFLCjeF3i4=;
- b=XHwInROg3Y6Q40Wd3zDfmRKGuTEhrUBsa2ARmSd6YMqXLMXljvvv/2Xw5Qe1YDQorX16frz1fGgLNt+1CldmRaEZMnhdqyLZGUx8fk/umUrRovLWL5DfDP4NZ+zWWdf27QUyAxo85Tsw5QMXwAYqiNBpQs/JysLyWrjEac9aVqg=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=axentia.se;
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com (2603:10a6:10:eb::29)
- by DB3PR0202MB3420.eurprd02.prod.outlook.com (2603:10a6:8:7::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.27; Mon, 31 May
- 2021 07:32:50 +0000
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::d47d:ca8c:4fe6:3908]) by DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::d47d:ca8c:4fe6:3908%3]) with mapi id 15.20.4173.030; Mon, 31 May 2021
- 07:32:50 +0000
-Subject: Re: [PATCH v1 9/9] dt-bindings: iio: afe: add binding for
- temperature-sense-amplifier
-To:     Liam Beguin <liambeguin@gmail.com>, jic23@kernel.org,
-        lars@metafoo.de, pmeerw@pmeerw.net
-Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-References: <20210530005917.20953-1-liambeguin@gmail.com>
- <20210530005917.20953-10-liambeguin@gmail.com>
-From:   Peter Rosin <peda@axentia.se>
-Organization: Axentia Technologies AB
-Message-ID: <0286de71-1b04-0956-be4e-f38573c6fea2@axentia.se>
-Date:   Mon, 31 May 2021 09:32:46 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
-In-Reply-To: <20210530005917.20953-10-liambeguin@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: sv-SE
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [85.229.94.233]
-X-ClientProxiedBy: HE1PR0402CA0050.eurprd04.prod.outlook.com
- (2603:10a6:7:7c::39) To DB8PR02MB5482.eurprd02.prod.outlook.com
- (2603:10a6:10:eb::29)
+        id S230261AbhEaHjs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 03:39:48 -0400
+Received: from mailout4.samsung.com ([203.254.224.34]:23159 "EHLO
+        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230337AbhEaHjf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 03:39:35 -0400
+Received: from epcas1p3.samsung.com (unknown [182.195.41.47])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20210531073752epoutp04e302df590268ce56bd0c3d30ea3a47b4~EFqcLH_pn2528525285epoutp042
+        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 07:37:52 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20210531073752epoutp04e302df590268ce56bd0c3d30ea3a47b4~EFqcLH_pn2528525285epoutp042
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1622446672;
+        bh=QRvCFCW+U281AxWgQYdjwG9s7N9u/EHX6hqvoWa12hU=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=hajtiqZANBdFhZDgvP4/rVM4HYJJ9V0jLMy4P/Il5He6/NYCYlSU4VlbkH/Np7CNs
+         SX47QTmYR4bU/qUjY+amOMsH9izJDdj0ZENL+jMM5ghFtPLuZ6EBka4pToXlJu0QnY
+         7luK3LIIHJ6WgY757D8vfRZvWvFYIjCTbv7dJ/88=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas1p3.samsung.com (KnoxPortal) with ESMTP id
+        20210531073751epcas1p3d499a1311859554bdf4249c70ad56a51~EFqbW8zCh2849228492epcas1p3X;
+        Mon, 31 May 2021 07:37:51 +0000 (GMT)
+Received: from epsmges1p1.samsung.com (unknown [182.195.40.153]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4FtnFT11k4z4x9Q7; Mon, 31 May
+        2021 07:37:49 +0000 (GMT)
+Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
+        epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        0A.EA.09578.C4294B06; Mon, 31 May 2021 16:37:49 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20210531073748epcas1p28936dbbff9506eccd933816521a43948~EFqYZSxsI2525825258epcas1p2l;
+        Mon, 31 May 2021 07:37:48 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20210531073748epsmtrp2ba01e19ff9f4bbcaec3b8b04d6285dc7~EFqYXU2Hm0775507755epsmtrp2C;
+        Mon, 31 May 2021 07:37:48 +0000 (GMT)
+X-AuditID: b6c32a35-58cdfa800000256a-70-60b4924c3622
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        9A.22.08163.C4294B06; Mon, 31 May 2021 16:37:48 +0900 (KST)
+Received: from [10.113.221.102] (unknown [10.113.221.102]) by
+        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20210531073747epsmtip1fea3dad0ec42cc9fb4f045fb343a2cba~EFqXnbSKL2270722707epsmtip1w;
+        Mon, 31 May 2021 07:37:47 +0000 (GMT)
+Subject: Re: [PATCH V8 1/8] PM / devfreq: Add cpu based scaling support to
+ passive_governor
+To:     "andrew-sh.cheng" <andrew-sh.cheng@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@google.com>
+Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        srv_heupstream@mediatek.com, Sibi Sankar <sibis@codeaurora.org>
+From:   Chanwoo Choi <cw00.choi@samsung.com>
+Organization: Samsung Electronics
+Message-ID: <316af76d-fc63-eeff-7419-cb4b44ee62fe@samsung.com>
+Date:   Mon, 31 May 2021 16:56:33 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
+        Thunderbird/59.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.13.3] (85.229.94.233) by HE1PR0402CA0050.eurprd04.prod.outlook.com (2603:10a6:7:7c::39) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.20 via Frontend Transport; Mon, 31 May 2021 07:32:49 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 922aaa0e-0b86-4371-b841-08d924064b1e
-X-MS-TrafficTypeDiagnostic: DB3PR0202MB3420:
-X-Microsoft-Antispam-PRVS: <DB3PR0202MB342049F79D566910F7075D0BBC3F9@DB3PR0202MB3420.eurprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2733;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YMJby1bQAMl9K/wbKFWSkaYgJEgQTjp1rtYkHYbK7Hsak+OZp0SA/JiKMI48d9G7zrgfbjSvq+n1atLbgNNRMODS/cGSmJ0qI8FXunPWtNQEeNmhWpdvKI/UrAV7T2ImlTEouUFFYfuQDgFJnHT3+P6t2HoneRHDerWx7mz5EFA7zYIRUxP8NhN8w8E5dEZWlHAp1cqscat+YFoSGtT/spNH6s2VnP9L95Q7tDaB6RKVfM1G3/a8BTL8wk+kio1AZqCq7HVvVFjcDvU4dvI0/HqAjJLlFGJpYha5gtF6xoyH17NkGRW2tPJqdc7e8V+TTtrJyIUwwCvF8N1gmAcPoVotfdzjYj2rilWlrryGrZy1afdxp3rU7af86IC2o4YyCyx2+aaj8KC4Hq332Yo5G+Vo8UQJsSZQX07KFikvhHZh+Zgw5r5NXIwLjO1WfcaYaPqaNedN3OdVLN0wbOACIO9P/fn4zvbPjfzb+5B8zkIcMtU/8daEJnigQ14xGWzgqiBbzKb5hvUEljyZUAUmLbb4xNPsnZ2Es7slH1b1g0nC3lFiXNKDtzpoHDKUV7WICKCrIuNtwBvnx4G7oCIVVa9lQOUbHKNbDC/8WhZTiyswA96Nx2x0dVemjddVU6FSByao+CQER+vV52ax9ysaOKOiMvVHC6YefMJqVFF/oWEWF75tnwN7H3wIui0/tp/K
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR02MB5482.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(39830400003)(136003)(376002)(346002)(366004)(6486002)(16526019)(478600001)(86362001)(36756003)(5660300002)(66556008)(38100700002)(2616005)(956004)(31696002)(2906002)(4744005)(4326008)(6666004)(186003)(31686004)(8676002)(66476007)(16576012)(316002)(8936002)(53546011)(36916002)(66946007)(26005)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?THRkYk11NFhqcEJReUd5Y0RRSWxlRDc0OGNLMWw2Ui8vU213SEVndjlzVW5B?=
- =?utf-8?B?YjdveFNwRFdIWUFVckErbnRDRU1IZ1dxYTJFUmVlbWV2eG83ZVd4eXloZFR2?=
- =?utf-8?B?Z2FXZlBoSlg3WlpEUm00clpiK0NHTmZ0TzNGT0dwSlhsdmxyOTh3dFJ4S2pp?=
- =?utf-8?B?T04zcGp2eDFhT0tQZ1BkeE9rNmxRNE1YWWZmNHM2bnhHOHlIVkV2WGM0TE5r?=
- =?utf-8?B?VFpwQS8rZ2tMREVxa3g5ZGsvVENnNEwvdHY5OTJhdThUMHNMTVhmNkV6V0lr?=
- =?utf-8?B?RFpydWdoWTgxOU0rSjZJcE5HQ09vcUw5ZURld012SFdQWHkwSkhDRUNHZnQz?=
- =?utf-8?B?aER1enJKM2tkaU1QODRUZ0FpTTlkRE95SVhvcEdaUllremd0d2p2d0hkVTVl?=
- =?utf-8?B?UnhRazB4Y2FlUlJoMWFodVcwdkVYVDhmTm9NV3NscHhYZEczOUNuTThlOVd1?=
- =?utf-8?B?WEN3bDFFbCtrd3dlS25GM0M4M1BnOFNaZmJmcUcrMjc4UWRuZGJJYzNuZ2dN?=
- =?utf-8?B?M3Jua202M3p2cTJaTjMrUCtuZVNlZnRSbDVnejlyM1NIWS9Oc3dkbTRzejF4?=
- =?utf-8?B?OGd3MHVVQ2paRThhUVZyT3o5NmhnellraFNVSVA5cHNLZTZNUEpNN2lzU04y?=
- =?utf-8?B?SXVSNjZZK1EvYmVCOXI5cTRDcEY5SldkTGZ2RDFrTW8yZ3JGWGRlS0JVL2FG?=
- =?utf-8?B?Rkw5YVRlM3BLdHl6MUFid0hTVXpRS1kycmR3a0VOSHg2NTFzWHM5eXhKdW9Z?=
- =?utf-8?B?ZGhIS2hIbFRwZlFzRTVGa1ZmcENEK1E1ZU1hK3pvUisyQ2FtN2c1YkNBNWVQ?=
- =?utf-8?B?c1A1SlMwSVZTbFJLcGptSDd4OTZSRUxNU0M4Q3dDcG1nUHJ6bmFPendzRFh1?=
- =?utf-8?B?TzFjclVKVWtMemhiTVRoLzYwM20rclYxNUZjOFQvU090eFpBR2FJc0NqNkxJ?=
- =?utf-8?B?RDhvL1FMMjhOd1NtSnNGNGFUUGlyNDg3dzE1MldzcUs4OURvN3pzVzQ1bmJL?=
- =?utf-8?B?TXlQZEhqcWFCd0d4aFYxNmdhdlg3Njh4TXZhbUdZeWdoUE9MeTN4SXd3SFJB?=
- =?utf-8?B?UzN6RllJc1MvdFJXQ0owaEFvQmR2WE9SMDFLOHlXVUR2ZmhmYnhGUUc5NlBO?=
- =?utf-8?B?TnZoUnhxVlZtTTEyRTNEbEJWeXBCNkhwaUM5RFZKUGxBVXpvTEdLRk1RbjFZ?=
- =?utf-8?B?YmVoK2tpV3VyckVQZ0dHWmFmNG91eDJDZENML2c2ZElHbXdDazA2bkV3MkJH?=
- =?utf-8?B?dEd0OEJQZ0RTNTF5ZlN6anVFWEFxMStjUm5EeHpFWGZmZStiNkhtTTFFeUs3?=
- =?utf-8?Q?8CW+4jVwxE?=
-X-MS-Exchange-AntiSpam-MessageData-1: kFogqJGIG7VvDhsGtsr4W+JUy26o2bDhBnrZUYvMJfhuez5uN7t4M5vtEURqtIDrDegEd2YbPDOL/0Ld+IQGp6N93cvA/AbsqO8BZOqnEJbzeFyD9m/QPaz0BdakIhiT4Vj4lb65kzzzmZaqoiX2rO2Jh6q2Yb5vnG4tpm6oukNWqTabMG/xTE8xWolnrHopkbDbjV8scxOgo5qYYOWp8mXvwGS44qK0w2f2RQby7FuGmMOhUXaiv6zxOZdJTWSm/MPgpeMO0EOmg9CnXmO1J6QaIPg09BzuLpGucNeMwCVZQqIA0ua0lz3M5hJvTEcBPrxT64E6xJEKGZ0GgonFg7rh
-X-OriginatorOrg: axentia.se
-X-MS-Exchange-CrossTenant-Network-Message-Id: 922aaa0e-0b86-4371-b841-08d924064b1e
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR02MB5482.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2021 07:32:49.9533
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QGZKJyVR1a+oPzIhzpEAMLlu5CdZ6/aczWbfvn/Z4fPjlmJbDRqGvUNY4iK2qgoI
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0202MB3420
+In-Reply-To: <1622431376.14423.5.camel@mtksdaap41>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA01TbUxTZxjde9veFiL1ruJ8xw8pVxiRAeUClasRtohZLsEtbGZssi20g2tB
+        Slv64cpgDhUnMFAQt2nDAAUJMhyjNHyUFWatYcyiQKUwkTkDZkw+A/IxWXQtrRn/znNyzvM+
+        53nzcBi8FdSHky5T00qZWIqjnszWGztDQt4+ZxCF2S4xyLamSRb5zcMJlKyy3GaRJuMIg+w7
+        Mc0ml+8WIKR+3M4ibcYKlLSdHADkYokFkFeGBxDyRH4EOXq8HiWnV/sQ0nprkEWeMlnY5DN7
+        M5O0X5pjkd+N8cjmJepNb6qxshFQtjMlCNWhG2NT1XoNpW8oRKn79p9RqqX2Syq/t5tJGYZO
+        M6kzhgZA9Yy0IdSifnvCpqSMvWm0OJVW8mlZijw1XSaJxuMPJscmC3eFESHEbjIK58vEmXQ0
+        vv9AQshb6VJHSpx/VCzVOKgEsUqFC2L2KuUaNc1Pk6vU0TitSJUqditCVeJMlUYmCU2RZ+4h
+        wsLChQ6hKCNt6twqU9ERqW03dbHyQFVwEfDgQCwSLlsvI0XAk8PD2gG8d/8Ry1UsANhuGma7
+        ikUAfzQPoi8sZSWP3BYjgG0P65iuYg5Aa08tcKq2YJ/Ap3f+YDqxN/YhPP7v3DrPwEpY8KLZ
+        z4lRLAh2T46sd92M+cGh1fF1jRcWA58v1jswh8PEAuDNp1wnvRVLhL2t+W7Jy7D34sR6ew8s
+        HI60zLNd7bfBexNViAv7wraZCoZzNoj94AGX6syIK8F+aO8vZLnwFvi4x8B2YR+4OGtyp8yB
+        V3stqMtcAKChu99tiIDdV8oR53AMbCdsMgpctB/sWPvenZELZ5eKWU4JxLxgwVc8l2QHtP05
+        5h7hVVhzuhAtBbhuQxzdhgi6DRF0/z9WDZgN4BVaocqU0CpCQWz8bT1Yv4AgYTsom5kPNQOE
+        A8wAchi4t5dV2yzieaWKsz+nlfJkpUZKq8xA6NhvGcNna4rccUIydTIhDI+IiCAjiV1CgsC3
+        eUlic0Q8TCJW0xk0raCVL3wIx8MnDxHjC0VH2DWHL/M6JceSXosVzHuzuptHcwWzlfzb8aN+
+        wZ/dONwax/s1sGPSf/p5VNStoLCmI+e16ZUDPscOjecmCWq4awde+klaiz8YU+gntHF9OfWa
+        D9quDb0xZkj8beC9cVFi8bfKQevr7+8ou8oLjO/3PavehL2rywpYIS60B2cjMZZA3/5wra7F
+        3+Td2nmw650pwcqz7U/kv/xTfv3CcvXJ4X1fq7jXfu8Eg6V3m59c/yLOyKdH/Blnu/4uJ/ac
+        OpQV8Jj+i3vUmFeY3bjPVlHH7VjS9iuWVo08MFUuWfjUM3kitzQ/azVFtNl+c+gjdl0x1lP7
+        wJKxdidxxkp+fB5nqtLERBBDqRL/B/nDcvmKBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrEIsWRmVeSWpSXmKPExsWy7bCSnK7PpC0JBveaBC22r3/BajH14RM2
+        i/lHzrFa7N11g9nibNMbdotvVzqYLDY9vsZqcXnXHDaLy80XGS0+9x5htFh6/SKTRVOLscXt
+        xhVsFm9+nGWyOHP6EqtF694j7Bb/rm1ksbi28D2rxfS7QhYbv3o4iHismbeG0eNyXy+Tx85Z
+        d9k9Fmwq9di0qpPN4861PWwem5fUe7Sc3M/iseVqO4tH35ZVjB7Hb2xn8vi8SS6AJ4rLJiU1
+        J7MstUjfLoEr4/WkHywFO00qduzdx9rAOF+ni5GTQ0LARGJi71OmLkYuDiGBHYwSXy/cZoVI
+        SEpMu3iUuYuRA8gWljh8uBii5i2jxKNDX5hBaoQFYiV+nb/HAmKLCERI/Pt0jRmkiFmgn1Xi
+        5Y8uqKn7WSVWLNvODlLFJqAlsf/FDTYQm19AUeLqj8eMIDavgJ3E/88rGEG2sQioShz9xQcS
+        FhUIk9i55DETRImgxMmZT8CWcQoYSdzY/AFsJLOAusSfeZeYIWxxiVtP5jNB2PIS29/OYZ7A
+        KDwLSfssJC2zkLTMQtKygJFlFaNkakFxbnpusWGBUV5quV5xYm5xaV66XnJ+7iZGcDLQ0trB
+        uGfVB71DjEwcjIcYJTiYlUR4z1RsTBDiTUmsrEotyo8vKs1JLT7EKM3BoiTOe6HrZLyQQHpi
+        SWp2ampBahFMlomDU6qB6czJ3e/2v3kbuvaNnal7Qobduha9FP9pd6xWRdtldeqcdTK3a7Vw
+        u6xg+3jH0SO/xOL4grsvHpfcoiQ7N27K3aC5TydG2d/+rt5zXnzZ1k3/9uZODvF2k7LgnKBz
+        YOGrku1hLFlmF0OkxLjmfIr9ukrNaf0LzUvL/z47HMA5If5Wd5pHReAZ19oJ/Y8UYltLO3ZP
+        2KaiNzVhSv6UK1utHbTTZfJ+Wh+eyrrg+ia7jtia2F9P322dsc6brdU9UY4zbOPpq49y793d
+        ppOVutLjSKSTmN8ryclfpvSdCny/zNfdK3t2aK7iG6sgpue1jspL3lo25l2b3Ce678bL3lpu
+        t+/FJysyZn7/uOlY1NT+UiWW4oxEQy3mouJEAGT2WzB1AwAA
+X-CMS-MailID: 20210531073748epcas1p28936dbbff9506eccd933816521a43948
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20210323113411epcas1p3b4367563007ca91c30201d7fc225bb67
+References: <1616499241-4906-1-git-send-email-andrew-sh.cheng@mediatek.com>
+        <CGME20210323113411epcas1p3b4367563007ca91c30201d7fc225bb67@epcas1p3.samsung.com>
+        <1616499241-4906-2-git-send-email-andrew-sh.cheng@mediatek.com>
+        <233a3bd6-7ab1-5da2-9184-a745eb253d86@samsung.com>
+        <1617177820.15067.1.camel@mtksdaap41>
+        <2ae8604d-0da6-4243-1b92-81b3917d7d48@samsung.com>
+        <cad52436-b291-05bf-236f-7b7cb1fdbbff@samsung.com>
+        <1617195800.18432.3.camel@mtksdaap41>
+        <fbb6c44b-eb77-14ce-9175-3f06030e6e0c@samsung.com>
+        <cfdd3973-e4a7-8c09-8a7e-57118a7a3b9b@samsung.com>
+        <1621995727.29827.1.camel@mtksdaap41>
+        <dd58c29a-35b1-b853-bc4a-3225b21b082a@samsung.com>
+        <1622431376.14423.5.camel@mtksdaap41>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+Hi,
 
-On 2021-05-30 02:59, Liam Beguin wrote:
-> From: Liam Beguin <lvb@xiphos.com>
+On 5/31/21 12:22 PM, andrew-sh.cheng wrote:
+> On Wed, 2021-05-26 at 12:08 +0900, Chanwoo Choi wrote:
+>> Hi,
+>> On 5/26/21 11:22 AM, andrew-sh.cheng wrote:
+>>> On Thu, 2021-04-08 at 11:47 +0900, Chanwoo Choi wrote:
+>>>> On 4/1/21 9:16 AM, Chanwoo Choi wrote:
+>>>>> On 3/31/21 10:03 PM, andrew-sh.cheng wrote:
+>>>>>> On Wed, 2021-03-31 at 17:35 +0900, Chanwoo Choi wrote:
+>>>>>>> On 3/31/21 5:27 PM, Chanwoo Choi wrote:
+>>>>>>>> Hi,
+>>>>>>>>
+>>>>>>>> On 3/31/21 5:03 PM, andrew-sh.cheng wrote:
+>>>>>>>>> On Thu, 2021-03-25 at 17:14 +0900, Chanwoo Choi wrote:
+>>>>>>>>>> Hi,
+>>>>>>>>>>
+>>>>>>>>>> You are missing to add these patches to linux-pm mailing list.
+>>>>>>>>>> Need to send them to linu-pm ML.
+>>>>>>>>>>
+>>>>>>>>>> Also, before received this series, I tried to clean-up these patches
+>>>>>>>>>> on testing branch[1]. So that I add my comment with my clean-up case.
+>>>>>>>>>> [1] https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/log/?h=devfreq-testing-passive-gov__;!!CTRNKA9wMg0ARbw!zIrzeDp9vPnm1_SDzVPuzqdHn3zWie9DnfBXaA-j9-CSrVc6aR9_rJQQiw81_CgAPh9XRRs$ 
+>>>>>>>>>>
+>>>>>>>>>> And 'Saravana Kannan <skannan@codeaurora.org>' is wrong email address.
+>>>>>>>>>> Please update the email or drop this email.
+>>>>>>>>>
+>>>>>>>>> Hi Chanwoo,
+>>>>>>>>>
+>>>>>>>>> Thank you for the advices.
+>>>>>>>>> I will resend patch v9 (add to linux-pm ML), remove this patch, and note
+>>>>>>>>> that my patch set base on
+>>>>>>>>> https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/log/?h=devfreq-testing-passive-gov__;!!CTRNKA9wMg0ARbw!yUlsuxrL5PcbF7o6A9DlCfvoA6w8V8VXKjYIybYyiJg3D0HM-lI2xRuxLUV6b3UJ8WFhg_g$ 
+>>>>>>>>
+>>>>>>>> I has not yet test this patch[1] on devfreq-testing-passive-gov branch.
+>>>>>>>> So that if possible, I'd like you to test your patches with this patch[1] 
+>>>>>>>> and then if there is no problem, could you send the next patches with patch[1]?
+>>>>>>>>
+>>>>>>>> [1]https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/commit/?h=devfreq-testing-passive-gov&id=39c80d11a8f42dd63ecea1e0df595a0ceb83b454__;!!CTRNKA9wMg0ARbw!yUlsuxrL5PcbF7o6A9DlCfvoA6w8V8VXKjYIybYyiJg3D0HM-lI2xRuxLUV6b3UJR2cQqZs$ 
+>>>>>>>
+>>>>>>>
+>>>>>>> Sorry for the confusion. I make the devfreq-testing-passive-gov[1]
+>>>>>>> branch based on latest devfreq-next branch.
+>>>>>>> [1] https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/log/?h=devfreq-testing-passive-gov__;!!CTRNKA9wMg0ARbw!yUlsuxrL5PcbF7o6A9DlCfvoA6w8V8VXKjYIybYyiJg3D0HM-lI2xRuxLUV6b3UJ8WFhg_g$ 
+>>>>>>>
+>>>>>>> First of all, if possible, I want to test them[1] with your patches in this series.
+>>>>>>> And then if there are no any problem, please let me know. After confirmed from you,
+>>>>>>> I'll send the patches of devfreq-testing-passive-gov[1] branch.
+>>>>>>> How about that?
+>>>>>>>
+>>>>>> Hi Chanwoo~
+>>>>>>
+>>>>>> We will use this on Google Chrome project.
+>>>>>> Google Hsin-Yi has test your patch + my patch set v8 [2~8]
+>>>>>>
+>>>>>>     make sure cci devfreqs runs with cpufreq.
+>>>>>>     suspend resume
+>>>>>>     speedometer2 benchmark
+>>>>>> It is okay.
+>>>>>>
+>>>>>> Please send the patches of devfreq-testing-passive-gov[1] branch.
+>>>>>>
+>>>>>> I will send patch v9 base on yours latter.
+>>>>>
+>>>>> Thanks for your test. I'll send the patches today.
+>>>>
+>>>> I'm sorry for delay because when I tested the patches
+>>>> for devfreq parent type on Odroid-xu3, there are some problem
+>>>> related to lazy linking of OPP. So I'm trying to analyze them.
+>>>> Unfortunately, we need to postpone these patches to next linux
+>>>> version.
+>>>>
+>>> Hi Chanwoo Choi~
+>>>
+>>> It is said that you are busy on another task recently.
+>>> May I know your plan on this patch?
+>>> Thank you.
+>>
+>> Sorry for late work. I have a question.
+>> When I tested exynos-bus.c with adding the 'required-opp' property
+>> on odroid-xu3 board. I got some fail about 
+>>
+>> When calling _set_required_opps(), always _set_required_opp() returns
+>> -EBUSY error because of following lazy linking case[1].
+>>
+>> [1] https://urldefense.com/v3/__https://elixir.bootlin.com/linux/v5.13-rc3/source/drivers/opp/core.c*L896__;Iw!!CTRNKA9wMg0ARbw!3eNxwDZRy-Ev5BHGxT-BxCz4qrNy0NZohQuBGW36krkwOkl_WX8yBmxlqSk9hxp_kxspMJI$ 
+>>
+>> /* required-opps not fully initialized yet */
+>> if (lazy_linking_pending(opp_table))
+>> 	return -EBUSY;  
+>>
+>>
+>> For calling dev_pm_opp_of_add_table(), lazy_link_required_opp_table() function
+>> will be called. But, there is constraint[2]. If is_genpd of opp_table is false,
+>> driver/opp/of.c cannot resolve the lazy linking issue.
+>>
+>> [2]  https://urldefense.com/v3/__https://elixir.bootlin.com/linux/v5.13-rc3/source/drivers/opp/of.c*L386__;Iw!!CTRNKA9wMg0ARbw!3eNxwDZRy-Ev5BHGxT-BxCz4qrNy0NZohQuBGW36krkwOkl_WX8yBmxlqSk9hxp_QFUVY9E$ 
+>>
+>> /* Link required OPPs for all OPPs of the newly added OPP table */
+>> static void lazy_link_required_opp_table(struct opp_table *new_table)
+>> {
+>> 	struct opp_table *opp_table, *temp, **required_opp_tables;
+>> 	struct device_node *required_np, *opp_np, *required_table_np;
+>> 	struct dev_pm_opp *opp;
+>> 	int i, ret;
+>>
+>> 	/*
+>> 	 * We only support genpd's OPPs in the "required-opps" for now,
+>> 	 * as we don't know much about other cases.
+>> 	 */
+>> 	if (!new_table->is_genpd)
+>> 		return;
+>>
+>> Even if this case, there are no problem on your test case?
+>>
 > 
-> An ADC is often used to measure other quantities indirectly. This
-> binding describe one cases, the measurement of a temperature through a
-> voltage sense amplifier such as the LTC2997.
+> Hi Chanwoo~
+> Sorry for late reply.
+> Yes, we meet similar issue.
+> Google member Hsin-Yi had helped deal with this issue on Chrome project.
 > 
-> Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> Patch segment:
+> @ /drivers/opp/of.c
+> 
+> /* Link required OPPs for all OPPs of the newly added OPP table */
+> static void lazy_link_required_opp_table(struct opp_table *new_table)
+> {
+> 	struct opp_table *opp_table, *temp, **required_opp_tables;
+> 	struct device_node *required_np, *opp_np, *required_table_np;
+> 	struct dev_pm_opp *opp;
+> 	int i, ret;
+> 
+> +	/*
+> +	 * We only support genpd's OPPs in the "required-opps" for now,
+> +	 * as we don't know much about other cases.
+> +	 */
+> +	if (!new_table->is_genpd)
+> +		return;
+> 
+> 
+> Hsin-Yi replied this issue in the discussion list in the original lazy
+> link thread:
+> https://patchwork.kernel.org/project/linux-pm/patch/20190717222340.137578-4-saravanak@google.com/#23932203
+> 
+> Loop Hsin-YI here.
+> You can discuss with her if needing more detail.
+> 
+> Thank you both.
+> 
 
-What's the significant difference between this and the RTD binding? Does
-not both simply scale/offset a voltage to a temperature?
+Thanks. First of all, we need to resolve and discuss this issue.
 
-Cheers,
-Peter
+
+-- 
+Best Regards,
+Chanwoo Choi
+Samsung Electronics
