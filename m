@@ -2,314 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39FC03978CC
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 19:09:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0F353978BE
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 19:08:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233871AbhFARLg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 13:11:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35110 "EHLO
+        id S234582AbhFARKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 13:10:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232490AbhFARLg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 13:11:36 -0400
-Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8CE4C061756
-        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 10:09:54 -0700 (PDT)
-Received: by mail-il1-x131.google.com with SMTP id b5so13608013ilc.12
-        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 10:09:54 -0700 (PDT)
+        with ESMTP id S234581AbhFARKR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 13:10:17 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B91EC061760;
+        Tue,  1 Jun 2021 10:08:35 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id dg27so8547198edb.12;
+        Tue, 01 Jun 2021 10:08:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=z+Rz3Lhcejb7HYCpXC74t+FaU8kf98DbGjszGlQZc0Y=;
-        b=QpNc9h4rw8vXfFDVPSkzkMB/cP3vX6woCKter+Qxj7Y1Y7kWRr9fmv+y40seGL424W
-         7S9RTbV3Y2rrUbdZiAqMyrShtp6g20AD/SxpmPXwYX9b6YvEswzFKTVxAQsupcQ2zGzy
-         pXZBvgaSMdHQP/7/Cqx3oJhG7/aCgfoDjduveEPH1/u7ilTetgGXhljOfu4Ub2pdF8Zw
-         8K3E1ASc9A2BcbYAST9n6qj6ddSzNkcRxgMVOtly8Kj4rx03Hzli0DqyeJYKje/AuK4D
-         JBg2M4R67C3PBAtwTvWaDcfR6pZ1qwo49BdkK7vPinFzWEo5rjnyvvtYGu/B2jhUN8Xe
-         NZbQ==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=b14f7x0G6qwhXKyhv/ZWNE4Va6SHm9Fj/WA+S8U4gkk=;
+        b=VI37py+0idQkQMtyA2diYaP9Qs+Q0PI7DAaQNzlIIRdS5jdFlTxxq6fNexYlkF/b7t
+         2ZTUG38T0QH88npVF6+6aTmibfeCiSVnzTFKIrNQpYdpgS3PcBRSrQXRrmY+704bo+i/
+         pKajwjIOWL93YGz4q7HbDrwYOF9iEOVCGjHCycUDbsHfuTox+VhdGxbZWMspRjSbmYZ4
+         c0S1LkyyLr8Tz+tzsMfJP/UvseqCzZSGwNVdnsIGRHmopN1YBsE4z2CctEo8KJe6gWUd
+         h2mzqgq3/icbtbuA/7KhhKwloI+BfTkqJyy94ZD3ra2YO7iDf0g7jY2SXXsdG1m0ajPk
+         eAHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=z+Rz3Lhcejb7HYCpXC74t+FaU8kf98DbGjszGlQZc0Y=;
-        b=r59e2yavfvBe7ilpqo2evNO7yuSMw1prwKwIxIlYHJ4PUU//iRKhqUYFYwBwvGOAiv
-         HIzxxxA/PIEQFksQVbveXHXlnF+lPHMz89kHa/iajjXL8SRZ0Mm9aihsRg++LJWHOZQK
-         qcQ26CaJgldSR5V+A4v8hoHJ2vA55GSjnepVZxArSUohCDZ1zfpn/0FWi5r4t1igL0dK
-         6t1UnIi+44a1pwzY+MI6OmtGfQQ/HyRaWZYOZeCxDTPB6isBd4XXJWtQE4fTS/jkOO5k
-         +hNouUTGXen5DkVMsADDE0k/ye6+hewFf9T5ICp3EIXZ4syQUVoVoRkQv5LmiQUUik6e
-         wfBA==
-X-Gm-Message-State: AOAM531XH5dmAYSRBjpXoQmnHQyFQQpJUyk9Xg6BbkUxLjnOe0qvxN1o
-        w02hTPEU+V6Pjsj/6rNV8lIDyaK/pVPwCY8m5RMdLA==
-X-Google-Smtp-Source: ABdhPJywrV5idkePTh207NsMmYcHSjFJZB9Y4WcJUy3l3DSaXB9DrUzzrI0y7K1CxUlTgwYRSFs6BgPKtD5TfzlnPmU=
-X-Received: by 2002:a92:c10a:: with SMTP id p10mr9363696ile.183.1622567393997;
- Tue, 01 Jun 2021 10:09:53 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=b14f7x0G6qwhXKyhv/ZWNE4Va6SHm9Fj/WA+S8U4gkk=;
+        b=mWQPl+DIcvsssHsqHzZ3elYIaSs2QpSppbxCqpaVHR09mSxlCzXZCBtXxxauToaHvy
+         SKEVfIHKRLkrtrb76VjzO50FtHxsR2Yrd1n3PmtnJZ9lUbVMZIKcZmaPYZKKXWijMFuZ
+         G9yW0xH9CM0Drv2WrMJWAhINcB6thDhHru14jbCz/UepTqRmoXRJ9c7kK9GMCgMGra0J
+         be9MuXirl+WcQFWFNzRxz79pH4XYijRkGcpzjHQsFdOvykHizKEmfDh4tdInttAmesZE
+         m2m0zDYbbSk2dqQp2hRfJWivQUWyHgihAPaGgs1TniqhV8HaXlSCHWrHxpKbvGcng4A9
+         /dKg==
+X-Gm-Message-State: AOAM531bywibznydGMXJkzL621lrO6CkJi/y4zhJ/sOpfJnEJzjqB0at
+        wO18huV65FeQUdYXS2QuZnA=
+X-Google-Smtp-Source: ABdhPJwaNZhg0igVAbJpgo4E4GFx+2pDpOX8Zrxo64OaAWULhK5yea/2YAcxTgnMuDGgV4a5ieTPkg==
+X-Received: by 2002:aa7:d8d8:: with SMTP id k24mr18079147eds.253.1622567313625;
+        Tue, 01 Jun 2021 10:08:33 -0700 (PDT)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id r21sm5292674edy.78.2021.06.01.10.08.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Jun 2021 10:08:32 -0700 (PDT)
+Date:   Tue, 1 Jun 2021 19:10:08 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
+        =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+        Nikola =?utf-8?Q?Milosavljevi=C4=87?= <mnidza@outlook.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Matt Merhar <mattmerhar@protonmail.com>,
+        Paul Fertser <fercerpav@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Nathan Chancellor <nathan@kernel.org>,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v6 00/14] NVIDIA Tegra memory and power management
+ changes for 5.14
+Message-ID: <YLZp8FlV4lcDnL23@orome.fritz.box>
+References: <20210601023119.22044-1-digetx@gmail.com>
+ <YLYZvFPyJFJgxI56@orome.fritz.box>
+ <11206c96-9f56-ca6f-e5e3-658534356666@gmail.com>
 MIME-Version: 1.0
-References: <20210531125143.257622-1-robert.marko@sartura.hr>
- <20210531125143.257622-4-robert.marko@sartura.hr> <20210601153818.GA20254@pengutronix.de>
-In-Reply-To: <20210601153818.GA20254@pengutronix.de>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Tue, 1 Jun 2021 19:09:43 +0200
-Message-ID: <CA+HBbNG3O_QORj1NEKvoC4C5FfyfXyO_PMOZS0pHJimGn+HTUA@mail.gmail.com>
-Subject: Re: [PATCH v3 4/6] reset: Add Delta TN48M CPLD reset controller
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Lee Jones <lee.jones@linaro.org>, linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
-        Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="UGsCKX3hLwTPT7Tr"
+Content-Disposition: inline
+In-Reply-To: <11206c96-9f56-ca6f-e5e3-658534356666@gmail.com>
+User-Agent: Mutt/2.0.6 (98f8cb83) (2021-03-06)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 1, 2021 at 5:38 PM Philipp Zabel <p.zabel@pengutronix.de> wrote:
->
-> Hi Robert,
->
-> thank you for the patch. A few comments below:
->
-> On Mon, May 31, 2021 at 02:51:41PM +0200, Robert Marko wrote:
-> > Delta TN48M CPLD exposes resets for the following:
-> > * 88F7040 SoC
-> > * 88F6820 SoC
-> > * 98DX3265 switch MAC-s
-> > * 88E1680 PHY-s
-> > * 88E1512 PHY
-> > * PoE PSE controller
-> >
-> > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > ---
-> >  drivers/reset/Kconfig       |   9 +++
-> >  drivers/reset/Makefile      |   1 +
-> >  drivers/reset/reset-tn48m.c | 128 ++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 138 insertions(+)
-> >  create mode 100644 drivers/reset/reset-tn48m.c
-> >
-> > diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> > index 4171c6f76385..e3ff4b020c96 100644
-> > --- a/drivers/reset/Kconfig
-> > +++ b/drivers/reset/Kconfig
-> > @@ -64,6 +64,15 @@ config RESET_BRCMSTB_RESCAL
-> >         This enables the RESCAL reset controller for SATA, PCIe0, or PCIe1 on
-> >         BCM7216.
-> >
-> > +config RESET_TN48M_CPLD
->
-> Please sort this alphabetically.
-Yeah, sorry I was sorting this by the tristate text.
-Leftover from some other subsystems that sort like that.
 
->
-> > +     tristate "Delta Networks TN48M switch CPLD reset controller"
-> > +     depends on MFD_TN48M_CPLD
-> > +     help
-> > +       This enables the reset controller driver for the Delta TN48M CPLD.
-> > +       It provides reset signals for Armada 7040 and 385 SoC-s, Alleycat 3X
-> > +       switch MAC-s, Alaska OOB ethernet PHY, Quad Alaska ethernet PHY-s and
-> > +       Microchip PD69200 PoE PSE controller.
-> > +
-> >  config RESET_HSDK
-> >       bool "Synopsys HSDK Reset Driver"
-> >       depends on HAS_IOMEM
-> > diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-> > index 65a118a91b27..6d6945638b76 100644
-> > --- a/drivers/reset/Makefile
-> > +++ b/drivers/reset/Makefile
-> > @@ -10,6 +10,7 @@ obj-$(CONFIG_RESET_BCM6345) += reset-bcm6345.o
-> >  obj-$(CONFIG_RESET_BERLIN) += reset-berlin.o
-> >  obj-$(CONFIG_RESET_BRCMSTB) += reset-brcmstb.o
-> >  obj-$(CONFIG_RESET_BRCMSTB_RESCAL) += reset-brcmstb-rescal.o
-> > +obj-$(CONFIG_RESET_TN48M_CPLD) += reset-tn48m.o
->
-> Same as here.
+--UGsCKX3hLwTPT7Tr
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Yeah, same as before.
-Will fix that.
->
-> >  obj-$(CONFIG_RESET_HSDK) += reset-hsdk.o
-> >  obj-$(CONFIG_RESET_IMX7) += reset-imx7.o
-> >  obj-$(CONFIG_RESET_INTEL_GW) += reset-intel-gw.o
-> > diff --git a/drivers/reset/reset-tn48m.c b/drivers/reset/reset-tn48m.c
-> > new file mode 100644
-> > index 000000000000..960ee5f4eb40
-> > --- /dev/null
-> > +++ b/drivers/reset/reset-tn48m.c
-> > @@ -0,0 +1,128 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Delta TN48M CPLD reset driver
-> > + *
-> > + * Copyright 2021 Sartura Ltd
-> > + *
-> > + * Author: Robert Marko <robert.marko@sartura.hr>
-> > + */
-> > +
-> > +#include <linux/bitfield.h>
->
-> What is this used for?
+On Tue, Jun 01, 2021 at 06:51:33PM +0300, Dmitry Osipenko wrote:
+> 01.06.2021 14:27, Thierry Reding =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> > On Tue, Jun 01, 2021 at 05:31:05AM +0300, Dmitry Osipenko wrote:
+> >> This series:
+> >>
+> >>   1. Adds CPU/core voltage bump before system is rebooted.
+> >>   2. Adds new devm_tegra_core_dev_init_opp_table() helper and switches
+> >>      Tegra memory drivers to use it.
+> >>   3. Adds compile-testing support to the Tegra memory drivers.
+> >>   4. Adds Tegra SoC core power domain support.
+> >>
+> >> Changelog:
+> >>
+> >> v6: - Fixed another compile-test trouble reported for v5. I double che=
+cked
+> >>       the clk stubs this time and compiled them locally.
+> >=20
+> > Heh... I just fixed those locally on top of your v5. Let me see if I can
+> > roll back the changes and apply this new set instead.
+>=20
+> Thank you! You probably saw already that Ulf Hansson suggested to remove
+> the lockdep annotation for now from the core PD, I'll make a v7 with
+> this small change.
 
-Actually its not, its leftover from when I was thinking to use FIELD_GET()
-macro.
-Will drop it.
->
-> > +#include <linux/device.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/reset-controller.h>
-> > +
-> > +#include <dt-bindings/reset/delta,tn48m-reset.h>
-> > +
-> > +#define TN48M_RESET_REG              0x10
-> > +
-> > +struct tn48_reset_map {
-> > +     u8 bit;
-> > +};
-> > +
-> > +struct tn48_reset_data {
-> > +     struct reset_controller_dev rcdev;
-> > +     struct regmap *regmap;
-> > +};
-> > +
-> > +static const struct tn48_reset_map tn48m_resets[] = {
-> > +     [CPU_88F7040_RESET] = {0},
-> > +     [CPU_88F6820_RESET] = {1},
-> > +     [MAC_98DX3265_RESET] = {2},
-> > +     [PHY_88E1680_RESET] = {4},
-> > +     [PHY_88E1512_RESET] = {6},
-> > +     [POE_RESET] = {7},
-> > +};
-> > +
-> > +static inline struct tn48_reset_data *to_tn48_reset_data(
-> > +                     struct reset_controller_dev *rcdev)
-> > +{
-> > +     return container_of(rcdev, struct tn48_reset_data, rcdev);
-> > +}
-> > +
-> > +static int tn48m_control_assert(struct reset_controller_dev *rcdev,
-> > +                             unsigned long id)
-> > +{
-> > +     struct tn48_reset_data *data = to_tn48_reset_data(rcdev);
-> > +
-> > +     return regmap_update_bits(data->regmap, TN48M_RESET_REG,
-> > +                               BIT(tn48m_resets[id].bit), 0);
-> > +}
->
-> Why is there no deassert?
-All of the reset are self-clearing, so no need for it.
->
-> > +static int tn48m_control_reset(struct reset_controller_dev *rcdev,
-> > +                            unsigned long id)
-> > +{
-> > +     return tn48m_control_assert(rcdev, id);
->
-> Is this a self-clearing (or rather self re-setting) bit that triggers a
-> reset pulse?
-> If so, assert shouldn't be implemented.
+Can you perhaps post this change as a follow-up? That way I can just
+merge it into the corresponding branch, which may be easier than backing
+out all the changes spread over four branches and applying basically the
+same thing again.
 
-Yes, it's self-clearing, per spec they will be cleared after 100ms.
-Will drop assert then, I saw that reset was for self-clearing, but other
-drivers I looked for example implemented both which was confusing.
+Thierry
 
->
-> > +}
-> > +
-> > +static int tn48m_control_status(struct reset_controller_dev *rcdev,
-> > +                             unsigned long id)
-> > +{
-> > +     struct tn48_reset_data *data = to_tn48_reset_data(rcdev);
-> > +     unsigned int regval;
-> > +     int ret;
-> > +
-> > +     ret = regmap_read(data->regmap, TN48M_RESET_REG, &regval);
-> > +     if (ret < 0)
-> > +             return ret;
-> > +
-> > +     if (BIT(tn48m_resets[id].bit) & regval)
-> > +             return 0;
-> > +     else
-> > +             return 1;
-> > +}
-> > +
-> > +static const struct reset_control_ops tn48_reset_ops = {
-> > +     .reset          = tn48m_control_reset,
-> > +     .assert         = tn48m_control_assert,
-> > +     .status         = tn48m_control_status,
-> > +};
-> > +
-> > +static int tn48m_reset_probe(struct platform_device *pdev)
-> > +{
-> > +     struct tn48_reset_data *data;
-> > +     struct regmap *regmap;
-> > +
-> > +     if (!pdev->dev.parent)
-> > +             return -ENODEV;
->
-> That shouldn't be necessary.
+--UGsCKX3hLwTPT7Tr
+Content-Type: application/pgp-signature; name="signature.asc"
 
-This driver depends on having a parent as it needs to get the
-regmap from it.
-The parent is a CPLD using simple-i2c-mfd.
-So it's nice to check.
+-----BEGIN PGP SIGNATURE-----
 
-Regards, Robert
->
-> > +     regmap = dev_get_regmap(pdev->dev.parent, NULL);
-> > +     if (!regmap)
-> > +             return -ENODEV;
-> > +
-> > +     data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-> > +     if (!data)
-> > +             return -ENOMEM;
-> > +
-> > +     data->regmap = regmap;
-> > +
-> > +     data->rcdev.owner = THIS_MODULE;
-> > +     data->rcdev.ops = &tn48_reset_ops;
-> > +     data->rcdev.nr_resets = ARRAY_SIZE(tn48m_resets);
-> > +     data->rcdev.of_node = pdev->dev.of_node;
-> > +
-> > +     return devm_reset_controller_register(&pdev->dev, &data->rcdev);
-> > +}
-> > +
-> > +static const struct of_device_id tn48m_reset_of_match[] = {
-> > +     { .compatible = "delta,tn48m-reset", },
-> > +     { }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, tn48m_reset_of_match);
-> > +
-> > +static struct platform_driver tn48m_reset_driver = {
-> > +     .driver = {
-> > +             .name = "delta-tn48m-reset",
-> > +             .of_match_table = tn48m_reset_of_match,
-> > +     },
-> > +     .probe = tn48m_reset_probe,
-> > +};
-> > +module_platform_driver(tn48m_reset_driver);
-> > +
-> > +MODULE_AUTHOR("Robert Marko <robert.marko@sartura.hr>");
-> > +MODULE_DESCRIPTION("Delta TN48M CPLD reset driver");
-> > +MODULE_LICENSE("GPL");
-> > --
-> > 2.31.1
-> >
-> >
->
-> regards
-> Philipp
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmC2afAACgkQ3SOs138+
+s6G/ew//SSAN5RwYaYKKZhq2h3fzHhv65ckrGL74avoGHdwES0XJzLEsMSULZggA
+w3NKHFtmqyDnaCTL2M9QSOnBPGohXwutZtX8GWifTATMzg+JaRNH1Hsm48lbuovi
+Aab4sL6NzAdX1j/MxI3PZgviVmDKz5R0uzAN3xa7CWjGs64a7nhvhf8ONRdJanEB
+7NiFjiR5HpcldgfR9hv6DwID5GxeAaQ6HcOngERDGTkC7dPPWfd7LrqJkOJ77iLG
+I0CFmXe4nu+lNI9zztqyuD3Z/b64otAmtwhVa30plsnysl40EaJJWI+nFrPMBrGj
+hh+5ZoFzPz+D5p6yZ0qjLCUZ8rL9JiRSdOEDl/mYVT3/pgO/zG8NpuuzEtYvQije
+62Tn7L4T5cpdRfkgTnmWWOE4fh6iWbRBHvp8RDJ/eaUjGaHC4E1yvw84YSOxkMgr
+dk0P9R1amzVgI8TFiPn2HQ9X/rbLSqlhjN7iKBffpKmrkaq+7QixSaHw/wbh8CqX
+msfyAyuGQC65JiyMtOQcZuARntKJtgZuYy9gwb+w6VyD8ttWFu3P0FpHvkSmFFz8
+DeGQ2aAaB/R8SpbIsasRxNGsFKEq3En7dfFLuM5TyAF+N///UuTpJVanB3967N3o
+DyuvDflL/6a7PTGJp2M4ZOBg9LKpQYMteNf9e8m9okhrtsKd/yQ=
+=Cbap
+-----END PGP SIGNATURE-----
 
-
-
--- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+--UGsCKX3hLwTPT7Tr--
