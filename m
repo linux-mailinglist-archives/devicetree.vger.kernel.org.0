@@ -2,100 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BFC6939744C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 15:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CC71397448
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 15:32:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234048AbhFANeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 09:34:17 -0400
-Received: from mail-oo1-f46.google.com ([209.85.161.46]:40804 "EHLO
-        mail-oo1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234072AbhFANeF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 09:34:05 -0400
-Received: by mail-oo1-f46.google.com with SMTP id w20-20020a4a35540000b02902458551c0d6so1680452oog.7;
-        Tue, 01 Jun 2021 06:32:23 -0700 (PDT)
+        id S234082AbhFANeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 09:34:02 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:45651 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234072AbhFANd7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 09:33:59 -0400
+Received: by mail-ot1-f47.google.com with SMTP id t10-20020a05683022eab0290304ed8bc759so14085599otc.12;
+        Tue, 01 Jun 2021 06:32:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=cbbANktLK+nxqt4uUwCIqegFj6C7KopoJQcn0d/pISM=;
-        b=ApsoDh9VYkKMiGaqrPjWkHbxo9xMTg4lMmq6s7GJjzCUAqqAt1YvWzjjXrMrS6F35X
-         Raw0/oNmx2zGHMyOd4IDxlKM2CHPDIIsHqtCAKBZDIzWrvJtRQ5qIGDymA5DrtlqJNWx
-         a4WqJ5SKYk+ovlf2UN4rl93S8JvFEUWf8bFYA6yf+yXt6xdRSljtROghrororpC4hs7G
-         jW/O/FhUc1vF2gBLYi5KtpyYO0dtL7hcoE2QnCE+AbgrRnePN5NznXrICI464N6vG+9K
-         yPDbNULwAq8X82bMgiJmWaUNipAMGH7SrQ8u/tiKpSccbBGeXvHP0d3TgsHLBjpdl1cl
-         fzdw==
-X-Gm-Message-State: AOAM531t6eFcUKLA+C1rNm7PiumPuXeZ3a4gyGfryM8GAl2k1xR+lbKU
-        e8MztF/oHNEaBYIyN26WoA==
-X-Google-Smtp-Source: ABdhPJzeNcFyGQm1lJ+4LJMre1TykO8SPIZ4q+FLDdGzVeNgU89lwPVka2DuK9V5/kTBHs/BfedkyQ==
-X-Received: by 2002:a4a:3f53:: with SMTP id x19mr20741442ooe.88.1622554342745;
-        Tue, 01 Jun 2021 06:32:22 -0700 (PDT)
+        bh=IF8cURsxp/nq12oY6C7u3w5i8JCScdi+M9TktNMYd80=;
+        b=Xn9EHlsLo2pczsM3o56zKgfezj17w41zJwEWMLFJ0kcAruPBT8Ek+cQIQgplMaRy+1
+         yiOjTFtUREC3R0kT4Jy68Py52pGrrI7R9pyCjeVup5SJ+nuQW/DWAuqV/Q+H4T22Dk9V
+         e+CC96knU/7RpSq5XgWhkkCgyBTgMsdc0Wjqg+VnSGCm6gK4rY+dH80FJ6JadLkhZ4Km
+         eG8M4G2B+4k8HtyUpmwj7owMLBsRAXxm5KSt6hQc8H/E/oVq4YcmW+IcqIdDoQpyPq/I
+         t9oGL4NwBLv1IxKuLRSTo9+7Rulv3ccoWwUZ5iOYpD884zEUqGb8+3VWVnZcJenQqaRE
+         NMhg==
+X-Gm-Message-State: AOAM533ewaPn74M7vzkMV5+WDqsrORgZJ9K0NaVF3gcK7aq5WkIWYUEd
+        OD/zS6Su2FKrTDEOstyc5wC+y+MljQ==
+X-Google-Smtp-Source: ABdhPJz4xciBUKg1F9JwW4F2bxxsL5pPZ0AN6DWxHNCVLbAW4YpRKYkvBjAvTiiEBQvMSROtatt/yg==
+X-Received: by 2002:a9d:4801:: with SMTP id c1mr12072880otf.278.1622554337277;
+        Tue, 01 Jun 2021 06:32:17 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s4sm3809013otr.80.2021.06.01.06.32.20
+        by smtp.gmail.com with ESMTPSA id e21sm3423981oie.32.2021.06.01.06.32.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jun 2021 06:32:21 -0700 (PDT)
-Received: (nullmailer pid 242357 invoked by uid 1000);
+        Tue, 01 Jun 2021 06:32:15 -0700 (PDT)
+Received: (nullmailer pid 242365 invoked by uid 1000);
         Tue, 01 Jun 2021 13:32:10 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Alvaro Gamez <alvaro.gamez@hazent.com>,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        michal.simek@xilinx.com, linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20210528214522.617435-1-sean.anderson@seco.com>
-References: <20210528214522.617435-1-sean.anderson@seco.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: pwm: Add Xilinx AXI Timer
+To:     Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Cc:     linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>
+In-Reply-To: <20210531052426.695576-1-iwamatsu@nigauri.org>
+References: <20210531052426.695576-1-iwamatsu@nigauri.org>
+Subject: Re: [PATCH] dt-bindings: rtc: zynqmp: convert bindings to YAML
 Date:   Tue, 01 Jun 2021 08:32:10 -0500
-Message-Id: <1622554330.014931.242356.nullmailer@robh.at.kernel.org>
+Message-Id: <1622554330.044320.242364.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 May 2021 17:45:20 -0400, Sean Anderson wrote:
-> This adds a binding for the Xilinx LogiCORE IP AXI Timer. This device is
-> a "soft" block, so it has many parameters which would not be
-> configurable in most hardware. This binding is usually automatically
-> generated by Xilinx's tools, so the names and values of some properties
-> must be kept as they are. Replacement properties have been provided for
-> new device trees.
+On Mon, 31 May 2021 14:24:26 +0900, Nobuhiro Iwamatsu wrote:
+> Convert Real Time Clock for Xilinx Zynq MPSoC SoC bindings documentation
+> to YAML schemas.
 > 
-> Because we need to init timer devices so early in boot, the easiest way
-> to configure things is to use a device tree property. For the moment
-> this is 'xlnx,pwm', but this could be extended/renamed/etc. in the
-> future if these is a need for a generic property.
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
 > ---
-> 
-> Changes in v4:
-> - Remove references to generate polarity so this can get merged
-> - Predicate PWM driver on the presence of #pwm-cells
-> - Make some properties optional for clocksource drivers
-> 
-> Changes in v3:
-> - Mark all boolean-as-int properties as deprecated
-> - Add xlnx,pwm and xlnx,gen?-active-low properties.
-> - Make newer replacement properties mutually-exclusive with what they
->   replace
-> - Add an example with non-deprecated properties only.
-> 
-> Changes in v2:
-> - Use 32-bit addresses for example binding
-> 
->  .../bindings/pwm/xlnx,axi-timer.yaml          | 85 +++++++++++++++++++
->  1 file changed, 85 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml
+>  .../bindings/rtc/xlnx,zynqmp-rtc.yaml         | 58 +++++++++++++++++++
+>  .../devicetree/bindings/rtc/xlnx-rtc.txt      | 25 --------
+>  2 files changed, 58 insertions(+), 25 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/rtc/xlnx-rtc.txt
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml:16:10: [warning] wrong indentation: expected 10 but found 9 (indentation)
-./Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml:19:10: [warning] wrong indentation: expected 10 but found 9 (indentation)
 
 dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.example.dts:16.9-30: ERROR (duplicate_property_names): /example-0:#address-cells: Duplicate property name
+Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.example.dts:17.9-27: ERROR (duplicate_property_names): /example-0:#size-cells: Duplicate property name
+ERROR: Input tree has errors, aborting (use -f to force output)
+make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.example.dt.yaml] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1416: dt_binding_check] Error 2
 
-See https://patchwork.ozlabs.org/patch/1485318
+See https://patchwork.ozlabs.org/patch/1485555
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
