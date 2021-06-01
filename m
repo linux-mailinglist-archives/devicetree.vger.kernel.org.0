@@ -2,99 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7791D39731C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 14:22:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 024BF397342
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 14:32:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231576AbhFAMYa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 08:24:30 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:19214 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231219AbhFAMYa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Jun 2021 08:24:30 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1622550169; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=JAcNP7Uo9zJKWgXCjvCXGiHUwrw7I6s+Af9UbfhFRic=;
- b=ekpwlV8DGNcbBeQI4L55ePJzSOHYqpK8ci+m6cNwSUtbH9xRD7TM64fEK9Nfl+KQTjSnpUCf
- NnRN3ILSCtGpfwwySTCNNZP8fxbhO1g/xwMbp3rJOHtjePa43fxbusY4sQGJiaUwzNtkzdoy
- X5CnqSoeKYOxh0JkLNGEJPXqaAY=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 60b62695ed59bf69cceb7185 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 01 Jun 2021 12:22:45
- GMT
-Sender: rajeevny=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 0A672C43460; Tue,  1 Jun 2021 12:22:45 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: rajeevny)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4B0A4C433F1;
-        Tue,  1 Jun 2021 12:22:44 +0000 (UTC)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 01 Jun 2021 17:52:44 +0530
-From:   rajeevny@codeaurora.org
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sean@poorly.run, robdclark@gmail.com,
-        robh+dt@kernel.org, abhinavk@codeaurora.org,
-        kalyan_t@codeaurora.org, mkrishn@codeaurora.org, jonathan@marek.ca
-Subject: Re: [v1 2/3] drm/msm/dsi: Add PHY configuration for SC7280
-In-Reply-To: <7a3facb5-d118-f81b-65f8-381b0d56a23b@linaro.org>
-References: <1622468035-8453-1-git-send-email-rajeevny@codeaurora.org>
- <1622468035-8453-3-git-send-email-rajeevny@codeaurora.org>
- <7a3facb5-d118-f81b-65f8-381b0d56a23b@linaro.org>
-Message-ID: <b37617c61fbdb11dc2c903878c05e0ac@codeaurora.org>
-X-Sender: rajeevny@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+        id S233871AbhFAMdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 08:33:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55664 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233771AbhFAMdn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 08:33:43 -0400
+Received: from mail-pg1-x549.google.com (mail-pg1-x549.google.com [IPv6:2607:f8b0:4864:20::549])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AAE8C061574
+        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 05:32:02 -0700 (PDT)
+Received: by mail-pg1-x549.google.com with SMTP id q64-20020a6343430000b02902164088f2f0so8755377pga.5
+        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 05:32:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=drCxOP/I1jA8Da+u3+2uzmod+ICaJYsNyklqlTlDlts=;
+        b=FNyV5XI1bh2DPOxM8gS5lGhx04YcgDbs+qowxZeG9gLmoJzrp8W972bOSjU30fQcK3
+         b6Q1Fnx2znwIrtdb0Y1yLiVg4/rf++rgcxPAInsJ9yirtAHBM2pHsEHdGorJdy3xtUSR
+         tiyenVRaihJ13NYt+xEDfw9qzPOtr0jrQhduqdiIYHBPC5gGTqjnhg/maz1Za8ywqML7
+         a+VsRT+hWwsXxBk4wv3F5K3qOhu6hjLikePbtRdAZQsaXc6224F807XBBJlzrxDa0FU4
+         nfyzSdTqR9lCyVGR8LSlo6iuCQ1dGc+qIthkNdoYZJ57/649/HB/9/I6rQ0ZMJOKetDE
+         rvjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=drCxOP/I1jA8Da+u3+2uzmod+ICaJYsNyklqlTlDlts=;
+        b=ofO5bfmJ6o01agLL7po9SnFNfFkh2E0yLUdsfFG2JmvQKmwkldQP4cugIar4SsF6tA
+         zUpzy1tOPQmLekC5x5XZY79Ng18zB/BqAPCCm7novK9ePNhDaLdLduRWFavqF2wwP9cj
+         LE59I1FhlyjtySgIqyhXqFPeQdMIbysHo9qSUrO0ga/2Hy1wBsEkYJiG9T7970pzL7R+
+         zR6ZxB/2GT+Ciq5SAY2yNS5NE7MTkM0PXJYDNuQmzcAfbfqqvgKLQfwBY9wPrK+oeS8Y
+         +DrVoK121WsGC2vcBCH4s/4mwMl9NPkDyjwBlP9zHmoi8gVA3GZ/OYbCvCBFiXNhc4Oa
+         S0gQ==
+X-Gm-Message-State: AOAM530SOo3KS8ZTIrUPAawl7TnAJ7urpynLDIAU1I/Q8GwrRxf9Bwom
+        67gnZJYwQriW0OlbAQj887xUseWdnkTA
+X-Google-Smtp-Source: ABdhPJw9vm9PUDRmbhrY1Kx2POtAWlrjJLJAOOyehLnE59JDtED2G5evbB0yBV1fZG1RVvfkF0ttQqU+0/qC
+X-Received: from kyletso.ntc.corp.google.com ([2401:fa00:fc:202:c9e8:9a17:9774:bcd3])
+ (user=kyletso job=sendgmr) by 2002:a17:902:bc46:b029:106:c097:88bd with SMTP
+ id t6-20020a170902bc46b0290106c09788bdmr6202603plz.81.1622550721904; Tue, 01
+ Jun 2021 05:32:01 -0700 (PDT)
+Date:   Tue,  1 Jun 2021 20:31:47 +0800
+Message-Id: <20210601123151.3441914-1-kyletso@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.32.0.rc0.204.g9fa02ecfa5-goog
+Subject: [PATCH v3 0/4] Add the support of SVDM Version 2.0 VDOs
+From:   Kyle Tso <kyletso@google.com>
+To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org
+Cc:     badhri@google.com, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Kyle Tso <kyletso@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31-05-2021 23:27, Dmitry Baryshkov wrote:
-> On 31/05/2021 16:33, Rajeev Nandan wrote:
+Add a patch on top of the v2 patches. They are not related but I put
+them together to avoid the conflict. No change in v2 patches.
+
+usb: typec: tcpm: Fix misuses of AMS invocation
+- This patch is to fix the misuse of tcpm_ams_start in tcpm_pd_svdm.
+
+=== v2 cover letter
+
+Got the Ack by Heikki so I re-examined the patches and found a *stupid*
+bug in the patch "usb: typec: tcpm: Introduce snk_vdo_v1 for SVDM
+version 1.0" that I separate the "for loop" into two parts, which is not
+only necessary but also redundant.
+
+Changes since v1:
+usb: typec: tcpm: Correct the responses in SVDM Version 2.0 DFP
+- no code change
+- add Acked-by tag
+
+dt-bindings: connector: Add PD rev 2.0 VDO definition
+- no code change
+
+usb: typec: tcpm: Introduce snk_vdo_v1 for SVDM version 1.0
+- merge the assignment to array element 1 into the for loop. No semantic
+  code logic change.
+- add Acked-by tag
 
 
->> +	.min_pll_rate = 600000000UL,
->> +	.max_pll_rate = (5000000000ULL < ULONG_MAX) ? 5000000000ULL : 
->> ULONG_MAX,
-> 
-> Could you please follow the patch by Arnd here?
-> https://lore.kernel.org/linux-arm-msm/20210514213032.575161-1-arnd@kernel.org/
-> 
-> 
-> 
->> +	.io_start = { 0xae94400, 0xae96400 },
->> +	.num_dsi_phy = 2,
-> 
-> Judging from the next patch, you have one DSI host and one DSI PHY.
-> Could you please correct io_start / num_dsi_phy here?
-> 
->> +	.quirks = DSI_PHY_7NM_QUIRK_V4_1,
->> +};
-> 
-> 
-> With these two issues fixed:
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+=== v1 cover letter
 
-Thank you very much for your review :) I have incorporated the
-review comments. I am waiting for comments on my DT bindings patch (1/3) 
-and
-will send v2 in a day or two.
+The patches are primarily for the responses to the Discover Identity
+command. This part was changed a lot from PD rev2.0 to PD rev3.0 (now
+it's rev3.1 :D). e.g. DFP can respond to Discover Identity command with
+ACK in PD rev3.x and the Product Type VDOs are quite different. Given
+that tcpm.c moved on to PD rev3.x and PD rev2.0 is still supported, some
+changes need to be made to support both PD rev3.x and rev2.0.
 
-Thanks,
-Rajeev
+usb: typec: tcpm: Correct the responses in SVDM Version 2.0 DFP
+- This patch is to unblock the responder ACK to Discover Identity if the
+  port is DFP and the SVDM version is 2.0
+
+dt-bindings: connector: Add PD rev 2.0 VDO definition
+- similar changes to Commit 2a1673f0f1de ("usb: pd: Reland VDO
+  definitions of PD2.0")
+  https://lore.kernel.org/linux-usb/20210204005036.1555294-1-kyletso@google.com/
+- add a new property sink-vdos-v1 to store the PD rev2.0 VDOs
+
+usb: typec: tcpm: Introduce snk_vdo_v1 for SVDM version 1.0
+- populate the legacy VDOs from fwnode
+- send these data if the port partner is SVDM Version 1.0
+
+===
+
+Kyle Tso (4):
+  usb: typec: tcpm: Correct the responses in SVDM Version 2.0 DFP
+  dt-bindings: connector: Add PD rev 2.0 VDO definition
+  usb: typec: tcpm: Introduce snk_vdo_v1 for SVDM version 1.0
+  usb: typec: tcpm: Fix misuses of AMS invocation
+
+ .../bindings/connector/usb-connector.yaml     | 15 ++++
+ drivers/usb/typec/tcpm/tcpm.c                 | 63 +++++++++++------
+ include/dt-bindings/usb/pd.h                  | 69 ++++++++++++++++++-
+ 3 files changed, 123 insertions(+), 24 deletions(-)
+
+-- 
+2.32.0.rc0.204.g9fa02ecfa5-goog
+
