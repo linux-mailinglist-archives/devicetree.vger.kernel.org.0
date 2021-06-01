@@ -2,129 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E48433976AC
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 17:30:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7393A3976C6
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 17:34:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234142AbhFAPcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 11:32:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40308 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230288AbhFAPcP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 11:32:15 -0400
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 552D6C061574;
-        Tue,  1 Jun 2021 08:30:33 -0700 (PDT)
-Received: by mail-pg1-x534.google.com with SMTP id 29so10969224pgu.11;
-        Tue, 01 Jun 2021 08:30:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VnnHRqo8lMttVmccO6dDOJIhxdSoTbCnFNxdSa23m9k=;
-        b=dCR8//k4wzUAjpi9CXrOlOGW78AqYU0DLmcuoADpnt6kuTWB3oHKuR7kWGoNKjZBWk
-         nT2Rf2kG8xA+4s/ch+027w4gMNPGw3+66LOETR1sDmkPj13R9fBSUETXyVbtPHnJmd2f
-         PtRDXAvsYeiT1cxgUfYXZU/y5+zuGe/Opz4rCqFp/5LtqBof6Bnvbj4TaNNIQgRmUT1V
-         vkqcROBf8OhtXQRbH8HFfDOmQhmYOhvAX6+Xa9jMjKsAjQAMQtGUc3zmcIcM1V9L1kng
-         q1S0R6oPQ4sZ++iRBLt9EPk/m8nJfrg5NtQwx0y+zEwCui0MWljDKvYaUznGYqpngATq
-         dXTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VnnHRqo8lMttVmccO6dDOJIhxdSoTbCnFNxdSa23m9k=;
-        b=EwstsPO6AVLP9OhUR57dF6alYONy/DgvOXCdCisJilYNPto/Fb6LCPzTj++ACLxxrd
-         LDngHKpKKUhamdaKWEeQ+zkqGdgpq12EzKITHowD5GdSbtx+YNi4zUUhR4Hs436qDyjV
-         Rr7AZGNj0vOHqZRz/A3KWYiG+Jwtq2aYQQyZMftL4CBKCpGzcmh+6pDYTmc92u7mqY+b
-         DsW/4mKYHn4vPO77S2knBFP/0Pa22LpTIzu9U0M869uHQix7P/szL1MN65qCIgjjXirX
-         s6Sa9N0KDoWPRZC2HOptfJYmRTTLJmc+WDRegOmmAtWvwnQT3S5j/IXOmpFsecSGj3zY
-         DFHA==
-X-Gm-Message-State: AOAM533sGhJqRe0YY3A5roXLl6Yy4NTFvuOC0je29J6X673eiEOs3GN5
-        5AFFYA25c+K7Jovojqr2jQT+JNSN+kmLj/pru2Y=
-X-Google-Smtp-Source: ABdhPJz+uV9kcio77l5lJR0eVJQmCv5st7BUfAlx30tj1gMMnCl7/JZQhPRxzzwqf3GGtFQ+rGQJPv07o5D52t1a9FY=
-X-Received: by 2002:a63:4145:: with SMTP id o66mr28745022pga.4.1622561432782;
- Tue, 01 Jun 2021 08:30:32 -0700 (PDT)
+        id S230385AbhFAPgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 11:36:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59892 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230288AbhFAPgX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Jun 2021 11:36:23 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4CB9F613AE;
+        Tue,  1 Jun 2021 15:34:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1622561682;
+        bh=PjDaT7Lg11rLOIV5SBNPMB8T9/bYRvzPUa+R9IUPVco=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=qmo9y17C0edARAItgd5EUpS1j5pfmjl0Tlu+jJLC2H167WnkuOl/k9giu2uc8n1tY
+         8zFr+riirYDKLvIuS2mxKvANmuCxEpyO1Ddi41rT0efPQgWroR+HwwgczdUFnYTbjS
+         bXfV0wpr2Ntl971+02BLsCymUfH2spUHJPEoUartYa30elS4gt3D+SgGI+t/OUp3e5
+         mzTz29wpj4lTR1JAmNM4xeGRY9nUQutaRWg5OqJkDdvC1xuktO4eAG/AjWuX6h6jnp
+         Sc+CSD3SdXCLxJQsytOpqcr1JoB8e7G+8AXN5eNTugGFu95x6XCbVdjMxsfooHfldI
+         du+ldsFqhIwIg==
+Received: by mail-qk1-f169.google.com with SMTP id c124so9907848qkd.8;
+        Tue, 01 Jun 2021 08:34:42 -0700 (PDT)
+X-Gm-Message-State: AOAM532UsPNzieqKKvr3aV9mqO//bS6j9twcQKmgHNAzoHQeMVihW9q6
+        /0XwAr1ZrnzaKHBbIedaCDY4yODxLqbV+UkYzQ==
+X-Google-Smtp-Source: ABdhPJwHkdngmta7lGz7KigItmGOLHj9xTT2xxiK+diFNAzEccij8DF8KawDF2asaJYbOjS/NcHmGasu3trn3AzD2rU=
+X-Received: by 2002:a05:620a:12a6:: with SMTP id x6mr22128113qki.364.1622561681384;
+ Tue, 01 Jun 2021 08:34:41 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1622560799.git.geert+renesas@glider.be> <5236cf71d467bec862c4fa7849705caac195b23a.1622560799.git.geert+renesas@glider.be>
-In-Reply-To: <5236cf71d467bec862c4fa7849705caac195b23a.1622560799.git.geert+renesas@glider.be>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 1 Jun 2021 18:30:17 +0300
-Message-ID: <CAHp75VerXNJdecZKLUU1uex6-J9TC+9+yLkZqxc5UFtnZcT5mA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] x86: ce4100: Replace "ti,pcf8575" by "nxp,pcf8575"
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Darren Hart <dvhart@infradead.org>,
-        Andy Shevchenko <andy@infradead.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        "H . Peter Anvin" <hpa@zytor.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "maintainer:X86 ARCHITECTURE (32-BIT AND 64-BIT)" <x86@kernel.org>,
-        Linux OMAP Mailing List <linux-omap@vger.kernel.org>,
-        linux-i2c <linux-i2c@vger.kernel.org>,
-        Platform Driver <platform-driver-x86@vger.kernel.org>
+References: <20210527223217.1572631-1-robh@kernel.org> <e477c3a3-5180-8a5c-7b1d-d429e45d7dc5@infradead.org>
+ <93bcda31-00ad-e97f-f700-b84977ede981@infradead.org>
+In-Reply-To: <93bcda31-00ad-e97f-f700-b84977ede981@infradead.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 1 Jun 2021 10:34:29 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKtNJdjWF6i05kXPzZn7NwOTGW-2jbhcPGQc_deJKuQ0A@mail.gmail.com>
+Message-ID: <CAL_JsqKtNJdjWF6i05kXPzZn7NwOTGW-2jbhcPGQc_deJKuQ0A@mail.gmail.com>
+Subject: Re: [PATCH] of: Drop reserved mem dependency on DMA_DECLARE_COHERENT
+ and DMA_CMA
+To:     Randy Dunlap <rdunlap@infradead.org>
+Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Christoph Hellwig <hch@lst.de>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 1, 2021 at 6:26 PM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
+On Fri, May 28, 2021 at 5:32 PM Randy Dunlap <rdunlap@infradead.org> wrote:
 >
-> The TI part is equivalent to the NXP part, and its compatible value is
-> not documented in the DT bindings.
+> On 5/28/21 3:09 PM, Randy Dunlap wrote:
+> > On 5/27/21 3:32 PM, Rob Herring wrote:
+> >> Reserved memory regions can be used for more than just DMA regions, so
+> >> only enabling on DMA_DECLARE_COHERENT (via HAS_DMA) or DMA_CMA is wrong.
+> >> This effectively doesn't matter except for the few cases arches select
+> >> NO_DMA.
+> >>
+> >> At least, these users of RESERVEDMEM_OF_DECLARE depend on reserved memory
+> >> support:
+> >>
+> >> arch/riscv/mm/init.c:RESERVEDMEM_OF_DECLARE(elfcorehdr, "linux,elfcorehdr", elfcore_hdr_setup);
+> >> drivers/memory/tegra/tegra210-emc-table.c:RESERVEDMEM_OF_DECLARE(tegra210_emc_table, "nvidia,tegra210-emc-table",
+> >> drivers/soc/fsl/qbman/bman_ccsr.c:RESERVEDMEM_OF_DECLARE(bman_fbpr, "fsl,bman-fbpr", bman_fbpr);
+> >> drivers/soc/fsl/qbman/qman_ccsr.c:RESERVEDMEM_OF_DECLARE(qman_fqd, "fsl,qman-fqd", qman_fqd);
+> >> drivers/soc/fsl/qbman/qman_ccsr.c:RESERVEDMEM_OF_DECLARE(qman_pfdr, "fsl,qman-pfdr", qman_pfdr);
+> >>
+> >> Let's simplify things and enable OF_RESERVED_MEM when OF_EARLY_FLATTREE is
+> >> enabled.
+> >>
+> >> Cc: Christoph Hellwig <hch@lst.de>
+> >> Signed-off-by: Rob Herring <robh@kernel.org>
+> >
+> > Hi Rob,
+> >
+> > I'm OK with this patch, but with or without this patch,
+> > compiling kernel/dma/coherent.c without HAS_IOMEM (!)
+> > has build errors:
+> >
+> > s390-linux-ld: kernel/dma/coherent.o: in function `dma_init_coherent_memory':
+> > coherent.c:(.text+0x5ae): undefined reference to `memremap'
+> > s390-linux-ld: coherent.c:(.text+0x7a4): undefined reference to `memunmap'
+> > s390-linux-ld: kernel/dma/coherent.o: in function `dma_declare_coherent_memory':
+> > coherent.c:(.text+0xd84): undefined reference to `memunmap'
+> >
+> >
+> > along with a slew of other build errors (arch/s390/, CONFIG_PCI is not set,
+> > CONFIG_HAS_IOMEM is not set):
+> >
+> > s390-linux-ld: drivers/irqchip/irq-al-fic.o: in function `al_fic_init_dt':
+> > irq-al-fic.c:(.init.text+0x6a0): undefined reference to `iounmap'
+> > s390-linux-ld: drivers/char/xillybus/xillybus_of.o: in function `xilly_drv_probe':
+> > xillybus_of.c:(.text+0x2c8): undefined reference to `devm_platform_ioremap_resource'
+> > s390-linux-ld: drivers/pcmcia/cistpl.o: in function `set_cis_map':
+> > cistpl.c:(.text+0x87a): undefined reference to `ioremap'
+> > s390-linux-ld: cistpl.c:(.text+0x99a): undefined reference to `iounmap'
+> > s390-linux-ld: cistpl.c:(.text+0xa34): undefined reference to `iounmap'
+> > s390-linux-ld: cistpl.c:(.text+0xaa6): undefined reference to `ioremap'
+> > s390-linux-ld: drivers/pcmcia/cistpl.o: in function `release_cis_mem':
+> > cistpl.c:(.text+0x2976): undefined reference to `iounmap'
+> > s390-linux-ld: drivers/of/address.o: in function `of_iomap':
+> > address.c:(.text+0x1f02): undefined reference to `ioremap'
+> > s390-linux-ld: drivers/of/address.o: in function `of_io_request_and_map':
+> > address.c:(.text+0x2030): undefined reference to `ioremap'
+> >
 >
-> Note that while the Linux driver DT match table does not contain the
-> compatible value of the TI part, it could still match to this part, as
-> i2c_device_id-based matching ignores the vendor part of the compatible
-> value.
+> Oops, sorry. I should have said that this is also with my
+> experimental path that I thought you suggested earlier this
+> week (although I could have misunderstood you):
 
-LGTM!
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+Yes, that's what I'd like, but no doubt that change alone will make
+things worse.
 
-Maybe at some point I will find the time to resurrect the CE4100 based
-device that collects dirt on my desk...
+> --- linux-next-20210526.orig/drivers/of/Kconfig
+> +++ linux-next-20210526/drivers/of/Kconfig
+> @@ -64,7 +64,7 @@ config OF_DYNAMIC
+>
+>  config OF_ADDRESS
+>         def_bool y
+> -       depends on !SPARC && (HAS_IOMEM || UML)
+> +       depends on !SPARC
+>
+>  config OF_IRQ
+>         def_bool y
+>
+> [rebuild]
+>
+> OK, even without this small patch, the result is about the same (just
+> a few different function names):
+>
+> s390-linux-ld: kernel/dma/coherent.o: in function `dma_init_coherent_memory':
+> coherent.c:(.text+0x5ae): undefined reference to `memremap'
+> s390-linux-ld: coherent.c:(.text+0x7a4): undefined reference to `memunmap'
+> s390-linux-ld: kernel/dma/coherent.o: in function `dma_declare_coherent_memory':
+> coherent.c:(.text+0xd84): undefined reference to `memunmap'
+>
+> s390-linux-ld: drivers/irqchip/irq-al-fic.o: in function `al_fic_init_dt':
+> irq-al-fic.c:(.init.text+0x64): undefined reference to `of_iomap'
+> s390-linux-ld: irq-al-fic.c:(.init.text+0x6a0): undefined reference to `iounmap'
+> s390-linux-ld: drivers/char/xillybus/xillybus_of.o: in function `xilly_drv_probe':
+> xillybus_of.c:(.text+0x2c8): undefined reference to `devm_platform_ioremap_resource'
+> s390-linux-ld: drivers/pcmcia/cistpl.o: in function `set_cis_map':
+> cistpl.c:(.text+0x87a): undefined reference to `ioremap'
+> s390-linux-ld: cistpl.c:(.text+0x99a): undefined reference to `iounmap'
+> s390-linux-ld: cistpl.c:(.text+0xa34): undefined reference to `iounmap'
+> s390-linux-ld: cistpl.c:(.text+0xaa6): undefined reference to `ioremap'
+> s390-linux-ld: drivers/pcmcia/cistpl.o: in function `release_cis_mem':
+> cistpl.c:(.text+0x2976): undefined reference to `iounmap'
 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> v2:
->   - New.
-> ---
->  arch/x86/platform/ce4100/falconfalls.dts | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/x86/platform/ce4100/falconfalls.dts b/arch/x86/platform/ce4100/falconfalls.dts
-> index 0ac3d43571361112..65fa3d866226ce97 100644
-> --- a/arch/x86/platform/ce4100/falconfalls.dts
-> +++ b/arch/x86/platform/ce4100/falconfalls.dts
-> @@ -249,7 +249,7 @@ i2c@1 {
->
->                                                 gpio@26 {
->                                                         #gpio-cells = <2>;
-> -                                                       compatible = "ti,pcf8575";
-> +                                                       compatible = "nxp,pcf8575";
->                                                         reg = <0x26>;
->                                                         gpio-controller;
->                                                 };
-> @@ -263,7 +263,7 @@ i2c@2 {
->
->                                                 gpio@26 {
->                                                         #gpio-cells = <2>;
-> -                                                       compatible = "ti,pcf8575";
-> +                                                       compatible = "nxp,pcf8575";
->                                                         reg = <0x26>;
->                                                         gpio-controller;
->                                                 };
-> --
-> 2.25.1
->
+Empty stubs for ioremap, iounmap, memremap, and memunmap would fix all
+these, right? Though maybe adding stubs is more complicated than I'm
+thinking given all the architecture specifics.
 
-
--- 
-With Best Regards,
-Andy Shevchenko
+Rob
