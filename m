@@ -2,100 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 173BA396F1F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 10:39:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80F8C396F49
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 10:46:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233381AbhFAIla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 04:41:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59014 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233509AbhFAIl3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 04:41:29 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94A5CC06174A
-        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 01:39:47 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id t4-20020a1c77040000b029019d22d84ebdso986910wmi.3
-        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 01:39:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=fwYLGPFkwdh/HThdI1LQ3D7Sa+CANFeet/ms5ocqzVg=;
-        b=B8zAxfBioT7FIrTPBqWd98uxG5BN/M+fF/ODhvHVjHbm2UohHiYDbeMNxfMajPAMcN
-         f1TfeFpiniII0WX488Rnu8cDcDGa1NS8jPpeOKG7QNw/4dEfi/9hR9wcGk1iHcQtc3XW
-         fwuv4sngTpPZRjS+qZv3DRKN09fENXysswgSWZwbZoaHAZn1sDJXu/8AQerOxDk+Mpkq
-         EcmUjU1R1JgIFlIBmAbVIZ4Q3gHEyapU815+zLyLV6Ys1/sRy60o7eS+iwp+Ir4bysSE
-         BF3Y45hJ7bjUnZrSPquk83OcKbAfEwLfm/LkiHw+3Kphxg1G2vTmPIMi40z56yavzghD
-         Anfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=fwYLGPFkwdh/HThdI1LQ3D7Sa+CANFeet/ms5ocqzVg=;
-        b=AcCIlJ8rsntqnQ9qvUTPePazANvayztXrXL4xxfXVYbkWPrI/XibtxaR1uUin5SRmU
-         BXSJn7Xuo7wgPZX/MZdj5DnNT98/OVQG93KanoH6/V98CsVoHV+AZ/Jbh60iU0vApbAq
-         i41Hq1Hh/grrb/8UZMcmCpiNXkY1TctfUA2R3sdn0Unv/JmLQYlrlDDIW60oBqrx9SEu
-         2kR+C8EsD+rtZe3XECVpFuC/EsIEfcc1+m16OEvW8sIzl+XVtil2mksQbsnj0gWV/cMb
-         9mG3MgzQo9udfSVelZMlMdAPUkc9z3hpoQKeHM82sy/xEa5aHQk26486Smx4nOUiQ69L
-         0KIw==
-X-Gm-Message-State: AOAM530UEeNh93Q8RGEudaoMuHIfUqCqj4dUhBVw+wl87WbvnuULzMvc
-        BwWBv7s6byElAECLXU+xMdt7cg==
-X-Google-Smtp-Source: ABdhPJyIDHtN04BJpvc9WwnHgqypN0MUAhE9fAvsxWnWmyuTTr0flvdH2YtxWENeyFD6zSQEG76auA==
-X-Received: by 2002:a1c:1902:: with SMTP id 2mr24673720wmz.128.1622536786207;
-        Tue, 01 Jun 2021 01:39:46 -0700 (PDT)
-Received: from dell ([91.110.221.249])
-        by smtp.gmail.com with ESMTPSA id r14sm2152563wrx.74.2021.06.01.01.39.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jun 2021 01:39:45 -0700 (PDT)
-Date:   Tue, 1 Jun 2021 09:39:44 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     linux-kernel@vger.kernel.org, linus.walleij@linaro.org,
-        bgolaszewski@baylibre.com, linux-gpio@vger.kernel.org,
-        p.zabel@pengutronix.de, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, luka.perkov@sartura.hr,
-        jmp@epiphyte.org, pmenzel@molgen.mpg.de, buczek@molgen.mpg.de
-Subject: Re: [PATCH v3 1/6] mfd: simple-mfd-i2c: Add Delta TN48M CPLD support
-Message-ID: <20210601083944.GW543307@dell>
-References: <20210531125143.257622-1-robert.marko@sartura.hr>
+        id S233438AbhFAIrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 04:47:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44624 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233792AbhFAIrl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Jun 2021 04:47:41 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 60BC061370;
+        Tue,  1 Jun 2021 08:45:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1622537158;
+        bh=iRLwwh/jf6neXOQQgfnhI6BrCzqxxsNJFTOUKbWjbxU=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=sIrl/fVjSuZJc/8yYTG/dJgXF2S6Ulce6iDkG+5AKFvWM2npcdzHGjvr/bhghCsZF
+         gpJE2khsRcmBOfZpvtpHnKPnhJQHPS2ueehX2SI7BCGwJn5gNg09TOyvmk6VwPasQl
+         hGz0UQs7t1mG2u7JfCBEfI4j+86J1KWkdEbM9wydpaBKZ1jeprBZzT+74L3/Y/jb2O
+         jQalFjmxg6vOnopGnjuRLf6MOjheSfjBdCke3btHg+vBqi+MHF4SVyhI5S8Ijoj8kx
+         EcGYGkt1N+lSF8t2cp9YYGCDZOIMGva80GMffTImgfkezk7SLoDtdDjkDKonezD74D
+         d9pZAvCCOVmCg==
+Message-ID: <4552aaf531b0619a2d7a7cc4bcf2d049c44b4b74.camel@kernel.org>
+Subject: Re: [PATCH v2 06/12] drm/vc4: hdmi: Set HD_CTL_WHOLSMP and
+ HD_CTL_CHALIGN_SET
+From:   nicolas saenz julienne <nsaenz@kernel.org>
+To:     Maxime Ripard <maxime@cerno.tech>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Mark Brown <broonie@kernel.org>,
+        dri-devel@lists.freedesktop.org,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Takashi Iwai <tiwai@suse.com>
+Cc:     devicetree@vger.kernel.org,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Dom Cobley <dom@raspberrypi.com>, linux-doc@vger.kernel.org,
+        Eric Anholt <eric@anholt.net>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Maxime Ripard <mripard@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org,
+        Daniel Vetter <daniel@ffwll.ch>,
+        linux-rpi-kernel@lists.infradead.org,
+        Jonathan Corbet <corbet@lwn.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dom Cobley <popcornmix@gmail.com>
+Date:   Tue, 01 Jun 2021 10:45:49 +0200
+In-Reply-To: <20210525132354.297468-7-maxime@cerno.tech>
+References: <20210525132354.297468-1-maxime@cerno.tech>
+         <20210525132354.297468-7-maxime@cerno.tech>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.0 (3.40.0-1.fc34) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210531125143.257622-1-robert.marko@sartura.hr>
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 31 May 2021, Robert Marko wrote:
-
-> Delta TN48M switches have a Lattice CPLD that serves
-> multiple purposes including being a GPIO expander.
+On Tue, 2021-05-25 at 15:23 +0200, Maxime Ripard wrote:
+> From: Dom Cobley <popcornmix@gmail.com>
 > 
-> So, lets use the simple I2C MFD driver to provide the MFD core.
+> Symptom is random switching of speakers when using multichannel.
 > 
-> Also add a virtual symbol which pulls in the simple-mfd-i2c driver and
-> provide a common symbol on which the subdevice drivers can depend on.
+> Repeatedly running speakertest -c8 occasionally starts with
+> channels jumbled. This is fixed with HD_CTL_WHOLSMP.
 > 
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> The other bit looks beneficial and apears harmless in testing so
+> I'd suggest adding it too.
+> 
+> Documentation says: HD_CTL_WHILSMP_SET
+> Wait for whole sample. When this bit is set MAI transmit will start
+> only when there is at least one whole sample available in the fifo.
+> 
+> Documentation says: HD_CTL_CHALIGN_SET
+> Channel Align When Overflow. This bit is used to realign the audio
+> channels in case of an overflow.
+> If this bit is set, after the detection of an overflow, equal
+> amount of dummy words to the missing words will be written to fifo,
+> filling up the broken sample and maintaining alignment.
+> 
+> Signed-off-by: Dom Cobley <popcornmix@gmail.com>
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 > ---
-> Changes in v2:
-> * Drop the custom MFD driver and header
-> * Use simple I2C MFD driver
-> 
->  drivers/mfd/Kconfig          | 10 ++++++++++
->  drivers/mfd/simple-mfd-i2c.c |  1 +
->  2 files changed, 11 insertions(+)
 
-I responded to a previous version of this.
+Reviewed-by: Nicolas Saenz Julienne <nsaenz@kernel.org>
 
-The question still remains - why do you need one single Regmap
-encompassing all functionality.  The register banks look separated to
-me at first glance.
+Regards,
+Nicolas
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
