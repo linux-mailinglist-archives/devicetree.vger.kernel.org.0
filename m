@@ -2,267 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CB693976DC
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 17:38:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6921B3976E8
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 17:41:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234177AbhFAPkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 11:40:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42136 "EHLO
+        id S233326AbhFAPnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 11:43:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230288AbhFAPkI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 11:40:08 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4DAFC061574
-        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 08:38:26 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <pza@pengutronix.de>)
-        id 1lo6TE-0000Zs-6w; Tue, 01 Jun 2021 17:38:20 +0200
-Received: from pza by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <pza@pengutronix.de>)
-        id 1lo6TC-000697-Cq; Tue, 01 Jun 2021 17:38:18 +0200
-Date:   Tue, 1 Jun 2021 17:38:18 +0200
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     lee.jones@linaro.org, linux-kernel@vger.kernel.org,
-        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        linux-gpio@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, luka.perkov@sartura.hr,
-        jmp@epiphyte.org, pmenzel@molgen.mpg.de, buczek@molgen.mpg.de
-Subject: Re: [PATCH v3 4/6] reset: Add Delta TN48M CPLD reset controller
-Message-ID: <20210601153818.GA20254@pengutronix.de>
-References: <20210531125143.257622-1-robert.marko@sartura.hr>
- <20210531125143.257622-4-robert.marko@sartura.hr>
+        with ESMTP id S230523AbhFAPnJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 11:43:09 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DAEBC061574
+        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 08:41:27 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id n4so14861508wrw.3
+        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 08:41:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=9ITtNZNwlQldiOHh3k8Zcr3KS2X5VoqbKBn+PkTuH9w=;
+        b=HWWIXMjpZY5Nv0Do85zKy0XnIH09Cv+I8O90aJOO3BSMIE4c5sIPyG45bCQfYVgiio
+         eYhGJVSbT+KqeN62w97gEPyDfsykx6JnyGdcBK+mpLrSUajv6ANshRbBGSqALbl3YNIQ
+         a/nWwSoYi1etW2NYalB9dhW5u/tJEf8kHUKOqjsh+HUwXk1fGB+GqNnL5y+XmIUi6BEb
+         SiEIMa6Xd3KhWGNURw6qE8q2vkZwJfXT7lXdpeCk3SvF96Ko0x45vLAJXwmU0DDSQ7se
+         aJg9JD7GZt0DuLh2vQqGCMLk2A0EVKfouceoqryeDu3pqPumOYK2PpxVDwzfiPZhtW0q
+         lvfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=9ITtNZNwlQldiOHh3k8Zcr3KS2X5VoqbKBn+PkTuH9w=;
+        b=bqYmoVpxLFE3+6UrEMgwyPwVcSyFii9rz6sfxNGMDNrJ3DdDmMim5PKvhc4vFzj0OV
+         /bLEA7ciR/e9/rwGDVzZNBlaP4HwkhQYCCvTi4H401gYJHT23vVCGvytGDQsjvIEmbGs
+         Lfx0KjJ1Xnzy2na3YA1sGNxmmuofU8qecOXL2HvOfE4Rt2eufIrM0PFrD5BFn2iH4A8h
+         gjhRzkMM3nrFO9WWAESKsx3yUPJoq5eg101m1SAXJSiSkH93BMIhllFwCO4JGEvt3KqO
+         DZO3GA2P1WEp+xsmt9bEHztwdQ1TSsKVxHg9vxjA3YSQxJlMyd2AcR6Q+imWTWpNYoMC
+         df8w==
+X-Gm-Message-State: AOAM5339bQF3dwg0Sxp9d5fn1KBZLs1as/JNErjMEkqVd1gP15a00o+a
+        QI5/4+eS8XKAZ8Z5Vp3sqTQI4Q==
+X-Google-Smtp-Source: ABdhPJzHmIVw1vEegAeEcDl0WTBgV8jvsI8TadSWkcRQk7OSZx2qAUeHL1kPJexYHqY8+BXavqgFSA==
+X-Received: by 2002:a05:6000:180f:: with SMTP id m15mr1762181wrh.60.1622562086113;
+        Tue, 01 Jun 2021 08:41:26 -0700 (PDT)
+Received: from dell ([91.110.221.249])
+        by smtp.gmail.com with ESMTPSA id a123sm3414501wmd.2.2021.06.01.08.41.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Jun 2021 08:41:25 -0700 (PDT)
+Date:   Tue, 1 Jun 2021 16:41:23 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, linux-rtc@vger.kernel.org
+Subject: Re: [PATCH v2 0/7] mfd/power/rtc: Do not enforce (incorrect)
+ interrupt trigger type
+Message-ID: <20210601154123.GD2159518@dell>
+References: <20210526172036.183223-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210531125143.257622-4-robert.marko@sartura.hr>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 17:15:48 up 103 days, 18:39, 131 users,  load average: 0.10, 0.12,
- 0.15
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: pza@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210526172036.183223-1-krzysztof.kozlowski@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Robert,
+On Wed, 26 May 2021, Krzysztof Kozlowski wrote:
 
-thank you for the patch. A few comments below:
-
-On Mon, May 31, 2021 at 02:51:41PM +0200, Robert Marko wrote:
-> Delta TN48M CPLD exposes resets for the following:
-> * 88F7040 SoC
-> * 88F6820 SoC
-> * 98DX3265 switch MAC-s
-> * 88E1680 PHY-s
-> * 88E1512 PHY
-> * PoE PSE controller
+> Hi,
 > 
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> ---
->  drivers/reset/Kconfig       |   9 +++
->  drivers/reset/Makefile      |   1 +
->  drivers/reset/reset-tn48m.c | 128 ++++++++++++++++++++++++++++++++++++
->  3 files changed, 138 insertions(+)
->  create mode 100644 drivers/reset/reset-tn48m.c
+> This is a v2 with only minor changes:
+> 1. Drop patches which landed in mainline.
+> 2. Add acks.
+> 3. Rebase max17040 power supply (dtschema conversion).
 > 
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index 4171c6f76385..e3ff4b020c96 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -64,6 +64,15 @@ config RESET_BRCMSTB_RESCAL
->  	  This enables the RESCAL reset controller for SATA, PCIe0, or PCIe1 on
->  	  BCM7216.
->  
-> +config RESET_TN48M_CPLD
-
-Please sort this alphabetically.
-
-> +	tristate "Delta Networks TN48M switch CPLD reset controller"
-> +	depends on MFD_TN48M_CPLD
-> +	help
-> +	  This enables the reset controller driver for the Delta TN48M CPLD.
-> +	  It provides reset signals for Armada 7040 and 385 SoC-s, Alleycat 3X
-> +	  switch MAC-s, Alaska OOB ethernet PHY, Quad Alaska ethernet PHY-s and
-> +	  Microchip PD69200 PoE PSE controller.
-> +
->  config RESET_HSDK
->  	bool "Synopsys HSDK Reset Driver"
->  	depends on HAS_IOMEM
-> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-> index 65a118a91b27..6d6945638b76 100644
-> --- a/drivers/reset/Makefile
-> +++ b/drivers/reset/Makefile
-> @@ -10,6 +10,7 @@ obj-$(CONFIG_RESET_BCM6345) += reset-bcm6345.o
->  obj-$(CONFIG_RESET_BERLIN) += reset-berlin.o
->  obj-$(CONFIG_RESET_BRCMSTB) += reset-brcmstb.o
->  obj-$(CONFIG_RESET_BRCMSTB_RESCAL) += reset-brcmstb-rescal.o
-> +obj-$(CONFIG_RESET_TN48M_CPLD) += reset-tn48m.o
-
-Same as here.
-
->  obj-$(CONFIG_RESET_HSDK) += reset-hsdk.o
->  obj-$(CONFIG_RESET_IMX7) += reset-imx7.o
->  obj-$(CONFIG_RESET_INTEL_GW) += reset-intel-gw.o
-> diff --git a/drivers/reset/reset-tn48m.c b/drivers/reset/reset-tn48m.c
-> new file mode 100644
-> index 000000000000..960ee5f4eb40
-> --- /dev/null
-> +++ b/drivers/reset/reset-tn48m.c
-> @@ -0,0 +1,128 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Delta TN48M CPLD reset driver
-> + *
-> + * Copyright 2021 Sartura Ltd
-> + *
-> + * Author: Robert Marko <robert.marko@sartura.hr>
-> + */
-> +
-> +#include <linux/bitfield.h>
-
-What is this used for?
-
-> +#include <linux/device.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/reset-controller.h>
-> +
-> +#include <dt-bindings/reset/delta,tn48m-reset.h>
-> +
-> +#define TN48M_RESET_REG		0x10
-> +
-> +struct tn48_reset_map {
-> +	u8 bit;
-> +};
-> +
-> +struct tn48_reset_data {
-> +	struct reset_controller_dev rcdev;
-> +	struct regmap *regmap;
-> +};
-> +
-> +static const struct tn48_reset_map tn48m_resets[] = {
-> +	[CPU_88F7040_RESET] = {0},
-> +	[CPU_88F6820_RESET] = {1},
-> +	[MAC_98DX3265_RESET] = {2},
-> +	[PHY_88E1680_RESET] = {4},
-> +	[PHY_88E1512_RESET] = {6},
-> +	[POE_RESET] = {7},
-> +};
-> +
-> +static inline struct tn48_reset_data *to_tn48_reset_data(
-> +			struct reset_controller_dev *rcdev)
-> +{
-> +	return container_of(rcdev, struct tn48_reset_data, rcdev);
-> +}
-> +
-> +static int tn48m_control_assert(struct reset_controller_dev *rcdev,
-> +				unsigned long id)
-> +{
-> +	struct tn48_reset_data *data = to_tn48_reset_data(rcdev);
-> +
-> +	return regmap_update_bits(data->regmap, TN48M_RESET_REG,
-> +				  BIT(tn48m_resets[id].bit), 0);
-> +}
-
-Why is there no deassert?
-
-> +static int tn48m_control_reset(struct reset_controller_dev *rcdev,
-> +			       unsigned long id)
-> +{
-> +	return tn48m_control_assert(rcdev, id);
-
-Is this a self-clearing (or rather self re-setting) bit that triggers a
-reset pulse?
-If so, assert shouldn't be implemented.
-
-> +}
-> +
-> +static int tn48m_control_status(struct reset_controller_dev *rcdev,
-> +				unsigned long id)
-> +{
-> +	struct tn48_reset_data *data = to_tn48_reset_data(rcdev);
-> +	unsigned int regval;
-> +	int ret;
-> +
-> +	ret = regmap_read(data->regmap, TN48M_RESET_REG, &regval);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (BIT(tn48m_resets[id].bit) & regval)
-> +		return 0;
-> +	else
-> +		return 1;
-> +}
-> +
-> +static const struct reset_control_ops tn48_reset_ops = {
-> +	.reset		= tn48m_control_reset,
-> +	.assert		= tn48m_control_assert,
-> +	.status		= tn48m_control_status,
-> +};
-> +
-> +static int tn48m_reset_probe(struct platform_device *pdev)
-> +{
-> +	struct tn48_reset_data *data;
-> +	struct regmap *regmap;
-> +
-> +	if (!pdev->dev.parent)
-> +		return -ENODEV;
-
-That shouldn't be necessary.
-
-> +	regmap = dev_get_regmap(pdev->dev.parent, NULL);
-> +	if (!regmap)
-> +		return -ENODEV;
-> +
-> +	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	data->regmap = regmap;
-> +
-> +	data->rcdev.owner = THIS_MODULE;
-> +	data->rcdev.ops = &tn48_reset_ops;
-> +	data->rcdev.nr_resets = ARRAY_SIZE(tn48m_resets);
-> +	data->rcdev.of_node = pdev->dev.of_node;
-> +
-> +	return devm_reset_controller_register(&pdev->dev, &data->rcdev);
-> +}
-> +
-> +static const struct of_device_id tn48m_reset_of_match[] = {
-> +	{ .compatible = "delta,tn48m-reset", },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, tn48m_reset_of_match);
-> +
-> +static struct platform_driver tn48m_reset_driver = {
-> +	.driver = {
-> +		.name = "delta-tn48m-reset",
-> +		.of_match_table = tn48m_reset_of_match,
-> +	},
-> +	.probe = tn48m_reset_probe,
-> +};
-> +module_platform_driver(tn48m_reset_driver);
-> +
-> +MODULE_AUTHOR("Robert Marko <robert.marko@sartura.hr>");
-> +MODULE_DESCRIPTION("Delta TN48M CPLD reset driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.31.1
+> Patches are independent and there are no external dependencies, so
+> please pick up freely.
+> 
+> Best regards,
+> Krzysztof
 > 
 > 
+> Krzysztof Kozlowski (7):
+>   mfd: sec-irq: Do not enforce (incorrect) interrupt trigger type
+>   mfd: max77686: Do not enforce (incorrect) interrupt trigger type
+>   mfd: max77693: Do not enforce (incorrect) interrupt trigger type
+>   mfd: max14577: Do not enforce (incorrect) interrupt trigger type
+>   rtc: max77686: Do not enforce (incorrect) interrupt trigger type
+>   power: supply: max17042: Do not enforce (incorrect) interrupt trigger
+>     type
+>   power: supply: max17040: Do not enforce (incorrect) interrupt trigger
+>     type
 
-regards
-Philipp
+MFD patches (at least) do not apply.
+
+Please rebase and resubmit with my:
+
+For my own reference (apply this as-is to your sign-off block):
+
+  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
