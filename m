@@ -2,141 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8473A3975FD
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 17:00:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7F8E39762B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 17:11:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233924AbhFAPCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 11:02:38 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:56594 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234066AbhFAPCh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 11:02:37 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 151F0mng072863;
-        Tue, 1 Jun 2021 10:00:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1622559648;
-        bh=7t7I7vDeGgG3JoWgwTVVE1/vR1UOHKQGZO0PYBqm36E=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=hYD/s5NyX5qjNYsUa4IuWLe3JV/xbunopXppSgvVcNeywugfxxBPxVX4ftruWZjHv
-         1hlLUBSlZEVf+KGWQ997Mg6PSCXa77J1N9STJxvucAkVH9fr1d78AfmKyjW0hrAt2Y
-         dE2mXcUZbzwg5Pd6AnGs8C0HxgZTb1Wwkj+ax0yQ=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 151F0mFC034128
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 1 Jun 2021 10:00:48 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 1 Jun
- 2021 10:00:48 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 1 Jun 2021 10:00:48 -0500
-Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 151F0m5E124436;
-        Tue, 1 Jun 2021 10:00:48 -0500
-Received: from localhost ([10.250.35.153])
-        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 151F0mxw109775;
-        Tue, 1 Jun 2021 10:00:48 -0500
-From:   Suman Anna <s-anna@ti.com>
-To:     Nishanth Menon <nm@ti.com>
-CC:     Jan Kiszka <jan.kiszka@siemens.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH v2 2/2] arm64: dts: ti: k3-j721e-main: Add ICSSG MDIO nodes
-Date:   Tue, 1 Jun 2021 10:00:32 -0500
-Message-ID: <20210601150032.11432-3-s-anna@ti.com>
-X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20210601150032.11432-1-s-anna@ti.com>
-References: <20210601150032.11432-1-s-anna@ti.com>
+        id S234275AbhFAPNW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 11:13:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35942 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234294AbhFAPNV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 11:13:21 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88C0BC06175F
+        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 08:11:39 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id f2so3664198wri.11
+        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 08:11:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gvFMmHfd1QAvd4odZ60W0gHJvaO9sQdIVoHfn0ziLzo=;
+        b=OETe/M0NDxdyFgb2tcObhXOQI+9uiSA6tIzaoow8w7KTvB8aKGM6AVAwOT9Vz+21x/
+         rS5je9hNXUAx4qw7jfq2v+vajcn98J+bqYTdL/Zq+fA567ipuKFBjxljqzdoXxPm6Djw
+         n0CN3UAB5By9mRTyMk+a2x4c4cDrlHkY3+KUIh0iRuHyumzlUok1TWKujiP2bEfjz+AE
+         HNQ6VGQsZQFbjOQEBbY7Dy9qnuzw4HrzXeYj0iLvJUSP5AEtQ13syOYYltuuLNsNg/i5
+         5PZ6qkBuwzM6K0/DTi0t88aOy2egNYiKN8Hza5j8Sr5/ESPl8ZDjluap2bpzP+1Vt8x0
+         HrOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gvFMmHfd1QAvd4odZ60W0gHJvaO9sQdIVoHfn0ziLzo=;
+        b=k6M9VisrzOc1cgwCKAI1tWikD/qypHL/dJDxDv/55G7He8r220XeAp6yCcZVI3Hudu
+         jx3HErA7/eyGn2zaDLut2wfdp22cCZ120NagOiCgOKDCyz07roKrkDvMd6HvTlpA6g+6
+         1GZNqJnh0Y/Vo3RYayktAK4xSkH5j4rClBUSHyRF0UyXdCg1rvmb0UfHTEWgUkbY3Alg
+         T5QPAFQsQiu+wvDZ2nQnmMlggAAlF11apzDk8XYQX/Z/4javEbk7nb7CS8I17m94tc0o
+         LHrwDGhGoXI8H+PrFzX5xNLM/15FLHfwpDWpyyyPHafeTEJkj0dguop4LhYhYRrN/YWI
+         DKWw==
+X-Gm-Message-State: AOAM530zaj5f1WquLToMN7QruEn/Njyf2hM6wuBxaarN0tPrP4MJDcKs
+        wcnYgR+JUN/H6A5nGeHWk5sjLg==
+X-Google-Smtp-Source: ABdhPJyu3vRuq8G/vnmF9Cp0cuxCRlnzDlsen2cu1StRDcTqjLwGH9suC7meaIha9/X408jxbld/PQ==
+X-Received: by 2002:a5d:664c:: with SMTP id f12mr15059467wrw.206.1622560298189;
+        Tue, 01 Jun 2021 08:11:38 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id f20sm22344163wmh.41.2021.06.01.08.11.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Jun 2021 08:11:37 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     davem@davemloft.net, herbert@gondor.apana.org.au,
+        linus.walleij@linaro.org, linux@armlinux.org.uk,
+        robh+dt@kernel.org, ulli.kroll@googlemail.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH v2 0/5] crypto: add gemini/sl3516 crypto driver
+Date:   Tue,  1 Jun 2021 15:11:27 +0000
+Message-Id: <20210601151132.1893443-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ICSSGs on K3 J721E SoCs contain an MDIO controller that can
-be used to control external PHYs associated with the Industrial
-Ethernet peripherals within each ICSSG instance. The MDIO module
-used within the ICSSG is similar to the MDIO Controller used
-in TI Davinci SoCs. A bus frequency of 1 MHz is chosen for the
-MDIO operations.
+The gemini SL3516 SoC has a crypto IP.
+This serie had support for it.
 
-The nodes are added and enabled in the common k3-j721e-main.dtsi
-file by default, and disabled in the existing J721E board dts
-file. These nodes need pinctrl lines, and so should be enabled
-only on boards where they are actually wired and pinned out for
-ICSSG Ethernet. Any new board dts file should disable these if
-they are not sure.
+It was tested with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y.
+Furthermore, it survives hours and gigs of write/read to a luks2 using xts(ecb-aes-sl3516).
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
----
- .../dts/ti/k3-j721e-common-proc-board.dts     |  8 ++++++++
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 20 +++++++++++++++++++
- 2 files changed, 28 insertions(+)
+Performance is quite good.
+On a luks2 partition (2To with bs=4096), a fsck comes from 14m26(without CE) to 8m48(with CE).
+So it is really usefull.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-index 351bb84db65b..1991f620d94b 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-@@ -718,3 +718,11 @@ &pcie3_ep {
- &dss {
- 	status = "disabled";
- };
-+
-+&icssg0_mdio {
-+	status = "disabled";
-+};
-+
-+&icssg1_mdio {
-+	status = "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index 3bcafe4c1742..598613876b0f 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -1794,6 +1794,16 @@ tx_pru0_1: txpru@c000 {
- 			reg-names = "iram", "control", "debug";
- 			firmware-name = "j7-txpru0_1-fw";
- 		};
-+
-+		icssg0_mdio: mdio@32400 {
-+			compatible = "ti,davinci_mdio";
-+			reg = <0x32400 0x100>;
-+			clocks = <&k3_clks 119 1>;
-+			clock-names = "fck";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			bus_freq = <1000000>;
-+		};
- 	};
- 
- 	icssg1: icssg@b100000 {
-@@ -1925,5 +1935,15 @@ tx_pru1_1: txpru@c000 {
- 			reg-names = "iram", "control", "debug";
- 			firmware-name = "j7-txpru1_1-fw";
- 		};
-+
-+		icssg1_mdio: mdio@32400 {
-+			compatible = "ti,davinci_mdio";
-+			reg = <0x32400 0x100>;
-+			clocks = <&k3_clks 120 4>;
-+			clock-names = "fck";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			bus_freq = <1000000>;
-+		};
- 	};
- };
+With bs=512, the performance is similar with software.
+
+Changes since v1:
+- reworded dt-binding subject patch
+- fixed build with CRYPTO_DEV_SL3516_DEBUG
+
+Corentin Labbe (5):
+  dt-bindings: crypto: Add documentation for sl3516-ce
+  crypto: Add sl3516 crypto engine
+  ARM: dts: gemini: add crypto node
+  ARM: gemini_config: enable sl3516-ce crypto
+  MAINTAINERS: add gemini crypto sl3516-ce
+
+ .../crypto/cortina,sl3516-crypto.yaml         |  50 ++
+ MAINTAINERS                                   |   7 +
+ arch/arm/boot/dts/gemini.dtsi                 |   8 +
+ arch/arm/configs/gemini_defconfig             |   1 +
+ drivers/crypto/Kconfig                        |  19 +
+ drivers/crypto/Makefile                       |   1 +
+ drivers/crypto/gemini/Makefile                |   2 +
+ drivers/crypto/gemini/sl3516-ce-cipher.c      | 388 +++++++++++++
+ drivers/crypto/gemini/sl3516-ce-core.c        | 535 ++++++++++++++++++
+ drivers/crypto/gemini/sl3516-ce-rng.c         |  61 ++
+ drivers/crypto/gemini/sl3516-ce.h             | 347 ++++++++++++
+ 11 files changed, 1419 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/cortina,sl3516-crypto.yaml
+ create mode 100644 drivers/crypto/gemini/Makefile
+ create mode 100644 drivers/crypto/gemini/sl3516-ce-cipher.c
+ create mode 100644 drivers/crypto/gemini/sl3516-ce-core.c
+ create mode 100644 drivers/crypto/gemini/sl3516-ce-rng.c
+ create mode 100644 drivers/crypto/gemini/sl3516-ce.h
+
 -- 
-2.30.1
+2.31.1
 
