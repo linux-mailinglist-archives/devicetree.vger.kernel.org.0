@@ -2,64 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A618D39735D
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 14:36:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 153D93973A5
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 14:56:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233577AbhFAMiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 08:38:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54556 "EHLO mail.kernel.org"
+        id S233162AbhFAM6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 08:58:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33268 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233823AbhFAMiP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Jun 2021 08:38:15 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2EAF960FE5;
-        Tue,  1 Jun 2021 12:36:34 +0000 (UTC)
+        id S233064AbhFAM6A (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Jun 2021 08:58:00 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D1D856135D;
+        Tue,  1 Jun 2021 12:56:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622550994;
-        bh=2+ivin/diukkvPRUMoKU7rL59DqrYfnBewenIeEPcR4=;
+        s=k20201202; t=1622552178;
+        bh=2Cl6MC1zMLi1wVlxtabUNKw40xMLYyr3h9FF5PfzyX0=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VShp+p8WU+C5SXju/x1RnursJXYFwXVm7kesfGEsdonSYFoSZH9jyRF7NbXcLShI3
-         JM41GwjxJ0leXNp6dr43QUoXpTwvsbUyZU/0gLMBIyiUDy1dwQjeMcdkJdY/wcEMZ1
-         VjMzvekTSawV8DgJ/wfyLitvuN8mFMwYoNTQIxuw79ewrg4CLv3V+0UbcW+Ci5gOFf
-         Kf2HGNtM6nkTg719e4HTUrDNsJyothhZnet7rxLLIsfWYqmondn5rGL+jiWRrf7Ef6
-         HT1J3pwFZhAvUEPl63R8VNfe9DIGjsquK+MiuHamS3YmRviqEgldIi8QVPwsLh9v/m
-         5kSQ7uJyIK49w==
-Date:   Tue, 1 Jun 2021 13:36:24 +0100
+        b=CnvVCbpOOeN9rkItCc/yoTJVnjIYphOmRUyy31lUnBN16ztG508cC6bnbwExyyPfz
+         4frf2pAynhv11HOAms0oRJEahYMeG0tJWXOcmnXyaYSyI5zbD90fISxnTj4ZD6Zrsu
+         4KHdr3lui/UR2XVz30gQggHNZhJS55ocfbFdK16AfxECbi+7onftdTHdC+8eHRpC82
+         GWlAQENZUjuDWUGrWnwevhodDw/4bAXrNsXQkb3paumbXLiPRNnt3HSl2qklurQNhy
+         3q5C+9yipXhvNBsOICFkwI5+XJgxlaAX54znzWYBKxd9gnLFPnGUHNcCqiwrtgL6xa
+         WhMI/9Tmb8M+Q==
+Date:   Tue, 1 Jun 2021 13:56:08 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     Takashi Iwai <tiwai@suse.de>
-Cc:     Maxime Ripard <maxime@cerno.tech>,
-        Jaroslav Kysela <perex@perex.cz>,
-        dri-devel@lists.freedesktop.org,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dom Cobley <dom@raspberrypi.com>, linux-doc@vger.kernel.org,
-        Eric Anholt <eric@anholt.net>, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org,
-        Daniel Vetter <daniel@ffwll.ch>,
-        linux-rpi-kernel@lists.infradead.org,
-        Jonathan Corbet <corbet@lwn.net>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 05/12] ASoC: hdmi-codec: Add a prepare hook
-Message-ID: <20210601123600.GA4089@sirena.org.uk>
-References: <20210525132354.297468-1-maxime@cerno.tech>
- <20210525132354.297468-6-maxime@cerno.tech>
- <YK4lWaB6Lx+SPjpF@sirena.org.uk>
- <20210531094213.kuuunk7ytu3q6sq6@gilmour>
- <s5hzgwb17ji.wl-tiwai@suse.de>
+To:     Rudi Heitbaum <rudi@heitbaum.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, ezequiel@collabora.com,
+        chenjh@rock-chips.com, pgwipeout@gmail.com
+Subject: Re: [PATCH v2] regulator: fan53555: add tcs4526
+Message-ID: <20210601125608.GC4089@sirena.org.uk>
+References: <20210526162342.GA20@8bbba9ba63a4>
+ <20210528101946.GA418765@96e513df87d1>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="4SFOXa2GPu3tIq4H"
+        protocol="application/pgp-signature"; boundary="Q0rSlbzrZN6k9QnT"
 Content-Disposition: inline
-In-Reply-To: <s5hzgwb17ji.wl-tiwai@suse.de>
+In-Reply-To: <20210528101946.GA418765@96e513df87d1>
 X-Cookie: Sic Transit Gloria Thursdi.
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
@@ -67,35 +45,34 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---4SFOXa2GPu3tIq4H
+--Q0rSlbzrZN6k9QnT
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 31, 2021 at 01:12:17PM +0200, Takashi Iwai wrote:
-> Maxime Ripard wrote:
+On Fri, May 28, 2021 at 10:19:50AM +0000, Rudi Heitbaum wrote:
 
-> > There's a build dependency between the DRM bits and the new hook
-> > introduced in hdmi-codec, would you be ok with merging it through the
-> > drm tree?
+> ---
+>  drivers/regulator/fan53555.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>=20
 
-> Speaking of ALSA core changes, I'm fine with that.
+This is adding a new DT binding, it needs to update the binding document
+too.
 
-Yeah, a pull request for the shared bits would be handy in case there's
-some collision with other work.
-
---4SFOXa2GPu3tIq4H
+--Q0rSlbzrZN6k9QnT
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmC2KccACgkQJNaLcl1U
-h9BKcAf+O81ROM96RMUTZYJIimTQF0+J/oQkn+ESJXI+SHZBaclCwMSDyDON/sKl
-JWt3ZmmxhZcLbu0e+i0IKllvpqlENXAAn3WxWdlC7/uFvY0fe1YLRTLVPUneRD0G
-PY6UdYKkSfSbfQj/9CJR2svgHPHwrjtb2zrrFK+SnD57cAbuOsrKJPVNGQNl7YKl
-p0KBajw4X98C2vToZhWraDaKNlq0PJ0IiPCqo17/UHi8M0dhr1VQ6lTcBGa3Wn6y
-JkS69Xdqm+M7Nwz2LNekJ8yRBbjnpSA8d/ENLPUWiuRifvMYQlNCbJ0evCFQYhmn
-szkAj4KiQQhziNgUPgsCjN+8N/HlLQ==
-=/Jte
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmC2LmcACgkQJNaLcl1U
+h9BzHAf9G464dHNtQknzDW/5kAgdMbejI7xxx5QTf4tseVQ6XY22i3ThsC5iivxi
+5OiLoEmJJ62CFt4fcej2+g9xrtqlrML+fU+D1YwIV4JnBKcNwf1PUKsufpxZdlOl
+jVRFThjrGk8ZXaYnuVu+U+9FbnoYGzidvMT8xdWqcDCUhGT0mUpMcQP3jAsRWXIh
+XqsJpBQrLyCoZE188rbXZN5PEyRHKymDKzSCgJalshiSxReexKZpeJNgZ8IEFcaE
+LZOQNJv01ie/uh7h1Y+5C0bDNlHM6HE89egEY+ATVbx5uHpH2r3GN8wMtBHJk5Hx
+s9+s5oOePen3qqty+jum80ZePycKGg==
+=8JU/
 -----END PGP SIGNATURE-----
 
---4SFOXa2GPu3tIq4H--
+--Q0rSlbzrZN6k9QnT--
