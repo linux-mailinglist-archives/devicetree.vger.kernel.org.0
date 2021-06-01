@@ -2,115 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB773397456
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 15:33:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A62AA397458
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 15:33:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234256AbhFANek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 09:34:40 -0400
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:46764 "EHLO
-        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234179AbhFANeO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 09:34:14 -0400
-Received: by mail-oi1-f174.google.com with SMTP id x15so15472936oic.13;
-        Tue, 01 Jun 2021 06:32:33 -0700 (PDT)
+        id S234267AbhFANel (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 09:34:41 -0400
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:35714 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234110AbhFANeS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 09:34:18 -0400
+Received: by mail-ot1-f51.google.com with SMTP id 69-20020a9d0a4b0000b02902ed42f141e1so14139944otg.2;
+        Tue, 01 Jun 2021 06:32:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=YqWuiSTFlne4C5q70OsuxqNoPOF4B7tUapyXWpisMTU=;
-        b=onlOPDlN1fZDHm+DvFrDSVlP9XfSRi5NcR7zk9WMqA/BmnL3nG/kTopXpA0w3b+khK
-         oPiEyzp48om4wiIHgtoQHiSzVXdMx5zF+dE8rqhzrEgr/1tdrGQR/STGXVH0EGzRi1od
-         /xdX6Fj2NYnixTWG6ly5n51FZGXqIgZXBm/KhT+e81DkMsUEeaX2UP27daTsAbAR6b4g
-         hHNwK47YXwflNwJW+J1ox4ASWxFFyvSbwjye9+Yzg5AIqX0qfeY2FXDNhB5pA5bMmgpX
-         +mDD2hvlDspBIyF78PgXB4c7NS0T99K3fhGog5Fbr8qNRGyL8gi6VtVBV148PYSCpfvs
-         /ojg==
-X-Gm-Message-State: AOAM5304Nz/xIZzkHIfIIUsruFRpGfDkhexy+SUHbvktjEPAHso4uxgD
-        O2o+8YvDpK4jmE5Yu7++/g==
-X-Google-Smtp-Source: ABdhPJzclIZ42/ZAmE854DlHZkc7PxwF5Uqo0k+1hCFlR4gYOXgEwGnJyyAlwyJ4RjzBYQRtiqHIIw==
-X-Received: by 2002:a05:6808:1404:: with SMTP id w4mr3283059oiv.53.1622554352937;
-        Tue, 01 Jun 2021 06:32:32 -0700 (PDT)
+        bh=636I1E6EI0UDLxa5GgqxStRaCYirepHXi6qSCpou1R4=;
+        b=LP4NsBafCRbrOIe42oOAOMq96vf6m2uZXqRHPT+X/0tj9u4wPTf4soUNfC9doUFoce
+         /DDq2po2FNOXzQWGLPnlq9CX93S+MWeChBqxpSMMGgV6SaidG52egO39bX4YGns3x7GW
+         0M812e6+fG4XeCXUDJM1Qk8EdHebM3J2wx92f5IMor8lMwRVwLhrlEc/g2yf0JUh1fJz
+         YZaR/sWwtxIj2volG7IuHyC4sOXGlz3CZ5RseT9pe2njuJZEgZLWwZaB9apVJVaK2W+c
+         2s6e2FuN0JVSROLPg0tIBg9iQ/nx56yqh+3/VhPj2KBSQvpJMCUh8M+VAp6uGf08STrt
+         lm/w==
+X-Gm-Message-State: AOAM533Tt8/uvH86cUXYFPqwT3jorl4birCAEKkbObKGW3RTgLTxn6Cu
+        XnS1VUEWVCT/lipYf2aBgQ==
+X-Google-Smtp-Source: ABdhPJz7Zikdb9VuMbD+KUFyCeTE7Pn5JbiIUzlOHS92hW+vH53XwAkuY1u4UbgfpWJw+IDBTp+4Zw==
+X-Received: by 2002:a9d:1d21:: with SMTP id m30mr22255856otm.145.1622554356142;
+        Tue, 01 Jun 2021 06:32:36 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id f2sm3694297otp.77.2021.06.01.06.32.31
+        by smtp.gmail.com with ESMTPSA id w186sm2180506oib.58.2021.06.01.06.32.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jun 2021 06:32:32 -0700 (PDT)
-Received: (nullmailer pid 242373 invoked by uid 1000);
+        Tue, 01 Jun 2021 06:32:34 -0700 (PDT)
+Received: (nullmailer pid 242369 invoked by uid 1000);
         Tue, 01 Jun 2021 13:32:10 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>
-In-Reply-To: <20210531234735.1582031-1-olteanv@gmail.com>
-References: <20210531234735.1582031-1-olteanv@gmail.com>
-Subject: Re: [PATCH net-next] dt-bindings: net: dsa: sja1105: convert to YAML schema
+To:     Oleh Kravchenko <oleg@kaa.org.ua>
+Cc:     linux-input@vger.kernel.org,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Device Tree mailing list <devicetree@vger.kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Patchwork Bot <patchwork-bot@kernel.org>,
+        Jiri Kosina <jikos@jikos.cz>
+In-Reply-To: <20210531133243.9488-1-oleg@kaa.org.ua>
+References: <20210531133243.9488-1-oleg@kaa.org.ua>
+Subject: Re: [PATCH] input: add SparkFun Qwiic Joystick driver
 Date:   Tue, 01 Jun 2021 08:32:10 -0500
-Message-Id: <1622554330.085169.242372.nullmailer@robh.at.kernel.org>
+Message-Id: <1622554330.059878.242368.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 01 Jun 2021 02:47:35 +0300, Vladimir Oltean wrote:
-> From: Vladimir Oltean <vladimir.oltean@nxp.com>
+On Mon, 31 May 2021 16:32:43 +0300, Oleh Kravchenko wrote:
+> A simple analog joystick built on Low Power ATtiny85 Microcontroller.
+> Directional movements are measured with two 10 kΩ potentiometers
+> connected with a gimbal mechanism that separates the horizontal and
+> vertical movements. This joystick also has a select button that is actuated
+> when the joystick is pressed down.
 > 
-> The following issues exist with the device-specific sja1105,role-mac and
-> sja1105,role-phy:
+> Input events polled over the I2C bus.
 > 
-> (a) the "sja1105" is not a valid vendor prefix and should probably have
->     been "nxp", but
-> (b) as per the discussion with Florian here:
->     https://lore.kernel.org/netdev/20210201214515.cx6ivvme2tlquge2@skbuf/
->     more phy-mode values similar to "revmii" can be added which denote
->     that the port is in the role of a PHY (such as "revrmii"), making
->     the sja1105,role-phy redundant. Because there are no upstream users
->     (or any users at all, to my knowledge) of these properties, they
->     could even be removed in a future commit as far as I am concerned.
-> (c) when I force-add sja1105,role-phy to a device tree for testing, the
->     patternProperties matching does not work, it results in the following
->     error:
+> Product page:
+> https://www.sparkfun.com/products/15168
+> Firmware and hardware sources:
+> https://github.com/sparkfun/Qwiic_Joystick
 > 
-> ethernet-switch@2: ethernet-ports:port@1: 'sja1105,role-phy' does not match any of the regexes: 'pinctrl-[0-9]+'
->         From schema: Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
+> Tested on RPi4B and O4-iMX-NANO boards.
 > 
-> But what's even more interesting is that if I remove the
-> "additionalProperties: true" that dsa.yaml has, I get even more
-> validation errors coming from patternProperties not matching either,
-> from spi-controller.yaml:
-> 
-> ethernet-switch@2: 'compatible', 'mdio', 'reg', 'spi-cpol', 'spi-max-frequency' do not match any of the regexes: '^(ethernet-)?ports$', 'pinctrl-[0-9]+'
-> 
-> So... it is probably broken. Rob Herring says here:
-> https://lore.kernel.org/linux-spi/20210324181037.GB3320002@robh.at.kernel.org/
-> 
->   I'm aware of the issue, but I don't have a solution for this situation.
->   It's a problem anywhere we have a parent or bus binding defining
->   properties for child nodes. For now, I'd just avoid it in the examples
->   and we'll figure out how to deal with actual dts files later.
-> 
-> So that's what I did.
-> 
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> Cc: Benjamin Tissoires <benjamin.tissoires@redhat.com>
+> Cc: Device Tree mailing list <devicetree@vger.kernel.org>
+> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Cc: Jiri Kosina <jikos@jikos.cz>
+> Cc: Patchwork Bot <patchwork-bot@kernel.org>
+> Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
 > ---
->  .../bindings/net/dsa/nxp,sja1105.yaml         | 128 ++++++++++++++
->  .../devicetree/bindings/net/dsa/sja1105.txt   | 156 ------------------
->  2 files changed, 128 insertions(+), 156 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/dsa/sja1105.txt
+>  .../bindings/input/qwiic-joystick.yaml        |  31 ++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  drivers/input/joystick/Kconfig                |   9 +
+>  drivers/input/joystick/Makefile               |   1 +
+>  drivers/input/joystick/qwiic-joystick.c       | 169 ++++++++++++++++++
+>  5 files changed, 212 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/qwiic-joystick.yaml
+>  create mode 100644 drivers/input/joystick/qwiic-joystick.c
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml:65:17: [warning] wrong indentation: expected 14 but found 16 (indentation)
 
 dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/input/qwiic-joystick.example.dts:21.13-26: Warning (reg_format): /example-0/qwiic@20:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/input/qwiic-joystick.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/input/qwiic-joystick.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/input/qwiic-joystick.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/input/qwiic-joystick.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/input/qwiic-joystick.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/qwiic-joystick.example.dt.yaml: example-0: qwiic@20:reg:0: [32] is too short
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/qwiic-joystick.example.dt.yaml: qwiic@20: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/qwiic-joystick.yaml
 
-See https://patchwork.ozlabs.org/patch/1485820
+See https://patchwork.ozlabs.org/patch/1485677
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
