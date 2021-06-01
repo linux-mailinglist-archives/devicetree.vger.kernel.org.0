@@ -2,186 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7745639706B
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 11:31:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BF2F39709E
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 11:51:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233695AbhFAJcw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 05:32:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42920 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233645AbhFAJct (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 05:32:49 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00928C06174A
-        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 02:31:07 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id g17so13456348wrs.13
-        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 02:31:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=Xy0pHRz/H5DQCU4aVDpAJMAKUR91gzlLVZzpcWsQ6cY=;
-        b=JCXgsGegyJHQzuLtRYRfDskHv9GQ9OJlAAZCwJ3LOjCDNK9qZ4yPlGkDlaWJig/jkt
-         dpZz17Afx3Z8IXWT68mkGgnwSjG7KT+QuaZNsbqIF6qouChWVRLP9v2rEOMaVh1XeL4k
-         Pn5mQu0YKlKbdWPM5/wESeQ8vx0YBn8odObn1YwZ4a9Qf629qvHxGXZHQNbs7GrXxkDo
-         c7yl1/35eBut26F1aqylJa76rRHDLIbArkaKvkqUfRVcrZmFi7OQAgo/HQpF/WYznT/s
-         ho6mSuzdBY7y//sloeZWv/lh+tNIHYOFN8Ntz4B9cvaVvG/RsGTQVUS8li0ToejpPbFT
-         bm4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Xy0pHRz/H5DQCU4aVDpAJMAKUR91gzlLVZzpcWsQ6cY=;
-        b=ualCi39ipwe/pndqcYJjNerAVP9oXLDjDj8k9fheG7b4aSpUhN0XDC3Y/d1TBso+Hq
-         IfT6fzJ/lytNvqjXAF8BgL04a4EcI75J3AAzarNeHAK59tr+hulVCKfwPE5SVWJj77Ql
-         ++VV8BonPkqKJ+SQdTkizBAUVEMAFtDd1HrduafzkRaycYMP+V4s6X90oa2oEFrX4Vf9
-         rBUNgswRIjP8gsc37BO8OcBTz0NFfiNc7pZCns5jE+0TGYZmPC/jAHCWM4sNgKvRHDdO
-         Dxwr5t6M37BiKZ+t2qcrd8wMPAG/+cd2+y2kPeYd9Y9ShfqP5ayMPyq2WZSm7c1ndDU3
-         vS/g==
-X-Gm-Message-State: AOAM532OMNIBJpSd6fSLSfqBxx/dsnQ8lEzQjRVkMZI2pLA3z04Bqt3S
-        111kewPr8WbayMfa+5oB7or88A==
-X-Google-Smtp-Source: ABdhPJw8a56Q35nun5NuJAeta49zazwWkcSr5pZTWi4cCxmdgtkN+yOPOHLYVA4Jfqa1G/9/tKjK1Q==
-X-Received: by 2002:a5d:6952:: with SMTP id r18mr16072149wrw.392.1622539866634;
-        Tue, 01 Jun 2021 02:31:06 -0700 (PDT)
-Received: from dell ([91.110.221.249])
-        by smtp.gmail.com with ESMTPSA id m11sm16439006wmq.33.2021.06.01.02.31.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jun 2021 02:31:06 -0700 (PDT)
-Date:   Tue, 1 Jun 2021 10:31:04 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     Rob Herring <robh@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
-        Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>
-Subject: Re: [PATCH v2 3/4] dt-bindings: mfd: Add Delta TN48M CPLD drivers
- bindings
-Message-ID: <20210601093104.GE543307@dell>
-References: <20210524120539.3267145-1-robert.marko@sartura.hr>
- <20210524120539.3267145-3-robert.marko@sartura.hr>
- <20210524230940.GA1350504@robh.at.kernel.org>
- <20210525074649.GC4005783@dell>
- <CA+HBbNFxCKbitVctbUisuZXJWxaZp0cswNNNTgD0UxQZ1smJbg@mail.gmail.com>
- <20210526075255.GG4005783@dell>
- <CA+HBbNGSH9AvRo0Hwa5pWea94u0LwJt=Kj7gWjSAV9fS5VFr0A@mail.gmail.com>
- <20210601081933.GU543307@dell>
- <20210601082226.GV543307@dell>
- <CA+HBbNEHgUxE-F4iiAbCyt3ffypUJf2nePUsOmCjpFoJNkpCJw@mail.gmail.com>
+        id S231295AbhFAJxj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 05:53:39 -0400
+Received: from elvis.franken.de ([193.175.24.41]:59998 "EHLO elvis.franken.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230282AbhFAJxh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Jun 2021 05:53:37 -0400
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1lo13y-0001KW-04; Tue, 01 Jun 2021 11:51:54 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id 53F9AC1B8C; Tue,  1 Jun 2021 11:49:23 +0200 (CEST)
+Date:   Tue, 1 Jun 2021 11:49:23 +0200
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        =?utf-8?B?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, list@opendingux.net
+Subject: Re: [PATCH 0/8] Misc Ingenic patches
+Message-ID: <20210601094923.GE6961@alpha.franken.de>
+References: <20210530171802.23649-1-paul@crapouillou.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+HBbNEHgUxE-F4iiAbCyt3ffypUJf2nePUsOmCjpFoJNkpCJw@mail.gmail.com>
+In-Reply-To: <20210530171802.23649-1-paul@crapouillou.net>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 01 Jun 2021, Robert Marko wrote:
+On Sun, May 30, 2021 at 06:17:54PM +0100, Paul Cercueil wrote:
+> Hi Thomas,
+> 
+> Here is a set of misc patches that don't really have any relation
+> between themselves. I just thought you'd prefer one patchset than eight
+> individual patches :)
 
-> On Tue, Jun 1, 2021 at 10:22 AM Lee Jones <lee.jones@linaro.org> wrote:
-> >
-> > On Tue, 01 Jun 2021, Lee Jones wrote:
-> >
-> > > On Mon, 31 May 2021, Robert Marko wrote:
-> > >
-> > > > On Wed, May 26, 2021 at 9:52 AM Lee Jones <lee.jones@linaro.org> wrote:
-> > > > >
-> > > > > On Tue, 25 May 2021, Robert Marko wrote:
-> > > > >
-> > > > > > On Tue, May 25, 2021 at 9:46 AM Lee Jones <lee.jones@linaro.org> wrote:
-> > > > > > >
-> > > > > > > On Mon, 24 May 2021, Rob Herring wrote:
-> > > > > > >
-> > > > > > > > On Mon, May 24, 2021 at 02:05:38PM +0200, Robert Marko wrote:
-> > > > > > > > > Add binding documents for the Delta TN48M CPLD drivers.
-> > > > > > > > >
-> > > > > > > > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > > > > > > > > ---
-> > > > > > > > > Changes in v2:
-> > > > > > > > > * Implement MFD as a simple I2C MFD
-> > > > > > > > > * Add GPIO bindings as separate
-> > > > > > > >
-> > > > > > > > I don't understand why this changed. This doesn't look like an MFD to
-> > > > > > > > me. Make your binding complete if there are missing functions.
-> > > > > > > > Otherwise, stick with what I already ok'ed.
-> > > > > > >
-> > > > > > > Right.  What else, besides GPIO, does this do?
-> > > > > >
-> > > > > > It currently does not do anything else as hwmon driver was essentially
-> > > > > > NACK-ed for not exposing standard attributes.
-> > > > >
-> > > > > Once this provides more than GPIO capabilities i.e. becomes a proper
-> > > > > Multi-Function Device, then it can use the MFD framework.  Until then,
-> > > > > it's a GPIO device I'm afraid.
-> > > > >
-> > > > > Are you going to re-author the HWMON driver to conform?
-> > > > hwmon cannot be reathored as it has no standard hwmon attributes.
-> > > >
-> > > > >
-> > > > > > The CPLD itself has PSU status-related information, bootstrap related
-> > > > > > information,
-> > > > > > various resets for the CPU-s, OOB ethernet PHY, information on the exact board
-> > > > > > model it's running etc.
-> > > > > >
-> > > > > > PSU and model-related info stuff is gonna be exposed via a misc driver
-> > > > > > in debugfs as
-> > > > > > we have user-space SW depending on that.
-> > > > > > I thought we agreed on that as v1 MFD driver was exposing those directly and
-> > > > > > not doing anything else.
-> > > > >
-> > > > > Yes, we agreed that creating an MFD driver just to expose chip
-> > > > > attributes was not an acceptable solution.
-> > > > >
-> > > > > > So I moved to use the simple I2C MFD driver, this is all modeled on the sl28cpld
-> > > > > > which currently uses the same driver and then GPIO regmap as I do.
-> > > > > >
-> > > > > > Other stuff like the resets is probably gonna get exposed later when
-> > > > > > it's required
-> > > > > > to control it directly.
-> > > > >
-> > > > > In order for this driver to tick the MFD box, it's going to need more
-> > > > > than one function.
-> > > >
-> > > > Understood, would a debug driver count or I can expose the resets via
-> > > > a reset driver
-> > > > as we have a future use for them?
-> > >
-> > > CPLDs and FPGAs are funny ones and are often difficult to support in
-> > > Linux.  Especially if they can change their behaviour.
-> > >
-> > > It's hard to make a solid suggestion as to how your device is handled
-> > > without knowing the intricacies of the device.
-> > >
-> > > Why do you require one single Regmap anyway?  Are they register banks
-> > > not neatly separated on a per-function basis?
-> >
-> > Also, if this is really just a GPIO expander, can't the GPIO driver
-> > output something to /sysfs that identifies it to userspace instead?
-> 
-> I replied to your previous reply instead of this one directly.
-> It's not just a GPIO expander, it also provides resets to all of the HW
-> and a lot of debugging information.
-> Note that other switches use the same CPLD but with more features
-> so I want to just extend these drivers and add for example hwmon.
-> 
-> It's not just about it identifying itself, it offers a lot of various
-> debug info,
-> quite literally down to what CPU has access to the serial console on the
-> front and their bootstrap pins.
-> 
-> So, I want to expose the CPLD version, code version, switch model,
-> PSU status pins and a lot more using a separate driver as they
-> don't really belong to any other subsystem than misc using debugfs.
+either way is good as long it has a common topic.
 
-drivers/soc is also an option for devices like these.
+> 
+> Paul Cercueil (8):
+>   MIPS: mm: XBurst CPU requires sync after DMA
+>   MIPS: boot: Support specifying UART port on Ingenic SoCs
+>   MIPS: cpu-probe: Fix FPU detection on Ingenic JZ4760(B)
+>   MIPS: Kconfig: ingenic: Ensure MACH_INGENIC_GENERIC selects all SoCs
+>   MIPS: ingenic: Select CPU_SUPPORTS_CPUFREQ && MIPS_EXTERNAL_TIMER
+>   MIPS: ingenic: jz4780: Fix I2C nodes to match DT doc
+>   MIPS: ingenic: gcw0: Set codec to cap-less mode for FM radio
+>   MIPS: ingenic: rs90: Add dedicated VRAM memory region
+> 
+>  arch/mips/Kconfig                      |  3 +++
+>  arch/mips/Kconfig.debug                |  8 ++++++++
+>  arch/mips/boot/compressed/uart-16550.c |  4 ++--
+>  arch/mips/boot/dts/ingenic/gcw0.dts    |  5 ++---
+>  arch/mips/boot/dts/ingenic/jz4780.dtsi | 10 +++++-----
+>  arch/mips/boot/dts/ingenic/rs90.dts    | 14 ++++++++++++++
+>  arch/mips/ingenic/Kconfig              |  2 ++
+>  arch/mips/kernel/cpu-probe.c           |  5 +++++
+>  arch/mips/mm/dma-noncoherent.c         |  1 +
+>  9 files changed, 42 insertions(+), 10 deletions(-)
+
+series applied to mips-next.
+
+Thomas.
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
