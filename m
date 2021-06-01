@@ -2,114 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FF383974A4
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 15:53:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E5383974AC
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 15:54:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234047AbhFANzK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 09:55:10 -0400
-Received: from foss.arm.com ([217.140.110.172]:50770 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233584AbhFANzK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Jun 2021 09:55:10 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D57A86D;
-        Tue,  1 Jun 2021 06:53:28 -0700 (PDT)
-Received: from bogus (unknown [10.57.72.241])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 82FFD3F719;
-        Tue,  1 Jun 2021 06:53:27 -0700 (PDT)
-Date:   Tue, 1 Jun 2021 14:53:22 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [PATCH 1/8] dt-bindings: firmware: arm,scpi: Move arm,scpi-shmem
- to json schema
-Message-ID: <20210601135322.z2ct3arrk67r3uvq@bogus>
-References: <20210526182807.548118-1-sudeep.holla@arm.com>
- <20210526182807.548118-2-sudeep.holla@arm.com>
- <20210527202554.GA1351447@robh.at.kernel.org>
- <20210531081548.jxovuqattu2fg73o@bogus>
- <20210531082002.spu73u7n35n53lqp@bogus>
- <CAL_Jsq+BGrU5Rb_fso3FK4T_1K+3zFbt_4m5RYAZwLNCGgYn-w@mail.gmail.com>
+        id S233871AbhFAN4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 09:56:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46282 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233925AbhFAN4S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 09:56:18 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 081F3C06174A;
+        Tue,  1 Jun 2021 06:54:37 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id CDA0722236;
+        Tue,  1 Jun 2021 15:54:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1622555675;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=WFQPc2+NY855rKmtTw8XW0w4h5Sgxv5gRtG9Cm6dT9k=;
+        b=JVLi7DEWam3f68+AeOqvnbfe4zEL7btAGBCDR1v1gLUVv5DhZNZlDPjdxeG5gexvujlVMN
+        lxZFqKG3hcLsiaAFtlvQU18gP+nVvHuMxxJMgBo+zhuF4J86Qk0zE0EoGTu/zNax9rQjEA
+        uqcqCrfTTP5o7embG8cew8aBV9DbTz4=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+BGrU5Rb_fso3FK4T_1K+3zFbt_4m5RYAZwLNCGgYn-w@mail.gmail.com>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 01 Jun 2021 15:54:34 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Robert Marko <robert.marko@sartura.hr>,
+        Rob Herring <robh@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        bgolaszewski@baylibre.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
+        Paul Menzel <pmenzel@molgen.mpg.de>,
+        Donald Buczek <buczek@molgen.mpg.de>
+Subject: Re: [PATCH v2 3/4] dt-bindings: mfd: Add Delta TN48M CPLD drivers
+ bindings
+In-Reply-To: <20210601081933.GU543307@dell>
+References: <20210524120539.3267145-1-robert.marko@sartura.hr>
+ <20210524120539.3267145-3-robert.marko@sartura.hr>
+ <20210524230940.GA1350504@robh.at.kernel.org>
+ <20210525074649.GC4005783@dell>
+ <CA+HBbNFxCKbitVctbUisuZXJWxaZp0cswNNNTgD0UxQZ1smJbg@mail.gmail.com>
+ <20210526075255.GG4005783@dell>
+ <CA+HBbNGSH9AvRo0Hwa5pWea94u0LwJt=Kj7gWjSAV9fS5VFr0A@mail.gmail.com>
+ <20210601081933.GU543307@dell>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <50ced58164999f51a8c8b9c8dc01468e@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 01, 2021 at 08:37:57AM -0500, Rob Herring wrote:
-> On Mon, May 31, 2021 at 3:20 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
-> >
-> > On Mon, May 31, 2021 at 09:15:48AM +0100, Sudeep Holla wrote:
-> > > On Thu, May 27, 2021 at 03:25:54PM -0500, Rob Herring wrote:
-> > > > On Wed, May 26, 2021 at 07:28:00PM +0100, Sudeep Holla wrote:
-> > > > > Move the SRAM and shared memory binding for SCPI into the existing
-> > > > > Generic on-chip SRAM. We just need to update the compatible list and
-> > > > > there-by remove the whole old text format binding for the same.
-> > > > >
-> > > > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > > > Cc: Kevin Hilman <khilman@baylibre.com>
-> > > > > Cc: Neil Armstrong <narmstrong@baylibre.com>
-> > > > > Cc: Jerome Brunet <jbrunet@baylibre.com>
-> > > > > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> > > > > ---
-> > > > >  .../devicetree/bindings/arm/arm,scpi.txt          | 15 ---------------
-> > > > >  Documentation/devicetree/bindings/sram/sram.yaml  |  1 +
-> > > > >  2 files changed, 1 insertion(+), 15 deletions(-)
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/arm/arm,scpi.txt b/Documentation/devicetree/bindings/arm/arm,scpi.txt
-> > > > > index bcd6c3ec471e..bcb8b3d61e68 100644
-> > > > > --- a/Documentation/devicetree/bindings/arm/arm,scpi.txt
-> > > > > +++ b/Documentation/devicetree/bindings/arm/arm,scpi.txt
-> > > > > @@ -56,21 +56,6 @@ Sub-nodes
-> > > > >   node. It can be non linear and hence provide the mapping of identifiers
-> > > > >   into the clock-output-names array.
-> > > > >
-> > > > > -SRAM and Shared Memory for SCPI
-> > > > > --------------------------------
-> > > > > -
-> > > > > -A small area of SRAM is reserved for SCPI communication between application
-> > > > > -processors and SCP.
-> > > > > -
-> > > > > -The properties should follow the generic mmio-sram description found in [3]
-> > > > > -
-> > > > > -Each sub-node represents the reserved area for SCPI.
-> > > > > -
-> > > > > -Required sub-node properties:
-> > > > > -- reg : The base offset and size of the reserved area with the SRAM
-> > > > > -- compatible : should be "arm,scp-shmem" for Non-secure SRAM based
-> > > >
-> > > > > +            - arm,scpi-shmem
-> > > >
-> > > > Which is correct? There's not a single other occurrance in the kernel
-> > > > tree of either.
-> > > >
-> > >
-> > > Right I was thinking removing it but wasn't sure if any downstream DTS
-> > > have used this as it has been in the binding for a while now.
-> > >
-> >
-> > Sent it too early before I completed, we don't have explicit check for
-> > these compatible in the code. We just use phandles directly.
-> 
-> But which one is correct? "arm,scp-shmem" or "arm,scpi-shmem"
->
+Am 2021-06-01 10:19, schrieb Lee Jones:
+> Why do you require one single Regmap anyway?  Are they register banks
+> not neatly separated on a per-function basis?
 
-Ah sorry I misread earlier. Indeed it should be "arm,scp-shmem", I messed
-up while converting.
+AFAIK you can only have one I2C device driver per device, hence the
+simple-mfd-i2c.
 
-> I can fix up when applying.
->
-
-I am posting v2 once I fix the scmi regulators. I also have couple of
-other fixes you have suggested.
-
---
-Regards,
-Sudeep
+-michael
