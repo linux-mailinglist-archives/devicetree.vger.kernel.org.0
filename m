@@ -2,82 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 330383973D1
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 15:07:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 513FA397440
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 15:32:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233911AbhFANJS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 09:09:18 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:59084 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233797AbhFANJP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 09:09:15 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 151D7RWK107099;
-        Tue, 1 Jun 2021 08:07:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1622552847;
-        bh=G1GBFlawSCs8NhhQOygknnnaSWdi834GdYWCh/fUFD4=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=KPcdcLw9LeS4KeM51DKmZDycG14l/lmAYWASB28GNH7sTDNM5yHWU/ykEluP3mi0U
-         p5GMK+4+Z2alwMXzyYaLUiytO87GugEUVOtFbAmONV1HYWei2vgG75diOaaivmcajq
-         zyOA6lCpu6exsC3kw6WRK6hnxt9YH/HQRUC14sC0=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 151D7QvT129632
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 1 Jun 2021 08:07:26 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 1 Jun
- 2021 08:07:26 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 1 Jun 2021 08:07:27 -0500
-Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 151D7Ouu124213;
-        Tue, 1 Jun 2021 08:07:24 -0500
-Subject: Re: [PATCH 3/3] ARM: dts: am33xx: Drop interrupt property from ecap
- nodes
-To:     Lokesh Vutla <lokeshvutla@ti.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Sekhar Nori <nsekhar@ti.com>, Vignesh R <vigneshr@ti.com>,
-        Nishanth Menon <nm@ti.com>,
-        Linux OMAP Mailing List <linux-omap@vger.kernel.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
-References: <20210601092457.5039-1-lokeshvutla@ti.com>
- <20210601092457.5039-4-lokeshvutla@ti.com>
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-Message-ID: <9ed2579f-593a-a9db-dd87-967a4f352fcf@ti.com>
-Date:   Tue, 1 Jun 2021 16:07:23 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20210601092457.5039-4-lokeshvutla@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S233835AbhFANdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 09:33:55 -0400
+Received: from mail-oi1-f174.google.com ([209.85.167.174]:38896 "EHLO
+        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233925AbhFANdy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 09:33:54 -0400
+Received: by mail-oi1-f174.google.com with SMTP id z3so15471751oib.5;
+        Tue, 01 Jun 2021 06:32:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=QvmcOZsZvJ8rjffzPYq9FV7xq/HrOh7WWu/CoCNAFEc=;
+        b=QUhSHGpoH1wv/n4BSVKywcS90q56+ZOw9AFMYK2K9Oa2cFZ8NgeNTZBBL7SmYL3TDp
+         gEneKQZshrzV40sORJZG1WPPht5VY3/UjiIdeWS9E1xBUE4mNeEjPIcOGaFojOCA4X0Z
+         A92fDdBqD6nVAho/YLoYk0ospvGN2FEuoatfIDMJ2Zs5ZHXKhdtSVfTptfp1Kx9qst6z
+         4MMs0zwV8UGXr9Cpb0c+x/OrQPH6U2N7Htt60tRZm0buj8JUpmTprxsd5sDi4OddjKQ3
+         5Lh1dkW9YcpW/9FKrukhZ1sOO2nWA1Yh2LFpXf6tcng3JHLptxoOapTpffT79lL01R9W
+         JlZQ==
+X-Gm-Message-State: AOAM530Zuk7SYdupQ+0lOhgpB/SAAP7q1n5uOXk/8nKMyVOGPIYqyhGH
+        FkSUJ+0459FynweR9HDqs1piwTJE9g==
+X-Google-Smtp-Source: ABdhPJwfynP90LEUrs5Q0HG4G+9DDHScR7rXZWIzk9ciyCyv7nGTgPV5GxVUjVOJLz7PqjF8pyqGpA==
+X-Received: by 2002:aca:1916:: with SMTP id l22mr18027304oii.48.1622554331713;
+        Tue, 01 Jun 2021 06:32:11 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 129sm3421860ooq.34.2021.06.01.06.32.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Jun 2021 06:32:11 -0700 (PDT)
+Received: (nullmailer pid 242354 invoked by uid 1000);
+        Tue, 01 Jun 2021 13:32:10 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
+Cc:     lars@metafoo.de, michal.simek@xilinx.com, jic23@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        pmeerw@pmeerw.net, linux-iio@vger.kernel.org, git-dev@xilinx.com
+In-Reply-To: <20210528172959.15663-4-anand.ashok.dumbre@xilinx.com>
+References: <20210528172959.15663-1-anand.ashok.dumbre@xilinx.com> <20210528172959.15663-4-anand.ashok.dumbre@xilinx.com>
+Subject: Re: [PATCH v5 3/4] dt-bindings: iio: adc: Add Xilinx AMS binding documentation
+Date:   Tue, 01 Jun 2021 08:32:10 -0500
+Message-Id: <1622554330.004442.242353.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 01/06/2021 12:24, Lokesh Vutla wrote:
-> Interrupts were never supported by ecap driver and the bindings
-> were never documented.Therefore drop the entries in preparation
-> to moving bindings to YAML schema.
+On Fri, 28 May 2021 18:29:58 +0100, Anand Ashok Dumbre wrote:
+> Xilinx AMS have several ADC channels that can be used for measurement of
+> different voltages and temperatures. Document the same in the bindings.
 > 
-> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
+> Signed-off-by: Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
 > ---
->   arch/arm/boot/dts/am33xx-l4.dtsi | 6 ------
->   1 file changed, 6 deletions(-)
+>  .../bindings/iio/adc/xlnx,zynqmp-ams.yaml     | 265 ++++++++++++++++++
+>  1 file changed, 265 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml
 > 
 
-Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
--- 
-Best regards,
-grygorii
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml:129:11: [warning] wrong indentation: expected 8 but found 10 (indentation)
+./Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml:182:14: [warning] wrong indentation: expected 12 but found 13 (indentation)
+
+dtschema/dtc warnings/errors:
+
+See https://patchwork.ozlabs.org/patch/1485294
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
