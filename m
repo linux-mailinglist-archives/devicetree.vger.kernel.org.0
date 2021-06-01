@@ -2,107 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 403713973AE
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 14:57:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F0BE3973C9
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 15:05:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233939AbhFAM7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 08:59:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33136 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233932AbhFAM66 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 08:58:58 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7DB0C061760
-        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 05:57:15 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id w33so21621119lfu.7
-        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 05:57:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=UyP+0EPFTBrks12sY/2I56eEacli51Tu11/I2xxc9HE=;
-        b=E1hZg5c1Lk3fXS8yK88pjfcdHCfVaYPKA5JmBmFk/p3wIQf6DYTsz8UGO4CJtjyZd/
-         Jfgdq9nuTz9KSdqFdY8t4e9G170zSdaq8g6ZzqN8qFGr9Vywn4RVcmv6lCyMS9UlfDoJ
-         MdNUmnE1PTxOQ/lRADk3j2rnG61OcEOF5Us06A1Y5oXt2tIX7H+i+XkL6EPVnQH7aUy5
-         yQeMFeuH7f6kOM/A+IuwWsArF9G7LehonvuZvXxiBvIfgYbM8pgIICxqHU6/I8MkFGty
-         9HJHaW+YFjfbV9S5Yw3TERPSrlkxn9Gxeb9nR7vd4sqjxlyGeuaBKh+ELfyrMt+VDRU2
-         EcDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=UyP+0EPFTBrks12sY/2I56eEacli51Tu11/I2xxc9HE=;
-        b=AQgXJENdy2vxsI7A6sZtwkP64nr90FYxT/JsVNnP244o6FN/cuFVSE0JEOpF/LdIVd
-         TvKhSFY0GYDmXRwIicA1SFk7hf0ZlC4DgrANdE4M5NiC1sNGyA56eFLjzPL/bvlKenB5
-         jeDBKWG7dKwx1b7GzOe6Md5lTst1hVtWtIR6osMRukiRq8YsvYuttzXH5FSlpM2TIfgD
-         T8cF2haBUJWd3SQx27ElLv8hzqdQQNw/3KZCgZYgVRHqHTOcjPnBZNUeLLV93axZgW5o
-         J4xj1ldgNpL/Nvtw8WydyJkrCkr9/hajifuJm5+NyhtjmD18wJM+c373RAJrbQACQhIQ
-         5UxQ==
-X-Gm-Message-State: AOAM530v3+AJiTQF70XaUVKzT03KQrBZws764J/brKtuDfL5+P+3v9tc
-        j2eRUnoHiFsVHvzZSMJScoGpXA==
-X-Google-Smtp-Source: ABdhPJzaNWdjj0O1nd9Z8ZpajRkyJ1stnAonHJ1d1UdiqD06szd+RCWXnhp5aaPoy+ERAI5u7g29qg==
-X-Received: by 2002:a19:c511:: with SMTP id w17mr18919091lfe.113.1622552234168;
-        Tue, 01 Jun 2021 05:57:14 -0700 (PDT)
-Received: from localhost (h-62-63-236-217.A463.priv.bahnhof.se. [62.63.236.217])
-        by smtp.gmail.com with ESMTPSA id e8sm1271423ljj.28.2021.06.01.05.57.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jun 2021 05:57:13 -0700 (PDT)
-Date:   Tue, 1 Jun 2021 14:57:12 +0200
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund@ragnatech.se>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: irqchip: renesas-irqc: Add R-Car M3-W+
- support
-Message-ID: <YLYuqG/Z9V/AAonF@oden.dyn.berto.se>
-References: <55d2c30cb14b2e10193a7fd4aa7670c70f360037.1622546880.git.geert+renesas@glider.be>
+        id S233944AbhFANGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 09:06:49 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:58482 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233905AbhFANGs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 09:06:48 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 151D4x0Z106173;
+        Tue, 1 Jun 2021 08:04:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1622552699;
+        bh=naX3kstdCVTukTs526qUtm1q78sZy0YnorByIZb+vlo=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=YE4glL+XSB393NoUQKgZkWYIfnA0HjKPoj8IFa2SPx46HBav5Z2tP93b8urvwSnyh
+         hpHFhrBFGIgy7vB3GZFN/POjZ6alUe20HYLAuihqEQHSQ8dEuH3vf30wlTvLVaC3pU
+         8fuiFRxPLzTmUqHUSmsjkoGGBbpriWjA6uujTh10=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 151D4xfB125250
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 1 Jun 2021 08:04:59 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 1 Jun
+ 2021 08:04:59 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 1 Jun 2021 08:04:59 -0500
+Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 151D4u4t118350;
+        Tue, 1 Jun 2021 08:04:56 -0500
+Subject: Re: [PATCH v3] arm: dts: ti: drop usage of redundant compatible
+To:     Lokesh Vutla <lokeshvutla@ti.com>, Rob Herring <robh+dt@kernel.org>
+CC:     <tony@atomide.com>, Sekhar Nori <nsekhar@ti.com>,
+        Vignesh R <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
+        <linux-pwm@vger.kernel.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linux OMAP Mailing List <linux-omap@vger.kernel.org>
+References: <20210601054029.1839-1-lokeshvutla@ti.com>
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+Message-ID: <b6b1277c-916f-49b9-cc63-1235a0c35b02@ti.com>
+Date:   Tue, 1 Jun 2021 16:04:49 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <55d2c30cb14b2e10193a7fd4aa7670c70f360037.1622546880.git.geert+renesas@glider.be>
+In-Reply-To: <20210601054029.1839-1-lokeshvutla@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
 
-Thanks for your work.
 
-On 2021-06-01 13:31:55 +0200, Geert Uytterhoeven wrote:
-> Document support for the Interrupt Controller for External Devices
-> (INT-EC) in the Renesas R-Car M3-W+ (r8a77961) SoC.
+On 01/06/2021 08:40, Lokesh Vutla wrote:
+> Commit 229110c1aa691 ("ARM: dts: am437x/am33xx/da850: Add new ECAP and
+> EPWM bindings") added ti,am3352-ehrpwm compatible which is similar to
+> ti,am33xx-ehrpwm but without out t,hwmod properties. But with commit
+> 58bfbea5b1c68 ("ARM: dts: am437x/am33xx: Remove hwmod entries for ECAP
+> and EPWM nodes") dropped support for all ti,hwmod for ehrpwm, but
+> missed deprecating ti,am33xx-ehrpwm compatible. So drop ti,am33xx-ehrpwm
+> from DT as it is no longer needed.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-
+> ti-ehrpwn driver still support ti,am33xx-ehrpwm in order to maintain
+> backward compatibility.
+> 
+> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
 > ---
-> No Linux driver update needed.
+> Changes since v2:
+> - Split from ehrpwm yaml conversion series:
+>    https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=489981
+> - Dropped documentation update in this patch.
 > 
->  .../devicetree/bindings/interrupt-controller/renesas,irqc.yaml   | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml b/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
-> index b67b8cbd33fcb1a0..abb22db3bb28be29 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
-> @@ -29,6 +29,7 @@ properties:
->            - renesas,intc-ex-r8a774c0    # RZ/G2E
->            - renesas,intc-ex-r8a7795     # R-Car H3
->            - renesas,intc-ex-r8a7796     # R-Car M3-W
-> +          - renesas,intc-ex-r8a77961    # R-Car M3-W+
->            - renesas,intc-ex-r8a77965    # R-Car M3-N
->            - renesas,intc-ex-r8a77970    # R-Car V3M
->            - renesas,intc-ex-r8a77980    # R-Car V3H
-> -- 
-> 2.25.1
-> 
+>   arch/arm/boot/dts/am33xx-l4.dtsi |  9 +++------
+>   arch/arm/boot/dts/am437x-l4.dtsi | 18 ++++++------------
+>   arch/arm/boot/dts/da850.dtsi     |  6 ++----
+>   3 files changed, 11 insertions(+), 22 deletions(-)
+Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
 
 -- 
-Regards,
-Niklas Söderlund
+Best regards,
+grygorii
