@@ -2,59 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E4D7397004
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 11:10:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB0F739700F
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 11:12:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233625AbhFAJMW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 05:12:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38228 "EHLO
+        id S233516AbhFAJN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 05:13:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233539AbhFAJMN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 05:12:13 -0400
-Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACEB2C061574
-        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 02:10:30 -0700 (PDT)
-Received: by mail-il1-x131.google.com with SMTP id r6so4838700ilj.1
-        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 02:10:30 -0700 (PDT)
+        with ESMTP id S233160AbhFAJNz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 05:13:55 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85204C06174A
+        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 02:12:11 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id z17so13469866wrq.7
+        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 02:12:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=cm1zKdzH5luYSV4zfueSOrqr8qzCXCW4+Xq8BpmqA7Q=;
-        b=G1EOnFwzlUcOj+mQ2hVnmDrnG4jV6IaWiG/hy1cVgvwY8heUh+zr4yQb1GnsUe04e3
-         Yd8Es1UscpvrVh9kjJNxCyFcjYubC1q36c4AyxYNOSfMSDhBQXl2hAf+lfLWueLJagxP
-         Z+sxRrWtwqeXmuPc/d2weCwfIZ3MMzZ08Jva6zMZQFkMPW616M75TwdW4U43+z+S6AY5
-         rcMlBzjafz6zHA1YfpJoF3zfEuYUAxrG4sEbPF5xCjSwNO2v/PewrNSXfSj2pzBiCVi7
-         VBPyPGpNCOmwG3O4cw2BbXl/aEVC1M1VPuraUdmXOK+RTW9RmGcpCI505QKihdxCje60
-         k7LA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=hswWG3k76XjsOAY7hr4YP59a7cKj8iPzOH2k8wJsCIA=;
+        b=E3SCPq2jLbOJ+6oYBMsbGdcBNMoG/P7rv8+TpusKtqDwT2/yE/U3nEsPOoFUZKC61R
+         MwtvitPLMnlfT3+pcPLk4+MmxSvBFOnzx/VUKOUpoHT9dIZYOIcNQJw42huYXiq9MzZi
+         gAw+7NcYpepe67W/CYjTK99Bpa1EeItub4RyJp0X4Ykbez7KFn1ovfIb6Z1ekwGs90A+
+         +8QAVRnPKq10VU+jluRzHzNsyfZ3VHSJCDgMBVC9Q69omw+ywPSTHrO2AfICM4JIlRrV
+         R2JycltvZMp17/a144Kiq7K7Yutk/Krni6+dRTJEQq28XIwH4Ezm9paFSOj2GanWdRdw
+         EZ+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=cm1zKdzH5luYSV4zfueSOrqr8qzCXCW4+Xq8BpmqA7Q=;
-        b=DpMVeEgHwyt+rC7ga0d7rh/2z6DMYBS839bjKYYyy+EwsadV2ktVLd8uHCkFCIN0wo
-         Lkeq/WDoODIsiGZLlRPPUCoN6NN0MHQQ1fKSmPVYXXVHZJyvy/iteTpYd+AQxOM4Pbpg
-         GHC2vEDrHRz27kk4DVtOlmRfWl/bTs6qT8UPMYSU1AsGmDnhwkHFOU9f5YvsaiLDTMgT
-         8h8bIVlLTKexHe7H5c021aSaHYKLN40wXV22+Bet/5RblUDVyunpf8/qSBd9HNM8PWhD
-         qOMP2RZgIe3is52wGTtcc7rz6/6/7z/bPqkXTPhCWbgQ0AE/2eEU9wAumWoiScRMlLRl
-         xj+Q==
-X-Gm-Message-State: AOAM530J48wd1QRncTTTEnr/ZNhq+Ytff2p0aHyDlYM2LNqBNZNICTzr
-        Ymb8WJbQ9geSw3UodM0eF3TzL3C5fbjdlbTCQb26bQ==
-X-Google-Smtp-Source: ABdhPJx4Nd1+PVFLw0K7RiEnDfXvuR5hb0Eor8DBxwJ9aKS6tRpKO5WzBcuIXJE63Zw4MQi4lvk0qhEH/abkgwD+WBY=
-X-Received: by 2002:a05:6e02:1393:: with SMTP id d19mr20354035ilo.90.1622538630053;
- Tue, 01 Jun 2021 02:10:30 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210524120539.3267145-1-robert.marko@sartura.hr>
- <20210524120539.3267145-3-robert.marko@sartura.hr> <20210524230940.GA1350504@robh.at.kernel.org>
- <20210525074649.GC4005783@dell> <CA+HBbNFxCKbitVctbUisuZXJWxaZp0cswNNNTgD0UxQZ1smJbg@mail.gmail.com>
- <20210526075255.GG4005783@dell> <CA+HBbNGSH9AvRo0Hwa5pWea94u0LwJt=Kj7gWjSAV9fS5VFr0A@mail.gmail.com>
- <20210601081933.GU543307@dell> <20210601082226.GV543307@dell>
-In-Reply-To: <20210601082226.GV543307@dell>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Tue, 1 Jun 2021 11:10:19 +0200
-Message-ID: <CA+HBbNEHgUxE-F4iiAbCyt3ffypUJf2nePUsOmCjpFoJNkpCJw@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: mfd: Add Delta TN48M CPLD drivers bindings
-To:     Lee Jones <lee.jones@linaro.org>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=hswWG3k76XjsOAY7hr4YP59a7cKj8iPzOH2k8wJsCIA=;
+        b=IUHpieaEceSZIG+AtfHTgKM32HlnHeDc56FBVJrrnYdV5rHSeg4Bb9g++e11s5wdpb
+         eSWZQ7E0bJMTygshTxYZIPOt2/JxJwQq6XaEq+FWKAgoHUEU9FpBFRpuy5DNBN/qiHVr
+         aZFX2n+kHbUxuyXq4/jj7TAdxRQ64O71zYWTdTydSPuNIpoWBaoqyg9exn3GcF2HIRAs
+         7md8dxGgdXJMq06QktBeXdX8m+g6bJblVwDClwu2awmVDCW/YC10H3Pxf7vjzEODfPLI
+         FcIncbcghRV/fzUmzpHW8uhVauubQ5emEf0Z0YDday9W/9wawWDgPqUsYuh8ZB8sGeaS
+         kFuw==
+X-Gm-Message-State: AOAM530zFAGb4AZvBtLqwRMbRVopzCz6x9/avsLUhreWAFPdlJqXIS16
+        59WtZn/2upvSUTeLp+cp8UCe2A==
+X-Google-Smtp-Source: ABdhPJxGoTYw8ikTT5yUvmARYAs7FCvUQKUJOk95afL5fffk1+XwewafibHRCb9uaKs0zntRxXnRYg==
+X-Received: by 2002:adf:dd8a:: with SMTP id x10mr7238454wrl.225.1622538730170;
+        Tue, 01 Jun 2021 02:12:10 -0700 (PDT)
+Received: from dell ([91.110.221.249])
+        by smtp.gmail.com with ESMTPSA id y22sm2310852wma.36.2021.06.01.02.12.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Jun 2021 02:12:09 -0700 (PDT)
+Date:   Tue, 1 Jun 2021 10:12:08 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Robert Marko <robert.marko@sartura.hr>
 Cc:     Rob Herring <robh@kernel.org>,
         Linus Walleij <linus.walleij@linaro.org>,
         Bartosz Golaszewski <bgolaszewski@baylibre.com>,
@@ -63,25 +59,38 @@ Cc:     Rob Herring <robh@kernel.org>,
         Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
         Paul Menzel <pmenzel@molgen.mpg.de>,
         Donald Buczek <buczek@molgen.mpg.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 3/4] dt-bindings: mfd: Add Delta TN48M CPLD drivers
+ bindings
+Message-ID: <20210601091208.GB543307@dell>
+References: <20210524120539.3267145-1-robert.marko@sartura.hr>
+ <20210524120539.3267145-3-robert.marko@sartura.hr>
+ <20210524230940.GA1350504@robh.at.kernel.org>
+ <20210525074649.GC4005783@dell>
+ <CA+HBbNFxCKbitVctbUisuZXJWxaZp0cswNNNTgD0UxQZ1smJbg@mail.gmail.com>
+ <20210526075255.GG4005783@dell>
+ <CA+HBbNGSH9AvRo0Hwa5pWea94u0LwJt=Kj7gWjSAV9fS5VFr0A@mail.gmail.com>
+ <20210601081933.GU543307@dell>
+ <CA+HBbNFW4NHpcEt7Xa+qC2HVvhuKu1O+PUo_rSE03qtSsBCehg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CA+HBbNFW4NHpcEt7Xa+qC2HVvhuKu1O+PUo_rSE03qtSsBCehg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 1, 2021 at 10:22 AM Lee Jones <lee.jones@linaro.org> wrote:
->
-> On Tue, 01 Jun 2021, Lee Jones wrote:
->
+On Tue, 01 Jun 2021, Robert Marko wrote:
+
+> On Tue, Jun 1, 2021 at 10:19 AM Lee Jones <lee.jones@linaro.org> wrote:
+> >
 > > On Mon, 31 May 2021, Robert Marko wrote:
 > >
-> > > On Wed, May 26, 2021 at 9:52 AM Lee Jones <lee.jones@linaro.org> wrot=
-e:
+> > > On Wed, May 26, 2021 at 9:52 AM Lee Jones <lee.jones@linaro.org> wrote:
 > > > >
 > > > > On Tue, 25 May 2021, Robert Marko wrote:
 > > > >
-> > > > > On Tue, May 25, 2021 at 9:46 AM Lee Jones <lee.jones@linaro.org> =
-wrote:
+> > > > > On Tue, May 25, 2021 at 9:46 AM Lee Jones <lee.jones@linaro.org> wrote:
 > > > > > >
 > > > > > > On Mon, 24 May 2021, Rob Herring wrote:
 > > > > > >
@@ -94,58 +103,45 @@ wrote:
 > > > > > > > > * Implement MFD as a simple I2C MFD
 > > > > > > > > * Add GPIO bindings as separate
 > > > > > > >
-> > > > > > > I don't understand why this changed. This doesn't look like a=
-n MFD to
-> > > > > > > me. Make your binding complete if there are missing functions=
-.
+> > > > > > > I don't understand why this changed. This doesn't look like an MFD to
+> > > > > > > me. Make your binding complete if there are missing functions.
 > > > > > > > Otherwise, stick with what I already ok'ed.
 > > > > > >
 > > > > > > Right.  What else, besides GPIO, does this do?
 > > > > >
-> > > > > It currently does not do anything else as hwmon driver was essent=
-ially
+> > > > > It currently does not do anything else as hwmon driver was essentially
 > > > > > NACK-ed for not exposing standard attributes.
 > > > >
-> > > > Once this provides more than GPIO capabilities i.e. becomes a prope=
-r
-> > > > Multi-Function Device, then it can use the MFD framework.  Until th=
-en,
+> > > > Once this provides more than GPIO capabilities i.e. becomes a proper
+> > > > Multi-Function Device, then it can use the MFD framework.  Until then,
 > > > > it's a GPIO device I'm afraid.
 > > > >
 > > > > Are you going to re-author the HWMON driver to conform?
 > > > hwmon cannot be reathored as it has no standard hwmon attributes.
 > > >
 > > > >
-> > > > > The CPLD itself has PSU status-related information, bootstrap rel=
-ated
+> > > > > The CPLD itself has PSU status-related information, bootstrap related
 > > > > > information,
-> > > > > various resets for the CPU-s, OOB ethernet PHY, information on th=
-e exact board
+> > > > > various resets for the CPU-s, OOB ethernet PHY, information on the exact board
 > > > > > model it's running etc.
 > > > > >
-> > > > > PSU and model-related info stuff is gonna be exposed via a misc d=
-river
+> > > > > PSU and model-related info stuff is gonna be exposed via a misc driver
 > > > > > in debugfs as
 > > > > > we have user-space SW depending on that.
-> > > > > I thought we agreed on that as v1 MFD driver was exposing those d=
-irectly and
+> > > > > I thought we agreed on that as v1 MFD driver was exposing those directly and
 > > > > > not doing anything else.
 > > > >
 > > > > Yes, we agreed that creating an MFD driver just to expose chip
 > > > > attributes was not an acceptable solution.
 > > > >
-> > > > > So I moved to use the simple I2C MFD driver, this is all modeled =
-on the sl28cpld
-> > > > > which currently uses the same driver and then GPIO regmap as I do=
-.
+> > > > > So I moved to use the simple I2C MFD driver, this is all modeled on the sl28cpld
+> > > > > which currently uses the same driver and then GPIO regmap as I do.
 > > > > >
-> > > > > Other stuff like the resets is probably gonna get exposed later w=
-hen
+> > > > > Other stuff like the resets is probably gonna get exposed later when
 > > > > > it's required
 > > > > > to control it directly.
 > > > >
-> > > > In order for this driver to tick the MFD box, it's going to need mo=
-re
+> > > > In order for this driver to tick the MFD box, it's going to need more
 > > > > than one function.
 > > >
 > > > Understood, would a debug driver count or I can expose the resets via
@@ -157,44 +153,33 @@ re
 > >
 > > It's hard to make a solid suggestion as to how your device is handled
 > > without knowing the intricacies of the device.
+> 
+> Yeah, I understand.
+> This one is a generic CPLD used in multiple switch models, however in this
+> switch model, it has the smallest set of features.
+> Things that are usable for the kernel and userspace it provides are SFP pins,
+> resets and debug information.
+> Debug information is quite detailed actually.
+> 
+> I have added the reset driver in v3 as that is something that was gonna get
+> added later as well as it exposes resets for the ethernet PHY-s and U-boot
+> messes with the OOB PHY configuration.
+> 
 > >
 > > Why do you require one single Regmap anyway?  Are they register banks
 > > not neatly separated on a per-function basis?
->
-> Also, if this is really just a GPIO expander, can't the GPIO driver
-> output something to /sysfs that identifies it to userspace instead?
+> 
+> For GPIO and reset drivers, I could get away with each of them
+> registering a regmap
+> but the debug driver will require accessing certain registers from their space.
 
-I replied to your previous reply instead of this one directly.
-It's not just a GPIO expander, it also provides resets to all of the HW
-and a lot of debugging information.
-Note that other switches use the same CPLD but with more features
-so I want to just extend these drivers and add for example hwmon.
+> Also, I see using a single regmap that is provided by a generic driver
+> much simpler and cleaner than doing that in each of the child drivers.
 
-It's not just about it identifying itself, it offers a lot of various
-debug info,
-quite literally down to what CPU has access to the serial console on the
-front and their bootstrap pins.
+Obviously not. :)
 
-So, I want to expose the CPLD version, code version, switch model,
-PSU status pins and a lot more using a separate driver as they
-don't really belong to any other subsystem than misc using debugfs.
-
-I hope this clears things up,
-Robert
->
-> --
-> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
-> Senior Technical Lead - Developer Services
-> Linaro.org =E2=94=82 Open source software for Arm SoCs
-> Follow Linaro: Facebook | Twitter | Blog
-
-
-
---=20
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
