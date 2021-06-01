@@ -2,102 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56E793971D3
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 12:52:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D509C397223
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 13:09:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230282AbhFAKxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 06:53:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33034 "EHLO
+        id S231219AbhFALLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 07:11:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232173AbhFAKxi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 06:53:38 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21A5AC061574
-        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 03:51:57 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id q7so21089331lfr.6
-        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 03:51:57 -0700 (PDT)
+        with ESMTP id S230308AbhFALLa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 07:11:30 -0400
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FD58C061574
+        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 04:09:49 -0700 (PDT)
+Received: by mail-yb1-xb33.google.com with SMTP id y2so20494394ybq.13
+        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 04:09:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Kkk96RFhOUVeXcdtYw7VNYf9WSYu11sjtdPL/xxbKe8=;
-        b=o1ehZKIudj8IUbNQJja9Bw9E9H+E7miiapinkr/taDqFF3USQSngLdAs8ijRzdZ5V4
-         R8DlQVmJxyWLsrLsjSnekMwy/de6jXpATv4L6WrPeY0hpYbHi8PSRH6GATZbgs9j3QlQ
-         5TK1ycoaH/cgAu6KgAma2Q3jm3i0rbxMBH1ca232N7C8suTpy2V/Obr1ogILk8FMvgdz
-         9DPGRRwyNUcb8mXrXKub2kPGQ2RxKx1zZL6wQDX4+c8gLKNy4DfiNZP7IgsUtPFQxGjy
-         ppyiI9c1hoOI9oSO/zm31ropq2E1gVVhXMwoeppqq2s3IlwYf0fEv7QhfUNyXfLJ++9H
-         tfFw==
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=XXOc3lnPOnrLHfUpjTBiHdlnPYpmdbZCpUcpd3AYxmA=;
+        b=KkciIHxej/cDPv+otmcenZE6mgFcqXi+EEF2QfQheBXWG0ujdpVMshAUzuiC786xeg
+         uc/IC+qcbt282WF3NoX2/nq0zhVvz3xQstkka0KwAUjZlAMqlmpPqV2cs37VLwFEmdiY
+         gGp6Mvqw4+uatA3pb5C0CfMfIAUsBXQvn/7J8LfuvtQxn/l0lTVl+gfFq4p0afltM/4B
+         TyIlCuJMdpppZG8FnSHJSwTzsNV3ze3OsQHydAgz2eKoTqNPWnBhgvUBHnWF8NlBQwLF
+         hHegK3wMaHcd+wWSiMrJfcd1oAoha6E3qD4qgRqJ1k3LcHHchgwipi2XMz22dERf0ek2
+         fSiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Kkk96RFhOUVeXcdtYw7VNYf9WSYu11sjtdPL/xxbKe8=;
-        b=HK6L8ZAkNgAJslfr5nDPYf35pcxuCxt9twV4iPSrJrE7qtmBq9zCuH0L2qcnI0sarO
-         WzGL4DMkeVX5LmePjjEsbyLYuXkGjaLJz6RQIT+53Nb8iB1/Tpci5/z4XGFuUMjzj4K8
-         DqSjKY2kFv1/zB7jkoV3YT1CR6rQSZbCULkyOI42OhjPOY7D0ruldxU9KGHFVD1znGp6
-         0F71nE8U1lW6f6NkKstf9iMbytlGwxcb/0rmvKvKictfg/UqFM4755YeMAx3+/ZKzVgT
-         7/oCzcJb41NsGTNIgD+V8yzGbruSSF/XMQeBxJAggKEp5nXjcvEpJ1Qi6uMPc7VQo5Or
-         OqCw==
-X-Gm-Message-State: AOAM532txQBo2114HyqpN7mvhfULwqQybah4CXyxH+aG6b8FLYCMLARt
-        +xflMEXn7tOAk2xf52V/yxfbVSuddCkb/bKT3q1QFA==
-X-Google-Smtp-Source: ABdhPJyA7vr/U/2Lycbd2FWBZBtLqVEAm94uzNvJ8gdrDqZfAvOsT2ddncI3yJcK4skM3pg4UBmX6/vZkNHtfc3zogI=
-X-Received: by 2002:a05:6512:3e03:: with SMTP id i3mr14354819lfv.529.1622544715508;
- Tue, 01 Jun 2021 03:51:55 -0700 (PDT)
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=XXOc3lnPOnrLHfUpjTBiHdlnPYpmdbZCpUcpd3AYxmA=;
+        b=XJpPwl+UgDv2osISIQD2thyEM1bewd7Qy4o0XBQ1jm77xXEeOZvBSCx9QRMLS3LmFq
+         bM6rPItyhtUpe62geRMH5Ek0/sgPQnx9Gbbe8AEn74hvUeJwULXtHQqlhnFj5LQLAqqM
+         PVJ1tXM7UPG8wPHngdeY8Jz9aYCmMHKFq53l1ECAJN2CGjvZM5Lyn6RK/SHVaMwyF++T
+         HRXgTuW7pyuBl5JiA06e6ZZhZvXgFOf5Vh+EEiQ4Ihqa/zg/w5fEPwcfIsD3Fba/OX3C
+         j+M4zj2CwE+1waw23P7GdAOFoQCIpDD22beEaGutw8VY7D9SsC3j8BoAE1j7Kvb/japw
+         238Q==
+X-Gm-Message-State: AOAM533r2hqcLh+a69XgvFEodkZ12ab/DsQmD13+Q/PnemXtqtEnxRQL
+        +CJMgyQdhEWJbCUfbOe3XTQ9IEPttqcnBWpgPQY=
+X-Google-Smtp-Source: ABdhPJzaJAtTQOC0mP8QA0Xhd8BAfuQNhwgFVNBmHJzYVm+XPPAt/UFXMbZFKbGhDFmIOugCEv2mTLeFeFXKVZVOcKQ=
+X-Received: by 2002:a25:a08d:: with SMTP id y13mr37269997ybh.522.1622545788320;
+ Tue, 01 Jun 2021 04:09:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1620735871.git.sander@svanheule.net> <cover.1621809029.git.sander@svanheule.net>
- <YKr9G3EfrM34gCsL@lunn.ch> <CAHp75VewCw8ES_9S48qmeCtSXMkGWt0s4iub0Fu4ZuwWANHpaQ@mail.gmail.com>
- <02bbf73ea8a14119247f07a677993aad2f45b088.camel@svanheule.net>
- <f03d5cdc958110fc7d95cfc4258dac4e@walle.cc> <84352c93f27d7c8b7afea54f3932020e9cd97d02.camel@svanheule.net>
- <a644b8fa-c90a-eab6-9cca-08344abec532@redhat.com> <CAHp75VcFmU4rJ6jL204xGFM=s2LV=KQmsV8E75BpuSAZMXBn0w@mail.gmail.com>
- <CACRpkda+m5mOzMJ8KcPmojFGWkUpCrbmY0ySPTVx72RtWwf89A@mail.gmail.com> <e10c8ef7f758b4f7fa0fcbc992c84125@walle.cc>
-In-Reply-To: <e10c8ef7f758b4f7fa0fcbc992c84125@walle.cc>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 1 Jun 2021 12:51:43 +0200
-Message-ID: <CACRpkdb4j6krXwdZGtth9b2W2bAdy9_StGbse_YbBY86-AWdLg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/6] RTL8231 GPIO expander support
-To:     Michael Walle <michael@walle.cc>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Sander Vanheule <sander@svanheule.net>,
-        Andrew Lunn <andrew@lunn.ch>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Received: by 2002:a05:6918:3788:b029:26:bdcf:5cb6 with HTTP; Tue, 1 Jun 2021
+ 04:09:47 -0700 (PDT)
+Reply-To: c1nicele@gmail.com
+From:   Stefano Pessina <drlarrylee42@gmail.com>
+Date:   Tue, 1 Jun 2021 14:09:47 +0300
+Message-ID: <CALi8qqZXwsjsjdDBLwZyi3qZWpTOKJ2PXfSH602sF3u2HKxHvA@mail.gmail.com>
+Subject: 
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 1, 2021 at 12:18 PM Michael Walle <michael@walle.cc> wrote:
-> Am 2021-06-01 11:59, schrieb Linus Walleij:
+-- 
+Hello,
 
-> > Just regarding all registers/memory cells in a register page
-> > as default volatile (which is what we do a lot of the time)
-> > has its upsides: bugs like this doesn't happen.
->
-> I don't think this is the bug here. If it is really a write-only
-> register
-> the problem is the read in RMW. Because reading the register will return
-> the input value instead of the (previously written) output value.
+I'm Stefano Pessina, an Italian business tycoon, investor, and
+philanthropist. the vice chairman, chief executive officer (CEO), and
+the single largest shareholder of Walgreens Boots Alliance. I gave
+away 25 percent of my personal wealth to charity. And I also pledged
+to give away the rest of 25%  this year 2021 to Individuals  because
+of the covid-19 heart break. I have decided to donate $2,000,000.00
+USD (Two Million dollars) to you. If you are interested in my
+donation, do contact me for more info. via my email at:
+c1nicele@gmail.com
 
-True that. Write and read semantics differ on the register.
 
-Volatile is used for this and some other things,
-like for example interrupts being cleared when a register
-is read so it is strictly read-once.
+You can see here: https://en.wikipedia.org/wiki/Stefano_Pessina
 
-So the regmap config is really important to get right.
+All replies should be forwarded to :  c1nicele@gmail.com
 
-IIUC one of the ambitions around Rust is to encode this
-in how memory is specified in the language. (I am still
-thinking about whether that is really a good idea or not.)
-
-Yours,
-Linus Walleij
+Warm Regard
+CEO Walgreens Boots Alliance
+Stefano Pessina
