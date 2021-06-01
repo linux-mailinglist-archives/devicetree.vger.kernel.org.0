@@ -2,84 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25A38397513
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 16:08:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6969E39750C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 16:07:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234164AbhFAOJn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 10:09:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49548 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234386AbhFAOJl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 10:09:41 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1999EC061574;
-        Tue,  1 Jun 2021 07:07:57 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id f30so22069846lfj.1;
-        Tue, 01 Jun 2021 07:07:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MExTV90rtZ8/hjUE3hCRwCeDds2Wqj8Wyw00i17Pg3I=;
-        b=YN95LoKz1G8+dBZr9w+1D5COULtP1QhHPlvib9H1AP6UTioYfhgn7RtFXiYCC6Sc65
-         vd0/Qmq+VkPFR/wlcqzdda7xNTFz1L3OddyrzJoTTfWl3CFjISfJg6dqkm3dZ1rPu9YU
-         tzF4IhMEx1f4I2G3/tqX4cDSbPr5+ExqvpiH8uaO7sQEOl/b/vp38iDsU9hFYxtP1yjR
-         AemJaTpIAwY3YP1OIN6kvT15WebUrfAZTAwFj6NbYXvVFiEmWuXqAh5ocEXgUyAmpvIW
-         zI8RGArlYyJROLoLrBGCDRALWeL4Vks1+FojG8ymL1/wz2BHMDXkSIw8PbHnnL3qSOvk
-         2TOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MExTV90rtZ8/hjUE3hCRwCeDds2Wqj8Wyw00i17Pg3I=;
-        b=bvct/2IZPsKDFDnr/eQzHPlf3rXSyBvrMuHJy4t6PGmsQZrGWQkULqMNf3LJKZHRiZ
-         QKj9benQbjrRqtYi/BOUccjC1abNpCEAULZsdl4LZaenM5Rr8A58CP3r+fR9uTG01Wug
-         lFkR8Dw4ktqwVtbp0tek2dAYorYxHBluquK1CbJ25UXS9mvIZbueEoCQA+eHRDGZUgZF
-         mu6hprrUiKDI1dTYF6i7whWFC3CJ+qTY5smW6xzWLShbz7H63G5bAEGL0epDBpCEN7l7
-         HyiZA0B/+ZQFkbIU1Gd++l0i0EoSXoQRCT9cJUjBDqSxTzhuya+XG9fztW7tj+LHihlE
-         QmIA==
-X-Gm-Message-State: AOAM5302Uhwh+vt/dy2OL4vW2cLjV7Ld2kYbBVC5eL1Ue48G66MPsVh4
-        dzjr6vC93NA/hG5ejeNzez3sNb/AryCVpdfbM5Y=
-X-Google-Smtp-Source: ABdhPJx4yKg5VJ1aLdoZu2YSJio0T9gNQu+Am7hvR47r0qklSK8tLR81cPevGpyOuyEIO9ABe4zcO/I8sca/UXqo4R8=
-X-Received: by 2002:a19:5e0d:: with SMTP id s13mr18756585lfb.229.1622556475472;
- Tue, 01 Jun 2021 07:07:55 -0700 (PDT)
+        id S234320AbhFAOJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 10:09:33 -0400
+Received: from out28-73.mail.aliyun.com ([115.124.28.73]:59720 "EHLO
+        out28-73.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234188AbhFAOJc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 10:09:32 -0400
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1111761|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.432646-0.00042108-0.566933;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047208;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=8;RT=8;SR=0;TI=SMTPD_---.KM.eRxy_1622556466;
+Received: from 192.168.0.103(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.KM.eRxy_1622556466)
+          by smtp.aliyun-inc.com(10.147.41.121);
+          Tue, 01 Jun 2021 22:07:47 +0800
+Subject: Re: [PATCH v2 4/6] clk: ingenic: Remove pll_info.no_bypass_bit
+To:     Paul Cercueil <paul@crapouillou.net>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+        list@opendingux.net
+References: <20210530164923.18134-1-paul@crapouillou.net>
+ <20210530164923.18134-5-paul@crapouillou.net>
+From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
+Message-ID: <dd9a3581-1391-962e-c5b3-e8bed90f3087@wanyeetech.com>
+Date:   Tue, 1 Jun 2021 22:07:46 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <20210601062338.1969040-1-ping.bai@nxp.com> <20210601062338.1969040-2-ping.bai@nxp.com>
-In-Reply-To: <20210601062338.1969040-2-ping.bai@nxp.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 1 Jun 2021 11:07:44 -0300
-Message-ID: <CAOMZO5BhJ734DQy5MOpq20O8Pezwe4FG4hVV6CRnLpH_14PfVQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] pinctrl: imx8ulp: Add pinctrl driver support
-To:     Jacky Bai <ping.bai@nxp.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210530164923.18134-5-paul@crapouillou.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacky,
 
-On Tue, Jun 1, 2021 at 3:13 AM Jacky Bai <ping.bai@nxp.com> wrote:
+On 2021/5/31 上午12:49, Paul Cercueil wrote:
+> We can express that a PLL has no bypass bit by simply setting the
+> .bypass_bit field to a negative value.
+>
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> ---
+>   drivers/clk/ingenic/cgu.c        | 4 ++--
+>   drivers/clk/ingenic/cgu.h        | 7 +++----
+>   drivers/clk/ingenic/jz4770-cgu.c | 3 +--
+>   3 files changed, 6 insertions(+), 8 deletions(-)
 
-> +       pin_reg = &ipctl->pin_regs[offset];
-> +       if (pin_reg->mux_reg == -1)
 
-Can this condition happen?
+Tested-by: 周琰杰 (Zhou Yanjie)<zhouyanjie@wanyeetech.com>    # on CU1830-neo/X1830
 
-> +               return -EINVAL;
 
-> +static const struct of_device_id imx8ulp_pinctrl_of_match[] = {
-> +       { .compatible = "fsl,imx8ulp-iomuxc1", },
-
-In the bindings doc patch it is  documented "fsl,imx8ulp-iomuxc", so
-there is a mismatch
-between the driver and the binding doc.
+>
+> diff --git a/drivers/clk/ingenic/cgu.c b/drivers/clk/ingenic/cgu.c
+> index 7686072aff8f..58f7ab5cf0fe 100644
+> --- a/drivers/clk/ingenic/cgu.c
+> +++ b/drivers/clk/ingenic/cgu.c
+> @@ -99,7 +99,7 @@ ingenic_pll_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
+>   	od_enc = ctl >> pll_info->od_shift;
+>   	od_enc &= GENMASK(pll_info->od_bits - 1, 0);
+>   
+> -	if (!pll_info->no_bypass_bit) {
+> +	if (pll_info->bypass_bit >= 0) {
+>   		ctl = readl(cgu->base + pll_info->bypass_reg);
+>   
+>   		bypass = !!(ctl & BIT(pll_info->bypass_bit));
+> @@ -226,7 +226,7 @@ static int ingenic_pll_enable(struct clk_hw *hw)
+>   	u32 ctl;
+>   
+>   	spin_lock_irqsave(&cgu->lock, flags);
+> -	if (!pll_info->no_bypass_bit) {
+> +	if (pll_info->bypass_bit >= 0) {
+>   		ctl = readl(cgu->base + pll_info->bypass_reg);
+>   
+>   		ctl &= ~BIT(pll_info->bypass_bit);
+> diff --git a/drivers/clk/ingenic/cgu.h b/drivers/clk/ingenic/cgu.h
+> index 44d97a259692..10521d1b7b12 100644
+> --- a/drivers/clk/ingenic/cgu.h
+> +++ b/drivers/clk/ingenic/cgu.h
+> @@ -39,10 +39,10 @@
+>    *               their encoded values in the PLL control register, or -1 for
+>    *               unsupported values
+>    * @bypass_reg: the offset of the bypass control register within the CGU
+> - * @bypass_bit: the index of the bypass bit in the PLL control register
+> + * @bypass_bit: the index of the bypass bit in the PLL control register, or
+> + *              -1 if there is no bypass bit
+>    * @enable_bit: the index of the enable bit in the PLL control register
+>    * @stable_bit: the index of the stable bit in the PLL control register
+> - * @no_bypass_bit: if set, the PLL has no bypass functionality
+>    */
+>   struct ingenic_cgu_pll_info {
+>   	unsigned reg;
+> @@ -52,10 +52,9 @@ struct ingenic_cgu_pll_info {
+>   	u8 n_shift, n_bits, n_offset;
+>   	u8 od_shift, od_bits, od_max;
+>   	unsigned bypass_reg;
+> -	u8 bypass_bit;
+> +	s8 bypass_bit;
+>   	u8 enable_bit;
+>   	u8 stable_bit;
+> -	bool no_bypass_bit;
+>   };
+>   
+>   /**
+> diff --git a/drivers/clk/ingenic/jz4770-cgu.c b/drivers/clk/ingenic/jz4770-cgu.c
+> index 381a27f20b51..2321742b3471 100644
+> --- a/drivers/clk/ingenic/jz4770-cgu.c
+> +++ b/drivers/clk/ingenic/jz4770-cgu.c
+> @@ -139,8 +139,7 @@ static const struct ingenic_cgu_clk_info jz4770_cgu_clocks[] = {
+>   			.od_bits = 2,
+>   			.od_max = 8,
+>   			.od_encoding = pll_od_encoding,
+> -			.bypass_reg = CGU_REG_CPPCR1,
+> -			.no_bypass_bit = true,
+> +			.bypass_bit = -1,
+>   			.enable_bit = 7,
+>   			.stable_bit = 6,
+>   		},
