@@ -2,81 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68CD63972D1
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 13:52:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7791D39731C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 14:22:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230308AbhFALyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 07:54:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46836 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230288AbhFALyI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 07:54:08 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13436C061574;
-        Tue,  1 Jun 2021 04:52:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=hThjzyD5PdpvEbtDuA2WlTKzdIKthAXEXN7E7fzGif0=; b=xnISXh1iuAYIg9J7zF2crdN68
-        ycZn4SEIUAob7ZGnV3Vyfmg4mGpcCB3Y9VbVjfbDhKhKmXtOJgVc7+KYYh2b3pyoZ1OwAa0jYrc1b
-        fy+BV5byDSkvisC3WJO2nJ1oshL7JL2TjMt6asGnP1ftPuZn2x1scmZQ5LUfk813ZZr884qYE8CVA
-        SNcE4os5KQzM1T/LsVswbez0oqWp3qOwiNNZShSfmS82wy/3DjQPlBVUQSZh5SYEBE5NUcqRBzn2j
-        l1KMs07gN2PLzPEoT9kXbP4wnURhffeNvQP3C8WFBIQThZ92aRGNBFG/Z3/Yw2eNXnMgHW7XVPdBi
-        4gUQfmQ3g==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:44564)
-        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1lo2wW-0003wM-Ab; Tue, 01 Jun 2021 12:52:20 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1lo2wV-0008W6-QQ; Tue, 01 Jun 2021 12:52:19 +0100
-Date:   Tue, 1 Jun 2021 12:52:19 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        andrew@lunn.ch, hkallweit1@gmail.com, f.fainelli@gmail.com,
-        linux-imx@nxp.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 3/4] net: phy: realteck: add dt property to
- disable ALDPS mode
-Message-ID: <20210601115219.GU30436@shell.armlinux.org.uk>
-References: <20210601090408.22025-1-qiangqing.zhang@nxp.com>
- <20210601090408.22025-4-qiangqing.zhang@nxp.com>
+        id S231576AbhFAMYa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 08:24:30 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:19214 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231219AbhFAMYa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Jun 2021 08:24:30 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1622550169; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=JAcNP7Uo9zJKWgXCjvCXGiHUwrw7I6s+Af9UbfhFRic=;
+ b=ekpwlV8DGNcbBeQI4L55ePJzSOHYqpK8ci+m6cNwSUtbH9xRD7TM64fEK9Nfl+KQTjSnpUCf
+ NnRN3ILSCtGpfwwySTCNNZP8fxbhO1g/xwMbp3rJOHtjePa43fxbusY4sQGJiaUwzNtkzdoy
+ X5CnqSoeKYOxh0JkLNGEJPXqaAY=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 60b62695ed59bf69cceb7185 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 01 Jun 2021 12:22:45
+ GMT
+Sender: rajeevny=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 0A672C43460; Tue,  1 Jun 2021 12:22:45 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: rajeevny)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4B0A4C433F1;
+        Tue,  1 Jun 2021 12:22:44 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210601090408.22025-4-qiangqing.zhang@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 01 Jun 2021 17:52:44 +0530
+From:   rajeevny@codeaurora.org
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sean@poorly.run, robdclark@gmail.com,
+        robh+dt@kernel.org, abhinavk@codeaurora.org,
+        kalyan_t@codeaurora.org, mkrishn@codeaurora.org, jonathan@marek.ca
+Subject: Re: [v1 2/3] drm/msm/dsi: Add PHY configuration for SC7280
+In-Reply-To: <7a3facb5-d118-f81b-65f8-381b0d56a23b@linaro.org>
+References: <1622468035-8453-1-git-send-email-rajeevny@codeaurora.org>
+ <1622468035-8453-3-git-send-email-rajeevny@codeaurora.org>
+ <7a3facb5-d118-f81b-65f8-381b0d56a23b@linaro.org>
+Message-ID: <b37617c61fbdb11dc2c903878c05e0ac@codeaurora.org>
+X-Sender: rajeevny@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 01, 2021 at 05:04:07PM +0800, Joakim Zhang wrote:
-> @@ -325,8 +329,10 @@ static int rtl8211f_config_init(struct phy_device *phydev)
->  	u16 val;
->  	int ret;
->  
-> -	val = RTL8211F_ALDPS_ENABLE | RTL8211F_ALDPS_PLL_OFF | RTL8211F_ALDPS_XTAL_OFF;
-> -	phy_modify_paged_changed(phydev, 0xa43, RTL8211F_PHYCR1, val, val);
-> +	if (!(priv->quirks & RTL821X_ALDPS_DISABLE_FEATURE)) {
-> +		val = RTL8211F_ALDPS_ENABLE | RTL8211F_ALDPS_PLL_OFF | RTL8211F_ALDPS_XTAL_OFF;
-> +		phy_modify_paged_changed(phydev, 0xa43, RTL8211F_PHYCR1, val, val);
-> +	}
+On 31-05-2021 23:27, Dmitry Baryshkov wrote:
+> On 31/05/2021 16:33, Rajeev Nandan wrote:
 
-Similar questions as with the previous patch, but also... this doesn't
-actually disable the feature if it was previously turned on. E.g. a
-kexec() from a current kernel that has set these features into a
-subsequent kernel that the DT requests the feature to be disabled. Or
-a boot loader that has enabled this feature.
 
-If DT specifies that this feature is disabled, shouldn't this code be
-disabling it explicitly?
+>> +	.min_pll_rate = 600000000UL,
+>> +	.max_pll_rate = (5000000000ULL < ULONG_MAX) ? 5000000000ULL : 
+>> ULONG_MAX,
+> 
+> Could you please follow the patch by Arnd here?
+> https://lore.kernel.org/linux-arm-msm/20210514213032.575161-1-arnd@kernel.org/
+> 
+> 
+> 
+>> +	.io_start = { 0xae94400, 0xae96400 },
+>> +	.num_dsi_phy = 2,
+> 
+> Judging from the next patch, you have one DSI host and one DSI PHY.
+> Could you please correct io_start / num_dsi_phy here?
+> 
+>> +	.quirks = DSI_PHY_7NM_QUIRK_V4_1,
+>> +};
+> 
+> 
+> With these two issues fixed:
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Thank you very much for your review :) I have incorporated the
+review comments. I am waiting for comments on my DT bindings patch (1/3) 
+and
+will send v2 in a day or two.
+
+Thanks,
+Rajeev
