@@ -2,104 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 523FD397636
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 17:11:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36E22397648
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 17:15:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234490AbhFAPN3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 11:13:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35988 "EHLO
+        id S234142AbhFAPQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 11:16:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234438AbhFAPN0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 11:13:26 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58B76C0613ED
-        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 08:11:44 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id p13-20020a05600c358db029019f44afc845so953147wmq.3
-        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 08:11:44 -0700 (PDT)
+        with ESMTP id S233924AbhFAPQl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 11:16:41 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 373C0C06174A
+        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 08:14:59 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id r13so7953120wmq.1
+        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 08:14:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=s8v8Jp0/rfEPlkp9XhdnLdHk722YQ+tq+nr0R2AwQ5s=;
-        b=TQzJ8IV1oQ36hKJrP1tDjXvJDcPCTaVcyBJqwLQWXW4i/J/12PfueR1gE8GYcq5dkD
-         jfvkX2yIEwKS9b3A4LYcp/moCf2tUVPsLHqEVaZsFbnuwrqPTW5FWEx+avAv/p7MKNSz
-         5jOYPruEUp0T+PPZ/HSTkQwGDSoNEiSO0KbpK1OxWDkBcev9plIVfOw5XwdHe1XEwC3d
-         mc0TvRJeIHn9yS81HNBAutCwuzi1SlJlk3YnCvP1qiegKv2EybrX4NpWlvYR3581k4UO
-         2A8Ow/ljvM9c8WvQYh1mmgIBLgBOi2OhEYOIy37SBoewjI1UnTWFq+So6F+QkIEpnwiF
-         QFGg==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=zAPRwiSTsBnNnMN52mKyAPCXe27aZPsDLFAEB6TcYPU=;
+        b=puY1kTSAxOEdP+fRCthS7daQu3jMlTM4wIyuI0OYtVKsYNN7F3PtoH9ByZcW2LoFeL
+         e/Clf3LcoTaVsIBbP1ZUehVHZoTWcQNlWrwK8/zzRpkHNdVtPc5EJMBBLTRSVmATzCbs
+         MVch5uWUoYyRLXeNcSiMrhsTSGpY8N+R0mnBOgYbnM7AGvSLoZNw2e+ruXSGuGbhjIt7
+         pCQVq3n4Ox9g93w3OPAVNV+p6Gj9hKXGWeHodLzZHjvj59N7krT0nnhDsepJl10hpMyj
+         s+eZEuO/8WCZCfcytM/P6Xzy1GsnJ0TOB9XyIjARSKsxOIIiA1IACNT7KxReIiT0c1yl
+         /JRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=s8v8Jp0/rfEPlkp9XhdnLdHk722YQ+tq+nr0R2AwQ5s=;
-        b=WW6GS1p5e57CDx8VQWi7td9LHYwwkOfH4EBEIzn5ayNQM2lie+8ZM3C+plbZFoPCVC
-         +CB91LNXTGpmSboq4cUD5HvxZ7WUGr38j+3X8/qOk2wEuLasT7Ye8TNhrbaLRT4LzMKa
-         8CPRJul/tLAIZyTZelj9h45S37UuHwIIi8UJ3UveECXHsAW42GhzCJ6MB3BzWZsWPfs2
-         hZ7ugejZ0mRKvv04OM/p0vy3DR9IOvdFXSw0Q7G+MtHpiZmJ9h9VC5Tp4F0/JDOUrNOv
-         Bc4zX5c2xiIcVNJx2YPa7bluvrJk5exyK2jcfHwUIkEbwu5OiPjZoieV1kW+GcaArPNU
-         7j4A==
-X-Gm-Message-State: AOAM5310zGyECxtI3/g6IdPz5H5Kns8dh1RTe2sgUt68Fa/wJQnwCCDM
-        OaIpcwb9h4lq3WqpjiavssLz4A==
-X-Google-Smtp-Source: ABdhPJxz/yuFedQdkot/kQXyn3h2pRCCVDsiCuT4xOdxYDDNxG6gNMvMdESkKDFopMfgqdvdo96R7A==
-X-Received: by 2002:a1c:f213:: with SMTP id s19mr11482590wmc.61.1622560303019;
-        Tue, 01 Jun 2021 08:11:43 -0700 (PDT)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id f20sm22344163wmh.41.2021.06.01.08.11.42
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=zAPRwiSTsBnNnMN52mKyAPCXe27aZPsDLFAEB6TcYPU=;
+        b=i62x0u8L2gJlVGL+aq/VGr1Uo9rUjNX4WydV9fA1Z88VqzsoX5o3S51XLZkrE5PXS9
+         mGvrxZNRMb/nlQSo9Tdj1iV17j+xXp36hK/o7z7adLuliyvoEjFZCGGdkP12NrVdseoi
+         QfWLBWXfvl3n1CSbPfAdqwJHIQMkkW6okwd0vU+u31hTidUht+aqtZlHStaRX3C5Ulhb
+         Fzjz6285deE8C80bgv6b6gDZZzU/MjWcwRfq3YY1sBB+66Bm9A5HZZONeci3B45rcSGb
+         VGp7blb1gmLbdpiEEG7BIVYzcdX4QSA9suIpP8cN+od79Zqbm/9AfYdG0zmTtaxWSizA
+         Idkg==
+X-Gm-Message-State: AOAM530off1F2m+zy4giQmT5N/2mDpzlEePv1lBFo5XqbRmdz5KvvWeN
+        f4gat/ljBjf3PXDzjDFrZbH43J6NflXU7g==
+X-Google-Smtp-Source: ABdhPJxwMg+e9QSUoEFtoEy3x4sqSfHuth7QSk/0u4Kj83HWFu7zQyx9TCbEbI819s0NJAbQXRC9rQ==
+X-Received: by 2002:a1c:e354:: with SMTP id a81mr11240158wmh.98.1622560497758;
+        Tue, 01 Jun 2021 08:14:57 -0700 (PDT)
+Received: from dell ([91.110.221.249])
+        by smtp.gmail.com with ESMTPSA id r7sm3812981wma.9.2021.06.01.08.14.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jun 2021 08:11:42 -0700 (PDT)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     davem@davemloft.net, herbert@gondor.apana.org.au,
-        linus.walleij@linaro.org, linux@armlinux.org.uk,
-        robh+dt@kernel.org, ulli.kroll@googlemail.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH v2 5/5] MAINTAINERS: add gemini crypto sl3516-ce
-Date:   Tue,  1 Jun 2021 15:11:32 +0000
-Message-Id: <20210601151132.1893443-6-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210601151132.1893443-1-clabbe@baylibre.com>
-References: <20210601151132.1893443-1-clabbe@baylibre.com>
+        Tue, 01 Jun 2021 08:14:57 -0700 (PDT)
+Date:   Tue, 1 Jun 2021 16:14:55 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Guru Das Srinagesh <gurus@codeaurora.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RESEND PATCH v4 1/3] dt-bindings: mfd: pm8008: Add IRQ listing
+Message-ID: <20210601151455.GQ543307@dell>
+References: <cover.1621965146.git.gurus@codeaurora.org>
+ <78c196438af8cdb6f2f2c4fa9adf39151448ef8f.1621965146.git.gurus@codeaurora.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <78c196438af8cdb6f2f2c4fa9adf39151448ef8f.1621965146.git.gurus@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as maintainer of gemini sl3516-ce crypto driver.
-Add also the driver to the list of files for gemini SoC.
+On Tue, 25 May 2021, Guru Das Srinagesh wrote:
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+> Add a header file listing all of the IRQs that Qualcomm Technologies,
+> Inc. PM8008 supports. The constants defined in this file may be used in
+> the client device tree node to specify interrupts.
+> 
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Guru Das Srinagesh <gurus@codeaurora.org>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d8648ee43199..439e353539de 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1812,6 +1812,7 @@ F:	Documentation/devicetree/bindings/net/cortina,gemini-ethernet.txt
- F:	Documentation/devicetree/bindings/pinctrl/cortina,gemini-pinctrl.txt
- F:	Documentation/devicetree/bindings/rtc/faraday,ftrtc010.txt
- F:	arch/arm/mach-gemini/
-+F:	drivers/crypto/gemini/
- F:	drivers/net/ethernet/cortina/
- F:	drivers/pinctrl/pinctrl-gemini.c
- F:	drivers/rtc/rtc-ftrtc010.c
-@@ -7589,6 +7590,12 @@ M:	Kieran Bingham <kbingham@kernel.org>
- S:	Supported
- F:	scripts/gdb/
- 
-+GEMINI CRYPTO DRIVER
-+M:	Corentin Labbe <clabbe@baylibre.com>
-+L:	linux-crypto@vger.kernel.org
-+S:	Maintained
-+F:	drivers/crypto/gemini/
-+
- GEMTEK FM RADIO RECEIVER DRIVER
- M:	Hans Verkuil <hverkuil@xs4all.nl>
- L:	linux-media@vger.kernel.org
+Tags should be chronological.
+
+> ---
+>  include/dt-bindings/mfd/qcom-pm8008.h | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+>  create mode 100644 include/dt-bindings/mfd/qcom-pm8008.h
+
+Fixed *-by tag order and applied.
+
 -- 
-2.31.1
-
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
