@@ -2,436 +2,366 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA189397AEC
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 22:02:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FC05397B2B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 22:24:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234782AbhFAUDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 16:03:50 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.170]:22154 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234734AbhFAUDs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 16:03:48 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1622577710; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=gceN2xQpjM3GnB/+WuD3yTWIDDN/mCg9wpXlfkVW6HtDiOMZBuQrpfW8UpTVEA00+v
-    PkRpPQLECkuiktiN6ICxRn87NbFVE9Ty4xPGEcOj1N2SzEqlmyuAANJrbjWSnfpJ7o2q
-    PRCIopRuIv9BkxEnqGKK3RfoQPnH/mcyQhgkH5jDp8JtnBLRRup4P3zOujZEg7gc573d
-    fVUIvoW1RrAxh0D8kq1ZkJw+IOnVHuy5rAVpgvhU4EvTHz/zLZByQHklkSO3une82jso
-    z9oEjJ3lMzNAryG0V78meumD7He9qjTzrXtMLIfdcXW4uJYawxgc4gJ9SyWfhTjQB+6Y
-    n2pg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1622577710;
-    s=strato-dkim-0002; d=strato.com;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=WHIERZI5vIdnzffdZdfNMVc3iu5B7FKbrOM9d3fZGo0=;
-    b=K2+bHzfBE84ogFOISUgpc3ViUBODWLxYIC3+NtF3G09XJn440vWBQ7Anss5yiGBXZI
-    Li9Qx6PonBwwV8SYDMaabshIuX4t74COSwEtCH12FUxzJedA6dwXt+qNlC9am7YBd35N
-    s5B2eNV3S48OQO9f09kpUaYax6WGDPudGInFRTBq14ipGHlQd8E5mDQrJS62iL1QWZJq
-    TyK2seH/BN9nvQjmz6yREwEGQrKlzblRs5wcHe3LbRex9YlEDZzkpaeq49FIxYh/pS7q
-    FbDbqTDx7jlS5us0iaEn0WNX5JsGeivOBy36D1GAP9v1Ac46AvpdBBz3l6laze6bRfB/
-    WP4Q==
-ARC-Authentication-Results: i=1; strato.com;
-    dkim=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1622577710;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=WHIERZI5vIdnzffdZdfNMVc3iu5B7FKbrOM9d3fZGo0=;
-    b=CJ6QwKKbUT0jRMf40qjgmUtdCk446LU6cKlulWG13JQvPwa6vO5jsu/OVneCw7+52e
-    bvsecez9YbiuIrMsdN0R+o1ULTz/Op15Sc0TzWoyjckF0kZU3/pyxnJkmqqMasfEGcMc
-    IITH8W8EmBRTUY+8gxDls8f77AByqF88CF5tftWz4wNbXhhlOT6Rc3l90Xhsec4CB5mW
-    bpR+4EUiGCo4nSlnrP3/3/AMPeBrlMQMlHCnXUVR197uqEoRfiLt7NFmoMco9qb0iPK6
-    Q5oFDSZXoqcZzKC+lM0PaGMA833n93rggyODmS90Pxku7MaOgjPcewAMq6i1rveyH7Pb
-    JA8w==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxB4W6Na3kD"
-X-RZG-CLASS-ID: mo00
-Received: from droid..
-    by smtp.strato.de (RZmta 47.26.3 DYNA|AUTH)
-    with ESMTPSA id U0b2c9x51K1oWn3
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Tue, 1 Jun 2021 22:01:50 +0200 (CEST)
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Chanwoo Choi <cw00.choi@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH v3 3/3] extcon: sm5502: Add support for SM5504
-Date:   Tue,  1 Jun 2021 22:00:07 +0200
-Message-Id: <20210601200007.218802-4-stephan@gerhold.net>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210601200007.218802-1-stephan@gerhold.net>
-References: <20210601200007.218802-1-stephan@gerhold.net>
+        id S234513AbhFAUZ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 16:25:59 -0400
+Received: from mail-oo1-f48.google.com ([209.85.161.48]:39734 "EHLO
+        mail-oo1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234813AbhFAUZ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 16:25:59 -0400
+Received: by mail-oo1-f48.google.com with SMTP id 67-20020a4a01460000b0290245b81f6261so79553oor.6;
+        Tue, 01 Jun 2021 13:24:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=dCk/UyBQje2KgBe2FOFSlalTzsgN12CTLWv5P8yJIGY=;
+        b=PGjlDv2cNpfQiExJx+Oe5qm7xd0XWC8JfPPy/oUrLq0aYQDlzm+LNlezuPcgbCg0Ro
+         4GrJAH7Z5kTN0Iycd4v0v2JDu6fvxknePhZk99E8MO/K/MFWl+rremSDyCA5b8mEvxsT
+         hGG8G7VuM1SALXCyYJWSD160msgKnJb4+ETj5Wrz6ko8NiKG22YjNUYnQk4cw6h62xcr
+         ZyZZgv7+m4Ys+cbINvMOB4QccqAqpBRaSQj4qvsZCOze9jS7WIeifJRid1bx3/QBKhN5
+         5GrlZ1gcPd56PQloF/OzrAUDI8jI87FUtnJO9UBFkcoJRfSSoYKCPGRdoSAFqnGnjH92
+         x9UQ==
+X-Gm-Message-State: AOAM5335GQQbDIVrI3WKixXdiXedne5KULbd4zFXTfosWO3kTeYdvo35
+        mFlD72PCbS0te9rdjsOmPkHh39V9gA==
+X-Google-Smtp-Source: ABdhPJy7HxWeNFWH+Oc2QE9RNbomCfYrUGrvj7oGq+7dG4zCZ1wbJlKHzLJvteTGUETXX4G+2+OVpw==
+X-Received: by 2002:a4a:9451:: with SMTP id j17mr12090419ooi.93.1622579056250;
+        Tue, 01 Jun 2021 13:24:16 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id l12sm2503998otr.16.2021.06.01.13.24.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Jun 2021 13:24:15 -0700 (PDT)
+Received: (nullmailer pid 968851 invoked by uid 1000);
+        Tue, 01 Jun 2021 20:24:14 -0000
+Date:   Tue, 1 Jun 2021 15:24:14 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
+Cc:     jic23@kernel.org, lars@metafoo.de, linux-iio@vger.kernel.org,
+        git-dev@xilinx.com, michal.simek@xilinx.com, pmeerw@pmeerw.net,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 3/4] dt-bindings: iio: adc: Add Xilinx AMS binding
+ documentation
+Message-ID: <20210601202414.GA950000@robh.at.kernel.org>
+References: <20210528172959.15663-1-anand.ashok.dumbre@xilinx.com>
+ <20210528172959.15663-4-anand.ashok.dumbre@xilinx.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210528172959.15663-4-anand.ashok.dumbre@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SM5504 is another MUIC from Silicon Mitus that is fairly similar
-to SM5502. They seem to use the same register set, but:
+On Fri, May 28, 2021 at 06:29:58PM +0100, Anand Ashok Dumbre wrote:
+> Xilinx AMS have several ADC channels that can be used for measurement of
+> different voltages and temperatures. Document the same in the bindings.
+> 
+> Signed-off-by: Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
+> ---
+>  .../bindings/iio/adc/xlnx,zynqmp-ams.yaml     | 265 ++++++++++++++++++
+>  1 file changed, 265 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml b/Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml
+> new file mode 100644
+> index 000000000000..df3cfca69e2d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml
+> @@ -0,0 +1,265 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/xlnx,zynqmp-ams.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx Zynq Ultrascale AMS controller
+> +
+> +maintainers:
+> +  - Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
+> +
+> +description: |
+> +  The AMS (Analog Monitoring System) includes an ADC as well as on-chip sensors
+> +  that can be used to sample external voltages and monitor on-die operating
+> +  conditions, such as temperature and supply voltage levels.
+> +  The AMS has two SYSMON blocks which are PL (Programmable Logic) SYSMON and
+> +  PS (Processing System) SYSMON.
+> +  All designs should have AMS registers, but PS and PL are optional. The
+> +  AMS controller can work with only PS, only PL and both PS and PL
+> +  configurations. Please specify registers according to your design. Devicetree
+> +  should always have AMS module property. Providing PS & PL module is optional.
+> +
+> +  AMS Channel Details
+> +  ```````````````````
+> +  Sysmon Block	|Channel|			Details					|Measurement
+> +  		|Number	|							 	|Type
 
-  - SM5504 has some additional bits in SM5502_REG_CONTROL
-  - SM5504 has a quite different set of interrupts
-  - SM5504 reports USB OTG as dev_type1 = BIT(0) instead of BIT(7)
+Use spaces rather than tabs
 
-Overall it's minor and we can support this by defining a separate
-struct sm5502_type for SM5504.
+> +  ---------------------------------------------------------------------------------------------------------
+> +  AMS CTRL	|0	|System PLLs voltage measurement, VCC_PSPLL.			|Voltage
+> +  		|1	|Battery voltage measurement, VCC_PSBATT.			|Voltage
+> +  		|2	|PL Internal voltage measurement, VCCINT.			|Voltage
+> +  		|3	|Block RAM voltage measurement, VCCBRAM.			|Voltage
+> +  		|4	|PL Aux voltage measurement, VCCAUX.				|Voltage
+> +  		|5	|Voltage measurement for six DDR I/O PLLs, VCC_PSDDR_PLL.	|Voltage
+> +  		|6	|VCC_PSINTFP_DDR voltage measurement.				|Voltage
+> +  ---------------------------------------------------------------------------------------------------------
+> +  PS Sysmon	|7	|LPD temperature measurement.					|Temperature
+> +  		|8	|FPD temperature measurement (REMOTE).				|Temperature
+> +  		|9	|VCC PS LPD voltage measurement (supply1).			|Voltage
+> +  		|10	|VCC PS FPD voltage measurement (supply2).			|Voltage
+> +  		|11	|PS Aux voltage reference (supply3).				|Voltage
+> +  		|12	|DDR I/O VCC voltage measurement.				|Voltage
+> +  		|13	|PS IO Bank 503 voltage measurement (supply5).			|Voltage
+> +  		|14	|PS IO Bank 500 voltage measurement (supply6).			|Voltage
+> +  		|15	|VCCO_PSIO1 voltage measurement.				|Voltage
+> +  		|16	|VCCO_PSIO2 voltage measurement.				|Voltage
+> +  		|17	|VCC_PS_GTR voltage measurement (VPS_MGTRAVCC).			|Voltage
+> +  		|18	|VTT_PS_GTR voltage measurement (VPS_MGTRAVTT).			|Voltage
+> +  		|19	|VCC_PSADC voltage measurement.					|Voltage
+> +  ---------------------------------------------------------------------------------------------------------
+> +  PL Sysmon	|20	|PL temperature measurement.					|Temperature
+> +  		|21	|PL Internal voltage measurement, VCCINT.			|Voltage
+> +  		|22	|PL Auxiliary voltage measurement, VCCAUX.			|Voltage
+> +  		|23	|ADC Reference P+ voltage measurement.				|Voltage
+> +  		|24	|ADC Reference N- voltage measurement.				|Voltage
+> +  		|25	|PL Block RAM voltage measurement, VCCBRAM.			|Voltage
+> +  		|26	|LPD Internal voltage measurement, VCC_PSINTLP (supply4).	|Voltage
+> +  		|27	|FPD Internal voltage measurement, VCC_PSINTFP (supply5).	|Voltage
+> +  		|28	|PS Auxiliary voltage measurement (supply6).			|Voltage
+> +  		|29	|PL VCCADC voltage measurement (vccams).			|Voltage
+> +  		|30	|Differential analog input signal voltage measurment.		|Voltage
+> +  		|31	|VUser0 voltage measurement (supply7).				|Voltage
+> +  		|32	|VUser1 voltage measurement (supply8).				|Voltage
+> +  		|33	|VUser2 voltage measurement (supply9).				|Voltage
+> +  		|34	|VUser3 voltage measurement (supply10).				|Voltage
+> +  		|35	|Auxiliary ch 0 voltage measurement (VAux0).			|Voltage
+> +  		|36	|Auxiliary ch 1 voltage measurement (VAux1).			|Voltage
+> +  		|37	|Auxiliary ch 2 voltage measurement (VAux2).			|Voltage
+> +  		|38	|Auxiliary ch 3 voltage measurement (VAux3).			|Voltage
+> +  		|39	|Auxiliary ch 4 voltage measurement (VAux4).			|Voltage
+> +  		|40	|Auxiliary ch 5 voltage measurement (VAux5).			|Voltage
+> +  		|41	|Auxiliary ch 6 voltage measurement (VAux6).			|Voltage
+> +  		|42	|Auxiliary ch 7 voltage measurement (VAux7).			|Voltage
+> +  		|43	|Auxiliary ch 8 voltage measurement (VAux8).			|Voltage
+> +  		|44	|Auxiliary ch 9 voltage measurement (VAux9).			|Voltage
+> +  		|45	|Auxiliary ch 10 voltage measurement (VAux10).			|Voltage
+> +  		|46	|Auxiliary ch 11 voltage measurement (VAux11).			|Voltage
+> +  		|47	|Auxiliary ch 12 voltage measurement (VAux12).			|Voltage
+> +  		|48	|Auxiliary ch 13 voltage measurement (VAux13).			|Voltage
+> +  		|49	|Auxiliary ch 14 voltage measurement (VAux14).			|Voltage
+> +  		|50	|Auxiliary ch 15 voltage measurement (VAux15).			|Voltage
+> +  --------------------------------------------------------------------------------------------------------
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - xlnx,zynqmp-ams
+> +
+> +  interrupts:
+> +    description: IRQ line for AMS
 
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
----
-Changes in v3: Avoid if statements, use struct sm5502_type indirection
+Drop.
 
-Changes in v2: Fix warning: cast to smaller integer type 'enum sm5502_types'
-               from 'const void *' [-Wvoid-pointer-to-enum-cast]
-               reported by kernel test robot
-v2: https://lore.kernel.org/lkml/20210531133438.3511-7-stephan@gerhold.net/
+> +    maxItems: 1
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: ams-irq
 
-Interestingly enough the register set (and especially the interrupts)
-also look *very* similar to Richtek RT8973A (extcon-rt8973a) but
-I didn't investigate this further.
+Kind of a pointless name. You don't need *-names unless you have more 
+than one.
 
-Note that the changes in this patch are mostly based on guesswork
-based on a SM5504 driver from Nitin Chaudhary [1] used in some Samsung
-vendor kernels, since I was not able to find a public datasheet for SM5504.
+> +
+> +  reg:
+> +    description: AMS Controller register space
+> +    maxItems: 1
+> +
+> +  reg-names:
+> +    items:
+> +      - const: ams-base
+> +
+> +  ranges:
+> +    description:
+> +      Keep the property empty to map child address space
+> +      (for PS and/or PL) nodes 1:1 onto the parent address space.
+> +    maxItems: 1
 
-[1]: https://github.com/NitinChaudharyUSC/MSM8x16_8x26/blob/master/drivers/misc/sm5504.c
----
- drivers/extcon/Kconfig         |   2 +-
- drivers/extcon/extcon-sm5502.c | 132 +++++++++++++++++++++++++++++++--
- drivers/extcon/extcon-sm5502.h |  78 +++++++++++++++++++
- 3 files changed, 204 insertions(+), 8 deletions(-)
+This contradicts 'empty'.
 
-diff --git a/drivers/extcon/Kconfig b/drivers/extcon/Kconfig
-index e3db936becfd..c69d40ae5619 100644
---- a/drivers/extcon/Kconfig
-+++ b/drivers/extcon/Kconfig
-@@ -154,7 +154,7 @@ config EXTCON_RT8973A
- 	  from abnormal high input voltage (up to 28V).
- 
- config EXTCON_SM5502
--	tristate "Silicon Mitus SM5502 EXTCON support"
-+	tristate "Silicon Mitus SM5502/SM5504 EXTCON support"
- 	depends on I2C
- 	select IRQ_DOMAIN
- 	select REGMAP_I2C
-diff --git a/drivers/extcon/extcon-sm5502.c b/drivers/extcon/extcon-sm5502.c
-index 951f6ca4c479..af44c1e2f368 100644
---- a/drivers/extcon/extcon-sm5502.c
-+++ b/drivers/extcon/extcon-sm5502.c
-@@ -66,6 +66,7 @@ struct sm5502_type {
- 	struct reg_data *reg_data;
- 	unsigned int num_reg_data;
- 
-+	unsigned int otg_dev_type1;
- 	int (*parse_irq)(struct sm5502_muic_info *info, int irq_type);
- };
- 
-@@ -97,6 +98,33 @@ static struct reg_data sm5502_reg_data[] = {
- 	},
- };
- 
-+/* Default value of SM5504 register to bring up MUIC device. */
-+static struct reg_data sm5504_reg_data[] = {
-+	{
-+		.reg = SM5502_REG_RESET,
-+		.val = SM5502_REG_RESET_MASK,
-+		.invert = true,
-+	}, {
-+		.reg = SM5502_REG_INTMASK1,
-+		.val = SM5504_REG_INTM1_ATTACH_MASK
-+			| SM5504_REG_INTM1_DETACH_MASK,
-+		.invert = false,
-+	}, {
-+		.reg = SM5502_REG_INTMASK2,
-+		.val = SM5504_REG_INTM2_RID_CHG_MASK
-+			| SM5504_REG_INTM2_UVLO_MASK
-+			| SM5504_REG_INTM2_POR_MASK,
-+		.invert = true,
-+	}, {
-+		.reg = SM5502_REG_CONTROL,
-+		.val = SM5502_REG_CONTROL_MANUAL_SW_MASK
-+			| SM5504_REG_CONTROL_CHGTYP_MASK
-+			| SM5504_REG_CONTROL_USBCHDEN_MASK
-+			| SM5504_REG_CONTROL_ADC_EN_MASK,
-+		.invert = true,
-+	},
-+};
-+
- /* List of detectable cables */
- static const unsigned int sm5502_extcon_cable[] = {
- 	EXTCON_USB,
-@@ -205,6 +233,55 @@ static const struct regmap_irq_chip sm5502_muic_irq_chip = {
- 	.num_irqs		= ARRAY_SIZE(sm5502_irqs),
- };
- 
-+/* List of supported interrupt for SM5504 */
-+static struct muic_irq sm5504_muic_irqs[] = {
-+	{ SM5504_IRQ_INT1_ATTACH,	"muic-attach" },
-+	{ SM5504_IRQ_INT1_DETACH,	"muic-detach" },
-+	{ SM5504_IRQ_INT1_CHG_DET,	"muic-chg-det" },
-+	{ SM5504_IRQ_INT1_DCD_OUT,	"muic-dcd-out" },
-+	{ SM5504_IRQ_INT1_OVP_EVENT,	"muic-ovp-event" },
-+	{ SM5504_IRQ_INT1_CONNECT,	"muic-connect" },
-+	{ SM5504_IRQ_INT1_ADC_CHG,	"muic-adc-chg" },
-+	{ SM5504_IRQ_INT2_RID_CHG,	"muic-rid-chg" },
-+	{ SM5504_IRQ_INT2_UVLO,		"muic-uvlo" },
-+	{ SM5504_IRQ_INT2_POR,		"muic-por" },
-+	{ SM5504_IRQ_INT2_OVP_FET,	"muic-ovp-fet" },
-+	{ SM5504_IRQ_INT2_OCP_LATCH,	"muic-ocp-latch" },
-+	{ SM5504_IRQ_INT2_OCP_EVENT,	"muic-ocp-event" },
-+	{ SM5504_IRQ_INT2_OVP_OCP_EVENT, "muic-ovp-ocp-event" },
-+};
-+
-+/* Define interrupt list of SM5504 to register regmap_irq */
-+static const struct regmap_irq sm5504_irqs[] = {
-+	/* INT1 interrupts */
-+	{ .reg_offset = 0, .mask = SM5504_IRQ_INT1_ATTACH_MASK, },
-+	{ .reg_offset = 0, .mask = SM5504_IRQ_INT1_DETACH_MASK, },
-+	{ .reg_offset = 0, .mask = SM5504_IRQ_INT1_CHG_DET_MASK, },
-+	{ .reg_offset = 0, .mask = SM5504_IRQ_INT1_DCD_OUT_MASK, },
-+	{ .reg_offset = 0, .mask = SM5504_IRQ_INT1_OVP_MASK, },
-+	{ .reg_offset = 0, .mask = SM5504_IRQ_INT1_CONNECT_MASK, },
-+	{ .reg_offset = 0, .mask = SM5504_IRQ_INT1_ADC_CHG_MASK, },
-+
-+	/* INT2 interrupts */
-+	{ .reg_offset = 1, .mask = SM5504_IRQ_INT2_RID_CHG_MASK,},
-+	{ .reg_offset = 1, .mask = SM5504_IRQ_INT2_UVLO_MASK, },
-+	{ .reg_offset = 1, .mask = SM5504_IRQ_INT2_POR_MASK, },
-+	{ .reg_offset = 1, .mask = SM5504_IRQ_INT2_OVP_FET_MASK, },
-+	{ .reg_offset = 1, .mask = SM5504_IRQ_INT2_OCP_LATCH_MASK, },
-+	{ .reg_offset = 1, .mask = SM5504_IRQ_INT2_OCP_EVENT_MASK, },
-+	{ .reg_offset = 1, .mask = SM5504_IRQ_INT2_OVP_OCP_EVENT_MASK, },
-+};
-+
-+static const struct regmap_irq_chip sm5504_muic_irq_chip = {
-+	.name			= "sm5504",
-+	.status_base		= SM5502_REG_INT1,
-+	.mask_base		= SM5502_REG_INTMASK1,
-+	.mask_invert		= false,
-+	.num_regs		= 2,
-+	.irqs			= sm5504_irqs,
-+	.num_irqs		= ARRAY_SIZE(sm5504_irqs),
-+};
-+
- /* Define regmap configuration of SM5502 for I2C communication  */
- static bool sm5502_muic_volatile_reg(struct device *dev, unsigned int reg)
- {
-@@ -308,11 +385,9 @@ static unsigned int sm5502_muic_get_cable_type(struct sm5502_muic_info *info)
- 			return ret;
- 		}
- 
--		switch (dev_type1) {
--		case SM5502_REG_DEV_TYPE1_USB_OTG_MASK:
-+		if (dev_type1 == info->type->otg_dev_type1) {
- 			cable_type = SM5502_MUIC_ADC_GROUND_USB_OTG;
--			break;
--		default:
-+		} else {
- 			dev_dbg(info->dev,
- 				"cannot identify the cable type: adc(0x%x), dev_type1(0x%x)\n",
- 				adc, dev_type1);
-@@ -365,6 +440,11 @@ static unsigned int sm5502_muic_get_cable_type(struct sm5502_muic_info *info)
- 			return ret;
- 		}
- 
-+		if (dev_type1 == info->type->otg_dev_type1) {
-+			cable_type = SM5502_MUIC_ADC_OPEN_USB_OTG;
-+			break;
-+		}
-+
- 		switch (dev_type1) {
- 		case SM5502_REG_DEV_TYPE1_USB_SDP_MASK:
- 			cable_type = SM5502_MUIC_ADC_OPEN_USB;
-@@ -372,9 +452,6 @@ static unsigned int sm5502_muic_get_cable_type(struct sm5502_muic_info *info)
- 		case SM5502_REG_DEV_TYPE1_DEDICATED_CHG_MASK:
- 			cable_type = SM5502_MUIC_ADC_OPEN_TA;
- 			break;
--		case SM5502_REG_DEV_TYPE1_USB_OTG_MASK:
--			cable_type = SM5502_MUIC_ADC_OPEN_USB_OTG;
--			break;
- 		default:
- 			dev_dbg(info->dev,
- 				"cannot identify the cable type: adc(0x%x)\n",
-@@ -504,6 +581,34 @@ static int sm5502_parse_irq(struct sm5502_muic_info *info, int irq_type)
- 	return 0;
- }
- 
-+static int sm5504_parse_irq(struct sm5502_muic_info *info, int irq_type)
-+{
-+	switch (irq_type) {
-+	case SM5504_IRQ_INT1_ATTACH:
-+		info->irq_attach = true;
-+		break;
-+	case SM5504_IRQ_INT1_DETACH:
-+		info->irq_detach = true;
-+		break;
-+	case SM5504_IRQ_INT1_CHG_DET:
-+	case SM5504_IRQ_INT1_DCD_OUT:
-+	case SM5504_IRQ_INT1_OVP_EVENT:
-+	case SM5504_IRQ_INT1_CONNECT:
-+	case SM5504_IRQ_INT1_ADC_CHG:
-+	case SM5504_IRQ_INT2_RID_CHG:
-+	case SM5504_IRQ_INT2_UVLO:
-+	case SM5504_IRQ_INT2_POR:
-+	case SM5504_IRQ_INT2_OVP_FET:
-+	case SM5504_IRQ_INT2_OCP_LATCH:
-+	case SM5504_IRQ_INT2_OCP_EVENT:
-+	case SM5504_IRQ_INT2_OVP_OCP_EVENT:
-+	default:
-+		break;
-+	}
-+
-+	return 0;
-+}
-+
- static irqreturn_t sm5502_muic_irq_handler(int irq, void *data)
- {
- 	struct sm5502_muic_info *info = data;
-@@ -672,11 +777,23 @@ static const struct sm5502_type sm5502_data = {
- 	.irq_chip = &sm5502_muic_irq_chip,
- 	.reg_data = sm5502_reg_data,
- 	.num_reg_data = ARRAY_SIZE(sm5502_reg_data),
-+	.otg_dev_type1 = SM5502_REG_DEV_TYPE1_USB_OTG_MASK,
- 	.parse_irq = sm5502_parse_irq,
- };
- 
-+static const struct sm5502_type sm5504_data = {
-+	.muic_irqs = sm5504_muic_irqs,
-+	.num_muic_irqs = ARRAY_SIZE(sm5504_muic_irqs),
-+	.irq_chip = &sm5504_muic_irq_chip,
-+	.reg_data = sm5504_reg_data,
-+	.num_reg_data = ARRAY_SIZE(sm5504_reg_data),
-+	.otg_dev_type1 = SM5504_REG_DEV_TYPE1_USB_OTG_MASK,
-+	.parse_irq = sm5504_parse_irq,
-+};
-+
- static const struct of_device_id sm5502_dt_match[] = {
- 	{ .compatible = "siliconmitus,sm5502-muic", .data = &sm5502_data },
-+	{ .compatible = "siliconmitus,sm5504-muic", .data = &sm5504_data },
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, sm5502_dt_match);
-@@ -708,6 +825,7 @@ static SIMPLE_DEV_PM_OPS(sm5502_muic_pm_ops,
- 
- static const struct i2c_device_id sm5502_i2c_id[] = {
- 	{ "sm5502", (kernel_ulong_t)&sm5502_data },
-+	{ "sm5504", (kernel_ulong_t)&sm5504_data },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, sm5502_i2c_id);
-diff --git a/drivers/extcon/extcon-sm5502.h b/drivers/extcon/extcon-sm5502.h
-index d187205df7b3..9c04315d48e2 100644
---- a/drivers/extcon/extcon-sm5502.h
-+++ b/drivers/extcon/extcon-sm5502.h
-@@ -89,6 +89,13 @@ enum sm5502_reg {
- #define SM5502_REG_CONTROL_RAW_DATA_MASK	(0x1 << SM5502_REG_CONTROL_RAW_DATA_SHIFT)
- #define SM5502_REG_CONTROL_SW_OPEN_MASK		(0x1 << SM5502_REG_CONTROL_SW_OPEN_SHIFT)
- 
-+#define SM5504_REG_CONTROL_CHGTYP_SHIFT		5
-+#define SM5504_REG_CONTROL_USBCHDEN_SHIFT	6
-+#define SM5504_REG_CONTROL_ADC_EN_SHIFT		7
-+#define SM5504_REG_CONTROL_CHGTYP_MASK		(0x1 << SM5504_REG_CONTROL_CHGTYP_SHIFT)
-+#define SM5504_REG_CONTROL_USBCHDEN_MASK	(0x1 << SM5504_REG_CONTROL_USBCHDEN_SHIFT)
-+#define SM5504_REG_CONTROL_ADC_EN_MASK		(0x1 << SM5504_REG_CONTROL_ADC_EN_SHIFT)
-+
- #define SM5502_REG_INTM1_ATTACH_SHIFT		0
- #define SM5502_REG_INTM1_DETACH_SHIFT		1
- #define SM5502_REG_INTM1_KP_SHIFT		2
-@@ -119,6 +126,36 @@ enum sm5502_reg {
- #define SM5502_REG_INTM2_STUCK_KEY_RCV_MASK	(0x1 << SM5502_REG_INTM2_STUCK_KEY_RCV_SHIFT)
- #define SM5502_REG_INTM2_MHL_MASK		(0x1 << SM5502_REG_INTM2_MHL_SHIFT)
- 
-+#define SM5504_REG_INTM1_ATTACH_SHIFT		0
-+#define SM5504_REG_INTM1_DETACH_SHIFT		1
-+#define SM5504_REG_INTM1_CHG_DET_SHIFT		2
-+#define SM5504_REG_INTM1_DCD_OUT_SHIFT		3
-+#define SM5504_REG_INTM1_OVP_EVENT_SHIFT	4
-+#define SM5504_REG_INTM1_CONNECT_SHIFT		5
-+#define SM5504_REG_INTM1_ADC_CHG_SHIFT		6
-+#define SM5504_REG_INTM1_ATTACH_MASK		(0x1 << SM5504_REG_INTM1_ATTACH_SHIFT)
-+#define SM5504_REG_INTM1_DETACH_MASK		(0x1 << SM5504_REG_INTM1_DETACH_SHIFT)
-+#define SM5504_REG_INTM1_CHG_DET_MASK		(0x1 << SM5504_REG_INTM1_CHG_DET_SHIFT)
-+#define SM5504_REG_INTM1_DCD_OUT_MASK		(0x1 << SM5504_REG_INTM1_DCD_OUT_SHIFT)
-+#define SM5504_REG_INTM1_OVP_EVENT_MASK		(0x1 << SM5504_REG_INTM1_OVP_EVENT_SHIFT)
-+#define SM5504_REG_INTM1_CONNECT_MASK		(0x1 << SM5504_REG_INTM1_CONNECT_SHIFT)
-+#define SM5504_REG_INTM1_ADC_CHG_MASK		(0x1 << SM5504_REG_INTM1_ADC_CHG_SHIFT)
-+
-+#define SM5504_REG_INTM2_RID_CHG_SHIFT		0
-+#define SM5504_REG_INTM2_UVLO_SHIFT		1
-+#define SM5504_REG_INTM2_POR_SHIFT		2
-+#define SM5504_REG_INTM2_OVP_FET_SHIFT		4
-+#define SM5504_REG_INTM2_OCP_LATCH_SHIFT	5
-+#define SM5504_REG_INTM2_OCP_EVENT_SHIFT	6
-+#define SM5504_REG_INTM2_OVP_OCP_EVENT_SHIFT	7
-+#define SM5504_REG_INTM2_RID_CHG_MASK		(0x1 << SM5504_REG_INTM2_RID_CHG_SHIFT)
-+#define SM5504_REG_INTM2_UVLO_MASK		(0x1 << SM5504_REG_INTM2_UVLO_SHIFT)
-+#define SM5504_REG_INTM2_POR_MASK		(0x1 << SM5504_REG_INTM2_POR_SHIFT)
-+#define SM5504_REG_INTM2_OVP_FET_MASK		(0x1 << SM5504_REG_INTM2_OVP_FET_SHIFT)
-+#define SM5504_REG_INTM2_OCP_LATCH_MASK		(0x1 << SM5504_REG_INTM2_OCP_LATCH_SHIFT)
-+#define SM5504_REG_INTM2_OCP_EVENT_MASK		(0x1 << SM5504_REG_INTM2_OCP_EVENT_SHIFT)
-+#define SM5504_REG_INTM2_OVP_OCP_EVENT_MASK	(0x1 << SM5504_REG_INTM2_OVP_OCP_EVENT_SHIFT)
-+
- #define SM5502_REG_ADC_SHIFT			0
- #define SM5502_REG_ADC_MASK			(0x1f << SM5502_REG_ADC_SHIFT)
- 
-@@ -195,6 +232,9 @@ enum sm5502_reg {
- #define SM5502_REG_DEV_TYPE1_DEDICATED_CHG_MASK		(0x1 << SM5502_REG_DEV_TYPE1_DEDICATED_CHG_SHIFT)
- #define SM5502_REG_DEV_TYPE1_USB_OTG_MASK		(0x1 << SM5502_REG_DEV_TYPE1_USB_OTG_SHIFT)
- 
-+#define SM5504_REG_DEV_TYPE1_USB_OTG_SHIFT		0
-+#define SM5504_REG_DEV_TYPE1_USB_OTG_MASK		(0x1 << SM5504_REG_DEV_TYPE1_USB_OTG_SHIFT)
-+
- #define SM5502_REG_DEV_TYPE2_JIG_USB_ON_SHIFT		0
- #define SM5502_REG_DEV_TYPE2_JIG_USB_OFF_SHIFT		1
- #define SM5502_REG_DEV_TYPE2_JIG_UART_ON_SHIFT		2
-@@ -273,4 +313,42 @@ enum sm5502_irq {
- #define SM5502_IRQ_INT2_STUCK_KEY_RCV_MASK	BIT(4)
- #define SM5502_IRQ_INT2_MHL_MASK		BIT(5)
- 
-+/* SM5504 Interrupts */
-+enum sm5504_irq {
-+	/* INT1 */
-+	SM5504_IRQ_INT1_ATTACH,
-+	SM5504_IRQ_INT1_DETACH,
-+	SM5504_IRQ_INT1_CHG_DET,
-+	SM5504_IRQ_INT1_DCD_OUT,
-+	SM5504_IRQ_INT1_OVP_EVENT,
-+	SM5504_IRQ_INT1_CONNECT,
-+	SM5504_IRQ_INT1_ADC_CHG,
-+
-+	/* INT2 */
-+	SM5504_IRQ_INT2_RID_CHG,
-+	SM5504_IRQ_INT2_UVLO,
-+	SM5504_IRQ_INT2_POR,
-+	SM5504_IRQ_INT2_OVP_FET,
-+	SM5504_IRQ_INT2_OCP_LATCH,
-+	SM5504_IRQ_INT2_OCP_EVENT,
-+	SM5504_IRQ_INT2_OVP_OCP_EVENT,
-+
-+	SM5504_IRQ_NUM,
-+};
-+
-+#define SM5504_IRQ_INT1_ATTACH_MASK		BIT(0)
-+#define SM5504_IRQ_INT1_DETACH_MASK		BIT(1)
-+#define SM5504_IRQ_INT1_CHG_DET_MASK		BIT(2)
-+#define SM5504_IRQ_INT1_DCD_OUT_MASK		BIT(3)
-+#define SM5504_IRQ_INT1_OVP_MASK		BIT(4)
-+#define SM5504_IRQ_INT1_CONNECT_MASK		BIT(5)
-+#define SM5504_IRQ_INT1_ADC_CHG_MASK		BIT(6)
-+#define SM5504_IRQ_INT2_RID_CHG_MASK		BIT(0)
-+#define SM5504_IRQ_INT2_UVLO_MASK		BIT(1)
-+#define SM5504_IRQ_INT2_POR_MASK		BIT(2)
-+#define SM5504_IRQ_INT2_OVP_FET_MASK		BIT(4)
-+#define SM5504_IRQ_INT2_OCP_LATCH_MASK		BIT(5)
-+#define SM5504_IRQ_INT2_OCP_EVENT_MASK		BIT(6)
-+#define SM5504_IRQ_INT2_OVP_OCP_EVENT_MASK	BIT(7)
-+
- #endif /*  __LINUX_EXTCON_SM5502_H */
--- 
-2.31.1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 1
+> +
+> +  '#io-channel-cells':
+> +    const: 1
+> +
+> +patternProperties:
+> +  "^ams-ps@0,0$":
 
+If you have a non standard unit-address, you need to define the fields.
+
+> +    type: object
+> +    description: |
+> +      PS (Processing System) SYSMON is memory mapped to PS. This block has
+> +      built-in alarm generation logic that is used to interrupt the processor
+> +      based on condition set.
+> +
+> +    properties:
+> +      compatible:
+> +          enum:
+> +            - xlnx,zynqmp-ams-ps
+> +
+> +      reg:
+> +        description: Register Space for PS-SYSMON
+> +        maxItems: 1
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +
+> +    additionalProperties: false
+> +
+> +  "^ams-pl@1,0$":
+
+What does the '1' correspond to?
+
+> +    type: object
+> +    description:
+> +      PL-SYSMON is capable of monitoring off chip voltage and temperature.
+> +      PL-SYSMON block has DRP, JTAG and I2C interface to enable monitoring
+> +      from external master. Out of this interface currently only DRP is
+> +      supported. This block has alarm generation logic that is used to
+> +      interrupt the processor based on condition set.
+> +
+> +    properties:
+> +      compatible:
+> +        items:
+> +          - enum:
+> +              - xlnx,zynqmp-ams-pl
+> +
+> +      reg:
+> +        description: Register Space for PL-SYSMON.
+> +        maxItems: 1
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +
+> +    additionalProperties: false
+> +
+> +    patternProperties:
+> +      "^xlnx,ext-channels$":
+
+Not a pattern. Put under 'properties'.
+
+> +
+> +        type: object
+> +
+> +        description:
+> +          List of external channels that are connected to the AMS PL module.
+> +          If this property is not present, no external channels will be
+> +          assumed to be connected.
+> +
+> +        properties:
+> +          '#address-cells':
+> +            const: 1
+> +
+> +          '#size-cells':
+> +             const: 0
+> +
+> +        additionalProperties: false
+> +
+> +        patternProperties:
+> +          "^channel@([0-9]{1,2}|1[0-5][0-9])$":
+> +            type: object
+> +            description:
+> +              Describes the external channels connected.
+> +
+> +            properties:
+> +              reg:
+> +                $ref: /schemas/types.yaml#/definitions/uint32
+
+'reg' already has a type.
+
+> +                description:
+> +                  Pair of pins the channel is connected to. This value is
+> +                  same as Channel Number for a particular channel.
+> +                minimum: 20
+> +                maximum: 50
+
+Based on the unit-address, the max is 159.
+
+> +
+> +              xlnx,bipolar:
+> +                $ref: /schemas/types.yaml#/definitions/flag
+> +                type: boolean
+> +                description:
+> +                  If the set channel is used in bipolar mode.
+> +
+> +            required:
+> +              - reg
+> +
+> +            additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - interrupts
+> +  - interrupt-names
+> +  - reg
+> +  - reg-names
+> +  - ranges
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    bus {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        xilinx_ams: ams@ffa50000 {
+> +            compatible = "xlnx,zynqmp-ams";
+> +            interrupt-parent = <&gic>;
+> +            interrupts = <0 56 4>;
+> +            interrupt-names = "ams-irq";
+> +            reg = <0x0 0xffa50000 0x0 0x800>;
+> +            reg-names = "ams-base";
+> +            #address-cells = <1>;
+> +            #size-cells = <1>;
+> +            #io-channel-cells = <1>;
+> +            ranges = <0 0 0xffa50800 0x800>;
+> +
+> +            ams_ps: ams-ps@0,0 {
+> +                compatible = "xlnx,zynqmp-ams-ps";
+> +                reg = <0 0x400>;
+> +            };
+> +
+> +            ams_pl: ams-pl@1,0 {
+> +                compatible = "xlnx,zynqmp-ams-pl";
+> +                reg = <0x400 0x400>;
+> +                xlnx,ext-channels {
+> +                    #address-cells = <1>;
+> +                    #size-cells = <0>;
+> +                    channel@30 {
+> +                        reg = <30>;
+> +                        xlnx,bipolar;
+> +                    };
+> +                    channel@31 {
+> +                        reg = <31>;
+> +                    };
+> +                    channel@38 {
+> +                        reg = <38>;
+> +                        xlnx,bipolar;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.17.1
