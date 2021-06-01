@@ -2,123 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C22C5397783
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 18:07:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9FBC3977BC
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 18:13:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234050AbhFAQJS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 12:09:18 -0400
-Received: from frasgout.his.huawei.com ([185.176.79.56]:3123 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234212AbhFAQJR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 12:09:17 -0400
-Received: from fraeml737-chm.china.huawei.com (unknown [172.18.147.200])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4FvcDw5znPz6M4Ps;
-        Tue,  1 Jun 2021 23:55:12 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml737-chm.china.huawei.com (10.206.15.218) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Tue, 1 Jun 2021 18:07:34 +0200
-Received: from localhost (10.52.121.71) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Tue, 1 Jun 2021
- 17:07:33 +0100
-Date:   Tue, 1 Jun 2021 17:07:29 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Liam Beguin <liambeguin@gmail.com>
-CC:     Peter Rosin <peda@axentia.se>, <jic23@kernel.org>,
-        <lars@metafoo.de>, <pmeerw@pmeerw.net>,
-        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-Subject: Re: [PATCH v1 9/9] dt-bindings: iio: afe: add binding for
- temperature-sense-amplifier
-Message-ID: <20210601170729.000066b1@Huawei.com>
-In-Reply-To: <20210601170251.00002ddf@Huawei.com>
-References: <20210530005917.20953-1-liambeguin@gmail.com>
-        <20210530005917.20953-10-liambeguin@gmail.com>
-        <0286de71-1b04-0956-be4e-f38573c6fea2@axentia.se>
-        <CBRHJM8ANOSE.2Q5C1FVQS5QOA@shaak>
-        <20210601170251.00002ddf@Huawei.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
+        id S231918AbhFAQPL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 12:15:11 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:49551 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233873AbhFAQPK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 12:15:10 -0400
+Received: from mail-ed1-f72.google.com ([209.85.208.72])
+        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1lo71D-0007i1-S6
+        for devicetree@vger.kernel.org; Tue, 01 Jun 2021 16:13:28 +0000
+Received: by mail-ed1-f72.google.com with SMTP id f12-20020a056402150cb029038fdcfb6ea2so3959699edw.14
+        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 09:13:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=2ynkpujCou9NfTAZ9mjRuBBH8CKUsEIW60PHdi5amDs=;
+        b=KL5ueNFXC+uDDg9LsGIN5qxCbVUUBmBNScbeQtVim8sJiWF60po1yOB0h33RDVJhQQ
+         Hm0miNhGZwD0gy8DdeKXLx03FY5qEZVafHmYoTkJwF5uIJSWRqyWLa/9MBIIPy8KElrj
+         3fLN0yKvwsQOJtT8vTRxYSjLW1QFaZoYQRXXbjjGH6ISbfibxNSo115iKM/Uda/fNi2/
+         PCVMDRnHhe26q06eFOUoHt+aH4hQXua/HYlgTIXgMrsXGx2d8jupHfoRrj49Dr9wsxb6
+         dWlEJbJ8Be+71CUxFAqZemjo0Uk9A4SwrVN2+RqFydU0z9TTG3KgHGKydedTTImzs/YD
+         OPPA==
+X-Gm-Message-State: AOAM530usVpLF/hmmEQ6zIW5TXm4A3iZEzBa0YGtFy1NAgpmEYe5Bz9X
+        dFF2THCyXQiCdc6muDOG6pAXriAwygElUlhZ4xRdCbKpCF0IyXWWs3Yk25M7sQpif3dWUDFFzUr
+        pQRlW8QXMmFY7jRPvBzv3HxvvHrhtJFPFiUTIOuA=
+X-Received: by 2002:a05:6402:2044:: with SMTP id bc4mr34517830edb.282.1622564007077;
+        Tue, 01 Jun 2021 09:13:27 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJztLTZkdLCHrH695KliUdfuJxr4t8ctJTHJ8+zUqsCGjcG0A6oz4POiCu53tJSkRGVSxiyXnA==
+X-Received: by 2002:a05:6402:2044:: with SMTP id bc4mr34517815edb.282.1622564006974;
+        Tue, 01 Jun 2021 09:13:26 -0700 (PDT)
+Received: from [192.168.1.115] (xdsl-188-155-185-9.adslplus.ch. [188.155.185.9])
+        by smtp.gmail.com with ESMTPSA id bh3sm7446959ejb.19.2021.06.01.09.13.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Jun 2021 09:13:26 -0700 (PDT)
+Subject: Re: [PATCH v2 0/7] mfd/power/rtc: Do not enforce (incorrect)
+ interrupt trigger type
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, linux-rtc@vger.kernel.org
+References: <20210526172036.183223-1-krzysztof.kozlowski@canonical.com>
+ <20210601154123.GD2159518@dell>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <63ef9657-3b01-f06e-0d61-555806e4b191@canonical.com>
+Date:   Tue, 1 Jun 2021 18:13:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
+In-Reply-To: <20210601154123.GD2159518@dell>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.52.121.71]
-X-ClientProxiedBy: lhreml738-chm.china.huawei.com (10.201.108.188) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 1 Jun 2021 17:02:51 +0100
-Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
+On 01/06/2021 17:41, Lee Jones wrote:
+> On Wed, 26 May 2021, Krzysztof Kozlowski wrote:
+> 
+>> Hi,
+>>
+>> This is a v2 with only minor changes:
+>> 1. Drop patches which landed in mainline.
+>> 2. Add acks.
+>> 3. Rebase max17040 power supply (dtschema conversion).
+>>
+>> Patches are independent and there are no external dependencies, so
+>> please pick up freely.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+>>
+>> Krzysztof Kozlowski (7):
+>>   mfd: sec-irq: Do not enforce (incorrect) interrupt trigger type
+>>   mfd: max77686: Do not enforce (incorrect) interrupt trigger type
+>>   mfd: max77693: Do not enforce (incorrect) interrupt trigger type
+>>   mfd: max14577: Do not enforce (incorrect) interrupt trigger type
+>>   rtc: max77686: Do not enforce (incorrect) interrupt trigger type
+>>   power: supply: max17042: Do not enforce (incorrect) interrupt trigger
+>>     type
+>>   power: supply: max17040: Do not enforce (incorrect) interrupt trigger
+>>     type
+> 
+> MFD patches (at least) do not apply.
+> 
+> Please rebase and resubmit with my:
+> 
+> For my own reference (apply this as-is to your sign-off block):
+> 
+>   Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
 
-> On Mon, 31 May 2021 10:03:23 -0400
-> "Liam Beguin" <liambeguin@gmail.com> wrote:
-> 
-> > Hi Peter,
-> > 
-> > On Mon May 31, 2021 at 3:32 AM EDT, Peter Rosin wrote:  
-> > > Hi!
-> > >
-> > > On 2021-05-30 02:59, Liam Beguin wrote:    
-> > > > From: Liam Beguin <lvb@xiphos.com>
-> > > > 
-> > > > An ADC is often used to measure other quantities indirectly. This
-> > > > binding describe one cases, the measurement of a temperature through a
-> > > > voltage sense amplifier such as the LTC2997.
-> > > > 
-> > > > Signed-off-by: Liam Beguin <lvb@xiphos.com>    
-> > >
-> > > What's the significant difference between this and the RTD binding? Does
-> > > not both simply scale/offset a voltage to a temperature?  
-> 
-> I'm lost: what RTD binding?
-Ignore this email - I was reading the series backwards and thought we were
-talking about a preexisting binding.
+I'll resend the MFD part.
 
-> 
-> > >    
-> > 
-> > The way I looked at it was one binding per sensor type (resistance
-> > driven, current driven, and voltage driven).
-> > 
-> > Thinking about it more, these three bindings could be factorized into
-> > one if the user is required to enter parameters "by hand".  
-> 
-> Don't. They are effectively different types of devices and we just end
-> up with a more complex binding if we try to cover them all.
-Ignore that as well. If the bindings combine fairly easily it is nice
-to do so, but be careful not to throw too many things in together and
-make it very hard to write the binding. However, I'm not keen on entirely
-generic bindings and would like the channel type at least to come from
-the compatible.
+For the RTC and power, I hope these apply still cleanly.
 
-> 
-> There is an argument to go the other way and actually have bindings for
-> individual temperature sensors like the LTC2997.  Then the parameters
-> become a driver problem rather than one for the binding.
-> 
-> Jonathan
-> 
-> 
-> > 
-> > These could become something like:
-> > - sense-gain-mult
-> > - sense-gain-div
-> > - sense-offset
-> > 
-> > I like the idea of having the "datasheet parameters" in the devicetree,
-> > but this would be a lot more versatile.
-> > 
-> > What do you think?
-> > 
-> > Cheers,
-> > Liam
-> >   
-> > > Cheers,
-> > > Peter    
-> >   
-> 
 
+Best regards,
+Krzysztof
