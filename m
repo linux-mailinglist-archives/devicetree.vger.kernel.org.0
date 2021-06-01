@@ -2,107 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB8D5397733
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 17:51:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD4C139773A
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 17:52:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234359AbhFAPxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 11:53:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45254 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233326AbhFAPxS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 11:53:18 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B497CC061574;
-        Tue,  1 Jun 2021 08:51:36 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id r5so22557351lfr.5;
-        Tue, 01 Jun 2021 08:51:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=onn9keWb/5Q8h7P0USAwNaJ0t0PscCKrWQtmrQdUT8Q=;
-        b=YQYgIWtmDRiNPQPiPtred3DvUbyBIZjo/kYv3X/GmB40n2V/6G4JCqIn0yWwef5vN7
-         8k25LU5Awxaww/HKb171Ld/Pq764n/594z3PzRj4x88qNuDifgV81CkLPZYqOPlQOauJ
-         D2iJaa5tGSuR43TsRpaACBXBGnhVoA3fmwcXske13VuybDT//P6wGqIbT0hEkAGqR1s0
-         TTPIYgWyGHJ+5UKJJ1PjK7CYvy5WIAFatZKvEZkUA+lrS4did9zIwdHIWvKljtSCtQSx
-         r9zILaZMGCq7S+tzqwk7WjWmfjdReOLpKivEGaJK5+4KRgDxJov560dyrZzQR/iNSqzF
-         O3mQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=onn9keWb/5Q8h7P0USAwNaJ0t0PscCKrWQtmrQdUT8Q=;
-        b=eM6P6sxNbkhajBEnl8ms7EcHrwKFQkJewkYBFMjzeo2Ywp9LycASCUcqtEAshtTJBX
-         FrVe7/ss5x/IUGpdR+ReFZmWpq08ZwjjiVWcEBCtcbX+ATa4nT79to/Hqxku47Lvfdhj
-         WULK3DMAI92e8B59yWtrc2A40C8Zu/BUOBpahGpoQHvYfVjybWL7ndAX4tzK4dMHLH9/
-         OuhghcfWoZTvXtCXkGc/YkR8UQm/uPizrV3FysBEG2YjqiPYC0dsOUAuQreNFKacRBE4
-         f1SgLVMGfSHOQw+n0RbW0H/BY1Mq79VlIg9DYLlOgUFEh+PmgxsJDCq4387iJr0PbliT
-         R8Yg==
-X-Gm-Message-State: AOAM532+tjxljrVbG/c4I25DJWuAVZmp2Nusapm1kaZ1Ru4LNqqPkAyX
-        GC1wNujmttn9j0vMfXiPZwsqPDrk6l4=
-X-Google-Smtp-Source: ABdhPJzWcGefIy4rlt9EkULr/wrcbgCFzxyFOCrxX+af3/DttDgPF+s9kSaWAbJ47C7QGDenlRZDrA==
-X-Received: by 2002:a05:6512:a89:: with SMTP id m9mr18603701lfu.161.1622562694984;
-        Tue, 01 Jun 2021 08:51:34 -0700 (PDT)
-Received: from [192.168.2.145] (79-139-170-222.dynamic.spd-mgts.ru. [79.139.170.222])
-        by smtp.googlemail.com with ESMTPSA id c22sm2060757ljd.43.2021.06.01.08.51.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Jun 2021 08:51:34 -0700 (PDT)
-Subject: Re: [PATCH v6 00/14] NVIDIA Tegra memory and power management changes
- for 5.14
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
-        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        =?UTF-8?Q?Nikola_Milosavljevi=c4=87?= <mnidza@outlook.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Paul Fertser <fercerpav@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        Nathan Chancellor <nathan@kernel.org>,
-        linux-clk@vger.kernel.org
-References: <20210601023119.22044-1-digetx@gmail.com>
- <YLYZvFPyJFJgxI56@orome.fritz.box>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <11206c96-9f56-ca6f-e5e3-658534356666@gmail.com>
-Date:   Tue, 1 Jun 2021 18:51:33 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S234498AbhFAPyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 11:54:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39136 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234495AbhFAPyb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Jun 2021 11:54:31 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2BE3861396;
+        Tue,  1 Jun 2021 15:52:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1622562769;
+        bh=aGdPf/JG2Ma5dBKju6woR09ogotgTp0UyCyCSzPN8E0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=vFmm4EuDgRez/N9yYR8a2d8GUezxEqiMSMBcLzq6HqBUE9zJLj6qL2dkHJZDPH8op
+         iX1CqyIZdIMGpNoMJTIQcrkoOPYDGcPRizuPOtMu++Mpn3MXa7CrkR+xTl0SizVkxU
+         vcY6KQYQK60IB4VYju/UO9J5u2YSUpE5eGtiUe/2X99jCl7DPrE7zmeZwH7xYGB08Y
+         ATdnAOyRj0KSZSx3/W8vzdstQHOvZ/6t2RrP+qoC6yeHZl1IWU6uCqi65sHaC+ae/d
+         ePaRWGOdqnfOrax69HoqQoU0WFH6K/UvnadhleC25UuxBaWYwIZ//PDxH7sk13RtRc
+         u7POCe7b6WHgw==
+Date:   Tue, 1 Jun 2021 16:52:39 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     ChiYuan Huang <u0084500@gmail.com>
+Cc:     lgirdwood@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        cy_huang <cy_huang@richtek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 2/2] regulator: rt6160: Add support for Richtek RT6160
+Message-ID: <20210601155239.GD4089@sirena.org.uk>
+References: <1622008068-13474-1-git-send-email-u0084500@gmail.com>
+ <1622008068-13474-2-git-send-email-u0084500@gmail.com>
+ <YK4oGB5cZ/DhG5vm@sirena.org.uk>
+ <CADiBU393NchfrTmgPApNRqSVrTBGT+bs+H+m2UF_H3tSGLyFVQ@mail.gmail.com>
+ <CADiBU3-LjetAkzks4MZKiK=KXK5ziFhF9D13cAjJ4W5gytw74A@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <YLYZvFPyJFJgxI56@orome.fritz.box>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="//IivP0gvsAy3Can"
+Content-Disposition: inline
+In-Reply-To: <CADiBU3-LjetAkzks4MZKiK=KXK5ziFhF9D13cAjJ4W5gytw74A@mail.gmail.com>
+X-Cookie: Sic Transit Gloria Thursdi.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-01.06.2021 14:27, Thierry Reding пишет:
-> On Tue, Jun 01, 2021 at 05:31:05AM +0300, Dmitry Osipenko wrote:
->> This series:
->>
->>   1. Adds CPU/core voltage bump before system is rebooted.
->>   2. Adds new devm_tegra_core_dev_init_opp_table() helper and switches
->>      Tegra memory drivers to use it.
->>   3. Adds compile-testing support to the Tegra memory drivers.
->>   4. Adds Tegra SoC core power domain support.
->>
->> Changelog:
->>
->> v6: - Fixed another compile-test trouble reported for v5. I double checked
->>       the clk stubs this time and compiled them locally.
-> 
-> Heh... I just fixed those locally on top of your v5. Let me see if I can
-> roll back the changes and apply this new set instead.
 
-Thank you! You probably saw already that Ulf Hansson suggested to remove
-the lockdep annotation for now from the core PD, I'll make a v7 with
-this small change.
+--//IivP0gvsAy3Can
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Thu, May 27, 2021 at 11:14:17AM +0800, ChiYuan Huang wrote:
+
+> I review the regulator_set_ramp_delay_regmap API.
+> If seems I need to fill in the ramp_delay_table by the descend order.
+> But this chip ramp delay table is designed the ascending value reg bit
+> field [0 1 2 3] by
+> the ascending order [1000 2500 5000 10000] uV/uS
+> Even if I tried to filler in descending order, I also need a inverted operation.
+
+I see... that really should be supportable, and I'd have expected
+find_closest_bigger() to DTRT here, it's not obvious it's expecting
+ordering.
+
+> And I found the regulator_set_ramp_delay_regmap API has some logic error.
+> From the include/linux/regulator/driver.h, the set_ramp_delay function says to
+> set the less or equal one ramp delay value.
+> But your logic will get the larger or equal one from the descending
+> ramp delay table.
+
+The code is correct here, the documentation should be fixed - with a
+delay like this we should be erring on the side of delaying too long to
+be safe.
+
+--//IivP0gvsAy3Can
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmC2V8YACgkQJNaLcl1U
+h9CTrgf6ArqSe4D42r70JaahR7KYaMW6G6x9fIdM279DEUiisu2lF4pby14hFG9v
+xze19BNI8C7w7ziMCd3Q4gOF2h8jLljHv8tubSalY3W89MCX6AhfBfKzoc7aSWat
+lxjjLfCMWV6u5CJhPvSS8L2XMawDG6WkA98Kuvde52YGTxRnieHeJbLaHdIs3fr9
+c2uHJRSRFvEkVhkhikwi4OhtFHoRjZVRlnTn03n1gqSc9d9gfZSOATutUZxQnvoe
+6eneLvfQJwpX1UjhvJ1JPox28cXqzPwWgxKfBBoAd3hRSRwZSNMhwto9VsJ7TrRZ
+9r1fBvnARN+gMU2hPNeHwQT6zO5p7A==
+=1NtJ
+-----END PGP SIGNATURE-----
+
+--//IivP0gvsAy3Can--
