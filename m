@@ -2,50 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1B76397020
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 11:16:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72B4D397045
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 11:25:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233096AbhFAJRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 05:17:53 -0400
-Received: from mail-40140.protonmail.ch ([185.70.40.140]:38664 "EHLO
-        mail-40140.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233218AbhFAJRx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 05:17:53 -0400
-Date:   Tue, 01 Jun 2021 09:16:04 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1622538970;
-        bh=zEBoQZuXbcl3vg0AJIfdTRqG2/JwXZI7r5xWwCgFELM=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=aj8sw0MJvu7B7j34QaU2xex28JPvliA57kkKQuZ0mp38/shxMqPZj1oLtKjBdpsFx
-         5pqBSKkhgIV4doqk8drQHzY8EBZ4/nTozFeSSqBxouKHkgXW3n95kwORJodqSXL4dU
-         mb+VEmWv7ageYdxf9jzPDW+IZiz38Z3KA4ya1lhs=
-To:     "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-From:   Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "phone-devel@vger.kernel.org" <phone-devel@vger.kernel.org>,
-        "~postmarketos/upstreaming@lists.sr.ht" 
-        <~postmarketos/upstreaming@lists.sr.ht>
-Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
-Subject: Re: [PATCH 1/2] Input: cypress-sf - Add Cypress StreetFighter touchkey driver
-Message-ID: <bj_bmlxlyRbM5zdpsUEqvPyby_NWhFH95Y9wn9b7EIpvi2N48e6x6dBFY9EpyS4mxJhuRRJeC4ReVM3YMawD44RBZDHdSKftdbV6E8AMuoo=@protonmail.com>
-In-Reply-To: <ocb1SNCqWH2dOajA4VYTx5jo9jZ67pS6FTejJN82OnPIUdmqBXL62kjGDQ-ZIMPnmhm3C16FCJz94cs82kGFmFBq7mERwqtHhwr7BgZC_w0=@protonmail.com>
-References: <ocb1SNCqWH2dOajA4VYTx5jo9jZ67pS6FTejJN82OnPIUdmqBXL62kjGDQ-ZIMPnmhm3C16FCJz94cs82kGFmFBq7mERwqtHhwr7BgZC_w0=@protonmail.com>
+        id S233237AbhFAJ0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 05:26:51 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:37062 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233096AbhFAJ0u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 05:26:50 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1519P3gh025130;
+        Tue, 1 Jun 2021 04:25:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1622539503;
+        bh=MRiF11JR/KPRkdzSL7LPNKNksx6PVnbFb+o1osdPTQQ=;
+        h=From:To:CC:Subject:Date;
+        b=wvdnndVsodZlW0lyLBhMhRhU5CpZYTWxaRsJqrAa8PrMc4hUC9l0mSqshy8ch7JtO
+         4GzxPClxyFh4Xv4+La8bFiX9k49HFVhmg+NXpxjaLceZAX9H4KpLY1ugZ2+kmbVeiW
+         SON4G+NKs5w/XkoDAD9KphxSLSoRiJegv9MZv7JU=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1519P23N090432
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 1 Jun 2021 04:25:03 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 1 Jun
+ 2021 04:25:02 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 1 Jun 2021 04:25:02 -0500
+Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1519Owrt127212;
+        Tue, 1 Jun 2021 04:24:59 -0500
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>
+CC:     Sekhar Nori <nsekhar@ti.com>, Vignesh R <vigneshr@ti.com>,
+        Nishanth Menon <nm@ti.com>,
+        Linux OMAP Mailing List <linux-omap@vger.kernel.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [PATCH 0/3] ARM: dts: ti: Fix DT warnings for ecap nodes
+Date:   Tue, 1 Jun 2021 14:54:54 +0530
+Message-ID: <20210601092457.5039-1-lokeshvutla@ti.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Any comments on this patch?
+Fix DT warnings for all the ecap nodes on TI platforms. This is in
+preparation for converting pwm-tiecap documentation to YAML.
 
-Yassine
+Lokesh Vutla (3):
+  ARM: dts: ti: Drop usage of ti,am33xx-ecap from DT nodes
+  ARM: dts: ti: Fix node name for all ecap dt nodes
+  ARM: dts: am33xx: Drop interrupt property from ecap nodes
+
+ arch/arm/boot/dts/am335x-cm-t335.dts |  2 +-
+ arch/arm/boot/dts/am335x-evm.dts     |  2 +-
+ arch/arm/boot/dts/am335x-evmsk.dts   |  2 +-
+ arch/arm/boot/dts/am33xx-l4.dtsi     | 21 ++++++---------------
+ arch/arm/boot/dts/am437x-l4.dtsi     | 15 ++++++---------
+ arch/arm/boot/dts/da850.dtsi         | 15 ++++++---------
+ arch/arm/boot/dts/dra7-l4.dtsi       |  6 +++---
+ 7 files changed, 24 insertions(+), 39 deletions(-)
+
+-- 
+2.31.1
+
