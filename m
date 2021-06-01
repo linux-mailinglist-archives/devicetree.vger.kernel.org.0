@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A64539734C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 14:32:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48E7F397350
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 14:32:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233993AbhFAMd7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 08:33:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55738 "EHLO
+        id S233922AbhFAMeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 08:34:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233898AbhFAMdz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 08:33:55 -0400
-Received: from mail-qv1-xf49.google.com (mail-qv1-xf49.google.com [IPv6:2607:f8b0:4864:20::f49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C784BC061760
-        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 05:32:13 -0700 (PDT)
-Received: by mail-qv1-xf49.google.com with SMTP id ea18-20020ad458b20000b0290215c367b5d3so9567584qvb.3
-        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 05:32:13 -0700 (PDT)
+        with ESMTP id S233975AbhFAMd6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 08:33:58 -0400
+Received: from mail-pj1-x1049.google.com (mail-pj1-x1049.google.com [IPv6:2607:f8b0:4864:20::1049])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0102DC0613ED
+        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 05:32:17 -0700 (PDT)
+Received: by mail-pj1-x1049.google.com with SMTP id v10-20020a17090a7c0ab029015f673a4c30so1915583pjf.5
+        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 05:32:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=date:in-reply-to:message-id:mime-version:references:subject:from:to
          :cc;
-        bh=N3k4r2devy507FQlh/IHXNwgibHstn5wOW3VSoEKkfs=;
-        b=NWI3glTWl+MRBAO80pWGcB0JP4ULfdTlUZD7CC0zNU5M0ne0fMkxizDYf430Fem7ED
-         3+5vt4nVydEYqm6nM/XTTyA141jK97p1oBUIXR4ihtL9D8UURT9gByIcmjlSw1Wv+RkR
-         c0YO75Y0wRjSwxkpX/POsQI6TlYz6pFAysMnmNm3w71K5FrUxDrwDWuBe3f6lkociiwf
-         lsAjVbxOrujkla3mebpo+DHiAFNI9KlDpZDep/ofVP/pGwNsfwV3o67igse9e1pJtS+d
-         ZgbDZNi1eEu+qITPjnpJDBkccV+ISaLIxOBl7BVgffNlFg1Xr5F66BXqDAYYL3mIiWFH
-         r/Ww==
+        bh=JctqiyfH0XVicZkZGLx/v4l2VDYTxFT6JonHjlOUxnA=;
+        b=iKgRwDxKFYOf43YFz+J13Vd9f53h3y8It79xAgBtsJ+r7a6Kfh3unBAXGmR3yA/LJO
+         sjYeH9LKaVRJcoaI8VfpyukIQACtEPHO7yKRvwelwBTHnUe4aI7AoedLeG0rsTnqDunI
+         vwcNKNaTRBPgD6QHvkO58Sd77wyRpGx8aAiNh5X+K43hg1WpW/m5CBREZu0N+kqZREZj
+         Yid4SIVbvFvAOYNHvpi8ARN3PndW3Q+6qVnSJ6Vd+fgQ5erTz5EMabepq+UboSi3pDDJ
+         hKcQYjgUPct4N+Fm3J1Vwau6O4LqFPcOWJxsGexH2crGiLPer01vzFEl8lrFiDgU2GKF
+         PFjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=N3k4r2devy507FQlh/IHXNwgibHstn5wOW3VSoEKkfs=;
-        b=aAwHZN3PcSsnGGXlJ1T6EO0e88bjwsaPiI6icdMqCsZngVmrtYX1kcj1YFGa7mVJlo
-         UAEwTzEEhx8X3KTt7Xl7NKoU++fgGCndpPGG8XRjXhRatOS/3Bm3f5MvTlS3WqChCzxl
-         P6p9YGoY6hrmhXQDtAlru+pMn26j306FGs7IxrvZ/SaJyaFyJWObETEsNF+LU1nCxaRN
-         jU6wOkYg7/pRQOX7WO9RTB00EkQ+ITYpucqIM9oUH8ntIH31N0eQeX47YTnhG31oJh7f
-         N3GDUcCH5mkI05zT0CyENVV/ZcxRsICTH5r7ZiLM09SiPw2NK+tbBuLaStIRZwi4JBtU
-         ryIg==
-X-Gm-Message-State: AOAM5303gTz+2v1o7OxrxT9D5C7N0/sReRolkoNBtOC+YYczKyrd3h5A
-        YF2nfmwWUcAqnwYRi7QOaRWiwQsTX+qi
-X-Google-Smtp-Source: ABdhPJzAZexrTW+OtZij5NsHi7IgsAw9VWmgdvbjjD4PyPgxMnDVhBL84gO6nKM1GJHVxzPrymQIGYdgnnxo
+        bh=JctqiyfH0XVicZkZGLx/v4l2VDYTxFT6JonHjlOUxnA=;
+        b=ap3DuqavtAIN6ZpoHY3nz9aDiPbH7uw8k9a9Bxvpd3p2BWDQNuBSrOJQGSA/V3CICl
+         yvDgVA/NY3XPUHYPWZSIGrLNfRgAhqQW2pC40+0aK7M5U4T7iDd6iA2yeEOzfFWdMLav
+         KpmJjyHm2zM6YN1Qlnf4xFT3oBkBuGLA6phR1EwdbGEqFcZh7vg6Rfb2iAE01c+QCldz
+         7hBNw42uJ7ixdg239L+Rr3Zexjd8dP6YAmbyls3P/pYR7naIGr6Ibl0iQZieF3YHortf
+         ku9huAkZhmeFGBEmMk0A8UN5twVZSyBTUtB+of1/uB+oY2ToYhIg8LLq9CTWnJoF9oLx
+         4uUw==
+X-Gm-Message-State: AOAM530zos8yhHnIV/o6rjJhuqANMrw7ydT5F7pVV1eOAzroS0vReoLT
+        eaOx1T70JWutEvPyl9FMPHWCYgYvs3XE
+X-Google-Smtp-Source: ABdhPJzSHVTD5EqPx2Ya73euD4lw0KuKiVoKG9/k0unvlAhODYfOVEOZC2AuYw+ElX/k8F9CwnWVge3uTsMo
 X-Received: from kyletso.ntc.corp.google.com ([2401:fa00:fc:202:c9e8:9a17:9774:bcd3])
- (user=kyletso job=sendgmr) by 2002:a05:6214:1788:: with SMTP id
- ct8mr7138841qvb.0.1622550732802; Tue, 01 Jun 2021 05:32:12 -0700 (PDT)
-Date:   Tue,  1 Jun 2021 20:31:50 +0800
+ (user=kyletso job=sendgmr) by 2002:a17:902:7401:b029:102:34f7:48f5 with SMTP
+ id g1-20020a1709027401b029010234f748f5mr16020870pll.47.1622550736436; Tue, 01
+ Jun 2021 05:32:16 -0700 (PDT)
+Date:   Tue,  1 Jun 2021 20:31:51 +0800
 In-Reply-To: <20210601123151.3441914-1-kyletso@google.com>
-Message-Id: <20210601123151.3441914-4-kyletso@google.com>
+Message-Id: <20210601123151.3441914-5-kyletso@google.com>
 Mime-Version: 1.0
 References: <20210601123151.3441914-1-kyletso@google.com>
 X-Mailer: git-send-email 2.32.0.rc0.204.g9fa02ecfa5-goog
-Subject: [PATCH v3 3/4] usb: typec: tcpm: Introduce snk_vdo_v1 for SVDM
- version 1.0
+Subject: [PATCH v3 4/4] usb: typec: tcpm: Fix misuses of AMS invocation
 From:   Kyle Tso <kyletso@google.com>
 To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
         gregkh@linuxfoundation.org, robh+dt@kernel.org
@@ -63,85 +63,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ID Header VDO and Product VDOs defined in USB PD Spec rev 2.0 and
-rev 3.1 are quite different. Add an additional array snk_vdo_v1 and
-send it as the response to the port partner if it only supports SVDM
-version 1.0.
+tcpm_ams_start is used to initiate an AMS as well as checking Collision
+Avoidance conditions but not for flagging passive AMS (initiated by the
+port partner). Fix the misuses of tcpm_ams_start in tcpm_pd_svdm.
 
+ATTENTION doesn't need responses so the AMS flag is not needed here.
+
+Fixes: 0bc3ee92880d ("usb: typec: tcpm: Properly interrupt VDM AMS")
 Signed-off-by: Kyle Tso <kyletso@google.com>
-Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 ---
-changes since v2:
-- no change
-
- drivers/usb/typec/tcpm/tcpm.c | 40 ++++++++++++++++++++++++-----------
- 1 file changed, 28 insertions(+), 12 deletions(-)
+ drivers/usb/typec/tcpm/tcpm.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
-index 617f48cdd90c..ebe490949fa0 100644
+index ebe490949fa0..c4b02a6ca3d7 100644
 --- a/drivers/usb/typec/tcpm/tcpm.c
 +++ b/drivers/usb/typec/tcpm/tcpm.c
-@@ -401,6 +401,8 @@ struct tcpm_port {
- 	unsigned int nr_src_pdo;
- 	u32 snk_pdo[PDO_MAX_OBJECTS];
- 	unsigned int nr_snk_pdo;
-+	u32 snk_vdo_v1[VDO_MAX_OBJECTS];
-+	unsigned int nr_snk_vdo_v1;
- 	u32 snk_vdo[VDO_MAX_OBJECTS];
- 	unsigned int nr_snk_vdo;
+@@ -1583,7 +1583,7 @@ static int tcpm_pd_svdm(struct tcpm_port *port, struct typec_altmode *adev,
+ 				svdm_version = PD_VDO_SVDM_VER(p[0]);
+ 			}
  
-@@ -1589,18 +1591,16 @@ static int tcpm_pd_svdm(struct tcpm_port *port, struct typec_altmode *adev,
- 			 */
- 			if ((port->data_role == TYPEC_DEVICE || svdm_version >= SVDM_VER_2_0) &&
- 			    port->nr_snk_vdo) {
--				/*
--				 * Product Type DFP and Connector Type are not defined in SVDM
--				 * version 1.0 and shall be set to zero.
--				 */
--				if (svdm_version < SVDM_VER_2_0)
--					response[1] = port->snk_vdo[0] & ~IDH_DFP_MASK
--						      & ~IDH_CONN_MASK;
--				else
--					response[1] = port->snk_vdo[0];
--				for (i = 1; i <  port->nr_snk_vdo; i++)
--					response[i + 1] = port->snk_vdo[i];
--				rlen = port->nr_snk_vdo + 1;
-+				if (svdm_version < SVDM_VER_2_0) {
-+					for (i = 0; i < port->nr_snk_vdo_v1; i++)
-+						response[i + 1] = port->snk_vdo_v1[i];
-+					rlen = port->nr_snk_vdo_v1 + 1;
-+
-+				} else {
-+					for (i = 0; i < port->nr_snk_vdo; i++)
-+						response[i + 1] = port->snk_vdo[i];
-+					rlen = port->nr_snk_vdo + 1;
-+				}
+-			tcpm_ams_start(port, DISCOVER_IDENTITY);
++			port->ams = DISCOVER_IDENTITY;
+ 			/*
+ 			 * PD2.0 Spec 6.10.3: respond with NAK as DFP (data host)
+ 			 * PD3.1 Spec 6.4.4.2.5.1: respond with NAK if "invalid field" or
+@@ -1604,19 +1604,18 @@ static int tcpm_pd_svdm(struct tcpm_port *port, struct typec_altmode *adev,
  			}
  			break;
  		case CMD_DISCOVER_SVID:
-@@ -5969,6 +5969,22 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
- 			return ret;
- 	}
- 
-+	/* If sink-vdos is found, sink-vdos-v1 is expected for backward compatibility. */
-+	if (port->nr_snk_vdo) {
-+		ret = fwnode_property_count_u32(fwnode, "sink-vdos-v1");
-+		if (ret < 0)
-+			return ret;
-+		else if (ret == 0)
-+			return -ENODATA;
-+
-+		port->nr_snk_vdo_v1 = min(ret, VDO_MAX_OBJECTS);
-+		ret = fwnode_property_read_u32_array(fwnode, "sink-vdos-v1",
-+						     port->snk_vdo_v1,
-+						     port->nr_snk_vdo_v1);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
- 	return 0;
- }
- 
+-			tcpm_ams_start(port, DISCOVER_SVIDS);
++			port->ams = DISCOVER_SVIDS;
+ 			break;
+ 		case CMD_DISCOVER_MODES:
+-			tcpm_ams_start(port, DISCOVER_MODES);
++			port->ams = DISCOVER_MODES;
+ 			break;
+ 		case CMD_ENTER_MODE:
+-			tcpm_ams_start(port, DFP_TO_UFP_ENTER_MODE);
++			port->ams = DFP_TO_UFP_ENTER_MODE;
+ 			break;
+ 		case CMD_EXIT_MODE:
+-			tcpm_ams_start(port, DFP_TO_UFP_EXIT_MODE);
++			port->ams = DFP_TO_UFP_EXIT_MODE;
+ 			break;
+ 		case CMD_ATTENTION:
+-			tcpm_ams_start(port, ATTENTION);
+ 			/* Attention command does not have response */
+ 			*adev_action = ADEV_ATTENTION;
+ 			return 0;
 -- 
 2.32.0.rc0.204.g9fa02ecfa5-goog
 
