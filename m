@@ -2,77 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 153D93973A5
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 14:56:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 403713973AE
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 14:57:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233162AbhFAM6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 08:58:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33268 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233064AbhFAM6A (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Jun 2021 08:58:00 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D1D856135D;
-        Tue,  1 Jun 2021 12:56:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622552178;
-        bh=2Cl6MC1zMLi1wVlxtabUNKw40xMLYyr3h9FF5PfzyX0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CnvVCbpOOeN9rkItCc/yoTJVnjIYphOmRUyy31lUnBN16ztG508cC6bnbwExyyPfz
-         4frf2pAynhv11HOAms0oRJEahYMeG0tJWXOcmnXyaYSyI5zbD90fISxnTj4ZD6Zrsu
-         4KHdr3lui/UR2XVz30gQggHNZhJS55ocfbFdK16AfxECbi+7onftdTHdC+8eHRpC82
-         GWlAQENZUjuDWUGrWnwevhodDw/4bAXrNsXQkb3paumbXLiPRNnt3HSl2qklurQNhy
-         3q5C+9yipXhvNBsOICFkwI5+XJgxlaAX54znzWYBKxd9gnLFPnGUHNcCqiwrtgL6xa
-         WhMI/9Tmb8M+Q==
-Date:   Tue, 1 Jun 2021 13:56:08 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Rudi Heitbaum <rudi@heitbaum.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, ezequiel@collabora.com,
-        chenjh@rock-chips.com, pgwipeout@gmail.com
-Subject: Re: [PATCH v2] regulator: fan53555: add tcs4526
-Message-ID: <20210601125608.GC4089@sirena.org.uk>
-References: <20210526162342.GA20@8bbba9ba63a4>
- <20210528101946.GA418765@96e513df87d1>
+        id S233939AbhFAM7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 08:59:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33136 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233932AbhFAM66 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 08:58:58 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7DB0C061760
+        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 05:57:15 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id w33so21621119lfu.7
+        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 05:57:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=UyP+0EPFTBrks12sY/2I56eEacli51Tu11/I2xxc9HE=;
+        b=E1hZg5c1Lk3fXS8yK88pjfcdHCfVaYPKA5JmBmFk/p3wIQf6DYTsz8UGO4CJtjyZd/
+         Jfgdq9nuTz9KSdqFdY8t4e9G170zSdaq8g6ZzqN8qFGr9Vywn4RVcmv6lCyMS9UlfDoJ
+         MdNUmnE1PTxOQ/lRADk3j2rnG61OcEOF5Us06A1Y5oXt2tIX7H+i+XkL6EPVnQH7aUy5
+         yQeMFeuH7f6kOM/A+IuwWsArF9G7LehonvuZvXxiBvIfgYbM8pgIICxqHU6/I8MkFGty
+         9HJHaW+YFjfbV9S5Yw3TERPSrlkxn9Gxeb9nR7vd4sqjxlyGeuaBKh+ELfyrMt+VDRU2
+         EcDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=UyP+0EPFTBrks12sY/2I56eEacli51Tu11/I2xxc9HE=;
+        b=AQgXJENdy2vxsI7A6sZtwkP64nr90FYxT/JsVNnP244o6FN/cuFVSE0JEOpF/LdIVd
+         TvKhSFY0GYDmXRwIicA1SFk7hf0ZlC4DgrANdE4M5NiC1sNGyA56eFLjzPL/bvlKenB5
+         jeDBKWG7dKwx1b7GzOe6Md5lTst1hVtWtIR6osMRukiRq8YsvYuttzXH5FSlpM2TIfgD
+         T8cF2haBUJWd3SQx27ElLv8hzqdQQNw/3KZCgZYgVRHqHTOcjPnBZNUeLLV93axZgW5o
+         J4xj1ldgNpL/Nvtw8WydyJkrCkr9/hajifuJm5+NyhtjmD18wJM+c373RAJrbQACQhIQ
+         5UxQ==
+X-Gm-Message-State: AOAM530v3+AJiTQF70XaUVKzT03KQrBZws764J/brKtuDfL5+P+3v9tc
+        j2eRUnoHiFsVHvzZSMJScoGpXA==
+X-Google-Smtp-Source: ABdhPJzaNWdjj0O1nd9Z8ZpajRkyJ1stnAonHJ1d1UdiqD06szd+RCWXnhp5aaPoy+ERAI5u7g29qg==
+X-Received: by 2002:a19:c511:: with SMTP id w17mr18919091lfe.113.1622552234168;
+        Tue, 01 Jun 2021 05:57:14 -0700 (PDT)
+Received: from localhost (h-62-63-236-217.A463.priv.bahnhof.se. [62.63.236.217])
+        by smtp.gmail.com with ESMTPSA id e8sm1271423ljj.28.2021.06.01.05.57.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Jun 2021 05:57:13 -0700 (PDT)
+Date:   Tue, 1 Jun 2021 14:57:12 +0200
+From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund@ragnatech.se>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: irqchip: renesas-irqc: Add R-Car M3-W+
+ support
+Message-ID: <YLYuqG/Z9V/AAonF@oden.dyn.berto.se>
+References: <55d2c30cb14b2e10193a7fd4aa7670c70f360037.1622546880.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Q0rSlbzrZN6k9QnT"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20210528101946.GA418765@96e513df87d1>
-X-Cookie: Sic Transit Gloria Thursdi.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <55d2c30cb14b2e10193a7fd4aa7670c70f360037.1622546880.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Geert,
 
---Q0rSlbzrZN6k9QnT
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for your work.
 
-On Fri, May 28, 2021 at 10:19:50AM +0000, Rudi Heitbaum wrote:
+On 2021-06-01 13:31:55 +0200, Geert Uytterhoeven wrote:
+> Document support for the Interrupt Controller for External Devices
+> (INT-EC) in the Renesas R-Car M3-W+ (r8a77961) SoC.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
 > ---
->  drivers/regulator/fan53555.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->=20
+> No Linux driver update needed.
+> 
+>  .../devicetree/bindings/interrupt-controller/renesas,irqc.yaml   | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml b/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
+> index b67b8cbd33fcb1a0..abb22db3bb28be29 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
+> @@ -29,6 +29,7 @@ properties:
+>            - renesas,intc-ex-r8a774c0    # RZ/G2E
+>            - renesas,intc-ex-r8a7795     # R-Car H3
+>            - renesas,intc-ex-r8a7796     # R-Car M3-W
+> +          - renesas,intc-ex-r8a77961    # R-Car M3-W+
+>            - renesas,intc-ex-r8a77965    # R-Car M3-N
+>            - renesas,intc-ex-r8a77970    # R-Car V3M
+>            - renesas,intc-ex-r8a77980    # R-Car V3H
+> -- 
+> 2.25.1
+> 
 
-This is adding a new DT binding, it needs to update the binding document
-too.
-
---Q0rSlbzrZN6k9QnT
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmC2LmcACgkQJNaLcl1U
-h9BzHAf9G464dHNtQknzDW/5kAgdMbejI7xxx5QTf4tseVQ6XY22i3ThsC5iivxi
-5OiLoEmJJ62CFt4fcej2+g9xrtqlrML+fU+D1YwIV4JnBKcNwf1PUKsufpxZdlOl
-jVRFThjrGk8ZXaYnuVu+U+9FbnoYGzidvMT8xdWqcDCUhGT0mUpMcQP3jAsRWXIh
-XqsJpBQrLyCoZE188rbXZN5PEyRHKymDKzSCgJalshiSxReexKZpeJNgZ8IEFcaE
-LZOQNJv01ie/uh7h1Y+5C0bDNlHM6HE89egEY+ATVbx5uHpH2r3GN8wMtBHJk5Hx
-s9+s5oOePen3qqty+jum80ZePycKGg==
-=8JU/
------END PGP SIGNATURE-----
-
---Q0rSlbzrZN6k9QnT--
+-- 
+Regards,
+Niklas Söderlund
