@@ -2,115 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5783397752
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 17:58:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B883A39775D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 17:59:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234443AbhFAQAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 12:00:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46860 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234438AbhFAQAS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 12:00:18 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47574C061574
-        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 08:58:37 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id o127so8515549wmo.4
-        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 08:58:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=DfdeHTGjcCYPTchbky8FXiwy44uVWCQdaNoLYkK3gGA=;
-        b=bZ9MxfqPj25Sllazfq16qEXmkBVdfRBnrSCMmS/fJaDhTbPtW1VB2MzqzmNJhzv5xw
-         MmhdUesnw7wu+B6P6xJd67gFVV638kzdxwAEv5/YF0bcWYJNpWU53+ZIzz4MDEf+BErp
-         8wVKwB11ob2HGzwNsdAk2Y/p4t1aF4jftNHIpcAU0vmDB/IZxvnLTu8VP0+vPW9T47gQ
-         NKJ3ag4Ega/Y3Im7My7v6rnJobGbT7hdQjZUcvfusme1CUNgEiPbH7dMda1V6sbelQ6A
-         3hThdSAP29YJDsgr1HtKyMYB4q3b7EBvc0oDzI/UVtZdG5Qv0Or3oSkzx6g8s1IMoNn6
-         PLPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=DfdeHTGjcCYPTchbky8FXiwy44uVWCQdaNoLYkK3gGA=;
-        b=OzQ4LwVdRLrXX+ss2l9rIDPU4dVdhk4ZBKPOqQuLRWS85djYiPrW6V96FyBK2KxNhs
-         QLuqBmTMKmVQkp9idRt4tcnlE6la7Hc2iIvleuJS/pKRVXLlCxPsdNLIq0TwSebNcXjx
-         y79zUCn4JWc0rt92H/82Hv6nawTS1YGCDbnrJeVzQPJVEIOF43l8YiMAzSrIzK21dK63
-         YnzBLlWia9emcWWLtf0lWy7sKL3w5u9z59Kz/T9Of/b+5JBuA5VsydEMFXKXCDIMe+VN
-         9OpCzx41bzD8bsOwwtMSQqwMkumlxt+i1au7L7vQVF9EbgvmoEmMg7HOX7mH4QOh0b7d
-         RRgQ==
-X-Gm-Message-State: AOAM532u3DN7UDvR7NqRKpI+nhuqfg6Y6RjTAnI489NR2/C+h6WEy1bb
-        Dd9CrQOhnjvE4ea8rIalgE9TdA==
-X-Google-Smtp-Source: ABdhPJxS4orObivxiUr7tCfWqSfkjoAv1xblsQUGN0WKI7maOGwBGJsigyuynzIzzbcA96eMcNrvJQ==
-X-Received: by 2002:a7b:c94a:: with SMTP id i10mr12465034wml.29.1622563115864;
-        Tue, 01 Jun 2021 08:58:35 -0700 (PDT)
-Received: from dell ([91.110.221.249])
-        by smtp.gmail.com with ESMTPSA id e27sm4300744wra.50.2021.06.01.08.58.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jun 2021 08:58:35 -0700 (PDT)
-Date:   Tue, 1 Jun 2021 16:58:32 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
-        lgirdwood@gmail.com, pierre-louis.bossart@linux.intel.com,
-        tiwai@suse.com, heiko@sntech.de, robh+dt@kernel.org,
-        perex@perex.cz, jbx6244@gmail.com, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, maccraft123mc@gmail.com,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [GIT PULL] Immutable branch between MFD and ASoC due for the
- v5.14 merge window
-Message-ID: <20210601155832.GC2165650@dell>
-References: <20210519203754.27184-1-macroalpha82@gmail.com>
- <20210601140145.GH543307@dell>
+        id S232490AbhFAQBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 12:01:39 -0400
+Received: from frasgout.his.huawei.com ([185.176.79.56]:3121 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230385AbhFAQBj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 12:01:39 -0400
+Received: from fraeml701-chm.china.huawei.com (unknown [172.18.147.226])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Fvc462Nblz6M4Pb;
+        Tue,  1 Jun 2021 23:47:34 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml701-chm.china.huawei.com (10.206.15.50) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2176.2; Tue, 1 Jun 2021 17:59:56 +0200
+Received: from localhost (10.52.121.71) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Tue, 1 Jun 2021
+ 16:59:55 +0100
+Date:   Tue, 1 Jun 2021 16:59:51 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Liam Beguin <liambeguin@gmail.com>
+CC:     <peda@axentia.se>, <jic23@kernel.org>, <lars@metafoo.de>,
+        <pmeerw@pmeerw.net>, <linux-kernel@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>
+Subject: Re: [PATCH v1 9/9] dt-bindings: iio: afe: add binding for
+ temperature-sense-amplifier
+Message-ID: <20210601165951.000002c7@Huawei.com>
+In-Reply-To: <20210530005917.20953-10-liambeguin@gmail.com>
+References: <20210530005917.20953-1-liambeguin@gmail.com>
+        <20210530005917.20953-10-liambeguin@gmail.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210601140145.GH543307@dell>
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.52.121.71]
+X-ClientProxiedBy: lhreml738-chm.china.huawei.com (10.201.108.188) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 01 Jun 2021, Lee Jones wrote:
+On Sat, 29 May 2021 20:59:17 -0400
+Liam Beguin <liambeguin@gmail.com> wrote:
 
-> I've applied the non-Arm patches.
+> From: Liam Beguin <lvb@xiphos.com>
 > 
-> The following changes since commit 6efb943b8616ec53a5e444193dccf1af9ad627b5:
+> An ADC is often used to measure other quantities indirectly. This
+> binding describe one cases, the measurement of a temperature through a
+> voltage sense amplifier such as the LTC2997.
 > 
->   Linux 5.13-rc1 (2021-05-09 14:17:44 -0700)
+> Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> ---
+>  .../iio/afe/temperature-sense-amplifier.yaml  | 55 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 56 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/afe/temperature-sense-amplifier.yaml
 > 
-> are available in the Git repository at:
-> 
->   git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tb-mfd-asoc-v5.14
-> 
-> for you to fetch changes up to 437faaa6cebadf8ff4c2c28d7cb26ed4e34aeb14:
-> 
->   dt-bindings: Add Rockchip rk817 audio CODEC support (2021-06-01 13:40:41 +0100)
-> 
-> ----------------------------------------------------------------
-> Immutable branch between MFD and ASoC due for the v5.14 merge window
-> 
-> ----------------------------------------------------------------
-> Chris Morgan (3):
->       mfd: Add Rockchip rk817 audio CODEC support
->       ASoC: Add Rockchip rk817 audio CODEC support
->       dt-bindings: Add Rockchip rk817 audio CODEC support
-> 
->  Documentation/devicetree/bindings/mfd/rk808.txt | 188 +++++++++
->  drivers/mfd/rk808.c                             |  81 ++++
->  include/linux/mfd/rk808.h                       |  81 ++++
->  sound/soc/codecs/Kconfig                        |   6 +
->  sound/soc/codecs/Makefile                       |   2 +
->  sound/soc/codecs/rk817_codec.c                  | 539 ++++++++++++++++++++++++
->  6 files changed, 897 insertions(+)
->  create mode 100644 sound/soc/codecs/rk817_codec.c
+> diff --git a/Documentation/devicetree/bindings/iio/afe/temperature-sense-amplifier.yaml b/Documentation/devicetree/bindings/iio/afe/temperature-sense-amplifier.yaml
+> new file mode 100644
+> index 000000000000..015413cbffbc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/afe/temperature-sense-amplifier.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/afe/temperature-sense-amplifier.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Temperature Sense Amplifier
+> +
+> +maintainers:
+> +  - Liam Beguin <lvb@xiphos.com>
+> +
+> +description: |
+> +  When an io-channel measures the output voltage of a temperature IC such as
+> +  the LTC2997, the interesting measurement is almost always the corresponding
+> +  temperature, not the voltage output. This binding describes such a circuit.
+> +
+> +properties:
+> +  compatible:
+> +    const: temperature-sense-amplifier
+> +
+> +  io-channels:
+> +    maxItems: 1
+> +    description: |
+> +      Channel node of a voltage io-channel.
+> +
+> +  '#io-channel-cells':
+> +    const: 1
+> +
+> +  alpha-micro-volts-per-degree:
 
-Looks like the builders reported a W=1 warning introduced by the set.
+Include units in the naming.
 
-Would you like me to fix it and submit a patch?
+micro-volts-per-degree-celsius: perhaps?
+That will then get the type from dt-schema/schema/property-units.
+Though amusing it will identify it based on celsius, when the units are arguably
+volts.
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+
+> +    description: |
+> +      Output voltage gain of the temperature IC.
+> +
+> +  use-kelvin-scale:
+> +    type: boolean
+> +    description: |
+> +      Boolean indicating if alpha uses Kelvin degrees instead of Celsius.
+
+I'm not clear why that change would make any difference to alpha?  It would make
+a difference to an offset though (and you should allow for one of those if
+you want this to be generic).
+
+Pick one and stick to it for all cases.  It might make the dts author do
+some simple maths but that is preferable to having this flexibility
+when we don't need it.
+
+> +
+> +additionalProperties: false
+> +required:
+> +  - compatible
+> +  - io-channels
+> +  - alpha-micro-volts-per-degree
+> +
+> +examples:
+> +  - |
+> +    znq_temp: iio-rescale0 {
+
+The end result is a temperature sensor, so this should
+have a name reflecting that.  Here that would be
+temperature-sensor as per the dt schema specification:
+https://www.devicetree.org/specifications/
+
+> +        compatible = "temperature-sense-amplifier";
+> +        #io-channel-cells = <1>;
+> +        io-channels = <&temp_adc 3>;
+> +
+> +        use-kelvin-scale;
+> +        alpha-micro-volts-per-degree = <4000>;
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 0eb7fcd94b66..f224bd8e6125 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -8721,6 +8721,7 @@ L:	linux-iio@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/iio/afe/current-sense-amplifier.yaml
+>  F:	Documentation/devicetree/bindings/iio/afe/current-sense-shunt.yaml
+> +F:	Documentation/devicetree/bindings/iio/afe/temperature-sense-amplifier.yaml
+>  F:	Documentation/devicetree/bindings/iio/afe/temperature-sense-current.yaml
+>  F:	Documentation/devicetree/bindings/iio/afe/temperature-sense-rtd.yaml
+>  F:	Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
+
