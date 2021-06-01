@@ -2,74 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 513FA397440
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 15:32:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91A7C397452
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 15:32:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233835AbhFANdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 09:33:55 -0400
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:38896 "EHLO
-        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233925AbhFANdy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 09:33:54 -0400
-Received: by mail-oi1-f174.google.com with SMTP id z3so15471751oib.5;
-        Tue, 01 Jun 2021 06:32:12 -0700 (PDT)
+        id S234183AbhFANea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 09:34:30 -0400
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:44564 "EHLO
+        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234165AbhFANeK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 09:34:10 -0400
+Received: by mail-oi1-f170.google.com with SMTP id d21so15453378oic.11;
+        Tue, 01 Jun 2021 06:32:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=QvmcOZsZvJ8rjffzPYq9FV7xq/HrOh7WWu/CoCNAFEc=;
-        b=QUhSHGpoH1wv/n4BSVKywcS90q56+ZOw9AFMYK2K9Oa2cFZ8NgeNTZBBL7SmYL3TDp
-         gEneKQZshrzV40sORJZG1WPPht5VY3/UjiIdeWS9E1xBUE4mNeEjPIcOGaFojOCA4X0Z
-         A92fDdBqD6nVAho/YLoYk0ospvGN2FEuoatfIDMJ2Zs5ZHXKhdtSVfTptfp1Kx9qst6z
-         4MMs0zwV8UGXr9Cpb0c+x/OrQPH6U2N7Htt60tRZm0buj8JUpmTprxsd5sDi4OddjKQ3
-         5Lh1dkW9YcpW/9FKrukhZ1sOO2nWA1Yh2LFpXf6tcng3JHLptxoOapTpffT79lL01R9W
-         JlZQ==
-X-Gm-Message-State: AOAM530Zuk7SYdupQ+0lOhgpB/SAAP7q1n5uOXk/8nKMyVOGPIYqyhGH
-        FkSUJ+0459FynweR9HDqs1piwTJE9g==
-X-Google-Smtp-Source: ABdhPJwfynP90LEUrs5Q0HG4G+9DDHScR7rXZWIzk9ciyCyv7nGTgPV5GxVUjVOJLz7PqjF8pyqGpA==
-X-Received: by 2002:aca:1916:: with SMTP id l22mr18027304oii.48.1622554331713;
-        Tue, 01 Jun 2021 06:32:11 -0700 (PDT)
+        bh=QbAYTIfaJrRwRGehKFdwrYMDuX76Y6YqwRn38v62cLU=;
+        b=ngfZ5MCdYZlX8E9bUPZwWl5i/p0zRtvCm4IXLeWB6I+nQCOAnBEuC0ZQuzDchGi3zJ
+         6ko5QEbJdftXZwNnrTPwFcouVPHsSZgN9sIDO8ZZR/tfZYztM5mzTpOIf38IYRBoR2wf
+         zJxca6ciPZq0PXMIWVOQB2JQicSjgRtt5ukh3z29jXrMgNI4bsciI08s+U5bo0oZrLAx
+         MQZfUpaWTC02OTjaxiC1NZ4Ik3U/I6Jo711U3yXnfmi/WDr4mulUMd/l/FaGqhOTOQcQ
+         KYgufCu6QrUIRZzenv5wjzaUA0hLu/QfHGhNrz1xeMi7uelTnARdcS7RwMMv16f+jN2S
+         EqEA==
+X-Gm-Message-State: AOAM530zsrcmHnoaJIpMMtLkOC8IubPKgGUtDaVJORMNbSw2wngP3RkN
+        YQb1iZsTGMMLdhQIwEzq7A==
+X-Google-Smtp-Source: ABdhPJwPlU8tzCjo7uqUiStY1EgY0vdRyYQw7XSuzB+8lwNQUBS33GjtrZhyfgvuj4UZW3UZWTtaoQ==
+X-Received: by 2002:aca:f482:: with SMTP id s124mr1829703oih.167.1622554347934;
+        Tue, 01 Jun 2021 06:32:27 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 129sm3421860ooq.34.2021.06.01.06.32.10
+        by smtp.gmail.com with ESMTPSA id a18sm3829863otp.48.2021.06.01.06.32.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jun 2021 06:32:11 -0700 (PDT)
-Received: (nullmailer pid 242354 invoked by uid 1000);
+        Tue, 01 Jun 2021 06:32:24 -0700 (PDT)
+Received: (nullmailer pid 242367 invoked by uid 1000);
         Tue, 01 Jun 2021 13:32:10 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
-Cc:     lars@metafoo.de, michal.simek@xilinx.com, jic23@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        pmeerw@pmeerw.net, linux-iio@vger.kernel.org, git-dev@xilinx.com
-In-Reply-To: <20210528172959.15663-4-anand.ashok.dumbre@xilinx.com>
-References: <20210528172959.15663-1-anand.ashok.dumbre@xilinx.com> <20210528172959.15663-4-anand.ashok.dumbre@xilinx.com>
-Subject: Re: [PATCH v5 3/4] dt-bindings: iio: adc: Add Xilinx AMS binding documentation
+To:     Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Cc:     Michal Simek <michal.simek@xilinx.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>
+In-Reply-To: <20210531115857.718985-1-iwamatsu@nigauri.org>
+References: <20210531115857.718985-1-iwamatsu@nigauri.org>
+Subject: Re: [PATCH] dt-bindings: clk: zynqmp: convert bindings to YAML
 Date:   Tue, 01 Jun 2021 08:32:10 -0500
-Message-Id: <1622554330.004442.242353.nullmailer@robh.at.kernel.org>
+Message-Id: <1622554330.051024.242366.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 May 2021 18:29:58 +0100, Anand Ashok Dumbre wrote:
-> Xilinx AMS have several ADC channels that can be used for measurement of
-> different voltages and temperatures. Document the same in the bindings.
+On Mon, 31 May 2021 20:58:57 +0900, Nobuhiro Iwamatsu wrote:
+> Convert common clock for Xilinx Zynq MPSoC SoC bindings documentation
+> to YAML.
 > 
-> Signed-off-by: Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
+> Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
 > ---
->  .../bindings/iio/adc/xlnx,zynqmp-ams.yaml     | 265 ++++++++++++++++++
->  1 file changed, 265 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml
+>  .../bindings/clock/xlnx,zynqmp-clk.txt        | 63 ------------------
+>  .../bindings/clock/xlnx,zynqmp-clk.yaml       | 65 +++++++++++++++++++
+>  2 files changed, 65 insertions(+), 63 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml:129:11: [warning] wrong indentation: expected 8 but found 10 (indentation)
-./Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml:182:14: [warning] wrong indentation: expected 12 but found 13 (indentation)
 
 dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.example.dt.yaml:0:0: /example-0/firmware/zynqmp-firmware: failed to match any schema with compatible: ['xlnx,zynqmp-firmware']
 
-See https://patchwork.ozlabs.org/patch/1485294
+See https://patchwork.ozlabs.org/patch/1485640
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
