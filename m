@@ -2,96 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BFF43397103
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 12:11:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FDE1397131
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 12:16:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231994AbhFAKMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 06:12:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51894 "EHLO
+        id S231751AbhFAKSX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 06:18:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230170AbhFAKMl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 06:12:41 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5695AC061574
-        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 03:11:00 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id v8so20918420lft.8
-        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 03:11:00 -0700 (PDT)
+        with ESMTP id S231228AbhFAKSW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 06:18:22 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C841C061756
+        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 03:16:40 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id x38so20909368lfa.10
+        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 03:16:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=mXZO1IaKj8e+HsJJD6dime89CXjE2mtKCwPbk2wFi1Y=;
-        b=PAmnyLWW3xVrnfCXBt8ZAGO4Q6ntqnhqG5dYV7hJSuJcjfz46+Et8k+ZJPCM1BbZ68
-         TG30+Lum7qdt+KFfaIPLppcZ+cC7Hjl/4YvZUOC3YvkrnsemTsWbKM3utq4ecrfqzGnp
-         wG6rWxR1hkbQxRl4pyjns2ASVGp7qMPah2XtXfT2HgS24+nZPRxxUdxxfozIckySzQQu
-         81jHqhEgQE+g2+cEl8S2lVtlysJkwMtH5p3P9U6t9vA+SxFRg/HGzbmH4lsg2Gb1HNDe
-         kUapQFMJTmTP3FxH1qolW4NglYaEkjjk/P4s2j4kORb+HN77y/+xh42P06B7dxPuQ5LN
-         tmUw==
+        bh=9JgJKLG77oA4fsPfmhV/22/+J8paV7JGFmptd3FIW44=;
+        b=sl+L5T4gBDijTK/6PvXm02T1i8WN8JiAWYOScypKiijXgVP6N1crIeVt+wWGBXXFDH
+         3bj7Vv2phMrmsLD6ekzlzlzgtg2MgXSKL/DL63Y3EGZnDOsTqKgLIRO7b2umrlTw7std
+         GWGZhhGmbTAdUS6Dv8FSjCuGB7AjPT0R9XNIoF13jT7jKHHc1epZX0edVkf0ldfOuGMo
+         w0hFrTRebe8kTg5hCXmkUHuC/HgJQqiM6NB06D1hzudz1sJotMH4RxG6uEuf/CvkMs/+
+         oQe44XFiI/94UDn7W448kquuUxis6Cae4rc3z8SkQmHKh30VUpteVsP4C5Lh02HTEguu
+         g3tQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=mXZO1IaKj8e+HsJJD6dime89CXjE2mtKCwPbk2wFi1Y=;
-        b=t2JbiqrTDLiPlU8lA7rp26l/c7fRiuYne/MZQP2rGexMloLvFz2JohJZRZRqW3zzmr
-         oPpdl+jK1pmGWopOAn3lAkcxDiDE/2Xak1pEQhtlYT41+xRx+NrG8/HDmgYcyio8My2B
-         VjaMhrNbaCCmpMgyGOYkhHrbXddzsQlyqd/puh0uAlYHt2jfAW3GOftFRXAaah9r9I4e
-         AIRvRbeKvcP9REF/VGe6NRBjLmCNppa9/JXejg02eVkP2vBOZqa7OCnUX0tR7lhcV98a
-         5U2u75XzTqsklTbAHpzd4XplFQN6WaKZfuvEA1BiLe0rQzxpE1Hmz2bUuwVUmu1ghL9x
-         WvdQ==
-X-Gm-Message-State: AOAM532wixD0Z/GJlYqe1yRCroihM304RW8qnWF9HPeSGIMxAM8oBAo/
-        CypNR+CB/S6/FFT79s9SkGxUen/aRFFnypU7fmdPUQ==
-X-Google-Smtp-Source: ABdhPJwadJG1Z+DxbBmxKxvEQqSH6jDHpGXRXGCT9utnR1hgTl/yCZLnOQU86Xt7cd6GKg6JmptLeQ8X5upF3QJ6nq4=
-X-Received: by 2002:a05:6512:11ea:: with SMTP id p10mr17616726lfs.157.1622542258735;
- Tue, 01 Jun 2021 03:10:58 -0700 (PDT)
+        bh=9JgJKLG77oA4fsPfmhV/22/+J8paV7JGFmptd3FIW44=;
+        b=sDq+08zIzc6o/tElpNYdsCFgdPLMRj+D0kHrZ9TIDY5Mio9bZWOgO1vj+pJx+7l/87
+         PNsFK1pDGJ1F7blOqw8RT/g6busZnWfaq/nBG3vTjc/Dn191OWoHhVKVlTADPKc+81sB
+         ZbSYyxDteQlhmCscKbfWocfGCgDuP3Maa6Nr0gbSHtsE4Rc16FSHJm+LMxy1a8YS5zel
+         hMPq11VQThUKFJ9gmRrCCX6UfBzYYsywUNoh0UIIX7mAu2msOAvB3tMDPBeXXipmac6V
+         pOx5i/VEM1omlTjswTlaDaYCXMF5w6iERvZpQwZ3fnt64BbXUXONx2qlMUoj1dmOpN8g
+         MezA==
+X-Gm-Message-State: AOAM530ko28dRkS4CRMsLiXY4l3bHCUH/Vgid7e/dWRtavhTxGbR5RhA
+        uE3RXKt0H1iacgFMLpQm8OyNhBae7lbJxvBvdYNxJg==
+X-Google-Smtp-Source: ABdhPJy/xrCcERW+957lXcvVNGT5zyGBGdADRSZbatHeuqcKcxbF4gcIYsCn4wfFQ5npF9r30qUpQIoF7hiIHQTgIxE=
+X-Received: by 2002:a19:5503:: with SMTP id n3mr9973147lfe.649.1622542598494;
+ Tue, 01 Jun 2021 03:16:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210325122832.119147-1-sandberg@mailfence.com>
- <20210530161333.3996-1-maukka@ext.kapsi.fi> <20210530161333.3996-2-maukka@ext.kapsi.fi>
-In-Reply-To: <20210530161333.3996-2-maukka@ext.kapsi.fi>
+References: <20210527005455.25758-1-steven_lee@aspeedtech.com>
+ <20210527005455.25758-2-steven_lee@aspeedtech.com> <CACRpkdZFcFuT9rdrc8BfEBmhy0--9uLMSJWfr=A+nU117_BT8A@mail.gmail.com>
+ <20210528040934.GA28403@aspeedtech.com> <CACRpkdYnvzOW_86QgLAsNpNXWZXpaMiE7g9_jHZ0ZsFyhOjjAg@mail.gmail.com>
+ <20210531052318.GA3973@aspeedtech.com>
+In-Reply-To: <20210531052318.GA3973@aspeedtech.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 1 Jun 2021 12:10:47 +0200
-Message-ID: <CACRpkdbD-AZrZrHZ0mQm09TV6mMWunmBF1sMLgaDFUHxTV+R5Q@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: gpio-mux-input: add documentation
-To:     Mauri Sandberg <maukka@ext.kapsi.fi>
-Cc:     Mauri Sandberg <sandberg@mailfence.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
+Date:   Tue, 1 Jun 2021 12:16:27 +0200
+Message-ID: <CACRpkdbq5me7erKdzaDHrPP5QjY4-Oxqz20tg2rSn3yrWDrhYQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: aspeed-sgpio: Convert txt bindings to yaml.
+To:     Steven Lee <steven_lee@aspeedtech.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
         "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Drew Fustini <drew@beagleboard.org>
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Hongwei Zhang <Hongweiz@ami.com>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Billy Tsai <billy_tsai@aspeedtech.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 30, 2021 at 6:16 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
+On Mon, May 31, 2021 at 7:23 AM Steven Lee <steven_lee@aspeedtech.com> wrote:
 
-> Add documentation for a general GPIO multiplexer.
->
-> Signed-off-by: Mauri Sandberg <maukka@ext.kapsi.fi>
-> Tested-by: Drew Fustini <drew@beagleboard.org>
-> Reviewed-by: Drew Fustini <drew@beagleboard.org>
+> The parameter max-ngpios is the maxmum number of gpio pins that SoC supported,
+> ngpios is the maximum number of gpio pins that sgpio devices(e.g. sgpio cards) supported.
 
-Overall very interesting!
+When you put it like that you really make it sound like you already
+know, just looking at the compatible string, what max-ngpios is?
 
-> +  pin-gpios:
-> +    description: |
-> +      The GPIO pin used as the output from the multiplexer
+I.e. do you know for these three:
 
-This is not a good name. "pin" what pin? Choose a descriptive
-name, like:
+aspeed,ast2400-sgpiom
+aspeed,ast2500-sgpiom
+aspeed,ast2600-sgpiom
 
-parent-gpios
-multiplexed-gpios
-cascaded-gpios
-fanout-gpios
+the unique number of slots for each? A 1-to-1 correspondance?
 
-(My order of preference.)
-
-Otherwise these bindings look good.
+Then just add code to set this value from looking at the compatible
+in the driver. You can write some text in description in these bindings
+about how many slots each SoC has but there is no need to add any
+extra parameter if you already know this from the SoC.
 
 Yours,
 Linus Walleij
