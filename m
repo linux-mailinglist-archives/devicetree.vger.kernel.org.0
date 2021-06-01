@@ -2,156 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F9C6396FDC
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 11:05:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77A41396FE2
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 11:05:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233697AbhFAJGk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 05:06:40 -0400
-Received: from mail-eopbgr80080.outbound.protection.outlook.com ([40.107.8.80]:53574
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S233695AbhFAJGh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Jun 2021 05:06:37 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TSzE3UlrmUmeKCz75q+XSCJzwxOTsFbClPYESbA1J8NGzjn8YGCJvoqsqBY++P5/RW+A5UCuJwHGfcCpN7/ObtlZFvVv89CqPJEWTbKrh5tolT5SApuz/2RWc+RWRIvimAZ1Lk3+TA8N+UoklW8t2/U7GwwbSVLtjVBG5Si7rRywXOLXRAec47i+RfmVMFN1DaF/LNgqFGHdiK6Uip4+wytlN9PWH6TaO103SBX9Np3QxWCpTFege93MpUp6aNshq/Dd8+O4/oF+N/i8Sluuvbp+PkrqEOp3x2V2/mn+OGBECXUGaw/nVFc1MtvXcVJKtBfx3skvxI4yr6p1MDtmoA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1F7ufxJnJ8DPxvPb82YiFMpTAc6K7x2DaBemyF8ifug=;
- b=M2UqCRlpu9zc5PK23sv9SxVpwV7z/80FvWo+GLBgSS7s6ILGSv30FHaMJMoXqiuRLItNDdw56+a7Bu7SzltYDKLgWA9HeK6EPZ9c32UqyEgZL3JcDbxR/F6piIUgOzLE5XhjB44onmUwQghMestbgGcLvEMYzczcYV/K78H+U/robk5szv64kSgPu4nCHJ4qWcLKCZbebrYf729hICQpZQDwB1r942EJi6G2SXArlo/Bkppzw2TpQrBXUMq/V9dYy9+g0KJJyUcgRrptICRzWFzYwxnj1cafDqND9LEaTpOwBds67ct1ZxLlSdHwEmp2V5eQ6aYRhv6SB29uN6ncPg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1F7ufxJnJ8DPxvPb82YiFMpTAc6K7x2DaBemyF8ifug=;
- b=Ennbrenj9u4UoIpAtkBL8Qi4lnizbKHPe8utv10wvdArbD4fbbA87AAHQ+M+YuTqOhGAQL7mXwN2R4ankwVhphfUsyUJ0rr+BbHKsclpStJKvCCyOgEJCE/LHVxNVP6LD3GySdV+3TMPBpNnIg5dSnx/6ztG/1TZyB7P1SWfcgY=
-Authentication-Results: davemloft.net; dkim=none (message not signed)
- header.d=none;davemloft.net; dmarc=none action=none header.from=nxp.com;
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
- by DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.21; Tue, 1 Jun
- 2021 09:04:54 +0000
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::3400:b139:f681:c8cf]) by DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::3400:b139:f681:c8cf%9]) with mapi id 15.20.4173.030; Tue, 1 Jun 2021
- 09:04:54 +0000
-From:   Joakim Zhang <qiangqing.zhang@nxp.com>
-To:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        f.fainelli@gmail.com
-Cc:     linux-imx@nxp.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH net-next 4/4] net: phy: realtek: add delay to fix RXC generation issue
-Date:   Tue,  1 Jun 2021 17:04:08 +0800
-Message-Id: <20210601090408.22025-5-qiangqing.zhang@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210601090408.22025-1-qiangqing.zhang@nxp.com>
-References: <20210601090408.22025-1-qiangqing.zhang@nxp.com>
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.71]
-X-ClientProxiedBy: SGBP274CA0013.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::25)
- To DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
+        id S233450AbhFAJHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 05:07:21 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.164]:12736 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233671AbhFAJHH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 05:07:07 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1622538324; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=Dm6jieNM34nq2NFzwsY8+gH7Px5iq2iF9fjYK/iu9UWp1gE3lRl6XSXkm5LnhlYRdq
+    EQjNHjIefqIZlNPxb6A0KZCQtxIQKt+7whaV/fcQYiczAD0/orjmZHXBz/Wg01xTGWm2
+    /JQ4240nH7wTLH03UyyiRX14PRywTh8Qvcgq0qGpqrcRiwe88fcuwFl4HrI/gXRiKqgC
+    bI0rgCAee0GLAEyg6MQBx49AzI+2uJK77aqVVu715NyzlIfUpigFqieHx4VJ9Ch4ML+K
+    wNVMmSRmDrqcHwTdLWBdIi02kprIPqfizP2B95cEyOfOBMeUHfLY7I0AC81C8n85yvRY
+    y5Fg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1622538324;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=oYoUHhMgoV+c2cRCVemxTwtrhdXd/jbjcuXHuxrMvc0=;
+    b=HpyvRDssuYbffpKN033XPVEmE+KIFGfcueYUyD7a2gdjROrNUUer+dN+JmSjatiQdr
+    3V4t1FfTH6Hx6fSMRtLBGA85oqzbhv+ySB0Myli4QNJK2X2VQKxiNQIhRMTCawqbkY/w
+    dIMHSrQ9/5vlEPJ0DhJnE7gU5P+Kh8VDSSuyrEQ5EVCPAAsSdpTOpsPyNnIg1pqb9aSF
+    ekYutWDHrY0uUCq/h+dfAY00j2/X5c3ev10hRAPXkox45eHaHyefsZyYr4bKn8Wa0OLD
+    sM83JiCcHQTLF/NO5/hCRFRY5fZy2QP2B+W617ybISBnJ6SFCXIcPd8k6RoWVldTlij6
+    vPQg==
+ARC-Authentication-Results: i=1; strato.com;
+    dkim=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1622538324;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=oYoUHhMgoV+c2cRCVemxTwtrhdXd/jbjcuXHuxrMvc0=;
+    b=l/aOrUc18cL4o2Em4ISO+VSnjK16WY05hxC+zzGOR6jxBElRwkbcAGhy1msUhZ31bn
+    s7lneKXDb3AM02fpuQ4ioPwBH06ykcZCkM0bvK4gGG/LTaCjEyapsNhvK9EQ06Pkqnjt
+    U6ruonJ8C0CixkBduVXdMvpzoYQpVzDKkj6JEAa2sUnYLxsrWx0zXLxp7yAGcktCm+RR
+    gEpvCQRpba8rbDtxbMYyhxGgXPXnoU+QvS9kShpFxU1D887nqUBjIPHZZBTTLP+jQkdJ
+    f55rxS4zLGM/svisxjwYMKEF6MvL+uHT8mlD2gLd/Iz6jfQWB1VP8NE3/cRofXQDcLXR
+    KPOw==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j7Ic/MaIo="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.26.3 DYNA|AUTH)
+    with ESMTPSA id U0b2c9x5195ORGT
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Tue, 1 Jun 2021 11:05:24 +0200 (CEST)
+Date:   Tue, 1 Jun 2021 11:05:17 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Anibal Limon <anibal.limon@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: qcom: apq8016-sbc: Update modem and WiFi
+ firmware path
+Message-ID: <YLX4TfuxEnjQ3fhi@gerhold.net>
+References: <20210531224453.783218-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.71) by SGBP274CA0013.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.20 via Frontend Transport; Tue, 1 Jun 2021 09:04:51 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1a12a892-203b-4c32-55db-08d924dc526a
-X-MS-TrafficTypeDiagnostic: DB8PR04MB6795:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB8PR04MB6795DA108E14EBB6EB9A87C0E63E9@DB8PR04MB6795.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2201;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9w+wA6tg+TNBjs6MlLs7idNOcARgWtKzYeWxsj3F8BmS26Km2h6Gjcw51dVC/NJEc7BX4XpkkD6uCcjzcLD5GifPHtmBJl+BlhETgF/mNiitQpFXZ2QwhTF/bANtdoRWRcfW9JheyyaBK/TVrdmXMHL3v+TTS8s3nB/BDLLAwGNyjuIkyCNdZl+3CTuDD8ofA9zlMCBOA1/0nnvIpFbs4WKtRP98CZAa8F6EQ8GglxpCpR82l1HWeWjm/D/VbEZR8nfieY75Ek9gYZHbM5l0ZyUACBzdXMNInLTdf6mHycSM8ImMU2AjhQZ8cpSVNxSsn7LUPHnXR+CjA60xDB4a/adb+IgexmT5BdrqEojhQRATx7T8zSDM4lnQzoOclfNS/qcgkHalh0tIqhV+X1V6shIHvks4y8kfBSXmTFtAy+xxiDOj2zsJOsKEzz255kzKfNc62gS/IJra+/CuVGV4pUzJQCMVQ5Sp8KqE5nIjQEJBFamCdputiEm6SwIkCbhnXxEDRSS1YFJPL0q4ZFQc61/a2fUFSUUxLgYQwfE18qXvyqRcIhqXPbBf6kCd+pM+jJ4NXihC/R/pVk4d52oMk3Iyek2JgxJzNUFe3+LWhKqJVdN8ve5cCpvt5qXZnYUcWWsiuM9qWuy4HmKmab68RSjA5AEqQwEugYZ35A2LC+6LvfBkBKvzH5PEXP3lsCtC
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(366004)(39850400004)(396003)(136003)(66946007)(38350700002)(8936002)(478600001)(6666004)(36756003)(2616005)(52116002)(6506007)(2906002)(316002)(86362001)(16526019)(6486002)(186003)(956004)(38100700002)(5660300002)(6512007)(83380400001)(26005)(1076003)(66556008)(7416002)(8676002)(4326008)(66476007)(69590400013);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?ExuKfqHABjUrJhrTw6d6yDL01kp/4FK6uEn59k1yz390vS5O1zHfX6aT8tAr?=
- =?us-ascii?Q?gXbn9HO7xP8D4fTlrl9sdv3PGbLDF8fZ+MzQIxhWYyBXSww2gyCRa9a/SGYS?=
- =?us-ascii?Q?hggc2FiMT84QOEiJxAmKEv87mv8MKWYj5RWxWtulZpy38/nMFPRIz2J4v3X1?=
- =?us-ascii?Q?Je0HawT38p7dX8wEYWXO04qEKRFmlQee3NXJNdldH3drIJFXs1KEgyYAFdk7?=
- =?us-ascii?Q?9uxYe+ACWiyh01rslVZ6xLQXrngLmB9oJkbV/UgMimE+ae7vaPqEH4+62vY5?=
- =?us-ascii?Q?RPnkI92daWl/AlaaGxyG4GHS+RMsWC3P3OWNQDMONrPYWvFAu7aKYPxCMNXf?=
- =?us-ascii?Q?jZJPO+jLuL6hyupTjL93ilYtNo3TaZatoQQu5TS9nSoQLeBpqm8y23nzgrtb?=
- =?us-ascii?Q?mlV4R9AhRlxsTKOIatqHHuA3m5+2U7hNN3Bo3WWxRxCRKQu3cdQWC1DQc1Hc?=
- =?us-ascii?Q?UnsjyB2yUhCbwYcN0Y+rC4a7KCx97z14B5SbS0P2Yo8J2ZcA0pJ5RD6ZQkUY?=
- =?us-ascii?Q?fVe60EPUjx92GwT/BTeRn+km1fLOFgiZ1Rdhm6Ionks5HBfW96lseRziRuik?=
- =?us-ascii?Q?gDV+Ip71qQ5bAHL0Aufe+ZdArvYFc7e/TVQ9NSv2cz34I+J4Y84VwcFOXkST?=
- =?us-ascii?Q?mAMoSlaK0I7v+fBfqPQnNuLyHSF1rsevhqb6LXQAkJPTf8y7+Zv2akDLtrMr?=
- =?us-ascii?Q?KuZFjOYGJgtmDhVdg/vC/AN0APewc7PwB3M+EtCaLneX8ffG42FUSQNSD8T9?=
- =?us-ascii?Q?CvAasr+Q5aylqXFRxpjINqjZeR1fTmB+RixL25xDex5W+fe1IxQzSZ17OVJq?=
- =?us-ascii?Q?ypL6XBzpMOru8xNaDapvtrcEccGIkujKmK5oHc9dCgHiaFc1FMjMsSN55QR0?=
- =?us-ascii?Q?ZMSQ8w68c0eqtScRjfSrFZZT+Ip7H3FGzFBoLW+qp1DoNab7yFozjJ8F7Lrd?=
- =?us-ascii?Q?shOZmYU/zt/XGIVKEu+/uJJDFvLoTSflrkso51H14PTIThlV4q34wdsOmDqG?=
- =?us-ascii?Q?HbAj0yZqLHtjAUvr56Aa6Ra4EG/ZiFZRLMHN5HJxNp5JDvx3w6nPd+9lg6Ob?=
- =?us-ascii?Q?dByOFOsleTeymTQUJLcYa9h/fk5Ak5Do/ZbfBlgFdOGNs31c3HgE8p67mdF5?=
- =?us-ascii?Q?1mBKo6pJf/MhzIoQkMoqrpxTaTlqomfsrXZvjTsm1ckgWGi6/C3QENKg0TCV?=
- =?us-ascii?Q?YXNNxM95/HIpOqM1RX0EQ3/BTKPitksFObsGIPvWLQv7KZ5/pOsz1CCDTPkR?=
- =?us-ascii?Q?lSCAc8GTJfRKPWPBKQbG8PIJjkgR2O6Hs6UTBkKTVdY3Me/aNmol+vDeuDiv?=
- =?us-ascii?Q?6766qS5ssmJCn92POGwoDZYV?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1a12a892-203b-4c32-55db-08d924dc526a
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2021 09:04:54.5593
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: r+UA7WGKqW2TkIMekn7TEw3SDMD7uJWpM8okCJJBxK3isUVH+0kcGHG7AlZsrXXZ43ngiNz4cWGDisg9fKwsfw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6795
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210531224453.783218-1-bjorn.andersson@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PHY will delay about 11.5ms to generate RXC clock when switching from
-power down to normal operation. Read/write registers would also cause RXC
-become unstable and stop for a while during this process. Realtek engineer
-suggests 15ms or more delay can workaround this issue. All these
-statistics are collected with ALDPS mode disabled, so use RTL821X_ALDPS_DISABLE
-quirk check.
+On Mon, May 31, 2021 at 03:44:53PM -0700, Bjorn Andersson wrote:
+> The firmware for the modem and WiFi subsystems platform specific and is
+> signed with a OEM specific key (or a test key). In order to support more
+> than a single device it is therefor not possible to rely on the default
+> path and stash these files directly in the firmware directory.
+> 
+> This has already been addressed for other platforms, but the APQ8016 SBC
+> (aka db410c) was never finished upstream.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
----
- drivers/net/phy/realtek.c | 18 +++++++++++++++++-
- 1 file changed, 17 insertions(+), 1 deletion(-)
+As far as I can tell,
+"[PATCH 2/5] wcn36xx: Allow firmware name to be overridden by DT"
+was never applied so with this patch DB410c fails to request the
+"qcom/msm8916/WCNSS_qcom_wlan_nv.bin" firmware. Perhaps you need to
+resend that one or poke whoever is responsible to apply that.
 
-diff --git a/drivers/net/phy/realtek.c b/drivers/net/phy/realtek.c
-index 90e3a8cbfc2f..b45deda839f8 100644
---- a/drivers/net/phy/realtek.c
-+++ b/drivers/net/phy/realtek.c
-@@ -408,6 +408,22 @@ static int rtl8211f_config_init(struct phy_device *phydev)
- 	return genphy_soft_reset(phydev);
- }
- 
-+static int rtl821x_resume(struct phy_device *phydev)
-+{
-+	struct rtl821x_priv *priv = phydev->priv;
-+	int ret;
-+
-+	ret = genphy_resume(phydev);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* delay time is collected with ALDPS mode disabled. */
-+	if (priv->quirks & RTL821X_ALDPS_DISABLE_FEATURE)
-+		msleep(20);
-+
-+	return 0;
-+}
-+
- static int rtl8211e_config_init(struct phy_device *phydev)
- {
- 	int ret = 0, oldpage;
-@@ -904,7 +920,7 @@ static struct phy_driver realtek_drvs[] = {
- 		.config_intr	= &rtl8211f_config_intr,
- 		.handle_interrupt = rtl8211f_handle_interrupt,
- 		.suspend	= genphy_suspend,
--		.resume		= genphy_resume,
-+		.resume		= rtl821x_resume,
- 		.read_page	= rtl821x_read_page,
- 		.write_page	= rtl821x_write_page,
- 	}, {
--- 
-2.17.1
+Once the wcn36xx patch was applied somewhere:
+Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
+Tested-by: Stephan Gerhold <stephan@gerhold.net>
 
+Thanks,
+Stephan
+
+> ---
+>  arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi | 12 ++++++++++++
+>  arch/arm64/boot/dts/qcom/msm8916.dtsi     |  2 +-
+>  2 files changed, 13 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+> index 6aef0c2e4f0a..448e3561ef63 100644
+> --- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+> @@ -305,6 +305,12 @@ &mdss {
+>  	status = "okay";
+>  };
+>  
+> +&mpss {
+> +	status = "okay";
+> +
+> +	firmware-name = "qcom/msm8916/mba.mbn", "qcom/msm8916/modem.mbn";
+> +};
+> +
+>  &pm8916_resin {
+>  	status = "okay";
+>  	linux,code = <KEY_VOLUMEDOWN>;
+> @@ -312,6 +318,8 @@ &pm8916_resin {
+>  
+>  &pronto {
+>  	status = "okay";
+> +
+> +	firmware-name = "qcom/msm8916/wcnss.mbn";
+>  };
+>  
+>  &sdhc_1 {
+> @@ -394,6 +402,10 @@ &wcd_codec {
+>  	qcom,mbhc-vthreshold-high = <75 150 237 450 500>;
+>  };
+>  
+> +&wcnss_ctrl {
+> +	firmware-name = "qcom/msm8916/WCNSS_qcom_wlan_nv.bin";
+> +};
+> +
+>  /* Enable CoreSight */
+>  &cti0 { status = "okay"; };
+>  &cti1 { status = "okay"; };
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> index 4f06c0a9c425..6abe0f8edb55 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> @@ -1738,7 +1738,7 @@ smd-edge {
+>  
+>  				label = "pronto";
+>  
+> -				wcnss {
+> +				wcnss_ctrl: wcnss {
+>  					compatible = "qcom,wcnss";
+>  					qcom,smd-channels = "WCNSS_CTRL";
+>  
+> -- 
+> 2.29.2
+> 
