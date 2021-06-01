@@ -2,162 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 57087397185
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 12:34:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6319E397197
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 12:37:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232460AbhFAKfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 06:35:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57102 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231792AbhFAKft (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 06:35:49 -0400
-Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD808C06174A
-        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 03:34:08 -0700 (PDT)
-Received: by mail-vs1-xe2d.google.com with SMTP id s15so7461287vsi.4
-        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 03:34:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=K57YqakeMlmXTnxAf+W2Ub8EZWhnyq1GipQeukL/j9Q=;
-        b=SIWk7sKq05dNmHj0cBNp9EnrSZc9XaiEDsHvkAFhIs4Oyo7JCVHa+imw1r+2fwmLUm
-         pPOdcNj+OeHdi3RSEN/nypmZcjYWO0XC7t+Y3Yc7jRh/DlkD7kecoGfbwW6iq+IXvQqh
-         0gNJN5nW7JnuKCcz+Qq4QJsZYvUhEtpZpj1TMCjEK3Spt167Rph4TWfsdj17RSCJrmm3
-         bSXLGkgrWxz15BPbfPl0yXqvE0iLnWZbk3Nyrck59H0Qx/pVuh7sHd0dmaK9lRb7/LAG
-         +T1aozxFesbAeQniL8zB/YkvbVbUGZeZV5TDnl50t2kq4+9eKlqUZ7dCG4KlRbBMIo7V
-         r+RA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=K57YqakeMlmXTnxAf+W2Ub8EZWhnyq1GipQeukL/j9Q=;
-        b=luDWUENlGlIAoqwLXf4O5r3Tin8tjuRzPAKNKoNUFQ7bV6AxQKyKn6TVIhVVR0Gtwg
-         N1Rss2HMFV0mvjLL0UH27wz0j2EOkJmyltr9AyHB03GkaT5mM8m/8LFDR+9sCJe5kQNa
-         jzYXjZwpX5wsVE6VWu18e1429R/VF5yGFoPcggGr0HRuYBU9P2G4wVLuBhjjMzWzHU4S
-         XNq1dKH49TvsVHiGwvCJBVhKNtPCjnEvD7oRv1Ud2/VUQ9urVl7xSvCoYeJJu5v4y1ev
-         KGYcAMXeluZHFyfyOIdx3d8DoUkg578RrrxUCrPEMPgaqaY0RMzXaEXJB/08wEWCauDe
-         4kPQ==
-X-Gm-Message-State: AOAM533Km/6UAnyaHO7e18kF+hRXpBEaycxK9R0b4WfvBtACDF5nWxyX
-        rlJvbhZLBF94sN0UrHUxWqq2VwWZ7MIDlOGzNOu2wg==
-X-Google-Smtp-Source: ABdhPJxNQUczDFy7+X9laWNw8HAiSAl8diMPy3LtKv4U3uWIE7CFniKpvhHwll3xsreB7iQhBeAQ/hOY8lGcQt4mIz4=
-X-Received: by 2002:a67:e915:: with SMTP id c21mr6805876vso.19.1622543647735;
- Tue, 01 Jun 2021 03:34:07 -0700 (PDT)
+        id S230288AbhFAKjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 06:39:06 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:53050 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S232569AbhFAKjG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 06:39:06 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 151AVmNg029022;
+        Tue, 1 Jun 2021 12:37:12 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=3biXO/fpJflq2AcQCK76xAJA1BbX58Bg7funY9JCbm8=;
+ b=gVGcDWpmFLi2vkt8ZSC1ZkyNDcWZlIPGQDgMzMN51/USVOX7Ci4eZovrXm/mWC7srra3
+ 7cKLpT5ixlVZQ1QzD4IAe/Ui68Brj7h1s6D+6S3Yv4o3eV3deR62/mKPAB2dPjSImVD2
+ bKeA4Xhb8y94aO96qM2Gs0EsI/QJ6pqxwv/hoFiC+Ytcs+GHkzPHxi+v2wwIzJP+FQz0
+ lbrNA2HFD7jGPmKX4/KwFcsE2eaJF3qLXhKcyzO/ndkxzRgqcCwtFsKW83PQRc0MoWzt
+ O5oWJZw9awpOuUqE8clBzM6KDu/f5W3g8M23pNaMZuX4di3SQlYMaakCJj7zUwscVjmP Dw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 38wjdg0aps-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 01 Jun 2021 12:37:12 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id BA73410002A;
+        Tue,  1 Jun 2021 12:37:11 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8D82721B514;
+        Tue,  1 Jun 2021 12:37:11 +0200 (CEST)
+Received: from lmecxl0912.lme.st.com (10.75.127.45) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 1 Jun
+ 2021 12:37:10 +0200
+Subject: Re: [PATCH 00/13] ARM: dts: stm32: fix "make dtbs_check W=1" round1
+To:     <arnd@arndb.de>, <robh+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+        <jagan@amarulasolutions.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>, Lee Jones <lee.jones@linaro.org>,
+        <kuba@kernel.org>
+References: <20210415101037.1465-1-alexandre.torgue@foss.st.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <a5a76fa8-fac5-556d-f272-4c471f3e7913@foss.st.com>
+Date:   Tue, 1 Jun 2021 12:37:10 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <1622095949-2014-1-git-send-email-rnayak@codeaurora.org> <1622095949-2014-2-git-send-email-rnayak@codeaurora.org>
-In-Reply-To: <1622095949-2014-2-git-send-email-rnayak@codeaurora.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 1 Jun 2021 12:33:31 +0200
-Message-ID: <CAPDyKFprcA3DJW4bxef88oekpB5cNCkgy73_=mr40YWjNphvOw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: power: Introduce 'assigned-performance-states'
- property
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Roja Rani Yarubandi <rojay@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210415101037.1465-1-alexandre.torgue@foss.st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG3NODE3.st.com (10.75.127.9) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-06-01_05:2021-05-31,2021-06-01 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 27 May 2021 at 08:13, Rajendra Nayak <rnayak@codeaurora.org> wrote:
->
-> While most devices within power-domains which support performance states,
-> scale the performance state dynamically, some devices might want to
-> set a static/default performance state while the device is active.
-> These devices typically would also run off a fixed clock and not support
-> dynamically scaling the device's performance, also known as DVFS techniques.
-> Add a property 'assigned-performance-states' which client devices can
-> use to set this default performance state on their power-domains.
->
-> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+Hi
 
-I don't have a strong opinion about using "default-performance-state"
-or "assigned-performance-state". Although, perhaps people can relate
-to the existing "assigned-clock-rates" DT binding?
-In any case, please add:
+On 4/15/21 12:10 PM, Alexandre Torgue wrote:
+> Hi,
+> 
+> First round to cleanup warnings and yaml validation issues seen running
+> "make dtbs_check W=1" command for STM32 platform. It concerns all SoC
+> (MCU: f429/429, f746/769, h743, MPU) and all boards (ST reference boards,
+> DH, Engicam, LxA ...).
+> 
+> Main fixes are done in device tree files but some imply a change in yaml
+> dt-bindings file.
+> 
+> regards
+> Alex
+> 
+> Alexandre Torgue (13):
+>    ARM: dts: stm32: fix gpio-keys node on STM32 MCU boards
+>    ARM: dts: stm32: fix RCC node name on stm32f429 MCU
+>    ARM: dts: stm32: fix timer nodes on STM32 MCU to prevent warnings
+>    dt-bindings: mfd: stm32-timers: remove #address/size cells from
+>      required properties
+>    ARM: dts: stm32: update pinctrl node name on STM32 MCU to prevent
+>      warnings
+>    ARM: dts: stm32: fix i2c node name on stm32f746 to prevent warnings
+>    ARM: dts: stm32: move stmmac axi config in ethernet node on stm32mp15
+>    dt-bindings: net: document ptp_ref clk in dwmac
+>    ARM: dts: stm32: fix stpmic node for stm32mp1 boards
+>    dt-bindings: mfd: add vref_ddr-supply to st,stpmic1 yaml
+>    ARM: dts: stm32: fix LTDC port node on STM32 MCU ad MPU
+>    ARM: dts: stm32: fix DSI port node on STM32MP15
+>    ARM: dts: stm32: fix ltdc pinctrl on microdev2.0-of7
+> 
+>   .../bindings/mfd/st,stm32-timers.yaml         |  2 -
+>   .../devicetree/bindings/mfd/st,stpmic1.yaml   |  2 +-
+>   .../devicetree/bindings/net/snps,dwmac.yaml   |  4 +-
+>   .../devicetree/bindings/net/stm32-dwmac.yaml  |  6 +-
+>   arch/arm/boot/dts/stm32429i-eval.dts          |  8 +-
+>   arch/arm/boot/dts/stm32746g-eval.dts          |  6 +-
+>   arch/arm/boot/dts/stm32f4-pinctrl.dtsi        |  2 +-
+>   arch/arm/boot/dts/stm32f429-disco.dts         |  6 +-
+>   arch/arm/boot/dts/stm32f429-pinctrl.dtsi      | 72 +++++++++---------
+>   arch/arm/boot/dts/stm32f429.dtsi              | 10 +--
+>   arch/arm/boot/dts/stm32f469-disco.dts         |  8 +-
+>   arch/arm/boot/dts/stm32f469-pinctrl.dtsi      | 74 +++++++++----------
+>   arch/arm/boot/dts/stm32f7-pinctrl.dtsi        |  2 +-
+>   arch/arm/boot/dts/stm32f746.dtsi              | 12 +--
+>   arch/arm/boot/dts/stm32f769-disco.dts         |  6 +-
+>   arch/arm/boot/dts/stm32h743.dtsi              |  4 -
+>   arch/arm/boot/dts/stm32mp151.dtsi             | 16 ++--
+>   arch/arm/boot/dts/stm32mp157.dtsi             |  2 -
+>   arch/arm/boot/dts/stm32mp157a-dk1.dts         |  8 ++
+>   ...157a-microgea-stm32mp1-microdev2.0-of7.dts |  5 +-
+>   arch/arm/boot/dts/stm32mp157a-stinger96.dtsi  |  7 +-
+>   arch/arm/boot/dts/stm32mp157c-dk2.dts         | 12 ++-
+>   arch/arm/boot/dts/stm32mp157c-ev1.dts         |  5 +-
+>   arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts     |  3 +-
+>   .../arm/boot/dts/stm32mp157c-odyssey-som.dtsi |  5 +-
+>   arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi  |  5 +-
+>   .../boot/dts/stm32mp15xx-dhcor-avenger96.dtsi |  6 +-
+>   arch/arm/boot/dts/stm32mp15xx-dkx.dtsi        |  7 --
+>   arch/arm/boot/dts/stm32mp15xx-osd32.dtsi      |  7 +-
+>   29 files changed, 130 insertions(+), 182 deletions(-)
+> 
 
-Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+Patches 1 to 8 and 13 applied on stm32-next. I will send a v2 for 
+vref-ddr supply. There is still an open point about #adress-size/cells 
+check for DSI / LTDC ports.
 
-Kind regards
-Uffe
+Rob,
+Can we consider to have "#adress-size/cells defined even if only one 
+endpoint (child) is defined ? and then is it possible to update the 
+checker ? Or do we have to keep patches [11][12]
+and update #adress-size/cells in board dts files ?
 
-> ---
->  .../devicetree/bindings/power/power-domain.yaml    | 50 ++++++++++++++++++++++
->  1 file changed, 50 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/power/power-domain.yaml b/Documentation/devicetree/bindings/power/power-domain.yaml
-> index aed51e9..88cebf2 100644
-> --- a/Documentation/devicetree/bindings/power/power-domain.yaml
-> +++ b/Documentation/devicetree/bindings/power/power-domain.yaml
-> @@ -66,6 +66,19 @@ properties:
->        by the given provider should be subdomains of the domain specified
->        by this binding.
->
-> +  assigned-performance-states:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description:
-> +       Some devices might need to configure their power domains in a default
-> +       performance state while the device is active. These devices typically
-> +       would also run off a fixed clock and not support dynamically scaling the
-> +       device's performance, also known as DVFS techniques. The list of performance
-> +       state values should correspond to the list of power domains specified as part
-> +       of the power-domains property. Each cell corresponds to one power-domain.
-> +       A value of 0 can be used for power-domains with no performance state
-> +       requirement. In case the power-domains have OPP tables associated, the values
-> +       here would typically match with one of the entries in the OPP table.
-> +
->  required:
->    - "#power-domain-cells"
->
-> @@ -131,3 +144,40 @@ examples:
->              min-residency-us = <7000>;
->          };
->      };
-> +
-> +  - |
-> +    parent4: power-controller@12340000 {
-> +        compatible = "foo,power-controller";
-> +        reg = <0x12340000 0x1000>;
-> +        #power-domain-cells = <0>;
-> +    };
-> +
-> +    parent5: power-controller@43210000 {
-> +        compatible = "foo,power-controller";
-> +        reg = <0x43210000 0x1000>;
-> +        #power-domain-cells = <0>;
-> +        operating-points-v2 = <&power_opp_table>;
-> +
-> +        power_opp_table: opp-table {
-> +            compatible = "operating-points-v2";
-> +
-> +            power_opp_low: opp1 {
-> +                opp-level = <16>;
-> +            };
-> +
-> +            rpmpd_opp_ret: opp2 {
-> +                opp-level = <64>;
-> +            };
-> +
-> +            rpmpd_opp_svs: opp3 {
-> +                opp-level = <256>;
-> +            };
-> +        };
-> +    };
-> +
-> +    child4: consumer@12341000 {
-> +        compatible = "foo,consumer";
-> +        reg = <0x12341000 0x1000>;
-> +        power-domains = <&parent4>, <&parent5>;
-> +        assigned-performance-states = <0>, <256>;
-> +    };
-> --
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-> of Code Aurora Forum, hosted by The Linux Foundation
->
+Thanks
+Alex
+
