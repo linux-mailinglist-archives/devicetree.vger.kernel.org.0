@@ -2,90 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A35B397B48
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 22:33:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 516D3397B5A
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 22:45:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234638AbhFAUfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 16:35:00 -0400
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:34427 "EHLO
-        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234513AbhFAUfA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 16:35:00 -0400
-Received: by mail-oi1-f174.google.com with SMTP id u11so648383oiv.1;
-        Tue, 01 Jun 2021 13:33:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=QrEdnEwQRqeosY6gkgi2Hdn7Yt87QUVcHOSzMSN62Lc=;
-        b=UXZZ7yM5rb5UF4dAKI+gyk1nmHOyM5gNapMHOSLvwDsUzatNc/eLQKpxILuV0YjEfT
-         RbAz66LsO+0GSLCeSKZhw21wBR5H8WsWKgeVgV0CI2jkxdyKfJUR0uFxebn+IWAePo+n
-         SVMCtoDU4VEVtwlXCddnKoWk8XqtsVyub1c9E2HIXtDkqRO/LJ16bJ+ffi8geXZcAEQ8
-         SKe6q9U1UYYNV0J8Zy+36Bf25g0PjY8Rn7mzbHPT+Rlv+TcCgyFafEYPJSKQ9qdBWDDH
-         6o8/DUtgDK5tVCtUi78DZoeXqfUfYIVrTAeYz2VqFPLC1IrHO5HXVOklxNo2ecms2xQU
-         PPtQ==
-X-Gm-Message-State: AOAM533y/TQaZGOho4YmGjUbSLXNMeMP886FwHnPM8mmHaO2XinIgRL7
-        9pfBCp26LgRkG7aHkm0qdf1yGYB+gA==
-X-Google-Smtp-Source: ABdhPJwC3oC7hefJFsHAhMPWQ6kmcmL5EL4tOd4wqe3rJZvXBFChtRBITnFPHbbFFjAGtpaQ8LQBdw==
-X-Received: by 2002:a05:6808:1394:: with SMTP id c20mr18806663oiw.90.1622579596906;
-        Tue, 01 Jun 2021 13:33:16 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 7sm3907126oti.30.2021.06.01.13.33.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jun 2021 13:33:16 -0700 (PDT)
-Received: (nullmailer pid 984921 invoked by uid 1000);
-        Tue, 01 Jun 2021 20:33:14 -0000
-Date:   Tue, 1 Jun 2021 15:33:14 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Mark Kettenis <mark.kettenis@xs4all.nl>
-Cc:     linux-pci@vger.kernel.org, Hector Martin <marcan@marcan.st>,
-        robin.murphy@arm.com, devicetree@vger.kernel.org,
-        Mark Kettenis <kettenis@openbsd.org>, maz@kernel.org,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: pci: Add DT bindings for apple,pcie
-Message-ID: <20210601203314.GA977583@robh.at.kernel.org>
-References: <20210530224404.95917-1-mark.kettenis@xs4all.nl>
- <20210530224404.95917-2-mark.kettenis@xs4all.nl>
- <1622554330.029938.242360.nullmailer@robh.at.kernel.org>
+        id S234723AbhFAUr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 16:47:26 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:42822 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234513AbhFAUr0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Jun 2021 16:47:26 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1loBG5-0003ST-OY; Tue, 01 Jun 2021 22:45:05 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Lee Jones <lee.jones@linaro.org>,
+        Chris Morgan <macroalpha82@gmail.com>
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        lgirdwood@gmail.com, pierre-louis.bossart@linux.intel.com,
+        tiwai@suse.com, robh+dt@kernel.org, perex@perex.cz,
+        jbx6244@gmail.com, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, maccraft123mc@gmail.com,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [GIT PULL] Immutable branch between MFD and ASoC due for the v5.14 merge window
+Date:   Tue, 01 Jun 2021 22:45:04 +0200
+Message-ID: <8906844.gsGJI6kyIV@diego>
+In-Reply-To: <20210601183351.GA31227@wintermute.localdomain>
+References: <20210519203754.27184-1-macroalpha82@gmail.com> <20210601173944.GA2173308@dell> <20210601183351.GA31227@wintermute.localdomain>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1622554330.029938.242360.nullmailer@robh.at.kernel.org>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 01, 2021 at 08:32:10AM -0500, Rob Herring wrote:
-> On Mon, 31 May 2021 00:44:00 +0200, Mark Kettenis wrote:
-> > From: Mark Kettenis <kettenis@openbsd.org>
+Am Dienstag, 1. Juni 2021, 20:33:51 CEST schrieb Chris Morgan:
+> On Tue, Jun 01, 2021 at 06:39:44PM +0100, Lee Jones wrote:
+> > On Tue, 01 Jun 2021, Chris Morgan wrote:
 > > 
-> > The Apple PCIe host controller is a PCIe host controller with
-> > multiple root ports present in Apple ARM SoC platforms, including
-> > various iPhone and iPad devices and the "Apple Silicon" Macs.
+> > > On Tue, Jun 01, 2021 at 04:58:32PM +0100, Lee Jones wrote:
+> > > > On Tue, 01 Jun 2021, Lee Jones wrote:
+> > > > 
+> > > > > I've applied the non-Arm patches.
+> > > > > 
+> > > > > The following changes since commit 6efb943b8616ec53a5e444193dccf1af9ad627b5:
+> > > > > 
+> > > > >   Linux 5.13-rc1 (2021-05-09 14:17:44 -0700)
+> > > > > 
+> > > > > are available in the Git repository at:
+> > > > > 
+> > > > >   git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tb-mfd-asoc-v5.14
+> > > > > 
+> > > > > for you to fetch changes up to 437faaa6cebadf8ff4c2c28d7cb26ed4e34aeb14:
+> > > > > 
+> > > > >   dt-bindings: Add Rockchip rk817 audio CODEC support (2021-06-01 13:40:41 +0100)
+> > > > > 
+> > > > > ----------------------------------------------------------------
+> > > > > Immutable branch between MFD and ASoC due for the v5.14 merge window
+> > > > > 
+> > > > > ----------------------------------------------------------------
+> > > > > Chris Morgan (3):
+> > > > >       mfd: Add Rockchip rk817 audio CODEC support
+> > > > >       ASoC: Add Rockchip rk817 audio CODEC support
+> > > > >       dt-bindings: Add Rockchip rk817 audio CODEC support
+> > > > > 
+> > > > >  Documentation/devicetree/bindings/mfd/rk808.txt | 188 +++++++++
+> > > > >  drivers/mfd/rk808.c                             |  81 ++++
+> > > > >  include/linux/mfd/rk808.h                       |  81 ++++
+> > > > >  sound/soc/codecs/Kconfig                        |   6 +
+> > > > >  sound/soc/codecs/Makefile                       |   2 +
+> > > > >  sound/soc/codecs/rk817_codec.c                  | 539 ++++++++++++++++++++++++
+> > > > >  6 files changed, 897 insertions(+)
+> > > > >  create mode 100644 sound/soc/codecs/rk817_codec.c
+> > > > 
+> > > > Looks like the builders reported a W=1 warning introduced by the set.
+> > > > 
+> > > > Would you like me to fix it and submit a patch?
+> > > 
+> > > I can't seem to reproduce the warning, are there more details as to
+> > > what is causing it?
 > > 
-> > Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
-> > ---
-> >  .../devicetree/bindings/pci/apple,pcie.yaml   | 167 ++++++++++++++++++
-> >  MAINTAINERS                                   |   1 +
-> >  2 files changed, 168 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pci/apple,pcie.yaml
-> > 
+> > Yes, it's a W=1 warning.  Put that on your command line.
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/pci/apple,pcie.example.dts:20:18: fatal error: dt-bindings/pinctrl/apple.h: No such file or directory
->    20 |         #include <dt-bindings/pinctrl/apple.h>
->       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> Got it. Want me to resubmit the patch? Looks like I was requesting a
+> return value from a function and not doing anything with it.
 
-Looking at the example, I don't think you need this header. Looks like 
-irq.h is needed though.
+from Lee's earlier mail I guess he prefers a followup patch to fix the issue.
 
-Otherwise, LGTM.
 
-Rob
 
