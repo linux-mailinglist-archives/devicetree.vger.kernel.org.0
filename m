@@ -2,214 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A8413970FB
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 12:09:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFF43397103
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 12:11:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232570AbhFAKLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 06:11:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51520 "EHLO
+        id S231994AbhFAKMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 06:12:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231792AbhFAKLG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 06:11:06 -0400
-Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D045EC061574
-        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 03:09:24 -0700 (PDT)
-Received: by mail-io1-xd2c.google.com with SMTP id v9so14615456ion.11
-        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 03:09:24 -0700 (PDT)
+        with ESMTP id S230170AbhFAKMl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 06:12:41 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5695AC061574
+        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 03:11:00 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id v8so20918420lft.8
+        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 03:11:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=DLBEbUNXUeLvCZwFV4exIHsYyNPtftd/N147joyMJKc=;
-        b=K1kOVFBaSiDKTJxudPss/sqXKK8z8upccHvruXZqXXb44gAkhseuHLHsmOKU4lCt8P
-         2Jll90i7+F3k9bVbwjn8kumj1LduMINyUqfvz7XBCx8v4oHOdn9Hgde3GG/bpfYGXNAK
-         fbfEleyiOk1ZnNqjjkBfkuVrcpG+BLlc9eiiIWNIUfMWSka5diKugyEMQu77Gvaw3CBC
-         hq3A2t1yUYWmZ+ZFJ5eVpQYzXhz8dmFOCs0pJmqj02krtbOp60Md6INd0fErxAtj7rt+
-         lon2ZwvC2x43QRNPEVJaAJB6lEUYR5lkNjXv1Lq/QYvS2Sa5qBAichuHdZDxIX+ImvJx
-         PBbQ==
+         :cc;
+        bh=mXZO1IaKj8e+HsJJD6dime89CXjE2mtKCwPbk2wFi1Y=;
+        b=PAmnyLWW3xVrnfCXBt8ZAGO4Q6ntqnhqG5dYV7hJSuJcjfz46+Et8k+ZJPCM1BbZ68
+         TG30+Lum7qdt+KFfaIPLppcZ+cC7Hjl/4YvZUOC3YvkrnsemTsWbKM3utq4ecrfqzGnp
+         wG6rWxR1hkbQxRl4pyjns2ASVGp7qMPah2XtXfT2HgS24+nZPRxxUdxxfozIckySzQQu
+         81jHqhEgQE+g2+cEl8S2lVtlysJkwMtH5p3P9U6t9vA+SxFRg/HGzbmH4lsg2Gb1HNDe
+         kUapQFMJTmTP3FxH1qolW4NglYaEkjjk/P4s2j4kORb+HN77y/+xh42P06B7dxPuQ5LN
+         tmUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=DLBEbUNXUeLvCZwFV4exIHsYyNPtftd/N147joyMJKc=;
-        b=EdBxPUCaST7tqgNUaKWS1F5z2LzvprGVHCdZdRHzaLZXXdqIi+wzHQXnEOtr94PqLp
-         0bZyPcwWZZDYnyclLBHAHFJJ/i/Nq5v7sbZnHlu/7T7iVu9Jm8sBBnpdbn4fMPB1Mw3z
-         HiTbporD5A135wl4r4p1fNoZoQA8Y7TWa/I1YOOibMCDgCpyTPGrfR6msRJH5MCxo1tw
-         eG4dIaZsB9aZ458i302NllQixdwdBZvkQ9qCd7qnIP/pkMoyNMSPpelvCeVt+qzkzKXc
-         kD9uN+wXN2YFh9HsynElfyoufIg/+XvOEC5WFWTXd80PDz1tnwlGSVlhxliYN1kPpV6I
-         Bkfg==
-X-Gm-Message-State: AOAM532GYorvfapk9rKusinfkwyaU9ePaZe07WDFLxhyCVBhHZCt2J4k
-        G09Wyw6Wnl3s2p2QeUSPbDmnNPk0QNt/rkyDxBm3Hg==
-X-Google-Smtp-Source: ABdhPJxzQQtP0OzkqZs7a5hDfasWwF5GPgvG66W6P8oW0WitaBhboQFv7Vb33Ervk+ESo1r722E0Y9JK161dKsxO9tU=
-X-Received: by 2002:a05:6638:634:: with SMTP id h20mr6057368jar.14.1622542164126;
- Tue, 01 Jun 2021 03:09:24 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=mXZO1IaKj8e+HsJJD6dime89CXjE2mtKCwPbk2wFi1Y=;
+        b=t2JbiqrTDLiPlU8lA7rp26l/c7fRiuYne/MZQP2rGexMloLvFz2JohJZRZRqW3zzmr
+         oPpdl+jK1pmGWopOAn3lAkcxDiDE/2Xak1pEQhtlYT41+xRx+NrG8/HDmgYcyio8My2B
+         VjaMhrNbaCCmpMgyGOYkhHrbXddzsQlyqd/puh0uAlYHt2jfAW3GOftFRXAaah9r9I4e
+         AIRvRbeKvcP9REF/VGe6NRBjLmCNppa9/JXejg02eVkP2vBOZqa7OCnUX0tR7lhcV98a
+         5U2u75XzTqsklTbAHpzd4XplFQN6WaKZfuvEA1BiLe0rQzxpE1Hmz2bUuwVUmu1ghL9x
+         WvdQ==
+X-Gm-Message-State: AOAM532wixD0Z/GJlYqe1yRCroihM304RW8qnWF9HPeSGIMxAM8oBAo/
+        CypNR+CB/S6/FFT79s9SkGxUen/aRFFnypU7fmdPUQ==
+X-Google-Smtp-Source: ABdhPJwadJG1Z+DxbBmxKxvEQqSH6jDHpGXRXGCT9utnR1hgTl/yCZLnOQU86Xt7cd6GKg6JmptLeQ8X5upF3QJ6nq4=
+X-Received: by 2002:a05:6512:11ea:: with SMTP id p10mr17616726lfs.157.1622542258735;
+ Tue, 01 Jun 2021 03:10:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210524120539.3267145-1-robert.marko@sartura.hr>
- <20210524120539.3267145-3-robert.marko@sartura.hr> <20210524230940.GA1350504@robh.at.kernel.org>
- <20210525074649.GC4005783@dell> <CA+HBbNFxCKbitVctbUisuZXJWxaZp0cswNNNTgD0UxQZ1smJbg@mail.gmail.com>
- <20210526075255.GG4005783@dell> <CA+HBbNGSH9AvRo0Hwa5pWea94u0LwJt=Kj7gWjSAV9fS5VFr0A@mail.gmail.com>
- <20210601081933.GU543307@dell> <20210601082226.GV543307@dell>
- <CA+HBbNEHgUxE-F4iiAbCyt3ffypUJf2nePUsOmCjpFoJNkpCJw@mail.gmail.com> <20210601093104.GE543307@dell>
-In-Reply-To: <20210601093104.GE543307@dell>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Tue, 1 Jun 2021 12:09:13 +0200
-Message-ID: <CA+HBbNH1D-1Jfv0NRT0FLPDf1r_Uy4EVCAVCx6x64pMAQkVjZA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: mfd: Add Delta TN48M CPLD drivers bindings
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+References: <20210325122832.119147-1-sandberg@mailfence.com>
+ <20210530161333.3996-1-maukka@ext.kapsi.fi> <20210530161333.3996-2-maukka@ext.kapsi.fi>
+In-Reply-To: <20210530161333.3996-2-maukka@ext.kapsi.fi>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 1 Jun 2021 12:10:47 +0200
+Message-ID: <CACRpkdbD-AZrZrHZ0mQm09TV6mMWunmBF1sMLgaDFUHxTV+R5Q@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: gpio-mux-input: add documentation
+To:     Mauri Sandberg <maukka@ext.kapsi.fi>
+Cc:     Mauri Sandberg <sandberg@mailfence.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
         Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
         "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
-        Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Drew Fustini <drew@beagleboard.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 1, 2021 at 11:31 AM Lee Jones <lee.jones@linaro.org> wrote:
+On Sun, May 30, 2021 at 6:16 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
+
+> Add documentation for a general GPIO multiplexer.
 >
-> On Tue, 01 Jun 2021, Robert Marko wrote:
->
-> > On Tue, Jun 1, 2021 at 10:22 AM Lee Jones <lee.jones@linaro.org> wrote:
-> > >
-> > > On Tue, 01 Jun 2021, Lee Jones wrote:
-> > >
-> > > > On Mon, 31 May 2021, Robert Marko wrote:
-> > > >
-> > > > > On Wed, May 26, 2021 at 9:52 AM Lee Jones <lee.jones@linaro.org> =
-wrote:
-> > > > > >
-> > > > > > On Tue, 25 May 2021, Robert Marko wrote:
-> > > > > >
-> > > > > > > On Tue, May 25, 2021 at 9:46 AM Lee Jones <lee.jones@linaro.o=
-rg> wrote:
-> > > > > > > >
-> > > > > > > > On Mon, 24 May 2021, Rob Herring wrote:
-> > > > > > > >
-> > > > > > > > > On Mon, May 24, 2021 at 02:05:38PM +0200, Robert Marko wr=
-ote:
-> > > > > > > > > > Add binding documents for the Delta TN48M CPLD drivers.
-> > > > > > > > > >
-> > > > > > > > > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > > > > > > > > > ---
-> > > > > > > > > > Changes in v2:
-> > > > > > > > > > * Implement MFD as a simple I2C MFD
-> > > > > > > > > > * Add GPIO bindings as separate
-> > > > > > > > >
-> > > > > > > > > I don't understand why this changed. This doesn't look li=
-ke an MFD to
-> > > > > > > > > me. Make your binding complete if there are missing funct=
-ions.
-> > > > > > > > > Otherwise, stick with what I already ok'ed.
-> > > > > > > >
-> > > > > > > > Right.  What else, besides GPIO, does this do?
-> > > > > > >
-> > > > > > > It currently does not do anything else as hwmon driver was es=
-sentially
-> > > > > > > NACK-ed for not exposing standard attributes.
-> > > > > >
-> > > > > > Once this provides more than GPIO capabilities i.e. becomes a p=
-roper
-> > > > > > Multi-Function Device, then it can use the MFD framework.  Unti=
-l then,
-> > > > > > it's a GPIO device I'm afraid.
-> > > > > >
-> > > > > > Are you going to re-author the HWMON driver to conform?
-> > > > > hwmon cannot be reathored as it has no standard hwmon attributes.
-> > > > >
-> > > > > >
-> > > > > > > The CPLD itself has PSU status-related information, bootstrap=
- related
-> > > > > > > information,
-> > > > > > > various resets for the CPU-s, OOB ethernet PHY, information o=
-n the exact board
-> > > > > > > model it's running etc.
-> > > > > > >
-> > > > > > > PSU and model-related info stuff is gonna be exposed via a mi=
-sc driver
-> > > > > > > in debugfs as
-> > > > > > > we have user-space SW depending on that.
-> > > > > > > I thought we agreed on that as v1 MFD driver was exposing tho=
-se directly and
-> > > > > > > not doing anything else.
-> > > > > >
-> > > > > > Yes, we agreed that creating an MFD driver just to expose chip
-> > > > > > attributes was not an acceptable solution.
-> > > > > >
-> > > > > > > So I moved to use the simple I2C MFD driver, this is all mode=
-led on the sl28cpld
-> > > > > > > which currently uses the same driver and then GPIO regmap as =
-I do.
-> > > > > > >
-> > > > > > > Other stuff like the resets is probably gonna get exposed lat=
-er when
-> > > > > > > it's required
-> > > > > > > to control it directly.
-> > > > > >
-> > > > > > In order for this driver to tick the MFD box, it's going to nee=
-d more
-> > > > > > than one function.
-> > > > >
-> > > > > Understood, would a debug driver count or I can expose the resets=
- via
-> > > > > a reset driver
-> > > > > as we have a future use for them?
-> > > >
-> > > > CPLDs and FPGAs are funny ones and are often difficult to support i=
-n
-> > > > Linux.  Especially if they can change their behaviour.
-> > > >
-> > > > It's hard to make a solid suggestion as to how your device is handl=
-ed
-> > > > without knowing the intricacies of the device.
-> > > >
-> > > > Why do you require one single Regmap anyway?  Are they register ban=
-ks
-> > > > not neatly separated on a per-function basis?
-> > >
-> > > Also, if this is really just a GPIO expander, can't the GPIO driver
-> > > output something to /sysfs that identifies it to userspace instead?
-> >
-> > I replied to your previous reply instead of this one directly.
-> > It's not just a GPIO expander, it also provides resets to all of the HW
-> > and a lot of debugging information.
-> > Note that other switches use the same CPLD but with more features
-> > so I want to just extend these drivers and add for example hwmon.
-> >
-> > It's not just about it identifying itself, it offers a lot of various
-> > debug info,
-> > quite literally down to what CPU has access to the serial console on th=
-e
-> > front and their bootstrap pins.
-> >
-> > So, I want to expose the CPLD version, code version, switch model,
-> > PSU status pins and a lot more using a separate driver as they
-> > don't really belong to any other subsystem than misc using debugfs.
->
-> drivers/soc is also an option for devices like these.
+> Signed-off-by: Mauri Sandberg <maukka@ext.kapsi.fi>
+> Tested-by: Drew Fustini <drew@beagleboard.org>
+> Reviewed-by: Drew Fustini <drew@beagleboard.org>
 
-I have completely forgotten about that, it's a potential place.
+Overall very interesting!
 
-Regards,
-Robert
->
-> --
-> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
-> Senior Technical Lead - Developer Services
-> Linaro.org =E2=94=82 Open source software for Arm SoCs
-> Follow Linaro: Facebook | Twitter | Blog
+> +  pin-gpios:
+> +    description: |
+> +      The GPIO pin used as the output from the multiplexer
 
+This is not a good name. "pin" what pin? Choose a descriptive
+name, like:
 
+parent-gpios
+multiplexed-gpios
+cascaded-gpios
+fanout-gpios
 
---=20
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+(My order of preference.)
+
+Otherwise these bindings look good.
+
+Yours,
+Linus Walleij
