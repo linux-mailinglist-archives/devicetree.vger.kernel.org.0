@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D125339719B
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 12:38:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E09403971C3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 12:44:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230282AbhFAKj5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 06:39:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58068 "EHLO
+        id S233106AbhFAKqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 06:46:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233397AbhFAKj4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 06:39:56 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73DC6C06174A
-        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 03:38:14 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id q7so21034006lfr.6
-        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 03:38:14 -0700 (PDT)
+        with ESMTP id S230288AbhFAKqN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 06:46:13 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF9D2C06174A
+        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 03:44:30 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id w33so21029404lfu.7
+        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 03:44:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=yN5uiFBkkTeT2+j1gnjicofSI0ZU0aW0s8cvIPMUB5c=;
-        b=Yp4g9qfAZ2U4RijeC/9A/sXt0dNmQH8B2qgnGaUsUALb9c0wdcbuwpoelkQx97gpJ7
-         g1q1rUo6V/D+UN0Xy7n9Wwkh+MlP/n5z3hm41lYLlHgL+aB4y+PEHQ7/stAQvwxqoMdd
-         KsVE/QJlsIt0BZTMveHgGG9V4wkx8m9LMjZTiY8qklY58VAkq7gXoONJ+GzdZGmtKu5f
-         US1s4g+gA9pgtUUoc3GFG2mMLabhCX3JtI/1lwAtbqD5MjUa/nnwM/Bx3TUkeVDFis3i
-         MgBiwJCASB7dQyqwmQH+j+6UeHjCZKrSn+ticL0q6+9zcP0gELkMRAvgr6qFvzPpuiad
-         no8w==
+        bh=MNIiBPe7Xgkk/pQlTn5d5oBTgg8+i5Bf4QSJR9wISVM=;
+        b=UXkQHT3eBr+4JEvtzopIhZ1FvV3ocxuIYgeJ+7Su7fYCJ+dkwEyccmnGDbXqTpQXBa
+         4D+czka30Sntd5pqwadbJ+Fq33TIkGQPN/0YVo+5mMyrYwik/0aYGD2jMwvJjph5Rge8
+         bNtZVVIfMKVzC/NorGzwfSkYaX5RvV5LNk72BsdEO4C+pupjQurW+qDzc5Y/IuE3T7xH
+         iZSlq0ilBaxuxQtypbr/oNlRsEVlCHBT2DwLZ/AV1234NH1yvTnSH2mkoawJTx3nr8dF
+         aA0TZ051QZhPIuAHoUCZdxCT+zP+kapzbmeLw7kbjQ0sx/riAhd+J1zA3hxxAY0dCTSl
+         wAig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=yN5uiFBkkTeT2+j1gnjicofSI0ZU0aW0s8cvIPMUB5c=;
-        b=EAjKpcgj3Ob0PyKfmTRcVgJ5cYfBmWYAAOnuNFLv+WMqx9kSDGnv80wllsskOU7n9g
-         1jTw4wbU6n263yyxbZBwaQHvxH66xQyCyPRsWaTqhkuD/qNUwO1ooGRcJpE/x0GDURx1
-         GFexxzpgDz6/sLGTR6mKLDfreAG47+ohwfWaLEflDkjXHJMhsoXPXh19q2zI4h5NqI+E
-         8xqN8+g7FQU4WtyihQQN2Tap82bim9parGAhJJqGJjuM5KfFUJyWA2otSMIzlAj+yPza
-         2w+uPFp7pFLqunEWYq99/yDqh1tBV2HnS6L1P2JVmYhRP1JAHac96nuFGdlVW1REg/G2
-         HWxA==
-X-Gm-Message-State: AOAM532McBGhLcYm+oFKUbxFMvFVR7jNZ9CEb+U+ZoimVxC/r+lDKjq2
-        +10gn2BmFwiHE5/oZfEoE567DwfZMfp0UdH3djayjg==
-X-Google-Smtp-Source: ABdhPJyrNY1gdF74/aahJD6WWpvmsfypMnfesq4IK/NIfeVwSBC8cYbo6kOwQ59ZGcFwYnmhMPCTSa5bqu3fh/F7YJ4=
-X-Received: by 2002:ac2:544f:: with SMTP id d15mr18182416lfn.465.1622543892812;
- Tue, 01 Jun 2021 03:38:12 -0700 (PDT)
+        bh=MNIiBPe7Xgkk/pQlTn5d5oBTgg8+i5Bf4QSJR9wISVM=;
+        b=YtatEMnSGRuumn7KpX9FLSh1MfAKsoWQ3B1Btdtlvg3QfyUHKz0pP3p2dJ9H/uvylt
+         HqY+5yneSqRyWkmUun/oUiEdZfhK5oHPXhbMq13d/2OtoooPrrHoIkdc6cKnA8SEX10k
+         NXjQIi0JkN3EzNTz4jPHayrnQs+M09nkGAfPQF3IbhcJjP3OTucKw551ZkIYsMgBpnzs
+         j4FyOwmm5nRwAcmh6W+pip9nL/oprD0mTd4A2DFtn5Qqd+AgV52T3BzYbWZ+4rYzThE8
+         LH454cuPTUJta8gd4yYJcob3Tpchx6QLRQDWeN/iv7s4UsfVbXptJekvt6doh28Q6jUf
+         NqyQ==
+X-Gm-Message-State: AOAM533rk3fmw/HAWyG+q1b3nnv68LKxVjg/+ZGQhOOHD/jAKC+AKWTK
+        ZjmF2fuD5eMPp0hVQd5Hz4jE+VZ0K8cuNd/quN0hBg==
+X-Google-Smtp-Source: ABdhPJymNy/m+dkQx0iYjjTIrVKPk7L2Q0TqaniD+inM4naMM/JHehOqRI2qhFyGjgM79n4LG885n/7C85sCH1/cmGA=
+X-Received: by 2002:a05:6512:3e03:: with SMTP id i3mr14333979lfv.529.1622544269211;
+ Tue, 01 Jun 2021 03:44:29 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210325122832.119147-1-sandberg@mailfence.com>
- <20210530161333.3996-1-maukka@ext.kapsi.fi> <20210530161333.3996-3-maukka@ext.kapsi.fi>
-In-Reply-To: <20210530161333.3996-3-maukka@ext.kapsi.fi>
+ <20210530161333.3996-1-maukka@ext.kapsi.fi> <20210530161333.3996-2-maukka@ext.kapsi.fi>
+In-Reply-To: <20210530161333.3996-2-maukka@ext.kapsi.fi>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 1 Jun 2021 12:38:01 +0200
-Message-ID: <CACRpkdYf06W2QDY6EN0OG3RjOnJ+AVE+Wd4M6Z9=B7aZ9rGfwA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] gpio: gpio-mux-input: add generic gpio input multiplexer
+Date:   Tue, 1 Jun 2021 12:44:18 +0200
+Message-ID: <CACRpkdZfdd=ogHoNGuLzGGZYkvw7xtNO2VJm-t-2vMibGNy=dA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: gpio-mux-input: add documentation
 To:     Mauri Sandberg <maukka@ext.kapsi.fi>
 Cc:     Mauri Sandberg <sandberg@mailfence.com>,
         Andy Shevchenko <andy.shevchenko@gmail.com>,
@@ -61,8 +61,7 @@ Cc:     Mauri Sandberg <sandberg@mailfence.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
         linux-kernel <linux-kernel@vger.kernel.org>,
-        Drew Fustini <drew@beagleboard.org>,
-        kernel test robot <lkp@intel.com>
+        Drew Fustini <drew@beagleboard.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -70,90 +69,58 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Sun, May 30, 2021 at 6:16 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
 
-> Adds support for a generic GPIO multiplexer. To drive the multiplexer a
-> mux-controller is needed. The output pin of the multiplexer is a GPIO
-> pin.
+> Add documentation for a general GPIO multiplexer.
 >
-> Reported-by: kernel test robot <lkp@intel.com>
 > Signed-off-by: Mauri Sandberg <maukka@ext.kapsi.fi>
 > Tested-by: Drew Fustini <drew@beagleboard.org>
 > Reviewed-by: Drew Fustini <drew@beagleboard.org>
 
-The commit message and part of the driver becomes hard to
-read and understand because the word pin is overused.
-Switch to talk about "gpio lines" rather than pins.
+After some thinking I realized these bindings should not
+be restricted to just input. There exist electronic constructions
+such as open drain that would make it possible to mux also
+outputs.
 
-Draw a simple ASCII image like this:
+>  .../bindings/gpio/gpio-mux-input.yaml         | 75 +++++++++++++++++++
 
-               /|---- Cascaded GPIO line 0
-              |M|---- Cascaded GPIO line 1
-GPIO line ----+U| .
-              |X| .
-           \|---- Cascaded GPIO line n
+Rename it just gpio-mux.yaml
 
-Maybe also as illustration in the driver and in the bindings.
-Make things easy to understand.
+> +$id: http://devicetree.org/schemas/gpio/gpio-mux-input.yaml#
 
-Explain exactly why only input lines can be multiplexed.
+Also here
 
-I'm not sure it should be restricted to just input
-in theory, but since that is all we can test, restrict it to
-input in practice.
+> +title: Generic GPIO input multiplexer
 
-> +config GPIO_MUX_INPUT
-> +       tristate "General GPIO input multiplexer"
+Generic GPIO multiplexer
 
-Rename it just GPIO_MUX
-  "General GPIO multiplexer"
+> +description: |
+> +  A generic GPIO based input multiplexer
 
-Then clarify in the help description that it currently can only
-handle input lines.
+Not just input
 
-> +       depends on OF_GPIO
-> +       select MULTIPLEXER
-> +       select MUX_GPIO
-> +       help
-> +         Say yes here to enable support for generic GPIO input multiplexer.
-> +
-> +         This driver uses a mux-controller to drive the multiplexer and has a
-> +         single output pin for reading the inputs to the mux. The driver can
-> +         be used in situations when GPIO pins are used to select what
-> +         multiplexer pin should be used for reading input and the output pin
-> +         of the multiplexer is connected to a GPIO input pin.
+> +  This driver uses a mux-controller to drive the multiplexer and has a single
+> +  output pin for reading the inputs to the mux.
 
-Input output etc, this gets very hard to understand.
+Make this clearer and do not mention "driver".
+Here is a suggestion:
 
-Switch terminology from "pin" to "GPIO lines", (or "GPIO rails").
+This hardware construction multiplexes (cascades) several GPIO
+lines from one-to-many using a software controlled multiplexer.
+The most common use case is probably reading several inputs
+by switching the multiplexer over several input lines, which in
+practice works well since input lines has high impedance.
 
-Use the word "routing" as the GPIO line is routed through the
-multiplexer. Maybe spell out multiplexer for clarity.
+Constructions with multiplexed outputs are also possible using
+open drain electronics.
 
-Explain why, for electrical reasons, output lines are harder
-to multiplex like this, as the output will not maintain
-state. Notice that "using open drain constructions, output
-multiplexing may be possible, but it is currently not implemented."
+> +  For GPIO consumer documentation see gpio.txt.
 
-> +static int gpio_mux_input_get_direction(struct gpio_chip *gc,
-> +                                       unsigned int offset)
-> +{
-> +       return GPIO_LINE_DIRECTION_IN;
-> +}
+No need to mention this I think, not your problem :D
 
-Explain why this is a restriction with a comment in the code.
-Add comment that in the future we might be able to handle
-also output.
+> +  pin-gpios:
 
-> +static int gpio_mux_input_get_value(struct gpio_chip *gc, unsigned int offset)
+I still want this renamed like in my previous mail.
 
-This looks very nice!
-
-We might have to extend this driver at some point.
-
-Intuitively I'd say it takes some time and then someone
-comes along and say "actually we have done this
-for output as well, using some open drain and stuff"
-but this is a good starting point anyway we need no
-big upfront designs.
+Hope all is clear!
 
 Yours,
 Linus Walleij
