@@ -2,94 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD4C139773A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 17:52:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69BE939774B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 17:56:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234498AbhFAPyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 11:54:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39136 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234495AbhFAPyb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Jun 2021 11:54:31 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2BE3861396;
-        Tue,  1 Jun 2021 15:52:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622562769;
-        bh=aGdPf/JG2Ma5dBKju6woR09ogotgTp0UyCyCSzPN8E0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=vFmm4EuDgRez/N9yYR8a2d8GUezxEqiMSMBcLzq6HqBUE9zJLj6qL2dkHJZDPH8op
-         iX1CqyIZdIMGpNoMJTIQcrkoOPYDGcPRizuPOtMu++Mpn3MXa7CrkR+xTl0SizVkxU
-         vcY6KQYQK60IB4VYju/UO9J5u2YSUpE5eGtiUe/2X99jCl7DPrE7zmeZwH7xYGB08Y
-         ATdnAOyRj0KSZSx3/W8vzdstQHOvZ/6t2RrP+qoC6yeHZl1IWU6uCqi65sHaC+ae/d
-         ePaRWGOdqnfOrax69HoqQoU0WFH6K/UvnadhleC25UuxBaWYwIZ//PDxH7sk13RtRc
-         u7POCe7b6WHgw==
-Date:   Tue, 1 Jun 2021 16:52:39 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     ChiYuan Huang <u0084500@gmail.com>
-Cc:     lgirdwood@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        cy_huang <cy_huang@richtek.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 2/2] regulator: rt6160: Add support for Richtek RT6160
-Message-ID: <20210601155239.GD4089@sirena.org.uk>
-References: <1622008068-13474-1-git-send-email-u0084500@gmail.com>
- <1622008068-13474-2-git-send-email-u0084500@gmail.com>
- <YK4oGB5cZ/DhG5vm@sirena.org.uk>
- <CADiBU393NchfrTmgPApNRqSVrTBGT+bs+H+m2UF_H3tSGLyFVQ@mail.gmail.com>
- <CADiBU3-LjetAkzks4MZKiK=KXK5ziFhF9D13cAjJ4W5gytw74A@mail.gmail.com>
+        id S232490AbhFAP6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 11:58:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46384 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230288AbhFAP6L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 11:58:11 -0400
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA88BC061574
+        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 08:56:29 -0700 (PDT)
+Received: by mail-oi1-x233.google.com with SMTP id j75so15909745oih.10
+        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 08:56:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=FxZxF8CUm+KWjU3wGRKaKMENJ6JPLN3HDamelOjPqxA=;
+        b=UltuNVVr5qb+Lf6MHAOXUvFc/IubBdtJ0yalaqOx2FHE0E5w6Vuy08BAhoBYBuP0M6
+         qL2NGfxYmEt2zvVUTgwb4CPZ8IGwoYl0QQWyAzRBdAWt4C8lyBt5/gbIJuuPYMGtDd6E
+         iQnu/6tIzDY09AKy+PtiFLo137kNIGMZIEc9A=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=FxZxF8CUm+KWjU3wGRKaKMENJ6JPLN3HDamelOjPqxA=;
+        b=OirbWpwEKB0LNZD8HWxnjWMzxpPq6fCgb0g/W+NHVdd1e1lVK2pYwmomIDAbJ/Hkbw
+         okPaV0CCBGTpeYJWH2/UZO5IyBF2yd5FPYkRBDMCWYC9zvEgLGtcH8gg8iNWLpnE/6cP
+         fIbmTArtMbQqzYLSpizzsZsRNP19aonNf7mrB0KBB+UqtcLFQgtTeiQn+WpvDib1Quqc
+         rI0JPuh2m71ZBREa2rZ63CuQCw5RSGM5bBMyocVy/gci0l8AmzMeOQId7nyp2VkJxVlW
+         rMTHwMTM3Q3XC/ta6VWZBEHN+1mrUO7Ud2yfbCuOxgbUFJZUMWoJOATKSrpJELhE/wY2
+         ys9g==
+X-Gm-Message-State: AOAM531xe4u49zBlcZXza3L7DJeaZ1w5wWplD638CEbt3RLUHdVVZrbB
+        GJo0VOb9glD2DwpOlSMETSa6gPB8SQ1DDiFR/PY+Vg==
+X-Google-Smtp-Source: ABdhPJybv3iKPhoqDwc4qO/Zl0bqVJvkjD92sd0LaGvMmIxjQbCH/KfnaG/c0pbdJbbKDDMUmhNZFn4rtNC7tIAWj8Y=
+X-Received: by 2002:aca:654d:: with SMTP id j13mr423624oiw.125.1622562989251;
+ Tue, 01 Jun 2021 08:56:29 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 1 Jun 2021 08:56:28 -0700
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="//IivP0gvsAy3Can"
-Content-Disposition: inline
-In-Reply-To: <CADiBU3-LjetAkzks4MZKiK=KXK5ziFhF9D13cAjJ4W5gytw74A@mail.gmail.com>
-X-Cookie: Sic Transit Gloria Thursdi.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210601022117.4071117-1-judyhsiao@chromium.org>
+References: <20210601022117.4071117-1-judyhsiao@chromium.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Tue, 1 Jun 2021 08:56:28 -0700
+Message-ID: <CAE-0n52DQ5yGxAFKLhuHQxK2Qj7eOTBNWNzGLhFLMR6sVhCMVQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: add label for secondary mi2s
+To:     Judy Hsiao <judyhsiao@chromium.org>, broonie@kernel.org
+Cc:     Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>, dianders@chromium.org,
+        dgreid@chromium.org, cychiang@google.com, judyhsiao@google.com,
+        tzungbi@chromium.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Judy Hsiao (2021-05-31 19:21:17)
+> Adds label for MI2S secondary block to allow follower projects to override
+> for the four speaker support which uses I2S SD1 line on gpio52 pin.
+>
+> Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+> ---
 
---//IivP0gvsAy3Can
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Thu, May 27, 2021 at 11:14:17AM +0800, ChiYuan Huang wrote:
-
-> I review the regulator_set_ramp_delay_regmap API.
-> If seems I need to fill in the ramp_delay_table by the descend order.
-> But this chip ramp delay table is designed the ascending value reg bit
-> field [0 1 2 3] by
-> the ascending order [1000 2500 5000 10000] uV/uS
-> Even if I tried to filler in descending order, I also need a inverted operation.
-
-I see... that really should be supportable, and I'd have expected
-find_closest_bigger() to DTRT here, it's not obvious it's expecting
-ordering.
-
-> And I found the regulator_set_ramp_delay_regmap API has some logic error.
-> From the include/linux/regulator/driver.h, the set_ramp_delay function says to
-> set the less or equal one ramp delay value.
-> But your logic will get the larger or equal one from the descending
-> ramp delay table.
-
-The code is correct here, the documentation should be fixed - with a
-delay like this we should be erring on the side of delaying too long to
-be safe.
-
---//IivP0gvsAy3Can
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmC2V8YACgkQJNaLcl1U
-h9CTrgf6ArqSe4D42r70JaahR7KYaMW6G6x9fIdM279DEUiisu2lF4pby14hFG9v
-xze19BNI8C7w7ziMCd3Q4gOF2h8jLljHv8tubSalY3W89MCX6AhfBfKzoc7aSWat
-lxjjLfCMWV6u5CJhPvSS8L2XMawDG6WkA98Kuvde52YGTxRnieHeJbLaHdIs3fr9
-c2uHJRSRFvEkVhkhikwi4OhtFHoRjZVRlnTn03n1gqSc9d9gfZSOATutUZxQnvoe
-6eneLvfQJwpX1UjhvJ1JPox28cXqzPwWgxKfBBoAd3hRSRwZSNMhwto9VsJ7TrRZ
-9r1fBvnARN+gMU2hPNeHwQT6zO5p7A==
-=1NtJ
------END PGP SIGNATURE-----
-
---//IivP0gvsAy3Can--
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
