@@ -2,101 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBC0139729D
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 13:42:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 561F83972AB
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 13:44:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233577AbhFALnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 07:43:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44398 "EHLO
+        id S231726AbhFALqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 07:46:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230288AbhFALnl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 07:43:41 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA9F0C061574;
-        Tue,  1 Jun 2021 04:41:59 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 701912224A;
-        Tue,  1 Jun 2021 13:41:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1622547718;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=xC7P/bcFCV2ZCGkF8kjoqn5cfA8HZsmaWEnBxWUHEDM=;
-        b=eNiCyfvWaN/+vfSha991PXVg+RUbyHmmgR0PDUfcscbxStGXX847KmZdGfsRA49Z+JNIUK
-        a+xj7o/h3+JkiKyPGmGscPC5NINmziOPzrYVBqxKhgyB1fbvhYNsWTM+lOBq8RLWllzVKI
-        CrALRlMjL7Wd82QxbvzkulHMl7axo0g=
+        with ESMTP id S231219AbhFALqK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 07:46:10 -0400
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28066C06174A
+        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 04:44:29 -0700 (PDT)
+Received: by mail-pg1-x534.google.com with SMTP id 133so5437601pgf.2
+        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 04:44:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=zUuBlevDml1RsQmUcJ3i0Xl7Pbt1BMQJv/H4BpeTbs4=;
+        b=wJB/xCUiFi4akZMhxo2B7DlgwZfFQIEYn4N/AW59AMcymGly3G9+wq3KBOcIh0jyEg
+         jaw119dClX+VlreibdlDHU998M2zPLm4P3UkG4FYFoR7Gs6ZTxkdstOjQO81WEO3/66E
+         D43hTf1Zv1DWu39wy8e+HIOPYxfcIKBr95dtcQIbxbkN40GSzZjVc+7djlK3PK+BNJTP
+         yhgq9oRRkDTosR33WVGAzemSjkYhcQYvmZDm1oEBHqta/Jw5FjPebpxkHFTlxDAdbFx8
+         Mjx5ms/A18kQyTzW3AJD2Y5d2D47s1chlk/iwX7Uz5+YcSbfiWSBSB7Qu+Hrs5dsnsDC
+         tNKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=zUuBlevDml1RsQmUcJ3i0Xl7Pbt1BMQJv/H4BpeTbs4=;
+        b=i6m11Dr3hCdU51bnime8buU1OB0NX7H47ulGmT+N5hqiGoy7N99GHVpHbw6WNp3i0p
+         vFlWUp45cW305gelCIdcPhwjWaIB6Z84YjBEpLYbQYYaLmgQc7Q+wD+s8XRUQ4+OAXKM
+         KwvDu5+NFE4+5nr60KStKehB1YlJM1JNSa5zjbIl6KQTMPJbgVih3vlr9oYU+8rHevID
+         +JtC8zZMwInO5eTbm02KxAK3NtatzgHO5bAjdbDXoDDsTifSu6qQJDrY0gvQ5CH4aX+t
+         04O/oslXu6CWyLFBPaTF36/Xdls4yvODKhiif8Tv9NdwF30j0C1U9biPzaIJ7K6bRhWS
+         kRjA==
+X-Gm-Message-State: AOAM531WOcT29lLEZAkAzMiDGd57YMlvH4YKtv7E9nFy+iL1J9dlHpuF
+        j5QUnLRYTQ+1/gDDxek5fZD+vg==
+X-Google-Smtp-Source: ABdhPJzGgQOKQeJuHCotgvJ/qS4B4/iYGR2HD+vCofFVAcj+a5E+3QEYwRq58t171wWXWNbFZ49CGw==
+X-Received: by 2002:a63:5c4e:: with SMTP id n14mr27752883pgm.192.1622547868703;
+        Tue, 01 Jun 2021 04:44:28 -0700 (PDT)
+Received: from localhost ([136.185.154.93])
+        by smtp.gmail.com with ESMTPSA id s123sm13088954pfb.78.2021.06.01.04.44.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Jun 2021 04:44:28 -0700 (PDT)
+Date:   Tue, 1 Jun 2021 17:14:26 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, bjorn.andersson@linaro.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        swboyd@chromium.org, rojay@codeaurora.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: power: Introduce
+ 'assigned-performance-states' property
+Message-ID: <20210601114426.3vhh2twocqx254b6@vireshk-i7>
+References: <1622095949-2014-1-git-send-email-rnayak@codeaurora.org>
+ <1622095949-2014-2-git-send-email-rnayak@codeaurora.org>
+ <YLYV3ov/iBffZMg4@gerhold.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 01 Jun 2021 13:41:57 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Sander Vanheule <sander@svanheule.net>,
-        Andrew Lunn <andrew@lunn.ch>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 0/6] RTL8231 GPIO expander support
-In-Reply-To: <CACRpkdb4j6krXwdZGtth9b2W2bAdy9_StGbse_YbBY86-AWdLg@mail.gmail.com>
-References: <cover.1620735871.git.sander@svanheule.net>
- <cover.1621809029.git.sander@svanheule.net> <YKr9G3EfrM34gCsL@lunn.ch>
- <CAHp75VewCw8ES_9S48qmeCtSXMkGWt0s4iub0Fu4ZuwWANHpaQ@mail.gmail.com>
- <02bbf73ea8a14119247f07a677993aad2f45b088.camel@svanheule.net>
- <f03d5cdc958110fc7d95cfc4258dac4e@walle.cc>
- <84352c93f27d7c8b7afea54f3932020e9cd97d02.camel@svanheule.net>
- <a644b8fa-c90a-eab6-9cca-08344abec532@redhat.com>
- <CAHp75VcFmU4rJ6jL204xGFM=s2LV=KQmsV8E75BpuSAZMXBn0w@mail.gmail.com>
- <CACRpkda+m5mOzMJ8KcPmojFGWkUpCrbmY0ySPTVx72RtWwf89A@mail.gmail.com>
- <e10c8ef7f758b4f7fa0fcbc992c84125@walle.cc>
- <CACRpkdb4j6krXwdZGtth9b2W2bAdy9_StGbse_YbBY86-AWdLg@mail.gmail.com>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <401805ef27bb273d7aca4f3377b53b07@walle.cc>
-X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YLYV3ov/iBffZMg4@gerhold.net>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2021-06-01 12:51, schrieb Linus Walleij:
-> On Tue, Jun 1, 2021 at 12:18 PM Michael Walle <michael@walle.cc> wrote:
->> Am 2021-06-01 11:59, schrieb Linus Walleij:
+On 01-06-21, 13:12, Stephan Gerhold wrote:
+> > +    child4: consumer@12341000 {
+> > +        compatible = "foo,consumer";
+> > +        reg = <0x12341000 0x1000>;
+> > +        power-domains = <&parent4>, <&parent5>;
+> > +        assigned-performance-states = <0>, <256>;
+> > +    };
 > 
->> > Just regarding all registers/memory cells in a register page
->> > as default volatile (which is what we do a lot of the time)
->> > has its upsides: bugs like this doesn't happen.
->> 
->> I don't think this is the bug here. If it is really a write-only
->> register
->> the problem is the read in RMW. Because reading the register will 
->> return
->> the input value instead of the (previously written) output value.
+> Bjorn already asked this in v1 [1]:
 > 
-> True that. Write and read semantics differ on the register.
+> > May I ask how this is different from saying something like:
+> >
+> > 	required-opps = <&??>, <&rpmpd_opp_svs>;
 > 
-> Volatile is used for this and some other things,
-> like for example interrupts being cleared when a register
-> is read so it is strictly read-once.
+> and maybe this was already discussed further elsewhere. But I think at
+> the very least we need some clarification in the commit message + the
+> binding documentation how your new property relates to the existing
+> "required-opps" binding.
+> 
+> Because even if it might not be implemented at the moment,
+> Documentation/devicetree/bindings/power/power_domain.txt actually also
+> specifies "required-opps" for device nodes e.g. with the following example:
+> 
+> 	leaky-device0@12350000 {
+> 		compatible = "foo,i-leak-current";
+> 		reg = <0x12350000 0x1000>;
+> 		power-domains = <&power 0>;
+> 		required-opps = <&domain0_opp_0>;
+> 	};
+> 
+> It looks like Viresh added that in commit e856f078bcf1
+> ("OPP: Introduce "required-opp" property").
+> 
+> And in general I think it's a bit inconsistent that we usually refer to
+> performance states with phandles into the OPP table, but the
+> assigned-performance-states suddenly use "raw numbers".
 
-Isn't that what precious is for?
+I must have missed that discussion, sorry about that.
 
-> So the regmap config is really important to get right.
-> 
-> IIUC one of the ambitions around Rust is to encode this
-> in how memory is specified in the language. (I am still
-> thinking about whether that is really a good idea or not.)
+The required-opps property, when present in device's node directly, is about the
+(default) OPPs to choose for that device's normal functioning as they may not do
+DVFS.
+
+Good point Stephan.
 
 -- 
--michael
+viresh
