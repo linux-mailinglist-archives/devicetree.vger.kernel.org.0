@@ -2,115 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24882397BC8
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 23:34:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06CB0397BD6
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 23:44:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234756AbhFAVfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 17:35:54 -0400
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:43892 "EHLO
-        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234747AbhFAVfx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 17:35:53 -0400
-Received: by mail-oi1-f177.google.com with SMTP id x196so363646oif.10;
-        Tue, 01 Jun 2021 14:34:10 -0700 (PDT)
+        id S234671AbhFAVqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 17:46:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39790 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234656AbhFAVqR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 17:46:17 -0400
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B093C061574
+        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 14:44:34 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id x15so744181oic.13
+        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 14:44:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=m2jSbDzFQxJVPkX9wWnQHslCI+0Vych+K1kXWHexGRU=;
+        b=X+66xa1NeLwDoC6qBRhC7+OLEtu7IpItYVb0NJ4giS9dLIQEujX4cngkZALdCjjY8m
+         zO9GaRSMPsYKJ5a1dYcPmynrW77warNWAyvM+QSODLLWpBePh7t8rTR42fLf1FDYJEV4
+         wbt0VaSpuwLmNGfB9VYsre/vkJYs32/Zn/yi7Jc8eKcGlDWaniGqnBORwqb9SgKuK7HT
+         lYiNYAF82+WhEqqPmO5Z8jTTZ0iaJGmXErWr9AV0bL66WlxMBP5LRzK+QfwFbQTwOqvt
+         SNpYPbE90+uLbWAQbqN8fRfVnSt4i78at3085MvWk3wzrrXTkWKrbR9NX9AHHKlFrpkM
+         YvaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vCRZODBEDwRSj5Y4MjRIeKum+fRvWUZtlNREx03Eovs=;
-        b=EikFpxQuDwzOuLs58Ar1zBh/aA0jYufdhijl7W3Zv1/Q8NSIyj3sY4ZhneHEK5oNOC
-         uqBmA87361sMHtk+TPRaogwFgXdkvIHoWJYien+sJYSMpLbRyOucuYy82v1lH3NgajeL
-         T2DB9JrDBmRI42fmVxCXWRNbiLxFUWAMuOmY9wwbs5r9VNls/f1wjqyaxtJTX6ljBQWw
-         mgi+rOcxEc8Ya716AOzodCf9IplqncQId+RtkEvTof59IF2FnOkQ9vyVKEYD29Ri3jFO
-         fwKFIlJPFcYgi7lBuBgUjrBI35XWG732PCHxIc5XRilK2qg1QraG56r+jgNITljL8xPg
-         isTA==
-X-Gm-Message-State: AOAM533px1yoXsUNpyTGO4IXG/FAEag++Lko8jwhf9m7yzmTCSOg8BJi
-        trMsfu4UNQiR+rt9bqzMPYyiFwZ+bw==
-X-Google-Smtp-Source: ABdhPJynVMGbHPi+5o+/L1ae1BVEkx3m0bLmHi6nLXdMSWfSNeYbnhXRS0/x2nEI2hm/d6eVUso6WQ==
-X-Received: by 2002:aca:c488:: with SMTP id u130mr19477551oif.0.1622583250396;
-        Tue, 01 Jun 2021 14:34:10 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id c32sm3897897otu.13.2021.06.01.14.34.09
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=m2jSbDzFQxJVPkX9wWnQHslCI+0Vych+K1kXWHexGRU=;
+        b=DuSQishZ6DJSja4Qsp0PWteifYPhNTIJ9FH1gVGnOTDZp6gXAq66jh278bXCPTm6VG
+         Ak8E2lXZKh6KEdQU4QWEZcqVS3IfMVfl/9d22Q4rOpNNheBXbn5Ah2j1PzKviDBNzTU5
+         JfJDUSkxQ4n9iF9yTv5F/k+Lxh3LZD3KHqtTP2J/qcdiv8EmvaF6+6P6bfw2WtrqTBQZ
+         UE2SFTFsbNzcl0F+Ii/oacCUbA5AiQ+kOCXySSK4OB/uG57v+fcF+2HLCLX4rrLbxjf9
+         2USlqEfl3duEupbbwYwyTq9z8IOgj5cJFbf0aOfBVai0Rv6Q0cuB255pVwAZcctlogGd
+         ZXCw==
+X-Gm-Message-State: AOAM532YjKFYSficeXUt1jNK4XhA93BGKc6U/6SfB0A6t8X4ZyEJdpt3
+        9Cc5bHmp43Ad9YGxMcM2T3k=
+X-Google-Smtp-Source: ABdhPJxM7zmpKF7WbOWcOrlqa4mViYf71xE3SF8omG87A3XfAN89dzaivJY8MDuzP8DEx4e1NlyfkA==
+X-Received: by 2002:aca:4d07:: with SMTP id a7mr1487930oib.106.1622583873629;
+        Tue, 01 Jun 2021 14:44:33 -0700 (PDT)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id x14sm3737524oic.3.2021.06.01.14.44.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jun 2021 14:34:09 -0700 (PDT)
-Received: (nullmailer pid 1092629 invoked by uid 1000);
-        Tue, 01 Jun 2021 21:34:09 -0000
-Date:   Tue, 1 Jun 2021 16:34:09 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Jakub Kicinski <kuba@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>
-Subject: Re: [PATCH net-next] dt-bindings: net: dsa: sja1105: convert to YAML
- schema
-Message-ID: <20210601213409.GA1031105@robh.at.kernel.org>
-References: <20210531234735.1582031-1-olteanv@gmail.com>
+        Tue, 01 Jun 2021 14:44:32 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     alsa-devel@alsa-project.org
+Cc:     lee.jones@linaro.org, broonie@kernel.org, lgirdwood@gmail.com,
+        pierre-louis.bossart@linux.intel.com, tiwai@suse.com,
+        heiko@sntech.de, robh+dt@kernel.org, perex@perex.cz,
+        jbx6244@gmail.com, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, maccraft123mc@gmail.com,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH] ASoC: rk817: fix a warning in rk817_probe()
+Date:   Tue,  1 Jun 2021 16:44:24 -0500
+Message-Id: <20210601214424.23432-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210531234735.1582031-1-olteanv@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 01, 2021 at 02:47:35AM +0300, Vladimir Oltean wrote:
-> From: Vladimir Oltean <vladimir.oltean@nxp.com>
-> 
-> The following issues exist with the device-specific sja1105,role-mac and
-> sja1105,role-phy:
-> 
-> (a) the "sja1105" is not a valid vendor prefix and should probably have
->     been "nxp", but
-> (b) as per the discussion with Florian here:
->     https://lore.kernel.org/netdev/20210201214515.cx6ivvme2tlquge2@skbuf/
->     more phy-mode values similar to "revmii" can be added which denote
->     that the port is in the role of a PHY (such as "revrmii"), making
->     the sja1105,role-phy redundant. Because there are no upstream users
->     (or any users at all, to my knowledge) of these properties, they
->     could even be removed in a future commit as far as I am concerned.
-> (c) when I force-add sja1105,role-phy to a device tree for testing, the
->     patternProperties matching does not work, it results in the following
->     error:
-> 
-> ethernet-switch@2: ethernet-ports:port@1: 'sja1105,role-phy' does not match any of the regexes: 'pinctrl-[0-9]+'
->         From schema: Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
+From: Chris Morgan <macromorgan@hotmail.com>
 
-I believe that would be from 'additionalProperties: false' under 
-"^(ethernet-)?port@[0-9]+$" in dsa.yaml. If additional properties need 
-to be allowed, then it needs to be changed to 'true'. But if the 
-properties aren't really used, just removing them would be better. But 
-maybe there's other DSA users with custom properties.
+The return value of snd_soc_component_write() is stored but not
+evaluated and this results in a warning when W=1 is set. Stop storing
+the return value to be consistent with all other calls of
+snd_soc_component_write() and to remove the warning.
 
-> 
-> But what's even more interesting is that if I remove the
-> "additionalProperties: true" that dsa.yaml has, I get even more
-> validation errors coming from patternProperties not matching either,
-> from spi-controller.yaml:
+Fixes: 0d6a04da9b25 ("ASoC: Add Rockchip rk817 audio CODEC support")
 
-Why would you do that?
+Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+---
+ sound/soc/codecs/rk817_codec.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-> 
-> ethernet-switch@2: 'compatible', 'mdio', 'reg', 'spi-cpol', 'spi-max-frequency' do not match any of the regexes: '^(ethernet-)?ports$', 'pinctrl-[0-9]+'
-> 
-> So... it is probably broken. Rob Herring says here:
-> https://lore.kernel.org/linux-spi/20210324181037.GB3320002@robh.at.kernel.org/
-> 
->   I'm aware of the issue, but I don't have a solution for this situation.
->   It's a problem anywhere we have a parent or bus binding defining
->   properties for child nodes. For now, I'd just avoid it in the examples
->   and we'll figure out how to deal with actual dts files later.
+diff --git a/sound/soc/codecs/rk817_codec.c b/sound/soc/codecs/rk817_codec.c
+index 17e672b85ee5..fd3a5ba034a9 100644
+--- a/sound/soc/codecs/rk817_codec.c
++++ b/sound/soc/codecs/rk817_codec.c
+@@ -415,12 +415,11 @@ static int rk817_probe(struct snd_soc_component *component)
+ {
+ 	struct rk817_codec_priv *rk817 = snd_soc_component_get_drvdata(component);
+ 	struct rk808 *rk808 = dev_get_drvdata(component->dev->parent);
+-	int ret;
+ 
+ 	snd_soc_component_init_regmap(component, rk808->regmap);
+ 	rk817->component = component;
+ 
+-	ret = snd_soc_component_write(component, RK817_CODEC_DTOP_LPT_SRST, 0x40);
++	snd_soc_component_write(component, RK817_CODEC_DTOP_LPT_SRST, 0x40);
+ 
+ 	rk817_init(component);
+ 
+-- 
+2.25.1
 
-That was mainly in reference to vendor specific SPI master properties. 
-
-For 'spi-cpol', that generally shouldn't be needed. A given device 
-generally only supports 1 mode and the driver should know that. IOW, it 
-can be implied from the compatible. There's of course some exceptions.
-
-For 'spi-max-frequency', just add 'spi-max-frequency: true' (or provide 
-some constraints as to what the max is.
-
-Rob
