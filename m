@@ -2,108 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C79263974D4
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 16:01:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25A38397513
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 16:08:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234192AbhFAODc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 10:03:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48012 "EHLO
+        id S234164AbhFAOJn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 10:09:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234087AbhFAODb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 10:03:31 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DB1AC061574
-        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 07:01:49 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id l18-20020a1ced120000b029014c1adff1edso1655679wmh.4
-        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 07:01:49 -0700 (PDT)
+        with ESMTP id S234386AbhFAOJl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 10:09:41 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1999EC061574;
+        Tue,  1 Jun 2021 07:07:57 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id f30so22069846lfj.1;
+        Tue, 01 Jun 2021 07:07:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=TxNXvaRSwH5cMN0IqObrUzZItiw85EBExLxK7B6JTbk=;
-        b=O0Uf4/PF1Gz23LfW061xvE9TmKzIOovinXsF1shgt6sEFzYmczcX5cGsOAzYL2dU0b
-         ep4PCe/1ynAGtQ4M1ZxIqeCyQsiAi3Jfc89Tr5K+KgEZOLWv5T02prBgnnyCltGsY2Yp
-         SMnKJheYzgB7h65PCoFUrJfERC5ALLkSs0icfwGMY33QyF7DqhorwXwgIL9/tSGWemGP
-         rWx94nxNErLiSDM5K0lu63FNMtWR66RKPISboNDblnqDVG5vXbX6I3CRk1sOlEOYME+B
-         tLLGN3fP29MNz8MjWto2sEzQ5QBTU8Y0WrJh5MFj6p0pgccZ5D/qSMBO56lW8VUVTXTQ
-         rwiQ==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MExTV90rtZ8/hjUE3hCRwCeDds2Wqj8Wyw00i17Pg3I=;
+        b=YN95LoKz1G8+dBZr9w+1D5COULtP1QhHPlvib9H1AP6UTioYfhgn7RtFXiYCC6Sc65
+         vd0/Qmq+VkPFR/wlcqzdda7xNTFz1L3OddyrzJoTTfWl3CFjISfJg6dqkm3dZ1rPu9YU
+         tzF4IhMEx1f4I2G3/tqX4cDSbPr5+ExqvpiH8uaO7sQEOl/b/vp38iDsU9hFYxtP1yjR
+         AemJaTpIAwY3YP1OIN6kvT15WebUrfAZTAwFj6NbYXvVFiEmWuXqAh5ocEXgUyAmpvIW
+         zI8RGArlYyJROLoLrBGCDRALWeL4Vks1+FojG8ymL1/wz2BHMDXkSIw8PbHnnL3qSOvk
+         2TOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=TxNXvaRSwH5cMN0IqObrUzZItiw85EBExLxK7B6JTbk=;
-        b=XcpJJCJu8rcrMzHJ4b5oshirVlIL4q/EgOCt2fcmeN8s9fCMXVzn1CdlQZd7cDwgB4
-         qdWh4RtetyGHYj/rxBg0IL3EoUA2LL9cssEHJ79J1XrmNuk6bbfI8JMTZYT/kwS8d1/U
-         y79oWrWraf97Nv8DeR1f+//toO6gbe5X8KG53e1nPDGcJTnnU3zHMYmm5c7r+aj2jBP3
-         4bR83pWA/oLBrWdOWRXPIRF4jglXisHoz/dLWy0O503KoUe+7A6xKH/jWLRWrvAzN84i
-         lnpTBBsbP+nmsJ2qwng79HYfKkBseZH6nJTwyJIkHQvVTd6hxXI7LC5+y6H9JU3m7Lp/
-         Wkwg==
-X-Gm-Message-State: AOAM533Tr2hiAvOZaqINHrHNsDWWKDwdd8fuohPC3VNq5Fyt+zDUg4mN
-        u+pd7osXpFC4i3HnTGheFCLO9Q==
-X-Google-Smtp-Source: ABdhPJyewGO++Mbi4rCpqZMGb6Wna6RRJEtPmWVLMLH2dCmEgIA8t9BE9H/fZURvSn2iFdiocUGxkA==
-X-Received: by 2002:a1c:b384:: with SMTP id c126mr26885740wmf.110.1622556108028;
-        Tue, 01 Jun 2021 07:01:48 -0700 (PDT)
-Received: from dell ([91.110.221.249])
-        by smtp.gmail.com with ESMTPSA id v8sm3790884wrc.29.2021.06.01.07.01.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jun 2021 07:01:47 -0700 (PDT)
-Date:   Tue, 1 Jun 2021 15:01:45 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
-        lgirdwood@gmail.com, pierre-louis.bossart@linux.intel.com,
-        tiwai@suse.com, heiko@sntech.de, robh+dt@kernel.org,
-        perex@perex.cz, jbx6244@gmail.com, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, maccraft123mc@gmail.com,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: [GIT PULL] Immutable branch between MFD and ASoC due for the v5.14
- merge window
-Message-ID: <20210601140145.GH543307@dell>
-References: <20210519203754.27184-1-macroalpha82@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MExTV90rtZ8/hjUE3hCRwCeDds2Wqj8Wyw00i17Pg3I=;
+        b=bvct/2IZPsKDFDnr/eQzHPlf3rXSyBvrMuHJy4t6PGmsQZrGWQkULqMNf3LJKZHRiZ
+         QKj9benQbjrRqtYi/BOUccjC1abNpCEAULZsdl4LZaenM5Rr8A58CP3r+fR9uTG01Wug
+         lFkR8Dw4ktqwVtbp0tek2dAYorYxHBluquK1CbJ25UXS9mvIZbueEoCQA+eHRDGZUgZF
+         mu6hprrUiKDI1dTYF6i7whWFC3CJ+qTY5smW6xzWLShbz7H63G5bAEGL0epDBpCEN7l7
+         HyiZA0B/+ZQFkbIU1Gd++l0i0EoSXoQRCT9cJUjBDqSxTzhuya+XG9fztW7tj+LHihlE
+         QmIA==
+X-Gm-Message-State: AOAM5302Uhwh+vt/dy2OL4vW2cLjV7Ld2kYbBVC5eL1Ue48G66MPsVh4
+        dzjr6vC93NA/hG5ejeNzez3sNb/AryCVpdfbM5Y=
+X-Google-Smtp-Source: ABdhPJx4yKg5VJ1aLdoZu2YSJio0T9gNQu+Am7hvR47r0qklSK8tLR81cPevGpyOuyEIO9ABe4zcO/I8sca/UXqo4R8=
+X-Received: by 2002:a19:5e0d:: with SMTP id s13mr18756585lfb.229.1622556475472;
+ Tue, 01 Jun 2021 07:07:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210519203754.27184-1-macroalpha82@gmail.com>
+References: <20210601062338.1969040-1-ping.bai@nxp.com> <20210601062338.1969040-2-ping.bai@nxp.com>
+In-Reply-To: <20210601062338.1969040-2-ping.bai@nxp.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 1 Jun 2021 11:07:44 -0300
+Message-ID: <CAOMZO5BhJ734DQy5MOpq20O8Pezwe4FG4hVV6CRnLpH_14PfVQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] pinctrl: imx8ulp: Add pinctrl driver support
+To:     Jacky Bai <ping.bai@nxp.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I've applied the non-Arm patches.
+Hi Jacky,
 
-The following changes since commit 6efb943b8616ec53a5e444193dccf1af9ad627b5:
+On Tue, Jun 1, 2021 at 3:13 AM Jacky Bai <ping.bai@nxp.com> wrote:
 
-  Linux 5.13-rc1 (2021-05-09 14:17:44 -0700)
+> +       pin_reg = &ipctl->pin_regs[offset];
+> +       if (pin_reg->mux_reg == -1)
 
-are available in the Git repository at:
+Can this condition happen?
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tb-mfd-asoc-v5.14
+> +               return -EINVAL;
 
-for you to fetch changes up to 437faaa6cebadf8ff4c2c28d7cb26ed4e34aeb14:
+> +static const struct of_device_id imx8ulp_pinctrl_of_match[] = {
+> +       { .compatible = "fsl,imx8ulp-iomuxc1", },
 
-  dt-bindings: Add Rockchip rk817 audio CODEC support (2021-06-01 13:40:41 +0100)
-
-----------------------------------------------------------------
-Immutable branch between MFD and ASoC due for the v5.14 merge window
-
-----------------------------------------------------------------
-Chris Morgan (3):
-      mfd: Add Rockchip rk817 audio CODEC support
-      ASoC: Add Rockchip rk817 audio CODEC support
-      dt-bindings: Add Rockchip rk817 audio CODEC support
-
- Documentation/devicetree/bindings/mfd/rk808.txt | 188 +++++++++
- drivers/mfd/rk808.c                             |  81 ++++
- include/linux/mfd/rk808.h                       |  81 ++++
- sound/soc/codecs/Kconfig                        |   6 +
- sound/soc/codecs/Makefile                       |   2 +
- sound/soc/codecs/rk817_codec.c                  | 539 ++++++++++++++++++++++++
- 6 files changed, 897 insertions(+)
- create mode 100644 sound/soc/codecs/rk817_codec.c
-
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+In the bindings doc patch it is  documented "fsl,imx8ulp-iomuxc", so
+there is a mismatch
+between the driver and the binding doc.
