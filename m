@@ -2,91 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37830396C5C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 06:32:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39B9E396C60
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 06:35:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230063AbhFAEeE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 00:34:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59954 "EHLO
+        id S230326AbhFAEhi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 00:37:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229460AbhFAEeE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 00:34:04 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87CDAC061574;
-        Mon, 31 May 2021 21:32:22 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id i10so7649918lfj.2;
-        Mon, 31 May 2021 21:32:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=8fLKhrUqwIxQ2xXGCIpsy1nQkq4X8BC2dI8dF7Ysll4=;
-        b=U9OHcCu4V/wDY1tsGXV2eshRLrjRfPice5eoIjlRPyQ1MCuMgW0y6imnF6TZ+1nvSr
-         lkpoVD8uNcNSQfKLY9zPs+yuGoRuKax65LSSwF0dsHbk167AAj6H+9He+dcLSbZnPZ3u
-         mGR0gTS7a8X9jSlJWbWmMtZJVGWLSUdkYegAmiGb1dzsBvqNXzyY3SquYuVBe35/Te42
-         T/QxVpQPwLz6Iww+ko+SM1L+bBP1cJMy03ZWqBVAr7QCW9dmb2ooIbXGhhpprZYrqCqq
-         85U5Dfw/uzeLxbQFwOeZs/8JPQSgpqG40aI817t9p3yZM7zQvxAObf4M7UX7XrKDXHZR
-         9nBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=8fLKhrUqwIxQ2xXGCIpsy1nQkq4X8BC2dI8dF7Ysll4=;
-        b=QqK3d2pZKBd0XiyeRLl7QjQYbOwQPTNR/NggrXbgypXsEhWwBw83VB8rVNvQDPwjoc
-         ZSapAjmX8tBvIyDO9ZQjkqbqRlzt6x/vhYNqcF6NHwiz1FLJ8RkJHgLdA7AnvIG7vqGp
-         R1QxbsK98vnRt7eLxNvi5p2QFE21cmiZshV9hLcEkF0ztt0BuWDNzG2/oRXJDLJUybUM
-         xYPu8BDUpOeBil3Wy1WMpJbnYbjdpSn1lmiszB3bjW5vcWQ4dil5sMX5XHU2aQz8QRvq
-         Fih44GzTA4nl/9kdNlAL9hP/m7sl2C7YZt2YxbpU/rDpugX10i3ymPnR/YgPwWA3Vgda
-         zZrw==
-X-Gm-Message-State: AOAM532j0byPs3ksOXO/krrU/IFaTKBjWhDuVYa+Es55xddPZQ11sXcl
-        1rqbAPIjgIBQvpAovHGgQZMJn5SqIvo=
-X-Google-Smtp-Source: ABdhPJyZOoyMjsAEgJ5QqpWftZq0zpRUdysZh/BbpsknOcK9B1P0zg1rXr1TwghT/iHKyC0PpYI6ZA==
-X-Received: by 2002:a05:6512:1194:: with SMTP id g20mr17786786lfr.407.1622521940654;
-        Mon, 31 May 2021 21:32:20 -0700 (PDT)
-Received: from [192.168.2.145] (79-139-170-222.dynamic.spd-mgts.ru. [79.139.170.222])
-        by smtp.googlemail.com with ESMTPSA id x26sm1863322ljj.46.2021.05.31.21.32.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 May 2021 21:32:20 -0700 (PDT)
-Subject: Re: [PATCH v2 2/2] dt-bindings: devfreq: tegra30-actmon: Add
- cooling-cells
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Matt Merhar <mattmerhar@protonmail.com>
-Cc:     linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20210601022319.17938-1-digetx@gmail.com>
- <20210601022319.17938-3-digetx@gmail.com>
-Message-ID: <bda7233e-a9e0-7a3d-f6b5-084a49d705ed@gmail.com>
-Date:   Tue, 1 Jun 2021 07:32:19 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        with ESMTP id S229460AbhFAEhi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 00:37:38 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8D3CC061574
+        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 21:35:57 -0700 (PDT)
+Received: from mail-internal.denx.de (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: noc@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 5B69F82EA1;
+        Tue,  1 Jun 2021 06:35:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1622522155;
+        bh=kfecTcZ55k+F78gu75sr1/SnMlo5gwjDU5bO0qrbXRo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=OCbWXhN6egZjMP0Ou4iD7woR9HYp+pnZpPGgCixtl1HFvHWv5DppmUcdHm0lpYHtV
+         TXZQ4BEJQRZFPEftpLdnIdsJVU0WFWN+LvF4HU4WORIZZyHKn7g1UIy2L3z77Fc5JA
+         lPzrKbD5oMEFTxQoCYasHq2O6xrQhgymyRCu63FfyGN01hAX61c4iO+jrDw5R57EOM
+         bwOXPYU2Su3Eo7zHrEj6uEesuz3UUCur7h1viY9xn/ufqtlQM/EPrCr/vRt7YlVQTK
+         CwIYoyUUGB6g/NK8lFREMCnCGojVnvTdwRE0b2E2ZJg0BTmQstr2xsiRw62bKQMi10
+         W59i1DzNWiNJg==
+Received: from pollux.denx.de (pollux [192.168.1.1])
+        by mail-internal.denx.de (Postfix) with ESMTP id 3221C184CCD;
+        Tue,  1 Jun 2021 06:35:48 +0200 (CEST)
+Received: by pollux.denx.de (Postfix, from userid 515)
+        id 0BF1C1A8BB4; Tue,  1 Jun 2021 06:35:48 +0200 (CEST)
+From:   Heiko Schocher <hs@denx.de>
+To:     linux-mtd@lists.infradead.org
+Cc:     Heiko Schocher <hs@denx.de>, Fabio Estevam <festevam@denx.de>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] mtd: devices: add support for microchip 48l640 EERAM
+Date:   Tue,  1 Jun 2021 06:35:44 +0200
+Message-Id: <20210601043546.1345704-1-hs@denx.de>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210601022319.17938-3-digetx@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.102.4 at phobos.denx.de
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-01.06.2021 05:23, Dmitry Osipenko пишет:
-> The ACTMON watches activity of memory clients. Decisions about a minimum
-> required frequency are made based on the info from ACTMON. We can use
-> ACTMON as a thermal cooling device by limiting the required frequency.
-> Document new cooling-cells property of NVIDIA Tegra ACTMON hardware unit.
-> 
-> Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
-> Acked-by: Thierry Reding <treding@nvidia.com>
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
 
-I missed to add Rob's r-b to this patch that he gave to v1:
+add support for microchip 48l640 eeram connected via
+SPI. Patch 1 introduces devicetree documentation
+and patch 2 the driver.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+
+Changes in v3:
+Add Fabio to cc
+drop dev_dbg() in mchp48l640_read() as not really needed to
+fix warning which kernel test robot found for
+config: arc-allyesconfig (attached as .config)
+compiler: arceb-elf-gcc (GCC) 9.3.0
+reproduce (this is a W=1 build):
+add Reported-by: kernel test robot <lkp@intel.com>
+add Fabio to cc
+
+Changes in v2:
+as Rob helped, fix warnings from running command
+'make DT_CHECKER_FLAGS=-m dt_binding_check'
+- fix build warnings
+- add Fabios Tested-by
+
+Heiko Schocher (2):
+  mtd: devices: add devicetree documentation for microchip 48l640
+  mtd: devices: add support for microchip 48l640 EERAM
+
+ .../bindings/mtd/microchip,mchp48l640.yaml    |  45 +++
+ drivers/mtd/devices/Kconfig                   |   6 +
+ drivers/mtd/devices/Makefile                  |   1 +
+ drivers/mtd/devices/mchp48l640.c              | 373 ++++++++++++++++++
+ 4 files changed, 425 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
+ create mode 100644 drivers/mtd/devices/mchp48l640.c
+
+-- 
+2.31.1
+
