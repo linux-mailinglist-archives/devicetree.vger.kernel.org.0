@@ -2,98 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4B8F396AFB
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 04:21:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF616396B01
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 04:24:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232517AbhFACXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 May 2021 22:23:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59228 "EHLO
+        id S232578AbhFAC0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 May 2021 22:26:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232516AbhFACXJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 22:23:09 -0400
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE0E0C06174A
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 19:21:27 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id g18so10243186pfr.2
-        for <devicetree@vger.kernel.org>; Mon, 31 May 2021 19:21:27 -0700 (PDT)
+        with ESMTP id S232559AbhFACZ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 May 2021 22:25:58 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 242BFC061574;
+        Mon, 31 May 2021 19:24:17 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id p20so17152760ljj.8;
+        Mon, 31 May 2021 19:24:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=G7LsGLmMOn0RCf1NWPI0jTR/YPJV/uz3PsfA5w2kCWY=;
-        b=bMl5mgjYlnR3D9xJOq0kwO1H6utjThPiRUDlo5uvzPZFjXhXXLqE838OmSKJLfNmIm
-         H6f3yImB6nt/Hwd2V14xjPOomtM4mnElEV4CPs/KWAUnaimTw4O5D8OB0L9LMSuv4so0
-         tpR2ZeuWcHTkGNNWNY4pEoRpepxBoJGEVS1a0=
+        bh=0qQFEWJjGeOPYXiDAusSsUop8XHEeCJbzRrrXiwgnWE=;
+        b=a8cJKXfDeX7Ze1yeqJKOaFrS3hc+cQwFsuvJp9Blga+IBFmY+/3ojywdEcjS41O4r0
+         K6+ZpQnKlSVRXyJ01c/HwidRgORrOERx4XfPceUIrxJfSEeP50Thej4Aogs2uA6XA6/+
+         OY9ICvzeDdEwzKWCgpbGWTLRCealXrXcU6ZiQpm/KExZy2QwiGf1mf25zdUyFANAb5B1
+         IL+WLtZbr21nb9l3brxUGLsybMCk4kO+7RXyTHYDTkzkAQtOnt9oS1782CmEMz0H3XeG
+         Fuy7LWYZbpZhEzqyTD+tHthpCy5Vr10JhmQnsKqzwoxib1hQvdflgrZYbrMSivnn7RnN
+         x/OA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=G7LsGLmMOn0RCf1NWPI0jTR/YPJV/uz3PsfA5w2kCWY=;
-        b=ZSvmgRzKu4FXNsxBdieK/hhPRmmJiDy23zfbSS6qdbImz7ocUoKH8H5ampt4tm3JNJ
-         JXr6MTOUIyx8/paZJoD5O2LFtMb4tOchd6NCxde7gkyyuQ4ixPyxYuy3anQcvsB0KCgS
-         FSULnXhWM9ZEjHFQwaW+zhX5dCJadm4ePgI1HMeHZbAJHL+jf/F8bgpeIyLp6SOygPrT
-         TfsRllTOgugMyMn4U18C72UuCG4qXmbCEiR7SHKRQFUrflFBdyHM+M+lpPNNkyhcsyyL
-         Z5iOi+n0AzuSiAf34JetF69Sn9vElG6b8k0AyVOjIDO+rsETms2A86n4a5/kqlWzzSCP
-         p3aQ==
-X-Gm-Message-State: AOAM531K9vCqcyvx/MPbg6YoR2s9dTDxYIFWM+v7pKnLGZQmrDKIKJtp
-        dFGWdoEAU2WL3ZrlXL2ElwiSKA==
-X-Google-Smtp-Source: ABdhPJxN7Qm65U09tF7lVMDcXuKIvj4QgVk52a65hbjIuF1Bt95TBlmlV2sQ3UN4lpyqHz7qrp9kVg==
-X-Received: by 2002:a62:87cd:0:b029:2e9:a7c8:ad45 with SMTP id i196-20020a6287cd0000b02902e9a7c8ad45mr14001596pfe.8.1622514087296;
-        Mon, 31 May 2021 19:21:27 -0700 (PDT)
-Received: from judyhsiao-p920.tpe.corp.google.com ([2401:fa00:1:10:f7e8:2d6:ddb7:af4e])
-        by smtp.gmail.com with ESMTPSA id y205sm473797pfb.53.2021.05.31.19.21.23
+        bh=0qQFEWJjGeOPYXiDAusSsUop8XHEeCJbzRrrXiwgnWE=;
+        b=dxUTWgb5NzxnDyR08Qzowj8n+vn81aXiFUC7vXw8rFJRmi0ubnXBDncngYomJCeK65
+         3YWnuGdQDSa9VDL2uds+O+vloUDbV5WVmQgUrFjj/PqoPizLNLRcwH03BWpOMRyhx6gT
+         6zvQPCxQUpCmlWAKOvemdIiszK2cEvNbbfz5kf790vOY5FWZhWpqT0QtWR/vk2dl3zs2
+         9uGook9ezPdBT7PzB9Iy7JtXgEqKXtu9iQ6ED9Yh7hJG3ZYR6mFNssEMKXVLNaUAoa7z
+         bj6L4D7EOx+87W/gWeQptdwr+ODg1GflQSE7nOJllbf+uUQpg17pw+3Pf8KaSMVwAPLH
+         fj+g==
+X-Gm-Message-State: AOAM531Nhxa8nG73iaazAJ4huue1K2SZ/BgrTh2csLEszdZJXv4yuDHd
+        ZiMZIsxelvE/D4PAIPqyWdE=
+X-Google-Smtp-Source: ABdhPJwl8n/6p9e/WFPvMHySQ3sXeLs4e+V8RT6pICPgw3pCXsZGIqESFgxS6g/rBztowwSTXs1xJA==
+X-Received: by 2002:a2e:a374:: with SMTP id i20mr18705719ljn.149.1622514255521;
+        Mon, 31 May 2021 19:24:15 -0700 (PDT)
+Received: from localhost.localdomain (79-139-170-222.dynamic.spd-mgts.ru. [79.139.170.222])
+        by smtp.gmail.com with ESMTPSA id g34sm1524207lfv.59.2021.05.31.19.24.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 May 2021 19:21:26 -0700 (PDT)
-From:   Judy Hsiao <judyhsiao@chromium.org>
-To:     broonie@kernel.org
-Cc:     Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>, dianders@chromium.org,
-        dgreid@chromium.org, cychiang@google.com, judyhsiao@google.com,
-        tzungbi@chromium.org, swboyd@chromium.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, Judy Hsiao <judyhsiao@chromium.org>
-Subject: [PATCH] arm64: dts: qcom: sc7180: add label for secondary mi2s
-Date:   Tue,  1 Jun 2021 10:21:17 +0800
-Message-Id: <20210601022117.4071117-1-judyhsiao@chromium.org>
-X-Mailer: git-send-email 2.32.0.rc0.204.g9fa02ecfa5-goog
+        Mon, 31 May 2021 19:24:15 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Matt Merhar <mattmerhar@protonmail.com>
+Cc:     linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 0/2] Add thermal cooling support to NVIDIA Tegra devfreq
+Date:   Tue,  1 Jun 2021 05:23:17 +0300
+Message-Id: <20210601022319.17938-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adds label for MI2S secondary block to allow follower projects to override
-for the four speaker support which uses I2S SD1 line on gpio52 pin.
+This series adds two remaining patches of the ACTMON cooling support
+series, converting the DT binding to schema and adding cooling properties.
+The rest of the patches are already applied.
 
-Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
----
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changelog:
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 24d293ef56d7..2027914a0bed 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -772,7 +772,7 @@ mi2s@0 {
- 		qcom,capture-sd-lines = <0>;
- 	};
- 
--	mi2s@1 {
-+	secondary_mi2s: mi2s@1 {
- 		reg = <MI2S_SECONDARY>;
- 		qcom,playback-sd-lines = <0>;
- 	};
+v2: - Added back the "MEMORY CONTROLLER" section to the description of the
+      interconnect-names property, which was suggested by Thierry Reding.
+
+    - Added r-b from Rob Herring and acks from Chanwoo Choi and
+      Thierry Reding.
+
+Dmitry Osipenko (2):
+  dt-bindings: devfreq: tegra30-actmon: Convert to schema
+  dt-bindings: devfreq: tegra30-actmon: Add cooling-cells
+
+ .../arm/tegra/nvidia,tegra30-actmon.txt       |  57 --------
+ .../devfreq/nvidia,tegra30-actmon.yaml        | 126 ++++++++++++++++++
+ 2 files changed, 126 insertions(+), 57 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra30-actmon.txt
+ create mode 100644 Documentation/devicetree/bindings/devfreq/nvidia,tegra30-actmon.yaml
+
 -- 
-2.32.0.rc0.204.g9fa02ecfa5-goog
+2.30.2
 
