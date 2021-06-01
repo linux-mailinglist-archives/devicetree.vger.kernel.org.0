@@ -2,72 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32FB4397D28
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 01:46:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95AE6397D2F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 01:48:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235199AbhFAXrh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 19:47:37 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:34342 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235034AbhFAXrg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 19:47:36 -0400
-Received: by mail-ot1-f51.google.com with SMTP id h19-20020a9d6f930000b02903c0c4560e99so936835otq.1;
-        Tue, 01 Jun 2021 16:45:53 -0700 (PDT)
+        id S235170AbhFAXuj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 19:50:39 -0400
+Received: from mail-oo1-f48.google.com ([209.85.161.48]:35469 "EHLO
+        mail-oo1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235034AbhFAXuj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 19:50:39 -0400
+Received: by mail-oo1-f48.google.com with SMTP id s20-20020a4ae9940000b02902072d5df239so181237ood.2;
+        Tue, 01 Jun 2021 16:48:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=28Cx6oh2XIQQKFZY2k+wbbIN9n0uRkJwk+EZKm9p+8g=;
-        b=exdP/wSqO/Uhepa9Fd9gKVFDiW/IA3VmnPKsfXFe5Db6ipgFCYUOvFrtNqOLAmEKWs
-         0z3+xA+7UuZfY+6jWa1wiGLN3bBuzPoAd0LmSeBFs8jhjs/ChJVHIbRrpsr/fAMcH66c
-         8KqpQZYe2fhlx5lr13ho8h7HFFib/41XAeqxwMpy4RsQVzafXQvcBeEcQ1Utd5UfjCDT
-         DfM8VZyGpetRmxcI3UrRFxeGYd0nRH58kmU9Famz9UlYeeJ7vwh/NXYnaxLyJoTVaKr5
-         RfQXNis44Mm5XbylXiIDc9vV2GbE0Q6xX46cC/MqAtWLNMlo4qEscUGCNgcw5+gblnzM
-         A7lw==
-X-Gm-Message-State: AOAM532pM9o7/o+v0VW6xQj2K2EUwNy29p6pWBmiFvoKlrvsTtui0Byx
-        xhSBrAyGMkqeZe+OwwgOsg==
-X-Google-Smtp-Source: ABdhPJxjjjUFGsav+J/kngpPdRLMbXsBhctsJGp3XDoMwei3shpp3w8TDsQZ7irz8WsSFz/WhFL+1Q==
-X-Received: by 2002:a9d:61d6:: with SMTP id h22mr24183149otk.149.1622591153137;
-        Tue, 01 Jun 2021 16:45:53 -0700 (PDT)
+        bh=Nhdv9yyqyc2cM0eNSgIXuxGtoBf6kf7h8vLahsndfwg=;
+        b=HzjX5jLYMa9FbFk6pgy2MCUOxxeT83LFn7/Wi1cxa8AwPxoclMxdWXfVDAic3yoXWW
+         HyrgFWMmfD0o3kGAgRbu/TJxwDqCkG0KVYQqLP0z8iRDFrGW/2kasGt2oo8rQJtkeyFk
+         dCBuOhXn+nh35B6/LUx7xJELf3Cb0Y/7rJOH1uv9B2zgYQWs8X8JA2TCEjjjx4aDUPBe
+         u8quxuWVNREZRWJ6kVeb7SyI7mP2OYtwZkZ8OvF6T7BXYSaqoX02gzc0B8FIor2GXTVO
+         pvTyUbqJZ5ZxcepP5sXTUNZ0ZCWQQiTAXlD7Htt76oil3mMF/HMAyVhSwUduCwU7ZXK6
+         uP/g==
+X-Gm-Message-State: AOAM530R0sipCLmSj1tktlttv1TrSzSyK7s0SJu+uqoyHte268amQyhl
+        8ZqhfE4cL0NzDbP6BDs6wtouucUIgA==
+X-Google-Smtp-Source: ABdhPJx4PNWKe0l7HiCEH+vmXOGx0pj/2w264qi2I0z4IZTf+VOPET+t7I0bPZLOE5Pj4rkPfS1xuw==
+X-Received: by 2002:a4a:d41a:: with SMTP id n26mr22943551oos.66.1622591336821;
+        Tue, 01 Jun 2021 16:48:56 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m189sm3682230oif.45.2021.06.01.16.45.52
+        by smtp.gmail.com with ESMTPSA id f8sm3672922oos.33.2021.06.01.16.48.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jun 2021 16:45:52 -0700 (PDT)
-Received: (nullmailer pid 1350962 invoked by uid 1000);
-        Tue, 01 Jun 2021 23:45:51 -0000
-Date:   Tue, 1 Jun 2021 18:45:51 -0500
+        Tue, 01 Jun 2021 16:48:56 -0700 (PDT)
+Received: (nullmailer pid 1357101 invoked by uid 1000);
+        Tue, 01 Jun 2021 23:48:55 -0000
+Date:   Tue, 1 Jun 2021 18:48:55 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        devicetree@vger.kernel.org, Peter Rosin <peda@axentia.se>,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: iio: multiplexer: Convert
- io-channel-mux bindings to DT schema
-Message-ID: <20210601234551.GA1350488@robh.at.kernel.org>
-References: <20210522112908.1611389-1-jic23@kernel.org>
- <20210522112908.1611389-3-jic23@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jakub Kicinski <kuba@kernel.org>,
+        Scott Branden <sbranden@broadcom.com>,
+        linux-arm-kernel@lists.infradead.org, Ray Jui <rjui@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: net: Convert MDIO mux bindings to DT
+ schema
+Message-ID: <20210601234855.GA1357013@robh.at.kernel.org>
+References: <20210526181411.2888516-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210522112908.1611389-3-jic23@kernel.org>
+In-Reply-To: <20210526181411.2888516-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 22 May 2021 12:29:08 +0100, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+On Wed, 26 May 2021 13:14:11 -0500, Rob Herring wrote:
+> Convert the common MDIO mux bindings to DT schema.
 > 
-> Straight conversion of the txt file using the mux-consumer.yaml
-> binding now that is available.
+> Drop the example from mdio-mux.yaml as mdio-mux-gpio.yaml has the same one.
 > 
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Cc: Peter Rosin <peda@axentia.se>
-> Cc: Rob Herring <robh@kernel.org>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Ray Jui <rjui@broadcom.com>
+> Cc: Scott Branden <sbranden@broadcom.com>
+> Cc: bcm-kernel-feedback-list@broadcom.com
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: Heiner Kallweit <hkallweit1@gmail.com>
+> Cc: Russell King <linux@armlinux.org.uk>
+> Cc: netdev@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  .../iio/multiplexer/io-channel-mux.txt        | 39 ----------
->  .../iio/multiplexer/io-channel-mux.yaml       | 71 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 72 insertions(+), 40 deletions(-)
+> v2:
+>  - Fix copy-n-paste error: s/I2C/MDIO/
+> ---
+>  .../bindings/net/brcm,mdio-mux-iproc.txt      |   2 +-
+>  .../devicetree/bindings/net/mdio-mux-gpio.txt | 119 ---------------
+>  .../bindings/net/mdio-mux-gpio.yaml           | 135 ++++++++++++++++++
+>  .../bindings/net/mdio-mux-mmioreg.txt         |  75 ----------
+>  .../bindings/net/mdio-mux-mmioreg.yaml        |  78 ++++++++++
+>  .../bindings/net/mdio-mux-multiplexer.txt     |  82 -----------
+>  .../bindings/net/mdio-mux-multiplexer.yaml    |  82 +++++++++++
+>  .../devicetree/bindings/net/mdio-mux.txt      | 129 -----------------
+>  .../devicetree/bindings/net/mdio-mux.yaml     |  44 ++++++
+>  9 files changed, 340 insertions(+), 406 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/mdio-mux-gpio.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/mdio-mux-gpio.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/mdio-mux-mmioreg.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/mdio-mux-mmioreg.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/mdio-mux-multiplexer.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/mdio-mux-multiplexer.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/mdio-mux.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/mdio-mux.yaml
 > 
 
 Applied, thanks!
