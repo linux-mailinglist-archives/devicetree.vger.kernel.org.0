@@ -2,107 +2,314 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0CD739788A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 18:58:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39FC03978CC
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jun 2021 19:09:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233088AbhFAQ7t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 12:59:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60594 "EHLO
+        id S233871AbhFARLg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 13:11:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231918AbhFAQ7s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 12:59:48 -0400
-Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7324EC061574
-        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 09:58:07 -0700 (PDT)
-Received: by mail-qv1-xf32.google.com with SMTP id u13so3825815qvt.7
-        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 09:58:07 -0700 (PDT)
+        with ESMTP id S232490AbhFARLg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 13:11:36 -0400
+Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8CE4C061756
+        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 10:09:54 -0700 (PDT)
+Received: by mail-il1-x131.google.com with SMTP id b5so13608013ilc.12
+        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 10:09:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=ldU/TPmtPmVs6oGr7yGz/gAY04wIfA/VvvfcSuok9Fk=;
-        b=ItrTAwFyEd3vy4gcIMd1nyNP0+p9wLUpoepc2e8uV8llGt5bIcguuOkSItn+6rpc9z
-         Fc0Te4vtTh3Nw60Q7F+W0cNouuLl8j8GBlj6SUNYWeWdgIVL1iepdsaHtMug2yW2Ec4h
-         NSDfw/DRmV5Dai8I+dDkG+HF4HSBW2P+o0LBw=
+        bh=z+Rz3Lhcejb7HYCpXC74t+FaU8kf98DbGjszGlQZc0Y=;
+        b=QpNc9h4rw8vXfFDVPSkzkMB/cP3vX6woCKter+Qxj7Y1Y7kWRr9fmv+y40seGL424W
+         7S9RTbV3Y2rrUbdZiAqMyrShtp6g20AD/SxpmPXwYX9b6YvEswzFKTVxAQsupcQ2zGzy
+         pXZBvgaSMdHQP/7/Cqx3oJhG7/aCgfoDjduveEPH1/u7ilTetgGXhljOfu4Ub2pdF8Zw
+         8K3E1ASc9A2BcbYAST9n6qj6ddSzNkcRxgMVOtly8Kj4rx03Hzli0DqyeJYKje/AuK4D
+         JBg2M4R67C3PBAtwTvWaDcfR6pZ1qwo49BdkK7vPinFzWEo5rjnyvvtYGu/B2jhUN8Xe
+         NZbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=ldU/TPmtPmVs6oGr7yGz/gAY04wIfA/VvvfcSuok9Fk=;
-        b=jHr4RqGLy7+uvKEXbHCThnPLKTe0zYsh7vhI2R4GnguSo3riYoOrFyhmekEiDfgVLF
-         l9VKM8E5DCgXA4IdvbBy+2MVBqhTJa5UrbTB7K4x9tZJxke73dQZJLJ6iPsRnr3IGn+Y
-         rhbH5HSZyxxi3kdc8gUS1YrXjzJ2w8E5lf9dz8+T+5etG+j2fdzC8Sl5IW1o5zgl9t5h
-         0fFfWvjWtUy0X5wZ7ggNbmRK6jqdBE4lgfCWY+b6Sn1TyNwQpZP8npaSesNg1oBT3Q+N
-         XYTwQybpOglwSRiHIHV8V/ENWXVF/V5oVhWazTdGJKID/U5MqdTR2SdLeFIJrCXXrq/p
-         H1Ng==
-X-Gm-Message-State: AOAM5306+T1ZDtpsHozkjVm+//45kYga+lpnPmd943+ZJp66BReTCn/A
-        D04fbuY8Vuh57J6kNxGhmEN13Yueyxy43g==
-X-Google-Smtp-Source: ABdhPJyir3AZfN1Urqf7VIeMwCP1HRHfBJMAz5u9wTvDmkKBunww6na73bhNrmgjIaLk6aURfJzDdg==
-X-Received: by 2002:ad4:5223:: with SMTP id r3mr23603329qvq.0.1622566686280;
-        Tue, 01 Jun 2021 09:58:06 -0700 (PDT)
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
-        by smtp.gmail.com with ESMTPSA id r25sm1421021qtu.82.2021.06.01.09.58.05
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Jun 2021 09:58:05 -0700 (PDT)
-Received: by mail-yb1-f171.google.com with SMTP id g38so22130998ybi.12
-        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 09:58:05 -0700 (PDT)
-X-Received: by 2002:a25:8191:: with SMTP id p17mr40654965ybk.405.1622566685333;
- Tue, 01 Jun 2021 09:58:05 -0700 (PDT)
+        bh=z+Rz3Lhcejb7HYCpXC74t+FaU8kf98DbGjszGlQZc0Y=;
+        b=r59e2yavfvBe7ilpqo2evNO7yuSMw1prwKwIxIlYHJ4PUU//iRKhqUYFYwBwvGOAiv
+         HIzxxxA/PIEQFksQVbveXHXlnF+lPHMz89kHa/iajjXL8SRZ0Mm9aihsRg++LJWHOZQK
+         qcQ26CaJgldSR5V+A4v8hoHJ2vA55GSjnepVZxArSUohCDZ1zfpn/0FWi5r4t1igL0dK
+         6t1UnIi+44a1pwzY+MI6OmtGfQQ/HyRaWZYOZeCxDTPB6isBd4XXJWtQE4fTS/jkOO5k
+         +hNouUTGXen5DkVMsADDE0k/ye6+hewFf9T5ICp3EIXZ4syQUVoVoRkQv5LmiQUUik6e
+         wfBA==
+X-Gm-Message-State: AOAM531XH5dmAYSRBjpXoQmnHQyFQQpJUyk9Xg6BbkUxLjnOe0qvxN1o
+        w02hTPEU+V6Pjsj/6rNV8lIDyaK/pVPwCY8m5RMdLA==
+X-Google-Smtp-Source: ABdhPJywrV5idkePTh207NsMmYcHSjFJZB9Y4WcJUy3l3DSaXB9DrUzzrI0y7K1CxUlTgwYRSFs6BgPKtD5TfzlnPmU=
+X-Received: by 2002:a92:c10a:: with SMTP id p10mr9363696ile.183.1622567393997;
+ Tue, 01 Jun 2021 10:09:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210510075253.1.Ib4c296d6ff9819f26bcaf91e8a08729cc203fed0@changeid>
-In-Reply-To: <20210510075253.1.Ib4c296d6ff9819f26bcaf91e8a08729cc203fed0@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 1 Jun 2021 09:57:54 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WMfCi9fVHxUqRiy+abgQU2K28BfOHfUrUpwcwUVrrOOA@mail.gmail.com>
-Message-ID: <CAD=FV=WMfCi9fVHxUqRiy+abgQU2K28BfOHfUrUpwcwUVrrOOA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Modify SPI_CLK voltage level
- for trogdor
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Wenchao Han <hanwenchao@huaqin.corp-partner.google.com>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
+References: <20210531125143.257622-1-robert.marko@sartura.hr>
+ <20210531125143.257622-4-robert.marko@sartura.hr> <20210601153818.GA20254@pengutronix.de>
+In-Reply-To: <20210601153818.GA20254@pengutronix.de>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Tue, 1 Jun 2021 19:09:43 +0200
+Message-ID: <CA+HBbNG3O_QORj1NEKvoC4C5FfyfXyO_PMOZS0pHJimGn+HTUA@mail.gmail.com>
+Subject: Re: [PATCH v3 4/6] reset: Add Delta TN48M CPLD reset controller
+To:     Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Lee Jones <lee.jones@linaro.org>, linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
+        Paul Menzel <pmenzel@molgen.mpg.de>,
+        Donald Buczek <buczek@molgen.mpg.de>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bjorn,
+On Tue, Jun 1, 2021 at 5:38 PM Philipp Zabel <p.zabel@pengutronix.de> wrote:
+>
+> Hi Robert,
+>
+> thank you for the patch. A few comments below:
+>
+> On Mon, May 31, 2021 at 02:51:41PM +0200, Robert Marko wrote:
+> > Delta TN48M CPLD exposes resets for the following:
+> > * 88F7040 SoC
+> > * 88F6820 SoC
+> > * 98DX3265 switch MAC-s
+> > * 88E1680 PHY-s
+> > * 88E1512 PHY
+> > * PoE PSE controller
+> >
+> > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> > ---
+> >  drivers/reset/Kconfig       |   9 +++
+> >  drivers/reset/Makefile      |   1 +
+> >  drivers/reset/reset-tn48m.c | 128 ++++++++++++++++++++++++++++++++++++
+> >  3 files changed, 138 insertions(+)
+> >  create mode 100644 drivers/reset/reset-tn48m.c
+> >
+> > diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+> > index 4171c6f76385..e3ff4b020c96 100644
+> > --- a/drivers/reset/Kconfig
+> > +++ b/drivers/reset/Kconfig
+> > @@ -64,6 +64,15 @@ config RESET_BRCMSTB_RESCAL
+> >         This enables the RESCAL reset controller for SATA, PCIe0, or PCIe1 on
+> >         BCM7216.
+> >
+> > +config RESET_TN48M_CPLD
+>
+> Please sort this alphabetically.
+Yeah, sorry I was sorting this by the tristate text.
+Leftover from some other subsystems that sort like that.
 
-On Mon, May 10, 2021 at 7:53 AM Douglas Anderson <dianders@chromium.org> wrote:
 >
-> From: Wenchao Han <hanwenchao@huaqin.corp-partner.google.com>
+> > +     tristate "Delta Networks TN48M switch CPLD reset controller"
+> > +     depends on MFD_TN48M_CPLD
+> > +     help
+> > +       This enables the reset controller driver for the Delta TN48M CPLD.
+> > +       It provides reset signals for Armada 7040 and 385 SoC-s, Alleycat 3X
+> > +       switch MAC-s, Alaska OOB ethernet PHY, Quad Alaska ethernet PHY-s and
+> > +       Microchip PD69200 PoE PSE controller.
+> > +
+> >  config RESET_HSDK
+> >       bool "Synopsys HSDK Reset Driver"
+> >       depends on HAS_IOMEM
+> > diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+> > index 65a118a91b27..6d6945638b76 100644
+> > --- a/drivers/reset/Makefile
+> > +++ b/drivers/reset/Makefile
+> > @@ -10,6 +10,7 @@ obj-$(CONFIG_RESET_BCM6345) += reset-bcm6345.o
+> >  obj-$(CONFIG_RESET_BERLIN) += reset-berlin.o
+> >  obj-$(CONFIG_RESET_BRCMSTB) += reset-brcmstb.o
+> >  obj-$(CONFIG_RESET_BRCMSTB_RESCAL) += reset-brcmstb-rescal.o
+> > +obj-$(CONFIG_RESET_TN48M_CPLD) += reset-tn48m.o
 >
-> On coachz it could be observed that SPI_CLK voltage level was only
-> 1.4V during active transfers because the drive strength was too
-> weak. The line hadn't finished slewing up by the time we started
-> driving it down again. Using a drive strength of 8 lets us achieve the
-> correct voltage level of 1.8V.
->
-> Though the worst problems were observed on coachz hardware, let's do
-> this across the board for trogdor devices. Scoping other boards shows
-> that this makes the clk line look nicer on them too and doesn't
-> introduce any problems.
->
-> Only the clk line is adjusted, not any data lines. Because SPI isn't a
-> DDR protocol we only sample the data lines on either rising or falling
-> edges, not both. That means the clk line needs to toggle twice as fast
-> as data lines so having the higher drive strength is more important
-> there.
->
-> Signed-off-by: Wenchao Han <hanwenchao@huaqin.corp-partner.google.com>
-> [dianders: Adjust author real name; adjust commit message]
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
->
->  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 1 +
->  1 file changed, 1 insertion(+)
+> Same as here.
 
-I think this patch is ready to land and it's what we're now using in
-the Chrome OS tree. See <https://crrev.com/c/2821728>.
+Yeah, same as before.
+Will fix that.
+>
+> >  obj-$(CONFIG_RESET_HSDK) += reset-hsdk.o
+> >  obj-$(CONFIG_RESET_IMX7) += reset-imx7.o
+> >  obj-$(CONFIG_RESET_INTEL_GW) += reset-intel-gw.o
+> > diff --git a/drivers/reset/reset-tn48m.c b/drivers/reset/reset-tn48m.c
+> > new file mode 100644
+> > index 000000000000..960ee5f4eb40
+> > --- /dev/null
+> > +++ b/drivers/reset/reset-tn48m.c
+> > @@ -0,0 +1,128 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Delta TN48M CPLD reset driver
+> > + *
+> > + * Copyright 2021 Sartura Ltd
+> > + *
+> > + * Author: Robert Marko <robert.marko@sartura.hr>
+> > + */
+> > +
+> > +#include <linux/bitfield.h>
+>
+> What is this used for?
 
--Doug
+Actually its not, its leftover from when I was thinking to use FIELD_GET()
+macro.
+Will drop it.
+>
+> > +#include <linux/device.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/reset-controller.h>
+> > +
+> > +#include <dt-bindings/reset/delta,tn48m-reset.h>
+> > +
+> > +#define TN48M_RESET_REG              0x10
+> > +
+> > +struct tn48_reset_map {
+> > +     u8 bit;
+> > +};
+> > +
+> > +struct tn48_reset_data {
+> > +     struct reset_controller_dev rcdev;
+> > +     struct regmap *regmap;
+> > +};
+> > +
+> > +static const struct tn48_reset_map tn48m_resets[] = {
+> > +     [CPU_88F7040_RESET] = {0},
+> > +     [CPU_88F6820_RESET] = {1},
+> > +     [MAC_98DX3265_RESET] = {2},
+> > +     [PHY_88E1680_RESET] = {4},
+> > +     [PHY_88E1512_RESET] = {6},
+> > +     [POE_RESET] = {7},
+> > +};
+> > +
+> > +static inline struct tn48_reset_data *to_tn48_reset_data(
+> > +                     struct reset_controller_dev *rcdev)
+> > +{
+> > +     return container_of(rcdev, struct tn48_reset_data, rcdev);
+> > +}
+> > +
+> > +static int tn48m_control_assert(struct reset_controller_dev *rcdev,
+> > +                             unsigned long id)
+> > +{
+> > +     struct tn48_reset_data *data = to_tn48_reset_data(rcdev);
+> > +
+> > +     return regmap_update_bits(data->regmap, TN48M_RESET_REG,
+> > +                               BIT(tn48m_resets[id].bit), 0);
+> > +}
+>
+> Why is there no deassert?
+All of the reset are self-clearing, so no need for it.
+>
+> > +static int tn48m_control_reset(struct reset_controller_dev *rcdev,
+> > +                            unsigned long id)
+> > +{
+> > +     return tn48m_control_assert(rcdev, id);
+>
+> Is this a self-clearing (or rather self re-setting) bit that triggers a
+> reset pulse?
+> If so, assert shouldn't be implemented.
+
+Yes, it's self-clearing, per spec they will be cleared after 100ms.
+Will drop assert then, I saw that reset was for self-clearing, but other
+drivers I looked for example implemented both which was confusing.
+
+>
+> > +}
+> > +
+> > +static int tn48m_control_status(struct reset_controller_dev *rcdev,
+> > +                             unsigned long id)
+> > +{
+> > +     struct tn48_reset_data *data = to_tn48_reset_data(rcdev);
+> > +     unsigned int regval;
+> > +     int ret;
+> > +
+> > +     ret = regmap_read(data->regmap, TN48M_RESET_REG, &regval);
+> > +     if (ret < 0)
+> > +             return ret;
+> > +
+> > +     if (BIT(tn48m_resets[id].bit) & regval)
+> > +             return 0;
+> > +     else
+> > +             return 1;
+> > +}
+> > +
+> > +static const struct reset_control_ops tn48_reset_ops = {
+> > +     .reset          = tn48m_control_reset,
+> > +     .assert         = tn48m_control_assert,
+> > +     .status         = tn48m_control_status,
+> > +};
+> > +
+> > +static int tn48m_reset_probe(struct platform_device *pdev)
+> > +{
+> > +     struct tn48_reset_data *data;
+> > +     struct regmap *regmap;
+> > +
+> > +     if (!pdev->dev.parent)
+> > +             return -ENODEV;
+>
+> That shouldn't be necessary.
+
+This driver depends on having a parent as it needs to get the
+regmap from it.
+The parent is a CPLD using simple-i2c-mfd.
+So it's nice to check.
+
+Regards, Robert
+>
+> > +     regmap = dev_get_regmap(pdev->dev.parent, NULL);
+> > +     if (!regmap)
+> > +             return -ENODEV;
+> > +
+> > +     data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
+> > +     if (!data)
+> > +             return -ENOMEM;
+> > +
+> > +     data->regmap = regmap;
+> > +
+> > +     data->rcdev.owner = THIS_MODULE;
+> > +     data->rcdev.ops = &tn48_reset_ops;
+> > +     data->rcdev.nr_resets = ARRAY_SIZE(tn48m_resets);
+> > +     data->rcdev.of_node = pdev->dev.of_node;
+> > +
+> > +     return devm_reset_controller_register(&pdev->dev, &data->rcdev);
+> > +}
+> > +
+> > +static const struct of_device_id tn48m_reset_of_match[] = {
+> > +     { .compatible = "delta,tn48m-reset", },
+> > +     { }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, tn48m_reset_of_match);
+> > +
+> > +static struct platform_driver tn48m_reset_driver = {
+> > +     .driver = {
+> > +             .name = "delta-tn48m-reset",
+> > +             .of_match_table = tn48m_reset_of_match,
+> > +     },
+> > +     .probe = tn48m_reset_probe,
+> > +};
+> > +module_platform_driver(tn48m_reset_driver);
+> > +
+> > +MODULE_AUTHOR("Robert Marko <robert.marko@sartura.hr>");
+> > +MODULE_DESCRIPTION("Delta TN48M CPLD reset driver");
+> > +MODULE_LICENSE("GPL");
+> > --
+> > 2.31.1
+> >
+> >
+>
+> regards
+> Philipp
+
+
+
+-- 
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
