@@ -2,103 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 634C8399110
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 19:04:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 567C6399131
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 19:12:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230084AbhFBRGI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 13:06:08 -0400
-Received: from lb3-smtp-cloud8.xs4all.net ([194.109.24.29]:37767 "EHLO
-        lb3-smtp-cloud8.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229625AbhFBRGH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 13:06:07 -0400
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
-        by smtp-cloud8.xs4all.net with ESMTPA
-        id oUHzlWRcIIpGyoUI2lQ4VZ; Wed, 02 Jun 2021 19:04:23 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
-        t=1622653463; bh=cWSeRZUWGBvdIB1xII9wWpJlbD3hbbRGtK7oE2FDWsw=;
-        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
-         Subject;
-        b=Yi+bDPV1kCQGQ1PNWfu8oEujLpcVnk7TnONpNtYY4vMFSzXh6Q5QMVdpvvGFFbLyW
-         Buca2xEEioVDxpfYZv15fL95uIFLWwNwCleZEqjID5EsobvZ2RNCg3lCgV/D/HUc2D
-         eOYcXLNHWSE3YaAn6qbviWA+u54Y09QKKI0+SH4JqUtWulO6h6Ml8Pw03XHW0DlLKe
-         EPj6gGVAYF2/vUmx708sJgozfYHKPMesqRPEFjcmkMU8M8L2UUv0xmIOK9DF+6vVl2
-         ey5DuGzLOChZ3fj6Snt7qvG6qElUIwa6aQ2GbUrwCpKqIBK5C1yaY1ba7MYKle06lX
-         GUzEtvkTFEcKA==
-Subject: Re: [PATCH 6/9] media: platform: Add Synopsys DesignWare HDMI RX
- Controller Driver
-To:     Nelson Costa <Nelson.Costa@synopsys.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jose Abreu <Jose.Abreu@synopsys.com>
-References: <cover.1622631488.git.nelson.costa@synopsys.com>
- <42b1ff078618a90973f25311eae725f0f151acc5.1622631488.git.nelson.costa@synopsys.com>
- <19a78e24-b767-e5bb-e932-e704fe8614be@xs4all.nl>
- <MW3PR12MB44591B23D792BF44BD666CAAC13D9@MW3PR12MB4459.namprd12.prod.outlook.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Message-ID: <2a78fa1e-2243-1956-60ac-a2611e8bf8ad@xs4all.nl>
-Date:   Wed, 2 Jun 2021 19:04:18 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.10.0
+        id S229792AbhFBRN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 13:13:59 -0400
+Received: from mail-oi1-f173.google.com ([209.85.167.173]:45007 "EHLO
+        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229764AbhFBRN6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 13:13:58 -0400
+Received: by mail-oi1-f173.google.com with SMTP id d21so3323720oic.11;
+        Wed, 02 Jun 2021 10:12:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=COKp8u2ZXVU0CymIjovVJV/hDUHC7QysfTLqbeCPlLA=;
+        b=Adjldz+oq4KFHDqvU1eRqQef907OlddrGe9cdNa753BgVW1rQbgNDNGV3UGpCua9Iz
+         c8jRZMwkLA3MN2Oh4vwk6KOjOR409WBHR3ti/a09dMyuppfoCLQcXhYJb2cE8z/rQk4C
+         zI2gq2qHxwmRuM9WMszXWt75l9sgoNjpCnplsQdYoJ0rnG6MPvZgYuXsD4durC6Hct3k
+         kSnLBILuhFOwhY2N5Tl2zXFw2ZmgU+QQXuVzoyzhuv2l1Kiph1YAvF66j9MRjujNRVRX
+         uiHmsiEVG+FBBUFAhV9vFQwJ6n2qQn6t30wjjXXXhSsFjl7Razwu6t1O6ncZu6GxajxF
+         wkJQ==
+X-Gm-Message-State: AOAM530rmo2rRuraARcP17U8Dtearb6FI9zQ/8DBEuYW2HSEG9Y3yjLl
+        NHidTwZ+EjaeoMqyF6DWPg==
+X-Google-Smtp-Source: ABdhPJyP/3UlWlRYRDmsD0pTWPUKVDZroExh5v+MUz02ZfHdTYEFo7ZHdLt3LYHa0h3JIS3nfHzYVA==
+X-Received: by 2002:a54:4609:: with SMTP id p9mr21746605oip.107.1622653923200;
+        Wed, 02 Jun 2021 10:12:03 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id a6sm89629oon.20.2021.06.02.10.12.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Jun 2021 10:12:02 -0700 (PDT)
+Received: (nullmailer pid 3589893 invoked by uid 1000);
+        Wed, 02 Jun 2021 17:12:01 -0000
+Date:   Wed, 2 Jun 2021 12:12:01 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Weiyi Lu <weiyi.lu@mediatek.com>
+Subject: Re: [PATCH v9 01/22] dt-bindings: ARM: Mediatek: Add new document
+ bindings of imp i2c wrapper controller
+Message-ID: <20210602171201.GA3566462@robh.at.kernel.org>
+References: <20210524122053.17155-1-chun-jie.chen@mediatek.com>
+ <20210524122053.17155-2-chun-jie.chen@mediatek.com>
 MIME-Version: 1.0
-In-Reply-To: <MW3PR12MB44591B23D792BF44BD666CAAC13D9@MW3PR12MB4459.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4xfG9oXeheh9RGtrB+v/ODDBPz7UPe5UqV+uM+UmGVVQrgoQ/CTSYdo2/K2C/EbHEkIIkN62Erl9xKy1ym0IsdHYBhyA1lyX0+5txXQ+20u8qHAGt24KeO
- PMeoP+iserDZDOiWXyOpOlyU4ztl39G0odJj9eUbx0XwZIReStwbWyVNC2MQqs64prhRQ8TOl1J4MAfkSUM6wScdm1ZS9YF5CNlbMoYkTM/EVJ+uBbIzGjrx
- 1o7ycTLJZWp4/mjRvPdcCwZ6lxWRLby0AElg6AqkxfwGxouT3TD2k+BmSLwZUAdU7Q7LnwVP6Hmg0uFlubLYZQ1mort2hKj3RmVFIc+knS5cK4V/upO+FK7N
- uTr8u7taOQ4tKq0iC2TP9L0yCcCj6I2GhGKEIKDtY4KXtfhFnNrjB1LHKXtP5JCwvmUvuyrvSyg5smt7hDBShuYd6Yw+U0OHu47BNsLUAmeAwL40MYessDgs
- YIFX5iJXlyj/QjZrF6VNEdbrcOm9QJqn7NFMaseUkWAIBfEZQivPVVaF+qo=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210524122053.17155-2-chun-jie.chen@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nelson,
-
-On 02/06/2021 17:44, Nelson Costa wrote:
-> Hi Hans,
+On Mon, May 24, 2021 at 08:20:32PM +0800, Chun-Jie Chen wrote:
+> This patch adds the new binding documentation of imp i2c wrapper controller
+> for Mediatek MT8192.
 > 
-> Thanks for your initial comments and feedback!
+> Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
+> Signed-off-by: chun-jie.chen <chun-jie.chen@mediatek.com>
+> ---
+>  .../arm/mediatek/mediatek,imp_iic_wrap.yaml   | 80 +++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,imp_iic_wrap.yaml
 > 
-> From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-> Date: qua, jun 02, 2021 at 12:54:38
-> 
->> Hi Nelson,
->>
->> Thank you for this patch. Some initial comments below, I will
->> need to go over this another time for some of the colorimetry
->> related functions.
->>
-> 
-> Ok.
-> 
->> BTW, if you are interested in HDCP support, let me know. Cisco worked
->> on an API for this, but due to various reasons we have not been able
->> to upstream it. But we do use it in our products.
->>
-> 
-> Good to know! In that case if in the future we think to upstream 
-> something
-> related with HDCP we will let you know. :)
-> BTW, which versions of HDCP (1.4, 2.2, 2.3) the API supports?
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,imp_iic_wrap.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,imp_iic_wrap.yaml
+> new file mode 100644
+> index 000000000000..fb6cb9e60ee2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,imp_iic_wrap.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,imp_iic_wrap.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek IMP I2C Wrapper Controller
+> +
+> +maintainers:
+> +  - Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> +
+> +description:
+> +  The Mediatek imp i2c wrapper controller provides functional configurations and clocks to the system.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - mediatek,mt8192-imp_iic_wrap_c
+> +          - mediatek,mt8192-imp_iic_wrap_e
+> +          - mediatek,mt8192-imp_iic_wrap_s
+> +          - mediatek,mt8192-imp_iic_wrap_ws
+> +          - mediatek,mt8192-imp_iic_wrap_w
+> +          - mediatek,mt8192-imp_iic_wrap_n
 
-It's designed for all versions, but it has only been tested with 1.4
-receivers.
+Looks to me like these are all the same h/w, but just have differing 
+sets of clocks. That's not really a reason to have different 
+compatibles. 
 
-You can find it here:
+If you need to know what clocks are present, you can walk the DT for 
+all 'clocks' properties matching this clock controller instance. Or use 
+'clock-indices' to define which ones are present.
 
-https://git.linuxtv.org/hverkuil/media_tree.git/log/?h=tc358840
-
-BTW, don't wait for the follow-up review w.r.t. colorimetry, it might
-take 1-2 weeks before I get around to that, I need to carve out time
-for that. Feel free to post a v2 based on the current review.
-
-Regards,
-
-	Hans
+Rob
