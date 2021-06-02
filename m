@@ -2,81 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFDA1398FC4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 18:17:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C0B1398FE4
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 18:24:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230192AbhFBQTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 12:19:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54670 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229911AbhFBQTO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Jun 2021 12:19:14 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1DF1861943;
-        Wed,  2 Jun 2021 16:17:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622650650;
-        bh=8NTOtVAUlWpijIjD+K59+VsdlOTTwWVBZEPEICpdQiU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=gBjTIE9LH9twgKWQYnj4/GAKhRzPCNCrdnNFa9Xr6aOEZ1AFkPtayHjNw+AmqO/mi
-         aBP+qQ2zlR4jaUg/g+wy4DyDTyc+C6XfdQ6rssF2nBHx3Gau5320aMLbTVENlwHDm+
-         W2Hr0xmGUweNXSgS+Fq6WwC125ZIKFs20umhwNctDX7/jOW0TiklK+QVwW85BodTMq
-         ZfjgTix5aLIYIwPzz/bmVwUKnZFmi/gt2UkJc3vQjJCD/d4Mgf0JAfiwU9nZCP7HmL
-         YudRKOfIfyXq01Vd7yUfE+LpPEnknjtRkSGJP8obPh74rrJs2Un9Nc5k3xmkXZoBsx
-         qm0Aafr3SW07w==
-From:   Mark Brown <broonie@kernel.org>
-To:     Vincent Knecht <vincent.knecht@mailoo.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, alsa-devel@alsa-project.org,
-        phone-devel@vger.kernel.org, Takashi Iwai <tiwai@suse.com>,
-        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: Re: [PATCH v1 1/4] ASoC: dt-bindings: nxp,tfa989x: Add tfa9897 support
-Date:   Wed,  2 Jun 2021 17:16:55 +0100
-Message-Id: <162265045454.22459.11419124227044779135.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210528105101.508254-1-vincent.knecht@mailoo.org>
-References: <20210528105101.508254-1-vincent.knecht@mailoo.org>
+        id S229675AbhFBQ01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 12:26:27 -0400
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:36756 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229541AbhFBQ01 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 12:26:27 -0400
+Received: by mail-oi1-f176.google.com with SMTP id a21so3219780oiw.3;
+        Wed, 02 Jun 2021 09:24:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=53S/fFCs9+Nn0oXITnfIPS9D5tUEwRl/Jdla/qwUi0A=;
+        b=DazfuXnm8GVEecOOdHbbWg4FSuZKgx0vdx9xZPrtpfeUq9TB4qP4EB7SoGvT9RgL8k
+         epLbJXoCx6lXseMmadKHOn0b4nWHYgxEp58n93XaIuj8OMeqGwEE4kJVxXhjoIbpxO5t
+         3x5YymDx8JE45YW1W4k8x1EL6rKIDdXY9TFojdk8COOSkvUHNozcyCRLE1/JD0267OA3
+         hQzjCY7dZ9Xstoom5AMNX43/ZdVNP1ljeSNW02IiIZ4TeBchEUeViuQrqfbntee0nX59
+         tJNj9n3zxYtaFLgBbh9gtt+remYSRnDce1igaHr//eCHrncteFsMXLwMmdJkjlqK22O0
+         yHoA==
+X-Gm-Message-State: AOAM533EloZt3r9PA8nFkK4zTnyjwjyVp5Zq5gyZIBEW/B1JObCy4Svi
+        tSNhKehsiKiJl4UhRJZTq3VGvUK2Ag==
+X-Google-Smtp-Source: ABdhPJzVP4mIHE0ZmQug3GtJrRBii4GJlgiykQxMxIoZudo673B7gCzQsGIdiWnhunSOC9LV4vTRHw==
+X-Received: by 2002:aca:b784:: with SMTP id h126mr4311771oif.98.1622651083682;
+        Wed, 02 Jun 2021 09:24:43 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id f1sm89873oto.40.2021.06.02.09.24.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Jun 2021 09:24:43 -0700 (PDT)
+Received: (nullmailer pid 3500509 invoked by uid 1000);
+        Wed, 02 Jun 2021 16:24:42 -0000
+Date:   Wed, 2 Jun 2021 11:24:42 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     devicetree@vger.kernel.org,
+        "Paul J. Murphy" <paul.j.murphy@intel.com>,
+        linux-kernel@vger.kernel.org,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [RESEND PATCH] dt-bindings: arm: intel,keembay: limit the
+ dtschema to root node
+Message-ID: <20210602162442.GA3500424@robh.at.kernel.org>
+References: <20210526162750.135139-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210526162750.135139-1-krzysztof.kozlowski@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 May 2021 12:50:58 +0200, Vincent Knecht wrote:
-> Document TFA9897 bindings.
+On Wed, 26 May 2021 12:27:50 -0400, Krzysztof Kozlowski wrote:
+> From: Krzysztof Kozlowski <krzk@kernel.org>
+> 
+> The check for the board compatible should be limited only to the root
+> node.  Any other nodes with such compatible are not part of this schema
+> and should not match.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> ---
+> 
+> Hi Rob,
+> 
+> Can you take it directly?
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
+> ---
+>  Documentation/devicetree/bindings/arm/intel,keembay.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/4] ASoC: dt-bindings: nxp,tfa989x: Add tfa9897 support
-      commit: 513df99993857863e42bf3d7d65d87c191ce9493
-[2/4] ASoC: codecs: tfa989x: Add support for tfa9897
-      commit: 1ba1d69d8aa938f64cb07604b320a5074c3bb107
-[3/4] ASoC: dt-bindings: nxp, tfa989x: Add vddd-supply property
-      commit: 9cf1a98e2b0171e2586a13197a9a1ad605336166
-[4/4] ASoC: codecs: tfa989x: Add support for optional vddd-supply
-      commit: 8e5607e9941ce915187785bd09805bf7df9f7349
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Applied, thanks!
