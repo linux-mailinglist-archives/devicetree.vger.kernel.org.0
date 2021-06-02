@@ -2,217 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BC063994AF
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 22:39:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85CCE3994BF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 22:43:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229724AbhFBUlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 16:41:00 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:57224 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229620AbhFBUk7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 16:40:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1622666355;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=E0/XuNlWKmhhWtieuI0wskLS78FwuunVTdLwC/mfCYo=;
-        b=EBx5pfyQKhVVeDRUBc+4TMq4DsuD5Dxt+qI/5T0e96+8zqPzurckzxWyugg+NxYJ8YFCgC
-        Xz9vc0i+ro540sIaoQjjqBnSwjMteaIPZQwONNaYFM83+G1d+Q2P96v33hijZsIsj6U9So
-        rElMRYvv6O+SuPpv4Sz/rLQjgbyVTFM=
-Received: from mail-oi1-f200.google.com (mail-oi1-f200.google.com
- [209.85.167.200]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-255-UHnWO5pzMUe6mE5Dl7sn6Q-1; Wed, 02 Jun 2021 16:39:14 -0400
-X-MC-Unique: UHnWO5pzMUe6mE5Dl7sn6Q-1
-Received: by mail-oi1-f200.google.com with SMTP id j1-20020aca65410000b02901f1d632e208so966078oiw.16
-        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 13:39:14 -0700 (PDT)
+        id S229576AbhFBUo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 16:44:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38094 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229552AbhFBUo5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 16:44:57 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 081A4C061756
+        for <devicetree@vger.kernel.org>; Wed,  2 Jun 2021 13:43:14 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id b9so5763146ejc.13
+        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 13:43:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=m11y4i1SvujGuRzAdjBSm08F3vbFRf7B2NZgAGBozGg=;
+        b=RX5rlD+C4/B8bJewy4253z4LESQmaLz1GAHGt55FYSpDA/jDWJciy4Yd62p+3UiDpe
+         QA4WhZbDPolAp/wjlJvVy18gZ8IW0FpjsEwEj/IpPOjcRaj8hi0xz22+i+xWLifDUXvn
+         LZAsc5BxufYNKSnLa0v+w4y2Z87pCrnYK0dLh4SDFruhk5ginR4Sk7btgTNbQ5c+gPfN
+         ukoC0PnhDBl23h+LMZitJJN2q56IoPLCCDmxWZeO6+Ns4teAAPvYW1tgG+ro7INrZF9H
+         EZd5aS+pjSqcaFXbtmNWD8Qrjjxk390HSsYVhMqjWUiWfzOzPT3eDQo+kFienlpMQNNZ
+         9+Bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=E0/XuNlWKmhhWtieuI0wskLS78FwuunVTdLwC/mfCYo=;
-        b=Y/OLbT7Ky7wvthIq9P6/c5Cfay7VWaNQWQ6Rbw7QpwVWSbWLVrx20Sv/31Op4y1iJJ
-         L9n97Sbem4Nttk1ygacQ34Lb7oKyIguswZSpLpm/A8k87Oz4FTEvfxZdC1oZ5niX8DS2
-         j9Zp6oMmadE8NbjBf1rrf34qv/nCr8XyQ7XSlTpIBTqGcjcG0MffqSSrUxRa6VIlK37I
-         nLivbT/o+xDr/wQAUBLfFVZ9PpnO5XGaUmVRX3RXUZYE3ADRulzp4A8H0qLeRPi4r5v+
-         pG4goVuHtvMbHbO1Bgb03CLqR4otBIo7anAv/E5iVPQGqhE/USCsIY5fDRY/tOo9GYEi
-         t43A==
-X-Gm-Message-State: AOAM533bHF/DV7T856HwDZyPYjwKFlu0Pc/2Y5HTZJBNs7fkIELZHatB
-        SzKORX6U+5UreN04VLU4/BTwdX0b0WulrTx4R/4mlEwzulUAn4efkc6jrqTQ49YZV/B1Wd2JEyX
-        S62qEq5pvudW6k4xtBtEnOA==
-X-Received: by 2002:a05:6808:992:: with SMTP id a18mr22575058oic.129.1622666353956;
-        Wed, 02 Jun 2021 13:39:13 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyz2ftAStoo/mrE1T7iYy5n/Cf3MyvtNFl5GUaoW1aAg7LQw1zqt3cIXb7KlwxbYx+Nv62ACw==
-X-Received: by 2002:a05:6808:992:: with SMTP id a18mr22575039oic.129.1622666353816;
-        Wed, 02 Jun 2021 13:39:13 -0700 (PDT)
-Received: from localhost.localdomain (075-142-250-213.res.spectrum.com. [75.142.250.213])
-        by smtp.gmail.com with ESMTPSA id h7sm204004ots.44.2021.06.02.13.39.11
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=m11y4i1SvujGuRzAdjBSm08F3vbFRf7B2NZgAGBozGg=;
+        b=YRCuSDi4+iZMxyF9+Ulvsd2NVjVuCA7G5mxzNTbtglX2PMJlDYhYxw1AYZFr/PKh2t
+         PRx2H58rEi1j+tpOgIDmxU+fSlD5n+86KkA58+xwED7I5nuBbwyqaNEA5azEwtqj5FHY
+         bKhy++UMdxZdJqzvcjzgnufzolPC2nxj4vbcIZ6cklWZN2Rab2r/2QsIQPipxE9WdaAj
+         EAp3O+Wl+7WxKuKm5b6Tn4e1ZsteiONh4mGhQMVVbOdLKZCjHKbhEUFJhC/tiQR4Lq1j
+         mkzx2TolmFUNha3udUTErplV1gIEy+dMbClwkSv36G1OUUzuzNn97Y5Cv2GDAoqUOHlI
+         5IHw==
+X-Gm-Message-State: AOAM532RhS+6t008z4bW1dXfaA8rLJH69gJmtX9Jh4U3FLtBWrPkXY/M
+        a0OMZavMZled9kODUr36YZADV6BAGDkC8OcK
+X-Google-Smtp-Source: ABdhPJyZX7/9wQ9yx28ATg5R+fCoxCBPvTMELfrFneki7veMc5yQlCqhc7STaVWvl3GJcUIfVSYIDg==
+X-Received: by 2002:a17:906:b4b:: with SMTP id v11mr13129300ejg.359.1622666592047;
+        Wed, 02 Jun 2021 13:43:12 -0700 (PDT)
+Received: from [192.168.1.28] (hst-221-39.medicom.bg. [84.238.221.39])
+        by smtp.googlemail.com with ESMTPSA id y1sm510485ejl.7.2021.06.02.13.43.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Jun 2021 13:39:13 -0700 (PDT)
-Subject: Re: [PATCH 3/3] fpga: region: Adds runtime PM support
-To:     Nava kishore Manne <navam@xilinx.com>,
-        Moritz Fischer <mdf@kernel.org>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Michal Simek <michals@xilinx.com>,
-        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>, git <git@xilinx.com>
-References: <20210402092049.479-1-nava.manne@xilinx.com>
- <20210402092049.479-4-nava.manne@xilinx.com> <YHDHhf1tQo6vI49W@epycbox.lan>
- <MWHPR02MB2623E61ABFBB478E95DC863FC2499@MWHPR02MB2623.namprd02.prod.outlook.com>
- <PH0PR02MB733699A67717E605045728DAC23D9@PH0PR02MB7336.namprd02.prod.outlook.com>
-From:   Tom Rix <trix@redhat.com>
-Message-ID: <8c7b7fcc-211c-3c22-a105-8c77156fde81@redhat.com>
-Date:   Wed, 2 Jun 2021 13:39:10 -0700
+        Wed, 02 Jun 2021 13:43:11 -0700 (PDT)
+Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: Add venus DT node
+To:     Dikshita Agarwal <dikshita@codeaurora.org>, andy.gross@linaro.org,
+        david.brown@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        vgarodia@codeaurora.org
+References: <1622647200-1487-1-git-send-email-dikshita@codeaurora.org>
+From:   Stanimir Varbanov <stanimir.varbanov@linaro.org>
+Message-ID: <134691c7-e939-879f-c897-befc4b71268b@linaro.org>
+Date:   Wed, 2 Jun 2021 23:43:10 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <PH0PR02MB733699A67717E605045728DAC23D9@PH0PR02MB7336.namprd02.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <1622647200-1487-1-git-send-email-dikshita@codeaurora.org>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 6/2/21 3:48 AM, Nava kishore Manne wrote:
-> Ping!
->
->> -----Original Message-----
->> From: Nava kishore Manne
->> Sent: Monday, April 19, 2021 10:49 AM
->> To: Moritz Fischer <mdf@kernel.org>
->> Cc: trix@redhat.com; robh+dt@kernel.org; Michal Simek
->> <michals@xilinx.com>; linux-fpga@vger.kernel.org;
->> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
->> kernel@lists.infradead.org; git <git@xilinx.com>
->> Subject: RE: [PATCH 3/3] fpga: region: Adds runtime PM support
->>
->> Hi Moritz,
->>
->> 	Please find my response inline.
->>
->>> -----Original Message-----
->>> From: Moritz Fischer <mdf@kernel.org>
->>> Sent: Saturday, April 10, 2021 3:01 AM
->>> To: Nava kishore Manne <navam@xilinx.com>
->>> Cc: mdf@kernel.org; trix@redhat.com; robh+dt@kernel.org; Michal Simek
->>> <michals@xilinx.com>; linux-fpga@vger.kernel.org;
->>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
->>> kernel@lists.infradead.org; git <git@xilinx.com>
->>> Subject: Re: [PATCH 3/3] fpga: region: Adds runtime PM support
->>>
->>> On Fri, Apr 02, 2021 at 02:50:49PM +0530, Nava kishore Manne wrote:
->>>> Adds support to handle FPGA/PL power domain. With this patch, the PL
->>>> power domain will be turned on before loading the bitstream and
->>>> turned off while removing/unloading the bitstream using overlays.
->>>> This can be achieved by adding the runtime PM support.
->>>>
->>>> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
->>>> ---
->>>>   drivers/fpga/of-fpga-region.c | 18 +++++++++++++++++-
->>>>   1 file changed, 17 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/fpga/of-fpga-region.c
->>>> b/drivers/fpga/of-fpga-region.c index e405309baadc..35fc2f3d4bd8
->>>> 100644
->>>> --- a/drivers/fpga/of-fpga-region.c
->>>> +++ b/drivers/fpga/of-fpga-region.c
->>>> @@ -15,6 +15,7 @@
->>>>   #include <linux/of_platform.h>
->>>>   #include <linux/slab.h>
->>>>   #include <linux/spinlock.h>
->>>> +#include <linux/pm_runtime.h>
->>>>
->>>>   static const struct of_device_id fpga_region_of_match[] = {
->>>>   	{ .compatible = "fpga-region", },
->>>> @@ -302,6 +303,7 @@ static int
->>>> of_fpga_region_notify_pre_apply(struct
->>> fpga_region *region,
->>>>   	}
->>>>
->>>>   	region->info = info;
->>>> +	pm_runtime_get_sync(dev->parent);
->>>>   	ret = fpga_region_program_fpga(region);
->>>>   	if (ret) {
->>>>   		/* error; reject overlay */
->>>> @@ -324,10 +326,13 @@ static int
->>>> of_fpga_region_notify_pre_apply(struct fpga_region *region,  static
->>>> void
->>> of_fpga_region_notify_post_remove(struct fpga_region *region,
->>>>   					      struct of_overlay_notify_data
->>> *nd)  {
->>>> +	struct device *dev = &region->dev;
->>>> +
->>>>   	fpga_bridges_disable(&region->bridge_list);
->>>>   	fpga_bridges_put(&region->bridge_list);
->>>>   	fpga_image_info_free(region->info);
->>>>   	region->info = NULL;
->>>> +	pm_runtime_put(dev->parent);
->>>>   }
->>>>
->>>>   /**
->>>> @@ -411,9 +416,16 @@ static int of_fpga_region_probe(struct
->>> platform_device *pdev)
->>>>   		goto eprobe_mgr_put;
->>>>   	}
->>>>
->>>> +	pm_runtime_enable(&pdev->dev);
->>>> +	ret = pm_runtime_get_sync(&pdev->dev);
->>>> +	if (ret < 0)
->>>> +		goto err_pm;
->>>> +
->>>> +	pm_runtime_put(&pdev->dev);
->>>> +
->>>>   	ret = fpga_region_register(region);
->>>>   	if (ret)
->>>> -		goto eprobe_mgr_put;
->>>> +		goto err_pm;
->>>>
->>>>   	of_platform_populate(np, fpga_region_of_match, NULL, &region-
->>>> dev);
->>>>   	platform_set_drvdata(pdev, region);  @@ -422,6 +434,9 @@ static
->>>> int of_fpga_region_probe(struct  platform_device *pdev)
->>>>
->>>>   	return 0;
->>>>
->>>> +err_pm:
->>>> +	pm_runtime_put(&pdev->dev);
->>>> +	pm_runtime_disable(&pdev->dev);
->>>>   eprobe_mgr_put:
->>>>   	fpga_mgr_put(mgr);
->>>>   	return ret;
->>>> @@ -434,6 +449,7 @@ static int of_fpga_region_remove(struct
->>>> platform_device *pdev)
->>>>
->>>>   	fpga_region_unregister(region);
->>>>   	fpga_mgr_put(mgr);
->>>> +	pm_runtime_disable(region->dev.parent);
->>>>
->>>>   	return 0;
->>>>   }
->>>> --
->>>> 2.18.0
->>>>
->>> Does this add a dependency on CONFIG_PM?
->>>
->> Yes, the newly added functionality has a dependency on CONFIG_PM if it's
->> disabled the expected power domain (in our cases it's PL) will not powered
->> ON/OFF dynamically at runtime and this is as an expected behavior. Other
->> than this it will not impact the any of the driver existing functionality.
 
-This looks like a general change for a specific board.
+On 6/2/21 6:20 PM, Dikshita Agarwal wrote:
+> Add DT entries for the sc7280 venus encoder/decoder.
+> 
+> Co-developed-by: Mansur Alisha Shaik <mansur@codeaurora.org>
+> Signed-off-by: Dikshita Agarwal <dikshita@codeaurora.org>
+> 
+> change since v1:
+>  - added rpmh power domain and opp table.
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 75 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 4c44a52..4982f96 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -60,6 +60,11 @@
+>  			no-map;
+>  			reg = <0x0 0x80b00000 0x0 0x100000>;
+>  		};
+> +
+> +		video_mem: memory@8b200000 {
+> +			reg = <0x0 0x8b200000 0x0 0x500000>;
+> +			no-map;
+> +		};
+>  	};
+>  
+>  	cpus {
+> @@ -850,6 +855,76 @@
+>  			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
+>  		};
+>  
+> +		venus: video-codec@0aa00000 {
+> +			compatible = "qcom,sc7280-venus";
+> +			reg = <0 0x0aa00000 0 0xd0600>;
+> +			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +			clocks = <&videocc VIDEO_CC_MVSC_CORE_CLK>,
+> +				 <&videocc VIDEO_CC_MVSC_CTL_AXI_CLK>,
+> +				 <&videocc VIDEO_CC_VENUS_AHB_CLK>,
+> +				 <&videocc VIDEO_CC_MVS0_CORE_CLK>,
+> +				 <&videocc VIDEO_CC_MVS0_AXI_CLK>;
+> +			clock-names = "core", "bus", "iface",
+> +				      "vcodec_core", "vcodec_bus";
+> +
+> +			power-domains = <&videocc MVSC_GDSC>,
+> +					<&videocc MVS0_GDSC>;
+> +					<&rpmhpd SC7280_CX>;
+> +			power-domain-names = "venus", "vcodec0", "cx";
+> +			operating-points-v2 = <&venus_opp_table>;
+> +
+> +			interconnects = <&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_VENUS_CFG 0>,
+> +					<&mmss_noc MASTER_VIDEO_P0 0 &mc_virt SLAVE_EBI1 0>;
+> +			interconnect-names = "cpu-cfg", "video-mem";
+> +
+> +			iommus = <&apps_smmu 0x2180 0x20>,
+> +				 <&apps_smmu 0x2184 0x20>;
+> +			memory-region = <&video_mem>;
+> +
+> +			video-decoder {
+> +				compatible = "venus-decoder";
+> +			};
+> +
+> +			video-encoder {
+> +				compatible = "venus-encoder";
+> +			};
+> +
+> +			video-firmware {
+> +				iommus = <&apps_smmu 0x21a2 0x0>;
+> +			};
 
-Why can't this be done at the board level ?
+The assumption for all Qualcomm SoCs was that the firmware will be
+loaded by TZ, i.e. the platform has TZ firmware. I'd like to continue on
+that assumption, and propose to move video-firmware subnode into
+appropriate board dts file, in this case sc7280-idp.dts.
 
-Tom
-
->>
->> Regards,
->> Navakishore.
-
+-- 
+regards,
+Stan
