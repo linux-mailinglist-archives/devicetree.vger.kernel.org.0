@@ -2,122 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2F943986C3
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 12:44:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C2D53986CF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 12:45:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230172AbhFBKpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 06:45:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44006 "EHLO
+        id S230321AbhFBKrg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 06:47:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229541AbhFBKps (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 06:45:48 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B86F9C061756
-        for <devicetree@vger.kernel.org>; Wed,  2 Jun 2021 03:44:05 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id z17so1786988wrq.7
-        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 03:44:05 -0700 (PDT)
+        with ESMTP id S229963AbhFBKrf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 06:47:35 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A698C061574;
+        Wed,  2 Jun 2021 03:45:51 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id b25so2269686oic.0;
+        Wed, 02 Jun 2021 03:45:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=ole7lO4EyLGinmZ8kUSEG9cz+TpAxKO/SXaZD0DSzF0=;
-        b=zLctya8nFGOpjiADxV6+6MKc4Xq6E8Lxwv6ip7ffav9gMpcG73fAmznNqHuh7YZM1n
-         LH8RAtsoM+ItO1+nfvLc+wggdWn+YXTue7oUj+zw8kophFRhEKJWejDH9BksEmkQd+9T
-         pqWXovq/ljsy5DRNIMZMauGzzcJncdwRGzIVrjpNgz2PEnZBdYwHi5hXl9yGOyDz40+Z
-         Tk1k+h4hxC/FaJJacBLHBFDM8JautNH3ZIIl1Gt2njZf6Y+phCjqdRWvJEr/kfvMxKve
-         CHY/LwcVcM0GeeBT6kUmnyPlgDus2plwRD/H4MnR0FP37QgBgr0bhHigkKDoTRf2+ves
-         nM4g==
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=eXKINWXa0bjDJgK/ywcDJ+ojBskVf7ukQn1t5GiFFaw=;
+        b=oYoulyT2rIcq8A0JTUO9ReBCmTJkNP3CqX8WVjoCNT3Qtwnk5oabTdyWlfx5x9ObsX
+         N5BNsuUqJlBh3SszN5WaVb20Fj87IYi71bU53qQR1UfajYxaiNmqTFA50Oa4Ki6v5EWn
+         eB6+BFqK+mmbA2NxIANCxSfzS43btbRXSFEAN4/JQbK+vLXAG1TVnOM1YSjhLGOWOkmt
+         SkQvUALu1rlUQvd60ar9nY0fKXJR37Dgt31klarABjmfA8y1bDIMoDSUa+jRxIeX9xvx
+         WBfpk6fA0jj8dFKRi6EpjYG5R2QnlNEPqfSwM6Y4KUKdBTTazcQMUleaT9gPzZP+u9H4
+         amGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=ole7lO4EyLGinmZ8kUSEG9cz+TpAxKO/SXaZD0DSzF0=;
-        b=sldPfJTfse6a7z1vQtS5pOEl/91ZAfLqxFGeTA42AgPDGQm0m5HtXK98C4cTxf83f1
-         flJaUJCfVWSbLhi/olv90OyeiCfH5PFzA2n88Nr8paPLq8tA5oKN3xmNUVAqtj0VyJBL
-         VMkEO3bf2KLFnx5j7aiXpJIrpBkRD6wAiZyPGMCeThKmjBPCOj34/415b6YD5lmWzDjr
-         HDTi5g0gwfTreLssXYroiMciTPzjADYTZXGcQolppzI+c5ct4G7BTlQBARO2Of45ZVdd
-         wd8IrU5NxtRaQjSEqyo82yd2aA3H8zcjyWwUdsDHohwvNIh5tP/Vd24qrNGF173E7Fls
-         1jpA==
-X-Gm-Message-State: AOAM531eH06ctCfFmvjcO3gguyUA6g0oxoM8vHOV6Nlm4zEF7BHVlbKB
-        XADeiEh9IHAw5IgvD8Bo9o54HA==
-X-Google-Smtp-Source: ABdhPJwDqgbP/SHb06O2H30yLG/kSQpCc/ed/6ikkEiiCozM8oxPNF8qMXZV8rBwVRyi/g2dNSgrTA==
-X-Received: by 2002:adf:f28b:: with SMTP id k11mr14056396wro.89.1622630644414;
-        Wed, 02 Jun 2021 03:44:04 -0700 (PDT)
-Received: from dell ([91.110.221.214])
-        by smtp.gmail.com with ESMTPSA id u17sm6216067wrt.61.2021.06.02.03.44.03
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=eXKINWXa0bjDJgK/ywcDJ+ojBskVf7ukQn1t5GiFFaw=;
+        b=NQYjKX9i71ku71V1l8SFUm7F6RdFBKnqtaHC4hAi3pw/KRYr1jkl3eb304f0RXpiXM
+         mwpZ3VhU748lkk3ElQcFsrjiKBYOPlwpVj5HJGKIwuR7nsYY9OVVsGXdP6ikNg17j9Xp
+         eIsaVAQoxOq4t/e8H0N4k+cKhxHrW/vcO5JOOCJ0NWplriHbLWtYl7hZzoRupdg4jDvK
+         O9XXrfpYOHgJVZZxWjSdzHKF+rFnh8+YXIe1zmtKfUxqSsn2w2L6wT0jGAsvm0prMkmu
+         YgVWXwqdYOo/jT+44m+9t2+k67OfCyizeYIbO2IEPXjxkXqZz9Hnt9b+iU/qyoz0qJ/v
+         mIUA==
+X-Gm-Message-State: AOAM5308E9DkJr/N9bdRwAMCyGcdccuyHqd6iPLIiP9qz483Y+xdm34v
+        o0MEMNC4W78ATftarPgTeaU=
+X-Google-Smtp-Source: ABdhPJwc6PM8HlyjkbWQi5wLaodwmu3gvioqwFls2B3zprH7RHff/PIsMDTLIl4iHpOVzLqTImUA/A==
+X-Received: by 2002:aca:2b17:: with SMTP id i23mr21517722oik.87.1622630750364;
+        Wed, 02 Jun 2021 03:45:50 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id q1sm3922934oos.32.2021.06.02.03.45.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jun 2021 03:44:03 -0700 (PDT)
-Date:   Wed, 2 Jun 2021 11:44:02 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Robert Marko <robert.marko@sartura.hr>,
-        Rob Herring <robh@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        bgolaszewski@baylibre.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
-        Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>
-Subject: Re: [PATCH v2 3/4] dt-bindings: mfd: Add Delta TN48M CPLD drivers
- bindings
-Message-ID: <20210602104402.GH2173308@dell>
-References: <20210524230940.GA1350504@robh.at.kernel.org>
- <20210525074649.GC4005783@dell>
- <CA+HBbNFxCKbitVctbUisuZXJWxaZp0cswNNNTgD0UxQZ1smJbg@mail.gmail.com>
- <20210526075255.GG4005783@dell>
- <CA+HBbNGSH9AvRo0Hwa5pWea94u0LwJt=Kj7gWjSAV9fS5VFr0A@mail.gmail.com>
- <20210601081933.GU543307@dell>
- <50ced58164999f51a8c8b9c8dc01468e@walle.cc>
- <20210601135816.GG543307@dell>
- <20210601144826.GI543307@dell>
- <bb73c46de48094759099e244e09b333c@walle.cc>
+        Wed, 02 Jun 2021 03:45:49 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Wed, 2 Jun 2021 03:45:48 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Wang Qing <wangqing@vivo.com>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V9,RESEND,0/2] watchdog: mtk: support pre-timeout when
+ the bark irq is available
+Message-ID: <20210602104548.GC1865238@roeck-us.net>
+References: <1622425895-32111-1-git-send-email-wangqing@vivo.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <bb73c46de48094759099e244e09b333c@walle.cc>
+In-Reply-To: <1622425895-32111-1-git-send-email-wangqing@vivo.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 02 Jun 2021, Michael Walle wrote:
-
-> Am 2021-06-01 16:48, schrieb Lee Jones:
-> > On Tue, 01 Jun 2021, Lee Jones wrote:
-> > 
-> > > On Tue, 01 Jun 2021, Michael Walle wrote:
-> > > 
-> > > > Am 2021-06-01 10:19, schrieb Lee Jones:
-> > > > > Why do you require one single Regmap anyway?  Are they register banks
-> > > > > not neatly separated on a per-function basis?
-> > > >
-> > > > AFAIK you can only have one I2C device driver per device, hence the
-> > > > simple-mfd-i2c.
-> > > 
-> > > Sorry, can you provide more detail.
-> > 
-> > I'd still like further explanation to be sure, but if you mean what I
-> > think you mean then, no, I don't think that's correct.
+On Mon, May 31, 2021 at 09:51:33AM +0800, Wang Qing wrote:
+> Use the bark interrupt as the pretimeout notifier if available.
+> The pretimeout notification shall occur at timeout-sec/2.
 > 
-> We've already discussed this:
+> Wang Qing (2):
+>   watchdog: mtk: support pre-timeout when the bark irq is available
+>   doc: mtk-wdt: support pre-timeout when the bark irq is available
 > 
-> https://lore.kernel.org/lkml/20200622075145.1464020-1-lee.jones@linaro.org/
-> https://lore.kernel.org/lkml/20200605065709.GD3714@dell/
+>  .../devicetree/bindings/watchdog/mtk-wdt.txt       |  5 ++
+>  drivers/watchdog/mtk_wdt.c                         | 77 ++++++++++++++++++++--
+>  2 files changed, 77 insertions(+), 5 deletions(-)
 > 
-> And how would a device tree binding look like if you have multiple
-> i2c devices with the same i2c address?
 
-Ah yes, I remember.
+The series is already included in my watchdog-next branch, making this just
+noise. On top of that, it is v2 without change log, meaning I have no idea
+what changed since v1 and if it is different to the version I queued.
+If it wasn't queued already, you'd get a message telling you to resubmit
+with change log. As it is, I'll keep my version and drop this one.
+Wim to decide what to do with it.
 
-I suppose the saving grace of this scenario is the presence of the
-Reset driver, since this confirms the device's MFD status.  If it were
-missing however, I'm not entirely sure how we'd solve this issue.
-
-I'll go have another look at the latest submission.  Bear with.
-
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Guenter
