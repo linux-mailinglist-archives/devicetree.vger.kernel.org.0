@@ -2,89 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B2B9398784
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 13:01:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EDA739879B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 13:05:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230462AbhFBLDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 07:03:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40838 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229695AbhFBLDX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Jun 2021 07:03:23 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9325C60FF2;
-        Wed,  2 Jun 2021 11:01:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622631700;
-        bh=X1r+/2vqrhf2eopgUmFN+gmnFQ6uhol2dVCw4nc+dR4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TJKit5piuyWTiZE2++rnwBc+NWnC2oVLAFRNuEEhQCVKac8lXQjlMiqUjfKJ+0+2g
-         loDXAsOAAiNwUIewxgKX7kcLZgbBu2928pW7IbObJBT/qPH8uJ1pTyLoX+Cne1BGRP
-         oQUlve0vN2S3bU9ECooK7eF3uPC7GbIvvsqSoCpCNvvvYE9DGtGqiVI19Qh3D6fyhJ
-         DXO0D4CgfnUrVMnl5hWpukOKLvDe/wEGnDkz5qViZsH2e5EbY0zeY3/kd78I6XWlpd
-         AYo6ZSaGnX6rpyBOM5GKVQX7N4xWngbhqqvmz9PvjA4tco2EykT2QndUrW/vAKy/z6
-         jNrq8I6s7Fh2A==
-Date:   Wed, 2 Jun 2021 16:31:36 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Rob Clark <robdclark@gmail.com>
-Cc:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        David Airlie <airlied@linux.ie>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Abhinav Kumar <abhinavk@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        freedreno <freedreno@lists.freedesktop.org>
-Subject: Re: [Freedreno] [RFC PATCH 00/13] drm/msm: Add Display Stream
- Compression Support
-Message-ID: <YLdlEB3Ea6OWaLw4@vkoul-mobl>
-References: <20210521124946.3617862-1-vkoul@kernel.org>
- <CAOCk7Nqep_Db+z3fr5asHZ1u0j8+6fKkPFs2Ai8CbA_zGqV6ZA@mail.gmail.com>
- <YK3gxqXBRupN/N+Q@vkoul-mobl.Dlink>
- <CAOCk7NqvhGvYw8xCBctqj7H+o-Qwp2UuUJK1gatW9EWfXv56xA@mail.gmail.com>
- <CAF6AEGuoyPr8PgfwFX0JCYZ7S_pryn_OXacHBqoMAAPvSq6aRw@mail.gmail.com>
+        id S232564AbhFBLG5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 07:06:57 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:52345 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232555AbhFBLGi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 07:06:38 -0400
+Received: from mail-wm1-f71.google.com ([209.85.128.71])
+        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1loOgA-0003vE-JI
+        for devicetree@vger.kernel.org; Wed, 02 Jun 2021 11:04:54 +0000
+Received: by mail-wm1-f71.google.com with SMTP id 128-20020a1c04860000b0290196f3c0a927so2042822wme.3
+        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 04:04:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Ji+tC5V5g/Ce+vgR+BJKn16Nmk3kGVreTbAerQ8gR/A=;
+        b=uR9kVEtakN2O8euCZNPVJUgiR5cMv1RTsdWUTyLbJXluyv+/XQMLZ9yd/T0ioSVl9P
+         p9LtBs+HzaDUj/IuGUnfp6rnwn86LW95TMhg006FexEolynPKDsQUCzWudWi5e5Xxp8g
+         kBLi0/ZhTo08Fnpf1DYOwzzGq9o2+WwYymPdXgjCbOYC6k/aExrBrLLtFDWfR1qMVrNW
+         raArVAStbbF8QGgXzYXABaY81PrYFc/kXZ9zxpKJcyXvQdnuZGZSH2xf3cUaetI0zOiJ
+         IA0ct/RNRGySjdP4CyU/1bPo5jpriINQYNAC+1TY0JTrT381L4KMT0nAV1Wrh3A/meaZ
+         M5Fg==
+X-Gm-Message-State: AOAM5301JshnLG07N3a9qv6xfvpqTRPk0u8nPOr5z+QYQJfAJoQgLFpg
+        SYfta05h1E4Xt1ANbpCgpcXBmzvCozYMn7bN116Nv1EhYv9CrQK86+3x4vT8NiYb/rENEOkWaGz
+        n37eAE5Ov64wRU4dPIbffezkvvPiK5cDO8jHG3GI=
+X-Received: by 2002:a1c:f316:: with SMTP id q22mr31373939wmq.152.1622631894287;
+        Wed, 02 Jun 2021 04:04:54 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzUi60Islv2sP9zukPKfLBZO8KAnwQYQoa56n07SmYetGNc/q6ebYs8y1pFF8rJvd04u2vnXw==
+X-Received: by 2002:a1c:f316:: with SMTP id q22mr31373922wmq.152.1622631894111;
+        Wed, 02 Jun 2021 04:04:54 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-185-9.adslplus.ch. [188.155.185.9])
+        by smtp.gmail.com with ESMTPSA id f5sm6948175wrf.22.2021.06.02.04.04.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Jun 2021 04:04:53 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: [RESEND PATCH v2 1/4] mfd: sec-irq: Do not enforce (incorrect) interrupt trigger type
+Date:   Wed,  2 Jun 2021 13:04:42 +0200
+Message-Id: <20210602110445.33536-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAF6AEGuoyPr8PgfwFX0JCYZ7S_pryn_OXacHBqoMAAPvSq6aRw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27-05-21, 16:30, Rob Clark wrote:
-> On Wed, May 26, 2021 at 8:00 AM Jeffrey Hugo <jeffrey.l.hugo@gmail.com> wrote:
-> > On Tue, May 25, 2021 at 11:46 PM Vinod Koul <vkoul@kernel.org> wrote:
+From: Krzysztof Kozlowski <krzk@kernel.org>
 
-> > Frankly, I don't like the MSM ACPI solution that I've seen on the laptops.
-> > The ACPI assumes the entire MDSS (including DSI parts) and GPU is one
-> > device, and ultimately handled by one driver.  That driver needs to
-> > get a value from UEFI (set by the bootloader) that is the "panel id".
-> > Then the driver calls into ACPI (I think its _ROM, but I might be
-> > mistaken, doing this from memory) with that id.  It gets back a binary
-> > blob which is mostly an xml file (format is publicly documented) that
-> > contains the panel timings and such.
-> 
-> tbh, I kinda suspect that having a single "gpu" device (which also
-> includes venus, in addition to display, IIRC) in the ACPI tables is a
-> windowsism, trying to make things look to userspace like a single "GPU
-> card" in the x86 world.. but either way, I think the ACPI tables on
-> the windows arm laptops which use dsi->bridge->edp is too much of a
-> lost cause to even consider here.  Possibly ACPI boot on these devices
-> would be more feasible on newer devices which have direct eDP out of
-> the SoC without requiring external bridge/panel glue.
+Interrupt line can be configured on different hardware in different way,
+even inverted.  Therefore driver should not enforce specific trigger
+type - edge falling - but instead rely on Devicetree to configure it.
 
-yeah that is always a very different world. although it might make sense
-to use information in tables and try to deduce information about the
-system can be helpful...
+The Samsung PMIC drivers are used only on Devicetree boards.
 
-> I'd worry more about what makes sense in a DT world, when it comes to
-> DT bindings.
+Additionally, the PMIC datasheets describe the interrupt line as active
+low with a requirement of acknowledge from the CPU therefore the edge
+falling is not correct.
 
-And do you have thoughts on that..?
+Marek Szyprowski reports that together with DTS change (proper level in
+DTS) it fixes RTC alarm failure that he observed from time to time on
+TM2e board.
 
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+
+---
+
+Rebased on https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/log/?h=for-mfd-next
+
+Changes since v1:
+1. Mention in commit msg that this fixes TM2e RTC alarm.
+2. Add Marek's tested-by.
+---
+ drivers/mfd/sec-irq.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/drivers/mfd/sec-irq.c b/drivers/mfd/sec-irq.c
+index e473c2fb42d5..f5f59fdc72fe 100644
+--- a/drivers/mfd/sec-irq.c
++++ b/drivers/mfd/sec-irq.c
+@@ -479,8 +479,7 @@ int sec_irq_init(struct sec_pmic_dev *sec_pmic)
+ 	}
+ 
+ 	ret = devm_regmap_add_irq_chip(sec_pmic->dev, sec_pmic->regmap_pmic,
+-				       sec_pmic->irq,
+-				       IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
++				       sec_pmic->irq, IRQF_ONESHOT,
+ 				       0, sec_irq_chip, &sec_pmic->irq_data);
+ 	if (ret != 0) {
+ 		dev_err(sec_pmic->dev, "Failed to register IRQ chip: %d\n", ret);
 -- 
-~Vinod
+2.27.0
+
