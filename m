@@ -2,74 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3269398EE2
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 17:42:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD954398EE3
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 17:42:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231286AbhFBPn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 11:43:58 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:41672 "EHLO
+        id S231300AbhFBPoR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 11:44:17 -0400
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:40877 "EHLO
         mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229989AbhFBPn6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 11:43:58 -0400
-Received: by mail-ot1-f54.google.com with SMTP id 36-20020a9d0ba70000b02902e0a0a8fe36so2800656oth.8
-        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 08:42:15 -0700 (PDT)
+        with ESMTP id S232340AbhFBPoP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 11:44:15 -0400
+Received: by mail-ot1-f54.google.com with SMTP id c31-20020a056830349fb02903a5bfa6138bso2807536otu.7
+        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 08:42:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=MN86RwDZ/UdX5E6sj1sOVJ75/O8SsU75FSLoRimJz7k=;
-        b=m6PIa6vX3BIixbT22PLkdCzX1NgtNviCDthxEaLqMFSGLN5vpPTObFrs3DmwKRiYlq
-         4t1oY79YMVi8Aa/xuUxjWTJzJUnn7SiPbzF9cN8zTrlOWQYqQ6pu8xXf5J06FCW5c/lM
-         8jzYsVRAM9zB23mVge2qKgDpDZZqbKF+GZg47CdUhShAMlmq0zwku3xdFSaqKRgfxAco
-         BBlSeMfwPIImEifkNCb0fiH2D5vSOJ/w+x1eshHamCu5n/mpHBEjfFjeEWVtNZ04MK1O
-         XUp3yr4HJwwD8Fc5kFgPPqU19Yy7xzYz6xy3doY9fFC+2juo22rClt3RwY5HWAp6ykab
-         3C7Q==
-X-Gm-Message-State: AOAM530IpgLgBV1Oth94za9aJ815/wp+cJS9fxs4WSrmAXV94n16++C+
-        CAYXLf9HcHsfqTMzokOcSQ==
-X-Google-Smtp-Source: ABdhPJxtowJ4t8mblSi9DoF2qmIx/gsPPgKpJIHLoXGNHQkjC7tRQ7tijLmP6f2ecs9M21YO63JM+A==
-X-Received: by 2002:a9d:7d13:: with SMTP id v19mr26151103otn.111.1622648534767;
-        Wed, 02 Jun 2021 08:42:14 -0700 (PDT)
+        bh=UGHsuHHa7L0KHOp8mx0zzxyfTFfDs3EKCyx+ZbAHSqc=;
+        b=jcOc1ff6EtGaeXbdtLskMOI7WQiETOXLTjZDOUCu6qBauzgSYLRiNKQz4kbZ9LLljv
+         FZlxTMg66ZOZoCEaEXUEFXJiM84OWv9B9virhLH2st3oIuljFvHMA6v5SNDOGy2MtPm9
+         QF3H4wYd8IgIabAfWi1B1pf/io0MXRWR9PvNc3ebSI0TAPnFan5Dv8Cpc0AgWBZ9ByIf
+         MA8s2jQgZDNVsYtp22R5YlZkNv+reh8Ri9Kg9496tuich0yzujSHaQBOLCFemGAsePTE
+         wSI+RukvEgjPrgt/bRRwfMh10lcPUOTpnj+Rw/R6lUUtGBqOck7BP/3n/3mYnuAyh16p
+         RVsA==
+X-Gm-Message-State: AOAM5332N1FdPKtVoSh1pwh6KyffSk3wTJuVv0DXryuPKwrtkJlTlGJb
+        MAEDlrpsNZX9FyvZCM3vfGX+wvXQ8w==
+X-Google-Smtp-Source: ABdhPJwGIWZcDwqm5H3oRSfw+7XgVDcjAZc3H5pJeqwa7L6fPtx1aEzdK9pfHHNnbkEAuj5Jo/MUCw==
+X-Received: by 2002:a05:6830:1507:: with SMTP id k7mr2659547otp.71.1622648552326;
+        Wed, 02 Jun 2021 08:42:32 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d67sm40785oia.56.2021.06.02.08.42.13
+        by smtp.gmail.com with ESMTPSA id h9sm34979oor.16.2021.06.02.08.42.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jun 2021 08:42:14 -0700 (PDT)
-Received: (nullmailer pid 3424923 invoked by uid 1000);
-        Wed, 02 Jun 2021 15:42:13 -0000
-Date:   Wed, 2 Jun 2021 10:42:13 -0500
+        Wed, 02 Jun 2021 08:42:31 -0700 (PDT)
+Received: (nullmailer pid 3425586 invoked by uid 1000);
+        Wed, 02 Jun 2021 15:42:30 -0000
+Date:   Wed, 2 Jun 2021 10:42:30 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 3/8] dt-bindings: firmware: juno,scpi: Move to
- sram.yaml json schema
-Message-ID: <20210602154213.GA3424894@robh.at.kernel.org>
+Cc:     devicetree@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Cristian Marussi <cristian.marussi@arm.com>
+Subject: Re: [PATCH v2 4/8] dt-bindings: firmware: amlogic,scpi: Move
+ arm,scpi-shmem to json schema
+Message-ID: <20210602154230.GA3425528@robh.at.kernel.org>
 References: <20210601224904.917990-1-sudeep.holla@arm.com>
- <20210601224904.917990-4-sudeep.holla@arm.com>
+ <20210601224904.917990-5-sudeep.holla@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210601224904.917990-4-sudeep.holla@arm.com>
+In-Reply-To: <20210601224904.917990-5-sudeep.holla@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 01 Jun 2021 23:48:59 +0100, Sudeep Holla wrote:
-> Commit a90b15e0ad72 ("Documentation: bindings: decouple juno specific
-> details from generic binding") moved the juno specific bindings into
-> separate file. Though there was no need for juno specific binding, it
-> has been used unfortunately for whatever stupid reason I added it for.
-> 
-> Let us move the same to the generic sram.yaml schema and remove the
-> old text format binding.
+On Tue, 01 Jun 2021 23:49:00 +0100, Sudeep Holla wrote:
+> "amlogic,meson-gxbb-scp-shmem" is already in the Generic on-chip SRAM
+> binding though "amlogic,meson-gxbb-scpi" is missing which is now added.
+> Also remove the whole old text format binding for the same.
 > 
 > Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
 > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
 > ---
->  .../devicetree/bindings/arm/juno,scpi.txt     | 26 -------------------
->  .../devicetree/bindings/sram/sram.yaml        |  2 ++
->  2 files changed, 2 insertions(+), 26 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/juno,scpi.txt
+>  .../devicetree/bindings/arm/amlogic,scpi.txt         | 12 ------------
+>  Documentation/devicetree/bindings/sram/sram.yaml     |  1 +
+>  2 files changed, 1 insertion(+), 12 deletions(-)
 > 
 
 Applied, thanks!
