@@ -2,143 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09FEC3994A6
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 22:37:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BC063994AF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 22:39:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229682AbhFBUjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 16:39:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36860 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229587AbhFBUjX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 16:39:23 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 364FBC06174A
-        for <devicetree@vger.kernel.org>; Wed,  2 Jun 2021 13:37:40 -0700 (PDT)
-Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id B5A8E82C9B;
-        Wed,  2 Jun 2021 22:37:38 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1622666258;
-        bh=VvBVFBPnwWvLw8jju1scxTT4dsm7ZkjjbxUCqXLJ2PY=;
-        h=From:To:Cc:Subject:Date:From;
-        b=dJ/P1Ts1Py5kYfTjGly4OWtZnRTTAWQMwX7wn7/+rIT3oCs/519hA4env2V+bY1B2
-         kwOm9m6uLW1tTO1D6HrwDf+pBWIuXwjhYnpZud233owXQzxkyZiRHIGC6jIpzLdR9D
-         ib3pUdzEoEoAUmqVfMa8HlVP+THrCDZ868FU3VnpIK5FDsTxZu6+lPhe32NytoGci1
-         FwKdsN9LtxaYmvaqWJNkrziIrCTxJE2YKyrjS8geOviJIna/sV4wVJWM9Ybm3+Ppkw
-         /V/RQTjhMrgidIijJ5/uSrU5Zn6/xmWoEhGr+dB6rVhc8w/gI9O1GU+mw5tqk9o7DH
-         hAZGY4vJczxbw==
-From:   Marek Vasut <marex@denx.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     ch@denx.de, Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
-Subject: [PATCH V2 1/2] dt-bindings: display: bridge: lvds-codec: Document LVDS data mapping select
-Date:   Wed,  2 Jun 2021 22:37:30 +0200
-Message-Id: <20210602203731.419310-1-marex@denx.de>
-X-Mailer: git-send-email 2.30.2
+        id S229724AbhFBUlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 16:41:00 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:57224 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229620AbhFBUk7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 16:40:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1622666355;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=E0/XuNlWKmhhWtieuI0wskLS78FwuunVTdLwC/mfCYo=;
+        b=EBx5pfyQKhVVeDRUBc+4TMq4DsuD5Dxt+qI/5T0e96+8zqPzurckzxWyugg+NxYJ8YFCgC
+        Xz9vc0i+ro540sIaoQjjqBnSwjMteaIPZQwONNaYFM83+G1d+Q2P96v33hijZsIsj6U9So
+        rElMRYvv6O+SuPpv4Sz/rLQjgbyVTFM=
+Received: from mail-oi1-f200.google.com (mail-oi1-f200.google.com
+ [209.85.167.200]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-255-UHnWO5pzMUe6mE5Dl7sn6Q-1; Wed, 02 Jun 2021 16:39:14 -0400
+X-MC-Unique: UHnWO5pzMUe6mE5Dl7sn6Q-1
+Received: by mail-oi1-f200.google.com with SMTP id j1-20020aca65410000b02901f1d632e208so966078oiw.16
+        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 13:39:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=E0/XuNlWKmhhWtieuI0wskLS78FwuunVTdLwC/mfCYo=;
+        b=Y/OLbT7Ky7wvthIq9P6/c5Cfay7VWaNQWQ6Rbw7QpwVWSbWLVrx20Sv/31Op4y1iJJ
+         L9n97Sbem4Nttk1ygacQ34Lb7oKyIguswZSpLpm/A8k87Oz4FTEvfxZdC1oZ5niX8DS2
+         j9Zp6oMmadE8NbjBf1rrf34qv/nCr8XyQ7XSlTpIBTqGcjcG0MffqSSrUxRa6VIlK37I
+         nLivbT/o+xDr/wQAUBLfFVZ9PpnO5XGaUmVRX3RXUZYE3ADRulzp4A8H0qLeRPi4r5v+
+         pG4goVuHtvMbHbO1Bgb03CLqR4otBIo7anAv/E5iVPQGqhE/USCsIY5fDRY/tOo9GYEi
+         t43A==
+X-Gm-Message-State: AOAM533bHF/DV7T856HwDZyPYjwKFlu0Pc/2Y5HTZJBNs7fkIELZHatB
+        SzKORX6U+5UreN04VLU4/BTwdX0b0WulrTx4R/4mlEwzulUAn4efkc6jrqTQ49YZV/B1Wd2JEyX
+        S62qEq5pvudW6k4xtBtEnOA==
+X-Received: by 2002:a05:6808:992:: with SMTP id a18mr22575058oic.129.1622666353956;
+        Wed, 02 Jun 2021 13:39:13 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyz2ftAStoo/mrE1T7iYy5n/Cf3MyvtNFl5GUaoW1aAg7LQw1zqt3cIXb7KlwxbYx+Nv62ACw==
+X-Received: by 2002:a05:6808:992:: with SMTP id a18mr22575039oic.129.1622666353816;
+        Wed, 02 Jun 2021 13:39:13 -0700 (PDT)
+Received: from localhost.localdomain (075-142-250-213.res.spectrum.com. [75.142.250.213])
+        by smtp.gmail.com with ESMTPSA id h7sm204004ots.44.2021.06.02.13.39.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Jun 2021 13:39:13 -0700 (PDT)
+Subject: Re: [PATCH 3/3] fpga: region: Adds runtime PM support
+To:     Nava kishore Manne <navam@xilinx.com>,
+        Moritz Fischer <mdf@kernel.org>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Michal Simek <michals@xilinx.com>,
+        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>, git <git@xilinx.com>
+References: <20210402092049.479-1-nava.manne@xilinx.com>
+ <20210402092049.479-4-nava.manne@xilinx.com> <YHDHhf1tQo6vI49W@epycbox.lan>
+ <MWHPR02MB2623E61ABFBB478E95DC863FC2499@MWHPR02MB2623.namprd02.prod.outlook.com>
+ <PH0PR02MB733699A67717E605045728DAC23D9@PH0PR02MB7336.namprd02.prod.outlook.com>
+From:   Tom Rix <trix@redhat.com>
+Message-ID: <8c7b7fcc-211c-3c22-a105-8c77156fde81@redhat.com>
+Date:   Wed, 2 Jun 2021 13:39:10 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.102.4 at phobos.denx.de
-X-Virus-Status: Clean
+In-Reply-To: <PH0PR02MB733699A67717E605045728DAC23D9@PH0PR02MB7336.namprd02.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Decoder input LVDS format is a property of the decoder chip or even
-its strapping. Add DT property data-mapping the same way lvds-panel
-does, to define the LVDS data mapping.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: devicetree@vger.kernel.org
-To: dri-devel@lists.freedesktop.org
----
-V2: - Use allOf
-    - Move the data-mapping to endpoint
----
- .../bindings/display/bridge/lvds-codec.yaml   | 53 ++++++++++++++-----
- 1 file changed, 41 insertions(+), 12 deletions(-)
+On 6/2/21 3:48 AM, Nava kishore Manne wrote:
+> Ping!
+>
+>> -----Original Message-----
+>> From: Nava kishore Manne
+>> Sent: Monday, April 19, 2021 10:49 AM
+>> To: Moritz Fischer <mdf@kernel.org>
+>> Cc: trix@redhat.com; robh+dt@kernel.org; Michal Simek
+>> <michals@xilinx.com>; linux-fpga@vger.kernel.org;
+>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
+>> kernel@lists.infradead.org; git <git@xilinx.com>
+>> Subject: RE: [PATCH 3/3] fpga: region: Adds runtime PM support
+>>
+>> Hi Moritz,
+>>
+>> 	Please find my response inline.
+>>
+>>> -----Original Message-----
+>>> From: Moritz Fischer <mdf@kernel.org>
+>>> Sent: Saturday, April 10, 2021 3:01 AM
+>>> To: Nava kishore Manne <navam@xilinx.com>
+>>> Cc: mdf@kernel.org; trix@redhat.com; robh+dt@kernel.org; Michal Simek
+>>> <michals@xilinx.com>; linux-fpga@vger.kernel.org;
+>>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
+>>> kernel@lists.infradead.org; git <git@xilinx.com>
+>>> Subject: Re: [PATCH 3/3] fpga: region: Adds runtime PM support
+>>>
+>>> On Fri, Apr 02, 2021 at 02:50:49PM +0530, Nava kishore Manne wrote:
+>>>> Adds support to handle FPGA/PL power domain. With this patch, the PL
+>>>> power domain will be turned on before loading the bitstream and
+>>>> turned off while removing/unloading the bitstream using overlays.
+>>>> This can be achieved by adding the runtime PM support.
+>>>>
+>>>> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
+>>>> ---
+>>>>   drivers/fpga/of-fpga-region.c | 18 +++++++++++++++++-
+>>>>   1 file changed, 17 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/fpga/of-fpga-region.c
+>>>> b/drivers/fpga/of-fpga-region.c index e405309baadc..35fc2f3d4bd8
+>>>> 100644
+>>>> --- a/drivers/fpga/of-fpga-region.c
+>>>> +++ b/drivers/fpga/of-fpga-region.c
+>>>> @@ -15,6 +15,7 @@
+>>>>   #include <linux/of_platform.h>
+>>>>   #include <linux/slab.h>
+>>>>   #include <linux/spinlock.h>
+>>>> +#include <linux/pm_runtime.h>
+>>>>
+>>>>   static const struct of_device_id fpga_region_of_match[] = {
+>>>>   	{ .compatible = "fpga-region", },
+>>>> @@ -302,6 +303,7 @@ static int
+>>>> of_fpga_region_notify_pre_apply(struct
+>>> fpga_region *region,
+>>>>   	}
+>>>>
+>>>>   	region->info = info;
+>>>> +	pm_runtime_get_sync(dev->parent);
+>>>>   	ret = fpga_region_program_fpga(region);
+>>>>   	if (ret) {
+>>>>   		/* error; reject overlay */
+>>>> @@ -324,10 +326,13 @@ static int
+>>>> of_fpga_region_notify_pre_apply(struct fpga_region *region,  static
+>>>> void
+>>> of_fpga_region_notify_post_remove(struct fpga_region *region,
+>>>>   					      struct of_overlay_notify_data
+>>> *nd)  {
+>>>> +	struct device *dev = &region->dev;
+>>>> +
+>>>>   	fpga_bridges_disable(&region->bridge_list);
+>>>>   	fpga_bridges_put(&region->bridge_list);
+>>>>   	fpga_image_info_free(region->info);
+>>>>   	region->info = NULL;
+>>>> +	pm_runtime_put(dev->parent);
+>>>>   }
+>>>>
+>>>>   /**
+>>>> @@ -411,9 +416,16 @@ static int of_fpga_region_probe(struct
+>>> platform_device *pdev)
+>>>>   		goto eprobe_mgr_put;
+>>>>   	}
+>>>>
+>>>> +	pm_runtime_enable(&pdev->dev);
+>>>> +	ret = pm_runtime_get_sync(&pdev->dev);
+>>>> +	if (ret < 0)
+>>>> +		goto err_pm;
+>>>> +
+>>>> +	pm_runtime_put(&pdev->dev);
+>>>> +
+>>>>   	ret = fpga_region_register(region);
+>>>>   	if (ret)
+>>>> -		goto eprobe_mgr_put;
+>>>> +		goto err_pm;
+>>>>
+>>>>   	of_platform_populate(np, fpga_region_of_match, NULL, &region-
+>>>> dev);
+>>>>   	platform_set_drvdata(pdev, region);  @@ -422,6 +434,9 @@ static
+>>>> int of_fpga_region_probe(struct  platform_device *pdev)
+>>>>
+>>>>   	return 0;
+>>>>
+>>>> +err_pm:
+>>>> +	pm_runtime_put(&pdev->dev);
+>>>> +	pm_runtime_disable(&pdev->dev);
+>>>>   eprobe_mgr_put:
+>>>>   	fpga_mgr_put(mgr);
+>>>>   	return ret;
+>>>> @@ -434,6 +449,7 @@ static int of_fpga_region_remove(struct
+>>>> platform_device *pdev)
+>>>>
+>>>>   	fpga_region_unregister(region);
+>>>>   	fpga_mgr_put(mgr);
+>>>> +	pm_runtime_disable(region->dev.parent);
+>>>>
+>>>>   	return 0;
+>>>>   }
+>>>> --
+>>>> 2.18.0
+>>>>
+>>> Does this add a dependency on CONFIG_PM?
+>>>
+>> Yes, the newly added functionality has a dependency on CONFIG_PM if it's
+>> disabled the expected power domain (in our cases it's PL) will not powered
+>> ON/OFF dynamically at runtime and this is as an expected behavior. Other
+>> than this it will not impact the any of the driver existing functionality.
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-index cacafa61e3f52..c493d007785ca 100644
---- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-@@ -68,6 +68,18 @@ properties:
-           For LVDS encoders, port 1 is the LVDS output
-           For LVDS decoders, port 1 is the parallel output
- 
-+        properties:
-+          endpoint:
-+            properties:
-+              data-mapping:
-+                enum:
-+                  - jeida-18
-+                  - jeida-24
-+                  - vesa-24
-+                description: |
-+                  The color signals mapping order. See details in
-+                  Documentation/devicetree/bindings/display/panel/lvds.yaml
-+
-     required:
-       - port@0
-       - port@1
-@@ -79,21 +91,38 @@ properties:
- 
-   power-supply: true
- 
--if:
--  not:
--    properties:
--      compatible:
--        contains:
--          const: lvds-encoder
--then:
--  properties:
--    ports:
-+allOf:
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              const: lvds-encoder
-+    then:
-+      properties:
-+        ports:
-+          properties:
-+            port@0:
-+              properties:
-+                endpoint:
-+                  properties:
-+                    pclk-sample: false
-+
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              const: lvds-decoder
-+    then:
-       properties:
--        port@0:
-+        ports:
-           properties:
--            endpoint:
-+            port@1:
-               properties:
--                pclk-sample: false
-+                endpoint:
-+                  properties:
-+                    data-mapping: false
- 
- required:
-   - compatible
--- 
-2.30.2
+This looks like a general change for a specific board.
+
+Why can't this be done at the board level ?
+
+Tom
+
+>>
+>> Regards,
+>> Navakishore.
 
