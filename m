@@ -2,136 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0388439828F
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 09:04:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 602B93982A0
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 09:06:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231416AbhFBHGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 03:06:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49950 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230413AbhFBHGA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 03:06:00 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 769F3C061574
-        for <devicetree@vger.kernel.org>; Wed,  2 Jun 2021 00:04:16 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id f17so542372wmf.2
-        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 00:04:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=mtcJF4D20naeNnEs0Zx/Q0Y+XC41jEFEF4kHOZDgNa0=;
-        b=IDyBDoZbFzb7qwT31jzph7Ztl4UCpqBDTFYzg/bjN/q+1kcY8cHQPIh3BDWYwIRAAW
-         y9E5QNyO32djUBRk4fYmEi08EArjk0+Wqriz4zcK9iraNhNOFutWm8oRtrogFCNMfSPC
-         ttxHH1L4LgtDrUUkDrUzoMvS0RhFCStE858bpb3pTwTWtpALlMA2tS8phNDe6W1yNr3U
-         yisV5bWn1XX+hSc6Uplrd0GN+M5FYZ+FmDxifREO8octqi2u5Mfjg0wWyv4bA54EkoTq
-         7e/icvfdd5NPWYlHznYU96MSoXIUKbcpX990YLISjO6Lo2Sljsxa59k7l7h4OdjgfF+S
-         m9ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=mtcJF4D20naeNnEs0Zx/Q0Y+XC41jEFEF4kHOZDgNa0=;
-        b=afxQybeuaXvQV+U4RscASqKQLcxag1Vm3JiGvolrW60nfcPGrPJPCB4dJ2x/wtzvZj
-         W6yFKzLprujew9Z2TqNowa04q25VCPggsK8BC/pFNbcD39oowTjjNbwoXIOjSkzaP4bI
-         LsAiAfMu6wlXEJqnVEHNQZR8c5BbGcabKArZty6KmfsM6WMhHfN1JDbci5Y7W/4PLcU9
-         Yl1BqCKKFkYEe/TVxTRguziN5LBb6XBSzncYwR66S3z74BW9w28Y/VhRLuuivb5bbAC2
-         bOTqJawMO7pn/K52mdctuJlljg1+nvBp4ctP528Je+R2mAwXWRZf+szJfBFDOIk9ikB5
-         2Fww==
-X-Gm-Message-State: AOAM533boFn7vrj0KbpUXP3iFw1hVR+RWw305xw6C+muOZGkGKj4NpaT
-        Yk5nOrDu7Q2NdjOTMvNCH2dCyw==
-X-Google-Smtp-Source: ABdhPJxX/9WU/SgxzH+ZyQgQR6B/ZRBTBVIOZNRce8o7bxoTkEzw37IgWFtvOv6OCmH2YZ7iNUDm7Q==
-X-Received: by 2002:a7b:cb01:: with SMTP id u1mr3635505wmj.188.1622617455114;
-        Wed, 02 Jun 2021 00:04:15 -0700 (PDT)
-Received: from dell ([91.110.221.214])
-        by smtp.gmail.com with ESMTPSA id y9sm1853276wrh.11.2021.06.02.00.04.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jun 2021 00:04:14 -0700 (PDT)
-Date:   Wed, 2 Jun 2021 08:04:12 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Fei Shao <fshao@chromium.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Yuchen Huang <yuchen.huang@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rtc@vger.kernel.org, srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: [GIT PULL] Immutable branch between MFD, Regulator and RTC due for
- the v5.14 merge window
-Message-ID: <20210602070412.GD2173308@dell>
-References: <1622011927-359-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+        id S229975AbhFBHI3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 03:08:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47896 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229753AbhFBHI2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Jun 2021 03:08:28 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3B6E760FF3;
+        Wed,  2 Jun 2021 07:06:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1622617606;
+        bh=lquQN/jlE/0WNJ9FMxm7Amdcp89k6AsKIIqlAAppnSM=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=d04Gz8cosorzMIhGRraoB+oDV6DOT+lbEY6Fejjl/rPsqylApRBOQPYuMpfoxYjpw
+         nIovEktjAp6TjrOgS5+X2lv8DcXLqaBwTQwNRZlF10OR2vbPIcAIjIesDuuyXt3Bto
+         qMg5wOxCxGlxiLCyGXTKAjkhqXGpqhDg2Zs1T2jL37oPzSb6QKxTfdr4gaTbVw9qOZ
+         hlZ9tXFb2txJV0RvX0XczhUX43C2Q7/UI01zpcAYinS0zGdRF1dI+/OauKdo3K9/Gg
+         TX+rWDpMJJ+7lMprY9tGhIGLp7F2tn8b1kzuGm/gLyhVkR4Blhe7sOGyw66nzIkc7Z
+         TaSr3umLuJ1Mg==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1622011927-359-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1619519590-3019-7-git-send-email-tdas@codeaurora.org>
+References: <1619519590-3019-1-git-send-email-tdas@codeaurora.org> <1619519590-3019-7-git-send-email-tdas@codeaurora.org>
+Subject: Re: [PATCH v2 6/6] clk: qcom: Add video clock controller driver for SC7280
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Taniya Das <tdas@codeaurora.org>
+Date:   Wed, 02 Jun 2021 00:06:44 -0700
+Message-ID: <162261760498.4130789.12499425999582046146@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enjoy!
+Quoting Taniya Das (2021-04-27 03:33:10)
+> diff --git a/drivers/clk/qcom/videocc-sc7280.c b/drivers/clk/qcom/videocc=
+-sc7280.c
+> new file mode 100644
+> index 0000000..3387154
+> --- /dev/null
+> +++ b/drivers/clk/qcom/videocc-sc7280.c
+> @@ -0,0 +1,372 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <dt-bindings/clock/qcom,videocc-sc7280.h>
+> +
+> +#include "clk-alpha-pll.h"
+> +#include "clk-branch.h"
+> +#include "clk-rcg.h"
+> +#include "common.h"
+> +#include "reset.h"
+> +#include "gdsc.h"
+> +
+> +enum {
+> +       P_BI_TCXO,
+> +       P_SLEEP_CLK,
+> +       P_VIDEO_PLL0_OUT_EVEN,
+> +};
+> +
+> +static struct pll_vco lucid_vco[] =3D {
 
-The following changes since commit 6efb943b8616ec53a5e444193dccf1af9ad627b5:
+const?
 
-  Linux 5.13-rc1 (2021-05-09 14:17:44 -0700)
+> +       { 249600000, 2000000000, 0 },
+> +};
+> +
+[...]
+> +
+> +static const struct parent_map video_cc_parent_map_0[] =3D {
+> +       { P_BI_TCXO, 0 },
+> +       { P_VIDEO_PLL0_OUT_EVEN, 3 },
+> +};
+> +
+> +static const struct clk_parent_data video_cc_parent_data_0[] =3D {
+> +       { .fw_name =3D "bi_tcxo" },
+> +       { .hw =3D &video_pll0.clkr.hw },
+> +};
+> +
+> +static const struct parent_map video_cc_parent_map_1[] =3D {
+> +       { P_SLEEP_CLK, 0 },
+> +};
+> +
+> +static const struct clk_parent_data video_cc_parent_data_1[] =3D {
+> +       { .fw_name =3D "sleep_clk" },
+> +};
+> +
+> +static const struct parent_map video_cc_parent_map_2[] =3D {
+> +       { P_BI_TCXO, 0 },
+> +};
+> +
+> +static const struct clk_parent_data video_cc_parent_data_2_ao[] =3D {
+> +       { .fw_name =3D "bi_tcxo_ao" },
 
-are available in the Git repository at:
+This is new. Why would we want the video clk parent state to turn off
+when the CPU is off? Does the video engine keep XO enabled for itself?
+Can you please add some comment into the code explaining why it's ok to
+use the ao clk here?
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tb-mfd-regulator-rtc-v5.14
+> +};
+> +
+> +static const struct freq_tbl ftbl_video_cc_iris_clk_src[] =3D {
+> +       F(133333333, P_VIDEO_PLL0_OUT_EVEN, 3, 0, 0),
+> +       F(240000000, P_VIDEO_PLL0_OUT_EVEN, 2, 0, 0),
+> +       F(335000000, P_VIDEO_PLL0_OUT_EVEN, 2, 0, 0),
+> +       F(424000000, P_VIDEO_PLL0_OUT_EVEN, 2, 0, 0),
+> +       F(460000000, P_VIDEO_PLL0_OUT_EVEN, 2, 0, 0),
+> +       { }
+> +};
+[...]
+> +
+> +static struct clk_branch video_cc_xo_clk =3D {
+> +       .halt_reg =3D 0x7018,
+> +       .halt_check =3D BRANCH_HALT,
+> +       .clkr =3D {
+> +               .enable_reg =3D 0x7018,
+> +               .enable_mask =3D BIT(0),
+> +               .hw.init =3D &(struct clk_init_data){
+> +                       .name =3D "video_cc_xo_clk",
+> +                       .parent_hws =3D (const struct clk_hw*[]){
+> +                               &video_cc_xo_clk_src.clkr.hw,
+> +                       },
+> +                       .num_parents =3D 1,
+> +                       .flags =3D CLK_IS_CRITICAL | CLK_SET_RATE_PARENT,
 
-for you to fetch changes up to 4cfc965475124c4eed2b7b5d8b6fc5048a21ecfd:
+Please add a comment why it is critical.
 
-  regulator: mt6359: Add support for MT6359P regulator (2021-06-01 16:44:36 +0100)
-
-----------------------------------------------------------------
-Immutable branch between MFD, Regulator and RTC due for the v5.14 merge window
-
-----------------------------------------------------------------
-Hsin-Hsiung Wang (6):
-      mfd: mt6358: Refine interrupt code
-      rtc: mt6397: refine RTC_TC_MTH
-      dt-bindings: mfd: Add compatible for the MediaTek MT6359 PMIC
-      dt-bindings: regulator: Add document for MT6359 regulator
-      mfd: Add support for the MediaTek MT6359 PMIC
-      regulator: mt6359: Add support for MT6359P regulator
-
-Wen Su (1):
-      regulator: mt6359: Add support for MT6359 regulator
-
- Documentation/devicetree/bindings/mfd/mt6397.txt   |    1 +
- .../bindings/regulator/mt6359-regulator.yaml       |  385 ++++++++
- drivers/mfd/mt6358-irq.c                           |   89 +-
- drivers/mfd/mt6397-core.c                          |   24 +
- drivers/regulator/Kconfig                          |    9 +
- drivers/regulator/Makefile                         |    1 +
- drivers/regulator/mt6359-regulator.c               | 1036 ++++++++++++++++++++
- drivers/rtc/rtc-mt6397.c                           |    2 +-
- include/linux/mfd/mt6358/core.h                    |    8 +-
- include/linux/mfd/mt6359/core.h                    |  133 +++
- include/linux/mfd/mt6359/registers.h               |  529 ++++++++++
- include/linux/mfd/mt6359p/registers.h              |  249 +++++
- include/linux/mfd/mt6397/core.h                    |    1 +
- include/linux/mfd/mt6397/rtc.h                     |    1 +
- include/linux/regulator/mt6359-regulator.h         |   59 ++
- 15 files changed, 2494 insertions(+), 33 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml
- create mode 100644 drivers/regulator/mt6359-regulator.c
- create mode 100644 include/linux/mfd/mt6359/core.h
- create mode 100644 include/linux/mfd/mt6359/registers.h
- create mode 100644 include/linux/mfd/mt6359p/registers.h
- create mode 100644 include/linux/regulator/mt6359-regulator.h
-
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+> +                       .ops =3D &clk_branch2_ops,
+> +               },
+> +       },
+> +};
+> +
