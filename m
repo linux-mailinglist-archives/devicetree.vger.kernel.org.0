@@ -2,121 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 386A2398DB1
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 17:01:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08D7B398DD1
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 17:05:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231866AbhFBPDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 11:03:03 -0400
-Received: from smtp-35-i2.italiaonline.it ([213.209.12.35]:47745 "EHLO
-        libero.it" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230257AbhFBPDA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Jun 2021 11:03:00 -0400
-Received: from passgat-Modern-14-A10M.homenet.telecomitalia.it
- ([79.17.119.101])
-        by smtp-35.iol.local with ESMTPA
-        id oSLqlJ7WDsptioSLwlKAsn; Wed, 02 Jun 2021 17:00:16 +0200
-x-libjamoibt: 1601
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2021;
-        t=1622646016; bh=hqdToKdXep6rD2t3+5/OUkGokVRGwUGIXwri9qp4guU=;
-        h=From;
-        b=lMCqwkrCY79cVf3zHr14Swwpg+GwFMCMUWVLQbaIeD12HwwDSy9Jkhj/VWHGKg8NQ
-         UqZBEcN4CM2RpUKzOA3a0iLkJuyan/TD6RIcXmx/abP2Zi0vsxU5P9PX4PvvKQC8iE
-         dm7DHu89gmn66U0+6osUrTDFF3MldEgXUxeLot7qyhdypTs+vEfkEIM4Jss7sr8MYJ
-         1UZWY7imtOgmaApXBRyTLb9klt0wDDuj5Dkg+SPTWCvCtk3s9VH7ex4pzKsK2fHSTa
-         v6qmks/58/6mc0ShCZeiN2dBshMl9Ed2c7WjhZXV7xHFMf0AAWwVIlgfKOa5KIb3g8
-         yJrffJTjfXSDg==
-X-CNFS-Analysis: v=2.4 cv=Bo1Yfab5 c=1 sm=1 tr=0 ts=60b79d00 cx=a_exe
- a=do1bHx4A/kh2kuTIUQHSxQ==:117 a=do1bHx4A/kh2kuTIUQHSxQ==:17 a=VwQbUJbxAAAA:8
- a=IXkOJODCewQtKEFu2i4A:9 a=5yUOnwQy5QICz8m5uxDm:22 a=AjGcO6oz07-iQ99wixmX:22
- a=pHzHmUro8NiASowvMSCR:22 a=xoEH_sTeL_Rfw54TyV31:22
-From:   Dario Binacchi <dariobin@libero.it>
-To:     linux-kernel@vger.kernel.org
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Dario Binacchi <dariobin@libero.it>,
-        Tero Kristo <kristo@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: [PATCH v7 2/5] dt-bindings: ti: dpll: add spread spectrum support
-Date:   Wed,  2 Jun 2021 17:00:05 +0200
-Message-Id: <20210602150009.17531-3-dariobin@libero.it>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210602150009.17531-1-dariobin@libero.it>
-References: <20210602150009.17531-1-dariobin@libero.it>
-X-CMAE-Envelope: MS4xfBLCgayubmjjCLak38s7cr4yfgaSyVJdTZ7yaAhrXkgcbkYka3zLoybxIsD243u5wKsZ/OFYitHRJqiGhNihDE8qZ2AYhVn+0BbDUHPRDHwIEKKczfZN
- 80RAQ0xpxCKhIhR88pIEw7Zh6ZwOL8TRRb6bs4ViNT3m5zewvZw70PaeGGjejO/AjFhDhxR483eSZLDal2v8nbAzH8R3oGl8lFxECYj7yUx3F/XTdA/hKL7z
- 1OR1AGEo9TAnq1KmExzf5O32Ws0iw2f1nKMkxvGnLjLGCokGjXHB2ulxpPdxPJfzuHQuOWoKCRL65dKw6MmcfyA8CwKmxNePjoI4VytTPfo39jhlw+U2kSpV
- TSU5GUMeY5DMuLTpKhQKgUtD0PAbwUy1RXI3aTuaIbU+8PcCMAIPPh5LgVvst9eublV5XnnPMQAkE8Sj9By25StkCCo9fF9mBuQriVcYoV6AZuGqOIQqFAU7
- h4w5AD8oy2Tzimo6Pvb8B+mM1pCn5QMrytfscTjldnWeXAd1zkRjxqxdv80KwozvtOJ+5RlBZC0Iz6HEvVJakC27Km+Jivh6H3hNitvRCuGj1Icrht98RE/u
- XXU=
+        id S231577AbhFBPHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 11:07:10 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:55461 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230031AbhFBPHJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 11:07:09 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1622646326; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=b58AXVipv2czeTZD7vN1C4eQotA0VCcV+WTBefkUG/M=;
+ b=PIpFTYda1gQAkdP8UOWpZYKZD437DTpvYqWiImx44JEKYBCdOCzdr2mCmv9UeZTpb8ih/U3x
+ KMlw5rX1o4zK6P0bc1tHGDsIUFMayGlAWCaAJU6SpXL1upv5pN2rWMA3oa+ukb0uQ3GApLP4
+ ftt04EWzRTwlmMIce2JcGwZUXV0=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 60b79e36e570c05619dc46bb (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 02 Jun 2021 15:05:26
+ GMT
+Sender: okukatla=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id F3041C4338A; Wed,  2 Jun 2021 15:05:25 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: okukatla)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 52809C433F1;
+        Wed,  2 Jun 2021 15:05:23 +0000 (UTC)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 02 Jun 2021 20:35:23 +0530
+From:   okukatla@codeaurora.org
+To:     Rob Herring <robh@kernel.org>
+Cc:     elder@linaro.org, bjorn.andersson@linaro.org,
+        seansw@qti.qualcomm.com, linux-kernel@vger.kernel.org,
+        georgi.djakov@linaro.org, devicetree@vger.kernel.org,
+        Georgi Djakov <djakov@kernel.org>,
+        linux-arm-msm@vger.kernel.org, sboyd@kernel.org,
+        sibis@codeaurora.org, Andy Gross <agross@kernel.org>,
+        evgreen@google.com, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm-owner@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [V2 1/3] dt-bindings: interconnect: Add EPSS L3 DT binding on
+ SC7280
+In-Reply-To: <1621392491.220233.1905257.nullmailer@robh.at.kernel.org>
+References: <1621359242-18641-1-git-send-email-okukatla@codeaurora.org>
+ <1621359242-18641-2-git-send-email-okukatla@codeaurora.org>
+ <1621392491.220233.1905257.nullmailer@robh.at.kernel.org>
+Message-ID: <115d8e912d8c986c5a9689c080dfbe3d@codeaurora.org>
+X-Sender: okukatla@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DT bindings for enabling and adjusting spread spectrum clocking have
-been added.
-
-Signed-off-by: Dario Binacchi <dariobin@libero.it>
-Reviewed-by: Rob Herring <robh@kernel.org>
-
----
-
-(no changes since v4)
-
-Changes in v4:
-- Add Rob Herring review tag.
-
-Changes in v3:
-- Add '-hz' suffix to "ti,ssc-modfreq" binding.
-
- .../devicetree/bindings/clock/ti/dpll.txt     | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/clock/ti/dpll.txt b/Documentation/devicetree/bindings/clock/ti/dpll.txt
-index df57009ff8e7..37a7cb6ad07d 100644
---- a/Documentation/devicetree/bindings/clock/ti/dpll.txt
-+++ b/Documentation/devicetree/bindings/clock/ti/dpll.txt
-@@ -42,6 +42,11 @@ Required properties:
- 	"idlest" - contains the idle status register base address
- 	"mult-div1" - contains the multiplier / divider register base address
- 	"autoidle" - contains the autoidle register base address (optional)
-+	"ssc-deltam" - DPLL supports spread spectrum clocking (SSC), contains
-+		       the frequency spreading register base address (optional)
-+	"ssc-modfreq" - DPLL supports spread spectrum clocking (SSC), contains
-+		        the modulation frequency register base address
-+			(optional)
-   ti,am3-* dpll types do not have autoidle register
-   ti,omap2-* dpll type does not support idlest / autoidle registers
- 
-@@ -51,6 +56,14 @@ Optional properties:
- 	- ti,low-power-stop : DPLL supports low power stop mode, gating output
- 	- ti,low-power-bypass : DPLL output matches rate of parent bypass clock
- 	- ti,lock : DPLL locks in programmed rate
-+	- ti,min-div : the minimum divisor to start from to round the DPLL
-+		       target rate
-+	- ti,ssc-deltam : DPLL supports spread spectrum clocking, frequency
-+			  spreading in permille (10th of a percent)
-+	- ti,ssc-modfreq-hz : DPLL supports spread spectrum clocking, spread
-+			      spectrum modulation frequency
-+	- ti,ssc-downspread : DPLL supports spread spectrum clocking, boolean
-+			      to enable the downspread feature
- 
- Examples:
- 	dpll_core_ck: dpll_core_ck@44e00490 {
-@@ -83,3 +96,10 @@ Examples:
- 		clocks = <&sys_ck>, <&sys_ck>;
- 		reg = <0x0500>, <0x0540>;
- 	};
-+
-+	dpll_disp_ck: dpll_disp_ck {
-+		#clock-cells = <0>;
-+		compatible = "ti,am3-dpll-no-gate-clock";
-+		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
-+		reg = <0x0498>, <0x0448>, <0x0454>, <0x044c>, <0x0450>;
-+	};
--- 
-2.17.1
-
+On 2021-05-19 08:18, Rob Herring wrote:
+> On Tue, 18 May 2021 23:04:00 +0530, Odelu Kukatla wrote:
+>> Add Epoch Subsystem (EPSS) L3 interconnect provider binding on SC7280
+>> SoCs.
+>> 
+>> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
+>> ---
+>>  .../devicetree/bindings/interconnect/qcom,osm-l3.yaml          |  3 
+>> ++-
+>>  include/dt-bindings/interconnect/qcom,osm-l3.h                 | 10 
+>> +++++++++-
+>>  2 files changed, 11 insertions(+), 2 deletions(-)
+>> 
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.example.dt.yaml:
+> interconnect@17d41000: reg: [[399773696, 5120]] is too short
+> 	From schema:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+> 
+> See https://patchwork.ozlabs.org/patch/1480367
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
+Thanks Rob!.
+I will address this in next revision.
