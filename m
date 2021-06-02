@@ -2,108 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 208AA39941F
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 22:01:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1A65399426
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 22:02:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229491AbhFBUC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 16:02:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57068 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229467AbhFBUC4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 16:02:56 -0400
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2371C06174A
-        for <devicetree@vger.kernel.org>; Wed,  2 Jun 2021 13:01:12 -0700 (PDT)
-Received: by mail-oi1-x235.google.com with SMTP id x15so3825648oic.13
-        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 13:01:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=t8u4p0mRfsdYCtJTM/K9Y8fUxpv3fGAAMx8yDE7edtM=;
-        b=HsQThjsbdcgxS4Sauu7xku8z2h1uwLF/YPWdO1UOAI9HZDGPb7fUQoXB6idd3xfv18
-         i7HuJMXCBFL7mA3gPVv3GVJiOuGtYyNhWodZ+KsqW9K8AdbJyCAZnDN9DdTx5pYLelTj
-         RF1p+HGUT84HhloeqrFD8xLpnmqkQsw1qdNrk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=t8u4p0mRfsdYCtJTM/K9Y8fUxpv3fGAAMx8yDE7edtM=;
-        b=umGaeVRf7bqDS6x09nHU/nhiWSeIx01YLess9SVjXuMHWylcDhDZNm2nEBTkmJaMqD
-         IuHp9LbnltDxo7+Snf9seWNhatgliwVL4TSL3vXs0e5EtOajN3K3A+t/ALOPSZIDMyKP
-         4XrYA3yF+fbHvyDab+9dV2UpQ0xXC1Ei+DLodwJIbNzULfea9Zz8IiSaad6B2Hvr3PZL
-         8Uxuie/LYvDaNt5u2y4LSANYhpsi90tve6nPmzf5umn2l3ehNAesHfGIhcxLiIlo0Akq
-         IfeONKGO4flOr4VlrfQS1BJG+kwaK66wmA5ilAGQpz6BmMsRRN1jS7NJTP0ry4SmAscp
-         EVcw==
-X-Gm-Message-State: AOAM530j5R0IZI7W/g9y5Wn6LTsMwg/MQOglH2eUqid6NN3RJFdVFbFY
-        qhyhuNv0+ubAbN4kKp70VnkkMzOqLxIlSA==
-X-Google-Smtp-Source: ABdhPJwg2N5DzIpNM0aRXDOlDmBnp+kZzRB8NvGP6A++DBN+HJuB9ayo0Pzmr3yMyyw62G+P3sjmdw==
-X-Received: by 2002:aca:4e92:: with SMTP id c140mr2618585oib.39.1622664070417;
-        Wed, 02 Jun 2021 13:01:10 -0700 (PDT)
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com. [209.85.210.52])
-        by smtp.gmail.com with ESMTPSA id k18sm219995otj.42.2021.06.02.13.01.10
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Jun 2021 13:01:10 -0700 (PDT)
-Received: by mail-ot1-f52.google.com with SMTP id 36-20020a9d0ba70000b02902e0a0a8fe36so3559941oth.8
-        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 13:01:10 -0700 (PDT)
-X-Received: by 2002:a25:ab4b:: with SMTP id u69mr11929577ybi.276.1622663740165;
- Wed, 02 Jun 2021 12:55:40 -0700 (PDT)
+        id S229491AbhFBUEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 16:04:01 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:31196 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229656AbhFBUEB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 16:04:01 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1622664137; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=uiSY2nPfub1TorMuwMxTsRCZaabvu7VFakvdKWWqHMg=;
+ b=IZIpe/MjzDayn5/lWoGVUVrTEYgKAzxfUwy0Juk2h2BlcJfdeZGhqJEUk2/LFWx2h1S7WYCj
+ jwkKitRW3ipquOLzrHIuHWJ1Mv7GCH65B2CTX2mqTIBBDVvMNiQdaBaa8E85W0MPGSDGf09L
+ 3JVNMPFaz2EJW2GmFryuZDeh+CU=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 60b7e3c481efe91cda8c2123 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 02 Jun 2021 20:02:12
+ GMT
+Sender: rajeevny=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id AC119C43460; Wed,  2 Jun 2021 20:02:11 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: rajeevny)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 811C1C433D3;
+        Wed,  2 Jun 2021 20:02:09 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210525000159.3384921-1-dianders@chromium.org>
- <20210524165920.v8.4.I79c7ed8815a07d285dd3b38e680e980d1024dbf1@changeid> <20210602181621.GB3692772@robh.at.kernel.org>
-In-Reply-To: <20210602181621.GB3692772@robh.at.kernel.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 2 Jun 2021 12:55:28 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WyXfi-v6zO_v3YDN71OrXsOVkf1W5h5gV4zwJ4_fBzQA@mail.gmail.com>
-Message-ID: <CAD=FV=WyXfi-v6zO_v3YDN71OrXsOVkf1W5h5gV4zwJ4_fBzQA@mail.gmail.com>
-Subject: Re: [PATCH v8 04/11] dt-bindings: drm/aux-bus: Add an example
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 03 Jun 2021 01:32:09 +0530
+From:   rajeevny@codeaurora.org
 To:     Rob Herring <robh@kernel.org>
-Cc:     Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linus W <linus.walleij@linaro.org>,
-        Lyude Paul <lyude@redhat.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thierry Reding <treding@nvidia.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sean@poorly.run, robdclark@gmail.com,
+        abhinavk@codeaurora.org, kalyan_t@codeaurora.org,
+        mkrishn@codeaurora.org, jonathan@marek.ca
+Subject: Re: [v1 1/3] dt-bindings: msm/dsi: Add yaml schema for 7nm DSI PHY
+In-Reply-To: <20210601205848.GA1025498@robh.at.kernel.org>
+References: <1622468035-8453-1-git-send-email-rajeevny@codeaurora.org>
+ <1622468035-8453-2-git-send-email-rajeevny@codeaurora.org>
+ <20210601205848.GA1025498@robh.at.kernel.org>
+Message-ID: <ec1bcb4e734b784ab17c4fc558a5fab9@codeaurora.org>
+X-Sender: rajeevny@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 02-06-2021 02:28, Rob Herring wrote:
+> On Mon, May 31, 2021 at 07:03:53PM +0530, Rajeev Nandan wrote:
 
-On Wed, Jun 2, 2021 at 11:16 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, May 24, 2021 at 05:01:52PM -0700, Douglas Anderson wrote:
-> > Now that we have an eDP controller that lists aux-bus, we can safely
-> > add an example to the aux-bus bindings.
-> >
-> > NOTE: this example is just a copy of the one in the 'ti-sn65dsi86'
-> > one. It feels useful to have the example in both places simply because
-> > it's important to document the interaction between the two bindings in
-> > both places.
->
-> Don't forget the 3rd copy that exists in some .dts file most likely.
-> That's 3 places to fix when we improve or add some schema.
->
-> I've generally been trying to de-duplicate examples...
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - const: qcom,dsi-phy-7nm
+> 
+> When would one use this?
+This is for SM8250.
 
-I'm interpreting your response as: please drop ${SUBJECT} patch from
-the series and leave the 'dp-aux-bus.yaml' without any example. The
-existing example in the bridge chip is sufficient.
+> 
+>> +      - const: qcom,dsi-phy-7nm-7280
+>> +      - const: qcom,dsi-phy-7nm-8150
+> 
+> These don't look like full SoC names (sm8150?) and it's
+> <vendor>,<soc>-<block>.
 
--Doug
+Thanks, Rob, for the review.
+
+I just took the `compatible` property currently used in the DSI PHY 
+driver
+(drivers/gpu/drm/msm/dsi/phy/dsi_phy.c), and added a new entry for 
+sc7280.
+A similar pattern of `compatible` names are used in other variants of 
+the
+DSI PHY driver e.g. qcom,qcom,dsi-phy-10nm-8998, qcom,dsi-phy-14nm-660 
+etc.
+
+The existing compatible names "qcom,dsi-phy-7nm-8150" (SoC at the end) 
+make
+some sense, if we look at the organization of the dsi phy driver code.
+I am new to this and don't know the reason behind the current code
+organization and this naming.
+
+Yes, I agree with you, we should use full SoC names. Adding
+the SoC name at the end does not feel very convincing, so I will change 
+this
+to the suggested format e.g. "qcom,sm8250-dsi-phy-7nm", and will rename 
+the
+occurrences in the driver and device tree accordingly.
+Do I need to make changes for 10nm, 14nm, 20nm, and 28nm DSI PHY too?
+Bindings doc for these PHYs recently got merged to msm-next [1]
+
+
+[1] 
+https://gitlab.freedesktop.org/drm/msm/-/commit/8fc939e72ff80116c090aaf03952253a124d2a8e
+
+
+Thanks,
+Rajeev
