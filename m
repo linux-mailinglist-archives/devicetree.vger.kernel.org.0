@@ -2,26 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 606FF398436
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 10:34:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A905539843E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 10:35:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232659AbhFBIfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 04:35:44 -0400
-Received: from foss.arm.com ([217.140.110.172]:38190 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232654AbhFBIfn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Jun 2021 04:35:43 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BB45B101E;
-        Wed,  2 Jun 2021 01:34:00 -0700 (PDT)
-Received: from e120937-lin (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 76DE13F73D;
-        Wed,  2 Jun 2021 01:33:57 -0700 (PDT)
-Date:   Wed, 2 Jun 2021 09:33:49 +0100
-From:   Cristian Marussi <cristian.marussi@arm.com>
+        id S232698AbhFBIgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 04:36:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42838 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229822AbhFBIgp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 04:36:45 -0400
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E877C06174A
+        for <devicetree@vger.kernel.org>; Wed,  2 Jun 2021 01:35:01 -0700 (PDT)
+Received: by mail-oi1-x231.google.com with SMTP id h9so1942700oih.4
+        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 01:35:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=aQ/yu35tbcWOF+MfD61RvPeIk7Ox3tnBEv19Q35pctI=;
+        b=tCg+a07PLIrmx9JW5o7BplRRevcZDASgteF7VD8Z/KLKj+5wPzkUU5mC+wiONJbnQs
+         IrK9vKkGiimSGyCAxUtcarnBP3YKhYg6s2C2IQ2gafr0u9OcO4WT6/eD866hTLwlAske
+         K7GFCOfgfRguxDEnYeucob65lBT0NaRxNmKGIfbHudW/xFqVzqnayIHMJOR80R5I974U
+         418lNXSUF/JzoJVzq3Nb3AkWMWjx6UBdAAai7hg4a+XEkm+F2oFrMr7iveAUAPbvMos5
+         0iVDFQxP6JYBaPH5uK6CxghoswZVOZK2tHwgpK3PFpQG9AZb1W33LhxK0eTeUZpFkibo
+         SOHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=aQ/yu35tbcWOF+MfD61RvPeIk7Ox3tnBEv19Q35pctI=;
+        b=d3nu3Bj0+YSWgpkhXPQoRObuysfiv0iWCAeteYg40UsmZIlCh6JTobbKI/mW+C2PAk
+         uCDraA0ZnxeO7hfOK9feY7E7vLmlBq/Iy+cM+Zj/+rTHXvgJqU62EIGGjFioYvdvDM4n
+         qm+HvxohhRvwr4I9KhuA93hnNh+eTE0Tg28UulOTrDUIoEv0sA/k8JaGq9CR3AER3LKx
+         3BDluB3/LbUzLsFSRacHj5p0RBcTy2HGivtHuB2FaPITHhhcPuk5+/kbx1GvlqEFihRA
+         ybb60H9ocQwtujAWc7EtHUZTvNNji3fioLdrk7jkMzGOHHVFcYBh3ZeLEPDLOpkSxS09
+         U5Rw==
+X-Gm-Message-State: AOAM530ue96S36acE70IcsO/VjAHXF7PW2sr0EFfRdOkBD7gIZ46+CoK
+        MBKXcGKFjrSk7gl/9MWRtpR2h3rxIPnEgBCl6QBOkQ==
+X-Google-Smtp-Source: ABdhPJwIyArwfMuMJmABegCBLW3R+Vn8gLsltE3U/9yxeZkw3nr3xk7XDRvV8wd0x10dafEt1+linpWwJmCfvgNMAuU=
+X-Received: by 2002:aca:6501:: with SMTP id m1mr2985978oim.0.1622622900724;
+ Wed, 02 Jun 2021 01:35:00 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210511002040.802226-1-peter.hilber@opensynergy.com>
+ <20210511002040.802226-12-peter.hilber@opensynergy.com> <CAKfTPtAskkBW3kYXzXW9kXBq_ROhBBrFd0Lr_j4NbBKe3A-pmg@mail.gmail.com>
+ <53f993ce-7612-0131-7540-9c1abd0865ae@opensynergy.com>
+In-Reply-To: <53f993ce-7612-0131-7540-9c1abd0865ae@opensynergy.com>
+From:   Vincent Guittot <vincent.guittot@linaro.org>
+Date:   Wed, 2 Jun 2021 10:34:48 +0200
+Message-ID: <CAKfTPtDGyr=4HYH6e4ofwcdxnWB8Zyt5sYC_pOr9QCyjHhjiGg@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 11/12] firmware: arm_scmi: Add virtio transport
 To:     Peter Hilber <peter.hilber@opensynergy.com>
-Cc:     Vincent Guittot <vincent.guittot@linaro.org>,
-        LAK <linux-arm-kernel@lists.infradead.org>,
+Cc:     LAK <linux-arm-kernel@lists.infradead.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
         virtualization@lists.linux-foundation.org,
@@ -31,32 +63,22 @@ Cc:     Vincent Guittot <vincent.guittot@linaro.org>,
         linux-kernel <linux-kernel@vger.kernel.org>,
         Sudeep Holla <sudeep.holla@arm.com>,
         Souvik Chakravarty <souvik.chakravarty@arm.com>,
-        Alex =?iso-8859-1?Q?Benn=E9e?= <alex.bennee@linaro.org>,
+        =?UTF-8?B?QWxleCBCZW5uw6ll?= <alex.bennee@linaro.org>,
         Jean-Philippe Brucker <jean-philippe@linaro.org>,
         mikhail.golubev@opensynergy.com, anton.yakovlev@opensynergy.com,
         Vasyl Vavrychuk <Vasyl.Vavrychuk@opensynergy.com>,
         Andriy Tryshnivskyy <Andriy.Tryshnivskyy@opensynergy.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
         "Michael S. Tsirkin" <mst@redhat.com>,
         Jason Wang <jasowang@redhat.com>,
         Viresh Kumar <viresh.kumar@linaro.org>
-Subject: Re: [RFC PATCH v3 11/12] firmware: arm_scmi: Add virtio transport
-Message-ID: <20210602083349.GX28060@e120937-lin>
-References: <20210511002040.802226-1-peter.hilber@opensynergy.com>
- <20210511002040.802226-12-peter.hilber@opensynergy.com>
- <CAKfTPtAskkBW3kYXzXW9kXBq_ROhBBrFd0Lr_j4NbBKe3A-pmg@mail.gmail.com>
- <53f993ce-7612-0131-7540-9c1abd0865ae@opensynergy.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <53f993ce-7612-0131-7540-9c1abd0865ae@opensynergy.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Wed, Jun 02, 2021 at 10:25:36AM +0200, Peter Hilber wrote:
+On Wed, 2 Jun 2021 at 10:25, Peter Hilber <peter.hilber@opensynergy.com> wrote:
+>
 > On 01.06.21 16:53, Vincent Guittot wrote:
 > > On Tue, 11 May 2021 at 02:28, Peter Hilber <peter.hilber@opensynergy.com> wrote:
 > >>
@@ -105,9 +127,264 @@ On Wed, Jun 02, 2021 at 10:25:36AM +0200, Peter Hilber wrote:
 > >> [ Peter: Adapted patch for submission to upstream. ]
 > >> Co-developed-by: Peter Hilber <peter.hilber@opensynergy.com>
 > >> Signed-off-by: Peter Hilber <peter.hilber@opensynergy.com>
-
-[snip]
-
+> >> ---
+> >>  MAINTAINERS                        |   1 +
+> >>  drivers/firmware/Kconfig           |  12 +
+> >>  drivers/firmware/arm_scmi/Makefile |   1 +
+> >>  drivers/firmware/arm_scmi/common.h |   3 +
+> >>  drivers/firmware/arm_scmi/driver.c |   3 +
+> >>  drivers/firmware/arm_scmi/virtio.c | 523 +++++++++++++++++++++++++++++
+> >>  include/uapi/linux/virtio_ids.h    |   1 +
+> >>  include/uapi/linux/virtio_scmi.h   |  25 ++
+> >>  8 files changed, 569 insertions(+)
+> >>  create mode 100644 drivers/firmware/arm_scmi/virtio.c
+> >>  create mode 100644 include/uapi/linux/virtio_scmi.h
+> >>
+> >> diff --git a/MAINTAINERS b/MAINTAINERS
+> >> index bd7aff0c120f..449c336872f3 100644
+> >> --- a/MAINTAINERS
+> >> +++ b/MAINTAINERS
+> >> @@ -17705,6 +17705,7 @@ F:      drivers/regulator/scmi-regulator.c
+> >>  F:     drivers/reset/reset-scmi.c
+> >>  F:     include/linux/sc[mp]i_protocol.h
+> >>  F:     include/trace/events/scmi.h
+> >> +F:     include/uapi/linux/virtio_scmi.h
+> >>
+> >>  SYSTEM RESET/SHUTDOWN DRIVERS
+> >>  M:     Sebastian Reichel <sre@kernel.org>
+> >> diff --git a/drivers/firmware/Kconfig b/drivers/firmware/Kconfig
+> >> index e8377b12e4d0..7e9eafdd9b63 100644
+> >> --- a/drivers/firmware/Kconfig
+> >> +++ b/drivers/firmware/Kconfig
+> >> @@ -39,6 +39,18 @@ config ARM_SCMI_HAVE_MSG
+> >>           This declares whether a message passing based transport for SCMI is
+> >>           available.
+> >>
+> >> +# This config option includes the dependencies of ARM_SCMI_PROTOCOL so that
+> >> +# this config doesn't show up when SCMI wouldn't be available.
+> >> +config VIRTIO_SCMI
+> >> +       bool "Virtio transport for SCMI"
+> >> +       select ARM_SCMI_HAVE_MSG
+> >> +       depends on VIRTIO && (ARM || ARM64 || COMPILE_TEST)
+> >> +       help
+> >> +         This enables the virtio based transport for SCMI.
+> >> +
+> >> +         If you want to use the ARM SCMI protocol between the virtio guest and
+> >> +         a host providing a virtio SCMI device, answer Y.
+> >> +
+> >>  config ARM_SCMI_POWER_DOMAIN
+> >>         tristate "SCMI power domain driver"
+> >>         depends on ARM_SCMI_PROTOCOL || (COMPILE_TEST && OF)
+> >> diff --git a/drivers/firmware/arm_scmi/Makefile b/drivers/firmware/arm_scmi/Makefile
+> >> index f6b4acb8abdb..db1787606fb2 100644
+> >> --- a/drivers/firmware/arm_scmi/Makefile
+> >> +++ b/drivers/firmware/arm_scmi/Makefile
+> >> @@ -5,6 +5,7 @@ scmi-transport-$(CONFIG_ARM_SCMI_HAVE_SHMEM) = shmem.o
+> >>  scmi-transport-$(CONFIG_MAILBOX) += mailbox.o
+> >>  scmi-transport-$(CONFIG_HAVE_ARM_SMCCC_DISCOVERY) += smc.o
+> >>  scmi-transport-$(CONFIG_ARM_SCMI_HAVE_MSG) += msg.o
+> >> +scmi-transport-$(CONFIG_VIRTIO_SCMI) += virtio.o
+> >>  scmi-protocols-y = base.o clock.o perf.o power.o reset.o sensors.o system.o voltage.o
+> >>  scmi-module-objs := $(scmi-bus-y) $(scmi-driver-y) $(scmi-protocols-y) \
+> >>                     $(scmi-transport-y)
+> >> diff --git a/drivers/firmware/arm_scmi/common.h b/drivers/firmware/arm_scmi/common.h
+> >> index 4cb6571c7aaf..bada06cfd33d 100644
+> >> --- a/drivers/firmware/arm_scmi/common.h
+> >> +++ b/drivers/firmware/arm_scmi/common.h
+> >> @@ -349,6 +349,9 @@ extern const struct scmi_desc scmi_mailbox_desc;
+> >>  #ifdef CONFIG_HAVE_ARM_SMCCC
+> >>  extern const struct scmi_desc scmi_smc_desc;
+> >>  #endif
+> >> +#ifdef CONFIG_VIRTIO_SCMI
+> >> +extern const struct scmi_desc scmi_virtio_desc;
+> >> +#endif
+> >>
+> >>  int scmi_set_transport_info(struct device *dev, void *transport_info);
+> >>  void *scmi_get_transport_info(struct device *dev);
+> >> diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
+> >> index e04e7c8e6928..a31187385470 100644
+> >> --- a/drivers/firmware/arm_scmi/driver.c
+> >> +++ b/drivers/firmware/arm_scmi/driver.c
+> >> @@ -1637,6 +1637,9 @@ static const struct of_device_id scmi_of_match[] = {
+> >>  #endif
+> >>  #ifdef CONFIG_HAVE_ARM_SMCCC_DISCOVERY
+> >>         { .compatible = "arm,scmi-smc", .data = &scmi_smc_desc},
+> >> +#endif
+> >> +#ifdef CONFIG_VIRTIO_SCMI
+> >> +       { .compatible = "arm,scmi-virtio", .data = &scmi_virtio_desc},
+> >>  #endif
+> >>         { /* Sentinel */ },
+> >>  };
+> >> diff --git a/drivers/firmware/arm_scmi/virtio.c b/drivers/firmware/arm_scmi/virtio.c
+> >> new file mode 100644
+> >> index 000000000000..20972adf6dc7
+> >> --- /dev/null
+> >> +++ b/drivers/firmware/arm_scmi/virtio.c
+> >> @@ -0,0 +1,523 @@
+> >> +// SPDX-License-Identifier: GPL-2.0
+> >> +/*
+> >> + * Virtio Transport driver for Arm System Control and Management Interface
+> >> + * (SCMI).
+> >> + *
+> >> + * Copyright (C) 2020 OpenSynergy.
+> >> + */
+> >> +
+> >> +/**
+> >> + * DOC: Theory of Operation
+> >> + *
+> >> + * The scmi-virtio transport implements a driver for the virtio SCMI device.
+> >> + *
+> >> + * There is one Tx channel (virtio cmdq, A2P channel) and at most one Rx
+> >> + * channel (virtio eventq, P2A channel). Each channel is implemented through a
+> >> + * virtqueue. Access to each virtqueue is protected by spinlocks.
+> >> + */
+> >> +
+> >> +#include <linux/errno.h>
+> >> +#include <linux/of.h>
+> >> +#include <linux/of_platform.h>
+> >> +#include <linux/platform_device.h>
+> >> +#include <linux/module.h>
+> >> +#include <linux/slab.h>
+> >> +#include <linux/virtio.h>
+> >> +#include <linux/virtio_config.h>
+> >> +#include <uapi/linux/virtio_ids.h>
+> >> +#include <uapi/linux/virtio_scmi.h>
+> >> +
+> >> +#include "common.h"
+> >> +
+> >> +#define VIRTIO_SCMI_MAX_MSG_SIZE 128 /* Value may be increased. */
+> >> +#define VIRTIO_SCMI_MAX_PDU_SIZE \
+> >> +       (VIRTIO_SCMI_MAX_MSG_SIZE + SCMI_MSG_MAX_PROT_OVERHEAD)
+> >> +#define DESCRIPTORS_PER_TX_MSG 2
+> >> +
+> >> +/**
+> >> + * struct scmi_vio_channel - Transport channel information
+> >> + *
+> >> + * @lock: Protects access to all members except ready.
+> >> + * @ready_lock: Protects access to ready. If required, it must be taken before
+> >> + *              lock.
+> >> + * @vqueue: Associated virtqueue
+> >> + * @cinfo: SCMI Tx or Rx channel
+> >> + * @free_list: List of unused scmi_vio_msg, maintained for Tx channels only
+> >> + * @is_rx: Whether channel is an Rx channel
+> >> + * @ready: Whether transport user is ready to hear about channel
+> >> + */
+> >> +struct scmi_vio_channel {
+> >> +       spinlock_t lock;
+> >> +       spinlock_t ready_lock;
+> >> +       struct virtqueue *vqueue;
+> >> +       struct scmi_chan_info *cinfo;
+> >> +       struct list_head free_list;
+> >> +       u8 is_rx;
+> >> +       u8 ready;
+> >> +};
+> >> +
+> >> +/**
+> >> + * struct scmi_vio_msg - Transport PDU information
+> >> + *
+> >> + * @request: SDU used for commands
+> >> + * @input: SDU used for (delayed) responses and notifications
+> >> + * @list: List which scmi_vio_msg may be part of
+> >> + * @rx_len: Input SDU size in bytes, once input has been received
+> >> + */
+> >> +struct scmi_vio_msg {
+> >> +       struct scmi_msg_payld *request;
+> >> +       struct scmi_msg_payld *input;
+> >> +       struct list_head list;
+> >> +       unsigned int rx_len;
+> >> +};
+> >> +
+> >> +static bool scmi_vio_have_vq_rx(struct virtio_device *vdev)
+> >> +{
+> >> +       return virtio_has_feature(vdev, VIRTIO_SCMI_F_P2A_CHANNELS);
+> >> +}
+> >> +
+> >> +static int scmi_vio_feed_vq_rx(struct scmi_vio_channel *vioch,
+> >> +                              struct scmi_vio_msg *msg)
+> >> +{
+> >> +       struct scatterlist sg_in;
+> >> +       int rc;
+> >> +       unsigned long flags;
+> >> +
+> >> +       sg_init_one(&sg_in, msg->input, VIRTIO_SCMI_MAX_PDU_SIZE);
+> >> +
+> >> +       spin_lock_irqsave(&vioch->lock, flags);
+> >> +
+> >> +       rc = virtqueue_add_inbuf(vioch->vqueue, &sg_in, 1, msg, GFP_ATOMIC);
+> >> +       if (rc)
+> >> +               dev_err_once(vioch->cinfo->dev,
+> >> +                            "%s() failed to add to virtqueue (%d)\n", __func__,
+> >> +                            rc);
+> >> +       else
+> >> +               virtqueue_kick(vioch->vqueue);
+> >> +
+> >> +       spin_unlock_irqrestore(&vioch->lock, flags);
+> >> +
+> >> +       return rc;
+> >> +}
+> >> +
+> >> +static void scmi_vio_complete_cb(struct virtqueue *vqueue)
+> >> +{
+> >> +       unsigned long ready_flags;
+> >> +       unsigned long flags;
+> >> +       unsigned int length;
+> >> +       struct scmi_vio_channel *vioch;
+> >> +       struct scmi_vio_msg *msg;
+> >> +       bool cb_enabled = true;
+> >> +
+> >> +       if (WARN_ON_ONCE(!vqueue->vdev->priv))
+> >> +               return;
+> >> +       vioch = &((struct scmi_vio_channel *)vqueue->vdev->priv)[vqueue->index];
+> >> +
+> >> +       for (;;) {
+> >> +               spin_lock_irqsave(&vioch->ready_lock, ready_flags);
+> >> +
+> >> +               if (!vioch->ready) {
+> >> +                       if (!cb_enabled)
+> >> +                               (void)virtqueue_enable_cb(vqueue);
+> >> +                       goto unlock_ready_out;
+> >> +               }
+> >> +
+> >> +               spin_lock_irqsave(&vioch->lock, flags);
+> >> +               if (cb_enabled) {
+> >> +                       virtqueue_disable_cb(vqueue);
+> >> +                       cb_enabled = false;
+> >> +               }
+> >> +               msg = virtqueue_get_buf(vqueue, &length);
+> >> +               if (!msg) {
+> >> +                       if (virtqueue_enable_cb(vqueue))
+> >> +                               goto unlock_out;
+> >> +                       else
+> >> +                               cb_enabled = true;
+> >> +               }
+> >> +               spin_unlock_irqrestore(&vioch->lock, flags);
+> >> +
+> >> +               if (msg) {
+> >> +                       msg->rx_len = length;
+> >> +
+> >> +                       /*
+> >> +                        * Hold the ready_lock during the callback to avoid
+> >> +                        * races when the arm-scmi driver is unbinding while
+> >> +                        * the virtio device is not quiesced yet.
+> >> +                        */
+> >> +                       scmi_rx_callback(vioch->cinfo,
+> >> +                                        msg_read_header(msg->input), msg);
+> >> +               }
+> >> +               spin_unlock_irqrestore(&vioch->ready_lock, ready_flags);
+> >> +       }
+> >> +
+> >> +unlock_out:
+> >> +       spin_unlock_irqrestore(&vioch->lock, flags);
+> >> +unlock_ready_out:
+> >> +       spin_unlock_irqrestore(&vioch->ready_lock, ready_flags);
+> >> +}
+> >> +
+> >> +static const char *const scmi_vio_vqueue_names[] = { "tx", "rx" };
+> >> +
+> >> +static vq_callback_t *scmi_vio_complete_callbacks[] = {
+> >> +       scmi_vio_complete_cb,
+> >> +       scmi_vio_complete_cb
+> >> +};
 > >> +
 > >> +static unsigned int virtio_get_max_msg(bool tx,
 > >> +                                      struct scmi_chan_info *base_cinfo)
@@ -122,30 +399,27 @@ On Wed, Jun 02, 2021 at 10:25:36AM +0200, Peter Hilber wrote:
 > >> +               ret /= DESCRIPTORS_PER_TX_MSG;
 > >> +
 > >> +       if (ret > MSG_TOKEN_MAX) {
-> > 
+> >
 > > __scmi_xfer_info_init() returns error for info->max_msg >=
 > > MSG_TOKEN_MAX so it should be (ret >= MSG_TOKEN_MAX
-> > 
-> 
+> >
+>
 > I think it would be better to use the > comparison in
 > __scmi_xfer_info_init(), too. That should work in my understanding. I
+
+yes should work as well
+
 > think that change was originally in my branch, but I lost it somehow.
-> 
-
-I'll include this proposed fixes on my temp rework for V4.
-
-Thanks,
-Cristian
-
-> > 
+>
+> >
 > >> +               dev_info_once(
 > >> +                       base_cinfo->dev,
 > >> +                       "Only %ld messages can be pending simultaneously, while the %s virtqueue could hold %d\n",
 > >> +                       MSG_TOKEN_MAX, tx ? "tx" : "rx", ret);
 > >> +               ret = MSG_TOKEN_MAX;
-> > 
+> >
 > > should be ret = MSG_TOKEN_MAX-1;
-> > 
+> >
 > >> +       }
 > >> +
 > >> +       return ret;
@@ -532,6 +806,6 @@ Cristian
 > >> 2.25.1
 > >>
 > >>
-> > 
-> 
-> 
+> >
+>
+>
