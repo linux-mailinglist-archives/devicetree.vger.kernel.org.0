@@ -2,91 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CE63398A2D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 15:02:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1518398A49
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 15:18:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229606AbhFBNEe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 09:04:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36540 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229586AbhFBNEd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Jun 2021 09:04:33 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E87FE613D6;
-        Wed,  2 Jun 2021 13:02:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622638971;
-        bh=9GVCr1LuCvcjTrKzbRTyT/1HGLmEne+W2aNyF5fY9Ug=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FGDC1pckBbHFpilSlrP5ficerhpwZc0XRBn9Ghsgg4tiIrjuM8yFGhFATo4EU121z
-         f+j34bWeyvWnMhSQ/KYq5AiWQi2CONmNNDeEmkLGcl77whH7PARMfnZADZZhLWlPOJ
-         Ri3Ys/c3QfphLNRC49FJyAQoVnL6c1F/n2LFTm3Hk9O4sSKAOindmOa7e3ShRUqXro
-         /tarCoUoHDQiHG0GI0LfgqfdtWIUUcNaQEFKTDqlh1VT4AEIbSSTNwRZNMcpG5nK8U
-         wvMzuXQ9nSv7oMFpX2ygLn7bH63SYxQsTGZnABZVvC6NloZ7tlqHsX4mx/Yli16Ny8
-         HkpIWbjdJGkvg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1loQWG-0000Mb-0x; Wed, 02 Jun 2021 15:02:48 +0200
-Date:   Wed, 2 Jun 2021 15:02:48 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Nava kishore Manne <nava.manne@xilinx.com>
-Cc:     mdf@kernel.org, trix@redhat.com, robh+dt@kernel.org,
-        michal.simek@xilinx.com, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, git@xilinx.com
-Subject: Re: [PATCH 3/3] fpga: region: Adds runtime PM support
-Message-ID: <YLeBeJjwki/9VVR2@hovoldconsulting.com>
-References: <20210402092049.479-1-nava.manne@xilinx.com>
- <20210402092049.479-4-nava.manne@xilinx.com>
+        id S229843AbhFBNUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 09:20:36 -0400
+Received: from mail-ua1-f51.google.com ([209.85.222.51]:33436 "EHLO
+        mail-ua1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229656AbhFBNUf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 09:20:35 -0400
+Received: by mail-ua1-f51.google.com with SMTP id l12so1295418uai.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 06:18:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uH5yxU+BzRF90wWQwBO4VM5milL3akGJBti5j4uOIZE=;
+        b=s6OLJzCVfowSoFK+Kn+Dhlq9dbdZvw299TRcMkIdw5Yuw3QzvKXt83rm00ZYmdAzHh
+         /1dzY+TZZYI7BxQvrF0FDyUZF9EMiKzASt4L13dLl6SCkUavqGGqBrk3O90KyRB0h+lE
+         5vqtpcRDiNuA4hyi2GEWpaPREnpTT8jFXAL3Ypr8EXcRsTLjM2LEkV+hLkRG4wNmfK+c
+         hawPsG2yo23cDzABvRJQmn8X+GmEu9mJER+1cYC3lQAxQ/foh9xbWloSO7ggqM4k6Djv
+         ehNToKgNW35e/8OEm0Hun2TjV2n0awAldfNx1NCqo7S6PU2Wlxzae8ooaKznyMLri193
+         rSiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uH5yxU+BzRF90wWQwBO4VM5milL3akGJBti5j4uOIZE=;
+        b=Ugfgd5MnMkuSChdYRQD87bcH4n8sFWz2yYy1XnaQU3xagqMbEhSD6s+cxEvtQ7Eq2z
+         M2irvUjvFby8atNdZF5Vy2NAOGrSRvHTlfK7EcL1+1QM+kgnC1jutV7ll5S3XHRDjpXY
+         IT42RmLqHm/9vR2M+6PCo+4D7IYyZHRoVI7ox9ZocyJY2i3hi5yPVCD9ZF6YnBd2gYMy
+         Wa32cWsJg46T+U+P/K0SQ6J26etd4EvrEjS4cHwOuBTN1JF5X++mzLxZEf+Wnnp7eCU8
+         f/EB7veimICJmn6S2ulrAcOW5maBdl4UFjRpc2slm9j/JSnGmFOUEUmlGyMTkwS7xxkr
+         bmOw==
+X-Gm-Message-State: AOAM531S6nRFMzi2ImfpaxppmZYFYA1fx+3xwA4jA2J/tTC+GDexbl2e
+        UxyOZT9sbEtzm2pYB2xm85eO63LDDZ2uI/+xk2W9bA==
+X-Google-Smtp-Source: ABdhPJyvipLZfILhu87oS/az2/HBFVuElK4GQ6Srx/B1cgHvOyXaym3QLEigUlS/OUkA08r+m8+miEhdsQUfZ9i5/94=
+X-Received: by 2002:ab0:100f:: with SMTP id f15mr21456136uab.100.1622639870335;
+ Wed, 02 Jun 2021 06:17:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210402092049.479-4-nava.manne@xilinx.com>
+References: <20210602112321.2241566-1-anup.patel@wdc.com> <20210602112321.2241566-6-anup.patel@wdc.com>
+In-Reply-To: <20210602112321.2241566-6-anup.patel@wdc.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 2 Jun 2021 15:17:13 +0200
+Message-ID: <CAPDyKFq2tvvAD=2RiePZzce=+OsDaxLWqz+90pTKjTTzqVqcHQ@mail.gmail.com>
+Subject: Re: [PATCH v5 5/8] cpuidle: Factor-out power domain related code from
+ PSCI domain driver
+To:     Anup Patel <anup.patel@wdc.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Sandeep Tripathy <milun.tripathy@gmail.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Liush <liush@allwinnertech.com>,
+        Anup Patel <anup@brainfault.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 02, 2021 at 02:50:49PM +0530, Nava kishore Manne wrote:
-> Adds support to handle FPGA/PL power domain. With this patch,
-> the PL power domain will be turned on before loading the bitstream
-> and turned off while removing/unloading the bitstream using overlays.
-> This can be achieved by adding the runtime PM support.
-> 
-> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
-> ---
->  drivers/fpga/of-fpga-region.c | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
+On Wed, 2 Jun 2021 at 13:24, Anup Patel <anup.patel@wdc.com> wrote:
+>
+> The generic power domain related code in PSCI domain driver is largely
+> independent of PSCI and can be shared with RISC-V SBI domain driver
+> hence we factor-out this code into dt_idle_genpd.c and dt_idle_genpd.h.
+>
+> Signed-off-by: Anup Patel <anup.patel@wdc.com>
 
->  /**
-> @@ -411,9 +416,16 @@ static int of_fpga_region_probe(struct platform_device *pdev)
->  		goto eprobe_mgr_put;
->  	}
->  
-> +	pm_runtime_enable(&pdev->dev);
-> +	ret = pm_runtime_get_sync(&pdev->dev);
-> +	if (ret < 0)
-> +		goto err_pm;
-> +
-> +	pm_runtime_put(&pdev->dev);
-> +
->  	ret = fpga_region_register(region);
->  	if (ret)
-> -		goto eprobe_mgr_put;
-> +		goto err_pm;
+Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
 
-Just a drive-by comment: you have PM usage counter imbalance here
-(double put).
+A small nitpick below.
 
->  	of_platform_populate(np, fpga_region_of_match, NULL, &region->dev);
->  	platform_set_drvdata(pdev, region);
-> @@ -422,6 +434,9 @@ static int of_fpga_region_probe(struct platform_device *pdev)
->  
->  	return 0;
->  
-> +err_pm:
-> +	pm_runtime_put(&pdev->dev);
-> +	pm_runtime_disable(&pdev->dev);
->  eprobe_mgr_put:
->  	fpga_mgr_put(mgr);
->  	return ret;
+[...]
 
-Johan
+> +EXPORT_SYMBOL_GPL(dt_idle_pd_free);
+
+Do we really need to export this symbol? Looks like there are only
+built-in cpuidle drivers that are going to use it. At least for now.
+
+As a matter of fact, the same comment applies to all cases of
+EXPORT_SYMBOL_GPL from $subject patch. Can we drop all of them?
+
+[...]
+
+Kind regards
+Uffe
