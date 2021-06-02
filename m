@@ -2,86 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA365399432
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 22:04:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BB03399441
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 22:06:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229826AbhFBUFn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 16:05:43 -0400
-Received: from mail-oo1-f44.google.com ([209.85.161.44]:39522 "EHLO
-        mail-oo1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbhFBUFm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 16:05:42 -0400
-Received: by mail-oo1-f44.google.com with SMTP id 67-20020a4a01460000b0290245b81f6261so848354oor.6;
-        Wed, 02 Jun 2021 13:03:49 -0700 (PDT)
+        id S229641AbhFBUIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 16:08:09 -0400
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:41937 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229491AbhFBUII (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 16:08:08 -0400
+Received: by mail-ot1-f44.google.com with SMTP id 36-20020a9d0ba70000b02902e0a0a8fe36so3574392oth.8;
+        Wed, 02 Jun 2021 13:06:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=yW3ZDfBnMJBUJsuopQmswVdlQKbkuOB9JOmMNmyuRXw=;
-        b=eMYjdwjIhhoWe7Uq7CFUdE++U9+KjSzrKCGvjIp6tfDBj8CCbZH0mImU+bQIfSsE6A
-         B5swh+YnvcI53BCMZFB+jRX7+hRJQHV+dtHZFavyftp/mPDsG9LO7952QLXeQeucnSVs
-         JO4hqNW8ZV/sZRWzNx06YZWKajXhC/QTKKEuFjn8oWrYNTH8SjB/oF4GQo125tDilNDU
-         2eaZNPnMl6fmeHYriy8ktPm2138W5/KtTk7oKpvkO0LDMu4RF4Woj3dQHrxESJ7Y26hT
-         1CouDd+O84hS/oZ1lBuFrmIOQ9anf5rfru6nkAG2il1RxbX0jkztyXQgSv6HngQm17BF
-         0XKQ==
-X-Gm-Message-State: AOAM5316P5gqpm7AtG75DdGNTHHohUx1ju9KJXR30po3Xaxeh+lKJnjs
-        irX6qKIh4tAk4DSJmjq4UA==
-X-Google-Smtp-Source: ABdhPJwrDyos+fxWLzP98HAh+IdIrCv3fpALGzWTZZnndNjfcH2+Po08xUnsX9UZkVt6wzpaxQFD4Q==
-X-Received: by 2002:a4a:9b0b:: with SMTP id a11mr26347406ook.73.1622664229254;
-        Wed, 02 Jun 2021 13:03:49 -0700 (PDT)
+        bh=Eqg/NhAI7hbUorU0sneYRdLeG0QUON8FK2Nid9hN1UY=;
+        b=VJSmbYP3HrQKqbOzjw3tpJjFjGkz61G7E0Wuyulqx7ljopCAyYQ1TkDsHiApCi2M5n
+         MYI57o9brvzNrMFGgsXjy58Ff4eB57diI5/D3B9m2lexq9ixRxZzqkiXo15OyK3lZLka
+         Dqy8445nnJqOBZoAmoovQ9qtRq3McP/J7J0j/y3ct9FNrlPocnVIwvC8EqHkqYA7DB8l
+         2aWxwia4N+wMkCPbJXgYF9gtpomNc5dHcXUtiNUb9z2uVKOHhtCjwOixJMo5yRpR7iKQ
+         Z3aQt/pd/rbTZWfXuPXXINdCu80dmK6ar7LWcSs7l3GF98DweiYpLmyz68qgW6VsBYHV
+         tnwA==
+X-Gm-Message-State: AOAM5314IrOlteVIYirBQpnNAbfiG78TzugS+N+DEyRcJGuPuV66nsIw
+        slaRP9+w/fULxl5Hbpwzuw==
+X-Google-Smtp-Source: ABdhPJwOOhWiTlBUVMkgdreVunVQq9Th2V0p/jeTk68tZ2BCDbzX7OWLgT1+YDeOhvnir4cNa8WV0A==
+X-Received: by 2002:a9d:6194:: with SMTP id g20mr4537073otk.8.1622664371257;
+        Wed, 02 Jun 2021 13:06:11 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x24sm194681otq.34.2021.06.02.13.03.47
+        by smtp.gmail.com with ESMTPSA id i9sm189166oog.17.2021.06.02.13.06.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jun 2021 13:03:48 -0700 (PDT)
-Received: (nullmailer pid 3895929 invoked by uid 1000);
-        Wed, 02 Jun 2021 20:03:47 -0000
-Date:   Wed, 2 Jun 2021 15:03:47 -0500
+        Wed, 02 Jun 2021 13:06:10 -0700 (PDT)
+Received: (nullmailer pid 3900234 invoked by uid 1000);
+        Wed, 02 Jun 2021 20:06:09 -0000
+Date:   Wed, 2 Jun 2021 15:06:09 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Pratyush Yadav <p.yadav@ti.com>
-Cc:     devicetree@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        linux-phy@lists.infradead.org, dmaengine@vger.kernel.org,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        Benoit Parrot <bparrot@ti.com>
-Subject: Re: [PATCH v2 18/18] phy: dt-bindings: cdns,dphy: add power-domains
- property
-Message-ID: <20210602200347.GA3895900@robh.at.kernel.org>
-References: <20210526152308.16525-1-p.yadav@ti.com>
- <20210526152308.16525-19-p.yadav@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Mark Brown <broonie@kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        devicetree@vger.kernel.org,
+        Iskren Chernev <iskren.chernev@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-rtc@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v2 7/7] power: supply: max17040: Do not enforce
+ (incorrect) interrupt trigger type
+Message-ID: <20210602200609.GA3900200@robh.at.kernel.org>
+References: <20210526172036.183223-1-krzysztof.kozlowski@canonical.com>
+ <20210526172036.183223-8-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210526152308.16525-19-p.yadav@ti.com>
+In-Reply-To: <20210526172036.183223-8-krzysztof.kozlowski@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 26 May 2021 20:53:08 +0530, Pratyush Yadav wrote:
-> This property is needed on TI platforms to enable the PD of the DPHY
-> before it can be used.
+On Wed, 26 May 2021 13:20:36 -0400, Krzysztof Kozlowski wrote:
+> From: Krzysztof Kozlowski <krzk@kernel.org>
 > 
-> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Interrupt line can be configured on different hardware in different way,
+> even inverted.  Therefore driver should not enforce specific trigger
+> type - edge falling - but instead rely on Devicetree to configure it.
+> 
+> The Maxim 14577/77836 datasheets describe the interrupt line as active
+> low with a requirement of acknowledge from the CPU therefore the edge
+> falling is not correct.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Acked-by: Iskren Chernev <iskren.chernev@gmail.com>
 > 
 > ---
 > 
-> Changes in v2:
-> - Add power-domain to the example.
-> - Add Laurent's R-by.
-> - Re-order subject prefixes.
-> 
->  Documentation/devicetree/bindings/phy/cdns,dphy.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> Changes since v1:
+> 1. Remove the 'flags' variable.
+> 2. Added ack.
+> 3. Rebase - the bindings were converted to dtschema.
+> ---
+>  .../devicetree/bindings/power/supply/maxim,max17040.yaml      | 2 +-
+>  drivers/power/supply/max17040_battery.c                       | 4 +---
+>  2 files changed, 2 insertions(+), 4 deletions(-)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
