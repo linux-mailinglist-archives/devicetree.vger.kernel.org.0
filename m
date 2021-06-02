@@ -2,101 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58A7C399205
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 19:58:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5717399211
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 20:00:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229710AbhFBR7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 13:59:44 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:33898 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229467AbhFBR7o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 13:59:44 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id BE81AD97;
-        Wed,  2 Jun 2021 19:57:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1622656679;
-        bh=j5Dto5uF6GSs+WOklTsW00y8nQqle4dGp7ECq4A6QHk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PG7YMTpI+ungokDfiRoie5c19S7Y0col6BJU4wH8TzxuUfV41QBb+kcrJrjzdo1hU
-         6Qx/WN9u9v2SU2qNzNbQkljQfYvQcvdOWI23DQGCXJqOccqbk4A6Jq1kLt1oGcwkfD
-         pwfNrpPvpVso7mIzfq6rI9aSNqYwOEu4qJHIpiLk=
-Date:   Wed, 2 Jun 2021 20:57:47 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     pavel@ucw.cz, krzysztof.kozlowski@canonical.com,
-        mchehab@kernel.org, paul.kocialkowski@bootlin.com, robh@kernel.org,
-        shawnx.tu@intel.com, devicetree@vger.kernel.org, kernel@puri.sm,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        phone-devel@vger.kernel.org
-Subject: Re: [PATCH v3 3/5] media: i2c: add driver for the SK Hynix Hi-846 8M
- pixel camera
-Message-ID: <YLfGm0TD4m3fXEao@pendragon.ideasonboard.com>
-References: <20210531120737.168496-1-martin.kepplinger@puri.sm>
- <20210531120737.168496-4-martin.kepplinger@puri.sm>
- <YLV7+tuTZbr3boTw@pendragon.ideasonboard.com>
- <84292af283a5a37289940478a25402631018c973.camel@puri.sm>
+        id S231208AbhFBSCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 14:02:06 -0400
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:43853 "EHLO
+        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229467AbhFBSCF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 14:02:05 -0400
+Received: by mail-ot1-f52.google.com with SMTP id i12-20020a05683033ecb02903346fa0f74dso3209520otu.10;
+        Wed, 02 Jun 2021 11:00:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=STNHXHQ+81oeK1CksPWVyFVkZuPW4pW3ZP19XpEkSjY=;
+        b=VLmCpGDIDZ5ZfvLjkjOLwX3CMSne+WGDqo5C5hPQA7+CYt6BBCqDJ5Hpl80jum3zzY
+         Poe9CIym6LgJTtgxY66UI8XTRJZuiK2MUbipJNaGs2ttI+JNm9EpMf81+JFxHEKRd289
+         uJUw3snPyxxTn0kYFgQPl1jIMqfT1TU8OvyVcEs3HlXVPiPQBWAGh8eIIDllRamIk7m5
+         nVSeJXfZ/zhr873/2GJ/U9NzvOHCEIIwxNrGp8B9k4RTffbQdCcl59FCcTFUNkc65y7S
+         1xSxoFIPt5gY9AW4D0oG76Ym5jvj1gxaMplNnW0fs1MDOsd6GqXtqsAa8hYSRpBIUWXE
+         fiyA==
+X-Gm-Message-State: AOAM531GZeFfNeG7kOvp1BfuItEAGu5sVTR36axP0kowBVvMkDJGk7EX
+        KvxLV7hreaBiZyU+5UNsGQ==
+X-Google-Smtp-Source: ABdhPJw4Wnkkr1ZWBQNe8mwdd924fhfJkTTmphYm16a4o7+93YyM7ubX4h1P3RCN0vdbqFgl/6IyTw==
+X-Received: by 2002:a9d:6f15:: with SMTP id n21mr12298359otq.154.1622656819618;
+        Wed, 02 Jun 2021 11:00:19 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id q63sm128029oic.15.2021.06.02.11.00.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Jun 2021 11:00:18 -0700 (PDT)
+Received: (nullmailer pid 3674811 invoked by uid 1000);
+        Wed, 02 Jun 2021 18:00:17 -0000
+Date:   Wed, 2 Jun 2021 13:00:17 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        robdclark@chromium.org, Andrzej Hajda <a.hajda@samsung.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Steev Klimaszewski <steev@kali.org>,
+        Sam Ravnborg <sam@ravnborg.org>, linux-arm-msm@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Linus W <linus.walleij@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>, Lyude Paul <lyude@redhat.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Stephen Boyd <swboyd@chromium.org>
+Subject: Re: [PATCH v8 01/11] dt-bindings: display: simple: List hpd
+ properties in panel-simple
+Message-ID: <20210602180017.GA3674744@robh.at.kernel.org>
+References: <20210525000159.3384921-1-dianders@chromium.org>
+ <20210524165920.v8.1.Ieb731d23680db4700cc41fe51ccc73ba0b785fb7@changeid>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <84292af283a5a37289940478a25402631018c973.camel@puri.sm>
+In-Reply-To: <20210524165920.v8.1.Ieb731d23680db4700cc41fe51ccc73ba0b785fb7@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
-
-On Wed, Jun 02, 2021 at 02:00:11PM +0200, Martin Kepplinger wrote:
-> Am Dienstag, dem 01.06.2021 um 03:14 +0300 schrieb Laurent Pinchart:
-> > On Mon, May 31, 2021 at 02:07:35PM +0200, Martin Kepplinger wrote:
-> > > The SK Hynix Hi-846 is a 1/4" 8M Pixel CMOS Image Sensor. It supports
-> > > usual features like I2C control, CSI-2 for frame data, digital/analog
-> > > gain control or test patterns.
-> > > 
-> > > This driver supports the 640x480, 1280x720 and 1632x1224 resolution
-> > > modes. It supports runtime PM in order not to draw any unnecessary
-> > > power.
-> > > 
-> > > The part is also called YACG4D0C9SHC and a datasheet can be found at
-> > > https://product.skhynix.com/products/cis/cis.go
-> > > 
-> > > The large sets of partly undocumented register values are for example
-> > > found when searching for the hi846_mipi_raw_Sensor.c Android driver.
-> > 
-> > A common story, unfortunately :-S
-> > 
-> > I've done an initial review, I'll likely have more comments on v4, but
-> > you should have quite a few things to address already :-)
-> > 
-> > > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> > > ---
-> > >  MAINTAINERS                |    6 +
-> > >  drivers/media/i2c/Kconfig  |   13 +
-> > >  drivers/media/i2c/Makefile |    1 +
-> > >  drivers/media/i2c/hi846.c  | 2138 ++++++++++++++++++++++++++++++++++++
-> > >  4 files changed, 2158 insertions(+)
-> > >  create mode 100644 drivers/media/i2c/hi846.c
-
-[snip]
-
-> Thank you, Laurent for that wonderful review. It made me rework/fix the
-> power supply interface + sequencing in the driver (and even better
-> understand how it's supplied on my board).
+On Mon, 24 May 2021 17:01:49 -0700, Douglas Anderson wrote:
+> The HPD (Hot Plug Detect) signal is present in many (probably even
+> "most") eDP panels. For eDP, this signal isn't actually used for
+> detecting hot-plugs of the panel but is more akin to a "panel ready"
+> signal. After you provide power to the panel, panel timing diagrams
+> typically say that you should wait for HPD to be asserted (or wait a
+> fixed amount of time) before talking to the panel.
 > 
-> I want to take all your review into account for a next revision, except
-> for the additional bits for the register definitions, that should
-> encode the length, if that's ok. We can choose whether to write 1 or 2
-> bytes at a given address and it just looks nice and simple to me as it
-> is.
+> The panel-simple bindings describes many eDP panels and many of these
+> panels provide the HPD signal. We should add the HPD-related
+> properties to the panel-simple bindings. The HPD properties are
+> actually defined in panel-common.yaml, so adding them here just
+> documents that they are OK for panels handled by the panel-simple
+> bindings.
+> 
+> NOTE: whether or not we'd include HPD properties in the panel node is
+> more a property of the board design than the panel itself. For most
+> boards using these eDP panels everything "magically" works without
+> specifying any HPD properties and that's been why we haven't needed to
+> allow the HPD properties earlier. On these boards the HPD signal goes
+> directly to a dedicated "HPD" input to the eDP controller and this
+> connection doesn't need to be described in the device tree. The only
+> time the HPD properties are needed in the device tree are if HPD is
+> hooked up to a GPIO or if HPD is normally on the panel but isn't used
+> on a given board. That means that if we don't allow the HPD properties
+> in panel-simple then one could argue that we've got to boot all eDP
+> panels (or at least all those that someone could conceivably put on a
+> system where HPD goes to a GPIO or isn't hooked up) from panel-simple.
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> ---
+> 
+> Changes in v8:
+> - Explain better why HPD needs to be in panel-simple in commit msg.
+> 
+> Changes in v7:
+> - List hpd properties bindings patch new for v7.
+> 
+>  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-I won't push strongly, but in my experience it's error-prone, as it's
-easy to select the incorrect number of bytes. That's what led me to
-create this mechanism to bundle register addresses and sizes, it has
-simplified my life when writing drivers. I think it should actually be
-turned into a helper, possibly provided by regmap.
-
--- 
-Regards,
-
-Laurent Pinchart
+Reviewed-by: Rob Herring <robh@kernel.org>
