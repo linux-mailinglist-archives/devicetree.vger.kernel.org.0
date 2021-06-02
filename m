@@ -2,68 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B38B39946F
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 22:18:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 865AB399472
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 22:19:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229744AbhFBUUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 16:20:10 -0400
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:41751 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229746AbhFBUUI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 16:20:08 -0400
-Received: by mail-ot1-f45.google.com with SMTP id 36-20020a9d0ba70000b02902e0a0a8fe36so3606974oth.8;
-        Wed, 02 Jun 2021 13:18:24 -0700 (PDT)
+        id S229467AbhFBUVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 16:21:19 -0400
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:34372 "EHLO
+        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229576AbhFBUVS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 16:21:18 -0400
+Received: by mail-ot1-f52.google.com with SMTP id v27-20020a056830091bb02903cd67d40070so531443ott.1
+        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 13:19:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vebdrboMoxJ2ynNOUtSmhS7DhcvaGbi5PHtwTdpbVzE=;
-        b=AEq/feYukUlNhR1iKw66fB3+L7niVAYrEFBuSAQc9CCZN1hMq1tST1cBPbW+s5Lr/O
-         25yj/iR6MIy7H7sRkyA3DZ+YP5og1nUPWHqWZXz5CcEDj40s4awJnHXduLbmh3tszySh
-         6NUFJPGthg8waLFCjqSKk6K0tWmQM5dv40JB/IrEt1X8rGedeqzBOQj5jVZJVWkiH74X
-         O04hfTCdbSGQ0vgJh40shanWFOhd7LELlW4h5m70A96JyJfBvEOK2EH0VZM6prDLXmdx
-         revBVji0bZf/puo5U7+llxcDMJQbNdZHFrLN4Z7R1NThPFPWKIg3KrzC1HBGdLPRxC66
-         9hRA==
-X-Gm-Message-State: AOAM5310Nib5hblKcS6Zn7ZUEN4vLRPyXWLnBIvwT2VD42uqf2FyANgP
-        KEBjKN84mjeyNf351bUQ1g==
-X-Google-Smtp-Source: ABdhPJyL41S7wu7tm5ifBbDvtH+KbGHTrj50SiTVbGkKjb/4ZeZo/1f9jl+cjS7m3RF8q+2GcPxsQg==
-X-Received: by 2002:a9d:ea2:: with SMTP id 31mr28317972otj.200.1622665104285;
-        Wed, 02 Jun 2021 13:18:24 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Kwi9AWnAN+pwFBTVSOF2Qq8CG0QbDor+XzQYcS9Q854=;
+        b=FpbpTQIrxB9oZhlrvpZgFGfNdrtCUorKU524FSBMmlfAN3He4AE+XBTDOLjpSFyMJt
+         thkQ8tCcB1+m3TKXIhDP+I8WsWzpE3kB0fk6N3VaoPMbkKz10AcLSpu8xKENIXGi8fnb
+         iTKiFBPCrgjNnre/DTSJA3ZGT5tJs+AYJp5M3foBmzocaxlZzE5M66CJeeSZP5Q7hA6O
+         wuNYxIpXVEAeJpjRiQlCsaDIVfH9cT9T9+5H3JieU/nxnfruF9ISInjeRQr+3bZXj/yL
+         PtyqbNa4QMsEiUWvF7jxXNcejftx5M40K81Y2U85bDEqS0loafD/wrwaBkThYlI3bh6R
+         Cp9A==
+X-Gm-Message-State: AOAM532lDJgy57a5il+abOa7TwDW3EO+dciXGbu9KvIUFoIh+9JqwLCC
+        88VRPP/e6NotSuxb7SISeA==
+X-Google-Smtp-Source: ABdhPJwlXz4WDup6TDdOm5eEPRVmhBR1IeEm9NepD9KP7SskYWN1GWGbzegg8klCg+WGckPTg7ZDMA==
+X-Received: by 2002:a05:6830:15d8:: with SMTP id j24mr6325923otr.123.1622665174779;
+        Wed, 02 Jun 2021 13:19:34 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u13sm197929oop.40.2021.06.02.13.18.23
+        by smtp.gmail.com with ESMTPSA id x187sm215221oia.17.2021.06.02.13.19.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jun 2021 13:18:23 -0700 (PDT)
-Received: (nullmailer pid 3922309 invoked by uid 1000);
-        Wed, 02 Jun 2021 20:18:22 -0000
-Date:   Wed, 2 Jun 2021 15:18:22 -0500
+        Wed, 02 Jun 2021 13:19:34 -0700 (PDT)
+Received: (nullmailer pid 3924524 invoked by uid 1000);
+        Wed, 02 Jun 2021 20:19:33 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Kyle Tso <kyletso@google.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        gregkh@linuxfoundation.org, badhri@google.com, robh+dt@kernel.org,
-        heikki.krogerus@linux.intel.com
-Subject: Re: [PATCH v2] dt-bindings: connector: Replace BIT macro with
- generic bit ops
-Message-ID: <20210602201822.GA3922246@robh.at.kernel.org>
-References: <20210527121029.583611-1-kyletso@google.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210527121029.583611-1-kyletso@google.com>
+To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>
+Cc:     Amarnath MB <amarnath.mb@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Sinthu Raja <sinthu.raja@ti.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>
+In-Reply-To: <20210602182237.12632-2-sinthu.raja@ti.com>
+References: <20210602182237.12632-1-sinthu.raja@ti.com> <20210602182237.12632-2-sinthu.raja@ti.com>
+Subject: Re: [1/2] dt-bindings: arm: ti: Add bindings for J721E EAIK
+Date:   Wed, 02 Jun 2021 15:19:33 -0500
+Message-Id: <1622665173.253924.3924523.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 27 May 2021 20:10:29 +0800, Kyle Tso wrote:
-> BIT macro is not defined. Replace it with generic bit operations.
+On Wed, 02 Jun 2021 23:52:36 +0530, Sinthu Raja wrote:
+> From: Sinthu Raja <sinthu.raja@ti.com>
 > 
-> Fixes: 630dce2810b9 ("dt-bindings: connector: Add SVDM VDO properties")
-> Signed-off-by: Kyle Tso <kyletso@google.com>
+> J721E EdgeAI Kit (EAIK) is a low cost, small form factor board designed
+> for TI’s J721E SoC.
+> Add DT binding documentation for J721E EAIK
+> 
+> Signed-off-by: Amarnath MB <amarnath.mb@ti.com>
+> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
 > ---
-> Changes since v1:
-> - re-word the commit message
-> 
->  include/dt-bindings/usb/pd.h | 20 ++++++++++----------
->  1 file changed, 10 insertions(+), 10 deletions(-)
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.example.dt.yaml: /: compatible: 'oneOf' conditional failed, one must be fixed:
+	['ti,j721e'] is too short
+	'ti,j721e' is not one of ['ti,am654-evm', 'siemens,iot2050-basic', 'siemens,iot2050-advanced']
+	'ti,j721e' is not one of ['ti,j721e-eaik']
+	'ti,j7200' was expected
+	'ti,j721e' is not one of ['ti,am642-evm', 'ti,am642-sk']
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/ti/k3.yaml
+
+See https://patchwork.ozlabs.org/patch/1486849
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
