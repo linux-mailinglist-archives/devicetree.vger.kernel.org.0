@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFCFF398DA3
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 17:00:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 386A2398DB1
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 17:01:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231773AbhFBPCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 11:02:03 -0400
-Received: from smtp-35.italiaonline.it ([213.209.10.35]:48024 "EHLO libero.it"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231696AbhFBPCD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Jun 2021 11:02:03 -0400
+        id S231866AbhFBPDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 11:03:03 -0400
+Received: from smtp-35-i2.italiaonline.it ([213.209.12.35]:47745 "EHLO
+        libero.it" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230257AbhFBPDA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Jun 2021 11:03:00 -0400
 Received: from passgat-Modern-14-A10M.homenet.telecomitalia.it
  ([79.17.119.101])
         by smtp-35.iol.local with ESMTPA
-        id oSLqlJ7WDsptioSLxlKAtt; Wed, 02 Jun 2021 17:00:18 +0200
+        id oSLqlJ7WDsptioSLwlKAsn; Wed, 02 Jun 2021 17:00:16 +0200
 x-libjamoibt: 1601
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2021;
-        t=1622646018; bh=U7JzdCOLhubdapRB+n/j4Q+w7ZfRRrpW+Q5IRnQz5xw=;
+        t=1622646016; bh=hqdToKdXep6rD2t3+5/OUkGokVRGwUGIXwri9qp4guU=;
         h=From;
-        b=y9xotFvUP387QROPgrhEKW+PwL7FWTO3RLRIcDN/igSZXnf3cw8tnLsxtwLVmETGZ
-         AvkMNH4L1J4IgnVyrh9yi9P/NC3F21yjC+SwCYUHGmxXZAgcJnnjNyIDPa3dTS3vou
-         uRv53XTwPcHT2ZZ3UwaGn52jRMUHsBYMd+zMy09tNTlbY5weIu1yXUHNMV4GR2Mqte
-         FjBEm/kMT1OQG2M4clAiwkmW096WPAuH2WnI92rkNQo4loXr2WaQw313LkeNuCvuID
-         8GzfeejnialOAkwxN5WBF8WA+yFxjGcQvvG05+Re687tzRivk8P9eD0YgVavd1VXP5
-         MZ7mCLTKiug4Q==
-X-CNFS-Analysis: v=2.4 cv=Bo1Yfab5 c=1 sm=1 tr=0 ts=60b79d02 cx=a_exe
- a=do1bHx4A/kh2kuTIUQHSxQ==:117 a=do1bHx4A/kh2kuTIUQHSxQ==:17 a=2KMo9-giAAAA:8
- a=2OX5x-OEy5pyK2UBO5QA:9 a=2pGyGSWy5nf2n_rBi4rp:22 a=UeCTMeHK7YUBiLmz_SX7:22
+        b=lMCqwkrCY79cVf3zHr14Swwpg+GwFMCMUWVLQbaIeD12HwwDSy9Jkhj/VWHGKg8NQ
+         UqZBEcN4CM2RpUKzOA3a0iLkJuyan/TD6RIcXmx/abP2Zi0vsxU5P9PX4PvvKQC8iE
+         dm7DHu89gmn66U0+6osUrTDFF3MldEgXUxeLot7qyhdypTs+vEfkEIM4Jss7sr8MYJ
+         1UZWY7imtOgmaApXBRyTLb9klt0wDDuj5Dkg+SPTWCvCtk3s9VH7ex4pzKsK2fHSTa
+         v6qmks/58/6mc0ShCZeiN2dBshMl9Ed2c7WjhZXV7xHFMf0AAWwVIlgfKOa5KIb3g8
+         yJrffJTjfXSDg==
+X-CNFS-Analysis: v=2.4 cv=Bo1Yfab5 c=1 sm=1 tr=0 ts=60b79d00 cx=a_exe
+ a=do1bHx4A/kh2kuTIUQHSxQ==:117 a=do1bHx4A/kh2kuTIUQHSxQ==:17 a=VwQbUJbxAAAA:8
+ a=IXkOJODCewQtKEFu2i4A:9 a=5yUOnwQy5QICz8m5uxDm:22 a=AjGcO6oz07-iQ99wixmX:22
  a=pHzHmUro8NiASowvMSCR:22 a=xoEH_sTeL_Rfw54TyV31:22
 From:   Dario Binacchi <dariobin@libero.it>
 To:     linux-kernel@vger.kernel.org
@@ -39,99 +39,84 @@ Cc:     Michael Turquette <mturquette@baylibre.com>,
         Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org
-Subject: [PATCH v7 4/5] ARM: dts: am43xx-clocks: add spread spectrum support
-Date:   Wed,  2 Jun 2021 17:00:07 +0200
-Message-Id: <20210602150009.17531-5-dariobin@libero.it>
+        linux-clk@vger.kernel.org
+Subject: [PATCH v7 2/5] dt-bindings: ti: dpll: add spread spectrum support
+Date:   Wed,  2 Jun 2021 17:00:05 +0200
+Message-Id: <20210602150009.17531-3-dariobin@libero.it>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210602150009.17531-1-dariobin@libero.it>
 References: <20210602150009.17531-1-dariobin@libero.it>
-X-CMAE-Envelope: MS4xfCYVATIKSNsN+szvlFYb/YLzouBNOgkXXGssk+f9PIf5UV5B1EnyWEFItzYaEgQMBx3qorXZV9yTLxVpS6Qu+Plks0pfFGXTqOw3VQaYwcK24JvDiWnT
- TcuYPt2ZFvmkBz6gMTLrh4zMlH4ueZ2FC0UClHQdqXQiND4co9q3MM1sWBXn0joPjDcjSBteUfs1ug1SY4wtb1UpCsHZbAEg34zHTrekwBIjqYCKJZfjLtlP
- t2fYKy74Gm6wrN3u0IRbh0KD09uS9McNHOLr0Lyp38qOIhc0+CGriNnI6Hyg4TkXkry5s4knc3RTQcA7VJH7iCgdWbMmxDxFWYPVyCW50Fjvxb1s+rSJCyAS
- TMMF2enXD2GpK/NhTQvGd+tdq+T9ejB43mFfnNTMIqopwatsrisJQzqJZ+CJj6Wc0WNc6VhmHj2aNo7TWoce6FipXB5UZaMzE+7rCxpnSRuSC4M6WpU94YdX
- stAJJ7NDv2NDZpYIHLkR62BaOHOSD+Zyro2NTIMNiClN0O9Kf2UHXfEIWpHmdT18s7IH9ANUcz7+eUoDAffYsgg1Di9IHS7xGF7L9YPlWYsyNqQK2RRx1J5l
- zT8=
+X-CMAE-Envelope: MS4xfBLCgayubmjjCLak38s7cr4yfgaSyVJdTZ7yaAhrXkgcbkYka3zLoybxIsD243u5wKsZ/OFYitHRJqiGhNihDE8qZ2AYhVn+0BbDUHPRDHwIEKKczfZN
+ 80RAQ0xpxCKhIhR88pIEw7Zh6ZwOL8TRRb6bs4ViNT3m5zewvZw70PaeGGjejO/AjFhDhxR483eSZLDal2v8nbAzH8R3oGl8lFxECYj7yUx3F/XTdA/hKL7z
+ 1OR1AGEo9TAnq1KmExzf5O32Ws0iw2f1nKMkxvGnLjLGCokGjXHB2ulxpPdxPJfzuHQuOWoKCRL65dKw6MmcfyA8CwKmxNePjoI4VytTPfo39jhlw+U2kSpV
+ TSU5GUMeY5DMuLTpKhQKgUtD0PAbwUy1RXI3aTuaIbU+8PcCMAIPPh5LgVvst9eublV5XnnPMQAkE8Sj9By25StkCCo9fF9mBuQriVcYoV6AZuGqOIQqFAU7
+ h4w5AD8oy2Tzimo6Pvb8B+mM1pCn5QMrytfscTjldnWeXAd1zkRjxqxdv80KwozvtOJ+5RlBZC0Iz6HEvVJakC27Km+Jivh6H3hNitvRCuGj1Icrht98RE/u
+ XXU=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Registers for adjusting the spread spectrum clocking (SSC) have been
-added. As reported by the TI spruhl7x RM, SSC is supported only for LCD
-and MPU PLLs, but the PRCM_CM_SSC_DELTAMSTEP_DPLL_XXX and
-PRCM_CM_SSC_MODFREQDIV_DPLL_XXX registers, as well as the enable field
-in the PRCM_CM_CLKMODE_DPLL_XXX registers are mapped for all PLLs (CORE,
-MPU, DDR, PER, DISP, EXTDEV).
+DT bindings for enabling and adjusting spread spectrum clocking have
+been added.
 
 Signed-off-by: Dario Binacchi <dariobin@libero.it>
-Acked-by: Tony Lindgren <tony@atomide.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 ---
 
-Changes in v7:
-- Add Tony Lindgren acked tag.
+(no changes since v4)
 
- arch/arm/boot/dts/am43xx-clocks.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+Changes in v4:
+- Add Rob Herring review tag.
 
-diff --git a/arch/arm/boot/dts/am43xx-clocks.dtsi b/arch/arm/boot/dts/am43xx-clocks.dtsi
-index c726cd8dbdf1..314fc5975acb 100644
---- a/arch/arm/boot/dts/am43xx-clocks.dtsi
-+++ b/arch/arm/boot/dts/am43xx-clocks.dtsi
-@@ -204,7 +204,7 @@
- 		#clock-cells = <0>;
- 		compatible = "ti,am3-dpll-core-clock";
- 		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
--		reg = <0x2d20>, <0x2d24>, <0x2d2c>;
-+		reg = <0x2d20>, <0x2d24>, <0x2d2c>, <0x2d48>, <0x2d4c>;
- 	};
+Changes in v3:
+- Add '-hz' suffix to "ti,ssc-modfreq" binding.
+
+ .../devicetree/bindings/clock/ti/dpll.txt     | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/clock/ti/dpll.txt b/Documentation/devicetree/bindings/clock/ti/dpll.txt
+index df57009ff8e7..37a7cb6ad07d 100644
+--- a/Documentation/devicetree/bindings/clock/ti/dpll.txt
++++ b/Documentation/devicetree/bindings/clock/ti/dpll.txt
+@@ -42,6 +42,11 @@ Required properties:
+ 	"idlest" - contains the idle status register base address
+ 	"mult-div1" - contains the multiplier / divider register base address
+ 	"autoidle" - contains the autoidle register base address (optional)
++	"ssc-deltam" - DPLL supports spread spectrum clocking (SSC), contains
++		       the frequency spreading register base address (optional)
++	"ssc-modfreq" - DPLL supports spread spectrum clocking (SSC), contains
++		        the modulation frequency register base address
++			(optional)
+   ti,am3-* dpll types do not have autoidle register
+   ti,omap2-* dpll type does not support idlest / autoidle registers
  
- 	dpll_core_x2_ck: dpll_core_x2_ck {
-@@ -250,7 +250,7 @@
- 		#clock-cells = <0>;
- 		compatible = "ti,am3-dpll-clock";
- 		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
--		reg = <0x2d60>, <0x2d64>, <0x2d6c>;
-+		reg = <0x2d60>, <0x2d64>, <0x2d6c>, <0x2d88>, <0x2d8c>;
- 	};
+@@ -51,6 +56,14 @@ Optional properties:
+ 	- ti,low-power-stop : DPLL supports low power stop mode, gating output
+ 	- ti,low-power-bypass : DPLL output matches rate of parent bypass clock
+ 	- ti,lock : DPLL locks in programmed rate
++	- ti,min-div : the minimum divisor to start from to round the DPLL
++		       target rate
++	- ti,ssc-deltam : DPLL supports spread spectrum clocking, frequency
++			  spreading in permille (10th of a percent)
++	- ti,ssc-modfreq-hz : DPLL supports spread spectrum clocking, spread
++			      spectrum modulation frequency
++	- ti,ssc-downspread : DPLL supports spread spectrum clocking, boolean
++			      to enable the downspread feature
  
- 	dpll_mpu_m2_ck: dpll_mpu_m2_ck@2d70 {
-@@ -276,7 +276,7 @@
- 		#clock-cells = <0>;
- 		compatible = "ti,am3-dpll-clock";
- 		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
--		reg = <0x2da0>, <0x2da4>, <0x2dac>;
-+		reg = <0x2da0>, <0x2da4>, <0x2dac>, <0x2dc8>, <0x2dcc>;
+ Examples:
+ 	dpll_core_ck: dpll_core_ck@44e00490 {
+@@ -83,3 +96,10 @@ Examples:
+ 		clocks = <&sys_ck>, <&sys_ck>;
+ 		reg = <0x0500>, <0x0540>;
  	};
- 
- 	dpll_ddr_m2_ck: dpll_ddr_m2_ck@2db0 {
-@@ -294,7 +294,7 @@
- 		#clock-cells = <0>;
- 		compatible = "ti,am3-dpll-clock";
- 		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
--		reg = <0x2e20>, <0x2e24>, <0x2e2c>;
-+		reg = <0x2e20>, <0x2e24>, <0x2e2c>, <0x2e48>, <0x2e4c>;
- 	};
- 
- 	dpll_disp_m2_ck: dpll_disp_m2_ck@2e30 {
-@@ -313,7 +313,7 @@
- 		#clock-cells = <0>;
- 		compatible = "ti,am3-dpll-j-type-clock";
- 		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
--		reg = <0x2de0>, <0x2de4>, <0x2dec>;
-+		reg = <0x2de0>, <0x2de4>, <0x2dec>, <0x2e08>, <0x2e0c>;
- 	};
- 
- 	dpll_per_m2_ck: dpll_per_m2_ck@2df0 {
-@@ -557,7 +557,7 @@
- 		#clock-cells = <0>;
- 		compatible = "ti,am3-dpll-clock";
- 		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
--		reg = <0x2e60>, <0x2e64>, <0x2e6c>;
-+		reg = <0x2e60>, <0x2e64>, <0x2e6c>, <0x2e88>, <0x2e8c>;
- 	};
- 
- 	dpll_extdev_m2_ck: dpll_extdev_m2_ck@2e70 {
++
++	dpll_disp_ck: dpll_disp_ck {
++		#clock-cells = <0>;
++		compatible = "ti,am3-dpll-no-gate-clock";
++		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
++		reg = <0x0498>, <0x0448>, <0x0454>, <0x044c>, <0x0450>;
++	};
 -- 
 2.17.1
 
