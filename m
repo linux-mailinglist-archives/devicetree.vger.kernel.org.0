@@ -2,133 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD8E3398867
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 13:29:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3F4939886C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 13:33:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230257AbhFBLbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 07:31:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54760 "EHLO
+        id S229695AbhFBLe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 07:34:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229886AbhFBLbh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 07:31:37 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BC2BC06174A
-        for <devicetree@vger.kernel.org>; Wed,  2 Jun 2021 04:29:54 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id k7so1480526pjf.5
-        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 04:29:54 -0700 (PDT)
+        with ESMTP id S229618AbhFBLez (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 07:34:55 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB98EC061574;
+        Wed,  2 Jun 2021 04:33:11 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id z137-20020a1c7e8f0000b02901774f2a7dc4so1139822wmc.0;
+        Wed, 02 Jun 2021 04:33:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=heitbaum.com; s=google;
-        h=date:from:to:cc:subject:message-id:reply-to:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=s9ut0Q0wZ8z+hzL9g91MMtw0Pf9H9Qkn8s5w5ouk4Co=;
-        b=HbqMhFoDB9o5ql6A94HCPeFWNEzFAaio81BcgTmSk5yu3kWBWsCpNElWsglMyc+8WH
-         FVKqPfyDWUEth9hSxW+8vYySSvftQPHXBOMMPkgFk9BNb3J7TeiWEwJtH1qOTaq5BNWy
-         uSvls9K0LJURCCRfbuutuNKDwIH8AFzhzZASg=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=YpPo5MBLVYvDn/sYz6mEnGVnyd3ShtD58F9/Awc2BpA=;
+        b=kVW6e8YiNo8g5jZzT0Bts2a0UncmcVWmaRW0M7i4O2D8xy+KvvmKD3sAyTGlgTG7kt
+         zw+1i5ixEjtOgD6RVEZzoDp2k/njyKH8jrPuyLIhznfIc7VHdbm7b2UtgWB1YssswsbU
+         ZuIG6NmLFgWN39RK9Ar7QVDrYpjbPUUYabz1oDvms+e9b8+DlXxRFI9wmNh2YngkXUdJ
+         lKbjZZb5/P4fv7UmikpEZgwofHnuLV55T8byBfhsgH8pQXC9ZYV2Vb3cRkrUOE4AYVqL
+         gLrtgaMlJQ6Zn10S60flrArFRJTPtIyhRQzDHlklc3hkveSxrwR+7R5zPjil+GV7TUdC
+         fYeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:reply-to
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=s9ut0Q0wZ8z+hzL9g91MMtw0Pf9H9Qkn8s5w5ouk4Co=;
-        b=SfL0rbkEHpBZxVUNBLO7cTC9pdCUDoHJkDozJmvJpm5LpVJ4Tfq727iI7RH2LQ14qL
-         OOE2i/0bX7a7o7CYTMpArheBLoVRLBPebF819KvxryGJJ6BwDqg1O8RPIfL7M0PIx86o
-         ls7ATNWDXhL6ygZ23MYucswEtWpBzEGlXInAtkpGv5+5Eemum667qhzgxckx9KdV474k
-         ays85lvxx6RVzX6fZnYiKgKf4FDQWNs7SPFvc3K7cIZ2mWF44p4fVJg3dlWEJaRMZwLm
-         U2hUnrRypoOtO/tSAFn/VdEhEEMlHMlCDCW9YjmaHhBWPzyC8b8vAK9nOJ4TuAMP+WbC
-         wtwQ==
-X-Gm-Message-State: AOAM531J06M2lcbPsjOcBUfopyTgZSIaEedtQsBl6HnDxZaupgDpWZYQ
-        GqfTCdHjSEoo2cAIBulHO3gpNlpKYLRc+iHtop8=
-X-Google-Smtp-Source: ABdhPJy5LratcIzMM1/wtvTH7ZK1dsqsXfEOTHho4XhCDhLPd4uo+to8MvlYmGO1Bn7vjmlNM5S5pg==
-X-Received: by 2002:a17:902:8c91:b029:ef:aa9a:af35 with SMTP id t17-20020a1709028c91b02900efaa9aaf35mr30543421plo.24.1622633392911;
-        Wed, 02 Jun 2021 04:29:52 -0700 (PDT)
-Received: from 5f9be87369f8 ([124.170.34.40])
-        by smtp.gmail.com with ESMTPSA id w26sm17660269pgl.50.2021.06.02.04.29.50
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 02 Jun 2021 04:29:52 -0700 (PDT)
-Date:   Wed, 2 Jun 2021 11:29:47 +0000
-From:   Rudi Heitbaum <rudi@heitbaum.com>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-Cc:     broonie@kernel.org, ezequiel@collabora.com, chenjh@rock-chips.com,
-        pgwipeout@gmail.com
-Subject: [PATCH 2/2 v2] regulator: fan53555: add tcs4526
-Message-ID: <20210602112943.GA119@5f9be87369f8>
-Reply-To: 20210602112452.GA98@5f9be87369f8
-References: <20210602112452.GA98@5f9be87369f8>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=YpPo5MBLVYvDn/sYz6mEnGVnyd3ShtD58F9/Awc2BpA=;
+        b=EQ5srSw1kWPtWDYSGwTu1zlNTwXyL1Fr2qTfirTvLMJeMMy2US4RaifgXpCHnPQlug
+         IPhHqDg+gPeSAmzOj66t3qaJ8CNz1LbKlUsZLPwZXROmk7ybKd8F21dsXqDE0PsUEy1w
+         cN7CFcmJZDeGz4yJ4c74QP4oxB1nPtq64fkekOUdRwtmy+gdfROXA6nRsrvVmiK2xVHv
+         pBpWGPrVopASJvhC1Ft9BJ5IqTa3fGcilH6uBO+pUy1fHmR/ggXC8qzcysyZve9YKdLu
+         KVX47oH3PD3cwDHrnPRc6Eq8q+N4ryvInqq91g7BW+BtKksyP4TO3FiXUbWHsHzC904B
+         ITvw==
+X-Gm-Message-State: AOAM5330sIpbDAkFCIt5WW6nB4X71cHVLyfw57jEWm5NZnbKm6fSXC49
+        ALxDdf88YJ65+xvMNOwHK4I=
+X-Google-Smtp-Source: ABdhPJwCYFHyPJ4mtPKQH6YK0yXLSoUWALZ/L3nQxpyEn8N3GhSJpqhz2Lz5eakMQ6A+sxu6jdDVOg==
+X-Received: by 2002:a7b:c002:: with SMTP id c2mr31535267wmb.118.1622633590311;
+        Wed, 02 Jun 2021 04:33:10 -0700 (PDT)
+Received: from ziggy.stardust ([46.6.149.244])
+        by smtp.gmail.com with ESMTPSA id r7sm3057110wma.9.2021.06.02.04.33.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Jun 2021 04:33:09 -0700 (PDT)
+Subject: Re: [PATCH 1/2] dt-bindings: PCI: mediatek-gen3: Add support for
+ MT8195
+To:     Chen-Yu Tsai <wenst@chromium.org>,
+        Jianjun Wang <jianjun.wang@mediatek.com>
+Cc:     Ryder Lee <ryder.lee@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Randy Wu <Randy.Wu@mediatek.com>, youlin.pei@mediatek.com
+References: <20210601024408.24485-1-jianjun.wang@mediatek.com>
+ <20210601024408.24485-2-jianjun.wang@mediatek.com>
+ <CAGXv+5G-8+ppafiUnqWm2UeiL+edHJ2zYZvU-S7mz_NdrM3YsA@mail.gmail.com>
+ <1622526594.9054.6.camel@mhfsdcap03>
+ <CAGXv+5GMTbC5TTgURhPAvxBEY18S6-T-BZ9CpXsO91Trim7TXw@mail.gmail.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <db62910b-febd-6cba-8a72-2bf718f7b110@gmail.com>
+Date:   Wed, 2 Jun 2021 13:33:07 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210602112452.GA98@5f9be87369f8>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <CAGXv+5GMTbC5TTgURhPAvxBEY18S6-T-BZ9CpXsO91Trim7TXw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For rk3399pro boards the tcs4526 regulator supports the vdd_gpu
-regulator. The tcs4526 regulator has a chip id of <0>.
-Add the compatibile tcs,tcs4526  
-
-without this patch, the dmesg output is:
-  fan53555-regulator 0-0010: Chip ID 0 not supported!
-  fan53555-regulator 0-0010: Failed to setup device!
-  fan53555-regulator: probe of 0-0010 failed with error -22
-with this patch, the dmesg output is:
-  vdd_gpu: supplied by vcc5v0_sys
-
-The regulators are described as:
-- Dedicated power management IC TCS4525
-- Lithium battery protection chip TCS4526
-
-This has been tested with a Radxa Rock Pi N10.
-
-Signed-off-by: Rudi Heitbaum <rudi@heitbaum.com>
----
- drivers/regulator/fan53555.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/drivers/regulator/fan53555.c b/drivers/regulator/fan53555.c
-index 2695be617373..ddab9359ea20 100644
---- a/drivers/regulator/fan53555.c
-+++ b/drivers/regulator/fan53555.c
-@@ -93,6 +93,10 @@ enum {
- 	TCS4525_CHIP_ID_12 = 12,
- };
- 
-+enum {
-+	TCS4526_CHIP_ID_00 = 0,
-+};
-+
- /* IC mask revision */
- enum {
- 	FAN53555_CHIP_REV_00 = 0x3,
-@@ -374,6 +375,7 @@ static int fan53555_voltages_setup_silergy(struct fan53555_device_info *di)
- {
- 	switch (di->chip_id) {
- 	case TCS4525_CHIP_ID_12:
-+	case TCS4526_CHIP_ID_00:
- 		di->slew_reg = TCS4525_TIME;
- 		di->slew_mask = TCS_SLEW_MASK;
- 		di->slew_shift = TCS_SLEW_MASK;
-@@ -564,6 +566,9 @@ static const struct of_device_id __maybe_unused fan53555_dt_ids[] = {
- 	}, {
- 		.compatible = "tcs,tcs4525",
- 		.data = (void *)FAN53526_VENDOR_TCS
-+	}, {
-+		.compatible = "tcs,tcs4526",
-+		.data = (void *)FAN53526_VENDOR_TCS
- 	},
- 	{ }
- };
-@@ -672,6 +677,9 @@ static const struct i2c_device_id fan53555_id[] = {
- 	}, {
- 		.name = "tcs4525",
- 		.driver_data = FAN53526_VENDOR_TCS
-+	}, {
-+		.name = "tcs4526",
-+		.driver_data = FAN53526_VENDOR_TCS
- 	},
- 	{ },
- };
--- 
-2.29.2
 
 
+On 01/06/2021 08:07, Chen-Yu Tsai wrote:
+> Hi,
+> 
+> On Tue, Jun 1, 2021 at 1:50 PM Jianjun Wang <jianjun.wang@mediatek.com> wrote:
+>>
+>> On Tue, 2021-06-01 at 11:53 +0800, Chen-Yu Tsai wrote:
+>>> Hi,
+>>>
+>>> On Tue, Jun 1, 2021 at 10:50 AM Jianjun Wang <jianjun.wang@mediatek.com> wrote:
+>>>>
+>>>> MT8195 is an ARM platform SoC which has the same PCIe IP with MT8192.
+>>>
+>>> Based on what I'm seeing internally, there seems to be some inconsistency
+>>> across the MediaTek platform on whether new compatible strings should be
+>>> introduced for "fully compatible" IP blocks.
+>>>
+>>> If this hardware block in MT8195 is "the same" as the one in MT8192, do we
+>>> really need the new compatible string? Are there any concerns?
+>>
+>> Hi Chen-Yu,
+>>
+>> It's ok to reuse the compatible string with MT8192, but I think this
+>> will be easier to find which platforms this driver is compatible with,
+>> especially when we have more and more platforms in the future.
+> 
+> If it's just for informational purposes, then having the MT8192 compatible
+> as a fallback would work, and we wouldn't need to make changes to the driver.
+> This works better especially if we have to support multiple operating systems
+> that use device tree.
+> 
+> So we would want
+> 
+>     "mediatek,mt8195-pcie", "mediatek,mt8192-pcie"
+> 
+> and
+> 
+>     "mediatek,mt8192-pcie"
+> 
+> be the valid options.
+> 
+> Personally I'm not seeing enough value to justify adding the compatible string
+> just for informational purposes though. One could easily discern which hardware
+> is used by looking at the device tree.
+> 
+
+I agree, if no differences between the two chips are known, adding a binding
+withe new compatible and a fallback is a good thing. If we later on realize that
+mt8195 PCI block has differences, we can add the matching to the driver.
+
+Regards,
+Matthias
+
+> 
+> Regards
+> ChenYu
+> 
+> 
+>> Thanks.
+>>>
+>>>
+>>> Thanks
+>>> ChenYu
+>>>
+>>>
+>>>> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml | 4 +++-
+>>>>  1 file changed, 3 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+>>>> index e7b1f9892da4..d5e4a3e63d97 100644
+>>>> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+>>>> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+>>>> @@ -48,7 +48,9 @@ allOf:
+>>>>
+>>>>  properties:
+>>>>    compatible:
+>>>> -    const: mediatek,mt8192-pcie
+>>>> +    oneOf:
+>>>> +      - const: mediatek,mt8192-pcie
+>>>> +      - const: mediatek,mt8195-pcie
+>>>>
+>>>>    reg:
+>>>>      maxItems: 1
+>>>> --
+>>>> 2.18.0
+>>>> _______________________________________________
+>>>> Linux-mediatek mailing list
+>>>> Linux-mediatek@lists.infradead.org
+>>>> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+>>
