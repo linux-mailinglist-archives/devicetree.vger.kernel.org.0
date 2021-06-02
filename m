@@ -2,143 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EF66398E71
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 17:20:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F870398E74
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 17:21:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232079AbhFBPWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 11:22:30 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:18831 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232425AbhFBPWS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 11:22:18 -0400
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 02 Jun 2021 08:20:32 -0700
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 02 Jun 2021 08:20:31 -0700
-X-QCInternal: smtphost
-Received: from dikshita-linux.qualcomm.com ([10.204.65.237])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 02 Jun 2021 20:50:06 +0530
-Received: by dikshita-linux.qualcomm.com (Postfix, from userid 347544)
-        id 3B487211A6; Wed,  2 Jun 2021 20:50:05 +0530 (IST)
-From:   Dikshita Agarwal <dikshita@codeaurora.org>
-To:     andy.gross@linaro.org, david.brown@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        vgarodia@codeaurora.org, stanimir.varbanov@linaro.org,
-        Dikshita Agarwal <dikshita@codeaurora.org>
-Subject: [PATCH v2] arm64: dts: qcom: sc7280: Add venus DT node
-Date:   Wed,  2 Jun 2021 20:50:00 +0530
-Message-Id: <1622647200-1487-1-git-send-email-dikshita@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S230456AbhFBPW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 11:22:57 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.53]:24248 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230479AbhFBPW4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 11:22:56 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1622647265; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=FcsDN7GmZwwYCQCaL609+lS+YWE1rX1tMHH+yc9meC2GVwCt0MhzFLscvLbbajY6ji
+    5gbVhIrkGtDYQkaWUzErOmwfawIrk9rSQQJOLeL/kcdFXezLCss3gIdU2YhzvUEba0Fg
+    tB4kEKbS2iyKKstvNm7uQTBN8izIlyAR7y9spPFEdIYmWf9HMrGN+TuPo/35lXlcmjae
+    7a0Ato65rNKcqTmb2Uou6+0InlVcoYtxqs+BD5nDB0uajkNV7HN1ysVPQD0ICl9j93Ii
+    gp0IMI0/C3sRXv3JcPLxWqY/0svyxSjHzpsKAQJolAvHW/6236GMb6SZ2uv03SxvY5OC
+    Y19w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1622647265;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=H1gWGyE6aKr6MZYG5AS5yi8wLNX85LARR9MiEBFffXk=;
+    b=BYgfMxlOpoeh/lbVLHFG0u9lbxPn3H+tupF5w/+dG+gRN/ksXSficF9EDyakqr7iI8
+    obd/dK5fzMKW8V0KaSNrUS/o7p3qOl/oTmytPaRbwVyiINuHjfJCcY1l6tr2wj/BBmWx
+    trq6GMnd7Zq4+tnB1iawHI7ZnrxymRmxtWj8hp2CE6gU7OdpnioXLWAZ4RjOio9mIMjD
+    WbIXrFWyDIoTO7cA2szcDbvP3CHyjkQaSWJiTrFcK7y8rIzmjWdUJIQy58QReYrleYcr
+    W6MaVluGIlc+d1QEYmSx1x4hHZ/0AEh3pJYRihkneJvu5F5WJZEngYBH6VxBxUkEXCua
+    yzwA==
+ARC-Authentication-Results: i=1; strato.com;
+    dkim=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1622647265;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=H1gWGyE6aKr6MZYG5AS5yi8wLNX85LARR9MiEBFffXk=;
+    b=DKk1X0r7oBmqWVVFasJNT6UU3Ad6XU5qBH6sse91drViVF1BiHE8VlhshIULDTQS/g
+    mrFfEcz/wOSXCAgNYoq4Rp6+tlApzSPK3FEajmc5ah1s6UL5Slws+b8pLb5eMFEriipa
+    jHresoQJC2GQo9l/MIS+5++SSUH7RcNnjAolENYG0/oWJfF0rA1Il1+V9rSI2acGijoZ
+    sgc1eB/0yGQbi4xHPOu6hChQifCXzApYUaJQaSHtj3vjGLNBqb69YEolxhGTfzeN031p
+    dnYUKzI5HXIKbaL8jUlbBP3oyBxZNlCkv2aUVSjWyS6z1BCHFRZjkG1HiPIZxtOyeAM6
+    eObA==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j6IcjHBg=="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.27.2 DYNA|AUTH)
+    with ESMTPSA id y01375x52FL43Td
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Wed, 2 Jun 2021 17:21:04 +0200 (CEST)
+Date:   Wed, 2 Jun 2021 17:20:57 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Chanwoo Choi <cwchoi00@gmail.com>
+Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v3 2/3] extcon: sm5502: Refactor driver to use
+ chip-specific struct
+Message-ID: <YLeh2Q1q3643iFkZ@gerhold.net>
+References: <20210601200007.218802-1-stephan@gerhold.net>
+ <20210601200007.218802-3-stephan@gerhold.net>
+ <b3a9eed8-0d7c-e935-36d4-13918f5b7b21@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b3a9eed8-0d7c-e935-36d4-13918f5b7b21@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DT entries for the sc7280 venus encoder/decoder.
+On Thu, Jun 03, 2021 at 12:13:18AM +0900, Chanwoo Choi wrote:
+> On 21. 6. 2. 오전 5:00, Stephan Gerhold wrote:
+> > Prepare for supporting SM5504 in the extcon-sm5502 driver by replacing
+> > enum sm5504_types with a struct sm5504_type that stores the chip-specific
+> > definitions. This struct can then be defined separately for SM5504
+> > without having to add if (type == TYPE_SM5504) everywhere in the code.
+> > 
+> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> > ---
+> > Changes in v3: New patch to simplify diff on next patch
+> > ---
+> >   drivers/extcon/extcon-sm5502.c | 64 +++++++++++++++++++++-------------
+> >   drivers/extcon/extcon-sm5502.h |  4 ---
+> >   2 files changed, 40 insertions(+), 28 deletions(-)
+> > 
+> > diff --git a/drivers/extcon/extcon-sm5502.c b/drivers/extcon/extcon-sm5502.c
+> > index 9f40bb9f1f81..951f6ca4c479 100644
+> > --- a/drivers/extcon/extcon-sm5502.c
+> > +++ b/drivers/extcon/extcon-sm5502.c
+> > @@ -40,17 +40,13 @@ struct sm5502_muic_info {
+> >   	struct i2c_client *i2c;
+> >   	struct regmap *regmap;
+> > +	const struct sm5502_type *type;
+> >   	struct regmap_irq_chip_data *irq_data;
+> > -	struct muic_irq *muic_irqs;
+> > -	unsigned int num_muic_irqs;
+> >   	int irq;
+> >   	bool irq_attach;
+> >   	bool irq_detach;
+> >   	struct work_struct irq_work;
+> > -	struct reg_data *reg_data;
+> > -	unsigned int num_reg_data;
+> > -
+> >   	struct mutex mutex;
+> >   	/*
+> > @@ -62,6 +58,17 @@ struct sm5502_muic_info {
+> >   	struct delayed_work wq_detcable;
+> >   };
+> > +struct sm5502_type {
+> > +	struct muic_irq *muic_irqs;
+> > +	unsigned int num_muic_irqs;
+> > +	const struct regmap_irq_chip *irq_chip;
+> > +
+> > +	struct reg_data *reg_data;
+> > +	unsigned int num_reg_data;
+> > +
+> > +	int (*parse_irq)(struct sm5502_muic_info *info, int irq_type);
+> > +};
+> > +
+> >   /* Default value of SM5502 register to bring up MUIC device. */
+> >   static struct reg_data sm5502_reg_data[] = {
+> >   	{
+> > @@ -502,11 +509,11 @@ static irqreturn_t sm5502_muic_irq_handler(int irq, void *data)
+> >   	struct sm5502_muic_info *info = data;
+> >   	int i, irq_type = -1, ret;
+> > -	for (i = 0; i < info->num_muic_irqs; i++)
+> > -		if (irq == info->muic_irqs[i].virq)
+> > -			irq_type = info->muic_irqs[i].irq;
+> > +	for (i = 0; i < info->type->num_muic_irqs; i++)
+> > +		if (irq == info->type->muic_irqs[i].virq)
+> > +			irq_type = info->type->muic_irqs[i].irq;
+> > -	ret = sm5502_parse_irq(info, irq_type);
+> > +	ret = info->type->parse_irq(info, irq_type);
+> 
+> Looks good to me. But there is only one comment.
+> Need to check the 'parse_irq' as following:
+> 
+> If you agree this suggestion, I'll apply with following changes by myself:
+> 
+> 	if (!info->type->parse_irq) {
+> 		dev_err(info->dev, "failed to handle irq due to parse_irq\n",
+> 		return IRQ_NONE;
+> 	}
+> 
+> 
 
-Co-developed-by: Mansur Alisha Shaik <mansur@codeaurora.org>
-Signed-off-by: Dikshita Agarwal <dikshita@codeaurora.org>
+This condition should be impossible, since .parse_irq is set for both
+SM5502 and SM5504:
 
-change since v1:
- - added rpmh power domain and opp table.
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 75 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 75 insertions(+)
+static const struct sm5502_type sm5502_data = {
+	/* ... */
+	.parse_irq = sm5502_parse_irq,
+};
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 4c44a52..4982f96 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -60,6 +60,11 @@
- 			no-map;
- 			reg = <0x0 0x80b00000 0x0 0x100000>;
- 		};
-+
-+		video_mem: memory@8b200000 {
-+			reg = <0x0 0x8b200000 0x0 0x500000>;
-+			no-map;
-+		};
- 	};
- 
- 	cpus {
-@@ -850,6 +855,76 @@
- 			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		venus: video-codec@0aa00000 {
-+			compatible = "qcom,sc7280-venus";
-+			reg = <0 0x0aa00000 0 0xd0600>;
-+			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			clocks = <&videocc VIDEO_CC_MVSC_CORE_CLK>,
-+				 <&videocc VIDEO_CC_MVSC_CTL_AXI_CLK>,
-+				 <&videocc VIDEO_CC_VENUS_AHB_CLK>,
-+				 <&videocc VIDEO_CC_MVS0_CORE_CLK>,
-+				 <&videocc VIDEO_CC_MVS0_AXI_CLK>;
-+			clock-names = "core", "bus", "iface",
-+				      "vcodec_core", "vcodec_bus";
-+
-+			power-domains = <&videocc MVSC_GDSC>,
-+					<&videocc MVS0_GDSC>;
-+					<&rpmhpd SC7280_CX>;
-+			power-domain-names = "venus", "vcodec0", "cx";
-+			operating-points-v2 = <&venus_opp_table>;
-+
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_VENUS_CFG 0>,
-+					<&mmss_noc MASTER_VIDEO_P0 0 &mc_virt SLAVE_EBI1 0>;
-+			interconnect-names = "cpu-cfg", "video-mem";
-+
-+			iommus = <&apps_smmu 0x2180 0x20>,
-+				 <&apps_smmu 0x2184 0x20>;
-+			memory-region = <&video_mem>;
-+
-+			video-decoder {
-+				compatible = "venus-decoder";
-+			};
-+
-+			video-encoder {
-+				compatible = "venus-encoder";
-+			};
-+
-+			video-firmware {
-+				iommus = <&apps_smmu 0x21a2 0x0>;
-+			};
-+
-+			venus_opp_table: venus-opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-133330000 {
-+					opp-hz = /bits/ 64 <133330000>;
-+					required-opps = <&rpmhpd_opp_low_svs>;
-+				};
-+
-+				opp-240000000 {
-+					opp-hz = /bits/ 64 <240000000>;
-+					required-opps = <&rpmhpd_opp_svs>;
-+				};
-+
-+				opp-335000000 {
-+					opp-hz = /bits/ 64 <335000000>;
-+					required-opps = <&rpmhpd_opp_svs_l1>;
-+				};
-+
-+				opp-424000000 {
-+					opp-hz = /bits/ 64 <424000000>;
-+					required-opps = <&rpmhpd_opp_nom>;
-+				};
-+
-+				opp-460000000 {
-+					opp-hz = /bits/ 64 <460000000>;
-+					required-opps = <&rpmhpd_opp_turbo>;
-+				};
-+			};
-+
-+		};
-+
- 		videocc: clock-controller@aaf0000 {
- 			compatible = "qcom,sc7280-videocc";
- 			reg = <0 0xaaf0000 0 0x10000>;
--- 
-2.7.4
+static const struct sm5502_type sm5504_data = {
+	/* ... */
+	.parse_irq = sm5504_parse_irq,
+};
 
+Which failure case are you trying to handle with that if statement?
+
+Thanks!
+Stephan
