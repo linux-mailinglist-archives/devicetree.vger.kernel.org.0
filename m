@@ -2,98 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1518398A49
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 15:18:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB28C398A67
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 15:27:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229843AbhFBNUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 09:20:36 -0400
-Received: from mail-ua1-f51.google.com ([209.85.222.51]:33436 "EHLO
-        mail-ua1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229656AbhFBNUf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 09:20:35 -0400
-Received: by mail-ua1-f51.google.com with SMTP id l12so1295418uai.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 06:18:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=uH5yxU+BzRF90wWQwBO4VM5milL3akGJBti5j4uOIZE=;
-        b=s6OLJzCVfowSoFK+Kn+Dhlq9dbdZvw299TRcMkIdw5Yuw3QzvKXt83rm00ZYmdAzHh
-         /1dzY+TZZYI7BxQvrF0FDyUZF9EMiKzASt4L13dLl6SCkUavqGGqBrk3O90KyRB0h+lE
-         5vqtpcRDiNuA4hyi2GEWpaPREnpTT8jFXAL3Ypr8EXcRsTLjM2LEkV+hLkRG4wNmfK+c
-         hawPsG2yo23cDzABvRJQmn8X+GmEu9mJER+1cYC3lQAxQ/foh9xbWloSO7ggqM4k6Djv
-         ehNToKgNW35e/8OEm0Hun2TjV2n0awAldfNx1NCqo7S6PU2Wlxzae8ooaKznyMLri193
-         rSiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=uH5yxU+BzRF90wWQwBO4VM5milL3akGJBti5j4uOIZE=;
-        b=Ugfgd5MnMkuSChdYRQD87bcH4n8sFWz2yYy1XnaQU3xagqMbEhSD6s+cxEvtQ7Eq2z
-         M2irvUjvFby8atNdZF5Vy2NAOGrSRvHTlfK7EcL1+1QM+kgnC1jutV7ll5S3XHRDjpXY
-         IT42RmLqHm/9vR2M+6PCo+4D7IYyZHRoVI7ox9ZocyJY2i3hi5yPVCD9ZF6YnBd2gYMy
-         Wa32cWsJg46T+U+P/K0SQ6J26etd4EvrEjS4cHwOuBTN1JF5X++mzLxZEf+Wnnp7eCU8
-         f/EB7veimICJmn6S2ulrAcOW5maBdl4UFjRpc2slm9j/JSnGmFOUEUmlGyMTkwS7xxkr
-         bmOw==
-X-Gm-Message-State: AOAM531S6nRFMzi2ImfpaxppmZYFYA1fx+3xwA4jA2J/tTC+GDexbl2e
-        UxyOZT9sbEtzm2pYB2xm85eO63LDDZ2uI/+xk2W9bA==
-X-Google-Smtp-Source: ABdhPJyvipLZfILhu87oS/az2/HBFVuElK4GQ6Srx/B1cgHvOyXaym3QLEigUlS/OUkA08r+m8+miEhdsQUfZ9i5/94=
-X-Received: by 2002:ab0:100f:: with SMTP id f15mr21456136uab.100.1622639870335;
- Wed, 02 Jun 2021 06:17:50 -0700 (PDT)
+        id S229654AbhFBN3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 09:29:18 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:50759 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229606AbhFBN3R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 09:29:17 -0400
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 0A1DC58080F;
+        Wed,  2 Jun 2021 09:27:34 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Wed, 02 Jun 2021 09:27:34 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:content-transfer-encoding:in-reply-to; s=fm3; bh=t
+        EtNI5XfZ6vhm4RT4AXBLdGYkWoF8xb2B7jzYSkFXwQ=; b=XzA6utgrMy5gqmgND
+        Pgl6Oapfn8N0hQa9AFoi/7TdiBaJAcJmRMCFVh6csYA8DVV6MP8Sws6XfW+FmmAy
+        xzQzgrS1G0UUYGwPxzJqnq7WB7EpbsxJf9XJiGEm4CJYsx5zXo5bUlmxIjwYzAqI
+        TIp8kQdIUuw/ZgwSJt0oRU2/vf67cGOt/zkPr9clb2iQAd27HnTlujVOob4JKIhH
+        qgpcfT+Z1BxZ0MTBkWW7qWO1bcT/dEIARvoUs8HZBpY+6C5FZCK2T29ktPu2ga2M
+        +owQE0g1M/x5yvH5tDhL6xl5JFIkCV8tJusRIzETL3MtcvieqrjRGB1ZdH9a3Uyr
+        PYx9A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; bh=tEtNI5XfZ6vhm4RT4AXBLdGYkWoF8xb2B7jzYSkFX
+        wQ=; b=ZuNBU3QOJi8+Un8XIIGXqEvx2f22ZUavZeJ3aWhLT3CGYbo4bEPNqJZ+Q
+        9G10DoKGLJjFhDd2zjnwdN+PkqX+PvPd2Wk3aKrA9Qtefujl0a8YC4FbmA54C6OD
+        VhFisBmd/OxxnDh8MNNNsWGQCMcyKpjZcimO9nUd7Sivw5F35D+EGPDWF5OCSx80
+        RcMLWd8APZCpaa93x2xPqXxUyOiCY+G6foJEwEr/fQ66I0ybsufsJxcRRn9//jWI
+        cZtySYkLJm8y7CBggyOrHO8n0M0EBHsC38BdFle36/+O5YK7WaoXY7HpucoRqCZa
+        1RPWwulWEtFa4ZjYcKmuI8l1n0uSg==
+X-ME-Sender: <xms:Q4e3YH6HxDHcMJLxVFk3ubMRTk6kmBVLHHdJuFLp8bEmk9gK3lhvRg>
+    <xme:Q4e3YM4AhzYT3Dl793iNtcVbNThbFNjhxOcZulnsi-dF9SDUu9IoDoWolrvkCSixx
+    f6g-eZsJoE7hkta7yY>
+X-ME-Received: <xmr:Q4e3YOfDfNtMQQ2sGJ8X1uHGlOet52fQsfV9jgn9kG-eg5dtsH9lHj1vXkKebfywxSOxOE7k83hXyC8o4vnJsqEERMn0aNtirJLe>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdeljedgieehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtugfgjgesthhqredttddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpefgjeettdejgffgffdvteeutdehtdehgeehueetkeefgefhtdetjeekledu
+    gedvudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:Q4e3YIJf-LuxWGaE89vINCRk2sw3jBsbz9IlwawJCIA0c63jKkLCOg>
+    <xmx:Q4e3YLI6qzJFFZm6NIU7dAh49s2rTOqVc4oy2wNy-meQSOczwZoCPw>
+    <xmx:Q4e3YByGomI-AKkDrcqoelcxwDw1Qtua2_A7CPCNnjnvk5LZpBlzaA>
+    <xmx:RYe3YM5tYXluYgIaDHX_8VitHSvFxXAOqHzGdWouLhCtpbe_MFIg3Q>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 2 Jun 2021 09:27:31 -0400 (EDT)
+Date:   Wed, 2 Jun 2021 15:27:28 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Benoit Parrot <bparrot@ti.com>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, dmaengine@vger.kernel.org,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH v2 17/18] phy: dt-bindings: cdns,dphy: make clocks
+ optional
+Message-ID: <20210602132728.5lv5n2mgap2o7eyx@gilmour>
+References: <20210526152308.16525-1-p.yadav@ti.com>
+ <20210526152308.16525-18-p.yadav@ti.com>
 MIME-Version: 1.0
-References: <20210602112321.2241566-1-anup.patel@wdc.com> <20210602112321.2241566-6-anup.patel@wdc.com>
-In-Reply-To: <20210602112321.2241566-6-anup.patel@wdc.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 2 Jun 2021 15:17:13 +0200
-Message-ID: <CAPDyKFq2tvvAD=2RiePZzce=+OsDaxLWqz+90pTKjTTzqVqcHQ@mail.gmail.com>
-Subject: Re: [PATCH v5 5/8] cpuidle: Factor-out power domain related code from
- PSCI domain driver
-To:     Anup Patel <anup.patel@wdc.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Sandeep Tripathy <milun.tripathy@gmail.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Liush <liush@allwinnertech.com>,
-        Anup Patel <anup@brainfault.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210526152308.16525-18-p.yadav@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Jun 2021 at 13:24, Anup Patel <anup.patel@wdc.com> wrote:
->
-> The generic power domain related code in PSCI domain driver is largely
-> independent of PSCI and can be shared with RISC-V SBI domain driver
-> hence we factor-out this code into dt_idle_genpd.c and dt_idle_genpd.h.
->
-> Signed-off-by: Anup Patel <anup.patel@wdc.com>
+Hi,
 
-Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+On Wed, May 26, 2021 at 08:53:07PM +0530, Pratyush Yadav wrote:
+> The clocks are not used by the DPHY when used in Rx mode so make them
+> optional.
+>=20
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+>=20
+> ---
+>=20
+> Changes in v2:
+> - Re-order subject prefixes.
+>=20
+>  Documentation/devicetree/bindings/phy/cdns,dphy.yaml | 2 --
+>  1 file changed, 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/phy/cdns,dphy.yaml b/Docum=
+entation/devicetree/bindings/phy/cdns,dphy.yaml
+> index b90a58773bf2..3bb5be05e825 100644
+> --- a/Documentation/devicetree/bindings/phy/cdns,dphy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/cdns,dphy.yaml
+> @@ -33,8 +33,6 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> -  - clocks
+> -  - clock-names
 
-A small nitpick below.
+As far as I can remember from the cadence documentation, those clocks
+were required. I guess this is the integration that provides a few fixed
+clocks?
 
-[...]
-
-> +EXPORT_SYMBOL_GPL(dt_idle_pd_free);
-
-Do we really need to export this symbol? Looks like there are only
-built-in cpuidle drivers that are going to use it. At least for now.
-
-As a matter of fact, the same comment applies to all cases of
-EXPORT_SYMBOL_GPL from $subject patch. Can we drop all of them?
-
-[...]
-
-Kind regards
-Uffe
+Maxime
