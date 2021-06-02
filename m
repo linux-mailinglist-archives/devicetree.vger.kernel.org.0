@@ -2,192 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0968239881B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 13:24:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28B9D39882B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 13:24:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232144AbhFBL0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 07:26:23 -0400
-Received: from esa1.hgst.iphmx.com ([68.232.141.245]:27647 "EHLO
-        esa1.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232169AbhFBL0T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 07:26:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1622633077; x=1654169077;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=1uLrgPfppmFH2vM6/L/JqMHBvAu4tkt7ZHOK+EuhRKU=;
-  b=mITV/XyaSq6O4a9XOCrBn/mw9mlKiwBEdWqJcghCy2tu2WWGmw6qITtG
-   Z6fY8+W7ZRd0L7cKxIIQKi6njZuv5zwnEwGpySOWv1FvVcgYf+gD1ISEH
-   NKxMxabvZHecGwZQfWrlgmuKCELlbCX3Lg9PmtMVnzSD53UtfRQe+v8ra
-   dGJFh0gO5bks/KzO/StT3DG2xAfhuIU8WdEbGc94xvsYStP9sonKb6OJG
-   43ib6+3l9ClGjFdjRnVmN/i3wpQ7F+xKre3LoSf4y/gH3AznoOP8g01U9
-   38tC6OB2M/zvqGLjg0RXLTgNuVQ0y1Vpfc8L09O7H+ymDuTcrCsGVKGM3
-   g==;
-IronPort-SDR: etfxiaSgzIO/DfEo1H3PVrltS0flITHztoPp4IZMr0lb5B1cqPP6k/ZX4wr6DWfU6EvG+Dm7II
- JUAxL5WirOYHNANYhH5r9G0ZnaxdKab55iZR+Cj1kM33gAulD1tPRDfIeBm14UDe3kwh0nZbDf
- NfkCh9bIuSDS8Dj4xlqwkKBO0FDNoic78D3XJEIkqiZeNaXP1CQwF+JinIo3Vod1wPZWBj1iyf
- YN2scG3VHKAQwytd31ASKXecNtiOpwrms2WrXjMO9Luipq+z25UrkA3kjKpKsx525eaosgvNcm
- vxk=
-X-IronPort-AV: E=Sophos;i="5.83,242,1616428800"; 
-   d="scan'208";a="281803690"
-Received: from mail-bn8nam08lp2046.outbound.protection.outlook.com (HELO NAM04-BN8-obe.outbound.protection.outlook.com) ([104.47.74.46])
-  by ob1.hgst.iphmx.com with ESMTP; 02 Jun 2021 19:24:34 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fgTi4cQncSvrxs4rzFpnYuFKwvl9lNBc+V8+HXn2RXLSpCFsR2dbBFUO4ROC6RllwfTLTiDviA0/57hXoxxnJs6SWullqLOlPx3M6O2HocRRxQ9Qrke3W17RZWdXgCEJEindgGfF7Wtk4CndzD72IZnjd1+UrnjorobR9vpDDfPRXvh653K1AocfShrj1XDNx7oM7mVxF4nMbdVirbdPeM2CuUBbe6y3ww7QH1bwQ5NeOsOrijCKy37uaw6g23GzS2fMtVOI1VgX8W/3500HYsJLfW049oJMpS2dfXbu1e54cCT+Itz8R+X3T0YrWoTShRPBl6/tcrWrmSl+wywK/g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rip7XFR0BFk/jcVrblzy2OjHhUZycRZYHU6/NmyDcb8=;
- b=MuQuxOECPdfY9y9cEIv3MUDLtAcHj6TC+1f4D2ZYIW6xUjzHD8FXHW+ELXgWwDgxnHK3uzUO+7hC+c72//+mgfyMGLCgjoYi9zegIHOWW0tjK2IRHBMkSzQNNUAaVcMQw4PKK5tJfyZk4/6asAZjAE7RqduRxx1a8JBxR0WOBmJSDaWKGkiVWTAyI11c4f6xmZQwXhgD1MmIx8f3wK2EM23CrJJOVyS9pssNO6bSkjm/bz5X2fJdPNlJtz5t+wbw3UGLMG4YQDkFErjNw1moU6fHW3e5HH0fJwDeaUuaTE+EzP7ungDoUP2Fy3A1VJIf278+fccWKXgb/8p65aiEKw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wdc.com; dmarc=pass action=none header.from=wdc.com; dkim=pass
- header.d=wdc.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rip7XFR0BFk/jcVrblzy2OjHhUZycRZYHU6/NmyDcb8=;
- b=bv2ykx495AZ6Tl/Zq9h125bTIQ6N0rA3sX4S/hLs9oWW6n7D6dHA76+mBsN1R2/OP+tvG9PutarIL1rsPeupIYIhPm5WmDsMIXF7mJUFf2I1SLJlxg6C+EGblo6kxdxV5249li6JewSKHG/5neIe78uNPh0BOYhVw683KZPFmrU=
-Authentication-Results: dabbelt.com; dkim=none (message not signed)
- header.d=none;dabbelt.com; dmarc=none action=none header.from=wdc.com;
-Received: from CO6PR04MB7812.namprd04.prod.outlook.com (2603:10b6:303:138::6)
- by CO6PR04MB7747.namprd04.prod.outlook.com (2603:10b6:5:35b::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.20; Wed, 2 Jun
- 2021 11:24:33 +0000
-Received: from CO6PR04MB7812.namprd04.prod.outlook.com
- ([fe80::a153:b7f8:c87f:89f8]) by CO6PR04MB7812.namprd04.prod.outlook.com
- ([fe80::a153:b7f8:c87f:89f8%8]) with mapi id 15.20.4195.021; Wed, 2 Jun 2021
- 11:24:33 +0000
-From:   Anup Patel <anup.patel@wdc.com>
-To:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>
-Cc:     Sandeep Tripathy <milun.tripathy@gmail.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Liush <liush@allwinnertech.com>,
-        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Anup Patel <anup.patel@wdc.com>
-Subject: [PATCH v5 8/8] RISC-V: Enable RISC-V SBI CPU Idle driver for QEMU virt machine
-Date:   Wed,  2 Jun 2021 16:53:21 +0530
-Message-Id: <20210602112321.2241566-9-anup.patel@wdc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210602112321.2241566-1-anup.patel@wdc.com>
-References: <20210602112321.2241566-1-anup.patel@wdc.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [122.179.70.115]
-X-ClientProxiedBy: MAXPR01CA0098.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a00:5d::16) To CO6PR04MB7812.namprd04.prod.outlook.com
- (2603:10b6:303:138::6)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from wdc.com (122.179.70.115) by MAXPR01CA0098.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:5d::16) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.20 via Frontend Transport; Wed, 2 Jun 2021 11:24:28 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 860ad3d8-7a80-4f86-eb4d-08d925b8fee0
-X-MS-TrafficTypeDiagnostic: CO6PR04MB7747:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CO6PR04MB7747F6008D74215BA5C0BBCD8D3D9@CO6PR04MB7747.namprd04.prod.outlook.com>
-WDCIPOUTBOUND: EOP-TRUE
-X-MS-Oob-TLC-OOBClassifiers: OLM:849;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cFWz8SXSTrDXa4sO9fqiZ7xX9bONDemirVBedKj0QT1SG2F4pl8O9cfce/Op0E33vr4UBbp0PH+asSCVP68WMyxT9g2PxU0Y1F+Trm+2euG1lpy5L+OVADoP+JWudU87WBBdwDkxMp40feKochAcv27WPsmzasT62YCkv6qVzGduEIhr86ZdlHFJ8SF7WZwAfS6nlXfp+8UVChQ+3mzOlZwgzg9i2VdTQ/K9wbxTvn+HRHbxcPhGagi//9cS7UQ+XFZYU4FPaXAatrOsr47VMN2N1vtnnrnz7rqpM3EcbW38ad6tP518Pw2Yw88RumgRSv+tpPS+tnbfHd/h4qxk9zDTlzzSy/JISk8uDzRADOUOn6mK/k7TfAWO8YEH8fY8q7aRBfv9NdE7aNZdwABQ1VLN5BClmKUMLIxahQJmHAx2zC75BQ8Kpkq+py9GS7PFBlRNWy/6y0inb4EMa1q1SWHKShRc/1JYD+5YzonZ9uzTwZsCzMYEqSo8//HEZZHrGFPxrXgDdq9yoN7gnNDPTAXtOp9GXytj0Zi0dXopbTHJcrx1blxp0sm0kvPvHHFsmxXfqRqrbjj934ayzAqoLcEhDGcxP3KX6S3gDrxR1uIhNmtAEiLHfOkpCDFiey7v9ECWYsxwodcJjE4M2ONGhQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR04MB7812.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(346002)(39860400002)(396003)(376002)(366004)(52116002)(7696005)(36756003)(8936002)(86362001)(38100700002)(6666004)(66476007)(55016002)(110136005)(316002)(54906003)(26005)(4326008)(956004)(44832011)(1076003)(2616005)(8886007)(478600001)(186003)(16526019)(7416002)(66946007)(5660300002)(8676002)(38350700002)(2906002)(66556008);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?Z6m+GNnltHP2hMIdwnULQAVEa41+FlZhQVhoZ1VLsIVvcY6HpdF6KhtFdB/C?=
- =?us-ascii?Q?m+/1tXbZYzknbhsSGemwD3wxBsGuT3uUzN7bbnNQG5RLkynOvCGajNeyUchS?=
- =?us-ascii?Q?23fUKE1Qbbl5JnYOCEf6shzP7xTuqFyw2pJQ7pEHk4dlqmaChJj+dh2a2GdM?=
- =?us-ascii?Q?P5YHOQAw6qyghXGt4hCCgrGp6ZV5+R9bNOAyEaG/qTanjIZQYIrpRVQ0lpEi?=
- =?us-ascii?Q?ffOuJSNJNyUJZf95l+6+y3sA5REsfkOYjJw+UFpYUHu9Mwm0fE2hcCLoAskh?=
- =?us-ascii?Q?XskaAvnYZlyxPOrjSl9UxXdBYmYlYf96xCCxntT5OJ5dQZssiYFqxbEADO2I?=
- =?us-ascii?Q?w4UM61AyPNDNvfh3L1kqRH6qqY3UBvSY5zDVbiCJZ3MqXh0iRxlfznRuHI/R?=
- =?us-ascii?Q?nNV9O8Rogai3H1QXixwY0lE9ZthUA5dFDtuiOlpDFCI794BM4HyXANV9h0OZ?=
- =?us-ascii?Q?q3pdKTMMaD2xE6LSuTd97+oxn0HphcxT0XMEHEGO0Jb08sQ3xwdPvLTYGEC0?=
- =?us-ascii?Q?YBvquE+qyMyQO4V2mYKcVd5XhNgObCmJnStaT8EAxFnDbDMgiMGVS46vnEkj?=
- =?us-ascii?Q?hsWhitI6WSZ452x8Vb/Xdmtk9Xp3Z3BWjE1MtijwgaU8l7OjQtNNMWowQU2j?=
- =?us-ascii?Q?RN5MUWgHGreqs7eWxX2EWAUY8FDmjP5LH+FT+daAE1+Yy7L7T8hgneoyqlrz?=
- =?us-ascii?Q?OxY+zh4o24HamlYH4TTXZcQk1dphKLdwjWZV4tmigvlljlEudyBpgKAiv/Fs?=
- =?us-ascii?Q?XLl+ctzzHhi96cZXzPoJH83PlwAGRvOPWu+XzK1emGSX2viJnpO4qeMFDftB?=
- =?us-ascii?Q?lAWNWMU0mzNEKkjeBLXJ0zbxJYdIeq4lbfcZMdfyrzL0KV6v+dKHKpATsEPQ?=
- =?us-ascii?Q?ze3DpjFJmzVyFSZMMXOElhqU00WIAGSRWQSZwJmayRprc8zBJvptTB7PY8Be?=
- =?us-ascii?Q?9XR2l3B9djFvuRTDJIetB3fw59/NWto+m8HzbvY2hj/vl0KunXVqTOrKnHk5?=
- =?us-ascii?Q?gXn8HdIvMa+v4eVl+acl9zPRgtj3pUblPrRoAP+7shr4YYunJ5xd6YX60HaG?=
- =?us-ascii?Q?d2ZKvjkkqkVFAP3kVJSVmTnwKzfIHZOdN/fhy5bN/1eIVQzuwHocLVoz5Gen?=
- =?us-ascii?Q?bVn66XUaqYkJUukgTGhe+1wYSBwuYEOGFhrq77EnSwE7ChdRToCdH8iul169?=
- =?us-ascii?Q?vC22KhFfoB+xKmXuC0IAxF5QfT8HbkBqmJSA3iSXACyNPMNLXTV+hPvOjALH?=
- =?us-ascii?Q?4XyLfvEWYb23F87CfdLVs6X3h6g9xhuDaN/EuKjklBsRP2DupuVCMvJgBX3w?=
- =?us-ascii?Q?ZSy8ETNQBfVTc0QUdaQ8chAN?=
-X-OriginatorOrg: wdc.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 860ad3d8-7a80-4f86-eb4d-08d925b8fee0
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR04MB7812.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2021 11:24:33.1373
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: b61c8803-16f3-4c35-9b17-6f65f441df86
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pgM7tQR/WhvJHE99shpyySM+rYGA2d/3Fw5QU/NWCAqRbyoZ1efOFOx17jXAO0Si0NvceLtziZPgfsmc+gE7Fg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR04MB7747
+        id S232628AbhFBL0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 07:26:30 -0400
+Received: from smtprelay-out1.synopsys.com ([149.117.87.133]:59156 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232305AbhFBL0W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 07:26:22 -0400
+Received: from mailhost.synopsys.com (mdc-mailhost2.synopsys.com [10.225.0.210])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (Client CN "mailhost.synopsys.com", Issuer "SNPSica2" (verified OK))
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id A175FC047D;
+        Wed,  2 Jun 2021 11:24:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1622633079; bh=o8fUj4cnDTlc5py1s3Yw542RYJUwKpkMsXpFixB/w+o=;
+        h=From:To:Cc:Subject:Date:From;
+        b=XgDKuelTAhGK4P2M85CZRF/+PMdzcfsUWWRaRTf/NgNPyooq63Zckeha3wHUFHgZR
+         hIZmcugz7srFNyjAtrzd0NUsG7tEyT5wIXR7aRnXD7pUH55EN96vlZ0ocjrp+GyOBl
+         Su56UPFrfOAIc5JGRovEmUkq/8NIuc3+Ar0ww8pIRG85WkIxCONhtvLoM98ct8P+ah
+         0Ok+yYXjybMnOIvykp864gHbDDtqijtEpiTlugeBy0cn91E5ynyjrvhfm3ZaCAWY5P
+         q+yupLrLkXiNhI7RkewQgu91hD0wvCKCJRLp80YF9i8OAh7dbobwSrUieTKG0KWIhz
+         MOXWrWa/tXJiw==
+Received: from de02dwvm009.internal.synopsys.com (de02dwvm009.internal.synopsys.com [10.225.17.73])
+        by mailhost.synopsys.com (Postfix) with ESMTP id 94B06A005E;
+        Wed,  2 Jun 2021 11:24:36 +0000 (UTC)
+X-SNPS-Relay: synopsys.com
+From:   Nelson Costa <Nelson.Costa@synopsys.com>
+To:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jose Abreu <Jose.Abreu@synopsys.com>,
+        Nelson Costa <Nelson.Costa@synopsys.com>
+Subject: [PATCH 0/9] Add Synopsys DesignWare HDMI RX Controller and PHY drivers
+Date:   Wed,  2 Jun 2021 13:24:18 +0200
+Message-Id: <cover.1622631488.git.nelson.costa@synopsys.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We enable RISC-V SBI CPU Idle driver for QEMU virt machine to test
-SBI HSM Supend on QEMU.
+This series implements support for the Synopsys DesignWare HDMI RX Controller
+and PHYs e405/e406 drivers, being compliant with standard HDMI 1.4 and
+HDMI 2.0.
 
-Signed-off-by: Anup Patel <anup.patel@wdc.com>
----
- arch/riscv/Kconfig.socs           | 3 +++
- arch/riscv/configs/defconfig      | 1 +
- arch/riscv/configs/rv32_defconfig | 1 +
- 3 files changed, 5 insertions(+)
+The Controller + PHY pipeline can be integrated into a fully featured
+system that can be able to receive video up to 4k@60Hz with basic audio.
 
-diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-index ed963761fbd2..3ae937121a77 100644
---- a/arch/riscv/Kconfig.socs
-+++ b/arch/riscv/Kconfig.socs
-@@ -27,6 +27,9 @@ config SOC_VIRT
- 	select GOLDFISH
- 	select RTC_DRV_GOLDFISH if RTC_CLASS
- 	select SIFIVE_PLIC
-+	select PM_GENERIC_DOMAINS if PM
-+	select PM_GENERIC_DOMAINS_OF if PM && OF
-+	select RISCV_SBI_CPUIDLE if CPU_IDLE
- 	help
- 	  This enables support for QEMU Virt Machine.
- 
-diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-index 57a24d40d43f..ed71f125cbc9 100644
---- a/arch/riscv/configs/defconfig
-+++ b/arch/riscv/configs/defconfig
-@@ -20,6 +20,7 @@ CONFIG_SOC_SIFIVE=y
- CONFIG_SOC_VIRT=y
- CONFIG_SMP=y
- CONFIG_HOTPLUG_CPU=y
-+CONFIG_PM=y
- CONFIG_CPU_IDLE=y
- CONFIG_JUMP_LABEL=y
- CONFIG_MODULES=y
-diff --git a/arch/riscv/configs/rv32_defconfig b/arch/riscv/configs/rv32_defconfig
-index 97d899df2445..0088d6989332 100644
---- a/arch/riscv/configs/rv32_defconfig
-+++ b/arch/riscv/configs/rv32_defconfig
-@@ -20,6 +20,7 @@ CONFIG_SOC_VIRT=y
- CONFIG_ARCH_RV32I=y
- CONFIG_SMP=y
- CONFIG_HOTPLUG_CPU=y
-+CONFIG_PM=y
- CONFIG_CPU_IDLE=y
- CONFIG_JUMP_LABEL=y
- CONFIG_MODULES=y
+This solution is mainly composed by two modules: phy-dw-hdmi-e40x and
+dw-hdmi-rx.
+
+phy-dw-hdmi-e40x: it's the PHY (Physical Layer) driver that implements
+support for Synopsys DesignWare e405 and e406 PHYs. It is responsible to
+configure the PHY and equalize it for the best settings, in order to
+receive and decode video to be delivered to the Controller.
+This driver is integrated in the PHY subsystem.
+The main features of this module are:
+ - Equalizer algorithm that chooses the phy best settings
+ according to the detected HDMI cable characteristics
+ - Support for scrambling
+ - Support for color depth up to 48bpp
+ - Support for HDMI 2.0 modes up to 6G (HDMI 4k@60Hz).
+
+dw-hdmi-rx: it's the Controller driver that implements support for
+Synopsys DesignWare HDMI RX Controller. It is responsible to manage and
+handle the PHY (through the PHY API) and the Controller configurations in
+order to configure the video and audio pipeline.
+This driver is implemented as a standard V4L2 subdevice.
+The main features of this module are:
+ - Support for scrambling
+ - Support for color depth up to 48bpp
+ - Support for HDMI 2.0 modes up to 6G (HDMI 4k@60Hz)
+ - Support for RGB, YCC444, YCC422 and YCC420
+ - Support for basic audio (LPCM 2ch, 32KHz/44.1KHz/48KHz, 16bit)
+ - Support for Aspect Ratio
+ - Support for CEC
+ - Internal state machine that reconfigures phy and controller
+ - JTAG communication with phy
+ - Inter-module communication with phy driver:
+   * through the PHY API using the phy reference "hdmi-phy"
+   * through the callbacks that phy dwc driver needs.
+ - Debug write/read ioctls
+
+NOTES: This patch series has two specific patches (Patch [4/8] and [7/8])
+one for the PHY API and the other for v4l2-dv-timings.
+
+Patch [4/8] adds phy standard HDMI opts to the phy API that contributes
+for the PHY subsystem, which allows to integrate the PHY driver in the
+PHY subsystem using this new HDMI opts structure, because there are hdmi
+options that are needed to pass between the Controller and PHY drivers
+using the standard API.
+
+Patch [7/8] adds more CEA/CTA-861 video format timings that contributes
+to the v4l2 media subsystem, which in our case is needed to provide
+information about the Aspect Ratio.
+
+PATCH v1:
+ - Fix "undefined reference to `hdmi_infoframe_unpack'", adding config
+  HDMI selectable for config VIDEO_DWC_HDMI_RX.
+  Reported-by: default avatarkernel test robot <lkp@intel.com>
+ - Add MEDIA_CONTROLLER and VIDEO_V4L2_SUBDEV_API also selectable
+  for config VIDEO_DWC_HDMI_RX.
+
+RFC v2:
+ - The original media Device Tree bindings was divided in two independent
+  Device Trees:
+  * Device tree for PHYs e405/e406 in PHY dt bindings
+  * Device tree for HDMI RX Controller in media dt bindings
+ - Add OF graph ports connection model in the Device Trees
+  (Thanks to Laurent Pinchart <laurent.pinchart@ideasonboard.com>)
+ - The HDMI RX Controller was adjusted in order to work with the new
+  Device Trees Model:
+  * the "input-count" field was removed from original Device Tree and now
+  the count is done based on port child count.
+  * Changed the way to get the phy node, removing the dependency as child
+  node of Controller node
+ - Fix reported kernel test robot issues:
+  * Fix "warning: no previous prototype for 'dw_phy_eq_settings'"
+  * Fix "warning: integer literal is too large to be represented in type
+  'long', interpreting as 'unsigned long' per C89; this literal will have
+  type 'long long' in C99 onwards [-Wc99-compat]"
+  Reported-by: kernel test robot <lkp@intel.com>
+ - Fix phy power off/on issue when the system startups without the cable
+  connected.
+ - Fix "CHECK: Comparison to NULL could be written
+  "of_device_get_match_data"".
+
+Nelson Costa (9):
+  dt-bindings: phy: Document Synopsys DesignWare HDMI RX PHYs e405 and
+    e406
+  dt-bindings: media: Document Synopsys DesignWare HDMI RX
+  MAINTAINERS: Add entry for Synopsys DesignWare HDMI drivers
+  phy: Add PHY standard HDMI opts to the PHY API
+  phy: dwc: Add Synopsys DesignWare HDMI RX PHYs e405 and e406 Driver
+  media: platform: Add Synopsys DesignWare HDMI RX Controller Driver
+  media: v4l2-dv-timings: Add more CEA/CTA-861 video format timings
+  media: dwc: dw-hdmi-rx: Add support for Aspect Ratio
+  media: dwc: dw-hdmi-rx: Add support for CEC
+
+ .../devicetree/bindings/media/snps,dw-hdmi-rx.yaml |   98 +
+ .../bindings/phy/snps,phy-dw-hdmi-e40x.yaml        |   93 +
+ MAINTAINERS                                        |   11 +
+ drivers/media/platform/Kconfig                     |    2 +
+ drivers/media/platform/Makefile                    |    1 +
+ drivers/media/platform/dwc/Kconfig                 |   23 +
+ drivers/media/platform/dwc/Makefile                |    3 +
+ drivers/media/platform/dwc/dw-hdmi-rx.c            | 3542 ++++++++++++++++++++
+ drivers/media/platform/dwc/dw-hdmi-rx.h            |  533 +++
+ drivers/media/v4l2-core/v4l2-dv-timings.c          |  139 +
+ drivers/phy/Kconfig                                |    1 +
+ drivers/phy/Makefile                               |    1 +
+ drivers/phy/dwc/Kconfig                            |   20 +
+ drivers/phy/dwc/Makefile                           |    9 +
+ drivers/phy/dwc/phy-dw-hdmi-e405.c                 |  497 +++
+ drivers/phy/dwc/phy-dw-hdmi-e406.c                 |  475 +++
+ drivers/phy/dwc/phy-dw-hdmi-e40x-core.c            |  514 +++
+ drivers/phy/dwc/phy-dw-hdmi-e40x.h                 |  219 ++
+ include/linux/phy/dwc/dw-hdmi-phy-pdata.h          |   73 +
+ include/linux/phy/phy-hdmi.h                       |  102 +
+ include/linux/phy/phy.h                            |    7 +-
+ include/media/dwc/dw-hdmi-rx-pdata.h               |  126 +
+ include/uapi/linux/v4l2-dv-timings.h               | 1595 ++++++++-
+ 23 files changed, 8082 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/snps,phy-dw-hdmi-e40x.yaml
+ create mode 100644 drivers/media/platform/dwc/Kconfig
+ create mode 100644 drivers/media/platform/dwc/Makefile
+ create mode 100644 drivers/media/platform/dwc/dw-hdmi-rx.c
+ create mode 100644 drivers/media/platform/dwc/dw-hdmi-rx.h
+ create mode 100644 drivers/phy/dwc/Kconfig
+ create mode 100644 drivers/phy/dwc/Makefile
+ create mode 100644 drivers/phy/dwc/phy-dw-hdmi-e405.c
+ create mode 100644 drivers/phy/dwc/phy-dw-hdmi-e406.c
+ create mode 100644 drivers/phy/dwc/phy-dw-hdmi-e40x-core.c
+ create mode 100644 drivers/phy/dwc/phy-dw-hdmi-e40x.h
+ create mode 100644 include/linux/phy/dwc/dw-hdmi-phy-pdata.h
+ create mode 100644 include/linux/phy/phy-hdmi.h
+ create mode 100644 include/media/dwc/dw-hdmi-rx-pdata.h
+
 -- 
-2.25.1
+2.7.4
 
