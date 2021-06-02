@@ -2,75 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C450399372
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 21:23:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE285399375
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 21:24:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229623AbhFBTZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 15:25:08 -0400
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:39680 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229608AbhFBTZH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 15:25:07 -0400
-Received: by mail-oi1-f180.google.com with SMTP id j1so3750550oie.6;
-        Wed, 02 Jun 2021 12:23:08 -0700 (PDT)
+        id S229608AbhFBTZ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 15:25:58 -0400
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:45816 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229583AbhFBTZ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 15:25:56 -0400
+Received: by mail-oi1-f178.google.com with SMTP id w127so3724821oig.12;
+        Wed, 02 Jun 2021 12:23:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=XAeJv7qZUUGdgq8G5ai3wA48HtkAvEJX/GzuCHR5O/I=;
-        b=LkIrlajuQiyAXy+zGq0M8pHEFxhHvDGcKb1mID9laV4fg1ykl0VfoV8XaQWE9SKZ+O
-         HhpioxjRjWjcxwxd8RH9qozTAwYW9UdAfVU/F8FsRquVn+PtQOs1/fFtP3pPBGHiu446
-         R+m3xLgCuRFlGrCO/IRWcjw1RE/B3R7bR90bCv9CE/crMXN6t24kGScDx5a6JFTKSmsj
-         +2D1MHWpjo7vEzCXg6yifOULR/O845McxxIF7ZogtlPwfLpTdqW35G/2RhoL7Uq6gjCx
-         H5bmAdWrM5N9M+eoJZqmDLyqEbxzNFnJGF91iUH03+1lyIIH+1eU8BqhQwh94Ow3g27Q
-         wo7Q==
-X-Gm-Message-State: AOAM531yGfCpocSdilnDJA8lqzB1wap3yEPf24xwrC3Q4DTWPzK6uBz1
-        q1rxU4BKSZuHxxX2M9nuXA==
-X-Google-Smtp-Source: ABdhPJzFWhHH6ZTH6NHxgK8vQrtEvn9um2KBFsSzAS7v9gqy++YrEO587CRoDAFQCGfEuE4vLuHQ+Q==
-X-Received: by 2002:aca:1a06:: with SMTP id a6mr21706779oia.95.1622661788233;
-        Wed, 02 Jun 2021 12:23:08 -0700 (PDT)
+        bh=C5SEbz2r52xsZF4LQJGQ5XCve1taIQ8XIwDj07oOo3Y=;
+        b=jarNqrLWjLPlsttDL6APR++AfLktf5maKKrwgh7BUDiOy+HfztbFDjfEGFRChCHSAc
+         exRYfJzwbk7p2kbydAEog1lft+1lMIWY4ZanFduurxTDv8xQgmzeAlzfU3xmFEa9Dpbl
+         Vx6FezUL91yitMXBqQYoZrk36ZVuoBjfHOEJW51j4m9ESOpUHE+MvlbC4kKKmTJtLbu3
+         GSM+fdVu0yeXl7QlywfpPQoEKZ7rlvf1du11P3tLTKplmmnmXm1XCtzenW4lD8dGM5hq
+         qT42nOqc6xlUkg2FKNkCg6mRJSEA8h/Augh3UVxb3b3MHPKmqu5IXRvY09epgaHUORcI
+         0xpw==
+X-Gm-Message-State: AOAM532+39acNnt5WdetwWLgi0PtvtBexPUoNVeftmHFGEutbKy/d6ZS
+        3GqA6y++G1LY+mK4OS7tog==
+X-Google-Smtp-Source: ABdhPJyVggDLjvqL2vCAzrclTC6pcaU7JiQKs9GPWuYPcTKJrk89gZ5C2lB5NqLPOAi3oesPqEMGtw==
+X-Received: by 2002:a05:6808:1154:: with SMTP id u20mr22829320oiu.35.1622661837865;
+        Wed, 02 Jun 2021 12:23:57 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id a71sm178321oib.20.2021.06.02.12.23.06
+        by smtp.gmail.com with ESMTPSA id a23sm190251otf.47.2021.06.02.12.23.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jun 2021 12:23:07 -0700 (PDT)
-Received: (nullmailer pid 3822810 invoked by uid 1000);
-        Wed, 02 Jun 2021 19:23:06 -0000
-Date:   Wed, 2 Jun 2021 14:23:05 -0500
+        Wed, 02 Jun 2021 12:23:57 -0700 (PDT)
+Received: (nullmailer pid 3824407 invoked by uid 1000);
+        Wed, 02 Jun 2021 19:23:55 -0000
+Date:   Wed, 2 Jun 2021 14:23:55 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Ian Ray <ian.ray@ge.com>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        Fabio Estevam <festevam@gmail.com>, linux-spi@vger.kernel.org,
-        kernel@collabora.com,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Brown <broonie@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCHv3 2/5] spi: dt-bindings: support devices with multiple
- chipselects
-Message-ID: <20210602192305.GA3822744@robh.at.kernel.org>
-References: <20210528113346.37137-1-sebastian.reichel@collabora.com>
- <20210528113346.37137-3-sebastian.reichel@collabora.com>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     laurent.pinchart@ideasonboard.com, linux-media@vger.kernel.org,
+        krzysztof.kozlowski@canonical.com, pavel@ucw.cz,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+        shawnx.tu@intel.com, linux-kernel@vger.kernel.org,
+        mchehab@kernel.org, kernel@puri.sm, paul.kocialkowski@bootlin.com
+Subject: Re: [PATCH v3 1/5] dt-bindings: vendor-prefixes: Add SK Hynix Inc.
+Message-ID: <20210602192355.GA3824351@robh.at.kernel.org>
+References: <20210531120737.168496-1-martin.kepplinger@puri.sm>
+ <20210531120737.168496-2-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210528113346.37137-3-sebastian.reichel@collabora.com>
+In-Reply-To: <20210531120737.168496-2-martin.kepplinger@puri.sm>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 May 2021 13:33:44 +0200, Sebastian Reichel wrote:
-> Add binding support for devices, that have more than one
-> chip select. A typical example are SPI connected microcontroller,
-> that can also be programmed over SPI like NXP Kinetis or
-> chips with a configuration and a data chip select, such as
-> Microchip's MRF89XA transceiver.
+On Mon, 31 May 2021 14:07:33 +0200, Martin Kepplinger wrote:
+> SK Hynix built the already supported hi556 sensor (and probably much
+> more). For more information, see https://www.skhynix.com/
 > 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
 > ---
->  Documentation/devicetree/bindings/spi/spi-controller.yaml | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
