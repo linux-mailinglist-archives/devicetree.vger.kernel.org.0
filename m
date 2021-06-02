@@ -2,113 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2944A398DF1
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 17:07:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41D46398E10
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 17:14:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230175AbhFBPJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 11:09:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47526 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232225AbhFBPJN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 11:09:13 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4244DC06174A
-        for <devicetree@vger.kernel.org>; Wed,  2 Jun 2021 08:07:13 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id a11so781058wrt.13
-        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 08:07:13 -0700 (PDT)
+        id S231669AbhFBPQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 11:16:08 -0400
+Received: from mail-pg1-f171.google.com ([209.85.215.171]:44715 "EHLO
+        mail-pg1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231286AbhFBPQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 11:16:07 -0400
+Received: by mail-pg1-f171.google.com with SMTP id 29so2463146pgu.11;
+        Wed, 02 Jun 2021 08:14:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vs3Wh4eIvni5P/DPP9QB7KFgHPP2DPvUYXX2oG5ziD8=;
-        b=Jv8riBA6hdAzuqqKPOkSJ02ahdlNA9yVktgdWbigMUOdm6bpxDApG6IxbmI1fsDrV0
-         od+qctz8WdJpLMlg/dh65H26zKlKq18C9r5Id/gmGsm86frMckOC7EoWbt0ijn0eL0JF
-         V2eoz1XbjOwarwofM8JZQSrsAfYcO3xSQaU0PbsEdI7qs5udvqBh0EPPIt9kv0811yzh
-         Y1ACLtstrLSq5QF+c1a7+IJpO2MbffII4oH2s6027S/4EDlqAHuOV2aC7HPIfRM+H8i3
-         rqVEckU/2Srs13LwwfmSQVfXeu/H9S/Z6a100JTKutK+gu0RXflckQNcpZ0l/fPiK0Hv
-         oNxQ==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=EY89WvFPXItdyL7n52M5NUf6/h0uiQx9JjQhgnr22JY=;
+        b=KwFqdi2QeEjmXUXeSJjiszKwvxb25mTEyUFX64eOGEdR5GcefzXcN48k+CcD7fmk8Y
+         oZKwE5P8yvBLJ9SZlAp5kkg3/eeJABXOjC+AhaxH9+00oW1j/Hw3sDMI0OqZU8k3Rkn2
+         +0PHSBkJCmoM9lM/5z1TvvA3p6WgOGdQvJen4ZLW84EBgvL/3exaQC0goHX/RVh8/YAI
+         f5IDlGG5KU0tiNneiC6/f1GmffdkuDGyBrj3Xpji6Xs/EzZYqhPC6Ju6jtxFeMD5Y7gX
+         kjjNo0MWBB1Ho8Xqw/ufSwE7P2oNnGhNNOySCvX+jDxhLot7CWJBtD+vUZWAC3ZKVQKB
+         IWbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vs3Wh4eIvni5P/DPP9QB7KFgHPP2DPvUYXX2oG5ziD8=;
-        b=IpaHngeAJXDm+J57j5QoiMcZRGeb4pMjjqUKnNkRLXldAsoe0nfr57VezD95toh5nw
-         QeddlUPX466GPQv9eqfal2et9k118ZnH3GzFSOJ4//jgRp7cIWo8RQ0bNqp/fZd1KkcT
-         oQL3sXd1ZnKgfueMeW7fljmZlY4oDoWD03N0/dYcUo5PAKeOqURbYk162La2GWklN6h7
-         PqWNuC/GE4TbDRyNmTuaJI/2e7O5m6b6fVE+hJnrdjxjEG/b/rY3MhOti2DtLD6BYuHD
-         D0PDOBCohdufOtL8dh7BgkUc87P1H8ZLZu28oy+DNpPb6sp4ELNWCdPi8+Yyjh2CnpYK
-         BNNg==
-X-Gm-Message-State: AOAM533nvbNnA4RB1SdhavaxP1VYw87rF+PKQEt1QS3gy3CdpQcW28Zs
-        7r7SsJJQJpXiaF1sDK49Wuh5DhSuuBLk+YE4ddre8Q==
-X-Google-Smtp-Source: ABdhPJwg13/gEhL01WTUQpFs1K3FGrC8NR1Evds3qUYUCeEJOMNXDkC3cHVMY2cPzMBS6YuglZja7OitSEjs3ENc/Bs=
-X-Received: by 2002:a5d:58f6:: with SMTP id f22mr21961347wrd.128.1622646431784;
- Wed, 02 Jun 2021 08:07:11 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=EY89WvFPXItdyL7n52M5NUf6/h0uiQx9JjQhgnr22JY=;
+        b=r7sIsm+zxsJuOBEQKu9x1aJhqNnPNzIgzW0sO47VtY2PB/yj3S56HMwj6nWVTy4D1X
+         vczKDSjbXW+sWh3MJmoDb3PKs+vEO9lBB9XJpUuCoM5/IjdYC0p9hOkOM5IBuGqf4Hh4
+         YoBoblnvYjJv67BADF/pBwxJ0SrQ+dnRZcwJ9ocEEeLeRKfEETau/ciyVKrBQ14b3GlI
+         RHonM/POwZ6YdPv2YjtKlXh5fty8UhhJJjfqjZtWFamlC5HshVlC1C8ePC0lvIL/rGQX
+         tHc0undiCNbhb5+HGS/91bD6M44wBHNcESHwyhJDRKDb9tU7+eMwK2LlZLhClY5Hv7+a
+         9vuA==
+X-Gm-Message-State: AOAM531V8KgBiFV6E0W3n/Vh09y/NK/7NBo5uakTtqyfr3zAt3egSTdD
+        dIidiFxjFf8d0C6599JTycMo9caN3xU=
+X-Google-Smtp-Source: ABdhPJxtaSanZi8Be5s2D+w8EQ0HqXEmErF7seavVsPW78lcs1gD9m4H8EhHVxdP+Dsq+074J8inUw==
+X-Received: by 2002:a05:6a00:1350:b029:2e9:ac26:a5ba with SMTP id k16-20020a056a001350b02902e9ac26a5bamr21769069pfu.15.1622646803821;
+        Wed, 02 Jun 2021 08:13:23 -0700 (PDT)
+Received: from [172.30.1.14] ([14.32.163.5])
+        by smtp.gmail.com with ESMTPSA id f6sm33475pfb.28.2021.06.02.08.13.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Jun 2021 08:13:23 -0700 (PDT)
+Subject: Re: [PATCH v3 2/3] extcon: sm5502: Refactor driver to use
+ chip-specific struct
+To:     Stephan Gerhold <stephan@gerhold.net>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20210601200007.218802-1-stephan@gerhold.net>
+ <20210601200007.218802-3-stephan@gerhold.net>
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+Message-ID: <b3a9eed8-0d7c-e935-36d4-13918f5b7b21@gmail.com>
+Date:   Thu, 3 Jun 2021 00:13:18 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <20210602112321.2241566-1-anup.patel@wdc.com> <20210602112321.2241566-6-anup.patel@wdc.com>
- <CAPDyKFq2tvvAD=2RiePZzce=+OsDaxLWqz+90pTKjTTzqVqcHQ@mail.gmail.com>
-In-Reply-To: <CAPDyKFq2tvvAD=2RiePZzce=+OsDaxLWqz+90pTKjTTzqVqcHQ@mail.gmail.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Wed, 2 Jun 2021 20:36:59 +0530
-Message-ID: <CAAhSdy0jN1urNFu_mqqg2jbqzsfztQUJN62oB9dhDTH=RgLR-g@mail.gmail.com>
-Subject: Re: [PATCH v5 5/8] cpuidle: Factor-out power domain related code from
- PSCI domain driver
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Anup Patel <anup.patel@wdc.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Sandeep Tripathy <milun.tripathy@gmail.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Liush <liush@allwinnertech.com>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210601200007.218802-3-stephan@gerhold.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 2, 2021 at 6:47 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
->
-> On Wed, 2 Jun 2021 at 13:24, Anup Patel <anup.patel@wdc.com> wrote:
-> >
-> > The generic power domain related code in PSCI domain driver is largely
-> > independent of PSCI and can be shared with RISC-V SBI domain driver
-> > hence we factor-out this code into dt_idle_genpd.c and dt_idle_genpd.h.
-> >
-> > Signed-off-by: Anup Patel <anup.patel@wdc.com>
->
-> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
->
-> A small nitpick below.
->
-> [...]
->
-> > +EXPORT_SYMBOL_GPL(dt_idle_pd_free);
->
-> Do we really need to export this symbol? Looks like there are only
-> built-in cpuidle drivers that are going to use it. At least for now.
->
-> As a matter of fact, the same comment applies to all cases of
-> EXPORT_SYMBOL_GPL from $subject patch. Can we drop all of them?
+On 21. 6. 2. 오전 5:00, Stephan Gerhold wrote:
+> Prepare for supporting SM5504 in the extcon-sm5502 driver by replacing
+> enum sm5504_types with a struct sm5504_type that stores the chip-specific
+> definitions. This struct can then be defined separately for SM5504
+> without having to add if (type == TYPE_SM5504) everywhere in the code.
+> 
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> ---
+> Changes in v3: New patch to simplify diff on next patch
+> ---
+>   drivers/extcon/extcon-sm5502.c | 64 +++++++++++++++++++++-------------
+>   drivers/extcon/extcon-sm5502.h |  4 ---
+>   2 files changed, 40 insertions(+), 28 deletions(-)
+> 
+> diff --git a/drivers/extcon/extcon-sm5502.c b/drivers/extcon/extcon-sm5502.c
+> index 9f40bb9f1f81..951f6ca4c479 100644
+> --- a/drivers/extcon/extcon-sm5502.c
+> +++ b/drivers/extcon/extcon-sm5502.c
+> @@ -40,17 +40,13 @@ struct sm5502_muic_info {
+>   	struct i2c_client *i2c;
+>   	struct regmap *regmap;
+>   
+> +	const struct sm5502_type *type;
+>   	struct regmap_irq_chip_data *irq_data;
+> -	struct muic_irq *muic_irqs;
+> -	unsigned int num_muic_irqs;
+>   	int irq;
+>   	bool irq_attach;
+>   	bool irq_detach;
+>   	struct work_struct irq_work;
+>   
+> -	struct reg_data *reg_data;
+> -	unsigned int num_reg_data;
+> -
+>   	struct mutex mutex;
+>   
+>   	/*
+> @@ -62,6 +58,17 @@ struct sm5502_muic_info {
+>   	struct delayed_work wq_detcable;
+>   };
+>   
+> +struct sm5502_type {
+> +	struct muic_irq *muic_irqs;
+> +	unsigned int num_muic_irqs;
+> +	const struct regmap_irq_chip *irq_chip;
+> +
+> +	struct reg_data *reg_data;
+> +	unsigned int num_reg_data;
+> +
+> +	int (*parse_irq)(struct sm5502_muic_info *info, int irq_type);
+> +};
+> +
+>   /* Default value of SM5502 register to bring up MUIC device. */
+>   static struct reg_data sm5502_reg_data[] = {
+>   	{
+> @@ -502,11 +509,11 @@ static irqreturn_t sm5502_muic_irq_handler(int irq, void *data)
+>   	struct sm5502_muic_info *info = data;
+>   	int i, irq_type = -1, ret;
+>   
+> -	for (i = 0; i < info->num_muic_irqs; i++)
+> -		if (irq == info->muic_irqs[i].virq)
+> -			irq_type = info->muic_irqs[i].irq;
+> +	for (i = 0; i < info->type->num_muic_irqs; i++)
+> +		if (irq == info->type->muic_irqs[i].virq)
+> +			irq_type = info->type->muic_irqs[i].irq;
+>   
+> -	ret = sm5502_parse_irq(info, irq_type);
+> +	ret = info->type->parse_irq(info, irq_type);
 
-I had kept the EXPORT_SYMBOL_GPL() to be in-sync with the
-dt_idle_states.c but in this case I agree we don't need to export.
+Looks good to me. But there is only one comment.
+Need to check the 'parse_irq' as following:
 
-I will drop all EXPORT_SYMBOL_GPL() in the next patch revision.
+If you agree this suggestion, I'll apply with following changes by myself:
 
-Regards,
-Anup
+	if (!info->type->parse_irq) {
+		dev_err(info->dev, "failed to handle irq due to parse_irq\n",
+		return IRQ_NONE;
+	}
 
->
-> [...]
->
-> Kind regards
-> Uffe
+
+(snip)
+
+-- 
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
