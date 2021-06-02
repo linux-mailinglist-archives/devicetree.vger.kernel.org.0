@@ -2,75 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD954398EE3
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 17:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C68D2398EE5
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 17:42:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231300AbhFBPoR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 11:44:17 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:40877 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232340AbhFBPoP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 11:44:15 -0400
-Received: by mail-ot1-f54.google.com with SMTP id c31-20020a056830349fb02903a5bfa6138bso2807536otu.7
-        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 08:42:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=UGHsuHHa7L0KHOp8mx0zzxyfTFfDs3EKCyx+ZbAHSqc=;
-        b=jcOc1ff6EtGaeXbdtLskMOI7WQiETOXLTjZDOUCu6qBauzgSYLRiNKQz4kbZ9LLljv
-         FZlxTMg66ZOZoCEaEXUEFXJiM84OWv9B9virhLH2st3oIuljFvHMA6v5SNDOGy2MtPm9
-         QF3H4wYd8IgIabAfWi1B1pf/io0MXRWR9PvNc3ebSI0TAPnFan5Dv8Cpc0AgWBZ9ByIf
-         MA8s2jQgZDNVsYtp22R5YlZkNv+reh8Ri9Kg9496tuich0yzujSHaQBOLCFemGAsePTE
-         wSI+RukvEgjPrgt/bRRwfMh10lcPUOTpnj+Rw/R6lUUtGBqOck7BP/3n/3mYnuAyh16p
-         RVsA==
-X-Gm-Message-State: AOAM5332N1FdPKtVoSh1pwh6KyffSk3wTJuVv0DXryuPKwrtkJlTlGJb
-        MAEDlrpsNZX9FyvZCM3vfGX+wvXQ8w==
-X-Google-Smtp-Source: ABdhPJwGIWZcDwqm5H3oRSfw+7XgVDcjAZc3H5pJeqwa7L6fPtx1aEzdK9pfHHNnbkEAuj5Jo/MUCw==
-X-Received: by 2002:a05:6830:1507:: with SMTP id k7mr2659547otp.71.1622648552326;
-        Wed, 02 Jun 2021 08:42:32 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h9sm34979oor.16.2021.06.02.08.42.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jun 2021 08:42:31 -0700 (PDT)
-Received: (nullmailer pid 3425586 invoked by uid 1000);
-        Wed, 02 Jun 2021 15:42:30 -0000
-Date:   Wed, 2 Jun 2021 10:42:30 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     devicetree@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Cristian Marussi <cristian.marussi@arm.com>
-Subject: Re: [PATCH v2 4/8] dt-bindings: firmware: amlogic,scpi: Move
- arm,scpi-shmem to json schema
-Message-ID: <20210602154230.GA3425528@robh.at.kernel.org>
-References: <20210601224904.917990-1-sudeep.holla@arm.com>
- <20210601224904.917990-5-sudeep.holla@arm.com>
+        id S230407AbhFBPoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 11:44:38 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.51]:14757 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231837AbhFBPoi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 11:44:38 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1622648568; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=nHPhEbhw3GtWZh395foZPkBGtmGcLKIFZh8XNK3thfk9ds732t8lzzg9mgKToEmUTi
+    yKFSiXAdBVw5FfUmB/LBtdszrrTasZkvwf4swK42QlRgX/lX8or0l4OPj2y4TU8ay0x8
+    cxz9shahoG988nSzPhglK3TFHKjVS8MctfbswZRhKGobvCi5R8zll4lks0SlkUgVNsKF
+    SlojVIYSJL+ufmtnMdUsBZq1+V7EgG2FgUBawjekko8x66FwuAPv2xGBzetNctRki4zb
+    8hE7vOUH3TZ6KVEFEmQcf051t/Vh5DFg97ETgA/nR6hXg+2o19fgvRfxOHjz9osFIONO
+    Xupw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1622648568;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=5p/0Zp4I29UELEPG0LINP5Cg95GbvMFVWa4EZnENcbk=;
+    b=OSaDGeOpxm4+IVfPsPja38ZW6krI8620m75UuQg7fRX34oi670Hyz/CoZ/xAR0EL0L
+    l3nPxA+OaZ9XZjYASOmSw7IVdAhD72MPi1h0Z5WAihpCwJ+lWgvs72gHjY/HAmEnmKCY
+    qN5AZUlz9RLZOWgEhqgp+bbpqvDtXq1DK5RPO13dZSKzGsvY/WtI6rMOgh/Rz96CmhvD
+    35RjoguD8bRg5yF7Fx8zAphux0hyH8NLQu0i/yp9mUY2LTnhO9IdFwmxLJBIV1qQYAAq
+    BORiBSsWwgj14sUOMUXb+PjXPHZBTKoM2zKlvDb0MkBCiLg9syNDNpv/vtsZIST4lv7D
+    h4qg==
+ARC-Authentication-Results: i=1; strato.com;
+    dkim=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1622648568;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=5p/0Zp4I29UELEPG0LINP5Cg95GbvMFVWa4EZnENcbk=;
+    b=SIB27v/OV0Kq/sdIFTva3iL87Wh/Dp0DFIXiMg1OYCre+Lq7cIGFRcM/Fp9glWIjdq
+    wT09wVpVdf9eOpHleOUjLJe5PrHmSAscFcSjdRi5RZ2OijJt4ZekuLi/Ea7VB7nZZwrf
+    cRnorvvVyQ+FtLnW+j7BvR+Tf+XJVowiwxhLHYDm8Z5c7cwWXsXVmRyvyRR6ek3pYl06
+    BsEiEll6Y6nVqHTxONW22wPT1UJ5Fi/XrYY2gLwrd5PCJ3z4sXV6DhcBxt50w6ugueqA
+    KKzvyj8VfJKXslsyz2/ojk0SONyCaN56kJPCablRDFzquIIzHZ365AZLOW0nZEww98BN
+    DR3Q==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j6IcjHBg=="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.27.2 DYNA|AUTH)
+    with ESMTPSA id y01375x52Fgl3XW
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Wed, 2 Jun 2021 17:42:47 +0200 (CEST)
+Date:   Wed, 2 Jun 2021 17:42:46 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Chanwoo Choi <cwchoi00@gmail.com>
+Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v3 2/3] extcon: sm5502: Refactor driver to use
+ chip-specific struct
+Message-ID: <YLem9vz2KnpDYS1K@gerhold.net>
+References: <20210601200007.218802-1-stephan@gerhold.net>
+ <20210601200007.218802-3-stephan@gerhold.net>
+ <b3a9eed8-0d7c-e935-36d4-13918f5b7b21@gmail.com>
+ <YLeh2Q1q3643iFkZ@gerhold.net>
+ <83b00ca8-aa70-6c4b-5f9f-eebf571ee621@gmail.com>
+ <a53f8fa3-60c3-2727-d309-f77f35cfd510@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210601224904.917990-5-sudeep.holla@arm.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a53f8fa3-60c3-2727-d309-f77f35cfd510@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 01 Jun 2021 23:49:00 +0100, Sudeep Holla wrote:
-> "amlogic,meson-gxbb-scp-shmem" is already in the Generic on-chip SRAM
-> binding though "amlogic,meson-gxbb-scpi" is missing which is now added.
-> Also remove the whole old text format binding for the same.
+On Thu, Jun 03, 2021 at 12:35:58AM +0900, Chanwoo Choi wrote:
+> On 21. 6. 3. 오전 12:30, Chanwoo Choi wrote:
+> > On 21. 6. 3. 오전 12:20, Stephan Gerhold wrote:
+> > > On Thu, Jun 03, 2021 at 12:13:18AM +0900, Chanwoo Choi wrote:
+> > > > On 21. 6. 2. 오전 5:00, Stephan Gerhold wrote:
+> > > > > Prepare for supporting SM5504 in the extcon-sm5502 driver by replacing
+> > > > > enum sm5504_types with a struct sm5504_type that stores the
+> > > > > chip-specific
+> > > > > definitions. This struct can then be defined separately for SM5504
+> > > > > without having to add if (type == TYPE_SM5504) everywhere in the code.
+> > > > > 
+> > > > > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> > > > > ---
+> > > > > Changes in v3: New patch to simplify diff on next patch
+> > > > > ---
+> > > > >    drivers/extcon/extcon-sm5502.c | 64
+> > > > > +++++++++++++++++++++-------------
+> > > > >    drivers/extcon/extcon-sm5502.h |  4 ---
+> > > > >    2 files changed, 40 insertions(+), 28 deletions(-)
+> > > > > 
+> > > > > diff --git a/drivers/extcon/extcon-sm5502.c
+> > > > > b/drivers/extcon/extcon-sm5502.c
+> > > > > index 9f40bb9f1f81..951f6ca4c479 100644
+> > > > > --- a/drivers/extcon/extcon-sm5502.c
+> > > > > +++ b/drivers/extcon/extcon-sm5502.c
+> > > > > @@ -40,17 +40,13 @@ struct sm5502_muic_info {
+> > > > >        struct i2c_client *i2c;
+> > > > >        struct regmap *regmap;
+> > > > > +    const struct sm5502_type *type;
+> > > > >        struct regmap_irq_chip_data *irq_data;
+> > > > > -    struct muic_irq *muic_irqs;
+> > > > > -    unsigned int num_muic_irqs;
+> > > > >        int irq;
+> > > > >        bool irq_attach;
+> > > > >        bool irq_detach;
+> > > > >        struct work_struct irq_work;
+> > > > > -    struct reg_data *reg_data;
+> > > > > -    unsigned int num_reg_data;
+> > > > > -
+> > > > >        struct mutex mutex;
+> > > > >        /*
+> > > > > @@ -62,6 +58,17 @@ struct sm5502_muic_info {
+> > > > >        struct delayed_work wq_detcable;
+> > > > >    };
+> > > > > +struct sm5502_type {
+> > > > > +    struct muic_irq *muic_irqs;
+> > > > > +    unsigned int num_muic_irqs;
+> > > > > +    const struct regmap_irq_chip *irq_chip;
+> > > > > +
+> > > > > +    struct reg_data *reg_data;
+> > > > > +    unsigned int num_reg_data;
+> > > > > +
+> > > > > +    int (*parse_irq)(struct sm5502_muic_info *info, int irq_type);
+> > > > > +};
+> > > > > +
+> > > > >    /* Default value of SM5502 register to bring up MUIC device. */
+> > > > >    static struct reg_data sm5502_reg_data[] = {
+> > > > >        {
+> > > > > @@ -502,11 +509,11 @@ static irqreturn_t
+> > > > > sm5502_muic_irq_handler(int irq, void *data)
+> > > > >        struct sm5502_muic_info *info = data;
+> > > > >        int i, irq_type = -1, ret;
+> > > > > -    for (i = 0; i < info->num_muic_irqs; i++)
+> > > > > -        if (irq == info->muic_irqs[i].virq)
+> > > > > -            irq_type = info->muic_irqs[i].irq;
+> > > > > +    for (i = 0; i < info->type->num_muic_irqs; i++)
+> > > > > +        if (irq == info->type->muic_irqs[i].virq)
+> > > > > +            irq_type = info->type->muic_irqs[i].irq;
+> > > > > -    ret = sm5502_parse_irq(info, irq_type);
+> > > > > +    ret = info->type->parse_irq(info, irq_type);
+> > > > 
+> > > > Looks good to me. But there is only one comment.
+> > > > Need to check the 'parse_irq' as following:
+> > > > 
+> > > > If you agree this suggestion, I'll apply with following changes
+> > > > by myself:
+> > > > 
+> > > >     if (!info->type->parse_irq) {
+> > > >         dev_err(info->dev, "failed to handle irq due to parse_irq\n",
+> > > >         return IRQ_NONE;
+> > > >     }
+> > > > 
+> > > > 
+> > > 
+> > > This condition should be impossible, since .parse_irq is set for both
+> > > SM5502 and SM5504:
+> > > 
+> > > static const struct sm5502_type sm5502_data = {
+> > >     /* ... */
+> > >     .parse_irq = sm5502_parse_irq,
+> > > };
+> > > 
+> > > static const struct sm5502_type sm5504_data = {
+> > >     /* ... */
+> > >     .parse_irq = sm5504_parse_irq,
+> > > };
+> > > 
+> > > Which failure case are you trying to handle with that if statement?
+> > 
+> > There is not failure case of this patchset. But, this refactoring
+> > suggestion has the potential problem without checking whether mandatory
+> > function pointer is NULL or not. When adding new chip by using this
+> > driver, the author might have the human error without parse_irq
+> > initialization even if the mandatory.
+> > 
 > 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> Cc: Jerome Brunet <jbrunet@baylibre.com>
-> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> ---
->  .../devicetree/bindings/arm/amlogic,scpi.txt         | 12 ------------
->  Documentation/devicetree/bindings/sram/sram.yaml     |  1 +
->  2 files changed, 1 insertion(+), 12 deletions(-)
+> Instead, it is better to check whether parser_irq is NULL or not
+> on probe function in order to reduce the unnecessary repetitive checking.
 > 
 
-Applied, thanks!
+Thanks for the explanation. This suggestion sounds better to me.
+(Although I consider it unlikely that someone would forget to define
+ .parse_irq when adding a new chip...)
+
+Feel free to add something like the below when applying.
+Or let me know if I should re-send with this change:
+
+diff --git a/drivers/extcon/extcon-sm5502.c b/drivers/extcon/extcon-sm5502.c
+index af44c1e2f368..93da2d8379b1 100644
+--- a/drivers/extcon/extcon-sm5502.c
++++ b/drivers/extcon/extcon-sm5502.c
+@@ -694,6 +694,10 @@ static int sm5022_muic_i2c_probe(struct i2c_client *i2c)
+ 	info->type = device_get_match_data(info->dev);
+ 	if (!info->type)
+ 		return -EINVAL;
++	if (!info->type->parse_irq) {
++		dev_err(info->dev, "parse_irq missing in struct sm5502_type\n");
++		return -EINVAL;
++	}
+ 
+ 	mutex_init(&info->mutex);
+ 
+
+Thanks for your review!
+Stephan
