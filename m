@@ -2,82 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C0B1398FE4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 18:24:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56CB4398FF9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 18:30:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229675AbhFBQ01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 12:26:27 -0400
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:36756 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229541AbhFBQ01 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 12:26:27 -0400
-Received: by mail-oi1-f176.google.com with SMTP id a21so3219780oiw.3;
-        Wed, 02 Jun 2021 09:24:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=53S/fFCs9+Nn0oXITnfIPS9D5tUEwRl/Jdla/qwUi0A=;
-        b=DazfuXnm8GVEecOOdHbbWg4FSuZKgx0vdx9xZPrtpfeUq9TB4qP4EB7SoGvT9RgL8k
-         epLbJXoCx6lXseMmadKHOn0b4nWHYgxEp58n93XaIuj8OMeqGwEE4kJVxXhjoIbpxO5t
-         3x5YymDx8JE45YW1W4k8x1EL6rKIDdXY9TFojdk8COOSkvUHNozcyCRLE1/JD0267OA3
-         hQzjCY7dZ9Xstoom5AMNX43/ZdVNP1ljeSNW02IiIZ4TeBchEUeViuQrqfbntee0nX59
-         tJNj9n3zxYtaFLgBbh9gtt+remYSRnDce1igaHr//eCHrncteFsMXLwMmdJkjlqK22O0
-         yHoA==
-X-Gm-Message-State: AOAM533EloZt3r9PA8nFkK4zTnyjwjyVp5Zq5gyZIBEW/B1JObCy4Svi
-        tSNhKehsiKiJl4UhRJZTq3VGvUK2Ag==
-X-Google-Smtp-Source: ABdhPJzVP4mIHE0ZmQug3GtJrRBii4GJlgiykQxMxIoZudo673B7gCzQsGIdiWnhunSOC9LV4vTRHw==
-X-Received: by 2002:aca:b784:: with SMTP id h126mr4311771oif.98.1622651083682;
-        Wed, 02 Jun 2021 09:24:43 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id f1sm89873oto.40.2021.06.02.09.24.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jun 2021 09:24:43 -0700 (PDT)
-Received: (nullmailer pid 3500509 invoked by uid 1000);
-        Wed, 02 Jun 2021 16:24:42 -0000
-Date:   Wed, 2 Jun 2021 11:24:42 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     devicetree@vger.kernel.org,
-        "Paul J. Murphy" <paul.j.murphy@intel.com>,
-        linux-kernel@vger.kernel.org,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [RESEND PATCH] dt-bindings: arm: intel,keembay: limit the
- dtschema to root node
-Message-ID: <20210602162442.GA3500424@robh.at.kernel.org>
-References: <20210526162750.135139-1-krzysztof.kozlowski@canonical.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210526162750.135139-1-krzysztof.kozlowski@canonical.com>
+        id S229641AbhFBQcT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 12:32:19 -0400
+Received: from sibelius.xs4all.nl ([83.163.83.176]:57728 "EHLO
+        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229583AbhFBQcS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 12:32:18 -0400
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id d16ea0b5;
+        Wed, 2 Jun 2021 18:30:33 +0200 (CEST)
+Date:   Wed, 2 Jun 2021 18:30:33 +0200 (CEST)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-pci@vger.kernel.org, marcan@marcan.st, robin.murphy@arm.com,
+        devicetree@vger.kernel.org, kettenis@openbsd.org, maz@kernel.org,
+        bhelgaas@google.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20210601203314.GA977583@robh.at.kernel.org> (message from Rob
+        Herring on Tue, 1 Jun 2021 15:33:14 -0500)
+Subject: Re: [PATCH v2 1/2] dt-bindings: pci: Add DT bindings for apple,pcie
+References: <20210530224404.95917-1-mark.kettenis@xs4all.nl>
+ <20210530224404.95917-2-mark.kettenis@xs4all.nl>
+ <1622554330.029938.242360.nullmailer@robh.at.kernel.org> <20210601203314.GA977583@robh.at.kernel.org>
+Message-ID: <5613143777fa92ad@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 26 May 2021 12:27:50 -0400, Krzysztof Kozlowski wrote:
-> From: Krzysztof Kozlowski <krzk@kernel.org>
+> Date: Tue, 1 Jun 2021 15:33:14 -0500
+> From: Rob Herring <robh@kernel.org>
 > 
-> The check for the board compatible should be limited only to the root
-> node.  Any other nodes with such compatible are not part of this schema
-> and should not match.
+> On Tue, Jun 01, 2021 at 08:32:10AM -0500, Rob Herring wrote:
+> > On Mon, 31 May 2021 00:44:00 +0200, Mark Kettenis wrote:
+> > > From: Mark Kettenis <kettenis@openbsd.org>
+> > > 
+> > > The Apple PCIe host controller is a PCIe host controller with
+> > > multiple root ports present in Apple ARM SoC platforms, including
+> > > various iPhone and iPad devices and the "Apple Silicon" Macs.
+> > > 
+> > > Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
+> > > ---
+> > >  .../devicetree/bindings/pci/apple,pcie.yaml   | 167 ++++++++++++++++++
+> > >  MAINTAINERS                                   |   1 +
+> > >  2 files changed, 168 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/pci/apple,pcie.yaml
+> > > 
+> > 
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > Documentation/devicetree/bindings/pci/apple,pcie.example.dts:20:18: fatal error: dt-bindings/pinctrl/apple.h: No such file or directory
+> >    20 |         #include <dt-bindings/pinctrl/apple.h>
+> >       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> ---
-> 
-> Hi Rob,
-> 
-> Can you take it directly?
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
-> ---
->  Documentation/devicetree/bindings/arm/intel,keembay.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+> Looking at the example, I don't think you need this header.
 
-Applied, thanks!
+Indeed.  And I forgot to remove it in the respin.
+
+> Looks like irq.h is needed though.
+
+Hmm, apple-aic.h includes irq.h, but the current t8103.dtsi includes
+both.  Similar situation with arm-gic.h and irq.h, where some DT files
+include both and others only include arm-gic.h.  I can do it either
+way for v3.
