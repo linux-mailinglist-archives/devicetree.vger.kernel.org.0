@@ -2,130 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5958839806B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 06:37:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C9213980AB
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 07:32:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229663AbhFBEjS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 00:39:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45876 "EHLO
+        id S229995AbhFBFdr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 01:33:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbhFBEjR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 00:39:17 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E24CC061574;
-        Tue,  1 Jun 2021 21:37:34 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id 133so1238017pgf.2;
-        Tue, 01 Jun 2021 21:37:34 -0700 (PDT)
+        with ESMTP id S229987AbhFBFdr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 01:33:47 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 070E0C061574;
+        Tue,  1 Jun 2021 22:31:54 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id mq2-20020a17090b3802b0290162428291f5so1045290pjb.4;
+        Tue, 01 Jun 2021 22:31:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=s61OiZYKOsW6cE8ZfHpspLBA2T60D0x91MluTCnVBZQ=;
-        b=T15fJd1v4MPRbbyLv1Haelr/MaxNAhdly0rDRvzUldQYrCpUL3D3S5COwbsUPvyZT0
-         bQ18k51URaWmzSYry9/7qjGfHs+wkDNbpyVKeEuKRzOlH5nhgEgCt6XkCIHAVW9yGlOk
-         8xsiYLoKtI8Mr/U3ExDiBwogXBlsRw7hqR42/Os7bTk1+FLBjdfDopQcWmgzIX0pbWLo
-         vuzdEY0kLZ65t8isloVGiiQ17Q7Zw/bjP5fCt5BJKh3ZB9nJ7Qidb9D8h4IxdwWiWEY0
-         uu5U9ZhV+N6HyEHEAH+xy9XlQs2LP1unxFMsHhOS8/c+CBwJeduir2OGhppOmQOUgbps
-         bJJw==
+        h=from:to:cc:subject:date:message-id;
+        bh=rD8EmGvVLCHRY6rnYywd87VdaZhsWJHUm0MbRk+LcQA=;
+        b=KzqJVF2DECQAU9MGBps+2PqcD41dMHgI0BMjOSFyWg8QL4EAxeAWIc/uuHf8d86ONg
+         5UJiykP0BKoJAB0jcht23FwKf2of2kLdyweWcBygnVhSb0b44TKdGJ0IUlYVNeN4YI4V
+         5mkkq0Cn5pRHlmTLbFl2g03Oy5GwYyeXz2N0af6SZS1qmPg2+HUbxdmHM0I0o5pqomOy
+         RxKdXMaZDGE59q2ZTRis7jKlXE6XQLVGrKlYXUSfzumpmHCTyKRJWSkfTMGw4oiK6Zox
+         xoibR6nC9h6EImmfQHfCw6MAv4PAzXQoITV9hkFvzDQ58uW2PpRUhRFnH1QC5p6ja4Fl
+         TVlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=s61OiZYKOsW6cE8ZfHpspLBA2T60D0x91MluTCnVBZQ=;
-        b=uSBCKYR4vhf5kgpRXFI5+xPnQZSjvboCcz6WPbzR9cAKkFKwyJOWOMS0sHSeoxIke5
-         iv9hGTCND/vORnDYTbjOW096qW+Lgtvts2Dq2zk29wO+P4vabVggNvNNUqFj/xtWC9UK
-         xkUPr9i4smqdr1CFr7pa67Y/EhfxpYewKHShApsRsOUCj890sFcimRb60MxfVDNoN/AF
-         U8BD1xwF/1VpfzAzfi9J5L4+wAvt0OEkFCgvCSScgRQXgct+2O9Q/E0jo9MDXOHZb+my
-         zlqgH/bPHcmKTUx10iZJe+UVBiwg2JrfDv/W2uDBeFCJ7cD8m8rSRmnW1ao8HdOmsiwZ
-         e4Mw==
-X-Gm-Message-State: AOAM531h89nD5z0CCXs8Ddyekub+DpueRpH0dC2BvKlAZFfuM9rl09M3
-        MTjIl5luZbUMJcgejWYt6x4=
-X-Google-Smtp-Source: ABdhPJziwfj1W0ruMVUYRYigH/z/tGV6kelJMEGVgv5M4xsXm04WArSn1+WMMI6YpGXghv4Pu8B1cw==
-X-Received: by 2002:a65:4042:: with SMTP id h2mr31570795pgp.380.1622608653977;
-        Tue, 01 Jun 2021 21:37:33 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:a596:b3cb:1a6:1ee4])
-        by smtp.gmail.com with ESMTPSA id d15sm3365543pjr.47.2021.06.01.21.37.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jun 2021 21:37:32 -0700 (PDT)
-Date:   Tue, 1 Jun 2021 21:37:30 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     skakit@codeaurora.org
-Cc:     Rob Herring <robh@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        kgunda@codeaurora.org, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Courtney Cavin <courtney.cavin@sonymobile.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>
-Subject: Re: [PATCH V3 4/5] dt-bindings: input: pm8941-pwrkey: Convert pm8941
- power key binding to yaml
-Message-ID: <YLcLCmxNOYqj0SN3@google.com>
-References: <1620630064-16354-1-git-send-email-skakit@codeaurora.org>
- <1620630064-16354-5-git-send-email-skakit@codeaurora.org>
- <1620655299.793818.41438.nullmailer@robh.at.kernel.org>
- <20210510162445.GA230005@robh.at.kernel.org>
- <c4e286ae6bd621a9d84184d5d014d060@codeaurora.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c4e286ae6bd621a9d84184d5d014d060@codeaurora.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=rD8EmGvVLCHRY6rnYywd87VdaZhsWJHUm0MbRk+LcQA=;
+        b=B3gMJdYMU4emuyAqOaTVo6hnDzBZ3HLzQbTG0+5pQ+G8xsZ/X6jWVkeRg9qPB4i0Dk
+         sxEcyDnuYiFIWEAE5LAlSlnAh5VbUlS08TIiz8SOOlT4JEa5cai1iSt36cROfiFNzSs4
+         cFEUdv6iJZMBsY8+AbV3Jfs/uAUPkWnaMIRY/h21qBCn4RxjXZuQSZRUXfARkgSZ//IA
+         omxfEJdEswMpFvoRe6H2+qHYE4SieYQ/QU3F+PYp+MKdenYyFZnTImBprd4kzj9tAYGG
+         sXWl8KDXqZAS00ywG+rW4Dp1m+RRx1imecAv6BJMYj1vc28U0lWQymXauYjG/iL38YPt
+         gNeQ==
+X-Gm-Message-State: AOAM530Luah4o26uOjXJn75FB0jIWwpwPFua6cz+Igr/cR34sdDu3KaV
+        EXrX5a7z7RvS/oPxu3e2UPk+sE6Gn48=
+X-Google-Smtp-Source: ABdhPJw/wDqLBwU/PQ8MrT0RYCpyoQCMTEcy42M4LYKOBGwi+/T/14b+xzpbvmnKNTzwllZrQEAl7A==
+X-Received: by 2002:a17:90a:fa88:: with SMTP id cu8mr4518028pjb.86.1622611913365;
+        Tue, 01 Jun 2021 22:31:53 -0700 (PDT)
+Received: from localhost.localdomain (1-171-13-27.dynamic-ip.hinet.net. [1.171.13.27])
+        by smtp.gmail.com with ESMTPSA id w8sm16821060pgf.81.2021.06.01.22.31.51
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 01 Jun 2021 22:31:52 -0700 (PDT)
+From:   cy_huang <u0084500@gmail.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org
+Cc:     cy_huang@richtek.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v7 1/2] regulator: rt6160: Add DT binding document for Richtek RT6160
+Date:   Wed,  2 Jun 2021 13:31:45 +0800
+Message-Id: <1622611906-2403-1-git-send-email-u0084500@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 12, 2021 at 10:17:43AM +0530, skakit@codeaurora.org wrote:
-> On 2021-05-10 21:54, Rob Herring wrote:
-> > On Mon, May 10, 2021 at 09:01:39AM -0500, Rob Herring wrote:
-> > > On Mon, 10 May 2021 12:31:03 +0530, satya priya wrote:
-> > > > Convert qcom pm8941 power key binding from .txt to .yaml format.
-> > > >
-> > > > Signed-off-by: satya priya <skakit@codeaurora.org>
-> > > > ---
-> > > > Changes in V2:
-> > > >  - Fixed bot errors, took reference from input.yaml for "linux,code"
-> > > >  - Added one complete example for powerkey and resin, and referenced it
-> > > >    in main PON binding.
-> > > >  - Moved this patch to the end of the series.
-> > > >
-> > > > Changes in V3:
-> > > >  - Moved this patch before PON binding patch.
-> > > >  - As per Rob's comments, added allOf at the beginning of binding.
-> > > >    Added maxItems for interrupts.
-> > > >  - Added 'unevaluatedProperties' instead of 'additionalProperties' as
-> > > >    we are using allOf.
-> > > >
-> > > >  .../bindings/input/qcom,pm8941-pwrkey.txt          | 55 --------------
-> > > >  .../bindings/input/qcom,pm8941-pwrkey.yaml         | 87 ++++++++++++++++++++++
-> > > >  2 files changed, 87 insertions(+), 55 deletions(-)
-> > > >  delete mode 100644 Documentation/devicetree/bindings/input/qcom,pm8941-pwrkey.txt
-> > > >  create mode 100644 Documentation/devicetree/bindings/input/qcom,pm8941-pwrkey.yaml
-> > > >
-> > > 
-> > > My bot found errors running 'make DT_CHECKER_FLAGS=-m
-> > > dt_binding_check'
-> > > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > > 
-> > > yamllint warnings/errors:
-> > > 
-> > > dtschema/dtc warnings/errors:
-> > > Documentation/devicetree/bindings/input/qcom,pm8941-pwrkey.example.dt.yaml:0:0:
-> > > /example-0/spmi@c440000/pmic@0/pon_hlos@1300: failed to match any
-> > > schema with compatible: ['qcom,pm8998-pon']
-> > 
-> > You have the same example in patch 5, so drop the example here. That
-> > will fix this circular dependency.
-> 
-> Earlier I have dropped example from qcom-pon.yaml. Now, I will add the
-> example there and drop here.
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-It sounds to me you want to combine patches 4 and 5 since they depend on
-each other.
+Add DT binding document for Richtek RT6160 voltage regulator.
 
-Thanks.
+Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+since v4
+- Add Reviewed-by.
 
+since v3
+- Move all regulator related properties to the upper node.
+
+since v2
+- Move buckboost node from patternProperties to Properties.
+---
+ .../regulator/richtek,rt6160-regulator.yaml        | 61 ++++++++++++++++++++++
+ 1 file changed, 61 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt6160-regulator.yaml
+
+diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt6160-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt6160-regulator.yaml
+new file mode 100644
+index 00000000..0534b0d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/richtek,rt6160-regulator.yaml
+@@ -0,0 +1,61 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/richtek,rt6160-regulator.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Richtek RT6160 BuckBoost converter
++
++maintainers:
++  - ChiYuan Huang <cy_huang@richtek.com>
++
++description: |
++  The RT6160 is a high-efficiency buck-boost converter that can provide
++  up to 3A output current from 2025mV to 5200mV. And it support the wide
++  input voltage range from 2200mV to 5500mV.
++
++  Datasheet is available at
++  https://www.richtek.com/assets/product_file/RT6160A/DS6160A-00.pdf
++
++allOf:
++  - $ref: regulator.yaml#
++
++properties:
++  compatible:
++    enum:
++      - richtek,rt6160
++
++  reg:
++    maxItems: 1
++
++  enable-gpios:
++    description: A connection of the 'enable' gpio line.
++    maxItems: 1
++
++  richtek,vsel-active-low:
++    description: |
++      Used to indicate the 'vsel' pin active level. if not specified, use
++      high active level as the default.
++    type: boolean
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      rt6160@75 {
++        compatible = "richtek,rt6160";
++        reg = <0x75>;
++        enable-gpios = <&gpio26 2 0>;
++        regulator-name = "rt6160-buckboost";
++        regulator-min-microvolt = <2025000>;
++        regulator-max-microvolt = <5200000>;
++      };
++    };
 -- 
-Dmitry
+2.7.4
+
