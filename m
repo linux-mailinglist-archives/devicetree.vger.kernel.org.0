@@ -2,86 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB72D399331
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 21:07:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73F8439932D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 21:06:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229744AbhFBTIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 15:08:50 -0400
-Received: from smtp.220.in.ua ([89.184.67.205]:52902 "EHLO smtp.220.in.ua"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229710AbhFBTIs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Jun 2021 15:08:48 -0400
-Received: from oleh-pc.lan (unknown [95.67.115.55])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by smtp.220.in.ua (Postfix) with ESMTPSA id B0FF41A206DA;
-        Wed,  2 Jun 2021 22:07:00 +0300 (EEST)
-From:   Oleh Kravchenko <oleg@kaa.org.ua>
-To:     linux-input@vger.kernel.org
-Cc:     Oleh Kravchenko <oleg@kaa.org.ua>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Device Tree mailing list <devicetree@vger.kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jiri Kosina <jikos@jikos.cz>,
-        Patchwork Bot <patchwork-bot@kernel.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH 2/2 v2] dt-bindings: Add vendor prefix and bindings for Qwiic Joystick
-Date:   Wed,  2 Jun 2021 22:05:06 +0300
-Message-Id: <20210602190504.23076-2-oleg@kaa.org.ua>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20210602190504.23076-1-oleg@kaa.org.ua>
-References: <20210602190504.23076-1-oleg@kaa.org.ua>
+        id S229558AbhFBTIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 15:08:02 -0400
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:37618 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229568AbhFBTH4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 15:07:56 -0400
+Received: by mail-oi1-f178.google.com with SMTP id h9so3706056oih.4;
+        Wed, 02 Jun 2021 12:06:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=NvH5YtSqCqcW4oiU66DUShfepYhayf/HTsXXwX+47T8=;
+        b=RgCi/ndRzTLHDzdu5MJc1qgf8KzxKlL5i8st/FwmDfpBw49PZ2MdLnVLDyh9+7u1iw
+         nPXcISE4ylbciJWY8+ByWmY7lNcL8UsgeKMcL0rbZ00jxI/YSXQ725vho1+I5t5nGXjS
+         aYu0yPNG59TPserNcQMO4eQbXA9FqEFi9cnuN7w6PTLzvhoc0CRYuHkwcs2uZZYb9S7v
+         ohBwdNiRwnOs5IkIQ9lHrpKO/foNHGHpsTbfXwxn10LjflMZ1+6TSr5r9/VMyCcvaaT/
+         F2VOPL4QrsGJFtAhdAY6uHt9g4NOkQpbqbknLOXq8DyNUFXxWHj+wVP75IHXKmNYtZre
+         8Qrw==
+X-Gm-Message-State: AOAM5301+iYGbxN1Mx2kQsqNL0w6P7DtQ+eqHvspRaiPeMbINrkVVNy0
+        USYKyBxc0mSeVoCvfEs0qbHitOlnew==
+X-Google-Smtp-Source: ABdhPJwFEhxXlxwklU/haoTKdWmDMAbQpKHhIQwZCu8sTq1fzjNp33QS1/8m8NWeptaphkUBpXZx0Q==
+X-Received: by 2002:aca:3704:: with SMTP id e4mr4883623oia.154.1622660773077;
+        Wed, 02 Jun 2021 12:06:13 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id v19sm165128otk.22.2021.06.02.12.06.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Jun 2021 12:06:12 -0700 (PDT)
+Received: (nullmailer pid 3792765 invoked by uid 1000);
+        Wed, 02 Jun 2021 19:06:11 -0000
+Date:   Wed, 2 Jun 2021 14:06:11 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Wolfram Sang <wsa@kernel.org>, Nishanth Menon <nm@ti.com>,
+        linux-kernel@vger.kernel.org,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: i2c: Move i2c-omap.txt to YAML format
+Message-ID: <20210602190611.GA3792700@robh.at.kernel.org>
+References: <20210526100412.484-1-vigneshr@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210526100412.484-1-vigneshr@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add vendor prefix for SparkFun Electronics.
-Update trivial-devices.yaml with SparkFun Qwiic Joystick description.
+On Wed, 26 May 2021 15:34:12 +0530, Vignesh Raghavendra wrote:
+> Convert i2c-omap.txt to YAML schema for better checks and documentation.
+> 
+> Following properties were used in DT but were not documented in txt
+> bindings and has been included in YAML schema:
+> 1. Include ti,am4372-i2c compatible
+> 2. Document clocks property
+> 
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> ---
+> 
+> Note that am335x-myirtech*.dtsi needs fixing to drop scl/sda-gpios
+> which are not supported by i2c-omap driver.
+> omap2/3 dmas property is being dropped by:
+> https://lore.kernel.org/20210526094424.27234-1-vigneshr@ti.com
+> 
+> v3:
+> Add conditions around ti,hwmods usage
+> drop dmas property as it was never used/supported
+> set additionalProperties: False
+> Address Rob H comments
+> 
+> v2:
+> Fix issues with make dt_bindings_check
+> Add description on usage of ti,hwmods
+> 
+> v2: https://lore.kernel.org/r/20210506140026.31254-1-vigneshr@ti.com
+> v1: https://lore.kernel.org/r/20210505065511.918-1-vigneshr@ti.com
+> 
+>  .../devicetree/bindings/i2c/i2c-omap.txt      |  37 -------
+>  .../devicetree/bindings/i2c/ti,omap4-i2c.yaml | 102 ++++++++++++++++++
+>  MAINTAINERS                                   |   2 +-
+>  3 files changed, 103 insertions(+), 38 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-omap.txt
+>  create mode 100644 Documentation/devicetree/bindings/i2c/ti,omap4-i2c.yaml
+> 
 
-Cc: Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Cc: Device Tree mailing list <devicetree@vger.kernel.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Jiri Kosina <jikos@jikos.cz>
-Cc: Patchwork Bot <patchwork-bot@kernel.org>
-Cc: Rob Herring <robh@kernel.org>
-Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
----
-
-Changes:
-- Separate patch for device tree bindings.
-
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 2 files changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index a327130d1faa..706aa102d96d 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -261,6 +261,8 @@ properties:
-             # Socionext SynQuacer TPM MMIO module
-           - socionext,synquacer-tpm-mmio
-             # i2c serial eeprom  (24cxx)
-+          - sparkfun,qwiic-joystick
-+            # SparkFun Qwiic Joystick (COM-15168) with i2c interface
-           - st,24c256
-             # Ambient Light Sensor with SMBUS/Two Wire Serial Interface
-           - taos,tsl2550
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 944b02bb96d7..a5631e68f5d1 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1060,6 +1060,8 @@ patternProperties:
-     description: Sony Corporation
-   "^spansion,.*":
-     description: Spansion Inc.
-+  "^sparkfun,.*":
-+    description: SparkFun Electronics
-   "^sprd,.*":
-     description: Spreadtrum Communications Inc.
-   "^sst,.*":
--- 
-2.26.3
-
+Reviewed-by: Rob Herring <robh@kernel.org>
