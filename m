@@ -2,139 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F6D2399388
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 21:30:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28378399398
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 21:35:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229606AbhFBTbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 15:31:51 -0400
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:43707 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229595AbhFBTbu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 15:31:50 -0400
-Received: by mail-ot1-f49.google.com with SMTP id i12-20020a05683033ecb02903346fa0f74dso3462700otu.10;
-        Wed, 02 Jun 2021 12:29:52 -0700 (PDT)
+        id S229778AbhFBThI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 15:37:08 -0400
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:37537 "EHLO
+        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229774AbhFBThH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 15:37:07 -0400
+Received: by mail-ot1-f50.google.com with SMTP id v19-20020a0568301413b0290304f00e3d88so3496894otp.4;
+        Wed, 02 Jun 2021 12:35:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=3plZeCz7fgIf1ejmmfS5ZX5SU0qjotsTUM0Caj+WGY8=;
-        b=FUGGGcMi2fICO3otOyGjTgGwfkmysTueUG5YrMpntI6RfquoMVuC7Cg+E+BR87drGb
-         ZrPw3ap9ASkar1ZG1Ne6ySOhVCnkvUVaXkkpdBqL1G997GKa7m0RVl5XN8qOYKpythgL
-         W3+RIxR0q8R7HLEZb1ejMxNEaYEqmPpXGyPOexPHyd5h8MHXkOT59fEa3pQJ0IFyt8wp
-         Qd/ZIzvchD2JmOyR/OWFAaD4y5pXF2uUcIjK25gZg3uR7ZTJAp9rFYf/XTwuC2jfWb9Z
-         7xSBUe4ye9tVjWlPcu+JrZnIvuNyt4D14CBvdSKQ7NQKVzQpjORKe2iGUhFpId2zpuKH
-         lxIQ==
-X-Gm-Message-State: AOAM5310Kzw7ClfC4mJtX8ptx1LZWqy+r3kKuqjPK4zvEmEoYoj1i9qa
-        hp1WV8gK8JgmJ2WqQXNNow==
-X-Google-Smtp-Source: ABdhPJxUTbNZu6gnxSBJHTtYZfLz+pJpkTmBpXapgtA0YZOo3BEVhehVwU+ikqYteSZdmcQlOWzqsw==
-X-Received: by 2002:a9d:2904:: with SMTP id d4mr3715611otb.238.1622662192100;
-        Wed, 02 Jun 2021 12:29:52 -0700 (PDT)
+        bh=uELX5W19vdK7VgcXeNAPi2/+xnOFs6GHFEA1rcE0XzE=;
+        b=DzlvFftm6esXLAOCrSD2s6LpCMIaiLG4c1Bri3wmTbdIi3RJMMu54A8yneyZn00jM5
+         /3mBPAu720nrV4a6kpXViyUNvCYmAPlTM1O0NebWyok9shH/6lvGY786hZN8wA8SP6UV
+         dZDAkq5woFw9WdpwSImsVCt9sWmgyW3LHvnQZo9aSVc7gS4SOa9Tzu4w1WzrY6FL0/Hw
+         uI1wwE+Fs1yECED/WBX176lb7xutSLsLYOQp68ahbksh3r4Zw/66c1U2pFa6wED5hS0B
+         7LHMNfVGRsmDIsjTz6jPF7BudQsUp/BFEc63ZeIegsh0W1LgAHEy7F+08s/rcKPH86Ek
+         M+AQ==
+X-Gm-Message-State: AOAM532SoONyI5JHn4gAvio1/rZ1EQUQDfwoRlphUHFYfpml8vYMmcpR
+        7A8cCWvvtXQ5YqfRqCtgiA==
+X-Google-Smtp-Source: ABdhPJwJX6Gj3B+2OzSEv2IpU3/yiuUkwpDjfxx9RHc6frueeMkWWj/KJ6U61HlAsdHZxzB0xOtKxg==
+X-Received: by 2002:a9d:6d93:: with SMTP id x19mr26261946otp.117.1622662524090;
+        Wed, 02 Jun 2021 12:35:24 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id q22sm176297otl.11.2021.06.02.12.29.50
+        by smtp.gmail.com with ESMTPSA id g21sm175567otn.67.2021.06.02.12.35.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jun 2021 12:29:51 -0700 (PDT)
-Received: (nullmailer pid 3834982 invoked by uid 1000);
-        Wed, 02 Jun 2021 19:29:50 -0000
-Date:   Wed, 2 Jun 2021 14:29:50 -0500
+        Wed, 02 Jun 2021 12:35:23 -0700 (PDT)
+Received: (nullmailer pid 3844879 invoked by uid 1000);
+        Wed, 02 Jun 2021 19:35:22 -0000
+Date:   Wed, 2 Jun 2021 14:35:22 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Heiko Schocher <hs@denx.de>
-Cc:     linux-mtd@lists.infradead.org, Fabio Estevam <festevam@denx.de>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] mtd: devices: add devicetree documentation for
- microchip 48l640
-Message-ID: <20210602192950.GA3827845@robh.at.kernel.org>
-References: <20210601043546.1345704-1-hs@denx.de>
- <20210601043546.1345704-2-hs@denx.de>
+To:     Lokesh Vutla <lokeshvutla@ti.com>
+Cc:     u.kleine-koenig@pengutronix.de,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        thierry.reding@gmail.com,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Nishanth Menon <nm@ti.com>, lee.jones@linaro.org,
+        linux-pwm@vger.kernel.org,
+        Linux OMAP Mailing List <linux-omap@vger.kernel.org>,
+        Vignesh R <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        tony@atomide.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: pwm: pwm-tiehrpwm: Convert to json
+ schema
+Message-ID: <20210602193522.GA3844813@robh.at.kernel.org>
+References: <20210601054402.2223-1-lokeshvutla@ti.com>
+ <20210601054402.2223-2-lokeshvutla@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210601043546.1345704-2-hs@denx.de>
+In-Reply-To: <20210601054402.2223-2-lokeshvutla@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 01, 2021 at 06:35:45AM +0200, Heiko Schocher wrote:
-> The Microchip 48l640 is a 8KByte EERAM connected via SPI.
-> Add devicetree bindings documentation.
+On Tue, 01 Jun 2021 11:14:01 +0530, Lokesh Vutla wrote:
+> Convert the tiehrpwm binding to DT schema format using json-schema.
+> Along with this conversion the following changes are included:
+> - 'clock' and 'clock-names' properties are marked as required as
+>    driver fails to probe without these properties
+> - Dropped ti,am33xx-ehrpwm as it is no longer applicable.
+> - 'power-domains' property is introduced and marked as optional.
 > 
-> Signed-off-by: Heiko Schocher <hs@denx.de>
+> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
 > ---
+>  .../devicetree/bindings/pwm/pwm-tiehrpwm.txt  | 50 ---------------
+>  .../devicetree/bindings/pwm/pwm-tiehrpwm.yaml | 64 +++++++++++++++++++
+>  2 files changed, 64 insertions(+), 50 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-tiehrpwm.txt
+>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-tiehrpwm.yaml
 > 
-> Changes in v3:
-> Add Fabio to cc
-> 
-> Changes in v2:
-> as Rob helped, fix warnings from running command
-> 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> 
->  .../bindings/mtd/microchip,mchp48l640.yaml    | 45 +++++++++++++++++++
->  1 file changed, 45 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml b/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
-> new file mode 100644
-> index 0000000000000..08089f2db0761
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
-> @@ -0,0 +1,45 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/mtd/microchip,mchp48l640.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: MTD SPI driver for Microchip 48l640 (and similar) serial EERAM
-
-This is not the driver.
-
-> +
-> +maintainers:
-> +  - Heiko Schocher <hs@denx.de>
-> +
-> +description: |
-> +  The Microchip 48l640 is a 8KByte EERAM connected via SPI.
-> +
-> +  datasheet: http://ww1.microchip.com/downloads/en/DeviceDoc/20006055B.pdf
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: microchip,48l640
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      spi-eeram@0 {
-
-eeram@0
-
-Otherwise,
 
 Reviewed-by: Rob Herring <robh@kernel.org>
-
-
-> +        compatible = "microchip,48l640";
-> +        reg = <0>;
-> +        spi-max-frequency = <20000000>;
-> +      };
-> +    };
-> +...
-> -- 
-> 2.31.1
