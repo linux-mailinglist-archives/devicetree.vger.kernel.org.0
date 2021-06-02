@@ -2,132 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A37E398504
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 11:12:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D39B398539
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 11:26:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231326AbhFBJOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 05:14:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51576 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229603AbhFBJOf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 05:14:35 -0400
-Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75133C06174A
-        for <devicetree@vger.kernel.org>; Wed,  2 Jun 2021 02:12:52 -0700 (PDT)
-Received: by mail-io1-xd34.google.com with SMTP id 5so1771630ioe.1
-        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 02:12:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=BrRGZe9S7UVDsoLQx6OlURcsBADt8tx/P1nptvMx8aw=;
-        b=QhtwyovIMd9W7sHaWyWMfsGdYxpH2TYSQGdA7nWx+UR/a4gawzbeyB9d7OrrdkulUV
-         VIPug0abm74qbHjUUZL7Ss+gPj3//w31STentf1XpPxL/D8AdBV6gHxbs2OTjUu6dNZb
-         DElv9lhy+fu62/1UDhpNPSpcmC8HNYnVU52hc5I11ec3CrjyG+8gv5u+A6XsQYG6YAt5
-         9/pz6xfxcnygR+BS+5kut+bKBftxa/Ab1Z5gGD775tODljuFVm2hB1Or7ZWV7K6PvzRA
-         Uy6Qd1qGGN62TiQ7kvdSyDWa+cBKEzChkIW27+UnO4PvD2Rtlgi4y2Ki/KnraubQkyep
-         Ke+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=BrRGZe9S7UVDsoLQx6OlURcsBADt8tx/P1nptvMx8aw=;
-        b=GiwFdSOz7wvGYiz6AEAQrdDc5sE5AlwsJQ3/4jbCQjWwT5vBdshw08I1uA0jUIumJN
-         DnNosvon/P+iSrZS5zUtQgFztOcI8whNMou3/yBzQpTc2W5u2B1Z4EKJ1warSUsPKZC8
-         siAuA8i1lOQ6t6xumCCnilDSUl+Q5BJnQ1bd/W6/Ju8pj3yXb23JaZIcxfe2ZwrPlWPz
-         YC4qIoEd/QBnR0Xqq040ZpmaxwoLvc/osGHLPIJap1aOdtB2yzh0Z2NEB9neUpP0xWql
-         U+abERoZqnIk1vfRmONN09BRZDDZr2jdk/NFsx/1zkTbGZPfObqDmPApBidOyE1cmSFI
-         s7hg==
-X-Gm-Message-State: AOAM531MgWB2di7qsSYhlKPMOWcYEhws5DFGKQS7zPGktMWAAHJ+SugW
-        DRKxRVwvKnuxOo6XqQpLJPclr5tCxXzGingZrqcf1g==
-X-Google-Smtp-Source: ABdhPJy3dTkiDCd5545R7VQEoXEwzqqJjzwzayxkz22WjIpGQ+1L7bqwlqaH6YQldYb3Thm7FNsjrNmL08JpwCYxb2w=
-X-Received: by 2002:a5e:8d16:: with SMTP id m22mr4008387ioj.139.1622625171801;
- Wed, 02 Jun 2021 02:12:51 -0700 (PDT)
+        id S231768AbhFBJ15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 05:27:57 -0400
+Received: from muru.com ([72.249.23.125]:35350 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231283AbhFBJ14 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Jun 2021 05:27:56 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id D2C858027;
+        Wed,  2 Jun 2021 09:26:18 +0000 (UTC)
+Date:   Wed, 2 Jun 2021 12:26:08 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Sven Peter <sven@svenpeter.dev>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk <linux-clk@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Arnd Bergmann <arnd@kernel.org>
+Subject: Re: [PATCH 0/3] Apple M1 clock gate driver
+Message-ID: <YLdOsA63GyMj4SgR@atomide.com>
+References: <20210524182745.22923-1-sven@svenpeter.dev>
+ <CAL_JsqKqpSQbdj_Crc-LSc12700kyFFkMTU29BDY2bwGNLXn9A@mail.gmail.com>
+ <YK32Mmiq9QXGkELF@atomide.com>
+ <9ff6ec26-4b78-4684-9c23-16d5cbfef857@www.fastmail.com>
 MIME-Version: 1.0
-References: <20210524120539.3267145-1-robert.marko@sartura.hr>
- <20210524120539.3267145-3-robert.marko@sartura.hr> <20210524230940.GA1350504@robh.at.kernel.org>
- <20210525074649.GC4005783@dell> <CA+HBbNFxCKbitVctbUisuZXJWxaZp0cswNNNTgD0UxQZ1smJbg@mail.gmail.com>
- <20210526075255.GG4005783@dell> <CA+HBbNGSH9AvRo0Hwa5pWea94u0LwJt=Kj7gWjSAV9fS5VFr0A@mail.gmail.com>
- <20210601081933.GU543307@dell> <50ced58164999f51a8c8b9c8dc01468e@walle.cc>
- <20210601135816.GG543307@dell> <20210601144826.GI543307@dell>
-In-Reply-To: <20210601144826.GI543307@dell>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Wed, 2 Jun 2021 11:12:41 +0200
-Message-ID: <CA+HBbNFZhF1+B-JsHyeybcF96NQDA+afoWt-pMSKrtYdDYNgZQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: mfd: Add Delta TN48M CPLD drivers bindings
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Michael Walle <michael@walle.cc>, Rob Herring <robh@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
-        Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9ff6ec26-4b78-4684-9c23-16d5cbfef857@www.fastmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 1, 2021 at 4:48 PM Lee Jones <lee.jones@linaro.org> wrote:
->
-> On Tue, 01 Jun 2021, Lee Jones wrote:
->
-> > On Tue, 01 Jun 2021, Michael Walle wrote:
-> >
-> > > Am 2021-06-01 10:19, schrieb Lee Jones:
-> > > > Why do you require one single Regmap anyway?  Are they register ban=
-ks
-> > > > not neatly separated on a per-function basis?
-> > >
-> > > AFAIK you can only have one I2C device driver per device, hence the
-> > > simple-mfd-i2c.
-> >
-> > Sorry, can you provide more detail.
->
-> I'd still like further explanation to be sure, but if you mean what I
-> think you mean then, no, I don't think that's correct.
->
-> The point of simple-mfd-i2c is to provide an I2C device offering
-> multiple functions, but does so via a non-separated/linear register-
-> set, with an entry point and an opportunity to register its interwoven
-> bank of registers via Regmap.
->
-> However, if you can get away with not registering your entire register
-> set as a single Regmap chunk, then all the better.  This will allow
-> you to use the OF provided 'simple-mfd' compatible instead.
->
-> Now, if you're talking about Regmap not supporting multiple
-> registrations with only a single I2C address, this *may* very well be
-> the case, but IIRC, I've spoken to Mark about this previously and he
-> said the extension to make this possible would be trivial.
+* Sven Peter <sven@svenpeter.dev> [210530 11:09]:
+> Hi,
+> 
+> On Wed, May 26, 2021, at 09:18, Tony Lindgren wrote:
+> > Hi,
+> > 
+> > * Rob Herring <robh+dt@kernel.org> [210525 18:09]:
+> > > I would do a single node per mmio region with the register offset (or
+> > > offset / 4) being the clock id. This can still support new SoCs easily
+> > > if you have a fallback compatible. If you want/need to get all the
+> > > clocks, just walk the DT 'clocks' properties and extract all the IDs.
+> > 
+> > I mostly agree.. Except I'd also leave out the artificial clock ID and
+> > just use real register offsets from the clock controller base instead.
+> 
+> Sure, I'll do that.
+> 
+> > 
+> > So a single clock controller node for each MMIO range, then set
+> > #clock=cells = <1>. Then the binding follows what we have for the
+> > interrupts-extended binding for example.
+> > 
+> > If the clock controller optionally needs some data in the dts,
+> > that can be added to the clock controller node. Or it can be driver
+> > internal built-in data. If the data for dts can be described in a
+> > generic way, even better :)
+> 
+> Now the big question is *how* to describe this additional data in the
+> dts. Essentially I need to specify that e.g. to enable clock 0x270
+> I first need to enable the (internal) clocks 0x1c0 and then 0x220.
+> Are you aware of any generic way to describe this? I'm not even sure
+> how a sane non-generic way would look like when I just have a single
+> clock controller node.
 
-This is my understanding, that you cannot have multiple regmap registration=
-s
-with on the same I2C address.
-At least that is how it was the last time I tested.
-That is why I went the MFD way.
+To me it seems you might be able to recycle the assigned-clocks and
+assigned-clock-parents etc properties in the clock controller node.
+
+Sure the assigned-clocks property will point to clocks in the
+clock controller itself, and will have tens of entries, but should
+work :)
+
+And sounds like you can generate that list with some script from the
+Apple dtb.
 
 Regards,
-Robert
->
-> So we have to take this on a device-by-device basis an decide what is
-> best at the time of submission.
->
-> --
-> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
-> Senior Technical Lead - Developer Services
-> Linaro.org =E2=94=82 Open source software for Arm SoCs
-> Follow Linaro: Facebook | Twitter | Blog
 
-
-
---=20
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+Tony
