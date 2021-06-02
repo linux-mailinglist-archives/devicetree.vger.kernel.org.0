@@ -2,111 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B64F398F95
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 18:06:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A147D398F9C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 18:07:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230246AbhFBQIU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 12:08:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32776 "EHLO
+        id S231768AbhFBQJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 12:09:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229657AbhFBQIT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 12:08:19 -0400
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07EFDC06174A
-        for <devicetree@vger.kernel.org>; Wed,  2 Jun 2021 09:06:24 -0700 (PDT)
-Received: by mail-pf1-x42e.google.com with SMTP id k15so2545010pfp.6
-        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 09:06:23 -0700 (PDT)
+        with ESMTP id S229668AbhFBQJB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 12:09:01 -0400
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46A9DC061756
+        for <devicetree@vger.kernel.org>; Wed,  2 Jun 2021 09:07:18 -0700 (PDT)
+Received: by mail-qk1-x72d.google.com with SMTP id c124so2880238qkd.8
+        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 09:07:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=bGVJ1fEqd+Kmtn4CZUiicvmSxzhYZxgsSiEwCJsJFPs=;
-        b=gaKK+caiwwpAV1acAj90mEj+I+G3WF84YlHQoghHtaMb21r1BPmcOdmERodSw7gckN
-         v+rrAMqvANdGQ9qsYyLdAMup2LVONj2nqhjUPhtvOzKSVIP7ROgIHsc4qy4Rq4IQQGo3
-         cho/IKi31EFebhHza+L5urNVrf3jB6bn7CgVo=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=YAZ7ZSfiugbOhQydoUaMJhIYB+bVGqv38BgoX6VqAHE=;
+        b=j/5O522W9LSYYrKW9y59tk17EqPiEy6B3Mu6d/DngVNcdt76RphieNTFg+qkPe4exg
+         iBRQnfM8P80qgcNaqPaWwfvPVjh6MlmlBCULycBD0OeICSAKNTxsgOiQ55CjE11/Cl+F
+         qhHg+o4kbAQ2kNsd1RWdyTiprF2aXGBdBysLs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=bGVJ1fEqd+Kmtn4CZUiicvmSxzhYZxgsSiEwCJsJFPs=;
-        b=g7n5DpLVIoZHs42C4Yq73IzZOF7lgzPBuL/nG4n0ffoD9HJfF9v/xAVTvpm9zbXYUl
-         jzup8Jf+8ZiADY5w71AeG7it1RV++wZPAZr6p4YQ9Z2udJa15RgzYp7fOOGMKzeKRqYv
-         xHN82ymgUGgy8eOOsa9iyQV5t5LFjFV2KjNlaHz2oMXalyiwhaQkNJ1EE01XkkW01o5B
-         epk3Nd2m7yFD/rx/8Q86LV0sAy68S09Udnm7YIGOJElVE8xHMGGy8hdbx6rOCJCqHTfs
-         wD4HfCHedmPMzthq/2p08TjxUIWvy95mDZtrU4wRK1q9rFZkFRigYlw2nf/gLkDmNblL
-         tRuQ==
-X-Gm-Message-State: AOAM533CbS5L+tdw9p3UBAv/8SpQ2gcwyMSexijCwGL/0SqHq3c0viBE
-        EJZbwuMp/I47pXTmgEczEMsq+Q==
-X-Google-Smtp-Source: ABdhPJyEAwrGnHc8J9VsjWkA60Q3J0sEYJly49WpAkjmIW6xj6PdM9vaVC+MXdKwGxM6v4qPP9MNcg==
-X-Received: by 2002:aa7:9537:0:b029:2ea:2312:d2cb with SMTP id c23-20020aa795370000b02902ea2312d2cbmr3313322pfp.27.1622649983304;
-        Wed, 02 Jun 2021 09:06:23 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:d737:2805:1403:7c09])
-        by smtp.gmail.com with UTF8SMTPSA id s6sm61385pjr.29.2021.06.02.09.06.22
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=YAZ7ZSfiugbOhQydoUaMJhIYB+bVGqv38BgoX6VqAHE=;
+        b=uYiiANdTnDYp6fmWpTZtlghQTWRPOifqH5r6LI1Nta4ufeRTI8vg5xOtYs98amy/My
+         su7Pk/CK6Ns2UkEb/bLjfGFQzbbe9aPPQS5LsvoYFY+AzRxq9V5Jv0dMS/LACwcmdGE2
+         MwTHuOavChQ+XN0FpZ97GBNIaMwlrCbjOkzqk5wRQ8k4FQaZ2VDtQb+/oJDH0h9k6r7Y
+         xw6BQ8ZHxT9LqPCy08nxaJAJBdU7sCpTXeFSNKMdb3lRQmBCwKbbotoZi5IyBzXr3utl
+         IEQb6CD0JYXsBp+JwpHAc/4iyV1BIJSiYu1s6rVm36G7+0GcElRJ7pwM/151hn380HHK
+         kOlg==
+X-Gm-Message-State: AOAM533GZRBQPbpbLZWtTzwOpBHwaIxgeHjG1WvM+1g7DJEnMDMrgZK+
+        WaPJdNFU8C/VJDSjF0xn12rXbT2NdN4fjQ==
+X-Google-Smtp-Source: ABdhPJx8rDOv+YtCQJGdSQNLu2gplcx5LmiLD2sys6J87K/OulGKLkvBgDk4BiEqREvINkdCB4+q8A==
+X-Received: by 2002:a05:620a:12b0:: with SMTP id x16mr27645279qki.451.1622650037219;
+        Wed, 02 Jun 2021 09:07:17 -0700 (PDT)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id i11sm99433qtj.4.2021.06.02.09.07.17
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Jun 2021 09:06:22 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        linux-arm-msm@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH] arm64: dts: qcom: pm6150: Add thermal zone for PMIC on-die temperature
-Date:   Wed,  2 Jun 2021 09:06:14 -0700
-Message-Id: <20210602090525.1.Id4510e9e4baaa3f6c9fdd5cdf4d8606e63c262e3@changeid>
-X-Mailer: git-send-email 2.32.0.rc0.204.g9fa02ecfa5-goog
+        Wed, 02 Jun 2021 09:07:17 -0700 (PDT)
+Received: by mail-yb1-f177.google.com with SMTP id i4so4599241ybe.2
+        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 09:07:17 -0700 (PDT)
+X-Received: by 2002:ab0:c07:: with SMTP id a7mr21690857uak.120.1622650025634;
+ Wed, 02 Jun 2021 09:07:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210602155312.207401-1-judyhsiao@chromium.org>
+In-Reply-To: <20210602155312.207401-1-judyhsiao@chromium.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 2 Jun 2021 09:06:53 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=V_-oV7A_YPOFnCqUk5o=LBvf6KP1tNyVXTp=eeRkPaYQ@mail.gmail.com>
+Message-ID: <CAD=FV=V_-oV7A_YPOFnCqUk5o=LBvf6KP1tNyVXTp=eeRkPaYQ@mail.gmail.com>
+Subject: Re: [v4] ASoC: qcom: lpass-cpu: Fix pop noise during audio capture begin
+To:     Judy Hsiao <judyhsiao@chromium.org>
+Cc:     Mark Brown <broonie@kernel.org>, Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Dylan Reid <dgreid@chromium.org>,
+        Jimmy Cheng-Yi Chiang <cychiang@google.com>,
+        Judy Hsiao <judyhsiao@google.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a thermal zone for the pm6150 on-die temperature. The system should
-try to shut down orderly when the temperature reaches 95degC, otherwise
-the PMIC will power off at 115degC.
+Hi,
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
+On Wed, Jun 2, 2021 at 8:54 AM Judy Hsiao <judyhsiao@chromium.org> wrote:
+>
+> From: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+>
+> This patch fixes PoP noise of around 15ms observed during audio
+> capture begin.
+> Enables BCLK and LRCLK in snd_soc_dai_ops prepare call for
+> introducing some delay before capture start and clock enable.
+>
+> Co-developed-by: Judy Hsiao <judyhsiao@chromium.org>
+> Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> (am from https://patchwork.kernel.org/patch/12276369/)
+> (also found at https://lore.kernel.org/r/20210524142114.18676-1-srivasam@codeaurora.org)
+>
+> ---
+> Chages Since V3:
+>         -- Check BCLK is off before enabling it in lpass_cpu_daiops_prepare as
+>            lpass_cpu_daiops_prepare can be called multiple times.
+>         -- Check BCLK is on before disabling it in lpass_cpu_daiops_shutdown to
+>            fix the WARN. It is because BCLK may not be enabled if
+>            lpass_cpu_daiops_prepare is not called before lpass_cpu_daiops_shutdown.
+>         -- Adds more comments.
+> Changes Since V2:
+>         -- Updated comments as per linux style
+>         -- Removed unrelated changes.
+> Changes Since V1:
+>         -- Enableed BCLK and LRCLK in dai ops prepare API instead of startup API
+>         -- Added comments
+>
+>  sound/soc/qcom/lpass-cpu.c | 83 +++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 82 insertions(+), 1 deletion(-)
+>
+> diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+> index af8cb64924a0..b572d7874554 100644
+> --- a/sound/soc/qcom/lpass-cpu.c
+> +++ b/sound/soc/qcom/lpass-cpu.c
+> @@ -6,6 +6,7 @@
+>   */
+>
+>  #include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> @@ -93,8 +94,28 @@ static void lpass_cpu_daiops_shutdown(struct snd_pcm_substream *substream,
+>                 struct snd_soc_dai *dai)
+>  {
+>         struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
+> +       struct lpaif_i2sctl *i2sctl = drvdata->i2sctl;
+> +       unsigned int id = dai->driver->id;
+>
+>         clk_disable_unprepare(drvdata->mi2s_osr_clk[dai->driver->id]);
+> +       /*
+> +        * To ensure LRCLK disabled even in device node validation
+> +        * Will not impact if disabled in lpass_cpu_daiops_trigger()
+> +        * suspend.
+> +        */
+> +       if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
+> +               regmap_fields_write(i2sctl->spken, id, LPAIF_I2SCTL_SPKEN_DISABLE);
+> +       else
+> +               regmap_fields_write(i2sctl->micen, id, LPAIF_I2SCTL_MICEN_DISABLE);
+> +
+> +       /*
+> +        * BCLK may not be enabled if lpass_cpu_daiops_prepare is called before
+> +        * lpass_cpu_daiops_shutdown. It's paired with the clk_enable in
+> +        * lpass_cpu_daiops_prepare.
+> +        */
+> +       if (__clk_is_enabled(drvdata->mi2s_bit_clk[dai->driver->id]))
+> +               clk_disable(drvdata->mi2s_bit_clk[dai->driver->id]);
 
- arch/arm64/boot/dts/qcom/pm6150.dtsi | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+Not a full review of this patch, but the above pattern is almost never
+correct. There's a reason that the __clk_is_enabled() is only in
+"clk-provider.h"--it's not intended to be called by clients.
 
-diff --git a/arch/arm64/boot/dts/qcom/pm6150.dtsi b/arch/arm64/boot/dts/qcom/pm6150.dtsi
-index 8ab4f1f78bbf..de7fb129f739 100644
---- a/arch/arm64/boot/dts/qcom/pm6150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm6150.dtsi
-@@ -7,6 +7,30 @@
- #include <dt-bindings/spmi/spmi.h>
- #include <dt-bindings/thermal/thermal.h>
- 
-+/ {
-+	thermal-zones {
-+		pm6150_thermal: pm6150-thermal {
-+			polling-delay-passive = <100>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm6150_temp>;
-+
-+			trips {
-+				pm6150_trip0: trip0 {
-+					temperature = <95000>;
-+					hysteresis = <0>;
-+					type = "passive";
-+				};
-+
-+				pm6150_crit: pm6150-crit {
-+					temperature = <115000>;
-+					hysteresis = <0>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &spmi_bus {
- 	pm6150_lsid0: pmic@0 {
- 		compatible = "qcom,pm6150", "qcom,spmi-pmic";
--- 
-2.32.0.rc0.204.g9fa02ecfa5-goog
+Possibly a good solution (this is not code I've ever looked at) is to
+just have a boolean in your structure like "was_prepared". Then if
+"was_prepared" you can disable the clock. Also in the
+lpass_cpu_daiops_prepare() function you should only enable the clock
+if "!was_prepared" already.
 
+
+> @@ -288,7 +321,8 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
+>
+>                 ret = clk_enable(drvdata->mi2s_bit_clk[id]);
+>                 if (ret) {
+> -                       dev_err(dai->dev, "error in enabling mi2s bit clk: %d\n", ret);
+> +                       dev_err(dai->dev,
+> +                               "error in enabling mi2s bit clk: %d\n", ret);
+
+Why is there an unrelated change to wrapping here? Seems like you
+could drop this part of the change. If you really need to make this
+change (you probably don't since the 80 column rule has been relaxed
+and it's also existing code) then you could change it in a separate
+patch.
+
+
+> +       /*
+> +        * Check BCLK is off before enabling it as lpass_cpu_daiops_prepare can
+> +        * be called multiple times. It's paired with the clk_disable in
+> +        * lpass_cpu_daiops_shutdown.
+> +        */
+> +       if (!__clk_is_enabled(drvdata->mi2s_bit_clk[dai->driver->id])) {
+> +               ret = clk_enable(drvdata->mi2s_bit_clk[id]);
+> +               if (ret) {
+> +                       dev_err(dai->dev,
+> +                               "error in enabling mi2s bit clk: %d\n", ret);
+> +                       clk_disable(drvdata->mi2s_osr_clk[id]);
+
+If the clk_enable() failed then you shouldn't call clk_disable().
