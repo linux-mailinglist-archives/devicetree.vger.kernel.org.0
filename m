@@ -2,46 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EDA739879B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 13:05:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18A6839879E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 13:05:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232564AbhFBLG5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 07:06:57 -0400
-Received: from youngberry.canonical.com ([91.189.89.112]:52345 "EHLO
+        id S232586AbhFBLG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 07:06:59 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:52362 "EHLO
         youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232555AbhFBLGi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 07:06:38 -0400
-Received: from mail-wm1-f71.google.com ([209.85.128.71])
+        with ESMTP id S231490AbhFBLGj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 07:06:39 -0400
+Received: from mail-wr1-f69.google.com ([209.85.221.69])
         by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
         (Exim 4.93)
         (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1loOgA-0003vE-JI
-        for devicetree@vger.kernel.org; Wed, 02 Jun 2021 11:04:54 +0000
-Received: by mail-wm1-f71.google.com with SMTP id 128-20020a1c04860000b0290196f3c0a927so2042822wme.3
-        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 04:04:54 -0700 (PDT)
+        id 1loOgB-0003vz-R1
+        for devicetree@vger.kernel.org; Wed, 02 Jun 2021 11:04:55 +0000
+Received: by mail-wr1-f69.google.com with SMTP id u20-20020a0560001614b02901115c8f2d89so864327wrb.3
+        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 04:04:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Ji+tC5V5g/Ce+vgR+BJKn16Nmk3kGVreTbAerQ8gR/A=;
-        b=uR9kVEtakN2O8euCZNPVJUgiR5cMv1RTsdWUTyLbJXluyv+/XQMLZ9yd/T0ioSVl9P
-         p9LtBs+HzaDUj/IuGUnfp6rnwn86LW95TMhg006FexEolynPKDsQUCzWudWi5e5Xxp8g
-         kBLi0/ZhTo08Fnpf1DYOwzzGq9o2+WwYymPdXgjCbOYC6k/aExrBrLLtFDWfR1qMVrNW
-         raArVAStbbF8QGgXzYXABaY81PrYFc/kXZ9zxpKJcyXvQdnuZGZSH2xf3cUaetI0zOiJ
-         IA0ct/RNRGySjdP4CyU/1bPo5jpriINQYNAC+1TY0JTrT381L4KMT0nAV1Wrh3A/meaZ
-         M5Fg==
-X-Gm-Message-State: AOAM5301JshnLG07N3a9qv6xfvpqTRPk0u8nPOr5z+QYQJfAJoQgLFpg
-        SYfta05h1E4Xt1ANbpCgpcXBmzvCozYMn7bN116Nv1EhYv9CrQK86+3x4vT8NiYb/rENEOkWaGz
-        n37eAE5Ov64wRU4dPIbffezkvvPiK5cDO8jHG3GI=
-X-Received: by 2002:a1c:f316:: with SMTP id q22mr31373939wmq.152.1622631894287;
-        Wed, 02 Jun 2021 04:04:54 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzUi60Islv2sP9zukPKfLBZO8KAnwQYQoa56n07SmYetGNc/q6ebYs8y1pFF8rJvd04u2vnXw==
-X-Received: by 2002:a1c:f316:: with SMTP id q22mr31373922wmq.152.1622631894111;
-        Wed, 02 Jun 2021 04:04:54 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=YMY2yvxHNG1nkzYJPg4/G4TbXbdFqsqs8hq2uBFV7DI=;
+        b=nap8+ipcqOOHjccNUyfOimKEesduK9Er+tONpzNOz02/F6eZumtccKeQowI/4hWUBN
+         cUGjbQnLn/l+tNFnwo8N0MaJRx6KoNeNkmcQurUMYdzdV0SUy0fcimMJjRMD3xz8JjBQ
+         wSW3532yd7QWT1ke8a49cIzLrXqMb4Cth6/v7f26q0Pfu85tF3x/RbQRBBaDZl1/M9Tf
+         3uWf025HRBo0BZqwuFUC7jp1yGaMZGMg0FBzXZknTqqCAEn1/06UGv2Tks0cZ9EnTkLm
+         zUdrgVbblXAy29TYabUVaolnX4fgRIEwX6vKbzmkqDhPkeq7ItkBJCiEaOkmZn4gqf2q
+         c82A==
+X-Gm-Message-State: AOAM532DZRxn5jS9voxH+Ln4esag7B/1NWAugS4J9lYmBiX6oeQwlP82
+        QehG2sAZ7AI9LAM0S/O9hNn2khbBkzcZKpWQrJ0IplOPS36WWtxYPUrt4E+kDHtLNvR5589wyNA
+        WZrORk8bEmPzRWL7/gtarTA/t5sN8wcLm1YaxgCM=
+X-Received: by 2002:a05:600c:2142:: with SMTP id v2mr14060795wml.9.1622631895527;
+        Wed, 02 Jun 2021 04:04:55 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzKXz5EM/oisdvTpplEupoMA1J+9P6wti5Cm763etHOe09mPhvU440/BxTIrLEkoio/aL0mpg==
+X-Received: by 2002:a05:600c:2142:: with SMTP id v2mr14060782wml.9.1622631895415;
+        Wed, 02 Jun 2021 04:04:55 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-185-9.adslplus.ch. [188.155.185.9])
-        by smtp.gmail.com with ESMTPSA id f5sm6948175wrf.22.2021.06.02.04.04.53
+        by smtp.gmail.com with ESMTPSA id f5sm6948175wrf.22.2021.06.02.04.04.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jun 2021 04:04:53 -0700 (PDT)
+        Wed, 02 Jun 2021 04:04:54 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Chanwoo Choi <cw00.choi@samsung.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
@@ -51,11 +51,13 @@ To:     Chanwoo Choi <cw00.choi@samsung.com>,
         linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: [RESEND PATCH v2 1/4] mfd: sec-irq: Do not enforce (incorrect) interrupt trigger type
-Date:   Wed,  2 Jun 2021 13:04:42 +0200
-Message-Id: <20210602110445.33536-1-krzysztof.kozlowski@canonical.com>
+        Rob Herring <robh@kernel.org>
+Subject: [RESEND PATCH v2 2/4] mfd: max77686: Do not enforce (incorrect) interrupt trigger type
+Date:   Wed,  2 Jun 2021 13:04:43 +0200
+Message-Id: <20210602110445.33536-2-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20210602110445.33536-1-krzysztof.kozlowski@canonical.com>
+References: <20210602110445.33536-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -68,44 +70,91 @@ Interrupt line can be configured on different hardware in different way,
 even inverted.  Therefore driver should not enforce specific trigger
 type - edge falling - but instead rely on Devicetree to configure it.
 
-The Samsung PMIC drivers are used only on Devicetree boards.
-
-Additionally, the PMIC datasheets describe the interrupt line as active
-low with a requirement of acknowledge from the CPU therefore the edge
+The Maxim 77686 datasheet describes the interrupt line as active low
+with a requirement of acknowledge from the CPU therefore the edge
 falling is not correct.
 
-Marek Szyprowski reports that together with DTS change (proper level in
-DTS) it fixes RTC alarm failure that he observed from time to time on
-TM2e board.
+The interrupt line is shared between PMIC and RTC driver, so using level
+sensitive interrupt is here especially important to avoid races.  With
+an edge configuration in case if first PMIC signals interrupt followed
+shortly after by the RTC, the interrupt might not be yet cleared/acked
+thus the second one would not be noticed.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+Acked-by: Rob Herring <robh@kernel.org>
 
 ---
-
-Rebased on https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/log/?h=for-mfd-next
 
 Changes since v1:
-1. Mention in commit msg that this fixes TM2e RTC alarm.
-2. Add Marek's tested-by.
+1. Add ack.
 ---
- drivers/mfd/sec-irq.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ Documentation/devicetree/bindings/clock/maxim,max77686.txt | 4 ++--
+ Documentation/devicetree/bindings/mfd/max77686.txt         | 2 +-
+ Documentation/devicetree/bindings/regulator/max77686.txt   | 2 +-
+ drivers/mfd/max77686.c                                     | 3 +--
+ 4 files changed, 5 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/mfd/sec-irq.c b/drivers/mfd/sec-irq.c
-index e473c2fb42d5..f5f59fdc72fe 100644
---- a/drivers/mfd/sec-irq.c
-+++ b/drivers/mfd/sec-irq.c
-@@ -479,8 +479,7 @@ int sec_irq_init(struct sec_pmic_dev *sec_pmic)
- 	}
+diff --git a/Documentation/devicetree/bindings/clock/maxim,max77686.txt b/Documentation/devicetree/bindings/clock/maxim,max77686.txt
+index 3472b461ca93..c10849efb444 100644
+--- a/Documentation/devicetree/bindings/clock/maxim,max77686.txt
++++ b/Documentation/devicetree/bindings/clock/maxim,max77686.txt
+@@ -49,7 +49,7 @@ Example:
+ 		max77686: max77686@9 {
+ 			compatible = "maxim,max77686";
+ 			interrupt-parent = <&wakeup_eint>;
+-			interrupts = <26 0>;
++			interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
+ 			reg = <0x09>;
+ 			#clock-cells = <1>;
  
- 	ret = devm_regmap_add_irq_chip(sec_pmic->dev, sec_pmic->regmap_pmic,
--				       sec_pmic->irq,
--				       IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-+				       sec_pmic->irq, IRQF_ONESHOT,
- 				       0, sec_irq_chip, &sec_pmic->irq_data);
- 	if (ret != 0) {
- 		dev_err(sec_pmic->dev, "Failed to register IRQ chip: %d\n", ret);
+@@ -74,7 +74,7 @@ Example:
+ 		max77802: max77802@9 {
+ 			compatible = "maxim,max77802";
+ 			interrupt-parent = <&wakeup_eint>;
+-			interrupts = <26 0>;
++			interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
+ 			reg = <0x09>;
+ 			#clock-cells = <1>;
+ 
+diff --git a/Documentation/devicetree/bindings/mfd/max77686.txt b/Documentation/devicetree/bindings/mfd/max77686.txt
+index 42968b7144e0..4447d074894a 100644
+--- a/Documentation/devicetree/bindings/mfd/max77686.txt
++++ b/Documentation/devicetree/bindings/mfd/max77686.txt
+@@ -21,6 +21,6 @@ Example:
+ 	max77686: pmic@9 {
+ 		compatible = "maxim,max77686";
+ 		interrupt-parent = <&wakeup_eint>;
+-		interrupts = <26 0>;
++		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
+ 		reg = <0x09>;
+ 	};
+diff --git a/Documentation/devicetree/bindings/regulator/max77686.txt b/Documentation/devicetree/bindings/regulator/max77686.txt
+index e9f7578ca09a..ff3d2dec8c4b 100644
+--- a/Documentation/devicetree/bindings/regulator/max77686.txt
++++ b/Documentation/devicetree/bindings/regulator/max77686.txt
+@@ -43,7 +43,7 @@ Example:
+ 	max77686: pmic@9 {
+ 		compatible = "maxim,max77686";
+ 		interrupt-parent = <&wakeup_eint>;
+-		interrupts = <26 IRQ_TYPE_NONE>;
++		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
+ 		reg = <0x09>;
+ 
+ 		voltage-regulators {
+diff --git a/drivers/mfd/max77686.c b/drivers/mfd/max77686.c
+index 2ad554b921d9..f9e12ab2bc75 100644
+--- a/drivers/mfd/max77686.c
++++ b/drivers/mfd/max77686.c
+@@ -209,8 +209,7 @@ static int max77686_i2c_probe(struct i2c_client *i2c)
+ 
+ 	ret = devm_regmap_add_irq_chip(&i2c->dev, max77686->regmap,
+ 				       max77686->irq,
+-				       IRQF_TRIGGER_FALLING | IRQF_ONESHOT |
+-				       IRQF_SHARED, 0, irq_chip,
++				       IRQF_ONESHOT | IRQF_SHARED, 0, irq_chip,
+ 				       &max77686->irq_data);
+ 	if (ret < 0) {
+ 		dev_err(&i2c->dev, "failed to add PMIC irq chip: %d\n", ret);
 -- 
 2.27.0
 
