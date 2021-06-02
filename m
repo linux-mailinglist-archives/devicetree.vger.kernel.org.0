@@ -2,156 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41D46398E10
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 17:14:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5106398E24
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 17:15:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231669AbhFBPQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 11:16:08 -0400
-Received: from mail-pg1-f171.google.com ([209.85.215.171]:44715 "EHLO
-        mail-pg1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231286AbhFBPQH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 11:16:07 -0400
-Received: by mail-pg1-f171.google.com with SMTP id 29so2463146pgu.11;
-        Wed, 02 Jun 2021 08:14:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=EY89WvFPXItdyL7n52M5NUf6/h0uiQx9JjQhgnr22JY=;
-        b=KwFqdi2QeEjmXUXeSJjiszKwvxb25mTEyUFX64eOGEdR5GcefzXcN48k+CcD7fmk8Y
-         oZKwE5P8yvBLJ9SZlAp5kkg3/eeJABXOjC+AhaxH9+00oW1j/Hw3sDMI0OqZU8k3Rkn2
-         +0PHSBkJCmoM9lM/5z1TvvA3p6WgOGdQvJen4ZLW84EBgvL/3exaQC0goHX/RVh8/YAI
-         f5IDlGG5KU0tiNneiC6/f1GmffdkuDGyBrj3Xpji6Xs/EzZYqhPC6Ju6jtxFeMD5Y7gX
-         kjjNo0MWBB1Ho8Xqw/ufSwE7P2oNnGhNNOySCvX+jDxhLot7CWJBtD+vUZWAC3ZKVQKB
-         IWbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=EY89WvFPXItdyL7n52M5NUf6/h0uiQx9JjQhgnr22JY=;
-        b=r7sIsm+zxsJuOBEQKu9x1aJhqNnPNzIgzW0sO47VtY2PB/yj3S56HMwj6nWVTy4D1X
-         vczKDSjbXW+sWh3MJmoDb3PKs+vEO9lBB9XJpUuCoM5/IjdYC0p9hOkOM5IBuGqf4Hh4
-         YoBoblnvYjJv67BADF/pBwxJ0SrQ+dnRZcwJ9ocEEeLeRKfEETau/ciyVKrBQ14b3GlI
-         RHonM/POwZ6YdPv2YjtKlXh5fty8UhhJJjfqjZtWFamlC5HshVlC1C8ePC0lvIL/rGQX
-         tHc0undiCNbhb5+HGS/91bD6M44wBHNcESHwyhJDRKDb9tU7+eMwK2LlZLhClY5Hv7+a
-         9vuA==
-X-Gm-Message-State: AOAM531V8KgBiFV6E0W3n/Vh09y/NK/7NBo5uakTtqyfr3zAt3egSTdD
-        dIidiFxjFf8d0C6599JTycMo9caN3xU=
-X-Google-Smtp-Source: ABdhPJxtaSanZi8Be5s2D+w8EQ0HqXEmErF7seavVsPW78lcs1gD9m4H8EhHVxdP+Dsq+074J8inUw==
-X-Received: by 2002:a05:6a00:1350:b029:2e9:ac26:a5ba with SMTP id k16-20020a056a001350b02902e9ac26a5bamr21769069pfu.15.1622646803821;
-        Wed, 02 Jun 2021 08:13:23 -0700 (PDT)
-Received: from [172.30.1.14] ([14.32.163.5])
-        by smtp.gmail.com with ESMTPSA id f6sm33475pfb.28.2021.06.02.08.13.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Jun 2021 08:13:23 -0700 (PDT)
-Subject: Re: [PATCH v3 2/3] extcon: sm5502: Refactor driver to use
- chip-specific struct
-To:     Stephan Gerhold <stephan@gerhold.net>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20210601200007.218802-1-stephan@gerhold.net>
- <20210601200007.218802-3-stephan@gerhold.net>
-From:   Chanwoo Choi <cwchoi00@gmail.com>
-Message-ID: <b3a9eed8-0d7c-e935-36d4-13918f5b7b21@gmail.com>
-Date:   Thu, 3 Jun 2021 00:13:18 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
-MIME-Version: 1.0
-In-Reply-To: <20210601200007.218802-3-stephan@gerhold.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        id S232065AbhFBPRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 11:17:35 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:10845 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231961AbhFBPRe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 11:17:34 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1622646951; h=References: In-Reply-To: Message-Id: Date:
+ Subject: Cc: To: From: Sender;
+ bh=KK9oZ5JV6rw//1PGw9TjnoWljFEt77W7i8OVF7M3Mxk=; b=AEVtCwNDVENZipSJRJMi9p9UkDTfxCdvhxf2eYIdpWZ8rdLMKN3Uuc/8UEcUd7al7B2zBmGN
+ wNgg/A+5OgLT8MWqWrMQfsJunW08VM9QwWDwayAATGKkUIRfgUPq1ryeV4LI1ZwHJBMsU46y
+ cAngGi7TDPCgs3qz3DoSaON+4D8=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 60b7a085abfd22a3dca5715b (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 02 Jun 2021 15:15:17
+ GMT
+Sender: okukatla=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id B09E4C4323A; Wed,  2 Jun 2021 15:15:16 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from okukatla1-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: okukatla)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 42C87C4338A;
+        Wed,  2 Jun 2021 15:15:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 42C87C4338A
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=okukatla@codeaurora.org
+From:   Odelu Kukatla <okukatla@codeaurora.org>
+To:     georgi.djakov@linaro.org, bjorn.andersson@linaro.org,
+        evgreen@google.com, Andy Gross <agross@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     sboyd@kernel.org, seansw@qti.qualcomm.com, elder@linaro.org,
+        linux-arm-msm-owner@vger.kernel.org,
+        Odelu Kukatla <okukatla@codeaurora.org>
+Subject: [V3 1/3] dt-bindings: interconnect: Add EPSS L3 DT binding on SC7280
+Date:   Wed,  2 Jun 2021 20:44:51 +0530
+Message-Id: <1622646894-7833-2-git-send-email-okukatla@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1622646894-7833-1-git-send-email-okukatla@codeaurora.org>
+References: <1622646894-7833-1-git-send-email-okukatla@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21. 6. 2. 오전 5:00, Stephan Gerhold wrote:
-> Prepare for supporting SM5504 in the extcon-sm5502 driver by replacing
-> enum sm5504_types with a struct sm5504_type that stores the chip-specific
-> definitions. This struct can then be defined separately for SM5504
-> without having to add if (type == TYPE_SM5504) everywhere in the code.
-> 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
-> Changes in v3: New patch to simplify diff on next patch
-> ---
->   drivers/extcon/extcon-sm5502.c | 64 +++++++++++++++++++++-------------
->   drivers/extcon/extcon-sm5502.h |  4 ---
->   2 files changed, 40 insertions(+), 28 deletions(-)
-> 
-> diff --git a/drivers/extcon/extcon-sm5502.c b/drivers/extcon/extcon-sm5502.c
-> index 9f40bb9f1f81..951f6ca4c479 100644
-> --- a/drivers/extcon/extcon-sm5502.c
-> +++ b/drivers/extcon/extcon-sm5502.c
-> @@ -40,17 +40,13 @@ struct sm5502_muic_info {
->   	struct i2c_client *i2c;
->   	struct regmap *regmap;
->   
-> +	const struct sm5502_type *type;
->   	struct regmap_irq_chip_data *irq_data;
-> -	struct muic_irq *muic_irqs;
-> -	unsigned int num_muic_irqs;
->   	int irq;
->   	bool irq_attach;
->   	bool irq_detach;
->   	struct work_struct irq_work;
->   
-> -	struct reg_data *reg_data;
-> -	unsigned int num_reg_data;
-> -
->   	struct mutex mutex;
->   
->   	/*
-> @@ -62,6 +58,17 @@ struct sm5502_muic_info {
->   	struct delayed_work wq_detcable;
->   };
->   
-> +struct sm5502_type {
-> +	struct muic_irq *muic_irqs;
-> +	unsigned int num_muic_irqs;
-> +	const struct regmap_irq_chip *irq_chip;
-> +
-> +	struct reg_data *reg_data;
-> +	unsigned int num_reg_data;
-> +
-> +	int (*parse_irq)(struct sm5502_muic_info *info, int irq_type);
-> +};
-> +
->   /* Default value of SM5502 register to bring up MUIC device. */
->   static struct reg_data sm5502_reg_data[] = {
->   	{
-> @@ -502,11 +509,11 @@ static irqreturn_t sm5502_muic_irq_handler(int irq, void *data)
->   	struct sm5502_muic_info *info = data;
->   	int i, irq_type = -1, ret;
->   
-> -	for (i = 0; i < info->num_muic_irqs; i++)
-> -		if (irq == info->muic_irqs[i].virq)
-> -			irq_type = info->muic_irqs[i].irq;
-> +	for (i = 0; i < info->type->num_muic_irqs; i++)
-> +		if (irq == info->type->muic_irqs[i].virq)
-> +			irq_type = info->type->muic_irqs[i].irq;
->   
-> -	ret = sm5502_parse_irq(info, irq_type);
-> +	ret = info->type->parse_irq(info, irq_type);
+Add Epoch Subsystem (EPSS) L3 interconnect provider binding on SC7280
+SoCs.
 
-Looks good to me. But there is only one comment.
-Need to check the 'parse_irq' as following:
+Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
+---
+ .../devicetree/bindings/interconnect/qcom,osm-l3.yaml          |  4 +++-
+ include/dt-bindings/interconnect/qcom,osm-l3.h                 | 10 +++++++++-
+ 2 files changed, 12 insertions(+), 2 deletions(-)
 
-If you agree this suggestion, I'll apply with following changes by myself:
-
-	if (!info->type->parse_irq) {
-		dev_err(info->dev, "failed to handle irq due to parse_irq\n",
-		return IRQ_NONE;
-	}
-
-
-(snip)
-
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+index d6a95c3..61e9a35 100644
+--- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
++++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+@@ -18,12 +18,14 @@ properties:
+   compatible:
+     enum:
+       - qcom,sc7180-osm-l3
++      - qcom,sc7280-epss-l3
+       - qcom,sdm845-osm-l3
+       - qcom,sm8150-osm-l3
+       - qcom,sm8250-epss-l3
+ 
+   reg:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 4
+ 
+   clocks:
+     items:
+diff --git a/include/dt-bindings/interconnect/qcom,osm-l3.h b/include/dt-bindings/interconnect/qcom,osm-l3.h
+index 61ef649..99534a5 100644
+--- a/include/dt-bindings/interconnect/qcom,osm-l3.h
++++ b/include/dt-bindings/interconnect/qcom,osm-l3.h
+@@ -1,6 +1,6 @@
+ /* SPDX-License-Identifier: GPL-2.0 */
+ /*
+- * Copyright (C) 2019 The Linux Foundation. All rights reserved.
++ * Copyright (C) 2019, 2021 The Linux Foundation. All rights reserved.
+  */
+ 
+ #ifndef __DT_BINDINGS_INTERCONNECT_QCOM_OSM_L3_H
+@@ -11,5 +11,13 @@
+ 
+ #define MASTER_EPSS_L3_APPS	0
+ #define SLAVE_EPSS_L3_SHARED	1
++#define SLAVE_EPSS_L3_CPU0	2
++#define SLAVE_EPSS_L3_CPU1	3
++#define SLAVE_EPSS_L3_CPU2	4
++#define SLAVE_EPSS_L3_CPU3	5
++#define SLAVE_EPSS_L3_CPU4	6
++#define SLAVE_EPSS_L3_CPU5	7
++#define SLAVE_EPSS_L3_CPU6	8
++#define SLAVE_EPSS_L3_CPU7	9
+ 
+ #endif
 -- 
-Best Regards,
-Samsung Electronics
-Chanwoo Choi
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
