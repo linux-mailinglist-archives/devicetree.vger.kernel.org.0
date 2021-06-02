@@ -2,71 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CAFD39952C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 23:04:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4F8A399534
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 23:08:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229791AbhFBVGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 17:06:34 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:36463 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229576AbhFBVGe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 17:06:34 -0400
-Received: by mail-ot1-f54.google.com with SMTP id h24-20020a9d64180000b029036edcf8f9a6so3753513otl.3;
-        Wed, 02 Jun 2021 14:04:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=xAwzBxtQTrOqLv+2WBqI2b5XM27v8MHwB+MvKVWKET4=;
-        b=YZ7zcEfot4JIwuaJOnDJA8ox4l+HtBH7O5ogCeG2yR/GBLc7CTwNNP/0+4BT8Ygo0c
-         28GgHx89x8FppeDwoxBmO8RtxECR6jZFZEknfO1/QqvEsKGDWvaIDJp7E8LTRjvoZD/n
-         MTZqfj/y6ye2c3tdW00aqoMoAh8Qk5poERAtqOpMz6u02KunTirR48gt+eHo6s6BiFhT
-         t96bfXnE/uUKPU5xsQd1TNEOrfXLJd4KEcrHUavTSNmKbd22GklcqGH95sjfXdC9+znD
-         tGy9aybds0Pu69ec+44dQ/M53xr8y9o6NHMgvXjIw8sy81wwjJvSMT8N23ZDxhUntD8+
-         ueXg==
-X-Gm-Message-State: AOAM531fDEp7rKV64lUEYlmMQUYZdbiHRoeV2ilUXymRctRLMLmGZAXZ
-        xDttvL8LD5j4Z/PyD/J+Vk1zFdck3Q==
-X-Google-Smtp-Source: ABdhPJxyCi29NpDw4UBMNf7/x2arc26qns1BXNlRTTrJ0SKUOzkD/d45d99TWolrPLPxYB2zjwjyDA==
-X-Received: by 2002:a9d:18e:: with SMTP id e14mr8406853ote.34.1622667878147;
-        Wed, 02 Jun 2021 14:04:38 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d19sm213492oop.26.2021.06.02.14.04.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jun 2021 14:04:37 -0700 (PDT)
-Received: (nullmailer pid 4040019 invoked by uid 1000);
-        Wed, 02 Jun 2021 21:04:36 -0000
-Date:   Wed, 2 Jun 2021 16:04:36 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Peter Rosin <peda@axentia.se>
-Subject: Re: [PATCH 06/12] dt-bindings: iio: io-channel-mux.yaml: fix a typo
-Message-ID: <20210602210436.GA4039908@robh.at.kernel.org>
-References: <cover.1622648507.git.mchehab+huawei@kernel.org>
- <ab0d1f89cf64ff4904155c92e1895763fb0bf173.1622648507.git.mchehab+huawei@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ab0d1f89cf64ff4904155c92e1895763fb0bf173.1622648507.git.mchehab+huawei@kernel.org>
+        id S229576AbhFBVKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 17:10:40 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:54130 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229552AbhFBVKk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Jun 2021 17:10:40 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1622668136; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=aaNWIIBpS4OGAZ4WCl/qqxyDVBnFqu0O/JomNH5q/Hc=; b=noFTz5dn2z83LfjApITkbIorMRVdA++xZnLZIEeaBbyjAAQ4nmZkKvz1p72Mr1CgIqFYDQef
+ 25IdA18caRu/xCSezYPhqvH0uSowHep8JriX6igmHX0bRJGSVAMT61IXxMuYDizlOYlnELvT
+ xqqbkZNtSyOXGZHnstezYhZ2TjU=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 60b7f35ff726fa41887094e1 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 02 Jun 2021 21:08:47
+ GMT
+Sender: khsieh=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 7E10EC4338A; Wed,  2 Jun 2021 21:08:46 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from khsieh-linux1.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: khsieh)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id A2AF6C433D3;
+        Wed,  2 Jun 2021 21:08:44 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A2AF6C433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=khsieh@codeaurora.org
+From:   Kuogee Hsieh <khsieh@codeaurora.org>
+To:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
+        vkoul@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Cc:     abhinavk@codeaurora.org, aravindh@codeaurora.org,
+        khsieh@codeaurora.org, freedreno@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64/dts/qcom/sc7180: Add Display Port dt node
+Date:   Wed,  2 Jun 2021 14:08:38 -0700
+Message-Id: <1622668118-2237-1-git-send-email-khsieh@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 02 Jun 2021 17:43:12 +0200, Mauro Carvalho Chehab wrote:
-> The file name: Documentation/device-tree/bindings/mux/mux-controller.yaml
-> should be, instead: Documentation/devicetree/bindings/mux/mux-controller.yaml.
-> 
-> Update its cross-reference accordingly.
-> 
-> Fixes: a66cec598f49 ("dt-bindings: iio: multiplexer: Convert io-channel-mux bindings to DT schema")
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
->  .../devicetree/bindings/iio/multiplexer/io-channel-mux.yaml     | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+Add DP device node on sc7180.
 
-Applied, thanks!
+Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
+---
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi |  9 ++++
+ arch/arm64/boot/dts/qcom/sc7180.dtsi         | 77 ++++++++++++++++++++++++++++
+ 2 files changed, 86 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+index 24d293e..53ef3961 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+@@ -786,6 +786,15 @@ hp_i2c: &i2c9 {
+ 	status = "okay";
+ };
+ 
++&msm_dp {
++        status = "okay";
++        pinctrl-names = "default";
++        pinctrl-0 = <&dp_hot_plug_det>;
++        data-lanes = <0 1>;
++        vdda-1p2-supply = <&vdda_usb_ss_dp_1p2>;
++        vdda-0p9-supply = <&vdda_usb_ss_dp_core>;
++};
++
+ &pm6150_adc {
+ 	charger-thermistor@4f {
+ 		reg = <ADC5_AMUX_THM3_100K_PU>;
+diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+index 6228ba2..2e45098 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+@@ -3032,6 +3032,13 @@
+ 							remote-endpoint = <&dsi0_in>;
+ 						};
+ 					};
++
++					port@2 {
++						reg = <2>;
++						dpu_intf0_out: endpoint {
++							remote-endpoint = <&dp_in>;
++						};
++					};
+ 				};
+ 
+ 				mdp_opp_table: mdp-opp-table {
+@@ -3148,6 +3155,76 @@
+ 
+ 				status = "disabled";
+ 			};
++
++			msm_dp: displayport-controller@ae90000 {
++				status = "disabled";
++				compatible = "qcom,sc7180-dp";
++
++				reg = <0 0x0ae90000 0 0x1400>;
++
++				interrupt-parent = <&mdss>;
++				interrupts = <12 IRQ_TYPE_NONE>;
++
++				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
++					 <&dispcc DISP_CC_MDSS_DP_AUX_CLK>,
++					 <&dispcc DISP_CC_MDSS_DP_LINK_CLK>,
++					 <&dispcc DISP_CC_MDSS_DP_LINK_INTF_CLK>,
++					 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
++				clock-names = "core_iface", "core_aux", "ctrl_link",
++					      "ctrl_link_iface", "stream_pixel";
++				#clock-cells = <1>;
++				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
++						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
++				assigned-clock-parents = <&dp_phy 0>, <&dp_phy 1>;
++				phys = <&dp_phy>;
++				phy-names = "dp";
++
++				operating-points-v2 = <&dp_opp_table>;
++				power-domains = <&rpmhpd SC7180_CX>;
++
++				#sound-dai-cells = <0>;
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					port@0 {
++						reg = <0>;
++						dp_in: endpoint {
++							remote-endpoint = <&dpu_intf0_out>;
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++						dp_out: endpoint { };
++					};
++				};
++
++				dp_opp_table: dp-opp-table {
++					compatible = "operating-points-v2";
++
++					opp-160000000 {
++						opp-hz = /bits/ 64 <160000000>;
++						required-opps = <&rpmhpd_opp_low_svs>;
++					};
++
++					opp-270000000 {
++						opp-hz = /bits/ 64 <270000000>;
++						required-opps = <&rpmhpd_opp_svs>;
++					};
++
++					opp-540000000 {
++						opp-hz = /bits/ 64 <540000000>;
++						required-opps = <&rpmhpd_opp_svs_l1>;
++					};
++
++					opp-810000000 {
++						opp-hz = /bits/ 64 <810000000>;
++						required-opps = <&rpmhpd_opp_nom>;
++					};
++				};
++			};
++
++
+ 		};
+ 
+ 		dispcc: clock-controller@af00000 {
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
