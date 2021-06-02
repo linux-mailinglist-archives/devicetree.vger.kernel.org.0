@@ -2,294 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F2B7398D3D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 16:38:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 026C2398D37
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 16:37:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230456AbhFBOjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 10:39:51 -0400
-Received: from mail-pg1-f178.google.com ([209.85.215.178]:34377 "EHLO
-        mail-pg1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230479AbhFBOju (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 10:39:50 -0400
-Received: by mail-pg1-f178.google.com with SMTP id l1so2415243pgm.1
-        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 07:38:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=dMFAVrmRz8CzgxJ+6JZiw4ss/4Zrv9ro37d7xqtEycw=;
-        b=CuiLUa62DihP4t3edU/8NgH5VfTa7dNBIuh+W8/E7VORyrkuatUMJB1yiblCmHR6Bn
-         b3muVFHkXUMDP0S6sQVjp3Bf8MOp9ImQHEShjpr9ykpYGrpZuVDzZoOlxQDpaT6LvuMN
-         FgxY0F+qS1OTtK9MCxbC7JZ0aawdzeLWpaKBcZ1oSWLS4nBPVOjYNXUPIH2oW2ipejLF
-         lXWCNPmBfXNEHtC1mkeVEARPQLzVOaYkHCssLFzwlXtTH33cKUlZO1PniWXEUigxi4a2
-         fvjJgOxeOE9JaGZg216ZgQtIDd3pXh/B5GsqSdfrhqcOB4cKSavL7o7pbZzhFZpg0WLR
-         U82Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=dMFAVrmRz8CzgxJ+6JZiw4ss/4Zrv9ro37d7xqtEycw=;
-        b=LGbcFf1mn4OBI3lYDupM3rN18SCOOYUgQDGPk3FSSqv+Ml2KjbvhjrIrqCnd+OwiGd
-         WlKWBiLf0fFc+p+QfYqSWdR0JZNGVa89j2A8lFWRlq58ToxJVlgJjxjQaGMW5mf9V0w4
-         C8u+K8tUwcVkEbFiQnqmsl3YqurKSk8n8SJx5ufOKMAkK224RX5f5CONPmQL4uRH5KP3
-         5XJ9eXlrDuDYhyv8Ue4rj1iIfOdq9aU/M6o6Lq+SirKPNRJf3iJ++P1w8Y7gCLce4i12
-         PHH3taw6uZksU63GfXxbugniRgdkIqJ54KVi1K/G/XP5909rU7EETeoBKp+11vazQusY
-         3brQ==
-X-Gm-Message-State: AOAM530C40aUq1wumPTiU0Jd38dcXCIrEMXISEGsamGASakPqpijtgMl
-        fvRCTHWwhQ4B/2SGwrk+uWUBR8YvOm1b
-X-Google-Smtp-Source: ABdhPJzzO0cN+lXa7lUfBGyVolwwG5lB/USl4roba8NCjWRvUZpH0Vz/+Tv1nBnz51jFdZiNSPxSyw==
-X-Received: by 2002:a65:5684:: with SMTP id v4mr33199173pgs.218.1622644626876;
-        Wed, 02 Jun 2021 07:37:06 -0700 (PDT)
-Received: from workstation ([120.138.12.54])
-        by smtp.gmail.com with ESMTPSA id g15sm15334370pfv.127.2021.06.02.07.37.04
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 02 Jun 2021 07:37:06 -0700 (PDT)
-Date:   Wed, 2 Jun 2021 20:07:02 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: pci: Add devicetree binding for
- Qualcomm PCIe EP controller
-Message-ID: <20210602143702.GA8153@workstation>
-References: <20210602120752.46154-1-manivannan.sadhasivam@linaro.org>
- <20210602120752.46154-2-manivannan.sadhasivam@linaro.org>
- <CAL_JsqLdXsEfV6aj88e+ZjbL2EZxX2r8m+_MRMnUHuzKLV9_Yg@mail.gmail.com>
+        id S231622AbhFBOjN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 10:39:13 -0400
+Received: from lahtoruutu.iki.fi ([185.185.170.37]:39858 "EHLO
+        lahtoruutu.iki.fi" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231347AbhFBOjM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 10:39:12 -0400
+X-Greylist: delayed 2747 seconds by postgrey-1.27 at vger.kernel.org; Wed, 02 Jun 2021 10:39:10 EDT
+Received: from hillosipuli.retiisi.eu (unknown [IPv6:2001:2003:f75d:b010::e64])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sailus)
+        by lahtoruutu.iki.fi (Postfix) with ESMTPSA id AF6A91B00273;
+        Wed,  2 Jun 2021 17:37:26 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+        t=1622644646;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=eGiRCp5aCqyxMVD1Q1mcSxa7SZTz/MxBi58ySCtfc6E=;
+        b=PUDAVnXSCXhWDQPo2od8AUlHX+ynAwj7zfXEhDXhzVH5sZAmWAsPo+vmvo4j38YdItKJ1l
+        6ndnKOn5zvsgokTz8Jw+dkqvWQc6OrBLdXqA9S0W+2SYChvmqQGaOz1BUSehsYmk+pXla8
+        gLDrbJlg4/45S++CZOwBiH5IbD5lWHGwndv0XZ7YBeYPskYmkaA4BYge+QdO0buY7NO4eQ
+        X5fgOzz1vF2UI4MWsZDX6SWf41UOHH/EexQIEOEMNeABqpdRgJESowkTw+jYgT9NhTnNlc
+        Yuocq1aqkqaNpI/IqGECCbY00+uwGooI6Jlgm4GwFWDGE8cpkc5aiGTjQIrOGQ==
+Received: from valkosipuli.localdomain (valkosipuli.localdomain [IPv6:fd35:1bc8:1a6:d3d5::80:2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 6D2CE634C87;
+        Wed,  2 Jun 2021 17:36:33 +0300 (EEST)
+Received: from localhost ([127.0.0.1] helo=valkosipuli.retiisi.eu)
+        by valkosipuli.localdomain with esmtp (Exim 4.92)
+        (envelope-from <sakari.ailus@iki.fi>)
+        id 1loRzq-0002Va-Hu; Wed, 02 Jun 2021 17:37:26 +0300
+Date:   Wed, 2 Jun 2021 17:37:26 +0300
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Martin Kepplinger <martin.kepplinger@puri.sm>, mchehab@kernel.org,
+        devicetree@vger.kernel.org, kernel@puri.sm,
+        krzysztof.kozlowski@canonical.com, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, paul.kocialkowski@bootlin.com,
+        robh@kernel.org, shawnx.tu@intel.com
+Subject: Re: [PATCH v2 2/5] dt-bindings: media: document SK Hynix Hi-846 MIPI
+ CSI-2 8M pixel sensor
+Message-ID: <20210602143726.GZ3@valkosipuli.retiisi.eu>
+References: <20210528081336.3858700-1-martin.kepplinger@puri.sm>
+ <20210528081336.3858700-3-martin.kepplinger@puri.sm>
+ <20210602135137.GW3@valkosipuli.retiisi.eu>
+ <YLeQGjDdTX0iohZ0@pendragon.ideasonboard.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqLdXsEfV6aj88e+ZjbL2EZxX2r8m+_MRMnUHuzKLV9_Yg@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <YLeQGjDdTX0iohZ0@pendragon.ideasonboard.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+ARC-Authentication-Results: i=1;
+        ORIGINATING;
+        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+        s=lahtoruutu; t=1622644646;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=eGiRCp5aCqyxMVD1Q1mcSxa7SZTz/MxBi58ySCtfc6E=;
+        b=ZxZGigwqsSTicl4YEupy2ADLYu47l3/dNEnFrClkz6vhPDMFbEU2BJ74xmgpT7v08yzF12
+        TcwMadyge16LtusN76Pv4fAd/PFHzGGypCVw3q0Ny4K+i5Q9AL2Ql07exCKMz+xDmg/QU5
+        C8XEHlpkeIg//5tRWy6BGdANo0GFQJPwWrWjfBoGbk3JiVCBsNrugQGvvddn/E0M5AtfwE
+        Uc+Py/xwl0UcCkBhafUgV7PsfYhOFc2ZGAkwtqhxC1Z2AtzQZI+qLnglamUWizIWE6/ek4
+        CvBfZ/qQHjT1sRSEVhyHp0odNP3XqEmfWViJbErSrwBbg7Sqb4znrDbEyizLUQ==
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1622644646; a=rsa-sha256;
+        cv=none;
+        b=jxEGKa4MCSB47NnwwI+XSCqCq564wArVY/h9RNEiHRn34xs8Z0UF+9WkHgVuTi/k0ZWkWy
+        d1WD8W8IF5Elja9gF1XA7FLVYdem/8VsYPg+oOZyVwq+hKTN5iYTNTINdnJURySTvjiEIn
+        bJUhmuGD8gBEqX9uSEfIVo9bRjYn4j4X/nFLNuS23qeYGXouAAaBylpifpr8HyfasVEoBO
+        oU3WmfD5L/GnNmk08yZn7IFJAUj3/2VgGpWeKjoOCCzsNI++xGxJML7KDoLaLrRUBuQY1N
+        JLWZvefvESrvdMLs4M8imeCwvTA/R0O7mLxm4jnwcCYbAqnzG9ARrvgUNqrG9Q==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 02, 2021 at 09:22:29AM -0500, Rob Herring wrote:
-> On Wed, Jun 2, 2021 at 7:08 AM Manivannan Sadhasivam
-> <manivannan.sadhasivam@linaro.org> wrote:
-> >
-> > Add devicetree binding for Qualcomm PCIe EP controller used in platforms
-> > like SDX55. The EP controller is based on the Designware core with
-> > Qualcomm specific wrappers.
-> 
-> Is the block EP only or configurable EP or host?
-> 
+Hi Laurent,
 
-Configurable core. We already support the RC mode in a separate driver and
-binding. I initially thought about merging both in a single driver &
-binding but that seemed unnecessarily complex, so settled with this.
-
-> >
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >  .../devicetree/bindings/pci/qcom,pcie-ep.yaml | 139 ++++++++++++++++++
-> >  1 file changed, 139 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> > new file mode 100644
-> > index 000000000000..0f9140e93bcb
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> > @@ -0,0 +1,139 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pci/qcom,pcie-ep.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm PCIe Endpoint Controller binding
-> > +
-> > +maintainers:
-> > +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > +
-> > +allOf:
-> > +  - $ref: "pci-ep.yaml#"
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: qcom,pcie-ep
+On Wed, Jun 02, 2021 at 05:05:14PM +0300, Laurent Pinchart wrote:
+> On Wed, Jun 02, 2021 at 04:51:37PM +0300, Sakari Ailus wrote:
+> > Hi Martin,
+> > 
+> > On Fri, May 28, 2021 at 10:13:33AM +0200, Martin Kepplinger wrote:
+> > > Document the bindings used for the SK Hynix Hi-846 CMOS camera driver.
+> > > 
+> > > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> > 
+> > Could you read Documentation/driver-api/media/camera-sensor.rst, please?
+> > 
+> > I believe you'll need assigned-clock-rates device property as well as
 > 
-> SoC specific please.
->
+> I dn't think assigned-clock-rates should be part of the bindings, it's a
+> mechanism that can be used in any DT device node.
 
-Okay
-
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: Designware PCIe registers
-> > +      - description: External local bus interface registers
-> > +      - description: Address Translation Unit (ATU) registers
-> > +      - description: Memory region used to map remote RC address space
-> > +      - description: Qualcomm specific PARF configuration registers
-> > +      - description: Qualcomm specific TCSR registers
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: dbi
-> > +      - const: elbi
-> > +      - const: atu
-> > +      - const: addr_space
-> > +      - const: parf
-> > +      - const: tcsr
-> 
-> This should be in the same order as the host side. Unfortunately,
-> that's not consistent, but to pick one:
-> 
-> reg-names = "parf", "dbi", "elbi", "atu", "config";
-> 
-
-Okay, I'll align with the RC binding.
+What if it's required?
 
 > 
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: PCIe CFG AHB clock
-> > +      - description: PCIe Auxiliary clock
-> > +      - description: PCIe Master AXI clock
-> > +      - description: PCIe Slave AXI clock
-> > +      - description: PCIe Reference clock
-> > +      - description: PCIe Sleep clock
-> > +      - description: PCIe Slave Q2A AXI clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: cfg
-> > +      - const: aux
-> > +      - const: bus_master
-> > +      - const: bus_slave
-> > +      - const: ref
-> > +      - const: sleep
-> > +      - const: slave_q2a
+> > link-frequencies endpoint property.
+> > 
+> > > ---
+> > >  .../bindings/media/i2c/hynix,hi846.yaml       | 99 +++++++++++++++++++
+> > >  1 file changed, 99 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> > > new file mode 100644
+> > > index 000000000000..2991108e23e5
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> > > @@ -0,0 +1,99 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/media/i2c/hynix,hi846.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: SK Hynix Hi-846 1/4" 8M Pixel MIPI CSI-2 sensor
+> > > +
+> > > +maintainers:
+> > > +  - Martin Kepplinger <martin.kepplinger@puri.sm>
+> > > +
+> > > +description: |-
+> > > +  The Hi-846 is a raw image sensor with an MIPI CSI-2 image data
+> > > +  interface and CCI (I2C compatible) control bus. The output format
+> > > +  is 10bit Bayer.
+> > 
+> > Virtually all Bayer sensors can do 8 bpp, too. I'd drop the sentence
 > 
-> Again, try to keep the same ordering.
+> Not this one according to its datasheet (we can't rule out that this
+> would be possible an undocumented of course).
+
+Ok, fair enough.
+
 > 
-> I have to wonder where 'pipe' clock is that most of the QCom
-> implementations have?
+> > mentoning 10 bits.
+> > 
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: hynix,hi846
+> > > +
+> > > +  reg:
+> > > +    description: I2C device address.
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    description: Reference to the mclk clock.
+> > > +    maxItems: 1
+> > > +
+> > > +  clock-names:
+> > > +    const: mclk
+> > > +
+> > > +  rst-gpios:
+> > > +    description: Reference to the GPIO connected to the reset pin. Active low.
+> > > +    maxItems: 1
+> > > +
+> > > +  vdd-supply:
+> > > +    description: Definition of the regulator used as 1.8V digital power supply.
+> > > +
+> > > +  port:
+> > > +    $ref: /schemas/graph.yaml#/properties/port
+> > > +    additionalProperties: false
+> > > +
+> > > +    properties:
+> > > +      endpoint:
+> > > +        $ref: /schemas/media/video-interfaces.yaml#
+> > > +        unevaluatedProperties: false
+> > > +
+> > > +        properties:
+> > > +          data-lanes:
+> > > +            oneOf:
+> > > +              - items:
+> > > +                  - const: 1
+> > > +                  - const: 2
+> > > +                  - const: 3
+> > > +                  - const: 4
+> > > +              - items:
+> > > +                  - const: 1
+> > > +                  - const: 2
+> > > +
+> > > +        required:
+> > > +          - data-lanes
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - clocks
+> > > +  - clock-names
+> > > +  - rst-gpios
+> > > +  - vdd-supply
+> > > +  - port
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/gpio/gpio.h>
+> > > +
+> > > +    i2c {
+> > > +        #address-cells = <1>;
+> > > +        #size-cells = <0>;
+> > > +
+> > > +        hi846: camera@20 {
+> > > +            compatible = "hynix,hi846";
+> > > +            reg = <0x20>;
+> > > +            clocks = <&clk>;
+> > > +            clock-names = "mclk";
+> > > +            vdd-supply = <&reg_camera_pwr_en>; /* 1.8v */
+> > > +            rst-gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
+> > > +
+> > > +            port {
+> > > +                camera_out: endpoint {
+> > > +                    remote-endpoint = <&csi1_ep1>;
+> > > +                    data-lanes = <1 2>;
+> > > +                };
+> > > +            };
+> > > +        };
+> > > +    };
+> > > +
+> > > +...
 > 
-
-Pipe clock is managed by the PHY driver. So the PCIe drivers need not to
-worry about it.
-
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +    description: PCIe Global interrupt
-> > +
-> > +  interrupt-names:
-> > +    const: int_global
+> -- 
+> Regards,
 > 
-> 'int_' is redundant, drop.
-> 
+> Laurent Pinchart
 
-Okay
-
-> > +
-> > +  perst-gpios:
-> > +    description: PCIe endpoint reset GPIO
-> 
-> An input, right?
-> 
-
-Yes, will mention.
-
-> > +    maxItems: 1
-> > +
-> > +  wake-gpios:
-> > +    description: PCIe endpoint wake GPIO
-> > +    maxItems: 1
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  reset-names:
-> > +    const: core_reset
-> 
-> Not yet another name. We already have 'pci' and 'core' in the cases of
-> a single reset.
-> 
-
-Okay
-
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  phys:
-> > +    maxItems: 1
-> > +
-> > +  phy-names:
-> > +    const: pciephy
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reg-names
-> > +  - clocks
-> > +  - clock-names
-> > +  - interrupts
-> > +  - interrupt-names
-> > +  - perst-gpios
-> > +  - resets
-> > +  - reset-names
-> > +  - power-domains
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/qcom,gcc-sdx55.h>
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    pcie_ep: pcie-ep@40000000 {
-> > +        compatible = "qcom,pcie-ep";
-> > +
-> > +        reg = <0x40000000 0xf1d>,
-> > +              <0x40000f20 0xc8>,
-> > +              <0x40001000 0x1000>,
-> > +              <0x42000000 0x1000>,
-> > +              <0x01c00000 0x3000>,
-> > +              <0x01fcb000 0x1000>;
-> > +        reg-names = "dbi", "elbi", "atu", "addr_space", "parf", "tcsr";
-> > +
-> > +        clocks = <&gcc GCC_PCIE_CFG_AHB_CLK>,
-> > +             <&gcc GCC_PCIE_AUX_CLK>,
-> > +             <&gcc GCC_PCIE_MSTR_AXI_CLK>,
-> > +             <&gcc GCC_PCIE_SLV_AXI_CLK>,
-> > +             <&gcc GCC_PCIE_0_CLKREF_CLK>,
-> > +             <&gcc GCC_PCIE_SLEEP_CLK>,
-> > +             <&gcc GCC_PCIE_SLV_Q2A_AXI_CLK>;
-> > +        clock-names = "cfg", "aux", "bus_master", "bus_slave",
-> > +                      "ref", "sleep", "slave_q2a";
-> > +
-> > +        interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-> > +        interrupt-names = "int_global";
-> > +        perst-gpios = <&tlmm 57 GPIO_ACTIVE_HIGH>;
-> > +        wake-gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
-> > +        resets = <&gcc GCC_PCIE_BCR>;
-> > +        reset-names = "core_reset";
-> > +        power-domains = <&gcc PCIE_GDSC>;
-> > +        phys = <&pcie0_lane>;
-> > +        phy-names = "pciephy";
-> > +        max-link-speed = <3>;
-> > +        num-lanes = <2>;
-> 
-> Should be documented. I'd assume the max is less than 16 which is
-> presumably what pcie-ep.yaml allows.
-> 
-
-okay
-
-Thanks,
-Mani
-
-> > +    };
-> > --
-> > 2.25.1
-> >
+-- 
+Sakari Ailus
