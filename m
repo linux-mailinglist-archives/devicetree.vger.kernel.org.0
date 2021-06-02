@@ -2,113 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0249399566
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 23:27:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68EAD39958C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 23:43:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229576AbhFBV3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 17:29:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33394 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229467AbhFBV3U (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Jun 2021 17:29:20 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 16A2E613D2;
-        Wed,  2 Jun 2021 21:27:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622669257;
-        bh=lE85p69QGI6y7QaTePnues/2c+5McsZT084K1YrweNw=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=B8DV6wOh3MIm5mi1YrXGOznlrfUuCZOeXpQiKZ6Y4RGio/y0ayYK32131jJflfu2o
-         7L6x9BIPlQ1HSWw84GBx2YkogJbaBC81Awr1gVz/gr+zmbrAPf7as0TWosv1VxAHq2
-         2K4CBf/t8TIjcl8XMfpbfIfe/bX2VT8/rIArQu/jJvj90vt/sZApPTQZJj6KQa7g4a
-         bygk9u92h8RhN+PfppdIqOtKIU8qjuGbYMWwnrACnzm/QNw5RJTcynYC9nA+Uo/jeB
-         I+i9L28XGEauUq4h7HxmU3Pb96IyJinOVmYSdJUTUwnoXO4eV4fewHyxx1jvDEizAa
-         Qnq/CagdimW8Q==
-Content-Type: text/plain; charset="utf-8"
+        id S229721AbhFBVpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 17:45:36 -0400
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:42523 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229467AbhFBVpg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 17:45:36 -0400
+Received: by mail-ot1-f48.google.com with SMTP id x41-20020a05683040a9b02903b37841177eso3808369ott.9
+        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 14:43:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=Y9EqrbVUvdRXQm6S1vGkiBBzxsokfCTZDqeffR9IjWU=;
+        b=ez7XacjFJ5Tf16GMFkB8cnre+KJX4IIZyOcbMP9amxCwW7BGHdS4CdFpKfrV98HluV
+         rHRRqztGo1W5XeJovPvLEtHU3txxZNGswW5UianDRAciHrtQUt8wUv8oe3OSJB7UiKkR
+         1Q0WlyFL8DK0KXG3J4EP5irTdjSolimxwcbAo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=Y9EqrbVUvdRXQm6S1vGkiBBzxsokfCTZDqeffR9IjWU=;
+        b=Mgu/x1RSNwOJpwkY+jfftix5P9NzGUl8xKCAKtqnPHy/xXsGFxG94wRAgbQ2yjkSlV
+         ysm/K+f0hg2Z4sgDmGC4VPNvcXmE5TuBl2g6dNysmkQcOp81zwNw4YT2qOr0LBcT2Mu4
+         B/38LOnbi2cngbEG6wK9KlsaTqM1r9v4JjmsxAra+/Lcm50MXFM9gvVAc3g9CtEYy6Yf
+         9v5n/iI2EfMGuL3elYMGHrnFmuKnxRfovKxrlV9AmOBy3XAwwDxe2PTXQL77Vr8UQLym
+         NFt7ayUH0G/L9lN9g2fF7C3Wn/oaMaLQS4iHLehDUY3EQRLJTc5kDRFcCAxskVkHESzA
+         JeAg==
+X-Gm-Message-State: AOAM531AmE6lVkNlKZ3+QsTbtX0P6wB+I7uh8Wec04TJzCeioClf4ZDs
+        fW8R9Pc8glvjeHoRuFEIRXZUoj0jmRfiz1dUB4AAwg==
+X-Google-Smtp-Source: ABdhPJwcQMiZ5bocnmxz6pkL58nlbAYlzkz5dN6hF3rzJ7ZRu+8AJhKGsZHlUBM5T4MznnMb51qeRSjoiSeN4OdKAbk=
+X-Received: by 2002:a05:6830:3154:: with SMTP id c20mr28424918ots.233.1622670164299;
+ Wed, 02 Jun 2021 14:42:44 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 2 Jun 2021 14:42:43 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210519001802.1863-2-jonathan@marek.ca>
-References: <20210519001802.1863-1-jonathan@marek.ca> <20210519001802.1863-2-jonathan@marek.ca>
-Subject: Re: [PATCH v2 2/2] dt-bindings: clock: add QCOM SM8350 display clock bindings
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-To:     Jonathan Marek <jonathan@marek.ca>, linux-arm-msm@vger.kernel.org
-Date:   Wed, 02 Jun 2021 14:27:35 -0700
-Message-ID: <162266925581.4130789.10178141366818328902@swboyd.mtv.corp.google.com>
+In-Reply-To: <1622668118-2237-1-git-send-email-khsieh@codeaurora.org>
+References: <1622668118-2237-1-git-send-email-khsieh@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
+Date:   Wed, 2 Jun 2021 14:42:43 -0700
+Message-ID: <CAE-0n52_GFYdvuugm0xZ4EsXTVe9V+-8N=RxWNuV=YJkjWAzQg@mail.gmail.com>
+Subject: Re: [PATCH] arm64/dts/qcom/sc7180: Add Display Port dt node
+To:     Kuogee Hsieh <khsieh@codeaurora.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
+        robdclark@gmail.com, robh+dt@kernel.org, sean@poorly.run,
+        vkoul@kernel.org
+Cc:     abhinavk@codeaurora.org, aravindh@codeaurora.org,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Jonathan Marek (2021-05-18 17:18:02)
-> Add sm8350 DISPCC bindings, which are simply a symlink to the sm8250
-> bindings. Update the documentation with the new compatible.
->=20
-> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Subject should be
+
+	"arm64: dts: qcom: sc7180: Add DisplayPort node"
+
+Quoting Kuogee Hsieh (2021-06-02 14:08:38)
+> Add DP device node on sc7180.
+>
+> Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
 > ---
->  .../devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml       | 6 ++++--
->  include/dt-bindings/clock/qcom,dispcc-sm8350.h              | 1 +
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi |  9 ++++
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi         | 77 ++++++++++++++++++++++++++++
+>  2 files changed, 86 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index 24d293e..53ef3961 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -786,6 +786,15 @@ hp_i2c: &i2c9 {
+>         status = "okay";
+>  };
+>
+> +&msm_dp {
 
->  2 files changed, 5 insertions(+), 2 deletions(-)
->  create mode 120000 include/dt-bindings/clock/qcom,dispcc-sm8350.h
+Maybe the lable should just be 'dp' as msm_ prefix is redundant.
 
-Why the symlink? Can we have the dt authors use the existing header file
-instead?
+> +        status = "okay";
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&dp_hot_plug_det>;
+> +        data-lanes = <0 1>;
+> +        vdda-1p2-supply = <&vdda_usb_ss_dp_1p2>;
+> +        vdda-0p9-supply = <&vdda_usb_ss_dp_core>;
+> +};
+> +
+>  &pm6150_adc {
+>         charger-thermistor@4f {
+>                 reg = <ADC5_AMUX_THM3_100K_PU>;
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index 6228ba2..2e45098 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -3148,6 +3155,76 @@
+>
+>                                 status = "disabled";
+>                         };
+> +
+> +                       msm_dp: displayport-controller@ae90000 {
+> +                               status = "disabled";
 
->=20
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.y=
-aml b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-> index 0cdf53f41f84..8f414642445e 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-> @@ -4,24 +4,26 @@
->  $id: http://devicetree.org/schemas/clock/qcom,dispcc-sm8x50.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> =20
-> -title: Qualcomm Display Clock & Reset Controller Binding for SM8150/SM82=
-50
-> +title: Qualcomm Display Clock & Reset Controller Binding for SM8150/SM82=
-50/SM8350
+Can this come after compatible?
 
-Maybe just "Binding for SM8x50 SoCs"
+> +                               compatible = "qcom,sc7180-dp";
+> +
+> +                               reg = <0 0x0ae90000 0 0x1400>;
+> +
+> +                               interrupt-parent = <&mdss>;
+> +                               interrupts = <12 IRQ_TYPE_NONE>;
 
-> =20
->  maintainers:
->    - Jonathan Marek <jonathan@marek.ca>
-> =20
->  description: |
->    Qualcomm display clock control module which supports the clocks, reset=
-s and
-> -  power domains on SM8150 and SM8250.
-> +  power domains on SM8150/SM8250/SM8350.
+Should be
 
-same 8x50 comment.
+	interrupts = <12>;
 
-> =20
->    See also:
->      dt-bindings/clock/qcom,dispcc-sm8150.h
->      dt-bindings/clock/qcom,dispcc-sm8250.h
-> +    dt-bindings/clock/qcom,dispcc-sm8350.h
-> =20
->  properties:
->    compatible:
->      enum:
->        - qcom,sm8150-dispcc
->        - qcom,sm8250-dispcc
-> +      - qcom,sm8350-dispcc
-> =20
->    clocks:
->      items:
-> diff --git a/include/dt-bindings/clock/qcom,dispcc-sm8350.h b/include/dt-=
-bindings/clock/qcom,dispcc-sm8350.h
-> new file mode 120000
-> index 000000000000..0312b4544acb
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/qcom,dispcc-sm8350.h
-> @@ -0,0 +1 @@
-> +qcom,dispcc-sm8250.h
-> \ No newline at end of file
+> +
+> +                               clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +                                        <&dispcc DISP_CC_MDSS_DP_AUX_CLK>,
+> +                                        <&dispcc DISP_CC_MDSS_DP_LINK_CLK>,
+> +                                        <&dispcc DISP_CC_MDSS_DP_LINK_INTF_CLK>,
+> +                                        <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
+> +                               clock-names = "core_iface", "core_aux", "ctrl_link",
+> +                                             "ctrl_link_iface", "stream_pixel";
+> +                               #clock-cells = <1>;
+> +                               assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
+> +                                                 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
+> +                               assigned-clock-parents = <&dp_phy 0>, <&dp_phy 1>;
+> +                               phys = <&dp_phy>;
+> +                               phy-names = "dp";
+> +
+> +                               operating-points-v2 = <&dp_opp_table>;
+> +                               power-domains = <&rpmhpd SC7180_CX>;
+> +
+> +                               #sound-dai-cells = <0>;
+
+Move this next to phy? Or at least a newline here to split from ports.
+
+> +                               ports {
+> +                                       #address-cells = <1>;
+> +                                       #size-cells = <0>;
+> +                                       port@0 {
+> +                                               reg = <0>;
+> +                                               dp_in: endpoint {
+> +                                                       remote-endpoint = <&dpu_intf0_out>;
+> +                                               };
+> +                                       };
+> +
+> +                                       port@1 {
+> +                                               reg = <1>;
+> +                                               dp_out: endpoint { };
+> +                                       };
+> +                               };
+> +
+> +                               dp_opp_table: dp-opp-table {
+
+Maybe node name should be opp-table?
+
+				dp_opp_table: opp-table {
+
+				};
+
+> +                                       compatible = "operating-points-v2";
+> +
+> +                                       opp-160000000 {
+> +                                               opp-hz = /bits/ 64 <160000000>;
+> +                                               required-opps = <&rpmhpd_opp_low_svs>;
