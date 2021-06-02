@@ -2,72 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 225A63993A6
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 21:36:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 920A13993A9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 21:37:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229835AbhFBTiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 15:38:25 -0400
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:35367 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229833AbhFBTiY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 15:38:24 -0400
-Received: by mail-oi1-f178.google.com with SMTP id v22so3811425oic.2;
-        Wed, 02 Jun 2021 12:36:41 -0700 (PDT)
+        id S229623AbhFBTjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 15:39:23 -0400
+Received: from mail-oi1-f173.google.com ([209.85.167.173]:41736 "EHLO
+        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229491AbhFBTjW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 15:39:22 -0400
+Received: by mail-oi1-f173.google.com with SMTP id c3so3774498oic.8;
+        Wed, 02 Jun 2021 12:37:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=YYSx52f4ZDE8Bx1jem0M8DJEVHzH9GCK3SePAGeVDLk=;
-        b=aCE/UFUxBVXEBCJKA9hznqDB5iXf/tuZdRH19LW7+VHtALO8CR6T4REcWkX6CACfk3
-         AxOJaeSmSbGM0+5luXulev4xrcbgJZ5elOgFY430UbuLNuOxQKx4AUlE1STKtLEY1LCK
-         umeGXRS0RQyceaPWiGSf7Yct9vmNxTb0c304Pcj4fgDQ/zqSlMAmLtKx06FT7WXofQFE
-         QUEyCci6pDQHOdnMAsWljl3pJLIj3qWtn5iNLy2eQPsF31PTcpGvCBzYP+PBfY/x785s
-         xBS5QS9qsSkUWUgJvpV8GhlKBEx5mpJS3x1h09/3WZaVsdvieZWbtOWHU5+/+pt/zATU
-         niXA==
-X-Gm-Message-State: AOAM532zg6WpO2/pzQgxuSXWeE6H7CEJazvuCBMKw7ZmMPmVSd2rkkxE
-        mu+6Cn3eY2TkYNdzkcWCLw==
-X-Google-Smtp-Source: ABdhPJwaesupVLKHtFpoCvPdYuv99AGaU/mQgNQjg0yrJd/8nqZv438WAuo6ReQODxrjn9yuciKHUg==
-X-Received: by 2002:a05:6808:341:: with SMTP id j1mr1744943oie.43.1622662601135;
-        Wed, 02 Jun 2021 12:36:41 -0700 (PDT)
+        bh=4be1Co2ahpvEywks2bnabgr4bPBIPKkuO9TmCoOL1S8=;
+        b=Vb2Zep+x4Wf2VrhbDqucBT1Qh7IwjGfuIUXAKL4fAgguEGrkBzWoK0MsjjhlUxQ5Ow
+         liPxrFjFVXF8mTu7Jd6+v8aPFZw+txcDdTLi90KgJsiFMVHAD5V2+E3NS7wlYEIk9tjM
+         G7iyBdxS4LAHaMqMkoBXjo/zv6qgEytFDwm4OwLcPZYKnTBIiSt3X222+nm7wr9p8oAG
+         rrKkH63ETrtasxJ8wG22hSQnlCV6/I3EYoD1QbSTqjc2lOmRWEOtroQq2FU/gpVen5mw
+         MGrIui9U57NrnXzVYuoDDLjBjg92Lv4OLjspktygXfPRaYadpVoVp22cGbrM2MNIr6Di
+         Hlzw==
+X-Gm-Message-State: AOAM533zeqA0iyrZ7BQusUB+WJ/fMoY2e0QJBMZTWIfk90FCy9Ro/FKR
+        2L6DVj92vaekh6TgCP94tw==
+X-Google-Smtp-Source: ABdhPJx159EyoXWDiSbqQ/Ss9z4HG3rc1+6orGi+OaCxdEJqK7iHQx1rTPfn/vFZtAJ2y/NZCL8uuA==
+X-Received: by 2002:a05:6808:1284:: with SMTP id a4mr15953775oiw.125.1622662644050;
+        Wed, 02 Jun 2021 12:37:24 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x9sm176105oto.79.2021.06.02.12.36.40
+        by smtp.gmail.com with ESMTPSA id c18sm189830otm.1.2021.06.02.12.37.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jun 2021 12:36:40 -0700 (PDT)
-Received: (nullmailer pid 3847385 invoked by uid 1000);
-        Wed, 02 Jun 2021 19:36:39 -0000
-Date:   Wed, 2 Jun 2021 14:36:39 -0500
+        Wed, 02 Jun 2021 12:37:23 -0700 (PDT)
+Received: (nullmailer pid 3848773 invoked by uid 1000);
+        Wed, 02 Jun 2021 19:37:22 -0000
+Date:   Wed, 2 Jun 2021 14:37:22 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Kyle Tso <kyletso@google.com>
-Cc:     heikki.krogerus@linux.intel.com, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        badhri@google.com, gregkh@linuxfoundation.org, linux@roeck-us.net,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH v3 2/4] dt-bindings: connector: Add PD rev 2.0 VDO
- definition
-Message-ID: <20210602193639.GA3847324@robh.at.kernel.org>
-References: <20210601123151.3441914-1-kyletso@google.com>
- <20210601123151.3441914-3-kyletso@google.com>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
+        linux-kernel@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v3 1/3] dt-bindings: extcon: sm5502: Document
+ siliconmitus,sm5504-muic
+Message-ID: <20210602193722.GA3848708@robh.at.kernel.org>
+References: <20210601200007.218802-1-stephan@gerhold.net>
+ <20210601200007.218802-2-stephan@gerhold.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210601123151.3441914-3-kyletso@google.com>
+In-Reply-To: <20210601200007.218802-2-stephan@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 01 Jun 2021 20:31:49 +0800, Kyle Tso wrote:
-> Add the VDO definition for USB PD rev 2.0 in the bindings and define a
-> new property snk-vdos-v1 containing legacy VDOs as the responses to the
-> port partner which only supports PD rev 2.0.
+On Tue, 01 Jun 2021 22:00:05 +0200, Stephan Gerhold wrote:
+> Document support for SM5504 with the new siliconmitus,sm5504-muic
+> compatible.
 > 
-> Signed-off-by: Kyle Tso <kyletso@google.com>
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 > ---
-> changes since v2:
-> - no change
-> 
->  .../bindings/connector/usb-connector.yaml     | 15 ++++
->  include/dt-bindings/usb/pd.h                  | 69 ++++++++++++++++++-
->  2 files changed, 81 insertions(+), 3 deletions(-)
+>  .../bindings/extcon/siliconmitus,sm5502-muic.yaml           | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
