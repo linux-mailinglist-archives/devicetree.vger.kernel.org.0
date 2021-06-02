@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99907397D75
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 02:09:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E66D7397D9A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 02:15:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235250AbhFBALL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 20:11:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43466 "EHLO
+        id S229541AbhFBAQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 20:16:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235217AbhFBALL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 20:11:11 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C678C061574
-        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 17:09:29 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id x73so775176pfc.8
-        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 17:09:29 -0700 (PDT)
+        with ESMTP id S229482AbhFBAQs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 20:16:48 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A1A6C06174A
+        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 17:15:04 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id d16so761837pfn.12
+        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 17:15:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=nigauri-org.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=SewYCBxsOofZiuwfebP8X77TE8COIIBaxRrr8ugrpik=;
-        b=qS1udX5nInWSMLSDev+HovsM06ZzqDj/N9V+Hugeqt2Gdvrvw74S/GbOxr1n8K1H6V
-         DPwtOFm9qixftJgrbyvcQtS6ivnCpltliXyQpaw2RUCsBVDHKs9A8HOedtWLPxquVPvF
-         fKiHf3j8kupGXz7Eon4GaWMyl6CdYywIMObkeyjFjjXlhZ4VjvJftCb6uv9j1NhFBuxX
-         zujB3dZUgCKdPwNfrdumATrOvKqXu3zPYnkVEwRUdYhMJ9F0pOFzBpZqXXd+IRu28XI5
-         S9p6DQEHM2xkKI1L8KFZjRGcZqvMEQyiqNAuZk0cpSYy49hQD+cI6xiVS+fdXRqKVnWw
-         U3Zg==
+        bh=ve25niUF9LLoE0nA88lyQGD82UiyWvJHn1XO4OjttlQ=;
+        b=rQILG342WaKFSqsXPFIZPMzPmKUG2dH391enozJq3RQ+UrPxVUhBn+FnGWgCDQCMga
+         DiYB17nAwlfhVbhL3XEvM/HdKoYpNz13UNqM7FKzfn2KgFuLC+7WxUJaT4SZcKrlEPZp
+         y6vNDd7VvbBGGEbO15/0AVeX9hAcJa04DT1wPokN1cVaE8ZqQEe0u0L3cTKeqAIGqN7Y
+         1ocv57Xs06zGlgkI4DZ337Tme0P/vKnMoI/R8bAroHoQzGGr1fIK03bVkQphhtqxmQmI
+         BSp5JZZ/lt/3j2BGc0sxbzLEUkx10w9cT46sJLrE6qI+BlDwQ0h/YtQF8EqQvNXmMC37
+         NATA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=SewYCBxsOofZiuwfebP8X77TE8COIIBaxRrr8ugrpik=;
-        b=bHWeJxZLc4Ch3EAnAf4xYn+wUdGAiLBjurCqQebA27QC+joXmCyyBRReCcToJQ4JUi
-         7b72G1Ej2Cwtl/jvrdxQnjke5NmLrLOwBKUSooAtPzz6JDmyTxrRmTi7ufypgqAHVa0N
-         d3dd/78Az3dxsYYiKJvpcv1Qto3zSSTJn1+aidX+Fdwt5oUsO3CLiY8A3Mg8CtVgEIxX
-         vc9wkQ61Pdt5ECDSH3C7qhRTXHySxWy++j/CgVWRvXzJoeNW5Vc1tIHe9GfY5xEpLl9k
-         xTiTDpMzvBPyBlmLclDdVokZUYf+5QaMj1FfZHjNa4zpYVHnQPFUgvhYXh0Aa6IJ6feE
-         WydQ==
-X-Gm-Message-State: AOAM530FoPZVPQcvWTKKg1CzmBel0v5NxDuLDeud0Eo/mlO4e0cCgINd
-        MNUi7XfAyNVzITJwxoz2Pr0j
-X-Google-Smtp-Source: ABdhPJztiFHguYjaFCrqyYrBDhGjYl0+M1zClWGFL/TD0R0smaFF9tZtN0JUy4aQj/K4eKZIqmeC9Q==
-X-Received: by 2002:a63:1555:: with SMTP id 21mr19197504pgv.169.1622592568880;
-        Tue, 01 Jun 2021 17:09:28 -0700 (PDT)
+        bh=ve25niUF9LLoE0nA88lyQGD82UiyWvJHn1XO4OjttlQ=;
+        b=gXIpbA3WGeGy7sCFnsdXTyjfwqxD8SfcpRd/gzlbEGFqkIxD9d30jaLOKD8pb0K2FL
+         ee7mTbai1mBX0Y+sc0YrW17SVxPsjHnfQ1jdFD8yg9w4gaKZvQXqZjrJ1Iu+E8fHJtPL
+         K02cDB0bcpyCo/xI0GZzqvDIZ8bOmcQF70DWOWcBAHU7g2jQhqkboKh+EmsDzjZO8Y+1
+         zjnwLmyTD9nTUaQPrc9OVRQM4CIs0wBfu7ID9aj8vBt+fOdMARWpcELz3zP4/yi7AW0k
+         y6Le93sjw+yPM1cSiS42wi9HQGnS30kcSEqgmmjHMQB9t5c4wmt7ObceyAD6C0b1/D43
+         w/DA==
+X-Gm-Message-State: AOAM531IP8f5t7+vNl0TJAGjwLkkiFnau0MMukUVTxXsJYvIn4qbGaQg
+        GuVcN41pNliK5sYYFaHDjHlse/3oeBcD
+X-Google-Smtp-Source: ABdhPJwQLAniCzxErWbDcwy7Wd13rfCF2vOq7Gps2oAPtjzn63EnP/8luZtLh1ipOOXCbKat1dOXBA==
+X-Received: by 2002:a63:1e16:: with SMTP id e22mr5905887pge.140.1622592903894;
+        Tue, 01 Jun 2021 17:15:03 -0700 (PDT)
 Received: from localhost ([2405:6581:5360:1800:7285:c2ff:fec2:8f97])
-        by smtp.gmail.com with ESMTPSA id x125sm10088479pfx.201.2021.06.01.17.09.27
+        by smtp.gmail.com with ESMTPSA id o10sm14249857pfh.67.2021.06.01.17.15.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jun 2021 17:09:28 -0700 (PDT)
+        Tue, 01 Jun 2021 17:15:03 -0700 (PDT)
 From:   Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Michal Simek <michal.simek@xilinx.com>
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Subject: [PATCH v2] dt-bindings: rtc: zynqmp: convert bindings to YAML
-Date:   Wed,  2 Jun 2021 09:09:18 +0900
-Message-Id: <20210602000918.779983-1-iwamatsu@nigauri.org>
+Subject: [PATCH v2] dt-bindings: clk: zynqmp: convert bindings to YAML
+Date:   Wed,  2 Jun 2021 09:14:49 +0900
+Message-Id: <20210602001449.780075-1-iwamatsu@nigauri.org>
 X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -65,119 +65,293 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Real Time Clock for Xilinx Zynq MPSoC SoC bindings documentation
-to YAML schemas.
-And this renamed the file to compatible string of DT.
+Convert common clock for Xilinx Zynq MPSoC SoC bindings documentation
+to YAML.
 
 Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
 ---
 
-v2: Fix warning with DT_CHECKER_FLAGS=-m
+v2: Fix warning with DT_CHECKER_FLAGS=-m.
 
- .../bindings/rtc/xlnx,zynqmp-rtc.yaml         | 61 +++++++++++++++++++
- .../devicetree/bindings/rtc/xlnx-rtc.txt      | 25 --------
- 2 files changed, 61 insertions(+), 25 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml
- delete mode 100644 Documentation/devicetree/bindings/rtc/xlnx-rtc.txt
+ .../bindings/clock/xlnx,zynqmp-clk.txt        |  63 ---------
+ .../bindings/clock/xlnx,zynqmp-clk.yaml       |  63 +++++++++
+ .../mailbox/xlnx,zynqmp-ipi-mailbox.txt       | 127 ------------------
+ 3 files changed, 63 insertions(+), 190 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt
 
-diff --git a/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml b/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml
+diff --git a/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt b/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
+deleted file mode 100644
+index 391ee1a60bed4a..00000000000000
+--- a/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
++++ /dev/null
+@@ -1,63 +0,0 @@
+---------------------------------------------------------------------------
+-Device Tree Clock bindings for the Zynq Ultrascale+ MPSoC controlled using
+-Zynq MPSoC firmware interface
+---------------------------------------------------------------------------
+-The clock controller is a h/w block of Zynq Ultrascale+ MPSoC clock
+-tree. It reads required input clock frequencies from the devicetree and acts
+-as clock provider for all clock consumers of PS clocks.
+-
+-See clock_bindings.txt for more information on the generic clock bindings.
+-
+-Required properties:
+- - #clock-cells:	Must be 1
+- - compatible:		Must contain:	"xlnx,zynqmp-clk"
+- - clocks:		List of clock specifiers which are external input
+-			clocks to the given clock controller. Please refer
+-			the next section to find the input clocks for a
+-			given controller.
+- - clock-names:		List of clock names which are exteral input clocks
+-			to the given clock controller. Please refer to the
+-			clock bindings for more details.
+-
+-Input clocks for zynqmp Ultrascale+ clock controller:
+-
+-The Zynq UltraScale+ MPSoC has one primary and four alternative reference clock
+-inputs. These required clock inputs are:
+- - pss_ref_clk (PS reference clock)
+- - video_clk (reference clock for video system )
+- - pss_alt_ref_clk (alternative PS reference clock)
+- - aux_ref_clk
+- - gt_crx_ref_clk (transceiver reference clock)
+-
+-The following strings are optional parameters to the 'clock-names' property in
+-order to provide an optional (E)MIO clock source:
+- - swdt0_ext_clk
+- - swdt1_ext_clk
+- - gem0_emio_clk
+- - gem1_emio_clk
+- - gem2_emio_clk
+- - gem3_emio_clk
+- - mio_clk_XX		# with XX = 00..77
+- - mio_clk_50_or_51	#for the mux clock to gem tsu from 50 or 51
+-
+-
+-Output clocks are registered based on clock information received
+-from firmware. Output clocks indexes are mentioned in
+-include/dt-bindings/clock/xlnx-zynqmp-clk.h.
+-
+--------
+-Example
+--------
+-
+-firmware {
+-	zynqmp_firmware: zynqmp-firmware {
+-		compatible = "xlnx,zynqmp-firmware";
+-		method = "smc";
+-		zynqmp_clk: clock-controller {
+-			#clock-cells = <1>;
+-			compatible = "xlnx,zynqmp-clk";
+-			clocks = <&pss_ref_clk>, <&video_clk>, <&pss_alt_ref_clk>, <&aux_ref_clk>, <&gt_crx_ref_clk>;
+-			clock-names = "pss_ref_clk", "video_clk", "pss_alt_ref_clk","aux_ref_clk", "gt_crx_ref_clk";
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.yaml b/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.yaml
 new file mode 100644
-index 00000000000000..c205cb86ef00be
+index 00000000000000..e7a1384fb646e4
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++++ b/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/rtc/xlnx,zynqmp-rtc.yaml#
++$id: http://devicetree.org/schemas/clock/xlnx,zynqmp-clk.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Xilinx Zynq Ultrascale+ MPSoC Real Time Clock
-+
-+description: |
-+  RTC controller for the Xilinx Zynq MPSoC Real Time Clock.
-+  This separates IRQ lines for seconds and alarm.
++title: Xilinx Zynq Ultrascale+ MPSoC clock controller Device Tree Bindings
 +
 +maintainers:
 +  - Michal Simek <michal.simek@xilinx.com>
 +
-+allOf:
-+  - $ref: rtc.yaml#
++description: |
++  The clock controller is a h/w block of Zynq Ultrascale+ MPSoC clock
++  tree. It reads required input clock frequencies from the devicetree and acts
++  as clock provider for all clock consumers of PS clocks.
 +
 +properties:
 +  compatible:
-+    const: xlnx,zynqmp-rtc
++    const: xlnx,zynqmp-clk
 +
-+  reg:
-+    maxItems: 1
++  "#clock-cells":
++    const: 1
 +
-+  interrupts:
-+    minItems: 2
-+
-+  interrupt-names:
-+    items:
-+      - const: alarm
-+      - const: sec
-+
-+  calibration:
++  clocks:
 +    description: |
-+      calibration value for 1 sec period which will
-+      be programmed directly to calibration register.
++      List of clock specifiers which are external input
++      clocks to the given clock controller.
++    items:
++      - description: PS reference clock
++      - description: reference clock for video system
++      - description: alternative PS reference clock
++      - description: auxiliary reference clock
++      - description: transceiver reference clock
++
++  clock-names:
++    items:
++      - const: pss_ref_clk
++      - const: video_clk
++      - const: pss_alt_ref_clk
++      - const: aux_ref_clk
++      - const: gt_crx_ref_clk
 +
 +required:
 +  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
++  - "#clock-cells"
++  - clocks
++  - clock-names
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    soc {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      rtc: rtc@ffa60000 {
-+        compatible = "xlnx,zynqmp-rtc";
-+        reg = <0x0 0xffa60000 0x0 0x100>;
-+        interrupt-parent = <&gic>;
-+        interrupts = <0 26 4>, <0 27 4>;
-+        interrupt-names = "alarm", "sec";
-+        calibration = <0x198233>;
++    firmware {
++      zynqmp_firmware: zynqmp-firmware {
++        zynqmp_clk: clock-controller {
++          #clock-cells = <1>;
++          compatible = "xlnx,zynqmp-clk";
++          clocks = <&pss_ref_clk>, <&video_clk>, <&pss_alt_ref_clk>, <&aux_ref_clk>, <&gt_crx_ref_clk>;
++          clock-names = "pss_ref_clk", "video_clk", "pss_alt_ref_clk","aux_ref_clk", "gt_crx_ref_clk";
++        };
 +      };
 +    };
-diff --git a/Documentation/devicetree/bindings/rtc/xlnx-rtc.txt b/Documentation/devicetree/bindings/rtc/xlnx-rtc.txt
++...
+diff --git a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt
 deleted file mode 100644
-index 0df6f016b1b771..00000000000000
---- a/Documentation/devicetree/bindings/rtc/xlnx-rtc.txt
+index ad76edccf88166..00000000000000
+--- a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt
 +++ /dev/null
-@@ -1,25 +0,0 @@
--* Xilinx Zynq Ultrascale+ MPSoC Real Time Clock
+@@ -1,127 +0,0 @@
+-Xilinx IPI Mailbox Controller
+-========================================
 -
--RTC controller for the Xilinx Zynq MPSoC Real Time Clock
--Separate IRQ lines for seconds and alarm
+-The Xilinx IPI(Inter Processor Interrupt) mailbox controller is to manage
+-messaging between two Xilinx Zynq UltraScale+ MPSoC IPI agents. Each IPI
+-agent owns registers used for notification and buffers for message.
 -
+-               +-------------------------------------+
+-               | Xilinx ZynqMP IPI Controller        |
+-               +-------------------------------------+
+-    +--------------------------------------------------+
+-ATF                    |                     |
+-                       |                     |
+-                       |                     |
+-    +--------------------------+             |
+-                       |                     |
+-                       |                     |
+-    +--------------------------------------------------+
+-            +------------------------------------------+
+-            |  +----------------+   +----------------+ |
+-Hardware    |  |  IPI Agent     |   |  IPI Buffers   | |
+-            |  |  Registers     |   |                | |
+-            |  |                |   |                | |
+-            |  +----------------+   +----------------+ |
+-            |                                          |
+-            | Xilinx IPI Agent Block                   |
+-            +------------------------------------------+
+-
+-
+-Controller Device Node:
+-===========================
 -Required properties:
--- compatible: Should be "xlnx,zynqmp-rtc"
--- reg: Physical base address of the controller and length
--       of memory mapped region.
--- interrupts: IRQ lines for the RTC.
--- interrupt-names: interrupt line names eg. "sec" "alarm"
+---------------------
+-IPI agent node:
+-- compatible:		Shall be: "xlnx,zynqmp-ipi-mailbox"
+-- interrupt-parent:	Phandle for the interrupt controller
+-- interrupts:		Interrupt information corresponding to the
+-			interrupt-names property.
+-- xlnx,ipi-id:		local Xilinx IPI agent ID
+-- #address-cells:	number of address cells of internal IPI mailbox nodes
+-- #size-cells:		number of size cells of internal IPI mailbox nodes
 -
--Optional:
--- calibration: calibration value for 1 sec period which will
--		be programmed directly to calibration register
+-Internal IPI mailbox node:
+-- reg:			IPI buffers address ranges
+-- reg-names:		Names of the reg resources. It should have:
+-			* local_request_region
+-			  - IPI request msg buffer written by local and read
+-			    by remote
+-			* local_response_region
+-			  - IPI response msg buffer written by local and read
+-			    by remote
+-			* remote_request_region
+-			  - IPI request msg buffer written by remote and read
+-			    by local
+-			* remote_response_region
+-			  - IPI response msg buffer written by remote and read
+-			    by local
+-- #mbox-cells:		Shall be 1. It contains:
+-			* tx(0) or rx(1) channel
+-- xlnx,ipi-id:		remote Xilinx IPI agent ID of which the mailbox is
+-			connected to.
+-
+-Optional properties:
+---------------------
+-- method:              The method of accessing the IPI agent registers.
+-                       Permitted values are: "smc" and "hvc". Default is
+-                       "smc".
+-
+-Client Device Node:
+-===========================
+-Required properties:
+---------------------
+-- mboxes:		Standard property to specify a mailbox
+-			(See ./mailbox.txt)
+-- mbox-names:		List of identifier  strings for each mailbox
+-			channel.
 -
 -Example:
--rtc: rtc@ffa60000 {
--	compatible = "xlnx,zynqmp-rtc";
--	reg = <0x0 0xffa60000 0x100>;
--	interrupt-parent = <&gic>;
--	interrupts = <0 26 4>, <0 27 4>;
--	interrupt-names = "alarm", "sec";
--	calibration = <0x198233>;
--};
+-===========================
+-	zynqmp_ipi {
+-		compatible = "xlnx,zynqmp-ipi-mailbox";
+-		interrupt-parent = <&gic>;
+-		interrupts = <0 29 4>;
+-		xlnx,ipi-id = <0>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		ranges;
+-
+-		/* APU<->RPU0 IPI mailbox controller */
+-		ipi_mailbox_rpu0: mailbox@ff990400 {
+-			reg = <0xff990400 0x20>,
+-			      <0xff990420 0x20>,
+-			      <0xff990080 0x20>,
+-			      <0xff9900a0 0x20>;
+-			reg-names = "local_request_region",
+-				    "local_response_region",
+-				    "remote_request_region",
+-				    "remote_response_region";
+-			#mbox-cells = <1>;
+-			xlnx,ipi-id = <1>;
+-		};
+-		/* APU<->RPU1 IPI mailbox controller */
+-		ipi_mailbox_rpu1: mailbox@ff990440 {
+-			reg = <0xff990440 0x20>,
+-			      <0xff990460 0x20>,
+-			      <0xff990280 0x20>,
+-			      <0xff9902a0 0x20>;
+-			reg-names = "local_request_region",
+-				    "local_response_region",
+-				    "remote_request_region",
+-				    "remote_response_region";
+-			#mbox-cells = <1>;
+-			xlnx,ipi-id = <2>;
+-		};
+-	};
+-	rpu0 {
+-		...
+-		mboxes = <&ipi_mailbox_rpu0 0>,
+-			 <&ipi_mailbox_rpu0 1>;
+-		mbox-names = "tx", "rx";
+-	};
+-	rpu1 {
+-		...
+-		mboxes = <&ipi_mailbox_rpu1 0>,
+-			 <&ipi_mailbox_rpu1 1>;
+-		mbox-names = "tx", "rx";
+-	};
 -- 
 2.30.0
 
