@@ -2,119 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB28C398A67
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 15:27:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72258398A78
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 15:29:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229654AbhFBN3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 09:29:18 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:50759 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229606AbhFBN3R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 09:29:17 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 0A1DC58080F;
-        Wed,  2 Jun 2021 09:27:34 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Wed, 02 Jun 2021 09:27:34 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:content-transfer-encoding:in-reply-to; s=fm3; bh=t
-        EtNI5XfZ6vhm4RT4AXBLdGYkWoF8xb2B7jzYSkFXwQ=; b=XzA6utgrMy5gqmgND
-        Pgl6Oapfn8N0hQa9AFoi/7TdiBaJAcJmRMCFVh6csYA8DVV6MP8Sws6XfW+FmmAy
-        xzQzgrS1G0UUYGwPxzJqnq7WB7EpbsxJf9XJiGEm4CJYsx5zXo5bUlmxIjwYzAqI
-        TIp8kQdIUuw/ZgwSJt0oRU2/vf67cGOt/zkPr9clb2iQAd27HnTlujVOob4JKIhH
-        qgpcfT+Z1BxZ0MTBkWW7qWO1bcT/dEIARvoUs8HZBpY+6C5FZCK2T29ktPu2ga2M
-        +owQE0g1M/x5yvH5tDhL6xl5JFIkCV8tJusRIzETL3MtcvieqrjRGB1ZdH9a3Uyr
-        PYx9A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; bh=tEtNI5XfZ6vhm4RT4AXBLdGYkWoF8xb2B7jzYSkFX
-        wQ=; b=ZuNBU3QOJi8+Un8XIIGXqEvx2f22ZUavZeJ3aWhLT3CGYbo4bEPNqJZ+Q
-        9G10DoKGLJjFhDd2zjnwdN+PkqX+PvPd2Wk3aKrA9Qtefujl0a8YC4FbmA54C6OD
-        VhFisBmd/OxxnDh8MNNNsWGQCMcyKpjZcimO9nUd7Sivw5F35D+EGPDWF5OCSx80
-        RcMLWd8APZCpaa93x2xPqXxUyOiCY+G6foJEwEr/fQ66I0ybsufsJxcRRn9//jWI
-        cZtySYkLJm8y7CBggyOrHO8n0M0EBHsC38BdFle36/+O5YK7WaoXY7HpucoRqCZa
-        1RPWwulWEtFa4ZjYcKmuI8l1n0uSg==
-X-ME-Sender: <xms:Q4e3YH6HxDHcMJLxVFk3ubMRTk6kmBVLHHdJuFLp8bEmk9gK3lhvRg>
-    <xme:Q4e3YM4AhzYT3Dl793iNtcVbNThbFNjhxOcZulnsi-dF9SDUu9IoDoWolrvkCSixx
-    f6g-eZsJoE7hkta7yY>
-X-ME-Received: <xmr:Q4e3YOfDfNtMQQ2sGJ8X1uHGlOet52fQsfV9jgn9kG-eg5dtsH9lHj1vXkKebfywxSOxOE7k83hXyC8o4vnJsqEERMn0aNtirJLe>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdeljedgieehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtugfgjgesthhqredttddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpefgjeettdejgffgffdvteeutdehtdehgeehueetkeefgefhtdetjeekledu
-    gedvudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:Q4e3YIJf-LuxWGaE89vINCRk2sw3jBsbz9IlwawJCIA0c63jKkLCOg>
-    <xmx:Q4e3YLI6qzJFFZm6NIU7dAh49s2rTOqVc4oy2wNy-meQSOczwZoCPw>
-    <xmx:Q4e3YByGomI-AKkDrcqoelcxwDw1Qtua2_A7CPCNnjnvk5LZpBlzaA>
-    <xmx:RYe3YM5tYXluYgIaDHX_8VitHSvFxXAOqHzGdWouLhCtpbe_MFIg3Q>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 2 Jun 2021 09:27:31 -0400 (EDT)
-Date:   Wed, 2 Jun 2021 15:27:28 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Pratyush Yadav <p.yadav@ti.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Benoit Parrot <bparrot@ti.com>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, dmaengine@vger.kernel.org,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH v2 17/18] phy: dt-bindings: cdns,dphy: make clocks
- optional
-Message-ID: <20210602132728.5lv5n2mgap2o7eyx@gilmour>
-References: <20210526152308.16525-1-p.yadav@ti.com>
- <20210526152308.16525-18-p.yadav@ti.com>
+        id S229940AbhFBNbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 09:31:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53610 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229724AbhFBNbh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 09:31:37 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5DB2C061574
+        for <devicetree@vger.kernel.org>; Wed,  2 Jun 2021 06:29:53 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1loQwS-0006lH-89; Wed, 02 Jun 2021 15:29:52 +0200
+Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1loQwR-0001rS-4M; Wed, 02 Jun 2021 15:29:51 +0200
+Received: from mtr by dude03.red.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1loQwQ-00HUC3-Sj; Wed, 02 Jun 2021 15:29:50 +0200
+From:   Michael Tretter <m.tretter@pengutronix.de>
+To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        kernel@pengutronix.de, Michael Tretter <m.tretter@pengutronix.de>
+Subject: [PATCH v2 0/2] media: i2c: isl7998x: Add driver for Intersil ISL7998x
+Date:   Wed,  2 Jun 2021 15:29:48 +0200
+Message-Id: <20210602132950.4167596-1-m.tretter@pengutronix.de>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210526152308.16525-18-p.yadav@ti.com>
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mtr@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello,
 
-On Wed, May 26, 2021 at 08:53:07PM +0530, Pratyush Yadav wrote:
-> The clocks are not used by the DPHY when used in Rx mode so make them
-> optional.
->=20
-> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
->=20
-> ---
->=20
-> Changes in v2:
-> - Re-order subject prefixes.
->=20
->  Documentation/devicetree/bindings/phy/cdns,dphy.yaml | 2 --
->  1 file changed, 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/phy/cdns,dphy.yaml b/Docum=
-entation/devicetree/bindings/phy/cdns,dphy.yaml
-> index b90a58773bf2..3bb5be05e825 100644
-> --- a/Documentation/devicetree/bindings/phy/cdns,dphy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/cdns,dphy.yaml
-> @@ -33,8 +33,6 @@ properties:
->  required:
->    - compatible
->    - reg
-> -  - clocks
-> -  - clock-names
+This is a respin/v2 of the previous series for adding the isl7998x driver [0]
+sent by Marek Vasut. I updated the patches according to the review comments of
+this previous series.
 
-As far as I can remember from the cadence documentation, those clocks
-were required. I guess this is the integration that provides a few fixed
-clocks?
+The isl7998x is an analog video to MIPI CSI-2 or BT.656 converter. The dt
+binding describes only the isl79987 chip, which supports MIPI CSI-2. The
+driver could be extended to handle isl79988 (for BT.656), too, but this isn't
+implemented.
 
-Maxime
+As this is a v2, I left the patch author as is, but added myself as a
+maintainer for the driver. Please tell me, if I should handle this differently
+and/or further document my changes in the patches.
+
+checkpatch.pl complains about the macros that are used for handling the
+regmaps and paged register space in the driver. I don't have a good idea how
+to handle this differently. Suggestions are welcome, if this is actually
+problem.
+
+Michael
+
+[0] https://lore.kernel.org/linux-media/20190520201812.7937-1-marex@denx.de/
+
+Changelog:
+
+v2:
+
+- convert dt binding to yaml
+- change binding to ISL79987 only
+- general driver cleanup
+- convert driver to pm_runtime
+- use ports in device tree for specifying inputs
+- add reset gpio
+
+Marek Vasut (2):
+  media: dt-bindings: Add Intersil ISL79987 DT bindings
+  media: i2c: isl7998x: Add driver for Intersil ISL7998x
+
+ .../bindings/media/i2c/isil,isl79987.yaml     |  108 ++
+ MAINTAINERS                                   |    8 +
+ drivers/media/i2c/Kconfig                     |    9 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/isl7998x.c                  | 1421 +++++++++++++++++
+ 5 files changed, 1547 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml
+ create mode 100644 drivers/media/i2c/isl7998x.c
+
+-- 
+2.29.2
+
