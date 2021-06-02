@@ -2,70 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54A10399076
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 18:49:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D859E3990D6
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 18:51:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231556AbhFBQud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 12:50:33 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:43990 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230203AbhFBQu0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 12:50:26 -0400
-Received: by mail-ot1-f54.google.com with SMTP id i12-20020a05683033ecb02903346fa0f74dso2993761otu.10;
-        Wed, 02 Jun 2021 09:48:27 -0700 (PDT)
+        id S230090AbhFBQwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 12:52:47 -0400
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:34329 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230153AbhFBQwq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 12:52:46 -0400
+Received: by mail-oi1-f175.google.com with SMTP id u11so3311461oiv.1;
+        Wed, 02 Jun 2021 09:51:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=RSTyN6UdfxrpswIXdEEMvpztyfRMf6Iwj0IzM0dJ04g=;
-        b=lkfqSnjKlMfP+ufZH0IE+LKXsbBqWtE147Hev7uqM97imCj0ZLjIP5ccLhhM7NO3m9
-         h0kLR1gij3OvaVdBEPfymoiWeiX4L3wW2zIealaXXbnZaz0vXW2q4LLhk7hM5R0PYU/B
-         VMgUQsxBdQtgO7W5ib/n0dZb1isnZ4qPa1kuTqlq1oc6Lc8P0y9pWRqnZ8qF2Gj3dDfJ
-         Qkl3jmk6tw9zgcgz6Nbx/KyORcQguYXBgsN1O6fZVWogONh7IUJ0Uw7OXTFNvoImbDkc
-         0lQodkQGyl6MhH42acHRpIXASxhaKpPuHJ+mDjnI1oFmrXEdsqp/mTK1HbgcfQxgZGFN
-         ZaRg==
-X-Gm-Message-State: AOAM530skU1HbMXd4idmzPHfaMK4BeNgmEjmKl+4vQ05gChx7GahIlZw
-        +p7tAdB2lULeppXqUlpAiQ==
-X-Google-Smtp-Source: ABdhPJy9ycvTGvt3iyFRuhOSjd10om0oaJHX1x3csb/ToPEINf9dNc1eIDihO3ndiNYjdM+SYE3ziw==
-X-Received: by 2002:a05:6830:110c:: with SMTP id w12mr27442506otq.91.1622652506710;
-        Wed, 02 Jun 2021 09:48:26 -0700 (PDT)
+        bh=ng66G4jO/C51laojzG44dfW8z+IXfT9iwY5rC23LxMo=;
+        b=DBN7kDOqa0EOtstZ5A+ON+bDCeOyeqne+P+6iIkC8BamlEwIiEOz8xFZzPiF/RTyzI
+         eBp1w9O/urCOHGDVQ/0PxZ38i9O7O6lsM7cJh6E8GxDIjDDx3cAmR9wb5zB7G1SjWmta
+         Ex5DuNhfFIbbCfh3cD3IfLR8a6Ib0U64CqmWEfw41vJOUDu13a683lzRKusZ7Fi9INc6
+         N6TCRABz1EMp8J87d7YChKz9euVrMBaWg3jqbsGDalkqxCfWDT4O8dFWsil0yzOj119F
+         lfoyCZWYBsCmpAG7FUOH6iHASuUSnnLDrgceuupHNYE/wocavoTGqKaqehqGCat5IUB+
+         aWKA==
+X-Gm-Message-State: AOAM5336a6KLeUNIAptLU1KulThZG6TrPu+HCpbQfjLb93mya9MT/6jc
+        wf+Tqh5dE6mJUBXZSyEzye9P3pdOTg==
+X-Google-Smtp-Source: ABdhPJwroyXsMLOJAuiEN3lNLQsCsSjqI5eH+O8I1srDWPgJ16DIBnriDFaaStE2RWXa7LElaEC/3w==
+X-Received: by 2002:aca:2107:: with SMTP id 7mr4482878oiz.110.1622652662503;
+        Wed, 02 Jun 2021 09:51:02 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id i4sm93588oih.13.2021.06.02.09.48.24
+        by smtp.gmail.com with ESMTPSA id c32sm88395otu.13.2021.06.02.09.51.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jun 2021 09:48:25 -0700 (PDT)
-Received: (nullmailer pid 3544893 invoked by uid 1000);
-        Wed, 02 Jun 2021 16:48:24 -0000
-Date:   Wed, 2 Jun 2021 11:48:24 -0500
+        Wed, 02 Jun 2021 09:51:01 -0700 (PDT)
+Received: (nullmailer pid 3551888 invoked by uid 1000);
+        Wed, 02 Jun 2021 16:51:00 -0000
+Date:   Wed, 2 Jun 2021 11:51:00 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
-        Nikita Travkin <nikita@trvn.ru>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/6] dt-bindings: extcon: sm5502: Convert to DT schema
-Message-ID: <20210602164824.GA3544831@robh.at.kernel.org>
-References: <20210531133438.3511-1-stephan@gerhold.net>
- <20210531133438.3511-5-stephan@gerhold.net>
+To:     daire.mcnamara@microchip.com
+Cc:     devicetree@vger.kernel.org, lewis.hanly@microchip.com,
+        conor.dooley@microchip.com, david.abdurachmanov@gmail.com,
+        mturquette@baylibre.com, palmer@dabbelt.com,
+        linux-clk@vger.kernel.org, padmarao.begari@microchip.com,
+        robh+dt@kernel.org, cyril.jean@microchip.com, sboyd@kernel.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: clk: microchip: Add Microchip
+ PolarFire host binding
+Message-ID: <20210602165100.GA3551676@robh.at.kernel.org>
+References: <20210528134308.649769-1-daire.mcnamara@microchip.com>
+ <20210528134308.649769-2-daire.mcnamara@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210531133438.3511-5-stephan@gerhold.net>
+In-Reply-To: <20210528134308.649769-2-daire.mcnamara@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 31 May 2021 15:34:36 +0200, Stephan Gerhold wrote:
-> Convert the extcon-sm5502 device tree bindings to DT schema.
+On Fri, 28 May 2021 14:43:07 +0100, daire.mcnamara@microchip.com wrote:
+> From: Daire McNamara <daire.mcnamara@microchip.com>
 > 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> Add device tree bindings for the Microchip PolarFire system
+> clock controller
+> 
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
 > ---
->  .../bindings/extcon/extcon-sm5502.txt         | 21 --------
->  .../extcon/siliconmitus,sm5502-muic.yaml      | 50 +++++++++++++++++++
->  2 files changed, 50 insertions(+), 21 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/extcon/extcon-sm5502.txt
->  create mode 100644 Documentation/devicetree/bindings/extcon/siliconmitus,sm5502-muic.yaml
+>  .../bindings/clock/microchip,mpfs.yaml        | 67 +++++++++++++++++++
+>  .../dt-bindings/clock/microchip,mpfs-clock.h  | 45 +++++++++++++
+>  2 files changed, 112 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/microchip,mpfs.yaml
+>  create mode 100644 include/dt-bindings/clock/microchip,mpfs-clock.h
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
