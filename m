@@ -2,356 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E66D7397D9A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 02:15:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58D2D397E39
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 03:48:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229541AbhFBAQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Jun 2021 20:16:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44740 "EHLO
+        id S230185AbhFBBub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Jun 2021 21:50:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbhFBAQs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 20:16:48 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A1A6C06174A
-        for <devicetree@vger.kernel.org>; Tue,  1 Jun 2021 17:15:04 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id d16so761837pfn.12
-        for <devicetree@vger.kernel.org>; Tue, 01 Jun 2021 17:15:04 -0700 (PDT)
+        with ESMTP id S230135AbhFBBua (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Jun 2021 21:50:30 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5181AC061574;
+        Tue,  1 Jun 2021 18:48:47 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 131so522301ljj.3;
+        Tue, 01 Jun 2021 18:48:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nigauri-org.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ve25niUF9LLoE0nA88lyQGD82UiyWvJHn1XO4OjttlQ=;
-        b=rQILG342WaKFSqsXPFIZPMzPmKUG2dH391enozJq3RQ+UrPxVUhBn+FnGWgCDQCMga
-         DiYB17nAwlfhVbhL3XEvM/HdKoYpNz13UNqM7FKzfn2KgFuLC+7WxUJaT4SZcKrlEPZp
-         y6vNDd7VvbBGGEbO15/0AVeX9hAcJa04DT1wPokN1cVaE8ZqQEe0u0L3cTKeqAIGqN7Y
-         1ocv57Xs06zGlgkI4DZ337Tme0P/vKnMoI/R8bAroHoQzGGr1fIK03bVkQphhtqxmQmI
-         BSp5JZZ/lt/3j2BGc0sxbzLEUkx10w9cT46sJLrE6qI+BlDwQ0h/YtQF8EqQvNXmMC37
-         NATA==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=ds1bzsU5BlYh6xsl5Py6PMpXcqnFFQEWiI7YJzooPwI=;
+        b=rKNNSqKlhW4HMk6l41lUCvdFy4CtOyKuLJQJEVvxJin9Ri1l8pfcmVU67/4vI+/QYm
+         2l3uCvWRWuuv+p1ToEU3UIz1uOampfO0um71N/5euDRUWgg6VhsEoDxixe1Vgsis0hNT
+         OC+Rban6IednUvdrZGXQ0UDgx4aMwFkxbWJE67566ggXB5gCiKZbhF5bx7xklE1MTYlU
+         zvrWZ/q7x7hPMfp1AW3IBR5vyKVMhv6TIn0uTQq/sr8IK1lW2YaOAlyn2TscAIeifYEb
+         MfnjHvPdHUahy6XLHyeW7HrLADiYWImHSxT91uYmOmFEgE83aDEzDGGPMweLd4vyum6b
+         pMqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ve25niUF9LLoE0nA88lyQGD82UiyWvJHn1XO4OjttlQ=;
-        b=gXIpbA3WGeGy7sCFnsdXTyjfwqxD8SfcpRd/gzlbEGFqkIxD9d30jaLOKD8pb0K2FL
-         ee7mTbai1mBX0Y+sc0YrW17SVxPsjHnfQ1jdFD8yg9w4gaKZvQXqZjrJ1Iu+E8fHJtPL
-         K02cDB0bcpyCo/xI0GZzqvDIZ8bOmcQF70DWOWcBAHU7g2jQhqkboKh+EmsDzjZO8Y+1
-         zjnwLmyTD9nTUaQPrc9OVRQM4CIs0wBfu7ID9aj8vBt+fOdMARWpcELz3zP4/yi7AW0k
-         y6Le93sjw+yPM1cSiS42wi9HQGnS30kcSEqgmmjHMQB9t5c4wmt7ObceyAD6C0b1/D43
-         w/DA==
-X-Gm-Message-State: AOAM531IP8f5t7+vNl0TJAGjwLkkiFnau0MMukUVTxXsJYvIn4qbGaQg
-        GuVcN41pNliK5sYYFaHDjHlse/3oeBcD
-X-Google-Smtp-Source: ABdhPJwQLAniCzxErWbDcwy7Wd13rfCF2vOq7Gps2oAPtjzn63EnP/8luZtLh1ipOOXCbKat1dOXBA==
-X-Received: by 2002:a63:1e16:: with SMTP id e22mr5905887pge.140.1622592903894;
-        Tue, 01 Jun 2021 17:15:03 -0700 (PDT)
-Received: from localhost ([2405:6581:5360:1800:7285:c2ff:fec2:8f97])
-        by smtp.gmail.com with ESMTPSA id o10sm14249857pfh.67.2021.06.01.17.15.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jun 2021 17:15:03 -0700 (PDT)
-From:   Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Subject: [PATCH v2] dt-bindings: clk: zynqmp: convert bindings to YAML
-Date:   Wed,  2 Jun 2021 09:14:49 +0900
-Message-Id: <20210602001449.780075-1-iwamatsu@nigauri.org>
-X-Mailer: git-send-email 2.30.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=ds1bzsU5BlYh6xsl5Py6PMpXcqnFFQEWiI7YJzooPwI=;
+        b=PqUrnLzkgc+0DtDURCDdi2sA0cZqjJWOiDLTBJO4w8TKlaFAAyHchIjMtCiWQY1F3r
+         yE6ZR4ItURBGlaXzi78zv37/qKPT7+qNxY5kD5NpxBMyZkg0yb+bghW3PXxeW//iNRPm
+         J9FSjEv4fLxgNSKjv35p+OVKGev5XramxsaNuHTinbaX0Bd4m/rehPXJ3omwNJSdsZ9J
+         gW3si/fqF57p7bQPTCqrZsMDdWkGDf/01HTCVp5hKULKvOya/0uHW0TsB4GHv5Y/WVR0
+         3FuQF5pcH1seAk/Am4gPgPrJUcLwuYzgIW+TbqwWF2mjR4UekFClJfPfbNehBFblaJ2m
+         Gx3g==
+X-Gm-Message-State: AOAM530kOfEK0YZptrESVj+hOJpI9IMipj+atwoIzKe4P+RV9d3L0Xic
+        Opu6wlswUEMYku7ntGpXD21vlUY8D186srxmJxE=
+X-Google-Smtp-Source: ABdhPJwc9xN16GvCeFBcl6Uy7SxWHFhj+DyJb/ipOIzMvIO/0qrRIMtE4gfXXEme7Ok9NbBNrriwMzMTFkjdW7S5YuU=
+X-Received: by 2002:a2e:9b45:: with SMTP id o5mr24001309ljj.153.1622598525632;
+ Tue, 01 Jun 2021 18:48:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1622008068-13474-1-git-send-email-u0084500@gmail.com>
+ <1622008068-13474-2-git-send-email-u0084500@gmail.com> <YK4oGB5cZ/DhG5vm@sirena.org.uk>
+ <CADiBU393NchfrTmgPApNRqSVrTBGT+bs+H+m2UF_H3tSGLyFVQ@mail.gmail.com>
+ <CADiBU3-LjetAkzks4MZKiK=KXK5ziFhF9D13cAjJ4W5gytw74A@mail.gmail.com> <20210601155239.GD4089@sirena.org.uk>
+In-Reply-To: <20210601155239.GD4089@sirena.org.uk>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Wed, 2 Jun 2021 09:48:34 +0800
+Message-ID: <CADiBU380OPfhBv9-cToR2sstxPWQwgt2_TEisLi7zPn4P5rvBQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] regulator: rt6160: Add support for Richtek RT6160
+To:     Mark Brown <broonie@kernel.org>
+Cc:     lgirdwood@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        cy_huang <cy_huang@richtek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert common clock for Xilinx Zynq MPSoC SoC bindings documentation
-to YAML.
+HI, Mark:
 
-Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
----
+Mark Brown <broonie@kernel.org> =E6=96=BC 2021=E5=B9=B46=E6=9C=881=E6=97=A5=
+ =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=8811:52=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Thu, May 27, 2021 at 11:14:17AM +0800, ChiYuan Huang wrote:
+>
+> > I review the regulator_set_ramp_delay_regmap API.
+> > If seems I need to fill in the ramp_delay_table by the descend order.
+> > But this chip ramp delay table is designed the ascending value reg bit
+> > field [0 1 2 3] by
+> > the ascending order [1000 2500 5000 10000] uV/uS
+> > Even if I tried to filler in descending order, I also need a inverted o=
+peration.
+>
+> I see... that really should be supportable, and I'd have expected
+> find_closest_bigger() to DTRT here, it's not obvious it's expecting
+> ordering.
+>
+> > And I found the regulator_set_ramp_delay_regmap API has some logic erro=
+r.
+> > From the include/linux/regulator/driver.h, the set_ramp_delay function =
+says to
+> > set the less or equal one ramp delay value.
+> > But your logic will get the larger or equal one from the descending
+> > ramp delay table.
+>
+> The code is correct here, the documentation should be fixed - with a
+> delay like this we should be erring on the side of delaying too long to
+> be safe.
 
-v2: Fix warning with DT_CHECKER_FLAGS=-m.
-
- .../bindings/clock/xlnx,zynqmp-clk.txt        |  63 ---------
- .../bindings/clock/xlnx,zynqmp-clk.yaml       |  63 +++++++++
- .../mailbox/xlnx,zynqmp-ipi-mailbox.txt       | 127 ------------------
- 3 files changed, 63 insertions(+), 190 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
- create mode 100644 Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.yaml
- delete mode 100644 Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt
-
-diff --git a/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt b/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
-deleted file mode 100644
-index 391ee1a60bed4a..00000000000000
---- a/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
-+++ /dev/null
-@@ -1,63 +0,0 @@
----------------------------------------------------------------------------
--Device Tree Clock bindings for the Zynq Ultrascale+ MPSoC controlled using
--Zynq MPSoC firmware interface
----------------------------------------------------------------------------
--The clock controller is a h/w block of Zynq Ultrascale+ MPSoC clock
--tree. It reads required input clock frequencies from the devicetree and acts
--as clock provider for all clock consumers of PS clocks.
--
--See clock_bindings.txt for more information on the generic clock bindings.
--
--Required properties:
-- - #clock-cells:	Must be 1
-- - compatible:		Must contain:	"xlnx,zynqmp-clk"
-- - clocks:		List of clock specifiers which are external input
--			clocks to the given clock controller. Please refer
--			the next section to find the input clocks for a
--			given controller.
-- - clock-names:		List of clock names which are exteral input clocks
--			to the given clock controller. Please refer to the
--			clock bindings for more details.
--
--Input clocks for zynqmp Ultrascale+ clock controller:
--
--The Zynq UltraScale+ MPSoC has one primary and four alternative reference clock
--inputs. These required clock inputs are:
-- - pss_ref_clk (PS reference clock)
-- - video_clk (reference clock for video system )
-- - pss_alt_ref_clk (alternative PS reference clock)
-- - aux_ref_clk
-- - gt_crx_ref_clk (transceiver reference clock)
--
--The following strings are optional parameters to the 'clock-names' property in
--order to provide an optional (E)MIO clock source:
-- - swdt0_ext_clk
-- - swdt1_ext_clk
-- - gem0_emio_clk
-- - gem1_emio_clk
-- - gem2_emio_clk
-- - gem3_emio_clk
-- - mio_clk_XX		# with XX = 00..77
-- - mio_clk_50_or_51	#for the mux clock to gem tsu from 50 or 51
--
--
--Output clocks are registered based on clock information received
--from firmware. Output clocks indexes are mentioned in
--include/dt-bindings/clock/xlnx-zynqmp-clk.h.
--
---------
--Example
---------
--
--firmware {
--	zynqmp_firmware: zynqmp-firmware {
--		compatible = "xlnx,zynqmp-firmware";
--		method = "smc";
--		zynqmp_clk: clock-controller {
--			#clock-cells = <1>;
--			compatible = "xlnx,zynqmp-clk";
--			clocks = <&pss_ref_clk>, <&video_clk>, <&pss_alt_ref_clk>, <&aux_ref_clk>, <&gt_crx_ref_clk>;
--			clock-names = "pss_ref_clk", "video_clk", "pss_alt_ref_clk","aux_ref_clk", "gt_crx_ref_clk";
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.yaml b/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.yaml
-new file mode 100644
-index 00000000000000..e7a1384fb646e4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/xlnx,zynqmp-clk.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xilinx Zynq Ultrascale+ MPSoC clock controller Device Tree Bindings
-+
-+maintainers:
-+  - Michal Simek <michal.simek@xilinx.com>
-+
-+description: |
-+  The clock controller is a h/w block of Zynq Ultrascale+ MPSoC clock
-+  tree. It reads required input clock frequencies from the devicetree and acts
-+  as clock provider for all clock consumers of PS clocks.
-+
-+properties:
-+  compatible:
-+    const: xlnx,zynqmp-clk
-+
-+  "#clock-cells":
-+    const: 1
-+
-+  clocks:
-+    description: |
-+      List of clock specifiers which are external input
-+      clocks to the given clock controller.
-+    items:
-+      - description: PS reference clock
-+      - description: reference clock for video system
-+      - description: alternative PS reference clock
-+      - description: auxiliary reference clock
-+      - description: transceiver reference clock
-+
-+  clock-names:
-+    items:
-+      - const: pss_ref_clk
-+      - const: video_clk
-+      - const: pss_alt_ref_clk
-+      - const: aux_ref_clk
-+      - const: gt_crx_ref_clk
-+
-+required:
-+  - compatible
-+  - "#clock-cells"
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    firmware {
-+      zynqmp_firmware: zynqmp-firmware {
-+        zynqmp_clk: clock-controller {
-+          #clock-cells = <1>;
-+          compatible = "xlnx,zynqmp-clk";
-+          clocks = <&pss_ref_clk>, <&video_clk>, <&pss_alt_ref_clk>, <&aux_ref_clk>, <&gt_crx_ref_clk>;
-+          clock-names = "pss_ref_clk", "video_clk", "pss_alt_ref_clk","aux_ref_clk", "gt_crx_ref_clk";
-+        };
-+      };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt
-deleted file mode 100644
-index ad76edccf88166..00000000000000
---- a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt
-+++ /dev/null
-@@ -1,127 +0,0 @@
--Xilinx IPI Mailbox Controller
--========================================
--
--The Xilinx IPI(Inter Processor Interrupt) mailbox controller is to manage
--messaging between two Xilinx Zynq UltraScale+ MPSoC IPI agents. Each IPI
--agent owns registers used for notification and buffers for message.
--
--               +-------------------------------------+
--               | Xilinx ZynqMP IPI Controller        |
--               +-------------------------------------+
--    +--------------------------------------------------+
--ATF                    |                     |
--                       |                     |
--                       |                     |
--    +--------------------------+             |
--                       |                     |
--                       |                     |
--    +--------------------------------------------------+
--            +------------------------------------------+
--            |  +----------------+   +----------------+ |
--Hardware    |  |  IPI Agent     |   |  IPI Buffers   | |
--            |  |  Registers     |   |                | |
--            |  |                |   |                | |
--            |  +----------------+   +----------------+ |
--            |                                          |
--            | Xilinx IPI Agent Block                   |
--            +------------------------------------------+
--
--
--Controller Device Node:
--===========================
--Required properties:
----------------------
--IPI agent node:
--- compatible:		Shall be: "xlnx,zynqmp-ipi-mailbox"
--- interrupt-parent:	Phandle for the interrupt controller
--- interrupts:		Interrupt information corresponding to the
--			interrupt-names property.
--- xlnx,ipi-id:		local Xilinx IPI agent ID
--- #address-cells:	number of address cells of internal IPI mailbox nodes
--- #size-cells:		number of size cells of internal IPI mailbox nodes
--
--Internal IPI mailbox node:
--- reg:			IPI buffers address ranges
--- reg-names:		Names of the reg resources. It should have:
--			* local_request_region
--			  - IPI request msg buffer written by local and read
--			    by remote
--			* local_response_region
--			  - IPI response msg buffer written by local and read
--			    by remote
--			* remote_request_region
--			  - IPI request msg buffer written by remote and read
--			    by local
--			* remote_response_region
--			  - IPI response msg buffer written by remote and read
--			    by local
--- #mbox-cells:		Shall be 1. It contains:
--			* tx(0) or rx(1) channel
--- xlnx,ipi-id:		remote Xilinx IPI agent ID of which the mailbox is
--			connected to.
--
--Optional properties:
----------------------
--- method:              The method of accessing the IPI agent registers.
--                       Permitted values are: "smc" and "hvc". Default is
--                       "smc".
--
--Client Device Node:
--===========================
--Required properties:
----------------------
--- mboxes:		Standard property to specify a mailbox
--			(See ./mailbox.txt)
--- mbox-names:		List of identifier  strings for each mailbox
--			channel.
--
--Example:
--===========================
--	zynqmp_ipi {
--		compatible = "xlnx,zynqmp-ipi-mailbox";
--		interrupt-parent = <&gic>;
--		interrupts = <0 29 4>;
--		xlnx,ipi-id = <0>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--		ranges;
--
--		/* APU<->RPU0 IPI mailbox controller */
--		ipi_mailbox_rpu0: mailbox@ff990400 {
--			reg = <0xff990400 0x20>,
--			      <0xff990420 0x20>,
--			      <0xff990080 0x20>,
--			      <0xff9900a0 0x20>;
--			reg-names = "local_request_region",
--				    "local_response_region",
--				    "remote_request_region",
--				    "remote_response_region";
--			#mbox-cells = <1>;
--			xlnx,ipi-id = <1>;
--		};
--		/* APU<->RPU1 IPI mailbox controller */
--		ipi_mailbox_rpu1: mailbox@ff990440 {
--			reg = <0xff990440 0x20>,
--			      <0xff990460 0x20>,
--			      <0xff990280 0x20>,
--			      <0xff9902a0 0x20>;
--			reg-names = "local_request_region",
--				    "local_response_region",
--				    "remote_request_region",
--				    "remote_response_region";
--			#mbox-cells = <1>;
--			xlnx,ipi-id = <2>;
--		};
--	};
--	rpu0 {
--		...
--		mboxes = <&ipi_mailbox_rpu0 0>,
--			 <&ipi_mailbox_rpu0 1>;
--		mbox-names = "tx", "rx";
--	};
--	rpu1 {
--		...
--		mboxes = <&ipi_mailbox_rpu1 0>,
--			 <&ipi_mailbox_rpu1 1>;
--		mbox-names = "tx", "rx";
--	};
--- 
-2.30.0
-
+If so, I will upload v7 patch series to meet this selection logic.
+Thanks.
