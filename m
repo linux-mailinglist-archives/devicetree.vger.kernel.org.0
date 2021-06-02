@@ -2,50 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE2B83992CC
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 20:47:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07C4F3992E9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 20:53:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229552AbhFBSt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 14:49:28 -0400
-Received: from egress-ip33b.ess.de.barracuda.com ([18.185.115.237]:48616 "EHLO
+        id S229647AbhFBSzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 14:55:12 -0400
+Received: from egress-ip33b.ess.de.barracuda.com ([18.185.115.237]:52290 "EHLO
         egress-ip33b.ess.de.barracuda.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229586AbhFBSt1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 14:49:27 -0400
-X-Greylist: delayed 1491 seconds by postgrey-1.27 at vger.kernel.org; Wed, 02 Jun 2021 14:49:27 EDT
-Received: from mail-oi1-f198.google.com (mail-oi1-f198.google.com [209.85.167.198]) by mx-outbound17-233.eu-central-1b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Wed, 02 Jun 2021 18:47:29 +0000
-Received: by mail-oi1-f198.google.com with SMTP id q190-20020aca75c70000b02901ec900ac3ffso1604598oic.21
-        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 11:47:29 -0700 (PDT)
+        by vger.kernel.org with ESMTP id S229468AbhFBSzM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 14:55:12 -0400
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198]) by mx-outbound17-233.eu-central-1b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Wed, 02 Jun 2021 18:53:17 +0000
+Received: by mail-pg1-f198.google.com with SMTP id 15-20020a630c4f0000b029021a6da9af28so2293993pgm.22
+        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 11:53:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=mistralsolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=KEGCRt3uOZqX53YuTFiFU2vEwyP0//rw3ursuv7fj80=;
-        b=ZBpLCUUXNrc0k5o/f79aafSuSAVNtU93eKW7TTXajlrH9DQiy92GiQ96YnBSEvM43E
-         wNOdx+4y6kPvbIy3OD4HjvALg0gOoejiwCfEbpRFIXS3IXc9Pe9J/xXd3pME9SEpGDnk
-         eZRX8/aRcpUyfpKXFLkqi7zh2aq1X6BcfQ1lc=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=XrYpCA6rdGNmlS+jksQ4JMm2mxEbyWtSNeQ89xdlwMw=;
+        b=UAFgXmA/eCDpO0cWkBTnktudoNR3kbyeiRfhONchnfoJEflvbDiLdIR4c/TNgrnaMC
+         DEKvYLfhshULHnD1WGjAqVO4lj+1zdjBqQuLx780u6aset8h+sn/u+yz7fPfBA7wTfdj
+         o/b8lIHEryvLqszE6K/P8RWEsDlY3wIZTeYUs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=KEGCRt3uOZqX53YuTFiFU2vEwyP0//rw3ursuv7fj80=;
-        b=nLpMOBv/+Pa5FkbG1gluNt11rlf3d/W1HdNmVPl9lGhu3XZQx1r1135GlWsD6SLDWL
-         mmA2OawmPdTOxmLFUWXABhg5UveH5te4GQtBl8d7sHlKeM42zHiTXD3uhEGsV72JNiMP
-         yUPwBeIZH5Qbew9OkHyOvsHF+HTWylco0R1YQwBQrpQYhsI+mPsJI7iqcqOfbdOq3RRm
-         mo1PxZ15P0tFCTpa7eQ0wAiz/I4Xyk2slWMtYtOurAhJDHaNN+nrwvqQPPmXisJR7mgT
-         qEQUHPJvjs7GExKnHD6HYDclO169896juqDwH2it5Njvbe6qJvMb2VxANGxaimObzERw
-         MJVw==
-X-Gm-Message-State: AOAM532hlinidV1ENAUWL7jBpbwyIJjQRtRF8kuFynpMk5gtaMvVAb6o
-        NXzbUFPVVD2q0P2yIbMOZiQ9/Bj604DhGfKm7m9mTgpjQj7WtgGw9oiv2gSeXJooy8U4UCVLxu5
-        zx32P+Wy+9SY8cyD40wlVFDB8N6Zn/BvBcosGzOaySfYGogT15CxUlMoU5w==
-X-Received: by 2002:a17:90b:4d82:: with SMTP id oj2mr31615915pjb.61.1622658170766;
-        Wed, 02 Jun 2021 11:22:50 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwCJ6fu0GQ+J4RgbknSvQn1cUkTXn8J94cdkx298iFeBjrGMq3+M30tJLTf5bxTYkKy1+Te2Q==
-X-Received: by 2002:a17:90b:4d82:: with SMTP id oj2mr31615895pjb.61.1622658170452;
-        Wed, 02 Jun 2021 11:22:50 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=XrYpCA6rdGNmlS+jksQ4JMm2mxEbyWtSNeQ89xdlwMw=;
+        b=ZCoot+OFmiAziMcuGXJ2mHV4ernrx9POe+4FL0twhFSXVWdGBXxoG4ayTBKgRjRDop
+         MZjLTF5rvMdb24tUWHBAwFhqr9LIqWaIelzuSsVJxHP/q6RqwWoLXiA0+NS6mzVnBsPR
+         Ppn7WQabxP4qzaQcBic8azkANCP5wZSF/wYw+AdV4XSVYRmZXElwHAGAomAxo98byEi+
+         CUAWtlKnI9gL01hlk/TK4Hz0w7kn8kz5z9IkXXTGCWazEwiJ9w52a4EW0udHvaldEjJ9
+         SXXkqpizaT/wGnKds5RdKJeCD20Thq4ugHtwGAfIIjCXy69+JSNwcGgf2vChsLy4VwhO
+         Rwqw==
+X-Gm-Message-State: AOAM531aSOviaORonyDSTS13RAqR65IpcKc78O6RLosHaSYMYEdxnihZ
+        QN5qb1gPox345oUUCog54sTwMGdoyC429SFCb6qsqLCniK5YjrnFulEC3jBvIcyxbOi35Fx8f+y
+        3AMjxDdloiwSscaVobOc6vdxpzbZ5acOP3hj67s4X/GuR8wPVx3iNeS8owQ==
+X-Received: by 2002:a17:902:a586:b029:fe:459b:2ce0 with SMTP id az6-20020a170902a586b02900fe459b2ce0mr32204210plb.40.1622658173844;
+        Wed, 02 Jun 2021 11:22:53 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwsKVEtS/PlY1u+agz105SYw8K4DYqnaBB79e1MuChL3Oxvew52VyPfeqZhVkou8Gfn+DNpcw==
+X-Received: by 2002:a17:902:a586:b029:fe:459b:2ce0 with SMTP id az6-20020a170902a586b02900fe459b2ce0mr32204193plb.40.1622658173662;
+        Wed, 02 Jun 2021 11:22:53 -0700 (PDT)
 Received: from localhost.localdomain ([49.207.197.28])
-        by smtp.gmail.com with ESMTPSA id 14sm290904pfj.25.2021.06.02.11.22.47
+        by smtp.gmail.com with ESMTPSA id 14sm290904pfj.25.2021.06.02.11.22.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jun 2021 11:22:50 -0700 (PDT)
+        Wed, 02 Jun 2021 11:22:53 -0700 (PDT)
 From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
 X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
 To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
@@ -55,16 +54,18 @@ Cc:     Device Tree Mailing List <devicetree@vger.kernel.org>,
         Lokesh Vutla <lokeshvutla@ti.com>,
         Amarnath MB <amarnath.mb@ti.com>,
         Sinthu Raja <sinthu.raja@ti.com>
-Subject: [0/2] arm64: Initial support for Texas Instruments J721E EAIK 
-Date:   Wed,  2 Jun 2021 23:52:35 +0530
-Message-Id: <20210602182237.12632-1-sinthu.raja@ti.com>
+Subject: [1/2] dt-bindings: arm: ti: Add bindings for J721E EAIK
+Date:   Wed,  2 Jun 2021 23:52:36 +0530
+Message-Id: <20210602182237.12632-2-sinthu.raja@ti.com>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210602182237.12632-1-sinthu.raja@ti.com>
+References: <20210602182237.12632-1-sinthu.raja@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1622659649-304585-5410-66772-1
+X-BESS-ID: 1622659996-304585-5411-66919-1
 X-BESS-VER: 2019.1_20210527.1616
-X-BESS-Apparent-Source-IP: 209.85.167.198
+X-BESS-Apparent-Source-IP: 209.85.215.198
 X-BESS-Outbound-Spam-Score: 0.00
 X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.232668 [from 
         cloudscan13-100.eu-central-1a.ess.aws.cudaops.com]
@@ -80,23 +81,30 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 From: Sinthu Raja <sinthu.raja@ti.com>
- 
+
 J721E EdgeAI Kit (EAIK) is a low cost, small form factor board designed
-for TI’s J721E SoC. This series intoduces the basic support for J721E
-EAIK.
+for TI’s J721E SoC.
+Add DT binding documentation for J721E EAIK
 
-Sinthu Raja (2):
-  dt-bindings: arm: ti: Add bindings for J721E EAIK
-  arm64: dts: ti: Add support for J721E EAIK
+Signed-off-by: Amarnath MB <amarnath.mb@ti.com>
+Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+---
+ Documentation/devicetree/bindings/arm/ti/k3.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
- .../devicetree/bindings/arm/ti/k3.yaml        |   2 +
- arch/arm64/boot/dts/ti/Makefile               |   2 +
- arch/arm64/boot/dts/ti/k3-j721e-eaik.dts      | 343 ++++++++++++++++++
- 3 files changed, 347 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-eaik.dts
-
-
-base-commit: 231bc539066760aaa44d46818c85b14ca2f56d9f
+diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+index c5aa362e4026..923dd7cf1dc6 100644
+--- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
++++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+@@ -29,6 +29,8 @@ properties:
+ 
+       - description: K3 J721E SoC
+         items:
++          - enum:
++              - ti,j721e-eaik
+           - const: ti,j721e
+ 
+       - description: K3 J7200 SoC
 -- 
 2.31.1
 
