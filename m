@@ -2,160 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7F863981A8
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 08:54:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBD023981C7
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jun 2021 08:55:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229654AbhFBG4b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 02:56:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47666 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230404AbhFBG4a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 02:56:30 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8354FC061574;
-        Tue,  1 Jun 2021 23:54:47 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id 29so1428996pgu.11;
-        Tue, 01 Jun 2021 23:54:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=Crx9sLZBvOfFAmJqEn4FIAmK6q+0yYB5yGvDbssvRNg=;
-        b=GeJrLFeBJdz4hF9XAH74L8gv2akvyIEAgScrms+tlJ1YkqOAMuP0CLPwlL5CBWpHzi
-         0AIAt0zUwDWlHT3Ntq4DxJoDd4spZY+MOhdXMywWtKrcsS38mGNTwKg0qgyt5Negg+PQ
-         jrNOQ0/Qf6B4xrW11D5JRjuS//5+KMvSuAOGXIrMKXt+L5HyTeLAYCaMMmCUDb7hbFQQ
-         7HO59iOTIRZujWpWTauWaCvOh/RXDRFbB4HZWjy6Rv5l4XBfzEC7To4DDjADdKNvnWKX
-         3ql4VoBzyQX/JbWOqQuGApkIvAA42qdL4ZxS+QdV75la5mCDGKEn+3ULC80YhW++5pGk
-         iehg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=Crx9sLZBvOfFAmJqEn4FIAmK6q+0yYB5yGvDbssvRNg=;
-        b=hIIDsvplxGoygXHXCEd1/8zAFFD/TsmHxMjqTpOFxfSsX8Pl4jcsbPWywtI01fZNjy
-         4Qz/W6hVRT1wukZ/eNfvIcgxToS8AScTjBMmO2iJKJim7CMld2MoSX5ux5KpilKBvlC0
-         g0F30NuHPSm/uvejlk1Sk9nO2KvX60wf7D2MdhBbOCSt6Pu57kgrpmAr72+1DSNMEnVd
-         y6olrANjHwi8lwRwSrbDJd/DWT3UUqm5mlPsDyGqXTg6QDho91+3MU3ab9+36KB5mD4L
-         v9QkY9jrMNfuK06EKudgYVR776nv/8FginjrDcVQ5ioZrn2rGIAJEG2HADQv4v/n6I54
-         nsqA==
-X-Gm-Message-State: AOAM530rVlP9y212PbLtFG6mPJv5EHqL8tWhADJ3Z3O6GeuveNi6C11f
-        OOtOyhB3I5Q8rkcfvannJGikPA5dbO1ugA==
-X-Google-Smtp-Source: ABdhPJzCU+z70LQ0ilBeUwva54QO79RDKIyharRgeqqOfn0NKm2jtN0GuGXPy/u2+hWVZTSur4OVTg==
-X-Received: by 2002:a63:7945:: with SMTP id u66mr20236610pgc.200.1622616887025;
-        Tue, 01 Jun 2021 23:54:47 -0700 (PDT)
-Received: from localhost.localdomain (1-171-13-27.dynamic-ip.hinet.net. [1.171.13.27])
-        by smtp.gmail.com with ESMTPSA id h6sm15190351pjs.15.2021.06.01.23.54.43
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 01 Jun 2021 23:54:46 -0700 (PDT)
-From:   cy_huang <u0084500@gmail.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, gene_chen@richtek.com
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        cy_huang@richtek.com, gene.chen.richtek@gmail.com
-Subject: [PATCH 2/2] regulator: mt6360: Add power off sequence config for default-on power
-Date:   Wed,  2 Jun 2021 14:54:35 +0800
-Message-Id: <1622616875-22740-2-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1622616875-22740-1-git-send-email-u0084500@gmail.com>
-References: <1622616875-22740-1-git-send-email-u0084500@gmail.com>
+        id S231180AbhFBG5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 02:57:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41744 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229922AbhFBG4s (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Jun 2021 02:56:48 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5027E61359;
+        Wed,  2 Jun 2021 06:55:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1622616905;
+        bh=mK7o3GcfqjDeO63jrM5y3qHZM42ixi418rI06C5uYhk=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=gChyNay2GntgA3mPKCW57aX5IuhuLOVc6U8i6VSVCv7ZDXAPhlnTbwWBXOGj9wHAh
+         VbUuY2CdtTJpO1nrg2MNlG2RecCGStaUDGAsKbo0mrJ8N1WkDuJYizwcsJkuU9oUNI
+         HmWJoU2VopQLxFw2pQn7xf0AJ17kXTcd43pFDbk/PQTLaszqlVqhVzybHv+EqnCI7G
+         SLgkdrIWvFco5wwPySg2ntu2q+M8nvIcZ25F5vGdVBPKLG8iiFdFgIuFG5ebwFEGzD
+         /S47pOBHYNfVDSeHIV3eXDBRdBT4YdSw+0EduGhNHbzFhDIMLEIXlpwp2CBO15y6R8
+         gc8OY4cv7XuPg==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210503191837.GA2220566@robh.at.kernel.org>
+References: <1619519590-3019-1-git-send-email-tdas@codeaurora.org> <1619519590-3019-2-git-send-email-tdas@codeaurora.org> <20210503191837.GA2220566@robh.at.kernel.org>
+Subject: Re: [PATCH v2 1/6] dt-bindings: clock: Add SC7280 DISPCC clock binding
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Turquette =?utf-8?q?=C2=A0?= <mturquette@baylibre.com>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+To:     Rob Herring <robh@kernel.org>, Taniya Das <tdas@codeaurora.org>
+Date:   Tue, 01 Jun 2021 23:55:04 -0700
+Message-ID: <162261690404.4130789.10296098922791923637@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+Quoting Rob Herring (2021-05-03 12:18:37)
+> On Tue, Apr 27, 2021 at 04:03:05PM +0530, Taniya Das wrote:
+> > diff --git a/include/dt-bindings/clock/qcom,dispcc-sc7280.h b/include/d=
+t-bindings/clock/qcom,dispcc-sc7280.h
+> > new file mode 100644
+> > index 0000000..2074b30
+> > --- /dev/null
+> > +++ b/include/dt-bindings/clock/qcom,dispcc-sc7280.h
+> > @@ -0,0 +1,55 @@
+> > +/* SPDX-License-Identifier: GPL-2.0-only */
+>=20
+> Dual license please. I'm tired of telling the company that complained to =
 
-Add power off sequence config for default-on power.
+> me about having dual licensing for DT stuff not dual license their
+> stuff. Please pass that on to your coworkers.
+>=20
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
-Hi,
-
-Originally, we think it must write in platform dependent code like as bootloader.
-But after the evaluation, it must write only when system normal halt or power_off.
-For the other cases, just follow HW immediate off by default.
----
- drivers/regulator/mt6360-regulator.c | 37 +++++++++++++++++++++++++++++++++++-
- 1 file changed, 36 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/regulator/mt6360-regulator.c b/drivers/regulator/mt6360-regulator.c
-index 4d34be9..6625f8f 100644
---- a/drivers/regulator/mt6360-regulator.c
-+++ b/drivers/regulator/mt6360-regulator.c
-@@ -9,12 +9,17 @@
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/reboot.h>
- #include <linux/regmap.h>
- #include <linux/regulator/driver.h>
- #include <linux/regulator/machine.h>
- 
- #include <dt-bindings/regulator/mediatek,mt6360-regulator.h>
- 
-+#define MT6360_REG_BUCK1_SEQTD	0x117
-+#define MT6360_SEQOFF_REGNUM	4
-+
- enum {
- 	MT6360_REGULATOR_BUCK1 = 0,
- 	MT6360_REGULATOR_BUCK2,
-@@ -45,6 +50,9 @@ struct mt6360_regulator_desc {
- struct mt6360_regulator_data {
- 	struct device *dev;
- 	struct regmap *regmap;
-+	struct notifier_block reboot_notifier;
-+	/* Only for BUCK1/BUCK2/LDO7/LDO6, these are default on power */
-+	u8 power_off_seq[MT6360_SEQOFF_REGNUM];
- };
- 
- static irqreturn_t mt6360_pgb_event_handler(int irq, void *data)
-@@ -394,10 +402,28 @@ static int mt6360_regulator_irq_register(struct platform_device *pdev,
- 	return 0;
- }
- 
-+static int reboot_notify_call(struct notifier_block *nb, unsigned long action, void *data)
-+{
-+	struct mt6360_regulator_data *mrd = container_of(nb, struct mt6360_regulator_data,
-+							 reboot_notifier);
-+	int ret;
-+
-+	if (action != SYS_HALT && action != SYS_POWER_OFF)
-+		return NOTIFY_DONE;
-+
-+	ret = regmap_raw_write(mrd->regmap, MT6360_REG_BUCK1_SEQTD, mrd->power_off_seq,
-+			       MT6360_SEQOFF_REGNUM);
-+	if (ret)
-+		dev_err(mrd->dev, "Failed to apply the power off sequence\n");
-+
-+	return NOTIFY_DONE;
-+}
-+
- static int mt6360_regulator_probe(struct platform_device *pdev)
- {
- 	struct mt6360_regulator_data *mrd;
- 	struct regulator_config config = {};
-+	struct fwnode_handle *fwnode;
- 	int i, ret;
- 
- 	mrd = devm_kzalloc(&pdev->dev, sizeof(*mrd), GFP_KERNEL);
-@@ -434,7 +460,16 @@ static int mt6360_regulator_probe(struct platform_device *pdev)
- 		}
- 	}
- 
--	return 0;
-+	fwnode = device_get_named_child_node(pdev->dev.parent, "regulator");
-+	if (fwnode) {
-+		ret = fwnode_property_read_u8_array(fwnode, "mediatek,power-off-sequence",
-+						    mrd->power_off_seq, MT6360_SEQOFF_REGNUM);
-+		if (ret)
-+			dev_warn(&pdev->dev, "Use no delay immediate off by default [%d]\n", ret);
-+	}
-+
-+	mrd->reboot_notifier.notifier_call = reboot_notify_call;
-+	return devm_register_reboot_notifier(&pdev->dev, &mrd->reboot_notifier);
- }
- 
- static const struct platform_device_id mt6360_regulator_id_table[] = {
--- 
-2.7.4
-
+Taniya, is this going to be resent?
