@@ -2,112 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBFA639AEB4
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 01:30:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E26D39AEC8
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 01:41:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229629AbhFCXcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 19:32:02 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:57611 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229576AbhFCXcC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 19:32:02 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.nyi.internal (Postfix) with ESMTP id D7F1458095D;
-        Thu,  3 Jun 2021 19:30:16 -0400 (EDT)
-Received: from imap43 ([10.202.2.93])
-  by compute2.internal (MEProxy); Thu, 03 Jun 2021 19:30:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm2; bh=PyTavatY3hkR5hhSwC8qiixLyB/GxmS
-        SiDs9xXK0dVo=; b=pi2VUTI6N3kPFrEb+86tzq3LHQ4k7GLiPTkYwAkvc0veauW
-        BRX8qiy78INkoypHs4xJL5pO37AjLAG3DV7l/Z0iPmNAp/6BvK/sK02h9qZ0zzS4
-        sIb8n9Y9sDCSnMJwce5Y8Ioaf0jOnrTmjfvtn8pcqCScGprUAoD5u7DkdY5g03Pq
-        mPOfn2lEKJ8SWAyV2WIUmfoh5zK93llbwJXpoQGgjpsTt/qz2h0vZv4+JbV2WVM+
-        pduhP54ZxB8gwqRh5XfTu/GkeoHSMrDA+MA9MITMom4FiyFrIzYFMen20tcu8s7B
-        X/guG59pVqjY8yeWhPHPKT2IassYGqtGLR4o6wQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=PyTava
-        tY3hkR5hhSwC8qiixLyB/GxmSSiDs9xXK0dVo=; b=AB+PklDCM7+7IZETf1VuCA
-        NDIyHP5tBgcifkRwUEJy/Sbfm1cclI+DMW5Xc+ECRsRnUhrojsaXdr0vaN5cRBd7
-        4r458kGvc3TeCI7U3b4RGubELzguTHAT+mm7bNbYt1COY1VXTdkOoZx2fal6REeC
-        7WCbYA1fylCdQt2KIvfFAJ4UVkgovSY9p7JGlPLDy8qVsdp1CZlEUsORpEcGBqWX
-        FBao6H5Wuj8IhPeO55lG0E6HGCkHQoNZrPJrVQ9UXocliUt8ihIjckgnvjWhmlEZ
-        HrpsNtTOpNn+LTaNhj1awxKPxroy3DXW/lCbqgPuAKMVXDpDV17dK6tW3Plisoiw
-        ==
-X-ME-Sender: <xms:B2a5YA8HM-qnoQIMLZcUBifScl2gOSP6Tsb1pLs54LP4PpLHm7LPFw>
-    <xme:B2a5YIuX21vTIOf40SBU7NQDpFcvErcTdHojdtRjYsDsy1v2rN2kKEz3dU6V3rKi9
-    QIukxDbvB0qREBrpg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfedttddgudejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
-    grthhtvghrnhephefhfeekgfekudevheffheeihedujeefjeevjeefudfgfeeutdeuvdeh
-    hfevueffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    eprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:B2a5YGDAKpyzCRhBotF1l0EpaMCv2Npkdet4eV8fJ1lf5rIU3q51pw>
-    <xmx:B2a5YAeVbcTt9hKC7vErq2uQUbMuEX9E6HDgC64AUqWJBtY-uB4f0A>
-    <xmx:B2a5YFOCRMfMj32WKJazI_Snmr27_xEdE7DYRk7AnZBA9HiWlQUjtQ>
-    <xmx:CGa5YGFPbN8Ej2gu12XjNH1xMPWzOhwjCc5TYl3jh8Ze_HJekxdUaQ>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id D32B3AC0062; Thu,  3 Jun 2021 19:30:15 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-519-g27a961944e-fm-20210531.001-g27a96194
-Mime-Version: 1.0
-Message-Id: <fcd435d9-4432-414e-9881-6044757a6fac@www.fastmail.com>
-In-Reply-To: <20210603101822.9645-3-steven_lee@aspeedtech.com>
-References: <20210603101822.9645-1-steven_lee@aspeedtech.com>
- <20210603101822.9645-3-steven_lee@aspeedtech.com>
-Date:   Fri, 04 Jun 2021 08:59:55 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Steven Lee" <steven_lee@aspeedtech.com>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "Bartosz Golaszewski" <bgolaszewski@baylibre.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Joel Stanley" <joel@jms.id.au>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        "open list" <linux-kernel@vger.kernel.org>
-Cc:     "Hongwei Zhang" <Hongweiz@ami.com>,
-        "Ryan Chen" <ryan_chen@aspeedtech.com>,
-        "Billy Tsai" <billy_tsai@aspeedtech.com>
-Subject: Re: [PATCH v3 2/5] ARM: dts: aspeed-g6: Add SGPIO node.
-Content-Type: text/plain
+        id S229576AbhFCXmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 19:42:51 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:15740 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229685AbhFCXmu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Jun 2021 19:42:50 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1622763665; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=Fz8Sw+CAHxzQ1wTzwGA8ftbArfy52ptDiPNLw8/pJ58=;
+ b=fWcDAgTRjXHwxgyIwmdmffD1DnZugfzYvSJfvbHJofmZ7a8iGBcCMtmG5ryaB+J04Cn+GqUy
+ zjnrNQE++ZZsgXopU1YV8dCHM8Z6sADRyAGUPbKPJ8TH2tsXK38erMhILJz7lJPUg6R/Aovh
+ 43FtuN1zQ5H7zBZ/AB7mxkaJWVA=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
+ 60b96875e27c0cc77f68319c (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 03 Jun 2021 23:40:37
+ GMT
+Sender: abhinavk=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id A73DBC43217; Thu,  3 Jun 2021 23:40:36 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: abhinavk)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D7794C433F1;
+        Thu,  3 Jun 2021 23:40:35 +0000 (UTC)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 03 Jun 2021 16:40:35 -0700
+From:   abhinavk@codeaurora.org
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Rob Clark <robdclark@gmail.com>, DTML <devicetree@vger.kernel.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        freedreno <freedreno@lists.freedesktop.org>
+Subject: Re: [Freedreno] [RFC PATCH 00/13] drm/msm: Add Display Stream
+ Compression Support
+In-Reply-To: <YLdlEB3Ea6OWaLw4@vkoul-mobl>
+References: <20210521124946.3617862-1-vkoul@kernel.org>
+ <CAOCk7Nqep_Db+z3fr5asHZ1u0j8+6fKkPFs2Ai8CbA_zGqV6ZA@mail.gmail.com>
+ <YK3gxqXBRupN/N+Q@vkoul-mobl.Dlink>
+ <CAOCk7NqvhGvYw8xCBctqj7H+o-Qwp2UuUJK1gatW9EWfXv56xA@mail.gmail.com>
+ <CAF6AEGuoyPr8PgfwFX0JCYZ7S_pryn_OXacHBqoMAAPvSq6aRw@mail.gmail.com>
+ <YLdlEB3Ea6OWaLw4@vkoul-mobl>
+Message-ID: <a14c18a2545408e8156dcafc846b17a2@codeaurora.org>
+X-Sender: abhinavk@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On Thu, 3 Jun 2021, at 19:48, Steven Lee wrote:
-> AST2600 supports 2 SGPIO master interfaces one with 128 pins another one
-> with 80 pins.
+On 2021-06-02 04:01, Vinod Koul wrote:
+> On 27-05-21, 16:30, Rob Clark wrote:
+>> On Wed, May 26, 2021 at 8:00 AM Jeffrey Hugo 
+>> <jeffrey.l.hugo@gmail.com> wrote:
+>> > On Tue, May 25, 2021 at 11:46 PM Vinod Koul <vkoul@kernel.org> wrote:
 > 
-> Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
-> ---
->  arch/arm/boot/dts/aspeed-g6.dtsi | 30 ++++++++++++++++++++++++++++++
->  1 file changed, 30 insertions(+)
+>> > Frankly, I don't like the MSM ACPI solution that I've seen on the laptops.
+>> > The ACPI assumes the entire MDSS (including DSI parts) and GPU is one
+>> > device, and ultimately handled by one driver.  That driver needs to
+>> > get a value from UEFI (set by the bootloader) that is the "panel id".
+>> > Then the driver calls into ACPI (I think its _ROM, but I might be
+>> > mistaken, doing this from memory) with that id.  It gets back a binary
+>> > blob which is mostly an xml file (format is publicly documented) that
+>> > contains the panel timings and such.
+>> 
+>> tbh, I kinda suspect that having a single "gpu" device (which also
+>> includes venus, in addition to display, IIRC) in the ACPI tables is a
+>> windowsism, trying to make things look to userspace like a single "GPU
+>> card" in the x86 world.. but either way, I think the ACPI tables on
+>> the windows arm laptops which use dsi->bridge->edp is too much of a
+>> lost cause to even consider here.  Possibly ACPI boot on these devices
+>> would be more feasible on newer devices which have direct eDP out of
+>> the SoC without requiring external bridge/panel glue.
 > 
-> diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
-> index f96607b7b4e2..e56e92e206f1 100644
-> --- a/arch/arm/boot/dts/aspeed-g6.dtsi
-> +++ b/arch/arm/boot/dts/aspeed-g6.dtsi
-> @@ -377,6 +377,36 @@
->  				#interrupt-cells = <2>;
->  			};
->  
-> +			sgpiom0: sgpiom@1e780500 {
-> +				#gpio-cells = <2>;
-> +				gpio-controller;
-> +				compatible = "aspeed,ast2600-sgpiom1";
+> yeah that is always a very different world. although it might make 
+> sense
+> to use information in tables and try to deduce information about the
+> system can be helpful...
+> 
+>> I'd worry more about what makes sense in a DT world, when it comes to
+>> DT bindings.
+> 
+> And do you have thoughts on that..?
 
-See my comment on the compatible names on the binding document.
+At the moment, I will comment on the bindings first and my idea on how 
+to proceed.
+The bindings mentioned here: 
+https://lore.kernel.org/dri-devel/20210521124946.3617862-3-vkoul@kernel.org/ 
+seem to be just
+taken directly from downstream which was not the plan.
 
-Andrew
+I think all of these should be part of the generic panel bindings as 
+none of these are QC specific:
+
+@@ -188,6 +195,14 @@ Example:
+  		qcom,master-dsi;
+  		qcom,sync-dual-dsi;
+
++		qcom,mdss-dsc-enabled;
++		qcom,mdss-slice-height = <16>;
++		qcom,mdss-slice-width = <540>;
++		qcom,mdss-slice-per-pkt = <1>;
++		qcom,mdss-bit-per-component = <8>;
++		qcom,mdss-bit-per-pixel = <8>;
++		qcom,mdss-block-prediction-enable;
++
+
+How about having a panel-dsc.yaml which will have these properties and 
+have a panel-dsc node to have this information?
+
+I would like to hear the feedback on this proposal then the series can 
+be reworked.
+
+Thanks
+
+Abhinav
