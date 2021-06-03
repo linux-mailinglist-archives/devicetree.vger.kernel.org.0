@@ -2,135 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CDCE399C66
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 10:18:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 469EA399D12
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 10:50:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229922AbhFCIUd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 04:20:33 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:48743 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229685AbhFCIUd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 04:20:33 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 5D547580D7B;
-        Thu,  3 Jun 2021 04:18:48 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Thu, 03 Jun 2021 04:18:48 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=TwuV2ha2tJsTpTc91CLj3/nFVE9
-        pHYO8daaw5cAu/GA=; b=bmc529wQ/ycDZT1mFhRMsS5hx2i+7bVsoVSMBpt1R2E
-        /XTVA58cdE+uhOYWpksVNPd6m2RigwpliF/zpb4KwAVsV/0ewE5nfsDAOp0vu5PP
-        4agDFkGE/RmBRlz8D7J2lOj1yU5InJLXG/kzts+EJgpsY+UK0+saKXPkWFZwuD0J
-        HaQQIREDCXqP6EG7zFbfFQ2/EAVuXmzz6KfZ/GcGyXSJTo6MQMFDNJiqwPhJwEtT
-        WzeKeGwTmgKiuvt2UV51IgFwlTZxcpHFrGJYXnw2UnHRiskKj8iU+X8unZ1fBQ37
-        t7qSxgVha2kDQc9iPKBEs0zJ96GNo50B9bS9LkvG+7Q==
+        id S229726AbhFCIwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 04:52:13 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:47361 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229486AbhFCIwM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 04:52:12 -0400
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 7583E580F07;
+        Thu,  3 Jun 2021 04:50:27 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Thu, 03 Jun 2021 04:50:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=SeU5hLmakRpJp0wYHm9YpfQgd+
+        +fWAu9b5BVuriF3f4=; b=mJIhPobRGuJNTiSMlnBfbnv2uDMGCqnD7gmJHZQMNK
+        7Z2AjI2AVt6uHOqCkE3j2XIC9i7qeUJiS3MjEnQfDygKdBRz5TPDccNA7GmnuFV/
+        /HEqH8B8JAfFB7VYfqUflkIauwTmTJCKeJ/hNrgBTVWiNxi+SuzFgOQ4ppnKtMWR
+        bQmVZpWS+pyw3m/PUddbEfEJ7loVibUL4Si5W5dNV2Wi8nTEbC5OedahkQWxQQ3B
+        4KOdd+Nd+FnKosQ9UG3Edae6vTMn2A1hF4zBPemAsX8LXuzaLuH7aXL1Zt8CQXmj
+        s/aZWqgPK6xEucyZeEGF9veFagkH49OTuD0ovhUKhjmw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=TwuV2h
-        a2tJsTpTc91CLj3/nFVE9pHYO8daaw5cAu/GA=; b=cXN7HapewSBA26vXGphUOj
-        KTO3JU8zvSB+2zoOxEuo8VBWwGQPUOdmbvonVDLpAbwMo9hbFEkyRm5JcH0xT2TT
-        CeOkvNNeg4e0K1WYGbYVBJ+0eeA6rUYGBW7pGIFVgf2T38n+VzdOccwvvfjOTU/m
-        rWe3y47+JtQyQx6V27xYJL+LrPsM4alHivsuLrJoZXnndw33kwiIEZ+6OpFvw9Fm
-        rxtfnApe9yP1jDQbR3l3KdUwMNZu5qFKbKpMwuEmC4CI0PNsBtFSj/pZBYuM9Sr0
-        23gm05asHBlVddMdtjxj8aA4MrehKYtzJV/aVdSs2zTCbJq/TyQKUe8lYNqgH3zg
-        ==
-X-ME-Sender: <xms:ZpC4YAyP1DoSpNjxBM9snafm74YZe9v1HNc20eO9Lu0ZpChEgaYCJw>
-    <xme:ZpC4YETMC5Tn8Ks6QwW1BQjwdTtMTW8sNG6YCfBHwmvE3nvFMBxvfdtWAfZHmwwhS
-    oes8lrqzOtyJHo897w>
-X-ME-Received: <xmr:ZpC4YCVpm-Dd8yskZiENlD6BG5M3hh7pi8ZqgcyVT8WsvIwi2h7f_N7va8471NLYl_deMvJhSjNb7xouQBBHC0aQwhScHy6fIF5X>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdelledgtdduucetufdoteggodetrfdotf
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=SeU5hLmakRpJp0wYH
+        m9YpfQgd++fWAu9b5BVuriF3f4=; b=JtyiJHH5XvQhUlW67thTo5Q2G6H5TMbZ8
+        O5xzZF9Y6BW5OW/h0CNR0akpLpzDG7WZZRkqHER812z9MXDGX/X38iTtJ5g4HcCf
+        Hxrlq596I1EiTDVZUMkPjcGE8nNET4fYjvNQFkFEosuxlZGwLJvGrMTJBxpg/SIn
+        4OS+LgGT9CmExRszynNz2ul/MrCIk9zCWdeMhWAYVaETafPw/9Pl2NN5SU+B4pNY
+        k8zmc55XsJlAFMFzLZcdRX7F34ozb/qX87I0dyTTi5ItIZFqYw+dkCgsWhwJLVeY
+        L2nVIiq9AzZEJ7xR6FNtAziKf+vccAAOrMzsWTWU9OMOGHfSArGvQ==
+X-ME-Sender: <xms:0Ze4YJVn5WnUmLt7L0eK2iP4fKxQBSFpGHH7xqkVxu7gSB7MudGvkA>
+    <xme:0Ze4YJkUDy2bU3lvMTyiELr-dZEF7VSWHZMsF0Krg4SQPhYrvBu6eIxYfbrdWyitf
+    qjT5A8VgIanP3HdlM4>
+X-ME-Received: <xmr:0Ze4YFaTWV6mPmidfwnt9X1UA0zgxwWbpSo_F8eBZqRSbdAFWpSRPFEGiHX7E65EFORX5K88H6uqnrMT4UnN6svbAJ0zKnIynIhUFLfIqV2QTduOxVCehK1naGd7QA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdelledgtdeiucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:ZpC4YOhuoovgCtB9ahz98RraRepUfHrwGs1oRpbSzOH5fq3sorGrLQ>
-    <xmx:ZpC4YCBt8Q3HGL-b_3WDuaSh_8z_-KgwfBQSZTqr1hupYrULkTMfIw>
-    <xmx:ZpC4YPLSPLKbhiFwrgrp5aVHUC87bgIZEkvt4MA1oF5WZLU-xEtgHw>
-    <xmx:aJC4YDwuoE0lyEmcAHKW0O8fMxzaGEbBYXAF9H32z6jEnNSWstq_wQ>
+    cujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefuvhgvnhcurfgv
+    thgvrhcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrfgrthhtvghrnh
+    epfeehudeftddvhfehvdduhedtjeejheeuudfftdfgvdekvdelleeuveelgfeflefgnecu
+    ffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehsvhgvnhesshhvvghnphgvthgvrhdruggvvh
+X-ME-Proxy: <xmx:0pe4YMVrrlKzFcjpGFnwiK_eDkACWOyaBrMt7xBpT1wMrabLosSh2A>
+    <xmx:0pe4YDml9lRR0EPI7nsGMBrjoILHriFn5ipRhfjZVyn1XXKEFsh5Ew>
+    <xmx:0pe4YJcr6AS6ZnLQEMMLw8IPO1D0cx696rucurlLt0_sgUu7gsCeRA>
+    <xmx:05e4YI_wzdlwUomPoNf52rdYFuTvRdfDtxaeZkNMOp4wlk4gcxTMtQ>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 3 Jun 2021 04:18:46 -0400 (EDT)
-Date:   Thu, 3 Jun 2021 10:18:43 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Takashi Iwai <tiwai@suse.de>, Jaroslav Kysela <perex@perex.cz>,
-        dri-devel@lists.freedesktop.org,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dom Cobley <dom@raspberrypi.com>, linux-doc@vger.kernel.org,
-        Eric Anholt <eric@anholt.net>, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org,
-        Daniel Vetter <daniel@ffwll.ch>,
-        linux-rpi-kernel@lists.infradead.org,
-        Jonathan Corbet <corbet@lwn.net>,
+ 3 Jun 2021 04:50:23 -0400 (EDT)
+From:   Sven Peter <sven@svenpeter.dev>
+To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 05/12] ASoC: hdmi-codec: Add a prepare hook
-Message-ID: <20210603081843.nwjlcoik7aubct2p@gilmour>
-References: <20210525132354.297468-1-maxime@cerno.tech>
- <20210525132354.297468-6-maxime@cerno.tech>
- <YK4lWaB6Lx+SPjpF@sirena.org.uk>
- <20210531094213.kuuunk7ytu3q6sq6@gilmour>
- <s5hzgwb17ji.wl-tiwai@suse.de>
- <20210601123600.GA4089@sirena.org.uk>
+Cc:     Sven Peter <sven@svenpeter.dev>, Arnd Bergmann <arnd@kernel.org>,
+        devicetree@vger.kernel.org, Hector Martin <marcan@marcan.st>,
+        linux-kernel@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        iommu@lists.linux-foundation.org, Alexander Graf <graf@amazon.com>
+Subject: [PATCH v3 0/3] Apple M1 DART IOMMU driver
+Date:   Thu,  3 Jun 2021 10:50:00 +0200
+Message-Id: <20210603085003.50465-1-sven@svenpeter.dev>
+X-Mailer: git-send-email 2.30.1 (Apple Git-130)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="rkj45skaaxwizccg"
-Content-Disposition: inline
-In-Reply-To: <20210601123600.GA4089@sirena.org.uk>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---rkj45skaaxwizccg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
 Hi,
 
-On Tue, Jun 01, 2021 at 01:36:24PM +0100, Mark Brown wrote:
-> On Mon, May 31, 2021 at 01:12:17PM +0200, Takashi Iwai wrote:
-> > Maxime Ripard wrote:
->=20
-> > > There's a build dependency between the DRM bits and the new hook
-> > > introduced in hdmi-codec, would you be ok with merging it through the
-> > > drm tree?
->=20
-> > Speaking of ALSA core changes, I'm fine with that.
->=20
-> Yeah, a pull request for the shared bits would be handy in case there's
-> some collision with other work.
+This is v3 of my Apple M1 DART IOMMU driver series as a follow up to the original
+two versions [1][2].
 
-I guess the easiest then would be for you to merge the patches and send
-a PR? Assuming you don't want to pull half of DRM of course :)
+Short summary: this series adds support for the iommu found in Apple's new M1
+SoC which is required to use DMA on most peripherals. So far this code has been
+tested with dwc3 in host and device mode and PCIe on a M1 Mac Mini.
 
-Maxime
+This IOMMU comes with a hard-wired pagesize of 16K. This makes booting a
+kernel with 4K page challenging.
+
+For dwc3 this is no issue: As long as the iommu is set to bypass mode
+dwc3 works just fine. Translated mode isn't supported right now.
+
+The most controversial part on which I'd like to get feedback are the
+PCIe DARTs. These DARTs do not support hardware bypass mode and also limit
+the iova space to 32 bit. To still allow booting on kernels with a 4K
+pagesize I have introduced the following hack:
+
+I program a static pagetable that maps the entire 32bit iova space to the
+first 4GB of RAM starting at 0x8_0000_0000. Combined with an appropriate
+dma-ranges property in the pcie node this allows to create a fake
+bypass mode and successfully enables PCIe.
+Right now the RAM offset is hardcoded in the DART driver and this will
+likely have to change if this workaround is acceptable for now. I could
+either introduce a separate property for the iommu node or try to grab
+the offset from the dma-ranges once the first device is attached.
 
 
---rkj45skaaxwizccg
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes for v3:
+ - fixed name of the iommu node in the device tree binding example
+   pointed out by Arnd Bergmann
+ - remove hardware specific checks from io-pgtable.c  as pointed out by
+   Will Deacon
+ - introduced a fake bypass mode by programming static linear pagetables
+   if the DART does not support regular bypass mode as proposed by Alex
+   Graf
+ - added checks to enforce bypass mode if there is a pagesize mismatch
+   between the DART HW and the CPU.
+ - fixed usage of GFP_KERNEL during a held spinlock found by Julia Lawall
+ - rebased on v5.13-rc3
 
------BEGIN PGP SIGNATURE-----
+Changes for v2:
+ - fixed devicetree binding linting issues pointed out by Rob Herring and
+   reworked that file.
+ - made DART-specific code in io-pgtable.c unconditional and removed flag from
+   Kconfig as proposed by Robin Murphy.
+ - allowed multiple DART nodes in the "iommus" property as proposed by
+   Rob Herring and Robin Murphy. this resulted in significant changes
+   to apple-iommu-dart.c.
+ - the domain aperture is now forced to 32bit if translation is enabled after
+   the original suggestion to limit the aperture by Mark Kettenis and the
+   follow-up discussion and investigation with Mark Kettenis, Arnd Bergmann,
+   Robin Murphy and Rob Herring. This change also simplified the code
+   in io-pgtable.c and made some of the improvements suggested during review
+   not apply anymore.
+ - added support for bypassed and isolated domain modes.
+ - reject IOMMU_MMIO and IOMMU_NOEXEC since it's unknown how to set these up
+   for now or if the hardware even supports these flags.
+ - renamed some registers to be less confusing (mainly s/DOMAIN/STREAM/ to
+   prevent confusion with linux's iommu domain concept).
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYLiQYwAKCRDj7w1vZxhR
-xY3tAQCNDRo7aulJ5VeVRzqdd+tlvfHDwEv8T2XuJbx+a2+uQwD9GYltrs50+UPd
-23Wv2j7Qynv07biPvFD4miTXZeE54gw=
-=G3gn
------END PGP SIGNATURE-----
 
---rkj45skaaxwizccg--
+[1] v1: https://lore.kernel.org/linux-iommu/20210320151903.60759-1-sven@svenpeter.dev/
+[2] v2: https://lore.kernel.org/linux-iommu/20210328074009.95932-1-sven@svenpeter.dev/
+
+Sven Peter (3):
+  iommu: io-pgtable: add DART pagetable format
+  dt-bindings: iommu: add DART iommu bindings
+  iommu: dart: Add DART iommu driver
+
+ .../devicetree/bindings/iommu/apple,dart.yaml |  81 ++
+ MAINTAINERS                                   |   7 +
+ drivers/iommu/Kconfig                         |  15 +
+ drivers/iommu/Makefile                        |   1 +
+ drivers/iommu/apple-dart-iommu.c              | 966 ++++++++++++++++++
+ drivers/iommu/io-pgtable-arm.c                |  62 ++
+ drivers/iommu/io-pgtable.c                    |   1 +
+ include/linux/io-pgtable.h                    |   7 +
+ 8 files changed, 1140 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iommu/apple,dart.yaml
+ create mode 100644 drivers/iommu/apple-dart-iommu.c
+
+-- 
+2.25.1
+
