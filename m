@@ -2,79 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FD5839AA4C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 20:43:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9629E39AA86
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 20:54:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230319AbhFCSom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 14:44:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53802 "EHLO mail.kernel.org"
+        id S229810AbhFCS4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 14:56:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56428 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230324AbhFCSok (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Jun 2021 14:44:40 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 80F45613F8;
-        Thu,  3 Jun 2021 18:42:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622745776;
-        bh=aKL4P90UklmZRmziqJ/4jcRmInWRC0xeazGe6Lr2jnI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=gCFuQkJ81vzUEtnrRDrzXadZrf0q7YjMasCaVD30QD5waYSlkzz7Gp9XqlCf4WW1p
-         53ZYMO5SzDVoqBQy0Pvvi2xBWpSyvfXp75MCEy4MNPCKGdd1qKfTnAwm6m/2PksaA2
-         /9OCyjB1D/sHKE/BIPQkFGClsam8tVih6netE2WQ+qNl5QTq8MrYRvOaUsQSuFx1dL
-         zOIwKWFDYim+LkEZhWgIgQ4R4vBPbm+Xl69Uu5SA2kdlRKhtboVFS9/aG0qoq4entZ
-         lkJ1NhUMy01y5grIdP+xi7O/phdyev9u2lnOmPLaoou1jduKopebM/uQCj/bbbMnn2
-         hK8n4N5fTDM9A==
-From:   Mark Brown <broonie@kernel.org>
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Oleksij Rempel <o.rempel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh@kernel.org>, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: Convert imx-audmux binding to json schema
-Date:   Thu,  3 Jun 2021 19:41:59 +0100
-Message-Id: <162274557552.14795.1322019660591642626.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210531064752.8809-1-o.rempel@pengutronix.de>
-References: <20210531064752.8809-1-o.rempel@pengutronix.de>
+        id S229576AbhFCS4A (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Jun 2021 14:56:00 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5628B613EE;
+        Thu,  3 Jun 2021 18:54:13 +0000 (UTC)
+Date:   Thu, 3 Jun 2021 19:55:56 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-iio@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Sean Nyekjaer <sean.nyekjaer@prevas.dk>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings:iio:dac:ad5755: txt to yaml format
+ conversion.
+Message-ID: <20210603195556.73d5c984@jic23-huawei>
+In-Reply-To: <20210503171445.GA2030945@robh.at.kernel.org>
+References: <20210424173015.534941-1-jic23@kernel.org>
+        <20210503171445.GA2030945@robh.at.kernel.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 31 May 2021 08:47:52 +0200, Oleksij Rempel wrote:
-> Convert the imx-audmux binding to DT schema format using json-schema
+On Mon, 3 May 2021 12:14:45 -0500
+Rob Herring <robh@kernel.org> wrote:
 
-Applied to
+> On Sat, 24 Apr 2021 18:30:15 +0100, Jonathan Cameron wrote:
+> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > 
+> > Straight forward conversion.  Only fiddly bit is the XOR of
+> > spi-cpol and spi-cpha.
+> > 
+> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > Cc: Sean Nyekjaer <sean.nyekjaer@prevas.dk>
+> > Link: https://lore.kernel.org/r/20201031184854.745828-40-jic23@kernel.org
+> > ---
+> > This has been in a few different series, so version numbering is a bit
+> > scrambled.  Let's just call it v2.
+> > V2:
+> > * Drop unnecessary refs where units in naming
+> > * Drop unnecessary brackets in child node naming
+> > 
+> >  .../devicetree/bindings/iio/dac/ad5755.txt    | 124 -------------
+> >  .../bindings/iio/dac/adi,ad5755.yaml          | 169 ++++++++++++++++++
+> >  2 files changed, 169 insertions(+), 124 deletions(-)
+> >   
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/1] ASoC: dt-bindings: Convert imx-audmux binding to json schema
-      commit: 14aa731dbf464f7272bcc2f0c4f32f6de28cbe8c
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+The applied message for this one seems to be missing.
+Anyhow for anyone curious, applied some time back.
 
 Thanks,
-Mark
+
+Jonathan
