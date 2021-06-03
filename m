@@ -2,155 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2860B39AE53
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 00:42:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2A1539AE9D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 01:25:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229961AbhFCWn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 18:43:56 -0400
-Received: from mail-qv1-f42.google.com ([209.85.219.42]:37828 "EHLO
-        mail-qv1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229629AbhFCWnz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 18:43:55 -0400
-Received: by mail-qv1-f42.google.com with SMTP id z1so4056041qvo.4
-        for <devicetree@vger.kernel.org>; Thu, 03 Jun 2021 15:42:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MakzHmrhP8vAXjgFSVERlwbbPQz/I4RXtNHBxH/9Tqs=;
-        b=VHKdAmXjQ4mWJlaUmDx/2T6K5khw/jG/8HRArFGaS5PZAhyt5H9ths7x65e9eiWwVy
-         wVe7U4TCdZ4W9x+r1xnAzGyfLoKSkCOg8CL1xoqwU6s8AcHLMifmR/f714catM/cJHxP
-         6Q9oafZgsflYNWsgqYoAyys8ALdxUI/Wg7hF4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MakzHmrhP8vAXjgFSVERlwbbPQz/I4RXtNHBxH/9Tqs=;
-        b=LoR3NJL7ciA2WdRIXs/3gWhX1LOdrRr7XvD7dOpU/YGRa13qjUd+Xd08AJR7uVA24P
-         RqJc8EjkbkCpqMBbsR7CCXPmYBwIniLFxPPvFEk2H+mhc5z4BPsoMQ1EdTfBkgsLGs4w
-         JuQmF+gvp1p0QR3waF/Qt/GnRjbz/SdtObRWSNITdhxjUMXfDWmrCY69SyqLRTKd9s2a
-         mtBpgC9Mc8YEKCprMO14in5nxS9ri+QBASL4f+FYUMdrz2AchKDxsBQ3X6hk+v2paQB3
-         EOp5ORB0gPNS0vUZdsGR/bqLSMmot17yvYS2/Co8aG5sGqhfTZqWJy69szNpSF4SmNKv
-         9nrA==
-X-Gm-Message-State: AOAM531Ntb59Ldgn8U/AFiowOtOCEOhwK4Y/O6vOo3FtOu7sEotWwze+
-        q+Nxrv3LwF9Ie/TvuuWYBGKcYQdA2NwiYw==
-X-Google-Smtp-Source: ABdhPJx8nlmZ/O9orWwDIjbEb2N7YXh9UaKQjbixkHAE8iBsjoHUblx3XsyUoDqn0dRCaD/baP15uA==
-X-Received: by 2002:ad4:55ef:: with SMTP id bu15mr1935428qvb.15.1622760070191;
-        Thu, 03 Jun 2021 15:41:10 -0700 (PDT)
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
-        by smtp.gmail.com with ESMTPSA id p3sm2508605qti.31.2021.06.03.15.41.10
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Jun 2021 15:41:10 -0700 (PDT)
-Received: by mail-yb1-f179.google.com with SMTP id n133so11025564ybf.6
-        for <devicetree@vger.kernel.org>; Thu, 03 Jun 2021 15:41:10 -0700 (PDT)
-X-Received: by 2002:a25:ab4b:: with SMTP id u69mr1137987ybi.276.1622760058683;
- Thu, 03 Jun 2021 15:40:58 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210603150830.229423-1-judyhsiao@chromium.org>
-In-Reply-To: <20210603150830.229423-1-judyhsiao@chromium.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 3 Jun 2021 15:40:46 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VzBgbhhVQvG+UGD2yaLJkwiq0qQHdFNQ2Ey8RKmV+qTg@mail.gmail.com>
-Message-ID: <CAD=FV=VzBgbhhVQvG+UGD2yaLJkwiq0qQHdFNQ2Ey8RKmV+qTg@mail.gmail.com>
-Subject: Re: [v5] ASoC: qcom: lpass-cpu: Fix pop noise during audio capture begin
-To:     Judy Hsiao <judyhsiao@chromium.org>
-Cc:     Mark Brown <broonie@kernel.org>, Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Dylan Reid <dgreid@chromium.org>,
-        Jimmy Cheng-Yi Chiang <cychiang@google.com>,
-        Judy Hsiao <judyhsiao@google.com>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        id S229814AbhFCX10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 19:27:26 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:42877 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229704AbhFCX10 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 19:27:26 -0400
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailnew.nyi.internal (Postfix) with ESMTP id BABBF58092B;
+        Thu,  3 Jun 2021 19:25:40 -0400 (EDT)
+Received: from imap43 ([10.202.2.93])
+  by compute2.internal (MEProxy); Thu, 03 Jun 2021 19:25:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm2; bh=xHx468dLeIG5R6GuSjFB251+2l0QlcN
+        0sTUY7nex3m4=; b=icRT9uMDVWKZMTaKM1mxX6uHGkhSr10fgqqK1HgWEYfskbw
+        bFKbUSHXDTe7hcGw1xq++H8wCKIXRL7czMuxe0nThECi5SmdREVpdXKKBoodKV3B
+        h9g8saULpsBPRwHPeiUCTPp+HTgcGe8e1nLUSJCyqVPyWVblEC3zS8dyEl8np+po
+        Q2cxh9BO8Xom/oEZvMNixiKJf2ggLVTnalANsmF46L0/jHKKqdo/bQYwomL/BO+2
+        N/k7xCtvCYyHj0ek2rPEQu3QDETav255i0dXcewr2YGSpVBvEP/2ILepZYrTvXZX
+        fwUvLbN94FDUPacNKbeDkZ3xGK1W3XFPwQ5V6wQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=xHx468
+        dLeIG5R6GuSjFB251+2l0QlcN0sTUY7nex3m4=; b=bU/CDhozGz1MNTJhvJNNrQ
+        sdZLklKokF0066z3eFqfvhK5j4KM0htu+HZRibbea7b3eEUcgP04EkHuou0iD1w2
+        /qmWv5TMccCH81SZXtCvvFsMgt53tuS1IqI0rpL2iyn0TY/otWe0XAM52MBCYI6h
+        5xjbmRk6xMhE+75/aghV3yw6z55eJ66dpML1dalHI09CfpyOqJ57AImXZLSM1XDa
+        QuIHdYJMaEgPy0UiERwEPVrG1riADYCmuhl3wQBjU9iWa1MAW/GS+ociaVhOKatl
+        RrosRmaldEuCrXjBNw7G6a+Kdj8PI1DuRQVcPvA/9b5Lcs6jToZe9N4h6A3DQR6A
+        ==
+X-ME-Sender: <xms:8mS5YL1QjCkgcjc5MI5EdFMtX3KnbIaBjw9iGfZOCABpvjNp4XAoeA>
+    <xme:8mS5YKFKel0EUpn9UMJqSrSeTUseu6zz2g-ekXY5YGuxg2T587M0IPDY6LTwRq09N
+    RoWUsc4LWiXNpodjQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfedttddgudeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
+    grthhtvghrnhephefguedvfedvgffgudehjeegudefvedufefgveefudetffdvfeeigffg
+    jedvkeetnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucevlhhushhtvg
+    hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhi
+    ugdrrghu
+X-ME-Proxy: <xmx:8mS5YL7E6g2kg_EDtsDmwiaR4xrV1KD6uEZiE93LKRgdaM-wOrW8Bg>
+    <xmx:8mS5YA3lw0F-CIYcheMDnl5KTusFo_wRNmUfwIZADnxjUV77C5IO-A>
+    <xmx:8mS5YOH4caqa4XZDEUwAkSZ6YU5kq2gThW3hLFtscpJTSpN4prlmCg>
+    <xmx:9GS5YG-FPOEFJFVAJfVICPd6tpAjAzOU7QC0Ehj4Jr-idciXgSKgzg>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 765D3AC0064; Thu,  3 Jun 2021 19:25:38 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-519-g27a961944e-fm-20210531.001-g27a96194
+Mime-Version: 1.0
+Message-Id: <516bb11a-b75f-49e1-ba79-e5a4c344a7ab@www.fastmail.com>
+In-Reply-To: <20210603101822.9645-2-steven_lee@aspeedtech.com>
+References: <20210603101822.9645-1-steven_lee@aspeedtech.com>
+ <20210603101822.9645-2-steven_lee@aspeedtech.com>
+Date:   Fri, 04 Jun 2021 08:55:17 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Steven Lee" <steven_lee@aspeedtech.com>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "Bartosz Golaszewski" <bgolaszewski@baylibre.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Joel Stanley" <joel@jms.id.au>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        "open list" <linux-kernel@vger.kernel.org>
+Cc:     "Hongwei Zhang" <Hongweiz@ami.com>,
+        "Ryan Chen" <ryan_chen@aspeedtech.com>,
+        "Billy Tsai" <billy_tsai@aspeedtech.com>
+Subject: =?UTF-8?Q?Re:_[PATCH_v3_1/5]_dt-bindings:_aspeed-sgpio:_Convert_txt_bind?=
+ =?UTF-8?Q?ings_to_yaml.?=
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Judy,
+Hi Steven,
 
-On Thu, Jun 3, 2021 at 8:08 AM Judy Hsiao <judyhsiao@chromium.org> wrote:
->
-> @@ -315,12 +353,54 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
->         return ret;
->  }
->
-> +static int lpass_cpu_daiops_prepare(struct snd_pcm_substream *substream,
-> +               struct snd_soc_dai *dai)
-> +{
-> +       struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
-> +       struct lpaif_i2sctl *i2sctl = drvdata->i2sctl;
-> +       unsigned int id = dai->driver->id;
-> +       int ret;
-> +       /*
-> +        * Ensure lpass BCLK/LRCLK is enabled bit before playback/capture
-> +        * data flow starts. This allows other codec to have some delay before
-> +        * the data flow.
-> +        * (ex: to drop start up pop noise before capture starts).
-> +        */
-
-nit: there's usually a blank line between the variable declarations
-and the first line of code, even if the first line of code is a
-comment.
-
-
-> +       if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
-> +               ret = regmap_fields_write(i2sctl->spken, id, LPAIF_I2SCTL_SPKEN_ENABLE);
-> +       else
-> +               ret = regmap_fields_write(i2sctl->micen, id, LPAIF_I2SCTL_MICEN_ENABLE);
+On Thu, 3 Jun 2021, at 19:48, Steven Lee wrote:
+> sgpio-aspeed bindings should be converted to yaml format.
+> 
+> Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+> ---
+>  .../bindings/gpio/aspeed,sgpio.yaml           | 78 +++++++++++++++++++
+>  .../devicetree/bindings/gpio/sgpio-aspeed.txt | 46 -----------
+>  2 files changed, 78 insertions(+), 46 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml 
+> b/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
+> new file mode 100644
+> index 000000000000..e7c2113cc096
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
+> @@ -0,0 +1,78 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/aspeed,sgpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +       if (ret) {
-> +               dev_err(dai->dev, "error writing to i2sctl reg: %d\n", ret);
-> +               return ret;
-> +       }
+> +title: Aspeed SGPIO controller
 > +
-> +       /*
-> +        * Check mi2s_was_prepared before enabling BCLK as lpass_cpu_daiops_prepare can
-> +        * be called multiple times. It's paired with the clk_disable in
-> +        * lpass_cpu_daiops_shutdown.
-> +        */
-> +       if (!drvdata->mi2s_was_prepared[dai->driver->id]) {
-> +               drvdata->mi2s_was_prepared[dai->driver->id] = true;
-> +               ret = clk_enable(drvdata->mi2s_bit_clk[id]);
-> +               if (ret) {
-> +                       dev_err(dai->dev, "error in enabling mi2s bit clk: %d\n", ret);
-> +                       clk_disable(drvdata->mi2s_osr_clk[id]);
+> +maintainers:
+> +  - Andrew Jeffery <andrew@aj.id.au>
+> +
+> +description:
+> +  This SGPIO controller is for ASPEED AST2400, AST2500 and AST2600 SoC,
+> +  AST2600 have two sgpio master one with 128 pins another one with 80 
+> pins,
+> +  AST2500/AST2400 have one sgpio master with 80 pins. Each of the 
+> Serial
+> +  GPIO pins can be programmed to support the following options
+> +  - Support interrupt option for each input port and various interrupt
+> +    sensitivity option (level-high, level-low, edge-high, edge-low)
+> +  - Support reset tolerance option for each output port
+> +  - Directly connected to APB bus and its shift clock is from APB bus 
+> clock
+> +    divided by a programmable value.
+> +  - Co-work with external signal-chained TTL components 
+> (74LV165/74LV595)
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - aspeed,ast2400-sgpio
+> +      - aspeed,ast2500-sgpio
+> +      - aspeed,ast2600-sgpiom1
+> +      - aspeed,ast2600-sgpiom2
 
-Can you explain why this clk_disable() is here? Your function didn't
-turn this clock on, so why should it be turning it off in the error
-case?
+You should have followed Rob's request here and made two patches for 
+the binding document:
 
+1. A 1-to-1 conversion of the text file to dt-schema
+2. Add your new compatibles for the 2600.
 
-> +                       drvdata->mi2s_was_prepared[dai->driver->id] = false;
-> +                       return ret;
-> +               }
+From a cursory glance it looks okay except for the new compatibles.
 
-Why not put the `drvdata->mi2s_was_prepared[dai->driver->id] = true;`
-_after_ you check for errors. Then you don't need to undo it in the
-error case. I presume that your prepare() function isn't reentrant and
-can't be called at the same time as your shutdown (right?).
+Regarding the compatibles, I'd prefer we use something a bit more 
+meaningful. What do you think of these?
 
-Other than that, I don't have any objections to this patch anymore. I
-probably won't add a formal "Reviewed-by", though, since I _really_
-don't know anything about the issue at hand or the code. I just
-stumbled upon this because I was getting the clock splat at bootup. If
-someone feels like this needs me to spin up enough to understand /
-really review this patch then please yell.
+- aspeed,ast2600-sgpiom-80
+- aspeed,ast2600-sgpiom-128
 
--Doug
+Cheers,
+
+Andrew
