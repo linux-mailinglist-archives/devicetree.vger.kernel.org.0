@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E55839A57A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 18:11:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CC8639A5D7
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 18:37:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229597AbhFCQN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 12:13:26 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:31405 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229692AbhFCQNZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Jun 2021 12:13:25 -0400
+        id S229789AbhFCQjn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 12:39:43 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:64385 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229695AbhFCQjm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 12:39:42 -0400
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1622736700; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=YPt57uRHkIKCAc3k7uJNjdS1IBPwSdXWYI60IXWNva4=; b=lNZUQm66YK1NlKxbV9IwF/i6QGmRiyJG1ue9YD4JNqqDRFDq7I2cDhv1EqfyN9BKfbdKkJQT
- Y3SDaIL/T7Fl183vaLuf7n1AoE5o8Jwr164gf9peaWdylKJ34j2tM+UsmY54G55alu1+iO8X
- rCXU972fdcaSGAMYDvxkiaJi0Ao=
-X-Mailgun-Sending-Ip: 69.72.43.7
+ s=smtp; t=1622738278; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=IOHUtOukDXpuyt3YY40+bowFnid37YHYNxe6N7kY+Yk=; b=TNsYTcD1VjXq5xFiv+cnv6tiGCxXJaACq4IXMpKu99HIvyrqgo6j2cuyuUH4/T3R/jc6f+1A
+ rmpvh65gJurTNnCSaalWDsqKq9mDNXn1UTzC09Aqfp7r2ElNmC3l7Hyjf7jLX4cDaIEkPOxO
+ Z5CiZzcB2dlhxJ4Y3OYFpdnxelk=
+X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 60b8feb7ed59bf69cca96c1e (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 03 Jun 2021 16:09:27
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 60b90555e27c0cc77fcfa80f (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 03 Jun 2021 16:37:41
  GMT
 Sender: khsieh=codeaurora.org@mg.codeaurora.org
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 31783C43148; Thu,  3 Jun 2021 16:09:26 +0000 (UTC)
+        id D197AC4323A; Thu,  3 Jun 2021 16:37:40 +0000 (UTC)
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
         aws-us-west-2-caf-mail-1.web.codeaurora.org
 X-Spam-Level: 
@@ -36,9 +36,9 @@ Received: from khsieh-linux1.qualcomm.com (i-global254.qualcomm.com [199.106.103
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
         (Authenticated sender: khsieh)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id F054AC4360C;
-        Thu,  3 Jun 2021 16:09:21 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org F054AC4360C
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 32F30C433F1;
+        Thu,  3 Jun 2021 16:37:39 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 32F30C433F1
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=khsieh@codeaurora.org
 From:   Kuogee Hsieh <khsieh@codeaurora.org>
@@ -48,9 +48,9 @@ To:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
 Cc:     abhinavk@codeaurora.org, aravindh@codeaurora.org,
         khsieh@codeaurora.org, freedreno@lists.freedesktop.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64/dts/qcom/sc7180: Add Display Port dt node
-Date:   Thu,  3 Jun 2021 09:09:15 -0700
-Message-Id: <1622736555-15775-1-git-send-email-khsieh@codeaurora.org>
+Subject: [PATCH v3] arm64: dts: qcom: sc7180: Add DisplayPort  node
+Date:   Thu,  3 Jun 2021 09:37:30 -0700
+Message-Id: <1622738250-1469-1-git-send-email-khsieh@codeaurora.org>
 X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -61,6 +61,9 @@ Add DP device node on sc7180.
 Changes in v2:
 -- replace msm_dp with dp
 -- replace dp_opp_table with opp_table
+
+Changes in v3:
+-- correct text of commit title
 
 Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
 ---
