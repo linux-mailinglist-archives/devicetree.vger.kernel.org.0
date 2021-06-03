@@ -2,119 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 44E5D39AB91
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 22:09:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD23E39ABBC
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 22:24:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229656AbhFCUKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 16:10:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39754 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230083AbhFCUKu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Jun 2021 16:10:50 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8EBE8611C9;
-        Thu,  3 Jun 2021 20:09:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622750945;
-        bh=vouxc5KMLEMa3QrqPqXja2Z4KHWtjXXf/sVDLuzgUZE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UYeXhRQkhsFG2wW4pMFx1ENgilnnfZtGlHetX3wkENSTPOwGglvuReS2frt1cjTtl
-         JLKCPkpKMa+NFqpLVPYTtBPL0W7QDpwuraSUhXTED5ruFCTZ9l/ZX9j2f0fTHd72HX
-         kez6g1QVBsDVie8+Ol70lWcbLUVi1CXU1PW0xR/2pCdlEh0uFsIt5t1odTPh3MK5Rr
-         a5Km3PlwQZ/OU5n1g2kWDQQWpus4Z5O11Vo1RXQubZjb3F/M7e1Zij82vHdp1Vv0Lw
-         PNnhqdSX0wMy7B0BUu9GlN4yLxGGR/WG4yMmJYO7tsywLyQGMS7Po49eXeaSRMo1qA
-         +IfEKzjVtpXVQ==
-Date:   Thu, 3 Jun 2021 22:09:02 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Jakub Kicinski <kuba@kernel.org>, Keerthy <j-keerthy@ti.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Mark Brown <broonie@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, Sekhar Nori <nsekhar@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-can@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-spi@vger.kernel.org,
-        netdev@vger.kernel.org
-Subject: Re: [PATCH 04/12] dt-bindings: clock: update ti,sci-clk.yaml
- references
-Message-ID: <YLk23rrWN9ze+zru@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Jakub Kicinski <kuba@kernel.org>, Keerthy <j-keerthy@ti.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Mark Brown <broonie@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, Sekhar Nori <nsekhar@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>, Tero Kristo <kristo@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Wolfgang Grandegger <wg@grandegger.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-can@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-spi@vger.kernel.org, netdev@vger.kernel.org
-References: <cover.1622648507.git.mchehab+huawei@kernel.org>
- <0fae687366c09dfb510425b3c88316a727b27d6d.1622648507.git.mchehab+huawei@kernel.org>
+        id S229989AbhFCUZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 16:25:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36942 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229665AbhFCUZv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 16:25:51 -0400
+Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A7FAC061756
+        for <devicetree@vger.kernel.org>; Thu,  3 Jun 2021 13:24:06 -0700 (PDT)
+Received: by mail-qk1-x72f.google.com with SMTP id j189so7294668qkf.2
+        for <devicetree@vger.kernel.org>; Thu, 03 Jun 2021 13:24:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=K0U2vfO0s/gXz3YV0/zSFcReO1Jx7LkT5Q9OOSBMSss=;
+        b=j1A98YTafAPvHjzQY+ZV3QAOa/LBVzmJgVhIbhQLSvdy7bXiODny1yOlaQlb7LWls1
+         opVdTQxQBf3Q8hayY4a9lm9mPaZjJGGYSQ2H30V1xIUhm1pwHvYQ50/PtHnXUA6ijneI
+         dnlEKejOa4+paYKemXhcp2qBAN9dE/b3ctD14=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=K0U2vfO0s/gXz3YV0/zSFcReO1Jx7LkT5Q9OOSBMSss=;
+        b=PT0YNhaC988CHlzXsvMPb2qpCyZ4uH7mbWE3SVcyVQnlCbco+AiLsWRIUlavBpdydB
+         E8/dPWJ+BvpGuSKcYJ10Om4sbpAQY5wKPSusMMiJ/r5Jivo9DpJZjC2t3dB4V2p1bCR0
+         Cbu1l+NZcXJDygQXrTtflItYPTBJdbwRmQC0uxicvcMJ15IGQ5q8HCAczTLu/ArzP+L+
+         3XFOxz1PHmRhfII0B1K2JjhAF8Le+qr0L+4HGK9bgnjxJu4gdKL8wCPwh++GbwpeZD74
+         sHAO0jBbYDa2uw0BIxcw82szoW26UAZxsFgB3iaXBJ5je2Iok73QeFGiRL3jVKI2QvDs
+         GcdA==
+X-Gm-Message-State: AOAM530TzR/6ICWNFIcbcS+S32Lo1AVxA81IsXh4R+iYDBZr6vXL3v8u
+        rlHaP4kROSgcySJPzmVERJyrqZyo2pMwYw==
+X-Google-Smtp-Source: ABdhPJxFWnfdaw0i0vRiQ+bdvXYiXfMoC3dyYLZqWmvaHjJZZFf5iSC9Zdif/8dr11KT1FV2Sas4Ng==
+X-Received: by 2002:a37:4484:: with SMTP id r126mr1062174qka.18.1622751845084;
+        Thu, 03 Jun 2021 13:24:05 -0700 (PDT)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
+        by smtp.gmail.com with ESMTPSA id c20sm2374736qtm.52.2021.06.03.13.24.03
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Jun 2021 13:24:04 -0700 (PDT)
+Received: by mail-yb1-f181.google.com with SMTP id g38so10543920ybi.12
+        for <devicetree@vger.kernel.org>; Thu, 03 Jun 2021 13:24:03 -0700 (PDT)
+X-Received: by 2002:a25:8191:: with SMTP id p17mr361035ybk.405.1622751843264;
+ Thu, 03 Jun 2021 13:24:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="HwDyggedf9K45ZIg"
-Content-Disposition: inline
-In-Reply-To: <0fae687366c09dfb510425b3c88316a727b27d6d.1622648507.git.mchehab+huawei@kernel.org>
+References: <20210602191338.1995827-1-sujitka@chromium.org> <20210602121313.v3.1.Ia83c80aec3b9535f01441247b6c3fb6f80b0ec7f@changeid>
+In-Reply-To: <20210602121313.v3.1.Ia83c80aec3b9535f01441247b6c3fb6f80b0ec7f@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 3 Jun 2021 13:23:51 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Vfi6SZsgJN3Jm+DrmW8KrySbn14BMOWQjW9ib-fqZd8Q@mail.gmail.com>
+Message-ID: <CAD=FV=Vfi6SZsgJN3Jm+DrmW8KrySbn14BMOWQjW9ib-fqZd8Q@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: sc7180: Move sdc pinconf to
+ board specific DT files
+To:     Sujit Kautkar <sujitka@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---HwDyggedf9K45ZIg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, Jun 2, 2021 at 12:14 PM Sujit Kautkar <sujitka@chromium.org> wrote:
+>
+> Move sdc1/sdc2 pinconf from SoC specific DT file to board specific DT
+> files
+>
+> Signed-off-by: Sujit Kautkar <sujitka@chromium.org>
+> ---
+>
+> (no changes since v1)
+>
+>  arch/arm64/boot/dts/qcom/sc7180-idp.dts      | 102 +++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 102 +++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi         | 102 -------------------
+>  3 files changed, 204 insertions(+), 102 deletions(-)
 
-On Wed, Jun 02, 2021 at 05:43:10PM +0200, Mauro Carvalho Chehab wrote:
-> Changeset a7dbfa6f3877 ("dt-bindings: clock: Convert ti,sci-clk to json s=
-chema")
-> renamed: Documentation/devicetree/bindings/clock/ti,sci-clk.txt
-> to: Documentation/devicetree/bindings/clock/ti,sci-clk.yaml.
->=20
-> Update the cross-references accordingly.
->=20
-> Fixes: a7dbfa6f3877 ("dt-bindings: clock: Convert ti,sci-clk to json sche=
-ma")
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+FYI: Since there were no changes from v2 so you should have kept my
+reviewed-by tag from v2. Here it is again, though:
 
-Acked-by: Wolfram Sang <wsa@kernel.org> # for I2C
-
-
---HwDyggedf9K45ZIg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmC5Nt4ACgkQFA3kzBSg
-KbYA5BAAmxrTszpFm+SFwkhyzevlAeZO+O6tTPRp2hAT0FogM2Us0fUzfwLEFgWP
-dR+9Lw8BinKXs9tNQwP3RGM6/azDSnS8tL5a1l0aaI52mxwwu0zGKPZmCvvMizT2
-AQX51DP3llTCDdTc85P1C7TYhRyhYy1GWPJrfhAxfUBS+maMcJJ3VX7rfnmQlAWG
-6FOy1eZaCP2d2DxVZNlMi0TXsYuudltp75a0T7k8wesRQv+BEEE4MpyfFwDquX/N
-3BtPLsuwSDnSQ1hL3gEPEbrm++yG+3g0PHdhWxdrDeRV/eRW8EM4rjJ0xHutgimp
-LyQ0SnSdM6/EMF0h4jjQ2CPLGedDPpKkBdXsAH0yU8GqD2P5mijVUJHZqqyCKdz4
-8elfRdDzaLOrwvZrqTQYqGpeup/953O/m8mbKfy0zhkc2X0Ceqmqb2iKDzvemODe
-OpVnrneL06Fo3k9Mi0c828teZf7T4kZPBFI896XMP8MYeT7ghBaOrRBt6mIaefTN
-dCZGUE9vm2SbKqBOJ88QHbyFwDwHDj7UU4O9uhZH77nUj3kzQC+yfp0xLhkkT3lE
-ME9gAuT18XacriGNwHQVpMUPTvMAcLUWeHqfYIvPVd/HQRNMwV/IB2paBkGThO7/
-gzP8cd9cYoh9D2thXE0J/EnXq+MPeo6KVP9Uirz9eSo6jxKoggM=
-=2IA3
------END PGP SIGNATURE-----
-
---HwDyggedf9K45ZIg--
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
