@@ -2,65 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D20F39A2BF
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 16:04:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D83B939A2E9
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 16:18:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231530AbhFCOF5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 10:05:57 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:43260 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229967AbhFCOF4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Jun 2021 10:05:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=+F4TYRlKaPioKXq/PeE5dbOcDH3xCZTOmCks5Pjeaeg=; b=o1A+oRPk1Yoi2i1p2TF/mhhyl+
-        5w9RjXPqbXxgDyv5484mlhlvNJcMAXhKdQ62NSzaiALuAMCrvp00ZyfXs4A1m3NO+o/iWZwJlVbJp
-        mSqirkz8AKpsUrIDX/16Zw8lWeX7boE3PwLAHdU+qw2XGEOghKeUVqBvowXiJytPrp/M=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1lonx1-007d6E-Tn; Thu, 03 Jun 2021 16:03:59 +0200
-Date:   Thu, 3 Jun 2021 16:03:59 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Sander Vanheule <sander@svanheule.net>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Michael Walle <michael@walle.cc>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 3/5] mfd: Add RTL8231 core device
-Message-ID: <YLjhT1zL/6okGP3p@lunn.ch>
-References: <cover.1620735871.git.sander@svanheule.net>
- <cover.1622713678.git.sander@svanheule.net>
- <56fb027587fa067a249237ecaf40828cd508cdcc.1622713678.git.sander@svanheule.net>
- <CAHp75VeLUufwYagvQ2M+VKsivUzmnHHHQeH4E8-uN2avRWmBag@mail.gmail.com>
- <acc18a3b1c02b8f89023451d816031e70bec9320.camel@svanheule.net>
+        id S230138AbhFCOUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 10:20:09 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:43152 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230245AbhFCOUI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 10:20:08 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 153EIGjt008940;
+        Thu, 3 Jun 2021 09:18:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1622729896;
+        bh=ij5t3iomRX42uD/qcjWKu9Nr7FU30eNoiO6l8qKL690=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=bc5QX5n+/jlNmf3rTR0R9/MyrjlQt+IT1QYYZcy2yoKOxII5l8Qz0C3hhohKq/MmA
+         c5D2hCSVcXv9hDQ55JKOlrXEfk3ZqPp9cYJjiJFTtaZm32k2GDwDCtOv0yTyPd6W+O
+         drYb/IR6bk01qN6i2s++utKuipOHeNA+Oz0cEHCY=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 153EIG3x044695
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 3 Jun 2021 09:18:16 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 3 Jun
+ 2021 09:18:16 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 3 Jun 2021 09:18:16 -0500
+Received: from [10.250.235.48] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 153EIBE6072498;
+        Thu, 3 Jun 2021 09:18:13 -0500
+Subject: Re: [PATCH v3 2/5] arm64: dts: ti: k3-am64-main: Add PCIe DT node
+To:     Nishanth Menon <nm@ti.com>
+CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+References: <20210526142921.12127-1-kishon@ti.com>
+ <20210526142921.12127-3-kishon@ti.com>
+ <20210526185133.sm2iqqpequz3mmvq@crafty>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <ab908779-804f-75c3-d9cc-98a3a558e686@ti.com>
+Date:   Thu, 3 Jun 2021 19:48:10 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <acc18a3b1c02b8f89023451d816031e70bec9320.camel@svanheule.net>
+In-Reply-To: <20210526185133.sm2iqqpequz3mmvq@crafty>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> I wanted to make the masking explicit, but since regmap-mdio currently requires
-> a register address width of 5 bit, it could move there.
+Hi Nishanth,
+
+On 27/05/21 12:21 am, Nishanth Menon wrote:
+> On 19:59-20210526, Kishon Vijay Abraham I wrote:
+>> AM64 has one PCIe instance which can be configured in either
+>> host mode (RC) or device mode (EP). Add PCIe DT node for host
+>> mode and device mode here.
+>>
+>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+>> ---
+>>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 46 ++++++++++++++++++++++++
+>>  1 file changed, 46 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+>> index a67f10406a8e..9c77f7da5d28 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+>> @@ -728,4 +728,50 @@
+>>  			#clock-cells = <1>;
+>>  		};
+>>  	};
+>> +
+>> +	pcie0_rc: pcie@f102000 {
+>> +		compatible = "ti,am64-pcie-host", "ti,j721e-pcie-host";
+>> +		reg = <0x00 0x0f102000 0x00 0x1000>,
+>> +		      <0x00 0x0f100000 0x00 0x400>,
+>> +		      <0x00 0x0d000000 0x00 0x00800000>,
+>> +		      <0x00 0x68000000 0x00 0x00001000>;
+>> +		reg-names = "intd_cfg", "user_cfg", "reg", "cfg";
+> [...]
+>> +
+>> +	pcie0_ep: pcie-ep@f102000 {
+> Hmm... 
+> Warning (unique_unit_address): /bus@f4000/pcie@f102000: duplicate unit-address (also used in node /bus@f4000/pcie-ep@f102000)
+> we could pick reg for pcie-ep for node address, instead of intd_cfg address?
 > 
-> Actually, can we safely assume that any MDIO driver implementing clause-22
-> access (5-bit register address width) will just ignore higher bits? In that
-> case, I could just drop these functions and not even modify regmap-mdio. It
-> appears to work for bitbanged MDIO.
+> OR, does that mess something else up?
 
-How are C45 addresses handled? The API to the MDIO bus driver uses a
-register value which is 32 bits in width. Bit 30 indicates the address
-is a C45 address, and then you have 21 bits of actual address.
-regmap-mdio needs to be generic and support both C22 and C45.
+yeah, that actually require changes in the binding to fix it properly,
+since only the first entry in reg should be given for unit address.
 
-   Andrew
+Thanks
+Kishon
+
+> 
+>> +		compatible = "ti,am64-pcie-ep", "ti,j721e-pcie-ep";
+>> +		reg = <0x00 0x0f102000 0x00 0x1000>,
+>> +		      <0x00 0x0f100000 0x00 0x400>,
+>> +		      <0x00 0x0d000000 0x00 0x00800000>,
+>> +		      <0x00 0x68000000 0x00 0x08000000>;
+> 
+> [...]
+> 
