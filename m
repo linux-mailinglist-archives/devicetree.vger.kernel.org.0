@@ -2,38 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DAF9539AA49
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 20:42:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FD5839AA4C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 20:43:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230231AbhFCSog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 14:44:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53660 "EHLO mail.kernel.org"
+        id S230319AbhFCSom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 14:44:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53802 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230203AbhFCSof (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Jun 2021 14:44:35 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 53EEB613F6;
-        Thu,  3 Jun 2021 18:42:50 +0000 (UTC)
+        id S230324AbhFCSok (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Jun 2021 14:44:40 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 80F45613F8;
+        Thu,  3 Jun 2021 18:42:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622745770;
-        bh=QX2fUiCiUmkxlGVHfxkr10DT8U2SkzWtLEr1gPbhSJI=;
+        s=k20201202; t=1622745776;
+        bh=aKL4P90UklmZRmziqJ/4jcRmInWRC0xeazGe6Lr2jnI=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=P/yoLykbA2nbCiCPzNXK5wuNLtsWUWwzswOFPDtigEoGBh919yhCp5x/Fxn86U0KU
-         C2Om9LQzx6vdrWoHWCcVcxLKIjfuOhrscbhTrwKJIILodx9mLI4x7ZR41lMjrlmGAo
-         xGwur70iBcThRy4us3by+zZ7UkI0tWISZq6ivvVYnCvYBsSZeUCuDkIk99VS3FKXiI
-         E3DoWJYF2dLclCqPv+A6qGo3v5+jt0yvuXEl7TJeOLwW1+5/aqBIYCyayajqTP8f/W
-         OAqdC+w9OnUmge4auSIjBj66YZjpMuB/qhWovoHfSA5kDRfxAPQk7UQWVftM/Lxnxm
-         tzhICfRiwbsig==
+        b=gCFuQkJ81vzUEtnrRDrzXadZrf0q7YjMasCaVD30QD5waYSlkzz7Gp9XqlCf4WW1p
+         53ZYMO5SzDVoqBQy0Pvvi2xBWpSyvfXp75MCEy4MNPCKGdd1qKfTnAwm6m/2PksaA2
+         /9OCyjB1D/sHKE/BIPQkFGClsam8tVih6netE2WQ+qNl5QTq8MrYRvOaUsQSuFx1dL
+         zOIwKWFDYim+LkEZhWgIgQ4R4vBPbm+Xl69Uu5SA2kdlRKhtboVFS9/aG0qoq4entZ
+         lkJ1NhUMy01y5grIdP+xi7O/phdyev9u2lnOmPLaoou1jduKopebM/uQCj/bbbMnn2
+         hK8n4N5fTDM9A==
 From:   Mark Brown <broonie@kernel.org>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org
-Subject: Re: [PATCH] ASoC: meson: gx-card: fix sound-dai dt schema
-Date:   Thu,  3 Jun 2021 19:41:57 +0100
-Message-Id: <162274557551.14795.13902548000738010349.b4-ty@kernel.org>
+To:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Oleksij Rempel <o.rempel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH v2] ASoC: dt-bindings: Convert imx-audmux binding to json schema
+Date:   Thu,  3 Jun 2021 19:41:59 +0100
+Message-Id: <162274557552.14795.1322019660591642626.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210524093448.357140-1-jbrunet@baylibre.com>
-References: <20210524093448.357140-1-jbrunet@baylibre.com>
+In-Reply-To: <20210531064752.8809-1-o.rempel@pengutronix.de>
+References: <20210531064752.8809-1-o.rempel@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -41,16 +48,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 May 2021 11:34:48 +0200, Jerome Brunet wrote:
-> There is a fair amount of warnings when running 'make dtbs_check' with
-> amlogic,gx-sound-card.yaml.
-> 
-> Ex:
-> arch/arm64/boot/dts/amlogic/meson-gxm-q200.dt.yaml: sound: dai-link-0:sound-dai:0:1: missing phandle tag in 0
-> arch/arm64/boot/dts/amlogic/meson-gxm-q200.dt.yaml: sound: dai-link-0:sound-dai:0:2: missing phandle tag in 0
-> arch/arm64/boot/dts/amlogic/meson-gxm-q200.dt.yaml: sound: dai-link-0:sound-dai:0: [66, 0, 0] is too long
-> 
-> [...]
+On Mon, 31 May 2021 08:47:52 +0200, Oleksij Rempel wrote:
+> Convert the imx-audmux binding to DT schema format using json-schema
 
 Applied to
 
@@ -58,8 +57,8 @@ Applied to
 
 Thanks!
 
-[1/1] ASoC: meson: gx-card: fix sound-dai dt schema
-      commit: d031d99b02eaf7363c33f5b27b38086cc8104082
+[1/1] ASoC: dt-bindings: Convert imx-audmux binding to json schema
+      commit: 14aa731dbf464f7272bcc2f0c4f32f6de28cbe8c
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
