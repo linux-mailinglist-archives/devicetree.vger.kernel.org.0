@@ -2,96 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54E23399F1E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 12:39:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D144F399F5B
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 12:59:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229944AbhFCKlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 06:41:21 -0400
-Received: from mail-pl1-f176.google.com ([209.85.214.176]:39584 "EHLO
-        mail-pl1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229958AbhFCKlT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 06:41:19 -0400
-Received: by mail-pl1-f176.google.com with SMTP id q16so2651957pls.6
-        for <devicetree@vger.kernel.org>; Thu, 03 Jun 2021 03:39:34 -0700 (PDT)
+        id S229769AbhFCLA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 07:00:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53906 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229840AbhFCLA7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 07:00:59 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D2F3C06174A;
+        Thu,  3 Jun 2021 03:59:03 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id 27so4838449pgy.3;
+        Thu, 03 Jun 2021 03:59:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=MBGbqvseaowVXgAUsLtxjTmL1uju2aQqqvQPrdOEUMI=;
-        b=PtUIFX5j6+rZW5fTyueSPbez0QVHLoGyxaF0Xk260gvCiKzzUF/F057MwftAPyketT
-         IOEzWxFOg5qGolkIJfCnFB4WQArM3fALgXkuTxBIZxs/x5ItQ6D08Gwg4D7JVFyrpQYk
-         CgOLh21NWiEuMxa2EZ4Ji1KTUAtTS6mFeMnCALAc3UvKJDfR6ekbSXilJJmbt+RypvI/
-         JvQh31+mFFJu2OAC0lc4L02wK8rz4sJWUUBfRaSQmysIyzW/favy1J5BRxSfEnXFraJv
-         kkXjmoTXN3833DbXVge3JAIilnlTZFUve2s/k56YRWk0EG4bhzpPtibJQTzTkXRzJUiV
-         xDSg==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tT5BxAW9qQtK1kr/tbUlMH8uwPRuH2kPZ0anFhWVOuY=;
+        b=XiIDWcdKcuz0hYa8BP/MY9GJJyOEIHq1odRr1BQ7W9g4DJqv9djHEkNt+UVC8SVjvC
+         olyHkMHrXggChI1Eitl1+HezZvhULeAGRjC3Sengf8ZGIXYQFpIDgM6vCZp2r7pWOTBl
+         HBGVeUghw30tnKRQuHMYZimfNVDvRWbYBop+NvhdJVg/D18jSui/B2MipFPdFLVaeI5e
+         S14C9x8+zF51ZR9QoqabkazEOoNy8cZpz6DWik9UPp33AVSGMBqG1YU5MV/NVZvUXqP+
+         pvpS7n2l8u8k6DSzmgdItFEIVz8KAaic9uU2eoY5aRdERtWQV0NUpt8M+JI67zlweCJh
+         /7iA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=MBGbqvseaowVXgAUsLtxjTmL1uju2aQqqvQPrdOEUMI=;
-        b=b1RNkbeLixW9gZPuoBORnPR1mOJp7dwghHyv92VVAEM//RFr20neEXw1JxMJUs7cQl
-         Dan6rMWa0Nv0lMY1v4ciy6YXyobRo5DBCv3rNhGYSypEnhiCiGun+xP91qKmXvVQVbRI
-         QnYyu+bmbfNzs+oY9JZ0aA6Y/zqVEdkxQP9RaAwxeqXaK/ijb1iBidtD4cfGJqg9hyZT
-         hrrzssZ2H8WmnbgQWxbGOcHOt8dwExZq2xlGrcWcpcwP901/JTzt6eXxY3Lr59UrynRz
-         Ukmj3pFk/UuxCNy9Gb3NmWONNJjkTwXzn3wmGlQfDaHKGOPr2dP7uzG2Zi40exEiYStS
-         XPTw==
-X-Gm-Message-State: AOAM533s6TwfZJKOLoiBjmJiQXG5FirCjNLwNm5aoNWm8BwA/SYenQJz
-        Oc9UpBOG9KIbMBJSMslv9O/7
-X-Google-Smtp-Source: ABdhPJwFnpLXEPr9AyaW4L1Hrgj1B6bqjOOn9Hd9qW37QhWeTeQE8lPs1HMgmrYB44H/jybAqv5pog==
-X-Received: by 2002:a17:902:8a8b:b029:10d:af46:f3d5 with SMTP id p11-20020a1709028a8bb029010daf46f3d5mr3117703plo.22.1622716714689;
-        Thu, 03 Jun 2021 03:38:34 -0700 (PDT)
-Received: from localhost.localdomain ([120.138.12.41])
-        by smtp.gmail.com with ESMTPSA id v67sm2053370pfb.193.2021.06.03.03.38.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Jun 2021 03:38:34 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     lorenzo.pieralisi@arm.com, robh@kernel.org, bhelgaas@google.com
-Cc:     bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v2 3/3] MAINTAINERS: Add entry for Qualcomm PCIe Endpoint driver and binding
-Date:   Thu,  3 Jun 2021 16:08:14 +0530
-Message-Id: <20210603103814.95177-4-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210603103814.95177-1-manivannan.sadhasivam@linaro.org>
-References: <20210603103814.95177-1-manivannan.sadhasivam@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tT5BxAW9qQtK1kr/tbUlMH8uwPRuH2kPZ0anFhWVOuY=;
+        b=ucDp3UHGFl8yttLHM/eVJKeutWMI4MU0k+X005op2cq3BZpcIaC83v87Hns9mDDUnV
+         J1Hc3sekJE2lUBsuLlVuiBooz42qFIVvnzd1uno4Ayn3ZWfqdoaxqNeT/qZI0bPUmAlh
+         +YEOxkj4pz8xZfsO5OfCe6RPdkd/HGM+eirK8PbkPeHyxiDgb05P0w3GEuzl/0LgPjmv
+         MreJQlInMZYC81/fxPaUMRmwyIjSiyKi9dQUOdIL1F5CnmmYrIzMCcqG6Wiq4nNm8NR7
+         tqBEaCkQsFUN7UK3xUe7w9qR6/dCxzGsXuxFLRDeB2uxF/6nS+WAPwU5nJ0KFl3o7Gm+
+         yvTw==
+X-Gm-Message-State: AOAM532/rZkKbl6lYqxJ6rtF2nxkI0v5R+mZgxwmCVCGYNEjjPzJ8F6M
+        DlvKjXvRQxG/LXTo7r4f5l/BqOVOUwkQN79Fofs=
+X-Google-Smtp-Source: ABdhPJy92oW8Zc9cNnz7uCmKzbv+VJKK8xEFb0Nm0qDbWI8Qiuoge+ncdt65lKqXrpVHH+Z4pWJEcWF3XzhIbxRYokw=
+X-Received: by 2002:a62:bd07:0:b029:2df:2c0a:d5e9 with SMTP id
+ a7-20020a62bd070000b02902df2c0ad5e9mr31299153pff.7.1622717942958; Thu, 03 Jun
+ 2021 03:59:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <cover.1620735871.git.sander@svanheule.net> <cover.1622713678.git.sander@svanheule.net>
+ <56fb027587fa067a249237ecaf40828cd508cdcc.1622713678.git.sander@svanheule.net>
+In-Reply-To: <56fb027587fa067a249237ecaf40828cd508cdcc.1622713678.git.sander@svanheule.net>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 3 Jun 2021 13:58:46 +0300
+Message-ID: <CAHp75VeLUufwYagvQ2M+VKsivUzmnHHHQeH4E8-uN2avRWmBag@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] mfd: Add RTL8231 core device
+To:     Sander Vanheule <sander@svanheule.net>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Michael Walle <michael@walle.cc>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MAINTAINERS entry for Qualcomm PCIe Endpoint driver and its
-devicetree binding. While at it, let's also fix the PCIE RC entry to
-cover only the RC driver.
+On Thu, Jun 3, 2021 at 1:01 PM Sander Vanheule <sander@svanheule.net> wrote:
+>
+> The RTL8231 is implemented as an MDIO device, and provides a regmap
+> interface for register access by the core and child devices.
+>
+> The chip can also be a device on an SMI bus, an I2C-like bus by Realtek.
+> Since kernel support for SMI is limited, and no real-world SMI
+> implementations have been encountered for this device, this is currently
+> unimplemented. The use of the regmap interface should make any future
+> support relatively straightforward.
+>
+> After reset, all pins are muxed to GPIO inputs before the pin drivers
+> are enabled. This is done to prevent accidental system resets, when a
+> pin is connected to the parent SoC's reset line.
+>
+> To provide different read and write semantics for the GPIO data
+> registers, a secondary virtual register range is used to enable separate
+> cacheing properties of pin input and output values.
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- MAINTAINERS | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+caching
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index bd7aff0c120f..cdd370138b9f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14254,7 +14254,15 @@ M:	Stanimir Varbanov <svarbanov@mm-sol.com>
- L:	linux-pci@vger.kernel.org
- L:	linux-arm-msm@vger.kernel.org
- S:	Maintained
--F:	drivers/pci/controller/dwc/*qcom*
-+F:	drivers/pci/controller/dwc/pcie-qcom.c
-+
-+PCIE ENDPOINT DRIVER FOR QUALCOMM
-+M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+L:	linux-pci@vger.kernel.org
-+L:	linux-arm-msm@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-+F:	drivers/pci/controller/dwc/pcie-qcom-ep.c
- 
- PCIE DRIVER FOR ROCKCHIP
- M:	Shawn Lin <shawn.lin@rock-chips.com>
+...
+
+
+> +static int rtl8231_reg_read(void *context, unsigned int reg, unsigned int *val)
+> +{
+> +       struct mdio_device *mdio_dev = context;
+> +       int ret;
+> +
+> +       ret = mdiobus_read(mdio_dev->bus, mdio_dev->addr, RTL8231_REAL_REG(reg));
+> +
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       *val = ret & 0xffff;
+> +
+> +       return 0;
+> +}
+> +
+> +static int rtl8231_reg_write(void *context, unsigned int reg, unsigned int val)
+> +{
+> +       struct mdio_device *mdio_dev = context;
+> +
+> +       return mdiobus_write(mdio_dev->bus, mdio_dev->addr, RTL8231_REAL_REG(reg), val);
+> +}
+
+Hmm... Maybe we can amend regmap-mdio to avoid duplication of the
+above? Something like xlate in gpio-regmap or so?
+
+...
+
+> +       mdiodev->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
+
+Missed
+
+  if (IS_ERR(mdiodev->reset_gpio))
+    return PTR_ERR(mdiodev->reset_gpio);
+
 -- 
-2.25.1
-
+With Best Regards,
+Andy Shevchenko
