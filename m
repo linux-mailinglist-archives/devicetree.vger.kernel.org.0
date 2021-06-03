@@ -2,319 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D590739AD41
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 23:54:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49B9339AD4B
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 23:56:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230158AbhFCV4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 17:56:34 -0400
-Received: from smtp.220.in.ua ([89.184.67.205]:37429 "EHLO smtp.220.in.ua"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229707AbhFCV4e (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Jun 2021 17:56:34 -0400
-Received: from [192.168.202.100] (unknown [95.67.115.55])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S229927AbhFCV60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 17:58:26 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:28186 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230083AbhFCV60 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 17:58:26 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1622757401; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=85uDWnmNo6inlorp38hf6id8NLKbX4u0nc6nTll7g+0=;
+ b=gT6+nJc9XSdGEiSd/k5ZNej+3/6/7Z+j0TOrcZFJYs5qt1aqdfOlyRkLsLRrvS7o2WMJ+xbp
+ sJH16RtXPFLEdArrbn/7e6xG39UzQssv27iezn5yDzvj4QM+Yk+xNoEQ9MGzKidYankbY9Hd
+ QITb3sG19Ry/AZH1burzbxEdW7I=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 60b95016e27c0cc77f1ab859 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 03 Jun 2021 21:56:38
+ GMT
+Sender: khsieh=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 4D4CFC4338A; Thu,  3 Jun 2021 21:56:38 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by smtp.220.in.ua (Postfix) with ESMTPSA id 2EE341A20871;
-        Fri,  4 Jun 2021 00:54:47 +0300 (EEST)
-To:     Jeff LaBundy <jeff@labundy.com>
-Cc:     linux-input@vger.kernel.org,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Device Tree mailing list <devicetree@vger.kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jiri Kosina <jikos@jikos.cz>,
-        Patchwork Bot <patchwork-bot@kernel.org>,
-        Rob Herring <robh@kernel.org>
-References: <20210602190504.23076-1-oleg@kaa.org.ua>
- <20210603143807.GA13110@labundy.com>
-From:   Oleh Kravchenko <oleg@kaa.org.ua>
-Subject: Re: [PATCH 1/2 v2] input: add SparkFun Qwiic Joystick driver
-Message-ID: <7a78421c-f1aa-c5a8-bdde-0f24e5c9b669@kaa.org.ua>
-Date:   Fri, 4 Jun 2021 00:54:42 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        (Authenticated sender: khsieh)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8D4F1C433D3;
+        Thu,  3 Jun 2021 21:56:36 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20210603143807.GA13110@labundy.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 03 Jun 2021 14:56:36 -0700
+From:   khsieh@codeaurora.org
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
+        vkoul@kernel.org, agross@kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, abhinavk@codeaurora.org,
+        aravindh@codeaurora.org, freedreno@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64/dts/qcom/sc7180: Add Display Port dt node
+In-Reply-To: <YLkI/6ItCz+SbbuJ@yoga>
+References: <1622736555-15775-1-git-send-email-khsieh@codeaurora.org>
+ <YLkI/6ItCz+SbbuJ@yoga>
+Message-ID: <ac326ec8689c0babb08b2311e19d52cc@codeaurora.org>
+X-Sender: khsieh@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Jeff,
-thank you for your code-review.
-
-Could you please clarify a few things below?
-Just for my better understanding.
-
-
-03.06.21 17:38, Jeff LaBundy пише:
-> Hi Oleh,
+On 2021-06-03 09:53, Bjorn Andersson wrote:
+> On Thu 03 Jun 11:09 CDT 2021, Kuogee Hsieh wrote:
 > 
-> This cleaned up rather nicely; just a few more comments from myself.
+>> Add DP device node on sc7180.
+>> 
+>> Changes in v2:
+>> -- replace msm_dp with dp
+>> -- replace dp_opp_table with opp_table
+>> 
 > 
-> On Wed, Jun 02, 2021 at 10:05:04PM +0300, Oleh Kravchenko wrote:
->> A simple analog joystick built on Low Power ATtiny85 Microcontroller.
->> Directional movements are measured with two 10 kΩ potentiometers
->> connected with a gimbal mechanism that separates the horizontal and
->> vertical movements. This joystick also has a select button that is actuated
->> when the joystick is pressed down.
->>
->> Input events polled over the I2C bus.
->>
->> Product page:
->> https://www.sparkfun.com/products/15168
->> Firmware and hardware sources:
->> https://github.com/sparkfun/Qwiic_Joystick
->>
->> Tested on RPi4B and O4-iMX-NANO boards.
->>
->> Cc: Benjamin Tissoires <benjamin.tissoires@redhat.com>
->> Cc: Device Tree mailing list <devicetree@vger.kernel.org>
->> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
->> Cc: Jiri Kosina <jikos@jikos.cz>
->> Cc: Patchwork Bot <patchwork-bot@kernel.org>
->> Cc: Rob Herring <robh@kernel.org>
->> Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
+> I'm sorry for those suggestions, I don't like either one of them.
 > 
-> Typically a binding patch should be first in the series (i.e. [1/2])
-> with the driver next (i.e. [2/2]) so that checkpatch does not signal
-> a warning about an undocumented compatible string.
+> And for everything but changes to the DRM code the changelog goes below
+> the --- line, so it's not part of the git history.
 > 
+>> Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
 >> ---
->>
->> Changes:
->> - update code after code review
->>
->>  drivers/input/joystick/Kconfig          |   9 ++
->>  drivers/input/joystick/Makefile         |   1 +
->>  drivers/input/joystick/qwiic-joystick.c | 147 ++++++++++++++++++++++++
->>  3 files changed, 157 insertions(+)
->>  create mode 100644 drivers/input/joystick/qwiic-joystick.c
->>
->> diff --git a/drivers/input/joystick/Kconfig b/drivers/input/joystick/Kconfig
->> index 5e38899058c1..7dfe8ea90923 100644
->> --- a/drivers/input/joystick/Kconfig
->> +++ b/drivers/input/joystick/Kconfig
->> @@ -372,6 +372,15 @@ config JOYSTICK_PXRC
->>  	  To compile this driver as a module, choose M here: the
->>  	  module will be called pxrc.
->>  
->> +config JOYSTICK_QWIIC
->> +	tristate "SparkFun Qwiic Joystick"
->> +	depends on I2C
->> +	help
->> +	  Say Y here if you want to use the SparkFun Qwiic Joystick.
->> +
->> +	  To compile this driver as a module, choose M here: the
->> +	  module will be called qwiic-joystick.
->> +
->>  config JOYSTICK_FSIA6B
->>  	tristate "FlySky FS-iA6B RC Receiver"
->>  	select SERIO
->> diff --git a/drivers/input/joystick/Makefile b/drivers/input/joystick/Makefile
->> index 31d720c9e493..5174b8aba2dd 100644
->> --- a/drivers/input/joystick/Makefile
->> +++ b/drivers/input/joystick/Makefile
->> @@ -27,6 +27,7 @@ obj-$(CONFIG_JOYSTICK_MAPLE)		+= maplecontrol.o
->>  obj-$(CONFIG_JOYSTICK_N64)		+= n64joy.o
->>  obj-$(CONFIG_JOYSTICK_PSXPAD_SPI)	+= psxpad-spi.o
->>  obj-$(CONFIG_JOYSTICK_PXRC)		+= pxrc.o
->> +obj-$(CONFIG_JOYSTICK_QWIIC)		+= qwiic-joystick.o
->>  obj-$(CONFIG_JOYSTICK_SIDEWINDER)	+= sidewinder.o
->>  obj-$(CONFIG_JOYSTICK_SPACEBALL)	+= spaceball.o
->>  obj-$(CONFIG_JOYSTICK_SPACEORB)		+= spaceorb.o
->> diff --git a/drivers/input/joystick/qwiic-joystick.c b/drivers/input/joystick/qwiic-joystick.c
->> new file mode 100644
->> index 000000000000..59c0f3e6ee75
->> --- /dev/null
->> +++ b/drivers/input/joystick/qwiic-joystick.c
->> @@ -0,0 +1,147 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright (C) 2021 Oleh Kravchenko <oleg@kaa.org.ua>
->> + *
->> + * SparkFun Qwiic Joystick
->> + * Product page:https://www.sparkfun.com/products/15168
->> + * Firmware and hardware sources:https://github.com/sparkfun/Qwiic_Joystick
->> + */
->> +
->> +#include <linux/bits.h>
->> +#include <linux/i2c.h>
->> +#include <linux/input.h>
+>>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi |  9 ++++
+>>  arch/arm64/boot/dts/qcom/sc7180.dtsi         | 78 
+>> ++++++++++++++++++++++++++++
+>>  2 files changed, 87 insertions(+)
+>> 
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+>> index 24d293e..40367a2 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+>> @@ -786,6 +786,15 @@ hp_i2c: &i2c9 {
+>>  	status = "okay";
+>>  };
+>> 
+>> +&dp {
+>> +        status = "okay";
+>> +        pinctrl-names = "default";
+>> +        pinctrl-0 = <&dp_hot_plug_det>;
+>> +        data-lanes = <0 1>;
 > 
-> Now that you are using byte order macros, you should explicitly include
-> linux/kernel.h.
-
-Where is requirement is described?
-I've found a lot of drivers without including linux/kernel.h but linux/bits.h
-
->> +#include <linux/module.h>
->> +
->> +#define DRV_NAME "qwiic-joystick"
->> +
->> +#define QWIIC_JSK_REG_VERS	0
->> +#define QWIIC_JSK_REG_DATA	3
->> +
->> +#define QWIIC_JSK_MAX_AXIS	GENMASK(9, 0)
->> +#define QWIIC_JSK_FUZZ		2
->> +#define QWIIC_JSK_FLAT		2
->> +#define QWIIC_JSK_POLL_INTERVAL	16
->> +#define QWIIC_JSK_POLL_MIN	8
->> +#define QWIIC_JSK_POLL_MAX	32
->> +
->> +struct qwiic_jsk {
->> +	char			phys[32];
->> +	struct input_dev	*dev;
->> +	struct i2c_client	*client;
+> Is it a limitation of the EC in Trogdor that you can only do 2 lanes?
+> 
+>> +        vdda-1p2-supply = <&vdda_usb_ss_dp_1p2>;
+>> +        vdda-0p9-supply = <&vdda_usb_ss_dp_core>;
 >> +};
+>> +
+>>  &pm6150_adc {
+>>  	charger-thermistor@4f {
+>>  		reg = <ADC5_AMUX_THM3_100K_PU>;
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+>> index 6228ba2..05a4133 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+>> @@ -3032,6 +3032,13 @@
+>>  							remote-endpoint = <&dsi0_in>;
+>>  						};
+>>  					};
+>> +
+>> +					port@2 {
+>> +						reg = <2>;
+>> +						dpu_intf0_out: endpoint {
+>> +							remote-endpoint = <&dp_in>;
+>> +						};
+>> +					};
+>>  				};
+>> 
+>>  				mdp_opp_table: mdp-opp-table {
+>> @@ -3148,6 +3155,77 @@
+>> 
+>>  				status = "disabled";
+>>  			};
+>> +
+>> +			dp: displayport-controller@ae90000 {
 > 
-> Nit: no need to align these declarations (here and a few other places).
+> If you label this "mdss_dp", then it will naturally group with other
+> mdss properties in trogdor.dtsi (which should be sorted 
+> alphabetically).
 > 
+>> +				compatible = "qcom,sc7180-dp";
+>> +				status = "disabled";
 >> +
->> +struct qwiic_ver {
->> +	u8 addr;
->> +	u8 major;
->> +	u8 minor;
->> +} __packed;
+>> +				reg = <0 0x0ae90000 0 0x1400>;
+>> +
+>> +				interrupt-parent = <&mdss>;
+>> +				interrupts = <12>;
+>> +
+>> +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+>> +					 <&dispcc DISP_CC_MDSS_DP_AUX_CLK>,
+>> +					 <&dispcc DISP_CC_MDSS_DP_LINK_CLK>,
+>> +					 <&dispcc DISP_CC_MDSS_DP_LINK_INTF_CLK>,
+>> +					 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
+>> +				clock-names = "core_iface", "core_aux", "ctrl_link",
+>> +					      "ctrl_link_iface", "stream_pixel";
+>> +				#clock-cells = <1>;
+>> +				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
+>> +						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
+>> +				assigned-clock-parents = <&dp_phy 0>, <&dp_phy 1>;
+>> +				phys = <&dp_phy>;
+>> +				phy-names = "dp";
+>> +
+>> +				operating-points-v2 = <&opp_table>;
+>> +				power-domains = <&rpmhpd SC7180_CX>;
 > 
-> 'addr' is unused so it can be dropped, in which case QWIIC_JSK_REG_VERS
-> would need to be increased to 1.
-> 
->> +
->> +struct qwiic_data {
->> +	__be16	x;
->> +	__be16	y;
->> +	u8	thumb;
->> +} __packed;
->> +
->> +static void qwiic_poll(struct input_dev *input)
->> +{
->> +	struct qwiic_jsk *priv;
->> +	struct qwiic_data data;
->> +	int err;
->> +
->> +	priv = input_get_drvdata(input);
->> +
->> +	err = i2c_smbus_read_i2c_block_data(priv->client, QWIIC_JSK_REG_DATA,
->> +					    sizeof(data), (u8 *)&data);
->> +	if (err != sizeof(data))
->> +		return;
->> +
->> +	input_report_abs(input, ABS_X, be16_to_cpu(data.x) >> 6);
->> +	input_report_abs(input, ABS_Y, be16_to_cpu(data.y) >> 6);
->> +	input_report_key(input, BTN_THUMBL, !data.thumb);
->> +	input_sync(input);
->> +}
->> +
->> +static int qwiic_probe(struct i2c_client *client,
->> +		       const struct i2c_device_id *id)
->> +{
->> +	struct qwiic_jsk *priv;
->> +	struct qwiic_ver vers;
->> +	int err;
->> +
->> +	err = i2c_smbus_read_i2c_block_data(client, QWIIC_JSK_REG_VERS,
->> +					    sizeof(vers), (u8 *)&vers);
->> +	if (0 <= err && err < sizeof(vers))
->> +		err = -EIO;
->> +	if (err < 0)
->> +		return err;
-> 
-> I think this reads a little simpler as:
-> 
-> if (err < 0)
-> 	return err;
-> if (err != sizeof(vers))
-> 	return -EIO;
-> 
+> Just curious, but isn't the DP block in the MDSS_GDCS? Or do we need to
+> mention CX here in order for the opp framework to apply required-opps
+> of CX?
 
-Can we sure that i2c_smbus_read_i2c_block_data() will read exact numbers of bytes?
-And if it read less, will return it an error?
-
->> +
->> +	dev_dbg(&client->dev, "SparkFun Qwiic Joystick, FW: %d.%d\n",
->> +		vers.major, vers.minor);
-> 
-> These should be printed as %u.
+yes,
 > 
 >> +
->> +	priv = devm_kzalloc(&client->dev, sizeof(*priv), GFP_KERNEL);
->> +	if (!priv)
->> +		return -ENOMEM;
+>> +				#sound-dai-cells = <0>;
 >> +
->> +	priv->client = client;
->> +	snprintf(priv->phys, sizeof(priv->phys),
->> +		 "i2c/%s", dev_name(&client->dev));
->> +	i2c_set_clientdata(client, priv);
+>> +				ports {
+>> +					#address-cells = <1>;
+>> +					#size-cells = <0>;
+>> +					port@0 {
+>> +						reg = <0>;
+>> +						dp_in: endpoint {
+>> +							remote-endpoint = <&dpu_intf0_out>;
+>> +						};
+>> +					};
 >> +
->> +	priv->dev = devm_input_allocate_device(&client->dev);
->> +	if (!priv->dev)
->> +		return -ENOMEM;
+>> +					port@1 {
+>> +						reg = <1>;
+>> +						dp_out: endpoint { };
+>> +					};
+>> +				};
 >> +
->> +	priv->dev->id.bustype = BUS_I2C;
->> +	priv->dev->name = "SparkFun Qwiic Joystick";
->> +	priv->dev->phys = priv->phys;
->> +	input_set_drvdata(priv->dev, priv);
->> +
->> +	input_set_abs_params(priv->dev, ABS_X, 0, QWIIC_JSK_MAX_AXIS,
->> +			     QWIIC_JSK_FUZZ, QWIIC_JSK_FLAT);
->> +	input_set_abs_params(priv->dev, ABS_Y, 0, QWIIC_JSK_MAX_AXIS,
->> +			     QWIIC_JSK_FUZZ, QWIIC_JSK_FLAT);
->> +	input_set_capability(priv->dev, EV_KEY, BTN_THUMBL);
->> +
->> +	err = input_setup_polling(priv->dev, qwiic_poll);
->> +	if (err) {
->> +		dev_err(&client->dev, "failed to set up polling: %d\n", err);
->> +		return err;
->> +	}
->> +	input_set_poll_interval(priv->dev, QWIIC_JSK_POLL_INTERVAL);
->> +	input_set_min_poll_interval(priv->dev, QWIIC_JSK_POLL_MIN);
->> +	input_set_max_poll_interval(priv->dev, QWIIC_JSK_POLL_MAX);
->> +
->> +	err = input_register_device(priv->dev);
->> +	if (err)
->> +		dev_err(&client->dev, "failed to register joystick: %d\n", err);
->> +
->> +	return err;
->> +}
->> +
->> +#ifdef CONFIG_OF
->> +static const struct of_device_id of_qwiic_match[] = {
->> +	{ .compatible = "sparkfun,qwiic-joystick", },
->> +	{ },
->> +};
->> +MODULE_DEVICE_TABLE(of, of_qwiic_match);
->> +#endif /* CONFIG_OF */
->> +
->> +static const struct i2c_device_id qwiic_id_table[] = {
->> +	{ KBUILD_MODNAME, 0 },
->> +	{ },
->> +};
->> +MODULE_DEVICE_TABLE(i2c, qwiic_id_table);
->> +
->> +static struct i2c_driver qwiic_driver = {
->> +	.driver = {
->> +		.name		= DRV_NAME,
->> +		.of_match_table	= of_match_ptr(of_qwiic_match),
->> +	},
->> +	.id_table	= qwiic_id_table,
->> +	.probe		= qwiic_probe,
->> +};
->> +module_i2c_driver(qwiic_driver);
->> +
->> +MODULE_AUTHOR("Oleh Kravchenko <oleg@kaa.org.ua>");
->> +MODULE_DESCRIPTION("SparkFun Qwiic Joystick driver");
->> +MODULE_LICENSE("GPL v2");
->> -- 
->> 2.26.3
->>
+>> +				opp_table: dp-opp-table {
 > 
-> Kind regards,
-> Jeff LaBundy
+> The one and only "opp_table" of the sc7180 :)
+> Maybe name it dp_opp_table instead?
 > 
-
--- 
-Best regards,
-Oleh Kravchenko
-
+> Regards,
+> Bjorn
+> 
+>> +					compatible = "operating-points-v2";
+>> +
+>> +					opp-160000000 {
+>> +						opp-hz = /bits/ 64 <160000000>;
+>> +						required-opps = <&rpmhpd_opp_low_svs>;
+>> +					};
+>> +
+>> +					opp-270000000 {
+>> +						opp-hz = /bits/ 64 <270000000>;
+>> +						required-opps = <&rpmhpd_opp_svs>;
+>> +					};
+>> +
+>> +					opp-540000000 {
+>> +						opp-hz = /bits/ 64 <540000000>;
+>> +						required-opps = <&rpmhpd_opp_svs_l1>;
+>> +					};
+>> +
+>> +					opp-810000000 {
+>> +						opp-hz = /bits/ 64 <810000000>;
+>> +						required-opps = <&rpmhpd_opp_nom>;
+>> +					};
+>> +				};
+>> +			};
+>> +
+>> +
+>>  		};
+>> 
+>>  		dispcc: clock-controller@af00000 {
+>> --
+>> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
+>> Forum,
+>> a Linux Foundation Collaborative Project
+>> 
