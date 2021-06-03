@@ -2,116 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D76939A40F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 17:12:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84EFC39A460
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 17:20:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231827AbhFCPOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 11:14:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53250 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231639AbhFCPOe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 11:14:34 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38505C06174A
-        for <devicetree@vger.kernel.org>; Thu,  3 Jun 2021 08:12:41 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id u18so5079055pfk.11
-        for <devicetree@vger.kernel.org>; Thu, 03 Jun 2021 08:12:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=SOz7E89GO3Tlt1UETlglRkdF1+fg4j4ELIuMgr0ZBk8=;
-        b=DioCg1gEzdC+P2iIV7lBStmKSH55GVSy3MLea9WvF2E88cXD21eBObuZ/qfR0TZRfr
-         8c1HR+/lmhgpqzX1ruzsPtSW/6n+4fXI+dJiGmNSV2KQSpU+Bohp1ouHJ6m3d8GhIuom
-         QlYDnSDRR35guvbkLtNwit1BoWqDvTQmrQ1p8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=SOz7E89GO3Tlt1UETlglRkdF1+fg4j4ELIuMgr0ZBk8=;
-        b=jXggqSJU6CrquErW5mSJAapq0ppno10XgDS3kE6cbIQjbIEr9nCgWjikAYB7Q9sJip
-         aE2Y9vbyU2kJQ0jGyt/ZhE1acmMprwKtp0yGJsZHmZXNNUrZDN82pq+iAKoobfo3g7cY
-         Yk/Zqvevn4UGw2KH5DUAcGgjq5CAspWnRmdmNLqgxs4JMLR63NvFaK60q5czlantMJo6
-         1LYK8k0aXyFEs0ZSdkei0Z9iqptKiazyaRXu23Ee90opMMOjd3BHfd1xIYpCetdCwRZW
-         d4sV2UJ3m6aomu6reINwShj0q2Bx6nrr/1b1aGXMOXeSTdysdeTmhxLar4LELgRZm4hx
-         fH7Q==
-X-Gm-Message-State: AOAM5318mIHzqTrOX93WjB5KCP7UIKkhW3gT7ukothpyN28aMviOuk63
-        2NYBKkDz20U2xwqFD7/SKPekew==
-X-Google-Smtp-Source: ABdhPJyRIxzMB1dJJuGzR1hBSkiU18tcbJAKhuTSAqWm14EGEUPmzHPxxVPOf7TGbNbVrE6swQxSoQ==
-X-Received: by 2002:a05:6a00:856:b029:28e:e5d2:9a62 with SMTP id q22-20020a056a000856b029028ee5d29a62mr234677pfk.17.1622733160794;
-        Thu, 03 Jun 2021 08:12:40 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:d737:2805:1403:7c09])
-        by smtp.gmail.com with UTF8SMTPSA id r10sm3190416pga.48.2021.06.03.08.12.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Jun 2021 08:12:40 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH v2] arm64: dts: qcom: pm6150: Add thermal zone for PMIC on-die temperature
-Date:   Thu,  3 Jun 2021 08:12:34 -0700
-Message-Id: <20210603081215.v2.1.Id4510e9e4baaa3f6c9fdd5cdf4d8606e63c262e3@changeid>
-X-Mailer: git-send-email 2.32.0.rc0.204.g9fa02ecfa5-goog
+        id S231912AbhFCPWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 11:22:01 -0400
+Received: from polaris.svanheule.net ([84.16.241.116]:39434 "EHLO
+        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231895AbhFCPWA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 11:22:00 -0400
+Received: from [IPv6:2a02:a03f:eafb:ee01:eb34:edf2:c0ff:9e88] (unknown [IPv6:2a02:a03f:eafb:ee01:eb34:edf2:c0ff:9e88])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 4D1C82081DF;
+        Thu,  3 Jun 2021 17:20:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1622733613;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=C3soFR1tkb3QWtEaQ45qX8n9gA+coVmmtAY/2wAgXEY=;
+        b=0MUMf/C8N2OijrODvrYxGdaBX4Duppo962UNbWKD2iDNM102o2qAjAyfPvnAg63ojfdyFY
+        Yc0wK13qZXd8uMYqGOIw33D0OfUJhoqhhn2GwYqy6t28I8R4uKrzY5YSaFLShQMOUQfNEN
+        z4BBI3dQlnD0/J58iDfsRczdMCs5zGzO+p21a2as2VKg8CkQiRzz/VlIE5khKCIRE9hZAO
+        xKLxDdU3oXHk/r/B6q0lM7MFrg5KQWOSasO1g2QrT9UiLDJ0ozVRKPnxeTreMEfBI+7rAK
+        08TWndr2fn4Ku0kTThR2gMVNqPxIYvn+kRj+PHD3ZIkZz29pn2BXQAhfh+u88w==
+Message-ID: <983cb8ef005f93b650f3228256babaf7680fc0fc.camel@svanheule.net>
+Subject: Re: [PATCH v4 3/5] mfd: Add RTL8231 core device
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Michael Walle <michael@walle.cc>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Date:   Thu, 03 Jun 2021 17:20:09 +0200
+In-Reply-To: <YLjhT1zL/6okGP3p@lunn.ch>
+References: <cover.1620735871.git.sander@svanheule.net>
+         <cover.1622713678.git.sander@svanheule.net>
+         <56fb027587fa067a249237ecaf40828cd508cdcc.1622713678.git.sander@svanheule.net>
+         <CAHp75VeLUufwYagvQ2M+VKsivUzmnHHHQeH4E8-uN2avRWmBag@mail.gmail.com>
+         <acc18a3b1c02b8f89023451d816031e70bec9320.camel@svanheule.net>
+         <YLjhT1zL/6okGP3p@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a thermal zone for the pm6150 on-die temperature. The system should
-try to shut down orderly when the temperature reaches the critical trip
-point at 115°C, otherwise the PMIC will perform a HW power off at 145°C.
+On Thu, 2021-06-03 at 16:03 +0200, Andrew Lunn wrote:
+> > I wanted to make the masking explicit, but since regmap-mdio currently
+> > requires
+> > a register address width of 5 bit, it could move there.
+> > 
+> > Actually, can we safely assume that any MDIO driver implementing clause-22
+> > access (5-bit register address width) will just ignore higher bits? In that
+> > case, I could just drop these functions and not even modify regmap-mdio. It
+> > appears to work for bitbanged MDIO.
+> 
+> How are C45 addresses handled? The API to the MDIO bus driver uses a
+> register value which is 32 bits in width. Bit 30 indicates the address
+> is a C45 address, and then you have 21 bits of actual address.
+> regmap-mdio needs to be generic and support both C22 and C45.
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
+Currently regmap-mdio will only accept regmap_config structs where the register
+width is 5 bit, but this is not enforced for the reg_read/reg_write functions
+and the regnum is passed verbatim to mdiobus_read/mdiobus_write.
 
-Changes in v2:
-- remove 'pm6150-' prefix from critical trip point
-- updated commit message
+So, if I understand correctly:
+ * for a regmap configured for C22 access, register addresses should be masked
+   with 0x1f to create a C22 regnum
+ * for a regmap configured for C45 access, register addresses should be masked
+   and formatted with 
+   (MII_ADDR_C45 | (mdiodev->addr << MII_DEVADDR_C45_SHIFT) | (reg_addr 0xffff))
 
- arch/arm64/boot/dts/qcom/pm6150.dtsi | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+I would think that a device that supports both C22 and C45 access, can then just
+be set up to have two regmaps. If they can be considered to be independent
+register spaces, one regmap for each access type would make sense to me.
 
-diff --git a/arch/arm64/boot/dts/qcom/pm6150.dtsi b/arch/arm64/boot/dts/qcom/pm6150.dtsi
-index 8ab4f1f78bbf..8a4972e6a24c 100644
---- a/arch/arm64/boot/dts/qcom/pm6150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm6150.dtsi
-@@ -7,6 +7,30 @@
- #include <dt-bindings/spmi/spmi.h>
- #include <dt-bindings/thermal/thermal.h>
- 
-+/ {
-+	thermal-zones {
-+		pm6150_thermal: pm6150-thermal {
-+			polling-delay-passive = <100>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm6150_temp>;
-+
-+			trips {
-+				pm6150_trip0: trip0 {
-+					temperature = <95000>;
-+					hysteresis = <0>;
-+					type = "passive";
-+				};
-+
-+				pm6150_crit: crit {
-+					temperature = <115000>;
-+					hysteresis = <0>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &spmi_bus {
- 	pm6150_lsid0: pmic@0 {
- 		compatible = "qcom,pm6150", "qcom,spmi-pmic";
--- 
-2.32.0.rc0.204.g9fa02ecfa5-goog
+I'll cook up a patch for this.
+
+Best,
+Sander
 
