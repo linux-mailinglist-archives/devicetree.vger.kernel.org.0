@@ -2,130 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D144F399F5B
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 12:59:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 136FE399F58
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 12:59:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229769AbhFCLA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 07:00:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53906 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229840AbhFCLA7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 07:00:59 -0400
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D2F3C06174A;
-        Thu,  3 Jun 2021 03:59:03 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id 27so4838449pgy.3;
-        Thu, 03 Jun 2021 03:59:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tT5BxAW9qQtK1kr/tbUlMH8uwPRuH2kPZ0anFhWVOuY=;
-        b=XiIDWcdKcuz0hYa8BP/MY9GJJyOEIHq1odRr1BQ7W9g4DJqv9djHEkNt+UVC8SVjvC
-         olyHkMHrXggChI1Eitl1+HezZvhULeAGRjC3Sengf8ZGIXYQFpIDgM6vCZp2r7pWOTBl
-         HBGVeUghw30tnKRQuHMYZimfNVDvRWbYBop+NvhdJVg/D18jSui/B2MipFPdFLVaeI5e
-         S14C9x8+zF51ZR9QoqabkazEOoNy8cZpz6DWik9UPp33AVSGMBqG1YU5MV/NVZvUXqP+
-         pvpS7n2l8u8k6DSzmgdItFEIVz8KAaic9uU2eoY5aRdERtWQV0NUpt8M+JI67zlweCJh
-         /7iA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tT5BxAW9qQtK1kr/tbUlMH8uwPRuH2kPZ0anFhWVOuY=;
-        b=ucDp3UHGFl8yttLHM/eVJKeutWMI4MU0k+X005op2cq3BZpcIaC83v87Hns9mDDUnV
-         J1Hc3sekJE2lUBsuLlVuiBooz42qFIVvnzd1uno4Ayn3ZWfqdoaxqNeT/qZI0bPUmAlh
-         +YEOxkj4pz8xZfsO5OfCe6RPdkd/HGM+eirK8PbkPeHyxiDgb05P0w3GEuzl/0LgPjmv
-         MreJQlInMZYC81/fxPaUMRmwyIjSiyKi9dQUOdIL1F5CnmmYrIzMCcqG6Wiq4nNm8NR7
-         tqBEaCkQsFUN7UK3xUe7w9qR6/dCxzGsXuxFLRDeB2uxF/6nS+WAPwU5nJ0KFl3o7Gm+
-         yvTw==
-X-Gm-Message-State: AOAM532/rZkKbl6lYqxJ6rtF2nxkI0v5R+mZgxwmCVCGYNEjjPzJ8F6M
-        DlvKjXvRQxG/LXTo7r4f5l/BqOVOUwkQN79Fofs=
-X-Google-Smtp-Source: ABdhPJy92oW8Zc9cNnz7uCmKzbv+VJKK8xEFb0Nm0qDbWI8Qiuoge+ncdt65lKqXrpVHH+Z4pWJEcWF3XzhIbxRYokw=
-X-Received: by 2002:a62:bd07:0:b029:2df:2c0a:d5e9 with SMTP id
- a7-20020a62bd070000b02902df2c0ad5e9mr31299153pff.7.1622717942958; Thu, 03 Jun
- 2021 03:59:02 -0700 (PDT)
+        id S229791AbhFCLAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 07:00:52 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:39131 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229769AbhFCLAw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 07:00:52 -0400
+X-UUID: b8d8364fcab14093be8d7dcf5a6424a9-20210603
+X-UUID: b8d8364fcab14093be8d7dcf5a6424a9-20210603
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <ben.tseng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1058805667; Thu, 03 Jun 2021 18:59:04 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 3 Jun 2021 18:59:02 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 3 Jun 2021 18:59:02 +0800
+From:   Ben Tseng <ben.tseng@mediatek.com>
+To:     Fan Chen <fan.chen@mediatek.com>, Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        <linux-pm@vger.kernel.org>, <srv_heupstream@mediatek.com>
+CC:     Eduardo Valentin <edubezval@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <hsinyi@chromium.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Michael Kao <michael.kao@mediatek.com>,
+        Ben Tseng <ben.tseng@mediatek.com>
+Subject: [PATCH v2] arm64: dts: mt8183-kukui: Enable thermal Tboard
+Date:   Thu, 3 Jun 2021 18:59:01 +0800
+Message-ID: <20210603105901.21552-1-ben.tseng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-References: <cover.1620735871.git.sander@svanheule.net> <cover.1622713678.git.sander@svanheule.net>
- <56fb027587fa067a249237ecaf40828cd508cdcc.1622713678.git.sander@svanheule.net>
-In-Reply-To: <56fb027587fa067a249237ecaf40828cd508cdcc.1622713678.git.sander@svanheule.net>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 3 Jun 2021 13:58:46 +0300
-Message-ID: <CAHp75VeLUufwYagvQ2M+VKsivUzmnHHHQeH4E8-uN2avRWmBag@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] mfd: Add RTL8231 core device
-To:     Sander Vanheule <sander@svanheule.net>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Michael Walle <michael@walle.cc>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 3, 2021 at 1:01 PM Sander Vanheule <sander@svanheule.net> wrote:
->
-> The RTL8231 is implemented as an MDIO device, and provides a regmap
-> interface for register access by the core and child devices.
->
-> The chip can also be a device on an SMI bus, an I2C-like bus by Realtek.
-> Since kernel support for SMI is limited, and no real-world SMI
-> implementations have been encountered for this device, this is currently
-> unimplemented. The use of the regmap interface should make any future
-> support relatively straightforward.
->
-> After reset, all pins are muxed to GPIO inputs before the pin drivers
-> are enabled. This is done to prevent accidental system resets, when a
-> pin is connected to the parent SoC's reset line.
->
-> To provide different read and write semantics for the GPIO data
-> registers, a secondary virtual register range is used to enable separate
-> cacheing properties of pin input and output values.
+From: Michael Kao <michael.kao@mediatek.com>
 
-caching
+Add Tboard thermal sensor settings.
 
-...
+pull-up voltage: 1800 mv
+pull-up resistor: 75K
 
+Vsense = pull-up voltage * Rntc / ( pull-up resistor + Rntc )
+AuxIn = Vsense * 4096 / 1500
 
-> +static int rtl8231_reg_read(void *context, unsigned int reg, unsigned int *val)
-> +{
-> +       struct mdio_device *mdio_dev = context;
-> +       int ret;
-> +
-> +       ret = mdiobus_read(mdio_dev->bus, mdio_dev->addr, RTL8231_REAL_REG(reg));
-> +
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       *val = ret & 0xffff;
-> +
-> +       return 0;
-> +}
-> +
-> +static int rtl8231_reg_write(void *context, unsigned int reg, unsigned int val)
-> +{
-> +       struct mdio_device *mdio_dev = context;
-> +
-> +       return mdiobus_write(mdio_dev->bus, mdio_dev->addr, RTL8231_REAL_REG(reg), val);
-> +}
+Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
+Tested-by: Hsin-Yi Wang <hsinyi@chromium.org>
+---
+Change in v2:
+        - Rebase to kernel-v5.13-rc1
+        - Resend
+---
+ arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 14 ++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi       |  2 +-
+ 2 files changed, 15 insertions(+), 1 deletion(-)
 
-Hmm... Maybe we can amend regmap-mdio to avoid duplication of the
-above? Something like xlate in gpio-regmap or so?
-
-...
-
-> +       mdiodev->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
-
-Missed
-
-  if (IS_ERR(mdiodev->reset_gpio))
-    return PTR_ERR(mdiodev->reset_gpio);
-
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+index ff56bcf..65768ab 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+@@ -847,6 +847,20 @@
+ 	status = "okay";
+ };
+ 
++&thermal_zones {
++	Tboard1 {
++		polling-delay = <1000>; /* milliseconds */
++		polling-delay-passive = <0>; /* milliseconds */
++		thermal-sensors = <&tboard_thermistor1>;
++	};
++
++	Tboard2 {
++		polling-delay = <1000>; /* milliseconds */
++		polling-delay-passive = <0>; /* milliseconds */
++		thermal-sensors = <&tboard_thermistor2>;
++	};
++};
++
+ &u3phy {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+index c5e822b..4173a5d 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+@@ -673,7 +673,7 @@
+ 			nvmem-cell-names = "calibration-data";
+ 		};
+ 
+-		thermal-zones {
++		thermal_zones: thermal-zones {
+ 			cpu_thermal: cpu_thermal {
+ 				polling-delay-passive = <100>;
+ 				polling-delay = <500>;
 -- 
-With Best Regards,
-Andy Shevchenko
+1.8.1.1.dirty
+
