@@ -2,192 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CC8639A5D7
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 18:37:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06E6839A64F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 18:54:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229789AbhFCQjn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 12:39:43 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:64385 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229695AbhFCQjm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 12:39:42 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1622738278; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=IOHUtOukDXpuyt3YY40+bowFnid37YHYNxe6N7kY+Yk=; b=TNsYTcD1VjXq5xFiv+cnv6tiGCxXJaACq4IXMpKu99HIvyrqgo6j2cuyuUH4/T3R/jc6f+1A
- rmpvh65gJurTNnCSaalWDsqKq9mDNXn1UTzC09Aqfp7r2ElNmC3l7Hyjf7jLX4cDaIEkPOxO
- Z5CiZzcB2dlhxJ4Y3OYFpdnxelk=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 60b90555e27c0cc77fcfa80f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 03 Jun 2021 16:37:41
- GMT
-Sender: khsieh=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id D197AC4323A; Thu,  3 Jun 2021 16:37:40 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from khsieh-linux1.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: khsieh)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 32F30C433F1;
-        Thu,  3 Jun 2021 16:37:39 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 32F30C433F1
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=khsieh@codeaurora.org
-From:   Kuogee Hsieh <khsieh@codeaurora.org>
-To:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
-        vkoul@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Cc:     abhinavk@codeaurora.org, aravindh@codeaurora.org,
-        khsieh@codeaurora.org, freedreno@lists.freedesktop.org,
+        id S229762AbhFCQ4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 12:56:19 -0400
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:36532 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229719AbhFCQ4T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 12:56:19 -0400
+Received: by mail-oi1-f169.google.com with SMTP id a21so6947479oiw.3
+        for <devicetree@vger.kernel.org>; Thu, 03 Jun 2021 09:54:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=iBYxhbY2j6ySAuGmihYVsYnbIsjaqUjkE1YWENFEGdI=;
+        b=szaOaLRXYKAt968AT7xKKmjTg8k/1a7nMo4m2LlLG61kXhN8/uB+6BEwnmH/7Rm3Oi
+         3PGKICoeFamExccTohZRBhj0F07Md4Ey/bzMLyOpWA6RTaeUvGjCsYBwoB8gdwkpJ8ge
+         Q1odEP4/LrfmFkDOV1AD991vCez2qofOHMBOcK1aiBnLuahgoq9M/nkWb6VHmzacnCPv
+         6NYgpyIWT8BcIkUu8S9l2QcruCnaUyVZJN6QnjIN4NhhyPWR5NAct5md2wpJl1KqT8wF
+         C1xAPWbx3vYzjJPfhM/fE1e33PeWHzFBNKwQE0iR7+5SzJKye7SbJdxG2jzc1QpR1t+1
+         2MSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=iBYxhbY2j6ySAuGmihYVsYnbIsjaqUjkE1YWENFEGdI=;
+        b=UDTV/ICihZvM7bSpNh3wzc71/Ap22x8erDzkyF/CMtPnqJcx7XnbRPUacEfPKf3pvs
+         0cgQpQjKi2afqQFv+TQeE23C5XEzHuJZhJMBwc9uThiZTbYIqEwKLHE3mQ+3VL+gCrgC
+         ARQKFv/YxLs8hR7o7Tn9DyOlDbfTPs4X/5Y35sDdvlNS7cyco5DJ/xclngGKEUoUDC2S
+         82A7rdlTJIHG4/9ayo62ZvOcs2RIRi6TIw4VMz09gR7pAOItxiY4jj5tMQofF+2IayQs
+         MFuioGZXV/5ezStG4HnzY6xUl/bfZIAgLPAjwra4mQBeNTcOWmAy3W7y8U24b2f+XLZm
+         1TfA==
+X-Gm-Message-State: AOAM5329R/YNtavtkcbq/K9rg3v7d8ZJBzcKsShQmc5lDRdIhfcWAFW+
+        QjQAwjkgXlpmeqxdx1AGRUZp7A==
+X-Google-Smtp-Source: ABdhPJzj648Va4opuaa+MJGmQyF9iwtfKcrlzj48E5tYlGvBaBb6SqyGj+OYun1sa/hrf4gT2z6I7A==
+X-Received: by 2002:aca:5b04:: with SMTP id p4mr7898391oib.28.1622739202413;
+        Thu, 03 Jun 2021 09:53:22 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id l28sm326090otd.66.2021.06.03.09.53.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Jun 2021 09:53:22 -0700 (PDT)
+Date:   Thu, 3 Jun 2021 11:53:19 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Kuogee Hsieh <khsieh@codeaurora.org>
+Cc:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
+        vkoul@kernel.org, agross@kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, abhinavk@codeaurora.org,
+        aravindh@codeaurora.org, freedreno@lists.freedesktop.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3] arm64: dts: qcom: sc7180: Add DisplayPort  node
-Date:   Thu,  3 Jun 2021 09:37:30 -0700
-Message-Id: <1622738250-1469-1-git-send-email-khsieh@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+Subject: Re: [PATCH v2] arm64/dts/qcom/sc7180: Add Display Port dt node
+Message-ID: <YLkI/6ItCz+SbbuJ@yoga>
+References: <1622736555-15775-1-git-send-email-khsieh@codeaurora.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1622736555-15775-1-git-send-email-khsieh@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DP device node on sc7180.
+On Thu 03 Jun 11:09 CDT 2021, Kuogee Hsieh wrote:
 
-Changes in v2:
--- replace msm_dp with dp
--- replace dp_opp_table with opp_table
+> Add DP device node on sc7180.
+> 
+> Changes in v2:
+> -- replace msm_dp with dp
+> -- replace dp_opp_table with opp_table
+> 
 
-Changes in v3:
--- correct text of commit title
+I'm sorry for those suggestions, I don't like either one of them.
 
-Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi |  9 ++++
- arch/arm64/boot/dts/qcom/sc7180.dtsi         | 78 ++++++++++++++++++++++++++++
- 2 files changed, 87 insertions(+)
+And for everything but changes to the DRM code the changelog goes below
+the --- line, so it's not part of the git history.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 24d293e..40367a2 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -786,6 +786,15 @@ hp_i2c: &i2c9 {
- 	status = "okay";
- };
- 
-+&dp {
-+        status = "okay";
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&dp_hot_plug_det>;
-+        data-lanes = <0 1>;
-+        vdda-1p2-supply = <&vdda_usb_ss_dp_1p2>;
-+        vdda-0p9-supply = <&vdda_usb_ss_dp_core>;
-+};
-+
- &pm6150_adc {
- 	charger-thermistor@4f {
- 		reg = <ADC5_AMUX_THM3_100K_PU>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 6228ba2..05a4133 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -3032,6 +3032,13 @@
- 							remote-endpoint = <&dsi0_in>;
- 						};
- 					};
-+
-+					port@2 {
-+						reg = <2>;
-+						dpu_intf0_out: endpoint {
-+							remote-endpoint = <&dp_in>;
-+						};
-+					};
- 				};
- 
- 				mdp_opp_table: mdp-opp-table {
-@@ -3148,6 +3155,77 @@
- 
- 				status = "disabled";
- 			};
-+
-+			dp: displayport-controller@ae90000 {
-+				compatible = "qcom,sc7180-dp";
-+				status = "disabled";
-+
-+				reg = <0 0x0ae90000 0 0x1400>;
-+
-+				interrupt-parent = <&mdss>;
-+				interrupts = <12>;
-+
-+				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DP_AUX_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DP_LINK_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DP_LINK_INTF_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
-+				clock-names = "core_iface", "core_aux", "ctrl_link",
-+					      "ctrl_link_iface", "stream_pixel";
-+				#clock-cells = <1>;
-+				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
-+						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
-+				assigned-clock-parents = <&dp_phy 0>, <&dp_phy 1>;
-+				phys = <&dp_phy>;
-+				phy-names = "dp";
-+
-+				operating-points-v2 = <&opp_table>;
-+				power-domains = <&rpmhpd SC7180_CX>;
-+
-+				#sound-dai-cells = <0>;
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					port@0 {
-+						reg = <0>;
-+						dp_in: endpoint {
-+							remote-endpoint = <&dpu_intf0_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+						dp_out: endpoint { };
-+					};
-+				};
-+
-+				opp_table: dp-opp-table {
-+					compatible = "operating-points-v2";
-+
-+					opp-160000000 {
-+						opp-hz = /bits/ 64 <160000000>;
-+						required-opps = <&rpmhpd_opp_low_svs>;
-+					};
-+
-+					opp-270000000 {
-+						opp-hz = /bits/ 64 <270000000>;
-+						required-opps = <&rpmhpd_opp_svs>;
-+					};
-+
-+					opp-540000000 {
-+						opp-hz = /bits/ 64 <540000000>;
-+						required-opps = <&rpmhpd_opp_svs_l1>;
-+					};
-+
-+					opp-810000000 {
-+						opp-hz = /bits/ 64 <810000000>;
-+						required-opps = <&rpmhpd_opp_nom>;
-+					};
-+				};
-+			};
-+
-+
- 		};
- 
- 		dispcc: clock-controller@af00000 {
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+> Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi |  9 ++++
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi         | 78 ++++++++++++++++++++++++++++
+>  2 files changed, 87 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index 24d293e..40367a2 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -786,6 +786,15 @@ hp_i2c: &i2c9 {
+>  	status = "okay";
+>  };
+>  
+> +&dp {
+> +        status = "okay";
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&dp_hot_plug_det>;
+> +        data-lanes = <0 1>;
 
+Is it a limitation of the EC in Trogdor that you can only do 2 lanes?
+
+> +        vdda-1p2-supply = <&vdda_usb_ss_dp_1p2>;
+> +        vdda-0p9-supply = <&vdda_usb_ss_dp_core>;
+> +};
+> +
+>  &pm6150_adc {
+>  	charger-thermistor@4f {
+>  		reg = <ADC5_AMUX_THM3_100K_PU>;
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index 6228ba2..05a4133 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -3032,6 +3032,13 @@
+>  							remote-endpoint = <&dsi0_in>;
+>  						};
+>  					};
+> +
+> +					port@2 {
+> +						reg = <2>;
+> +						dpu_intf0_out: endpoint {
+> +							remote-endpoint = <&dp_in>;
+> +						};
+> +					};
+>  				};
+>  
+>  				mdp_opp_table: mdp-opp-table {
+> @@ -3148,6 +3155,77 @@
+>  
+>  				status = "disabled";
+>  			};
+> +
+> +			dp: displayport-controller@ae90000 {
+
+If you label this "mdss_dp", then it will naturally group with other
+mdss properties in trogdor.dtsi (which should be sorted alphabetically).
+
+> +				compatible = "qcom,sc7180-dp";
+> +				status = "disabled";
+> +
+> +				reg = <0 0x0ae90000 0 0x1400>;
+> +
+> +				interrupt-parent = <&mdss>;
+> +				interrupts = <12>;
+> +
+> +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_DP_AUX_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_DP_LINK_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_DP_LINK_INTF_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
+> +				clock-names = "core_iface", "core_aux", "ctrl_link",
+> +					      "ctrl_link_iface", "stream_pixel";
+> +				#clock-cells = <1>;
+> +				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
+> +						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
+> +				assigned-clock-parents = <&dp_phy 0>, <&dp_phy 1>;
+> +				phys = <&dp_phy>;
+> +				phy-names = "dp";
+> +
+> +				operating-points-v2 = <&opp_table>;
+> +				power-domains = <&rpmhpd SC7180_CX>;
+
+Just curious, but isn't the DP block in the MDSS_GDCS? Or do we need to
+mention CX here in order for the opp framework to apply required-opps
+of CX?
+
+> +
+> +				#sound-dai-cells = <0>;
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +					port@0 {
+> +						reg = <0>;
+> +						dp_in: endpoint {
+> +							remote-endpoint = <&dpu_intf0_out>;
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +						dp_out: endpoint { };
+> +					};
+> +				};
+> +
+> +				opp_table: dp-opp-table {
+
+The one and only "opp_table" of the sc7180 :)
+Maybe name it dp_opp_table instead?
+
+Regards,
+Bjorn
+
+> +					compatible = "operating-points-v2";
+> +
+> +					opp-160000000 {
+> +						opp-hz = /bits/ 64 <160000000>;
+> +						required-opps = <&rpmhpd_opp_low_svs>;
+> +					};
+> +
+> +					opp-270000000 {
+> +						opp-hz = /bits/ 64 <270000000>;
+> +						required-opps = <&rpmhpd_opp_svs>;
+> +					};
+> +
+> +					opp-540000000 {
+> +						opp-hz = /bits/ 64 <540000000>;
+> +						required-opps = <&rpmhpd_opp_svs_l1>;
+> +					};
+> +
+> +					opp-810000000 {
+> +						opp-hz = /bits/ 64 <810000000>;
+> +						required-opps = <&rpmhpd_opp_nom>;
+> +					};
+> +				};
+> +			};
+> +
+> +
+>  		};
+>  
+>  		dispcc: clock-controller@af00000 {
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+> 
