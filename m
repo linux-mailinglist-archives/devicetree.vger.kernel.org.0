@@ -2,49 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06E6839A64F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 18:54:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 878D039A66A
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 18:56:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229762AbhFCQ4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 12:56:19 -0400
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:36532 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229719AbhFCQ4T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 12:56:19 -0400
-Received: by mail-oi1-f169.google.com with SMTP id a21so6947479oiw.3
-        for <devicetree@vger.kernel.org>; Thu, 03 Jun 2021 09:54:22 -0700 (PDT)
+        id S230138AbhFCQ6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 12:58:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47708 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230106AbhFCQ6C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 12:58:02 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBEC1C06174A
+        for <devicetree@vger.kernel.org>; Thu,  3 Jun 2021 09:56:01 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id m137so3056915oig.6
+        for <devicetree@vger.kernel.org>; Thu, 03 Jun 2021 09:56:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=iBYxhbY2j6ySAuGmihYVsYnbIsjaqUjkE1YWENFEGdI=;
-        b=szaOaLRXYKAt968AT7xKKmjTg8k/1a7nMo4m2LlLG61kXhN8/uB+6BEwnmH/7Rm3Oi
-         3PGKICoeFamExccTohZRBhj0F07Md4Ey/bzMLyOpWA6RTaeUvGjCsYBwoB8gdwkpJ8ge
-         Q1odEP4/LrfmFkDOV1AD991vCez2qofOHMBOcK1aiBnLuahgoq9M/nkWb6VHmzacnCPv
-         6NYgpyIWT8BcIkUu8S9l2QcruCnaUyVZJN6QnjIN4NhhyPWR5NAct5md2wpJl1KqT8wF
-         C1xAPWbx3vYzjJPfhM/fE1e33PeWHzFBNKwQE0iR7+5SzJKye7SbJdxG2jzc1QpR1t+1
-         2MSg==
+        bh=mX0haAANX9Ohl4Z8WOCYfoEFijudUEJiwohJAuQC02c=;
+        b=E7gdFcfwwZk7HmQ39zxmvX/yTsBZjXSyT/Yh6ZyK3X2oG5Bw6amUuTiTPrsOwy6kgZ
+         B5tW/iWZvcNhruetACGyvRTD0P7EP+pM/4pEhrwTbkdVEFcqoWmBI+nbTzfUzXvm6tId
+         QCDfi7lTrixquP/z55TlYmB+GxG6PB4DmyPJXVEj2dL/4K5XDCEJ90HQlxDV6xa6KT0z
+         W7fkr1RnCW+Hato7dLIZsIGe+vP8u/lM+JRDb5Aw60xNBjoZBWxCV7M+pRVKfwnEeepl
+         kR64NgQ50fSStAbaU0ooPvLmuPoP/QqnSNkkytaSiZmHWGEp1AhH4RmRQGYwlw/dMtxk
+         MdTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=iBYxhbY2j6ySAuGmihYVsYnbIsjaqUjkE1YWENFEGdI=;
-        b=UDTV/ICihZvM7bSpNh3wzc71/Ap22x8erDzkyF/CMtPnqJcx7XnbRPUacEfPKf3pvs
-         0cgQpQjKi2afqQFv+TQeE23C5XEzHuJZhJMBwc9uThiZTbYIqEwKLHE3mQ+3VL+gCrgC
-         ARQKFv/YxLs8hR7o7Tn9DyOlDbfTPs4X/5Y35sDdvlNS7cyco5DJ/xclngGKEUoUDC2S
-         82A7rdlTJIHG4/9ayo62ZvOcs2RIRi6TIw4VMz09gR7pAOItxiY4jj5tMQofF+2IayQs
-         MFuioGZXV/5ezStG4HnzY6xUl/bfZIAgLPAjwra4mQBeNTcOWmAy3W7y8U24b2f+XLZm
-         1TfA==
-X-Gm-Message-State: AOAM5329R/YNtavtkcbq/K9rg3v7d8ZJBzcKsShQmc5lDRdIhfcWAFW+
-        QjQAwjkgXlpmeqxdx1AGRUZp7A==
-X-Google-Smtp-Source: ABdhPJzj648Va4opuaa+MJGmQyF9iwtfKcrlzj48E5tYlGvBaBb6SqyGj+OYun1sa/hrf4gT2z6I7A==
-X-Received: by 2002:aca:5b04:: with SMTP id p4mr7898391oib.28.1622739202413;
-        Thu, 03 Jun 2021 09:53:22 -0700 (PDT)
+        bh=mX0haAANX9Ohl4Z8WOCYfoEFijudUEJiwohJAuQC02c=;
+        b=jy6P9yWsbbfadoS/RNMhYhaYiwIfoRy+WVEdWLXip/rXGx9BQqYn2Vk9WpxuX+v7kY
+         Rz66I2+2BPDUiBzIBgtBgXXc7i9cUpP+XpbPoiTyTZ0FSaZtU0c60tAzUVu9c6EOCQIo
+         GvuE0DUu/GPq/w37N+oSKvXUGTLWIfn2SpfETP7PNoZHyLfGrcCSlfdIMvRhdOTE0SHu
+         0Uk+RSwEHfiezw70fRpTzweoNO+C/T9d47gHOy+eUv2/nZa/Tzy2rRi/5InWvIPKFUzA
+         0gJ51lfihzUdffcNyDaTEnZ41Y/jJA4pN5nwaDb/2tS17gX6H5y/Wa68xh+Ght5DzSF/
+         szvw==
+X-Gm-Message-State: AOAM531ri1gRewRZyquAXB30hvUz6nOlulQ5dVaBLmzFU0FeqIcpeg6K
+        91HQdaUnBS/pFdLCrK/j2U8+mA==
+X-Google-Smtp-Source: ABdhPJyH8XlibAf+nkUPd+aUoPXdrt4Uu4nVZEpvj3KHhEHg0ADoVLdvXpEkcF8+yqTYU3JWMkFp1Q==
+X-Received: by 2002:aca:be8a:: with SMTP id o132mr7819096oif.3.1622739361220;
+        Thu, 03 Jun 2021 09:56:01 -0700 (PDT)
 Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id l28sm326090otd.66.2021.06.03.09.53.21
+        by smtp.gmail.com with ESMTPSA id z25sm818070oic.30.2021.06.03.09.56.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Jun 2021 09:53:22 -0700 (PDT)
-Date:   Thu, 3 Jun 2021 11:53:19 -0500
+        Thu, 03 Jun 2021 09:56:00 -0700 (PDT)
+Date:   Thu, 3 Jun 2021 11:55:58 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Kuogee Hsieh <khsieh@codeaurora.org>
 Cc:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
@@ -52,18 +55,18 @@ Cc:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
         devicetree@vger.kernel.org, abhinavk@codeaurora.org,
         aravindh@codeaurora.org, freedreno@lists.freedesktop.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64/dts/qcom/sc7180: Add Display Port dt node
-Message-ID: <YLkI/6ItCz+SbbuJ@yoga>
-References: <1622736555-15775-1-git-send-email-khsieh@codeaurora.org>
+Subject: Re: [PATCH v3] arm64: dts: qcom: sc7180: Add DisplayPort  node
+Message-ID: <YLkJnmYujyPu1Zzu@yoga>
+References: <1622738250-1469-1-git-send-email-khsieh@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1622736555-15775-1-git-send-email-khsieh@codeaurora.org>
+In-Reply-To: <1622738250-1469-1-git-send-email-khsieh@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 03 Jun 11:09 CDT 2021, Kuogee Hsieh wrote:
+On Thu 03 Jun 11:37 CDT 2021, Kuogee Hsieh wrote:
 
 > Add DP device node on sc7180.
 > 
@@ -71,12 +74,16 @@ On Thu 03 Jun 11:09 CDT 2021, Kuogee Hsieh wrote:
 > -- replace msm_dp with dp
 > -- replace dp_opp_table with opp_table
 > 
+> Changes in v3:
+> -- correct text of commit title
 
-I'm sorry for those suggestions, I don't like either one of them.
+In addition to the feedback I gave on v2, please also remove one of the
+two spaces between "DisplayPort" and "node" in $subject.
 
-And for everything but changes to the DRM code the changelog goes below
-the --- line, so it's not part of the git history.
+Thanks,
+Bjorn
 
+> 
 > Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
 > ---
 >  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi |  9 ++++
@@ -96,9 +103,6 @@ the --- line, so it's not part of the git history.
 > +        pinctrl-names = "default";
 > +        pinctrl-0 = <&dp_hot_plug_det>;
 > +        data-lanes = <0 1>;
-
-Is it a limitation of the EC in Trogdor that you can only do 2 lanes?
-
 > +        vdda-1p2-supply = <&vdda_usb_ss_dp_1p2>;
 > +        vdda-0p9-supply = <&vdda_usb_ss_dp_core>;
 > +};
@@ -130,10 +134,6 @@ Is it a limitation of the EC in Trogdor that you can only do 2 lanes?
 >  			};
 > +
 > +			dp: displayport-controller@ae90000 {
-
-If you label this "mdss_dp", then it will naturally group with other
-mdss properties in trogdor.dtsi (which should be sorted alphabetically).
-
 > +				compatible = "qcom,sc7180-dp";
 > +				status = "disabled";
 > +
@@ -158,11 +158,6 @@ mdss properties in trogdor.dtsi (which should be sorted alphabetically).
 > +
 > +				operating-points-v2 = <&opp_table>;
 > +				power-domains = <&rpmhpd SC7180_CX>;
-
-Just curious, but isn't the DP block in the MDSS_GDCS? Or do we need to
-mention CX here in order for the opp framework to apply required-opps
-of CX?
-
 > +
 > +				#sound-dai-cells = <0>;
 > +
@@ -183,13 +178,6 @@ of CX?
 > +				};
 > +
 > +				opp_table: dp-opp-table {
-
-The one and only "opp_table" of the sc7180 :)
-Maybe name it dp_opp_table instead?
-
-Regards,
-Bjorn
-
 > +					compatible = "operating-points-v2";
 > +
 > +					opp-160000000 {
