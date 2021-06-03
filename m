@@ -2,114 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D83B939A2E9
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 16:18:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11FF739A2FE
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 16:23:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230138AbhFCOUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 10:20:09 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:43152 "EHLO
+        id S230503AbhFCOYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 10:24:47 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:44202 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230245AbhFCOUI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 10:20:08 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 153EIGjt008940;
-        Thu, 3 Jun 2021 09:18:16 -0500
+        with ESMTP id S230319AbhFCOYq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 10:24:46 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 153EMuHH010789;
+        Thu, 3 Jun 2021 09:22:57 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1622729896;
-        bh=ij5t3iomRX42uD/qcjWKu9Nr7FU30eNoiO6l8qKL690=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=bc5QX5n+/jlNmf3rTR0R9/MyrjlQt+IT1QYYZcy2yoKOxII5l8Qz0C3hhohKq/MmA
-         c5D2hCSVcXv9hDQ55JKOlrXEfk3ZqPp9cYJjiJFTtaZm32k2GDwDCtOv0yTyPd6W+O
-         drYb/IR6bk01qN6i2s++utKuipOHeNA+Oz0cEHCY=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 153EIG3x044695
+        s=ti-com-17Q1; t=1622730177;
+        bh=B6YIeFNEope+9x+3o1JGFyY9LtfqWwWdqHA6F6Zx498=;
+        h=From:To:CC:Subject:Date;
+        b=rX8MKacYT34/v2wyVr9XwJF9xuIccR9AglHfs0zpCoMlrxf7XOIgWeZKCSpcZuJ+f
+         Xu7lPKhNxpZHllHEWDXmOhm52hvhw6K2oAPKRQFbv3KC8I5kvZ/1sLdJWIZnUqntVt
+         /Mx2no3WwaCrqdLQX4pyotVDBgl64e+FZO4hRCvo=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 153EMu6c013621
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 3 Jun 2021 09:18:16 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 3 Jun 2021 09:22:56 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 3 Jun
- 2021 09:18:16 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 09:22:56 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 3 Jun 2021 09:18:16 -0500
-Received: from [10.250.235.48] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 153EIBE6072498;
-        Thu, 3 Jun 2021 09:18:13 -0500
-Subject: Re: [PATCH v3 2/5] arm64: dts: ti: k3-am64-main: Add PCIe DT node
-To:     Nishanth Menon <nm@ti.com>
-CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-References: <20210526142921.12127-1-kishon@ti.com>
- <20210526142921.12127-3-kishon@ti.com>
- <20210526185133.sm2iqqpequz3mmvq@crafty>
+ Frontend Transport; Thu, 3 Jun 2021 09:22:56 -0500
+Received: from a0393678-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 153EMpNF039957;
+        Thu, 3 Jun 2021 09:22:52 -0500
 From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <ab908779-804f-75c3-d9cc-98a3a558e686@ti.com>
-Date:   Thu, 3 Jun 2021 19:48:10 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>, <a-govindraju@ti.com>
+Subject: [PATCH v4 0/5] AM64: EVM/SK: Enable PCIe and USB
+Date:   Thu, 3 Jun 2021 19:52:46 +0530
+Message-ID: <20210603142251.14563-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20210526185133.sm2iqqpequz3mmvq@crafty>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
+AM642 EVM has one PCIe slot (no USB slot) and AM642 SK has one USB slot
+(no PCIe slot).
+AM64 SoC has one SERDES module which can be used by either PCIe or USB.
 
-On 27/05/21 12:21 am, Nishanth Menon wrote:
-> On 19:59-20210526, Kishon Vijay Abraham I wrote:
->> AM64 has one PCIe instance which can be configured in either
->> host mode (RC) or device mode (EP). Add PCIe DT node for host
->> mode and device mode here.
->>
->> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
->> ---
->>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 46 ++++++++++++++++++++++++
->>  1 file changed, 46 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
->> index a67f10406a8e..9c77f7da5d28 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
->> @@ -728,4 +728,50 @@
->>  			#clock-cells = <1>;
->>  		};
->>  	};
->> +
->> +	pcie0_rc: pcie@f102000 {
->> +		compatible = "ti,am64-pcie-host", "ti,j721e-pcie-host";
->> +		reg = <0x00 0x0f102000 0x00 0x1000>,
->> +		      <0x00 0x0f100000 0x00 0x400>,
->> +		      <0x00 0x0d000000 0x00 0x00800000>,
->> +		      <0x00 0x68000000 0x00 0x00001000>;
->> +		reg-names = "intd_cfg", "user_cfg", "reg", "cfg";
-> [...]
->> +
->> +	pcie0_ep: pcie-ep@f102000 {
-> Hmm... 
-> Warning (unique_unit_address): /bus@f4000/pcie@f102000: duplicate unit-address (also used in node /bus@f4000/pcie-ep@f102000)
-> we could pick reg for pcie-ep for node address, instead of intd_cfg address?
-> 
-> OR, does that mess something else up?
+Add DT nodes to represent and enable SERDES/PCIe/USB modules in EVM/SK.
 
-yeah, that actually require changes in the binding to fix it properly,
-since only the first entry in reg should be given for unit address.
+Changes from v3:
+1) Limit the lines to < 100
 
-Thanks
-Kishon
+Changes from v2:
+1) Dropped "dt-bindings: mux: Convert reg-mux DT bindings to YAML" as
+it's handled by a different series from Rob
+2) Rename "mux" DT node to a standard "mux-controller" DT node.
 
-> 
->> +		compatible = "ti,am64-pcie-ep", "ti,j721e-pcie-ep";
->> +		reg = <0x00 0x0f102000 0x00 0x1000>,
->> +		      <0x00 0x0f100000 0x00 0x400>,
->> +		      <0x00 0x0d000000 0x00 0x00800000>,
->> +		      <0x00 0x68000000 0x00 0x08000000>;
-> 
-> [...]
-> 
+Changes from v1:
+1) Add a patch to convert reg-mux DT bindings to YAML
+2) Use generic names for clock node names
+3) Remove redundant status = "okay" for serdes_wiz0
+
+v1: http://lore.kernel.org/r/20210512150107.26793-1-kishon@ti.com
+v2: http://lore.kernel.org/r/20210517061739.5762-1-kishon@ti.com
+v3: http://lore.kernel.org/r/20210526142921.12127-1-kishon@ti.com
+
+Kishon Vijay Abraham I (5):
+  arm64: dts: ti: k3-am64-main: Add SERDES DT node
+  arm64: dts: ti: k3-am64-main: Add PCIe DT node
+  arm64: dts: ti: k3-am642-evm: Enable PCIe and SERDES
+  arm64: dts: ti: k3-am642-sk: Enable USB Super-Speed HOST port
+  arm64: dts: ti: k3-am642-sk: Disable PCIe
+
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 107 +++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts  |  30 +++++++
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts   |  43 +++++++++
+ 3 files changed, 180 insertions(+)
+
+-- 
+2.17.1
+
