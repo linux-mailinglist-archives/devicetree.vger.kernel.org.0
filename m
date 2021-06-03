@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E10639AA43
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 20:42:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAF9539AA49
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 20:42:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230157AbhFCSoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 14:44:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53382 "EHLO mail.kernel.org"
+        id S230231AbhFCSog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 14:44:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53660 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230149AbhFCSoX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Jun 2021 14:44:23 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8AFAF613BA;
-        Thu,  3 Jun 2021 18:42:37 +0000 (UTC)
+        id S230203AbhFCSof (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Jun 2021 14:44:35 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 53EEB613F6;
+        Thu,  3 Jun 2021 18:42:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622745758;
-        bh=jQYaV2cfvoXc16qoljiYIKMi2Mx7T5eMyKFOL62d+tM=;
+        s=k20201202; t=1622745770;
+        bh=QX2fUiCiUmkxlGVHfxkr10DT8U2SkzWtLEr1gPbhSJI=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=FjUAK/Lvl8kKjR7kZC2ty+tq4HX6I3/8MMrKJVUs+0Ks926INH8+pIkCJs9A4rGno
-         QDJwNSL1vk6HsEV78ZMQToLk1Pk4DsrtnL2JZFPKF8yxqlzCYsbsqVRUmNWwO96Bk5
-         4M6DW7QhvbHBwStsypMp0CzwE7jAJvq/dua3x3QApUdn4ZfKgpKMXMDS4bhJ9WW8NU
-         RpUjSyfjR0c2zDg+D5QkaklbJZMS03yyVojat+IXR76WI+vu0M4qGkOhfq1SZCoijK
-         UvSIwUZslwRHdYry55rMeA7lQRs0I+cAz6GNhiSTnggY27m5T08y2yxVXcWKE38RB5
-         dnNb5fkDr2dHA==
+        b=P/yoLykbA2nbCiCPzNXK5wuNLtsWUWwzswOFPDtigEoGBh919yhCp5x/Fxn86U0KU
+         C2Om9LQzx6vdrWoHWCcVcxLKIjfuOhrscbhTrwKJIILodx9mLI4x7ZR41lMjrlmGAo
+         xGwur70iBcThRy4us3by+zZ7UkI0tWISZq6ivvVYnCvYBsSZeUCuDkIk99VS3FKXiI
+         E3DoWJYF2dLclCqPv+A6qGo3v5+jt0yvuXEl7TJeOLwW1+5/aqBIYCyayajqTP8f/W
+         OAqdC+w9OnUmge4auSIjBj66YZjpMuB/qhWovoHfSA5kDRfxAPQk7UQWVftM/Lxnxm
+         tzhICfRiwbsig==
 From:   Mark Brown <broonie@kernel.org>
-To:     cy_huang <u0084500@gmail.com>, robh+dt@kernel.org,
-        lgirdwood@gmail.com
-Cc:     Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, cy_huang@richtek.com
-Subject: Re: [PATCH v6 1/2] regulator: rt6160: Add DT binding document for Richtek RT6160
-Date:   Thu,  3 Jun 2021 19:41:52 +0100
-Message-Id: <162274566700.14958.5478994918465215118.b4-ty@kernel.org>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org
+Subject: Re: [PATCH] ASoC: meson: gx-card: fix sound-dai dt schema
+Date:   Thu,  3 Jun 2021 19:41:57 +0100
+Message-Id: <162274557551.14795.13902548000738010349.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <1622558352-19750-1-git-send-email-u0084500@gmail.com>
-References: <1622558352-19750-1-git-send-email-u0084500@gmail.com>
+In-Reply-To: <20210524093448.357140-1-jbrunet@baylibre.com>
+References: <20210524093448.357140-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -41,19 +41,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 1 Jun 2021 22:39:11 +0800, cy_huang wrote:
-> Add DT binding document for Richtek RT6160 voltage regulator.
+On Mon, 24 May 2021 11:34:48 +0200, Jerome Brunet wrote:
+> There is a fair amount of warnings when running 'make dtbs_check' with
+> amlogic,gx-sound-card.yaml.
+> 
+> Ex:
+> arch/arm64/boot/dts/amlogic/meson-gxm-q200.dt.yaml: sound: dai-link-0:sound-dai:0:1: missing phandle tag in 0
+> arch/arm64/boot/dts/amlogic/meson-gxm-q200.dt.yaml: sound: dai-link-0:sound-dai:0:2: missing phandle tag in 0
+> arch/arm64/boot/dts/amlogic/meson-gxm-q200.dt.yaml: sound: dai-link-0:sound-dai:0: [66, 0, 0] is too long
+> 
+> [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
 Thanks!
 
-[1/2] regulator: rt6160: Add DT binding document for Richtek RT6160
-      commit: bce18e52c866ff6ded13ac8ac37e9271f786c005
-[2/2] regulator: rt6160: Add support for Richtek RT6160
-      commit: de20b747c5836ffc6768914b95d7617139fac4f4
+[1/1] ASoC: meson: gx-card: fix sound-dai dt schema
+      commit: d031d99b02eaf7363c33f5b27b38086cc8104082
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
