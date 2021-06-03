@@ -2,74 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75B013997C2
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 03:54:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAC34399821
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 04:45:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229665AbhFCB4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 21:56:19 -0400
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:35667 "EHLO
-        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229541AbhFCB4S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 21:56:18 -0400
-Received: by mail-oi1-f174.google.com with SMTP id v22so4742963oic.2;
-        Wed, 02 Jun 2021 18:54:34 -0700 (PDT)
+        id S229629AbhFCCrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 22:47:41 -0400
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:39930 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229617AbhFCCrk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 22:47:40 -0400
+Received: by mail-oi1-f177.google.com with SMTP id m137so950445oig.6
+        for <devicetree@vger.kernel.org>; Wed, 02 Jun 2021 19:45:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ZZQYKNjkzbXDm9CIMxGhmOJ08FkC41qsAMnb0o1Bjxs=;
+        b=RgmSNlHKZ4fxhOVgzUIKQnKC6KAXoEYn2tb6HQBdFU84JbJrOkZ5dz4BlNToJLPlKS
+         mcF9s+xJzVC3oKtTR0TshLDyHMTrAogZ1+DlIJ+4Gu4wzhgAW2nYqsOjudeh/0Rcye7R
+         P6lH7cd2Z0BgP/houfZYs3LAv1w7lR4Nj2mGj8Vao3+7x8QlrKAiRqtpJ7qhgD9l3WxE
+         Z4UFAg4TFDt01v1w17duqgAQaJR9RTa993ESYgM5kqSCJoKSigvEUZi5bbiufFv4yvY2
+         h7aobkWFvg4wi6hHGNGNW9/HjPxE1Wc0LiAtBNrnJ0Bvr81akcULkAjUYq1QCcEMdPMA
+         6wcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=5REQDOInYr+Rxz1Hbv6uToT1N9uIZqHL7TEfsvN/SsI=;
-        b=J/6igK7mF37CqBPQZOipUyxkssIU402nVi6+zXqw27rO2T6YA9zKhRelS0bm18UwYh
-         yojWCZ+IOmZDppVllR01fCbIndUuBp3Lc/n2w9gpN82nqjB4UYpvd0rh2ZPeUjRs/o7m
-         yRf0O59iBWESrqINQsO/yKQAQJzwZv6VQ1BEFEaBSiUWxWWA565deHFfsYtAQAtwLmal
-         POCSgUvJDj9+4nTOGVFoD8PAaIADB77+lFMk7Whv7dWE2GYUWFg7mxzUiIu/S2ysLwHq
-         urA+EEFvR2VPHcbMGqZC9J6phTcmJx/yELDeAQbFoDC+5Px3DN/HWAicIUyHLXeCZdgK
-         qfVg==
-X-Gm-Message-State: AOAM533tbh5vwLeTxCsnyzMJNIRkid9hkFxi9GgG+FIM1wbgqSTyLKbv
-        sJN6v+3Ke4uPXk3Jh9eVnQ==
-X-Google-Smtp-Source: ABdhPJxBGswFS8v+XqMBHoWogwVlR6GsKdAifZEzB0x0rZK9KvzU/6hbXOChq/jsdSef8Qr7NwM5Vg==
-X-Received: by 2002:aca:fc84:: with SMTP id a126mr5806199oii.49.1622685274188;
-        Wed, 02 Jun 2021 18:54:34 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u6sm377910otk.63.2021.06.02.18.54.32
+        bh=ZZQYKNjkzbXDm9CIMxGhmOJ08FkC41qsAMnb0o1Bjxs=;
+        b=Zc+aPXfBjXUADM0wB+pguUtrmGF/NqTsAB4gtBRkiYqfQ9im4yBtGAVvKkqLeMPNA8
+         blZFFw56MGGZAegruZifsGIp0/9ZlrOLu3QWPjGPI+GaSQyyJq09hszUG5KHYISNaIGF
+         7m0kvHwE2vY5QUxgMOcTuV3nyv7calLquS6mhXzhvze6Yp3zVQ/LKwiUq7MnF3ZqxpHw
+         KxycaWVpaF9EM9nLg4pHTY2PTU+hJPqeAIsqaSIdWRhAxbVF6r0yoTD9klzz0hAxpZoF
+         mkAFqyXmjNaKzPd4MtEJ+bglV+fanXOZbclxIkqydQW6RwLfnBxH00paeOGVEQQxUroa
+         72fg==
+X-Gm-Message-State: AOAM530FvMEDiUGRn3+r7KRa/bPs4JWef9M0As1AdUJzmqxvRZV7o0sI
+        Xx0gmAukUCY506UYzfY+nfXEGQ==
+X-Google-Smtp-Source: ABdhPJw6sYb54WexwW6J95QUpKdekjtsw1V+SnInNWc6uSj7hBZ3jhLGszsEKSNzU3VDIM1bm7ldXg==
+X-Received: by 2002:aca:4bd6:: with SMTP id y205mr6134307oia.5.1622688283169;
+        Wed, 02 Jun 2021 19:44:43 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id v8sm410008oiv.5.2021.06.02.19.44.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jun 2021 18:54:33 -0700 (PDT)
-Received: (nullmailer pid 378697 invoked by uid 1000);
-        Thu, 03 Jun 2021 01:54:32 -0000
-Date:   Wed, 2 Jun 2021 20:54:32 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Tony Lindgren <tony@atomide.com>
-Subject: Re: [PATCH 02/12] dt-bindings: power: supply: cpcap-charger: update
- cpcap-charger.yaml reference
-Message-ID: <20210603015432.GA378600@robh.at.kernel.org>
-References: <cover.1622648507.git.mchehab+huawei@kernel.org>
- <e9ce216362b7b9dcf84d707a3854247123440bf7.1622648507.git.mchehab+huawei@kernel.org>
+        Wed, 02 Jun 2021 19:44:42 -0700 (PDT)
+Date:   Wed, 2 Jun 2021 21:44:40 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Maulik Shah <mkshah@codeaurora.org>, evgreen@chromium.org,
+        mka@chromium.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, agross@kernel.org,
+        dianders@chromium.org, linux@roeck-us.net, rnayak@codeaurora.org,
+        lsrao@codeaurora.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v8 3/5] arm64: dts: qcom: sc7180: Enable SoC sleep stats
+Message-ID: <YLhCGC/qgP6ESNl7@yoga>
+References: <1621596371-26482-1-git-send-email-mkshah@codeaurora.org>
+ <1621596371-26482-4-git-send-email-mkshah@codeaurora.org>
+ <CAE-0n53ySKwDwzRYFYjnQnqVAujVrkik2U-PeCuS61xQU-hbWA@mail.gmail.com>
+ <YLUjbwFSJOSWS0IV@builder.lan>
+ <CAE-0n53hdd1tEmYwTL0CNi=S6CUxRhWnkJz-KoTj2UnedNKXmg@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <e9ce216362b7b9dcf84d707a3854247123440bf7.1622648507.git.mchehab+huawei@kernel.org>
+In-Reply-To: <CAE-0n53hdd1tEmYwTL0CNi=S6CUxRhWnkJz-KoTj2UnedNKXmg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 02 Jun 2021 17:43:08 +0200, Mauro Carvalho Chehab wrote:
-> Changeset ce49e4282200 ("dt-bindings: power: supply: cpcap-charger: Convert to DT schema format")
-> renamed: Documentation/devicetree/bindings/power/supply/cpcap-charger.txt
-> to: Documentation/devicetree/bindings/power/supply/cpcap-charger.yaml.
-> 
-> Update its cross-reference accordingly.
-> 
-> Fixes: ce49e4282200 ("dt-bindings: power: supply: cpcap-charger: Convert to DT schema format")
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
->  Documentation/devicetree/bindings/mfd/motorola-cpcap.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+On Wed 02 Jun 19:26 CDT 2021, Stephen Boyd wrote:
 
-Applied, thanks!
+> Quoting Bjorn Andersson (2021-05-31 10:57:03)
+> > On Wed 26 May 18:30 CDT 2021, Stephen Boyd wrote:
+> >
+> > > Quoting Maulik Shah (2021-05-21 04:26:09)
+> > > > Add device node for SoC sleep stats driver which provides various
+> > > > low power mode stats.
+> > > >
+> > > > Also update the reg size of aoss_qmp device to 0x400.
+> > > >
+> > > > Cc: devicetree@vger.kernel.org
+> > > > Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+> > > > Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > > ---
+> > > >  arch/arm64/boot/dts/qcom/sc7180.dtsi | 7 ++++++-
+> > > >  1 file changed, 6 insertions(+), 1 deletion(-)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> > > > index 6228ba2..889d04d 100644
+> > > > --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> > > > +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> > > > @@ -3215,7 +3215,7 @@
+> > > >
+> > > >                 aoss_qmp: power-controller@c300000 {
+> > > >                         compatible = "qcom,sc7180-aoss-qmp";
+> > > > -                       reg = <0 0x0c300000 0 0x100000>;
+> > > > +                       reg = <0 0x0c300000 0 0x400>;
+> > > >                         interrupts = <GIC_SPI 389 IRQ_TYPE_EDGE_RISING>;
+> > > >                         mboxes = <&apss_shared 0>;
+> > > >
+> > > > @@ -3223,6 +3223,11 @@
+> > > >                         #power-domain-cells = <1>;
+> > > >                 };
+> > > >
+> > > > +               rpmh-sleep-stats@c3f0000 {
+> > > > +                       compatible = "qcom,rpmh-sleep-stats";
+> > > > +                       reg = <0 0x0c3f0000 0 0x400>;
+> > > > +               };
+> > > > +
+> > >
+> > > Does this need to be in DT? Can the sc7180-aoss-qmp driver use the
+> > > aux-bus and stick the sleep stats device on there?
+> > >
+> >
+> > The AOSS memory space has N chunks of "message ram", one is used for the
+> > QMP protocol (presumably the APSS specific one), a different one is used
+> > for the sleep stats.
+> >
+> > I presume we could have come up with a binding for the entire AOSS/AOP
+> > and then describe (either implicit or explicitly) the QMP and
+> > debug-stats under that.
+> >
+> > But we'd also have to come up with the same container-device for the RPM
+> > case.
+> 
+> Because the rpm node doesn't include this region of memory today? I
+> still fail to see why we're changing the existing binding and adding a
+> DT node for this new region that is basically a debug feature.
+
+We're not changing the binding, the memory region for the "AOSS QMP"
+thing was never larger than 0x400.
+
+0x100000 is the size of all the AOSS "msg_ram" regions. We don't have
+this whole thing described in a binding and we don't have an
+implementation for the whole thing.
+
+If we're going for that we'd need to extend the binding to indicate
+which of the msg_ram regions are used for APSS QMP and for debug stats
+on particular platform (either by compatible, explicit properties or as
+some subnodes).
+
+
+That said, as I looked into my other objection, for the RPM
+(non-hardened) case it seems that we're actually describing the RPM
+region. So there it would make sense to describe it as such in DT - but
+we don't have any other code (that I'm aware of) that would implement
+the "qcom,<platform>-rpm".
+
+Regards,
+Bjorn
