@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBE4A39A844
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 19:22:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60D5C39A87E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 19:22:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233027AbhFCRO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 13:14:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43496 "EHLO mail.kernel.org"
+        id S233662AbhFCRQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 13:16:05 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42506 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232499AbhFCRM6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Jun 2021 13:12:58 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id ABDFC6142E;
-        Thu,  3 Jun 2021 17:10:27 +0000 (UTC)
+        id S233291AbhFCROH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Jun 2021 13:14:07 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id DE3E261436;
+        Thu,  3 Jun 2021 17:10:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622740228;
-        bh=fe6+/LiFiMnPngT/JpTOFadQOWUmdRGhSDMYamPmmdA=;
+        s=k20201202; t=1622740250;
+        bh=DlRPQKg57hZnvopmZek5Qh2qaefReJ5UVZdEQVMp8F8=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ZBVIlgkMOtI0YgyMpqwold6So0B4U5rJnKvuPKXEzM8p/fTpeXq8ddMpsSfdJp2Bh
-         GNL+gq97cthoYXd3VEWIn98ncx1IJ5mKS4NE+q8RdjVrWP34YtkzeBUzhhfk7PjxrO
-         PBdxx87PPqPhXDLRkZURudq+quSVunTvTATdftFS+qR9BalbLYQ3ChlTefHpk9DVkh
-         pT/eCGbr5jjb3GJd5ajtQkvPgpPupnaSn+caKgO/5ckQ3jF9RqdquxmIPekpvfh6q2
-         ashORFALjusAy+AjqV40FS36qhYu67RqADpM70B1A87yxCsNctWVTG0o3Glr6kNcze
-         RxUi1Q6QCU0Dg==
+        b=n99p4+0jA2EJYTVDb/IPHzc7bgwdBVcIn+VgYZfVRRs9d6BsG+R3P8oQp9JxvsErw
+         ICoPDF4U545LQAAWq0FUmRhXJHg8MFJX41H67syO70U7+SmcxcAilCLDe+wQXXt8RC
+         0MR9529QDl1kN8uXmt1qdsxZgbgmZsU7aVZjQ7tK29m5Ua2C4Onsm0uG6S69D1iKfB
+         7q7aQXHkSdAdtuannJXPDBMuONNqprI2n52xssDpGTPCaG/zKsHbpibRywR9VpS7pU
+         +gJrNHrDWy1MQPQb+Lji8DAziyg+V9xhipSX1xp8fDaaScgVcyE1ihBZvh3V021kVw
+         HAf2vE7ZMScxw==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
         Michael Ellerman <mpe@ellerman.id.au>,
         Wolfram Sang <wsa@kernel.org>, Sasha Levin <sashal@kernel.org>,
         devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-Subject: [PATCH AUTOSEL 4.19 23/23] powerpc/fsl: set fsl,i2c-erratum-a004447 flag for P1010 i2c controllers
-Date:   Thu,  3 Jun 2021 13:09:59 -0400
-Message-Id: <20210603170959.3169420-23-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 17/18] powerpc/fsl: set fsl,i2c-erratum-a004447 flag for P2041 i2c controllers
+Date:   Thu,  3 Jun 2021 13:10:28 -0400
+Message-Id: <20210603171029.3169669-17-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210603170959.3169420-1-sashal@kernel.org>
-References: <20210603170959.3169420-1-sashal@kernel.org>
+In-Reply-To: <20210603171029.3169669-1-sashal@kernel.org>
+References: <20210603171029.3169669-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -45,40 +45,49 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Chris Packham <chris.packham@alliedtelesis.co.nz>
 
-[ Upstream commit 19ae697a1e4edf1d755b413e3aa38da65e2db23b ]
+[ Upstream commit 7adc7b225cddcfd0f346d10144fd7a3d3d9f9ea7 ]
 
-The i2c controllers on the P1010 have an erratum where the documented
-scheme for i2c bus recovery will not work (A-004447). A different
-mechanism is needed which is documented in the P1010 Chip Errata Rev L.
+The i2c controllers on the P2040/P2041 have an erratum where the
+documented scheme for i2c bus recovery will not work (A-004447). A
+different mechanism is needed which is documented in the P2040 Chip
+Errata Rev Q (latest available at the time of writing).
 
 Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 Acked-by: Michael Ellerman <mpe@ellerman.id.au>
 Signed-off-by: Wolfram Sang <wsa@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/powerpc/boot/dts/fsl/p1010si-post.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/powerpc/boot/dts/fsl/p2041si-post.dtsi | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-diff --git a/arch/powerpc/boot/dts/fsl/p1010si-post.dtsi b/arch/powerpc/boot/dts/fsl/p1010si-post.dtsi
-index 1b4aafc1f6a2..9716a0484ecf 100644
---- a/arch/powerpc/boot/dts/fsl/p1010si-post.dtsi
-+++ b/arch/powerpc/boot/dts/fsl/p1010si-post.dtsi
-@@ -122,7 +122,15 @@ memory-controller@2000 {
+diff --git a/arch/powerpc/boot/dts/fsl/p2041si-post.dtsi b/arch/powerpc/boot/dts/fsl/p2041si-post.dtsi
+index 51e975d7631a..8921f17fca42 100644
+--- a/arch/powerpc/boot/dts/fsl/p2041si-post.dtsi
++++ b/arch/powerpc/boot/dts/fsl/p2041si-post.dtsi
+@@ -389,7 +389,23 @@ sdhc@114000 {
  	};
  
- /include/ "pq3-i2c-0.dtsi"
-+	i2c@3000 {
+ /include/ "qoriq-i2c-0.dtsi"
++	i2c@118000 {
 +		fsl,i2c-erratum-a004447;
 +	};
 +
- /include/ "pq3-i2c-1.dtsi"
-+	i2c@3100 {
++	i2c@118100 {
 +		fsl,i2c-erratum-a004447;
 +	};
 +
- /include/ "pq3-duart-0.dtsi"
- /include/ "pq3-espi-0.dtsi"
- 	spi0: spi@7000 {
+ /include/ "qoriq-i2c-1.dtsi"
++	i2c@119000 {
++		fsl,i2c-erratum-a004447;
++	};
++
++	i2c@119100 {
++		fsl,i2c-erratum-a004447;
++	};
++
+ /include/ "qoriq-duart-0.dtsi"
+ /include/ "qoriq-duart-1.dtsi"
+ /include/ "qoriq-gpio-0.dtsi"
 -- 
 2.30.2
 
