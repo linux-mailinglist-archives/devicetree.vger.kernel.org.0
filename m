@@ -2,94 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9CDC399817
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 04:37:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF9683998B8
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 05:51:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229719AbhFCCji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Jun 2021 22:39:38 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:30714 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229541AbhFCCjh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Jun 2021 22:39:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1622687872;
-        h=from:from:reply-to:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:  content-transfer-encoding:content-transfer-encoding;
-        bh=eUYE0hKN7YEQF+2Ypg+MzgNttYvXIr9euaI0jYyales=;
-        b=QuCCXBYW7rPeX4GpxoxRlEr6S9oUwJXd6H8JByAbddyPpPIojo+7uUjw+iYBTDhSkXdTpR
-        8TGRgqytn0yF3tH9FiAOWa9g/sTATGKHOiVCKGoePZ1hCADG4mcexIBUou6zkWesforUZy
-        mFL7o7pT4lUX75LGEXmckncGu5FijCo=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-96-ARxJlbgbO0yi7ZDTXMoQJA-1; Wed, 02 Jun 2021 22:37:50 -0400
-X-MC-Unique: ARxJlbgbO0yi7ZDTXMoQJA-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com [10.5.11.23])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        id S229611AbhFCDxH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Jun 2021 23:53:07 -0400
+Received: from phobos.denx.de ([85.214.62.61]:34552 "EHLO phobos.denx.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229625AbhFCDxG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Jun 2021 23:53:06 -0400
+Received: from [192.168.1.107] (89-186-114-252.pool.digikabel.hu [89.186.114.252])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id B202C100945E;
-        Thu,  3 Jun 2021 02:37:49 +0000 (UTC)
-Received: from [10.64.54.205] (vpn2-54-205.bne.redhat.com [10.64.54.205])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id 0F7CA163C3;
-        Thu,  3 Jun 2021 02:37:47 +0000 (UTC)
-Reply-To: Gavin Shan <gshan@redhat.com>
-To:     robh@kernel.org
-Cc:     Andrew Jones <drjones@redhat.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Shan Gavin <shan.gavin@gmail.com>
-From:   Gavin Shan <gshan@redhat.com>
-Subject: [Question] Format of memory node name
-Message-ID: <ed20264b-1fe3-59e2-7c95-d1a224d22b7f@redhat.com>
-Date:   Thu, 3 Jun 2021 14:38:50 +1000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.0
+        (Authenticated sender: hs@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 4738E82EF0;
+        Thu,  3 Jun 2021 05:51:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1622692281;
+        bh=4S9DeOsSgwurt2vIIEPZv87f5Sw8LTYLBFnrrwtmmDM=;
+        h=Reply-To:Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=oZ/VbwbAk/VL4P9sL/k3wxmJhSAm8lQ4OOtqc30hujze/iYXWP9h8Iwz1CDIq8VPl
+         MLCTEJMpg3qxVGdP3tuqww6SawMrpFil1LiDn8af1zs+ibdrND7fKwD7Rxl4MoRAc0
+         prOkUcfqQVIsRnLdCbFIEDjlB6HyRClPjFxFjQLdY/LVITQW2ECHwukQOV3xhXW9+H
+         6yRXQ0z9fhJtQJW8QGggGCH26uyqxlGzSXS3numNwHv2w0YeoVgFe4fzjDVIHme9S+
+         h1FcERx6W/xO0e4u2Dvblt4CpuJaOGfqsc8I8kFTPqa2sGUKmrCqg9e6WvJW82Upq6
+         X59SDVn62P2kg==
+Reply-To: hs@denx.de
+Subject: Re: [PATCH v3 1/2] mtd: devices: add devicetree documentation for
+ microchip 48l640
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-mtd@lists.infradead.org, Fabio Estevam <festevam@denx.de>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210601043546.1345704-1-hs@denx.de>
+ <20210601043546.1345704-2-hs@denx.de>
+ <20210602192950.GA3827845@robh.at.kernel.org>
+From:   Heiko Schocher <hs@denx.de>
+Message-ID: <452d7f47-9272-9b93-7eb1-394242ca6ad7@denx.de>
+Date:   Thu, 3 Jun 2021 05:51:17 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20210602192950.GA3827845@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
+X-Virus-Scanned: clamav-milter 0.102.4 at phobos.denx.de
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hello Rob,
 
-Currently, I'm looking into one QEMU bug which is related to FDT memory
-nodes. The story is 4 NUMA nodes are specified by the command line, which
-is used to start the VM. QEMU needs to create 4 FDT memory nodes for them
-and their names are following the format (memory@unit-address) as stated
-in the device-tree specification. The 'unit-address' is base address in
-'reg' property. Unfortunately, one NUMA node's base address is exactly
-same to another one. It means there are two conflicting two memory node
-because of their names. It leads to the FDT can't be populated successfully.
+On 02.06.21 21:29, Rob Herring wrote:
+> On Tue, Jun 01, 2021 at 06:35:45AM +0200, Heiko Schocher wrote:
+>> The Microchip 48l640 is a 8KByte EERAM connected via SPI.
+>> Add devicetree bindings documentation.
+>>
+>> Signed-off-by: Heiko Schocher <hs@denx.de>
+>> ---
+>>
+>> Changes in v3:
+>> Add Fabio to cc
+>>
+>> Changes in v2:
+>> as Rob helped, fix warnings from running command
+>> 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>>
+>>  .../bindings/mtd/microchip,mchp48l640.yaml    | 45 +++++++++++++++++++
+>>  1 file changed, 45 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml b/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
+>> new file mode 100644
+>> index 0000000000000..08089f2db0761
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
+>> @@ -0,0 +1,45 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/mtd/microchip,mchp48l640.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>> +
+>> +title: MTD SPI driver for Microchip 48l640 (and similar) serial EERAM
+> 
+> This is not the driver.
 
-For example, the last memory node can't be created because of its conflicting
-name in the following scheme.
+Ok, I would change to:
 
-    NUMA ID       Base address       End address      Memory node name
-    -------------------------------------------------------------------
-    0             0x00000000         0x20000000       memory@00000000
-    1             0x20000000         0x40000000       memory@20000000
-    2             0x40000000         0x40000000       memory@40000000
-    3             0x40000000         0x40000000       memory@40000000
+title: Microchip 48l640 (and similar) serial EERAM bindings
 
-I'm trying to resolve the issue. There are two options as below. However,
-it's not certain the solution will beak the device-tree specification. So
-I'm checking with you on this.
+ok?
 
-(1) Replace the 'unit-address' with NUMA ID
-     memory@0
-     memory@1
-     memory@2
-     memory@3
+>> +
+>> +maintainers:
+>> +  - Heiko Schocher <hs@denx.de>
+>> +
+>> +description: |
+>> +  The Microchip 48l640 is a 8KByte EERAM connected via SPI.
+>> +
+>> +  datasheet: http://ww1.microchip.com/downloads/en/DeviceDoc/20006055B.pdf
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - const: microchip,48l640
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  spi-max-frequency: true
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    spi {
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+>> +
+>> +      spi-eeram@0 {
+> 
+> eeram@0
 
-(2) Add suffix to the conflicting memory node names
-     memory@00000000
-     memory@20000000
-     memory@40000000
-     memory@40000000-0
+changed.
 
-Thanks,
-Gavin
+> Otherwise,
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-[link] https://patchwork.kernel.org/project/qemu-devel/patch/20210601073004.106490-1-gshan@redhat.com/
+Thanks for your time!
 
+I would wait with a v4 if I get comments for the driver
+(or wait some time...)
+
+>> +        compatible = "microchip,48l640";
+>> +        reg = <0>;
+>> +        spi-max-frequency = <20000000>;
+>> +      };
+>> +    };
+>> +...
+>> -- 
+>> 2.31.1
+
+bye,
+Heiko
+-- 
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
