@@ -2,136 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D56CF39A153
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 14:43:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BC8F39A15A
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 14:45:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230316AbhFCMpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 08:45:41 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:49810 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229966AbhFCMpl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 08:45:41 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 153ChlMY102052;
-        Thu, 3 Jun 2021 07:43:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1622724227;
-        bh=1g7f2iazNLoRP6uhUTcbq8C+Xj9mTn/TWmB4q7LOYQA=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=uMW89sKGfRqX3wUKfNHVidskiY08d3MivnaPcdrQIkdYeLOD5E+5cf92U2V0aM5Km
-         fdVDBpcVRy9V/1bPTbNPbHnRESMIwahVsYXZMMIYZaTYQFGNvdLJQlLUmB64iWkTrw
-         aZOyHrIa05mYWiTZNHXSLUjzJcjQkC8ne4oOVVfY=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 153ChlEi043928
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 3 Jun 2021 07:43:47 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 3 Jun
- 2021 07:43:47 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 3 Jun 2021 07:43:46 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 153ChkqU119106;
-        Thu, 3 Jun 2021 07:43:46 -0500
-Date:   Thu, 3 Jun 2021 18:13:45 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Maxime Ripard <mripard@kernel.org>, <linux-kernel@vger.kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        <devicetree@vger.kernel.org>, Benoit Parrot <bparrot@ti.com>,
-        <dmaengine@vger.kernel.org>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        <linux-media@vger.kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-phy@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 14/18] media: dt-bindings: Add DT bindings for TI
- J721E CSI2RX driver
-Message-ID: <20210603124343.mpyjdc7yxcnajkc3@ti.com>
-References: <20210526152308.16525-1-p.yadav@ti.com>
- <20210526152308.16525-15-p.yadav@ti.com>
- <1622125407.764961.731785.nullmailer@robh.at.kernel.org>
+        id S230255AbhFCMqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 08:46:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47294 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229966AbhFCMqv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Jun 2021 08:46:51 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CA11B61359;
+        Thu,  3 Jun 2021 12:45:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1622724307;
+        bh=/0PErPiivKve18T5PWrNZSDblM4Yr8THdIMojDFkKIY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SfNLIlaHMkXy6z2Nwq1e62IgDvqFsiO17qMHNj+BAuK2eBbID038FOpOVRQg+VmnD
+         gmLsesbPwihI4Y/q1165NFrTqwMWmXUeK56e/fiyQXTNL7RiuoG0YJjJiFyNgKqjnt
+         ZsZYJZGbapXCve5ek6JvhtPxuHy4kZqQA6z5NAK9ou5R+n6M+aqxW17tR4VD2Azc9m
+         4MRRnNhNo/pEngG66YpM4ar12j3QrXpHPNzabijjh2g66ra2vas1ZIFTxdQR41m1a6
+         7RFq/PLwuk6oL+9eLZXZpBnbllg0qzBx+7yLE11RrgkubbjjFVf30Lp2cGf+ZQmUXs
+         fT278QpB+0Rog==
+Date:   Thu, 3 Jun 2021 13:44:55 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     robh@kernel.org, devicetree@vger.kernel.org, perex@perex.cz,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        lgirdwood@gmail.com
+Subject: Re: [PATCH v2 2/4] ASoC: codecs: wcd: add multi button Headset
+ detection support
+Message-ID: <20210603124455.GE4257@sirena.org.uk>
+References: <20210524110700.27077-1-srinivas.kandagatla@linaro.org>
+ <20210524110700.27077-3-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="+JUInw4efm7IfTNU"
 Content-Disposition: inline
-In-Reply-To: <1622125407.764961.731785.nullmailer@robh.at.kernel.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20210524110700.27077-3-srinivas.kandagatla@linaro.org>
+X-Cookie: Where am I?  Who am I?  Am I?  I
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/05/21 09:23AM, Rob Herring wrote:
-> On Wed, 26 May 2021 20:53:04 +0530, Pratyush Yadav wrote:
-> > TI's J721E uses the Cadence CSI2RX and DPHY peripherals to facilitate
-> > capture over a CSI-2 bus. The TI CSI2RX platform driver glues all the
-> > parts together.
-> > 
-> > Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> > 
-> > ---
-> > 
-> > Changes in v2:
-> > - Rename to ti,j721e-csi2rx.yaml
-> > - Add an entry in MAINTAINERS.
-> > - Add a description for the binding.
-> > - Change compatible to ti,j721e-csi2rx to make it SoC specific.
-> > - Remove description from dmas, reg, power-domains.
-> > - Remove a limit of 2 from #address-cells and #size-cells.
-> > - Fix add ^ to csi-bridge subnode regex.
-> > - Make ranges mandatory.
-> > - Add unit address in example.
-> > - Add a reference to cdns,csi2rx in csi-bridge subnode.
-> > - Expand the example to include the csi-bridge subnode as well.
-> > - Re-order subject prefixes.
-> > 
-> >  .../bindings/media/ti,j721e-csi2rx.yaml       | 101 ++++++++++++++++++
-> >  MAINTAINERS                                   |   1 +
-> >  2 files changed, 102 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/ti,j721e-csi2rx.yaml
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/media/cdns,csi2rx.yaml'
-> xargs: dt-doc-validate: exited with status 255; aborting
-> make[1]: *** Deleting file 'Documentation/devicetree/bindings/media/ti,j721e-csi2rx.example.dt.yaml'
-> Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/media/cdns,csi2rx.yaml'
-> make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/media/ti,j721e-csi2rx.example.dt.yaml] Error 255
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1416: dt_binding_check] Error 2
-> 
-> See https://patchwork.ozlabs.org/patch/1484096
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
 
-I think this is the case here since it can't find the 
-ti,j721e-csi2rx.yaml file.
+--+JUInw4efm7IfTNU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
+On Mon, May 24, 2021 at 12:06:58PM +0100, Srinivas Kandagatla wrote:
 
--- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(wcd_mbhc_event_notify);
+
+Why is this not EXPORT_SYMBOL_GPL?  Same for the other symbols that are
+exported, between ASoC and regmap I'm not clear that there's anything
+useful that is usable from non-GPL code...
+
+> +	/* Report insertion */
+> +	if (jack_type == SND_JACK_HEADPHONE)
+> +		mbhc->current_plug = MBHC_PLUG_TYPE_HEADPHONE;
+> +	else if (jack_type == SND_JACK_HEADSET) {
+> +		mbhc->current_plug = MBHC_PLUG_TYPE_HEADSET;
+> +		mbhc->jiffies_atreport = jiffies;
+> +	} else if (jack_type == SND_JACK_LINEOUT)
+> +		mbhc->current_plug = MBHC_PLUG_TYPE_HIGH_HPH;
+
+This would be more idiomatically written as a switch statement.
+
+--+JUInw4efm7IfTNU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmC4zsYACgkQJNaLcl1U
+h9AHcAf+MAkcShDyOY9iT0Adnp0ijXBX3S6aae7O09/0QaNOvBIWj8b14Iokai81
+8r5zFAdH/G8zkVmTIsqEZBZL/3qOWFKUy9mmOIuNkiAAUvoDUZr+Bsk/qcca+SNu
+kdlOcue5k8z2We9SBIvF6kxV9LXH4eSw5Le0mJCqEP+/Bj9gViF/EWiOBaJZNJPl
+f41hiDlJuG1PyKpDw6OFsulvOtOdgVrBPC+eJThbgi0Ox+gL8BPil5iznwVOuMd1
+ca31v0Us5t8lF/GoFCmUgM+7J8k5JKk/LPvSph2oIPXWucW2xsyPLN0va5BPM7/7
+y8OCKNeIUnX5pIRwldewtdbEaKa4YA==
+=46e+
+-----END PGP SIGNATURE-----
+
+--+JUInw4efm7IfTNU--
