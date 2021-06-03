@@ -2,102 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35D51399B5A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 09:16:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F216B399B6A
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jun 2021 09:23:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229629AbhFCHSd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 03:18:33 -0400
-Received: from smtp.220.in.ua ([89.184.67.205]:50905 "EHLO smtp.220.in.ua"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229567AbhFCHSd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Jun 2021 03:18:33 -0400
-Received: from [192.168.202.100] (unknown [95.67.115.55])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by smtp.220.in.ua (Postfix) with ESMTPSA id 55B991A207C9;
-        Thu,  3 Jun 2021 10:16:47 +0300 (EEST)
-To:     Rob Herring <robh@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jeff LaBundy <jeff@labundy.com>
-Cc:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        linux-input@vger.kernel.org,
-        Device Tree mailing list <devicetree@vger.kernel.org>,
-        Jiri Kosina <jikos@jikos.cz>,
-        Patchwork Bot <patchwork-bot@kernel.org>
-References: <20210602190504.23076-1-oleg@kaa.org.ua>
- <20210602190504.23076-2-oleg@kaa.org.ua>
-From:   Oleh Kravchenko <oleg@kaa.org.ua>
-Subject: Re: [PATCH 2/2 v2] dt-bindings: Add vendor prefix and bindings for
- Qwiic Joystick
-Message-ID: <ce085b5f-3831-60e1-4859-205ecaf081c1@kaa.org.ua>
-Date:   Thu, 3 Jun 2021 10:16:43 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        id S229635AbhFCHZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 03:25:30 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:48659 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229567AbhFCHZ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 03:25:29 -0400
+X-UUID: 3d87c1fb88a247fc922f2ebe67620855-20210603
+X-UUID: 3d87c1fb88a247fc922f2ebe67620855-20210603
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <roger.lu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 896726967; Thu, 03 Jun 2021 15:23:41 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 3 Jun 2021 15:23:39 +0800
+Received: from mtksdaap41.mediatek.inc (172.21.77.4) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 3 Jun 2021 15:23:39 +0800
+From:   Roger Lu <roger.lu@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Kevin Hilman <khilman@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     Fan Chen <fan.chen@mediatek.com>,
+        HenryC Chen <HenryC.Chen@mediatek.com>,
+        YT Lee <yt.lee@mediatek.com>,
+        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, Roger Lu <roger.lu@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: [PATCH v18 0/7] soc: mediatek: SVS: introduce MTK SVS
+Date:   Thu, 3 Jun 2021 15:23:31 +0800
+Message-ID: <20210603072338.11244-1-roger.lu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-In-Reply-To: <20210602190504.23076-2-oleg@kaa.org.ua>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Dmitry, Jeff, Rob,
+1. SVS driver uses OPP adjust event in [1] to update OPP table voltage part.
+2. SVS driver gets thermal/GPU device by node [2][3] and CPU device by get_cpu_device().
+After retrieving subsys device, SVS driver calls device_link_add() to make sure probe/suspend callback priority.
+3. SVS dts refers to reset controller [4] to help reset SVS HW.
 
-Thank you for reviewing the previous patch.
-I've fixed all your comments and split the patch into two.
+#mt8183 SVS related patches
+[1] https://patchwork.kernel.org/patch/11193513/
+[2] https://patchwork.kernel.org/project/linux-mediatek/patch/20201013102358.22588-2-michael.kao@mediatek.com/
+[3] https://patchwork.kernel.org/project/linux-mediatek/patch/20200306041345.259332-3-drinkcat@chromium.org/
 
-Could you please review these too?
+#mt8192 SVS related patches
+[1] https://patchwork.kernel.org/patch/11193513/
+[2] https://patchwork.kernel.org/project/linux-mediatek/patch/20201223074944.2061-1-michael.kao@mediatek.com/
+[3] https://lore.kernel.org/patchwork/patch/1360551/
+[4] https://patchwork.kernel.org/project/linux-mediatek/patch/20200817030324.5690-5-crystal.guo@mediatek.com/
 
-02.06.21 22:05, Oleh Kravchenko пише:
-> Add vendor prefix for SparkFun Electronics.
-> Update trivial-devices.yaml with SparkFun Qwiic Joystick description.
-> 
-> Cc: Benjamin Tissoires <benjamin.tissoires@redhat.com>
-> Cc: Device Tree mailing list <devicetree@vger.kernel.org>
-> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> Cc: Jiri Kosina <jikos@jikos.cz>
-> Cc: Patchwork Bot <patchwork-bot@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
-> ---
-> 
-> Changes:
-> - Separate patch for device tree bindings.
-> 
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  2 files changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index a327130d1faa..706aa102d96d 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -261,6 +261,8 @@ properties:
->              # Socionext SynQuacer TPM MMIO module
->            - socionext,synquacer-tpm-mmio
->              # i2c serial eeprom  (24cxx)
-> +          - sparkfun,qwiic-joystick
-> +            # SparkFun Qwiic Joystick (COM-15168) with i2c interface
->            - st,24c256
->              # Ambient Light Sensor with SMBUS/Two Wire Serial Interface
->            - taos,tsl2550
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 944b02bb96d7..a5631e68f5d1 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -1060,6 +1060,8 @@ patternProperties:
->      description: Sony Corporation
->    "^spansion,.*":
->      description: Spansion Inc.
-> +  "^sparkfun,.*":
-> +    description: SparkFun Electronics
->    "^sprd,.*":
->      description: Spreadtrum Communications Inc.
->    "^sst,.*":
-> 
+changes since v17:
+- Rebase to Linux kernel 5.13-rc1
 
--- 
-Best regards,
-Oleh Kravchenko
+Roger Lu (7):
+  [v18,1/7] dt-bindings: soc: mediatek: add mtk svs dt-bindings
+  [v18,2/7] arm64: dts: mt8183: add svs device information
+  [v18,3/7] soc: mediatek: SVS: introduce MTK SVS engine
+  [v18,4/7] soc: mediatek: SVS: add debug commands
+  [v18,5/7] dt-bindings: soc: mediatek: add mt8192 svs dt-bindings
+  [v18,6/7] arm64: dts: mt8192: add svs device information
+  [v18,7/7] soc: mediatek: SVS: add mt8192 SVS GPU driver
+
+ .../bindings/soc/mediatek/mtk-svs.yaml        |   92 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |   15 +
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      |   34 +
+ drivers/soc/mediatek/Kconfig                  |   10 +
+ drivers/soc/mediatek/Makefile                 |    1 +
+ drivers/soc/mediatek/mtk-svs.c                | 2525 +++++++++++++++++
+ 6 files changed, 2677 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml
+ create mode 100644 drivers/soc/mediatek/mtk-svs.c
+
 
