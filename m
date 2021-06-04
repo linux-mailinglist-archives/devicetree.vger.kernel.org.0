@@ -2,1530 +2,901 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A8AA39B55D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 10:57:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20DF839B5BE
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 11:19:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230359AbhFDI65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 04:58:57 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:22732 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230299AbhFDI6i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 04:58:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1622797011; x=1654333011;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=aEEwtfodrz5bzhfIs4mvW0BdiFiEGdjXW3yQ1lVvae4=;
-  b=ws0wJjh1Mowm6+JUVbpDdlo854JonJTGgsTLsHl+xQNPHIZ4z6WGSNeu
-   FszXywuf4lAXF45SNvSvnoMZn/e2qPyajp6m3M6/p/uCiSv12H2E937ne
-   RexxTydBcZZMYlEqdukcgtlsyQwGruU3vm1HcnVQb+Zasd37i2Xhjn18F
-   xbqHX7CpD1yLoeLkrv39mT9TctQClbshZKwS+a/OltEXorBeeujF33fK6
-   YAKxTtTrOy2PyoU6G4PbOCmvnp3QEFJ/QY2/ymL2ZrA1Z0ktRAsQSy/7F
-   V8ss7ihZQ5mdR5aS8g3fJn75HaHHHYsvmfz0Q9DT6ENueGazh224Crdih
-   g==;
-IronPort-SDR: BFy7FQaI9FnzvajSYav9nbFTvdNM0x9SoEeclBipUjap4642iNmsbPgx2HRiDftEnM53YkRvmB
- NOp8JGRTm986jnfGPXXKWyOoYE1fnyrg+SA9N0osxHISYdHcEabrmLthoJkHsGnpaUDf3liTO4
- vS78ICifNFU/ZRiLQZVctbk0qq3O7ZkWk0vSGu7Q0ag8L3HAlqrsdcvljknf3iVPYiXOcjdREG
- ednjGP5nT9woxumSZWAxKO1U5x4K7xq0zHrDRgeadu9ARzekVgRmNRMFdbEEqW5AChNE8YTlN3
- Erc=
-X-IronPort-AV: E=Sophos;i="5.83,247,1616482800"; 
-   d="scan'208";a="124069834"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Jun 2021 01:56:51 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Fri, 4 Jun 2021 01:56:51 -0700
-Received: from den-dk-m31857.microchip.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Fri, 4 Jun 2021 01:56:47 -0700
-From:   Steen Hegelund <steen.hegelund@microchip.com>
-To:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+        id S229994AbhFDJVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 05:21:02 -0400
+Received: from mx1.opensynergy.com ([217.66.60.4]:1088 "EHLO
+        mx1.opensynergy.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229930AbhFDJVC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 05:21:02 -0400
+Received: from SR-MAILGATE-02.opensynergy.com (localhost.localdomain [127.0.0.1])
+        by mx1.opensynergy.com (Proxmox) with ESMTP id C4D23A178A;
+        Fri,  4 Jun 2021 11:19:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=opensynergy.com;
+         h=cc:cc:content-transfer-encoding:content-type:content-type
+        :date:from:from:in-reply-to:message-id:mime-version:references
+        :reply-to:subject:subject:to:to; s=srmailgate02; bh=MFCk2MHH3ylO
+        6oaFg64coN1f5+LH4owK5o5/OdJljl8=; b=GyTsZZztkq8QAeh2sc+osM6Joq+s
+        81zhjFFxhml8Y1PAZgrxEkaVYdJ3dHL1cOPSpA6SM1bcooUz15VR4dm+IMBKPe3G
+        pY+Zw+Jte/6bR+Pn7w0UQm2BDDH8fn7vcNIb0cwXvk8oWBzO7o0Us6OY0CK98/xW
+        jL/EliDQ8i03bvR1gjL74uqpf3/9dYlixq8gtPjWRt3CF2YI/p5F4WRXrHyIeqNe
+        2FmM9JdjcmDtf7Sh/2hFeuaQm8OrcCrjwRjptzTjm5netxu059NUu3G1vPTKFBpE
+        DUfFxVWlky4+0OvoO7ToRa/Gsg5a5cXl1YranENSgA1mITQ1bl/qpADUdw==
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GwG76wa41/FnPZWqHu8BiLdV6Zo6oyl+vQZwUwzwHz/Wm7f65nhO8w+FJBRwEEZVaEQrcZG+LXapcBFC2kMSwE5o8MR/sL5h/m0Sg7sOBu7fZG9y4bkn5bpS+cO6esLH6Bzi5CgZQDhcjIAUR90dMst0YiX0MOdwiJ6FhIp1WmOzIzTbuowhhthUDpSgGX0k6QIqWZ1SlQEGdSzILg45xGFTFWvjF7iB5GAWEGDjq6xkf2s0g/9vx40vwOuLsW8itWXD94NeHUkfhVAj5ib8tMjh5tkyZsav4suY86DbkwzxaeZ3wdSgTKFyVVNrlkIDXJjOviVe6lwBu4KDZHjkmg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MFCk2MHH3ylO6oaFg64coN1f5+LH4owK5o5/OdJljl8=;
+ b=i6a1gdmGzUhRF9y10zFoSIrFfWTzFdpHWfp/Z7Yd+AbApfCQ+ItnIvL/brLGVyxfUElHvisioVy7FYIh8SwTNvok1jLeZz4j2ZKiFuv4OHUzqgQQnliBPyj7mLXpttMFajS9E0XgdG8j9fpQz6A6h+3OAwUZk5WW6L4iIauQSJ1udQUQLEnDyjpmisWTdBsdkukbMpU8dug0InE52Lwp37ggSEs3vIdRCtIItbGz9R/3KIw4SWPi4iaJ3aqmzs0c89yrNVn/p6+0iQExZ0TdUUq6goxHipnfreDkAHdQhgZLkrkyLfKpJEFiUIYIXGrulcSwTYXh1zKtPE9VLALJZg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=opensynergy.com; dmarc=pass action=none
+ header.from=opensynergy.com; dkim=pass header.d=opensynergy.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=opensynergy.onmicrosoft.com; s=selector1-opensynergy-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MFCk2MHH3ylO6oaFg64coN1f5+LH4owK5o5/OdJljl8=;
+ b=jovQnpjnLsKFw9spoBLGb8DK6JL+Qv/FbZjfPlRYM46jj1EYEF8D61wj/iSrZgMXv3p71zTpUps8zhzlXZOIvTFDeWoRYeZiec/4lmQqFJApqPspFGz+HbUZgUhFXmL+EI9+ejo6RlpbJizfFreDOoL22ehIkpfxTKoe8hZRBe4=
+Authentication-Results: linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=none action=none header.from=opensynergy.com;
+To:     Cristian Marussi <cristian.marussi@arm.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        <virtualization@lists.linux-foundation.org>,
+        <virtio-dev@lists.oasis-open.org>,
+        Igor Skalkin <igor.skalkin@opensynergy.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Device Tree List <devicetree@vger.kernel.org>
-CC:     Steen Hegelund <steen.hegelund@microchip.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Russell King <linux@armlinux.org.uk>,
-        "Microchip Linux Driver Support" <UNGLinuxDriver@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Madalin Bucur <madalin.bucur@oss.nxp.com>,
-        Mark Einon <mark.einon@gmail.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Simon Horman" <simon.horman@netronome.com>,
-        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        "Lars Povlsen" <lars.povlsen@microchip.com>,
-        Bjarni Jonasson <bjarni.jonasson@microchip.com>
-Subject: [PATCH net-next v3 10/10] arm64: dts: sparx5: Add the Sparx5 switch node
-Date:   Fri, 4 Jun 2021 10:56:00 +0200
-Message-ID: <20210604085600.3014532-11-steen.hegelund@microchip.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210604085600.3014532-1-steen.hegelund@microchip.com>
-References: <20210604085600.3014532-1-steen.hegelund@microchip.com>
-MIME-Version: 1.0
+        <linux-kernel@vger.kernel.org>, <sudeep.holla@arm.com>,
+        <souvik.chakravarty@arm.com>, <alex.bennee@linaro.org>,
+        <jean-philippe@linaro.org>, <mikhail.golubev@opensynergy.com>,
+        <anton.yakovlev@opensynergy.com>,
+        Vasyl Vavrychuk <Vasyl.Vavrychuk@opensynergy.com>,
+        Andriy Tryshnivskyy <Andriy.Tryshnivskyy@opensynergy.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Jason Wang <jasowang@redhat.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+References: <20210511002040.802226-1-peter.hilber@opensynergy.com>
+ <20210511002040.802226-12-peter.hilber@opensynergy.com>
+ <20210526144035.GN28060@e120937-lin>
+From:   Peter Hilber <peter.hilber@opensynergy.com>
+Subject: Re: [RFC PATCH v3 11/12] firmware: arm_scmi: Add virtio transport
+Message-ID: <af23ce35-4c58-678b-eb20-c4072c358db3@opensynergy.com>
+Date:   Fri, 4 Jun 2021 11:19:02 +0200
+In-Reply-To: <20210526144035.GN28060@e120937-lin>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-ClientProxiedBy: AM5PR0602CA0022.eurprd06.prod.outlook.com
+ (2603:10a6:203:a3::32) To VI1PR0401MB2477.eurprd04.prod.outlook.com
+ (2603:10a6:800:55::20)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 44dc3dd4-37a3-4648-5d59-08d92739cd4b
+X-MS-TrafficTypeDiagnostic: VE1PR04MB6462:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VE1PR04MB6462DF6FA89447BBB284E7FA8C3B9@VE1PR04MB6462.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: OPOfkWhp5fEnz+oBeBR739dCvQPztb0gUJNJU8SvhGW2cTTvRqIJJj8g12fliXni/BAzKeETrr+or02V/KBHlZmViNQ3PeVE+WW8P8oKs5ZniT2HMq2YdWeaKSnz6MjM7jxxKrWxsZaVIKqCLptCWXbTWgH5rhM6+61siwa3wLd4TQ7yNqjjcKcCd2S33MFSJ1FoJH1fNUs1OWpH+Y/ylgcgDc7xlEfwJj4K+UFw4Mrvv1T/syM/nMaT0bW3HD9VWqwOmrxjD76/jszueZyKRUNocDmy/biYAhGmmRR0ZDYAN17O3MQ3lVevbqNb9rfnJL8cVfezXRsaoEafygNvH7q19SoOw/kHE3CwTqbdEXu8lMadBwNANCI+08xMsEfsvxEbYPRGVzsXlaHI/cF0TAYeE9wHi1FGHcsqTuXerSgtFlmZMDaaLsouCN0LCD/E4Gv7Y7Gkmn8V242acOYyq5kK3x1rFueoW/O/xZj3Kifd6iPQ959pSlZoth7TdRRRdXVDsuqWDz8E/r6xqaoz06A5L3qbmddY21J/yoz0rBatqkcRoS8C3ykfoVdd8ZRZlSmOgvXqgB8k+KAaaOQBpJnTZCnXhoNOgfpFLMJ7mmeimozYYtjcgLVa4lWTgDpAc1BOWEkNPKW/SRu6MUnF3dVlH3q2o+6m1EzsyUPPYgDQOtY/JQOoybkQdnjkmlj6wmnARmJa2KMzbyOhSTZNRgMBbe2o1xnhy1ERWQuncabVEpY+qwKYinVGNj9oAvEmVmJpZfzAyVyIwZ3CK+2Q2H4+SFZgUOf6U+3b88Wof5q7u0To+lUyugzglgpZD53drPUADI8bU3GgeXZx170Oyw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0401MB2477.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(346002)(30864003)(186003)(16526019)(86362001)(36756003)(2616005)(6916009)(6486002)(5660300002)(508600001)(53546011)(7416002)(966005)(44832011)(4326008)(54906003)(38100700002)(2906002)(31696002)(8676002)(83380400001)(66556008)(66946007)(66476007)(8936002)(16799955002)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?VmJ5SzJkRENzejkvWUNKNWhwOXZYL09EdUpZcDRzTU9rWmZrUXdtWTdsUmg4?=
+ =?utf-8?B?TFg4VU9haUsxVitxMjhhUXpKU2dIVFJCWEM1LzZ1MXYvckRnT2JQdkRrWEk5?=
+ =?utf-8?B?NlNlWU5oRUhmWFBqeEw5KzA2RUtxcFpkZ1laVGdRbDJLd3FURDJaNUJnRG1i?=
+ =?utf-8?B?YkhhOVE4TmduTUFZUTNsM0JyNDJ1K3RUNEVCWFpqNk0wVlVyUVpmS2dBN2Yy?=
+ =?utf-8?B?UDkwckRzUzgramVCb0xtN2FWRHFqMlNReXZYbXd4djBFQ1NwVWRTcnRQM0Zl?=
+ =?utf-8?B?RS9hNDE1OVpmUnp1VkdOTGpSQmw4bTRPd2REU2NEbFJ1V3dkRFhodVNGZlJQ?=
+ =?utf-8?B?RkY2QWhBRHQ2WjlkNGRUNC81NlZsMmdkVWorSWt5MkRZNk94WUxkejdCbERy?=
+ =?utf-8?B?REpNOVVOdEROYS8xajJPaU96ZHFZaUQ1TVlkcGZndktVbHJLMk9iSWtXTC9W?=
+ =?utf-8?B?ejI4U3U2L0dZQmtONStWUHZJb0l4TWFnS1d3anJraTVvYXo2elZJMkhWWjAz?=
+ =?utf-8?B?Zld5eGVGdityc2ppMkN4ZE1VdWwxbTdQVmFsTmp5QldjT2YxMWh3SUdJYmRT?=
+ =?utf-8?B?Q0h6VWZyQVF6TFkvaG51Rjdic0dlSDFJNDVscElHaGQ3RGxpaGVnR3dPcVdn?=
+ =?utf-8?B?MWE3cEpCb1pLd0hzL3ZvbTcyMUUwK1FKYzRqMjYvbit5dlVRMzJ2b29xTnVo?=
+ =?utf-8?B?dTA1THdrVGxmanNTNmJJQjVDVGl5M0Y3UDd5Z3g3WnZQUXMrSm42SXRXNXVT?=
+ =?utf-8?B?ZzU4amV3VmpKOThXTFQyUG1FR3VVcDl1T1I2aHEzTDgxWFFoam1sdjcwazYz?=
+ =?utf-8?B?dVFrRVViVVlaTGsxQ0o4cDlma1QvZkE5bUlKWnVYVjlLRmtDTThsaVM1TzRh?=
+ =?utf-8?B?dVpacDVUSVZJdGhmVHdJeUdVUXdXb2NnQS9SZ2lGejF2dlBsNU0xeHpsYWgx?=
+ =?utf-8?B?YmFoL2VDYXBnZGtKUEJydVNISklpb0hidm85NjliRDlQczluTlVUMnRSd3Nm?=
+ =?utf-8?B?UWloWCtIRy9ZdU1OaFdGenJhSDEreTlTNThyVDZUUkpSb3RKOGdxMnhnQWRJ?=
+ =?utf-8?B?Sy9RTlhtdHAvVlNRakRZUk9Ib2RoRjAxMFBaYjI5aXhaOWtKbU54M0o2Zm1B?=
+ =?utf-8?B?bDF0ZnhwOXFsQzB5MkFHc0o0NTFDeHFHYmFvdTZvNms4L09iQkYyUnJzaytV?=
+ =?utf-8?B?YzBNMzRqNWVrMnNOSk0zckpkQitpMDBnaXFQSGpiM1dDdDBDYnlXeG5iL3Bs?=
+ =?utf-8?B?blNPeURTdWpiODdsVUZhcEVRZE5jRHdRdG1rWGpVaFNlOWRRbElKeWlZcm5q?=
+ =?utf-8?B?TlNtOXBSVzBaVnFsQ3l4ZENTVnVwRzVHRXBiTG1DMnB6ZnA1L2dzcDNIM1h3?=
+ =?utf-8?B?Ym1sVkxGYlZ1S3BWV0x2YmZHS1d6cVh2aTE0dDBSUnlndkVLYkd0aUZPTlFV?=
+ =?utf-8?B?b3gxNURCc0FoTmo5cUpoS2lxdnFDMCsrcndySkgwaURBbDBLckdpZXJJbEEw?=
+ =?utf-8?B?cEJlVmVkK3Zzd08vWlBVSUNDeWt1SlRBT3lCMFFFWUxaL0RkaXlkK05rN3F1?=
+ =?utf-8?B?ZSt4RUNySFltRjhWMS9VQW5OcUNBdm1yMEViOVdMdDY4T2FvT213dU1aam5p?=
+ =?utf-8?B?R1NrcUlVVDA2SkY5S3V1ZzJvWmVLbFlrWjl6UzVjK2lzV1dVR210QlZPTFhh?=
+ =?utf-8?B?VzRxU3RvV0xuQ21RRDdCTTFLSUN2anBsT244TUs5TTZMYUhTTWJrdTdRZlZk?=
+ =?utf-8?B?czZWdzJ0Q3QvMGRBL1ZYYmFGTzlHczVPaFF4T3V2dEJJaFAzZVJpODN0bktW?=
+ =?utf-8?B?bG0zWFZqbXV5dmxIV3ZtbnJPU05yNUpzU01IS0R3M3NhRURhSWxhWUVSTUto?=
+ =?utf-8?Q?Pqihdw5vfkb9m?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 44dc3dd4-37a3-4648-5d59-08d92739cd4b
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0401MB2477.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2021 09:19:06.5920
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 800fae25-9b1b-4edc-993d-c939c4e84a64
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yjOMXGpzNdpqxTN7O1DhAFifwsdckbfXLtrAyyiJvZ3cdcSf8Pd4aD5Vl4YGR/DiT1Dbaih0K9YCLGZIArPtMQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6462
+X-OriginatorOrg: opensynergy.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This provides the configuration for the currently available evaluation
-boards PCB134 and PCB135.
+On 26.05.21 16:40, Cristian Marussi wrote:
+> Hi Peter,
+> 
+> as anticipated I'm adding some new SCMI core mechanisms that should help
+> simplyfying virtio-scmi series.
+> 
+> Such core work is still in progress (and to be properly reviewed) and it
+> is at:
+> 
+> https://lore.kernel.org/linux-arm-kernel/20210524231503.34924-1-cristian.marussi@arm.com/
+> 
+> but in the meantime I have an initial but working (for me at least :D)
+> rework of your V3 virtio-scmi series; rework is still in progress and to be
+> cleaned up (nor I have addressed probing sequence or polling mode), and I am
+> anyway holding it for now since Rob asked about DT txt-to-yaml conversion
+> too, BUT if you can or want to have a look in the meantime, you can find the
+> whole V4 transitional series rebased on top of my core changes with some
+> changes on top at:
+> 
+> https://gitlab.arm.com/linux-arm/linux-cm/-/commits/scmi_virtio_trans_V4_rework/
+> 
+> where:
+> 
+>  - I dropped V3 patches 7,8,12
+>  - the virtio changes I applied to make use of my core changes are all
+>    embedded in the last patch (just for now):
+>    
+>  	[RFC] firmware: arm_scmi: make virtio-scmi use delegated xfers
+> 
+> Definitely not the final version, so you may want to just wait for a
+> real V4, but just to give an idea of the direction I'm trying to follow
+> if you want.
+> 
+> Thanks,
+> Cristian
+> 
 
-The series depends on the following series currently on its way
-into the kernel:
+Hi Cristian,
 
-- Sparx5 Reset Driver
-  Link: https://lore.kernel.org/r/20210416084054.2922327-1-steen.hegelund@microchip.com/
+I had a look at the concepts in the linked branch. The following race
+condition seems to not be addressed ATM:
 
-Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
-Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
-Signed-off-by: Bjarni Jonasson <bjarni.jonasson@microchip.com>
----
- arch/arm64/boot/dts/microchip/sparx5.dtsi     |  94 ++-
- .../dts/microchip/sparx5_pcb134_board.dtsi    | 481 ++++++++++++--
- .../dts/microchip/sparx5_pcb135_board.dtsi    | 621 +++++++++++++++++-
- 3 files changed, 1112 insertions(+), 84 deletions(-)
+- concurrent not delayed and delayed response (or inverted order)
 
-diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-index d64621d1213b..ad07fff40544 100644
---- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-@@ -135,9 +135,12 @@ mux: mux-controller {
- 			};
- 		};
- 
--		reset@611010008 {
--			compatible = "microchip,sparx5-chip-reset";
-+		reset: reset-controller@611010008 {
-+			compatible = "microchip,sparx5-switch-reset";
- 			reg = <0x6 0x11010008 0x4>;
-+			reg-names = "gcb";
-+			#reset-cells = <1>;
-+			cpu-syscon = <&cpu_ctrl>;
- 		};
- 
- 		uart0: serial@600100000 {
-@@ -275,6 +278,21 @@ emmc_pins: emmc-pins {
- 					"GPIO_46", "GPIO_47";
- 				function = "emmc";
- 			};
-+
-+			miim1_pins: miim1-pins {
-+				pins = "GPIO_56", "GPIO_57";
-+				function = "miim";
-+			};
-+
-+			miim2_pins: miim2-pins {
-+				pins = "GPIO_58", "GPIO_59";
-+				function = "miim";
-+			};
-+
-+			miim3_pins: miim3-pins {
-+				pins = "GPIO_52", "GPIO_53";
-+				function = "miim";
-+			};
- 		};
- 
- 		sgpio0: gpio@61101036c {
-@@ -285,6 +303,8 @@ sgpio0: gpio@61101036c {
- 			clocks = <&sys_clk>;
- 			pinctrl-0 = <&sgpio0_pins>;
- 			pinctrl-names = "default";
-+			resets = <&reset 0>;
-+			reset-names = "switch";
- 			reg = <0x6 0x1101036c 0x100>;
- 			sgpio_in0: gpio@0 {
- 				compatible = "microchip,sparx5-sgpio-bank";
-@@ -292,6 +312,9 @@ sgpio_in0: gpio@0 {
- 				gpio-controller;
- 				#gpio-cells = <3>;
- 				ngpios = <96>;
-+				interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-controller;
-+				#interrupt-cells = <3>;
- 			};
- 			sgpio_out0: gpio@1 {
- 				compatible = "microchip,sparx5-sgpio-bank";
-@@ -310,6 +333,8 @@ sgpio1: gpio@611010484 {
- 			clocks = <&sys_clk>;
- 			pinctrl-0 = <&sgpio1_pins>;
- 			pinctrl-names = "default";
-+			resets = <&reset 0>;
-+			reset-names = "switch";
- 			reg = <0x6 0x11010484 0x100>;
- 			sgpio_in1: gpio@0 {
- 				compatible = "microchip,sparx5-sgpio-bank";
-@@ -317,6 +342,9 @@ sgpio_in1: gpio@0 {
- 				gpio-controller;
- 				#gpio-cells = <3>;
- 				ngpios = <96>;
-+				interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-controller;
-+				#interrupt-cells = <3>;
- 			};
- 			sgpio_out1: gpio@1 {
- 				compatible = "microchip,sparx5-sgpio-bank";
-@@ -335,6 +363,8 @@ sgpio2: gpio@61101059c {
- 			clocks = <&sys_clk>;
- 			pinctrl-0 = <&sgpio2_pins>;
- 			pinctrl-names = "default";
-+			resets = <&reset 0>;
-+			reset-names = "switch";
- 			reg = <0x6 0x1101059c 0x100>;
- 			sgpio_in2: gpio@0 {
- 				reg = <0>;
-@@ -342,6 +372,9 @@ sgpio_in2: gpio@0 {
- 				gpio-controller;
- 				#gpio-cells = <3>;
- 				ngpios = <96>;
-+				interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-controller;
-+				#interrupt-cells = <3>;
- 			};
- 			sgpio_out2: gpio@1 {
- 				compatible = "microchip,sparx5-sgpio-bank";
-@@ -386,5 +419,62 @@ tmon0: tmon@610508110 {
- 			#thermal-sensor-cells = <0>;
- 			clocks = <&ahb_clk>;
- 		};
-+
-+		mdio0: mdio@6110102b0 {
-+			compatible = "mscc,ocelot-miim";
-+			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x6 0x110102b0 0x24>;
-+		};
-+
-+		mdio1: mdio@6110102d4 {
-+			compatible = "mscc,ocelot-miim";
-+			status = "disabled";
-+			pinctrl-0 = <&miim1_pins>;
-+			pinctrl-names = "default";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x6 0x110102d4 0x24>;
-+		};
-+
-+		mdio2: mdio@6110102f8 {
-+			compatible = "mscc,ocelot-miim";
-+			status = "disabled";
-+			pinctrl-0 = <&miim2_pins>;
-+			pinctrl-names = "default";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x6 0x110102d4 0x24>;
-+		};
-+
-+		mdio3: mdio@61101031c {
-+			compatible = "mscc,ocelot-miim";
-+			status = "disabled";
-+			pinctrl-0 = <&miim3_pins>;
-+			pinctrl-names = "default";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x6 0x1101031c 0x24>;
-+		};
-+
-+		serdes: serdes@10808000 {
-+			compatible = "microchip,sparx5-serdes";
-+			#phy-cells = <1>;
-+			clocks = <&sys_clk>;
-+			reg = <0x6 0x10808000 0x5d0000>;
-+		};
-+
-+		switch: switch@0x600000000 {
-+			compatible = "microchip,sparx5-switch";
-+			reg =	<0x6 0 0x401000>,
-+				<0x6 0x10004000 0x7fc000>,
-+				<0x6 0x11010000 0xaf0000>;
-+			reg-names = "cpu", "dev", "gcb";
-+			interrupt-names = "xtr";
-+			interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
-+			resets = <&reset 0>;
-+			reset-names = "switch";
-+		};
- 	};
- };
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi b/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-index f0c915160990..33faf1f3264f 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-@@ -7,30 +7,6 @@
- #include "sparx5_pcb_common.dtsi"
- 
- /{
--	aliases {
--	    i2c0   = &i2c0;
--	    i2c100 = &i2c100;
--	    i2c101 = &i2c101;
--	    i2c102 = &i2c102;
--	    i2c103 = &i2c103;
--	    i2c104 = &i2c104;
--	    i2c105 = &i2c105;
--	    i2c106 = &i2c106;
--	    i2c107 = &i2c107;
--	    i2c108 = &i2c108;
--	    i2c109 = &i2c109;
--	    i2c110 = &i2c110;
--	    i2c111 = &i2c111;
--	    i2c112 = &i2c112;
--	    i2c113 = &i2c113;
--	    i2c114 = &i2c114;
--	    i2c115 = &i2c115;
--	    i2c116 = &i2c116;
--	    i2c117 = &i2c117;
--	    i2c118 = &i2c118;
--	    i2c119 = &i2c119;
--	};
--
- 	gpio-restart {
- 		compatible = "gpio-restart";
- 		gpios = <&gpio 37 GPIO_ACTIVE_LOW>;
-@@ -298,17 +274,10 @@ gpio@1 {
- 
- &spi0 {
- 	status = "okay";
--	spi@0 {
--		compatible = "spi-mux";
--		mux-controls = <&mux>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--		reg = <0>;	/* CS0 */
--		spi-flash@9 {
--			compatible = "jedec,spi-nor";
--			spi-max-frequency = <8000000>;
--			reg = <0x9>;	/* SPI */
--		};
-+	spi-flash@0 {
-+		compatible = "jedec,spi-nor";
-+		spi-max-frequency = <8000000>;
-+		reg = <0>;
- 	};
- };
- 
-@@ -328,6 +297,33 @@ spi-flash@9 {
- 	};
- };
- 
-+&sgpio0 {
-+	status = "okay";
-+	microchip,sgpio-port-ranges = <8 15>;
-+	gpio@0 {
-+		ngpios = <64>;
-+	};
-+	gpio@1 {
-+		ngpios = <64>;
-+	};
-+};
-+
-+&sgpio1 {
-+	status = "okay";
-+	microchip,sgpio-port-ranges = <24 31>;
-+	gpio@0 {
-+		ngpios = <64>;
-+	};
-+	gpio@1 {
-+		ngpios = <64>;
-+	};
-+};
-+
-+&sgpio2 {
-+	status = "okay";
-+	microchip,sgpio-port-ranges = <0 0>, <11 31>;
-+};
-+
- &gpio {
- 	i2cmux_pins_i: i2cmux-pins-i {
- 	       pins = "GPIO_16", "GPIO_17", "GPIO_18", "GPIO_19",
-@@ -415,9 +411,9 @@ i2c0_emux: i2c0-emux@0 {
- 
- &i2c0_imux {
- 	pinctrl-names =
--		"i2c100", "i2c101", "i2c102", "i2c103",
--		"i2c104", "i2c105", "i2c106", "i2c107",
--		"i2c108", "i2c109", "i2c110", "i2c111", "idle";
-+		"i2c_sfp1", "i2c_sfp2", "i2c_sfp3", "i2c_sfp4",
-+		"i2c_sfp5", "i2c_sfp6", "i2c_sfp7", "i2c_sfp8",
-+		"i2c_sfp9", "i2c_sfp10", "i2c_sfp11", "i2c_sfp12", "idle";
- 	pinctrl-0 = <&i2cmux_0>;
- 	pinctrl-1 = <&i2cmux_1>;
- 	pinctrl-2 = <&i2cmux_2>;
-@@ -431,62 +427,62 @@ &i2c0_imux {
- 	pinctrl-10 = <&i2cmux_10>;
- 	pinctrl-11 = <&i2cmux_11>;
- 	pinctrl-12 = <&i2cmux_pins_i>;
--	i2c100: i2c_sfp1 {
-+	i2c_sfp1: i2c_sfp1 {
- 		reg = <0x0>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c101: i2c_sfp2 {
-+	i2c_sfp2: i2c_sfp2 {
- 		reg = <0x1>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c102: i2c_sfp3 {
-+	i2c_sfp3: i2c_sfp3 {
- 		reg = <0x2>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c103: i2c_sfp4 {
-+	i2c_sfp4: i2c_sfp4 {
- 		reg = <0x3>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c104: i2c_sfp5 {
-+	i2c_sfp5: i2c_sfp5 {
- 		reg = <0x4>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c105: i2c_sfp6 {
-+	i2c_sfp6: i2c_sfp6 {
- 		reg = <0x5>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c106: i2c_sfp7 {
-+	i2c_sfp7: i2c_sfp7 {
- 		reg = <0x6>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c107: i2c_sfp8 {
-+	i2c_sfp8: i2c_sfp8 {
- 		reg = <0x7>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c108: i2c_sfp9 {
-+	i2c_sfp9: i2c_sfp9 {
- 		reg = <0x8>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c109: i2c_sfp10 {
-+	i2c_sfp10: i2c_sfp10 {
- 		reg = <0x9>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c110: i2c_sfp11 {
-+	i2c_sfp11: i2c_sfp11 {
- 		reg = <0xa>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c111: i2c_sfp12 {
-+	i2c_sfp12: i2c_sfp12 {
- 		reg = <0xb>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-@@ -499,44 +495,413 @@ &gpio 60 GPIO_ACTIVE_HIGH
- 		     &gpio 61 GPIO_ACTIVE_HIGH
- 		     &gpio 54 GPIO_ACTIVE_HIGH>;
- 	idle-state = <0x8>;
--	i2c112: i2c_sfp13 {
-+	i2c_sfp13: i2c_sfp13 {
- 		reg = <0x0>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c113: i2c_sfp14 {
-+	i2c_sfp14: i2c_sfp14 {
- 		reg = <0x1>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c114: i2c_sfp15 {
-+	i2c_sfp15: i2c_sfp15 {
- 		reg = <0x2>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c115: i2c_sfp16 {
-+	i2c_sfp16: i2c_sfp16 {
- 		reg = <0x3>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c116: i2c_sfp17 {
-+	i2c_sfp17: i2c_sfp17 {
- 		reg = <0x4>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c117: i2c_sfp18 {
-+	i2c_sfp18: i2c_sfp18 {
- 		reg = <0x5>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c118: i2c_sfp19 {
-+	i2c_sfp19: i2c_sfp19 {
- 		reg = <0x6>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c119: i2c_sfp20 {
-+	i2c_sfp20: i2c_sfp20 {
- 		reg = <0x7>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
- };
-+
-+&mdio3 {
-+	status = "ok";
-+	phy64: ethernet-phy@64 {
-+		reg = <28>;
-+	};
-+};
-+
-+&axi {
-+	sfp_eth12: sfp-eth12 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp1>;
-+		tx-disable-gpios = <&sgpio_out2 11 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 11 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 11 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 12 0 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth13: sfp-eth13 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp2>;
-+		tx-disable-gpios = <&sgpio_out2 12 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 12 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 12 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 13 0 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth14: sfp-eth14 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp3>;
-+		tx-disable-gpios = <&sgpio_out2 13 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 13 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 13 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 14 0 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth15: sfp-eth15 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp4>;
-+		tx-disable-gpios = <&sgpio_out2 14 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 14 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 14 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 15 0 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth48: sfp-eth48 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp5>;
-+		tx-disable-gpios = <&sgpio_out2 15 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 15 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 15 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 16 0 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth49: sfp-eth49 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp6>;
-+		tx-disable-gpios = <&sgpio_out2 16 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 16 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 16 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 17 0 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth50: sfp-eth50 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp7>;
-+		tx-disable-gpios = <&sgpio_out2 17 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 17 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 17 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 18 0 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth51: sfp-eth51 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp8>;
-+		tx-disable-gpios = <&sgpio_out2 18 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 18 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 18 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 19 0 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth52: sfp-eth52 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp9>;
-+		tx-disable-gpios = <&sgpio_out2 19 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 19 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 19 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 20 0 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth53: sfp-eth53 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp10>;
-+		tx-disable-gpios = <&sgpio_out2 20 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 20 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 20 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 21 0 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth54: sfp-eth54 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp11>;
-+		tx-disable-gpios = <&sgpio_out2 21 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 21 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 21 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 22 0 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth55: sfp-eth55 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp12>;
-+		tx-disable-gpios = <&sgpio_out2 22 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 22 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 22 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 23 0 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth56: sfp-eth56 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp13>;
-+		tx-disable-gpios = <&sgpio_out2 23 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 23 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 23 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 24 0 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth57: sfp-eth57 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp14>;
-+		tx-disable-gpios = <&sgpio_out2 24 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 24 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 24 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 25 0 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth58: sfp-eth58 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp15>;
-+		tx-disable-gpios = <&sgpio_out2 25 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 25 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 25 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 26 0 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth59: sfp-eth59 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp16>;
-+		tx-disable-gpios = <&sgpio_out2 26 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 26 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 26 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 27 0 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth60: sfp-eth60 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp17>;
-+		tx-disable-gpios = <&sgpio_out2 27 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 27 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 27 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 28 0 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth61: sfp-eth61 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp18>;
-+		tx-disable-gpios = <&sgpio_out2 28 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 28 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 28 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 29 0 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth62: sfp-eth62 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp19>;
-+		tx-disable-gpios = <&sgpio_out2 29 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 29 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 29 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 30 0 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth63: sfp-eth63 {
-+		compatible       = "sff,sfp";
-+		i2c-bus          = <&i2c_sfp20>;
-+		tx-disable-gpios = <&sgpio_out2 30 1 GPIO_ACTIVE_LOW>;
-+		los-gpios        = <&sgpio_in2 30 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios   = <&sgpio_in2 30 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios   = <&sgpio_in2 31 0 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&switch {
-+	ethernet-ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* 10G SFPs */
-+		port12: port@12 {
-+			reg = <12>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 13>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth12>;
-+			microchip,sd-sgpio = <301>;
-+			managed = "in-band-status";
-+		};
-+		port13: port@13 {
-+			reg = <13>;
-+			/* Example: CU SFP, 1G speed */
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 14>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth13>;
-+			microchip,sd-sgpio = <305>;
-+			managed = "in-band-status";
-+		};
-+		port14: port@14 {
-+			reg = <14>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 15>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth14>;
-+			microchip,sd-sgpio = <309>;
-+			managed = "in-band-status";
-+		};
-+		port15: port@15 {
-+			reg = <15>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 16>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth15>;
-+			microchip,sd-sgpio = <313>;
-+			managed = "in-band-status";
-+		};
-+		port48: port@48 {
-+			reg = <48>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 17>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth48>;
-+			microchip,sd-sgpio = <317>;
-+			managed = "in-band-status";
-+		};
-+		port49: port@49 {
-+			reg = <49>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 18>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth49>;
-+			microchip,sd-sgpio = <321>;
-+			managed = "in-band-status";
-+		};
-+		port50: port@50 {
-+			reg = <50>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 19>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth50>;
-+			microchip,sd-sgpio = <325>;
-+			managed = "in-band-status";
-+		};
-+		port51: port@51 {
-+			reg = <51>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 20>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth51>;
-+			microchip,sd-sgpio = <329>;
-+			managed = "in-band-status";
-+		};
-+		port52: port@52 {
-+			reg = <52>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 21>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth52>;
-+			microchip,sd-sgpio = <333>;
-+			managed = "in-band-status";
-+		};
-+		port53: port@53 {
-+			reg = <53>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 22>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth53>;
-+			microchip,sd-sgpio = <337>;
-+			managed = "in-band-status";
-+		};
-+		port54: port@54 {
-+			reg = <54>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 23>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth54>;
-+			microchip,sd-sgpio = <341>;
-+			managed = "in-band-status";
-+		};
-+		port55: port@55 {
-+			reg = <55>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 24>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth55>;
-+			microchip,sd-sgpio = <345>;
-+			managed = "in-band-status";
-+		};
-+		/* 25G SFPs */
-+		port56: port@56 {
-+			reg = <56>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 25>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth56>;
-+			microchip,sd-sgpio = <349>;
-+			managed = "in-band-status";
-+		};
-+		port57: port@57 {
-+			reg = <57>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 26>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth57>;
-+			microchip,sd-sgpio = <353>;
-+			managed = "in-band-status";
-+		};
-+		port58: port@58 {
-+			reg = <58>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 27>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth58>;
-+			microchip,sd-sgpio = <357>;
-+			managed = "in-band-status";
-+		};
-+		port59: port@59 {
-+			reg = <59>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 28>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth59>;
-+			microchip,sd-sgpio = <361>;
-+			managed = "in-band-status";
-+		};
-+		port60: port@60 {
-+			reg = <60>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 29>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth60>;
-+			microchip,sd-sgpio = <365>;
-+			managed = "in-band-status";
-+		};
-+		port61: port@61 {
-+			reg = <61>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 30>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth61>;
-+			microchip,sd-sgpio = <369>;
-+			managed = "in-band-status";
-+		};
-+		port62: port@62 {
-+			reg = <62>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 31>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth62>;
-+			microchip,sd-sgpio = <373>;
-+			managed = "in-band-status";
-+		};
-+		port63: port@63 {
-+			reg = <63>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 32>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth63>;
-+			microchip,sd-sgpio = <377>;
-+			managed = "in-band-status";
-+		};
-+		/* Finally the Management interface */
-+		port64: port@64 {
-+			reg = <64>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 0>;
-+			phy-handle = <&phy64>;
-+			phy-mode = "sgmii";
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi b/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-index e28c6dd16377..ef96e6d8c6b3 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-@@ -7,14 +7,6 @@
- #include "sparx5_pcb_common.dtsi"
- 
- /{
--	aliases {
--	    i2c0   = &i2c0;
--	    i2c152 = &i2c152;
--	    i2c153 = &i2c153;
--	    i2c154 = &i2c154;
--	    i2c155 = &i2c155;
--	};
--
- 	gpio-restart {
- 		compatible = "gpio-restart";
- 		gpios = <&gpio 37 GPIO_ACTIVE_LOW>;
-@@ -97,17 +89,10 @@ i2cmux_s32: i2cmux-3 {
- 
- &spi0 {
- 	status = "okay";
--	spi@0 {
--		compatible = "spi-mux";
--		mux-controls = <&mux>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--		reg = <0>; /* CS0 */
--		spi-flash@9 {
--			compatible = "jedec,spi-nor";
--			spi-max-frequency = <8000000>;
--			reg = <0x9>; /* SPI */
--		};
-+	spi-flash@0 {
-+		compatible = "jedec,spi-nor";
-+		spi-max-frequency = <8000000>;
-+		reg = <0>;
- 	};
- };
- 
-@@ -138,6 +123,11 @@ gpio@1 {
- 	};
- };
- 
-+&sgpio2 {
-+	status = "okay";
-+	microchip,sgpio-port-ranges = <0 0>, <16 18>, <28 31>;
-+};
-+
- &axi {
- 	i2c0_imux: i2c0-imux@0 {
- 		compatible = "i2c-mux-pinctrl";
-@@ -149,31 +139,614 @@ i2c0_imux: i2c0-imux@0 {
- 
- &i2c0_imux {
- 	pinctrl-names =
--		"i2c152", "i2c153", "i2c154", "i2c155",
-+		"i2c_sfp1", "i2c_sfp2", "i2c_sfp3", "i2c_sfp4",
- 		"idle";
- 	pinctrl-0 = <&i2cmux_s29>;
- 	pinctrl-1 = <&i2cmux_s30>;
- 	pinctrl-2 = <&i2cmux_s31>;
- 	pinctrl-3 = <&i2cmux_s32>;
- 	pinctrl-4 = <&i2cmux_pins_i>;
--	i2c152: i2c_sfp1 {
-+	i2c_sfp1: i2c_sfp1 {
- 		reg = <0x0>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c153: i2c_sfp2 {
-+	i2c_sfp2: i2c_sfp2 {
- 		reg = <0x1>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c154: i2c_sfp3 {
-+	i2c_sfp3: i2c_sfp3 {
- 		reg = <0x2>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
--	i2c155: i2c_sfp4 {
-+	i2c_sfp4: i2c_sfp4 {
- 		reg = <0x3>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
- };
-+
-+&axi {
-+	sfp_eth60: sfp-eth60 {
-+		compatible	   = "sff,sfp";
-+		i2c-bus            = <&i2c_sfp1>;
-+		tx-disable-gpios   = <&sgpio_out2 28 0 GPIO_ACTIVE_LOW>;
-+		rate-select0-gpios = <&sgpio_out2 28 1 GPIO_ACTIVE_HIGH>;
-+		los-gpios          = <&sgpio_in2 28 0 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios     = <&sgpio_in2 28 1 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios     = <&sgpio_in2 28 2 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth61: sfp-eth61 {
-+		compatible         = "sff,sfp";
-+		i2c-bus            = <&i2c_sfp2>;
-+		tx-disable-gpios   = <&sgpio_out2 29 0 GPIO_ACTIVE_LOW>;
-+		rate-select0-gpios = <&sgpio_out2 29 1 GPIO_ACTIVE_HIGH>;
-+		los-gpios          = <&sgpio_in2 29 0 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios     = <&sgpio_in2 29 1 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios     = <&sgpio_in2 29 2 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth62: sfp-eth62 {
-+		compatible         = "sff,sfp";
-+		i2c-bus            = <&i2c_sfp3>;
-+		tx-disable-gpios   = <&sgpio_out2 30 0 GPIO_ACTIVE_LOW>;
-+		rate-select0-gpios = <&sgpio_out2 30 1 GPIO_ACTIVE_HIGH>;
-+		los-gpios          = <&sgpio_in2 30 0 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios     = <&sgpio_in2 30 1 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios     = <&sgpio_in2 30 2 GPIO_ACTIVE_HIGH>;
-+	};
-+	sfp_eth63: sfp-eth63 {
-+		compatible         = "sff,sfp";
-+		i2c-bus            = <&i2c_sfp4>;
-+		tx-disable-gpios   = <&sgpio_out2 31 0 GPIO_ACTIVE_LOW>;
-+		rate-select0-gpios = <&sgpio_out2 31 1 GPIO_ACTIVE_HIGH>;
-+		los-gpios          = <&sgpio_in2 31 0 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios     = <&sgpio_in2 31 1 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios     = <&sgpio_in2 31 2 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&mdio0 {
-+	status = "ok";
-+	phy0: ethernet-phy@0 {
-+		reg = <0>;
-+	};
-+	phy1: ethernet-phy@1 {
-+		reg = <1>;
-+	};
-+	phy2: ethernet-phy@2 {
-+		reg = <2>;
-+	};
-+	phy3: ethernet-phy@3 {
-+		reg = <3>;
-+	};
-+	phy4: ethernet-phy@4 {
-+		reg = <4>;
-+	};
-+	phy5: ethernet-phy@5 {
-+		reg = <5>;
-+	};
-+	phy6: ethernet-phy@6 {
-+		reg = <6>;
-+	};
-+	phy7: ethernet-phy@7 {
-+		reg = <7>;
-+	};
-+	phy8: ethernet-phy@8 {
-+		reg = <8>;
-+	};
-+	phy9: ethernet-phy@9 {
-+		reg = <9>;
-+	};
-+	phy10: ethernet-phy@10 {
-+		reg = <10>;
-+	};
-+	phy11: ethernet-phy@11 {
-+		reg = <11>;
-+	};
-+	phy12: ethernet-phy@12 {
-+		reg = <12>;
-+	};
-+	phy13: ethernet-phy@13 {
-+		reg = <13>;
-+	};
-+	phy14: ethernet-phy@14 {
-+		reg = <14>;
-+	};
-+	phy15: ethernet-phy@15 {
-+		reg = <15>;
-+	};
-+	phy16: ethernet-phy@16 {
-+		reg = <16>;
-+	};
-+	phy17: ethernet-phy@17 {
-+		reg = <17>;
-+	};
-+	phy18: ethernet-phy@18 {
-+		reg = <18>;
-+	};
-+	phy19: ethernet-phy@19 {
-+		reg = <19>;
-+	};
-+	phy20: ethernet-phy@20 {
-+		reg = <20>;
-+	};
-+	phy21: ethernet-phy@21 {
-+		reg = <21>;
-+	};
-+	phy22: ethernet-phy@22 {
-+		reg = <22>;
-+	};
-+	phy23: ethernet-phy@23 {
-+		reg = <23>;
-+	};
-+};
-+
-+&mdio1 {
-+	status = "ok";
-+	phy24: ethernet-phy@24 {
-+		reg = <0>;
-+	};
-+	phy25: ethernet-phy@25 {
-+		reg = <1>;
-+	};
-+	phy26: ethernet-phy@26 {
-+		reg = <2>;
-+	};
-+	phy27: ethernet-phy@27 {
-+		reg = <3>;
-+	};
-+	phy28: ethernet-phy@28 {
-+		reg = <4>;
-+	};
-+	phy29: ethernet-phy@29 {
-+		reg = <5>;
-+	};
-+	phy30: ethernet-phy@30 {
-+		reg = <6>;
-+	};
-+	phy31: ethernet-phy@31 {
-+		reg = <7>;
-+	};
-+	phy32: ethernet-phy@32 {
-+		reg = <8>;
-+	};
-+	phy33: ethernet-phy@33 {
-+		reg = <9>;
-+	};
-+	phy34: ethernet-phy@34 {
-+		reg = <10>;
-+	};
-+	phy35: ethernet-phy@35 {
-+		reg = <11>;
-+	};
-+	phy36: ethernet-phy@36 {
-+		reg = <12>;
-+	};
-+	phy37: ethernet-phy@37 {
-+		reg = <13>;
-+	};
-+	phy38: ethernet-phy@38 {
-+		reg = <14>;
-+	};
-+	phy39: ethernet-phy@39 {
-+		reg = <15>;
-+	};
-+	phy40: ethernet-phy@40 {
-+		reg = <16>;
-+	};
-+	phy41: ethernet-phy@41 {
-+		reg = <17>;
-+	};
-+	phy42: ethernet-phy@42 {
-+		reg = <18>;
-+	};
-+	phy43: ethernet-phy@43 {
-+		reg = <19>;
-+	};
-+	phy44: ethernet-phy@44 {
-+		reg = <20>;
-+	};
-+	phy45: ethernet-phy@45 {
-+		reg = <21>;
-+	};
-+	phy46: ethernet-phy@46 {
-+		reg = <22>;
-+	};
-+	phy47: ethernet-phy@47 {
-+		reg = <23>;
-+	};
-+};
-+
-+&mdio3 {
-+	status = "ok";
-+	phy64: ethernet-phy@64 {
-+		reg = <28>;
-+	};
-+};
-+
-+&switch {
-+	ethernet-ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port0: port@0 {
-+			reg = <0>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 13>;
-+			phy-handle = <&phy0>;
-+			phy-mode = "qsgmii";
-+		};
-+		port1: port@1 {
-+			reg = <1>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 13>;
-+			phy-handle = <&phy1>;
-+			phy-mode = "qsgmii";
-+		};
-+		port2: port@2 {
-+			reg = <2>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 13>;
-+			phy-handle = <&phy2>;
-+			phy-mode = "qsgmii";
-+		};
-+		port3: port@3 {
-+			reg = <3>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 13>;
-+			phy-handle = <&phy3>;
-+			phy-mode = "qsgmii";
-+		};
-+		port4: port@4 {
-+			reg = <4>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 14>;
-+			phy-handle = <&phy4>;
-+			phy-mode = "qsgmii";
-+		};
-+		port5: port@5 {
-+			reg = <5>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 14>;
-+			phy-handle = <&phy5>;
-+			phy-mode = "qsgmii";
-+		};
-+		port6: port@6 {
-+			reg = <6>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 14>;
-+			phy-handle = <&phy6>;
-+			phy-mode = "qsgmii";
-+		};
-+		port7: port@7 {
-+			reg = <7>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 14>;
-+			phy-handle = <&phy7>;
-+			phy-mode = "qsgmii";
-+		};
-+		port8: port@8 {
-+			reg = <8>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 15>;
-+			phy-handle = <&phy8>;
-+			phy-mode = "qsgmii";
-+		};
-+		port9: port@9 {
-+			reg = <9>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 15>;
-+			phy-handle = <&phy9>;
-+			phy-mode = "qsgmii";
-+		};
-+		port10: port@10 {
-+			reg = <10>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 15>;
-+			phy-handle = <&phy10>;
-+			phy-mode = "qsgmii";
-+		};
-+		port11: port@11 {
-+			reg = <11>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 15>;
-+			phy-handle = <&phy11>;
-+			phy-mode = "qsgmii";
-+		};
-+		port12: port@12 {
-+			reg = <12>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 16>;
-+			phy-handle = <&phy12>;
-+			phy-mode = "qsgmii";
-+		};
-+		port13: port@13 {
-+			reg = <13>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 16>;
-+			phy-handle = <&phy13>;
-+			phy-mode = "qsgmii";
-+		};
-+		port14: port@14 {
-+			reg = <14>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 16>;
-+			phy-handle = <&phy14>;
-+			phy-mode = "qsgmii";
-+		};
-+		port15: port@15 {
-+			reg = <15>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 16>;
-+			phy-handle = <&phy15>;
-+			phy-mode = "qsgmii";
-+		};
-+		port16: port@16 {
-+			reg = <16>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 17>;
-+			phy-handle = <&phy16>;
-+			phy-mode = "qsgmii";
-+		};
-+		port17: port@17 {
-+			reg = <17>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 17>;
-+			phy-handle = <&phy17>;
-+			phy-mode = "qsgmii";
-+		};
-+		port18: port@18 {
-+			reg = <18>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 17>;
-+			phy-handle = <&phy18>;
-+			phy-mode = "qsgmii";
-+		};
-+		port19: port@19 {
-+			reg = <19>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 17>;
-+			phy-handle = <&phy19>;
-+			phy-mode = "qsgmii";
-+		};
-+		port20: port@20 {
-+			reg = <20>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 18>;
-+			phy-handle = <&phy20>;
-+			phy-mode = "qsgmii";
-+		};
-+		port21: port@21 {
-+			reg = <21>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 18>;
-+			phy-handle = <&phy21>;
-+			phy-mode = "qsgmii";
-+		};
-+		port22: port@22 {
-+			reg = <22>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 18>;
-+			phy-handle = <&phy22>;
-+			phy-mode = "qsgmii";
-+		};
-+		port23: port@23 {
-+			reg = <23>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 18>;
-+			phy-handle = <&phy23>;
-+			phy-mode = "qsgmii";
-+		};
-+		port24: port@24 {
-+			reg = <24>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 19>;
-+			phy-handle = <&phy24>;
-+			phy-mode = "qsgmii";
-+		};
-+		port25: port@25 {
-+			reg = <25>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 19>;
-+			phy-handle = <&phy25>;
-+			phy-mode = "qsgmii";
-+		};
-+		port26: port@26 {
-+			reg = <26>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 19>;
-+			phy-handle = <&phy26>;
-+			phy-mode = "qsgmii";
-+		};
-+		port27: port@27 {
-+			reg = <27>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 19>;
-+			phy-handle = <&phy27>;
-+			phy-mode = "qsgmii";
-+		};
-+		port28: port@28 {
-+			reg = <28>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 20>;
-+			phy-handle = <&phy28>;
-+			phy-mode = "qsgmii";
-+		};
-+		port29: port@29 {
-+			reg = <29>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 20>;
-+			phy-handle = <&phy29>;
-+			phy-mode = "qsgmii";
-+		};
-+		port30: port@30 {
-+			reg = <30>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 20>;
-+			phy-handle = <&phy30>;
-+			phy-mode = "qsgmii";
-+		};
-+		port31: port@31 {
-+			reg = <31>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 20>;
-+			phy-handle = <&phy31>;
-+			phy-mode = "qsgmii";
-+		};
-+		port32: port@32 {
-+			reg = <32>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 21>;
-+			phy-handle = <&phy32>;
-+			phy-mode = "qsgmii";
-+		};
-+		port33: port@33 {
-+			reg = <33>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 21>;
-+			phy-handle = <&phy33>;
-+			phy-mode = "qsgmii";
-+		};
-+		port34: port@34 {
-+			reg = <34>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 21>;
-+			phy-handle = <&phy34>;
-+			phy-mode = "qsgmii";
-+		};
-+		port35: port@35 {
-+			reg = <35>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 21>;
-+			phy-handle = <&phy35>;
-+			phy-mode = "qsgmii";
-+		};
-+		port36: port@36 {
-+			reg = <36>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 22>;
-+			phy-handle = <&phy36>;
-+			phy-mode = "qsgmii";
-+		};
-+		port37: port@37 {
-+			reg = <37>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 22>;
-+			phy-handle = <&phy37>;
-+			phy-mode = "qsgmii";
-+		};
-+		port38: port@38 {
-+			reg = <38>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 22>;
-+			phy-handle = <&phy38>;
-+			phy-mode = "qsgmii";
-+		};
-+		port39: port@39 {
-+			reg = <39>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 22>;
-+			phy-handle = <&phy39>;
-+			phy-mode = "qsgmii";
-+		};
-+		port40: port@40 {
-+			reg = <40>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 23>;
-+			phy-handle = <&phy40>;
-+			phy-mode = "qsgmii";
-+		};
-+		port41: port@41 {
-+			reg = <41>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 23>;
-+			phy-handle = <&phy41>;
-+			phy-mode = "qsgmii";
-+		};
-+		port42: port@42 {
-+			reg = <42>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 23>;
-+			phy-handle = <&phy42>;
-+			phy-mode = "qsgmii";
-+		};
-+		port43: port@43 {
-+			reg = <43>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 23>;
-+			phy-handle = <&phy43>;
-+			phy-mode = "qsgmii";
-+		};
-+		port44: port@44 {
-+			reg = <44>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 24>;
-+			phy-handle = <&phy44>;
-+			phy-mode = "qsgmii";
-+		};
-+		port45: port@45 {
-+			reg = <45>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 24>;
-+			phy-handle = <&phy45>;
-+			phy-mode = "qsgmii";
-+		};
-+		port46: port@46 {
-+			reg = <46>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 24>;
-+			phy-handle = <&phy46>;
-+			phy-mode = "qsgmii";
-+		};
-+		port47: port@47 {
-+			reg = <47>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 24>;
-+			phy-handle = <&phy47>;
-+			phy-mode = "qsgmii";
-+		};
-+		/* Then the 25G interfaces */
-+		port60: port@60 {
-+			reg = <60>;
-+			microchip,bandwidth = <25000>;
-+			phys = <&serdes 29>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth60>;
-+			managed = "in-band-status";
-+		};
-+		port61: port@61 {
-+			reg = <61>;
-+			microchip,bandwidth = <25000>;
-+			phys = <&serdes 30>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth61>;
-+			managed = "in-band-status";
-+		};
-+		port62: port@62 {
-+			reg = <62>;
-+			microchip,bandwidth = <25000>;
-+			phys = <&serdes 31>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth62>;
-+			managed = "in-band-status";
-+		};
-+		port63: port@63 {
-+			reg = <63>;
-+			microchip,bandwidth = <25000>;
-+			phys = <&serdes 32>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp_eth63>;
-+			managed = "in-band-status";
-+		};
-+		/* Finally the Management interface */
-+		port64: port@64 {
-+			reg = <64>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 0>;
-+			phy-handle = <&phy64>;
-+			phy-mode = "sgmii";
-+		};
-+	};
-+};
--- 
-2.31.1
+The virtio device will send the not delayed and delayed response through
+different virtqueues. Sending in a particular order will in my
+understanding not entail that the receiver is able to restore this
+order. I think the virtio transport cannot handle this race condition in
+general without interpreting message headers (which it shouldn't).
+
+Also, it might be documented that after a response timeout, do_xfer
+should not be called on the xfer any more (since a belated response to
+the timed out message might corrupt the new message).
+
+Best regards,
+
+Peter
+
+> On Tue, May 11, 2021 at 02:20:39AM +0200, Peter Hilber wrote:
+>> From: Igor Skalkin <igor.skalkin@opensynergy.com>
+>>
+>> This transport enables accessing an SCMI platform as a virtio device.
+>>
+>> Implement an SCMI virtio driver according to the virtio SCMI device spec
+>> [1]. Virtio device id 32 has been reserved for the SCMI device [2].
+>>
+>> The virtio transport has one Tx channel (virtio cmdq, A2P channel) and
+>> at most one Rx channel (virtio eventq, P2A channel).
+>>
+>> The following feature bit defined in [1] is not implemented:
+>> VIRTIO_SCMI_F_SHARED_MEMORY.
+>>
+>> After the preparatory patches, this implements the virtio transport as
+>> paraphrased:
+>>
+>> Only support a single arm-scmi device (which is consistent with the SCMI
+>> spec). scmi-virtio init is called from arm-scmi module init. During the
+>> arm-scmi probing, link to the first probed scmi-virtio device. Defer
+>> arm-scmi probing if no scmi-virtio device is bound yet.
+>>
+>> For simplicity, restrict the number of messages which can be pending
+>> simultaneously according to the virtqueue capacity. (The virtqueue sizes
+>> are negotiated with the virtio device.)
+>>
+>> As soon as Rx channel message buffers are allocated or have been read
+>> out by the arm-scmi driver, feed them to the virtio device.
+>>
+>> Since some virtio devices may not have the short response time exhibited
+>> by SCMI platforms using other transports, set a generous response
+>> timeout.
+>>
+>> Limitations:
+>>
+>> - Polling is not supported.
+>>
+>> - The timeout for delayed responses has not been adjusted.
+>>
+>> [1] https://github.com/oasis-tcs/virtio-spec/blob/master/virtio-scmi.tex
+>> [2] https://www.oasis-open.org/committees/ballot.php?id=3496
+>>
+>> Signed-off-by: Igor Skalkin <igor.skalkin@opensynergy.com>
+>> [ Peter: Adapted patch for submission to upstream. ]
+>> Co-developed-by: Peter Hilber <peter.hilber@opensynergy.com>
+>> Signed-off-by: Peter Hilber <peter.hilber@opensynergy.com>
+>> ---
+>>  MAINTAINERS                        |   1 +
+>>  drivers/firmware/Kconfig           |  12 +
+>>  drivers/firmware/arm_scmi/Makefile |   1 +
+>>  drivers/firmware/arm_scmi/common.h |   3 +
+>>  drivers/firmware/arm_scmi/driver.c |   3 +
+>>  drivers/firmware/arm_scmi/virtio.c | 523 +++++++++++++++++++++++++++++
+>>  include/uapi/linux/virtio_ids.h    |   1 +
+>>  include/uapi/linux/virtio_scmi.h   |  25 ++
+>>  8 files changed, 569 insertions(+)
+>>  create mode 100644 drivers/firmware/arm_scmi/virtio.c
+>>  create mode 100644 include/uapi/linux/virtio_scmi.h
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index bd7aff0c120f..449c336872f3 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -17705,6 +17705,7 @@ F:	drivers/regulator/scmi-regulator.c
+>>  F:	drivers/reset/reset-scmi.c
+>>  F:	include/linux/sc[mp]i_protocol.h
+>>  F:	include/trace/events/scmi.h
+>> +F:	include/uapi/linux/virtio_scmi.h
+>>  
+>>  SYSTEM RESET/SHUTDOWN DRIVERS
+>>  M:	Sebastian Reichel <sre@kernel.org>
+>> diff --git a/drivers/firmware/Kconfig b/drivers/firmware/Kconfig
+>> index e8377b12e4d0..7e9eafdd9b63 100644
+>> --- a/drivers/firmware/Kconfig
+>> +++ b/drivers/firmware/Kconfig
+>> @@ -39,6 +39,18 @@ config ARM_SCMI_HAVE_MSG
+>>  	  This declares whether a message passing based transport for SCMI is
+>>  	  available.
+>>  
+>> +# This config option includes the dependencies of ARM_SCMI_PROTOCOL so that
+>> +# this config doesn't show up when SCMI wouldn't be available.
+>> +config VIRTIO_SCMI
+>> +	bool "Virtio transport for SCMI"
+>> +	select ARM_SCMI_HAVE_MSG
+>> +	depends on VIRTIO && (ARM || ARM64 || COMPILE_TEST)
+>> +	help
+>> +	  This enables the virtio based transport for SCMI.
+>> +
+>> +	  If you want to use the ARM SCMI protocol between the virtio guest and
+>> +	  a host providing a virtio SCMI device, answer Y.
+>> +
+>>  config ARM_SCMI_POWER_DOMAIN
+>>  	tristate "SCMI power domain driver"
+>>  	depends on ARM_SCMI_PROTOCOL || (COMPILE_TEST && OF)
+>> diff --git a/drivers/firmware/arm_scmi/Makefile b/drivers/firmware/arm_scmi/Makefile
+>> index f6b4acb8abdb..db1787606fb2 100644
+>> --- a/drivers/firmware/arm_scmi/Makefile
+>> +++ b/drivers/firmware/arm_scmi/Makefile
+>> @@ -5,6 +5,7 @@ scmi-transport-$(CONFIG_ARM_SCMI_HAVE_SHMEM) = shmem.o
+>>  scmi-transport-$(CONFIG_MAILBOX) += mailbox.o
+>>  scmi-transport-$(CONFIG_HAVE_ARM_SMCCC_DISCOVERY) += smc.o
+>>  scmi-transport-$(CONFIG_ARM_SCMI_HAVE_MSG) += msg.o
+>> +scmi-transport-$(CONFIG_VIRTIO_SCMI) += virtio.o
+>>  scmi-protocols-y = base.o clock.o perf.o power.o reset.o sensors.o system.o voltage.o
+>>  scmi-module-objs := $(scmi-bus-y) $(scmi-driver-y) $(scmi-protocols-y) \
+>>  		    $(scmi-transport-y)
+>> diff --git a/drivers/firmware/arm_scmi/common.h b/drivers/firmware/arm_scmi/common.h
+>> index 4cb6571c7aaf..bada06cfd33d 100644
+>> --- a/drivers/firmware/arm_scmi/common.h
+>> +++ b/drivers/firmware/arm_scmi/common.h
+>> @@ -349,6 +349,9 @@ extern const struct scmi_desc scmi_mailbox_desc;
+>>  #ifdef CONFIG_HAVE_ARM_SMCCC
+>>  extern const struct scmi_desc scmi_smc_desc;
+>>  #endif
+>> +#ifdef CONFIG_VIRTIO_SCMI
+>> +extern const struct scmi_desc scmi_virtio_desc;
+>> +#endif
+>>  
+>>  int scmi_set_transport_info(struct device *dev, void *transport_info);
+>>  void *scmi_get_transport_info(struct device *dev);
+>> diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
+>> index e04e7c8e6928..a31187385470 100644
+>> --- a/drivers/firmware/arm_scmi/driver.c
+>> +++ b/drivers/firmware/arm_scmi/driver.c
+>> @@ -1637,6 +1637,9 @@ static const struct of_device_id scmi_of_match[] = {
+>>  #endif
+>>  #ifdef CONFIG_HAVE_ARM_SMCCC_DISCOVERY
+>>  	{ .compatible = "arm,scmi-smc", .data = &scmi_smc_desc},
+>> +#endif
+>> +#ifdef CONFIG_VIRTIO_SCMI
+>> +	{ .compatible = "arm,scmi-virtio", .data = &scmi_virtio_desc},
+>>  #endif
+>>  	{ /* Sentinel */ },
+>>  };
+>> diff --git a/drivers/firmware/arm_scmi/virtio.c b/drivers/firmware/arm_scmi/virtio.c
+>> new file mode 100644
+>> index 000000000000..20972adf6dc7
+>> --- /dev/null
+>> +++ b/drivers/firmware/arm_scmi/virtio.c
+>> @@ -0,0 +1,523 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Virtio Transport driver for Arm System Control and Management Interface
+>> + * (SCMI).
+>> + *
+>> + * Copyright (C) 2020 OpenSynergy.
+>> + */
+>> +
+>> +/**
+>> + * DOC: Theory of Operation
+>> + *
+>> + * The scmi-virtio transport implements a driver for the virtio SCMI device.
+>> + *
+>> + * There is one Tx channel (virtio cmdq, A2P channel) and at most one Rx
+>> + * channel (virtio eventq, P2A channel). Each channel is implemented through a
+>> + * virtqueue. Access to each virtqueue is protected by spinlocks.
+>> + */
+>> +
+>> +#include <linux/errno.h>
+>> +#include <linux/of.h>
+>> +#include <linux/of_platform.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/module.h>
+>> +#include <linux/slab.h>
+>> +#include <linux/virtio.h>
+>> +#include <linux/virtio_config.h>
+>> +#include <uapi/linux/virtio_ids.h>
+>> +#include <uapi/linux/virtio_scmi.h>
+>> +
+>> +#include "common.h"
+>> +
+>> +#define VIRTIO_SCMI_MAX_MSG_SIZE 128 /* Value may be increased. */
+>> +#define VIRTIO_SCMI_MAX_PDU_SIZE \
+>> +	(VIRTIO_SCMI_MAX_MSG_SIZE + SCMI_MSG_MAX_PROT_OVERHEAD)
+>> +#define DESCRIPTORS_PER_TX_MSG 2
+>> +
+>> +/**
+>> + * struct scmi_vio_channel - Transport channel information
+>> + *
+>> + * @lock: Protects access to all members except ready.
+>> + * @ready_lock: Protects access to ready. If required, it must be taken before
+>> + *              lock.
+>> + * @vqueue: Associated virtqueue
+>> + * @cinfo: SCMI Tx or Rx channel
+>> + * @free_list: List of unused scmi_vio_msg, maintained for Tx channels only
+>> + * @is_rx: Whether channel is an Rx channel
+>> + * @ready: Whether transport user is ready to hear about channel
+>> + */
+>> +struct scmi_vio_channel {
+>> +	spinlock_t lock;
+>> +	spinlock_t ready_lock;
+>> +	struct virtqueue *vqueue;
+>> +	struct scmi_chan_info *cinfo;
+>> +	struct list_head free_list;
+>> +	u8 is_rx;
+>> +	u8 ready;
+>> +};
+>> +
+>> +/**
+>> + * struct scmi_vio_msg - Transport PDU information
+>> + *
+>> + * @request: SDU used for commands
+>> + * @input: SDU used for (delayed) responses and notifications
+>> + * @list: List which scmi_vio_msg may be part of
+>> + * @rx_len: Input SDU size in bytes, once input has been received
+>> + */
+>> +struct scmi_vio_msg {
+>> +	struct scmi_msg_payld *request;
+>> +	struct scmi_msg_payld *input;
+>> +	struct list_head list;
+>> +	unsigned int rx_len;
+>> +};
+>> +
+>> +static bool scmi_vio_have_vq_rx(struct virtio_device *vdev)
+>> +{
+>> +	return virtio_has_feature(vdev, VIRTIO_SCMI_F_P2A_CHANNELS);
+>> +}
+>> +
+>> +static int scmi_vio_feed_vq_rx(struct scmi_vio_channel *vioch,
+>> +			       struct scmi_vio_msg *msg)
+>> +{
+>> +	struct scatterlist sg_in;
+>> +	int rc;
+>> +	unsigned long flags;
+>> +
+>> +	sg_init_one(&sg_in, msg->input, VIRTIO_SCMI_MAX_PDU_SIZE);
+>> +
+>> +	spin_lock_irqsave(&vioch->lock, flags);
+>> +
+>> +	rc = virtqueue_add_inbuf(vioch->vqueue, &sg_in, 1, msg, GFP_ATOMIC);
+>> +	if (rc)
+>> +		dev_err_once(vioch->cinfo->dev,
+>> +			     "%s() failed to add to virtqueue (%d)\n", __func__,
+>> +			     rc);
+>> +	else
+>> +		virtqueue_kick(vioch->vqueue);
+>> +
+>> +	spin_unlock_irqrestore(&vioch->lock, flags);
+>> +
+>> +	return rc;
+>> +}
+>> +
+>> +static void scmi_vio_complete_cb(struct virtqueue *vqueue)
+>> +{
+>> +	unsigned long ready_flags;
+>> +	unsigned long flags;
+>> +	unsigned int length;
+>> +	struct scmi_vio_channel *vioch;
+>> +	struct scmi_vio_msg *msg;
+>> +	bool cb_enabled = true;
+>> +
+>> +	if (WARN_ON_ONCE(!vqueue->vdev->priv))
+>> +		return;
+>> +	vioch = &((struct scmi_vio_channel *)vqueue->vdev->priv)[vqueue->index];
+>> +
+>> +	for (;;) {
+>> +		spin_lock_irqsave(&vioch->ready_lock, ready_flags);
+>> +
+>> +		if (!vioch->ready) {
+>> +			if (!cb_enabled)
+>> +				(void)virtqueue_enable_cb(vqueue);
+>> +			goto unlock_ready_out;
+>> +		}
+>> +
+>> +		spin_lock_irqsave(&vioch->lock, flags);
+>> +		if (cb_enabled) {
+>> +			virtqueue_disable_cb(vqueue);
+>> +			cb_enabled = false;
+>> +		}
+>> +		msg = virtqueue_get_buf(vqueue, &length);
+>> +		if (!msg) {
+>> +			if (virtqueue_enable_cb(vqueue))
+>> +				goto unlock_out;
+>> +			else
+>> +				cb_enabled = true;
+>> +		}
+>> +		spin_unlock_irqrestore(&vioch->lock, flags);
+>> +
+>> +		if (msg) {
+>> +			msg->rx_len = length;
+>> +
+>> +			/*
+>> +			 * Hold the ready_lock during the callback to avoid
+>> +			 * races when the arm-scmi driver is unbinding while
+>> +			 * the virtio device is not quiesced yet.
+>> +			 */
+>> +			scmi_rx_callback(vioch->cinfo,
+>> +					 msg_read_header(msg->input), msg);
+>> +		}
+>> +		spin_unlock_irqrestore(&vioch->ready_lock, ready_flags);
+>> +	}
+>> +
+>> +unlock_out:
+>> +	spin_unlock_irqrestore(&vioch->lock, flags);
+>> +unlock_ready_out:
+>> +	spin_unlock_irqrestore(&vioch->ready_lock, ready_flags);
+>> +}
+>> +
+>> +static const char *const scmi_vio_vqueue_names[] = { "tx", "rx" };
+>> +
+>> +static vq_callback_t *scmi_vio_complete_callbacks[] = {
+>> +	scmi_vio_complete_cb,
+>> +	scmi_vio_complete_cb
+>> +};
+>> +
+>> +static unsigned int virtio_get_max_msg(bool tx,
+>> +				       struct scmi_chan_info *base_cinfo)
+>> +{
+>> +	struct scmi_vio_channel *vioch = base_cinfo->transport_info;
+>> +	unsigned int ret;
+>> +
+>> +	ret = virtqueue_get_vring_size(vioch->vqueue);
+>> +
+>> +	/* Tx messages need multiple descriptors. */
+>> +	if (tx)
+>> +		ret /= DESCRIPTORS_PER_TX_MSG;
+>> +
+>> +	if (ret > MSG_TOKEN_MAX) {
+>> +		dev_info_once(
+>> +			base_cinfo->dev,
+>> +			"Only %ld messages can be pending simultaneously, while the %s virtqueue could hold %d\n",
+>> +			MSG_TOKEN_MAX, tx ? "tx" : "rx", ret);
+>> +		ret = MSG_TOKEN_MAX;
+>> +	}
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int scmi_vio_match_any_dev(struct device *dev, const void *data)
+>> +{
+>> +	return 1;
+>> +}
+>> +
+>> +static struct virtio_driver virtio_scmi_driver; /* Forward declaration */
+>> +
+>> +static int virtio_link_supplier(struct device *dev)
+>> +{
+>> +	struct device *vdev = driver_find_device(
+>> +		&virtio_scmi_driver.driver, NULL, NULL, scmi_vio_match_any_dev);
+>> +
+>> +	if (!vdev) {
+>> +		dev_notice_once(
+>> +			dev,
+>> +			"Deferring probe after not finding a bound scmi-virtio device\n");
+>> +		return -EPROBE_DEFER;
+>> +	}
+>> +
+>> +	/* Add device link for remove order and sysfs link. */
+>> +	if (!device_link_add(dev, vdev, DL_FLAG_AUTOREMOVE_CONSUMER)) {
+>> +		put_device(vdev);
+>> +		dev_err(dev, "Adding link to supplier virtio device failed\n");
+>> +		return -ECANCELED;
+>> +	}
+>> +
+>> +	put_device(vdev);
+>> +	return scmi_set_transport_info(dev, dev_to_virtio(vdev));
+>> +}
+>> +
+>> +static bool virtio_chan_available(struct device *dev, int idx)
+>> +{
+>> +	struct virtio_device *vdev;
+>> +
+>> +	/* scmi-virtio doesn't support per-protocol channels */
+>> +	if (is_scmi_protocol_device(dev))
+>> +		return false;
+>> +
+>> +	vdev = scmi_get_transport_info(dev);
+>> +	if (!vdev)
+>> +		return false;
+>> +
+>> +	switch (idx) {
+>> +	case VIRTIO_SCMI_VQ_TX:
+>> +		return true;
+>> +	case VIRTIO_SCMI_VQ_RX:
+>> +		return scmi_vio_have_vq_rx(vdev);
+>> +	default:
+>> +		return false;
+>> +	}
+>> +}
+>> +
+>> +static int virtio_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
+>> +			     bool tx)
+>> +{
+>> +	unsigned long flags;
+>> +	struct virtio_device *vdev;
+>> +	struct scmi_vio_channel *vioch;
+>> +	int index = tx ? VIRTIO_SCMI_VQ_TX : VIRTIO_SCMI_VQ_RX;
+>> +	int max_msg;
+>> +	int i;
+>> +
+>> +	if (!virtio_chan_available(dev, index))
+>> +		return -ENODEV;
+>> +
+>> +	vdev = scmi_get_transport_info(dev);
+>> +	vioch = &((struct scmi_vio_channel *)vdev->priv)[index];
+>> +
+>> +	spin_lock_irqsave(&vioch->lock, flags);
+>> +	cinfo->transport_info = vioch;
+>> +	vioch->cinfo = cinfo;
+>> +	spin_unlock_irqrestore(&vioch->lock, flags);
+>> +
+>> +	max_msg = virtio_get_max_msg(tx, cinfo);
+>> +
+>> +	for (i = 0; i < max_msg; i++) {
+>> +		struct scmi_vio_msg *msg;
+>> +
+>> +		msg = devm_kzalloc(cinfo->dev, sizeof(*msg), GFP_KERNEL);
+>> +		if (!msg)
+>> +			return -ENOMEM;
+>> +
+>> +		if (tx) {
+>> +			msg->request = devm_kzalloc(cinfo->dev,
+>> +						    VIRTIO_SCMI_MAX_PDU_SIZE,
+>> +						    GFP_KERNEL);
+>> +			if (!msg->request)
+>> +				return -ENOMEM;
+>> +		}
+>> +
+>> +		msg->input = devm_kzalloc(cinfo->dev, VIRTIO_SCMI_MAX_PDU_SIZE,
+>> +					  GFP_KERNEL);
+>> +		if (!msg->input)
+>> +			return -ENOMEM;
+>> +
+>> +		if (tx) {
+>> +			spin_lock_irqsave(&vioch->lock, flags);
+>> +			list_add_tail(&msg->list, &vioch->free_list);
+>> +			spin_unlock_irqrestore(&vioch->lock, flags);
+>> +		} else {
+>> +			scmi_vio_feed_vq_rx(vioch, msg);
+>> +		}
+>> +	}
+>> +
+>> +	spin_lock_irqsave(&vioch->ready_lock, flags);
+>> +	vioch->ready = true;
+>> +	spin_unlock_irqrestore(&vioch->ready_lock, flags);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int virtio_chan_free(int id, void *p, void *data)
+>> +{
+>> +	unsigned long flags;
+>> +	struct scmi_chan_info *cinfo = p;
+>> +	struct scmi_vio_channel *vioch = cinfo->transport_info;
+>> +
+>> +	spin_lock_irqsave(&vioch->ready_lock, flags);
+>> +	vioch->ready = false;
+>> +	spin_unlock_irqrestore(&vioch->ready_lock, flags);
+>> +
+>> +	scmi_free_channel(cinfo, data, id);
+>> +	return 0;
+>> +}
+>> +
+>> +static int virtio_send_message(struct scmi_chan_info *cinfo,
+>> +			       struct scmi_xfer *xfer)
+>> +{
+>> +	struct scmi_vio_channel *vioch = cinfo->transport_info;
+>> +	struct scatterlist sg_out;
+>> +	struct scatterlist sg_in;
+>> +	struct scatterlist *sgs[DESCRIPTORS_PER_TX_MSG] = { &sg_out, &sg_in };
+>> +	unsigned long flags;
+>> +	int rc;
+>> +	struct scmi_vio_msg *msg;
+>> +
+>> +	/*
+>> +	 * TODO: For now, we don't support polling. But it should not be
+>> +	 * difficult to add support.
+>> +	 */
+>> +	if (xfer->hdr.poll_completion)
+>> +		return -EINVAL;
+>> +
+>> +	spin_lock_irqsave(&vioch->lock, flags);
+>> +
+>> +	if (list_empty(&vioch->free_list)) {
+>> +		spin_unlock_irqrestore(&vioch->lock, flags);
+>> +		return -EBUSY;
+>> +	}
+>> +
+>> +	msg = list_first_entry(&vioch->free_list, typeof(*msg), list);
+>> +	list_del(&msg->list);
+>> +
+>> +	msg_tx_prepare(msg->request, xfer);
+>> +
+>> +	sg_init_one(&sg_out, msg->request, msg_command_size(xfer));
+>> +	sg_init_one(&sg_in, msg->input, msg_response_size(xfer));
+>> +
+>> +	rc = virtqueue_add_sgs(vioch->vqueue, sgs, 1, 1, msg, GFP_ATOMIC);
+>> +	if (rc) {
+>> +		list_add(&msg->list, &vioch->free_list);
+>> +		dev_err_once(vioch->cinfo->dev,
+>> +			     "%s() failed to add to virtqueue (%d)\n", __func__,
+>> +			     rc);
+>> +	} else {
+>> +		virtqueue_kick(vioch->vqueue);
+>> +	}
+>> +
+>> +	spin_unlock_irqrestore(&vioch->lock, flags);
+>> +
+>> +	return rc;
+>> +}
+>> +
+>> +static void virtio_fetch_response(struct scmi_chan_info *cinfo,
+>> +				  struct scmi_xfer *xfer, void *msg_handle)
+>> +{
+>> +	struct scmi_vio_msg *msg = msg_handle;
+>> +	struct scmi_vio_channel *vioch = cinfo->transport_info;
+>> +
+>> +	if (!msg) {
+>> +		dev_dbg_once(&vioch->vqueue->vdev->dev,
+>> +			     "Ignoring %s() call with NULL msg_handle\n",
+>> +			     __func__);
+>> +		return;
+>> +	}
+>> +
+>> +	msg_fetch_response(msg->input, msg->rx_len, xfer);
+>> +}
+>> +
+>> +static void virtio_fetch_notification(struct scmi_chan_info *cinfo,
+>> +				      size_t max_len, struct scmi_xfer *xfer,
+>> +				      void *msg_handle)
+>> +{
+>> +	struct scmi_vio_msg *msg = msg_handle;
+>> +	struct scmi_vio_channel *vioch = cinfo->transport_info;
+>> +
+>> +	if (!msg) {
+>> +		dev_dbg_once(&vioch->vqueue->vdev->dev,
+>> +			     "Ignoring %s() call with NULL msg_handle\n",
+>> +			     __func__);
+>> +		return;
+>> +	}
+>> +
+>> +	msg_fetch_notification(msg->input, msg->rx_len, max_len, xfer);
+>> +}
+>> +
+>> +static void dummy_clear_channel(struct scmi_chan_info *cinfo)
+>> +{
+>> +}
+>> +
+>> +static bool dummy_poll_done(struct scmi_chan_info *cinfo,
+>> +			    struct scmi_xfer *xfer)
+>> +{
+>> +	return false;
+>> +}
+>> +
+>> +static void virtio_drop_message(struct scmi_chan_info *cinfo, void *msg_handle)
+>> +{
+>> +	unsigned long flags;
+>> +	struct scmi_vio_channel *vioch = cinfo->transport_info;
+>> +	struct scmi_vio_msg *msg = msg_handle;
+>> +
+>> +	if (!msg) {
+>> +		dev_dbg_once(&vioch->vqueue->vdev->dev,
+>> +			     "Ignoring %s() call with NULL msg_handle\n",
+>> +			     __func__);
+>> +		return;
+>> +	}
+>> +
+>> +	if (vioch->is_rx) {
+>> +		scmi_vio_feed_vq_rx(vioch, msg);
+>> +	} else {
+>> +		spin_lock_irqsave(&vioch->lock, flags);
+>> +		list_add(&msg->list, &vioch->free_list);
+>> +		spin_unlock_irqrestore(&vioch->lock, flags);
+>> +	}
+>> +}
+>> +
+>> +static const struct scmi_transport_ops scmi_virtio_ops = {
+>> +	.link_supplier = virtio_link_supplier,
+>> +	.chan_available = virtio_chan_available,
+>> +	.chan_setup = virtio_chan_setup,
+>> +	.chan_free = virtio_chan_free,
+>> +	.get_max_msg = virtio_get_max_msg,
+>> +	.send_message = virtio_send_message,
+>> +	.fetch_response = virtio_fetch_response,
+>> +	.fetch_notification = virtio_fetch_notification,
+>> +	.clear_channel = dummy_clear_channel,
+>> +	.poll_done = dummy_poll_done,
+>> +	.drop_message = virtio_drop_message,
+>> +};
+>> +
+>> +static int scmi_vio_probe(struct virtio_device *vdev)
+>> +{
+>> +	struct device *dev = &vdev->dev;
+>> +	struct scmi_vio_channel *channels;
+>> +	bool have_vq_rx;
+>> +	int vq_cnt;
+>> +	int i;
+>> +	int ret;
+>> +	struct virtqueue *vqs[VIRTIO_SCMI_VQ_MAX_CNT];
+>> +
+>> +	have_vq_rx = scmi_vio_have_vq_rx(vdev);
+>> +	vq_cnt = have_vq_rx ? VIRTIO_SCMI_VQ_MAX_CNT : 1;
+>> +
+>> +	channels = devm_kcalloc(dev, vq_cnt, sizeof(*channels), GFP_KERNEL);
+>> +	if (!channels)
+>> +		return -ENOMEM;
+>> +
+>> +	if (have_vq_rx)
+>> +		channels[VIRTIO_SCMI_VQ_RX].is_rx = true;
+>> +
+>> +	ret = virtio_find_vqs(vdev, vq_cnt, vqs, scmi_vio_complete_callbacks,
+>> +			      scmi_vio_vqueue_names, NULL);
+>> +	if (ret) {
+>> +		dev_err(dev, "Failed to get %d virtqueue(s)\n", vq_cnt);
+>> +		return ret;
+>> +	}
+>> +	dev_info(dev, "Found %d virtqueue(s)\n", vq_cnt);
+>> +
+>> +	for (i = 0; i < vq_cnt; i++) {
+>> +		spin_lock_init(&channels[i].lock);
+>> +		spin_lock_init(&channels[i].ready_lock);
+>> +		INIT_LIST_HEAD(&channels[i].free_list);
+>> +		channels[i].vqueue = vqs[i];
+>> +	}
+>> +
+>> +	vdev->priv = channels;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void scmi_vio_remove(struct virtio_device *vdev)
+>> +{
+>> +	vdev->config->reset(vdev);
+>> +	vdev->config->del_vqs(vdev);
+>> +}
+>> +
+>> +static unsigned int features[] = {
+>> +	VIRTIO_SCMI_F_P2A_CHANNELS,
+>> +};
+>> +
+>> +static const struct virtio_device_id id_table[] = {
+>> +	{ VIRTIO_ID_SCMI, VIRTIO_DEV_ANY_ID },
+>> +	{ 0 }
+>> +};
+>> +
+>> +static struct virtio_driver virtio_scmi_driver = {
+>> +	.driver.name = "scmi-virtio",
+>> +	.driver.owner = THIS_MODULE,
+>> +	.feature_table = features,
+>> +	.feature_table_size = ARRAY_SIZE(features),
+>> +	.id_table = id_table,
+>> +	.probe = scmi_vio_probe,
+>> +	.remove = scmi_vio_remove,
+>> +};
+>> +
+>> +static int __init virtio_scmi_init(void)
+>> +{
+>> +	return register_virtio_driver(&virtio_scmi_driver);
+>> +}
+>> +
+>> +static void __exit virtio_scmi_exit(void)
+>> +{
+>> +	unregister_virtio_driver(&virtio_scmi_driver);
+>> +}
+>> +
+>> +const struct scmi_desc scmi_virtio_desc = {
+>> +	.init = virtio_scmi_init,
+>> +	.exit = virtio_scmi_exit,
+>> +	.ops = &scmi_virtio_ops,
+>> +	.max_rx_timeout_ms = 60000, /* for non-realtime virtio devices */
+>> +	.max_msg = 0, /* overridden by virtio_get_max_msg() */
+>> +	.max_msg_size = VIRTIO_SCMI_MAX_MSG_SIZE,
+>> +};
+>> diff --git a/include/uapi/linux/virtio_ids.h b/include/uapi/linux/virtio_ids.h
+>> index f0c35ce8628c..c146fe30e589 100644
+>> --- a/include/uapi/linux/virtio_ids.h
+>> +++ b/include/uapi/linux/virtio_ids.h
+>> @@ -56,5 +56,6 @@
+>>  #define VIRTIO_ID_PMEM			27 /* virtio pmem */
+>>  #define VIRTIO_ID_BT			28 /* virtio bluetooth */
+>>  #define VIRTIO_ID_MAC80211_HWSIM	29 /* virtio mac80211-hwsim */
+>> +#define VIRTIO_ID_SCMI			32 /* virtio SCMI */
+>>  
+>>  #endif /* _LINUX_VIRTIO_IDS_H */
+>> diff --git a/include/uapi/linux/virtio_scmi.h b/include/uapi/linux/virtio_scmi.h
+>> new file mode 100644
+>> index 000000000000..732b01504c35
+>> --- /dev/null
+>> +++ b/include/uapi/linux/virtio_scmi.h
+>> @@ -0,0 +1,25 @@
+>> +/* SPDX-License-Identifier: ((GPL-2.0 WITH Linux-syscall-note) OR BSD-3-Clause) */
+>> +/*
+>> + * Copyright (C) 2020 OpenSynergy GmbH
+>> + */
+>> +
+>> +#ifndef _UAPI_LINUX_VIRTIO_SCMI_H
+>> +#define _UAPI_LINUX_VIRTIO_SCMI_H
+>> +
+>> +#include <linux/virtio_types.h>
+>> +
+>> +/* Feature bits */
+>> +
+>> +/* Device implements some SCMI notifications, or delayed responses. */
+>> +#define VIRTIO_SCMI_F_P2A_CHANNELS 0
+>> +
+>> +/* Device implements any SCMI statistics shared memory region */
+>> +#define VIRTIO_SCMI_F_SHARED_MEMORY 1
+>> +
+>> +/* Virtqueues */
+>> +
+>> +#define VIRTIO_SCMI_VQ_TX 0 /* cmdq */
+>> +#define VIRTIO_SCMI_VQ_RX 1 /* eventq */
+>> +#define VIRTIO_SCMI_VQ_MAX_CNT 2
+>> +
+>> +#endif /* _UAPI_LINUX_VIRTIO_SCMI_H */
+>> -- 
+>> 2.25.1
+>>
+>>
+> 
+
 
