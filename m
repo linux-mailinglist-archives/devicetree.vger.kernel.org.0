@@ -2,221 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5C4F39B10D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 05:42:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BFCD39B127
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 05:56:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229758AbhFDDnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 23:43:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47572 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229833AbhFDDnt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 23:43:49 -0400
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C61CC061760
-        for <devicetree@vger.kernel.org>; Thu,  3 Jun 2021 20:41:53 -0700 (PDT)
-Received: by mail-ot1-x32f.google.com with SMTP id 66-20020a9d02c80000b02903615edf7c1aso7821000otl.13
-        for <devicetree@vger.kernel.org>; Thu, 03 Jun 2021 20:41:53 -0700 (PDT)
+        id S229800AbhFDD6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 23:58:22 -0400
+Received: from mail-pl1-f170.google.com ([209.85.214.170]:34310 "EHLO
+        mail-pl1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229718AbhFDD6W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 23:58:22 -0400
+Received: by mail-pl1-f170.google.com with SMTP id u9so3900374plr.1
+        for <devicetree@vger.kernel.org>; Thu, 03 Jun 2021 20:56:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=qDKqotNOGIxidneZCpCOFm1Xj7iQGtbVhRVMvdBpFyw=;
-        b=FrW4olx7vH1AWpZD4jiByfMBDwVT9dg4znQeN7xlFnmHlgwgZfuneJl36K8INWvP7S
-         RnDudy0d7iVbU2l1xvdenvPuV4HuItSIRlA7CG2/qt4ye3I/DpVYkTSoy2/+I6DD7GoF
-         HS2ctFuqsS6vAHeld+orfNCC61pfw9MV9kCV6agFhqpAUXNZB8vv2Rw0vD2m/0t+VJnA
-         InK5jZr0vsAfHSeonW30O07YgBryNQ/HtsPAipgo8nzhzJYV6MdIlHkQF23DZdseVV42
-         x0dJycPdpgaJJ7v4skSAm5C4Y4mGWs5ZxHIjZVvri/joAxcFeY75eTIS5mcCbIGk1BLX
-         c5HQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=eMMwY8qQNkTVoHZiZIl5tn9ghZC2j5sUCYWs3fjlNkc=;
+        b=WQYEOJQWgXV4Z7RlPLlCH0GI+8Mhykds+lFNzn0YEf1jC3NHqQDlnuj1KwVBv/ZBQX
+         pZNuy4boZd2b5p9mFrU+nNwNa8pExofWPH8fWCT2NkP+ZEEdC26KFyH0eXB1nm+bz/2Z
+         HSFTbe3cq9V7LGWs2wNjTxwxjbSAjqCKZw8zKzq3/mJe4N/JoD6Kqcb0lislhEzPbWAF
+         dQcDE12nrPhNyxzg6hjcYpp7wXdFO59UM1Dd0LuPnJ7XZFdv01gp1F1pRwEZLc8t/Xe4
+         xMi+71z90CBtnKV8nH+H+8qVxwYvONklR91BD3XYmLThGLSZMOFLzuA4QefdfVyrqcH+
+         TNuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qDKqotNOGIxidneZCpCOFm1Xj7iQGtbVhRVMvdBpFyw=;
-        b=FPKlcf38RtYhfjER5+Sd2CBAoHSQ+DAaF9n0l6BHNWF+tKIWySYmNSjSQCbfB9fYj4
-         n1VNuImd1EmG4zaZtOFdR6o3isfayK+06Z8GYCoVZhxrbvAHghuIpEhrJkPF9//bz85K
-         u+tPeAe/RAJoMjEAN1pcF2WDm5r0HljUJXVWHtvILbgTI2bSdqJnOse26nlXsxk0B6KN
-         SYR7bbeHDVKKSEeH78tcyml9IYo1FJd5m2Z5Yb27cjKe7yiWCtk+hZ5MsidEEOscFva6
-         FX4XwOtFxLcqWjxCkjsOq9qo6eYw07zhSXAEEH/m8WkFrwss6fSO9ru+YxWAs7g5goT3
-         xUBA==
-X-Gm-Message-State: AOAM533D0Zw2C10F/AqAyY8HNJOPc6rIh5OVGNckAXRbGDLiC6+tLz9Q
-        yyqOAxd0BDt07yzwDdi+pO3u5KeiS/Apq9tKdfSolw==
-X-Google-Smtp-Source: ABdhPJyBlwS4ywW9sYM/BIc6j44E7w/DxEwFdwnUPP5GI2rf2VfVa1kQMxnDXRQPbeqMJpbsxfrDhGUQO3gEMNTgd6s=
-X-Received: by 2002:a9d:4f15:: with SMTP id d21mr2107757otl.155.1622778112475;
- Thu, 03 Jun 2021 20:41:52 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=eMMwY8qQNkTVoHZiZIl5tn9ghZC2j5sUCYWs3fjlNkc=;
+        b=JCBvwKvWGc7xBoM3TwcpcXBAT9cDijcAoki+x81boZuiu3mEk42TyQ7nI0dfvmDtyp
+         3rhZ7NgewO0NDAy3iFvIS6eU1cLUclDMsDpL6//ky0lPNgVWGW8TOrHvBh/Y/4sVg5mP
+         hZDmi0HP9L2pDRtIXdM2TBBrvNzUyxpfiB5PVweQkvUstVgj0zlIhaizsZe0bmnjm1WH
+         pt/FMebB1uW082fmfVVVdQzhENsoRDJWKSt2ZBKMyDuC/+9PjVVs3FNF9Y3lcS5jny97
+         uwclEH30I5J7aHdXWUCU20A4kRX2stN0NWg7P+wlxYpCMAMXJJCXVkgVdVErjoy03MFa
+         4how==
+X-Gm-Message-State: AOAM533LaTe/rx+5t1+s5IbsmZpRuZjNOMmMnML7L6YmBoG0FOuXV6lM
+        HgdvmT+0mYzOw/O14ay54ug2hQ==
+X-Google-Smtp-Source: ABdhPJw31ObwYL3vjh7VCbQTqwewCpEgPzasyY0q9PhumD4gKAiT8PNeki4nnCaX5rvxG2YlnrciEQ==
+X-Received: by 2002:a17:902:548:b029:10f:30af:7d5f with SMTP id 66-20020a1709020548b029010f30af7d5fmr1584319plf.22.1622778925580;
+        Thu, 03 Jun 2021 20:55:25 -0700 (PDT)
+Received: from localhost ([136.185.154.93])
+        by smtp.gmail.com with ESMTPSA id s22sm475766pfd.94.2021.06.03.20.55.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Jun 2021 20:55:25 -0700 (PDT)
+Date:   Fri, 4 Jun 2021 09:25:21 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Seiya Wang <seiya.wang@mediatek.com>
+Cc:     "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com
+Subject: Re: [RESEND 1/2] clk: mediatek: remove deprecated CLK_INFRA_CA57SEL
+ for MT8173 SoC
+Message-ID: <20210604035521.ly6unoj5537xy27h@vireshk-i7>
+References: <20210601071042.31349-1-seiya.wang@mediatek.com>
 MIME-Version: 1.0
-References: <20210519143700.27392-1-bhupesh.sharma@linaro.org>
- <20210519143700.27392-5-bhupesh.sharma@linaro.org> <20210521014547.GA2469643@robh.at.kernel.org>
-In-Reply-To: <20210521014547.GA2469643@robh.at.kernel.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Fri, 4 Jun 2021 09:11:41 +0530
-Message-ID: <CAH=2Ntz4x08UZp2guT4YX6A1UPKDk9nThuBtbj=vARMO2AK84w@mail.gmail.com>
-Subject: Re: [PATCH v3 04/17] dt-bindings: qcom-qce: Convert bindings to yaml
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bhupesh.linux@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210601071042.31349-1-seiya.wang@mediatek.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 01-06-21, 15:10, Seiya Wang wrote:
+> Remove CLK_INFRA_CA57SEL for MT8173 since it's no longer used.
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+> Signed-off-by: Seiya Wang <seiya.wang@mediatek.com>
+> ---
+>  include/dt-bindings/clock/mt8173-clk.h | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/include/dt-bindings/clock/mt8173-clk.h b/include/dt-bindings/clock/mt8173-clk.h
+> index 3acebe937bfc..3d00c98b9654 100644
+> --- a/include/dt-bindings/clock/mt8173-clk.h
+> +++ b/include/dt-bindings/clock/mt8173-clk.h
+> @@ -186,7 +186,6 @@
+>  #define CLK_INFRA_PMICWRAP		11
+>  #define CLK_INFRA_CLK_13M		12
+>  #define CLK_INFRA_CA53SEL               13
+> -#define CLK_INFRA_CA57SEL               14 /* Deprecated. Don't use it. */
+>  #define CLK_INFRA_CA72SEL               14
+>  #define CLK_INFRA_NR_CLK                15
 
-On Fri, 21 May 2021 at 07:15, Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, May 19, 2021 at 08:06:47PM +0530, Bhupesh Sharma wrote:
-> > Convert Qualcomm QCE crypto devicetree binding to YAML.
-> >
-> > Cc: Thara Gopinath <thara.gopinath@linaro.org>
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Andy Gross <agross@kernel.org>
-> > Cc: Herbert Xu <herbert@gondor.apana.org.au>
-> > Cc: David S. Miller <davem@davemloft.net>
-> > Cc: Stephen Boyd <sboyd@kernel.org>
-> > Cc: Michael Turquette <mturquette@baylibre.com>
-> > Cc: Vinod Koul <vkoul@kernel.org>
-> > Cc: dmaengine@vger.kernel.org
-> > Cc: linux-clk@vger.kernel.org
-> > Cc: linux-crypto@vger.kernel.org
-> > Cc: devicetree@vger.kernel.org
-> > Cc: linux-kernel@vger.kernel.org
-> > Cc: bhupesh.linux@gmail.com
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >  .../devicetree/bindings/crypto/qcom-qce.txt   | 25 -------
-> >  .../devicetree/bindings/crypto/qcom-qce.yaml  | 69 +++++++++++++++++++
-> >  2 files changed, 69 insertions(+), 25 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/crypto/qcom-qce.txt
-> >  create mode 100644 Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.txt b/Documentation/devicetree/bindings/crypto/qcom-qce.txt
-> > deleted file mode 100644
-> > index fdd53b184ba8..000000000000
-> > --- a/Documentation/devicetree/bindings/crypto/qcom-qce.txt
-> > +++ /dev/null
-> > @@ -1,25 +0,0 @@
-> > -Qualcomm crypto engine driver
-> > -
-> > -Required properties:
-> > -
-> > -- compatible  : should be "qcom,crypto-v5.1"
-> > -- reg         : specifies base physical address and size of the registers map
-> > -- clocks      : phandle to clock-controller plus clock-specifier pair
-> > -- clock-names : "iface" clocks register interface
-> > -                "bus" clocks data transfer interface
-> > -                "core" clocks rest of the crypto block
-> > -- dmas        : DMA specifiers for tx and rx dma channels. For more see
-> > -                Documentation/devicetree/bindings/dma/dma.txt
-> > -- dma-names   : DMA request names should be "rx" and "tx"
-> > -
-> > -Example:
-> > -     crypto@fd45a000 {
-> > -             compatible = "qcom,crypto-v5.1";
-> > -             reg = <0xfd45a000 0x6000>;
-> > -             clocks = <&gcc GCC_CE2_AHB_CLK>,
-> > -                      <&gcc GCC_CE2_AXI_CLK>,
-> > -                      <&gcc GCC_CE2_CLK>;
-> > -             clock-names = "iface", "bus", "core";
-> > -             dmas = <&cryptobam 2>, <&cryptobam 3>;
-> > -             dma-names = "rx", "tx";
-> > -     };
-> > diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> > new file mode 100644
-> > index 000000000000..a691cd08f372
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> > @@ -0,0 +1,69 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/crypto/qcom-qce.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm crypto engine driver
-> > +
-> > +maintainers:
-> > +  - Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > +
-> > +description: |
-> > +  This document defines the binding for the QCE crypto
-> > +  controller found on Qualcomm parts.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: qcom,crypto-v5.1
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +    description: |
-> > +      Specifies base physical address and size of the registers map.
->
-> Yep, that's every 'reg'. Drop.
->
-> With that dropped,
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Applied both. Thanks.
 
-Ok, I will drop this in v4.
-
-Thanks,
-Bhupesh
-
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: iface clocks register interface.
-> > +      - description: bus clocks data transfer interface.
-> > +      - description: core clocks rest of the crypto block.
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: iface
-> > +      - const: bus
-> > +      - const: core
-> > +
-> > +  dmas:
-> > +    items:
-> > +      - description: DMA specifiers for tx dma channel.
-> > +      - description: DMA specifiers for rx dma channel.
-> > +
-> > +  dma-names:
-> > +    items:
-> > +      - const: rx
-> > +      - const: tx
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - clock-names
-> > +  - dmas
-> > +  - dma-names
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/qcom,gcc-apq8084.h>
-> > +    crypto-engine@fd45a000 {
-> > +        compatible = "qcom,crypto-v5.1";
-> > +        reg = <0xfd45a000 0x6000>;
-> > +        clocks = <&gcc GCC_CE2_AHB_CLK>,
-> > +                 <&gcc GCC_CE2_AXI_CLK>,
-> > +                 <&gcc GCC_CE2_CLK>;
-> > +        clock-names = "iface", "bus", "core";
-> > +        dmas = <&cryptobam 2>, <&cryptobam 3>;
-> > +        dma-names = "rx", "tx";
-> > +    };
-> > --
-> > 2.31.1
-> >
+-- 
+viresh
