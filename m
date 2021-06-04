@@ -2,142 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E26D39AEC8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 01:41:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC62839AF25
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 02:42:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229576AbhFCXmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 19:42:51 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:15740 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229685AbhFCXmu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Jun 2021 19:42:50 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1622763665; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=Fz8Sw+CAHxzQ1wTzwGA8ftbArfy52ptDiPNLw8/pJ58=;
- b=fWcDAgTRjXHwxgyIwmdmffD1DnZugfzYvSJfvbHJofmZ7a8iGBcCMtmG5ryaB+J04Cn+GqUy
- zjnrNQE++ZZsgXopU1YV8dCHM8Z6sADRyAGUPbKPJ8TH2tsXK38erMhILJz7lJPUg6R/Aovh
- 43FtuN1zQ5H7zBZ/AB7mxkaJWVA=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
- 60b96875e27c0cc77f68319c (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 03 Jun 2021 23:40:37
- GMT
-Sender: abhinavk=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id A73DBC43217; Thu,  3 Jun 2021 23:40:36 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        id S229695AbhFDAoE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 20:44:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36838 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229576AbhFDAoE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 20:44:04 -0400
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBE8FC06174A;
+        Thu,  3 Jun 2021 17:42:18 -0700 (PDT)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: abhinavk)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id D7794C433F1;
-        Thu,  3 Jun 2021 23:40:35 +0000 (UTC)
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 4Fx3r76hVPz9s24;
+        Fri,  4 Jun 2021 10:42:15 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ellerman.id.au;
+        s=201909; t=1622767336;
+        bh=DQpYo9q9ZGmy3/Mz9ZsYTiA+IvTCwyCbRWUrvMTeOWg=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=XCSoOX7+qd0hTsKT5E44LzCwxhYBrifdK2aZAP+aS3g3Jkr2lirTl4yXlsasbfpV1
+         0NIqKavfSaGn/V+8EA0FmH3rpG5eBR/UWn8HJbjnpvWY/crHolu/n65SJNszrhRk/+
+         9oJBMq6EJweWntk3gTnGz6NKGowoEF6BTLyFOvshwr+/a6sIqEhABPUf9OMcEQ8S2i
+         2nN5ebs9M1/7a8fUFX/ceCS9JoCRZostRS311xpHia8fHEwiagVGDzFUtNTTX0BZVm
+         3B09zc7XiTN3lI4OUQBhZGBiDzvcF6LIjC7fbXiQgdcoSqlLaiD8WW69Sx6NzYQLuR
+         v2gUjE0842asw==
+From:   Michael Ellerman <mpe@ellerman.id.au>
+To:     Sasha Levin <sashal@kernel.org>, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org
+Cc:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Wolfram Sang <wsa@kernel.org>, Sasha Levin <sashal@kernel.org>,
+        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH AUTOSEL 5.12 42/43] powerpc/fsl: set
+ fsl,i2c-erratum-a004447 flag for P2041 i2c controllers
+In-Reply-To: <20210603170734.3168284-42-sashal@kernel.org>
+References: <20210603170734.3168284-1-sashal@kernel.org>
+ <20210603170734.3168284-42-sashal@kernel.org>
+Date:   Fri, 04 Jun 2021 10:42:15 +1000
+Message-ID: <87y2bqfok8.fsf@mpe.ellerman.id.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 03 Jun 2021 16:40:35 -0700
-From:   abhinavk@codeaurora.org
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Rob Clark <robdclark@gmail.com>, DTML <devicetree@vger.kernel.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        freedreno <freedreno@lists.freedesktop.org>
-Subject: Re: [Freedreno] [RFC PATCH 00/13] drm/msm: Add Display Stream
- Compression Support
-In-Reply-To: <YLdlEB3Ea6OWaLw4@vkoul-mobl>
-References: <20210521124946.3617862-1-vkoul@kernel.org>
- <CAOCk7Nqep_Db+z3fr5asHZ1u0j8+6fKkPFs2Ai8CbA_zGqV6ZA@mail.gmail.com>
- <YK3gxqXBRupN/N+Q@vkoul-mobl.Dlink>
- <CAOCk7NqvhGvYw8xCBctqj7H+o-Qwp2UuUJK1gatW9EWfXv56xA@mail.gmail.com>
- <CAF6AEGuoyPr8PgfwFX0JCYZ7S_pryn_OXacHBqoMAAPvSq6aRw@mail.gmail.com>
- <YLdlEB3Ea6OWaLw4@vkoul-mobl>
-Message-ID: <a14c18a2545408e8156dcafc846b17a2@codeaurora.org>
-X-Sender: abhinavk@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-06-02 04:01, Vinod Koul wrote:
-> On 27-05-21, 16:30, Rob Clark wrote:
->> On Wed, May 26, 2021 at 8:00 AM Jeffrey Hugo 
->> <jeffrey.l.hugo@gmail.com> wrote:
->> > On Tue, May 25, 2021 at 11:46 PM Vinod Koul <vkoul@kernel.org> wrote:
-> 
->> > Frankly, I don't like the MSM ACPI solution that I've seen on the laptops.
->> > The ACPI assumes the entire MDSS (including DSI parts) and GPU is one
->> > device, and ultimately handled by one driver.  That driver needs to
->> > get a value from UEFI (set by the bootloader) that is the "panel id".
->> > Then the driver calls into ACPI (I think its _ROM, but I might be
->> > mistaken, doing this from memory) with that id.  It gets back a binary
->> > blob which is mostly an xml file (format is publicly documented) that
->> > contains the panel timings and such.
->> 
->> tbh, I kinda suspect that having a single "gpu" device (which also
->> includes venus, in addition to display, IIRC) in the ACPI tables is a
->> windowsism, trying to make things look to userspace like a single "GPU
->> card" in the x86 world.. but either way, I think the ACPI tables on
->> the windows arm laptops which use dsi->bridge->edp is too much of a
->> lost cause to even consider here.  Possibly ACPI boot on these devices
->> would be more feasible on newer devices which have direct eDP out of
->> the SoC without requiring external bridge/panel glue.
-> 
-> yeah that is always a very different world. although it might make 
-> sense
-> to use information in tables and try to deduce information about the
-> system can be helpful...
-> 
->> I'd worry more about what makes sense in a DT world, when it comes to
->> DT bindings.
-> 
-> And do you have thoughts on that..?
+Sasha Levin <sashal@kernel.org> writes:
+> From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+>
+> [ Upstream commit 7adc7b225cddcfd0f346d10144fd7a3d3d9f9ea7 ]
+>
+> The i2c controllers on the P2040/P2041 have an erratum where the
+> documented scheme for i2c bus recovery will not work (A-004447). A
+> different mechanism is needed which is documented in the P2040 Chip
+> Errata Rev Q (latest available at the time of writing).
+>
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Acked-by: Michael Ellerman <mpe@ellerman.id.au>
+> Signed-off-by: Wolfram Sang <wsa@kernel.org>
+> Signed-off-by: Sasha Levin <sashal@kernel.org>
+> ---
+>  arch/powerpc/boot/dts/fsl/p2041si-post.dtsi | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 
-At the moment, I will comment on the bindings first and my idea on how 
-to proceed.
-The bindings mentioned here: 
-https://lore.kernel.org/dri-devel/20210521124946.3617862-3-vkoul@kernel.org/ 
-seem to be just
-taken directly from downstream which was not the plan.
+This patch (and the subsequent one), just set a flag in the device tree.
 
-I think all of these should be part of the generic panel bindings as 
-none of these are QC specific:
+They have no effect unless you also backport the code change that looks
+for that flag, which was upstream commit:
 
-@@ -188,6 +195,14 @@ Example:
-  		qcom,master-dsi;
-  		qcom,sync-dual-dsi;
+  8f0cdec8b5fd ("i2c: mpc: implement erratum A-004447 workaround")
 
-+		qcom,mdss-dsc-enabled;
-+		qcom,mdss-slice-height = <16>;
-+		qcom,mdss-slice-width = <540>;
-+		qcom,mdss-slice-per-pkt = <1>;
-+		qcom,mdss-bit-per-component = <8>;
-+		qcom,mdss-bit-per-pixel = <8>;
-+		qcom,mdss-block-prediction-enable;
-+
+AFAICS you haven't picked that one up for any of the stable trees.
 
-How about having a panel-dsc.yaml which will have these properties and 
-have a panel-dsc node to have this information?
+I'll defer to Chris & Wolfram on whether it's a good idea to take the
+code change for stable.
 
-I would like to hear the feedback on this proposal then the series can 
-be reworked.
+I guess it's harmless to pick these two patches, but it's also
+pointless. So I think you either want to take all three, or drop these
+two.
 
-Thanks
+cheers
 
-Abhinav
+> diff --git a/arch/powerpc/boot/dts/fsl/p2041si-post.dtsi b/arch/powerpc/boot/dts/fsl/p2041si-post.dtsi
+> index 872e4485dc3f..ddc018d42252 100644
+> --- a/arch/powerpc/boot/dts/fsl/p2041si-post.dtsi
+> +++ b/arch/powerpc/boot/dts/fsl/p2041si-post.dtsi
+> @@ -371,7 +371,23 @@ sdhc@114000 {
+>  	};
+>  
+>  /include/ "qoriq-i2c-0.dtsi"
+> +	i2c@118000 {
+> +		fsl,i2c-erratum-a004447;
+> +	};
+> +
+> +	i2c@118100 {
+> +		fsl,i2c-erratum-a004447;
+> +	};
+> +
+>  /include/ "qoriq-i2c-1.dtsi"
+> +	i2c@119000 {
+> +		fsl,i2c-erratum-a004447;
+> +	};
+> +
+> +	i2c@119100 {
+> +		fsl,i2c-erratum-a004447;
+> +	};
+> +
+>  /include/ "qoriq-duart-0.dtsi"
+>  /include/ "qoriq-duart-1.dtsi"
+>  /include/ "qoriq-gpio-0.dtsi"
+> -- 
+> 2.30.2
