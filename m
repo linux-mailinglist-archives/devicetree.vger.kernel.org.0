@@ -2,211 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4618739C21B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 23:11:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C87739C231
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 23:17:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231488AbhFDVNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 17:13:08 -0400
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:45644 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231548AbhFDVNI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 17:13:08 -0400
-Received: by mail-oi1-f179.google.com with SMTP id w127so11039167oig.12;
-        Fri, 04 Jun 2021 14:11:21 -0700 (PDT)
+        id S230123AbhFDVTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 17:19:07 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:34396 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230185AbhFDVTG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 17:19:06 -0400
+Received: by mail-ot1-f41.google.com with SMTP id v27-20020a056830091bb02903cd67d40070so7327637ott.1;
+        Fri, 04 Jun 2021 14:17:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=VrpYDmA2bDYdBnxEAitWI5SHLDNVcxWIKBXiEWgGkbU=;
+        b=IcUmRhKY7t0zANMd2hJSQLTmxlFqI7OPYK/zlewwUe4OGJw2WLFtW5/qsEPJ7Gf7+g
+         N6Yg+qmvGCZvkmTIpbjNBNotYoBFgCncc41y09eyWSUzWQNwjwrxqVVH6O9OgTUcZdSy
+         urRm3Oo02YlEBSIGGbrYrAPoETwaTaUevVN4NgovB8C0IKTEmItc+5MtLEJUY049ZKW0
+         B33LRqreS28QR6TGLh5yrGkqIpKXYmwjoE4WPLPP3GaLfLWMYRgVfGfEkURjnfd88iQg
+         zgDvsqKH1q8L22RctnYj+IjPMpIeCqeaoKZbeTzlnnmRwB7T7cyspJdNmzvVuJid7ws2
+         FtYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=12fDzFlHcR7MgS/6SJcEZmnZQ01o5QA2CzWvQ7tWGj0=;
-        b=gWVdEFZPTx0aixwskpn61TNsnEt1r0O/+xkMcejcWfreF6M+348mJUqADY6Q/k7AUR
-         3qijmwGAHltDZrsUpfvlGyRU2PVvSEr+ktFyyRgBwbzoCHnM4UWihl01KgRyFCYjYBUF
-         a1gcCbcT5EeTJPLV0vRkDBUfTyArzlwR1vcYwyfKTn/oh1lPKvN+2uXV6Z/XFTr8ox/B
-         KsX1lpP6u5dLbWwHJCZKPHFEunfrfBfv6KPVVh9DE00mhhgoiEYPvuaclX41nqCHePT/
-         kFR9yqQn15jrJ4yTAVSTztLn1x8JgTZsH2pjea++s4uxHYGIedKZrbFqI2fl5SvzlfuM
-         DhXg==
-X-Gm-Message-State: AOAM531XFR248udGwX2uZReNI3rkwbWtJQPYhiwLwei3bMIICSLmsPZB
-        +0ivu8HfuYdMfxS87GBixg==
-X-Google-Smtp-Source: ABdhPJy5T24Ii55AMNbKFTrKwW9HSnMSHcwbCExf322LMZLqHTXAROZfbB15SujQjbREZ4k4ZwkpJw==
-X-Received: by 2002:a54:4794:: with SMTP id o20mr4218812oic.99.1622841080893;
-        Fri, 04 Jun 2021 14:11:20 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z25sm715060oic.30.2021.06.04.14.11.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Jun 2021 14:11:20 -0700 (PDT)
-Received: (nullmailer pid 3924767 invoked by uid 1000);
-        Fri, 04 Jun 2021 21:11:19 -0000
-Date:   Fri, 4 Jun 2021 16:11:19 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     daniel.lezcano@linaro.org, tglx@linutronix.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: timer: Convert faraday,fttmr010 to yaml
-Message-ID: <20210604211119.GA3916166@robh.at.kernel.org>
-References: <20210528185329.1969688-1-clabbe@baylibre.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=VrpYDmA2bDYdBnxEAitWI5SHLDNVcxWIKBXiEWgGkbU=;
+        b=WGeefmwtx7U3YmnQ3M3GxyJ5AAtRZV4hyxVnUyiiwNbm4iwJXS2OS2SpO8M0CfYl47
+         4JW5nRHJHrmiV22PR+h78USuHXI3Tn0FkSUNlqAsSezibBk5AGydXfGj2jID/ksi+238
+         yleTzcEqXEeWjRJv67uFLSyKhwMaylbbV6GGyYsZ70MBtVPLUV07PSsPfepslD7KfjFJ
+         FPfcH+84dKqNFX3rLwR6DAH/Oos2UDNFkWWyy2LWe2CdQY1OKFQIqV2M47FjdEXhomhd
+         dOtS01OgbiNtyEvQavszkK+dFGORFo3nm/n3F4NHqECvRtUOdTlDoVxCXSnBuiZg7G3b
+         jgrA==
+X-Gm-Message-State: AOAM532Efh9UEhMsI/3HgFEK2VbasJNYm/OEXi9Q4ofWPSQo3Je9qONM
+        1wQ8zap80DVN/JrvcBWiuWOjLbNwOtsABQG/z9I=
+X-Google-Smtp-Source: ABdhPJz5dL97b+GG9y2RUOQR0MN8RqtrqhZBj75z8mptERR5tBk4fyi+plmEfG1J4qn2/c6C/3Aa1ZdJS6n+5j2hD1w=
+X-Received: by 2002:a9d:4f19:: with SMTP id d25mr5336285otl.72.1622841368139;
+ Fri, 04 Jun 2021 14:16:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210528185329.1969688-1-clabbe@baylibre.com>
+References: <20210531131845.ookvz7njj6yrkaeh@pali> <20210604194328.GA2230062@bjorn-Precision-5520>
+In-Reply-To: <20210604194328.GA2230062@bjorn-Precision-5520>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Fri, 4 Jun 2021 23:15:56 +0200
+Message-ID: <CAMhs-H98efm9bCL4ff85mcbKReBVyGsVmMw-YXRL_FXzPTyw4Q@mail.gmail.com>
+Subject: Re: [PATCH 0/4] MIPS: ralink: pci: driver for Pcie controller in
+ MT7621 SoCs
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        lorenzo.pieralisi@arm.com,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        John Crispin <john@phrozen.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-staging@lists.linux.dev,
+        Greg KH <gregkh@linuxfoundation.org>,
+        NeilBrown <neil@brown.name>,
+        Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-pci@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 28, 2021 at 06:53:29PM +0000, Corentin Labbe wrote:
-> Converts timer/faraday,fttmr010.txt to yaml.
-> 
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> ---
->  .../bindings/timer/faraday,fttmr010.txt       | 38 --------
->  .../bindings/timer/faraday,fttmr010.yaml      | 86 +++++++++++++++++++
->  2 files changed, 86 insertions(+), 38 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
->  create mode 100644 Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt b/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
-> deleted file mode 100644
-> index 3cb2f4c98d64..000000000000
-> --- a/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
-> +++ /dev/null
-> @@ -1,38 +0,0 @@
-> -Faraday Technology timer
-> -
-> -This timer is a generic IP block from Faraday Technology, embedded in the
-> -Cortina Systems Gemini SoCs and other designs.
-> -
-> -Required properties:
-> -
-> -- compatible : Must be one of
-> -  "faraday,fttmr010"
-> -  "cortina,gemini-timer", "faraday,fttmr010"
-> -  "moxa,moxart-timer", "faraday,fttmr010"
-> -  "aspeed,ast2400-timer"
-> -  "aspeed,ast2500-timer"
-> -  "aspeed,ast2600-timer"
-> -
-> -- reg : Should contain registers location and length
-> -- interrupts : Should contain the three timer interrupts usually with
-> -  flags for falling edge
-> -
-> -Optionally required properties:
-> -
-> -- clocks : a clock to provide the tick rate for "faraday,fttmr010"
-> -- clock-names : should be "EXTCLK" and "PCLK" for the external tick timer
-> -  and peripheral clock respectively, for "faraday,fttmr010"
-> -- syscon : a phandle to the global Gemini system controller if the compatible
-> -  type is "cortina,gemini-timer"
-> -
-> -Example:
-> -
-> -timer@43000000 {
-> -	compatible = "faraday,fttmr010";
-> -	reg = <0x43000000 0x1000>;
-> -	interrupts = <14 IRQ_TYPE_EDGE_FALLING>, /* Timer 1 */
-> -		   <15 IRQ_TYPE_EDGE_FALLING>, /* Timer 2 */
-> -		   <16 IRQ_TYPE_EDGE_FALLING>; /* Timer 3 */
-> -	clocks = <&extclk>, <&pclk>;
-> -	clock-names = "EXTCLK", "PCLK";
-> -};
-> diff --git a/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml b/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
-> new file mode 100644
-> index 000000000000..a495ea80c0fc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
-> @@ -0,0 +1,86 @@
-> +# SPDX-License-Identifier: (GPL-2.0+)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/timer/faraday,fttmr010.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Faraday Technology timer
-> +
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +
-> +description: |
-> +  This timer is a generic IP block from Faraday Technology, embedded in the
-> +  Cortina Systems Gemini SoCs and other designs.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: faraday,fttmr010
-> +      - items:
-> +          - const: cortina,gemini-timer
-> +          - const: faraday,fttmr010
-> +      - items:
-> +          - const: moxa,moxart-timer
-> +          - const: faraday,fttmr010
-> +      - const: aspeed,ast2400-timer
-> +      - const: aspeed,ast2500-timer
-> +      - const: aspeed,ast2600-timer
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 3
-> +    description: Should contain the three timer interrupts usually with flags for falling edge
-> +
-> +  clocks:
-> +    minItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: "PCLK"
-> +      - const: "EXTCLK"
-> +
-> +  syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    maxItems: 1
-> +
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        items:
+Hi Bjorn,
 
-This is wrong because 'contains' should be a schema applying to a single 
-item whereas 'items' applies to the whole array.
+On Fri, Jun 4, 2021 at 9:43 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+>
+> On Mon, May 31, 2021 at 03:18:45PM +0200, Pali Roh=C3=A1r wrote:
+> > On Friday 21 May 2021 12:23:38 Thomas Bogendoerfer wrote:
+> > > On Wed, May 19, 2021 at 11:18:36PM +0200, Sergio Paracuellos wrote:
+> > > > On Wed, May 19, 2021 at 10:36 PM Bjorn Helgaas <helgaas@kernel.org>=
+ wrote:
+> > > > > But most of the similar drivers are in drivers/pci/controller/, w=
+here
+> > > > > I think it's easier to keep them up to date with changes in the P=
+CI
+> > > > > core.  Have you considered putting this one there?
+> > > >
+> > > > Most pci drivers in 'arch/mips/pci' are still using PCI_LEGACY stuf=
+f.
+> > > > In contrast mt7621-pci is using current pci generic apis but even m=
+ost
+> > > > of the code is generic enough, there is one remaining thing which
+> > > > depends on mips architecture which is the iocu region configuration
+> > > > which must be done in the driver itself. This is the only reason to
+> > > > move this driver into 'arch/mips/pci' instead of
+> > > > 'drivers/pci/controller/'. So... I am all ears to listen to
+> > > > suggestions for the proper place for this driver. Thomas, do you ha=
+ve
+> > > > any thoughts on this?
+> > >
+> > > I tried to put a pci-xtalk driver into drivers/pci/controller, but
+> > > Lorenzo didn't want it there for being MIPS and not DT based. So this
+> > > one is DT based, but still MIPS. I'm perfectly fine putting this
+> > > driver into drivers/pci/controller/
+> >
+> > In my personal opinion this driver could go into drivers/pci/controller=
+/
+>
+> I'm not sure exactly what "PCI_LEGACY" above refers to.
 
-> +          - const: cortina,gemini-timer
+I meant most of the drivers there are not using current generic pci
+apis but still using pci legacy ones.
 
-Just this is enough.
+>
+> I don't see any direct #includes of arch/mips in the driver.  I do see
+> that it uses mips_cps_numiocu(), which is certainly MIPS-specific.
 
-> +          - const: faraday,fttmr010
-> +then:
-> +  required:
-> +    - syscon
-> +else:
-> +  properties:
-> +    syscon: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    timer@43000000 {
-> +      compatible = "faraday,fttmr010";
-> +      reg = <0x43000000 0x1000>;
-> +      interrupts = <14 IRQ_TYPE_EDGE_FALLING>, /* Timer 1 */
-> +                   <15 IRQ_TYPE_EDGE_FALLING>, /* Timer 2 */
-> +                   <16 IRQ_TYPE_EDGE_FALLING>; /* Timer 3 */
-> +      clocks = <&extclk>, <&pclk>;
-> +      clock-names = "PCLK", "EXTCLK";
-> +      syscon = <&syscon>;
+Yes, mips_cps_numiocu is the only stuff needed and arch specific used
+by this driver.
 
-This should fail based on my read of the .txt binding.
+>
+> But we do have some things in drivers/pci/controller/ that only build
+> on certain arches, enforced mostly by Kconfig rules, so I think you
+> could do that.  We try to make so things can at least be *compiled* on
+> any arch, but I know that's not always possible.
+>
+> So I think it would be useful to put this in drivers/pci/controller/
+> somewhere because it will make it easier to see common patterns and
+> refactoring opportunities.
 
-> +    };
-> +...
-> -- 
-> 2.31.1
+Ok, so I will move the driver into 'drivers/pci/controller/' in v2.
+
+Thanks,
+    Sergio Paracuellos
+>
+> Bjorn
