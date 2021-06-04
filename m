@@ -2,64 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 867A839C2DC
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 23:47:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7CEA39C2E3
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 23:48:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231527AbhFDVtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 17:49:22 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:34460 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231580AbhFDVtV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 17:49:21 -0400
-Received: by mail-ot1-f44.google.com with SMTP id v27-20020a056830091bb02903cd67d40070so7399512ott.1;
-        Fri, 04 Jun 2021 14:47:34 -0700 (PDT)
+        id S229774AbhFDVuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 17:50:12 -0400
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:35650 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231582AbhFDVuL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 17:50:11 -0400
+Received: by mail-oi1-f171.google.com with SMTP id v22so11181618oic.2;
+        Fri, 04 Jun 2021 14:48:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=a59inILICOBzct66fXJr59tUQJdnmp6D6I444QNjgWY=;
-        b=Pk5fNcthUJq+4GQ9b5XpoJqQAWoXyRGOnSEp42KJLv1vDstj20UB+aX+7dajwtBcFj
-         lDyq1UGKu8sNTs2AG+Y1OLEqJCl+SdCpITLLg+QE96KVC8He2jICNbDBdoflsEuP1oYu
-         xpIjppKrDvAoO9tkXaN+uA8UW/p8HmKOOKfVA14wpHxywQKyj6BkJLst5LTg4zE/eh4s
-         VM6ZrpIYsvI5sltLbOGzm/nm1Vnr1JNL7IlvgZ9iE17EmgpKtQUn122jJa826pnoKPYl
-         MmHFlYGNTHEUO6v25X3sZgFi4TCUtfgrhjfcLjF+p8f83bEmY18h7/awyPDGx5i2V1oo
-         ZVZg==
-X-Gm-Message-State: AOAM532Og0q7q6Qic0F0oqYi3x19LNpjqDawEi7D7fpxG/tyHt3OvK0F
-        p7yL74juJ+sMHD3Blr4PI0wuqgsxJA==
-X-Google-Smtp-Source: ABdhPJz/qMxhkBvpaJIm9vWrbCcREDE49SOTdKRiPP6AYR4lAtQuVOoRIkZo67fv4atmxYFUmkDRvA==
-X-Received: by 2002:a9d:6f93:: with SMTP id h19mr5303533otq.292.1622843254297;
-        Fri, 04 Jun 2021 14:47:34 -0700 (PDT)
+        bh=i82elBrWcX7dkg/tjqk1o+lzd0sBqhf4Gql6Pck5Qxw=;
+        b=I+vwf5P0MfZ/OG2hqSpNHzoW4qxGAQJMVHAvE7xRHyBjEq11SjL2tU0hntVyvPbd0s
+         aXmgTRsFSNxWITMdtx7aWTAlz6HShFTd2WydNUL23kbQR9txItCF6JmmyG+gIj5PrPrO
+         bQkpBFX1urFzXvunWZP9fhjgb+HLwLHzhqSW0efYVqgiqxsBMIqCDOV7Aap0vPQdC8uW
+         LZ0On5YXhjY8E1wHOEDzwjlV6fc7g4P1GSWkhWzm4gNaPEjzsYo1RO0gBOtX38iqjwIw
+         6uCzgOFYmU++W2r2ab2M4Ww0d6hh45N/lmtHq4Eu5wPE0ILL+ESL6CtvBcc4P0MokUjK
+         mTHg==
+X-Gm-Message-State: AOAM531O5bbo+3LN/VPQrevy6Yv5D27g7EvI6L/QfE4OWlg7c9zFStzk
+        SGr0UDogALqNzNM7RzmIKw==
+X-Google-Smtp-Source: ABdhPJzr3iNWfkAEE7c1mVgS1ga0XlxU7bXabXx3Ywb6j/vupXrCOKwaQZWAn+SFf6QJF4XD7TcdGQ==
+X-Received: by 2002:a05:6808:158:: with SMTP id h24mr9895830oie.169.1622843304601;
+        Fri, 04 Jun 2021 14:48:24 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j26sm735171otp.15.2021.06.04.14.47.33
+        by smtp.gmail.com with ESMTPSA id b3sm737815otk.54.2021.06.04.14.48.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Jun 2021 14:47:33 -0700 (PDT)
-Received: (nullmailer pid 3981417 invoked by uid 1000);
-        Fri, 04 Jun 2021 21:47:32 -0000
-Date:   Fri, 4 Jun 2021 16:47:32 -0500
+        Fri, 04 Jun 2021 14:48:23 -0700 (PDT)
+Received: (nullmailer pid 3982809 invoked by uid 1000);
+        Fri, 04 Jun 2021 21:48:22 -0000
+Date:   Fri, 4 Jun 2021 16:48:22 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] of: unittest: Use DEFINE_RES_MEM() to simplify code
-Message-ID: <20210604214732.GA3981358@robh.at.kernel.org>
-References: <20210601062223.9724-1-thunder.leizhen@huawei.com>
+To:     Jacky Bai <ping.bai@nxp.com>
+Cc:     kernel@pengutronix.de, devicetree@vger.kernel.org,
+        aisheng.dong@nxp.com, festevam@gmail.com,
+        linux-gpio@vger.kernel.org, linux-imx@nxp.com, stefan@agner.ch,
+        shawnguo@kernel.org, linus.walleij@linaro.org, robh+dt@kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: imx8ulp: Add pinctrl binding
+Message-ID: <20210604214822.GA3982753@robh.at.kernel.org>
+References: <20210601062338.1969040-1-ping.bai@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210601062223.9724-1-thunder.leizhen@huawei.com>
+In-Reply-To: <20210601062338.1969040-1-ping.bai@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 01 Jun 2021 14:22:23 +0800, Zhen Lei wrote:
-> No functional change.
+On Tue, 01 Jun 2021 14:23:37 +0800, Jacky Bai wrote:
+> Add pinctrl binding doc for i.MX8ULP
 > 
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
 > ---
->  drivers/of/unittest.c | 6 +-----
->  1 file changed, 1 insertion(+), 5 deletions(-)
+>  .../bindings/pinctrl/fsl,imx8ulp-pinctrl.yaml | 79 +++++++++++++++++++
+>  1 file changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx8ulp-pinctrl.yaml
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring <robh@kernel.org>
