@@ -2,92 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3391239C156
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 22:29:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99F5039C17A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 22:41:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231346AbhFDUbO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 16:31:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34934 "EHLO mail.kernel.org"
+        id S231441AbhFDUnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 16:43:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40040 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229982AbhFDUbO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Jun 2021 16:31:14 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1F86A613D8;
-        Fri,  4 Jun 2021 20:29:26 +0000 (UTC)
+        id S229913AbhFDUm7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Jun 2021 16:42:59 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8AD82613F9;
+        Fri,  4 Jun 2021 20:41:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622838567;
-        bh=qnzSacT15nQlHs+WP3CvQZcAvYJW2aDiphcqTcOrOps=;
+        s=k20201202; t=1622839273;
+        bh=0P10WfzGqEW6mL/Dx3LE8Az9NlMnMiyptL8StZnzYJc=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SFsa27IJlvYI15OzZ78hiUJRSKpx4pZNoXw0B/rmgHvLTueTUq3JmoNz/1COfjEgA
-         3zY6DN5zlVw6+jDDE8yrdA+6euNgv9G4rR5A9zUusO0iXWOny76yQMMXdh11bMCNTW
-         5BkriR39nfHovgz97S5flEdjDApNKKBJ/Ygqoom1oOvqNnSnE8vqVxgu6LZRIn2P69
-         jnZNhREcShltHqRceJWZouTRsssjq7guUhfTJBR13Iw/5mG3ihcKvGwe6vqzZ8I2Wi
-         nsi7wv6XmpcqFvZQ5XOOgBdEZof2FJCPQxadiTlZ1g3EuOgDkGUdVWSk+141lTXa5T
-         8XGcSZCMK5c3Q==
-Date:   Fri, 4 Jun 2021 22:29:24 +0200
+        b=Ga8oZxdLMdZ9aYcUelh9NICZG5+oaSdWxIwPscMS0FO093QiPbTY4Qqpld5D5dbth
+         T2vE6u32mPjMA2P0vbgOqF96IB7Q3wFk47uf4OyzGALs4AYYc/hnt2TNO4wvjGGzp2
+         eUb2LdxLUWYYBTJB6+q1scxd5ZZRmikipdGA+cWjDJCPfKAI5+qRNdej4C6DKYbpQY
+         pGSFPt3jJJj9W9qVQlBawwjxI2V6hoBaKJAuwjPghnxHajsQ6qjYEMsh1Yy9jA6fov
+         TKllky5TuQ1UPTyToosjDRYGJ47/JwWqTtb/77cg0RMsGLVjtsPhaKmXOuIQpk9xF2
+         n71YVeXMQnUpA==
+Date:   Fri, 4 Jun 2021 22:41:08 +0200
 From:   Wolfram Sang <wsa@kernel.org>
-To:     Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Nishanth Menon <nm@ti.com>,
-        Andreas Kemnade <andreas@kemnade.info>
-Subject: Re: [PATCH v3] dt-bindings: i2c: Move i2c-omap.txt to YAML format
-Message-ID: <YLqNJLK7jylURwcP@kunai>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Peter Rosin <peda@axentia.se>,
+        Maxime Ripard <mripard@kernel.org>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: i2c: i2c-mux: Remove reset-active-low from
+ ssd1307fb examples
+Message-ID: <YLqP5GGjrNtCJ2Pq@kunai>
 Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Nishanth Menon <nm@ti.com>, Andreas Kemnade <andreas@kemnade.info>
-References: <20210526100412.484-1-vigneshr@ti.com>
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Rob Herring <robh+dt@kernel.org>, Peter Rosin <peda@axentia.se>,
+        Maxime Ripard <mripard@kernel.org>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20210528111049.1804800-1-geert@linux-m68k.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="0UX+kpr+/tK4vv8M"
+        protocol="application/pgp-signature"; boundary="SH0kaXeTd8eMCD9v"
 Content-Disposition: inline
-In-Reply-To: <20210526100412.484-1-vigneshr@ti.com>
+In-Reply-To: <20210528111049.1804800-1-geert@linux-m68k.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---0UX+kpr+/tK4vv8M
+--SH0kaXeTd8eMCD9v
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 26, 2021 at 03:34:12PM +0530, Vignesh Raghavendra wrote:
-> Convert i2c-omap.txt to YAML schema for better checks and documentation.
+On Fri, May 28, 2021 at 01:10:49PM +0200, Geert Uytterhoeven wrote:
+> The "reset-active-low" property was removed from the ssd1307fb bindings
+> in commit 519b4dba586198ee ("fbdev: ssd1307fb: Remove reset-active-low
+> from the DT binding document") and from the ssd1307fb binding examples
+> in commit 7d7e58d30e046d34 ("dt-bindings: display: ssd1307fb: Remove
+> reset-active-low from examples").
 >=20
-> Following properties were used in DT but were not documented in txt
-> bindings and has been included in YAML schema:
-> 1. Include ti,am4372-i2c compatible
-> 2. Document clocks property
->=20
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
 
-Applied to for-next, thanks!
+Applied the first chunk to for-next, thanks!
 
 
---0UX+kpr+/tK4vv8M
+--SH0kaXeTd8eMCD9v
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmC6jSQACgkQFA3kzBSg
-KbYQUg//XT3Ihccz7UK/XxV6lnn4SW5r7+ESHYDVvhYh0rSO46aPEhM+5PEiDu/F
-SvYUXcCSM4Cl0v/7j7xVdW8ycHsKrFfS+9abQRHD3Ehc0vu1FgD/7vXi1IwdRJBG
-mSxmuHIXos086PCF3NIpOPAiFuQn0O6Z3H1yIAUnv2gf3lGZ7RYovK1MrwqChlOE
-Jr5IIOWrIXqZZvUGSQoQK2ByLRYM/wKix9A88TA8b3kDojTzWlNhjrZK0dEutt/8
-Wx0fMEZfVAb3Hchnz0Qe9piXHL/5NicvNHvFXf5N2D5neCeiUvH6nBCZFYAysJu9
-LrwxvsvM/tSoW9YagfApMg5smNymH7ChaoSliiblK7+7orvfdO9HmoE3Rx6W7oaE
-W1eaqjvZOj6lPlf9N6GBaqwIx6k6UCjdfiLoruQfhTDM+etrW3qkSqBK6X+0n61K
-/vUQpZzggL3SFFpdVd6uGU58kXfbZNthD9aBb6mL7/5GxbseSKfzjakje50PssPL
-NwQgMFGNOzve56fmzx8UYoV6OQBVTVqGlPBkTxxTi0oQqyRA1ghcGX2uQnZlfc08
-5Qxh3AsinIvGkBBP0b8dq5T00PQr8fsyVgLkyMVAqYCYNgr7j4llHIYtU2GpHDYt
-FLqDxp/eNPgdufm6ov2ndfDdYOk/RASicWYQ09W5ku8Sasgnuuo=
-=CzDI
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmC6j+QACgkQFA3kzBSg
+KbYEfg//ZaOOj3nTUrNJPfgcOrlmWuVKlhlLp3HAwqhy1mBemv3zQJf9+qXeZFla
+KTq3CSBp27y/skhixjzQz8EVaQJA3mbBuknsbDjF+MnEsepqMjSCICnJoRnqFX6T
+/7CowhvM8PDuQIU1ylpBTdvLr/N7gLCWpNQ5dF6km2OFSQ2UEdK9evH9ahpbQY0c
+158gvHIkqPa7CNY7ihUy63K+4WSWQeEVZYyL6dA8BHtWlU3kWzQgSSyiqu2ItVbl
+O9JtR4DkHztmmzHfS0L6HcjSKLdJg6Pc3JvlPMT2nwhG+69YEuKYcjE8mVoHFais
+j2PBxkPecmKU9X5o9veIvRpyH6yqE89cVn/YsYiknvBZUeF7SqmytGipBzkYa1by
+yrTcR+82Cb/iuUiJyQ+OU9eb3RuLGBc+G7k4rD+zAWDZBo2BKa4J2u0uFNGkxJGS
+1uCWQGTds6Qhy1oZKObpgRZ+Ocqd9uM8kl5Nthe0q1oZ10ZPDotGhk7bCkUKFZhk
+Xgx3Krlry/+s0Mr+4ya2Cswib4iNuX2m45F5MKX6/j33hlCWGdTf+/NE6cvY0aqK
+qaCkuOEEvufbSah72VrnsCCuxp1U4jibmfiyoDTtAuc10NtbQ00eLPBCwsw2M745
+3YyBu/h1SoOSIZkjwKKGBKPfBEsYyv3nI9sd+qrAZ/rx3/vuL/M=
+=inDf
 -----END PGP SIGNATURE-----
 
---0UX+kpr+/tK4vv8M--
+--SH0kaXeTd8eMCD9v--
