@@ -2,109 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B42BE39C053
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 21:19:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44F3A39C06B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 21:30:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229854AbhFDTVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 15:21:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57590 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229501AbhFDTVT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Jun 2021 15:21:19 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CAA8060FF2;
-        Fri,  4 Jun 2021 19:19:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622834372;
-        bh=P6IaSvqgJAriq/iT+X5V+CNKjpfeWSTD2AHq/76koTg=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=ejX9ePwh000rZ2RTbyRE2Pe6GXBBS2PN/Wc2oQVAatnlpWfaZcBkhfYgA7oi7KBZn
-         6wm1k9Q2hVgmWBcHCX9BJuhuE8ynJTW9gIY8PLmC8/4VX1DqvyQm4zfT2m3j8A4BA/
-         XIFwT2rmdyCcybtxJx1qIFNfrY8PRG4hWpIi9DqvLPRMoB1ZqfVUeddqQ6QJ8ZS7Ux
-         buA+sQUzvHLai7nTi7a/r13HgUoa6oPikJzhCtGPXshgkEgGr9YY1WSz/gW+BtPch3
-         ywX5jhxbRgzzkyewaIpqqriBej+9+ZUuXaFCjPgMWbSOa+XzdoSZwogroXDYEhWk4W
-         cWCLSBbBOJciQ==
-Content-Type: text/plain; charset="utf-8"
+        id S229810AbhFDTbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 15:31:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57684 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229501AbhFDTbo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 15:31:44 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F59DC061766;
+        Fri,  4 Jun 2021 12:29:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=foBqGPqn1zYvQRbasNewDBSyRxBLbACdpX22RmIU6RY=; b=n7FIFSpkWc8zJnR7y0Ug2GUL3
+        yBEKK7vIU2lj2KuzDKlpsT5X58BQVVs+pH472jwDazU2VJ7EiMAiIyvwomjcOT+UCy2x2ndzhn4Pz
+        Bc6FrrlSvQHHoDiF++mpjePiXj/RJ2cISwlYSAZ5iI30p3QSWdY4M1w2mtVYjQj8esKLuuV0hX7WE
+        SRzRZcqXktnDlsaWzZsqOSFAdWC/f42PcEZR464Z6yx3VKf9sMNVFUyoOFMlZ6w5wAGWtN+eokqeE
+        eqnFEUH8dWW8rc/Zkf2WhyPlClgNguuQnAks9SL38QoB/GBLZ9TQOOC0x2B8x3KUrE0O+kkU+lKUF
+        uGwfy/YLg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:44714)
+        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1lpFTi-0004p8-Vb; Fri, 04 Jun 2021 20:27:34 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1lpFTh-0003JP-5D; Fri, 04 Jun 2021 20:27:33 +0100
+Date:   Fri, 4 Jun 2021 20:27:33 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Madalin Bucur <madalin.bucur@nxp.com>
+Cc:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Igal Liberman <Igal.Liberman@freescale.com>,
+        Shruti Kanetkar <Shruti@freescale.com>,
+        Emil Medve <Emilian.Medve@freescale.com>,
+        Scott Wood <oss@buserror.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Camelia Alexandra Groza (OSS)" <camelia.groza@oss.nxp.com>
+Subject: Re: Unsupported phy-connection-type sgmii-2500 in
+ arch/powerpc/boot/dts/fsl/t1023rdb.dts
+Message-ID: <20210604192732.GW30436@shell.armlinux.org.uk>
+References: <20210603143453.if7hgifupx5k433b@pali>
+ <YLjxX/XPDoRRIvYf@lunn.ch>
+ <20210603194853.ngz4jdso3kfncnj4@pali>
+ <AM6PR04MB3976B62084EC462BA02F0C4CEC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210604132335.GK2435141@dell>
-References: <1595493126-21611-1-git-send-email-wendell.lin@mediatek.com> <1597052186.27843.1.camel@mtkswgap22> <CAF2Aj3hZB08d8x6XOqsP4m5fv76fWH48U95j8ugLt-YWFJ-kkA@mail.gmail.com> <162276982204.1835121.10976600065855289763@swboyd.mtv.corp.google.com> <20210604082427.GE2435141@dell> <20210604082524.GF2435141@dell> <1622802121.26830.22.camel@mtkswgap22> <20210604132335.GK2435141@dell>
-Subject: Re: [PATCH 1/1] clk: Export clk_register_composite
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        ARM/Mediatek SoC support <linux-mediatek@lists.infradead.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        open list:
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>,
-        wsd_upstream <wsd_upstream@mediatek.com>, ;
-Illegal-Object: Syntax error in Cc: address found on vger.kernel.org:
-        Cc:     ;
-                        ^-missing semicolon to end mail group, extraneous tokens in mailbox, missing end of mailbox
-To:     Lee Jones <lee.jones@linaro.org>,
-        Wendell Lin <wendell.lin@mediatek.com>
-Date:   Fri, 04 Jun 2021 12:19:31 -0700
-Message-ID: <162283437157.1835121.5925083479747882207@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <AM6PR04MB3976B62084EC462BA02F0C4CEC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Lee Jones (2021-06-04 06:23:35)
-> On Fri, 04 Jun 2021, Wendell Lin wrote:
->=20
-> > On Fri, 2021-06-04 at 09:25 +0100, Lee Jones wrote:
-> > > On Fri, 04 Jun 2021, Lee Jones wrote:
-> > >=20
-> > > > On Thu, 03 Jun 2021, Stephen Boyd wrote:
-> > > >=20
-> > > > > Quoting Lee Jones (2021-05-20 09:07:42)
-> > > > > > On Mon, 10 Aug 2020 at 10:36, Wendell Lin <wendell.lin@mediatek=
-.com> wrote:
-> > > > > >=20
-> > > > > >     Hi Matthias and all,
-> > > > > >=20
-> > > > > >     Gentle ping on this patch.
-> > > > > >=20
-> > > > > >=20
-> > > > > > What about a not-so-gentle ping on this patch?  Grrrr... :)
-> > > > > >=20
-> > > > > > FYI, this is still required by more than one source.
-> > > > > >=20
-> > > > > > Please help get this out of all of the vendor trees please.
-> > > > > >=20
-> > > > >=20
-> > > > > Is there an in-kernel user?
-> > > >=20
-> > > > How can there be?  It's not exported yet. :)
-> > > >=20
-> > > > However there shouldn't be any barriers for vendors represented in
-> > > > Mainline to build their drivers as modules if they so wish.  If/when
-> > > > they do, this will need to be exported.
-> > >=20
-> > > Wendell Lin, is this what you wish to do with the in-kernel MediaTek
-> > > driver?
-> > >=20
-> > This is because Mediatek clock driver would be built as kernel module,
-> > so clk_register_composite() used should be exported, then we could use
-> > it.=20
-> >=20
-> > Please refer:
-> > [PATCH 2/2] clk: mediatek: Add EXPORT_SYMBOL for kernel module support =
+On Fri, Jun 04, 2021 at 07:35:33AM +0000, Madalin Bucur wrote:
+> Hi, the Freescale emails no longer work, years after Freescale joined NXP.
+> Also, the first four recipients no longer work for NXP.
+> 
+> In regards to the sgmii-2500 you see in the device tree, it describes SGMII
+> overclocked to 2.5Gbps, with autonegotiation disabled. 
+> 
+> A quote from a long time ago, from someone from the HW team on this:
+> 
+> 	The industry consensus is that 2.5G SGMII is overclocked 1G SGMII
+> 	using XAUI electricals. For the PCS and MAC layers, it looks exactly
+> 	like 1G SGMII, just with a faster clock.
+> 
+> The statement that it does not exist is not accurate, it exists in HW, and
+> it is described as such in the device tree. Whether or not it is properly
+> treated in SW it's another discussion.
 
-> > https://lkml.org/lkml/2020/7/1/124
-> > +EXPORT_SYMBOL(mtk_clk_register_composites);
-> >=20
-> > clk_register_composite() is used by Mediatek clk kernel module.
-> > From export symbol: mtk_clk_register_composites.=20
->=20
-> Perfect.  Thanks for the clarification.
->=20
-> Anything else you need from us Stephen?
->=20
+Here's the issue though:
 
-Is the mediatek driver compilable as a module? Last time I checked it
-wasn't a module. I want an upstream modular driver that uses the symbol.
-Otherwise we're exporting symbols when it doesn't need to be.
+802.3 defined 1000base-X which is a fixed 1G speed interface using a
+16-bit control word. Implementations of this exist where the control
+word can be disabled.
+
+Cisco came along, took 1000base-X and augmented it to allow speeds of
+10M and 100M by symbol repetition, and changing the format of the
+16-bit control word. Otherwise, it is functionally compatible - indeed
+SGMII with the control word disabled will connect with 1000base-X with
+the control word disabled. I've done it several times.
+
+There exists 2500base-X, which is 1000base-X clocked faster, and it
+seems the concensus is that it has the AN disabled - in other words,
+no control word.
+
+Now you're saying that SGMII at 2.5G speed exists, which is 1G SGMII
+fixed at 1G speed, without a control word, upclocked by 2.5x.
+
+My question to you is how is how is this SGMII 2.5G different from
+2500base-X?
+
+> In 2015, when this was submitted,
+> there were no other 2.5G compatibles in use, if I'm not mistaken.
+> 2500Base-X started to be added to device trees four years later, it should
+> be compatible/interworking but it is less specific on the actual implementation
+> details (denotes 2.5G speed, 8b/10b coding, which is true for this overclocked
+> SGMII). If they are compatible, SW should probably treat them in the same manner.
+
+My argument has been (since I've had experience of SGMII talking to
+1000base-X, and have also accidentally clocked such a scenario at
+2.5G speeds) that there is in fact no functional difference between
+SGMII and base-X when they are running at identical speeds with the
+control word disabled.
+
+Given that we well know that industry likes to use the term "SGMII"
+very loosely to mean <whatever>base-X as well as SGMII, it becomes
+a very bad term to use when we wish to differentiate between a
+base-X and a real Cisco SGMII link with their different control word
+formats.
+
+And this has always been my point - industry has created confusion
+over these terms, but as software programmers, we need to know the
+difference. So, SGMII should _only_ be used to identify the Cisco
+SGMII modified version of 802.3 base-X _with_ the modified control
+word or with the capability of symbol repetition. In other words,
+the very features that make it SGMII as opposed to 802.3 base-X.
+Everything else should not use the term SGMII.
+
+> There were some discussions a while ago about the mix or even confusion between
+> the actual HW description (that's what the dts is supposed to do) and the settings
+> one wants to represent in SW (i.e. speed) denoted loosely by denominations like
+> 10G Base-R. 
+
+The "confusion" comes from an abuse of terms. Abused terms really
+can't adequately be used to describe hardware properties.
+
+As I say above, we _know_ that some manufacturers state that their
+single lane serdes is "SGMII" when it is in fact 1000base-X. That
+doesn't mean we stuff "sgmii" into device tree because that's what
+the vendor decided to call it.
+
+"sgmii" in the device tree means Cisco's well defined SGMII and
+does not mean 1000base-X.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
