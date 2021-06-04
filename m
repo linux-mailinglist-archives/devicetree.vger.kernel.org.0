@@ -2,169 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D61D39BEDE
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 19:32:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F3A239BEEE
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 19:37:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230321AbhFDRee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 13:34:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57886 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230185AbhFDRee (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Jun 2021 13:34:34 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 743ED61400;
-        Fri,  4 Jun 2021 17:32:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622827967;
-        bh=a5isDehEudac8CyR2HZE1gI9Wve6E9W6CiVt055MqQI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oxwiF4nZxQ/b7p8BNP/PiIQXi+nFKiMXwGXug/6MEsZ6c41FePwwtM7mqcB7KViyq
-         rFTdSJGYKWUDkg4CL+tWbpAb8pYvbDdnBJ4mckYht5plojekusly9vfUpWIgdBJ7KC
-         FRb01Oi09iHmr1pe4hVKD4Ye3DNlKFLYDWxPbU66N/skaboEQkSHf+xUEpqNA313Xc
-         Il6Ywgnr/Ftta+jZ+n+FwxYPtLjDlJ+ENr0Te4dSIU5tSgxpmeJ9+fSBw9Fvw8CvwP
-         kCHZ1HGCchNOvnukeKkSeZGc/Wla+hQnzNolCjGWuXAO5egR08CKUMCUzm+wRXvQU1
-         ohJmjn0VGkZKw==
-Received: by pali.im (Postfix)
-        id 1ED85990; Fri,  4 Jun 2021 19:32:45 +0200 (CEST)
-Date:   Fri, 4 Jun 2021 19:32:44 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Madalin Bucur <madalin.bucur@nxp.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Igal Liberman <Igal.Liberman@freescale.com>,
-        Shruti Kanetkar <Shruti@freescale.com>,
-        Emil Medve <Emilian.Medve@freescale.com>,
-        Scott Wood <oss@buserror.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Camelia Alexandra Groza (OSS)" <camelia.groza@oss.nxp.com>
-Subject: Re: Unsupported phy-connection-type sgmii-2500 in
- arch/powerpc/boot/dts/fsl/t1023rdb.dts
-Message-ID: <20210604173244.qonw5wsn3pq6gyjf@pali>
-References: <20210603143453.if7hgifupx5k433b@pali>
- <YLjxX/XPDoRRIvYf@lunn.ch>
- <20210603194853.ngz4jdso3kfncnj4@pali>
- <AM6PR04MB3976B62084EC462BA02F0C4CEC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
+        id S230414AbhFDRjD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 13:39:03 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:38096 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229690AbhFDRjD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 13:39:03 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: ezequiel)
+        with ESMTPSA id 65E551F439E4
+Message-ID: <943276000b13f51e0e746b4f29f2a28d7e435622.camel@collabora.com>
+Subject: Re: [PATCH v9 03/13] media: hantro: Use syscon instead of 'ctrl'
+ register
+From:   Ezequiel Garcia <ezequiel@collabora.com>
+To:     Lucas Stach <l.stach@pengutronix.de>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        lee.jones@linaro.org, gregkh@linuxfoundation.org,
+        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
+        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
+        emil.l.velikov@gmail.com, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>
+Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-imx@nxp.com, kernel@pengutronix.de, kernel@collabora.com,
+        cphealy@gmail.com, linux-arm-kernel@lists.infradead.org,
+        linux-media@vger.kernel.org
+Date:   Fri, 04 Jun 2021 14:37:02 -0300
+In-Reply-To: <72fef3d9f79194876f2035e996bb83f9f8b12902.camel@pengutronix.de>
+References: <20210407073534.376722-1-benjamin.gaignard@collabora.com>
+         <20210407073534.376722-4-benjamin.gaignard@collabora.com>
+         <7bcbb787d82f21d42563d8fb7e3c2e7d40123932.camel@pengutronix.de>
+         <831a59b052df02e9860b9766e631a7ab6a37c46a.camel@collabora.com>
+         <72fef3d9f79194876f2035e996bb83f9f8b12902.camel@pengutronix.de>
+Organization: Collabora
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.2-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <AM6PR04MB3976B62084EC462BA02F0C4CEC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
+Hi Lucas,
 
-On Friday 04 June 2021 07:35:33 Madalin Bucur wrote:
-> > -----Original Message-----
-> > From: Pali Rohár <pali@kernel.org>
-> > Sent: 03 June 2021 22:49
-> > To: Andrew Lunn <andrew@lunn.ch>
-> > Cc: Igal Liberman <Igal.Liberman@freescale.com>; Shruti Kanetkar
-> > <Shruti@freescale.com>; Emil Medve <Emilian.Medve@freescale.com>; Scott
-> > Wood <oss@buserror.net>; Rob Herring <robh+dt@kernel.org>; Michael
-> > Ellerman <mpe@ellerman.id.au>; Benjamin Herrenschmidt
-> > <benh@kernel.crashing.org>; Madalin Bucur <madalin.bucur@nxp.com>; Russell
-> > King <rmk+kernel@armlinux.org.uk>; netdev@vger.kernel.org;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
-> > Subject: Re: Unsupported phy-connection-type sgmii-2500 in
-> > arch/powerpc/boot/dts/fsl/t1023rdb.dts
-> > 
-> > On Thursday 03 June 2021 17:12:31 Andrew Lunn wrote:
-> > > On Thu, Jun 03, 2021 at 04:34:53PM +0200, Pali Rohár wrote:
-> > > > Hello!
-> > > >
-> > > > In commit 84e0f1c13806 ("powerpc/mpc85xx: Add MDIO bus muxing support
-> > to
-> > > > the board device tree(s)") was added following DT property into DT
-> > node:
-> > > > arch/powerpc/boot/dts/fsl/t1023rdb.dts fm1mac3: ethernet@e4000
-> > > >
-> > > >     phy-connection-type = "sgmii-2500";
-> > > >
-> > > > But currently kernel does not recognize this "sgmii-2500" phy mode.
-> > See
-> > > > file include/linux/phy.h. In my opinion it should be "2500base-x" as
-> > > > this is mode which operates at 2.5 Gbps.
-> > > >
-> > > > I do not think that sgmii-2500 mode exist at all (correct me if I'm
-> > > > wrong).
-> > >
-> > > Kind of exist, unofficially. Some vendors run SGMII over clocked at
-> > > 2500. But there is no standard for it, and it is unclear how inband
-> > > signalling should work. Whenever i see code saying 2.5G SGMII, i
-> > > always ask, are you sure, is it really 2500BaseX? Mostly it gets
-> > > changed to 2500BaseX after review.
-> > 
-> > So this is question for authors of that commit 84e0f1c13806. But it
-> > looks like I cannot send them emails because of following error:
-> > 
-> > <Minghuan.Lian@freescale.com>: connect to freescale.com[192.88.156.33]:25:
-> > Connection timed out
-> > 
-> > Do you have other way how to contact maintainers of that DTS file?
-> > arch/powerpc/boot/dts/fsl/t1023rdb.dts
-> > 
-> > > PHY mode sgmii-2500 does not exist in mainline.
-> > 
-> > Yes, this is reason why I sent this email. In DTS is specified this mode
-> > which does not exist.
-> > 
-> > > 	Andrew
+On Mon, 2021-05-17 at 12:52 +0200, Lucas Stach wrote:
+> Hi Ezequiel,
 > 
-> Hi, the Freescale emails no longer work, years after Freescale joined NXP.
-> Also, the first four recipients no longer work for NXP.
+> Am Sonntag, dem 16.05.2021 um 19:40 -0300 schrieb Ezequiel Garcia:
+> > Hi Lucas,
+> > 
+> > On Fri, 2021-04-16 at 12:54 +0200, Lucas Stach wrote:
+> > > Am Mittwoch, dem 07.04.2021 um 09:35 +0200 schrieb Benjamin Gaignard:
+> > > > In order to be able to share the control hardware block between
+> > > > VPUs use a syscon instead a ioremap it in the driver.
+> > > > To keep the compatibility with older DT if 'nxp,imx8mq-vpu-ctrl'
+> > > > phandle is not found look at 'ctrl' reg-name.
+> > > > With the method it becomes useless to provide a list of register
+> > > > names so remove it.
+> > > 
+> > > Sorry for putting a spoke in the wheel after many iterations of the
+> > > series.
+> > > 
+> > > We just discussed a way forward on how to handle the clocks and resets
+> > > provided by the blkctl block on i.MX8MM and later and it seems there is
+> > > a consensus on trying to provide virtual power domains from a blkctl
+> > > driver, controlling clocks and resets for the devices in the power
+> > > domain. I would like to avoid introducing yet another way of handling
+> > > the blkctl and thus would like to align the i.MX8MQ VPU blkctl with
+> > > what we are planning to do on the later chip generations.
+> > > 
+> > > CC'ing Jacky Bai and Peng Fan from NXP, as they were going to give this
+> > > virtual power domain thing a shot.
+> > > 
+> > 
+> > It seems the i.MX8MM BLK-CTL series are moving forward:
+> > 
+> > https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=479175
+> > 
+> > ... but I'm unable to wrap my head around how this affects the
+> > devicetree VPU modelling for i.MX8MQ (and also i.MX8MM, i.MX8MP, ...).
+> > 
+> > 
+> For the i.MX8MQ we want to have the same virtual power-domains provided
+> by a BLK-CTRL driver for the VPUs, as on i.MX8MM. This way we should be
+> able to use the same DT bindings for the VPUs on i.MX8MQ and i.MX8MM,
+> even though the SoC integration with the blk-ctrl is a little
+> different.
 > 
-> In regards to the sgmii-2500 you see in the device tree, it describes SGMII
-> overclocked to 2.5Gbps, with autonegotiation disabled. 
+> > Can you clarify that?
+> > 
+> I'm planning on sending some patches adding i.MX8MQ VPU support to the
+> BLK-CTRL driver in the next few days. I guess that should clarify
+> things. :)
 > 
-> A quote from a long time ago, from someone from the HW team on this:
-> 
-> 	The industry consensus is that 2.5G SGMII is overclocked 1G SGMII
-> 	using XAUI electricals. For the PCS and MAC layers, it looks exactly
-> 	like 1G SGMII, just with a faster clock.
 
-SGMII supports 1 Gbps speed and also 100 / 10 Mbps by repeating frame 10
-or 100 times.
+As a gentle reminder, Hans sent the i.MX8MQ G2 HEVC support pull request
+and Benjamin just posted a series adding support for more features.
 
-So... if this HW has 2.5G SGMII (sgmii-2500) as 2.5x overclocked SGMII,
-does it mean that 2.5G SGMII supports 25 Mbps and 250 Mbps speeds by
-repeating frame 10 and 100 times (like for 1G SGMII)?
+Do you think we could have the blk-ctrl support landing in v5.14?
 
-> The statement that it does not exist is not accurate, it exists in HW, and
-> it is described as such in the device tree. Whether or not it is properly
-> treated in SW it's another discussion. In 2015, when this was submitted,
-> there were no other 2.5G compatibles in use, if I'm not mistaken.
+If you work on the patches, and you happen to test the G1 and G2 on
+i.MX8MM it would be great to add that too.
 
-Yea, I understand. If at that time there was no sw support, "something"
-was chosen.
+Meanwhile, our next steps would be to improve the HEVC V4L2 uAPI itself.
 
-> 2500Base-X started to be added to device trees four years later, it should
-> be compatible/interworking but it is less specific on the actual implementation
-> details (denotes 2.5G speed, 8b/10b coding, which is true for this overclocked
-> SGMII). If they are compatible, SW should probably treat them in the same manner.
+Thanks a lot!
+Ezequiel 
 
-1000base-x and SGMII are not same modes. E.g. SGMII support 10 Mbps
-while 1000base-x not. So in my opinion 1000base-x and SGMII should not
-be treated as the same mode (in SW).
-
-I'm not sure how what exactly SGMII-2500 supports, but as 2500base-x
-does not support 25 Mbps speed I do not think that SGMII-2500 is same as
-2500base-x.
-
-But now I'm totally confused by all these modes, so I hope that somebody
-else tries to explain what kernel expects and how kernel treats these
-modes.
-
-> There were some discussions a while ago about the mix or even confusion between
-> the actual HW description (that's what the dts is supposed to do) and the settings
-> one wants to represent in SW (i.e. speed) denoted loosely by denominations like
-> 10G Base-R. 
-> 
-> Regards,
-> Madalin
