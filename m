@@ -2,92 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7FDC39B1FE
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 07:24:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6080C39B270
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 08:15:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230060AbhFDF0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 01:26:18 -0400
-Received: from mail-pg1-f181.google.com ([209.85.215.181]:35720 "EHLO
-        mail-pg1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229826AbhFDF0S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 01:26:18 -0400
-Received: by mail-pg1-f181.google.com with SMTP id o9so4106899pgd.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Jun 2021 22:24:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=YYQmUG4DsHmPA+zkHmttsjSXSwGBtSrBYgBxvV1HNiU=;
-        b=Cqp3oyvRrxe5qTI1SQ1IzQH9MxtDQebkaqbWUHmb6xHWteqVinS0BHTgXnkThAh366
-         0M94lKOjiD2J2i13+bclIsPAMAPSvu7Cu9J2mKfGpYZJ6j2ls5szyRl4YkQ+UNF6CYRv
-         npUchitfRWwT01KJFs4f+nRR/+kTifabwPtiI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=YYQmUG4DsHmPA+zkHmttsjSXSwGBtSrBYgBxvV1HNiU=;
-        b=AbLiVuLHxzJZYhGvrP+pUuL503b+ojWcPiXFEgTa80IgZK41LYZjTdp5uNqAg7xj4R
-         zFINRw4j26fl2Ip1SGficwMUuC8dlQ2U3o05vx9KgIT9k3254XMVLKX6S6ocZ5SnT1yN
-         wckZ0YmHsquVen/kN0uAbaKMVE4/xyGn79mUFzKdL9Jb3OwO9cjquv3ZoKFqf6tA/QN2
-         ZaNSfmma1VykJjHsWFVE9O6halgkYcK+pT9TK06uX2IIxUFx7PiVBQ0te52qzKrmAgyR
-         LsTF+HgC5FuyCOIViKwhPA8mQexGYTerllt+bj7mGR9ZY0zI3S0C4RT5UDdSSZS0/n0f
-         oEOw==
-X-Gm-Message-State: AOAM530ShKZY9Js3jH9x1qCy10WEhFPu8oZG/f04ov+OAFvRHWm6sig9
-        dlRxqEdzBro3YHdxhjKqyNAsIaPixc7Yjg==
-X-Google-Smtp-Source: ABdhPJwkoTfteLnQca40WwoFSueBfc2axxyDCZ89N6e70e3n6MyQF8YGypiCLMVVGQXt7c/KyxMxCw==
-X-Received: by 2002:a65:550e:: with SMTP id f14mr3223846pgr.160.1622784198461;
-        Thu, 03 Jun 2021 22:23:18 -0700 (PDT)
-Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:886f:8bd0:e6e2:4e47])
-        by smtp.gmail.com with ESMTPSA id c15sm754014pgt.68.2021.06.03.22.23.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Jun 2021 22:23:18 -0700 (PDT)
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Subject: [PATCH 2/2] dt-bindings: arm64: dts: mediatek: Add mt8183-kukui-jacuzzi-cerise
-Date:   Fri,  4 Jun 2021 13:23:12 +0800
-Message-Id: <20210604052312.1040707-2-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.32.0.rc1.229.g3e70b5a671-goog
-In-Reply-To: <20210604052312.1040707-1-hsinyi@chromium.org>
-References: <20210604052312.1040707-1-hsinyi@chromium.org>
+        id S229921AbhFDGRI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 02:17:08 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:35982 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229852AbhFDGRI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 02:17:08 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1546EwYB115747;
+        Fri, 4 Jun 2021 01:14:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1622787298;
+        bh=4qEDJWt0SZhUJ71xYJKiN5cbwLyBfuhRa91+nNrSIOA=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=JzktDYkdU2BW41ab/6s30Vi/DIc0ORyIiYX+OXSi884Hx6+7hEuupyASe1fexiJ39
+         ftyH6BaKJ0vtGmToqgSX0n59ZJOb5QcwA8CyFClIF0XiWgv6rtfFPwocQ40G0SK9em
+         3nKrC1MmEHR9tt6Fzc7Hu5ABGXn8lEiJb8v/Pghk=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1546Ew8q100327
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 4 Jun 2021 01:14:58 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 4 Jun
+ 2021 01:14:57 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Fri, 4 Jun 2021 01:14:57 -0500
+Received: from [10.250.35.153] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1546EuVS007115;
+        Fri, 4 Jun 2021 01:14:56 -0500
+Subject: Re: [RFC PATCH] dt-bindings: hwlock: sun6i: Fix various warnings in
+ binding
+To:     Wilken Gottwalt <wilken.gottwalt@posteo.net>
+CC:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, <devicetree@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-sunxi@lists.linux.dev>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20210603144216.10327-1-s-anna@ti.com>
+ <20210604065543.3d71ca53@monster.powergraphx.local>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <3eb7afb6-629e-bac9-9a5b-7626a3f2359b@ti.com>
+Date:   Fri, 4 Jun 2021 01:14:56 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210604065543.3d71ca53@monster.powergraphx.local>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Cerise is known as ASUS Chromebook CZ1.
-Stern is known as ASUS Chromebook Flip CZ1.
+On 6/3/21 11:55 PM, Wilken Gottwalt wrote:
+> On Thu, 3 Jun 2021 09:42:16 -0500
+> Suman Anna <s-anna@ti.com> wrote:
+> 
+>> The allwinner,sun6i-a31-hwspinlock.yaml binding has a mismatched
+>> $id and fails to compile the example due to undefined args specifier
+>> values for clocks and resets. Fix both of these issues.
+>>
+>> Fixes: f9e784dcb63f ("dt-bindings: hwlock: add sun6i_hwspinlock")
+>> Signed-off-by: Suman Anna <s-anna@ti.com>
+>> ---
+>> Hi Wilken,
+>>
+>> This fixes the warnings for now on linux-next, but I think the example
+>> should be including sun6i-a31-ccu.h files instead to be accurate, and
+>> those files are missing the definitions for CLK_BUS_SPINLOCK and
+>> RST_BUS_SPINLOCK. Feel free to send a newer version or do an incremental
+>> patch on top.
+>>
+>> regards
+>> Suman
+> 
+> Hi Suman,
+> 
+> thank you for fixing this. I would have fix it the same way for now, so it is
+> fine for me. But I will keep an eye on it.
 
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
----
- Documentation/devicetree/bindings/arm/mediatek.yaml | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Thanks Will.
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-index 80a05f6fee85b..02c0653737648 100644
---- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-@@ -126,6 +126,15 @@ properties:
-         items:
-           - const: google,burnet
-           - const: mediatek,mt8183
-+      - description: Google Cerise (ASUS Chromebook CZ1) / Stern (ASUS Chromebook Flip CZ1)
-+        items:
-+          - enum:
-+              - google,cerise-sku0
-+              - google,cerise-sku1
-+              - google,cerise-rev3-sku0
-+              - google,cerise-rev3-sku1
-+          - const: google,cerise
-+          - const: mediatek,mt8183
-       - description: Google Krane (Lenovo IdeaPad Duet, 10e,...)
-         items:
-           - enum:
--- 
-2.32.0.rc1.229.g3e70b5a671-goog
+Bjorn,
+Do ignore the RFC tag then, and you can pick up the patch.
+
+regards
+Suman
+
+
+> 
+> greetings,
+> Will
+> 
+>>  .../bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml      | 5 ++++-
+>>  1 file changed, 4 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml
+>> b/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml index
+>> 733c3d01e56c..10e5a53e447b 100644 ---
+>> a/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml +++
+>> b/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml @@ -1,7 +1,7 @@
+>>  # SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+>>  %YAML 1.2
+>>  ---
+>> -$id: http://devicetree.org/schemas/hwlock/allwinner,sun6i-hwspinlock.yaml#
+>> +$id: http://devicetree.org/schemas/hwlock/allwinner,sun6i-a31-hwspinlock.yaml#
+>>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>>  
+>>  title: SUN6I hardware spinlock driver for Allwinner sun6i compatible SoCs
+>> @@ -36,6 +36,9 @@ additionalProperties: false
+>>  
+>>  examples:
+>>    - |
+>> +    #include <dt-bindings/clock/sun8i-a23-a33-ccu.h>
+>> +    #include <dt-bindings/reset/sun8i-a23-a33-ccu.h>
+>> +
+>>      hwlock@1c18000 {
+>>          compatible = "allwinner,sun6i-a31-hwspinlock";
+>>          reg = <0x01c18000 0x1000>;
+> 
 
