@@ -2,73 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEDC139C2E8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 23:49:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6E4239C2F1
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 23:50:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229930AbhFDVve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 17:51:34 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:40546 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229774AbhFDVvd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 17:51:33 -0400
-Received: by mail-ot1-f54.google.com with SMTP id c31-20020a056830349fb02903a5bfa6138bso10483472otu.7;
-        Fri, 04 Jun 2021 14:49:34 -0700 (PDT)
+        id S231689AbhFDVwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 17:52:01 -0400
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:39841 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231623AbhFDVvy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 17:51:54 -0400
+Received: by mail-oi1-f179.google.com with SMTP id m137so7284739oig.6;
+        Fri, 04 Jun 2021 14:49:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=AyI3Bv7v3Pj1ilSBOJvpQtV6ge00H/vUNYRyVuGjTgc=;
-        b=JsO6yW6cKNpFxsM3QR+iN/IkSc5SFkgp6StYnkhD240KArP4DY+snhPT76wpWSHtvM
-         8ZX/0dGkc6NbiuB20IeYxJRKdSy4W1L1uBXFbrP9/lRrHEXVTB1pnX0SQ8TIDg4G7GGN
-         XgMKa0+y5xc3E+sHgibn++FfslnGLNqmGfR7+Xb0bjUCMcuOk0Pcf+1ME2tcB5lgK52A
-         rPXJkbdhYpMj9QPL5FH/PJrMTudoOQyVau9p/dYxY2nDsaVtHLWdoqPNWfqbQmTHZknY
-         HbNVEXsh4lRRDJfsoxXcFmPzyN9hdOIX81L2E8R0HVLiriDadv4oQNlb2f4umyevangj
-         7zHw==
-X-Gm-Message-State: AOAM531Yox9RIJHXnVCs7zPvAgZmUyjU4Amr5ObdnWelJuAYSL0y94cW
-        g0wwXqKyRBfQ3fM5SoqwysVhdzaNJA==
-X-Google-Smtp-Source: ABdhPJzgKjQvnY1oVboaSEVe4Fzh5yMgnaGgbt4UfLSWg3miomKHxnK8p6XELinXE7k8xPpteuFJBg==
-X-Received: by 2002:a05:6830:2011:: with SMTP id e17mr5307866otp.295.1622843374660;
-        Fri, 04 Jun 2021 14:49:34 -0700 (PDT)
+        bh=wgLQBeOzeMaIGS5IGHxNLHI28uqd7HnvHSfprTG7CkA=;
+        b=X7Wr106Thk6TayPFVJEkBRoXue5HgsUf+xOJ5bj4BgMVotlv9mAD/JgDWhf0rMq7ma
+         hLGMBvk+Mp57CbyjeBQOSEEPFh3rnbaw3wA+Mjm4fXsTluy5KXeYvsORFTqkcZQzk6EL
+         qS3VuGg3Gupsm8riNDB18EnQ5YxbOMwBadOwsRKYTBFUWzzLozXei4OmP6J1Wt1umgO6
+         KnoaxhBXX6UbDEoewG1U/fhb6HsCC7o8O2W+0GYUYshrMUm5iU5FCz7uq0CKrOKWc0zH
+         BaYznWp5fEKldNckKPRjIUZYVvJpbkSXPCElqde5XxyqMasjDM4Rs8pTxpbvCsgSJ0Zh
+         4YHw==
+X-Gm-Message-State: AOAM530dPggzRNCRDkGc2Sxq0k6jac5hMcGuvLj77NXULR3Z5/H8VwKu
+        ZSmAy9my0vipySrxwYWolbwWkg7sgQ==
+X-Google-Smtp-Source: ABdhPJwm9b/NL2L7UBKTh8bWpeA9lqr/DXKqnjae9A67mOWQRiiZEDe8+zpNogxtQ9u1SoRxRBxiTQ==
+X-Received: by 2002:a05:6808:8e5:: with SMTP id d5mr4311418oic.145.1622843391663;
+        Fri, 04 Jun 2021 14:49:51 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y66sm342726ooa.48.2021.06.04.14.49.33
+        by smtp.gmail.com with ESMTPSA id n127sm713655oif.55.2021.06.04.14.49.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Jun 2021 14:49:34 -0700 (PDT)
-Received: (nullmailer pid 3984835 invoked by uid 1000);
-        Fri, 04 Jun 2021 21:49:32 -0000
-Date:   Fri, 4 Jun 2021 16:49:32 -0500
+        Fri, 04 Jun 2021 14:49:51 -0700 (PDT)
+Received: (nullmailer pid 3985369 invoked by uid 1000);
+        Fri, 04 Jun 2021 21:49:50 -0000
+Date:   Fri, 4 Jun 2021 16:49:50 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Lokesh Vutla <lokeshvutla@ti.com>
-Cc:     Nishanth Menon <nm@ti.com>, Vignesh R <vigneshr@ti.com>,
-        u.kleine-koenig@pengutronix.de, Rob Herring <robh+dt@kernel.org>,
-        lee.jones@linaro.org, tony@atomide.com,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux OMAP Mailing List <linux-omap@vger.kernel.org>,
-        linux-pwm@vger.kernel.org,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        thierry.reding@gmail.com,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: pwm: pwm-tiecap: Add compatible string
- for AM64 SoC
-Message-ID: <20210604214932.GA3984784@robh.at.kernel.org>
-References: <20210601102804.22152-1-lokeshvutla@ti.com>
- <20210601102804.22152-3-lokeshvutla@ti.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: irqchip: renesas-irqc: Add R-Car M3-W+
+ support
+Message-ID: <20210604214950.GA3985316@robh.at.kernel.org>
+References: <55d2c30cb14b2e10193a7fd4aa7670c70f360037.1622546880.git.geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210601102804.22152-3-lokeshvutla@ti.com>
+In-Reply-To: <55d2c30cb14b2e10193a7fd4aa7670c70f360037.1622546880.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 01 Jun 2021 15:58:04 +0530, Lokesh Vutla wrote:
-> Add compatible string for AM64 SoC in device tree binding.
-> IP is compatible with ti,am3352-ecap, so adding the AM64 compatible
-> under enum of one of the compatible list entry.
+On Tue, 01 Jun 2021 13:31:55 +0200, Geert Uytterhoeven wrote:
+> Document support for the Interrupt Controller for External Devices
+> (INT-EC) in the Renesas R-Car M3-W+ (r8a77961) SoC.
 > 
-> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  Documentation/devicetree/bindings/pwm/pwm-tiecap.yaml | 1 +
+> No Linux driver update needed.
+> 
+>  .../devicetree/bindings/interrupt-controller/renesas,irqc.yaml   | 1 +
 >  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
