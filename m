@@ -2,131 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD51C39B9CD
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 15:24:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DCE339B9CB
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 15:24:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230502AbhFDN0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 09:26:39 -0400
-Received: from mail-wm1-f47.google.com ([209.85.128.47]:51943 "EHLO
-        mail-wm1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230110AbhFDN0j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 09:26:39 -0400
-Received: by mail-wm1-f47.google.com with SMTP id r13so5388095wmq.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Jun 2021 06:24:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=+sT4YYKrQb2O5xI5wztXIAWtyacTFced2VFE4TLIp60=;
-        b=ySiUwhYzsJGSzp36XB999q1MbEQ96sQpPPHULrfsaUm/LbNGHvntoy9xwDR6LnPxFI
-         aaQlYLo5tfvAVdcsrADn6mrXtmvuH1RhsIXzPpuVQ81Y34PPKUUMjxj491nxsKp/pcy8
-         NrdQ6Syy/jwbcbdTdrCoZFjqcj61qpvaKhtZFcOd9wi2sOL+LpwY+SoXdtHyRliKS44L
-         RjqSzzMX2GPQsCTYaH1uxRBoEDqGbHUXXwHtHcYyrEcCdA+oykyyoGlhXr5lyk2A2Hvj
-         MrW+27uUG7L6hy2QSqWEG7VTQqSUi61G9XuX7+Dbr1sw5YISsiT7dD7FWd0pe/T9dEqw
-         7y7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=+sT4YYKrQb2O5xI5wztXIAWtyacTFced2VFE4TLIp60=;
-        b=QIl2EAHdNn9PRGJYt2Pj7Yb1KsvqxmBEd8hBXZZu5SdIniPQea8OGcH8vyWjkalPdH
-         b442TLxUl1QWzaWzAyTvVIjVD9QiqRrTBCtx1SVvNqR6Ou8KsCBqfMi848PMmnCILy9l
-         fMRntKAWRAEAr13UBXIaXmBZh4CEHag77FpfwBry35B4bJQAeoRxogE65AVjgTw6RiCW
-         P+m/OF9ZXyn8Idb9hGKavGfI51E6jY+Tm5D8+vO5krP2O5n60obja+XAyEs/gI/kG7/P
-         ic9RiNtkQUODdMcZT0nzvUdUytWnQ8LJxoUayOY2WiFHidWCrN6YEK3H9+ujX6Ko3OMD
-         RIrw==
-X-Gm-Message-State: AOAM530mS9NS/+RgB887IrHMP/nb3ZLQzo+EsSccvD/SXJobjopp06or
-        ZVbDCJEMdZm+KDPb0PRk9Lxvqw==
-X-Google-Smtp-Source: ABdhPJyIXvaJGxAIuz9G9hqzr6MEeZebOlfx+GRaCsLAzvjVFcJ2FSSUkUHrMgXxV8y2OfWOc6gC0w==
-X-Received: by 2002:a1c:2805:: with SMTP id o5mr3625525wmo.103.1622813018831;
-        Fri, 04 Jun 2021 06:23:38 -0700 (PDT)
-Received: from dell ([91.110.221.214])
-        by smtp.gmail.com with ESMTPSA id q11sm5752457wmq.1.2021.06.04.06.23.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Jun 2021 06:23:38 -0700 (PDT)
-Date:   Fri, 4 Jun 2021 14:23:35 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Wendell Lin <wendell.lin@mediatek.com>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        ARM/Mediatek SoC support <linux-mediatek@lists.infradead.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        id S230122AbhFDN0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 09:26:31 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:17128 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230110AbhFDN0b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 09:26:31 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1622813085; x=1654349085;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=UrHKelKyqqHlztFRcAxQQRjdVr20Dnac6fTjGDJIXBE=;
+  b=ieRo2K8alyaxbocnhSfSz+TU8BnhQUBK0HyaR/o67UfQaERxYy2K+XsM
+   KvY1QKY9zJ8Pz58ZrzYheHtr/l39XSGvyIMSyMMl9oc2IcWEwViLPsXC1
+   AIE7rJsgzraOpta5Drj0f9UdZ0U+W+xEGEMK+I4PmeCDxFWwrYlKT1oHB
+   kjIbhAzoLAY2tD53PixEORTqViQ4biqvtT4GgggJ6awDnWw0XO1kEWPnY
+   cE6qZHUMQEawKSpgvyFprnr+RQl6bBoPbQs2Lt+OLPofTzoPFvRR1w/Ot
+   TS/1zV/e7jKoPMDxqwhR2cP41xcf2jLUXrwcePNcVBdwLwxeEgyow9Lfk
+   g==;
+IronPort-SDR: kmCdPm16MTdtGr+ka3FEVC0yZTQmIVhJi1sulMGAitcHkYm4/7pHdYZ+a8Zn7TEQo8iq0SiSc0
+ VtySDQ2qiUKkhQkekEm9efidEpiOC/5AOYQaW4FDYeZmMVLMFWNF8IUepw401GbOUNLzh/EBIq
+ xowUgEydJl0nlTYsY4+VBzzI3Yee1zt4tmnyapVYGlw8xI2vRzca0Qrm7FJhwU3Uvn5eDmK9wd
+ XmvkxWevu3jtY0lqGxX7kPE6dihS3CvmjAkI4uax+6/FPsTZ/bi1Jp/j1LRjgXB1EVWaM+72ZR
+ dT4=
+X-IronPort-AV: E=Sophos;i="5.83,248,1616482800"; 
+   d="scan'208";a="57879846"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Jun 2021 06:24:44 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Fri, 4 Jun 2021 06:24:43 -0700
+Received: from ness.home (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Fri, 4 Jun 2021 06:24:42 -0700
+From:   <nicolas.ferre@microchip.com>
+To:     <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <rob.herring@calxeda.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+CC:     <linux-kernel@vger.kernel.org>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         <devicetree@vger.kernel.org>,
-        wsd_upstream <wsd_upstream@mediatek.com>
-Subject: Re: [PATCH 1/1] clk: Export clk_register_composite
-Message-ID: <20210604132335.GK2435141@dell>
-References: <1595493126-21611-1-git-send-email-wendell.lin@mediatek.com>
- <1597052186.27843.1.camel@mtkswgap22>
- <CAF2Aj3hZB08d8x6XOqsP4m5fv76fWH48U95j8ugLt-YWFJ-kkA@mail.gmail.com>
- <162276982204.1835121.10976600065855289763@swboyd.mtv.corp.google.com>
- <20210604082427.GE2435141@dell>
- <20210604082524.GF2435141@dell>
- <1622802121.26830.22.camel@mtkswgap22>
+        Nicolas Ferre <nicolas.ferre@microchip.com>
+Subject: [PATCH] dt-bindings: i2c: at91: fix example for scl-gpios
+Date:   Fri, 4 Jun 2021 15:24:38 +0200
+Message-ID: <20210604132438.18784-1-nicolas.ferre@microchip.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1622802121.26830.22.camel@mtkswgap22>
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 04 Jun 2021, Wendell Lin wrote:
+From: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-> On Fri, 2021-06-04 at 09:25 +0100, Lee Jones wrote:
-> > On Fri, 04 Jun 2021, Lee Jones wrote:
-> > 
-> > > On Thu, 03 Jun 2021, Stephen Boyd wrote:
-> > > 
-> > > > Quoting Lee Jones (2021-05-20 09:07:42)
-> > > > > On Mon, 10 Aug 2020 at 10:36, Wendell Lin <wendell.lin@mediatek.com> wrote:
-> > > > > 
-> > > > >     Hi Matthias and all,
-> > > > > 
-> > > > >     Gentle ping on this patch.
-> > > > > 
-> > > > > 
-> > > > > What about a not-so-gentle ping on this patch?  Grrrr... :)
-> > > > > 
-> > > > > FYI, this is still required by more than one source.
-> > > > > 
-> > > > > Please help get this out of all of the vendor trees please.
-> > > > > 
-> > > > 
-> > > > Is there an in-kernel user?
-> > > 
-> > > How can there be?  It's not exported yet. :)
-> > > 
-> > > However there shouldn't be any barriers for vendors represented in
-> > > Mainline to build their drivers as modules if they so wish.  If/when
-> > > they do, this will need to be exported.
-> > 
-> > Wendell Lin, is this what you wish to do with the in-kernel MediaTek
-> > driver?
-> > 
-> This is because Mediatek clock driver would be built as kernel module,
-> so clk_register_composite() used should be exported, then we could use
-> it. 
-> 
-> Please refer:
-> [PATCH 2/2] clk: mediatek: Add EXPORT_SYMBOL for kernel module support 
-> https://lkml.org/lkml/2020/7/1/124
-> +EXPORT_SYMBOL(mtk_clk_register_composites);
-> 
-> clk_register_composite() is used by Mediatek clk kernel module.
-> From export symbol: mtk_clk_register_composites. 
+The SCL gpio pin used by I2C bus for recovery needs to be configured as
+open drain, so fix the binding example accordingly.
+In relation with fix c5a283802573 ("ARM: dts: at91: Configure I2C SCL
+gpio as open drain").
 
-Perfect.  Thanks for the clarification.
+Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+Fixes: 19e5cef058a0 ("dt-bindings: i2c: at91: document optional bus recovery properties")
+---
+ Documentation/devicetree/bindings/i2c/i2c-at91.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Anything else you need from us Stephen?
-
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-at91.txt b/Documentation/devicetree/bindings/i2c/i2c-at91.txt
+index 96c914e048f5..2015f50aed0f 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c-at91.txt
++++ b/Documentation/devicetree/bindings/i2c/i2c-at91.txt
+@@ -73,7 +73,7 @@ i2c0: i2c@f8034600 {
+ 	pinctrl-0 = <&pinctrl_i2c0>;
+ 	pinctrl-1 = <&pinctrl_i2c0_gpio>;
+ 	sda-gpios = <&pioA 30 GPIO_ACTIVE_HIGH>;
+-	scl-gpios = <&pioA 31 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&pioA 31 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 
+ 	wm8731: wm8731@1a {
+ 		compatible = "wm8731";
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.31.1
+
