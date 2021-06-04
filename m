@@ -2,185 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1820A39B843
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 13:49:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68F2D39B876
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 13:54:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230112AbhFDLut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 07:50:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42498 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229682AbhFDLus (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Jun 2021 07:50:48 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D69AB61414;
-        Fri,  4 Jun 2021 11:49:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1622807342;
-        bh=PAEFa9/yoRU24iRahniGavwwCAg5tMlkqgjEBsh07iE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hPKCEeUlx34uB80b5ssvwR5HgkihQSnX1Tf9HebBhFqndLXNZVbZV6O0dRZrVffPZ
-         JdfzpQ3UK59PqyN+3GOeqH1Xut0h8O6c3Jc0eLQ2i4P3J56tlgMPY143xF6Au0PxW7
-         Xz5yNQn1MaGcpL2wbL3GX/aCjYCDokZ0SGIMS82k=
-Date:   Fri, 4 Jun 2021 13:48:59 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Nava kishore Manne <nava.manne@xilinx.com>
-Cc:     robh+dt@kernel.org, michal.simek@xilinx.com, mdf@kernel.org,
-        trix@redhat.com, arnd@arndb.de, rajan.vaja@xilinx.com,
-        amit.sunil.dhamne@xilinx.com, tejas.patel@xilinx.com,
-        zou_wei@huawei.com, lakshmi.sai.krishna.potthuri@xilinx.com,
-        ravi.patel@xilinx.com, iwamatsu@nigauri.org,
-        wendy.liang@xilinx.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-fpga@vger.kernel.org, git@xilinx.com,
-        chinnikishore369@gmail.com,
-        Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-Subject: Re: [PATCH v7 4/4] fpga: versal-fpga: Add versal fpga manager driver
-Message-ID: <YLoTK02aUs2vNt+4@kroah.com>
-References: <20210604113332.1394-1-nava.manne@xilinx.com>
- <20210604113332.1394-5-nava.manne@xilinx.com>
+        id S229961AbhFDLze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 07:55:34 -0400
+Received: from mail-ej1-f50.google.com ([209.85.218.50]:39716 "EHLO
+        mail-ej1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230313AbhFDLzd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 07:55:33 -0400
+Received: by mail-ej1-f50.google.com with SMTP id l1so14063358ejb.6
+        for <devicetree@vger.kernel.org>; Fri, 04 Jun 2021 04:53:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SPjeFhzMyUmAM1Nea2hQ46d2ZnRzhfJiBQSpu2RFObo=;
+        b=fXd5Y1hUr4hLV6bBzFtyvxRyyOjdjd5kkSkjkcsFJ+J5Xx+xC2JKJqYuNz1sNNnpg6
+         w6cX/KXLzVoDUJQ6cd9xFwUJt6WUevaH+/AA2zbMsFbYYMzMZiYPxfihVg1/X1WUiPhT
+         RsNFlAWCYIyNW24oUbriszit4G3lDOrxMfhDS1eM1WxEMYEge7gaC0svVwa96ut9z7Zc
+         DO6UtXoRAceRYCtjfyiSfYx36AdZKo1OYnS72wiuwX267GYy5ktb0+M1jJJ3KQl3L14F
+         v7qOfuMHWllIkVrvFfRIz8pJVyEI8gMRRVEwFRdGdorvsOkc/VBlKucgVClOqNnbucKz
+         B9Vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SPjeFhzMyUmAM1Nea2hQ46d2ZnRzhfJiBQSpu2RFObo=;
+        b=V5YHTcNJ2x1vXpUdpLYQb9QlW3Q0aUBTWTF6VVvZnPx3PVljbI20CjZr0Ub90BzvH7
+         cBySeGd3+i3AMN6zhuB5+xSaZ4PrxZUlgBwYgAIPYhcjYw1teYdYfqPw1yEtSf5yZezJ
+         N/WdrgtGUNZeG8cFwW9RpJLUQm+Be3rgijfuvRRIcP7uhI5mnS2RMMfohTCjWt3GZRM9
+         5yQCJOjg/izijFAq3MjH0ubAWMRPwPRtPqcsvg7Di/KhOcEIGhzT2XkGMx80Qmc5b9B0
+         AAEpn/fm2z7Hbz6uyudrm8R8MMv7wsAyMd72CZymMDiWZVLTbKCKfi13izECa3bo8Gdu
+         9AOQ==
+X-Gm-Message-State: AOAM533Yz7W0VsvpwZa1ycWY03egxYLAd6corInuF3UVa84iE7kj6lMS
+        Iul366swxyXHNEKsIx0lGbJxvg==
+X-Google-Smtp-Source: ABdhPJwFZiuFGPt59sSw/mqaiwnlJug7UBVio3Kww9j06BRd94gIbIgZdypZr+1i1GYFkzzB7POFsg==
+X-Received: by 2002:a17:906:1986:: with SMTP id g6mr3751164ejd.265.1622807556621;
+        Fri, 04 Jun 2021 04:52:36 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.gmail.com with ESMTPSA id x9sm2805527eje.64.2021.06.04.04.52.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Jun 2021 04:52:36 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     broonie@kernel.org
+Cc:     robh@kernel.org, devicetree@vger.kernel.org, perex@perex.cz,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        lgirdwood@gmail.com,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v3 0/4] ASoC: codecs: wcd934x: add Headset and button detection support
+Date:   Fri,  4 Jun 2021 12:52:26 +0100
+Message-Id: <20210604115230.23259-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210604113332.1394-5-nava.manne@xilinx.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 04, 2021 at 05:03:32PM +0530, Nava kishore Manne wrote:
-> Add support for Xilinx Versal FPGA manager.
-> 
-> PDI source type can be DDR, OCM, QSPI flash etc..
-> But driver allocates memory always from DDR, Since driver supports only
-> DDR source type.
-> 
-> Signed-off-by: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
-> Reviewed-by: Moritz Fischer <mdf@kernel.org>
-> ---
-> Changes for v2:
->               -Updated the Fpga Mgr registrations call's
->                to 5.11
->               -Fixed some minor coding issues as suggested by
->                Moritz.
-> 
-> Changes for v3:
->               -Rewritten the Versal fpga Kconfig contents.
-> 
-> Changes for v4:
->               -Rebased the changes on linux-next.
->                No functional changes.
-> 
-> Changes for v5:
->               -None.
-> 
-> Changes for v6:
->               -None.
-> 
-> Changes for v7:
->               -Updated driver to remove unwated priv struct dependency.
-> 
->  drivers/fpga/Kconfig       |  9 ++++
->  drivers/fpga/Makefile      |  1 +
->  drivers/fpga/versal-fpga.c | 96 ++++++++++++++++++++++++++++++++++++++
->  3 files changed, 106 insertions(+)
->  create mode 100644 drivers/fpga/versal-fpga.c
-> 
-> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
-> index 33e15058d0dc..92c20b92357a 100644
-> --- a/drivers/fpga/Kconfig
-> +++ b/drivers/fpga/Kconfig
-> @@ -234,4 +234,13 @@ config FPGA_MGR_ZYNQMP_FPGA
->  	  to configure the programmable logic(PL) through PS
->  	  on ZynqMP SoC.
->  
-> +config FPGA_MGR_VERSAL_FPGA
-> +	tristate "Xilinx Versal FPGA"
-> +	depends on ARCH_ZYNQMP || COMPILE_TEST
-> +	help
-> +	  Select this option to enable FPGA manager driver support for
-> +	  Xilinx Versal SoC. This driver uses the firmware interface to
-> +	  configure the programmable logic(PL).
-> +
-> +	  To compile this as a module, choose M here.
->  endif # FPGA
-> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
-> index 18dc9885883a..0bff783d1b61 100644
-> --- a/drivers/fpga/Makefile
-> +++ b/drivers/fpga/Makefile
-> @@ -18,6 +18,7 @@ obj-$(CONFIG_FPGA_MGR_TS73XX)		+= ts73xx-fpga.o
->  obj-$(CONFIG_FPGA_MGR_XILINX_SPI)	+= xilinx-spi.o
->  obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)	+= zynq-fpga.o
->  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)	+= zynqmp-fpga.o
-> +obj-$(CONFIG_FPGA_MGR_VERSAL_FPGA)      += versal-fpga.o
->  obj-$(CONFIG_ALTERA_PR_IP_CORE)         += altera-pr-ip-core.o
->  obj-$(CONFIG_ALTERA_PR_IP_CORE_PLAT)    += altera-pr-ip-core-plat.o
->  
-> diff --git a/drivers/fpga/versal-fpga.c b/drivers/fpga/versal-fpga.c
-> new file mode 100644
-> index 000000000000..1bd312a31b23
-> --- /dev/null
-> +++ b/drivers/fpga/versal-fpga.c
-> @@ -0,0 +1,96 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2019-2021 Xilinx, Inc.
-> + */
-> +
-> +#include <linux/dma-mapping.h>
-> +#include <linux/fpga/fpga-mgr.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of_address.h>
-> +#include <linux/string.h>
-> +#include <linux/firmware/xlnx-zynqmp.h>
-> +
-> +static int versal_fpga_ops_write_init(struct fpga_manager *mgr,
-> +				      struct fpga_image_info *info,
-> +				      const char *buf, size_t size)
-> +{
-> +	return 0;
+This patchset adds support to MBHC(Multi Button Headset Control) block found in
+Qualcomm WCD codecs. MBHC support headset type detection, both Mechanical and
+electrical insert/removal detection along with 8 buttons detection,
+Over current interrupts on HPHL/R, Impedance Measurements on HPHL/R.
 
-Why have this if it does nothing?
+Eventhough MBHC block supports things like OverCurrent detection, Currently its
+reported as a kernel debug message. Should this be reported as an uevent to
+userspace? like the way USB reports? 
+Any suggestions?
 
-> +}
-> +
-> +static int versal_fpga_ops_write(struct fpga_manager *mgr,
-> +				 const char *buf, size_t size)
-> +{
-> +	dma_addr_t dma_addr = 0;
-> +	char *kbuf;
-> +	int ret;
-> +
-> +	kbuf = dma_alloc_coherent(mgr->dev.parent, size, &dma_addr, GFP_KERNEL);
-> +	if (!kbuf)
-> +		return -ENOMEM;
-> +
-> +	memcpy(kbuf, buf, size);
-> +	ret = zynqmp_pm_load_pdi(PDI_SRC_DDR, dma_addr);
-> +	dma_free_coherent(mgr->dev.parent, size, kbuf, dma_addr);
-> +
-> +	return ret;
-> +}
-> +
-> +static int versal_fpga_ops_write_complete(struct fpga_manager *mgr,
-> +					  struct fpga_image_info *info)
-> +{
-> +	return 0;
+First patch adds a common mbhc driver and the second one wcd934x specific driver
+changes along with sdm845 soundcard related changes.
 
-Same here, why have this at all?
+Common wcd-mbhc-v2 driver should be reusable across multiple codecs like
+WCD9335, WCD934x, WCD937x and WCD938x.
 
-> +}
-> +
-> +static enum fpga_mgr_states versal_fpga_ops_state(struct fpga_manager *mgr)
-> +{
-> +	return FPGA_MGR_STATE_UNKNOWN;
+Most of the work is derived from downstream Qualcomm kernels.
+Credits to various Qualcomm authors from Patrick Lai's team who have
+contributed to this code.
 
-Shouln't that be the default state of the fpga manager if there is no
-state function callback?
+Changes since v2:
+- switched to EXPORT_SYMBOL_GPL from EXPORT_SYMBOL 
+- converted one of the if else to switch case.
 
-This driver should just need a write and probe function, and that's it,
-why make it more complex?
+Srinivas Kandagatla (4):
+  ASoC: dt-bindings: wcd934x: add bindings for Headset Button detection
+  ASoC: codecs: wcd: add multi button Headset detection support
+  ASoC: codecs: wcd934x: add mbhc support
+  ASoC: qcom: sdm845: add jack support for WCD934x
 
-thanks,
+ .../bindings/sound/qcom,wcd934x.yaml          |   30 +
+ include/linux/mfd/wcd934x/registers.h         |   57 +
+ sound/soc/codecs/Kconfig                      |    4 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/wcd-mbhc-v2.c                | 1475 +++++++++++++++++
+ sound/soc/codecs/wcd-mbhc-v2.h                |  340 ++++
+ sound/soc/codecs/wcd934x.c                    |  884 +++++++++-
+ sound/soc/qcom/sdm845.c                       |    8 +
+ 8 files changed, 2785 insertions(+), 15 deletions(-)
+ create mode 100644 sound/soc/codecs/wcd-mbhc-v2.c
+ create mode 100644 sound/soc/codecs/wcd-mbhc-v2.h
 
-greg k-h
+-- 
+2.21.0
+
