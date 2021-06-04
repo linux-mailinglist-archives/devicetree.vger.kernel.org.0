@@ -2,85 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C388C39C355
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 00:11:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2776D39C354
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 00:11:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231586AbhFDWNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 18:13:21 -0400
-Received: from mail-lf1-f49.google.com ([209.85.167.49]:34483 "EHLO
-        mail-lf1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231699AbhFDWNQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 18:13:16 -0400
-Received: by mail-lf1-f49.google.com with SMTP id f30so16259124lfj.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Jun 2021 15:11:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YMx9d/KwaGXDIgZMt2DPtgDzNG9hC9FHDEasqs2eylw=;
-        b=RnWNqREAbgLaek095trmxYAB2A32y6JnXwwCOEqCb69fAeTbDadtF8FlgfjScSVIAl
-         VeeTs+PRgOCjPxTkkncXbvDpFdnykroIPzWS3ZkrcA5V09EUCUjR2N8eDmWGi1aSTldj
-         sWGtkpZHNt+L8zQ1rec0frnXufrW6BYnmCPrTRRO9+m7pZcPtC+Qyxnn28G7ujhDYXAE
-         byQy4rVnCqQe1KCfjRh86UTCzrbOPPbCEQHJjzcVwYU80D4Pmn7eHSaFdFucq0thDew9
-         mwIt+3FVhKJjw3+1RBYgxxjHifqmUr8neCsMcwOWZH12A84wexGKmonNSgDqwYVy2GKf
-         ERww==
+        id S231680AbhFDWNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 18:13:11 -0400
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:38522 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231683AbhFDWNH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 18:13:07 -0400
+Received: by mail-ot1-f53.google.com with SMTP id i14-20020a9d624e0000b029033683c71999so10537849otk.5
+        for <devicetree@vger.kernel.org>; Fri, 04 Jun 2021 15:11:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YMx9d/KwaGXDIgZMt2DPtgDzNG9hC9FHDEasqs2eylw=;
-        b=dWRA/af15OojoQVzvPVXrLxa+Hr98OGlHt7NUtdnF9kw9dgF2BmK+zyE1DY099tkdU
-         0vtSQcm1/0Y1MKPmlhTLd08OJOdIGqAeTwp7A0/noNfgic5IbBCSfc3PRLWOcLf3s0xE
-         l2NuOj/I4usoS28Tzy8t0mUS2y5YAVSYD0bxeetIGSlg/EC8EGQXZbSKk+huOi/e5Tih
-         O7IJMnLP/WjEQCzxJ9S1/i4s8qpwB1IZ6KrrXkdCZ1pZDsm5V0Q/9pdwvWKDaMf95TfC
-         hRyXYuDpxSjTXI3QDCFWHQIQF9B+wGtM1c7YfFtMhgfu2wNOVRHH+orROI+DK3A60Ax+
-         wOrA==
-X-Gm-Message-State: AOAM532bVset24n3o/RnoTYbjMTKw9QA7YIlt6AG6B4I+OnMokjTx2vP
-        QUunr0vZHxPb3ZE1I5r+SxsOBPbSEh+VguYVGMvvgw==
-X-Google-Smtp-Source: ABdhPJx69CXrOaH6IjDUNE/NOqbho2qNWe/t0l5SmoR6GFbzHw8h1llh1Vq5RtbcLkcaqfSzMyNyoSf5YZK3GJZYikI=
-X-Received: by 2002:ac2:544f:: with SMTP id d15mr4065245lfn.465.1622844614933;
- Fri, 04 Jun 2021 15:10:14 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=WLN8B07xge5cJTM8Pg+iERNxR95EBfthXjJLDxQ0/Kc=;
+        b=GJF+Ar78mHtOhAxnwdC9a7u2+R7PWPBQ8QEHZTIlMMIi5QqkZNPZ3vymNlyUccHpVF
+         b57ssuIHkdHMckuQ9E2M6pcsiUYf2l2Mw82gvhv4adWlG6rKZMS+J0qdsJObaGpV+eN2
+         AkyPHIlowdENTQrIx2iwnq9hMN4Nu54ZluZxLKBIVwh39Lmsx8ZAiz5ZR6wW2cwbyf/3
+         umzbbZe9PuiM6SR19EbdVlnyc8bmE9rugeaDgd5ESXWLHsOddlumVBQOcx4kUZHOrt+n
+         5utC1ezzYMK1RqxfFgrZf8szqfeqBlTHOE2xPk4UwEiwEm0q3Q/i3RF6nA8XM0fdb0BE
+         c+ig==
+X-Gm-Message-State: AOAM530LgFN+RuHUv+CRv0xi9iJgrLdC0EVks8rNfLtviJvEqMfViIL0
+        p6oE8WLegGw6zRJAiFqUkA==
+X-Google-Smtp-Source: ABdhPJwbzVh/AWQjURD5EhMtt/hTO+gVl3fPhkSLwiHeLx4GStsi1PwVuE3kO7JclRRQv0hxdTUDeg==
+X-Received: by 2002:a9d:4115:: with SMTP id o21mr5453143ote.52.1622844679976;
+        Fri, 04 Jun 2021 15:11:19 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id r25sm713055oos.44.2021.06.04.15.11.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Jun 2021 15:11:19 -0700 (PDT)
+Received: (nullmailer pid 4021000 invoked by uid 1000);
+        Fri, 04 Jun 2021 22:11:18 -0000
+Date:   Fri, 4 Jun 2021 17:11:18 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        devicetree@vger.kernel.org,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Subject: Re: [PATCH v3 2/6] dt-bindings: firmware: arm,scpi: Convert to json
+ schema
+Message-ID: <20210604221118.GA4001991@robh.at.kernel.org>
+References: <20210604205710.1944363-1-sudeep.holla@arm.com>
+ <20210604205710.1944363-3-sudeep.holla@arm.com>
 MIME-Version: 1.0
-References: <cover.1622713678.git.sander@svanheule.net> <5d184778a6562e24abfa6e5dd2f7dbde4fede3fe.1622713678.git.sander@svanheule.net>
-In-Reply-To: <5d184778a6562e24abfa6e5dd2f7dbde4fede3fe.1622713678.git.sander@svanheule.net>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 5 Jun 2021 00:10:03 +0200
-Message-ID: <CACRpkdYzhC=Lt5CKpbZNK81z=0CRp2CknMqp=zk8cHVfo0wm0g@mail.gmail.com>
-Subject: Re: [PATCH v4 4/5] pinctrl: Add RTL8231 pin control and GPIO support
-To:     Sander Vanheule <sander@svanheule.net>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Michael Walle <michael@walle.cc>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210604205710.1944363-3-sudeep.holla@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 3, 2021 at 12:01 PM Sander Vanheule <sander@svanheule.net> wrote:
+On Fri, 04 Jun 2021 21:57:06 +0100, Sudeep Holla wrote:
+> Convert the old text format binding for System Control and Power Interface
+> (SCPI) Message Protocol into the new and shiny YAML format.
+> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> Cc: Viresh Kumar <viresh.kumar@linaro.org>
+> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+> ---
+>  .../devicetree/bindings/arm/arm,scpi.txt      | 204 ----------------
+>  .../bindings/firmware/arm,scpi.yaml           | 227 ++++++++++++++++++
+>  MAINTAINERS                                   |   2 +-
+>  3 files changed, 228 insertions(+), 205 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/arm,scpi.txt
+>  create mode 100644 Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+> 
 
-> This driver implements the GPIO and pin muxing features provided by the
-> RTL8231. The device should be instantiated as an MFD child, where the
-> parent device has already configured the regmap used for register
-> access.
->
-> Debouncing is only available for the six highest GPIOs, and must be
-> emulated when other pins are used for (button) inputs. Although
-> described in the bindings, drive strength selection is currently not
-> implemented.
->
-> Signed-off-by: Sander Vanheule <sander@svanheule.net>
+Applied. I moved the nodes with fixed strings to 'properties' and 
+dropped some literal block ('|') notations where the formatting wasn't 
+needed. 
 
-Wow this looks really good. Thanks for going the extra mile
-and fix this. Special thanks to Andy for the thorough review.
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-Yours,
-Linus Walleij
+Thanks!
