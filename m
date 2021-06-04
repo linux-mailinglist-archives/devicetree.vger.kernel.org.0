@@ -2,62 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5065A39B8B7
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 14:06:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFAFA39B8CF
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 14:11:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230050AbhFDMId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 08:08:33 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:47153 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229740AbhFDMId (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 08:08:33 -0400
-Received: (Authenticated sender: alex@ghiti.fr)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 5C79FE000C;
-        Fri,  4 Jun 2021 12:06:41 +0000 (UTC)
-From:   Alexandre Ghiti <alex@ghiti.fr>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Alexandre Ghiti <alex@ghiti.fr>
-Subject: [PATCH -fixes] riscv: Fix BUILTIN_DTB for sifive and microchip soc
-Date:   Fri,  4 Jun 2021 14:06:39 +0200
-Message-Id: <20210604120639.1447869-1-alex@ghiti.fr>
-X-Mailer: git-send-email 2.30.2
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S230161AbhFDMNl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 08:13:41 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:27030 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S230025AbhFDMNl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 08:13:41 -0400
+X-IronPort-AV: E=Sophos;i="5.83,248,1616425200"; 
+   d="scan'208";a="83423117"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 04 Jun 2021 21:11:52 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id A70E1401CEB8;
+        Fri,  4 Jun 2021 21:11:50 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] dt-bindings: interrupt-controller: arm,gic-v3: Describe GIV-v3 optional properties
+Date:   Fri,  4 Jun 2021 13:11:23 +0100
+Message-Id: <20210604121123.650-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix BUILTIN_DTB config which resulted in a dtb that was actually not built
-into the Linux image: in the same manner as Canaan soc does, create an object
-file from the dtb file that will get linked into the Linux image.
+Describe the optional GICv3 properties:
+- clocks
+- clock-names
+- power-domains
+- resets
 
-Signed-off-by: Alexandre Ghiti <alex@ghiti.fr>
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 ---
- arch/riscv/boot/dts/microchip/Makefile | 1 +
- arch/riscv/boot/dts/sifive/Makefile    | 1 +
- 2 files changed, 2 insertions(+)
+ .../bindings/interrupt-controller/arm,gic-v3.yaml   | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/arch/riscv/boot/dts/microchip/Makefile b/arch/riscv/boot/dts/microchip/Makefile
-index 622b12771fd3..855c1502d912 100644
---- a/arch/riscv/boot/dts/microchip/Makefile
-+++ b/arch/riscv/boot/dts/microchip/Makefile
-@@ -1,2 +1,3 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_SOC_MICROCHIP_POLARFIRE) += microchip-mpfs-icicle-kit.dtb
-+obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
-diff --git a/arch/riscv/boot/dts/sifive/Makefile b/arch/riscv/boot/dts/sifive/Makefile
-index 74c47fe9fc22..d90e4eb0ade8 100644
---- a/arch/riscv/boot/dts/sifive/Makefile
-+++ b/arch/riscv/boot/dts/sifive/Makefile
-@@ -1,3 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_SOC_SIFIVE) += hifive-unleashed-a00.dtb \
- 			    hifive-unmatched-a00.dtb
-+obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
+index 1ecd1831cf02..c84f9fe7f254 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
+@@ -145,6 +145,19 @@ properties:
+         required:
+           - affinity
+ 
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: aclk
++
++  power-domains:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
+ dependencies:
+   mbi-ranges: [ msi-controller ]
+   msi-controller: [ mbi-ranges ]
 -- 
-2.30.2
+2.17.1
 
