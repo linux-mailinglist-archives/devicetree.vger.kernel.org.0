@@ -2,84 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2776D39C354
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 00:11:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F13C39C358
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 00:11:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231680AbhFDWNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 18:13:11 -0400
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:38522 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231683AbhFDWNH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 18:13:07 -0400
-Received: by mail-ot1-f53.google.com with SMTP id i14-20020a9d624e0000b029033683c71999so10537849otk.5
-        for <devicetree@vger.kernel.org>; Fri, 04 Jun 2021 15:11:20 -0700 (PDT)
+        id S230059AbhFDWNl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 18:13:41 -0400
+Received: from mail-oi1-f174.google.com ([209.85.167.174]:36755 "EHLO
+        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229929AbhFDWNk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 18:13:40 -0400
+Received: by mail-oi1-f174.google.com with SMTP id a21so11238863oiw.3
+        for <devicetree@vger.kernel.org>; Fri, 04 Jun 2021 15:11:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=WLN8B07xge5cJTM8Pg+iERNxR95EBfthXjJLDxQ0/Kc=;
-        b=GJF+Ar78mHtOhAxnwdC9a7u2+R7PWPBQ8QEHZTIlMMIi5QqkZNPZ3vymNlyUccHpVF
-         b57ssuIHkdHMckuQ9E2M6pcsiUYf2l2Mw82gvhv4adWlG6rKZMS+J0qdsJObaGpV+eN2
-         AkyPHIlowdENTQrIx2iwnq9hMN4Nu54ZluZxLKBIVwh39Lmsx8ZAiz5ZR6wW2cwbyf/3
-         umzbbZe9PuiM6SR19EbdVlnyc8bmE9rugeaDgd5ESXWLHsOddlumVBQOcx4kUZHOrt+n
-         5utC1ezzYMK1RqxfFgrZf8szqfeqBlTHOE2xPk4UwEiwEm0q3Q/i3RF6nA8XM0fdb0BE
-         c+ig==
-X-Gm-Message-State: AOAM530LgFN+RuHUv+CRv0xi9iJgrLdC0EVks8rNfLtviJvEqMfViIL0
-        p6oE8WLegGw6zRJAiFqUkA==
-X-Google-Smtp-Source: ABdhPJwbzVh/AWQjURD5EhMtt/hTO+gVl3fPhkSLwiHeLx4GStsi1PwVuE3kO7JclRRQv0hxdTUDeg==
-X-Received: by 2002:a9d:4115:: with SMTP id o21mr5453143ote.52.1622844679976;
-        Fri, 04 Jun 2021 15:11:19 -0700 (PDT)
+        bh=hvNxlCSeS0XE9BK29o80IQO+DcuEB6b7mn9ETiuJ7sU=;
+        b=QuGq9HHpye3hBdcKB5EHjis7RYbTTt6ECxI6IHeUAEi8Hy8UzwVScvXr8saa719wah
+         jAhCeGg4mUjEe1z1jHRXYlJ87X2+TNNElpca2PMSYYtYiC9z2bj1gnJchIxqEMFBy8Is
+         izMcwTeoHVB+vKeEDPtx2/kLY2iIiMFJO5fNayw5W6FrFbY/Tq/QRk+leyrjNkSA54vn
+         5AdhaGxUio8UG1ouplHzqUZkNVVI4mTXHdMgRPkJdABrLp90ypiUFarvbaVx56fdjgGn
+         7a3E2GYBgK4e0akS7vIxq8uD8bpeDxbTuH5Bjgtqi2F8EVVT68bd+zuqG+ocZSqoJhCs
+         VyIQ==
+X-Gm-Message-State: AOAM5300D2Yg6eKqvX18fnI83cDG1npjKcT5hVTmnRBKWvI409mjEzGr
+        +EY/YrKRt6WP+oZPp0rZJw==
+X-Google-Smtp-Source: ABdhPJwm8y+HEMNIXQonzZ5LbWgZ0wWx6AghVxtUTh4wfJB3z9hWeE/XtJcHUx8PQc/gqMHGKUVmbQ==
+X-Received: by 2002:a05:6808:13d5:: with SMTP id d21mr4444589oiw.31.1622844702691;
+        Fri, 04 Jun 2021 15:11:42 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r25sm713055oos.44.2021.06.04.15.11.18
+        by smtp.gmail.com with ESMTPSA id q22sm731733otl.11.2021.06.04.15.11.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Jun 2021 15:11:19 -0700 (PDT)
-Received: (nullmailer pid 4021000 invoked by uid 1000);
-        Fri, 04 Jun 2021 22:11:18 -0000
-Date:   Fri, 4 Jun 2021 17:11:18 -0500
+        Fri, 04 Jun 2021 15:11:42 -0700 (PDT)
+Received: (nullmailer pid 4021715 invoked by uid 1000);
+        Fri, 04 Jun 2021 22:11:41 -0000
+Date:   Fri, 4 Jun 2021 17:11:41 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Sudeep Holla <sudeep.holla@arm.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
         Kevin Hilman <khilman@baylibre.com>,
         Jerome Brunet <jbrunet@baylibre.com>,
-        devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
         Cristian Marussi <cristian.marussi@arm.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Subject: Re: [PATCH v3 2/6] dt-bindings: firmware: arm,scpi: Convert to json
- schema
-Message-ID: <20210604221118.GA4001991@robh.at.kernel.org>
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 3/6] dt-bindings: firmware: amlogic,scpi: Convert to
+ json schema
+Message-ID: <20210604221141.GA4021566@robh.at.kernel.org>
 References: <20210604205710.1944363-1-sudeep.holla@arm.com>
- <20210604205710.1944363-3-sudeep.holla@arm.com>
+ <20210604205710.1944363-4-sudeep.holla@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210604205710.1944363-3-sudeep.holla@arm.com>
+In-Reply-To: <20210604205710.1944363-4-sudeep.holla@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 04 Jun 2021 21:57:06 +0100, Sudeep Holla wrote:
-> Convert the old text format binding for System Control and Power Interface
-> (SCPI) Message Protocol into the new and shiny YAML format.
+On Fri, 04 Jun 2021 21:57:07 +0100, Sudeep Holla wrote:
+> Convert/merge the existing text format SCPI binding additions for
+> amlogic,scpi into the common arm,scpi json scheme.
+> 
+> Couple of things to note:
+> "amlogic,meson-gxbb-scpi" is always used with "arm,scpi-pre-1.0" and
+> "amlogic,meson-gxbb-scpi-sensors" is used always with "arm,scpi-sensors"
 > 
 > Cc: Rob Herring <robh+dt@kernel.org>
 > Cc: Kevin Hilman <khilman@baylibre.com>
 > Cc: Neil Armstrong <narmstrong@baylibre.com>
 > Cc: Jerome Brunet <jbrunet@baylibre.com>
-> Cc: Viresh Kumar <viresh.kumar@linaro.org>
 > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
 > ---
->  .../devicetree/bindings/arm/arm,scpi.txt      | 204 ----------------
->  .../bindings/firmware/arm,scpi.yaml           | 227 ++++++++++++++++++
->  MAINTAINERS                                   |   2 +-
->  3 files changed, 228 insertions(+), 205 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/arm,scpi.txt
->  create mode 100644 Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+>  .../devicetree/bindings/arm/amlogic,scpi.txt  | 15 ------------
+>  .../bindings/firmware/arm,scpi.yaml           | 24 ++++++++++++++++++-
+>  2 files changed, 23 insertions(+), 16 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/amlogic,scpi.txt
 > 
 
-Applied. I moved the nodes with fixed strings to 'properties' and 
-dropped some literal block ('|') notations where the formatting wasn't 
-needed. 
-
-Thanks!
+Applied, thanks!
