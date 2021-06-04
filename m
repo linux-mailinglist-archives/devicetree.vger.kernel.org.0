@@ -2,56 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68F7139C2C2
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 23:43:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD21B39C2D0
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 23:45:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230242AbhFDVpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 17:45:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58878 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229930AbhFDVpb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 17:45:31 -0400
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87148C061766
-        for <devicetree@vger.kernel.org>; Fri,  4 Jun 2021 14:43:44 -0700 (PDT)
-Received: by mail-ot1-x32a.google.com with SMTP id w23-20020a9d5a970000b02903d0ef989477so6060276oth.9
-        for <devicetree@vger.kernel.org>; Fri, 04 Jun 2021 14:43:44 -0700 (PDT)
+        id S230075AbhFDVrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 17:47:22 -0400
+Received: from mail-oo1-f48.google.com ([209.85.161.48]:44718 "EHLO
+        mail-oo1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230281AbhFDVrV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 17:47:21 -0400
+Received: by mail-oo1-f48.google.com with SMTP id o5-20020a4a2c050000b0290245d6c7b555so2572275ooo.11
+        for <devicetree@vger.kernel.org>; Fri, 04 Jun 2021 14:45:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=UC2AwnCU4W7/DsYhuag8+yME3EH1r1RYHCOePL8HnE8=;
-        b=gyixkUsX9X9cshP0+/da03kfPP1vDkY6E+1CRSM3XENnvzCQrcmZ+wqIEzNlyNmaih
-         ulPMGWPfDkJzeTXMaFS8bZ23mWyGshXPpC6gJSuWjNybEjXUI1uffRVFUUoa3kC054Pn
-         1p0cBrLoSxt/nH9tKKefz5YGdOtpD+kTmZU38=
+        bh=JC25WRkZBCsb3Y5fTmPTp2hPTJRZh/K4xt7YQY7D4O4=;
+        b=JEuNpd7gylFZbn17vVqmqdfMkxy98APrgbMp+o9mS3siWPpRSQ5uuQC27Gq+IxH3f/
+         Uw+n45L9SrKQgTZzpmwBj276JTiqal+9MsRFOLtEithQ8VpG70/P3q64NpP/EmQW/sol
+         OxiBdWTz0xPY6SHodkTBiCS7Ga0O9GDcAtfUo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=UC2AwnCU4W7/DsYhuag8+yME3EH1r1RYHCOePL8HnE8=;
-        b=oUDgRtT/OOEQaS14hVwEL0loYWbnqzUKadLJVx1SI5aY/WZSfAZIB86u+QYf5xbvIa
-         xO1bWOZHlWJAYQec+rYXUSMvV6FjhsDsj3KyfbJ9616Ndq8a7AaoxEioUoTQ+s/GO2VC
-         RxgHltyHR1tSJZUJvQzL/pEmQs6qKtiKXg5Y2cUpJACOjbDWY+DQYuKB9u4mojZrIdkL
-         9iixBg+h6TtU+F+KBAMe42gs44HKdnvjb3vBdodUwQkA3wAVtUOr38x8sOmJSWTAWMnl
-         GeGtJzcojpk3Vhwp/ZxLuJh+i3X7RwHDNPvoomGMYhGzy9Q+kf+oyAef1EPBgkh4GOED
-         extg==
-X-Gm-Message-State: AOAM531vsCl3YyWjp9mk2wxZION46AmPKRUf+0+PH2grsZU6U/rkzzsR
-        F/XinHM33TX/aBE9sDuFu1HSl6yoAiurSH2lvs4bnops7CQ=
-X-Google-Smtp-Source: ABdhPJwr2se1dNVn8fcmj+5C9VlOmdmIbF+cFdeprjZMsb0eOG/2oJZICzO8EqVw3ExXz/X0loWOlYLVrM+akoFuZxk=
-X-Received: by 2002:a05:6830:3154:: with SMTP id c20mr5415860ots.233.1622843023585;
- Fri, 04 Jun 2021 14:43:43 -0700 (PDT)
+        bh=JC25WRkZBCsb3Y5fTmPTp2hPTJRZh/K4xt7YQY7D4O4=;
+        b=aMEsTvODcUH+YeTqWN34M1ocurcFHE2ub+8wGxIK93nOkQInMkKeJ6vzXms6T48hwJ
+         7ZX6HmY91WhWPKJ4ADGJo2E1Py5DOTp9schxNeV9QV53NmBzj/+yzrAXBXAmhk+zdCug
+         tkz/AlmKMoW2Xqx+qTyWQOpRa5TOyOFsoMuU23RBpmn0t1HscrdU6Wuhxbun+IqD8rmA
+         MTzEacUq0QfBgVMrdUrdpD68nAZWO4QZ39E9gpI3FK6tB8z94sKCDv7oaCo3NAxPgHo2
+         2M/rw+fjVkfJS9yrbUB4czRonhYF8e2ScrVxwYx74mLh4rScus/cfrXq49rZAbEhEt11
+         kDmw==
+X-Gm-Message-State: AOAM531e1NQTv8LR5/lwC4ZlH1P5V0ZYpjFTk1fH3qGF17s3yXUPbFum
+        eVuEZYPd8I9/VXvsQnByePZaBzvHe9up1u58b7do9A==
+X-Google-Smtp-Source: ABdhPJy6w6LzfZQraXTUpEoGT0ueZEnZUPP6hi0L9uLghxBapXi3lqND0wjFan+pdkwveTfBuC+LSOhCIDuLCnteMIM=
+X-Received: by 2002:a05:6820:1048:: with SMTP id x8mr5240459oot.16.1622843073335;
+ Fri, 04 Jun 2021 14:44:33 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 4 Jun 2021 21:43:43 +0000
+ HTTPREST; Fri, 4 Jun 2021 21:44:33 +0000
 MIME-Version: 1.0
-In-Reply-To: <3b3701bb1e23dec88f2231722872fc40@codeaurora.org>
+In-Reply-To: <cb2a6cd35df42314c5e5230bcac752be@codeaurora.org>
 References: <1620382648-17395-1-git-send-email-pmaliset@codeaurora.org>
- <1620382648-17395-3-git-send-email-pmaliset@codeaurora.org>
- <CAE-0n530bSPupOHVDzwpd_JVVN0tOfrAOm9dAt1ZGj7zaXOZ6A@mail.gmail.com> <3b3701bb1e23dec88f2231722872fc40@codeaurora.org>
+ <1620382648-17395-2-git-send-email-pmaliset@codeaurora.org>
+ <CAE-0n53KTeF9NOrb+x7P1AG53FENRBGtCEcSxronBpJoww3jew@mail.gmail.com> <cb2a6cd35df42314c5e5230bcac752be@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Fri, 4 Jun 2021 21:43:43 +0000
-Message-ID: <CAE-0n50k9z0ZFqP_pOmQjp0s3NCSKYHTmHvZ5rxLb3MzqgavrA@mail.gmail.com>
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sc7280: Add PCIe and PHY related nodes
+Date:   Fri, 4 Jun 2021 21:44:32 +0000
+Message-ID: <CAE-0n52y3yuyOrexC+EsnsX6ULDwKDz1PczGwHB211hKu=uj1g@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: pci: qcom: Document PCIe bindings for SC720
 To:     Prasad Malisetty <pmaliset@codeaurora.org>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -65,97 +62,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Prasad Malisetty (2021-05-21 02:57:00)
-> On 2021-05-08 01:36, Stephen Boyd wrote:
-> > Quoting Prasad Malisetty (2021-05-07 03:17:27)
-> >> Add PCIe controller and PHY nodes for sc7280 SOC.
+Quoting Prasad Malisetty (2021-06-04 04:26:57)
+> On 2021-05-08 01:29, Stephen Boyd wrote:
+> > Quoting Prasad Malisetty (2021-05-07 03:17:26)
+> >> Document the PCIe DT bindings for SC7280 SoC.The PCIe IP is similar
+> >> to the one used on SM8250. Add the compatible for SC7280.
 > >>
 > >> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
 > >> ---
-> >>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 138
-> >> +++++++++++++++++++++++++++++++++++
-> >>  1 file changed, 138 insertions(+)
+> >>  Documentation/devicetree/bindings/pci/qcom,pcie.txt | 17
+> >> +++++++++++++++++
+> >>  1 file changed, 17 insertions(+)
 > >>
-> >> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> >> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> >> index 2cc4785..a9f25fc1 100644
-> >> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> >> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> >> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.txt
+> >> b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
+> >> index 0da458a..e5245ed 100644
+> >> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.txt
+> >> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
 > >> @@ -12,6 +12,7 @@
-> >>  #include <dt-bindings/power/qcom-aoss-qmp.h>
-> >>  #include <dt-bindings/power/qcom-rpmpd.h>
-> >>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-> >> +#include <dt-bindings/gpio/gpio.h>
+> >>                         - "qcom,pcie-ipq4019" for ipq4019
+> >>                         - "qcom,pcie-ipq8074" for ipq8074
+> >>                         - "qcom,pcie-qcs404" for qcs404
+> >> +                       - "qcom,pcie-sc7280" for sc7280
+> >>                         - "qcom,pcie-sdm845" for sdm845
+> >>                         - "qcom,pcie-sm8250" for sm8250
 > >>
-> >>  / {
-> >>         interrupt-parent = <&intc>;
-> >> @@ -316,6 +317,118 @@
-> >>                         };
-> >>                 };
+> >> @@ -133,6 +134,22 @@
+> >>                         - "slave_bus"   AXI Slave clock
 > >>
-> > [...]
-> >> +
-> >> +               pcie1_phy: phy@1c0e000 {
-> >> +                       compatible =
-> >> "qcom,sm8250-qmp-gen3x2-pcie-phy";
-> >> +                       reg = <0 0x01c0e000 0 0x1c0>;
-> >> +                       #address-cells = <2>;
-> >> +                       #size-cells = <2>;
-> >> +                       ranges;
-> >> +                       clocks = <&gcc GCC_PCIE_1_AUX_CLK>,
-> >> +                                <&gcc GCC_PCIE_1_CFG_AHB_CLK>,
-> >> +                                <&gcc GCC_PCIE_CLKREF_EN>,
-> >> +                                <&gcc GCC_PCIE1_PHY_RCHNG_CLK>;
-> >> +                       clock-names = "aux", "cfg_ahb", "ref",
-> >> "refgen";
-> >> +
-> >> +                       resets = <&gcc GCC_PCIE_1_PHY_BCR>;
-> >> +                       reset-names = "phy";
-> >> +
-> >> +                       assigned-clocks = <&gcc
-> >> GCC_PCIE1_PHY_RCHNG_CLK>;
-> >> +                       assigned-clock-rates = <100000000>;
-> >> +
-> >> +                       status = "disabled";
+> >>  - clock-names:
+> >> +       Usage: required for sc7280
+> >> +       Value type: <stringlist>
+> >> +       Definition: Should contain the following entries
+> >> +                       - "aux"         Auxiliary clock
+> >> +                       - "cfg"         Configuration clock
+> >> +                       - "bus_master"  Master AXI clock
+> >> +                       - "bus_slave"   Slave AXI clock
+> >> +                       - "slave_q2a"   Slave Q2A clock
+> >> +                       - "tbu"         PCIe TBU clock
+> >> +                       - "ddrss_sf_tbu" PCIe SF TBU clock
+> >> +                       - "pipe"        PIPE clock
+> >> +                       - "pipe_src"    PIPE MUX
 > >
-> > I think the style is to put status disabled close to the compatible?
+> > Is pipe_src necessary? Is it the parent of the pipe clk? If so, please
+> > remove it and do whatever is necessary on the pipe clk instead of the
+> > parent of the clk.
 >
-> Generally I have added status disabled in end as like many nodes. just
-> curious to ask is there any specific reason to put close to compatible.
+> Here pipe_src is MUX. Newer targets require changing pipe-clk mux to
+> switch between pipe_clk and XO for GDSC enable.
+> After PHY init, need to configure MUX.
 
-It's really up to qcom maintainers, which I am not.
-
-> >> +                               };
-> >> +
-> >> +                               reset-n {
-> >> +                                       pins = "gpio2";
-> >> +                                       function = "gpio";
-> >> +
-> >> +                                       drive-strength = <16>;
-> >> +                                       output-low;
-> >> +                                       bias-disable;
-> >> +                               };
-> >> +
-> >> +                               wake-n {
-> >> +                                       pins = "gpio3";
-> >> +                                       function = "gpio";
-> >> +
-> >> +                                       drive-strength = <2>;
-> >> +                                       bias-pull-up;
-> >> +                               };
-> >
-> > These last two nodes with the pull-up and drive-strength settings
-> > should
-> > be in the board files, like the idp one, instead of here in the SoC
-> > file. That way board designers can take the SoC and connect the pcie to
-> > an external device using these pins and set the configuration they want
-> > on these pins, or choose not to connect them to the SoC at all and use
-> > those pins for something else.
-> >
-> > In addition, it looks like the reset could be a reset-gpios property
-> > instead of an output-low config.
-> >
-> we are using reset property as perst gpio in pcie node.
-
-Ok, perst-gpios should be fine. Presumably perst-gpios should be in the
-board and not in the SoC because of what I wrote up above.
+Ok. I see, so we have to change the parent of the parent of the pipe
+clk?
