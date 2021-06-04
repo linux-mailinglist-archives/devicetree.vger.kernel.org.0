@@ -2,82 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB76339B0C1
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 05:16:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F308839B0D0
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 05:20:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229835AbhFDDRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 23:17:39 -0400
-Received: from szxga01-in.huawei.com ([45.249.212.187]:7101 "EHLO
-        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229704AbhFDDRj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 23:17:39 -0400
-Received: from dggemv711-chm.china.huawei.com (unknown [172.30.72.55])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Fx7B93Hs0zYpkg;
-        Fri,  4 Jun 2021 11:13:05 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggemv711-chm.china.huawei.com (10.1.198.66) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Fri, 4 Jun 2021 11:15:51 +0800
-Received: from [127.0.0.1] (10.174.177.72) by dggpemm500006.china.huawei.com
- (7.185.36.236) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Fri, 4 Jun 2021
- 11:15:50 +0800
-Subject: Re: [PATCH 1/1] media: dt-bindings: media: renesas,drif: Fix a
- dt_binding_check warning
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Ramesh Shanmugasundaram" <rashanmu@gmail.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        linux-renesas-soc <linux-renesas-soc@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-References: <20210520114953.8206-1-thunder.leizhen@huawei.com>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <a9522c05-a0d7-4017-f42b-a8e4b2a8c0e2@huawei.com>
-Date:   Fri, 4 Jun 2021 11:15:49 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S229854AbhFDDWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 23:22:03 -0400
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:37483 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229704AbhFDDWC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 23:22:02 -0400
+Received: by mail-oi1-f175.google.com with SMTP id h9so8447140oih.4
+        for <devicetree@vger.kernel.org>; Thu, 03 Jun 2021 20:20:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=XTLBAwmqsG3vEJ4E4BdrtXVL2NeOeIgl+wmT0+LyvMk=;
+        b=AQvU2E2DBR78Ykvj2qLHtpb2LgMH7EVti1dRcbTmuhm5gNebiFl5ExGpyRLziKTFZp
+         E95YFVmuiqVwABsG3QViv2WD3FMnjyYBrtHRxXBggGg/+egbDA32c0TVIUdm8KCXJVhi
+         x+3T7L/CHVFKHY5dAaLkcx+s+jaxxfvZwWqWfzMapHj6SGcUC6qMRh1IupTyAdWXgdc/
+         oFdikrJpH6WKufIMZMVbt49C2FJopa7z6LcOyqGEEQpUaqFqGT7rG93RUz6DWT/4VaKP
+         DcL5BwQEWI62dNFNrCC/grf3xmcAEXaBySnaTHppUz4gK9Ed4gJ4MMEIxDAozUOt/cQT
+         jADg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XTLBAwmqsG3vEJ4E4BdrtXVL2NeOeIgl+wmT0+LyvMk=;
+        b=JBN8Awq150VhKjSYe77MerwSvFnm1hzj5fCMKPMKafqmy7KnihHd7pwVMEZ1gQ0AUd
+         sk6I1EeCWXNldia0+UKnaOkX28XM0RNg+sMlj1Ci+qY0LIDqJODf5xcACoNprBzB9HvQ
+         KkHTJKmjK2g2NlM33AOoG897Q8i6DgjKg0iabNLgIcHhIOVZwL47w8ikQvr4Im9kxoZH
+         JMUBuQ6NSNolYC8gLNZwgl9Png/DNS0DrodCUdkc4O6YYn7eHmqxgqp6C5x0CiK/Ge42
+         1sUGMgCfOwL0KZ9adD/UCK4HX4HLlramWSH7w+zQ0xjWSLIqlZj16WdKa2FoaTDxCjAQ
+         gIOg==
+X-Gm-Message-State: AOAM532AQ8I0599djgiUXkzppZq+ux8/5GjW19aERazhA4Q21CpA14ph
+        s3jMVFm55cSJItA8FnU+ELM3NAd139HkVmvffUj49w==
+X-Google-Smtp-Source: ABdhPJzcMqINfAPFcCbEC12gkbN5NqzJM1RhTsVmVuiZUMohZbipEZxJMYUD0qnQChKUKe6fRlpUPJq80TheN/gzEcs=
+X-Received: by 2002:a05:6808:f0b:: with SMTP id m11mr9178581oiw.12.1622776740786;
+ Thu, 03 Jun 2021 20:19:00 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210520114953.8206-1-thunder.leizhen@huawei.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.177.72]
-X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
+References: <20210519143700.27392-1-bhupesh.sharma@linaro.org> <162261866806.4130789.17734233133141728573@swboyd.mtv.corp.google.com>
+In-Reply-To: <162261866806.4130789.17734233133141728573@swboyd.mtv.corp.google.com>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Fri, 4 Jun 2021 08:48:49 +0530
+Message-ID: <CAH=2Ntz7=e8w1fvXtpe-aXUFAreOiyb=xxKvU_1pmzBHyVXitA@mail.gmail.com>
+Subject: Re: [PATCH v3 00/17] Enable Qualcomm Crypto Engine on sm8250
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Thara Gopinath <thara.gopinath@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bhupesh.linux@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all:
-  Can someone review this patch?
+Hi Stephen,
 
+On Wed, 2 Jun 2021 at 12:54, Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Bhupesh Sharma (2021-05-19 07:36:43)
+> >
+> > Cc: Thara Gopinath <thara.gopinath@linaro.org>
+> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Andy Gross <agross@kernel.org>
+> > Cc: Herbert Xu <herbert@gondor.apana.org.au>
+> > Cc: David S. Miller <davem@davemloft.net>
+> > Cc: Stephen Boyd <sboyd@kernel.org>
+> > Cc: Michael Turquette <mturquette@baylibre.com>
+> > Cc: Vinod Koul <vkoul@kernel.org>
+> > Cc: dmaengine@vger.kernel.org
+> > Cc: linux-clk@vger.kernel.org
+>
+> Can you stop Cc-ing the clk list? It puts it into my review queue when
+> as far as I can tell there isn't anything really clk related to review
+> here. Or do you need an ack on something?
 
-On 2021/5/20 19:49, Zhen Lei wrote:
-> The value of the property 'clock-names' is a constant string, so the
-> 'maxItems: 1' is not needed, should be removed. Otherwise, the following
-> warning is reported:
-> properties:clock-names:maxItems: False schema does not allow 1
-> ignoring, error in schema: properties: clock-names: maxItems
-> warning: no schema found in file: xxx/bindings/media/renesas,drif.yaml
-> 
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> ---
->  Documentation/devicetree/bindings/media/renesas,drif.yaml | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/renesas,drif.yaml b/Documentation/devicetree/bindings/media/renesas,drif.yaml
-> index f1bdaeab4053..b7f07062922f 100644
-> --- a/Documentation/devicetree/bindings/media/renesas,drif.yaml
-> +++ b/Documentation/devicetree/bindings/media/renesas,drif.yaml
-> @@ -67,7 +67,6 @@ properties:
->      maxItems: 1
->  
->    clock-names:
-> -    maxItems: 1
->      items:
->        - const: fck
->  
-> 
+Sure, I will drop the clk-list from Cc-list of future patchset versions.
+Since I had a couple of clk driver changes in v1 which were dropped
+starting from v2, I thought it would be good to Cc clk-list for v2
+(and so on..)
 
+Thanks,
+Bhupesh
