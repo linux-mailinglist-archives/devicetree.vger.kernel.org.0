@@ -2,157 +2,321 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02E8039B540
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 10:54:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C438439B546
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 10:56:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229976AbhFDI4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 04:56:34 -0400
-Received: from mail-eopbgr1400094.outbound.protection.outlook.com ([40.107.140.94]:25600
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229953AbhFDI4e (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Jun 2021 04:56:34 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=daycWIsX3/wuk0c1Wx0qd7fw17zcDln5Iuml6jkZq6+Oku+cDRjCQ4HjlWT0zAC+MNbzdxxCcRQUFWDzYnVGeRmAIHzUtPpj8eulURxScr5Unmw3u7ufn9ewlKUYp0FM2EPeojaryWYZDVXlByhwPos9MBiuLCONVELwmPJM0ar09gN1n1c5BG53b0bKtFKP2mdR+OlLf6tbmcRR89LUaH6MldBCzsFnsVNNLlN7ZAu/w90Ec4kjcns3ZnvH6Ns1G9zC/G1L5pBj++Yy13FkzAnodI7bsXx4/6DICZYk0D/dr9e0UfMvK85U21zIh2MtTa+P7FwPjxHHYGdP4Vf+9Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=znIkoqGC7pTaJOd1cWQHUN/H90B4de870k6v9Nkh9mI=;
- b=NWCPUolFP7DO7FvtVB1hOYnm0CBr/PzVVUYIIS61xnWg9y0b5jnViPPYQLG9oJ1IRPtC0edc3meLjB1n4yd60UG5k5jCIbYVXvScUfZ6kgbGQXbwJ2PHXRL8wM3z1wJT5izUHFGttJLo78dUaX8V0GZFP4m6ntci7ILxtCh/2WKd9dl02oKOBIOZIltZiWhojJijwymsNjMaIS/3wcWbsSKn4Jy9WJuzOnfh87ZNi7HnprToKKYrgCJ2x45k3nKgz670od8SuLuHBYtD2RfrBdBmC5o2dumW9GqEwrxHEM+pH7/7T5atqDAsrVwkuBJwjK+W93EKE9WpTnRsvNN0Ag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=znIkoqGC7pTaJOd1cWQHUN/H90B4de870k6v9Nkh9mI=;
- b=nszfN7taKkcmFh2+XxBSDK8rpePuGJJL+FVYwT+g+H5Pq/OeTknZXua20rQA07W23kcgMpWi8xvZFp9pmAn5kvMe5eaHll64F9cxIBCB/jvBEWghnkPg1dUu6c2up8neE+YzKXtqnc4rlDu6rn+mcXgPtSF32FhDrSETBEl9r0Q=
-Received: from OSAPR01MB2737.jpnprd01.prod.outlook.com (2603:1096:603:38::21)
- by OSAPR01MB2642.jpnprd01.prod.outlook.com (2603:1096:604:3::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.27; Fri, 4 Jun
- 2021 08:54:45 +0000
-Received: from OSAPR01MB2737.jpnprd01.prod.outlook.com
- ([fe80::48dd:a7cb:a2b2:8d46]) by OSAPR01MB2737.jpnprd01.prod.outlook.com
- ([fe80::48dd:a7cb:a2b2:8d46%6]) with mapi id 15.20.4173.030; Fri, 4 Jun 2021
- 08:54:45 +0000
-From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-To:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S229958AbhFDI6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 04:58:06 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:5417 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230049AbhFDI6F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 04:58:05 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1622796979; x=1654332979;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=IhzM4SXuYd3c0BHLyCBAIrIHkW0Oss4EiXGbDIRG1qY=;
+  b=VcTcLto/GrTjdMvf67sU6wtb4qgRrEPXadERU4Yup4kwv/ONckWv3tXD
+   hyM7SaK40inQNANPTb3sTBiGfmxkvIkC0cj4zAqrCxMBZZ5ZV5MsRtSHu
+   Cb2mCMPEK11Fuf1Q0Qd26ymT/tC9Vo1THM0nNuWo1ParR7BxdXf7mrzag
+   0dnUr81+dvB1S9wxiiMsnksf0IsvIA3NEVxX0kyfgQWZ3itoVkrvbUrPi
+   6DV7qVGRICGtIf3XUJXnhH4QBuuClpcHn+Auj7u/mLvxiprK0M6GWjQ3N
+   mq4Kcar7b7bNwDoFFO2mYGZT3zQVb9tXa5eTSmD1XsJ/CDUsDLl9fILOO
+   Q==;
+IronPort-SDR: zSvCNzqixa7R6vfMOok3ZSiQwdAh8958ow5v27OjyOJYSdtF8D62OkiGfu50eEj0zMZonCFo/I
+ k2oY/eit0NzZpj/YKytIm9cTExwc2NmVFkoQ+c7KKu3PzTNZ55fjz+ALmg6101Pa7pK02GOAhO
+ c6dnoKLcEMjgd3yJOXEflKu0d0svSO3fYxpW5tmzmC5fPLIyKKzpvAoQfyaRt9tby2H4lCk2d+
+ jQ9SoQ1ElNpzif774OVpLoaAFpuErEiWxneX1OEcHxTdbMKph/jVR9L0QCouwoHH+WaeIKmlS3
+ 9lM=
+X-IronPort-AV: E=Sophos;i="5.83,247,1616482800"; 
+   d="scan'208";a="120209919"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Jun 2021 01:56:17 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Fri, 4 Jun 2021 01:56:15 -0700
+Received: from den-dk-m31857.microchip.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Fri, 4 Jun 2021 01:56:11 -0700
+From:   Steen Hegelund <steen.hegelund@microchip.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        linux-renesas-soc <linux-renesas-soc@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Subject: RE: [PATCH 1/1] media: dt-bindings: media: renesas,drif: Fix a
- dt_binding_check warning
-Thread-Topic: [PATCH 1/1] media: dt-bindings: media: renesas,drif: Fix a
- dt_binding_check warning
-Thread-Index: AQHXTW5HTQ+ABLw2vEeT+OXEpe/6sKsDoslg
-Date:   Fri, 4 Jun 2021 08:54:45 +0000
-Message-ID: <OSAPR01MB2737D302E34693F9F85AD4ACC23B9@OSAPR01MB2737.jpnprd01.prod.outlook.com>
-References: <20210520114953.8206-1-thunder.leizhen@huawei.com>
-In-Reply-To: <20210520114953.8206-1-thunder.leizhen@huawei.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: huawei.com; dkim=none (message not signed)
- header.d=none;huawei.com; dmarc=none action=none header.from=renesas.com;
-x-originating-ip: [2.28.163.2]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c12d007d-d064-478e-281c-08d9273666dd
-x-ms-traffictypediagnostic: OSAPR01MB2642:
-x-microsoft-antispam-prvs: <OSAPR01MB26429D20E0D9CC2F81797BE0C23B9@OSAPR01MB2642.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:257;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: BPIXg0QVboyyeXrjs/LEVrO3PEKfG8fUlnBcwrXUOu0pRLg1b18oRl1L77Z+JoX6YHfH+8DiVLbPWRYuow9AlPnLeN0U5vGWIJqn4i2CVhNkfFYnlMNZ8LkHUwtkCsOP680GBBzlETYWCGHovsbwmrLafbS/zXFT6G0fbf30fAIU8prIMmDxSgJ++Nbx+CoG2c7A+kEnoBIKLKZfolSEAHH+CHGdDgVTvMyFQOkRatghq0ZR1ZQcIXGvPvFCY1gJvfxqxnOKImmdeHO9Kwo6z1iaqRzaJrFcsxenm9v/Ghicn4tJwIbo8D9kUPHYkuj+C27Eymm5BYkwXr+9fymmt2CvNfs8rBoXQSv5u0hqsRaNEpY+4T6IMxdiTaJl5z8GA/TBqCRddzTsJfcysYun1FXOpFeCyWDmjEgTkFUDbcWAhR6MsWkSdzKnqRX7DwMeSe1JA++u/VH4rBHfXEQuaFeNJsrnYJQw8bGDLBj5Ox3WCLOu7o6BUBbVLzIpMMG/VwsKSLc4B7p2QzxIhOOHQAzLohaDbkqQT0VqNhGRsD3tHa4Vx0iYn0M34BHyZMDbusUW/TyM6ZwIctwRHQCkF9xY8aWDNhYZr/QVmDNarzb2A5TvAAb98jAaUmJfbFFVZOmcCCnVox9rwSPA7zgzK3vXr2VGtQE3loOfrzp6my1k0vlLBJkBvIKOctIPhA6y0bxjhorCSS78NsdSZFz/OFj0S7kUNzve2XV1rXCaqNf/SKjCtNPq1HHl79hSld52Iu+t488zx/OKOqoduLqiUA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSAPR01MB2737.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(136003)(346002)(376002)(396003)(366004)(66946007)(71200400001)(966005)(33656002)(478600001)(6506007)(83380400001)(8936002)(122000001)(7696005)(38100700002)(316002)(186003)(2906002)(5660300002)(76116006)(66476007)(26005)(55016002)(9686003)(66446008)(64756008)(8676002)(52536014)(110136005)(66556008)(53546011)(86362001)(21314003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?GdCWmnQlbgBnZLeO6Nz89v89XgWGc2Uw391IASZBxSuFrdc68gE5IIGxuL3i?=
- =?us-ascii?Q?mRT9GYWC78z5idoeCDrXGQN6qCCzllfLxeRSxVvIDkggZ/reRMqmoQN5hCuT?=
- =?us-ascii?Q?Uz9ExTUNcPBUbFeF7e84isjPHp9M6/Mhf0vKwcwqfc0QKKWiVjZC1fUkmezu?=
- =?us-ascii?Q?o3Z7V06oAy5hF58exeah6SUgjPsQtEvkhReJjDiNVQVXBYRTkAbTIxrt/rGP?=
- =?us-ascii?Q?GgTR1aj9XYR+hGHXdzfqfT3tdUAocp8OC22OsHb6yOeKvkKqw7wXSjNAC1Oo?=
- =?us-ascii?Q?Xhqov4vFDRtxWFgd6UFy2NlfN+9+zBecB1zHqIxFvto0OhZALtO/enAX/TYj?=
- =?us-ascii?Q?6MXZR5s6ObzlOEBvsMUzal3En1mMHFFQGlMABF/6Gztmcselcc/w62fwBSxe?=
- =?us-ascii?Q?gIMAlz0bh/o98yUFulSSRLoaOApO+aoXIXuzpxdNTtUCoB4LKN61cD4vLD7e?=
- =?us-ascii?Q?0Dx8s8f0YQWTtBCwZ/bE146/MhnbHMmpUPS+UDYGsur3gV6PVHsFBKQ2NsZ3?=
- =?us-ascii?Q?OmggArYHDJEtN9undt2mZwXbrh3w5t44Dq8+FZ7ve6wI3udWyEPXiX3o0nPs?=
- =?us-ascii?Q?6tBMv/P/zQ12SmuIax6bCN48lu6Z9tysvB+oS3hmNrqwf5/UEiWRz7We+YXk?=
- =?us-ascii?Q?6MAlpdchq2f+ZN+meQ30m1KgyJKIcRfmoqmyAKE6VALnPvBZsCo2hAR+OR24?=
- =?us-ascii?Q?8xEBT6B8CIiOyCTFvjHWEDCItQQ1H915+GfXU5ORt9rpCParyEUlD3bJA3y+?=
- =?us-ascii?Q?L261yZAmQxCZIL75MqhRSfVvg7k9FcVJYIFqjAYUcQ612CPTGvg4b2VTXDSx?=
- =?us-ascii?Q?SrrUD3Eukd+U69v3LebeF40/mh6W3W5T4Wb3qL9i0oqTwbgtU1wfLJRMFm8K?=
- =?us-ascii?Q?RVTrLwaq81mAuRhj+qcOgofwJEkRqbLOXB9pw2MDw3J1z7ZEaJp5mRMA9kR8?=
- =?us-ascii?Q?6RQ9S87rZuDQh9q1ixvKCkdnMtdPYhcwPg/MFEpW0ylOZvkGCon+Yn4wKFEM?=
- =?us-ascii?Q?dm6Hqdkk0yKR2c3fJV3qgIcZpz3ZTNxKGg0kqzh7BrL0GSv43PQQSQ4pL91M?=
- =?us-ascii?Q?ELJvAMzx8jJu7neieF5AgHFnPI++9xYG8gCngfaMYS82TjNtHqX8lJrqEy1A?=
- =?us-ascii?Q?hz6rqHNakpupqzpPyx1v705uEijQf9fuMj9Ac6GvEBDprsmJIXCPaWYT1/PX?=
- =?us-ascii?Q?0zpRtTtS5rEcAPPO0NrpWoQqfLFjHwDvS9f3Nl2h8wDB/y7V5nVgohiGSldF?=
- =?us-ascii?Q?mPzhq4fkYfVcwnvePWF3zwKjJivqYi66+Wq9liAnOGJQHmTuLgtbCV3hi64s?=
- =?us-ascii?Q?fiU=3D?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        Device Tree List <devicetree@vger.kernel.org>
+CC:     Steen Hegelund <steen.hegelund@microchip.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Russell King <linux@armlinux.org.uk>,
+        "Microchip Linux Driver Support" <UNGLinuxDriver@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Madalin Bucur <madalin.bucur@oss.nxp.com>,
+        Mark Einon <mark.einon@gmail.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Simon Horman" <simon.horman@netronome.com>,
+        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        "Lars Povlsen" <lars.povlsen@microchip.com>,
+        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH net-next v3 01/10] dt-bindings: net: sparx5: Add sparx5-switch bindings
+Date:   Fri, 4 Jun 2021 10:55:51 +0200
+Message-ID: <20210604085600.3014532-2-steen.hegelund@microchip.com>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210604085600.3014532-1-steen.hegelund@microchip.com>
+References: <20210604085600.3014532-1-steen.hegelund@microchip.com>
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OSAPR01MB2737.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c12d007d-d064-478e-281c-08d9273666dd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jun 2021 08:54:45.6123
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: JUolIspKyozD8eZpz6SgRjd+qXwDMuiF9CfJHQSj89QW4eLdhMgMfTULo8/voJA/+HirD8AtMaQs1H8nCTj+pKJTncAPxl/fv40UaMeyQo8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB2642
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zhen,
+Document the Sparx5 switch device driver bindings
 
-Thanks for your patch!
+Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
+Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+Signed-off-by: Bjarni Jonasson <bjarni.jonasson@microchip.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/net/microchip,sparx5-switch.yaml | 226 ++++++++++++++++++
+ 1 file changed, 226 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
 
-> From: Zhen Lei <thunder.leizhen@huawei.com>
-> Sent: 20 May 2021 12:50
-> Subject: [PATCH 1/1] media: dt-bindings: media: renesas,drif: Fix a
-> dt_binding_check warning
->=20
-> The value of the property 'clock-names' is a constant string, so the
-> 'maxItems: 1' is not needed, should be removed. Otherwise, the following
-> warning is reported:
-> properties:clock-names:maxItems: False schema does not allow 1
-> ignoring, error in schema: properties: clock-names: maxItems
-> warning: no schema found in file: xxx/bindings/media/renesas,drif.yaml
-
-A similar fix was sent and accepted a while ago, please see:
-https://lkml.org/lkml/2021/4/8/1329
-
-Best regards,
-Fab
-
->=20
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> ---
->  Documentation/devicetree/bindings/media/renesas,drif.yaml | 1 -
->  1 file changed, 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/media/renesas,drif.yaml
-> b/Documentation/devicetree/bindings/media/renesas,drif.yaml
-> index f1bdaeab4053..b7f07062922f 100644
-> --- a/Documentation/devicetree/bindings/media/renesas,drif.yaml
-> +++ b/Documentation/devicetree/bindings/media/renesas,drif.yaml
-> @@ -67,7 +67,6 @@ properties:
->      maxItems: 1
->=20
->    clock-names:
-> -    maxItems: 1
->      items:
->        - const: fck
->=20
-> --
-> 2.21.1
->=20
+diff --git a/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
+new file mode 100644
+index 000000000000..347b912a46bb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
+@@ -0,0 +1,226 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/microchip,sparx5-switch.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microchip Sparx5 Ethernet switch controller
++
++maintainers:
++  - Steen Hegelund <steen.hegelund@microchip.com>
++  - Lars Povlsen <lars.povlsen@microchip.com>
++
++description: |
++  The SparX-5 Enterprise Ethernet switch family provides a rich set of
++  Enterprise switching features such as advanced TCAM-based VLAN and
++  QoS processing enabling delivery of differentiated services, and
++  security through TCAM-based frame processing using versatile content
++  aware processor (VCAP).
++
++  IPv4/IPv6 Layer 3 (L3) unicast and multicast routing is supported
++  with up to 18K IPv4/9K IPv6 unicast LPM entries and up to 9K IPv4/3K
++  IPv6 (S,G) multicast groups.
++
++  L3 security features include source guard and reverse path
++  forwarding (uRPF) tasks. Additional L3 features include VRF-Lite and
++  IP tunnels (IP over GRE/IP).
++
++  The SparX-5 switch family targets managed Layer 2 and Layer 3
++  equipment in SMB, SME, and Enterprise where high port count
++  1G/2.5G/5G/10G switching with 10G/25G aggregation links is required.
++
++properties:
++  $nodename:
++    pattern: "^switch@[0-9a-f]+$"
++
++  compatible:
++    const: microchip,sparx5-switch
++
++  reg:
++    items:
++      - description: cpu target
++      - description: devices target
++      - description: general control block target
++
++  reg-names:
++    items:
++      - const: cpu
++      - const: devices
++      - const: gcb
++
++  interrupts:
++    minItems: 1
++    items:
++      - description: register based extraction
++      - description: frame dma based extraction
++
++  interrupt-names:
++    minItems: 1
++    items:
++      - const: xtr
++      - const: fdma
++
++  resets:
++    items:
++      - description: Reset controller used for switch core reset (soft reset)
++
++  reset-names:
++    items:
++      - const: switch
++
++  mac-address: true
++
++  ethernet-ports:
++    type: object
++    patternProperties:
++      "^port@[0-9a-f]+$":
++        type: object
++
++        properties:
++          '#address-cells':
++            const: 1
++          '#size-cells':
++            const: 0
++
++          reg:
++            description: Switch port number
++
++          phys:
++            maxItems: 1
++            description:
++              phandle of a Ethernet SerDes PHY.  This defines which SerDes
++              instance will handle the Ethernet traffic.
++
++          phy-mode:
++            description:
++              This specifies the interface used by the Ethernet SerDes towards
++              the PHY or SFP.
++
++          microchip,bandwidth:
++            description: Specifies bandwidth in Mbit/s allocated to the port.
++            $ref: "/schemas/types.yaml#/definitions/uint32"
++            maximum: 25000
++
++          phy-handle:
++            description:
++              phandle of a Ethernet PHY.  This is optional and if provided it
++              points to the cuPHY used by the Ethernet SerDes.
++
++          sfp:
++            description:
++              phandle of an SFP.  This is optional and used when not specifying
++              a cuPHY.  It points to the SFP node that describes the SFP used by
++              the Ethernet SerDes.
++
++          managed: true
++
++          microchip,sd-sgpio:
++            description:
++              Index of the ports Signal Detect SGPIO in the set of 384 SGPIOs
++              This is optional, and only needed if the default used index is
++              is not correct.
++            $ref: "/schemas/types.yaml#/definitions/uint32"
++            minimum: 0
++            maximum: 383
++
++        required:
++          - reg
++          - phys
++          - phy-mode
++          - microchip,bandwidth
++
++        oneOf:
++          - required:
++              - phy-handle
++          - required:
++              - sfp
++              - managed
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - interrupts
++  - interrupt-names
++  - resets
++  - reset-names
++  - ethernet-ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    switch: switch@600000000 {
++      compatible = "microchip,sparx5-switch";
++      reg =  <0 0x401000>,
++             <0x10004000 0x7fc000>,
++             <0x11010000 0xaf0000>;
++      reg-names = "cpu", "devices", "gcb";
++      interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
++      interrupt-names = "xtr";
++      resets = <&reset 0>;
++      reset-names = "switch";
++      ethernet-ports {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        port0: port@0 {
++          reg = <0>;
++          microchip,bandwidth = <1000>;
++          phys = <&serdes 13>;
++          phy-handle = <&phy0>;
++          phy-mode = "qsgmii";
++        };
++        /* ... */
++        /* Then the 25G interfaces */
++        port60: port@60 {
++          reg = <60>;
++          microchip,bandwidth = <25000>;
++          phys = <&serdes 29>;
++          phy-mode = "10gbase-r";
++          sfp = <&sfp_eth60>;
++          managed = "in-band-status";
++          microchip,sd-sgpio = <365>;
++        };
++        port61: port@61 {
++          reg = <61>;
++          microchip,bandwidth = <25000>;
++          phys = <&serdes 30>;
++          phy-mode = "10gbase-r";
++          sfp = <&sfp_eth61>;
++          managed = "in-band-status";
++          microchip,sd-sgpio = <369>;
++        };
++        port62: port@62 {
++          reg = <62>;
++          microchip,bandwidth = <25000>;
++          phys = <&serdes 31>;
++          phy-mode = "10gbase-r";
++          sfp = <&sfp_eth62>;
++          managed = "in-band-status";
++          microchip,sd-sgpio = <373>;
++        };
++        port63: port@63 {
++          reg = <63>;
++          microchip,bandwidth = <25000>;
++          phys = <&serdes 32>;
++          phy-mode = "10gbase-r";
++          sfp = <&sfp_eth63>;
++          managed = "in-band-status";
++          microchip,sd-sgpio = <377>;
++        };
++        /* Finally the Management interface */
++        port64: port@64 {
++          reg = <64>;
++          microchip,bandwidth = <1000>;
++          phys = <&serdes 0>;
++          phy-handle = <&phy64>;
++          phy-mode = "sgmii";
++          mac-address = [ 00 00 00 01 02 03 ];
++        };
++      };
++    };
++
++...
++#  vim: set ts=2 sw=2 sts=2 tw=80 et cc=80 ft=yaml :
+-- 
+2.31.1
 
