@@ -2,118 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA14B39BC23
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 17:42:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8905E39BC2E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 17:46:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231181AbhFDPn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 11:43:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35502 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229864AbhFDPn7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 11:43:59 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4378CC061766
-        for <devicetree@vger.kernel.org>; Fri,  4 Jun 2021 08:42:13 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id h16so5774261pjv.2
-        for <devicetree@vger.kernel.org>; Fri, 04 Jun 2021 08:42:13 -0700 (PDT)
+        id S229924AbhFDPsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 11:48:40 -0400
+Received: from mail-pf1-f169.google.com ([209.85.210.169]:33449 "EHLO
+        mail-pf1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229809AbhFDPsj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 11:48:39 -0400
+Received: by mail-pf1-f169.google.com with SMTP id f22so7792505pfn.0
+        for <devicetree@vger.kernel.org>; Fri, 04 Jun 2021 08:46:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=avScXTz/Huy5XD7sMcNy92Z+p2c4KeIAw9ExYSquTes=;
-        b=vhpiFCqiZrdVrKr9QPghWlIwJ5c/EFtK1xpI6Qa27Y5bZbHVS3ou6NWQBc4ILvz8bF
-         C1vV6rxJD80EhE/uTExvfKatQJv/V9zg6q1qdxKBi+0PM2WZrc3h+mqCHxtkcP6zU02y
-         n2ve1ayVl01PxY8Nxyht82Y8pezJ9UaGaTxWnyd7cUs6n6mc+ewDPNp3VgA5VI0JiXYX
-         Dpl1DSJBClU3jDQ0TsgBDZhCBsNjFPsMGflGbHYOa/aBiCFQnfiasQ95dJbPP4NgKDHY
-         rcCsWa7bjrLDq8xX68gM3QsEtFx5oZI/Z6lOgKMoqort+9SE3uEboEwB5G7Rhb1X9/uZ
-         Ghpg==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=a5EjbHKyRmPqFqJNdWdtRulg9RgvdBFGpjQPIOIUGK0=;
+        b=eGT9s1eW6nJHUhaflPkw1/ciH92NJKRDaUmJynYbJHbsFHDiFKv50VNwx3jp3fa5QS
+         dbARc7MizK4sck+RoVNvIoQA2rRcAXXO/cehyaypW+U3OYUZhwRhQBwQyJvlvCumQuWZ
+         ta7QOGg29iaaF7dIIzUJpCLSHOqjjIX80gLZY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=avScXTz/Huy5XD7sMcNy92Z+p2c4KeIAw9ExYSquTes=;
-        b=PBif60BQ+vj7Q4ebrRRAG939DSaa8D22w4ZlJI06sdrTZwL3MRblcUlfjzd8Ren/2w
-         exl5/agffw23uL007k8qzdLhgm81k61ItqfEVL2jeXU0WwuNzJmo69uZ1p1CX5CkMv24
-         0F6BNgb48m6xJsOL4/SS4HdoQu/Jp3emsbJRZIQM2W6bbJryyrdwcBJ92kqroD1hI/yi
-         q0sXfRp03/kfQYfPIQpca/qTStWNHsjdlJBu9Wz0HU5s5TP82jhE4DCtChzs14iJOQSc
-         pjjaInhKdoxQ5JPea/j0Ws3rnULE5Sx8o5jyqPq4o9ySNwrTPDn6NbU8tXHKd2V7Fnyq
-         +OMg==
-X-Gm-Message-State: AOAM5308cb3vaXK8F6d8VkfOkvc+zt2CXibP5fsFnvy4te/5Oit6nvkK
-        PE47rM4pu/jpqxy/5ITt36izAICFUVHUQ4st3GkAOA==
-X-Google-Smtp-Source: ABdhPJwsqSvfQWNUp1WywhEcs6XEDrUuv/b1s5Ev+HR3FFXPwrbkIaAu3yl0B783PAlgMKsYZl5eGcCF04hI/yGx4jY=
-X-Received: by 2002:a17:903:1241:b029:10f:ff8c:a3fe with SMTP id
- u1-20020a1709031241b029010fff8ca3femr1000577plh.13.1622821332636; Fri, 04 Jun
- 2021 08:42:12 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=a5EjbHKyRmPqFqJNdWdtRulg9RgvdBFGpjQPIOIUGK0=;
+        b=sPv76j+M4gDyGfYGYqT+vn7bcV3rr/ejoMcUKsNT4bjl6Bb9YLk6urCBq6SGU2MBmx
+         XRYw+t1Y6xzX72aPN30pTUDW/arFCWeUNXpJOm5IluS4NH9e0g2lgIqduMrKg/69GUIp
+         x7ulMxg4+piXF1c2v4BME5I9jPfGglNhp5mT94hevQafqC8CCrJVM2bsx6w0X/GXiWjZ
+         QkvI43QqdE7qV8WI8R0FpaLKynfCOiz5auKporYEzOPwK+X3aP741XzvThjXnirLs7jq
+         XoyJRawd+Gqy+7wS+Vwq10lWdagKE2f0uA81brE2f8Gm7F1W60TMeOdkCRTAi074moOK
+         PP4w==
+X-Gm-Message-State: AOAM531yRAU8QqTlW48gOidaakeuzf+/0VmudvImmflXDMSIsToUOgai
+        1xOIX+fYnFm3Zo7ezDz31zposg==
+X-Google-Smtp-Source: ABdhPJyZDUc5tobk1AFXQ8CJuc0fdrT9sQMsn/EKREBxO85vuXkbQo4TnNSSuEmVjq8RwbztUXng7w==
+X-Received: by 2002:a63:7e0a:: with SMTP id z10mr5463508pgc.12.1622821553412;
+        Fri, 04 Jun 2021 08:45:53 -0700 (PDT)
+Received: from judyhsiao-p920.tpe.corp.google.com ([2401:fa00:1:10:acd8:2ca0:5ce2:556f])
+        by smtp.gmail.com with ESMTPSA id g22sm2025806pfv.123.2021.06.04.08.45.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Jun 2021 08:45:52 -0700 (PDT)
+From:   Judy Hsiao <judyhsiao@chromium.org>
+To:     broonie@kernel.org
+Cc:     Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>, dianders@chromium.org,
+        dgreid@chromium.org, cychiang@google.com, judyhsiao@google.com,
+        tzungbi@chromium.org, swboyd@chromium.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        Judy Hsiao <judyhsiao@chromium.org>
+Subject: [v7] ASoC: qcom: lpass-cpu: Fix pop noise during audio capture begin
+Date:   Fri,  4 Jun 2021 23:45:45 +0800
+Message-Id: <20210604154545.1198337-1-judyhsiao@chromium.org>
+X-Mailer: git-send-email 2.32.0.rc1.229.g3e70b5a671-goog
 MIME-Version: 1.0
-References: <20210601174917.1979-1-tharvey@gateworks.com> <b63300e8-3739-fcc6-6d37-952f93cfd17b@kontron.de>
-In-Reply-To: <b63300e8-3739-fcc6-6d37-952f93cfd17b@kontron.de>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Fri, 4 Jun 2021 08:42:01 -0700
-Message-ID: <CAJ+vNU0mBQJ_ZLsKOiY0k7+drYvmw+bsHfeX4+Mg=s4_fxSUYA@mail.gmail.com>
-Subject: Re: [PATCH 1/4] arm64: dts: imx8mm-venice-gw700x: override thermal
- cfg for industrial temp
-To:     Frieder Schrempf <frieder.schrempf@kontron.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 2, 2021 at 12:11 AM Frieder Schrempf
-<frieder.schrempf@kontron.de> wrote:
->
-> On 01.06.21 19:49, Tim Harvey wrote:
-> > Override the default temperature alert/crit for Industrial temp IMX8M
-> > Mini.
-> >
-> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> > ---
-> >  .../boot/dts/freescale/imx8mm-venice-gw700x.dtsi     | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
-> > index c769fadbd008..512b76cd7c3b 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
-> > @@ -493,3 +493,15 @@
-> >               >;
-> >       };
-> >  };
-> > +
-> > +&cpu_alert0 {
-> > +     temperature = <95000>;
-> > +     hysteresis = <2000>;
-> > +     type = "passive";
-> > +};
-> > +
-> > +&cpu_crit0 {
-> > +     temperature = <105000>;
-> > +     hysteresis = <2000>;
-> > +     type = "critical";
-> > +};
->
-> As this is not really board-specific, I think the proper way to handle this for all boards is to let the thermal driver read the temperature grading from the OTP fuses and set the trip-points accordingly, similar to what is done on i.MX6 [1].
->
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/thermal/imx_thermal.c?h=v5.13-rc4#n508
+From: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
 
-Frieder,
+This patch fixes PoP noise of around 15ms observed during audio
+capture begin.
+Enables BCLK and LRCLK in snd_soc_dai_ops prepare call for
+introducing some delay before capture start.
 
-Yes, I thought about adding that kind of support to imx8mm_thermal.c
-but the difference is that imx8mm has alerts defined by dt and imx6
-does not so is it right to override dt alerts on imx8m? What if
-someone designs a board that they specifically want a lower alert than
-the cpu grade they are using based on something else on the board?
+Co-developed-by: Judy Hsiao <judyhsiao@chromium.org>
+Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+(am from https://patchwork.kernel.org/patch/12276369/)
+(also found at https://lore.kernel.org/r/20210524142114.18676-1-srivasam@codeaurora.org)
 
-My approach to this was to eventually actually adjust the imx8m dt
-alerts in boot firmware based on some boot firmware setting or
-specific board support and leave the kernel alone.
+---
+Changes Since V6:
+	-- Removed clk_disable OSR clock in lpass_cpu_daiops_prepare error case as failure
+           of prepare will result in calling shutdown which should take care of this.
+Changes Since V5:
+        -- Fixed nit.
+        -- Updated `mi2s_was_prepared[dai->driver->id] = true;` after checking for errors.
+Changes Since V4:
+        -- Replaced the __clk_is_enabled(BCLK) check by the self maintained.
+           mi2s_was_prepared bool state.
+        -- Removed unrelated changes.
+        -- Refined comments.
+Changes Since V3:
+        -- Checked BCLK is off before enabling it in lpass_cpu_daiops_prepare as
+           lpass_cpu_daiops_prepare can be called multiple times
+        -- Checked BCLK is on before disabling it in lpass_cpu_daiops_shutdown to
+           fix the WARN. It is because BCLK may not be enabled if
+           lpass_cpu_daiops_prepare is not called before lpass_cpu_daiops_shutdown
+        -- Added more comments
+Changes Since V2:
+        -- Updated comments as per linux style
+        -- Removed unrelated changes
+Changes Since V1:
+        -- Enabled BCLK and LRCLK in dai ops prepare API instead of startup API
+        -- Added comments
 
-Best regards,
+ sound/soc/qcom/lpass-cpu.c | 79 ++++++++++++++++++++++++++++++++++++++
+ sound/soc/qcom/lpass.h     |  4 ++
+ 2 files changed, 83 insertions(+)
 
-Tim
+diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+index af8cb64924a0..647423a6cb57 100644
+--- a/sound/soc/qcom/lpass-cpu.c
++++ b/sound/soc/qcom/lpass-cpu.c
+@@ -93,8 +93,30 @@ static void lpass_cpu_daiops_shutdown(struct snd_pcm_substream *substream,
+ 		struct snd_soc_dai *dai)
+ {
+ 	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
++	struct lpaif_i2sctl *i2sctl = drvdata->i2sctl;
++	unsigned int id = dai->driver->id;
+ 
+ 	clk_disable_unprepare(drvdata->mi2s_osr_clk[dai->driver->id]);
++	/*
++	 * Ensure LRCLK is disabled even in device node validation.
++	 * Will not impact if disabled in lpass_cpu_daiops_trigger()
++	 * suspend.
++	 */
++	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
++		regmap_fields_write(i2sctl->spken, id, LPAIF_I2SCTL_SPKEN_DISABLE);
++	else
++		regmap_fields_write(i2sctl->micen, id, LPAIF_I2SCTL_MICEN_DISABLE);
++
++	/*
++	 * BCLK may not be enabled if lpass_cpu_daiops_prepare is called before
++	 * lpass_cpu_daiops_shutdown. It's paired with the clk_enable in
++	 * lpass_cpu_daiops_prepare.
++	 */
++	if (drvdata->mi2s_was_prepared[dai->driver->id]) {
++		drvdata->mi2s_was_prepared[dai->driver->id] = false;
++		clk_disable(drvdata->mi2s_bit_clk[dai->driver->id]);
++	}
++
+ 	clk_unprepare(drvdata->mi2s_bit_clk[dai->driver->id]);
+ }
+ 
+@@ -275,6 +297,18 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
+ 	case SNDRV_PCM_TRIGGER_START:
+ 	case SNDRV_PCM_TRIGGER_RESUME:
+ 	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
++		/*
++		 * Ensure lpass BCLK/LRCLK is enabled during
++		 * device resume as lpass_cpu_daiops_prepare() is not called
++		 * after the device resumes. We don't check mi2s_was_prepared before
++		 * enable/disable BCLK in trigger events because:
++		 *  1. These trigger events are paired, so the BCLK
++		 *     enable_count is balanced.
++		 *  2. the BCLK can be shared (ex: headset and headset mic),
++		 *     we need to increase the enable_count so that we don't
++		 *     turn off the shared BCLK while other devices are using
++		 *     it.
++		 */
+ 		if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
+ 			ret = regmap_fields_write(i2sctl->spken, id,
+ 						 LPAIF_I2SCTL_SPKEN_ENABLE);
+@@ -296,6 +330,10 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
+ 	case SNDRV_PCM_TRIGGER_STOP:
+ 	case SNDRV_PCM_TRIGGER_SUSPEND:
+ 	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
++		/*
++		 * To ensure lpass BCLK/LRCLK is disabled during
++		 * device suspend.
++		 */
+ 		if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
+ 			ret = regmap_fields_write(i2sctl->spken, id,
+ 						 LPAIF_I2SCTL_SPKEN_DISABLE);
+@@ -315,12 +353,53 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
+ 	return ret;
+ }
+ 
++static int lpass_cpu_daiops_prepare(struct snd_pcm_substream *substream,
++		struct snd_soc_dai *dai)
++{
++	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
++	struct lpaif_i2sctl *i2sctl = drvdata->i2sctl;
++	unsigned int id = dai->driver->id;
++	int ret;
++
++	/*
++	 * Ensure lpass BCLK/LRCLK is enabled bit before playback/capture
++	 * data flow starts. This allows other codec to have some delay before
++	 * the data flow.
++	 * (ex: to drop start up pop noise before capture starts).
++	 */
++	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
++		ret = regmap_fields_write(i2sctl->spken, id, LPAIF_I2SCTL_SPKEN_ENABLE);
++	else
++		ret = regmap_fields_write(i2sctl->micen, id, LPAIF_I2SCTL_MICEN_ENABLE);
++
++	if (ret) {
++		dev_err(dai->dev, "error writing to i2sctl reg: %d\n", ret);
++		return ret;
++	}
++
++	/*
++	 * Check mi2s_was_prepared before enabling BCLK as lpass_cpu_daiops_prepare can
++	 * be called multiple times. It's paired with the clk_disable in
++	 * lpass_cpu_daiops_shutdown.
++	 */
++	if (!drvdata->mi2s_was_prepared[dai->driver->id]) {
++		ret = clk_enable(drvdata->mi2s_bit_clk[id]);
++		if (ret) {
++			dev_err(dai->dev, "error in enabling mi2s bit clk: %d\n", ret);
++			return ret;
++		}
++		drvdata->mi2s_was_prepared[dai->driver->id] = true;
++	}
++	return 0;
++}
++
+ const struct snd_soc_dai_ops asoc_qcom_lpass_cpu_dai_ops = {
+ 	.set_sysclk	= lpass_cpu_daiops_set_sysclk,
+ 	.startup	= lpass_cpu_daiops_startup,
+ 	.shutdown	= lpass_cpu_daiops_shutdown,
+ 	.hw_params	= lpass_cpu_daiops_hw_params,
+ 	.trigger	= lpass_cpu_daiops_trigger,
++	.prepare	= lpass_cpu_daiops_prepare,
+ };
+ EXPORT_SYMBOL_GPL(asoc_qcom_lpass_cpu_dai_ops);
+ 
+diff --git a/sound/soc/qcom/lpass.h b/sound/soc/qcom/lpass.h
+index 83b2e08ade06..7f72214404ba 100644
+--- a/sound/soc/qcom/lpass.h
++++ b/sound/soc/qcom/lpass.h
+@@ -67,6 +67,10 @@ struct lpass_data {
+ 	/* MI2S SD lines to use for playback/capture */
+ 	unsigned int mi2s_playback_sd_mode[LPASS_MAX_MI2S_PORTS];
+ 	unsigned int mi2s_capture_sd_mode[LPASS_MAX_MI2S_PORTS];
++
++	/* The state of MI2S prepare dai_ops was called */
++	bool mi2s_was_prepared[LPASS_MAX_MI2S_PORTS];
++
+ 	int hdmi_port_enable;
+ 
+ 	/* low-power audio interface (LPAIF) registers */
+-- 
+2.32.0.rc1.229.g3e70b5a671-goog
+
