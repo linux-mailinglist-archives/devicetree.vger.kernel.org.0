@@ -2,75 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0B5D39C1FA
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 23:10:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4618739C21B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 23:11:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230084AbhFDVLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 17:11:52 -0400
-Received: from mail-lj1-f169.google.com ([209.85.208.169]:44857 "EHLO
-        mail-lj1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229746AbhFDVLv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 17:11:51 -0400
-Received: by mail-lj1-f169.google.com with SMTP id d2so9107842ljj.11;
-        Fri, 04 Jun 2021 14:10:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WiwJSnK8PAuXp6pcKKltkr6PRSG0LzCFtrc76AFzj68=;
-        b=eG8RnPY+xeDru0TP5q+WVf6uhm62b8h8I1A+AwNbV5hqdvQWqFCwQfCnzaxVfRu6LU
-         5H+jVL2jcqCPPoT/LuvH+a/3xHlVBUZcz9BSrZrNUz3kQwEasOWbbb/coW5W499eUyBB
-         1ENPahXXQktjC1zMvCyxVqo2LjWFYoD/W++L3c/UnW6kKGFFIMm7+pseNEXLr9HfiLHp
-         cNCioI/06W13YOBwSZWJaURp8k9pFHru5+E++RD1yc/84ONaki5IivHCOJ6aaXmZpsqU
-         7SMFMpfcz9Sqx8WPDw9WzoYcel9POtiMcx7ZdGrItJNt6+j3f8liN2c4POi62qmh1/cW
-         eWww==
+        id S231488AbhFDVNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 17:13:08 -0400
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:45644 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231548AbhFDVNI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 17:13:08 -0400
+Received: by mail-oi1-f179.google.com with SMTP id w127so11039167oig.12;
+        Fri, 04 Jun 2021 14:11:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WiwJSnK8PAuXp6pcKKltkr6PRSG0LzCFtrc76AFzj68=;
-        b=ecnDcwrk85ATLi+vd85ylF+G0aCen9phRthDYaMjfbyj7N6LgjWL9qcrqblh0KaKt6
-         E6eJ/hIAgHRQH8sDoT2MR6Q189GBhDJReJcWHy9KDb2PxNx7MCV7dEwDd2iFwRswA2Ze
-         7DUPyjeTP8HoZbulrmUE/zMD0G2PTOim2s/uLEQ92mtYijXfPQq+Dcqn2fSR63MwA+tS
-         InYwd+j1TLz6bvhhoj7JrxNWZcrLiVhxdP6Jdfqw+e1xMKgu9mK2v5CSKTWAswnMdy/6
-         qjXupaE18sOXW6BSuGO12QsTQZ2uTEvJJPFUosnMnbaOYfJVz3X8thNquHCBMiYsNYwX
-         X7RA==
-X-Gm-Message-State: AOAM530Kon7RiDuImp3V8P0lDlx+qYzRcZ7QN32zeEBJ7NBfiWVCoBkx
-        3VfK9K4241Ey9x9wCuRPftAhUSe/tNU71tmFmPo=
-X-Google-Smtp-Source: ABdhPJz7wailIeZEAfKipyeKwSLAY1Kn0N0M0v1HC4kNLSbn00blAQZfJO9o0oqS5sGU0rOyOkmvUkehOCOmAMmhqT0=
-X-Received: by 2002:a05:651c:1193:: with SMTP id w19mr4772104ljo.264.1622840943184;
- Fri, 04 Jun 2021 14:09:03 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=12fDzFlHcR7MgS/6SJcEZmnZQ01o5QA2CzWvQ7tWGj0=;
+        b=gWVdEFZPTx0aixwskpn61TNsnEt1r0O/+xkMcejcWfreF6M+348mJUqADY6Q/k7AUR
+         3qijmwGAHltDZrsUpfvlGyRU2PVvSEr+ktFyyRgBwbzoCHnM4UWihl01KgRyFCYjYBUF
+         a1gcCbcT5EeTJPLV0vRkDBUfTyArzlwR1vcYwyfKTn/oh1lPKvN+2uXV6Z/XFTr8ox/B
+         KsX1lpP6u5dLbWwHJCZKPHFEunfrfBfv6KPVVh9DE00mhhgoiEYPvuaclX41nqCHePT/
+         kFR9yqQn15jrJ4yTAVSTztLn1x8JgTZsH2pjea++s4uxHYGIedKZrbFqI2fl5SvzlfuM
+         DhXg==
+X-Gm-Message-State: AOAM531XFR248udGwX2uZReNI3rkwbWtJQPYhiwLwei3bMIICSLmsPZB
+        +0ivu8HfuYdMfxS87GBixg==
+X-Google-Smtp-Source: ABdhPJy5T24Ii55AMNbKFTrKwW9HSnMSHcwbCExf322LMZLqHTXAROZfbB15SujQjbREZ4k4ZwkpJw==
+X-Received: by 2002:a54:4794:: with SMTP id o20mr4218812oic.99.1622841080893;
+        Fri, 04 Jun 2021 14:11:20 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id z25sm715060oic.30.2021.06.04.14.11.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Jun 2021 14:11:20 -0700 (PDT)
+Received: (nullmailer pid 3924767 invoked by uid 1000);
+        Fri, 04 Jun 2021 21:11:19 -0000
+Date:   Fri, 4 Jun 2021 16:11:19 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Corentin Labbe <clabbe@baylibre.com>
+Cc:     daniel.lezcano@linaro.org, tglx@linutronix.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: timer: Convert faraday,fttmr010 to yaml
+Message-ID: <20210604211119.GA3916166@robh.at.kernel.org>
+References: <20210528185329.1969688-1-clabbe@baylibre.com>
 MIME-Version: 1.0
-References: <20210527173209.3874124-1-festevam@gmail.com> <20210604205430.GA3895085@robh.at.kernel.org>
-In-Reply-To: <20210604205430.GA3895085@robh.at.kernel.org>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Fri, 4 Jun 2021 18:08:50 -0300
-Message-ID: <CAOMZO5Cj+g6yS-3cctdt0Qp-3y59QWtObMt9ssbeBwZf=fUYSQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: adv7180: Introduce adv,adv7182-force-bt656-4
-To:     Rob Herring <robh@kernel.org>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Matthew Michilot <matthew.michilot@gmail.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210528185329.1969688-1-clabbe@baylibre.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Fri, May 28, 2021 at 06:53:29PM +0000, Corentin Labbe wrote:
+> Converts timer/faraday,fttmr010.txt to yaml.
+> 
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> ---
+>  .../bindings/timer/faraday,fttmr010.txt       | 38 --------
+>  .../bindings/timer/faraday,fttmr010.yaml      | 86 +++++++++++++++++++
+>  2 files changed, 86 insertions(+), 38 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
+>  create mode 100644 Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt b/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
+> deleted file mode 100644
+> index 3cb2f4c98d64..000000000000
+> --- a/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
+> +++ /dev/null
+> @@ -1,38 +0,0 @@
+> -Faraday Technology timer
+> -
+> -This timer is a generic IP block from Faraday Technology, embedded in the
+> -Cortina Systems Gemini SoCs and other designs.
+> -
+> -Required properties:
+> -
+> -- compatible : Must be one of
+> -  "faraday,fttmr010"
+> -  "cortina,gemini-timer", "faraday,fttmr010"
+> -  "moxa,moxart-timer", "faraday,fttmr010"
+> -  "aspeed,ast2400-timer"
+> -  "aspeed,ast2500-timer"
+> -  "aspeed,ast2600-timer"
+> -
+> -- reg : Should contain registers location and length
+> -- interrupts : Should contain the three timer interrupts usually with
+> -  flags for falling edge
+> -
+> -Optionally required properties:
+> -
+> -- clocks : a clock to provide the tick rate for "faraday,fttmr010"
+> -- clock-names : should be "EXTCLK" and "PCLK" for the external tick timer
+> -  and peripheral clock respectively, for "faraday,fttmr010"
+> -- syscon : a phandle to the global Gemini system controller if the compatible
+> -  type is "cortina,gemini-timer"
+> -
+> -Example:
+> -
+> -timer@43000000 {
+> -	compatible = "faraday,fttmr010";
+> -	reg = <0x43000000 0x1000>;
+> -	interrupts = <14 IRQ_TYPE_EDGE_FALLING>, /* Timer 1 */
+> -		   <15 IRQ_TYPE_EDGE_FALLING>, /* Timer 2 */
+> -		   <16 IRQ_TYPE_EDGE_FALLING>; /* Timer 3 */
+> -	clocks = <&extclk>, <&pclk>;
+> -	clock-names = "EXTCLK", "PCLK";
+> -};
+> diff --git a/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml b/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
+> new file mode 100644
+> index 000000000000..a495ea80c0fc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
+> @@ -0,0 +1,86 @@
+> +# SPDX-License-Identifier: (GPL-2.0+)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/timer/faraday,fttmr010.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Faraday Technology timer
+> +
+> +maintainers:
+> +  - Linus Walleij <linus.walleij@linaro.org>
+> +
+> +description: |
+> +  This timer is a generic IP block from Faraday Technology, embedded in the
+> +  Cortina Systems Gemini SoCs and other designs.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: faraday,fttmr010
+> +      - items:
+> +          - const: cortina,gemini-timer
+> +          - const: faraday,fttmr010
+> +      - items:
+> +          - const: moxa,moxart-timer
+> +          - const: faraday,fttmr010
+> +      - const: aspeed,ast2400-timer
+> +      - const: aspeed,ast2500-timer
+> +      - const: aspeed,ast2600-timer
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 3
+> +    description: Should contain the three timer interrupts usually with flags for falling edge
+> +
+> +  clocks:
+> +    minItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: "PCLK"
+> +      - const: "EXTCLK"
+> +
+> +  syscon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    maxItems: 1
+> +
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        items:
 
-On Fri, Jun 4, 2021 at 5:54 PM Rob Herring <robh@kernel.org> wrote:
+This is wrong because 'contains' should be a schema applying to a single 
+item whereas 'items' applies to the whole array.
 
-> I'm confused by the part numbers. 7182 or 7280? In any case, I'd just
-> drop the part number from the property name.
+> +          - const: cortina,gemini-timer
 
-Yes, dropping the part number from the property name is less confusing.
+Just this is enough.
 
-Will do as suggested in v2.
+> +          - const: faraday,fttmr010
+> +then:
+> +  required:
+> +    - syscon
+> +else:
+> +  properties:
+> +    syscon: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    timer@43000000 {
+> +      compatible = "faraday,fttmr010";
+> +      reg = <0x43000000 0x1000>;
+> +      interrupts = <14 IRQ_TYPE_EDGE_FALLING>, /* Timer 1 */
+> +                   <15 IRQ_TYPE_EDGE_FALLING>, /* Timer 2 */
+> +                   <16 IRQ_TYPE_EDGE_FALLING>; /* Timer 3 */
+> +      clocks = <&extclk>, <&pclk>;
+> +      clock-names = "PCLK", "EXTCLK";
+> +      syscon = <&syscon>;
 
-Thanks
+This should fail based on my read of the .txt binding.
+
+> +    };
+> +...
+> -- 
+> 2.31.1
