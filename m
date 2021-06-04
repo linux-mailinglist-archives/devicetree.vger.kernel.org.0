@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6756139BD35
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 18:32:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC93539BD38
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 18:33:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231462AbhFDQee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 12:34:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51810 "EHLO mail.kernel.org"
+        id S231512AbhFDQeo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 12:34:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52124 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230037AbhFDQed (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Jun 2021 12:34:33 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D5DAD610E7;
-        Fri,  4 Jun 2021 16:32:46 +0000 (UTC)
+        id S230037AbhFDQeo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Jun 2021 12:34:44 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2802D6140C;
+        Fri,  4 Jun 2021 16:32:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622824367;
-        bh=+mORFr4TKbRDcsYrdc//w+GSAs3hIZH24GdNLhvPoG8=;
+        s=k20201202; t=1622824377;
+        bh=4qXiY0ciKLP8LPX9zwj+/O79WshKW6bFYbB9k+rr5Gk=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=JiCYlFN+zDuaPswynU17hKBmUKP2DVhnmVRrSXXwsae+xFdbzXY+qq+JnQrn1Gb6/
-         CFwVbknuUnjYqIShfnOshVDqSb9pKBMczpTcC1d0+9iJetrqVGreGFZkZ53L22eK9/
-         /Qb9leOb0iww1atVXTnlDUFYiXLAKSVCSjixU18zogZZXPnfVC6NiFHSr05unWfGeM
-         ISuqcR/t/NcKswslUCo3qhAyOVjPAuIJdpGB+kh8SH7nnINn76+4Kh9uyPQjvz1nGf
-         LaSFbErXddVrtVIou00wFMdB2d27xE6ATPXNG9ScOkr0lFfSx0/7P0XyOLUw1bv7v7
-         qM3xBrhN6545Q==
+        b=HwtV6jPRg1YTWDq0sK7oOGwUqxTv8oLwHuJlg5wQrm6crM7l3QpmBhdzNszQzh2K1
+         plxPgahDzBrwghBY4SkFclKkT5Kq+InJzrj5ytX7GYP3GD489FA73u9Z4QO32/ZTv+
+         K5pgKN8zeR+HDvy8k6BnvFOdxoa4+axXETKSlHPFDLYAEEYiEgPgW6LaQYwyF627Zb
+         YGtV/l7XVKjctgPDhu2Uvav96JjSZPK2u1TgLB2Uc6OWseKeo7RylZVQKSH7UAH7y8
+         y3BNLWoc5YcPLeGwkvUE6GXnbcUih2dvotNcoHUKUy0mp1s2q2iv/j8c0RC0E17aVY
+         tv/mhxIp9hp8A==
 From:   Mark Brown <broonie@kernel.org>
-To:     linux-kernel@vger.kernel.org, Rudi Heitbaum <rudi@heitbaum.com>,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Cc:     Mark Brown <broonie@kernel.org>, pgwipeout@gmail.com,
-        chenjh@rock-chips.com, ezequiel@collabora.com
-Subject: Re: [PATCH v2] regulator: fan53555: add tcs4526
-Date:   Fri,  4 Jun 2021 17:32:26 +0100
-Message-Id: <162282428736.39035.5966034693466191501.b4-ty@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Mark Brown <broonie@kernel.org>, robh@kernel.org,
+        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
+Subject: Re: [PATCH v3 0/4] ASoC: codecs: wcd934x: add Headset and button detection support
+Date:   Fri,  4 Jun 2021 17:32:30 +0100
+Message-Id: <162282419357.38836.12886872942740552175.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210528101946.GA418765@96e513df87d1>
-References: <20210526162342.GA20@8bbba9ba63a4> <20210528101946.GA418765@96e513df87d1>
+In-Reply-To: <20210604115230.23259-1-srinivas.kandagatla@linaro.org>
+References: <20210604115230.23259-1-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -41,28 +41,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 May 2021 10:19:50 +0000, Rudi Heitbaum wrote:
-> For rk3399pro boards the tcs4526 regulator supports the vdd_gpu
-> regulator. The tcs4526 regulator has a chip id of <0>.
-> Add the compatibile tcs,tcs4526
+On Fri, 4 Jun 2021 12:52:26 +0100, Srinivas Kandagatla wrote:
+> This patchset adds support to MBHC(Multi Button Headset Control) block found in
+> Qualcomm WCD codecs. MBHC support headset type detection, both Mechanical and
+> electrical insert/removal detection along with 8 buttons detection,
+> Over current interrupts on HPHL/R, Impedance Measurements on HPHL/R.
 > 
-> without this patch, the dmesg output is:
->   fan53555-regulator 0-0010: Chip ID 0 not supported!
->   fan53555-regulator 0-0010: Failed to setup device!
->   fan53555-regulator: probe of 0-0010 failed with error -22
-> with this patch, the dmesg output is:
->   vdd_gpu: supplied by vcc5v0_sys
+> Eventhough MBHC block supports things like OverCurrent detection, Currently its
+> reported as a kernel debug message. Should this be reported as an uevent to
+> userspace? like the way USB reports?
+> Any suggestions?
 > 
 > [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
 Thanks!
 
-[1/1] regulator: fan53555: add tcs4526
-      commit: 5eee5eced95f1b35c8567688ed52932b7e58deee
+[1/4] ASoC: dt-bindings: wcd934x: add bindings for Headset Button detection
+      commit: c6d25d5786090edc7299b32160644bb2e468c25d
+[2/4] ASoC: codecs: wcd: add multi button Headset detection support
+      commit: 0e5c9e7ff899808afa4e2b08c2e6ccc469bed681
+[3/4] ASoC: codecs: wcd934x: add mbhc support
+      commit: 9fb9b1690f0ba6b2c9ced91facc1fc44f5a0d5c1
+[4/4] ASoC: qcom: sdm845: add jack support for WCD934x
+      commit: c15d4b72098ca3055d98ce0d66127fe37a6a6361
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
