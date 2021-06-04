@@ -2,95 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E90B639BD73
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 18:43:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDB4239BD76
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 18:44:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229892AbhFDQpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 12:45:17 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:34988 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229690AbhFDQpQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 12:45:16 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 154GhMPJ093166;
-        Fri, 4 Jun 2021 11:43:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1622825002;
-        bh=Q4fwlcTV+UfFIP59ocRNpSmIcNZ5COysLR/B5UGpX4k=;
-        h=From:To:CC:Subject:Date;
-        b=ngl/+cP/qNlvOAw0foSGXmWi6kElTKqi0nwhpVdinw48DAvEz2UjOZuV7cnD6gFq0
-         +8Wg8H3IzUDFnBdxj8XGe4rGjlO2VfiIE5sODtPJkmx56ONJ05R8AxCwHcdPbIahr3
-         AIdFDOR1Vn695VgtMJARn6+pkt1CimKySFqSFvxc=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 154GhMcB047238
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 4 Jun 2021 11:43:22 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 4 Jun
- 2021 11:43:21 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Fri, 4 Jun 2021 11:43:21 -0500
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 154GhCtf063841;
-        Fri, 4 Jun 2021 11:43:14 -0500
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Suman Anna <s-anna@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH] arm64: dts: ti: k3-am64-main: Update the location of ATF in SRAM and increase its max size
-Date:   Fri, 4 Jun 2021 22:13:08 +0530
-Message-ID: <20210604164308.16693-1-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
+        id S229931AbhFDQqS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 12:46:18 -0400
+Received: from mail-pj1-f51.google.com ([209.85.216.51]:50897 "EHLO
+        mail-pj1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229690AbhFDQqS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 12:46:18 -0400
+Received: by mail-pj1-f51.google.com with SMTP id i22so5901159pju.0;
+        Fri, 04 Jun 2021 09:44:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=q/lW+cvfow4eUwJhwGA4ALMndt92irIdtpZvGIsvdR8=;
+        b=mYRqG2cbKJq/qQpEPGHzswC4C9mZ6xVE2WF/RxiJQhhdaGhP35lNZWijbyk3FURUIl
+         P3fyUmPTcXftIOK89CByHcOU0Q/FU0XCRAXLtajYgZPOTakBgO4zXT5Gjl9K6B2cdClH
+         ckNv9iCPdBo/hvmxnKn2aIzEOYS7ldUxN5QBuGR7Aa3Ib9WTFEhEluoYMMu6pM+5RFeI
+         JCFHOSd4+6VnQ9CR7iYVVoIVO6OlgIhYgrR2QzYGzWfKXtINFL4FrFnAImIbgbRg3ZmB
+         IWhtPxjXvXkRlIdnPu5sQiMeTihOHpEIkPDEDVsnkhKb5IWOX2TnzucW7etWYLrNv+c2
+         jsfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=q/lW+cvfow4eUwJhwGA4ALMndt92irIdtpZvGIsvdR8=;
+        b=MObaLdq6kjIDTk5qAY7fW2tDEf4e8H5RUrwi4AvW9fM8sni7ZOzUhfJHaNuxrWftbN
+         NwuMaz2wcRKnL9/JMuOvB2XL5GO6662nGjPxFpe/NVBu8OZUgwGOtKO/OxoPKf24ASG9
+         CV6EcZr3xnonQ13NyKX8oK8Wo8Hq64sKiqD6eYBSo60SQ+pP6LURIbZZtV4K5pIBIIJm
+         E/TwYjm25mvRc/dRGcJ3A6wbanXD9qtXsdtQ2yyLHPcMLwvFUA8T6TkOfW96B7RJj5eV
+         q1duvooEDRLFX3bb+nPIhio3O0r4nV8fc6tijOf4vpPivuMISJfm3AfUVdekkUWVnAHu
+         sMsw==
+X-Gm-Message-State: AOAM532XeaB/ONBX0YkNzzjSjx7aBM4CGVDPsEw2nA3jaPRuRJnA/1QA
+        xttRy+FMYJz/FRkfA42r8LA=
+X-Google-Smtp-Source: ABdhPJxNjWVvuAvrhizjWqdWjsNNClhFrPCk6J6ETB2P4gNKDOlmps2EmQKHvK1r/gGIsdLlYG+xgg==
+X-Received: by 2002:a17:902:cec3:b029:10d:22fa:183c with SMTP id d3-20020a170902cec3b029010d22fa183cmr5234564plg.53.1622824999980;
+        Fri, 04 Jun 2021 09:43:19 -0700 (PDT)
+Received: from [10.230.24.159] ([192.19.224.250])
+        by smtp.gmail.com with ESMTPSA id p65sm2166202pfb.62.2021.06.04.09.43.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Jun 2021 09:43:19 -0700 (PDT)
+Subject: Re: [PATCH v2 net-next 1/4] net: phy: introduce
+ PHY_INTERFACE_MODE_REVRMII
+To:     Vladimir Oltean <olteanv@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King - ARM Linux admin <linux@armlinux.org.uk>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+References: <20210604140151.2885611-1-olteanv@gmail.com>
+ <20210604140151.2885611-2-olteanv@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <60ff376d-9f28-52fb-8d6d-5e3966258de6@gmail.com>
+Date:   Fri, 4 Jun 2021 09:43:17 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.10.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+In-Reply-To: <20210604140151.2885611-2-olteanv@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Due to a limitation for USB DFU boot mode, SPL load address has to be less
-than  or equal to 0x70001000. So, load address of SPL and ATF have been
-moved to 0x70000000 and 0x701a0000 respectively.
 
-Also, the maximum size of ATF has been increased to 0x1c000 [1].
 
-Therefore, update ATF's location and maximum size accordingly in the device
-tree file.
+On 6/4/2021 7:01 AM, Vladimir Oltean wrote:
+> From: Vladimir Oltean <vladimir.oltean@nxp.com>
+> 
+> The "reverse RMII" protocol name is a personal invention, derived from
+> "reverse MII".
+> 
+> Just like MII, RMII is an asymmetric protocol in that a PHY behaves
+> differently than a MAC. In the case of RMII, for example:
+> - the 50 MHz clock signals are either driven by the MAC or by an
+>   external oscillator (but never by the PHY).
+> - the PHY can transmit extra in-band control symbols via RXD[1:0] which
+>   the MAC is supposed to understand, but a PHY isn't.
+> 
+> The "reverse MII" protocol is not standardized either, except for this
+> web document:
+> https://www.eetimes.com/reverse-media-independent-interface-revmii-block-architecture/#
+> 
+> In short, it means that the Ethernet controller speaks the 4-bit data
+> parallel protocol from the perspective of a PHY (it acts like a PHY).
+> This might mean that it implements clause 22 compatible registers,
+> although that is optional - the important bit is that its pins can be
+> connected to an MII MAC and it will 'just work'.
+> 
+> In this discussion thread:
+> https://lore.kernel.org/netdev/20210201214515.cx6ivvme2tlquge2@skbuf/
+> 
+> we agreed that it would be an abuse of terms to use the "RevMII" name
+> for anything than the 4-bit parallel MII protocol. But since all the
+> same concepts can be applied to the 2-bit Reduced MII protocol as well,
+> here we are introducing a "Reverse RMII" protocol. This means: "behave
+> like an RMII PHY".
+> 
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-[1] - https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git/commit/?id=2fb5312f61a7de8b7a70e1639199c4f14a10b6f9
-
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
----
-
-Link to corresponding U-Boot series that makes the ATF load address update,
-- https://patchwork.ozlabs.org/project/uboot/list/?series=247265
-
- arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-index ca59d1f711f8..7ae28992097f 100644
---- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-@@ -14,7 +14,7 @@
- 		ranges = <0x0 0x00 0x70000000 0x200000>;
- 
- 		atf-sram@0 {
--			reg = <0x0 0x1a000>;
-+			reg = <0x1a0000 0x1c000>;
- 		};
- 	};
- 
+Acked-by: Florian Fainelli <f.fainelli@gmail.com>
 -- 
-2.17.1
-
+Florian
