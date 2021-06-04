@@ -2,114 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04B3639B072
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 04:33:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB76339B0C1
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 05:16:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229769AbhFDCfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 22:35:37 -0400
-Received: from mail-wm1-f54.google.com ([209.85.128.54]:36382 "EHLO
-        mail-wm1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229697AbhFDCfh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 22:35:37 -0400
-Received: by mail-wm1-f54.google.com with SMTP id n17-20020a7bc5d10000b0290169edfadac9so6976942wmk.1;
-        Thu, 03 Jun 2021 19:33:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XfVLX4YtEZs428uaQPfb/mY1tDAn6l5ncSwMdycpblI=;
-        b=p5drJ8OPu0/hfTaQXi2OyrCV3UE0/bcH3ckTmA6EC2x2//1neicrguJZw+egplGj7e
-         cbrQ9OpDwX1uZqU9IGP7ncGktMXUx4UviQhIeb20d06j/E5NfmU1+gfXjEag7tXpmj+I
-         i2uG7BIAYtnWU4xdCU0QenmkqC2pTBAEcWq0SuNYcncS1waJTJcR4CZZZqIqul4845tD
-         wlf1Kv9hg49UzNfmMHyN5Geif4mqiUUMBRTbyMWtjpNgrIrS5Npb17wxil5Gpc4cXEhd
-         ye7CeseV4uBnq37kFnGOz1WtIqvJPs60R9aq1HK4S3jxjF2K6Udk3uDqLlPin73no4HA
-         VOUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XfVLX4YtEZs428uaQPfb/mY1tDAn6l5ncSwMdycpblI=;
-        b=SBkL2COSfKlZFpjcGMv8S+RHT9FDsxae/CUdu4s/D3Jwha4KjF+G5hdZ5Nq3s0DhSr
-         3enptNbtycsTRCseJrHCoFHzLJCzea60XWnEN87N5YAGE4hDPlj9DlQvnw6AKLVcPEIy
-         ICpVHVHOVRfsg1x9AvrNuF0PQN03CqkEpA5ku0kSsZHe5koS4qpQXSg3YyCfmO0RcWdY
-         hSAjTjt2Nd8z16Bnu9ksghvSrY+brB1tplbKyw6iOpihFSTAZOg4HEu5CYhz2hdTB+vz
-         9Vja0hNYD7+lF/CpxIadlFgw7qITye/YPyZ5D6FBMEUewyGUAgAdSSlbikOZngiLo3Xq
-         Kn5Q==
-X-Gm-Message-State: AOAM530krPNVFTINSuSHok7K2pt7kYY9iwlLtjele2fnsfJKQDgPJR/y
-        T3mea1cMVk7OANWT+H+IfPqqiVqBoUj1GYML2tE=
-X-Google-Smtp-Source: ABdhPJxmpIfDqZXuShm76OqWvHKkOU4l5zonimZqTYUKsjU+Sqv/oJyOxy/U8P1238Okoxuj2H3MGCtE1stmFsOfTU4=
-X-Received: by 2002:a05:600c:2054:: with SMTP id p20mr843886wmg.175.1622773970471;
- Thu, 03 Jun 2021 19:32:50 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210521124946.3617862-1-vkoul@kernel.org> <CAOCk7Nqep_Db+z3fr5asHZ1u0j8+6fKkPFs2Ai8CbA_zGqV6ZA@mail.gmail.com>
- <YK3gxqXBRupN/N+Q@vkoul-mobl.Dlink> <CAOCk7NqvhGvYw8xCBctqj7H+o-Qwp2UuUJK1gatW9EWfXv56xA@mail.gmail.com>
- <CAF6AEGuoyPr8PgfwFX0JCYZ7S_pryn_OXacHBqoMAAPvSq6aRw@mail.gmail.com> <YLdlEB3Ea6OWaLw4@vkoul-mobl>
-In-Reply-To: <YLdlEB3Ea6OWaLw4@vkoul-mobl>
-From:   Rob Clark <robdclark@gmail.com>
-Date:   Thu, 3 Jun 2021 19:36:42 -0700
-Message-ID: <CAF6AEGvS2uL1eEeCKQ5wDX4+yRZuOTHzFOv9Kiu09HO2r9xzHQ@mail.gmail.com>
-Subject: Re: [Freedreno] [RFC PATCH 00/13] drm/msm: Add Display Stream
- Compression Support
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        David Airlie <airlied@linux.ie>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Abhinav Kumar <abhinavk@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S229835AbhFDDRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 23:17:39 -0400
+Received: from szxga01-in.huawei.com ([45.249.212.187]:7101 "EHLO
+        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229704AbhFDDRj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 23:17:39 -0400
+Received: from dggemv711-chm.china.huawei.com (unknown [172.30.72.55])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Fx7B93Hs0zYpkg;
+        Fri,  4 Jun 2021 11:13:05 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggemv711-chm.china.huawei.com (10.1.198.66) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Fri, 4 Jun 2021 11:15:51 +0800
+Received: from [127.0.0.1] (10.174.177.72) by dggpemm500006.china.huawei.com
+ (7.185.36.236) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Fri, 4 Jun 2021
+ 11:15:50 +0800
+Subject: Re: [PATCH 1/1] media: dt-bindings: media: renesas,drif: Fix a
+ dt_binding_check warning
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        freedreno <freedreno@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
+        "Ramesh Shanmugasundaram" <rashanmu@gmail.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        linux-renesas-soc <linux-renesas-soc@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+References: <20210520114953.8206-1-thunder.leizhen@huawei.com>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <a9522c05-a0d7-4017-f42b-a8e4b2a8c0e2@huawei.com>
+Date:   Fri, 4 Jun 2021 11:15:49 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <20210520114953.8206-1-thunder.leizhen@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.177.72]
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 2, 2021 at 4:01 AM Vinod Koul <vkoul@kernel.org> wrote:
->
-> On 27-05-21, 16:30, Rob Clark wrote:
-> > On Wed, May 26, 2021 at 8:00 AM Jeffrey Hugo <jeffrey.l.hugo@gmail.com> wrote:
-> > > On Tue, May 25, 2021 at 11:46 PM Vinod Koul <vkoul@kernel.org> wrote:
->
-> > > Frankly, I don't like the MSM ACPI solution that I've seen on the laptops.
-> > > The ACPI assumes the entire MDSS (including DSI parts) and GPU is one
-> > > device, and ultimately handled by one driver.  That driver needs to
-> > > get a value from UEFI (set by the bootloader) that is the "panel id".
-> > > Then the driver calls into ACPI (I think its _ROM, but I might be
-> > > mistaken, doing this from memory) with that id.  It gets back a binary
-> > > blob which is mostly an xml file (format is publicly documented) that
-> > > contains the panel timings and such.
-> >
-> > tbh, I kinda suspect that having a single "gpu" device (which also
-> > includes venus, in addition to display, IIRC) in the ACPI tables is a
-> > windowsism, trying to make things look to userspace like a single "GPU
-> > card" in the x86 world.. but either way, I think the ACPI tables on
-> > the windows arm laptops which use dsi->bridge->edp is too much of a
-> > lost cause to even consider here.  Possibly ACPI boot on these devices
-> > would be more feasible on newer devices which have direct eDP out of
-> > the SoC without requiring external bridge/panel glue.
->
-> yeah that is always a very different world. although it might make sense
-> to use information in tables and try to deduce information about the
-> system can be helpful...
->
-> > I'd worry more about what makes sense in a DT world, when it comes to
-> > DT bindings.
->
-> And do you have thoughts on that..?
+Hi all:
+  Can someone review this patch?
 
-Only that I wouldn't get too hung up on existing snapdragon ACPI
-tables.. not sure if there is prior art as far as ACPI tables for this
-on x86 systems, if so that *might* be a thing to consider, but
-otherwise it does sound a bit like we want less qcom specific bindings
-here.  But other than that I'll leave it to folks who spend more time
-thinking about bindings.. left to my own devices I'd come up with a
-point solution and go back to working on mesa, so that probably isn't
-the opinion you want to follow ;-)
 
-BR,
--R
+On 2021/5/20 19:49, Zhen Lei wrote:
+> The value of the property 'clock-names' is a constant string, so the
+> 'maxItems: 1' is not needed, should be removed. Otherwise, the following
+> warning is reported:
+> properties:clock-names:maxItems: False schema does not allow 1
+> ignoring, error in schema: properties: clock-names: maxItems
+> warning: no schema found in file: xxx/bindings/media/renesas,drif.yaml
+> 
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> ---
+>  Documentation/devicetree/bindings/media/renesas,drif.yaml | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/renesas,drif.yaml b/Documentation/devicetree/bindings/media/renesas,drif.yaml
+> index f1bdaeab4053..b7f07062922f 100644
+> --- a/Documentation/devicetree/bindings/media/renesas,drif.yaml
+> +++ b/Documentation/devicetree/bindings/media/renesas,drif.yaml
+> @@ -67,7 +67,6 @@ properties:
+>      maxItems: 1
+>  
+>    clock-names:
+> -    maxItems: 1
+>      items:
+>        - const: fck
+>  
+> 
+
