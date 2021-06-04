@@ -2,201 +2,292 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C2B239B103
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 05:40:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FF9D39B107
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 05:41:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229849AbhFDDmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 23:42:16 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:43997 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229818AbhFDDmQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 23:42:16 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 7DBD258091D;
-        Thu,  3 Jun 2021 23:40:30 -0400 (EDT)
-Received: from imap43 ([10.202.2.93])
-  by compute2.internal (MEProxy); Thu, 03 Jun 2021 23:40:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm2; bh=IXIL9C2HzjrAGNBk1nGy2Pu/WLpKNu2
-        hvsZCetoM8WY=; b=g1SuU500NHCo7BZo/uEdeRt43gx1aRzt9/IlGJcHOoW/4Zl
-        Z8H9jy9j7NAmkqBzupHRKJobQgZeYa5CwyXxdJ5UilSUdX4shu3ZUIEcJ5M98m3A
-        ALgVDtyNBXI5RM5VELQGi2LjWVxILhnhtbhgsejsfvO7gPpNLbvvu32LMORPQO4k
-        Pd6Dn/eC2PF2G9XZIzllmKG2congkkKbZ0YjiXth2EV8U8k4H0zilQ9zzDPARQYh
-        s5zUVLLy1mQruTe7LNLBc1X4Hc229m87GNUjBNjQNlRa5tDRtEHTdzWHoi8N3uT3
-        8trNW7ujgx5OzwHZHqt3KkRjYY7PTMf3fh1gUug==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=IXIL9C
-        2HzjrAGNBk1nGy2Pu/WLpKNu2hvsZCetoM8WY=; b=NspLtfqSEuYIn4pOHCIgK8
-        H0xUR7BlylRupUg/b21l2fqPvIbNLKUiXopvQ2ofbQkLve6CKCmZr2Xgw7JD+zfX
-        ibX252bJqi26LD5P0Q6Sp7VutfOwiPTDkwXmQA786BsSRVr1XvJmztFDMzCEYtEx
-        MS+vSBIwuSQKTGyaAGRCGi/yU3+M4z2GDkxz7Ku05IZLJjg2jIq2PAh444+PP/Ae
-        AS5Gw9h26mlUJhjWs/PA2NZVDT+Ywtxczul35mHZOXOeMdToMr5rSK2xwWX1YTr6
-        lfH+VDSfI30Yk4QWqC2aorMgcjRewuJ0/EGhHogEebYyROY3PjdIQYLcmFTT790w
-        ==
-X-ME-Sender: <xms:qqC5YEkr6BGDpSKNEuBWmOJGm3Gv3y-boz-PrRLPqqx7LzN1D4mPfg>
-    <xme:qqC5YD0gALStilJ2iU17_etlSX9Oa7mZaduWouTQ4cbdsoKofY-niCqJTPqYRZvo8
-    nK6S3cq-8p0L3We4w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfedttddgieelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
-    grthhtvghrnhephefguedvfedvgffgudehjeegudefvedufefgveefudetffdvfeeigffg
-    jedvkeetnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucevlhhushhtvg
-    hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhi
-    ugdrrghu
-X-ME-Proxy: <xmx:q6C5YCrgoFYYnKoB29bo5P5z-1-DTO_hYwW_6LgE3KoZcwhd9RIoBA>
-    <xmx:q6C5YAmagMP3YZzFJ8R9to0gE6RbNKJfMbgtgb1jyK7r69eO77ZegQ>
-    <xmx:q6C5YC1wtdLXxT0_HUZFigl3nVhSkxEgwBL_RUoFLVRWMHsD2-Y62Q>
-    <xmx:rqC5YLtnvC85elpowi1Er1uLh2rBj5sFvvXMLSRDHsZKGKil0deWrQ>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id E035EAC0062; Thu,  3 Jun 2021 23:40:26 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-519-g27a961944e-fm-20210531.001-g27a96194
-Mime-Version: 1.0
-Message-Id: <7a0a9625-e50f-4674-a579-b48d7eb28812@www.fastmail.com>
-In-Reply-To: <20210604033039.GC25112@aspeedtech.com>
-References: <20210603101822.9645-1-steven_lee@aspeedtech.com>
- <20210603101822.9645-2-steven_lee@aspeedtech.com>
- <516bb11a-b75f-49e1-ba79-e5a4c344a7ab@www.fastmail.com>
- <20210604033039.GC25112@aspeedtech.com>
-Date:   Fri, 04 Jun 2021 13:10:06 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Steven Lee" <steven_lee@aspeedtech.com>
-Cc:     "Linus Walleij" <linus.walleij@linaro.org>,
-        "Bartosz Golaszewski" <bgolaszewski@baylibre.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Joel Stanley" <joel@jms.id.au>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        "open list" <linux-kernel@vger.kernel.org>,
-        "Hongwei Zhang" <Hongweiz@ami.com>,
-        "Ryan Chen" <ryan_chen@aspeedtech.com>,
-        "Billy Tsai" <billy_tsai@aspeedtech.com>
-Subject: =?UTF-8?Q?Re:_[PATCH_v3_1/5]_dt-bindings:_aspeed-sgpio:_Convert_txt_bind?=
- =?UTF-8?Q?ings_to_yaml.?=
-Content-Type: text/plain
+        id S229835AbhFDDmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 23:42:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47298 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229718AbhFDDmi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 23:42:38 -0400
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61FBEC06174A
+        for <devicetree@vger.kernel.org>; Thu,  3 Jun 2021 20:40:39 -0700 (PDT)
+Received: by mail-oi1-x236.google.com with SMTP id z3so8485230oib.5
+        for <devicetree@vger.kernel.org>; Thu, 03 Jun 2021 20:40:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mXrwn8O7Z9ra0HSXrktp1Pf6RqZk04u/zgrpbaACAm8=;
+        b=nu4CkeZLjtParnluQs2D85/oiP8BC4dC3lLEdgDCmuPqmOoDjtnbi5bZ2kX+cTNrdP
+         5vJhubTFFMdk3K3XsKuYpd5XKB9OQ4UOqliuEXAqHBZyenB3qS1qpC19sZUDpCtDyemt
+         k2Fzh60Ct3oOhXi1kPsoomYf1tzWiVESNrgSWAAWggyNKEhGOXvUFp8l8U4OvALmiXR9
+         l3OpdE5s7u9lg9XVAx/D29OLWmfhnOd7zF8mRJ5BXubvtk+Ryd3xuy5hkvyoXVO5qt/9
+         9W/lNpgI5zyjsmhiNS3uor2pqoAQrqYq3qsR0T8lZLk5/FqabuEMTxnl0G+DE5lUflPD
+         xfhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mXrwn8O7Z9ra0HSXrktp1Pf6RqZk04u/zgrpbaACAm8=;
+        b=oiUW2zqTZPERthhIIs2JL3aNvAIYv5BULyLgQy9Tj7nLENON7lHOWGfkQ83sqkzIyy
+         XElIB3ipT1YKDbZ5lX6Gp8HPQnUeKAIA6vKNFEZWsGuGS4sJfI225zZGyjo600MBSPXF
+         56EFhbIujh764eeqdtPZfRxM1BTK1dGWPTwcW8OpBq0xk7W1XG6/YyZ80mVR1wTZxiTD
+         faVDDoJHHjCytzun0UDFlhbSsmUV8tQpL2gGV7ZYeDxC5N522hCvWTuL4ojwXU9KE70F
+         ito7CI+gjwTW8Gh7fgdiYMGTcyIarFduZbHZ/iKrHUFN0uQb2o4GQ1/DimIKPwx4qZDI
+         UyQw==
+X-Gm-Message-State: AOAM530Gv4VEE8T32LkovTNCbSR+U5wtLNyEb6jwpQqywHz9Pn8GgDOn
+        XcoyPv+kgCOeC83FxybmRBpyEj07+2YiCPwN2T+a9Q==
+X-Google-Smtp-Source: ABdhPJwCHeBEjD6JOd6thCiBXSp5CBpsWnXuTWBq89AVfaa1FU5pUZuP18t0YuywoLXf90lWSCMJTdIGpysTNi5zd+Y=
+X-Received: by 2002:a05:6808:f0b:: with SMTP id m11mr9216942oiw.12.1622778038637;
+ Thu, 03 Jun 2021 20:40:38 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210519143700.27392-1-bhupesh.sharma@linaro.org>
+ <20210519143700.27392-2-bhupesh.sharma@linaro.org> <YKdqd6nreHwCV3te@gerhold.net>
+In-Reply-To: <YKdqd6nreHwCV3te@gerhold.net>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Fri, 4 Jun 2021 09:10:27 +0530
+Message-ID: <CAH=2NtxxWx4BWhQ5YEkxKaCnD6qBgfbJm2TBdXH0AAzr+_O2EA@mail.gmail.com>
+Subject: Re: [PATCH v3 01/17] dt-bindings: qcom-bam: Convert binding to YAML
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Thara Gopinath <thara.gopinath@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bhupesh.linux@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Stephan,
 
+Thanks for the review.
 
-On Fri, 4 Jun 2021, at 13:00, Steven Lee wrote:
-> The 06/04/2021 07:25, Andrew Jeffery wrote:
-> > Hi Steven,
-> > 
-> > On Thu, 3 Jun 2021, at 19:48, Steven Lee wrote:
-> > > sgpio-aspeed bindings should be converted to yaml format.
-> > > 
-> > > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
-> > > ---
-> > >  .../bindings/gpio/aspeed,sgpio.yaml           | 78 +++++++++++++++++++
-> > >  .../devicetree/bindings/gpio/sgpio-aspeed.txt | 46 -----------
-> > >  2 files changed, 78 insertions(+), 46 deletions(-)
-> > >  create mode 100644 Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
-> > >  delete mode 100644 Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml 
-> > > b/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
-> > > new file mode 100644
-> > > index 000000000000..e7c2113cc096
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
-> > > @@ -0,0 +1,78 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/gpio/aspeed,sgpio.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Aspeed SGPIO controller
-> > > +
-> > > +maintainers:
-> > > +  - Andrew Jeffery <andrew@aj.id.au>
-> > > +
-> > > +description:
-> > > +  This SGPIO controller is for ASPEED AST2400, AST2500 and AST2600 SoC,
-> > > +  AST2600 have two sgpio master one with 128 pins another one with 80 
-> > > pins,
-> > > +  AST2500/AST2400 have one sgpio master with 80 pins. Each of the 
-> > > Serial
-> > > +  GPIO pins can be programmed to support the following options
-> > > +  - Support interrupt option for each input port and various interrupt
-> > > +    sensitivity option (level-high, level-low, edge-high, edge-low)
-> > > +  - Support reset tolerance option for each output port
-> > > +  - Directly connected to APB bus and its shift clock is from APB bus 
-> > > clock
-> > > +    divided by a programmable value.
-> > > +  - Co-work with external signal-chained TTL components 
-> > > (74LV165/74LV595)
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - aspeed,ast2400-sgpio
-> > > +      - aspeed,ast2500-sgpio
-> > > +      - aspeed,ast2600-sgpiom1
-> > > +      - aspeed,ast2600-sgpiom2
-> > 
-> > You should have followed Rob's request here and made two patches for 
-> > the binding document:
-> > 
-> > 1. A 1-to-1 conversion of the text file to dt-schema
-> > 2. Add your new compatibles for the 2600.
-> > 
-> 
-> Sorry I forgot to remove compatibles and move them to a new patch.
-> 
-> > From a cursory glance it looks okay except for the new compatibles.
-> > 
-> > Regarding the compatibles, I'd prefer we use something a bit more 
-> > meaningful. What do you think of these?
-> > 
-> > - aspeed,ast2600-sgpiom-80
-> > - aspeed,ast2600-sgpiom-128
-> > 
-> 
-> Ok, I will change the name as you suggested.
-> 
-> BTW, I and development team have an internal discussion about the
-> current sgpio design.
-> 
-> In the current design, the base offset of gpio input and output
-> are calculated by the maximum number of gpio pins that SoC supported.
-> For instance, in AST2500, max_ngpios is 80(defined in MAX_NR_HW_SGPIO),
-> if ngpios is 16 in dts, gpio input pin id is from 0 to 15 and
-> gpio output pin id is from 80 to 95.
-> 
-> We are thinking of removing max_ngpios(and MAX_NR_HW_SGPIO) and
-> corresponding design to make the gpio input and output pin base
-> are determined by ngpios.
-> For instance, in any AST SoC, if ngpios is 16 in dts,
-> gpio input pin id is from 0 to 15 and gpio output pin id is from 16 to 31.
-> Thus we don't need to care about the max_ngpios of SoCs, and needn't to
-> add 2 compatibles for ast2600.
-> 
-> However, it might affect users who update kernel/driver from the
-> old kernel/driver as they may expect the gpio output pin base is start
-> from 80(MAX_NR_HW_SGPIO).
-> I was wondering if it is better to change the design as above.
-> It would be great to have your suggestion.
+On Fri, 21 May 2021 at 13:41, Stephan Gerhold <stephan@gerhold.net> wrote:
+>
+> Hi,
+>
+> On Wed, May 19, 2021 at 08:06:44PM +0530, Bhupesh Sharma wrote:
+> > Convert Qualcomm BAM DMA devicetree binding to YAML.
+> >
+> > Cc: Thara Gopinath <thara.gopinath@linaro.org>
+> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Andy Gross <agross@kernel.org>
+> > Cc: Herbert Xu <herbert@gondor.apana.org.au>
+> > Cc: David S. Miller <davem@davemloft.net>
+> > Cc: Stephen Boyd <sboyd@kernel.org>
+> > Cc: Michael Turquette <mturquette@baylibre.com>
+> > Cc: Vinod Koul <vkoul@kernel.org>
+> > Cc: dmaengine@vger.kernel.org
+> > Cc: linux-clk@vger.kernel.org
+> > Cc: linux-crypto@vger.kernel.org
+> > Cc: devicetree@vger.kernel.org
+> > Cc: linux-kernel@vger.kernel.org
+> > Cc: bhupesh.linux@gmail.com
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+> >  .../devicetree/bindings/dma/qcom_bam_dma.txt  | 50 ----------
+> >  .../devicetree/bindings/dma/qcom_bam_dma.yaml | 91 +++++++++++++++++++
+> >  2 files changed, 91 insertions(+), 50 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
+> >  create mode 100644 Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt b/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
+> > deleted file mode 100644
+> > index cf5b9e44432c..000000000000
+> > --- a/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
+> > +++ /dev/null
+> > @@ -1,50 +0,0 @@
+> > -QCOM BAM DMA controller
+> > -
+> > -Required properties:
+> > -- compatible: must be one of the following:
+> > - * "qcom,bam-v1.4.0" for MSM8974, APQ8074 and APQ8084
+> > - * "qcom,bam-v1.3.0" for APQ8064, IPQ8064 and MSM8960
+> > - * "qcom,bam-v1.7.0" for MSM8916
+> > -- reg: Address range for DMA registers
+> > -- interrupts: Should contain the one interrupt shared by all channels
+> > -- #dma-cells: must be <1>, the cell in the dmas property of the client device
+> > -  represents the channel number
+> > -- clocks: required clock
+> > -- clock-names: must contain "bam_clk" entry
+> > -- qcom,ee : indicates the active Execution Environment identifier (0-7) used in
+> > -  the secure world.
+> > -- qcom,controlled-remotely : optional, indicates that the bam is controlled by
+> > -  remote proccessor i.e. execution environment.
+> > -- num-channels : optional, indicates supported number of DMA channels in a
+> > -  remotely controlled bam.
+> > -- qcom,num-ees : optional, indicates supported number of Execution Environments
+> > -  in a remotely controlled bam.
+> > -
+> > -Example:
+> > -
+> > -     uart-bam: dma@f9984000 = {
+> > -             compatible = "qcom,bam-v1.4.0";
+> > -             reg = <0xf9984000 0x15000>;
+> > -             interrupts = <0 94 0>;
+> > -             clocks = <&gcc GCC_BAM_DMA_AHB_CLK>;
+> > -             clock-names = "bam_clk";
+> > -             #dma-cells = <1>;
+> > -             qcom,ee = <0>;
+> > -     };
+> > -
+> > -DMA clients must use the format described in the dma.txt file, using a two cell
+> > -specifier for each channel.
+> > -
+> > -Example:
+> > -     serial@f991e000 {
+> > -             compatible = "qcom,msm-uart";
+> > -             reg = <0xf991e000 0x1000>
+> > -                     <0xf9944000 0x19000>;
+> > -             interrupts = <0 108 0>;
+> > -             clocks = <&gcc GCC_BLSP1_UART2_APPS_CLK>,
+> > -                     <&gcc GCC_BLSP1_AHB_CLK>;
+> > -             clock-names = "core", "iface";
+> > -
+> > -             dmas = <&uart-bam 0>, <&uart-bam 1>;
+> > -             dma-names = "rx", "tx";
+> > -     };
+> > diff --git a/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml b/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
+> > new file mode 100644
+> > index 000000000000..173e4d7508a6
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
+> > @@ -0,0 +1,91 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/dma/qcom_bam_dma.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: QCOM BAM DMA controller binding
+> > +
+> > +maintainers:
+> > +  - Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > +
+> > +description: |
+> > +  This document defines the binding for the BAM DMA controller
+> > +  found on Qualcomm parts.
+> > +
+> > +allOf:
+> > +  - $ref: "dma-controller.yaml#"
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - qcom,bam-v1.4.0
+> > +      - qcom,bam-v1.3.0
+> > +      - qcom,bam-v1.7.0
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +    description: Address range of the DMA registers.
+> > +
+> > +  clocks:
+> > +    minItems: 1
+> > +    maxItems: 8
+> > +
+> > +  clock-names:
+> > +    const: bam_clk
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +    description: Single interrupt line shared by all channels.
+> > +
+> > +  num-channels:
+> > +    maxItems: 31
+>
+> maxItems doesn't seem right here, since num-channels isn't an array.
+> Perhaps you meant maximum: 31?
+>
+> Can you check your bindings on the existing device trees with
+> "make dtbs_check" and make sure that only reasonable errors remain?
+>
+> This fails on pretty much every device tree:
+>
+> arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml: dma-controller@9184000: num-channels: [[31]] is too short
+>         From schema: Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
 
-Right, this breaks userspace. I don't think it's going to fly but I'm 
-interested in feedback from Linus and Bartosz.
+I did run "make dtbs_check" and I don't remember seeing the issues you reported.
+Hmm.. maybe I missed something. Let me recheck and fix issues in v4.
 
-If we were to break userspace, a scheme I'd consider with is to pair 
-input/output GPIOs. For example, GPIO 0 is input, GPIO 1 is the 
-associated output, GPIO 2 is input, GPIO 3 is output etc. That way you 
-can increase/decrease the number of GPIOs without affecting userspace 
-(after breaking it initially).
+> > +    description: |
+> > +      Indicates supported number of DMA channels in a remotely controlled bam.
+> > +
+> > +  "#dma-cells":
+> > +    const: 1
+> > +    description: The single cell represents the channel index.
+> > +
+> > +  qcom,ee:
+> > +    $ref: /schemas/types.yaml#/definitions/uint8
+> > +    description:
+> > +      Indicates the active Execution Environment identifier (0-7)
+> > +      used in the secure world.
+> > +    enum: [0, 1, 2, 3, 4, 5, 6, 7]
+> > +
+>
+> bam_dma.c reads this as uint32 and all existing device tree specify it
+> as uint32. I don't think adding the /bits/ 8 to all existing device
+> trees is really worth it.
+>
+> arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml: dma-controller@9184000: qcom,ee: missing size tag in [[1]]
+>         From schema: Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
 
-Andrew
+Ok.
+
+> > +  qcom,controlled-remotely:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description:
+> > +      Indicates that the bam is controlled by remote proccessor i.e.
+> > +      execution environment.
+> > +
+> > +  qcom,num-ees:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      Indicates supported number of Execution Environments in a
+> > +      remotely controlled bam.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +  - clock-names
+>
+> clocks is often missing if qcom,controlled-remotely is set, e.g.
+>
+>                 slimbam: dma-controller@9184000 {
+>                         compatible = "qcom,bam-v1.7.0";
+>                         qcom,controlled-remotely;
+>                         reg = <0x09184000 0x32000>;
+>                         num-channels  = <31>;
+>                         interrupts = <0 164 IRQ_TYPE_LEVEL_HIGH>;
+>                         #dma-cells = <1>;
+>                         qcom,ee = <1>;
+>                         qcom,num-ees = <2>;
+>                 };
+>
+> arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml: dma-controller@9184000: 'clocks' is a required property
+>         From schema: Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
+> arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml: dma-controller@9184000: 'clock-names' is a required property
+>         From schema: Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
+>
+> You might be able to encode this with an if: statement (clocks required
+> if qcom,controlled-remotely not specified), not sure.
+
+Ok.
+
+Thanks,
+Bhupesh
