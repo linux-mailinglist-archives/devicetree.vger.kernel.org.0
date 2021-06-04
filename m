@@ -2,89 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B8DF39B632
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 11:47:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8213F39B65A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 12:01:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229976AbhFDJt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 05:49:27 -0400
-Received: from mail-ej1-f51.google.com ([209.85.218.51]:46625 "EHLO
-        mail-ej1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229930AbhFDJt1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 05:49:27 -0400
-Received: by mail-ej1-f51.google.com with SMTP id b9so13497702ejc.13;
-        Fri, 04 Jun 2021 02:47:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=9FxBruhZCAwsrN7wIzOLFumqJ5iiDm9SEVvrFgi6Ir0=;
-        b=vHwyrVBnwK6rZWy0x9SjQXqfvtUwEpwSchXOdnB3/1qDIyyxNt0PK6wKwbtvg+7GuU
-         SLsl1rire99hvZS6qdoeE9+EHOY2/LJLAtJ2Tg8KUG86vqqd048/LADwm94hOKSCiH9y
-         a4gS2gB4pHJuAUwzGGwgl4zKYTa7OJ+FZrLYNVpiBtGQQZuvmjimRBh7QNbKhRRo7/i6
-         2Zq4B+2b8/BXUFLxXTyEsvzBKH63L6/fPaN5uNERoWt0qPwJEwi9BzzsOFm+waVQ31J8
-         4TjnXmGxE3EJ2Q1QurG+hIwJz1sg1tM8+lEQ7SILtAkHv5u4U36Ca5w7mCkbS3pXzevj
-         KWtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=9FxBruhZCAwsrN7wIzOLFumqJ5iiDm9SEVvrFgi6Ir0=;
-        b=Hwo7JEtJP9DGJVrvg4+Uq8HcWnZih5UHAGTh2zteTsx2+C86FHQ3mEtAMWf9CtNuX4
-         LZ9rYYr5SByv5RbdUV3FoNrPETRvKiUMy9KLkpLoqqL9gq2LP7jQMbv7a3vOHe5KBMaj
-         5FjKttthcPBgYcMNsxc9q8rvqKHRBLm/pq8l91S0Url4aM7sHOLK8wTcQkp7lQYJASzp
-         bSJRuxq/yJtBcu/KxGt82s1FUqItx+AUkXbn/BDOnR1+bgZDlPVikAxsiMRKAZtNQ4qR
-         Nfpd8Objh0wjDnLxEBVgQTzQrw1sRE/oHtONf1RxFeD3kwxlxcxayFOUMx73xneXUl7B
-         Xeug==
-X-Gm-Message-State: AOAM530YAWZ5nbZx31ims1AI+RbDSm5JyCT5Ou6PsfrpR+7E82IPLdEk
-        osroaR+Lx0OjxJUaOtdico8=
-X-Google-Smtp-Source: ABdhPJxFVJDwF3AgTdvGe/XsXcsdTHUNYaxZERzRL77kvdOeTN7g+sA2wBjgNm11BtAnlBBNCgwoCg==
-X-Received: by 2002:a17:906:8056:: with SMTP id x22mr3247582ejw.298.1622799989130;
-        Fri, 04 Jun 2021 02:46:29 -0700 (PDT)
-Received: from localhost (pd9e51d70.dip0.t-ipconnect.de. [217.229.29.112])
-        by smtp.gmail.com with ESMTPSA id n26sm2566605ejc.27.2021.06.04.02.46.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Jun 2021 02:46:28 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Lokesh Vutla <lokeshvutla@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, lee.jones@linaro.org,
-        u.kleine-koenig@pengutronix.de
-Cc:     Vignesh R <vigneshr@ti.com>, linux-pwm@vger.kernel.org,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Nishanth Menon <nm@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        tony@atomide.com,
-        Linux OMAP Mailing List <linux-omap@vger.kernel.org>
-Subject: Re: [PATCH v3 0/2] dt-bindings: pwm: pwm-tiehrpwm: Convert to json schema
-Date:   Fri,  4 Jun 2021 11:48:06 +0200
-Message-Id: <162280005726.1092288.11858422401702133382.b4-ty@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210601054402.2223-1-lokeshvutla@ti.com>
-References: <20210601054402.2223-1-lokeshvutla@ti.com>
+        id S229625AbhFDKCu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 06:02:50 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:33140 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229612AbhFDKCt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 06:02:49 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id C6E8C1F43856
+Received: by earth.universe (Postfix, from userid 1000)
+        id 59E813C0C95; Fri,  4 Jun 2021 12:00:59 +0200 (CEST)
+Date:   Fri, 4 Jun 2021 12:00:59 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, linux-rtc@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 6/7] power: supply: max17042: Do not enforce
+ (incorrect) interrupt trigger type
+Message-ID: <20210604100059.sr57dlwkqbbs6e7g@earth.universe>
+References: <20210526172036.183223-1-krzysztof.kozlowski@canonical.com>
+ <20210526172036.183223-7-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="d2r2o6cqzhpl36fi"
+Content-Disposition: inline
+In-Reply-To: <20210526172036.183223-7-krzysztof.kozlowski@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 1 Jun 2021 11:14:00 +0530, Lokesh Vutla wrote:
-> This series:
-> - converts tiehrpwn to DT schema format using json-schema
-> - Add new compatible for AM64 SoC.
-> 
-> Changes since v2 (https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=489981):
-> - Dropped DT changes from this series.
-> 
-> [...]
 
-Applied, thanks!
+--d2r2o6cqzhpl36fi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[1/2] dt-bindings: pwm: pwm-tiehrpwm: Convert to json schema
-      commit: 2ba4597d932b45b25bc2e6604c1dbbb08e444cb7
-[2/2] dt-bindings: pwm: pwm-tiehrpwm: Add compatible string for AM64 SoC
-      commit: d233504af7db9f4ddbbc4b04513d5ca657e7ae1f
+Hi,
 
-Best regards,
--- 
-Thierry Reding <thierry.reding@gmail.com>
+On Wed, May 26, 2021 at 01:20:35PM -0400, Krzysztof Kozlowski wrote:
+> From: Krzysztof Kozlowski <krzk@kernel.org>
+>=20
+> Interrupt line can be configured on different hardware in different way,
+> even inverted.  Therefore driver should not enforce specific trigger
+> type - edge falling - but instead rely on Devicetree to configure it.
+>=20
+> The Maxim 17047/77693 datasheets describe the interrupt line as active
+> low with a requirement of acknowledge from the CPU therefore the edge
+> falling is not correct.
+>=20
+> The interrupt line is shared between PMIC and RTC driver, so using level
+> sensitive interrupt is here especially important to avoid races.  With
+> an edge configuration in case if first PMIC signals interrupt followed
+> shortly after by the RTC, the interrupt might not be yet cleared/acked
+> thus the second one would not be noticed.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+>=20
+> ---
+>=20
+> Changes since v1:
+> 1. None
+> ---
+
+Thanks, queued.
+
+-- Sebastian
+
+>  drivers/power/supply/max17042_battery.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/power/supply/max17042_battery.c b/drivers/power/supp=
+ly/max17042_battery.c
+> index 1d7326cd8fc6..ce2041b30a06 100644
+> --- a/drivers/power/supply/max17042_battery.c
+> +++ b/drivers/power/supply/max17042_battery.c
+> @@ -1104,7 +1104,7 @@ static int max17042_probe(struct i2c_client *client,
+>  	}
+> =20
+>  	if (client->irq) {
+> -		unsigned int flags =3D IRQF_TRIGGER_FALLING | IRQF_ONESHOT;
+> +		unsigned int flags =3D IRQF_ONESHOT;
+> =20
+>  		/*
+>  		 * On ACPI systems the IRQ may be handled by ACPI-event code,
+> --=20
+> 2.27.0
+>=20
+
+--d2r2o6cqzhpl36fi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmC5+dAACgkQ2O7X88g7
++po1ig//VaFs/KxqHBD1C5z6LZwKfFsk1SDk9Zwmbr/nxSwQxq2y2+IWvleg2ojZ
+Mau48PcpAf+BA3HlRgR7heA4ce44RzGmbKgMhW456tlmcHYzsLzqek6DU5ARI20S
+/K3zAb62QLV8++7IFXZQllpMtdqrXtlJJkJ7fhc6B7s39IsMQtEwhzs4PEYqrJNI
+lUdbtZkI+lDQpmg9N95aMVMY5AR9HUeNkabquNEUQ2Oj5+xmKloApTPug0r/q/hG
+yNp1edRhHCXWvfMUHtydKP0CDLDEZG6I41wHbgzXD/kiUQwnnrWqZMPsityuHHYd
+//5U3ZELdFWuUmeC76K4skmc+v4IjcO2lmwHUvVgRTZjvcuj/MMynfurIYlWpkTe
+H1E5iwWwgPPbrZLsUX2R+wxotKcAoOeWCAkpLyKx2zxMUfm57PVqDQak+lVkonJ1
+Nu3XQN94hgBdsZEhpISB/m2s1wZLSDfmJBd0Zn3Tp9fevRfNe0u9lJFapZoyJjv+
+EAImy1cWkBceKj6Hc02liMpoxRmqzLn2MdlilUEsdiG1FfjaYueM7ObrXhHHVPN5
+RZVhbWj0+jTbF8WUr/DyzWuSKQBx5iPySRgqWQ36lAbG3Lu6lTYusylRvCUqw//M
+y9RW10u+JZKJz/qKeq5sVyF+h14oX8nMfNKNVySRei3SXpjfvN8=
+=dSKy
+-----END PGP SIGNATURE-----
+
+--d2r2o6cqzhpl36fi--
