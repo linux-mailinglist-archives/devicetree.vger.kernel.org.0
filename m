@@ -2,106 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A1A539B1AF
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 06:55:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB66539B1FA
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 07:23:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229812AbhFDE5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 00:57:34 -0400
-Received: from mout01.posteo.de ([185.67.36.65]:51267 "EHLO mout01.posteo.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229704AbhFDE5e (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Jun 2021 00:57:34 -0400
-Received: from submission (posteo.de [89.146.220.130]) 
-        by mout01.posteo.de (Postfix) with ESMTPS id 474F0240026
-        for <devicetree@vger.kernel.org>; Fri,  4 Jun 2021 06:55:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-        t=1622782547; bh=TTyTROyQXjsSXo74wJBHn6lqKWQ3+EbGHja6XTO7Rds=;
-        h=Date:From:To:Cc:Subject:From;
-        b=b4kfkQdftGPZQAMXH5LvwkFcZ3zhObfnY0zCw1HWa3vz1OjKz0xIDlQZfAUqaYm8n
-         LEzDIeuIPtgW+cna1vw2q7i1wnM3oFCyxkSEA+W10Mt7I3CRYrP+A9ukIObzFVybPW
-         pMClWvFX+BOQV2lPrTodITHK5rXrTxjmGbUTwKcFW1rUQUb1/w0DWPByV2HRJQMX/A
-         2icvC+zVgqIzhPQSq2W2c6YEOu0PV+VnOzM+DGMS+tgOEnXNRHlASnZ7hzPZRlQDME
-         9LASZa1tebUvbv6Ie5EVrYQPsgmQlntWn/Ef8HlLZU61ngXarVx6ERq9Tfp56/pUbZ
-         gKf2dD0fGmqfg==
-Received: from customer (localhost [127.0.0.1])
-        by submission (posteo.de) with ESMTPSA id 4Fx9Sc48Wdz6tm9;
-        Fri,  4 Jun 2021 06:55:44 +0200 (CEST)
-Date:   Fri,  4 Jun 2021 04:55:43 +0000
-From:   Wilken Gottwalt <wilken.gottwalt@posteo.net>
-To:     Suman Anna <s-anna@ti.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, <devicetree@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-sunxi@lists.linux.dev>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH] dt-bindings: hwlock: sun6i: Fix various warnings in
- binding
-Message-ID: <20210604065543.3d71ca53@monster.powergraphx.local>
-In-Reply-To: <20210603144216.10327-1-s-anna@ti.com>
-References: <20210603144216.10327-1-s-anna@ti.com>
+        id S229752AbhFDFZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 01:25:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41202 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229751AbhFDFZP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 01:25:15 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67DFEC06174A
+        for <devicetree@vger.kernel.org>; Thu,  3 Jun 2021 22:23:17 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id 27so6952576pgy.3
+        for <devicetree@vger.kernel.org>; Thu, 03 Jun 2021 22:23:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Ou+5Gxt442X8xkeW3uWe3IRZ83ptsxqSonXgl3FX8xQ=;
+        b=i/I2bNau508ongcxT99xkVylIKRuF3sa8CpRX7GWqOCafNY3nqX/5+dASBkdhg4YNX
+         jnHBexP8FK3Isb4gtHTpgPHeBHA8IuxnpakF5x+tMkQGXqV/2IzDqzmyaQe1kedGO4ET
+         K5qaEeUOJ3J8gymFRq/zQqYTGjbMcrg26v7SI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Ou+5Gxt442X8xkeW3uWe3IRZ83ptsxqSonXgl3FX8xQ=;
+        b=she8OqFslKzW7APK0AgEV1e0X2bcQTNOk1wqJ49oZlvwV++dQip7NvnMDuR51kUWkA
+         nWKhkvSrTxo5i8m5rt9MwaXR4OWI60h3s5nNjBDbSP3+yMFeaUsQVeW1DryoQU9MHR0E
+         mLbV3qTFnmRTJkl2gpvjAOXrFXPhwCPbByqzGSSxUDCj/5D4/zS9hlqr5Da2L0MTuiTk
+         IuoWUBEx7TevCZepezsIThJC7ity8z2Q+pwJ+XdmbZng2QaGosgz0BjfuICEUstAiEM6
+         QM6ZomNIzb3VuV6h9ju8iQNB2+sHOZn02xwU6J6e8csbFMRl69DhR6TixkB6zckQt4K7
+         5RzA==
+X-Gm-Message-State: AOAM531EcyUBIK9Dt2G/4oi8rLUFSf3HZF2W0epLRsn46rQQCxNOgERh
+        2xmXnOJlKJ3Mvxl3iw3DWxyYjA==
+X-Google-Smtp-Source: ABdhPJyHxxvl5l6bCBee5L8J3KZuCjCbX/zO+AY7q3xVIJW2Ma/t0+sLRjLQ21li9y//x/sE4J8yMQ==
+X-Received: by 2002:a63:4b59:: with SMTP id k25mr3183604pgl.252.1622784196837;
+        Thu, 03 Jun 2021 22:23:16 -0700 (PDT)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:886f:8bd0:e6e2:4e47])
+        by smtp.gmail.com with ESMTPSA id c15sm754014pgt.68.2021.06.03.22.23.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Jun 2021 22:23:16 -0700 (PDT)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Subject: [PATCH 1/2] arm64: dts: mt8183: Add kukui-jacuzzi-cerise board
+Date:   Fri,  4 Jun 2021 13:23:11 +0800
+Message-Id: <20210604052312.1040707-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.32.0.rc1.229.g3e70b5a671-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 3 Jun 2021 09:42:16 -0500
-Suman Anna <s-anna@ti.com> wrote:
+Cerise is known as ASUS Chromebook CZ1.
+Stern is known as ASUS Chromebook Flip CZ1.
 
-> The allwinner,sun6i-a31-hwspinlock.yaml binding has a mismatched
-> $id and fails to compile the example due to undefined args specifier
-> values for clocks and resets. Fix both of these issues.
-> 
-> Fixes: f9e784dcb63f ("dt-bindings: hwlock: add sun6i_hwspinlock")
-> Signed-off-by: Suman Anna <s-anna@ti.com>
-> ---
-> Hi Wilken,
-> 
-> This fixes the warnings for now on linux-next, but I think the example
-> should be including sun6i-a31-ccu.h files instead to be accurate, and
-> those files are missing the definitions for CLK_BUS_SPINLOCK and
-> RST_BUS_SPINLOCK. Feel free to send a newer version or do an incremental
-> patch on top.
-> 
-> regards
-> Suman
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+---
+The difference of rev3 and non rev3 are the audio driver they use, which
+is not added in this series.
+---
+ arch/arm64/boot/dts/mediatek/Makefile         |  4 +++
+ .../mt8183-kukui-jacuzzi-cerise-rev3.dts      | 24 +++++++++++++
+ .../mediatek/mt8183-kukui-jacuzzi-cerise.dts  | 24 +++++++++++++
+ .../mediatek/mt8183-kukui-jacuzzi-cerise.dtsi | 13 +++++++
+ .../mt8183-kukui-jacuzzi-stern-rev3.dts       | 34 +++++++++++++++++++
+ .../mediatek/mt8183-kukui-jacuzzi-stern.dts   | 34 +++++++++++++++++++
+ 6 files changed, 133 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cerise-rev3.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cerise.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cerise.dtsi
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-stern-rev3.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-stern.dts
 
-Hi Suman,
-
-thank you for fixing this. I would have fix it the same way for now, so it is
-fine for me. But I will keep an eye on it.
-
-greetings,
-Will
-
->  .../bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml      | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml
-> b/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml index
-> 733c3d01e56c..10e5a53e447b 100644 ---
-> a/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml +++
-> b/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml @@ -1,7 +1,7 @@
->  # SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
->  %YAML 1.2
->  ---
-> -$id: http://devicetree.org/schemas/hwlock/allwinner,sun6i-hwspinlock.yaml#
-> +$id: http://devicetree.org/schemas/hwlock/allwinner,sun6i-a31-hwspinlock.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
->  title: SUN6I hardware spinlock driver for Allwinner sun6i compatible SoCs
-> @@ -36,6 +36,9 @@ additionalProperties: false
->  
->  examples:
->    - |
-> +    #include <dt-bindings/clock/sun8i-a23-a33-ccu.h>
-> +    #include <dt-bindings/reset/sun8i-a23-a33-ccu.h>
-> +
->      hwlock@1c18000 {
->          compatible = "allwinner,sun6i-a31-hwspinlock";
->          reg = <0x01c18000 0x1000>;
+diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+index 4f68ebed2e318..f162d7b028d97 100644
+--- a/arch/arm64/boot/dts/mediatek/Makefile
++++ b/arch/arm64/boot/dts/mediatek/Makefile
+@@ -14,6 +14,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm-hana-rev7.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-evb.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-evb.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-burnet.dtb
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-cerise.dtb
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-cerise-rev3.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-damu.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-fennel-sku1.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-fennel-sku6.dtb
+@@ -21,6 +23,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-fennel14.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-juniper-sku16.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-kappa.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-kenzo.dtb
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-stern.dtb
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-stern-rev3.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-willow-sku0.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-willow-sku1.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kakadu.dtb
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cerise-rev3.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cerise-rev3.dts
+new file mode 100644
+index 0000000000000..2776d93561c96
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cerise-rev3.dts
+@@ -0,0 +1,24 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright 2021 Google LLC
++ */
++
++/dts-v1/;
++#include "mt8183-kukui-jacuzzi-cerise.dtsi"
++
++/ {
++	model = "Google cerise board";
++	compatible = "google,cerise-rev3-sku0", "google,cerise", "mediatek,mt8183";
++};
++
++&mt6358codec {
++	mediatek,dmic-mode = <1>; /* one-wire */
++};
++
++&touchscreen {
++	status = "disabled";
++};
++
++&qca_wifi {
++	qcom,ath10k-calibration-variant = "GO_CERISE";
++};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cerise.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cerise.dts
+new file mode 100644
+index 0000000000000..418b5024d1a7c
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cerise.dts
+@@ -0,0 +1,24 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright 2021 Google LLC
++ */
++
++/dts-v1/;
++#include "mt8183-kukui-jacuzzi-cerise.dtsi"
++
++/ {
++	model = "Google cerise board";
++	compatible = "google,cerise-sku0", "google,cerise", "mediatek,mt8183";
++};
++
++&mt6358codec {
++	mediatek,dmic-mode = <1>; /* one-wire */
++};
++
++&touchscreen {
++	status = "disabled";
++};
++
++&qca_wifi {
++	qcom,ath10k-calibration-variant = "GO_CERISE";
++};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cerise.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cerise.dtsi
+new file mode 100644
+index 0000000000000..ec1561ac395ba
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cerise.dtsi
+@@ -0,0 +1,13 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright 2021 Google LLC
++ */
++
++/dts-v1/;
++#include "mt8183-kukui-jacuzzi.dtsi"
++
++&mmc1_pins_uhs {
++	pins_clk {
++		drive-strength = <MTK_DRIVE_6mA>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-stern-rev3.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-stern-rev3.dts
+new file mode 100644
+index 0000000000000..05303c4ed7511
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-stern-rev3.dts
+@@ -0,0 +1,34 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright 2021 Google LLC
++ */
++
++/dts-v1/;
++#include "mt8183-kukui-jacuzzi-cerise.dtsi"
++
++/ {
++	model = "Google stern board";
++	compatible = "google,cerise-rev3-sku1", "google,cerise", "mediatek,mt8183";
++};
++
++&mt6358codec {
++	mediatek,dmic-mode = <0>; /* two-wire */
++};
++
++&touchscreen {
++	status = "okay";
++
++	compatible = "hid-over-i2c";
++	reg = <0x10>;
++	interrupt-parent = <&pio>;
++	interrupts = <155 IRQ_TYPE_LEVEL_LOW>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&touchscreen_pins>;
++
++	post-power-on-delay-ms = <10>;
++	hid-descr-addr = <0x0001>;
++};
++
++&qca_wifi {
++	qcom,ath10k-calibration-variant = "GO_STERN";
++};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-stern.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-stern.dts
+new file mode 100644
+index 0000000000000..5be767bc873b8
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-stern.dts
+@@ -0,0 +1,34 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright 2021 Google LLC
++ */
++
++/dts-v1/;
++#include "mt8183-kukui-jacuzzi-cerise.dtsi"
++
++/ {
++	model = "Google stern board";
++	compatible = "google,cerise-sku1", "google,cerise", "mediatek,mt8183";
++};
++
++&mt6358codec {
++	mediatek,dmic-mode = <0>; /* two-wire */
++};
++
++&touchscreen {
++	status = "okay";
++
++	compatible = "hid-over-i2c";
++	reg = <0x10>;
++	interrupt-parent = <&pio>;
++	interrupts = <155 IRQ_TYPE_LEVEL_LOW>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&touchscreen_pins>;
++
++	post-power-on-delay-ms = <10>;
++	hid-descr-addr = <0x0001>;
++};
++
++&qca_wifi {
++	qcom,ath10k-calibration-variant = "GO_STERN";
++};
+-- 
+2.32.0.rc1.229.g3e70b5a671-goog
 
