@@ -2,78 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EE6939C18D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 22:45:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E240D39C195
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 22:49:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230214AbhFDUrg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 16:47:36 -0400
-Received: from mail-oo1-f43.google.com ([209.85.161.43]:38489 "EHLO
-        mail-oo1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229854AbhFDUrf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 16:47:35 -0400
-Received: by mail-oo1-f43.google.com with SMTP id o66-20020a4a44450000b029020d44dea886so2545038ooa.5;
-        Fri, 04 Jun 2021 13:45:39 -0700 (PDT)
+        id S231214AbhFDUus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 16:50:48 -0400
+Received: from mail-oo1-f46.google.com ([209.85.161.46]:39816 "EHLO
+        mail-oo1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229906AbhFDUus (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 16:50:48 -0400
+Received: by mail-oo1-f46.google.com with SMTP id 67-20020a4a01460000b0290245b81f6261so2540164oor.6;
+        Fri, 04 Jun 2021 13:49:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=J9wbO4iepQS7fHLsPG9Sl+dEG0o3lIQGorDKRuT1O+A=;
-        b=AK+ESFzF28FQw1uxdUzyz01mrlbjA4fTaYINfeRizcVVD5M9jGHpobfmp2Uhm4C189
-         qy+XdPeIVJqnP6VdhmxCkkVz7+sTBLgORMtNl1ie4JNGNQWclfR0PWd42798cpSVjb9b
-         V3NBrRA/QIWueEXZH+thyVD/Ejp2v0/tTYDNfOP6DXF/h+ie01C1uAgwRtDPxLqPXeGk
-         XQw6A7U+ukfF7z5fXxqjI0V/I/15Nc3ScgLekpzwpyikE0gx455Si0ZnnJoadHydYWIe
-         zQdPIhly93jfjE2FyEFIVJnzIt57et7JAxpu4MEG7RWVLyzgw273Ht5WKCLrl62Cmi4h
-         7u2A==
-X-Gm-Message-State: AOAM530o8jQLeQIi0/591e3Ytgc4d+R6qpCfHB+mMQ9nXjW+z+LwN4Z0
-        aLQgiO3Y2+7dG0+Ni7ApSw==
-X-Google-Smtp-Source: ABdhPJynR4v6IWpcD8BCd5FuJd4Zwv4puzVbEb52RaGPB7CaRl9pN48d8jqREDRRIQChZUZN/E8DJw==
-X-Received: by 2002:a4a:94ef:: with SMTP id l44mr5043933ooi.84.1622839539471;
-        Fri, 04 Jun 2021 13:45:39 -0700 (PDT)
+        bh=inQ8sGC2NnMUBhvlMb91EK9RNezu3zjD1rcyMjgrMfs=;
+        b=WkHZFlqZ2X56npyI3hFSOH7GkVzrXzgXV5fj4R9gckkSveZVp9hZjhRVOzgKR5JIro
+         bs177zfiOcXzRIbdDaYJWKecTkIEQ0xtkArrlUACWwdznJu/58Jki2BwPlEW7+B624qx
+         WhUWgxhFBD3LJz8qmBDrdIWZx/HIERXJv+i0jIbZmKfT8M28hMLyPPny9wWZhmFVQyx0
+         Q9Bz2hVOJoYGHOUIOn/nrvood/d027J/h2SGjJ+R6EH+FyeVjcgo+/YbOAFX+AKtYeVl
+         aOsb9srvZS0GRz8mR3Z8qEcu9kxJgcHOubwM+dfUGMSygueBPcYaHWLaPetMeLwkQ/F3
+         8+mQ==
+X-Gm-Message-State: AOAM5317b8cpL0xEskWqR8Z60h6Ag6JmXA5c+4pLR5i2O7Efq9Lcf+uu
+        qli3+Tyagx4+3bNkeGNdiw==
+X-Google-Smtp-Source: ABdhPJwmNx3aEeXnxqvNge056ldw9HcSTNO856AbtLXPdb1q59H2fkElHBNbNWz/GlnUtgJWJpmqRQ==
+X-Received: by 2002:a4a:ac04:: with SMTP id p4mr5094271oon.70.1622839741112;
+        Fri, 04 Jun 2021 13:49:01 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 21sm79912otd.21.2021.06.04.13.45.38
+        by smtp.gmail.com with ESMTPSA id i9sm667872oog.17.2021.06.04.13.48.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Jun 2021 13:45:38 -0700 (PDT)
-Received: (nullmailer pid 3884907 invoked by uid 1000);
-        Fri, 04 Jun 2021 20:45:37 -0000
-Date:   Fri, 4 Jun 2021 15:45:37 -0500
+        Fri, 04 Jun 2021 13:49:00 -0700 (PDT)
+Received: (nullmailer pid 3890117 invoked by uid 1000);
+        Fri, 04 Jun 2021 20:48:59 -0000
+Date:   Fri, 4 Jun 2021 15:48:59 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Alex Bee <knaerzche@gmail.com>
-Cc:     Ezequiel Garcia <ezequiel@collabora.com>,
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-rockchip@lists.infradead.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH v2 03/12] dt-bindings: media: rockchip-vdec: add RK3228
- compatible
-Message-ID: <20210604204537.GA3884845@robh.at.kernel.org>
-References: <20210525152225.154302-1-knaerzche@gmail.com>
- <20210527154455.358869-1-knaerzche@gmail.com>
- <20210527154455.358869-4-knaerzche@gmail.com>
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Dario Binacchi <dariobin@libero.it>
+Subject: Re: [PATCH] dt-bindings: serial: Move omap-serial.txt to YAML schema
+Message-ID: <20210604204859.GA3885095@robh.at.kernel.org>
+References: <20210527165636.939-1-vigneshr@ti.com>
+ <3760d1e6-2121-323b-d962-60e8291d0bb7@ti.com>
+ <YLCWS/+TwSs8HhRG@atomide.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210527154455.358869-4-knaerzche@gmail.com>
+In-Reply-To: <YLCWS/+TwSs8HhRG@atomide.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 27 May 2021 17:44:46 +0200, Alex Bee wrote:
-> Document the RK3228 compatible for rockchip-vdec.
-> Also add the optional assigned-clocks and assigned-clock-rates
-> properties.
+On Fri, May 28, 2021 at 10:05:47AM +0300, Tony Lindgren wrote:
+> * Grygorii Strashko <grygorii.strashko@ti.com> [210527 17:49]:
+> > 
+> > 
+> > On 27/05/2021 19:56, Vignesh Raghavendra wrote:
+> > > Convert serial-omap.txt to YAML schema for better checks and documentation.
+> > > 
+> > > Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> > > ---
+> > >   .../bindings/serial/omap_serial.txt           |  40 ------
+> > >   .../bindings/serial/ti,omap4-uart.yaml        | 116 ++++++++++++++++++
+> > >   2 files changed, 116 insertions(+), 40 deletions(-)
+> > >   delete mode 100644 Documentation/devicetree/bindings/serial/omap_serial.txt
+> > >   create mode 100644 Documentation/devicetree/bindings/serial/ti,omap4-uart.yaml
+> > 
+> > Why omap4? Seems ti,omap-uart.yaml is more suitable.
 > 
-> Signed-off-by: Alex Bee <knaerzche@gmail.com>
-> ---
-> 
->  Changes in v2:
->  - fix indentation
-> 
->  .../devicetree/bindings/media/rockchip,vdec.yaml       | 10 +++++++++-
->  1 file changed, 9 insertions(+), 1 deletion(-)
-> 
+> Additionally omap-serial should be deprecated in favor of 8250_omap and
+> omap-serial not used at all in general.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+That's the driver, I assume the binding works with either?
