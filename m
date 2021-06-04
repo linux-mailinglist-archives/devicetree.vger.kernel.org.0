@@ -2,196 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7777B39BD7C
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 18:44:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E10539BD8E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 18:47:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230142AbhFDQqk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 12:46:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49400 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229850AbhFDQqk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 12:46:40 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BCD0C061766
-        for <devicetree@vger.kernel.org>; Fri,  4 Jun 2021 09:44:54 -0700 (PDT)
-Received: from localhost.localdomain (unknown [IPv6:2a01:e0a:4cb:a870:389:b21e:a7e4:8cad])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: benjamin.gaignard)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 706D31F43C68;
-        Fri,  4 Jun 2021 17:44:52 +0100 (BST)
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-To:     will@kernel.org, robh+dt@kernel.org, heiko@sntech.de,
-        xxm@rock-chips.com, robin.murphy@arm.com, joro@8bytes.org
-Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Subject: [PATCH v8 4/4] iommu: rockchip: Add support for iommu v2
-Date:   Fri,  4 Jun 2021 18:44:41 +0200
-Message-Id: <20210604164441.798362-5-benjamin.gaignard@collabora.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210604164441.798362-1-benjamin.gaignard@collabora.com>
-References: <20210604164441.798362-1-benjamin.gaignard@collabora.com>
+        id S229850AbhFDQth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 12:49:37 -0400
+Received: from mail-pj1-f54.google.com ([209.85.216.54]:35646 "EHLO
+        mail-pj1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229791AbhFDQth (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 12:49:37 -0400
+Received: by mail-pj1-f54.google.com with SMTP id fy24-20020a17090b0218b029016c5a59021fso1241024pjb.0;
+        Fri, 04 Jun 2021 09:47:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=zVtGdk0rjbG9zPS1H0OAGsOMKM79c2DLp8XtkFgZJJg=;
+        b=NmgnYEKuJGca57vXvjrxkyGWDKyxWvR4N9hm8Dt+ruEie8ENfCocAcLKJR34+o63sA
+         YkcJzVbLPqxMh4i3DNWWd9Oc6a0E3NX587twmrvGXhplqBHa/KX7vrKxlLYWgkl5olgS
+         WVJ6OJsiX30c4fUuzoYzJ8zJOhsjhGdezPBkvouPZWVxLb25J1cKodinqdGz+F+wA4Av
+         aWFy4fQ2NP8YkmLWrCEH5ipi/u6Nh+ND+H4YMcEWFqyzkVi9A5Zy5U9Z+ED3mGAFMrs7
+         WWxVlMajQ0PLPzZcBFCNxCovgTsTSsPUh1uqJNjB3hdQDlpo/wPBXo9B2K7ohaIKivWA
+         vjTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=zVtGdk0rjbG9zPS1H0OAGsOMKM79c2DLp8XtkFgZJJg=;
+        b=PJqqi6G/NhZ6knq+tpD/2v+82cseeSgh1pk9rpNJ/JLB//fuTNGCUZfjX/p9pZ3KcS
+         UVUd5HSpTM6kS67PXgB+P7zPFruS/DVIgRU3vhjxSg8YsVB52zHGMkx0NaaoJO+UzapE
+         PhY1Tj6rDpgTHPgSt2QLp7q1pJ3d5PIR1mAfFzTVhGJzgyUIwqofmQhsB5ryjk5BYnOl
+         Vqtn9pzyHQjXvaj6N4w6H4k8rr2K9b0xuZ6ZQ85uzA7cCW3ANFpqSKanfQqdTfrf0LIH
+         74Yug1E6ZQGXBmmG3oQiZ5tqY2qJ8iRfaoUcnnREZGn7zWhWSpLmFf6B1Uk3pDK7DwWM
+         Sy7w==
+X-Gm-Message-State: AOAM5339akikGiP4nAs+VNbxs9e3MEvdraXYePoT1v2xfK6Bb9QaKEI0
+        rVjZvky2KCw1WsONIu2o7eg=
+X-Google-Smtp-Source: ABdhPJwM962tGF6UtjnRbh5Fcr29d0zSiopF749THBT1YU/JKjGTWcyORTFSoyNQ4/lZljoCHtKvIw==
+X-Received: by 2002:a17:90a:7bce:: with SMTP id d14mr5924645pjl.38.1622825197025;
+        Fri, 04 Jun 2021 09:46:37 -0700 (PDT)
+Received: from [192.168.1.67] (99-44-17-11.lightspeed.irvnca.sbcglobal.net. [99.44.17.11])
+        by smtp.gmail.com with ESMTPSA id w2sm5107613pjq.5.2021.06.04.09.46.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Jun 2021 09:46:36 -0700 (PDT)
+Subject: Re: [PATCH v2 net-next 3/4] net: dsa: sja1105: determine PHY/MAC role
+ from PHY interface type
+To:     Vladimir Oltean <olteanv@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King - ARM Linux admin <linux@armlinux.org.uk>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+References: <20210604140151.2885611-1-olteanv@gmail.com>
+ <20210604140151.2885611-4-olteanv@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <cc631491-d3bf-ae89-5d64-a6e347ab9a05@gmail.com>
+Date:   Fri, 4 Jun 2021 09:46:34 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.10.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210604140151.2885611-4-olteanv@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This second version of the hardware block has a different bits
-mapping for page table entries.
-Add the ops matching to this new mapping.
-Define a new compatible to distinguish it from the first version.
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
----
-version 8:
- - Fix compilation issue
 
-version 7:
- - Set dma_bit_mask field.
- - Add rk_dma_addr_dte_v2 function
+On 6/4/2021 7:01 AM, Vladimir Oltean wrote:
+> From: Vladimir Oltean <vladimir.oltean@nxp.com>
+> 
+> Now that both RevMII as well as RevRMII exist, we can deprecate the
+> sja1105,role-mac and sja1105,role-phy properties and simply let the user
+> select that a port operates in MII PHY role by using
+> 	phy-mode = "rev-mii";
+> or in RMII PHY role by using
+> 	phy-mode = "rev-rmii";
+> 
+> There are no fixed-link MII or RMII properties in mainline device trees,
+> and the setup itself is fairly uncommon, so there shouldn't be risks of
+> breaking compatibility.
+> 
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-version 5:
- - Use internal ops to support v2 hardware block
- - Use GENMASK macro.
- - Keep rk_dte_pt_address() and rk_dte_pt_address_v2() separated
-   because I believe that is more readable like this.
- - Do not duplicate code.
-
- drivers/iommu/rockchip-iommu.c | 85 ++++++++++++++++++++++++++++++++++
- 1 file changed, 85 insertions(+)
-
-diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iommu.c
-index bd2cf7f08c71..16dd2bf4a859 100644
---- a/drivers/iommu/rockchip-iommu.c
-+++ b/drivers/iommu/rockchip-iommu.c
-@@ -189,6 +189,33 @@ static inline phys_addr_t rk_dte_pt_address(u32 dte)
- 	return (phys_addr_t)dte & RK_DTE_PT_ADDRESS_MASK;
- }
- 
-+/*
-+ * In v2:
-+ * 31:12 - PT address bit 31:0
-+ * 11: 8 - PT address bit 35:32
-+ *  7: 4 - PT address bit 39:36
-+ *  3: 1 - Reserved
-+ *     0 - 1 if PT @ PT address is valid
-+ */
-+#define RK_DTE_PT_ADDRESS_MASK_V2 GENMASK_ULL(31, 4)
-+#define DTE_HI_MASK1	GENMASK(11, 8)
-+#define DTE_HI_MASK2	GENMASK(7, 4)
-+#define DTE_HI_SHIFT1	24 /* shift bit 8 to bit 32 */
-+#define DTE_HI_SHIFT2	32 /* shift bit 4 to bit 36 */
-+#define PAGE_DESC_HI_MASK1	GENMASK_ULL(39, 36)
-+#define PAGE_DESC_HI_MASK2	GENMASK_ULL(35, 32)
-+
-+static inline phys_addr_t rk_dte_pt_address_v2(u32 dte)
-+{
-+	u64 dte_v2 = dte;
-+
-+	dte_v2 = ((dte_v2 & DTE_HI_MASK2) << DTE_HI_SHIFT2) |
-+		 ((dte_v2 & DTE_HI_MASK1) << DTE_HI_SHIFT1) |
-+		 (dte_v2 & RK_DTE_PT_ADDRESS_MASK);
-+
-+	return (phys_addr_t)dte_v2;
-+}
-+
- static inline bool rk_dte_is_pt_valid(u32 dte)
- {
- 	return dte & RK_DTE_PT_VALID;
-@@ -199,6 +226,15 @@ static inline u32 rk_mk_dte(dma_addr_t pt_dma)
- 	return (pt_dma & RK_DTE_PT_ADDRESS_MASK) | RK_DTE_PT_VALID;
- }
- 
-+static inline u32 rk_mk_dte_v2(dma_addr_t pt_dma)
-+{
-+	pt_dma = (pt_dma & RK_DTE_PT_ADDRESS_MASK) |
-+		 ((pt_dma & PAGE_DESC_HI_MASK1) >> DTE_HI_SHIFT1) |
-+		 (pt_dma & PAGE_DESC_HI_MASK2) >> DTE_HI_SHIFT2;
-+
-+	return (pt_dma & RK_DTE_PT_ADDRESS_MASK_V2) | RK_DTE_PT_VALID;
-+}
-+
- /*
-  * Each PTE has a Page address, some flags and a valid bit:
-  * +---------------------+---+-------+-+
-@@ -240,6 +276,29 @@ static u32 rk_mk_pte(phys_addr_t page, int prot)
- 	return page | flags | RK_PTE_PAGE_VALID;
- }
- 
-+/*
-+ * In v2:
-+ * 31:12 - Page address bit 31:0
-+ *  11:9 - Page address bit 34:32
-+ *   8:4 - Page address bit 39:35
-+ *     3 - Security
-+ *     2 - Readable
-+ *     1 - Writable
-+ *     0 - 1 if Page @ Page address is valid
-+ */
-+#define RK_PTE_PAGE_READABLE_V2      BIT(2)
-+#define RK_PTE_PAGE_WRITABLE_V2      BIT(1)
-+
-+static u32 rk_mk_pte_v2(phys_addr_t page, int prot)
-+{
-+	u32 flags = 0;
-+
-+	flags |= (prot & IOMMU_READ) ? RK_PTE_PAGE_READABLE_V2 : 0;
-+	flags |= (prot & IOMMU_WRITE) ? RK_PTE_PAGE_WRITABLE_V2 : 0;
-+
-+	return rk_mk_dte_v2(page) | flags;
-+}
-+
- static u32 rk_mk_pte_invalid(u32 pte)
- {
- 	return pte & ~RK_PTE_PAGE_VALID;
-@@ -485,6 +544,21 @@ static inline u32 rk_dma_addr_dte(dma_addr_t dt_dma)
- 	return dt_dma;
- }
- 
-+#define DT_HI_MASK GENMASK_ULL(39, 32)
-+#define DT_SHIFT   28
-+
-+static inline phys_addr_t rk_dte_addr_phys_v2(u32 addr)
-+{
-+	return (phys_addr_t)(addr & RK_DTE_PT_ADDRESS_MASK) |
-+	       ((addr & DT_HI_MASK) << DT_SHIFT);
-+}
-+
-+static inline u32 rk_dma_addr_dte_v2(dma_addr_t dt_dma)
-+{
-+	return (dt_dma & RK_DTE_PT_ADDRESS_MASK) |
-+	       ((dt_dma & DT_HI_MASK) >> DT_SHIFT);
-+}
-+
- static void log_iova(struct rk_iommu *iommu, int index, dma_addr_t iova)
- {
- 	void __iomem *base = iommu->bases[index];
-@@ -1316,11 +1390,22 @@ static struct rk_iommu_ops iommu_data_ops_v1 = {
- 	.dma_bit_mask = DMA_BIT_MASK(32),
- };
- 
-+static struct rk_iommu_ops iommu_data_ops_v2 = {
-+	.pt_address = &rk_dte_pt_address_v2,
-+	.mk_dtentries = &rk_mk_dte_v2,
-+	.mk_ptentries = &rk_mk_pte_v2,
-+	.dte_addr_phys = &rk_dte_addr_phys_v2,
-+	.dma_addr_dte = &rk_dma_addr_dte_v2,
-+	.dma_bit_mask = DMA_BIT_MASK(40),
-+};
- 
- static const struct of_device_id rk_iommu_dt_ids[] = {
- 	{	.compatible = "rockchip,iommu",
- 		.data = &iommu_data_ops_v1,
- 	},
-+	{	.compatible = "rockchip,rk3568-iommu",
-+		.data = &iommu_data_ops_v2,
-+	},
- 	{ /* sentinel */ }
- };
- 
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
 -- 
-2.25.1
-
+Florian
