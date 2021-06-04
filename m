@@ -2,79 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A811E39C2F7
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 23:51:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33B8439C2FD
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 23:52:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230175AbhFDVxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 17:53:03 -0400
-Received: from mail-oo1-f54.google.com ([209.85.161.54]:33385 "EHLO
-        mail-oo1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231623AbhFDVw5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 17:52:57 -0400
-Received: by mail-oo1-f54.google.com with SMTP id j17-20020a4ad6d10000b02901fef5280522so2599226oot.0;
-        Fri, 04 Jun 2021 14:50:57 -0700 (PDT)
+        id S229668AbhFDVyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 17:54:32 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:34339 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230041AbhFDVy3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 17:54:29 -0400
+Received: by mail-ot1-f41.google.com with SMTP id v27-20020a056830091bb02903cd67d40070so7408408ott.1
+        for <devicetree@vger.kernel.org>; Fri, 04 Jun 2021 14:52:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc:content-transfer-encoding;
+        bh=dyM/pGSjOHd50Vg44ExyUz7raaakuo5RxeNcX2qCcbo=;
+        b=Xp2syEfwS8n5MownjsGHoZZPEL0o7Dt/L3jsFzKaiqFI6dfI0YUJaNMM0JyW10GRbA
+         NsxoUIr9alS+PHpSJnqfeth3/b7nJvJC3/0ctEMe5WWntY8qblH7oewDYynk30P3IPCD
+         fPOqVBNxF9vNW9W6r6vcqXtod1x3Dl1gEMMK0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=RablGP30AWym6iX311SHiz1tVC3w/+g5lgfSDAXTcog=;
-        b=qNfjNkXcHzG8u9HSavAcOpi8O3AHbFmEUmiGNbCZm4JZSW8ukDSnHSb5KeN8W58QFH
-         YJ8j3uI19/oip3xOlJIoDqDyYR9QHXYWgrcKwmwYiI3Q7fRmxhSf9RdAgGxhqIBVlBmd
-         RPUWeblIvRA903i0hgrGqDCfkcVgGjNUY3YsntRVJHk1+44QrVO3du+fFMukDAwWy6Z/
-         b8jiiNzyTIOxQNDH0+onN/MVGNVscvQzG43QndnWNgvVhTbnyG++mFAgOoNYgr9zImmg
-         1YLB1aCO8gGvH6UP9f3PkgjgM/DE+jfKUTpxPSdsOB9M/JuwcXm1/pis6vccoiKcRysL
-         9CLw==
-X-Gm-Message-State: AOAM530DdGttVJYg0TLwzo2dX5WQGid1Wl4Y04UHJrF5DvPDT416bI0z
-        1IXgpn60y2o4t14OguV2dg==
-X-Google-Smtp-Source: ABdhPJy+5KLpJ+PqBF8N3RxF+W0QEpeQ2BkwoGqc/1cJSpZt/cxNXfzm9ZuR3bsuLIH7dRU4dac7CQ==
-X-Received: by 2002:a4a:55c1:: with SMTP id e184mr5319694oob.74.1622843457146;
-        Fri, 04 Jun 2021 14:50:57 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g24sm727252otp.17.2021.06.04.14.50.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Jun 2021 14:50:56 -0700 (PDT)
-Received: (nullmailer pid 3987100 invoked by uid 1000);
-        Fri, 04 Jun 2021 21:50:55 -0000
-Date:   Fri, 4 Jun 2021 16:50:55 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Wolfram Sang <wsa@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Darren Hart <dvhart@infradead.org>,
-        Andy Shevchenko <andy@infradead.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        "H . Peter Anvin" <hpa@zytor.com>, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, x86@kernel.org,
-        linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org,
-        platform-driver-x86@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: i2c: ce4100: Replace "ti,pcf8575" by
- "nxp,pcf8575"
-Message-ID: <20210604215055.GA3985497@robh.at.kernel.org>
-References: <cover.1622560799.git.geert+renesas@glider.be>
- <9b560b7f5ded90430c989a211f2aee009aefc595.1622560799.git.geert+renesas@glider.be>
- <YLqMsCPSCvisGyGF@kunai>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc:content-transfer-encoding;
+        bh=dyM/pGSjOHd50Vg44ExyUz7raaakuo5RxeNcX2qCcbo=;
+        b=e5B3E7w5s45d8tRBVSzCDkJNYP/EK5tJlptBuAMEyxO/RtxulfGt5rMTOMaEfyskSt
+         59tyzbwq/LEC1mZlI3DPqVkqWJpGytHjtIlDBLRtA+zgXsUMx5ipWEtVmTwBNLEEofc6
+         YBOORo28Jik83tFGt0Rj+rrl5iDsxMmDC42prdmYJZptVnJYaSRud6A/5V07U3pZJapH
+         /VNdNNDee2Jp/esm0l052aQTwny2sCTdNYcwxAPQgDLvFmYiz9GhZxQmhPqxQTjmOHzO
+         0enqu6X79mN1jzqbjvcefgwd0vTq/dekoSgdOi01oC+/Xdzh6ZAyeV2LOixpVIVhi3NQ
+         pqEA==
+X-Gm-Message-State: AOAM5319kTS93yPnPliLrxVtbhIsj8IkIsMczvovDemBdxon7/g5FLYi
+        EexOr5RWMvFPch+MetbAnLVCCoe8BygT1PAo1teamg==
+X-Google-Smtp-Source: ABdhPJzlROhW5qRUQJy+duE/Z3VHQar2kQt9G1VpCb+njSOjmrPV/nmcHDyQbIGDhGpVqYm3LL2bxveZ6eGMFMa1JW4=
+X-Received: by 2002:a9d:18e:: with SMTP id e14mr5304003ote.34.1622843491053;
+ Fri, 04 Jun 2021 14:51:31 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 4 Jun 2021 21:51:30 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YLqMsCPSCvisGyGF@kunai>
+In-Reply-To: <20210603081215.v2.1.Id4510e9e4baaa3f6c9fdd5cdf4d8606e63c262e3@changeid>
+References: <20210603081215.v2.1.Id4510e9e4baaa3f6c9fdd5cdf4d8606e63c262e3@changeid>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Fri, 4 Jun 2021 21:51:30 +0000
+Message-ID: <CAE-0n50uU=zuU0KLY2XUvB2cH_MUvXo231wj4T6JdQDbda=TnA@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: pm6150: Add thermal zone for PMIC
+ on-die temperature
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 04, 2021 at 10:27:28PM +0200, Wolfram Sang wrote:
-> On Tue, Jun 01, 2021 at 05:25:44PM +0200, Geert Uytterhoeven wrote:
-> > The TI part is equivalent to the NXP part, and its compatible value is
-> > not documented in the DT bindings.
-> > 
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> 
-> I'd think I pick this individually? Or shall it all go via some tree?
+Quoting Matthias Kaehlcke (2021-06-03 08:12:34)
+> Add a thermal zone for the pm6150 on-die temperature. The system should
+> try to shut down orderly when the temperature reaches the critical trip
+> point at 115=C2=B0C, otherwise the PMIC will perform a HW power off at 14=
+5=C2=B0C.
+>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
 
-Yes, you can take it.
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
