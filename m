@@ -2,77 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CEF039C143
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 22:24:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A6B139C14E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 22:27:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230022AbhFDUZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 16:25:53 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:40924 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230177AbhFDUZx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 16:25:53 -0400
-Received: by mail-ot1-f51.google.com with SMTP id c31-20020a056830349fb02903a5bfa6138bso10277966otu.7;
-        Fri, 04 Jun 2021 13:24:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=G0QHStQ4MeKyA5yTSpuMKVPFHqDwVDi3XzL9FYi2HRo=;
-        b=Y2S1mU4vAGDNwxsmI2smYnXV9YXBHCF1WkNs1eVV8gu5sIjaUHyFqjOP9OVd3cC+tQ
-         jFZOZnufICLnxBIcleZYO94VXgqBrD5h1hlqID4ky84IN1LUEBvQF5ttXveLtX3ByPq4
-         s/wnoE/+H+UmFiK8B3tnprrPDYpDDf1V0wvaD2noyUIz/2Ru4o/vF/IFmPrk9cS5oC8E
-         yJFm4pUtM/sqqlXO3TH3MIASGWFa8HhbO49xGWnRSyI2MH6LZpTR9rAz1LLnGgbokpGH
-         hRtOEpVa7Dm1DTDyc4Zv+Cs96B+vKd+3GZrUxd3NideFkCI5spVY4S87oTIQDLJBvAb0
-         rHGQ==
-X-Gm-Message-State: AOAM531//25jHrBSls6sAyPodVXHS6r4MhrkPfzpVRDpG1TNlwD+FabY
-        F8LmiE5hUT7mWHsdfyeiMQ==
-X-Google-Smtp-Source: ABdhPJyDRq8Forpnhpj29V25n4Eu8aizEobJWojsmd+maF+OG8QNBlFlx8255tS9a4i+ZtmpghHtEg==
-X-Received: by 2002:a9d:6016:: with SMTP id h22mr4944272otj.158.1622838246117;
-        Fri, 04 Jun 2021 13:24:06 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t26sm705154otc.23.2021.06.04.13.24.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Jun 2021 13:24:05 -0700 (PDT)
-Received: (nullmailer pid 3852121 invoked by uid 1000);
-        Fri, 04 Jun 2021 20:24:04 -0000
-Date:   Fri, 4 Jun 2021 15:24:04 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Alex Bee <knaerzche@gmail.com>
-Cc:     linux-rockchip@lists.infradead.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, linux-media@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ezequiel Garcia <ezequiel@collabora.com>
-Subject: Re: [PATCH v2 01/12] dt-bindings: mfd: syscon: add Rockchip
- RK3036/RK3228 qos compatibles
-Message-ID: <20210604202404.GA3852087@robh.at.kernel.org>
-References: <20210525152225.154302-1-knaerzche@gmail.com>
- <20210527154455.358869-1-knaerzche@gmail.com>
- <20210527154455.358869-2-knaerzche@gmail.com>
+        id S230022AbhFDU3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 16:29:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33920 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229854AbhFDU3S (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Jun 2021 16:29:18 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C3E97613B3;
+        Fri,  4 Jun 2021 20:27:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1622838451;
+        bh=tp7EhaUIA7dhDqX73gUiMeFFSwmwo5qsAN0c2GLR7/8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=J495APYqeMvGak7VjrnfXTx+O0ofgIzrHbyPJ+K5eDQGpv0IfD586Ub0mUgRKUdZm
+         QcgNb+5o90ApgmlCFc1Q7KGqa6lwLRlbadNabGKYC2gYmf5PA/ypxf5duJ6TsqhmTS
+         wO+lIPQ+eZ/sgsIVJgtZZObY2oHNQAf3Y69zERxDPzneJ2qoq2/ztUChMXbJ0Lhlkr
+         o9jjNcfjrXzh64tYGYr8m6uy88tLY4YQFupsFZU0rS2b6eBlWyeTGTQzZwp0/ZyOrm
+         K0anXq+trFoxq3HvQcW7xm+ZZdMmvKCrEOWwq50cv6k5R89yXNKRQtleBo/o5mL0gN
+         G2S30JmqCG/lg==
+Date:   Fri, 4 Jun 2021 22:27:28 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Darren Hart <dvhart@infradead.org>,
+        Andy Shevchenko <andy@infradead.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        "H . Peter Anvin" <hpa@zytor.com>, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, x86@kernel.org,
+        linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org,
+        platform-driver-x86@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: i2c: ce4100: Replace "ti,pcf8575" by
+ "nxp,pcf8575"
+Message-ID: <YLqMsCPSCvisGyGF@kunai>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Darren Hart <dvhart@infradead.org>,
+        Andy Shevchenko <andy@infradead.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        "H . Peter Anvin" <hpa@zytor.com>, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, x86@kernel.org,
+        linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org,
+        platform-driver-x86@vger.kernel.org
+References: <cover.1622560799.git.geert+renesas@glider.be>
+ <9b560b7f5ded90430c989a211f2aee009aefc595.1622560799.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="a1L18+0qYibZ0Ie5"
 Content-Disposition: inline
-In-Reply-To: <20210527154455.358869-2-knaerzche@gmail.com>
+In-Reply-To: <9b560b7f5ded90430c989a211f2aee009aefc595.1622560799.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 27 May 2021 17:44:44 +0200, Alex Bee wrote:
-> Document Rockchip RK3036/RK3228 qos compatibles
-> 
-> Signed-off-by: Alex Bee <knaerzche@gmail.com>
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> ---
-> 
->  Changes in v2:
->  - collect Reviewed tag
-> 
->  Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+--a1L18+0qYibZ0Ie5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Jun 01, 2021 at 05:25:44PM +0200, Geert Uytterhoeven wrote:
+> The TI part is equivalent to the NXP part, and its compatible value is
+> not documented in the DT bindings.
+>=20
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+I'd think I pick this individually? Or shall it all go via some tree?
+
+
+--a1L18+0qYibZ0Ie5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmC6jLAACgkQFA3kzBSg
+KbZdLg//fOeXpGmmYSRKOE1z3+qSZbfwj/LBOY9Attl8FsAI1y38e8bXXHP3kaEs
+pIaBx0M+gFM3HPb9effIwDAkxPVzuWxTDHq3Ux9EJdbPA4ZIopF5k+7CNQmr93an
+JamaH5NzzCJy/gRDtq1oGMs58RIEkuLw59XmTIhI1ZlZsACf/FlVuU1jn6hBKe6G
+/AYC9+mwqIaZnFhQGCUpf4k2S5fG8yo0cm1h/YHJHlvceIYixH6aR+7DHtgurXqP
+s0hGiAOrGnTTShOL055kg9USVL+84Nhauih9k/E74weXUkiN9tiF7wJU1KVqmGnI
+Jnne2N6Kk5kG7pT2EgeWDKQWH5TUjZbRPziN/k+N4a2aItFN84crBZOFxBlIsS5P
++8g0dVK2tUfzOkAiXI7kV9Z878vNzfrXCH0epsgJ8Eayw1ZDq98qKsi9AdpdGzTw
+BVDPrI3kyG/RYGuAfJ8Jb67aR75v9+7pytQRlhy1NvKJ4dkoeV8E41LI3Yj/Gr17
+I+12ME5xXMQPYJQscRz5L8m0mUgbvEb0sNABUwgiiaenDUtWAPCMMwGNYLkNo17Q
+Hdh/ZTHbNpDKzqUQe2HpAeNEwu8/DCrKJS8n9g8+Nf2Rn3yaUQ3KxbuGdbhDWb3k
+9hIaOgdvuDcp1xqfP7HQz+QqI9064vN9KQGpb/IFFqDmP5XiE/E=
+=a4Z4
+-----END PGP SIGNATURE-----
+
+--a1L18+0qYibZ0Ie5--
