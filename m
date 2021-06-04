@@ -2,87 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99F5039C17A
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 22:41:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A76B39C18A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 22:44:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231441AbhFDUnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 16:43:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40040 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229913AbhFDUm7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Jun 2021 16:42:59 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8AD82613F9;
-        Fri,  4 Jun 2021 20:41:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622839273;
-        bh=0P10WfzGqEW6mL/Dx3LE8Az9NlMnMiyptL8StZnzYJc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Ga8oZxdLMdZ9aYcUelh9NICZG5+oaSdWxIwPscMS0FO093QiPbTY4Qqpld5D5dbth
-         T2vE6u32mPjMA2P0vbgOqF96IB7Q3wFk47uf4OyzGALs4AYYc/hnt2TNO4wvjGGzp2
-         eUb2LdxLUWYYBTJB6+q1scxd5ZZRmikipdGA+cWjDJCPfKAI5+qRNdej4C6DKYbpQY
-         pGSFPt3jJJj9W9qVQlBawwjxI2V6hoBaKJAuwjPghnxHajsQ6qjYEMsh1Yy9jA6fov
-         TKllky5TuQ1UPTyToosjDRYGJ47/JwWqTtb/77cg0RMsGLVjtsPhaKmXOuIQpk9xF2
-         n71YVeXMQnUpA==
-Date:   Fri, 4 Jun 2021 22:41:08 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Peter Rosin <peda@axentia.se>,
-        Maxime Ripard <mripard@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: i2c: i2c-mux: Remove reset-active-low from
- ssd1307fb examples
-Message-ID: <YLqP5GGjrNtCJ2Pq@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Rob Herring <robh+dt@kernel.org>, Peter Rosin <peda@axentia.se>,
-        Maxime Ripard <mripard@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20210528111049.1804800-1-geert@linux-m68k.org>
+        id S231419AbhFDUqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 16:46:42 -0400
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:35398 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229854AbhFDUqm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 16:46:42 -0400
+Received: by mail-oi1-f175.google.com with SMTP id v22so11023237oic.2;
+        Fri, 04 Jun 2021 13:44:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/OM/wB6G0TcYiKxi3lHOYFVJpevT4bpYNZzrcyD4Qfo=;
+        b=mtu5Fdm9C66juE0zIyZ+JULiXsIiDGLteu3ERSlOxNjJNP3FgV/QWeCKwAIlM0to+1
+         3tQHp6XyU0rKhNyLOfrgPRB/HxJkW6kt79r8f0jIkuM6cGKi9PgiEVQRgXAi78BHoEp8
+         u2cpAvEK8pDfsJn4FFFDKBuGuC9b1Zg4niFoewgkEoTd1hbnzuQI8rCf8ug7lZrsjIez
+         xXu6o3vYgX0m+QMbNqsUzeyX5/pV0mAO+pcIBkYeJVUmEQ6y52rZOQCxtwaW2LtDPmpJ
+         KD9p3di78ZPPXvLhiYtb54Zb9XLKphAvzm9kRRJDPplu0OMD3dtONwqCAuOf+IUjMldy
+         S0Bg==
+X-Gm-Message-State: AOAM532YKzGUw8CPMD45bGAW33yQai/yJg1zX/gFTBRRT8orDsqOcUHd
+        3SQEWAfDMLVLZEkUYwCGyQ==
+X-Google-Smtp-Source: ABdhPJx6Vi4fyJQ/2XM1k6LY9+2IiKO8TUuRqcHHUDu8/kg9JqjdV75l1sYPJvvEJMxfbHyrMzshqA==
+X-Received: by 2002:a05:6808:992:: with SMTP id a18mr4087354oic.129.1622839495165;
+        Fri, 04 Jun 2021 13:44:55 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id l20sm647797oop.3.2021.06.04.13.44.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Jun 2021 13:44:54 -0700 (PDT)
+Received: (nullmailer pid 3883662 invoked by uid 1000);
+        Fri, 04 Jun 2021 20:44:52 -0000
+Date:   Fri, 4 Jun 2021 15:44:52 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Alex Bee <knaerzche@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 02/12] dt-bindings: media: rockchip-vpu: add new
+ compatibles
+Message-ID: <20210604204452.GA3883628@robh.at.kernel.org>
+References: <20210525152225.154302-1-knaerzche@gmail.com>
+ <20210527154455.358869-1-knaerzche@gmail.com>
+ <20210527154455.358869-3-knaerzche@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="SH0kaXeTd8eMCD9v"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210528111049.1804800-1-geert@linux-m68k.org>
+In-Reply-To: <20210527154455.358869-3-knaerzche@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 27 May 2021 17:44:45 +0200, Alex Bee wrote:
+> Add compatibles for RK3036, RK3066, RK3188 and RK3228. Also reflect the
+> changes to the additional clocks for RK3066/RK3188.
+> 
+> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+> ---
+> 
+>  Changes in v2:
+>  - fix order
+>  - fix indentation
+> 
+>  .../bindings/media/rockchip-vpu.yaml          | 33 ++++++++++++++-----
+>  1 file changed, 25 insertions(+), 8 deletions(-)
+> 
 
---SH0kaXeTd8eMCD9v
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, May 28, 2021 at 01:10:49PM +0200, Geert Uytterhoeven wrote:
-> The "reset-active-low" property was removed from the ssd1307fb bindings
-> in commit 519b4dba586198ee ("fbdev: ssd1307fb: Remove reset-active-low
-> from the DT binding document") and from the ssd1307fb binding examples
-> in commit 7d7e58d30e046d34 ("dt-bindings: display: ssd1307fb: Remove
-> reset-active-low from examples").
->=20
-> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-
-Applied the first chunk to for-next, thanks!
-
-
---SH0kaXeTd8eMCD9v
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmC6j+QACgkQFA3kzBSg
-KbYEfg//ZaOOj3nTUrNJPfgcOrlmWuVKlhlLp3HAwqhy1mBemv3zQJf9+qXeZFla
-KTq3CSBp27y/skhixjzQz8EVaQJA3mbBuknsbDjF+MnEsepqMjSCICnJoRnqFX6T
-/7CowhvM8PDuQIU1ylpBTdvLr/N7gLCWpNQ5dF6km2OFSQ2UEdK9evH9ahpbQY0c
-158gvHIkqPa7CNY7ihUy63K+4WSWQeEVZYyL6dA8BHtWlU3kWzQgSSyiqu2ItVbl
-O9JtR4DkHztmmzHfS0L6HcjSKLdJg6Pc3JvlPMT2nwhG+69YEuKYcjE8mVoHFais
-j2PBxkPecmKU9X5o9veIvRpyH6yqE89cVn/YsYiknvBZUeF7SqmytGipBzkYa1by
-yrTcR+82Cb/iuUiJyQ+OU9eb3RuLGBc+G7k4rD+zAWDZBo2BKa4J2u0uFNGkxJGS
-1uCWQGTds6Qhy1oZKObpgRZ+Ocqd9uM8kl5Nthe0q1oZ10ZPDotGhk7bCkUKFZhk
-Xgx3Krlry/+s0Mr+4ya2Cswib4iNuX2m45F5MKX6/j33hlCWGdTf+/NE6cvY0aqK
-qaCkuOEEvufbSah72VrnsCCuxp1U4jibmfiyoDTtAuc10NtbQ00eLPBCwsw2M745
-3YyBu/h1SoOSIZkjwKKGBKPfBEsYyv3nI9sd+qrAZ/rx3/vuL/M=
-=inDf
------END PGP SIGNATURE-----
-
---SH0kaXeTd8eMCD9v--
+Reviewed-by: Rob Herring <robh@kernel.org>
