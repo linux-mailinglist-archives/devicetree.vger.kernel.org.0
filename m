@@ -2,115 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D246639B17C
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 06:25:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A1A539B1AF
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 06:55:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229474AbhFDE1W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 00:27:22 -0400
-Received: from mailout-l3b-97.contactoffice.com ([212.3.242.97]:42276 "EHLO
-        mailout-l3b-97.contactoffice.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229452AbhFDE1W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 00:27:22 -0400
-X-Greylist: delayed 382 seconds by postgrey-1.27 at vger.kernel.org; Fri, 04 Jun 2021 00:27:21 EDT
-Received: from ichabod.co-bxl (ichabod.co-bxl [10.2.0.36])
-        by mailout-l3b-97.contactoffice.com (Postfix) with ESMTP id 52793A46;
-        Fri,  4 Jun 2021 06:19:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1622780353;
-        s=20210208-e7xh; d=mailfence.com; i=broake@mailfence.com;
-        h=Date:From:Reply-To:To:Cc:Message-ID:In-Reply-To:References:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding;
-        l=2612; bh=w2nEVGuGdnczyTILlBwY6TwUcHmF3Bc7DpAA05kNbHo=;
-        b=iIqRpOU6RY5cQRiKIWXgf4p1szQsoDAMn0GzrkbtaOwA1eF005MnYbli2c1UMIEO
-        bjCnW/6RkGkGzk+1A65dKuRjI2UB7FdxTCJvoTOLn2CHJwQ2QjeE+Rc53oajfavydnx
-        oaN14H6z8+ojI0whfDK24OTS+NwtRtfRW7c3EtAAIKmFQYljwiGtKeQwjSJ+Us8BuBe
-        fQgHmKbNnMF4oW80qw7pCbQobTN++uS6sG2V9q7/gG/cuxRTooNX/2F5bU0lRmeowZ+
-        DRjDLT8ibdCrQfcnNXAxi5vogD0ZGa+vLMaF8uhP0KBAeQtDaGJdtrjwopw/gStSi9h
-        wRKzUcnU7g==
-Date:   Fri, 4 Jun 2021 06:19:09 +0200 (CEST)
-From:   "B.R. Oake" <broake@mailfence.com>
-Reply-To: "B.R. Oake" <broake@mailfence.com>
-To:     =?utf-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@siol.net>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@googlegroups.com, devicetree@vger.kernel.org
-Message-ID: <206881200.203318.1622780349817@ichabod.co-bxl>
-In-Reply-To: <6612268.HtAl026vyE@jernej-laptop>
-References: <1243888060.510560.1612783497400@ichabod.co-bxl> <20210210150118.ly252i37eykayrcb@gilmour> <1719200956.433094.1613199092092@ichabod.co-bxl> <6612268.HtAl026vyE@jernej-laptop>
-Subject: Re: [PATCH] ARM: dts: sun8i: h3: orangepi-plus: Fix Ethernet PHY
- mode
+        id S229812AbhFDE5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 00:57:34 -0400
+Received: from mout01.posteo.de ([185.67.36.65]:51267 "EHLO mout01.posteo.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229704AbhFDE5e (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Jun 2021 00:57:34 -0400
+Received: from submission (posteo.de [89.146.220.130]) 
+        by mout01.posteo.de (Postfix) with ESMTPS id 474F0240026
+        for <devicetree@vger.kernel.org>; Fri,  4 Jun 2021 06:55:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+        t=1622782547; bh=TTyTROyQXjsSXo74wJBHn6lqKWQ3+EbGHja6XTO7Rds=;
+        h=Date:From:To:Cc:Subject:From;
+        b=b4kfkQdftGPZQAMXH5LvwkFcZ3zhObfnY0zCw1HWa3vz1OjKz0xIDlQZfAUqaYm8n
+         LEzDIeuIPtgW+cna1vw2q7i1wnM3oFCyxkSEA+W10Mt7I3CRYrP+A9ukIObzFVybPW
+         pMClWvFX+BOQV2lPrTodITHK5rXrTxjmGbUTwKcFW1rUQUb1/w0DWPByV2HRJQMX/A
+         2icvC+zVgqIzhPQSq2W2c6YEOu0PV+VnOzM+DGMS+tgOEnXNRHlASnZ7hzPZRlQDME
+         9LASZa1tebUvbv6Ie5EVrYQPsgmQlntWn/Ef8HlLZU61ngXarVx6ERq9Tfp56/pUbZ
+         gKf2dD0fGmqfg==
+Received: from customer (localhost [127.0.0.1])
+        by submission (posteo.de) with ESMTPSA id 4Fx9Sc48Wdz6tm9;
+        Fri,  4 Jun 2021 06:55:44 +0200 (CEST)
+Date:   Fri,  4 Jun 2021 04:55:43 +0000
+From:   Wilken Gottwalt <wilken.gottwalt@posteo.net>
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, <devicetree@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-sunxi@lists.linux.dev>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH] dt-bindings: hwlock: sun6i: Fix various warnings in
+ binding
+Message-ID: <20210604065543.3d71ca53@monster.powergraphx.local>
+In-Reply-To: <20210603144216.10327-1-s-anna@ti.com>
+References: <20210603144216.10327-1-s-anna@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Priority: 3
-X-Mailer: ContactOffice Mail
-X-ContactOffice-Account: com:276068926
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat Feb 13 09:51:17 CET 2021, Jernej =C5=A0krabec wrote:
-> Let me first explain that it was oversight on my side not noticing initia=
-ls in=20
-> your SoB tag. But since the issue was raised by Maxime, I didn't follow u=
-p.
-> [...]
+On Thu, 3 Jun 2021 09:42:16 -0500
+Suman Anna <s-anna@ti.com> wrote:
 
-Dear Jernej,
+> The allwinner,sun6i-a31-hwspinlock.yaml binding has a mismatched
+> $id and fails to compile the example due to undefined args specifier
+> values for clocks and resets. Fix both of these issues.
+> 
+> Fixes: f9e784dcb63f ("dt-bindings: hwlock: add sun6i_hwspinlock")
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> ---
+> Hi Wilken,
+> 
+> This fixes the warnings for now on linux-next, but I think the example
+> should be including sun6i-a31-ccu.h files instead to be accurate, and
+> those files are missing the definitions for CLK_BUS_SPINLOCK and
+> RST_BUS_SPINLOCK. Feel free to send a newer version or do an incremental
+> patch on top.
+> 
+> regards
+> Suman
 
-First of all, thank you very much for all your linux-sunxi work: I=20
-especially appreciate the video support you've provided.
+Hi Suman,
 
-Thank you for initially approving my patch. Although I first posted a=20
-patch to the linux-sunxi list about seven years ago, this patch was my=20
-first formal submission to LKML, so it meant a lot to me to see it=20
-accepted by a kernel developer, even if only briefly.
+thank you for fixing this. I would have fix it the same way for now, so it is
+fine for me. But I will keep an eye on it.
 
-I'm sorry for taking a long time to reply. I wanted to wait for the=20
-maintainers to respond to my last mail because I thought it would be=20
-best for them to speak for themselves on this issue. Sadly I haven't=20
-yet received a response from them.
+greetings,
+Will
 
+>  .../bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml      | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml
+> b/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml index
+> 733c3d01e56c..10e5a53e447b 100644 ---
+> a/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml +++
+> b/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/hwlock/allwinner,sun6i-hwspinlock.yaml#
+> +$id: http://devicetree.org/schemas/hwlock/allwinner,sun6i-a31-hwspinlock.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+>  title: SUN6I hardware spinlock driver for Allwinner sun6i compatible SoCs
+> @@ -36,6 +36,9 @@ additionalProperties: false
+>  
+>  examples:
+>    - |
+> +    #include <dt-bindings/clock/sun8i-a23-a33-ccu.h>
+> +    #include <dt-bindings/reset/sun8i-a23-a33-ccu.h>
+> +
+>      hwlock@1c18000 {
+>          compatible = "allwinner,sun6i-a31-hwspinlock";
+>          reg = <0x01c18000 0x1000>;
 
-> I believe that real name means no initials, no matter what people are=20
-> accustomed to. From my point of view, CJ is pseudonym derived from real n=
-ame.
-
-I don't think that's a widely held belief though. For example, I think=20
-most people consider "J.R.R. Tolkien" to be a real name, even though it=20
-contains initials. Also, a first name like CJ isn't necessarily derived=20
-from some longer name like Cathy Jane, it can simply be the person's=20
-given name. I'm grateful to Vagrant Cascadian for drawing our attention=20
-to Patrick McKenzie's essay "Falsehoods Programmers Believe About Names".=
-=20
-I believe we harm Linux development when we exclude people whose names=20
-don't fit our assumptions.
-
-Another reason for signing with initials is to ensure that other people=20
-cannot infer anything about the author's gender. Women especially might=20
-choose to do this to avoid the harassment that a female name can attract,=
-=20
-as shown in these studies for example:
-
-https://ece.umd.edu/news/story/study-finds-femalename-chat-users-get-25-tim=
-es-more-malicious-messages
-https://www.reach3insights.com/women-gaming-study
-
-If we forbid people from contributing in a gender-neutral way, many may=20
-feel they cannot contribute at all. Again, I think that when we exclude=20
-these people we are all worse off as a result.
-
-
-> Speaking generally, not only for this case, prior art arguments rarely ho=
-ld,=20
-> [...]
-> This is not the first time that fix of SoB tag was requested, you can fin=
-d such=20
-> requests in ML archives.
-
-Isn't that a prior art argument? ;-)
-
-Best wishes,
-B.R.
-
-
---=20
-Mailfence.com
-Private and secure email
