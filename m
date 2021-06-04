@@ -2,93 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BFCD39B127
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 05:56:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D246639B17C
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 06:25:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229800AbhFDD6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 23:58:22 -0400
-Received: from mail-pl1-f170.google.com ([209.85.214.170]:34310 "EHLO
-        mail-pl1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229718AbhFDD6W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 23:58:22 -0400
-Received: by mail-pl1-f170.google.com with SMTP id u9so3900374plr.1
-        for <devicetree@vger.kernel.org>; Thu, 03 Jun 2021 20:56:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=eMMwY8qQNkTVoHZiZIl5tn9ghZC2j5sUCYWs3fjlNkc=;
-        b=WQYEOJQWgXV4Z7RlPLlCH0GI+8Mhykds+lFNzn0YEf1jC3NHqQDlnuj1KwVBv/ZBQX
-         pZNuy4boZd2b5p9mFrU+nNwNa8pExofWPH8fWCT2NkP+ZEEdC26KFyH0eXB1nm+bz/2Z
-         HSFTbe3cq9V7LGWs2wNjTxwxjbSAjqCKZw8zKzq3/mJe4N/JoD6Kqcb0lislhEzPbWAF
-         dQcDE12nrPhNyxzg6hjcYpp7wXdFO59UM1Dd0LuPnJ7XZFdv01gp1F1pRwEZLc8t/Xe4
-         xMi+71z90CBtnKV8nH+H+8qVxwYvONklR91BD3XYmLThGLSZMOFLzuA4QefdfVyrqcH+
-         TNuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=eMMwY8qQNkTVoHZiZIl5tn9ghZC2j5sUCYWs3fjlNkc=;
-        b=JCBvwKvWGc7xBoM3TwcpcXBAT9cDijcAoki+x81boZuiu3mEk42TyQ7nI0dfvmDtyp
-         3rhZ7NgewO0NDAy3iFvIS6eU1cLUclDMsDpL6//ky0lPNgVWGW8TOrHvBh/Y/4sVg5mP
-         hZDmi0HP9L2pDRtIXdM2TBBrvNzUyxpfiB5PVweQkvUstVgj0zlIhaizsZe0bmnjm1WH
-         pt/FMebB1uW082fmfVVVdQzhENsoRDJWKSt2ZBKMyDuC/+9PjVVs3FNF9Y3lcS5jny97
-         uwclEH30I5J7aHdXWUCU20A4kRX2stN0NWg7P+wlxYpCMAMXJJCXVkgVdVErjoy03MFa
-         4how==
-X-Gm-Message-State: AOAM533LaTe/rx+5t1+s5IbsmZpRuZjNOMmMnML7L6YmBoG0FOuXV6lM
-        HgdvmT+0mYzOw/O14ay54ug2hQ==
-X-Google-Smtp-Source: ABdhPJw31ObwYL3vjh7VCbQTqwewCpEgPzasyY0q9PhumD4gKAiT8PNeki4nnCaX5rvxG2YlnrciEQ==
-X-Received: by 2002:a17:902:548:b029:10f:30af:7d5f with SMTP id 66-20020a1709020548b029010f30af7d5fmr1584319plf.22.1622778925580;
-        Thu, 03 Jun 2021 20:55:25 -0700 (PDT)
-Received: from localhost ([136.185.154.93])
-        by smtp.gmail.com with ESMTPSA id s22sm475766pfd.94.2021.06.03.20.55.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Jun 2021 20:55:25 -0700 (PDT)
-Date:   Fri, 4 Jun 2021 09:25:21 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Seiya Wang <seiya.wang@mediatek.com>
-Cc:     "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com
-Subject: Re: [RESEND 1/2] clk: mediatek: remove deprecated CLK_INFRA_CA57SEL
- for MT8173 SoC
-Message-ID: <20210604035521.ly6unoj5537xy27h@vireshk-i7>
-References: <20210601071042.31349-1-seiya.wang@mediatek.com>
+        id S229474AbhFDE1W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 00:27:22 -0400
+Received: from mailout-l3b-97.contactoffice.com ([212.3.242.97]:42276 "EHLO
+        mailout-l3b-97.contactoffice.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229452AbhFDE1W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 00:27:22 -0400
+X-Greylist: delayed 382 seconds by postgrey-1.27 at vger.kernel.org; Fri, 04 Jun 2021 00:27:21 EDT
+Received: from ichabod.co-bxl (ichabod.co-bxl [10.2.0.36])
+        by mailout-l3b-97.contactoffice.com (Postfix) with ESMTP id 52793A46;
+        Fri,  4 Jun 2021 06:19:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1622780353;
+        s=20210208-e7xh; d=mailfence.com; i=broake@mailfence.com;
+        h=Date:From:Reply-To:To:Cc:Message-ID:In-Reply-To:References:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding;
+        l=2612; bh=w2nEVGuGdnczyTILlBwY6TwUcHmF3Bc7DpAA05kNbHo=;
+        b=iIqRpOU6RY5cQRiKIWXgf4p1szQsoDAMn0GzrkbtaOwA1eF005MnYbli2c1UMIEO
+        bjCnW/6RkGkGzk+1A65dKuRjI2UB7FdxTCJvoTOLn2CHJwQ2QjeE+Rc53oajfavydnx
+        oaN14H6z8+ojI0whfDK24OTS+NwtRtfRW7c3EtAAIKmFQYljwiGtKeQwjSJ+Us8BuBe
+        fQgHmKbNnMF4oW80qw7pCbQobTN++uS6sG2V9q7/gG/cuxRTooNX/2F5bU0lRmeowZ+
+        DRjDLT8ibdCrQfcnNXAxi5vogD0ZGa+vLMaF8uhP0KBAeQtDaGJdtrjwopw/gStSi9h
+        wRKzUcnU7g==
+Date:   Fri, 4 Jun 2021 06:19:09 +0200 (CEST)
+From:   "B.R. Oake" <broake@mailfence.com>
+Reply-To: "B.R. Oake" <broake@mailfence.com>
+To:     =?utf-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@siol.net>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@googlegroups.com, devicetree@vger.kernel.org
+Message-ID: <206881200.203318.1622780349817@ichabod.co-bxl>
+In-Reply-To: <6612268.HtAl026vyE@jernej-laptop>
+References: <1243888060.510560.1612783497400@ichabod.co-bxl> <20210210150118.ly252i37eykayrcb@gilmour> <1719200956.433094.1613199092092@ichabod.co-bxl> <6612268.HtAl026vyE@jernej-laptop>
+Subject: Re: [PATCH] ARM: dts: sun8i: h3: orangepi-plus: Fix Ethernet PHY
+ mode
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210601071042.31349-1-seiya.wang@mediatek.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Priority: 3
+X-Mailer: ContactOffice Mail
+X-ContactOffice-Account: com:276068926
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01-06-21, 15:10, Seiya Wang wrote:
-> Remove CLK_INFRA_CA57SEL for MT8173 since it's no longer used.
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-> Signed-off-by: Seiya Wang <seiya.wang@mediatek.com>
-> ---
->  include/dt-bindings/clock/mt8173-clk.h | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/include/dt-bindings/clock/mt8173-clk.h b/include/dt-bindings/clock/mt8173-clk.h
-> index 3acebe937bfc..3d00c98b9654 100644
-> --- a/include/dt-bindings/clock/mt8173-clk.h
-> +++ b/include/dt-bindings/clock/mt8173-clk.h
-> @@ -186,7 +186,6 @@
->  #define CLK_INFRA_PMICWRAP		11
->  #define CLK_INFRA_CLK_13M		12
->  #define CLK_INFRA_CA53SEL               13
-> -#define CLK_INFRA_CA57SEL               14 /* Deprecated. Don't use it. */
->  #define CLK_INFRA_CA72SEL               14
->  #define CLK_INFRA_NR_CLK                15
+On Sat Feb 13 09:51:17 CET 2021, Jernej =C5=A0krabec wrote:
+> Let me first explain that it was oversight on my side not noticing initia=
+ls in=20
+> your SoB tag. But since the issue was raised by Maxime, I didn't follow u=
+p.
+> [...]
 
-Applied both. Thanks.
+Dear Jernej,
 
--- 
-viresh
+First of all, thank you very much for all your linux-sunxi work: I=20
+especially appreciate the video support you've provided.
+
+Thank you for initially approving my patch. Although I first posted a=20
+patch to the linux-sunxi list about seven years ago, this patch was my=20
+first formal submission to LKML, so it meant a lot to me to see it=20
+accepted by a kernel developer, even if only briefly.
+
+I'm sorry for taking a long time to reply. I wanted to wait for the=20
+maintainers to respond to my last mail because I thought it would be=20
+best for them to speak for themselves on this issue. Sadly I haven't=20
+yet received a response from them.
+
+
+> I believe that real name means no initials, no matter what people are=20
+> accustomed to. From my point of view, CJ is pseudonym derived from real n=
+ame.
+
+I don't think that's a widely held belief though. For example, I think=20
+most people consider "J.R.R. Tolkien" to be a real name, even though it=20
+contains initials. Also, a first name like CJ isn't necessarily derived=20
+from some longer name like Cathy Jane, it can simply be the person's=20
+given name. I'm grateful to Vagrant Cascadian for drawing our attention=20
+to Patrick McKenzie's essay "Falsehoods Programmers Believe About Names".=
+=20
+I believe we harm Linux development when we exclude people whose names=20
+don't fit our assumptions.
+
+Another reason for signing with initials is to ensure that other people=20
+cannot infer anything about the author's gender. Women especially might=20
+choose to do this to avoid the harassment that a female name can attract,=
+=20
+as shown in these studies for example:
+
+https://ece.umd.edu/news/story/study-finds-femalename-chat-users-get-25-tim=
+es-more-malicious-messages
+https://www.reach3insights.com/women-gaming-study
+
+If we forbid people from contributing in a gender-neutral way, many may=20
+feel they cannot contribute at all. Again, I think that when we exclude=20
+these people we are all worse off as a result.
+
+
+> Speaking generally, not only for this case, prior art arguments rarely ho=
+ld,=20
+> [...]
+> This is not the first time that fix of SoB tag was requested, you can fin=
+d such=20
+> requests in ML archives.
+
+Isn't that a prior art argument? ;-)
+
+Best wishes,
+B.R.
+
+
+--=20
+Mailfence.com
+Private and secure email
