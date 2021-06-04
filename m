@@ -2,80 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C0E039B460
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 09:54:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D63BB39B478
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 10:00:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229958AbhFDH4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 03:56:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45790 "EHLO
+        id S229955AbhFDICS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 04:02:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229775AbhFDHz7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 03:55:59 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8932C06174A;
-        Fri,  4 Jun 2021 00:54:13 -0700 (PDT)
-Received: from [192.168.1.111] (91-157-208-71.elisa-laajakaista.fi [91.157.208.71])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C29CDA52;
-        Fri,  4 Jun 2021 09:54:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1622793250;
-        bh=ID6cE11tXic6xVbni7ARCJyiry3HhzMUrxQrto7JjFY=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=ZgV/h2AydYDNQILNmqxagvf+go0bZ9gvQFYXka1bTME7wwrFP02SaahMt6qaIBcPT
-         MSaD+4eMtDy4/IBWzNm7hA2tUGTRVO52j19HARsjxG8jy37yNX7fs0IhG+SVW1TikK
-         5t7fyV5TLYUMnzmgNSrelPW1q9dvHcubb1KYxw0w=
-Subject: Re: [PATCH v2 00/18] CSI2RX support on J721E
-To:     Pratyush Yadav <p.yadav@ti.com>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Benoit Parrot <bparrot@ti.com>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, dmaengine@vger.kernel.org,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <20210526152308.16525-1-p.yadav@ti.com>
- <83bcd60a-2a45-59b2-8ebe-26ad5d828965@ideasonboard.com>
- <20210603125251.nmzibyvfzkkxfbtj@ti.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Message-ID: <5f837a2d-69ba-ff43-1a8d-f7b975eeacdb@ideasonboard.com>
-Date:   Fri, 4 Jun 2021 10:54:08 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        with ESMTP id S229994AbhFDICR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 04:02:17 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AB99C06174A
+        for <devicetree@vger.kernel.org>; Fri,  4 Jun 2021 01:00:31 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id v8so12735442lft.8
+        for <devicetree@vger.kernel.org>; Fri, 04 Jun 2021 01:00:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=8RCi1M3O4ld6apAZMvKosIl9PGcIJils8EaE1SIdw+M=;
+        b=ZROsLJZojaK+8cIJXW+yJiIedhocgLH0CPfglNdBVbMbH3NEK283DWRExuqn1nCbjR
+         CLOnPVlgm2C1fWhDm3w55zM0lsOosjqBKFw6502UR0YOsdsmn2sLKngvmMbziaCbLBW9
+         jQlrHnadopQHaDyJ+XPGvtIWfAMFp2kKlG8hFiPAm397uWQtmrnAFWhqq6I8FyvVEigk
+         Tcf7iWSV0QjB/XfTnELHEG09gVmhDqp6uMeNdzvg1eVZVOPDRgSu+eYVUiu1cDG1/AVH
+         +X2QWyXNseUvQBo/rwAQHqyXbhNswQrh4H9rU8BzYr/GSdlT/ip3Bv8TIGmJrEhY3ZEu
+         Q/3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=8RCi1M3O4ld6apAZMvKosIl9PGcIJils8EaE1SIdw+M=;
+        b=peMNEHyzE0ps5KqwXW7LhrdhYbrLOX9aRyxAGhk2QzaKvH1ZF2x90fyO2f5hPsxtaS
+         Sw/zd+T0XHWsyrCe5g0UVMNYPuzTJnj3A2awhWzToEuJGpSa8JQGVASnLm5Tjw1xG58n
+         qO1204Mm63MhsQPX1L3z5nmt/SIvgDqmRbAU83m4cs9IhHeEwRI+cKzKKqe6lYbgRF+D
+         oTcbGVPWa4caHriD2OlBlPu9sFnaOBSnPyE7Nb4nHUlOrRis04yW8ciZRutzjb/6vSqL
+         mG3piCvxAcI4Nenz3jAgdWqSuLb+k8fEEOYwhFbQeO9yVjG3k3UkBerd2sjbHRqmFBZS
+         qWdw==
+X-Gm-Message-State: AOAM533iRBUgZciveQL5cg3aBWl/IkS3ZdfMQct2qChMzT5qVR5FmgYJ
+        kdIA60+7IAQp7HfyGOQIQdZZKGhPE8OeaoCH3Qq1mQ==
+X-Google-Smtp-Source: ABdhPJyLrDDoW78D5UpyZglYbPa7oduwWRh5tpBbor/T+yc/T2P/d9w4kpTi6SaEt+Xp/wQXSqGZWPjyAG4vD/DR0YQ=
+X-Received: by 2002:a05:6512:3241:: with SMTP id c1mr2038487lfr.29.1622793629670;
+ Fri, 04 Jun 2021 01:00:29 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210603125251.nmzibyvfzkkxfbtj@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210602120329.2444672-1-j.neuschaefer@gmx.net> <20210602120329.2444672-2-j.neuschaefer@gmx.net>
+In-Reply-To: <20210602120329.2444672-2-j.neuschaefer@gmx.net>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 4 Jun 2021 10:00:18 +0200
+Message-ID: <CACRpkdaC8jzzE=9TSs-eRy3j3fk3=k_xhgjPXw7DW=rK=Csx0g@mail.gmail.com>
+Subject: Re: [PATCH 1/8] dt-bindings: arm/npcm: Add binding for global control
+ registers (GCR)
+To:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/06/2021 15:52, Pratyush Yadav wrote:
-> On 27/05/21 04:23PM, Tomi Valkeinen wrote:
->> Hi Pratyush,
->>
->> On 26/05/2021 18:22, Pratyush Yadav wrote:
->>> Hi,
->>>
->>> This series adds support for CSI2 capture on J721E. It includes some
->>> fixes to the Cadence CSI2RX driver, adds Rx support to Cadence DPHY
->>> driver, and finally adds the TI CSI2RX wrapper driver.
->>>
->>> Tested on TI's J721E with OV5640 sensor.
->>
->> I also see this after a few captures:
-> 
-> Can you share the application/command you are using to test? I used
-> yavta to test and didn't see any problems after leaving the stream on
-> for around 10 minutes.
+On Wed, Jun 2, 2021 at 2:04 PM Jonathan Neusch=C3=A4fer
+<j.neuschaefer@gmx.net> wrote:
 
-You need to have CONFIG_DMA_API_DEBUG enabled. I think that's not 
-enabled by default on TI configs.
+> A nuvoton,*-gcr node is present in nuvoton-common-npcm7xx.dtsi and will
+> be added to nuvoton-wpcm450.dtsi. It is necessary for the NPCM7xx and
+> WPCM450 pinctrl drivers, and may later be used to retrieve SoC model and
+> version information.
+>
+> This patch adds a binding to describe this node.
+>
+> Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
 
-  Tomi
+(...)
+
+> +    gcr: gcr@800000 {
+> +      compatible =3D "nuvoton,npcm750-gcr", "syscon", "simple-mfd";
+> +      reg =3D <0x800000 0x1000>;
+> +    };
+
+gcr looks a bit idiomatic, isn't
+
+syscon:  syscon@... better?
+
+Nitpicky though and looks good to me either way:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Yours,
+Linus Walleij
