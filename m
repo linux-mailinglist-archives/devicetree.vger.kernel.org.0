@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29F2A39BB40
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 16:55:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B95F039BB49
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 16:56:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229809AbhFDO4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 10:56:47 -0400
-Received: from 8bytes.org ([81.169.241.247]:42264 "EHLO theia.8bytes.org"
+        id S229864AbhFDO6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 10:58:42 -0400
+Received: from 8bytes.org ([81.169.241.247]:42288 "EHLO theia.8bytes.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229692AbhFDO4q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Jun 2021 10:56:46 -0400
+        id S229692AbhFDO6m (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Jun 2021 10:58:42 -0400
 Received: by theia.8bytes.org (Postfix, from userid 1000)
-        id E92D83A9; Fri,  4 Jun 2021 16:54:58 +0200 (CEST)
-Date:   Fri, 4 Jun 2021 16:54:57 +0200
+        id B3ED73A9; Fri,  4 Jun 2021 16:56:54 +0200 (CEST)
+Date:   Fri, 4 Jun 2021 16:56:53 +0200
 From:   Joerg Roedel <joro@8bytes.org>
 To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>
 Cc:     will@kernel.org, robh+dt@kernel.org, heiko@sntech.de,
@@ -23,20 +23,29 @@ Cc:     will@kernel.org, robh+dt@kernel.org, heiko@sntech.de,
         linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
         kernel@collabora.com
 Subject: Re: [PATCH v7 0/4] Add IOMMU driver for rk356x
-Message-ID: <YLo+wa5Z3KILTgrR@8bytes.org>
+Message-ID: <YLo/NZaPZ6snoG2X@8bytes.org>
 References: <20210525121551.606240-1-benjamin.gaignard@collabora.com>
+ <YLo+wa5Z3KILTgrR@8bytes.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210525121551.606240-1-benjamin.gaignard@collabora.com>
+In-Reply-To: <YLo+wa5Z3KILTgrR@8bytes.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 25, 2021 at 02:15:47PM +0200, Benjamin Gaignard wrote:
-> Benjamin Gaignard (4):
->   dt-bindings: iommu: rockchip: Convert IOMMU to DT schema
->   dt-bindings: iommu: rockchip: Add compatible for v2
->   iommu: rockchip: Add internal ops to handle variants
+On Fri, Jun 04, 2021 at 04:54:58PM +0200, Joerg Roedel wrote:
+> On Tue, May 25, 2021 at 02:15:47PM +0200, Benjamin Gaignard wrote:
+> > Benjamin Gaignard (4):
+> >   dt-bindings: iommu: rockchip: Convert IOMMU to DT schema
+> >   dt-bindings: iommu: rockchip: Add compatible for v2
+> >   iommu: rockchip: Add internal ops to handle variants
+> 
+> Applied patches 1-3, thanks.
 
-Applied patches 1-3, thanks.
+Hmm, no, unapplied. Your separate patch 4 came before the kbuild-bot
+reports. Can you fix those please and submit a v8?
+
+Thanks,
+
+	Joerg
