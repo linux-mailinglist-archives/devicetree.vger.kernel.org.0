@@ -2,115 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C58F139B83B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 13:45:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1820A39B843
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 13:49:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230191AbhFDLrm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 07:47:42 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:48006 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229682AbhFDLrl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 07:47:41 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1622807155; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=/fL5ftPhjRgVOQgMkNWuk43t7ra9Y4TLDX3/oQqRB+M=;
- b=hV329ndZ5ymFkKanNN2MnSHJrJcmbtoXrmF128iqRUSNWqVa6aWwUF3lmDkogDnH+RevVM81
- 6Z1DV6ZTTcpqoH0MaBeIew348wSNRJh6Ut2v6PHs/u1V8oLRuGIqxk0rmlxtMeR7D+0LcWgB
- m5hs/dabQ9ZevND2E7cmSfdAyD4=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 60ba124ee27c0cc77f155f40 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 04 Jun 2021 11:45:18
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 15AEAC43460; Fri,  4 Jun 2021 11:45:18 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 52880C433F1;
-        Fri,  4 Jun 2021 11:45:17 +0000 (UTC)
+        id S230112AbhFDLut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 07:50:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42498 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229682AbhFDLus (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Jun 2021 07:50:48 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D69AB61414;
+        Fri,  4 Jun 2021 11:49:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1622807342;
+        bh=PAEFa9/yoRU24iRahniGavwwCAg5tMlkqgjEBsh07iE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hPKCEeUlx34uB80b5ssvwR5HgkihQSnX1Tf9HebBhFqndLXNZVbZV6O0dRZrVffPZ
+         JdfzpQ3UK59PqyN+3GOeqH1Xut0h8O6c3Jc0eLQ2i4P3J56tlgMPY143xF6Au0PxW7
+         Xz5yNQn1MaGcpL2wbL3GX/aCjYCDokZ0SGIMS82k=
+Date:   Fri, 4 Jun 2021 13:48:59 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Nava kishore Manne <nava.manne@xilinx.com>
+Cc:     robh+dt@kernel.org, michal.simek@xilinx.com, mdf@kernel.org,
+        trix@redhat.com, arnd@arndb.de, rajan.vaja@xilinx.com,
+        amit.sunil.dhamne@xilinx.com, tejas.patel@xilinx.com,
+        zou_wei@huawei.com, lakshmi.sai.krishna.potthuri@xilinx.com,
+        ravi.patel@xilinx.com, iwamatsu@nigauri.org,
+        wendy.liang@xilinx.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-fpga@vger.kernel.org, git@xilinx.com,
+        chinnikishore369@gmail.com,
+        Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
+Subject: Re: [PATCH v7 4/4] fpga: versal-fpga: Add versal fpga manager driver
+Message-ID: <YLoTK02aUs2vNt+4@kroah.com>
+References: <20210604113332.1394-1-nava.manne@xilinx.com>
+ <20210604113332.1394-5-nava.manne@xilinx.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 04 Jun 2021 17:15:17 +0530
-From:   skakit@codeaurora.org
-To:     Sebastian Reichel <sre@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        kgunda@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        linux-input@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-kernel@vger.kernel.org, Andy Yan <andy.yan@rock-chips.com>,
-        Courtney Cavin <courtney.cavin@sonymobile.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH V3 5/5] dt-bindings: power: reset: qcom-pon: Convert qcom
- PON binding to yaml
-In-Reply-To: <0e1471d4522d1356e354c4653e8e0b42@codeaurora.org>
-References: <1620630064-16354-1-git-send-email-skakit@codeaurora.org>
- <1620630064-16354-6-git-send-email-skakit@codeaurora.org>
- <20210510162506.GA234174@robh.at.kernel.org>
- <20210604110917.zbrjzpl23ujqclyf@earth.universe>
- <0e1471d4522d1356e354c4653e8e0b42@codeaurora.org>
-Message-ID: <f3ea0212f4122099e0e35d1aaf5e9e07@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210604113332.1394-5-nava.manne@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-06-04 17:12, skakit@codeaurora.org wrote:
-> Hi,
+On Fri, Jun 04, 2021 at 05:03:32PM +0530, Nava kishore Manne wrote:
+> Add support for Xilinx Versal FPGA manager.
 > 
-> On 2021-06-04 16:39, Sebastian Reichel wrote:
->> Hi,
->> 
->> On Mon, May 10, 2021 at 11:25:06AM -0500, Rob Herring wrote:
->>> On Mon, 10 May 2021 12:31:04 +0530, satya priya wrote:
->>> > Convert qcom PON binding from .txt to .yaml format.
->>> >
->>> > The example has been removed in favour of full example being
->>> > available in the qcom,pm8941-pwrkey binding.
->>> >
->>> > Signed-off-by: satya priya <skakit@codeaurora.org>
->>> > ---
->>> > Changes in V2:
->>> >  - As per Rob's comments, converted the main PON binding and added in V2.
->>> >
->>> > Changes in V3:
->>> >  - As per Sebastian's comments, added allOf to refer reboot-mode.yaml and
->>> >    used unevaluatedProperties = false. Added maxItems for reg.
->>> >
->>> >  .../devicetree/bindings/power/reset/qcom,pon.txt   | 49 ----------------------
->>> >  .../devicetree/bindings/power/reset/qcom,pon.yaml  | 44 +++++++++++++++++++
->>> >  2 files changed, 44 insertions(+), 49 deletions(-)
->>> >  delete mode 100644 Documentation/devicetree/bindings/power/reset/qcom,pon.txt
->>> >  create mode 100644 Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
->>> >
->>> 
->>> Reviewed-by: Rob Herring <robh@kernel.org>
->> 
->> Acked-by: Sebastian Reichel <sre@kernel.org>
->> 
+> PDI source type can be DDR, OCM, QSPI flash etc..
+> But driver allocates memory always from DDR, Since driver supports only
+> DDR source type.
 > 
-> There is a V4 for this.
-> https://lore.kernel.org/patchwork/patch/1425638/
+> Signed-off-by: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
+> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
+> Reviewed-by: Moritz Fischer <mdf@kernel.org>
+> ---
+> Changes for v2:
+>               -Updated the Fpga Mgr registrations call's
+>                to 5.11
+>               -Fixed some minor coding issues as suggested by
+>                Moritz.
 > 
-Seems like you already reviewed the V4.
+> Changes for v3:
+>               -Rewritten the Versal fpga Kconfig contents.
+> 
+> Changes for v4:
+>               -Rebased the changes on linux-next.
+>                No functional changes.
+> 
+> Changes for v5:
+>               -None.
+> 
+> Changes for v6:
+>               -None.
+> 
+> Changes for v7:
+>               -Updated driver to remove unwated priv struct dependency.
+> 
+>  drivers/fpga/Kconfig       |  9 ++++
+>  drivers/fpga/Makefile      |  1 +
+>  drivers/fpga/versal-fpga.c | 96 ++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 106 insertions(+)
+>  create mode 100644 drivers/fpga/versal-fpga.c
+> 
+> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
+> index 33e15058d0dc..92c20b92357a 100644
+> --- a/drivers/fpga/Kconfig
+> +++ b/drivers/fpga/Kconfig
+> @@ -234,4 +234,13 @@ config FPGA_MGR_ZYNQMP_FPGA
+>  	  to configure the programmable logic(PL) through PS
+>  	  on ZynqMP SoC.
+>  
+> +config FPGA_MGR_VERSAL_FPGA
+> +	tristate "Xilinx Versal FPGA"
+> +	depends on ARCH_ZYNQMP || COMPILE_TEST
+> +	help
+> +	  Select this option to enable FPGA manager driver support for
+> +	  Xilinx Versal SoC. This driver uses the firmware interface to
+> +	  configure the programmable logic(PL).
+> +
+> +	  To compile this as a module, choose M here.
+>  endif # FPGA
+> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
+> index 18dc9885883a..0bff783d1b61 100644
+> --- a/drivers/fpga/Makefile
+> +++ b/drivers/fpga/Makefile
+> @@ -18,6 +18,7 @@ obj-$(CONFIG_FPGA_MGR_TS73XX)		+= ts73xx-fpga.o
+>  obj-$(CONFIG_FPGA_MGR_XILINX_SPI)	+= xilinx-spi.o
+>  obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)	+= zynq-fpga.o
+>  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)	+= zynqmp-fpga.o
+> +obj-$(CONFIG_FPGA_MGR_VERSAL_FPGA)      += versal-fpga.o
+>  obj-$(CONFIG_ALTERA_PR_IP_CORE)         += altera-pr-ip-core.o
+>  obj-$(CONFIG_ALTERA_PR_IP_CORE_PLAT)    += altera-pr-ip-core-plat.o
+>  
+> diff --git a/drivers/fpga/versal-fpga.c b/drivers/fpga/versal-fpga.c
+> new file mode 100644
+> index 000000000000..1bd312a31b23
+> --- /dev/null
+> +++ b/drivers/fpga/versal-fpga.c
+> @@ -0,0 +1,96 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2019-2021 Xilinx, Inc.
+> + */
+> +
+> +#include <linux/dma-mapping.h>
+> +#include <linux/fpga/fpga-mgr.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of_address.h>
+> +#include <linux/string.h>
+> +#include <linux/firmware/xlnx-zynqmp.h>
+> +
+> +static int versal_fpga_ops_write_init(struct fpga_manager *mgr,
+> +				      struct fpga_image_info *info,
+> +				      const char *buf, size_t size)
+> +{
+> +	return 0;
 
-Thanks,
-Satya Priya
->> -- Sebastian
+Why have this if it does nothing?
+
+> +}
+> +
+> +static int versal_fpga_ops_write(struct fpga_manager *mgr,
+> +				 const char *buf, size_t size)
+> +{
+> +	dma_addr_t dma_addr = 0;
+> +	char *kbuf;
+> +	int ret;
+> +
+> +	kbuf = dma_alloc_coherent(mgr->dev.parent, size, &dma_addr, GFP_KERNEL);
+> +	if (!kbuf)
+> +		return -ENOMEM;
+> +
+> +	memcpy(kbuf, buf, size);
+> +	ret = zynqmp_pm_load_pdi(PDI_SRC_DDR, dma_addr);
+> +	dma_free_coherent(mgr->dev.parent, size, kbuf, dma_addr);
+> +
+> +	return ret;
+> +}
+> +
+> +static int versal_fpga_ops_write_complete(struct fpga_manager *mgr,
+> +					  struct fpga_image_info *info)
+> +{
+> +	return 0;
+
+Same here, why have this at all?
+
+> +}
+> +
+> +static enum fpga_mgr_states versal_fpga_ops_state(struct fpga_manager *mgr)
+> +{
+> +	return FPGA_MGR_STATE_UNKNOWN;
+
+Shouln't that be the default state of the fpga manager if there is no
+state function callback?
+
+This driver should just need a write and probe function, and that's it,
+why make it more complex?
+
+thanks,
+
+greg k-h
