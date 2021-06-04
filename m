@@ -2,130 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3590739AF49
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 02:59:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E8C439AF51
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 03:04:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229911AbhFDBAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Jun 2021 21:00:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40416 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229886AbhFDBAp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Jun 2021 21:00:45 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CBD2C06174A
-        for <devicetree@vger.kernel.org>; Thu,  3 Jun 2021 17:58:59 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 3FD2583646;
-        Fri,  4 Jun 2021 12:58:55 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1622768335;
-        bh=zwNUaTjAbpv1AFg+QPg/Vg7UwSsAWQWNnYKed5KvvTk=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To;
-        b=KR96dkMMQinX+bP65+2Q0rszCTuMvoppTCWuy+gQS4p6ZIGBeItOQ0p3MA77t8/Lu
-         y/FeFVhvYSxOI97mdpXkL9U0U5gQVkUJeRI+MSbI9vCJkzho5VsSzd1v1HReV8zFGX
-         jDY+VVsVte0g97KU0VoYxmywQC4JiP881XWx8A8xzqA3YuQxjPkBv1qHKnrGAf8dlN
-         MHtyFWEYs9sWHIBcvpeT0YrIMXQEBi3xc085hTf6H0AVuKad4l1/QALPvedTpr1lYK
-         Y44s4AczmzuEDySiGOkwBCQjb+cHeiqpEkv+xu7eA6YoVhrjyfBxM/gzSlUwzLZx3p
-         9BMpXCuFlrAmA==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B60b97acf0001>; Fri, 04 Jun 2021 12:58:55 +1200
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
- by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
- Microsoft SMTP Server (TLS) id 15.0.1497.18; Fri, 4 Jun 2021 12:58:54 +1200
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.018; Fri, 4 Jun 2021 12:58:54 +1200
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     Michael Ellerman <mpe@ellerman.id.au>,
-        Sasha Levin <sashal@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "stable@vger.kernel.org" <stable@vger.kernel.org>
-CC:     Wolfram Sang <wsa@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-Subject: Re: [PATCH AUTOSEL 5.12 42/43] powerpc/fsl: set
- fsl,i2c-erratum-a004447 flag for P2041 i2c controllers
-Thread-Topic: [PATCH AUTOSEL 5.12 42/43] powerpc/fsl: set
- fsl,i2c-erratum-a004447 flag for P2041 i2c controllers
-Thread-Index: AQHXWJsTg7j0i+0vFEmVHttQ1zQLv6sCOo2AgAAEpgA=
-Date:   Fri, 4 Jun 2021 00:58:54 +0000
-Message-ID: <81ce50f1-73eb-687b-898a-df5f6ac68c5a@alliedtelesis.co.nz>
-References: <20210603170734.3168284-1-sashal@kernel.org>
- <20210603170734.3168284-42-sashal@kernel.org>
- <87y2bqfok8.fsf@mpe.ellerman.id.au>
-In-Reply-To: <87y2bqfok8.fsf@mpe.ellerman.id.au>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.32.1.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <CFC7101B35858B4299C03D6BEAC444BB@atlnz.lc>
-Content-Transfer-Encoding: base64
+        id S229810AbhFDBF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Jun 2021 21:05:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35460 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229764AbhFDBFz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Jun 2021 21:05:55 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 83F046140F;
+        Fri,  4 Jun 2021 01:04:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1622768650;
+        bh=l5yYOLt53DtZ7JqLyg7mT/GGJahw6tz3rKT8zzg2gQ8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=anSV0Ox8mgv2AQd6aPZovUXvAyDJWN7zwYddRLCE5/2nulr5oqBkdD5ZsfvlXYkmi
+         VHI2U2kdwKD77tGNxO7hjvIQErCdQ6WyxZWp8tG5d6Or5nhgGOIsMAWCvx8aj/r1qF
+         97a+Ur72XCvsPmyN/7zrpEvIKZA71ecXAcMlRrza/uiUOIUWQQux11fjLJdXkRKYMg
+         8emu3l/sIXwayKy5NAZFwr+n8m0+9MKj53XTkLH3ZIGztK0dbDvNNWIXq5o3EN1Rp+
+         YO82Mny3wu9Jvz5MSMiAIs4LzN60ADFRna9Rtv88zZtEsMRgOQ7YYCKAHCvWFeKKk5
+         F2OEs5qf58P6g==
+Received: by mail-ej1-f42.google.com with SMTP id jt22so11930409ejb.7;
+        Thu, 03 Jun 2021 18:04:10 -0700 (PDT)
+X-Gm-Message-State: AOAM533OLRXNT6kIBxmTWsGPd/H/U9VGLkRb/XYENleZHzqCQTRSgnOH
+        GDUfiF1FHabkUK8umEoeEUajNPPSLKhC1LcHBA==
+X-Google-Smtp-Source: ABdhPJxer8gjIEGn3TOCrAdEk57FxI38GSPQm8Wp2vKQJjgd6J8CtpXQyqAafZh7oMz3+6B59LNg4FnKxVIxXoDbH1w=
+X-Received: by 2002:a17:906:3d9:: with SMTP id c25mr1792745eja.63.1622768649092;
+ Thu, 03 Jun 2021 18:04:09 -0700 (PDT)
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=WOcBoUkR c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=r6YtysWOX24A:10 a=VwQbUJbxAAAA:8 a=0PHfWf00bOpdARfqvbcA:9 a=QEXdDO2ut3YA:10 a=N53muDpBR4cA:10 a=AjGcO6oz07-iQ99wixmX:22
-X-SEG-SpamProfiler-Score: 0
+References: <20210526085219.7582-1-rex-bc.chen@mediatek.com>
+In-Reply-To: <20210526085219.7582-1-rex-bc.chen@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Fri, 4 Jun 2021 09:03:57 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-huV+QqUsLF5PwXA_7OMfJn3X9=9kUM-aY-_thn54kSg@mail.gmail.com>
+Message-ID: <CAAOTY_-huV+QqUsLF5PwXA_7OMfJn3X9=9kUM-aY-_thn54kSg@mail.gmail.com>
+Subject: Re: [v5,PATCH 0/3] mt8183 dpi supports dual edge
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpPbiA0LzA2LzIxIDEyOjQyIHBtLCBNaWNoYWVsIEVsbGVybWFuIHdyb3RlOg0KPiBTYXNoYSBM
-ZXZpbiA8c2FzaGFsQGtlcm5lbC5vcmc+IHdyaXRlczoNCj4+IEZyb206IENocmlzIFBhY2toYW0g
-PGNocmlzLnBhY2toYW1AYWxsaWVkdGVsZXNpcy5jby5uej4NCj4+DQo+PiBbIFVwc3RyZWFtIGNv
-bW1pdCA3YWRjN2IyMjVjZGRjZmQwZjM0NmQxMDE0NGZkN2EzZDNkOWY5ZWE3IF0NCj4+DQo+PiBU
-aGUgaTJjIGNvbnRyb2xsZXJzIG9uIHRoZSBQMjA0MC9QMjA0MSBoYXZlIGFuIGVycmF0dW0gd2hl
-cmUgdGhlDQo+PiBkb2N1bWVudGVkIHNjaGVtZSBmb3IgaTJjIGJ1cyByZWNvdmVyeSB3aWxsIG5v
-dCB3b3JrIChBLTAwNDQ0NykuIEENCj4+IGRpZmZlcmVudCBtZWNoYW5pc20gaXMgbmVlZGVkIHdo
-aWNoIGlzIGRvY3VtZW50ZWQgaW4gdGhlIFAyMDQwIENoaXANCj4+IEVycmF0YSBSZXYgUSAobGF0
-ZXN0IGF2YWlsYWJsZSBhdCB0aGUgdGltZSBvZiB3cml0aW5nKS4NCj4+DQo+PiBTaWduZWQtb2Zm
-LWJ5OiBDaHJpcyBQYWNraGFtIDxjaHJpcy5wYWNraGFtQGFsbGllZHRlbGVzaXMuY28ubno+DQo+
-PiBBY2tlZC1ieTogTWljaGFlbCBFbGxlcm1hbiA8bXBlQGVsbGVybWFuLmlkLmF1Pg0KPj4gU2ln
-bmVkLW9mZi1ieTogV29sZnJhbSBTYW5nIDx3c2FAa2VybmVsLm9yZz4NCj4+IFNpZ25lZC1vZmYt
-Ynk6IFNhc2hhIExldmluIDxzYXNoYWxAa2VybmVsLm9yZz4NCj4+IC0tLQ0KPj4gICBhcmNoL3Bv
-d2VycGMvYm9vdC9kdHMvZnNsL3AyMDQxc2ktcG9zdC5kdHNpIHwgMTYgKysrKysrKysrKysrKysr
-Kw0KPj4gICAxIGZpbGUgY2hhbmdlZCwgMTYgaW5zZXJ0aW9ucygrKQ0KPiBUaGlzIHBhdGNoIChh
-bmQgdGhlIHN1YnNlcXVlbnQgb25lKSwganVzdCBzZXQgYSBmbGFnIGluIHRoZSBkZXZpY2UgdHJl
-ZS4NCj4NCj4gVGhleSBoYXZlIG5vIGVmZmVjdCB1bmxlc3MgeW91IGFsc28gYmFja3BvcnQgdGhl
-IGNvZGUgY2hhbmdlIHRoYXQgbG9va3MNCj4gZm9yIHRoYXQgZmxhZywgd2hpY2ggd2FzIHVwc3Ry
-ZWFtIGNvbW1pdDoNCj4NCj4gICAgOGYwY2RlYzhiNWZkICgiaTJjOiBtcGM6IGltcGxlbWVudCBl
-cnJhdHVtIEEtMDA0NDQ3IHdvcmthcm91bmQiKQ0KDQpUaGF0IGNoYW5nZSBpdHNlbGYgaXNuJ3Qg
-Y2hlcnJ5LXBpY2sgYWJsZSB3aXRob3V0DQoNCjY1MTcxYjJkZjE1ZSAoImkyYzogbXBjOiBNYWtl
-IHVzZSBvZiBpMmNfcmVjb3Zlcl9idXMoKSIpDQoNCmFuZCBpbiBiZXR3ZWVuIDY1MTcxYjJkZjE1
-ZSBhbmQgOGYwY2RlYzhiNWZkIGFyZSBhIGJ1bmNoIG9mIGNsZWFudXBzIGFuZCANCmEgZmFpcmx5
-IG1ham9yIHJld3JpdGUgd2hpY2ggbWF5IGFsc28gYWZmZWN0IHRoZSBjaGVycnktcGljayBhYmls
-aXR5Lg0KDQo+IEFGQUlDUyB5b3UgaGF2ZW4ndCBwaWNrZWQgdGhhdCBvbmUgdXAgZm9yIGFueSBv
-ZiB0aGUgc3RhYmxlIHRyZWVzLg0KPg0KPiBJJ2xsIGRlZmVyIHRvIENocmlzICYgV29sZnJhbSBv
-biB3aGV0aGVyIGl0J3MgYSBnb29kIGlkZWEgdG8gdGFrZSB0aGUNCj4gY29kZSBjaGFuZ2UgZm9y
-IHN0YWJsZS4NCg0KV2UgaGF2ZSBiZWVuIGRvaW5nIHNvbWUgZXh0cmEgUUEgb24gb3VyIGVuZCBm
-b3IgdGhlICJpMmM6IG1wYzogUmVmYWN0b3IgDQp0byBpbXByb3ZlIHJlc3BvbnNpdmVuZXNzIiBh
-bmQgIlAyMDQwL1AyMDQxIGkyYyByZWNvdmVyeSBlcnJhdHVtIiBzZXJpZXMgDQp3aGljaCBoYXNu
-J3QgdGhyb3duIHVwIGFueSBpc3N1ZXMuIEJ1dCBpdCdzIHN0aWxsIGEgbG90IG9mIG5ldyBjb2Rl
-IGFuZCANCmF0IHNvbWUgcG9pbnQgd2UncmUgZ29pbmcgdG8gcnVuIGludG8gQVBJIGNoYW5nZXMu
-DQoNCkdpdmVuIHRoZSBmYWN0IHRoYXQgaXQncyBzdGFydGluZyB0byBzbm93YmFsbCBvbmUgbWln
-aHQgZXJyIG9uIHRoZSBzaWRlIA0Kb2YgY2F1dGlvbi4NCg0KPiBJIGd1ZXNzIGl0J3MgaGFybWxl
-c3MgdG8gcGljayB0aGVzZSB0d28gcGF0Y2hlcywgYnV0IGl0J3MgYWxzbw0KPiBwb2ludGxlc3Mu
-IFNvIEkgdGhpbmsgeW91IGVpdGhlciB3YW50IHRvIHRha2UgYWxsIHRocmVlLCBvciBkcm9wIHRo
-ZXNlDQo+IHR3by4NCg0KQXQgYSBtaW5pbXVtIHlvdSBuZWVkDQoNCjY1MTcxYjJkZjE1ZSAoImky
-YzogbXBjOiBNYWtlIHVzZSBvZiBpMmNfcmVjb3Zlcl9idXMoKSIpDQo4ZjBjZGVjOGI1ZmQgKCJp
-MmM6IG1wYzogaW1wbGVtZW50IGVycmF0dW0gQS0wMDQ0NDcgd29ya2Fyb3VuZCIpDQo3YWRjN2Iy
-MjVjZGQgKCJwb3dlcnBjL2ZzbDogc2V0IGZzbCxpMmMtZXJyYXR1bS1hMDA0NDQ3IGZsYWcgZm9y
-IFAyMDQxIA0KaTJjIGNvbnRyb2xsZXJzIikNCjE5YWU2OTdhMWU0ZSAoInBvd2VycGMvZnNsOiBz
-ZXQgZnNsLGkyYy1lcnJhdHVtLWEwMDQ0NDcgZmxhZyBmb3IgUDEwMTAgDQppMmMgY29udHJvbGxl
-cnMiKQ0KDQo+IGNoZWVycw0KPg0KPj4gZGlmZiAtLWdpdCBhL2FyY2gvcG93ZXJwYy9ib290L2R0
-cy9mc2wvcDIwNDFzaS1wb3N0LmR0c2kgYi9hcmNoL3Bvd2VycGMvYm9vdC9kdHMvZnNsL3AyMDQx
-c2ktcG9zdC5kdHNpDQo+PiBpbmRleCA4NzJlNDQ4NWRjM2YuLmRkYzAxOGQ0MjI1MiAxMDA2NDQN
-Cj4+IC0tLSBhL2FyY2gvcG93ZXJwYy9ib290L2R0cy9mc2wvcDIwNDFzaS1wb3N0LmR0c2kNCj4+
-ICsrKyBiL2FyY2gvcG93ZXJwYy9ib290L2R0cy9mc2wvcDIwNDFzaS1wb3N0LmR0c2kNCj4+IEBA
-IC0zNzEsNyArMzcxLDIzIEBAIHNkaGNAMTE0MDAwIHsNCj4+ICAgCX07DQo+PiAgIA0KPj4gICAv
-aW5jbHVkZS8gInFvcmlxLWkyYy0wLmR0c2kiDQo+PiArCWkyY0AxMTgwMDAgew0KPj4gKwkJZnNs
-LGkyYy1lcnJhdHVtLWEwMDQ0NDc7DQo+PiArCX07DQo+PiArDQo+PiArCWkyY0AxMTgxMDAgew0K
-Pj4gKwkJZnNsLGkyYy1lcnJhdHVtLWEwMDQ0NDc7DQo+PiArCX07DQo+PiArDQo+PiAgIC9pbmNs
-dWRlLyAicW9yaXEtaTJjLTEuZHRzaSINCj4+ICsJaTJjQDExOTAwMCB7DQo+PiArCQlmc2wsaTJj
-LWVycmF0dW0tYTAwNDQ0NzsNCj4+ICsJfTsNCj4+ICsNCj4+ICsJaTJjQDExOTEwMCB7DQo+PiAr
-CQlmc2wsaTJjLWVycmF0dW0tYTAwNDQ0NzsNCj4+ICsJfTsNCj4+ICsNCj4+ICAgL2luY2x1ZGUv
-ICJxb3JpcS1kdWFydC0wLmR0c2kiDQo+PiAgIC9pbmNsdWRlLyAicW9yaXEtZHVhcnQtMS5kdHNp
-Ig0KPj4gICAvaW5jbHVkZS8gInFvcmlxLWdwaW8tMC5kdHNpIg0KPj4gLS0gDQo+PiAyLjMwLjI=
+Hi, Rex:
+
+For this series, applied to mediatek-drm-next [1], thanks.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
+log/?h=3Dmediatek-drm-next
+
+Regards,
+Chun-Kuang.
+
+Rex-BC Chen <rex-bc.chen@mediatek.com> =E6=96=BC 2021=E5=B9=B45=E6=9C=8826=
+=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=884:52=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> v5:
+> Remove ddr_edge_sel and use output_fmts to determine
+> which edge to be set.
+>
+> v4:
+> Use output_fmts to determine whether it is dual edge.
+> Rebase to v5.13-rc1
+>
+> v3:
+> Modify clock rate for dual edge setting.
+> Add more bridge function.
+>
+> v2:
+> Modify unused code
+>
+> v1:
+> DPI can sample on falling, rising or both edge.
+> When DPI sample the data both rising and falling edge.
+> It can reduce half data io pins.
+>
+> Rex-BC Chen (3):
+>   [v5] drm/mediatek: dpi dual edge sample mode support
+>   [v5] drm/mediatek: config driver data to support dual edge sample
+>   [v5] drm/mediatek: dpi: add bus format negotiation
+>
+>  drivers/gpu/drm/mediatek/mtk_dpi.c | 130 +++++++++++++++++++++++++++--
+>  1 file changed, 124 insertions(+), 6 deletions(-)
+>
+> --
+> 2.18.0
+>
