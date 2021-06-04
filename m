@@ -2,144 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFB6E39B341
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 08:50:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22EB339B382
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 09:01:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229927AbhFDGwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 02:52:40 -0400
-Received: from mail-lf1-f45.google.com ([209.85.167.45]:33365 "EHLO
-        mail-lf1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229948AbhFDGwj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 02:52:39 -0400
-Received: by mail-lf1-f45.google.com with SMTP id t7so5356804lff.0;
-        Thu, 03 Jun 2021 23:50:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=kaQSMao5BG9s/Mo5xQzGz0o3ckk1n5tL2skjZO8oAN4=;
-        b=o2RBE89HEbwJAgw+1+TCT4by4UKkM2fIx3eDfTqZ2hpV+WJXf7sBAW8y/zrlnQcUso
-         CY0xPzMTzkbS+s9gCuJ9rUOJSupkPofz18D7dmRK8vkUXOp00ydnJD35S/FxNDDIK9oY
-         bsCbBBSI+8hFQz6jXHq21CD8QaFL8qBtTLlrTY3UjwnnK0mc5hL3sywWHIOMz65+PI3S
-         3TSHYZJOtgaRT0rbGSQe6SWIySyOLHT6GtAihCIjr4guEEpBgMA4rO+OoYUXV6hfhAcU
-         uS7BBZzDGTBEHsgIWtHQ5cGiD9ahjF+syOTfPZiIXmF4m6ZnR1kpCOCpQaEvymMrxGIs
-         O7gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=kaQSMao5BG9s/Mo5xQzGz0o3ckk1n5tL2skjZO8oAN4=;
-        b=CKIsK+rVwYk0jq5pKm+TITOQYvahkx1hpvxe0lBJ6YkEHKOrewRdLfN525ChXX7fH9
-         Xwzey5B51g81zvi1CnenH3HXRqcAvblbqoGbT33ePdpY+atHPINnFaMPcB0biESGF1eI
-         waYDOUQOhcI9O9i6kBcWO02TqhPQuctnQbBRE2Y2xLReEbORdeLr6zNhQ51uyIEXWHDw
-         BbAlwqy3jqNJCEFGld3sAcF3nTrV5frMnO4472VVSs2MhILUlzYgU+1ES9MghDGcoZZV
-         S+N+vF+6IbeOiIXcUQ1cj7CdD1f7VwFYZP5DGwJMUKXhjT7/2DVRmU7vV2Dx+8aZ979R
-         yTxQ==
-X-Gm-Message-State: AOAM53393PoIXh8jLSTcoaHhQUai3akFO/lptEJL0P5QoSM3vaDSTlLf
-        xw7ywAtPmK1VJKzCs8FrciiyggJpAG9xghHmq5M=
-X-Google-Smtp-Source: ABdhPJzpgIdt9qTidz6JILOFe6SgId4AwPgluxUxDYfG8w8Nhgqz3Z5eMejUiYcCBKnp5ESehgaWueQPLTdiD6jOxlg=
-X-Received: by 2002:a05:6512:3e14:: with SMTP id i20mr171986lfv.474.1622789380421;
- Thu, 03 Jun 2021 23:49:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <1243888060.510560.1612783497400@ichabod.co-bxl>
- <20210210150118.ly252i37eykayrcb@gilmour> <1719200956.433094.1613199092092@ichabod.co-bxl>
- <6612268.HtAl026vyE@jernej-laptop> <206881200.203318.1622780349817@ichabod.co-bxl>
-In-Reply-To: <206881200.203318.1622780349817@ichabod.co-bxl>
-From:   Julian Calaby <julian.calaby@gmail.com>
-Date:   Fri, 4 Jun 2021 16:49:28 +1000
-Message-ID: <CAGRGNgVSze9yW6KTsC=KGCVOJLzck65J-f9v8y30iBw7k0KXQA@mail.gmail.com>
-Subject: Re: [linux-sunxi] Re: [PATCH] ARM: dts: sun8i: h3: orangepi-plus: Fix
- Ethernet PHY mode
-To:     broake@mailfence.com
-Cc:     =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@siol.net>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "Mailing List, Arm" <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        devicetree <devicetree@vger.kernel.org>
+        id S229817AbhFDHCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 03:02:48 -0400
+Received: from polaris.svanheule.net ([84.16.241.116]:56362 "EHLO
+        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229881AbhFDHCs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 03:02:48 -0400
+Received: from [IPv6:2a02:a03f:eafb:ee01:47d6:9866:c9b9:c953] (unknown [IPv6:2a02:a03f:eafb:ee01:47d6:9866:c9b9:c953])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id A71062086B6;
+        Fri,  4 Jun 2021 09:01:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1622790061;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=PZjWkF3HmSV3fCyoJ2V0mvrJ6tQTUWP6Xhv41OdXGG8=;
+        b=pC8626t8g8jZ/lLsJ1l5tJw6M4a6cDwpKM8u+aHpsbjNKypoiEraGec2fVSrEuHnWU7dVU
+        qkW5UwQ6h2NPx5HawQEZGIBxKuO8A2xM4qjoqMb3Cpfe05GYvvlYSpUi3B1tcdRswIcJci
+        Q1mqXnd+RQzi7YEUfnDRmWcSAXZI0+cXMrwiVzcvxukWO3/7ktgA46WFORN8Vh2s2axqy/
+        jxIW1hNWlJ5WXVcbI3Xr0JhWnff9EHa4FFlrp06Fq3hoidJcUH/cYPIMdPLDtG0xKvqu5o
+        FshDzuS4ZSnSDQSh/wxLI858bb93gLGFCVki+9PhlZ4NQaKIsFZMbnZVI3eBlw==
+Message-ID: <4251bacb6c622ac7fff2d21cec20551b2f0461c2.camel@svanheule.net>
+Subject: Re: [PATCH v4 4/5] pinctrl: Add RTL8231 pin control and GPIO support
+From:   Sander Vanheule <sander@svanheule.net>
+To:     kernel test robot <lkp@intel.com>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Michael Walle <michael@walle.cc>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, Hans de Goede <hdegoede@redhat.com>
+Date:   Fri, 04 Jun 2021 09:00:59 +0200
+In-Reply-To: <202106032305.8Dv104X3-lkp@intel.com>
+References: <5d184778a6562e24abfa6e5dd2f7dbde4fede3fe.1622713678.git.sander@svanheule.net>
+         <202106032305.8Dv104X3-lkp@intel.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, 2021-06-03 at 23:58 +0800, kernel test robot wrote:
+> Hi Sander,
+> 
+> Thank you for the patch! Perhaps something to improve:
+> 
+> [auto build test WARNING on pavel-linux-leds/for-next]
+> [also build test WARNING on pinctrl/devel v5.13-rc4]
+> [cannot apply to lee-mfd/for-mfd-next next-20210603]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
+> 
+> url:    
+> https://github.com/0day-ci/linux/commits/Sander-Vanheule/dt-bindings-leds-Binding-for-RTL8231-scan-matrix/20210603-190118
+> base:   git://git.kernel.org/pub/scm/linux/kernel/git/pavel/linux-leds.git
+> for-next
+> config: sparc-allyesconfig (attached as .config)
+> compiler: sparc64-linux-gcc (GCC) 9.3.0
+> reproduce (this is a W=1 build):
+>         wget 
+> https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O
+> ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # 
+> https://github.com/0day-ci/linux/commit/9c3e2b6957a6d750d6d39e78e2089abcc0cf740c
+>         git remote add linux-review https://github.com/0day-ci/linux
+>         git fetch --no-tags linux-review Sander-Vanheule/dt-bindings-leds-
+> Binding-for-RTL8231-scan-matrix/20210603-190118
+>         git checkout 9c3e2b6957a6d750d6d39e78e2089abcc0cf740c
+>         # save the attached .config to linux build tree
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross
+> ARCH=sparc 
+> 
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+> 
+> All warnings (new ones prefixed by >>):
+> 
+>    drivers/pinctrl/pinctrl-rtl8231.c: In function 'rtl8231_set_mux':
+> > > drivers/pinctrl/pinctrl-rtl8231.c:189:27: warning: cast from pointer to
+> > > integer of different size [-Wpointer-to-int-cast]
+>      189 |  unsigned int func_flag = (unsigned int) func->data;
+>          |                           ^
+> 
 
-On Fri, Jun 4, 2021 at 3:45 PM 'B.R. Oake' via linux-sunxi
-<linux-sunxi@googlegroups.com> wrote:
->
-> On Sat Feb 13 09:51:17 CET 2021, Jernej =C5=A0krabec wrote:
-> > Let me first explain that it was oversight on my side not noticing init=
-ials in
-> > your SoB tag. But since the issue was raised by Maxime, I didn't follow=
- up.
-> > [...]
->
-> Dear Jernej,
->
-> First of all, thank you very much for all your linux-sunxi work: I
-> especially appreciate the video support you've provided.
->
-> Thank you for initially approving my patch. Although I first posted a
-> patch to the linux-sunxi list about seven years ago, this patch was my
-> first formal submission to LKML, so it meant a lot to me to see it
-> accepted by a kernel developer, even if only briefly.
->
-> I'm sorry for taking a long time to reply. I wanted to wait for the
-> maintainers to respond to my last mail because I thought it would be
-> best for them to speak for themselves on this issue. Sadly I haven't
-> yet received a response from them.
->
->
-> > I believe that real name means no initials, no matter what people are
-> > accustomed to. From my point of view, CJ is pseudonym derived from real=
- name.
->
-> I don't think that's a widely held belief though. For example, I think
-> most people consider "J.R.R. Tolkien" to be a real name, even though it
-> contains initials. Also, a first name like CJ isn't necessarily derived
-> from some longer name like Cathy Jane, it can simply be the person's
-> given name. I'm grateful to Vagrant Cascadian for drawing our attention
-> to Patrick McKenzie's essay "Falsehoods Programmers Believe About Names".
-> I believe we harm Linux development when we exclude people whose names
-> don't fit our assumptions.
->
-> Another reason for signing with initials is to ensure that other people
-> cannot infer anything about the author's gender. Women especially might
-> choose to do this to avoid the harassment that a female name can attract,
-> as shown in these studies for example:
->
-> https://ece.umd.edu/news/story/study-finds-femalename-chat-users-get-25-t=
-imes-more-malicious-messages
-> https://www.reach3insights.com/women-gaming-study
->
-> If we forbid people from contributing in a gender-neutral way, many may
-> feel they cannot contribute at all. Again, I think that when we exclude
-> these people we are all worse off as a result.
+I'll change this cast to uintptr_t.
 
-While I completely sympathise with your points here, the issue isn't a
-technical or social issue, but a legal one.
+Best,
+Sander
 
-The DCO was introduced to provide a mechanism to trace the origin of a
-piece of code for legal purposes, so my understanding is that the name
-supplied needs to be your legal name.
 
-Whilst, as you've pointed out, there are a lot of ways that names
-don't match up to the normal "Firstname I. N. I. T. I. A. L. S.
-Lastname" format, that is the case for the vast majority of people and
-exceptions to that are rare. Your arguments against providing that
-name haven't exactly helped your case either as they are similar to
-the arguments someone trying to hide behind a pseudonym might use.
 
-Your points about previous instances of this happening also don't hold
-water either as we don't know the circumstances behind those cases.
-Git's history is considered immutable once it makes it to an
-"official" repository (generally one published publicly) so it's
-likely they were oversights that weren't caught until it was too late.
-
-Thanks,
-
---=20
-Julian Calaby
-
-Email: julian.calaby@gmail.com
-Profile: http://www.google.com/profiles/julian.calaby/
