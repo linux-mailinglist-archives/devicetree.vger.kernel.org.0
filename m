@@ -2,106 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22EB339B382
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 09:01:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A78439B39E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 09:12:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229817AbhFDHCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 03:02:48 -0400
-Received: from polaris.svanheule.net ([84.16.241.116]:56362 "EHLO
-        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229881AbhFDHCs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 03:02:48 -0400
-Received: from [IPv6:2a02:a03f:eafb:ee01:47d6:9866:c9b9:c953] (unknown [IPv6:2a02:a03f:eafb:ee01:47d6:9866:c9b9:c953])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sander@svanheule.net)
-        by polaris.svanheule.net (Postfix) with ESMTPSA id A71062086B6;
-        Fri,  4 Jun 2021 09:01:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-        s=mail1707; t=1622790061;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=PZjWkF3HmSV3fCyoJ2V0mvrJ6tQTUWP6Xhv41OdXGG8=;
-        b=pC8626t8g8jZ/lLsJ1l5tJw6M4a6cDwpKM8u+aHpsbjNKypoiEraGec2fVSrEuHnWU7dVU
-        qkW5UwQ6h2NPx5HawQEZGIBxKuO8A2xM4qjoqMb3Cpfe05GYvvlYSpUi3B1tcdRswIcJci
-        Q1mqXnd+RQzi7YEUfnDRmWcSAXZI0+cXMrwiVzcvxukWO3/7ktgA46WFORN8Vh2s2axqy/
-        jxIW1hNWlJ5WXVcbI3Xr0JhWnff9EHa4FFlrp06Fq3hoidJcUH/cYPIMdPLDtG0xKvqu5o
-        FshDzuS4ZSnSDQSh/wxLI858bb93gLGFCVki+9PhlZ4NQaKIsFZMbnZVI3eBlw==
-Message-ID: <4251bacb6c622ac7fff2d21cec20551b2f0461c2.camel@svanheule.net>
-Subject: Re: [PATCH v4 4/5] pinctrl: Add RTL8231 pin control and GPIO support
-From:   Sander Vanheule <sander@svanheule.net>
-To:     kernel test robot <lkp@intel.com>, Pavel Machek <pavel@ucw.cz>,
+        id S229826AbhFDHOZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 03:14:25 -0400
+Received: from mail-pj1-f53.google.com ([209.85.216.53]:51067 "EHLO
+        mail-pj1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229555AbhFDHOZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 03:14:25 -0400
+Received: by mail-pj1-f53.google.com with SMTP id i22so5104678pju.0
+        for <devicetree@vger.kernel.org>; Fri, 04 Jun 2021 00:12:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=04miD2l332N5JEOBvQKSIIZVsCHeGohPyIgj2Bs7M2g=;
+        b=UYq57R8/DgylVe7bQQT1K0kVoUZAKg78p7JLt3nj5Xvwwbo26bubgQ5Rw0p56VKVKI
+         amHFHnpXmNB3vNWQrTxGHHUWu72QjRLuyauxAguYYAP2L1gb+GKB426oPeZvXsFu720D
+         B+4BkzEKNPf/O01NI2pRsfoqR1YjT6nOmi3EI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=04miD2l332N5JEOBvQKSIIZVsCHeGohPyIgj2Bs7M2g=;
+        b=awHLFWQVMyRaL4DzzRrQo5/IvdQIDLK3CdjlMW4s+ckcXZp0ukg4XOAvxEui+nFatk
+         96qhLWIFg64neA+/Ge8i8qlJKK/okWYn1PafXcSmQjOyx4euC85lPRm2i0ylbzYK+PT+
+         kCVXVGCKUhJvixb8vU5IZKw0a2qp66mDKtEkAgoRuIV6NWC31pTORPQt9H4/xxSDA09I
+         m3v1FDa7GrrWL2KucKTtgUyiuRYN9YcI+mnOmzHmExdvmyVV7KJXrEku5Hp33xNzSOB4
+         gpzwDPSyFeYDwjpWxzPZOff7qU4RRULVLHWXH57h79d0Dq02kJvGyi70+s0OoeDjDE/L
+         pv5w==
+X-Gm-Message-State: AOAM533mLrZEz4usVuQ/ccaJjqZdJ1fHG4cl4aFsKNXN0titHm83dL8m
+        VMw80IAQf5L5SnbssIb1tiFLeg==
+X-Google-Smtp-Source: ABdhPJzzf3MffrJf8cu1pAFiWopX0p1aSBAccKzEw4KlJf+njbnIDbY3jrRzxGG+7xsb8wZZsYufGg==
+X-Received: by 2002:a17:902:a3c3:b029:f0:b297:7778 with SMTP id q3-20020a170902a3c3b02900f0b2977778mr2996346plb.16.1622790686744;
+        Fri, 04 Jun 2021 00:11:26 -0700 (PDT)
+Received: from judyhsiao-p920.tpe.corp.google.com ([2401:fa00:1:10:a8e1:b46e:86b1:84fb])
+        by smtp.gmail.com with ESMTPSA id g8sm971625pfo.85.2021.06.04.00.11.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Jun 2021 00:11:26 -0700 (PDT)
+From:   Judy Hsiao <judyhsiao@chromium.org>
+To:     broonie@kernel.org
+Cc:     Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Michael Walle <michael@walle.cc>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org
-Cc:     kbuild-all@lists.01.org, Hans de Goede <hdegoede@redhat.com>
-Date:   Fri, 04 Jun 2021 09:00:59 +0200
-In-Reply-To: <202106032305.8Dv104X3-lkp@intel.com>
-References: <5d184778a6562e24abfa6e5dd2f7dbde4fede3fe.1622713678.git.sander@svanheule.net>
-         <202106032305.8Dv104X3-lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>, dianders@chromium.org,
+        dgreid@chromium.org, cychiang@google.com, judyhsiao@google.com,
+        tzungbi@chromium.org, swboyd@chromium.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        Judy Hsiao <judyhsiao@chromium.org>
+Subject: [v6] ASoC: qcom: lpass-cpu: Fix pop noise during audio capture begin
+Date:   Fri,  4 Jun 2021 15:11:12 +0800
+Message-Id: <20210604071112.1055911-1-judyhsiao@chromium.org>
+X-Mailer: git-send-email 2.32.0.rc1.229.g3e70b5a671-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2021-06-03 at 23:58 +0800, kernel test robot wrote:
-> Hi Sander,
-> 
-> Thank you for the patch! Perhaps something to improve:
-> 
-> [auto build test WARNING on pavel-linux-leds/for-next]
-> [also build test WARNING on pinctrl/devel v5.13-rc4]
-> [cannot apply to lee-mfd/for-mfd-next next-20210603]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch]
-> 
-> url:    
-> https://github.com/0day-ci/linux/commits/Sander-Vanheule/dt-bindings-leds-Binding-for-RTL8231-scan-matrix/20210603-190118
-> base:   git://git.kernel.org/pub/scm/linux/kernel/git/pavel/linux-leds.git
-> for-next
-> config: sparc-allyesconfig (attached as .config)
-> compiler: sparc64-linux-gcc (GCC) 9.3.0
-> reproduce (this is a W=1 build):
->         wget 
-> https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O
-> ~/bin/make.cross
->         chmod +x ~/bin/make.cross
->         # 
-> https://github.com/0day-ci/linux/commit/9c3e2b6957a6d750d6d39e78e2089abcc0cf740c
->         git remote add linux-review https://github.com/0day-ci/linux
->         git fetch --no-tags linux-review Sander-Vanheule/dt-bindings-leds-
-> Binding-for-RTL8231-scan-matrix/20210603-190118
->         git checkout 9c3e2b6957a6d750d6d39e78e2089abcc0cf740c
->         # save the attached .config to linux build tree
->         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross
-> ARCH=sparc 
-> 
-> If you fix the issue, kindly add following tag as appropriate
-> Reported-by: kernel test robot <lkp@intel.com>
-> 
-> All warnings (new ones prefixed by >>):
-> 
->    drivers/pinctrl/pinctrl-rtl8231.c: In function 'rtl8231_set_mux':
-> > > drivers/pinctrl/pinctrl-rtl8231.c:189:27: warning: cast from pointer to
-> > > integer of different size [-Wpointer-to-int-cast]
->      189 |  unsigned int func_flag = (unsigned int) func->data;
->          |                           ^
-> 
+From: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
 
-I'll change this cast to uintptr_t.
+This patch fixes PoP noise of around 15ms observed during audio
+capture begin.
+Enables BCLK and LRCLK in snd_soc_dai_ops prepare call for
+introducing some delay before capture start.
 
-Best,
-Sander
+Co-developed-by: Judy Hsiao <judyhsiao@chromium.org>
+Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+(am from https://patchwork.kernel.org/patch/12276369/)
+(also found at https://lore.kernel.org/r/20210524142114.18676-1-srivasam@codeaurora.org)
 
+---
+Changes Since V5:
+	-- Fixed nit.
+        -- Updated `mi2s_was_prepared[dai->driver->id] = true;` after checking for errors.
+Changes Since V4:
+        -- Replaced the __clk_is_enabled(BCLK) check by the self maintained.
+           mi2s_was_prepared bool state.
+        -- Removed unrelated changes.
+        -- Refined comments.
+Changes Since V3:
+        -- Checked BCLK is off before enabling it in lpass_cpu_daiops_prepare as
+           lpass_cpu_daiops_prepare can be called multiple times
+        -- Checked BCLK is on before disabling it in lpass_cpu_daiops_shutdown to
+           fix the WARN. It is because BCLK may not be enabled if
+           lpass_cpu_daiops_prepare is not called before lpass_cpu_daiops_shutdown
+        -- Added more comments
+Changes Since V2:
+        -- Updated comments as per linux style
+        -- Removed unrelated changes
+Changes Since V1:
+        -- Enabled BCLK and LRCLK in dai ops prepare API instead of startup API
+        -- Added comments
 
+ sound/soc/qcom/lpass-cpu.c | 80 ++++++++++++++++++++++++++++++++++++++
+ sound/soc/qcom/lpass.h     |  4 ++
+ 2 files changed, 84 insertions(+)
+
+diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+index af8cb64924a0..0430cc797391 100644
+--- a/sound/soc/qcom/lpass-cpu.c
++++ b/sound/soc/qcom/lpass-cpu.c
+@@ -93,8 +93,30 @@ static void lpass_cpu_daiops_shutdown(struct snd_pcm_substream *substream,
+ 		struct snd_soc_dai *dai)
+ {
+ 	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
++	struct lpaif_i2sctl *i2sctl = drvdata->i2sctl;
++	unsigned int id = dai->driver->id;
+ 
+ 	clk_disable_unprepare(drvdata->mi2s_osr_clk[dai->driver->id]);
++	/*
++	 * Ensure LRCLK is disabled even in device node validation.
++	 * Will not impact if disabled in lpass_cpu_daiops_trigger()
++	 * suspend.
++	 */
++	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
++		regmap_fields_write(i2sctl->spken, id, LPAIF_I2SCTL_SPKEN_DISABLE);
++	else
++		regmap_fields_write(i2sctl->micen, id, LPAIF_I2SCTL_MICEN_DISABLE);
++
++	/*
++	 * BCLK may not be enabled if lpass_cpu_daiops_prepare is called before
++	 * lpass_cpu_daiops_shutdown. It's paired with the clk_enable in
++	 * lpass_cpu_daiops_prepare.
++	 */
++	if (drvdata->mi2s_was_prepared[dai->driver->id]) {
++		drvdata->mi2s_was_prepared[dai->driver->id] = false;
++		clk_disable(drvdata->mi2s_bit_clk[dai->driver->id]);
++	}
++
+ 	clk_unprepare(drvdata->mi2s_bit_clk[dai->driver->id]);
+ }
+ 
+@@ -275,6 +297,18 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
+ 	case SNDRV_PCM_TRIGGER_START:
+ 	case SNDRV_PCM_TRIGGER_RESUME:
+ 	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
++		/*
++		 * Ensure lpass BCLK/LRCLK is enabled during
++		 * device resume as lpass_cpu_daiops_prepare() is not called
++		 * after the device resumes. We don't check mi2s_was_prepared before
++		 * enable/disable BCLK in trigger events because:
++		 *  1. These trigger events are paired, so the BCLK
++		 *     enable_count is balanced.
++		 *  2. the BCLK can be shared (ex: headset and headset mic),
++		 *     we need to increase the enable_count so that we don't
++		 *     turn off the shared BCLK while other devices are using
++		 *     it.
++		 */
+ 		if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
+ 			ret = regmap_fields_write(i2sctl->spken, id,
+ 						 LPAIF_I2SCTL_SPKEN_ENABLE);
+@@ -296,6 +330,10 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
+ 	case SNDRV_PCM_TRIGGER_STOP:
+ 	case SNDRV_PCM_TRIGGER_SUSPEND:
+ 	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
++		/*
++		 * To ensure lpass BCLK/LRCLK is disabled during
++		 * device suspend.
++		 */
+ 		if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
+ 			ret = regmap_fields_write(i2sctl->spken, id,
+ 						 LPAIF_I2SCTL_SPKEN_DISABLE);
+@@ -315,12 +353,54 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
+ 	return ret;
+ }
+ 
++static int lpass_cpu_daiops_prepare(struct snd_pcm_substream *substream,
++		struct snd_soc_dai *dai)
++{
++	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
++	struct lpaif_i2sctl *i2sctl = drvdata->i2sctl;
++	unsigned int id = dai->driver->id;
++	int ret;
++
++	/*
++	 * Ensure lpass BCLK/LRCLK is enabled bit before playback/capture
++	 * data flow starts. This allows other codec to have some delay before
++	 * the data flow.
++	 * (ex: to drop start up pop noise before capture starts).
++	 */
++	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
++		ret = regmap_fields_write(i2sctl->spken, id, LPAIF_I2SCTL_SPKEN_ENABLE);
++	else
++		ret = regmap_fields_write(i2sctl->micen, id, LPAIF_I2SCTL_MICEN_ENABLE);
++
++	if (ret) {
++		dev_err(dai->dev, "error writing to i2sctl reg: %d\n", ret);
++		return ret;
++	}
++
++	/*
++	 * Check mi2s_was_prepared before enabling BCLK as lpass_cpu_daiops_prepare can
++	 * be called multiple times. It's paired with the clk_disable in
++	 * lpass_cpu_daiops_shutdown.
++	 */
++	if (!drvdata->mi2s_was_prepared[dai->driver->id]) {
++		ret = clk_enable(drvdata->mi2s_bit_clk[id]);
++		if (ret) {
++			dev_err(dai->dev, "error in enabling mi2s bit clk: %d\n", ret);
++			clk_disable(drvdata->mi2s_osr_clk[id]);
++			return ret;
++		}
++		drvdata->mi2s_was_prepared[dai->driver->id] = true;
++	}
++	return 0;
++}
++
+ const struct snd_soc_dai_ops asoc_qcom_lpass_cpu_dai_ops = {
+ 	.set_sysclk	= lpass_cpu_daiops_set_sysclk,
+ 	.startup	= lpass_cpu_daiops_startup,
+ 	.shutdown	= lpass_cpu_daiops_shutdown,
+ 	.hw_params	= lpass_cpu_daiops_hw_params,
+ 	.trigger	= lpass_cpu_daiops_trigger,
++	.prepare	= lpass_cpu_daiops_prepare,
+ };
+ EXPORT_SYMBOL_GPL(asoc_qcom_lpass_cpu_dai_ops);
+ 
+diff --git a/sound/soc/qcom/lpass.h b/sound/soc/qcom/lpass.h
+index 83b2e08ade06..7f72214404ba 100644
+--- a/sound/soc/qcom/lpass.h
++++ b/sound/soc/qcom/lpass.h
+@@ -67,6 +67,10 @@ struct lpass_data {
+ 	/* MI2S SD lines to use for playback/capture */
+ 	unsigned int mi2s_playback_sd_mode[LPASS_MAX_MI2S_PORTS];
+ 	unsigned int mi2s_capture_sd_mode[LPASS_MAX_MI2S_PORTS];
++
++	/* The state of MI2S prepare dai_ops was called */
++	bool mi2s_was_prepared[LPASS_MAX_MI2S_PORTS];
++
+ 	int hdmi_port_enable;
+ 
+ 	/* low-power audio interface (LPAIF) registers */
+-- 
+2.32.0.rc1.229.g3e70b5a671-goog
 
