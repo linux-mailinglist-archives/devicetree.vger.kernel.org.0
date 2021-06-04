@@ -2,73 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5DA639C1C5
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 22:57:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0B5D39C1FA
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 23:10:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231214AbhFDU7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 16:59:36 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:43946 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230177AbhFDU7g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 16:59:36 -0400
-Received: by mail-ot1-f48.google.com with SMTP id i12-20020a05683033ecb02903346fa0f74dso10340461otu.10;
-        Fri, 04 Jun 2021 13:57:49 -0700 (PDT)
+        id S230084AbhFDVLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 17:11:52 -0400
+Received: from mail-lj1-f169.google.com ([209.85.208.169]:44857 "EHLO
+        mail-lj1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229746AbhFDVLv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 17:11:51 -0400
+Received: by mail-lj1-f169.google.com with SMTP id d2so9107842ljj.11;
+        Fri, 04 Jun 2021 14:10:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WiwJSnK8PAuXp6pcKKltkr6PRSG0LzCFtrc76AFzj68=;
+        b=eG8RnPY+xeDru0TP5q+WVf6uhm62b8h8I1A+AwNbV5hqdvQWqFCwQfCnzaxVfRu6LU
+         5H+jVL2jcqCPPoT/LuvH+a/3xHlVBUZcz9BSrZrNUz3kQwEasOWbbb/coW5W499eUyBB
+         1ENPahXXQktjC1zMvCyxVqo2LjWFYoD/W++L3c/UnW6kKGFFIMm7+pseNEXLr9HfiLHp
+         cNCioI/06W13YOBwSZWJaURp8k9pFHru5+E++RD1yc/84ONaki5IivHCOJ6aaXmZpsqU
+         7SMFMpfcz9Sqx8WPDw9WzoYcel9POtiMcx7ZdGrItJNt6+j3f8liN2c4POi62qmh1/cW
+         eWww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Elxb3rK3x/4U++qApO9PAM2B/AZWM7MGwkHOJawX95Q=;
-        b=llLCvILZebgCl1ISh11EugaPbIglXo1mS3LGU1ey5GIGQFdBdrjntZdLab3Z48UnHU
-         4M5E/OmqalSg6by7cuLnNPUjSNgRAMus+CP2T6ewGZM3sGNsihf7hoLvQhmMdxjtaj/P
-         LI0M7ZMEzgxigwRlhD9eq5mu7NAirugS0vkUzoYFEhLzxaigPfz+1SB21aUX6v/Ad61P
-         Rj3uWJFlTjlsDM3ebpatUrhm7nxJgLmIvXfNzaJFA/i68X6dbTFRJgTyKpetP1dbzLap
-         fyBfWkqPCw/G48uOMLpGC3sgnyt4KC9uoAraBg5ajqGZWuavDDHarNsUGreUET3gWXqh
-         LJTA==
-X-Gm-Message-State: AOAM531yxuGwdj0g9UJhMY06LGXN5jZbpyN+Tz5AFgNldGHMXd7VRLIv
-        devzU0aQu5tnuVlH+uAcFQ==
-X-Google-Smtp-Source: ABdhPJwDy254Ii6EJyqsrGFEuLwAKAC+6UNXts4PYchcl9t9VYdLQSp/B+FGne9QKEpzYhPLZXBVgA==
-X-Received: by 2002:a9d:5eb:: with SMTP id 98mr5455935otd.61.1622840269022;
-        Fri, 04 Jun 2021 13:57:49 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w11sm658970oov.19.2021.06.04.13.57.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Jun 2021 13:57:48 -0700 (PDT)
-Received: (nullmailer pid 3904119 invoked by uid 1000);
-        Fri, 04 Jun 2021 20:57:47 -0000
-Date:   Fri, 4 Jun 2021 15:57:47 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Lokesh Vutla <lokeshvutla@ti.com>
-Cc:     linux-pwm@vger.kernel.org,
-        Linux OMAP Mailing List <linux-omap@vger.kernel.org>,
-        Vignesh R <vigneshr@ti.com>, tony@atomide.com,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Sekhar Nori <nsekhar@ti.com>, lee.jones@linaro.org,
-        u.kleine-koenig@pengutronix.de, thierry.reding@gmail.com
-Subject: Re: [PATCH v2 2/4] dt-bindings: pwm: tiehrpwm: Make clock and
- clock-names as required properties
-Message-ID: <20210604205747.GA3904064@robh.at.kernel.org>
-References: <20210528045817.16618-1-lokeshvutla@ti.com>
- <20210528045817.16618-3-lokeshvutla@ti.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WiwJSnK8PAuXp6pcKKltkr6PRSG0LzCFtrc76AFzj68=;
+        b=ecnDcwrk85ATLi+vd85ylF+G0aCen9phRthDYaMjfbyj7N6LgjWL9qcrqblh0KaKt6
+         E6eJ/hIAgHRQH8sDoT2MR6Q189GBhDJReJcWHy9KDb2PxNx7MCV7dEwDd2iFwRswA2Ze
+         7DUPyjeTP8HoZbulrmUE/zMD0G2PTOim2s/uLEQ92mtYijXfPQq+Dcqn2fSR63MwA+tS
+         InYwd+j1TLz6bvhhoj7JrxNWZcrLiVhxdP6Jdfqw+e1xMKgu9mK2v5CSKTWAswnMdy/6
+         qjXupaE18sOXW6BSuGO12QsTQZ2uTEvJJPFUosnMnbaOYfJVz3X8thNquHCBMiYsNYwX
+         X7RA==
+X-Gm-Message-State: AOAM530Kon7RiDuImp3V8P0lDlx+qYzRcZ7QN32zeEBJ7NBfiWVCoBkx
+        3VfK9K4241Ey9x9wCuRPftAhUSe/tNU71tmFmPo=
+X-Google-Smtp-Source: ABdhPJz7wailIeZEAfKipyeKwSLAY1Kn0N0M0v1HC4kNLSbn00blAQZfJO9o0oqS5sGU0rOyOkmvUkehOCOmAMmhqT0=
+X-Received: by 2002:a05:651c:1193:: with SMTP id w19mr4772104ljo.264.1622840943184;
+ Fri, 04 Jun 2021 14:09:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210528045817.16618-3-lokeshvutla@ti.com>
+References: <20210527173209.3874124-1-festevam@gmail.com> <20210604205430.GA3895085@robh.at.kernel.org>
+In-Reply-To: <20210604205430.GA3895085@robh.at.kernel.org>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Fri, 4 Jun 2021 18:08:50 -0300
+Message-ID: <CAOMZO5Cj+g6yS-3cctdt0Qp-3y59QWtObMt9ssbeBwZf=fUYSQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: adv7180: Introduce adv,adv7182-force-bt656-4
+To:     Rob Herring <robh@kernel.org>
+Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Matthew Michilot <matthew.michilot@gmail.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 May 2021 10:28:15 +0530, Lokesh Vutla wrote:
-> Driver fails to probe when 'clock' and 'clock-names' properties are not
-> populated in DT. But the binding documentation says these properties are
-> optional. Fix this by making 'clock' and 'clock-names' properties as
-> required.
-> 
-> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
-> ---
->  Documentation/devicetree/bindings/pwm/pwm-tiehrpwm.txt | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
+Hi Rob,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Fri, Jun 4, 2021 at 5:54 PM Rob Herring <robh@kernel.org> wrote:
+
+> I'm confused by the part numbers. 7182 or 7280? In any case, I'd just
+> drop the part number from the property name.
+
+Yes, dropping the part number from the property name is less confusing.
+
+Will do as suggested in v2.
+
+Thanks
