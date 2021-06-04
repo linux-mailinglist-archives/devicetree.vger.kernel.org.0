@@ -2,88 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC93539BD38
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 18:33:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A768639BD54
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 18:36:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231512AbhFDQeo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 12:34:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52124 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230037AbhFDQeo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Jun 2021 12:34:44 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2802D6140C;
-        Fri,  4 Jun 2021 16:32:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622824377;
-        bh=4qXiY0ciKLP8LPX9zwj+/O79WshKW6bFYbB9k+rr5Gk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=HwtV6jPRg1YTWDq0sK7oOGwUqxTv8oLwHuJlg5wQrm6crM7l3QpmBhdzNszQzh2K1
-         plxPgahDzBrwghBY4SkFclKkT5Kq+InJzrj5ytX7GYP3GD489FA73u9Z4QO32/ZTv+
-         K5pgKN8zeR+HDvy8k6BnvFOdxoa4+axXETKSlHPFDLYAEEYiEgPgW6LaQYwyF627Zb
-         YGtV/l7XVKjctgPDhu2Uvav96JjSZPK2u1TgLB2Uc6OWseKeo7RylZVQKSH7UAH7y8
-         y3BNLWoc5YcPLeGwkvUE6GXnbcUih2dvotNcoHUKUy0mp1s2q2iv/j8c0RC0E17aVY
-         tv/mhxIp9hp8A==
-From:   Mark Brown <broonie@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Mark Brown <broonie@kernel.org>, robh@kernel.org,
-        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
-Subject: Re: [PATCH v3 0/4] ASoC: codecs: wcd934x: add Headset and button detection support
-Date:   Fri,  4 Jun 2021 17:32:30 +0100
-Message-Id: <162282419357.38836.12886872942740552175.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210604115230.23259-1-srinivas.kandagatla@linaro.org>
-References: <20210604115230.23259-1-srinivas.kandagatla@linaro.org>
+        id S230029AbhFDQiC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 12:38:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47480 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229809AbhFDQiB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 12:38:01 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43DE2C061766
+        for <devicetree@vger.kernel.org>; Fri,  4 Jun 2021 09:36:15 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id h24so15473141ejy.2
+        for <devicetree@vger.kernel.org>; Fri, 04 Jun 2021 09:36:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hmysv7a9uwPwQNbREOH2krp23T9dJn3Iq9cIImmKCLQ=;
+        b=m9jtZO3yG6ZEMJNeajliOsgZjkEB78LTWXPNYYz6IVpAPZNTC8nQgEuzGUIHvZRR3B
+         U3R6NqKCGOaGHfFlFLn4rsD92BNBUIuB1Wcw6nfz+OUgaHa5aO3HpzU/DFBxuqTHDOkC
+         jnFYU39MD50BFi2SUAK+m+I2X7/wzjp1EZ0BfrZoo9Vzx5yfVD0QTGzvB1DWnSjPGPVJ
+         hRWfNcQyHYCZmliU91TsGSJRkynAxwxE65AKTcJHbvjYM/9+oDd5ptmqyBEgGO7+mj7G
+         AZxf2EID/PcmSoZYAE6sRWx0nrvkuxqB2bFsJeKTelGfkJwOEz3nFJIe0DYe01740CTC
+         jvyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hmysv7a9uwPwQNbREOH2krp23T9dJn3Iq9cIImmKCLQ=;
+        b=cZ8n8oPDhYxgxDz8NANOV6QqNOBRxl2r7D7L9HK2Ssw3Xb33sxzTFYPe1uGB0zbQEq
+         DHj/QioS/UnuDWZXLYjwdtukTJWK/vtQApVEDTzxa7KqDbvcP4K927TnscABxIwl/7Te
+         CHLRAa3ShITKplNPAW6QIRvRtith/NoogAF3+d8Z0T8Evk6Ff+j8WSQNz/dZD9qG50Yv
+         U3sFRUKF4xvA4HhfaenF03GyjXsl6GgbTdzGEny+Rg2rUKHiBIs5LBy6aEm/GHkDK1Ca
+         nq8ie1UxRlmiuYJY0J7leuKZGDKOMs49XIuzg7r1mqdL6K7zDmIQ/PhoHDSatW2e0k71
+         Mf1A==
+X-Gm-Message-State: AOAM5328CdMsAILMfbpvVdHcIa71iIriAJ34tt+06HZh8Udib4HkwUvT
+        WIq+nud40NM2R6TnvoiqvHIQEM/sTLmMWA==
+X-Google-Smtp-Source: ABdhPJxG1LwD1PKOobDKiRS7DLdpIjSMKjOEJnoyI3Qkk8BlTuXYX0b/0nu/AlvRZdPdb2OX2DJw5w==
+X-Received: by 2002:a17:906:8a55:: with SMTP id gx21mr5045362ejc.179.1622824573803;
+        Fri, 04 Jun 2021 09:36:13 -0700 (PDT)
+Received: from bismarck.berto.se (p4fca2710.dip0.t-ipconnect.de. [79.202.39.16])
+        by smtp.googlemail.com with ESMTPSA id p10sm2959576edy.86.2021.06.04.09.36.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Jun 2021 09:36:13 -0700 (PDT)
+From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     devicetree@vger.kernel.org, linux-media@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2] media: dt-bindings: media: renesas,csi2: Add r8a779a0 support
+Date:   Fri,  4 Jun 2021 18:35:49 +0200
+Message-Id: <20210604163549.2871010-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 4 Jun 2021 12:52:26 +0100, Srinivas Kandagatla wrote:
-> This patchset adds support to MBHC(Multi Button Headset Control) block found in
-> Qualcomm WCD codecs. MBHC support headset type detection, both Mechanical and
-> electrical insert/removal detection along with 8 buttons detection,
-> Over current interrupts on HPHL/R, Impedance Measurements on HPHL/R.
-> 
-> Eventhough MBHC block supports things like OverCurrent detection, Currently its
-> reported as a kernel debug message. Should this be reported as an uevent to
-> userspace? like the way USB reports?
-> Any suggestions?
-> 
-> [...]
+Add support for R-Car V3U.
 
-Applied to
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/media/renesas,csi2.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+diff --git a/Documentation/devicetree/bindings/media/renesas,csi2.yaml b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
+index 23703b767f5b66f4..e6a036721082cdec 100644
+--- a/Documentation/devicetree/bindings/media/renesas,csi2.yaml
++++ b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
+@@ -30,6 +30,7 @@ properties:
+           - renesas,r8a77970-csi2 # R-Car V3M
+           - renesas,r8a77980-csi2 # R-Car V3H
+           - renesas,r8a77990-csi2 # R-Car E3
++          - renesas,r8a779a0-csi2 # R-Car V3U
+ 
+   reg:
+     maxItems: 1
+-- 
+2.31.1
 
-Thanks!
-
-[1/4] ASoC: dt-bindings: wcd934x: add bindings for Headset Button detection
-      commit: c6d25d5786090edc7299b32160644bb2e468c25d
-[2/4] ASoC: codecs: wcd: add multi button Headset detection support
-      commit: 0e5c9e7ff899808afa4e2b08c2e6ccc469bed681
-[3/4] ASoC: codecs: wcd934x: add mbhc support
-      commit: 9fb9b1690f0ba6b2c9ced91facc1fc44f5a0d5c1
-[4/4] ASoC: qcom: sdm845: add jack support for WCD934x
-      commit: c15d4b72098ca3055d98ce0d66127fe37a6a6361
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
