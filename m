@@ -2,270 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FB5339C016
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 21:04:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B9C939C042
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 21:13:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229823AbhFDTFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 15:05:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52028 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229810AbhFDTFq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 15:05:46 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35DD5C061766;
-        Fri,  4 Jun 2021 12:03:59 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id u5-20020a7bc0450000b02901480e40338bso4724193wmc.1;
-        Fri, 04 Jun 2021 12:03:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Twf9jLAwNkQLT/Ujy3oKloWts7LR/OdCMpxXY26zthg=;
-        b=MP1bQU74xRmIPbbCW5IfT+gtc1NZbEbx9s8o/Qh6TED2ofeYU181cNMzQJKG7vAr2D
-         CkfCrALUhSJuXNr2NpeMOCYqOu7yQzZ3FV3mVNu+smsnfyt9mUlkxhxmNA30estAfJur
-         wOU6Z6m5uvF71GLaV9tm9FbPwDFAuOQ7NuMxrImxqpg+KL4C4z1J0aiwHg1EEFCQBPs+
-         oIul4zenm0OZlgRuf98T5OCFRNi9Puy1qbMfd0A9DPbpoD7YKnE3x+kKVWS04FW07BG7
-         zRNtwzSFrvQTQjfhIQNK2ifJv+Jbu0ueqJyhY6GckpNU5C47tvJTiSFemdkIV9mR7msf
-         oD6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Twf9jLAwNkQLT/Ujy3oKloWts7LR/OdCMpxXY26zthg=;
-        b=jJOF2X42Af6AUBXYZWmpojcKWYTCG0dFjf8jB5gWGCEVDrVd+ghzYLkCfZwMv6iM3M
-         uFvZrau4T1Sj90YvS13I+94tiAqnDXXD8J7X1Qblv6nJ5fEz9FhMshBVw49QJTwjAjZw
-         nQbkyFQW5KnMIljvwsV3f4Q9SLIrqwpL5RnSBs3/5do5k9wroiNuZqrwzTpUWcCj1Y/2
-         SgrVuD8IaRADeuKxcYc3J6o7I4ne1mRWgXhURvSBRaTzGxHYEBx/d9fRsqyEjkDvomho
-         3nobK4qVWBerJrmMS2y0H2+AvpEckC3gvFGazEFW47qd8AfFMK8c3/dRVEnNpToCGu62
-         IBXw==
-X-Gm-Message-State: AOAM533xBptTACX05fITAEiI3ZmnvLVeY16C6BlToL1TKwYgDbScccdY
-        AbThCT8q75X0OzhAtIfRS8s=
-X-Google-Smtp-Source: ABdhPJytzExsCF3VUCig9c0sedFUkKAZMizhqxJiYlsmCY4WJCwJJhIj+2PCmu37/Tn7SInLTg5y3Q==
-X-Received: by 2002:a7b:c4d2:: with SMTP id g18mr4973716wmk.25.1622833437623;
-        Fri, 04 Jun 2021 12:03:57 -0700 (PDT)
-Received: from localhost.localdomain (p200300f137127c00f22f74fffe210725.dip0.t-ipconnect.de. [2003:f1:3712:7c00:f22f:74ff:fe21:725])
-        by smtp.googlemail.com with ESMTPSA id x10sm7576200wrt.65.2021.06.04.12.03.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Jun 2021 12:03:57 -0700 (PDT)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     robh+dt@kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
-Cc:     kishon@ti.com, vkoul@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH 2/2] phy: amlogic: Add a new driver for the HDMI TX PHY on Meson8/8b/8m2
-Date:   Fri,  4 Jun 2021 21:03:38 +0200
-Message-Id: <20210604190338.2248295-3-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210604190338.2248295-1-martin.blumenstingl@googlemail.com>
-References: <20210604190338.2248295-1-martin.blumenstingl@googlemail.com>
+        id S229930AbhFDTO4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 15:14:56 -0400
+Received: from mail-eopbgr150071.outbound.protection.outlook.com ([40.107.15.71]:37604
+        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229501AbhFDTOz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Jun 2021 15:14:55 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FW6kTk/11wMwJEsKSSRNDuELLp48QJyRA4uCH2L//kidVjGg2MwwJCT8UPrhXLW4j5t17fEkC11niRSz1i/rn5wjkd3z+0DfUqomjMWwdsNCLpdW0kfy/JBpOBVQ9dObqE9PmQ6MnsZUoWl8ORAljqA6dncv0OJtCFcTs2Stvkx8rOTjWnLZAZMY3/4VXzj9of2uSNZHRh46ZFObt4AmqjKHhgTHBM3HyqrIRIpTlTec3GA+tYf0wynvcdVc9e+BwOjFJwEhUDBd/WEx20GcbIK2aPCwqJxPk0gfpyGl+t7tgY+/fj9twa6Xx6zEHX7ywMlk+faVxq6+2bwnU/8/ig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=V0fBsGgPwT8CPK6mP/cpWi7jRjuLddEn114sdhZQy6U=;
+ b=NufQizsoAKV47uGCaJHrAzJQVmwB8BcpqQjPRIgGOEFOALvHBTW2nz+VIMQqwZQt++mrWbXEompLnpN+niKagAEP0WDw9piU74phToVBr4zrIX1tiBbz7Y+zJzyb6s2KDRiuPUIy5Urqnn6whtyLPrLCjPBECKqIo4kq98GDHAmYCv9EGq57Hak5edeGZ/p/DOUt1T80MtkkYj84nUCnGJBi0tNUnEh6sPmO681XNnSTPeYedbYdGv3TExkKSn12DwMd2L+5vKJJXS3bO5Eg88g4wj38rXsgSh8vFg16YdWCD1rvy8elxvkJAfmiM5coBKBXbVBeYLTeLJPB+Vco7Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=V0fBsGgPwT8CPK6mP/cpWi7jRjuLddEn114sdhZQy6U=;
+ b=CENkqTY9bDQb+QTPMlej0vMpwuruuUX+ljdf4851/SwCBCcIhyouowuTQx2T5IVxwPZXO3zXRDxrRYGnFBCKqW05IsYc+gZl5YjGG6nt430DtDRerNsG/Z4vyCU2eX5i/0nYaws2d+L+kBGAeDbXG4jog5roHSMcGGbZnZpBsak=
+Received: from AM6PR04MB3976.eurprd04.prod.outlook.com (2603:10a6:209:3f::17)
+ by AM5PR0401MB2452.eurprd04.prod.outlook.com (2603:10a6:203:3b::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.20; Fri, 4 Jun
+ 2021 19:13:07 +0000
+Received: from AM6PR04MB3976.eurprd04.prod.outlook.com
+ ([fe80::7854:74ce:4bb7:858a]) by AM6PR04MB3976.eurprd04.prod.outlook.com
+ ([fe80::7854:74ce:4bb7:858a%4]) with mapi id 15.20.4173.030; Fri, 4 Jun 2021
+ 19:13:06 +0000
+From:   Madalin Bucur <madalin.bucur@nxp.com>
+To:     =?utf-8?B?UGFsaSBSb2jDoXI=?= <pali@kernel.org>
+CC:     Andrew Lunn <andrew@lunn.ch>, Scott Wood <oss@buserror.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Camelia Alexandra Groza (OSS)" <camelia.groza@oss.nxp.com>
+Subject: RE: Unsupported phy-connection-type sgmii-2500 in
+ arch/powerpc/boot/dts/fsl/t1023rdb.dts
+Thread-Topic: Unsupported phy-connection-type sgmii-2500 in
+ arch/powerpc/boot/dts/fsl/t1023rdb.dts
+Thread-Index: AQHXWIWiLLzXceBiLkWovt9CFi28O6sCZLOAgABNOICAAL4lwIAAriUAgAAZZiA=
+Date:   Fri, 4 Jun 2021 19:13:06 +0000
+Message-ID: <AM6PR04MB39763699AE044A8B95D83D8DEC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
+References: <20210603143453.if7hgifupx5k433b@pali> <YLjxX/XPDoRRIvYf@lunn.ch>
+ <20210603194853.ngz4jdso3kfncnj4@pali>
+ <AM6PR04MB3976B62084EC462BA02F0C4CEC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
+ <20210604173244.qonw5wsn3pq6gyjf@pali>
+In-Reply-To: <20210604173244.qonw5wsn3pq6gyjf@pali>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [81.196.28.56]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e58956b4-98dd-487f-d75f-08d9278cc8ec
+x-ms-traffictypediagnostic: AM5PR0401MB2452:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM5PR0401MB2452A3285413844FC727CC3AEC3B9@AM5PR0401MB2452.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4941;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: UBqkOQTWALqLXDhzaINPeqZ9Nq37Ua0beUmrZciYZ+1lAPU2mKlTeTBdAW/ZQZKooNPPVDr0pMtgoh8Kx1LRCKbBAvb2iIxU0wEqDxxpx1pFfKmlQTjAE2LXiuu5yL16Sll6x7c90VwsxWUIS81AjfggFdRfBN0jXmRlZmyfAVqKOUGKvQfz+9HvMscR3NsBXj7nu2cAGube11Sb9M/Qj24AktKzfeMv96uVV1ck4O69QdiYBMt6k14LTzK9JhJzkPKYQ9P7K93qxoO+PSTvShfyqekeYGqG3LltAD1ImS0HBHvCNho/LYOt5XKBeXS65kllJcofUdW+Ad+sZ/kAqlsrBTKYClkm7Y1HK+wAQGGyQ3Rjic3iIMQFhsLwsl2XTEHWQ7BG5B4zNn5Y7wI+glOqFP+gEnMN4xsHrf3a2KAeN28iX71hLZxBiGfqrobGuer+QnmjwxlWeTsbVnEoemYFX7QdlEqXIBL/qVEUJNUrYxEOCf8N/NhsK7tHPgtryqhrdcPAdnCt8yap82fbmL3hGlOrkyyh7u0mk5DUNkEK3HQh4xCqbxPJ2QoKpkfz2EkZ/meQOh5QkzLvlLC+r5ez6JOnJkqVkBUfH+HGie0=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB3976.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(39850400004)(346002)(366004)(136003)(376002)(8676002)(44832011)(2906002)(38100700002)(52536014)(7416002)(4326008)(8936002)(478600001)(122000001)(66946007)(66556008)(316002)(54906003)(7696005)(55016002)(66476007)(6916009)(76116006)(5660300002)(64756008)(71200400001)(9686003)(53546011)(6506007)(26005)(33656002)(86362001)(186003)(83380400001)(66446008)(66574015);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?bjhwYkFxZlcwNjJkek1GMEZzaTVVd1pYV2RMV1FkL3hYL29Rcmk2L09OaE10?=
+ =?utf-8?B?MEdINS81bDB6b1NwazYxUUJVNW9xekVkRkFrUEhQczh6TTAxcE9FaG5IcFp5?=
+ =?utf-8?B?NmpHSzREdURLa28waDRsRGxGbWtObkQvRlFweHNyYmJ1bHMvTHRYMFFUZk5w?=
+ =?utf-8?B?ZmlVNVd0V1BPTDk4RG9lMURWSXZvRGduQnlMVWUxcElXNFRRNG5pVDZ1Q21D?=
+ =?utf-8?B?VUc3WEZoUUhyemh6Mk1DalZKMGxzTXEwTU1UK2NFdndwdjRZcnZjMHg5ZFE5?=
+ =?utf-8?B?UWZFdVl4d1lURnJJWjdrelc5b3dGemJZeGc1aTJROFA2dmVHeFRpWCtGRVFB?=
+ =?utf-8?B?UVZIZ0lzdE9LbGd0dDN3N3JhN1BwM1JrcjBCYlo1RHY1ZmhIeWpDTSt4RE0z?=
+ =?utf-8?B?bXRyaEpyQ1hjL3BlSFVabzNFMk5UNUxvVUIvY0YyV1pOMlJCblRuV2EzeHA1?=
+ =?utf-8?B?YlRLSXB3Zm9Ma3ljcWJOTDBtYkNaTm9XS1RzVU8zZXhoYmNWcWpoTnoxYW9s?=
+ =?utf-8?B?M1BnVlRJNFh2dFdlNzVuN3daaHY1d2h3UHFieEJ3czJJbkpCT0EvSkljY1ps?=
+ =?utf-8?B?MXVWNmtwQmh2UjhhY25QUFYyalR1Q0xJZEE5M3pEaFNsQjFkRENvMFdQSG1t?=
+ =?utf-8?B?eWl5YVBTT1FOWU9aWVZReWp3b2dORUlmTU1vMm5XdGxoT2N6cGN2d05oOVNZ?=
+ =?utf-8?B?MVoxdWNkWVZCWk0zdk4zSEJpTzA2VWRPd0szV2VJYWNFQ1VIYVhpRlYzN0tr?=
+ =?utf-8?B?RDd3cXkyZk54OWJicVhJUkh6RFYyejVDQWVya3puWHNPdXpIY2FpancxUWI4?=
+ =?utf-8?B?Z0tSWWdDbmFnSTNuUGVORURHSUs4Qzlwa3luR0hJRzV6amJ6cjFzUlE2YTRl?=
+ =?utf-8?B?WE80MndBYzFUMElQaHJTaVdTVTJhRzdOVE1KV1dwVFVjS2hxdGNERm9jM2NR?=
+ =?utf-8?B?UWRuUlV2QjRBQ1llcXRVSXdVMnhCV2UyVW1jQ1E2d2V0MTZUMkZMV2hxQitI?=
+ =?utf-8?B?QjFHdjExN0t2Q0FFTnZsN1RQdkcyREJwdUxzZWowbXdaNnJGUWhVMTIrVVJx?=
+ =?utf-8?B?SHhCQnRvZyt5SFAxaHVrUzJSRlpPNEd1QWN0d1NnWlFEUFpSUXY2K01KNW5j?=
+ =?utf-8?B?bHUzaFcxTkp4VG9GRVFyNHd2aWxFNkV5azFHclZJc1RWamVNS3NObUN1RTRP?=
+ =?utf-8?B?YUhyclVTejBhMk9uT2gzVkRGQW54Mk1VM0ROellvbnV0UmlzcUxjdDBPNVFG?=
+ =?utf-8?B?RHZGbXFRN0JKRDZ5SHdnY25hS2FTbTlmUll3UXh3cU1CNGFpM2FqZEdNZHM0?=
+ =?utf-8?B?S3dkNGY3MHJ6KzdEaXJkZHdnaGx3UTRHczhTMWlSRit5NUpSNno0WkxDMEFp?=
+ =?utf-8?B?cjUrSDBaOTBUNTVjbmV1TDF2eUFrTjlodytHY3FHRlNyaThWU21SRmthcWky?=
+ =?utf-8?B?TnhMYnAzV1c0eXpqaE8vT3NndE5kdWxNbkNMVk9oV3hGZndXTTZ0K2N2T1la?=
+ =?utf-8?B?d2hsOEVJVDlCV2NzdE9HWW9PTExzZW9zTm43UnZka0dwMzdPcU1VbEZKNGJh?=
+ =?utf-8?B?ZncrN3lSaklpNjFOLy9OSGp0b0FNUnhURzFPV29Ob2ZSODhUN2NQY2dmT3hp?=
+ =?utf-8?B?cndabnNNTDlocm5kc3dGM3dRcFJ2Y1JrdTVIUk9NMVVnamt0U3NScVJ3RlNW?=
+ =?utf-8?B?ZlJFeXZlQnkrc2podW54cnMzbGQ1UE5zeno4bGF3eDV3WTZSSFlMQ3dNMkRD?=
+ =?utf-8?Q?514zckiXo9tFkuTSFj2KmRZHrwSvcGL9Z/ukxX/?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB3976.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e58956b4-98dd-487f-d75f-08d9278cc8ec
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jun 2021 19:13:06.8985
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: /Vtpoxxlx58ljjCgRkkAoP6P1QjCLCzbyfT3ciLP2nCG4LHIaGsYZm+LbIjROX4oXWFyFlwW/GQlPGTYnqEq9w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0401MB2452
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Amlogic Meson8/8b/8m2 have a built-in HDMI PHY in the HHI register
-region. Unfortunately only few register bits are documented. For
-HHI_HDMI_PHY_CNTL0 the magic numbers are taken from the 3.10 vendor
-kernel.
-
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/phy/amlogic/Kconfig              |  11 ++
- drivers/phy/amlogic/Makefile             |   1 +
- drivers/phy/amlogic/phy-meson8-hdmi-tx.c | 150 +++++++++++++++++++++++
- 3 files changed, 162 insertions(+)
- create mode 100644 drivers/phy/amlogic/phy-meson8-hdmi-tx.c
-
-diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
-index db5d0cd757e3..e6c3a2a8b769 100644
---- a/drivers/phy/amlogic/Kconfig
-+++ b/drivers/phy/amlogic/Kconfig
-@@ -2,6 +2,17 @@
- #
- # Phy drivers for Amlogic platforms
- #
-+config PHY_MESON8_HDMI_TX
-+	tristate "Meson8, Meson8b and Meson8m2 HDMI TX PHY driver"
-+	default ARCH_MESON
-+	depends on (ARCH_MESON && ARM) || COMPILE_TEST
-+	depends on OF
-+	select MFD_SYSCON
-+	help
-+	  Enable this to support the HDMI TX PHYs found in Meson8,
-+	  Meson8b and Meson8m2 SoCs.
-+	  If unsure, say N.
-+
- config PHY_MESON8B_USB2
- 	tristate "Meson8, Meson8b, Meson8m2 and GXBB USB2 PHY driver"
- 	default ARCH_MESON
-diff --git a/drivers/phy/amlogic/Makefile b/drivers/phy/amlogic/Makefile
-index 8fa07fbd0d92..c0886c850bb0 100644
---- a/drivers/phy/amlogic/Makefile
-+++ b/drivers/phy/amlogic/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0-only
-+obj-$(CONFIG_PHY_MESON8_HDMI_TX)		+= phy-meson8-hdmi-tx.o
- obj-$(CONFIG_PHY_MESON8B_USB2)			+= phy-meson8b-usb2.o
- obj-$(CONFIG_PHY_MESON_GXL_USB2)		+= phy-meson-gxl-usb2.o
- obj-$(CONFIG_PHY_MESON_G12A_USB2)		+= phy-meson-g12a-usb2.o
-diff --git a/drivers/phy/amlogic/phy-meson8-hdmi-tx.c b/drivers/phy/amlogic/phy-meson8-hdmi-tx.c
-new file mode 100644
-index 000000000000..8f13960a4492
---- /dev/null
-+++ b/drivers/phy/amlogic/phy-meson8-hdmi-tx.c
-@@ -0,0 +1,150 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Meson8, Meson8b and Meson8m2 HDMI TX PHY.
-+ *
-+ * Copyright (C) 2020 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/clk.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+#define HHI_HDMI_PHY_CNTL0				0x3a0
-+	#define HHI_HDMI_PHY_CNTL0_HDMI_CTL1		GENMASK(31, 16)
-+	#define HHI_HDMI_PHY_CNTL0_HDMI_CTL0		GENMASK(15, 0)
-+
-+#define HHI_HDMI_PHY_CNTL1				0x3a4
-+	#define HHI_HDMI_PHY_CNTL1_CLOCK_ENABLE		BIT(1)
-+	#define HHI_HDMI_PHY_CNTL1_SOFT_RESET		BIT(0)
-+
-+#define HHI_HDMI_PHY_CNTL2				0x3a8
-+
-+struct phy_meson8_hdmi_tx_priv {
-+	struct regmap		*hhi;
-+	struct clk		*tmds_clk;
-+};
-+
-+static int phy_meson8_hdmi_tx_init(struct phy *phy)
-+{
-+	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-+
-+	return clk_prepare_enable(priv->tmds_clk);
-+}
-+
-+static int phy_meson8_hdmi_tx_exit(struct phy *phy)
-+{
-+	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-+
-+	clk_disable_unprepare(priv->tmds_clk);
-+
-+	return 0;
-+}
-+
-+static int phy_meson8_hdmi_tx_power_on(struct phy *phy)
-+{
-+	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-+	unsigned int i;
-+	u16 hdmi_ctl0;
-+
-+	if (clk_get_rate(priv->tmds_clk) >= 2970UL * 1000 * 1000)
-+		hdmi_ctl0 = 0x1e8b;
-+	else
-+		hdmi_ctl0 = 0x4d0b;
-+
-+	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0,
-+		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL1, 0x08c3) |
-+		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL0, hdmi_ctl0));
-+
-+	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL1, 0x00000000);
-+
-+	/* Reset three times, just like the vendor driver does */
-+	for (i = 0; i < 3; i++) {
-+		regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL1,
-+			     HHI_HDMI_PHY_CNTL1_CLOCK_ENABLE |
-+			     HHI_HDMI_PHY_CNTL1_SOFT_RESET);
-+		usleep_range(1000, 2000);
-+
-+		regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL1,
-+			     HHI_HDMI_PHY_CNTL1_CLOCK_ENABLE);
-+		usleep_range(1000, 2000);
-+	}
-+
-+	return 0;
-+}
-+
-+static int phy_meson8_hdmi_tx_power_off(struct phy *phy)
-+{
-+	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-+
-+	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0,
-+		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL1, 0x0841) |
-+		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL0, 0x8d00));
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops phy_meson8_hdmi_tx_ops = {
-+	.init		= phy_meson8_hdmi_tx_init,
-+	.exit		= phy_meson8_hdmi_tx_exit,
-+	.power_on	= phy_meson8_hdmi_tx_power_on,
-+	.power_off	= phy_meson8_hdmi_tx_power_off,
-+	.owner		= THIS_MODULE,
-+};
-+
-+static int phy_meson8_hdmi_tx_probe(struct platform_device *pdev)
-+{
-+	struct device_node *np = pdev->dev.of_node;
-+	struct phy_meson8_hdmi_tx_priv *priv;
-+	struct phy_provider *phy_provider;
-+	struct phy *phy;
-+
-+	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->hhi = syscon_node_to_regmap(np->parent);
-+	if (IS_ERR(priv->hhi))
-+		return PTR_ERR(priv->hhi);
-+
-+	priv->tmds_clk = devm_clk_get(&pdev->dev, NULL);
-+	if (IS_ERR(priv->tmds_clk))
-+		return PTR_ERR(priv->tmds_clk);
-+
-+	phy = devm_phy_create(&pdev->dev, np, &phy_meson8_hdmi_tx_ops);
-+	if (IS_ERR(phy))
-+		return PTR_ERR(phy);
-+
-+	phy_set_drvdata(phy, priv);
-+
-+	phy_provider = devm_of_phy_provider_register(&pdev->dev,
-+						     of_phy_simple_xlate);
-+
-+	return PTR_ERR_OR_ZERO(phy_provider);
-+}
-+
-+static const struct of_device_id phy_meson8_hdmi_tx_of_match[] = {
-+	{ .compatible = "amlogic,meson8-hdmi-tx-phy" },
-+	{ .compatible = "amlogic,meson8b-hdmi-tx-phy" },
-+	{ .compatible = "amlogic,meson8m2-hdmi-tx-phy" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, phy_meson8_hdmi_tx_of_match);
-+
-+static struct platform_driver phy_meson8_hdmi_tx_driver = {
-+	.probe	= phy_meson8_hdmi_tx_probe,
-+	.driver	= {
-+		.name		= "phy-meson8-hdmi-tx",
-+		.of_match_table	= phy_meson8_hdmi_tx_of_match,
-+	},
-+};
-+module_platform_driver(phy_meson8_hdmi_tx_driver);
-+
-+MODULE_AUTHOR("Martin Blumenstingl <martin.blumenstingl@googlemail.com>");
-+MODULE_DESCRIPTION("Meson8, Meson8b and Meson8m2 HDMI TX PHY driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.31.1
-
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBQYWxpIFJvaMOhciA8cGFsaUBr
+ZXJuZWwub3JnPg0KPiBTZW50OiAwNCBKdW5lIDIwMjEgMjA6MzMNCj4gVG86IE1hZGFsaW4gQnVj
+dXIgPG1hZGFsaW4uYnVjdXJAbnhwLmNvbT4NCj4gQ2M6IEFuZHJldyBMdW5uIDxhbmRyZXdAbHVu
+bi5jaD47IElnYWwgTGliZXJtYW4NCj4gPElnYWwuTGliZXJtYW5AZnJlZXNjYWxlLmNvbT47IFNo
+cnV0aSBLYW5ldGthciA8U2hydXRpQGZyZWVzY2FsZS5jb20+Ow0KPiBFbWlsIE1lZHZlIDxFbWls
+aWFuLk1lZHZlQGZyZWVzY2FsZS5jb20+OyBTY290dCBXb29kIDxvc3NAYnVzZXJyb3IubmV0PjsN
+Cj4gUm9iIEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz47IE1pY2hhZWwgRWxsZXJtYW4gPG1w
+ZUBlbGxlcm1hbi5pZC5hdT47DQo+IEJlbmphbWluIEhlcnJlbnNjaG1pZHQgPGJlbmhAa2VybmVs
+LmNyYXNoaW5nLm9yZz47IFJ1c3NlbGwgS2luZw0KPiA8cm1rK2tlcm5lbEBhcm1saW51eC5vcmcu
+dWs+OyBuZXRkZXZAdmdlci5rZXJuZWwub3JnOw0KPiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9y
+ZzsgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgQ2FtZWxpYQ0KPiBBbGV4YW5kcmEgR3Jv
+emEgKE9TUykgPGNhbWVsaWEuZ3JvemFAb3NzLm54cC5jb20+DQo+IFN1YmplY3Q6IFJlOiBVbnN1
+cHBvcnRlZCBwaHktY29ubmVjdGlvbi10eXBlIHNnbWlpLTI1MDAgaW4NCj4gYXJjaC9wb3dlcnBj
+L2Jvb3QvZHRzL2ZzbC90MTAyM3JkYi5kdHMNCj4gDQo+IEhlbGxvIQ0KPiANCj4gT24gRnJpZGF5
+IDA0IEp1bmUgMjAyMSAwNzozNTozMyBNYWRhbGluIEJ1Y3VyIHdyb3RlOg0KPiA+ID4gLS0tLS1P
+cmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPiA+IEZyb206IFBhbGkgUm9ow6FyIDxwYWxpQGtlcm5l
+bC5vcmc+DQo+ID4gPiBTZW50OiAwMyBKdW5lIDIwMjEgMjI6NDkNCj4gPiA+IFRvOiBBbmRyZXcg
+THVubiA8YW5kcmV3QGx1bm4uY2g+DQo+ID4gPiBDYzogSWdhbCBMaWJlcm1hbiA8SWdhbC5MaWJl
+cm1hbkBmcmVlc2NhbGUuY29tPjsgU2hydXRpIEthbmV0a2FyDQo+ID4gPiA8U2hydXRpQGZyZWVz
+Y2FsZS5jb20+OyBFbWlsIE1lZHZlIDxFbWlsaWFuLk1lZHZlQGZyZWVzY2FsZS5jb20+Ow0KPiBT
+Y290dA0KPiA+ID4gV29vZCA8b3NzQGJ1c2Vycm9yLm5ldD47IFJvYiBIZXJyaW5nIDxyb2JoK2R0
+QGtlcm5lbC5vcmc+OyBNaWNoYWVsDQo+ID4gPiBFbGxlcm1hbiA8bXBlQGVsbGVybWFuLmlkLmF1
+PjsgQmVuamFtaW4gSGVycmVuc2NobWlkdA0KPiA+ID4gPGJlbmhAa2VybmVsLmNyYXNoaW5nLm9y
+Zz47IE1hZGFsaW4gQnVjdXIgPG1hZGFsaW4uYnVjdXJAbnhwLmNvbT47DQo+IFJ1c3NlbGwNCj4g
+PiA+IEtpbmcgPHJtaytrZXJuZWxAYXJtbGludXgub3JnLnVrPjsgbmV0ZGV2QHZnZXIua2VybmVs
+Lm9yZzsNCj4gPiA+IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC1rZXJuZWxAdmdl
+ci5rZXJuZWwub3JnDQo+ID4gPiBTdWJqZWN0OiBSZTogVW5zdXBwb3J0ZWQgcGh5LWNvbm5lY3Rp
+b24tdHlwZSBzZ21paS0yNTAwIGluDQo+ID4gPiBhcmNoL3Bvd2VycGMvYm9vdC9kdHMvZnNsL3Qx
+MDIzcmRiLmR0cw0KPiA+ID4NCj4gPiA+IE9uIFRodXJzZGF5IDAzIEp1bmUgMjAyMSAxNzoxMjoz
+MSBBbmRyZXcgTHVubiB3cm90ZToNCj4gPiA+ID4gT24gVGh1LCBKdW4gMDMsIDIwMjEgYXQgMDQ6
+MzQ6NTNQTSArMDIwMCwgUGFsaSBSb2jDoXIgd3JvdGU6DQo+ID4gPiA+ID4gSGVsbG8hDQo+ID4g
+PiA+ID4NCj4gPiA+ID4gPiBJbiBjb21taXQgODRlMGYxYzEzODA2ICgicG93ZXJwYy9tcGM4NXh4
+OiBBZGQgTURJTyBidXMgbXV4aW5nDQo+IHN1cHBvcnQNCj4gPiA+IHRvDQo+ID4gPiA+ID4gdGhl
+IGJvYXJkIGRldmljZSB0cmVlKHMpIikgd2FzIGFkZGVkIGZvbGxvd2luZyBEVCBwcm9wZXJ0eSBp
+bnRvIERUDQo+ID4gPiBub2RlOg0KPiA+ID4gPiA+IGFyY2gvcG93ZXJwYy9ib290L2R0cy9mc2wv
+dDEwMjNyZGIuZHRzIGZtMW1hYzM6IGV0aGVybmV0QGU0MDAwDQo+ID4gPiA+ID4NCj4gPiA+ID4g
+PiAgICAgcGh5LWNvbm5lY3Rpb24tdHlwZSA9ICJzZ21paS0yNTAwIjsNCj4gPiA+ID4gPg0KPiA+
+ID4gPiA+IEJ1dCBjdXJyZW50bHkga2VybmVsIGRvZXMgbm90IHJlY29nbml6ZSB0aGlzICJzZ21p
+aS0yNTAwIiBwaHkgbW9kZS4NCj4gPiA+IFNlZQ0KPiA+ID4gPiA+IGZpbGUgaW5jbHVkZS9saW51
+eC9waHkuaC4gSW4gbXkgb3BpbmlvbiBpdCBzaG91bGQgYmUgIjI1MDBiYXNlLXgiDQo+IGFzDQo+
+ID4gPiA+ID4gdGhpcyBpcyBtb2RlIHdoaWNoIG9wZXJhdGVzIGF0IDIuNSBHYnBzLg0KPiA+ID4g
+PiA+DQo+ID4gPiA+ID4gSSBkbyBub3QgdGhpbmsgdGhhdCBzZ21paS0yNTAwIG1vZGUgZXhpc3Qg
+YXQgYWxsIChjb3JyZWN0IG1lIGlmDQo+IEknbQ0KPiA+ID4gPiA+IHdyb25nKS4NCj4gPiA+ID4N
+Cj4gPiA+ID4gS2luZCBvZiBleGlzdCwgdW5vZmZpY2lhbGx5LiBTb21lIHZlbmRvcnMgcnVuIFNH
+TUlJIG92ZXIgY2xvY2tlZCBhdA0KPiA+ID4gPiAyNTAwLiBCdXQgdGhlcmUgaXMgbm8gc3RhbmRh
+cmQgZm9yIGl0LCBhbmQgaXQgaXMgdW5jbGVhciBob3cgaW5iYW5kDQo+ID4gPiA+IHNpZ25hbGxp
+bmcgc2hvdWxkIHdvcmsuIFdoZW5ldmVyIGkgc2VlIGNvZGUgc2F5aW5nIDIuNUcgU0dNSUksIGkN
+Cj4gPiA+ID4gYWx3YXlzIGFzaywgYXJlIHlvdSBzdXJlLCBpcyBpdCByZWFsbHkgMjUwMEJhc2VY
+PyBNb3N0bHkgaXQgZ2V0cw0KPiA+ID4gPiBjaGFuZ2VkIHRvIDI1MDBCYXNlWCBhZnRlciByZXZp
+ZXcuDQo+ID4gPg0KPiA+ID4gU28gdGhpcyBpcyBxdWVzdGlvbiBmb3IgYXV0aG9ycyBvZiB0aGF0
+IGNvbW1pdCA4NGUwZjFjMTM4MDYuIEJ1dCBpdA0KPiA+ID4gbG9va3MgbGlrZSBJIGNhbm5vdCBz
+ZW5kIHRoZW0gZW1haWxzIGJlY2F1c2Ugb2YgZm9sbG93aW5nIGVycm9yOg0KPiA+ID4NCj4gPiA+
+IDxNaW5naHVhbi5MaWFuQGZyZWVzY2FsZS5jb20+OiBjb25uZWN0IHRvDQo+IGZyZWVzY2FsZS5j
+b21bMTkyLjg4LjE1Ni4zM106MjU6DQo+ID4gPiBDb25uZWN0aW9uIHRpbWVkIG91dA0KPiA+ID4N
+Cj4gPiA+IERvIHlvdSBoYXZlIG90aGVyIHdheSBob3cgdG8gY29udGFjdCBtYWludGFpbmVycyBv
+ZiB0aGF0IERUUyBmaWxlPw0KPiA+ID4gYXJjaC9wb3dlcnBjL2Jvb3QvZHRzL2ZzbC90MTAyM3Jk
+Yi5kdHMNCj4gPiA+DQo+ID4gPiA+IFBIWSBtb2RlIHNnbWlpLTI1MDAgZG9lcyBub3QgZXhpc3Qg
+aW4gbWFpbmxpbmUuDQo+ID4gPg0KPiA+ID4gWWVzLCB0aGlzIGlzIHJlYXNvbiB3aHkgSSBzZW50
+IHRoaXMgZW1haWwuIEluIERUUyBpcyBzcGVjaWZpZWQgdGhpcw0KPiBtb2RlDQo+ID4gPiB3aGlj
+aCBkb2VzIG5vdCBleGlzdC4NCj4gPiA+DQo+ID4gPiA+IAlBbmRyZXcNCj4gPg0KPiA+IEhpLCB0
+aGUgRnJlZXNjYWxlIGVtYWlscyBubyBsb25nZXIgd29yaywgeWVhcnMgYWZ0ZXIgRnJlZXNjYWxl
+IGpvaW5lZA0KPiBOWFAuDQo+ID4gQWxzbywgdGhlIGZpcnN0IGZvdXIgcmVjaXBpZW50cyBubyBs
+b25nZXIgd29yayBmb3IgTlhQLg0KPiA+DQo+ID4gSW4gcmVnYXJkcyB0byB0aGUgc2dtaWktMjUw
+MCB5b3Ugc2VlIGluIHRoZSBkZXZpY2UgdHJlZSwgaXQgZGVzY3JpYmVzDQo+IFNHTUlJDQo+ID4g
+b3ZlcmNsb2NrZWQgdG8gMi41R2Jwcywgd2l0aCBhdXRvbmVnb3RpYXRpb24gZGlzYWJsZWQuDQo+
+ID4NCj4gPiBBIHF1b3RlIGZyb20gYSBsb25nIHRpbWUgYWdvLCBmcm9tIHNvbWVvbmUgZnJvbSB0
+aGUgSFcgdGVhbSBvbiB0aGlzOg0KPiA+DQo+ID4gCVRoZSBpbmR1c3RyeSBjb25zZW5zdXMgaXMg
+dGhhdCAyLjVHIFNHTUlJIGlzIG92ZXJjbG9ja2VkIDFHIFNHTUlJDQo+ID4gCXVzaW5nIFhBVUkg
+ZWxlY3RyaWNhbHMuIEZvciB0aGUgUENTIGFuZCBNQUMgbGF5ZXJzLCBpdCBsb29rcyBleGFjdGx5
+DQo+ID4gCWxpa2UgMUcgU0dNSUksIGp1c3Qgd2l0aCBhIGZhc3RlciBjbG9jay4NCj4gDQo+IFNH
+TUlJIHN1cHBvcnRzIDEgR2JwcyBzcGVlZCBhbmQgYWxzbyAxMDAgLyAxMCBNYnBzIGJ5IHJlcGVh
+dGluZyBmcmFtZSAxMA0KPiBvciAxMDAgdGltZXMuDQo+IA0KPiBTby4uLiBpZiB0aGlzIEhXIGhh
+cyAyLjVHIFNHTUlJIChzZ21paS0yNTAwKSBhcyAyLjV4IG92ZXJjbG9ja2VkIFNHTUlJLA0KPiBk
+b2VzIGl0IG1lYW4gdGhhdCAyLjVHIFNHTUlJIHN1cHBvcnRzIDI1IE1icHMgYW5kIDI1MCBNYnBz
+IHNwZWVkcyBieQ0KPiByZXBlYXRpbmcgZnJhbWUgMTAgYW5kIDEwMCB0aW1lcyAobGlrZSBmb3Ig
+MUcgU0dNSUkpPw0KDQpJIGhhZCB0aGUgc2FtZSBjdXJpb3NpdHkgYXQgdGhlIHRpbWUgLSBubywg
+aXQgZG9lcyBub3Qgc3VwcG9ydCBhbnl0aGluZw0Kb3RoZXIgdGhhbiAyLjVHIGluIHRoaXMgbW9k
+ZSwgc28gYWxsIHRoYXQgZmxleGliaWxpdHkgb2YgU0dNSUkgaXMgZ29uZS4NCkl0IHNlZW1zIGl0
+IHdhcyBhIEhXICJoYWNrIiBvZiBzb3J0cyB0byBnZXQgbW9yZSBzcGVlZC4NCg0KPiA+IFRoZSBz
+dGF0ZW1lbnQgdGhhdCBpdCBkb2VzIG5vdCBleGlzdCBpcyBub3QgYWNjdXJhdGUsIGl0IGV4aXN0
+cyBpbiBIVywNCj4gYW5kDQo+ID4gaXQgaXMgZGVzY3JpYmVkIGFzIHN1Y2ggaW4gdGhlIGRldmlj
+ZSB0cmVlLiBXaGV0aGVyIG9yIG5vdCBpdCBpcw0KPiBwcm9wZXJseQ0KPiA+IHRyZWF0ZWQgaW4g
+U1cgaXQncyBhbm90aGVyIGRpc2N1c3Npb24uIEluIDIwMTUsIHdoZW4gdGhpcyB3YXMgc3VibWl0
+dGVkLA0KPiA+IHRoZXJlIHdlcmUgbm8gb3RoZXIgMi41RyBjb21wYXRpYmxlcyBpbiB1c2UsIGlm
+IEknbSBub3QgbWlzdGFrZW4uDQo+IA0KPiBZZWEsIEkgdW5kZXJzdGFuZC4gSWYgYXQgdGhhdCB0
+aW1lIHRoZXJlIHdhcyBubyBzdyBzdXBwb3J0LCAic29tZXRoaW5nIg0KPiB3YXMgY2hvc2VuLg0K
+PiANCj4gPiAyNTAwQmFzZS1YIHN0YXJ0ZWQgdG8gYmUgYWRkZWQgdG8gZGV2aWNlIHRyZWVzIGZv
+dXIgeWVhcnMgbGF0ZXIsIGl0DQo+IHNob3VsZA0KPiA+IGJlIGNvbXBhdGlibGUvaW50ZXJ3b3Jr
+aW5nIGJ1dCBpdCBpcyBsZXNzIHNwZWNpZmljIG9uIHRoZSBhY3R1YWwNCj4gaW1wbGVtZW50YXRp
+b24NCj4gPiBkZXRhaWxzIChkZW5vdGVzIDIuNUcgc3BlZWQsIDhiLzEwYiBjb2RpbmcsIHdoaWNo
+IGlzIHRydWUgZm9yIHRoaXMNCj4gb3ZlcmNsb2NrZWQNCj4gPiBTR01JSSkuIElmIHRoZXkgYXJl
+IGNvbXBhdGlibGUsIFNXIHNob3VsZCBwcm9iYWJseSB0cmVhdCB0aGVtIGluIHRoZQ0KPiBzYW1l
+IG1hbm5lci4NCj4gDQo+IDEwMDBiYXNlLXggYW5kIFNHTUlJIGFyZSBub3Qgc2FtZSBtb2Rlcy4g
+RS5nLiBTR01JSSBzdXBwb3J0IDEwIE1icHMNCj4gd2hpbGUgMTAwMGJhc2UteCBub3QuIFNvIGlu
+IG15IG9waW5pb24gMTAwMGJhc2UteCBhbmQgU0dNSUkgc2hvdWxkIG5vdA0KPiBiZSB0cmVhdGVk
+IGFzIHRoZSBzYW1lIG1vZGUgKGluIFNXKS4NCj4gDQo+IEknbSBub3Qgc3VyZSBob3cgd2hhdCBl
+eGFjdGx5IFNHTUlJLTI1MDAgc3VwcG9ydHMsIGJ1dCBhcyAyNTAwYmFzZS14DQo+IGRvZXMgbm90
+IHN1cHBvcnQgMjUgTWJwcyBzcGVlZCBJIGRvIG5vdCB0aGluayB0aGF0IFNHTUlJLTI1MDAgaXMg
+c2FtZSBhcw0KPiAyNTAwYmFzZS14Lg0KDQpTZWVtcyB0byBpbnRlcm9wZXJhdGUgdGhvdWdoLCBh
+cyBQSFlzIHRoYXQgZG8gbm90IGxpc3QgdGhpcyBTR01JSSAyNTAwIGFzDQphIHN1cHBvcnRlZCBt
+b2RlIHdvcmsgd2l0aCB0aGlzIG92ZXJjbG9ja2VkIFNHTUlJIElQICh3aXRoIFNHTUlJIEFOIGRp
+c2FibGVkKS4NCklmIHRoaXMgZGlzYWJsaW5nIHdhcyBub3QgcmVxdWlyZWQsIGl0IGNvdWxkIGhh
+dmUgYmVlbiBkZWNsYXJlZCBhcyBTR01JSSwNCih0aGUgb3ZlcmNsb2NraW5nIGlzIGRvbmUgYnkg
+dGhlIEhXIGNvbmZpZyByZWdpc3RlcnMpLiBCdXQgd2hlbiB0aGUgSFcgcnVucw0KaW4gbm9ybWFs
+IFNHTUlJIG1vZGUsIGl0IHVzZXMgQU4sIGFuZCB3aGVuIGNvbmZpZ3VyZWQgZm9yIHRoaXMgc2dt
+aWktMjUwMA0KaXQgZG9lcyBub3QgdXNlIEFOLCBzbyB0aGUgZHJpdmVyIG5lZWRzIHRvIGtub3cg
+YWJvdXQgaXQsIHRvIGRpc2FibGUgQU4uDQpGcm9tIHRoZSBuZXR3b3JraW5nIHN0YWNrJ3MgcGVy
+c3BlY3RpdmUsIGl0IGxvb2tzIGxpa2UgYSAyNTAwQmFzZS1YIGRldmljZS4NCg0KPiBCdXQgbm93
+IEknbSB0b3RhbGx5IGNvbmZ1c2VkIGJ5IGFsbCB0aGVzZSBtb2Rlcywgc28gSSBob3BlIHRoYXQg
+c29tZWJvZHkNCj4gZWxzZSB0cmllcyB0byBleHBsYWluIHdoYXQga2VybmVsIGV4cGVjdHMgYW5k
+IGhvdyBrZXJuZWwgdHJlYXRzIHRoZXNlDQo+IG1vZGVzLg0KPiANCj4gPiBUaGVyZSB3ZXJlIHNv
+bWUgZGlzY3Vzc2lvbnMgYSB3aGlsZSBhZ28gYWJvdXQgdGhlIG1peCBvciBldmVuIGNvbmZ1c2lv
+bg0KPiBiZXR3ZWVuDQo+ID4gdGhlIGFjdHVhbCBIVyBkZXNjcmlwdGlvbiAodGhhdCdzIHdoYXQg
+dGhlIGR0cyBpcyBzdXBwb3NlZCB0byBkbykgYW5kDQo+IHRoZSBzZXR0aW5ncw0KPiA+IG9uZSB3
+YW50cyB0byByZXByZXNlbnQgaW4gU1cgKGkuZS4gc3BlZWQpIGRlbm90ZWQgbG9vc2VseSBieQ0K
+PiBkZW5vbWluYXRpb25zIGxpa2UNCj4gPiAxMEcgQmFzZS1SLg0KPiA+DQo+ID4gUmVnYXJkcywN
+Cj4gPiBNYWRhbGluDQo=
