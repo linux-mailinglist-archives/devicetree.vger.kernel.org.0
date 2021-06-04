@@ -2,115 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F3A239BEEE
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 19:37:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39E5B39BF0A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 19:45:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230414AbhFDRjD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 13:39:03 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:38096 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229690AbhFDRjD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 13:39:03 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id 65E551F439E4
-Message-ID: <943276000b13f51e0e746b4f29f2a28d7e435622.camel@collabora.com>
-Subject: Re: [PATCH v9 03/13] media: hantro: Use syscon instead of 'ctrl'
- register
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     Lucas Stach <l.stach@pengutronix.de>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        lee.jones@linaro.org, gregkh@linuxfoundation.org,
-        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
-        emil.l.velikov@gmail.com, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>
-Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-imx@nxp.com, kernel@pengutronix.de, kernel@collabora.com,
-        cphealy@gmail.com, linux-arm-kernel@lists.infradead.org,
-        linux-media@vger.kernel.org
-Date:   Fri, 04 Jun 2021 14:37:02 -0300
-In-Reply-To: <72fef3d9f79194876f2035e996bb83f9f8b12902.camel@pengutronix.de>
-References: <20210407073534.376722-1-benjamin.gaignard@collabora.com>
-         <20210407073534.376722-4-benjamin.gaignard@collabora.com>
-         <7bcbb787d82f21d42563d8fb7e3c2e7d40123932.camel@pengutronix.de>
-         <831a59b052df02e9860b9766e631a7ab6a37c46a.camel@collabora.com>
-         <72fef3d9f79194876f2035e996bb83f9f8b12902.camel@pengutronix.de>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.2-1 
+        id S230010AbhFDRrn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 13:47:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34698 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229778AbhFDRrn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 13:47:43 -0400
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF989C061766
+        for <devicetree@vger.kernel.org>; Fri,  4 Jun 2021 10:45:56 -0700 (PDT)
+Received: by mail-yb1-xb2b.google.com with SMTP id x6so14782585ybl.9
+        for <devicetree@vger.kernel.org>; Fri, 04 Jun 2021 10:45:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=konsulko.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=c0jQ6LHez3RP/lYmI6QWvp1COoXeDJHGCUAVhBh30og=;
+        b=Jx1r9kp4r9/zhm4TcUeJT+VVRZUq4s3fA2n9RSvyPDQXw0s90sMnIKosVRTaF8XqY+
+         j/xQFmuHwQ9rRiWGFEFqLVZASWL5AONk/LjxaFUdb2Ma1kCbNmIzSwvzs2Js7PTANAZ+
+         fD+/W0FxN+q6qi5l5wUYItXR3tePMyCL0gQvQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=c0jQ6LHez3RP/lYmI6QWvp1COoXeDJHGCUAVhBh30og=;
+        b=Nf5OYhDtZVMyNWjhVEe1yBqmtYhuxPp0T+EEeA7Z5KEWbPw+f3mxiUOKkFoVjevsDG
+         XwoaiXxmsb/WGJVYsafzLndC1/iDXjGJY4W5nH3Ndk/4OEBT/UhmfQ5lOSMstKkGAJzC
+         H5p8pra61pegL1GHMPmiLlcyo2tErXLMPQ6yBI689m1CfSTKOrmMCjQRUg7f5rLW6NUq
+         GKUh2MHSjq1RIBAty9oWwSQvqqBQ4hCRo8EqMN+MtuDY8/7m1BrFObIxa8Qcbo9TSFZH
+         GnQil/2JDNWLH++U0cI4qRo+sIah+gIVOmEl0KWPG0/RWxoAiM+NVHRAY2ugmwhOx/Qk
+         QiZg==
+X-Gm-Message-State: AOAM530oIFL8r3lCPh9oGvvdwo9oyNXWTFeCdJa7EGUC0boHXfWVwoI5
+        cK0Kwx6hhNeRHqBJiYsjq7LgYsBFviqr+OzZSVfEyA==
+X-Google-Smtp-Source: ABdhPJxfm9DOEbJard/RMQCUy0MPuzeYvzBSGuoHAw7M3Mfj6MS7Gxssyf+vELiVDnfj5HxfQ2oNUhuu32kMYCvEiEk=
+X-Received: by 2002:a25:1b0b:: with SMTP id b11mr6882729ybb.302.1622828756060;
+ Fri, 04 Jun 2021 10:45:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+References: <20210604120639.1447869-1-alex@ghiti.fr> <CAK8P3a1TiSNoqUEjTaqPyqnU8d0-p-yZkrsvmXt5fo4Rkfue_w@mail.gmail.com>
+In-Reply-To: <CAK8P3a1TiSNoqUEjTaqPyqnU8d0-p-yZkrsvmXt5fo4Rkfue_w@mail.gmail.com>
+From:   Vitaly Wool <vitaly.wool@konsulko.com>
+Date:   Fri, 4 Jun 2021 19:45:45 +0200
+Message-ID: <CAM4kBBK467AZ-qhmtREe9mr_bp3QcCEptQcFAApnbrvPc6bkuA@mail.gmail.com>
+Subject: Re: [PATCH -fixes] riscv: Fix BUILTIN_DTB for sifive and microchip soc
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lucas,
+Hey Arnd,
 
-On Mon, 2021-05-17 at 12:52 +0200, Lucas Stach wrote:
-> Hi Ezequiel,
-> 
-> Am Sonntag, dem 16.05.2021 um 19:40 -0300 schrieb Ezequiel Garcia:
-> > Hi Lucas,
-> > 
-> > On Fri, 2021-04-16 at 12:54 +0200, Lucas Stach wrote:
-> > > Am Mittwoch, dem 07.04.2021 um 09:35 +0200 schrieb Benjamin Gaignard:
-> > > > In order to be able to share the control hardware block between
-> > > > VPUs use a syscon instead a ioremap it in the driver.
-> > > > To keep the compatibility with older DT if 'nxp,imx8mq-vpu-ctrl'
-> > > > phandle is not found look at 'ctrl' reg-name.
-> > > > With the method it becomes useless to provide a list of register
-> > > > names so remove it.
-> > > 
-> > > Sorry for putting a spoke in the wheel after many iterations of the
-> > > series.
-> > > 
-> > > We just discussed a way forward on how to handle the clocks and resets
-> > > provided by the blkctl block on i.MX8MM and later and it seems there is
-> > > a consensus on trying to provide virtual power domains from a blkctl
-> > > driver, controlling clocks and resets for the devices in the power
-> > > domain. I would like to avoid introducing yet another way of handling
-> > > the blkctl and thus would like to align the i.MX8MQ VPU blkctl with
-> > > what we are planning to do on the later chip generations.
-> > > 
-> > > CC'ing Jacky Bai and Peng Fan from NXP, as they were going to give this
-> > > virtual power domain thing a shot.
-> > > 
-> > 
-> > It seems the i.MX8MM BLK-CTL series are moving forward:
-> > 
-> > https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=479175
-> > 
-> > ... but I'm unable to wrap my head around how this affects the
-> > devicetree VPU modelling for i.MX8MQ (and also i.MX8MM, i.MX8MP, ...).
-> > 
-> > 
-> For the i.MX8MQ we want to have the same virtual power-domains provided
-> by a BLK-CTRL driver for the VPUs, as on i.MX8MM. This way we should be
-> able to use the same DT bindings for the VPUs on i.MX8MQ and i.MX8MM,
-> even though the SoC integration with the blk-ctrl is a little
-> different.
-> 
-> > Can you clarify that?
-> > 
-> I'm planning on sending some patches adding i.MX8MQ VPU support to the
-> BLK-CTRL driver in the next few days. I guess that should clarify
-> things. :)
-> 
+On Fri, Jun 4, 2021 at 3:18 PM Arnd Bergmann <arnd@arndb.de> wrote:
+>
+> On Fri, Jun 4, 2021 at 2:06 PM Alexandre Ghiti <alex@ghiti.fr> wrote:
+> >
+> > Fix BUILTIN_DTB config which resulted in a dtb that was actually not built
+> > into the Linux image: in the same manner as Canaan soc does, create an object
+> > file from the dtb file that will get linked into the Linux image.
+> >
+> > Signed-off-by: Alexandre Ghiti <alex@ghiti.fr>
+>
+> Along the same lines as the comment that Jisheng Zhang made on the fixed
+> address, building a dtb into the kernel itself fundamentally breaks generic
+> kernel images.
+>
+> I can understand using it on K210, which is extremely limited and wouldn't
+> run a generic kernel anyway, but for normal platforms like microchip and
+> sifive, it would be better to disallow CONFIG_BUILTIN_DTB in Kconfig
+> and require a non-broken boot loader.
 
-As a gentle reminder, Hans sent the i.MX8MQ G2 HEVC support pull request
-and Benjamin just posted a series adding support for more features.
+can't quite agree here. If we take XIP, it does make sense to have
+BUILTIN_DTB, since 1) this will not be a generic kernel anyway 2) we
+may want to skip the bootloader altogether or at least make it as thin
+as possible and 3) copying device tree binaries from bootloader to RAM
+as opposed to having it handy compiled in the kernel will be just a
+waste of RAM.
 
-Do you think we could have the blk-ctrl support landing in v5.14?
+Best regards,
+   Vitaly
 
-If you work on the patches, and you happen to test the G1 and G2 on
-i.MX8MM it would be great to add that too.
-
-Meanwhile, our next steps would be to improve the HEVC V4L2 uAPI itself.
-
-Thanks a lot!
-Ezequiel 
-
+>       Arnd
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
