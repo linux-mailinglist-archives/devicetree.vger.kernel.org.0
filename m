@@ -2,200 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A66DC39C0FF
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 22:02:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73E3839C125
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 22:18:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230281AbhFDUEN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 16:04:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36582 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229930AbhFDUEM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 16:04:12 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCA7CC061766;
-        Fri,  4 Jun 2021 13:02:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-        Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=5V0K76SC7xFgi4wfm94mthQafI0pCvyrVvpHGrwYWAg=; b=outXc+MeLTFU29y5bTflmViDE
-        W0rCMayfjz+1GlO6/IXLpCxjAEIfKk4M7wXr0odesEbAK+5jzbjwZiiVvROklg7Y2bZNhRV5d/Cb2
-        P9SaSHAchKQDPY2CHGsFcbqkndPTMuJFRxEZXNJx5ZFS3BON+l0Z+/43/UXB4HxdC7h3SNM2iXPz7
-        /yA3Z/LrfHghQwmwUFcEl/iEsALLPlc/8n7yY6Q5a6tC7oC7c5gSHad+Db79iMQz3l13ynBI7eFRH
-        +WmDHYAEU4AQjWIfataVu6SvVqRWKyiJOT+muvxKIPTjWzSR4i7TI5mj2ObDaMxCRC6tgQq4tjFuc
-        MQDFDgqZQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:44716)
-        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1lpFzF-0004s2-Aa; Fri, 04 Jun 2021 21:00:09 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1lpFzE-0003Kq-12; Fri, 04 Jun 2021 21:00:08 +0100
-Date:   Fri, 4 Jun 2021 21:00:07 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Madalin Bucur <madalin.bucur@nxp.com>
-Cc:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Igal Liberman <Igal.Liberman@freescale.com>,
-        Shruti Kanetkar <Shruti@freescale.com>,
-        Emil Medve <Emilian.Medve@freescale.com>,
-        Scott Wood <oss@buserror.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Camelia Alexandra Groza (OSS)" <camelia.groza@oss.nxp.com>
-Subject: Re: Unsupported phy-connection-type sgmii-2500 in
- arch/powerpc/boot/dts/fsl/t1023rdb.dts
-Message-ID: <20210604200007.GX30436@shell.armlinux.org.uk>
-References: <20210603143453.if7hgifupx5k433b@pali>
- <YLjxX/XPDoRRIvYf@lunn.ch>
- <20210603194853.ngz4jdso3kfncnj4@pali>
- <AM6PR04MB3976B62084EC462BA02F0C4CEC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
- <20210604192732.GW30436@shell.armlinux.org.uk>
- <AM6PR04MB39768A569CE3CC4EC61A8769EC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
+        id S230022AbhFDUUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 16:20:30 -0400
+Received: from mail-oo1-f47.google.com ([209.85.161.47]:37637 "EHLO
+        mail-oo1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229854AbhFDUUa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 16:20:30 -0400
+Received: by mail-oo1-f47.google.com with SMTP id t6-20020a4ae9a60000b0290245a5133898so2529591ood.4;
+        Fri, 04 Jun 2021 13:18:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=MCfv6fQHDee2XjvXSHxeG0uhLM30iPs27L6wPGcgAxs=;
+        b=o0eAe56daEXySaaYE0QewKHE7uCfnN+z55S5paL3Xj6pZidRu4Zr7+WNKR/DJ3tcjW
+         ZnvobxiymSuOyyBmu6EvRZppVUr3Rlc21xfiWX2uwqsz32oNIlCqL9yR3a82BOnyrjV8
+         zInadxuEUuTvAKbiutAZ1GSJ2yChGr9yyy87VGJ610evG+cZONsNEUiPr46PlW8Kmluy
+         DHN3Jk7lRV0bulkd7ZMwbCKDvWmpHCsg4Oh5r66KZASSNEnmFs8UJ1s2ji1eAOtwsrOy
+         O4nOGen1tVzoXEtq6ngOwkdDmxYghwS3JOVypUVdq0Wl5WKX8eQ/8AhQpiUEy5Tc7zKu
+         HFpw==
+X-Gm-Message-State: AOAM53150WEN1SxYUkRD+/JimTSyfCzR6BZgXRfEYrj4JUEsA6+jefKY
+        9Om1I79qJUtN+jj+9UGisrF35vDPLw==
+X-Google-Smtp-Source: ABdhPJzRJDPfmgAea9/YY0WQx51jKCVAWE652ExVRIuOi+o8jdXEwJqKDYUFtdgGhgxX1EY+ifs3dQ==
+X-Received: by 2002:a4a:5246:: with SMTP id d67mr4967125oob.33.1622837923378;
+        Fri, 04 Jun 2021 13:18:43 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id f2sm634713ooj.22.2021.06.04.13.18.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Jun 2021 13:18:42 -0700 (PDT)
+Received: (nullmailer pid 3843001 invoked by uid 1000);
+        Fri, 04 Jun 2021 20:18:41 -0000
+Date:   Fri, 4 Jun 2021 15:18:41 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: Add SONY Synaptics JDI panel
+Message-ID: <20210604201841.GA3834184@robh.at.kernel.org>
+References: <20210525113105.52990-1-konrad.dybcio@somainline.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <AM6PR04MB39768A569CE3CC4EC61A8769EC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <20210525113105.52990-1-konrad.dybcio@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 04, 2021 at 07:39:10PM +0000, Madalin Bucur wrote:
-> > -----Original Message-----
-> > From: Russell King <linux@armlinux.org.uk>
-> > Sent: 04 June 2021 22:28
-> > To: Madalin Bucur <madalin.bucur@nxp.com>
-> > Cc: Pali Rohár <pali@kernel.org>; Andrew Lunn <andrew@lunn.ch>; Igal
-> > Liberman <Igal.Liberman@freescale.com>; Shruti Kanetkar
-> > <Shruti@freescale.com>; Emil Medve <Emilian.Medve@freescale.com>; Scott
-> > Wood <oss@buserror.net>; Rob Herring <robh+dt@kernel.org>; Michael
-> > Ellerman <mpe@ellerman.id.au>; Benjamin Herrenschmidt
-> > <benh@kernel.crashing.org>; netdev@vger.kernel.org;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Camelia
-> > Alexandra Groza (OSS) <camelia.groza@oss.nxp.com>
-> > Subject: Re: Unsupported phy-connection-type sgmii-2500 in
-> > arch/powerpc/boot/dts/fsl/t1023rdb.dts
-> > 
-> > On Fri, Jun 04, 2021 at 07:35:33AM +0000, Madalin Bucur wrote:
-> > > Hi, the Freescale emails no longer work, years after Freescale joined
-> > NXP.
-> > > Also, the first four recipients no longer work for NXP.
-> > >
-> > > In regards to the sgmii-2500 you see in the device tree, it describes
-> > SGMII
-> > > overclocked to 2.5Gbps, with autonegotiation disabled.
-> > >
-> > > A quote from a long time ago, from someone from the HW team on this:
-> > >
-> > > 	The industry consensus is that 2.5G SGMII is overclocked 1G SGMII
-> > > 	using XAUI electricals. For the PCS and MAC layers, it looks exactly
-> > > 	like 1G SGMII, just with a faster clock.
-> > >
-> > > The statement that it does not exist is not accurate, it exists in HW,
-> > and
-> > > it is described as such in the device tree. Whether or not it is
-> > properly
-> > > treated in SW it's another discussion.
-> > 
-> > Here's the issue though:
-> > 
-> > 802.3 defined 1000base-X which is a fixed 1G speed interface using a
-> > 16-bit control word. Implementations of this exist where the control
-> > word can be disabled.
-> > 
-> > Cisco came along, took 1000base-X and augmented it to allow speeds of
-> > 10M and 100M by symbol repetition, and changing the format of the
-> > 16-bit control word. Otherwise, it is functionally compatible - indeed
-> > SGMII with the control word disabled will connect with 1000base-X with
-> > the control word disabled. I've done it several times.
-> > 
-> > There exists 2500base-X, which is 1000base-X clocked faster, and it
-> > seems the concensus is that it has the AN disabled - in other words,
-> > no control word.
-> > 
-> > Now you're saying that SGMII at 2.5G speed exists, which is 1G SGMII
-> > fixed at 1G speed, without a control word, upclocked by 2.5x.
-> > 
-> > My question to you is how is how is this SGMII 2.5G different from
-> > 2500base-X?
-> > 
-> > > In 2015, when this was submitted,
-> > > there were no other 2.5G compatibles in use, if I'm not mistaken.
-> > > 2500Base-X started to be added to device trees four years later, it
-> > should
-> > > be compatible/interworking but it is less specific on the actual
-> > implementation
-> > > details (denotes 2.5G speed, 8b/10b coding, which is true for this
-> > overclocked
-> > > SGMII). If they are compatible, SW should probably treat them in the
-> > same manner.
-> > 
-> > My argument has been (since I've had experience of SGMII talking to
-> > 1000base-X, and have also accidentally clocked such a scenario at
-> > 2.5G speeds) that there is in fact no functional difference between
-> > SGMII and base-X when they are running at identical speeds with the
-> > control word disabled.
-> > 
-> > Given that we well know that industry likes to use the term "SGMII"
-> > very loosely to mean <whatever>base-X as well as SGMII, it becomes
-> > a very bad term to use when we wish to differentiate between a
-> > base-X and a real Cisco SGMII link with their different control word
-> > formats.
-> > 
-> > And this has always been my point - industry has created confusion
-> > over these terms, but as software programmers, we need to know the
-> > difference. So, SGMII should _only_ be used to identify the Cisco
-> > SGMII modified version of 802.3 base-X _with_ the modified control
-> > word or with the capability of symbol repetition. In other words,
-> > the very features that make it SGMII as opposed to 802.3 base-X.
-> > Everything else should not use the term SGMII.
-> > 
-> > > There were some discussions a while ago about the mix or even confusion
-> > between
-> > > the actual HW description (that's what the dts is supposed to do) and
-> > the settings
-> > > one wants to represent in SW (i.e. speed) denoted loosely by
-> > denominations like
-> > > 10G Base-R.
-> > 
-> > The "confusion" comes from an abuse of terms. Abused terms really
-> > can't adequately be used to describe hardware properties.
-> > 
-> > As I say above, we _know_ that some manufacturers state that their
-> > single lane serdes is "SGMII" when it is in fact 1000base-X. That
-> > doesn't mean we stuff "sgmii" into device tree because that's what
-> > the vendor decided to call it.
-> > 
-> > "sgmii" in the device tree means Cisco's well defined SGMII and
-> > does not mean 1000base-X.
+On Tue, May 25, 2021 at 01:31:02PM +0200, Konrad Dybcio wrote:
+> Add bindings for the SONY Synaptics JDI panel used in
+> Xperia X, X Performance, X Compact, XZ and XZs smartphones.
 > 
-> The "sgmii-2500" compatible in that device tree describes an SGMII HW
-> block, overclocked at 2.5G. Without that overclocking, it's a plain
-> Cisco (like) SGMII HW block. That's the reason you need to disable it's
-> AN setting when overclocked. With the proper Reset Configuration Word,
-> you could remove the overclocking and transform that into a plain "sgmii".
-> Thus, the dts compatible describes the HW, as it is.
+> Due to the nature of phone manufacturing and lack of any docs
+> whatsoever, replacement names have been used to indicate the
+> devices that this panel is used on.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> ---
+>  .../display/panel/sony,synaptics-jdi.yaml     | 100 ++++++++++++++++++
+>  1 file changed, 100 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/sony,synaptics-jdi.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/sony,synaptics-jdi.yaml b/Documentation/devicetree/bindings/display/panel/sony,synaptics-jdi.yaml
+> new file mode 100644
+> index 000000000000..81d841c049e8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/sony,synaptics-jdi.yaml
+> @@ -0,0 +1,100 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/sony,synaptics-jdi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SONY Synaptics JDI panel
+> +
+> +maintainers:
+> +  - Konrad Dybcio <konrad.dybcio@somainline.org>
+> +
+> +description: |+
 
-I have given you a detailed explanation of my view on this, which is
-based on reading the 802.3 and Cisco SGMII specifications and various
-device datasheets from multiple different manufacturers.
+Do you need the formatting? If not, drop '|+'.
 
-I find your argument which seems to be based on what your hardware
-in front of you "does" and the actual explanation of it to be an
-extremely weak response.
+> +  This panel seems to only be found in SONY Xperia
+> +  X, X Performance, X Compact, XZ and XZs
+> +  smartphones and we have no straightforward way of
+> +  actually getting the correct model number,
+> +  as no schematics are released publicly.
 
-Please provide a robust argument for your position. Thanks.
+Odd choice of line break length. 80 char please.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - sony,synaptics-jdi-dora
+> +          - sony,synaptics-jdi-kagura
+> +          - sony,synaptics-jdi-keyaki
+> +          - sony,synaptics-jdi-kugo
+> +          - sony,synaptics-jdi-suzu
+> +
+> +  reg: true
+> +
+> +  reset-gpios: true
+> +
+> +  avdd-supply:
+> +    description: avdd supply
+> +
+> +  vddio-supply:
+> +    description: vddio supply
+> +
+> +  vsn-supply:
+> +    description: voltage negative supply
+> +
+> +  vsp-supply:
+> +    description: voltage positive supply
+> +
+> +  tvdd-supply:
+> +    description: tvdd supply
+> +
+> +  preset-gpio:
+> +    description: panel reset pin
+
+What's reset-gpios then?
+
+> +
+> +  pvddio-gpio:
+> +    description: panel vddio pin
+> +
+> +  treset-gpio:
+> +    description: touch reset pin
+
+Use '-gpios'
+
+And need to define how many (maxItems: 1).
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - preset-gpio
+> +  - pvddio-gpio
+> +  - treset-gpio
+> +  - avdd-supply
+> +  - vddio-supply
+> +  - vsn-supply
+> +  - vsp-supply
+> +  - tvdd-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    dsi {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            panel: panel@0 {
+> +                    reg = <0>;
+> +
+> +                    pvddio-gpio = <&tlmm 51 GPIO_ACTIVE_HIGH>;
+> +                    preset-gpio = <&tlmm 8 GPIO_ACTIVE_HIGH>;
+> +                    treset-gpio = <&tlmm 89 GPIO_ACTIVE_HIGH>;
+> +
+> +                    vddio-supply = <&pm8994_s4>;
+> +                    avdd-supply = <&pm8994_l2>;
+> +                    tvdd-supply = <&panel_tvdd>;
+> +
+> +                    backlight = <&pmi8994_wled>;
+> +
+> +                    port {
+> +                      panel_in: endpoint {
+> +                        remote-endpoint = <&dsi0_out>;
+> +                      };
+
+Consistent indentation please. 4 spaces is good.
+
+> +                    };
+> +            };
+> +    };
+> -- 
+> 2.31.1
