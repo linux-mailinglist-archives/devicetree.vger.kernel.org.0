@@ -2,68 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61A7339C1B7
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 22:56:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D452E39C1B9
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jun 2021 22:57:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231363AbhFDU54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 16:57:56 -0400
-Received: from mail-oo1-f49.google.com ([209.85.161.49]:35811 "EHLO
-        mail-oo1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229906AbhFDU54 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 16:57:56 -0400
-Received: by mail-oo1-f49.google.com with SMTP id s20-20020a4ae9940000b02902072d5df239so2548472ood.2;
-        Fri, 04 Jun 2021 13:56:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=M//mZgtCwbk1BSRJ1Wk3leMprXYCUHwVF8AJTmLsFS8=;
-        b=uBIO66RgpA/CHd7oLd6bxq1V6k1d/UeFsiZX4Hp5U+te25Jl5Eu10dMsw9mjfVb7j0
-         DcZRdPKR8Q71CgF+zC20XFgjCft8GOXrtF+4MOn5KxNsQp7KqCKPSUG9rV47OBDT9B7N
-         DgsLq7B5uFl1H3DtarRZ8cW6daU0M/TkHXW+jDFlwSIck78xjD5kKzlznpVOS8uFO3kc
-         +ECbStirf4qF+RXJAcXV46eXOT+HBQC/L8eP+k5aCxhDmb4YzXFwpV+dp4El/Gdnuo6i
-         jEoxffCLFJvRpa0GmHth3z96iC1nTKViuzylntGRXyaY681L5FxWh3311B7WvFiyi3dN
-         EsbQ==
-X-Gm-Message-State: AOAM530h4OlKYUVaU2BanDizuFIZRMTyrTjPcLLA0IGGJG0Aimu/Hr3a
-        tiSLSUEgOymc55IGz4tWIQ==
-X-Google-Smtp-Source: ABdhPJyKTIDHYQyp45mGfxFo+98JHE6cjlNCBJ6+fYk0DFrwAkCtgguQ9eAqK3cBXeOoYcR0nCjcEQ==
-X-Received: by 2002:a4a:6107:: with SMTP id n7mr5114746ooc.12.1622840169273;
-        Fri, 04 Jun 2021 13:56:09 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z14sm706688oti.29.2021.06.04.13.56.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Jun 2021 13:56:08 -0700 (PDT)
-Received: (nullmailer pid 3901286 invoked by uid 1000);
-        Fri, 04 Jun 2021 20:56:07 -0000
-Date:   Fri, 4 Jun 2021 15:56:07 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Lokesh Vutla <lokeshvutla@ti.com>
-Cc:     Vignesh R <vigneshr@ti.com>, mturquette@baylibre.com,
-        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>, sboyd@kernel.org,
-        ssantosh@kernel.org, linux-clk@vger.kernel.org,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: ehrpwm: Add support for AM64
- specific compatible
-Message-ID: <20210604205607.GA3901252@robh.at.kernel.org>
-References: <20210528045743.16537-1-lokeshvutla@ti.com>
- <20210528045743.16537-2-lokeshvutla@ti.com>
+        id S230041AbhFDU7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 16:59:04 -0400
+Received: from foss.arm.com ([217.140.110.172]:48006 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229982AbhFDU7E (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Jun 2021 16:59:04 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CE0AE2B;
+        Fri,  4 Jun 2021 13:57:16 -0700 (PDT)
+Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 0C49D3F719;
+        Fri,  4 Jun 2021 13:57:15 -0700 (PDT)
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     devicetree@vger.kernel.org
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Cristian Marussi <cristian.marussi@arm.com>
+Subject: [PATCH v3 0/6] dt-bindings: firmware: Convert SCPI and SCMI to json schema
+Date:   Fri,  4 Jun 2021 21:57:04 +0100
+Message-Id: <20210604205710.1944363-1-sudeep.holla@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210528045743.16537-2-lokeshvutla@ti.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 May 2021 10:27:42 +0530, Lokesh Vutla wrote:
-> Introduce AM64 specific compatible for epwm time-base sub-module clock.
-> 
-> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
-> ---
->  .../devicetree/bindings/clock/ti,am654-ehrpwm-tbclk.yaml      | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
+Hi Rob,
 
-Acked-by: Rob Herring <robh@kernel.org>
+Thanks for the continued review. I have fixed couple of example in arm,mhu
+schema, so at the end of this series 3 warnings must disappear :).
+Patch 1 and 5 can be squashed, I didn't want bot to flag more errors hence
+have kept it separate.
+
+Regards,
+Sudeep
+
+v2->v3:
+	(mostly addressed all the review comments)
+	- Dropped the 4 patches from v2 that are applied already.
+	- Removed some of the connections in example as there are not
+	  really needed.
+	- Fixed examples in arm,mhu and arm,mhuv2
+	- Moved SCMI protocol@ under properties with const reg values.
+	- Removed numbering for sensors and power-domains and renamed
+	  power-domains to power-controller as expected.
+	  (need to fix juno-base.dtsi, will do that separately)
+	- Added additionalProperties: false at all required places
+	- Fixed SCPI clocks hierarchy.
+
+v1->v2:
+	- Fixed wrongly used "arm,scpi-shmem" with correct "arm,scp-shmem"
+	- Fixed support for "arm,scpi-pre-1.0" only
+	- Added example for amlogic,meson-gxbb-scpi
+	- Added regulator support, expanded all the protocol@* patters
+	  to mark #*-cells as required property
+
+Sudeep Holla (6):
+  dt-bindings: mailbox : arm,mhu: Fix arm,scpi example used here
+  dt-bindings: firmware: arm,scpi: Convert to json schema
+  dt-bindings: firmware: amlogic,scpi: Convert to json schema
+  dt-bindings: firmware: arm,scmi: Convert to json schema
+  dt-bindings: mailbox : arm,mhu: Use examples with matching schema
+  dt-bindings: mailbox : arm,mhuv2: Use example with matching schema
+
+ .../devicetree/bindings/arm/amlogic,scpi.txt  |  15 -
+ .../devicetree/bindings/arm/arm,scmi.txt      | 224 ------------
+ .../devicetree/bindings/arm/arm,scpi.txt      | 204 -----------
+ .../bindings/firmware/arm,scmi.yaml           | 338 ++++++++++++++++++
+ .../bindings/firmware/arm,scpi.yaml           | 249 +++++++++++++
+ .../devicetree/bindings/mailbox/arm,mhu.yaml  |  48 ++-
+ .../bindings/mailbox/arm,mhuv2.yaml           |  25 +-
+ MAINTAINERS                                   |   2 +-
+ 8 files changed, 641 insertions(+), 464 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/amlogic,scpi.txt
+ delete mode 100644 Documentation/devicetree/bindings/arm/arm,scmi.txt
+ delete mode 100644 Documentation/devicetree/bindings/arm/arm,scpi.txt
+ create mode 100644 Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+ create mode 100644 Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+
+-- 
+2.25.1
+
