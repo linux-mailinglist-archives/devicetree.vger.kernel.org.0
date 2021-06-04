@@ -2,90 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA2CC39C3C3
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 01:13:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6485639C3C9
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 01:18:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229986AbhFDXPN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 19:15:13 -0400
-Received: from mail-qt1-f177.google.com ([209.85.160.177]:39766 "EHLO
-        mail-qt1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229929AbhFDXPN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 19:15:13 -0400
-Received: by mail-qt1-f177.google.com with SMTP id c15so8265247qte.6
-        for <devicetree@vger.kernel.org>; Fri, 04 Jun 2021 16:13:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=vXmDc2pLbpX9lgKwc2VxPAgHsvXZdqTU2+0uHS8Qm20=;
-        b=Q6hzRsvkNOq2IfRMhqfR5Q6fFPfTbJEeWjktfJe4ZqJlNs/8W4nzSxfmscedh4TRYY
-         R2vFGv+LhNOQoUiKRLnC5K/7WFJzqWvRgJ+lZRYkL9+EN2R4ETo5oXfZJWWUlCEq9Hni
-         ob8YX8UBR5vckySVcQH/IIZIikAnt7KgBgCg0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=vXmDc2pLbpX9lgKwc2VxPAgHsvXZdqTU2+0uHS8Qm20=;
-        b=YRHg7SZriQu3HowPZeCPpN78X8Mg7RFTdzqjBzYjz/WQtoJceqHfODJnSz0pKVAP9S
-         sEIWDKturmgv9LuHphsEtKajvcn/Yzn3z8HlV9DtlVHwT+EAEvX8V6vCN3xTHG3X2Qj+
-         xkua8lATjTDI0jALDWEpNsbJ4YzDQOaXSlTvYB+DNlgzke+P+31odjv9qGZaISS7dHT+
-         3aO8xtlcHzdbjzl9Myr9XJ+D0UjxIUiHgirZHr4qF0hAkckPNGf7V4AmyuH18S/i+6so
-         Vn/E2Rb2PAWXECMtJqmoPGq+T+B2NvJ75jkOnFEY1YyBUwWL0odqwklHXELhNQJd8q0I
-         2CZg==
-X-Gm-Message-State: AOAM532es9x13bTWRx4EvYVp/+l2p163B/mo9Dez1m08+OL3Hqz6d+g0
-        5VuwrpuCSvUrM2TKdEq4iImYQU5DNjZ4dw==
-X-Google-Smtp-Source: ABdhPJzpZVIg5VgKs65fp2oLZsHx674XoGtPHrMy5FJeIMVXhlZZd4pCcqXvCLevSZOoLvmVoe7wHw==
-X-Received: by 2002:ac8:4f44:: with SMTP id i4mr6900025qtw.57.1622848330999;
-        Fri, 04 Jun 2021 16:12:10 -0700 (PDT)
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
-        by smtp.gmail.com with ESMTPSA id d15sm4286559qte.15.2021.06.04.16.12.10
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Jun 2021 16:12:10 -0700 (PDT)
-Received: by mail-yb1-f169.google.com with SMTP id q21so15851171ybg.8
-        for <devicetree@vger.kernel.org>; Fri, 04 Jun 2021 16:12:10 -0700 (PDT)
-X-Received: by 2002:a25:8082:: with SMTP id n2mr8366030ybk.79.1622848329667;
- Fri, 04 Jun 2021 16:12:09 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210603081215.v2.1.Id4510e9e4baaa3f6c9fdd5cdf4d8606e63c262e3@changeid>
-In-Reply-To: <20210603081215.v2.1.Id4510e9e4baaa3f6c9fdd5cdf4d8606e63c262e3@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 4 Jun 2021 16:11:57 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=V9tczBEnT6zZq1UA=E1x8jyBoiEAt6yJv5R7j-mpOczg@mail.gmail.com>
-Message-ID: <CAD=FV=V9tczBEnT6zZq1UA=E1x8jyBoiEAt6yJv5R7j-mpOczg@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: qcom: pm6150: Add thermal zone for PMIC
- on-die temperature
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S229986AbhFDXUo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 19:20:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42808 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229774AbhFDXUn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Jun 2021 19:20:43 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D62CF613EC;
+        Fri,  4 Jun 2021 23:18:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1622848737;
+        bh=o5HZTLhP5wQ4KKFNqCChs2/Ti0SXDssVhVvBtp5dayI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CGVHiF4bMBkMEK0K/sxKjF+kBO4UDZkFoIv+fShW7RXBzZOZubgNL1d1nUFEJ/Mtv
+         0mHCLhI300IJKrWQi1SS7Kfquc1CjZbdj9CleQ9O6vWITg3znvEr9YbI89YHOKJuQL
+         DxlXdf6FodA1XwCH33ZFCELvVw3nsSMnjtv7NRfGzU22y1hSWyDUojZW4Pr4iPOWL1
+         gDpSPDn6MmpWeXRl9F2iIYzW2LRVjqg13stVUros0lam+qXp38IwbQPJnuly3RIiZP
+         CsrWC1gV8FbzhSWYvQeUJKL3wi8BtVn1RV81jlyqSdI1NshikcaMbFxhiB/WVHmLOE
+         Va9GuKhvvK0Ug==
+Received: by pali.im (Postfix)
+        id A5169990; Sat,  5 Jun 2021 01:18:54 +0200 (CEST)
+Date:   Sat, 5 Jun 2021 01:18:54 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc:     Madalin Bucur <madalin.bucur@nxp.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Igal Liberman <Igal.Liberman@freescale.com>,
+        Shruti Kanetkar <Shruti@freescale.com>,
+        Emil Medve <Emilian.Medve@freescale.com>,
+        Scott Wood <oss@buserror.net>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Stephen Boyd <swboyd@chromium.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Camelia Alexandra Groza (OSS)" <camelia.groza@oss.nxp.com>
+Subject: Re: Unsupported phy-connection-type sgmii-2500 in
+ arch/powerpc/boot/dts/fsl/t1023rdb.dts
+Message-ID: <20210604231854.qi3o3k4rk23jjetg@pali>
+References: <20210603143453.if7hgifupx5k433b@pali>
+ <YLjxX/XPDoRRIvYf@lunn.ch>
+ <20210603194853.ngz4jdso3kfncnj4@pali>
+ <AM6PR04MB3976B62084EC462BA02F0C4CEC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
+ <20210604192732.GW30436@shell.armlinux.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210604192732.GW30436@shell.armlinux.org.uk>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Friday 04 June 2021 20:27:33 Russell King (Oracle) wrote:
+> 802.3 defined 1000base-X which is a fixed 1G speed interface using a
+> 16-bit control word. Implementations of this exist where the control
+> word can be disabled.
+> 
+> Cisco came along, took 1000base-X and augmented it to allow speeds of
+> 10M and 100M by symbol repetition, and changing the format of the
+> 16-bit control word. Otherwise, it is functionally compatible - indeed
+> SGMII with the control word disabled will connect with 1000base-X with
+> the control word disabled. I've done it several times.
+> 
+> There exists 2500base-X, which is 1000base-X clocked faster, and it
+> seems the concensus is that it has the AN disabled - in other words,
+> no control word.
 
-On Thu, Jun 3, 2021 at 8:12 AM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> Add a thermal zone for the pm6150 on-die temperature. The system should
-> try to shut down orderly when the temperature reaches the critical trip
-> point at 115=C2=B0C, otherwise the PMIC will perform a HW power off at 14=
-5=C2=B0C.
->
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
->
-> Changes in v2:
-> - remove 'pm6150-' prefix from critical trip point
-> - updated commit message
->
->  arch/arm64/boot/dts/qcom/pm6150.dtsi | 24 ++++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
-
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Thank you for a nice explanation! I think that this information should
+be part of documentation as it could help also other people to
+understand differences between these modes.
