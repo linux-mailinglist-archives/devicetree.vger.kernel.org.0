@@ -2,112 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 794B439CA14
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 19:05:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B3DA39CA43
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 19:41:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230099AbhFERGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Jun 2021 13:06:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56106 "EHLO
+        id S229996AbhFERnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Jun 2021 13:43:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230035AbhFERGu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Jun 2021 13:06:50 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0847C061789;
-        Sat,  5 Jun 2021 10:04:51 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id a11so10573315wrt.13;
-        Sat, 05 Jun 2021 10:04:51 -0700 (PDT)
+        with ESMTP id S229964AbhFERnn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Jun 2021 13:43:43 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BDEBC061766;
+        Sat,  5 Jun 2021 10:41:42 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id t16-20020a05600c1990b02901a0d45ff03aso6244604wmq.2;
+        Sat, 05 Jun 2021 10:41:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=g/W44ow+C6jPmps5gfwR35TPNfFxt3RYI3mHXT3ZiRU=;
-        b=Bw2IBYrnzHyx4A99ZqsNvFNjENfkjgf2045SpAsco2Ufqd1uK/etMZ7muBq3Ida0AX
-         GDxstPbhFwStHlWpaxXwRVC4m56a/XUcNBqkRpMOtSZHmZf83QaYbbKvdCBjnfzU4kKp
-         E0MClDxVpoHeoNHPzdIWPS2mvFZ5vo7DiDt2yjBoSFlf0bGrM71MCmcsUJ+wNhEVhfx4
-         NQHo+LmWi+AnA80SdQj6e5INRe0a+b395toR0ot52zKtv3umVc0Lz4o9oqtoIGwh0ePI
-         jmOyxBYuYDXrZuaqUBEe3/8KLXNn+/MmfKKPhmexZilVC3Sg2CYuvLkgnV1dn9l5dWSK
-         ofhg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=58S1Og3Gq6yFDBmvvvA786Kv3ZHM/KHp6+Nqv3S6XUY=;
+        b=b5eJWGhJcXo5IFD5VMPLXDFJk6XICjvJsKi6fJPjDU0yt3+d23qtGnZtUb3UMREcHq
+         zeLRKuHA2/4mX/1VJO+TIEfVadGQ2fEsXaEilGumOx/UGUyosGYn9evcumxaBDoJo4Su
+         kcJCrW65I1EePaKe5uNGbDnKLCF9qyG2c3JJVUkfdGDwpZYwl1zUI0zI2YyhZFEJS8Py
+         mP6GbeLyApeKPNr4W4DkjTshBVfP4fPMCWV4dzbMh1ib5NDd8Ol4yE8vmVgpO+aIs6m+
+         mBOaaSP2QV0vsolS0IBJb3TSyEu6EPYgf18kMUU7y8XK622+Y/r9gwF300uyuz4ihbAv
+         pYiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=g/W44ow+C6jPmps5gfwR35TPNfFxt3RYI3mHXT3ZiRU=;
-        b=GP+pwLTa1iKmzZA/EUin27Iu4hl3dy0A5ihV0UmWDANY6OmSSfL+vMfZcC6V6v8/CE
-         wYpmGhtKMghzrQYOLufuB/+1c6qQt1/ztakMekCo/Ar03eXQBiVp268EaTCe19n7aS6G
-         NOrpSJ3F9zvJ2ZRRJDnUj1Uf5xbRzftOqBFrDlVbFWmcz0hbmj/MQXQf6YtWdUlLbTiy
-         RU73RG8oMBee0YW0P8S73sjPefPs8b8ez/77aH64+M+6saekC6i3puBEwCfUJluxO0cS
-         G7Rc16tNmqHICZBoommjc2wfdf7/tXeCn0B7IhS7+3r6ga2Lt3cmdNSPx7flRJqSY3Gt
-         9zyQ==
-X-Gm-Message-State: AOAM530hAg5W/qqiBJDk5kQsf0KaEbm0AN/1WrxG1paHRhXtT7JUo0fo
-        jKJEznTplWvj4sck3SLxbxerXNqrSqg=
-X-Google-Smtp-Source: ABdhPJybYMS+Qt8hUA7uuNlltK6Z2xKsKaPvHD9Ky0eTMbcjFktPuaTwZqWLA98/yeoyRA08QmTKfg==
-X-Received: by 2002:a5d:414e:: with SMTP id c14mr8965921wrq.81.1622912690062;
-        Sat, 05 Jun 2021 10:04:50 -0700 (PDT)
-Received: from debby (176-141-241-253.abo.bbox.fr. [176.141.241.253])
-        by smtp.gmail.com with ESMTPSA id z19sm11201170wmf.31.2021.06.05.10.04.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Jun 2021 10:04:49 -0700 (PDT)
-From:   Romain Perier <romain.perier@gmail.com>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Daniel Palmer <daniel@0x0f.com>,
-        Mohammed Billoo <mohammed.billoo@gmail.com>,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 3/3] ARM: dts: mstar: Add watchdog device_node definition
-Date:   Sat,  5 Jun 2021 19:04:41 +0200
-Message-Id: <20210605170441.33667-4-romain.perier@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210605170441.33667-1-romain.perier@gmail.com>
-References: <20210605170441.33667-1-romain.perier@gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=58S1Og3Gq6yFDBmvvvA786Kv3ZHM/KHp6+Nqv3S6XUY=;
+        b=qr4T2fClW0ln/oD+zLhrcRnA1pnPakenSoR9alUN8/U7eSf2QAg8w+hymGnO8b57bK
+         Ln4jkF+zCzqNUPVIP6hjuGjwk1ZIBB1lEFVxbiMnyfn9hF3FWzjWDR8H75RGNbL2UZNS
+         U0dK+xdC2oEupueY1PQQxLn5BaUUeqZWo2HoRlS3heVUBo5DwsJADzNPH9hmRvusMFFJ
+         6HoHFFjFCOtqgpR8TslAYUz8r0+gZYyRfpOIEmMlOlVyWFFwj+rIA1sNT4Vu6bIves+r
+         5NTWpTGU976kPSkHdgOU2/MIlp9gKeGqIxnUJhKLUKJBJC1wUjHSAf49xRL0kLXeB1ma
+         twng==
+X-Gm-Message-State: AOAM533js6FZV6fR39VvTKZQoRKlOXNvkmKRLfQ+e3CRfKc87JqEy8MH
+        rghlxri1bbKR3avzBMX64kM=
+X-Google-Smtp-Source: ABdhPJyiFCxRpIhc+P1d+WdBeVTCiCFPFUkUwjDbqSiPHq+lzi4KTMpPe8xwEp7BhyJd6VmUYckIpQ==
+X-Received: by 2002:a05:600c:4ba1:: with SMTP id e33mr3183717wmp.39.1622914900861;
+        Sat, 05 Jun 2021 10:41:40 -0700 (PDT)
+Received: from cluster5 ([80.76.206.81])
+        by smtp.gmail.com with ESMTPSA id c206sm12182512wmf.12.2021.06.05.10.41.40
+        (version=TLS1 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
+        Sat, 05 Jun 2021 10:41:40 -0700 (PDT)
+From:   Matthew Hagan <mnhagan88@gmail.com>
+Cc:     Matthew Hagan <mnhagan88@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Voon Weifeng <weifeng.voon@intel.com>,
+        Ong Boon Leong <boon.leong.ong@intel.com>,
+        Wong Vee Khee <vee.khee.wong@linux.intel.com>,
+        Tan Tee Min <tee.min.tan@intel.com>,
+        "Wong, Vee Khee" <vee.khee.wong@intel.com>,
+        Fugang Duan <fugang.duan@nxp.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/3] net: stmmac: explicitly deassert GMAC_AHB_RESET
+Date:   Sat,  5 Jun 2021 18:35:37 +0100
+Message-Id: <20210605173546.4102455-1-mnhagan88@gmail.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the definition of both an oscillator at 12Mhz required by the
-the watchdog and the watchdog device_node.
+We are currently assuming that GMAC_AHB_RESET will already be deasserted
+by the bootloader. However if this has not been done, probing of the GMAC
+will fail. To remedy this we must ensure GMAC_AHB_RESET has been deasserted
+prior to probing.
 
-Signed-off-by: Romain Perier <romain.perier@gmail.com>
+Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
 ---
- arch/arm/boot/dts/mstar-v7.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ drivers/net/ethernet/stmicro/stmmac/stmmac_main.c     | 7 +++++++
+ drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 7 +++++++
+ include/linux/stmmac.h                                | 1 +
+ 3 files changed, 15 insertions(+)
 
-diff --git a/arch/arm/boot/dts/mstar-v7.dtsi b/arch/arm/boot/dts/mstar-v7.dtsi
-index 3d5d8c634de3..471d005e2e62 100644
---- a/arch/arm/boot/dts/mstar-v7.dtsi
-+++ b/arch/arm/boot/dts/mstar-v7.dtsi
-@@ -62,6 +62,14 @@ rtc_xtal: rtc_xtal {
- 			clock-frequency = <32768>;
- 			status = "disabled";
- 		};
-+
-+		xtal_div2: xtal_div2 {
-+			#clock-cells = <0>;
-+			compatible = "fixed-factor-clock";
-+			clocks = <&xtal>;
-+			clock-div = <2>;
-+			clock-mult = <1>;
-+		};
- 	};
+diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+index 6d41dd6f9f7a..1e28058b65a8 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
++++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+@@ -6840,6 +6840,13 @@ int stmmac_dvr_probe(struct device *device,
+ 			reset_control_reset(priv->plat->stmmac_rst);
+ 	}
  
- 	soc: soc {
-@@ -119,6 +127,12 @@ pm_irin_pins: pm_irin {
- 				};
- 			};
- 
-+			watchdog@6000 {
-+				compatible = "mstar,msc313e-wdt";
-+				reg = <0x6000 0x1f>;
-+				clocks = <&xtal_div2>;
-+			};
++	if (priv->plat->stmmac_ahb_rst) {
++		ret = reset_control_deassert(priv->plat->stmmac_ahb_rst);
++		if (ret == -ENOTSUPP)
++			dev_err(priv->device,
++				"unable to bring out of ahb reset\n");
++	}
 +
- 			intc_fiq: interrupt-controller@201310 {
- 				compatible = "mstar,mst-intc";
- 				reg = <0x201310 0x40>;
+ 	/* Init MAC and get the capabilities */
+ 	ret = stmmac_hw_init(priv);
+ 	if (ret)
+diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+index 97a1fedcc9ac..d8ae58bdbbe3 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
++++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+@@ -600,6 +600,13 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
+ 		goto error_hw_init;
+ 	}
+ 
++	plat->stmmac_ahb_rst = devm_reset_control_get_optional_shared(
++							&pdev->dev, "ahb");
++	if (IS_ERR(plat->stmmac_ahb_rst)) {
++		ret = plat->stmmac_ahb_rst;
++		goto error_hw_init;
++	}
++
+ 	return plat;
+ 
+ error_hw_init:
+diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
+index e55a4807e3ea..9b6a64f3e3dc 100644
+--- a/include/linux/stmmac.h
++++ b/include/linux/stmmac.h
+@@ -239,6 +239,7 @@ struct plat_stmmacenet_data {
+ 	unsigned int mult_fact_100ns;
+ 	s32 ptp_max_adj;
+ 	struct reset_control *stmmac_rst;
++	struct reset_control *stmmac_ahb_rst;
+ 	struct stmmac_axi *axi;
+ 	int has_gmac4;
+ 	bool has_sun8i;
 -- 
-2.30.2
+2.26.3
 
