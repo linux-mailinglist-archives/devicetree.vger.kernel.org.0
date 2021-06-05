@@ -2,121 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B7AE39C814
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 14:19:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7002039C820
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 14:27:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229933AbhFEMVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Jun 2021 08:21:22 -0400
-Received: from mail-qk1-f172.google.com ([209.85.222.172]:35647 "EHLO
-        mail-qk1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229931AbhFEMVV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Jun 2021 08:21:21 -0400
-Received: by mail-qk1-f172.google.com with SMTP id j189so12107755qkf.2;
-        Sat, 05 Jun 2021 05:19:23 -0700 (PDT)
+        id S229958AbhFEM3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Jun 2021 08:29:45 -0400
+Received: from mail-ej1-f54.google.com ([209.85.218.54]:38573 "EHLO
+        mail-ej1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229938AbhFEM3p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Jun 2021 08:29:45 -0400
+Received: by mail-ej1-f54.google.com with SMTP id og14so13323441ejc.5;
+        Sat, 05 Jun 2021 05:27:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2XU5HDbmcHnF712wVpqM6iQ1X7EhYZWOfK4vwV87prU=;
-        b=FWobSpgrhp0Af/hcJqRgDfsHgRC3XmmPbsTFVx7BVZIZsbDAiAq6QmHzQc9wN6ld5l
-         6OlQdRVBJ4+zJAXiNK0mBkcTt5KDuPzVbIfcnPn0aHjMdOO+fXMorjb5pGOISWE05oWS
-         E+545N6/1rPXvrj+XtwR4xKiapXjMbyzDxyvv1TIezV2LtV2Gc7EJTx4sr9E4BXgjl08
-         Mp/gY390Qh61pvf0wqhzTTtw4+GUeasRTiDSVrtZWD6CUES2pnc6QT+2onqSTsGLX+TT
-         cKiijQcGu3QN5k2RzM47GLUs61t7zUhpLlYQC9rx9SK1AGJJTyeklrKsl9XqbPS5rlEV
-         wEDQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=yxAwoHb9R5ZBIZwDJsuyJCDfJDe34rxlobdXTwB9+cg=;
+        b=EuPUMxteWITDkddFMz6iypixhTrnTgPv+5col3X6LpXxQyHv4sxTxI0+Gku7F3ADRg
+         rS04VRxy3/Wt+fHwvUGeoU6AkjqAiJ01Rx/20pEamrxxoLemnL4baumDdTjVguFWJpEx
+         EkWa78i8YcwD/Ip77FmkdEgz3s20Ezre0P2TJ8wGWKkitWYx9yHDqSnYurs7ecvmYF2j
+         9JIiWuxdM7w0umqmbFm0SIcpG6qzuYmdq+p3/ODyZpyZANci9fifPEb9ovUb+Dkfr7GT
+         KMsEm1s9tF6whb4U8HYHEGMW9bdHbkOnEwEyH+uyIKrrxtkKlAIN1tSFAlbe42y61DQ6
+         5gEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2XU5HDbmcHnF712wVpqM6iQ1X7EhYZWOfK4vwV87prU=;
-        b=OkLlSmOX4PXeWBQBfyOUDgnm/Qa2hsOvSP8v/Bq4zPchSMvk7FBuLkVtVo2k/lhBx4
-         wHRouuJQ6Bj+R6JsS/Yon8PNc4+nlfmyOvAtFGMVEqIhhZluoC9Fq6Dz+VI3PuBOcr7z
-         XGDATbRRXqZssTpvCvplw/RlxXtO+Py72O/BsXugIcRGQaP0IC7GxUNtpB7podPBbhJb
-         wsfnOT+HdfnjZYC3p7hOCehj7u7I1HR8qE0kVDw6YbK6sYx5CMigyduC+IMSLoKVm/4z
-         OnX6VivOcy4SGFI+2vMXaVgnYPKlS0Y4pBWdikpWTqjTcgoBYLjOeQVJc9NWA+5Gh+Kj
-         FgZg==
-X-Gm-Message-State: AOAM532RAhUoLNUuj88TArdOyrjIUhJY99/+xanQCmpm19F8l5m3qIy0
-        wYdckjIanGzCgC+CtkEVc1JFthJkqpKfbCqvQEY=
-X-Google-Smtp-Source: ABdhPJz616zbzLkCG4N8pskE1XrPJz4cf9/NOusosJu2q74PjtNEUUCHcdBR5LFqOAKT12RVqIG5z0nyLpZzvcV8Bos=
-X-Received: by 2002:a05:620a:119c:: with SMTP id b28mr8701321qkk.374.1622895503195;
- Sat, 05 Jun 2021 05:18:23 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210605104942.39487-1-konrad.dybcio@somainline.org> <20210605104942.39487-2-konrad.dybcio@somainline.org>
-In-Reply-To: <20210605104942.39487-2-konrad.dybcio@somainline.org>
-From:   Marijn Suijten <marijns95@gmail.com>
-Date:   Sat, 5 Jun 2021 14:18:12 +0200
-Message-ID: <CANX-K3t35412cnsWwiG=oi7MK9qYoOFCD5NBOqCwzXFA9OamsQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] drm/panel: Add support for SONY JDI Synaptics panel
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=yxAwoHb9R5ZBIZwDJsuyJCDfJDe34rxlobdXTwB9+cg=;
+        b=EJ0NDHNAmmw0phCGqiuIp6vWHYnO2rzUzjyWp0UYMcMlNMssk0fmRFbTdYaXINlAJc
+         WhkZ8zaegadi2E+Fe8/hd2uhbbkMaR+9FtEsuYyCCf+Vh96KOnrZhkmkEX13VmcexAMF
+         Pb9xwaHNUiPp3pPfCFDcfm5Sq7op/fF5VbYk3aVyVolClClJ4pzdf4qrjimh6ICkb/HN
+         o+WwUOM+8eZQXbKrDB+vnzSSmT6tPznjYB5YZ0buGuaBSg5X/8b2f1j82vHs+BX3+S1H
+         s1FyJPBQcMznCRzk5+JEnaztcQmL0auGvxXSVknG1aoek8uMhu1peE12Lhveav1rDogx
+         OwHA==
+X-Gm-Message-State: AOAM532omfX2RBE5S1p3flL34G9KGeYyyLT05Z4BwuOgHqQaNpfQdoZ9
+        3KV6s73T17tq2k9ukraq7rDNb9Z3FQQ=
+X-Google-Smtp-Source: ABdhPJxA3NxXaF5z1JamjWtO8AvUfHjVciOQ+kfNmGvIVQZkQRE8eAwBjoxUcpxeHWC7+VXYYGbf+w==
+X-Received: by 2002:a17:907:10cc:: with SMTP id rv12mr8894741ejb.533.1622896001179;
+        Sat, 05 Jun 2021 05:26:41 -0700 (PDT)
+Received: from skbuf ([188.26.52.84])
+        by smtp.gmail.com with ESMTPSA id v1sm4079274ejg.22.2021.06.05.05.26.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 05 Jun 2021 05:26:40 -0700 (PDT)
+Date:   Sat, 5 Jun 2021 15:26:39 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc:     Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Igal Liberman <Igal.Liberman@freescale.com>,
+        Shruti Kanetkar <Shruti@freescale.com>,
+        Emil Medve <Emilian.Medve@freescale.com>,
+        Scott Wood <oss@buserror.net>,
         Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Camelia Alexandra Groza (OSS)" <camelia.groza@oss.nxp.com>
+Subject: Re: Unsupported phy-connection-type sgmii-2500 in
+ arch/powerpc/boot/dts/fsl/t1023rdb.dts
+Message-ID: <20210605122639.4lpox5bfppoyynl3@skbuf>
+References: <20210603143453.if7hgifupx5k433b@pali>
+ <YLjxX/XPDoRRIvYf@lunn.ch>
+ <20210603194853.ngz4jdso3kfncnj4@pali>
+ <AM6PR04MB3976B62084EC462BA02F0C4CEC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
+ <20210604192732.GW30436@shell.armlinux.org.uk>
+ <AM6PR04MB39768A569CE3CC4EC61A8769EC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
+ <YLqLzOltcb6jan+B@lunn.ch>
+ <AM6PR04MB39760B986E86BA9169DEECC5EC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
+ <20210604233455.fwcu2chlsed2gwmu@pali>
+ <20210605003306.GY30436@shell.armlinux.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210605003306.GY30436@shell.armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 5 Jun 2021 at 12:49, Konrad Dybcio <konrad.dybcio@somainline.org> wrote:
+On Sat, Jun 05, 2021 at 01:33:07AM +0100, Russell King (Oracle) wrote:
+> On Sat, Jun 05, 2021 at 01:34:55AM +0200, Pali Rohár wrote:
+> > But as this is really confusing what each mode means for Linux, I would
+> > suggest that documentation for these modes in ethernet-controller.yaml
+> > file (or in any other location) could be extended. I see that it is
+> > really hard to find exact information what these modes mean and what is
+> > their meaning in DTS / kernel.
 >
-> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> We have been adding documentation to:
 >
-> This commit adds support for Synaptics+JDI display panels
-> used in SONY Xperia X, X Compact, X Performance, XZ and XZs
-> smartphones.
+> Documentation/networking/phy.rst
 >
-> Due to the nature of phone manufacturing, it is impossible
-> to retrieve the actual panel names, hence the replacement
-> ones, detailing the devices they are used on.
+> for each of the modes that have had issues. The 2500base-X entry
+> hasn't been updated yet, as the question whether it can have in-band
+> signaling is unclear (there is no well defined standard for this.)
 >
-> Co-developed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
->  drivers/gpu/drm/panel/Kconfig                 |  10 +
->  drivers/gpu/drm/panel/Makefile                |   1 +
->  .../gpu/drm/panel/panel-sony-synaptics-jdi.c  | 511 ++++++++++++++++++
->  3 files changed, 522 insertions(+)
->  create mode 100644 drivers/gpu/drm/panel/panel-sony-synaptics-jdi.c
+> Some vendors state that there is no in-band signalling in 2500base-X.
+> Others (e.g. Xilinx) make it clear that it is optional. Others don't
+> say either way, and when testing hardware, it appears to be functional.
 >
-[..]
-> diff --git a/drivers/gpu/drm/panel/panel-sony-synaptics-jdi.c b/drivers/gpu/drm/panel/panel-sony-synaptics-jdi.c
-> new file mode 100644
-> index 000000000000..2b1972dea58a
-> --- /dev/null
-> +++ b/drivers/gpu/drm/panel/panel-sony-synaptics-jdi.c
-> @@ -0,0 +1,511 @@
-[..]
-> +struct synaptics_jdi_panel {
-> +       struct drm_panel base;
-> +       struct mipi_dsi_device *dsi;
-> +
-> +       struct backlight_device *backlight;
+> So, coming up with a clear definition for this, when we have no real
+> method in the DT file to say "definitely do not use in-band" is a tad
+> difficult.
 
-As mentioned in pre-review, don't forget to actually probe the
-backlight.  It is not necessary to store the backlight (anymore), it
-is already kept in base->backli  Something like this should work:
+If you use phylink, doesn't the lack of
+	managed = "in-band-status";
+mean "definitely do not use in-band"?
 
-    rc = drm_panel_of_backlight(&synaptics_jdi_panel->base);
-    if (rc)
-            return dev_err_probe(dev, rc,
-                    "cannot register of backlight\n");
+> It started out as described - literally, 1000base-X multiplied by 2.5x.
+> There are setups where that is known to work - namely GPON SFPs that
+> support 2500base-X. What that means is that we know the GPON SFP
+> module negotiates in-band AN with 2500base-X. However, we don't know
+> whether the module will work if we disable in-band AN.
 
-> +       struct regulator_bulk_data supplies[5];
-> +
-> +       struct gpio_desc *pan_reset_gpio;
-> +       struct gpio_desc *ts_reset_gpio;
-> +
-> +       bool prepared;
-> +       bool enabled;
-> +
-> +       const struct synaptics_jdi_panel_desc *desc;
-> +};
+Pardon my ignorance, but what is inside a GPON ONT module? Just a laser
+and some amplifiers? So it would still be the MAC PCS negotiating flow
+control with the remote link partner? That's a different use case from a
+PHY transmitting the negotiated link modes to the MAC.
 
-Thanks!
+> There is hardware out there as well which allows one to decide whether
+> to use in-band AN with 2500base-X or not. Xilinx is one such vendor
+> who explicitly documents this. Marvell on the other hand do not
+> prohibit in-band AN with mvneta, neither to they explicitly state it
+> is permitted. In at least one of their PHY documents, they suggest it
+> isn't supported if the MAC side is operating in 2500base-X.
+>
+> Others (NXP) take the position that in-band AN is not supported at
+> 2500base-X speeds. I think a few months ago, Vladimir persuaded me
+> that we should disable in-band AN for 2500base-X - I had forgotten
+> about the Xilinx documentation I had which shows that it's optional.
+> (Practically, it's optional in hardware with 1000base-X too, but then
+> it's not actually conforming with 802.3's definition of 1000base-X.)
+
+I don't think it is me who persuaded you, but rather the reality exposed
+by Marek Behun that the Marvell switches and PHYs don't support clause
+37 in-band AN either, at least when connected to one another, just the
+mvneta appears to do something with the GPON modules:
+
+https://lore.kernel.org/netdev/20210113011823.3e407b31@kernel.org/
+
+I tend to agree, though. We should prevent in-band AN from being
+requested on implementations where we know it will not work. That
+includes any NXP products. In the case of DPAA1, this uses the same PCS
+block as DPAA2, ENETC, Felix and Seville, so if it were to use phylink
+and the common drivers/net/pcs/pcs-lynx.c driver, then the comment near
+the lynx_pcs_link_up_2500basex() function would equally apply to it too
+(I hope this answers Pali's original question).
+
+> The result is, essentially, a total mess. 2500base-X is not a standards
+> defined thing, so different vendors have gone off and done different
+> things.
+
+Correct, I can not find any document mentioning what 2500base-x is either,
+while I can find documents mentioning SGMII at 2500Mbps.
+https://patents.google.com/patent/US7356047B1/en
+
+This Cisco patent does say a few things, like the fact that the link for
+10/100/1000/2500 SGMII should operate at 3.125 Gbaud, and there should
+be a rate adaptation unit separate from the PCS block, which should
+split a frame into 2 segments, and say for 1Gbps, the first segment
+should have its octets repeated twice, and the second segment should
+have its octets repeated 3 times.
+
+This patent also does _not_ say how the in-band autonegotiation code
+word should be adapted to switch between 10/100/1000/2500. Which makes
+the whole patent kind of useless as the basis for a standard for real
+life products.
+
+NXP does _not_ follow that patent (we cannot perform symbol replication
+in that way, and in fact I would be surprised if anyone does, given the
+lack of a way to negotiate between them), and with the limited knowledge
+I currently have, that is the only thing I would call "SGMII-2500".
+So Cisco "SGMII-2500" does in theory exist, but in practice it is a bit
+mythical given what is currently public knowledge.
+
+By the "genus proximum et differentia specifica" criterion, what we have
+according to Linux terminology is 2500base-x (whatever that might be, we
+at least know the baud rate and the coding scheme) without in-band AN.
+We don't seem to have any characteristic that would make the "genus
+proximum" be Cisco SGMII (i.e. we can't operate at any other speeds via
+symbol replication). But that is ok given the actual use, for example
+we achieve the lower speeds using PAUSE frames sent by the PHY.
+
+> Sometimes it's amazing that you can connect two devices together and
+> they will actually talk to each other!
+
+This is not so surprising to me, if you consider the fact that these
+devices were built to common sense specs communicated over email between
+engineers at different companies. There aren't really that many
+companies building these things. The fact that the standards bodies
+haven't kept up and unified the implementations is a different story.
+
+I can agree that the chosen name is confusing. What it is is an overclocked
+serial GMII (in the sense that it is intended as a MAC-to-PHY link),
+with no intended relation to Cisco SGMII. Being intended as a MAC-to-PHY
+link, clause 37 AN does not make sense because flow control is 100%
+managed by the PHY (negotiated over the copper side, as well as used for
+rate adaptation). So there _is_ some merit in calling it something with
+"serial" and "GMII" in the name, it is just describing what it is.
+Using this interface type over a PHY-less fiber SFP+ module (therefore
+using it to its BASE-X name) works by virtue of the fact that the
+signaling/coding is compatible, but it wasn't intended that way,
+otherwise it would have had support for clause 37 flow control resolution.
