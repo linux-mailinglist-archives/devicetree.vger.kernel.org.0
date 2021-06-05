@@ -2,226 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 236F839C95E
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 17:12:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5570339C9F5
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 18:55:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229963AbhFEPNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Jun 2021 11:13:52 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:37381 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229930AbhFEPNv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Jun 2021 11:13:51 -0400
-Received: (Authenticated sender: n@nfraprado.net)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 8D0E020002;
-        Sat,  5 Jun 2021 15:11:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nfraprado.net;
-        s=gm1; t=1622905920;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Vv4/s0oEatJqm6xOhfhv4SCtKvstG4qCMEYIIpldPy0=;
-        b=c3g7o4uEF0JTLo7vMH1ksgmeTVLRz9pP7cqUyB/h+W5DpIymRZemkGu49jcerS4uE/XJQf
-        trJLU85vbJBVfZWGFuOsMTCnYVhfSXPxbndF40vAAuKJ0CB9s0KsBjrJ/9zkVZxSK1kZX7
-        WPbrr1BsDbMi3udCw9RD6VTWhB3rbd/s8FPEH1mqg/QoOWJo+2T2Gjzqe5dJfYUoJ5uWJi
-        mYxE058i/H4Cq0cW3G8Q81eikJU5bVOUF0NbPJeQ/P3UbZMAhOkhJpLRUvntlO2RvnJ5ez
-        x1AXAnbGKQtYTh67G2z/msrTC09lBJ7xVdF4ukLxuwInJgcg+Ro9QEyCJg7rbQ==
-Date:   Sat, 5 Jun 2021 12:11:09 -0300
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <n@nfraprado.net>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Jonathan Corbet <corbet@lwn.net>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
-        coresight@lists.linaro.org, devicetree@vger.kernel.org,
-        kunit-dev@googlegroups.com, kvm@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-security-module@vger.kernel.org,
-        netdev@vger.kernel.org
-Subject: Re: [PATCH 00/34] docs: avoid using ReST :doc:`foo` tag
-Message-ID: <20210605151109.axm3wzbcstsyxczp@notapiano>
-References: <cover.1622898327.git.mchehab+huawei@kernel.org>
+        id S229938AbhFEQ5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Jun 2021 12:57:20 -0400
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:37591 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229933AbhFEQ5U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Jun 2021 12:57:20 -0400
+Received: by mail-oi1-f177.google.com with SMTP id h9so13202400oih.4;
+        Sat, 05 Jun 2021 09:55:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=em0XmateqEJVk5W5pCUdx68KEKOouTKTxSBDpQ3H04k=;
+        b=KTQxxWcWzKevbvFbYASY/oD6B62LuYdLpfPtP2/3NlQlzt+wyq+lrdwoA+CexsMt6a
+         PzEjcQwSnV5AME7WJeUoVEbYnbYr4Ct8ESoudSMOj0hvz/zijkUsISIpWWfdAcq+M+2q
+         J94BIBarJ0/6Y1JlLLasSZCEf2/zWxMNoXoHkqfSHL+Bf0ad5AXT1iLS9FR7rpG6zY4R
+         dWvhkta6NOoZXlOXUiTpgYR2WAHxVS0zF+y9UZCyrWvDa8524619lL1GELfE4Oef/9fo
+         mSaOkza6+idxEKgaw/1v727h40+EFmnY+5/grZNiucnSq6DlS+1aS3b8Q4zz7p6dAxki
+         vvBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=em0XmateqEJVk5W5pCUdx68KEKOouTKTxSBDpQ3H04k=;
+        b=sXQt1wuumb2Ub+bzmk6l7DFs97Ahxsr5Pv/tQS58ghMT6gqFU0+fuLMcQlCxgmxdsJ
+         +NIwAMx5Us/6HCDwcOQSsfZ8arTMqOKI7MUILtGt2256AS2a8xxjpc8TR4TRYQomcU4L
+         VvebyHNkqxmHsqOuvm0YePp5tS1kU3dG92vmZfFyH8+Xr0DlfQY5wIezugDrdkwUX47n
+         klJZh+3SmjngjKN+hSHYQ3dZ95tXq9NnS/QuZgpjiLG6K5GYehsWrq5PyDXaUh/8c23x
+         8At+WI0b0bnKOCL0Cm0S6MTgVo5NOpOcZW6mDx1EMZN0PK+Ax7kxl6ZDHjs/usJpo7H7
+         h8hg==
+X-Gm-Message-State: AOAM531p0P95OcnTGGRQWqZnGNBSr6TSKubYIhjHD8AWonyIhk6iCkX2
+        Cnw3eqAtt/FqGOEASMN2cIyEJAUFyhD7WNYHZKs=
+X-Google-Smtp-Source: ABdhPJwg1Cyh/hYO/hX2t66nO0UJrxONqHEj3nn0tKXc2CCuVJkdTDq+ns/H52MzLHABYZP5kxk6IvTCip+tPSuwNnA=
+X-Received: by 2002:a05:6808:bd4:: with SMTP id o20mr14441019oik.68.1622912059420;
+ Sat, 05 Jun 2021 09:54:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1622898327.git.mchehab+huawei@kernel.org>
+References: <20210530072645.10379-1-romain.perier@gmail.com>
+ <20210530072645.10379-2-romain.perier@gmail.com> <20210604213028.GA3941849@robh.at.kernel.org>
+In-Reply-To: <20210604213028.GA3941849@robh.at.kernel.org>
+From:   Romain Perier <romain.perier@gmail.com>
+Date:   Sat, 5 Jun 2021 18:54:08 +0200
+Message-ID: <CABgxDoKQF2KHoQZwXm-Zo+EUE3T9_uT1tFk8F5F5WoZNWDd4MQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] Documentation: watchdog: Add Mstar MSC313e WDT
+ devicetree bindings documentation
+To:     Rob Herring <robh@kernel.org>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Mohammed Billoo <mohammed.billoo@gmail.com>,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mauro,
+Le ven. 4 juin 2021 =C3=A0 23:30, Rob Herring <robh@kernel.org> a =C3=A9cri=
+t :
+>
+> On Sun, May 30, 2021 at 09:26:43AM +0200, Romain Perier wrote:
+> > This adds the documentation for the devicetree bindings of the Mstar
+> > MSC313e watchdog driver, found from MSC313e SoCs and newer.
+>
+> 'dt-bindings: watchdog: ...' for the subject.
+>
+> >
+> > Signed-off-by: Romain Perier <romain.perier@gmail.com>
+> > ---
+> >  .../bindings/watchdog/msc313e-wdt.yaml        | 40 +++++++++++++++++++
+>
+> mstar,msc313e-wdt.yaml
+>
+> >  1 file changed, 40 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/watchdog/msc313e-=
+wdt.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/watchdog/msc313e-wdt.yam=
+l b/Documentation/devicetree/bindings/watchdog/msc313e-wdt.yaml
+> > new file mode 100644
+> > index 000000000000..70b8e1be5e8e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/watchdog/msc313e-wdt.yaml
+> > @@ -0,0 +1,40 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/watchdog/msc313e-wdt.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MStar Watchdog Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Daniel Palmer <daniel@0x0f.com>
+> > +  - Romain Perier <romain.perier@gmail.com>
+> > +
+> > +allOf:
+> > +  - $ref: watchdog.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - mstar,msc313e-wdt
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - clocks
+> > +  - reg
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    watchdog: watchdog@6000 {
+>
+> Drop unused labels.
+>
+> > +        compatible =3D "mstar,msc313e-wdt";
+> > +        reg =3D <0x6000 0x1f>;
+> > +        clocks =3D <&xtal_div2>;
+> > +    };
+> > --
+> > 2.30.2
 
-On Sat, Jun 05, 2021 at 03:17:59PM +0200, Mauro Carvalho Chehab wrote:
-> As discussed at:
-> 	https://lore.kernel.org/linux-doc/871r9k6rmy.fsf@meer.lwn.net/
-> 
-> It is better to avoid using :doc:`foo` to refer to Documentation/foo.rst, as the
-> automarkup.py extension should handle it automatically, on most cases.
-> 
-> There are a couple of exceptions to this rule:
-> 
-> 1. when :doc:  tag is used to point to a kernel-doc DOC: markup;
-> 2. when it is used with a named tag, e. g. :doc:`some name <foo>`;
-> 
-> It should also be noticed that automarkup.py has currently an issue:
-> if one use a markup like:
-> 
-> 	Documentation/dev-tools/kunit/api/test.rst
-> 	  - documents all of the standard testing API excluding mocking
-> 	    or mocking related features.
-> 
-> or, even:
-> 
-> 	Documentation/dev-tools/kunit/api/test.rst
-> 	    documents all of the standard testing API excluding mocking
-> 	    or mocking related features.
-> 	
-> The automarkup.py will simply ignore it. Not sure why. This patch series
-> avoid the above patterns (which is present only on 4 files), but it would be
-> nice to have a followup patch fixing the issue at automarkup.py.
+Hi,
 
-What I think is happening here is that we're using rST's syntax for definition
-lists [1]. automarkup.py ignores literal nodes, and perhaps a definition is
-considered a literal by Sphinx. Adding a blank line after the Documentation/...
-or removing the additional indentation makes it work, like you did in your
-2nd and 3rd patch, since then it's not a definition anymore, although then the
-visual output is different as well.
+Ok I will send a v3
 
-I'm not sure this is something we need to fix. Does it make sense to use
-definition lists for links like that? If it does, I guess one option would be to
-whitelist definition lists so they aren't ignored by automarkup, but I feel
-this could get ugly really quickly.
-
-FWIW note that it's also possible to use relative paths to docs with automarkup.
-
-Thanks,
-Nícolas
-
-[1] https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#definition-lists
-
-> 
-> On this series:
-> 
-> Patch 1 manually adjust the references inside driver-api/pm/devices.rst,
-> as there it uses :file:`foo` to refer to some Documentation/ files;
-> 
-> Patch 2 converts a table at Documentation/dev-tools/kunit/api/index.rst
-> into a list, carefully avoiding the 
-> 
-> Patch 3 converts the cross-references at the media documentation, also
-> avoiding the automarkup.py bug;
-> 
-> Patches 4-34 convert the other occurrences via a replace script. They were
-> manually edited, in order to honour 80-columns where possible.
-> 
-> I did a diff between the Sphinx 2.4.4 output before and after this patch
-> series in order to double-check that all converted Documentation/ 
-> references will produce <a href=<foo>.rst>foo title</a> tags.
-> 
-> Mauro Carvalho Chehab (34):
->   docs: devices.rst: better reference documentation docs
->   docs: dev-tools: kunit: don't use a table for docs name
->   media: docs: */media/index.rst: don't use ReST doc:`foo`
->   media: userspace-api: avoid using ReST :doc:`foo` markup
->   media: driver-api: drivers: avoid using ReST :doc:`foo` markup
->   media: admin-guide: avoid using ReST :doc:`foo` markup
->   docs: admin-guide: pm: avoid using ReSt :doc:`foo` markup
->   docs: admin-guide: hw-vuln: avoid using ReST :doc:`foo` markup
->   docs: admin-guide: sysctl: avoid using ReST :doc:`foo` markup
->   docs: block: biodoc.rst: avoid using ReSt :doc:`foo` markup
->   docs: bpf: bpf_lsm.rst: avoid using ReSt :doc:`foo` markup
->   docs: core-api: avoid using ReSt :doc:`foo` markup
->   docs: dev-tools: testing-overview.rst: avoid using ReSt :doc:`foo`
->     markup
->   docs: dev-tools: kunit: avoid using ReST :doc:`foo` markup
->   docs: devicetree: bindings: submitting-patches.rst: avoid using ReSt
->     :doc:`foo` markup
->   docs: doc-guide: avoid using ReSt :doc:`foo` markup
->   docs: driver-api: avoid using ReSt :doc:`foo` markup
->   docs: driver-api: gpio: using-gpio.rst: avoid using ReSt :doc:`foo`
->     markup
->   docs: driver-api: surface_aggregator: avoid using ReSt :doc:`foo`
->     markup
->   docs: driver-api: usb: avoid using ReSt :doc:`foo` markup
->   docs: firmware-guide: acpi: avoid using ReSt :doc:`foo` markup
->   docs: hwmon: adm1177.rst: avoid using ReSt :doc:`foo` markup
->   docs: i2c: avoid using ReSt :doc:`foo` markup
->   docs: kernel-hacking: hacking.rst: avoid using ReSt :doc:`foo` markup
->   docs: networking: devlink: avoid using ReSt :doc:`foo` markup
->   docs: PCI: endpoint: pci-endpoint-cfs.rst: avoid using ReSt :doc:`foo`
->     markup
->   docs: PCI: pci.rst: avoid using ReSt :doc:`foo` markup
->   docs: process: submitting-patches.rst: avoid using ReSt :doc:`foo`
->     markup
->   docs: security: landlock.rst: avoid using ReSt :doc:`foo` markup
->   docs: trace: coresight: coresight.rst: avoid using ReSt :doc:`foo`
->     markup
->   docs: trace: ftrace.rst: avoid using ReSt :doc:`foo` markup
->   docs: userspace-api: landlock.rst: avoid using ReSt :doc:`foo` markup
->   docs: virt: kvm: s390-pv-boot.rst: avoid using ReSt :doc:`foo` markup
->   docs: x86: avoid using ReSt :doc:`foo` markup
-> 
->  .../PCI/endpoint/pci-endpoint-cfs.rst         |  2 +-
->  Documentation/PCI/pci.rst                     |  6 +--
->  .../special-register-buffer-data-sampling.rst |  3 +-
->  Documentation/admin-guide/media/bt8xx.rst     | 15 ++++----
->  Documentation/admin-guide/media/bttv.rst      | 21 ++++++-----
->  Documentation/admin-guide/media/index.rst     | 12 +++---
->  Documentation/admin-guide/media/saa7134.rst   |  3 +-
->  Documentation/admin-guide/pm/intel_idle.rst   | 16 +++++---
->  Documentation/admin-guide/pm/intel_pstate.rst |  9 +++--
->  Documentation/admin-guide/sysctl/abi.rst      |  2 +-
->  Documentation/admin-guide/sysctl/kernel.rst   | 37 ++++++++++---------
->  Documentation/block/biodoc.rst                |  2 +-
->  Documentation/bpf/bpf_lsm.rst                 | 13 ++++---
->  .../core-api/bus-virt-phys-mapping.rst        |  2 +-
->  Documentation/core-api/dma-api.rst            |  5 ++-
->  Documentation/core-api/dma-isa-lpc.rst        |  2 +-
->  Documentation/core-api/index.rst              |  4 +-
->  Documentation/dev-tools/kunit/api/index.rst   |  8 ++--
->  Documentation/dev-tools/kunit/faq.rst         |  2 +-
->  Documentation/dev-tools/kunit/index.rst       | 14 +++----
->  Documentation/dev-tools/kunit/start.rst       |  6 +--
->  Documentation/dev-tools/kunit/tips.rst        |  5 ++-
->  Documentation/dev-tools/kunit/usage.rst       |  8 ++--
->  Documentation/dev-tools/testing-overview.rst  | 16 ++++----
->  .../bindings/submitting-patches.rst           | 11 +++---
->  Documentation/doc-guide/contributing.rst      |  8 ++--
->  Documentation/driver-api/gpio/using-gpio.rst  |  4 +-
->  Documentation/driver-api/ioctl.rst            |  2 +-
->  .../driver-api/media/drivers/bttv-devel.rst   |  2 +-
->  Documentation/driver-api/media/index.rst      | 10 +++--
->  Documentation/driver-api/pm/devices.rst       |  8 ++--
->  .../surface_aggregator/clients/index.rst      |  3 +-
->  .../surface_aggregator/internal.rst           | 15 ++++----
->  .../surface_aggregator/overview.rst           |  6 ++-
->  Documentation/driver-api/usb/dma.rst          |  6 +--
->  .../acpi/dsd/data-node-references.rst         |  3 +-
->  .../firmware-guide/acpi/dsd/graph.rst         |  2 +-
->  .../firmware-guide/acpi/enumeration.rst       |  7 ++--
->  Documentation/hwmon/adm1177.rst               |  3 +-
->  Documentation/i2c/instantiating-devices.rst   |  2 +-
->  Documentation/i2c/old-module-parameters.rst   |  3 +-
->  Documentation/i2c/smbus-protocol.rst          |  4 +-
->  Documentation/kernel-hacking/hacking.rst      |  4 +-
->  .../networking/devlink/devlink-region.rst     |  2 +-
->  .../networking/devlink/devlink-trap.rst       |  4 +-
->  Documentation/process/submitting-patches.rst  | 32 ++++++++--------
->  Documentation/security/landlock.rst           |  3 +-
->  Documentation/trace/coresight/coresight.rst   |  8 ++--
->  Documentation/trace/ftrace.rst                |  2 +-
->  Documentation/userspace-api/landlock.rst      | 11 +++---
->  .../userspace-api/media/glossary.rst          |  2 +-
->  Documentation/userspace-api/media/index.rst   | 12 +++---
->  Documentation/virt/kvm/s390-pv-boot.rst       |  2 +-
->  Documentation/x86/boot.rst                    |  4 +-
->  Documentation/x86/mtrr.rst                    |  2 +-
->  55 files changed, 217 insertions(+), 183 deletions(-)
-> 
-> -- 
-> 2.31.1
-> 
-> 
+Regards,
+Romain
